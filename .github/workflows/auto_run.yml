@@ -1,0 +1,81 @@
+name: Auto Article Pipeline
+
+on:
+  schedule:
+    # 3時間ごと（UTC基準。GitHub 側の混雑で数分ずれることがあります）
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+    inputs:
+      max_articles:
+        description: "1回で生成する最大記事数"
+        required: false
+        default: "3"
+      days:
+        description: "何日前までの動画を対象にするか"
+        required: false
+        default: "10"
+
+permissions:
+  contents: write
+
+# 前の実行が走っている間は待機（同じ動画を二重処理しないため）
+concurrency:
+  group: auto-article-pipeline
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check secret
+        run: |
+          if [ -z "${{ secrets.GEMINI_API_KEY }}" ]; then
+            echo "::error::GEMINI_API_KEY が未設定です。gh secret set GEMINI_API_KEY を実行してください。"
+            exit 1
+          fi
+
+      - name: Generate articles
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
+        run: |
+          python scripts/main.py \
+            --max "${{ github.event.inputs.max_articles || '3' }}" \
+            --days "${{ github.event.inputs.days || '10' }}"
+
+      - name: Commit & push
+        run: |
+          if [ -z "$(git status --porcelain content)" ]; then
+            echo "変更なし。コミットをスキップします。"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content
+          COUNT=$(git diff --cached --name-only --diff-filter=A -- 'content/articles/*.json' | wc -l | tr -d ' ')
+          git commit -m "chore(content): 新着AI動画から記事を自動生成 (+${COUNT}本)"
+          git push
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### 自動生成パイプライン"
+            echo ""
+            echo "- 記事総数: $(ls -1 content/articles/*.json 2>/dev/null | wc -l | tr -d ' ')"
+            echo "- 実行時刻: $(date -u '+%Y-%m-%d %H:%M UTC')"
+          } >> "$GITHUB_STEP_SUMMARY"
