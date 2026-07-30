@@ -13,13 +13,19 @@ export default function HomePage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-      <section className="mb-14">
-        <h1 className="text-3xl font-black leading-tight tracking-tight text-ink-950 sm:text-4xl">
+      <section className="mb-14 border-b border-ink-100 pb-12">
+        <p className="text-xs font-bold tracking-[0.2em] text-accent">
+          AI NEWS — 世界のAI公式発表を日本語で
+        </p>
+        <h1 className="mt-4 font-serif text-[1.9rem] font-bold leading-[1.45] tracking-tight text-ink-950 sm:text-[2.6rem]">
           世界のAI公式発表を、
           <br className="sm:hidden" />
-          <span className="text-accent">映像ごとAI解析</span>して日本語速報。
+          <span className="relative whitespace-nowrap text-accent">
+            映像ごとAI解析
+          </span>
+          して日本語速報。
         </h1>
-        <p className="mt-4 max-w-3xl text-base leading-relaxed text-ink-500">
+        <p className="mt-5 max-w-3xl text-[15px] leading-[1.9] text-ink-500">
           {siteConfig.description}
         </p>
       </section>

@@ -11,7 +11,7 @@ type Props = {
 export default function ArticleCard({ article, priority, featured }: Props) {
   return (
     <article
-      className={`group overflow-hidden rounded-2xl border border-ink-100 bg-white transition-shadow hover:shadow-lg ${
+      className={`group overflow-hidden rounded-2xl border border-ink-100 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-300/60 hover:shadow-[0_12px_32px_-12px_rgba(15,23,42,0.18)] ${
         featured ? "md:col-span-2 md:row-span-2" : ""
       }`}
     >
@@ -42,8 +42,8 @@ export default function ArticleCard({ article, priority, featured }: Props) {
           </div>
 
           <h2
-            className={`mt-3 font-bold leading-snug text-ink-950 group-hover:text-accent ${
-              featured ? "text-xl md:text-2xl" : "text-base"
+            className={`mt-3 font-serif font-bold leading-[1.5] text-ink-950 transition-colors group-hover:text-accent ${
+              featured ? "text-xl md:text-[1.6rem]" : "text-[1.0625rem]"
             }`}
           >
             {article.title}

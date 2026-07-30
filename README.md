@@ -86,6 +86,64 @@ Microsoft Developer / NVIDIA / AI at Meta / Hugging Face
 # 出力された Channel(...) 行を scripts/channels.py の CHANNELS に貼り付ける
 ```
 
+## マネタイズ
+
+### Google AdSense（3枠設置済み）
+
+広告枠は既にテンプレートへ埋め込み済みです。設置箇所は以下の3つ。
+
+| 位置 | 実装箇所 |
+| --- | --- |
+| ① 記事トップ（タイトル・リード文の下） | `app/articles/[slug]/page.tsx` の `<AdSlot position="article-top" />` |
+| ② 記事中盤（第3章の直前に自動挿入） | 本文HTMLを3つ目の `<h2>` で分割して挿入 |
+| ③ サイドバー最上部 | `components/Sidebar.tsx` の先頭 |
+
+**現在はダミー枠（`AdSense Dummy`）が表示されています。** 本番広告への切り替えは
+コード修正不要で、Vercel に環境変数を設定するだけです。
+
+```bash
+vercel env add NEXT_PUBLIC_ADSENSE_CLIENT production            # ca-pub-XXXXXXXXXXXXXXXX
+vercel env add NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE_TOP production  # 広告ユニットのスロットID
+vercel env add NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE_MIDDLE production
+vercel env add NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR production
+vercel deploy --prod
+```
+
+設定すると `adsbygoogle.js` の読み込みと `<ins class="adsbygoogle">` の出力が自動で有効になります。
+
+### アフィリエイト（自動リンク挿入）
+
+[`affiliate_links.json`](affiliate_links.json) にツール名とリンクを登録しておくと、
+記事生成時に「その記事が言及したツール」と自動で照合され、リンクが挿入されます。
+
+```json
+{
+  "OpenAI": {
+    "url": "https://openai.com/?ref=あなたのID",
+    "label": "ChatGPT / OpenAI 公式",
+    "note": "補足説明（任意）",
+    "aliases": ["ChatGPT", "GPT-5", "Sora"]
+  },
+  "11labs": "https://11labs.io/?あなたのリンク"
+}
+```
+
+- 値は **文字列（URLだけ）でも、オブジェクトでも**書けます。
+- `aliases` に表記ゆれを入れると拾える範囲が広がります（大文字小文字は無視）。
+- **`YOUR_ID` を含んだままのURLは挿入されません。** 実IDに書き換えて初めて有効になります。
+- 照合は Gemini が返す `mentioned_tools`（記事が実際に言及した製品名）を主に使い、
+  本文の全文一致で取りこぼしを補います。
+- 挿入先は「本文中の最初の1回」＋「記事末の紹介ボックス」＋「サイドバー」の3箇所。
+- リンクには `rel="sponsored"` を付与し、**PR表記と免責文を自動表示**します
+  （Googleのガイドラインと景品表示法のステマ規制への対応）。
+
+`affiliate_links.json` を書き換えたあと、既存記事にも反映したい場合:
+
+```bash
+./.venv/bin/python scripts/main.py --relink   # APIを使わずリンクだけ貼り直す
+git add content && git commit -m "chore: アフィリエイトリンク更新" && git push
+```
+
 ## 設定の変更
 
 | やりたいこと | 変更箇所 |
