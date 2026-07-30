@@ -409,6 +409,24 @@ def unique_slug(base: str, video_id: str) -> str:
     return f"{slug}-{video_id.lower()}"
 
 
+def normalize_body(text: str) -> str:
+    """モデルが改行を二重エスケープして返した場合（本文に実改行が無く "\\n" が並ぶ）を救済する。
+
+    そのまま保存すると Markdown が1行の塊になり、記事が壊れて表示される。
+    """
+    text = str(text or "")
+    literal = text.count("\\n")
+    if literal and text.count("\n") < literal / 4:
+        text = (
+            text.replace("\\r\\n", "\n")
+            .replace("\\n", "\n")
+            .replace("\\t", "\t")
+            .replace('\\"', '"')
+        )
+        log(f"   [fix] 二重エスケープされた改行 {literal} 箇所を復元しました")
+    return text.strip()
+
+
 def clean_list(values, limit: int) -> list[str]:
     seen: list[str] = []
     for value in values or []:
@@ -447,7 +465,7 @@ def build_record(entry: dict, data: dict) -> dict:
         "tags": tags,
         "highlights": clean_list(data.get("highlights"), 3),
         "timetable": timetable[:20],
-        "body": str(data["body_markdown"]).strip(),
+        "body": normalize_body(data["body_markdown"]),
         "channel": channel.name,
         "channelId": channel.channel_id,
         "channelSlug": channel.slug,
