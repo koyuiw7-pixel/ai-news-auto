@@ -17,17 +17,50 @@ function sanitize(html: string): string {
     .replace(/(href|src)\s*=\s*'\s*javascript:[^']*'/gi, "$1='#'");
 }
 
-/** 外部リンクに rel/target を付与 */
-function hardenLinks(html: string): string {
+/**
+ * 外部リンクに rel/target を付与。
+ * アフィリエイトリンクは Google のガイドラインどおり rel="sponsored" にする。
+ */
+function hardenLinks(html: string, affiliateUrls: string[] = []): string {
+  const sponsored = new Set(affiliateUrls);
   return html.replace(
     /<a\s+href="(https?:\/\/[^"]+)"/gi,
-    '<a href="$1" target="_blank" rel="noopener noreferrer nofollow"',
+    (_match, href: string) =>
+      sponsored.has(href)
+        ? `<a href="${href}" target="_blank" rel="sponsored noopener noreferrer"`
+        : `<a href="${href}" target="_blank" rel="noopener noreferrer nofollow"`,
   );
 }
 
-export async function renderMarkdown(markdown: string): Promise<string> {
+export async function renderMarkdown(
+  markdown: string,
+  affiliateUrls: string[] = [],
+): Promise<string> {
   const html = await marked.parse(markdown ?? "");
-  return hardenLinks(sanitize(html));
+  return hardenLinks(sanitize(html), affiliateUrls);
+}
+
+/**
+ * レンダリング済みHTMLを n 番目の <h2> の直前で二分割する。
+ * 記事中盤（第3章の前）に広告を差し込むために使う。
+ * 見出しが足りないときは、おおよそ中間の位置でフォールバック分割する。
+ */
+export function splitBeforeHeading(
+  html: string,
+  headingIndex: number,
+): [string, string] {
+  const positions: number[] = [];
+  const pattern = /<h2[\s>]/gi;
+  let match: RegExpExecArray | null;
+  while ((match = pattern.exec(html)) !== null) positions.push(match.index);
+
+  const cut = positions[headingIndex - 1];
+  if (cut !== undefined) return [html.slice(0, cut), html.slice(cut)];
+
+  // h2 が少ない記事は、後半に一番近い見出し位置で割る
+  const fallback = positions[Math.floor(positions.length / 2)];
+  if (fallback !== undefined) return [html.slice(0, fallback), html.slice(fallback)];
+  return [html, ""];
 }
 
 /** 記事本文から目次（h2）を抽出 */

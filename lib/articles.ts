@@ -6,14 +6,25 @@ export type TimetableItem = {
   label: string;
 };
 
+/** affiliate_links.json との照合でパイプラインが自動挿入する */
+export type AffiliateLink = {
+  name: string;
+  label: string;
+  url: string;
+  note?: string;
+};
+
 export type Article = {
   slug: string;
   title: string;
+  /** 記事冒頭のリード文 */
+  lede: string;
   description: string;
   keywords: string[];
   tags: string[];
   highlights: string[];
   timetable: TimetableItem[];
+  affiliates: AffiliateLink[];
   body: string;
   channel: string;
   channelId: string;
@@ -60,6 +71,8 @@ function readAll(): Article[] {
         tags: parsed.tags ?? [],
         highlights: parsed.highlights ?? [],
         timetable: parsed.timetable ?? [],
+        affiliates: parsed.affiliates ?? [],
+        lede: parsed.lede ?? "",
       });
     } catch (error) {
       console.warn(`[articles] skip (invalid JSON): ${file}`, error);

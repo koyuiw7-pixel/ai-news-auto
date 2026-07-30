@@ -14,6 +14,10 @@
   --font-sans:
     ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN",
     "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
+  /* 見出しに明朝を当てて報道メディアらしい佇まいにする */
+  --font-serif:
+    "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "Noto Serif JP",
+    "Times New Roman", serif;
 }
 
 :root {
@@ -33,20 +37,81 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* 記事本文の日本語向け微調整 */
+/* ---------------------------------------------------------------- */
+/* 記事本文の組版（日本語の読みやすさと報道メディアらしい見た目）      */
+/* ---------------------------------------------------------------- */
+
 .prose :where(h2) {
   scroll-margin-top: 5rem;
-  border-left: 4px solid var(--color-accent);
-  padding-left: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  line-height: 1.55;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--color-ink-100);
 }
 
+/* 見出し左のアクセントバー */
+.prose :where(h2)::before {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 1.05em;
+  margin-right: 0.6rem;
+  vertical-align: -0.12em;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+.prose :where(h3) {
+  scroll-margin-top: 5rem;
+  font-size: 1.12rem;
+  line-height: 1.6;
+  margin-top: 2.25rem;
+  margin-bottom: 0.9rem;
+  color: var(--color-ink-900);
+}
+
+.prose :where(p, li) {
+  line-height: 2;
+  letter-spacing: 0.012em;
+  color: var(--color-ink-700);
+}
+
+.prose :where(strong) {
+  background: linear-gradient(transparent 62%, var(--color-accent-soft) 62%);
+  padding: 0 0.1em;
+}
+
+.prose :where(blockquote) {
+  border-left-color: var(--color-accent);
+  background: var(--color-ink-50);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: normal;
+}
+
+/* 表は横スクロールさせて崩れを防ぐ */
 .prose :where(table) {
   display: block;
   overflow-x: auto;
   white-space: nowrap;
+  font-size: 0.875rem;
+  border: 1px solid var(--color-ink-100);
+  border-radius: 0.5rem;
 }
 
-.prose :where(p, li) {
-  line-height: 1.95;
-  letter-spacing: 0.01em;
+.prose :where(th) {
+  font-weight: 700;
+  color: var(--color-ink-900);
+}
+
+.prose :where(td, th) {
+  padding: 0.6rem 0.9rem;
+}
+
+/* 数字・英字はプロポーショナルに寄せて日本語と馴染ませる */
+.prose :where(p, li, td, th) {
+  font-feature-settings: "palt" 1;
 }

@@ -178,16 +178,26 @@ def collect_candidates(
 # Gemini による記事生成
 # --------------------------------------------------------------------------- #
 
-SYSTEM_INSTRUCTION = """あなたは日本のAI専門メディアのトップ編集者兼SEOスペシャリストです。
-海外AI企業の公式発表動画を視聴し、日本のビジネスパーソン・エンジニア向けに
-「この記事さえ読めば動画を見なくても内容が完全に分かる」水準の解説記事を執筆します。
+SYSTEM_INSTRUCTION = """あなたは日経クロステック / ITmedia / TechCrunch Japan で10年書いてきたベテランのテクノロジー記者です。
+海外AI企業の公式発表動画を取材し、日本のビジネスパーソン・エンジニア向けの署名記事を執筆します。
 
-厳守事項:
-- 動画の映像（スライド・デモ画面・UI・グラフ）と音声の両方を根拠にすること。
-- 動画内で確認できない事実を捏造しないこと。推測を書く場合は「編集部推測」と明示すること。
-- 数値・価格・モデル名・機能名は動画で提示されたものを正確に転記すること。
-- 出力はすべて自然な日本語（固有名詞・製品名は原語のままでよい）。
-- 誇張した煽り表現は使わず、事実ベースで具体的に書くこと。"""
+## 文体の絶対規則（これを外すと記事として失格）
+- **プロの記者の文体で書く。** 常体（だ・である）ではなく、報道記事の敬体（です・ます）で統一する。
+- **禁止表現**: 「いかがでしたか」「〜と言えるでしょう」「〜ではないでしょうか」「注目が集まっています」
+  「今後の動向に注目です」「衝撃」「驚愕」「revolutionary」などの中身のない煽り・締め文句。
+  感嘆符（！）はタイトル・本文とも原則使わない。
+- **箇条書きに逃げない。** 事実を並べるだけでなく、地の文で因果関係と意味を説明する。
+  箇条書きは手順・仕様の列挙にのみ使う。
+- **一文は60字以内**を目安に、主語と述語を明確に。修飾の入れ子を避ける。
+- 主観を書くときは「取材班の見立てでは」と明示し、事実と分離する。
+
+## 取材姿勢
+- 動画の映像（スライド・デモ画面・UI・グラフ・テロップ）と音声の両方を一次資料として扱う。
+- 動画内で確認できない事実は書かない。背景知識で補う箇所は「（編集部注）」と明記する。
+- 数値・価格・モデル名・機能名・登壇者の発言は、提示されたとおり正確に転記する。
+  発言を引用するときは「」で括り、原語と日本語訳を併記する。
+- 「何が新しいのか」を、既存技術との差分として必ず言語化する。差分が不明なら不明と書く。
+- 読者が次に取る行動（試す・様子見・投資判断）まで踏み込む。"""
 
 PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両方から徹底的に解析し、日本語のSEO記事を作成してください。
 
@@ -199,11 +209,18 @@ PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両�
 - 概要欄（参考。矛盾する場合は動画本編を優先）:
 {video_summary}
 
+# 品質基準（商業メディアの水準）
+- 本文は **4000〜6000字**。薄い記事は不可。
+- 各 `###` セクションは **400字以上**、必ず動画内の具体的な固有名詞・数値・画面描写を含める。
+- 見出しは内容を示す具体的なものにする（「概要」「まとめ」のような空疎な見出しは不可）。
+- 表は「項目名 / 数値 / 出典（動画内 or 編集部注）」が分かる形にする。
+
 # 出力する記事の構成（body_markdown に Markdown で記述）
 必ず以下の見出し構成（`##` 見出し）を守り、各セクションを具体的に埋めてください。
 
-## この発表を一言でいうと
-200〜300字で、何が発表され、なぜ重要なのかを要約。
+## 何が発表されたのか
+リード文の続きとして、300〜400字で「誰が・何を・いつ・どこまで」を事実ベースで整理。
+発表の位置づけ（新製品なのか既存の改良なのか、研究段階か提供開始済みか）を明確にする。
 
 ## 発表された機能・アップデートの全容
 動画内のスライド・デモ画面を根拠に、目玉機能を1つずつ `###` 小見出しで詳細解説。
@@ -234,8 +251,16 @@ PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両�
 今後の見通しと、読者が次に取るべきアクションを3行程度で。
 
 # 各フィールドの要件
-- title: 32〜48文字。主要SEOキーワードを前方に置いた、クリックしたくなる日本語タイトル。誇大表現は禁止。
+- title: 32〜48文字。報道記事の見出しとして成立する体裁にする。
+  主要SEOキーワードを前方に置き、**感嘆符・煽り語（衝撃／ヤバい／ついに／必見）は使わない**。
+  良い例:「Google DeepMind、複数ロボットが言語で連携する『Gemini Robotics 2』を公開」
+  悪い例:「Gemini Robotics 2発表！ロボット連携の衝撃」
+- lede: 記事冒頭のリード文。150〜200字の1〜2段落。5W1Hを圧縮し、結論を先に置く。
+  ここだけ読んでも発表の要点が分かる密度にする。
 - description: 100〜130文字のメタディスクリプション。検索結果に出る想定で、結論を含める。
+- mentioned_tools: 記事中で言及した製品・サービス・企業の**正式名称**の配列（5〜12個）。
+  例: ["OpenAI", "ChatGPT", "Google Gemini", "Anthropic", "NVIDIA"]。
+  実際に本文で触れたものだけを挙げること。
 - slug_en: URL用の英小文字スラッグ。半角英数とハイフンのみ、3〜6単語、40文字以内。
 - keywords: 検索されうる日本語キーワード 8〜12個（製品名、機能名、「使い方」「料金」「日本語」等の複合語を含める）。
 - tags: 記事分類用のタグ 3〜6個。製品名・技術カテゴリなど短い語。
@@ -256,7 +281,9 @@ ARTICLE_SCHEMA = {
         "skip_reason": {"type": "STRING"},
         "title": {"type": "STRING"},
         "slug_en": {"type": "STRING"},
+        "lede": {"type": "STRING"},
         "description": {"type": "STRING"},
+        "mentioned_tools": {"type": "ARRAY", "items": {"type": "STRING"}},
         "keywords": {"type": "ARRAY", "items": {"type": "STRING"}},
         "tags": {"type": "ARRAY", "items": {"type": "STRING"}},
         "highlights": {"type": "ARRAY", "items": {"type": "STRING"}},
@@ -278,11 +305,13 @@ ARTICLE_SCHEMA = {
         "is_relevant",
         "title",
         "slug_en",
+        "lede",
         "description",
         "keywords",
         "tags",
         "highlights",
         "timetable",
+        "mentioned_tools",
         "body_markdown",
     ],
     "propertyOrdering": [
@@ -290,7 +319,9 @@ ARTICLE_SCHEMA = {
         "skip_reason",
         "title",
         "slug_en",
+        "lede",
         "description",
+        "mentioned_tools",
         "keywords",
         "tags",
         "highlights",
@@ -427,6 +458,121 @@ def normalize_body(text: str) -> str:
     return text.strip()
 
 
+# --------------------------------------------------------------------------- #
+# アフィリエイトリンクの自動挿入
+# --------------------------------------------------------------------------- #
+
+AFFILIATE_PATH = ROOT / "affiliate_links.json"
+
+
+def load_affiliates() -> list[dict]:
+    """affiliate_links.json を正規化して読み込む。
+
+    値は文字列（URL）でも {url, label, note, aliases} でも書ける。
+    """
+    if not AFFILIATE_PATH.exists():
+        return []
+    try:
+        raw = json.loads(AFFILIATE_PATH.read_text("utf-8"))
+    except json.JSONDecodeError as error:
+        log(f"[warn] affiliate_links.json が不正です: {error}")
+        return []
+
+    entries = []
+    for name, value in raw.items():
+        if name.startswith("_"):  # _README などのメモ用キーは無視
+            continue
+        if isinstance(value, str):
+            value = {"url": value}
+        if not isinstance(value, dict) or not value.get("url"):
+            continue
+        url = str(value["url"])
+        if "YOUR_ID" in url or "your_aff_link" in url:
+            # プレースホルダのままなら挿入しない（誤ったリンクを公開しないため）
+            continue
+        aliases = [name] + [str(a) for a in value.get("aliases", [])]
+        entries.append(
+            {
+                "name": name,
+                "label": str(value.get("label") or name),
+                "url": url,
+                "note": str(value.get("note") or ""),
+                "aliases": [a.lower() for a in aliases if a],
+            }
+        )
+    return entries
+
+
+def match_affiliates(record: dict, mentioned: list[str]) -> list[dict]:
+    """記事が言及したツール名を affiliate_links.json と突き合わせる。
+
+    Gemini が返した mentioned_tools を主に使い、取りこぼしを本文の全文一致で補う。
+    """
+    catalog = load_affiliates()
+    if not catalog:
+        return []
+
+    haystack = " ".join(
+        [record["title"], record["description"], record.get("lede", ""), record["body"]]
+    ).lower()
+    mentioned_lower = {str(m).strip().lower() for m in mentioned if str(m).strip()}
+
+    matched = []
+    for entry in catalog:
+        hit = any(a in mentioned_lower for a in entry["aliases"]) or any(
+            a in haystack for a in entry["aliases"]
+        )
+        if hit:
+            matched.append(
+                {
+                    "name": entry["name"],
+                    "label": entry["label"],
+                    "url": entry["url"],
+                    "note": entry["note"],
+                }
+            )
+    return matched[:6]
+
+
+def linkify_first_mention(body: str, affiliates: list[dict]) -> str:
+    """本文中の最初の1回だけ、ツール名をアフィリエイトリンクに置き換える。
+
+    見出し行・表・コードブロック・既存リンク内は対象外にして Markdown を壊さない。
+    """
+    if not affiliates:
+        return body
+
+    remaining = {a["name"]: a["url"] for a in affiliates}
+    lines = body.split("\n")
+    in_code = False
+
+    for index, line in enumerate(lines):
+        if line.lstrip().startswith("```"):
+            in_code = not in_code
+            continue
+        if in_code or not line.strip():
+            continue
+        if line.lstrip().startswith(("#", "|", ">", "    ")):
+            continue
+
+        for name in list(remaining):
+            if "[" in line or "](" in line:
+                break  # すでにリンクを含む行は触らない
+            pattern = re.compile(re.escape(name), re.IGNORECASE)
+            match = pattern.search(line)
+            if not match:
+                continue
+            url = remaining.pop(name)
+            line = (
+                line[: match.start()]
+                + f"[{match.group(0)}]({url})"
+                + line[match.end() :]
+            )
+            lines[index] = line
+
+    return "\n".join(lines)
+
+
 def clean_list(values, limit: int) -> list[str]:
     seen: list[str] = []
     for value in values or []:
@@ -457,9 +603,10 @@ def build_record(entry: dict, data: dict) -> dict:
         if re.fullmatch(r"\d{1,2}(:\d{2}){1,2}", time_value) and label:
             timetable.append({"time": time_value, "label": label})
 
-    return {
+    record = {
         "slug": unique_slug(slugify(data.get("slug_en", "")), video_id),
         "title": str(data["title"]).strip(),
+        "lede": normalize_body(data.get("lede", "")),
         "description": str(data["description"]).strip(),
         "keywords": clean_list(data.get("keywords"), 14),
         "tags": tags,
@@ -476,7 +623,17 @@ def build_record(entry: dict, data: dict) -> dict:
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "thumbnail": pick_thumbnail(video_id),
         "model": MODEL,
+        "affiliates": [],
     }
+
+    # 記事が言及したツールとアフィリエイト定義を突き合わせ、本文にもリンクを1回だけ挿入する
+    affiliates = match_affiliates(record, data.get("mentioned_tools") or [])
+    if affiliates:
+        record["affiliates"] = affiliates
+        record["body"] = linkify_first_mention(record["body"], affiliates)
+        log(f"   [aff] {len(affiliates)}件: {', '.join(a['name'] for a in affiliates)}")
+
+    return record
 
 
 def write_article(record: dict) -> Path:
@@ -567,6 +724,37 @@ def write_sample() -> Path:
 # --------------------------------------------------------------------------- #
 
 
+def relink_existing() -> int:
+    """affiliate_links.json を更新したあと、既存記事のリンクを貼り直す（API不要）。"""
+    if not ARTICLES_DIR.exists():
+        log("[relink] 記事がありません")
+        return 0
+
+    updated = 0
+    for path in sorted(ARTICLES_DIR.glob("*.json")):
+        try:
+            record = json.loads(path.read_text("utf-8"))
+        except json.JSONDecodeError:
+            log(f"[warn] 読み込み失敗: {path.name}")
+            continue
+
+        before = json.dumps(record.get("affiliates", []), sort_keys=True)
+        affiliates = match_affiliates(record, record.get("tags", []))
+        if json.dumps(affiliates, sort_keys=True) == before:
+            continue
+
+        record["affiliates"] = affiliates
+        record["body"] = linkify_first_mention(record["body"], affiliates)
+        path.write_text(
+            json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
+        updated += 1
+        log(f"[relink] {path.name}: {len(affiliates)}件")
+
+    log(f"[done] {updated} 本を更新しました")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--max", type=int, default=DEFAULT_MAX_ARTICLES, help="1回で生成する最大記事数")
@@ -575,7 +763,15 @@ def main() -> int:
     parser.add_argument("--video", help="この YouTube URL だけを処理する")
     parser.add_argument("--dry-run", action="store_true", help="API を呼ばず対象一覧のみ表示")
     parser.add_argument("--sample", action="store_true", help="ダミー記事を1本生成して終了")
+    parser.add_argument(
+        "--relink",
+        action="store_true",
+        help="APIを呼ばず、既存記事のアフィリエイトリンクだけを貼り直す",
+    )
     args = parser.parse_args()
+
+    if args.relink:
+        return relink_existing()
 
     if args.sample:
         path = write_sample()
