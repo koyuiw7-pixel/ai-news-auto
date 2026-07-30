@@ -51,7 +51,8 @@ jobs:
       - name: Generate articles
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
+          # 未設定なら scripts/main.py の MODEL_CANDIDATES が自動で選択する
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
         run: |
           python scripts/main.py \
             --max "${{ github.event.inputs.max_articles || '3' }}" \

@@ -1,11 +1,15 @@
 # AI速報ラボ — YouTube公式発表 → Gemini解析 → 全自動SEO記事メディア
 
 OpenAI / Anthropic / Google DeepMind など **9社の公式YouTubeチャンネル**を3時間ごとに監視し、
-新着動画を **Gemini 2.5 Flash のマルチモーダル解析（映像＋音声）** にかけて日本語SEO記事を自動生成、
+新着動画を **Gemini のマルチモーダル解析（映像＋音声）** にかけて日本語SEO記事を自動生成、
 GitHub へ commit → Vercel が自動再ビルド、という無人運用のメディアサイトです。
 
+> **モデルについて**: 当初指定の `gemini-2.5-flash` は 2026年7月に Gemini API 側で提供終了しているため、
+> 現行GA版の `gemini-3.5-flash` を既定にしています。利用不可のときは
+> `gemini-3.6-flash` → `gemini-flash-latest` の順に**自動フォールバック**します。
+
 ```
-YouTube RSS ──▶ scripts/main.py ──▶ Gemini 2.5 Flash ──▶ content/articles/*.json
+YouTube RSS ──▶ scripts/main.py ──▶ Gemini 3.5 Flash ──▶ content/articles/*.json
                      ▲                                            │
               GitHub Actions（3時間ごと）                          ▼
                                                     commit & push ──▶ Vercel 自動デプロイ
@@ -87,7 +91,7 @@ Microsoft Developer / NVIDIA / AI at Meta / Hugging Face
 | やりたいこと | 変更箇所 |
 | --- | --- |
 | サイト名・説明文 | `site.config.ts` |
-| 使用モデルの変更 | リポジトリ変数 `GEMINI_MODEL`（例: `gh variable set GEMINI_MODEL --body gemini-2.5-pro`） |
+| 使用モデルの変更 | リポジトリ変数 `GEMINI_MODEL`（例: `gh variable set GEMINI_MODEL --body gemini-3.6-flash`） |
 | 実行間隔 | `.github/workflows/auto_run.yml` の `cron` |
 | 1回あたりの生成本数 | ワークフローの `max_articles`（既定3本） |
 | 記事の構成・文体 | `scripts/main.py` の `PROMPT_TEMPLATE` / `SYSTEM_INSTRUCTION` |

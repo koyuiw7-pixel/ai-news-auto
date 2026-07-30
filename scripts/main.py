@@ -36,7 +36,20 @@ ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
 STATE_PATH = ROOT / "content" / "state.json"
 
-MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+# 使用モデル。GEMINI_MODEL で上書き可。
+# 先頭から順に試し、「そのモデルは存在しない」系のエラーなら次の候補へ自動フォールバックする。
+# （gemini-2.5-flash は 2026-07 に generativelanguage 側で提供終了済みのため使用しない）
+MODEL_CANDIDATES = [
+    m
+    for m in [
+        os.environ.get("GEMINI_MODEL"),
+        "gemini-3.5-flash",  # GA 安定版
+        "gemini-3.6-flash",  # より新しい高性能版
+        "gemini-flash-latest",  # 最終手段: 常に最新へ張り替わるエイリアス
+    ]
+    if m
+]
+MODEL = MODEL_CANDIDATES[0]
 DEFAULT_MAX_ARTICLES = int(os.environ.get("MAX_ARTICLES_PER_RUN", "3"))
 DEFAULT_LOOKBACK_DAYS = int(os.environ.get("LOOKBACK_DAYS", "10"))
 MAX_ATTEMPTS_PER_VIDEO = 2  # これを超えて失敗した動画は諦める
@@ -333,28 +346,48 @@ def generate_article(client, entry: dict) -> dict:
         max_output_tokens=32768,
     )
 
+    global MODEL
+
     last_error: Exception | None = None
-    for attempt in range(1, REQUEST_RETRIES + 1):
-        try:
-            response = client.models.generate_content(
-                model=MODEL, contents=contents, config=config
-            )
-            text = (response.text or "").strip()
-            if not text:
-                raise RuntimeError(
-                    f"空のレスポンス (finish_reason="
-                    f"{getattr(response.candidates[0], 'finish_reason', '?') if response.candidates else '?'})"
+    # 一度使えるモデルが確定したら以降はそれだけを使う
+    models = MODEL_CANDIDATES[MODEL_CANDIDATES.index(MODEL) :]
+
+    for model_name in models:
+        for attempt in range(1, REQUEST_RETRIES + 1):
+            try:
+                response = client.models.generate_content(
+                    model=model_name, contents=contents, config=config
                 )
-            return json.loads(text)
-        except Exception as error:  # noqa: BLE001 - API 由来の例外を一括で再試行
-            last_error = error
-            if attempt == REQUEST_RETRIES:
-                break
-            wait = min(60, 2**attempt * 5) + random.uniform(0, 3)
-            log(f"   [retry {attempt}/{REQUEST_RETRIES - 1}] {error} -> {wait:.0f}s 待機")
-            time.sleep(wait)
+                text = (response.text or "").strip()
+                if not text:
+                    finish = (
+                        getattr(response.candidates[0], "finish_reason", "?")
+                        if response.candidates
+                        else "?"
+                    )
+                    raise RuntimeError(f"空のレスポンス (finish_reason={finish})")
+                MODEL = model_name
+                return json.loads(text)
+            except Exception as error:  # noqa: BLE001 - API 由来の例外を一括で扱う
+                last_error = error
+                if _is_model_unavailable(error):
+                    log(f"   [warn] モデル {model_name} が利用できません -> 次の候補へ")
+                    break  # 再試行せず次のモデルへ
+                if attempt == REQUEST_RETRIES:
+                    break
+                wait = min(60, 2**attempt * 5) + random.uniform(0, 3)
+                log(f"   [retry {attempt}/{REQUEST_RETRIES - 1}] {error} -> {wait:.0f}s 待機")
+                time.sleep(wait)
 
     raise RuntimeError(f"Gemini 呼び出しに失敗: {last_error}")
+
+
+def _is_model_unavailable(error: Exception) -> bool:
+    """モデル未提供/未知モデルを示すエラーかどうか（リトライせず別モデルへ切替）"""
+    text = str(error).lower()
+    return ("404" in text or "not_found" in text or "not found" in text) and (
+        "model" in text or "no longer available" in text
+    )
 
 
 # --------------------------------------------------------------------------- #
