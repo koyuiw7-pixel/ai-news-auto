@@ -112,10 +112,9 @@ npx --yes vercel@latest link --yes --project "$REPO_NAME"
 npx --yes vercel@latest pull --yes --environment=production >/dev/null 2>&1 || true
 DEPLOY_URL="$(npx --yes vercel@latest deploy --prod --yes | tail -1)"
 ok "デプロイ完了: $DEPLOY_URL"
-
-# 本番URLをサイト設定へ反映（sitemap / OGP の絶対URL用）
-npx --yes vercel@latest env rm NEXT_PUBLIC_SITE_URL production --yes >/dev/null 2>&1 || true
-printf '%s' "$DEPLOY_URL" | npx --yes vercel@latest env add NEXT_PUBLIC_SITE_URL production >/dev/null 2>&1 || true
+# sitemap / OGP の絶対URLは Vercel が自動で渡す VERCEL_PROJECT_PRODUCTION_URL から解決されます。
+# 独自ドメインを繋いだ場合のみ、次を実行してください:
+#   vercel env add NEXT_PUBLIC_SITE_URL production   # 例: https://example.com
 
 # ---------------------------------------------------------------------------
 step "6. 初回の記事生成を今すぐ実行"
