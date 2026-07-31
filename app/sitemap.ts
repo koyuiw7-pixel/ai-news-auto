@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import {
   getAllArticles,
   getAllChannels,
+  getAllGenres,
   getAllTags,
 } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
@@ -33,6 +34,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(article.generatedAt || article.publishedAt),
       changeFrequency: "weekly" as const,
       priority: 0.8,
+    })),
+    ...getAllGenres().map((genre) => ({
+      url: `${base}/genres/${genre.slug}`,
+      lastModified,
+      changeFrequency: "hourly" as const,
+      priority: 0.9,
     })),
     ...getAllChannels().map((channel) => ({
       url: `${base}/channels/${channel.slug}`,

@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { getAllChannels } from "@/lib/articles";
+import { getAllGenres } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
 
 export default function Header() {
-  const channels = getAllChannels().slice(0, 6);
+  const genres = getAllGenres();
 
   return (
     <header className="sticky top-0 z-50 border-b border-ink-100 bg-ink-50/85 backdrop-blur-md">
@@ -18,13 +18,13 @@ export default function Header() {
         </Link>
 
         <nav className="hidden min-w-0 flex-1 items-center gap-1 overflow-x-auto md:flex">
-          {channels.map((channel) => (
+          {genres.map((genre) => (
             <Link
-              key={channel.slug}
-              href={`/channels/${channel.slug}`}
-              className="shrink-0 rounded-full px-3 py-1.5 text-sm font-medium text-ink-700 transition-colors hover:bg-accent-soft hover:text-accent"
+              key={genre.slug}
+              href={`/genres/${genre.slug}`}
+              className="shrink-0 rounded-full px-3.5 py-1.5 text-sm font-semibold text-ink-700 transition-colors hover:bg-accent-soft hover:text-accent"
             >
-              {channel.label}
+              {genre.label}
             </Link>
           ))}
         </nav>

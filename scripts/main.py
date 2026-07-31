@@ -171,15 +171,33 @@ def collect_candidates(
 
     # 新しい順
     candidates.sort(key=lambda e: e["published_at"], reverse=True)
-    return candidates
+    return balance_by_genre(candidates)
+
+
+def balance_by_genre(candidates: list[dict]) -> list[dict]:
+    """ジャンルごとに交互に並べ替える。
+
+    投稿頻度の高い1チャンネル（例: 楽待）が候補を占有して
+    他ジャンルの記事が永久に生成されなくなるのを防ぐ。
+    """
+    buckets: dict[str, list[dict]] = {}
+    for entry in candidates:
+        buckets.setdefault(entry["channel"].genre.slug, []).append(entry)
+
+    ordered: list[dict] = []
+    while any(buckets.values()):
+        for slug in list(buckets):
+            if buckets[slug]:
+                ordered.append(buckets[slug].pop(0))
+    return ordered
 
 
 # --------------------------------------------------------------------------- #
 # Gemini による記事生成
 # --------------------------------------------------------------------------- #
 
-SYSTEM_INSTRUCTION = """あなたは日経クロステック / ITmedia / TechCrunch Japan で10年書いてきたベテランのテクノロジー記者です。
-海外AI企業の公式発表動画を取材し、日本のビジネスパーソン・エンジニア向けの署名記事を執筆します。
+SYSTEM_INSTRUCTION_BASE = """あなたは日経クロステック / ITmedia / 東洋経済オンラインで10年書いてきたベテランの専門記者です。
+YouTube上の一次情報（公式発表・専門家の解説）を取材し、日本の読者向けの署名記事を執筆します。
 
 ## 文体の絶対規則（これを外すと記事として失格）
 - **プロの記者の文体で書く。** 常体（だ・である）ではなく、報道記事の敬体（です・ます）で統一する。
@@ -191,13 +209,12 @@ SYSTEM_INSTRUCTION = """あなたは日経クロステック / ITmedia / TechCru
 - **一文は60字以内**を目安に、主語と述語を明確に。修飾の入れ子を避ける。
 - 主観を書くときは「取材班の見立てでは」と明示し、事実と分離する。
 
-## 取材姿勢
-- 動画の映像（スライド・デモ画面・UI・グラフ・テロップ）と音声の両方を一次資料として扱う。
+## 共通の取材姿勢
+- 動画の映像（スライド・資料画面・UI・グラフ・テロップ・間取り図）と音声の両方を一次資料として扱う。
 - 動画内で確認できない事実は書かない。背景知識で補う箇所は「（編集部注）」と明記する。
-- 数値・価格・モデル名・機能名・登壇者の発言は、提示されたとおり正確に転記する。
-  発言を引用するときは「」で括り、原語と日本語訳を併記する。
-- 「何が新しいのか」を、既存技術との差分として必ず言語化する。差分が不明なら不明と書く。
-- 読者が次に取る行動（試す・様子見・投資判断）まで踏み込む。"""
+- 数値・価格・固有名詞・登壇者の発言は、提示されたとおり正確に転記する。
+  発言を引用するときは「」で括る。原語が英語なら日本語訳を併記する。
+- 読者が次に取るべき行動まで踏み込む。"""
 
 PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両方から徹底的に解析し、日本語のSEO記事を作成してください。
 
@@ -218,39 +235,10 @@ PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両�
 # 出力する記事の構成（body_markdown に Markdown で記述）
 必ず以下の見出し構成（`##` 見出し）を守り、各セクションを具体的に埋めてください。
 
-## 何が発表されたのか
-リード文の続きとして、300〜400字で「誰が・何を・いつ・どこまで」を事実ベースで整理。
-発表の位置づけ（新製品なのか既存の改良なのか、研究段階か提供開始済みか）を明確にする。
-
-## 発表された機能・アップデートの全容
-動画内のスライド・デモ画面を根拠に、目玉機能を1つずつ `###` 小見出しで詳細解説。
-スライドに書かれていた文言・数値・ベンチマークスコア・図の内容を具体的に言語化すること。
-デモがある場合は「画面上で何がどう動いたか」を描写すること。最低3つ、可能なら5つ以上。
-
-## 性能・ベンチマーク
-動画で示された評価指標、比較対象、スコアを表（Markdown table）で整理。
-提示がない場合は「動画内で数値の提示はなし」と明記。
-
-## 競合サービスとの比較
-今回の発表内容を、競合（OpenAI / Anthropic / Google / Meta / Microsoft など該当するもの）の
-同等機能と比較した表を作成し、どこが優位でどこが弱いかを論じる。
-競合側の情報はあなたの知識ベースで補ってよいが、その旨を明示すること。
-
-## 料金・提供プラン
-価格、無料枠、APIの従量課金、提供開始時期を、動画で提示された範囲で整理。
-提示がなければ「動画内では価格の言及なし」と明記。
-
-## 日本から使う方法
-日本のユーザーが今日から試すための具体的な手順（アクセス先、必要なアカウント、
-日本語対応の有無、リージョン制限、注意点）を箇条書きで。
-
-## 誰にどう効くのか
-エンジニア / 企画・マーケ / 経営層 の3つの立場別に、実務インパクトを解説。
-
-## まとめ
-今後の見通しと、読者が次に取るべきアクションを3行程度で。
+{outline}
 
 # 各フィールドの要件
+{field_notes}
 - title: 32〜48文字。報道記事の見出しとして成立する体裁にする。
   主要SEOキーワードを前方に置き、**感嘆符・煽り語（衝撃／ヤバい／ついに／必見）は使わない**。
   良い例:「Google DeepMind、複数ロボットが言語で連携する『Gemini Robotics 2』を公開」
@@ -258,17 +246,18 @@ PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両�
 - lede: 記事冒頭のリード文。150〜200字の1〜2段落。5W1Hを圧縮し、結論を先に置く。
   ここだけ読んでも発表の要点が分かる密度にする。
 - description: 100〜130文字のメタディスクリプション。検索結果に出る想定で、結論を含める。
-- mentioned_tools: 記事中で言及した製品・サービス・企業の**正式名称**の配列（5〜12個）。
-  例: ["OpenAI", "ChatGPT", "Google Gemini", "Anthropic", "NVIDIA"]。
+- mentioned_tools: 記事中で言及した製品・サービス・企業・ブランドの**正式名称**の配列（5〜12個）。
+  例（AI）: ["OpenAI", "ChatGPT", "Google Gemini", "NVIDIA"]
+  例（不動産）: ["楽待", "SUUMO", "住宅ローン控除", "フラット35", "三井のリハウス"]
   実際に本文で触れたものだけを挙げること。
 - slug_en: URL用の英小文字スラッグ。半角英数とハイフンのみ、3〜6単語、40文字以内。
 - keywords: 検索されうる日本語キーワード 8〜12個（製品名、機能名、「使い方」「料金」「日本語」等の複合語を含める）。
 - tags: 記事分類用のタグ 3〜6個。製品名・技術カテゴリなど短い語。
 - highlights: 「3秒でわかる要点」ちょうど3つ。各40〜60文字で、数値や固有名詞を含む具体的な内容。
 - timetable: 動画のタイムテーブル。5〜15項目。time は "M:SS" または "H:MM:SS" 形式の実際のタイムスタンプ、
-  label は その時点で何が発表・実演されたかを30〜50文字で。必ず時刻の昇順。
-- is_relevant: この動画が「AI・テクノロジーに関する実質的な発表/解説」であれば true。
-  ショート動画、音楽、告知のみ、内容の薄いティーザーなど記事にする価値がない場合は false。
+  label は その時点で何が語られ・実演されたかを30〜50文字で。必ず時刻の昇順。
+- is_relevant: この動画が「読者にとって実質的な情報価値のある発表・解説」であれば true。
+  ショート動画、音楽、告知のみ、内容の薄いティーザー、宣伝だけの動画は false。
 - skip_reason: is_relevant が false のときだけ理由を書く。
 
 body_markdown 内では h1 (`#`) を使わないでください（タイトルは別途表示されます）。
@@ -350,6 +339,7 @@ def generate_article(client, entry: dict) -> dict:
     from google.genai import types
 
     channel: Channel = entry["channel"]
+    genre = channel.genre
     video_url = f"https://www.youtube.com/watch?v={entry['video_id']}"
     prompt = PROMPT_TEMPLATE.format(
         channel_name=channel.name,
@@ -357,7 +347,10 @@ def generate_article(client, entry: dict) -> dict:
         published_date=entry["published_at"].strftime("%Y-%m-%d"),
         video_url=video_url,
         video_summary=entry["summary"] or "（概要欄なし）",
+        outline=genre.outline,
+        field_notes=genre.field_notes,
     )
+    system_instruction = f"{SYSTEM_INSTRUCTION_BASE}\n\n{genre.persona}"
 
     contents = types.Content(
         role="user",
@@ -370,7 +363,7 @@ def generate_article(client, entry: dict) -> dict:
     )
 
     config = types.GenerateContentConfig(
-        system_instruction=SYSTEM_INSTRUCTION,
+        system_instruction=system_instruction,
         response_mime_type="application/json",
         response_schema=ARTICLE_SCHEMA,
         temperature=0.65,
@@ -616,6 +609,9 @@ def build_record(entry: dict, data: dict) -> dict:
         "channel": channel.name,
         "channelId": channel.channel_id,
         "channelSlug": channel.slug,
+        "genre": channel.genre.name,
+        "genreSlug": channel.genre.slug,
+        "disclaimer": channel.genre.disclaimer,
         "videoId": video_id,
         "videoUrl": f"https://www.youtube.com/watch?v={video_id}",
         "videoTitle": entry["title"],

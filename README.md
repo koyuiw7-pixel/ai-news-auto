@@ -74,12 +74,27 @@ gh workflow run auto_run.yml -f max_articles=3
 - **RSS**: `/feed.xml` を配信
 - 記事内には「3秒でわかる要点」「発表タイムテーブル（動画の該当秒数へ直接リンク）」「競合比較表」「料金」「日本からの使い方」を必ず含める構成
 
-## 監視対象チャンネル
+## ジャンルと監視対象チャンネル
 
-OpenAI / Anthropic / Google DeepMind / Google / Google for Developers /
-Microsoft Developer / NVIDIA / AI at Meta / Hugging Face
+ジャンルごとに「記者ペルソナ」「記事の章立て」「免責文」が切り替わります。
+定義は [`scripts/genres.py`](scripts/genres.py)、チャンネルとの紐付けは
+[`scripts/channels.py`](scripts/channels.py) の `genre=` です。
 
-追加したい場合:
+| ジャンル | チャンネル |
+| --- | --- |
+| **AI・テクノロジー** | OpenAI / Anthropic / Google DeepMind / Google / Google for Developers / Microsoft Developer / NVIDIA / AI at Meta / Hugging Face |
+| **不動産** | 楽待 RAKUMACHI / ウラケン不動産 / ゆっくり不動産 / マンションマニアの住まいカウンター / イエノミカタ |
+
+- 候補動画は**ジャンル交互**に取り出されます。投稿頻度の高い1チャンネルが枠を占有して、
+  他ジャンルの記事が生成されなくなるのを防ぐためです。
+- 不動産はYMYL領域のため、投資助言・断定表現を禁止し、リスクの章を必須にし、
+  「投資勧誘ではない」旨の免責文を自動表示します。
+- サイト上は `/genres/ai` `/genres/real-estate` のジャンルページが自動生成されます。
+
+新ジャンルを足すときは `scripts/genres.py` に `Genre` を1つ追加し、
+チャンネル定義で `genre=` に指定するだけです。
+
+チャンネルを追加したい場合:
 
 ```bash
 ./.venv/bin/python scripts/resolve_handle.py @追加したいハンドル

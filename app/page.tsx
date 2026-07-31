@@ -1,6 +1,12 @@
 import Link from "next/link";
 import ArticleCard from "@/components/ArticleCard";
-import { getAllArticles, getAllChannels, getAllTags } from "@/lib/articles";
+import {
+  getAllArticles,
+  getAllChannels,
+  getAllGenres,
+  getAllTags,
+  getArticlesByGenre,
+} from "@/lib/articles";
 import { siteConfig } from "@/site.config";
 
 export const revalidate = false;
@@ -9,6 +15,7 @@ export default function HomePage() {
   const articles = getAllArticles();
   const [featured, ...rest] = articles;
   const channels = getAllChannels();
+  const genres = getAllGenres();
   const tags = getAllTags().slice(0, 24);
 
   return (
@@ -56,6 +63,31 @@ export default function HomePage() {
               </Link>
             </div>
           )}
+
+          {/* ジャンル別の最新記事 */}
+          {genres.length > 1 &&
+            genres.map((genre) => (
+              <section key={genre.slug} className="mt-16">
+                <div className="mb-5 flex items-baseline justify-between gap-4">
+                  <h2 className="font-serif text-xl font-bold text-ink-950">
+                    {genre.label}
+                  </h2>
+                  <Link
+                    href={`/genres/${genre.slug}`}
+                    className="shrink-0 text-sm font-medium text-accent hover:underline"
+                  >
+                    すべて見る（{genre.count}本）
+                  </Link>
+                </div>
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {getArticlesByGenre(genre.slug)
+                    .slice(0, 3)
+                    .map((item) => (
+                      <ArticleCard key={item.slug} article={item} />
+                    ))}
+                </div>
+              </section>
+            ))}
 
           {channels.length > 0 && (
             <section className="mt-16">

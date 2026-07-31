@@ -29,6 +29,11 @@ export type Article = {
   channel: string;
   channelId: string;
   channelSlug: string;
+  /** ジャンル（AI・テクノロジー / 不動産 …） */
+  genre: string;
+  genreSlug: string;
+  /** ジャンルごとの免責文（不動産は投資勧誘でない旨を含む） */
+  disclaimer: string;
   videoId: string;
   videoUrl: string;
   videoTitle: string;
@@ -73,6 +78,9 @@ function readAll(): Article[] {
         timetable: parsed.timetable ?? [],
         affiliates: parsed.affiliates ?? [],
         lede: parsed.lede ?? "",
+        genre: parsed.genre ?? "AI・テクノロジー",
+        genreSlug: parsed.genreSlug ?? "ai",
+        disclaimer: parsed.disclaimer ?? "",
       });
     } catch (error) {
       console.warn(`[articles] skip (invalid JSON): ${file}`, error);
@@ -105,7 +113,9 @@ export function getRelatedArticles(article: Article, limit = 4): Article[] {
       article: a,
       score:
         a.tags.filter((t) => tags.has(t)).length +
-        (a.channelSlug === article.channelSlug ? 1 : 0),
+        (a.channelSlug === article.channelSlug ? 1 : 0) +
+        // 別ジャンルの記事が関連記事に混ざらないよう強めに重み付けする
+        (a.genreSlug === article.genreSlug ? 5 : 0),
     }))
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
@@ -144,6 +154,43 @@ export function getArticlesByTag(tagSlug: string): Article[] {
   return getAllArticles().filter((a) =>
     a.tags.some((t) => encodeTag(t) === tagSlug),
   );
+}
+
+/** ジャンル一覧（記事が1本でもあるものだけ） */
+export function getAllGenres(): Facet[] {
+  const map = new Map<string, Facet>();
+  for (const article of getAllArticles()) {
+    if (!article.genreSlug) continue;
+    const found = map.get(article.genreSlug);
+    if (found) found.count += 1;
+    else
+      map.set(article.genreSlug, {
+        slug: article.genreSlug,
+        label: article.genre,
+        count: 1,
+      });
+  }
+  return [...map.values()].sort((a, b) => b.count - a.count);
+}
+
+export function getArticlesByGenre(genreSlug: string): Article[] {
+  return getAllArticles().filter((a) => a.genreSlug === genreSlug);
+}
+
+/** そのジャンルに属するチャンネル一覧 */
+export function getChannelsByGenre(genreSlug: string): Facet[] {
+  const map = new Map<string, Facet>();
+  for (const article of getArticlesByGenre(genreSlug)) {
+    const found = map.get(article.channelSlug);
+    if (found) found.count += 1;
+    else
+      map.set(article.channelSlug, {
+        slug: article.channelSlug,
+        label: article.channel,
+        count: 1,
+      });
+  }
+  return [...map.values()].sort((a, b) => b.count - a.count);
 }
 
 export function getAllChannels(): Facet[] {

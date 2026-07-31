@@ -6,7 +6,7 @@ export const siteConfig = {
   name: "AI速報ラボ",
   shortName: "AI速報ラボ",
   description:
-    "OpenAI・Google DeepMind・Anthropic など世界のAI企業の公式発表動画を、AIが映像と音声ごと解析して日本語で速報解説。新機能・料金・日本からの使い方まで最速でまとめます。",
+    "AI・テクノロジーと不動産の専門YouTubeチャンネルをAIが常時監視。映像と音声を解析して、公式発表の要点・数字・料金・リスクまで日本語で最速まとめます。",
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.VERCEL_PROJECT_PRODUCTION_URL

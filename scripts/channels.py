@@ -8,12 +8,15 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from genres import AI, REAL_ESTATE, Genre
+
 
 @dataclass(frozen=True)
 class Channel:
     slug: str  # URL に使う識別子（/channels/<slug>）
     name: str  # 表示名
     channel_id: str  # YouTube チャンネルID (UC...)
+    genre: Genre = AI  # 記事の書き方を決めるジャンル
     # そのチャンネルの記事に必ず付けるタグ
     base_tags: tuple[str, ...] = ()
 
@@ -76,6 +79,44 @@ CHANNELS: list[Channel] = [
         name="Hugging Face",
         channel_id="UCHlNU7kIZhRgSbhHvFoy72w",
         base_tags=("Hugging Face", "オープンソース"),
+    ),
+    # ---------------------------------------------------------------- #
+    # 不動産（すべて RSS 疎通・稼働を確認済み）
+    # ---------------------------------------------------------------- #
+    Channel(
+        slug="rakumachi",
+        name="楽待 RAKUMACHI",
+        channel_id="UCPMJKbrxtpARoTd1b49iUvA",
+        genre=REAL_ESTATE,
+        base_tags=("不動産投資", "収益物件"),
+    ),
+    Channel(
+        slug="uraken-fudosan",
+        name="ウラケン不動産",
+        channel_id="UCfpEDJ5UHn3TlJiE1RD7X6g",
+        genre=REAL_ESTATE,
+        base_tags=("不動産投資", "住宅ローン"),
+    ),
+    Channel(
+        slug="yukkuri-fudosan",
+        name="ゆっくり不動産",
+        channel_id="UCnV2ptTOZMfUEbgAs85mpRw",
+        genre=REAL_ESTATE,
+        base_tags=("物件紹介", "リノベーション"),
+    ),
+    Channel(
+        slug="mansion-mania",
+        name="マンションマニアの住まいカウンター",
+        channel_id="UCdUdtHlqi01V44AEKwXzT_g",
+        genre=REAL_ESTATE,
+        base_tags=("マンション購入", "新築マンション"),
+    ),
+    Channel(
+        slug="ienomikata",
+        name="イエノミカタ",
+        channel_id="UCFFYj-EIVJf5DcRRKdJutcw",
+        genre=REAL_ESTATE,
+        base_tags=("エリア相場", "住宅地"),
     ),
 ]
 

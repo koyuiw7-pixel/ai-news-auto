@@ -130,6 +130,13 @@ export default async function ArticlePage({ params }: Props) {
             </Link>
             <span className="text-ink-300">/</span>
             <Link
+              href={`/genres/${article.genreSlug}`}
+              className="hover:text-accent"
+            >
+              {article.genre}
+            </Link>
+            <span className="text-ink-300">/</span>
+            <Link
               href={`/channels/${article.channelSlug}`}
               className="hover:text-accent"
             >
@@ -310,17 +317,17 @@ export default async function ArticlePage({ params }: Props) {
           )}
 
           <p className="mt-10 rounded-xl bg-ink-100/60 px-5 py-4 text-xs leading-relaxed text-ink-500">
-            本記事は {article.model} が元動画の映像・音声を解析して自動生成したものです。
-            誤りが含まれる可能性があるため、正確な仕様・料金は
+            {article.disclaimer ||
+              "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な情報は公式発表をご確認ください。"}
             <a
               href={article.videoUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="mx-1 text-accent underline"
             >
-              公式動画
+              元動画を見る
             </a>
-            および公式サイトをご確認ください。
+            （解析モデル: {article.model}）
           </p>
 
           {related.length > 0 && (
