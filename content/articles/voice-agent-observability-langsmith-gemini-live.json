@@ -1,0 +1,83 @@
+{
+  "slug": "voice-agent-observability-langsmith-gemini-live",
+  "title": "Google ADKとGemini Liveを用いた音声AIエージェントのLangSmith可観測性実装",
+  "lede": "LangChainは、Google ADKとGemini Liveで構築された音声AIエージェント向けに、LangSmithを用いたトレーシング機能を解説しました。テキスト変換を挟まないSpeech-to-Speechモデルの動作やツール呼び出し、コストを詳細に可視化できます。",
+  "description": "Google ADKとGemini Liveで構築した音声エージェントにLangSmithを導入し、会話ログやツール呼び出し、コストを可視化する方法を解説します。",
+  "keywords": [
+    "Google ADK",
+    "Gemini Live",
+    "LangSmith",
+    "音声エージェント",
+    "可観測性",
+    "トレーシング",
+    "LangChain",
+    "Speech-to-Speech"
+  ],
+  "tags": [
+    "Google",
+    "開発者向け",
+    "生成AI",
+    "LLM",
+    "音声AI",
+    "LangSmith",
+    "Google AI"
+  ],
+  "highlights": [
+    "Gemini Liveを活用したSpeech-to-Speech構成の低遅延な音声エージェント可観測性を実現",
+    "LangSmithGoogleADKLivePluginにより数行のコード追加で会話ログやツール呼び出しを記録",
+    "ユーザーの割り込み発話や実際の再生音声のみを正確にトレーシングしてコスト試算が可能"
+  ],
+  "timetable": [
+    {
+      "time": "0:00",
+      "label": "ターミナル上での天気案内音声エージェントのデモ実演"
+    },
+    {
+      "time": "0:13",
+      "label": "Gemini Liveの特性とLangSmithによる可観測性の必要性"
+    },
+    {
+      "time": "1:30",
+      "label": "Google ADKを用いた天気・時刻取得エージェントのコード構造"
+    },
+    {
+      "time": "2:44",
+      "label": "LangSmithにおけるGemini Liveアプリのトレース手順"
+    },
+    {
+      "time": "3:07",
+      "label": "LangSmithGoogleADKLivePluginの定義と統合方法"
+    },
+    {
+      "time": "3:48",
+      "label": "ユーザー発話とエージェント応答音声の録音設定ロジック"
+    },
+    {
+      "time": "5:22",
+      "label": "割り込み発話を含む音声エージェントの実走デモ"
+    },
+    {
+      "time": "6:03",
+      "label": "LangSmithトレース画面での詳細ログとトークンコスト確認"
+    },
+    {
+      "time": "7:15",
+      "label": "トレースデータを活用した本番運用の展望とまとめ"
+    }
+  ],
+  "body": "## 何が発表されたのか  LangChainのソフトウェアエンジニアであるCaroline di Vittorio氏が、Google Agent Development Kit（ADK）とGemini Live（Gemini 3.1 Flash Live）を使用した音声AIエージェントのトレーシング手法を実演解説しました。既存のテキストベースの可観測性に加え、リアルタイム音声対話における発話・応答・ツール呼び出し・トークンコストをLangSmith上で一括管理・可視化できるネイティブ統合プラグインを提供します。すでに開発者向けにドキュメントおよびSDKが一般提供されています。  ## 発表された機能・アップデートの全容  ### Gemini LiveによるSpeech-to-Speech音声エージェント構築  Gemini Live（Gemini 3.1 Flash Live）は、音声入力をそのまま処理し音声出力するSpeech-to-Speechモデルです。従来のテキスト翻刻プロセスを挟まないため、レイテンシーが極めて低く、人間的で感情豊かな応答を実現します。デモでは、ターミナルからOpen-Meteo APIを利用した天気検索ツールおよび時刻取得ツールを持つアシスタントが構築されました。  ### LangSmith Google ADK プラグインによるトレーシング実装  LangSmithは「LangSmithGoogleADKLivePlugin」を提供し、Google ADKのRunnerに登録することでトレースを開始できます。コード内でプロジェクト名、タグ、メタデータ、スレッドIDを指定するだけで、Liveイベントセッション全体のトレーシングが有効化されます。  ### ユーザーおよびエージェント音声の自動録音と割り込み検知  音声トレースの正確性を保つため、ユーザーマイク入力と実際にスピーカー再生されたエージェント音声のみを記録します。ユーザーが途中で割り込んで発話を遮った場合、エージェントが生成途中で中断した箇所のイベント（interrupted）を正確にキャプチャできます。  ### LangSmithダッシュボードによるトークンコストとツール呼び出しの可視化  LangSmithの画面上では、対話のタイムラインに沿って音声波形データが表示されます。同時に、Gemini Liveが提供する自動文字起こしテキスト、呼び出されたツールの引数やレスポンス時間、さらに音声専用トークンを含む消費コストの細分化データを確認できます。  ## 性能・ベンチマーク  動画内で具体的なベンチマーク数値や比較スコアの提示はありません。Gemini 3.1 Flash Liveによる低遅延な音声応答性能と、ツール呼び出しの処理時間がデモ画面のトレースログから確認できます。  | 評価指標 | 測定結果 | 出典 | | --- | --- | --- | | ツール実行時間（get_weather） | 約1.26秒〜1.29秒 | 動画内デモ画面 | | リアルタイムセッション全体の処理時間 | 約38.44秒 | 動画内デモ画面 |  ## 競合サービスとの比較  音声エージェントの可観測性領域において、OpenAI Realtime APIとの比較を以下に示します（競合情報は編集部注による補足）。  | 機能・指標 | LangSmith + Google ADK | OpenAI Realtime API + 独自トレース | 出典 | | --- | --- | --- | --- | | 音声モデル連携 | Gemini 3.1 Flash Live | GPT-4o Realtime | 動画内 / 編集部注 | | トレース統合プラグイン | ADKネイティブプラグイン提供 | 手動イベントバインドが必要な場合あり | 動画内 / 編集部注 | | 割り込み発話検知 | イベントとして自動キャプチャ | クライアント側ロジックに依存 | 動画内 / 編集部注 | | オーディオ専用トークン管理 | インプット/アウトプット別詳細表示 | トークン消費表示に対応 | 動画内 / 編集部注 |  ## 料金・提供プラン  動画内で料金設定に関する直接の言及はありません。LangSmithの利用料金およびGoogle Gemini API（Google AI Studio）の利用料が適用されます。  ## 日本から使う方法  日本のユーザーが本構成を導入する手順は以下の通りです。  1. Google AI StudioでGemini APIキーを取得します。 2. LangSmithのアカウントを作成し、APIキーを発行します。 3. Python環境に langsmith[google-adk-live] パッケージをインストールします。 4. 環境変数にAPIキーおよび LANGSMITH_TRACING=true を設定します。 5. Google ADKのコード内に LangSmithGoogleADKLivePlugin を組み込んで実行します。  ## 誰にどう効くのか  ### エンジニア  音声モデル特有の遅延原因やツール呼び出しの失敗、割り込み時の挙動を視覚的にデバッグできます。  ### 企画・マーケティング  実際の音声対話ログやトランスクリプトを確認し、ユーザーの会話傾向や体験品質の改善に繋げられます。  ### 経営層  音声トークンの消費量とコスト内訳が明確化されるため、本番運用時のROI予測とコスト管理が容易になります。  ## まとめ  Google ADKとGemini Liveの組み合わせにLangSmithを導入することで、音声AIエージェントの可観測性を高められます。開発者はまず公式ドキュメントを参照し、ローカル環境でトレーシングプラグインの組み込みを試すことを推奨します。",
+  "channel": "Google for Developers",
+  "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+  "channelSlug": "google-developers",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "z6l5nyE_6-I",
+  "videoUrl": "https://www.youtube.com/watch?v=z6l5nyE_6-I",
+  "videoTitle": "Voice Agent observability with LangSmith",
+  "publishedAt": "2026-07-31T16:22:34+00:00",
+  "generatedAt": "2026-07-31T16:42:24.099946+00:00",
+  "thumbnail": "https://i.ytimg.com/vi/z6l5nyE_6-I/maxresdefault.jpg",
+  "model": "gemini-3.6-flash",
+  "affiliates": []
+}
