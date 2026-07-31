@@ -41,7 +41,7 @@ export default function HeroArticle({ article }: { article: Article }) {
           {article.title}
         </h2>
 
-        <p className="mt-4 hidden max-w-2xl text-sm leading-[1.9] text-white/70 sm:line-clamp-2 lg:block">
+        <p className="mt-4 line-clamp-2 max-w-2xl text-sm leading-[1.9] text-white/75 max-sm:hidden">
           {article.lede || article.description}
         </p>
       </div>

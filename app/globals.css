@@ -129,14 +129,18 @@ body {
 }
 
 /* 画像に重ねる文字のための階調オーバーレイ */
+/* サムネイルが明るくても白文字が確実に読めるよう、下半分を強めに沈める */
 .scrim {
-  background: linear-gradient(
-    to top,
-    hsl(var(--overlay) / 0.92) 0%,
-    hsl(var(--overlay) / 0.72) 34%,
-    hsl(var(--overlay) / 0.28) 62%,
-    hsl(var(--overlay) / 0.05) 100%
-  );
+  background:
+    linear-gradient(
+      to top,
+      hsl(var(--overlay) / 0.95) 0%,
+      hsl(var(--overlay) / 0.88) 30%,
+      hsl(var(--overlay) / 0.62) 55%,
+      hsl(var(--overlay) / 0.22) 78%,
+      hsl(var(--overlay) / 0.05) 100%
+    ),
+    hsl(var(--overlay) / 0.18);
 }
 
 /* --------------------------------------------------------------------- */
