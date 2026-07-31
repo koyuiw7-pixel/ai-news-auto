@@ -1,8 +1,9 @@
 import Link from "next/link";
 import ArticleCard from "@/components/ArticleCard";
+import HeroArticle from "@/components/HeroArticle";
+import IndexList from "@/components/IndexList";
 import {
   getAllArticles,
-  getAllChannels,
   getAllGenres,
   getAllTags,
   getArticlesByGenre,
@@ -13,126 +14,107 @@ export const revalidate = false;
 
 export default function HomePage() {
   const articles = getAllArticles();
-  const [featured, ...rest] = articles;
-  const channels = getAllChannels();
+  const [hero, ...rest] = articles;
   const genres = getAllGenres();
-  const tags = getAllTags().slice(0, 24);
+  const tags = getAllTags().slice(0, 20);
+
+  if (articles.length === 0) return <EmptyState />;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-      <section className="mb-14 border-b border-ink-100 pb-12">
-        <p className="text-xs font-bold tracking-[0.2em] text-accent">
-          AI NEWS — 世界のAI公式発表を日本語で
-        </p>
-        <h1 className="mt-4 font-serif text-[1.9rem] font-bold leading-[1.45] tracking-tight text-ink-950 sm:text-[2.6rem]">
-          世界のAI公式発表を、
-          <br className="sm:hidden" />
-          <span className="relative whitespace-nowrap text-accent">
-            映像ごとAI解析
-          </span>
-          して日本語速報。
-        </h1>
-        <p className="mt-5 max-w-3xl text-[15px] leading-[1.9] text-ink-500">
-          {siteConfig.description}
-        </p>
-      </section>
+    <div className="mx-auto max-w-[1240px] px-5 py-8 sm:px-8 sm:py-12">
+      {/* 主役記事 */}
+      <HeroArticle article={hero} />
 
-      {articles.length === 0 ? (
-        <EmptyState />
-      ) : (
-        <>
-          <section>
-            <h2 className="mb-5 text-sm font-bold tracking-widest text-ink-500">
-              最新記事
-            </h2>
-            <div className="grid gap-6 md:grid-cols-3">
-              <ArticleCard article={featured} priority featured />
-              {rest.slice(0, siteConfig.topArticles).map((article) => (
-                <ArticleCard key={article.slug} article={article} />
+      {/* サブの主役3本 */}
+      {rest.length > 0 && (
+        <section className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {rest.slice(0, 3).map((article) => (
+            <ArticleCard key={article.slug} article={article} priority />
+          ))}
+        </section>
+      )}
+
+      {/* 通し番号の目次リスト */}
+      {rest.length > 3 && (
+        <section className="mt-16">
+          <SectionHead eyebrow="LATEST" title="新着記事" href="/articles" />
+          <IndexList articles={rest.slice(3, 11)} start={5} />
+        </section>
+      )}
+
+      {/* ジャンル別 */}
+      {genres.map((genre) => {
+        const items = getArticlesByGenre(genre.slug).slice(0, 3);
+        if (items.length === 0) return null;
+        return (
+          <section key={genre.slug} className="mt-20">
+            <SectionHead
+              eyebrow={genre.slug === "ai" ? "TECHNOLOGY" : "REAL ESTATE"}
+              title={genre.label}
+              href={`/genres/${genre.slug}`}
+              count={genre.count}
+            />
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {items.map((item) => (
+                <ArticleCard key={item.slug} article={item} />
               ))}
             </div>
           </section>
+        );
+      })}
 
-          {articles.length > siteConfig.topArticles + 1 && (
-            <div className="mt-10 text-center">
+      {/* トピック */}
+      {tags.length > 0 && (
+        <section className="mt-20">
+          <SectionHead eyebrow="TOPICS" title="トピックから探す" />
+          <div className="flex flex-wrap gap-2">
+            {tags.map((tag) => (
               <Link
-                href="/articles"
-                className="inline-block rounded-full bg-ink-950 px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-85"
+                key={tag.slug}
+                href={`/tags/${tag.slug}`}
+                className="border border-line px-3.5 py-1.5 text-[13px] text-ink-soft transition-colors hover:border-accent hover:text-accent"
               >
-                すべての記事を見る（{articles.length}本）
+                {tag.label}
+                <span className="index-num ml-2 text-[11px] text-muted">
+                  {tag.count}
+                </span>
               </Link>
-            </div>
-          )}
-
-          {/* ジャンル別の最新記事 */}
-          {genres.length > 1 &&
-            genres.map((genre) => (
-              <section key={genre.slug} className="mt-16">
-                <div className="mb-5 flex items-baseline justify-between gap-4">
-                  <h2 className="font-serif text-xl font-bold text-ink-950">
-                    {genre.label}
-                  </h2>
-                  <Link
-                    href={`/genres/${genre.slug}`}
-                    className="shrink-0 text-sm font-medium text-accent hover:underline"
-                  >
-                    すべて見る（{genre.count}本）
-                  </Link>
-                </div>
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                  {getArticlesByGenre(genre.slug)
-                    .slice(0, 3)
-                    .map((item) => (
-                      <ArticleCard key={item.slug} article={item} />
-                    ))}
-                </div>
-              </section>
             ))}
+          </div>
+        </section>
+      )}
 
-          {channels.length > 0 && (
-            <section className="mt-16">
-              <h2 className="mb-5 text-sm font-bold tracking-widest text-ink-500">
-                チャンネルから探す
-              </h2>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {channels.map((channel) => (
-                  <Link
-                    key={channel.slug}
-                    href={`/channels/${channel.slug}`}
-                    className="flex items-center justify-between rounded-xl border border-ink-100 bg-white px-5 py-4 transition-colors hover:border-accent hover:text-accent"
-                  >
-                    <span className="font-semibold">{channel.label}</span>
-                    <span className="text-sm text-ink-300">
-                      {channel.count}本
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          )}
+      <p className="mt-20 border-t border-line pt-8 text-[13px] leading-relaxed text-muted">
+        {siteConfig.description}
+      </p>
+    </div>
+  );
+}
 
-          {tags.length > 0 && (
-            <section className="mt-16">
-              <h2 className="mb-5 text-sm font-bold tracking-widest text-ink-500">
-                トピックから探す
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {tags.map((tag) => (
-                  <Link
-                    key={tag.slug}
-                    href={`/tags/${tag.slug}`}
-                    className="rounded-full border border-ink-100 bg-white px-4 py-2 text-sm text-ink-700 transition-colors hover:border-accent hover:text-accent"
-                  >
-                    #{tag.label}
-                    <span className="ml-1.5 text-xs text-ink-300">
-                      {tag.count}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          )}
-        </>
+function SectionHead({
+  eyebrow,
+  title,
+  href,
+  count,
+}: {
+  eyebrow: string;
+  title: string;
+  href?: string;
+  count?: number;
+}) {
+  return (
+    <div className="mb-6 flex items-end justify-between gap-4 border-b-2 border-ink pb-3">
+      <div>
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 className="display mt-1 text-xl sm:text-2xl">{title}</h2>
+      </div>
+      {href && (
+        <Link
+          href={href}
+          className="shrink-0 pb-1 text-[13px] font-semibold text-muted transition-colors hover:text-accent"
+        >
+          すべて見る{count ? `（${count}）` : ""} →
+        </Link>
       )}
     </div>
   );
@@ -140,12 +122,13 @@ export default function HomePage() {
 
 function EmptyState() {
   return (
-    <div className="rounded-2xl border border-dashed border-ink-300 bg-white px-6 py-20 text-center">
-      <p className="text-lg font-bold text-ink-950">記事はまだありません</p>
-      <p className="mt-2 text-sm text-ink-500">
-        GitHub Actions が 3 時間ごとに新着動画を解析して、自動で記事を追加します。
+    <div className="mx-auto max-w-2xl px-5 py-32 text-center">
+      <p className="eyebrow">NO ARTICLES YET</p>
+      <p className="display mt-3 text-2xl">記事はまだありません</p>
+      <p className="mt-4 text-sm leading-relaxed text-muted">
+        GitHub Actions が3時間ごとに新着動画を解析して、自動で記事を追加します。
       </p>
-      <p className="mt-4 inline-block rounded-lg bg-ink-50 px-4 py-2 font-mono text-xs text-ink-700">
+      <p className="index-num mt-6 inline-block border border-line px-4 py-2 text-xs text-ink-soft">
         python3 scripts/main.py --max 1
       </p>
     </div>

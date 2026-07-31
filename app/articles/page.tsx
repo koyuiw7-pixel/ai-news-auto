@@ -13,11 +13,11 @@ export default function ArticlesIndexPage() {
   const articles = getAllArticles();
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-      <h1 className="text-2xl font-black tracking-tight text-ink-950 sm:text-3xl">
+    <div className="mx-auto max-w-[1240px] px-5 py-12 sm:px-8">
+      <h1 className="text-2xl font-black tracking-tight text-ink sm:text-3xl">
         記事一覧
       </h1>
-      <p className="mt-2 text-sm text-ink-500">全 {articles.length} 本</p>
+      <p className="mt-2 text-sm text-muted">全 {articles.length} 本</p>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article, index) => (

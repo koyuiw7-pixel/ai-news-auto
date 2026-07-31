@@ -32,12 +32,12 @@ export default async function ChannelPage({ params }: Props) {
   const latest = articles[0];
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <div className="mx-auto max-w-[1240px] px-5 py-12 sm:px-8">
       <p className="text-xs font-bold tracking-widest text-accent">CHANNEL</p>
-      <h1 className="mt-2 text-2xl font-black tracking-tight text-ink-950 sm:text-3xl">
+      <h1 className="mt-2 text-2xl font-black tracking-tight text-ink sm:text-3xl">
         {label} の最新発表まとめ
       </h1>
-      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-500">
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">
         {label}{" "}
         の公式YouTubeチャンネルで公開された発表動画をAIが映像・音声ごと解析し、日本語の解説記事として
         {articles.length} 本公開中。

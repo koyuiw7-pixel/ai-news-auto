@@ -35,7 +35,7 @@ export default function AdSlot({ position, className }: Props) {
       aria-label="広告"
       data-ad-position={position}
     >
-      <p className="mb-1 text-[10px] tracking-widest text-ink-300">広告</p>
+      <p className="mb-1 text-[10px] tracking-widest text-muted">広告</p>
 
       {enabled ? (
         <>

@@ -31,12 +31,12 @@ export default async function TagPage({ params }: Props) {
   const label = getAllTags().find((t) => t.slug === tag)?.label ?? tag;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <div className="mx-auto max-w-[1240px] px-5 py-12 sm:px-8">
       <p className="text-xs font-bold tracking-widest text-accent">TOPIC</p>
-      <h1 className="mt-2 text-2xl font-black tracking-tight text-ink-950 sm:text-3xl">
+      <h1 className="mt-2 text-2xl font-black tracking-tight text-ink sm:text-3xl">
         #{label} の最新ニュース・解説
       </h1>
-      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-500">
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">
         {label}{" "}
         に関連するAI企業の公式発表動画をAIが解析し、要点・タイムテーブル・料金・日本からの使い方まで日本語でまとめた記事が
         {articles.length} 本あります。

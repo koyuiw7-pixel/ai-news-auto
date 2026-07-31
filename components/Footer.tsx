@@ -7,24 +7,24 @@ export default function Footer() {
   const tags = getAllTags().slice(0, 20);
 
   return (
-    <footer className="mt-20 border-t border-ink-100 bg-white">
+    <footer className="mt-20 border-t border-line bg-surface">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3">
         <div>
-          <p className="text-lg font-bold text-ink-950">{siteConfig.name}</p>
-          <p className="mt-3 text-sm leading-relaxed text-ink-500">
+          <p className="text-lg font-bold text-ink">{siteConfig.name}</p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
             {siteConfig.description}
           </p>
         </div>
 
         {channels.length > 0 && (
           <div>
-            <p className="text-sm font-bold text-ink-950">チャンネル</p>
+            <p className="text-sm font-bold text-ink">チャンネル</p>
             <ul className="mt-3 space-y-2">
               {channels.map((channel) => (
                 <li key={channel.slug}>
                   <Link
                     href={`/channels/${channel.slug}`}
-                    className="text-sm text-ink-500 hover:text-accent"
+                    className="text-sm text-muted hover:text-accent"
                   >
                     {channel.label}（{channel.count}）
                   </Link>
@@ -36,13 +36,13 @@ export default function Footer() {
 
         {tags.length > 0 && (
           <div>
-            <p className="text-sm font-bold text-ink-950">人気のトピック</p>
+            <p className="text-sm font-bold text-ink">人気のトピック</p>
             <ul className="mt-3 flex flex-wrap gap-2">
               {tags.map((tag) => (
                 <li key={tag.slug}>
                   <Link
                     href={`/tags/${tag.slug}`}
-                    className="inline-block rounded-full bg-ink-50 px-2.5 py-1 text-xs text-ink-500 hover:bg-accent-soft hover:text-accent"
+                    className="inline-block rounded-full bg-surface-2 px-2.5 py-1 text-xs text-muted hover:bg-accent-soft hover:text-accent"
                   >
                     #{tag.label}
                   </Link>
@@ -53,8 +53,8 @@ export default function Footer() {
         )}
       </div>
 
-      <div className="border-t border-ink-100 px-4 py-6 sm:px-6">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 text-xs text-ink-300 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-line px-4 py-6 sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {siteConfig.name}
           </p>

@@ -115,7 +115,7 @@ export default async function ArticlePage({ params }: Props) {
   ];
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-[1240px] px-5 py-10 sm:px-8">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -124,18 +124,18 @@ export default async function ArticlePage({ params }: Props) {
 
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="min-w-0">
-          <nav className="flex flex-wrap items-center gap-1.5 text-xs text-ink-500">
+          <nav className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
             <Link href="/" className="hover:text-accent">
               ホーム
             </Link>
-            <span className="text-ink-300">/</span>
+            <span className="text-muted">/</span>
             <Link
               href={`/genres/${article.genreSlug}`}
               className="hover:text-accent"
             >
               {article.genre}
             </Link>
-            <span className="text-ink-300">/</span>
+            <span className="text-muted">/</span>
             <Link
               href={`/channels/${article.channelSlug}`}
               className="hover:text-accent"
@@ -144,29 +144,30 @@ export default async function ArticlePage({ params }: Props) {
             </Link>
           </nav>
 
-          <h1 className="mt-4 font-serif text-[1.75rem] font-bold leading-[1.4] tracking-tight text-ink-950 sm:text-[2.125rem]">
+          <p className="eyebrow mt-6">{article.genre}</p>
+          <h1 className="display mt-2 text-[1.75rem] sm:text-[2.375rem]">
             {article.title}
           </h1>
 
           {article.lede && (
-            <p className="mt-5 border-l-[3px] border-accent pl-4 text-[15px] leading-[1.9] text-ink-700 sm:text-base">
+            <p className="mt-5 border-l-[3px] border-accent pl-4 text-[15px] leading-[1.9] text-ink-soft sm:text-base">
               {article.lede}
             </p>
           )}
 
-          <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-ink-500">
+          <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-muted">
             <span className="rounded-full bg-accent-soft px-2.5 py-1 font-medium text-accent">
               {article.channel}
             </span>
             <time dateTime={article.publishedAt}>
               公開 {formatDate(article.publishedAt)}
             </time>
-            <span className="text-ink-300">|</span>
+            <span className="text-muted">|</span>
             <span>AI解析: {article.model}</span>
             {affiliates.length > 0 && (
               <>
-                <span className="text-ink-300">|</span>
-                <span className="rounded bg-ink-100 px-1.5 py-0.5 text-[10px]">
+                <span className="text-muted">|</span>
+                <span className="rounded bg-line px-1.5 py-0.5 text-[10px]">
                   PR含む
                 </span>
               </>
@@ -177,7 +178,7 @@ export default async function ArticlePage({ params }: Props) {
           <AdSlot position="article-top" className="mt-6" />
 
           {/* 動画（クリックで初めて YouTube を読み込む軽量ファサード） */}
-          <div className="mt-7 overflow-hidden rounded-2xl border border-ink-100 bg-black">
+          <div className="mt-7 overflow-hidden rounded-2xl border border-line bg-black">
             <a
               href={article.videoUrl}
               target="_blank"
@@ -206,7 +207,7 @@ export default async function ArticlePage({ params }: Props) {
                 </span>
               </span>
             </a>
-            <p className="truncate bg-ink-950 px-4 py-2.5 text-xs text-ink-300">
+            <p className="truncate bg-black px-4 py-2.5 text-xs text-white/60">
               元動画: {article.videoTitle}
             </p>
           </div>
@@ -220,10 +221,10 @@ export default async function ArticlePage({ params }: Props) {
               <ul className="mt-4 space-y-3">
                 {article.highlights.map((highlight, index) => (
                   <li key={index} className="flex gap-3">
-                    <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-accent text-[11px] font-bold text-white">
+                    <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-accent text-[11px] font-bold text-accent-ink">
                       {index + 1}
                     </span>
-                    <span className="text-sm font-medium leading-relaxed text-ink-900">
+                    <span className="text-sm font-medium leading-relaxed text-ink">
                       {highlight}
                     </span>
                   </li>
@@ -234,14 +235,14 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 目次 */}
           {headings.length > 1 && (
-            <nav className="mt-8 rounded-2xl border border-ink-100 bg-white p-6">
-              <p className="text-sm font-bold text-ink-950">目次</p>
+            <nav className="mt-8 rounded-2xl border border-line bg-surface p-6">
+              <p className="text-sm font-bold text-ink">目次</p>
               <ol className="mt-3 space-y-2">
                 {headings.map((heading) => (
                   <li key={heading.id}>
                     <a
                       href={`#${heading.id}`}
-                      className="text-sm text-ink-500 hover:text-accent"
+                      className="text-sm text-muted hover:text-accent"
                     >
                       {heading.text}
                     </a>
@@ -253,7 +254,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 本文（前半） */}
           <article
-            className="prose prose-slate mt-10 max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-accent prose-strong:text-ink-950 prose-th:bg-ink-50"
+            className="prose mt-10 max-w-none"
             dangerouslySetInnerHTML={{ __html: bodyTop }}
           />
 
@@ -263,7 +264,7 @@ export default async function ArticlePage({ params }: Props) {
           {/* 本文（後半） */}
           {bodyBottom && (
             <article
-              className="prose prose-slate max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-accent prose-strong:text-ink-950 prose-th:bg-ink-50"
+              className="prose max-w-none"
               dangerouslySetInnerHTML={{ __html: bodyBottom }}
             />
           )}
@@ -271,10 +272,10 @@ export default async function ArticlePage({ params }: Props) {
           {/* タイムテーブル */}
           {article.timetable.length > 0 && (
             <section className="mt-12">
-              <h2 className="text-lg font-bold text-ink-950">
+              <h2 className="text-lg font-bold text-ink">
                 🕒 発表タイムテーブル
               </h2>
-              <ul className="mt-4 divide-y divide-ink-100 overflow-hidden rounded-2xl border border-ink-100 bg-white">
+              <ul className="mt-4 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">
                 {article.timetable.map((item, index) => (
                   <li key={index} className="flex gap-4 px-5 py-3.5">
                     <a
@@ -285,7 +286,7 @@ export default async function ArticlePage({ params }: Props) {
                     >
                       {item.time}
                     </a>
-                    <span className="text-sm leading-relaxed text-ink-700">
+                    <span className="text-sm leading-relaxed text-ink-soft">
                       {item.label}
                     </span>
                   </li>
@@ -308,7 +309,7 @@ export default async function ArticlePage({ params }: Props) {
                 <Link
                   key={tag}
                   href={`/tags/${encodeTag(tag)}`}
-                  className="rounded-full border border-ink-100 bg-white px-3.5 py-1.5 text-xs text-ink-700 hover:border-accent hover:text-accent"
+                  className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-xs text-ink-soft hover:border-accent hover:text-accent"
                 >
                   #{tag}
                 </Link>
@@ -316,7 +317,7 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           )}
 
-          <p className="mt-10 rounded-xl bg-ink-100/60 px-5 py-4 text-xs leading-relaxed text-ink-500">
+          <p className="mt-10 rounded-xl bg-line/60 px-5 py-4 text-xs leading-relaxed text-muted">
             {article.disclaimer ||
               "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な情報は公式発表をご確認ください。"}
             <a
@@ -332,7 +333,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {related.length > 0 && (
             <section className="mt-16">
-              <h2 className="mb-5 text-sm font-bold tracking-widest text-ink-500">
+              <h2 className="mb-5 text-sm font-bold tracking-widest text-muted">
                 関連記事
               </h2>
               <div className="grid gap-6 sm:grid-cols-2">

@@ -58,8 +58,16 @@ export default function RootLayout({
   const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
 
   return (
-    <html lang={siteConfig.lang}>
-      <body className="flex min-h-dvh flex-col">
+    <html lang={siteConfig.lang} suppressHydrationWarning>
+      <head>
+        {/* 描画前にテーマを確定させ、リロード時の白フラッシュを防ぐ */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}`,
+          }}
+        />
+      </head>
+      <body className="flex min-h-dvh flex-col bg-paper text-ink">
         <script
           type="application/ld+json"
           suppressHydrationWarning
