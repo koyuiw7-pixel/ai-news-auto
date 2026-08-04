@@ -3,10 +3,11 @@
  * NEXT_PUBLIC_SITE_URL は Vercel の環境変数で本番ドメインに差し替える。
  */
 export const siteConfig = {
-  name: "AI速報ラボ",
-  shortName: "AI速報ラボ",
+  name: "サキヨミ",
+  shortName: "サキヨミ",
+  tagline: "一次情報から、先を読む。",
   description:
-    "AI・テクノロジーと不動産の専門YouTubeチャンネルをAIが常時監視。映像と音声を解析して、公式発表の要点・数字・料金・リスクまで日本語で最速まとめます。",
+    "AI・テクノロジーと不動産の専門チャンネルをAIが常時監視。公式発表や専門家の解説動画を映像と音声ごと解析し、要点・数字・料金・リスクまで日本語で最速にまとめます。",
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -14,7 +15,20 @@ export const siteConfig = {
       : "http://localhost:3000"),
   locale: "ja_JP",
   lang: "ja",
-  author: "AI速報ラボ編集部",
+  author: "サキヨミ編集部",
+
+  /**
+   * 運営者情報。AdSense・ASPの審査では実在の運営者と連絡手段の明示が必須です。
+   * ここを実際の情報に差し替えてください（未設定のうちは審査に通りません）。
+   */
+  operator: {
+    name: "サキヨミ編集部",
+    representative: "（運営責任者名を記入）",
+    location: "日本",
+    email: "contact@example.com",
+    established: "2026年7月",
+  },
+
   // トップに出す記事件数
   topArticles: 24,
 } as const;

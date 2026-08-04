@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AdSlot from "@/components/AdSlot";
 import AffiliateBox from "@/components/AffiliateBox";
+import CtaBanner from "@/components/CtaBanner";
 import {
   formatDate,
   getAllArticles,
@@ -24,6 +25,9 @@ export default function Sidebar({ current, affiliates = [] }: Props) {
     <div className="space-y-8 lg:sticky lg:top-20">
       {/* サイドバー最上部の広告枠 */}
       <AdSlot position="sidebar" />
+
+      {/* 追従する収益導線 */}
+      {current && <CtaBanner genreSlug={current.genreSlug} slot="secondary" />}
 
       {affiliates.length > 0 && <AffiliateBox links={affiliates} compact />}
 
@@ -54,7 +58,7 @@ export default function Sidebar({ current, affiliates = [] }: Props) {
             {tags.map((tag) => (
               <Link
                 key={tag.slug}
-                href={`/tags/${tag.slug}`}
+                href={`/tags/${encodeURIComponent(tag.slug)}`}
                 className="rounded-full bg-surface-2 px-2.5 py-1 text-xs text-muted hover:bg-accent-soft hover:text-accent"
               >
                 #{tag.label}

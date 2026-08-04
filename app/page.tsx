@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ArticleCard from "@/components/ArticleCard";
+import CtaBanner from "@/components/CtaBanner";
 import HeroArticle from "@/components/HeroArticle";
 import IndexList from "@/components/IndexList";
 import {
@@ -59,6 +60,9 @@ export default function HomePage() {
                 <ArticleCard key={item.slug} article={item} />
               ))}
             </div>
+
+            {/* ジャンルごとの収益導線 */}
+            <CtaBanner genreSlug={genre.slug} slot="primary" className="mt-10" />
           </section>
         );
       })}
@@ -71,7 +75,7 @@ export default function HomePage() {
             {tags.map((tag) => (
               <Link
                 key={tag.slug}
-                href={`/tags/${tag.slug}`}
+                href={`/tags/${encodeURIComponent(tag.slug)}`}
                 className="border border-line px-3.5 py-1.5 text-[13px] text-ink-soft transition-colors hover:border-accent hover:text-accent"
               >
                 {tag.label}

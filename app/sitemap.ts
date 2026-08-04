@@ -29,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "hourly",
       priority: 0.9,
     },
+    ...["/about", "/privacy", "/disclaimer", "/contact"].map((path) => ({
+      url: `${base}${path}`,
+      lastModified,
+      changeFrequency: "yearly" as const,
+      priority: 0.3,
+    })),
     ...articles.map((article) => ({
       url: `${base}/articles/${article.slug}`,
       lastModified: new Date(article.generatedAt || article.publishedAt),
@@ -48,7 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     })),
     ...getAllTags().map((tag) => ({
-      url: `${base}/tags/${tag.slug}`,
+      url: `${base}/tags/${encodeURIComponent(tag.slug)}`,
       lastModified,
       changeFrequency: "daily" as const,
       priority: 0.6,

@@ -1,0 +1,101 @@
+import fs from "node:fs";
+import path from "node:path";
+
+export type Cta = {
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  buttonLabel: string;
+  url: string;
+  note?: string;
+  /**
+   * アフィリエイトIDが設定済みか。
+   * false のときは計測パラメータを外した公式URLへの通常リンクとして扱い、
+   * PR表記と rel="sponsored" を付けない（未提携の状態で報酬リンクを装わないため）。
+   */
+  isAffiliate: boolean;
+};
+
+export type CtaSlot = "primary" | "inline" | "secondary";
+
+type GenreCtas = Partial<Record<CtaSlot, Cta>>;
+
+const CONFIG_PATH = path.join(process.cwd(), "monetization.json");
+
+/** 未設定のプレースホルダを本番に出さないためのガード */
+function isPlaceholder(url: string): boolean {
+  return (
+    !url ||
+    url.includes("YOUR_ID") ||
+    url.includes("your_aff_link") ||
+    url.includes("example.com")
+  );
+}
+
+type RawCta = Omit<Cta, "isAffiliate">;
+
+function isRawCta(value: unknown): value is RawCta {
+  if (typeof value !== "object" || value === null) return false;
+  const c = value as Record<string, unknown>;
+  return (
+    typeof c.title === "string" &&
+    typeof c.buttonLabel === "string" &&
+    typeof c.url === "string"
+  );
+}
+
+/** 未設定のまま公開されても壊れないよう、計測パラメータを落として素のURLにする */
+function stripTracking(url: string): string {
+  try {
+    const parsed = new URL(url);
+    parsed.search = "";
+    parsed.hash = "";
+    return parsed.toString();
+  } catch {
+    return url.split("?")[0];
+  }
+}
+
+let cache: Record<string, GenreCtas> | null = null;
+
+function load(): Record<string, GenreCtas> {
+  if (cache) return cache;
+
+  const result: Record<string, GenreCtas> = {};
+  try {
+    const raw: unknown = JSON.parse(fs.readFileSync(CONFIG_PATH, "utf8"));
+    if (typeof raw === "object" && raw !== null) {
+      for (const [genre, slots] of Object.entries(raw)) {
+        if (genre.startsWith("_")) continue; // _README などのメモ
+        if (typeof slots !== "object" || slots === null) continue;
+
+        const collected: GenreCtas = {};
+        for (const [slot, cta] of Object.entries(slots)) {
+          if (!isRawCta(cta)) continue;
+          const pending = isPlaceholder(cta.url);
+          collected[slot as CtaSlot] = {
+            ...cta,
+            url: pending ? stripTracking(cta.url) : cta.url,
+            isAffiliate: !pending,
+          };
+        }
+        result[genre] = collected;
+      }
+    }
+  } catch {
+    // 設定が無い/壊れていても本文表示は止めない
+  }
+
+  cache = result;
+  return result;
+}
+
+export function getCta(genreSlug: string, slot: CtaSlot): Cta | null {
+  const config = load();
+  return config[genreSlug]?.[slot] ?? null;
+}
+
+/** 有効なCTAが1つでもあるか（無ければ導線UIごと隠す） */
+export function hasAnyCta(): boolean {
+  return Object.values(load()).some((slots) => Object.keys(slots).length > 0);
+}

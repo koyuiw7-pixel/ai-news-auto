@@ -132,15 +132,26 @@ export type Facet = {
   count: number;
 };
 
-export function encodeTag(tag: string): string {
-  return encodeURIComponent(tag.trim().toLowerCase().replace(/\s+/g, "-"));
+/**
+ * タグの識別子。**URLエンコードしない**のが重要。
+ * generateStaticParams に渡す値は「デコード済み」でなければならず、
+ * ここでエンコードすると Next.js が再度エンコードして二重エンコードになり、
+ * 日本語タグのページが 404 になる。
+ */
+export function tagSlug(tag: string): string {
+  return tag.trim().toLowerCase().replace(/\s+/g, "-");
+}
+
+/** リンクの href には（ブラウザ互換のため）エンコードした値を使う */
+export function tagHref(tag: string): string {
+  return `/tags/${encodeURIComponent(tagSlug(tag))}`;
 }
 
 export function getAllTags(): Facet[] {
   const map = new Map<string, Facet>();
   for (const article of getAllArticles()) {
     for (const tag of article.tags) {
-      const slug = encodeTag(tag);
+      const slug = tagSlug(tag);
       if (!slug) continue;
       const found = map.get(slug);
       if (found) found.count += 1;
@@ -150,10 +161,23 @@ export function getAllTags(): Facet[] {
   return [...map.values()].sort((a, b) => b.count - a.count);
 }
 
-export function getArticlesByTag(tagSlug: string): Article[] {
+export function getArticlesByTag(slug: string): Article[] {
+  // Next.js が渡す params はデコード済みだが、念のため両方で照合する
+  const decoded = safeDecode(slug);
   return getAllArticles().filter((a) =>
-    a.tags.some((t) => encodeTag(t) === tagSlug),
+    a.tags.some((t) => {
+      const s = tagSlug(t);
+      return s === slug || s === decoded;
+    }),
   );
+}
+
+function safeDecode(value: string): string {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
 }
 
 /** ジャンル一覧（記事が1本でもあるものだけ） */

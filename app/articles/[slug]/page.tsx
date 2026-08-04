@@ -5,9 +5,10 @@ import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import AffiliateBox from "@/components/AffiliateBox";
 import ArticleCard from "@/components/ArticleCard";
+import CtaBanner from "@/components/CtaBanner";
 import Sidebar from "@/components/Sidebar";
 import {
-  encodeTag,
+  tagHref,
   formatDate,
   getAllArticles,
   getArticle,
@@ -68,8 +69,9 @@ export default async function ArticlePage({ params }: Props) {
     article.body,
     affiliates.map((a) => a.url),
   );
-  // 第3章（3つ目の見出し）の直前で本文を割り、広告を挟む
-  const [bodyTop, bodyBottom] = splitBeforeHeading(html, 3);
+  // 第3章の前に広告、さらに後半（通算6つ目の見出し）の前に収益導線を挟む
+  const [bodyTop, afterAd] = splitBeforeHeading(html, 3);
+  const [bodyMid, bodyTail] = splitBeforeHeading(afterAd, 4);
   const headings = extractHeadings(article.body);
   const related = getRelatedArticles(article);
 
@@ -259,13 +261,30 @@ export default async function ArticlePage({ params }: Props) {
           />
 
           {/* ② 記事中盤（第3章の前）の広告枠 */}
-          {bodyBottom && <AdSlot position="article-middle" className="my-10" />}
+          {bodyMid && <AdSlot position="article-middle" className="my-10" />}
 
-          {/* 本文（後半） */}
-          {bodyBottom && (
+          {/* 本文（中盤） */}
+          {bodyMid && (
             <article
               className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: bodyBottom }}
+              dangerouslySetInnerHTML={{ __html: bodyMid }}
+            />
+          )}
+
+          {/* 本文に馴染ませる収益導線 */}
+          {bodyTail && (
+            <CtaBanner
+              genreSlug={article.genreSlug}
+              slot="inline"
+              className="my-10"
+            />
+          )}
+
+          {/* 本文（後半） */}
+          {bodyTail && (
+            <article
+              className="prose max-w-none"
+              dangerouslySetInnerHTML={{ __html: bodyTail }}
             />
           )}
 
@@ -295,6 +314,13 @@ export default async function ArticlePage({ params }: Props) {
             </section>
           )}
 
+          {/* 記事末の主導線（読了直後がいちばん動く） */}
+          <CtaBanner
+            genreSlug={article.genreSlug}
+            slot="primary"
+            className="mt-12"
+          />
+
           {/* アフィリエイト（記事内で言及されたツール） */}
           {affiliates.length > 0 && (
             <div className="mt-12">
@@ -308,7 +334,7 @@ export default async function ArticlePage({ params }: Props) {
               {article.tags.map((tag) => (
                 <Link
                   key={tag}
-                  href={`/tags/${encodeTag(tag)}`}
+                  href={tagHref(tag)}
                   className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-xs text-ink-soft hover:border-accent hover:text-accent"
                 >
                   #{tag}
