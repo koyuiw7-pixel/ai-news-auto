@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${label} の最新発表まとめ`,
-    description: `${label} の公式YouTube発表動画をAIが解析した日本語解説記事 ${count} 本。新機能・料金・日本からの使い方を最速でチェックできます。`,
+    description: `${label} のYouTube動画をAIが解析した日本語解説記事 ${count} 本。要点・数字・注意点まで最速でチェックできます。`,
     alternates: { canonical: `/channels/${channel}` },
   };
 }
@@ -39,7 +39,7 @@ export default async function ChannelPage({ params }: Props) {
       </h1>
       <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">
         {label}{" "}
-        の公式YouTubeチャンネルで公開された発表動画をAIが映像・音声ごと解析し、日本語の解説記事として
+        のYouTubeチャンネルで公開された動画をAIが映像・音声ごと解析し、日本語の解説記事として
         {articles.length} 本公開中。
         <a
           href={`https://www.youtube.com/channel/${latest.channelId}`}

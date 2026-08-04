@@ -172,6 +172,18 @@ export function getArticlesByTag(slug: string): Article[] {
   );
 }
 
+/**
+ * 表示用のタグ名。params は環境によって %XX のまま渡ることがあるため、
+ * 必ずデコードしてから照合する（しないと見出しに %E4%B8%8D... が出る）。
+ */
+export function getTagLabel(slug: string): string {
+  const decoded = safeDecode(slug);
+  const found = getAllTags().find(
+    (t) => t.slug === slug || t.slug === decoded,
+  );
+  return found?.label ?? decoded;
+}
+
 function safeDecode(value: string): string {
   try {
     return decodeURIComponent(value);
