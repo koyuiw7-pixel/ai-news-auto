@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
+import { hasActiveAffiliate } from "@/lib/monetization";
 import { siteConfig } from "@/site.config";
 
 export const metadata: Metadata = {
@@ -75,9 +76,9 @@ export default function PrivacyPage() {
 
       <h2>4. アフィリエイトプログラムについて</h2>
       <p>
-        当サイトは、複数のアフィリエイトプログラムに参加しています。
-        当サイト内のリンク経由で商品・サービスの申込や購入が行われた場合、
-        当サイトは提携先から紹介料を受け取ることがあります。
+        {hasActiveAffiliate()
+          ? "当サイトは、複数のアフィリエイトプログラムに参加しています。当サイト内のリンク経由で商品・サービスの申込や購入が行われた場合、当サイトは提携先から紹介料を受け取ることがあります。"
+          : "当サイトは、今後アフィリエイトプログラムに参加する予定です。参加を開始した時点で、成果報酬が発生するリンクには「PR」表記を付与し、本ページにもその旨を反映します。現時点で当サイトから外部サイトへのリンクは、いずれも紹介料の発生しない通常のリンクです。"}
       </p>
       <p>
         これらのリンクを経由した際、提携先の判断でCookieが保存され、

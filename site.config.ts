@@ -23,9 +23,9 @@ export const siteConfig = {
    */
   operator: {
     name: "サキヨミ編集部",
-    representative: "（運営責任者名を記入）",
+    representative: "koyuiw7",
     location: "日本",
-    email: "contact@example.com",
+    email: "koyuiw7@gmail.com",
     established: "2026年7月",
   },
 

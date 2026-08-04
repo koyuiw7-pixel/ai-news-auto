@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
+import { hasActiveAffiliate } from "@/lib/monetization";
 import { siteConfig } from "@/site.config";
 
 export const metadata: Metadata = {
@@ -66,7 +67,9 @@ export default function DisclaimerPage() {
 
       <h2>5. 広告・アフィリエイトについて</h2>
       <p>
-        当サイトは、広告収入およびアフィリエイト報酬によって運営費をまかなっています。
+        {hasActiveAffiliate()
+          ? "当サイトは、広告収入およびアフィリエイト報酬によって運営費をまかなっています。"
+          : "当サイトは、今後の広告収入およびアフィリエイト報酬によって運営費をまかなう予定です。現時点では成果報酬が発生するリンクは掲載しておらず、外部サイトへのリンクはいずれも通常のリンクです。"}
         景品表示法（いわゆるステルスマーケティング規制）および
         Googleのガイドラインに従い、次の対応を行っています。
       </p>

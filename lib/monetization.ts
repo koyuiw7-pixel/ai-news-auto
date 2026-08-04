@@ -99,3 +99,31 @@ export function getCta(genreSlug: string, slot: CtaSlot): Cta | null {
 export function hasAnyCta(): boolean {
   return Object.values(load()).some((slots) => Object.keys(slots).length > 0);
 }
+
+/**
+ * 実際に成果報酬が発生するリンクを1本でも掲載しているか。
+ *
+ * ASP未提携のうちに「アフィリエイトプログラムに参加しています」と書くのは
+ * 事実と異なるため、規約系ページの文言をこの結果で切り替える。
+ */
+export function hasActiveAffiliate(): boolean {
+  const viaCta = Object.values(load()).some((slots) =>
+    Object.values(slots).some((cta) => cta?.isAffiliate),
+  );
+  if (viaCta) return true;
+
+  // 記事内リンク側（affiliate_links.json）も見る
+  try {
+    const raw: unknown = JSON.parse(
+      fs.readFileSync(path.join(process.cwd(), "affiliate_links.json"), "utf8"),
+    );
+    if (typeof raw !== "object" || raw === null) return false;
+    return Object.entries(raw).some(([name, value]) => {
+      if (name.startsWith("_")) return false;
+      const url = typeof value === "string" ? value : (value as { url?: string })?.url;
+      return typeof url === "string" && !isPlaceholder(url);
+    });
+  } catch {
+    return false;
+  }
+}

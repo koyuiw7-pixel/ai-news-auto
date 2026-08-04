@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllChannels, getAllGenres, getAllTags } from "@/lib/articles";
+import { hasActiveAffiliate } from "@/lib/monetization";
 import { siteConfig } from "@/site.config";
 
 const LEGAL_LINKS = [
@@ -108,7 +109,8 @@ export default function Footer() {
           <p className="text-[11px] leading-[1.9] text-muted">
             本サイトの記事は、公開されている動画を生成AIが解析して自動生成したものです。
             誤りが含まれる可能性があるため、重要な判断の際は必ず元動画および各社の公式発表をご確認ください。
-            当サイトは広告およびアフィリエイトプログラムによる収益を得ています。
+            {hasActiveAffiliate() &&
+              "当サイトは広告およびアフィリエイトプログラムによる収益を得ています。"}
           </p>
           <p className="index-num mt-4 text-[11px] text-muted">
             © {new Date().getFullYear()} {siteConfig.name}

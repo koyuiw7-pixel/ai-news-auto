@@ -149,6 +149,60 @@ AdSenseとASPの審査では、運営者の実在と連絡手段の明示が求�
 > **審査前に必ず [site.config.ts](site.config.ts) の `operator` を実際の情報に差し替えてください。**
 > `representative`（運営責任者名）と `email` が初期値のままだと審査に通りません。
 
+### 収益化の進め方（順番が重要）
+
+#### ステップ0: 独自ドメインを取得する ← **これが最優先**
+
+`*.vercel.app` のサブドメインでは **Google AdSense の審査に通りません**。
+AdSense はサイトの所有権確認とルート直下の `ads.txt` 設置を求めますが、
+共有ドメインである vercel.app ではどちらも行えないためです。
+一部のASPも同様の理由でサブドメインを却下します。
+
+```bash
+# Vercel でドメインを取得して紐付ける（年1,500円前後から）
+vercel domains buy sakiyomi.jp
+vercel domains add sakiyomi.jp
+
+# 取得後、絶対URL（sitemap / OGP / canonical）を新ドメインに向ける
+vercel env add NEXT_PUBLIC_SITE_URL production   # https://sakiyomi.jp
+vercel deploy --prod
+```
+
+#### ステップ1: ASPに登録する
+
+不動産系は成果単価が高く（資料請求1件で数千円〜1万円超）、本サイトの主収益源になります。
+
+| ASP | 審査 | 主な取り扱い | 備考 |
+| --- | --- | --- | --- |
+| **A8.net** | サイト審査なし | 楽待・タウンライフ・COZUCHI・モゲチェック | **最初はここ。即日登録できる** |
+| **afb** | サイト審査あり | RENOSY・不動産一括査定・住宅ローン | 単価が高く、金融・不動産に強い |
+| **もしもアフィリエイト** | ゆるい | 幅広い | W報酬（ボーナス）あり |
+| **アクセストレード** | あり | 金融・不動産 | 上記で足りなければ |
+
+海外のAIツール（ElevenLabs / Perplexity など）は日本のASPにほぼ無いため、
+各社サイトの Affiliate / Partner ページから直接申し込みます。
+
+#### ステップ2: IDを設定ファイルに反映する
+
+提携が承認されたら、発行されたリンクを2つのファイルに書き込みます。
+
+- [`monetization.json`](monetization.json) … CTA（記事中盤・記事末・サイドバー・トップ）
+- [`affiliate_links.json`](affiliate_links.json) … 記事内で言及されたツールの自動リンク
+
+```bash
+./.venv/bin/python scripts/main.py --relink   # 既存記事にも遡って反映
+git add -A && git commit -m "chore: アフィリエイトリンク設定" && git push
+```
+
+`YOUR_ID` を実IDに置き換えた項目から順に、公式リンク → 成果報酬リンクへ自動で切り替わります。
+「PR」表記・`rel="sponsored"`・プライバシーポリシーの文言も自動で連動するため、
+手作業での書き換えは不要です。
+
+#### ステップ3: AdSenseに申請する
+
+記事数・運営者情報・プライバシーポリシー・免責事項・お問い合わせは実装済みです。
+独自ドメインを設定したうえで申請し、承認後に下記を設定してください。
+
 ### Google AdSense（3枠設置済み）
 
 広告枠は既にテンプレートへ埋め込み済みです。設置箇所は以下の3つ。
