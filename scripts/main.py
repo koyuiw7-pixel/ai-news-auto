@@ -53,6 +53,7 @@ MODEL = MODEL_CANDIDATES[0]
 DEFAULT_MAX_ARTICLES = int(os.environ.get("MAX_ARTICLES_PER_RUN", "3"))
 DEFAULT_LOOKBACK_DAYS = int(os.environ.get("LOOKBACK_DAYS", "10"))
 MAX_ATTEMPTS_PER_VIDEO = 2  # これを超えて失敗した動画は諦める
+SHORTS_RE = re.compile(r"#shorts?\b|＃ショート", re.IGNORECASE)
 REQUEST_RETRIES = 3
 
 ATOM = "{http://www.w3.org/2005/Atom}"
@@ -160,6 +161,10 @@ def collect_candidates(
                 continue
             if failed.get(entry["video_id"], 0) >= MAX_ATTEMPTS_PER_VIDEO:
                 continue
+            # Shorts は記事にする情報量がなく、Gemini に投げるだけ課金が無駄になる。
+            # 総合ニュース系チャンネルは Shorts を大量投稿するため、ここで落とす。
+            if SHORTS_RE.search(entry["title"]):
+                continue
             try:
                 published_at = datetime.fromisoformat(entry["published"])
             except ValueError:
@@ -258,6 +263,7 @@ PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両�
   label は その時点で何が語られ・実演されたかを30〜50文字で。必ず時刻の昇順。
 - is_relevant: この動画が「読者にとって実質的な情報価値のある発表・解説」であれば true。
   ショート動画、音楽、告知のみ、内容の薄いティーザー、宣伝だけの動画は false。
+{topic_guard}
 - skip_reason: is_relevant が false のときだけ理由を書く。
 
 body_markdown 内では h1 (`#`) を使わないでください（タイトルは別途表示されます）。
@@ -349,6 +355,11 @@ def generate_article(client, entry: dict) -> dict:
         video_summary=entry["summary"] or "（概要欄なし）",
         outline=genre.outline,
         field_notes=genre.field_notes,
+        topic_guard=(
+            f"  **このジャンルの対象範囲**: {genre.topic_guard}"
+            if genre.topic_guard
+            else ""
+        ),
     )
     system_instruction = f"{SYSTEM_INSTRUCTION_BASE}\n\n{genre.persona}"
 

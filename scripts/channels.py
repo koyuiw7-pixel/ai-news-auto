@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from genres import AI, REAL_ESTATE, Genre
+from genres import AI, INVESTMENT, REAL_ESTATE, Genre
 
 
 @dataclass(frozen=True)
@@ -117,6 +117,38 @@ CHANNELS: list[Channel] = [
         channel_id="UCFFYj-EIVJf5DcRRKdJutcw",
         genre=REAL_ESTATE,
         base_tags=("エリア相場", "住宅地"),
+    ),
+    # ---------------------------------------------------------------- #
+    # 投資・マネー（すべて RSS 疎通・直近の投稿を確認済み）
+    # ---------------------------------------------------------------- #
+    Channel(
+        slug="liberal-arts",
+        name="両学長 リベラルアーツ大学",
+        channel_id="UC67Wr_9pA4I0glIxDt_Cpyw",
+        genre=INVESTMENT,
+        base_tags=("資産形成", "家計"),
+    ),
+    Channel(
+        slug="bank-academy",
+        name="BANK ACADEMY",
+        channel_id="UCGXU4lVXc9msfUkjNykA7TA",
+        genre=INVESTMENT,
+        base_tags=("新NISA", "投資信託"),
+    ),
+    Channel(
+        slug="rakuten-sec",
+        name="楽天証券",
+        channel_id="UCALplCbeagOxXGmEJ-hOJIg",
+        genre=INVESTMENT,
+        base_tags=("マーケット", "株式投資"),
+    ),
+    # 総合ニュース系。投資と無関係な動画は topic_guard で自動的に除外される
+    Channel(
+        slug="nikkei",
+        name="日本経済新聞",
+        channel_id="UCHL12woHGeiqAqLrK-pJe7g",
+        genre=INVESTMENT,
+        base_tags=("経済", "マーケット"),
     ),
 ]
 

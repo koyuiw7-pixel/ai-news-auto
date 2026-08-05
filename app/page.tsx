@@ -13,6 +13,13 @@ import { siteConfig } from "@/site.config";
 
 export const revalidate = false;
 
+/** セクション見出しの英字ラベル。未定義のジャンルは FEATURE にフォールバック */
+const GENRE_EYEBROW: Record<string, string> = {
+  ai: "TECHNOLOGY",
+  "real-estate": "REAL ESTATE",
+  investment: "MONEY",
+};
+
 export default function HomePage() {
   const articles = getAllArticles();
   const [hero, ...rest] = articles;
@@ -50,7 +57,7 @@ export default function HomePage() {
         return (
           <section key={genre.slug} className="mt-20">
             <SectionHead
-              eyebrow={genre.slug === "ai" ? "TECHNOLOGY" : "REAL ESTATE"}
+              eyebrow={GENRE_EYEBROW[genre.slug] ?? "FEATURE"}
               title={genre.label}
               href={`/genres/${genre.slug}`}
               count={genre.count}
