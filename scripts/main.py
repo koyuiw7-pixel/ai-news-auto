@@ -27,6 +27,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from channels import CHANNELS, Channel  # noqa: E402
+from genres import GENRES, GENRES_BY_SLUG  # noqa: E402
 
 # --------------------------------------------------------------------------- #
 # 設定
@@ -265,6 +266,10 @@ PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両�
   ショート動画、音楽、告知のみ、内容の薄いティーザー、宣伝だけの動画は false。
 {topic_guard}
 - skip_reason: is_relevant が false のときだけ理由を書く。
+- genre: 記事の内容に最もふさわしいジャンルを次から1つ選ぶ。
+{genre_choices}
+  **チャンネルの主分野ではなく、動画で実際に語られている中身で判断すること。**
+  例: 不動産チャンネルが投資信託やNISAを論じた回は investment を選ぶ。
 
 body_markdown 内では h1 (`#`) を使わないでください（タイトルは別途表示されます）。
 """
@@ -274,6 +279,7 @@ ARTICLE_SCHEMA = {
     "properties": {
         "is_relevant": {"type": "BOOLEAN"},
         "skip_reason": {"type": "STRING"},
+        "genre": {"type": "STRING"},
         "title": {"type": "STRING"},
         "slug_en": {"type": "STRING"},
         "lede": {"type": "STRING"},
@@ -298,6 +304,7 @@ ARTICLE_SCHEMA = {
     },
     "required": [
         "is_relevant",
+        "genre",
         "title",
         "slug_en",
         "lede",
@@ -312,6 +319,7 @@ ARTICLE_SCHEMA = {
     "propertyOrdering": [
         "is_relevant",
         "skip_reason",
+        "genre",
         "title",
         "slug_en",
         "lede",
@@ -359,6 +367,9 @@ def generate_article(client, entry: dict) -> dict:
             f"  **このジャンルの対象範囲**: {genre.topic_guard}"
             if genre.topic_guard
             else ""
+        ),
+        genre_choices="\n".join(
+            f"  - {g.slug}: {g.name}（{g.description[:48]}…）" for g in GENRES
         ),
     )
     system_instruction = f"{SYSTEM_INSTRUCTION_BASE}\n\n{genre.persona}"
@@ -607,6 +618,12 @@ def build_record(entry: dict, data: dict) -> dict:
         if re.fullmatch(r"\d{1,2}(:\d{2}){1,2}", time_value) and label:
             timetable.append({"time": time_value, "label": label})
 
+    # ジャンルは「チャンネルの主分野」ではなく「動画で実際に語られた内容」で決める。
+    # 不動産チャンネルが投資信託を論じる回などを正しく分類し、免責文も内容に合わせるため。
+    resolved_genre = GENRES_BY_SLUG.get(str(data.get("genre", "")).strip(), channel.genre)
+    if resolved_genre.slug != channel.genre.slug:
+        log(f"   [genre] {channel.genre.name} → {resolved_genre.name}（内容で判定）")
+
     record = {
         "slug": unique_slug(slugify(data.get("slug_en", "")), video_id),
         "title": str(data["title"]).strip(),
@@ -620,9 +637,9 @@ def build_record(entry: dict, data: dict) -> dict:
         "channel": channel.name,
         "channelId": channel.channel_id,
         "channelSlug": channel.slug,
-        "genre": channel.genre.name,
-        "genreSlug": channel.genre.slug,
-        "disclaimer": channel.genre.disclaimer,
+        "genre": resolved_genre.name,
+        "genreSlug": resolved_genre.slug,
+        "disclaimer": resolved_genre.disclaimer,
         "videoId": video_id,
         "videoUrl": f"https://www.youtube.com/watch?v={video_id}",
         "videoTitle": entry["title"],
