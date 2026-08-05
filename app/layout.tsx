@@ -60,6 +60,10 @@ export default function RootLayout({
   return (
     <html lang={siteConfig.lang} suppressHydrationWarning>
       <head>
+        {/* AdSense のサイト所有権確認用（ads.txt と併用が推奨） */}
+        {adsenseClient && (
+          <meta name="google-adsense-account" content={adsenseClient} />
+        )}
         {/* 描画前にテーマを確定させ、リロード時の白フラッシュを防ぐ */}
         <script
           dangerouslySetInnerHTML={{
