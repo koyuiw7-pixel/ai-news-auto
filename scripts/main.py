@@ -28,6 +28,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from channels import CHANNELS, Channel  # noqa: E402
 from genres import GENRES, GENRES_BY_SLUG  # noqa: E402
+from topics import is_off_topic  # noqa: E402
 
 # --------------------------------------------------------------------------- #
 # 設定
@@ -165,6 +166,11 @@ def collect_candidates(
             # Shorts は記事にする情報量がなく、Gemini に投げるだけ課金が無駄になる。
             # 総合ニュース系チャンネルは Shorts を大量投稿するため、ここで落とす。
             if SHORTS_RE.search(entry["title"]):
+                continue
+            # どのジャンルにも属さない題材は、動画を送る前にタイトルで落とす。
+            # 無料枠は毎分5リクエストしかないため、1回の呼び出しも無駄にしない。
+            if is_off_topic(entry["title"], entry["summary"]):
+                log(f"  [除外] ジャンル外: {entry['title'][:44]}")
                 continue
             try:
                 published_at = datetime.fromisoformat(entry["published"])
@@ -421,11 +427,24 @@ def generate_article(client, entry: dict) -> dict:
                     break  # 再試行せず次のモデルへ
                 if attempt == REQUEST_RETRIES:
                     break
-                wait = min(60, 2**attempt * 5) + random.uniform(0, 3)
+                # 無料枠は 5 リクエスト/分。429 のときは API が返す待機秒数に従う
+                wait = retry_delay_of(str(error))
+                if wait is None:
+                    wait = min(60, 2**attempt * 5) + random.uniform(0, 3)
                 log(f"   [retry {attempt}/{REQUEST_RETRIES - 1}] {error} -> {wait:.0f}s 待機")
                 time.sleep(wait)
 
     raise RuntimeError(f"Gemini 呼び出しに失敗: {last_error}")
+
+
+def retry_delay_of(message: str) -> float | None:
+    """429 レスポンスに含まれる待機指示（秒）を取り出す。無ければ None。"""
+    if "429" not in message and "RESOURCE_EXHAUSTED" not in message:
+        return None
+    match = re.search(r"retry in ([\d.]+)s", message) or re.search(
+        r"'retryDelay': '(\d+)s'", message
+    )
+    return float(match.group(1)) + 3 if match else 65.0
 
 
 def _is_model_unavailable(error: Exception) -> bool:
