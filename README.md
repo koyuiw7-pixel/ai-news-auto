@@ -259,6 +259,60 @@ vercel deploy --prod
 git add content && git commit -m "chore: アフィリエイトリンク更新" && git push
 ```
 
+## 外部システム連携API
+
+社内の管理システムなどから、記事の生成状況を取得するための読み取り専用APIです。
+すべて `Authorization: Bearer <token>` が必要で、**`INTEGRATION_API_TOKEN` が未設定のときは
+API 自体が 503 で無効になります**（トークン未設定で誰でも読める状態を作らないため）。
+
+| エンドポイント | 内容 |
+| --- | --- |
+| `GET /api/v1/stats` | 記事総数、ジャンル別・チャンネル別の内訳、24h/7d/30dの生成数、解析済み動画数・スキップ数・失敗数 |
+| `GET /api/v1/articles` | 記事メタ一覧。`?genre=` `?channel=` `?since=`（ISO8601）`?limit=`（最大100）`?offset=` で絞り込み。`?include=body` で本文も取得 |
+| `GET /api/v1/runs` | 実行状況。進行中か、最終成功日時、連続失敗回数、直近の実行履歴 |
+
+```bash
+curl -H "Authorization: Bearer $INTEGRATION_API_TOKEN" \
+  "https://ai-news-auto.vercel.app/api/v1/articles?genre=investment&limit=20"
+```
+
+### 必要な環境変数（Vercel）
+
+| 変数名 | 必須 | 用途 |
+| --- | --- | --- |
+| `INTEGRATION_API_TOKEN` | ✅ | API認証。**設定済み** |
+| `INTEGRATION_GITHUB_TOKEN` | `/runs` のみ | GitHub Fine-grained PAT。権限は `Actions: Read` だけでよい |
+| `INTEGRATION_ALLOWED_ORIGINS` | ブラウザから叩く場合 | CORS許可オリジン（カンマ区切り） |
+
+`/api/v1/runs` は GitHub Actions API をサーバ側でプロキシします。
+連携先システムに GitHub の認証情報を渡さずに済ませるための構成です。
+
+### Webhook（プッシュ通知）
+
+記事が生成されるたびに、連携先へ POST します。GitHub Secrets に2つ設定すると有効になります。
+
+| Secret | 用途 |
+| --- | --- |
+| `INTEGRATION_WEBHOOK_URL` | 通知先URL。**未設定なら通知処理はスキップされます** |
+| `INTEGRATION_WEBHOOK_SECRET` | HMAC-SHA256の署名鍵 |
+
+```json
+{ "event": "articles.generated", "created": 3, "total": 141,
+  "runId": "31287435207", "occurredAt": "2026-08-09T01:06:17Z" }
+```
+
+署名は `X-Saisoku-Signature: sha256=<hex>` ヘッダで送られます。受信側での検証例:
+
+```python
+import hmac, hashlib
+expected = "sha256=" + hmac.new(SECRET.encode(), raw_body, hashlib.sha256).hexdigest()
+if not hmac.compare_digest(expected, request.headers["X-Saisoku-Signature"]):
+    abort(401)
+```
+
+> **PV・UUは取得できません。** アクセス解析を接続していないためです。
+> 必要なら Vercel Analytics の有効化が別途必要です。
+
 ## 設定の変更
 
 | やりたいこと | 変更箇所 |
