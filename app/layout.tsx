@@ -8,7 +8,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | 世界のAI公式発表を日本語で最速解説`,
+    default: `${siteConfig.name}｜AI・不動産・投資の最速まとめ`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: siteConfig.locale,
     url: siteConfig.url,
-    title: `${siteConfig.name} | 世界のAI公式発表を日本語で最速解説`,
+    title: `${siteConfig.name}｜AI・不動産・投資の最速まとめ`,
     description: siteConfig.description,
   },
   twitter: {

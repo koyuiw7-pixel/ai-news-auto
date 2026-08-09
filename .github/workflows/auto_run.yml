@@ -59,7 +59,9 @@ jobs:
             --days "${{ github.event.inputs.days || '10' }}"
 
       - name: Commit & push
+        id: commit
         run: |
+          echo "count=0" >> "$GITHUB_OUTPUT"
           if [ -z "$(git status --porcelain content)" ]; then
             echo "変更なし。コミットをスキップします。"
             exit 0
@@ -68,6 +70,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add content
           COUNT=$(git diff --cached --name-only --diff-filter=A -- 'content/articles/*.json' | wc -l | tr -d ' ')
+          echo "count=${COUNT}" >> "$GITHUB_OUTPUT"
           git commit -m "chore(content): 新着AI動画から記事を自動生成 (+${COUNT}本)"
           # 実行中に main が進んでいても失敗しないよう rebase してから push（最大3回）
           for i in 1 2 3; do
@@ -77,6 +80,31 @@ jobs:
           done
           echo "::error::push に3回失敗しました"
           exit 1
+
+      # 連携先の管理システムへ生成完了を通知する。
+      # WEBHOOK_URL が未設定なら何もしない（設定した時点で有効になる）。
+      - name: Notify integration webhook
+        if: ${{ steps.commit.outputs.count != '0' }}
+        env:
+          WEBHOOK_URL: ${{ secrets.INTEGRATION_WEBHOOK_URL }}
+          WEBHOOK_SECRET: ${{ secrets.INTEGRATION_WEBHOOK_SECRET }}
+          COUNT: ${{ steps.commit.outputs.count }}
+        run: |
+          if [ -z "$WEBHOOK_URL" ]; then
+            echo "INTEGRATION_WEBHOOK_URL 未設定のため通知をスキップします。"
+            exit 0
+          fi
+          TOTAL=$(ls -1 content/articles/*.json 2>/dev/null | wc -l | tr -d ' ')
+          BODY=$(jq -nc \
+            --arg count "$COUNT" --arg total "$TOTAL" \
+            --arg run "$GITHUB_RUN_ID" --arg at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            '{event:"articles.generated", created:($count|tonumber), total:($total|tonumber), runId:$run, occurredAt:$at}')
+          # 改ざん検知のため HMAC-SHA256 署名を付ける（受信側で同じ鍵で検証）
+          SIG=$(printf '%s' "$BODY" | openssl dgst -sha256 -hmac "$WEBHOOK_SECRET" -r | cut -d' ' -f1)
+          curl -sS --fail-with-body --retry 3 --retry-delay 5 -X POST "$WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -H "X-Saisoku-Signature: sha256=$SIG" \
+            -d "$BODY" && echo "通知しました (+${COUNT}本)"
 
       - name: Summary
         if: always()
