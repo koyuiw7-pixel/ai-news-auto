@@ -14,8 +14,23 @@ export type AffiliateLink = {
   note?: string;
 };
 
+/** まとめ記事が統合した元記事 */
+export type RoundupSource = {
+  slug: string;
+  title: string;
+  publishedAt: string;
+  channel: string;
+};
+
 export type Article = {
   slug: string;
+  /** "roundup" は複数記事を統合した横断まとめ。省略時は通常記事 */
+  type?: "roundup";
+  /** まとめ記事が統合した元記事（type === "roundup" のとき） */
+  sources?: RoundupSource[];
+  /** 通常記事から、自分を含むまとめ記事への逆リンク */
+  roundupSlug?: string;
+  roundupTitle?: string;
   title: string;
   /** 記事冒頭のリード文 */
   lede: string;
@@ -77,6 +92,7 @@ function readAll(): Article[] {
         highlights: parsed.highlights ?? [],
         timetable: parsed.timetable ?? [],
         affiliates: parsed.affiliates ?? [],
+        sources: parsed.sources ?? [],
         lede: parsed.lede ?? "",
         genre: parsed.genre ?? "AI・テクノロジー",
         genreSlug: parsed.genreSlug ?? "ai",

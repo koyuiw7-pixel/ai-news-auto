@@ -2,14 +2,15 @@ name: Auto Article Pipeline
 
 on:
   schedule:
-    # 3時間ごと（UTC基準。GitHub 側の混雑で数分ずれることがあります）
-    - cron: "0 */3 * * *"
+    # 6時間ごと（UTC基準）。量産と見なされるリスクとAPI消費を抑えるため
+    # 3時間ごと3本(最大24本/日)から絞っている
+    - cron: "0 */6 * * *"
   workflow_dispatch:
     inputs:
       max_articles:
         description: "1回で生成する最大記事数"
         required: false
-        default: "3"
+        default: "2"
       days:
         description: "何日前までの動画を対象にするか"
         required: false
@@ -55,8 +56,16 @@ jobs:
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
         run: |
           python scripts/main.py \
-            --max "${{ github.event.inputs.max_articles || '3' }}" \
+            --max "${{ github.event.inputs.max_articles || '2' }}" \
             --days "${{ github.event.inputs.days || '10' }}"
+
+      # 同じ話題の記事が3本以上たまったら、横断まとめ記事に統合する。
+      # 動画を再解析せず既存記事のテキストだけを使うのでAPI消費は1回分。
+      - name: Build roundup
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/roundup.py --max 1
 
       - name: Commit & push
         id: commit
@@ -71,7 +80,7 @@ jobs:
           git add content
           COUNT=$(git diff --cached --name-only --diff-filter=A -- 'content/articles/*.json' | wc -l | tr -d ' ')
           echo "count=${COUNT}" >> "$GITHUB_OUTPUT"
-          git commit -m "chore(content): 新着AI動画から記事を自動生成 (+${COUNT}本)"
+          git commit -m "chore(content): 記事を自動生成・まとめを更新 (+${COUNT}本)"
           # 実行中に main が進んでいても失敗しないよう rebase してから push（最大3回）
           for i in 1 2 3; do
             git pull --rebase --autostash origin main && git push && exit 0

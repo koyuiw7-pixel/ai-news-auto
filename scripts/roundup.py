@@ -1,0 +1,350 @@
+#!/usr/bin/env python3
+"""同一トピックの記事群を1本の決定版「まとめ記事」に統合する。
+
+個別記事は元動画の要約にすぎず、検索エンジンから見た独自価値が弱い。
+複数動画を横断して統合した記事は元動画のどれにも存在しない情報になるため、
+このサイトで唯一「一次情報を超える」ページになる。
+
+動画は再解析せず、生成済み記事のテキストだけを使うので API 消費が小さい。
+
+  python3 scripts/roundup.py --dry-run   # 対象クラスタの一覧
+  python3 scripts/roundup.py --max 1     # 1件だけ生成
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from cluster import build_clusters  # noqa: E402
+from genres import GENRES_BY_SLUG  # noqa: E402
+from main import (  # noqa: E402
+    ARTICLES_DIR,
+    ROOT,
+    build_client,
+    clean_list,
+    log,
+    normalize_body,
+    retry_delay_of,
+    slugify,
+)
+
+MODEL = "gemini-3.5-flash"
+REQUEST_RETRIES = 3
+
+SYSTEM_INSTRUCTION = """あなたは日経クロステック / 東洋経済オンラインで10年書いてきたベテランの専門記者です。
+同じ話題を扱った複数の記事を渡されるので、それらを統合した「決定版のまとめ記事」を書きます。
+
+## この記事の存在意義
+個々の元動画には「その動画で語られたこと」しかありません。
+あなたが書くのは、**複数の動画を横断して初めて見えてくる全体像**です。
+単なる寄せ集めや箇条書きの再掲は失格とみなします。
+
+## 絶対規則
+- 提供された記事に書かれていない事実を追加しない。推測は「編集部の見立てでは」と明示する。
+- 数値・固有名詞・日付は提供記事から正確に転記する。
+- 記事間で矛盾する記述があれば、隠さず「〜という記述と〜という記述がある」と併記する。
+- 報道記事の敬体（です・ます）で統一。感嘆符と煽り表現は使わない。
+- 「いかがでしたか」「注目が集まっています」等の空疎な表現は禁止。"""
+
+PROMPT = """以下は「{topic}」について書かれた {count} 本の記事です。
+これらを統合し、この話題の決定版となるまとめ記事を作成してください。
+
+# 元記事
+{sources}
+
+# 必須の構成（body_markdown に Markdown で記述）
+
+## {topic} とは何か
+この話題の全体像を400〜500字で。個別の発表ではなく、まとまりとして何なのかを説明する。
+
+## 発表された機能・内容の全体像
+**複数の記事に散らばっている要素を1つの表に統合する。**
+各項目について「どの発表で明らかになったか」が分かるようにする。
+これがこの記事の核心なので、最も厚く書くこと。
+
+## 時系列で見る発表の流れ
+いつ何が公開され、何が積み上がってきたかを時系列に整理する。
+個別記事を読んでも分からない「順序と積み上がり」を示す。
+
+## 横断して見えてくること
+{count}本を並べて初めて分かることを書く。以下の観点で必ず1つ以上指摘する。
+- 発表の力点がどこに置かれているか（何を繰り返し訴えているか）
+- 記事間で矛盾・食い違いがある点
+- 語られていない論点（意図的に触れられていない領域）
+この章がこの記事の独自価値そのものです。**必ず具体的に書いてください。**
+
+## 個別のポイント
+主要な発表を1つずつ `###` で簡潔にまとめ、詳細は元記事に譲る形にする。
+各項目の末尾に「詳細: [記事タイトル](/articles/スラッグ)」の形式で内部リンクを置く。
+
+## 結局どう捉えるべきか
+読者が持ち帰るべき結論と、次に確認すべきことを3〜5行で。
+
+# 品質基準
+- 本文は5000〜8000字。
+- 表を最低2つ含める（統合機能一覧と時系列）。
+- 内部リンクは提供されたスラッグを正確に使う。存在しないスラッグを作らない。
+
+# 各フィールドの要件
+- title: 38〜52文字。「{topic}」を含め、まとめ記事だと分かる表現にする。
+  例:「{topic} で発表された全機能まとめ、{count}本の公式動画から分かったこと」
+- lede: 180〜240字のリード文。
+- description: 100〜130文字のメタディスクリプション。
+- keywords: 検索されうる日本語キーワード 8〜12個。
+- tags: 3〜6個。
+- highlights: 要点ちょうど3つ。各40〜60文字。
+- slug_en: URL用の英小文字スラッグ。3〜6単語、40文字以内。
+"""
+
+SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "title": {"type": "STRING"},
+        "slug_en": {"type": "STRING"},
+        "lede": {"type": "STRING"},
+        "description": {"type": "STRING"},
+        "keywords": {"type": "ARRAY", "items": {"type": "STRING"}},
+        "tags": {"type": "ARRAY", "items": {"type": "STRING"}},
+        "highlights": {"type": "ARRAY", "items": {"type": "STRING"}},
+        "body_markdown": {"type": "STRING"},
+    },
+    "required": [
+        "title",
+        "slug_en",
+        "lede",
+        "description",
+        "keywords",
+        "tags",
+        "highlights",
+        "body_markdown",
+    ],
+    "propertyOrdering": [
+        "title",
+        "slug_en",
+        "lede",
+        "description",
+        "keywords",
+        "tags",
+        "highlights",
+        "body_markdown",
+    ],
+}
+
+
+def load_articles() -> list[dict]:
+    articles = []
+    for path in sorted(ARTICLES_DIR.glob("*.json")):
+        try:
+            data = json.loads(path.read_text("utf-8"))
+        except json.JSONDecodeError:
+            continue
+        # まとめ記事どうしをさらにまとめない
+        if data.get("type") == "roundup":
+            continue
+        articles.append(data)
+    return articles
+
+
+def members_hash(slugs: list[str]) -> str:
+    """構成記事が変わったかどうかの判定用。増えたら作り直す。"""
+    return hashlib.sha256("\n".join(sorted(slugs)).encode()).hexdigest()[:16]
+
+
+def existing_roundups() -> dict[str, dict]:
+    """トピック名 -> 既存まとめ記事"""
+    found = {}
+    for path in ARTICLES_DIR.glob("*.json"):
+        try:
+            data = json.loads(path.read_text("utf-8"))
+        except json.JSONDecodeError:
+            continue
+        if data.get("type") == "roundup":
+            found[data.get("roundupKey", data["slug"])] = data
+    return found
+
+
+def build_sources_block(articles: list[dict]) -> str:
+    blocks = []
+    for index, article in enumerate(articles, start=1):
+        blocks.append(
+            f"""--- 記事{index} ---
+スラッグ: {article['slug']}
+タイトル: {article['title']}
+公開日: {article.get('publishedAt', '')[:10]}
+配信元: {article.get('channel', '')}
+本文:
+{article.get('body', '')[:6000]}
+"""
+        )
+    return "\n".join(blocks)
+
+
+def generate(client, topic: str, articles: list[dict]) -> dict:
+    from google.genai import types
+
+    prompt = PROMPT.format(
+        topic=topic,
+        count=len(articles),
+        sources=build_sources_block(articles),
+    )
+    config = types.GenerateContentConfig(
+        system_instruction=SYSTEM_INSTRUCTION,
+        response_mime_type="application/json",
+        response_schema=SCHEMA,
+        temperature=0.6,
+        max_output_tokens=32768,
+    )
+
+    last_error: Exception | None = None
+    for attempt in range(1, REQUEST_RETRIES + 1):
+        try:
+            response = client.models.generate_content(
+                model=MODEL, contents=prompt, config=config
+            )
+            text = (response.text or "").strip()
+            if not text:
+                raise RuntimeError("空のレスポンス")
+            return json.loads(text)
+        except Exception as error:  # noqa: BLE001
+            last_error = error
+            if attempt == REQUEST_RETRIES:
+                break
+            wait = retry_delay_of(str(error)) or 20 * attempt
+            log(f"   [retry {attempt}] {wait:.0f}s 待機")
+            time.sleep(wait)
+    raise RuntimeError(f"生成に失敗: {last_error}")
+
+
+def build_record(topic: str, data: dict, members: list[dict]) -> dict:
+    genre = GENRES_BY_SLUG.get(members[0].get("genreSlug", ""))
+    now = datetime.now(timezone.utc).isoformat()
+    slug = slugify(data.get("slug_en", "")) or f"roundup-{members_hash([m['slug'] for m in members])}"
+    if not slug.endswith("-matome"):
+        slug = f"{slug}-matome"
+
+    return {
+        "slug": slug,
+        "type": "roundup",
+        "roundupKey": topic,
+        "membersHash": members_hash([m["slug"] for m in members]),
+        "sources": [
+            {
+                "slug": m["slug"],
+                "title": m["title"],
+                "publishedAt": m.get("publishedAt", ""),
+                "channel": m.get("channel", ""),
+            }
+            for m in members
+        ],
+        "title": str(data["title"]).strip(),
+        "lede": normalize_body(data.get("lede", "")),
+        "description": str(data["description"]).strip(),
+        "keywords": clean_list(data.get("keywords"), 14),
+        "tags": clean_list(data.get("tags"), 8),
+        "highlights": clean_list(data.get("highlights"), 3),
+        "timetable": [],
+        "body": normalize_body(data["body_markdown"]),
+        "channel": f"{len(members)}本の記事から編集部が統合",
+        "channelId": "",
+        "channelSlug": members[0].get("channelSlug", ""),
+        "genre": genre.name if genre else members[0].get("genre", ""),
+        "genreSlug": genre.slug if genre else members[0].get("genreSlug", ""),
+        "disclaimer": genre.disclaimer if genre else members[0].get("disclaimer", ""),
+        "videoId": members[0].get("videoId", ""),
+        "videoUrl": members[0].get("videoUrl", ""),
+        "videoTitle": f"{topic} 関連の{len(members)}本",
+        "publishedAt": members[0].get("publishedAt", now),
+        "generatedAt": now,
+        "thumbnail": members[0].get("thumbnail", ""),
+        "model": MODEL,
+        "affiliates": [],
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--max", type=int, default=1, help="1回で生成する最大まとめ数")
+    parser.add_argument("--dry-run", action="store_true", help="対象を表示するだけ")
+    parser.add_argument("--force", action="store_true", help="構成が同じでも作り直す")
+    args = parser.parse_args()
+
+    articles = load_articles()
+    by_slug = {a["slug"]: a for a in articles}
+    clusters = build_clusters(articles)
+    existing = existing_roundups()
+
+    pending = []
+    for cluster in clusters:
+        current_hash = members_hash(cluster.slugs)
+        old = existing.get(cluster.key)
+        if old and old.get("membersHash") == current_hash and not args.force:
+            continue  # 構成が変わっていないので作り直さない
+        pending.append((cluster, old))
+
+    log(f"[info] クラスタ {len(clusters)}個 / 生成対象 {len(pending)}個")
+    for cluster, old in pending:
+        state = "更新" if old else "新規"
+        log(f"  - [{state}] 「{cluster.key}」 {cluster.size}本 ({cluster.genre_name})")
+
+    if args.dry_run or not pending:
+        if args.dry_run:
+            log("[dry-run] API 呼び出しはスキップしました")
+        return 0
+
+    client = build_client()
+    created = 0
+
+    for cluster, old in pending[: args.max]:
+        members = [by_slug[s] for s in cluster.slugs if s in by_slug]
+        log(f"\n[統合中] 「{cluster.key}」 {len(members)}本")
+        started = time.time()
+        try:
+            data = generate(client, cluster.key, members)
+        except Exception as error:  # noqa: BLE001
+            log(f"   [NG] {error}")
+            continue
+
+        record = build_record(cluster.key, data, members)
+        # 既存があればスラッグを引き継いでURLを変えない
+        if old:
+            record["slug"] = old["slug"]
+
+        path = ARTICLES_DIR / f"{record['slug']}.json"
+        path.write_text(
+            json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
+
+        # 構成記事から、まとめ記事への逆リンクを張る
+        for member in members:
+            member_path = ARTICLES_DIR / f"{member['slug']}.json"
+            if not member_path.exists():
+                continue
+            current = json.loads(member_path.read_text("utf-8"))
+            if current.get("roundupSlug") == record["slug"]:
+                continue
+            current["roundupSlug"] = record["slug"]
+            current["roundupTitle"] = record["title"]
+            member_path.write_text(
+                json.dumps(current, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+        created += 1
+        log(
+            f"   [OK] {path.relative_to(ROOT)} "
+            f"({len(record['body'])}文字 / {time.time() - started:.0f}s)"
+        )
+
+    log(f"\n[done] まとめ記事 {created} 本")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

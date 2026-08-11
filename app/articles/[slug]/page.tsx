@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import AffiliateBox from "@/components/AffiliateBox";
 import ArticleCard from "@/components/ArticleCard";
+import RoundupSources from "@/components/RoundupSources";
 import CtaBanner from "@/components/CtaBanner";
 import Sidebar from "@/components/Sidebar";
 import {
@@ -177,9 +178,30 @@ export default async function ArticlePage({ params }: Props) {
           </div>
 
           {/* ① 記事トップ（タイトル下）の広告枠 */}
+          {/* 同じ話題のまとめ記事へ誘導する（個別記事 → ハブ） */}
+          {article.roundupSlug && (
+            <Link
+              href={`/articles/${article.roundupSlug}`}
+              className="group mt-6 flex items-start gap-3 rounded-xl border-2 border-accent/40 bg-accent-soft px-5 py-4 transition-colors hover:border-accent"
+            >
+              <span className="mt-0.5 shrink-0 bg-accent px-2 py-0.5 text-[10px] font-bold tracking-widest text-accent-ink">
+                まとめ
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[13px] text-muted">
+                  この話題の全体像はこちら
+                </span>
+                <span className="mt-0.5 block font-serif text-[15px] font-bold leading-snug text-ink group-hover:text-accent">
+                  {article.roundupTitle}
+                </span>
+              </span>
+            </Link>
+          )}
+
           <AdSlot position="article-top" className="mt-6" />
 
           {/* 動画（クリックで初めて YouTube を読み込む軽量ファサード） */}
+          {article.type !== "roundup" && (
           <div className="mt-7 overflow-hidden rounded-2xl border border-line bg-black">
             <a
               href={article.videoUrl}
@@ -213,6 +235,7 @@ export default async function ArticlePage({ params }: Props) {
               元動画: {article.videoTitle}
             </p>
           </div>
+          )}
 
           {/* 3秒でわかる要点3選 */}
           {article.highlights.length > 0 && (
@@ -286,6 +309,11 @@ export default async function ArticlePage({ params }: Props) {
               className="prose max-w-none"
               dangerouslySetInnerHTML={{ __html: bodyTail }}
             />
+          )}
+
+          {/* まとめ記事が統合した元記事（ハブ → 個別記事） */}
+          {article.type === "roundup" && (
+            <RoundupSources sources={article.sources ?? []} />
           )}
 
           {/* タイムテーブル */}

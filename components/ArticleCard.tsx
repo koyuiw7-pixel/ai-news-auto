@@ -20,8 +20,15 @@ export default function ArticleCard({ article, priority }: Props) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
           />
-          <span className="absolute left-3 top-3 bg-accent px-2 py-0.5 text-[10px] font-bold tracking-[0.14em] text-accent-ink">
-            {article.genre}
+          <span className="absolute left-3 top-3 flex gap-1.5">
+            <span className="bg-accent px-2 py-0.5 text-[10px] font-bold tracking-[0.14em] text-accent-ink">
+              {article.genre}
+            </span>
+            {article.type === "roundup" && (
+              <span className="bg-ink px-2 py-0.5 text-[10px] font-bold tracking-[0.14em] text-paper">
+                まとめ
+              </span>
+            )}
           </span>
         </div>
 
