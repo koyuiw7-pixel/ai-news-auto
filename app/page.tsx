@@ -3,11 +3,13 @@ import ArticleCard from "@/components/ArticleCard";
 import CtaBanner from "@/components/CtaBanner";
 import HeroArticle from "@/components/HeroArticle";
 import IndexList from "@/components/IndexList";
+import RoundupShelf from "@/components/RoundupShelf";
 import {
   getAllArticles,
   getAllGenres,
   getAllTags,
   getArticlesByGenre,
+  getRoundups,
 } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
 
@@ -25,6 +27,7 @@ export default function HomePage() {
   const [hero, ...rest] = articles;
   const genres = getAllGenres();
   const tags = getAllTags().slice(0, 20);
+  const roundups = getRoundups();
 
   if (articles.length === 0) return <EmptyState />;
 
@@ -41,6 +44,9 @@ export default function HomePage() {
           ))}
         </section>
       )}
+
+      {/* 横断まとめ記事（サイト独自価値のハブ） */}
+      <RoundupShelf roundups={roundups} />
 
       {/* 通し番号の目次リスト */}
       {rest.length > 3 && (
@@ -137,7 +143,7 @@ function EmptyState() {
       <p className="eyebrow">NO ARTICLES YET</p>
       <p className="display mt-3 text-2xl">記事はまだありません</p>
       <p className="mt-4 text-sm leading-relaxed text-muted">
-        GitHub Actions が3時間ごとに新着動画を解析して、自動で記事を追加します。
+        GitHub Actions が6時間ごとに新着動画を解析して、自動で記事を追加します。
       </p>
       <p className="index-num mt-6 inline-block border border-line px-4 py-2 text-xs text-ink-soft">
         python3 scripts/main.py --max 1

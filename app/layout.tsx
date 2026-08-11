@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { siteConfig } from "@/site.config";
@@ -91,6 +92,9 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        {/* Vercelダッシュボードで Web Analytics を有効にした時点で計測が始まる。
+            無効のうちは何も送信されないので、先に仕込んでおいて問題ない。 */}
+        <Analytics />
       </body>
     </html>
   );

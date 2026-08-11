@@ -117,6 +117,11 @@ export function getAllArticles(): Article[] {
   return cache;
 }
 
+/** 横断まとめ記事だけを新しい順に返す（トップのハブ枠用） */
+export function getRoundups(): Article[] {
+  return getAllArticles().filter((a) => a.type === "roundup");
+}
+
 export function getArticle(slug: string): Article | undefined {
   return getAllArticles().find((a) => a.slug === slug);
 }
