@@ -8,7 +8,7 @@ export const siteConfig = {
   // 「催促」と読み違えられないよう、タグラインとタイトルで必ず「最速」を併記する
   tagline: "最速で、要点だけ。",
   description:
-    "AI・テクノロジー、不動産、投資の専門チャンネルをAIが常時監視。公式発表や専門家の解説動画を映像と音声ごと解析し、要点・数字・料金・リスクまで日本語で最速にまとめます。",
+    "OpenAI・Google DeepMind・Anthropic など世界のAI企業の公式発表と、海外のAI専門解説チャンネルをAIが常時監視。映像と音声ごと解析し、新機能・ベンチマーク・料金・日本からの使い方まで日本語で最速にまとめます。",
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.VERCEL_PROJECT_PRODUCTION_URL

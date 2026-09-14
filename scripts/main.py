@@ -837,7 +837,9 @@ def main() -> int:
             entry_from_url(args.video, args.channel[0] if args.channel else None)
         ]
     else:
-        channels = CHANNELS
+        # active=False のチャンネルは新規生成の対象から外す（一点集中のため）。
+        # --channel で明示した場合だけは停止中でも処理する。
+        channels = [c for c in CHANNELS if c.active]
         if args.channel:
             wanted = set(args.channel)
             channels = [c for c in CHANNELS if c.slug in wanted]

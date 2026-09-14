@@ -17,6 +17,9 @@ class Channel:
     name: str  # 表示名
     channel_id: str  # YouTube チャンネルID (UC...)
     genre: Genre = AI  # 記事の書き方を決めるジャンル
+    # False にすると新規生成の対象から外れる。既存記事は残したまま
+    # 「今後どの分野に力を注ぐか」だけを切り替えるための仕組み。
+    active: bool = True
     # そのチャンネルの記事に必ず付けるタグ
     base_tags: tuple[str, ...] = ()
 
@@ -80,6 +83,37 @@ CHANNELS: list[Channel] = [
         channel_id="UCHlNU7kIZhRgSbhHvFoy72w",
         base_tags=("Hugging Face", "オープンソース"),
     ),
+    # ---- 海外のAI専門解説チャンネル（日本語で読める形にするのが差別化点） ----
+    Channel(
+        slug="ai-explained",
+        name="AI Explained",
+        channel_id="UCNJ1Ymd5yFuUPtn21xtRbbw",
+        base_tags=("AI解説", "論文"),
+    ),
+    Channel(
+        slug="two-minute-papers",
+        name="Two Minute Papers",
+        channel_id="UCbfYPyITQ-7l4upoX8nvctg",
+        base_tags=("AI研究", "論文"),
+    ),
+    Channel(
+        slug="microsoft-research",
+        name="Microsoft Research",
+        channel_id="UCCb9_Kn8F_Opb3UCGm-lILQ",
+        base_tags=("Microsoft", "AI研究"),
+    ),
+    Channel(
+        slug="bycloud",
+        name="bycloud",
+        channel_id="UCgfe2ooZD3VJPB6aJAnuQng",
+        base_tags=("AI解説", "LLM"),
+    ),
+    Channel(
+        slug="matthew-berman",
+        name="Matthew Berman",
+        channel_id="UCawZsQWqfGSbCI5yjkdVkTA",
+        base_tags=("AIツール", "検証"),
+    ),
     # ---------------------------------------------------------------- #
     # 不動産（すべて RSS 疎通・稼働を確認済み）
     # ---------------------------------------------------------------- #
@@ -88,6 +122,7 @@ CHANNELS: list[Channel] = [
         name="楽待 RAKUMACHI",
         channel_id="UCPMJKbrxtpARoTd1b49iUvA",
         genre=REAL_ESTATE,
+        active=False,
         base_tags=("不動産投資", "収益物件"),
     ),
     Channel(
@@ -95,6 +130,7 @@ CHANNELS: list[Channel] = [
         name="ウラケン不動産",
         channel_id="UCfpEDJ5UHn3TlJiE1RD7X6g",
         genre=REAL_ESTATE,
+        active=False,
         base_tags=("不動産投資", "住宅ローン"),
     ),
     Channel(
@@ -102,6 +138,7 @@ CHANNELS: list[Channel] = [
         name="ゆっくり不動産",
         channel_id="UCnV2ptTOZMfUEbgAs85mpRw",
         genre=REAL_ESTATE,
+        active=False,
         base_tags=("物件紹介", "リノベーション"),
     ),
     Channel(
@@ -109,6 +146,7 @@ CHANNELS: list[Channel] = [
         name="マンションマニアの住まいカウンター",
         channel_id="UCdUdtHlqi01V44AEKwXzT_g",
         genre=REAL_ESTATE,
+        active=False,
         base_tags=("マンション購入", "新築マンション"),
     ),
     Channel(
@@ -116,6 +154,7 @@ CHANNELS: list[Channel] = [
         name="イエノミカタ",
         channel_id="UCFFYj-EIVJf5DcRRKdJutcw",
         genre=REAL_ESTATE,
+        active=False,
         base_tags=("エリア相場", "住宅地"),
     ),
     # ---------------------------------------------------------------- #
@@ -126,6 +165,7 @@ CHANNELS: list[Channel] = [
         name="両学長 リベラルアーツ大学",
         channel_id="UC67Wr_9pA4I0glIxDt_Cpyw",
         genre=INVESTMENT,
+        active=False,
         base_tags=("資産形成", "家計"),
     ),
     Channel(
@@ -133,6 +173,7 @@ CHANNELS: list[Channel] = [
         name="BANK ACADEMY",
         channel_id="UCGXU4lVXc9msfUkjNykA7TA",
         genre=INVESTMENT,
+        active=False,
         base_tags=("新NISA", "投資信託"),
     ),
     Channel(
@@ -140,6 +181,7 @@ CHANNELS: list[Channel] = [
         name="楽天証券",
         channel_id="UCALplCbeagOxXGmEJ-hOJIg",
         genre=INVESTMENT,
+        active=False,
         base_tags=("マーケット", "株式投資"),
     ),
     # 総合ニュース系。投資と無関係な動画は topic_guard で自動的に除外される
@@ -148,6 +190,7 @@ CHANNELS: list[Channel] = [
         name="日本経済新聞",
         channel_id="UCHL12woHGeiqAqLrK-pJe7g",
         genre=INVESTMENT,
+        active=False,
         base_tags=("経済", "マーケット"),
     ),
 ]
