@@ -8,7 +8,8 @@ import type { ReactNode } from "react";
 
 const QUOTED = /「([^」]{2,24})」/;
 const FIGURE =
-  /\d[\d,.]*(?:万|億|兆)?(?:行|ドル|円|%|％|倍|本|件|人|時間|パラメータ)/;
+  // 「◯本」「◯件」は統合本数などの件数で、別の場所に大きく表示しているので対象外
+  /\d[\d,.]*(?:万|億|兆)?(?:行|ドル|円|%|％|倍|人|時間|パラメータ)/;
 
 export function Highlight({ text }: { text: string }): ReactNode {
   const quoted = QUOTED.exec(text);

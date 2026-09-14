@@ -20,36 +20,15 @@
   --accent: #0a6fa0;
   --accent-ink: #ffffff;
   --accent-soft: #e3f1f8;
-  --marker: #ffe14d;
-  --marker-h: 46%;
-  --official: #a86400;
+  --marker: #ffe873;
+  --marker-h: 36%;
+  --official: #8a5200;
   --roundup: #0a6fa0;
   --glass: rgb(255 255 255 / 0.74);
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #0a0f1e;
-    --surface: #111831;
-    --surface-2: #16203f;
-    --ink: #e8ecf7;
-    --ink-soft: #c4cbe0;
-    --muted: #8e9bbd;
-    --line: #243158;
-    --line-strong: #34437a;
-    --accent: #58c7f3;
-    --accent-ink: #06101f;
-    --accent-soft: #12294a;
-    --marker: #ffe14d;
-    --marker-h: 22%;
-    --official: #ffb547;
-    --roundup: #58c7f3;
-    --glass: rgb(10 15 30 / 0.72);
-    color-scheme: dark;
-  }
-}
-
+/* 既定は白。暗い画面は右上のボタンで選んだときだけ（OSのダーク設定には追従しない） */
 :root[data-theme="dark"] {
   --paper: #0a0f1e;
   --surface: #111831;
@@ -131,14 +110,21 @@ body {
   color: #111111;
 }
 
-/* 見出し用の極太ゴシック。使いどころを絞る */
-.display {
-  font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.34;
-  letter-spacing: -0.01em;
-  font-feature-settings: "palt" 1;
-  text-wrap: balance;
+/*
+ * 見出し。極太の Dela Gothic One は「話題」「解説」のような画数の多い漢字で
+ * 字の中の隙間が潰れて読みにくいため、本文と同じゴシックの Black にする。
+ * Dela はカタカナで形が単純なロゴ「サイソク」だけに使う（font-display）。
+ * 長い見出しは font-bold で上書きできるよう components レイヤーに置く。
+ */
+@layer components {
+  .display {
+    font-family: var(--font-sans);
+    font-weight: 900;
+    line-height: 1.42;
+    letter-spacing: 0;
+    font-feature-settings: "palt" 1;
+    text-wrap: balance;
+  }
 }
 
 /* 時刻・件数・統合本数などの数字 */
@@ -190,6 +176,19 @@ mark {
   to {
     background-size: 100% var(--marker-h);
   }
+}
+
+/* 暗い画面では明るい文字を黄色の帯に重ねると読めない（コントラスト比 1.10:1）。
+   文字には重ねず、字形を避けて引く下線にする */
+:root[data-theme="dark"] mark,
+:root[data-theme="dark"] .prose :where(strong) {
+  background-image: none;
+  animation: none;
+  text-decoration-line: underline;
+  text-decoration-color: var(--marker);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.32em;
+  text-decoration-skip-ink: auto;
 }
 
 /* --------------------------------------------------------------------- */
@@ -316,7 +315,7 @@ mark {
   margin-top: 3.5rem;
   margin-bottom: 1.25rem;
   padding-top: 1.1rem;
-  border-top: 2px solid var(--ink);
+  border-top: 1px solid var(--line-strong);
   text-wrap: balance;
 }
 
@@ -328,11 +327,11 @@ mark {
   margin-top: 2.25rem;
   margin-bottom: 0.85rem;
   padding-left: 0.75rem;
-  border-left: 4px solid var(--marker);
+  border-left: 3px solid var(--marker);
 }
 
 .prose :where(p, li) {
-  line-height: 2.05;
+  line-height: 1.9;
   letter-spacing: 0.012em;
 }
 

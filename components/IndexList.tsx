@@ -34,7 +34,7 @@ export default function IndexList({
                 <Highlight text={article.title} />
               </h3>
 
-              <p className="mt-1 hidden line-clamp-2 text-[13px] leading-relaxed text-muted sm:block">
+              <p className="mt-1 hidden line-clamp-2 text-[14px] leading-[1.75] text-ink-soft sm:block">
                 {article.description}
               </p>
             </div>

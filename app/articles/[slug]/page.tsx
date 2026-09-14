@@ -160,7 +160,7 @@ export default async function ArticlePage({ params }: Props) {
           </div>
 
           <Morph name={`title-${article.slug}`}>
-            <h1 className="display mt-3 text-[1.85rem] text-ink sm:text-[2.5rem]">
+            <h1 className="display mt-3 font-bold text-[1.85rem] text-ink sm:text-[2.5rem]">
               <Highlight text={article.title} />
             </h1>
           </Morph>
@@ -285,20 +285,20 @@ export default async function ArticlePage({ params }: Props) {
           )}
 
           {/* 本文（前半） */}
-          <article className="prose mt-10 max-w-none" dangerouslySetInnerHTML={{ __html: bodyTop }} />
+          <article className="prose mt-10 max-w-[42em]" dangerouslySetInnerHTML={{ __html: bodyTop }} />
 
           {/* ② 記事中盤の広告枠 */}
           {bodyMid && <AdSlot position="article-middle" className="my-10" />}
 
           {bodyMid && (
-            <article className="prose max-w-none" dangerouslySetInnerHTML={{ __html: bodyMid }} />
+            <article className="prose max-w-[42em]" dangerouslySetInnerHTML={{ __html: bodyMid }} />
           )}
 
           {/* 本文に馴染ませる収益導線 */}
           {bodyTail && <CtaBanner genreSlug={article.genreSlug} slot="inline" className="my-10" />}
 
           {bodyTail && (
-            <article className="prose max-w-none" dangerouslySetInnerHTML={{ __html: bodyTail }} />
+            <article className="prose max-w-[42em]" dangerouslySetInnerHTML={{ __html: bodyTail }} />
           )}
 
           {/* まとめ記事が統合した元記事 */}
@@ -362,7 +362,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {related.length > 0 && (
             <section aria-labelledby="related-heading" className="mt-16">
-              <h2 id="related-heading" className="display mb-5 border-b-2 border-ink pb-3 text-xl">
+              <h2 id="related-heading" className="display mb-5 border-b border-line-strong pb-3 text-xl">
                 関連記事
               </h2>
               <div className="grid gap-3.5 sm:grid-cols-2">

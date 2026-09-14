@@ -60,7 +60,7 @@ export default function ArticleCard({ article, priority, morph = false }: Props)
             </h3>
           </Morph>
 
-          <p className="line-clamp-2 text-[13px] leading-relaxed text-muted">
+          <p className="line-clamp-2 text-[14px] leading-[1.75] text-ink-soft">
             {article.description}
           </p>
         </div>

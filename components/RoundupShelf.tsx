@@ -12,12 +12,12 @@ export default function RoundupShelf({ roundups }: { roundups: Article[] }) {
 
   return (
     <section id="roundups" className="scroll-mt-24">
-      <div className="mb-6 flex flex-wrap items-end justify-between gap-3 border-b-2 border-ink pb-3">
+      <div className="mb-6 flex flex-wrap items-end justify-between gap-3 border-b border-line-strong pb-3">
         <div>
           <p className="eyebrow">DEEP DIVE</p>
           <h2 className="display mt-1 text-2xl sm:text-[1.75rem]">話題まるごと解説</h2>
         </div>
-        <p className="max-w-md text-[13px] leading-relaxed text-muted">
+        <p className="max-w-md text-[14px] leading-[1.75] text-ink-soft">
           同じ話題の発表を横断して1本にまとめた記事です。個々の動画では見えない全体像と、発表どうしの食い違いまで整理しています。
         </p>
       </div>
@@ -43,7 +43,7 @@ export default function RoundupShelf({ roundups }: { roundups: Article[] }) {
               <h3 className="mt-1 text-[16px] font-bold leading-[1.6] text-ink [text-wrap:pretty]">
                 <Highlight text={roundup.title} />
               </h3>
-              <p className="mt-2 line-clamp-2 text-[13px] leading-relaxed text-muted">
+              <p className="mt-2 line-clamp-2 text-[14px] leading-[1.75] text-ink-soft">
                 {roundup.lede || roundup.description}
               </p>
             </div>

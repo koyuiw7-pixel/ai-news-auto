@@ -9,7 +9,7 @@ export default function RoundupSources({ sources }: { sources: RoundupSource[] }
   if (sources.length === 0) return null;
 
   return (
-    <section className="mt-14 rounded-2xl border-2 border-ink p-6 sm:p-7">
+    <section className="mt-14 rounded-2xl border border-line p-6 sm:p-7">
       <p className="eyebrow">SOURCES</p>
       <h2 className="display mt-1 text-lg sm:text-xl">
         この記事が統合した {sources.length} 本の個別記事

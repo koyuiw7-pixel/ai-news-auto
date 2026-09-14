@@ -109,7 +109,7 @@ function SectionHead({
   href?: string;
 }) {
   return (
-    <div className="mb-6 flex items-end justify-between gap-4 border-b-2 border-ink pb-3">
+    <div className="mb-6 flex items-end justify-between gap-4 border-b border-line-strong pb-3">
       <div>
         <p className="eyebrow">{eyebrow}</p>
         <h2 className="display mt-1 text-2xl sm:text-[1.75rem]">{title}</h2>

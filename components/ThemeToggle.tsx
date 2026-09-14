@@ -22,9 +22,8 @@ function resolve(): "light" | "dark" {
   if (typeof window === "undefined") return "light";
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored === "light" || stored === "dark") return stored;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+  // 既定は白。OSのダーク設定には追従しない
+  return "light";
 }
 
 export default function ThemeToggle() {

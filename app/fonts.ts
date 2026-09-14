@@ -7,7 +7,7 @@ import { Dela_Gothic_One, Martian_Mono, Zen_Kaku_Gothic_New } from "next/font/go
 
 /** 本文 */
 export const zen = Zen_Kaku_Gothic_New({
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "700", "900"],
   subsets: ["latin"],
   display: "swap",
   preload: false,

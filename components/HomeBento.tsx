@@ -55,7 +55,7 @@ export default function HomeBento({ lead, latest, cards }: Props) {
         )}
 
         <Morph name={`title-${lead.slug}`}>
-          <h2 className="display text-[1.75rem] text-ink sm:text-[2.1rem] lg:text-[2.4rem]">
+          <h2 className="display font-bold text-[1.75rem] text-ink sm:text-[2.1rem] lg:text-[2.4rem]">
             <Highlight text={lead.title} />
           </h2>
         </Morph>
