@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Thumb from "@/components/Thumb";
 import Link from "next/link";
 import Morph from "@/components/Morph";
 import { formatDate, type Article } from "@/lib/articles";
@@ -7,22 +7,24 @@ import { Highlight } from "@/lib/highlight";
 type Props = {
   article: Article;
   priority?: boolean;
-  /** 記事ページへの画面遷移で、サムネイルと見出しをつなぐ。ページ内で同じ記事に1回だけ使う */
+  /** 記事ページへの画面遷移で、写真と見出しをつなぐ。ページ内で同じ記事に1回だけ使う */
   morph?: boolean;
 };
 
+/**
+ * 記事カード。箱で囲まず、写真と見出しだけで構成する。
+ * 全てを箱に入れると強弱が消えて、どこを見るべきか分からなくなるため。
+ */
 export default function ArticleCard({ article, priority, morph = false }: Props) {
   const isRoundup = article.type === "roundup";
+  const sources = article.sources?.length ?? 0;
 
   return (
-    <article className="group h-full">
-      <Link
-        href={`/articles/${article.slug}`}
-        className="flex h-full flex-col overflow-hidden rounded-2xl bg-surface transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-surface-2"
-      >
+    <article className="group">
+      <Link href={`/articles/${article.slug}`} className="flex flex-col gap-3.5">
         <Morph name={`cover-${article.slug}`} enabled={morph}>
-          <div className="relative aspect-video overflow-hidden bg-surface-2">
-            <Image
+          <div className="relative aspect-video overflow-hidden rounded-2xl bg-surface-2">
+            <Thumb
               src={article.thumbnail}
               alt=""
               fill
@@ -30,23 +32,25 @@ export default function ArticleCard({ article, priority, morph = false }: Props)
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
             />
-            <span className="absolute left-3 top-3 flex gap-1.5">
-              {isRoundup && (
-                <span className="rounded-full bg-ink px-2.5 py-0.5 text-[10.5px] font-bold text-paper">
-                  まとめ
-                </span>
-              )}
-              {article.genreSlug !== "ai" && (
-                <span className="rounded-full bg-paper/90 px-2.5 py-0.5 text-[10.5px] font-bold text-ink">
-                  {article.genre}
-                </span>
-              )}
-            </span>
+            {(isRoundup || article.genreSlug !== "ai") && (
+              <span className="absolute left-3 top-3 flex gap-1.5">
+                {isRoundup && (
+                  <span className="rounded-full bg-ink/90 px-2.5 py-1 text-[11px] font-bold text-paper">
+                    {sources > 0 ? `${sources}本を統合` : "まとめ"}
+                  </span>
+                )}
+                {article.genreSlug !== "ai" && (
+                  <span className="rounded-full bg-paper/90 px-2.5 py-1 text-[11px] font-bold text-ink">
+                    {article.genre}
+                  </span>
+                )}
+              </span>
+            )}
           </div>
         </Morph>
 
-        <div className="flex flex-1 flex-col gap-2 p-4 sm:p-5">
-          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11px] text-muted">
+        <div className="flex flex-col gap-1.5">
+          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11.5px] text-muted">
             <i className={`dot ${isRoundup ? "dot-roundup" : "dot-official"}`} aria-hidden />
             <span className="font-bold">{article.channel}</span>
             <time dateTime={article.publishedAt} className="index-num">
@@ -55,7 +59,7 @@ export default function ArticleCard({ article, priority, morph = false }: Props)
           </div>
 
           <Morph name={`title-${article.slug}`} enabled={morph}>
-            <h3 className="text-[15.5px] font-bold leading-[1.6] text-ink [text-wrap:pretty]">
+            <h3 className="text-[16.5px] font-bold leading-[1.6] text-ink decoration-[1.5px] underline-offset-4 group-hover:underline">
               <Highlight text={article.title} />
             </h3>
           </Morph>

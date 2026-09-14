@@ -33,6 +33,7 @@ from main import (  # noqa: E402
     normalize_body,
     retry_delay_of,
     slugify,
+    url_exists,
 )
 
 MODEL = "gemini-3.5-flash"
@@ -262,7 +263,11 @@ def build_record(topic: str, data: dict, members: list[dict]) -> dict:
         "videoTitle": f"{topic} 関連の{len(members)}本",
         "publishedAt": members[0].get("publishedAt", now),
         "generatedAt": now,
-        "thumbnail": members[0].get("thumbnail", ""),
+        "thumbnail": next(
+            # 先頭の元記事の画像が消えている場合があるので、実際に読み込めるものを選ぶ
+            (m["thumbnail"] for m in members if m.get("thumbnail") and url_exists(m["thumbnail"])),
+            members[0].get("thumbnail", ""),
+        ),
         "model": MODEL,
         "affiliates": [],
     }

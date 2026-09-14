@@ -142,6 +142,13 @@ body {
   color: var(--accent);
 }
 
+/* 見出しは文節の切れ目（<wbr>）でだけ改行する。長すぎてはみ出す場合のみ任意の位置で折る */
+.headline {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  line-break: strict;
+}
+
 /* --------------------------------------------------------------------- */
 /* 蛍光ペン                                                               */
 /* 静止状態は「引かれた状態」。対応ブラウザでは画面に入った瞬間に引かれる     */
@@ -202,9 +209,30 @@ mark {
 }
 
 .ticker {
-  overflow: hidden;
+  display: flex;
+  align-items: stretch;
   border-bottom: 1px solid var(--line);
   background: var(--surface);
+}
+
+.ticker-label {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-inline: 1rem;
+  border-right: 1px solid var(--line);
+  background: var(--paper);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.ticker-viewport {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .ticker-track {
@@ -248,7 +276,7 @@ mark {
   .ticker-track {
     animation: none;
   }
-  .ticker {
+  .ticker-viewport {
     overflow-x: auto;
   }
 }
