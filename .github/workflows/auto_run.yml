@@ -91,6 +91,13 @@ jobs:
           echo "::error::push に3回失敗しました"
           exit 1
 
+      # 検索エンジンに更新を通知する（IndexNow）。
+      # Search Console と違いアカウント不要で、Bing/DuckDuckGo などに直接届く。
+      - name: Notify IndexNow
+        if: ${{ steps.commit.outputs.count != '0' }}
+        continue-on-error: true
+        run: python scripts/indexnow.py --hours 12
+
       # 連携先の管理システムへ生成完了を通知する。
       # WEBHOOK_URL が未設定なら何もしない（設定した時点で有効になる）。
       - name: Notify integration webhook

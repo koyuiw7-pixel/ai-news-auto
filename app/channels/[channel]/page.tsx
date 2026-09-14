@@ -14,12 +14,16 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { channel } = await params;
   const label = getAllChannels().find((c) => c.slug === channel)?.label ?? channel;
-  const count = getArticlesByChannel(channel).length;
+  const items = getArticlesByChannel(channel);
+  const count = items.length;
+  // AI記事を1本も持たないチャンネルは検索対象から外す
+  const indexable = items.some((a) => a.genreSlug === "ai");
 
   return {
     title: `${label} の最新発表まとめ`,
     description: `${label} のYouTube動画をAIが解析した日本語解説記事 ${count} 本。要点・数字・注意点まで最速でチェックできます。`,
     alternates: { canonical: `/channels/${channel}` },
+    ...(indexable ? {} : { robots: { index: false, follow: true } }),
   };
 }
 

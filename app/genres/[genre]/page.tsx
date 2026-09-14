@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${label}の最新ニュース・解説記事`,
     description: `${label}に関する解説記事を${count}本掲載。専門YouTubeチャンネルの動画をAIが解析し、要点・数字・注意点まで日本語でまとめています。`,
     alternates: { canonical: `/genres/${genre}` },
+    ...(genre === "ai" ? {} : { robots: { index: false, follow: true } }),
   };
 }
 

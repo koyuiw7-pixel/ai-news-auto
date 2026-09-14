@@ -41,6 +41,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: article.description,
     keywords: article.keywords,
     alternates: { canonical: url },
+    ...(article.genreSlug === "ai"
+      ? {}
+      // AI以外は専門性を薄めるため検索対象から外す（ページ自体は残す）
+      : { robots: { index: false, follow: true } }),
     openGraph: {
       type: "article",
       url,

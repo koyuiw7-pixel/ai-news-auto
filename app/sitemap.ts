@@ -4,6 +4,7 @@ import {
   getAllChannels,
   getAllGenres,
   getAllTags,
+  tagSlug,
 } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
 
@@ -11,7 +12,10 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
-  const articles = getAllArticles();
+  // 検索対象はAIジャンルのみ。noindex にしたページは sitemap からも外す
+  const articles = getAllArticles().filter((a) => a.genreSlug === "ai");
+  const liveChannels = new Set(articles.map((a) => a.channelSlug));
+  const liveTags = new Set(articles.flatMap((a) => a.tags.map(tagSlug)));
   const lastModified = articles[0]?.generatedAt
     ? new Date(articles[0].generatedAt)
     : new Date();
@@ -41,19 +45,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
-    ...getAllGenres().map((genre) => ({
+    ...getAllGenres()
+      .filter((genre) => genre.slug === "ai")
+      .map((genre) => ({
       url: `${base}/genres/${genre.slug}`,
       lastModified,
       changeFrequency: "hourly" as const,
       priority: 0.9,
     })),
-    ...getAllChannels().map((channel) => ({
+    ...getAllChannels()
+      .filter((channel) => liveChannels.has(channel.slug))
+      .map((channel) => ({
       url: `${base}/channels/${channel.slug}`,
       lastModified,
       changeFrequency: "daily" as const,
       priority: 0.7,
     })),
-    ...getAllTags().map((tag) => ({
+    ...getAllTags()
+      .filter((tag) => liveTags.has(tag.slug))
+      .map((tag) => ({
       url: `${base}/tags/${encodeURIComponent(tag.slug)}`,
       lastModified,
       changeFrequency: "daily" as const,
