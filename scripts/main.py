@@ -57,6 +57,9 @@ DEFAULT_LOOKBACK_DAYS = int(os.environ.get("LOOKBACK_DAYS", "10"))
 MAX_ATTEMPTS_PER_VIDEO = 2  # これを超えて失敗した動画は諦める
 SHORTS_RE = re.compile(r"#shorts?\b|＃ショート", re.IGNORECASE)
 REQUEST_RETRIES = 3
+# 1リクエストの上限（ミリ秒）。503のあと応答が返らず固まると、ジョブ全体が
+# タイムアウトで打ち切られ、それまでの生成結果がコミットされずに失われるため。
+REQUEST_TIMEOUT_MS = 300_000
 
 ATOM = "{http://www.w3.org/2005/Atom}"
 YT = "{http://www.youtube.com/xml/schemas/2015}"
@@ -351,8 +354,12 @@ def build_client():
         )
 
     from google import genai  # 遅延 import（--dry-run では不要なため）
+    from google.genai import types
 
-    return genai.Client(api_key=api_key)
+    return genai.Client(
+        api_key=api_key,
+        http_options=types.HttpOptions(timeout=REQUEST_TIMEOUT_MS),
+    )
 
 
 def generate_article(client, entry: dict) -> dict:

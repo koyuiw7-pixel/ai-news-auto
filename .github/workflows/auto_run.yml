@@ -27,7 +27,8 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    # 最悪ケース: 記事2本×3試行×5分 + まとめ3試行×5分 ≒ 48分に収まる余裕を持たせる
+    timeout-minutes: 60
 
     steps:
       - name: Checkout

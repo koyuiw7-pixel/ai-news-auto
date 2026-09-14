@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
+  // Google Search Console の所有権確認。環境変数に確認コードを入れるだけで有効になる
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
   authors: [{ name: siteConfig.author }],
   alternates: {
     canonical: "/",
