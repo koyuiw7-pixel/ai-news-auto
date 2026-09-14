@@ -2,60 +2,76 @@
 @plugin "@tailwindcss/typography";
 
 /* --------------------------------------------------------------------- */
-/* カラートークン（実体）                                                  */
-/* ライト/ダークで値だけ差し替え、Tailwind 側は var() を参照する            */
+/* カラートークン                                                          */
+/* ライト＝要点マーカー（白地・墨・黄色マーカー）                            */
+/* ダーク＝シグナルルーム（濃紺・琥珀＝公式発表・シアン＝まとめ）             */
+/* 黄色の --marker は両モードで「要点」を意味する                           */
 /* --------------------------------------------------------------------- */
 
 :root {
-  --paper: #fbfaf8; /* 紙のような温かみのある地色 */
-  --surface: #ffffff;
-  --surface-2: #f3f0ec;
-  --ink: #14110f;
-  --ink-soft: #45403b;
-  --muted: #6e6862;
-  --line: #e3dfd8;
-  --line-strong: #cdc7be;
-  --accent: #e4322b; /* ディープレッド */
+  --paper: #ffffff;
+  --surface: #f4f4f1;
+  --surface-2: #ecece7;
+  --ink: #111111;
+  --ink-soft: #3b3b37;
+  --muted: #62625d;
+  --line: #e4e4de;
+  --line-strong: #cfcfc7;
+  --accent: #0a6fa0;
   --accent-ink: #ffffff;
-  --accent-soft: #fdeceb;
-  --overlay: 0deg 0% 4%;
+  --accent-soft: #e3f1f8;
+  --marker: #ffe14d;
+  --marker-h: 46%;
+  --official: #a86400;
+  --roundup: #0a6fa0;
+  --glass: rgb(255 255 255 / 0.74);
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #0d0c0c;
-    --surface: #161414;
-    --surface-2: #1f1c1a;
-    --ink: #f4f1ec;
-    --ink-soft: #d3cec7;
-    --muted: #9a938b;
-    --line: #2b2725;
-    --line-strong: #423c38;
-    --accent: #ff554c;
-    --accent-ink: #1a0705;
-    --accent-soft: #2a1512;
+    --paper: #0a0f1e;
+    --surface: #111831;
+    --surface-2: #16203f;
+    --ink: #e8ecf7;
+    --ink-soft: #c4cbe0;
+    --muted: #8e9bbd;
+    --line: #243158;
+    --line-strong: #34437a;
+    --accent: #58c7f3;
+    --accent-ink: #06101f;
+    --accent-soft: #12294a;
+    --marker: #ffe14d;
+    --marker-h: 22%;
+    --official: #ffb547;
+    --roundup: #58c7f3;
+    --glass: rgb(10 15 30 / 0.72);
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --paper: #0d0c0c;
-  --surface: #161414;
-  --surface-2: #1f1c1a;
-  --ink: #f4f1ec;
-  --ink-soft: #d3cec7;
-  --muted: #9a938b;
-  --line: #2b2725;
-  --line-strong: #423c38;
-  --accent: #ff554c;
-  --accent-ink: #1a0705;
-  --accent-soft: #2a1512;
+  --paper: #0a0f1e;
+  --surface: #111831;
+  --surface-2: #16203f;
+  --ink: #e8ecf7;
+  --ink-soft: #c4cbe0;
+  --muted: #8e9bbd;
+  --line: #243158;
+  --line-strong: #34437a;
+  --accent: #58c7f3;
+  --accent-ink: #06101f;
+  --accent-soft: #12294a;
+  --marker: #ffe14d;
+  --marker-h: 22%;
+  --official: #ffb547;
+  --roundup: #58c7f3;
+  --glass: rgb(10 15 30 / 0.72);
   color-scheme: dark;
 }
 
 /* --------------------------------------------------------------------- */
-/* Tailwind へトークンを流し込む（inline なので var() のまま出力される）    */
+/* Tailwind へトークンを流し込む                                            */
 /* --------------------------------------------------------------------- */
 
 @theme inline {
@@ -70,15 +86,20 @@
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
   --color-accent-soft: var(--accent-soft);
+  --color-marker: var(--marker);
+  --color-official: var(--official);
+  --color-roundup: var(--roundup);
 
   --font-sans:
-    ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
-  --font-serif:
-    "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "Noto Serif JP",
-    "Times New Roman", serif;
+    var(--font-zen), "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Noto Sans JP", Meiryo, sans-serif;
+  --font-display:
+    var(--font-dela), var(--font-zen), "Hiragino Sans", sans-serif;
   --font-mono:
-    ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace;
+    var(--font-martian), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* 旧デザインの明朝指定は、本文ゴシックの太字として受け止める */
+  --font-serif:
+    var(--font-zen), "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
 }
 
 /* --------------------------------------------------------------------- */
@@ -90,57 +111,184 @@ html {
   scroll-padding-top: 5rem;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   background-color: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
+  font-feature-settings: "palt" 1;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: var(--marker);
+  color: #111111;
 }
 
-/* エディトリアル用の極大タイポ */
+/* 見出し用の極太ゴシック。使いどころを絞る */
 .display {
-  font-family: var(--font-serif);
-  font-weight: 700;
-  line-height: 1.28;
-  letter-spacing: -0.015em;
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.34;
+  letter-spacing: -0.01em;
   font-feature-settings: "palt" 1;
+  text-wrap: balance;
 }
 
-/* 通し番号（01 ─ 見出し）のリスト */
+/* 時刻・件数・統合本数などの数字 */
 .index-num {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
 }
 
-/* セクション見出しの罫線ラベル */
 .eyebrow {
   font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
-/* 画像に重ねる文字のための階調オーバーレイ */
-/* サムネイルが明るくても白文字が確実に読めるよう、下半分を強めに沈める */
-.scrim {
-  background:
-    linear-gradient(
-      to top,
-      hsl(var(--overlay) / 0.95) 0%,
-      hsl(var(--overlay) / 0.88) 30%,
-      hsl(var(--overlay) / 0.62) 55%,
-      hsl(var(--overlay) / 0.22) 78%,
-      hsl(var(--overlay) / 0.05) 100%
-    ),
-    hsl(var(--overlay) / 0.18);
+/* --------------------------------------------------------------------- */
+/* 蛍光ペン                                                               */
+/* 静止状態は「引かれた状態」。対応ブラウザでは画面に入った瞬間に引かれる     */
+/* --------------------------------------------------------------------- */
+
+mark {
+  color: inherit;
+  background-color: transparent;
+  background-image: linear-gradient(var(--marker), var(--marker));
+  background-repeat: no-repeat;
+  background-position: 0 92%;
+  background-size: 100% var(--marker-h);
+  padding-inline: 0.06em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    mark {
+      animation: marker-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+  }
+}
+
+@keyframes marker-draw {
+  from {
+    background-size: 0% var(--marker-h);
+  }
+  to {
+    background-size: 100% var(--marker-h);
+  }
+}
+
+/* --------------------------------------------------------------------- */
+/* ヘッダー（すりガラス）と速報ティッカー                                    */
+/* --------------------------------------------------------------------- */
+
+.site-header {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+}
+
+.ticker {
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.ticker-track {
+  display: flex;
+  gap: 2.75rem;
+  width: max-content;
+  padding: 0.6rem 1.5rem;
+  animation: ticker-scroll 64s linear infinite;
+}
+
+.ticker:hover .ticker-track,
+.ticker:focus-within .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 12.5px;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.ticker-item:hover {
+  color: var(--accent);
+}
+
+.ticker-item time {
+  font-size: 10.5px;
+  color: var(--muted);
+}
+
+@keyframes ticker-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+  .ticker {
+    overflow-x: auto;
+  }
+}
+
+/* 情報の種類を示す点。琥珀＝公式発表、シアン＝まとめ記事 */
+.dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  flex: none;
+}
+.dot-official {
+  background: var(--official);
+}
+.dot-roundup {
+  background: var(--roundup);
+}
+
+/* --------------------------------------------------------------------- */
+/* 画面遷移（View Transitions 対応ブラウザのみ）                            */
+/* --------------------------------------------------------------------- */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.28s;
+}
+
+::view-transition-group(*) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }
 
 /* --------------------------------------------------------------------- */
@@ -162,47 +310,50 @@ body {
 
 .prose :where(h2) {
   scroll-margin-top: 5rem;
-  font-family: var(--font-serif);
   font-size: 1.5rem;
+  font-weight: 700;
   line-height: 1.5;
-  letter-spacing: -0.01em;
   margin-top: 3.5rem;
   margin-bottom: 1.25rem;
-  padding-top: 1.25rem;
+  padding-top: 1.1rem;
   border-top: 2px solid var(--ink);
+  text-wrap: balance;
 }
 
 .prose :where(h3) {
   scroll-margin-top: 5rem;
   font-size: 1.125rem;
+  font-weight: 700;
   line-height: 1.6;
   margin-top: 2.25rem;
   margin-bottom: 0.85rem;
-  padding-left: 0.7rem;
-  border-left: 3px solid var(--accent);
+  padding-left: 0.75rem;
+  border-left: 4px solid var(--marker);
 }
 
 .prose :where(p, li) {
   line-height: 2.05;
   letter-spacing: 0.012em;
-  font-feature-settings: "palt" 1;
 }
 
-/* 冒頭の段落だけ少し大きく（雑誌のリード的な入り） */
 .prose > :where(h2:first-child + p) {
   font-size: 1.0625rem;
 }
 
+/* 本文の太字は要点。蛍光ペンで引く */
 .prose :where(strong) {
-  background: linear-gradient(transparent 64%, var(--accent-soft) 64%);
-  padding: 0 0.12em;
+  background-image: linear-gradient(var(--marker), var(--marker));
+  background-repeat: no-repeat;
+  background-position: 0 92%;
+  background-size: 100% var(--marker-h);
+  padding: 0 0.1em;
 }
 
 .prose :where(blockquote) {
   border-left: 3px solid var(--accent);
-  background: var(--surface-2);
+  background: var(--surface);
   padding: 0.85rem 1.35rem;
-  border-radius: 0 0.5rem 0.5rem 0;
+  border-radius: 0 0.75rem 0.75rem 0;
   font-style: normal;
 }
 
@@ -212,11 +363,11 @@ body {
   white-space: nowrap;
   font-size: 0.875rem;
   border: 1px solid var(--line);
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
 }
 
 .prose :where(thead) {
-  background: var(--surface-2);
+  background: var(--surface);
 }
 
 .prose :where(td, th) {

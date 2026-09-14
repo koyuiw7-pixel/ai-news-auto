@@ -20,13 +20,10 @@ export default function Footer() {
       <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <div className="flex items-baseline gap-2.5">
-              <span className="block h-4 w-1 bg-accent" aria-hidden />
-              <p className="font-serif text-xl font-bold text-ink">
-                {siteConfig.name}
-              </p>
-            </div>
-            <p className="mt-1 pl-3.5 text-[13px] font-semibold text-accent">
+            <p className="font-display text-2xl leading-none text-ink">
+              {siteConfig.name}
+            </p>
+            <p className="mt-2 text-[13px] font-bold text-muted">
               {siteConfig.tagline}
             </p>
             <p className="mt-4 max-w-md text-[13px] leading-[1.9] text-muted">

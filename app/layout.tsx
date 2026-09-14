@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { siteConfig } from "@/site.config";
+import { dela, martian, zen } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -63,7 +64,11 @@ export default function RootLayout({
   const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
 
   return (
-    <html lang={siteConfig.lang} suppressHydrationWarning>
+    <html
+      lang={siteConfig.lang}
+      className={`${zen.variable} ${dela.variable} ${martian.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* AdSense のサイト所有権確認用（ads.txt と併用が推奨） */}
         {adsenseClient && (

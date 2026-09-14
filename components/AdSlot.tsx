@@ -55,7 +55,7 @@ export default function AdSlot({ position, className }: Props) {
           />
         </>
       ) : (
-        <div style={{ background: "#eee", padding: "20px", textAlign: "center" }}>
+        <div className="rounded-2xl border border-dashed border-line-strong bg-surface px-5 py-5 text-center text-xs text-muted">
           AdSense Dummy
         </div>
       )}

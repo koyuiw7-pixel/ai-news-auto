@@ -101,7 +101,7 @@ function InlineCta({
         {cta.isAffiliate && (
           <p className="text-[10px] font-bold tracking-widest text-muted">PR</p>
         )}
-        <p className="mt-1 font-serif text-[15px] font-bold leading-[1.6] text-ink">
+        <p className="mt-1 text-[15px] font-bold leading-[1.6] text-ink">
           {cta.title}
         </p>
         {cta.note && (

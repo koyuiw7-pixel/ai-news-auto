@@ -1,40 +1,42 @@
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
-import { getAllGenres } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
 
-export default function Header() {
-  const genres = getAllGenres();
+const NAV = [
+  { href: "/genres/ai", label: "AIニュース" },
+  { href: "/#roundups", label: "まとめ" },
+  { href: "/articles", label: "記事一覧" },
+];
 
+export default function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-xl">
+    <header className="site-header sticky top-0 z-50 border-b border-line">
       <div className="mx-auto flex h-16 max-w-[1240px] items-center gap-6 px-5 sm:px-8">
-        <Link href="/" className="group flex shrink-0 items-baseline gap-2.5">
-          <span className="block h-4 w-1 bg-accent" aria-hidden />
-          <span className="font-serif text-[1.15rem] font-bold tracking-tight text-ink">
+        <Link href="/" className="flex shrink-0 items-baseline gap-3">
+          <span className="font-display text-[1.4rem] leading-none text-ink">
             {siteConfig.shortName}
+          </span>
+          <span className="hidden text-[11.5px] font-bold text-muted sm:inline">
+            {siteConfig.tagline}
           </span>
         </Link>
 
-        <nav className="hidden min-w-0 flex-1 items-center gap-6 md:flex">
-          {genres.map((genre) => (
+        <nav
+          aria-label="メインメニュー"
+          className="ml-auto hidden items-center gap-6 md:flex"
+        >
+          {NAV.map((item) => (
             <Link
-              key={genre.slug}
-              href={`/genres/${genre.slug}`}
-              className="shrink-0 border-b-2 border-transparent pb-0.5 text-sm font-semibold text-muted transition-colors hover:border-accent hover:text-ink"
+              key={item.href}
+              href={item.href}
+              className="text-sm font-bold text-ink-soft transition-colors hover:text-accent"
             >
-              {genre.label}
+              {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="ml-auto flex shrink-0 items-center gap-2.5">
-          <Link
-            href="/articles"
-            className="hidden text-sm font-semibold text-muted transition-colors hover:text-ink sm:block"
-          >
-            記事一覧
-          </Link>
+        <div className="ml-auto flex shrink-0 items-center md:ml-0">
           <ThemeToggle />
         </div>
       </div>
