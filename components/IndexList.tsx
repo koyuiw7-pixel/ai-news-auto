@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Thumb from "@/components/Thumb";
 import Link from "next/link";
 import { formatDate, type Article } from "@/lib/articles";
 import { Highlight } from "@/lib/highlight";
@@ -40,7 +40,7 @@ export default function IndexList({
             </div>
 
             <div className="relative hidden aspect-video w-32 shrink-0 overflow-hidden rounded-xl bg-surface-2 sm:block">
-              <Image
+              <Thumb
                 src={article.thumbnail}
                 alt=""
                 fill

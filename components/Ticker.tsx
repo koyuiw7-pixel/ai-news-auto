@@ -7,12 +7,29 @@ const shortDate = new Intl.DateTimeFormat("ja-JP", {
   timeZone: "Asia/Tokyo",
 });
 
+const dateTime = new Intl.DateTimeFormat("ja-JP", {
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: "Asia/Tokyo",
+});
+
+type Props = {
+  items: Article[];
+  /** 最後に記事を生成した日時（ISO） */
+  updatedAt?: string;
+  /** 直近24時間に追加した本数 */
+  recentCount?: number;
+};
+
 /**
- * 速報ティッカー。点の色で情報の種類を示す（琥珀＝公式発表、シアン＝まとめ記事）。
- * 途切れず流すため同じ列を2回並べ、2回目は読み上げ・フォーカスの対象から外す。
+ * 速報ティッカー。
+ * 左に「最終更新」を固定表示し、いま動いているサイトだと一目で分かるようにする。
+ * 点の色は情報の種類（琥珀＝公式発表、シアン＝まとめ記事）。
  * マウスを乗せる／フォーカスすると止まり、動きを減らす設定では流れない。
  */
-export default function Ticker({ items }: { items: Article[] }) {
+export default function Ticker({ items, updatedAt, recentCount = 0 }: Props) {
   if (items.length === 0) return null;
 
   const row = (duplicate: boolean) =>
@@ -39,10 +56,26 @@ export default function Ticker({ items }: { items: Article[] }) {
     ));
 
   return (
-    <div className="ticker" aria-label="最新の見出し">
-      <div className="ticker-track">
-        {row(false)}
-        {row(true)}
+    <div className="ticker">
+      {updatedAt && (
+        <p className="ticker-label">
+          <span className="relative flex size-2" aria-hidden>
+            <span className="absolute inline-flex size-full animate-ping rounded-full bg-official opacity-60 motion-reduce:animate-none" />
+            <span className="relative inline-flex size-2 rounded-full bg-official" />
+          </span>
+          <span>
+            最終更新 <time dateTime={updatedAt} className="index-num">{dateTime.format(new Date(updatedAt))}</time>
+          </span>
+          {recentCount > 0 && (
+            <span className="hidden font-medium text-muted sm:inline">・24時間で{recentCount}本</span>
+          )}
+        </p>
+      )}
+      <div className="ticker-viewport" aria-label="最新の見出し">
+        <div className="ticker-track">
+          {row(false)}
+          {row(true)}
+        </div>
       </div>
     </div>
   );

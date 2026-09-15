@@ -1,6 +1,7 @@
 import Link from "next/link";
+import ArticleCard from "@/components/ArticleCard";
 import CtaBanner from "@/components/CtaBanner";
-import HomeBento from "@/components/HomeBento";
+import HomeHero from "@/components/HomeHero";
 import IndexList from "@/components/IndexList";
 import RoundupShelf from "@/components/RoundupShelf";
 import Ticker from "@/components/Ticker";
@@ -8,6 +9,8 @@ import { getAllArticles, getAllGenres, tagSlug } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
 
 export const revalidate = false;
+
+const DAY_MS = 24 * 60 * 60 * 1000;
 
 export default function HomePage() {
   // AI・テクノロジーに一点集中しているので、トップはAIジャンルだけで組む
@@ -20,9 +23,20 @@ export default function HomePage() {
   const lead = roundups[0] ?? official[0];
   const rest = official.filter((a) => a.slug !== lead.slug);
 
-  const bentoLatest = rest.slice(0, 4);
-  const bentoCards = rest.slice(4, 7);
-  const listed = rest.slice(7, 15);
+  // 最初の画面で同格に並べるのは3本まで（選択肢が多いほど迷うため）
+  const cards = rest.slice(0, 3);
+  const listed = rest.slice(3, 11);
+
+  // 新しさの手がかり。ビルド時点の実データだけを出す
+  const buildTime = Date.now();
+  const updatedAt = ai
+    .map((a) => a.generatedAt)
+    .filter(Boolean)
+    .sort()
+    .at(-1);
+  const recentCount = ai.filter(
+    (a) => a.generatedAt && buildTime - Date.parse(a.generatedAt) < DAY_MS,
+  ).length;
 
   // トピックはAI記事に付いているタグだけから集計する
   const tagCounts = new Map<string, { label: string; count: number }>();
@@ -42,16 +56,27 @@ export default function HomePage() {
 
   return (
     <>
-      <Ticker items={ai.slice(0, 10)} />
+      <Ticker items={ai.slice(0, 10)} updatedAt={updatedAt} recentCount={recentCount} />
 
-      <div className="mx-auto grid max-w-[1240px] gap-16 px-5 py-8 sm:px-8 sm:py-10">
-        <HomeBento lead={lead} latest={bentoLatest} cards={bentoCards} />
+      <div className="mx-auto grid max-w-[1180px] gap-20 px-5 pb-8 pt-10 sm:px-8 sm:pt-14">
+        <HomeHero lead={lead} />
+
+        {cards.length > 0 && (
+          <section>
+            <SectionHead eyebrow="LATEST" title="最新ニュース" href="/articles" />
+            <div className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+              {cards.map((article, index) => (
+                <ArticleCard key={article.slug} article={article} priority={index === 0} morph />
+              ))}
+            </div>
+          </section>
+        )}
 
         <RoundupShelf roundups={roundups.filter((r) => r.slug !== lead.slug).slice(0, 6)} />
 
         {listed.length > 0 && (
           <section>
-            <SectionHead eyebrow="LATEST" title="新着記事" href="/articles" />
+            <SectionHead eyebrow="MORE" title="さらに読む" href="/articles" />
             <IndexList articles={listed} />
           </section>
         )}
@@ -66,7 +91,7 @@ export default function HomePage() {
                 <Link
                   key={slug}
                   href={`/tags/${encodeURIComponent(slug)}`}
-                  className="rounded-full bg-surface px-3.5 py-1.5 text-[13px] font-medium text-ink-soft transition-colors hover:bg-surface-2 hover:text-accent"
+                  className="rounded-full border border-line px-3.5 py-1.5 text-[13.5px] font-medium text-ink-soft transition-colors hover:border-ink hover:text-ink"
                 >
                   {tag.label}
                   <span className="index-num ml-2 text-[11px] text-muted">{tag.count}</span>
@@ -77,7 +102,7 @@ export default function HomePage() {
         )}
 
         <footer className="grid gap-3 border-t border-line pt-8">
-          <p className="max-w-[70ch] text-[13px] leading-relaxed text-muted">
+          <p className="max-w-[70ch] text-[13.5px] leading-relaxed text-ink-soft">
             {siteConfig.description}
           </p>
           {otherGenres.length > 0 && (
@@ -86,7 +111,7 @@ export default function HomePage() {
               {otherGenres.map((genre, index) => (
                 <span key={genre.slug}>
                   {index > 0 && "、"}
-                  <Link href={`/genres/${genre.slug}`} className="underline underline-offset-4 hover:text-accent">
+                  <Link href={`/genres/${genre.slug}`} className="underline underline-offset-4 hover:text-ink">
                     {genre.label}
                   </Link>
                 </span>
@@ -109,7 +134,7 @@ function SectionHead({
   href?: string;
 }) {
   return (
-    <div className="mb-6 flex items-end justify-between gap-4 border-b border-line-strong pb-3">
+    <div className="mb-7 flex items-end justify-between gap-4 border-b border-line-strong pb-3">
       <div>
         <p className="eyebrow">{eyebrow}</p>
         <h2 className="display mt-1 text-2xl sm:text-[1.75rem]">{title}</h2>
@@ -117,7 +142,7 @@ function SectionHead({
       {href && (
         <Link
           href={href}
-          className="shrink-0 pb-1 text-[13px] font-bold text-muted transition-colors hover:text-accent"
+          className="shrink-0 pb-1 text-[13px] font-bold text-muted transition-colors hover:text-ink"
         >
           すべて見る →
         </Link>

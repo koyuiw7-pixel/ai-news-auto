@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Thumb from "@/components/Thumb";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
@@ -55,13 +55,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: article.publishedAt,
       modifiedTime: article.generatedAt,
       tags: article.tags,
-      images: [{ url: article.thumbnail, width: 1280, height: 720 }],
+      images: article.thumbnail
+        ? [{ url: article.thumbnail, width: 1280, height: 720 }]
+        : undefined,
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
       description: article.description,
-      images: [article.thumbnail],
+      images: article.thumbnail ? [article.thumbnail] : undefined,
     },
   };
 }
@@ -89,7 +91,7 @@ export default async function ArticlePage({ params }: Props) {
       "@type": "NewsArticle",
       headline: article.title,
       description: article.description,
-      image: [article.thumbnail],
+      ...(article.thumbnail ? { image: [article.thumbnail] } : {}),
       datePublished: article.publishedAt,
       dateModified: article.generatedAt,
       inLanguage: "ja",
@@ -103,7 +105,7 @@ export default async function ArticlePage({ params }: Props) {
       "@type": "VideoObject",
       name: article.videoTitle,
       description: article.description,
-      thumbnailUrl: [article.thumbnail],
+      ...(article.thumbnail ? { thumbnailUrl: [article.thumbnail] } : {}),
       uploadDate: article.publishedAt,
       contentUrl: article.videoUrl,
       embedUrl: `https://www.youtube.com/embed/${article.videoId}`,
@@ -224,7 +226,7 @@ export default async function ArticlePage({ params }: Props) {
                   className="group relative block aspect-video"
                   aria-label={`元動画「${article.videoTitle}」をYouTubeで見る`}
                 >
-                  <Image
+                  <Thumb
                     src={article.thumbnail}
                     alt=""
                     fill
