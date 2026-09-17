@@ -1,0 +1,81 @@
+{
+  "slug": "chatgpt-for-microsoft-word-available",
+  "title": "OpenAI、Word内で直接使える「ChatGPT for Word」を提供開始　変更履歴やコメントと連動",
+  "lede": "OpenAIは2026年9月17日、Microsoft Wordなどのオフィスアプリケーション内でChatGPTを直接利用できるアドイン機能「ChatGPT for Word」の提供を開始しました。本機能は無料プランを含むすべてのユーザーに開放され、文書のフォーマット修正や契約書の自動改訂、変更履歴やコメント機能との直接連携が可能です。ビジネス向けには最新の推論モデルの先行プレビューも提供されます。",
+  "description": "OpenAIが「ChatGPT for Word」の提供を開始。無料プランを含む全ユーザーが対象で、Word内で直接フォーマット修正や契約書の改訂、コメント挿入が可能です。変更履歴ともネイティブ連動します。",
+  "keywords": [
+    "ChatGPT",
+    "Microsoft Word",
+    "OpenAI",
+    "Word アドイン",
+    "契約書レビュー",
+    "変更履歴",
+    "GPT-6 Astra",
+    "GPT-5.6 Sol",
+    "Office 統合",
+    "使い方"
+  ],
+  "tags": [
+    "OpenAI",
+    "ChatGPT",
+    "生成AI",
+    "LLM",
+    "Microsoft 365"
+  ],
+  "highlights": [
+    "WordなどのOfficeアプリ内で、ChatGPTによる文書生成やフォーマット修正が直接実行可能に",
+    "Wordの「変更履歴の記録」や「コメント」機能とネイティブに連動し、AIの修正箇所を可視化",
+    "無料プランを含む全ユーザーに提供され、上位プラン向けには最新の推論モデルのプレビューも用意"
+  ],
+  "timetable": [
+    {
+      "time": "0:00",
+      "label": "ChatGPT for Microsoft Word の提供開始を発表"
+    },
+    {
+      "time": "0:02",
+      "label": "Wordの右側に統合されたChatGPTサイドバーUIの紹介"
+    },
+    {
+      "time": "0:04",
+      "label": "参照テンプレートを添付した自動フォーマット修正のデモ"
+    },
+    {
+      "time": "0:14",
+      "label": "交渉メモに基づき、変更履歴を記録しながら契約書を自動改訂するデモ"
+    },
+    {
+      "time": "0:23",
+      "label": "「Skill Creator」および「Contract Review」スキルの選択"
+    },
+    {
+      "time": "0:25",
+      "label": "契約書レビューを実行し、未解決リスクをコメントとして自動挿入するデモ"
+    },
+    {
+      "time": "0:35",
+      "label": "Word、Excel、PowerPointでの多様なユースケースの提示"
+    },
+    {
+      "time": "0:38",
+      "label": "無料プランを含む提供プランの案内とOpenAIロゴの表示"
+    }
+  ],
+  "body": "## 何が発表されたのか\n\nOpenAIは2026年9月17日、Microsoft Wordなどのオフィスアプリケーション内でChatGPTを直接利用できる「ChatGPT for Word」の提供を開始したと発表しました。これにより、ユーザーはWebブラウザでChatGPTの画面を開くことなく、Wordの作業領域内で直接、AIによる文書生成、フォーマット修正、校正、編集提案などの機能を利用できるようになります。\n\n本機能は、新規のスタンドアロン製品ではなく、既存のChatGPTサービスをMicrosoft 365エコシステムへと直接統合する強力なアップデートです。無料プランを含むすべてのChatGPTユーザー向けに一般提供（GA）が開始されており、ビジネスおよびエンタープライズプラン向けには、最新の推論モデルである「GPT-5.6 Sol」の先行プレビューも提供されます。\n\n---\n\n## 発表された機能・アップデートの全容\n\n公開されたデモ映像から確認できる具体的な機能と、それぞれの動作プロセスについて詳細に解説します。\n\n### 1. テンプレートに合わせた自動フォーマット修正機能\nデモ映像の冒頭では、Word文書の右側に統合されたChatGPTのサイドバーUIが確認できます。ユーザーは、元の契約書ドキュメント（Client Services Agreement）を開いた状態で、サイドバーの下部にあるチャット入力欄から指示を与えています。\n\nこのデモでは、まず参照元となるテンプレートファイル（Template_Agreement.docxとみられるファイル）をチャット欄に添付し、以下のプロンプトを入力しています。\n「Format this agreement to match the attached template. Keep the wording unchanged.」（この合意書を、添付されたテンプレートに一致するようにフォーマットしてください。文言は変更しないでください。）\n\n指示を送信すると、サイドバー内のモデル（デモ画面では「GPT-6 Astra」と表示されています）が処理を開始します。Word文書の左側にある本文領域がリアルタイムで更新され、フォント、見出しのスタイル、段落のインデント、箇条書きのレイアウトなどが、添付されたテンプレートと完全に一致するように自動的に再構成されます。手動でスタイルを適用する手間を省き、文書全体の視覚的一貫性を一瞬で確保できる点が特徴です。\n\n### 2. 交渉メモに基づく契約書の自動改訂と変更履歴の記録\n次に実演されたのは、外部の交渉メモを基に、契約書の特定の条項を自動的に改訂する機能です。\n\nユーザーは、交渉の記録がまとめられたファイル（Payment_negotiation_notes.pdfとみられるファイル）をサイドバーにアップロードし、以下のプロンプトを入力します。\n「Revise the payment terms to match the attached negotiation notes. Show tracked changes.」（添付された交渉メモに合わせて支払い条件を改訂してください。変更履歴を表示してください。）\n\nこの指示を実行すると、ChatGPTは契約書の「Section 3 Fees and payment（料金および支払い）」の部分を自動的に検出し、交渉メモに記載された新しい合意内容に基づいて文章を書き換えます。\n\nこのプロセスの特筆すべき点は、Wordのネイティブ機能である「変更履歴の記録（Tracked Changes）」とAIが直接連動していることです。削除された古い条件には赤色の取り消し線が引かれ、新しく追加された条件が赤色のアドインテキストとして挿入されます。ユーザーは、AIがどの箇所をどのように書き換えたのかをWord標準の機能で視覚的に確認し、個別に承認または却下することができます。\n\nサイドバーには、以下のように更新内容の要約が表示されます。\n「Updated Section 3 with tracked changes to reflect:\n- $24,000 invoiced on signing and $24,000 on final report delivery.\n- Payment within 30 calendar days.\n- No acceptance or presentation-attendance condition for the second invoice.」\n\n### 3. 「Skill（スキル）」機能による高度な契約書レビューと自動コメント挿入\nデモでは、チャット入力欄の「＋」ボタンをクリックすることで表示されるメニューから、特定の業務に特化した「Skill（スキル）」を呼び出す様子が描かれています。\n\nメニューには「Upload files」「Skills」「Apps」「Custom instructions」などの項目が並んでおり、その中から「Contract Review（契約書レビュー）」というスキルが選択されます。また、繰り返し行うタスクやワークフロー、出力基準を定義して独自のスキルを作成できる「Skill Creator」という機能の存在も画面から確認できます。\n\nユーザーは「Contract Review」スキルを選択した上で、以下の指示を入力します。\n「Use the Contract Review Skill to flag unresolved risks and decisions before I share this.」（この文書を共有する前に、未解決のリスクや決定事項を指摘するために契約書レビューのスキルを使用してください。）\n\n指示を送信すると、サイドバーには「1/3 tasks completed」という進捗状況が表示され、ChatGPTが裏側で実行しているタスクのステップが可視化されます。\n1. Inspect current clauses, saved comments, and existing payment revisions (現在の条項、保存されたコメント、および既存の支払い改訂を検査する - 完了)\n2. Add anchored review comments and narrowly scoped tracked proposals (アンカー付きのレビューコメントと、範囲を絞った変更提案を追加する - 進行中)\n3. Verify comment anchors, new proposals, and preserved payment revisions (コメントのアンカー、新しい提案、および保存された支払い改訂を検証する)\n\n処理が完了すると、Word文書内の該当する箇所（例えば「7 Publicity（広報）」や「8 Tax provisions（税務規定）」などの条項）に、ChatGPTによって自動的にレビューコメントが挿入されます。コメントには「Jane Smith」などのユーザー名や、AIによる「Revised proposal for this section...（このセクションに対する改訂提案）」といった具体的な指摘内容が含まれており、共同編集者が残したコメントと全く同じ形式でWord文書内に保持されます。\n\n### 4. ExcelやPowerPointを含むMicrosoft 365アプリへの統合\n動画の終盤（0:35以降）では、ChatGPTの用途として「Drafting（下書き）」「Formatting（フォーマット修正）」「Planning（計画）」「Summarizing（要約）」「Editing（編集）」「Charting（グラフ作成）」「Redlining（校正・変更履歴の記録）」といった多様な作業が提示されます。\n\nそして、Wordのアイコンに加えて、ExcelとPowerPointのアイコンが並んで表示されます。これは、今回のアドイン提供がWordだけに留まらず、スプレッドシートのデータ分析やグラフ作成を行うExcel、プレゼンテーションスライドの作成や構成案の設計を行うPowerPointなど、Microsoft 365の主要アプリケーション全体にChatGPTが統合されていることを示しています。ユーザーは、オフィスワークの大部分をChatGPTの強力な支援を受けながら、同一のインターフェースでシームレスに遂行できるようになります。\n\n---\n\n## 性能・ベンチマーク\n\n動画内において、具体的なベンチマークスコアや、処理速度・正確性に関する定量的な数値の提示はありませんでした。\n\nただし、デモ画面のサイドバー上部には、使用されているモデルとして「GPT-6 Astra」という名称が表示されています。また、概要欄の記述によると、BusinessおよびEnterpriseプラン向けに、最新の高性能推論モデルである「GPT-5.6 Sol」の2週間限定無料プレビューが提供されると言及されています。これらの次世代モデルがバックエンドで動作することにより、複雑な契約書の文脈理解や、複数ファイルにまたがるフォーマットの整合性チェック、高度な論理的推論を必要とするリスクレビューが、極めて高い精度で実行可能になっていることが示唆されます。\n\n| 評価項目 | 提示された数値・仕様 | 出典（動画内 or 編集部注） |\n| :--- | :--- | :--- |\n| 使用モデル（デモ画面） | GPT-6 Astra | 動画内デモ画面（0:04） |\n| プレビュー提供モデル | GPT-5.6 Sol | 動画概要欄 |\n| プレビュー期間 | 2026年9月17日〜30日（2週間） | 動画概要欄 |\n| 対象オフィスアプリ | Word, Excel, PowerPoint | 動画内（0:39） |\n\n---\n\n## 競合サービスとの比較\n\nMicrosoft WordなどのオフィスアプリにおけるAI統合といえば、Microsoftが提供する「Microsoft Copilot for Microsoft 365」が最大の競合となります。今回の「ChatGPT for Word」とCopilot、およびその他の競合サービス（Google WorkspaceにおけるGeminiなど）との比較を以下の表にまとめます。\n\n| 比較項目 | ChatGPT for Word（OpenAI） | Microsoft Copilot for M365 | Gemini for Workspace（Google） |\n| :--- | :--- | :--- | :--- |\n| **主な統合先** | Word, Excel, PowerPoint | Windows, Word, Excel, PowerPoint, Teams | Googleドキュメント, スプレッドシート, スライド |\n| **利用モデル** | GPT-6 Astra, GPT-5.6 Sol など最新モデル | GPT-4o, Microsoft独自チューニングモデル | Gemini 1.5 Pro, Gemini 1.5 Flash |\n| **最大の特徴** | 「Skill」による高度なカスタムワークフロー、変更履歴やコメントとの直接連動 | Microsoft Graphを通じた組織内データ（メール、チャット、会議）との密接な連携 | Googleクラウド環境との親和性、リアルタイム共同編集との親和性 |\n| **ライセンス要件** | ChatGPTの既存プラン（Free含む）で利用可能（制限あり） | Microsoft 365の有償ライセンス＋Copilot専用アドオン契約が必要 | Google Workspaceの有償ライセンス＋Geminiアドオンが必要 |\n| **カスタマイズ性** | 「Skill Creator」による直感的なタスク自動化 | Copilot Studioによるローコード開発 | AppSheetやApps Scriptによる開発 |\n\n*取材班の見立てでは、Microsoft Copilotは、組織内のSharePointやTeamsの会話履歴など、Microsoft Graphが保持する「社内データ全体」を横断して検索・参照できる点に強みがあります。一方で、今回発表されたChatGPT for Wordは、OpenAIの最新かつ最先端のLLM（GPT-6 AstraやGPT-5.6 Solなど）の推論能力を直接Word内で利用できる点、および「Skill Creator」によってユーザーが特定の文書処理タスクを簡単に自動化できる点において、個人の生産性向上や高度な専門文書の編集において優位性を持つと考えられます。*\n\n---\n\n## 料金・提供プラン\n\nChatGPT for Word（およびPowerPoint、Excel）は、以下のプラン設計で提供されます。\n\n- **提供開始時期**: 2026年9月17日より提供開始（一般提供：GA）\n- **対象プラン**: Free（無料プラン）、Plus、Pro、Team、Enterpriseを含む、すべてのChatGPTプラン。\n- **無料枠での制限**: 無料プランのユーザーも追加料金なしで利用可能ですが、利用回数制限（Usage Limits）が適用されます。制限に達した後は、標準的な利用制限リセットまで待機するか、上位プランへの移行が必要となります。\n- **ビジネス向け特典**: BusinessおよびEnterpriseプランの契約者向けには、日本時間2026年9月17日から9月30日までの2週間、最新の推論モデル「GPT-5.6 Sol」をWord内で試用できる無料プレビューが提供されます。このプレビュー期間中の「GPT-5.6 Sol」の利用は、通常のプランの利用制限枠（Usage Limits）を消費しません。\n\n---\n\n## 日本から使う方法\n\n日本のユーザーが本機能を利用するための具体的な手順と注意点は以下の通りです。\n\n* **アクセスとインストール**:\n  * Webブラウザで [https://chatgpt.com/apps/word/](https://chatgpt.com/apps/word/) にアクセスします。\n  * または、Microsoft Wordのメニューから「挿入」＞「アドインを入手」を選択し、Officeストアから「ChatGPT」を検索してインストールします。\n* **アカウントの連携**:\n  * インストール後、Wordの右側に表示されるChatGPTサイドバーで、自身のOpenAIアカウント（無料アカウントまたはPlus/Team/Enterpriseアカウント）でログインします。\n* **日本語への対応**:\n  * デモ映像は英語で表示されていますが、ChatGPTの多言語対応能力に基づき、日本語の文書に対しても同様にフォーマット修正、翻訳、校正、コメントの挿入が可能です。\n* **注意点**:\n  * 組織のMicrosoft 365管理者がアドインのインストールを制限している場合、会社のPCなどではシステム管理者の許可が必要になる場合があります。\n  * 契約書などの機密性の高い文書をアップロードする場合、Enterpriseプラン以外の無料プランやPlusプランでは、データがモデルの学習に利用される可能性があるため、設定から「データコントロール（Chat History & Training）」をオフにするか、Enterpriseプランを利用することを推奨します。（編集部注：組織のセキュリティポリシーに従って適切に運用してください。）\n\n---\n\n## 誰にどう効くのか\n\n本機能がもたらす実務へのインパクトを、3つの職種・立場別に解説します。\n\n### エンジニア・開発者へのインパクト\n仕様書、設計書、APIドキュメントなどの技術文書は、記述ルールやフォーマットの統一が極めて重要です。エンジニアは、マークダウンで書かれた粗いメモをWordに貼り付け、ChatGPTに「このプロジェクトの標準設計書テンプレートに合わせてフォーマットを整え、未定義のパラメータを指摘してほしい」と指示するだけで、標準化されたドキュメントを即座に作成できます。これにより、ドキュメント作成に割かれる時間を削減し、本来の開発業務に集中できます。\n\n### 企画・マーケティング担当者へのインパクト\n企画書やプレスリリース、マーケティングレポートの作成において、構成案の作成から下書き、校正までのプロセスがWord内で完結します。ブラウザとWordの間でテキストをコピー＆ペーストする往復作業が完全に不要になります。また、競合のプレスリリースや自社の過去のヒット企画書を「Template」として読み込ませることで、売れる文章のトーン＆マナー（表記揺れの防止、訴求ポイントの整理）を忠実に再現した下書きを、数分で出力させることが可能になります。\n\n### 経営層・法務担当者へのインパクト\n契約書のレビューや、提携交渉メモに基づく最終合意書の作成において、劇的な効率化が期待できます。特に「Contract Review」スキルを使用することで、外部から送られてきた契約書に潜む不利な条項や、自社の標準ガイドラインから逸脱している箇所を、Wordのコメント機能として自動で洗い出すことができます。変更履歴機能と連動して「どこがどう書き換えられたか」を視覚的にトラッキングできるため、法務チェックのファーストパス（一次審査）をAIに任せ、人間は最終的な意思決定とリスク判断に集中するという、高度な分業体制が確立できます。\n\n---\n\n## まとめ\n\nOpenAIによる「ChatGPT for Word」の提供開始は、AIを単なる「ブラウザ上のチャットボット」から「日常業務のOS（オペレーティングシステム）」へと昇華させる重要な一歩です。ユーザーは、使い慣れたWordのインターフェースと、変更履歴やコメントといった標準機能をそのまま活かしながら、世界最高峰の推論モデルの恩恵を享受できます。まずは無料プランからでも試すことができるため、Officeストアからアドインを導入し、手元の文書でその実用性を検証することをお勧めします。",
+  "channel": "OpenAI",
+  "channelId": "UCXZCJLdBC09xxGZ6gcdrc6A",
+  "channelSlug": "openai",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "lxVMdEpe0RQ",
+  "videoUrl": "https://www.youtube.com/watch?v=lxVMdEpe0RQ",
+  "videoTitle": "ChatGPT for Word is now available",
+  "publishedAt": "2026-09-17T19:12:10+00:00",
+  "generatedAt": "2026-09-17T20:40:52.388201+00:00",
+  "thumbnail": "https://i.ytimg.com/vi/lxVMdEpe0RQ/maxresdefault.jpg",
+  "model": "gemini-3.5-flash",
+  "affiliates": [],
+  "roundupSlug": "openai-gpt-6-astra-comprehensive-guide-matome",
+  "roundupTitle": "GPT-6 Astraで発表された全機能まとめ、44本の公式動画から分かったこと"
+}
