@@ -1,0 +1,126 @@
+{
+  "slug": "microsoft-copilot-work-iq-dev-tools",
+  "title": "Microsoft、Copilot拡張用開発ツールWork IQ Dev Toolsを解説",
+  "lede": "Microsoftは、Microsoft 365 Copilotの機能を拡張するための統合開発環境「Work IQ Developer Tools（WIQD）」を用いたエージェント開発手法を公開しました。GitHub Copilot CLIやModel Context Protocol（MCP）と連携し、要件定義からプラグイン生成、自動評価、テナントカタログへの公開までをエージェント主導で完結させるエンドツーエンドの開発ライフサイクルを提示しています。",
+  "description": "Microsoft 365 Copilotを拡張するWork IQ Developer Tools（WIQD）の技術解説。MCP連携やGitHub Copilot CLIを活用したプラグイン構築から、LLM Judgeによる自動評価、テナント公開までの一連の流れを記者が解説します。",
+  "keywords": [
+    "Microsoft 365 Copilot",
+    "Work IQ Dev Tools",
+    "WIQD",
+    "GitHub Copilot CLI",
+    "Model Context Protocol",
+    "MCP",
+    "宣言型エージェント",
+    "LLM Judge",
+    "Copilot Plugin",
+    "AIエージェント開発"
+  ],
+  "tags": [
+    "Microsoft",
+    "Copilot",
+    "生成AI",
+    "開発ツール"
+  ],
+  "highlights": [
+    "Work IQ Dev Tools（WIQD）によりCopilot拡張機能をターミナルから対話形式で一括生成できます",
+    "Model Context Protocol（MCP）とWebSearchを統合した宣言型エージェントの構築手順をデモで提示しました",
+    "GitHub Copilot LLM Judgeを用いた15シナリオの自動評価で応答精度を連続改善する手法を実証しました"
+  ],
+  "timetable": [
+    {
+      "time": "0:00",
+      "label": "セッション「Expanding Your Airspace」の開始と登壇者紹介"
+    },
+    {
+      "time": "0:21",
+      "label": "アジェンダ解説（ビルド、検証、改善、公開のライフサイクル）"
+    },
+    {
+      "time": "0:56",
+      "label": "Work IQの概念整理（文脈エンジンの役割とCopilot CLI連携）"
+    },
+    {
+      "time": "1:39",
+      "label": "Work IQ Developer Tools（WIQD）開発ライフサイクルの4ステップ定義"
+    },
+    {
+      "time": "2:51",
+      "label": "架空の保険会社「Zava」を舞台にしたデモンストレーションの開始"
+    },
+    {
+      "time": "3:18",
+      "label": "CEOからのAI活用要求メールを起点としたプロンプト入力"
+    },
+    {
+      "time": "3:51",
+      "label": "WIQD CLI環境での音声プロンプト入力と要件定義の実行"
+    },
+    {
+      "time": "5:50",
+      "label": "MCPサーバー接続と社内データ検索に基づくビルド処理のログ解説"
+    },
+    {
+      "time": "6:33",
+      "label": "生成された2つの成果物（Zava for Execs / Zava Claims Manager）の説明"
+    },
+    {
+      "time": "7:12",
+      "label": "M365開発環境へのプロビジョニングとメンバー共有の実行"
+    },
+    {
+      "time": "7:53",
+      "label": "Copilot Cowork画面でのZava for ExecsプラグインとExcel出力動作確認"
+    },
+    {
+      "time": "10:18",
+      "label": "VS Code上での生成ファイル構造（declarativeAgent.json、manifest.json等）解説"
+    },
+    {
+      "time": "11:06",
+      "label": "SKILL.mdファイルによるスキル定義とプロンプト手順のコード確認"
+    },
+    {
+      "time": "11:56",
+      "label": "Microsoft Teamsチャネルを介したチームメンバーからのフィードバック収集"
+    },
+    {
+      "time": "13:20",
+      "label": "WIQDによるTeamsログからのフィードバック自動抽出とエージェント再修正"
+    },
+    {
+      "time": "14:20",
+      "label": "Eval CLIとGitHub Copilot LLM Judgeを用いた15シナリオ評価の解説"
+    },
+    {
+      "time": "15:32",
+      "label": "初回テスト合格率6.7%から指示文調整を重ねて80%へ精度改善するプロセスの提示"
+    },
+    {
+      "time": "17:00",
+      "label": "生成されたprompts.jsonおよび期待される応答（expected_response）構造の説明"
+    },
+    {
+      "time": "17:45",
+      "label": "アイコン画像や利用規約URLの自動設定とパッケージの検証"
+    },
+    {
+      "time": "18:45",
+      "label": "Microsoft 365組織管理者カタログ（テナント）への一括パブリッシュ実行"
+    }
+  ],
+  "body": "## 何が発表されたのか\n\nMicrosoftのシニアプロダクトマネージャーであるRachit Malik氏は、開発者向けセッション「Expanding Your Airspace」において、Microsoft 365 Copilotの機能を柔軟に拡張するための統合CLIツールパッケージ「Work IQ Developer Tools（通称：WIQD）」の実演デモを披露しました。本発表は、単なる開発ライブラリの紹介にとどまらず、自然言語による指示からAIエージェントやプラグインを自動設計し、実環境へのプロビジョニング、テスト、チーム共有、LLMを用いた自動評価、組織カタログへのパブリッシュ、運用後の利用統計分析までを一貫して行う「エージェント駆動型開発（Agentic Development）」の標準ワークフローを提示するものです。既存のAgents SDKやEval CLI、Model Context Protocol（MCP）をWork IQのコンテキストエンジンで束ねることで、開発者の手作業を大幅に削減できる点が大きな特徴です。\n\n## 発表された機能・アップデートの全容\n\n### 自然言語プロンプトからの仕様策定とMCP連携\n\nWIQD（Work IQ Dev Tools）の最大の特徴は、GitHub Copilot CLI内で動作し、自然言語の指示から複雑なCopilot拡張機能の設計仕様を自動構築できる点にあります。デモでは、架空の保険会社「Zava」のCEOから届いた「AIを活用して保険金請求（Claims）業務を効率化したい」というメールテキストを起点に、開発者が音声で「CEOのメールを抽出し、CTOから共有されたMCPサーバーURLを組み込んで、役員向けプラグインと現場向けエージェントを作成してほしい」とターミナルに入力しました。WIQDはコンテキストエンジン「Work IQ」を介してメール内容を正確に解析し、指定された外部MCP（Model Context Protocol）サーバー（`https://zava-insurance-mcp.azurewebsites.net/mcp`）にアクティブ接続して利用可能な9つのMCPツール群（ダッシュボード表示、請求登録、検査一覧など）を自動検知しました。これにより、開発者が手動でAPI仕様書を読み込んで定義ファイルを手書きすることなく、必要な拡張機能の仕様骨子（SPEC.md）が一瞬で作成されました。\n\n### プラグインと宣言型エージェントの一括ビルド\n\n仕様定義を受け、WIQDは役割の異なる2つの成果物を自動的にスキャフォールディング（コード自動生成）しました。1つ目は、経営陣向けのレポート作成プラグイン「Zava for Execs」です。これには、MCP経由で最新の請求データを集計し、フォーマットされた多機能Excelレポート（`Leadership Claims Status Update.xlsx`）を出力するスキル（`SKILL.md`）が含まれています。2つ目は、現場の損害査定人（Claims Adjuster）向けに作られた宣言型エージェント「Zava Claims Manager」です。このエージェントは、MCPツールの呼び出し権限に加え、最新の保険規制や詐欺対策の標準ガイドラインを網羅するためにWebSearch（Bing検索機能）によるグランド（接地）機能を併せ持っています。VS Codeの画面上では、これらの成果物が `declarativeAgent.json` や `manifest.json`、`ai-plugin.json` といったM365 Copilot標準の構成ファイル群として正しく整形されて出力された様子が確認できました。\n\n### Microsoft 365 Copilot環境へのプロビジョニングとコワーク・Teams共有\n\nローカルで構築および静的検証（Static Validation）を通過した成果物は、ターミナルから `wiqd agent provision` や `wiqd plugin share` といったコマンドを実行するだけで、Microsoft 365のテスト開発環境へ即座にプロビジョニングされます。デモでは、Copilot CoworkおよびCopilot Chatのインターフェース上に「Zava for Execs」ウィジェットが即座に表示され、「未解決の請求情報を分析し、役員向けExcelを生成して」という指示に対して、MCPから抽出された25件の請求データ（総被害見積額69万2888ドル）を集計した美しくグラフ化されたExcelシートが数秒で生成されました。さらに、WIQDは開発者のテナント（組織）内から共有相手のメールアドレス（Rabia、Garry、Paolo各氏）を自動検索し、Teamsのチャネル上に直接アクセス用リンク付きのテストレビュー依頼メッセージを投稿するインタラクティブな連携も披露しました。\n\n### Eval CLIとLLM Judgeによる継続的評価ループ\n\n実務で使える品質を担保するため、WIQDには「Eval CLI」と「GitHub Copilot LLM Judge」を用いた自動評価フレームワークが組み込まれています。デモでは、エージェントの挙動を検証するために15パターンのシナリオからなる評価スイート（`prompts.json`）を生成しました。評価項目には、応答の関連性（Relevance）、一貫性（Coherence）、根拠性（Groundedness）、引用表記（Citations）が含まれます。初回実行時の合格率はわずか6.7%（15件中1件合格）という低いスコアでしたが、LLM Judgeがエラー原因（引用フォーマットの不整合や挨拶文の欠落など）を特定し、エージェントのシステム指示文（`instructions.txt`）を自動的に修正しながらイテレーション（反復実行）を繰り返しました。Iteration 2で53.3%、Iteration 4で73.3%、最終的にはターゲットである80%（12件合格）まで精度を自動で引き上げる「ヒルクライミング（山登り法）最適化」のプロセスが実証されました。\n\n### 運用後の利用統計分析とフィードバックの回収\n\n本ツールのライフサイクルの締めくくりとして、組織公開後のモニタリング機能が紹介されました。エージェントがMicrosoft 365の組織管理者カタログ（Tenant Catalog）に発行・承認された後、開発者はターミナル上で「Insights Agent V2 (MSIT)」を呼び出すことができます。WIQDはWork IQ経由で運用データを問い合せ、直近30日間のアクティブユーザー数（30-day active users: 10）、7日間のユーザー数、総クエリ数（Rolling 30-day queries: 9）などのメトリクスをターミナル内の表形式で即座に可視化します。定量的な利用データだけでなく、Teamsチャネルに寄せられたユーザーからの定性的なフィードバック（例：「画面表示が崩れる」「応答の冒頭に特定の挨拶を入れてほしい」等）をWIQDが自動検知してテキスト抽出し、再びビルドフェーズの指示文修正へとフィードバックする完全な「学習・改善ループ」が完成しています。\n\n## 性能・ベンチマーク\n\nデモ内で提示されたエージェント評価（LLM Judge）の精度改善イテレーション結果および運用メトリクスは以下の通りです。手動でのテストケース作成やコード修正を行わずに、プロンプトと評価エンジンの対話のみで段階的に合格率が向上していることが数値で証明されています。\n\n| 評価指標・イテレーション段階 / 項目 | 測定値・スコア / 内容 | 出典・測定条件 | \n| --- | --- | --- |\n| 初回評価（Iteration 1）合格率 | 6.7%（1 / 15 シナリオ） | 動画15:32（Eval CLI実行ログ） |\n| 改善2回目（Iteration 2）合格率 | 53.3%（8 / 15 シナリオ） | 動画15:54（WIQD自動改善ログ） |\n| 改善4回目（Iteration 4）合格率 | 73.3%（11 / 15 シナリオ） | 動画16:05（引用フォーマット修正後） |\n| 最終達成合格率（Final Score） | 80.0%（12 / 15 シナリオ） | 動画16:18（LLM Judge総合評価） |\n| 評価スイート対象シナリオ数 | 15シナリオ | 動画15:14（prompts.json） |\n| 運用開始後の30日間アクティブユーザー | 10名 | 動画19:43（Insights Agent V2） |\n| 運用開始後の30日間累計クエリ数 | 9件 | 動画19:43（Insights Agent V2） |\n\n## 競合サービスとの比較\n\nMicrosoft 365 Copilotの拡張基盤を、他社の主要なAIエージェント開発環境と比較整理します。（※他社情報は編集部注による背景知識に基づきます）\n\n| 比較項目 | Microsoft（Work IQ / WIQD） | OpenAI（Custom GPTs / Assistants API） | Anthropic（Claude Model Context Protocol） |\n| --- | --- | --- | --- |\n| **主力ターゲット** | エンタープライズビジネス（M365統合） | 汎用消費者・開発者・サードパーティ | システム統合・ツール連携開発者 |\n| **プロトコル標準** | MCP（Model Context Protocol）を全面採用 | 独自のActions（OpenAPI）規約 | MCPの提唱元・オープン標準規約 |\n| **評価・テスト機能** | GitHub Copilot LLM Judgeによる自動改善ループ | 手動テスト・Playgroundでの動作確認 | サードパーティ評価ツールとの連携依存 |\n| **公開・ガバナンス** | M365 Org Admin Tenant Catalogによる社内統制 | GPT Storeでの全体公開・リンク共有 | 独自アプリケーション組み込み依存 |\n| **開発インターフェース** | ターミナル（CLI）主導のエージェント対話型 | Web UI（GPT Builder）およびAPI | 自由度の高いコード記述およびCLI |\n\nWIQDの最大の強みは、OpenAIやAnthropicが提供する要素技術（MCPやLLM等）を取り入れつつ、エンタープライズのセキュリティ境界内（M365 Tenant）で「開発・評価・ガバナンス管理」を完結できる統合力にあります。\n\n## 料金・提供プラン\n\n動画内において、Work IQ Developer Tools（WIQD）自体の単体での有料販売価格やAPI従量課金体系に関する明度の高い言及はありませんでした。ただし、デモ画面およびスライドの記載から、以下の前提条件が読み取れます。\n\n* **利用前提環境**: Microsoft 365 Copilotの有効なライセンス、およびGitHub Copilotのライセンスを保有している開発者アカウントが必要です。\n* **提供ステータス**: WIQD CLI（バージョン `v0.15.0`）はプレビュー開発段階として提示されており、組織内テナント（Tenant Catalog）へのデプロイが可能です。サードパーティISV向けにAppSourceやPartner Centerへ一般パブリッシュする機能については「現在開発中（In Progress）」であると説明されています。\n\n## 日本から使う方法\n\n日本の開発者が本ツールを試すための基本的な手順は以下の通りです。\n\n1. **前提条件の準備**: Microsoft 365 Developerテナント（管理者権限付き）およびGitHub Copilotの契約を用意します。\n2. **GitHub Copilot CLIの導入**: ターミナル環境にGitHub Copilot CLIをインストールし、認証を完了させます。\n3. **WIQDパッケージのインストール**: Work IQ Developer Tools（`wiqd`）CLIツール（v0.15.0以降）をローカル環境にインストールします。\n4. **MCPサーバーの用意**: 自社データベースや外部Web APIに接続するMCPサーバーのURIを用意するか、テスト用Azure App Service等を用意します。\n5. **プロンプトによる作成指導**: ターミナル上で `wiqd` を起動し、「MCPサーバー [URL] を使って〇〇用プラグインを作成して」と英語または日本語で指示を入力します。\n6. **M365へのプロビジョニング**: 生成されたマニフェストを検証し、`wiqd agent provision` コマンドでM365開発テナントへ反映させます。\n\n※日本語プロンプトの入力自体は可能ですが、LLM Judgeによる自動評価プロンプト（`prompts.json`）の調整や生成ファイルのプロパティは英語で処理されるケースが多いため、動作確認時は英語指示と併用することを推奨します。\n\n## 誰にどう効くのか\n\n### エンジニア・開発者\n従来、M365 Copilotの拡張にはManifestファイルの書き換え、Teams Toolkitの設定、OAuth認証の構成など煩雑な手作業が必要でした。WIQDを使用することで、CLI上の自然言語指示だけでコード生成から自動評価まで完結するため、開発工数を従来の数分の一に短縮できます。\n\n### 企画・マーケティング担当者\n現場の業務課題（例：請求レポートの自動化、FAQ検索の統合）を思いついた際、エンジニアに詳細な仕様書を渡す前に、音声やメールの文面から即座にプロトタイプを作成してCopilot Cowork上で挙動を試すことが可能になります。\n\n### 経営層・IT管理者\n自社データを外部AIに漏洩させるリスクを回避しつつ、Model Context Protocol（MCP）を通じた安全なデータ連携が実現できます。また、テナントカタログを経由した管理者承認フローと、Insights Agentによる定量的な利用頻度モニタリングにより、ガバナンスとAIのROI（投資対効果）可視化を両立できます。\n\n## まとめ\n\nWork IQ Developer Tools（WIQD）は、Microsoft 365 Copilotの機能拡張をCLI上のAIエージェントとの対話のみで完結させる革新的な開発ツールです。要件生成からLLM Judgeによる精度改善、組織内公開までの一連の流れを強力に自動化します。開発者はまず、自身の開発テナントにWIQD CLIを導入し、既存のWeb APIやMCPサーバーを接続したプロトタイプ作成から着手することをお勧めします。",
+  "channel": "Microsoft Developer",
+  "channelId": "UCsMica-v34Irf9KVTh6xx-g",
+  "channelSlug": "microsoft-developer",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "okwrNSHnosk",
+  "videoUrl": "https://www.youtube.com/watch?v=okwrNSHnosk",
+  "videoTitle": "🌎 Expanding Your Airspace | Extend your Copilot with Plugins, Work IQ Dev Tools and more!",
+  "publishedAt": "2026-09-30T18:00:34+00:00",
+  "generatedAt": "2026-10-04T16:06:51.412899+00:00",
+  "thumbnail": "https://i.ytimg.com/vi/okwrNSHnosk/maxresdefault.jpg",
+  "model": "gemini-3.6-flash",
+  "affiliates": []
+}
