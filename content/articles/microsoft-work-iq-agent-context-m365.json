@@ -1,0 +1,89 @@
+{
+  "slug": "microsoft-work-iq-agent-context-m365",
+  "title": "Microsoft、M365データとAIエージェントを繋ぐ『Work IQ』の全貌を公開",
+  "lede": "Microsoftは、企業内のMicrosoft 365データや業務コンテキストをAIエージェントに統合する基盤技術「Work IQ」の詳細を発表しました。従来のMicrosoft Graphとは異なり、AIが理解しやすいインテリジェンス層として機能します。REST APIに加え、A2AプロトコルやMCPに対応し、外部エージェントへの業務コンテキストの組み込みを可能にします。",
+  "description": "MicrosoftがAIエージェント向けコンテキスト基盤「Work IQ」を発表。Microsoft Graphとの違い、REST/A2A/MCP対応、オープンソース「Work IQ OS」、自律型エージェント「Margo」の実装例まで技術的に解説します。",
+  "keywords": [
+    "Work IQ",
+    "Microsoft 365 Copilot",
+    "Microsoft Graph",
+    "Model Context Protocol",
+    "MCP",
+    "A2A",
+    "AIエージェント",
+    "Work IQ OS",
+    "Margo",
+    "Entra ID"
+  ],
+  "tags": [
+    "Microsoft",
+    "Copilot",
+    "生成AI",
+    "Microsoft 365",
+    "AIエージェント",
+    "MCP",
+    "開発者ツール"
+  ],
+  "highlights": [
+    "M365の文脈をAIエージェントへ供給する『Work IQ』の技術仕様が公開されました。",
+    "REST API、Agent2Agent（A2A）、MCPの3プロトコルを標準サポートします。",
+    "オープンソース基盤『Work IQ OS』や自律型エージェント『Margo』のデモが実演されました。"
+  ],
+  "timetable": [
+    {
+      "time": "0:00",
+      "label": "オープニングと登壇者紹介（Work IQチームの登壇）"
+    },
+    {
+      "time": "1:26",
+      "label": "Microsoft 365 CopilotにおけるWork IQ活用のデモ"
+    },
+    {
+      "time": "5:28",
+      "label": "オープンソースプロジェクト「Work IQ OS」の紹介とLOBアプリデモ"
+    },
+    {
+      "time": "8:22",
+      "label": "Work IQのアーキテクチャとAPIコンポーネントの解説"
+    },
+    {
+      "time": "9:41",
+      "label": "Microsoft GraphとWork IQの役割の違いについて"
+    },
+    {
+      "time": "11:21",
+      "label": "A2AプロトコルおよびWork IQ MCPサーバーの仕様解説"
+    },
+    {
+      "time": "12:31",
+      "label": "M365 Admin CenterとMicrosoft Entra IDでの権限管理デモ"
+    },
+    {
+      "time": "15:10",
+      "label": "Interactive DemoによるA2A・MCPリクエストとログの検証"
+    },
+    {
+      "time": "20:20",
+      "label": "自律型チーフ・オブ・スタッフ・エージェント「Margo」の実演と解説"
+    },
+    {
+      "time": "28:03",
+      "label": "Margoのオープンソースリポジトリ案内と質疑応答"
+    }
+  ],
+  "body": "## 何が発表されたのか\n\nMicrosoftは、開発者向けセッションイベント「Fly with Copilot」にて、企業内の組織データおよび業務コンテキストを自律型AIエージェントに接続する新たな統合インテリジェンス層「Work IQ」の技術全貌と関連ツール群を発表しました。本セッションには、デベロッパーアドボケイトのAyca Bas氏、テクニカルアドバイザーのAnthony Shaw氏、Work IQ担当GPMのTolga Kilic氏らが登壇しました。\n\n本発表は研究段階を超えた実用プレビューおよびオープンソース公開の段階にあります。従来の「Microsoft Graph」が個別データの直接的なAPIアクセスを提供するのに対し、Work IQはメール、チャット、カレンダー、会議録、文書等に散在する「組織の文脈」を集約・理解し、AIエージェントが直ちに判断へ活用できる形式に加工して提供します。すでにMicrosoft 365 Copilot内で活用されているほか、外部エージェント開発者向けにREST API、Agent2Agent（A2A）プロトコル、Model Context Protocol（MCP）の3つのアクセス手段が提供されます。\n\n## 発表された機能・アップデートの全容\n\n### Microsoft 365 CopilotにおけるWork IQのコンテキスト統合\n\nAnthony Shaw氏は、Microsoft 365 Copilotアプリ上でWork IQがどのように機能しているかを実演しました。同氏は「Fly with Copilotセッションの準備として、着地させるべき5つのポイントは何か」という自然言語プロンプトを入力しました。\n\nCopilotは単に直近の予定を検索するだけでなく、組織内の35件の関連ミーティング、PowerPointスライド、会議の文字起こしテキスト、チャット履歴を包括的に解析しました。その結果、同氏がBuilding 32から会場であるBuilding 7へ移動する必要があることや、未回答のRSVP状態であること、さらに登壇者のAyca Bas氏やTolga Kilic氏との事前打合せで合意されたアジェンダの文脈まで踏まえた回答を提示しました。プロンプト内に日時や会議名を明示せずとも、Work IQがバックグラウンドで直近の文脈を補完している点が実証されました。\n\n### オープンソースダッシュボード基盤「Work IQ OS」と開発ツール\n\n開発者が独自業務アプリ（LOBアプリ）へWork IQを組み込むためのリファレンス実装として、「Work IQ OS（github.com/microsoft/iq-os）」が発表されました。MITライセンスでオープンソース公開される予定です。\n\n画面上のデモでは、パーソナライズされたダッシュボード「Microsoft IQ OS」が提示されました。ここには「Morning Brief（朝の要約）」「Daily Eval（日次の評価）」「Action Items（アクションアイテム）」「Meeting Intelligence（会議インテリジェンス）」といったモジュールが配置されています。これらはWork IQ APIを介してリアルタイムに更新されます。さらに統合されたDev Toolsから「Connect GitHub Copilot」を実行することで、ブラウザ内のセッションと連携し、自然言語でウィジェットのカスタマイズやレイアウト変更を行える開発体験が披露されました。\n\n### REST・A2A・MCPに対応する柔軟なマルチプロトコル構成\n\nAyca Bas氏は、Work IQ APIが提供する接続インターフェースの構造を解説しました。Work IQは「Chat」「Context」「Tools」「Workspaces」の4つの主要コンポーネントで構成されており、裏側にあるMicrosoft 365のMail、Calendar、Teams、Files、Peopleなどの組織知性にアクセスします。\n\nエージェント構築側に対しては、以下の3つの標準チャネルが開かれています。\n\n1. REST API: Webアプリやモバイルアプリから直接呼び出し可能な標準的HTTPインターフェース。\n2. A2A（Agent2Agent protocol）: 異なるフレームワークで構築されたエージェント同士が相互運用するためのオープン規格。Linux Foundationのプロジェクトとして運営されており、2026年3月にVersion 1.0が出荷済みです。\n3. MCP（Model Context Protocol）: エージェント向けに最適化されたコンテキスト提供サーバー。10個のジェネリックツールで構成されます。\n\n### Microsoft GraphとWork IQの役割分担\n\n開発者から頻繁に寄せられる「Work IQはMicrosoft Graphを置き換えるものなのか」という疑問に対し、Ayca Bas氏は両者の明確な違いを説明しました。\n\nMicrosoft Graphは「データアクセス」を担う層であり、200以上のエンドポイントを通じてメールの送信、カレンダー招待の作成、ファイルの取得といった個別データ操作をアプリケーション単位で実行します。一方でWork IQは「インテリジェンス」を担う層です。200ものエンドポイントをLLMに直接提示するとツール選択のオーバーヘッドが過大になるため、Work IQはエージェントが扱いやすいように抽象化された動的ツール（Tools）を提供します。ユーザーの現在の文脈を追跡し、常にログインユーザー自身のアイデンティティの下で動作する設計となっています。\n\n### Admin CenterおよびEntra IDによる高度なガバナンスと権限制御\n\nWork IQを企業環境で安全に運用するためのガバナンス機能も示されました。「Microsoft 365 admin center」のAgents/Tools管理画面では、「Work IQ MCP」に組み込まれた個別のツール（ask, fetch, create_entity, update_entity, delete_entity等）ごとに有効・無効をスイッチ切り替え可能です。例えば、AIエージェントに「作成」や「更新」は許可しつつ、「削除（delete）」権限のみを無効化するといった細分化されたポリシー設定が可能です。\n\nまた、自作エージェントから利用する際は「Microsoft Entra ID（旧Azure AD）」のアプリ登録（App Registrations）機能を使用します。「Work IQ Consumer」アプリの管理画面において、「WorkIQ.Agent.Ask」などの細分化された delegated（委任）アクセス許可を管理者が明示的に同意（Admin consent）することで、ゼロトラストモデルに準拠したセキュアなデータアクセスが維持されます。\n\n### インタラクティブデモによるAPIログの可視化と動作検証\n\nAyca Bas氏は、Web上で提供されている「Interactive Demo」環境を実演しました。開発者は実環境のテナントまたはサンプルデータセットを用いて、REST API、A2A、MCPの動作を試すことができます。\n\nデモでは「who am I」という簡易な問いをA2Aプロトコル経由で送信し、画面横の「API Log」パネルでバックグラウンドのJSONリクエストとレスポンスをリアルタイムに確認しました。さらにMCPツールのデモでは、「create_entity」を用いてカレンダー予定の追加リクエストを送信する手順が示され、開発者がデバッグやプロンプト調整を行うためのツール環境が整備されていることが示されました。\n\n### 自作AIエージェント「Margo」による自律的スケジュール調整の実装例\n\nTolga Kilic氏は、自身が抱える過絶な業務負荷（受信トレイのメール25万通、未読5万通、毎週92〜120件のミーティング招待）を解決するために構築したチーフ・オブ・スタッフ・エージェント「Margo」を実演しました。\n\nMargoはGitHub CopilotとWork IQ MCPサーバーを接続して動作します。リポジトリ内には「SKILL.md」「meeting-prep.md」「preferences.md」などのMarkdownファイルが配置されており、「すべての会議は5分遅らせて開始する」「本人の同意なしにメール送信や削除を行わない」といったグラウンドルール（行動規範）が定義されています。\n\nデモでは、Tolga氏が「明日Aycaと1:1の25分枠をとれるか」と指示すると、MargoはWork IQの「fetch」ツールでカレンダーの空き時間を検索し、1:00 PMと3:05 PMの2枠を抽出しました。その上で招待状の下書きを作成し、「Approve and send invitation」という人間の承認（Human-in-the-loop）ボタンを提示しました。承認ボタンをクリックした瞬間にWork IQ経由で正しく招待状が送信されました。さらにGitHub CopilotのCronジョブと連携し、「Morning Brief」や「Hourly Sweep」として能動的に直近の決定事項や欠話事項を要約・通知する自律ワークフローが提示されました。本リポジトリは「github.com/tolgakai/margo」にて公開されています。\n\n## 性能・ベンチマーク\n\n動画内では、特定の標準ベンチマークテスト（MMLUやGSM8Kなど）による定量的なベンチマークスコアの提示はありませんでした。しかし、開発・運用上の効率指標として以下の数値および仕様が提示されました。\n\n| 評価項目 / 指標 | 提示された数値・仕様 | 出典 | \n| :--- | :--- | :--- |\n| 統合APIエンドポイントの削減効果 | 200以上のGraphエンドポイントを、10個の汎用MCPツールへ集約 | 動画内スライド（11:58） |\n| Tolga Kilic氏のデータ処理規模 | 受信トレイ25万通（未読5万通）、週92〜120件の招待を解析処理 | 登壇者発言（20:36） |\n| A2Aプロトコルの標準化状況 | Linux Foundation傘下、2026年3月にVer 1.0出荷 | 動画内スライド（11:37） |\n| Work IQ OSのライセンス | MITライセンスによるオープンソース提供 | 登壇者発言（06:02） |\n\n## 競合サービスとの比較\n\nAIエージェントに社内データを結合するアプローチにおいて、主要プラットフォームとの比較は以下の通りです。（※競合サービスの情報は編集部注）\n\n| 機能・概念 | Microsoft Work IQ | OpenAI Context / Assistants API | Google Workspace Extensions | Anthropic MCP Ecosystem |\n| :--- | :--- | :--- | :--- | :--- |\n| 主なデータソース | Microsoft 365（Mail, Teams, Docs等） | 独自アップロードファイル・Vector Store | Google Drive, Gmail, Docs | クライアント側ローカル／APIコネクタ |\n| コンテキスト制御 | インテリジェンス層（自動抽象化・推論） | ファイル検索・RAG基盤 | エクステンション経由の個別検索 | プロトコル規格（サーバー・クライアント） |\n| 相互運用プロトコル | REST, A2A, MCP | 独自のAssistants API | 独自ツール呼び出し構造 | Open-source MCP |\n| ガバナンス・権限 | M365 Admin Center & Entra ID（高度） | APIキー・プロジェクト単位制御 | Google Workspace権限モデル | クライアント実装依存 |\n\n（編集部注: OpenAIやGoogleのアプローチは個別データの検索・取得に重点が置かれていますが、MicrosoftのWork IQは「組織の文脈（誰がどの会議で何を決定したか）」をインテリジェンス層として抽象化し、かつオープンプロトコルのMCPやA2Aを採用してマルチエージェント環境に開放している点が決定的な差分となります。）\n\n## 料金・提供プラン\n\n動画内において、Work IQ API単体およびWork IQ OSの具体的な料金設定や従量課金体系についての言及はありませんでした。\n\n発表段階としては、Microsoft 365 Copilot内で基盤技術として提供されているほか、開発者向けにはオープンソースリポジトリ（Work IQ OSおよびMargo）ならびにInteractive Demo環境を通じたプレビュー提供の段階となっています。\n\n## 日本から使う方法\n\n日本の開発者が本日時点でWork IQの検証を開始する手順は以下の通りです。\n\n1. **Interactive Demoサイトへアクセス**: WebブラウザからWork IQのインタラクティブデモ環境にアクセスし、A2AやMCPの挙動を検証します。\n2. **Microsoft 365 開発者テナントの準備**: テナント管理者権限を持つMicrosoft 365アカウントを用意します。\n3. **Entra IDでのアプリ登録**: Microsoft Entra IDの「App Registrations」を開き、自作エージェント用のアプリケーションを登録します。「WorkIQ.Agent.Ask」などのAPIアクセス許可（API Permissions）を追加し、管理者同意を付与します。\n4. **Work IQ OSリポジトリの取得**: GitHub（`github.com/microsoft/iq-os`）からソースコードをクローンし、ローカルまたはAzure上でダッシュボードを起動します。\n5. **Margoリファレンスの確認**: 自律エージェントの構築モデルとして、GitHub（`github.com/tolgakai/margo`）より設定Markdownファイル（SKILL.md、preferences.md等）の定義方法を参考にします。\n\n※注意点: 動画内のデモ画面およびUIは英語環境で実演されており、日本語プロンプトの完全な精度やリージョンごとのロールアウト時期については、個別の公式ドキュメントで確認する必要があります。（編集部注）\n\n## 誰にどう効くのか\n\n### エンジニア・開発者\n従来、200以上のMicrosoft Graph APIを手動で呼び分け、RAGのパイプラインを自作する必要があったエージェント開発が劇的に効率化されます。MCPやA2Aなどの標準プロトコルに対応しているため、LangChainやAutoGen、VS Code（GitHub Copilot）など好みのフレームワークから即座にM365コンテキストを呼び出せます。\n\n### 企画・マーケティング担当者\n社内に点在するプロジェクトの経緯や過去の合意事項を、AIエージェントが自律的に集約・抽出できるようになります。市場調査や社内調整の際に「過去の類似施策で何が議論されたか」を即座に把握し、意思決定のスピードを向上させます。\n\n### 経営層・IT管理者\nシャドーAIの台頭を抑止し、既存のMicrosoft 365 Admin CenterおよびEntra IDのガバナンス枠組みの中でAIエージェントのデータアクセスを統制できます。「AIに更新は許可するが削除は禁止する」といった安全な運用ポリシーの適用が容易になります。\n\n## まとめ\n\nMicrosoftが発表した「Work IQ」は、単なるデータ検索APIではなく、組織内の「働き方の文脈」をAIエージェントへ安全に届けるインテリジェンス層です。REST、A2A、MCPへの対応により、企業は独自の自律型エージェントを既存のM365ガバナンス下で自在に構築可能となります。\n\n読者が次に取るべきアクションは、公開されたGitHubリポジトリ「Work IQ OS」および「Margo」のソースコードを参照し、自社の業務ワークフローに合わせたMCPスキルの定義に着手することです。",
+  "channel": "Microsoft Developer",
+  "channelId": "UCsMica-v34Irf9KVTh6xx-g",
+  "channelSlug": "microsoft-developer",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "VpSCu7s4wD4",
+  "videoUrl": "https://www.youtube.com/watch?v=VpSCu7s4wD4",
+  "videoTitle": "🧭 Flight Intelligence: The Power of Work IQ | Discover how Work IQ is your business's secret sauce",
+  "publishedAt": "2026-09-30T18:00:23+00:00",
+  "generatedAt": "2026-10-05T23:38:39.415135+00:00",
+  "thumbnail": "https://i.ytimg.com/vi/VpSCu7s4wD4/maxresdefault.jpg",
+  "model": "gemini-3.6-flash",
+  "affiliates": []
+}
