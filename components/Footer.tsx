@@ -30,6 +30,11 @@ export default function Footer() {
               {siteConfig.description}
             </p>
 
+            <p className="mt-4 max-w-md text-[12px] leading-[1.8] text-muted">
+              当サイトはA8.netなどのアフィリエイトプログラムに参加しており、
+              記事内に広告（プロモーション）を含む場合があります。
+            </p>
+
             <ul className="mt-6 space-y-2">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>

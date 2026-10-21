@@ -177,11 +177,10 @@ export default async function ArticlePage({ params }: Props) {
 
           <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-[11.5px] text-muted">
             <span>AI解析: {article.model}</span>
-            {affiliates.length > 0 && (
-              <span className="rounded-full bg-surface px-2 py-0.5 text-[10.5px] font-bold">
-                PR含む
-              </span>
-            )}
+            {/* ステマ規制（景品表示法）に沿い、広告を含みうる全記事の冒頭で明示する */}
+            <span className="rounded-full bg-surface px-2 py-0.5 text-[10.5px] font-bold">
+              本ページはプロモーションを含みます
+            </span>
           </div>
 
           {/* 個別記事 → 同じ話題のまとめ記事へ */}
