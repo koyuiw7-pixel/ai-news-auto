@@ -245,6 +245,10 @@ def main() -> int:
     live = os.environ.get("THREADS_MODE") == "live" and not args.dry_run
     state = load_state()
     buffer_key = os.environ.get("BUFFER_API_KEY", "").strip()
+    if buffer_key and not buffer_key.isascii():
+        # クリップボードの取り違えなどで、キー以外の文字列が登録されているとき
+        log("[error] BUFFER_API_KEY の形式が不正です（日本語などが含まれています）。キーを登録し直してください")
+        buffer_key = ""
 
     # Buffer がつながっていれば、毎回接続先を確認してログに残す（下書きモードでも）
     buffer_channel = None
