@@ -58,7 +58,7 @@ function TimelineRow({ article }: { article: Article }) {
     <li className="border-b border-line">
       <Link
         href={`/articles/${article.slug}`}
-        className="group grid grid-cols-1 gap-x-5 py-4 sm:grid-cols-[3.75rem_minmax(0,1fr)_8.5rem]"
+        className="group grid grid-cols-1 gap-x-5 py-4 sm:grid-cols-[3.75rem_minmax(0,1fr)_11.5rem]"
       >
         {/* 幅のある画面では時刻を左の列に、スマホでは企業名の横に置いて見出しの幅を確保する */}
         <time
@@ -99,7 +99,7 @@ function TimelineRow({ article }: { article: Article }) {
             src={article.thumbnail}
             alt=""
             fill
-            sizes="136px"
+            sizes="184px"
             className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />
         </div>

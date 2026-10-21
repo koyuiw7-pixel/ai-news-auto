@@ -72,7 +72,10 @@ function emWidth(text: string): number {
   return total;
 }
 
-const TEXT_WIDTH = 640;
+/** 写真の高さ。残りが見出しの帯になる */
+const PHOTO_HEIGHT = 400;
+const BAND_PADDING = 56;
+const BAND_TEXT_WIDTH = WIDTH - BAND_PADDING * 2 - 8;
 
 /** 文節ごとに分け、単語の途中で改行されないようにする */
 function Phrases({ text, color, size }: { text: string; color: string; size: number }) {
@@ -88,12 +91,6 @@ function Phrases({ text, color, size }: { text: string; color: string; size: num
   );
 }
 
-const dateFormat = new Intl.DateTimeFormat("ja-JP", {
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-  timeZone: "Asia/Tokyo",
-});
 
 export async function GET(_request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -104,9 +101,11 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
   const isRoundup = article.type === "roundup";
   const title = article.seoTitle || article.title;
   const { head, tail } = splitTitle(title);
-  const length = title.length;
-  const size = length <= 18 ? 76 : length <= 26 ? 66 : 58;
   const [photo, fontData] = await Promise.all([fetchPhoto(article.thumbnail), loadFonts()]);
+
+  // 製品名は1行に収める。長ければ文字を小さくする
+  const headSize = Math.min(66, Math.floor(BAND_TEXT_WIDTH / Math.max(emWidth(head), 1)));
+  const tailSize = head ? 46 : emWidth(tail) <= 16 ? 62 : 52;
 
   return new ImageResponse(
     (
@@ -115,112 +114,152 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
           width: WIDTH,
           height: HEIGHT,
           display: "flex",
-          position: "relative",
-          background: "#0d0d0d",
+          flexDirection: "column",
+          background: "#ffffff",
           fontFamily: "Zen",
           fontWeight: 900,
         }}
       >
-        {photo && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={photo}
-            alt=""
-            width={780}
-            height={HEIGHT}
-            style={{ position: "absolute", right: 0, top: 0, width: 780, height: HEIGHT, objectFit: "cover" }}
-          />
-        )}
-        {/* 写真の上に文字を載せても読めるよう、左から暗くする */}
+        {/* 上：元動画の写真をそのままの明るさで大きく見せる */}
         <div
           style={{
-            position: "absolute",
-            left: 0,
-            top: 0,
+            position: "relative",
+            display: "flex",
             width: WIDTH,
-            height: HEIGHT,
-            display: "flex",
-            backgroundImage:
-              "linear-gradient(90deg, #0d0d0d 0%, #0d0d0d 46%, rgba(13,13,13,0.92) 60%, rgba(13,13,13,0.55) 78%, rgba(13,13,13,0.2) 100%)",
-          }}
-        />
-        {/* 発表元の企業色 */}
-        <div style={{ position: "absolute", left: 0, top: 0, width: 16, height: HEIGHT, background: company.color }} />
-
-        <div
-          style={{
-            position: "absolute",
-            left: 76,
-            top: 64,
-            width: TEXT_WIDTH,
-            height: HEIGHT - 120,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
+            height: PHOTO_HEIGHT,
+            background: company.slug === "other" ? "#111111" : company.color,
+            overflow: "hidden",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-            {company.slug !== "other" && (
+          {/* 元動画が削除されて写真が無いときは、企業色の地に企業名を大きく敷く */}
+          {!photo && (
             <div
               style={{
-                width: 52,
-                height: 52,
-                borderRadius: 12,
-                background: company.color,
-                color: "#fff",
+                position: "absolute",
+                left: 40,
+                bottom: -40,
                 display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: company.mark.length > 1 ? 22 : 28,
-                fontWeight: 700,
+                fontSize: 220,
+                fontWeight: 900,
+                letterSpacing: -6,
+                color: "rgba(255,255,255,0.16)",
               }}
             >
-              {company.mark}
+              {company.slug === "other" ? "AI NEWS" : company.name}
             </div>
-            )}
-            {company.slug !== "other" && (
-              <div style={{ color: "#fff", fontSize: 32, fontWeight: 700 }}>{company.name}</div>
-            )}
-            <div
-              style={{
-                display: "flex",
-                marginLeft: company.slug === "other" ? 0 : 6,
-                padding: "6px 16px",
-                borderRadius: 999,
-                fontSize: 24,
-                fontWeight: 700,
-                background: isRoundup ? "#ffe873" : "#e5372b",
-                color: isRoundup ? "#111" : "#fff",
-              }}
-            >
-              {isRoundup ? `まとめ ${article.sources?.length ?? 0}本` : "速報"}
-            </div>
-          </div>
+          )}
+          {photo && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={photo}
+              alt=""
+              width={WIDTH}
+              height={PHOTO_HEIGHT}
+              style={{ width: WIDTH, height: PHOTO_HEIGHT, objectFit: "cover", objectPosition: "center 35%" }}
+            />
+          )}
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            {head && (
-              // 製品名は1行に収める（長ければ文字を小さくする）。途中で折れると名前が読み取りにくい
+          {/* 発表元と種類のバッジ。写真の上でも読めるよう白地に載せる */}
+          <div style={{ position: "absolute", left: 40, top: 36, display: "flex", gap: 12 }}>
+            {company.slug !== "other" && (
               <div
                 style={{
                   display: "flex",
-                  color: "#ffe873",
-                  fontSize: Math.min(size, Math.floor(TEXT_WIDTH / emWidth(head))),
-                  lineHeight: 1.25,
+                  alignItems: "center",
+                  gap: 12,
+                  padding: "10px 22px 10px 12px",
+                  borderRadius: 999,
+                  background: "#ffffff",
+                  boxShadow: "0 6px 24px rgba(0,0,0,0.18)",
+                }}
+              >
+                <div
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 10,
+                    background: company.color,
+                    color: "#fff",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: company.mark.length > 1 ? 17 : 22,
+                    fontWeight: 700,
+                  }}
+                >
+                  {company.mark}
+                </div>
+                <div style={{ fontSize: 28, fontWeight: 700, color: "#111" }}>{company.name}</div>
+              </div>
+            )}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                padding: "10px 22px",
+                borderRadius: 999,
+                fontSize: 26,
+                fontWeight: 700,
+                background: isRoundup ? "#111111" : "#e5372b",
+                color: "#ffffff",
+                boxShadow: "0 6px 24px rgba(0,0,0,0.18)",
+              }}
+            >
+              {isRoundup ? `${article.sources?.length ?? 0}本の発表を統合` : "速報"}
+            </div>
+          </div>
+
+          {/* サイト名。右上に小さく、黒い札で */}
+          <div
+            style={{
+              position: "absolute",
+              right: 40,
+              top: 36,
+              display: "flex",
+              alignItems: "center",
+              padding: "10px 22px",
+              borderRadius: 14,
+              background: "#111111",
+              color: "#ffffff",
+              fontFamily: "Dela",
+              fontSize: 30,
+            }}
+          >
+            サイソク
+          </div>
+        </div>
+
+        {/* 写真と見出しの境目に、発表元の企業色 */}
+        <div style={{ display: "flex", width: WIDTH, height: 8, background: company.color }} />
+
+        {/* 下：白地に見出し。製品名は黄色のマーカーで強調（サイトと同じ表現） */}
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            gap: 8,
+            padding: `0 ${BAND_PADDING}px`,
+          }}
+        >
+          {head && (
+            <div style={{ display: "flex" }}>
+              <div
+                style={{
+                  display: "flex",
+                  fontSize: headSize,
+                  lineHeight: 1.2,
+                  color: "#111111",
+                  backgroundImage: "linear-gradient(transparent 62%, #ffe873 62%)",
+                  padding: "0 4px",
                 }}
               >
                 {head}
               </div>
-            )}
-            <Phrases text={tail} color="#ffffff" size={head ? Math.round(size * 0.82) : size} />
-          </div>
-
-          <div style={{ display: "flex", alignItems: "baseline", gap: 20 }}>
-            <div style={{ fontFamily: "Dela", color: "#fff", fontSize: 40 }}>サイソク</div>
-            <div style={{ color: "#a3a3a3", fontSize: 22, fontWeight: 700 }}>最速で、要点だけ。</div>
-            <div style={{ color: "#a3a3a3", fontSize: 22, fontWeight: 700, marginLeft: "auto" }}>
-              {dateFormat.format(new Date(article.publishedAt))}
             </div>
-          </div>
+          )}
+          <Phrases text={tail} color={head ? "#3b3b37" : "#111111"} size={tailSize} />
         </div>
       </div>
     ),
