@@ -91,8 +91,10 @@ function load(): Record<string, GenreCtas> {
 }
 
 export function getCta(genreSlug: string, slot: CtaSlot): Cta | null {
-  const config = load();
-  return config[genreSlug]?.[slot] ?? null;
+  const cta = load()[genreSlug]?.[slot] ?? null;
+  // 提携前（計測IDなし）の枠は出さない。報酬の出ない他社への誘導で、
+  // 読者の注意と回遊を外へ流すだけになるため
+  return cta?.isAffiliate ? cta : null;
 }
 
 /** 有効なCTAが1つでもあるか（無ければ導線UIごと隠す） */
