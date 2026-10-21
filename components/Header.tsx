@@ -7,6 +7,7 @@ const NAV = [
   { href: "/companies/openai", label: "OpenAI" },
   { href: "/companies/google", label: "Google" },
   { href: "/companies/anthropic", label: "Anthropic" },
+  { href: "/guides", label: "ガイド" },
   { href: "/#roundups", label: "まとめ" },
   { href: "/articles", label: "記事一覧" },
 ];

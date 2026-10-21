@@ -7,6 +7,7 @@ import {
   tagSlug,
 } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
+import { getAllGuides, guideArticles } from "@/lib/guides";
 import { siteConfig } from "@/site.config";
 
 export const dynamic = "force-static";
@@ -61,6 +62,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "daily" as const,
       priority: 0.7,
+    })),
+    { url: `${base}/guides`, lastModified, changeFrequency: "daily" as const, priority: 0.8 },
+    ...getAllGuides().map((guide) => ({
+      url: `${base}/guides/${guide.slug}`,
+      lastModified: new Date(guideArticles(guide)[0]?.publishedAt ?? lastModified),
+      changeFrequency: "daily" as const,
+      priority: 0.9,
     })),
     ...companyCounts(articles).map(({ company }) => ({
       url: `${base}/companies/${company.slug}`,

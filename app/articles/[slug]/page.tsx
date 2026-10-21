@@ -9,6 +9,7 @@ import CompanyMark from "@/components/CompanyMark";
 import CtaBanner from "@/components/CtaBanner";
 import RelTime from "@/components/RelTime";
 import { companyOf } from "@/lib/companies";
+import { guideForArticle } from "@/lib/guides";
 import Morph from "@/components/Morph";
 import RoundupSources from "@/components/RoundupSources";
 import Sidebar from "@/components/Sidebar";
@@ -86,6 +87,7 @@ export default async function ArticlePage({ params }: Props) {
   const isRoundup = article.type === "roundup";
   const affiliates = article.affiliates ?? [];
   const company = companyOf(article);
+  const guide = guideForArticle(article);
   // 日本語の黙読はおよそ毎分600字
   const readMinutes = Math.max(1, Math.round(article.body.length / 600));
   const html = await renderMarkdown(
@@ -201,6 +203,20 @@ export default async function ArticlePage({ params }: Props) {
               </ol>
             </section>
           )}
+          {/* 製品ガイドへの案内（「〇〇とは」「料金」を知りたい読者の受け皿） */}
+          {guide && (
+            <Link
+              href={`/guides/${guide.slug}`}
+              className="group mt-4 flex items-center gap-3 rounded-2xl border border-line px-5 py-3.5 transition-colors hover:border-ink"
+            >
+              <span className="shrink-0 rounded-full bg-ink px-2.5 py-0.5 text-[10.5px] font-bold text-paper">ガイド</span>
+              <span className="min-w-0 text-[14px] font-bold leading-snug text-ink group-hover:underline">
+                {guide.name}とは？できること・料金・使い方を1ページで
+              </span>
+              <span aria-hidden className="ml-auto text-muted">→</span>
+            </Link>
+          )}
+
           {article.lede && (
             <p className="mt-6 max-w-[62ch] text-[15.5px] leading-[1.95] text-ink-soft sm:text-base">
               {article.lede}
