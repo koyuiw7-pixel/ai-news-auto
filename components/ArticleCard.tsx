@@ -1,7 +1,8 @@
 import Thumb from "@/components/Thumb";
 import Link from "next/link";
 import Morph from "@/components/Morph";
-import { formatDate, type Article } from "@/lib/articles";
+import Image from "next/image";
+import { coverPath, formatDate, type Article } from "@/lib/articles";
 import { Highlight } from "@/lib/highlight";
 
 type Props = {
@@ -18,21 +19,34 @@ type Props = {
 export default function ArticleCard({ article, priority, morph = false }: Props) {
   const isRoundup = article.type === "roundup";
   const sources = article.sources?.length ?? 0;
+  const cover = coverPath(article);
 
   return (
     <article className="group">
       <Link href={`/articles/${article.slug}`} className="flex flex-col gap-3.5">
         <Morph name={`cover-${article.slug}`} enabled={morph}>
-          <div className="relative aspect-video overflow-hidden rounded-2xl bg-surface-2">
-            <Thumb
-              src={article.thumbnail}
-              alt=""
-              fill
-              priority={priority}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-            />
-            {(isRoundup || article.genreSlug !== "ai") && (
+          <div className="relative aspect-[40/21] overflow-hidden rounded-2xl bg-surface-2">
+            {cover ? (
+              // 日本語見出し・企業・サイト名入りの独自カバー（統合本数もカバー内に入っている）
+              <Image
+                src={cover}
+                alt=""
+                fill
+                priority={priority}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+              />
+            ) : (
+              <Thumb
+                src={article.thumbnail}
+                alt=""
+                fill
+                priority={priority}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+              />
+            )}
+            {!cover && (isRoundup || article.genreSlug !== "ai") && (
               <span className="absolute left-3 top-3 flex gap-1.5">
                 {isRoundup && (
                   <span className="rounded-full bg-ink/90 px-2.5 py-1 text-[11px] font-bold text-paper">

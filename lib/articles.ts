@@ -172,9 +172,14 @@ export function tagHref(tag: string): string {
   return `/tags/${encodeURIComponent(tagSlug(tag))}`;
 }
 
-export function getAllTags(): Facet[] {
+/**
+ * タグの集計。onlyAi を付けると AI ジャンルの記事だけで数える
+ * （サイトはAIに一点集中しているので、導線に不動産・投資のタグを出さない）。
+ */
+export function getAllTags(onlyAi = false): Facet[] {
   const map = new Map<string, Facet>();
-  for (const article of getAllArticles()) {
+  const source = getAllArticles().filter((a) => !onlyAi || a.genreSlug === "ai");
+  for (const article of source) {
     for (const tag of article.tags) {
       const slug = tagSlug(tag);
       if (!slug) continue;
@@ -283,4 +288,12 @@ export function formatDate(iso: string): string {
     day: "2-digit",
     timeZone: "Asia/Tokyo",
   }).format(date);
+}
+
+/**
+ * 独自カバー画像（/cover/[slug]）のパス。AI記事だけ生成する（不動産・投資は検索対象外のため）。
+ * 生成対象外なら null を返すので、元動画のサムネイルにフォールバックする。
+ */
+export function coverPath(article: Article): string | null {
+  return article.genreSlug === "ai" ? `/cover/${article.slug}` : null;
 }

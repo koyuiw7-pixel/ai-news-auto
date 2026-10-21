@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { getAllChannels, getAllGenres, getAllTags } from "@/lib/articles";
+import CompanyMark from "@/components/CompanyMark";
+import { getAllArticles, getAllChannels, getAllTags } from "@/lib/articles";
+import { companyCounts } from "@/lib/companies";
 import { hasActiveAffiliate } from "@/lib/monetization";
 import { siteConfig } from "@/site.config";
 
@@ -11,9 +13,11 @@ const LEGAL_LINKS = [
 ];
 
 export default function Footer() {
-  const channels = getAllChannels();
-  const genres = getAllGenres();
-  const tags = getAllTags().slice(0, 16);
+  const ai = getAllArticles().filter((a) => a.genreSlug === "ai");
+  const liveChannels = new Set(ai.map((a) => a.channelSlug));
+  const channels = getAllChannels().filter((c) => liveChannels.has(c.slug));
+  const companies = companyCounts(ai).slice(0, 8);
+  const tags = getAllTags(true).slice(0, 16);
 
   return (
     <footer className="mt-24 border-t-2 border-ink bg-surface">
@@ -50,18 +54,17 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="eyebrow">CATEGORY</p>
+            <p className="eyebrow">COMPANIES</p>
             <ul className="mt-4 space-y-2.5">
-              {genres.map((genre) => (
-                <li key={genre.slug}>
+              {companies.map(({ company, count }) => (
+                <li key={company.slug}>
                   <Link
-                    href={`/genres/${genre.slug}`}
-                    className="text-sm font-semibold text-ink-soft hover:text-accent"
+                    href={`/companies/${company.slug}`}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-ink-soft hover:text-accent"
                   >
-                    {genre.label}
-                    <span className="index-num ml-2 text-[11px] text-muted">
-                      {genre.count}
-                    </span>
+                    <CompanyMark company={company} size={16} />
+                    {company.name}
+                    <span className="index-num text-[11px] text-muted">{count}</span>
                   </Link>
                 </li>
               ))}

@@ -6,6 +6,7 @@ import {
   getAllTags,
   tagSlug,
 } from "@/lib/articles";
+import { companyCounts } from "@/lib/companies";
 import { siteConfig } from "@/site.config";
 
 export const dynamic = "force-static";
@@ -60,6 +61,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "daily" as const,
       priority: 0.7,
+    })),
+    ...companyCounts(articles).map(({ company }) => ({
+      url: `${base}/companies/${company.slug}`,
+      lastModified,
+      changeFrequency: "hourly" as const,
+      priority: 0.8,
     })),
     ...getAllTags()
       .filter((tag) => liveTags.has(tag.slug))

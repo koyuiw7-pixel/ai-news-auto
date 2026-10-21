@@ -1,7 +1,10 @@
 import Thumb from "@/components/Thumb";
 import Link from "next/link";
 import Morph from "@/components/Morph";
-import { formatDate, type Article } from "@/lib/articles";
+import CompanyMark from "@/components/CompanyMark";
+import RelTime from "@/components/RelTime";
+import type { Article } from "@/lib/articles";
+import { companyOf } from "@/lib/companies";
 import { Highlight } from "@/lib/highlight";
 
 /**
@@ -46,14 +49,12 @@ export default function HomeHero({ lead }: { lead: Article }) {
       </Link>
 
       <div className="flex min-w-0 flex-col gap-4">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] font-bold">
-          <span className={`inline-flex items-center gap-1.5 ${isRoundup ? "text-roundup" : "text-official"}`}>
-            <i className={`dot ${isRoundup ? "dot-roundup" : "dot-official"}`} aria-hidden />
-            {isRoundup ? "まとめ記事" : "公式発表"}
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12.5px]">
+          <span className="rounded-full bg-live px-2.5 py-0.5 text-[11px] font-bold tracking-wider text-white">
+            {isRoundup ? "まとめ" : "最新"}
           </span>
-          <time dateTime={lead.publishedAt} className="index-num font-normal text-muted">
-            {formatDate(lead.publishedAt)}
-          </time>
+          <CompanyMark company={companyOf(lead)} size={18} withName />
+          <RelTime iso={lead.publishedAt} className="index-num font-semibold text-muted" />
         </div>
 
         <Link href={href} className="group">

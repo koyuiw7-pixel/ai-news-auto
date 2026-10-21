@@ -5,11 +5,15 @@ import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import AffiliateBox from "@/components/AffiliateBox";
 import ArticleCard from "@/components/ArticleCard";
+import CompanyMark from "@/components/CompanyMark";
 import CtaBanner from "@/components/CtaBanner";
+import RelTime from "@/components/RelTime";
+import { companyOf } from "@/lib/companies";
 import Morph from "@/components/Morph";
 import RoundupSources from "@/components/RoundupSources";
 import Sidebar from "@/components/Sidebar";
 import {
+  coverPath,
   formatDate,
   getAllArticles,
   getArticle,
@@ -38,6 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!article) return {};
 
   const url = `/articles/${article.slug}`;
+  const cover = coverPath(article);
   return {
     // 検索結果では全角30字前後で切れるため、短い題名を優先する。
     // 記事内の見出し・OGP（SNSカード）は情報量の多い本来の title のまま
@@ -57,15 +62,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: article.publishedAt,
       modifiedTime: article.generatedAt,
       tags: article.tags,
-      images: article.thumbnail
-        ? [{ url: article.thumbnail, width: 1280, height: 720 }]
-        : undefined,
+      // SNSのカードは日本語見出し入りの独自カバー。無い記事は元動画のサムネイル
+      images: cover
+        ? [{ url: cover, width: 1200, height: 630, alt: article.seoTitle || article.title }]
+        : article.thumbnail
+          ? [{ url: article.thumbnail, width: 1280, height: 720 }]
+          : undefined,
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
       description: article.description,
-      images: article.thumbnail ? [article.thumbnail] : undefined,
+      images: cover ? [cover] : article.thumbnail ? [article.thumbnail] : undefined,
     },
   };
 }
@@ -77,6 +85,9 @@ export default async function ArticlePage({ params }: Props) {
 
   const isRoundup = article.type === "roundup";
   const affiliates = article.affiliates ?? [];
+  const company = companyOf(article);
+  // 日本語の黙読はおよそ毎分600字
+  const readMinutes = Math.max(1, Math.round(article.body.length / 600));
   const html = await renderMarkdown(
     article.body,
     affiliates.map((a) => a.url),
@@ -93,7 +104,9 @@ export default async function ArticlePage({ params }: Props) {
       "@type": "NewsArticle",
       headline: article.title,
       description: article.description,
-      ...(article.thumbnail ? { image: [article.thumbnail] } : {}),
+      image: [coverPath(article), article.thumbnail]
+        .filter(Boolean)
+        .map((src) => (src!.startsWith("/") ? `${siteConfig.url}${src}` : src)),
       datePublished: article.publishedAt,
       dateModified: article.generatedAt,
       inLanguage: "ja",
@@ -143,8 +156,8 @@ export default async function ArticlePage({ params }: Props) {
               ホーム
             </Link>
             <span aria-hidden>/</span>
-            <Link href={`/genres/${article.genreSlug}`} className="hover:text-accent">
-              {article.genre}
+            <Link href={`/companies/${company.slug}`} className="hover:text-accent">
+              {company.name}
             </Link>
             <span aria-hidden>/</span>
             <Link href={`/channels/${article.channelSlug}`} className="hover:text-accent">
@@ -152,15 +165,16 @@ export default async function ArticlePage({ params }: Props) {
             </Link>
           </nav>
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] font-bold">
-            <span className={`inline-flex items-center gap-1.5 ${isRoundup ? "text-roundup" : "text-official"}`}>
-              <i className={`dot ${isRoundup ? "dot-roundup" : "dot-official"}`} aria-hidden />
-              {isRoundup ? "まとめ記事" : "公式発表"}
+          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px]">
+            <CompanyMark company={company} size={20} withName />
+            <span className="rounded-full border border-line-strong px-2 py-[1px] text-[11px] font-bold text-ink-soft">
+              {isRoundup ? `まとめ ${article.sources?.length ?? 0}本` : "公式発表"}
             </span>
-            <span className="text-muted">{article.channel}</span>
-            <time dateTime={article.publishedAt} className="index-num font-normal text-muted">
-              {formatDate(article.publishedAt)}
-            </time>
+            <span className="text-muted">
+              <RelTime iso={article.publishedAt} className="index-num font-semibold text-ink" />
+              <span className="index-num ml-1.5">（{formatDate(article.publishedAt)}）</span>
+            </span>
+            <span className="index-num text-muted">読了 {readMinutes}分</span>
           </div>
 
           <Morph name={`title-${article.slug}`}>
@@ -169,14 +183,31 @@ export default async function ArticlePage({ params }: Props) {
             </h1>
           </Morph>
 
+          {/* 3秒でわかる要点 */}
+          {article.highlights.length > 0 && (
+            <section aria-labelledby="points-heading" className="mt-6 rounded-2xl border-l-4 border-live bg-surface p-5 sm:p-6">
+              <h2 id="points-heading" className="text-[13px] font-bold">
+                3秒でわかる要点
+              </h2>
+              <ol className="mt-4 grid gap-3.5">
+                {article.highlights.map((highlight, index) => (
+                  <li key={index} className="grid grid-cols-[24px_1fr] gap-3 text-[15px] font-medium leading-[1.7] text-ink">
+                    <span className="index-num mt-0.5 grid size-6 place-items-center rounded-full bg-ink text-[11.5px] font-semibold text-paper">
+                      {index + 1}
+                    </span>
+                    {highlight}
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
           {article.lede && (
-            <p className="mt-5 max-w-[62ch] text-[15.5px] leading-[1.95] text-ink-soft sm:text-base">
+            <p className="mt-6 max-w-[62ch] text-[15.5px] leading-[1.95] text-ink-soft sm:text-base">
               {article.lede}
             </p>
           )}
 
           <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-[11.5px] text-muted">
-            <span>AI解析: {article.model}</span>
             {/* ステマ規制（景品表示法）に沿い、広告を含みうる全記事の冒頭で明示する */}
             <span className="rounded-full bg-surface px-2 py-0.5 text-[10.5px] font-bold">
               本ページはプロモーションを含みます
@@ -250,24 +281,6 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           )}
 
-          {/* 3秒でわかる要点 */}
-          {article.highlights.length > 0 && (
-            <section aria-labelledby="points-heading" className="mt-8 rounded-3xl bg-surface p-6 sm:p-7">
-              <h2 id="points-heading" className="text-[13px] font-bold">
-                3秒でわかる要点
-              </h2>
-              <ol className="mt-4 grid gap-3.5">
-                {article.highlights.map((highlight, index) => (
-                  <li key={index} className="grid grid-cols-[24px_1fr] gap-3 text-[15px] font-medium leading-[1.7] text-ink">
-                    <span className="index-num mt-0.5 grid size-6 place-items-center rounded-full bg-ink text-[11.5px] font-semibold text-paper">
-                      {index + 1}
-                    </span>
-                    {highlight}
-                  </li>
-                ))}
-              </ol>
-            </section>
-          )}
 
           {/* 章立て */}
           {headings.length > 1 && (

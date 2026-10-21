@@ -24,6 +24,8 @@
   --marker-h: 36%;
   --official: #8a5200;
   --roundup: #0a6fa0;
+  /* 速報性（LIVE・新着）だけに使う赤 */
+  --live: #d92d20;
   --glass: rgb(255 255 255 / 0.74);
   color-scheme: light;
 }
@@ -45,6 +47,7 @@
   --marker-h: 22%;
   --official: #ffb547;
   --roundup: #58c7f3;
+  --live: #ff6b5e;
   --glass: rgb(10 15 30 / 0.72);
   color-scheme: dark;
 }
@@ -68,6 +71,7 @@
   --color-marker: var(--marker);
   --color-official: var(--official);
   --color-roundup: var(--roundup);
+  --color-live: var(--live);
 
   --font-sans:
     var(--font-zen), "Hiragino Kaku Gothic ProN", "Hiragino Sans",
@@ -199,86 +203,13 @@ mark {
 }
 
 /* --------------------------------------------------------------------- */
-/* ヘッダー（すりガラス）と速報ティッカー                                    */
+/* ヘッダー                                                               */
 /* --------------------------------------------------------------------- */
 
 .site-header {
   background: var(--glass);
   -webkit-backdrop-filter: blur(14px) saturate(1.2);
   backdrop-filter: blur(14px) saturate(1.2);
-}
-
-.ticker {
-  display: flex;
-  align-items: stretch;
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.ticker-label {
-  flex: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-inline: 1rem;
-  border-right: 1px solid var(--line);
-  background: var(--paper);
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--ink);
-  white-space: nowrap;
-}
-
-.ticker-viewport {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-}
-
-.ticker-track {
-  display: flex;
-  gap: 2.75rem;
-  width: max-content;
-  padding: 0.6rem 1.5rem;
-  animation: ticker-scroll 64s linear infinite;
-}
-
-.ticker:hover .ticker-track,
-.ticker:focus-within .ticker-track {
-  animation-play-state: paused;
-}
-
-.ticker-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-size: 12.5px;
-  white-space: nowrap;
-  color: var(--ink);
-}
-
-.ticker-item:hover {
-  color: var(--accent);
-}
-
-.ticker-item time {
-  font-size: 10.5px;
-  color: var(--muted);
-}
-
-@keyframes ticker-scroll {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ticker-track {
-    animation: none;
-  }
-  .ticker-viewport {
-    overflow-x: auto;
-  }
 }
 
 /* 情報の種類を示す点。琥珀＝公式発表、シアン＝まとめ記事 */

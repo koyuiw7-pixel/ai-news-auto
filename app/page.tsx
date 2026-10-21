@@ -1,31 +1,31 @@
 import Link from "next/link";
-import ArticleCard from "@/components/ArticleCard";
-import CtaBanner from "@/components/CtaBanner";
+import CompanyMark from "@/components/CompanyMark";
 import HomeHero from "@/components/HomeHero";
-import IndexList from "@/components/IndexList";
-import RoundupShelf from "@/components/RoundupShelf";
-import Ticker from "@/components/Ticker";
-import { getAllArticles, getAllGenres, tagSlug } from "@/lib/articles";
+import LiveBar from "@/components/LiveBar";
+import Thumb from "@/components/Thumb";
+import Timeline from "@/components/Timeline";
+import { getAllArticles, getAllGenres, tagSlug, type Article } from "@/lib/articles";
+import { companyCounts } from "@/lib/companies";
 import { siteConfig } from "@/site.config";
 
 export const revalidate = false;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
+const TIMELINE_SIZE = 24;
 
+/**
+ * トップ＝速報デスク。
+ * 「いつ（時系列）」と「どこが（企業）」の2軸で組み、
+ * 一番上には常にいちばん新しい発表を置く（古いまとめ記事を主役にしない）。
+ */
 export default function HomePage() {
   // AI・テクノロジーに一点集中しているので、トップはAIジャンルだけで組む
   const ai = getAllArticles().filter((a) => a.genreSlug === "ai");
   if (ai.length === 0) return <EmptyState />;
 
-  const roundups = ai.filter((a) => a.type === "roundup");
-  const official = ai.filter((a) => a.type !== "roundup");
-
-  const lead = roundups[0] ?? official[0];
-  const rest = official.filter((a) => a.slug !== lead.slug);
-
-  // 最初の画面で同格に並べるのは3本まで（選択肢が多いほど迷うため）
-  const cards = rest.slice(0, 3);
-  const listed = rest.slice(3, 11);
+  const lead = ai[0];
+  const timeline = ai.filter((a) => a.slug !== lead.slug).slice(0, TIMELINE_SIZE);
+  const roundups = ai.filter((a) => a.type === "roundup" && a.slug !== lead.slug).slice(0, 5);
 
   // 新しさの手がかり。ビルド時点の実データだけを出す
   const buildTime = Date.now();
@@ -38,70 +38,87 @@ export default function HomePage() {
     (a) => a.generatedAt && buildTime - Date.parse(a.generatedAt) < DAY_MS,
   ).length;
 
-  // トピックはAI記事に付いているタグだけから集計する
-  const tagCounts = new Map<string, { label: string; count: number }>();
-  for (const article of ai) {
-    for (const tag of article.tags) {
-      const slug = tagSlug(tag);
-      const entry = tagCounts.get(slug);
-      if (entry) entry.count += 1;
-      else tagCounts.set(slug, { label: tag, count: 1 });
-    }
-  }
-  const tags = [...tagCounts.entries()]
-    .sort((a, b) => b[1].count - a[1].count)
-    .slice(0, 18);
-
+  const companies = companyCounts(ai);
+  const tags = topTags(ai, 14);
   const otherGenres = getAllGenres().filter((g) => g.slug !== "ai");
 
   return (
     <>
-      <Ticker items={ai.slice(0, 10)} updatedAt={updatedAt} recentCount={recentCount} />
+      <LiveBar updatedAt={updatedAt} recentCount={recentCount}
+        weekCount={ai.filter((a) => a.generatedAt && Date.now() - Date.parse(a.generatedAt) < 7 * 86_400_000).length} companies={companies.slice(0, 8)} />
 
-      <div className="mx-auto grid max-w-[1180px] gap-20 px-5 pb-8 pt-10 sm:px-8 sm:pt-14">
+      <div className="mx-auto max-w-[1240px] px-5 pb-8 pt-8 sm:px-8 sm:pt-10">
         <HomeHero lead={lead} />
 
-        {cards.length > 0 && (
-          <section>
-            <SectionHead eyebrow="LATEST" title="最新ニュース" href="/articles" />
-            <div className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-              {cards.map((article, index) => (
-                <ArticleCard key={article.slug} article={article} priority={index === 0} morph />
-              ))}
+        <div className="mt-14 grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-12">
+          <section aria-labelledby="latest-heading" className="min-w-0">
+            <div className="mb-2 flex items-end justify-between gap-4">
+              <h2 id="latest-heading" className="display text-[1.6rem]">
+                新着
+              </h2>
+              <Link href="/articles" className="pb-1 text-[13px] font-bold text-muted hover:text-ink">
+                すべての記事 →
+              </Link>
             </div>
+            <Timeline articles={timeline} />
+            <Link
+              href="/articles"
+              className="mt-8 flex items-center justify-center rounded-full border border-line-strong py-3 text-[14px] font-bold text-ink transition-colors hover:border-ink"
+            >
+              もっと見る
+            </Link>
           </section>
-        )}
 
-        <RoundupShelf roundups={roundups.filter((r) => r.slug !== lead.slug).slice(0, 6)} />
+          <aside className="grid content-start gap-12 lg:sticky lg:top-24">
+            {roundups.length > 0 && (
+              <section aria-labelledby="roundups-heading" id="roundups">
+                <RailHead id="roundups-heading" title="話題まるごと解説" note="同じ話題の発表を1本に" />
+                <ol className="grid gap-4">
+                  {roundups.map((roundup) => (
+                    <RailRoundup key={roundup.slug} article={roundup} />
+                  ))}
+                </ol>
+              </section>
+            )}
 
-        {listed.length > 0 && (
-          <section>
-            <SectionHead eyebrow="MORE" title="さらに読む" href="/articles" />
-            <IndexList articles={listed} />
-          </section>
-        )}
+            <section aria-labelledby="companies-heading">
+              <RailHead id="companies-heading" title="企業から探す" />
+              <ul className="grid grid-cols-2 gap-2">
+                {companies.map(({ company, count }) => (
+                  <li key={company.slug}>
+                    <Link
+                      href={`/companies/${company.slug}`}
+                      className="flex items-center gap-2 rounded-xl border border-line px-3 py-2.5 text-[13px] font-bold text-ink transition-colors hover:border-ink"
+                    >
+                      <CompanyMark company={company} size={18} />
+                      <span className="min-w-0 truncate">{company.name}</span>
+                      <span className="index-num ml-auto text-[11px] font-normal text-muted">{count}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
 
-        <CtaBanner genreSlug="ai" slot="primary" />
+            {tags.length > 0 && (
+              <section aria-labelledby="topics-heading">
+                <RailHead id="topics-heading" title="トピック" />
+                <div className="flex flex-wrap gap-1.5">
+                  {tags.map(([slug, tag]) => (
+                    <Link
+                      key={slug}
+                      href={`/tags/${encodeURIComponent(slug)}`}
+                      className="rounded-full bg-surface px-3 py-1.5 text-[12.5px] font-medium text-ink-soft transition-colors hover:bg-surface-2 hover:text-ink"
+                    >
+                      {tag.label}
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+          </aside>
+        </div>
 
-        {tags.length > 0 && (
-          <section>
-            <SectionHead eyebrow="TOPICS" title="トピックから探す" />
-            <div className="flex flex-wrap gap-2">
-              {tags.map(([slug, tag]) => (
-                <Link
-                  key={slug}
-                  href={`/tags/${encodeURIComponent(slug)}`}
-                  className="rounded-full border border-line px-3.5 py-1.5 text-[13.5px] font-medium text-ink-soft transition-colors hover:border-ink hover:text-ink"
-                >
-                  {tag.label}
-                  <span className="index-num ml-2 text-[11px] text-muted">{tag.count}</span>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
-
-        <footer className="grid gap-3 border-t border-line pt-8">
+        <footer className="mt-20 grid gap-3 border-t border-line pt-8">
           <p className="max-w-[70ch] text-[13.5px] leading-relaxed text-ink-soft">
             {siteConfig.description}
           </p>
@@ -124,30 +141,45 @@ export default function HomePage() {
   );
 }
 
-function SectionHead({
-  eyebrow,
-  title,
-  href,
-}: {
-  eyebrow: string;
-  title: string;
-  href?: string;
-}) {
+function topTags(articles: Article[], limit: number) {
+  const counts = new Map<string, { label: string; count: number }>();
+  for (const article of articles) {
+    for (const tag of article.tags) {
+      const slug = tagSlug(tag);
+      const entry = counts.get(slug);
+      if (entry) entry.count += 1;
+      else counts.set(slug, { label: tag, count: 1 });
+    }
+  }
+  return [...counts.entries()].sort((a, b) => b[1].count - a[1].count).slice(0, limit);
+}
+
+function RailHead({ id, title, note }: { id: string; title: string; note?: string }) {
   return (
-    <div className="mb-7 flex items-end justify-between gap-4 border-b border-line-strong pb-3">
-      <div>
-        <p className="eyebrow">{eyebrow}</p>
-        <h2 className="display mt-1 text-2xl sm:text-[1.75rem]">{title}</h2>
-      </div>
-      {href && (
-        <Link
-          href={href}
-          className="shrink-0 pb-1 text-[13px] font-bold text-muted transition-colors hover:text-ink"
-        >
-          すべて見る →
-        </Link>
-      )}
+    <div className="mb-4 border-b border-ink pb-2">
+      <h2 id={id} className="text-[15px] font-bold text-ink">
+        {title}
+      </h2>
+      {note && <p className="mt-0.5 text-[11.5px] text-muted">{note}</p>}
     </div>
+  );
+}
+
+function RailRoundup({ article }: { article: Article }) {
+  return (
+    <li>
+      <Link href={`/articles/${article.slug}`} className="group grid grid-cols-[88px_minmax(0,1fr)] gap-3">
+        <span className="relative aspect-video overflow-hidden rounded-lg bg-surface-2">
+          <Thumb src={article.thumbnail} alt="" fill sizes="88px" className="object-cover" />
+          <span className="index-num absolute bottom-1 left-1 rounded bg-ink/85 px-1.5 py-[1px] text-[10px] font-semibold text-paper">
+            {article.sources?.length ?? 0}本
+          </span>
+        </span>
+        <span className="line-clamp-3 text-[13px] font-bold leading-[1.55] text-ink group-hover:underline">
+          {article.seoTitle || article.title}
+        </span>
+      </Link>
+    </li>
   );
 }
 
