@@ -258,6 +258,10 @@ PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両�
   主要SEOキーワードを前方に置き、**感嘆符・煽り語（衝撃／ヤバい／ついに／必見）は使わない**。
   良い例:「Google DeepMind、複数ロボットが言語で連携する『Gemini Robotics 2』を公開」
   悪い例:「Gemini Robotics 2発表！ロボット連携の衝撃」
+- seo_title: 検索結果に表示する短い題名。**全角24〜30文字**（英数字は半角0.5文字換算で数える）。
+  読者が検索に打ち込む語（製品名・企業名・機能名）を**先頭**に置き、何が分かる記事かを続ける。
+  「OpenAI、」のような読点区切りの社名始まりより、製品名始まりを優先。記号は「｜」「：」を最大1つまで。
+  良い例:「GPT-6 Astra×Figma連携｜2時間でUI試作を自動化」「ChatGPT Plugin Extensionsとは：MCPでUI拡張」
 - lede: 記事冒頭のリード文。150〜200字の1〜2段落。5W1Hを圧縮し、結論を先に置く。
   ここだけ読んでも発表の要点が分かる密度にする。
 - description: 100〜130文字のメタディスクリプション。検索結果に出る想定で、結論を含める。
@@ -290,6 +294,7 @@ ARTICLE_SCHEMA = {
         "skip_reason": {"type": "STRING"},
         "genre": {"type": "STRING"},
         "title": {"type": "STRING"},
+        "seo_title": {"type": "STRING"},
         "slug_en": {"type": "STRING"},
         "lede": {"type": "STRING"},
         "description": {"type": "STRING"},
@@ -315,6 +320,7 @@ ARTICLE_SCHEMA = {
         "is_relevant",
         "genre",
         "title",
+        "seo_title",
         "slug_en",
         "lede",
         "description",
@@ -330,6 +336,7 @@ ARTICLE_SCHEMA = {
         "skip_reason",
         "genre",
         "title",
+        "seo_title",
         "slug_en",
         "lede",
         "description",
@@ -653,6 +660,7 @@ def build_record(entry: dict, data: dict) -> dict:
     record = {
         "slug": unique_slug(slugify(data.get("slug_en", "")), video_id),
         "title": str(data["title"]).strip(),
+        "seoTitle": str(data.get("seo_title", "")).strip(),
         "lede": normalize_body(data.get("lede", "")),
         "description": str(data["description"]).strip(),
         "keywords": clean_list(data.get("keywords"), 14),

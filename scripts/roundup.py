@@ -96,6 +96,10 @@ PROMPT = """以下は「{topic}」について書かれた {count} 本の記事�
 # 各フィールドの要件
 - title: 38〜52文字。「{topic}」を含め、まとめ記事だと分かる表現にする。
   例:「{topic} で発表された全機能まとめ、{count}本の公式動画から分かったこと」
+- seo_title: 検索結果に表示する短い題名。**全角24〜30文字**（英数字は半角0.5文字換算で数える）。
+  読者が検索に打ち込む語（製品名・企業名・機能名）を**先頭**に置き、「まとめ」「全機能」など、まとめ記事だと分かる語を続ける。
+  「OpenAI、」のような読点区切りの社名始まりより、製品名始まりを優先。記号は「｜」「：」を最大1つまで。
+  良い例:「GPT-6 Astra×Figma連携｜2時間でUI試作を自動化」「ChatGPT Plugin Extensionsとは：MCPでUI拡張」
 - lede: 180〜240字のリード文。
 - description: 100〜130文字のメタディスクリプション。
 - keywords: 検索されうる日本語キーワード 8〜12個。
@@ -108,6 +112,7 @@ SCHEMA = {
     "type": "OBJECT",
     "properties": {
         "title": {"type": "STRING"},
+        "seo_title": {"type": "STRING"},
         "slug_en": {"type": "STRING"},
         "lede": {"type": "STRING"},
         "description": {"type": "STRING"},
@@ -118,6 +123,7 @@ SCHEMA = {
     },
     "required": [
         "title",
+        "seo_title",
         "slug_en",
         "lede",
         "description",
@@ -128,6 +134,7 @@ SCHEMA = {
     ],
     "propertyOrdering": [
         "title",
+        "seo_title",
         "slug_en",
         "lede",
         "description",
@@ -245,6 +252,7 @@ def build_record(topic: str, data: dict, members: list[dict]) -> dict:
             for m in members
         ],
         "title": str(data["title"]).strip(),
+        "seoTitle": str(data.get("seo_title", "")).strip(),
         "lede": normalize_body(data.get("lede", "")),
         "description": str(data["description"]).strip(),
         "keywords": clean_list(data.get("keywords"), 14),

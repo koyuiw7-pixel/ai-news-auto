@@ -39,7 +39,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const url = `/articles/${article.slug}`;
   return {
-    title: article.title,
+    // 検索結果では全角30字前後で切れるため、短い題名を優先する。
+    // 記事内の見出し・OGP（SNSカード）は情報量の多い本来の title のまま
+    title: article.seoTitle || article.title,
     description: article.description,
     keywords: article.keywords,
     alternates: { canonical: url },

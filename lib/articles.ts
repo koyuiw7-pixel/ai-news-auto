@@ -32,6 +32,8 @@ export type Article = {
   roundupSlug?: string;
   roundupTitle?: string;
   title: string;
+  /** 検索結果用の短い題名（<title>）。無ければ title を使う */
+  seoTitle?: string;
   /** 記事冒頭のリード文 */
   lede: string;
   description: string;
