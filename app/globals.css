@@ -385,12 +385,26 @@ mark {
 }
 
 .prose :where(table) {
+  /* 列が多い表だけ横スクロールにし、セル内の文章は折り返して読めるようにする。
+     以前は nowrap で1行に押し込み、右端が切れて見えなかった */
   display: block;
   overflow-x: auto;
-  white-space: nowrap;
   font-size: 0.875rem;
+  line-height: 1.75;
   border: 1px solid var(--line);
   border-radius: 0.75rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose :where(td, th) {
+  min-width: 8.5em;
+  vertical-align: top;
+}
+
+/* 1列目は項目名なので折り返さず、行の見出しとして固定幅で揃える */
+.prose :where(td:first-child, th:first-child) {
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .prose :where(thead) {
