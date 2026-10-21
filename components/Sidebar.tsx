@@ -17,9 +17,9 @@ type Props = {
 
 export default function Sidebar({ current, affiliates = [] }: Props) {
   const latest = getAllArticles()
-    .filter((a) => a.slug !== current?.slug)
+    .filter((a) => a.genreSlug === "ai" && a.slug !== current?.slug)
     .slice(0, 5);
-  const tags = getAllTags().slice(0, 14);
+  const tags = getAllTags(true).slice(0, 14);
 
   return (
     <div className="space-y-8 lg:sticky lg:top-20">

@@ -3,7 +3,10 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { siteConfig } from "@/site.config";
 
 const NAV = [
-  { href: "/genres/ai", label: "AIニュース" },
+  { href: "/", label: "新着" },
+  { href: "/companies/openai", label: "OpenAI" },
+  { href: "/companies/google", label: "Google" },
+  { href: "/companies/anthropic", label: "Anthropic" },
   { href: "/#roundups", label: "まとめ" },
   { href: "/articles", label: "記事一覧" },
 ];
