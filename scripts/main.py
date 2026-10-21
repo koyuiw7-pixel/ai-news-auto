@@ -57,6 +57,10 @@ DEFAULT_LOOKBACK_DAYS = int(os.environ.get("LOOKBACK_DAYS", "10"))
 MAX_ATTEMPTS_PER_VIDEO = 2  # これを超えて失敗した動画は諦める
 SHORTS_RE = re.compile(r"#shorts?\b|＃ショート", re.IGNORECASE)
 REQUEST_RETRIES = 3
+# 生成1本あたりに試す動画の数（skip 判定を見込んだ余裕）
+ATTEMPTS_PER_ARTICLE = 3
+# 新しい動画の解析を始めてよい経過時間。ジョブ全体の上限（60分）に余裕を残す
+RUN_TIME_BUDGET_SEC = 30 * 60
 # 1リクエストの上限（ミリ秒）。503のあと応答が返らず固まると、ジョブ全体が
 # タイムアウトで打ち切られ、それまでの生成結果がコミットされずに失われるため。
 REQUEST_TIMEOUT_MS = 300_000
@@ -867,7 +871,9 @@ def main() -> int:
         candidates = collect_candidates(channels, args.days, state)
 
     log(f"[info] 候補 {len(candidates)} 件 / 上限 {args.max} 件")
-    targets = candidates[: args.max]
+    # 記事化の価値なし（skip）と判定される動画が多いので、上限は「生成できた本数」で数える。
+    # 解析を試す動画は多めに確保し、試行回数と経過時間の上限で無料枠とジョブ時間を守る。
+    targets = candidates[: args.max * ATTEMPTS_PER_ARTICLE]
 
     if not targets:
         log("[done] 新規に処理すべき動画はありません")
@@ -883,7 +889,14 @@ def main() -> int:
     client = build_client()
     created = 0
 
+    run_started = time.time()
     for index, entry in enumerate(targets, start=1):
+        if created >= args.max:
+            break
+        if time.time() - run_started > RUN_TIME_BUDGET_SEC:
+            log("[info] 時間の上限に達したため、残りは次回に回します")
+            break
+
         video_id = entry["video_id"]
         log(f"\n[{index}/{len(targets)}] 解析中: {entry['title']}")
         started = time.time()
@@ -893,6 +906,10 @@ def main() -> int:
         except Exception as error:  # noqa: BLE001
             log(f"   [NG] {error}")
             state["failed"][video_id] = state["failed"].get(video_id, 0) + 1
+            if "RESOURCE_EXHAUSTED" in str(error):
+                # 1日の無料枠を使い切った。続けても失敗するだけなので打ち切る
+                log("[info] 無料枠の上限に達したため、残りは次回に回します")
+                break
             continue
 
         if not data.get("is_relevant", True):
