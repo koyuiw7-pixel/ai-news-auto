@@ -27,7 +27,7 @@ MAX_URLS = 10000  # 1リクエストあたりの上限
 
 
 def site_url() -> str:
-    url = os.environ.get("NEXT_PUBLIC_SITE_URL") or "https://ai-news-auto.vercel.app"
+    url = os.environ.get("NEXT_PUBLIC_SITE_URL") or "https://ai-tech-express.jp"
     return url.rstrip("/")
 
 

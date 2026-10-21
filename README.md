@@ -273,7 +273,7 @@ API 自体が 503 で無効になります**（トークン未設定で誰でも
 
 ```bash
 curl -H "Authorization: Bearer $INTEGRATION_API_TOKEN" \
-  "https://ai-news-auto.vercel.app/api/v1/articles?genre=investment&limit=20"
+  "https://ai-tech-express.jp/api/v1/articles?genre=investment&limit=20"
 ```
 
 ### 必要な環境変数（Vercel）

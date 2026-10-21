@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from threads_token import API_BASE, KEY_ENV, TOKEN_PATH, now_iso, save_token  # noqa: E402
 
 AUTHORIZE_URL = "https://threads.com/oauth/authorize"
-DEFAULT_REDIRECT = "https://ai-news-auto.vercel.app/"
+DEFAULT_REDIRECT = "https://ai-tech-express.jp/"
 SCOPES = "threads_basic,threads_content_publish"
 
 
