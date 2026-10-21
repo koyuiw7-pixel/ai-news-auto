@@ -545,7 +545,10 @@ def load_affiliates() -> list[dict]:
                 "label": str(value.get("label") or name),
                 "url": url,
                 "note": str(value.get("note") or ""),
+                "pixel": str(value.get("pixel") or ""),
                 "aliases": [a.lower() for a in aliases if a],
+                # 記事の主題として扱われているときだけ出す語（本文のついでの言及では出さない）
+                "topics": [str(t).lower() for t in value.get("topics", []) if t],
             }
         )
     return entries
@@ -564,11 +567,18 @@ def match_affiliates(record: dict, mentioned: list[str]) -> list[dict]:
         [record["title"], record["description"], record.get("lede", ""), record["body"]]
     ).lower()
     mentioned_lower = {str(m).strip().lower() for m in mentioned if str(m).strip()}
+    subject = " ".join(
+        [record["title"], record["description"]]
+        + list(record.get("keywords", []))
+        + list(record.get("tags", []))
+    ).lower()
 
     matched = []
     for entry in catalog:
-        hit = any(a in mentioned_lower for a in entry["aliases"]) or any(
-            a in haystack for a in entry["aliases"]
+        hit = (
+            any(a in mentioned_lower for a in entry["aliases"])
+            or any(a in haystack for a in entry["aliases"])
+            or any(t in subject for t in entry["topics"])
         )
         if hit:
             matched.append(
@@ -577,6 +587,7 @@ def match_affiliates(record: dict, mentioned: list[str]) -> list[dict]:
                     "label": entry["label"],
                     "url": entry["url"],
                     "note": entry["note"],
+                    **({"pixel": entry["pixel"]} if entry["pixel"] else {}),
                 }
             )
     return matched[:6]

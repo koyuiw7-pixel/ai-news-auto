@@ -18,7 +18,7 @@ export default function AffiliateBox({ links, compact }: Props) {
     >
       <div className="flex items-baseline justify-between gap-2">
         <h2 className={`font-bold text-ink ${compact ? "text-sm" : "text-lg"}`}>
-          この記事で紹介したツール
+          この記事に関連するツール・サービス
         </h2>
         <span className="shrink-0 rounded bg-line px-1.5 py-0.5 text-[10px] text-muted">
           PR
@@ -48,6 +48,11 @@ export default function AffiliateBox({ links, compact }: Props) {
                 )}
               </span>
             </a>
+            {link.pixel && !compact && (
+              // ASPの表示回数計測（A8.net 推奨）。見た目には影響しない
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={link.pixel} width={1} height={1} alt="" className="absolute size-px opacity-0" />
+            )}
           </li>
         ))}
       </ul>

@@ -12,6 +12,8 @@ export type AffiliateLink = {
   label: string;
   url: string;
   note?: string;
+  /** ASPの表示計測用ピクセル（1x1画像） */
+  pixel?: string;
 };
 
 /** まとめ記事が統合した元記事 */
