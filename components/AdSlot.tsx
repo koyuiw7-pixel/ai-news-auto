@@ -7,7 +7,8 @@
  *   NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE_MIDDLE = 1234567890
  *   NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR        = 1234567890
  *
- * 未設定の間はダミー枠（AdSense Dummy）が表示されます。
+ * 未設定の間、本番では何も表示しない（空の広告枠は読者の邪魔になり、AdSense審査でも
+ * 「中身のない枠」と見なされうるため）。開発中だけ位置確認用のダミー枠を出す。
  */
 
 const CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
@@ -28,6 +29,7 @@ type Props = {
 export default function AdSlot({ position, className }: Props) {
   const slot = SLOT_IDS[position];
   const enabled = Boolean(CLIENT && slot);
+  if (!enabled && process.env.NODE_ENV === "production") return null;
 
   return (
     <aside
