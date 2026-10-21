@@ -65,19 +65,28 @@ def save_state(state: dict) -> None:
 
 
 def compose(article: dict) -> str:
-    """見出し → 要点3つ → 誘導 の順。流し読みでも要点だけは伝わる形にする。"""
-    label = "【まとめ】" if article.get("type") == "roundup" else "【速報】"
-    head = f"{label}{article['title']}"
-    tail = "続きはサイソクで👇"
-    points = [f"・{h.strip()}" for h in article.get("highlights", [])[:3] if h.strip()]
+    """投稿文。記事生成時に作った Threads 用の紹介文（threadsPost）があればそれを使う。
 
-    # 長すぎる場合は要点を後ろから削る。見出しと誘導は必ず残す
-    while points:
-        text = "\n\n".join([head, "\n".join(points), tail])
-        if len(text) <= MAX_CHARS:
-            return text
-        points.pop()
-    return "\n\n".join([head, tail])[:MAX_CHARS]
+    無い記事（以前の記事など）は、同じ考え方の定型で組み立てる：
+    短い見出しで手を止め、要点を2つだけ見せ、残りは記事で読んでもらう。
+    """
+    custom = str(article.get("threadsPost") or "").strip()
+    if custom and len(custom) <= MAX_CHARS:
+        return custom
+
+    label = "【まとめ】" if article.get("type") == "roundup" else "【速報】"
+    head = f"{label}{article.get('seoTitle') or article['title']}"
+    points = [f"✅ {h.strip()}" for h in article.get("highlights", []) if h.strip()]
+    shown, rest = points[:2], points[2:]
+    tail = "もう1つの注目点と詳しい数字は記事で👇" if rest else "詳しくは記事で👇"
+    text = "\n\n".join([head, "\n".join(shown), tail]) if shown else "\n\n".join([head, tail])
+    return text[:MAX_CHARS]
+
+
+def topic_of(article: dict) -> str:
+    """Threads のトピック（1つだけ付けられる）。企業名などの最初のタグを使う"""
+    tags = [t for t in article.get("tags", []) if t]
+    return tags[0][:50] if tags else "AI"
 
 
 def candidates(state: dict, hours: int) -> list[dict]:
@@ -209,6 +218,8 @@ def publish_via_buffer(api_key: str, channel_id: str, text: str, link: str, arti
                 "assets": [],
                 "metadata": {
                     "threads": {
+                        # トピックを付けると、そのトピックに関心のある人のフィードに載りやすくなる
+                        "topic": topic_of(article),
                         "linkAttachment": {
                             "url": link,
                             "title": article.get("seoTitle") or article["title"],

@@ -266,6 +266,13 @@ PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両�
   読者が検索に打ち込む語（製品名・企業名・機能名）を**先頭**に置き、何が分かる記事かを続ける。
   「OpenAI、」のような読点区切りの社名始まりより、製品名始まりを優先。記号は「｜」「：」を最大1つまで。
   良い例:「GPT-6 Astra×Figma連携｜2時間でUI試作を自動化」「ChatGPT Plugin Extensionsとは：MCPでUI拡張」
+- threads_post: Threadsに投稿する紹介文（全角150〜260字）。次の構成を守る。
+  1行目：スクロールを止める一文。記事中でいちばん意外で具体的な事実（数字・発言・ビフォーアフター）を先頭に置く。
+  2行目：何の発表か＋誰に関係があるか（例：「〜な人は要チェックです」）。
+  空行のあと「✅ 」で始まる要点を2つ（各40字以内）。
+  空行のあと、3つ目の注目点は答えを書かずに予告し「記事で👇」で締める。※答えは本文に必ずある内容に限る。
+  最後に、読者が返信したくなる短い問いかけを1文。
+  禁止：記事にない事実・誇張・煽り語（衝撃／ヤバい／ついに／必見／知らないと損）、ハッシュタグ、URL、絵文字は✅と👇以外使わない。
 - lede: 記事冒頭のリード文。150〜200字の1〜2段落。5W1Hを圧縮し、結論を先に置く。
   ここだけ読んでも発表の要点が分かる密度にする。
 - description: 100〜130文字のメタディスクリプション。検索結果に出る想定で、結論を含める。
@@ -299,6 +306,7 @@ ARTICLE_SCHEMA = {
         "genre": {"type": "STRING"},
         "title": {"type": "STRING"},
         "seo_title": {"type": "STRING"},
+        "threads_post": {"type": "STRING"},
         "slug_en": {"type": "STRING"},
         "lede": {"type": "STRING"},
         "description": {"type": "STRING"},
@@ -325,6 +333,7 @@ ARTICLE_SCHEMA = {
         "genre",
         "title",
         "seo_title",
+        "threads_post",
         "slug_en",
         "lede",
         "description",
@@ -341,6 +350,7 @@ ARTICLE_SCHEMA = {
         "genre",
         "title",
         "seo_title",
+        "threads_post",
         "slug_en",
         "lede",
         "description",
@@ -676,6 +686,7 @@ def build_record(entry: dict, data: dict) -> dict:
         "slug": unique_slug(slugify(data.get("slug_en", "")), video_id),
         "title": str(data["title"]).strip(),
         "seoTitle": str(data.get("seo_title", "")).strip(),
+        "threadsPost": normalize_body(str(data.get("threads_post", ""))).strip(),
         "lede": normalize_body(data.get("lede", "")),
         "description": str(data["description"]).strip(),
         "keywords": clean_list(data.get("keywords"), 14),
