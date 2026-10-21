@@ -107,6 +107,8 @@ jobs:
         env:
           THREADS_MODE: ${{ vars.THREADS_MODE }}
           THREADS_TOKEN_KEY: ${{ secrets.THREADS_TOKEN_KEY }}
+          # Buffer 経由で投稿する場合の API キー（設定されていればこちらを優先）
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
         run: |
           python scripts/threads_post.py --max 2
           if [ -z "$(git status --porcelain state)" ]; then

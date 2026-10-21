@@ -1,0 +1,21 @@
+name: Threads connection check
+
+# 手動実行専用。Buffer（または公式API）の接続先と下書きを確認するだけで、何も投稿しない
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Check Buffer connection
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: python scripts/threads_post.py --check-buffer
+      - name: Draft posts (not published)
+        run: python scripts/threads_post.py --dry-run --hours 72 --max 2

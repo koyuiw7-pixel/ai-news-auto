@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
 """新着記事を Threads に自動投稿する。
 
-X は API 投稿が有料だが、Threads の公式 API は無料（24時間で250件まで）。
 記事の見出しと「3秒でわかる要点」から投稿文を組み立てるので、Gemini は呼ばない。
+投稿の経路は2つあり、設定されている方を使う（両方あれば Buffer を優先）。
 
-  python3 scripts/threads_post.py --dry-run   # 投稿文を表示するだけ（トークン不要）
-  python3 scripts/threads_post.py             # THREADS_MODE=live のときだけ実際に投稿
+  1. Buffer 経由（BUFFER_API_KEY）
+     Buffer に Threads をつないでおけば、Meta の開発者登録や電話番号の認証が要らない。
+     Buffer の API は無料プランでも使える。
+  2. Threads 公式 API 経由（scripts/threads_auth.py で取得したトークン）
+
+  python3 scripts/threads_post.py --dry-run        # 投稿文を表示するだけ
+  python3 scripts/threads_post.py --check-buffer   # Buffer の接続先を確認するだけ（投稿しない）
+  python3 scripts/threads_post.py                  # THREADS_MODE=live のときだけ実際に投稿
 
 THREADS_MODE が live 以外（未設定を含む）なら下書きモード。
 Actions ではジョブサマリーに投稿文を書き出すだけで、何も公開しない。
@@ -35,6 +41,7 @@ STATE_PATH = ROOT / "state" / "threads_posted.json"
 MAX_CHARS = 480
 # コンテナ作成から公開まで平均30秒待つよう公式ドキュメントが推奨している
 PUBLISH_WAIT_SEC = 30
+BUFFER_API = "https://api.buffer.com"
 
 
 def log(message: str) -> None:
@@ -149,6 +156,76 @@ def publish(token: dict, text: str, link: str) -> dict:
     return {"id": result["id"], "permalink": detail.get("permalink", "")}
 
 
+def buffer_graphql(api_key: str, query: str, variables: dict | None = None) -> dict:
+    body = json.dumps({"query": query, "variables": variables or {}}).encode()
+    request = urllib.request.Request(
+        BUFFER_API,
+        data=body,
+        method="POST",
+        headers={"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=60) as res:
+            payload = json.loads(res.read())
+    except urllib.error.HTTPError as error:
+        raise RuntimeError(f"Buffer API {error.code}: {error.read().decode()[:300]}") from error
+    if payload.get("errors"):
+        raise RuntimeError(f"Buffer API: {json.dumps(payload['errors'], ensure_ascii=False)[:300]}")
+    return payload["data"]
+
+
+def buffer_threads_channel(api_key: str) -> dict | None:
+    """Buffer につながっている Threads のチャンネルを探す（IDを手で設定しなくて済むように）"""
+    orgs = buffer_graphql(api_key, "query { account { organizations { id } } }")
+    for org in orgs["account"]["organizations"]:
+        # ID の型名に依存しないよう、値をクエリに直接埋め込む（JSON文字列としてエスケープ済み）
+        data = buffer_graphql(
+            api_key,
+            f"query {{ channels(input: {{ organizationId: {json.dumps(org['id'])} }}) "
+            "{ id name displayName service isQueuePaused } }",
+        )
+        for channel in data["channels"]:
+            if str(channel.get("service", "")).lower() == "threads":
+                return channel
+    return None
+
+
+def publish_via_buffer(api_key: str, channel_id: str, text: str, link: str, article: dict) -> dict:
+    """Buffer に「今すぐ投稿」で渡す。リンクは Threads のリンクカード（独自カバー画像つき）にする"""
+    data = buffer_graphql(
+        api_key,
+        """mutation($input: CreatePostInput!) {
+          createPost(input: $input) {
+            ... on PostActionSuccess { post { id } }
+            ... on MutationError { message }
+          }
+        }""",
+        {
+            "input": {
+                "channelId": channel_id,
+                "text": text,
+                "schedulingType": "automatic",
+                "mode": "shareNow",
+                "assets": [],
+                "metadata": {
+                    "threads": {
+                        "linkAttachment": {
+                            "url": link,
+                            "title": article.get("seoTitle") or article["title"],
+                            "description": article.get("description", "")[:120],
+                            "thumbnail": {"url": f"{site_url()}/cover/{article['slug']}"},
+                        }
+                    }
+                },
+            }
+        },
+    )
+    result = data["createPost"]
+    if "message" in result:
+        raise RuntimeError(f"Buffer: {result['message']}")
+    return {"id": result["post"]["id"], "via": "buffer", "permalink": ""}
+
+
 def write_summary(lines: list[str]) -> None:
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:
@@ -162,16 +239,32 @@ def main() -> int:
     parser.add_argument("--hours", type=int, default=24, help="何時間前までに生成された記事を対象にするか")
     parser.add_argument("--wait", type=int, default=600, help="記事の公開を待つ最大秒数")
     parser.add_argument("--dry-run", action="store_true", help="投稿せず文面だけ表示する")
+    parser.add_argument("--check-buffer", action="store_true", help="Buffer の接続先を確認するだけ")
     args = parser.parse_args()
 
     live = os.environ.get("THREADS_MODE") == "live" and not args.dry_run
     state = load_state()
+    buffer_key = os.environ.get("BUFFER_API_KEY", "").strip()
+
+    # Buffer がつながっていれば、毎回接続先を確認してログに残す（下書きモードでも）
+    buffer_channel = None
+    if buffer_key:
+        try:
+            buffer_channel = buffer_threads_channel(buffer_key)
+        except RuntimeError as error:
+            log(f"[warn] Buffer に接続できません: {error}")
+        if buffer_channel:
+            log(f"[buffer] 投稿先: {buffer_channel.get('displayName') or buffer_channel.get('name')} (Threads)")
+        else:
+            log("[buffer] Buffer に Threads のチャンネルが見つかりません（Buffer で Threads を接続してください）")
+    if args.check_buffer:
+        return 0 if buffer_channel else 1
 
     token = None
-    if live:
+    if live and not buffer_channel:
         token = load_token()
         if token is None:
-            log("[skip] Threads のトークンが未設定です（scripts/threads_auth.py で設定）")
+            log("[skip] 投稿経路が未設定です（Buffer の API キー、または scripts/threads_auth.py のトークン）")
             return 0
         # 投稿が無い回でも期限（60日）を延ばし続ける
         token = refresh_if_needed(token)
@@ -194,7 +287,10 @@ def main() -> int:
             log(f"  [skip] 記事がまだ公開されていません。次回に回します: {link}")
             continue
         try:
-            result = publish(token, text, link)
+            if buffer_channel:
+                result = publish_via_buffer(buffer_key, buffer_channel["id"], text, link, article)
+            else:
+                result = publish(token, text, link)
         except RuntimeError as error:
             # 1本の失敗でパイプライン全体を止めない。未投稿のまま次回再挑戦する
             log(f"  [error] {error}")
