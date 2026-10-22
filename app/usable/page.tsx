@@ -35,7 +35,7 @@ export default function UsablePage() {
   const free = usable.filter((a) => verdictOf(a)?.free === true);
   const soon = judged.filter((a) => verdictOf(a)?.status === "soon");
   const updatedAt = usable[0]?.generatedAt;
-  const offer = offerForTopic("business");
+  const offer = offerForTopic("business", "AIを仕事に取り入れるなら");
 
   // 企業ごとの「今すぐ使える」本数
   const byCompany = new Map<string, { article: Article; count: number }>();
@@ -61,13 +61,6 @@ export default function UsablePage() {
     })),
   };
 
-  const stats = [
-    { label: "今すぐ使える発表", value: usable.length },
-    { label: "うち無料で試せる", value: free.length },
-    { label: "提供はこれから", value: soon.length },
-    { label: "判定した発表", value: judged.length },
-  ];
-
   return (
     <div className="mx-auto max-w-[1240px] px-5 py-8 sm:px-8 sm:py-10">
       <script
@@ -77,7 +70,7 @@ export default function UsablePage() {
       />
 
       {/* 見出しと数字を横に並べ、ファーストビューを詰める */}
-      <header className="grid gap-6 border-b border-ink pb-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,500px)] lg:items-end lg:gap-12">
+      <header className="border-b border-ink pb-7">
         <div>
           <p className="flex items-center gap-2 text-[12px] font-bold text-muted">
             <VerdictBadge kind="go" />
@@ -86,52 +79,32 @@ export default function UsablePage() {
           <h1 className="display mt-3 text-[1.85rem] leading-tight text-balance sm:text-[2.3rem]">{TITLE}</h1>
           <p className="mt-3 max-w-[62ch] text-[14.5px] leading-[1.85] text-ink-soft">{DESCRIPTION}</p>
         </div>
-        <dl className="grid grid-cols-2 overflow-hidden rounded-2xl border border-line sm:grid-cols-4">
-          {stats.map((item, index) => (
-            <div
-              key={item.label}
-              className={`px-4 py-3.5 ${index % 2 === 1 ? "border-l border-line" : ""} ${index >= 2 ? "border-t border-line sm:border-t-0" : ""} ${index === 2 ? "sm:border-l" : ""} ${index === 0 ? "bg-go-soft" : ""}`}
-            >
-              <dt className={`text-[11px] ${index === 0 ? "font-bold text-go" : "text-muted"}`}>{item.label}</dt>
-              <dd className="index-num mt-0.5 text-[24px] font-bold leading-none text-ink">
-                {item.value}
-                <span className="ml-0.5 text-[12px] font-bold text-muted">本</span>
-              </dd>
-            </div>
-          ))}
-        </dl>
       </header>
 
       <div className="mt-10 grid gap-14 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-12">
-        <section aria-labelledby="usable-list" className="min-w-0">
-          <div className="mb-2 flex items-end justify-between gap-4">
-            <h2 id="usable-list" className="display text-[1.5rem]">
-              今日から使えるもの
-            </h2>
-            <span className="index-num pb-1 text-[12px] text-muted">新しい順・{Math.min(usable.length, 40)}本</span>
+        <div className="min-w-0">
+          {/* 補助の一覧は左の列にまとめ、右側は商品枠だけにして最初から見えるようにする */}
+          <div className="grid gap-10 sm:grid-cols-2">
+            <RailList
+              id="free-heading"
+              title="無料で試せる"
+              note="今日から使えて、無料プラン・無料枠があるもの"
+              articles={free.slice(0, 5)}
+            />
+            <RailList id="soon-heading" title="もうすぐ使える" note="提供時期が発表されているもの" articles={soon.slice(0, 5)} />
           </div>
-          <Timeline articles={usable.slice(0, 40)} />
-        </section>
-
-        <aside className="grid content-start gap-10">
-          <RailList
-            id="free-heading"
-            title="無料で試せる"
-            note="今日から使えて、無料プラン・無料枠があるもの"
-            articles={free.slice(0, 6)}
-          />
 
           {companies.length > 0 && (
-            <section aria-labelledby="company-heading">
+            <section aria-labelledby="company-heading" className="mt-10">
               <RailHead id="company-heading" title="企業別：今すぐ使える数" />
-              <ul className="grid grid-cols-2 gap-2">
+              <ul className="flex flex-wrap gap-2">
                 {companies.map(({ article, count }) => {
                   const company = companyOf(article);
                   return (
                     <li key={company.slug}>
                       <Link
                         href={`/companies/${company.slug}`}
-                        className="flex items-center justify-between gap-2 rounded-xl border border-line px-3 py-2.5 hover:border-ink"
+                        className="flex items-center gap-2.5 rounded-full border border-line py-1.5 pl-2 pr-3 hover:border-ink"
                       >
                         <CompanyMark company={company} size={18} withName />
                         <span className="index-num text-[12px] font-bold text-go">{count}</span>
@@ -143,15 +116,25 @@ export default function UsablePage() {
             </section>
           )}
 
-          <RailList id="soon-heading" title="もうすぐ使える" note="提供時期が発表されているもの" articles={soon.slice(0, 5)} />
+          <section aria-labelledby="usable-list" className="mt-12">
+            <div className="mb-2 flex items-end justify-between gap-4">
+              <h2 id="usable-list" className="display text-[1.5rem]">
+                今日から使えるもの
+              </h2>
+              <span className="index-num pb-1 text-[12px] text-muted">新しい順・{Math.min(usable.length, 40)}本</span>
+            </div>
+            <Timeline articles={usable.slice(0, 40)} />
+          </section>
+        </div>
 
-          {/* 読み進めても右側に付いてくる商品枠 */}
-          {offer && (
-            <div className="lg:sticky lg:top-20">
+        {/* 開いた瞬間から右上に見え、読み進めても付いてくる商品枠 */}
+        {offer && (
+          <aside className="min-w-0">
+            <div className="lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:[scrollbar-width:thin]">
               <RailRanking offer={offer} />
             </div>
-          )}
-        </aside>
+          </aside>
+        )}
       </div>
 
       <p className="mt-12 rounded-2xl bg-surface px-5 py-4 text-[12px] leading-relaxed text-muted">

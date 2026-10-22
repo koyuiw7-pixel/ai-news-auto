@@ -56,12 +56,23 @@ export function Rating({ item, size = 12 }: { item: OfferItem; size?: number }) 
 }
 
 /** 商品写真。白地で見せる（ダーク表示でも商品の色が正しく見えるように） */
-export function ProductImage({ item, className = "", pad = "p-4" }: { item: OfferItem; className?: string; pad?: string }) {
+export function ProductImage({
+  item,
+  className = "",
+  pad = "p-4",
+  eager = false,
+}: {
+  item: OfferItem;
+  className?: string;
+  pad?: string;
+  /** 最初から画面に見える位置（右上の1位など）は遅延読み込みしない */
+  eager?: boolean;
+}) {
   return (
     <span className={`relative grid place-items-center overflow-hidden bg-white ${className}`}>
       {item.image ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={item.image} alt="" loading="lazy" className={`size-full object-contain ${pad}`} />
+        <img src={item.image} alt="" loading={eager ? "eager" : "lazy"} className={`size-full object-contain ${pad}`} />
       ) : (
         <span className="grid size-full place-items-center bg-ink px-3 text-center text-[15px] font-bold leading-tight text-paper">
           {item.name}

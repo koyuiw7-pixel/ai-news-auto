@@ -166,10 +166,12 @@ export function offerForArticle(article: Article, maxItems = MAX_ITEMS): Offer |
 }
 
 /** 記事に紐づかないページ（一覧ページなど）で、話題を指定して商品枠を作る */
-export function offerForTopic(key: string, maxItems = MAX_ITEMS): Offer | undefined {
+export function offerForTopic(key: string, eyebrow?: string, maxItems = MAX_ITEMS): Offer | undefined {
   const { offers } = load();
-  const topic = offers.topics.find((t) => t.key === key);
-  if (!topic) return undefined;
+  const found = offers.topics.find((t) => t.key === key);
+  if (!found) return undefined;
+  // 記事ページ以外では「この記事の〜」という見出しが合わないので差し替える
+  const topic = eyebrow ? { ...found, eyebrow } : found;
   return buildOffer(topic, offers.fallbackByGenre?.[topic.genre ?? "ai"] ?? offers.fallback, maxItems);
 }
 
