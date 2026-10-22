@@ -33,7 +33,7 @@ RAKUTEN_HGC = "g00q0724.2bo11c45.g00q0724.2bo12179/a26102173090_4BELTP_50ED2Q_2H
 PIXEL = "https://www15.a8.net/0.gif?a8mat=" + A8MAT
 
 USER_AGENT = "Mozilla/5.0 (compatible; SaisokuBot/1.0; +https://ai-tech-express.jp)"
-PER_TOPIC = 3
+PER_TOPIC = 4
 MIN_YEAR = 2025
 
 
@@ -174,23 +174,31 @@ def main() -> int:
     used: set[str] = set()
 
     for topic in offers["topics"]:
-        key, keyword = topic["key"], topic.get("search")
-        if not keyword:
-            continue
-        try:
-            items = parse(fetch(keyword))
-        except Exception as error:  # 取得に失敗した話題は前回の結果を残す
-            print(f"[books] {key}: 取得失敗 {error}", file=sys.stderr)
+        key = topic["key"]
+        keywords = topic.get("search") or []
+        if isinstance(keywords, str):
+            keywords = [keywords]
+        chosen: list[dict] = []
+        failed = False
+        # 検索語を順に試し、話題に合う本が PER_TOPIC 冊そろうまで集める
+        for keyword in keywords:
+            try:
+                items = parse(fetch(keyword))
+            except Exception as error:
+                print(f"[books] {key} ({keyword}): 取得失敗 {error}", file=sys.stderr)
+                failed = True
+                continue
+            picked = pick(items, used | {c["rbId"] for c in chosen}, topic.get("require", ""), topic.get("exclude", ""))
+            chosen += [{**item, "keyword": keyword} for item in picked[: PER_TOPIC - len(chosen)]]
+            time.sleep(1.5)
+            if len(chosen) >= PER_TOPIC:
+                break
+        if not chosen and failed:  # 取得に失敗した話題は前回の結果を残す
             result[key] = previous.get("books", {}).get(key, [])
             continue
-        chosen = pick(items, used, topic.get("require", ""), topic.get("exclude", ""))
         used.update(item["rbId"] for item in chosen)
-        result[key] = [
-            {**item, "keyword": keyword, "url": affiliate_url(item["rbId"], item["itemId"])}
-            for item in chosen
-        ]
-        print(f"[books] {key} ({keyword}): {len(items)}件 → " + " / ".join(i["title"][:24] for i in chosen))
-        time.sleep(1.5)
+        result[key] = [{**item, "url": affiliate_url(item["rbId"], item["itemId"])} for item in chosen]
+        print(f"[books] {key}: " + " / ".join(i["title"][:20] for i in chosen))
 
     partner_prices: dict[str, int] = {}
     for key, partner in offers.get("partners", {}).items():

@@ -4,8 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import AffiliateBox from "@/components/AffiliateBox";
-import OfferCard from "@/components/OfferCard";
-import RailShop from "@/components/rail/RailShop";
+import MobilePrBar from "@/components/rail/MobilePrBar";
+import RailRanking from "@/components/rail/RailRanking";
 import ArticleCard from "@/components/ArticleCard";
 import CompanyMark from "@/components/CompanyMark";
 import CtaBanner from "@/components/CtaBanner";
@@ -341,7 +341,7 @@ export default async function ArticlePage({ params }: Props) {
               記事末だけだと、ページの4分の3より下まで読んだ人にしか見えなかった */}
           {bodyTail && offer && (
             <div className="my-10 max-w-[46em]">
-              <OfferCard offer={offer} />
+              <RailRanking offer={offer} wide id="offer-inline" />
             </div>
           )}
           {bodyTail && !offer && affiliates.length > 0 && (
@@ -388,7 +388,7 @@ export default async function ArticlePage({ params }: Props) {
           {/* 本文が短く途中に置けなかった記事だけ、記事末に出す */}
           {!bodyTail && offer && (
             <div className="mt-12 max-w-[46em]">
-              <OfferCard offer={offer} />
+              <RailRanking offer={offer} wide id="offer-inline" />
             </div>
           )}
           {!bodyTail && !offer && affiliates.length > 0 && (
@@ -440,13 +440,16 @@ export default async function ArticlePage({ params }: Props) {
             // 商品枠だけを右側に置き、読み進めても常に見える位置に付いてくる。
             // 以前は最新記事やタグも並べていて背が高く、最後までスクロールしないと追従しなかった
             <div className="lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:[scrollbar-width:thin]">
-              <RailShop offer={offer} />
+              <RailRanking offer={offer} />
             </div>
           ) : (
             <Sidebar current={article} affiliates={affiliates} />
           )}
         </aside>
       </div>
+
+      {/* スマホ：読み進めると画面下にイチオシを出す */}
+      {offer && <MobilePrBar item={offer.items[0]} watchId="offer-inline" />}
     </div>
   );
 }

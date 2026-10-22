@@ -15,7 +15,9 @@ type Topic = {
   headline: string;
   lead: string;
   partners: string[];
-  search?: string;
+  search?: string | string[];
+  /** 商品が足りないときに補う話題 */
+  fill?: string[];
 };
 
 type Partner = {
@@ -173,26 +175,34 @@ export function offerForArticle(article: Article, maxItems = MAX_ITEMS): Offer |
     if (program.pixel) pixels.add(program.pixel);
   }
 
-  const books = products?.books?.[topic.key] ?? [];
-  for (const book of books.slice(0, Math.max(0, maxItems - items.length))) {
-    items.push({
-      key: book.rbId,
-      kind: "book",
-      name: book.title,
-      label: items.length === 0 ? "売れ筋" : undefined,
-      author: book.author,
-      price: book.price,
-      image: book.image,
-      url: book.url,
-      shop: "楽天ブックス",
-      cta: "楽天で見る",
-      rating: book.rating,
-      reviews: book.reviews,
-      rank: book.rank,
-      keyword: book.keyword,
-    });
+  // 話題の本 → 補充用の話題の本 → 既定の話題の本、の順に、必ず maxItems 個そろえる
+  const seen = new Set<string>();
+  const sources = [topic.key, ...(topic.fill ?? []), offers.fallback];
+  let usedBooks = false;
+  for (const source of sources) {
+    for (const book of products?.books?.[source] ?? []) {
+      if (items.length >= maxItems) break;
+      if (seen.has(book.rbId)) continue;
+      seen.add(book.rbId);
+      usedBooks = true;
+      items.push({
+        key: book.rbId,
+        kind: "book",
+        name: book.title,
+        author: book.author,
+        price: book.price,
+        image: book.image,
+        url: book.url,
+        shop: "楽天ブックス",
+        cta: "楽天で見る",
+        rating: book.rating,
+        reviews: book.reviews,
+        rank: book.rank,
+        keyword: book.keyword,
+      });
+    }
   }
-  if (books.length > 0 && products?.pixel) pixels.add(products.pixel);
+  if (usedBooks && products?.pixel) pixels.add(products.pixel);
 
   if (items.length === 0) return undefined;
   return {

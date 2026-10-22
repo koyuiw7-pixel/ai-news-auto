@@ -18,6 +18,16 @@ export function rankBadge(item: OfferItem): string | undefined {
   return `楽天売れ筋${item.rank}位`;
 }
 
+/** 1位に添える「ここがおすすめ」。提携商品は編集部の一言、本は楽天の実データから作る */
+export function reasonOf(item: OfferItem): string | undefined {
+  if (item.note) return item.note;
+  if (item.kind !== "book") return undefined;
+  const parts: string[] = [];
+  if (item.rank && item.rank <= 10 && item.keyword) parts.push(`楽天ブックス「${item.keyword}」の売れ筋${item.rank}位`);
+  if (item.rating != null && item.reviews && item.reviews >= 3) parts.push(`レビュー${item.reviews}件で平均${item.rating.toFixed(1)}`);
+  return parts.length > 0 ? parts.join("。") : undefined;
+}
+
 export function Stars({ value, size = 12 }: { value: number; size?: number }) {
   const percent = Math.max(0, Math.min(100, (value / 5) * 100));
   return (
