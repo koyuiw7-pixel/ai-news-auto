@@ -29,6 +29,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from channels import CHANNELS, Channel  # noqa: E402
 from genres import GENRES, GENRES_BY_SLUG  # noqa: E402
 from topics import is_off_topic  # noqa: E402
+import threads_hooks  # noqa: E402
 
 # --------------------------------------------------------------------------- #
 # 設定
@@ -269,15 +270,14 @@ PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両�
   「OpenAI、」のような読点区切りの社名始まりより、製品名始まりを優先。記号は「｜」「：」を最大1つまで。
   良い例:「GPT-6 Astra×Figma連携｜2時間でUI試作を自動化」「ChatGPT Plugin Extensionsとは：MCPでUI拡張」
 - threads_post: Threadsに投稿する紹介文（全角150〜260字）。次の構成を守る。
-  1行目：読者への問いかけ（30字以内）。人が友人に話しかけるような口語で、読者の日常の作業や悩みに寄せる。
-    良い例：「議事録づくり、まだ手作業でやってますか？」「ChatGPTに資料を作らせて、手直しで結局疲れてません？」
-    悪い例（使わない）：「〜をご存知ですか？」「〜について知りたくありませんか？」のような宣伝っぽい定型、記事タイトルの言い換え。
-  2行目：その答えになる、記事中でいちばん意外で具体的な事実（数字・発言・ビフォーアフター）。
+  1行目：プロンプト末尾の「Threads 紹介文の書き出し」から、この記事に合う型を1つ選んで書く（30字以内）。
+    悪い例（使わない）：「〜をご存知ですか？」のような宣伝っぽい定型、記事タイトルの言い換え。
+  2行目：1行目を受ける、記事中でいちばん具体的な事実（数字・発言・ビフォーアフター）。1行目と重複させない。
   3行目：何の発表か＋誰に関係があるか（例：「〜な人は要チェックです」）。
   空行のあと「✅ 」で始まる要点を2つ（各40字以内）。
   空行のあと、3つ目の注目点は答えを書かずに予告し「記事で👇」で締める。※答えは本文に必ずある内容に限る。
   全体を通して、AIが書いたような硬い言い回し（「〜となっています」「〜が可能です」の連続）を避け、人が書いたような自然な文にする。
-  禁止：記事にない事実・誇張・煽り語（衝撃／ヤバい／ついに／必見／知らないと損）、ハッシュタグ、URL、絵文字は✅と👇以外使わない。
+  禁止：記事にない事実・誇張・煽り語（衝撃／ヤバい／必見／知らないと損）、ハッシュタグ、URL、絵文字は✅と👇以外使わない。
 - lede: 記事冒頭のリード文。150〜200字の1〜2段落。5W1Hを圧縮し、結論を先に置く。
   ここだけ読んでも発表の要点が分かる密度にする。
 - description: 100〜130文字のメタディスクリプション。検索結果に出る想定で、結論を含める。
@@ -322,6 +322,7 @@ ARTICLE_SCHEMA = {
         "title": {"type": "STRING"},
         "seo_title": {"type": "STRING"},
         "threads_post": {"type": "STRING"},
+        "threads_hook": {"type": "STRING", "enum": threads_hooks.HOOK_KEYS},
         "slug_en": {"type": "STRING"},
         "lede": {"type": "STRING"},
         "description": {"type": "STRING"},
@@ -362,6 +363,7 @@ ARTICLE_SCHEMA = {
         "title",
         "seo_title",
         "threads_post",
+        "threads_hook",
         "slug_en",
         "lede",
         "description",
@@ -380,6 +382,7 @@ ARTICLE_SCHEMA = {
         "title",
         "seo_title",
         "threads_post",
+        "threads_hook",
         "slug_en",
         "lede",
         "description",
@@ -460,6 +463,8 @@ def generate_article(client, entry: dict) -> dict:
             f"  - {g.slug}: {g.name}（{g.description[:48]}…）" for g in GENRES
         ),
     )
+    # Threads の書き出しの型（直近で使った型は避ける）
+    prompt += "\n\n" + threads_hooks.prompt_block()
     system_instruction = f"{SYSTEM_INSTRUCTION_BASE}\n\n{genre.persona}"
 
     contents = types.Content(
@@ -745,6 +750,7 @@ def build_record(entry: dict, data: dict) -> dict:
         "title": str(data["title"]).strip(),
         "seoTitle": str(data.get("seo_title", "")).strip(),
         "threadsPost": normalize_body(str(data.get("threads_post", ""))).strip(),
+        "threadsHook": threads_hooks.clean_hook(data.get("threads_hook")),
         "lede": normalize_body(data.get("lede", "")),
         "description": str(data["description"]).strip(),
         "keywords": clean_list(data.get("keywords"), 14),

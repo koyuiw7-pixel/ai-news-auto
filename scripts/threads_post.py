@@ -65,7 +65,7 @@ def save_state(state: dict) -> None:
     STATE_PATH.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def compose(article: dict) -> str:
+def compose(article: dict, recent: list[str] | None = None) -> str:
     """投稿文。記事生成時に作った Threads 用の紹介文（threadsPost）があればそれを使う。
 
     無い記事（以前の記事など）は、同じ考え方の定型で組み立てる：
@@ -75,8 +75,12 @@ def compose(article: dict) -> str:
     if custom and len(custom) <= MAX_CHARS:
         return custom
 
-    label = "【まとめ】" if article.get("type") == "roundup" else "【速報】"
-    head = f"{opening_question(article)}\n{label}{article.get('seoTitle') or article['title']}"
+    hook, first = opening_line(article, recent or [])
+    article["_hook"] = hook
+    title = article.get("seoTitle") or article["title"]
+    head = title if hook == "breaking" else f"{first}\n{title}"
+    if hook == "breaking":
+        head = f"{'【まとめ】' if article.get('type') == 'roundup' else '【速報】'}{title}"
     points = [f"✅ {h.strip()}" for h in article.get("highlights", []) if h.strip()]
     shown, rest = points[:2], points[2:]
     tail = "もう1つの注目点と詳しい数字は記事で👇" if rest else "詳しくは記事で👇"
@@ -84,19 +88,41 @@ def compose(article: dict) -> str:
     return text[:MAX_CHARS]
 
 
-def opening_question(article: dict) -> str:
-    """1行目の問いかけ。紹介文を持たない記事向けに、判定から人が話しかけるような一言を作る。"""
-    name = re.split(r"[｜|：:]", str(article.get("seoTitle") or ""))[0].strip()
-    status = (article.get("verdict") or {}).get("status")
-    if not name:
-        return "このニュース、もうチェックしました？"
+def openers(article: dict) -> list[tuple[str, str]]:
+    """紹介文を持たない記事向けの書き出し候補（型, 1行目）。判定から、事実として言えるものだけを作る。"""
+    name = re.split(r"[｜|：:？?]", str(article.get("seoTitle") or ""))[0].strip()
+    name = re.sub(r"(の仕組み)?を解説$|とは$|まとめ$|入門$", "", name).strip()
+    if not name or len(name) > 18:  # 長い名前を文に入れると不自然になるので「これ」で受ける
+        name = "これ"
+    verdict = article.get("verdict") or {}
+    status, japan, free = verdict.get("status"), verdict.get("japan"), verdict.get("free")
+    price, audience = str(verdict.get("price") or ""), str(verdict.get("audience") or "")
+    found: list[tuple[str, str]] = [("breaking", "【速報】")]
     if status == "available":
-        return f"{name}、もう試しました？"
+        found.append(("question", f"{name}、もう試しました？"))
+        if japan == "ok":
+            found.append(("conclusion", "結論：日本からも、もう使えます。"))
     if status == "limited":
-        return f"{name}、自分のアカウントで使えるか確認しました？"
+        found.append(("caution", f"{name}、使える人はまだ限られています。"))
     if status in ("soon", "demo"):
-        return f"{name}、いつ使えるようになるか気になってませんか？"
-    return f"{name}のニュース、もうチェックしました？"
+        found.append(("future", "使えるようになったら、仕事の進め方が変わりそうな発表です。"))
+        found.append(("question", f"{name}、いつ使えるようになるか気になってませんか？"))
+    if free is True and status == "available":
+        found.append(("free", "これ、無料で試せます。"))
+    if free is False and price and price not in ("不明", "未発表"):
+        found.append(("caution", f"使う前に料金だけ確認を。{price}です。"))
+    if audience and len(audience) <= 8:
+        found.append(("callout", f"{audience}の人、これはチェックしてほしい。"))
+    return found
+
+
+def opening_line(article: dict, recent: list[str]) -> tuple[str, str]:
+    """直近で使った型を避けて、記事ごとに書き出しを変える"""
+    options = openers(article)
+    fresh = [option for option in options if option[0] not in recent] or options
+    # 同じ記事なら毎回同じ結果になるよう、slug から決める
+    index = sum(ord(c) for c in article["slug"]) % len(fresh)
+    return fresh[index]
 
 
 def topic_of(article: dict) -> str:
@@ -306,9 +332,15 @@ def main() -> int:
         return 0
 
     summary = [f"### Threads {'投稿' if live else '下書き（未投稿）'}", ""]
+    # 直近の投稿で使った書き出しの型（同じ型を続けないため）
+    history = sorted(state["posted"].values(), key=lambda p: p.get("postedAt", ""), reverse=True)
+    recent = [p["hook"] for p in history if p.get("hook")][:4]
     for article in targets:
         link = f"{site_url()}/articles/{article['slug']}"
-        text = compose(article)
+        text = compose(article, recent)
+        hook = article.get("threadsHook") or article.get("_hook", "")
+        if hook:
+            recent = [hook, *recent][:4]
         log(f"--- {article['slug']} ({len(text)}文字)\n{text}\n{link}\n")
         summary += [f"**{article['slug']}**", "", "```", text, link, "```", ""]
         if not live:
@@ -328,6 +360,7 @@ def main() -> int:
             continue
         state["posted"][article["slug"]] = {
             **result,
+            "hook": hook,
             "postedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         }
         save_state(state)

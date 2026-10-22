@@ -23,6 +23,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cluster import build_clusters  # noqa: E402
+import threads_hooks  # noqa: E402
 from genres import GENRES_BY_SLUG  # noqa: E402
 from main import (  # noqa: E402
     ARTICLES_DIR,
@@ -101,15 +102,14 @@ PROMPT = """以下は「{topic}」について書かれた {count} 本の記事�
   「OpenAI、」のような読点区切りの社名始まりより、製品名始まりを優先。記号は「｜」「：」を最大1つまで。
   良い例:「GPT-6 Astra×Figma連携｜2時間でUI試作を自動化」「ChatGPT Plugin Extensionsとは：MCPでUI拡張」
 - threads_post: Threadsに投稿する紹介文（全角150〜260字）。次の構成を守る。
-  1行目：読者への問いかけ（30字以内）。人が友人に話しかけるような口語で、読者の日常の作業や悩みに寄せる。
-    良い例：「議事録づくり、まだ手作業でやってますか？」「ChatGPTに資料を作らせて、手直しで結局疲れてません？」
-    悪い例（使わない）：「〜をご存知ですか？」「〜について知りたくありませんか？」のような宣伝っぽい定型、記事タイトルの言い換え。
-  2行目：その答えになる、記事中でいちばん意外で具体的な事実（数字・発言・ビフォーアフター）。
+  1行目：プロンプト末尾の「Threads 紹介文の書き出し」から、この記事に合う型を1つ選んで書く（30字以内）。
+    悪い例（使わない）：「〜をご存知ですか？」のような宣伝っぽい定型、記事タイトルの言い換え。
+  2行目：1行目を受ける、記事中でいちばん具体的な事実（数字・発言・ビフォーアフター）。1行目と重複させない。
   3行目：何の発表か＋誰に関係があるか（例：「〜な人は要チェックです」）。
   空行のあと「✅ 」で始まる要点を2つ（各40字以内）。
   空行のあと、3つ目の注目点は答えを書かずに予告し「記事で👇」で締める。※答えは本文に必ずある内容に限る。
   全体を通して、AIが書いたような硬い言い回し（「〜となっています」「〜が可能です」の連続）を避け、人が書いたような自然な文にする。
-  禁止：記事にない事実・誇張・煽り語（衝撃／ヤバい／ついに／必見／知らないと損）、ハッシュタグ、URL、絵文字は✅と👇以外使わない。
+  禁止：記事にない事実・誇張・煽り語（衝撃／ヤバい／必見／知らないと損）、ハッシュタグ、URL、絵文字は✅と👇以外使わない。
 - lede: 180〜240字のリード文。
 - description: 100〜130文字のメタディスクリプション。
 - keywords: 検索されうる日本語キーワード 8〜12個。
@@ -124,6 +124,7 @@ SCHEMA = {
         "title": {"type": "STRING"},
         "seo_title": {"type": "STRING"},
         "threads_post": {"type": "STRING"},
+        "threads_hook": {"type": "STRING", "enum": threads_hooks.HOOK_KEYS},
         "slug_en": {"type": "STRING"},
         "lede": {"type": "STRING"},
         "description": {"type": "STRING"},
@@ -136,6 +137,7 @@ SCHEMA = {
         "title",
         "seo_title",
         "threads_post",
+        "threads_hook",
         "slug_en",
         "lede",
         "description",
@@ -148,6 +150,7 @@ SCHEMA = {
         "title",
         "seo_title",
         "threads_post",
+        "threads_hook",
         "slug_en",
         "lede",
         "description",
@@ -214,7 +217,7 @@ def generate(client, topic: str, articles: list[dict]) -> dict:
         topic=topic,
         count=len(articles),
         sources=build_sources_block(articles),
-    )
+    ) + "\n\n" + threads_hooks.prompt_block()
     config = types.GenerateContentConfig(
         system_instruction=SYSTEM_INSTRUCTION,
         response_mime_type="application/json",
@@ -270,6 +273,7 @@ def build_record(topic: str, data: dict, members: list[dict]) -> dict:
         "title": str(data["title"]).strip(),
         "seoTitle": str(data.get("seo_title", "")).strip(),
         "threadsPost": normalize_body(str(data.get("threads_post", ""))).strip(),
+        "threadsHook": threads_hooks.clean_hook(data.get("threads_hook")),
         "lede": normalize_body(data.get("lede", "")),
         "description": str(data["description"]).strip(),
         "keywords": clean_list(data.get("keywords"), 14),
