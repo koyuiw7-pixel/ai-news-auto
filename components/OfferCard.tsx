@@ -103,7 +103,7 @@ function OfferTile({ item }: { item: OfferItem }) {
 
         <span className="mt-auto flex items-end justify-between gap-2 pt-2.5">
           {price && <span className="index-num text-[16px] font-bold text-ink">{price}</span>}
-          <span className="text-[11px] text-muted">{item.shop}</span>
+          <span className="shrink-0 whitespace-nowrap text-[11px] text-muted">{item.shop}</span>
         </span>
         <span className="mt-2.5 hidden items-center justify-center gap-1 rounded-full bg-ink py-2 text-[12.5px] font-bold text-paper transition-opacity group-hover:opacity-85 sm:flex">
           {item.cta}
