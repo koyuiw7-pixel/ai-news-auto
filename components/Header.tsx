@@ -4,6 +4,7 @@ import { siteConfig } from "@/site.config";
 
 const NAV = [
   { href: "/", label: "新着" },
+  { href: "/usable", label: "使えるAI" },
   { href: "/companies/openai", label: "OpenAI" },
   { href: "/companies/google", label: "Google" },
   { href: "/companies/anthropic", label: "Anthropic" },

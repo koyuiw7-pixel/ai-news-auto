@@ -26,10 +26,10 @@ const TONE = {
 export default function VerdictCard({ verdict, judgedAt }: { verdict: Verdict; judgedAt: string }) {
   const kind = usability(verdict);
   const facts: { label: string; value: string; muted?: boolean }[] = [
-    { label: "日本から", value: japanLabel(verdict), muted: verdict.japan === "unknown" || verdict.status === "soon" || verdict.status === "demo" },
-    { label: "料金", value: verdict.price || "不明", muted: !verdict.price || verdict.price === "不明" },
-    { label: "無料で試す", value: freeLabel(verdict.free), muted: verdict.free === null },
-    { label: "向いている人", value: verdict.audience || "—", muted: !verdict.audience },
+    { label: "日本から使える？", value: japanLabel(verdict), muted: verdict.japan === "unknown" || verdict.status === "soon" || verdict.status === "demo" },
+    { label: "料金は？", value: verdict.price || "不明", muted: !verdict.price || verdict.price === "不明" },
+    { label: "無料で試せる？", value: freeLabel(verdict.free), muted: verdict.free === null },
+    { label: "誰に向いている？", value: verdict.audience || "—", muted: !verdict.audience },
   ];
 
   return (
