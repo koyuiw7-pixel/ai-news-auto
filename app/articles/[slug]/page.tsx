@@ -95,7 +95,13 @@ export default async function ArticlePage({ params }: Props) {
   const guide = guideForArticle(article);
   const verdict = verdictOf(article);
   // 全AI記事に、文脈に合った「試すなら」枠を1つ出す。無い場合（AI以外など）は従来の関連ツール枠
-  const offer = offerForArticle(article);
+  // 右側（1〜3位）と本文中（4〜6位）で同じ商品を出さないよう、6つ取って分ける
+  const offerAll = offerForArticle(article, 6);
+  const offer = offerAll && { ...offerAll, items: offerAll.items.slice(0, 3) };
+  const inlineOffer =
+    offerAll && offerAll.items.length >= 5
+      ? { ...offerAll, eyebrow: "あわせてチェック", items: offerAll.items.slice(3, 6) }
+      : undefined;
   // 日本語の黙読はおよそ毎分600字
   const readMinutes = Math.max(1, Math.round(article.body.length / 600));
   const html = await renderMarkdown(
@@ -377,9 +383,9 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 本文に馴染ませる収益導線。関連ツールは本文の途中（読者がまだ読んでいる位置）に置く。
               記事末だけだと、ページの4分の3より下まで読んだ人にしか見えなかった */}
-          {bodyTail && offer && (
+          {bodyTail && inlineOffer && (
             <div className="my-10 max-w-[46em]">
-              <RailRanking offer={offer} wide id="offer-inline" />
+              <RailRanking offer={inlineOffer} wide id="offer-inline" title="もっと深く知るための3選" />
             </div>
           )}
           {bodyTail && !offer && affiliates.length > 0 && (
@@ -424,9 +430,9 @@ export default async function ArticlePage({ params }: Props) {
           <CtaBanner genreSlug={article.genreSlug} slot="primary" className="mt-12" />
 
           {/* 本文が短く途中に置けなかった記事だけ、記事末に出す */}
-          {!bodyTail && offer && (
+          {!bodyTail && inlineOffer && (
             <div className="mt-12 max-w-[46em]">
-              <RailRanking offer={offer} wide id="offer-inline" />
+              <RailRanking offer={inlineOffer} wide id="offer-inline" title="もっと深く知るための3選" />
             </div>
           )}
           {!bodyTail && !offer && affiliates.length > 0 && (

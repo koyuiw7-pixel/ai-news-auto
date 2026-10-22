@@ -254,7 +254,8 @@
       "require": "お金|投資|資産|NISA",
       "exclude": "奴隷|陰謀",
       "fill": [
-        "invest-nisa"
+        "invest-nisa",
+        "invest-stocks"
       ]
     },
     {
@@ -271,9 +272,10 @@
         "賃貸経営"
       ],
       "require": "不動産投資|賃貸経営|物件|大家業|不動産",
-      "minYear": 2022,
+      "minYear": 2020,
       "fill": [
-        "re-home"
+        "re-home",
+        "invest-nisa"
       ],
       "exclude": "大家さんと僕"
     },
@@ -293,7 +295,8 @@
       "require": "家|住宅|マンション|ローン|不動産",
       "minYear": 2022,
       "fill": [
-        "re-invest"
+        "re-invest",
+        "invest-nisa"
       ]
     }
   ],

@@ -5,16 +5,29 @@ import { Pixels, PrNote, ProductImage, Rating, priceText, reasonOf } from "./par
  * 「サイソクのおすすめ3選」。記事の文脈に合う商品を番号つきで並べ、1位を大きく推す。
  * wide は本文中（横長）、それ以外は右側の縦長。どちらも中身は同じ。
  */
-export default function RailRanking({ offer, wide = false, id }: { offer: Offer; wide?: boolean; id?: string }) {
+export default function RailRanking({
+  offer,
+  wide = false,
+  id,
+  title,
+}: {
+  offer: Offer;
+  wide?: boolean;
+  id?: string;
+  /** 見出し。右側と本文中で同じ見出しが並ばないよう、本文中では変える */
+  title?: string;
+}) {
+  // 本文中の枠は右側の「イチオシ」と並ぶので、1位の札を変える
+  const badge = title ? "注目" : "イチオシ";
   const [first, ...rest] = offer.items;
   const hasBook = offer.items.some((i) => i.kind === "book");
 
   return (
     <aside id={id} aria-label="PR：サイソクのおすすめ" className="relative overflow-hidden rounded-2xl border border-ink bg-paper">
-      <Header offer={offer} wide={wide} />
+      <Header offer={offer} wide={wide} title={title ?? `サイソクのおすすめ${offer.items.length}選`} />
 
       <div>
-        <First item={first} wide={wide} />
+        <First item={first} wide={wide} badge={badge} />
         {rest.length > 0 && (
           <ol className={wide ? "grid border-t border-line sm:grid-cols-2 sm:[&>li:nth-child(2)]:border-l sm:[&>li]:border-b-0" : ""} start={2}>
             {rest.map((item, index) => (
@@ -32,7 +45,7 @@ export default function RailRanking({ offer, wide = false, id }: { offer: Offer;
   );
 }
 
-function Header({ offer, wide }: { offer: Offer; wide: boolean }) {
+function Header({ offer, wide, title }: { offer: Offer; wide: boolean; title: string }) {
   return (
     <div className={`bg-ink text-paper ${wide ? "px-5 py-4 sm:px-6" : "px-4 py-3.5"}`}>
       <p className="flex items-center gap-2 text-[11px] font-bold opacity-75">
@@ -40,14 +53,14 @@ function Header({ offer, wide }: { offer: Offer; wide: boolean }) {
         {offer.eyebrow}
       </p>
       <p className={`font-display mt-1.5 leading-snug ${wide ? "text-[22px]" : "text-[19px]"}`}>
-        サイソクのおすすめ{offer.items.length}選
+        {title}
       </p>
       <p className="mt-1 text-[12.5px] leading-snug opacity-85">{offer.headline}</p>
     </div>
   );
 }
 
-function First({ item, wide }: { item: OfferItem; wide: boolean }) {
+function First({ item, wide, badge }: { item: OfferItem; wide: boolean; badge: string }) {
   const reason = reasonOf(item);
   return (
     <a
@@ -58,7 +71,7 @@ function First({ item, wide }: { item: OfferItem; wide: boolean }) {
     >
       <span className="flex items-center gap-2">
         <span className="font-display text-[34px] leading-none text-live">1</span>
-        <span className="rounded-full bg-live px-2.5 py-1 text-[11px] font-bold text-white">イチオシ</span>
+        <span className="rounded-full bg-live px-2.5 py-1 text-[11px] font-bold text-white">{badge}</span>
         {item.label && <span className="text-[11.5px] font-bold text-live">{item.label}</span>}
       </span>
 
