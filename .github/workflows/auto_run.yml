@@ -68,6 +68,11 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/roundup.py --max 1
 
+      # 「試すなら」枠の本・価格を1日1回更新する（楽天ブックスの売れ筋と提携先の公式価格）
+      - name: Refresh product picks
+        continue-on-error: true
+        run: python scripts/rakuten_books.py --if-older-than 20
+
       - name: Commit & push
         id: commit
         run: |

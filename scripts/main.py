@@ -288,6 +288,16 @@ PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両�
 - highlights: 「3秒でわかる要点」ちょうど3つ。各40〜60文字で、数値や固有名詞を含む具体的な内容。
 - timetable: 動画のタイムテーブル。5〜15項目。time は "M:SS" または "H:MM:SS" 形式の実際のタイムスタンプ、
   label は その時点で何が語られ・実演されたかを30〜50文字で。必ず時刻の昇順。
+- verdict: 読者が「自分は今これを使えるか」を一目で判断するための判定。本文の「料金・提供プラン」「日本から使う方法」と矛盾させないこと。
+  記事に根拠がない項目は推測せず unknown / 不明 / null にする。
+  - status: available（一般提供中。有料プラン加入者を含め誰でも今使える）/ limited（ウェイトリスト・一部ユーザー・米国限定・法人限定・段階展開）/
+    soon（提供予定・時期未定）/ demo（研究・技術デモ・コンセプト・講演で、使える製品がない）
+  - japan: ok（日本から利用可）/ partial（英語のみ・API経由のみ等の条件付き）/ no（日本では提供なし）/ unknown（記事に記載なし）
+  - price: 14字以内の短い表記。例「無料」「無料枠あり」「月20ドル〜」「API従量課金」「法人向け」「オープンソース」「未発表」「不明」
+  - free: 無料で試す方法（無料プラン・無料枠・OSS）があれば true、有料のみなら false、不明なら null
+  - audience: いちばん恩恵を受ける読者を2〜8字で（例「開発者」「クリエイター」「ビジネス職」「研究者」「一般ユーザー」）
+  - take: サイソクの判断。25〜55字の1文で、読者が次に何をすべきかを具体的に。煽り語は禁止。
+    例「Pro契約者は今日から試せる。無料ユーザーは数週間待ち」「研究段階。製品化の発表を待つのが現実的」
 - is_relevant: この動画が「読者にとって実質的な情報価値のある発表・解説」であれば true。
   ショート動画、音楽、告知のみ、内容の薄いティーザー、宣伝だけの動画は false。
 {topic_guard}
@@ -328,6 +338,19 @@ ARTICLE_SCHEMA = {
                 "propertyOrdering": ["time", "label"],
             },
         },
+        "verdict": {
+            "type": "OBJECT",
+            "properties": {
+                "status": {"type": "STRING", "enum": ["available", "limited", "soon", "demo"]},
+                "japan": {"type": "STRING", "enum": ["ok", "partial", "no", "unknown"]},
+                "price": {"type": "STRING"},
+                "free": {"type": "BOOLEAN", "nullable": True},
+                "audience": {"type": "STRING"},
+                "take": {"type": "STRING"},
+            },
+            "required": ["status", "japan", "price", "audience", "take"],
+            "propertyOrdering": ["status", "japan", "price", "free", "audience", "take"],
+        },
         "body_markdown": {"type": "STRING"},
     },
     "required": [
@@ -344,6 +367,7 @@ ARTICLE_SCHEMA = {
         "highlights",
         "timetable",
         "mentioned_tools",
+        "verdict",
         "body_markdown",
     ],
     "propertyOrdering": [
@@ -361,9 +385,34 @@ ARTICLE_SCHEMA = {
         "tags",
         "highlights",
         "timetable",
+        "verdict",
         "body_markdown",
     ],
 }
+
+
+VERDICT_STATUS = {"available", "limited", "soon", "demo"}
+VERDICT_JAPAN = {"ok", "partial", "no", "unknown"}
+
+
+def clean_verdict(raw: object) -> dict | None:
+    """「使えるか」判定を検証する。壊れていれば None（記事ページでは判定カードを出さない）。"""
+    if not isinstance(raw, dict):
+        return None
+    status = str(raw.get("status", "")).strip()
+    if status not in VERDICT_STATUS:
+        return None
+    japan = str(raw.get("japan", "")).strip()
+    free = raw.get("free")
+    return {
+        "status": status,
+        "japan": japan if japan in VERDICT_JAPAN else "unknown",
+        "price": str(raw.get("price", "")).strip()[:20] or "不明",
+        "free": free if isinstance(free, bool) else None,
+        "audience": str(raw.get("audience", "")).strip()[:12],
+        "take": str(raw.get("take", "")).strip()[:80],
+        "judgedAt": datetime.now(timezone.utc).isoformat(),
+    }
 
 
 def build_client():
@@ -699,6 +748,7 @@ def build_record(entry: dict, data: dict) -> dict:
         "tags": tags,
         "highlights": clean_list(data.get("highlights"), 3),
         "timetable": timetable[:20],
+        "verdict": clean_verdict(data.get("verdict")),
         "body": normalize_body(data["body_markdown"]),
         "channel": channel.name,
         "channelId": channel.channel_id,

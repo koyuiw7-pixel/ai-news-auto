@@ -4,12 +4,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import AffiliateBox from "@/components/AffiliateBox";
+import OfferCard from "@/components/OfferCard";
 import ArticleCard from "@/components/ArticleCard";
 import CompanyMark from "@/components/CompanyMark";
 import CtaBanner from "@/components/CtaBanner";
 import RelTime from "@/components/RelTime";
+import VerdictCard from "@/components/VerdictCard";
 import { companyOf } from "@/lib/companies";
 import { guideForArticle } from "@/lib/guides";
+import { verdictOf } from "@/lib/verdict";
+import { offerForArticle } from "@/lib/offers";
 import Morph from "@/components/Morph";
 import RoundupSources from "@/components/RoundupSources";
 import Sidebar from "@/components/Sidebar";
@@ -88,6 +92,9 @@ export default async function ArticlePage({ params }: Props) {
   const affiliates = article.affiliates ?? [];
   const company = companyOf(article);
   const guide = guideForArticle(article);
+  const verdict = verdictOf(article);
+  // 全AI記事に、文脈に合った「試すなら」枠を1つ出す。無い場合（AI以外など）は従来の関連ツール枠
+  const offer = offerForArticle(article);
   // 日本語の黙読はおよそ毎分600字
   const readMinutes = Math.max(1, Math.round(article.body.length / 600));
   const html = await renderMarkdown(
@@ -203,6 +210,9 @@ export default async function ArticlePage({ params }: Props) {
               </ol>
             </section>
           )}
+          {/* 「使える？」判定 */}
+          {verdict && <VerdictCard verdict={verdict} judgedAt={verdict.judgedAt || article.generatedAt || article.publishedAt} />}
+
           {/* 製品ガイドへの案内（「〇〇とは」「料金」を知りたい読者の受け皿） */}
           {guide && (
             <Link
@@ -328,7 +338,12 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 本文に馴染ませる収益導線。関連ツールは本文の途中（読者がまだ読んでいる位置）に置く。
               記事末だけだと、ページの4分の3より下まで読んだ人にしか見えなかった */}
-          {bodyTail && affiliates.length > 0 && (
+          {bodyTail && offer && (
+            <div className="my-10 max-w-[46em]">
+              <OfferCard offer={offer} />
+            </div>
+          )}
+          {bodyTail && !offer && affiliates.length > 0 && (
             <div className="my-10">
               <AffiliateBox links={affiliates} />
             </div>
@@ -370,7 +385,12 @@ export default async function ArticlePage({ params }: Props) {
           <CtaBanner genreSlug={article.genreSlug} slot="primary" className="mt-12" />
 
           {/* 本文が短く途中に置けなかった記事だけ、記事末に出す */}
-          {!bodyTail && affiliates.length > 0 && (
+          {!bodyTail && offer && (
+            <div className="mt-12 max-w-[46em]">
+              <OfferCard offer={offer} />
+            </div>
+          )}
+          {!bodyTail && !offer && affiliates.length > 0 && (
             <div className="mt-12">
               <AffiliateBox links={affiliates} />
             </div>
@@ -415,7 +435,7 @@ export default async function ArticlePage({ params }: Props) {
 
         {/* ③ サイドバー（最上部に広告枠） */}
         <aside className="min-w-0">
-          <Sidebar current={article} affiliates={affiliates} />
+          <Sidebar current={article} affiliates={offer ? [] : affiliates} />
         </aside>
       </div>
     </div>

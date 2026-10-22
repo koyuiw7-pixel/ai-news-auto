@@ -26,6 +26,9 @@
   --roundup: #0a6fa0;
   /* 速報性（LIVE・新着）だけに使う赤 */
   --live: #d92d20;
+  /* 「使える」判定だけに使う緑 */
+  --go: #0b7a43;
+  --go-soft: #e4f3ea;
   --glass: rgb(255 255 255 / 0.74);
   color-scheme: light;
 }
@@ -48,6 +51,8 @@
   --official: #ffb547;
   --roundup: #58c7f3;
   --live: #ff6b5e;
+  --go: #4fd18b;
+  --go-soft: #0f2c22;
   --glass: rgb(10 15 30 / 0.72);
   color-scheme: dark;
 }
@@ -72,6 +77,8 @@
   --color-official: var(--official);
   --color-roundup: var(--roundup);
   --color-live: var(--live);
+  --color-go: var(--go);
+  --color-go-soft: var(--go-soft);
 
   --font-sans:
     var(--font-zen), "Hiragino Kaku Gothic ProN", "Hiragino Sans",
@@ -352,4 +359,15 @@ mark {
 
 .prose :where(img) {
   border-radius: 0.75rem;
+}
+
+/* 「今すぐ使えるものだけ」スイッチ（components/UsableFilter.tsx） */
+.usable-filter[data-only-usable="1"] li.tl-row:not([data-usable="go"]) {
+  display: none;
+}
+.usable-filter[data-only-usable="1"] section:not(:has(li[data-usable="go"])) {
+  display: none;
+}
+.usable-filter[data-only-usable="1"]:not(:has(li[data-usable="go"])) .usable-empty {
+  display: block;
 }

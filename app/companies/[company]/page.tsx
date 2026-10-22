@@ -66,7 +66,7 @@ export default async function CompanyPage({ params }: Props) {
           各記事の「要点」だけ読めば、いま何が起きているかがつかめます。
         </p>
         <div className="mt-10">
-          <Timeline articles={articles} />
+          <Timeline articles={articles} filterable />
         </div>
       </div>
     </>
