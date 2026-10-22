@@ -326,7 +326,13 @@ export default async function ArticlePage({ params }: Props) {
             <article className="prose max-w-[42em]" dangerouslySetInnerHTML={{ __html: bodyMid }} />
           )}
 
-          {/* 本文に馴染ませる収益導線 */}
+          {/* 本文に馴染ませる収益導線。関連ツールは本文の途中（読者がまだ読んでいる位置）に置く。
+              記事末だけだと、ページの4分の3より下まで読んだ人にしか見えなかった */}
+          {bodyTail && affiliates.length > 0 && (
+            <div className="my-10">
+              <AffiliateBox links={affiliates} />
+            </div>
+          )}
           {bodyTail && <CtaBanner genreSlug={article.genreSlug} slot="inline" className="my-10" />}
 
           {bodyTail && (
@@ -363,7 +369,8 @@ export default async function ArticlePage({ params }: Props) {
           {/* 記事末の主導線 */}
           <CtaBanner genreSlug={article.genreSlug} slot="primary" className="mt-12" />
 
-          {affiliates.length > 0 && (
+          {/* 本文が短く途中に置けなかった記事だけ、記事末に出す */}
+          {!bodyTail && affiliates.length > 0 && (
             <div className="mt-12">
               <AffiliateBox links={affiliates} />
             </div>
