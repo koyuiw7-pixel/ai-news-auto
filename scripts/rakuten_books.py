@@ -72,7 +72,7 @@ def fetch(keyword: str) -> str:
 def parse(page: str) -> list[dict]:
     items = []
     blocks = page.split('<div class="rbcomp__item-list__item"')[1:]
-    for block in blocks:
+    for position, block in enumerate(blocks, start=1):
         rb = re.search(r"books\.rakuten\.co\.jp/rb/(\d+)/", block)
         item = re.search(r'data-item-id="(\d+)"', block)
         title = re.search(r'item__title">(.*?)</span>', block, re.S)
@@ -83,7 +83,7 @@ def parse(page: str) -> list[dict]:
         if "stock1" not in block:  # 在庫ありだけ
             continue
         released = re.search(r"subtext\">\s*(\d{4})年(\d{2})月", block)
-        rating = re.search(r"review__?[^>]*>\s*<span[^>]*></span>\s*<em>([\d.]+)</em>", block)
+        rating = re.search(r'item__review">\s*<span[^>]*></span>\s*<em>([\d.]+)</em>', block)
         reviews = re.search(r"レビュー(\d+)件", block)
         author = re.search(r'item__author">\s*<a[^>]*>(.*?)</a>', block, re.S)
         category = re.search(r'rbcomp__category ([a-z]+)', block)
@@ -100,6 +100,8 @@ def parse(page: str) -> list[dict]:
                 "reviews": int(reviews.group(1)) if reviews else 0,
                 "year": int(released.group(1)) if released else 0,
                 "image": image_url(img.group(1)),
+                # 楽天ブックスの売れ筋順（検索語ごと）での順位
+                "rank": position,
             }
         )
     return items
@@ -118,7 +120,7 @@ def pick(items: list[dict], used: set[str], require: str, exclude: str) -> list[
     for item in items:
         if not item["image"] or item["year"] < MIN_YEAR or item["rbId"] in used:
             continue
-        if item["rating"] is not None and item["rating"] < 3.5:
+        if item["rating"] is not None and item["rating"] < 3.0:
             continue
         if require and not re.search(require, item["title"], re.I):
             continue
@@ -184,7 +186,8 @@ def main() -> int:
         chosen = pick(items, used, topic.get("require", ""), topic.get("exclude", ""))
         used.update(item["rbId"] for item in chosen)
         result[key] = [
-            {**item, "url": affiliate_url(item["rbId"], item["itemId"])} for item in chosen
+            {**item, "keyword": keyword, "url": affiliate_url(item["rbId"], item["itemId"])}
+            for item in chosen
         ]
         print(f"[books] {key} ({keyword}): {len(items)}件 → " + " / ".join(i["title"][:24] for i in chosen))
         time.sleep(1.5)

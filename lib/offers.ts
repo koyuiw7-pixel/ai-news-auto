@@ -39,6 +39,9 @@ type Book = {
   reviews: number;
   image: string;
   url: string;
+  /** 楽天ブックスの売れ筋順（検索語ごと）での順位 */
+  rank?: number;
+  keyword?: string;
 };
 
 type OffersFile = {
@@ -72,6 +75,9 @@ export type OfferItem = {
   cta: string;
   rating?: number | null;
   reviews?: number;
+  /** 楽天ブックス売れ筋の順位（10位以内のときだけ表示に使う） */
+  rank?: number;
+  keyword?: string;
 };
 
 export type Offer = {
@@ -138,7 +144,7 @@ function pickTopic(article: Article, offers: OffersFile): Topic | undefined {
   return byKey.get(offers.fallback);
 }
 
-export function offerForArticle(article: Article): Offer | undefined {
+export function offerForArticle(article: Article, maxItems = MAX_ITEMS): Offer | undefined {
   if (article.genreSlug !== "ai") return undefined;
   const { offers, products, affiliates } = load();
   const topic = pickTopic(article, offers);
@@ -168,7 +174,7 @@ export function offerForArticle(article: Article): Offer | undefined {
   }
 
   const books = products?.books?.[topic.key] ?? [];
-  for (const book of books.slice(0, Math.max(0, MAX_ITEMS - items.length))) {
+  for (const book of books.slice(0, Math.max(0, maxItems - items.length))) {
     items.push({
       key: book.rbId,
       kind: "book",
@@ -182,6 +188,8 @@ export function offerForArticle(article: Article): Offer | undefined {
       cta: "楽天で見る",
       rating: book.rating,
       reviews: book.reviews,
+      rank: book.rank,
+      keyword: book.keyword,
     });
   }
   if (books.length > 0 && products?.pixel) pixels.add(products.pixel);

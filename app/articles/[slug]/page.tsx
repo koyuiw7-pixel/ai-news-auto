@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import AffiliateBox from "@/components/AffiliateBox";
 import OfferCard from "@/components/OfferCard";
+import RailShop from "@/components/rail/RailShop";
 import ArticleCard from "@/components/ArticleCard";
 import CompanyMark from "@/components/CompanyMark";
 import CtaBanner from "@/components/CtaBanner";
@@ -435,7 +436,15 @@ export default async function ArticlePage({ params }: Props) {
 
         {/* ③ サイドバー（最上部に広告枠） */}
         <aside className="min-w-0">
-          <Sidebar current={article} affiliates={offer ? [] : affiliates} />
+          {offer ? (
+            // 商品枠だけを右側に置き、読み進めても常に見える位置に付いてくる。
+            // 以前は最新記事やタグも並べていて背が高く、最後までスクロールしないと追従しなかった
+            <div className="lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:[scrollbar-width:thin]">
+              <RailShop offer={offer} />
+            </div>
+          ) : (
+            <Sidebar current={article} affiliates={affiliates} />
+          )}
         </aside>
       </div>
     </div>
