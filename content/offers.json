@@ -5,7 +5,8 @@
     "どれにも当たらない記事は audience（判定の「向いている人」）で選び、それでも無ければ fallback を使う。",
     "partners は A8 で提携済みの商品（写真は各社が商品リンク用に許可している公式画像）。",
     "search は楽天ブックスの検索語。scripts/rakuten_books.py が売れ筋から本を選んで content/products.json に保存する。",
-    "fill は商品が3つに満たないときに補う話題（上から順）。どの記事でも必ず3つ並ぶようにする。"
+    "fill は商品が3つに満たないときに補う話題（上から順）。どの記事でも必ず3つ並ぶようにする。",
+    "genre を書いた話題はそのジャンルの記事だけに使う（省略時は ai）。fallbackByGenre はジャンルごとの既定の話題。minYear は本の発売年の下限（省略時 2025）。"
   ],
   "topics": [
     {
@@ -199,6 +200,101 @@
       "fill": [
         "chatgpt"
       ]
+    },
+    {
+      "key": "invest-nisa",
+      "genre": "investment",
+      "match": "NISA|iDeCo|投資信託|インデックス|オルカン|積立|つみたて|S&P",
+      "eyebrow": "この記事のテーマを深く知るなら",
+      "headline": "新NISAを、迷わず始めて続ける",
+      "lead": "制度の細かい話より、続けられる仕組みを先に作るのが近道です。売れ筋の入門書から。",
+      "partners": [],
+      "search": [
+        "新NISA",
+        "インデックス投資"
+      ],
+      "require": "NISA|投資|お金|資産|オルカン|積立",
+      "exclude": "奴隷|陰謀",
+      "fill": [
+        "invest"
+      ]
+    },
+    {
+      "key": "invest-stocks",
+      "genre": "investment",
+      "match": "株|銘柄|配当|決算|日経平均|米国|ETF|為替",
+      "eyebrow": "この記事のテーマを深く知るなら",
+      "headline": "株の選び方を、基礎から身につける",
+      "lead": "ニュースの数字を自分の判断に使えるようになると、相場の見え方が変わります。",
+      "partners": [],
+      "search": [
+        "高配当株",
+        "米国株",
+        "株式投資 入門"
+      ],
+      "require": "株|投資|お金",
+      "fill": [
+        "invest-nisa",
+        "invest"
+      ]
+    },
+    {
+      "key": "invest",
+      "genre": "investment",
+      "match": "投資|資産|お金|家計|節約|年金",
+      "eyebrow": "この記事のテーマを深く知るなら",
+      "headline": "お金の増やし方を、1冊で整理する",
+      "lead": "制度・商品・考え方をまとめて押さえると、情報に振り回されにくくなります。",
+      "partners": [],
+      "search": [
+        "お金 増やす",
+        "資産運用",
+        "投資 入門"
+      ],
+      "require": "お金|投資|資産|NISA",
+      "exclude": "奴隷|陰謀",
+      "fill": [
+        "invest-nisa"
+      ]
+    },
+    {
+      "key": "re-invest",
+      "genre": "real-estate",
+      "match": "不動産投資|収益物件|利回り|大家|アパート経営|賃貸経営|区分|一棟",
+      "eyebrow": "この記事のテーマを深く知るなら",
+      "headline": "不動産投資を、数字で判断できるようになる",
+      "lead": "利回りや融資の考え方を押さえると、物件情報の良し悪しが読めるようになります。",
+      "partners": [],
+      "search": [
+        "不動産投資 入門",
+        "不動産投資",
+        "賃貸経営"
+      ],
+      "require": "不動産投資|賃貸経営|物件|大家業|不動産",
+      "minYear": 2022,
+      "fill": [
+        "re-home"
+      ],
+      "exclude": "大家さんと僕"
+    },
+    {
+      "key": "re-home",
+      "genre": "real-estate",
+      "match": "住宅|マイホーム|ローン|新築|中古|マンション|戸建|金利",
+      "eyebrow": "この記事のテーマを深く知るなら",
+      "headline": "家を買う前に、知っておきたいこと",
+      "lead": "住宅ローンや物件選びは、買う前の知識で数百万円の差がつくこともあります。",
+      "partners": [],
+      "search": [
+        "住宅ローン",
+        "マイホーム 購入",
+        "家を買う"
+      ],
+      "require": "家|住宅|マンション|ローン|不動産",
+      "minYear": 2022,
+      "fill": [
+        "re-invest"
+      ]
     }
   ],
   "audience": {
@@ -271,5 +367,10 @@
       "shop": "ConoHa公式",
       "source": null
     }
+  },
+  "fallbackByGenre": {
+    "ai": "business",
+    "investment": "invest",
+    "real-estate": "re-home"
   }
 }

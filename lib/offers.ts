@@ -18,6 +18,8 @@ type Topic = {
   search?: string | string[];
   /** 商品が足りないときに補う話題 */
   fill?: string[];
+  /** この話題を使う記事のジャンル（省略時は ai） */
+  genre?: string;
 };
 
 type Partner = {
@@ -50,6 +52,8 @@ type OffersFile = {
   topics: Topic[];
   audience: Record<string, string>;
   fallback: string;
+  /** ジャンルごとの既定の話題 */
+  fallbackByGenre?: Record<string, string>;
   partners: Record<string, Partner>;
 };
 
@@ -127,27 +131,34 @@ function partnerUrl(base: string, page: string | null): string {
   return page ? `${base}&a8ejpredirect=${encodeURIComponent(page)}` : base;
 }
 
+function fallbackKey(article: Article, offers: OffersFile): string {
+  return offers.fallbackByGenre?.[article.genreSlug] ?? offers.fallback;
+}
+
 function pickTopic(article: Article, offers: OffersFile): Topic | undefined {
   const byKey = new Map(offers.topics.map((topic) => [topic.key, topic]));
+  // ジャンルの違う話題（AI記事に投資の本など）は出さない
+  const topics = offers.topics.filter((topic) => (topic.genre ?? "ai") === article.genreSlug);
 
   // 本文の言及で提携商品が自動挿入されている記事は、その商品の話題を優先する
   const linked = new Set(article.affiliates.map((a) => a.name));
-  const partnerTopic = offers.topics.find((topic) =>
+  const partnerTopic = topics.find((topic) =>
     topic.partners.some((key) => linked.has(offers.partners[key]?.program)),
   );
   if (partnerTopic) return partnerTopic;
 
   const text = [article.title, article.seoTitle ?? "", ...article.tags, ...article.keywords].join(" ");
-  const matched = offers.topics.find((topic) => new RegExp(topic.match, "i").test(text));
+  const matched = topics.find((topic) => new RegExp(topic.match, "i").test(text));
   if (matched) return matched;
 
   const audience = article.verdict?.audience;
-  if (audience && offers.audience[audience]) return byKey.get(offers.audience[audience]);
-  return byKey.get(offers.fallback);
+  if (article.genreSlug === "ai" && audience && offers.audience[audience]) {
+    return byKey.get(offers.audience[audience]);
+  }
+  return byKey.get(fallbackKey(article, offers));
 }
 
 export function offerForArticle(article: Article, maxItems = MAX_ITEMS): Offer | undefined {
-  if (article.genreSlug !== "ai") return undefined;
   const { offers, products, affiliates } = load();
   const topic = pickTopic(article, offers);
   if (!topic) return undefined;
@@ -177,7 +188,7 @@ export function offerForArticle(article: Article, maxItems = MAX_ITEMS): Offer |
 
   // 話題の本 → 補充用の話題の本 → 既定の話題の本、の順に、必ず maxItems 個そろえる
   const seen = new Set<string>();
-  const sources = [topic.key, ...(topic.fill ?? []), offers.fallback];
+  const sources = [topic.key, ...(topic.fill ?? []), fallbackKey(article, offers)];
   let usedBooks = false;
   for (const source of sources) {
     for (const book of products?.books?.[source] ?? []) {

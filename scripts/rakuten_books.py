@@ -114,11 +114,11 @@ def clean_title(title: str) -> str:
     return title
 
 
-def pick(items: list[dict], used: set[str], require: str, exclude: str) -> list[dict]:
+def pick(items: list[dict], used: set[str], require: str, exclude: str, min_year: int = MIN_YEAR) -> list[dict]:
     """楽天の売れ筋順のまま、話題に合う・評価の低くない・新しめの本だけを残す。"""
     chosen = []
     for item in items:
-        if not item["image"] or item["year"] < MIN_YEAR or item["rbId"] in used:
+        if not item["image"] or item["year"] < min_year or item["rbId"] in used:
             continue
         if item["rating"] is not None and item["rating"] < 3.0:
             continue
@@ -188,7 +188,7 @@ def main() -> int:
                 print(f"[books] {key} ({keyword}): 取得失敗 {error}", file=sys.stderr)
                 failed = True
                 continue
-            picked = pick(items, used | {c["rbId"] for c in chosen}, topic.get("require", ""), topic.get("exclude", ""))
+            picked = pick(items, used | {c["rbId"] for c in chosen}, topic.get("require", ""), topic.get("exclude", ""), topic.get("minYear", MIN_YEAR))
             chosen += [{**item, "keyword": keyword} for item in picked[: PER_TOPIC - len(chosen)]]
             time.sleep(1.5)
             if len(chosen) >= PER_TOPIC:
