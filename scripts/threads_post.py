@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import os
 import sys
 import time
@@ -75,12 +76,27 @@ def compose(article: dict) -> str:
         return custom
 
     label = "【まとめ】" if article.get("type") == "roundup" else "【速報】"
-    head = f"{label}{article.get('seoTitle') or article['title']}"
+    head = f"{opening_question(article)}\n{label}{article.get('seoTitle') or article['title']}"
     points = [f"✅ {h.strip()}" for h in article.get("highlights", []) if h.strip()]
     shown, rest = points[:2], points[2:]
     tail = "もう1つの注目点と詳しい数字は記事で👇" if rest else "詳しくは記事で👇"
     text = "\n\n".join([head, "\n".join(shown), tail]) if shown else "\n\n".join([head, tail])
     return text[:MAX_CHARS]
+
+
+def opening_question(article: dict) -> str:
+    """1行目の問いかけ。紹介文を持たない記事向けに、判定から人が話しかけるような一言を作る。"""
+    name = re.split(r"[｜|：:]", str(article.get("seoTitle") or ""))[0].strip()
+    status = (article.get("verdict") or {}).get("status")
+    if not name:
+        return "このニュース、もうチェックしました？"
+    if status == "available":
+        return f"{name}、もう試しました？"
+    if status == "limited":
+        return f"{name}、自分のアカウントで使えるか確認しました？"
+    if status in ("soon", "demo"):
+        return f"{name}、いつ使えるようになるか気になってませんか？"
+    return f"{name}のニュース、もうチェックしました？"
 
 
 def topic_of(article: dict) -> str:
