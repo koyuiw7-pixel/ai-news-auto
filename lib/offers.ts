@@ -159,9 +159,24 @@ function pickTopic(article: Article, offers: OffersFile): Topic | undefined {
 }
 
 export function offerForArticle(article: Article, maxItems = MAX_ITEMS): Offer | undefined {
-  const { offers, products, affiliates } = load();
+  const { offers } = load();
   const topic = pickTopic(article, offers);
   if (!topic) return undefined;
+  return buildOffer(topic, fallbackKey(article, offers), maxItems);
+}
+
+/** 記事に紐づかないページ（一覧ページなど）で、話題を指定して商品枠を作る */
+export function offerForTopic(key: string, eyebrow?: string, maxItems = MAX_ITEMS): Offer | undefined {
+  const { offers } = load();
+  const found = offers.topics.find((t) => t.key === key);
+  if (!found) return undefined;
+  // 記事ページ以外では「この記事の〜」という見出しが合わないので差し替える
+  const topic = eyebrow ? { ...found, eyebrow } : found;
+  return buildOffer(topic, offers.fallbackByGenre?.[topic.genre ?? "ai"] ?? offers.fallback, maxItems);
+}
+
+function buildOffer(topic: Topic, fallback: string, maxItems: number): Offer | undefined {
+  const { offers, products, affiliates } = load();
 
   const items: OfferItem[] = [];
   const pixels = new Set<string>();
@@ -188,7 +203,7 @@ export function offerForArticle(article: Article, maxItems = MAX_ITEMS): Offer |
 
   // 話題の本 → 補充用の話題の本 → 既定の話題の本、の順に、必ず maxItems 個そろえる
   const seen = new Set<string>();
-  const sources = [topic.key, ...(topic.fill ?? []), fallbackKey(article, offers)];
+  const sources = [topic.key, ...(topic.fill ?? []), fallback];
   let usedBooks = false;
   for (const source of sources) {
     for (const book of products?.books?.[source] ?? []) {

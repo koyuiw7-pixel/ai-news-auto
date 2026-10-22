@@ -63,6 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily" as const,
       priority: 0.7,
     })),
+    { url: `${base}/usable`, lastModified, changeFrequency: "daily" as const, priority: 0.9 },
     { url: `${base}/guides`, lastModified, changeFrequency: "daily" as const, priority: 0.8 },
     ...getAllGuides().map((guide) => ({
       url: `${base}/guides/${guide.slug}`,
