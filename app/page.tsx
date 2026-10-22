@@ -60,7 +60,7 @@ export default function HomePage() {
                 すべての記事 →
               </Link>
             </div>
-            <Timeline articles={timeline} />
+            <Timeline articles={timeline} filterable />
             <Link
               href="/articles"
               className="mt-8 flex items-center justify-center rounded-full border border-line-strong py-3 text-[14px] font-bold text-ink transition-colors hover:border-ink"

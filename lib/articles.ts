@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import type { Verdict } from "@/lib/verdict";
 
 export type TimetableItem = {
   time: string;
@@ -43,6 +44,8 @@ export type Article = {
   tags: string[];
   highlights: string[];
   timetable: TimetableItem[];
+  /** 「使えるか」の判定（まとめ記事・古い記事には無いことがある） */
+  verdict?: Verdict | null;
   affiliates: AffiliateLink[];
   body: string;
   channel: string;

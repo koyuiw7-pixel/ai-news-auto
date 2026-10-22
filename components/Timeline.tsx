@@ -2,9 +2,12 @@ import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
 import DayLabel from "@/components/DayLabel";
 import Thumb from "@/components/Thumb";
+import UsableFilter from "@/components/UsableFilter";
+import VerdictBadge from "@/components/VerdictBadge";
 import type { Article } from "@/lib/articles";
 import { companyOf } from "@/lib/companies";
 import { Highlight } from "@/lib/highlight";
+import { usability, verdictOf } from "@/lib/verdict";
 
 const clock = new Intl.DateTimeFormat("ja-JP", {
   hour: "2-digit",
@@ -19,7 +22,14 @@ const jstDay = (iso: string) =>
  * 1行に「いつ・どこが・何を・要点」を収め、記事を開かなくても流し読みで状況がつかめるようにする。
  * 要点は記事の「3秒でわかる要点」の1つ目。
  */
-export default function Timeline({ articles }: { articles: Article[] }) {
+export default function Timeline({
+  articles,
+  filterable = false,
+}: {
+  articles: Article[];
+  /** 「今すぐ使えるものだけ」スイッチを出す */
+  filterable?: boolean;
+}) {
   const days: { day: string; items: Article[] }[] = [];
   for (const article of articles) {
     const day = jstDay(article.publishedAt);
@@ -28,7 +38,7 @@ export default function Timeline({ articles }: { articles: Article[] }) {
     else days.push({ day, items: [article] });
   }
 
-  return (
+  const list = (
     <div className="grid gap-9">
       {days.map(({ day, items }) => (
         <section key={day} aria-label={day}>
@@ -46,6 +56,10 @@ export default function Timeline({ articles }: { articles: Article[] }) {
       ))}
     </div>
   );
+
+  // 判定のある記事が一覧に無ければ、スイッチを出しても意味がない
+  const hasVerdict = articles.some((article) => verdictOf(article));
+  return filterable && hasVerdict ? <UsableFilter>{list}</UsableFilter> : list;
 }
 
 function TimelineRow({ article }: { article: Article }) {
@@ -53,23 +67,33 @@ function TimelineRow({ article }: { article: Article }) {
   const point = article.highlights[0];
   const isRoundup = article.type === "roundup";
   const time = clock.format(Date.parse(article.publishedAt));
+  const verdict = verdictOf(article);
+  const kind = verdict ? usability(verdict) : undefined;
 
   return (
-    <li className="border-b border-line">
+    <li className="tl-row border-b border-line" data-usable={kind}>
       <Link
         href={`/articles/${article.slug}`}
-        className="group grid grid-cols-1 gap-x-5 py-4 sm:grid-cols-[3.75rem_minmax(0,1fr)_11.5rem]"
+        className="group grid grid-cols-1 gap-x-5 py-4 sm:grid-cols-[4rem_minmax(0,1fr)_11.5rem]"
       >
-        {/* 幅のある画面では時刻を左の列に、スマホでは企業名の横に置いて見出しの幅を確保する */}
-        <time
-          dateTime={article.publishedAt}
-          className="index-num hidden pt-[3px] text-[12px] font-semibold text-muted sm:block"
-        >
-          {time}
-        </time>
+        {/* 幅のある画面では時刻と判定を左の列に、スマホでは企業名の横に置いて見出しの幅を確保する */}
+        <div className="hidden content-start gap-2.5 sm:grid">
+          <time
+            dateTime={article.publishedAt}
+            className="index-num pt-[3px] text-[12px] font-semibold text-muted"
+          >
+            {time}
+          </time>
+          {kind && <VerdictBadge kind={kind} block />}
+        </div>
 
         <div className="min-w-0">
           <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px]">
+            {kind && (
+              <span className="sm:hidden">
+                <VerdictBadge kind={kind} />
+              </span>
+            )}
             <span className="index-num font-semibold text-muted sm:hidden">{time}</span>
             <CompanyMark company={company} size={16} withName />
             {isRoundup && (
@@ -82,6 +106,14 @@ function TimelineRow({ article }: { article: Article }) {
           <h4 className="mt-1.5 text-[15.5px] font-bold leading-[1.6] text-ink decoration-1 underline-offset-4 group-hover:underline sm:text-[16.5px]">
             <Highlight text={article.title} />
           </h4>
+
+          {verdict && (
+            <p className="mt-1 text-[12.5px] text-muted">
+              {[verdict.price !== "不明" ? verdict.price : "", verdict.japan === "ok" ? "日本から利用可" : verdict.japan === "no" && kind !== "wait" ? "日本では未提供" : "", verdict.audience ? `${verdict.audience}向け` : ""]
+                .filter(Boolean)
+                .join(" ・ ")}
+            </p>
+          )}
 
           {point && (
             <p className="mt-1.5 line-clamp-2 text-[13.5px] leading-[1.75] text-ink-soft">

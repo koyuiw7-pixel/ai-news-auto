@@ -1,0 +1,275 @@
+{
+  "_README": [
+    "記事の途中に出す「試すなら」枠の定義。上から順に照合し、最初に当たった話題を使う。",
+    "match は記事のタイトル・タグ・キーワードに照合する正規表現（大文字小文字は区別しない）。",
+    "どれにも当たらない記事は audience（判定の「向いている人」）で選び、それでも無ければ fallback を使う。",
+    "partners は A8 で提携済みの商品（写真は各社が商品リンク用に許可している公式画像）。",
+    "search は楽天ブックスの検索語。scripts/rakuten_books.py が売れ筋から本を選んで content/products.json に保存する。",
+    "fill は商品が3つに満たないときに補う話題（上から順）。どの記事でも必ず3つ並ぶようにする。"
+  ],
+  "topics": [
+    {
+      "key": "voice",
+      "match": "文字起こし|議事録|ボイスレコーダー|音声認識|音声AI|ChatGPT Voice|transcri",
+      "eyebrow": "この記事の技術を試すなら",
+      "headline": "会議の録音から、AIで議事録まで自動で",
+      "lead": "音声AIを仕事で使うなら、録音と文字起こしを1台で済ませるのが近道です。",
+      "partners": [
+        "plaud-note-pro",
+        "plaud-notepin-s"
+      ],
+      "search": [
+        "AI 議事録",
+        "会議 AI"
+      ],
+      "require": "議事録|文字起こし|音声|会議|録音|NotebookLM|仕事",
+      "fill": [
+        "business",
+        "chatgpt"
+      ],
+      "exclude": "先生|校務|教師"
+    },
+    {
+      "key": "local",
+      "match": "ローカルLLM|ローカルAI|RTX|GeForce|VRAM|llama\\.cpp|Ollama|ゲーミングPC|オンデバイス",
+      "eyebrow": "この記事の技術を試すなら",
+      "headline": "AIを手元のPCで動かすなら、まずGPUのメモリ",
+      "lead": "ローカルLLMや画像生成を快適に動かす目安は、VRAM 16GB以上のGPUです。",
+      "partners": [
+        "oz-rtx5070ti",
+        "oz-rx9060xt"
+      ],
+      "search": [
+        "ローカルLLM",
+        "LLM 自作"
+      ],
+      "require": "LLM|ローカル|言語モデル",
+      "fill": [
+        "llm",
+        "coding"
+      ],
+      "exclude": "医療"
+    },
+    {
+      "key": "image",
+      "match": "画像生成|動画生成|イラスト|Stable Diffusion|Nano Banana|ChatGPT Images|Midjourney|Sora|Veo",
+      "eyebrow": "この記事の技術を試すなら",
+      "headline": "画像生成AIを、環境づくりなしで試す",
+      "lead": "高性能なPCがなくても、ブラウザだけで本格的な画像生成を試せます。",
+      "partners": [
+        "conoha-ai-canvas"
+      ],
+      "search": [
+        "画像生成AI",
+        "Stable Diffusion",
+        "動画生成AI",
+        "画像生成AI 入門"
+      ],
+      "require": "画像|動画|Stable|ComfyUI|Midjourney|イラスト",
+      "exclude": "Kaggle|用語",
+      "fill": [
+        "chatgpt",
+        "business"
+      ]
+    },
+    {
+      "key": "robotics",
+      "match": "ロボティクス|ロボット|フィジカルAI|物理AI|Robotics|ヒューマノイド|自動運転",
+      "eyebrow": "この分野を深く知るなら",
+      "headline": "ロボットとフィジカルAIを、基礎から押さえる",
+      "lead": "AIが現実世界で動く仕組みは、ソフトだけのAIとは別の知識が要ります。",
+      "partners": [],
+      "search": [
+        "フィジカルAI ロボット",
+        "ロボット AI"
+      ],
+      "require": "ロボ|フィジカル",
+      "fill": [
+        "llm",
+        "business"
+      ]
+    },
+    {
+      "key": "semis",
+      "match": "NVIDIA|エヌビディア|半導体|データセンター|AIインフラ|GPU",
+      "eyebrow": "この分野を深く知るなら",
+      "headline": "AIを支える半導体とインフラの全体像",
+      "lead": "GPUの性能競争やデータセンター投資を理解すると、発表の重みが読めるようになります。",
+      "partners": [],
+      "search": [
+        "エヌビディア 半導体",
+        "NVIDIA",
+        "AI 半導体"
+      ],
+      "require": "NVIDIA|Nvidia|エヌビディア|半導体|GPU",
+      "fill": [
+        "llm",
+        "business"
+      ]
+    },
+    {
+      "key": "coding",
+      "match": "Claude Code|Codex|Copilot|GitHub|開発ツール|コーディング|AI駆動開発|IDE|Cursor",
+      "eyebrow": "この記事の技術を試すなら",
+      "headline": "AIに書かせる開発を、現場で使える形に",
+      "lead": "AIコーディングは道具選びより「任せ方」で成果が変わります。定番の解説書から。",
+      "partners": [],
+      "search": "AI駆動開発",
+      "require": "Claude Code|Codex|コーディング|AI駆動|Copilot|プログラミング|Cursor",
+      "fill": [
+        "business"
+      ]
+    },
+    {
+      "key": "claude",
+      "match": "Claude|Anthropic",
+      "eyebrow": "この記事の技術を試すなら",
+      "headline": "Claudeを仕事で使いこなす",
+      "lead": "長文の読解や資料づくりに強いClaudeは、使い方の型を知ると一気に効きます。",
+      "partners": [],
+      "search": "Claude",
+      "require": "Claude",
+      "fill": [
+        "business"
+      ]
+    },
+    {
+      "key": "agent",
+      "match": "AIエージェント|エージェント|Agent|MCP|自動化",
+      "eyebrow": "この記事の技術を試すなら",
+      "headline": "AIエージェントを、自分の仕事に組み込む",
+      "lead": "任せる仕事の切り出し方と、失敗しない設計の考え方を押さえておくと早いです。",
+      "partners": [],
+      "search": "AIエージェント",
+      "require": "エージェント",
+      "fill": [
+        "business"
+      ]
+    },
+    {
+      "key": "gemini",
+      "match": "Gemini|Google|DeepMind|NotebookLM",
+      "eyebrow": "この記事の技術を試すなら",
+      "headline": "GeminiとGoogleのAIを使いこなす",
+      "lead": "GmailやドキュメントなどGoogleの道具とつなげると、Geminiの真価が出ます。",
+      "partners": [],
+      "search": "Gemini",
+      "require": "Gemini|NotebookLM",
+      "fill": [
+        "business"
+      ]
+    },
+    {
+      "key": "chatgpt",
+      "match": "ChatGPT|OpenAI|GPT",
+      "eyebrow": "この記事の技術を試すなら",
+      "headline": "ChatGPTを、毎日の仕事で使える道具に",
+      "lead": "新機能を追うより、日々の業務に落とし込む型を1つ持つのが近道です。",
+      "partners": [],
+      "search": "ChatGPT 仕事",
+      "require": "ChatGPT",
+      "exclude": "英語|60歳|シニア",
+      "fill": [
+        "business"
+      ]
+    },
+    {
+      "key": "llm",
+      "match": "LLM|大規模言語モデル|Hugging Face|オープンソース|論文|機械学習|強化学習|AI研究|ベンチマーク",
+      "eyebrow": "この分野を深く知るなら",
+      "headline": "大規模言語モデルの仕組みを、基礎から",
+      "lead": "モデルの発表を正しく読むには、学習と評価の基本を知っておくのがいちばん効きます。",
+      "partners": [],
+      "search": "大規模言語モデル",
+      "require": "LLM|言語モデル|機械学習|深層学習|ディープラーニング|Transformer",
+      "fill": [
+        "business"
+      ]
+    },
+    {
+      "key": "business",
+      "match": "業務効率化|エンタープライズ|営業|生産性|経営",
+      "eyebrow": "この記事のテーマを仕事に活かすなら",
+      "headline": "生成AIで、仕事の時間を取り戻す",
+      "lead": "どの発表も、結局は自分の仕事にどう効くか。実例の多い1冊から始めるのが確実です。",
+      "partners": [],
+      "search": "生成AI 仕事術",
+      "require": "生成AI|AI",
+      "exclude": "経理|薬剤師|看護|医師|教師|フリーランス|士業|60歳|70歳|シニア",
+      "fill": [
+        "chatgpt"
+      ]
+    }
+  ],
+  "audience": {
+    "開発者": "coding",
+    "エンジニア": "coding",
+    "Web開発者": "coding",
+    "研究者": "llm",
+    "ロボット開発者": "robotics",
+    "ロボット研究者": "robotics",
+    "自動運転開発者": "robotics",
+    "クリエイター": "image",
+    "デザイナー": "image",
+    "半導体企業": "semis"
+  },
+  "fallback": "business",
+  "partners": {
+    "plaud-note-pro": {
+      "program": "PLAUD",
+      "name": "PLAUD NOTE Pro",
+      "label": "いちばん手軽",
+      "note": "カード型AIボイスレコーダー。録音から要約まで",
+      "price": 30800,
+      "image": "https://cdn.shopify.com/s/files/1/0638/2983/5860/files/notepro-thumbnail-front-black-pc.png?width=600",
+      "page": "https://jp.plaud.ai/products/plaud-note-pro",
+      "shop": "PLAUD公式",
+      "source": "plaud:plaud-note-pro"
+    },
+    "plaud-notepin-s": {
+      "program": "PLAUD",
+      "name": "PLAUD NotePin S",
+      "label": "身につけて録る",
+      "note": "クリップで留めるウェアラブル型。立ち話や外出先にも",
+      "price": 28600,
+      "image": "https://cdn.shopify.com/s/files/1/0638/2983/5860/files/notepin-s-product-image-gray.webp?width=600",
+      "page": "https://jp.plaud.ai/products/plaud-notepin-s",
+      "shop": "PLAUD公式",
+      "source": "plaud:plaud-notepin-s"
+    },
+    "oz-rtx5070ti": {
+      "program": "OZ GAMING",
+      "name": "OZ GAMING View 380（Ryzen7 9800X3D・RTX 5070 Ti）",
+      "label": "VRAM 16GBで余裕",
+      "note": "中規模のローカルLLMや画像生成も快適に動く構成",
+      "price": 469800,
+      "image": "https://makeshop-multi-images.akamaized.net/OZgaming/itemimages/000000002716_TQLRhR3.png",
+      "page": "https://www.ozgaming-pcshop.com/view/item/000000002716",
+      "shop": "OZ GAMING",
+      "source": "oz:000000002716"
+    },
+    "oz-rx9060xt": {
+      "program": "OZ GAMING",
+      "name": "OZ GAMING Z1（Ryzen7 9700X・RX 9060 XT 16GB）",
+      "label": "16GBを安く",
+      "note": "VRAM 16GBをこの価格帯で。まず試したい人向け",
+      "price": 274800,
+      "image": "https://makeshop-multi-images.akamaized.net/OZgaming/itemimages/000000002781_SJs0KPH.png",
+      "page": "https://www.ozgaming-pcshop.com/view/item/000000002781",
+      "shop": "OZ GAMING",
+      "source": "oz:000000002781"
+    },
+    "conoha-ai-canvas": {
+      "program": "ConoHa AI Canvas",
+      "name": "ConoHa AI Canvas",
+      "label": "PCを買わずに試す",
+      "note": "ブラウザだけで使える画像生成AI。GMOインターネットのサービス",
+      "price": null,
+      "priceText": "月額1,100円〜",
+      "image": null,
+      "page": null,
+      "shop": "ConoHa公式",
+      "source": null
+    }
+  }
+}
