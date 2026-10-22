@@ -61,6 +61,8 @@ REQUEST_RETRIES = 3
 ATTEMPTS_PER_ARTICLE = 3
 # 新しい動画の解析を始めてよい経過時間。ジョブ全体の上限（60分）に余裕を残す
 RUN_TIME_BUDGET_SEC = 30 * 60
+# 429 でこれ以上の待機を指示されたら、その回は諦めて次回に回す（毎分の上限なら通常60秒前後）
+MAX_QUOTA_WAIT_SEC = 90
 # 1リクエストの上限（ミリ秒）。503のあと応答が返らず固まると、ジョブ全体が
 # タイムアウトで打ち切られ、それまでの生成結果がコミットされずに失われるため。
 REQUEST_TIMEOUT_MS = 300_000
@@ -455,8 +457,12 @@ def generate_article(client, entry: dict) -> dict:
                     break  # 再試行せず次のモデルへ
                 if attempt == REQUEST_RETRIES:
                     break
-                # 無料枠は 5 リクエスト/分。429 のときは API が返す待機秒数に従う
+                # 無料枠は 5 リクエスト/分。429 のときは API が返す待機秒数に従う。
+                # ただし待機が長い（＝1日の上限に達した）ときは待たずに打ち切る。
+                # 以前はここで1時間近く待ち続け、ジョブ全体がタイムアウトで強制終了していた
                 wait = retry_delay_of(str(error))
+                if wait is not None and (wait > MAX_QUOTA_WAIT_SEC or "PerDay" in str(error)):
+                    raise RuntimeError(f"RESOURCE_EXHAUSTED: 無料枠の上限に達しました（{wait:.0f}秒待ちの指示）") from error
                 if wait is None:
                     wait = min(60, 2**attempt * 5) + random.uniform(0, 3)
                 log(f"   [retry {attempt}/{REQUEST_RETRIES - 1}] {error} -> {wait:.0f}s 待機")

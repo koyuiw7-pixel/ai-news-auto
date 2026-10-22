@@ -235,6 +235,9 @@ def generate(client, topic: str, articles: list[dict]) -> dict:
             if attempt == REQUEST_RETRIES:
                 break
             wait = retry_delay_of(str(error)) or 20 * attempt
+            # 1日の無料枠を使い切ったときは待たずに打ち切る（長時間待つとジョブがタイムアウトする）
+            if wait > 90 or "PerDay" in str(error):
+                raise RuntimeError(f"無料枠の上限に達したため次回に回します: {str(error)[:120]}") from error
             log(f"   [retry {attempt}] {wait:.0f}s 待機")
             time.sleep(wait)
     raise RuntimeError(f"生成に失敗: {last_error}")
