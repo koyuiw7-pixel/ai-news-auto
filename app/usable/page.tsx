@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import CompanyMark from "@/components/CompanyMark";
 import Timeline from "@/components/Timeline";
 import VerdictBadge from "@/components/VerdictBadge";
-import { getAllArticles } from "@/lib/articles";
+import RailRanking from "@/components/rail/RailRanking";
+import { getAllArticles, type Article } from "@/lib/articles";
+import { companyOf } from "@/lib/companies";
+import { offerForTopic } from "@/lib/offers";
 import { usability, verdictOf } from "@/lib/verdict";
 import { siteConfig } from "@/site.config";
 
@@ -17,19 +21,31 @@ export const metadata: Metadata = {
   openGraph: { title: TITLE, description: DESCRIPTION, url: "/usable" },
 };
 
+const dayFormat = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numeric", timeZone: "Asia/Tokyo" });
+
 /**
  * 「使えるかどうか」の判定で絞り込んだハブページ。
  * 「最新 AI ツール」「今使える AI」のような検索と、AI検索からの引用の受け皿にする。
+ * トップと同じく、左に時系列・右に補助の列を置いて横幅を使い切る。
  */
 export default function UsablePage() {
   const ai = getAllArticles().filter((a) => a.genreSlug === "ai");
-  const usable = ai.filter((a) => {
-    const verdict = verdictOf(a);
-    return verdict && usability(verdict) === "go";
-  });
-  const soon = ai.filter((a) => verdictOf(a)?.status === "soon").slice(0, 8);
-  const free = usable.filter((a) => verdictOf(a)?.free === true).length;
+  const judged = ai.filter((a) => verdictOf(a));
+  const usable = judged.filter((a) => usability(verdictOf(a)!) === "go");
+  const free = usable.filter((a) => verdictOf(a)?.free === true);
+  const soon = judged.filter((a) => verdictOf(a)?.status === "soon");
   const updatedAt = usable[0]?.generatedAt;
+  const offer = offerForTopic("business");
+
+  // 企業ごとの「今すぐ使える」本数
+  const byCompany = new Map<string, { article: Article; count: number }>();
+  for (const article of usable) {
+    const slug = companyOf(article).slug;
+    const found = byCompany.get(slug);
+    if (found) found.count += 1;
+    else byCompany.set(slug, { article, count: 1 });
+  }
+  const companies = [...byCompany.values()].sort((a, b) => b.count - a.count).slice(0, 8);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -45,59 +61,143 @@ export default function UsablePage() {
     })),
   };
 
+  const stats = [
+    { label: "今すぐ使える発表", value: usable.length },
+    { label: "うち無料で試せる", value: free.length },
+    { label: "提供はこれから", value: soon.length },
+    { label: "判定した発表", value: judged.length },
+  ];
+
   return (
-    <div className="mx-auto max-w-[920px] px-5 py-10 sm:px-8 sm:py-14">
+    <div className="mx-auto max-w-[1240px] px-5 py-8 sm:px-8 sm:py-10">
       <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <p className="flex items-center gap-2 text-[12px] font-bold text-muted">
-        <VerdictBadge kind="go" />
-        {updatedAt && (
-          <span className="index-num">
-            {new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numeric", timeZone: "Asia/Tokyo" }).format(Date.parse(updatedAt))}更新
-          </span>
-        )}
-      </p>
-      <h1 className="display mt-3 text-[1.9rem] leading-tight text-balance sm:text-[2.4rem]">{TITLE}</h1>
-      <p className="mt-4 max-w-[60ch] text-[15px] leading-[1.9] text-ink-soft">{DESCRIPTION}</p>
 
-      <dl className="mt-6 grid max-w-[520px] grid-cols-3 overflow-hidden rounded-2xl border border-line">
-        {[
-          { label: "今すぐ使える発表", value: `${usable.length}本` },
-          { label: "うち無料で試せる", value: `${free}本` },
-          { label: "判定した発表", value: `${ai.filter((a) => verdictOf(a)).length}本` },
-        ].map((item, index) => (
-          <div key={item.label} className={`px-4 py-3 ${index > 0 ? "border-l border-line" : ""}`}>
-            <dt className="text-[11px] text-muted">{item.label}</dt>
-            <dd className="index-num mt-0.5 text-[20px] font-bold text-ink">{item.value}</dd>
+      {/* 見出しと数字を横に並べ、ファーストビューを詰める */}
+      <header className="grid gap-6 border-b border-ink pb-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,500px)] lg:items-end lg:gap-12">
+        <div>
+          <p className="flex items-center gap-2 text-[12px] font-bold text-muted">
+            <VerdictBadge kind="go" />
+            {updatedAt && <span className="index-num">{dayFormat.format(Date.parse(updatedAt))}更新</span>}
+          </p>
+          <h1 className="display mt-3 text-[1.85rem] leading-tight text-balance sm:text-[2.3rem]">{TITLE}</h1>
+          <p className="mt-3 max-w-[62ch] text-[14.5px] leading-[1.85] text-ink-soft">{DESCRIPTION}</p>
+        </div>
+        <dl className="grid grid-cols-2 overflow-hidden rounded-2xl border border-line sm:grid-cols-4">
+          {stats.map((item, index) => (
+            <div
+              key={item.label}
+              className={`px-4 py-3.5 ${index % 2 === 1 ? "border-l border-line" : ""} ${index >= 2 ? "border-t border-line sm:border-t-0" : ""} ${index === 2 ? "sm:border-l" : ""} ${index === 0 ? "bg-go-soft" : ""}`}
+            >
+              <dt className={`text-[11px] ${index === 0 ? "font-bold text-go" : "text-muted"}`}>{item.label}</dt>
+              <dd className="index-num mt-0.5 text-[24px] font-bold leading-none text-ink">
+                {item.value}
+                <span className="ml-0.5 text-[12px] font-bold text-muted">本</span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </header>
+
+      <div className="mt-10 grid gap-14 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-12">
+        <section aria-labelledby="usable-list" className="min-w-0">
+          <div className="mb-2 flex items-end justify-between gap-4">
+            <h2 id="usable-list" className="display text-[1.5rem]">
+              今日から使えるもの
+            </h2>
+            <span className="index-num pb-1 text-[12px] text-muted">新しい順・{Math.min(usable.length, 40)}本</span>
           </div>
-        ))}
-      </dl>
-
-      <section aria-labelledby="usable-list" className="mt-12">
-        <h2 id="usable-list" className="display mb-3 text-[1.4rem]">
-          今日から使えるもの
-        </h2>
-        <Timeline articles={usable.slice(0, 40)} />
-      </section>
-
-      {soon.length > 0 && (
-        <section aria-labelledby="soon-list" className="mt-14">
-          <h2 id="soon-list" className="display mb-3 text-[1.4rem]">
-            もうすぐ使えるもの
-          </h2>
-          <Timeline articles={soon} />
+          <Timeline articles={usable.slice(0, 40)} />
         </section>
-      )}
+
+        <aside className="grid content-start gap-10">
+          <RailList
+            id="free-heading"
+            title="無料で試せる"
+            note="今日から使えて、無料プラン・無料枠があるもの"
+            articles={free.slice(0, 6)}
+          />
+
+          {companies.length > 0 && (
+            <section aria-labelledby="company-heading">
+              <RailHead id="company-heading" title="企業別：今すぐ使える数" />
+              <ul className="grid grid-cols-2 gap-2">
+                {companies.map(({ article, count }) => {
+                  const company = companyOf(article);
+                  return (
+                    <li key={company.slug}>
+                      <Link
+                        href={`/companies/${company.slug}`}
+                        className="flex items-center justify-between gap-2 rounded-xl border border-line px-3 py-2.5 hover:border-ink"
+                      >
+                        <CompanyMark company={company} size={18} withName />
+                        <span className="index-num text-[12px] font-bold text-go">{count}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          )}
+
+          <RailList id="soon-heading" title="もうすぐ使える" note="提供時期が発表されているもの" articles={soon.slice(0, 5)} />
+
+          {/* 読み進めても右側に付いてくる商品枠 */}
+          {offer && (
+            <div className="lg:sticky lg:top-20">
+              <RailRanking offer={offer} />
+            </div>
+          )}
+        </aside>
+      </div>
 
       <p className="mt-12 rounded-2xl bg-surface px-5 py-4 text-[12px] leading-relaxed text-muted">
         判定は各発表の時点の情報にもとづきます。提供地域・料金は変わることがあるため、最新の状況は各社の公式情報をご確認ください。
         <Link href="/about" className="ml-1 underline">
-          判定の方法について
+          サイソクについて
         </Link>
       </p>
     </div>
+  );
+}
+
+function RailHead({ id, title, note }: { id: string; title: string; note?: string }) {
+  return (
+    <div className="mb-3 border-b border-ink pb-2">
+      <h2 id={id} className="text-[15px] font-bold text-ink">
+        {title}
+      </h2>
+      {note && <p className="mt-0.5 text-[11.5px] text-muted">{note}</p>}
+    </div>
+  );
+}
+
+function RailList({ id, title, note, articles }: { id: string; title: string; note?: string; articles: Article[] }) {
+  if (articles.length === 0) return null;
+  return (
+    <section aria-labelledby={id}>
+      <RailHead id={id} title={title} note={note} />
+      <ul className="grid gap-3.5">
+        {articles.map((article) => {
+          const verdict = verdictOf(article);
+          return (
+            <li key={article.slug}>
+              <Link href={`/articles/${article.slug}`} className="group block">
+                <span className="flex items-center gap-2 text-[11px] text-muted">
+                  <CompanyMark company={companyOf(article)} size={14} withName />
+                  {verdict?.price && verdict.price !== "不明" && <span>・{verdict.price}</span>}
+                </span>
+                <span className="mt-1 line-clamp-2 block text-[13.5px] font-bold leading-snug text-ink group-hover:underline">
+                  {article.seoTitle || article.title}
+                </span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 }
