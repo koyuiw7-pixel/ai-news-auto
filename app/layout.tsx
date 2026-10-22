@@ -58,6 +58,9 @@ export default function RootLayout({
       "@type": "Organization",
       name: siteConfig.name,
       url: siteConfig.url,
+      logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png`, width: 600, height: 60 },
+      email: siteConfig.operator.email,
+      contactPoint: { "@type": "ContactPoint", email: siteConfig.operator.email, contactType: "editorial" },
     },
   };
 

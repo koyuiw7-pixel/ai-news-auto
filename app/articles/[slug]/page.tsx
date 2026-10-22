@@ -13,7 +13,7 @@ import RelTime from "@/components/RelTime";
 import VerdictCard from "@/components/VerdictCard";
 import { companyOf } from "@/lib/companies";
 import { guideForArticle } from "@/lib/guides";
-import { verdictOf } from "@/lib/verdict";
+import { STATUS_LABEL, freeLabel, japanLabel, verdictOf } from "@/lib/verdict";
 import { offerForArticle } from "@/lib/offers";
 import Morph from "@/components/Morph";
 import RoundupSources from "@/components/RoundupSources";
@@ -108,6 +108,18 @@ export default async function ArticlePage({ params }: Props) {
   const headings = extractHeadings(article.body);
   const related = getRelatedArticles(article);
 
+  // 判定カードに見えている問いと答えを、そのまま FAQ の構造化データにする（AI検索の引用向け）
+  const name = article.seoTitle?.split(/[｜|：:]/)[0]?.trim() || "この発表";
+  const faq = verdict
+    ? [
+        { q: `${name}は今すぐ使える？`, a: `${STATUS_LABEL[verdict.status]}。${verdict.take}` },
+        { q: `${name}は日本から使える？`, a: japanLabel(verdict) },
+        { q: `${name}の料金は？`, a: verdict.price || "不明" },
+        { q: `${name}は無料で試せる？`, a: freeLabel(verdict.free) },
+        ...(verdict.audience ? [{ q: `${name}は誰に向いている？`, a: verdict.audience }] : []),
+      ]
+    : [];
+
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -122,8 +134,21 @@ export default async function ArticlePage({ params }: Props) {
       inLanguage: "ja",
       keywords: article.keywords.join(", "),
       mainEntityOfPage: `${siteConfig.url}/articles/${article.slug}`,
-      author: { "@type": "Organization", name: siteConfig.author },
-      publisher: { "@type": "Organization", name: siteConfig.name },
+      author: { "@type": "Organization", name: siteConfig.author, url: `${siteConfig.url}/about` },
+      publisher: {
+        "@type": "Organization",
+        name: siteConfig.name,
+        url: siteConfig.url,
+        logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png`, width: 600, height: 60 },
+      },
+      isAccessibleForFree: true,
+      articleSection: company.name,
+      about: article.tags.slice(0, 5).map((tag) => ({ "@type": "Thing", name: tag })),
+      // 音声アシスタント・AI検索が読み上げ／引用しやすい要約部分
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["#points-heading + ol", "#verdict-heading + p"],
+      },
     },
     {
       "@context": "https://schema.org",
@@ -149,6 +174,19 @@ export default async function ArticlePage({ params }: Props) {
         { "@type": "ListItem", position: 3, name: article.title },
       ],
     },
+    ...(faq.length > 0
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faq.map(({ q, a }) => ({
+              "@type": "Question",
+              name: q,
+              acceptedAnswer: { "@type": "Answer", text: a },
+            })),
+          },
+        ]
+      : []),
   ];
 
   return (
