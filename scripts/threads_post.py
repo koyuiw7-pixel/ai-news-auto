@@ -141,7 +141,8 @@ def topic_of(article: dict) -> str:
 BROAD = re.compile(r"OpenAI|ChatGPT|Google|Gemini|Anthropic|Claude|Apple|iPhone|Meta|Sora|NotebookLM|NVIDIA|GPT|Copilot|画像生成|動画生成|音声")
 NICHE = re.compile(r"Azure|SQL|Cosmos|Kubernetes|\.NET|SDK|DevOps|TypeScript|データベース|Foundry|IoT|DB開発|クラウド移行")
 WIDE_AUDIENCE = {"一般ユーザー", "ビジネス職", "クリエイター", "デザイナー", "営業職", "経営層"}
-MIN_SCORE = 3
+# 専門的な記事も投稿する（伝え方を工夫する前提）。スコアは「どれを先に出すか」の順番だけに使う
+MIN_SCORE = -99
 
 
 def score(article: dict) -> int:
