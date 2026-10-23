@@ -91,7 +91,14 @@ export function PrNote({ checkedAt, hasBook }: { checkedAt: string; hasBook: boo
   );
 }
 
+/**
+ * ASPの表示回数計測ピクセル。本番（Vercel の production）でだけ読み込む。
+ * 開発中やプレビューの確認で表示回数が水増しされ、レポートが読めなくなるのを防ぐ。
+ */
+const COUNT_IMPRESSIONS = process.env.VERCEL_ENV === "production";
+
 export function Pixels({ pixels }: { pixels: string[] }) {
+  if (!COUNT_IMPRESSIONS) return null;
   return (
     <>
       {pixels.map((pixel) => (
