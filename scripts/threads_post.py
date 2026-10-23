@@ -97,7 +97,11 @@ def openers(article: dict) -> list[tuple[str, str]]:
     verdict = article.get("verdict") or {}
     status, japan, free = verdict.get("status"), verdict.get("japan"), verdict.get("free")
     price, audience = str(verdict.get("price") or ""), str(verdict.get("audience") or "")
-    found: list[tuple[str, str]] = [("breaking", "【速報】")]
+    found: list[tuple[str, str]] = []
+    # 【速報】は、作ってから1日半以内の記事だけ（古い記事を速報と呼ばない）
+    generated = article.get("generatedAt")
+    if generated and datetime.now(timezone.utc) - datetime.fromisoformat(generated) < timedelta(hours=36):
+        found.append(("breaking", "【速報】"))
     if status == "available":
         found.append(("question", f"{name}、もう試しました？"))
         if japan == "ok":
@@ -119,6 +123,8 @@ def openers(article: dict) -> list[tuple[str, str]]:
 def opening_line(article: dict, recent: list[str]) -> tuple[str, str]:
     """直近で使った型を避けて、記事ごとに書き出しを変える"""
     options = openers(article)
+    if not options:
+        options = [("question", "このニュース、もうチェックしました？")]
     fresh = [option for option in options if option[0] not in recent] or options
     # 同じ記事なら毎回同じ結果になるよう、slug から決める
     index = sum(ord(c) for c in article["slug"]) % len(fresh)
@@ -439,7 +445,14 @@ def main() -> int:
     if buffer_channel and due_at is None:
         log("[done] 直近の投稿枠はすべて予約済みです")
         return 0
-    targets = candidates(state, args.hours)[: (1 if buffer_channel else args.max)]
+    limit = 1 if buffer_channel else args.max
+    targets = candidates(state, args.hours)[:limit]
+    if not targets:
+        # 新着に Threads 向きの記事が無いときは、直近2週間のまだ投稿していない記事から選ぶ
+        # （新着が専門的な記事ばかりの日に、投稿が丸1日止まらないように）
+        targets = candidates(state, 14 * 24)[:limit]
+        if targets:
+            log("[fallback] 新着に Threads 向きの記事が無いため、直近2週間の記事から選びました")
     if not targets:
         log("[done] Threads 向きの新着記事はありません（専門的な記事は記事ページだけに出します）")
         return 0

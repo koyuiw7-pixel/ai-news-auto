@@ -32,6 +32,9 @@ type Partner = {
   image: string | null;
   page: string | null;
   shop: string;
+  /** A8 のバナー素材など、素材ごとのリンクを使う場合（画像と組で使う） */
+  link?: string;
+  pixel?: string;
 };
 
 type Book = {
@@ -194,11 +197,12 @@ function buildOffer(topic: Topic, fallback: string, maxItems: number): Offer | u
       price: products?.partnerPrices?.[key] ?? partner.price,
       priceText: partner.priceText,
       image: partner.image,
-      url: partnerUrl(program.url, partner.page),
+      url: partner.link ?? partnerUrl(program.url, partner.page),
       shop: partner.shop,
       cta: "公式サイトで見る",
     });
-    if (program.pixel) pixels.add(program.pixel);
+    const pixel = partner.pixel ?? program.pixel;
+    if (pixel) pixels.add(pixel);
   }
 
   // 話題の本 → 補充用の話題の本 → 既定の話題の本、の順に、必ず maxItems 個そろえる
