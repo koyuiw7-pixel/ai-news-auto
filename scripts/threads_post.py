@@ -131,8 +131,38 @@ def topic_of(article: dict) -> str:
     return tags[0][:50] if tags else "AI"
 
 
+# Threads で反応が取りやすい話題（大手・一般向け）と、取りにくい話題（企業の開発基盤など）
+BROAD = re.compile(r"OpenAI|ChatGPT|Google|Gemini|Anthropic|Claude|Apple|iPhone|Meta|Sora|NotebookLM|NVIDIA|GPT|Copilot|画像生成|動画生成|音声")
+NICHE = re.compile(r"Azure|SQL|Cosmos|Kubernetes|\.NET|SDK|DevOps|TypeScript|データベース|Foundry|IoT|DB開発|クラウド移行")
+WIDE_AUDIENCE = {"一般ユーザー", "ビジネス職", "クリエイター", "デザイナー", "営業職", "経営層"}
+MIN_SCORE = 3
+
+
+def score(article: dict) -> int:
+    """フォロワーが少ないうちは「誰でも反応できる話題」だけを流す。専門的すぎる発表は記事に任せる。"""
+    text = f"{article.get('title', '')} {article.get('seoTitle', '')} {' '.join(article.get('tags', []))}"
+    verdict = article.get("verdict") or {}
+    value = 0
+    if BROAD.search(text):
+        value += 3
+    if NICHE.search(text):
+        value -= 5
+    if verdict.get("status") == "available" and verdict.get("japan") != "no":
+        value += 2
+    if verdict.get("free") is True:
+        value += 1
+    if verdict.get("audience") in WIDE_AUDIENCE:
+        value += 1
+    if article.get("type") == "roundup":
+        value += 2
+    # 有名な製品・企業の話でも、一般向けでもない技術解説は、フォロワーが育つまで見送る
+    if not BROAD.search(text) and verdict.get("audience") not in WIDE_AUDIENCE:
+        value -= 2
+    return value
+
+
 def candidates(state: dict, hours: int) -> list[dict]:
-    """直近 hours 時間に生成された、未投稿のAI記事。まとめ記事を優先する。"""
+    """直近 hours 時間に生成された未投稿のAI記事を、Threads で反応が取れそうな順に並べる。"""
     since = datetime.now(timezone.utc) - timedelta(hours=hours)
     posted = state["posted"]
     articles = []
@@ -147,8 +177,31 @@ def candidates(state: dict, hours: int) -> list[dict]:
     # まとめ記事に統合済みの個別記事は、まとめ側を出せば十分なので重ねて流さない
     roundups = {a["slug"] for a in articles if a.get("type") == "roundup"} | set(posted)
     articles = [a for a in articles if a.get("roundupSlug") not in roundups]
-    articles.sort(key=lambda a: (a.get("type") == "roundup", a["generatedAt"]), reverse=True)
+    articles = [a for a in articles if score(a) >= MIN_SCORE]
+    articles.sort(key=lambda a: (score(a), a["generatedAt"]), reverse=True)
     return articles
+
+
+# 投稿する時間帯（日本時間）。通勤・昼休み・夜に寄せ、1日3本までにする
+SLOTS_JST = [(7, 30), (12, 30), (20, 30)]
+JST = timezone(timedelta(hours=9))
+LOOKAHEAD_HOURS = 10
+
+
+def next_free_slot(state: dict, now: datetime | None = None) -> datetime | None:
+    """これから LOOKAHEAD_HOURS 時間以内で、まだ予約していない投稿枠（UTC）"""
+    now = now or datetime.now(timezone.utc)
+    taken = {p.get("dueAt") for p in state["posted"].values() if p.get("dueAt")}
+    base = now.astimezone(JST).replace(second=0, microsecond=0)
+    for day in range(2):
+        for hour, minute in SLOTS_JST:
+            slot = (base + timedelta(days=day)).replace(hour=hour, minute=minute)
+            if slot < base + timedelta(minutes=20) or slot > base + timedelta(hours=LOOKAHEAD_HOURS):
+                continue
+            iso = slot.astimezone(timezone.utc).isoformat(timespec="seconds")
+            if iso not in taken:
+                return slot.astimezone(timezone.utc)
+    return None
 
 
 def wait_until_live(url: str, timeout: int) -> bool:
@@ -241,8 +294,61 @@ def buffer_threads_channel(api_key: str) -> dict | None:
     return None
 
 
-def publish_via_buffer(api_key: str, channel_id: str, text: str, link: str, article: dict) -> dict:
-    """Buffer に「今すぐ投稿」で渡す。リンクは Threads のリンクカード（独自カバー画像つき）にする"""
+def publish_via_buffer(
+    api_key: str,
+    channel_id: str,
+    text: str,
+    link: str,
+    article: dict,
+    due_at: datetime | None = None,
+    draft: bool = False,
+) -> dict:
+    """Buffer に予約投稿する。
+
+    本文にはリンクを付けず、独自カバー画像を添える。記事へのリンクは、すぐ下に続く返信（スレッドの2件目）に置く。
+    リンクだけの投稿は反応が付きにくく、表示が伸びにくいと言われているため。
+    """
+    cover = f"{site_url()}/cover/{article['slug']}"
+    title = article.get("seoTitle") or article["title"]
+    thread = [
+        {"text": text, "assets": [{"image": {"url": cover}}]},
+        {
+            "text": "記事はこちら👇",
+            "assets": [],
+            "metadata": {
+                "threads": {
+                    "linkAttachment": {
+                        "url": link,
+                        "title": title,
+                        "description": article.get("description", "")[:120],
+                        "thumbnail": {"url": cover},
+                    }
+                }
+            },
+        },
+    ]
+    post_input = {
+        "channelId": channel_id,
+        "text": text,
+        "schedulingType": "automatic",
+        "assets": [],
+        "metadata": {
+            "threads": {
+                # トピックを付けると、そのトピックに関心のある人のフィードに載りやすくなる
+                "topic": topic_of(article),
+                "thread": thread,
+            }
+        },
+    }
+    if draft:
+        # 動作確認用：公開せず下書きとして保存する
+        post_input["mode"] = "addToQueue"
+        post_input["saveToDraft"] = True
+    elif due_at:
+        post_input["mode"] = "customScheduled"
+        post_input["dueAt"] = due_at.isoformat(timespec="seconds").replace("+00:00", "Z")
+    else:
+        post_input["mode"] = "shareNow"
     data = buffer_graphql(
         api_key,
         """mutation($input: CreatePostInput!) {
@@ -251,27 +357,7 @@ def publish_via_buffer(api_key: str, channel_id: str, text: str, link: str, arti
             ... on MutationError { message }
           }
         }""",
-        {
-            "input": {
-                "channelId": channel_id,
-                "text": text,
-                "schedulingType": "automatic",
-                "mode": "shareNow",
-                "assets": [],
-                "metadata": {
-                    "threads": {
-                        # トピックを付けると、そのトピックに関心のある人のフィードに載りやすくなる
-                        "topic": topic_of(article),
-                        "linkAttachment": {
-                            "url": link,
-                            "title": article.get("seoTitle") or article["title"],
-                            "description": article.get("description", "")[:120],
-                            "thumbnail": {"url": f"{site_url()}/cover/{article['slug']}"},
-                        }
-                    }
-                },
-            }
-        },
+        {"input": post_input},
     )
     result = data["createPost"]
     if "message" in result:
@@ -289,10 +375,11 @@ def write_summary(lines: list[str]) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--max", type=int, default=2, help="1回で投稿する最大本数")
-    parser.add_argument("--hours", type=int, default=24, help="何時間前までに生成された記事を対象にするか")
+    parser.add_argument("--hours", type=int, default=36, help="何時間前までに生成された記事を対象にするか")
     parser.add_argument("--wait", type=int, default=600, help="記事の公開を待つ最大秒数")
     parser.add_argument("--dry-run", action="store_true", help="投稿せず文面だけ表示する")
     parser.add_argument("--check-buffer", action="store_true", help="Buffer の接続先を確認するだけ")
+    parser.add_argument("--test-draft", action="store_true", help="投稿形式の確認用に、Buffer へ下書きを作って消す")
     args = parser.parse_args()
 
     live = os.environ.get("THREADS_MODE") == "live" and not args.dry_run
@@ -316,6 +403,27 @@ def main() -> int:
             log("[buffer] Buffer に Threads のチャンネルが見つかりません（Buffer で Threads を接続してください）")
     if args.check_buffer:
         return 0 if buffer_channel else 1
+    if args.test_draft:
+        # 新しい投稿形式（画像つき本文＋リンクは返信）が Buffer に受け付けられるかを、下書きを作って消すことで確かめる
+        if not buffer_channel:
+            return 1
+        sample = (candidates(state, 24 * 30) or [None])[0]
+        if sample is None:
+            log("[test] 確認に使える記事がありません")
+            return 1
+        result = publish_via_buffer(
+            buffer_key, buffer_channel["id"], compose(sample), f"{site_url()}/articles/{sample['slug']}", sample, draft=True
+        )
+        log(f"[test] 下書きの作成に成功しました: {result['id']}")
+        deleted = buffer_graphql(
+            buffer_key,
+            """mutation($input: DeletePostInput!) {
+              deletePost(input: $input) { __typename ... on MutationError { message } }
+            }""",
+            {"input": {"id": result["id"]}},
+        )
+        log(f"[test] 下書きを削除しました: {deleted}")
+        return 0
 
     token = None
     if live and not buffer_channel:
@@ -326,10 +434,17 @@ def main() -> int:
         # 投稿が無い回でも期限（60日）を延ばし続ける
         token = refresh_if_needed(token)
 
-    targets = candidates(state, args.hours)[: args.max]
-    if not targets:
-        log("[done] 投稿する新着記事はありません")
+    # Buffer 経由では、次の投稿枠（朝・昼・夜）に1本だけ予約する。枠が無ければ今回は見送る
+    due_at = next_free_slot(state) if buffer_channel else None
+    if buffer_channel and due_at is None:
+        log("[done] 直近の投稿枠はすべて予約済みです")
         return 0
+    targets = candidates(state, args.hours)[: (1 if buffer_channel else args.max)]
+    if not targets:
+        log("[done] Threads 向きの新着記事はありません（専門的な記事は記事ページだけに出します）")
+        return 0
+    if due_at:
+        log(f"[slot] {due_at.astimezone(JST):%m/%d %H:%M} に予約します")
 
     summary = [f"### Threads {'投稿' if live else '下書き（未投稿）'}", ""]
     # 直近の投稿で使った書き出しの型（同じ型を続けないため）
@@ -351,7 +466,7 @@ def main() -> int:
             continue
         try:
             if buffer_channel:
-                result = publish_via_buffer(buffer_key, buffer_channel["id"], text, link, article)
+                result = publish_via_buffer(buffer_key, buffer_channel["id"], text, link, article, due_at)
             else:
                 result = publish(token, text, link)
         except RuntimeError as error:
@@ -361,6 +476,8 @@ def main() -> int:
         state["posted"][article["slug"]] = {
             **result,
             "hook": hook,
+            "score": score(article),
+            **({"dueAt": due_at.isoformat(timespec="seconds")} if due_at and buffer_channel else {}),
             "postedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         }
         save_state(state)
