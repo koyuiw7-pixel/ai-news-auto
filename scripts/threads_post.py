@@ -218,17 +218,19 @@ def candidates(state: dict, hours: int) -> list[dict]:
     return articles
 
 
-# 投稿する時間帯（日本時間）。通勤・昼休み・夜に寄せ、1日3本までにする
-SLOTS_JST = [(7, 30), (12, 30), (20, 30)]
+# 投稿する時間帯（日本時間）。通勤・昼休み・帰宅・夜のよく見られる時間に寄せ、1日5本。2時間以上あける
+SLOTS_JST = [(7, 30), (12, 15), (18, 30), (21, 0), (22, 45)]
 JST = timezone(timedelta(hours=9))
-LOOKAHEAD_HOURS = 10
+# 自動処理は約6時間ごとに動くので、次の処理までの枠をまとめて予約する（処理の遅れも見込んで少し長めに）
+LOOKAHEAD_HOURS = 8
 
 
-def next_free_slot(state: dict, now: datetime | None = None) -> datetime | None:
-    """これから LOOKAHEAD_HOURS 時間以内で、まだ予約していない投稿枠（UTC）"""
+def free_slots(state: dict, now: datetime | None = None) -> list[datetime]:
+    """これから LOOKAHEAD_HOURS 時間以内で、まだ予約していない投稿枠（UTC、早い順）"""
     now = now or datetime.now(timezone.utc)
     taken = {p.get("dueAt") for p in state["posted"].values() if p.get("dueAt")}
     base = now.astimezone(JST).replace(second=0, microsecond=0)
+    found = []
     for day in range(2):
         for hour, minute in SLOTS_JST:
             slot = (base + timedelta(days=day)).replace(hour=hour, minute=minute)
@@ -236,8 +238,13 @@ def next_free_slot(state: dict, now: datetime | None = None) -> datetime | None:
                 continue
             iso = slot.astimezone(timezone.utc).isoformat(timespec="seconds")
             if iso not in taken:
-                return slot.astimezone(timezone.utc)
-    return None
+                found.append(slot.astimezone(timezone.utc))
+    return found
+
+
+def next_free_slot(state: dict, now: datetime | None = None) -> datetime | None:
+    slots = free_slots(state, now)
+    return slots[0] if slots else None
 
 
 def wait_until_live(url: str, timeout: int) -> bool:
@@ -470,46 +477,49 @@ def main() -> int:
         # 投稿が無い回でも期限（60日）を延ばし続ける
         token = refresh_if_needed(token)
 
-    # Buffer 経由では、次の投稿枠（朝・昼・夜）に1本だけ予約する。枠が無ければ今回は見送る
-    due_at = next_free_slot(state) if buffer_channel else None
-    if buffer_channel and due_at is None:
+    # Buffer 経由では、次の自動処理までに来る投稿枠（1日5枠）をまとめて予約する。枠が無ければ見送る
+    slots: list[datetime | None] = free_slots(state) if buffer_channel else [None] * args.max
+    if not slots:
         log("[done] 直近の投稿枠はすべて予約済みです")
         return 0
-    limit = 1 if buffer_channel else args.max
-    # 直近で使った書き出しの型と同じ型の記事は後回しにする（同じ型が続くと読み飛ばされるため）
     history = sorted(state["posted"].values(), key=lambda p: p.get("postedAt", ""), reverse=True)
     recent_hooks = [p["hook"] for p in history if p.get("hook")][:3]
-
     learned = hook_bonus()
 
-    def varied(articles: list[dict]) -> list[dict]:
-        # 直近と同じ型は後回し → 実績の良い型（と、まだ試していない型）を先に → 記事の向き不向き
-        return sorted(
-            articles,
-            key=lambda a: (
-                a.get("threadsHook") in recent_hooks,
-                -(learned.get(a.get("threadsHook") or "", 0.0) + score(a) * 0.3),
-            ),
-        )
+    def rank(articles: list[dict]) -> list[dict]:
+        # 実績の良い型（と、まだ試していない型）を先に → 記事の向き不向き
+        return sorted(articles, key=lambda a: -(learned.get(a.get("threadsHook") or "", 0.0) + score(a) * 0.3))
 
-    targets = varied(candidates(state, args.hours))[:limit]
-    if not targets:
-        # 新着に Threads 向きの記事が無いときは、直近2週間のまだ投稿していない記事から選ぶ
-        # （新着が専門的な記事ばかりの日に、投稿が丸1日止まらないように）
-        targets = varied(candidates(state, 14 * 24))[:limit]
-        if targets:
-            log("[fallback] 新着に Threads 向きの記事が無いため、直近2週間の記事から選びました")
-    if not targets:
-        log("[done] Threads 向きの新着記事はありません（専門的な記事は記事ページだけに出します）")
+    # 新着を優先し、足りない分は直近2週間のまだ投稿していない記事から補う
+    fresh = rank(candidates(state, args.hours))
+    seen = {a["slug"] for a in fresh}
+    backlog = [a for a in rank(candidates(state, 14 * 24)) if a["slug"] not in seen]
+    pool = fresh + backlog
+    if not fresh and backlog:
+        log("[fallback] 新着に Threads 向きの記事が無いため、直近2週間の記事から選びました")
+
+    # 枠ごとに1本ずつ選ぶ。直前に使った書き出しの型と同じ型は避ける（同じ型が続くと読み飛ばされるため）
+    plan: list[tuple[dict, datetime | None]] = []
+    for slot in slots:
+        if not pool:
+            break
+        pick = next((a for a in pool if a.get("threadsHook") not in recent_hooks), pool[0])
+        pool.remove(pick)
+        if pick.get("threadsHook"):
+            recent_hooks = [pick["threadsHook"], *recent_hooks][:3]
+        plan.append((pick, slot))
+    if not plan:
+        log("[done] 投稿できる記事がありません")
         return 0
-    if due_at:
-        log(f"[slot] {due_at.astimezone(JST):%m/%d %H:%M} に予約します")
+    for article, slot in plan:
+        if slot:
+            log(f"[slot] {slot.astimezone(JST):%m/%d %H:%M} に予約: {article['slug']}")
 
     summary = [f"### Threads {'投稿' if live else '下書き（未投稿）'}", ""]
     # 直近の投稿で使った書き出しの型（同じ型を続けないため）
     history = sorted(state["posted"].values(), key=lambda p: p.get("postedAt", ""), reverse=True)
     recent = [p["hook"] for p in history if p.get("hook")][:4]
-    for article in targets:
+    for article, due_at in plan:
         link = f"{site_url()}/articles/{article['slug']}"
         text = compose(article, recent)
         hook = article.get("threadsHook") or article.get("_hook", "")
