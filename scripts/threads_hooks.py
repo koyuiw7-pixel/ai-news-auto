@@ -140,6 +140,9 @@ def prompt_block(recent: list[str] | None = None) -> str:
     if recent:
         names = "、".join(h["name"] for h in HOOKS if h["key"] in recent)
         lines.append(f"直近の投稿で {names} を使ったので、今回はそれ以外から選ぶ（同じ型が続くと読み飛ばされるため）。")
+    learned = learned_summary()
+    if learned:
+        lines.append(learned)
     for hook in HOOKS:
         examples = "／".join(f"「{e}」" for e in hook["examples"])
         lines.append(f"- {hook['key']}（{hook['name']}）: {hook['how']}。使ってよい条件: {hook['when']}。例: {examples}")
@@ -148,6 +151,28 @@ def prompt_block(recent: list[str] | None = None) -> str:
         "「ついに」「待望」は待望型の条件を満たすときだけ使ってよい。"
     )
     return "\n".join(lines)
+
+
+def learned_summary() -> str:
+    """これまでの投稿の反応から分かった、伸びやすい型（scripts/threads_learn.py の結果）"""
+    path = ROOT / "state" / "threads_learning.json"
+    if not path.exists():
+        return ""
+    try:
+        data = json.loads(path.read_text("utf-8"))
+    except Exception:
+        return ""
+    hooks = {k: v for k, v in data.get("axes", {}).get("hook", {}).items() if v.get("n", 0) >= 2}
+    if data.get("posts", 0) < 6 or len(hooks) < 2:
+        return ""  # データが少ないうちは決めつけない
+    names = {h["key"]: h["name"] for h in HOOKS}
+    best = list(hooks.items())[:3]
+    text = "、".join(f"{names.get(k, k)}（平均閲覧{v['avgViews']}）" for k, v in best)
+    untested = [h["name"] for h in HOOKS if h["key"] not in hooks]
+    note = f"これまでの投稿では {text} の反応が良い。記事に合うならこれらを優先する。"
+    if untested:
+        note += f"ただし、まだ試していない型（{'、'.join(untested[:4])}）も、記事に合えば積極的に試す。"
+    return note
 
 
 def clean_hook(value: object) -> str:

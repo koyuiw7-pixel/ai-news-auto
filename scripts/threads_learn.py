@@ -1,0 +1,201 @@
+"""
+Threads の「勝ちパターン」を学ぶ。
+
+1. Buffer から、投稿ごとの反応（閲覧・いいね・返信・再投稿）を取ってきて、投稿履歴に書き込む
+2. 書き出しの型・時間帯・話題（企業）・問いかけで締めたか、ごとに成績を集計する
+3. 結果を state/threads_learning.json に保存する。threads_post.py（どの記事を出すか）と
+   threads_hooks.py（どの書き出しを勧めるか）がこれを読んで、伸びた型を優先する
+
+Buffer の数値は1日1回更新なので、1日1回動かせば十分。
+
+使い方:
+    python3 scripts/threads_learn.py           # 取得して学習
+    python3 scripts/threads_learn.py --offline # 取得せず、手元の数値だけで学習し直す
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import sys
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from threads_post import ARTICLES_DIR, buffer_graphql, load_state, save_state  # noqa: E402
+
+ROOT = Path(__file__).resolve().parent.parent
+LEARNING_PATH = ROOT / "state" / "threads_learning.json"
+JST = timezone(timedelta(hours=9))
+
+# 反応の重み。返信と再投稿は「人に広がる」反応なので重くする
+WEIGHTS = {"reactions": 1.0, "comments": 3.0, "reposts": 4.0, "quotes": 4.0}
+# 少ない投稿数で極端な結論を出さないよう、全体平均に寄せる強さ（投稿何本ぶんか）
+PRIOR = 3
+COMPANIES = [
+    ("OpenAI", r"OpenAI|ChatGPT|GPT|Codex|Sora"),
+    ("Google", r"Google|Gemini|DeepMind|NotebookLM"),
+    ("Anthropic", r"Anthropic|Claude"),
+    ("Microsoft", r"Microsoft|Azure|Copilot|Foundry"),
+    ("NVIDIA", r"NVIDIA|GeForce|RTX"),
+    ("Meta", r"Meta|Llama"),
+    ("DeepSeek", r"DeepSeek"),
+]
+
+
+def fetch_metrics(api_key: str) -> dict[str, dict]:
+    """送信済みの Threads 投稿の反応（Buffer の投稿ID → 指標）"""
+    orgs = buffer_graphql(api_key, "query { account { organizations { id } } }")["account"]["organizations"]
+    result: dict[str, dict] = {}
+    for org in orgs:
+        channels = buffer_graphql(
+            api_key,
+            f"query {{ channels(input: {{ organizationId: {json.dumps(org['id'])} }}) {{ id service }} }}",
+        )["channels"]
+        ids = [c["id"] for c in channels if str(c.get("service", "")).lower() == "threads"]
+        if not ids:
+            continue
+        cursor = None
+        for _ in range(10):  # 最大 500 件
+            after = f", after: {json.dumps(cursor)}" if cursor else ""
+            data = buffer_graphql(
+                api_key,
+                f"""query {{ posts(first: 50{after}, input: {{
+                    organizationId: {json.dumps(org['id'])},
+                    filter: {{ status: [sent], channelIds: {json.dumps(ids)} }}
+                }}) {{
+                    edges {{ node {{ id sentAt externalLink metricsUpdatedAt metrics {{ type value }} }} }}
+                    pageInfo {{ endCursor hasNextPage }}
+                }} }}""",
+            )["posts"]
+            for edge in data["edges"]:
+                node = edge["node"]
+                metrics = {m["type"]: m["value"] for m in node.get("metrics") or []}
+                result[node["id"]] = {
+                    "metrics": metrics,
+                    "metricsUpdatedAt": node.get("metricsUpdatedAt"),
+                    "sentAt": node.get("sentAt"),
+                    "externalLink": node.get("externalLink"),
+                }
+            if not data["pageInfo"]["hasNextPage"]:
+                break
+            cursor = data["pageInfo"]["endCursor"]
+    return result
+
+
+def views_of(metrics: dict) -> float:
+    for key in ("impressions", "views", "reach"):
+        if key in metrics:
+            return float(metrics[key])
+    return 0.0
+
+
+def engagement_of(metrics: dict) -> float:
+    return sum(float(metrics.get(key, 0)) * weight for key, weight in WEIGHTS.items())
+
+
+def features(slug: str, entry: dict) -> dict:
+    """投稿の特徴（何が効いたかを比べる軸）"""
+    article: dict = {}
+    path = ARTICLES_DIR / f"{slug}.json"
+    if path.exists():
+        article = json.loads(path.read_text("utf-8"))
+    when = entry.get("sentAt") or entry.get("dueAt") or entry.get("postedAt")
+    hour = datetime.fromisoformat(when.replace("Z", "+00:00")).astimezone(JST).hour if when else None
+    slot = "朝" if hour is not None and 5 <= hour < 10 else "昼" if hour is not None and 10 <= hour < 16 else "夜" if hour is not None else "不明"
+    text = f"{article.get('title', '')} {' '.join(article.get('tags', []))}"
+    company = next((name for name, pattern in COMPANIES if re.search(pattern, text)), "その他")
+    post = str(article.get("threadsPost") or "").strip()
+    return {
+        "hook": entry.get("hook") or article.get("threadsHook") or "不明",
+        "slot": slot,
+        "company": company,
+        "ending": "問いかけ" if post.endswith(("？", "?")) else "記事で👇",
+        "format": "画像+返信リンク" if entry.get("dueAt") else "リンクカード",
+    }
+
+
+def summarize(rows: list[dict]) -> dict:
+    """軸ごとに、平均閲覧・平均反応・総合点（全体平均に寄せた値）を出す"""
+    if not rows:
+        return {}
+    overall_views = sum(r["views"] for r in rows) / len(rows)
+    overall_eng = sum(r["engagement"] for r in rows) / len(rows)
+    out: dict[str, dict] = {}
+    for axis in ("hook", "slot", "company", "ending", "format"):
+        groups: dict[str, list[dict]] = {}
+        for row in rows:
+            groups.setdefault(row["features"][axis], []).append(row)
+        table = {}
+        for key, items in groups.items():
+            n = len(items)
+            views = sum(i["views"] for i in items)
+            eng = sum(i["engagement"] for i in items)
+            table[key] = {
+                "n": n,
+                "avgViews": round(views / n, 1),
+                "avgEngagement": round(eng / n, 2),
+                # 本数が少ない型ほど全体平均に寄せる（たまたまの1本で決めつけない）
+                "score": round(((views + PRIOR * overall_views) / (n + PRIOR))
+                               + 10 * ((eng + PRIOR * overall_eng) / (n + PRIOR)), 2),
+            }
+        out[axis] = dict(sorted(table.items(), key=lambda kv: -kv[1]["score"]))
+    return out
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--offline", action="store_true")
+    args = parser.parse_args()
+
+    state = load_state()
+    if not args.offline:
+        key = os.environ.get("BUFFER_API_KEY", "").strip()
+        if not key:
+            print("[learn] BUFFER_API_KEY が無いので、手元の数値だけで学習します")
+        else:
+            try:
+                fetched = fetch_metrics(key)
+            except Exception as error:  # 学習の失敗で投稿を止めない
+                print(f"[learn] 反応の取得に失敗しました: {error}", file=sys.stderr)
+                fetched = {}
+            updated = 0
+            for entry in state["posted"].values():
+                info = fetched.get(entry.get("id", ""))
+                if info and info["metrics"]:
+                    entry.update(info)
+                    updated += 1
+            print(f"[learn] {len(fetched)}件の投稿の反応を取得、{updated}件を履歴に反映")
+            save_state(state)
+
+    rows = []
+    for slug, entry in state["posted"].items():
+        metrics = entry.get("metrics")
+        if not metrics:
+            continue
+        rows.append({
+            "slug": slug,
+            "views": views_of(metrics),
+            "engagement": engagement_of(metrics),
+            "features": features(slug, entry),
+        })
+    learning = {
+        "updatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "posts": len(rows),
+        "axes": summarize(rows),
+        "top": sorted(
+            ({"slug": r["slug"], "views": r["views"], "engagement": r["engagement"], **r["features"]} for r in rows),
+            key=lambda r: -(r["views"] + 10 * r["engagement"]),
+        )[:10],
+    }
+    LEARNING_PATH.write_text(json.dumps(learning, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    hooks = learning["axes"].get("hook", {})
+    print(f"[learn] 学習に使えた投稿: {len(rows)}本")
+    for key, value in list(hooks.items())[:5]:
+        print(f"  {key}: {value['n']}本 平均閲覧{value['avgViews']} 平均反応{value['avgEngagement']}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -115,6 +115,8 @@ jobs:
           # Buffer 経由で投稿する場合の API キー（設定されていればこちらを優先）
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
         run: |
+          # 投稿ごとの反応を取り込んで「勝ちパターン」を学び直してから、次の投稿を選ぶ
+          python scripts/threads_learn.py || echo "::warning::Threads の学習に失敗しました（投稿は続けます）"
           python scripts/threads_post.py --max 2
           if [ -z "$(git status --porcelain state)" ]; then
             exit 0

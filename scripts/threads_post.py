@@ -168,6 +168,35 @@ def score(article: dict) -> int:
     return value
 
 
+LEARNING_PATH = ROOT / "state" / "threads_learning.json"
+
+
+def hook_bonus() -> dict[str, float]:
+    """書き出しの型ごとの加点（scripts/threads_learn.py の学習結果から）。
+
+    実績が良い型ほど高く（0〜2点）、まだ2本未満しか試していない型には「試す価値」として1.5点。
+    """
+    if not LEARNING_PATH.exists():
+        return {}
+    try:
+        hooks = json.loads(LEARNING_PATH.read_text("utf-8")).get("axes", {}).get("hook", {})
+    except Exception:
+        return {}
+    import threads_hooks  # noqa: PLC0415
+
+    tested = {k: v for k, v in hooks.items() if v.get("n", 0) >= 2}
+    bonus: dict[str, float] = {}
+    if tested:
+        scores = [v["score"] for v in tested.values()]
+        low, high = min(scores), max(scores)
+        for key, value in tested.items():
+            bonus[key] = 2.0 * ((value["score"] - low) / (high - low)) if high > low else 1.0
+    for key in threads_hooks.HOOK_KEYS:
+        if key not in tested:
+            bonus[key] = 1.5
+    return bonus
+
+
 def candidates(state: dict, hours: int) -> list[dict]:
     """直近 hours 時間に生成された未投稿のAI記事を、Threads で反応が取れそうな順に並べる。"""
     since = datetime.now(timezone.utc) - timedelta(hours=hours)
@@ -451,8 +480,17 @@ def main() -> int:
     history = sorted(state["posted"].values(), key=lambda p: p.get("postedAt", ""), reverse=True)
     recent_hooks = [p["hook"] for p in history if p.get("hook")][:3]
 
+    learned = hook_bonus()
+
     def varied(articles: list[dict]) -> list[dict]:
-        return sorted(articles, key=lambda a: a.get("threadsHook") in recent_hooks)
+        # 直近と同じ型は後回し → 実績の良い型（と、まだ試していない型）を先に → 記事の向き不向き
+        return sorted(
+            articles,
+            key=lambda a: (
+                a.get("threadsHook") in recent_hooks,
+                -(learned.get(a.get("threadsHook") or "", 0.0) + score(a) * 0.3),
+            ),
+        )
 
     targets = varied(candidates(state, args.hours))[:limit]
     if not targets:
