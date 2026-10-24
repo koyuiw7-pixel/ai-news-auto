@@ -228,7 +228,7 @@ LOOKAHEAD_HOURS = 8
 def free_slots(state: dict, now: datetime | None = None) -> list[datetime]:
     """これから LOOKAHEAD_HOURS 時間以内で、まだ予約していない投稿枠（UTC、早い順）"""
     now = now or datetime.now(timezone.utc)
-    taken = {p.get("dueAt") for p in state["posted"].values() if p.get("dueAt")}
+    taken = [datetime.fromisoformat(p["dueAt"]) for p in state["posted"].values() if p.get("dueAt")]
     base = now.astimezone(JST).replace(second=0, microsecond=0)
     found = []
     for day in range(2):
@@ -236,8 +236,8 @@ def free_slots(state: dict, now: datetime | None = None) -> list[datetime]:
             slot = (base + timedelta(days=day)).replace(hour=hour, minute=minute)
             if slot < base + timedelta(minutes=20) or slot > base + timedelta(hours=LOOKAHEAD_HOURS):
                 continue
-            iso = slot.astimezone(timezone.utc).isoformat(timespec="seconds")
-            if iso not in taken:
+            # すでに予約した投稿と90分以内に重なる枠は使わない（枠の時刻を変えた日でも詰まりすぎないように）
+            if all(abs((slot - t).total_seconds()) >= 90 * 60 for t in taken):
                 found.append(slot.astimezone(timezone.utc))
     return found
 
