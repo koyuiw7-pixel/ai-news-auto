@@ -447,11 +447,18 @@ def main() -> int:
         log("[done] 直近の投稿枠はすべて予約済みです")
         return 0
     limit = 1 if buffer_channel else args.max
-    targets = candidates(state, args.hours)[:limit]
+    # 直近で使った書き出しの型と同じ型の記事は後回しにする（同じ型が続くと読み飛ばされるため）
+    history = sorted(state["posted"].values(), key=lambda p: p.get("postedAt", ""), reverse=True)
+    recent_hooks = [p["hook"] for p in history if p.get("hook")][:3]
+
+    def varied(articles: list[dict]) -> list[dict]:
+        return sorted(articles, key=lambda a: a.get("threadsHook") in recent_hooks)
+
+    targets = varied(candidates(state, args.hours))[:limit]
     if not targets:
         # 新着に Threads 向きの記事が無いときは、直近2週間のまだ投稿していない記事から選ぶ
         # （新着が専門的な記事ばかりの日に、投稿が丸1日止まらないように）
-        targets = candidates(state, 14 * 24)[:limit]
+        targets = varied(candidates(state, 14 * 24))[:limit]
         if targets:
             log("[fallback] 新着に Threads 向きの記事が無いため、直近2週間の記事から選びました")
     if not targets:
