@@ -1,123 +1,163 @@
 {
-  "updatedAt": "2026-10-24T15:16:42+00:00",
+  "updatedAt": "2026-10-24T20:03:06+00:00",
   "posts": 10,
   "axes": {
     "hook": {
       "free": {
         "n": 1,
-        "avgViews": 8.0,
+        "avgViews": 9.0,
+        "avgEngagement": 4.0,
+        "score": 31.45
+      },
+      "callout": {
+        "n": 3,
+        "avgViews": 2.0,
         "avgEngagement": 3.0,
-        "score": 16.93
+        "score": 28.8
+      },
+      "number": {
+        "n": 1,
+        "avgViews": 1.0,
+        "avgEngagement": 3.0,
+        "score": 26.95
+      },
+      "before_after": {
+        "n": 2,
+        "avgViews": 1.5,
+        "avgEngagement": 2.0,
+        "score": 23.96
       },
       "不明": {
         "n": 3,
         "avgViews": 2.3,
         "avgEngagement": 1.0,
-        "score": 11.12
-      },
-      "before_after": {
-        "n": 2,
-        "avgViews": 1.0,
-        "avgEngagement": 0.5,
-        "score": 8.34
-      },
-      "number": {
-        "n": 1,
-        "avgViews": 0.0,
-        "avgEngagement": 0.0,
-        "score": 7.43
-      },
-      "callout": {
-        "n": 3,
-        "avgViews": 0.7,
-        "avgEngagement": 0.33,
-        "score": 6.95
+        "score": 18.97
       }
     },
     "slot": {
-      "夜": {
-        "n": 7,
-        "avgViews": 2.6,
-        "avgEngagement": 1.0,
-        "score": 11.77
+      "昼": {
+        "n": 1,
+        "avgViews": 1.0,
+        "avgEngagement": 4.0,
+        "score": 29.45
       },
       "朝": {
         "n": 2,
-        "avgViews": 0.5,
-        "avgEngagement": 0.5,
-        "score": 8.14
+        "avgViews": 1.5,
+        "avgEngagement": 2.5,
+        "score": 25.96
       },
-      "昼": {
-        "n": 1,
-        "avgViews": 0.0,
-        "avgEngagement": 0.0,
-        "score": 7.43
+      "夜": {
+        "n": 7,
+        "avgViews": 3.1,
+        "avgEngagement": 2.0,
+        "score": 23.88
       }
     },
     "company": {
       "Google": {
         "n": 1,
-        "avgViews": 8.0,
-        "avgEngagement": 3.0,
-        "score": 16.93
-      },
-      "Microsoft": {
-        "n": 3,
-        "avgViews": 2.3,
-        "avgEngagement": 1.0,
-        "score": 11.12
+        "avgViews": 9.0,
+        "avgEngagement": 4.0,
+        "score": 31.45
       },
       "Meta": {
         "n": 1,
-        "avgViews": 0.0,
-        "avgEngagement": 0.0,
-        "score": 7.43
+        "avgViews": 2.0,
+        "avgEngagement": 4.0,
+        "score": 29.7
       },
       "OpenAI": {
         "n": 5,
-        "avgViews": 0.8,
-        "avgEngagement": 0.4,
-        "score": 6.71
+        "avgViews": 1.4,
+        "avgEngagement": 2.4,
+        "score": 25.48
+      },
+      "Microsoft": {
+        "n": 3,
+        "avgViews": 2.7,
+        "avgEngagement": 1.0,
+        "score": 19.13
       }
     },
     "ending": {
       "記事で👇": {
         "n": 4,
-        "avgViews": 3.0,
-        "avgEngagement": 1.25,
-        "score": 13.1
+        "avgViews": 3.8,
+        "avgEngagement": 2.5,
+        "score": 27.4
       },
       "問いかけ": {
         "n": 6,
-        "avgViews": 1.2,
-        "avgEngagement": 0.5,
-        "score": 7.41
+        "avgViews": 1.8,
+        "avgEngagement": 2.17,
+        "score": 24.2
       }
     },
     "format": {
-      "リンクカード": {
-        "n": 5,
-        "avgViews": 2.2,
-        "avgEngagement": 1.0,
-        "score": 11.34
-      },
       "画像+返信リンク": {
         "n": 5,
-        "avgViews": 1.6,
-        "avgEngagement": 0.6,
-        "score": 8.46
+        "avgViews": 2.8,
+        "avgEngagement": 3.6,
+        "score": 33.85
+      },
+      "リンクカード": {
+        "n": 5,
+        "avgViews": 2.4,
+        "avgEngagement": 1.0,
+        "score": 17.35
       }
     }
   },
   "top": [
     {
       "slug": "building-digital-synth-with-google-gemini",
-      "views": 8.0,
-      "engagement": 3.0,
+      "views": 9.0,
+      "engagement": 4.0,
       "hook": "free",
       "slot": "夜",
       "company": "Google",
       "ending": "記事で👇",
+      "format": "画像+返信リンク"
+    },
+    {
+      "slug": "llama-app-mac-local-ai-hugging-face",
+      "views": 2.0,
+      "engagement": 4.0,
+      "hook": "callout",
+      "slot": "朝",
+      "company": "Meta",
+      "ending": "問いかけ",
+      "format": "画像+返信リンク"
+    },
+    {
+      "slug": "chatgpt-work-realpage-ai-training",
+      "views": 1.0,
+      "engagement": 4.0,
+      "hook": "callout",
+      "slot": "昼",
+      "company": "OpenAI",
+      "ending": "記事で👇",
+      "format": "画像+返信リンク"
+    },
+    {
+      "slug": "uber-openai-chatgpt-work-enterprise-deployment",
+      "views": 1.0,
+      "engagement": 3.0,
+      "hook": "number",
+      "slot": "夜",
+      "company": "OpenAI",
+      "ending": "問いかけ",
+      "format": "画像+返信リンク"
+    },
+    {
+      "slug": "openai-dot-bug-hunting-codex",
+      "views": 1.0,
+      "engagement": 3.0,
+      "hook": "before_after",
+      "slot": "夜",
+      "company": "OpenAI",
+      "ending": "問いかけ",
       "format": "画像+返信リンク"
     },
     {
@@ -141,20 +181,20 @@
       "format": "リンクカード"
     },
     {
-      "slug": "azure-cosmos-db-ai-assisted-development",
-      "views": 2.0,
+      "slug": "azure-sql-ai-agent-skills-guide",
+      "views": 3.0,
       "engagement": 1.0,
-      "hook": "before_after",
+      "hook": "callout",
       "slot": "夜",
       "company": "Microsoft",
       "ending": "記事で👇",
       "format": "リンクカード"
     },
     {
-      "slug": "azure-sql-ai-agent-skills-guide",
+      "slug": "azure-cosmos-db-ai-assisted-development",
       "views": 2.0,
       "engagement": 1.0,
-      "hook": "callout",
+      "hook": "before_after",
       "slot": "夜",
       "company": "Microsoft",
       "ending": "記事で👇",
@@ -169,46 +209,6 @@
       "company": "OpenAI",
       "ending": "問いかけ",
       "format": "リンクカード"
-    },
-    {
-      "slug": "llama-app-mac-local-ai-hugging-face",
-      "views": 0.0,
-      "engagement": 0.0,
-      "hook": "callout",
-      "slot": "朝",
-      "company": "Meta",
-      "ending": "問いかけ",
-      "format": "画像+返信リンク"
-    },
-    {
-      "slug": "chatgpt-work-realpage-ai-training",
-      "views": 0.0,
-      "engagement": 0.0,
-      "hook": "callout",
-      "slot": "昼",
-      "company": "OpenAI",
-      "ending": "記事で👇",
-      "format": "画像+返信リンク"
-    },
-    {
-      "slug": "uber-openai-chatgpt-work-enterprise-deployment",
-      "views": 0.0,
-      "engagement": 0.0,
-      "hook": "number",
-      "slot": "夜",
-      "company": "OpenAI",
-      "ending": "問いかけ",
-      "format": "画像+返信リンク"
-    },
-    {
-      "slug": "openai-dot-bug-hunting-codex",
-      "views": 0.0,
-      "engagement": 0.0,
-      "hook": "before_after",
-      "slot": "夜",
-      "company": "OpenAI",
-      "ending": "問いかけ",
-      "format": "画像+返信リンク"
     }
   ]
 }
