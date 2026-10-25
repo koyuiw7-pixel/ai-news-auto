@@ -222,14 +222,17 @@ SYSTEM_INSTRUCTION_BASE = """あなたは日経クロステック / ITmedia / �
 YouTube上の一次情報（公式発表・専門家の解説）を取材し、日本の読者向けの署名記事を執筆します。
 
 ## 文体の絶対規則（これを外すと記事として失格）
-- **プロの記者の文体で書く。** 常体（だ・である）ではなく、報道記事の敬体（です・ます）で統一する。
+- **翻訳や要約の羅列にしない。** 動画の内容を理解したうえで、「つまり何が起きて、誰の何がどう変わるのか」を
+  AIに詳しくない読者にも伝わる自分の言葉で解説する。専門用語は初出で必ず平易に言い換え、必要なら身近な例えを使う。
+- **語り口は、末尾の「今回の語り口」に従う。** 敬体（です・ます）を基調にしつつ、硬すぎる報道調にこだわらなくてよい。
+  人が書いたような温度のある文章にする（ただし事実の正確さは絶対に崩さない）。
 - **禁止表現**: 「いかがでしたか」「〜と言えるでしょう」「〜ではないでしょうか」「注目が集まっています」
   「今後の動向に注目です」「衝撃」「驚愕」「revolutionary」などの中身のない煽り・締め文句。
-  感嘆符（！）はタイトル・本文とも原則使わない。
+  感嘆符（！）はタイトルでは使わず、本文でも多用しない。
 - **箇条書きに逃げない。** 事実を並べるだけでなく、地の文で因果関係と意味を説明する。
   箇条書きは手順・仕様の列挙にのみ使う。
 - **一文は60字以内**を目安に、主語と述語を明確に。修飾の入れ子を避ける。
-- 主観を書くときは「取材班の見立てでは」と明示し、事実と分離する。
+- 主観を書くときは「編集部の見立てでは」などと明示し、事実と分離する。
 
 ## 共通の取材姿勢
 - 動画の映像（スライド・資料画面・UI・グラフ・テロップ・間取り図）と音声の両方を一次資料として扱う。
@@ -430,6 +433,20 @@ def clean_verdict(raw: object) -> dict | None:
     }
 
 
+# 記事ごとに語り口を変えて試す（どれがよく読まれるかは記事の writingVoice で比べる）
+VOICES: list[tuple[str, str]] = [
+    ("explainer", "丁寧な解説記者。です・ます調で、背景から順に落ち着いて説明する。"),
+    ("senpai", "詳しい先輩が後輩に教えるような、親しみのあるです・ます調。「ここがポイントで」「要するに」などを使い、難しい言葉はすぐ言い換える。"),
+    ("friendly", "友だちに話しかけるような、やわらかい口語。です・ます基調で、ときどき「〜なんです」「正直、〜」「これ、地味にすごいんです」のような言い回しを入れる。"),
+    ("honest", "編集部の本音レビュー。です・ます調で事実を解説したあと、「編集部としてはここが気になる」「ここは期待しすぎない方がいい」など率直な見立てを、事実と分けて添える。"),
+    ("qa", "読者との一問一答。です・ます調で、各章の冒頭に読者が抱きそうな疑問を1行（例：「で、何がすごいの？」）置いてから答える。"),
+]
+
+
+def pick_voice() -> tuple[str, str]:
+    return random.choice(VOICES)
+
+
 def build_client():
     api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
     if not api_key:
@@ -474,7 +491,9 @@ def generate_article(client, entry: dict) -> dict:
     )
     # Threads の書き出しの型（直近で使った型は避ける）
     prompt += "\n\n" + threads_hooks.prompt_block()
-    system_instruction = f"{SYSTEM_INSTRUCTION_BASE}\n\n{genre.persona}"
+    voice_key, voice_text = pick_voice()
+    entry["_voice"] = voice_key
+    system_instruction = f"{SYSTEM_INSTRUCTION_BASE}\n\n{genre.persona}\n\n## 今回の語り口\n{voice_text}"
 
     contents = types.Content(
         role="user",
@@ -760,6 +779,7 @@ def build_record(entry: dict, data: dict) -> dict:
         "seoTitle": str(data.get("seo_title", "")).strip(),
         "threadsPost": normalize_body(str(data.get("threads_post", ""))).strip(),
         "threadsHook": threads_hooks.clean_hook(data.get("threads_hook")),
+        "writingVoice": entry.get("_voice", ""),
         "lede": normalize_body(data.get("lede", "")),
         "description": str(data["description"]).strip(),
         "keywords": clean_list(data.get("keywords"), 14),
