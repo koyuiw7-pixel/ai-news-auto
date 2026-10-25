@@ -290,6 +290,10 @@ PROMPT_TEMPLATE = """以下のYouTube動画を「映像」と「音声」の両�
   返信が付く投稿ほど多くの人に表示されるので、問いかけは2回に1回くらいの頻度で入れる。
   全体を通して、AIが書いたような硬い言い回し（「〜となっています」「〜が可能です」の連続）を避け、人が書いたような自然な文にする。
   禁止：記事にない事実・誇張・煽り語（衝撃／ヤバい／必見／知らないと損）、ハッシュタグ、URL、絵文字は✅と👇以外使わない。
+- easy_markdown: 「かんたんに読む」版の本文（全角700〜1300字）。AIに詳しくない人向けに、body_markdown の内容をやさしく言い直したもの。
+  見出しは次の4つを「## 」でこの順に使う：## ひとことで言うと / ## 何がすごいの？ / ## 自分に関係ある？ / ## 使ってみるには
+  専門用語は使わない（どうしても使うなら直後に（＝〜のこと）と言い換える）。身近な例えを1つ以上入れる。
+  body_markdown に無い事実・数字・価格は書かない。「使ってみるには」は verdict と矛盾させない。です・ます調で、やさしく親しみのある語り口にする。
 - lede: 記事冒頭のリード文。150〜200字の1〜2段落。5W1Hを圧縮し、結論を先に置く。
   ここだけ読んでも発表の要点が分かる密度にする。
 - description: 100〜130文字のメタディスクリプション。検索結果に出る想定で、結論を含める。
@@ -367,6 +371,7 @@ ARTICLE_SCHEMA = {
             "required": ["status", "japan", "price", "audience", "take"],
             "propertyOrdering": ["status", "japan", "price", "free", "audience", "take"],
         },
+        "easy_markdown": {"type": "STRING"},
         "body_markdown": {"type": "STRING"},
     },
     "required": [
@@ -385,6 +390,7 @@ ARTICLE_SCHEMA = {
         "timetable",
         "mentioned_tools",
         "verdict",
+        "easy_markdown",
         "body_markdown",
     ],
     "propertyOrdering": [
@@ -404,6 +410,7 @@ ARTICLE_SCHEMA = {
         "highlights",
         "timetable",
         "verdict",
+        "easy_markdown",
         "body_markdown",
     ],
 }
@@ -788,6 +795,8 @@ def build_record(entry: dict, data: dict) -> dict:
         "timetable": timetable[:20],
         "verdict": clean_verdict(data.get("verdict")),
         "body": normalize_body(data["body_markdown"]),
+        # 「かんたんに読む」版（記事ページで「専門家として読む」と切り替えられる）
+        "easy": normalize_body(str(data.get("easy_markdown", ""))),
         "channel": channel.name,
         "channelId": channel.channel_id,
         "channelSlug": channel.slug,

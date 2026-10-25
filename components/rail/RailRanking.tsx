@@ -10,12 +10,15 @@ export default function RailRanking({
   wide = false,
   id,
   title,
+  countImpression = true,
 }: {
   offer: Offer;
   wide?: boolean;
   id?: string;
   /** 見出し。右側と本文中で同じ見出しが並ばないよう、本文中では変える */
   title?: string;
+  /** 同じ枠をページ内に2回出すとき、表示の計測を二重にしないよう片方は false にする */
+  countImpression?: boolean;
 }) {
   // 本文中の枠は右側の「イチオシ」と並ぶので、1位の札を変える
   const badge = title ? "注目" : "イチオシ";
@@ -40,7 +43,7 @@ export default function RailRanking({
       <div className="border-t border-line bg-surface px-4 py-2.5">
         <PrNote checkedAt={offer.checkedAt} hasBook={hasBook} />
       </div>
-      <Pixels pixels={offer.pixels} />
+      {countImpression && <Pixels pixels={offer.pixels} />}
     </aside>
   );
 }

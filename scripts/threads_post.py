@@ -321,6 +321,21 @@ def buffer_graphql(api_key: str, query: str, variables: dict | None = None) -> d
     return payload["data"]
 
 
+def buffer_channels(api_key: str) -> dict[str, dict]:
+    """Buffer につながっているチャンネルを、サービス名（threads / twitter / facebook など）ごとに返す"""
+    found: dict[str, dict] = {}
+    orgs = buffer_graphql(api_key, "query { account { organizations { id } } }")
+    for org in orgs["account"]["organizations"]:
+        data = buffer_graphql(
+            api_key,
+            f"query {{ channels(input: {{ organizationId: {json.dumps(org['id'])} }}) "
+            "{ id name displayName service isQueuePaused } }",
+        )
+        for channel in data["channels"]:
+            found.setdefault(str(channel.get("service", "")).lower(), channel)
+    return found
+
+
 def buffer_threads_channel(api_key: str) -> dict | None:
     """Buffer につながっている Threads のチャンネルを探す（IDを手で設定しなくて済むように）"""
     orgs = buffer_graphql(api_key, "query { account { organizations { id } } }")
@@ -335,6 +350,119 @@ def buffer_threads_channel(api_key: str) -> dict | None:
             if str(channel.get("service", "")).lower() == "threads":
                 return channel
     return None
+
+
+READING_MODE_LINES = [
+    "記事はこちら👇\n専門用語なしの「かんたん版」と、数字や仕様まで追える「専門家版」、好きな読み方を選べます。",
+    "詳しくは記事で👇\nAIに詳しくなくても大丈夫。「かんたんに読む」に切り替えると3分で分かります。",
+    "記事はこちら👇\nサクッと知りたい人は「かんたん版」、じっくり知りたい人は「専門家版」でどうぞ。",
+    "続きは記事で👇\n読み方を2つ用意しています。忙しい人は「かんたんに読む」がおすすめです。",
+]
+
+
+def link_reply_text(article: dict) -> str:
+    """記事リンクを付ける返信の文。「かんたん／専門家」の2つの読み方を選べることを、毎回言い方を変えて伝える"""
+    if not str(article.get("easy") or "").strip():
+        return "記事はこちら👇"
+    index = sum(ord(c) for c in article["slug"]) % len(READING_MODE_LINES)
+    return READING_MODE_LINES[index]
+
+
+# X は全角1文字を2と数える280字まで（URLは23字扱い）
+X_LIMIT = 280
+COMPANY_TAGS = [
+    (r"OpenAI|ChatGPT|GPT|Codex|Sora", "#ChatGPT"),
+    (r"Claude|Anthropic", "#Claude"),
+    (r"Gemini|Google|DeepMind", "#Gemini"),
+    (r"Copilot|Microsoft", "#Copilot"),
+    (r"NVIDIA|GeForce|RTX", "#NVIDIA"),
+]
+
+
+def x_weight(text: str) -> int:
+    return sum(1 if ord(c) < 0x1100 else 2 for c in text)
+
+
+def compose_x(article: dict, root_text: str) -> str:
+    """X の本文。Threads の本文から1〜3行目（書き出し＋具体的な事実＋誰向けか）を使い、ハッシュタグを2つ添える"""
+    lines = [l for l in root_text.splitlines() if l.strip() and not l.startswith("✅") and "記事で" not in l]
+    if len(lines) < 2:  # 改行の無い紹介文は、文ごとに区切って使う
+        lines = [x.strip() for x in re.split(r"(?<=[。？！])", " ".join(lines)) if x.strip()]
+    text_src = f"{article.get('title', '')} {' '.join(article.get('tags', []))}"
+    tag = next((t for pattern, t in COMPANY_TAGS if re.search(pattern, text_src)), "")
+    tags = " ".join(t for t in ["#AI", tag] if t)
+    body = ""
+    for line in lines[:3]:
+        candidate = f"{body}\n{line}".strip()
+        if x_weight(candidate) + x_weight(tags) + 2 > X_LIMIT:
+            break
+        body = candidate
+    if not body:
+        body = (article.get("seoTitle") or article["title"])[:100]
+    return f"{body}\n\n{tags}"
+
+
+def publish_extra_channels(
+    api_key: str,
+    channels: dict[str, dict],
+    text: str,
+    link: str,
+    article: dict,
+    due_at: datetime | None,
+    draft: bool = False,
+) -> dict[str, str]:
+    """X と Facebook にも同じ記事を出す。時刻は Threads から少しずらす（3つ同時に流れないように）"""
+    results: dict[str, str] = {}
+    cover = f"{site_url()}/cover/{article['slug']}"
+    title = article.get("seoTitle") or article["title"]
+    card = {"url": link, "title": title, "description": article.get("description", "")[:120], "thumbnail": {"url": cover}}
+    plans = []
+    if "twitter" in channels:
+        x_text = compose_x(article, text)
+        plans.append(("twitter", 12, {
+            "text": x_text,
+            "assets": [],
+            "metadata": {"twitter": {"thread": [
+                {"text": x_text, "assets": [{"image": {"url": cover}}]},
+                {"text": f"{link_reply_text(article)}\n{link}", "assets": []},
+            ]}},
+        }))
+    if "facebook" in channels:
+        fb_text = "\n\n".join([text.strip(), link_reply_text(article).replace("👇", "：")])
+        plans.append(("facebook", 27, {
+            "text": fb_text,
+            "assets": [],
+            "metadata": {"facebook": {"type": "post", "linkAttachment": card}},
+        }))
+    for service, offset, body in plans:
+        post_input = {"channelId": channels[service]["id"], "schedulingType": "automatic", **body}
+        if draft:
+            post_input["mode"] = "addToQueue"
+            post_input["saveToDraft"] = True
+        elif due_at:
+            post_input["mode"] = "customScheduled"
+            post_input["dueAt"] = (due_at + timedelta(minutes=offset)).isoformat(timespec="seconds").replace("+00:00", "Z")
+        else:
+            post_input["mode"] = "shareNow"
+        try:
+            data = buffer_graphql(
+                api_key,
+                """mutation($input: CreatePostInput!) {
+                  createPost(input: $input) {
+                    ... on PostActionSuccess { post { id } }
+                    ... on MutationError { message }
+                  }
+                }""",
+                {"input": post_input},
+            )
+            result = data["createPost"]
+            if "message" in result:
+                raise RuntimeError(result["message"])
+            results[service] = result["post"]["id"]
+            log(f"  [{service}] 予約しました: {result['post']['id']}")
+        except Exception as error:  # 1つのSNSの失敗で、ほかのSNSの投稿を止めない
+            log(f"  [{service}] 失敗: {error}")
+    return results
 
 
 def publish_via_buffer(
@@ -356,7 +484,7 @@ def publish_via_buffer(
     thread = [
         {"text": text, "assets": [{"image": {"url": cover}}]},
         {
-            "text": "記事はこちら👇",
+            "text": link_reply_text(article),
             "assets": [],
             "metadata": {
                 "threads": {
@@ -435,9 +563,14 @@ def main() -> int:
 
     # Buffer がつながっていれば、毎回接続先を確認してログに残す（下書きモードでも）
     buffer_channel = None
+    extra_channels: dict[str, dict] = {}
     if buffer_key:
         try:
-            buffer_channel = buffer_threads_channel(buffer_key)
+            all_channels = buffer_channels(buffer_key)
+            buffer_channel = all_channels.get("threads")
+            extra_channels = {k: v for k, v in all_channels.items() if k in ("twitter", "facebook")}
+            if extra_channels:
+                log(f"[buffer] ほかの投稿先: {', '.join(extra_channels)}")
         except RuntimeError as error:
             log(f"[warn] Buffer に接続できません: {error}")
         if buffer_channel:
@@ -466,6 +599,21 @@ def main() -> int:
             {"input": {"id": result["id"]}},
         )
         log(f"[test] 下書きを削除しました: {deleted}")
+        # X・Facebook もつながっていれば、同じように下書きを作って消す
+        if extra_channels:
+            extra = publish_extra_channels(
+                buffer_key, extra_channels, compose(sample), f"{site_url()}/articles/{sample['slug']}", sample, None, draft=True
+            )
+            for service, post_id in extra.items():
+                deleted = buffer_graphql(
+                    buffer_key,
+                    """mutation($input: DeletePostInput!) {
+                      deletePost(input: $input) { __typename ... on MutationError { message } }
+                    }""",
+                    {"input": {"id": post_id}},
+                )
+                log(f"[test] {service} の下書きを削除しました: {deleted}")
+            log("[test] X 用の本文:\n" + compose_x(sample, compose(sample)))
         return 0
 
     token = None
@@ -536,6 +684,8 @@ def main() -> int:
         try:
             if buffer_channel:
                 result = publish_via_buffer(buffer_key, buffer_channel["id"], text, link, article, due_at)
+                if extra_channels:
+                    result["channels"] = publish_extra_channels(buffer_key, extra_channels, text, link, article, due_at)
             else:
                 result = publish(token, text, link)
         except RuntimeError as error:
