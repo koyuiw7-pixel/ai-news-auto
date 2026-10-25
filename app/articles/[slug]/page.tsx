@@ -10,6 +10,9 @@ import ArticleCard from "@/components/ArticleCard";
 import CompanyMark from "@/components/CompanyMark";
 import CtaBanner from "@/components/CtaBanner";
 import RelTime from "@/components/RelTime";
+import NextRead from "@/components/NextRead";
+import InlineRead from "@/components/InlineRead";
+import ReadingMode from "@/components/ReadingMode";
 import VerdictCard from "@/components/VerdictCard";
 import { companyOf } from "@/lib/companies";
 import { guideForArticle } from "@/lib/guides";
@@ -23,6 +26,7 @@ import {
   formatDate,
   getAllArticles,
   getArticle,
+  getNextReads,
   getRelatedArticles,
   tagHref,
 } from "@/lib/articles";
@@ -104,6 +108,10 @@ export default async function ArticlePage({ params }: Props) {
       : undefined;
   // 日本語の黙読はおよそ毎分600字
   const readMinutes = Math.max(1, Math.round(article.body.length / 600));
+  // 「かんたんに読む」版（ある記事だけ、読み方を切り替えられる）
+  const easy = article.easy?.trim() ?? "";
+  const easyMinutes = Math.max(1, Math.round(easy.length / 500));
+  const easyHtml = easy ? await renderMarkdown(easy, affiliates.map((a) => a.url)) : "";
   const html = await renderMarkdown(
     article.body,
     affiliates.map((a) => a.url),
@@ -112,7 +120,10 @@ export default async function ArticlePage({ params }: Props) {
   const [bodyTop, afterAd] = splitBeforeHeading(html, 3);
   const [bodyMid, bodyTail] = splitBeforeHeading(afterAd, 4);
   const headings = extractHeadings(article.body);
-  const related = getRelatedArticles(article);
+  // 読み終えた人に「次の1本」を大きく見せる。本文の途中にも1本だけ差し込む
+  const nextReads = getNextReads(article, (a) => companyOf(a).slug);
+  const nextSlugs = new Set(nextReads.map((n) => n.article.slug));
+  const related = getRelatedArticles(article, 8).filter((a) => !nextSlugs.has(a.slug)).slice(0, 4);
 
   // 判定カードに見えている問いと答えを、そのまま FAQ の構造化データにする（AI検索の引用向け）
   const name = article.seoTitle?.split(/[｜|：:]/)[0]?.trim() || "この発表";
@@ -258,6 +269,9 @@ export default async function ArticlePage({ params }: Props) {
           {/* 「使える？」判定 */}
           {verdict && <VerdictCard verdict={verdict} judgedAt={verdict.judgedAt || article.generatedAt || article.publishedAt} />}
 
+          {/* 読み方の切り替え（かんたん／専門家）。選んだ読み方は次の記事でも引き継ぐ */}
+          {easyHtml && <ReadingMode easyMinutes={easyMinutes} expertMinutes={readMinutes} />}
+
           {/* 製品ガイドへの案内（「〇〇とは」「料金」を知りたい読者の受け皿） */}
           {guide && (
             <Link
@@ -353,6 +367,22 @@ export default async function ArticlePage({ params }: Props) {
           )}
 
 
+          <div id="article-flow" data-read-mode="expert">
+          {easyHtml && (
+            <div className="read-easy">
+              <p className="mt-8 inline-flex items-center gap-2 rounded-full bg-go-soft px-3 py-1 text-[12px] font-bold text-go">
+                かんたん版：専門用語を使わずに説明しています
+              </p>
+              <article className="prose mt-5 max-w-[42em]" dangerouslySetInnerHTML={{ __html: easyHtml }} />
+              {inlineOffer && (
+                <div className="my-10 max-w-[46em]">
+                  <RailRanking offer={inlineOffer} wide title="もっと深く知るための3選" countImpression={false} />
+                </div>
+              )}
+            </div>
+          )}
+
+          <div className="read-expert">
           {/* 章立て */}
           {headings.length > 1 && (
             <nav aria-labelledby="toc-heading" className="mt-6 rounded-3xl border border-line p-6">
@@ -373,6 +403,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 本文（前半） */}
           <article className="prose mt-10 max-w-[42em]" dangerouslySetInnerHTML={{ __html: bodyTop }} />
+          {bodyMid && <InlineRead item={nextReads[2] ?? nextReads[1]} />}
 
           {/* ② 記事中盤の広告枠 */}
           {bodyMid && <AdSlot position="article-middle" className="my-10" />}
@@ -398,6 +429,11 @@ export default async function ArticlePage({ params }: Props) {
           {bodyTail && (
             <article className="prose max-w-[42em]" dangerouslySetInnerHTML={{ __html: bodyTail }} />
           )}
+          </div>
+          </div>
+
+          {/* 読み終えた位置で、次の1本を大きく見せる */}
+          <NextRead items={nextReads} />
 
           {/* まとめ記事が統合した元記事 */}
           {isRoundup && <RoundupSources sources={article.sources ?? []} />}

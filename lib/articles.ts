@@ -48,6 +48,8 @@ export type Article = {
   verdict?: Verdict | null;
   affiliates: AffiliateLink[];
   body: string;
+  /** 「かんたんに読む」版（専門用語なしの短い解説）。無い記事は切り替えを出さない */
+  easy?: string;
   channel: string;
   channelId: string;
   channelSlug: string;
@@ -301,4 +303,36 @@ export function formatDate(iso: string): string {
  */
 export function coverPath(article: Article): string | null {
   return article.genreSlug === "ai" ? `/cover/${article.slug}` : null;
+}
+
+export type NextRead = { article: Article; reason: string };
+
+/**
+ * 「次に読むならこれ」。記事を読み終えた人に、もう1本だけ読んでもらうための候補。
+ * 1. 同じ話題のまとめ記事（全体像） 2. 同じ企業の新しい発表 3. タグが重なる発表 の順に選ぶ。
+ */
+export function getNextReads(article: Article, companySlugOf: (a: Article) => string, limit = 3): NextRead[] {
+  const all = getAllArticles().filter((a) => a.slug !== article.slug && a.genreSlug === article.genreSlug);
+  const picked: NextRead[] = [];
+  const used = new Set<string>();
+  const add = (candidate: Article | undefined, reason: string) => {
+    if (!candidate || used.has(candidate.slug) || picked.length >= limit) return;
+    used.add(candidate.slug);
+    picked.push({ article: candidate, reason });
+  };
+
+  if (article.roundupSlug) add(all.find((a) => a.slug === article.roundupSlug), "この話題の全体像");
+
+  const company = companySlugOf(article);
+  const sameCompany = all.filter((a) => companySlugOf(a) === company && company !== "other");
+  add(sameCompany[0], "同じ企業の最新の発表");
+
+  const tags = new Set(article.tags);
+  const byTags = all
+    .map((a) => ({ a, n: a.tags.filter((t) => tags.has(t)).length }))
+    .filter((x) => x.n > 0)
+    .sort((x, y) => y.n - x.n || Date.parse(y.a.publishedAt) - Date.parse(x.a.publishedAt));
+  for (const { a } of byTags) add(a, "あわせて読みたい");
+  for (const a of sameCompany.slice(1)) add(a, "同じ企業の発表");
+  return picked;
 }

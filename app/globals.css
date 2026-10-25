@@ -371,3 +371,11 @@ mark {
 .usable-filter[data-only-usable="1"]:not(:has(li[data-usable="go"])) .usable-empty {
   display: block;
 }
+
+/* 「かんたんに読む／専門家として読む」（components/ReadingMode.tsx） */
+#article-flow[data-read-mode="expert"] .read-easy {
+  display: none;
+}
+#article-flow[data-read-mode="easy"] .read-expert {
+  display: none;
+}

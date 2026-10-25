@@ -119,6 +119,10 @@ PROMPT = """以下は「{topic}」について書かれた {count} 本の記事�
   返信が付く投稿ほど多くの人に表示されるので、問いかけは2回に1回くらいの頻度で入れる。
   全体を通して、AIが書いたような硬い言い回し（「〜となっています」「〜が可能です」の連続）を避け、人が書いたような自然な文にする。
   禁止：記事にない事実・誇張・煽り語（衝撃／ヤバい／必見／知らないと損）、ハッシュタグ、URL、絵文字は✅と👇以外使わない。
+- easy_markdown: 「かんたんに読む」版の本文（全角700〜1300字）。AIに詳しくない人向けに、body_markdown の内容をやさしく言い直したもの。
+  見出しは次の4つを「## 」でこの順に使う：## ひとことで言うと / ## 何がすごいの？ / ## 自分に関係ある？ / ## 使ってみるには
+  専門用語は使わない（どうしても使うなら直後に（＝〜のこと）と言い換える）。身近な例えを1つ以上入れる。
+  body_markdown に無い事実・数字・価格は書かない。「使ってみるには」は verdict と矛盾させない。です・ます調で、やさしく親しみのある語り口にする。
 - lede: 180〜240字のリード文。
 - description: 100〜130文字のメタディスクリプション。
 - keywords: 検索されうる日本語キーワード 8〜12個。
@@ -140,6 +144,7 @@ SCHEMA = {
         "keywords": {"type": "ARRAY", "items": {"type": "STRING"}},
         "tags": {"type": "ARRAY", "items": {"type": "STRING"}},
         "highlights": {"type": "ARRAY", "items": {"type": "STRING"}},
+        "easy_markdown": {"type": "STRING"},
         "body_markdown": {"type": "STRING"},
     },
     "required": [
@@ -153,6 +158,7 @@ SCHEMA = {
         "keywords",
         "tags",
         "highlights",
+        "easy_markdown",
         "body_markdown",
     ],
     "propertyOrdering": [
@@ -166,6 +172,7 @@ SCHEMA = {
         "keywords",
         "tags",
         "highlights",
+        "easy_markdown",
         "body_markdown",
     ],
 }
@@ -290,6 +297,8 @@ def build_record(topic: str, data: dict, members: list[dict]) -> dict:
         "highlights": clean_list(data.get("highlights"), 3),
         "timetable": [],
         "body": normalize_body(data["body_markdown"]),
+        # 「かんたんに読む」版（記事ページで「専門家として読む」と切り替えられる）
+        "easy": normalize_body(str(data.get("easy_markdown", ""))),
         "channel": f"{len(members)}本の記事から編集部が統合",
         "channelId": "",
         "channelSlug": members[0].get("channelSlug", ""),

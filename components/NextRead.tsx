@@ -1,0 +1,86 @@
+import Link from "next/link";
+import Image from "next/image";
+import Thumb from "@/components/Thumb";
+import VerdictBadge from "@/components/VerdictBadge";
+import { coverPath, type NextRead as NextReadItem } from "@/lib/articles";
+import { usability, verdictOf } from "@/lib/verdict";
+
+/**
+ * 記事を読み終えた位置に置く「次に読むならこれ」。
+ * 1本目を大きく見せて、もう1ページ読んでもらう（最初の1ページで帰る人を減らす）。
+ */
+export default function NextRead({ items }: { items: NextReadItem[] }) {
+  if (items.length === 0) return null;
+  const [first, ...rest] = items;
+  return (
+    <section aria-labelledby="next-read-heading" className="mt-12 max-w-[46em]">
+      <h2 id="next-read-heading" className="display flex items-center gap-2 text-[1.35rem] text-ink">
+        次に読むならこれ
+        <span aria-hidden className="text-live">→</span>
+      </h2>
+
+      <Link
+        href={`/articles/${first.article.slug}`}
+        className="group mt-4 grid overflow-hidden rounded-2xl border border-ink bg-paper transition-shadow hover:shadow-[0_10px_30px_-18px_rgb(0_0_0/0.5)] sm:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]"
+      >
+        <Cover item={first} sizes="(max-width: 640px) 100vw, 420px" />
+        <span className="flex flex-col gap-2 p-5">
+          <Meta item={first} />
+          <span className="text-[17px] font-bold leading-[1.55] text-ink text-balance group-hover:underline">
+            {first.article.seoTitle || first.article.title}
+          </span>
+          {first.article.highlights[0] && (
+            <span className="line-clamp-3 text-[13.5px] leading-[1.75] text-ink-soft">{first.article.highlights[0]}</span>
+          )}
+          <span className="mt-auto inline-flex items-center gap-1 pt-1 text-[13px] font-bold text-live">
+            続きを読む <span aria-hidden>→</span>
+          </span>
+        </span>
+      </Link>
+
+      {rest.length > 0 && (
+        <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+          {rest.map((item) => (
+            <li key={item.article.slug}>
+              <Link
+                href={`/articles/${item.article.slug}`}
+                className="group grid h-full grid-cols-[112px_minmax(0,1fr)] gap-3 rounded-xl border border-line p-2.5 hover:border-ink"
+              >
+                <Cover item={item} sizes="112px" small />
+                <span className="flex min-w-0 flex-col gap-1">
+                  <Meta item={item} />
+                  <span className="line-clamp-3 text-[13.5px] font-bold leading-snug text-ink group-hover:underline">
+                    {item.article.seoTitle || item.article.title}
+                  </span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}
+
+function Meta({ item }: { item: NextReadItem }) {
+  const verdict = verdictOf(item.article);
+  return (
+    <span className="flex flex-wrap items-center gap-1.5">
+      <span className="rounded-full bg-ink px-2 py-[2px] text-[10.5px] font-bold text-paper">{item.reason}</span>
+      {verdict && <VerdictBadge kind={usability(verdict)} />}
+    </span>
+  );
+}
+
+function Cover({ item, sizes, small = false }: { item: NextReadItem; sizes: string; small?: boolean }) {
+  const cover = coverPath(item.article);
+  return (
+    <span className={`relative block overflow-hidden bg-surface-2 ${small ? "aspect-[40/21] self-start rounded-lg" : "aspect-[40/21] sm:aspect-auto sm:min-h-full"}`}>
+      {cover ? (
+        <Image src={cover} alt="" fill sizes={sizes} className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+      ) : (
+        <Thumb src={item.article.thumbnail} alt="" fill sizes={sizes} className="object-cover" />
+      )}
+    </span>
+  );
+}

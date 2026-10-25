@@ -130,7 +130,8 @@ function TimelineRow({ article }: { article: Article }) {
         {/* スマホでは画像を省き、文字だけで速く流し読みできるようにする */}
         <div className="relative hidden aspect-video overflow-hidden rounded-lg bg-surface-2 sm:block">
           <Thumb
-            src={article.thumbnail}
+            // 一覧の小さな枠には軽い画像（480px）を使う。最高画質（1280px）は記事ページだけ
+            src={article.thumbnail.replace("maxresdefault", "hqdefault")}
             alt=""
             fill
             sizes="184px"

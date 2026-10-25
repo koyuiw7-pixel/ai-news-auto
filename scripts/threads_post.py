@@ -337,6 +337,22 @@ def buffer_threads_channel(api_key: str) -> dict | None:
     return None
 
 
+READING_MODE_LINES = [
+    "記事はこちら👇\n専門用語なしの「かんたん版」と、数字や仕様まで追える「専門家版」、好きな読み方を選べます。",
+    "詳しくは記事で👇\nAIに詳しくなくても大丈夫。「かんたんに読む」に切り替えると3分で分かります。",
+    "記事はこちら👇\nサクッと知りたい人は「かんたん版」、じっくり知りたい人は「専門家版」でどうぞ。",
+    "続きは記事で👇\n読み方を2つ用意しています。忙しい人は「かんたんに読む」がおすすめです。",
+]
+
+
+def link_reply_text(article: dict) -> str:
+    """記事リンクを付ける返信の文。「かんたん／専門家」の2つの読み方を選べることを、毎回言い方を変えて伝える"""
+    if not str(article.get("easy") or "").strip():
+        return "記事はこちら👇"
+    index = sum(ord(c) for c in article["slug"]) % len(READING_MODE_LINES)
+    return READING_MODE_LINES[index]
+
+
 def publish_via_buffer(
     api_key: str,
     channel_id: str,
@@ -356,7 +372,7 @@ def publish_via_buffer(
     thread = [
         {"text": text, "assets": [{"image": {"url": cover}}]},
         {
-            "text": "記事はこちら👇",
+            "text": link_reply_text(article),
             "assets": [],
             "metadata": {
                 "threads": {
