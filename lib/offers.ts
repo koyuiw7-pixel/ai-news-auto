@@ -32,6 +32,8 @@ type Partner = {
   image: string | null;
   page: string | null;
   shop: string;
+  /** 写真の無いサービスで、名前の上に出す小さな見出し（例: AI TOOL / ONLINE SCHOOL） */
+  badge?: string;
   /** A8 のバナー素材など、素材ごとのリンクを使う場合（画像と組で使う） */
   link?: string;
   pixel?: string;
@@ -87,6 +89,7 @@ export type OfferItem = {
   /** 楽天ブックス売れ筋の順位（10位以内のときだけ表示に使う） */
   rank?: number;
   keyword?: string;
+  badge?: string;
 };
 
 export type Offer = {
@@ -193,6 +196,7 @@ function buildOffer(topic: Topic, fallback: string, maxItems: number): Offer | u
       kind: "partner",
       name: partner.name,
       label: partner.label,
+      badge: partner.badge,
       note: partner.note,
       price: products?.partnerPrices?.[key] ?? partner.price,
       priceText: partner.priceText,
