@@ -403,7 +403,13 @@ def compose_x(article: dict, root_text: str) -> str:
 
 
 def publish_extra_channels(
-    api_key: str, channels: dict[str, dict], text: str, link: str, article: dict, due_at: datetime | None
+    api_key: str,
+    channels: dict[str, dict],
+    text: str,
+    link: str,
+    article: dict,
+    due_at: datetime | None,
+    draft: bool = False,
 ) -> dict[str, str]:
     """X と Facebook にも同じ記事を出す。時刻は Threads から少しずらす（3つ同時に流れないように）"""
     results: dict[str, str] = {}
@@ -430,7 +436,10 @@ def publish_extra_channels(
         }))
     for service, offset, body in plans:
         post_input = {"channelId": channels[service]["id"], "schedulingType": "automatic", **body}
-        if due_at:
+        if draft:
+            post_input["mode"] = "addToQueue"
+            post_input["saveToDraft"] = True
+        elif due_at:
             post_input["mode"] = "customScheduled"
             post_input["dueAt"] = (due_at + timedelta(minutes=offset)).isoformat(timespec="seconds").replace("+00:00", "Z")
         else:
@@ -590,6 +599,21 @@ def main() -> int:
             {"input": {"id": result["id"]}},
         )
         log(f"[test] 下書きを削除しました: {deleted}")
+        # X・Facebook もつながっていれば、同じように下書きを作って消す
+        if extra_channels:
+            extra = publish_extra_channels(
+                buffer_key, extra_channels, compose(sample), f"{site_url()}/articles/{sample['slug']}", sample, None, draft=True
+            )
+            for service, post_id in extra.items():
+                deleted = buffer_graphql(
+                    buffer_key,
+                    """mutation($input: DeletePostInput!) {
+                      deletePost(input: $input) { __typename ... on MutationError { message } }
+                    }""",
+                    {"input": {"id": post_id}},
+                )
+                log(f"[test] {service} の下書きを削除しました: {deleted}")
+            log("[test] X 用の本文:\n" + compose_x(sample, compose(sample)))
         return 0
 
     token = None
