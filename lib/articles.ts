@@ -110,9 +110,11 @@ function readAll(): Article[] {
     }
   }
 
+  // サイソクに載った順（新しい記事が必ず一番上に来るように）。元動画の公開日順だと、
+  // 少し前の動画を今日記事にしたとき、一覧の下の方に埋もれて「更新が止まった」ように見えるため
   return articles.sort(
     (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+      new Date(b.generatedAt || b.publishedAt).getTime() - new Date(a.generatedAt || a.publishedAt).getTime(),
   );
 }
 

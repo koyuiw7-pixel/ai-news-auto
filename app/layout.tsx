@@ -10,11 +10,12 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name}｜AIニュースを日本語で最速まとめ`,
-    template: `%s | ${siteConfig.name}`,
+    // 強み（最速・日本語・使えるかの判定）が伝わる題名。区切りの縦棒は使わない
+    default: `${siteConfig.siteName} 海外AIの新機能が今使えるかまで最速でわかる`,
+    template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  applicationName: siteConfig.name,
+  applicationName: siteConfig.siteName,
   // Google Search Console の所有権確認。環境変数に確認コードを入れるだけで有効になる
   verification: process.env.GOOGLE_SITE_VERIFICATION
     ? { google: process.env.GOOGLE_SITE_VERIFICATION }
@@ -26,10 +27,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: siteConfig.name,
+    siteName: siteConfig.siteName,
     locale: siteConfig.locale,
     url: siteConfig.url,
-    title: `${siteConfig.name}｜AIニュースを日本語で最速まとめ`,
+    title: `${siteConfig.siteName} 海外AIの新機能が今使えるかまで最速でわかる`,
     description: siteConfig.description,
   },
   twitter: {
@@ -50,13 +51,15 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: siteConfig.name,
+    // Google の検索結果でアイコンの横に出るサイト名
+    name: siteConfig.siteName,
+    alternateName: ["サイソク", "AI速報サイソク"],
     url: siteConfig.url,
     description: siteConfig.description,
     inLanguage: "ja",
     publisher: {
       "@type": "Organization",
-      name: siteConfig.name,
+      name: siteConfig.siteName,
       url: siteConfig.url,
       logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png`, width: 600, height: 60 },
       email: siteConfig.operator.email,

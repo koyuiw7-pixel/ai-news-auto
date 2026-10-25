@@ -5,10 +5,12 @@
 export const siteConfig = {
   name: "サイソク",
   shortName: "サイソク",
+  // 検索結果でアイコンの横に出るサイト名。何に特化したサイトかが伝わる名前にする
+  siteName: "サイソクAIニュース",
   // 「催促」と読み違えられないよう、タグラインとタイトルで必ず「最速」を併記する
   tagline: "最速で、要点だけ。",
   description:
-    "OpenAI・Google DeepMind・Anthropic など世界のAI企業の公式発表と、海外のAI専門解説チャンネルをAIが常時監視。映像と音声ごと解析し、新機能・ベンチマーク・料金・日本からの使い方まで日本語で最速にまとめます。",
+    "OpenAI・Google・Anthropicなど海外AIの新発表を、最速で日本語に。新機能が今すぐ使えるか、日本から使えるか、無料で試せるかまで判定して、誰でもわかる言葉で解説します。",
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.VERCEL_PROJECT_PRODUCTION_URL

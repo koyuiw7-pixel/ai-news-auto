@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // Vercel の画像最適化は無料プランの月間上限があり、超えると画像が出なくなる（2026-10 に発生）。
+    // YouTube のサムネイルも独自カバーも配信時点で十分軽いので、最適化を使わずそのまま配信する
+    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "i.ytimg.com" },
       { protocol: "https", hostname: "img.youtube.com" },

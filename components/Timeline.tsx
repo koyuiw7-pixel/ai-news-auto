@@ -32,7 +32,7 @@ export default function Timeline({
 }) {
   const days: { day: string; items: Article[] }[] = [];
   for (const article of articles) {
-    const day = jstDay(article.publishedAt);
+    const day = jstDay(article.generatedAt || article.publishedAt);
     const last = days.at(-1);
     if (last?.day === day) last.items.push(article);
     else days.push({ day, items: [article] });
@@ -66,7 +66,9 @@ function TimelineRow({ article }: { article: Article }) {
   const company = companyOf(article);
   const point = article.highlights[0];
   const isRoundup = article.type === "roundup";
-  const time = clock.format(Date.parse(article.publishedAt));
+  // 一覧の時刻は「サイソクに載った時刻」。元動画の公開日は記事ページに出す
+  const postedAt = article.generatedAt || article.publishedAt;
+  const time = clock.format(Date.parse(postedAt));
   const verdict = verdictOf(article);
   const kind = verdict ? usability(verdict) : undefined;
 
@@ -79,7 +81,7 @@ function TimelineRow({ article }: { article: Article }) {
         {/* 幅のある画面では時刻と判定を左の列に、スマホでは企業名の横に置いて見出しの幅を確保する */}
         <div className="hidden content-start gap-2.5 sm:grid">
           <time
-            dateTime={article.publishedAt}
+            dateTime={postedAt}
             className="index-num pt-[3px] text-[12px] font-semibold text-muted"
           >
             {time}
