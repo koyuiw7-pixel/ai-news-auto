@@ -35,7 +35,7 @@ export default function UsablePage() {
   const free = usable.filter((a) => verdictOf(a)?.free === true);
   const soon = judged.filter((a) => verdictOf(a)?.status === "soon");
   const updatedAt = usable[0]?.generatedAt;
-  const offer = offerForTopic("business", "AIを仕事に取り入れるなら");
+  const offer = offerForTopic("business", "AIを仕事に取り入れるなら", 9);
 
   // 企業ごとの「今すぐ使える」本数
   const byCompany = new Map<string, { article: Article; count: number }>();

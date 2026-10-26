@@ -168,7 +168,7 @@ export function offerForArticle(article: Article, maxItems = MAX_ITEMS): Offer |
   const { offers } = load();
   const topic = pickTopic(article, offers);
   if (!topic) return undefined;
-  return buildOffer(topic, fallbackKey(article, offers), maxItems);
+  return buildOffer(topic, fallbackKey(article, offers), maxItems, article.slug);
 }
 
 /** 記事に紐づかないページ（一覧ページなど）で、話題を指定して商品枠を作る */
@@ -181,7 +181,26 @@ export function offerForTopic(key: string, eyebrow?: string, maxItems = MAX_ITEM
   return buildOffer(topic, offers.fallbackByGenre?.[topic.genre ?? "ai"] ?? offers.fallback, maxItems);
 }
 
-function buildOffer(topic: Topic, fallback: string, maxItems: number): Offer | undefined {
+/** 文字列から決まった数を作る（同じ記事なら同じ並び、記事が違えば違う並びにするため） */
+function hashOf(text: string): number {
+  let h = 0;
+  for (let i = 0; i < text.length; i++) h = (h * 31 + text.charCodeAt(i)) >>> 0;
+  return h;
+}
+
+/**
+ * 話題の本を、日付と記事ごとにずらして並べる。
+ * 同じ話題の記事ばかり読む人にも、日や記事が変われば違う本が見えるようにする。
+ * サイトは数時間ごとに作り直すので、日付を混ぜれば毎日入れ替わる。
+ */
+function rotate<T>(list: T[], seed: string): T[] {
+  if (list.length <= 1) return list;
+  const day = Math.floor(Date.now() / 86_400_000);
+  const start = (hashOf(seed) + day) % list.length;
+  return [...list.slice(start), ...list.slice(0, start)];
+}
+
+function buildOffer(topic: Topic, fallback: string, maxItems: number, seed = ""): Offer | undefined {
   const { offers, products, affiliates } = load();
 
   const items: OfferItem[] = [];
@@ -214,7 +233,8 @@ function buildOffer(topic: Topic, fallback: string, maxItems: number): Offer | u
   const sources = [topic.key, ...(topic.fill ?? []), fallback];
   let usedBooks = false;
   for (const source of sources) {
-    for (const book of products?.books?.[source] ?? []) {
+    const books = products?.books?.[source] ?? [];
+    for (const book of source === topic.key ? rotate(books, seed || topic.key) : books) {
       if (items.length >= maxItems) break;
       if (seen.has(book.rbId)) continue;
       seen.add(book.rbId);

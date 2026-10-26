@@ -5,7 +5,7 @@
 /* カラートークン                                                          */
 /* ライト＝要点マーカー（白地・墨・黄色マーカー）                            */
 /* ダーク＝シグナルルーム（濃紺・琥珀＝公式発表・シアン＝まとめ）             */
-/* 黄色の --marker は両モードで「要点」を意味する                           */
+/* --marker（淡い青）は両モードで「要点」を意味する                          */
 /* --------------------------------------------------------------------- */
 
 :root {
@@ -20,8 +20,8 @@
   --accent: #0a6fa0;
   --accent-ink: #ffffff;
   --accent-soft: #e3f1f8;
-  --marker: #ffe873;
-  --marker-h: 36%;
+  --marker: #cfe6f3;
+  --marker-h: 38%;
   --official: #8a5200;
   --roundup: #0a6fa0;
   /* 速報性（LIVE・新着）だけに使う赤 */
@@ -46,7 +46,7 @@
   --accent: #58c7f3;
   --accent-ink: #06101f;
   --accent-soft: #12294a;
-  --marker: #ffe14d;
+  --marker: #58c7f3;
   --marker-h: 22%;
   --official: #ffb547;
   --roundup: #58c7f3;
@@ -165,40 +165,14 @@ body {
 /* 静止状態は「引かれた状態」。対応ブラウザでは画面に入った瞬間に引かれる     */
 /* --------------------------------------------------------------------- */
 
+/* 見出しの強調は引かない（蛍光ペンの見出しはブログっぽく見えるため）。本文の太字だけ淡い青で引く */
 mark {
   color: inherit;
-  background-color: transparent;
-  background-image: linear-gradient(var(--marker), var(--marker));
-  background-repeat: no-repeat;
-  background-position: 0 92%;
-  background-size: 100% var(--marker-h);
-  padding-inline: 0.06em;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-}
-
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    mark {
-      animation: marker-draw linear both;
-      animation-timeline: view();
-      animation-range: entry 10% cover 30%;
-    }
-  }
-}
-
-@keyframes marker-draw {
-  from {
-    background-size: 0% var(--marker-h);
-  }
-  to {
-    background-size: 100% var(--marker-h);
-  }
+  background: none;
 }
 
 /* 暗い画面では明るい文字を黄色の帯に重ねると読めない（コントラスト比 1.10:1）。
    文字には重ねず、字形を避けて引く下線にする */
-:root[data-theme="dark"] mark,
 :root[data-theme="dark"] .prose :where(strong) {
   background-image: none;
   animation: none;

@@ -99,13 +99,14 @@ export default async function ArticlePage({ params }: Props) {
   const guide = guideForArticle(article);
   const verdict = verdictOf(article);
   // 全AI記事に、文脈に合った「試すなら」枠を1つ出す。無い場合（AI以外など）は従来の関連ツール枠
-  // 右側（1〜3位）と本文中（4〜6位）で同じ商品を出さないよう、6つ取って分ける
-  const offerAll = offerForArticle(article, 6);
-  const offer = offerAll && { ...offerAll, items: offerAll.items.slice(0, 3) };
+  // 右側と本文中で同じ商品を出さないよう、候補を多めに取って2つに分ける。
+  // 各枠は候補の中から、この端末でまだ見ていない商品を先に3つ出す（RankingBody）
+  const offerAll = offerForArticle(article, 12);
+  const pool = offerAll?.items ?? [];
+  const offer = offerAll && { ...offerAll, items: [...pool.slice(0, 3), ...pool.slice(6, 9)] };
+  const inlineItems = [...pool.slice(3, 6), ...pool.slice(9, 12)];
   const inlineOffer =
-    offerAll && offerAll.items.length >= 5
-      ? { ...offerAll, eyebrow: "あわせてチェック", items: offerAll.items.slice(3, 6) }
-      : undefined;
+    offerAll && inlineItems.length >= 2 ? { ...offerAll, eyebrow: "あわせてチェック", items: inlineItems } : undefined;
   // 日本語の黙読はおよそ毎分600字
   const readMinutes = Math.max(1, Math.round(article.body.length / 600));
   // 「かんたんに読む」版（ある記事だけ、読み方を切り替えられる）

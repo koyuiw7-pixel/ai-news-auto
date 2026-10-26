@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
+import LiveBadge from "@/components/LiveBadge";
 import RelTime from "@/components/RelTime";
 import type { Company } from "@/lib/companies";
 
@@ -25,14 +26,10 @@ export default function LiveBar({ updatedAt, recentCount, weekCount, companies, 
     <div className="border-b border-line bg-paper">
       <div className="mx-auto flex max-w-[1240px] flex-col gap-3 px-5 py-3 sm:px-8 md:flex-row md:items-center md:gap-6">
         <p className="flex shrink-0 items-center gap-2.5 text-[12px]">
-          <span className="relative flex size-2" aria-hidden>
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-live opacity-60 motion-reduce:hidden" />
-            <span className="relative inline-flex size-2 rounded-full bg-live" />
-          </span>
-          <span className="font-bold tracking-wider text-live">LIVE</span>
+          <LiveBadge updatedAt={updatedAt} />
           {updatedAt && (
             <span className="text-muted">
-              最終更新 <RelTime iso={updatedAt} className="index-num font-semibold text-ink" />
+              更新 <RelTime iso={updatedAt} className="index-num font-semibold text-ink" />
             </span>
           )}
           <span className="index-num text-muted">

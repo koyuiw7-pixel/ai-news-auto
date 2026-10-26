@@ -4,6 +4,10 @@ import HomeHero from "@/components/HomeHero";
 import LiveBar from "@/components/LiveBar";
 import Thumb from "@/components/Thumb";
 import Timeline from "@/components/Timeline";
+import RailRanking from "@/components/rail/RailRanking";
+import StoryRail from "@/components/story/SwipeDeck";
+import { getStoryBundles } from "@/lib/stories";
+import { offerForArticle } from "@/lib/offers";
 import { getAllArticles, getAllGenres, tagSlug, type Article } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
 import { siteConfig } from "@/site.config";
@@ -38,17 +42,34 @@ export default function HomePage() {
     (a) => a.generatedAt && buildTime - Date.parse(a.generatedAt) < DAY_MS,
   ).length;
 
+  // トップにもPR枠。いちばん新しい話題に合う商品を出す（話題が合わなければ汎用の枠）
+  const found = offerForArticle(lead, 9);
+  const offer = found && { ...found, eyebrow: "今日の話題に合わせて" };
+
   const companies = companyCounts(ai);
   const tags = topTags(ai, 14);
   const otherGenres = getAllGenres().filter((g) => g.slug !== "ai");
 
+  const bundles = getStoryBundles();
+
   return (
     <>
+      {bundles.length > 0 && (
+        <div className="mx-auto max-w-[1240px] sm:px-4">
+          <StoryRail bundles={bundles} />
+        </div>
+      )}
       <LiveBar updatedAt={updatedAt} recentCount={recentCount}
         weekCount={ai.filter((a) => a.generatedAt && Date.now() - Date.parse(a.generatedAt) < 7 * 86_400_000).length} companies={companies.slice(0, 8)} />
 
       <div className="mx-auto max-w-[1240px] px-5 pb-8 pt-8 sm:px-8 sm:pt-10">
         <HomeHero lead={lead} />
+
+        {offer && (
+          <div className="mt-12">
+            <RailRanking offer={offer} wide title="今日の話題をもっと深く知る3選" />
+          </div>
+        )}
 
         <div className="mt-14 grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-12">
           <section aria-labelledby="latest-heading" className="min-w-0">
