@@ -35,7 +35,6 @@
     "nJV3yUuz6DU": 1,
     "nfpVl4pC0UM": 1,
     "nqAri_t8xRA": 1,
-    "rF1EsryCAwc": 1,
     "roVDIuW_6HI": 1,
     "u5t7-BLYvfQ": 2,
     "udRxVK7mKn0": 2,
@@ -1002,6 +1001,11 @@
       "at": "2026-08-08T04:10:44.322743+00:00",
       "slug": "rakuten-sec-cross-trade-margin-category"
     },
+    "L18lkQs4PeM": {
+      "at": "2026-10-26T12:03:16.729750+00:00",
+      "reason": "本動画は35秒のYouTubeショート動画であり、Kimi K3.1のルービックキューブテスト成功デモを短時間で紹介する簡易コンテンツのため、詳細な技術的解説や新発表としての情報量が不足しています。",
+      "skipped": true
+    },
     "L6WWrPJNXWc": {
       "at": "2026-08-30T10:58:32.058275+00:00",
       "slug": "how-to-spend-money-for-happiness-liberal-arts-university"
@@ -1053,6 +1057,11 @@
     "MJllZbpvrAc": {
       "at": "2026-09-22T02:18:00.398278+00:00",
       "slug": "xai-releases-grok-4-7-reasoning-model"
+    },
+    "MLHcSiNVIto": {
+      "at": "2026-10-26T12:02:26.093171+00:00",
+      "reason": "本動画はNVIDIA GTC Berlin会場の雰囲気やアヒル型ロボット（Microducks）展示演出をまとめた約22秒のショート動画であり、新技術や製品に関する具体的な解説・発表内容が含まれていないため。",
+      "skipped": true
     },
     "MLehRytu9Zo": {
       "at": "2026-07-31T02:01:58.033200+00:00",
@@ -1391,6 +1400,10 @@
       "at": "2026-08-08T01:02:14.039047+00:00",
       "reason": "動画の長さが約25秒の短尺クリップであり、NVIDIA Nemotronに関する理念的な発言（データセット、学習手法、重みの公開等）のみにとどまり、具体的な技術仕様、ベンチマーク数値、機能デモなどの詳細な情報が含まれていないため。",
       "skipped": true
+    },
+    "Sae2yyNEQNM": {
+      "at": "2026-10-26T12:01:58.806256+00:00",
+      "slug": "microsoft-foundry-agent-guardrails-security"
     },
     "SiJGdlmdUms": {
       "at": "2026-09-12T19:47:26.934875+00:00",
@@ -2500,6 +2513,10 @@
       "at": "2026-10-19T02:09:44.302489+00:00",
       "slug": "nvidia-ai-defined-fab-semiconductor-manufacturing"
     },
+    "rF1EsryCAwc": {
+      "at": "2026-10-26T12:04:13.033030+00:00",
+      "slug": "nvidia-gtc-berlin-2026-keynote-highlights"
+    },
     "rNFXHthLkC4": {
       "at": "2026-08-17T00:38:06.098017+00:00",
       "slug": "liberal-arts-university-money-lecture-summary"
@@ -3047,6 +3064,22 @@
       "skipped": true,
       "url": "https://github.blog/changelog/2026-10-23-usage-metrics-api-adds-usage-from-tools-like-opencode"
     },
+    "bad059043da3c64c": {
+      "at": "2026-10-26T12:06:20.822459+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "sanada-naoki-asakusa-live-2026",
+      "url": "https://www.atpress.ne.jp/news/644526"
+    },
+    "bdec164d5a53e33b": {
+      "at": "2026-10-26T12:05:24.307273+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 95,
+      "section": "ai",
+      "slug": "aws-weekly-20261019-updates",
+      "url": "https://aws.amazon.com/jp/blogs/news/aws-weekly-20261019/"
+    },
     "d47435300ada2314": {
       "at": "2026-10-26T10:30:52.037562+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3482,6 +3515,58 @@
       "score": 100,
       "source": "nvidia-japan-blog",
       "title": "ヘルスケアとライフ サイエンスのリーダーが、NVIDIA を基盤に創薬を推進し、患者ケアを拡大"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T12:04:47.694804+00:00",
+      "attempt": 1,
+      "id": "bdec164d5a53e33b",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1862字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "週刊AWS – 2026/10/19週"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T12:05:24.306936+00:00",
+      "attempt": 2,
+      "id": "bdec164d5a53e33b",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 95,
+      "source": "aws-japan-blog",
+      "title": "週刊AWS – 2026/10/19週"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T12:05:47.193542+00:00",
+      "attempt": 1,
+      "id": "bad059043da3c64c",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1799字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "atpress",
+      "title": "真田ナオキ 浅草公演が大盛況！ 公演の一部をYouTube限定公開中＆10/29生配信決定！12月には、歌謡ポップスチャンネルでテレビ初放送も！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T12:06:20.822141+00:00",
+      "attempt": 2,
+      "id": "bad059043da3c64c",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "atpress",
+      "title": "真田ナオキ 浅草公演が大盛況！ 公演の一部をYouTube限定公開中＆10/29生配信決定！12月には、歌謡ポップスチャンネルでテレビ初放送も！"
     }
   ]
 }
