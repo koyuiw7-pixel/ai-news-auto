@@ -2976,6 +2976,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005956.000054842.html"
     },
+    "1a59e98674ccc9fb": {
+      "at": "2026-10-26T14:11:39.308982+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（アワード）",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/press/kanbo/anpo/261026.html"
+    },
     "222f3715a6dc5508": {
       "at": "2026-10-26T12:33:34.802938+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -2989,6 +2995,13 @@
       "skipped": true,
       "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two"
     },
+    "2cd0e1760990091a": {
+      "at": "2026-10-26T14:11:39.308950+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1798字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000070.000051277.html"
+    },
     "31b8b3e9ba1b5f37": {
       "at": "2026-10-26T13:33:26.418088+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -2996,6 +3009,13 @@
       "section": "tech-gadget",
       "slug": "php-vulnerabilities-jpcert-alert-2026",
       "url": "https://www.jpcert.or.jp/at/2026/at260033.html"
+    },
+    "35128607b5ef84dd": {
+      "at": "2026-10-26T14:14:27.685942+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2039字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000788.000088829.html"
     },
     "37e18adfd2ff499b": {
       "at": "2026-10-26T11:01:59.803581+00:00",
@@ -3038,6 +3058,12 @@
       "reason": "quality: 本文が短い（2421字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 元記事の文をそのまま書き写している（2文。例「NVIDIAとAmkorは、韓国で先進パッケージングの生産能力を拡大し、2028年末までにインターポ」）。自分の言葉で要約する",
       "skipped": true,
       "url": "https://blogs.nvidia.co.jp/blog/nvidia-and-supply-chain-partners-expand-capacity-to-accelerate-ai-infrastructure-buildout/"
+    },
+    "4d78e0e5799d82d8": {
+      "at": "2026-10-26T14:11:39.308976+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（データベース届出情報の更新）",
+      "skipped": true,
+      "url": "https://www.caa.go.jp/notice/entry/047898/"
     },
     "53624072d5bd82fb": {
       "at": "2026-10-26T12:41:40.252481+00:00",
@@ -3126,6 +3152,12 @@
       "skipped": true,
       "url": "https://kyodonewsprwire.jp/release/202610268694"
     },
+    "90b31744ef4440aa": {
+      "at": "2026-10-26T14:10:58.214509+00:00",
+      "reason": "prefilter: 告知・お知らせ系",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000049.000132758.html"
+    },
     "9159549a940483f3": {
       "at": "2026-10-26T12:51:45.036697+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3202,6 +3234,12 @@
       "skipped": true,
       "url": "https://kyodonewsprwire.jp/release/202610268696"
     },
+    "b264e1ebbe7f23a4": {
+      "at": "2026-10-26T14:13:35.074159+00:00",
+      "reason": "prefilter: 告知・お知らせ系",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000016.000100959.html"
+    },
     "b5933abf7b3004fc": {
       "at": "2026-10-26T10:31:00.945549+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3258,6 +3296,14 @@
       "reason": "quality: 本文が短い（2488字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/orchestrating-sagemaker-ai-endpoint-auto-scaling-with-aws-cdk/"
+    },
+    "c8962f2408138eaf": {
+      "at": "2026-10-26T14:13:35.074024+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "uda-san-festa-2026-nara",
+      "url": "https://kyodonewsprwire.jp/release/202610268708"
     },
     "ca468eb35b284a7e": {
       "at": "2026-10-26T13:54:15.329766+00:00",
@@ -4420,6 +4466,88 @@
       "score": 100,
       "source": "apple-newsroom-jp-all",
       "title": "Apple、iPad miniに史上最大のアップデートを導入"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T14:11:19.771391+00:00",
+      "attempt": 1,
+      "id": "2cd0e1760990091a",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1666字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "法務AXプラットフォーム「Lisse法務AI Cowork」、「契約書間矛盾チェック機能」を追加"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T14:11:39.308933+00:00",
+      "attempt": 2,
+      "id": "2cd0e1760990091a",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1798字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "法務AXプラットフォーム「Lisse法務AI Cowork」、「契約書間矛盾チェック機能」を追加"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T14:12:28.235799+00:00",
+      "attempt": 1,
+      "id": "c8962f2408138eaf",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1643字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "kyodo-prwire",
+      "title": "グルメ・体験・ステージ満載の秋祭り！「うだ産フェスタ2026」を10/31・11/1開催"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T14:13:35.073722+00:00",
+      "attempt": 2,
+      "id": "c8962f2408138eaf",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "kyodo-prwire",
+      "title": "グルメ・体験・ステージ満載の秋祭り！「うだ産フェスタ2026」を10/31・11/1開催"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T14:14:02.056048+00:00",
+      "attempt": 1,
+      "id": "35128607b5ef84dd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1382字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "QommonsAI活用研修を熊本県熊本市（くまもとけん くまもとし）で実施 - 300名超の参加者が見つめた、専門コンサルティングAIの実務活用"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T14:14:27.685922+00:00",
+      "attempt": 2,
+      "id": "35128607b5ef84dd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2039字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "QommonsAI活用研修を熊本県熊本市（くまもとけん くまもとし）で実施 - 300名超の参加者が見つめた、専門コンサルティングAIの実務活用"
     }
   ]
 }
