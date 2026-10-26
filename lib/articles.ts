@@ -87,6 +87,22 @@ function isArticle(value: unknown): value is Article {
   );
 }
 
+function normalize(parsed: Article): Article {
+  return {
+    ...parsed,
+    keywords: parsed.keywords ?? [],
+    tags: parsed.tags ?? [],
+    highlights: parsed.highlights ?? [],
+    timetable: parsed.timetable ?? [],
+    affiliates: parsed.affiliates ?? [],
+    sources: parsed.sources ?? [],
+    lede: parsed.lede ?? "",
+    genre: parsed.genre ?? "AI・テクノロジー",
+    genreSlug: parsed.genreSlug ?? "ai",
+    disclaimer: parsed.disclaimer ?? "",
+  };
+}
+
 /** 壊れた JSON が 1 本混ざってもビルドを落とさないよう、個別に握り潰す */
 function readAll(): Article[] {
   if (!fs.existsSync(ARTICLES_DIR)) return [];
@@ -101,19 +117,7 @@ function readAll(): Article[] {
         console.warn(`[articles] skip (schema mismatch): ${file}`);
         continue;
       }
-      articles.push({
-        ...parsed,
-        keywords: parsed.keywords ?? [],
-        tags: parsed.tags ?? [],
-        highlights: parsed.highlights ?? [],
-        timetable: parsed.timetable ?? [],
-        affiliates: parsed.affiliates ?? [],
-        sources: parsed.sources ?? [],
-        lede: parsed.lede ?? "",
-        genre: parsed.genre ?? "AI・テクノロジー",
-        genreSlug: parsed.genreSlug ?? "ai",
-        disclaimer: parsed.disclaimer ?? "",
-      });
+      articles.push(normalize(parsed));
     } catch (error) {
       console.warn(`[articles] skip (invalid JSON): ${file}`, error);
     }
@@ -161,8 +165,26 @@ export function getRoundups(): Article[] {
 }
 
 export function getArticle(slug: string): Article | undefined {
+  if (cache === null) {
+    // 実行時（ISR）は全件を読まず、ファイル名＝slug の1本だけを先に読む
+    const one = readOne(slug);
+    if (one) return one;
+  }
   return getAllArticles().find((a) => a.slug === slug);
 }
+
+function readOne(slug: string): Article | undefined {
+  if (!/^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(slug)) return undefined;
+  try {
+    const parsed: unknown = JSON.parse(fs.readFileSync(path.join(ARTICLES_DIR, `${slug}.json`), "utf8"));
+    return isArticle(parsed) && parsed.slug === slug ? normalize(parsed) : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/** ビルド時に静的化する記事の数（新しい順）。残りは初回アクセス時に生成してキャッシュする */
+export const PRERENDER_LIMIT = 150;
 
 export function getRelatedArticles(article: Article, limit = 4): Article[] {
   const tags = new Set(article.tags);

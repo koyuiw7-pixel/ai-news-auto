@@ -1,4 +1,3 @@
-import type { MetadataRoute } from "next";
 import {
   getAllArticles,
   getAllChannels,
@@ -10,9 +9,18 @@ import { companyCounts } from "@/lib/companies";
 import { getAllGuides, guideArticles } from "@/lib/guides";
 import { siteConfig } from "@/site.config";
 
-export const dynamic = "force-static";
+export type SitemapEntry = {
+  url: string;
+  lastModified: Date;
+  changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
+  priority: number;
+};
 
-export default function sitemap(): MetadataRoute.Sitemap {
+/** 1ファイルに載せる URL の上限（仕様上は5万。余裕を持たせる） */
+export const SITEMAP_CHUNK = 40000;
+
+/** サイトマップに載せる全 URL（記事は全件） */
+export function sitemapEntries(): SitemapEntry[] {
   const base = siteConfig.url;
   // 検索対象はAIジャンルのみ。noindex にしたページは sitemap からも外す
   const articles = getAllArticles().filter((a) => a.genreSlug === "ai");
@@ -26,13 +34,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: base,
       lastModified,
-      changeFrequency: "hourly",
+      changeFrequency: "hourly" as const,
       priority: 1,
     },
     {
       url: `${base}/articles`,
       lastModified,
-      changeFrequency: "hourly",
+      changeFrequency: "hourly" as const,
       priority: 0.9,
     },
     ...["/about", "/privacy", "/disclaimer", "/contact"].map((path) => ({
@@ -87,3 +95,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 }
+
+/** URL 数が上限を超えたら分割する。分割後のファイル数 */
+export function sitemapChunkCount(): number {
+  return Math.max(1, Math.ceil(sitemapEntries().length / SITEMAP_CHUNK));
+}
+
+const escapeXml = (value: string) =>
+  value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+
+export function renderUrlset(entries: SitemapEntry[]): string {
+  const urls = entries
+    .map(
+      (e) =>
+        `<url>\n<loc>${escapeXml(e.url)}</loc>\n${Number.isNaN(e.lastModified.getTime()) ? "" : `<lastmod>${e.lastModified.toISOString()}</lastmod>\n`}<changefreq>${e.changeFrequency}</changefreq>\n<priority>${e.priority}</priority>\n</url>`,
+    )
+    .join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+}
+
+export function renderIndex(count: number): string {
+  const now = new Date().toISOString();
+  const items = Array.from(
+    { length: count },
+    (_, i) => `<sitemap>\n<loc>${siteConfig.url}/sitemaps/${i}.xml</loc>\n<lastmod>${now}</lastmod>\n</sitemap>`,
+  ).join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</sitemapindex>\n`;
+}
+
+export const XML_HEADERS = { "Content-Type": "application/xml; charset=utf-8" };

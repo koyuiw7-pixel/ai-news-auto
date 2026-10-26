@@ -2,8 +2,10 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { loadDefaultJapaneseParser } from "budoux";
 import { ImageResponse } from "next/og";
-import { coverPath, getAllArticles, getArticle } from "@/lib/articles";
+import sharp from "sharp";
+import { coverPath, getAllArticles, getArticle, PRERENDER_LIMIT, type Article } from "@/lib/articles";
 import { companyOf } from "@/lib/companies";
+import { siteConfig } from "@/site.config";
 import {
   basePhoto,
   COVER_HEIGHT as HEIGHT,
@@ -17,7 +19,8 @@ import {
  * 記事ごとのカバー画像（1200×630）。
  *
  * YouTube のサムネイルをそのまま使うと「よそのコンテンツを貼っただけ」に見えるので、
- * 日本語の見出し・発表元の企業・サイト名を載せた独自の画像を、ビルド時に静的に生成する。
+ * 日本語の見出し・発表元の企業・サイト名を載せた独自の画像を生成する。
+ * 新しい記事だけビルド時に作り、残りは初回アクセス時に作ってキャッシュする（ISR）。
  * SNS（Threads・X）でシェアされたときのカードもこの画像になる。
  * 外部の画像生成APIは使わないので費用はかからない。
  *
@@ -25,10 +28,13 @@ import {
  * 左に発表元の企業色の縦線、見出しの上に赤い「速報」ラベル。
  */
 export const dynamic = "force-static";
-export const dynamicParams = false;
+export const dynamicParams = true;
+// 一度作ったカバーは1週間使い回す（デプロイごとに作り直される）
+export const revalidate = 604800;
 
 export function generateStaticParams() {
   return getAllArticles()
+    .slice(0, PRERENDER_LIMIT)
     .filter((article) => coverPath(article))
     .map((article) => ({ slug: article.slug }));
 }
@@ -103,11 +109,41 @@ function Phrases({
   );
 }
 
+const CACHE_HEADERS = {
+  "Content-Type": "image/png",
+  "Cache-Control": "public, max-age=604800, stale-while-revalidate=86400",
+};
+
 export async function GET(_request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article || !coverPath(article)) return new Response("Not found", { status: 404 });
 
+  try {
+    // 描画の失敗も捕まえるため、ここで最後まで描き切る
+    const png = await (await renderCover(article)).arrayBuffer();
+    return new Response(png, { headers: CACHE_HEADERS });
+  } catch (error) {
+    console.error(`[cover] fallback: ${slug}`, error);
+    return fallbackCover(companyOf(article).color);
+  }
+}
+
+/** 描画に失敗したときの単色カバー（500 にしない） */
+async function fallbackCover(color: string): Promise<Response> {
+  try {
+    const png = await sharp({
+      create: { width: WIDTH, height: HEIGHT, channels: 3, background: /^#[0-9a-f]{3,8}$/i.test(color) ? color : "#1d1d22" },
+    })
+      .png()
+      .toBuffer();
+    return new Response(new Uint8Array(png), { headers: { ...CACHE_HEADERS, "Cache-Control": "public, max-age=3600" } });
+  } catch {
+    return Response.redirect(new URL("/logo.png", siteConfig.url), 302);
+  }
+}
+
+async function renderCover(article: Article): Promise<ImageResponse> {
   const company = companyOf(article);
   const isOther = company.slug === "other";
   // 公式ブログ・プレスリリース記事で企業が判別できないときは、発信元名を出す
@@ -221,7 +257,6 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
       width: WIDTH,
       height: HEIGHT,
       fonts: fontData,
-      headers: { "Cache-Control": "public, max-age=31536000, immutable" },
     },
   );
 }

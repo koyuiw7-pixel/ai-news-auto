@@ -75,6 +75,113 @@ FEEDS: list[dict] = [
     {"slug": "prtimes", "name": "PR TIMES", "url": "https://prtimes.jp/index.rdf", "lang": "ja", "priority": 4, "ai_only": True, "title_only": True},
 ]
 FEEDS_BY_SLUG = {f["slug"]: f for f in FEEDS}
+
+# --------------------------------------------------------------------------- #
+# 幅広い話題のフィード（web_articles.py --section broad）
+# --------------------------------------------------------------------------- #
+# section … genres.py の BROAD_GENRES の slug。"auto" は classify_section() でタイトル/概要から振り分ける。
+# kind    … wire（配信サービス・量が多い）/ gov（官公庁・公的機関）/ company（企業）/ science（研究機関）
+# 2026-10-26 に urllib（UA 付き）で取得・解析できたものだけを載せる。量は直近の配信間隔からの概算（件/日）。
+#   PR TIMES: 新着200件 ≒ 約4時間分 → 約1000件/日（毎時取得で取りこぼしほぼ無し）。本文は記事ページから取得できる
+#   @Press 約23件/日、ValuePress 約14件/日、共同通信PRワイヤー 約50件/日、ドリームニューズ 約80件/日
+#   官公庁は合計で約50件/日（ただし会議案内・採用など足切り対象が多い）。研究機関 約3件/日、企業 約8件/日
+# 確認して外したもの（2026-10-26）:
+#   PR TIMES のカテゴリ別 RSS（/technology/・/business/・/entertainment/ 等の index.rdf）: すべて 404。
+#     公式にあるのは全体の index.rdf と企業別 companyrdf.php のみ → 全体を取り、classify_section で振り分ける
+#   Digital PR Platform・News2u: RSS なし / ホスト不明
+#   経産省 ml_index_release_atom.xml: 取得はできるが最新が 2026-06 で更新停止
+#   国交省 index.rdf: 大臣会見要旨ばかりで記事向きでない / 気象庁・国民生活センター・特許庁(403)・環境省・財務省・国税庁: RSS なし
+#   e-Gov パブコメ・JNTO・JVN・JST 公募: 読者向けの価値が薄い（専門的・B2B）
+#   JOC ニュース: 通信社の配信記事が中心のため不採用（報道の全文は扱わない）
+#   ソニー・任天堂IR・ドコモ・ソフトバンク(プレス)・LINEヤフー・パナソニック・日立・富士通・NEC・ホンダ・日産・
+#     JR東日本・イオン・セブン・スクエニ・バンダイナムコ・セガ・Jリーグ・NPB・Bリーグ: RSS なし（大半は PR TIMES 経由で拾える）
+#   シャープ news/rss.xml: 日付が入っていない / 日本マイクロソフト: 2025-09 で更新停止
+#   NHK・新聞・Yahoo!ニュースなど報道機関の本文は対象外
+BROAD_FEEDS: list[dict] = [
+    # --- プレスリリース配信（量の柱。転載・紹介される前提の文書） ---
+    {"slug": "prtimes-all", "name": "PR TIMES", "url": "https://prtimes.jp/index.rdf", "section": "auto", "kind": "wire", "priority": 5},
+    {"slug": "atpress", "name": "@Press", "url": "https://www.atpress.ne.jp/rss/index.rdf", "section": "auto", "kind": "wire", "priority": 5},
+    {"slug": "value-press", "name": "ValuePress", "url": "https://www.value-press.com/rss/index.rdf", "section": "auto", "kind": "wire", "priority": 6},
+    {"slug": "kyodo-prwire", "name": "共同通信PRワイヤー", "url": "https://kyodonewsprwire.jp/feed/release", "section": "auto", "kind": "wire", "priority": 5},
+    {"slug": "dreamnews", "name": "ドリームニューズ", "url": "https://www.dreamnews.jp/rss/", "section": "auto", "kind": "wire", "priority": 6},
+    # --- 官公庁・公的機関 ---
+    {"slug": "kantei", "name": "首相官邸", "url": "https://www.kantei.go.jp/index-jnews.rdf", "section": "public", "kind": "gov", "priority": 3},
+    {"slug": "gov-online", "name": "政府広報オンライン", "url": "https://www.gov-online.go.jp/rss/index.rdf", "section": "public", "kind": "gov", "priority": 2},
+    {"slug": "digital-agency", "name": "デジタル庁", "url": "https://www.digital.go.jp/rss/news.xml", "section": "public", "kind": "gov", "priority": 2},
+    {"slug": "soumu", "name": "総務省", "url": "https://www.soumu.go.jp/news.rdf", "section": "public", "kind": "gov", "priority": 3},
+    {"slug": "mhlw", "name": "厚生労働省", "url": "https://www.mhlw.go.jp/stf/news.rdf", "section": "public", "kind": "gov", "priority": 3},
+    {"slug": "mext", "name": "文部科学省", "url": "https://www.mext.go.jp/b_menu/news/index.rdf", "section": "public", "kind": "gov", "priority": 3},
+    {"slug": "fsa", "name": "金融庁", "url": "https://www.fsa.go.jp/fsaNewsListAll_rss2.xml", "section": "public", "kind": "gov", "priority": 2},
+    {"slug": "caa", "name": "消費者庁", "url": "https://www.caa.go.jp/news.rss", "section": "lifestyle", "kind": "gov", "priority": 2},
+    {"slug": "maff", "name": "農林水産省", "url": "https://www.maff.go.jp/j/press/rss.xml", "section": "lifestyle", "kind": "gov", "priority": 3},
+    {"slug": "cao", "name": "内閣府", "url": "https://www.cao.go.jp/rss/news.rdf", "section": "business", "kind": "gov", "priority": 3},
+    {"slug": "boj", "name": "日本銀行", "url": "https://www.boj.or.jp/rss/whatsnew.xml", "section": "business", "kind": "gov", "priority": 2},
+    {"slug": "stat", "name": "総務省統計局", "url": "https://www.stat.go.jp/whatsnew/news.rdf", "section": "business", "kind": "gov", "priority": 3},
+    {"slug": "jpcert", "name": "JPCERT/CC", "url": "https://www.jpcert.or.jp/rss/jpcert.rdf", "section": "tech-gadget", "kind": "gov", "priority": 3},
+    {"slug": "ipa", "name": "IPA（情報処理推進機構）", "url": "https://www.ipa.go.jp/about/newsonly-rss.rdf", "section": "tech-gadget", "kind": "gov", "priority": 3},
+    # --- 研究機関・宇宙 ---
+    {"slug": "jaxa", "name": "JAXA", "url": "https://www.jaxa.jp/rss/press_j.rdf", "section": "science", "kind": "science", "priority": 1},
+    {"slug": "riken", "name": "理化学研究所", "url": "https://www.riken.jp/feed/press_feed/", "section": "science", "kind": "science", "priority": 1},
+    {"slug": "naoj", "name": "国立天文台", "url": "https://www.nao.ac.jp/atom.xml", "section": "science", "kind": "science", "priority": 1},
+    {"slug": "jst", "name": "科学技術振興機構（JST）", "url": "https://www.jst.go.jp/rss/press.xml", "section": "science", "kind": "science", "priority": 2},
+    {"slug": "nict", "name": "情報通信研究機構（NICT）", "url": "https://www.nict.go.jp/rss/press.rdf", "section": "science", "kind": "science", "priority": 2},
+    # --- 企業ニュースルーム ---
+    {"slug": "toyota", "name": "トヨタ自動車 グローバルニュースルーム", "url": "https://global.toyota/export/jp/allnews_rss.xml", "section": "business", "kind": "company", "priority": 2},
+    {"slug": "rakuten", "name": "楽天グループ プレスリリース", "url": "https://corp.rakuten.co.jp/rss/press.xml", "section": "business", "kind": "company", "priority": 2},
+    {"slug": "uniqlo", "name": "ユニクロ プレスリリース", "url": "https://www.uniqlo.com/jp/ja/contents/corp/press-release/index.xml", "section": "lifestyle", "kind": "company", "priority": 2},
+    {"slug": "softbank-news", "name": "ソフトバンクニュース", "url": "https://www.softbank.jp/sbnews/feed", "section": "tech-gadget", "kind": "company", "priority": 3},
+    {"slug": "au-topics", "name": "au トピックス", "url": "https://www.au.com/rss/topic.xml", "section": "tech-gadget", "kind": "company", "priority": 2},
+    {"slug": "sony-jp", "name": "ソニー（製品ニュース）", "url": "https://www.sony.jp/xml/index.xml", "section": "tech-gadget", "kind": "company", "priority": 2},
+    {"slug": "apple-newsroom-jp-all", "name": "Apple Newsroom（日本）", "url": "https://www.apple.com/jp/newsroom/rss-feed.rss", "section": "tech-gadget", "kind": "company", "priority": 1},
+    {"slug": "google-japan-blog-all", "name": "Google Japan Blog", "url": "https://blog.google/intl/ja-jp/rss/", "section": "tech-gadget", "kind": "company", "priority": 1},
+    {"slug": "nintendo-topics", "name": "任天堂 トピックス", "url": "https://www.nintendo.com/jp/topics/c/feed/rss/", "section": "entertainment", "kind": "company", "priority": 1},
+    {"slug": "playstation-blog-jp", "name": "PlayStation.Blog 日本語", "url": "https://blog.ja.playstation.com/feed/", "section": "entertainment", "kind": "company", "priority": 2},
+    # --- スポーツ（競技団体の公式） ---
+    {"slug": "jfa", "name": "日本サッカー協会（JFA）", "url": "https://www.jfa.jp/feed.rss", "section": "sports", "kind": "company", "priority": 2},
+]
+for _feed in BROAD_FEEDS:
+    _feed.setdefault("lang", "ja")
+FEEDS_BY_SLUG.update({f["slug"]: f for f in BROAD_FEEDS})
+
+# プレスリリース配信（section="auto"）の振り分け。当たった語の数が多いセクションに入れる（同点は並び順）。
+SECTION_RULES: list[tuple[str, re.Pattern]] = [
+    ("sports", re.compile(
+        r"サッカー|野球|バスケ|Jリーグ|Bリーグ|ラグビー|ゴルフ|テニス|卓球|バレーボール|陸上競技|マラソン|駅伝|"
+        r"五輪|オリンピック|パラリンピック|ワールドカップ|日本代表|選手権|スポーツ|競技|アスリート|フィットネス|ランニング")),
+    ("entertainment", re.compile(
+        r"アニメ|映画|ドラマ|漫画|マンガ|コミック|小説|書籍|新刊|ゲーム|Nintendo|Switch|PS5|プレイステーション|"
+        r"音楽|楽曲|アルバム|ライブ|コンサート|ツアー|舞台|ミュージカル|展覧会|美術館|博物館|展示|声優|VTuber|配信開始|"
+        r"劇場|主題歌|MV|コラボ")),
+    ("science", re.compile(
+        r"研究成果|研究グループ|研究チーム|共同研究|解明|発見|論文|宇宙|ロケット|衛星|天文|探査|量子|遺伝子|細胞|"
+        r"化石|恐竜|実験に成功|実証に成功")),
+    ("tech-gadget", re.compile(
+        r"スマホ|スマートフォン|iPhone|Android|アプリ|ガジェット|パソコン|PC|ノートPC|タブレット|イヤホン|ヘッドホン|"
+        r"スピーカー|カメラ|ゲーミング|ディスプレイ|モニター|家電|充電|モバイルバッテリー|Wi-Fi|5G|通信|SIM|"
+        r"セキュリティ|脆弱性|クラウド|SaaS|ソフトウェア|半導体|ドローン|EV|ロボット|IoT|DX|システム", re.IGNORECASE)),
+    ("lifestyle", re.compile(
+        r"食品|飲料|グルメ|スイーツ|レシピ|お菓子|パン|ラーメン|カフェ|ビール|日本酒|ワイン|旅行|ホテル|旅館|観光|"
+        r"子育て|育児|ベビー|キッズ|子ども|介護|シニア|美容|コスメ|スキンケア|ファッション|アパレル|インテリア|家具|"
+        r"住まい|住宅|ペット|犬|猫|家計|節約|防災|日用品|雑貨|ふるさと納税|新商品|新発売")),
+    ("public", re.compile(
+        r"自治体|市役所|県庁|区役所|行政|制度|補助金|助成|給付|マイナンバー|マイナ|税制|年金|保険証|官民|公共")),
+    ("business", re.compile(
+        r"業務提携|資本提携|提携|買収|M&A|上場|決算|業績|売上|新会社|設立|事業|法人向け|BtoB|物流|人手不足|"
+        r"中小企業|価格改定|値上げ|調査|市場|資金|経営|サプライチェーン|脱炭素|GX")),
+]
+
+
+def classify_section(item: dict) -> str | None:
+    """タイトル（重み2）と概要（重み1）の語の当たり数で、幅広い話題のセクションを決める。当たらなければ None"""
+    scores: dict[str, int] = {}
+    for section, pattern in SECTION_RULES:
+        score = 2 * len(pattern.findall(item.get("title", ""))) + len(pattern.findall(item.get("summary", "")))
+        if score:
+            scores[section] = score
+    if not scores:
+        return None
+    order = [s for s, _ in SECTION_RULES]
+    return max(scores, key=lambda s: (scores[s], -order.index(s)))
 # 公式フィードでも SNS 投稿へのリンクが混ざる（Microsoft Source → LinkedIn など）。一次記事でないので除外
 BLOCKED_HOSTS = ("linkedin.com", "x.com", "twitter.com", "facebook.com", "instagram.com", "youtube.com", "youtu.be")
 
@@ -142,8 +249,10 @@ def _parse_date(value: str) -> datetime | None:
     except (TypeError, ValueError, IndexError):
         dt = None
     if dt is None:
+        # Python 3.9 の fromisoformat は「Z」「+0900」を読めないので「+09:00」にそろえる
+        iso = re.sub(r"([+-]\d{2})(\d{2})$", r"\1:\2", value.replace("Z", "+00:00"))
         try:
-            dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
+            dt = datetime.fromisoformat(iso)
         except ValueError:
             return None
     return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
@@ -158,7 +267,12 @@ def strip_html(value: str) -> str:
 def parse_feed(feed: dict) -> list[dict]:
     """RSS 2.0 / Atom / RSS 1.0(RDF) を共通形式に。content は全文が入っていれば全文（HTML除去済み）。"""
     data, _ = fetch(feed["url"], accept="application/rss+xml, application/atom+xml, application/xml;q=0.9, */*;q=0.8")
-    root = ET.fromstring(data)
+    try:
+        root = ET.fromstring(data)
+    except ValueError:
+        # Shift_JIS の XML（総務省・国交省など）は expat が読めないので文字列に直してから解析する
+        text = re.sub(r"^\s*<\?xml[^>]*\?>", "", _decode(data))
+        root = ET.fromstring(text)
     nodes = root.findall(".//item") or root.findall(f".//{ATOM}entry") or root.findall(f".//{RSS1}item")
     items = []
     for node in nodes:
@@ -396,6 +510,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--days", type=int, default=3)
     parser.add_argument("--text", help="この URL の本文抽出結果を表示して終了")
+    parser.add_argument("--broad", action="store_true", help="幅広い話題のフィード（BROAD_FEEDS）を確認する")
     args = parser.parse_args()
 
     if args.text:
@@ -404,9 +519,10 @@ def main() -> int:
         return 0
 
     report: dict = {}
-    items = collect(args.days, {}, report=report)
+    targets = BROAD_FEEDS if args.broad else FEEDS
+    items = collect(args.days, {}, targets, report=report)
     log(f"{'slug':28s} {'取得':>5s} {'期間内':>6s}  状態")
-    for feed in FEEDS:
+    for feed in targets:
         r = report.get(feed["slug"], {})
         status = "NG " + r["error"] if r.get("error") else "OK"
         log(f"{feed['slug']:28s} {r.get('fetched', 0):5d} {r.get('kept', 0):6d}  {status}")

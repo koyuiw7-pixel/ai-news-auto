@@ -15,7 +15,8 @@ const LEGAL_LINKS = [
 export default function Footer() {
   const ai = getAllArticles().filter((a) => a.genreSlug === "ai");
   const liveChannels = new Set(ai.map((a) => a.channelSlug));
-  const channels = getAllChannels().filter((c) => liveChannels.has(c.slug));
+  // 発信元が増えても足元が伸びないよう、記事の多い順に上限を設ける
+  const channels = getAllChannels().filter((c) => liveChannels.has(c.slug)).slice(0, 30);
   const companies = companyCounts(ai).slice(0, 8);
   const tags = getAllTags(true).slice(0, 16);
 

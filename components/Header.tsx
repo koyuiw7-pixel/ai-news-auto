@@ -9,6 +9,7 @@ const NAV = [
   { href: "/companies/google", label: "Google" },
   { href: "/companies/anthropic", label: "Anthropic" },
   { href: "/guides", label: "ガイド" },
+  { href: "/news", label: "ニュース" },
   { href: "/#roundups", label: "まとめ" },
   { href: "/articles", label: "記事一覧" },
 ];
@@ -28,7 +29,7 @@ export default function Header() {
 
         <nav
           aria-label="メインメニュー"
-          className="ml-auto hidden items-center gap-6 md:flex"
+          className="ml-auto hidden items-center gap-4 md:flex lg:gap-6"
         >
           {NAV.map((item) => (
             <Link
@@ -41,7 +42,14 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="ml-auto flex shrink-0 items-center md:ml-0">
+        <div className="ml-auto flex shrink-0 items-center gap-1 md:ml-0">
+          {/* スマホではメニューを畳んでいるので、AI以外の話題への入口だけ出す */}
+          <Link
+            href="/news"
+            className="rounded-full border border-line px-3 py-1 text-[12.5px] font-bold text-ink-soft transition-colors hover:border-ink hover:text-ink md:hidden"
+          >
+            ニュース
+          </Link>
           <ThemeToggle />
         </div>
       </div>

@@ -4,8 +4,13 @@
   from llm import generate_json
   data, model = generate_json(system_text, prompt, schema, tier="bulk")
 
-- tier="quality": main.py と同じ Gemini Flash 系
+- tier="quality": Claude（使えるとき）→ main.py と同じ Gemini Flash 系
 - tier="bulk"   : 無料枠の大きい軽量モデル（flash-lite → Gemma）→ quality → 外部無料API（キーがあれば）
+                  → 最後の予備として Claude（1日 CLAUDE_DAILY_MAX 回まで）→ Codex（ローカルのみ）
+- Claude は Claude Code CLI（`claude -p`）をサブスクリプションの枠で呼ぶ。使えるのは
+  `claude` が PATH にあり、かつ CLAUDE_CODE_OAUTH_TOKEN（GitHub Actions。`claude setup-token` で発行）
+  または LLM_USE_LOCAL_CLAUDE=1（手元の Mac）のときだけ。CLAUDE_MODEL でモデルを変更（既定 sonnet）。
+- Codex は `codex` が PATH にあり LLM_USE_LOCAL_CODEX=1 のときだけ（手元の ChatGPT ログイン用。CI では使わない）。
 - 429 / RESOURCE_EXHAUSTED のモデルはその実行中は使わない。404 は飛ばす。5xx は短く2回まで再試行。
 - モデルごとの1日の使用回数を content/llm_usage.json に記録（直近7日分）。
 
@@ -19,7 +24,10 @@ import json
 import os
 import random
 import re
+import shutil
+import subprocess
 import sys
+import tempfile
 import time
 import urllib.error
 import urllib.request
@@ -58,6 +66,11 @@ BULK_MODELS = [
     "gemma-4-26b-a4b-it",
 ]
 GROQ_MODELS = ["openai/gpt-oss-120b", "llama-3.3-70b-versatile", "qwen/qwen3-32b"]
+
+CLAUDE_DEFAULT_MODEL = "sonnet"
+CLAUDE_DAILY_MAX_DEFAULT = 40  # bulk での1日の上限（オーナーの対話利用と枠を共有するため）
+CLAUDE_TIMEOUT = int(os.environ.get("CLAUDE_TIMEOUT", "600"))
+CODEX_TIMEOUT = int(os.environ.get("CODEX_TIMEOUT", "600"))
 
 _client = None
 _available: set[str] | None = None
@@ -170,6 +183,35 @@ def _openrouter_models() -> list[str]:
     return [f"openrouter:{m}" for m in wanted if m.endswith(":free")]
 
 
+def claude_enabled() -> bool:
+    """claude CLI があり、CI ではトークン、手元では LLM_USE_LOCAL_CLAUDE=1 があるときだけ使う"""
+    if not shutil.which("claude"):
+        return False
+    return bool(os.environ.get("CLAUDE_CODE_OAUTH_TOKEN")) or os.environ.get("LLM_USE_LOCAL_CLAUDE") == "1"
+
+
+def _claude_models() -> list[str]:
+    return [f"claude:{os.environ.get('CLAUDE_MODEL') or CLAUDE_DEFAULT_MODEL}"] if claude_enabled() else []
+
+
+def _codex_models() -> list[str]:
+    # ChatGPT ログインは手元の Mac だけ。CI（GITHUB_ACTIONS）では絶対に使わない
+    if os.environ.get("LLM_USE_LOCAL_CODEX") != "1" or os.environ.get("CI") or not shutil.which("codex"):
+        return []
+    return [f"codex:{os.environ.get('CODEX_MODEL') or 'default'}"]
+
+
+def claude_calls_today() -> int:
+    return sum(n for m, n in usage_today().items() if m.startswith("claude:"))
+
+
+def _claude_daily_max() -> int:
+    try:
+        return int(os.environ.get("CLAUDE_DAILY_MAX", CLAUDE_DAILY_MAX_DEFAULT))
+    except ValueError:
+        return CLAUDE_DAILY_MAX_DEFAULT
+
+
 _tiers: dict[str, list[str]] = {}
 
 
@@ -178,11 +220,13 @@ def models_for(tier: str) -> list[str]:
         have = available_models()
         override = [os.environ["GEMINI_MODEL"]] if os.environ.get("GEMINI_MODEL") else []
         quality = [m for m in dict.fromkeys(override + QUALITY_MODELS) if m in have]
+        claude = _claude_models()
         if tier == "quality":
-            chosen = quality
+            chosen = claude + quality
         else:
             bulk = [m for m in BULK_MODELS if m in have]
-            chosen = list(dict.fromkeys(bulk + quality)) + _groq_models() + _openrouter_models()
+            # Claude は枠をオーナーと共有するので bulk では最後の予備（1日 CLAUDE_DAILY_MAX 回まで）
+            chosen = list(dict.fromkeys(bulk + quality)) + _groq_models() + _openrouter_models() + claude + _codex_models()
         _tiers[tier] = chosen
         log(f"[llm] {tier}: {' → '.join(chosen) or '（なし）'}")
     return _tiers[tier]
@@ -316,6 +360,144 @@ def _call_openai_compatible(model: str, system_instruction: str, prompt: str, sc
     return str(data["choices"][0]["message"]["content"] or "")
 
 
+# --------------------------------------------------------------------------- #
+# CLI（Claude Code / Codex）をサブスクリプションの枠で呼ぶ
+# --------------------------------------------------------------------------- #
+
+
+class CliQuotaError(RuntimeError):
+    """利用上限・未ログインなど、この実行中はもう使えない状態"""
+
+
+_CLI_LIMIT_PATTERNS = (
+    "usage limit", "rate limit", "rate_limit", "limit reached", "hit your limit", "limit will reset",
+    "resets at", "out of extra usage", "quota", "429", "too many requests",
+)
+_CLI_AUTH_PATTERNS = (
+    "not logged in", "please run /login", "invalid api key", "oauth token", "authentication",
+    "unauthorized", "401", "credit balance", "login required",
+)
+
+
+def _cli_check_limits(text: str) -> None:
+    low = (text or "").lower()
+    if any(p in low for p in _CLI_LIMIT_PATTERNS):
+        raise CliQuotaError(f"利用上限: {text[:160]}")
+    if any(p in low for p in _CLI_AUTH_PATTERNS):
+        raise CliQuotaError(f"認証できません: {text[:160]}")
+
+
+def _cli_env() -> dict:
+    """Claude Code の中から呼ばれたときに親セッションの設定（CLAUDE_CODE_SIMPLE など）を引き継がない"""
+    env = dict(os.environ)
+    nested = "CLAUDECODE" in env
+    for key in list(env):
+        if key == "CLAUDE_CODE_OAUTH_TOKEN":
+            continue
+        if key == "CLAUDECODE" or key.startswith(("CLAUDE_CODE_", "CLAUDE_AGENT_SDK_")) or key in ("CLAUDE_PID", "CLAUDE_EFFORT"):
+            env.pop(key)
+        elif nested and key == "ANTHROPIC_BASE_URL":
+            env.pop(key)
+    return env
+
+
+def _json_schema(schema: dict) -> dict:
+    """Gemini 形式（"OBJECT" など大文字・propertyOrdering・nullable）を標準の JSON Schema へ"""
+    if not isinstance(schema, dict):
+        return schema
+    out: dict = {}
+    for key, value in schema.items():
+        if key in ("propertyOrdering", "nullable", "format"):
+            continue
+        if key == "type" and isinstance(value, str):
+            out["type"] = value.lower()
+        elif key == "properties" and isinstance(value, dict):
+            out["properties"] = {k: _json_schema(v) for k, v in value.items()}
+        elif key == "items":
+            out["items"] = _json_schema(value)
+        elif key == "anyOf" and isinstance(value, list):
+            out["anyOf"] = [_json_schema(v) for v in value]
+        else:
+            out[key] = value
+    if schema.get("nullable") and isinstance(out.get("type"), str):
+        out["type"] = [out["type"], "null"]
+    return out
+
+
+def _call_claude(model: str, system_instruction: str, prompt: str, schema: dict, use_schema: bool = True) -> str:
+    name = model.split(":", 1)[1]
+    cmd = [
+        "claude", "-p",
+        "--output-format", "json",
+        "--model", name,
+        "--system-prompt", system_instruction,
+        "--tools", "",                 # ツールは一切使わせない
+        "--strict-mcp-config",         # MCP サーバーも読まない
+        "--setting-sources", "",       # ユーザー/プロジェクトの設定・フックを読まない
+        "--disable-slash-commands",
+        "--no-session-persistence",
+        "--max-turns", "3",            # 構造化出力は内部で1手使うので少し余裕
+    ]
+    if use_schema and os.environ.get("CLAUDE_JSON_SCHEMA", "1") != "0":
+        cmd += ["--json-schema", json.dumps(_json_schema(schema), ensure_ascii=False)]
+        body = prompt
+    else:
+        body = _plain_prompt("（system を参照）", prompt, schema)
+    try:
+        proc = subprocess.run(
+            cmd, input=body, capture_output=True, text=True, timeout=CLAUDE_TIMEOUT,
+            env=_cli_env(), cwd=tempfile.gettempdir(),  # リポジトリの CLAUDE.md を読ませない
+        )
+    except subprocess.TimeoutExpired as error:
+        raise _Skip(f"timeout ({CLAUDE_TIMEOUT}s)") from error
+    out, err = proc.stdout.strip(), proc.stderr.strip()
+    try:
+        wrapper = json.loads(out.splitlines()[-1] if out else "")
+    except (json.JSONDecodeError, IndexError):
+        _cli_check_limits(out + " " + err)
+        raise RuntimeError(f"claude の出力を読めません (exit {proc.returncode}): {(err or out)[:200]}")
+    result = wrapper.get("result")
+    structured = wrapper.get("structured_output")
+    if wrapper.get("is_error") or wrapper.get("subtype") != "success":
+        detail = f"{wrapper.get('subtype')} {wrapper.get('api_error_status') or ''} {result or ''} {err}"
+        _cli_check_limits(detail)
+        if use_schema and str(wrapper.get("subtype", "")).startswith("error_max"):
+            # 構造化出力で手数が尽きた → スキーマ無し（JSON だけを指示）で1回やり直す
+            return _call_claude(model, system_instruction, prompt, schema, use_schema=False)
+        raise RuntimeError(f"claude エラー: {detail.strip()[:200]}")
+    if isinstance(structured, dict):
+        return json.dumps(structured, ensure_ascii=False)
+    text = str(result or "").strip()
+    if not text:
+        raise ValueError("claude の結果が空です")
+    return text
+
+
+def _call_codex(model: str, system_instruction: str, prompt: str, schema: dict) -> str:
+    name = model.split(":", 1)[1]
+    with tempfile.TemporaryDirectory() as tmp:
+        last = Path(tmp) / "last.txt"
+        cmd = ["codex", "exec", "--skip-git-repo-check", "--sandbox", "read-only", "-C", tmp, "-o", str(last)]
+        if name != "default":
+            cmd += ["-m", name]
+        cmd.append("-")  # 依頼は標準入力から
+        try:
+            proc = subprocess.run(
+                cmd, input=_plain_prompt(system_instruction, prompt, schema), capture_output=True,
+                text=True, timeout=CODEX_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired as error:
+            raise _Skip(f"timeout ({CODEX_TIMEOUT}s)") from error
+        text = last.read_text("utf-8").strip() if last.exists() else ""
+    if proc.returncode != 0 or not text:
+        detail = (proc.stderr or proc.stdout or "").strip()
+        _cli_check_limits(detail)
+        if "unexpected argument" in detail or "unrecognized" in detail:
+            raise CliQuotaError(f"この codex では非対応: {detail[:160]}")
+        raise RuntimeError(f"codex エラー (exit {proc.returncode}): {detail[-200:]}")
+    return text
+
+
 def generate_json(
     system_instruction: str,
     prompt: str,
@@ -330,12 +512,19 @@ def generate_json(
     for model in models_for(tier):
         if model in _exhausted:
             continue
+        if model.startswith("claude:") and tier != "quality" and claude_calls_today() >= _claude_daily_max():
+            log(f"   [llm] {model}: 今日の上限 {_claude_daily_max()} 回に達したので使わない")
+            continue
         use_schema = True
         attempt = 0
         while True:
             attempt += 1
             try:
-                if ":" in model:
+                if model.startswith("claude:"):
+                    text = _call_claude(model, system_instruction, prompt, schema)
+                elif model.startswith("codex:"):
+                    text = _call_codex(model, system_instruction, prompt, schema)
+                elif ":" in model:
                     text = _call_openai_compatible(model, system_instruction, prompt, schema, temperature, max_output_tokens)
                 else:
                     text = _call_gemini(model, system_instruction, prompt, schema, temperature, max_output_tokens, use_schema)
@@ -345,6 +534,11 @@ def generate_json(
                 if missing:
                     raise _Skip(f"必須キー不足: {', '.join(missing[:6])}")
                 return data, model
+            except CliQuotaError as error:
+                last_error = error
+                _exhausted.add(model)
+                log(f"   [llm] {model}: {str(error)[:160]}（今回はもう使わない）")
+                break
             except _Skip as error:
                 last_error = error
                 log(f"   [llm] {model}: {error} -> 次のモデルへ")
@@ -405,7 +599,8 @@ if __name__ == "__main__":
     for tier_name in ("quality", "bulk"):
         models_for(tier_name)
     log(f"[llm] 今日の使用回数: {usage_today()}")
+    log(f"[llm] Claude: {'有効' if claude_enabled() else '無効'}（今日 {claude_calls_today()} 回 / bulk 上限 {_claude_daily_max()}）")
     if "--ping" in sys.argv:
         demo_schema = {"type": "OBJECT", "properties": {"answer": {"type": "STRING"}, "n": {"type": "INTEGER"}}, "required": ["answer", "n"]}
-        result, used = generate_json("日本語で簡潔に答える。", "1+1は？ answer に一言の説明、n に数値。", demo_schema, tier="bulk", max_output_tokens=256)
+        result, used = generate_json("日本語で簡潔に答える。", "1+1は？ answer に一言の説明、n に数値。", demo_schema, tier=os.environ.get("LLM_PING_TIER", "bulk"), max_output_tokens=256)
         log(f"[llm] {used}: {result}")

@@ -5,6 +5,9 @@ on:
     # 6時間ごと（UTC基準）。量産と見なされるリスクとAPI消費を抑えるため
     # 3時間ごと3本(最大24本/日)から絞っている
     - cron: "0 */6 * * *"
+    # 公式ブログ・プレスリリース・話題のニュースは20分ごとに少しずつ出す（まとめて出すより自然で、速報性も上がる）
+    # Vercel 無料プランの1日100回のデプロイ上限に収まるよう、記事が増えた回だけコミットする
+    - cron: "15,35,55 * * * *"
   workflow_dispatch:
     inputs:
       max_articles:
@@ -50,7 +53,9 @@ jobs:
             exit 1
           fi
 
+      # 動画の解析は無料枠を多く使うので6時間ごとだけ
       - name: Generate articles
+        if: ${{ github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *' }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # 未設定なら scripts/main.py の MODEL_CANDIDATES が自動で選択する
@@ -63,22 +68,31 @@ jobs:
       # 公式ブログ・プレスリリース（文章）と話題のニュース（Googleトレンド）から記事を作る。
       # 動画解析より軽いので、無料枠の大きい軽量モデルを順に使い回す（scripts/llm.py）。
       # 本数は変数で段階的に増やす: WEB_MAX_PER_RUN / TREND_MAX_PER_RUN / WEB_DAILY_CAP
+      # Claude Code（オーナーの契約）を質重視の記事に使う。1日の上限は CLAUDE_DAILY_MAX
+      - name: Install Claude Code CLI
+        continue-on-error: true
+        run: npm i -g @anthropic-ai/claude-code
+
       - name: Generate web articles
         continue-on-error: true
         env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          CLAUDE_DAILY_MAX: ${{ vars.CLAUDE_DAILY_MAX || '40' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
           python scripts/web_articles.py \
-            --max "${{ vars.WEB_MAX_PER_RUN || '3' }}" \
+            --max "${{ vars.WEB_MAX_PER_RUN || '1' }}" \
+            --max-broad "${{ vars.BROAD_MAX_PER_RUN || '1' }}" \
             --trends "${{ vars.TREND_MAX_PER_RUN || '1' }}" \
-            --daily-cap "${{ vars.WEB_DAILY_CAP || '14' }}" \
+            --daily-cap "${{ vars.WEB_DAILY_CAP || '45' }}" \
             --days 3 --tier bulk
 
       # 同じ話題の記事が3本以上たまったら、横断まとめ記事に統合する。
       # 動画を再解析せず既存記事のテキストだけを使うのでAPI消費は1回分。
       - name: Build roundup
+        if: ${{ github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *' }}
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -123,16 +137,24 @@ jobs:
       # 変数 THREADS_MODE が live 以外なら、下書きをサマリーに出すだけで何も公開しない。
       # 新着が無い回も走らせ、未投稿分の再挑戦とトークンの期限延長を行う。
       # state/ だけの変更は vercel.json の ignoreCommand により再ビルドされない。
+      # Buffer の無料枠（1日250リクエスト）を守るため、SNS の予約は6時間ごとの回だけ行う
+      # （8時間先までの枠をまとめて予約するので、6時間ごとで足りる）
       - name: Post to Threads
+        if: ${{ github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *' }}
         continue-on-error: true
         env:
           THREADS_MODE: ${{ vars.THREADS_MODE }}
           THREADS_TOKEN_KEY: ${{ secrets.THREADS_TOKEN_KEY }}
           # Buffer 経由で投稿する場合の API キー（設定されていればこちらを優先）
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          # 1日の投稿本数（Threads・X・Facebook 共通）。凍結を避けて週に1〜2本ずつ増やす
+          SNS_PER_DAY: ${{ vars.SNS_PER_DAY || '7' }}
         run: |
           # 投稿ごとの反応を取り込んで「勝ちパターン」を学び直してから、次の投稿を選ぶ
-          python scripts/threads_learn.py || echo "::warning::Threads の学習に失敗しました（投稿は続けます）"
+          # 反応の学習は1日1回（Buffer の数値も1日1回更新）
+          if [ "$(date -u +%H)" = "00" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            python scripts/threads_learn.py || echo "::warning::Threads の学習に失敗しました（投稿は続けます）"
+          fi
           python scripts/threads_post.py --max 2
           if [ -z "$(git status --porcelain state)" ]; then
             exit 0

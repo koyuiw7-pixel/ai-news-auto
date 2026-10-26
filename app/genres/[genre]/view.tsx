@@ -1,0 +1,102 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import ArticleCard from "@/components/ArticleCard";
+import { GenreChips } from "@/components/NewsHub";
+import Pagination from "@/components/Pagination";
+import {
+  getAllGenres,
+  getArticlesByGenre,
+  getChannelsByGenre,
+} from "@/lib/articles";
+import { pageHref, pageSuffix, paginate } from "@/lib/paginate";
+import { broadGenresWithArticles, broadSection } from "@/lib/sections";
+
+const GENRE_COPY: Record<string, string> = {
+  ai: "OpenAI・Google DeepMind・Anthropic など世界のAI企業の公式発表動画を、AIが映像と音声ごと解析して日本語で速報解説します。新機能・ベンチマーク・料金・日本からの使い方までまとめています。",
+  "real-estate":
+    "不動産投資・住宅購入・マンション選びの専門YouTubeチャンネルの解説動画を、AIが映像と音声ごと解析して記事化。物件条件・利回り・金利・税制・リスクを数字で整理しています。",
+};
+
+/** ジャンル名。記事の genre を優先し、無ければ幅広い話題の静的な名前 */
+function genreLabel(genre: string): string {
+  return getAllGenres().find((g) => g.slug === genre)?.label ?? broadSection(genre)?.label ?? genre;
+}
+
+/** ジャンルの説明文 */
+function genreCopy(genre: string): string | undefined {
+  return GENRE_COPY[genre] ?? broadSection(genre)?.description;
+}
+
+/** ジャンル一覧の metadata（1ページ目と2ページ目以降で共通） */
+export function genreMetadata(genre: string, page: number): Metadata {
+  const label = genreLabel(genre);
+  const count = getArticlesByGenre(genre).length;
+  const broad = broadSection(genre);
+
+  return {
+    title: `${label}の最新ニュース・解説記事${pageSuffix(page)}`,
+    description: broad
+      ? `${label}の最新ニュースを${count}本掲載。${broad.description}`
+      : `${label}に関する解説記事を${count}本掲載。専門YouTubeチャンネルの動画をAIが解析し、要点・数字・注意点まで日本語でまとめています。`,
+    alternates: { canonical: pageHref(`/genres/${genre}`, page) },
+    ...(genre === "ai" ? {} : { robots: { index: false, follow: true } }),
+  };
+}
+
+export default function GenreView({ genre, page }: { genre: string; page: number }) {
+  const articles = getArticlesByGenre(genre);
+  if (articles.length === 0) notFound();
+  const paged = paginate(articles, page);
+  if (page > paged.totalPages) notFound();
+
+  const label = genreLabel(genre);
+  const broad = broadSection(genre);
+  // 幅広い話題は発信元が多くばらつくので、発信元ではなく話題の切り替えを出す
+  const channels = broad ? [] : getChannelsByGenre(genre);
+
+  return (
+    <div className="mx-auto max-w-[1240px] px-5 py-12 sm:px-8">
+      <p className="text-xs font-bold tracking-[0.2em] text-accent">{broad ? "NEWS" : "GENRE"}</p>
+      <h1 className="mt-3 font-serif text-[1.75rem] font-bold leading-[1.45] tracking-tight text-ink sm:text-[2.25rem]">
+        {label}の最新ニュース・解説{pageSuffix(page)}
+      </h1>
+      <p className="mt-4 max-w-3xl text-[15px] leading-[1.9] text-muted">
+        {genreCopy(genre) ?? `${label}に関する解説記事を${articles.length}本掲載しています。`}
+      </p>
+
+      {broad && (
+        <div className="mt-6">
+          <GenreChips genres={broadGenresWithArticles()} active={genre} />
+        </div>
+      )}
+
+      {channels.length > 0 && (
+        <div className="mt-6 flex flex-wrap gap-2">
+          {channels.map((channel) => (
+            <Link
+              key={channel.slug}
+              href={`/channels/${channel.slug}`}
+              className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-xs text-ink-soft transition-colors hover:border-accent hover:text-accent"
+            >
+              {channel.label}
+              <span className="ml-1.5 text-muted">{channel.count}</span>
+            </Link>
+          ))}
+        </div>
+      )}
+
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {paged.items.map((article, index) => (
+          <ArticleCard
+            key={article.slug}
+            article={article}
+            priority={page === 1 && index < 3}
+          />
+        ))}
+      </div>
+
+      <Pagination base={`/genres/${genre}`} page={page} totalPages={paged.totalPages} />
+    </div>
+  );
+}

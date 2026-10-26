@@ -218,8 +218,11 @@ def candidates(state: dict, hours: int) -> list[dict]:
     return articles
 
 
-# 投稿する時間帯（日本時間）。通勤・昼休み・帰宅・夜のよく見られる時間に寄せ、1日5本。2時間以上あける
-SLOTS_JST = [(7, 30), (12, 15), (18, 30), (21, 0), (22, 45)]
+# 投稿する時間帯（日本時間）。よく見られる時間から順に並べ、1日の本数 SNS_PER_DAY 個だけ使う。
+# 凍結を避けるため、本数は週に1〜2本ずつ増やす（GitHub の変数 SNS_PER_DAY で変更）
+SLOT_PRIORITY = [(7, 30), (12, 15), (18, 30), (21, 0), (22, 45), (9, 45), (15, 30), (11, 0), (20, 0), (17, 0)]
+SNS_PER_DAY = max(1, min(len(SLOT_PRIORITY), int(os.environ.get("SNS_PER_DAY") or 7)))
+SLOTS_JST = sorted(SLOT_PRIORITY[:SNS_PER_DAY])
 JST = timezone(timedelta(hours=9))
 # 自動処理は約6時間ごとに動くので、次の処理までの枠をまとめて予約する（処理の遅れも見込んで少し長めに）
 LOOKAHEAD_HOURS = 8

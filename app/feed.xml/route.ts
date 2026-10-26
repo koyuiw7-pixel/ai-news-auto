@@ -22,6 +22,7 @@ export function GET() {
       <link>${siteConfig.url}/articles/${article.slug}</link>
       <guid isPermaLink="true">${siteConfig.url}/articles/${article.slug}</guid>
       <description>${escapeXml(article.description)}</description>
+      <category>${escapeXml(article.genre)}</category>
       <category>${escapeXml(article.channel)}</category>
       <pubDate>${new Date(article.publishedAt).toUTCString()}</pubDate>
     </item>`,

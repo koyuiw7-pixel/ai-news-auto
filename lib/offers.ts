@@ -107,7 +107,8 @@ export type Offer = {
 const MAX_ITEMS = 3;
 
 function readJson<T>(file: string): T | null {
-  const full = path.join(process.cwd(), file);
+  // 引数のパスだとプロジェクト全体が同梱されるので追跡を止める（必要なファイルは next.config.ts で同梱）
+  const full = path.join(/*turbopackIgnore: true*/ process.cwd(), file);
   if (!fs.existsSync(full)) return null;
   try {
     return JSON.parse(fs.readFileSync(full, "utf8")) as T;

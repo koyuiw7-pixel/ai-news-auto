@@ -2,6 +2,7 @@ import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
 import HomeHero from "@/components/HomeHero";
 import LiveBar from "@/components/LiveBar";
+import NewsHub from "@/components/NewsHub";
 import Thumb from "@/components/Thumb";
 import Timeline from "@/components/Timeline";
 import RailRanking from "@/components/rail/RailRanking";
@@ -10,12 +11,14 @@ import { getStoryBundles } from "@/lib/stories";
 import { offerForArticle } from "@/lib/offers";
 import { getAllArticles, getAllGenres, tagSlug, type Article } from "@/lib/articles";
 import { companyCounts, thumbSource } from "@/lib/companies";
+import { broadGenresWithArticles, getBroadArticles, isBroadGenre } from "@/lib/sections";
 import { siteConfig } from "@/site.config";
 
 export const revalidate = false;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const TIMELINE_SIZE = 24;
+const NEWS_SIZE = 12;
 
 /**
  * トップ＝速報デスク。
@@ -48,7 +51,11 @@ export default function HomePage() {
 
   const companies = companyCounts(ai);
   const tags = topTags(ai, 14);
-  const otherGenres = getAllGenres().filter((g) => g.slug !== "ai");
+  // AI以外の幅広い話題は、AIの新着の下に「ニュース」としてまとめる
+  const broad = getBroadArticles();
+  const broadGenres = broadGenresWithArticles(broad);
+  // 以前扱っていた分野（不動産・投資など）。幅広い話題は「ニュース」側に出すので除く
+  const otherGenres = getAllGenres().filter((g) => g.slug !== "ai" && !isBroadGenre(g.slug));
 
   const bundles = getStoryBundles();
 
@@ -138,6 +145,8 @@ export default function HomePage() {
             )}
           </aside>
         </div>
+
+        <NewsHub articles={broad.slice(0, NEWS_SIZE)} genres={broadGenres} />
 
         <footer className="mt-20 grid gap-3 border-t border-line pt-8">
           <p className="max-w-[70ch] text-[13.5px] leading-relaxed text-ink-soft">

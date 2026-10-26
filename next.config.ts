@@ -21,7 +21,21 @@ const nextConfig: NextConfig = {
       permanent: true,
     }));
   },
-  // 記事は全てビルド時に静的化される（pSEO 前提の高速配信）
+  // 新しい記事・カバーだけビルド時に静的化し、残りは初回アクセス時に生成する（ISR）。
+  // そのとき記事の JSON・フォント・設定ファイルをサーバー関数から読むので、必ず同梱させる
+  // （同梱されないと本番で古い記事が 404 になる）
+  outputFileTracingIncludes: {
+    "/**": [
+      "./content/articles/**/*.json",
+      "./content/guides/**/*.json",
+      "./content/offers.json",
+      "./content/products.json",
+      "./content/state.json",
+      "./affiliate_links.json",
+      "./monetization.json",
+    ],
+    "/cover/**": ["./assets/fonts/**/*"],
+  },
   experimental: {
     optimizePackageImports: ["marked"],
     // 記事カードから記事ページへの画面遷移（React の ViewTransition）。

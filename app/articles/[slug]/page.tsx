@@ -30,6 +30,7 @@ import {
   getRelatedArticles,
   isVideo,
   isWeb,
+  PRERENDER_LIMIT,
   sourceHref,
   sourceLabel,
   tagHref,
@@ -44,10 +45,15 @@ import { siteConfig } from "@/site.config";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamicParams = false;
+// 新しい記事だけビルド時に静的化し、残りは初回アクセス時に生成してキャッシュする（ISR）。
+// 記事が無い slug は notFound() で 404
+export const dynamicParams = true;
+export const revalidate = 86400;
 
 export function generateStaticParams() {
-  return getAllArticles().map((article) => ({ slug: article.slug }));
+  return getAllArticles()
+    .slice(0, PRERENDER_LIMIT)
+    .map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
