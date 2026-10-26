@@ -2989,6 +2989,14 @@
       "skipped": true,
       "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two"
     },
+    "31b8b3e9ba1b5f37": {
+      "at": "2026-10-26T13:33:26.418088+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "php-vulnerabilities-jpcert-alert-2026",
+      "url": "https://www.jpcert.or.jp/at/2026/at260033.html"
+    },
     "37e18adfd2ff499b": {
       "at": "2026-10-26T11:01:59.803581+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3143,6 +3151,14 @@
       "reason": "quality: 本文が短い（1664字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000020.000155520.html"
+    },
+    "9fbf8cf82abe3d0a": {
+      "at": "2026-10-26T13:32:13.607843+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "biztex-executive-ai-1day-training",
+      "url": "https://prtimes.jp/main/html/rd/p/000000137.000027337.html"
     },
     "a5dc5fb8fb4d2bfd": {
       "at": "2026-10-26T12:50:54.598637+00:00",
@@ -4312,6 +4328,44 @@
       "score": 100,
       "source": "jpcert",
       "title": "注意喚起: BrotliのC言語実装における境界外書き込みの脆弱性（CVE-2026-111497）に関する注意喚起 (公開)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T13:31:25.191870+00:00",
+      "attempt": 1,
+      "id": "9fbf8cf82abe3d0a",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2335字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "BizteX「経営者向け AI 1DAY講習」の提供を開始。AIと壁打ちする経営から、AIに任せる経営へのシフトを支援"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T13:32:13.607432+00:00",
+      "attempt": 2,
+      "id": "9fbf8cf82abe3d0a",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes",
+      "title": "BizteX「経営者向け AI 1DAY講習」の提供を開始。AIと壁打ちする経営から、AIに任せる経営へのシフトを支援"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T13:33:26.417691+00:00",
+      "attempt": 1,
+      "id": "31b8b3e9ba1b5f37",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "jpcert",
+      "title": "注意喚起: PHPにおける複数の脆弱性（CVE-2026-109618、CVE-2026-109619）に関する注意喚起 (更新)"
     }
   ]
 }
