@@ -1,0 +1,82 @@
+{
+  "slug": "dotnet-11-rc2-python-arm64-foundry-browser-automation",
+  "title": "Microsoftが.NET 11 RC2を公開 PythonのArm64標準化とFoundry自動化も一般提供",
+  "seoTitle": ".NET 11 RC2登場｜PythonのArm64標準対応とFoundry自動化がGA",
+  "threadsPost": "開発者やエンジニアの方には見逃せないアップデートです。\nMicrosoftが.NET 11 RC2を本番利用ライセンス付きで公開しました。\nさらにPython 3.15のWindows on Arm標準化や、FoundryでのAIエージェント用ブラウザ自動化も一般提供が始まっています。\nこれ地味に効くと思います。記事で👇",
+  "threadsHook": "callout",
+  "writingVoice": "explainer",
+  "lede": "Microsoftは公式ニュース番組「The Upload」にて、主要プロダクトに関する複数の重要アップデートを発表しました。.NET 11の第2リリース候補（RC2）が本番環境向けライセンス付きで提供を開始したほか、Python 3.15におけるWindows on Armのネイティブ動作標準化、さらにMicrosoft FoundryにおけるAIエージェント向けブラウザ自動化ツールの一般提供が始まっています。",
+  "description": "Microsoftが.NET 11 RC2やPython 3.15のWindows on Arm標準対応、Microsoft FoundryにおけるAIエージェントのブラウザ自動化ツールのGAを発表。最新機能の全貌や実務への影響を解説します。",
+  "keywords": [
+    ".NET 11",
+    "Python 3.15",
+    "Windows on Arm",
+    "Arm64",
+    "Microsoft Foundry",
+    "ブラウザ自動化",
+    "Playwright",
+    "AIエージェント",
+    "使い方",
+    "料金"
+  ],
+  "tags": [
+    "Microsoft",
+    "Copilot",
+    ".NET",
+    "Python",
+    "Windows on Arm",
+    "AIエージェント"
+  ],
+  "highlights": [
+    ".NET 11 RC2が本番利用可能な「Go-Live」ライセンス付きでリリースされました。",
+    "Python 3.15がWindows on ArmでArm64ネイティブランタイムをデフォルト採用しました。",
+    "Microsoft FoundryのAIエージェント用ブラウザ自動化ツールが一般提供（GA）されました。"
+  ],
+  "timetable": [
+    {
+      "time": "0:00",
+      "label": "オープニングと今週のハイライト一覧"
+    },
+    {
+      "time": "0:24",
+      "label": ".NET 11 Release Candidate 2（RC2）の発表"
+    },
+    {
+      "time": "1:19",
+      "label": "Python 3.15のWindows on ArmにおけるArm64標準化"
+    },
+    {
+      "time": "2:07",
+      "label": "Microsoft Foundryにおけるブラウザ自動化ツールのGA"
+    },
+    {
+      "time": "2:49",
+      "label": "クロージング"
+    }
+  ],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "無料枠あり",
+    "free": true,
+    "audience": "開発者",
+    "take": ".NETやPython開発者、AIエージェント構築を担当するエンジニアは今すぐ検証可能です。",
+    "judgedAt": "2026-10-26T10:30:19.993636+00:00"
+  },
+  "body": "## ひとことで言うと\nMicrosoftが提供する開発者向けのエコシステム全体において、大きな転換点となるアップデートが一挙に発表されました。これまで実験段階にあった次世代フレームワーク「.NET 11」が、本番運用の保証を伴う段階へ到達しました。また、薄型ノートPCなどで採用が進むWindows on Armにおいて、Pythonがエミュレーションを介さず直接本来の性能を発揮できる環境が整いました。加えて、APIが提供されていないWebシステムであっても、AIが画面を直接操作して仕事をこなす「ブラウザ自動化エージェント」が実務レベルで導入可能になっています。\n\n## 何が発表されたのか\nMicrosoftの公式開発者ニュースチャンネル「The Upload」にて、キャメロン・トミサー（Cameron Tomisser）氏が最新の各種開発者向けアップデートを明かしました。今回の発表は特定の一製品にとどまらず、開発プラットフォーム、言語ランタイム、クラウド上のAIエージェント基盤という3つのレイヤーにまたがっています。\n\n発表の位置づけとして、まず「.NET 11 Release Candidate 2（RC2）」の公開が挙げられます。これは単なる試作版の更新ではなく、Microsoftから公式に本番運用を認可する「Go-Live」サポートライセンスが付与されたリリースです。\n\n次に、プログラミング言語Pythonの最新版「Python 3.15」において、Windows on Arm環境下でのArm64ネイティブランタイムが既定（デフォルト）動作となったことが示されました。これにより、C言語依存の外部ライブラリを含む膨大なエコシステムが、追加設定なしで快適に動作するようになります。\n\nさらに、クラウドプラットフォームの「Microsoft Foundry」において、AIエージェントが自律的にWebブラウザを操作・閲覧・入力するための「Browser Automation Tool」が一般提供（GA：General Availability）を開始しました。先行プレビュー段階から、企業の厳格なガバナンスや認証基盤に対応した正式機能へと昇格した形です。\n\n## 発表された機能・アップデートの全容\n\n### .NET 11 Release Candidate 2の公開と本番環境向けライセンスの提供\n.NET開発チームは、ブログ記事「Announcing .NET 11 Release Candidate 2」を通じて、機能実装が完了した新バージョンの到達を発表しました。RC2（Release Candidate 2）は、正式リリース直前に位置する最終検証段階のビルドです。本バージョン最大のポイントは「Go-Live」サポートライセンスが付属している点にあります。開発者は実験環境を離れ、実際の製品や本番運用システム（Production Application）において信頼性を検証できます。\n\n今回のアップデートは、ライブラリ、ランタイム、SDK、MSBuild、NuGet、F#、ASP.NET Core、.NET MAUI、Windows Formsなど、プラットフォーム全域に及びます。具象的な変更点として、ライブラリ領域ではCBOR（Concise Binary Object Representation）データの段階的読み込み機能追加や、ポスト量子暗号（ML-KEM）およびハイブリッド公開鍵暗号（HPKE）に関する実験的APIの導入、HTTP/2初期並行性の設定機能などが含まれています。ランタイム面ではiOSおよびtvOSにおけるファイルロック動作がデフォルトで無効化される変更が施されました。\n\n開発環境としては「Visual Studio 2026 Insiders」や、「C# Dev Kit」を導入した「Visual Studio Code」で直ちに試用可能です。RC2の導入によって、チームはパフォーマンスやデプロイパイプラインの非互換性リスクを事前に洗い出し、正式版のリリースに備えることが可能になります。\n\n### Python 3.15におけるWindows on Arm向けArm64ネイティブ環境の標準化\nWindowsプラットフォームのディスティングイッシュド・エンジニアであるクリス・アンダーソン（Chris Anderson）氏が公開した記事に基づき、Python 3.15におけるWindows on Armでの重大な進展が紹介されました。これまでWindows on Arm上でPythonを起動する際、従来のx64版インストーラーや手動での設定が必要になるケースがありましたが、Python 3.15からはインストーラーがArm64ネイティブのランタイムを自動的に選択する仕様へと変更されました。\n\nPythonはCPythonのコミュニティにおいて、Arm64 Windowsを「Tier 2」サポートプラットフォームとして公式認定しました。これは継続的なCI（継続的インテグレーション）テストとリリース品質保証のコミットメントが約束されたことを意味します。実証データとして、Pythonのパッケージリポジトリ（PyPI）において最もダウンロード数の多い上位1,000プロジェクトのうち、約94%がすでにArm64ネイティブ対応パッケージ（Wheel）またはプラットフォーム非依存パッケージとして提供されていることが判明しています。\n\nNumPy、SciPy、pandas、scikit-learnといったデータサイエンス系の重厚なC拡張ライブラリをはじめ、Django、FastAPIといったWebフレームワーク、VS Code、Ruff、pytestといった開発ツールチェーン群が、特殊な互換層を意識することなく高速に稼働します。またパッケージ開発者向けにはネイティブのArm64 CIランナー環境も整備され、アーキテクチャ固有のバグをリリース前に検知できるようになりました。\n\n### Microsoft FoundryにおけるAIエージェント用ブラウザ自動化ツールのGA公開\nナンディニ・ムラリダラン（Nandini Muralidharan）氏の発表により、Microsoft Foundryにおける「Browser Automation Tool」が正式に一般提供（GA）へ移行したことが明らかになりました。現代の企業活動において、APIが公開されていないレガシーな基幹システムや、社内ポータル、取引先のWebフォームなど、ブラウザ経由でしか操作できない業務プロセスが数多く存在します。本ツールは、そうしたAPI不在の壁を突破するためのマネージドソリューションです。\n\n内部的にはオープンソースのブラウザ自動化フレームワークである「Playwright Workspaces」を活用しています。Foundry上で動作するAIエージェントは、セキュリティで保護された専用のブラウザセッションをオンデマンドで起動し、公開Webサイトのみならず社内のプライベートネットワーク上のWebページにもアクセスできます。エージェントは自律的にページを検索・解析し、複雑な入力フォームを埋め、複数ステップにわたるワークフローを完遂します。\n\n高度なセキュリティ要件を満たすため、本ツールは「Microsoft Entra Identity」および「Azure RBAC（ロールベースアクセス制御）」と直接統合されています。さらに、リアルタイムでエージェントの操作画面を人間が観察できる「Live View」機能や、処理が停止した場合や重要承認が必要な場合に人間がブラウザの操作権限を一時的に引き継ぐ「Take Control（Human takeover）」機能、詳細な操作ログを追跡するトレーシング機能が完備されています。AIの暴走を防ぐガードレールが組み込まれた状態で、安全な業務自動化を実現します。\n\n## 性能・ベンチマーク\n動画内で公開された定量的指標および対応状況のデータを以下の表にまとめます。\n\n| 測定項目・対象 | 指標・数値 | 条件・詳細 | 出典 |\n| :--- | :--- | :--- | :--- |\n| .NET 11 RC2 ライセンス形態 | Go-Live ライセンス付与 | 本番環境（Production）での運用をMicrosoftが公式サポート | 動画内スライド（0:24） |\n| PyPI上位1,000パッケージのArm64対応率 | 約94% | ダウンロード上位1,000のPythonパッケージがArm64ネイティブまたは非依存Wheelを提供 | 動画内スライド（1:33） |\n| Windows on Arm上のCPythonサポートレベル | Tier 2 プラットフォーム | 継続的テストとリリース品質保証の対象として公式コミット | 動画内スライド（1:27） |\n| Anaconda経由のArm対応パッケージ数 | 2,500以上 | AnacondaのメインチャンネルでWindows on Arm向けに公開済み | 動画内スライド（1:33） |\n\n## 競合サービスとの比較\n今回発表されたAIエージェント向けブラウザ自動化機能およびプラットフォームの対応について、他社の主要AIエージェント基盤との違いをまとめます（競合他社の仕様は編集部注による補足を含みます）。\n\n| 機能・項目 | Microsoft Foundry (Playwright) | OpenAI (Computer Using Agent等) | Anthropic (Computer Use API) | Google Cloud (Vertex AI Agent) |\n| :--- | :--- | :--- | :--- | :--- |\n| 実行基盤 | クラウド型マネージドPlaywright Workspaces | 独自サンドボックス / クラウド環境 | ローカルまたは外部仮想マシン（Docker） | Vertex AI 統合拡張環境 |\n| 画面操作の方式 | DOM解析およびPlaywrightコード実行 | 視覚モデル（VLM）による座標指定 | 視覚モデル（VLM）によるスクリーンショットと座標 | API連携優先＋一部Webツール連携 |\n| セキュリティ統合 | Entra ID / Azure RBAC統合 | 独自のAPIキー管理 | 自社インフラ側での権限設計が必要 | Google Cloud IAM統合 |\n| 人間による割り込み | Live View / Take Control（標準搭載） | カスタム実装が必要 | カスタム実装が必要 | ワークフロー制御機能依存 |\n| API不在のシステム対応 | 強力（ブラウザを直接安全に操作） | 可能（画面操作主体） | 可能（画面操作主体） | 中度（構造化データの扱いに強み） |\n\nMicrosoftの強みは、開発現場で実績のある「Playwright」をクラウド基盤として直接マネージド提供している点です。画像認識だけに頼る座標クリックとは異なり、DOM構造やWeb規格に則った安定的なブラウザ操作が可能です。また、既存のエンタープライズ認証（Entra ID）と連携して「誰がどの操作を承認したか」を厳格に管理できる点は、企業導入において圧倒的なアドバンテージとなります。\n\n## 料金・提供プラン\n発表内容における各プロダクトの料金および提供ステータスは以下の通りです。\n\n- **.NET 11 RC2**\n  - **料金**: 無料（オープンソース）\n  - **提供状況**: 誰でもダウンロードして利用可能。「Go-Live」ライセンス適用済み。\n- **Python 3.15 (Windows on Arm)**\n  - **料金**: 無料（オープンソース）\n  - **提供状況**: Python 3.15の正式リリースおよび開発ビルドにて順次提供。\n- **Microsoft Foundry Browser Automation Tool**\n  - **料金**: 動画内での具体的な価格提示はなし（Azure / Microsoft Foundryの従量課金体系に準拠。Playwright Workspacesの利用料が発生）。\n  - **提供状況**: 一般提供（GA）が開始されており、Azure契約ユーザーは即時利用可能。\n\n## 日本から使う方法\n日本のユーザーがこれらの機能を活用するための具体的な手順は以下の通りです。\n\n- **.NET 11 RC2の試用**\n  - 公式サイト（dotnet.microsoft.com）より「.NET 11 SDK RC2」を直接ダウンロードします。\n  - 開発環境として「Visual Studio 2026 Insiders」をインストールするか、または「Visual Studio Code」に「C# Dev Kit」拡張機能を導入して環境を構成します。\n- **Windows on ArmでのPython 3.15の導入**\n  - Copilot+ PCなどのArmプロセッサ搭載Windows端末を用意します。\n  - Python公式サイトからPython 3.15以降のWindows用インストーラーを取得して実行します。自動的にArm64ネイティブ版が選択されます。\n- **Microsoft Foundryでのブラウザ自動化**\n  - Azureポータルから「Microsoft Foundry」リソースにアクセスします。\n  - エージェント構築画面にて「Browser Automation Tool」を選択し、Playwright Workspacesとの接続設定を行います。\n  - 必要に応じて「Microsoft Entra ID」による権限設定を行い、エージェントに許可するブラウザ操作領域を制限します。\n  - 日本リージョンでの提供状況やプライベートネットワーク接続（VNet integration）のサポート有無をAzure管理コンソール上から確認して適用します。\n\n## 誰にどう効くのか\n\n### エンジニア・開発チームへの影響\n.NET 11 RC2の登場により、次期LTSまたは主要バージョンへの移行準備を前倒しで進めることができます。特に本番ライセンスが付与されたことで、ステージング環境での実走行テストが公式に担保されます。また、Arm64環境におけるPythonのネイティブ化により、薄型軽量なArm端末でのローカル開発やデータ分析、CI/CDパイプラインの高速化が実現し、ビルド時間やテスト時間を大幅に削減できます。\n\n### 企画・プロダクトマネージャーへの影響\nMicrosoft Foundryのブラウザ自動化ツールのGAにより、「社内システムにAPIがないから自動化できない」と諦めていたプロダクト開発のボトルネックが解消されます。既存のレガシーWebシステムとAIエージェントをシームレスに接続する新規ソリューションを、インフラ構築の手間なしに素早く企画・提供できるようになります。\n\n### 経営層・IT部門責任者への影響\nAPI開発投資をかけずにレガシーシステムの自動化（RPAのAI進化形）を推進できるため、DXの投資対効果（ROI）が著しく改善します。また、AIエージェントにブラウザを操作させる際のセキュリティリスクに対し、Entra ID認証やRBAC、人間が途中割り込みできる「Take Control」機能があらかじめ用意されているため、ガバナンスを効かせた安全なAI導入が可能になります。\n\n## まとめ\n今回のMicrosoftによる発表は、基盤開発環境の確実な熟成と、AIエージェントを実務に組み込むための実用的なインフラ整備が同時に進んでいることを象徴しています。.NET 11やPython 3.15による開発効率の向上を図りつつ、Microsoft Foundryのブラウザ自動化ツールを活用して既存の業務プロセスを自動化する計画を、今すぐ具体化させるタイミングが来ています。",
+  "easy": "## ひとことで言うと\nMicrosoftが、プログラムを作るための道具を新しく整えました。アプリを作るための土台（.NET 11）がほぼ完成して本番で使えるようになったほか、省エネなパソコン（Windows on Arm）でPythonというプログラミング言語がそのまま速く動くようになりました。さらに、AIが人間に代わってWebブラウザを自動で操作してくれる仕組みも正式に使えるようになっています。\n\n## 何がすごいの？\n1つ目は、新しい.NET 11という土台が「もう本番のシステムで使って大丈夫です」という保証付きで届いたことです。2つ目は、最近増えているArm版のWindowsパソコンで、Pythonの特別な設定をしなくても最初から最高のスピードが出るようになった点です。主要なPythonの便利ツール（PyPI）の約94%が対応しています。3つ目は、AIがWebサイトを開いて、代わりにボタンを押したりフォームに入力したりする作業が、安全かつ確実に行えるようになったことです。\n\n## 自分に関係ある？\nアプリやシステム開発をしているエンジニアの方には大きく関係します。また、社内の古いWebシステムで「API（自動連携の仕組み）」がなく、手作業でデータ入力をしていた企業にとっても、AIエージェントにその操作を任せられるため、業務の自動化が一気に進む可能性があります。\n\n## 使ってみるには\n.NET 11 RC2は専用のSDKをダウンロードすることで、すぐ試せます。Visual Studio 2026 Insider版やVS Codeの拡張機能と一緒に使えます。Microsoft Foundryのブラウザ自動化ツールは、Azureアカウントを用意してFoundryの管理画面から設定することで導入できます。",
+  "channel": "Microsoft Developer",
+  "channelId": "UCsMica-v34Irf9KVTh6xx-g",
+  "channelSlug": "microsoft-developer",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "H0b71nYoSdI",
+  "videoUrl": "https://www.youtube.com/watch?v=H0b71nYoSdI",
+  "videoTitle": ".NET 11, Python on Arm64, and AI Agents That Use Browsers",
+  "publishedAt": "2026-10-26T06:24:40+00:00",
+  "generatedAt": "2026-10-26T10:30:19.993659+00:00",
+  "thumbnail": "https://i.ytimg.com/vi/H0b71nYoSdI/maxresdefault.jpg",
+  "model": "gemini-3.5-flash",
+  "affiliates": []
+}
