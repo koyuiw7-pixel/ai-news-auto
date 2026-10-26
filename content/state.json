@@ -3157,6 +3157,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000220.000087046.html"
     },
+    "ae2898f665e29e0d": {
+      "at": "2026-10-26T13:12:34.090521+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "brotli-vulnerability-cve-2026-111497",
+      "url": "https://www.jpcert.or.jp/at/2026/at260034.html"
+    },
     "aefb3df85eab9497": {
       "at": "2026-10-26T11:32:24.733113+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4278,6 +4286,32 @@
       "score": 100,
       "source": "dreamnews",
       "title": "日本産業保健市場：2028年のストレスチェック義務化と職場安全改革が企業向け健康サービスを再編する"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T13:12:01.539498+00:00",
+      "attempt": 1,
+      "id": "ae2898f665e29e0d",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1553字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "jpcert",
+      "title": "注意喚起: BrotliのC言語実装における境界外書き込みの脆弱性（CVE-2026-111497）に関する注意喚起 (公開)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T13:12:34.090132+00:00",
+      "attempt": 2,
+      "id": "ae2898f665e29e0d",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "jpcert",
+      "title": "注意喚起: BrotliのC言語実装における境界外書き込みの脆弱性（CVE-2026-111497）に関する注意喚起 (公開)"
     }
   ]
 }
