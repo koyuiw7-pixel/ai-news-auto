@@ -35,7 +35,6 @@
     "nJV3yUuz6DU": 1,
     "nfpVl4pC0UM": 1,
     "nqAri_t8xRA": 1,
-    "rF1EsryCAwc": 1,
     "roVDIuW_6HI": 1,
     "u5t7-BLYvfQ": 2,
     "udRxVK7mKn0": 2,
@@ -1002,6 +1001,11 @@
       "at": "2026-08-08T04:10:44.322743+00:00",
       "slug": "rakuten-sec-cross-trade-margin-category"
     },
+    "L18lkQs4PeM": {
+      "at": "2026-10-26T12:03:16.729750+00:00",
+      "reason": "本動画は35秒のYouTubeショート動画であり、Kimi K3.1のルービックキューブテスト成功デモを短時間で紹介する簡易コンテンツのため、詳細な技術的解説や新発表としての情報量が不足しています。",
+      "skipped": true
+    },
     "L6WWrPJNXWc": {
       "at": "2026-08-30T10:58:32.058275+00:00",
       "slug": "how-to-spend-money-for-happiness-liberal-arts-university"
@@ -1053,6 +1057,11 @@
     "MJllZbpvrAc": {
       "at": "2026-09-22T02:18:00.398278+00:00",
       "slug": "xai-releases-grok-4-7-reasoning-model"
+    },
+    "MLHcSiNVIto": {
+      "at": "2026-10-26T12:02:26.093171+00:00",
+      "reason": "本動画はNVIDIA GTC Berlin会場の雰囲気やアヒル型ロボット（Microducks）展示演出をまとめた約22秒のショート動画であり、新技術や製品に関する具体的な解説・発表内容が含まれていないため。",
+      "skipped": true
     },
     "MLehRytu9Zo": {
       "at": "2026-07-31T02:01:58.033200+00:00",
@@ -1391,6 +1400,10 @@
       "at": "2026-08-08T01:02:14.039047+00:00",
       "reason": "動画の長さが約25秒の短尺クリップであり、NVIDIA Nemotronに関する理念的な発言（データセット、学習手法、重みの公開等）のみにとどまり、具体的な技術仕様、ベンチマーク数値、機能デモなどの詳細な情報が含まれていないため。",
       "skipped": true
+    },
+    "Sae2yyNEQNM": {
+      "at": "2026-10-26T12:01:58.806256+00:00",
+      "slug": "microsoft-foundry-agent-guardrails-security"
     },
     "SiJGdlmdUms": {
       "at": "2026-09-12T19:47:26.934875+00:00",
@@ -2500,6 +2513,10 @@
       "at": "2026-10-19T02:09:44.302489+00:00",
       "slug": "nvidia-ai-defined-fab-semiconductor-manufacturing"
     },
+    "rF1EsryCAwc": {
+      "at": "2026-10-26T12:04:13.033030+00:00",
+      "slug": "nvidia-gtc-berlin-2026-keynote-highlights"
+    },
     "rNFXHthLkC4": {
       "at": "2026-08-17T00:38:06.098017+00:00",
       "slug": "liberal-arts-university-money-lecture-summary"
@@ -2917,11 +2934,53 @@
     }
   },
   "processed_web": {
+    "00b6f156d1c37f59": {
+      "at": "2026-10-26T11:01:49.011890+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1731字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.esri.cao.go.jp/jp/stat/di/di.html"
+    },
+    "010276ea668bdd08": {
+      "at": "2026-10-26T11:31:53.187669+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "digital-agency-national-qualifications-online",
+      "url": "https://www.digital.go.jp/policies/government-certification"
+    },
+    "057a86be6882ac7b": {
+      "at": "2026-10-26T11:33:12.751805+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 「アフリカやアジアでの実際の導入成果」→元記事で具体的な国名として挙げられているのは南アフリカ、シエラレオネ、コートジボワール（アフリカ）およびインドネシア（アジア）であり「アフリカやアジア」は間違いではないが、本文中の導入国数に関して一部「6カ国」とある部分で南アフリカ、シエラレオネ、コートジボワールと今後の拡張予定としてDRC、ザンビア、カメルーンが挙げられており、アジアの国",
+      "skipped": true,
+      "url": "https://research.google/blog/bringing-foundational-models-to-the-front-lines-of-tb-screening/"
+    },
+    "0ca77fee05927596": {
+      "at": "2026-10-26T11:01:12.982206+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（採用）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/recruit/r8/kokusai-01/kokusai-01.html"
+    },
     "298c8de07d18f423": {
       "at": "2026-10-26T10:30:42.540722+00:00",
       "reason": "short text 137",
       "skipped": true,
       "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two"
+    },
+    "37e18adfd2ff499b": {
+      "at": "2026-10-26T11:01:59.803581+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "iphone-duo-arrives-at-apple-store",
+      "url": "https://www.apple.com/jp/newsroom/2026/10/iphone-duo-arrives-at-apple-store-locations-worldwide/"
+    },
+    "380d50a732965278": {
+      "at": "2026-10-26T11:31:36.988600+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（採用）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/recruit/r8/kokusai-02/kokusai-02.html"
     },
     "4708f3cc5b0124bc": {
       "at": "2026-10-26T10:30:42.540827+00:00",
@@ -2929,11 +2988,66 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/announce/20261026-2/index.html"
     },
+    "4bca925a5c53b276": {
+      "at": "2026-10-26T11:34:17.113362+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1742字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 文章が元なのに動画前提の表現がある（「動画内」）。「元記事」と書く",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000429.000073671.html"
+    },
+    "4c8c617ae651ea88": {
+      "at": "2026-10-26T11:31:36.988573+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2421字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 元記事の文をそのまま書き写している（2文。例「NVIDIAとAmkorは、韓国で先進パッケージングの生産能力を拡大し、2028年末までにインターポ」）。自分の言葉で要約する",
+      "skipped": true,
+      "url": "https://blogs.nvidia.co.jp/blog/nvidia-and-supply-chain-partners-expand-capacity-to-accelerate-ai-infrastructure-buildout/"
+    },
+    "5db6abd51db932a5": {
+      "at": "2026-10-26T11:01:12.982223+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（採用）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/recruitment/career-government-official/visit2026-career-section-chief"
+    },
+    "62c869d7dbe25166": {
+      "at": "2026-10-26T11:31:53.187943+00:00",
+      "reason": "dedupe: 固有名詞が一致（copilot・github）: azure-cosmos-db-ai-assisted-development",
+      "skipped": true,
+      "url": "https://github.blog/changelog/2026-10-23-turn-notifications-into-code-with-github-copilot-in-teams"
+    },
+    "6e40bd74cb28725d": {
+      "at": "2026-10-26T11:34:34.687395+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "nvidia-rfd4-proteina-healthcare-ai",
+      "url": "https://blogs.nvidia.co.jp/blog/healthcare-and-life-sciences-leaders-build-on-nvidia-to-advance-drug-discovery-and-expand-patient-care/"
+    },
+    "7f136b8330a0f832": {
+      "at": "2026-10-26T11:01:33.594323+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 「政府広報オンラインは2026年10月26日に…公開しました」 → 元記事には公開日が「2026年10月26日」であるという記述はなく、他の出典（例：海事レポート等）の令和7年や8年の日付混入または架空の可能性があり、裏付けがない。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/tokusyu/kuniototamiyo/index.html"
+    },
     "838fa113d922e63b": {
       "at": "2026-10-26T10:30:42.540806+00:00",
       "reason": "dedupe: 同じ出典URL",
       "skipped": true,
       "url": "https://www.riken.jp/press/2026/20261026_1/index.html"
+    },
+    "95364ce770790d21": {
+      "at": "2026-10-26T11:33:38.547453+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2467字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://aws.amazon.com/blogs/machine-learning/multi-turn-reinforcement-learning-on-amazon-sagemaker-ai-a-hands-on-guide/"
+    },
+    "aefb3df85eab9497": {
+      "at": "2026-10-26T11:32:24.733113+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1949字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（367字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://aws.amazon.com/jp/blogs/news/weekly-genai-20261019/"
     },
     "b5933abf7b3004fc": {
       "at": "2026-10-26T10:31:00.945549+00:00",
@@ -2943,6 +3057,29 @@
       "slug": "nvidia-local-ai-gtc-berlin-spark-station",
       "url": "https://blogs.nvidia.co.jp/blog/local-ai-gtc-rtx-dgx-spark-station-sync/"
     },
+    "ba4d3ab8dded0b33": {
+      "at": "2026-10-26T11:02:15.090656+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2346字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://github.blog/changelog/2026-10-23-usage-metrics-api-adds-usage-from-tools-like-opencode"
+    },
+    "bad059043da3c64c": {
+      "at": "2026-10-26T12:06:20.822459+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "sanada-naoki-asakusa-live-2026",
+      "url": "https://www.atpress.ne.jp/news/644526"
+    },
+    "bdec164d5a53e33b": {
+      "at": "2026-10-26T12:05:24.307273+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 95,
+      "section": "ai",
+      "slug": "aws-weekly-20261019-updates",
+      "url": "https://aws.amazon.com/jp/blogs/news/aws-weekly-20261019/"
+    },
     "d47435300ada2314": {
       "at": "2026-10-26T10:30:52.037562+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -2951,17 +3088,39 @@
       "slug": "nilim-sar-satellite-fire-detection",
       "url": "https://kyodonewsprwire.jp/release/202610218367"
     },
+    "d47a67b79b836d03": {
+      "at": "2026-10-26T11:01:12.982168+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://blogs.nvidia.co.jp/blog/local-ai-perplexity-windows-pcs/"
+    },
     "d47def4b25f7da57": {
       "at": "2026-10-26T09:34:44.345716+00:00",
       "model": "gemini-3.5-flash-lite",
       "slug": "gemini-4-argon-google-builders",
       "url": "https://blog.google/products-and-platforms/products/gemini/gemini-4-argon-builders/"
     },
+    "d5dfb55b012918e7": {
+      "at": "2026-10-26T11:34:03.294314+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2032字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://huggingface.co/blog/allenai/litpivot"
+    },
     "dcf5d54939aadc4c": {
       "at": "2026-10-26T10:30:42.540838+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（一覧へ）",
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/"
+    },
+    "e7e58cd7761fc453": {
+      "at": "2026-10-26T11:02:34.699451+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "microsoft-mai-dxo-medical-superintelligence",
+      "url": "https://microsoft.ai/news/building-medical-superintelligence/"
     },
     "f39a5f957cf2b8cb": {
       "at": "2026-10-26T10:30:42.540847+00:00",
@@ -2994,6 +3153,420 @@
       "score": 100,
       "source": "nvidia-japan-blog",
       "title": "欧州へ広がる Spark：ローカル インテリジェンスがエージェントの次なる進化を支える"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:01:04.430230+00:00",
+      "attempt": 1,
+      "id": "d47a67b79b836d03",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1896字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "nvidia-japan-blog",
+      "title": "Perplexity Portable Computer が NVIDIA RTX 搭載 Windows PC に対応"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:01:12.982129+00:00",
+      "attempt": 2,
+      "id": "d47a67b79b836d03",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "score": null,
+      "source": "nvidia-japan-blog",
+      "title": "Perplexity Portable Computer が NVIDIA RTX 搭載 Windows PC に対応"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:01:20.482119+00:00",
+      "attempt": 1,
+      "id": "7f136b8330a0f832",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1715字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "gov-online",
+      "title": "くにおとたみよの政府広報"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:01:33.594290+00:00",
+      "attempt": 2,
+      "id": "7f136b8330a0f832",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「政府広報オンラインは2026年10月26日に…公開しました」 → 元記事には公開日が「2026年10月26日」であるという記述はなく、他の出典（例：海事レポート等）の令和7年や8年の日付混入または架空の可能性があり、裏付けがない。"
+      ],
+      "score": 90,
+      "source": "gov-online",
+      "title": "くにおとたみよの政府広報"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:01:41.253776+00:00",
+      "attempt": 1,
+      "id": "00b6f156d1c37f59",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1355字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（322字 / 基準 400字以上）"
+      ],
+      "score": null,
+      "source": "cao",
+      "title": "景気動向指数（令和8年8月分速報からの改訂状況）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:01:49.011868+00:00",
+      "attempt": 2,
+      "id": "00b6f156d1c37f59",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1731字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "cao",
+      "title": "景気動向指数（令和8年8月分速報からの改訂状況）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T11:01:59.803139+00:00",
+      "attempt": 1,
+      "id": "37e18adfd2ff499b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "apple-newsroom-jp-all",
+      "title": "iPhone Duoが世界中のApple Storeに登場"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:02:07.391414+00:00",
+      "attempt": 1,
+      "id": "ba4d3ab8dded0b33",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2069字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "Usage metrics API adds usage from tools like OpenCode"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:02:15.090626+00:00",
+      "attempt": 2,
+      "id": "ba4d3ab8dded0b33",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2346字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "Usage metrics API adds usage from tools like OpenCode"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:02:23.741361+00:00",
+      "attempt": 1,
+      "id": "e7e58cd7761fc453",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2477字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "microsoft-source",
+      "title": "Can AI diagnose like a team of doctors? New research puts it to the test"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T11:02:34.699084+00:00",
+      "attempt": 2,
+      "id": "e7e58cd7761fc453",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "microsoft-source",
+      "title": "Can AI diagnose like a team of doctors? New research puts it to the test"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:31:28.774710+00:00",
+      "attempt": 1,
+      "id": "4c8c617ae651ea88",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2137字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "nvidia-japan-blog",
+      "title": "NVIDIA、サプライチェーン パートナーと生産能力を拡大し、AI インフラの構築を加速"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:31:36.988547+00:00",
+      "attempt": 2,
+      "id": "4c8c617ae651ea88",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2421字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "元記事の文をそのまま書き写している（2文。例「NVIDIAとAmkorは、韓国で先進パッケージングの生産能力を拡大し、2028年末までにインターポ」）。自分の言葉で要約する"
+      ],
+      "score": null,
+      "source": "nvidia-japan-blog",
+      "title": "NVIDIA、サプライチェーン パートナーと生産能力を拡大し、AI インフラの構築を加速"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T11:31:53.187244+00:00",
+      "attempt": 1,
+      "id": "010276ea668bdd08",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "digital-agency",
+      "title": "国家資格等のオンライン・デジタル化に係る現在手続が可能な資格の情報を更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:32:13.208730+00:00",
+      "attempt": 1,
+      "id": "aefb3df85eab9497",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「Amazon SageMaker AIのサーバーレスモデルカスタマイズジョブにおいて、学習時に使うシーケンス長を設定できるようになりました。また、トレーニングセッション API も追加され…」→元記事にSageMakerに関するこの記述は存在しない。",
+        "「Amazon OpenSearch Serviceのインテリジェントインジェストは「料金はアクティブな処理分のみ」…」→元記事にOpenSearch Serviceやインテリジェントインジェストに関する記述は存在しない。"
+      ],
+      "score": 60,
+      "source": "aws-japan-blog",
+      "title": "週刊生成AI with AWS – 2026/10/19 週"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:32:24.733083+00:00",
+      "attempt": 2,
+      "id": "aefb3df85eab9497",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1949字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（367字 / 基準 400字以上）"
+      ],
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "週刊生成AI with AWS – 2026/10/19 週"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:32:49.282779+00:00",
+      "attempt": 1,
+      "id": "057a86be6882ac7b",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "音声バイオアークティクスによる「HeAR」の活用 → 音声バイオアークティクスではなく音声バイオアコースティクスである。"
+      ],
+      "score": 98,
+      "source": "google-research-blog",
+      "title": "Bringing foundational models to the front lines of TB screening"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:33:12.751771+00:00",
+      "attempt": 2,
+      "id": "057a86be6882ac7b",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「アフリカやアジアでの実際の導入成果」→元記事で具体的な国名として挙げられているのは南アフリカ、シエラレオネ、コートジボワール（アフリカ）およびインドネシア（アジア）であり「アフリカやアジア」は間違いではないが、本文中の導入国数に関して一部「6カ国」とある部分で南アフリカ、シエラレオネ、コートジボワールと今後の拡張予定",
+        "「サハラ以南のアフリカにおけるCIDRZ、アウルム研究所、HELINAなどの研究協力」→元記事の最後の部分が「CIDRZ (Zambia), the Aurum Institute (Ghana, supported by a $」と途切れており、HELINAという名称や統合的な診断カスケードが構築されつつあるという詳"
+      ],
+      "score": 85,
+      "source": "google-research-blog",
+      "title": "Bringing foundational models to the front lines of TB screening"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:33:26.682424+00:00",
+      "attempt": 1,
+      "id": "95364ce770790d21",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "元記事の文をそのまま書き写している（3文。例「- Amazon Nova 2 Lite: US East (N. Virginia) (us-ea」）。自分の言葉で要約する"
+      ],
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "Multi-Turn Reinforcement Learning on Amazon SageMaker AI: A hands-on guide"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:33:38.547431+00:00",
+      "attempt": 2,
+      "id": "95364ce770790d21",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2467字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "Multi-Turn Reinforcement Learning on Amazon SageMaker AI: A hands-on guide"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:33:51.666412+00:00",
+      "attempt": 1,
+      "id": "d5dfb55b012918e7",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1765字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "hugging-face-blog",
+      "title": "LitPivot: Developing research ideas through dynamic contextualization within the"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:34:03.294292+00:00",
+      "attempt": 2,
+      "id": "d5dfb55b012918e7",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2032字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "hugging-face-blog",
+      "title": "LitPivot: Developing research ideas through dynamic contextualization within the"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:34:10.505236+00:00",
+      "attempt": 1,
+      "id": "4bca925a5c53b276",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1695字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "AIが現場ナレッジをヒアリング。自動マニュアル作成機能をChatSenseが提供予定"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:34:17.113330+00:00",
+      "attempt": 2,
+      "id": "4bca925a5c53b276",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1742字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "文章が元なのに動画前提の表現がある（「動画内」）。「元記事」と書く"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "AIが現場ナレッジをヒアリング。自動マニュアル作成機能をChatSenseが提供予定"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:34:24.595961+00:00",
+      "attempt": 1,
+      "id": "6e40bd74cb28725d",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2103字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "nvidia-japan-blog",
+      "title": "ヘルスケアとライフ サイエンスのリーダーが、NVIDIA を基盤に創薬を推進し、患者ケアを拡大"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T11:34:34.686987+00:00",
+      "attempt": 2,
+      "id": "6e40bd74cb28725d",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "nvidia-japan-blog",
+      "title": "ヘルスケアとライフ サイエンスのリーダーが、NVIDIA を基盤に創薬を推進し、患者ケアを拡大"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T12:04:47.694804+00:00",
+      "attempt": 1,
+      "id": "bdec164d5a53e33b",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1862字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "週刊AWS – 2026/10/19週"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T12:05:24.306936+00:00",
+      "attempt": 2,
+      "id": "bdec164d5a53e33b",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 95,
+      "source": "aws-japan-blog",
+      "title": "週刊AWS – 2026/10/19週"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T12:05:47.193542+00:00",
+      "attempt": 1,
+      "id": "bad059043da3c64c",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1799字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "atpress",
+      "title": "真田ナオキ 浅草公演が大盛況！ 公演の一部をYouTube限定公開中＆10/29生配信決定！12月には、歌謡ポップスチャンネルでテレビ初放送も！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T12:06:20.822141+00:00",
+      "attempt": 2,
+      "id": "bad059043da3c64c",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "atpress",
+      "title": "真田ナオキ 浅草公演が大盛況！ 公演の一部をYouTube限定公開中＆10/29生配信決定！12月には、歌謡ポップスチャンネルでテレビ初放送も！"
     }
   ]
 }

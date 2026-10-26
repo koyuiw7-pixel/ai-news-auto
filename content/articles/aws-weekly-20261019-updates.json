@@ -1,0 +1,62 @@
+{
+  "slug": "aws-weekly-20261019-updates",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/jp/blogs/news/aws-weekly-20261019/",
+  "sourceName": "AWS ブログ（日本）",
+  "title": "AWS週刊アップデート：Bedrockの構造化出力対応やNeuronネイティブPyTorch解説",
+  "seoTitle": "AWS週刊アップデート：BedrockとTrainiumの最新情報",
+  "threadsPost": "number\n処理速度、最大5倍。\nAmazon BedrockのClaudeモデルがStructured Outputsに対応し、JSON Schemaに準拠したレスポンスを直接受け取れるようになりました。\n✅ 独自のパース処理やリトライが不要に\n✅ Bedrockの全Claudeモデルで利用可能\n開発効率が上がる今回のアップデート、要チェックです。\n記事で👇",
+  "threadsHook": "number",
+  "writingVoice": "senpai",
+  "lede": "AWSブログ（日本）が公開した「週刊AWS – 2026/10/19週」によると、Amazon Bedrock上のClaudeモデルによるStructured Outputs対応や、AWS Trainium向けネイティブPyTorch「TorchNeuron」のベータ提供など、開発・運用を支える多数のアップデートが発表されました。",
+  "description": "AWSの週刊アップデート情報を解説。Amazon BedrockのStructured Outputs対応やAWS Trainium向けネイティブPyTorchなどを詳しく紹介します。",
+  "keywords": [
+    "AWS",
+    "週刊AWS",
+    "Amazon Bedrock",
+    "Claude",
+    "Structured Outputs",
+    "AWS Trainium",
+    "PyTorch",
+    "Amazon GuardDuty"
+  ],
+  "tags": [
+    "AWS",
+    "生成AI",
+    "LLM",
+    "クラウド",
+    "開発ツール"
+  ],
+  "highlights": [
+    "Amazon BedrockのClaudeモデルがStructured Outputsを一般提供開始し、JSON Schemaに完全準拠したレスポンスが可能に。",
+    "AWS Trainium向けネイティブPyTorch「TorchNeuron」のパブリックベータが提供開始され、eager mode等をサポート。",
+    "Amazon GuardDutyのRuntime Monitoringにオプトイン式のカスタム脅威検出ルールが追加。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "AWSの標準料金に準拠",
+    "free": false,
+    "audience": "AWSエンジニア",
+    "take": "東京リージョンを含む主要リージョンで順次利用可能です。公式ブログから詳細を確認しましょう。",
+    "judgedAt": "2026-10-26T12:05:07.220239+00:00"
+  },
+  "body": "## ひとことで言うと\nAWSの公式ブログが発表した「週刊AWS – 2026/10/19週」では、Amazon BedrockにおけるClaudeモデルの構造化出力対応や、AWS Trainium向けの新しいネイティブPyTorch環境のベータ提供など、開発現場の負担を減らす実用的なアップデートが多数紹介されました。\n\n## 何が発表されたのか\nAWSは毎週、クラウドサービスの細かな改善から大きな新機能までを「週刊AWS」としてまとめて発信しています。今回は2026年10月19日週のアップデートが対象です。セキュリティ監視の強化や、データ分析基盤の連携拡張、AIモデルのカスタマイズ範囲の拡大など、システムを安全に運用しつつAI活用を加速させるための機能が幅広く追加されました。いずれも商用環境ですぐに試せるものが中心となっています。\n\n## 発表された機能・アップデートの全容\n\n### Amazon BedrockのClaudeモデルにおけるStructured Outputs対応\nAmazon Bedrockで提供されているAnthropicのClaudeモデル全モデルにおいて、「Structured Outputs」が一般提供されました。ユーザーが定義したJSON Schemaに必ず準拠したJSON形式のレスポンスを受け取れるようになり、独自のパース処理やリトライロジック、事後検証コードを書く必要がなくなります。「JSON Schema output format」と「strict tool use」の2つの機構を備え、Claudeモデルが利用可能なすべてのリージョンで利用可能です。\n\n### AWS Trainium向けネイティブPyTorch「TorchNeuron」のベータ提供\nAWS Neuronのバージョン2.33がリリースされ、最大のトピックとしてAWS Trainium向けのネイティブPyTorchバックエンド「TorchNeuron」のパブリックベータが開始されました。従来のtorch-xlaを介さず、`.to(“neuron”)`と指定するだけで標準のPyTorchコードをTrn2やTrn3インスタンス上で実行できるようになります。さらに、1秒未満で異常を検知する「Neuron Observer」なども追加されています。\n\n### Amazon GuardDutyのRuntime Monitoring向け脅威検出ルール\nAmazon GuardDutyのRuntime Monitoringに、オプトインで有効化できるカスタム脅威検出ルールが追加されました。sudoersファイルの変更や監査ログの無効化など、環境ごとに侵害の兆候となるアクティビティを検出できます。AWSが構築した55個のプリビルトルールがあり、dry-run modeで事前に検出量を評価してからlive modeへ切り替え可能です。\n\n### EC2 Image BuilderとASGの統合によるイメージビルド高速化\nEC2 Image BuilderがAuto Scaling Group（ASG）で稼働中の既存EC2インスタンスをビルドに使用できるようになりました。従来必要だった新規インスタンスの起動と初期化の時間が省略され、ASGの自動補充機能により次回のパイプライン実行にもスムーズにインスタンスを利用できます。全リージョンで追加料金なしで利用可能です。\n\n### IAM Identity CenterでのActive Directoryからのアイデンティティソース変更簡素化\nAWS IAM Identity Centerにおいて、アイデンティティソースをActive Directoryから外部IdPなどに変更する際、ユーザーやグループ、グループメンバーシップ、許可セット割り当て、アプリケーション割り当てを保持できるようになりました。従来全データが削除されていた課題が解消され、既存のidentity storeが維持されます。\n\n## 性能・ベンチマーク\n元記事内では、特定のハードウェアやAIモデルにおける詳細なベンチマークスコアや比較数値の提示はありません。ただし、AWS Trainium向けのTorchNeuron導入により、torch-xlaを介さない直接的なコード実行が可能になる点などが性能面のトピックとして挙げられています。\n\n## 競合サービスとの比較\n今回のアップデートに含まれるAmazon BedrockのStructured OutputsやAmazon GuardDutyの拡張機能などは、主要なクラウドベンダーやAIプラットフォームが提供する同等機能と同等のレイヤーに位置します。編集部の見立てでは、AWSのエコシステム（IAM、S3、SageMakerなど）と深く統合されている点が最大の強みであり、他社製ツールからの移行コストを抑える設計になっています。\n\n## 料金・提供プラン\nAmazon Bedrock Guardrailsのcontextual grounding checksに追加されたStandard tierは、Classic tierと同じ「1,000テキストユニットあたり0.10 USD」で利用可能です。また、EC2 Image BuilderとASGの統合やAWS Transformの利用自体は追加料金なしで提供されており、サービスごとの既存の料金体系に準拠しています。\n\n## 日本から使う方法\n日本のユーザーが今日のアップデートを試すための手順や前提条件は次のとおりです。\n- AWSマネジメントコンソールにログインし、東京リージョンなどの対応リージョンを選択する。\n- Amazon BedrockやSageMakerなどの対象サービスを開き、新機能の設定を有効化する。\n- Amazon CloudWatch Omniなどの新しいWeb UIを利用する場合は、IAM Identity Centerを用いたSSO構成をリージョン内で完結させる。\n- 各機能のオプトイン設定（GuardDutyやImage Builderなど）が必要なものは、事前にドキュメントを確認して有効化する。\n\n## 誰にどう効くのか\n- **エンジニア**: Bedrockの構造化出力やTrainiumのネイティブPyTorch対応により、AIアプリ開発や機械学習のコード実装が大幅にシンプルになります。\n- **企画・マーケ**: DatabricksとAWS Clean Roomsの連携などにより、外部データを安全に活用した分析プロジェクトを迅速に立ち上げられます。\n- **経営層**: GuardDutyの高度な脅威検出やストレージ移行評価（AWS Transform）を活用することで、セキュリティリスクの低減とクラウド移行のコスト最適化を同時に進められます。\n\n## まとめ\n年末に控えるAWS re:Invent 2026を前に、開発と運用の現場を支える着実なアップデートが出揃いました。まずは自社のシステムで活用できる機能がないか、公式ブログやマネジメントコンソールを確認してみましょう。",
+  "easy": "## ひとことで言うと\n今週のAWSは、AIを使ったアプリ開発がぐっと楽になる機能や、セキュリティを高める仕組みがいくつも登場しました。料理にたとえるなら、いつもは下準備に時間がかかっていた野菜のカットが、あらかじめ綺麗に切られた状態で届くようなイメージです。\n\n## 何がすごいの？\n一番の目玉は、文章を作るAI（Claude）が、決まった形のデータ（JSON）をきれいに返してくれるようになったことです。これまではAIが変な形のデータを返してエラーになることがありましたが、その心配がなくなりました。また、AI専用の頭脳チップ（Trainium）を普通のPyTorchという開発道具でそのまま動かせるようになり、AIの計算をよりスムーズに行えるようになっています。\n\n## 自分に関係ある？\nAWSを使ってシステムを作っている開発者や、セキュリティを担当する人にとっては、毎日の作業を楽にしてくれる実用的なアップデートが揃っています。特にAIをアプリに組み込んでいるチームには見逃せない内容です。\n\n## 使ってみるには\n東京リージョンをはじめとする各AWSの管理画面（コンソール）から、該当するサービスを今日から触ることができます。一部の機能は追加料金なしでそのまま有効化できます。",
+  "channel": "AWS ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "aws-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "週刊AWS – 2026/10/19週",
+  "publishedAt": "2026-10-26T05:16:46+00:00",
+  "generatedAt": "2026-10-26T12:05:07.220258+00:00",
+  "thumbnail": "https://d2908q01vomqb2.cloudfront.net/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f/2026/01/31/weeklyaws_20260131_08-1059x630.png",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "qualityScore": 95
+}
