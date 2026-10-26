@@ -40,7 +40,6 @@ export function genreMetadata(genre: string, page: number): Metadata {
       ? `${label}の最新ニュースを${count}本掲載。${broad.description}`
       : `${label}に関する解説記事を${count}本掲載。専門YouTubeチャンネルの動画をAIが解析し、要点・数字・注意点まで日本語でまとめています。`,
     alternates: { canonical: pageHref(`/genres/${genre}`, page) },
-    ...(genre === "ai" ? {} : { robots: { index: false, follow: true } }),
   };
 }
 

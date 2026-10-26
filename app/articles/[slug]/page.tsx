@@ -70,10 +70,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: article.description,
     keywords: article.keywords,
     alternates: { canonical: url },
-    // AI以外は専門性を薄めるため検索対象から外す（ページ自体は残す）
-    ...(article.genreSlug === "ai"
-      ? {}
-      : { robots: { index: false, follow: true } }),
     openGraph: {
       type: "article",
       url,

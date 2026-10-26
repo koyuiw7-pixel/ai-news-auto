@@ -16,10 +16,8 @@ export function tagMetadata(tag: string, page: number): Metadata {
     title: `${label} の最新ニュース・解説記事${pageSuffix(page)}`,
     description: `${label} に関する${genres}の解説記事を ${articles.length} 本掲載。公式発表や専門家の動画をAIが解析し、要点・数字・注意点まで日本語でまとめています。`,
     alternates: { canonical: pageHref(base, page) },
-    // AI記事を含まないタグは検索対象から外す
-    ...(articles.some((a) => a.genreSlug === "ai")
-      ? {}
-      : { robots: { index: false, follow: true } }),
+    // 記事が1本だけの薄いタグは検索対象から外す
+    ...(articles.length >= 2 ? {} : { robots: { index: false, follow: true } }),
   };
 }
 

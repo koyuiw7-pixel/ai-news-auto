@@ -14,8 +14,6 @@ export function newsMetadata(page: number): Metadata {
     description:
       "AI以外の話題も、企業・研究機関・行政の公式発表から要点だけを日本語でまとめています。ビジネス・ガジェット・暮らし・エンタメ・スポーツ・科学・社会の最新ニュース。",
     alternates: { canonical: pageHref("/news", page) },
-    // 検索対象はAIジャンルが中心。幅広い話題の記事と同じく、一覧も検索結果には出さない
-    robots: { index: false, follow: true },
   };
 }
 

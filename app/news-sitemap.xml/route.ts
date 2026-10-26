@@ -13,7 +13,6 @@ const escapeXml = (value: string) =>
 export function GET() {
   const now = Date.now();
   const recent = getAllArticles()
-    .filter((a) => a.genreSlug === "ai")
     .filter((a) => now - Date.parse(a.generatedAt || a.publishedAt) < 2 * 86_400_000)
     .slice(0, 1000);
 

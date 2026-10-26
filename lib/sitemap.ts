@@ -22,8 +22,8 @@ export const SITEMAP_CHUNK = 40000;
 /** サイトマップに載せる全 URL（記事は全件） */
 export function sitemapEntries(): SitemapEntry[] {
   const base = siteConfig.url;
-  // 検索対象はAIジャンルのみ。noindex にしたページは sitemap からも外す
-  const articles = getAllArticles().filter((a) => a.genreSlug === "ai");
+  // 全ジャンルを検索対象にする（品質チェックを通った記事だけが公開される）
+  const articles = getAllArticles();
   const liveChannels = new Set(articles.map((a) => a.channelSlug));
   const liveTags = new Set(articles.flatMap((a) => a.tags.map(tagSlug)));
   const lastModified = articles[0]?.generatedAt

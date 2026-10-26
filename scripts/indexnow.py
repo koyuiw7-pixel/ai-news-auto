@@ -55,8 +55,6 @@ def collect_urls(base: str, hours: int | None) -> list[str]:
             article = json.loads(path.read_text("utf-8"))
         except json.JSONDecodeError:
             continue
-        if article.get("genreSlug") != "ai":
-            continue
         if threshold:
             try:
                 generated = datetime.fromisoformat(article.get("generatedAt", ""))
