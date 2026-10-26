@@ -3046,6 +3046,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000018.000134977.html"
     },
+    "1b8c870c8d92c0f3": {
+      "at": "2026-10-26T18:31:28.245178+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1741字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://blogs.microsoft.com/on-the-issues/2026/10/26/learning-curves-the-future-of-education-from-classrooms-to-careers-in-an-ai-driven-world/"
+    },
     "2122e422380b5543": {
       "at": "2026-10-26T16:50:25.785682+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（講座）",
@@ -3058,6 +3065,14 @@
       "reason": "採用イベントの告知であり、テクノロジーやAIに関する実質的な製品発表・技術解説・デモではないため。",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000115.000061059.html"
+    },
+    "2504bf7e57b1f9b6": {
+      "at": "2026-10-26T18:32:34.996029+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "twst-lilia-racing-star-pv-2026",
+      "url": "https://www.atpress.ne.jp/news/644374"
     },
     "25eee40fa7809dbe": {
       "at": "2026-10-26T14:53:37.359789+00:00",
@@ -3222,6 +3237,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（データベース届出情報の更新）",
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047898/"
+    },
+    "4e9ce8cacf873c06": {
+      "at": "2026-10-26T18:33:08.905293+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1886字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000132.000043765.html"
     },
     "534a8c2da0020056": {
       "at": "2026-10-26T14:35:29.164627+00:00",
@@ -3421,6 +3443,13 @@
       "reason": "quality: 本文が短い（1905字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000017.000082558.html"
+    },
+    "925b506256fa21c6": {
+      "at": "2026-10-26T18:32:54.991963+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2381字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000949.000118641.html"
     },
     "95364ce770790d21": {
       "at": "2026-10-26T11:33:38.547453+00:00",
@@ -6120,6 +6149,118 @@
       "score": 85,
       "source": "aws-ml-blog",
       "title": "Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:31:14.243406+00:00",
+      "attempt": 1,
+      "id": "1b8c870c8d92c0f3",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1788字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "訳されていない英文が残っている（「Learning Curves: Rethinking Education fr…」）"
+      ],
+      "score": null,
+      "source": "microsoft-source",
+      "title": "From classrooms to careers: The future of education in an AI-driven world"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:31:28.245153+00:00",
+      "attempt": 2,
+      "id": "1b8c870c8d92c0f3",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1741字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "microsoft-source",
+      "title": "From classrooms to careers: The future of education in an AI-driven world"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:32:24.455361+00:00",
+      "attempt": 1,
+      "id": "2504bf7e57b1f9b6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1654字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "atpress",
+      "title": "『ディズニー ツイステッドワンダーランド』リリア・ヴァンルージュ歌唱の楽曲「RACING STAR☆」スペシャルPV特設サイトにて公開！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T18:32:34.995596+00:00",
+      "attempt": 2,
+      "id": "2504bf7e57b1f9b6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "atpress",
+      "title": "『ディズニー ツイステッドワンダーランド』リリア・ヴァンルージュ歌唱の楽曲「RACING STAR☆」スペシャルPV特設サイトにて公開！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:32:45.349930+00:00",
+      "attempt": 1,
+      "id": "925b506256fa21c6",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2103字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "AIが人の状況を察し、安心・安全を守りながら適切な対応に自律改善する「高EQな音声対話技術」を確立"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:32:54.991934+00:00",
+      "attempt": 2,
+      "id": "925b506256fa21c6",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2381字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "AIが人の状況を察し、安心・安全を守りながら適切な対応に自律改善する「高EQな音声対話技術」を確立"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:33:01.696970+00:00",
+      "attempt": 1,
+      "id": "4e9ce8cacf873c06",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1402字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "フォーティエンスコンサルティング、AIが適切に参照できるデータと組織基盤を整備する「AI-readyデータ構築支援サービス」を提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:33:08.905260+00:00",
+      "attempt": 2,
+      "id": "4e9ce8cacf873c06",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1886字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "フォーティエンスコンサルティング、AIが適切に参照できるデータと組織基盤を整備する「AI-readyデータ構築支援サービス」を提供開始"
     }
   ]
 }
