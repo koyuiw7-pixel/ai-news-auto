@@ -1,5 +1,5 @@
 import type { Bundle, StoryItem } from "@/components/story/SwipeDeck";
-import { getAllArticles, type Article } from "@/lib/articles";
+import { coverPath, getAllArticles, type Article } from "@/lib/articles";
 import { companyOf } from "@/lib/companies";
 import { easyGist, pickGeneral } from "@/lib/general";
 import { freeLabel, japanLabel, usability, USABILITY_LABEL } from "@/lib/verdict";
@@ -12,7 +12,8 @@ function toItem(a: Article): StoryItem {
     title: a.title,
     gist: easyGist(a),
     highlights: a.highlights.slice(0, 3),
-    image: a.thumbnail,
+    // 画像の無い web 記事は、企業色入りの独自カバーで代用する
+    image: a.thumbnail || coverPath(a) || "",
     company: c.name,
     color: c.color,
     at: a.generatedAt,

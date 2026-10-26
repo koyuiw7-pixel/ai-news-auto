@@ -2,7 +2,8 @@ import Thumb from "@/components/Thumb";
 import Link from "next/link";
 import Morph from "@/components/Morph";
 import Image from "next/image";
-import { coverPath, formatDate, type Article } from "@/lib/articles";
+import { coverPath, formatDate, sourceLabel, type Article } from "@/lib/articles";
+import { thumbSource } from "@/lib/companies";
 import { Highlight } from "@/lib/highlight";
 
 type Props = {
@@ -39,6 +40,7 @@ export default function ArticleCard({ article, priority, morph = false }: Props)
             ) : (
               <Thumb
                 src={article.thumbnail}
+                source={thumbSource(article)}
                 alt=""
                 fill
                 priority={priority}
@@ -66,7 +68,7 @@ export default function ArticleCard({ article, priority, morph = false }: Props)
         <div className="flex flex-col gap-1.5">
           <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11.5px] text-muted">
             <i className={`dot ${isRoundup ? "dot-roundup" : "dot-official"}`} aria-hidden />
-            <span className="font-bold">{article.channel}</span>
+            <span className="font-bold">{sourceLabel(article)}</span>
             <time dateTime={article.publishedAt} className="index-num">
               {formatDate(article.publishedAt)}
             </time>

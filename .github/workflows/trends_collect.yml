@@ -1,0 +1,43 @@
+name: Collect trends
+
+# Googleトレンドの急上昇ワードは10件しか出ず入れ替わりが早いので、1時間ごとに拾って
+# state/trend_queue.json に貯める（APIは使わない）。記事化は auto_run.yml がまとめて行う。
+# state/ だけの変更は vercel.json の ignoreCommand により再ビルドされない。
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trends-collect
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Enqueue trends
+        run: python scripts/trends.py --enqueue
+      - name: Commit queue
+        run: |
+          if [ -z "$(git status --porcelain state)" ]; then
+            echo "変更なし"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state
+          git commit -m "chore(trends): 話題のキーワードを更新"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin main && git push && exit 0
+            sleep 5
+          done
+          echo "::warning::push に失敗しました"

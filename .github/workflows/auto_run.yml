@@ -60,6 +60,22 @@ jobs:
             --max "${{ github.event.inputs.max_articles || '2' }}" \
             --days "${{ github.event.inputs.days || '10' }}"
 
+      # 公式ブログ・プレスリリース（文章）と話題のニュース（Googleトレンド）から記事を作る。
+      # 動画解析より軽いので、無料枠の大きい軽量モデルを順に使い回す（scripts/llm.py）。
+      # 本数は変数で段階的に増やす: WEB_MAX_PER_RUN / TREND_MAX_PER_RUN / WEB_DAILY_CAP
+      - name: Generate web articles
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          python scripts/web_articles.py \
+            --max "${{ vars.WEB_MAX_PER_RUN || '3' }}" \
+            --trends "${{ vars.TREND_MAX_PER_RUN || '1' }}" \
+            --daily-cap "${{ vars.WEB_DAILY_CAP || '14' }}" \
+            --days 3 --tier bulk
+
       # 同じ話題の記事が3本以上たまったら、横断まとめ記事に統合する。
       # 動画を再解析せず既存記事のテキストだけを使うのでAPI消費は1回分。
       - name: Build roundup

@@ -14,7 +14,7 @@ import NextRead from "@/components/NextRead";
 import InlineRead from "@/components/InlineRead";
 import ReadingMode from "@/components/ReadingMode";
 import VerdictCard from "@/components/VerdictCard";
-import { companyOf } from "@/lib/companies";
+import { companyOf, thumbSource } from "@/lib/companies";
 import { guideForArticle } from "@/lib/guides";
 import { STATUS_LABEL, freeLabel, japanLabel, verdictOf } from "@/lib/verdict";
 import { offerForArticle } from "@/lib/offers";
@@ -28,6 +28,10 @@ import {
   getArticle,
   getNextReads,
   getRelatedArticles,
+  isVideo,
+  isWeb,
+  sourceHref,
+  sourceLabel,
   tagHref,
 } from "@/lib/articles";
 import { Highlight } from "@/lib/highlight";
@@ -72,7 +76,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: article.publishedAt,
       modifiedTime: article.generatedAt,
       tags: article.tags,
-      // SNSのカードは日本語見出し入りの独自カバー。無い記事は元動画のサムネイル
+      // SNSのカードは日本語見出し入りの独自カバー。無い記事は元動画（元記事）の画像
       images: cover
         ? [{ url: cover, width: 1200, height: 630, alt: article.seoTitle || article.title }]
         : article.thumbnail
@@ -94,6 +98,11 @@ export default async function ArticlePage({ params }: Props) {
   if (!article) notFound();
 
   const isRoundup = article.type === "roundup";
+  // 公式ブログ・プレスリリースから作った記事（動画の埋め込み・タイムテーブルを出さない）
+  const web = isWeb(article);
+  const video = isVideo(article);
+  const sourceUrl = sourceHref(article);
+  const sourceName = sourceLabel(article);
   const affiliates = article.affiliates ?? [];
   const company = companyOf(article);
   const guide = guideForArticle(article);
@@ -167,17 +176,33 @@ export default async function ArticlePage({ params }: Props) {
         "@type": "SpeakableSpecification",
         cssSelector: ["#points-heading + ol", "#verdict-heading + p"],
       },
+      // web 記事は元記事を出典として明示する
+      ...(web && sourceUrl
+        ? {
+            isBasedOn: sourceUrl,
+            citation: {
+              "@type": "CreativeWork",
+              name: article.videoTitle,
+              url: sourceUrl,
+              publisher: { "@type": "Organization", name: sourceName },
+            },
+          }
+        : {}),
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      name: article.videoTitle,
-      description: article.description,
-      ...(article.thumbnail ? { thumbnailUrl: [article.thumbnail] } : {}),
-      uploadDate: article.publishedAt,
-      contentUrl: article.videoUrl,
-      embedUrl: `https://www.youtube.com/embed/${article.videoId}`,
-    },
+    ...(video
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            name: article.videoTitle,
+            description: article.description,
+            ...(article.thumbnail ? { thumbnailUrl: [article.thumbnail] } : {}),
+            uploadDate: article.publishedAt,
+            contentUrl: article.videoUrl,
+            embedUrl: `https://www.youtube.com/embed/${article.videoId}`,
+          },
+        ]
+      : []),
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -333,8 +358,64 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           )}
 
+          {/* 個別記事（公式ブログ・プレスリリース）: 元記事の画像と出典 */}
+          {!isRoundup && web && (
+            <figure className="mt-7 overflow-hidden rounded-3xl border border-line">
+              {article.thumbnail && (
+                <Morph name={`cover-${article.slug}`}>
+                  <a
+                    href={sourceUrl || undefined}
+                    target="_blank"
+                    rel="noopener"
+                    className="group relative block aspect-video bg-surface-2"
+                    aria-label={`出典「${article.videoTitle}」を${sourceName}で読む`}
+                  >
+                    <Thumb
+                      src={article.thumbnail}
+                      source={thumbSource(article)}
+                      alt=""
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 860px"
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                    />
+                  </a>
+                </Morph>
+              )}
+              <figcaption className="flex items-center gap-4 bg-surface px-5 py-4">
+                <CompanyMark company={company} size={36} />
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[11.5px] font-bold text-muted">出典: {sourceName}</span>
+                  {sourceUrl ? (
+                    <a
+                      href={sourceUrl}
+                      target="_blank"
+                      rel="noopener"
+                      className="mt-0.5 block text-[14.5px] font-bold leading-snug text-ink underline-offset-4 hover:text-accent hover:underline"
+                    >
+                      「{article.videoTitle}」
+                    </a>
+                  ) : (
+                    <span className="mt-0.5 block text-[14.5px] font-bold leading-snug text-ink">「{article.videoTitle}」</span>
+                  )}
+                </span>
+                {sourceUrl && (
+                  <a
+                    href={sourceUrl}
+                    target="_blank"
+                    rel="noopener"
+                    className="hidden shrink-0 items-center gap-1.5 rounded-full border border-line-strong px-3.5 py-1.5 text-[12px] font-bold text-ink-soft transition-colors hover:border-ink hover:text-ink sm:inline-flex"
+                  >
+                    元記事を読む
+                    <span aria-hidden>↗</span>
+                  </a>
+                )}
+              </figcaption>
+            </figure>
+          )}
+
           {/* 個別記事: 動画（クリックで初めて YouTube を開く軽量表示） */}
-          {!isRoundup && (
+          {!isRoundup && !web && (
             <div className="mt-7 overflow-hidden rounded-3xl bg-black">
               <Morph name={`cover-${article.slug}`}>
                 <a
@@ -440,7 +521,7 @@ export default async function ArticlePage({ params }: Props) {
           {isRoundup && <RoundupSources sources={article.sources ?? []} />}
 
           {/* 動画のタイムテーブル */}
-          {article.timetable.length > 0 && (
+          {video && article.timetable.length > 0 && (
             <section aria-labelledby="timetable-heading" className="mt-12">
               <h2 id="timetable-heading" className="text-lg font-bold text-ink">
                 動画のタイムテーブル
@@ -494,10 +575,19 @@ export default async function ArticlePage({ params }: Props) {
 
           <p className="mt-10 rounded-2xl bg-surface px-5 py-4 text-xs leading-relaxed text-muted">
             {article.disclaimer ||
-              "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な情報は公式発表をご確認ください。"}
-            <a href={article.videoUrl} target="_blank" rel="noopener noreferrer" className="mx-1 text-accent underline">
-              元動画を見る
-            </a>
+              (web
+                ? `本記事は${sourceName}の発表内容をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な情報は元記事をご確認ください。`
+                : "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な情報は公式発表をご確認ください。")}
+            {sourceUrl && (
+              <a
+                href={sourceUrl}
+                target="_blank"
+                rel={web ? "noopener" : "noopener noreferrer"}
+                className="mx-1 text-accent underline"
+              >
+                {web ? "元記事を読む" : "元動画を見る"}
+              </a>
+            )}
             （解析モデル: {article.model}）
           </p>
 

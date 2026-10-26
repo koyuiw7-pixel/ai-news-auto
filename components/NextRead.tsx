@@ -3,6 +3,7 @@ import Image from "next/image";
 import Thumb from "@/components/Thumb";
 import VerdictBadge from "@/components/VerdictBadge";
 import { coverPath, type NextRead as NextReadItem } from "@/lib/articles";
+import { thumbSource } from "@/lib/companies";
 import { usability, verdictOf } from "@/lib/verdict";
 
 /**
@@ -79,7 +80,7 @@ function Cover({ item, sizes, small = false }: { item: NextReadItem; sizes: stri
       {cover ? (
         <Image src={cover} alt="" fill sizes={sizes} className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
       ) : (
-        <Thumb src={item.article.thumbnail} alt="" fill sizes={sizes} className="object-cover" />
+        <Thumb src={item.article.thumbnail} source={thumbSource(item.article)} alt="" fill sizes={sizes} className="object-cover" />
       )}
     </span>
   );

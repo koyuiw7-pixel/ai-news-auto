@@ -21,6 +21,8 @@ function serialize(article: Article, includeBody: boolean) {
     channelSlug: article.channelSlug,
     tags: article.tags,
     keywords: article.keywords,
+    sourceType: article.sourceType ?? "video",
+    ...(article.sourceType === "web" ? { sourceUrl: article.sourceUrl, sourceName: article.sourceName } : {}),
     videoId: article.videoId,
     videoUrl: article.videoUrl,
     thumbnail: article.thumbnail,

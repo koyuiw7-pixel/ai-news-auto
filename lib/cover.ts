@@ -9,16 +9,35 @@ export const COVER_HEIGHT = 630;
 
 export type Box = { x: number; y: number; width: number; height: number };
 
-/** 元動画の画像を取得する。消えていれば標準画質、それも無ければ null */
+/** 大きすぎる画像は読まない（外部サイトの og:image 対策） */
+const MAX_PHOTO_BYTES = 15 * 1024 * 1024;
+
+/**
+ * 元動画（または元記事の og:image）の画像を取得する。
+ * YouTube は消えていれば標準画質へ。取得できない・画像でない・sharp で読めないものは null
+ */
 export async function fetchPhoto(url: string): Promise<Buffer | null> {
+  if (!url || !/^https?:\/\//.test(url)) return null;
   const candidates = url.includes("maxresdefault")
     ? [url, url.replace("maxresdefault", "hqdefault")]
     : [url];
   for (const candidate of candidates) {
-    if (!candidate) continue;
     try {
-      const res = await fetch(candidate, { signal: AbortSignal.timeout(8000) });
-      if (res.ok) return Buffer.from(await res.arrayBuffer());
+      const res = await fetch(candidate, {
+        signal: AbortSignal.timeout(8000),
+        // 既定の UA だと画像を返さないサイトがある
+        headers: { "User-Agent": "Mozilla/5.0 (compatible; SaisokuCoverBot/1.0)", Accept: "image/*" },
+      });
+      if (!res.ok) continue;
+      const type = res.headers.get("content-type") ?? "";
+      if (type && !type.startsWith("image/")) continue;
+      if (Number(res.headers.get("content-length") ?? 0) > MAX_PHOTO_BYTES) continue;
+      const buffer = Buffer.from(await res.arrayBuffer());
+      if (buffer.length === 0 || buffer.length > MAX_PHOTO_BYTES) continue;
+      // 壊れた画像・未対応形式はここで弾き、写真なしのカバーにする
+      const meta = await sharp(buffer).metadata();
+      if (!meta.width || !meta.height) continue;
+      return buffer;
     } catch {
       // 取得できなくても写真なしで生成を続ける
     }
@@ -29,9 +48,13 @@ export async function fetchPhoto(url: string): Promise<Buffer | null> {
 /** 写真を1200×630に切り抜く（顔など目立つ部分を残す）。写真が無ければ単色の地 */
 export async function basePhoto(photo: Buffer | null, fallbackColor: string): Promise<Buffer> {
   if (photo) {
-    return sharp(photo)
-      .resize(COVER_WIDTH, COVER_HEIGHT, { fit: "cover", position: sharp.strategy.attention })
-      .toBuffer();
+    try {
+      return await sharp(photo)
+        .resize(COVER_WIDTH, COVER_HEIGHT, { fit: "cover", position: sharp.strategy.attention })
+        .toBuffer();
+    } catch {
+      // 読めない画像でもビルドを落とさず、単色の地にする
+    }
   }
   return sharp({
     create: { width: COVER_WIDTH, height: COVER_HEIGHT, channels: 3, background: fallbackColor },

@@ -58,8 +58,15 @@ export type Article = {
   genreSlug: string;
   /** ジャンルごとの免責文（不動産は投資勧誘でない旨を含む） */
   disclaimer: string;
+  /** 記事の元ネタ。省略時は "video"（YouTube）。"web" は公式ブログ・プレスリリース */
+  sourceType?: "video" | "web";
+  /** sourceType === "web" のときの元記事URLと発信元名 */
+  sourceUrl?: string;
+  sourceName?: string;
+  /** web 記事では空文字 */
   videoId: string;
   videoUrl: string;
+  /** web 記事では元記事の題名 */
   videoTitle: string;
   publishedAt: string;
   generatedAt: string;
@@ -118,6 +125,26 @@ function readAll(): Article[] {
     (a, b) =>
       new Date(b.generatedAt || b.publishedAt).getTime() - new Date(a.generatedAt || a.publishedAt).getTime(),
   );
+}
+
+/** 動画から作った記事か（web 記事・videoId が空の記事は false） */
+export function isVideo(article: Article): boolean {
+  return article.sourceType !== "web" && article.videoId !== "";
+}
+
+/** 公式ブログ・プレスリリースから作った記事か */
+export function isWeb(article: Article): boolean {
+  return article.sourceType === "web";
+}
+
+/** 出典の表示名（web は発信元名、動画はチャンネル名） */
+export function sourceLabel(article: Article): string {
+  return (isWeb(article) && article.sourceName) || article.channel;
+}
+
+/** 出典へのリンク（web は元記事、動画は YouTube） */
+export function sourceHref(article: Article): string {
+  return isWeb(article) ? article.sourceUrl || "" : article.videoUrl;
 }
 
 // モジュールスコープでキャッシュ（ビルド中に何百回も呼ばれるため）

@@ -110,6 +110,8 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
 
   const company = companyOf(article);
   const isOther = company.slug === "other";
+  // 公式ブログ・プレスリリース記事で企業が判別できないときは、発信元名を出す
+  const sourceName = article.sourceType === "web" ? article.sourceName || article.channel : "";
   const label = article.type === "roundup" ? `${article.sources?.length ?? 0}本の発表を統合` : "速報";
   const title = article.seoTitle || article.title;
   const parts = splitTitle(title);
@@ -144,13 +146,14 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
               left: 48,
               top: 70,
               display: "flex",
-              fontSize: 200,
+              // 発信元名は長いことがあるので、横幅に収まる大きさにする
+              fontSize: isOther && sourceName ? Math.min(200, Math.floor(1100 / Math.max(emWidth(sourceName), 1))) : 200,
               fontWeight: 900,
               letterSpacing: -4,
               color: "rgba(255,255,255,0.14)",
             }}
           >
-            {isOther ? "AI NEWS" : company.name}
+            {isOther ? sourceName || "AI NEWS" : company.name}
           </div>
         )}
 
@@ -185,7 +188,9 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
           <div style={{ width: TEXT_WIDTH, display: "flex", flexDirection: "column", gap: 10 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 23, fontWeight: 700, color: "#fff" }}>
               <div style={{ display: "flex", padding: "3px 13px", borderRadius: 4, background: "#d92d20" }}>{label}</div>
-              {!isOther && <div style={{ display: "flex", textShadow: SHADOW }}>{company.name}</div>}
+              {(!isOther || sourceName) && (
+                <div style={{ display: "flex", textShadow: SHADOW }}>{isOther ? sourceName : company.name}</div>
+              )}
             </div>
 
             {parts ? (

@@ -1,5 +1,8 @@
 import type { Article } from "@/lib/articles";
 
+// クライアント部品からも読めるよう、articles.ts（fs を使う）は型だけ読み込む
+const isWeb = (a: Article) => a.sourceType === "web";
+
 /**
  * 記事を「どの企業の発表か」で分類する。
  *
@@ -143,6 +146,8 @@ export function companyOf(article: Article): Company {
 
   const company =
     BY_SLUG.get(CHANNEL_COMPANY[article.channelSlug] ?? "") ??
+    // 公式ブログ・プレスリリースは発信元名（「OpenAI公式ブログ」など）を優先する
+    (isWeb(article) ? firstMention(article.sourceName ?? "") : undefined) ??
     firstMention(article.title) ??
     firstMention(article.tags.join(" ")) ??
     firstMention(article.description) ??
@@ -171,4 +176,19 @@ export function companyCounts(articles: Article[]): { company: Company; count: n
       if (b.company.slug === OTHER.slug) return -1;
       return b.count - a.count;
     });
+}
+
+/** サムネイルが無いときの代替表示に使う、発信元名と企業色 */
+export type ThumbSource = { label: string; color: string; mark: string };
+
+/** web 記事だけ発信元入りの代替表示にする（動画記事は従来どおり undefined） */
+export function thumbSource(article: Article): ThumbSource | undefined {
+  if (!isWeb(article)) return undefined;
+  const company = companyOf(article);
+  const isOther = company.slug === OTHER.slug;
+  return {
+    label: article.sourceName || article.channel,
+    color: isOther ? "#1d1d22" : company.color,
+    mark: isOther ? "" : company.mark,
+  };
 }

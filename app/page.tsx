@@ -9,7 +9,7 @@ import StoryRail from "@/components/story/SwipeDeck";
 import { getStoryBundles } from "@/lib/stories";
 import { offerForArticle } from "@/lib/offers";
 import { getAllArticles, getAllGenres, tagSlug, type Article } from "@/lib/articles";
-import { companyCounts } from "@/lib/companies";
+import { companyCounts, thumbSource } from "@/lib/companies";
 import { siteConfig } from "@/site.config";
 
 export const revalidate = false;
@@ -191,7 +191,7 @@ function RailRoundup({ article }: { article: Article }) {
     <li>
       <Link href={`/articles/${article.slug}`} className="group grid grid-cols-[88px_minmax(0,1fr)] gap-3">
         <span className="relative aspect-video overflow-hidden rounded-lg bg-surface-2">
-          <Thumb src={article.thumbnail.replace("maxresdefault", "mqdefault")} alt="" fill sizes="88px" className="object-cover" />
+          <Thumb src={article.thumbnail.replace("maxresdefault", "mqdefault")} source={thumbSource(article)} alt="" fill sizes="88px" className="object-cover" />
           <span className="index-num absolute bottom-1 left-1 rounded bg-ink/85 px-1.5 py-[1px] text-[10px] font-semibold text-paper">
             {article.sources?.length ?? 0}本
           </span>

@@ -4,7 +4,7 @@ import Morph from "@/components/Morph";
 import CompanyMark from "@/components/CompanyMark";
 import RelTime from "@/components/RelTime";
 import type { Article } from "@/lib/articles";
-import { companyOf } from "@/lib/companies";
+import { companyOf, thumbSource } from "@/lib/companies";
 import { Highlight } from "@/lib/highlight";
 
 /**
@@ -32,6 +32,7 @@ export default function HomeHero({ lead }: { lead: Article }) {
           <div className="relative aspect-video">
             <Thumb
               src={lead.thumbnail}
+              source={thumbSource(lead)}
               alt=""
               fill
               priority

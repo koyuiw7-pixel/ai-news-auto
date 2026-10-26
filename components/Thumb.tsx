@@ -2,6 +2,7 @@
 
 import Image, { type ImageProps } from "next/image";
 import { useState } from "react";
+import type { ThumbSource } from "@/lib/companies";
 
 type Stage = "original" | "fallback" | "failed";
 
@@ -11,12 +12,37 @@ type Stage = "original" | "fallback" | "failed";
  * 1. 高解像度版（maxresdefault）は後から消えることがあるので、読み込めなければ標準画質（hqdefault）へ
  * 2. それも無い（元動画が削除・非公開になった）場合や、画像欄が空の場合は、サイト名入りの代替表示へ
  *
+ * 公式ブログ・プレスリリースの記事（source あり）は、企業色の地に発信元名を載せた代替表示にする。
+ *
  * 親要素に relative と大きさ（aspect-video など）が指定されている前提で、fill 画像と同じ位置を埋める。
  */
-export default function Thumb(props: ImageProps) {
+export default function Thumb({ source, ...props }: ImageProps & { source?: ThumbSource }) {
   const original = props.src;
   const empty = typeof original === "string" && original.trim() === "";
   const [stage, setStage] = useState<Stage>(empty ? "failed" : "original");
+
+  if (stage === "failed" && source) {
+    return (
+      <span
+        aria-hidden
+        className="@container absolute inset-0 overflow-hidden"
+        style={{ background: `linear-gradient(135deg, ${source.color} 0%, color-mix(in srgb, ${source.color} 62%, #000) 100%)` }}
+      >
+        {source.mark && (
+          <span className="absolute -bottom-[14cqw] -right-[4cqw] font-black leading-none tracking-tighter text-white/[0.13] text-[58cqw]">
+            {source.mark}
+          </span>
+        )}
+        <span className="absolute left-[6cqw] top-[5.5cqw] font-display text-white/75 text-[max(9px,4.6cqw)]">サイソク</span>
+        <span className="absolute inset-x-[6cqw] bottom-[6cqw] flex flex-col gap-[1.6cqw]">
+          <span className="w-fit rounded-full bg-white/90 px-[2.4cqw] py-[0.6cqw] font-bold text-ink text-[max(8px,3.4cqw)]">
+            公式発表
+          </span>
+          <span className="line-clamp-2 font-bold leading-[1.3] text-white text-[max(11px,7.4cqw)]">{source.label}</span>
+        </span>
+      </span>
+    );
+  }
 
   if (stage === "failed") {
     return (

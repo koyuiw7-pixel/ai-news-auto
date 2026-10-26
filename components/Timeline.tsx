@@ -5,7 +5,7 @@ import Thumb from "@/components/Thumb";
 import UsableFilter from "@/components/UsableFilter";
 import VerdictBadge from "@/components/VerdictBadge";
 import type { Article } from "@/lib/articles";
-import { companyOf } from "@/lib/companies";
+import { companyOf, thumbSource } from "@/lib/companies";
 import { Highlight } from "@/lib/highlight";
 import { usability, verdictOf } from "@/lib/verdict";
 
@@ -132,6 +132,7 @@ function TimelineRow({ article }: { article: Article }) {
           <Thumb
             // 一覧の小さな枠には軽い画像（480px）を使う。最高画質（1280px）は記事ページだけ
             src={article.thumbnail.replace("maxresdefault", "hqdefault")}
+            source={thumbSource(article)}
             alt=""
             fill
             sizes="184px"
