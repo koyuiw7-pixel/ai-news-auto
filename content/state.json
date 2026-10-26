@@ -2951,6 +2951,14 @@
       "slug": "digital-agency-national-qualifications-online",
       "url": "https://www.digital.go.jp/policies/government-certification"
     },
+    "0232089e06db66b1": {
+      "at": "2026-10-26T19:21:46.697645+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "sports",
+      "slug": "amagasaki-takumi-championship-2026",
+      "url": "https://kyodonewsprwire.jp/release/202610268686"
+    },
     "057a86be6882ac7b": {
       "at": "2026-10-26T11:33:12.751805+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3012,6 +3020,12 @@
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005956.000054842.html"
+    },
+    "1758535ac6be3e6b": {
+      "at": "2026-10-26T19:22:03.028309+00:00",
+      "reason": "dedupe: 固有名詞が一致（gpt-6.1・terra）: GPT-6.1 Terra in GitHub Copilot",
+      "skipped": true,
+      "url": "https://openai.com/index/introducing-gpt-6-1-terra"
     },
     "186a8635f667b78e": {
       "at": "2026-10-26T15:01:11.635523+00:00",
@@ -3125,6 +3139,13 @@
       "section": "business",
       "slug": "kaitori-koji-sns-meo-management",
       "url": "https://www.dreamnews.jp/press/0000366438"
+    },
+    "344482fd6d727bf9": {
+      "at": "2026-10-26T19:22:03.028198+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1992字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://github.blog/changelog/2026-10-26-gpt-6-1-terra-in-github-copilot"
     },
     "35128607b5ef84dd": {
       "at": "2026-10-26T14:14:27.685942+00:00",
@@ -3461,6 +3482,12 @@
       "reason": "quality: AWS Machine Learning Blogによると、2026年10月27日に「Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3」と題した記事が公開されました。 → 元記事には2026年10月27日という具体的な日付の記載がない。",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/fleet-wide-computer-vision-lifecycle-at-the-edge-with-sagemaker-sdk-v3/"
+    },
+    "8f2f08b6e197805b": {
+      "at": "2026-10-26T19:21:22.163807+00:00",
+      "reason": "short text 154",
+      "skipped": true,
+      "url": "https://openai.com/index/openai-cut-incident-investigation"
     },
     "90b31744ef4440aa": {
       "at": "2026-10-26T14:10:58.214509+00:00",
@@ -6421,6 +6448,60 @@
       "score": null,
       "source": "prtimes",
       "title": "アイフルがクレジットカード「aiカード」の発行を開始！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:21:35.380778+00:00",
+      "attempt": 1,
+      "id": "0232089e06db66b1",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1503字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "kyodo-prwire",
+      "title": "ものづくり技能No.1は誰だ！第10回尼崎ものづくり未来の匠選手権を開催"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T19:21:46.697170+00:00",
+      "attempt": 2,
+      "id": "0232089e06db66b1",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "kyodo-prwire",
+      "title": "ものづくり技能No.1は誰だ！第10回尼崎ものづくり未来の匠選手権を開催"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:21:55.047087+00:00",
+      "attempt": 1,
+      "id": "344482fd6d727bf9",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2140字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "GPT-6.1 Terra in GitHub Copilot"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:22:03.028167+00:00",
+      "attempt": 2,
+      "id": "344482fd6d727bf9",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1992字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "GPT-6.1 Terra in GitHub Copilot"
     }
   ]
 }
