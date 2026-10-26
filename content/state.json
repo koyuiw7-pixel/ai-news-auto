@@ -8,6 +8,7 @@
     "4idQxzAyPDo": 1,
     "5iu0nY9lIy8": 1,
     "AIH_9dOpAmU": 1,
+    "DDjr6gXqtN8": 1,
     "EuN8WCWQf7g": 1,
     "FL6mI_Br-mc": 1,
     "G_DxnqhIfgk": 1,
@@ -3167,6 +3168,13 @@
       "slug": "it-passport-study-survey-ipa",
       "url": "https://www.ipa.go.jp/shiken/kubun/ip/ip_goukaku_anq_all.html"
     },
+    "436c8feca450cd5e": {
+      "at": "2026-10-26T18:16:43.711146+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 実験デザインの策定とフィールド調査の設計の箇所 → 「十分に確立された手法である「反復ラテン方格デザイン」が採用されました」という具体的な手法名は元記事に存在しない。",
+      "skipped": true,
+      "url": "https://techcommunity.microsoft.com/blog/microsoft-discovery-blog/adapting-biological-monitoring-for-food-security-with-agents/4565992"
+    },
     "4551cf1ba9ff1f3d": {
       "at": "2026-10-26T13:53:40.778421+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3276,6 +3284,12 @@
       "reason": "quality: 本文が短い（2374字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000209.000068112.html"
+    },
+    "64d59b55a8fb8666": {
+      "at": "2026-10-26T18:11:48.185954+00:00",
+      "reason": "short text 154",
+      "skipped": true,
+      "url": "https://openai.com/index/chatgpt-expanding-world-of-work"
     },
     "66c4ad230d132d33": {
       "at": "2026-10-26T15:53:57.507918+00:00",
@@ -3387,6 +3401,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（就任）",
       "skipped": true,
       "url": "https://kyodonewsprwire.jp/release/202610268694"
+    },
+    "8ed93bec790144d5": {
+      "at": "2026-10-26T18:18:23.045318+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: AWS Machine Learning Blogによると、2026年10月27日に「Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3」と題した記事が公開されました。 → 元記事には2026年10月27日という具体的な日付の記載がない。",
+      "skipped": true,
+      "url": "https://aws.amazon.com/blogs/machine-learning/fleet-wide-computer-vision-lifecycle-at-the-edge-with-sagemaker-sdk-v3/"
     },
     "90b31744ef4440aa": {
       "at": "2026-10-26T14:10:58.214509+00:00",
@@ -3699,6 +3720,14 @@
       "section": "ai",
       "slug": "google-gemini-college-student-features",
       "url": "https://blog.google/products-and-platforms/products/gemini/college-student-favorite-features/"
+    },
+    "d9632e08d55c4552": {
+      "at": "2026-10-26T18:12:46.804433+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "ps5-marvels-wolverine-photo-mode-guide",
+      "url": "https://blog.ja.playstation.com/2026/10/26/20261026-marvels-wolverine-photo-mode-o/"
     },
     "dcf5d54939aadc4c": {
       "at": "2026-10-26T10:30:42.540838+00:00",
@@ -6022,6 +6051,75 @@
       "score": 100,
       "source": "atpress",
       "title": "ハローキティと楽しむ“食欲の秋”！今だけの限定グルメが登場「AWAJI HELLO KITTY APPLE LAND」秋フードまとめ情報を公開！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T18:12:46.804063+00:00",
+      "attempt": 1,
+      "id": "d9632e08d55c4552",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "playstation-blog-jp",
+      "title": "PS5®︎『Marvel’s Wolverine』フォトモードガイド！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:13:38.121072+00:00",
+      "attempt": 1,
+      "id": "436c8feca450cd5e",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2144字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "score": null,
+      "source": "microsoft-source",
+      "title": "How AI could help scientists track a pest threatening citrus trees"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:16:43.711110+00:00",
+      "attempt": 2,
+      "id": "436c8feca450cd5e",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "実験デザインの策定とフィールド調査の設計の箇所 → 「十分に確立された手法である「反復ラテン方格デザイン」が採用されました」という具体的な手法名は元記事に存在しない。"
+      ],
+      "score": 85,
+      "source": "microsoft-source",
+      "title": "How AI could help scientists track a pest threatening citrus trees"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:17:42.214139+00:00",
+      "attempt": 1,
+      "id": "8ed93bec790144d5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "異常検知ブランチではAUROCが0.8以上であることが求められ、不均衡データが頻出する分類器ブランチでは、バランス精度が0.6以上かつ欠陥の再現率が0.5以上という2つの条件を同時に満たすことが品質ゲートの通過条件となる。 → 品質ゲートの具体的な数値（AUROC 0.8以上、バランス精度0.6以上、再現率0.5以上な"
+      ],
+      "score": 85,
+      "source": "aws-ml-blog",
+      "title": "Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:18:23.045288+00:00",
+      "attempt": 2,
+      "id": "8ed93bec790144d5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "AWS Machine Learning Blogによると、2026年10月27日に「Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3」と題した記事が公開されました。 → 元記事には2026年10月27日という具体的な日付の記載"
+      ],
+      "score": 85,
+      "source": "aws-ml-blog",
+      "title": "Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3"
     }
   ]
 }
