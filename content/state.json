@@ -3606,6 +3606,19 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000003557.000044800.html"
     },
+    "82c30855ea13b4e5": {
+      "at": "2026-10-26T23:01:37.147984+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2420字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000044.000185093.html"
+    },
+    "82e55235337e720c": {
+      "at": "2026-10-26T23:01:37.148021+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（導入事例）",
+      "skipped": true,
+      "url": "https://kyodonewsprwire.jp/release/202610268701"
+    },
     "838fa113d922e63b": {
       "at": "2026-10-26T10:30:42.540806+00:00",
       "reason": "dedupe: 同じ出典URL",
@@ -3677,6 +3690,14 @@
       "reason": "quality: 本文が短い（2381字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000949.000118641.html"
+    },
+    "936a799bca853ddb": {
+      "at": "2026-10-26T23:01:46.603891+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "lytha-hemp-seed-oil-balance-no01",
+      "url": "https://www.value-press.com/pressrelease/383188"
     },
     "95364ce770790d21": {
       "at": "2026-10-26T11:33:38.547453+00:00",
@@ -7068,6 +7089,46 @@
       "score": 100,
       "source": "kyodo-prwire",
       "title": "優良オフィスへの需要が市場をけん引 東京で進む「質重視」のオフィス選択"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:01:27.968337+00:00",
+      "attempt": 1,
+      "id": "82c30855ea13b4e5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2089字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "AI開発の価格の公表を調査、比較サイトに載るAI開発会社63社のうち公式サイトに価格を載せていたのは2社、価格を公表していた26社のうちPoCの価格を示した9社"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:01:37.147957+00:00",
+      "attempt": 2,
+      "id": "82c30855ea13b4e5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2420字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "AI開発の価格の公表を調査、比較サイトに載るAI開発会社63社のうち公式サイトに価格を載せていたのは2社、価格を公表していた26社のうちPoCの価格を示した9社"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T23:01:46.603398+00:00",
+      "attempt": 1,
+      "id": "936a799bca853ddb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "value-press",
+      "title": "京都発ウェルネスブランド「LYTHA」誕生。イタリア・プーリア産100％エキストラバージン・ヘンプシードオイルを、1回分ずつ遮光・密閉の4gエアタイトサシェに"
     }
   ]
 }
