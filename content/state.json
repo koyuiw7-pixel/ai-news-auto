@@ -2995,6 +2995,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000033.000011313.html"
     },
+    "188e9fbc4643b05c": {
+      "at": "2026-10-26T16:11:49.835535+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1945字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://blog.google/products-and-platforms/products/education/ai-quests-polar-peaks/"
+    },
     "1a59e98674ccc9fb": {
       "at": "2026-10-26T14:11:39.308982+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（アワード）",
@@ -3079,6 +3086,14 @@
       "reason": "quality: 本文が短い（2305字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000181.000034517.html"
+    },
+    "3650ab66a57422eb": {
+      "at": "2026-10-26T16:13:30.244671+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "tohoku-gakuin-softbank-dx-partnership",
+      "url": "https://www.softbank.jp/sbnews/entry/20261026_01"
     },
     "37e18adfd2ff499b": {
       "at": "2026-10-26T11:01:59.803581+00:00",
@@ -5501,6 +5516,63 @@
       "score": null,
       "source": "prtimes",
       "title": "新規上場103社の約8割でCTOを確認できず。AIを組み込む企業は設置率47%、それ以外の約3倍――キープレイヤーズ調査"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T16:11:24.751923+00:00",
+      "attempt": 1,
+      "id": "188e9fbc4643b05c",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1674字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（394字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "score": null,
+      "source": "google-ai-blog",
+      "title": "Our newest AI Quest: Mapping the human brain"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T16:11:49.835511+00:00",
+      "attempt": 2,
+      "id": "188e9fbc4643b05c",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1945字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "google-ai-blog",
+      "title": "Our newest AI Quest: Mapping the human brain"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T16:12:15.505504+00:00",
+      "attempt": 1,
+      "id": "3650ab66a57422eb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1643字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（392字 / 基準 400字以上）"
+      ],
+      "score": null,
+      "source": "softbank-news",
+      "title": "学びを生かし、東北で働く若者を増やしたい。地域の人材育成と活性化を目指す連携協定を東北学院大学と締結"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T16:13:30.244208+00:00",
+      "attempt": 2,
+      "id": "3650ab66a57422eb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "softbank-news",
+      "title": "学びを生かし、東北で働く若者を増やしたい。地域の人材育成と活性化を目指す連携協定を東北学院大学と締結"
     }
   ]
 }
