@@ -3030,6 +3030,14 @@
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/kanbo/anpo/261026.html"
     },
+    "1b0888fd1ea94f51": {
+      "at": "2026-10-26T17:52:50.055161+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "awaji-hello-kitty-apple-land-autumn-food",
+      "url": "https://www.atpress.ne.jp/news/644455"
+    },
     "1b7232b2b9f1b991": {
       "at": "2026-10-26T15:38:11.655136+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3726,6 +3734,14 @@
       "reason": "quality: 本文が短い（1898字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000031.000168691.html"
+    },
+    "e5e4c3ae2b7984fd": {
+      "at": "2026-10-26T17:52:08.272357+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
+      "url": "https://aws.amazon.com/blogs/machine-learning/build-agentic-retrieval-on-a-managed-amazon-bedrock-knowledge-base-with-cdk/"
     },
     "e7e58cd7761fc453": {
       "at": "2026-10-26T11:02:34.699451+00:00",
@@ -5953,6 +5969,59 @@
       "score": 100,
       "source": "prtimes-all",
       "title": "Publica by IASと電通ジャパン・インターナショナルブランズ、プレミアムCTV広告の透明性と投資効率の向上に向けた戦略的パートナーシップを発表"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T17:51:45.130427+00:00",
+      "attempt": 1,
+      "id": "e5e4c3ae2b7984fd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2481字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "Build agentic retrieval on a Managed Amazon Bedrock Knowledge Base with CDK"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T17:52:08.271978+00:00",
+      "attempt": 2,
+      "id": "e5e4c3ae2b7984fd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "Build agentic retrieval on a Managed Amazon Bedrock Knowledge Base with CDK"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T17:52:22.080372+00:00",
+      "attempt": 1,
+      "id": "1b0888fd1ea94f51",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（389字 / 基準 400字以上）"
+      ],
+      "score": null,
+      "source": "atpress",
+      "title": "ハローキティと楽しむ“食欲の秋”！今だけの限定グルメが登場「AWAJI HELLO KITTY APPLE LAND」秋フードまとめ情報を公開！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T17:52:50.054777+00:00",
+      "attempt": 2,
+      "id": "1b0888fd1ea94f51",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "atpress",
+      "title": "ハローキティと楽しむ“食欲の秋”！今だけの限定グルメが登場「AWAJI HELLO KITTY APPLE LAND」秋フードまとめ情報を公開！"
     }
   ]
 }
