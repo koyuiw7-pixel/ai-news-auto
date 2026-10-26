@@ -3148,6 +3148,13 @@
       "slug": "tohoku-gakuin-softbank-dx-partnership",
       "url": "https://www.softbank.jp/sbnews/entry/20261026_01"
     },
+    "36ccb3101b7cb129": {
+      "at": "2026-10-26T19:01:37.120319+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: Appleは2026年10月27日のソフトウェアアップデート（27.2）で → 元記事の日付は2026年10月26日である。",
+      "skipped": true,
+      "url": "https://www.apple.com/jp/newsroom/2026/10/siri-ai-is-available-today-in-more-languages/"
+    },
     "37e18adfd2ff499b": {
       "at": "2026-10-26T11:01:59.803581+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3435,6 +3442,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000080.000056964.html"
     },
+    "86febba264904442": {
+      "at": "2026-10-26T19:02:07.027603+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2272字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000095.000010009.html"
+    },
     "8881538ea8074540": {
       "at": "2026-10-26T12:31:25.707767+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（就任）",
@@ -3583,6 +3597,14 @@
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000016.000100959.html"
+    },
+    "b44a2cf25c279e1e": {
+      "at": "2026-10-26T19:01:52.271485+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "sports",
+      "slug": "nadeshiko-brazil-ticket-additional-sale",
+      "url": "https://www.jfa.jp/news/00036955/"
     },
     "b5933abf7b3004fc": {
       "at": "2026-10-26T10:31:00.945549+00:00",
@@ -6316,6 +6338,89 @@
       "score": 100,
       "source": "atpress",
       "title": "人気インフルエンサー「りち」とキラキラポップなつくる菓子シリーズ「CANDY Magic Lab」がコラボ！「りちスライミーポットゼリー」が新発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:01:14.475693+00:00",
+      "attempt": 1,
+      "id": "36ccb3101b7cb129",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2323字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "apple-newsroom-jp",
+      "title": "Siri AI、日本語で提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:01:37.120286+00:00",
+      "attempt": 2,
+      "id": "36ccb3101b7cb129",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "Appleは2026年10月27日のソフトウェアアップデート（27.2）で → 元記事の日付は2026年10月26日である。"
+      ],
+      "score": 90,
+      "source": "apple-newsroom-jp",
+      "title": "Siri AI、日本語で提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:01:43.697035+00:00",
+      "attempt": 1,
+      "id": "b44a2cf25c279e1e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1427字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "jfa",
+      "title": "チケット追加販売のお知らせ なでしこジャパン（日本女子代表）対 ブラジル女子代表【11.29(日) 広島／エディオンピースウイング広島】 #jfa #daihy"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T19:01:52.271113+00:00",
+      "attempt": 2,
+      "id": "b44a2cf25c279e1e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "jfa",
+      "title": "チケット追加販売のお知らせ なでしこジャパン（日本女子代表）対 ブラジル女子代表【11.29(日) 広島／エディオンピースウイング広島】 #jfa #daihy"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:01:59.479310+00:00",
+      "attempt": 1,
+      "id": "86febba264904442",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1653字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "アイフルがクレジットカード「aiカード」の発行を開始！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:02:07.027577+00:00",
+      "attempt": 2,
+      "id": "86febba264904442",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2272字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "アイフルがクレジットカード「aiカード」の発行を開始！"
     }
   ]
 }
