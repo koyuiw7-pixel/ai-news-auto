@@ -351,7 +351,8 @@ export function formatDate(iso: string): string {
  * 生成対象外なら null を返すので、元動画のサムネイルにフォールバックする。
  */
 export function coverPath(article: Article): string | null {
-  return article.genreSlug === "ai" ? `/cover/${article.slug}` : null;
+  // 全ジャンルを検索対象にしたので、共有用の画像も全記事で作る
+  return `/cover/${article.slug}`;
 }
 
 export type NextRead = { article: Article; reason: string };
