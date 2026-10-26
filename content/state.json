@@ -789,6 +789,10 @@
       "at": "2026-09-18T15:22:42.907096+00:00",
       "slug": "chatgpt-work-dashboard-generation"
     },
+    "H0b71nYoSdI": {
+      "at": "2026-10-26T10:30:19.993659+00:00",
+      "slug": "dotnet-11-rc2-python-arm64-foundry-browser-automation"
+    },
     "H4azmWcqO5g": {
       "at": "2026-10-20T10:41:52.069598+00:00",
       "slug": "speculative-decoding-speedup-guide"
@@ -2913,11 +2917,83 @@
     }
   },
   "processed_web": {
+    "298c8de07d18f423": {
+      "at": "2026-10-26T10:30:42.540722+00:00",
+      "reason": "short text 137",
+      "skipped": true,
+      "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two"
+    },
+    "4708f3cc5b0124bc": {
+      "at": "2026-10-26T10:30:42.540827+00:00",
+      "reason": "dedupe: 同じ出典URL",
+      "skipped": true,
+      "url": "https://www.jst.go.jp/pr/announce/20261026-2/index.html"
+    },
+    "838fa113d922e63b": {
+      "at": "2026-10-26T10:30:42.540806+00:00",
+      "reason": "dedupe: 同じ出典URL",
+      "skipped": true,
+      "url": "https://www.riken.jp/press/2026/20261026_1/index.html"
+    },
+    "b5933abf7b3004fc": {
+      "at": "2026-10-26T10:31:00.945549+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "nvidia-local-ai-gtc-berlin-spark-station",
+      "url": "https://blogs.nvidia.co.jp/blog/local-ai-gtc-rtx-dgx-spark-station-sync/"
+    },
+    "d47435300ada2314": {
+      "at": "2026-10-26T10:30:52.037562+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "science",
+      "slug": "nilim-sar-satellite-fire-detection",
+      "url": "https://kyodonewsprwire.jp/release/202610218367"
+    },
     "d47def4b25f7da57": {
       "at": "2026-10-26T09:34:44.345716+00:00",
       "model": "gemini-3.5-flash-lite",
       "slug": "gemini-4-argon-google-builders",
       "url": "https://blog.google/products-and-platforms/products/gemini/gemini-4-argon-builders/"
+    },
+    "dcf5d54939aadc4c": {
+      "at": "2026-10-26T10:30:42.540838+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（一覧へ）",
+      "skipped": true,
+      "url": "https://www.jst.go.jp/pr/"
+    },
+    "f39a5f957cf2b8cb": {
+      "at": "2026-10-26T10:30:42.540847+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（受賞）",
+      "skipped": true,
+      "url": "https://www.jst.go.jp/pr/info/info1878/index.html"
     }
-  }
+  },
+  "quality_log": [
+    {
+      "accepted": true,
+      "at": "2026-10-26T10:30:52.037235+00:00",
+      "attempt": 1,
+      "id": "d47435300ada2314",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "kyodo-prwire",
+      "title": "小型SAR衛星を活用した火災被害検出に関する共同研究を開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T10:31:00.945131+00:00",
+      "attempt": 1,
+      "id": "b5933abf7b3004fc",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "nvidia-japan-blog",
+      "title": "欧州へ広がる Spark：ローカル インテリジェンスがエージェントの次なる進化を支える"
+    }
+  ]
 }
