@@ -3030,6 +3030,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000004.000181678.html"
     },
+    "5ac8226e346a2ea6": {
+      "at": "2026-10-26T12:51:45.036729+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（世界市場）",
+      "skipped": true,
+      "url": "https://www.dreamnews.jp/press/0000366458"
+    },
     "5db6abd51db932a5": {
       "at": "2026-10-26T11:01:12.982223+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（採用）",
@@ -3104,6 +3110,13 @@
       "skipped": true,
       "url": "https://kyodonewsprwire.jp/release/202610268694"
     },
+    "9159549a940483f3": {
+      "at": "2026-10-26T12:51:45.036697+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1905字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000017.000082558.html"
+    },
     "95364ce770790d21": {
       "at": "2026-10-26T11:33:38.547453+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3131,6 +3144,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000020.000155520.html"
     },
+    "a5dc5fb8fb4d2bfd": {
+      "at": "2026-10-26T12:50:54.598637+00:00",
+      "reason": "dedupe: 固有名詞が一致（llm・ローカル）: llama-app-mac-local-ai-hugging-face",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000077.000058475.html"
+    },
     "acc3599867d7862d": {
       "at": "2026-10-26T12:36:48.743612+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3144,6 +3163,12 @@
       "reason": "quality: 本文が短い（1949字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（367字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/weekly-genai-20261019/"
+    },
+    "b2405c6b346338a0": {
+      "at": "2026-10-26T12:51:45.036739+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（アワード）",
+      "skipped": true,
+      "url": "https://kyodonewsprwire.jp/release/202610268696"
     },
     "b5933abf7b3004fc": {
       "at": "2026-10-26T10:31:00.945549+00:00",
@@ -3262,6 +3287,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（一覧へ）",
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/"
+    },
+    "e34661f9a884f584": {
+      "at": "2026-10-26T12:52:30.413191+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "japan-occupational-health-market-2028",
+      "url": "https://www.dreamnews.jp/press/0000366537"
     },
     "e7e58cd7761fc453": {
       "at": "2026-10-26T11:02:34.699451+00:00",
@@ -4189,6 +4222,62 @@
       "score": 100,
       "source": "prtimes",
       "title": "AI Hack提供のAIO分析ツール「AI Hack」が最新AIモデル「Claude Sonnet 5.5」「GPT-6.1 Sol」に対応"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T12:51:17.327368+00:00",
+      "attempt": 1,
+      "id": "9159549a940483f3",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2034字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（353字 / 基準 400字以上）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "【開催報告】倉敷中央病院と医療現場が主役となる「生成AI×市民開発」の祭典『せとうちMED Innovationカンファレンス』をSUNABACOと共催"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T12:51:45.036676+00:00",
+      "attempt": 2,
+      "id": "9159549a940483f3",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1905字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "【開催報告】倉敷中央病院と医療現場が主役となる「生成AI×市民開発」の祭典『せとうちMED Innovationカンファレンス』をSUNABACOと共催"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T12:52:02.818112+00:00",
+      "attempt": 1,
+      "id": "e34661f9a884f584",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1720字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "score": null,
+      "source": "dreamnews",
+      "title": "日本産業保健市場：2028年のストレスチェック義務化と職場安全改革が企業向け健康サービスを再編する"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T12:52:30.412756+00:00",
+      "attempt": 2,
+      "id": "e34661f9a884f584",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "dreamnews",
+      "title": "日本産業保健市場：2028年のストレスチェック義務化と職場安全改革が企業向け健康サービスを再編する"
     }
   ]
 }
