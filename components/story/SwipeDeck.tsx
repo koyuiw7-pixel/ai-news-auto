@@ -117,15 +117,23 @@ function Deck({ bundle, next, onNext, onClose }: { bundle: Bundle; next?: Bundle
     [done, fly, index, items],
   );
 
+  const back = () => {
+    if (index === 0 || fly) return;
+    const prev = items[index - 1];
+    setKept((k) => k.filter((s) => s.slug !== prev.slug));
+    setIndex(index - 1);
+  };
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") decide(1);
-      if (e.key === "ArrowLeft") decide(-1);
+      if (e.key === "ArrowRight") decide(-1);
+      if (e.key === "ArrowLeft") back();
+      if (e.key === "ArrowUp" || e.key === "s") decide(1);
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [decide, onClose]);
+  });
 
   const onDown = (e: React.PointerEvent) => {
     if ((e.target as HTMLElement).closest("button,a")) return;
@@ -175,7 +183,21 @@ function Deck({ bundle, next, onNext, onClose }: { bundle: Bundle; next?: Bundle
       </div>
 
       {!done && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img className="dk-bg" src={it.image.replace("maxresdefault", "hqdefault")} alt="" aria-hidden />
+      )}
+      {!done && (
         <div className="dk-stage">
+          {index > 0 && (
+            <button type="button" className="dk-nav prev" onClick={back} aria-label="前の記事へ">
+              <svg viewBox="0 0 20 20" width="22" height="22" aria-hidden><path d="M12.5 4.5L7 10l5.5 5.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              <span>前へ</span>
+            </button>
+          )}
+          <button type="button" className="dk-nav next" onClick={() => decide(-1)} aria-label="次の記事へ">
+            <svg viewBox="0 0 20 20" width="22" height="22" aria-hidden><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            <span>次へ</span>
+          </button>
           {peek && (
             <div className="dk-card is-peek" aria-hidden>
               <Card it={peek} mode={mode} />
@@ -200,7 +222,7 @@ function Deck({ bundle, next, onNext, onClose }: { bundle: Bundle; next?: Bundle
         <div className="dk-actions">
           <button type="button" className="dk-act skip" onClick={() => decide(-1)}>
             <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" /></svg>
-            <span>スキップ</span>
+            <span>興味なし</span>
           </button>
           <Link href={`/articles/${it.slug}`} className="dk-read">今すぐ読む</Link>
           <button type="button" className="dk-act keep" onClick={() => decide(1)}>
@@ -359,6 +381,23 @@ const CSS = `
 .dk-act{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;font-weight:700;color:#9aa1ab}
 .dk-act svg{width:48px;height:48px;padding:13px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2)}
 .dk-act.keep{color:#2fd27f}
+.dk-bg{display:none}
+.dk-nav{position:absolute;top:28%;z-index:3;transform:translateY(-50%);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(11,13,16,.55);backdrop-filter:blur(8px);color:#f4f5f7;border:1px solid rgba(255,255,255,.18)}
+.dk-nav span{display:none}
+.dk-nav.prev{left:6px}
+.dk-nav.next{right:6px}
+.dk-nav:focus-visible,.dk-act:focus-visible,.dk-read:focus-visible{outline:2px solid #2fd27f;outline-offset:3px}
+@media (min-width:768px){
+  .dk-bg{display:block;position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;filter:blur(40px) brightness(.35) saturate(1.2);z-index:0;pointer-events:none}
+  .dk-top,.dk-actions,.dk-sum{position:relative;z-index:1;width:100%;max-width:520px;margin-inline:auto}
+  .dk-stage{z-index:1;width:min(460px,100%);margin:6px auto 0;max-height:760px}
+  .dk-nav{top:50%;width:64px;height:64px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);gap:0;grid-template-rows:auto auto;padding-top:6px}
+  .dk-nav:hover{background:#f4f5f7;color:#0b0d10}
+  .dk-nav span{display:block;font-size:11px;font-weight:700;margin-top:-6px}
+  .dk-nav.prev{left:-100px}
+  .dk-nav.next{right:-100px}
+  .dk-actions{max-width:460px}
+}
 .dk-act.keep svg{border-color:#2fd27f}
 .dk-read{height:50px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:#f4f5f7;color:#0b0d10;font-weight:700;font-size:15px}
 
