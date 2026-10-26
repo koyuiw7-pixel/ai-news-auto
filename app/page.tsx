@@ -5,6 +5,8 @@ import LiveBar from "@/components/LiveBar";
 import Thumb from "@/components/Thumb";
 import Timeline from "@/components/Timeline";
 import RailRanking from "@/components/rail/RailRanking";
+import StoryRail from "@/components/story/SwipeDeck";
+import { getStoryBundles } from "@/lib/stories";
 import { offerForArticle } from "@/lib/offers";
 import { getAllArticles, getAllGenres, tagSlug, type Article } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
@@ -48,8 +50,15 @@ export default function HomePage() {
   const tags = topTags(ai, 14);
   const otherGenres = getAllGenres().filter((g) => g.slug !== "ai");
 
+  const bundles = getStoryBundles();
+
   return (
     <>
+      {bundles.length > 0 && (
+        <div className="mx-auto max-w-[1240px] sm:px-4">
+          <StoryRail bundles={bundles} />
+        </div>
+      )}
       <LiveBar updatedAt={updatedAt} recentCount={recentCount}
         weekCount={ai.filter((a) => a.generatedAt && Date.now() - Date.parse(a.generatedAt) < 7 * 86_400_000).length} companies={companies.slice(0, 8)} />
 

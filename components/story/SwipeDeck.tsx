@@ -2,7 +2,22 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import type { StoryItem } from "@/components/story/StoryDeck";
+
+export type StoryItem = {
+  slug: string;
+  title: string;
+  gist: string;
+  highlights: string[];
+  image: string;
+  company: string;
+  color: string;
+  at: string;
+  usable: "go" | "partial" | "wait" | null;
+  usableLabel: string | null;
+  japan: string | null;
+  free: string | null;
+  price: string | null;
+};
 
 export type Bundle = { key: string; label: string; items: StoryItem[] };
 type Mode = "easy" | "expert";
