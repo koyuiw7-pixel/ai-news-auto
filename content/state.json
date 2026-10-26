@@ -2917,17 +2917,51 @@
     }
   },
   "processed_web": {
+    "00b6f156d1c37f59": {
+      "at": "2026-10-26T11:01:49.011890+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1731字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.esri.cao.go.jp/jp/stat/di/di.html"
+    },
+    "0ca77fee05927596": {
+      "at": "2026-10-26T11:01:12.982206+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（採用）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/recruit/r8/kokusai-01/kokusai-01.html"
+    },
     "298c8de07d18f423": {
       "at": "2026-10-26T10:30:42.540722+00:00",
       "reason": "short text 137",
       "skipped": true,
       "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two"
     },
+    "37e18adfd2ff499b": {
+      "at": "2026-10-26T11:01:59.803581+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "iphone-duo-arrives-at-apple-store",
+      "url": "https://www.apple.com/jp/newsroom/2026/10/iphone-duo-arrives-at-apple-store-locations-worldwide/"
+    },
     "4708f3cc5b0124bc": {
       "at": "2026-10-26T10:30:42.540827+00:00",
       "reason": "dedupe: 同じ出典URL",
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/announce/20261026-2/index.html"
+    },
+    "5db6abd51db932a5": {
+      "at": "2026-10-26T11:01:12.982223+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（採用）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/recruitment/career-government-official/visit2026-career-section-chief"
+    },
+    "7f136b8330a0f832": {
+      "at": "2026-10-26T11:01:33.594323+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 「政府広報オンラインは2026年10月26日に…公開しました」 → 元記事には公開日が「2026年10月26日」であるという記述はなく、他の出典（例：海事レポート等）の令和7年や8年の日付混入または架空の可能性があり、裏付けがない。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/tokusyu/kuniototamiyo/index.html"
     },
     "838fa113d922e63b": {
       "at": "2026-10-26T10:30:42.540806+00:00",
@@ -2943,6 +2977,13 @@
       "slug": "nvidia-local-ai-gtc-berlin-spark-station",
       "url": "https://blogs.nvidia.co.jp/blog/local-ai-gtc-rtx-dgx-spark-station-sync/"
     },
+    "ba4d3ab8dded0b33": {
+      "at": "2026-10-26T11:02:15.090656+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2346字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://github.blog/changelog/2026-10-23-usage-metrics-api-adds-usage-from-tools-like-opencode"
+    },
     "d47435300ada2314": {
       "at": "2026-10-26T10:30:52.037562+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -2950,6 +2991,13 @@
       "section": "science",
       "slug": "nilim-sar-satellite-fire-detection",
       "url": "https://kyodonewsprwire.jp/release/202610218367"
+    },
+    "d47a67b79b836d03": {
+      "at": "2026-10-26T11:01:12.982168+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://blogs.nvidia.co.jp/blog/local-ai-perplexity-windows-pcs/"
     },
     "d47def4b25f7da57": {
       "at": "2026-10-26T09:34:44.345716+00:00",
@@ -2962,6 +3010,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（一覧へ）",
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/"
+    },
+    "e7e58cd7761fc453": {
+      "at": "2026-10-26T11:02:34.699451+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "microsoft-mai-dxo-medical-superintelligence",
+      "url": "https://microsoft.ai/news/building-medical-superintelligence/"
     },
     "f39a5f957cf2b8cb": {
       "at": "2026-10-26T10:30:42.540847+00:00",
@@ -2994,6 +3050,157 @@
       "score": 100,
       "source": "nvidia-japan-blog",
       "title": "欧州へ広がる Spark：ローカル インテリジェンスがエージェントの次なる進化を支える"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:01:04.430230+00:00",
+      "attempt": 1,
+      "id": "d47a67b79b836d03",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1896字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "nvidia-japan-blog",
+      "title": "Perplexity Portable Computer が NVIDIA RTX 搭載 Windows PC に対応"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:01:12.982129+00:00",
+      "attempt": 2,
+      "id": "d47a67b79b836d03",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "score": null,
+      "source": "nvidia-japan-blog",
+      "title": "Perplexity Portable Computer が NVIDIA RTX 搭載 Windows PC に対応"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:01:20.482119+00:00",
+      "attempt": 1,
+      "id": "7f136b8330a0f832",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1715字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "gov-online",
+      "title": "くにおとたみよの政府広報"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:01:33.594290+00:00",
+      "attempt": 2,
+      "id": "7f136b8330a0f832",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「政府広報オンラインは2026年10月26日に…公開しました」 → 元記事には公開日が「2026年10月26日」であるという記述はなく、他の出典（例：海事レポート等）の令和7年や8年の日付混入または架空の可能性があり、裏付けがない。"
+      ],
+      "score": 90,
+      "source": "gov-online",
+      "title": "くにおとたみよの政府広報"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:01:41.253776+00:00",
+      "attempt": 1,
+      "id": "00b6f156d1c37f59",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1355字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（322字 / 基準 400字以上）"
+      ],
+      "score": null,
+      "source": "cao",
+      "title": "景気動向指数（令和8年8月分速報からの改訂状況）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:01:49.011868+00:00",
+      "attempt": 2,
+      "id": "00b6f156d1c37f59",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1731字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "cao",
+      "title": "景気動向指数（令和8年8月分速報からの改訂状況）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T11:01:59.803139+00:00",
+      "attempt": 1,
+      "id": "37e18adfd2ff499b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "apple-newsroom-jp-all",
+      "title": "iPhone Duoが世界中のApple Storeに登場"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:02:07.391414+00:00",
+      "attempt": 1,
+      "id": "ba4d3ab8dded0b33",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2069字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "Usage metrics API adds usage from tools like OpenCode"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:02:15.090626+00:00",
+      "attempt": 2,
+      "id": "ba4d3ab8dded0b33",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2346字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "Usage metrics API adds usage from tools like OpenCode"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T11:02:23.741361+00:00",
+      "attempt": 1,
+      "id": "e7e58cd7761fc453",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2477字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "microsoft-source",
+      "title": "Can AI diagnose like a team of doctors? New research puts it to the test"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T11:02:34.699084+00:00",
+      "attempt": 2,
+      "id": "e7e58cd7761fc453",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "microsoft-source",
+      "title": "Can AI diagnose like a team of doctors? New research puts it to the test"
     }
   ]
 }
