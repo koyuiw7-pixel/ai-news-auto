@@ -3156,6 +3156,14 @@
       "slug": "maison-crivelli-tobacco-carnaval",
       "url": "https://prtimes.jp/main/html/rd/p/000000856.000003907.html"
     },
+    "27f8be5bb347e6c8": {
+      "at": "2026-10-26T23:21:40.234840+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "japan-vitamins-market-survey-2036",
+      "url": "https://www.dreamnews.jp/press/0000366535"
+    },
     "28c905a0024836c7": {
       "at": "2026-10-26T15:32:06.663662+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3410,6 +3418,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000004.000181678.html"
     },
+    "57626b3cad5444ca": {
+      "at": "2026-10-26T23:21:40.235044+00:00",
+      "reason": "dedupe: 固有名詞が一致（ai-bpo・ゴムマリ）: ゴムマリの専門業務AI-BPO、『苦情・VoC・クレームのデータベース化』を提供",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000038.000185093.html"
+    },
     "5854ffdfb8165007": {
       "at": "2026-10-26T19:41:09.355610+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3459,6 +3473,13 @@
       "section": "ai",
       "slug": "cccskills-ai-agent-skills-market",
       "url": "https://prtimes.jp/main/html/rd/p/000000083.000041726.html"
+    },
+    "602f23208b9190cb": {
+      "at": "2026-10-26T23:21:12.552422+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2113字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000039.000185093.html"
     },
     "62a23b09751441ec": {
       "at": "2026-10-26T20:01:09.893173+00:00",
@@ -4121,6 +4142,13 @@
       "reason": "quality: 本文が短い（1898字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000031.000168691.html"
+    },
+    "e52a1eb6f54ddd76": {
+      "at": "2026-10-26T23:21:25.860464+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 価格欄の「編集部注: 言及なし（一般的な自治体アプリとして無料配信）」→ 無料配信である旨や前提は元記事に記載されていない。",
+      "skipped": true,
+      "url": "https://kyodonewsprwire.jp/release/202610268681"
     },
     "e5e4c3ae2b7984fd": {
       "at": "2026-10-26T17:52:08.272357+00:00",
@@ -7129,6 +7157,89 @@
       "score": 100,
       "source": "value-press",
       "title": "京都発ウェルネスブランド「LYTHA」誕生。イタリア・プーリア産100％エキストラバージン・ヘンプシードオイルを、1回分ずつ遮光・密閉の4gエアタイトサシェに"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:21:04.375614+00:00",
+      "attempt": 1,
+      "id": "602f23208b9190cb",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1658字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "ゴムマリの専門業務AI-BPO、『苦情・VoC・クレームのデータベース化』を提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:21:12.552398+00:00",
+      "attempt": 2,
+      "id": "602f23208b9190cb",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2113字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "ゴムマリの専門業務AI-BPO、『苦情・VoC・クレームのデータベース化』を提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:21:18.885065+00:00",
+      "attempt": 1,
+      "id": "e52a1eb6f54ddd76",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1369字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "kyodo-prwire",
+      "title": "小諸の情報はこれ一つで完結！楽しい街アプリ『Komomag.（コモマグ）』誕生"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:21:25.860434+00:00",
+      "attempt": 2,
+      "id": "e52a1eb6f54ddd76",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "価格欄の「編集部注: 言及なし（一般的な自治体アプリとして無料配信）」→ 無料配信である旨や前提は元記事に記載されていない。"
+      ],
+      "score": 90,
+      "source": "kyodo-prwire",
+      "title": "小諸の情報はこれ一つで完結！楽しい街アプリ『Komomag.（コモマグ）』誕生"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:21:32.727684+00:00",
+      "attempt": 1,
+      "id": "27f8be5bb347e6c8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1679字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "dreamnews",
+      "title": "日本ビタミン市場：予防栄養、機能性食品の革新、消費者の健康トレンドが新たなビジネス機会を創出"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T23:21:40.234483+00:00",
+      "attempt": 2,
+      "id": "27f8be5bb347e6c8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "dreamnews",
+      "title": "日本ビタミン市場：予防栄養、機能性食品の革新、消費者の健康トレンドが新たなビジネス機会を創出"
     }
   ]
 }
