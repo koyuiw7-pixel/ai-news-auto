@@ -1,0 +1,169 @@
+{
+  "slug": "image-generation",
+  "title": "画像生成AIの始め方比較：ブラウザで使うサービスか、GPU搭載PCか【2026年版】",
+  "shortName": "画像生成AIの環境",
+  "description": "Stable Diffusionなどの画像生成AIをこれから始める人へ。ConoHa AI CanvasやBTOゲーミングPCなどの公式情報と価格をもとに比較します。",
+  "targetQueries": [
+    "画像生成AI 始め方",
+    "画像生成AI サービス 比較",
+    "Stable Diffusion PC スペック",
+    "ConoHa AI Canvas"
+  ],
+  "topics": [
+    "image"
+  ],
+  "intro": "Stable Diffusionを使って本格的に画像生成AIを始めたいけれど、ブラウザサービスとGPU搭載PCのどちらを選ぶべきか悩んでいませんか？このガイドでは、クラウドで手軽に使えるサービスからローカル環境向けのBTOパソコンまで、主要な選択肢を取り上げてそれぞれの特徴を比べます。2026年10月27日時点の公式情報と価格をもとに比較しています。",
+  "criteria": [
+    "初期費用や月額料金など、予算に合わせたランニングコストの形を確認する。",
+    "ブラウザで手軽にクラウド利用するか、手元にGPU搭載PCを用意するかという導入方法を比較する。",
+    "AUTOMATIC1111やComfyUIなど、好みに合わせて選べるインターフェースの有無を見る。"
+  ],
+  "columns": [
+    "使い方",
+    "初期費用・料金の形",
+    "向いている人"
+  ],
+  "products": [
+    {
+      "partner": "conoha-ai-canvas",
+      "price": "月額1,100円〜",
+      "priceSource": {
+        "type": "official",
+        "url": "https://ai.conoha.jp/canvas/",
+        "checkedAt": "2026-10-27T02:34:36+09:00"
+      },
+      "priceNote": "税込み、別途無料時間を超えると6.6円/分",
+      "specs": [
+        "ブラウザからクラウドで利用",
+        "月額制＋従量課金",
+        "手軽に始めたい初心者"
+      ],
+      "bestFor": "初期投資を抑えてブラウザから手軽にStable Diffusionを始めたい人",
+      "summary": "ConoHa AI Canvasは、高価なGPU搭載PCを用意しなくてもブラウザからStable Diffusionを利用できる国産のクラウドサービスです。月額1,100円からの料金プランがあり、自由なカスタマイズで高品質な画像を枚数制限なしで生成できます。AUTOMATIC1111とComfyUIの2つのWebUIから選択可能です。",
+      "strengths": [
+        "NVIDIAの最新GPUをクラウド上で使用でき、高価なPCが不要です。",
+        "生成枚数に上限がなく、機能制限なしでStable Diffusionを利用できます。",
+        "日本語表示に標準対応している安心の国産サービスです。"
+      ],
+      "limits": [
+        "現在、臨時メンテナンスのため新規お申し込み受付を停止しています。",
+        "WebUIの無料時間を超過した場合は分単位の追加料金が発生します。"
+      ],
+      "officialUrl": "https://ai.conoha.jp/canvas/"
+    },
+    {
+      "partner": "oz-rx9060xt",
+      "price": "274,800円",
+      "priceSource": {
+        "type": "data",
+        "file": "products.json",
+        "checkedAt": "2026-10-26T09:25:06.891826+00:00"
+      },
+      "priceNote": "",
+      "specs": [
+        "ローカルPCで利用",
+        "本体購入（一括）",
+        "VRAM 16GBを試したい人"
+      ],
+      "bestFor": "VRAM 16GBをこの価格帯で手に入れてローカル環境で試したい人",
+      "summary": "OZ GAMING Z1は、Ryzen 7 9700XとRX 9060 XT 16GBを搭載したゲーミングPCです。VRAM 16GBを備えつつ価格を抑えた構成となっており、ローカル環境で画像生成AIなどを動かしたいユーザーに向けた製品です。",
+      "strengths": [
+        "VRAM 16GBをこの価格帯で導入できる仕様になっています。",
+        "手元のパソコンとしてローカル環境で自由にAI処理を行えます。"
+      ],
+      "limits": [
+        "公式ページの抜粋が取得できていないため、詳細なスペックや利用条件は公式ページで確認してください。"
+      ],
+      "officialUrl": "https://www.ozgaming-pcshop.com/view/item/000000002781"
+    },
+    {
+      "partner": "mdl",
+      "price": "",
+      "priceSource": null,
+      "priceNote": "",
+      "specs": [
+        "ローカルPCで利用",
+        "本体購入（一括）",
+        "パーツを選びたい人"
+      ],
+      "bestFor": "画像生成やローカルLLM向けにGPUなどの構成を自由に選びたい人",
+      "summary": "MDL BTOゲーミングPCは、画像生成やローカルLLMの用途に合わせてGPUなどのパーツ構成を選べるBTOパソコンです。ユーザーの目的に応じたカスタマイズを行ってローカル環境を構築できます。",
+      "strengths": [
+        "画像生成やローカルLLM向けにGPUから構成を自由に選べます。"
+      ],
+      "limits": [
+        "公式ページには不動産テックに関する記載のみ確認されており、パソコンの具体的な価格や詳細な仕様は公式サイトで確認してください。"
+      ],
+      "officialUrl": "https://www.mdl.co.jp/"
+    }
+  ],
+  "quickPick": [
+    {
+      "partner": "conoha-ai-canvas",
+      "reason": "高価なGPU搭載PCを買わずに、月額1,100円からブラウザで手軽にStable Diffusionを使いたい人に最適です。"
+    },
+    {
+      "partner": "oz-rx9060xt",
+      "reason": "VRAM 16GBを搭載したパソコンを手頃な価格で手に入れて、ローカル環境で試したい人に向いています。"
+    },
+    {
+      "partner": "mdl",
+      "reason": "画像生成やローカルLLMの目的に合わせて、好みのGPUパーツ構成を選んでパソコンを組みたい人に適しています。"
+    }
+  ],
+  "faq": [
+    {
+      "q": "ConoHa AI Canvasの料金体系はどうなっていますか？",
+      "a": "エントリープランが月額1,100円、スタンダードプランが月額4,378円、アドバンスプランが月額9,878円です。プランごとに無料時間が設けられており、超過した場合は6.6円/分が加算されます。"
+    },
+    {
+      "q": "ConoHa AI Canvasは今すぐ申し込めますか？",
+      "a": "公式ページによると、現在臨時メンテナンスのため新規お申し込み受付を停止しています。受付再開までお待ちください。"
+    },
+    {
+      "q": "生成した画像は商用利用できますか？",
+      "a": "商用利用の可否は使用するCheckpoint（モデル）により異なります。サービスや使用するモデルの利用規約を確認のうえご利用ください。"
+    },
+    {
+      "q": "パソコンを購入する場合の価格はどこで確認できますか？",
+      "a": "OZ GAMINGやMDLのパソコンの正確な価格や仕様については、それぞれの公式サイトで確認してください。"
+    }
+  ],
+  "relatedArticleSlugs": [
+    "openai-retail-shopping-agent-demo",
+    "google-ai-studio-nano-banana-2-1",
+    "higgsfield-multi-model-video-api-launch",
+    "openai-chatgpt-images-manga-generation"
+  ],
+  "sources": [
+    {
+      "partner": "conoha-ai-canvas",
+      "urls": [
+        "https://ai.conoha.jp/canvas/"
+      ],
+      "fetchedAt": "2026-10-27T02:12:32+09:00"
+    },
+    {
+      "partner": "oz-rx9060xt",
+      "urls": [
+        "https://www.ozgaming-pcshop.com/view/item/000000002781"
+      ],
+      "fetchedAt": "2026-10-27T02:12:32+09:00"
+    },
+    {
+      "partner": "mdl",
+      "urls": [
+        "https://www.mdl.co.jp/"
+      ],
+      "fetchedAt": "2026-10-27T02:12:32+09:00"
+    }
+  ],
+  "publishedAt": "2026-10-27T02:14:04+09:00",
+  "updatedAt": "2026-10-27T02:34:57+09:00",
+  "priceCheckedAt": "2026-10-27T02:34:36+09:00",
+  "model": "gemini-3.5-flash-lite",
+  "factCheck": {
+    "score": 100,
+    "model": "gemini-3.5-flash-lite"
+  }
+}

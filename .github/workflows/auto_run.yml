@@ -118,6 +118,18 @@ jobs:
         continue-on-error: true
         run: python scripts/rakuten_books.py --if-older-than 20
 
+      # 比較ガイド（/compare）。未作成のものを1本ずつ作り、価格は7日ごとに公式ページで確認し直す
+      - name: Buying guides
+        if: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'web') || github.event.schedule == '7 */6 * * *' }}
+        continue-on-error: true
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          CLAUDE_DAILY_MAX: ${{ vars.CLAUDE_DAILY_MAX || '40' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/buying_guides.py --limit 1
+          python scripts/buying_guides.py --refresh --max-age 7
+
       - name: Commit & push
         id: commit
         run: |

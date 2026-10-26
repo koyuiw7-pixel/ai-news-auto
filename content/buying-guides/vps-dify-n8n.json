@@ -1,0 +1,145 @@
+{
+  "slug": "vps-dify-n8n",
+  "title": "Dify・n8nを動かすVPSおすすめ比較【2026年版】XServer VPSとConoHa VPS",
+  "shortName": "Dify・n8n用のVPS",
+  "description": "Difyやn8nなどのAIアプリを動かすVPSを探している方向けに、XServer VPSとConoHa VPSを2026年10月27日時点の公式情報と価格をもとに比較します。",
+  "targetQueries": [
+    "Dify VPS おすすめ",
+    "n8n VPS",
+    "Dify セルフホスト サーバー",
+    "XServer VPS ConoHa VPS 比較"
+  ],
+  "topics": [
+    "server",
+    "agent"
+  ],
+  "intro": "Dify、n8n、OllamaなどのAIアプリケーションを自分専用のサーバー（VPS）で動かしたいと考えている方へ向けた比較ガイドです。AIエージェントの活用が進む近年、自前のサーバー環境を用意してプライベートな運用を行いたいニーズが高まっています。このガイドでは、人気の高い「XServer VPS」と「ConoHa VPS」の2大サービスをピックアップし、料金プランやスペック、機能の違いを整理しました。2026年10月27日時点の公式情報と価格をもとに比較しています。ご自身の目的に最適なサーバー選びの参考にしてください。",
+  "criteria": [
+    "月額料金と長期契約・キャンペーンのお得さを確認する",
+    "動かしたいAIアプリや用途に合うスペック（メモリ・CPU）を選ぶ",
+    "自動バックアップやサポートなどの付帯機能をチェックする",
+    "無料トライアルや導入の簡単さを比較する"
+  ],
+  "columns": [
+    "料金の目安",
+    "アプリの導入",
+    "向いている使い方"
+  ],
+  "products": [
+    {
+      "partner": "xserver-vps",
+      "price": "月額1,265円～",
+      "priceSource": {
+        "type": "official",
+        "url": "https://vps.xserver.ne.jp/",
+        "checkedAt": "2026-10-27T02:36:38+09:00"
+      },
+      "priceNote": "初期費用無料、プランにより変動",
+      "specs": [
+        "月額1,265円～",
+        "アプリイメージ対応・自動構築",
+        "AIツール・個人開発・Webアプリ"
+      ],
+      "bestFor": "信頼性の高い国内基盤で安定したAI環境を構築したい人",
+      "summary": "エックスサーバーが手掛ける、AMD EPYCやNVMe SSDを標準搭載した高性能なVPSです。初期費用無料で、Difyなどのアプリイメージを使った自動構築に対応しています。国内のデータセンターでサーバーを管理しており、電話・メールサポートも無料で利用可能です。",
+      "strengths": [
+        "AMD EPYCやNVMe SSDを標準搭載した圧倒的ハイスペックな環境",
+        "アプリイメージによる自動構築で、数クリックでDifyなどの導入が可能",
+        "初期費用無料で、電話・メールサポートが無料で利用できる"
+      ],
+      "limits": [
+        "無料VPSはお試し用として1日ごとに契約更新が必要",
+        "一部の高度なプランを除きプライベートネットワークや自動バックアップの詳細はプランによる"
+      ],
+      "officialUrl": "https://vps.xserver.ne.jp/"
+    },
+    {
+      "partner": "conoha-vps",
+      "price": "460円/月～",
+      "priceSource": {
+        "type": "official",
+        "url": "https://vps.conoha.jp/pricing/",
+        "checkedAt": "2026-10-27T02:36:38+09:00"
+      },
+      "priceNote": "まとめトクおよび時間課金に対応",
+      "specs": [
+        "460円/月～",
+        "公式ページに記載なし",
+        "テスト環境・小規模Webサイト"
+      ],
+      "bestFor": "使った時間だけ支払いたい人や、小規模なテスト環境をすぐに作りたい人",
+      "summary": "ConoHa VPSは、長期利用割引サービスの「まとめトク」と「時間課金」の2種類の料金タイプを用意しているVPSです。全てのプランで初期費用が無料となっており、最小限の費用で気軽にサーバーを利用し始めることができます。",
+      "strengths": [
+        "使った時間だけ支払える時間課金と、長期でお得なまとめトクを選択可能",
+        "初期費用が無料で最小限の費用から導入できる",
+        "メモリ512MBから大容量プランまで幅広い選択肢を用意"
+      ],
+      "limits": [
+        "キャンペーン価格の適用期限や更新時の料金に注意が必要",
+        "公式ページにDifyやn8n専用の自動構築アプリイメージの詳細な記載がない"
+      ],
+      "officialUrl": "https://vps.conoha.jp/pricing/"
+    }
+  ],
+  "quickPick": [
+    {
+      "partner": "xserver-vps",
+      "reason": "Difyなどのアプリイメージを使った簡単な自動構築や国内の安心サポートを重視する人に向いています。"
+    },
+    {
+      "partner": "conoha-vps",
+      "reason": "使った時間分だけ支払う柔軟な課金体系や、まずは低価格で小規模なテスト環境を作りたい人に向いています。"
+    }
+  ],
+  "faq": [
+    {
+      "q": "VPSとは何ですか？",
+      "a": "物理サーバー上にユーザーごとの仮想サーバーを構築し、専用サーバーのように利用できるサービスです。独自OSの導入やアプリケーションの自由なカスタマイズが可能です。"
+    },
+    {
+      "q": "レンタルサーバーとVPSの違いは何ですか？",
+      "a": "VPSは専用リソースとroot権限が付与され、OSやアプリケーションの選定を自由に行えるため高いカスタマイズ性があります。レンタルサーバーはサーバー管理の手間を省きWebサイトを簡単に運用したい場合に向いています。"
+    },
+    {
+      "q": "無料のお試し期間はありますか？",
+      "a": "XServer VPSでは2GBと4GBのプランを無料でご利用いただける無料VPSをご用意しています。詳細は公式サイトで確認してください。"
+    },
+    {
+      "q": "どのプランを選べばよいですか？",
+      "a": "個人利用やテスト用途には2GB、開発・運用を兼ねたい方には4GBプランなどがおすすめです。詳細は公式サイトで確認してください。"
+    }
+  ],
+  "relatedArticleSlugs": [
+    "dotnet-11-rc2-python-arm64-foundry-browser-automation",
+    "microsoft-foundry-agent-guardrails-security",
+    "nvidia-gtc-berlin-2026-keynote-highlights",
+    "openai-dot-bug-hunting-codex",
+    "nvidia-isaac-gpt6-astra-robotics-agile-one",
+    "openai-astra-shield-forge-it-support"
+  ],
+  "sources": [
+    {
+      "partner": "xserver-vps",
+      "urls": [
+        "https://vps.xserver.ne.jp/"
+      ],
+      "fetchedAt": "2026-10-27T02:01:43+09:00"
+    },
+    {
+      "partner": "conoha-vps",
+      "urls": [
+        "https://vps.conoha.jp/pricing/",
+        "https://vps.conoha.jp/"
+      ],
+      "fetchedAt": "2026-10-27T02:01:43+09:00"
+    }
+  ],
+  "publishedAt": "2026-10-27T02:07:22+09:00",
+  "updatedAt": "2026-10-27T02:36:40+09:00",
+  "priceCheckedAt": "2026-10-27T02:36:38+09:00",
+  "model": "gemini-3.5-flash-lite",
+  "factCheck": {
+    "score": 100,
+    "model": "gemini-3.5-flash-lite"
+  }
+}

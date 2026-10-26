@@ -17,6 +17,7 @@ import ReadingMode from "@/components/ReadingMode";
 import VerdictCard from "@/components/VerdictCard";
 import { companyOf, thumbSource } from "@/lib/companies";
 import { guideForArticle } from "@/lib/guides";
+import { buyingGuideForTopic, guideShortName } from "@/lib/buying-guides";
 import { STATUS_LABEL, freeLabel, japanLabel, verdictOf } from "@/lib/verdict";
 import { offerForArticle } from "@/lib/offers";
 import Morph from "@/components/Morph";
@@ -123,6 +124,8 @@ export default async function ArticlePage({ params }: Props) {
   const inlineItems = [...pool.slice(3, 6), ...pool.slice(9, 12)];
   const inlineOffer =
     offerAll && inlineItems.length >= 2 ? { ...offerAll, eyebrow: "あわせてチェック", items: inlineItems } : undefined;
+  // 商品枠の話題に比較ガイドがあれば、商品枠のすぐ下に1行だけ案内する
+  const buyingGuide = buyingGuideForTopic(offerAll?.topic);
   // 日本語の黙読はおよそ毎分600字
   const readMinutes = Math.max(1, Math.round(article.body.length / 600));
   // 「かんたんに読む」版（ある記事だけ、読み方を切り替えられる）
@@ -515,6 +518,7 @@ export default async function ArticlePage({ params }: Props) {
           {bodyTail && inlineOffer && (
             <div className="my-10 max-w-[46em]">
               <RailRanking offer={inlineOffer} wide id="offer-inline" title="もっと深く知るための3選" />
+              {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex lg:hidden" />}
             </div>
           )}
           {bodyTail && !offer && affiliates.length > 0 && (
@@ -567,6 +571,7 @@ export default async function ArticlePage({ params }: Props) {
           {!bodyTail && inlineOffer && (
             <div className="mt-12 max-w-[46em]">
               <RailRanking offer={inlineOffer} wide id="offer-inline" title="もっと深く知るための3選" />
+              {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex lg:hidden" />}
             </div>
           )}
           {!bodyTail && !offer && affiliates.length > 0 && (
@@ -639,6 +644,8 @@ export default async function ArticlePage({ params }: Props) {
             // 以前は最新記事やタグも並べていて背が高く、最後までスクロールしないと追従しなかった
             <div className="lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:[scrollbar-width:thin]">
               <RailRanking offer={offer} />
+              {/* PC は右側の商品枠の下、スマホは本文中の商品枠の下（1画面に1つだけ） */}
+              {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="hidden lg:flex" />}
             </div>
           ) : (
             <Sidebar current={article} affiliates={affiliates} />
@@ -649,6 +656,22 @@ export default async function ArticlePage({ params }: Props) {
       {/* スマホ：読み進めると画面下にイチオシを出す */}
       {offer && <MobilePrBar item={offer.items[0]} watchId="offer-inline" />}
     </div>
+  );
+}
+
+/** 比較ガイドへの1行の案内（商品枠の直下） */
+function CompareLink({ slug, name, className = "" }: { slug: string; name: string; className?: string }) {
+  return (
+    <Link
+      href={`/compare/${slug}`}
+      className={`group mt-2.5 items-center gap-2 rounded-xl border border-line px-3.5 py-2.5 text-[13px] transition-colors hover:border-ink ${className}`}
+    >
+      <span className="shrink-0 rounded-full bg-ink px-2 py-0.5 text-[10px] font-bold text-paper">比較</span>
+      <span className="min-w-0 font-bold leading-snug text-ink group-hover:underline">
+        {name}を選ぶなら：比較ガイドを見る
+      </span>
+      <span aria-hidden className="ml-auto text-muted">→</span>
+    </Link>
   );
 }
 

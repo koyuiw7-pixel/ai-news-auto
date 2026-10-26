@@ -9,6 +9,7 @@ import {
 } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
 import { getAllGuides, guideArticles } from "@/lib/guides";
+import { getAllBuyingGuides } from "@/lib/buying-guides";
 import { siteConfig } from "@/site.config";
 
 export type SitemapEntry = {
@@ -80,6 +81,16 @@ export function sitemapEntries(): SitemapEntry[] {
       url: `${base}/guides/${guide.slug}`,
       lastModified: new Date(guideArticles(guide)[0]?.publishedAt ?? lastModified),
       changeFrequency: "daily" as const,
+      priority: 0.9,
+    })),
+    // 比較ガイド（購買意図の強い検索の受け皿）
+    ...(getAllBuyingGuides().length > 0
+      ? [{ url: `${base}/compare`, lastModified, changeFrequency: "weekly" as const, priority: 0.8 }]
+      : []),
+    ...getAllBuyingGuides().map((guide) => ({
+      url: `${base}/compare/${guide.slug}`,
+      lastModified: new Date(guide.updatedAt),
+      changeFrequency: "weekly" as const,
       priority: 0.9,
     })),
     ...companyCounts(articles).map(({ company }) => ({

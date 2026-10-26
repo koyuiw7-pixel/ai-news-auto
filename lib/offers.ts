@@ -182,6 +182,32 @@ export function offerForTopic(key: string, eyebrow?: string, maxItems = MAX_ITEM
   return buildOffer(topic, offers.fallbackByGenre?.[topic.genre ?? "ai"] ?? offers.fallback, maxItems);
 }
 
+/**
+ * 提携商品1つを、商品枠と同じ形（A8 のリンク・画像つき）で取り出す。比較ガイド用。
+ * 提携リンクが無い（未提携・提携切れ）ものは undefined
+ */
+export function partnerItem(key: string): { item: OfferItem; pixel?: string } | undefined {
+  const { offers, affiliates } = load();
+  const partner = offers.partners[key];
+  const program = partner ? affiliates[partner.program] : undefined;
+  if (!partner || !program?.url) return undefined;
+  return {
+    item: {
+      key,
+      kind: "partner",
+      name: partner.name,
+      label: partner.label,
+      badge: partner.badge,
+      note: partner.note,
+      image: partner.image,
+      url: partner.link ?? partnerUrl(program.url, partner.page),
+      shop: partner.shop,
+      cta: "公式サイトで見る",
+    },
+    pixel: partner.pixel ?? program.pixel,
+  };
+}
+
 /** 文字列から決まった数を作る（同じ記事なら同じ並び、記事が違えば違う並びにするため） */
 function hashOf(text: string): number {
   let h = 0;

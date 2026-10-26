@@ -6,6 +6,7 @@ import { hasActiveAffiliate } from "@/lib/monetization";
 import { siteConfig } from "@/site.config";
 
 const LEGAL_LINKS = [
+  { href: "/compare", label: "比較ガイド" },
   { href: "/about", label: "運営者情報" },
   { href: "/editorial-policy", label: "編集方針・AI利用と事実確認" },
   { href: "/privacy", label: "プライバシーポリシー" },
