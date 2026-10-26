@@ -3124,6 +3124,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000220.000068011.html"
     },
+    "29aa2d1bb897616c": {
+      "at": "2026-10-26T20:41:04.903353+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "人事・採用・公募・シンポジウムの案内だけのものは対象外です",
+      "skipped": true,
+      "url": "https://www.atpress.ne.jp/news/644295"
+    },
     "2cd0e1760990091a": {
       "at": "2026-10-26T14:11:39.308950+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3262,6 +3269,14 @@
       "reason": "dedupe: 同じ出典URL",
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/announce/20261026-2/index.html"
+    },
+    "4897863e4c40f390": {
+      "at": "2026-10-26T20:41:23.860658+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "igakushoin-ptashop-goods-2026",
+      "url": "https://prtimes.jp/main/html/rd/p/000007784.000005875.html"
     },
     "4a5d85df09fdc406": {
       "at": "2026-10-26T14:58:57.208371+00:00",
@@ -3537,6 +3552,13 @@
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000049.000132758.html"
+    },
+    "90b4ed147d11ceee": {
+      "at": "2026-10-26T20:41:11.225505+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大臣の定例記者会見における世銀・IMF合同開発委員会次期議長への就任挨拶および通常の予算編成方針に関する質疑応答であり、国民生活に直接関わる新制度や給付、規制の決定事項が含まれないため対象外とします。",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/conference/minister/2026b/20261013-1.html"
     },
     "9159549a940483f3": {
       "at": "2026-10-26T12:51:45.036697+00:00",
@@ -6687,6 +6709,32 @@
       "score": 100,
       "source": "prtimes-all",
       "title": "現役プライム上場企業社長と135億円EXIT起業家がIPO志望経営者のピッチに直接フィードバック｜Next IPO Clubインキュベーションサロン9月度月例会"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T20:41:17.258262+00:00",
+      "attempt": 1,
+      "id": "4897863e4c40f390",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1602字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes-all",
+      "title": "医学書院から社名ロゴTシャツと『ケアをひらく』の新作が登場！ Tシャツ・ロンT・トートバッグ計4種を発売開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T20:41:23.860182+00:00",
+      "attempt": 2,
+      "id": "4897863e4c40f390",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes-all",
+      "title": "医学書院から社名ロゴTシャツと『ケアをひらく』の新作が登場！ Tシャツ・ロンT・トートバッグ計4種を発売開始"
     }
   ]
 }
