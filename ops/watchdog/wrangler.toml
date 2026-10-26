@@ -1,0 +1,17 @@
+name = "saisoku-watchdog"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+# 外から呼べる URL は作らない（Cron だけで動かす）
+workers_dev = false
+
+# 10分ごとに記事作りの様子を確認する（GitHub の時刻指定が飛ばされても止まらないように）
+[triggers]
+crons = ["*/10 * * * *"]
+
+[vars]
+REPO = "koyuiw7-pixel/ai-news-auto"
+WORKFLOW = "auto_run.yml"
+# この時間（分）以上、記事作りが始まっていなければ起動する
+START_GAP_MIN = "25"
+# この時間（分）以上、成功した記事作りが無ければ知らせる
+ALERT_GAP_MIN = "120"

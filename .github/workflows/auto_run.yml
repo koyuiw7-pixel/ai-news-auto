@@ -4,12 +4,16 @@ on:
   schedule:
     # 6時間ごと（UTC基準）。量産と見なされるリスクとAPI消費を抑えるため
     # 3時間ごと3本(最大24本/日)から絞っている
-    - cron: "0 */6 * * *"
+    - cron: "7 */6 * * *"
     # 公式ブログ・プレスリリース・話題のニュースは20分ごとに少しずつ出す（まとめて出すより自然で、速報性も上がる）
     # Vercel 無料プランの1日100回のデプロイ上限に収まるよう、記事が増えた回だけコミットする
     - cron: "15,35,55 * * * *"
   workflow_dispatch:
     inputs:
+      mode:
+        description: "full=動画・まとめ・SNSも実行 / web=公式ブログ・プレスリリース・話題のみ（見張り番が使う）"
+        required: false
+        default: "full"
       max_articles:
         description: "1回で生成する最大記事数"
         required: false
@@ -55,7 +59,7 @@ jobs:
 
       # 動画の解析は無料枠を多く使うので6時間ごとだけ
       - name: Generate articles
-        if: ${{ github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *' }}
+        if: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'web') || github.event.schedule == '7 */6 * * *' }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # 未設定なら scripts/main.py の MODEL_CANDIDATES が自動で選択する
@@ -94,7 +98,7 @@ jobs:
       # 同じ話題の記事が3本以上たまったら、横断まとめ記事に統合する。
       # 動画を再解析せず既存記事のテキストだけを使うのでAPI消費は1回分。
       - name: Build roundup
-        if: ${{ github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *' }}
+        if: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'web') || github.event.schedule == '7 */6 * * *' }}
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -142,7 +146,7 @@ jobs:
       # Buffer の無料枠（1日250リクエスト）を守るため、SNS の予約は6時間ごとの回だけ行う
       # （8時間先までの枠をまとめて予約するので、6時間ごとで足りる）
       - name: Post to Threads
-        if: ${{ github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *' }}
+        if: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'web') || github.event.schedule == '7 */6 * * *' }}
         continue-on-error: true
         env:
           THREADS_MODE: ${{ vars.THREADS_MODE }}
