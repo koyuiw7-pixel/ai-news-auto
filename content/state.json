@@ -3081,6 +3081,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000115.000061059.html"
     },
+    "236c687371b6fbfc": {
+      "at": "2026-10-26T20:01:27.448108+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1769字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/policies/local_governments/specification"
+    },
     "2504bf7e57b1f9b6": {
       "at": "2026-10-26T18:32:34.996029+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3197,6 +3204,14 @@
       "section": "business",
       "slug": "goyokiki-doctor-online-consultation-survey",
       "url": "https://prtimes.jp/main/html/rd/p/000000071.000049934.html"
+    },
+    "3d1e98822dd3b16e": {
+      "at": "2026-10-26T20:01:54.511109+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "oh-my-teeth-interview-impression-survey",
+      "url": "https://prtimes.jp/main/html/rd/p/000000150.000048884.html"
     },
     "3f779c4c9f9d66c6": {
       "at": "2026-10-26T14:59:41.239534+00:00",
@@ -3346,6 +3361,12 @@
       "section": "ai",
       "slug": "cccskills-ai-agent-skills-market",
       "url": "https://prtimes.jp/main/html/rd/p/000000083.000041726.html"
+    },
+    "62a23b09751441ec": {
+      "at": "2026-10-26T20:01:09.893173+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（採用）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/recruit/r8/kikaku-03/kikaku-03.html"
     },
     "62c869d7dbe25166": {
       "at": "2026-10-26T11:31:53.187943+00:00",
@@ -3579,6 +3600,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000077.000058475.html"
     },
+    "a7a4eed88b7f564f": {
+      "at": "2026-10-26T20:01:09.893187+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326716.html"
+    },
     "aaf22fbf6fabb7c9": {
       "at": "2026-10-26T16:35:20.540731+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3753,6 +3780,13 @@
       "section": "business",
       "slug": "aimoka-starter-pack-website",
       "url": "https://prtimes.jp/main/html/rd/p/000000007.000167635.html"
+    },
+    "cfca159d4cf57a59": {
+      "at": "2026-10-26T20:01:09.893138+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大学の人事・教育プログラムの紹介およびイベント・交流会の案内であり、科学研究の成果、宇宙ミッション、観測・実験の発表ではないため対象外。",
+      "skipped": true,
+      "url": "https://kyodonewsprwire.jp/release/202610268689"
     },
     "d114e17ae39da754": {
       "at": "2026-10-26T12:42:15.173964+00:00",
@@ -6537,6 +6571,60 @@
       "score": 100,
       "source": "dreamnews",
       "title": "【ソフトテニス】ルーセントカップ「東京インドア2027」＆「社会人対学生2027」の特設サイトを公開"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T20:01:18.719691+00:00",
+      "attempt": 1,
+      "id": "236c687371b6fbfc",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1645字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "digital-agency",
+      "title": "地方公共団体情報システムデータ要件・連携要件の標準仕様に係る適合確認ウェブサイトを更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T20:01:27.448083+00:00",
+      "attempt": 2,
+      "id": "236c687371b6fbfc",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1769字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "digital-agency",
+      "title": "地方公共団体情報システムデータ要件・連携要件の標準仕様に係る適合確認ウェブサイトを更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T20:01:40.010154+00:00",
+      "attempt": 1,
+      "id": "3d1e98822dd3b16e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "何が発表されたのかの箇所（2026年10月27日）→ 元記事の調査日・発表日は2026年10月26日であり日付が矛盾している"
+      ],
+      "score": 90,
+      "source": "prtimes-all",
+      "title": "【面接官500人調査】目に入るのは「話し方」と「表情」、受ける側が最も準備する「服装」は3位"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T20:01:54.510628+00:00",
+      "attempt": 2,
+      "id": "3d1e98822dd3b16e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes-all",
+      "title": "【面接官500人調査】目に入るのは「話し方」と「表情」、受ける側が最も準備する「服装」は3位"
     }
   ]
 }
