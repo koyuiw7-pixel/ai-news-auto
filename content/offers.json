@@ -38,7 +38,11 @@
       "lead": "ローカルLLMや画像生成を快適に動かす目安は、VRAM 16GB以上のGPUです。",
       "partners": [
         "oz-rtx5070ti",
-        "oz-rx9060xt"
+        "oz-rx9060xt",
+        "gmktec",
+        "minisforum",
+        "mdl",
+        "silicon-power"
       ],
       "search": [
         "ローカルLLM",
@@ -59,7 +63,9 @@
       "lead": "高性能なPCがなくても、ブラウザだけで本格的な画像生成を試せます。",
       "partners": [
         "conoha-ai-canvas",
-        "creators-japan"
+        "creators-japan",
+        "mdl",
+        "coconala"
       ],
       "search": [
         "画像生成AI",
@@ -72,6 +78,131 @@
       "fill": [
         "chatgpt",
         "business"
+      ]
+    },
+    {
+      "key": "video",
+      "match": "動画生成|動画編集|Sora|Veo|Runway|Kling|動画AI|ショート動画|YouTube|字幕",
+      "eyebrow": "この記事の技術を試すなら",
+      "headline": "AIで動画を作るなら、編集まで一気に",
+      "lead": "生成した動画は、字幕やカットを足すと一気に使えるものになります。",
+      "partners": [
+        "video-editor",
+        "movie-school",
+        "bandicut"
+      ],
+      "search": [
+        "動画編集 入門",
+        "動画生成AI"
+      ],
+      "require": "動画|映像|YouTube",
+      "fill": [
+        "image",
+        "business"
+      ]
+    },
+    {
+      "key": "english",
+      "match": "翻訳|英語|英会話|通訳|DeepL|多言語|リアルタイム翻訳|語学",
+      "eyebrow": "AIで英語を伸ばすなら",
+      "headline": "AI翻訳の次は、自分で話せるように",
+      "lead": "AIで訳せる時代でも、自分で話せると仕事の幅が広がります。",
+      "partners": [
+        "idiy",
+        "sparta",
+        "studysapuri-en",
+        "lancul"
+      ],
+      "search": [
+        "英語 学習 AI",
+        "英会話 独学"
+      ],
+      "require": "英語|英会話|翻訳",
+      "fill": [
+        "chatgpt",
+        "business"
+      ]
+    },
+    {
+      "key": "security",
+      "match": "セキュリティ|詐欺|フィッシング|マルウェア|ディープフェイク|脆弱性|プライバシー|不正アクセス|ランサム|なりすまし",
+      "eyebrow": "AI時代の自衛策",
+      "headline": "AIを悪用した詐欺から、PCとスマホを守る",
+      "lead": "偽メールや偽サイトはAIで見分けがつきにくくなっています。対策ソフトは入れておくのが安心です。",
+      "partners": [
+        "virusbuster",
+        "norton",
+        "eset",
+        "surfshark"
+      ],
+      "search": [
+        "サイバーセキュリティ 入門",
+        "情報セキュリティ"
+      ],
+      "require": "セキュリティ|サイバー|ハッカー|情報漏",
+      "fill": [
+        "business"
+      ]
+    },
+    {
+      "key": "gadget",
+      "match": "スマートリング|ウェアラブル|イヤホン|スマートグラス|Pixel|iPhone|Galaxy|ヘルスケア|睡眠|AIデバイス|スマホ",
+      "eyebrow": "AIガジェットを選ぶなら",
+      "headline": "身につけるAIは、軽さと電池持ちで選ぶ",
+      "lead": "毎日使うものほど、着けているのを忘れるくらいの軽さが大事です。",
+      "partners": [
+        "ringconn",
+        "e-earphone",
+        "plaud-notepin-s"
+      ],
+      "search": [
+        "ガジェット AI",
+        "スマートウォッチ"
+      ],
+      "require": "ガジェット|スマート|デバイス|AI",
+      "fill": [
+        "voice",
+        "business"
+      ]
+    },
+    {
+      "key": "kids",
+      "match": "子ども|子供|小学生|中学生|高校生|学校|教師|先生|教育現場|宿題",
+      "eyebrow": "子どもとAIの付き合い方",
+      "headline": "AIを「使われる側」でなく「作る側」に",
+      "lead": "ゲーム感覚でプログラミングに触れると、AIへの理解も自然に深まります。",
+      "partners": [
+        "digitane",
+        "litalico"
+      ],
+      "search": [
+        "子ども プログラミング",
+        "AI 教育"
+      ],
+      "require": "子ども|こども|プログラミング|教育|AI",
+      "fill": [
+        "coding"
+      ]
+    },
+    {
+      "key": "server",
+      "match": "Dify|n8n|セルフホスト|VPS|レンタルサーバー|WordPress|デプロイ|ホスティング|Docker",
+      "eyebrow": "この記事の技術を試すなら",
+      "headline": "AIアプリを自分で動かすなら、サーバーから",
+      "lead": "DifyやOllamaなどを自分専用に動かすなら、VPSが近道です。",
+      "partners": [
+        "xserver-vps",
+        "conoha-vps",
+        "xserver"
+      ],
+      "search": [
+        "サーバー 構築 入門",
+        "Docker 入門"
+      ],
+      "require": "サーバ|Docker|Linux|クラウド|インフラ",
+      "fill": [
+        "coding",
+        "agent"
       ]
     },
     {
@@ -99,7 +230,10 @@
       "eyebrow": "この分野を深く知るなら",
       "headline": "AIを支える半導体とインフラの全体像",
       "lead": "GPUの性能競争やデータセンター投資を理解すると、発表の重みが読めるようになります。",
-      "partners": [],
+      "partners": [
+        "silicon-power",
+        "mdl"
+      ],
       "search": [
         "エヌビディア 半導体",
         "NVIDIA",
@@ -118,7 +252,8 @@
       "headline": "文章づくりを、AIに任せてみる",
       "lead": "ブログやSEO記事は、構成づくりからAIに任せると一気に速くなります。",
       "partners": [
-        "value-ai-writer"
+        "value-ai-writer",
+        "bunken"
       ],
       "search": [
         "AI ライティング",
@@ -140,7 +275,10 @@
       "eyebrow": "この記事の技術を試すなら",
       "headline": "AIに書かせる開発を、現場で使える形に",
       "lead": "AIコーディングは道具選びより「任せ方」で成果が変わります。定番の解説書から。",
-      "partners": [],
+      "partners": [
+        "skillhacks",
+        "xserver-vps"
+      ],
       "search": "AI駆動開発",
       "require": "Claude Code|Codex|コーディング|AI駆動|Copilot|プログラミング|Cursor",
       "fill": [
@@ -153,7 +291,9 @@
       "eyebrow": "この記事の技術を試すなら",
       "headline": "Claudeを仕事で使いこなす",
       "lead": "長文の読解や資料づくりに強いClaudeは、使い方の型を知ると一気に効きます。",
-      "partners": [],
+      "partners": [
+        "doraverse"
+      ],
       "search": "Claude",
       "require": "Claude",
       "fill": [
@@ -166,7 +306,10 @@
       "eyebrow": "この記事の技術を試すなら",
       "headline": "AIエージェントを、自分の仕事に組み込む",
       "lead": "任せる仕事の切り出し方と、失敗しない設計の考え方を押さえておくと早いです。",
-      "partners": [],
+      "partners": [
+        "xserver-vps",
+        "doraverse"
+      ],
       "search": "AIエージェント",
       "require": "エージェント",
       "fill": [
@@ -179,7 +322,9 @@
       "eyebrow": "この記事の技術を試すなら",
       "headline": "GeminiとGoogleのAIを使いこなす",
       "lead": "GmailやドキュメントなどGoogleの道具とつなげると、Geminiの真価が出ます。",
-      "partners": [],
+      "partners": [
+        "doraverse"
+      ],
       "search": "Gemini",
       "require": "Gemini|NotebookLM",
       "fill": [
@@ -192,7 +337,9 @@
       "eyebrow": "この記事の技術を試すなら",
       "headline": "ChatGPTを、毎日の仕事で使える道具に",
       "lead": "新機能を追うより、日々の業務に落とし込む型を1つ持つのが近道です。",
-      "partners": [],
+      "partners": [
+        "doraverse"
+      ],
       "search": [
         "ChatGPT 仕事",
         "ChatGPT 使い方",
@@ -211,7 +358,10 @@
       "eyebrow": "この分野を深く知るなら",
       "headline": "大規模言語モデルの仕組みを、基礎から",
       "lead": "モデルの発表を正しく読むには、学習と評価の基本を知っておくのがいちばん効きます。",
-      "partners": [],
+      "partners": [
+        "xserver-vps",
+        "minisforum"
+      ],
       "search": [
         "大規模言語モデル",
         "LLM",
@@ -231,7 +381,9 @@
       "headline": "生成AIで、仕事の時間を取り戻す",
       "lead": "どの発表も、結局は自分の仕事にどう効くか。実例の多い1冊から始めるのが確実です。",
       "partners": [
-        "value-ai-writer"
+        "value-ai-writer",
+        "doraverse",
+        "coconala"
       ],
       "search": "生成AI 仕事術",
       "require": "生成AI|AI",
@@ -437,6 +589,294 @@
       "page": null,
       "shop": "公式サイト",
       "source": null
+    },
+    "xserver": {
+      "program": "エックスサーバー",
+      "name": "エックスサーバー",
+      "label": "国内シェアNo.1",
+      "note": "WordPressもAIツールのサイトも、まずはここから。速さと安定性で定番のレンタルサーバー",
+      "image": "https://www25.a8.net/svt/bgt?aid=261026994259&wid=001&eno=01&mid=s00000001642001130000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4A7AGI+CO4+61C2Q",
+      "shop": "エックスサーバー公式"
+    },
+    "xserver-vps": {
+      "program": "XServer VPS",
+      "name": "XServer VPS",
+      "label": "AIアプリを自分で動かす",
+      "note": "Dify・n8n・Ollamaなどを自分専用に動かせるVPS。アプリのテンプレートから数クリックで導入",
+      "image": "https://www23.a8.net/svt/bgt?aid=261026994261&wid=001&eno=01&mid=s00000001642013012000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4BE5O2+CO4+25FMXU",
+      "shop": "XServer公式"
+    },
+    "conoha-vps": {
+      "program": "ConoHa VPS",
+      "name": "ConoHa VPS",
+      "label": "時間課金で気軽に",
+      "note": "使った時間だけ払える高速VPS。AIのお試し環境づくりに",
+      "image": "https://www21.a8.net/svt/bgt?aid=261026994372&wid=001&eno=01&mid=s00000000018030008000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+65H9TE+50+4YZJLE",
+      "shop": "ConoHa公式"
+    },
+    "shin-server": {
+      "program": "シンレンタルサーバー",
+      "name": "シンレンタルサーバー",
+      "label": "新世代の高速サーバー",
+      "note": "最新の高速化技術を採り入れたエックスサーバー系の新ブランド",
+      "image": "https://www21.a8.net/svt/bgt?aid=261026994263&wid=001&eno=01&mid=s00000025450001009000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4CL0VM+5GDG+5ZEMQ",
+      "shop": "シン・レンタルサーバー公式"
+    },
+    "lolipop": {
+      "program": "ロリポップ！",
+      "name": "ロリポップ！",
+      "label": "月額が安い",
+      "note": "はじめてのブログやサイトに。低価格で始められるレンタルサーバー",
+      "image": "https://www21.a8.net/svt/bgt?aid=261026994374&wid=001&eno=01&mid=s00000000404001068000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+66O50Y+348+64RJ6",
+      "shop": "ロリポップ！公式"
+    },
+    "sakura": {
+      "program": "さくらのレンタルサーバ",
+      "name": "さくらのレンタルサーバ",
+      "label": "老舗の安心感",
+      "note": "利用件数48万件超。安定運用の老舗レンタルサーバー",
+      "image": "https://www28.a8.net/svt/bgt?aid=261026994270&wid=001&eno=01&mid=s00000001717001100000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4GR242+D8Y+65U42",
+      "shop": "さくらインターネット公式"
+    },
+    "xserver-cloudpc": {
+      "program": "XServer クラウドPC",
+      "name": "XServer クラウドPC",
+      "label": "ブラウザからPCを使う",
+      "note": "クラウド上のWindows PCに、どこからでもアクセスできる仮想デスクトップ",
+      "image": "https://www29.a8.net/svt/bgt?aid=261026994379&wid=001&eno=01&mid=s00000001642019006000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+69NB1U+CO4+354KNM",
+      "shop": "XServer公式"
+    },
+    "gmktec": {
+      "program": "GMKtec ミニPC",
+      "name": "GMKtec ミニPC",
+      "label": "AI処理に強い小型PC",
+      "note": "AI処理用のNPUを積んだミニPCも。机の上でローカルAIを試すなら",
+      "image": "https://www28.a8.net/svt/bgt?aid=261026994311&wid=001&eno=01&mid=s00000027479001018000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+555TWY+5W12+5YRHE",
+      "shop": "GMKtec公式"
+    },
+    "minisforum": {
+      "program": "MINISFORUM ミニPC",
+      "name": "MINISFORUM ミニPC",
+      "label": "高性能ミニPC",
+      "note": "手のひらサイズでも高性能。ローカルLLMの入門機に人気",
+      "image": "https://www21.a8.net/svt/bgt?aid=261026994310&wid=001&eno=01&mid=s00000026462001007000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+54KEB6+5O6K+5YJRM",
+      "shop": "MINISFORUM公式"
+    },
+    "mdl": {
+      "program": "MDL BTOゲーミングPC",
+      "name": "MDL BTOゲーミングPC",
+      "label": "GPU構成を選べる",
+      "note": "画像生成やローカルLLM向けに、GPUから構成を選べるBTOパソコン",
+      "image": "https://www25.a8.net/svt/bgt?aid=261026994321&wid=001&eno=01&mid=s00000025652001003000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+5B45YQ+5HXK+5YJRM",
+      "shop": "MDL公式"
+    },
+    "silicon-power": {
+      "program": "シリコンパワー SSD・メモリ",
+      "name": "シリコンパワー SSD・メモリ",
+      "label": "メモリ増設で快適に",
+      "note": "生成AIで足りなくなりがちなメモリとSSDを、メーカー直営で",
+      "image": "https://www29.a8.net/svt/bgt?aid=261026994227&wid=001&eno=01&mid=s00000027812001008000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+3R5F3M+5YLK+5YRHE",
+      "shop": "Silicon Power Direct"
+    },
+    "parallels": {
+      "program": "Parallels Desktop",
+      "name": "Parallels Desktop",
+      "label": "MacでWindows",
+      "note": "MacでWindows専用のAIツールも動かせる定番ソフト",
+      "image": "https://www23.a8.net/svt/bgt?aid=261026994312&wid=001&eno=01&mid=s00000019939001025000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+55R9IQ+49UM+5YJRM",
+      "shop": "Parallels公式"
+    },
+    "video-editor": {
+      "program": "Movavi Video Editor",
+      "name": "Movavi Video Editor",
+      "label": "初心者でもプロ並み",
+      "note": "AI機能つきの多機能動画編集ソフト。字幕やノイズ除去も自動で",
+      "image": "https://www20.a8.net/svt/bgt?aid=261026994326&wid=001&eno=01&mid=s00000018520001006000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+5E3BZM+3YWG+5YJRM",
+      "shop": "Movavi公式"
+    },
+    "bandicut": {
+      "program": "Bandicut",
+      "name": "Bandicut",
+      "label": "無劣化カット",
+      "note": "撮った動画を劣化させずに、速く切って結合できるソフト",
+      "image": "https://www24.a8.net/svt/bgt?aid=261026994325&wid=001&eno=01&mid=s00000016141002013000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+5DHWDU+3GJM+BYDTU",
+      "shop": "Bandicam Company"
+    },
+    "movie-school": {
+      "program": "クリエイターズジャパン",
+      "name": "クリエイターズジャパン",
+      "label": "最短1ヶ月で習得",
+      "note": "動画編集を最短1ヶ月で仕事レベルまで学べるオンラインスクール",
+      "image": "https://www23.a8.net/svt/bgt?aid=261024973815&wid=001&eno=01&mid=s00000021455001004000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEO5P+DH8ASY+4LJQ+614CY",
+      "shop": "クリエイターズジャパン"
+    },
+    "skillhacks": {
+      "program": "SkillHacks",
+      "name": "SkillHacks",
+      "label": "動画で学ぶプログラミング",
+      "note": "未経験からWebアプリを作れるまで。買い切りの動画講座",
+      "image": "https://www24.a8.net/svt/bgt?aid=261026994275&wid=001&eno=01&mid=s00000021268001015000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4JQ84Y+4K3S+5YJRM",
+      "shop": "SkillHacks公式"
+    },
+    "bunken": {
+      "program": "文賢",
+      "name": "文賢",
+      "label": "AIで文章チェック",
+      "note": "AIが誤字・敬語・読みやすさをチェック。ライター・広報の定番ツール",
+      "image": "https://www26.a8.net/svt/bgt?aid=261026994225&wid=001&eno=01&mid=s00000017376003012000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+3PYJW2+3Q2O+HVFKY",
+      "shop": "ウェブライダー"
+    },
+    "doraverse": {
+      "program": "Doraverse",
+      "name": "Doraverse",
+      "label": "複数のAIを1つで",
+      "note": "ChatGPT・Gemini・Claudeなど15以上のAIを1つの画面で使い分けられる",
+      "image": "https://www24.a8.net/svt/bgt?aid=261026994229&wid=001&eno=01&mid=s00000027324001004000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+3SCAB6+5UU0+5YJRM",
+      "shop": "Doraverse公式"
+    },
+    "coconala": {
+      "program": "ココナラ",
+      "name": "ココナラ",
+      "label": "プロに頼む",
+      "note": "AIで作りきれない部分は、デザインや動画のプロに依頼できるスキルマーケット",
+      "image": "https://www23.a8.net/svt/bgt?aid=261026994251&wid=001&eno=01&mid=s00000012624009104000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+45FTMA+2PEO+1HONMA",
+      "shop": "ココナラ"
+    },
+    "idiy": {
+      "program": "英語添削アイディー",
+      "name": "英語添削アイディー",
+      "label": "AI＋講師が添削",
+      "note": "AIと500人以上の講師が英作文を添削。英検・IELTS対策にも",
+      "image": "https://www25.a8.net/svt/bgt?aid=261026994256&wid=001&eno=01&mid=s00000012026001040000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+48EZN6+2KSK+5Z6WY",
+      "shop": "アイディー公式"
+    },
+    "studysapuri-en": {
+      "program": "スタディサプリENGLISH",
+      "name": "スタディサプリENGLISH",
+      "label": "スマホで毎日",
+      "note": "日常英会話をスマホのレッスンで。AIの発音チェック付き",
+      "image": "https://www22.a8.net/svt/bgt?aid=261026994391&wid=001&eno=01&mid=s00000015388006006000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+6GSIB6+3AQG+ZSKW2",
+      "shop": "スタディサプリ"
+    },
+    "lancul": {
+      "program": "LanCul（ランカル）",
+      "name": "LanCul（ランカル）",
+      "label": "月額1,100円から",
+      "note": "話し放題のオンライン英会話。AI翻訳の次は、自分で話せるように",
+      "image": "https://www28.a8.net/svt/bgt?aid=261026994364&wid=001&eno=01&mid=s00000020682003008000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+60PSZ6+4FL0+HV7V6",
+      "shop": "LanCul公式"
+    },
+    "bestteacher": {
+      "program": "ベストティーチャー",
+      "name": "ベストティーチャー",
+      "label": "書いて話す英会話",
+      "note": "自分で書いた英文をもとに話す、ライティング起点のオンライン英会話",
+      "image": "https://www28.a8.net/svt/bgt?aid=261026994395&wid=001&eno=01&mid=s00000013934001008000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+6J68QA+2ZIK+6HU7M",
+      "shop": "ベストティーチャー公式"
+    },
+    "sparta": {
+      "program": "スパルタ英会話",
+      "name": "スパルタ英会話",
+      "label": "3ヶ月で短期集中",
+      "note": "マンツーマンで会話量を徹底的に増やす、短期集中型の英会話スクール",
+      "image": "https://www26.a8.net/svt/bgt?aid=261026994358&wid=001&eno=01&mid=s00000018721001019000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+5X57CI+40GA+60H7M",
+      "shop": "スパルタ英会話"
+    },
+    "norton": {
+      "program": "ノートン 360",
+      "name": "ノートン 360",
+      "label": "定番のセキュリティ",
+      "note": "AIを使った詐欺やフィッシングから、PCとスマホをまとめて守る",
+      "image": "https://www21.a8.net/svt/bgt?aid=261026994328&wid=001&eno=01&mid=s00000016371001023000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+5FA776+3IBI+60WN6",
+      "shop": "ノートン公式"
+    },
+    "virusbuster": {
+      "program": "ウイルスバスター クラウド",
+      "name": "ウイルスバスター クラウド",
+      "label": "販売本数No.1",
+      "note": "詐欺サイトや偽メールをAIで見分けて警告。国内で定番の総合セキュリティ",
+      "image": "https://www24.a8.net/svt/bgt?aid=261026994315&wid=001&eno=01&mid=s00000015315001020000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+57JKC2+3A66+5YRHE",
+      "shop": "トレンドマイクロ公式"
+    },
+    "eset": {
+      "program": "ESET HOME セキュリティ",
+      "name": "ESET HOME セキュリティ",
+      "label": "軽くて強い",
+      "note": "動作が軽いのに検出力が高い総合セキュリティソフト",
+      "image": "https://www28.a8.net/svt/bgt?aid=261026994314&wid=001&eno=01&mid=s00000005993007013000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+56Y4QA+1A8Q+15P77M",
+      "shop": "ESET公式"
+    },
+    "surfshark": {
+      "program": "Surfshark",
+      "name": "Surfshark",
+      "label": "軽いウイルス対策",
+      "note": "マルウェアや危険なサイトからPC・スマホを守る、動作の軽いウイルス対策ソフト",
+      "image": "https://www23.a8.net/svt/bgt?aid=261026994319&wid=001&eno=01&mid=s00000021488002004000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+59XAR6+4LSW+BX3J6",
+      "shop": "Surfshark公式"
+    },
+    "ringconn": {
+      "program": "RingConn スマートリング",
+      "name": "RingConn スマートリング",
+      "label": "AIで睡眠分析",
+      "note": "重さ約2gのリングで、睡眠や心拍をAIが分析。月額料金なし",
+      "image": "https://www25.a8.net/svt/bgt?aid=261026994257&wid=001&eno=01&mid=s00000026776002008000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+490F8Y+5QLS+BWVTE",
+      "shop": "RingConn公式"
+    },
+    "e-earphone": {
+      "program": "e☆イヤホン",
+      "name": "e☆イヤホン",
+      "label": "イヤホン専門店",
+      "note": "AI翻訳イヤホンやノイキャンなど、最新イヤホンを専門店で比較",
+      "image": "https://www23.a8.net/svt/bgt?aid=261026994322&wid=001&eno=01&mid=s00000024072001007000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+5BPLKI+55QO+5YJRM",
+      "shop": "e☆イヤホン"
+    },
+    "digitane": {
+      "program": "デジタネ",
+      "name": "デジタネ",
+      "label": "小中学生のAI教材",
+      "note": "マイクラなどゲーム感覚で、AIとプログラミングを家で学べる",
+      "image": "https://www22.a8.net/svt/bgt?aid=261026994274&wid=001&eno=01&mid=s00000018613001024000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4J4SJ6+3ZMA+5YJRM",
+      "shop": "デジタネ公式"
+    },
+    "litalico": {
+      "program": "LITALICOワンダー",
+      "name": "LITALICOワンダー",
+      "label": "ITものづくり教室",
+      "note": "ロボットやプログラミングで、子どもの「作る力」を伸ばす教室",
+      "image": "https://www22.a8.net/svt/bgt?aid=261026994279&wid=001&eno=01&mid=s00000019385001032000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4M3YK2+45KQ+5YJRM",
+      "shop": "LITALICOワンダー"
     }
   },
   "fallbackByGenre": {
