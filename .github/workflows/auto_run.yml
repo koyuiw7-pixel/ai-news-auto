@@ -72,6 +72,15 @@ jobs:
       # 公式ブログ・プレスリリース（文章）と話題のニュース（Googleトレンド）から記事を作る。
       # 動画解析より軽いので、無料枠の大きい軽量モデルを順に使い回す（scripts/llm.py）。
       # 本数は変数で段階的に増やす: WEB_MAX_PER_RUN / TREND_MAX_PER_RUN / WEB_DAILY_CAP
+      # 今日の上限（週ごとに少しずつ増やす予定表。GitHub の変数があればそちらを優先）
+      - name: Decide today's limits
+        id: ramp
+        env:
+          WEB_DAILY_CAP_OVERRIDE: ${{ vars.WEB_DAILY_CAP }}
+          SNS_PER_DAY_OVERRIDE: ${{ vars.SNS_PER_DAY }}
+          BROAD_MAX_PER_RUN_OVERRIDE: ${{ vars.BROAD_MAX_PER_RUN }}
+        run: python scripts/ramp.py
+
       # Claude Code（オーナーの契約）を質重視の記事に使う。1日の上限は CLAUDE_DAILY_MAX
       - name: Install Claude Code CLI
         continue-on-error: true
@@ -90,9 +99,9 @@ jobs:
         run: |
           python scripts/web_articles.py \
             --max "${{ vars.WEB_MAX_PER_RUN || '1' }}" \
-            --max-broad "${{ vars.BROAD_MAX_PER_RUN || '1' }}" \
+            --max-broad "${{ steps.ramp.outputs.broad_per_run }}" \
             --trends "${{ vars.TREND_MAX_PER_RUN || '1' }}" \
-            --daily-cap "${{ vars.WEB_DAILY_CAP || '45' }}" \
+            --daily-cap "${{ steps.ramp.outputs.web_daily_cap }}" \
             --days 3 --tier bulk
 
       # 同じ話題の記事が3本以上たまったら、横断まとめ記事に統合する。
@@ -154,7 +163,7 @@ jobs:
           # Buffer 経由で投稿する場合の API キー（設定されていればこちらを優先）
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           # 1日の投稿本数（Threads・X・Facebook 共通）。凍結を避けて週に1〜2本ずつ増やす
-          SNS_PER_DAY: ${{ vars.SNS_PER_DAY || '7' }}
+          SNS_PER_DAY: ${{ steps.ramp.outputs.sns_per_day }}
         run: |
           # 投稿ごとの反応を取り込んで「勝ちパターン」を学び直してから、次の投稿を選ぶ
           # 反応の学習は1日1回（Buffer の数値も1日1回更新）
