@@ -59,7 +59,8 @@ def collect_urls(base: str, hours: int | None) -> list[str]:
             continue
         if threshold:
             try:
-                generated = datetime.fromisoformat(article.get("generatedAt", ""))
+                # 続報を足した記事も送り直す
+                generated = datetime.fromisoformat(article.get("updatedAt") or article.get("generatedAt", ""))
             except ValueError:
                 continue
             if generated < threshold:

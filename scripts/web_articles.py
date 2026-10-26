@@ -12,12 +12,16 @@
 
 生成した記事は quality.py のゲート（形のチェック＋元記事との事実確認）を通ったものだけ書き出す。
 直近4日の記事と同じ話題の候補は dedupe.py で生成前に外す。
+直近14日の記事の続報は、新しいページを作らず既存記事に「## 続報」の章を足す（followup.py）。
+  続報は --daily-cap に数えない（新しいページの本数の上限なので）。1回の実行で最大 --max-updates 本。
+新しい記事には、サイソクの過去記事（archive.py）から「これまでの流れ」の材料を渡す。
 """
 
 from __future__ import annotations
 
 import argparse
 import copy
+import json
 import re
 import urllib.parse
 import sys
@@ -26,8 +30,10 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import archive  # noqa: E402
 import dedupe  # noqa: E402
 import feeds  # noqa: E402
+import followup  # noqa: E402
 import llm  # noqa: E402
 import main as m  # noqa: E402
 import quality  # noqa: E402
@@ -224,7 +230,7 @@ body_markdown 内では h1 (`#`) を使わないでください（タイトル�
 """
 
 
-def build_broad_prompt(item: dict, text: str, genre) -> str:
+def build_broad_prompt(item: dict, text: str, genre, context: str = "") -> str:
     prompt = BROAD_PROMPT_TEMPLATE.format(
         source_name=item["source_name"],
         title=item["title"],
@@ -237,7 +243,7 @@ def build_broad_prompt(item: dict, text: str, genre) -> str:
         topic_guard=f"  **このジャンルの対象範囲**: {genre.topic_guard}",
         genre_choices="\n".join(f"  - {g.slug}: {g.name}" for g in ALL_GENRES),
     )
-    return prompt + "\n\n" + m.threads_hooks.prompt_block()
+    return prompt + context + "\n\n" + m.threads_hooks.prompt_block()
 
 
 def broad_prefilter(item: dict) -> str | None:
@@ -267,6 +273,11 @@ TREND_SOURCE_CAP = 5000  # 1報道あたりの文字数上限（プロンプト�
 TREND_SCHEMA = copy.deepcopy(m.ARTICLE_SCHEMA)
 TREND_SCHEMA["properties"]["verdict"]["nullable"] = True
 TREND_SCHEMA["required"] = [k for k in TREND_SCHEMA["required"] if k != "verdict"]
+# 「これまでの流れ」で実際に使った過去記事の slug（任意）
+WEB_SCHEMA = copy.deepcopy(m.ARTICLE_SCHEMA)
+for _schema in (WEB_SCHEMA, TREND_SCHEMA):
+    _schema["properties"]["related_used"] = {"type": "ARRAY", "items": {"type": "STRING"}}
+    _schema["propertyOrdering"].append("related_used")
 
 TREND_SOURCE_NOTE = """## 今回の取材対象（重要）
 今回は動画ではなく、日本でいま話題になっているキーワードと、それを報じた複数の報道記事が資料です。
@@ -376,7 +387,7 @@ def trend_source_name(fetched: list[dict]) -> str:
     return "・".join(names[:2]) + (" ほか" if len(names) > 2 else "")
 
 
-def build_trend_prompt(item: dict, fetched: list[dict], genre) -> str:
+def build_trend_prompt(item: dict, fetched: list[dict], genre, context: str = "") -> str:
     blocks = []
     for n, s in enumerate(fetched, start=1):
         blocks.append(
@@ -391,7 +402,7 @@ def build_trend_prompt(item: dict, fetched: list[dict], genre) -> str:
         outline=TREND_OUTLINE,
         genre_choices="\n".join(f"  - {g.slug}: {g.name}" for g in GENRES),
     )
-    return prompt + "\n\n" + m.threads_hooks.prompt_block()
+    return prompt + context + "\n\n" + m.threads_hooks.prompt_block()
 
 
 def build_trend_record(item: dict, fetched: list[dict], data: dict, model_name: str, voice_key: str) -> dict:
@@ -422,7 +433,7 @@ def log(message: str) -> None:
     print(message, flush=True)
 
 
-def build_prompt(item: dict, text: str) -> str:
+def build_prompt(item: dict, text: str, context: str = "") -> str:
     genre = AI
     prompt = WEB_PROMPT_TEMPLATE.format(
         source_name=item["source_name"],
@@ -435,7 +446,7 @@ def build_prompt(item: dict, text: str) -> str:
         topic_guard=f"  **このジャンルの対象範囲**: {genre.topic_guard}" if genre.topic_guard else "",
         genre_choices="\n".join(f"  - {g.slug}: {g.name}（{g.description[:48]}…）" for g in GENRES),
     )
-    return prompt + "\n\n" + m.threads_hooks.prompt_block()
+    return prompt + context + "\n\n" + m.threads_hooks.prompt_block()
 
 
 def prefilter(item: dict) -> str | None:
@@ -499,6 +510,18 @@ def build_web_record(item: dict, data: dict, page: dict, model_name: str, voice_
         record["affiliates"] = affiliates
         record["body"] = m.linkify_first_mention(record["body"], affiliates)
         log(f"   [aff] {len(affiliates)}件: {', '.join(a['name'] for a in affiliates)}")
+    return record
+
+
+def attach_related(record: dict, data: dict, rows: list[dict]) -> dict:
+    """渡した過去記事のうち実際に使ったものを relatedSlugs に残す。渡していない slug へのリンクは外す"""
+    allowed = {r["slug"] for r in rows}
+    record["body"], linked = archive.clean_internal_links(record["body"], allowed)
+    record["easy"], _ = archive.clean_internal_links(record.get("easy", ""), allowed)
+    used = {str(s).strip() for s in data.get("related_used") or []} & allowed
+    used |= linked
+    if used:
+        record["relatedSlugs"] = [r["slug"] for r in rows if r["slug"] in used]
     return record
 
 
@@ -599,6 +622,8 @@ def main() -> int:
     parser.add_argument("--source", action="append", help="対象フィード slug（複数可。scripts/feeds.py 参照）")
     parser.add_argument("--trends", type=int, default=0, help="話題のニュース（state/trend_queue.json）から生成する最大本数")
     parser.add_argument("--no-gate", action="store_true", help="品質ゲートの事実確認を省く（形のチェックは行う）。テスト用")
+    parser.add_argument("--only", help="タイトルがこの正規表現に一致する候補だけを対象にする（テスト用）")
+    parser.add_argument("--max-updates", type=int, default=3, help="この実行で既存記事に足す続報の最大数（--daily-cap には数えない）")
     args = parser.parse_args()
 
     llm._load_env_local()
@@ -618,6 +643,28 @@ def main() -> int:
 
     recent = dedupe.load_recent(DEDUPE_DAYS)
     log(f"[info] 重複チェック: 直近{DEDUPE_DAYS}日の記事 {len(recent.entries)} 件")
+    # 続報の対象（直近14日・まとめ記事を除く）と、同じ実行の中で採った候補
+    followups = dedupe.load_recent(followup.FOLLOWUP_DAYS, skip_roundups=True)
+    run_seen = dedupe.Index()
+    touched: set[str] = set()  # この実行で作った・続報を足した記事
+    arch = archive.Archive()
+    log(f"[info] 続報の対象: 直近{followup.FOLLOWUP_DAYS}日 {len(followups.entries)} 件 / 文脈用の過去記事 {len(arch.rows)} 件")
+
+    def followup_target(title: str, url: str = ""):
+        """続報を足せる既存記事 ("ok", path, data, 理由) / 続報の上限で今回は見送り ("defer",) / 対象なし None"""
+        if args.max_updates <= 0:
+            return None  # 続報を使わない（従来どおり重複として外す）
+        hit = followups.match(title, url)
+        if not hit or not hit[1] or hit[1] in touched:
+            return None
+        target = followup.load_target(hit[1])
+        if target is None:
+            return None
+        if updated_count[0] >= args.max_updates:
+            return ("defer",)
+        return ("ok", target[0], target[1], hit[0])
+
+    updated_count = [0]
 
     # --- 話題のニュース ---
     queue = []
@@ -641,6 +688,10 @@ def main() -> int:
     if broad_limit > 0:
         selected = [f for f in feeds.BROAD_FEEDS if not args.source or f["slug"] in args.source]
         broad_items = tag_sections(usable(feeds.collect(args.days, state, selected))) if selected else []
+    if args.only:
+        only_re = re.compile(args.only)
+        ai_items = [i for i in ai_items if only_re.search(i["title"])]
+        broad_items = [i for i in broad_items if only_re.search(i["title"])]
     lanes = build_lanes(ai_items, broad_items, args.section)
     log(
         f"[info] 候補 AI {len(ai_items)} 件（上限 {ai_limit} 本）/ 幅広い話題 {len(broad_items)} 件（上限 {broad_limit} 本）"
@@ -650,9 +701,11 @@ def main() -> int:
         for q in queue[: max(trend_limit * 3, 5)]:
             fetched = fetch_trend_sources(q)
             ok = len(fetched) >= TREND_MIN_SOURCES
+            hit = followups.match(q["title"])
+            target = followup.load_target(hit[1]) if hit and hit[1] else None
             log(
                 f"  - [trend/{q.get('genre')}] {q['title']}（traffic {q.get('traffic', 0):,}）"
-                f" 本文の取れた報道 {len(fetched)} 本 → {'対象' if ok else '除外'}"
+                f" 本文の取れた報道 {len(fetched)} 本 → {'除外' if not ok else (f'続報候補 → {hit[1]}' if target else '対象')}"
                 f"  {trend_source_name(fetched) if fetched else ''}"
             )
         seen = dedupe.Index()
@@ -663,22 +716,32 @@ def main() -> int:
             lines = []
             for item in items:
                 reason = prefilter(item) if lane == "ai" else broad_prefilter(item)
+                hit = None if reason or recent.has_url(item["url"]) else followups.match(item["title"], item["url"])
+                target = followup.load_target(hit[1]) if hit and hit[1] else None
                 dup = None if reason else (recent.find(item["title"], item["url"]) or seen.find(item["title"], item["url"]))
                 if reason:
                     counts["除外"] += 1
                     flag = f"除外: {reason}"
+                elif target and not seen.find(item["title"], item["url"]):
+                    counts["続報"] = counts.get("続報", 0) + 1
+                    seen.add(item["title"], item["url"])
+                    flag = f"続報候補 → {hit[1]}（{hit[0][:40]}）"
                 elif dup:
                     counts["重複"] += 1
                     flag = f"重複: {dup}"
                 else:
                     counts["対象"] += 1
                     seen.add(item["title"], item["url"])
-                    flag = "対象"
-                if len(lines) < max(cap, 3) * 2 or (flag == "対象" and counts["対象"] <= max(cap, 3)):
+                    n_ctx = len(arch.related(item["title"], item.get("content") or item.get("summary") or "", item["url"], lane))
+                    flag = f"対象（過去記事の文脈 {n_ctx}本）" if n_ctx else "対象"
+                if len(lines) < max(cap, 3) * 2 or (flag.startswith("対象") and counts["対象"] <= max(cap, 3)) or flag.startswith("続報"):
                     lines.append(
                         f"    - [{item['source_slug']}] {item['published_at'].astimezone(JST):%m-%d %H:%M} {item['title'][:60]}  ({flag})"
                     )
-            log(f"\n  ■ {lane}: 候補 {len(items)} 件 → 対象 {counts['対象']} / 除外 {counts['除外']} / 重複 {counts['重複']}")
+            log(
+                f"\n  ■ {lane}: 候補 {len(items)} 件 → 対象 {counts['対象']} / 続報候補 {counts.get('続報', 0)}"
+                f" / 除外 {counts['除外']} / 重複 {counts['重複']}"
+            )
             for line in lines[: max(cap, 3) * 3]:
                 log(line)
         unsorted = lanes.get("_unsorted") or []
@@ -714,7 +777,7 @@ def main() -> int:
             state["failed_web"][item_id] = state["failed_web"].get(item_id, 0) + 1
             return None, None
 
-    def gated(item: dict, kind: str, system: str, prompt: str, schema: dict, source_text: str, build):
+    def gated(item: dict, kind: str, system: str, prompt: str, schema: dict, source_text: str, build, context: str = ""):
         """生成 → 品質ゲート →（不合格なら問題点を添えて1回だけ作り直し）。
         戻り値: ("ok", record, model, verdict) / ("skip", None, model, reason) / ("fail", None, None, None)"""
         verdict: dict = {}
@@ -735,7 +798,7 @@ def main() -> int:
                     verdict = {"ok": not quality.structural_problems(record, kind, source_text), "score": None,
                                "problems": quality.structural_problems(record, kind, source_text)}
                 else:
-                    verdict = quality.evaluate(record, source_text, kind)
+                    verdict = quality.evaluate(record, source_text, kind, context)
                 tag = "合格" if verdict["ok"] else "不合格"
                 log(f"   [gate] {tag} score={verdict.get('score')} 試行{attempt} {('/ ' + ' | '.join(verdict['problems'][:3])[:300]) if verdict['problems'] else ''}")
                 log_quality(state, item, kind, verdict, attempt, verdict["ok"], model_name or "")
@@ -750,6 +813,56 @@ def main() -> int:
         reason = "; ".join(verdict.get("problems") or [])[:200]
         return "reject", None, model_name, reason
 
+    def try_followup(item: dict, text: str, target: tuple) -> str:
+        """既存記事に続報を足す。戻り値: updated / no_new / different / reject / fail（different なら新しい記事として作る）"""
+        _, path, article, why = target
+        log(f"   [followup] 続報候補: {path.stem}（{why}）")
+        try:
+            check = followup.check_same_topic(article, item, text)
+        except Exception as error:  # noqa: BLE001
+            log(f"   [followup] 判定に失敗（{str(error)[:120]}）")
+            state["failed_web"][item["id"]] = state["failed_web"].get(item["id"], 0) + 1
+            return "fail"
+        log(
+            f"   [followup] same_topic={check['same_topic']} adds_new_facts={check['adds_new_facts']}"
+            f" {check['summary_of_new_facts'][:100]}（{check['model']}）"
+        )
+        if not check["same_topic"]:
+            return "different"
+        if not check["adds_new_facts"]:
+            mark(state, item, skipped=True, reason=f"followup: 新しい事実なし（{path.stem}）"[:200])
+            return "no_new"
+        try:
+            data, model_name = followup.generate_update(article, item, text, check["summary_of_new_facts"], args.tier)
+        except Exception as error:  # noqa: BLE001
+            log(f"   [NG] 続報の生成に失敗（{str(error)[:160]}）")
+            state["failed_web"][item["id"]] = state["failed_web"].get(item["id"], 0) + 1
+            return "fail"
+        problems = followup.update_problems(data, text)
+        score = None
+        if not problems and not args.no_gate:
+            try:
+                fact = followup.fact_check_update(article, data, text)
+            except Exception as error:  # noqa: BLE001
+                problems = [f"事実確認を実行できなかった（{str(error)[:80]}）"]
+            else:
+                score = fact["score"]
+                if not (fact["grounded"] and fact["score"] >= quality.PASS_SCORE):
+                    problems = fact["problems"] or [f"元記事との整合性が低い（score {fact['score']}）"]
+        verdict = {"ok": not problems, "score": score, "problems": problems}
+        log(f"   [gate] 続報 {'合格' if not problems else '不合格'} score={score} {('/ ' + ' | '.join(problems[:3])[:300]) if problems else ''}")
+        log_quality(state, item, "update", verdict, 1, not problems, model_name or "")
+        if problems:
+            mark(state, item, skipped=True, reason=f"followup quality: {'; '.join(problems)}"[:200], model=model_name)
+            return "reject"
+        record = followup.apply_update(article, data, item)
+        path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        touched.add(path.stem)
+        updated_count[0] += 1
+        mark(state, item, updated=path.stem, model=model_name, kind="update", score=score)
+        log(f"   [UPDATE] {path.relative_to(m.ROOT)} に続報を追加（{quality._plain_len(str(data['update_markdown']))}字 / {model_name}）")
+        return "updated"
+
     try:
         # 話題は鮮度が命なので先に処理する
         for q in queue:
@@ -758,7 +871,11 @@ def main() -> int:
             if llm.all_exhausted(args.tier):
                 break
             log(f"\n[trend] {q['title']}（{q.get('genre')} / traffic {q.get('traffic', 0):,}）")
-            dup = recent.find(q["title"])
+            target = followup_target(q["title"])
+            if target and target[0] == "defer":
+                log("   [skip] 続報の上限に達したため次回に回す")
+                continue
+            dup = None if target else (run_seen.find(q["title"]) or recent.find(q["title"]))
             if dup:
                 log(f"   [skip] 重複: {dup}")
                 mark(state, q, skipped=True, reason=f"dedupe: {dup}"[:200])
@@ -770,17 +887,35 @@ def main() -> int:
                 mark(state, q, skipped=True, reason=f"trend sources {len(fetched)}")
                 used_queue_ids.add(q["id"])
                 continue
+            run_seen.add(q["title"])
+            source_text = "\n\n".join(f"【{s.get('source') or '報道'}】\n{s['text']}" for s in fetched)
+            if target:
+                pseudo = {
+                    "id": q["id"], "url": fetched[0]["url"], "title": fetched[0].get("title") or q["title"],
+                    "source_name": trend_source_name(fetched), "source_slug": "trends", "published_at": q["published_at"],
+                }
+                outcome = try_followup(pseudo, source_text, target)
+                if outcome != "different":
+                    if outcome != "fail" or state["failed_web"].get(q["id"], 0) >= MAX_FAILURES:
+                        used_queue_ids.add(q["id"])
+                    continue
             genre = GENRES_BY_SLUG.get(q.get("genre") or "", AI)
+            related = arch.related(q["title"], source_text, fetched[0]["url"], genre.slug)
+            context = archive.prompt_block(related)
             voice_key, voice_text = m.pick_voice()
             system = (
                 f"{m.SYSTEM_INSTRUCTION_BASE}\n\n{genre.persona}\n\n"
                 f"{TREND_SOURCE_NOTE.format(rules=trends.EDITORIAL_RULES)}\n\n## 今回の語り口\n{voice_text}"
             )
-            source_text = "\n\n".join(f"【{s.get('source') or '報道'}】\n{s['text']}" for s in fetched)
+            if related:
+                log(f"   [context] 過去記事 {len(related)} 本: {', '.join(r['slug'] for r in related)}")
             started = time.time()
             status, record, model_name, info = gated(
-                q, "trend", system, build_trend_prompt(q, fetched, genre), TREND_SCHEMA, source_text,
-                lambda data, model, q=q, fetched=fetched, voice_key=voice_key: build_trend_record(q, fetched, data, model, voice_key),
+                q, "trend", system, build_trend_prompt(q, fetched, genre, context), TREND_SCHEMA, source_text,
+                lambda data, model, q=q, fetched=fetched, voice_key=voice_key, related=related: attach_related(
+                    build_trend_record(q, fetched, data, model, voice_key), data, related
+                ),
+                archive.check_block(related),
             )
             if status == "fail":
                 if state["failed_web"].get(q["id"], 0) >= MAX_FAILURES:
@@ -794,6 +929,7 @@ def main() -> int:
                 continue
             path = m.write_article(record)
             recent.add(record["title"], record["sourceUrl"], record.get("keywords"))
+            touched.add(record["slug"])
             mark(state, q, slug=record["slug"], model=model_name, kind="trend", score=record.get("qualityScore"))
             created["trend"] += 1
             log(f"   [OK] {path.relative_to(m.ROOT)} ({len(record['body'])}字 / {model_name} / {time.time() - started:.0f}s)")
@@ -818,6 +954,7 @@ def main() -> int:
                 items = lanes[lane]
                 # このレーンで次に試せる候補を探す（足切り・重複・フィード上限は飛ばす）
                 item = None
+                target = None
                 while pointers[lane] < len(items):
                     cand = items[pointers[lane]]
                     pointers[lane] += 1
@@ -827,7 +964,14 @@ def main() -> int:
                         continue
                     if not is_ai and per_feed.get(cand["source_slug"], 0) >= args.per_feed:
                         continue  # 次の実行に回す（mark しない）
-                    dup = recent.find(cand["title"], cand["url"])
+                    # 同じ出典URL・この実行で採った候補と似ている → 重複
+                    dup = ("同じ出典URL" if recent.has_url(cand["url"]) else None) or run_seen.find(cand["title"], cand["url"])
+                    # 直近14日の記事の続報なら、新しい記事ではなく既存記事に足す
+                    target = None if dup else followup_target(cand["title"], cand["url"])
+                    if target and target[0] == "defer":
+                        continue  # 続報の上限。次の実行に回す（mark しない）
+                    if not dup and not target:
+                        dup = recent.find(cand["title"], cand["url"])
                     if dup:
                         mark(state, cand, skipped=True, reason=f"dedupe: {dup}"[:200])
                         continue
@@ -836,7 +980,8 @@ def main() -> int:
                 if item is None:
                     active.remove(lane)
                     continue
-                recent.add(item["title"], item["url"])  # 同じ実行の中の似た候補も外す
+                run_seen.add(item["title"], item["url"])  # 同じ実行の中の似た候補も外す
+                recent.add(item["title"], item["url"])
                 per_feed[item["source_slug"]] = per_feed.get(item["source_slug"], 0) + 1
 
                 log(f"\n[{lane}] {item['source_name']}: {item['title'][:90]}")
@@ -850,27 +995,35 @@ def main() -> int:
                     log(f"   [skip] 本文が短い（{len(text)}字）")
                     mark(state, item, skipped=True, reason=f"short text {len(text)}")
                     continue
+                if target and try_followup(item, text, target) != "different":
+                    continue
 
+                related = arch.related(item["title"], text, item["url"], "ai" if is_ai else lane)
+                context = archive.prompt_block(related)
+                if related:
+                    log(f"   [context] 過去記事 {len(related)} 本: {', '.join(r['slug'] for r in related)}")
                 voice_key, voice_text = m.pick_voice()
                 if is_ai:
                     genre = AI
                     system = f"{m.SYSTEM_INSTRUCTION_BASE}\n\n{AI.persona}\n\n{WEB_SOURCE_NOTE}\n\n## 今回の語り口\n{voice_text}"
-                    prompt, schema, kind = build_prompt(item, text), m.ARTICLE_SCHEMA, "ai"
+                    prompt, schema, kind = build_prompt(item, text, context), WEB_SCHEMA, "ai"
                 else:
                     genre = GENRES_BY_SLUG[lane]
                     system = (
                         f"{m.SYSTEM_INSTRUCTION_BASE}\n\n{genre.persona}\n\n{WEB_SOURCE_NOTE}\n\n{BROAD_SOURCE_NOTE}"
                         f"\n\n## 今回の語り口\n{voice_text}"
                     )
-                    prompt, schema, kind = build_broad_prompt(item, text, genre), TREND_SCHEMA, "broad"
+                    prompt, schema, kind = build_broad_prompt(item, text, genre, context), TREND_SCHEMA, "broad"
 
-                def build(data, model, item=item, page=page, voice_key=voice_key, genre=genre):
+                def build(data, model, item=item, page=page, voice_key=voice_key, genre=genre, related=related):
                     if str(data.get("genre", "")).strip() not in GENRES_BY_SLUG:
                         data = {**data, "genre": genre.slug}
-                    return build_web_record(item, data, page, model, voice_key)
+                    return attach_related(build_web_record(item, data, page, model, voice_key), data, related)
 
                 started = time.time()
-                status, record, model_name, info = gated(item, kind, system, prompt, schema, text, build)
+                status, record, model_name, info = gated(
+                    item, kind, system, prompt, schema, text, build, archive.check_block(related)
+                )
                 if status == "fail":
                     continue
                 if status in ("skip", "reject"):
@@ -880,12 +1033,14 @@ def main() -> int:
                     continue
                 path = m.write_article(record)
                 recent.add(record["title"], record["sourceUrl"], record.get("keywords"))
+                touched.add(record["slug"])
                 mark(state, item, slug=record["slug"], model=model_name, section=lane, score=record.get("qualityScore"))
                 created["ai" if is_ai else "broad"] += 1
                 per_section[record["genreSlug"]] = per_section.get(record["genreSlug"], 0) + 1
                 log(
                     f"   [OK] {path.relative_to(m.ROOT)} ({record['genreSlug']} / {len(record['body'])}字 / "
-                    f"score {record.get('qualityScore')} / {model_name} / {time.time() - started:.0f}s)"
+                    f"score {record.get('qualityScore')} / {model_name} / {time.time() - started:.0f}s"
+                    f"{' / 過去記事 ' + str(len(record['relatedSlugs'])) + '本' if record.get('relatedSlugs') else ''})"
                 )
     finally:
         prune_processed(state)
@@ -894,6 +1049,7 @@ def main() -> int:
 
     log(
         f"\n[done] 新規記事 {total_created()} 本（AI {created['ai']} / 幅広い話題 {created['broad']} / 話題 {created['trend']}）"
+        f" / 続報で更新 {updated_count[0]} 本（上限に数えない）"
         f" / 品質ゲート不合格 {rejected} 本 / ジャンル別 {per_section or '-'} / 今日の使用回数 {llm.usage_today()}"
     )
     return 0

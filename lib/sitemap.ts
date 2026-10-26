@@ -4,6 +4,7 @@ import {
   getAllChannels,
   getAllGenres,
   getAllTags,
+  lastModifiedOf,
   tagSlug,
 } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
@@ -52,7 +53,8 @@ export function sitemapEntries(): SitemapEntry[] {
     })),
     ...articles.map((article) => ({
       url: `${base}/articles/${article.slug}`,
-      lastModified: new Date(article.generatedAt || article.publishedAt),
+      // 続報を足した記事は最終更新日時
+      lastModified: new Date(lastModifiedOf(article)),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),

@@ -9,6 +9,10 @@ import { companyOf, thumbSource } from "@/lib/companies";
 import { Highlight } from "@/lib/highlight";
 import { usability, verdictOf } from "@/lib/verdict";
 
+/** 48時間以内に続報を足した記事（並び順は作成日時のまま、印だけ付ける） */
+const updatedRecently = (article: Article) =>
+  Boolean(article.updatedAt) && Date.now() - Date.parse(article.updatedAt!) < 48 * 3_600_000;
+
 const clock = new Intl.DateTimeFormat("ja-JP", {
   hour: "2-digit",
   minute: "2-digit",
@@ -102,6 +106,9 @@ function TimelineRow({ article }: { article: Article }) {
               <span className="rounded-full bg-ink px-2 py-[1px] text-[10.5px] font-bold text-paper">
                 まとめ {article.sources?.length ?? 0}本
               </span>
+            )}
+            {updatedRecently(article) && (
+              <span className="rounded-full bg-go-soft px-2 py-[1px] text-[10.5px] font-bold text-go">更新</span>
             )}
           </p>
 

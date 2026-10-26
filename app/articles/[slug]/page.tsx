@@ -25,12 +25,14 @@ import Sidebar from "@/components/Sidebar";
 import {
   coverPath,
   formatDate,
+  formatDateTime,
   getAllArticles,
   getArticle,
   getNextReads,
   getRelatedArticles,
   isVideo,
   isWeb,
+  lastModifiedOf,
   PRERENDER_LIMIT,
   sourceHref,
   sourceLabel,
@@ -79,7 +81,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: article.title,
       description: article.description,
       publishedTime: article.publishedAt,
-      modifiedTime: article.generatedAt,
+      modifiedTime: lastModifiedOf(article),
       tags: article.tags,
       // SNSのカードは日本語見出し入りの独自カバー。無い記事は元動画（元記事）の画像
       images: cover
@@ -162,7 +164,8 @@ export default async function ArticlePage({ params }: Props) {
         .filter(Boolean)
         .map((src) => (src!.startsWith("/") ? `${siteConfig.url}${src}` : src)),
       datePublished: article.publishedAt,
-      dateModified: article.generatedAt,
+      // 続報を足した記事は最終更新日時
+      dateModified: lastModifiedOf(article),
       inLanguage: "ja",
       keywords: article.keywords.join(", "),
       mainEntityOfPage: `${siteConfig.url}/articles/${article.slug}`,
@@ -274,6 +277,11 @@ export default async function ArticlePage({ params }: Props) {
               <span className="index-num ml-1.5">（{formatDate(article.publishedAt)}）</span>
             </span>
             <span className="index-num text-muted">読了 {readMinutes}分</span>
+            {article.updatedAt && formatDateTime(article.updatedAt) && (
+              <span className="index-num font-semibold text-ink-soft">
+                最終更新: <time dateTime={article.updatedAt}>{formatDateTime(article.updatedAt)}</time>
+              </span>
+            )}
           </div>
 
           <Morph name={`title-${article.slug}`}>

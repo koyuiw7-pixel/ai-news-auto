@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """生成した記事を書き出す前の品質ゲート。
 
-  (a) 形のチェック（API 不要）: 本文の長さ・かんたん版・タイトル長・英語の残骸・元記事の丸写し
+  (a) 形のチェック（API 不要）: 本文の長さ・かんたん版・タイトル長・英語の残骸・元記事の丸写し・独自の価値（流れ／表／自分に関係ある？）
   (b) 事実確認（LLM・bulk）: 記事と元記事を突き合わせ {grounded, score, problems} を返させる
       grounded が false か score < 70 なら不合格
 
@@ -54,6 +54,7 @@ FACT_PROMPT = """# 元記事（一次情報。自動抽出なのでメニュー�
 <<<
 {source}
 >>>
+{context}
 
 # 確認する記事
 <<<
@@ -62,7 +63,7 @@ FACT_PROMPT = """# 元記事（一次情報。自動抽出なのでメニュー�
 
 # 確認のしかた
 - 記事にある数値・日付・価格・固有名詞・発言・対象者・提供状況が、元記事に書かれているか、元記事と矛盾しないかを確かめる。
-- 次は問題にしない: 元記事の内容の言い換え・要約、「（編集部注）」と明記した一般的な背景説明（具体的な数値を含まないもの）、
+- 次は問題にしない: 元記事の内容の言い換え・要約、「確認済みの文脈」に書かれた事実（過去の経緯・日付・価格など）、「（編集部注）」と明記した一般的な背景説明（具体的な数値を含まないもの）、
   「元記事では言及なし」「発表されていない」といった記述、読者への一般的な助言（公式情報を確認しよう等）。
 - 次は必ず問題にする: 元記事に無い具体的な数値・日付・価格・機能・発言の創作、元記事との矛盾、
   予定や研究段階のものを提供開始済み・実用化済みのように書くこと、効能・効果の断定、特定個人への憶測。
@@ -71,6 +72,18 @@ FACT_PROMPT = """# 元記事（一次情報。自動抽出なのでメニュー�
 - grounded: 創作・矛盾が1つも無ければ true。1つでもあれば false。
 - score: 記事全体が元記事に裏付けられている度合い（0〜100）。軽微な言い過ぎは減点、創作・矛盾は大きく減点。
 - problems: 見つけた問題を最大8個。各項目は「記事の該当箇所（短く引用）→ 何が問題か」を1文で。問題が無ければ空配列。"""
+
+
+CONTEXT_BLOCK = """
+# 確認済みの文脈（サイソクの過去記事・既存記事の事実。ここにある事実は創作として扱わない）
+<<<
+{context}
+>>>
+"""
+# 独自の価値: 「これまでの流れ」の章 / Markdown の表 / 「自分に関係ある？」の章（150字以上）のどれか
+UNIQUE_KINDS = {"ai", "broad", "trend"}
+UNIQUE_SECTION_MIN = 150
+TABLE_RE = re.compile(r"^\s*\|.+\|\s*\n\s*\|\s*:?-{3,}", re.M)
 
 
 def _plain_len(text: str) -> int:
@@ -92,6 +105,20 @@ def copied_sentences(body: str, source: str, min_len: int = 40) -> list[str]:
         if len(clean) >= min_len and clean in src:
             found.append(sentence.strip()[:50])
     return found
+
+
+def section_text(body: str, heading: str) -> str:
+    """「## 見出し」で始まる章の本文（次の ## まで）。無ければ空文字"""
+    m = re.search(rf"^## {re.escape(heading)}[^\n]*\n(.*?)(?=^## |\Z)", body or "", re.M | re.S)
+    return m.group(1) if m else ""
+
+
+def has_unique_value(body: str) -> bool:
+    if re.search(r"^## これまでの流れ", body or "", re.M) or TABLE_RE.search(body or ""):
+        return True
+    return any(
+        _plain_len(section_text(body, h)) >= UNIQUE_SECTION_MIN for h in ("自分に関係ある？", "読者にとって何が変わるのか", "誰にどう効くのか")
+    )
 
 
 def structural_problems(record: dict, kind: str, source_text: str = "") -> list[str]:
@@ -116,6 +143,12 @@ def structural_problems(record: dict, kind: str, source_text: str = "") -> list[
         for heading in ("## ひとことで言うと", "## 自分に関係ある？"):
             if heading not in body:
                 problems.append(f"body_markdown に「{heading}」の章がない（構成どおりの見出しを使う）")
+
+    if record.get("sourceType") == "web" and kind in UNIQUE_KINDS and not has_unique_value(body):
+        problems.append(
+            "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・"
+            "「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+        )
 
     text = f"{body}\n{easy}"
     if m := BOILERPLATE_RE.search(text):
@@ -145,9 +178,13 @@ def _article_for_check(record: dict) -> str:
     return "\n\n".join(parts)[:ARTICLE_CAP]
 
 
-def fact_check(record: dict, source_text: str) -> dict:
-    """{grounded, score, problems, model}。LLM が使えないときは例外"""
-    prompt = FACT_PROMPT.format(source=source_text[:SOURCE_CAP], article=_article_for_check(record))
+def fact_check(record: dict, source_text: str, context: str = "") -> dict:
+    """{grounded, score, problems, model}。context は確認済みの事実（過去記事など）。LLM が使えないときは例外"""
+    prompt = FACT_PROMPT.format(
+        source=source_text[:SOURCE_CAP],
+        context=CONTEXT_BLOCK.format(context=context[:3000]) if context.strip() else "",
+        article=_article_for_check(record),
+    )
     data, model = llm.generate_json(FACT_SYSTEM, prompt, FACT_SCHEMA, temperature=0.1, max_output_tokens=4096, tier="bulk")
     try:
         score = int(data.get("score", 0))
@@ -157,13 +194,13 @@ def fact_check(record: dict, source_text: str) -> dict:
     return {"grounded": bool(data.get("grounded")), "score": max(0, min(100, score)), "problems": problems, "model": model}
 
 
-def evaluate(record: dict, source_text: str, kind: str) -> dict:
+def evaluate(record: dict, source_text: str, kind: str, context: str = "") -> dict:
     """{ok, score, problems, structural, fact}。形で落ちたときは事実確認を省く（API の節約）"""
     structural = structural_problems(record, kind, source_text)
     if structural:
         return {"ok": False, "score": None, "problems": structural, "structural": structural, "fact": None}
     try:
-        fact = fact_check(record, source_text)
+        fact = fact_check(record, source_text, context)
     except Exception as error:  # noqa: BLE001 - 確認できない記事は出さない
         problem = f"事実確認を実行できなかった（{str(error)[:80]}）"
         return {"ok": False, "score": None, "problems": [problem], "structural": [], "fact": None, "unavailable": True}

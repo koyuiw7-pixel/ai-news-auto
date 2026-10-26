@@ -39,6 +39,9 @@ STOP_ENTITIES = {
     "ハロウィン", "クリスマス", "ギフト", "プラン", "パッケージ", "デザイン", "ポイント", "キャラクター",
     "the", "and", "for", "with", "new", "now", "from", "your", "how", "what", "why", "into",
     "inc", "ltd", "co", "jp", "com", "www", "http", "https", "2024", "2025", "2026", "2027",
+    # 英語の見出しによく出る一般語（固有名詞ではない）
+    "using", "use", "more", "build", "building", "data", "agent", "agents", "brings", "all", "about", "look", "does",
+    "run", "app", "apps", "make", "our", "you", "can", "get", "turning", "this", "that", "are", "will", "its", "over",
 }
 BRACKET_RE = re.compile(r"[「『【\[(（]([^」』】\])）]{2,30})[」』】\])）]")
 KATAKANA_RE = re.compile(r"[ァ-ヴー・]{3,}")
@@ -97,21 +100,30 @@ class Index:
         if url:
             self.urls.add(_norm_url(url))
 
+    def has_url(self, url: str) -> bool:
+        return bool(url) and _norm_url(url) in self.urls
+
     def find(self, title: str, url: str = "", extra: list[str] | None = None) -> str | None:
         """重複していれば理由（文字列）、していなければ None"""
+        hit = self.match(title, url, extra)
+        return hit[0] if hit else None
+
+    def match(self, title: str, url: str = "", extra: list[str] | None = None) -> tuple[str, str] | None:
+        """重複していれば (理由, 相手の label)。出典URLが同じときの label は空"""
         if url and _norm_url(url) in self.urls:
-            return "同じ出典URL"
+            return "同じ出典URL", ""
         grams = bigrams(title)
         ents = {e for e in entities(title, *(extra or [])) if self.df.get(e, 0) < COMMON_ENTITY_DF}
         for entry in self.entries:
             score = jaccard(grams, entry["bigrams"])
+            label = entry["label"]
             if score >= JACCARD_DUP:
-                return f"見出しが類似（{score:.2f}）: {entry['label'][:40]}"
+                return f"見出しが類似（{score:.2f}）: {label[:40]}", label
             shared = ents & entry["entities"]
             if len(shared) >= 2:
-                return f"固有名詞が一致（{'・'.join(sorted(shared)[:3])}）: {entry['label'][:40]}"
+                return f"固有名詞が一致（{'・'.join(sorted(shared)[:3])}）: {label[:40]}", label
             if shared and score >= JACCARD_WITH_ENTITY:
-                return f"固有名詞＋見出しが類似（{next(iter(shared))} / {score:.2f}）: {entry['label'][:40]}"
+                return f"固有名詞＋見出しが類似（{next(iter(shared))} / {score:.2f}）: {label[:40]}", label
         return None
 
 
@@ -129,8 +141,8 @@ def _article_time(data: dict) -> datetime | None:
     return None
 
 
-def load_recent(days: int = 4) -> Index:
-    """直近 days 日に作った（または公開された）記事の索引"""
+def load_recent(days: int = 4, skip_roundups: bool = False) -> Index:
+    """直近 days 日に作った（または公開された）記事の索引。label は記事の slug"""
     index = Index()
     since = datetime.now(timezone.utc) - timedelta(days=days)
     for path in sorted(ARTICLES_DIR.glob("*.json")):
@@ -141,8 +153,14 @@ def load_recent(days: int = 4) -> Index:
         when = _article_time(data)
         if when is None or when < since:
             continue
+        if skip_roundups and data.get("type") == "roundup":
+            continue
         keywords = [str(k) for k in (data.get("keywords") or [])][:8]
         index.add(str(data.get("title", "")), str(data.get("sourceUrl", "")), keywords, label=path.stem)
+        # 続報で足した出典も「同じ出典URL」として扱う
+        for update in data.get("updates") or []:
+            if isinstance(update, dict) and update.get("sourceUrl"):
+                index.urls.add(_norm_url(str(update["sourceUrl"])))
         # 元記事の見出し（英語ソースなら英語）でも当たるようにする
         if data.get("videoTitle") and data.get("videoTitle") != data.get("title"):
             index.add(str(data["videoTitle"]), "", None, label=path.stem)

@@ -25,11 +25,20 @@ export type RoundupSource = {
   channel: string;
 };
 
+/** 続報で既存記事に足した章（scripts/followup.py） */
+export type ArticleUpdate = {
+  at: string;
+  title: string;
+  sourceUrl: string;
+  sourceName: string;
+};
+
 export type Article = {
   slug: string;
   /** "roundup" は複数記事を統合した横断まとめ。省略時は通常記事 */
   type?: "roundup";
-  /** まとめ記事が統合した元記事（type === "roundup" のとき） */
+  /** まとめ記事が統合した元記事（type === "roundup" のとき）。
+   *  web 記事（話題のニュース・続報あり）では {title, url, source} の出典一覧が入るが、画面では使わない */
   sources?: RoundupSource[];
   /** 通常記事から、自分を含むまとめ記事への逆リンク */
   roundupSlug?: string;
@@ -71,7 +80,14 @@ export type Article = {
   /** web 記事では元記事の題名 */
   videoTitle: string;
   publishedAt: string;
+  /** サイソクに載せた日時（作成。続報を足しても変えない） */
   generatedAt: string;
+  /** 続報を足した最後の日時 */
+  updatedAt?: string;
+  /** 続報の履歴（古い順） */
+  updates?: ArticleUpdate[];
+  /** 「これまでの流れ」で文脈に使った過去記事の slug */
+  relatedSlugs?: string[];
   thumbnail: string;
   model: string;
 };
@@ -188,10 +204,29 @@ function readOne(slug: string): Article | undefined {
 /** ビルド時に静的化する記事の数（新しい順）。残りは初回アクセス時に生成してキャッシュする */
 export const PRERENDER_LIMIT = 150;
 
+/** 最終更新日時（続報があれば updatedAt。サイトマップ・構造化データ用） */
+export function lastModifiedOf(article: Article): string {
+  return article.updatedAt || article.generatedAt || article.publishedAt;
+}
+
+/** 直近 hours 時間以内に続報を足した記事か（一覧の「更新」バッジ） */
+export function isRecentlyUpdated(article: Article, hours = 48): boolean {
+  if (!article.updatedAt) return false;
+  const age = Date.now() - Date.parse(article.updatedAt);
+  return age >= 0 && age < hours * 3_600_000;
+}
+
 export function getRelatedArticles(article: Article, limit = 4): Article[] {
+  // 記事を作るときに文脈として使った過去記事を先に出す
+  const picked = (article.relatedSlugs ?? [])
+    .filter((slug) => slug !== article.slug)
+    .map((slug) => getArticle(slug))
+    .filter((a): a is Article => Boolean(a))
+    .slice(0, limit);
+  const used = new Set([article.slug, ...picked.map((a) => a.slug)]);
   const tags = new Set(article.tags);
-  return getAllArticles()
-    .filter((a) => a.slug !== article.slug)
+  const rest = getAllArticles()
+    .filter((a) => !used.has(a.slug))
     .map((a) => ({
       article: a,
       score:
@@ -201,8 +236,9 @@ export function getRelatedArticles(article: Article, limit = 4): Article[] {
         (a.genreSlug === article.genreSlug ? 5 : 0),
     }))
     .sort((a, b) => b.score - a.score)
-    .slice(0, limit)
+    .slice(0, limit - picked.length)
     .map((x) => x.article);
+  return [...picked, ...rest];
 }
 
 /* ------------------------------------------------------------------ */
@@ -335,6 +371,21 @@ export function getAllChannels(): Facet[] {
 
 export function getArticlesByChannel(channelSlug: string): Article[] {
   return getAllArticles().filter((a) => a.channelSlug === channelSlug);
+}
+
+/** "2026/10/27 09:30"（日本時間） */
+export function formatDateTime(iso: string): string {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: "Asia/Tokyo",
+  }).format(date);
 }
 
 export function formatDate(iso: string): string {
