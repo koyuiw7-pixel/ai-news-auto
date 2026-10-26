@@ -3011,6 +3011,14 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/recruit/r8/kokusai-02/kokusai-02.html"
     },
+    "4551cf1ba9ff1f3d": {
+      "at": "2026-10-26T13:53:40.778421+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "klang-japan-usage-data-2026",
+      "url": "https://prtimes.jp/main/html/rd/p/000000006.000188950.html"
+    },
     "4708f3cc5b0124bc": {
       "at": "2026-10-26T10:30:42.540827+00:00",
       "reason": "dedupe: 同じ出典URL",
@@ -3250,6 +3258,14 @@
       "reason": "quality: 本文が短い（2488字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/orchestrating-sagemaker-ai-endpoint-auto-scaling-with-aws-cdk/"
+    },
+    "ca468eb35b284a7e": {
+      "at": "2026-10-26T13:54:15.329766+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "ipad-mini-oled-a20-pro-2026",
+      "url": "https://www.apple.com/jp/newsroom/2026/10/apple-gives-ipad-mini-its-biggest-update-ever/"
     },
     "cf1477a919af62b8": {
       "at": "2026-10-26T12:36:06.344995+00:00",
@@ -4366,6 +4382,44 @@
       "score": 100,
       "source": "jpcert",
       "title": "注意喚起: PHPにおける複数の脆弱性（CVE-2026-109618、CVE-2026-109619）に関する注意喚起 (更新)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T13:52:45.191707+00:00",
+      "attempt": 1,
+      "id": "4551cf1ba9ff1f3d",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1786字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "AI文字起こし時間の約7割は1時間以上の録音、約4分の1は18時以降に完了 Klangが日本の利用データを公開"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T13:53:40.777975+00:00",
+      "attempt": 2,
+      "id": "4551cf1ba9ff1f3d",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes",
+      "title": "AI文字起こし時間の約7割は1時間以上の録音、約4分の1は18時以降に完了 Klangが日本の利用データを公開"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T13:54:15.329326+00:00",
+      "attempt": 1,
+      "id": "ca468eb35b284a7e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "apple-newsroom-jp-all",
+      "title": "Apple、iPad miniに史上最大のアップデートを導入"
     }
   ]
 }
