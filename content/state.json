@@ -37,6 +37,7 @@
     "nfpVl4pC0UM": 1,
     "nqAri_t8xRA": 1,
     "roVDIuW_6HI": 1,
+    "tTuk4pGnT0A": 1,
     "u5t7-BLYvfQ": 2,
     "udRxVK7mKn0": 2,
     "xP1kjDOisVw": 1,
@@ -3175,6 +3176,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000196.000048688.html"
     },
+    "4049d96cecb68ca5": {
+      "at": "2026-10-26T18:39:37.939575+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "microsoft-agentic-software-engineering-code-modernization",
+      "url": "https://commandline.microsoft.com/agentic-software-engineering-large-scale-code-migration-language-modernization-spec-driven-development/"
+    },
     "422d0454e07d37ab": {
       "at": "2026-10-26T16:34:20.747561+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3259,6 +3268,14 @@
       "reason": "quality: 本文が短い（1860字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000004.000181678.html"
+    },
+    "5a508ce5e5172782": {
+      "at": "2026-10-26T18:40:05.834526+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "richi-slimy-pot-jelly-candy-magic-lab",
+      "url": "https://www.atpress.ne.jp/news/640099"
     },
     "5ac8226e346a2ea6": {
       "at": "2026-10-26T12:51:45.036729+00:00",
@@ -6261,6 +6278,44 @@
       "score": null,
       "source": "prtimes",
       "title": "フォーティエンスコンサルティング、AIが適切に参照できるデータと組織基盤を整備する「AI-readyデータ構築支援サービス」を提供開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T18:39:37.939219+00:00",
+      "attempt": 1,
+      "id": "4049d96cecb68ca5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "microsoft-source",
+      "title": "When AI rewrites millions of lines of code, verification becomes essential"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:39:48.677980+00:00",
+      "attempt": 1,
+      "id": "5a508ce5e5172782",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1723字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "atpress",
+      "title": "人気インフルエンサー「りち」とキラキラポップなつくる菓子シリーズ「CANDY Magic Lab」がコラボ！「りちスライミーポットゼリー」が新発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T18:40:05.834124+00:00",
+      "attempt": 2,
+      "id": "5a508ce5e5172782",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "atpress",
+      "title": "人気インフルエンサー「りち」とキラキラポップなつくる菓子シリーズ「CANDY Magic Lab」がコラボ！「りちスライミーポットゼリー」が新発売"
     }
   ]
 }
