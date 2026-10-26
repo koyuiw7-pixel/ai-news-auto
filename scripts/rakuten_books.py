@@ -33,7 +33,7 @@ RAKUTEN_HGC = "g00q0724.2bo11c45.g00q0724.2bo12179/a26102173090_4BELTP_50ED2Q_2H
 PIXEL = "https://www15.a8.net/0.gif?a8mat=" + A8MAT
 
 USER_AGENT = "Mozilla/5.0 (compatible; SaisokuBot/1.0; +https://ai-tech-express.jp)"
-PER_TOPIC = 4
+PER_TOPIC = 10
 MIN_YEAR = 2025
 
 

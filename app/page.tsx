@@ -43,7 +43,7 @@ export default function HomePage() {
   ).length;
 
   // トップにもPR枠。いちばん新しい話題に合う商品を出す（話題が合わなければ汎用の枠）
-  const found = offerForArticle(lead, 3);
+  const found = offerForArticle(lead, 9);
   const offer = found && { ...found, eyebrow: "今日の話題に合わせて" };
 
   const companies = companyCounts(ai);
