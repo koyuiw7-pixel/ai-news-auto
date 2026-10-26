@@ -1,3 +1,4 @@
+import { isIndexable } from "@/lib/indexing";
 import { getAllArticles } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
 
@@ -13,6 +14,7 @@ const escapeXml = (value: string) =>
 export function GET() {
   const now = Date.now();
   const recent = getAllArticles()
+    .filter(isIndexable)
     .filter((a) => now - Date.parse(a.generatedAt || a.publishedAt) < 2 * 86_400_000)
     .slice(0, 1000);
 

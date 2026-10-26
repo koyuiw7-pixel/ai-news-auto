@@ -55,6 +55,8 @@ def collect_urls(base: str, hours: int | None) -> list[str]:
             article = json.loads(path.read_text("utf-8"))
         except json.JSONDecodeError:
             continue
+        if not is_indexable(article):
+            continue
         if threshold:
             try:
                 generated = datetime.fromisoformat(article.get("generatedAt", ""))
@@ -82,6 +84,21 @@ def submit(base: str, key: str, urls: list[str]) -> int:
     )
     with urllib.request.urlopen(request, timeout=30) as response:
         return response.status
+
+
+# lib/indexing.ts の isIndexable と同じ基準（検索に出さない記事は通知しない）
+WIRE_SOURCES = {"prtimes", "prtimes-all", "atpress", "value-press", "kyodo-prwire", "dreamnews"}
+
+
+def is_indexable(article: dict) -> bool:
+    if isinstance(article.get("indexable"), bool):
+        return article["indexable"]
+    if article.get("sourceType") != "web" or article.get("type") == "roundup":
+        return True
+    length = len(article.get("body", ""))
+    if article.get("channelSlug") in WIRE_SOURCES:
+        return length >= 3200
+    return length >= 2000
 
 
 def main() -> int:

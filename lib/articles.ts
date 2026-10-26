@@ -63,6 +63,8 @@ export type Article = {
   /** sourceType === "web" のときの元記事URLと発信元名 */
   sourceUrl?: string;
   sourceName?: string;
+  /** 検索に出すかを手動で決める（無ければ lib/indexing.ts の基準） */
+  indexable?: boolean;
   /** web 記事では空文字 */
   videoId: string;
   videoUrl: string;

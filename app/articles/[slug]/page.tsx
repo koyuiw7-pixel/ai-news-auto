@@ -1,3 +1,4 @@
+import { isIndexable } from "@/lib/indexing";
 import type { Metadata } from "next";
 import Thumb from "@/components/Thumb";
 import Link from "next/link";
@@ -70,6 +71,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: article.description,
     keywords: article.keywords,
     alternates: { canonical: url },
+    // 薄くなりやすい記事はサイトでは読めるが、検索には出さない（lib/indexing.ts）
+    ...(isIndexable(article) ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
       type: "article",
       url,
@@ -164,6 +167,9 @@ export default async function ArticlePage({ params }: Props) {
       keywords: article.keywords.join(", "),
       mainEntityOfPage: `${siteConfig.url}/articles/${article.slug}`,
       author: { "@type": "Organization", name: siteConfig.author, url: `${siteConfig.url}/about` },
+      // 編集方針と訂正方針（誰がどう責任を持つかを検索エンジンに示す）
+      publishingPrinciples: `${siteConfig.url}/editorial-policy`,
+      correctionsPolicy: `${siteConfig.url}/editorial-policy`,
       publisher: {
         "@type": "Organization",
         name: siteConfig.name,
@@ -591,6 +597,17 @@ export default async function ArticlePage({ params }: Props) {
               </a>
             )}
             （解析モデル: {article.model}）
+            <span className="mt-1.5 block">
+              制作方法と事実確認の手順は
+              <Link href="/editorial-policy" className="mx-1 text-accent underline">
+                編集方針
+              </Link>
+              をご覧ください。誤りのご指摘は
+              <Link href="/contact" className="mx-1 text-accent underline">
+                お問い合わせ
+              </Link>
+              から受け付けています。
+            </span>
           </p>
 
           {related.length > 0 && (

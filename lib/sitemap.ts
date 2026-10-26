@@ -1,3 +1,4 @@
+import { isIndexable } from "@/lib/indexing";
 import {
   getAllArticles,
   getAllChannels,
@@ -22,8 +23,8 @@ export const SITEMAP_CHUNK = 40000;
 /** サイトマップに載せる全 URL（記事は全件） */
 export function sitemapEntries(): SitemapEntry[] {
   const base = siteConfig.url;
-  // 全ジャンルを検索対象にする（品質チェックを通った記事だけが公開される）
-  const articles = getAllArticles();
+  // 全ジャンルが対象。ただし薄くなりやすい記事は検索に出さないので載せない（lib/indexing.ts）
+  const articles = getAllArticles().filter(isIndexable);
   const liveChannels = new Set(articles.map((a) => a.channelSlug));
   const liveTags = new Set(articles.flatMap((a) => a.tags.map(tagSlug)));
   const lastModified = articles[0]?.generatedAt
@@ -43,7 +44,7 @@ export function sitemapEntries(): SitemapEntry[] {
       changeFrequency: "hourly" as const,
       priority: 0.9,
     },
-    ...["/about", "/privacy", "/disclaimer", "/contact"].map((path) => ({
+    ...["/about", "/editorial-policy", "/privacy", "/disclaimer", "/contact"].map((path) => ({
       url: `${base}${path}`,
       lastModified,
       changeFrequency: "yearly" as const,
