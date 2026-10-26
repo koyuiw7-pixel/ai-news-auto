@@ -2976,6 +2976,12 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/recruit/r8/kokusai-01/kokusai-01.html"
     },
+    "1390907f79cb41b7": {
+      "at": "2026-10-26T17:14:17.179994+00:00",
+      "reason": "prefilter: 告知・お知らせ系",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000099.000048788.html"
+    },
     "14fe58965fdb4ed4": {
       "at": "2026-10-26T14:57:42.113226+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3234,6 +3240,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000010.000046814.html"
     },
+    "5f9dc1efca710145": {
+      "at": "2026-10-26T17:15:09.059191+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "cccskills-ai-agent-skills-market",
+      "url": "https://prtimes.jp/main/html/rd/p/000000083.000041726.html"
+    },
     "62c869d7dbe25166": {
       "at": "2026-10-26T11:31:53.187943+00:00",
       "reason": "dedupe: 固有名詞が一致（copilot・github）: azure-cosmos-db-ai-assisted-development",
@@ -3253,6 +3267,13 @@
       "reason": "本件はAIを活用したIR活動に関する無料オンラインウェビナーの告知であり、新しいAIモデルやソフトウェアなどの技術的なプロダクトの発表ではないため対象外とします。",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000152.000089303.html"
+    },
+    "670df2e1b72e0a09b0aba39b9e8a4441ed129cc7": {
+      "at": "2026-10-26T17:11:56.671826+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1325字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/4e54d479bcde6ceddf494f6e91cce169eb2afce1"
     },
     "676fae481dbca519": {
       "at": "2026-10-26T16:51:25.926760+00:00",
@@ -3411,6 +3432,14 @@
       "reason": "quality: 本文が短い（1979字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000032.000071025.html"
+    },
+    "a42cbd0dcd40e943": {
+      "at": "2026-10-26T17:14:17.179772+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "alice-gakuen-october-enrollment-2026",
+      "url": "https://www.value-press.com/pressrelease/382552"
     },
     "a5dc5fb8fb4d2bfd": {
       "at": "2026-10-26T12:50:54.598637+00:00",
@@ -3723,6 +3752,13 @@
       "reason": "quality: 本文が短い（2314字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000284.000013608.html"
+    },
+    "eea52ef7fa0dfe75": {
+      "at": "2026-10-26T17:13:11.283572+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2348字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000054.000060051.html"
     },
     "f208f898be629661": {
       "at": "2026-10-26T14:58:03.842316+00:00",
@@ -5766,6 +5802,103 @@
       "score": 100,
       "source": "ipa",
       "title": "自分の個人情報等が漏えいした際の「対処」と「日頃の対策」を公開しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T17:11:29.466229+00:00",
+      "attempt": 1,
+      "id": "670df2e1b72e0a09b0aba39b9e8a4441ed129cc7",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1285字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "title / seo_title に感嘆符がある"
+      ],
+      "score": null,
+      "source": "trends",
+      "title": "777real"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T17:11:56.671799+00:00",
+      "attempt": 2,
+      "id": "670df2e1b72e0a09b0aba39b9e8a4441ed129cc7",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1325字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "trends",
+      "title": "777real"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T17:12:43.004078+00:00",
+      "attempt": 1,
+      "id": "eea52ef7fa0dfe75",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1349字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "ユービーセキュア、「AI駆動スマートフォンアプリケーション診断」を提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T17:13:11.283545+00:00",
+      "attempt": 2,
+      "id": "eea52ef7fa0dfe75",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2348字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "ユービーセキュア、「AI駆動スマートフォンアプリケーション診断」を提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T17:13:38.594791+00:00",
+      "attempt": 1,
+      "id": "a42cbd0dcd40e943",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1716字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "value-press",
+      "title": "多国籍の留学生が集う専門学校アリス学園、令和8年度10月期入学式を開催――日本語と専門知識を学び地域社会へ"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T17:14:17.179385+00:00",
+      "attempt": 2,
+      "id": "a42cbd0dcd40e943",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "value-press",
+      "title": "多国籍の留学生が集う専門学校アリス学園、令和8年度10月期入学式を開催――日本語と専門知識を学び地域社会へ"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T17:15:09.058760+00:00",
+      "attempt": 1,
+      "id": "5f9dc1efca710145",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes",
+      "title": "日本語で探せる Agent Skills マーケット「cccskills」を公開。AI エージェント向けスキル約9.5万件を日本語で検索・比較"
     }
   ]
 }
