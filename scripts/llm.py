@@ -168,6 +168,17 @@ def _groq_models() -> list[str]:
     return [f"groq:{m}" for m in wanted]
 
 
+# Cloudflare Workers AI（無料枠: 1日1万ニューロン）。OpenAI 互換の窓口を使う
+CLOUDFLARE_MODELS = ["@cf/openai/gpt-oss-120b", "@cf/meta/llama-3.3-70b-instruct-fp8-fast"]
+
+
+def _cloudflare_models() -> list[str]:
+    if not (os.environ.get("CLOUDFLARE_API_TOKEN") and os.environ.get("CLOUDFLARE_ACCOUNT_ID")):
+        return []
+    wanted = [m.strip() for m in os.environ.get("CLOUDFLARE_MODELS", "").split(",") if m.strip()] or CLOUDFLARE_MODELS
+    return [f"cloudflare:{m}" for m in wanted]
+
+
 def _openrouter_models() -> list[str]:
     if not os.environ.get("OPENROUTER_API_KEY"):
         return []
@@ -226,7 +237,7 @@ def models_for(tier: str) -> list[str]:
         else:
             bulk = [m for m in BULK_MODELS if m in have]
             # Claude は枠をオーナーと共有するので bulk では最後の予備（1日 CLAUDE_DAILY_MAX 回まで）
-            chosen = list(dict.fromkeys(bulk + quality)) + _groq_models() + _openrouter_models() + claude + _codex_models()
+            chosen = list(dict.fromkeys(bulk + quality)) + _groq_models() + _openrouter_models() + _cloudflare_models() + claude + _codex_models()
         _tiers[tier] = chosen
         log(f"[llm] {tier}: {' → '.join(chosen) or '（なし）'}")
     return _tiers[tier]
@@ -340,6 +351,9 @@ def _call_openai_compatible(model: str, system_instruction: str, prompt: str, sc
     provider, name = model.split(":", 1)
     if provider == "groq":
         url, key = "https://api.groq.com/openai/v1/chat/completions", os.environ["GROQ_API_KEY"]
+    elif provider == "cloudflare":
+        url = f"https://api.cloudflare.com/client/v4/accounts/{os.environ['CLOUDFLARE_ACCOUNT_ID']}/ai/v1/chat/completions"
+        key = os.environ["CLOUDFLARE_API_TOKEN"]
     else:
         url, key = "https://openrouter.ai/api/v1/chat/completions", os.environ["OPENROUTER_API_KEY"]
     payload = {
