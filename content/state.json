@@ -2956,6 +2956,14 @@
       "skipped": true,
       "url": "https://research.google/blog/bringing-foundational-models-to-the-front-lines-of-tb-screening/"
     },
+    "08ef10f23f8f0696": {
+      "at": "2026-10-26T16:36:52.258900+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "ai-scout-kanrikun-200-companies",
+      "url": "https://prtimes.jp/main/html/rd/p/000000117.000019706.html"
+    },
     "09bb38f190da1810": {
       "at": "2026-10-26T15:10:53.940577+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
@@ -3123,6 +3131,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000196.000048688.html"
     },
+    "422d0454e07d37ab": {
+      "at": "2026-10-26T16:34:20.747561+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "it-passport-study-survey-ipa",
+      "url": "https://www.ipa.go.jp/shiken/kubun/ip/ip_goukaku_anq_all.html"
+    },
     "4551cf1ba9ff1f3d": {
       "at": "2026-10-26T13:53:40.778421+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3130,6 +3146,13 @@
       "section": "ai",
       "slug": "klang-japan-usage-data-2026",
       "url": "https://prtimes.jp/main/html/rd/p/000000006.000188950.html"
+    },
+    "45f0e915baa687e3": {
+      "at": "2026-10-26T16:31:58.142501+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1679字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000561.000082530.html"
     },
     "4708f3cc5b0124bc": {
       "at": "2026-10-26T10:30:42.540827+00:00",
@@ -3380,6 +3403,13 @@
       "reason": "dedupe: 固有名詞が一致（llm・ローカル）: llama-app-mac-local-ai-hugging-face",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000077.000058475.html"
+    },
+    "aaf22fbf6fabb7c9": {
+      "at": "2026-10-26T16:35:20.540731+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2095字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000243.000080352.html"
     },
     "ab856cd6e743d660": {
       "at": "2026-10-26T15:06:51.213406+00:00",
@@ -5573,6 +5603,103 @@
       "score": 100,
       "source": "softbank-news",
       "title": "学びを生かし、東北で働く若者を増やしたい。地域の人材育成と活性化を目指す連携協定を東北学院大学と締結"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T16:31:28.230618+00:00",
+      "attempt": 1,
+      "id": "45f0e915baa687e3",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1792字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "書籍『生成AIでつくる小さな会社の人事のしくみ』10月26日（月）発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T16:31:58.142474+00:00",
+      "attempt": 2,
+      "id": "45f0e915baa687e3",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1679字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "書籍『生成AIでつくる小さな会社の人事のしくみ』10月26日（月）発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T16:34:20.747067+00:00",
+      "attempt": 1,
+      "id": "422d0454e07d37ab",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "ipa",
+      "title": "ITパスポート試験合格者の学習実態等に関するアンケート結果を公表しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T16:34:51.088458+00:00",
+      "attempt": 1,
+      "id": "aaf22fbf6fabb7c9",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1911字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "スペースデータ、人型ロボットのラーメン搬送でスープの揺れを比べる物理シミュレーションデモ「RamenLab」を公開"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T16:35:20.540703+00:00",
+      "attempt": 2,
+      "id": "aaf22fbf6fabb7c9",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2095字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "スペースデータ、人型ロボットのラーメン搬送でスープの揺れを比べる物理シミュレーションデモ「RamenLab」を公開"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T16:35:55.669972+00:00",
+      "attempt": 1,
+      "id": "08ef10f23f8f0696",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1916字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（376字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "【プレスリリース】スカウト自動化サービス「AIスカウトかんりくん」、リリースから10カ月で導入企業数200社を突破"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T16:36:52.258494+00:00",
+      "attempt": 2,
+      "id": "08ef10f23f8f0696",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes",
+      "title": "【プレスリリース】スカウト自動化サービス「AIスカウトかんりくん」、リリースから10カ月で導入企業数200社を突破"
     }
   ]
 }
