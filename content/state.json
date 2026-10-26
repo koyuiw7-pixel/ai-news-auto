@@ -3023,6 +3023,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000018.000134977.html"
     },
+    "2122e422380b5543": {
+      "at": "2026-10-26T16:50:25.785682+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（講座）",
+      "skipped": true,
+      "url": "https://kyodonewsprwire.jp/release/202610268700"
+    },
     "222f3715a6dc5508": {
       "at": "2026-10-26T12:33:34.802938+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3247,6 +3253,14 @@
       "reason": "本件はAIを活用したIR活動に関する無料オンラインウェビナーの告知であり、新しいAIモデルやソフトウェアなどの技術的なプロダクトの発表ではないため対象外とします。",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000152.000089303.html"
+    },
+    "676fae481dbca519": {
+      "at": "2026-10-26T16:51:25.926760+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "ipa-personal-data-leak-countermeasures",
+      "url": "https://www.ipa.go.jp/security/anshin/attention/2026/mgdayori20261026.html"
     },
     "6821f94ba9166dd6": {
       "at": "2026-10-26T12:37:50.156908+00:00",
@@ -3633,6 +3647,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005959.000054842.html"
     },
+    "d933013ac8b95522": {
+      "at": "2026-10-26T16:50:25.785482+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "google-gemini-college-student-features",
+      "url": "https://blog.google/products-and-platforms/products/gemini/college-student-favorite-features/"
+    },
     "dcf5d54939aadc4c": {
       "at": "2026-10-26T10:30:42.540838+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（一覧へ）",
@@ -3654,6 +3676,12 @@
       "section": "business",
       "slug": "japan-occupational-health-market-2028",
       "url": "https://www.dreamnews.jp/press/0000366537"
+    },
+    "e3ae10844146bde8": {
+      "at": "2026-10-26T16:50:25.785656+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
+      "skipped": true,
+      "url": "https://case-studies.ipa.go.jp/jirei-data/case_studies/237"
     },
     "e529dedc8f0dfc23": {
       "at": "2026-10-26T15:03:53.336784+00:00",
@@ -5700,6 +5728,44 @@
       "score": 100,
       "source": "prtimes",
       "title": "【プレスリリース】スカウト自動化サービス「AIスカウトかんりくん」、リリースから10カ月で導入企業数200社を突破"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T16:49:31.239978+00:00",
+      "attempt": 1,
+      "id": "d933013ac8b95522",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "Googleは2026年10月27日付の公式ブログで → 元記事の日付は「Oct 26, 2026」であり、1日ズレている"
+      ],
+      "score": 85,
+      "source": "google-gemini-blog",
+      "title": "15 college students share their favorite Gemini features"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T16:50:25.785053+00:00",
+      "attempt": 2,
+      "id": "d933013ac8b95522",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "google-gemini-blog",
+      "title": "15 college students share their favorite Gemini features"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T16:51:25.926338+00:00",
+      "attempt": 1,
+      "id": "676fae481dbca519",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "ipa",
+      "title": "自分の個人情報等が漏えいした際の「対処」と「日頃の対策」を公開しました"
     }
   ]
 }
