@@ -2976,6 +2976,14 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/recruit/r8/kokusai-01/kokusai-01.html"
     },
+    "0f715e1693d7c6b7": {
+      "at": "2026-10-26T17:31:35.423776+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "amazon-bedrock-openai-prompt-caching",
+      "url": "https://aws.amazon.com/blogs/machine-learning/groundhog-day-for-ai-agents-prompt-caching-patterns-for-using-openai-models-on-amazon-bedrock/"
+    },
     "1390907f79cb41b7": {
       "at": "2026-10-26T17:14:17.179994+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -3772,6 +3780,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/info/info1878/index.html"
+    },
+    "f6d1cfb77e056329": {
+      "at": "2026-10-26T17:32:36.998795+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "publica-dentsu-djib-ctv-partnership",
+      "url": "https://prtimes.jp/main/html/rd/p/000000146.000014440.html"
     },
     "f87ae5ea12aee762": {
       "at": "2026-10-26T14:34:23.118709+00:00",
@@ -5899,6 +5915,44 @@
       "score": 100,
       "source": "prtimes",
       "title": "日本語で探せる Agent Skills マーケット「cccskills」を公開。AI エージェント向けスキル約9.5万件を日本語で検索・比較"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T17:31:35.423390+00:00",
+      "attempt": 1,
+      "id": "0f715e1693d7c6b7",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "Groundhog Day for AI agents: Prompt caching patterns for using OpenAI models on "
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T17:32:11.262811+00:00",
+      "attempt": 1,
+      "id": "f6d1cfb77e056329",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1628字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes-all",
+      "title": "Publica by IASと電通ジャパン・インターナショナルブランズ、プレミアムCTV広告の透明性と投資効率の向上に向けた戦略的パートナーシップを発表"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T17:32:36.998407+00:00",
+      "attempt": 2,
+      "id": "f6d1cfb77e056329",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes-all",
+      "title": "Publica by IASと電通ジャパン・インターナショナルブランズ、プレミアムCTV広告の透明性と投資効率の向上に向けた戦略的パートナーシップを発表"
     }
   ]
 }
