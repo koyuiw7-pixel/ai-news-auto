@@ -3020,6 +3020,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000081.000141649.html"
     },
+    "157f623c815d8fdb251103227384a9b6600381ff": {
+      "at": "2026-10-26T21:41:13.628283+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1463字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（392字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れ",
+      "skipped": true,
+      "url": "https://jp.investing.com/news/stock-market-news/article-1725036"
+    },
     "16310bf3b22650b2": {
       "at": "2026-10-26T12:32:36.240469+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3290,12 +3297,24 @@
       "slug": "klang-japan-usage-data-2026",
       "url": "https://prtimes.jp/main/html/rd/p/000000006.000188950.html"
     },
+    "456e73c41d10e586869a7692ec3ee566a8c6f832": {
+      "at": "2026-10-26T21:40:58.803048+00:00",
+      "reason": "trend sources 1",
+      "skipped": true,
+      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm"
+    },
     "45f0e915baa687e3": {
       "at": "2026-10-26T16:31:58.142501+00:00",
       "model": "gemini-3.5-flash-lite",
       "reason": "quality: 本文が短い（1679字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000561.000082530.html"
+    },
+    "46f89d4de8c9613d": {
+      "at": "2026-10-26T21:41:14.037929+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（市場分析レポート）",
+      "skipped": true,
+      "url": "https://www.dreamnews.jp/press/0000366528"
     },
     "4708f3cc5b0124bc": {
       "at": "2026-10-26T10:30:42.540827+00:00",
@@ -3541,6 +3560,14 @@
       "section": "ai",
       "slug": "ai-hack-claude-sonnet-5-5-gpt-6-1-sol",
       "url": "https://prtimes.jp/main/html/rd/p/000000052.000149337.html"
+    },
+    "80861ce532093e27": {
+      "at": "2026-10-26T21:41:43.149068+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "ipa-r08-zenki-exam-deadline",
+      "url": "https://www.ipa.go.jp/shiken/2026/r08zen_exam.html"
     },
     "80a4fac4d17760a3": {
       "at": "2026-10-26T15:01:11.635381+00:00",
@@ -3812,6 +3839,12 @@
       "slug": "sanada-naoki-asakusa-live-2026",
       "url": "https://www.atpress.ne.jp/news/644526"
     },
+    "bbf98d62f5f83ec4": {
+      "at": "2026-10-26T21:41:14.037879+00:00",
+      "reason": "short text 394",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326725.html"
+    },
     "bdec164d5a53e33b": {
       "at": "2026-10-26T12:05:24.307273+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4077,6 +4110,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/info/info1878/index.html"
+    },
+    "f5a63a1af5067430": {
+      "at": "2026-10-26T21:41:28.789476+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（362字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.atpress.ne.jp/news/644341"
     },
     "f6d1cfb77e056329": {
       "at": "2026-10-26T17:32:36.998795+00:00",
@@ -6842,6 +6882,90 @@
       "score": 100,
       "source": "atpress",
       "title": "農地管理代行「ファーマーズエージェント(R)」、利用農家数が2023年から2年間で約2.3倍に増加"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T21:41:07.222323+00:00",
+      "attempt": 1,
+      "id": "157f623c815d8fdb251103227384a9b6600381ff",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1493字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "trends",
+      "title": "フィラデルフィア半導体株指数"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T21:41:13.628255+00:00",
+      "attempt": 2,
+      "id": "157f623c815d8fdb251103227384a9b6600381ff",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1463字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（392字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "trends",
+      "title": "フィラデルフィア半導体株指数"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T21:41:22.076654+00:00",
+      "attempt": 1,
+      "id": "f5a63a1af5067430",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1627字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "atpress",
+      "title": "芦ノ湖から車で約10分、箱根の木立に佇む“森の別荘”「スイートヴィラ Calmwoods元箱根」が10月31日に開業"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T21:41:28.789452+00:00",
+      "attempt": 2,
+      "id": "f5a63a1af5067430",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（362字 / 基準 400字以上）"
+      ],
+      "score": null,
+      "source": "atpress",
+      "title": "芦ノ湖から車で約10分、箱根の木立に佇む“森の別荘”「スイートヴィラ Calmwoods元箱根」が10月31日に開業"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T21:41:35.532595+00:00",
+      "attempt": 1,
+      "id": "80861ce532093e27",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1683字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "ipa",
+      "title": "令和8年度前期試験 高度試験及び情報処理安全確保支援士試験の申込受付を終了しました"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T21:41:43.148646+00:00",
+      "attempt": 2,
+      "id": "80861ce532093e27",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "ipa",
+      "title": "令和8年度前期試験 高度試験及び情報処理安全確保支援士試験の申込受付を終了しました"
     }
   ]
 }
