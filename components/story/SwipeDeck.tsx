@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { StoryItem } from "@/components/story/StoryDeck";
 
 export type Bundle = { key: string; label: string; items: StoryItem[] };
@@ -94,31 +94,43 @@ function Deck({ bundle, next, onNext, onClose }: { bundle: Bundle; next?: Bundle
   const [kept, setKept] = useState<StoryItem[]>([]);
   const [mode, setMode] = useState<Mode>("easy");
   const [grid, setGrid] = useState(false);
-  const [drag, setDrag] = useState(0);
-  const [fly, setFly] = useState<0 | 1 | -1>(0);
-  const start = useRef<{ x: number; y: number } | null>(null);
+  const busy = useRef(false);
+  const start = useRef<{ x: number; id: number } | null>(null);
+  const dx = useRef(0);
+  const raf = useRef(0);
+  const top = useRef<HTMLDivElement>(null);
   const done = index >= items.length;
 
-  const decide = useCallback(
-    (dir: 1 | -1) => {
-      if (done || fly) return;
-      const it = items[index];
-      setFly(dir);
-      if (dir === 1) {
-        setKept((k) => [...k, it]);
-        writeSaved([...readSaved().filter((s) => s !== it.slug), it.slug]);
-      }
-      window.setTimeout(() => {
-        setFly(0);
-        setDrag(0);
-        setIndex((i) => i + 1);
-      }, 260);
-    },
-    [done, fly, index, items],
-  );
+  // 指に合わせた動きは React の再描画を通さず、カードの style を直接書き換える（カクつき防止）
+  const paint = (x: number, animate: boolean) => {
+    const el = top.current;
+    if (!el) return;
+    el.style.transition = animate ? "transform .28s cubic-bezier(.2,.7,.2,1)" : "none";
+    el.style.transform = `translate3d(${x}px,0,0) rotate(${x / 24}deg)`;
+    const keep = el.querySelector<HTMLElement>(".dk-stamp.keep");
+    const skip = el.querySelector<HTMLElement>(".dk-stamp.skip");
+    if (keep) keep.style.opacity = String(Math.max(0, Math.min(1, x / 90)));
+    if (skip) skip.style.opacity = String(Math.max(0, Math.min(1, -x / 90)));
+  };
+
+  const decide = (dir: 1 | -1) => {
+    if (done || busy.current) return;
+    busy.current = true;
+    const it = items[index];
+    if (dir === 1) {
+      setKept((k) => [...k, it]);
+      writeSaved([...readSaved().filter((s) => s !== it.slug), it.slug]);
+    }
+    paint(dir * (window.innerWidth + 200), true);
+    window.setTimeout(() => {
+      busy.current = false;
+      dx.current = 0;
+      setIndex((i) => i + 1);
+    }, 240);
+  };
 
   const back = () => {
-    if (index === 0 || fly) return;
+    if (index === 0 || busy.current) return;
     const prev = items[index - 1];
     setKept((k) => k.filter((s) => s.slug !== prev.slug));
     setIndex(index - 1);
@@ -135,28 +147,29 @@ function Deck({ bundle, next, onNext, onClose }: { bundle: Bundle; next?: Bundle
     return () => window.removeEventListener("keydown", onKey);
   });
 
-  const onDown = (e: React.PointerEvent) => {
-    if ((e.target as HTMLElement).closest("button,a")) return;
-    start.current = { x: e.clientX, y: e.clientY };
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+  const onDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (busy.current || (e.target as HTMLElement).closest("button,a")) return;
+    start.current = { x: e.clientX, id: e.pointerId };
+    e.currentTarget.setPointerCapture(e.pointerId);
   };
   const onMove = (e: React.PointerEvent) => {
     if (!start.current) return;
-    setDrag(e.clientX - start.current.x);
+    dx.current = e.clientX - start.current.x;
+    cancelAnimationFrame(raf.current);
+    raf.current = requestAnimationFrame(() => paint(dx.current, false));
   };
   const onUp = () => {
     if (!start.current) return;
     start.current = null;
-    if (drag > 90) decide(1);
-    else if (drag < -90) decide(-1);
-    else setDrag(0);
+    cancelAnimationFrame(raf.current);
+    if (dx.current > 90) decide(1);
+    else if (dx.current < -90) decide(-1);
+    else paint(0, true);
   };
 
   const it = items[index];
-  const peek = items[index + 1];
-  const x = fly ? fly * 520 : drag;
-  const like = Math.max(0, Math.min(1, x / 90));
-  const nope = Math.max(0, Math.min(1, -x / 90));
+  // 次のカードは同じ要素のまま前に出す（画像の読み直しで一瞬消えないように）
+  const stack = items.slice(index, index + 2).reverse();
 
   return (
     <div className="dk" role="dialog" aria-modal="true" aria-label={bundle.label}>
@@ -198,23 +211,25 @@ function Deck({ bundle, next, onNext, onClose }: { bundle: Bundle; next?: Bundle
             <svg viewBox="0 0 20 20" width="22" height="22" aria-hidden><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             <span>次へ</span>
           </button>
-          {peek && (
-            <div className="dk-card is-peek" aria-hidden>
-              <Card it={peek} mode={mode} />
-            </div>
-          )}
-          <div
-            className="dk-card"
-            style={{ transform: `translateX(${x}px) rotate(${x / 22}deg)`, transition: start.current ? "none" : "transform .26s cubic-bezier(.2,.7,.2,1)" }}
-            onPointerDown={onDown}
-            onPointerMove={onMove}
-            onPointerUp={onUp}
-            onPointerCancel={onUp}
-          >
-            <Card it={it} mode={mode} />
-            <span className="dk-stamp keep" style={{ opacity: like }}>気になる</span>
-            <span className="dk-stamp skip" style={{ opacity: nope }}>スキップ</span>
-          </div>
+          {stack.map((card) => {
+            const isTop = card.slug === it.slug;
+            return (
+              <div
+                key={card.slug}
+                ref={isTop ? top : undefined}
+                className={`dk-card ${isTop ? "is-top" : "is-peek"}`}
+                aria-hidden={!isTop}
+                onPointerDown={isTop ? onDown : undefined}
+                onPointerMove={isTop ? onMove : undefined}
+                onPointerUp={isTop ? onUp : undefined}
+                onPointerCancel={isTop ? onUp : undefined}
+              >
+                <Card it={card} mode={mode} />
+                <span className="dk-stamp keep">気になる</span>
+                <span className="dk-stamp skip">興味なし</span>
+              </div>
+            );
+          })}
         </div>
       )}
 
@@ -347,8 +362,10 @@ const CSS = `
 .dk-mode button[aria-pressed=true]{background:#f4f5f7;color:#0b0d10}
 
 .dk-stage{position:relative;flex:1;min-height:0;margin:4px 12px 0}
-.dk-card{position:absolute;inset:0;border-radius:20px;overflow:hidden;background:#15181d;box-shadow:0 18px 40px rgba(0,0,0,.45);touch-action:none;user-select:none;cursor:grab}
+.dk-card{position:absolute;inset:0;border-radius:20px;overflow:hidden;background:#15181d;touch-action:none;user-select:none;cursor:grab;will-change:transform;backface-visibility:hidden;transition:transform .28s cubic-bezier(.2,.7,.2,1),opacity .28s}
+.dk-card.is-top{box-shadow:0 18px 40px rgba(0,0,0,.45)}
 .dk-card.is-peek{transform:scale(.95) translateY(10px);opacity:.55;pointer-events:none}
+.dk-stamp{opacity:0}
 .dk-stamp{position:absolute;top:22px;padding:6px 14px;border:3px solid;border-radius:10px;font-weight:900;font-size:22px;letter-spacing:.06em;pointer-events:none}
 .dk-stamp.keep{left:18px;color:#2fd27f;transform:rotate(-12deg)}
 .dk-stamp.skip{right:18px;color:#c9ced6;transform:rotate(12deg)}
@@ -382,7 +399,7 @@ const CSS = `
 .dk-act svg{width:48px;height:48px;padding:13px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2)}
 .dk-act.keep{color:#2fd27f}
 .dk-bg{display:none}
-.dk-nav{position:absolute;top:28%;z-index:3;transform:translateY(-50%);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(11,13,16,.55);backdrop-filter:blur(8px);color:#f4f5f7;border:1px solid rgba(255,255,255,.18)}
+.dk-nav{position:absolute;top:28%;z-index:3;transform:translateY(-50%);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(11,13,16,.6);color:#f4f5f7;border:1px solid rgba(255,255,255,.18)}
 .dk-nav span{display:none}
 .dk-nav.prev{left:6px}
 .dk-nav.next{right:6px}
