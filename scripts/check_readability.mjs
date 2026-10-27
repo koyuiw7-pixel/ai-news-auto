@@ -132,6 +132,10 @@ async function launchChrome() {
       "--no-default-browser-check",
       "--disable-gpu",
       "--hide-scrollbars",
+      // 裏のタブ扱いでタイマーが間引かれると、スクロール待ちが何分も止まる（CI の Chrome で起きた）
+      "--disable-background-timer-throttling",
+      "--disable-renderer-backgrounding",
+      "--disable-backgrounding-occluded-windows",
       "--font-render-hinting=none",
       ...(process.env.CI ? ["--no-sandbox"] : []),
       "about:blank",
@@ -168,7 +172,18 @@ function connect(url) {
           const msg = { id: ++id, method, params };
           if (sessionId) msg.sessionId = sessionId;
           ws.send(JSON.stringify(msg));
-          return new Promise((res, rej) => pending.set(msg.id, { res, rej, method }));
+          // 応答の無いコマンドで止まらないよう 90 秒で打ち切る（そのページは ERR として記録）
+          return new Promise((res, rej) => {
+            const timer = setTimeout(() => {
+              pending.delete(msg.id);
+              rej(new Error(`${method}: 90 秒で応答なし`));
+            }, 90_000);
+            pending.set(msg.id, {
+              res: (v) => (clearTimeout(timer), res(v)),
+              rej: (e) => (clearTimeout(timer), rej(e)),
+              method,
+            });
+          });
         },
         on(fn) {
           listeners.add(fn);
@@ -198,6 +213,8 @@ async function openPage(cdp, { viewport, theme }) {
   const send = (m, p) => cdp.send(m, p, sessionId);
   await send("Page.enable");
   await send("Runtime.enable");
+  await send("Page.bringToFront");
+  await send("Emulation.setFocusEmulationEnabled", { enabled: true });
   await send("Emulation.setDeviceMetricsOverride", {
     width: viewport.width,
     height: viewport.height,
@@ -566,20 +583,31 @@ async function main() {
     for (const path of paths) {
       for (const viewport of viewports) {
         for (const theme of themes) {
-          const page = await openPage(cdp, { viewport, theme });
-          try {
-            await page.goto(args.base + path);
-            const r = await page.eval(`(${inPageAudit.toString()})(${JSON.stringify(RULES)}, ${viewport.width})`);
-            results.push({ path, viewport: viewport.name, theme, ...r });
-            if (args.shots) {
-              const name = `${path === "/" ? "home" : path.replace(/^\//, "").replace(/\//g, "_")}-${viewport.name}-${theme}.png`;
-              await page.screenshot(join(args.shots, name), args.full);
+          const started = Date.now();
+          // Chrome が稀にページ移動へ応答しなくなるので、新しいタブで 1 回だけやり直す
+          let result;
+          for (let attempt = 1; attempt <= 2 && (!result || result.error); attempt++) {
+            let page;
+            try {
+              page = await openPage(cdp, { viewport, theme });
+              await page.goto(args.base + path);
+              const r = await page.eval(`(${inPageAudit.toString()})(${JSON.stringify(RULES)}, ${viewport.width})`);
+              result = { path, viewport: viewport.name, theme, ...r };
+              if (args.shots) {
+                const name = `${path === "/" ? "home" : path.replace(/^\//, "").replace(/\//g, "_")}-${viewport.name}-${theme}.png`;
+                await page.screenshot(join(args.shots, name), args.full);
+              }
+            } catch (e) {
+              result = { path, viewport: viewport.name, theme, error: String(e.message || e), findings: [], checked: 0 };
+            } finally {
+              await page?.close().catch(() => {});
             }
-          } catch (e) {
-            results.push({ path, viewport: viewport.name, theme, error: String(e.message || e), findings: [], checked: 0 });
-          } finally {
-            await page.close();
           }
+          results.push(result);
+          // 途中経過（CI のログで止まった場所がわかるように標準エラーへ）
+          console.error(
+            `  ${path} ${viewport.name}/${theme}: ${result.error ? "ERR" : `${result.findings.length}件`} (${((Date.now() - started) / 1000).toFixed(1)}s)`,
+          );
         }
       }
     }

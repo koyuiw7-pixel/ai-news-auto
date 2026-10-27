@@ -382,7 +382,8 @@ function Card({ it, mode }: { it: StoryItem; mode: Mode }) {
 const CSS = `
 .sr{display:flex;gap:12px;overflow-x:auto;padding:14px 20px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .sr::-webkit-scrollbar{display:none}
-.sr-ring{flex:none;display:flex;flex-direction:column;align-items:center;gap:5px;width:70px}
+/* ラベルは 13px（docs/typography.md）。6 字の「今すぐ使える」が切れない幅にする */
+.sr-ring{flex:none;display:flex;flex-direction:column;align-items:center;gap:5px;width:80px}
 .sr-img{width:64px;height:64px;border-radius:50%;padding:2.5px;background:conic-gradient(from 210deg,#2fd27f,#0a6fa0,#2fd27f);transition:transform .15s}
 .sr-ring.seen .sr-img{background:var(--line-strong,#cfcfc7)}
 .sr-img img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2.5px solid var(--paper,#fff);background:var(--surface-2,#eee)}
