@@ -25,6 +25,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 # 前の実行が走っている間は待機（同じ動画を二重処理しないため）
 concurrency:
@@ -190,6 +191,14 @@ jobs:
           done
           echo "::error::push に3回失敗しました"
           exit 1
+
+      # Cloudflare へデプロイする（GITHUB_TOKEN の push では他のワークフローが起動しないため、明示的に呼ぶ）
+      - name: Deploy to Cloudflare
+        if: ${{ steps.commit.outputs.deploy == '1' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy_cloudflare.yml --ref main
 
       # 検索エンジンに更新を通知する（IndexNow）。
       # Search Console と違いアカウント不要で、Bing/DuckDuckGo などに直接届く。
