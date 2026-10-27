@@ -159,7 +159,9 @@ jobs:
 
       # 製品のまとめページ（/products）。題名に出てくる記事が増えた製品だけ原稿を作り直す（軽量モデル・1回3件まで）。
       # 記事が変わらない回は LLM を呼ばない。時間の上限つきで、失敗しても記事の公開は止めない
+      # 速報レーンの回は公開を急ぐので飛ばす（次の通常の回で作り直す）
       - name: Product hubs
+        if: ${{ (inputs.fast_url || '') == '' }}
         continue-on-error: true
         timeout-minutes: 10
         env:
