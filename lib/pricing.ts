@@ -48,7 +48,7 @@ export type PricingData = {
 };
 
 /** 画面に渡す形（企業の色・名前・製品まとめページつき。クライアント部品に渡せる値だけ） */
-export type PriceRow = PriceItem & { color: string; companyName: string; productSlug: string | null };
+export type PriceRow = PriceItem & { color: string; companyName: string; mark: string; productSlug: string | null };
 
 const squash = (text: string) => text.normalize("NFKC").toLowerCase().replace(/[\s\-‐‑–—_・]/g, "");
 
@@ -73,6 +73,8 @@ export function priceRows(): PriceRow[] {
       ...item,
       color: known ? company.color : OTHER.color,
       companyName: known ? company.name : item.vendor || OTHER.name,
+      // 会社の目印の文字（色見本と同じ。知らない会社は名前の頭文字）
+      mark: known ? company.mark : (item.vendor || "?").slice(0, 1).toUpperCase(),
       productSlug: item.kind === "api" ? productSlugOf(item.product) : null,
     };
   });

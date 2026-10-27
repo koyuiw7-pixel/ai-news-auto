@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import AssetShell, { Crumbs, QHeading } from "@/components/assets/AssetShell";
+import AssetShell, { Crumbs } from "@/components/assets/AssetShell";
 import PricingBoard from "@/components/assets/PricingBoard";
 import ShareLinks from "@/components/assets/ShareLinks";
 import { formatDate } from "@/lib/articles";
@@ -10,7 +10,7 @@ import { siteConfig } from "@/site.config";
 
 const TITLE = "AIの料金比較・早見表【最新】ChatGPT・Claude・Gemini・APIの値段と日本で使えるか";
 const DESCRIPTION =
-  "ChatGPT・Claude・GeminiなどのAI APIの料金（100万トークンあたり）と月額プランを1ページで比較。日本で使えるか、無料で試せるかも一緒にわかります。月の費用の計算機つき。数字はすべて出典の記事で確認しています。";
+  "ChatGPT・Claude・GeminiなどのAI APIの料金（100万トークンあたり）と月額プランを1ページで比較。日本で使えるか、無料で試せるかも一緒にわかります。チャットや要約などの使い方を選ぶと、月の費用が円で出ます。数字はすべて出典の記事で確認しています。";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -45,8 +45,6 @@ export default function AiPricingPage() {
   const apis = rows.filter((row) => row.kind === "api" && !row.legacy);
   const plans = rows.filter((row) => row.kind === "plan");
   const cheapest = cheapestApi(rows);
-  const newest = [...rows].sort((a, b) => b.source.publishedAt.localeCompare(a.source.publishedAt))[0];
-  const japanOk = apis.filter((row) => row.japan === "ok");
   const latestWeek = getAllWeeks()[0];
   const url = `${siteConfig.url}/ai-pricing`;
 
@@ -106,9 +104,9 @@ export default function AiPricingPage() {
       <Crumbs items={[{ href: "/", label: "ホーム" }, { label: "AI料金・日本対応 早見表" }]} />
 
       <header className="mt-5">
-        <h1 className="text-[1.75rem] font-bold leading-[1.35] text-ink sm:text-[2.2rem]">AIの料金・日本対応 早見表</h1>
-        <p className="mt-3 max-w-[62ch] text-[14.5px] leading-[1.85] text-ink-soft">
-          ChatGPT・Claude・GeminiなどのAPI料金と月額プランを1ページで比べられます。日本で使えるか、無料で試せるかも一緒に見られます。
+        <h1 className="text-[1.75rem] font-extrabold leading-[1.35] text-ink sm:text-[2.3rem]">AIの料金・日本対応 早見表</h1>
+        <p className="mt-3 max-w-[60ch] text-[15px] leading-[1.85] text-ink-soft">
+          ChatGPT・Claude・GeminiなどのAIを使うと、月にいくらかかるか。使い方を選ぶだけで、円でわかります。日本で使えるかも一緒に見られます。
         </p>
         <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[12.5px] text-muted">
           <span>
@@ -117,52 +115,16 @@ export default function AiPricingPage() {
           <span>
             <span className="tabular-nums">{apis.length}</span>モデル・<span className="tabular-nums">{plans.length}</span>プラン
           </span>
-          <span>すべてサイソクの記事で確かめた数字です</span>
+          <span>数字はすべてサイソクの記事で確かめたもの</span>
         </p>
       </header>
 
-      {/* ひと目でわかる結論 */}
-      <section aria-labelledby="summary-heading" className="mt-6 grid gap-2.5 sm:mt-7 sm:grid-cols-3 sm:gap-3">
-        <h2 id="summary-heading" className="sr-only">
-          ひと目でわかる結論
-        </h2>
-        {cheapest && (
-          <SummaryCard label="安さで選ぶなら（API）" color={cheapest.color}>
-            <strong className="font-bold">{cheapest.product}</strong>
-            <span className="mt-0.5 block text-[12.5px] text-ink-soft">
-              {cheapest.companyName}・{apiLine(cheapest)}
-            </span>
-          </SummaryCard>
-        )}
-        {plans.length > 0 && (
-          <SummaryCard label="月額プラン" color={plans[0].color}>
-            {plans.map((row) => (
-              <span key={row.id} className="block">
-                <strong className="font-bold">
-                  {row.product} {row.plan}
-                </strong>
-                <span className="ml-1.5 tabular-nums text-ink-soft">{formatMoney(row.monthly ?? 0, row.currency)}/月</span>
-              </span>
-            ))}
-          </SummaryCard>
-        )}
-        <SummaryCard label="日本で使えると確認できたAPI" color="var(--go)">
-          <strong className="font-bold tabular-nums">{japanOk.length}</strong>
-          <span className="text-ink-soft"> / {apis.length}モデル</span>
-          {newest && (
-            <span className="mt-0.5 block text-[12.5px] text-ink-soft">
-              最新の確認: {newest.product}（{formatDate(newest.source.publishedAt)}）
-            </span>
-          )}
-        </SummaryCard>
-      </section>
-
-      <div className="mt-8">
+      <div className="mt-7">
         <PricingBoard rows={rows} />
       </div>
 
-      <section aria-labelledby="method-heading" className="mt-14 max-w-[720px]">
-        <QHeading id="method-heading">この表の数字は信用できる？</QHeading>
+      <section aria-labelledby="method-heading" className="mt-16 max-w-[720px]">
+        <H2 id="method-heading">この表の数字は信用できる？</H2>
         <ul className="grid gap-2.5 text-[14px] leading-[1.85] text-ink-soft">
           <li>・サイソクの記事に書かれた料金だけを載せています。</li>
           <li>・記事の本文に同じ数字があるかを、プログラムで1つずつ確かめています。</li>
@@ -177,8 +139,8 @@ export default function AiPricingPage() {
         </p>
       </section>
 
-      <section aria-labelledby="faq-heading" className="mt-14 max-w-[720px]">
-        <QHeading id="faq-heading">よくある質問</QHeading>
+      <section aria-labelledby="faq-heading" className="mt-16 max-w-[720px]">
+        <H2 id="faq-heading">よくある質問</H2>
         <div className="divide-y divide-line border-y border-line">
           {faq.map((item) => (
             <details key={item.q} className="group py-4">
@@ -207,12 +169,11 @@ export default function AiPricingPage() {
   );
 }
 
-function SummaryCard({ label, color, children }: { label: string; color: string; children: React.ReactNode }) {
+function H2({ id, children }: { id: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-xl border border-line px-4 py-3 sm:py-4" style={{ borderTop: `3px solid ${color}` }}>
-      <p className="text-[11.5px] font-bold text-muted">{label}</p>
-      <div className="mt-1.5 text-[15px] leading-snug text-ink">{children}</div>
-    </div>
+    <h2 id={id} className="mb-5 text-balance text-[1.4rem] font-extrabold leading-snug text-ink sm:text-[1.65rem]">
+      {children}
+    </h2>
   );
 }
 
