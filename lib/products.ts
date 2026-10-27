@@ -90,7 +90,8 @@ export function productArticles(product: Product): ArticleSummary[] {
 
 /** 料金・日本での提供がわかる製品か（題名の言い方を変える） */
 export function hasBuyingInfo(product: Product): boolean {
-  return product.pricing.length > 0 || product.facts.some((f) => f.label === "料金");
+  // 「未発表」だけの料金は、料金がわかる製品として扱わない（研究段階の製品など）
+  return product.pricing.length > 0 || product.facts.some((f) => f.label === "料金" && !/未発表|未定|不明|なし/.test(f.value));
 }
 
 /** 検索結果の題名 */
