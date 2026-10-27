@@ -59,6 +59,14 @@ PARTNERS: dict[str, dict] = {
     # 子どもの学び
     "s00000018613001": {"key": "digitane", "name": "デジタネ", "label": "小中学生のAI教材", "note": "マイクラなどゲーム感覚で、AIとプログラミングを家で学べる", "shop": "デジタネ公式"},
     "s00000019385001": {"key": "litalico", "name": "LITALICOワンダー", "label": "ITものづくり教室", "note": "ロボットやプログラミングで、子どもの「作る力」を伸ばす教室", "shop": "LITALICOワンダー"},
+    # 2026-10-27 追加
+    "s00000026713001": {"key": "coloso", "name": "Coloso", "label": "プロに学ぶ講座", "note": "イラスト・3D・映像など、第一線のクリエイターが教えるオンライン講座", "shop": "Coloso公式"},
+    "s00000008659009": {"key": "gomcam", "name": "GOM Cam", "label": "画面録画ソフト", "note": "パソコン画面の録画と簡単な編集ができる。操作説明やAIツールの解説動画づくりに", "shop": "GOM＆Company"},
+    "s00000027820001": {"key": "aio-diagnosis", "name": "AIO診断サービス", "label": "無料で診断", "note": "ChatGPTなどのAI検索で自社がどう紹介されるかを、約30ページのレポートで無料診断", "shop": "ドットアンドノード"},
+    "s00000001418002": {"key": "office-english", "name": "6週間チャレンジ オフィス英会話", "label": "仕事の英会話に絞る", "note": "会議や電話など、仕事で使う英語のフレーズを6週間で練習する教材", "shop": "IQ-Strategy"},
+    "s00000018318001": {"key": "matsui", "name": "松井証券", "label": "老舗のネット証券", "note": "株式・投資信託・NISAに対応した、創業100年超の証券会社", "shop": "松井証券公式"},
+    "s00000008903007": {"key": "dmm-kabu", "name": "DMM 株", "label": "アプリで取引", "note": "日本株・米国株・NISAをアプリで取引できる。取引でポイントもたまる", "shop": "DMM.com証券"},
+    "s00000023754001": {"key": "ohya", "name": "Oh!Ya（オーヤ）", "label": "面談をまとめて予約", "note": "不動産投資の会社との面談を、まとめて比較・予約できるサービス", "shop": "セレス"},
 }
 
 # 新しい話題（記事のタイトル・タグに一致したら、その話題の商品を出す）
@@ -84,6 +92,15 @@ ADD_TO_TOPIC = {
     "coding": ["skillhacks", "xserver-vps"],
     "agent": ["xserver-vps", "doraverse"],
     "llm": ["xserver-vps", "minisforum"],
+    "video": ["gomcam", "coloso"],
+    "image": ["coloso"],
+    "english": ["office-english"],
+    "business": ["aio-diagnosis"],
+    "writing": ["aio-diagnosis"],
+    "invest-stocks": ["dmm-kabu", "matsui"],
+    "invest-nisa": ["matsui", "dmm-kabu"],
+    "invest": ["matsui", "dmm-kabu"],
+    "re-invest": ["ohya"],
 }
 
 
