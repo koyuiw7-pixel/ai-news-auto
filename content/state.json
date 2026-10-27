@@ -2964,6 +2964,12 @@
       "slug": "digital-agency-national-qualifications-online",
       "url": "https://www.digital.go.jp/policies/government-certification"
     },
+    "01c050212d7cc79e": {
+      "at": "2026-10-27T20:13:19.059779+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
+      "skipped": true,
+      "url": "https://www.docomo.ne.jp/binary/pdf/info/news_release/topics_261027_x1.pdf"
+    },
     "0232089e06db66b1": {
       "at": "2026-10-26T19:21:46.697645+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3275,6 +3281,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（アワード）",
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/kanbo/anpo/261026.html"
+    },
+    "1abdea622483427a": {
+      "at": "2026-10-27T20:13:19.059692+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 本文が短い（1661字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/conference/minister/2026b/20261020-1.html"
     },
     "1b0888fd1ea94f51": {
       "at": "2026-10-26T17:52:50.055161+00:00",
@@ -3905,6 +3918,13 @@
       "skipped": true,
       "url": "https://www.value-press.com/pressrelease/383142"
     },
+    "508d200fc004a905": {
+      "at": "2026-10-27T20:14:34.951018+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 「2025年10月発表の前回調査に続くものです」→元記事の注釈には「前回調査は2025年10月31日発表」とあり、日付が微妙に異なる。; 「2026年10月26日に公開された今回の結果は」→元記事の冒頭には「2026/10/26」とあるが、記事本文の注釈には「前回調査は2025年10月31日発表」とあり、元記事の注釈と整合性が取れていない可能性がある。",
+      "skipped": true,
+      "url": "https://www.tsr-net.co.jp/data/detail/1203369_1527.html"
+    },
     "50a61532b445df0c": {
       "at": "2026-10-27T19:31:34.886252+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（議事）",
@@ -4365,6 +4385,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000516.000047561.html"
     },
+    "789c453645489fd6ae703c90047a57f873b53ab9": {
+      "at": "2026-10-27T20:11:37.414403+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1146字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "https://www.dazn.com/ja-JP/news/%E3%82%B5%E3%83%83%E3%82%AB%E3%83%BC/fleetwood-town-column/1quzs1xw6nfvd1vcf5ue16gob4"
+    },
     "79e6fb6d7787c932": {
       "at": "2026-10-27T01:53:44.181577+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -4590,6 +4617,13 @@
       "skipped": true,
       "url": "https://kyodonewsprwire.jp/release/202610268694"
     },
+    "895e59b8d3c78f44": {
+      "at": "2026-10-27T20:12:44.316704+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 本文が短い（1965字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://newsroom.amd.com/news/amd-expands-ai-cloud-infrastructure-oracle/"
+    },
     "89882f16bf91aea9": {
       "at": "2026-10-26T23:41:07.187312+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4629,6 +4663,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_syokai/saiyou/detail/02gyosei01_04000556.html"
+    },
+    "8b64523463792c7b6489af7ae24191231ab8853b": {
+      "at": "2026-10-27T20:11:09.827393+00:00",
+      "reason": "trend sources 0",
+      "skipped": true,
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFAzWUlTeWtHbDVjR1R1Z3JYc2NJLTdZamlzZlRPYUp1R1FBVXA3UE5Ba1dLdk9RWGVjUS1VRUV5bUhiNWYwZjA2NnptTEpaMERsSllYOTIyYlR3UWs?oc=5"
     },
     "8be9d9b68151b035": {
       "at": "2026-10-27T00:51:32.495681+00:00",
@@ -5668,6 +5708,14 @@
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-amazon-polly-generative-engine-torchneuron-for-trainium-and-more-october-26-2026/"
     },
+    "e191ec74d66f83b7": {
+      "at": "2026-10-27T20:14:54.135273+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "kddi-wing-drone-delivery-partnership",
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1209_4782.html"
+    },
     "e198be2b7c3eb84d": {
       "at": "2026-10-27T16:15:28.911399+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6060,141 +6108,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-26T18:40:05.834124+00:00",
-      "attempt": 2,
-      "id": "5a508ce5e5172782",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "atpress",
-      "title": "人気インフルエンサー「りち」とキラキラポップなつくる菓子シリーズ「CANDY Magic Lab」がコラボ！「りちスライミーポットゼリー」が新発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T19:01:14.475693+00:00",
-      "attempt": 1,
-      "id": "36ccb3101b7cb129",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2323字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "apple-newsroom-jp",
-      "title": "Siri AI、日本語で提供開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T19:01:37.120286+00:00",
-      "attempt": 2,
-      "id": "36ccb3101b7cb129",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "Appleは2026年10月27日のソフトウェアアップデート（27.2）で → 元記事の日付は2026年10月26日である。"
-      ],
-      "score": 90,
-      "source": "apple-newsroom-jp",
-      "title": "Siri AI、日本語で提供開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T19:01:43.697035+00:00",
-      "attempt": 1,
-      "id": "b44a2cf25c279e1e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1427字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "チケット追加販売のお知らせ なでしこジャパン（日本女子代表）対 ブラジル女子代表【11.29(日) 広島／エディオンピースウイング広島】 #jfa #daihy"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T19:01:52.271113+00:00",
-      "attempt": 2,
-      "id": "b44a2cf25c279e1e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "jfa",
-      "title": "チケット追加販売のお知らせ なでしこジャパン（日本女子代表）対 ブラジル女子代表【11.29(日) 広島／エディオンピースウイング広島】 #jfa #daihy"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T19:01:59.479310+00:00",
-      "attempt": 1,
-      "id": "86febba264904442",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1653字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "アイフルがクレジットカード「aiカード」の発行を開始！"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T19:02:07.027577+00:00",
-      "attempt": 2,
-      "id": "86febba264904442",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2272字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "アイフルがクレジットカード「aiカード」の発行を開始！"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T19:21:35.380778+00:00",
-      "attempt": 1,
-      "id": "0232089e06db66b1",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1503字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "kyodo-prwire",
-      "title": "ものづくり技能No.1は誰だ！第10回尼崎ものづくり未来の匠選手権を開催"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T19:21:46.697170+00:00",
-      "attempt": 2,
-      "id": "0232089e06db66b1",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "kyodo-prwire",
-      "title": "ものづくり技能No.1は誰だ！第10回尼崎ものづくり未来の匠選手権を開催"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T19:21:55.047087+00:00",
-      "attempt": 1,
-      "id": "344482fd6d727bf9",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2140字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "GPT-6.1 Terra in GitHub Copilot"
-    },
     {
       "accepted": false,
       "at": "2026-10-26T19:22:03.028167+00:00",
@@ -11617,6 +11530,227 @@
       "score": 100,
       "source": "tsr",
       "title": "「情報サービス業」が好調 利益は5年間で1.8倍 DX・AI需要で業績が過去最高、大手寡占が進む"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:11:31.953387+00:00",
+      "attempt": 1,
+      "id": "789c453645489fd6ae703c90047a57f873b53ab9",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1264字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（374字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 136.4,
+        "avg_sentence": 68.2,
+        "long_share": 0.5,
+        "max_paragraph": 196,
+        "paragraphs": 8,
+        "sentences": 16
+      },
+      "score": null,
+      "source": "trends",
+      "title": "フリートウッド・タウン 対 アーセナル"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:11:37.414356+00:00",
+      "attempt": 2,
+      "id": "789c453645489fd6ae703c90047a57f873b53ab9",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1146字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 126.9,
+        "avg_sentence": 63.4,
+        "long_share": 0.625,
+        "max_paragraph": 164,
+        "paragraphs": 8,
+        "sentences": 16
+      },
+      "score": null,
+      "source": "trends",
+      "title": "フリートウッド・タウン 対 アーセナル"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:11:47.104206+00:00",
+      "attempt": 1,
+      "id": "895e59b8d3c78f44",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1884字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 104.3,
+        "avg_sentence": 55.9,
+        "long_share": 0.429,
+        "max_paragraph": 217,
+        "paragraphs": 15,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "amd-newsroom",
+      "title": "AMD Expands AI and Cloud Infrastructure Collaboration with Oracle"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:12:39.845266+00:00",
+      "attempt": 2,
+      "id": "895e59b8d3c78f44",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1965字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 118.1,
+        "avg_sentence": 55.1,
+        "long_share": 0.333,
+        "max_paragraph": 214,
+        "paragraphs": 14,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "amd-newsroom",
+      "title": "AMD Expands AI and Cloud Infrastructure Collaboration with Oracle"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:12:52.148054+00:00",
+      "attempt": 1,
+      "id": "1abdea622483427a",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1517字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 141.7,
+        "avg_sentence": 51.0,
+        "long_share": 0.24,
+        "max_paragraph": 230,
+        "paragraphs": 9,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "fsa",
+      "title": "記者会見,片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要（令和８年10月20日）について掲載しました。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:13:03.458853+00:00",
+      "attempt": 2,
+      "id": "1abdea622483427a",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1661字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 156.1,
+        "avg_sentence": 54.0,
+        "long_share": 0.385,
+        "max_paragraph": 235,
+        "paragraphs": 9,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "fsa",
+      "title": "記者会見,片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要（令和８年10月20日）について掲載しました。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:14:14.089244+00:00",
+      "attempt": 1,
+      "id": "508d200fc004a905",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1642字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 127.4,
+        "avg_sentence": 43.9,
+        "long_share": 0.103,
+        "max_paragraph": 199,
+        "paragraphs": 10,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "tsr",
+      "title": "「社長の住む街」 「赤坂」が14年連続で全国トップ 「港区」は住民の6人に1人、 「福岡市中央区」も人気"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:14:34.950974+00:00",
+      "attempt": 2,
+      "id": "508d200fc004a905",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "「2025年10月発表の前回調査に続くものです」→元記事の注釈には「前回調査は2025年10月31日発表」とあり、日付が微妙に異なる。",
+        "「2026年10月26日に公開された今回の結果は」→元記事の冒頭には「2026/10/26」とあるが、記事本文の注釈には「前回調査は2025年10月31日発表」とあり、元記事の注釈と整合性が取れていない可能性がある。"
+      ],
+      "readability": {
+        "avg_paragraph": 141.0,
+        "avg_sentence": 45.6,
+        "long_share": 0.176,
+        "max_paragraph": 242,
+        "paragraphs": 11,
+        "sentences": 34
+      },
+      "score": 90,
+      "source": "tsr",
+      "title": "「社長の住む街」 「赤坂」が14年連続で全国トップ 「港区」は住民の6人に1人、 「福岡市中央区」も人気"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:14:48.341199+00:00",
+      "attempt": 1,
+      "id": "e191ec74d66f83b7",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 52.9字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 118.1,
+        "avg_sentence": 52.9,
+        "long_share": 0.241,
+        "max_paragraph": 151,
+        "paragraphs": 13,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "kddi-news",
+      "title": "KDDIとWing、国内のドローン配送実現に向け提携"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T20:14:54.134805+00:00",
+      "attempt": 0,
+      "id": "e191ec74d66f83b7",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 117.4,
+        "avg_sentence": 31.8,
+        "long_share": 0.0,
+        "max_paragraph": 150,
+        "paragraphs": 13,
+        "sentences": 48
+      },
+      "score": 100,
+      "source": "kddi-news",
+      "title": "KDDIとWing、国内のドローン配送実現に向け提携"
     }
   ],
   "short_text_retry": {
