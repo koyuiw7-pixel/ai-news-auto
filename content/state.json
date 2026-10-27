@@ -3754,6 +3754,13 @@
       "slug": "oh-my-teeth-interview-impression-survey",
       "url": "https://prtimes.jp/main/html/rd/p/000000150.000048884.html"
     },
+    "3ec2313b14f30f93": {
+      "at": "2026-10-27T22:02:24.043635+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 内閣府は2026年10月27日、最新の月例経済報告を公表しました。→元記事には10月の公表資料は存在するが、公表日が27日であるという記載はない。; 総雇用者所得データ 2026年10月26日更新 →元記事の更新日は10月26日だが、これが「総雇用者所得データ」の更新日であるという記述は元記事にはない。; 輸出・輸入数量指数 2026年10月21日更新 →元記事の更新日は10月2",
+      "skipped": true,
+      "url": "https://www5.cao.go.jp/keizai3/getsurei/getsurei-index.html"
+    },
     "3f779c4c9f9d66c6": {
       "at": "2026-10-26T14:59:41.239534+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -4418,6 +4425,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000172.000021828.html"
+    },
+    "747b76bde702bc0b": {
+      "at": "2026-10-27T22:01:49.260374+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 本文が短い（2205字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://github.blog/changelog/2026-10-27-github-copilot-supports-server-to-server-authentication"
     },
     "74ff1aa266d81f91": {
       "at": "2026-10-27T03:05:10.758136+00:00",
@@ -5520,6 +5534,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000136.000096332.html"
     },
+    "cb8f474555ed7ccd": {
+      "at": "2026-10-27T22:03:18.096293+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "suntory-yakuzen-koujitsu-chai-release",
+      "url": "https://www.suntory.co.jp/softdrink/news/pr/article/2026/SBF1744.html?rss=0000000029"
+    },
     "cb9152cb3e3b49db": {
       "at": "2026-10-27T01:53:58.777587+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5854,6 +5876,12 @@
       "slug": "suntory-196-mutou-limited-winter-2026",
       "url": "https://www.suntory.co.jp/news/article/2026/15159.html?rss=0000000029"
     },
+    "e30c6deffa4c3cd1": {
+      "at": "2026-10-27T22:02:24.533092+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
+      "skipped": true,
+      "url": "https://case-studies.ipa.go.jp/jirei-data/case_studies/245"
+    },
     "e34661f9a884f584": {
       "at": "2026-10-26T12:52:30.413191+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6049,6 +6077,12 @@
       "skipped": true,
       "url": "https://www.ipa.go.jp/digital/software-survey/software-engineering/international-trends.html"
     },
+    "f1e1f11f31431f46": {
+      "at": "2026-10-27T22:02:28.865271+00:00",
+      "reason": "short text 379",
+      "skipped": true,
+      "url": "https://www.softbank.jp/sbnews/entry/2026/10/27/000000"
+    },
     "f208f898be629661": {
       "at": "2026-10-26T14:58:03.842316+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6238,99 +6272,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-26T22:21:10.632659+00:00",
-      "attempt": 1,
-      "id": "d5ea72d53ddd0e11",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "prtimes-all",
-      "title": "【30代・40代の不動産投資調査】30代の30.3%は「相談を検討したが見送った」、40代は62.3%が「相談しようと思ったことがない」。見送り理由は30代「し"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T22:41:08.183178+00:00",
-      "attempt": 1,
-      "id": "effbff5a585bc50f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "kyodo-prwire",
-      "title": "優良オフィスへの需要が市場をけん引 東京で進む「質重視」のオフィス選択"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T23:01:27.968337+00:00",
-      "attempt": 1,
-      "id": "82c30855ea13b4e5",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2089字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "AI開発の価格の公表を調査、比較サイトに載るAI開発会社63社のうち公式サイトに価格を載せていたのは2社、価格を公表していた26社のうちPoCの価格を示した9社"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T23:01:37.147957+00:00",
-      "attempt": 2,
-      "id": "82c30855ea13b4e5",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2420字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "AI開発の価格の公表を調査、比較サイトに載るAI開発会社63社のうち公式サイトに価格を載せていたのは2社、価格を公表していた26社のうちPoCの価格を示した9社"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T23:01:46.603398+00:00",
-      "attempt": 1,
-      "id": "936a799bca853ddb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "value-press",
-      "title": "京都発ウェルネスブランド「LYTHA」誕生。イタリア・プーリア産100％エキストラバージン・ヘンプシードオイルを、1回分ずつ遮光・密閉の4gエアタイトサシェに"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T23:21:04.375614+00:00",
-      "attempt": 1,
-      "id": "602f23208b9190cb",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1658字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "ゴムマリの専門業務AI-BPO、『苦情・VoC・クレームのデータベース化』を提供開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T23:21:12.552398+00:00",
-      "attempt": 2,
-      "id": "602f23208b9190cb",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2113字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "ゴムマリの専門業務AI-BPO、『苦情・VoC・クレームのデータベース化』を提供開始"
-    },
     {
       "accepted": false,
       "at": "2026-10-26T23:21:18.885065+00:00",
@@ -12057,6 +11998,161 @@
       "score": 100,
       "source": "suntory",
       "title": "「のんある酒場 グレフルサワー ノンアルコール」新発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T22:01:19.061236+00:00",
+      "attempt": 1,
+      "id": "747b76bde702bc0b",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1869字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 71.4,
+        "avg_sentence": 45.7,
+        "long_share": 0.2,
+        "max_paragraph": 118,
+        "paragraphs": 16,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "GitHub Copilot supports server-to-server authentication"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T22:01:44.608880+00:00",
+      "attempt": 2,
+      "id": "747b76bde702bc0b",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（2205字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 120.0,
+        "avg_sentence": 52.5,
+        "long_share": 0.344,
+        "max_paragraph": 206,
+        "paragraphs": 14,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "GitHub Copilot supports server-to-server authentication"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T22:01:58.529206+00:00",
+      "attempt": 1,
+      "id": "3ec2313b14f30f93",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1563字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 108.1,
+        "avg_sentence": 45.7,
+        "long_share": 0.115,
+        "max_paragraph": 208,
+        "paragraphs": 11,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "cao",
+      "title": "月例経済報告（10月）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T22:02:24.043577+00:00",
+      "attempt": 2,
+      "id": "3ec2313b14f30f93",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "内閣府は2026年10月27日、最新の月例経済報告を公表しました。→元記事には10月の公表資料は存在するが、公表日が27日であるという記載はない。",
+        "総雇用者所得データ 2026年10月26日更新 →元記事の更新日は10月26日だが、これが「総雇用者所得データ」の更新日であるという記述は元記事にはない。",
+        "輸出・輸入数量指数 2026年10月21日更新 →元記事の更新日は10月21日だが、これが「輸出・輸入数量指数」の更新日であるという記述は元記事にはない。",
+        "実質サービス輸出入 2026年10月13日更新 →元記事の更新日は10月13日だが、これが「実質サービス輸出入」の更新日であるという記述は元記事にはない。"
+      ],
+      "readability": {
+        "avg_paragraph": 135.1,
+        "avg_sentence": 46.6,
+        "long_share": 0.103,
+        "max_paragraph": 234,
+        "paragraphs": 10,
+        "sentences": 29
+      },
+      "score": 70,
+      "source": "cao",
+      "title": "月例経済報告（10月）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T22:02:59.304431+00:00",
+      "attempt": 1,
+      "id": "cb8f474555ed7ccd",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1494字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 123.5,
+        "avg_sentence": 45.7,
+        "long_share": 0.259,
+        "max_paragraph": 198,
+        "paragraphs": 10,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "suntory",
+      "title": "サントリーの薬膳ブランド「薬膳好日（やくぜんこうじつ）」からチャイのおいしさに、薬膳素材をバランスよく配合した「薬膳チャイ」新発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T22:03:06.307217+00:00",
+      "attempt": 1,
+      "id": "cb8f474555ed7ccd",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "段落が長い（平均 158.3字・最長 211字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 158.3,
+        "avg_sentence": 42.8,
+        "long_share": 0.189,
+        "max_paragraph": 211,
+        "paragraphs": 10,
+        "sentences": 37
+      },
+      "score": 100,
+      "source": "suntory",
+      "title": "サントリーの薬膳ブランド「薬膳好日（やくぜんこうじつ）」からチャイのおいしさに、薬膳素材をバランスよく配合した「薬膳チャイ」新発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T22:03:18.095860+00:00",
+      "attempt": 0,
+      "id": "cb8f474555ed7ccd",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 66.8,
+        "avg_sentence": 28.1,
+        "long_share": 0.018,
+        "max_paragraph": 101,
+        "paragraphs": 24,
+        "sentences": 57
+      },
+      "score": 100,
+      "source": "suntory",
+      "title": "サントリーの薬膳ブランド「薬膳好日（やくぜんこうじつ）」からチャイのおいしさに、薬膳素材をバランスよく配合した「薬膳チャイ」新発売"
     }
   ],
   "short_text_retry": {
