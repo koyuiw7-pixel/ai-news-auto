@@ -3547,6 +3547,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000041.000098249.html"
     },
+    "2f1df1094cb5652f": {
+      "at": "2026-10-27T23:41:05.859122+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ブース）",
+      "skipped": true,
+      "url": "https://www.meiji.co.jp/corporate/pressrelease/2026/10_20/index.html?link=rss"
+    },
     "2f6f7152e98ee2c5": {
       "at": "2026-10-27T00:51:50.088106+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3601,6 +3607,12 @@
       "section": "business",
       "slug": "kaitori-koji-sns-meo-management",
       "url": "https://www.dreamnews.jp/press/0000366438"
+    },
+    "334dbbd92f5dc473": {
+      "at": "2026-10-27T23:41:05.859206+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/press/keiei/kourei/261027.html"
     },
     "34370e88c88d0cd4": {
       "at": "2026-10-27T16:33:58.480379+00:00",
@@ -4665,6 +4677,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（オープン）",
       "skipped": true,
       "url": "https://www.atpress.ne.jp/news/644045"
+    },
+    "85a7b5ac4cd3606c": {
+      "at": "2026-10-27T23:41:05.859169+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（募集）",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/press/syouan/nouan/261027.html"
     },
     "86955c1d8d2892d9": {
       "at": "2026-10-27T01:31:41.775329+00:00",
@@ -5882,6 +5900,14 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326686.html"
     },
+    "dfa6a52031c0de0b": {
+      "at": "2026-10-27T23:42:20.123321+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "tsuruhachi-labeling-violation-maff",
+      "url": "https://www.maff.go.jp/j/press/syouan/kansa/261027.html"
+    },
     "e00bd16118d03e84": {
       "at": "2026-10-27T19:14:23.912933+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -6160,6 +6186,12 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/info/info1878/index.html"
     },
+    "f3d855bbde243772": {
+      "at": "2026-10-27T23:41:05.859191+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（受賞）",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/press/shokuhin/gaisyoku/261027.html"
+    },
     "f3f1a7cbbd5c0df4": {
       "at": "2026-10-27T01:32:51.742409+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6329,62 +6361,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T00:51:14.580971+00:00",
-      "attempt": 1,
-      "id": "69b343e8a29aa74d",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2267字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "「GitCas AI編集部」で記事やコラムの企画・執筆から校正・公開までの「100％自動化」を実証。次世代AI編集部 統合プラットフォームの外部提供を開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T00:51:23.899253+00:00",
-      "attempt": 2,
-      "id": "69b343e8a29aa74d",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2325字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "「GitCas AI編集部」で記事やコラムの企画・執筆から校正・公開までの「100％自動化」を実証。次世代AI編集部 統合プラットフォームの外部提供を開始"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T00:51:32.495309+00:00",
-      "attempt": 1,
-      "id": "8be9d9b68151b035",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "value-press",
-      "title": "【子どもがお絵描きに苦手意識をもつ原因ランキング】パパ・ママ498人アンケート調査"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T00:51:43.418106+00:00",
-      "attempt": 1,
-      "id": "2f6f7152e98ee2c5",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2186字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "~AI時代のセキュリティ危機に備えて~AIエージェントの「セキュリティスキル」カオスマップ2026年10月版を公開。6,898本を13領域に整理し、押せば中身と"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T00:51:50.088077+00:00",
@@ -12318,6 +12294,95 @@
       "score": 100,
       "source": "suntory",
       "title": "スライムたちが のんでほしそうに こちらを みている！「ギルティ炭酸 NOPE」が『ドラゴンクエストモンスターズ4』とコラボ！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T23:41:12.167196+00:00",
+      "attempt": 1,
+      "id": "dfa6a52031c0de0b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1456字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（328字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 132.5,
+        "avg_sentence": 57.6,
+        "long_share": 0.348,
+        "max_paragraph": 220,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "maff",
+      "title": "株式会社釣八における業務用加工食品（塩さば）の不適正表示に対する措置について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T23:41:19.160295+00:00",
+      "attempt": 2,
+      "id": "dfa6a52031c0de0b",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1669字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 125.3,
+        "avg_sentence": 53.0,
+        "long_share": 0.308,
+        "max_paragraph": 178,
+        "paragraphs": 11,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "maff",
+      "title": "株式会社釣八における業務用加工食品（塩さば）の不適正表示に対する措置について"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T23:41:31.085499+00:00",
+      "attempt": 2,
+      "id": "dfa6a52031c0de0b",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 50.6字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 156.0字・最長 206字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 156.0,
+        "avg_sentence": 50.6,
+        "long_share": 0.243,
+        "max_paragraph": 206,
+        "paragraphs": 12,
+        "sentences": 37
+      },
+      "score": 100,
+      "source": "maff",
+      "title": "株式会社釣八における業務用加工食品（塩さば）の不適正表示に対する措置について"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T23:42:20.122790+00:00",
+      "attempt": 0,
+      "id": "dfa6a52031c0de0b",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.3,
+        "avg_sentence": 39.6,
+        "long_share": 0.024,
+        "max_paragraph": 119,
+        "paragraphs": 21,
+        "sentences": 41
+      },
+      "score": 100,
+      "source": "maff",
+      "title": "株式会社釣八における業務用加工食品（塩さば）の不適正表示に対する措置について"
     }
   ],
   "short_text_retry": {
