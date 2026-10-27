@@ -1,6 +1,6 @@
 import Link from "next/link";
 import HeaderNav from "@/components/HeaderNav";
-import RelTime from "@/components/RelTime";
+import LiveLine from "@/components/LiveLine";
 import ThemeToggle from "@/components/ThemeToggle";
 import { getAllArticles } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
@@ -20,7 +20,8 @@ const NAV: { href: string; label: string }[] = [
  */
 export default function Header() {
   // いちばん新しいAIの記事（AI速報サイトの看板の1行）
-  const latest = getAllArticles().find((a) => a.genreSlug === "ai");
+  // トップでは先頭の大きな記事と重ならないよう、2番目の記事を出す（LiveLine が切り替える）
+  const [latest, second] = getAllArticles().filter((a) => a.genreSlug === "ai").slice(0, 2);
 
   return (
     <>
@@ -47,18 +48,9 @@ export default function Header() {
       </header>
 
       {latest && (
-        <div className="live-line">
-          <div className="mx-auto flex h-9 max-w-[1240px] items-center gap-2.5 px-4 text-meta sm:px-8">
-            <span className="shrink-0 rounded-sm bg-live px-1.5 py-[1px] text-badge font-bold tracking-[0.06em] text-live-ink">速報</span>
-            <RelTime iso={latest.publishedAt} className="index-num shrink-0 text-muted" />
-            <Link
-              href={`/articles/${latest.slug}`}
-              className="min-w-0 truncate font-bold text-ink underline-offset-[3px] hover:underline"
-            >
-              {latest.title}
-            </Link>
-          </div>
-        </div>
+        <LiveLine
+          items={[latest, second ?? latest].map((a) => ({ slug: a.slug, title: a.title, publishedAt: a.publishedAt }))}
+        />
       )}
     </>
   );

@@ -9,7 +9,13 @@ export default function HeaderNav({ items }: { items: { href: string; label: str
   return (
     <nav aria-label="メインメニュー" className="ml-auto hidden h-full items-center gap-5 md:flex lg:gap-7">
       {items.map((item) => {
-        const current = item.href === "/" ? path === "/" : path === item.href || path.startsWith(`${item.href}/`);
+        // 記事ページ（/articles/◯◯）は「記事一覧」の中として扱わない（一覧のページ送りだけ含める）
+        const current =
+          item.href === "/"
+            ? path === "/"
+            : item.href === "/articles"
+              ? path === "/articles" || path.startsWith("/articles/page/")
+              : path === item.href || path.startsWith(`${item.href}/`);
         return (
           <Link
             key={item.href}
