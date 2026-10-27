@@ -3912,6 +3912,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000132.000043765.html"
     },
+    "4f1eddb426eb32e3": {
+      "at": "2026-10-27T20:41:47.538206+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "大臣の定例記者会見における質疑応答の要旨が後日掲載予定となっており、現時点では読者に提供すべき具体的な制度変更やサービス開始等の実質的な情報が含まれていないため。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202610/video-326673.html"
+    },
     "4fcc6090f912c8cb": {
       "at": "2026-10-27T03:04:42.977507+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
@@ -3992,6 +3999,12 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/news/r8/shouken/20261027/20261027.html"
     },
+    "5903aa4c766455af": {
+      "at": "2026-10-27T20:41:56.129434+00:00",
+      "reason": "followup: 新しい事実なし（ntt-docomo-kumamoto-earthquake-volunteer）",
+      "skipped": true,
+      "url": "https://www.ntt.com/about-us/press-releases/news/article/2026/1027.html"
+    },
     "5a508ce5e5172782": {
       "at": "2026-10-26T18:40:05.834526+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4011,6 +4024,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（周年）",
       "skipped": true,
       "url": "https://www.atpress.ne.jp/news/643690"
+    },
+    "5c8890e4398a5839": {
+      "at": "2026-10-27T20:41:56.129491+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（受賞）",
+      "skipped": true,
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1209_4781.html"
     },
     "5c94bf5a4fa07354": {
       "at": "2026-10-27T00:52:07.667391+00:00",
@@ -4953,6 +4972,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000032.000071025.html"
     },
+    "a0b7a53d60bf621d": {
+      "at": "2026-10-27T20:42:43.232800+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 本文が短い（1738字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.aboutamazon.jp/news/aws/aws-student-rewards-free-cloud-ai-training?utm_source=rss"
+    },
     "a118f8be4e82f52f": {
       "at": "2026-10-27T03:05:10.758721+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（導入事例）",
@@ -5753,6 +5779,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000005.000164298.html"
     },
+    "e2fda5e5b8cdd36d": {
+      "at": "2026-10-27T20:43:23.204137+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "suntory-196-mutou-limited-winter-2026",
+      "url": "https://www.suntory.co.jp/news/article/2026/15159.html?rss=0000000029"
+    },
     "e34661f9a884f584": {
       "at": "2026-10-26T12:52:30.413191+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6123,74 +6157,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-26T20:01:27.448083+00:00",
-      "attempt": 2,
-      "id": "236c687371b6fbfc",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1769字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "digital-agency",
-      "title": "地方公共団体情報システムデータ要件・連携要件の標準仕様に係る適合確認ウェブサイトを更新しました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T20:01:40.010154+00:00",
-      "attempt": 1,
-      "id": "3d1e98822dd3b16e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "何が発表されたのかの箇所（2026年10月27日）→ 元記事の調査日・発表日は2026年10月26日であり日付が矛盾している"
-      ],
-      "score": 90,
-      "source": "prtimes-all",
-      "title": "【面接官500人調査】目に入るのは「話し方」と「表情」、受ける側が最も準備する「服装」は3位"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T20:01:54.510628+00:00",
-      "attempt": 2,
-      "id": "3d1e98822dd3b16e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "prtimes-all",
-      "title": "【面接官500人調査】目に入るのは「話し方」と「表情」、受ける側が最も準備する「服装」は3位"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T20:21:11.284399+00:00",
-      "attempt": 1,
-      "id": "71b8566a1f06ece6",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "元記事の文をそのまま書き写している（2文。例「先ほどの閣議で「租税及び社会保険料による負担の軽減のための飲食料品にかかる消費税率の臨時的な引下げ及」）。自分の言葉で要約する"
-      ],
-      "score": null,
-      "source": "fsa",
-      "title": "記者会見,片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要（令和８年10月９日）について掲載しました。"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T20:21:25.132749+00:00",
-      "attempt": 2,
-      "id": "71b8566a1f06ece6",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "制度・発表の中身の項「午年には関係府省庁連絡会議も立ち上げられ」→元記事では「今日の午後、第１回会議を開催いたします」となっており、「午年」という記述は誤り。"
-      ],
-      "score": 90,
-      "source": "fsa",
-      "title": "記者会見,片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要（令和８年10月９日）について掲載しました。"
-    },
     {
       "accepted": true,
       "at": "2026-10-26T20:21:38.525913+00:00",
@@ -11797,6 +11763,115 @@
       "score": 100,
       "source": "ntt-news",
       "title": "令和8年熊本地震の被災地域で社員ボランティア活動を開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:42:06.260212+00:00",
+      "attempt": 1,
+      "id": "a0b7a53d60bf621d",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1760字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 135.6,
+        "avg_sentence": 48.4,
+        "long_share": 0.107,
+        "max_paragraph": 227,
+        "paragraphs": 10,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "about-amazon-jp",
+      "title": "AWS、学生向けのクラウドおよびAIトレーニングに5億ドル超を投資"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:42:29.306961+00:00",
+      "attempt": 2,
+      "id": "a0b7a53d60bf621d",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1738字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 131.7,
+        "avg_sentence": 50.7,
+        "long_share": 0.231,
+        "max_paragraph": 241,
+        "paragraphs": 10,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "about-amazon-jp",
+      "title": "AWS、学生向けのクラウドおよびAIトレーニングに5億ドル超を投資"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:42:58.630056+00:00",
+      "attempt": 1,
+      "id": "e2fda5e5b8cdd36d",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1350字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 108.7,
+        "avg_sentence": 40.8,
+        "long_share": 0.083,
+        "max_paragraph": 189,
+        "paragraphs": 9,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "suntory",
+      "title": "「－196(イチキューロク)無糖〈ピーチ＆マンゴー＆アップル〉」「同〈贅沢赤ぶどう＆白ぶどう〉」期間限定新発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:43:17.665591+00:00",
+      "attempt": 2,
+      "id": "e2fda5e5b8cdd36d",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 49.7字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 149.1字・最長 278字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 149.1,
+        "avg_sentence": 49.7,
+        "long_share": 0.167,
+        "max_paragraph": 278,
+        "paragraphs": 10,
+        "sentences": 30
+      },
+      "score": 100,
+      "source": "suntory",
+      "title": "「－196(イチキューロク)無糖〈ピーチ＆マンゴー＆アップル〉」「同〈贅沢赤ぶどう＆白ぶどう〉」期間限定新発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T20:43:23.203664+00:00",
+      "attempt": 0,
+      "id": "e2fda5e5b8cdd36d",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.8,
+        "avg_sentence": 31.0,
+        "long_share": 0.0,
+        "max_paragraph": 141,
+        "paragraphs": 19,
+        "sentences": 47
+      },
+      "score": 100,
+      "source": "suntory",
+      "title": "「－196(イチキューロク)無糖〈ピーチ＆マンゴー＆アップル〉」「同〈贅沢赤ぶどう＆白ぶどう〉」期間限定新発売"
     }
   ],
   "short_text_retry": {
