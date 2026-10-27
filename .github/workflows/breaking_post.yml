@@ -1,0 +1,50 @@
+name: Breaking post
+
+# 速報の即時投稿。auto_run.yml が速報記事（breaking: true）を作ってデプロイした回に呼ぶ。
+# 記事ページと図解カード（/card/<slug>）が 200 になるのを最大8分待ち、Buffer で Threads・X・Facebook にすぐ出す。
+# 上限・対象の条件は scripts/breaking_post.py を参照（1日 BREAKING_PER_DAY 本まで・深夜は出さない）。
+# 自分の投稿だけを扱う。他人の投稿へのコメント・返信は自動化しない。
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: breaking-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Post breaking news
+        env:
+          THREADS_MODE: ${{ vars.THREADS_MODE }}
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BREAKING_PER_DAY: ${{ vars.BREAKING_PER_DAY }}
+        run: python scripts/breaking_post.py --wait 480
+      # 待っている間に main が進んでいても衝突しないよう、最新の state に投稿記録だけを足して push する
+      - name: Commit history
+        run: |
+          if [ -z "$(git status --porcelain state)" ]; then exit 0; fi
+          cp state/threads_posted.json "$RUNNER_TEMP/mine.json"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main
+            python scripts/breaking_post.py --merge "$RUNNER_TEMP/mine.json"
+            git add state/threads_posted.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "chore(threads): 速報の投稿を記録"
+            git push origin HEAD:main && exit 0
+            echo "push に失敗しました。リトライ $i/5"
+            sleep 5
+          done
+          echo "::warning::速報の投稿記録を push できませんでした（通常の予約で二重投稿する恐れがあります）"
+          exit 1

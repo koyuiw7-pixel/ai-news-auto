@@ -11,6 +11,7 @@ const escapeXml = (value: string) =>
  * Google ニュース用サイトマップ。直近2日以内に公開した記事だけを載せる（Google の仕様）。
  * ビルドは記事が増えるたびに走るので、常に新しい記事が並ぶ。
  * 載せる基準と公開日は作成日時（generatedAt）のまま。続報は lastmod にだけ反映する。
+ * news:name は Google ニュースの媒体名（サイト名＝WebSite 構造化データの name）と一致させる。
  */
 export function GET() {
   const now = Date.now();
@@ -26,7 +27,7 @@ export function GET() {
     <lastmod>${new Date(lastModifiedOf(a)).toISOString()}</lastmod>
     <news:news>
       <news:publication>
-        <news:name>${escapeXml(siteConfig.name)}</news:name>
+        <news:name>${escapeXml(siteConfig.siteName)}</news:name>
         <news:language>ja</news:language>
       </news:publication>
       <news:publication_date>${new Date(a.generatedAt || a.publishedAt).toISOString()}</news:publication_date>

@@ -65,27 +65,106 @@ def save_state(state: dict) -> None:
     STATE_PATH.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def compose(article: dict, recent: list[str] | None = None) -> str:
-    """投稿文。記事生成時に作った Threads 用の紹介文（threadsPost）があればそれを使う。
+# 記事へ誘導するだけの行（完結型の投稿では使わない）と、絵文字
+TEASER_RE = re.compile(r"記事で|記事はこちら|続きは|詳しくは|リンク(?:から|で|先)|👇")
+EMOJI_RE = re.compile("[\U0001F300-\U0001FAFF\u2600-\u27BF\uFE0F]")
+# 煽り語の行と、書き出しの型の名前だけの行（生成時の書き損じ）も落とす
+CLICKBAIT_RE = re.compile(r"衝撃|ヤバ[いすく]|必見|知らないと損|見逃し厳禁")
+HOOK_NAME_RE = re.compile(r"^[^\s。、]{1,10}型$")
+JAPAN_LINES = {
+    "ok": "日本からもう使えます。",
+    "partial": "日本からも使えます（英語のみ・一部機能など条件あり）。",
+    "no": "今のところ日本では使えません。",
+}
+STATUS_LINES = {
+    "limited": "今は一部の人だけが使えます。",
+    "soon": "提供はこれからです。",
+    "demo": "研究段階で、まだ一般には使えません。",
+}
 
-    無い記事（以前の記事など）は、同じ考え方の定型で組み立てる：
-    短い見出しで手を止め、要点を2つだけ見せ、残りは記事で読んでもらう。
+
+def clean_lines(text: str) -> list[str]:
+    """紹介文を行に分け、記事へ誘導するだけの行と絵文字を落とす"""
+    lines = []
+    for line in str(text or "").splitlines():
+        line = EMOJI_RE.sub("", line).strip()
+        if line and not TEASER_RE.search(line) and not CLICKBAIT_RE.search(line) and not HOOK_NAME_RE.match(line):
+            lines.append(line)
+    return lines
+
+
+def relevance_line(article: dict) -> str:
+    """「自分に関係ある？」の1行（判定から。事実として言えることだけ）"""
+    verdict = article.get("verdict") or {}
+    status, japan = verdict.get("status"), verdict.get("japan")
+    price = str(verdict.get("price") or "").strip()
+    line = ""
+    if status == "available":
+        line = JAPAN_LINES.get(japan, "すでに提供が始まっています。")
+    elif status in STATUS_LINES:
+        line = STATUS_LINES[status]
+    if verdict.get("free") is True and status == "available":
+        line += "無料で試せます。"
+    elif re.search(r"\d", price):  # 「月20ドル〜」のように具体的な料金だけ（「API従量課金」は伝わりにくい）
+        line += f"料金は{price}。"
+    audience = str(verdict.get("audience") or "").strip()
+    if audience and len(line) < 24:
+        line += f"主に{audience}向け。"
+    return line or str(verdict.get("take") or "").strip()
+
+
+def key_fact(article: dict) -> str:
+    """要点のうち、数字の入ったものを優先（数字は記事のまま）"""
+    points = [EMOJI_RE.sub("", h).strip() for h in article.get("highlights", []) if str(h).strip()]
+    return next((p for p in points if re.search(r"\d", p)), points[0] if points else "")
+
+
+def compose(article: dict, recent: list[str] | None = None, breaking: bool = False) -> str:
+    """投稿文（完結型）。投稿だけで「誰が・何を・何が変わる・自分に関係あるか」が分かるようにする。
+
+    記事へのリンクは返信（X はスレッドの2件目）に付けるので、本文は記事へ誘導するだけの締めで終えない。
+    新しい記事（threadsStyle 2 以上）は生成時に作った紹介文を使い、以前の記事は見出し・要点・判定から組み立てる。
+    breaking=True（速報としていま出す）なら1行目に【速報】を付ける。
     """
-    custom = str(article.get("threadsPost") or "").strip()
-    if custom and len(custom) <= MAX_CHARS:
-        return custom
+    lines: list[str] = []
+    if int(article.get("threadsStyle") or 1) >= 2:
+        lines = clean_lines(article.get("threadsPost", ""))[:5]
+    if len(lines) < 2:
+        lines = standalone_lines(article, recent or [], breaking)
+    if not breaking and not article.get("breaking") and lines[0].startswith("【速報】"):
+        # 速報扱いでない記事に【速報】とは書かない（煽りに見えるため）
+        lines[0] = lines[0].removeprefix("【速報】").strip() or lines[0]
+    if breaking and not lines[0].startswith("【速報】"):
+        lines[0] = f"【速報】{lines[0]}"
+    return "\n".join(lines)[:MAX_CHARS]
 
-    hook, first = opening_line(article, recent or [])
-    article["_hook"] = hook
-    title = article.get("seoTitle") or article["title"]
-    head = title if hook == "breaking" else f"{first}\n{title}"
-    if hook == "breaking":
-        head = f"{'【まとめ】' if article.get('type') == 'roundup' else '【速報】'}{title}"
-    points = [f"✅ {h.strip()}" for h in article.get("highlights", []) if h.strip()]
-    shown, rest = points[:2], points[2:]
-    tail = "もう1つの注目点と詳しい数字は記事で👇" if rest else "詳しくは記事で👇"
-    text = "\n\n".join([head, "\n".join(shown), tail]) if shown else "\n\n".join([head, tail])
-    return text[:MAX_CHARS]
+
+def standalone_lines(article: dict, recent: list[str], breaking: bool) -> list[str]:
+    """紹介文が古い形の記事向け：書き出し／何の発表か（見出し）／いちばん具体的な事実／自分に関係あるか"""
+    title = str(article.get("title") or article.get("seoTitle") or "").strip()
+    hook_line = ""
+    if not breaking:
+        weak = set(weak_hook_keys())
+        old = clean_lines(article.get("threadsPost", ""))
+        if old and len(old[0]) <= 32 and article.get("threadsHook") not in weak:
+            hook_line = old[0]
+            article["_hook"] = article.get("threadsHook") or ""
+        else:
+            hook, first = opening_line(article, recent)
+            article["_hook"] = hook
+            hook_line = "" if hook == "breaking" else first
+    lines = [hook_line, title, key_fact(article), relevance_line(article)]
+    found: list[str] = []
+    for line in lines:
+        if line and line not in found and not (found and line in found[-1]):
+            found.append(line)
+    return found or [title]
+
+
+def weak_hook_keys() -> list[str]:
+    import threads_hooks  # noqa: PLC0415
+
+    return threads_hooks.weak_hooks()
 
 
 def openers(article: dict) -> list[tuple[str, str]]:
@@ -98,9 +177,9 @@ def openers(article: dict) -> list[tuple[str, str]]:
     status, japan, free = verdict.get("status"), verdict.get("japan"), verdict.get("free")
     price, audience = str(verdict.get("price") or ""), str(verdict.get("audience") or "")
     found: list[tuple[str, str]] = []
-    # 【速報】は、作ってから1日半以内の記事だけ（古い記事を速報と呼ばない）
+    # 【速報】は、主要企業の公式発表（breaking）で、作ってから半日以内の記事だけ（煽りに使わない）
     generated = article.get("generatedAt")
-    if generated and datetime.now(timezone.utc) - datetime.fromisoformat(generated) < timedelta(hours=36):
+    if article.get("breaking") and generated and datetime.now(timezone.utc) - datetime.fromisoformat(generated) < timedelta(hours=12):
         found.append(("breaking", "【速報】"))
     if status == "available":
         found.append(("question", f"{name}、もう試しました？"))
@@ -113,7 +192,7 @@ def openers(article: dict) -> list[tuple[str, str]]:
         found.append(("question", f"{name}、いつ使えるようになるか気になってませんか？"))
     if free is True and status == "available":
         found.append(("free", "これ、無料で試せます。"))
-    if free is False and price and price not in ("不明", "未発表"):
+    if free is False and re.search(r"\d", price):
         found.append(("caution", f"使う前に料金だけ確認を。{price}です。"))
     if audience and len(audience) <= 8:
         found.append(("callout", f"{audience}の人、これはチェックしてほしい。"))
@@ -122,7 +201,8 @@ def openers(article: dict) -> list[tuple[str, str]]:
 
 def opening_line(article: dict, recent: list[str]) -> tuple[str, str]:
     """直近で使った型を避けて、記事ごとに書き出しを変える"""
-    options = openers(article)
+    weak = set(weak_hook_keys())
+    options = [o for o in openers(article) if o[0] not in weak] or openers(article)
     if not options:
         options = [("question", "このニュース、もうチェックしました？")]
     fresh = [option for option in options if option[0] not in recent] or options
@@ -194,6 +274,9 @@ def hook_bonus() -> dict[str, float]:
     for key in threads_hooks.HOOK_KEYS:
         if key not in tested:
             bonus[key] = 1.5
+    # 十分試して明らかに伸びない型は、ほかの記事より後ろに回す
+    for key in threads_hooks.weak_hooks():
+        bonus[key] = -1.0
     return bonus
 
 
@@ -208,6 +291,9 @@ def candidates(state: dict, hours: int) -> list[dict]:
             continue
         if datetime.fromisoformat(article["generatedAt"]) < since:
             continue
+        # 速報として出す記事は scripts/breaking_post.py に任せる（二重投稿を防ぐ）
+        if reserved_for_breaking(article, state):
+            continue
         articles.append(article)
 
     # まとめ記事に統合済みの個別記事は、まとめ側を出せば十分なので重ねて流さない
@@ -216,6 +302,41 @@ def candidates(state: dict, hours: int) -> list[dict]:
     articles = [a for a in articles if score(a) >= MIN_SCORE]
     articles.sort(key=lambda a: (score(a), a["generatedAt"]), reverse=True)
     return articles
+
+
+# 速報の即時投稿（scripts/breaking_post.py）。通常の予約枠とは別に、1日 BREAKING_PER_DAY 本まで（最大5）。
+# 速報は投稿時刻を dueAt に記録するので、前後90分の通常枠は空けられ、1日の総数はほぼ増えない
+BREAKING_PER_DAY = max(0, min(5, int(os.environ.get("BREAKING_PER_DAY") or 3)))
+# 生成からこの時間以内の速報記事だけ即時に出す（それより古いものは通常の予約に回す）
+BREAKING_MAX_AGE_MIN = 90
+# 通常の予約が速報記事に手を出さない時間（即時投稿の待ち時間より十分長く）
+BREAKING_RESERVE_HOURS = 3
+# 深夜（日本時間 1:00〜5:59）は即時投稿しない。朝の通常枠で出す
+BREAKING_QUIET_HOURS_JST = range(1, 6)
+
+
+def breaking_today(state: dict, now: datetime | None = None) -> int:
+    """今日（日本時間）すでに出した速報の本数"""
+    today = (now or datetime.now(timezone.utc)).astimezone(JST).date()
+    return sum(
+        1 for p in state["posted"].values()
+        if p.get("breaking") and p.get("postedAt")
+        and datetime.fromisoformat(p["postedAt"]).astimezone(JST).date() == today
+    )
+
+
+def breaking_allowed(state: dict, now: datetime | None = None) -> bool:
+    """いま速報を即時投稿してよいか（深夜でない・今日の上限に達していない）"""
+    now = now or datetime.now(timezone.utc)
+    return now.astimezone(JST).hour not in BREAKING_QUIET_HOURS_JST and breaking_today(state, now) < BREAKING_PER_DAY
+
+
+def reserved_for_breaking(article: dict, state: dict, now: datetime | None = None) -> bool:
+    now = now or datetime.now(timezone.utc)
+    if not article.get("breaking") or article["slug"] in state["posted"]:
+        return False
+    age = now - datetime.fromisoformat(article["generatedAt"])
+    return age < timedelta(hours=BREAKING_RESERVE_HOURS) and breaking_allowed(state, now)
 
 
 # 投稿する時間帯（日本時間）。よく見られる時間から順に並べ、1日の本数 SNS_PER_DAY 個だけ使う。
@@ -387,22 +508,32 @@ def x_weight(text: str) -> int:
 
 
 def compose_x(article: dict, root_text: str) -> str:
-    """X の本文。Threads の本文から1〜3行目（書き出し＋具体的な事実＋誰向けか）を使い、ハッシュタグを2つ添える"""
-    lines = [l for l in root_text.splitlines() if l.strip() and not l.startswith("✅") and "記事で" not in l]
-    if len(lines) < 2:  # 改行の無い紹介文は、文ごとに区切って使う
-        lines = [x.strip() for x in re.split(r"(?<=[。？！])", " ".join(lines)) if x.strip()]
+    """X の本文。Threads と同じ完結型の本文から、280（全角は2）に収まる行の組み合わせを選び、ハッシュタグを2つ添える。
+
+    入りきらないときは、書き出しの行より中身（何の発表か・事実）を残す。【速報】の行は残す
+    """
+    lines = clean_lines(root_text)
     text_src = f"{article.get('title', '')} {' '.join(article.get('tags', []))}"
     tag = next((t for pattern, t in COMPANY_TAGS if re.search(pattern, text_src)), "")
     tags = " ".join(t for t in ["#AI", tag] if t)
+    if lines and lines[0].startswith("【速報】"):
+        options = [lines[:n] for n in range(len(lines), 0, -1)]
+    else:
+        options = [lines, lines[1:], lines[:3], lines[1:3], lines[:2], lines[1:2], lines[:1]]
     body = ""
-    for line in lines[:3]:
-        candidate = f"{body}\n{line}".strip()
-        if x_weight(candidate) + x_weight(tags) + 2 > X_LIMIT:
+    for option in options:
+        candidate = "\n".join(option).strip()
+        if candidate and x_weight(candidate) + x_weight(tags) + 2 <= X_LIMIT:
+            body = candidate
             break
-        body = candidate
     if not body:
         body = (article.get("seoTitle") or article["title"])[:100]
     return f"{body}\n\n{tags}"
+
+
+def card_url(article: dict) -> str:
+    """投稿に添える図解カード（1080×1350。見出し＋要点3つ。app/card/[slug]/route.tsx）"""
+    return f"{site_url()}/card/{article['slug']}"
 
 
 def publish_extra_channels(
@@ -413,29 +544,34 @@ def publish_extra_channels(
     article: dict,
     due_at: datetime | None,
     draft: bool = False,
+    offsets: tuple[int, int] = (12, 27),
 ) -> dict[str, str]:
-    """X と Facebook にも同じ記事を出す。時刻は Threads から少しずらす（3つ同時に流れないように）"""
+    """X と Facebook にも同じ記事を出す。時刻は Threads から少しずらす（3つ同時に流れないように）
+
+    due_at が None ならいますぐ出す（shareNow。通らなければ数分後の予約に切り替える）
+    """
     results: dict[str, str] = {}
     cover = f"{site_url()}/cover/{article['slug']}"
+    card = card_url(article)
     title = article.get("seoTitle") or article["title"]
-    card = {"url": link, "title": title, "description": article.get("description", "")[:120], "thumbnail": {"url": cover}}
+    link_card = {"url": link, "title": title, "description": article.get("description", "")[:120], "thumbnail": {"url": cover}}
     plans = []
     if "twitter" in channels:
         x_text = compose_x(article, text)
-        plans.append(("twitter", 12, {
+        plans.append(("twitter", offsets[0], {
             "text": x_text,
             "assets": [],
             "metadata": {"twitter": {"thread": [
-                {"text": x_text, "assets": [{"image": {"url": cover}}]},
+                {"text": x_text, "assets": [{"image": {"url": card}}]},
                 {"text": f"{link_reply_text(article)}\n{link}", "assets": []},
             ]}},
         }))
     if "facebook" in channels:
         fb_text = "\n\n".join([text.strip(), link_reply_text(article).replace("👇", "：")])
-        plans.append(("facebook", 27, {
+        plans.append(("facebook", offsets[1], {
             "text": fb_text,
             "assets": [],
-            "metadata": {"facebook": {"type": "post", "linkAttachment": card}},
+            "metadata": {"facebook": {"type": "post", "linkAttachment": link_card}},
         }))
     for service, offset, body in plans:
         post_input = {"channelId": channels[service]["id"], "schedulingType": "automatic", **body}
@@ -448,24 +584,41 @@ def publish_extra_channels(
         else:
             post_input["mode"] = "shareNow"
         try:
-            data = buffer_graphql(
-                api_key,
-                """mutation($input: CreatePostInput!) {
-                  createPost(input: $input) {
-                    ... on PostActionSuccess { post { id } }
-                    ... on MutationError { message }
-                  }
-                }""",
-                {"input": post_input},
-            )
-            result = data["createPost"]
-            if "message" in result:
-                raise RuntimeError(result["message"])
-            results[service] = result["post"]["id"]
-            log(f"  [{service}] 予約しました: {result['post']['id']}")
+            try:
+                results[service] = create_post(api_key, post_input)
+            except RuntimeError as error:
+                if post_input["mode"] != "shareNow":
+                    raise
+                log(f"  [{service}] いますぐの投稿が通らないため、{offset}分後の予約にします: {error}")
+                post_input["mode"] = "customScheduled"
+                post_input["dueAt"] = utc_z(datetime.now(timezone.utc) + timedelta(minutes=max(offset, 1)))
+                results[service] = create_post(api_key, post_input)
+            log(f"  [{service}] 予約しました: {results[service]}")
         except Exception as error:  # 1つのSNSの失敗で、ほかのSNSの投稿を止めない
             log(f"  [{service}] 失敗: {error}")
     return results
+
+
+def utc_z(when: datetime) -> str:
+    return when.astimezone(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+
+
+def create_post(api_key: str, post_input: dict) -> str:
+    """Buffer に投稿を1件作り、投稿IDを返す"""
+    data = buffer_graphql(
+        api_key,
+        """mutation($input: CreatePostInput!) {
+          createPost(input: $input) {
+            ... on PostActionSuccess { post { id } }
+            ... on MutationError { message }
+          }
+        }""",
+        {"input": post_input},
+    )
+    result = data["createPost"]
+    if "message" in result:
+        raise RuntimeError(f"Buffer: {result['message']}")
+    return result["post"]["id"]
 
 
 def publish_via_buffer(
@@ -479,13 +632,13 @@ def publish_via_buffer(
 ) -> dict:
     """Buffer に予約投稿する。
 
-    本文にはリンクを付けず、独自カバー画像を添える。記事へのリンクは、すぐ下に続く返信（スレッドの2件目）に置く。
+    本文にはリンクを付けず、図解カード（見出し＋要点3つ）を添える。記事へのリンクは、すぐ下に続く返信（スレッドの2件目）に置く。
     リンクだけの投稿は反応が付きにくく、表示が伸びにくいと言われているため。
     """
     cover = f"{site_url()}/cover/{article['slug']}"
     title = article.get("seoTitle") or article["title"]
     thread = [
-        {"text": text, "assets": [{"image": {"url": cover}}]},
+        {"text": text, "assets": [{"image": {"url": card_url(article)}}]},
         {
             "text": link_reply_text(article),
             "assets": [],
@@ -523,20 +676,30 @@ def publish_via_buffer(
         post_input["dueAt"] = due_at.isoformat(timespec="seconds").replace("+00:00", "Z")
     else:
         post_input["mode"] = "shareNow"
-    data = buffer_graphql(
-        api_key,
-        """mutation($input: CreatePostInput!) {
-          createPost(input: $input) {
-            ... on PostActionSuccess { post { id } }
-            ... on MutationError { message }
-          }
-        }""",
-        {"input": post_input},
-    )
-    result = data["createPost"]
-    if "message" in result:
-        raise RuntimeError(f"Buffer: {result['message']}")
-    return {"id": result["post"]["id"], "via": "buffer", "permalink": ""}
+    return {"id": create_post(api_key, post_input), "via": "buffer", "permalink": ""}
+
+
+def share_now(api_key: str, article: dict, text: str) -> dict:
+    """いますぐ Threads・X・Facebook に出す（速報用）。
+
+    Buffer の shareNow を使い、通らなければ1分後の予約に切り替える。戻り値は投稿履歴にそのまま入れられる形
+    """
+    link = f"{site_url()}/articles/{article['slug']}"
+    channels = buffer_channels(api_key)
+    if "threads" not in channels:
+        raise RuntimeError("Buffer に Threads のチャンネルが見つかりません")
+    now = datetime.now(timezone.utc)
+    due: datetime | None = None
+    try:
+        result = publish_via_buffer(api_key, channels["threads"]["id"], text, link, article)
+    except RuntimeError as error:
+        log(f"  [threads] いますぐの投稿が通らないため、1分後の予約にします: {error}")
+        due = now + timedelta(minutes=1)
+        result = publish_via_buffer(api_key, channels["threads"]["id"], text, link, article, due_at=due)
+    extra = {k: v for k, v in channels.items() if k in ("twitter", "facebook")}
+    result["channels"] = publish_extra_channels(api_key, extra, text, link, article, due_at=due, offsets=(1, 2))
+    result["dueAt"] = (due or now).isoformat(timespec="seconds")
+    return result
 
 
 def write_summary(lines: list[str]) -> None:
@@ -699,6 +862,8 @@ def main() -> int:
             **result,
             "hook": hook,
             "score": score(article),
+            "style": "standalone",
+            "image": "card",
             **({"dueAt": due_at.isoformat(timespec="seconds")} if due_at and buffer_channel else {}),
             "postedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         }

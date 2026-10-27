@@ -19,10 +19,17 @@
   "vars": {
     "NEXT_PUBLIC_SITE_URL": "https://ai-tech-express.jp",
     // ASP の表示回数ピクセルを本番として出す（components/rail/parts.tsx などが見ている）
-    "VERCEL_ENV": "production"
+    "VERCEL_ENV": "production",
+    // メール配信（lib/newsletter）。送信の鍵 CF_EMAIL_TOKEN / RESEND_API_KEY は wrangler secret put で入れる
+    "CLOUDFLARE_ACCOUNT_ID": "51e37d82e15d397b9666dc3d09bd5b92",
+    "NEWSLETTER_FROM": "news@ai-tech-express.jp"
   },
   "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "saisoku-site" }],
-  "kv_namespaces": [{ "binding": "NEXT_INC_CACHE_KV", "id": "15923fe8d91c4b3e8557971d9393656f" }],
+  "kv_namespaces": [
+    { "binding": "NEXT_INC_CACHE_KV", "id": "15923fe8d91c4b3e8557971d9393656f" },
+    // メール購読者（ダブルオプトイン・解除トークン・連投制限）。lib/newsletter/store.ts
+    { "binding": "NEWSLETTER_KV", "id": "d0108c8275074124b8fdfbd577111999" }
+  ],
   "durable_objects": {
     "bindings": [{ "name": "NEXT_CACHE_DO_QUEUE", "class_name": "DOQueueHandler" }]
   },

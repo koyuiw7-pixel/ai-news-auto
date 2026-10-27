@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { getAllArticles, getAllChannels, getAllTags } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
 import { hasActiveAffiliate } from "@/lib/monetization";
@@ -36,7 +37,11 @@ export default function Footer() {
               {siteConfig.description}
             </p>
 
-            <p className="mt-4 max-w-md text-[12px] leading-[1.8] text-muted">
+            <div className="mt-8">
+              <NewsletterSignup variant="footer" />
+            </div>
+
+            <p className="mt-8 max-w-md text-[12px] leading-[1.8] text-muted">
               当サイトはA8.netなどのアフィリエイトプログラムに参加しており、
               記事内に広告（プロモーション）を含む場合があります。
             </p>
