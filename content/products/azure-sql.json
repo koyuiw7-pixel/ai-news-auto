@@ -1,0 +1,194 @@
+{
+  "slug": "azure-sql",
+  "name": "Azure SQL",
+  "aliases": [
+    "Azure SQL Database"
+  ],
+  "company": "microsoft",
+  "companyName": "Microsoft",
+  "category": "アプリ・サービス",
+  "overview": {
+    "text": "Azure SQLは、Microsoftが提供するクラウドデータベースサービスです。2026年10月までにAI開発支援機能やDiskANNによるベクトル検索など多くの新機能が発表されています。",
+    "sources": [
+      "azure-sql-ai-agent-skills-guide",
+      "azure-sql-vector-index-diskann-ga",
+      "azure-sql-hyperscale-developers-guide"
+    ]
+  },
+  "facts": [
+    {
+      "label": "提供開始",
+      "value": "2026年10月（DiskANN等）",
+      "sources": [
+        "azure-sql-vector-index-diskann-ga"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "日本から利用できる",
+      "sources": [
+        "azure-sql-ai-agent-skills-guide"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "開発者、データ技術者",
+      "sources": [
+        "azure-sql-ai-agent-skills-guide",
+        "azure-sql-fabric-data-anomaly-detection"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "GitHub CopilotなどのAIエージェントがローカルDockerコンテナの作成からDB同期まで自動処理できます。",
+      "sources": [
+        "azure-sql-ai-agent-skills-guide"
+      ]
+    },
+    {
+      "text": "10億行のベクトルデータに対する類似性検索において、1秒未満の応答速度を達成しています。",
+      "sources": [
+        "azure-sql-vector-index-diskann-ga"
+      ]
+    },
+    {
+      "text": "40TBの超大規模データベースをわずか7分でポイントインタイムリストアできます。",
+      "sources": [
+        "azure-sql-hyperscale-developers-guide"
+      ]
+    },
+    {
+      "text": "Change Event Streamingによりデータベースの変更データをFabricへリアルタイム転送できます。",
+      "sources": [
+        "azure-sql-fabric-data-anomaly-detection"
+      ]
+    }
+  ],
+  "pricing": [
+    {
+      "text": "無料枠（Azure SQL Database Free Tier）が用意されています。",
+      "sources": [
+        "azure-sql-ai-agent-skills-guide"
+      ]
+    },
+    {
+      "text": "対象データベースサービスが最大35%割引になる支出ベースのSavings Planが提供されています。",
+      "sources": [
+        "azure-savings-plan-for-databases"
+      ]
+    }
+  ],
+  "japan": [
+    {
+      "text": "日本国内の環境から利用できます。",
+      "sources": [
+        "azure-sql-ai-agent-skills-guide"
+      ]
+    }
+  ],
+  "howto": [
+    {
+      "text": "Azure SQL Developer Hubから開発開始アプローチを選択できます。",
+      "sources": [
+        "azure-sql-ai-agent-skills-guide"
+      ]
+    },
+    {
+      "text": "VS Code上のmssql拡張機能からGitHub Copilotにスキルをロードして利用できます。",
+      "sources": [
+        "azure-sql-ai-agent-skills-guide"
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "text": "従来は手動だったベクトルインデックスの再構築が、バックグラウンドでの自動更新に改善されました。",
+      "sources": [
+        "mssql-vector-indexing-updates"
+      ]
+    },
+    {
+      "text": "ベクトル検索とWHERE句の絞り込みを同時に行うイテレーティブフィルタリングが導入されました。",
+      "sources": [
+        "mssql-vector-indexing-updates"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "無料で使える？",
+      "a": "クラウドのAzure SQL Database無料枠を利用して試すことができます。",
+      "sources": [
+        "azure-sql-ai-agent-skills-guide"
+      ]
+    },
+    {
+      "q": "ベクトル検索の速度はどれくらい？",
+      "a": "10億行のベクトルデータに対して1秒未満（32ミリ秒）の応答速度を記録しています。",
+      "sources": [
+        "azure-sql-vector-index-diskann-ga"
+      ]
+    },
+    {
+      "q": "コスト削減プランはある？",
+      "a": "時間あたりのコミットで対象データベースが最大35%割引になるSavings Planが提供されています。",
+      "sources": [
+        "azure-savings-plan-for-databases"
+      ]
+    },
+    {
+      "q": "バックアップとリストアはどのくらいで完了する？",
+      "a": "40TBの超大規模データベースであっても、わずか7分でポイントインタイムリストアを完了できます。",
+      "sources": [
+        "azure-sql-hyperscale-developers-guide"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-07-29",
+      "slug": "azure-sql-fabric-data-anomaly-detection",
+      "event": "Azure SQLとFabric連携機能の解説を公開"
+    },
+    {
+      "date": "2026-08-20",
+      "slug": "azure-sql-hyperscale-developers-guide",
+      "event": "Azure SQL HyperscaleのAI統合を発表"
+    },
+    {
+      "date": "2026-10-02",
+      "slug": "azure-sql-vector-index-diskann-ga",
+      "event": "DiskANNインデックスが一般提供開始"
+    },
+    {
+      "date": "2026-10-23",
+      "slug": "azure-sql-ai-agent-skills-guide",
+      "event": "Agent Skills機能が公開"
+    }
+  ],
+  "related": [
+    "github-copilot",
+    "microsoft-foundry",
+    "typescript-7"
+  ],
+  "articles": [
+    "azure-sql-ai-agent-skills-guide",
+    "azure-savings-plan-for-databases",
+    "azure-sql-vector-index-diskann-ga",
+    "azure-sql-hyperscale-developers-guide",
+    "mssql-vector-indexing-updates",
+    "azure-sql-fabric-data-anomaly-detection"
+  ],
+  "linkFrom": [
+    "azure-sql-ai-agent-skills-guide",
+    "azure-sql-vector-index-diskann-ga",
+    "azure-sql-hyperscale-developers-guide",
+    "azure-sql-fabric-data-anomaly-detection"
+  ],
+  "signature": "3bf6e9885a3bca94",
+  "primarySignature": "445f088250997aef",
+  "model": "gemini-3.5-flash-lite",
+  "createdAt": "2026-10-27T10:44:29+00:00",
+  "updatedAt": "2026-10-27T11:03:48+00:00"
+}

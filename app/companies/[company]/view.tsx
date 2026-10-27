@@ -7,6 +7,8 @@ import Timeline from "@/components/Timeline";
 import { getAllArticles } from "@/lib/articles";
 import { companyCounts, companyOf, getCompany } from "@/lib/companies";
 import { pageHref, pageSuffix, paginate } from "@/lib/paginate";
+import { productsByCompany } from "@/lib/products";
+import Link from "next/link";
 
 export const aiArticles = () => getAllArticles().filter((a) => a.genreSlug === "ai");
 
@@ -34,6 +36,7 @@ export default function CompanyView({ slug, page }: { slug: string; page: number
   if (page > paged.totalPages) notFound();
 
   const name = company.slug === "other" ? "その他のAI企業" : company.name;
+  const products = company.slug === "other" ? [] : productsByCompany(company.slug);
 
   return (
     <>
@@ -52,6 +55,27 @@ export default function CompanyView({ slug, page }: { slug: string; page: number
           {name}の公式発表や解説動画を映像・音声ごと解析し、新しい順に並べています。
           各記事の「要点」だけ読めば、いま何が起きているかがつかめます。
         </p>
+        {/* この企業の製品まとめ（「〇〇とは」を知りたい人の入口）。1ページ目だけ */}
+        {page === 1 && products.length > 0 && (
+          <section aria-labelledby="company-products" className="mt-8 border-y border-line py-5">
+            <h2 id="company-products" className="text-[13px] font-bold text-muted">
+              {name}の製品まとめ
+            </h2>
+            <ul className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+              {products.map((product) => (
+                <li key={product.slug} className="text-[14.5px]">
+                  <Link
+                    href={`/products/${product.slug}`}
+                    className="font-bold text-ink underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"
+                  >
+                    {product.name}
+                  </Link>
+                  <span className="ml-2 text-[12px] text-muted">{product.category}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
         <div className="mt-10">
           <Timeline articles={paged.items} filterable />
         </div>

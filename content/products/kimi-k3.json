@@ -1,0 +1,196 @@
+{
+  "slug": "kimi-k3",
+  "name": "Kimi K3",
+  "aliases": [],
+  "company": "moonshot",
+  "companyName": "Moonshot AI",
+  "category": "AIモデル",
+  "overview": {
+    "text": "Kimi K3は、Moonshot AIが開発した総パラメータ数2.8兆のオープン重みMoEモデルです。2026年7月にテクニカルレポートが公開され、同年8月にはGitHub Copilotなどにも統合されました。",
+    "sources": [
+      "microsoft-ai-ecosystem-kimi-k3-mcp-matome",
+      "github-copilot-kimi-k3-multi-agent",
+      "kimi-k3-open-frontier-intelligence-technical-report"
+    ]
+  },
+  "facts": [
+    {
+      "label": "料金",
+      "value": "GitHub Copilotプラン内",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent",
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    },
+    {
+      "label": "提供開始",
+      "value": "2026年7月（モデル公開）",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent",
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "利用できる",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent",
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "GitHub Copilot等",
+      "sources": [
+        "microsoft-ai-ecosystem-kimi-k3-mcp-matome",
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "開発者",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent",
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "総パラメータ数2.8兆、アクティブ1040億のMoEアーキテクチャを採用しています。",
+      "sources": [
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    },
+    {
+      "text": "100万トークンのロングコンテキストと画像・動画のビジョン処理に対応しています。",
+      "sources": [
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    },
+    {
+      "text": "GitHub Copilotのモデル選択肢に追加され、開発環境から直接利用できます。",
+      "sources": [
+        "microsoft-ai-ecosystem-kimi-k3-mcp-matome",
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    },
+    {
+      "text": "思考に費やすトークン数を自律的に調整する「Reasoning Effort RL」を搭載しています。",
+      "sources": [
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    }
+  ],
+  "pricing": [
+    {
+      "text": "GitHub Copilotの対象プランの契約ユーザーであれば、追加料金なしで利用できます。",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    },
+    {
+      "text": "Hugging Face上でモデルウェイトがオープン重みとして公開されています。",
+      "sources": [
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    }
+  ],
+  "japan": [
+    {
+      "text": "日本からも利用できます。",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent",
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    }
+  ],
+  "howto": [
+    {
+      "text": "Visual Studio CodeやGitHub.comなどの開発環境から選択して利用できます。",
+      "sources": [
+        "microsoft-ai-ecosystem-kimi-k3-mcp-matome",
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    },
+    {
+      "text": "Hugging Face上でモデルウェイトをダウンロードして検証できます。",
+      "sources": [
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    }
+  ],
+  "differences": [],
+  "faq": [
+    {
+      "q": "無料で使える？",
+      "a": "Hugging Face上でオープン重みが公開されており、試すことができます。またGitHub Copilotの対応プランでも利用可能です。",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent",
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    },
+    {
+      "q": "いつから使える？",
+      "a": "2026年7月にテクニカルレポートとモデルウェイトが公開され、8月にはGitHub Copilotに追加されました。",
+      "sources": [
+        "microsoft-ai-ecosystem-kimi-k3-mcp-matome",
+        "github-copilot-kimi-k3-multi-agent",
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    },
+    {
+      "q": "誰に向いている？",
+      "a": "複雑なコーディングや論理的推論を行う開発者に向いています。",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent",
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    },
+    {
+      "q": "安全性の特徴は？",
+      "a": "Azureのエンタープライズ水準のセキュリティや管理環境下で利用できます。",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-07-30",
+      "slug": "kimi-k3-open-frontier-intelligence-technical-report",
+      "event": "2.8兆パラメータのKimi K3を発表"
+    },
+    {
+      "date": "2026-08-15",
+      "slug": "github-copilot-kimi-k3-multi-agent",
+      "event": "GitHub CopilotにKimi K3を追加"
+    },
+    {
+      "date": "2026-09-11",
+      "slug": "china-ai-kimi-k3-semiconductor-smuggling",
+      "event": "半導体密輸疑惑が浮上"
+    }
+  ],
+  "related": [
+    "github-copilot",
+    "microsoft-foundry"
+  ],
+  "articles": [
+    "china-ai-kimi-k3-semiconductor-smuggling",
+    "agent-plugins-one-zero-comprehensive-guide-matome",
+    "microsoft-ai-ecosystem-kimi-k3-mcp-matome",
+    "github-copilot-kimi-k3-multi-agent",
+    "kimi-k3-open-frontier-intelligence-technical-report"
+  ],
+  "linkFrom": [
+    "china-ai-kimi-k3-semiconductor-smuggling",
+    "microsoft-ai-ecosystem-kimi-k3-mcp-matome",
+    "kimi-k3-open-frontier-intelligence-technical-report"
+  ],
+  "signature": "e1ad208026906686",
+  "primarySignature": "ba1b4a5661ef9be9",
+  "model": "gemini-3.5-flash-lite",
+  "createdAt": "2026-10-27T10:44:41+00:00",
+  "updatedAt": "2026-10-27T10:58:55+00:00"
+}

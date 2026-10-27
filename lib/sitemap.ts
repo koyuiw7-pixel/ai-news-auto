@@ -11,6 +11,10 @@ import {
 import { companyCounts } from "@/lib/companies";
 import { getAllGuides, guideArticles } from "@/lib/guides";
 import { getAllBuyingGuides } from "@/lib/buying-guides";
+import { getAllEvents } from "@/lib/events";
+import { getPricing } from "@/lib/pricing";
+import { getAllProducts } from "@/lib/products";
+import { getAllWeeks, weekPublishedAt } from "@/lib/weekly";
 import { siteConfig } from "@/site.config";
 
 export type SitemapEntry = {
@@ -30,6 +34,9 @@ export function sitemapEntries(): SitemapEntry[] {
   const articles = getAllArticles().filter(isIndexable);
   const liveChannels = new Set(articles.map((a) => a.channelSlug));
   const liveTags = new Set(articles.flatMap((a) => a.tags.map(tagSlug)));
+  const products = getAllProducts();
+  const productSlugs = new Set(products.map((p) => p.slug));
+  const guides = getAllGuides().filter((guide) => !productSlugs.has(guide.slug));
   const lastModified = articles[0]?.generatedAt
     ? new Date(articles[0].generatedAt)
     : new Date();
@@ -77,8 +84,37 @@ export function sitemapEntries(): SitemapEntry[] {
       priority: 0.7,
     })),
     { url: `${base}/usable`, lastModified, changeFrequency: "daily" as const, priority: 0.9 },
-    { url: `${base}/guides`, lastModified, changeFrequency: "daily" as const, priority: 0.8 },
-    ...getAllGuides().map((guide) => ({
+    // 料金早見表・週まとめ・イベント（被リンクとブックマークを狙う定番ページ）
+    { url: `${base}/ai-pricing`, lastModified: new Date(getPricing().updatedAt), changeFrequency: "weekly" as const, priority: 0.9 },
+    ...(getAllWeeks().length > 0
+      ? [{ url: `${base}/weekly`, lastModified: new Date(weekPublishedAt(getAllWeeks()[0])), changeFrequency: "weekly" as const, priority: 0.8 }]
+      : []),
+    ...getAllWeeks().map((week) => ({
+      url: `${base}/weekly/${week.id}`,
+      lastModified: new Date(week.generatedAt),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    { url: `${base}/events`, lastModified, changeFrequency: "daily" as const, priority: 0.8 },
+    ...getAllEvents().map((event) => ({
+      url: `${base}/events/${event.slug}`,
+      lastModified,
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    })),
+    // 製品のまとめページ（「〇〇とは」「料金」の検索の受け皿）
+    ...(products.length > 0
+      ? [{ url: `${base}/products`, lastModified, changeFrequency: "daily" as const, priority: 0.8 }]
+      : []),
+    ...products.map((product) => ({
+      url: `${base}/products/${product.slug}`,
+      lastModified: new Date(product.updatedAt),
+      changeFrequency: "daily" as const,
+      priority: 0.9,
+    })),
+    // まとめページへ移した製品ガイドは転送しているので載せない
+    ...(guides.length > 0 ? [{ url: `${base}/guides`, lastModified, changeFrequency: "daily" as const, priority: 0.8 }] : []),
+    ...guides.map((guide) => ({
       url: `${base}/guides/${guide.slug}`,
       lastModified: new Date(guideArticles(guide)[0]?.publishedAt ?? lastModified),
       changeFrequency: "daily" as const,
