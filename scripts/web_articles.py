@@ -184,8 +184,8 @@ WEB_PROMPT_TEMPLATE = """以下の一次情報（公式発表の文章）を読�
 # 品質基準（商業メディアの水準）
 - 本文は **2500〜5000字**。元記事の情報量に合わせ、薄い元記事なら短くてよい（水増し・推測で埋めない）。
 - 各 `###` セクションには、元記事にある具体的な固有名詞・数値を含める。
-- 見出しは内容を示す具体的なものにする（「概要」「まとめ」のような空疎な見出しは不可）。
-- 表は「項目名 / 数値 / 出典（元記事 or 編集部注）」が分かる形にする。
+- 構成で指定した「## 概要」「## まとめ」以外の見出しは、読者の疑問の形で中身が分かる言葉にする。
+- 表は「表の使い方」に従う（比べるときと早見表だけ）。
 
 # 出力する記事の構成（body_markdown に Markdown で記述）
 次の見出し構成（`##` 見出し）を基本にする。「動画」は「元記事」と読み替え、元記事に材料がない章は1〜2文で「元記事では言及なし」と書く。
@@ -254,7 +254,7 @@ body_markdown 内では h1 (`#`) を使わないでください（タイトル�
 BROAD_SOURCE_NOTE = """## 幅広い話題の編集ルール（必ず守る）
 - 資料はプレスリリース・官公庁・企業・研究機関の公式発表。発表者の宣伝文句（「業界初」「最高」等）は事実として断定せず、
   「〇〇によると」「〇〇は…としています」と発信元に帰属させる。
-- 読者目線の3点を必ず書く: ひとことで言うと何か / 自分に関係あるか / 使える・買える・申し込めるか。
+- 読者目線の3点を必ず書く: 概要（ひとことで言うと何か） / 自分に関係あるか / 使える・買える・申し込めるか。
 - 事件・事故の死傷者、特定個人のゴシップ、選挙・政党の話、病気が治る・効くといった医療効果、出典不明の噂は書かない。
   元記事がそれらを主題にしているなら is_relevant を false にする。"""
 
@@ -274,8 +274,8 @@ BROAD_PROMPT_TEMPLATE = """以下の一次情報（公式発表の文章）を�
 # 品質基準
 - 本文は **2500〜4000字**を目指す。各章で元記事の事実（数字・条件・固有名詞）を丁寧に説明して厚みを出し、推測で水増ししない（1800字未満は不合格として作り直しになる）。
 - 各 `###` セクションには、元記事にある具体的な固有名詞・数値・日付を含める。
-- 見出しは内容を示す具体的なものにする（「概要」「まとめ」だけのような空疎な見出しは不可。ただし構成指定の章名は使う）。
-- 表は「項目 / 内容 / 出典（元記事 or 編集部注）」が分かる形にする。
+- 構成で指定した「## 概要」「## まとめ」以外の見出しは、読者の疑問の形で中身が分かる言葉にする。
+- 表は「表の使い方」に従う（比べるときと早見表だけ）。
 
 # 出力する記事の構成（body_markdown に Markdown で記述）
 次の `##` 見出し構成を基本にする。元記事に材料がない章は1〜2文で「元記事では言及なし」と書く。
@@ -385,22 +385,22 @@ TREND_SOURCE_NOTE = """## 今回の取材対象（重要）
 ## トレンド記事の編集ルール（必ず守る）
 {rules}"""
 
-TREND_OUTLINE = """## ひとことで言うと
-3〜4文で、何が話題になっていて、読者に何が関係するのかを専門用語なしで説明する。
+TREND_OUTLINE = """## 概要
+短い文3〜4つで、何が話題になっていて、読者に何が関係するのかを専門用語なしで説明する（1段落は1〜3文）。
 
-## なぜいま話題なのか
+## なぜいま話題？
 きっかけ（発表・発売・料金改定・障害・制度変更など）を、報道に書かれた事実だけで説明する。
 
-## 報道で分かっていること
-各報道の内容を `###` 小見出しで整理し、媒体名を明示する。報道間で食い違う点はその旨を書く。
+## 報道で分かっていることは？
+各報道の内容を `###` 小見出し（中身が分かる言葉か疑問の形）で整理し、媒体名を明示する。報道間で食い違う点はその旨を書く。
 
-## 読者にとって何が変わるのか
+## 自分にとって何が変わる？
 お金・手間・使い方・注意点など、生活や仕事への具体的な影響。
 
-## 使えるか・申し込めるか
+## もう使える？申し込める？
 話題がサービス・製品・制度など読者が実際に使う/申し込むものの場合だけ書く。当てはまらない話題ではこの章を省く。
 
-## まだ分かっていないこと・注意点
+## まだ分からないことは？
 報道で明らかになっていない点を「現時点では発表されていない」と明記する。
 
 ## まとめ
@@ -418,7 +418,8 @@ TREND_PROMPT_TEMPLATE = """日本でいま話題になっているキーワー�
 
 # 品質基準
 - 本文は **2000〜4500字**。報道の情報量に合わせ、水増し・推測で埋めない。
-- 見出しは内容を示す具体的なものにする。
+- 構成で指定した「## 概要」「## まとめ」以外の見出しは、読者の疑問の形で中身が分かる言葉にする。
+- 表は「表の使い方」に従う（比べるときと早見表だけ）。
 
 # 出力する記事の構成（body_markdown に Markdown で記述）
 {outline}
@@ -676,6 +677,8 @@ def log_quality(state: dict, item: dict, kind: str, verdict: dict, attempt: int,
         "problems": [str(p)[:160] for p in verdict.get("problems") or []][:6],
         "model": model,
     }
+    if verdict.get("readability"):
+        entry["readability"] = verdict["readability"]
     entries = state.setdefault("quality_log", [])
     entries.append(entry)
     del entries[:-QUALITY_LOG_KEEP]
@@ -1002,6 +1005,20 @@ def main() -> int:
             state["failed_web"][item_id] = state["failed_web"].get(item_id, 0) + 1
             return None, None
 
+    def polish_or_keep(item: dict, kind: str, record: dict, verdict: dict, source_text: str, context: str):
+        """読みやすさだけ基準外: 本文の文を分ける書き直しを1回試す。だめなら元の原稿のまま（落とさない）"""
+        try:
+            polished, info = quality.polish(record, source_text, kind, context, check_facts=not args.no_gate)
+        except Exception as error:  # noqa: BLE001
+            polished, info = None, f"書き直しに失敗（{str(error)[:80]}）"
+        if polished is None:
+            log(f"   [read] 読みやすさは基準外のまま受理（{info}） {verdict.get('readability')}")
+            log_quality(state, item, kind, {**verdict, "problems": [f"読みやすさ基準外のまま受理: {info}"]}, 0, True)
+            return record, verdict
+        log(f"   [read] 文を分けて差し替え {verdict.get('readability')} → {info.get('readability')}（{info.get('polished_by')}）")
+        log_quality(state, item, kind, info, 0, True, str(info.get("polished_by") or ""))
+        return polished, info
+
     def gated(item: dict, kind: str, system: str, prompt: str, schema: dict, source_text: str, build, context: str = "",
               tier: str | None = None, attempts: int = 2):
         """生成 → 品質ゲート →（不合格なら問題点を添えて作り直し。通常は計2回、大きなニュースは計3回）。
@@ -1021,15 +1038,16 @@ def main() -> int:
                 log(f"   [NG] レスポンスの形式が不正: {error}")
                 verdict = {"ok": False, "score": None, "problems": [f"形式が不正: {error}"]}
             else:
-                if args.no_gate:
-                    verdict = {"ok": not quality.structural_problems(record, kind, source_text), "score": None,
-                               "problems": quality.structural_problems(record, kind, source_text)}
-                else:
-                    verdict = quality.evaluate(record, source_text, kind, context)
-                tag = "合格" if verdict["ok"] else "不合格"
-                log(f"   [gate] {tag} score={verdict.get('score')} 試行{attempt}/{attempts} {('/ ' + ' | '.join(verdict['problems'][:3])[:300]) if verdict['problems'] else ''}")
+                verdict = quality.evaluate(record, source_text, kind, context, check_facts=not args.no_gate)
+                tag = "合格" if verdict["ok"] else ("読みやすさのみ基準外" if verdict.get("soft") else "不合格")
+                r = verdict.get("readability") or {}
+                log(f"   [gate] {tag} score={verdict.get('score')} 試行{attempt}/{attempts}"
+                    f" 文{r.get('avg_sentence')}字/60字超{r.get('long_share', 0):.0%}/段落{r.get('avg_paragraph')}字(最長{r.get('max_paragraph')})"
+                    f" {('/ ' + ' | '.join(verdict['problems'][:3])[:300]) if verdict['problems'] else ''}")
                 log_quality(state, item, kind, verdict, attempt, verdict["ok"], model_name or "")
-                if verdict["ok"]:
+                if verdict.get("soft"):
+                    record, verdict = polish_or_keep(item, kind, record, verdict, source_text, context)
+                if verdict["ok"] or verdict.get("soft"):
                     record["qualityScore"] = verdict.get("score")
                     return "ok", record, model_name, verdict
             if attempt < attempts and not verdict.get("unavailable") and time_left() > EST_SEC_PER_ARTICLE:

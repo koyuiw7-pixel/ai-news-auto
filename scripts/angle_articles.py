@@ -84,10 +84,16 @@ def main() -> int:
             record["relatedSlugs"] = list(dict.fromkeys([args.base] + record.get("relatedSlugs", [])))
             verdict = quality.evaluate(record, text, "ai", archive.check_block(related))
             print(f"[gate] {direction[:20]} 試行{attempt} accepted={verdict.get('ok')} score={verdict.get('score')} {verdict.get('problems', [])[:2]}")
-            if verdict.get("ok"):
+            if verdict.get("soft"):
+                # 読みやすさだけ基準外: 文を分ける書き直しを1回。だめでも元の原稿で受理する
+                polished, info = quality.polish(record, text, "ai", archive.check_block(related))
+                print(f"[read] {verdict.get('readability')} → {info.get('readability') if polished else info}")
+                if polished is not None:
+                    record, verdict = polished, info
+            if verdict.get("ok") or verdict.get("soft"):
                 record["qualityScore"] = verdict.get("score")
                 path = m.write_article(record)
-                print(f"[OK] {path.name} {record['title']} / {record['seoTitle']} / {len(record['body'])}字")
+                print(f"[OK] {path.name} {record['title']} / {record['seoTitle']} / {len(record['body'])}字 読みやすさ={verdict.get('readability')}")
                 break
             problems = verdict.get("problems", [])
     return 0

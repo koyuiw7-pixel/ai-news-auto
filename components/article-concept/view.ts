@@ -128,6 +128,9 @@ function conceptCompany(article: FullArticle): Company {
   return COMPANIES.find((c) => c.pattern.test(article.sourceName ?? "")) ?? OTHER;
 }
 
+/** 最初の章の見出し（新しい記事は「概要」、古い記事は「ひとことで言うと」） */
+const FIRST_HEADINGS = new Set(["概要", "ひとことで言うと"]);
+
 const minutes = (chars: number, perMinute: number) => Math.max(1, Math.round(chars / perMinute));
 
 export async function buildConceptView(article: FullArticle): Promise<ConceptView> {
@@ -153,21 +156,21 @@ export async function buildConceptView(article: FullArticle): Promise<ConceptVie
   if (easy) {
     minuteMd = splitSections(easy)
       .filter((s) => !UPDATE.test(s.heading))
-      .map((s) => (s.heading === "ひとことで言うと" || !s.heading ? s.body : `## ${s.heading}\n${s.body}`))
+      .map((s) => (FIRST_HEADINGS.has(s.heading) || !s.heading ? s.body : `## ${s.heading}\n${s.body}`))
       .join("\n");
   } else {
-    const gist = splitSections(article.body).find((s) => s.heading === "ひとことで言うと" || s.heading === "この動画で語られていること");
+    const gist = splitSections(article.body).find((s) => FIRST_HEADINGS.has(s.heading) || s.heading === "この動画で語られていること");
     minuteMd = `${article.lede}\n\n${gist?.body ?? ""}`;
   }
   const minuteHtml = await renderSection(minuteMd, affiliateUrls);
   // 1分版の見出しも問いの形に揃える（かんたん版の見出しはもともと問い）
   const minuteWithQs = minuteHtml.replace(/<h2>([\s\S]*?)<\/h2>/g, (_m, h: string) => `<h3 class="cx-q-sm">${escapeHtml(questionFor(article.slug, h.replace(/<[^>]+>/g, "")))}</h3>`);
 
-  // 全文：「ひとことで言うと」は10秒版と重なるので外す。続報の章は「その後どうなった？」
+  // 全文：「概要」（古い記事は「ひとことで言うと」）は10秒版と重なるので外す。続報の章は「その後どうなった？」
   const sections: Section[] = [];
   const timeline: TimelineEvent[] = [];
   for (const s of splitSections(article.body)) {
-    if (!s.heading || s.heading === "ひとことで言うと") continue;
+    if (!s.heading || FIRST_HEADINGS.has(s.heading)) continue;
     const update = UPDATE.exec(s.heading);
     const id = update ? `update-${sections.length}` : slugifyHeading(s.heading) || `s-${sections.length}`;
     sections.push({

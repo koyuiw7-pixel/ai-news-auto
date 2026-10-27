@@ -225,10 +225,10 @@ def fact_check_update(article: dict, data: dict, source_text: str) -> dict:
 
 
 def _insert_after_first_section(markdown: str, section: str) -> str:
-    """「## ひとことで言うと」の章の直後（無ければ先頭）に差し込む。新しい続報ほど上に来る"""
+    """最初の章（「## 概要」、古い記事は「## ひとことで言うと」）の直後（無ければ先頭）に差し込む。新しい続報ほど上に来る"""
     text = markdown or ""
-    if text.lstrip().startswith("## ひとことで言うと"):
-        m = re.search(r"^## (?!ひとことで言うと)", text, re.M)
+    if re.match(r"## (概要|ひとことで言うと)\s*\n", text.lstrip()):
+        m = re.search(r"^## (?!概要\s*$|ひとことで言うと)", text, re.M)
         if m:
             return text[: m.start()].rstrip() + "\n\n" + section.strip() + "\n\n" + text[m.start():]
         return text.rstrip() + "\n\n" + section.strip() + "\n"
