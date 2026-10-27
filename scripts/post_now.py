@@ -18,12 +18,22 @@ import threads_post as tp  # noqa: E402
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--slug", required=True)
-    parser.add_argument("--text", required=True, help="Threads・Facebook の本文（X は自動で短くする）")
+    parser.add_argument("--text", default="", help="Threads・Facebook の本文（X は自動で短くする）")
+    parser.add_argument("--delete", default="", help="取り消す Buffer の投稿ID（カンマ区切り。予約中のものだけ消える）")
     args = parser.parse_args()
 
     key = os.environ.get("BUFFER_API_KEY", "").strip()
     if not key:
         raise SystemExit("BUFFER_API_KEY が未設定です")
+    for post_id in [p.strip() for p in args.delete.split(",") if p.strip()]:
+        try:
+            data = tp.buffer_graphql(key, """mutation($input: DeletePostInput!) {
+              deletePost(input: $input) { __typename ... on MutationError { message } } }""", {"input": {"id": post_id}})
+            print(f"[post-now] 取り消し {post_id}: {data}")
+        except Exception as error:  # noqa: BLE001
+            print(f"[post-now] 取り消し失敗 {post_id}: {error}")
+    if not args.text:
+        return 0
     path = tp.ARTICLES_DIR / f"{args.slug}.json"
     article = json.loads(path.read_text("utf-8"))
     link = f"{tp.site_url()}/articles/{args.slug}"

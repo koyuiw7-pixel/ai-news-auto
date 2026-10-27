@@ -8,8 +8,13 @@ on:
         description: "記事の slug"
         required: true
       text:
-        description: "本文（改行は \\n）"
-        required: true
+        description: "本文（改行は \\n）。空なら投稿しない"
+        required: false
+        default: ""
+      delete:
+        description: "取り消す Buffer の投稿ID（カンマ区切り）"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -28,7 +33,8 @@ jobs:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           SLUG: ${{ github.event.inputs.slug }}
           TEXT: ${{ github.event.inputs.text }}
-        run: python scripts/post_now.py --slug "$SLUG" --text "$TEXT"
+          DELETE: ${{ github.event.inputs.delete }}
+        run: python scripts/post_now.py --slug "$SLUG" --text "$TEXT" --delete "$DELETE"
       - name: Commit history
         run: |
           if [ -z "$(git status --porcelain state)" ]; then exit 0; fi
