@@ -40,9 +40,8 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-      - run: pip install -r requirements.txt pillow budoux
-      - name: ffmpeg
-        run: which ffmpeg || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+      # ffmpeg は apt だと遅いので、pip の静的ビルド（imageio-ffmpeg）を使う
+      - run: pip install -r requirements.txt pillow budoux imageio-ffmpeg
       - name: VOICEVOX の起動待ち
         run: |
           for i in $(seq 1 60); do

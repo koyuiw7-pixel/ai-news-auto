@@ -20,7 +20,7 @@
   投稿用には使わない。手元で見た目を確かめるときの予備。
 - auto: VOICEVOX エンジンに繋がれば voicevox、無ければ edge。
 
-依存: Pillow, budoux, edge-tts（edge のときだけ）, ffmpeg（PATH 上）。
+依存: Pillow, budoux, edge-tts（edge のときだけ）, ffmpeg（PATH に無ければ imageio-ffmpeg）。
 """
 
 from __future__ import annotations
@@ -290,9 +290,22 @@ def write_script(a: dict) -> tuple[dict, str]:
 # --------------------------------------------------------------------------- #
 
 
+def ffmpeg_bin() -> str:
+    """PATH の ffmpeg。無ければ pip の imageio-ffmpeg に入っている静的ビルド"""
+    found = shutil.which("ffmpeg")
+    if found:
+        return found
+    try:
+        import imageio_ffmpeg
+
+        return imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception:  # noqa: BLE001
+        raise SystemExit("ffmpeg が必要です（brew install ffmpeg か pip install imageio-ffmpeg）")
+
+
 def _ffmpeg_to_wav(src: Path, dst: Path) -> None:
     subprocess.run(
-        ["ffmpeg", "-y", "-loglevel", "error", "-i", str(src), "-ac", "1", "-ar", str(SAMPLE_RATE), "-sample_fmt", "s16", str(dst)],
+        [ffmpeg_bin(), "-y", "-loglevel", "error", "-i", str(src), "-ac", "1", "-ar", str(SAMPLE_RATE), "-sample_fmt", "s16", str(dst)],
         check=True,
     )
 
@@ -686,7 +699,7 @@ class Scene:
 def render(scene: Scene, audio: Path, out: Path) -> None:
     n = int(math.ceil(scene.total * FPS))
     cmd = [
-        "ffmpeg", "-y", "-loglevel", "error",
+        ffmpeg_bin(), "-y", "-loglevel", "error",
         "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
         "-i", str(audio),
         "-c:v", "libx264", "-preset", "medium", "-crf", "21", "-maxrate", "4M", "-bufsize", "8M",
@@ -706,11 +719,10 @@ def render(scene: Scene, audio: Path, out: Path) -> None:
 
 
 def probe_seconds(path: Path) -> float:
-    out = subprocess.run(
-        ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", str(path)],
-        capture_output=True, text=True, check=True,
-    )  # fmt: skip
-    return float(out.stdout.strip())
+    """書き出した動画の長さ（ffprobe が無い環境もあるので ffmpeg の表示から読む）"""
+    proc = subprocess.run([ffmpeg_bin(), "-hide_banner", "-i", str(path)], capture_output=True, text=True)
+    m = re.search(r"Duration: (\d+):(\d+):([\d.]+)", proc.stderr)
+    return int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3)) if m else 0.0
 
 
 def make_meta(a: dict, script: dict, credit: str, seconds: float, tts_label: str) -> dict:
@@ -787,8 +799,7 @@ def main() -> None:
     parser.add_argument("--tts", default=os.environ.get("SHORTS_TTS", "auto"), choices=["auto", "voicevox", "edge"])
     parser.add_argument("--reuse-script", action="store_true", help="前回の台本（<slug>.script.json）を使う")
     args = parser.parse_args()
-    if not shutil.which("ffmpeg"):
-        raise SystemExit("ffmpeg が必要です")
+    ffmpeg_bin()
     llm._load_env_local()
     slugs = args.slugs or top_slugs(args.top)
     if not slugs:
