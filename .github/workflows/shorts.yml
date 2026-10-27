@@ -1,0 +1,73 @@
+name: Shorts (manual)
+
+# 上位記事から縦型ショート動画を作り、Artifacts に置く（scripts/shorts.py）。
+# 投稿はまだしない。手動実行のみ（毎日動かすときは schedule のコメントを外す）。
+# 音声は VOICEVOX エンジン（docker）。動画の最後と説明文に「VOICEVOX:冥鳴ひまり」のクレジットが入る。
+on:
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "本数（直近36時間の上位から）"
+        default: "3"
+      slugs:
+        description: "slug を指定するとき（スペース区切り。空なら上位から）"
+        default: ""
+      speaker:
+        description: "VOICEVOX の話者名"
+        default: "冥鳴ひまり"
+  # schedule:
+  #   - cron: "30 22 * * *"  # 毎日 7:30 JST
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shorts
+  cancel-in-progress: false
+
+jobs:
+  shorts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    services:
+      voicevox:
+        image: voicevox/voicevox_engine:cpu-latest
+        ports:
+          - 50021:50021
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt pillow budoux
+      - name: ffmpeg
+        run: which ffmpeg || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+      - name: VOICEVOX の起動待ち
+        run: |
+          for i in $(seq 1 60); do
+            curl -sf http://127.0.0.1:50021/version && exit 0
+            sleep 5
+          done
+          exit 1
+      - name: Generate
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          VOICEVOX_SPEAKER: ${{ github.event.inputs.speaker || '冥鳴ひまり' }}
+          COUNT: ${{ github.event.inputs.count || '3' }}
+          SLUGS: ${{ github.event.inputs.slugs }}
+        run: |
+          if [ -n "$SLUGS" ]; then
+            python scripts/shorts.py $SLUGS --tts voicevox
+          else
+            python scripts/shorts.py --top "$COUNT" --tts voicevox
+          fi
+      - uses: actions/upload-artifact@v7
+        with:
+          name: shorts-${{ github.run_number }}
+          path: |
+            out/shorts/*.mp4
+            out/shorts/*.json
+          retention-days: 7
