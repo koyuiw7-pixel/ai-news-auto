@@ -46,6 +46,7 @@ const nextConfig: NextConfig = {
     ],
     "/articles/\\[slug\\]": ["./content/articles/**/*.json"],
     "/cover/**": ["./content/articles/**/*.json", "./assets/fonts/**/*"],
+    "/card/**": ["./content/articles/**/*.json", "./assets/fonts/**/*"],
     "/api/v1/articles": ["./content/articles/**/*.json"],
   },
   experimental: {
@@ -53,5 +54,10 @@ const nextConfig: NextConfig = {
     // 記事カードから記事ページへの画面遷移（React の ViewTransition）は Next 16.4 から標準で有効
   },
 };
+
+// next dev で Workers のバインディング（KV など）を使うときだけ: CF_DEV=1 npx next dev -p 3100
+if (process.env.CF_DEV === "1") {
+  import("@opennextjs/cloudflare").then((m) => m.initOpenNextCloudflareForDev());
+}
 
 export default nextConfig;

@@ -12,6 +12,7 @@ import CompanyMark from "@/components/CompanyMark";
 import CtaBanner from "@/components/CtaBanner";
 import RelTime from "@/components/RelTime";
 import NextRead from "@/components/NextRead";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import InlineRead from "@/components/InlineRead";
 import ReadingMode from "@/components/ReadingMode";
 import VerdictCard from "@/components/VerdictCard";
@@ -575,6 +576,9 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 記事末の主導線 */}
           <CtaBanner genreSlug={article.genreSlug} slot="primary" className="mt-12" />
+
+          {/* 毎朝のメール配信（また来てもらう導線） */}
+          <NewsletterSignup variant="article" />
 
           {/* 本文が短く途中に置けなかった記事だけ、記事末に出す */}
           {!bodyTail && inlineOffer && (
