@@ -8,6 +8,7 @@
     "4idQxzAyPDo": 1,
     "5iu0nY9lIy8": 1,
     "AIH_9dOpAmU": 1,
+    "DDjr6gXqtN8": 1,
     "EuN8WCWQf7g": 1,
     "FL6mI_Br-mc": 1,
     "G_DxnqhIfgk": 1,
@@ -21,12 +22,14 @@
     "UGLV3ufFZEw": 1,
     "UU_9ymJKm1w": 1,
     "VyowNv9wodk": 1,
+    "Wanw4woz7zc": 1,
     "X-uQwleiUwA": 1,
     "Xc6ERvZM1NY": 1,
     "YJCyJ7ItHk0": 2,
     "YQYckl38zpo": 1,
     "YcFnDg6dl0s": 2,
     "a75xDflRooI": 1,
+    "dQMYDBGX0uk": 1,
     "eNuyyBJwOEw": 1,
     "f-3fGNfMfqU": 1,
     "iTiKeH3FDoQ": 2,
@@ -36,6 +39,7 @@
     "nfpVl4pC0UM": 1,
     "nqAri_t8xRA": 1,
     "roVDIuW_6HI": 1,
+    "tTuk4pGnT0A": 1,
     "u5t7-BLYvfQ": 2,
     "udRxVK7mKn0": 2,
     "xP1kjDOisVw": 1,
@@ -2949,6 +2953,14 @@
       "slug": "digital-agency-national-qualifications-online",
       "url": "https://www.digital.go.jp/policies/government-certification"
     },
+    "0232089e06db66b1": {
+      "at": "2026-10-26T19:21:46.697645+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "sports",
+      "slug": "amagasaki-takumi-championship-2026",
+      "url": "https://kyodonewsprwire.jp/release/202610268686"
+    },
     "057a86be6882ac7b": {
       "at": "2026-10-26T11:33:12.751805+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -2976,6 +2988,13 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/recruit/r8/kokusai-01/kokusai-01.html"
     },
+    "0d9de70491705807": {
+      "at": "2026-10-26T21:14:24.575558+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "本記事は審議会（検討会）の開催案内であり、国民向けの新しい制度や給付金の決定、規制の変更等に関するものではないため対象外とします。",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_76922.html"
+    },
     "0f715e1693d7c6b7": {
       "at": "2026-10-26T17:31:35.423776+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -2984,11 +3003,24 @@
       "slug": "amazon-bedrock-openai-prompt-caching",
       "url": "https://aws.amazon.com/blogs/machine-learning/groundhog-day-for-ai-agents-prompt-caching-patterns-for-using-openai-models-on-amazon-bedrock/"
     },
+    "11244d015c73fdde": {
+      "at": "2026-10-26T21:14:17.873426+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/actions/202610/26kaigi_cyber.html"
+    },
     "1390907f79cb41b7": {
       "at": "2026-10-26T17:14:17.179994+00:00",
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000099.000048788.html"
+    },
+    "13bc1f882e6cd17c": {
+      "at": "2026-10-27T00:01:48.372583+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2057字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000031.000045667.html"
     },
     "14fe58965fdb4ed4": {
       "at": "2026-10-26T14:57:42.113226+00:00",
@@ -2996,6 +3028,13 @@
       "reason": "quality: 本文が短い（2278字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000081.000141649.html"
+    },
+    "157f623c815d8fdb251103227384a9b6600381ff": {
+      "at": "2026-10-26T21:41:13.628283+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1463字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（392字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れ",
+      "skipped": true,
+      "url": "https://jp.investing.com/news/stock-market-news/article-1725036"
     },
     "16310bf3b22650b2": {
       "at": "2026-10-26T12:32:36.240469+00:00",
@@ -3005,11 +3044,37 @@
       "slug": "kyoto-coco-city-fushimi-development",
       "url": "https://www.atpress.ne.jp/news/644402"
     },
+    "1663082ea7400696": {
+      "at": "2026-10-26T22:40:58.175188+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（世界市場）",
+      "skipped": true,
+      "url": "https://www.dreamnews.jp/press/0000366503"
+    },
+    "16810c1ffa4561e7": {
+      "at": "2026-10-26T21:14:17.873411+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326722.html"
+    },
     "16a9278c3325138f": {
       "at": "2026-10-26T12:33:20.217142+00:00",
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005956.000054842.html"
+    },
+    "1758535ac6be3e6b": {
+      "at": "2026-10-26T19:22:03.028309+00:00",
+      "reason": "dedupe: 固有名詞が一致（gpt-6.1・terra）: GPT-6.1 Terra in GitHub Copilot",
+      "skipped": true,
+      "url": "https://openai.com/index/introducing-gpt-6-1-terra"
+    },
+    "1797980fa3e7a238": {
+      "at": "2026-10-26T21:01:05.957319+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "pharmacist-license-online-application",
+      "url": "https://www.mhlw.go.jp/bunya/iyakuhin/yakuzaishi/menkyo.html"
     },
     "186a8635f667b78e": {
       "at": "2026-10-26T15:01:11.635523+00:00",
@@ -3024,11 +3089,25 @@
       "skipped": true,
       "url": "https://blog.google/products-and-platforms/products/education/ai-quests-polar-peaks/"
     },
+    "1a1d4bf2fc111eb8": {
+      "at": "2026-10-26T22:01:15.183025+00:00",
+      "reason": "short text 155",
+      "skipped": true,
+      "url": "https://openai.com/index/gpt-6-1-sol-coderabbit-code-security"
+    },
     "1a59e98674ccc9fb": {
       "at": "2026-10-26T14:11:39.308982+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（アワード）",
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/kanbo/anpo/261026.html"
+    },
+    "1b0888fd1ea94f51": {
+      "at": "2026-10-26T17:52:50.055161+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "awaji-hello-kitty-apple-land-autumn-food",
+      "url": "https://www.atpress.ne.jp/news/644455"
     },
     "1b7232b2b9f1b991": {
       "at": "2026-10-26T15:38:11.655136+00:00",
@@ -3036,6 +3115,13 @@
       "reason": "quality: 本文が短い（2131字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000018.000134977.html"
+    },
+    "1b8c870c8d92c0f3": {
+      "at": "2026-10-26T18:31:28.245178+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1741字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://blogs.microsoft.com/on-the-issues/2026/10/26/learning-curves-the-future-of-education-from-classrooms-to-careers-in-an-ai-driven-world/"
     },
     "2122e422380b5543": {
       "at": "2026-10-26T16:50:25.785682+00:00",
@@ -3050,6 +3136,27 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000115.000061059.html"
     },
+    "236c687371b6fbfc": {
+      "at": "2026-10-26T20:01:27.448108+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1769字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/policies/local_governments/specification"
+    },
+    "2504bf7e57b1f9b6": {
+      "at": "2026-10-26T18:32:34.996029+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "twst-lilia-racing-star-pv-2026",
+      "url": "https://www.atpress.ne.jp/news/644374"
+    },
+    "250e5d8f302445e7": {
+      "at": "2026-10-26T22:40:58.175082+00:00",
+      "reason": "short text 114",
+      "skipped": true,
+      "url": "https://openai.com/index/greptile-code-review-codex-astra"
+    },
     "25eee40fa7809dbe": {
       "at": "2026-10-26T14:53:37.359789+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3058,12 +3165,26 @@
       "slug": "maison-crivelli-tobacco-carnaval",
       "url": "https://prtimes.jp/main/html/rd/p/000000856.000003907.html"
     },
+    "27f8be5bb347e6c8": {
+      "at": "2026-10-26T23:21:40.234840+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "japan-vitamins-market-survey-2036",
+      "url": "https://www.dreamnews.jp/press/0000366535"
+    },
     "28c905a0024836c7": {
       "at": "2026-10-26T15:32:06.663662+00:00",
       "model": "gemini-3.5-flash-lite",
       "reason": "quality: 本文が短い（2007字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000170.000006510.html"
+    },
+    "290dbcbb1becccf6": {
+      "at": "2026-10-26T21:14:17.873372+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（説明会）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/kouseiroudoushou/saiyou/suuri.html"
     },
     "298c8de07d18f423": {
       "at": "2026-10-26T10:30:42.540722+00:00",
@@ -3078,12 +3199,31 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000220.000068011.html"
     },
+    "29aa2d1bb897616c": {
+      "at": "2026-10-26T20:41:04.903353+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "人事・採用・公募・シンポジウムの案内だけのものは対象外です",
+      "skipped": true,
+      "url": "https://www.atpress.ne.jp/news/644295"
+    },
+    "2a5a7cff7cbf0317": {
+      "at": "2026-10-26T22:40:58.175170+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（市場調査レポート）",
+      "skipped": true,
+      "url": "https://www.dreamnews.jp/press/0000366513"
+    },
     "2cd0e1760990091a": {
       "at": "2026-10-26T14:11:39.308950+00:00",
       "model": "gemini-3.5-flash-lite",
       "reason": "quality: 本文が短い（1798字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000070.000051277.html"
+    },
+    "31317bfb9b6a32d8": {
+      "at": "2026-10-27T00:02:14.132711+00:00",
+      "reason": "prefilter: 告知・お知らせ系",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000022.000154651.html"
     },
     "31b8b3e9ba1b5f37": {
       "at": "2026-10-26T13:33:26.418088+00:00",
@@ -3100,6 +3240,13 @@
       "section": "business",
       "slug": "kaitori-koji-sns-meo-management",
       "url": "https://www.dreamnews.jp/press/0000366438"
+    },
+    "344482fd6d727bf9": {
+      "at": "2026-10-26T19:22:03.028198+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1992字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://github.blog/changelog/2026-10-26-gpt-6-1-terra-in-github-copilot"
     },
     "35128607b5ef84dd": {
       "at": "2026-10-26T14:14:27.685942+00:00",
@@ -3123,6 +3270,13 @@
       "slug": "tohoku-gakuin-softbank-dx-partnership",
       "url": "https://www.softbank.jp/sbnews/entry/20261026_01"
     },
+    "36ccb3101b7cb129": {
+      "at": "2026-10-26T19:01:37.120319+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: Appleは2026年10月27日のソフトウェアアップデート（27.2）で → 元記事の日付は2026年10月26日である。",
+      "skipped": true,
+      "url": "https://www.apple.com/jp/newsroom/2026/10/siri-ai-is-available-today-in-more-languages/"
+    },
     "37e18adfd2ff499b": {
       "at": "2026-10-26T11:01:59.803581+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3145,11 +3299,27 @@
       "slug": "goyokiki-doctor-online-consultation-survey",
       "url": "https://prtimes.jp/main/html/rd/p/000000071.000049934.html"
     },
+    "3d1e98822dd3b16e": {
+      "at": "2026-10-26T20:01:54.511109+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "oh-my-teeth-interview-impression-survey",
+      "url": "https://prtimes.jp/main/html/rd/p/000000150.000048884.html"
+    },
     "3f779c4c9f9d66c6": {
       "at": "2026-10-26T14:59:41.239534+00:00",
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000196.000048688.html"
+    },
+    "4049d96cecb68ca5": {
+      "at": "2026-10-26T18:39:37.939575+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "microsoft-agentic-software-engineering-code-modernization",
+      "url": "https://commandline.microsoft.com/agentic-software-engineering-large-scale-code-migration-language-modernization-spec-driven-development/"
     },
     "422d0454e07d37ab": {
       "at": "2026-10-26T16:34:20.747561+00:00",
@@ -3159,6 +3329,13 @@
       "slug": "it-passport-study-survey-ipa",
       "url": "https://www.ipa.go.jp/shiken/kubun/ip/ip_goukaku_anq_all.html"
     },
+    "436c8feca450cd5e": {
+      "at": "2026-10-26T18:16:43.711146+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 実験デザインの策定とフィールド調査の設計の箇所 → 「十分に確立された手法である「反復ラテン方格デザイン」が採用されました」という具体的な手法名は元記事に存在しない。",
+      "skipped": true,
+      "url": "https://techcommunity.microsoft.com/blog/microsoft-discovery-blog/adapting-biological-monitoring-for-food-security-with-agents/4565992"
+    },
     "4551cf1ba9ff1f3d": {
       "at": "2026-10-26T13:53:40.778421+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3167,6 +3344,12 @@
       "slug": "klang-japan-usage-data-2026",
       "url": "https://prtimes.jp/main/html/rd/p/000000006.000188950.html"
     },
+    "456e73c41d10e586869a7692ec3ee566a8c6f832": {
+      "at": "2026-10-26T21:40:58.803048+00:00",
+      "reason": "trend sources 1",
+      "skipped": true,
+      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm"
+    },
     "45f0e915baa687e3": {
       "at": "2026-10-26T16:31:58.142501+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3174,11 +3357,25 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000561.000082530.html"
     },
+    "46f89d4de8c9613d": {
+      "at": "2026-10-26T21:41:14.037929+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（市場分析レポート）",
+      "skipped": true,
+      "url": "https://www.dreamnews.jp/press/0000366528"
+    },
     "4708f3cc5b0124bc": {
       "at": "2026-10-26T10:30:42.540827+00:00",
       "reason": "dedupe: 同じ出典URL",
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/announce/20261026-2/index.html"
+    },
+    "4897863e4c40f390": {
+      "at": "2026-10-26T20:41:23.860658+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "igakushoin-ptashop-goods-2026",
+      "url": "https://prtimes.jp/main/html/rd/p/000007784.000005875.html"
     },
     "4a5d85df09fdc406": {
       "at": "2026-10-26T14:58:57.208371+00:00",
@@ -3207,6 +3404,20 @@
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047898/"
     },
+    "4e9ce8cacf873c06": {
+      "at": "2026-10-26T18:33:08.905293+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1886字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000132.000043765.html"
+    },
+    "524fe9ab7744c7b0": {
+      "at": "2026-10-26T20:21:01.340888+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "人事・採用・イベントの参加者募集だけのお知らせであるため。",
+      "skipped": true,
+      "url": "https://www.atpress.ne.jp/news/643878"
+    },
     "534a8c2da0020056": {
       "at": "2026-10-26T14:35:29.164627+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3221,6 +3432,28 @@
       "reason": "quality: 本文が短い（1860字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000004.000181678.html"
+    },
+    "57626b3cad5444ca": {
+      "at": "2026-10-26T23:21:40.235044+00:00",
+      "reason": "dedupe: 固有名詞が一致（ai-bpo・ゴムマリ）: ゴムマリの専門業務AI-BPO、『苦情・VoC・クレームのデータベース化』を提供",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000038.000185093.html"
+    },
+    "5854ffdfb8165007": {
+      "at": "2026-10-26T19:41:09.355610+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "sports",
+      "slug": "lucent-cup-tokyo-indoor-2027",
+      "url": "https://www.dreamnews.jp/press/0000366359"
+    },
+    "5a508ce5e5172782": {
+      "at": "2026-10-26T18:40:05.834526+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "richi-slimy-pot-jelly-candy-magic-lab",
+      "url": "https://www.atpress.ne.jp/news/640099"
     },
     "5ac8226e346a2ea6": {
       "at": "2026-10-26T12:51:45.036729+00:00",
@@ -3256,6 +3489,19 @@
       "slug": "cccskills-ai-agent-skills-market",
       "url": "https://prtimes.jp/main/html/rd/p/000000083.000041726.html"
     },
+    "602f23208b9190cb": {
+      "at": "2026-10-26T23:21:12.552422+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2113字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000039.000185093.html"
+    },
+    "62a23b09751441ec": {
+      "at": "2026-10-26T20:01:09.893173+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（採用）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/recruit/r8/kikaku-03/kikaku-03.html"
+    },
     "62c869d7dbe25166": {
       "at": "2026-10-26T11:31:53.187943+00:00",
       "reason": "dedupe: 固有名詞が一致（copilot・github）: azure-cosmos-db-ai-assisted-development",
@@ -3268,6 +3514,12 @@
       "reason": "quality: 本文が短い（2374字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000209.000068112.html"
+    },
+    "64d59b55a8fb8666": {
+      "at": "2026-10-26T18:11:48.185954+00:00",
+      "reason": "short text 154",
+      "skipped": true,
+      "url": "https://openai.com/index/chatgpt-expanding-world-of-work"
     },
     "66c4ad230d132d33": {
       "at": "2026-10-26T15:53:57.507918+00:00",
@@ -3320,12 +3572,33 @@
       "slug": "nvidia-rfd4-proteina-healthcare-ai",
       "url": "https://blogs.nvidia.co.jp/blog/healthcare-and-life-sciences-leaders-build-on-nvidia-to-advance-drug-discovery-and-expand-patient-care/"
     },
+    "71b8566a1f06ece6": {
+      "at": "2026-10-26T20:21:25.132784+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 制度・発表の中身の項「午年には関係府省庁連絡会議も立ち上げられ」→元記事では「今日の午後、第１回会議を開催いたします」となっており、「午年」という記述は誤り。",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/conference/minister/2026b/20261009-1.html"
+    },
     "75d4fca3ee3bc3a5": {
       "at": "2026-10-26T12:38:18.205462+00:00",
       "model": "gemini-3.5-flash-lite",
       "reason": "quality: 本文が短い（2209字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000201.000085052.html"
+    },
+    "7c5037f9c6108000": {
+      "at": "2026-10-26T21:00:58.053392+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326726.html"
+    },
+    "7ca3445894680534": {
+      "at": "2026-10-26T21:14:34.391644+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "lizon-farms-agent-growth-2026",
+      "url": "https://www.atpress.ne.jp/news/643880"
     },
     "7f0dec178da37fe0": {
       "at": "2026-10-26T12:33:20.217255+00:00",
@@ -3348,6 +3621,14 @@
       "slug": "ai-hack-claude-sonnet-5-5-gpt-6-1-sol",
       "url": "https://prtimes.jp/main/html/rd/p/000000052.000149337.html"
     },
+    "80861ce532093e27": {
+      "at": "2026-10-26T21:41:43.149068+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "ipa-r08-zenki-exam-deadline",
+      "url": "https://www.ipa.go.jp/shiken/2026/r08zen_exam.html"
+    },
     "80a4fac4d17760a3": {
       "at": "2026-10-26T15:01:11.635381+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3360,6 +3641,19 @@
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000003557.000044800.html"
+    },
+    "82c30855ea13b4e5": {
+      "at": "2026-10-26T23:01:37.147984+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2420字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000044.000185093.html"
+    },
+    "82e55235337e720c": {
+      "at": "2026-10-26T23:01:37.148021+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（導入事例）",
+      "skipped": true,
+      "url": "https://kyodonewsprwire.jp/release/202610268701"
     },
     "838fa113d922e63b": {
       "at": "2026-10-26T10:30:42.540806+00:00",
@@ -3374,11 +3668,52 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000080.000056964.html"
     },
+    "86febba264904442": {
+      "at": "2026-10-26T19:02:07.027603+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2272字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000095.000010009.html"
+    },
     "8881538ea8074540": {
       "at": "2026-10-26T12:31:25.707767+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（就任）",
       "skipped": true,
       "url": "https://kyodonewsprwire.jp/release/202610268694"
+    },
+    "89882f16bf91aea9": {
+      "at": "2026-10-26T23:41:07.187312+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "japan-ai-infrastructure-software-market",
+      "url": "https://www.dreamnews.jp/press/0000366533"
+    },
+    "898f3b1fafc847be": {
+      "at": "2026-10-26T21:00:58.053451+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（公開再開）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/a_menu/mext_00007.html"
+    },
+    "8a0b2a52543d7d01": {
+      "at": "2026-10-27T00:02:01.355124+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1538字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（374字 / 基準 400字以上）; 元記事の文をそのまま書き写している（2文。例「WOWPASSは、韓国国内での決済機能とT-money機能を備えた、訪韓外国人向けのプリペイドカード」）。自分の言葉で要約する",
+      "skipped": true,
+      "url": "https://www.dreamnews.jp/press/0000366439"
+    },
+    "8ed93bec790144d5": {
+      "at": "2026-10-26T18:18:23.045318+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: AWS Machine Learning Blogによると、2026年10月27日に「Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3」と題した記事が公開されました。 → 元記事には2026年10月27日という具体的な日付の記載がない。",
+      "skipped": true,
+      "url": "https://aws.amazon.com/blogs/machine-learning/fleet-wide-computer-vision-lifecycle-at-the-edge-with-sagemaker-sdk-v3/"
+    },
+    "8f2f08b6e197805b": {
+      "at": "2026-10-26T19:21:22.163807+00:00",
+      "reason": "short text 154",
+      "skipped": true,
+      "url": "https://openai.com/index/openai-cut-incident-investigation"
     },
     "90b31744ef4440aa": {
       "at": "2026-10-26T14:10:58.214509+00:00",
@@ -3386,12 +3721,34 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000049.000132758.html"
     },
+    "90b4ed147d11ceee": {
+      "at": "2026-10-26T20:41:11.225505+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大臣の定例記者会見における世銀・IMF合同開発委員会次期議長への就任挨拶および通常の予算編成方針に関する質疑応答であり、国民生活に直接関わる新制度や給付、規制の決定事項が含まれないため対象外とします。",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/conference/minister/2026b/20261013-1.html"
+    },
     "9159549a940483f3": {
       "at": "2026-10-26T12:51:45.036697+00:00",
       "model": "gemini-3.5-flash-lite",
       "reason": "quality: 本文が短い（1905字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000017.000082558.html"
+    },
+    "925b506256fa21c6": {
+      "at": "2026-10-26T18:32:54.991963+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2381字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000949.000118641.html"
+    },
+    "936a799bca853ddb": {
+      "at": "2026-10-26T23:01:46.603891+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "lytha-hemp-seed-oil-balance-no01",
+      "url": "https://www.value-press.com/pressrelease/383188"
     },
     "95364ce770790d21": {
       "at": "2026-10-26T11:33:38.547453+00:00",
@@ -3426,6 +3783,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000020.000155520.html"
     },
+    "9d53136362bbdd72": {
+      "at": "2026-10-26T22:21:00.450003+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（市場分析レポート）",
+      "skipped": true,
+      "url": "https://www.dreamnews.jp/press/0000366524"
+    },
     "9fbf8cf82abe3d0a": {
       "at": "2026-10-26T13:32:13.607843+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3441,6 +3804,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000032.000071025.html"
     },
+    "a17154627a4bb7f0": {
+      "at": "2026-10-26T20:21:38.526357+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "next-ipo-club-pitch-event-2026",
+      "url": "https://prtimes.jp/main/html/rd/p/000000334.000054393.html"
+    },
     "a42cbd0dcd40e943": {
       "at": "2026-10-26T17:14:17.179772+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3449,11 +3820,37 @@
       "slug": "alice-gakuen-october-enrollment-2026",
       "url": "https://www.value-press.com/pressrelease/382552"
     },
+    "a4fb9d3db92d6da7": {
+      "at": "2026-10-26T21:00:58.053431+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/discourse/20261026message2.html"
+    },
     "a5dc5fb8fb4d2bfd": {
       "at": "2026-10-26T12:50:54.598637+00:00",
       "reason": "dedupe: 固有名詞が一致（llm・ローカル）: llama-app-mac-local-ai-hugging-face",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000077.000058475.html"
+    },
+    "a5f74e121560fc9a": {
+      "at": "2026-10-27T00:02:14.132460+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "true-temper-jgto-pga-2026-10",
+      "url": "https://prtimes.jp/main/html/rd/p/000000026.000182292.html"
+    },
+    "a7068035e151c3b0": {
+      "at": "2026-10-26T21:14:17.873324+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326739.html"
+    },
+    "a7a4eed88b7f564f": {
+      "at": "2026-10-26T20:01:09.893187+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326716.html"
     },
     "aaf22fbf6fabb7c9": {
       "at": "2026-10-26T16:35:20.540731+00:00",
@@ -3509,6 +3906,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000016.000100959.html"
     },
+    "b44a2cf25c279e1e": {
+      "at": "2026-10-26T19:01:52.271485+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "sports",
+      "slug": "nadeshiko-brazil-ticket-additional-sale",
+      "url": "https://www.jfa.jp/news/00036955/"
+    },
     "b5933abf7b3004fc": {
       "at": "2026-10-26T10:31:00.945549+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3544,6 +3949,12 @@
       "slug": "sanada-naoki-asakusa-live-2026",
       "url": "https://www.atpress.ne.jp/news/644526"
     },
+    "bbf98d62f5f83ec4": {
+      "at": "2026-10-26T21:41:14.037879+00:00",
+      "reason": "short text 394",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326725.html"
+    },
     "bdec164d5a53e33b": {
       "at": "2026-10-26T12:05:24.307273+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3558,6 +3969,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000200.000085052.html"
     },
+    "c3136a75dafafae6": {
+      "at": "2026-10-26T22:21:00.450044+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（市場分析レポート）",
+      "skipped": true,
+      "url": "https://www.dreamnews.jp/press/0000366523"
+    },
     "c4cd16295e2f35e1": {
       "at": "2026-10-26T15:34:23.254387+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3571,6 +3988,12 @@
       "reason": "quality: 本文が短い（2035字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000325.000050142.html"
+    },
+    "c71a5ea79ab30fcb": {
+      "at": "2026-10-26T21:14:17.873389+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/a_menu/shinkou/nankyoku/1285461.htm"
     },
     "c764dbeb21a3918f": {
       "at": "2026-10-26T12:31:25.707735+00:00",
@@ -3614,6 +4037,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000067.000184990.html"
     },
+    "cf6309826c6639bc": {
+      "at": "2026-10-27T00:21:12.643117+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "fpt-servicenow-service-provider-2026",
+      "url": "https://prtimes.jp/main/html/rd/p/000000141.000017750.html"
+    },
     "cfa483085d188674": {
       "at": "2026-10-26T15:32:49.568900+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3621,6 +4052,13 @@
       "section": "business",
       "slug": "aimoka-starter-pack-website",
       "url": "https://prtimes.jp/main/html/rd/p/000000007.000167635.html"
+    },
+    "cfca159d4cf57a59": {
+      "at": "2026-10-26T20:01:09.893138+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大学の人事・教育プログラムの紹介およびイベント・交流会の案内であり、科学研究の成果、宇宙ミッション、観測・実験の発表ではないため対象外。",
+      "skipped": true,
+      "url": "https://kyodonewsprwire.jp/release/202610268689"
     },
     "d114e17ae39da754": {
       "at": "2026-10-26T12:42:15.173964+00:00",
@@ -3678,6 +4116,14 @@
       "skipped": true,
       "url": "https://huggingface.co/blog/allenai/litpivot"
     },
+    "d5ea72d53ddd0e11": {
+      "at": "2026-10-26T22:21:10.633174+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "propally-real-estate-investment-survey",
+      "url": "https://prtimes.jp/main/html/rd/p/000000047.000074383.html"
+    },
     "d73f148a5512c6fa": {
       "at": "2026-10-26T12:32:36.240630+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -3691,6 +4137,22 @@
       "section": "ai",
       "slug": "google-gemini-college-student-features",
       "url": "https://blog.google/products-and-platforms/products/gemini/college-student-favorite-features/"
+    },
+    "d9632e08d55c4552": {
+      "at": "2026-10-26T18:12:46.804433+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "ps5-marvels-wolverine-photo-mode-guide",
+      "url": "https://blog.ja.playstation.com/2026/10/26/20261026-marvels-wolverine-photo-mode-o/"
+    },
+    "dc7fa81a76c6698b": {
+      "at": "2026-10-26T22:01:24.273435+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "jinen-zzz-inc-oshikatsu-community-business",
+      "url": "https://prtimes.jp/main/html/rd/p/000000008.000159111.html"
     },
     "dcf5d54939aadc4c": {
       "at": "2026-10-26T10:30:42.540838+00:00",
@@ -3726,6 +4188,21 @@
       "reason": "quality: 本文が短い（1898字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000031.000168691.html"
+    },
+    "e52a1eb6f54ddd76": {
+      "at": "2026-10-26T23:21:25.860464+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 価格欄の「編集部注: 言及なし（一般的な自治体アプリとして無料配信）」→ 無料配信である旨や前提は元記事に記載されていない。",
+      "skipped": true,
+      "url": "https://kyodonewsprwire.jp/release/202610268681"
+    },
+    "e5e4c3ae2b7984fd": {
+      "at": "2026-10-26T17:52:08.272357+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
+      "url": "https://aws.amazon.com/blogs/machine-learning/build-agentic-retrieval-on-a-managed-amazon-bedrock-knowledge-base-with-cdk/"
     },
     "e7e58cd7761fc453": {
       "at": "2026-10-26T11:02:34.699451+00:00",
@@ -3768,6 +4245,20 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000054.000060051.html"
     },
+    "effbff5a585bc50f": {
+      "at": "2026-10-26T22:41:08.183632+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "tokyo-grade-a-office-market-2026-q3",
+      "url": "https://kyodonewsprwire.jp/release/202610238608"
+    },
+    "f16aefe89a6e3f3b": {
+      "at": "2026-10-26T22:01:24.342392+00:00",
+      "reason": "short text 159",
+      "skipped": true,
+      "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities"
+    },
     "f208f898be629661": {
       "at": "2026-10-26T14:58:03.842316+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3780,6 +4271,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/info/info1878/index.html"
+    },
+    "f5a63a1af5067430": {
+      "at": "2026-10-26T21:41:28.789476+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（362字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.atpress.ne.jp/news/644341"
     },
     "f6d1cfb77e056329": {
       "at": "2026-10-26T17:32:36.998795+00:00",
@@ -3796,6 +4294,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000047.000130230.html"
     },
+    "f9f41744899d9dd8": {
+      "at": "2026-10-26T21:14:17.873399+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/shohishahogo/02kiban08_04000529.html"
+    },
     "fa1d0120c8c5ef27": {
       "at": "2026-10-26T12:40:42.848481+00:00",
       "reason": "dedupe: 固有名詞が一致（app・samurai・samuraiapp）: SamuraiAX、業務AIエージェントOS「Samurai App」で、会議の",
@@ -3808,6 +4312,12 @@
       "reason": "quality: 本文が短い（2330字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 元記事の文をそのまま書き写している（3文。例「- 株式会社Betimo：「リリースから成長し続けるBetimoの裏側、車券購入アプリならではのデー」）。自分の言葉で要約する",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000078.000104020.html"
+    },
+    "fd4005969d43bd8a": {
+      "at": "2026-10-26T21:14:17.873361+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/discourse/20261026message1.html"
     },
     "fdba22f8a8926616": {
       "at": "2026-10-26T12:31:25.707776+00:00",
@@ -5953,6 +6463,938 @@
       "score": 100,
       "source": "prtimes-all",
       "title": "Publica by IASと電通ジャパン・インターナショナルブランズ、プレミアムCTV広告の透明性と投資効率の向上に向けた戦略的パートナーシップを発表"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T17:51:45.130427+00:00",
+      "attempt": 1,
+      "id": "e5e4c3ae2b7984fd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2481字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "Build agentic retrieval on a Managed Amazon Bedrock Knowledge Base with CDK"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T17:52:08.271978+00:00",
+      "attempt": 2,
+      "id": "e5e4c3ae2b7984fd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "Build agentic retrieval on a Managed Amazon Bedrock Knowledge Base with CDK"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T17:52:22.080372+00:00",
+      "attempt": 1,
+      "id": "1b0888fd1ea94f51",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（389字 / 基準 400字以上）"
+      ],
+      "score": null,
+      "source": "atpress",
+      "title": "ハローキティと楽しむ“食欲の秋”！今だけの限定グルメが登場「AWAJI HELLO KITTY APPLE LAND」秋フードまとめ情報を公開！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T17:52:50.054777+00:00",
+      "attempt": 2,
+      "id": "1b0888fd1ea94f51",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "atpress",
+      "title": "ハローキティと楽しむ“食欲の秋”！今だけの限定グルメが登場「AWAJI HELLO KITTY APPLE LAND」秋フードまとめ情報を公開！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T18:12:46.804063+00:00",
+      "attempt": 1,
+      "id": "d9632e08d55c4552",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "playstation-blog-jp",
+      "title": "PS5®︎『Marvel’s Wolverine』フォトモードガイド！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:13:38.121072+00:00",
+      "attempt": 1,
+      "id": "436c8feca450cd5e",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2144字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "score": null,
+      "source": "microsoft-source",
+      "title": "How AI could help scientists track a pest threatening citrus trees"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:16:43.711110+00:00",
+      "attempt": 2,
+      "id": "436c8feca450cd5e",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "実験デザインの策定とフィールド調査の設計の箇所 → 「十分に確立された手法である「反復ラテン方格デザイン」が採用されました」という具体的な手法名は元記事に存在しない。"
+      ],
+      "score": 85,
+      "source": "microsoft-source",
+      "title": "How AI could help scientists track a pest threatening citrus trees"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:17:42.214139+00:00",
+      "attempt": 1,
+      "id": "8ed93bec790144d5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "異常検知ブランチではAUROCが0.8以上であることが求められ、不均衡データが頻出する分類器ブランチでは、バランス精度が0.6以上かつ欠陥の再現率が0.5以上という2つの条件を同時に満たすことが品質ゲートの通過条件となる。 → 品質ゲートの具体的な数値（AUROC 0.8以上、バランス精度0.6以上、再現率0.5以上な"
+      ],
+      "score": 85,
+      "source": "aws-ml-blog",
+      "title": "Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:18:23.045288+00:00",
+      "attempt": 2,
+      "id": "8ed93bec790144d5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "AWS Machine Learning Blogによると、2026年10月27日に「Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3」と題した記事が公開されました。 → 元記事には2026年10月27日という具体的な日付の記載"
+      ],
+      "score": 85,
+      "source": "aws-ml-blog",
+      "title": "Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:31:14.243406+00:00",
+      "attempt": 1,
+      "id": "1b8c870c8d92c0f3",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1788字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "訳されていない英文が残っている（「Learning Curves: Rethinking Education fr…」）"
+      ],
+      "score": null,
+      "source": "microsoft-source",
+      "title": "From classrooms to careers: The future of education in an AI-driven world"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:31:28.245153+00:00",
+      "attempt": 2,
+      "id": "1b8c870c8d92c0f3",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1741字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "microsoft-source",
+      "title": "From classrooms to careers: The future of education in an AI-driven world"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:32:24.455361+00:00",
+      "attempt": 1,
+      "id": "2504bf7e57b1f9b6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1654字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "atpress",
+      "title": "『ディズニー ツイステッドワンダーランド』リリア・ヴァンルージュ歌唱の楽曲「RACING STAR☆」スペシャルPV特設サイトにて公開！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T18:32:34.995596+00:00",
+      "attempt": 2,
+      "id": "2504bf7e57b1f9b6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "atpress",
+      "title": "『ディズニー ツイステッドワンダーランド』リリア・ヴァンルージュ歌唱の楽曲「RACING STAR☆」スペシャルPV特設サイトにて公開！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:32:45.349930+00:00",
+      "attempt": 1,
+      "id": "925b506256fa21c6",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2103字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "AIが人の状況を察し、安心・安全を守りながら適切な対応に自律改善する「高EQな音声対話技術」を確立"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:32:54.991934+00:00",
+      "attempt": 2,
+      "id": "925b506256fa21c6",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2381字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "AIが人の状況を察し、安心・安全を守りながら適切な対応に自律改善する「高EQな音声対話技術」を確立"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:33:01.696970+00:00",
+      "attempt": 1,
+      "id": "4e9ce8cacf873c06",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1402字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "フォーティエンスコンサルティング、AIが適切に参照できるデータと組織基盤を整備する「AI-readyデータ構築支援サービス」を提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:33:08.905260+00:00",
+      "attempt": 2,
+      "id": "4e9ce8cacf873c06",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1886字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "フォーティエンスコンサルティング、AIが適切に参照できるデータと組織基盤を整備する「AI-readyデータ構築支援サービス」を提供開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T18:39:37.939219+00:00",
+      "attempt": 1,
+      "id": "4049d96cecb68ca5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "microsoft-source",
+      "title": "When AI rewrites millions of lines of code, verification becomes essential"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T18:39:48.677980+00:00",
+      "attempt": 1,
+      "id": "5a508ce5e5172782",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1723字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "atpress",
+      "title": "人気インフルエンサー「りち」とキラキラポップなつくる菓子シリーズ「CANDY Magic Lab」がコラボ！「りちスライミーポットゼリー」が新発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T18:40:05.834124+00:00",
+      "attempt": 2,
+      "id": "5a508ce5e5172782",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "atpress",
+      "title": "人気インフルエンサー「りち」とキラキラポップなつくる菓子シリーズ「CANDY Magic Lab」がコラボ！「りちスライミーポットゼリー」が新発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:01:14.475693+00:00",
+      "attempt": 1,
+      "id": "36ccb3101b7cb129",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2323字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "apple-newsroom-jp",
+      "title": "Siri AI、日本語で提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:01:37.120286+00:00",
+      "attempt": 2,
+      "id": "36ccb3101b7cb129",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "Appleは2026年10月27日のソフトウェアアップデート（27.2）で → 元記事の日付は2026年10月26日である。"
+      ],
+      "score": 90,
+      "source": "apple-newsroom-jp",
+      "title": "Siri AI、日本語で提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:01:43.697035+00:00",
+      "attempt": 1,
+      "id": "b44a2cf25c279e1e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1427字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "jfa",
+      "title": "チケット追加販売のお知らせ なでしこジャパン（日本女子代表）対 ブラジル女子代表【11.29(日) 広島／エディオンピースウイング広島】 #jfa #daihy"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T19:01:52.271113+00:00",
+      "attempt": 2,
+      "id": "b44a2cf25c279e1e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "jfa",
+      "title": "チケット追加販売のお知らせ なでしこジャパン（日本女子代表）対 ブラジル女子代表【11.29(日) 広島／エディオンピースウイング広島】 #jfa #daihy"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:01:59.479310+00:00",
+      "attempt": 1,
+      "id": "86febba264904442",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1653字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "アイフルがクレジットカード「aiカード」の発行を開始！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:02:07.027577+00:00",
+      "attempt": 2,
+      "id": "86febba264904442",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2272字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "アイフルがクレジットカード「aiカード」の発行を開始！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:21:35.380778+00:00",
+      "attempt": 1,
+      "id": "0232089e06db66b1",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1503字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "kyodo-prwire",
+      "title": "ものづくり技能No.1は誰だ！第10回尼崎ものづくり未来の匠選手権を開催"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T19:21:46.697170+00:00",
+      "attempt": 2,
+      "id": "0232089e06db66b1",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "kyodo-prwire",
+      "title": "ものづくり技能No.1は誰だ！第10回尼崎ものづくり未来の匠選手権を開催"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:21:55.047087+00:00",
+      "attempt": 1,
+      "id": "344482fd6d727bf9",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2140字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "GPT-6.1 Terra in GitHub Copilot"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:22:03.028167+00:00",
+      "attempt": 2,
+      "id": "344482fd6d727bf9",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1992字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "GPT-6.1 Terra in GitHub Copilot"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T19:41:01.663326+00:00",
+      "attempt": 1,
+      "id": "5854ffdfb8165007",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1545字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（350字 / 基準 400字以上）"
+      ],
+      "score": null,
+      "source": "dreamnews",
+      "title": "【ソフトテニス】ルーセントカップ「東京インドア2027」＆「社会人対学生2027」の特設サイトを公開"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T19:41:09.355209+00:00",
+      "attempt": 2,
+      "id": "5854ffdfb8165007",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "dreamnews",
+      "title": "【ソフトテニス】ルーセントカップ「東京インドア2027」＆「社会人対学生2027」の特設サイトを公開"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T20:01:18.719691+00:00",
+      "attempt": 1,
+      "id": "236c687371b6fbfc",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1645字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "digital-agency",
+      "title": "地方公共団体情報システムデータ要件・連携要件の標準仕様に係る適合確認ウェブサイトを更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T20:01:27.448083+00:00",
+      "attempt": 2,
+      "id": "236c687371b6fbfc",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1769字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "digital-agency",
+      "title": "地方公共団体情報システムデータ要件・連携要件の標準仕様に係る適合確認ウェブサイトを更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T20:01:40.010154+00:00",
+      "attempt": 1,
+      "id": "3d1e98822dd3b16e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "何が発表されたのかの箇所（2026年10月27日）→ 元記事の調査日・発表日は2026年10月26日であり日付が矛盾している"
+      ],
+      "score": 90,
+      "source": "prtimes-all",
+      "title": "【面接官500人調査】目に入るのは「話し方」と「表情」、受ける側が最も準備する「服装」は3位"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T20:01:54.510628+00:00",
+      "attempt": 2,
+      "id": "3d1e98822dd3b16e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes-all",
+      "title": "【面接官500人調査】目に入るのは「話し方」と「表情」、受ける側が最も準備する「服装」は3位"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T20:21:11.284399+00:00",
+      "attempt": 1,
+      "id": "71b8566a1f06ece6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "元記事の文をそのまま書き写している（2文。例「先ほどの閣議で「租税及び社会保険料による負担の軽減のための飲食料品にかかる消費税率の臨時的な引下げ及」）。自分の言葉で要約する"
+      ],
+      "score": null,
+      "source": "fsa",
+      "title": "記者会見,片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要（令和８年10月９日）について掲載しました。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T20:21:25.132749+00:00",
+      "attempt": 2,
+      "id": "71b8566a1f06ece6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "制度・発表の中身の項「午年には関係府省庁連絡会議も立ち上げられ」→元記事では「今日の午後、第１回会議を開催いたします」となっており、「午年」という記述は誤り。"
+      ],
+      "score": 90,
+      "source": "fsa",
+      "title": "記者会見,片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要（令和８年10月９日）について掲載しました。"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T20:21:38.525913+00:00",
+      "attempt": 1,
+      "id": "a17154627a4bb7f0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes-all",
+      "title": "現役プライム上場企業社長と135億円EXIT起業家がIPO志望経営者のピッチに直接フィードバック｜Next IPO Clubインキュベーションサロン9月度月例会"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T20:41:17.258262+00:00",
+      "attempt": 1,
+      "id": "4897863e4c40f390",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1602字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes-all",
+      "title": "医学書院から社名ロゴTシャツと『ケアをひらく』の新作が登場！ Tシャツ・ロンT・トートバッグ計4種を発売開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T20:41:23.860182+00:00",
+      "attempt": 2,
+      "id": "4897863e4c40f390",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes-all",
+      "title": "医学書院から社名ロゴTシャツと『ケアをひらく』の新作が登場！ Tシャツ・ロンT・トートバッグ計4種を発売開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T21:01:05.956895+00:00",
+      "attempt": 1,
+      "id": "1797980fa3e7a238",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "mhlw",
+      "title": "薬剤師免許に関するオンライン申請手続きのご案内"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T21:14:34.391185+00:00",
+      "attempt": 1,
+      "id": "7ca3445894680534",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "atpress",
+      "title": "農地管理代行「ファーマーズエージェント(R)」、利用農家数が2023年から2年間で約2.3倍に増加"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T21:41:07.222323+00:00",
+      "attempt": 1,
+      "id": "157f623c815d8fdb251103227384a9b6600381ff",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1493字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "trends",
+      "title": "フィラデルフィア半導体株指数"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T21:41:13.628255+00:00",
+      "attempt": 2,
+      "id": "157f623c815d8fdb251103227384a9b6600381ff",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1463字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（392字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "trends",
+      "title": "フィラデルフィア半導体株指数"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T21:41:22.076654+00:00",
+      "attempt": 1,
+      "id": "f5a63a1af5067430",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1627字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "atpress",
+      "title": "芦ノ湖から車で約10分、箱根の木立に佇む“森の別荘”「スイートヴィラ Calmwoods元箱根」が10月31日に開業"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T21:41:28.789452+00:00",
+      "attempt": 2,
+      "id": "f5a63a1af5067430",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（362字 / 基準 400字以上）"
+      ],
+      "score": null,
+      "source": "atpress",
+      "title": "芦ノ湖から車で約10分、箱根の木立に佇む“森の別荘”「スイートヴィラ Calmwoods元箱根」が10月31日に開業"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T21:41:35.532595+00:00",
+      "attempt": 1,
+      "id": "80861ce532093e27",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1683字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "ipa",
+      "title": "令和8年度前期試験 高度試験及び情報処理安全確保支援士試験の申込受付を終了しました"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T21:41:43.148646+00:00",
+      "attempt": 2,
+      "id": "80861ce532093e27",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "ipa",
+      "title": "令和8年度前期試験 高度試験及び情報処理安全確保支援士試験の申込受付を終了しました"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T22:01:24.273132+00:00",
+      "attempt": 1,
+      "id": "dc7fa81a76c6698b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes-all",
+      "title": "JINEN株式会社、株式会社zzz.inc.と業務提携し「インフルエンサー・コミュニティマネジメント事業」を開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T22:21:10.632659+00:00",
+      "attempt": 1,
+      "id": "d5ea72d53ddd0e11",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes-all",
+      "title": "【30代・40代の不動産投資調査】30代の30.3%は「相談を検討したが見送った」、40代は62.3%が「相談しようと思ったことがない」。見送り理由は30代「し"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T22:41:08.183178+00:00",
+      "attempt": 1,
+      "id": "effbff5a585bc50f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "kyodo-prwire",
+      "title": "優良オフィスへの需要が市場をけん引 東京で進む「質重視」のオフィス選択"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:01:27.968337+00:00",
+      "attempt": 1,
+      "id": "82c30855ea13b4e5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2089字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "AI開発の価格の公表を調査、比較サイトに載るAI開発会社63社のうち公式サイトに価格を載せていたのは2社、価格を公表していた26社のうちPoCの価格を示した9社"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:01:37.147957+00:00",
+      "attempt": 2,
+      "id": "82c30855ea13b4e5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2420字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "AI開発の価格の公表を調査、比較サイトに載るAI開発会社63社のうち公式サイトに価格を載せていたのは2社、価格を公表していた26社のうちPoCの価格を示した9社"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T23:01:46.603398+00:00",
+      "attempt": 1,
+      "id": "936a799bca853ddb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "value-press",
+      "title": "京都発ウェルネスブランド「LYTHA」誕生。イタリア・プーリア産100％エキストラバージン・ヘンプシードオイルを、1回分ずつ遮光・密閉の4gエアタイトサシェに"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:21:04.375614+00:00",
+      "attempt": 1,
+      "id": "602f23208b9190cb",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1658字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "ゴムマリの専門業務AI-BPO、『苦情・VoC・クレームのデータベース化』を提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:21:12.552398+00:00",
+      "attempt": 2,
+      "id": "602f23208b9190cb",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2113字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "ゴムマリの専門業務AI-BPO、『苦情・VoC・クレームのデータベース化』を提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:21:18.885065+00:00",
+      "attempt": 1,
+      "id": "e52a1eb6f54ddd76",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1369字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "kyodo-prwire",
+      "title": "小諸の情報はこれ一つで完結！楽しい街アプリ『Komomag.（コモマグ）』誕生"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:21:25.860434+00:00",
+      "attempt": 2,
+      "id": "e52a1eb6f54ddd76",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "価格欄の「編集部注: 言及なし（一般的な自治体アプリとして無料配信）」→ 無料配信である旨や前提は元記事に記載されていない。"
+      ],
+      "score": 90,
+      "source": "kyodo-prwire",
+      "title": "小諸の情報はこれ一つで完結！楽しい街アプリ『Komomag.（コモマグ）』誕生"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-26T23:21:32.727684+00:00",
+      "attempt": 1,
+      "id": "27f8be5bb347e6c8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1679字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "dreamnews",
+      "title": "日本ビタミン市場：予防栄養、機能性食品の革新、消費者の健康トレンドが新たなビジネス機会を創出"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T23:21:40.234483+00:00",
+      "attempt": 2,
+      "id": "27f8be5bb347e6c8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "dreamnews",
+      "title": "日本ビタミン市場：予防栄養、機能性食品の革新、消費者の健康トレンドが新たなビジネス機会を創出"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-26T23:41:07.186880+00:00",
+      "attempt": 1,
+      "id": "89882f16bf91aea9",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "dreamnews",
+      "title": "日本AIインフラストラクチャーソフトウェア市場：GPUオーケストレーション、AIクラウドプラットフォーム、ワークロード最適化が新たなビジネス機会を創出"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T00:01:40.680454+00:00",
+      "attempt": 1,
+      "id": "13bc1f882e6cd17c",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1895字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "【宮崎県内企業初※初期費用0円】病院・自治体・大型施設の「電気代高騰対策」と「脱炭素化」を同時実現。空調特化型AIサブスクリプション「MP-1 SYSTEM」を"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T00:01:48.372549+00:00",
+      "attempt": 2,
+      "id": "13bc1f882e6cd17c",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2057字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "【宮崎県内企業初※初期費用0円】病院・自治体・大型施設の「電気代高騰対策」と「脱炭素化」を同時実現。空調特化型AIサブスクリプション「MP-1 SYSTEM」を"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T00:01:55.857020+00:00",
+      "attempt": 1,
+      "id": "8a0b2a52543d7d01",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "title / seo_title に感嘆符がある"
+      ],
+      "score": null,
+      "source": "dreamnews",
+      "title": "韓国の交通カード徹底比較！T-money・WOWPASS・Travel Walletどれがおすすめ？"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T00:02:01.355079+00:00",
+      "attempt": 2,
+      "id": "8a0b2a52543d7d01",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1538字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（374字 / 基準 400字以上）",
+        "元記事の文をそのまま書き写している（2文。例「WOWPASSは、韓国国内での決済機能とT-money機能を備えた、訪韓外国人向けのプリペイドカード」）。自分の言葉で要約する"
+      ],
+      "score": null,
+      "source": "dreamnews",
+      "title": "韓国の交通カード徹底比較！T-money・WOWPASS・Travel Walletどれがおすすめ？"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T00:02:07.681576+00:00",
+      "attempt": 1,
+      "id": "a5f74e121560fc9a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（357字 / 基準 400字以上）"
+      ],
+      "score": null,
+      "source": "prtimes-all",
+      "title": "【ツアー報告】JGTOでDynamic Goldが今季2勝目を支える、PGAツアーは使用選手がプレーオフ進出"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T00:02:14.131974+00:00",
+      "attempt": 2,
+      "id": "a5f74e121560fc9a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes-all",
+      "title": "【ツアー報告】JGTOでDynamic Goldが今季2勝目を支える、PGAツアーは使用選手がプレーオフ進出"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T00:21:12.642704+00:00",
+      "attempt": 1,
+      "id": "cf6309826c6639bc",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes-all",
+      "title": "ＦＰＴ、ServiceNow Service Providerに正式認定 ～ 日本市場における協業をさらに拡大"
     }
   ]
 }
