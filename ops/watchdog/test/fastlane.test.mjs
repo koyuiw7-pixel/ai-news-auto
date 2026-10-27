@@ -154,7 +154,7 @@ function rss(items) {
   return `<?xml version="1.0"?><rss><channel><title>t</title>${body}</channel></rss>`;
 }
 
-function harness() {
+function harness(rules = TEST_RULES) {
   const store = new Map();
   // 実際のフィードは空にならない（0件は解析の失敗として扱う）ので、古い記事を1件ずつ入れておく
   const old = (name) => [{ title: `Old ${name}`, url: `https://ex.test/old-${name}`, at: Date.parse("2026-10-20T00:00:00Z") }];
@@ -196,7 +196,7 @@ function harness() {
     }
     throw new Error(`unexpected ${path}`);
   };
-  const run = (now, extraEnv = {}) => fastLane({ ...env, ...extraEnv }, new Date(now), { rules: TEST_RULES, fetch: fetchImpl, gh });
+  const run = (now, extraEnv = {}) => fastLane({ ...env, ...extraEnv }, new Date(now), { rules, fetch: fetchImpl, gh });
   return { store, feeds, calls, world, run, state: () => JSON.parse(store.get("state")) };
 }
 
@@ -241,8 +241,19 @@ test("起動するとき記事ページの本文・画像も渡す（パイプ�
   assert.match(meta.text, /most capable model/);
   assert.equal(meta.image, "https://www.example-lab.test/images/zeta-3.png");
   assert.ok(log.dispatched[0].textChars > 100);
+  assert.equal(log.dispatched[0].via, "direct");
   // GitHub の入力の上限（65,535字）に十分収まる
   assert.ok(JSON.stringify(h.calls.dispatches[0].inputs).length < 40000);
+});
+
+test("記事ページが読めなくても待たずに起動する（本文は空・取得の状態をログに残す）", async () => {
+  const h = harness();
+  await h.run(T0);
+  h.feeds["https://feeds.test/openai.xml"].unshift({ title: "Introducing GPT-8", url: "https://ex.test/gpt-8", at: T0 });
+  const log = await h.run(T0 + 2 * MIN);
+  assert.equal(h.calls.dispatches.length, 1);
+  assert.equal(JSON.parse(h.calls.dispatches[0].inputs.fast_meta)[0].text, "");
+  assert.deepEqual(log.dispatched[0].status, [404, 404, "reader:404"]);
 });
 
 test("同じ回に同じ会社の発表が複数あれば1本だけ（新モデル優先）", async () => {

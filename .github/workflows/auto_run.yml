@@ -109,6 +109,8 @@ jobs:
           FAST_URL: ${{ inputs.fast_url }}
           FAST_META: ${{ inputs.fast_meta }}
           FAST_LANE_GH_TOKEN: ${{ github.token }}
+          # 任意: 読み取りサービス（r.jina.ai）の鍵。openai.com の記事は直接読めないため、あると取りこぼしが減る
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           CLAUDE_DAILY_MAX: ${{ vars.CLAUDE_DAILY_MAX || '40' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

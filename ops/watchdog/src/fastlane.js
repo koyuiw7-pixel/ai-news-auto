@@ -182,26 +182,36 @@ export function htmlToText(html) {
     .slice(0, TEXT_CAP);
 }
 
-/** {text, image, published}。直接読めない・薄いときは読み取りサービス（r.jina.ai）で取り直す。失敗しても例外にしない */
-export async function fetchArticle(url, fetchImpl) {
-  const out = { text: "", image: "", published: "" };
-  try {
-    const res = await fetchImpl(url, {
-      headers: { "User-Agent": UA, Accept: "text/html,application/xhtml+xml", "Accept-Language": "en,ja;q=0.8" },
-      signal: AbortSignal.timeout(12000),
-    });
-    if (res.ok) {
-      const html = await res.text();
-      out.text = htmlToText(html);
-      out.image = metaContent(html, "og:image") || metaContent(html, "twitter:image");
-      out.published = metaContent(html, "article:published_time");
+const BROWSER_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36";
+
+/** {text, image, published, status, via}。直接読めない・薄いときはブラウザの UA、読み取りサービス（r.jina.ai）の順に取り直す。
+ *  失敗しても例外にしない（status に最後の HTTP 状態・エラーを残す） */
+export async function fetchArticle(url, fetchImpl, readerKey = "") {
+  const out = { text: "", image: "", published: "", status: [], via: "" };
+  for (const ua of [UA, BROWSER_UA]) {
+    try {
+      const res = await fetchImpl(url, {
+        headers: { "User-Agent": ua, Accept: "text/html,application/xhtml+xml", "Accept-Language": "en,ja;q=0.8" },
+        signal: AbortSignal.timeout(12000),
+      });
+      out.status.push(res.status);
+      if (res.ok) {
+        const html = await res.text();
+        const text = htmlToText(html);
+        if (text.length > out.text.length) [out.text, out.via] = [text, ua === UA ? "direct" : "direct-browser"];
+        out.image ||= metaContent(html, "og:image") || metaContent(html, "twitter:image");
+        out.published ||= metaContent(html, "article:published_time");
+      }
+    } catch (e) {
+      out.status.push(String(e).slice(0, 40));
     }
-  } catch {
-    // 読み取りサービスで取り直す
+    if (out.text.length >= 600) return out;
   }
-  if (out.text.length >= 600) return out;
   try {
-    const res = await fetchImpl(`https://r.jina.ai/${url}`, { headers: { Accept: "text/plain" }, signal: AbortSignal.timeout(20000) });
+    // 鍵（secret JINA_API_KEY）があれば使う。無いと Cloudflare の送信元は回数制限（429）にかかりやすい
+    const headers = { Accept: "text/plain", ...(readerKey ? { Authorization: `Bearer ${readerKey}` } : {}) };
+    const res = await fetchImpl(`https://r.jina.ai/${url}`, { headers, signal: AbortSignal.timeout(20000) });
+    out.status.push(`reader:${res.status}`);
     if (res.ok) {
       const body = await res.text();
       const at = body.indexOf("Markdown Content:");
@@ -209,7 +219,7 @@ export async function fetchArticle(url, fetchImpl) {
         .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
         .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1");
       const text = md.split("\n").map((l) => l.trim()).filter((l) => l.length >= 2).join("\n").slice(0, TEXT_CAP);
-      if (text.length > out.text.length) out.text = text;
+      if (text.length > out.text.length) [out.text, out.via] = [text, "reader"];
       out.published ||= ((body.match(/^Published Time:\s*(.+)$/m) || [])[1] || "").trim();
     }
   } catch {
@@ -478,14 +488,17 @@ async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl) {
   const batch = [...redo, ...fresh.filter((e) => e.status === "new")].slice(0, R.max_per_run);
   if (!batch.length) return dirty;
 
-  // 本文・画像はこちらで読んで渡す（パイプラインからは読めないサイトがあるため）
-  const pages = await Promise.all(batch.map((e) => fetchArticle(e.url, fetchImpl)));
+  // 本文・画像はこちらでも読んで渡す（パイプラインから読めないサイト向け）。読めなくても待たずに起動し、
+  // パイプライン側の取得（直接→読み取りサービス）に任せる。openai.com の記事ページは Worker からは 403（2026-10-27 確認）
+  const pages = await Promise.all(batch.map((e) => fetchArticle(e.url, fetchImpl, env.JINA_API_KEY)));
   const meta = batch.map((e, k) => ({
     id: e.id, url: e.url, title: e.title, source: e.source,
     publishedAt: e.publishedAt || pages[k].published || null, detectedAt: e.detectedAt,
     image: pages[k].image || "", text: pages[k].text || "",
   }));
-  const summary = meta.map((x) => ({ url: x.url, title: x.title.slice(0, 60), textChars: x.text.length, image: Boolean(x.image) }));
+  const summary = meta.map((x, k) => ({
+    url: x.url, title: x.title.slice(0, 60), textChars: x.text.length, image: Boolean(x.image), via: pages[k].via, status: pages[k].status,
+  }));
 
   if (dry) {
     for (const e of batch) Object.assign(e, { status: "dry", doneAt: now.toISOString() });

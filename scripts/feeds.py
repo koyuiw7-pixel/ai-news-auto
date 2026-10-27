@@ -14,6 +14,7 @@ import gzip
 import hashlib
 import html
 import json
+import os
 import re
 import sys
 import urllib.parse
@@ -314,12 +315,13 @@ def log(message: str) -> None:
 # --------------------------------------------------------------------------- #
 
 
-def fetch(url: str, timeout: int = 25, accept: str = "*/*") -> tuple[bytes, str]:
-    """(本文バイト列, 最終URL)。gzip 圧縮のまま返すサーバー（deepmind.google 等）にも対応。"""
-    request = urllib.request.Request(
-        url,
-        headers={"User-Agent": UA, "Accept": accept, "Accept-Encoding": "gzip, deflate", "Accept-Language": "ja,en;q=0.8"},
-    )
+def fetch(url: str, timeout: int = 25, accept: str = "*/*", token: str = "") -> tuple[bytes, str]:
+    """(本文バイト列, 最終URL)。gzip 圧縮のまま返すサーバー（deepmind.google 等）にも対応。
+    token は読み取りサービス（r.jina.ai）の鍵（JINA_API_KEY。あれば回数制限にかかりにくい）"""
+    headers = {"User-Agent": UA, "Accept": accept, "Accept-Encoding": "gzip, deflate", "Accept-Language": "ja,en;q=0.8"}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    request = urllib.request.Request(url, headers=headers)
     with urllib.request.urlopen(request, timeout=timeout) as response:
         data = response.read(5_000_000)
         encoding = (response.headers.get("Content-Encoding") or "").lower()
@@ -593,7 +595,7 @@ def _decode(data: bytes) -> str:
 
 def _fetch_via_reader(url: str) -> dict:
     """ボット除けで弾かれるページ（openai.com など）を、無料の読み取りサービス（r.jina.ai）経由で取る"""
-    data, _ = fetch("https://r.jina.ai/" + url, accept="text/plain")
+    data, _ = fetch("https://r.jina.ai/" + url, accept="text/plain", token=os.environ.get("JINA_API_KEY", ""))
     body = _decode(data)
     title = ""
     m = re.search(r"^Title:\s*(.+)$", body, re.M)
