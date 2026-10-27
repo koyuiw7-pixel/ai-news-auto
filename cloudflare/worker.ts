@@ -78,7 +78,7 @@ async function loadArticle(env: Env, slug: string): Promise<void> {
   while (fullSlugs.length > FULL_LIMIT) vfs.files.delete(`content/articles/${fullSlugs.shift()}.json`);
 }
 
-const ARTICLE = /^\/(?:articles|cover)\/([^/]+?)(?:\.rsc)?\/?$/;
+const ARTICLE = /^\/(?:articles|cover|card)\/([^/]+?)(?:\.rsc)?\/?$/;
 
 type Ctx = { waitUntil(promise: Promise<unknown>): void };
 
@@ -133,7 +133,7 @@ export default {
         if (url.pathname.startsWith("/article-preview/") || url.pathname === "/article-concept" || url.pathname.startsWith("/article-concept/")) {
           await loadArticle(env, url.searchParams.get("slug") || "openai-gpt-6-1-terra-announcement");
         }
-        if (url.pathname.startsWith("/cover/")) await loadFonts(env);
+        if (url.pathname.startsWith("/cover/") || url.pathname.startsWith("/card/")) await loadFonts(env);
       } catch (error) {
         console.error("[worker] content preload failed", error);
         return new Response("Service Unavailable", { status: 503, headers: { "Retry-After": "5" } });

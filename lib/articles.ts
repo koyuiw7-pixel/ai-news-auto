@@ -91,6 +91,8 @@ export type Article = {
   relatedSlugs?: string[];
   thumbnail: string;
   model: string;
+  /** 主要企業の公式発表の速報（scripts/web_articles.py が付け、デプロイ直後に SNS へ即時投稿する） */
+  breaking?: boolean;
 };
 
 /** 本文から計算する、一覧で使う値（lib/article-index.mjs の derivedOf） */
