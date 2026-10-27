@@ -1,0 +1,201 @@
+{
+  "slug": "microsoft-foundry",
+  "name": "Microsoft Foundry",
+  "aliases": [],
+  "company": "microsoft",
+  "companyName": "Microsoft",
+  "category": "開発ツール",
+  "overview": {
+    "text": "Microsoft Foundryは、Microsoftが提供する統合AIプラットフォームです。AIエージェントの構築や運用コストの自動最適化、セキュリティ管理機能などを備えています。発表では、旧Azure AI Foundryの発展的ブランドとして機能の拡充が進められています。",
+    "sources": [
+      "microsoft-foundry-ai-agent-cost-optimization",
+      "microsoft-foundry-model-router-update"
+    ]
+  },
+  "facts": [
+    {
+      "label": "料金",
+      "value": "API従量課金",
+      "sources": [
+        "microsoft-foundry-agent-guardrails-security",
+        "microsoft-foundry-ai-agent-cost-optimization"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "利用できる",
+      "sources": [
+        "microsoft-foundry-agent-guardrails-security",
+        "dotnet-11-rc2-python-arm64-foundry-browser-automation"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "Microsoft Foundry Portal",
+      "sources": [
+        "microsoft-foundry-agent-guardrails-security"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "開発者",
+      "sources": [
+        "dotnet-11-rc2-python-arm64-foundry-browser-automation",
+        "microsoft-foundry-agent-guardrails-security"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "単一のAPIエンドポイントから最大27種類のモデルへ自動で要求を振り分けられます。",
+      "sources": [
+        "microsoft-foundry-model-router-update"
+      ]
+    },
+    {
+      "text": "AIエージェントの脱獄攻撃や個人情報の漏洩、タスク乖離を防ぐガードレールを設定できます。",
+      "sources": [
+        "microsoft-foundry-agent-guardrails-security"
+      ]
+    },
+    {
+      "text": "本番環境のログから評価データを自動抽出し、エージェントの構成やプロンプトを自動最適化できます。",
+      "sources": [
+        "microsoft-foundry-agent-optimizer-guide",
+        "microsoft-foundry-ai-agent-cost-optimization"
+      ]
+    },
+    {
+      "text": "AIエージェント用のブラウザ自動化ツールを用いて、画面を直接操作する業務を実行できます。",
+      "sources": [
+        "dotnet-11-rc2-python-arm64-foundry-browser-automation"
+      ]
+    }
+  ],
+  "pricing": [
+    {
+      "text": "基本料金は連携するサービスのAPI呼び出し回数に応じた従量課金制です。Azureの無料初期クレジット枠などを活用してテスト利用が可能です。",
+      "sources": [
+        "microsoft-foundry-agent-guardrails-security",
+        "microsoft-foundry-ai-agent-cost-optimization"
+      ]
+    }
+  ],
+  "japan": [
+    {
+      "text": "日本からの利用が可能です。Azureアカウントを作成し、Microsoft Foundry Portalから利用できます。",
+      "sources": [
+        "microsoft-foundry-agent-guardrails-security",
+        "dotnet-11-rc2-python-arm64-foundry-browser-automation"
+      ]
+    }
+  ],
+  "howto": [
+    {
+      "text": "Azureアカウントを作成し、Microsoft Foundry Portalへアクセスします。ポータル上でプロジェクトやAIエージェントを作成して設定を行います。",
+      "sources": [
+        "microsoft-foundry-agent-guardrails-security"
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "text": "旧Azure AI Foundryから発展したブランドとして機能拡充が行われています。",
+      "sources": [
+        "microsoft-foundry-ai-agent-cost-optimization"
+      ]
+    },
+    {
+      "text": "手動でのプロンプト調整に頼らず、本番トレースに基づき自動で設定を改善できるようになりました。",
+      "sources": [
+        "microsoft-foundry-agent-optimizer-guide"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "どのような安全対策機能がありますか？",
+      "a": "脱獄攻撃の遮断や個人情報の保護、タスク逸脱を防ぐガードレール機能が提供されています。",
+      "sources": [
+        "microsoft-foundry-agent-guardrails-security"
+      ]
+    },
+    {
+      "q": "Model Routerとは何ですか？",
+      "a": "リクエストの難易度に応じて最適なモデルへ動的に処理を振り分ける機能です。",
+      "sources": [
+        "microsoft-foundry-ai-agent-cost-optimization",
+        "microsoft-foundry-model-router-update"
+      ]
+    },
+    {
+      "q": "事前にかかる費用を確認できますか？",
+      "a": "Agent Optimizerではジョブの実行前に推定コストの内訳が提示されます。",
+      "sources": [
+        "microsoft-foundry-agent-optimizer-guide",
+        "microsoft-foundry-ai-agent-cost-optimization"
+      ]
+    },
+    {
+      "q": "評価ツールは無料で使えますか？",
+      "a": "Model Routerの検証ツール自体はGitHubで無料公開されています。API利用料は別途発生します。",
+      "sources": [
+        "microsoft-foundry-model-router-auto-evaluation"
+      ]
+    },
+    {
+      "q": "どのようなモデルを利用できますか？",
+      "a": "GPTシリーズやGrok-4.1などのほか、画像生成モデルなども追加されています。",
+      "sources": [
+        "microsoft-foundry-model-router-update",
+        "visual-studio-ai-agents-mcp-sdk"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-09-26",
+      "slug": "microsoft-foundry-model-router-update",
+      "event": "Model Router機能拡張を発表"
+    },
+    {
+      "date": "2026-10-02",
+      "slug": "microsoft-foundry-model-router-auto-evaluation",
+      "event": "自動評価ツールをOSS公開"
+    },
+    {
+      "date": "2026-10-20",
+      "slug": "microsoft-foundry-ai-agent-cost-optimization",
+      "event": "AIコスト自動最適化の2機能を公開"
+    }
+  ],
+  "related": [
+    "github-copilot",
+    "kimi-k3",
+    "typescript-7",
+    "azure-sql"
+  ],
+  "articles": [
+    "dotnet-11-rc2-python-arm64-foundry-browser-automation",
+    "microsoft-foundry-agent-guardrails-security",
+    "microsoft-foundry-agent-optimizer-guide",
+    "microsoft-foundry-ai-agent-cost-optimization",
+    "microsoft-foundry-model-router-auto-evaluation",
+    "dotnet-memory-dumps-database-time-migration-ai-agent-memory",
+    "microsoft-foundry-model-router-update",
+    "github-copilot-kimi-k3-multi-agent",
+    "visual-studio-ai-agents-mcp-sdk"
+  ],
+  "linkFrom": [
+    "microsoft-foundry-agent-guardrails-security",
+    "microsoft-foundry-agent-optimizer-guide",
+    "microsoft-foundry-ai-agent-cost-optimization",
+    "microsoft-foundry-model-router-auto-evaluation",
+    "microsoft-foundry-model-router-update"
+  ],
+  "signature": "762a06276c688b47",
+  "primarySignature": "c243b3ecacda78a9",
+  "model": "gemini-3.5-flash",
+  "createdAt": "2026-10-27T10:43:54+00:00",
+  "updatedAt": "2026-10-27T10:50:11+00:00"
+}

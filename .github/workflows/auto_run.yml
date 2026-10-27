@@ -131,6 +131,19 @@ jobs:
           # 比較ガイドは作り直し中のため、新規作成は止めて価格の確認だけ続ける
           python scripts/buying_guides.py --refresh --max-age 7
 
+      # 製品のまとめページ（/products）。題名に出てくる記事が増えた製品だけ原稿を作り直す（軽量モデル・1回3件まで）。
+      # 記事が変わらない回は LLM を呼ばない。時間の上限つきで、失敗しても記事の公開は止めない
+      - name: Product hubs
+        continue-on-error: true
+        timeout-minutes: 10
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: timeout 540 python scripts/products.py --max 3 --budget 420 --tier bulk
+
       # 記事は毎回コミットするが、Vercel へのデプロイは1時間に1回にまとめる。
       # デプロイのたびに全ファイルの保存（Deployment Storage）と ISR キャッシュの作り直し
       # （Fast Origin Transfer）が発生するため、20分ごとに出すと無駄が大きい。

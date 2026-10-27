@@ -1,0 +1,252 @@
+{
+  "slug": "github-copilot",
+  "name": "GitHub Copilot",
+  "aliases": [
+    "GitHub Copilot app",
+    "Copilotアプリ",
+    "GitHub Copilot アプリ"
+  ],
+  "company": "microsoft",
+  "companyName": "Microsoft",
+  "category": "開発ツール",
+  "overview": {
+    "text": "GitHub Copilotは、GitHubが提供するAI開発支援ツールです。コード生成やターミナル作業、エージェント型コーディングを自動化します。2026年9月に独立アプリ版の一般提供が発表されました。",
+    "sources": [
+      "github-copilot-native-app-released",
+      "gpt-6-1-terra-github-copilot-guide"
+    ]
+  },
+  "facts": [
+    {
+      "label": "料金",
+      "value": "使用量ベースの課金など",
+      "sources": [
+        "gpt-6-1-terra-github-copilot-guide"
+      ]
+    },
+    {
+      "label": "提供開始",
+      "value": "2026年9月12日（アプリ版）",
+      "sources": [
+        "github-copilot-native-app-released"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "日本からも利用できます",
+      "sources": [
+        "github-copilot-native-app-released",
+        "github-copilot-native-app-ga"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "VS CodeやWindows、macOSなど",
+      "sources": [
+        "gpt-6-1-terra-github-copilot-guide",
+        "github-copilot-native-app-released"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "開発者や法務部門などの非開発者",
+      "sources": [
+        "github-copilot-native-app-released",
+        "github-copilot-native-app-ga"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "指示からコード生成や修正、テスト作成を自動で行うエージェント型コーディングができます。",
+      "sources": [
+        "github-copilot-native-app-released",
+        "github-copilot-native-app-ga"
+      ]
+    },
+    {
+      "text": "独立したワークツリーで処理を実行し、開発中のコードとの衝突を回避できます。",
+      "sources": [
+        "github-copilot-native-app-released",
+        "github-copilot-native-app-ga"
+      ]
+    },
+    {
+      "text": "GPT-6.1 TerraやKimi K3など、複数のAIモデルを選んで利用できます。",
+      "sources": [
+        "gpt-6-1-terra-github-copilot-guide",
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    },
+    {
+      "text": "SKILL.mdを作成して定型ワークフローを定義し、新規セッションで再利用できます。",
+      "sources": [
+        "github-copilot-reusable-agent-skills-guide"
+      ]
+    }
+  ],
+  "pricing": [
+    {
+      "text": "Pro、Pro+、Max、Business、Enterpriseなどのプランで提供されています。",
+      "sources": [
+        "gpt-6-1-terra-github-copilot-guide",
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    },
+    {
+      "text": "GPT-6.1 Terra利用時は使用量ベースの課金となり、プロバイダー定価で請求されます。",
+      "sources": [
+        "gpt-6-1-terra-github-copilot-guide"
+      ]
+    },
+    {
+      "text": "Kimi K3などのモデル追加は既存のサブスクリプション料金に含まれ、追加料金は不要です。",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    }
+  ],
+  "japan": [
+    {
+      "text": "日本からも利用できます。",
+      "sources": [
+        "github-copilot-native-app-released",
+        "github-copilot-native-app-ga"
+      ]
+    }
+  ],
+  "howto": [
+    {
+      "text": "公式サイトからWindowsやmacOS向けのアプリをダウンロードしログインして利用します。",
+      "sources": [
+        "github-copilot-native-app-released"
+      ]
+    },
+    {
+      "text": "対応する開発環境でモデルピッカーを開き、使用したいAIモデルを選択して利用します。",
+      "sources": [
+        "gpt-6-1-terra-github-copilot-guide",
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "text": "単一モデル依存から、タスクに応じてKimi K3などの複数モデルを切り替える構成に進化しました。",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    },
+    {
+      "text": "従来のエディタ拡張機能に加え、OS上で独立して動作するネイティブアプリが追加されました。",
+      "sources": [
+        "github-copilot-native-app-released",
+        "github-copilot-native-app-ga"
+      ]
+    },
+    {
+      "text": "GPT-6.1 Terra選択時は、GPT-5.6 TerraよりターミナルやC#の課題を多く解決できます。",
+      "sources": [
+        "gpt-6-1-terra-github-copilot-guide"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "エンジニア以外の職種でも使えますか？",
+      "a": "使えます。GitHub社内では法務部門の100%が日常業務で導入しています。",
+      "sources": [
+        "github-copilot-native-app-released",
+        "github-copilot-native-app-ga"
+      ]
+    },
+    {
+      "q": "Kimi K3を使うと追加費用がかかりますか？",
+      "a": "既存のサブスクリプション料金に含まれるため、追加のモデル利用料は発生しません。",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    },
+    {
+      "q": "作業中に自分のコードと衝突しませんか？",
+      "a": "独立したワークツリーで処理が実行されるため、作業中のコードとの衝突を回避できます。",
+      "sources": [
+        "github-copilot-native-app-released",
+        "github-copilot-native-app-ga"
+      ]
+    },
+    {
+      "q": "定型ワークフローをチームで共有できますか？",
+      "a": "SKILL.mdを含むフォルダを作成して共有すれば、同じワークフローを再現できます。",
+      "sources": [
+        "github-copilot-reusable-agent-skills-guide"
+      ]
+    },
+    {
+      "q": "どのようなエディタや環境に対応していますか？",
+      "a": "VS CodeやVisual Studio、Xcode、JetBrains IDEsなど多くの環境に対応しています。",
+      "sources": [
+        "gpt-6-1-terra-github-copilot-guide",
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-08-15",
+      "slug": "github-copilot-kimi-k3-multi-agent",
+      "event": "CopilotにKimi K3追加"
+    },
+    {
+      "date": "2026-09-08",
+      "slug": "dotnet-aspire-github-copilot-integration",
+      "event": ".NET Aspire連携強化発表"
+    },
+    {
+      "date": "2026-09-12",
+      "slug": "github-copilot-native-app-released",
+      "event": "Copilotアプリ一般提供開始"
+    },
+    {
+      "date": "2026-10-26",
+      "slug": "gpt-6-1-terra-github-copilot-guide",
+      "event": "GPT-6.1 Terraが一般提供"
+    }
+  ],
+  "related": [
+    "microsoft-foundry",
+    "kimi-k3",
+    "azure-sql",
+    "gpt-6-1-terra"
+  ],
+  "articles": [
+    "gpt-6-1-terra-github-copilot-guide",
+    "azure-sql-ai-agent-skills-guide",
+    "azure-cosmos-db-ai-assisted-development",
+    "microsoft-copilot-work-iq-dev-tools",
+    "github-copilot-native-app-released",
+    "github-copilot-native-app-ga",
+    "agent-plugins-one-zero-comprehensive-guide-matome",
+    "dotnet-aspire-github-copilot-integration",
+    "microsoft-ai-ecosystem-kimi-k3-mcp-matome",
+    "github-copilot-reusable-agent-skills-guide",
+    "microsoft-sql-mcp-server-announcement",
+    "github-copilot-kimi-k3-multi-agent",
+    "visual-studio-ai-agents-mcp-sdk",
+    "microsoft-quantum-development-kit-copilot-release",
+    "microsoft-qdk-tutorial-vscode-github-copilot"
+  ],
+  "linkFrom": [
+    "gpt-6-1-terra-github-copilot-guide",
+    "github-copilot-native-app-released",
+    "github-copilot-native-app-ga",
+    "dotnet-aspire-github-copilot-integration",
+    "github-copilot-reusable-agent-skills-guide",
+    "github-copilot-kimi-k3-multi-agent"
+  ],
+  "signature": "a1f7cf20c4f53aeb",
+  "primarySignature": "eb128daad5723554",
+  "model": "gemini-3.5-flash",
+  "createdAt": "2026-10-27T10:43:48+00:00",
+  "updatedAt": "2026-10-27T10:50:18+00:00"
+}

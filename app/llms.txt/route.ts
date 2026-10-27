@@ -2,6 +2,7 @@ import { getAllArticles } from "@/lib/articles";
 import { COMPANIES, companyCounts } from "@/lib/companies";
 import { getAllGuides } from "@/lib/guides";
 import { getAllBuyingGuides } from "@/lib/buying-guides";
+import { getAllProducts, productHeading } from "@/lib/products";
 import { STATUS_LABEL, verdictOf } from "@/lib/verdict";
 import { siteConfig } from "@/site.config";
 
@@ -21,6 +22,9 @@ export function GET() {
   // 公式ブログ・プレスリリース由来の記事があれば、案内文にも含める
   const hasWeb = ai.some((a) => a.sourceType === "web");
   const line = (title: string, url: string, note?: string) => `- [${title}](${url})${note ? `: ${note}` : ""}`;
+  const products = getAllProducts();
+  // まとめページへ移した製品ガイドは転送しているので載せない
+  const guides = getAllGuides().filter((g) => !products.some((p) => p.slug === g.slug));
 
   const text = `# ${siteConfig.name}（${siteConfig.tagline}）
 
@@ -34,13 +38,14 @@ ${siteConfig.name}は、AI企業の公式発表動画とAI専門の解説動画$
 
 ${line("トップ（新着の時系列）", `${base}/`)}
 ${line("記事一覧", `${base}/articles`)}
-${line("製品ガイド一覧", `${base}/guides`, "主要AI製品の「とは・できること・料金・使い方・FAQ」")}
+${line("製品まとめ一覧", `${base}/products`, "AIモデル・アプリごとの「とは・料金・日本で使えるか・これまでの流れ・FAQ」（出典の記事つき）")}
 
 ${line("RSS", `${base}/feed.xml`)}
 
-## 製品ガイド
+## 製品まとめ
 
-${getAllGuides().map((g) => line(g.title, `${base}/guides/${g.slug}`, g.description)).join("\n")}
+${products.map((p) => line(productHeading(p), `${base}/products/${p.slug}`, p.overview.text)).join("\n")}
+${guides.length > 0 ? `\n## 製品ガイド\n\n${guides.map((g) => line(g.title, `${base}/guides/${g.slug}`, g.description)).join("\n")}` : ""}
 
 ## 比較ガイド（公式情報と価格をもとに比較。広告を含む）
 

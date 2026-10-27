@@ -37,6 +37,11 @@ function phrases(text: string, keyPrefix: string): ReactNode[] {
   return nodes;
 }
 
+/** 文節の切れ目でだけ改行させる（蛍光ペンは引かない。製品まとめの見出し用） */
+export function Phrases({ text }: { text: string }): ReactNode {
+  return <span className="headline">{phrases(text, "p")}</span>;
+}
+
 export function Highlight({ text }: { text: string }): ReactNode {
   let before = text;
   let marked = "";

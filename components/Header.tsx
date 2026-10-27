@@ -7,7 +7,7 @@ const NAV: { href: string; label: string; wide?: boolean }[] = [
   { href: "/", label: "AI速報" },
   { href: "/usable", label: "使えるAI" },
   { href: "/news", label: "ニュース" },
-  { href: "/guides", label: "ガイド" },
+  { href: "/products", label: "製品まとめ" },
   { href: "/articles", label: "記事一覧" },
 ];
 
