@@ -1,0 +1,931 @@
+/* ------------------------------------------------------------------ */
+/* 「引き算のAI」記事ページ（試作）                                       */
+/* 大胆なのは表紙だけ。残りは紙・墨・企業色1つ・細い罫線で静かに組む        */
+/* ------------------------------------------------------------------ */
+
+.cx {
+  --cx-paper: #fbfaf7;
+  --cx-ink: #151513;
+  --cx-ink-2: #3a3935;
+  --cx-muted: #77756d;
+  --cx-line: #e6e3da;
+  --cx-line-2: #c9c5b9;
+  --cx-live: #d92d20;
+  --cx-accent: var(--co-accent, var(--co, #151513));
+  --cx-ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+  --cx-col-margin: 232px;
+  --cx-col-gap: 56px;
+  --cx-col-main: 720px;
+
+  background: var(--cx-paper);
+  color: var(--cx-ink);
+  font-family: var(--font-cx), "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  font-feature-settings: "palt" 1;
+}
+
+:root[data-theme="dark"] .cx {
+  /* サイトの暗い画面（濃紺）と地続きにする */
+  --cx-paper: #0a0f1e;
+  --cx-ink: #eef1f8;
+  --cx-ink-2: #c4cbe0;
+  --cx-muted: #8e9bbd;
+  --cx-line: #1f2946;
+  --cx-line-2: #34437a;
+  --cx-live: #ff6b5e;
+  /* 暗い企業色（Google の墨など）が沈まないよう白を混ぜる */
+  --cx-accent: color-mix(in oklab, var(--co-accent, var(--co, #eff1f4)) 72%, white);
+}
+
+/* ---- 表紙 ---------------------------------------------------------- */
+
+.cx-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: min(66vw, 440px);
+  overflow: hidden;
+  background: #111;
+  color: #fff;
+}
+
+.cx-hero.no-photo {
+  background: var(--co-field, #1d1d22);
+}
+
+.cx-hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 写真は加工せず、下だけ自然に暗くする */
+.cx-hero.has-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0.05) 0%, rgb(0 0 0 / 0.55) 42%, rgb(0 0 0 / 0.9) 100%);
+}
+
+@media (min-width: 1024px) {
+  .cx-hero.has-photo::after {
+    background: linear-gradient(to bottom, rgb(0 0 0 / 0) 30%, rgb(0 0 0 / 0.5) 62%, rgb(0 0 0 / 0.86) 100%);
+  }
+}
+
+/* 写真が無いときは企業名を大きく敷く（表紙と同じ） */
+.cx-hero-ghost {
+  position: absolute;
+  left: -0.05em;
+  top: 0.06em;
+  font-size: clamp(104px, 33vw, 320px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+  color: rgb(255 255 255 / 0.13);
+  pointer-events: none;
+  user-select: none;
+}
+
+.cx-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  padding: 56px 20px 24px;
+}
+
+.cx-hero-bar {
+  flex: none;
+  width: 5px;
+  border-radius: 3px;
+  background: var(--co);
+}
+
+.cx-hero.no-photo .cx-hero-bar {
+  background: rgb(255 255 255 / 0.92);
+}
+
+.cx-hero-text {
+  min-width: 0;
+}
+
+.cx-hero-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 8px rgb(0 0 0 / 0.35);
+}
+
+.cx-flash {
+  padding: 2px 8px 3px;
+  border-radius: 3px;
+  background: #d92d20;
+  text-shadow: none;
+}
+
+.cx-title {
+  margin-top: 10px;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1.34;
+  letter-spacing: 0.005em;
+  word-break: auto-phrase;
+  text-wrap: pretty;
+  text-shadow: 0 2px 14px rgb(0 0 0 / 0.35);
+}
+
+/* ---- 1枚の紙 -------------------------------------------------------- */
+
+.cx-sheet {
+  padding: 22px 20px 72px;
+}
+
+/* 欄外（スマホでは結論の上の1行） */
+.cx-margin {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 12px;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--cx-muted);
+}
+
+.cx-source {
+  font-weight: 700;
+  color: var(--cx-ink);
+}
+
+.cx-dates {
+  display: contents;
+}
+
+.cx-dates > span {
+  font-variant-numeric: tabular-nums;
+}
+
+.cx-official {
+  font-weight: 700;
+  color: var(--cx-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--cx-accent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+
+.cx-cut {
+  display: none;
+}
+
+/* 物語の線（続報がある記事だけ） */
+.cx-story {
+  display: flex;
+  margin: 22px 0 4px;
+  list-style: none;
+  padding: 0;
+}
+
+.cx-story li {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--cx-line-2);
+}
+
+.cx-story li:last-child {
+  flex-grow: 1.6;
+}
+
+.cx-story li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cx-paper);
+  box-shadow: inset 0 0 0 1.5px var(--cx-line-2);
+}
+
+.cx-story li.is-now::before {
+  background: var(--cx-live);
+  box-shadow: 0 0 0 3px var(--cx-paper);
+}
+
+.cx-story a,
+.cx-story li > span {
+  display: block;
+  padding-right: 12px;
+}
+
+.cx-story-date {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--cx-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.cx-story li.is-now .cx-story-date {
+  color: var(--cx-live);
+}
+
+.cx-story-label {
+  display: -webkit-box;
+  margin-top: 2px;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--cx-ink-2);
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cx-story a:hover .cx-story-label {
+  color: var(--cx-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 10秒版 */
+.cx-conclusion {
+  margin-top: 18px;
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.56;
+  letter-spacing: 0.005em;
+  color: var(--cx-ink);
+  word-break: auto-phrase;
+  text-wrap: pretty;
+}
+
+.cx-points {
+  margin-top: 26px;
+  padding: 0;
+  list-style: none;
+}
+
+.cx-points li {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  font-size: 16.5px;
+  font-weight: 500;
+  line-height: 1.78;
+  color: var(--cx-ink-2);
+}
+
+.cx-points li + li {
+  margin-top: 12px;
+}
+
+.cx-point-n {
+  font-size: 15px;
+  font-weight: 900;
+  line-height: calc(16.5px * 1.78);
+  color: var(--cx-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.cx-fig {
+  font-weight: 800;
+  color: var(--cx-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.cx-fit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 0;
+  margin-top: 22px;
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--cx-muted);
+}
+
+/* 項目の途中では折り返さない。区切りは細い縦線 */
+.cx-fit > span {
+  white-space: nowrap;
+}
+
+.cx-fit > span + span::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 0.85em;
+  margin: 0 10px;
+  vertical-align: -0.08em;
+  background: var(--cx-line-2);
+}
+
+/* ---- もっと詳しく（操作はこれ1つ） ------------------------------------ */
+
+.cx-more-area {
+  min-width: 0;
+  margin-top: 30px;
+}
+
+/* 開いた段の後ろの「もっと詳しく」は少し離す */
+.cx-expand[data-level="1"] .cx-more {
+  margin-top: 28px;
+}
+
+.cx-more {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 18px 0;
+  color: var(--cx-ink);
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cx-more-text {
+  flex: none;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.cx-more-rule {
+  position: relative;
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--cx-line-2);
+  overflow: hidden;
+}
+
+/* 押せる線：触れると企業色が左から走る */
+.cx-more-rule::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--cx-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--cx-ease);
+}
+
+.cx-more-time {
+  flex: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cx-muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.cx-more-arrow {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.4s var(--cx-ease);
+}
+
+.cx-more:hover .cx-more-rule::after,
+.cx-more:focus-visible .cx-more-rule::after {
+  transform: scaleX(1);
+}
+
+.cx-more:hover .cx-more-arrow {
+  transform: translateY(3px);
+}
+
+.cx-more:active .cx-more-text {
+  opacity: 0.6;
+}
+
+.cx-more:focus-visible {
+  outline: 2px solid var(--cx-accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* 段の見出し線（押した線が、そのまま段の区切りになる） */
+.cx-stage-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--cx-muted);
+}
+
+.cx-stage-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--cx-line);
+}
+
+/* その場で伸びる：高さは grid の 0fr→1fr、文字は少し遅れて浮かぶ */
+.cx-reveal {
+  display: grid;
+  /* 列は 0 まで縮めてよい（表の最小幅で横にはみ出さない） */
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.75s var(--cx-ease);
+}
+
+.cx-reveal[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.cx-reveal-inner {
+  min-height: 0;
+  overflow: hidden;
+  /* clip なら PC の問い見出しの sticky が効く */
+  overflow: clip;
+}
+
+.cx-stage {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.55s ease 0.1s,
+    transform 0.8s var(--cx-ease) 0.05s;
+}
+
+.cx-stage:focus {
+  outline: none;
+}
+
+.cx-reveal[data-open="true"] .cx-stage {
+  opacity: 1;
+  transform: none;
+}
+
+.cx-expand[data-instant] .cx-reveal,
+.cx-expand[data-instant] .cx-stage {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cx-reveal,
+  .cx-stage,
+  .cx-more-rule::after,
+  .cx-more-arrow {
+    transition: none;
+  }
+  .cx-stage {
+    transform: none;
+  }
+}
+
+/* ---- 本文 ------------------------------------------------------------ */
+
+.cx-prose {
+  font-size: 16.5px;
+  font-weight: 400;
+  line-height: 1.95;
+  color: var(--cx-ink-2);
+  overflow-wrap: anywhere;
+}
+
+.cx-prose > * + * {
+  margin-top: 1.05em;
+}
+
+.cx-prose h3,
+.cx-q-sm {
+  margin-top: 2em;
+  font-size: 18.5px;
+  font-weight: 800;
+  line-height: 1.5;
+  color: var(--cx-ink);
+}
+
+.cx-prose h3 + * {
+  margin-top: 0.55em;
+}
+
+.cx-prose strong {
+  font-weight: 700;
+  color: var(--cx-ink);
+}
+
+.cx-prose a {
+  color: var(--cx-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--cx-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.cx-prose ul,
+.cx-prose ol {
+  padding: 0;
+  list-style: none;
+}
+
+.cx-prose ul > li,
+.cx-prose ol > li {
+  position: relative;
+  padding-left: 1.2em;
+}
+
+.cx-prose li + li {
+  margin-top: 0.45em;
+}
+
+.cx-prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.1em;
+  top: 0.98em;
+  width: 0.5em;
+  height: 1px;
+  background: var(--cx-muted);
+}
+
+.cx-prose ol {
+  counter-reset: cx;
+}
+
+.cx-prose ol > li::before {
+  counter-increment: cx;
+  content: counter(cx);
+  position: absolute;
+  left: 0;
+  font-weight: 800;
+  color: var(--cx-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.cx-prose li > ul {
+  margin-top: 0.45em;
+}
+
+.cx-prose code {
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  background: var(--cx-line);
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  color: var(--cx-ink);
+}
+
+/* 表：外枠なし、罫線は横だけ。数字は等幅 */
+.cx-table {
+  margin: 1.6em -20px;
+  padding: 0 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cx-table table {
+  width: 100%;
+  min-width: 540px;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.7;
+  font-variant-numeric: tabular-nums;
+}
+
+.cx-table th {
+  padding: 0 14px 10px 0;
+  border-bottom: 1.5px solid var(--cx-ink);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  color: var(--cx-muted);
+  white-space: nowrap;
+}
+
+.cx-table td {
+  padding: 12px 14px 12px 0;
+  border-bottom: 1px solid var(--cx-line);
+  vertical-align: top;
+  color: var(--cx-ink-2);
+}
+
+.cx-table td:first-child {
+  font-weight: 700;
+  color: var(--cx-ink);
+}
+
+/* 1分版 */
+.cx-minute > :first-child {
+  margin-top: 0.4em;
+  font-size: 17.5px;
+  font-weight: 500;
+  color: var(--cx-ink);
+}
+
+/* 全文：章見出しは読者の問い */
+.cx-sec {
+  margin-top: 52px;
+}
+
+.cx-full > .cx-stage-label + .cx-sec {
+  margin-top: 20px;
+}
+
+.cx-q {
+  margin-bottom: 14px;
+  color: var(--cx-ink);
+}
+
+.cx-q-text {
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.45;
+  word-break: auto-phrase;
+}
+
+.cx-q-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--cx-muted);
+}
+
+.cx-sec.is-update .cx-q-note {
+  color: var(--cx-live);
+}
+
+.cx-pr-list {
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.cx-pr-list li + li {
+  margin-top: 10px;
+}
+
+.cx-pr-list a {
+  font-weight: 700;
+  color: var(--cx-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--cx-accent);
+  text-underline-offset: 3px;
+}
+
+.cx-pr-note {
+  display: block;
+  font-size: 13px;
+  color: var(--cx-muted);
+}
+
+/* 出典・免責 */
+.cx-foot {
+  margin-top: 64px;
+  padding-top: 18px;
+  border-top: 1px solid var(--cx-line);
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: var(--cx-muted);
+}
+
+.cx-foot a {
+  color: var(--cx-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cx-disclaimer {
+  margin-top: 6px;
+}
+
+/* 確認用の案内（記事の外） */
+.cx-proto {
+  border-top: 1px solid var(--cx-line);
+  background: var(--cx-paper);
+  padding: 18px 20px 28px;
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--cx-muted);
+}
+
+.cx-proto a {
+  color: var(--cx-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---- タブレット ------------------------------------------------------- */
+
+@media (min-width: 640px) {
+  .cx-hero-inner {
+    padding: 96px 40px 36px;
+  }
+  .cx-title {
+    font-size: 34px;
+  }
+  .cx-sheet {
+    padding: 32px 40px 88px;
+  }
+  .cx-conclusion {
+    font-size: 29px;
+  }
+  .cx-points li {
+    font-size: 18px;
+  }
+  .cx-table {
+    margin-inline: 0;
+    padding: 0;
+  }
+}
+
+/* ---- PC：左の欄外＋本文の1段。雑誌の見開きのように組む ---------------- */
+
+@media (min-width: 1024px) {
+  .cx-hero {
+    min-height: 420px;
+  }
+  .cx-hero-inner {
+    gap: 26px;
+    max-width: calc(var(--cx-col-margin) + var(--cx-col-gap) + var(--cx-col-main) + 64px);
+    margin: 0 auto;
+    padding: 120px 32px 52px;
+  }
+  .cx-hero-bar {
+    width: 8px;
+    border-radius: 4px;
+  }
+  .cx-hero-label {
+    font-size: 15px;
+    gap: 14px;
+  }
+  .cx-flash {
+    padding: 3px 12px 4px;
+  }
+  .cx-title {
+    margin-top: 16px;
+    font-size: 48px;
+    line-height: 1.3;
+  }
+
+  .cx-sheet {
+    display: grid;
+    grid-template-columns: var(--cx-col-margin) var(--cx-col-gap) minmax(0, var(--cx-col-main));
+    justify-content: center;
+    padding: 56px 32px 120px;
+  }
+
+  .cx-margin {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    position: sticky;
+    top: 96px;
+    display: block;
+    padding-top: 14px;
+    border-top: 2px solid var(--cx-ink);
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  .cx-source {
+    font-size: 14px;
+  }
+  .cx-dates {
+    display: block;
+    margin-top: 6px;
+  }
+  .cx-dates > span {
+    display: block;
+  }
+  .cx-official {
+    display: inline-block;
+    margin-top: 14px;
+  }
+  .cx-cut {
+    display: block;
+    margin-top: 22px;
+    padding-top: 12px;
+    border-top: 1px solid var(--cx-line);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .cx-cut b {
+    font-weight: 800;
+    color: var(--cx-ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cx-main {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .cx-story {
+    margin-top: 0;
+    margin-bottom: 36px;
+  }
+  .cx-story-label {
+    font-size: 13px;
+  }
+  .cx-conclusion {
+    margin-top: 0;
+    font-size: 34px;
+    line-height: 1.55;
+  }
+  .cx-points {
+    margin-top: 40px;
+  }
+  /* 番号は本文の外へぶら下げる */
+  .cx-points li {
+    grid-template-columns: 40px minmax(0, 1fr);
+    margin-left: -40px;
+    font-size: 19.5px;
+    line-height: 1.85;
+  }
+  .cx-points li + li {
+    margin-top: 20px;
+  }
+  .cx-point-n {
+    font-size: 17px;
+    line-height: calc(19.5px * 1.85);
+  }
+  .cx-fit {
+    margin-top: 32px;
+    font-size: 14px;
+  }
+
+  .cx-more-area {
+    grid-column: 1 / -1;
+    margin-top: 44px;
+  }
+  .cx-more,
+  .cx-minute,
+  .cx-stage-minute > .cx-stage-label {
+    margin-left: calc(var(--cx-col-margin) + var(--cx-col-gap));
+  }
+  .cx-more {
+    width: calc(100% - var(--cx-col-margin) - var(--cx-col-gap));
+    max-width: var(--cx-col-main);
+  }
+  .cx-more-text {
+    font-size: 17px;
+  }
+
+  .cx-prose {
+    font-size: 17.5px;
+    line-height: 2;
+  }
+  .cx-minute > :first-child {
+    font-size: 19px;
+  }
+
+  /* 全文：問いは左の欄外に置いて付いてくる。答えは右の段 */
+  .cx-full > .cx-stage-label {
+    margin-left: 0;
+  }
+  .cx-sec {
+    display: grid;
+    grid-template-columns: var(--cx-col-margin) var(--cx-col-gap) minmax(0, var(--cx-col-main));
+    margin-top: 80px;
+  }
+  .cx-full > .cx-stage-label + .cx-sec {
+    margin-top: 32px;
+  }
+  .cx-q {
+    grid-column: 1;
+    align-self: start;
+    position: sticky;
+    top: 96px;
+    margin: 0;
+    padding-top: 14px;
+    border-top: 2px solid var(--cx-ink);
+  }
+  .cx-sec.is-update .cx-q {
+    border-top-color: var(--cx-live);
+  }
+  .cx-q-text {
+    font-size: 21px;
+    line-height: 1.5;
+  }
+  .cx-sec > .cx-prose,
+  .cx-sec > .cx-pr-list {
+    grid-column: 3;
+    padding-top: 6px;
+  }
+  .cx-sec > .cx-prose > :first-child {
+    margin-top: 0;
+  }
+
+  .cx-foot {
+    grid-column: 3;
+  }
+
+  .cx-proto {
+    padding-inline: max(32px, calc((100% - 1008px) / 2));
+  }
+}
