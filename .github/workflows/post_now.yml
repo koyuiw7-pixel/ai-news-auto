@@ -1,0 +1,39 @@
+name: Post now
+
+# 臨時の投稿：指定した記事を、いますぐ Threads・X・Facebook に出す
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "記事の slug"
+        required: true
+      text:
+        description: "本文（改行は \\n）"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Post
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          SLUG: ${{ github.event.inputs.slug }}
+          TEXT: ${{ github.event.inputs.text }}
+        run: python scripts/post_now.py --slug "$SLUG" --text "$TEXT"
+      - name: Commit history
+        run: |
+          if [ -z "$(git status --porcelain state)" ]; then exit 0; fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state
+          git commit -m "chore(threads): 臨時投稿を記録"
+          for i in 1 2 3; do git pull --rebase --autostash origin main && git push && exit 0; sleep 5; done
