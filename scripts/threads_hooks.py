@@ -111,6 +111,50 @@ HOOKS: list[dict] = [
 HOOK_KEYS = [hook["key"] for hook in HOOKS]
 AVOID_RECENT = 4
 
+# 投稿文の版。2 = 投稿だけで用が足りる「完結型」（記事へ誘導するだけの締めをやめた版）。
+# threads_post.py は 2 未満の記事の紹介文を使わず、見出し・要点・判定から組み立て直す
+POST_STYLE = 2
+
+# 全プロンプト共通の threads_post のルール（prompt_block の先頭に入る）
+POST_RULES = """## Threads 紹介文（threads_post）のルール
+投稿だけ読めば用が足りる「完結型」にする。記事を開かなくても「何が起きて、自分にどう関係するか」が分かること。
+記事へのリンクは返信に付けるので、本文には書かない。
+- 2〜4行（全角60〜160字）。1行は短く（全角40字以内が目安）。行の間は改行1つ。
+- 1行目: 下の「書き出しの型」から1つ選んで書く（30字以内）。
+- 残りの行で次をすべて伝える: 誰が（会社・製品の正体を一言で。例「ChatGPTのOpenAIが」）／何をした（新しいAIモデル・新機能・値下げ など種類を言う）／何が変わる／自分に関係あるか（使える人・料金・日本で使えるか）。
+- 数字・日付・価格・製品名は元記事のとおり正確に書く（丸めない・単位を変えない・記事にない数字は書かない）。
+- AIに詳しくない人にも分かる言葉にする。専門用語は使わないか、使うなら「＝〇〇のこと」と言い換える。
+  専門的な発表も「誰の、どんな作業が、どう楽になるのか」に言い換える。
+  例：「Azure SQLのAgent Skills」→「データベースの準備作業を、AIが代わりにやってくれるようになった」
+  例：「投機的デコーディング」→「AIの返事が、品質そのままで最大5倍速く返ってくる仕組み」
+- 人が書いたような自然な口語にする（「〜となっています」「〜が可能です」の連続を避ける）。
+- 締めは事実か、読者が答えやすい短い問いかけ（問いかけは2回に1回まで）。
+- 禁止: 「記事で👇」「続きは記事で」「詳しくはリンクで」など記事へ誘導するだけの締め、思わせぶりで中身を隠す書き方、
+  煽り語（衝撃／ヤバい／必見／知らないと損）、記事にない事実・誇張、個人への憶測、ハッシュタグ、URL、絵文字。"""
+
+# 「明らかに伸びない型」とみなす条件（threads_learn.py の集計から）。少ない本数では決めつけない
+WEAK_MIN_POSTS = 4
+WEAK_RATIO = 0.5
+
+
+def weak_hooks() -> list[str]:
+    """十分な本数を試して、閲覧も反応も全体平均の半分に届かない型（避ける・順位を下げる）"""
+    path = ROOT / "state" / "threads_learning.json"
+    try:
+        hooks = json.loads(path.read_text("utf-8")).get("axes", {}).get("hook", {})
+    except Exception:
+        return []
+    total = sum(v.get("n", 0) for v in hooks.values())
+    if total < 10:
+        return []
+    views = sum(v.get("avgViews", 0) * v.get("n", 0) for v in hooks.values()) / total
+    eng = sum(v.get("avgEngagement", 0) * v.get("n", 0) for v in hooks.values()) / total
+    return [
+        key for key, v in hooks.items()
+        if key in HOOK_KEYS and v.get("n", 0) >= WEAK_MIN_POSTS
+        and v.get("avgViews", 0) < views * WEAK_RATIO and v.get("avgEngagement", 0) < eng * WEAK_RATIO
+    ]
+
 
 def recent_hooks(limit: int = AVOID_RECENT) -> list[str]:
     """直近に生成した記事で使った書き出しの型（新しい順）"""
@@ -133,6 +177,8 @@ def prompt_block(recent: list[str] | None = None) -> str:
     """生成プロンプトに足す「書き出しの型」の説明"""
     recent = recent if recent is not None else recent_hooks()
     lines = [
+        POST_RULES,
+        "",
         "## Threads 紹介文（threads_post）の書き出し",
         "threads_post の1行目は、次の型から、この記事にいちばん合うものを1つ選んで書く。選んだ型の key を threads_hook に入れる。",
         "各型の「使ってよい条件」を満たさない型は選ばない。例はあくまで雰囲気の参考で、そのまま使わない。",
@@ -140,6 +186,10 @@ def prompt_block(recent: list[str] | None = None) -> str:
     if recent:
         names = "、".join(h["name"] for h in HOOKS if h["key"] in recent)
         lines.append(f"直近の投稿で {names} を使ったので、今回はそれ以外から選ぶ（同じ型が続くと読み飛ばされるため）。")
+    weak = weak_hooks()
+    if weak:
+        names = "、".join(h["name"] for h in HOOKS if h["key"] in weak)
+        lines.append(f"{names} はこれまでの投稿で明らかに反応が弱いので、ほかに合う型が無いときだけ使う。")
     learned = learned_summary()
     if learned:
         lines.append(learned)

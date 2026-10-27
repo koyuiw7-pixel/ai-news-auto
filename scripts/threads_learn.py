@@ -111,8 +111,9 @@ def features(slug: str, entry: dict) -> dict:
         "hook": entry.get("hook") or article.get("threadsHook") or "不明",
         "slot": slot,
         "company": company,
-        "ending": "問いかけ" if post.endswith(("？", "?")) else "記事で👇",
-        "format": "画像+返信リンク" if entry.get("dueAt") else "リンクカード",
+        "ending": "問いかけ" if post.endswith(("？", "?")) else "完結型" if entry.get("style") == "standalone" else "記事で👇",
+        "format": "速報" if entry.get("breaking") else "図解カード+返信リンク" if entry.get("image") == "card"
+        else "画像+返信リンク" if entry.get("dueAt") else "リンクカード",
     }
 
 

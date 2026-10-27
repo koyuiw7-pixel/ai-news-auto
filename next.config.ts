@@ -46,6 +46,7 @@ const nextConfig: NextConfig = {
     ],
     "/articles/\\[slug\\]": ["./content/articles/**/*.json"],
     "/cover/**": ["./content/articles/**/*.json", "./assets/fonts/**/*"],
+    "/card/**": ["./content/articles/**/*.json", "./assets/fonts/**/*"],
     "/api/v1/articles": ["./content/articles/**/*.json"],
   },
   experimental: {

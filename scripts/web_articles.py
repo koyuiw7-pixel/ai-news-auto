@@ -154,6 +154,18 @@ def is_major(item: dict, trend_index: dedupe.Index | None = None) -> bool:
     return bool(trend_index and trend_index.entries and trend_index.find(title))
 
 
+def is_breaking(item: dict) -> bool:
+    """速報としてすぐ SNS に出すか。大きなニュースのうち、本家の公式発信（source_rank 0〜1）で
+    主要企業の新モデル・新製品の名前が見出しにあるものだけ（トレンドに載っただけの話題は含めない）"""
+    title = item.get("title", "")
+    return (
+        feeds.source_rank(item) <= 1
+        and not prefilter(item)
+        and bool(MAJOR_RE.search(title))
+        and bool(NOTABLE_RE.search(title) or MAJOR_HEAD_RE.match(title))
+    )
+
+
 def rank_bucket(item: dict) -> int:
     """レーン内の並べ替え用。公式 → 官公庁・企業 → 他社の対応告知 → 配信"""
     return {0: 0, 1: 0, 2: 1, 3: 2}.get(feeds.source_rank(item), 3)
@@ -208,16 +220,7 @@ WEB_PROMPT_TEMPLATE = """以下の一次情報（公式発表の文章）を読�
   製品名・企業名・機能名を**先頭**に置き、何が分かる記事かを続ける。記号は「｜」「：」を最大1つまで。
   **新しい製品・機能・モデルの発表**なら、日本の人が実際に検索する形にする:「〇〇とは？日本で使える？料金も」「〇〇の使い方と料金｜日本での提供状況」など、
   名前の直後に「とは／使い方／料金／日本で使える」のどれかを入れる（発表直後は日本語の記事がまだ少なく、この形の検索で1位を取りやすい）。
-- threads_post: Threadsに投稿する本文（全角80〜180字）。本文にURLは入れない。
-  **AIに詳しくない人が読んでも分かる書き方にする（最重要）**: 1行目か2行目で「何の会社の・どんな新しいものか」を日常語で言う（例:「ChatGPTを作っているOpenAIから、新しいAIが出ました」「Googleの生成AIに新機能」）。
-  専門用語（API・トークン・ベンチマーク・エージェント等）は使わないか、使うなら「＝〇〇のこと」と言い換える。「何が変わる？」「自分に関係ある？」が伝わる一言を入れる。
-  1行目：末尾の「Threads 紹介文の書き出し」から、この記事に合う型を1つ選んで書く（30字以内）。
-  2行目：記事中でいちばん具体的な事実（数字・ビフォーアフター）。1行目と重複させない。
-  3行目：何の発表か＋誰に関係があるか。
-  専門用語を並べず、「誰の、どんな作業が、どう楽になるのか」をAIに詳しくない人にも伝わる言葉で言い換える。
-  そのあとは「✅ 」で始まる要点2つ／短い感想1〜2文／意外な数字の補足 のどれかを選ぶ（毎回同じ形にしない）。
-  最後は「記事で👇」か、短い問いかけで締める。
-  禁止：記事にない事実・誇張・煽り語、ハッシュタグ、URL、✅と👇以外の絵文字。
+- threads_post: Threads・X に出す投稿文。末尾の「Threads 紹介文（threads_post）のルール」と「書き出し」に従う（完結型・2〜4行・URLなし）。
 - easy_markdown: 「かんたんに読む」版（全角700〜1300字）。body_markdown の内容をやさしく言い直したもの。
   見出しは次の4つを「## 」でこの順に使う：## ひとことで言うと / ## 何がすごいの？ / ## 自分に関係ある？ / ## 使ってみるには
   必ず「## ひとことで言うと」から始める。専門用語は使わない（使うなら直後に（＝〜のこと））。身近な例えを1つ以上入れる。
@@ -294,13 +297,7 @@ BROAD_PROMPT_TEMPLATE = """以下の一次情報（公式発表の文章）を�
   悪い例:「OpenAIがGPT-6.1 Terraを発表 コスト半減でPC操作と視覚理解を高速化」（詳しい人にしか伝わらない）
   **感嘆符・煽り語（衝撃／ヤバい／ついに／必見／知らないと損）は使わない**。元記事のタイトルをそのまま使わない。
 - seo_title: 全角24〜30文字。固有名詞（商品名・制度名・組織名）を先頭に置く。記号は「｜」「：」を最大1つまで。
-- threads_post: Threadsに投稿する本文（全角80〜180字）。URL・ハッシュタグは入れない。
-  **AIに詳しくない人が読んでも分かる書き方にする（最重要）**: 1行目か2行目で「何の会社の・どんな新しいものか」を日常語で言う（例:「ChatGPTを作っているOpenAIから、新しいAIが出ました」「Googleの生成AIに新機能」）。
-  専門用語（API・トークン・ベンチマーク・エージェント等）は使わないか、使うなら「＝〇〇のこと」と言い換える。「何が変わる？」「自分に関係ある？」が伝わる一言を入れる。
-  1行目：末尾の「Threads 紹介文の書き出し」から型を1つ選んで書く（30字以内）。
-  2行目：元記事にあるいちばん具体的な事実（数字・日付・価格）。3行目：誰に関係があるか。
-  そのあとは「✅ 」で始まる要点2つ／短い感想1〜2文／数字の補足 のどれか。最後は「記事で👇」か短い問いかけ。
-  禁止：元記事にない事実・誇張・煽り語、個人への憶測、✅と👇以外の絵文字。
+- threads_post: Threads・X に出す投稿文。末尾の「Threads 紹介文（threads_post）のルール」と「書き出し」に従う（完結型・2〜4行・URLなし）。
 - easy_markdown: 「かんたんに読む」版（全角700〜1300字）。必ず「## ひとことで言うと」から始め、
   ## ひとことで言うと / ## 何がすごいの？ / ## 自分に関係ある？ / ## 使ってみるには の4見出しをこの順に使う。
   「使ってみるには」は、使う・買う・申し込む方法か、それが無い話題なら読者が取れる行動（公式情報の確認など）を書く。
@@ -434,13 +431,7 @@ TREND_PROMPT_TEMPLATE = """日本でいま話題になっているキーワー�
   良い例:「ChatGPTのOpenAIが新AIモデル『GPT-6.1 Terra』 料金は半分、パソコン操作も得意に」
   悪い例:「OpenAIがGPT-6.1 Terraを発表 コスト半減でPC操作と視覚理解を高速化」（詳しい人にしか伝わらない）
 - seo_title: 全角24〜30文字。検索されるキーワードを先頭に置く。記号は「｜」「：」を最大1つまで。
-- threads_post: Threadsに投稿する本文（全角80〜180字）。URL・ハッシュタグは入れない。
-  **AIに詳しくない人が読んでも分かる書き方にする（最重要）**: 1行目か2行目で「何の会社の・どんな新しいものか」を日常語で言う（例:「ChatGPTを作っているOpenAIから、新しいAIが出ました」「Googleの生成AIに新機能」）。
-  専門用語（API・トークン・ベンチマーク・エージェント等）は使わないか、使うなら「＝〇〇のこと」と言い換える。「何が変わる？」「自分に関係ある？」が伝わる一言を入れる。
-  1行目：末尾の「Threads 紹介文の書き出し」から型を1つ選んで書く（30字以内）。
-  2行目：報道にあるいちばん具体的な事実。3行目：誰に関係があるか。
-  そのあとは「✅ 」で始まる要点2つ／短い感想／数字の補足 のどれか。最後は「記事で👇」か短い問いかけ。
-  禁止：報道にない事実・誇張・煽り語、個人への憶測、✅と👇以外の絵文字。
+- threads_post: Threads・X に出す投稿文。末尾の「Threads 紹介文（threads_post）のルール」と「書き出し」に従う（完結型・2〜4行・URLなし）。
 - easy_markdown: 「かんたんに読む」版（全角700〜1300字）。必ず「## ひとことで言うと」から始め、
   ## ひとことで言うと / ## 何がすごいの？ / ## 自分に関係ある？ / ## 使ってみるには の4見出しをこの順に使う。
   話題が「使う」ものでない場合、「使ってみるには」では読者が取れる行動（公式情報の確認など）を書く。
@@ -583,6 +574,7 @@ def build_web_record(item: dict, data: dict, page: dict, model_name: str, voice_
         "seoTitle": str(data.get("seo_title", "")).strip(),
         "threadsPost": m.normalize_body(str(data.get("threads_post", ""))).strip(),
         "threadsHook": m.threads_hooks.clean_hook(data.get("threads_hook")),
+        "threadsStyle": m.threads_hooks.POST_STYLE,
         "writingVoice": voice_key,
         "lede": m.normalize_body(data.get("lede", "")),
         "description": str(data["description"]).strip(),
@@ -1244,12 +1236,15 @@ def main() -> int:
             if status in ("skip", "reject"):
                 mark(state, item, skipped=True, reason=f"{'quality: ' if status == 'reject' else ''}{info}"[:200], model=model_name)
             return
+        # 速報（scripts/breaking_post.py がデプロイ直後に SNS へ出す）
+        if major and is_breaking(item):
+            record["breaking"] = True
         path = m.write_article(record)
         recent.add(record["title"], record["sourceUrl"], record.get("keywords"))
         touched.add(record["slug"])
         run_status[item["id"]] = ("article", record["slug"])
         mark(state, item, slug=record["slug"], model=model_name, section=lane, score=record.get("qualityScore"),
-             **({"major": True} if major else {}))
+             **({"major": True} if major else {}), **({"breaking": True} if record.get("breaking") else {}))
         state["major_tries"].pop(item["id"], None)
         created["major" if major else ("ai" if is_ai else "broad")] += 1
         per_section[record["genreSlug"]] = per_section.get(record["genreSlug"], 0) + 1
