@@ -3675,6 +3675,12 @@
       "skipped": true,
       "url": "https://forbesjapan.com/articles/detail/106874"
     },
+    "3879082651e7cb69": {
+      "at": "2026-10-27T21:43:57.958737+00:00",
+      "reason": "short text 356",
+      "skipped": true,
+      "url": "https://www.softbank.jp/sbnews/entry/2026/10/27/130000"
+    },
     "38e13729c84ba2c8": {
       "at": "2026-10-27T03:05:10.759276+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（協賛）",
@@ -3853,6 +3859,14 @@
       "reason": "dedupe: 同じ出典URL",
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/announce/20261026-2/index.html"
+    },
+    "47e91147967a45c4": {
+      "at": "2026-10-27T21:44:36.890575+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "suntory-non-aru-sakaba-new-release",
+      "url": "https://www.suntory.co.jp/news/article/2026/15160.html?rss=0000000029"
     },
     "4829bde7b09d4e37": {
       "at": "2026-10-27T01:31:25.544382+00:00",
@@ -5478,6 +5492,13 @@
       "skipped": true,
       "url": "https://www.docomo.ne.jp/info/news_release/2026/10/27_02.html"
     },
+    "c9e1983e65557acd": {
+      "at": "2026-10-27T21:43:35.359697+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 本文が短い（1793字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; body_markdown に「## 概要」の章がない（構成どおりの見出しを使う）",
+      "skipped": true,
+      "url": "https://www.tsr-net.co.jp/data/detail/1203363_1527.html"
+    },
     "ca468eb35b284a7e": {
       "at": "2026-10-26T13:54:15.329766+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5759,6 +5780,13 @@
       "section": "business",
       "slug": "jinen-zzz-inc-oshikatsu-community-business",
       "url": "https://prtimes.jp/main/html/rd/p/000000008.000159111.html"
+    },
+    "dcc10620fe361530": {
+      "at": "2026-10-27T21:41:30.242060+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大臣の定例記者会見における月例経済報告や会議の開催案内であり、国民が直接申し込む新しい制度や製品の発表ではないため",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202610/video-326804.html"
     },
     "dcf5d54939aadc4c": {
       "at": "2026-10-26T10:30:42.540838+00:00",
@@ -6210,72 +6238,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-26T21:41:22.076654+00:00",
-      "attempt": 1,
-      "id": "f5a63a1af5067430",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1627字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "atpress",
-      "title": "芦ノ湖から車で約10分、箱根の木立に佇む“森の別荘”「スイートヴィラ Calmwoods元箱根」が10月31日に開業"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T21:41:28.789452+00:00",
-      "attempt": 2,
-      "id": "f5a63a1af5067430",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（362字 / 基準 400字以上）"
-      ],
-      "score": null,
-      "source": "atpress",
-      "title": "芦ノ湖から車で約10分、箱根の木立に佇む“森の別荘”「スイートヴィラ Calmwoods元箱根」が10月31日に開業"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T21:41:35.532595+00:00",
-      "attempt": 1,
-      "id": "80861ce532093e27",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1683字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "ipa",
-      "title": "令和8年度前期試験 高度試験及び情報処理安全確保支援士試験の申込受付を終了しました"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T21:41:43.148646+00:00",
-      "attempt": 2,
-      "id": "80861ce532093e27",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "ipa",
-      "title": "令和8年度前期試験 高度試験及び情報処理安全確保支援士試験の申込受付を終了しました"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T22:01:24.273132+00:00",
-      "attempt": 1,
-      "id": "dc7fa81a76c6698b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "prtimes-all",
-      "title": "JINEN株式会社、株式会社zzz.inc.と業務提携し「インフルエンサー・コミュニティマネジメント事業」を開始"
-    },
     {
       "accepted": true,
       "at": "2026-10-26T22:21:10.632659+00:00",
@@ -11986,6 +11948,115 @@
       "score": 100,
       "source": "softbank-news",
       "title": "スマホやSNSの「わが家のルール」を考えるきっかけに。大分県内120校の子どもたちに伝える情報モラル"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T21:41:39.152891+00:00",
+      "attempt": 1,
+      "id": "c9e1983e65557acd",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1753字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 140.8,
+        "avg_sentence": 46.9,
+        "long_share": 0.2,
+        "max_paragraph": 205,
+        "paragraphs": 10,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "tsr",
+      "title": "年度上半期の「美容室」倒産 54件の高水準 低価格と高付加価値に二極化、差別化がカギ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T21:43:35.359659+00:00",
+      "attempt": 2,
+      "id": "c9e1983e65557acd",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1793字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "body_markdown に「## 概要」の章がない（構成どおりの見出しを使う）"
+      ],
+      "readability": {
+        "avg_paragraph": 165.8,
+        "avg_sentence": 51.4,
+        "long_share": 0.276,
+        "max_paragraph": 270,
+        "paragraphs": 9,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "tsr",
+      "title": "年度上半期の「美容室」倒産 54件の高水準 低価格と高付加価値に二極化、差別化がカギ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T21:44:11.957360+00:00",
+      "attempt": 1,
+      "id": "47e91147967a45c4",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1674字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 105.3,
+        "avg_sentence": 42.1,
+        "long_share": 0.1,
+        "max_paragraph": 193,
+        "paragraphs": 12,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "suntory",
+      "title": "「のんある酒場 グレフルサワー ノンアルコール」新発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T21:44:18.562838+00:00",
+      "attempt": 1,
+      "id": "47e91147967a45c4",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "段落が長い（平均 131.6字・最長 243字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 131.6,
+        "avg_sentence": 42.7,
+        "long_share": 0.081,
+        "max_paragraph": 243,
+        "paragraphs": 12,
+        "sentences": 37
+      },
+      "score": 100,
+      "source": "suntory",
+      "title": "「のんある酒場 グレフルサワー ノンアルコール」新発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T21:44:36.890151+00:00",
+      "attempt": 0,
+      "id": "47e91147967a45c4",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.4,
+        "avg_sentence": 36.9,
+        "long_share": 0.047,
+        "max_paragraph": 159,
+        "paragraphs": 20,
+        "sentences": 43
+      },
+      "score": 100,
+      "source": "suntory",
+      "title": "「のんある酒場 グレフルサワー ノンアルコール」新発売"
     }
   ],
   "short_text_retry": {
