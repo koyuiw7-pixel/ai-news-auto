@@ -13,15 +13,15 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: readability
-  cancel-in-progress: true
-
 jobs:
   check:
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push') }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    # ジョブ単位にする（対象外で飛ばされた回が、走っている回を取り消さないように）
+    concurrency:
+      group: readability
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v7
 
