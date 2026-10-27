@@ -1318,6 +1318,18 @@ def main() -> int:
                     f" 文{r.get('avg_sentence')}字/60字超{r.get('long_share', 0):.0%}/段落{r.get('avg_paragraph')}字(最長{r.get('max_paragraph')})"
                     f" {('/ ' + ' | '.join(verdict['problems'][:3])[:300]) if verdict['problems'] else ''}")
                 log_quality(state, item, kind, verdict, attempt, verdict["ok"], model_name or "")
+                if not verdict["ok"] and not verdict.get("soft") and quality.length_only(verdict):
+                    # 本文が少し短いだけなら、作り直さずに元の情報源の事実で書き足す（無料枠の節約）
+                    try:
+                        grown, info = quality.expand(record, source_text, kind, context, check_facts=not args.no_gate)
+                    except Exception as error:  # noqa: BLE001
+                        grown, info = None, f"書き足しに失敗（{str(error)[:80]}）"
+                    if grown is None:
+                        log(f"   [grow] 書き足しで救えず: {info}")
+                    else:
+                        log(f"   [grow] 書き足して合格 {quality._plain_len(record.get('body') or '')}→{quality._plain_len(grown['body'])}字（{info.get('expanded_by')}）")
+                        record, verdict = grown, info
+                        log_quality(state, item, kind, verdict, attempt, True, str(info.get("expanded_by") or ""))
                 if verdict.get("soft"):
                     record, verdict = polish_or_keep(item, kind, record, verdict, source_text, context)
                 if verdict["ok"] or verdict.get("soft"):

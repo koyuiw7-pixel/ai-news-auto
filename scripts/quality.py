@@ -387,6 +387,65 @@ def polish(record: dict, source_text: str, kind: str, context: str = "", check_f
     return polished, verdict
 
 
+EXPAND_SYSTEM = """あなたはニュースサイトの編集者です。記者の原稿が少し短いので、元の情報源にある事実だけを使って書き足します。
+出力は指定の JSON だけ。"""
+
+EXPAND_PROMPT = """次の記事本文（Markdown）は {length}字で、基準の {target}字に足りません。
+元の情報源（下）にある事実だけを使って、{target}字を少し超える長さまで書き足してください。
+
+# 書き足し方
+- 各章で、元の情報源にある具体的な事実・数字の意味・使い方・条件・注意点・「読者の何が変わるか」の説明を足す。
+- 1文は50字以内、1段落は1〜3文。見出しは疑問の形のまま。
+- 同じことのくり返し、一般論、推測、元に無い数字・日付・価格・固有名詞は書かない。足りなければ無理に埋めず、書ける範囲で止める。
+
+# 変えてはいけないもの
+- 見出し（## と ###）の文言・数・順番。既存の文の事実・数字・リンク・表。
+
+# 元の情報源
+<<<
+{source}
+>>>
+
+# 原稿
+<<<
+{body}
+>>>"""
+
+LENGTH_RE = re.compile(r"^本文が短い（(\d+)字 / 基準 (\d+)字以上）")
+
+
+def length_only(verdict: dict) -> bool:
+    """不合格の理由が「本文が短い」だけで、足りない分が4割以内なら True（書き足しで救える）"""
+    problems = verdict.get("problems") or []
+    if not problems or verdict.get("unavailable"):
+        return False
+    m = [LENGTH_RE.match(p) for p in problems]
+    if not all(m):
+        return False
+    have, need = int(m[0].group(1)), int(m[0].group(2))
+    return have >= need * 0.6
+
+
+def expand(record: dict, source_text: str, kind: str, context: str = "", check_facts: bool = True):
+    """本文が少し短いだけの原稿を、元の情報源の事実で書き足す。(record, verdict) か (None, 理由)"""
+    body = record.get("body") or ""
+    length, target = _plain_len(body), MIN_BODY.get(kind, 1800)
+    prompt = EXPAND_PROMPT.format(length=length, target=target, source=(source_text or "")[:12000], body=body)
+    data, model = llm.generate_json(EXPAND_SYSTEM, prompt, POLISH_SCHEMA, temperature=0.4, max_output_tokens=16384, tier=CHECK_TIER)
+    new_body = re.sub(r"^(#{1,6}) +(?:#{1,6} +)+", r"\1 ", str(data.get("body_markdown") or "").strip(), flags=re.M)
+    heads_old, heads_new = _HEADING_RE.findall(body), _HEADING_RE.findall(new_body)
+    if [_norm(h) for h in heads_old] != [_norm(h) for h in heads_new]:
+        return None, f"見出しが変わった（{len(heads_old)}→{len(heads_new)}個）"
+    if _plain_len(new_body) <= length:
+        return None, "書き足されなかった"
+    expanded = {**record, "body": new_body}
+    verdict = evaluate(expanded, source_text, kind, context, check_facts=check_facts)
+    if not (verdict["ok"] or verdict.get("soft")):
+        return None, "書き足し後の確認に不合格: " + "; ".join(verdict["problems"][:2])
+    verdict["expanded_by"] = model
+    return expanded, verdict
+
+
 def feedback_block(problems: list[str]) -> str:
     """作り直しのときにプロンプト末尾へ足す指示"""
     lines = "\n".join(f"- {p}" for p in problems[:10])
