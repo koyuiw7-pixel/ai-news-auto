@@ -42,3 +42,9 @@ for (const name of fs.readdirSync("content/articles").filter((n) => n.endsWith("
   count++;
 }
 console.log(`[cf_content] ${count} articles, ${Object.keys(files).length} files -> ${OUT}`);
+
+// ビルド時に作った ISR のキャッシュを静的アセットへ（open-next.config.ts の kvOverAssets が読む）
+const CACHE_OUT = path.join(".open-next", "assets", "cdn-cgi", "_next_cache");
+fs.rmSync(CACHE_OUT, { recursive: true, force: true });
+fs.cpSync(path.join(".open-next", "cache"), CACHE_OUT, { recursive: true });
+console.log(`[cf_content] build cache -> ${CACHE_OUT}`);

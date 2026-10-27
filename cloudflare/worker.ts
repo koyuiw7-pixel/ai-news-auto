@@ -80,10 +80,48 @@ async function loadArticle(env: Env, slug: string): Promise<void> {
 
 const ARTICLE = /^\/(?:articles|cover)\/([^/]+?)(?:\.rsc)?\/?$/;
 
+type Ctx = { waitUntil(promise: Promise<unknown>): void };
+
+/**
+ * 出来上がったページを Cloudflare のエッジ（Cache API）に置き、次からは描画もキャッシュ読み出しもせずに返す。
+ * キーにデプロイの版を入れるので、デプロイ後に古い HTML（消えた JS を参照）が返ることはない。
+ * 画面遷移用の RSC リクエストは対象外。workers.dev では Cache API が効かない（独自ドメインでだけ効く）
+ */
+function edgeCacheKey(request: Request, url: URL, env: Env): Request | null {
+  if (request.method !== "GET" || request.headers.has("rsc") || url.searchParams.has("_rsc")) return null;
+  if (url.pathname.startsWith("/_next/") || url.pathname.startsWith("/api/")) return null;
+  const version = (env.CF_VERSION_METADATA as { id?: string } | undefined)?.id ?? "dev";
+  const key = new URL(url);
+  key.searchParams.set("__v", version);
+  return new Request(key.toString(), { method: "GET" });
+}
+
+/** ISR・静的化されたものだけ（初回の描画中の no-store や、動的なものは置かない） */
+function edgeCacheable(response: Response): boolean {
+  const cc = response.headers.get("cache-control") ?? "";
+  if (response.status !== 200 || /private|no-store/.test(cc) || response.headers.has("set-cookie")) return false;
+  return /s-maxage=\d+/.test(cc) || response.headers.has("x-nextjs-cache");
+}
+
+/** エッジには1日置く（デプロイで版が変われば自然に使われなくなる）。ブラウザには毎回確かめさせる */
+function forEdge(response: Response): Response {
+  const copy = new Response(response.body, response);
+  const image = (copy.headers.get("content-type") ?? "").startsWith("image/");
+  copy.headers.set("cache-control", image ? "public, max-age=604800, s-maxage=86400" : "public, max-age=0, s-maxage=86400");
+  return copy;
+}
+
 export default {
-  async fetch(request: Request, env: Env, ctx: unknown): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx: Ctx): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname.startsWith("/_content/")) return new Response("Not Found", { status: 404 });
+
+    const cacheKey = edgeCacheKey(request, url, env);
+    const edge = cacheKey ? (caches as unknown as { default: Cache }).default : null;
+    if (edge && cacheKey) {
+      const hit = await edge.match(cacheKey);
+      if (hit) return hit;
+    }
 
     // 静的ファイルは OpenNext/アセットに任せる（先読み不要）
     if (!url.pathname.startsWith("/_next/static/")) {
@@ -97,7 +135,13 @@ export default {
         return new Response("Service Unavailable", { status: 503, headers: { "Retry-After": "5" } });
       }
     }
-    return handler.fetch(request, env, ctx);
+    const response: Response = await handler.fetch(request, env, ctx);
+    if (edge && cacheKey && edgeCacheable(response)) {
+      const cached = forEdge(response);
+      ctx.waitUntil(edge.put(cacheKey, cached.clone()));
+      return cached;
+    }
+    return response;
   },
 };
 
