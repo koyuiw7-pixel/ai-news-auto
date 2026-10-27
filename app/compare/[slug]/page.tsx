@@ -9,9 +9,12 @@ import {
   getAllBuyingGuides,
   getBuyingGuide,
   guideRelatedArticles,
+  isRichGuide,
   resolveProducts,
   type ResolvedProduct,
 } from "@/lib/buying-guides";
+import VariantA from "@/components/compare/VariantA";
+import { buildGuideView } from "@/components/compare/view";
 import { siteConfig } from "@/site.config";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -56,6 +59,10 @@ export default async function ComparePage({ params }: Props) {
   const { slug } = await params;
   const guide = getBuyingGuide(slug);
   if (!guide) notFound();
+
+  // 作り直した新形式のガイド（提携外の商品も並べる）は新しいデザインで出す。
+  // デザイン案 B・C は /compare-preview/b, /compare-preview/c で同じデータを確認できる
+  if (isRichGuide(guide)) return <VariantA view={buildGuideView(guide)} />;
 
   const products = resolveProducts(guide);
   const byKey = new Map(products.map((p) => [p.partner, p]));
@@ -150,7 +157,7 @@ export default async function ComparePage({ params }: Props) {
           </div>
           <ol className={`grid divide-y divide-line sm:divide-x sm:divide-y-0 ${picks.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}>
             {picks.map(({ reason, product }) => (
-              <li key={product.partner} className="flex">
+              <li key={product.key} className="flex">
                 <a
                   href={product.item.url}
                   target="_blank"
@@ -173,7 +180,7 @@ export default async function ComparePage({ params }: Props) {
 
       {/* 比較表（スマホは横にスクロール） */}
       <Section id="table" title="比較表" note={`価格は${asOf}時点。最新の料金・キャンペーンは各公式サイトでご確認ください`}>
-        <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+        <div className="relative -mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
           <table className="w-full min-w-[720px] border-collapse text-left text-[13px] leading-[1.6]">
             <thead>
               <tr className="border-b-2 border-ink">
@@ -188,16 +195,16 @@ export default async function ComparePage({ params }: Props) {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product.partner} className="border-b border-line align-top">
+                <tr key={product.key} className="border-b border-line align-top">
                   <th scope="row" className="sticky left-0 z-10 w-[150px] bg-paper py-3 pr-3 font-bold text-ink">
-                    <a href={`#p-${product.partner}`} className="hover:underline">{product.item.name}</a>
+                    <a href={`#p-${product.key}`} className="hover:underline">{product.item.name}</a>
                   </th>
                   <td className="index-num px-3 py-3 font-bold text-ink">
                     {priceText(product.item)}
                     {product.priceNote && <span className="mt-0.5 block text-[11px] font-normal text-muted">{product.priceNote}</span>}
                   </td>
                   {guide.columns.map((column, i) => (
-                    <td key={column} className="px-3 py-3 text-ink-soft">{product.specs[i] ?? "—"}</td>
+                    <td key={column} className="px-3 py-3 text-ink-soft">{product.specs?.[i] ?? "—"}</td>
                   ))}
                   <td className="px-3 py-3 text-ink-soft">{product.bestFor}</td>
                   <td className="py-3 pl-3">
@@ -233,7 +240,7 @@ export default async function ComparePage({ params }: Props) {
       <Section id="products" title="商品ごとの特徴">
         <div className="grid gap-6">
           {products.map((product) => (
-            <article key={product.partner} id={`p-${product.partner}`} className="scroll-mt-24 rounded-2xl border border-line p-5 sm:p-6">
+            <article key={product.key} id={`p-${product.key}`} className="scroll-mt-24 rounded-2xl border border-line p-5 sm:p-6">
               <div className="grid gap-5 sm:grid-cols-[180px_minmax(0,1fr)]">
                 <ProductImage item={product.item} className="aspect-square rounded-xl border border-line" pad="p-3" />
                 <div className="min-w-0">

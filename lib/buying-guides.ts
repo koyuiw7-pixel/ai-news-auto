@@ -13,20 +13,46 @@ export type PriceSource =
   | { type: "data"; file: string; checkedAt: string }
   | null;
 
+/** サイソク判定の段階（公式の記載から機械的に決める。点数ではない） */
+export type VerdictLevel = "yes" | "partial" | "no";
+
 export type BuyingGuideProduct = {
-  partner: string;
+  /** 提携商品は offers.json の partners のキー。提携していない商品（公式サイトへ nofollow で案内）は省略 */
+  partner?: string;
+  /** 新形式（schemaVersion 2）の識別子。省略時は partner を使う */
+  id?: string;
+  /** 提携していない商品の表示名（提携商品は offers.json の name を使う） */
+  name?: string;
+  maker?: string;
+  /** 写真の代わりに出す種別（例: iPhone標準アプリ） */
+  category?: string;
   price: string;
   priceSource: PriceSource;
   priceNote?: string;
-  specs: string[];
+  /** 旧形式の比較表の列（columns と同じ順）。新形式では cells を使う */
+  specs?: string[];
   bestFor: string;
   summary: string;
   strengths: string[];
   limits: string[];
   officialUrl?: string;
+  /** 以下は新形式のみ */
+  verdict?: {
+    japan: { level: VerdictLevel; text: string };
+    freeTrial: { level: VerdictLevel; text: string };
+    cost: string;
+    bestFor: string;
+  };
+  /** 比較表の値（rows の key ごと） */
+  cells?: Record<string, string>;
+  /** 診断チャートの絞り込みに使う当てはまり（quiz の key → value の一覧） */
+  fit?: Record<string, string[]>;
+  sources?: { label: string; url: string }[];
 };
 
 export type BuyingGuide = {
+  /** 2 = 提携外の商品も含めて手で作った新形式 */
+  schemaVersion?: number;
   slug: string;
   title: string;
   /** 「〇〇を選ぶなら」に使う短い名前 */
@@ -45,10 +71,26 @@ export type BuyingGuide = {
   publishedAt: string;
   updatedAt: string;
   priceCheckedAt: string;
+  /** 以下は新形式のみ */
+  /** 価格・仕様の時点と出典の表記（例: 10月27日時点・公式サイトより） */
+  checkedLabel?: string;
+  personas?: { who: string; picks: string[]; why: string }[];
+  rows?: { key: string; label: string }[];
+  decisionPoints?: { title: string; body: string }[];
+  quiz?: { key: string; label: string; options: { value: string; label: string }[] }[];
+  howWeMade?: string;
+  editorial?: "manual";
 };
 
 /** 表示用：ガイドの商品に提携リンクを合わせたもの */
-export type ResolvedProduct = BuyingGuideProduct & { item: OfferItem; pixel?: string };
+export type ResolvedProduct = BuyingGuideProduct & {
+  /** ページ内で商品を指す安定したキー */
+  key: string;
+  item: OfferItem;
+  pixel?: string;
+  /** 提携商品（PR表記・rel="sponsored"） */
+  sponsored: boolean;
+};
 
 const DIR = path.join(/*turbopackIgnore: true*/ process.cwd(), "content", "buying-guides");
 
@@ -83,14 +125,39 @@ export function getBuyingGuide(slug: string): BuyingGuide | undefined {
   return getAllBuyingGuides().find((guide) => guide.slug === slug);
 }
 
-/** 提携中の商品だけ（リンク・画像つき） */
+/**
+ * 表示する商品（リンク・画像つき）。
+ * 提携商品は提携が切れたら自動で消える。提携していない商品（name と officialUrl がある）は公式サイトへ案内する。
+ */
 export function resolveProducts(guide: BuyingGuide): ResolvedProduct[] {
-  return guide.products.flatMap((product) => {
-    const found = partnerItem(product.partner);
-    if (!found) return [];
-    const item = { ...found.item, price: null, priceText: product.price || "公式サイトで確認" };
-    return [{ ...product, item, pixel: found.pixel }];
+  return guide.products.flatMap((product): ResolvedProduct[] => {
+    const priceText = product.price || "公式サイトで確認";
+    if (product.partner) {
+      const found = partnerItem(product.partner);
+      if (!found) return [];
+      const item = { ...found.item, price: null, priceText };
+      return [{ ...product, key: product.id ?? product.partner, item, pixel: found.pixel, sponsored: true }];
+    }
+    if (!product.id || !product.name || !product.officialUrl) return [];
+    const item: OfferItem = {
+      key: product.id,
+      kind: "partner",
+      name: product.name,
+      badge: product.category,
+      image: null,
+      price: null,
+      priceText,
+      url: product.officialUrl,
+      shop: product.maker ?? product.name,
+      cta: "公式サイトで見る",
+    };
+    return [{ ...product, key: product.id, item, sponsored: false }];
   });
+}
+
+/** 新形式（提携外の商品も並べ、判定・診断・詳しい比較表を持つ）か */
+export function isRichGuide(guide: BuyingGuide): boolean {
+  return (guide.schemaVersion ?? 1) >= 2;
 }
 
 export function guideRelatedArticles(guide: BuyingGuide, limit = 6): Article[] {

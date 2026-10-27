@@ -2,7 +2,8 @@ import { COMPARE_PUBLIC } from "@/lib/buying-guides";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { formatDate } from "@/lib/articles";
-import { getAllBuyingGuides, resolveProducts } from "@/lib/buying-guides";
+import { getAllBuyingGuides, guideShortName, resolveProducts } from "@/lib/buying-guides";
+import { PrMark, ProductVisual } from "@/components/compare/parts";
 
 export const metadata: Metadata = {
   title: "比較ガイド：AI時代の道具を公式情報で比べる",
@@ -22,21 +23,43 @@ export default function CompareIndexPage() {
       <p className="mt-3 max-w-[60ch] text-[14.5px] leading-[1.9] text-ink-soft">
         AIを使うための道具やサービスを、各社の公式情報と価格をもとに比べました。価格は定期的に確認し直しています。
       </p>
-      <p className="mt-3 inline-block rounded-full bg-surface px-2 py-0.5 text-[10.5px] font-bold text-muted">
-        本ページはプロモーションを含みます
+      <p className="mt-3 text-[11.5px] text-muted">
+        本ページはプロモーションを含みます（「PR」の付いたガイドに提携先の商品があります）。
       </p>
-      <ul className="mt-10 grid gap-3 sm:grid-cols-2">
+      <ul className="mt-10 grid gap-4 sm:grid-cols-2">
         {guides.map((guide) => {
-          const names = resolveProducts(guide).map((p) => p.item.name);
+          const products = resolveProducts(guide);
+          const shown = products.slice(0, 4);
+          const rest = products.length - shown.length;
+          const hasPr = products.some((p) => p.sponsored);
           return (
             <li key={guide.slug}>
               <Link
                 href={`/compare/${guide.slug}`}
-                className="group flex h-full flex-col gap-2.5 rounded-2xl border border-line p-5 transition-colors hover:border-ink"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line transition-colors hover:border-ink"
               >
-                <span className="index-num text-[11.5px] text-muted">{formatDate(guide.updatedAt)} 更新・{names.length}件を比較</span>
-                <span className="text-[17px] font-bold leading-snug text-ink group-hover:underline">{guide.title}</span>
-                <span className="line-clamp-2 text-[13px] leading-[1.7] text-ink-soft">{names.join(" / ")}</span>
+                {/* 比べている商品の写真（提携外のサービスは名前の札） */}
+                <span className="grid grid-cols-4 gap-px border-b border-line bg-line" aria-hidden>
+                  {shown.map((product) => (
+                    <ProductVisual key={product.key} product={product} compact className="aspect-square w-full border-0" />
+                  ))}
+                  {Array.from({ length: 4 - shown.length }, (_, i) => (
+                    <span key={`blank-${i}`} className="aspect-square bg-surface" />
+                  ))}
+                </span>
+                <span className="flex flex-1 flex-col gap-2 p-4">
+                  <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px] text-muted">
+                    <span className="index-num font-semibold text-ink">{products.length}件を比較</span>
+                    <span aria-hidden>・</span>
+                    <span className="index-num">{formatDate(guide.updatedAt)} 更新</span>
+                    {hasPr && <PrMark className="ml-auto" />}
+                  </span>
+                  <span className="text-[16.5px] font-bold leading-snug text-ink group-hover:underline">{guideShortName(guide)}</span>
+                  <span className="line-clamp-2 text-[12.5px] leading-[1.7] text-ink-soft">
+                    {products.map((p) => p.item.name).join(" / ")}
+                    {rest > 0 && ` ほか`}
+                  </span>
+                </span>
               </Link>
             </li>
           );

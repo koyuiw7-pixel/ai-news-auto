@@ -757,6 +757,10 @@ def main() -> int:
             guide = load_json(path, None)
             if not guide or (only and guide["slug"] not in only):
                 continue
+            # 手で作り直したガイド（提携外の商品も含む新形式）は、価格の自動書き換え・商品の自動削除をしない
+            if guide.get("editorial") == "manual" or guide.get("schemaVersion", 1) >= 2:
+                log(f"\n- {guide['slug']}: 手作業で管理するガイドなので自動更新しない")
+                continue
             checked = guide.get("priceCheckedAt")
             if args.max_age and checked and datetime.now(JST) - datetime.fromisoformat(checked) < timedelta(days=args.max_age):
                 continue
