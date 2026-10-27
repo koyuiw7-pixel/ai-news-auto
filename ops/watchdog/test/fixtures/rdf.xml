@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- テスト用の架空のフィード（RSS 1.0） -->
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://purl.org/rss/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel rdf:about="https://jp.example.test/">
+    <title>Example Japan</title>
+    <items><rdf:Seq><rdf:li rdf:resource="https://jp.example.test/news/1"/><rdf:li rdf:resource="https://jp.example.test/news/2"/></rdf:Seq></items>
+  </channel>
+  <item rdf:about="https://jp.example.test/news/1">
+    <title>新モデル「Zeta-2」を発表</title>
+    <link>https://jp.example.test/news/1</link>
+    <dc:date>2026-10-27T12:30:00+09:00</dc:date>
+  </item>
+  <item rdf:about="https://jp.example.test/news/2">
+    <title>お知らせ</title>
+    <link>https://jp.example.test/news/2</link>
+    <dc:date>2026-10-26T12:30:00+09:00</dc:date>
+  </item>
+</rdf:RDF>

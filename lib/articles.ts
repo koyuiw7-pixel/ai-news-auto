@@ -93,6 +93,8 @@ export type Article = {
   model: string;
   /** 主要企業の公式発表の速報（scripts/web_articles.py が付け、デプロイ直後に SNS へ即時投稿する） */
   breaking?: boolean;
+  /** 公式発表から掲載までの分数（デプロイの約3分を含む目安）。発表の時刻が確かで60分以内のときだけ入る */
+  speedMinutes?: number;
 };
 
 /** 本文から計算する、一覧で使う値（lib/article-index.mjs の derivedOf） */
@@ -140,6 +142,7 @@ export type ArticleSummary = Pick<
   | "updatedAt"
   | "relatedSlugs"
   | "thumbnail"
+  | "speedMinutes"
 > &
   ArticleDerived;
 
@@ -261,6 +264,14 @@ export function lastModifiedOf(article: ArticleSummary): string {
 }
 
 /** 直近 hours 時間以内に続報を足した記事か（一覧の「更新」バッジ） */
+/** 「公式発表から12分で掲載」。60分以内で時刻が確かな記事だけ（それ以外は null）。
+ *  変わっていく「〜分前」ではなく確定した数字なので、見出し（title / seoTitle）には入れずラベルにだけ使う */
+export function speedLabel(article: Pick<Article, "speedMinutes">): string | null {
+  const minutes = article.speedMinutes;
+  if (typeof minutes !== "number" || !Number.isFinite(minutes) || minutes <= 0 || minutes > 60) return null;
+  return `公式発表から${Math.round(minutes)}分で掲載`;
+}
+
 export function isRecentlyUpdated(article: ArticleSummary, hours = 48): boolean {
   if (!article.updatedAt) return false;
   const age = Date.now() - Date.parse(article.updatedAt);

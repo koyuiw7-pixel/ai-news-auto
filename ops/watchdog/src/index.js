@@ -1,6 +1,9 @@
 /**
- * サイソクの見張り番（Cloudflare Workers の Cron Triggers で10分ごとに動く）
+ * サイソクの見張り番（Cloudflare Workers の Cron Triggers で2分ごとに動く）
  *
+ * 0. 速報レーン（毎回）: 主要企業の公式ニュースルームの新着を見て、重要な発表ならすぐ記事作りを起動する（src/fastlane.js）
+ *
+ * 以下は10分ごと（UTC の分が10の倍数の回）:
  * 1. GitHub Actions の記事作り（auto_run.yml）が START_GAP_MIN 分以上始まっていなければ、自分で起動する
  *    - 6時間ごとの枠（UTC 0/6/12/18時台の最初）に当たらなければ mode=web（軽い回）
  * 2. 成功した回が ALERT_GAP_MIN 分以上無ければ、GitHub に Issue を立ててオーナーにメールで知らせる
@@ -8,6 +11,10 @@
  *
  * 必要な秘密情報: GH_TOKEN（このリポジトリの Actions の読み書きと Issues の書き込みだけを許可した細かい権限のトークン）
  */
+import { fastLane } from "./fastlane.js";
+// Python 側（scripts/fast_lane.py）と同じルールを使う。変えたら npx wrangler deploy し直す
+import rules from "../../../scripts/fast_lane_rules.json";
+
 const ALERT_TITLE = "【自動通知】記事の自動作成が止まっています";
 
 async function gh(env, path, init = {}) {
@@ -25,7 +32,7 @@ async function gh(env, path, init = {}) {
   return res.status === 204 ? null : res.json();
 }
 
-async function check(env, now = new Date()) {
+async function check(env, now = new Date(), opts = {}) {
   const runs = (await gh(env, `/actions/workflows/${env.WORKFLOW}/runs?per_page=20`)).workflow_runs || [];
   const minutesSince = (iso) => (now - new Date(iso)) / 60000;
   const latestStart = runs[0] ? minutesSince(runs[0].created_at) : Infinity;
@@ -35,7 +42,7 @@ async function check(env, now = new Date()) {
   const log = { latestStart: Math.round(latestStart), active, sinceSuccess: Math.round(sinceSuccess) };
 
   // 1. 起動
-  if (!active && latestStart >= Number(env.START_GAP_MIN)) {
+  if (!active && !opts.skipDispatch && latestStart >= Number(env.START_GAP_MIN)) {
     // 6時間ごとの重い回は、UTC 0/6/12/18時台の最初の30分だけ
     const full = now.getUTCHours() % 6 === 0 && now.getUTCMinutes() < 30;
     await gh(env, `/actions/workflows/${env.WORKFLOW}/dispatches`, {
@@ -76,11 +83,29 @@ async function check(env, now = new Date()) {
   return log;
 }
 
+async function tick(env, now) {
+  let fast = null;
+  try {
+    fast = await fastLane(env, now, { rules });
+    console.log(JSON.stringify({ fast }));
+  } catch (e) {
+    console.error(`fast: ${String(e)}`);
+  }
+  if (now.getUTCMinutes() % 10 !== 0) return;
+  try {
+    // 速報レーンがいま起動したなら、通常の回は重ねて起動しない
+    const l = await check(env, now, { skipDispatch: Boolean(fast?.dispatched) });
+    console.log(JSON.stringify({ watchdog: l }));
+  } catch (e) {
+    console.error(`watchdog: ${String(e)}`);
+  }
+}
+
 export default {
-  async scheduled(_event, env, ctx) {
-    ctx.waitUntil(check(env).then((l) => console.log(JSON.stringify(l))).catch((e) => console.error(String(e))));
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(tick(env, new Date(event.scheduledTime)));
   },
-  // 動作確認用（中身は見せない）
+  // 動作確認用（外から呼べる URL は無い。wrangler dev のときだけ使う。中身は見せない）
   async fetch(_req, env) {
     try {
       const l = await check(env);

@@ -117,6 +117,10 @@ UPDATE_PROMPT = """# 既に公開している記事
   既存の要点の事実と新しい一次情報の事実以外は書かない。"""
 
 
+# 同じ話題かの判定に使うモデルの段（速報レーンは quality にする。web_articles.py が切り替える）
+CHECK_TIER = "bulk"
+
+
 def _parse_time(value: str) -> datetime | None:
     try:
         when = datetime.fromisoformat(str(value or "").replace("Z", "+00:00"))
@@ -163,7 +167,7 @@ def check_same_topic(article: dict, item: dict, text: str) -> dict:
         new_title=item["title"],
         new_text=text[:4000],
     )
-    data, model = llm.generate_json(CHECK_SYSTEM, prompt, CHECK_SCHEMA, temperature=0.1, max_output_tokens=1024, tier="bulk")
+    data, model = llm.generate_json(CHECK_SYSTEM, prompt, CHECK_SCHEMA, temperature=0.1, max_output_tokens=1024, tier=CHECK_TIER)
     return {
         "same_topic": bool(data.get("same_topic")),
         "adds_new_facts": bool(data.get("adds_new_facts")),

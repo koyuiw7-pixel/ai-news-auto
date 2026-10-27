@@ -1,0 +1,25 @@
+{
+  "_doc": "速報レーンの共通ルール。見張り番の Worker（ops/watchdog/src/fastlane.js）と scripts/fast_lane.py が同じ判定をする。判定: 除外語なし かつ（主要な製品名＋発表の語/製品名で始まる見出し、または 発表の語だけ＝公式ニュースルームの発表）。ai_only の発信元は AI の語か製品名が要る。正規表現は Python と JavaScript の両方で動く書き方だけ（大文字小文字は区別しない）。変えたら ops/watchdog で npm test → npx wrangler deploy",
+  "daily_max": 10,
+  "max_age_hours": 12,
+  "max_per_run": 1,
+  "max_dispatches": 3,
+  "sources": [
+    {"slug": "openai-news", "name": "OpenAI公式ブログ", "type": "rss", "url": "https://openai.com/news/rss.xml", "entity": "openai"},
+    {"slug": "anthropic-news", "name": "Anthropic公式ニュース", "type": "html", "url": "https://www.anthropic.com/news", "link_re": "^/news/[a-z0-9][a-z0-9-]+$", "entity": "anthropic"},
+    {"slug": "google-ai-blog", "name": "Google公式ブログ（AI）", "type": "rss", "url": "https://blog.google/technology/ai/rss/", "entity": "google"},
+    {"slug": "google-gemini-blog", "name": "Google公式ブログ（Gemini）", "type": "rss", "url": "https://blog.google/products/gemini/rss/", "entity": "google"},
+    {"slug": "google-deepmind-blog", "name": "Google DeepMind公式ブログ", "type": "rss", "url": "https://deepmind.google/blog/rss.xml", "entity": "google"},
+    {"slug": "google-developers-blog", "name": "Google Developers Blog", "type": "rss", "url": "https://developers.googleblog.com/feeds/posts/default", "entity": "google", "ai_only": true},
+    {"slug": "microsoft-blog", "name": "Microsoft公式ブログ", "type": "rss", "url": "https://blogs.microsoft.com/feed/", "entity": "microsoft", "ai_only": true},
+    {"slug": "microsoft-source", "name": "Microsoft Source（ニュースルーム）", "type": "rss", "url": "https://news.microsoft.com/source/feed/", "entity": "microsoft", "ai_only": true},
+    {"slug": "nvidia-blog", "name": "NVIDIA公式ブログ", "type": "rss", "url": "https://blogs.nvidia.com/feed/", "entity": "nvidia"},
+    {"slug": "meta-newsroom", "name": "Metaニュースルーム", "type": "rss", "url": "https://about.fb.com/news/feed/", "entity": "meta", "ai_only": true},
+    {"slug": "apple-newsroom-jp", "name": "Apple Newsroom（日本）", "type": "rss", "url": "https://www.apple.com/jp/newsroom/rss-feed.rss", "entity": "apple", "ai_only": true}
+  ],
+  "model_re": "GPT[-‐ ]?\\d|(?<![A-Za-z])o[1-9](?:-mini|-pro)?(?![A-Za-z])|ChatGPT|(?<![A-Za-z])Sora(?![A-Za-z])|Codex|Claude\\s?(?:\\d|Opus|Sonnet|Haiku|Code)|Gemini\\s?(?:\\d|Ultra|Pro|Flash|Nano|Live|API|CLI|app)|Gemma\\s?\\d|(?<![A-Za-z])Veo\\s?\\d|Imagen\\s?\\d|Genie\\s?\\d|NotebookLM|Project Astra|Alpha(?:Fold|Evolve|Proof|Genome)|Llama\\s?\\d|(?<![A-Za-z])Grok\\s?\\d|Apple Intelligence|iPhone\\s?\\d{2}|Pixel\\s?\\d{2}|Nemotron|(?<![A-Za-z])Phi-\\d|MAI-\\d|Copilot",
+  "head_re": "^\\s*(?:Introducing\\s+|Meet\\s+|新しい|新)?[A-Za-z]*(?:GPT|ChatGPT|Claude|Gemini|Gemma|Llama|Grok|Sora|Veo|Codex|o\\d)(?![a-z])",
+  "launch_re": "introduc|launch|announc|unveil|releas|now available|available (?:now|today|in|to|for|on|starting)|general(?:ly)? availab|(?<![A-Za-z])GA(?![A-Za-z])|rolling out|rolls out|coming to|comes to|arriv(?:e|es|ing) (?:in|on|to)|expands? to|^\\s*new\\s|new model|open[- ]sourc|open[- ]weight|pricing|price|cheaper|preview|(?<![A-Za-z])beta(?![A-Za-z])|upgrade|(?<![A-Za-z])IPO(?![A-Za-z])|initial public offering|acquir|発表|提供開始|一般提供|公開|リリース|新機能|新モデル|搭載|値下げ|料金|登場|発売|開始",
+  "exclude_re": "webinar|ウェビナー|seminar|セミナー|meetup|hackathon|ハッカソン|register now|join us|livestream|ライブ配信|イベント開催|開催のお知らせ|参加者募集|登壇|出展|展示会|podcast|episode|GFN Thursday|GeForce NOW|live updates|hiring|careers|(?<![A-Za-z])joins (?:the |our )?(?:board|team|trust)|appoint|customer stor|case study|success stor|(?<![A-Za-z])helps(?![A-Za-z])|how [A-Za-z0-9 .&'’-]{1,40} (?:uses|is using|used|built|transformed)|(?<![A-Za-z])tips(?![A-Za-z])|ways to|things to know|best practices|earnings|quarterly results|dividend|決算|award|受賞|grant(?:s|ees)? |fellowship|scholarship|donat|office opening|opens? (?:a |an |its |new )?(?:office|offices)|(?<![A-Za-z])election|midterm|testimony|congress|人事|採用|募集|キャンペーン|プレゼント|事例",
+  "ai_re": "(?<![A-Za-z])(?:AI|A\\.I\\.|LLMs?|GPT[-\\w]*|Gemini|Gemma|Copilot|Claude|ChatGPT|agents?|agentic|machine learning|deep learning|neural|generative|models?|inference|Llama|NVIDIA|GPU|robot\\w*)(?![A-Za-z])|人工知能|生成AI|機械学習|深層学習|大規模言語|言語モデル|エージェント|チャットボット|ロボット|推論|Apple Intelligence"
+}

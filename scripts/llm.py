@@ -408,7 +408,8 @@ def _cli_env() -> dict:
     for key in list(env):
         if key == "CLAUDE_CODE_OAUTH_TOKEN":
             continue
-        if key == "CLAUDECODE" or key.startswith(("CLAUDE_CODE_", "CLAUDE_AGENT_SDK_")) or key in ("CLAUDE_PID", "CLAUDE_EFFORT"):
+        # FAST_LANE_GH_TOKEN（速報レーンの確認用の GitHub トークン）も渡さない
+        if key == "CLAUDECODE" or key.startswith(("CLAUDE_CODE_", "CLAUDE_AGENT_SDK_")) or key in ("CLAUDE_PID", "CLAUDE_EFFORT", "FAST_LANE_GH_TOKEN"):
             env.pop(key)
         elif nested and key == "ANTHROPIC_BASE_URL":
             env.pop(key)

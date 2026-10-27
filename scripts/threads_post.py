@@ -134,9 +134,21 @@ def compose(article: dict, recent: list[str] | None = None, breaking: bool = Fal
     if not breaking and not article.get("breaking") and lines[0].startswith("【速報】"):
         # 速報扱いでない記事に【速報】とは書かない（煽りに見えるため）
         lines[0] = lines[0].removeprefix("【速報】").strip() or lines[0]
-    if breaking and not lines[0].startswith("【速報】"):
+    if breaking and speed_line(article):
+        # 速さが確かな速報は1行目を「【速報】発表から12分で掲載」にする（数字は記事の speedMinutes。見出しには入れない）
+        lines[0] = lines[0].removeprefix("【速報】").strip()
+        lines = [speed_line(article)] + [line for line in lines if line]
+    elif breaking and not lines[0].startswith("【速報】"):
         lines[0] = f"【速報】{lines[0]}"
     return "\n".join(lines)[:MAX_CHARS]
+
+
+def speed_line(article: dict) -> str:
+    """速報の投稿の1行目。公式発表から掲載まで60分以内（記事の speedMinutes があるとき）だけ"""
+    minutes = article.get("speedMinutes")
+    if isinstance(minutes, (int, float)) and 0 < minutes <= 60:
+        return f"【速報】発表から{round(minutes)}分で掲載"
+    return ""
 
 
 def standalone_lines(article: dict, recent: list[str], breaking: bool) -> list[str]:

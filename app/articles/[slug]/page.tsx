@@ -38,6 +38,7 @@ import {
   PRERENDER_LIMIT,
   sourceHref,
   sourceLabel,
+  speedLabel,
   tagHref,
 } from "@/lib/articles";
 import { Highlight } from "@/lib/highlight";
@@ -280,6 +281,11 @@ export default async function ArticlePage({ params }: Props) {
             <span className="rounded-full border border-line-strong px-2 py-[1px] text-[11px] font-bold text-ink-soft">
               {isRoundup ? `まとめ ${article.sources?.length ?? 0}本` : "公式発表"}
             </span>
+            {speedLabel(article) && (
+              <span className="rounded-full border border-live/40 px-2 py-[1px] text-[11px] font-bold text-live">
+                {speedLabel(article)}
+              </span>
+            )}
             <span className="text-muted">
               <RelTime iso={article.publishedAt} className="index-num font-semibold text-ink" />
               <span className="index-num ml-1.5">（{formatDate(article.publishedAt)}）</span>

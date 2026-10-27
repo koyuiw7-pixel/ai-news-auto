@@ -2,7 +2,7 @@ import Thumb from "@/components/Thumb";
 import Link from "next/link";
 import Morph from "@/components/Morph";
 import Image from "next/image";
-import { coverPath, formatDate, isRecentlyUpdated, sourceLabel, type ArticleSummary } from "@/lib/articles";
+import { coverPath, formatDate, isRecentlyUpdated, sourceLabel, speedLabel, type ArticleSummary } from "@/lib/articles";
 import { thumbSource } from "@/lib/companies";
 import { Highlight } from "@/lib/highlight";
 
@@ -21,6 +21,7 @@ export default function ArticleCard({ article, priority, morph = false }: Props)
   const isRoundup = article.type === "roundup";
   const sources = article.sourceCount;
   const cover = coverPath(article);
+  const speed = speedLabel(article);
 
   return (
     <article className="group">
@@ -74,6 +75,9 @@ export default function ArticleCard({ article, priority, morph = false }: Props)
             </time>
             {isRecentlyUpdated(article) && (
               <span className="rounded-full bg-go-soft px-2 py-[1px] text-[10.5px] font-bold text-go">更新</span>
+            )}
+            {speed && (
+              <span className="rounded-full border border-live/40 px-2 py-[1px] text-[10.5px] font-bold text-live">{speed}</span>
             )}
           </div>
 

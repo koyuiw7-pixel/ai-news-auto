@@ -18,6 +18,13 @@
 大きなニュース（主要企業の新モデル・新製品の公式発表）は実行の最初に tier=quality で作り、最大3回試行。
   作れなければ processed にせず、3回の実行まで再挑戦する。同じ話題の派生の発表（GitHub Copilot 対応など）は本家の記事への続報に回す。
 配信（PR TIMES など）は生成前に本文の厚み・お知らせ系を足切りし、1回の実行で --max-wire 本までしか生成に回さない。
+
+速報レーン（--fast-url）: 見張り番の Worker が主要企業の公式発表を見つけたら、その URL だけを大きなニュースとして
+最初に作り、ほかのレーン（話題・公式フィード・幅広い話題）は回さない。事実確認も quality の段で行い待たせない。
+結果は state/fast_lane.json に書く（Worker が受領を確認する）。詳しくは scripts/fast_lane.py
+  python3 scripts/web_articles.py --fast-url https://openai.com/index/xxx --fast-meta '[{"url": "...", "detectedAt": "..."}]'
+通常の回は、速報レーンの実行が待機していると今の記事を作り終えたところで早めに終える（fast_lane.fast_waiting）。
+記事には sourcePublishedAt（発表の時刻）と detectedAt（こちらが見つけた時刻）を残す（scripts/latency.py が速さを集計）。
 """
 
 from __future__ import annotations
@@ -35,6 +42,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import archive  # noqa: E402
 import dedupe  # noqa: E402
+import fast_lane  # noqa: E402
 import feeds  # noqa: E402
 import followup  # noqa: E402
 import llm  # noqa: E402
@@ -708,6 +716,199 @@ def lane_order(lanes: dict[str, list[dict]]) -> list[str]:
     return (["ai"] if "ai" in lanes else []) + broad
 
 
+# --------------------------------------------------------------------------- #
+# 速報レーン
+# --------------------------------------------------------------------------- #
+
+
+def _iso(dt: datetime | None) -> str:
+    return dt.astimezone(timezone.utc).isoformat(timespec="seconds") if dt else ""
+
+
+# 掲載＝サイトで開けるようになるまで。記事を書き出してからデプロイ（実測2〜3分）を足した目安
+DEPLOY_ALLOWANCE_MIN = 3
+SPEED_LABEL_MAX_MIN = 60
+
+
+def reliable_published(published: datetime | None, detected: datetime | None, guessed: bool = False) -> bool:
+    """発表の時刻が確かか。検知の時刻で代用したもの・日付だけ（UTC 00:00:00）のものは確かでない。
+    ただし 00:00:00 でも、検知がその30分以内なら本当の時刻とみなす（OpenAI は 09:00 JST ちょうどに出すことがある）"""
+    if not isinstance(published, datetime) or guessed:
+        return False
+    if published.astimezone(timezone.utc).strftime("%H:%M:%S") != "00:00:00":
+        return True
+    return bool(detected) and timedelta(0) <= detected - published <= timedelta(minutes=30)
+
+
+def stamp_times(record: dict, item: dict, run_detected_at: datetime) -> None:
+    """速さの計測用: 発表の時刻（sourcePublishedAt）と、こちらが見つけた時刻（detectedAt）。
+    通常の回の detectedAt は、その回がフィードを読んだ時刻。
+    発表の時刻が確かで、掲載まで60分以内なら speedMinutes（「公式発表から12分で掲載」のラベル・速報の投稿文に使う）"""
+    published = item.get("published_at")
+    detected = item.get("detected_at") or run_detected_at
+    if isinstance(published, datetime) and not item.get("published_guessed"):
+        record["sourcePublishedAt"] = _iso(published)
+    record["detectedAt"] = _iso(detected)
+    if item.get("fast"):
+        record["fastLane"] = True
+    if reliable_published(published, detected, bool(item.get("published_guessed"))):
+        elapsed = (datetime.now(timezone.utc) - published).total_seconds() / 60
+        minutes = int(-(-elapsed // 1)) + DEPLOY_ALLOWANCE_MIN  # 切り上げ
+        if 0 < minutes <= SPEED_LABEL_MAX_MIN:
+            record["speedMinutes"] = minutes
+
+
+def latency_note(record: dict) -> str:
+    def minutes(a: str, b: str) -> str:
+        try:
+            return f"{(datetime.fromisoformat(b) - datetime.fromisoformat(a)).total_seconds() / 60:.0f}分"
+        except (TypeError, ValueError):
+            return "不明"
+
+    now = datetime.now(timezone.utc).isoformat()
+    speed = f" / ラベル「公式発表から{record['speedMinutes']}分で掲載」" if record.get("speedMinutes") else " / 速さのラベルなし"
+    return (
+        f"発表→書き出し {minutes(record.get('sourcePublishedAt', ''), now)} / 検知→書き出し {minutes(record.get('detectedAt', ''), now)}{speed}"
+    )
+
+
+def _guess_source(url: str) -> str:
+    host = urllib.parse.urlsplit(url).netloc.lower().removeprefix("www.")
+    for src in fast_lane.rules()["sources"]:
+        if urllib.parse.urlsplit(src["url"]).netloc.lower().removeprefix("www.") == host:
+            return src["slug"]
+    return ""
+
+
+def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime) -> tuple[list[dict], dict]:
+    """速報レーンの候補（feeds.parse_feed と同じ形）と、作る前に決まった結果 {id: result}"""
+    fast_lane.register_sources(feeds)
+    metas = fast_lane.parse_meta(meta_raw)
+    by_url = {feeds.item_id(meta["url"]): meta for meta in metas}
+    ordered = list(dict.fromkeys([*urls, *(meta["url"] for meta in metas)]))[:3]
+    acks = fast_lane.load_acks()
+    cap = int(fast_lane.rules()["daily_max"]) + 2  # Worker の上限＋手動の余裕
+    items: list[dict] = []
+    results: dict[str, dict] = {}
+    for url in ordered:
+        iid = feeds.item_id(url)
+        meta = by_url.get(iid, {})
+        key = str(meta.get("id") or iid)
+        detected = fast_lane.parse_time(meta.get("detectedAt")) or now
+        base = {"url": url, "title": str(meta.get("title") or "")[:200], "source": meta.get("source", ""), "detectedAt": _iso(detected)}
+        if not fast_lane.allowed_url(url):
+            log(f"[fast] 対象外の URL のため処理しません: {url}")
+            results[key] = {**base, "outcome": "skipped", "reason": "対象外のURL"}
+            continue
+        if fast_lane.created_today(acks) >= cap:
+            log(f"[fast] 今日の速報レーンの上限（{cap}本）に達したため通常の回に任せます: {url}")
+            results[key] = {**base, "outcome": "capped", "reason": f"1日の上限 {cap}"}
+            continue
+        slug = str(meta.get("source") or _guess_source(url))
+        feed = feeds.FEEDS_BY_SLUG.get(slug) or {}
+        item = None
+        if feed and not feed.get("fast_only"):
+            try:
+                item = next((i for i in feeds.parse_feed(feed) if i["id"] == iid), None)
+            except Exception as error:  # noqa: BLE001
+                log(f"[fast] フィードの取得に失敗（{str(error)[:80]}）。記事ページから作ります")
+        # Worker が読んだ本文（GitHub Actions からは openai.com などが 403 で読めない）。十分な長さならページを読み直さない
+        worker_text = str(meta.get("text") or "")[: feeds.TEXT_CAP]
+        page = None
+        if len(worker_text) >= 2000:
+            page = {"text": worker_text, "image": str(meta.get("image") or "") or None, "title": "", "description": "", "published": ""}
+            log(f"[fast] Worker が読んだ本文を使います（{len(worker_text)}字）")
+        elif item is None or not item.get("published_at"):
+            try:
+                page = feeds.fetch_article_text(url)
+            except Exception as error:  # noqa: BLE001
+                log(f"[fast] 記事ページの取得に失敗: {str(error)[:120]}")
+        if item is None:
+            item = {
+                "id": iid, "url": url, "title": base["title"] or (page or {}).get("title", ""),
+                "summary": (page or {}).get("description", "")[:600], "content": "",
+                "published_at": None, "source_name": feed.get("name") or urllib.parse.urlsplit(url).netloc,
+                "source_slug": slug or "fast", "lang": feed.get("lang", "en"), "image": None, "priority": 1,
+            }
+        if len(worker_text) > len(item.get("content") or ""):
+            item["content"] = worker_text
+        if meta.get("image") and not item.get("image"):
+            item["image"] = str(meta["image"])
+        published = (
+            item.get("published_at")
+            or fast_lane.parse_time(meta.get("publishedAt"))
+            or fast_lane.parse_time((page or {}).get("published"))
+        )
+        # 発表の時刻が分からなければ検知の時刻で代用する（速さのラベルは出さない）
+        item["published_at"] = published or detected
+        item["published_guessed"] = published is None
+        item.update({"fast": True, "fast_key": key, "detected_at": detected})
+        if page:
+            item["_page"] = page
+        if not item["title"]:
+            log(f"[fast] 見出しが取れないため処理しません: {url}")
+            results[key] = {**base, "outcome": "retry", "reason": "見出しが取れない"}
+            continue
+        done = state["processed_web"].get(iid) or {}
+        if done.get("skipped") and str(done.get("reason", "")).startswith(("short text", "major gave up")) and len(
+            item.get("content") or ""
+        ) >= MIN_TEXT_CHARS:
+            # 通常の回が本文を読めずに見送った記事（openai.com の 403 など）。Worker の本文で作り直す
+            log(f"[fast] 通常の回では本文が読めず見送っていた記事を、Worker の本文で作り直します（{done.get('reason')}）")
+            del state["processed_web"][iid]
+            state["major_tries"].pop(iid, None)
+        if iid in state["processed_web"]:
+            done = state["processed_web"][iid]
+            results[key] = {
+                **base, "outcome": "duplicate", "slug": done.get("slug") or done.get("updated") or "",
+                "reason": "通常の回などで処理済み",
+            }
+        items.append(item)
+        ok, why = fast_lane.relevant(item["title"], item["source_slug"])
+        log(
+            f"[fast] {item['source_name']}: {item['title'][:80]}（判定 {why if ok else why + '・手動の指定として続ける'} / "
+            f"発表 {'不明' if item['published_guessed'] else format(item['published_at'].astimezone(JST), '%m-%d %H:%M')} / "
+            f"検知 {detected.astimezone(JST):%H:%M:%S}）"
+        )
+    return items, results
+
+
+def write_fast_results(items: list[dict], results: dict, state: dict, run_status: dict, now: datetime) -> None:
+    """state/fast_lane.json に結果を書く（Worker がこれを見て再起動をやめる）"""
+    import os  # noqa: PLC0415
+
+    for item in items:
+        key = item["fast_key"]
+        if key in results:
+            continue
+        done = state["processed_web"].get(item["id"]) or {}
+        status = run_status.get(item["id"], ("",))
+        if done.get("slug"):
+            outcome, slug, reason = "created", done["slug"], ""
+        elif done.get("updated"):
+            outcome, slug, reason = "updated", done["updated"], "既存記事に続報を追加"
+        elif done.get("skipped"):
+            reason = str(done.get("reason", ""))
+            outcome = "duplicate" if reason.startswith("dedupe") else "skipped"
+            slug = ""
+        else:
+            outcome, slug = "retry", ""
+            reason = "作れなかった（次の起動で再挑戦）" if status[0] == "pending" else "今回は処理できなかった"
+        results[key] = {
+            "url": item["url"], "title": item["title"][:200], "source": item["source_slug"],
+            "outcome": outcome, "slug": slug, "reason": reason[:200], "detectedAt": _iso(item.get("detected_at")),
+            "sourcePublishedAt": _iso(item.get("published_at")),
+        }
+    if not results:
+        return
+    data = fast_lane.load_acks()
+    finished = _iso(datetime.now(timezone.utc))
+    for key, result in results.items():
+        data["items"][key] = {**result, "startedAt": _iso(now), "finishedAt": finished, "run": os.environ.get("GITHUB_RUN_ID", "")}
+        log("[fast] 結果: " + " ".join(x for x in (result['outcome'], result.get('slug'), result.get('reason')) if x))
+    fast_lane.save_acks(data)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--max", type=int, default=5, help="この実行で生成する AI（公式ブログ）記事の最大数")
@@ -725,18 +926,30 @@ def main() -> int:
     parser.add_argument("--max-updates", type=int, default=3, help="この実行で既存記事に足す続報の最大数（--daily-cap には数えない）")
     parser.add_argument("--max-major", type=int, default=2, help="この実行で先に処理する大きなニュースの最大数（tier=quality。0=使わない）")
     parser.add_argument("--max-wire", type=int, default=2, help="この実行で配信（PR TIMES 等）を生成に回す最大数")
+    parser.add_argument("--fast-url", action="append", default=[], help="速報レーン: この URL だけを大きなニュースとして最初に作る（複数可）")
+    parser.add_argument("--fast-meta", default="", help="速報レーン: Worker が渡す JSON（id・title・source・publishedAt・detectedAt）")
     args = parser.parse_args()
+    args.fast_url = [u.strip() for u in args.fast_url if u and u.strip()]
+    fast_mode = bool(args.fast_url or fast_lane.parse_meta(args.fast_meta))
 
     llm._load_env_local()
     state = m.load_state()
     state.setdefault("processed_web", {})
     state.setdefault("failed_web", {})
     state.setdefault("major_tries", {})
+    run_detected_at = datetime.now(timezone.utc)
+
+    if fast_mode:
+        # 速報レーン: 待たせないよう、生成・事実確認・続報の判定をすべて quality の段で行い、ほかのレーンは回さない
+        quality.CHECK_TIER = "quality"
+        followup.CHECK_TIER = "quality"
+        args.tier = "quality"
+        args.trends = args.max = args.max_broad = 0
 
     done_today = generated_today(state)
     remaining = (args.daily_cap - done_today) if args.daily_cap else 10**6
     cap_reached = remaining <= 0
-    if cap_reached and args.max_major <= 0:
+    if cap_reached and args.max_major <= 0 and not fast_mode:
         log(f"[info] 今日はすでに {done_today} 本生成済み（上限 {args.daily_cap}）")
         return 0
     if cap_reached:
@@ -849,10 +1062,15 @@ def main() -> int:
 
     ai_items: list[dict] = []
     broad_items: list[dict] = []
-    if (ai_limit > 0 or args.max_major > 0) and args.section in ("ai", "all"):
+    fast_items: list[dict] = []
+    fast_results: dict[str, dict] = {}
+    if fast_mode:
+        fast_items, fast_results = build_fast_items(args.fast_url, args.fast_meta, state, run_detected_at)
+        args.max_major = len(fast_items)
+    elif (ai_limit > 0 or args.max_major > 0) and args.section in ("ai", "all"):
         selected = [f for f in feeds.FEEDS if not args.source or f["slug"] in args.source]
         ai_items = usable(feeds.collect(args.days, state, selected)) if selected else []
-    if broad_limit > 0 or (args.max_major > 0 and args.section in ("broad", "all")):
+    if not fast_mode and (broad_limit > 0 or (args.max_major > 0 and args.section in ("broad", "all"))):
         selected = [f for f in feeds.BROAD_FEEDS if not args.source or f["slug"] in args.source]
         broad_items = tag_sections(usable(feeds.collect(args.days, state, selected))) if selected else []
     if args.only:
@@ -865,6 +1083,8 @@ def main() -> int:
         key=lambda i: (feeds.source_rank(i), -i["published_at"].timestamp()),
     )
     majors = [i for n, i in enumerate(majors) if i["id"] not in {j["id"] for j in majors[:n]}]  # 同じ URL は AI 側を残す
+    if fast_mode:
+        majors = fast_items
     if not ai_limit:
         ai_items = []
     if not broad_limit:
@@ -987,7 +1207,14 @@ def main() -> int:
         if time_left() < EST_SEC_PER_ARTICLE:
             log("[info] 時間の上限が近いため、残りは次回に回します")
             return True
+        if not fast_mode and fast_lane.fast_waiting():
+            log("[info] 速報レーンの実行が待っているため、ここで終えて譲ります（残りは次回）")
+            return True
         return False
+
+    def major_tier() -> str:
+        """大きなニュースの段。速報レーンで quality が尽きていたら bulk で作る（出さないよりよい）"""
+        return "bulk" if fast_mode and llm.all_exhausted("quality") else "quality"
 
     def generate(system: str, prompt: str, schema: dict, item_id: str, tier: str):
         try:
@@ -1163,9 +1390,10 @@ def main() -> int:
         if not major:
             per_feed[item["source_slug"]] = per_feed.get(item["source_slug"], 0) + 1
 
-        log(f"\n[{'major' if major else lane}] {item['source_name']}: {item['title'][:90]}")
+        log(f"\n[{'fast' if item.get('fast') else ('major' if major else lane)}] {item['source_name']}: {item['title'][:90]}")
+        page = item.pop("_page", None)
         try:
-            page = feeds.fetch_article_text(item["url"])
+            page = page or feeds.fetch_article_text(item["url"])
         except Exception as error:  # noqa: BLE001
             log(f"   [warn] 本文の取得に失敗（{str(error)[:80]}）。フィードの本文を使います")
             page = {"text": "", "image": None}
@@ -1219,10 +1447,10 @@ def main() -> int:
 
         started = time.time()
         if major:
-            log(f"   [major] tier=quality / 最大{MAJOR_ATTEMPTS}回試行（これまでの失敗 {state['major_tries'].get(item['id'], 0)} 回）")
+            log(f"   [major] tier={major_tier()} / 最大{MAJOR_ATTEMPTS}回試行（これまでの失敗 {state['major_tries'].get(item['id'], 0)} 回）")
         status, record, model_name, info = gated(
             item, kind, system, prompt, schema, text, build, archive.check_block(related),
-            tier="quality" if major else None, attempts=MAJOR_ATTEMPTS if major else 2,
+            tier=major_tier() if major else None, attempts=MAJOR_ATTEMPTS if major else 2,
         )
         if status != "ok":
             if status in ("skip", "reject"):
@@ -1236,9 +1464,11 @@ def main() -> int:
             if status in ("skip", "reject"):
                 mark(state, item, skipped=True, reason=f"{'quality: ' if status == 'reject' else ''}{info}"[:200], model=model_name)
             return
-        # 速報（scripts/breaking_post.py がデプロイ直後に SNS へ出す）
-        if major and is_breaking(item):
+        # 速報（scripts/breaking_post.py がデプロイ直後に SNS へ出す）。
+        # 速報レーンの記事は Worker が主要企業の公式発表と判定したものなので、必ず速報にする（公開したらすぐ SNS へ）
+        if major and (is_breaking(item) or item.get("fast")):
             record["breaking"] = True
+        stamp_times(record, item, run_detected_at)
         path = m.write_article(record)
         recent.add(record["title"], record["sourceUrl"], record.get("keywords"))
         touched.add(record["slug"])
@@ -1253,15 +1483,20 @@ def main() -> int:
             f"score {record.get('qualityScore')} / {model_name} / {time.time() - started:.0f}s"
             f"{' / 過去記事 ' + str(len(record['relatedSlugs'])) + '本' if record.get('relatedSlugs') else ''})"
         )
+        if item.get("fast"):
+            log(f"   [fast] {latency_note(record)}（公開はこのあとのデプロイ・約3分）")
 
     try:
         # 大きなニュース（主要企業の新モデル・新製品）は、どのレーンよりも先に quality で作る
         for item in majors:
             if created["major"] >= args.max_major or time_up():
                 break
-            if llm.all_exhausted("quality"):
+            if llm.all_exhausted("quality") and not (fast_mode and not llm.all_exhausted("bulk")):
                 log("[major] quality のモデルが使えないため、大きなニュースは次回に回します（processed にしない）")
                 break
+            if item.get("fast") and item["id"] in state["processed_web"]:
+                log(f"\n[fast] すでに処理済み: {item['title'][:80]}")
+                continue
             action, target = pick(item, True, major=True)
             if action != "take":
                 continue
@@ -1339,6 +1574,7 @@ def main() -> int:
                 rejected += status == "reject"
                 run_status[q["id"]] = ("failed", 2)
                 continue
+            stamp_times(record, q, run_detected_at)
             path = m.write_article(record)
             recent.add(record["title"], record["sourceUrl"], record.get("keywords"))
             touched.add(record["slug"])
@@ -1380,10 +1616,14 @@ def main() -> int:
                     continue
                 process_web(item, lane, target)
     finally:
+        if fast_mode:
+            write_fast_results(fast_items, fast_results, state, run_status, run_detected_at)
         prune_processed(state)
         # 再挑戦の記録も古いものは消す（processed になったもの・対象期間外のもの）
         for key in list(state["major_tries"]):
-            if key in state["processed_web"] or (args.max_major > 0 and key not in major_ids and not args.only and not args.source):
+            if key in state["processed_web"] or (
+                args.max_major > 0 and key not in major_ids and not args.only and not args.source and not fast_mode
+            ):
                 state["major_tries"].pop(key, None)
         m.save_state(state)
         trends.remove_from_queue(used_queue_ids)

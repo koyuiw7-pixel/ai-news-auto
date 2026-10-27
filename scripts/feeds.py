@@ -436,7 +436,7 @@ class _Extractor(HTMLParser):
         attrs = dict(attrs)
         if tag == "meta":
             key = (attrs.get("property") or attrs.get("name") or "").lower()
-            if key in {"og:image", "og:title", "og:description", "description", "twitter:image"} and attrs.get("content"):
+            if key in {"og:image", "og:title", "og:description", "description", "twitter:image", "article:published_time"} and attrs.get("content"):
                 self.meta.setdefault(key, attrs["content"].strip())
             return
         if tag in VOID_TAGS:
@@ -515,17 +515,19 @@ def _fetch_via_reader(url: str) -> dict:
     m = re.search(r"^Title:\s*(.+)$", body, re.M)
     if m:
         title = m.group(1).strip()
+    m = re.search(r"^Published Time:\s*(.+)$", body, re.M)
+    published = m.group(1).strip() if m else ""
     if "Markdown Content:" in body:
         body = body.split("Markdown Content:", 1)[1]
     # 画像・リンクの記法を外して読みやすい本文にする
     body = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", body)
     body = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", body)
     text = _collapse(body)
-    return {"text": text[:TEXT_CAP], "image": None, "title": title, "description": "", "final_url": url}
+    return {"text": text[:TEXT_CAP], "image": None, "title": title, "description": "", "final_url": url, "published": published}
 
 
 def fetch_article_text(url: str) -> dict:
-    """{"text", "image", "title", "description", "final_url"}。取得失敗時は例外。
+    """{"text", "image", "title", "description", "final_url", "published"}。取得失敗時は例外。
     直接取れない・中身が薄いときは読み取りサービス経由で取り直す（一次情報を落とさないため）。"""
     try:
         direct = _fetch_direct(url)
@@ -539,6 +541,7 @@ def fetch_article_text(url: str) -> dict:
             if direct:
                 via["image"] = direct.get("image")
                 via["description"] = direct.get("description", "")
+                via["published"] = via.get("published") or direct.get("published", "")
             return via
     except Exception:  # noqa: BLE001
         pass
@@ -566,6 +569,7 @@ def _fetch_direct(url: str) -> dict:
         "title": parser.meta.get("og:title", ""),
         "description": parser.meta.get("og:description") or parser.meta.get("description", ""),
         "final_url": final_url,
+        "published": parser.meta.get("article:published_time", ""),
     }
 
 

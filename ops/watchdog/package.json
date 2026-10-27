@@ -1,0 +1,10 @@
+{
+  "name": "saisoku-watchdog",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\"",
+    "live": "node test/live_check.mjs",
+    "deploy": "npx wrangler deploy --config wrangler.toml"
+  }
+}

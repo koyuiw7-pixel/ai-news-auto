@@ -1,4 +1,6 @@
 name: Auto Article Pipeline
+# 速報レーンの回は「速報レーン <URL>」と表示する（見張り番の Worker がこの名前で自分の起動を見分ける）
+run-name: ${{ (inputs.fast_url || '') != '' && format('速報レーン {0}', inputs.fast_url) || format('Auto Article Pipeline ({0})', inputs.mode || github.event_name) }}
 
 on:
   schedule:
@@ -22,6 +24,15 @@ on:
         description: "何日前までの動画を対象にするか"
         required: false
         default: "10"
+      # 速報レーン（ops/watchdog の Worker が主要企業の公式発表を見つけたときに使う）。この記事だけを最初に作ってすぐデプロイする
+      fast_url:
+        description: "速報レーン: すぐ記事にする公式発表の URL（空なら通常の回）"
+        required: false
+        default: ""
+      fast_meta:
+        description: "速報レーン: Worker が渡す JSON（見出し・発表時刻・検知時刻・本文）"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -39,8 +50,11 @@ jobs:
     timeout-minutes: 60
 
     steps:
+      # 起動した時点ではなく「いまの main」を取る（前の回の待ちのあいだに進んだ記事・state を見て二重に作らないため）
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          ref: main
 
       - name: Setup Python
         uses: actions/setup-python@v7
@@ -87,9 +101,14 @@ jobs:
         continue-on-error: true
         run: npm i -g @anthropic-ai/claude-code
 
+      # 速報レーンの回（fast_url あり）は、その記事だけを quality で作る（scripts/web_articles.py の --fast-url）。
+      # 通常の回は、速報レーンの実行が待っていると今の記事を作り終えたところで早めに終えて譲る
       - name: Generate web articles
         continue-on-error: true
         env:
+          FAST_URL: ${{ inputs.fast_url }}
+          FAST_META: ${{ inputs.fast_meta }}
+          FAST_LANE_GH_TOKEN: ${{ github.token }}
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           CLAUDE_DAILY_MAX: ${{ vars.CLAUDE_DAILY_MAX || '40' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -98,6 +117,10 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
+          if [ -n "$FAST_URL" ]; then
+            python scripts/web_articles.py --fast-url "$FAST_URL" --fast-meta "$FAST_META" --days 3
+            exit 0
+          fi
           python scripts/web_articles.py \
             --max "${{ vars.WEB_MAX_PER_RUN || '1' }}" \
             --max-broad "${{ steps.ramp.outputs.broad_per_run }}" \
@@ -116,6 +139,7 @@ jobs:
 
       # 「試すなら」枠の本・価格を1日1回更新する（楽天ブックスの売れ筋と提携先の公式価格）
       - name: Refresh product picks
+        if: ${{ (inputs.fast_url || '') == '' }}
         continue-on-error: true
         run: python scripts/rakuten_books.py --if-older-than 20
 
@@ -144,7 +168,7 @@ jobs:
       - name: Commit & push
         id: commit
         env:
-          FORCE_DEPLOY: ${{ github.event.schedule == '7 */6 * * *' || (github.event_name == 'workflow_dispatch' && (github.event.inputs.mode || 'full') == 'full') }}
+          FORCE_DEPLOY: ${{ github.event.schedule == '7 */6 * * *' || (github.event_name == 'workflow_dispatch' && (github.event.inputs.mode || 'full') == 'full') || (inputs.fast_url || '') != '' }}
         run: |
           echo "count=0" >> "$GITHUB_OUTPUT"
           echo "deploy=0" >> "$GITHUB_OUTPUT"
@@ -161,6 +185,9 @@ jobs:
 
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # 速報レーンの処理結果（Worker がこれを見て再起動をやめる）
+          ACK=0
+          if [ -n "$(git status --porcelain state/fast_lane.json)" ]; then ACK=1; fi
           if [ -n "$(git status --porcelain content)" ]; then
             git add content
             COUNT=$(git diff --cached --name-only --diff-filter=A -- 'content/articles/*.json' | wc -l | tr -d ' ')
@@ -188,11 +215,14 @@ jobs:
             echo 0 > state/deploy_pending
             echo "deploy=1" >> "$GITHUB_OUTPUT"
             MSG="chore(deploy): 保留中の記事を公開 [deploy]"
+          elif [ "$ACK" = "1" ]; then
+            MSG="chore(fast): 速報レーンの処理結果を記録"
           else
             echo "変更なし。コミットをスキップします。"
             exit 0
           fi
           git add state/last_deploy state/deploy_pending
+          if [ -f state/fast_lane.json ]; then git add state/fast_lane.json; fi
           git commit -m "$MSG"
           # 実行中に main が進んでいても失敗しないよう rebase してから push（最大3回）
           for i in 1 2 3; do
@@ -299,4 +329,6 @@ jobs:
             echo ""
             echo "- 記事総数: $(ls -1 content/articles/*.json 2>/dev/null | wc -l | tr -d ' ')"
             echo "- 実行時刻: $(date -u '+%Y-%m-%d %H:%M UTC')"
+            echo ""
+            python scripts/latency.py report --days 7 --markdown || true
           } >> "$GITHUB_STEP_SUMMARY"

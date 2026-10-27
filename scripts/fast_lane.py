@@ -1,0 +1,250 @@
+#!/usr/bin/env python3
+"""速報レーン: 主要企業の公式発表を、見張り番（Cloudflare Worker）が数分おきに見つけて記事作りに直行させる仕組みの Python 側。
+
+- 判定のルールは scripts/fast_lane_rules.json（Worker の ops/watchdog/src/fastlane.js と同じ判定）
+- 処理結果は state/fast_lane.json に残す。Worker はこれを読んで「受け取った」と判断し、再起動をやめる
+  （outcome: created / updated / duplicate / skipped / retry / failed / capped）
+
+  python3 scripts/fast_lane.py --check              # いまの公式フィードで、速報レーンに乗る見出しを表示（API 不要）
+  python3 scripts/fast_lane.py --check --days 14    # 過去14日分で判定の様子を見る（ルールの調整用）
+  echo '[{"title": "...", "source": "openai-news"}]' | python3 scripts/fast_lane.py --classify   # Worker のテスト用
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import sys
+import time
+import urllib.parse
+import urllib.request
+from datetime import datetime, timedelta, timezone
+from functools import lru_cache
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+RULES_PATH = Path(__file__).resolve().with_name("fast_lane_rules.json")
+ACK_PATH = ROOT / "state" / "fast_lane.json"
+ACK_KEEP_DAYS = 14
+JST = timezone(timedelta(hours=9))
+
+
+@lru_cache(maxsize=1)
+def rules() -> dict:
+    data = json.loads(RULES_PATH.read_text("utf-8"))
+    flags = re.IGNORECASE
+    data["_re"] = {
+        "model": re.compile(data["model_re"], flags),
+        "head": re.compile(data["head_re"], flags),
+        "launch": re.compile(data["launch_re"], flags),
+        "exclude": re.compile(data["exclude_re"], flags),
+        "ai": re.compile(data["ai_re"], flags),
+    }
+    data["_by_slug"] = {s["slug"]: s for s in data["sources"]}
+    return data
+
+
+def source(slug: str) -> dict | None:
+    return rules()["_by_slug"].get(slug or "")
+
+
+def relevant(title: str, slug: str) -> tuple[bool, str]:
+    """速報レーンに乗せるか。(結果, 理由)。理由の文言は fastlane.js と同じ（テストで突き合わせる）"""
+    r = rules()
+    src = source(slug)
+    if not src:
+        return False, "対象外の発信元"
+    t = str(title or "").strip()
+    ex = r["_re"]["exclude"].search(t)
+    if ex:
+        return False, f"除外語（{ex.group(0)}）"
+    model = bool(r["_re"]["model"].search(t))
+    if src.get("ai_only") and not model and not r["_re"]["ai"].search(t):
+        return False, "AI の話題ではない"
+    launch = bool(r["_re"]["launch"].search(t))
+    if model and (launch or r["_re"]["head"].search(t)):
+        return True, "新モデル・新製品"
+    if launch:
+        # 対象は各社の公式ニュースルームだけなので、発表の語があれば自社（か提携先と共同）の発表とみなす
+        return True, "公式の発表"
+    return False, "発表の語がない"
+
+
+def allowed_url(url: str) -> bool:
+    """速報レーンで受け付ける URL か（https で、対象の発信元と同じサイト）"""
+    try:
+        parts = urllib.parse.urlsplit(url.strip())
+    except ValueError:
+        return False
+    if parts.scheme != "https" or not parts.netloc:
+        return False
+    host = parts.netloc.lower()
+    for src in rules()["sources"]:
+        base = urllib.parse.urlsplit(src["url"]).netloc.lower()
+        base = base[4:] if base.startswith("www.") else base
+        if host == base or host.endswith("." + base):
+            return True
+    return False
+
+
+def register_sources(feeds_module) -> None:
+    """RSS の無い発信元（Anthropic など）を feeds.FEEDS_BY_SLUG に足す（source_rank・発信元名を引けるように）。
+    FEEDS には入れないので、通常の収集（collect）では読まない"""
+    for src in rules()["sources"]:
+        if src["slug"] in feeds_module.FEEDS_BY_SLUG:
+            continue
+        feeds_module.FEEDS_BY_SLUG[src["slug"]] = {
+            "slug": src["slug"], "name": src["name"], "url": src["url"], "lang": "en", "priority": 1,
+            "kind": "official", "primary_for": src.get("entity"), "fast_only": True,
+        }
+
+
+# --------------------------------------------------------------------------- #
+# 処理結果（Worker への受領の知らせ）
+# --------------------------------------------------------------------------- #
+
+
+def load_acks() -> dict:
+    try:
+        data = json.loads(ACK_PATH.read_text("utf-8"))
+    except Exception:  # noqa: BLE001
+        data = {}
+    data.setdefault("items", {})
+    return data
+
+
+def save_acks(data: dict) -> None:
+    since = datetime.now(timezone.utc) - timedelta(days=ACK_KEEP_DAYS)
+    items = {}
+    for key, entry in data.get("items", {}).items():
+        try:
+            if datetime.fromisoformat(entry.get("finishedAt") or entry.get("startedAt")) < since:
+                continue
+        except (TypeError, ValueError):
+            pass
+        items[key] = entry
+    ACK_PATH.parent.mkdir(parents=True, exist_ok=True)
+    ACK_PATH.write_text(json.dumps({"items": items}, ensure_ascii=False, indent=2, sort_keys=True) + "\n", "utf-8")
+
+
+def created_today(data: dict, now: datetime | None = None) -> int:
+    """今日（日本時間）速報レーンで新しく記事にした本数（パイプライン側の上限に使う）"""
+    today = (now or datetime.now(timezone.utc)).astimezone(JST).date()
+    count = 0
+    for entry in data.get("items", {}).values():
+        if entry.get("outcome") != "created":
+            continue
+        try:
+            if datetime.fromisoformat(entry["finishedAt"]).astimezone(JST).date() == today:
+                count += 1
+        except (KeyError, TypeError, ValueError):
+            continue
+    return count
+
+
+# --------------------------------------------------------------------------- #
+# 通常の回が速報レーンに譲るための確認
+# --------------------------------------------------------------------------- #
+
+RUN_PREFIX = "速報レーン"  # auto_run.yml の run-name と Worker の RUN_PREFIX と同じ
+WAITING = {"queued", "pending", "waiting", "requested"}
+_waiting_cache = {"at": -1e9, "value": False}
+
+
+def fast_waiting(min_interval: float = 45.0) -> bool:
+    """速報レーンの実行が待機中か。GitHub Actions の中（FAST_LANE_GH_TOKEN と GITHUB_REPOSITORY がある）でだけ確かめる。
+    確認は min_interval 秒に1回まで。失敗したら False（通常の回をそのまま続ける）"""
+    token = os.environ.get("FAST_LANE_GH_TOKEN", "")
+    repo = os.environ.get("GITHUB_REPOSITORY", "")
+    if not token or not repo:
+        return False
+    now = time.monotonic()
+    if now - _waiting_cache["at"] < min_interval:
+        return _waiting_cache["value"]
+    _waiting_cache["at"] = now
+    value = False
+    try:
+        request = urllib.request.Request(
+            f"https://api.github.com/repos/{repo}/actions/workflows/auto_run.yml/runs?per_page=10",
+            headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json", "User-Agent": "saisoku-pipeline"},
+        )
+        with urllib.request.urlopen(request, timeout=10) as response:
+            runs = json.load(response).get("workflow_runs") or []
+        value = any(r.get("status") in WAITING and str(r.get("display_title", "")).startswith(RUN_PREFIX) for r in runs)
+    except Exception:  # noqa: BLE001
+        value = False
+    _waiting_cache["value"] = value
+    return value
+
+
+def parse_meta(raw: str) -> list[dict]:
+    """Worker が渡す fast_meta（JSON の配列か1件のオブジェクト）。壊れていれば空"""
+    if not raw or not raw.strip():
+        return []
+    try:
+        data = json.loads(raw)
+    except ValueError:
+        return []
+    if isinstance(data, dict):
+        data = [data]
+    return [d for d in data if isinstance(d, dict) and isinstance(d.get("url"), str)]
+
+
+def parse_time(value) -> datetime | None:
+    if not value:
+        return None
+    try:
+        dt = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+
+
+# --------------------------------------------------------------------------- #
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--check", action="store_true", help="いまの公式フィードの見出しを判定して表示")
+    parser.add_argument("--days", type=int, default=7)
+    parser.add_argument("--classify", action="store_true", help="標準入力の [{title, source}] を判定して JSON で返す")
+    args = parser.parse_args()
+
+    if args.classify:
+        items = json.load(sys.stdin)
+        out = [dict(zip(("ok", "reason"), relevant(i.get("title", ""), i.get("source", "")))) for i in items]
+        json.dump(out, sys.stdout, ensure_ascii=False)
+        return 0
+
+    if args.check:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import feeds  # noqa: PLC0415
+
+        since = datetime.now(timezone.utc) - timedelta(days=args.days)
+        passed = 0
+        for src in rules()["sources"]:
+            if src["type"] != "rss":
+                print(f"\n■ {src['slug']}（{src['type']}。Worker だけが読む）")
+                continue
+            try:
+                items = feeds.parse_feed({**src, "lang": "en"})
+            except Exception as error:  # noqa: BLE001
+                print(f"\n■ {src['slug']}: 取得失敗 {error}")
+                continue
+            items = [i for i in items if i["published_at"] and i["published_at"] >= since]
+            print(f"\n■ {src['slug']}: 直近{args.days}日 {len(items)} 件")
+            for item in items:
+                ok, why = relevant(item["title"], src["slug"])
+                passed += ok
+                print(f"  {'◎' if ok else '  '} {item['published_at'].astimezone(JST):%m-%d %H:%M} {item['title'][:80]}  ({why})")
+        print(f"\n速報レーンに乗る見出し: {passed} 件（直近{args.days}日）")
+        return 0
+
+    parser.print_help()
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

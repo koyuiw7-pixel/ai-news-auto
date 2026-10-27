@@ -4,9 +4,19 @@ compatibility_date = "2026-10-01"
 # 外から呼べる URL は作らない（Cron だけで動かす）
 workers_dev = false
 
-# 10分ごとに記事作りの様子を確認する（GitHub の時刻指定が飛ばされても止まらないように）
+# 2分ごと: 速報レーン（主要企業の公式ニュースルームの新着確認）
+# そのうち UTC の分が10の倍数の回だけ: 記事作りの見張り（GitHub の時刻指定が飛ばされても止まらないように）
 [triggers]
-crons = ["*/10 * * * *"]
+crons = ["*/2 * * * *"]
+
+# 速報レーンの記録（見た記事の ID・起動した記事の状態・1日の起動数）。キーは "state" の1つだけ
+[[kv_namespaces]]
+binding = "FAST"
+id = "bf4c8f310b8c4f1eaa794d3b017bb6e4"
+
+# ログを Cloudflare のダッシュボード（Workers Logs）に残す。npx wrangler tail でも見られる
+[observability]
+enabled = true
 
 [vars]
 REPO = "koyuiw7-pixel/ai-news-auto"
@@ -15,3 +25,7 @@ WORKFLOW = "auto_run.yml"
 START_GAP_MIN = "18"
 # この時間（分）以上、成功した記事作りが無ければ知らせる
 ALERT_GAP_MIN = "120"
+# 速報レーン: 1日（日本時間）に新しく起動する上限（scripts/fast_lane_rules.json の daily_max より優先）
+FAST_DAILY_MAX = "10"
+# 速報レーン: "1" なら起動せずログだけ（動作確認用）
+FAST_DRY_RUN = "1"

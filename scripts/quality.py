@@ -26,6 +26,8 @@ MIN_BODY = {"ai": 2500, "broad": 1800, "trend": 1800}
 MIN_EASY = 400
 TITLE_RANGE = (18, 64)
 PASS_SCORE = 70
+# 事実確認・文の書き直しに使うモデルの段（速報レーンは待たせないよう quality にする。web_articles.py が切り替える）
+CHECK_TIER = "bulk"
 SOURCE_CAP = 9000
 ARTICLE_CAP = 9000
 
@@ -267,7 +269,7 @@ def fact_check(record: dict, source_text: str, context: str = "") -> dict:
         context=CONTEXT_BLOCK.format(context=context[:3000]) if context.strip() else "",
         article=_article_for_check(record),
     )
-    data, model = llm.generate_json(FACT_SYSTEM, prompt, FACT_SCHEMA, temperature=0.1, max_output_tokens=4096, tier="bulk")
+    data, model = llm.generate_json(FACT_SYSTEM, prompt, FACT_SCHEMA, temperature=0.1, max_output_tokens=4096, tier=CHECK_TIER)
     try:
         score = int(data.get("score", 0))
     except (TypeError, ValueError):
@@ -352,7 +354,7 @@ def polish(record: dict, source_text: str, kind: str, context: str = "", check_f
     length = _plain_len(body)
     problems = readability_problems(body)
     prompt = POLISH_PROMPT.format(problems="\n".join(f"- {p}" for p in problems), length=length, body=body)
-    data, model = llm.generate_json(POLISH_SYSTEM, prompt, POLISH_SCHEMA, temperature=0.3, max_output_tokens=16384, tier="bulk")
+    data, model = llm.generate_json(POLISH_SYSTEM, prompt, POLISH_SCHEMA, temperature=0.3, max_output_tokens=16384, tier=CHECK_TIER)
     new_body = re.sub(r"^(#{1,6}) +(?:#{1,6} +)+", r"\1 ", str(data.get("body_markdown") or "").strip(), flags=re.M)
     # 見出しは数と階層を保つ。言い回しの手直し（誇張語を外す等）は許すが、決まった章名は変えさせない
     heads_old, heads_new = _HEADING_RE.findall(body), _HEADING_RE.findall(new_body)
