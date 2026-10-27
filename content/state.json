@@ -3092,6 +3092,12 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202610/26kaigi_cyber.html"
     },
+    "11675352249b4b74": {
+      "at": "2026-10-27T21:01:10.369239+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/actions/202610/27getsurei.html"
+    },
     "117b2c162c1e1e8d": {
       "at": "2026-10-27T03:07:28.604400+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -3674,6 +3680,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（協賛）",
       "skipped": true,
       "url": "https://www.atpress.ne.jp/news/641994"
+    },
+    "3a1d144e53e7a845": {
+      "at": "2026-10-27T21:01:10.369170+00:00",
+      "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202610/video-326675.html"
     },
     "3a26abc049bc06e3": {
       "at": "2026-10-27T03:04:42.978715+00:00",
@@ -4704,6 +4716,12 @@
       "section": "ai",
       "slug": "openai-daybreak-check-point-vulnerability",
       "url": "https://openai.com/index/check-point-daybreak"
+    },
+    "8ce4ce6d3f521ef3": {
+      "at": "2026-10-27T21:01:10.369212+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（表敬）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/press/b1d81ddb-c690-47fc-be30-e98502f5045c"
     },
     "8ced72865c0be442": {
       "at": "2026-10-27T19:32:11.287627+00:00",
@@ -5915,6 +5933,14 @@
       "skipped": true,
       "url": "https://cloud.google.com/blog/ja/products/serverless/temporal-serverless-workers-on-cloud-run-worker-pools/"
     },
+    "ee28ccb62e546dc6": {
+      "at": "2026-10-27T21:01:42.608618+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "mhlw-sanitary-administrative-report-2025",
+      "url": "https://www.mhlw.go.jp/toukei/saikin/hw/eisei_houkoku/25/"
+    },
     "eea52ef7fa0dfe75": {
       "at": "2026-10-26T17:13:11.283572+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6001,6 +6027,12 @@
       "section": "ai",
       "slug": "agata-rag-ai-chatbot-new-services",
       "url": "https://prtimes.jp/main/html/rd/p/000000021.000125274.html"
+    },
+    "f4a6b0459f7f5daf": {
+      "at": "2026-10-27T21:01:10.369250+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo3/118/gijiroku/mext_00019.html"
     },
     "f5a63a1af5067430": {
       "at": "2026-10-26T21:41:28.789476+00:00",
@@ -6157,44 +6189,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-26T20:21:38.525913+00:00",
-      "attempt": 1,
-      "id": "a17154627a4bb7f0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "prtimes-all",
-      "title": "現役プライム上場企業社長と135億円EXIT起業家がIPO志望経営者のピッチに直接フィードバック｜Next IPO Clubインキュベーションサロン9月度月例会"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T20:41:17.258262+00:00",
-      "attempt": 1,
-      "id": "4897863e4c40f390",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1602字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes-all",
-      "title": "医学書院から社名ロゴTシャツと『ケアをひらく』の新作が登場！ Tシャツ・ロンT・トートバッグ計4種を発売開始"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T20:41:23.860182+00:00",
-      "attempt": 2,
-      "id": "4897863e4c40f390",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "prtimes-all",
-      "title": "医学書院から社名ロゴTシャツと『ケアをひらく』の新作が登場！ Tシャツ・ロンT・トートバッグ計4種を発売開始"
-    },
     {
       "accepted": true,
       "at": "2026-10-26T21:01:05.956895+00:00",
@@ -11872,6 +11866,71 @@
       "score": 100,
       "source": "suntory",
       "title": "「－196(イチキューロク)無糖〈ピーチ＆マンゴー＆アップル〉」「同〈贅沢赤ぶどう＆白ぶどう〉」期間限定新発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T21:01:16.987588+00:00",
+      "attempt": 1,
+      "id": "ee28ccb62e546dc6",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1528字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 98.9,
+        "avg_sentence": 44.3,
+        "long_share": 0.138,
+        "max_paragraph": 157,
+        "paragraphs": 13,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "令和７(2025)年度衛生行政報告例の概況"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T21:01:31.016421+00:00",
+      "attempt": 2,
+      "id": "ee28ccb62e546dc6",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 52.0字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 141.8字・最長 245字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 141.8,
+        "avg_sentence": 52.0,
+        "long_share": 0.233,
+        "max_paragraph": 245,
+        "paragraphs": 11,
+        "sentences": 30
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "令和７(2025)年度衛生行政報告例の概況"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T21:01:42.608084+00:00",
+      "attempt": 0,
+      "id": "ee28ccb62e546dc6",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 60.9,
+        "avg_sentence": 35.7,
+        "long_share": 0.024,
+        "max_paragraph": 93,
+        "paragraphs": 24,
+        "sentences": 41
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "令和７(2025)年度衛生行政報告例の概況"
     }
   ],
   "short_text_retry": {
