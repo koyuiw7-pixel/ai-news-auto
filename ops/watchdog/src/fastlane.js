@@ -446,7 +446,9 @@ async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl) {
   if (dispatched.length) {
     const acks = await readAcks(gh, env, fetchImpl, now);
     for (const e of dispatched) {
-      const ack = acks[e.id];
+      // 今回の起動より前の結果（同じ記事を前に処理したときの記録）は見ない
+      const raw = acks[e.id];
+      const ack = raw && Date.parse(raw.finishedAt || 0) >= Date.parse(e.dispatchedAt) - 60000 ? raw : null;
       if (ack && TERMINAL.has(ack.outcome)) {
         Object.assign(e, { status: "done", outcome: ack.outcome, slug: ack.slug || "", doneAt: now.toISOString() });
         log.done = [...(log.done || []), `${ack.outcome}: ${e.title.slice(0, 50)}${ack.slug ? ` → ${ack.slug}` : ""}`];
