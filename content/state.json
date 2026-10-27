@@ -3905,6 +3905,12 @@
       "skipped": true,
       "url": "https://www.value-press.com/pressrelease/383142"
     },
+    "50a61532b445df0c": {
+      "at": "2026-10-27T19:31:34.886252+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（議事）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/news/r8/sonota/20260819.html"
+    },
     "5123d02aff8feaa8": {
       "at": "2026-10-27T03:05:10.759248+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -4033,6 +4039,13 @@
       "reason": "quality: 本文が短い（2240字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/"
+    },
+    "5f08894ec4446b36": {
+      "at": "2026-10-27T19:31:49.839313+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "内閣官房長官の記者会見動画の公開に関する案内であり、制度やサービス、国民の生活に直接影響する新しい施策の発表ではないため。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326780.html"
     },
     "5f613ea93423e7b5": {
       "at": "2026-10-27T01:31:25.544436+00:00",
@@ -4617,6 +4630,22 @@
       "section": "lifestyle",
       "slug": "atam-academy-drawing-survey-causes",
       "url": "https://www.value-press.com/pressrelease/383143"
+    },
+    "8cb333260a17a324": {
+      "at": "2026-10-27T19:31:34.886048+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "openai-daybreak-check-point-vulnerability",
+      "url": "https://openai.com/index/check-point-daybreak"
+    },
+    "8ced72865c0be442": {
+      "at": "2026-10-27T19:32:11.287627+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "omron-ntt-docomo-business-ot-security",
+      "url": "https://www.ntt.com/about-us/press-releases/news/article/2026/1027_2.html"
     },
     "8d2560966ba9f6c1": {
       "at": "2026-10-27T17:57:07.707401+00:00",
@@ -6009,77 +6038,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-26T18:17:42.214139+00:00",
-      "attempt": 1,
-      "id": "8ed93bec790144d5",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "異常検知ブランチではAUROCが0.8以上であることが求められ、不均衡データが頻出する分類器ブランチでは、バランス精度が0.6以上かつ欠陥の再現率が0.5以上という2つの条件を同時に満たすことが品質ゲートの通過条件となる。 → 品質ゲートの具体的な数値（AUROC 0.8以上、バランス精度0.6以上、再現率0.5以上な"
-      ],
-      "score": 85,
-      "source": "aws-ml-blog",
-      "title": "Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T18:18:23.045288+00:00",
-      "attempt": 2,
-      "id": "8ed93bec790144d5",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "AWS Machine Learning Blogによると、2026年10月27日に「Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3」と題した記事が公開されました。 → 元記事には2026年10月27日という具体的な日付の記載"
-      ],
-      "score": 85,
-      "source": "aws-ml-blog",
-      "title": "Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T18:31:14.243406+00:00",
-      "attempt": 1,
-      "id": "1b8c870c8d92c0f3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1788字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "訳されていない英文が残っている（「Learning Curves: Rethinking Education fr…」）"
-      ],
-      "score": null,
-      "source": "microsoft-source",
-      "title": "From classrooms to careers: The future of education in an AI-driven world"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T18:31:28.245153+00:00",
-      "attempt": 2,
-      "id": "1b8c870c8d92c0f3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1741字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "microsoft-source",
-      "title": "From classrooms to careers: The future of education in an AI-driven world"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T18:32:24.455361+00:00",
-      "attempt": 1,
-      "id": "2504bf7e57b1f9b6",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1654字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "atpress",
-      "title": "『ディズニー ツイステッドワンダーランド』リリア・ヴァンルージュ歌唱の楽曲「RACING STAR☆」スペシャルPV特設サイトにて公開！"
-    },
     {
       "accepted": true,
       "at": "2026-10-26T18:32:34.995596+00:00",
@@ -11464,6 +11422,116 @@
       "score": 100,
       "source": "google-cloud-blog-ja",
       "title": "最新生成 AI 活用事例 121 社を一挙公開！ AI エージェントの本格活用が広がる（2026 年 10 月更新）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T19:31:18.145659+00:00",
+      "attempt": 1,
+      "id": "8cb333260a17a324",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2335字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 170.9,
+        "avg_sentence": 67.1,
+        "long_share": 0.571,
+        "max_paragraph": 365,
+        "paragraphs": 11,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "How Check Point accelerates vulnerability research with Daybreak"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T19:31:24.807824+00:00",
+      "attempt": 1,
+      "id": "8cb333260a17a324",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 63.1字・60字超の文が 47% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 206.5字・最長 415字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 206.5,
+        "avg_sentence": 63.1,
+        "long_share": 0.472,
+        "max_paragraph": 415,
+        "paragraphs": 11,
+        "sentences": 36
+      },
+      "score": 100,
+      "source": "openai-news",
+      "title": "How Check Point accelerates vulnerability research with Daybreak"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T19:31:34.885678+00:00",
+      "attempt": 0,
+      "id": "8cb333260a17a324",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 69.0,
+        "avg_sentence": 44.1,
+        "long_share": 0.14,
+        "max_paragraph": 109,
+        "paragraphs": 32,
+        "sentences": 50
+      },
+      "score": 100,
+      "source": "openai-news",
+      "title": "How Check Point accelerates vulnerability research with Daybreak"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T19:32:03.656854+00:00",
+      "attempt": 1,
+      "id": "8ced72865c0be442",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 53.1字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 123.8字・最長 197字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 123.8,
+        "avg_sentence": 53.1,
+        "long_share": 0.357,
+        "max_paragraph": 197,
+        "paragraphs": 12,
+        "sentences": 28
+      },
+      "score": 100,
+      "source": "ntt-news",
+      "title": "オムロンとNTTドコモビジネス、製造現場のサイバー脅威に挑む"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T19:32:11.287291+00:00",
+      "attempt": 0,
+      "id": "8ced72865c0be442",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "段落が長い（平均 120.8字・最長 197字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 120.8,
+        "avg_sentence": 40.3,
+        "long_share": 0.194,
+        "max_paragraph": 197,
+        "paragraphs": 12,
+        "sentences": 36
+      },
+      "score": 100,
+      "source": "ntt-news",
+      "title": "オムロンとNTTドコモビジネス、製造現場のサイバー脅威に挑む"
     }
   ],
   "short_text_retry": {
