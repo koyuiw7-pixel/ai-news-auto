@@ -3931,6 +3931,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000429.000073671.html"
     },
+    "4c5c673386bda904": {
+      "at": "2026-10-27T23:22:57.313216+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "suntory-nope-dragon-quest-collaboration",
+      "url": "https://www.suntory.co.jp/softdrink/news/pr/article/2026/SBF1742.html?rss=0000000029"
+    },
     "4c8c617ae651ea88": {
       "at": "2026-10-26T11:31:36.988573+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6001,6 +6009,12 @@
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047893/"
     },
+    "e8e6d1a9b84403da": {
+      "at": "2026-10-27T23:21:37.085533+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（表彰）",
+      "skipped": true,
+      "url": "https://www.meiji.co.jp/corporate/pressrelease/2026/10_21/index.html?link=rss"
+    },
     "e91762e35ba63f19": {
       "at": "2026-10-26T15:55:32.112618+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6315,56 +6329,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T00:02:07.681576+00:00",
-      "attempt": 1,
-      "id": "a5f74e121560fc9a",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（357字 / 基準 400字以上）"
-      ],
-      "score": null,
-      "source": "prtimes-all",
-      "title": "【ツアー報告】JGTOでDynamic Goldが今季2勝目を支える、PGAツアーは使用選手がプレーオフ進出"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T00:02:14.131974+00:00",
-      "attempt": 2,
-      "id": "a5f74e121560fc9a",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "prtimes-all",
-      "title": "【ツアー報告】JGTOでDynamic Goldが今季2勝目を支える、PGAツアーは使用選手がプレーオフ進出"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T00:21:12.642704+00:00",
-      "attempt": 1,
-      "id": "cf6309826c6639bc",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "prtimes-all",
-      "title": "ＦＰＴ、ServiceNow Service Providerに正式認定 ～ 日本市場における協業をさらに拡大"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T00:29:17.163564+00:00",
-      "attempt": 1,
-      "id": "5ffbb0f8c3ab7480",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "atpress",
-      "title": "温かみのある天然木のインテリアタワー2種類が新登場！「天然木のキャットシェルフ」と「天然木のラウンドステップタワー」を発売"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T00:51:14.580971+00:00",
@@ -12267,6 +12231,93 @@
       "score": 100,
       "source": "suntory",
       "title": "大切な人に贈るワクワクなホリデーを。 スターバックス チルドカップ 「DELIGHT ME メリーベリーチョコレートラテ」11月3日（火）より期間限定発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T23:22:18.329301+00:00",
+      "attempt": 1,
+      "id": "4c5c673386bda904",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1692字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 113.2,
+        "avg_sentence": 46.9,
+        "long_share": 0.276,
+        "max_paragraph": 192,
+        "paragraphs": 12,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "suntory",
+      "title": "スライムたちが のんでほしそうに こちらを みている！「ギルティ炭酸 NOPE」が『ドラゴンクエストモンスターズ4』とコラボ！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T23:22:47.402037+00:00",
+      "attempt": 2,
+      "id": "4c5c673386bda904",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1462字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 120.9,
+        "avg_sentence": 48.4,
+        "long_share": 0.24,
+        "max_paragraph": 212,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "suntory",
+      "title": "スライムたちが のんでほしそうに こちらを みている！「ギルティ炭酸 NOPE」が『ドラゴンクエストモンスターズ4』とコラボ！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T23:22:52.747558+00:00",
+      "attempt": 2,
+      "id": "4c5c673386bda904",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 48.5字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 160.1字・最長 272字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 160.1,
+        "avg_sentence": 48.5,
+        "long_share": 0.242,
+        "max_paragraph": 272,
+        "paragraphs": 10,
+        "sentences": 33
+      },
+      "score": 100,
+      "source": "suntory",
+      "title": "スライムたちが のんでほしそうに こちらを みている！「ギルティ炭酸 NOPE」が『ドラゴンクエストモンスターズ4』とコラボ！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T23:22:57.312634+00:00",
+      "attempt": 0,
+      "id": "4c5c673386bda904",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 75.0,
+        "avg_sentence": 42.9,
+        "long_share": 0.2,
+        "max_paragraph": 150,
+        "paragraphs": 20,
+        "sentences": 35
+      },
+      "score": 100,
+      "source": "suntory",
+      "title": "スライムたちが のんでほしそうに こちらを みている！「ギルティ炭酸 NOPE」が『ドラゴンクエストモンスターズ4』とコラボ！"
     }
   ],
   "short_text_retry": {
