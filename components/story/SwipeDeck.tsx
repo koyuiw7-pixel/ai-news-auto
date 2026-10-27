@@ -27,6 +27,28 @@ const FONTS =
   "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap";
 const SAVED_KEY = "saisoku:saved";
 
+/**
+ * デッキ専用のフォント（120KB の CSS）。<head> に置くとトップの初回描画を止めるので、
+ * 読み込み後の空き時間か、デッキを開くときに後から足す
+ */
+function loadDeckFont() {
+  if (document.getElementById("deck-font")) return;
+  const link = document.createElement("link");
+  link.id = "deck-font";
+  link.rel = "stylesheet";
+  link.href = FONTS;
+  document.head.appendChild(link);
+}
+
+/** 丸の表紙（64〜76px）用の小さい画像。縮小版を出せる配信元だけ差し替える */
+function ringImage(url: string): string {
+  if (url.startsWith("https://i.ytimg.com/vi/")) return url.replace(/(maxres|hq|sd)default/, "mqdefault");
+  if (url.startsWith("https://prcdn.freetls.fastly.net/")) {
+    return url.replace(/([?&])width=\d+/, "$1width=320").replace(/([?&])height=\d+/, "$1height=320");
+  }
+  return url;
+}
+
 function ago(iso: string): string {
   const min = Math.max(1, Math.round((Date.now() - Date.parse(iso)) / 60000));
   if (min < 60) return `${min}分前`;
@@ -59,21 +81,30 @@ export default function StoryRail({ bundles }: { bundles: Bundle[] }) {
 
   useEffect(() => {
     document.body.style.overflow = open === null ? "" : "hidden";
+    if (open !== null) loadDeckFont();
   }, [open]);
 
+  // 開く前にフォントを用意しておく（ページの読み込みが終わってから）
+  useEffect(() => {
+    const idle = () => ("requestIdleCallback" in window ? requestIdleCallback(loadDeckFont, { timeout: 4000 }) : setTimeout(loadDeckFont, 2000));
+    if (document.readyState === "complete") idle();
+    else window.addEventListener("load", idle, { once: true });
+    return () => window.removeEventListener("load", idle);
+  }, []);
+
   // 表紙は lib/stories.ts で丸ごとに違う見た目を選んである
-  const covers = bundles.map((b) => (b.cover || b.items[0]?.image || "").replace("maxresdefault", "hqdefault"));
+  const covers = bundles.map((b) => ringImage(b.cover || b.items[0]?.image || ""));
 
   return (
     <>
-      <link rel="stylesheet" href={FONTS} precedence="default" />
       <style>{CSS}</style>
       <div className="sr" role="list" aria-label="ストーリー">
         {bundles.map((b, i) => (
           <button key={b.key} type="button" role="listitem" className={`sr-ring ${seen[b.key] ? "seen" : ""}`} onClick={() => setOpen(i)}>
             <span className="sr-img">
+              {/* LCP（下の大きな写真）と取り合わないよう低優先度。画面外の丸は近づいてから読む */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={covers[i]} alt="" />
+              <img src={covers[i]} alt="" width={76} height={76} decoding="async" fetchPriority="low" loading={i < 5 ? undefined : "lazy"} />
             </span>
             <span className="sr-label">{b.label}</span>
             <span className="sr-n">{b.items.length}本</span>

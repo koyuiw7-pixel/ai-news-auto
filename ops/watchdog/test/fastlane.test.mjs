@@ -114,6 +114,8 @@ const CASES = [
   ["nvidia-blog", "NVIDIA Unveils Rubin Ultra", true],
   ["apple-newsroom-jp", "Apple、新しいiPad miniを発表", false],
   ["apple-newsroom-jp", "Apple Intelligence、日本語で提供開始", true],
+  ["mistral-news", "Voxtral 3", true],
+  ["mistral-news", "Mistral Advances AI for Engineering with NVIDIA", false],
   ["unknown-feed", "Introducing GPT-7", false],
 ];
 

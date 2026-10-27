@@ -18,6 +18,7 @@
 大きなニュース（主要企業の新モデル・新製品の公式発表）は実行の最初に tier=quality で作り、最大3回試行。
   作れなければ processed にせず、3回の実行まで再挑戦する。同じ話題の派生の発表（GitHub Copilot 対応など）は本家の記事への続報に回す。
 配信（PR TIMES など）は生成前に本文の厚み・お知らせ系を足切りし、1回の実行で --max-wire 本までしか生成に回さない。
+  （2026-10-27 から配信は取得していない。kind=wire のフィードが無ければこの処理は何もしない）
 
 速報レーン（--fast-url）: 見張り番の Worker が主要企業の公式発表を見つけたら、その URL だけを大きなニュースとして
 最初に作り、ほかのレーン（話題・公式フィード・幅広い話題）は回さない。事実確認も quality の段で行い待たせない。
@@ -68,7 +69,9 @@ LOW_VALUE_RE = re.compile(
     r"説明会|相談会|セミナー|ウェビナー|勉強会|講座|講演|登壇|出展|展示会|ブース|"
     r"(?<!AI)(?<!ソース)オープン(?!AI|ソース)|開店|新店|移転|ポップアップ|"
     r"キャンペーン|プレゼント|抽選|クーポン|セール|割引|ポイント(還元|付与)|福袋|"
-    r"受賞|アワード|表彰|認定を取得|認証を取得|取得しました|選出|ランクイン|周年|協賛|寄付|寄贈|"
+    r"受賞|アワード|表彰|認定を取得|認証を取得|取得しました|選出|ランクイン|周年|協賛|寄付|寄贈|贈呈|"
+    # イベントの開催告知（東京都・企業ニュースルームに多い）
+    r"を開催|の開催$|開催について|開催のお知らせ|ライブ配信|"
     r"お詫び|訂正|休業|営業時間|メンテナンス|システム障害|サービス障害|公開再開|"
     r"会議|審議会|委員会|部会|懇談会|議事|入札|調達|公募|募集|大臣会見|会見要旨|総理の動き|"
     r"ホワイトペーパー|資料(を)?公開|ダウンロード|導入事例|お客様の声|メディア掲載|出演|"
@@ -689,7 +692,7 @@ def tag_sections(items: list[dict]) -> list[dict]:
     for item in items:
         feed = feeds.FEEDS_BY_SLUG.get(item["source_slug"], {})
         section = feed.get("section")
-        item["section"] = feeds.classify_section(item) if section == "auto" else section
+        item["section"] = (feeds.classify_section(item) or feed.get("fallback")) if section == "auto" else section
         item["kind"] = feed.get("kind", "")
     return items
 

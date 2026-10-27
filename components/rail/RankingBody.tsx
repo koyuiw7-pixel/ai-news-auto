@@ -128,7 +128,7 @@ function First({ item, wide, badge, onClick }: { item: OfferItem; wide: boolean;
           item={item}
           className={`rounded-xl border border-line ${wide ? "aspect-square" : "mt-2.5 aspect-[16/10]"}`}
           pad={item.kind === "book" ? "p-5" : "p-3"}
-          eager={!wide}
+          // 先読みすると本文の LCP と取り合う（スマホでは右枠はページの最下部）ので遅延読み込みのまま
         />
         <span className={`flex min-w-0 flex-col ${wide ? "" : "mt-2.5"}`}>
           <span className="line-clamp-2 text-[15px] font-bold leading-[1.5] text-ink group-hover:underline">{item.name}</span>

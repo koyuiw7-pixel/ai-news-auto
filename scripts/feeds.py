@@ -49,6 +49,15 @@ TEXT_CAP = 12_000
 #     azure.microsoft.com/blog（blogs.microsoft.com と同内容）、apple.com/newsroom 英語版（日本版を採用）、
 #     japan.googleblog.com（旧 Blogger。blog.google/intl/ja-jp を採用）、blog.research.google（旧URL）
 #   二次メディア（ITmedia AI+ 等）は一次情報ではないので対象外
+# 確認して外したもの（2026-10-27）:
+#   RSS なし・取得不可: microsoft.ai（中身なし）、Microsoft Copilot ブログ（XML 不正）、Azure ブログ（503）、Intel（403）、
+#     Qualcomm・Canva・Notion ブログ・IBM Research・xAI・Perplexity・Anthropic（404）、Adobe（ニュースもブログも HTML しか返らない）、
+#     PFN・SB Intuitions・rinna・ソフトバンク(プレス)・NEC・富士通(429)・日立・LINEヤフー(403)
+#   ELYZA（note）: 2026-07 で更新停止 / Google Developers Japan: 月数件のイベント告知
+#   量は多いが細かすぎる・薄い: AWS What's New（機能単位で6件/日）、Google Workspace Updates、GitHub Changelog 全体
+#   技術者向け・解説中心で読者の価値が薄い: NVIDIA Developer Blog、Arm Newsroom、Apple Machine Learning Research、Amazon Science
+#   重複: nvidianews（blogs.nvidia と同内容）、Google Cloud 英語版（日本語版を採用）、Microsoft Source Asia
+#   その他: Stripe（決済の B2B）、YouTube 公式ブログ（日英とも量が少ない）
 FEEDS: list[dict] = [
     # --- 海外 AI 企業の公式 ---
     {"slug": "openai-news", "name": "OpenAI公式ブログ", "url": "https://openai.com/news/rss.xml", "lang": "en", "priority": 1, "kind": "official", "primary_for": "openai"},
@@ -73,6 +82,26 @@ FEEDS: list[dict] = [
     {"slug": "nvidia-japan-blog", "name": "NVIDIA日本版ブログ", "url": "https://blogs.nvidia.co.jp/feed/", "lang": "ja", "priority": 2, "kind": "official", "primary_for": "nvidia"},
     {"slug": "aws-japan-blog", "name": "AWS ブログ（日本）", "url": "https://aws.amazon.com/jp/blogs/news/feed/", "lang": "ja", "priority": 3, "ai_only": True, "kind": "derivative"},
     # PR TIMES は幅広い話題の prtimes-all（同じ index.rdf）で拾う。AIの書式（2500字）では薄い記事が落ち続け、無料枠を浪費していたため外した
+    # --- 2026-10-27 追加（配信を外した分を一次情報で補う）。量は直近14日の実績（ai_only の足切り前） ---
+    # kind: 自社の発表は official。他社モデルの提供告知・翻訳・顧客事例が多いものは derivative（大きなニュース扱いにしない）。
+    #   日本企業・海外企業のニュースルームは company（公式より一段下に並べる）
+    {"slug": "sakana-ai", "name": "Sakana AI公式ブログ", "url": "https://sakana.ai/feed.xml", "lang": "ja", "priority": 1, "kind": "official", "primary_for": "sakana"},  # 約0.4件/日
+    {"slug": "mistral-news", "name": "Mistral AI公式ニュース", "url": "https://mistral.ai/news/rss", "lang": "en", "priority": 1, "kind": "official", "primary_for": "mistral"},  # 約0.2件/日
+    # blog.google 全体（Android・検索・YouTube などのカテゴリの AI の話題）。AI/Gemini カテゴリと同じ記事は上のフィードが先に取る
+    {"slug": "google-blog-all", "name": "Google公式ブログ", "url": "https://blog.google/rss/", "lang": "en", "priority": 2, "ai_only": True, "kind": "official", "primary_for": "google"},  # 約2.6件/日
+    {"slug": "about-amazon", "name": "Amazon公式ニュース（About Amazon）", "url": "https://www.aboutamazon.com/news/rss", "lang": "en", "priority": 2, "ai_only": True, "kind": "official", "primary_for": "amazon"},  # 約1.4件/日
+    {"slug": "meta-engineering", "name": "Engineering at Meta", "url": "https://engineering.fb.com/feed/", "lang": "en", "priority": 3, "ai_only": True, "kind": "official", "primary_for": "meta"},  # 約0.6件/日
+    {"slug": "aws-news-blog", "name": "AWS News Blog", "url": "https://aws.amazon.com/blogs/aws/feed/", "lang": "en", "priority": 3, "ai_only": True, "kind": "derivative"},  # 約0.4件/日
+    {"slug": "google-cloud-blog-ja", "name": "Google Cloud 公式ブログ（日本）", "url": "https://cloudblog.withgoogle.com/ja/rss/", "lang": "ja", "priority": 3, "ai_only": True, "kind": "derivative"},  # 約2.4件/日
+    {"slug": "windows-blog-jp", "name": "Windows ブログ（日本）", "url": "https://blogs.windows.com/japan/feed/", "lang": "ja", "priority": 2, "ai_only": True, "kind": "derivative"},  # 約1.6件/日
+    {"slug": "ntt-news-ai", "name": "NTT ニュースリリース", "url": "https://group.ntt/jp/newsrelease/rss/release.rdf", "lang": "ja", "priority": 2, "ai_only": True, "kind": "company"},  # 営業日に約10件（当日分だけ載る）
+    {"slug": "kddi-news-ai", "name": "KDDI ニュースリリース", "url": "https://newsroom.kddi.com/news/newsrelease.xml", "lang": "ja", "priority": 2, "ai_only": True, "kind": "company"},  # 約0.8件/日
+    {"slug": "kddi-topics-ai", "name": "KDDI トピックス", "url": "https://newsroom.kddi.com/news/topics.xml", "lang": "ja", "priority": 3, "ai_only": True, "kind": "company"},  # 約0.6件/日
+    {"slug": "salesforce-jp", "name": "Salesforce ニュース（日本）", "url": "https://www.salesforce.com/jp/news/feed/", "lang": "ja", "priority": 3, "ai_only": True, "kind": "company"},  # 約0.7件/日
+    {"slug": "ibm-newsroom-jp", "name": "日本IBM ニュースルーム", "url": "https://jp.newsroom.ibm.com/announcements?pagetemplate=rss", "lang": "ja", "priority": 3, "ai_only": True, "kind": "company"},  # 約0.4件/日
+    {"slug": "amd-newsroom", "name": "AMD ニュースルーム", "url": "https://newsroom.amd.com/rss.xml", "lang": "en", "priority": 3, "ai_only": True, "kind": "company"},  # 約0.3件/日
+    {"slug": "cloudflare-blog", "name": "Cloudflare公式ブログ", "url": "https://blog.cloudflare.com/rss/", "lang": "en", "priority": 3, "ai_only": True, "kind": "company"},  # 約1.5件/日
+    {"slug": "figma-blog", "name": "Figma公式ブログ", "url": "https://www.figma.com/blog/feed/atom.xml", "lang": "en", "priority": 3, "ai_only": True, "kind": "company"},  # 約0.6件/日
 ]
 FEEDS_BY_SLUG = {f["slug"]: f for f in FEEDS}
 
@@ -97,6 +126,19 @@ FEEDS_BY_SLUG = {f["slug"]: f for f in FEEDS}
 #     JR東日本・イオン・セブン・スクエニ・バンダイナムコ・セガ・Jリーグ・NPB・Bリーグ: RSS なし（大半は PR TIMES 経由で拾える）
 #   シャープ news/rss.xml: 日付が入っていない / 日本マイクロソフト: 2025-09 で更新停止
 #   NHK・新聞・Yahoo!ニュースなど報道機関の本文は対象外
+# 確認して外したもの（2026-10-27）:
+#   パナソニック（RSS はあるが記事ページから本文が取れず、関連記事の一覧を拾ってしまう）、イオン（本文がメニューしか取れない）
+#   吉野家・ダイソー（開店・キャンペーン中心）、日本郵便（年賀はがき・局の移転など薄い告知）、JPX（本文が短く投資家向け）
+#   NIMS（求人・イベント中心）、産総研 rss.php（日付がイベント日）、帝国データバンク（個別企業の倒産速報のみ）
+#   JST サイエンスポータル（2026-08 で更新停止）、JETRO（企業向け）、警察庁（事件・統計中心）、松竹（日付が上映日）
+#   Netflix 日本（日付なし）、NASA（英語で1日10件超・特集が中心。必要なら science に priority 3 で）
+#   RSS なし: 公取委・個人情報保護委・国家サイバー統括室(NISC)・NITE・こども家庭庁・文化庁・観光庁・外務省・年金機構・
+#     JAMSTEC・国環研・気象庁・東大/京大/東北大/阪大/名大などの大学（広島大は研究成果だけ採用）、
+#     キヤノン・ニコン(量少)・富士フイルム・カシオ・メルカリ・ZOZO・ローソン・ファミマ・マクドナルド・ANA・JAL(403)・JR東海・
+#     ホンダ・マツダ・スバル・ニトリ・味の素・日清・カルビー(403)・カゴメ・キユーピー・ロッテ・アサヒ・サッポロ・伊藤園(更新停止)、
+#     ラグビー・バスケ・陸連・バレー・ゴルフ・相撲・スポーツ庁・Jリーグ・NPB・Bリーグ
+#   include_re / exclude_re … タイトルがこの正規表現に合う（合わない）ものだけ取る
+#   section "auto" + fallback … classify_section で決まらないときのセクション（企業の雑多なニュース向け）
 BROAD_FEEDS: list[dict] = [
     # プレスリリース配信（PR TIMES・@Press・ValuePress・共同通信PRワイヤー・ドリームニューズ）は 2026-10-27 に外した。
     # 誰でも出せる告知文の言い換えは薄く、ニュースアプリや Google の評価を下げるため（オーナー判断）。
@@ -115,12 +157,17 @@ BROAD_FEEDS: list[dict] = [
     {"slug": "stat", "name": "総務省統計局", "url": "https://www.stat.go.jp/whatsnew/news.rdf", "section": "business", "kind": "gov", "priority": 3},
     {"slug": "jpcert", "name": "JPCERT/CC", "url": "https://www.jpcert.or.jp/rss/jpcert.rdf", "section": "tech-gadget", "kind": "gov", "priority": 3},
     {"slug": "ipa", "name": "IPA（情報処理推進機構）", "url": "https://www.ipa.go.jp/about/newsonly-rss.rdf", "section": "tech-gadget", "kind": "gov", "priority": 3},
+    # 東京都の報道発表（約4件/日。イベント・募集・審議会は LOW_VALUE_RE で落ちる）
+    {"slug": "tokyo-metro", "name": "東京都", "url": "https://www.metro.tokyo.lg.jp/index.html/-/asset_publisher/knkg/rss", "section": "public", "kind": "gov", "priority": 3},
     # --- 研究機関・宇宙 ---
     {"slug": "jaxa", "name": "JAXA", "url": "https://www.jaxa.jp/rss/press_j.rdf", "section": "science", "kind": "science", "priority": 1},
     {"slug": "riken", "name": "理化学研究所", "url": "https://www.riken.jp/feed/press_feed/", "section": "science", "kind": "science", "priority": 1},
     {"slug": "naoj", "name": "国立天文台", "url": "https://www.nao.ac.jp/atom.xml", "section": "science", "kind": "science", "priority": 1},
     {"slug": "jst", "name": "科学技術振興機構（JST）", "url": "https://www.jst.go.jp/rss/press.xml", "section": "science", "kind": "science", "priority": 2},
     {"slug": "nict", "name": "情報通信研究機構（NICT）", "url": "https://www.nict.go.jp/rss/press.rdf", "section": "science", "kind": "science", "priority": 2},
+    {"slug": "nii", "name": "国立情報学研究所（NII）", "url": "https://www.nii.ac.jp/news/rss.xml", "section": "science", "kind": "science", "priority": 2},  # 約0.6件/日
+    {"slug": "qst", "name": "量子科学技術研究開発機構（QST）", "url": "https://www.qst.go.jp/rss/10/list7.xml", "section": "science", "kind": "science", "priority": 2},  # 約0.4件/日
+    {"slug": "hiroshima-u", "name": "広島大学", "url": "https://www.hiroshima-u.ac.jp/feed/news", "section": "science", "kind": "science", "priority": 3, "include_re": "研究成果"},  # 研究成果は約0.5件/日
     # --- 企業ニュースルーム ---
     {"slug": "toyota", "name": "トヨタ自動車 グローバルニュースルーム", "url": "https://global.toyota/export/jp/allnews_rss.xml", "section": "business", "kind": "company", "priority": 2},
     {"slug": "rakuten", "name": "楽天グループ プレスリリース", "url": "https://corp.rakuten.co.jp/rss/press.xml", "section": "business", "kind": "company", "priority": 2},
@@ -132,8 +179,35 @@ BROAD_FEEDS: list[dict] = [
     {"slug": "google-japan-blog-all", "name": "Google Japan Blog", "url": "https://blog.google/intl/ja-jp/rss/", "section": "tech-gadget", "kind": "company", "priority": 1, "primary_for": "google"},
     {"slug": "nintendo-topics", "name": "任天堂 トピックス", "url": "https://www.nintendo.com/jp/topics/c/feed/rss/", "section": "entertainment", "kind": "company", "priority": 1},
     {"slug": "playstation-blog-jp", "name": "PlayStation.Blog 日本語", "url": "https://blog.ja.playstation.com/feed/", "section": "entertainment", "kind": "company", "priority": 2},
+    # --- 2026-10-27 追加の企業ニュースルーム（量は直近14日の実績） ---
+    # 通信・家電・ガジェット（AI の話題は FEEDS の *-ai が先に取り、ここには残りが来る）
+    {"slug": "ntt-news", "name": "NTT ニュースリリース", "url": "https://group.ntt/jp/newsrelease/rss/release.rdf", "section": "auto", "fallback": "business", "kind": "company", "priority": 2},  # 営業日に約10件
+    {"slug": "kddi-news", "name": "KDDI ニュースリリース", "url": "https://newsroom.kddi.com/news/newsrelease.xml", "section": "tech-gadget", "kind": "company", "priority": 2},  # 約0.8件/日
+    {"slug": "kddi-topics", "name": "KDDI トピックス", "url": "https://newsroom.kddi.com/news/topics.xml", "section": "tech-gadget", "kind": "company", "priority": 3},  # 約0.6件/日
+    # ドコモは新機種・新サービス・料金の分類だけ（お知らせ・OS 更新は外す）。量は少ないが読者の関心が高い
+    {"slug": "docomo-product", "name": "NTTドコモ（新製品）", "url": "https://www.docomo.ne.jp/info/rss/product.rdf", "section": "tech-gadget", "kind": "company", "priority": 1},
+    {"slug": "docomo-service", "name": "NTTドコモ（サービス）", "url": "https://www.docomo.ne.jp/info/rss/service.rdf", "section": "tech-gadget", "kind": "company", "priority": 1},
+    {"slug": "docomo-charge", "name": "NTTドコモ（料金）", "url": "https://www.docomo.ne.jp/info/rss/charge.rdf", "section": "tech-gadget", "kind": "company", "priority": 1},
+    {"slug": "samsung-jp", "name": "Samsung Newsroom 日本", "url": "https://news.samsung.com/jp/feed", "section": "tech-gadget", "kind": "company", "priority": 2},  # 約0.6件/日
+    {"slug": "about-amazon-jp", "name": "Amazon ニュース（日本）", "url": "https://www.aboutamazon.jp/news/rss", "section": "auto", "fallback": "business", "kind": "company", "priority": 2},  # 約0.3件/日
+    {"slug": "nissan", "name": "日産自動車 ニュースルーム", "url": "https://global.nissannews.com/ja-JP/rss", "section": "auto", "fallback": "business", "kind": "company", "priority": 2},  # 約0.4件/日
+    # 食品・飲料（新商品は価格・発売日が必ず入る）
+    {"slug": "suntory", "name": "サントリー ニュースリリース", "url": "https://www.suntory.co.jp/news/rss.xml", "section": "lifestyle", "kind": "company", "priority": 2},  # 約1.3件/日
+    {"slug": "kirin", "name": "キリンホールディングス ニュースリリース", "url": "https://www.kirinholdings.com/jp/newsroom/rss.php", "section": "lifestyle", "kind": "company", "priority": 2},  # 約0.9件/日
+    {"slug": "meiji", "name": "明治 ニュースリリース", "url": "https://www.meiji.co.jp/news/meiji_press.xml", "section": "lifestyle", "kind": "company", "priority": 2},  # 約1.0件/日
+    {"slug": "morinaga", "name": "森永製菓 ニュースリリース", "url": "https://www.morinaga.co.jp/company/rss/index.rdf", "section": "lifestyle", "kind": "company", "priority": 2},  # 約0.4件/日
+    # エンタメ
+    {"slug": "xbox-wire-jp", "name": "Xbox Wire Japan", "url": "https://news.xbox.com/ja-jp/feed/", "section": "entertainment", "kind": "company", "priority": 2},  # 約0.4件/日
+    {"slug": "cyberagent", "name": "サイバーエージェント ニュース", "url": "https://www.cyberagent.co.jp/news/rss/data_format=xml", "section": "auto", "fallback": "entertainment", "kind": "company", "priority": 3},  # 約0.7件/日（ABEMA など）
+    # 調査データ（東京商工リサーチの自社データの分析）。個別企業の倒産・解散の速報は扱わない
+    {"slug": "tsr", "name": "東京商工リサーチ", "url": "https://www.tsr-net.co.jp/rss/news_analysis.xml", "section": "business", "kind": "company", "priority": 2,  # 約1.6件/日
+     "exclude_re": r"(?:（[^）]{1,8}）|株式会社|（株）|有限会社|一般社団法人|医療法人|学校法人).{0,40}(?:破産|倒産|解散|民事再生|特別清算|事業停止|負債)"},
+    # ニッセイ基礎研究所のレポート・コラム（経済・家計・年金・不動産。全文がフィードに入る）。週のまとめは外す
+    {"slug": "nli-research", "name": "ニッセイ基礎研究所", "url": "https://www.nli-research.co.jp/rss/?data_format=xml&site=nli", "section": "business", "kind": "company", "priority": 3,  # 約2.4件/日
+     "exclude_re": r"まとめ【"},
     # --- スポーツ（競技団体の公式） ---
     {"slug": "jfa", "name": "日本サッカー協会（JFA）", "url": "https://www.jfa.jp/feed.rss", "section": "sports", "kind": "company", "priority": 2},
+    {"slug": "jtta", "name": "日本卓球協会", "url": "https://www.jtta.or.jp/feed/", "section": "sports", "kind": "company", "priority": 2},  # 約0.9件/日
 ]
 for _feed in BROAD_FEEDS:
     _feed.setdefault("lang", "ja")
@@ -150,6 +224,9 @@ ENTITY_RES: dict[str, re.Pattern] = {
     "apple": re.compile(r"\bApple\b|アップル|iPhone|iPad|\bMac\b|Apple Intelligence|Siri", re.I),
     "meta": re.compile(r"\bMeta\b|Llama|Instagram|WhatsApp|Facebook", re.I),
     "xai": re.compile(r"\bxAI\b|\bGrok\b", re.I),
+    "amazon": re.compile(r"Amazon|アマゾン|\bAWS\b|Alexa", re.I),
+    "mistral": re.compile(r"Mistral|Voxtral|Codestral|Magistral|Devstral|Pixtral", re.I),
+    "sakana": re.compile(r"Sakana|サカナ", re.I),
 }
 KIND_RANK = {"official": 1, "company": 2, "gov": 2, "science": 2, "": 2, "derivative": 3, "wire": 4}
 
@@ -170,11 +247,12 @@ def source_rank(item: dict) -> int:
 def feed_kind(item: dict) -> str:
     return FEEDS_BY_SLUG.get(item.get("source_slug", ""), {}).get("kind", "")
 
-# プレスリリース配信（section="auto"）の振り分け。当たった語の数が多いセクションに入れる（同点は並び順）。
+# section="auto" のフィード（企業の雑多なニュースなど）の振り分け。当たった語の数が多いセクションに入れる（同点は並び順）。
 SECTION_RULES: list[tuple[str, re.Pattern]] = [
     ("sports", re.compile(
         r"サッカー|野球|バスケ|Jリーグ|Bリーグ|ラグビー|ゴルフ|テニス|卓球|バレーボール|陸上競技|マラソン|駅伝|"
-        r"五輪|オリンピック|パラリンピック|ワールドカップ|日本代表|選手権|スポーツ|競技|アスリート|フィットネス|ランニング")),
+        r"五輪|オリンピック|パラリンピック|ワールドカップ|日本代表|選手権|スポーツ|競技|アスリート|フィットネス|ランニング|"
+        r"モータースポーツ|フォーミュラ|SUPER GT|(?<![A-Za-z])F1(?![A-Za-z])|(?<![A-Za-z])WEC(?![A-Za-z])|耐久レース")),
     ("entertainment", re.compile(
         r"アニメ|映画|ドラマ|漫画|マンガ|コミック|小説|書籍|新刊|ゲーム|Nintendo|Switch|PS5|プレイステーション|"
         r"音楽|楽曲|アルバム|ライブ|コンサート|ツアー|舞台|ミュージカル|展覧会|美術館|博物館|展示|声優|VTuber|配信開始|"
@@ -294,6 +372,7 @@ def strip_html(value: str) -> str:
 def parse_feed(feed: dict) -> list[dict]:
     """RSS 2.0 / Atom / RSS 1.0(RDF) を共通形式に。content は全文が入っていれば全文（HTML除去済み）。"""
     data, _ = fetch(feed["url"], accept="application/rss+xml, application/atom+xml, application/xml;q=0.9, */*;q=0.8")
+    data = data.lstrip()  # XML 宣言の前に改行がある WordPress（イオン等）
     try:
         root = ET.fromstring(data)
     except ValueError:
@@ -319,6 +398,7 @@ def parse_feed(feed: dict) -> list[dict]:
                     break
         if not title or not link:
             continue
+        link = urllib.parse.urljoin(feed["url"], link.strip())  # 相対 URL のフィード（Sakana AI 等）
         published = _parse_date(first("pubDate", f"{DC}date", f"{ATOM}published", f"{ATOM}updated"))
         summary_raw = first("description", f"{ATOM}summary", f"{RSS1}description")
         content_raw = first(f"{CONTENT}encoded", f"{ATOM}content")
@@ -390,6 +470,10 @@ def collect(lookback_days: int = 3, state: dict | None = None, feeds: list[dict]
             if any(host == h or host.endswith("." + h) for h in BLOCKED_HOSTS):
                 continue
             if feed.get("ai_only") and not is_ai_related(item, feed.get("title_only", False)):
+                continue
+            if feed.get("include_re") and not re.search(feed["include_re"], item["title"]):
+                continue
+            if feed.get("exclude_re") and re.search(feed["exclude_re"], item["title"]):
                 continue
             key = _norm_title(item["title"])
             if key in seen_titles:
