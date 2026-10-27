@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       title: article.title,
       description: article.description,
-      publishedTime: article.publishedAt,
+      publishedTime: article.generatedAt || article.publishedAt,
       modifiedTime: lastModifiedOf(article),
       tags: article.tags,
       // SNSのカードは日本語見出し入りの独自カバー。無い記事は元動画（元記事）の画像
@@ -166,7 +166,8 @@ export default async function ArticlePage({ params }: Props) {
       image: [coverPath(article), article.thumbnail]
         .filter(Boolean)
         .map((src) => (src!.startsWith("/") ? `${siteConfig.url}${src}` : src)),
-      datePublished: article.publishedAt,
+      // サイソクに載せた日時（ニュースサイトマップ・フィードと同じ。元の発表日時は本文側に表示）
+      datePublished: article.generatedAt || article.publishedAt,
       // 続報を足した記事は最終更新日時
       dateModified: lastModifiedOf(article),
       inLanguage: "ja",
@@ -176,9 +177,12 @@ export default async function ArticlePage({ params }: Props) {
       // 編集方針と訂正方針（誰がどう責任を持つかを検索エンジンに示す）
       publishingPrinciples: `${siteConfig.url}/editorial-policy`,
       correctionsPolicy: `${siteConfig.url}/editorial-policy`,
+      // AIを使った制作であることの開示（schema.org の backstory: 記事がどう作られたか）
+      backstory: `生成AIで下書きを作成し、元の発表と照合してから公開しています。制作方法と事実確認の手順: ${siteConfig.url}/editorial-policy`,
       publisher: {
         "@type": "Organization",
-        name: siteConfig.name,
+        // サイト全体の構造化データ（app/layout.tsx）・ニュースサイトマップと同じ媒体名
+        name: siteConfig.siteName,
         url: siteConfig.url,
         logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png`, width: 600, height: 60 },
       },
@@ -279,6 +283,11 @@ export default async function ArticlePage({ params }: Props) {
               <RelTime iso={article.publishedAt} className="index-num font-semibold text-ink" />
               <span className="index-num ml-1.5">（{formatDate(article.publishedAt)}）</span>
             </span>
+            {article.generatedAt && formatDateTime(article.generatedAt) && (
+              <span className="index-num text-muted">
+                掲載: <time dateTime={article.generatedAt}>{formatDateTime(article.generatedAt)}</time>
+              </span>
+            )}
             <span className="index-num text-muted">読了 {readMinutes}分</span>
             {article.updatedAt && formatDateTime(article.updatedAt) && (
               <span className="index-num font-semibold text-ink-soft">
