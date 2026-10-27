@@ -54,4 +54,9 @@ const nextConfig: NextConfig = {
   },
 };
 
+// next dev で Workers のバインディング（KV など）を使うときだけ: CF_DEV=1 npx next dev -p 3100
+if (process.env.CF_DEV === "1") {
+  import("@opennextjs/cloudflare").then((m) => m.initOpenNextCloudflareForDev());
+}
+
 export default nextConfig;
