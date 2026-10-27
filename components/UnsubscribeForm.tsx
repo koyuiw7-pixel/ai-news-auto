@@ -12,7 +12,7 @@ export default function UnsubscribeForm() {
   const [phase, setPhase] = useState<"idle" | "sending" | "done" | "error">("idle");
 
   if (!id || !t) {
-    return <p className="mt-6 text-[14px] leading-[1.8] text-ink-soft">リンクが正しくありません。メール末尾の解除リンクから開いてください。</p>;
+    return <p className="mt-6 text-desc leading-[1.8] text-ink-soft">リンクが正しくありません。メール末尾の解除リンクから開いてください。</p>;
   }
 
   async function unsubscribe() {
@@ -31,7 +31,7 @@ export default function UnsubscribeForm() {
 
   if (phase === "done") {
     return (
-      <p role="status" className="mt-6 border-l-2 border-go pl-3 text-[14px] leading-[1.8] text-ink">
+      <p role="status" className="mt-6 border-l-2 border-go pl-3 text-desc leading-[1.8] text-ink">
         解除しました。これまでお読みいただき、ありがとうございました。
         <Link href="/" className="ml-1 underline underline-offset-2">トップへ</Link>
       </p>
@@ -40,17 +40,17 @@ export default function UnsubscribeForm() {
 
   return (
     <div className="mt-6">
-      <p className="text-[14px] leading-[1.8] text-ink-soft">下のボタンを押すと、毎朝のメール配信を止めます。</p>
+      <p className="text-desc leading-[1.8] text-ink-soft">下のボタンを押すと、毎朝のメール配信を止めます。</p>
       <button
         type="button"
         onClick={unsubscribe}
         disabled={phase === "sending"}
-        className="mt-4 h-11 rounded-lg bg-ink px-5 text-[14px] font-semibold text-paper hover:opacity-85 disabled:opacity-60"
+        className="mt-4 h-11 rounded-lg bg-ink px-5 text-note font-semibold text-paper hover:opacity-85 disabled:opacity-60"
       >
         {phase === "sending" ? "処理中…" : "配信を解除する"}
       </button>
       {phase === "error" && (
-        <p role="alert" className="mt-3 text-[13px] text-live">
+        <p role="alert" className="mt-3 text-meta text-live">
           解除できませんでした。リンクが古い可能性があります。お手数ですがお問い合わせからご連絡ください。
         </p>
       )}

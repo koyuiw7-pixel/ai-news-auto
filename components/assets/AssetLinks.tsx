@@ -20,7 +20,7 @@ export default function AssetLinks({ article }: { article: ArticleSummary }) {
 
   const link = "font-bold text-ink underline decoration-line-strong underline-offset-[3px] hover:decoration-ink";
   return (
-    <p className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-[13px] text-ink-soft">
+    <p className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-meta text-ink-soft">
       {event && (
         <span>
           <Link href={`/events/${event.slug}`} className={link}>

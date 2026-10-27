@@ -19,6 +19,8 @@ export default function CompanyMark({ company, size = 20, withName, className = 
       aria-hidden={withName ? true : undefined}
       aria-label={withName ? undefined : company.name}
       role={withName ? undefined : "img"}
+      // 企業の色見本（ロゴ扱い）。文字サイズ・コントラストのルールの対象外（docs/typography.md）
+      data-decorative=""
       className="index-num inline-grid shrink-0 place-items-center rounded-[6px] font-semibold leading-none text-white"
       style={{
         width: size,

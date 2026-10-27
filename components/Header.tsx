@@ -19,7 +19,7 @@ export default function Header() {
           <span className="font-display text-[1.4rem] leading-none text-ink">
             {siteConfig.shortName}
           </span>
-          <span className="hidden text-[11.5px] font-bold text-muted sm:inline md:hidden lg:inline">
+          <span className="hidden text-meta font-bold text-muted sm:inline md:hidden lg:inline">
             {siteConfig.tagline}
           </span>
         </Link>
@@ -32,7 +32,7 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className={`whitespace-nowrap text-sm font-bold text-ink-soft transition-colors hover:text-accent ${item.wide ? "hidden lg:inline" : ""}`}
+              className={`whitespace-nowrap text-note font-bold text-ink-soft transition-colors hover:text-accent ${item.wide ? "hidden lg:inline" : ""}`}
             >
               {item.label}
             </Link>
@@ -43,7 +43,7 @@ export default function Header() {
           {/* スマホではメニューを畳んでいるので、AI以外の話題への入口だけ出す */}
           <Link
             href="/news"
-            className="rounded-full border border-line px-3 py-1 text-[12.5px] font-bold text-ink-soft transition-colors hover:border-ink hover:text-ink md:hidden"
+            className="rounded-full border border-line px-3 py-1 text-meta font-bold text-ink-soft transition-colors hover:border-ink hover:text-ink md:hidden"
           >
             ニュース
           </Link>

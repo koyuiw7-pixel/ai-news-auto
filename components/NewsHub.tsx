@@ -11,7 +11,7 @@ type GenreChip = { slug: string; label: string; count: number };
  * スマホでは横にスクロールさせて1行に収める。
  */
 export function GenreChips({ genres, active }: { genres: GenreChip[]; active?: string }) {
-  const base = "shrink-0 rounded-full border px-3.5 py-1.5 text-[12.5px] font-bold transition-colors";
+  const base = "shrink-0 rounded-full border px-3.5 py-1.5 text-meta font-bold transition-colors";
   const on = `${base} border-ink bg-ink text-paper`;
   const off = `${base} border-line text-ink-soft hover:border-ink hover:text-ink`;
   return (
@@ -33,7 +33,7 @@ export function GenreChips({ genres, active }: { genres: GenreChip[]; active?: s
               className={active === genre.slug ? on : off}
             >
               {genre.label}
-              <span className="index-num ml-1.5 text-[11px] font-normal opacity-70">{genre.count}</span>
+              <span className="index-num ml-1.5 text-meta font-normal opacity-70">{genre.count}</span>
             </Link>
           </li>
         ))}
@@ -77,7 +77,7 @@ function NewsItem({ article, priority }: { article: ArticleSummary; priority: bo
         />
       </span>
       <span className="grid min-w-0 gap-1.5">
-        <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px]">
+        <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-meta">
           <span className="font-bold text-accent">{article.genre}</span>
           <RelTime iso={postedAt} className="index-num font-semibold text-muted" />
         </span>
@@ -97,12 +97,12 @@ export default function NewsHub({ articles, genres }: { articles: ArticleSummary
       <div className="mb-5 flex items-end justify-between gap-4">
         <div>
           <p className="eyebrow">NEWS</p>
-          <h2 id="news-heading" className="display mt-1 text-[1.6rem]">
+          <h2 id="news-heading" className="t-h2 mt-1">
             ニュース
           </h2>
-          <p className="mt-1 text-[12.5px] text-muted">AI以外の話題も、公式発表から要点だけ</p>
+          <p className="mt-1 text-meta text-muted">AI以外の話題も、公式発表から要点だけ</p>
         </div>
-        <Link href="/news" className="shrink-0 pb-1 text-[13px] font-bold text-muted hover:text-ink">
+        <Link href="/news" className="shrink-0 pb-1 text-meta font-bold text-muted hover:text-ink">
           すべて見る →
         </Link>
       </div>

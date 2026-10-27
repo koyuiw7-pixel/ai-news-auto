@@ -9,8 +9,8 @@ export default function InlineRead({ item }: { item?: NextRead }) {
       href={`/articles/${item.article.slug}`}
       className="group my-8 flex max-w-[42em] items-center gap-3 border-y border-line py-3.5"
     >
-      <span className="shrink-0 text-[11.5px] font-bold text-live">あわせて読みたい</span>
-      <span className="min-w-0 flex-1 truncate text-[14px] font-bold text-ink group-hover:underline">
+      <span className="shrink-0 text-meta font-bold text-live">あわせて読みたい</span>
+      <span className="min-w-0 flex-1 truncate text-note font-bold text-ink group-hover:underline">
         {item.article.seoTitle || item.article.title}
       </span>
       <span aria-hidden className="text-muted">→</span>

@@ -68,17 +68,17 @@ export default function HomePage() {
         <div className="mt-14 grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-12">
           <section aria-labelledby="latest-heading" className="min-w-0">
             <div className="mb-2 flex items-end justify-between gap-4">
-              <h2 id="latest-heading" className="display text-[1.6rem]">
+              <h2 id="latest-heading" className="t-h2">
                 新着
               </h2>
-              <Link href="/articles" className="pb-1 text-[13px] font-bold text-muted hover:text-ink">
+              <Link href="/articles" className="pb-1 text-meta font-bold text-muted hover:text-ink">
                 すべての記事 →
               </Link>
             </div>
             <Timeline articles={timeline} filterable />
             <Link
               href="/articles"
-              className="mt-8 flex items-center justify-center rounded-full border border-line-strong py-3 text-[14px] font-bold text-ink transition-colors hover:border-ink"
+              className="mt-8 flex items-center justify-center rounded-full border border-line-strong py-3 text-note font-bold text-ink transition-colors hover:border-ink"
             >
               もっと見る
             </Link>
@@ -103,11 +103,11 @@ export default function HomePage() {
                   <li key={company.slug}>
                     <Link
                       href={`/companies/${company.slug}`}
-                      className="flex items-center gap-2 rounded-xl border border-line px-3 py-2.5 text-[13px] font-bold text-ink transition-colors hover:border-ink"
+                      className="flex items-center gap-2 rounded-xl border border-line px-3 py-2.5 text-meta font-bold text-ink transition-colors hover:border-ink"
                     >
                       <CompanyMark company={company} size={18} />
                       <span className="min-w-0 truncate">{company.name}</span>
-                      <span className="index-num ml-auto text-[11px] font-normal text-muted">{count}</span>
+                      <span className="index-num ml-auto text-meta font-normal text-muted">{count}</span>
                     </Link>
                   </li>
                 ))}
@@ -122,7 +122,7 @@ export default function HomePage() {
                     <Link
                       key={slug}
                       href={`/tags/${encodeURIComponent(slug)}`}
-                      className="rounded-full bg-surface px-3 py-1.5 text-[12.5px] font-medium text-ink-soft transition-colors hover:bg-surface-2 hover:text-ink"
+                      className="rounded-full bg-surface px-3 py-1.5 text-meta font-medium text-ink-soft transition-colors hover:bg-surface-2 hover:text-ink"
                     >
                       {tag.label}
                     </Link>
@@ -136,11 +136,11 @@ export default function HomePage() {
         <NewsHub articles={broad.slice(0, NEWS_SIZE)} genres={broadGenres} />
 
         <footer className="mt-20 grid gap-3 border-t border-line pt-8">
-          <p className="max-w-[70ch] text-[13.5px] leading-relaxed text-ink-soft">
+          <p className="max-w-[70ch] text-desc leading-relaxed text-ink-soft">
             {siteConfig.description}
           </p>
           {otherGenres.length > 0 && (
-            <p className="text-[12.5px] text-muted">
+            <p className="text-meta text-muted">
               過去に扱っていた分野：
               {otherGenres.map((genre, index) => (
                 <span key={genre.slug}>
@@ -174,10 +174,10 @@ function topTags(articles: ArticleSummary[], limit: number) {
 function RailHead({ id, title, note }: { id: string; title: string; note?: string }) {
   return (
     <div className="mb-4 border-b border-ink pb-2">
-      <h2 id={id} className="text-[15px] font-bold text-ink">
+      <h2 id={id} className="t-h3">
         {title}
       </h2>
-      {note && <p className="mt-0.5 text-[11.5px] text-muted">{note}</p>}
+      {note && <p className="mt-0.5 text-meta text-muted">{note}</p>}
     </div>
   );
 }
@@ -188,11 +188,11 @@ function RailRoundup({ article }: { article: ArticleSummary }) {
       <Link href={`/articles/${article.slug}`} className="group grid grid-cols-[88px_minmax(0,1fr)] gap-3">
         <span className="relative aspect-video overflow-hidden rounded-lg bg-surface-2">
           <Thumb src={article.thumbnail.replace("maxresdefault", "mqdefault")} source={thumbSource(article)} alt="" fill sizes="88px" className="object-cover" />
-          <span className="index-num absolute bottom-1 left-1 rounded bg-ink/85 px-1.5 py-[1px] text-[10px] font-semibold text-paper">
+          <span className="index-num absolute bottom-1 left-1 rounded bg-ink/85 px-1.5 py-[1px] text-badge font-semibold text-paper">
             {article.sourceCount}本
           </span>
         </span>
-        <span className="line-clamp-3 text-[13px] font-bold leading-[1.55] text-ink group-hover:underline">
+        <span className="line-clamp-3 text-[15px] font-bold leading-[1.55] text-ink group-hover:underline">
           {article.seoTitle || article.title}
         </span>
       </Link>
@@ -205,7 +205,7 @@ function EmptyState() {
     <div className="mx-auto max-w-2xl px-5 py-32 text-center">
       <p className="eyebrow">NO ARTICLES YET</p>
       <p className="display mt-3 text-2xl">記事はまだありません</p>
-      <p className="mt-4 text-sm leading-relaxed text-muted">
+      <p className="mt-4 text-desc leading-relaxed text-ink-soft">
         GitHub Actions が6時間ごとに新着動画を解析して、自動で記事を追加します。
       </p>
     </div>

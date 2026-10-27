@@ -33,7 +33,7 @@ export default function UsableFilter({ children }: { children: ReactNode }) {
           role="switch"
           aria-checked={only}
           onClick={toggle}
-          className="flex items-center gap-2.5 rounded-full py-1 text-[12.5px] font-bold text-ink-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+          className="flex items-center gap-2.5 rounded-full py-1 text-meta font-bold text-ink-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
         >
           今すぐ使えるものだけ
           <span
@@ -47,7 +47,7 @@ export default function UsableFilter({ children }: { children: ReactNode }) {
         </button>
       </div>
       {children}
-      <p className="usable-empty hidden py-10 text-center text-[13px] text-muted">
+      <p className="usable-empty hidden py-10 text-center text-meta text-muted">
         この中に、今すぐ使える発表はありません。
       </p>
     </div>

@@ -48,7 +48,7 @@ export default async function ComparePreviewPage({ params }: Props) {
   return (
     <>
       <nav aria-label="デザイン案の切り替え" className="border-b border-line bg-surface">
-        <div className="mx-auto flex max-w-[1160px] flex-wrap items-center gap-2 px-4 py-2 text-[12px] sm:px-8">
+        <div className="mx-auto flex max-w-[1160px] flex-wrap items-center gap-2 px-4 py-2 text-meta sm:px-8">
           <span className="font-bold text-muted">確認用（検索には出ません）</span>
           {(Object.keys(VARIANTS) as Key[]).map((key) => (
             <Link

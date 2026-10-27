@@ -26,14 +26,14 @@ export default function NewsView({ page }: { page: number }) {
   return (
     <div className="mx-auto max-w-[1240px] px-5 py-12 sm:px-8">
       <p className="eyebrow">NEWS</p>
-      <h1 className="display mt-2 text-[1.9rem] sm:text-[2.3rem]">ニュース{pageSuffix(page)}</h1>
-      <p className="mt-3 max-w-3xl text-[14.5px] leading-[1.9] text-muted">
+      <h1 className="t-h1 mt-2">ニュース{pageSuffix(page)}</h1>
+      <p className="t-lead mt-3">
         AIの速報に加えて、企業・研究機関・行政の公式発表から、暮らしや仕事に関わる話題を要点だけまとめています。
         {articles.length > 0 && <>全 {articles.length} 本。</>}
       </p>
 
       {articles.length === 0 ? (
-        <p className="mt-16 text-center text-sm text-muted">まだ記事はありません。</p>
+        <p className="mt-16 text-center text-note text-muted">まだ記事はありません。</p>
       ) : (
         <>
           <div className="mt-7 border-b border-ink pb-5">

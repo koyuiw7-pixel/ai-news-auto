@@ -51,8 +51,8 @@ export default function ReadingMode({ easyMinutes, expertMinutes }: { easyMinute
                 active ? "bg-ink text-paper" : "text-ink hover:bg-surface"
               }`}
             >
-              <span className="block text-[14px] font-bold">{option.label}</span>
-              <span className={`block text-[11.5px] ${active ? "opacity-75" : "text-muted"}`}>{option.sub}</span>
+              <span className="block text-note font-bold">{option.label}</span>
+              <span className={`block text-meta ${active ? "opacity-75" : "text-muted"}`}>{option.sub}</span>
             </button>
           );
         })}

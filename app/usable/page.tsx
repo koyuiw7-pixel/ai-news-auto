@@ -72,12 +72,12 @@ export default function UsablePage() {
       {/* 見出しと数字を横に並べ、ファーストビューを詰める */}
       <header className="border-b border-ink pb-7">
         <div>
-          <p className="flex items-center gap-2 text-[12px] font-bold text-muted">
+          <p className="flex items-center gap-2 text-meta font-bold text-muted">
             <VerdictBadge kind="go" />
             {updatedAt && <span className="index-num">{dayFormat.format(Date.parse(updatedAt))}更新</span>}
           </p>
-          <h1 className="display mt-3 text-[1.85rem] leading-tight text-balance sm:text-[2.3rem]">{TITLE}</h1>
-          <p className="mt-3 max-w-[62ch] text-[14.5px] leading-[1.85] text-ink-soft">{DESCRIPTION}</p>
+          <h1 className="t-h1 mt-3">{TITLE}</h1>
+          <p className="t-lead mt-3">{DESCRIPTION}</p>
         </div>
       </header>
 
@@ -107,7 +107,7 @@ export default function UsablePage() {
                         className="flex items-center gap-2.5 rounded-full border border-line py-1.5 pl-2 pr-3 hover:border-ink"
                       >
                         <CompanyMark company={company} size={18} withName />
-                        <span className="index-num text-[12px] font-bold text-go">{count}</span>
+                        <span className="index-num text-meta font-bold text-go">{count}</span>
                       </Link>
                     </li>
                   );
@@ -118,10 +118,10 @@ export default function UsablePage() {
 
           <section aria-labelledby="usable-list" className="mt-12">
             <div className="mb-2 flex items-end justify-between gap-4">
-              <h2 id="usable-list" className="display text-[1.5rem]">
+              <h2 id="usable-list" className="t-h2">
                 今日から使えるもの
               </h2>
-              <span className="index-num pb-1 text-[12px] text-muted">新しい順・{Math.min(usable.length, 40)}本</span>
+              <span className="index-num pb-1 text-meta text-muted">新しい順・{Math.min(usable.length, 40)}本</span>
             </div>
             <Timeline articles={usable.slice(0, 40)} />
           </section>
@@ -137,7 +137,7 @@ export default function UsablePage() {
         )}
       </div>
 
-      <p className="mt-12 rounded-2xl bg-surface px-5 py-4 text-[12px] leading-relaxed text-muted">
+      <p className="mt-12 rounded-2xl bg-surface px-5 py-4 text-note leading-relaxed text-muted">
         判定は各発表の時点の情報にもとづきます。提供地域・料金は変わることがあるため、最新の状況は各社の公式情報をご確認ください。
         <Link href="/about" className="ml-1 underline">
           サイソクについて
@@ -150,10 +150,10 @@ export default function UsablePage() {
 function RailHead({ id, title, note }: { id: string; title: string; note?: string }) {
   return (
     <div className="mb-3 border-b border-ink pb-2">
-      <h2 id={id} className="text-[15px] font-bold text-ink">
+      <h2 id={id} className="t-h3">
         {title}
       </h2>
-      {note && <p className="mt-0.5 text-[11.5px] text-muted">{note}</p>}
+      {note && <p className="mt-0.5 text-meta text-muted">{note}</p>}
     </div>
   );
 }
@@ -169,11 +169,11 @@ function RailList({ id, title, note, articles }: { id: string; title: string; no
           return (
             <li key={article.slug}>
               <Link href={`/articles/${article.slug}`} className="group block">
-                <span className="flex items-center gap-2 text-[11px] text-muted">
+                <span className="flex items-center gap-2 text-meta text-muted">
                   <CompanyMark company={companyOf(article)} size={14} withName />
                   {verdict?.price && verdict.price !== "不明" && <span>・{verdict.price}</span>}
                 </span>
-                <span className="mt-1 line-clamp-2 block text-[13.5px] font-bold leading-snug text-ink group-hover:underline">
+                <span className="mt-1 line-clamp-2 block text-[15px] font-bold leading-snug text-ink group-hover:underline">
                   {article.seoTitle || article.title}
                 </span>
               </Link>

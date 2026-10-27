@@ -267,7 +267,7 @@ export default async function ArticlePage({ params }: Props) {
 
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="min-w-0">
-          <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
+          <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-meta text-muted">
             <Link href="/" className="hover:text-accent">
               ホーム
             </Link>
@@ -281,13 +281,13 @@ export default async function ArticlePage({ params }: Props) {
             </Link>
           </nav>
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px]">
+          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-meta">
             <CompanyMark company={company} size={20} withName />
-            <span className="rounded-full border border-line-strong px-2 py-[1px] text-[11px] font-bold text-ink-soft">
+            <span className="rounded-full border border-line-strong px-2 py-[1px] text-badge font-bold text-ink-soft">
               {isRoundup ? `まとめ ${article.sources?.length ?? 0}本` : "公式発表"}
             </span>
             {speedLabel(article) && (
-              <span className="rounded-full border border-live/40 px-2 py-[1px] text-[11px] font-bold text-live">
+              <span className="rounded-full border border-live/40 px-2 py-[1px] text-badge font-bold text-live">
                 {speedLabel(article)}
               </span>
             )}
@@ -309,7 +309,7 @@ export default async function ArticlePage({ params }: Props) {
           </div>
 
           <Morph name={`title-${article.slug}`}>
-            <h1 className="display mt-3 font-bold text-[1.85rem] text-ink sm:text-[2.5rem]">
+            <h1 className="t-h1 headline mt-3">
               <Highlight text={article.title} />
             </h1>
           </Morph>
@@ -317,13 +317,13 @@ export default async function ArticlePage({ params }: Props) {
           {/* 3秒でわかる要点 */}
           {article.highlights.length > 0 && (
             <section aria-labelledby="points-heading" className="mt-6 rounded-2xl border-l-4 border-live bg-surface p-5 sm:p-6">
-              <h2 id="points-heading" className="text-[13px] font-bold">
+              <h2 id="points-heading" className="t-h3">
                 3秒でわかる要点
               </h2>
               <ol className="mt-4 grid gap-3.5">
                 {article.highlights.map((highlight, index) => (
-                  <li key={index} className="grid grid-cols-[24px_1fr] gap-3 text-[15px] font-medium leading-[1.7] text-ink">
-                    <span className="index-num mt-0.5 grid size-6 place-items-center rounded-full bg-ink text-[11.5px] font-semibold text-paper">
+                  <li key={index} className="grid grid-cols-[24px_1fr] gap-3 text-desc font-medium leading-[1.7] text-ink">
+                    <span className="index-num mt-0.5 grid size-6 place-items-center rounded-full bg-ink text-meta font-semibold text-paper">
                       {index + 1}
                     </span>
                     {highlight}
@@ -342,7 +342,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 製品のまとめページへの案内（「〇〇とは」「料金」を知りたい読者の受け皿）。目立たせず1行だけ */}
           {product ? (
-            <p className="mt-4 text-[13.5px]">
+            <p className="mt-4 text-note">
               <Link
                 href={`/products/${product.slug}`}
                 className="font-bold text-ink-soft underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"
@@ -355,8 +355,8 @@ export default async function ArticlePage({ params }: Props) {
               href={`/guides/${guide.slug}`}
               className="group mt-4 flex items-center gap-3 rounded-2xl border border-line px-5 py-3.5 transition-colors hover:border-ink"
             >
-              <span className="shrink-0 rounded-full bg-ink px-2.5 py-0.5 text-[10.5px] font-bold text-paper">ガイド</span>
-              <span className="min-w-0 text-[14px] font-bold leading-snug text-ink group-hover:underline">
+              <span className="shrink-0 rounded-full bg-ink px-2.5 py-0.5 text-badge font-bold text-paper">ガイド</span>
+              <span className="min-w-0 text-note font-bold leading-snug text-ink group-hover:underline">
                 {guide.name}とは？できること・料金・使い方を1ページで
               </span>
               <span aria-hidden className="ml-auto text-muted">→</span>
@@ -364,14 +364,14 @@ export default async function ArticlePage({ params }: Props) {
           )}
 
           {article.lede && (
-            <p className="mt-6 max-w-[62ch] text-[15.5px] leading-[1.95] text-ink-soft sm:text-base">
+            <p className="t-lead mt-6">
               {article.lede}
             </p>
           )}
 
-          <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-[11.5px] text-muted">
+          <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-meta text-muted">
             {/* ステマ規制（景品表示法）に沿い、広告を含みうる全記事の冒頭で明示する */}
-            <span className="rounded-full bg-surface px-2 py-0.5 text-[10.5px] font-bold">
+            <span className="rounded-full bg-surface px-2 py-0.5 text-badge font-bold">
               本ページはプロモーションを含みます
             </span>
           </div>
@@ -382,12 +382,12 @@ export default async function ArticlePage({ params }: Props) {
               href={`/articles/${article.roundupSlug}`}
               className="group mt-6 flex items-start gap-3 rounded-2xl bg-surface px-5 py-4 transition-colors hover:bg-surface-2"
             >
-              <span className="mt-0.5 shrink-0 rounded-full bg-ink px-2.5 py-0.5 text-[10.5px] font-bold text-paper">
+              <span className="mt-0.5 shrink-0 rounded-full bg-ink px-2.5 py-0.5 text-badge font-bold text-paper">
                 まとめ
               </span>
               <span className="min-w-0">
-                <span className="block text-[12.5px] text-muted">この話題の全体像はこちら</span>
-                <span className="mt-0.5 block text-[15px] font-bold leading-snug text-ink group-hover:text-accent">
+                <span className="block text-meta text-muted">この話題の全体像はこちら</span>
+                <span className="t-card mt-0.5 block leading-snug group-hover:text-accent">
                   {article.roundupTitle}
                 </span>
               </span>
@@ -403,7 +403,7 @@ export default async function ArticlePage({ params }: Props) {
               <span className="index-num text-[3.5rem] font-semibold leading-[0.85] tracking-tighter text-roundup">
                 {article.sources?.length ?? 0}
               </span>
-              <span className="pb-1 text-[13.5px] font-bold leading-snug text-muted">
+              <span className="pb-1 text-note font-bold leading-snug text-muted">
                 本の発表を1本に統合した記事です
               </span>
             </div>
@@ -436,7 +436,7 @@ export default async function ArticlePage({ params }: Props) {
               <figcaption className="flex items-center gap-4 bg-surface px-5 py-4">
                 <CompanyMark company={company} size={36} />
                 <span className="min-w-0 flex-1">
-                  <span className="block text-[11.5px] font-bold text-muted">出典: {sourceName}</span>
+                  <span className="block text-meta font-bold text-muted">出典: {sourceName}</span>
                   {sourceUrl ? (
                     <a
                       href={sourceUrl}
@@ -455,7 +455,7 @@ export default async function ArticlePage({ params }: Props) {
                     href={sourceUrl}
                     target="_blank"
                     rel="noopener"
-                    className="hidden shrink-0 items-center gap-1.5 rounded-full border border-line-strong px-3.5 py-1.5 text-[12px] font-bold text-ink-soft transition-colors hover:border-ink hover:text-ink sm:inline-flex"
+                    className="hidden shrink-0 items-center gap-1.5 rounded-full border border-line-strong px-3.5 py-1.5 text-badge font-bold text-ink-soft transition-colors hover:border-ink hover:text-ink sm:inline-flex"
                   >
                     元記事を読む
                     <span aria-hidden>↗</span>
@@ -493,7 +493,7 @@ export default async function ArticlePage({ params }: Props) {
                   </span>
                 </a>
               </Morph>
-              <p className="truncate px-5 py-3 text-xs text-white/60">
+              <p className="truncate px-5 py-3 text-note text-white/75">
                 元動画: {article.videoTitle}
               </p>
             </div>
@@ -503,10 +503,10 @@ export default async function ArticlePage({ params }: Props) {
           <div id="article-flow" data-read-mode="expert">
           {easyHtml && (
             <div className="read-easy">
-              <p className="mt-8 inline-flex items-center gap-2 rounded-full bg-go-soft px-3 py-1 text-[12px] font-bold text-go">
+              <p className="mt-8 inline-flex items-center gap-2 rounded-full bg-go-soft px-3 py-1 text-badge font-bold text-go">
                 かんたん版：専門用語を使わずに説明しています
               </p>
-              <article className="prose mt-5 max-w-[42em]" dangerouslySetInnerHTML={{ __html: easyHtml }} />
+              <article className="prose mt-5 max-w-[40em]" dangerouslySetInnerHTML={{ __html: easyHtml }} />
               {inlineOffer && (
                 <div className="my-10 max-w-[46em]">
                   <RailRanking offer={inlineOffer} wide title="もっと深く知るための3選" countImpression={false} />
@@ -519,13 +519,13 @@ export default async function ArticlePage({ params }: Props) {
           {/* 章立て */}
           {headings.length > 1 && (
             <nav aria-labelledby="toc-heading" className="mt-6 rounded-3xl border border-line p-6">
-              <h2 id="toc-heading" className="text-[13px] font-bold text-muted">
+              <h2 id="toc-heading" className="t-h3">
                 この記事の章立て
               </h2>
-              <ol className="mt-3 grid list-decimal gap-2 pl-5 marker:font-mono marker:text-[11px] marker:text-muted">
+              <ol className="mt-3 grid list-decimal gap-2 pl-5 marker:font-mono marker:text-meta marker:text-muted">
                 {headings.map((heading) => (
                   <li key={heading.id}>
-                    <a href={`#${heading.id}`} className="text-[14px] font-medium text-ink-soft hover:text-accent">
+                    <a href={`#${heading.id}`} className="text-note font-medium text-ink-soft hover:text-accent">
                       {heading.text}
                     </a>
                   </li>
@@ -535,14 +535,14 @@ export default async function ArticlePage({ params }: Props) {
           )}
 
           {/* 本文（前半） */}
-          <article className="prose mt-10 max-w-[42em]" dangerouslySetInnerHTML={{ __html: bodyTop }} />
+          <article className="prose mt-10 max-w-[40em]" dangerouslySetInnerHTML={{ __html: bodyTop }} />
           {bodyMid && <InlineRead item={nextReads[2] ?? nextReads[1]} />}
 
           {/* ② 記事中盤の広告枠 */}
           {bodyMid && <AdSlot position="article-middle" className="my-10" />}
 
           {bodyMid && (
-            <article className="prose max-w-[42em]" dangerouslySetInnerHTML={{ __html: bodyMid }} />
+            <article className="prose max-w-[40em]" dangerouslySetInnerHTML={{ __html: bodyMid }} />
           )}
 
           {/* 本文に馴染ませる収益導線。関連ツールは本文の途中（読者がまだ読んでいる位置）に置く。
@@ -561,7 +561,7 @@ export default async function ArticlePage({ params }: Props) {
           {bodyTail && <CtaBanner genreSlug={article.genreSlug} slot="inline" className="my-10" />}
 
           {bodyTail && (
-            <article className="prose max-w-[42em]" dangerouslySetInnerHTML={{ __html: bodyTail }} />
+            <article className="prose max-w-[40em]" dangerouslySetInnerHTML={{ __html: bodyTail }} />
           )}
           </div>
           </div>
@@ -575,7 +575,7 @@ export default async function ArticlePage({ params }: Props) {
           {/* 動画のタイムテーブル */}
           {video && article.timetable.length > 0 && (
             <section aria-labelledby="timetable-heading" className="mt-12">
-              <h2 id="timetable-heading" className="text-lg font-bold text-ink">
+              <h2 id="timetable-heading" className="t-h2">
                 動画のタイムテーブル
               </h2>
               <ul className="mt-4 divide-y divide-line overflow-hidden rounded-3xl bg-surface">
@@ -585,11 +585,11 @@ export default async function ArticlePage({ params }: Props) {
                       href={`${article.videoUrl}&t=${toSeconds(item.time)}s`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="index-num text-[13px] font-semibold text-official hover:underline"
+                      className="index-num text-meta font-semibold text-official hover:underline"
                     >
                       {item.time}
                     </a>
-                    <span className="text-[14px] leading-relaxed text-ink-soft">{item.label}</span>
+                    <span className="text-desc leading-relaxed text-ink-soft">{item.label}</span>
                   </li>
                 ))}
               </ul>
@@ -621,7 +621,7 @@ export default async function ArticlePage({ params }: Props) {
                 <Link
                   key={tag}
                   href={tagHref(tag)}
-                  className="rounded-full bg-surface px-3.5 py-1.5 text-xs font-medium text-ink-soft hover:bg-surface-2 hover:text-accent"
+                  className="rounded-full bg-surface px-3.5 py-1.5 text-meta font-medium text-ink-soft hover:bg-surface-2 hover:text-accent"
                 >
                   #{tag}
                 </Link>
@@ -629,7 +629,7 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           )}
 
-          <p className="mt-10 rounded-2xl bg-surface px-5 py-4 text-xs leading-relaxed text-muted">
+          <p className="mt-10 rounded-2xl bg-surface px-5 py-4 text-note leading-relaxed text-muted">
             {article.disclaimer ||
               (web
                 ? `本記事は${sourceName}の発表内容をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な情報は元記事をご確認ください。`
@@ -660,7 +660,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {related.length > 0 && (
             <section aria-labelledby="related-heading" className="mt-16">
-              <h2 id="related-heading" className="display mb-5 border-b border-line-strong pb-3 text-xl">
+              <h2 id="related-heading" className="t-h2 mb-5 border-b border-line-strong pb-3">
                 関連記事
               </h2>
               <div className="grid gap-3.5 sm:grid-cols-2">
@@ -699,9 +699,9 @@ function CompareLink({ slug, name, className = "" }: { slug: string; name: strin
   return (
     <Link
       href={`/compare/${slug}`}
-      className={`group mt-2.5 items-center gap-2 rounded-xl border border-line px-3.5 py-2.5 text-[13px] transition-colors hover:border-ink ${className}`}
+      className={`group mt-2.5 items-center gap-2 rounded-xl border border-line px-3.5 py-2.5 text-meta transition-colors hover:border-ink ${className}`}
     >
-      <span className="shrink-0 rounded-full bg-ink px-2 py-0.5 text-[10px] font-bold text-paper">比較</span>
+      <span className="shrink-0 rounded-full bg-ink px-2 py-0.5 text-badge font-bold text-paper">比較</span>
       <span className="min-w-0 font-bold leading-snug text-ink group-hover:underline">
         {name}を選ぶなら：比較ガイドを見る
       </span>

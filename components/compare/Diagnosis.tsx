@@ -70,7 +70,7 @@ export default function Diagnosis({ quiz, products }: { quiz: Question[]; produc
         {quiz.map((question, qIndex) => (
           <fieldset key={question.key} className="min-w-0">
             <legend className="flex items-baseline gap-2 text-[15px] font-black text-ink">
-              <span className="index-num text-[12px] font-semibold text-accent">Q{qIndex + 1}</span>
+              <span className="index-num text-meta font-semibold text-accent">Q{qIndex + 1}</span>
               {question.label}
             </legend>
             <div className="mt-2 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
@@ -81,7 +81,7 @@ export default function Diagnosis({ quiz, products }: { quiz: Question[]; produc
                   <label
                     key={option.value}
                     htmlFor={id}
-                    className={`flex min-h-11 cursor-pointer items-center justify-center rounded-lg border-2 px-3 py-2 text-center text-[13.5px] font-bold leading-snug transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent motion-reduce:transition-none ${
+                    className={`flex min-h-11 cursor-pointer items-center justify-center rounded-lg border-2 px-3 py-2 text-center text-note font-bold leading-snug transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent motion-reduce:transition-none ${
                       checked ? "border-accent bg-accent text-white" : "border-line-strong bg-paper text-ink hover:border-ink"
                     }`}
                   >
@@ -105,13 +105,13 @@ export default function Diagnosis({ quiz, products }: { quiz: Question[]; produc
 
       <div aria-live="polite" className="mt-6">
         {!best ? (
-          <p className="rounded-xl border border-dashed border-line-strong px-4 py-5 text-center text-[13.5px] text-muted">
+          <p className="rounded-xl border border-dashed border-line-strong px-4 py-5 text-center text-note text-muted">
             質問に答えると、条件に合う候補がここに出ます（1問だけでも絞り込めます）。
           </p>
         ) : (
           <div className="grid gap-3">
             <div className="rounded-2xl border-2 border-accent p-4 sm:p-5">
-              <p className="text-[12px] font-bold text-accent">
+              <p className="text-meta font-bold text-accent">
                 {answered < quiz.length ? `${answered}問の答えで、いちばん当てはまる候補` : "あなたの条件にいちばん当てはまる候補"}
               </p>
               <div className="mt-3 flex items-start gap-4">
@@ -121,14 +121,14 @@ export default function Diagnosis({ quiz, products }: { quiz: Question[]; produc
                     {best.product.name}
                     {best.product.sponsored && <Pr />}
                   </p>
-                  <p className="index-num mt-1 text-[14px] font-semibold text-ink">
+                  <p className="index-num mt-1 text-note font-semibold text-ink">
                     {best.product.price}
-                    <span className="ml-2 font-sans text-[11px] font-normal text-muted">{best.product.priceNote}</span>
+                    <span className="ml-2 font-sans text-meta font-normal text-muted">{best.product.priceNote}</span>
                   </p>
-                  <p className="mt-1 text-[13px] text-ink-soft">{best.product.bestFor}</p>
+                  <p className="mt-1 text-meta text-ink-soft">{best.product.bestFor}</p>
                 </div>
               </div>
-              <ul className="mt-3 grid gap-1 text-[13px] text-ink-soft">
+              <ul className="mt-3 grid gap-1 text-meta text-ink-soft">
                 {best.matched.map((label) => (
                   <li key={label}><span aria-hidden className="mr-1 text-go">○</span>「{label}」に公式の記載が合う</li>
                 ))}
@@ -139,7 +139,7 @@ export default function Diagnosis({ quiz, products }: { quiz: Question[]; produc
               <div className="mt-4 flex flex-col gap-2 sm:flex-row">
                 <a
                   href={`#p-${best.product.key}`}
-                  className="flex h-11 flex-1 items-center justify-center rounded-lg border border-ink text-[13.5px] font-bold text-ink hover:bg-ink hover:text-paper"
+                  className="flex h-11 flex-1 items-center justify-center rounded-lg border border-ink text-note font-bold text-ink hover:bg-ink hover:text-paper"
                 >
                   できること・注意点を見る
                 </a>
@@ -147,7 +147,7 @@ export default function Diagnosis({ quiz, products }: { quiz: Question[]; produc
                   href={best.product.url}
                   target="_blank"
                   rel={best.product.sponsored ? "sponsored noopener noreferrer" : "nofollow noopener"}
-                  className="flex h-11 flex-1 items-center justify-center gap-1.5 rounded-lg bg-accent text-[13.5px] font-bold text-white hover:opacity-90"
+                  className="flex h-11 flex-1 items-center justify-center gap-1.5 rounded-lg bg-accent text-note font-bold text-white hover:opacity-90"
                 >
                   公式サイトで見る <span aria-hidden>↗</span>
                 </a>
@@ -159,9 +159,9 @@ export default function Diagnosis({ quiz, products }: { quiz: Question[]; produc
                   <a key={product.key} href={`#p-${product.key}`} className="flex items-center gap-3 rounded-xl border border-line p-3 hover:border-ink">
                     <Visual product={product} className="size-12 shrink-0 rounded-lg" small />
                     <span className="min-w-0">
-                      <span className="block text-[11px] font-bold text-muted">次の候補{product.sponsored ? "・PR" : ""}</span>
+                      <span className="block text-meta font-bold text-muted">次の候補{product.sponsored ? "・PR" : ""}</span>
                       <span className="block text-[15px] font-black leading-snug text-ink">{product.name}</span>
-                      <span className="block truncate text-[11.5px] text-ink-soft">{matched.join("・") || product.bestFor}</span>
+                      <span className="block truncate text-meta text-ink-soft">{matched.join("・") || product.bestFor}</span>
                     </span>
                   </a>
                 ))}
@@ -170,7 +170,7 @@ export default function Diagnosis({ quiz, products }: { quiz: Question[]; produc
             <button
               type="button"
               onClick={() => setAnswers({})}
-              className="justify-self-start text-[12.5px] font-bold text-muted underline underline-offset-2 hover:text-ink"
+              className="justify-self-start text-meta font-bold text-muted underline underline-offset-2 hover:text-ink"
             >
               答えをリセット
             </button>
@@ -183,7 +183,7 @@ export default function Diagnosis({ quiz, products }: { quiz: Question[]; produc
 
 function Pr() {
   return (
-    <span className="inline-grid h-[18px] place-items-center rounded-[3px] border border-current px-1 text-[10px] font-bold leading-none tracking-wider text-muted">
+    <span className="inline-grid h-[18px] place-items-center rounded-[3px] border border-current px-1 text-badge font-bold leading-none tracking-wider text-muted">
       PR
     </span>
   );
@@ -204,8 +204,8 @@ function Visual({ product, className, small = false }: { product: DiagnosisProdu
       aria-label={product.name}
       className={`flex flex-col justify-between border border-line bg-surface p-1.5 ${className}`}
     >
-      <span className="index-num text-[7px] font-semibold uppercase tracking-[0.1em] text-muted">{product.maker}</span>
-      <span className={`font-black leading-tight text-ink ${small ? "text-[8px]" : "text-[10px]"}`}>{product.name}</span>
+      <span className="index-num text-meta font-semibold uppercase tracking-[0.1em] text-muted">{product.maker}</span>
+      <span className={`font-black leading-tight text-ink ${small ? "text-meta" : "text-meta"}`}>{product.name}</span>
     </span>
   );
 }

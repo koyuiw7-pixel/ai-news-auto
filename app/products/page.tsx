@@ -33,8 +33,8 @@ export default function ProductsPage() {
 
   return (
     <div className="mx-auto max-w-[860px] px-4 py-10 sm:px-8 sm:py-14">
-      <h1 className="display text-[1.9rem] sm:text-[2.4rem]">製品まとめ</h1>
-      <p className="mt-3 max-w-[60ch] text-[15px] leading-[1.95] text-ink-soft">
+      <h1 className="t-h1">製品まとめ</h1>
+      <p className="t-lead mt-3">
         記事に出てきたAIモデル・アプリ・ガジェットを、製品ごとに1ページにまとめています。
         料金や日本で使えるかは、新しい記事が出るたびに更新します。
       </p>
@@ -45,22 +45,22 @@ export default function ProductsPage() {
           const company = items[0].company === "other" ? undefined : getCompany(items[0].company);
           return (
             <section key={key} aria-label={items[0].companyName}>
-              <h2 className="flex items-center gap-2 border-b border-ink pb-2 text-[15px] font-bold text-ink">
-                {company ? <CompanyMark company={company} size={20} withName /> : items[0].companyName}
-                <span className="index-num ml-auto text-[11.5px] font-normal text-muted">{items.length}製品</span>
+              <h2 className="t-h2 flex items-center gap-2 border-b-2 border-ink pb-2.5">
+                {company ? <CompanyMark company={company} size={26} withName /> : items[0].companyName}
+                <span className="index-num ml-auto text-meta font-normal text-muted">{items.length}製品</span>
               </h2>
               <ul>
                 {items.map((product) => (
                   <li key={product.slug} className="border-b border-line">
                     <Link href={`/products/${product.slug}`} className="group block py-4">
                       <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                        <span className="text-[16.5px] font-bold text-ink group-hover:underline">{product.name}</span>
-                        <span className="text-[12px] text-muted">{product.category}</span>
-                        <span className="index-num ml-auto text-[11.5px] text-muted">
+                        <span className="t-card group-hover:underline">{product.name}</span>
+                        <span className="text-meta text-muted">{product.category}</span>
+                        <span className="index-num ml-auto text-meta text-muted">
                           記事{product.articles.length}本・{formatDate(product.updatedAt)}更新
                         </span>
                       </span>
-                      <span className="mt-1.5 line-clamp-2 block text-[13.5px] leading-[1.8] text-ink-soft">
+                      <span className="mt-1.5 line-clamp-2 block text-desc leading-[1.8] text-ink-soft">
                         {product.overview.text}
                       </span>
                     </Link>

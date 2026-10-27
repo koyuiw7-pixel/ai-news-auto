@@ -44,21 +44,21 @@ export default function CompanyView({ slug, page }: { slug: string; page: number
       <div className="mx-auto max-w-[920px] px-5 py-10 sm:px-8 sm:py-14">
         <div className="flex items-center gap-3">
           <CompanyMark company={company} size={40} />
-          <p className="index-num text-[12px] font-semibold tracking-wider text-muted">
+          <p className="index-num text-meta font-semibold tracking-wider text-muted">
             {articles.length} 本の記事
           </p>
         </div>
-        <h1 className="display mt-4 text-[1.9rem] sm:text-[2.4rem]">
+        <h1 className="t-h1 mt-4">
           {name}の最新ニュース{pageSuffix(page)}
         </h1>
-        <p className="mt-3 max-w-[60ch] text-[14.5px] leading-[1.9] text-ink-soft">
+        <p className="t-lead mt-3">
           {name}の公式発表や解説動画を映像・音声ごと解析し、新しい順に並べています。
           各記事の「要点」だけ読めば、いま何が起きているかがつかめます。
         </p>
         {/* この企業の製品まとめ（「〇〇とは」を知りたい人の入口）。1ページ目だけ */}
         {page === 1 && products.length > 0 && (
           <section aria-labelledby="company-products" className="mt-8 border-y border-line py-5">
-            <h2 id="company-products" className="text-[13px] font-bold text-muted">
+            <h2 id="company-products" className="t-h3">
               {name}の製品まとめ
             </h2>
             <ul className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">
@@ -70,7 +70,7 @@ export default function CompanyView({ slug, page }: { slug: string; page: number
                   >
                     {product.name}
                   </Link>
-                  <span className="ml-2 text-[12px] text-muted">{product.category}</span>
+                  <span className="ml-2 text-meta text-muted">{product.category}</span>
                 </li>
               ))}
             </ul>

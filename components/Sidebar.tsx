@@ -33,15 +33,15 @@ export default function Sidebar({ current, affiliates = [] }: Props) {
 
       {latest.length > 0 && (
         <section className="rounded-2xl border border-line bg-surface p-5">
-          <h2 className="text-sm font-bold text-ink">最新記事</h2>
+          <h2 className="t-card">最新記事</h2>
           <ul className="mt-4 space-y-4">
             {latest.map((article) => (
               <li key={article.slug}>
                 <Link href={`/articles/${article.slug}`} className="group block">
-                  <span className="text-xs text-muted">
+                  <span className="text-meta text-muted">
                     {formatDate(article.publishedAt)}
                   </span>
-                  <span className="mt-1 block text-sm font-medium leading-snug text-ink-soft group-hover:text-accent">
+                  <span className="mt-1 block text-note font-medium leading-snug text-ink-soft group-hover:text-accent">
                     {article.title}
                   </span>
                 </Link>
@@ -53,13 +53,13 @@ export default function Sidebar({ current, affiliates = [] }: Props) {
 
       {tags.length > 0 && (
         <section className="rounded-2xl border border-line bg-surface p-5">
-          <h2 className="text-sm font-bold text-ink">トピック</h2>
+          <h2 className="t-card">トピック</h2>
           <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <Link
                 key={tag.slug}
                 href={`/tags/${encodeURIComponent(tag.slug)}`}
-                className="rounded-full bg-surface-2 px-2.5 py-1 text-xs text-muted hover:bg-accent-soft hover:text-accent"
+                className="rounded-full bg-surface-2 px-2.5 py-1 text-meta text-muted hover:bg-accent-soft hover:text-accent"
               >
                 #{tag.label}
               </Link>

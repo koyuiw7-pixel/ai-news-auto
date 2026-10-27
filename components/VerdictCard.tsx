@@ -40,7 +40,7 @@ export default function VerdictCard({ verdict, judgedAt }: { verdict: Verdict; j
           <span className="text-[15px] font-bold leading-none">{STATUS_LABEL[verdict.status]}</span>
         </div>
         <div className="min-w-0">
-          <h2 id="verdict-heading" className="text-[12px] font-bold tracking-wider text-muted">
+          <h2 id="verdict-heading" className="t-h3">
             サイソクの判断
           </h2>
           <p className="mt-1 text-[16px] font-bold leading-[1.65] text-ink text-balance">{verdict.take}</p>
@@ -55,15 +55,15 @@ export default function VerdictCard({ verdict, judgedAt }: { verdict: Verdict; j
               index >= 2 ? "border-t border-line sm:border-t-0" : ""
             } ${index === 2 ? "sm:border-l" : ""}`}
           >
-            <dt className="text-[11px] text-muted">{fact.label}</dt>
-            <dd className={`mt-0.5 text-[14px] font-bold leading-snug ${fact.muted ? "text-muted" : "text-ink"}`}>
+            <dt className="text-meta text-muted">{fact.label}</dt>
+            <dd className={`mt-0.5 text-note font-bold leading-snug ${fact.muted ? "text-muted" : "text-ink"}`}>
               {fact.value}
             </dd>
           </div>
         ))}
       </dl>
 
-      <p className="border-t border-line bg-surface px-5 py-2 text-[11px] text-muted sm:px-6">
+      <p className="border-t border-line bg-surface px-5 py-2 text-note text-muted sm:px-6">
         {dateFormat.format(Date.parse(judgedAt))}時点の判定。発表内容から編集部AIが判定しています。最新の提供状況は公式情報をご確認ください。
       </p>
     </section>

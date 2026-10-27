@@ -19,11 +19,11 @@ export default function CompareIndexPage() {
   return (
     <div className="mx-auto max-w-[920px] px-5 py-10 sm:px-8 sm:py-14">
       <p className="eyebrow">COMPARE</p>
-      <h1 className="display mt-2 text-[1.9rem] sm:text-[2.4rem]">比較ガイド</h1>
-      <p className="mt-3 max-w-[60ch] text-[14.5px] leading-[1.9] text-ink-soft">
+      <h1 className="t-h1 mt-2">比較ガイド</h1>
+      <p className="t-lead mt-3">
         AIを使うための道具やサービスを、各社の公式情報と価格をもとに比べました。価格は定期的に確認し直しています。
       </p>
-      <p className="mt-3 text-[11.5px] text-muted">
+      <p className="mt-3 text-note text-muted">
         本ページはプロモーションを含みます（「PR」の付いたガイドに提携先の商品があります）。
       </p>
       <ul className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -48,14 +48,14 @@ export default function CompareIndexPage() {
                   ))}
                 </span>
                 <span className="flex flex-1 flex-col gap-2 p-4">
-                  <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px] text-muted">
+                  <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-meta text-muted">
                     <span className="index-num font-semibold text-ink">{products.length}件を比較</span>
                     <span aria-hidden>・</span>
                     <span className="index-num">{formatDate(guide.updatedAt)} 更新</span>
                     {hasPr && <PrMark className="ml-auto" />}
                   </span>
                   <span className="text-[16.5px] font-bold leading-snug text-ink group-hover:underline">{guideShortName(guide)}</span>
-                  <span className="line-clamp-2 text-[12.5px] leading-[1.7] text-ink-soft">
+                  <span className="line-clamp-2 text-desc leading-[1.7] text-ink-soft">
                     {products.map((p) => p.item.name).join(" / ")}
                     {rest > 0 && ` ほか`}
                   </span>

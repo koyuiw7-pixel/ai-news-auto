@@ -52,12 +52,12 @@ export default function ArticleCard({ article, priority, morph = false }: Props)
             {!cover && (isRoundup || article.genreSlug !== "ai") && (
               <span className="absolute left-3 top-3 flex gap-1.5">
                 {isRoundup && (
-                  <span className="rounded-full bg-ink/90 px-2.5 py-1 text-[11px] font-bold text-paper">
+                  <span className="rounded-full bg-ink/90 px-2.5 py-1 text-badge font-bold text-paper">
                     {sources > 0 ? `${sources}本を統合` : "まとめ"}
                   </span>
                 )}
                 {article.genreSlug !== "ai" && (
-                  <span className="rounded-full bg-paper/90 px-2.5 py-1 text-[11px] font-bold text-ink">
+                  <span className="rounded-full bg-paper/90 px-2.5 py-1 text-badge font-bold text-ink">
                     {article.genre}
                   </span>
                 )}
@@ -67,27 +67,27 @@ export default function ArticleCard({ article, priority, morph = false }: Props)
         </Morph>
 
         <div className="flex flex-col gap-1.5">
-          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11.5px] text-muted">
+          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-meta text-muted">
             <i className={`dot ${isRoundup ? "dot-roundup" : "dot-official"}`} aria-hidden />
             <span className="font-bold">{sourceLabel(article)}</span>
             <time dateTime={article.publishedAt} className="index-num">
               {formatDate(article.publishedAt)}
             </time>
             {isRecentlyUpdated(article) && (
-              <span className="rounded-full bg-go-soft px-2 py-[1px] text-[10.5px] font-bold text-go">更新</span>
+              <span className="rounded-full bg-go-soft px-2 py-[1px] text-badge font-bold text-go">更新</span>
             )}
             {speed && (
-              <span className="rounded-full border border-live/40 px-2 py-[1px] text-[10.5px] font-bold text-live">{speed}</span>
+              <span className="rounded-full border border-live/40 px-2 py-[1px] text-badge font-bold text-live">{speed}</span>
             )}
           </div>
 
           <Morph name={`title-${article.slug}`} enabled={morph}>
-            <h3 className="text-[16.5px] font-bold leading-[1.6] text-ink decoration-[1.5px] underline-offset-4 group-hover:underline">
+            <h3 className="t-card decoration-[1.5px] underline-offset-4 group-hover:underline">
               <Highlight text={article.title} />
             </h3>
           </Morph>
 
-          <p className="line-clamp-2 text-[14px] leading-[1.75] text-ink-soft">
+          <p className="line-clamp-2 text-desc leading-[1.75] text-ink-soft">
             {article.description}
           </p>
         </div>

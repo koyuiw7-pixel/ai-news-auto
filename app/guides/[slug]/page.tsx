@@ -97,7 +97,7 @@ export default async function GuidePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
+      <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-meta text-muted">
         <Link href="/" className="hover:text-accent">ホーム</Link>
         <span aria-hidden>/</span>
         <Link href="/guides" className="hover:text-accent">製品ガイド</Link>
@@ -105,8 +105,8 @@ export default async function GuidePage({ params }: Props) {
         <span>{guide.name}</span>
       </nav>
 
-      <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px]">
-        <span className="rounded-full bg-ink px-2.5 py-0.5 text-[11px] font-bold tracking-wider text-paper">
+      <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-meta">
+        <span className="rounded-full bg-ink px-2.5 py-0.5 text-badge font-bold tracking-wider text-paper">
           製品ガイド
         </span>
         {company.slug !== OTHER.slug && <CompanyMark company={company} size={20} withName />}
@@ -118,16 +118,16 @@ export default async function GuidePage({ params }: Props) {
         )}
       </div>
 
-      <h1 className="display mt-3 text-[1.85rem] font-bold text-ink sm:text-[2.4rem]">
+      <h1 className="t-h1 headline mt-3">
         <Highlight text={guide.title} />
       </h1>
 
       <section aria-labelledby="summary-heading" className="mt-6 rounded-2xl border-l-4 border-live bg-surface p-5 sm:p-6">
-        <h2 id="summary-heading" className="text-[13px] font-bold">30秒でわかる{guide.name}</h2>
+        <h2 id="summary-heading" className="t-h3">30秒でわかる{guide.name}</h2>
         <ol className="mt-4 grid gap-3.5">
           {guide.summary.map((point, index) => (
-            <li key={index} className="grid grid-cols-[24px_1fr] gap-3 text-[15px] font-medium leading-[1.7] text-ink">
-              <span className="index-num mt-0.5 grid size-6 place-items-center rounded-full bg-ink text-[11.5px] font-semibold text-paper">
+            <li key={index} className="grid grid-cols-[24px_1fr] gap-3 text-desc font-medium leading-[1.7] text-ink">
+              <span className="index-num mt-0.5 grid size-6 place-items-center rounded-full bg-ink text-meta font-semibold text-paper">
                 {index + 1}
               </span>
               {point}
@@ -136,8 +136,8 @@ export default async function GuidePage({ params }: Props) {
         </ol>
       </section>
 
-      <p className="mt-6 text-[15.5px] leading-[1.95] text-ink-soft">{guide.intro}</p>
-      <p className="mt-3 inline-block rounded-full bg-surface px-2 py-0.5 text-[10.5px] font-bold text-muted">
+      <p className="mt-6 text-desc leading-[1.95] text-ink-soft">{guide.intro}</p>
+      <p className="mt-3 inline-block rounded-full bg-surface px-2 py-0.5 text-badge font-bold text-muted">
         本ページはプロモーションを含みます
       </p>
 
@@ -148,8 +148,8 @@ export default async function GuidePage({ params }: Props) {
               key={feature.title}
               className="rounded-2xl border border-line p-5 sm:[&:last-child:nth-child(odd)]:col-span-2"
             >
-              <h3 className="text-[15.5px] font-bold text-ink">{feature.title}</h3>
-              <p className="mt-2 text-[14px] leading-[1.85] text-ink-soft">{feature.body}</p>
+              <h3 className="t-card">{feature.title}</h3>
+              <p className="mt-2 text-desc leading-[1.85] text-ink-soft">{feature.body}</p>
             </div>
           ))}
         </div>
@@ -157,7 +157,7 @@ export default async function GuidePage({ params }: Props) {
 
       <Section id="pricing" title="料金・提供状況">
         <div className="overflow-hidden rounded-2xl border border-line">
-          <table className="w-full text-left text-[14px]">
+          <table className="w-full text-left text-note">
             <tbody>
               {guide.pricing.map((row) => (
                 <tr key={row.label} className="border-b border-line last:border-0">
@@ -166,14 +166,14 @@ export default async function GuidePage({ params }: Props) {
                   </th>
                   <td className="px-4 py-3.5 align-top">
                     <span className="font-bold text-ink">{row.value}</span>
-                    {row.note && <span className="mt-1 block text-[12.5px] text-muted">{row.note}</span>}
+                    {row.note && <span className="mt-1 block text-meta text-muted">{row.note}</span>}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-[12px] leading-relaxed text-muted">
+        <p className="mt-3 text-note leading-relaxed text-muted">
           料金や提供条件は変わることがあります。契約前に必ず公式サイトで最新情報を確認してください。
         </p>
       </Section>
@@ -182,10 +182,10 @@ export default async function GuidePage({ params }: Props) {
         <ol className="grid gap-3">
           {guide.howto.map((step, index) => (
             <li key={index} className="grid grid-cols-[2rem_1fr] items-start gap-3">
-              <span className="index-num grid size-8 place-items-center rounded-lg border border-line-strong text-[13px] font-semibold text-ink">
+              <span className="index-num grid size-8 place-items-center rounded-lg border border-line-strong text-meta font-semibold text-ink">
                 {index + 1}
               </span>
-              <span className="pt-1 text-[15px] leading-[1.8] text-ink">{step}</span>
+              <span className="pt-1 text-desc leading-[1.8] text-ink">{step}</span>
             </li>
           ))}
         </ol>
@@ -203,7 +203,7 @@ export default async function GuidePage({ params }: Props) {
           {company.slug !== OTHER.slug && (
             <Link
               href={`/companies/${company.slug}`}
-              className="mt-6 inline-flex items-center gap-1.5 text-[14px] font-bold text-ink underline-offset-4 hover:underline"
+              className="mt-6 inline-flex items-center gap-1.5 text-note font-bold text-ink underline-offset-4 hover:underline"
             >
               {company.name}の最新ニュースをすべて見る →
             </Link>
@@ -219,13 +219,13 @@ export default async function GuidePage({ params }: Props) {
                 <span>Q. {item.q}</span>
                 <span aria-hidden className="mt-1 text-muted transition-transform group-open:rotate-45">＋</span>
               </summary>
-              <p className="mt-3 text-[14.5px] leading-[1.9] text-ink-soft">A. {item.a}</p>
+              <p className="mt-3 text-desc leading-[1.9] text-ink-soft">A. {item.a}</p>
             </details>
           ))}
         </div>
       </Section>
 
-      <p className="mt-12 rounded-2xl bg-surface px-5 py-4 text-xs leading-relaxed text-muted">
+      <p className="mt-12 rounded-2xl bg-surface px-5 py-4 text-note leading-relaxed text-muted">
         このガイドは、サイソクが公開した関連記事（各社の公式発表や解説動画をAIが解析したもの）をもとに編集部がまとめたものです。
         最新の仕様・料金は各社の公式発表をご確認ください。
       </p>
@@ -247,10 +247,10 @@ function Section({
   return (
     <section aria-labelledby={`${id}-heading`} className="mt-14">
       <div className="mb-5 border-b border-ink pb-2">
-        <h2 id={`${id}-heading`} className="display text-[1.35rem]">
+        <h2 id={`${id}-heading`} className="t-h2">
           {title}
         </h2>
-        {note && <p className="mt-0.5 text-[12px] text-muted">{note}</p>}
+        {note && <p className="mt-0.5 text-meta text-muted">{note}</p>}
       </div>
       {children}
     </section>

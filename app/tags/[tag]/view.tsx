@@ -33,10 +33,10 @@ export default function TagView({ tag, page }: { tag: string; page: number }) {
   return (
     <div className="mx-auto max-w-[1240px] px-5 py-12 sm:px-8">
       <p className="eyebrow">TOPIC</p>
-      <h1 className="display mt-2 text-[1.75rem] sm:text-[2.25rem]">
+      <h1 className="t-h1 mt-2">
         {label} の最新ニュース・解説{pageSuffix(page)}
       </h1>
-      <p className="mt-4 max-w-3xl text-[15px] leading-[1.9] text-muted">
+      <p className="t-lead mt-4">
         {label} に関連する{genres}
         の動画をAIが映像・音声ごと解析し、要点・数字・注意点まで日本語でまとめた記事が
         {articles.length} 本あります。

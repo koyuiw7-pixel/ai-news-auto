@@ -9,7 +9,8 @@
     "lint": "eslint",
     "cf:build": "sh scripts/cf_build.sh",
     "cf:deploy": "npm run cf:build && wrangler deploy",
-    "cf:preview": "npm run cf:build && wrangler dev"
+    "cf:preview": "npm run cf:build && wrangler dev",
+    "check:readability": "node scripts/check_readability.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

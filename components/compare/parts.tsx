@@ -21,7 +21,7 @@ export function GuideMeta({ view }: { view: GuideView }) {
 
 export function Breadcrumb() {
   return (
-    <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
+    <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-meta text-muted">
       <Link href="/" className="hover:text-accent">ホーム</Link>
       <span aria-hidden>/</span>
       <Link href="/compare" className="hover:text-accent">比較ガイド</Link>
@@ -33,7 +33,7 @@ export function Breadcrumb() {
 export function PrMark({ className = "" }: { className?: string }) {
   return (
     <span
-      className={`inline-grid h-[18px] place-items-center rounded-[3px] border border-current px-1 text-[10px] font-bold leading-none tracking-wider ${className}`}
+      className={`inline-grid h-[18px] place-items-center rounded-[3px] border border-current px-1 text-badge font-bold leading-none tracking-wider ${className}`}
       title="提携先の商品（リンク経由の購入で紹介料が入ることがあります）"
     >
       PR
@@ -114,9 +114,9 @@ export function ProductVisual({
       aria-label={`${product.item.name}（${product.category ?? "サービス"}）`}
       className={`relative flex flex-col justify-between overflow-hidden border border-line bg-surface p-3.5 text-left ${className}`}
     >
-      <span className="index-num text-[10px] font-semibold uppercase tracking-[0.12em] text-muted">{product.maker}</span>
+      <span className="index-num text-meta font-semibold uppercase tracking-[0.12em] text-muted">{product.maker}</span>
       <span className="text-[17px] font-black leading-tight text-ink">{product.item.name}</span>
-      <span className="text-[11px] font-bold text-ink-soft">{product.category}</span>
+      <span className="text-meta font-bold text-ink-soft">{product.category}</span>
     </span>
   );
 }
@@ -167,11 +167,11 @@ export function CompareTable({
         aria-label="比較表（横にスクロールできます）"
         tabIndex={0}
       >
-        <table className="w-full min-w-[980px] border-collapse text-left text-[12.5px] leading-[1.65]">
+        <table className="w-full min-w-[980px] border-collapse text-left text-note leading-[1.65]">
           <caption className="sr-only">{view.guide.shortName ?? view.guide.title}の比較表（{view.checkedLabel}）</caption>
           <thead>
             <tr className={head}>
-              <th scope="col" className={`sticky left-0 z-20 w-[112px] min-w-[112px] px-3 py-3 text-[11px] font-bold ${stickyBg}`}>
+              <th scope="col" className={`sticky left-0 z-20 w-[112px] min-w-[112px] px-3 py-3 text-meta font-bold ${stickyBg}`}>
                 項目
               </th>
               {products.map((product) => (
@@ -185,7 +185,7 @@ export function CompareTable({
                     <ProductVisual product={product} compact className="mb-2 h-20 w-full rounded-md" />
                   )}
                   <span className="flex items-start gap-1.5">
-                    <a href={`#p-${product.key}`} className="text-[13px] leading-snug hover:underline">
+                    <a href={`#p-${product.key}`} className="text-meta leading-snug hover:underline">
                       {product.item.name}
                     </a>
                     {product.sponsored && <PrMark className="mt-0.5 shrink-0 opacity-80" />}
@@ -199,7 +199,7 @@ export function CompareTable({
               <tr key={row.key} className={`border-b border-line align-top ${index % 2 === 1 && tone !== "pop" ? "bg-surface/50" : ""}`}>
                 <th
                   scope="row"
-                  className="sticky left-0 z-10 w-[112px] min-w-[112px] border-r border-line bg-paper px-3 py-3 text-[11.5px] font-bold leading-snug text-ink"
+                  className="sticky left-0 z-10 w-[112px] min-w-[112px] border-r border-line bg-paper px-3 py-3 text-meta font-bold leading-snug text-ink"
                 >
                   {row.label}
                 </th>
@@ -210,7 +210,7 @@ export function CompareTable({
                     <td
                       key={product.key}
                       data-col={product.key}
-                      className={`px-3 py-3 ${row.key === "price" ? "text-[13px] font-black tabular-nums text-ink" : unknown ? "text-muted" : "text-ink-soft"}`}
+                      className={`px-3 py-3 ${row.key === "price" ? "text-meta font-black tabular-nums text-ink" : unknown ? "text-muted" : "text-ink-soft"}`}
                     >
                       {value}
                     </td>
@@ -219,14 +219,14 @@ export function CompareTable({
               </tr>
             ))}
             <tr className="align-top">
-              <th scope="row" className="sticky left-0 z-10 border-r border-line bg-paper px-3 py-3 text-[11.5px] font-bold text-ink">
+              <th scope="row" className="sticky left-0 z-10 border-r border-line bg-paper px-3 py-3 text-meta font-bold text-ink">
                 公式サイト
               </th>
               {products.map((product) => (
                 <td key={product.key} data-col={product.key} className="px-3 py-3">
                   <OutLink
                     product={product}
-                    className="inline-flex h-9 items-center gap-1 whitespace-nowrap rounded-md border border-ink px-3 text-[12px] font-bold text-ink hover:bg-ink hover:text-paper"
+                    className="inline-flex h-9 items-center gap-1 whitespace-nowrap rounded-md border border-ink px-3 text-badge font-bold text-ink hover:bg-ink hover:text-paper"
                   >
                     公式 <span aria-hidden>↗</span>
                   </OutLink>
@@ -236,7 +236,7 @@ export function CompareTable({
           </tbody>
         </table>
       </div>
-      <p className="mt-2 px-4 text-[11px] text-muted sm:px-0">
+      <p className="mt-2 px-4 text-meta text-muted sm:px-0">
         {view.checkedLabel}。「公式サイトで確認」は公式ページに記載が見つからなかった項目です。スマホでは表を横にスクロールできます。
       </p>
     </div>
@@ -247,7 +247,7 @@ export function CompareTable({
 export function SourceList({ product }: { product: ResolvedProduct }) {
   if (!product.sources?.length) return null;
   return (
-    <p className="text-[11px] leading-relaxed text-muted">
+    <p className="text-note leading-relaxed text-muted">
       出典：
       {product.sources.map((source, index) => (
         <span key={source.url}>
@@ -264,7 +264,7 @@ export function SourceList({ product }: { product: ResolvedProduct }) {
 /** 価格の時点と出典の一行 */
 export function PriceLine({ product, label }: { product: ResolvedProduct; label: string }) {
   return (
-    <span className="text-[11px] text-muted">
+    <span className="text-meta text-muted">
       {product.priceNote ? `${product.priceNote}・` : ""}
       {product.priceSource ? label : "公式サイトで確認"}
     </span>
@@ -280,7 +280,7 @@ export function FaqList({ view, headingClass = "" }: { view: GuideView; headingC
             <span>Q. {item.q}</span>
             <span aria-hidden className="mt-0.5 text-muted transition-transform group-open:rotate-45 motion-reduce:transition-none">＋</span>
           </summary>
-          <p className="mt-3 text-[14.5px] leading-[1.9] text-ink-soft">A. {item.a}</p>
+          <p className="mt-3 text-desc leading-[1.9] text-ink-soft">A. {item.a}</p>
         </details>
       ))}
     </div>
@@ -301,14 +301,14 @@ export function RelatedNews({ view }: { view: GuideView }) {
 /** このガイドの作り方（広告の明示・編集方針へのリンク） */
 export function HowWeMade({ view, className = "" }: { view: GuideView; className?: string }) {
   return (
-    <div className={`text-[12.5px] leading-[1.85] text-ink-soft ${className}`}>
+    <div className={`text-note leading-[1.85] text-ink-soft ${className}`}>
       <p>{view.guide.howWeMade}</p>
       <p className="mt-2">
         価格・仕様・キャンペーンは変わることがあります。申し込み前に各公式サイトで最新情報をご確認ください。
         制作方法は<Link href="/editorial-policy" className="mx-1 text-accent underline underline-offset-2">編集方針</Link>、
         誤りのご指摘は<Link href="/contact" className="mx-1 text-accent underline underline-offset-2">お問い合わせ</Link>へ。
       </p>
-      <p className="index-num mt-2 text-[11px] text-muted">
+      <p className="index-num mt-2 text-meta text-muted">
         公開 {formatDate(view.guide.publishedAt)} ／ 最終更新 <time dateTime={view.guide.updatedAt}>{formatDate(view.guide.updatedAt)}</time>
       </p>
     </div>
@@ -318,7 +318,7 @@ export function HowWeMade({ view, className = "" }: { view: GuideView; className
 /** 冒頭の一行の広告表記 */
 export function Disclosure({ view, className = "" }: { view: GuideView; className?: string }) {
   return (
-    <p className={`text-[12px] leading-[1.75] text-muted ${className}`}>
+    <p className={`text-note leading-[1.75] text-muted ${className}`}>
       {view.hasSponsored && (
         <>
           <PrMark className="mr-1.5 align-[1px] text-ink" />

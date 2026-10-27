@@ -46,14 +46,14 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
         {isRoundup && sources > 0 && (
           <span className="absolute bottom-4 left-4 inline-flex items-baseline gap-1.5 rounded-full bg-ink/90 px-4 py-2 text-paper">
             <span className="index-num text-xl font-semibold leading-none">{sources}</span>
-            <span className="text-[12.5px] font-bold">本の発表を統合</span>
+            <span className="text-meta font-bold">本の発表を統合</span>
           </span>
         )}
       </Link>
 
       <div className="flex min-w-0 flex-col gap-4">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12.5px]">
-          <span className="rounded-full bg-live px-2.5 py-0.5 text-[11px] font-bold tracking-wider text-white">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-meta">
+          <span className="rounded-full bg-live px-2.5 py-0.5 text-badge font-bold tracking-wider text-live-ink">
             {isRoundup ? "まとめ" : "最新"}
           </span>
           <CompanyMark company={companyOf(lead)} size={18} withName />
@@ -68,17 +68,17 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
           </Morph>
         </Link>
 
-        <p className="line-clamp-2 text-[15px] leading-[1.85] text-ink-soft">
+        <p className="line-clamp-2 text-desc leading-[1.85] text-ink-soft">
           {lead.lede || lead.description}
         </p>
 
         {lead.highlights.length > 0 && (
           <div className="border-t border-line pt-4">
-            <p className="text-[12px] font-bold text-muted">3秒でわかる要点</p>
+            <p className="text-meta font-bold text-muted">3秒でわかる要点</p>
             <ol className="mt-2.5 grid gap-2.5">
               {lead.highlights.slice(0, 3).map((point, index) => (
-                <li key={index} className="grid grid-cols-[22px_1fr] gap-3 text-[14px] leading-[1.7] text-ink">
-                  <span className="index-num mt-0.5 grid size-[22px] place-items-center rounded-full bg-ink text-[11px] font-semibold text-paper">
+                <li key={index} className="grid grid-cols-[22px_1fr] gap-3 text-desc leading-[1.7] text-ink">
+                  <span className="index-num mt-0.5 grid size-[22px] place-items-center rounded-full bg-ink text-meta font-semibold text-paper">
                     {index + 1}
                   </span>
                   {point}
@@ -90,7 +90,7 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
 
         <Link
           href={href}
-          className="mt-1 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-[13.5px] font-bold text-paper transition-opacity hover:opacity-85"
+          className="mt-1 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-note font-bold text-paper transition-opacity hover:opacity-85"
         >
           {isRoundup ? "まとめを読む" : "記事を読む"}
           <span aria-hidden>→</span>

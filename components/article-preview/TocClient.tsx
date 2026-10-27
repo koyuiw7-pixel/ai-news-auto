@@ -40,7 +40,7 @@ export function TocRail({ headings, minutes }: { headings: Heading[]; minutes: n
   const left = Math.max(0, Math.ceil(minutes * (1 - progress)));
   return (
     <nav aria-label="目次" className="sticky top-24">
-      <div className="flex items-stretch text-[11px] font-bold">
+      <div className="flex items-stretch text-meta font-bold">
         <span className="bg-accent px-2 py-1 tracking-[0.12em] text-accent-ink">目次</span>
         <span className="flex-1 bg-ink px-2 py-1 text-paper">
           <span className="index-num">{progress >= 0.99 ? "読了" : `残り約${left}分`}</span>
@@ -55,11 +55,11 @@ export function TocRail({ headings, minutes }: { headings: Heading[]; minutes: n
             <a
               href={`#${h.id}`}
               aria-current={i === active ? "location" : undefined}
-              className={`grid grid-cols-[1.6rem_1fr] border-l-2 py-1.5 pl-2 pr-1 text-[12.5px] leading-snug transition-colors ${
+              className={`grid grid-cols-[1.6rem_1fr] border-l-2 py-1.5 pl-2 pr-1 text-meta leading-snug transition-colors ${
                 i === active ? "border-ink font-bold text-ink" : i < active ? "border-line-strong text-muted" : "border-line text-ink-soft hover:text-ink"
               }`}
             >
-              <span className="index-num text-[10.5px] text-muted">{String(i + 1).padStart(2, "0")}</span>
+              <span className="index-num text-meta text-muted">{String(i + 1).padStart(2, "0")}</span>
               {h.text}
             </a>
           </li>
@@ -89,11 +89,11 @@ export function TocFloat({ headings }: { headings: Heading[] }) {
                     <a
                       href={`#${h.id}`}
                       onClick={() => setOpen(false)}
-                      className={`grid grid-cols-[1.75rem_1fr] items-baseline rounded-lg px-2.5 py-2 text-[14px] leading-snug ${
+                      className={`grid grid-cols-[1.75rem_1fr] items-baseline rounded-lg px-2.5 py-2 text-note leading-snug ${
                         i === active ? "bg-accent-soft font-bold text-ink" : "text-ink-soft hover:bg-surface"
                       }`}
                     >
-                      <span className="index-num text-[11px] text-muted">{i + 1}</span>
+                      <span className="index-num text-meta text-muted">{i + 1}</span>
                       {h.text}
                     </a>
                   </li>
@@ -105,7 +105,7 @@ export function TocFloat({ headings }: { headings: Heading[] }) {
             type="button"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="ml-auto flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-[13px] font-bold text-paper shadow-lg"
+            className="ml-auto flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-meta font-bold text-paper shadow-lg"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden>
               <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" strokeLinecap="round" />

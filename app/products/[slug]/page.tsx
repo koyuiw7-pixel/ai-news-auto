@@ -184,7 +184,7 @@ export default async function ProductPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
+      <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-meta text-muted">
         <Link href="/" className="hover:text-accent">ホーム</Link>
         <span aria-hidden>/</span>
         <Link href="/products" className="hover:text-accent">製品まとめ</Link>
@@ -192,7 +192,7 @@ export default async function ProductPage({ params }: Props) {
         <span>{product.name}</span>
       </nav>
 
-      <p className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px] text-muted">
+      <p className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-meta text-muted">
         {company ? (
           <Link href={`/companies/${company.slug}`} className="hover:opacity-80">
             <CompanyMark company={company} size={18} withName />
@@ -206,7 +206,7 @@ export default async function ProductPage({ params }: Props) {
         </span>
       </p>
 
-      <h1 className="display mt-3 text-[1.65rem] font-bold text-ink sm:text-[2.15rem]">
+      <h1 className="t-h1 mt-3">
         <Phrases text={heading} />
       </h1>
 
@@ -250,12 +250,12 @@ export default async function ProductPage({ params }: Props) {
                   {!sameDay && (
                     <>
                       <span aria-hidden className="absolute -left-[25px] top-[7px] size-[9px] rounded-full border-2 border-paper bg-ink" />
-                      <span className="index-num block text-[12px] text-muted">{item.date.replaceAll("-", "/")}</span>
+                      <span className="index-num block text-meta text-muted">{item.date.replaceAll("-", "/")}</span>
                     </>
                   )}
                   <Link
                     href={`/articles/${item.slug}`}
-                    className="mt-0.5 block text-[15px] leading-[1.75] text-ink underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"
+                    className="mt-0.5 block text-desc leading-[1.75] text-ink underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"
                   >
                     {item.event}
                   </Link>
@@ -272,7 +272,7 @@ export default async function ProductPage({ params }: Props) {
             {product.faq.map((item, index) => (
               <div key={item.q}>
                 <dt className="text-[15.5px] font-bold leading-[1.7] text-ink">{item.q}</dt>
-                <dd className="mt-1.5 text-[15px] leading-[1.95] text-ink-soft">
+                <dd className="mt-1.5 text-desc leading-[1.95] text-ink-soft">
                   {item.a}
                   <Refs numbers={blocks.faq[index]} />
                 </dd>
@@ -284,10 +284,10 @@ export default async function ProductPage({ params }: Props) {
 
       {cited.length > 0 && (
         <Section id="refs" title="参考にした記事">
-          <ol className="grid gap-2.5 text-[14px]">
+          <ol className="grid gap-2.5 text-note">
             {cited.map((article, index) => (
               <li key={article.slug} id={`ref-${index + 1}`} className="grid grid-cols-[2rem_1fr] scroll-mt-24">
-                <span className="index-num text-[12px] leading-[1.9] text-muted">[{index + 1}]</span>
+                <span className="index-num text-note leading-[1.9] text-muted">[{index + 1}]</span>
                 <ArticleLine article={article} />
               </li>
             ))}
@@ -297,7 +297,7 @@ export default async function ProductPage({ params }: Props) {
 
       {others.length > 0 && (
         <Section id="more" title="そのほかの関連記事">
-          <ul className="grid gap-2.5 text-[14px]">
+          <ul className="grid gap-2.5 text-note">
             {others.map((article) => (
               <li key={article.slug}>
                 <ArticleLine article={article} />
@@ -318,14 +318,14 @@ export default async function ProductPage({ params }: Props) {
                 >
                   {other.name}
                 </Link>
-                <span className="ml-2 text-[12px] text-muted">{other.category}</span>
+                <span className="ml-2 text-meta text-muted">{other.category}</span>
               </li>
             ))}
           </ul>
         </Section>
       )}
 
-      <p className="mt-14 border-t border-line pt-5 text-[12px] leading-[1.9] text-muted">
+      <p className="mt-14 border-t border-line pt-5 text-note leading-[1.9] text-muted">
         このページは、サイソクが公開した{articles.length}本の記事（各社の公式発表をもとに作成）から編集部がまとめています。
         数字と日付は出典の記事と照合しています。料金や提供条件は変わることがあるため、最新の情報は公式発表をご確認ください。
         <Link href="/editorial-policy" className="ml-1 text-accent underline">
@@ -339,7 +339,7 @@ export default async function ProductPage({ params }: Props) {
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
     <section aria-labelledby={`${id}-heading`} className="mt-12 sm:mt-14">
-      <h2 id={`${id}-heading`} className="mb-4 border-b border-line pb-2 text-[1.2rem] font-black leading-snug text-ink sm:text-[1.3rem]">
+      <h2 id={`${id}-heading`} className="t-h2 mb-4 border-b border-line pb-2">
         {title}
       </h2>
       {children}
@@ -353,7 +353,7 @@ function List({ id, title, items, refs }: { id: string; title: string; items: So
     <Section id={id} title={title}>
       <ul className="grid gap-3">
         {items.map((item, index) => (
-          <li key={index} className="grid grid-cols-[1rem_1fr] text-[15.5px] leading-[1.9] text-ink">
+          <li key={index} className="grid grid-cols-[1rem_1fr] text-desc leading-[1.9] text-ink">
             <span aria-hidden className="mt-[0.8em] size-[5px] rounded-full bg-muted" />
             <span>
               {item.text}
@@ -372,7 +372,7 @@ function Paragraphs({ id, title, items, refs }: { id: string; title: string; ite
     <Section id={id} title={title}>
       <div className="grid gap-3">
         {items.map((item, index) => (
-          <p key={index} className="text-[15.5px] leading-[1.95] text-ink">
+          <p key={index} className="text-desc leading-[1.95] text-ink">
             {item.text}
             <Refs numbers={refs[index]} />
           </p>
@@ -386,7 +386,7 @@ function Paragraphs({ id, title, items, refs }: { id: string; title: string; ite
 function Refs({ numbers }: { numbers: number[] }) {
   if (!numbers || numbers.length === 0) return null;
   return (
-    <sup className="index-num ml-0.5 whitespace-nowrap text-[10.5px]">
+    <sup className="index-num ml-0.5 whitespace-nowrap text-meta">
       {numbers.map((n) => (
         <a key={n} href={`#ref-${n}`} className="ml-0.5 text-muted hover:text-accent" aria-label={`出典${n}`}>
           [{n}]
@@ -399,7 +399,7 @@ function Refs({ numbers }: { numbers: number[] }) {
 function ArticleLine({ article }: { article: ArticleSummary }) {
   return (
     <span className="leading-[1.8]">
-      <span className="index-num mr-2 text-[12px] text-muted">{formatDate(article.publishedAt)}</span>
+      <span className="index-num mr-2 text-meta text-muted">{formatDate(article.publishedAt)}</span>
       <Link
         href={`/articles/${article.slug}`}
         className="text-ink underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"

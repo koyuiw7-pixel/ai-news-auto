@@ -37,10 +37,10 @@ export default function Footer() {
             <p className="font-display text-2xl leading-none text-ink">
               {siteConfig.name}
             </p>
-            <p className="mt-2 text-[13px] font-bold text-muted">
+            <p className="mt-2 text-meta font-bold text-muted">
               {siteConfig.tagline}
             </p>
-            <p className="mt-4 max-w-md text-[13px] leading-[1.9] text-muted">
+            <p className="mt-4 max-w-md text-note leading-[1.9] text-ink-soft">
               {siteConfig.description}
             </p>
 
@@ -48,7 +48,7 @@ export default function Footer() {
               <NewsletterSignup variant="footer" />
             </div>
 
-            <p className="mt-8 max-w-md text-[12px] leading-[1.8] text-muted">
+            <p className="mt-8 max-w-md text-note leading-[1.8] text-muted">
               当サイトはA8.netなどのアフィリエイトプログラムに参加しており、
               記事内に広告（プロモーション）を含む場合があります。
             </p>
@@ -58,7 +58,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] font-medium text-ink-soft underline-offset-4 hover:text-accent hover:underline"
+                    className="text-note font-medium text-ink-soft underline-offset-4 hover:text-accent hover:underline"
                   >
                     {link.label}
                   </Link>
@@ -72,7 +72,7 @@ export default function Footer() {
             <ul className="mb-8 mt-4 space-y-2.5">
               {REFERENCE_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm font-semibold text-ink-soft hover:text-accent">
+                  <Link href={link.href} className="text-note font-semibold text-ink-soft hover:text-accent">
                     {link.label}
                   </Link>
                 </li>
@@ -85,11 +85,11 @@ export default function Footer() {
                 <li key={company.slug}>
                   <Link
                     href={`/companies/${company.slug}`}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-ink-soft hover:text-accent"
+                    className="inline-flex items-center gap-2 text-note font-semibold text-ink-soft hover:text-accent"
                   >
                     <CompanyMark company={company} size={16} />
                     {company.name}
-                    <span className="index-num text-[11px] text-muted">{count}</span>
+                    <span className="index-num text-meta text-muted">{count}</span>
                   </Link>
                 </li>
               ))}
@@ -103,7 +103,7 @@ export default function Footer() {
                     <li key={channel.slug}>
                       <Link
                         href={`/channels/${channel.slug}`}
-                        className="text-[13px] text-muted hover:text-accent"
+                        className="text-note text-muted hover:text-accent"
                       >
                         {channel.label}
                       </Link>
@@ -122,7 +122,7 @@ export default function Footer() {
                   <li key={tag.slug}>
                     <Link
                       href={`/tags/${encodeURIComponent(tag.slug)}`}
-                      className="inline-block border border-line px-2.5 py-1 text-[11px] text-muted hover:border-accent hover:text-accent"
+                      className="inline-block border border-line px-2.5 py-1 text-meta text-muted hover:border-accent hover:text-accent"
                     >
                       {tag.label}
                     </Link>
@@ -136,13 +136,13 @@ export default function Footer() {
 
       <div className="border-t border-line">
         <div className="mx-auto max-w-[1240px] px-5 py-6 sm:px-8">
-          <p className="text-[11px] leading-[1.9] text-muted">
+          <p className="text-note leading-[1.9] text-muted">
             本サイトの記事は、公開されている動画を生成AIが解析して自動生成したものです。
             誤りが含まれる可能性があるため、重要な判断の際は必ず元動画および各社の公式発表をご確認ください。
             {hasActiveAffiliate() &&
               "当サイトは広告およびアフィリエイトプログラムによる収益を得ています。"}
           </p>
-          <p className="index-num mt-4 text-[11px] text-muted">
+          <p className="index-num mt-4 text-meta text-muted">
             © {new Date().getFullYear()} {siteConfig.name}
           </p>
         </div>

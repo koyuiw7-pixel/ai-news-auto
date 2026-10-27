@@ -1,0 +1,42 @@
+name: Readability check
+
+# 文字の読みやすさのルール（docs/typography.md）を本番のページで確かめる。
+# 人の push で走ったデプロイ（＝見た目のコードが変わったとき）の後だけ動く。
+# 記事の自動追加（auto_run からの workflow_dispatch デプロイ）では動かさない（文字の組み方は変わらないため）。
+# 違反があれば失敗にし、結果の JSON を成果物に残す。依存パッケージなし（ランナーの Chrome を使う）
+on:
+  workflow_run:
+    workflows: ["Deploy to Cloudflare Workers"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: readability
+  cancel-in-progress: true
+
+jobs:
+  check:
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Check readability on production
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node scripts/check_readability.mjs --json readability.json --limit 40
+
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: readability-report
+          path: readability.json
+          if-no-files-found: ignore

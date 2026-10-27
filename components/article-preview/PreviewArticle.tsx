@@ -74,7 +74,7 @@ export default async function PreviewArticle({ view, slots }: { view: ArticleVie
       <div className={`grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px] ${slots.railToc ? "xl:grid-cols-[200px_minmax(0,1fr)_300px]" : ""}`}>
         {slots.railToc && <div className="hidden xl:block">{slots.railToc}</div>}
         <div className="min-w-0">
-          <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
+          <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-meta text-muted">
             <Link href="/" className="hover:text-accent">ホーム</Link>
             <span aria-hidden>/</span>
             <Link href={`/companies/${company.slug}`} className="hover:text-accent">{company.name}</Link>
@@ -82,9 +82,9 @@ export default async function PreviewArticle({ view, slots }: { view: ArticleVie
             <Link href={`/channels/${article.channelSlug}`} className="hover:text-accent">{article.channel}</Link>
           </nav>
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px]">
+          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-meta">
             <CompanyMark company={company} size={20} withName />
-            <span className="rounded-full border border-line-strong px-2 py-[1px] text-[11px] font-bold text-ink-soft">
+            <span className="rounded-full border border-line-strong px-2 py-[1px] text-badge font-bold text-ink-soft">
               {isRoundup ? `まとめ ${article.sources?.length ?? 0}本` : "公式発表"}
             </span>
             <span className="text-muted">
@@ -108,7 +108,7 @@ export default async function PreviewArticle({ view, slots }: { view: ArticleVie
           {article.lede && <p className="ap-lede mt-6">{article.lede}</p>}
 
           <p className="mt-4">
-            <span className="rounded-full bg-surface px-2 py-0.5 text-[10.5px] font-bold text-muted">本ページはプロモーションを含みます</span>
+            <span className="rounded-full bg-surface px-2 py-0.5 text-badge font-bold text-muted">本ページはプロモーションを含みます</span>
           </p>
 
           <AdSlot position="article-top" className="mt-6" />
@@ -118,14 +118,14 @@ export default async function PreviewArticle({ view, slots }: { view: ArticleVie
               <a href={sourceUrl || undefined} target="_blank" rel="noopener" className="relative block aspect-video bg-surface-2">
                 <Thumb src={article.thumbnail} source={thumbSource(article)} alt="" fill priority sizes="(max-width: 1024px) 100vw, 860px" className="object-cover" />
               </a>
-              <figcaption className="bg-surface px-5 py-3 text-[12px] text-muted">出典: {sourceName}「{article.videoTitle}」</figcaption>
+              <figcaption className="bg-surface px-5 py-3 text-meta text-muted">出典: {sourceName}「{article.videoTitle}」</figcaption>
             </figure>
           )}
           {!isRoundup && web && !article.thumbnail && sourceUrl && (
-            <p className="mt-6 flex items-center gap-3 rounded-2xl bg-surface px-5 py-3.5 text-[13px]">
+            <p className="mt-6 flex items-center gap-3 rounded-2xl bg-surface px-5 py-3.5 text-meta">
               <CompanyMark company={company} size={28} />
               <span className="min-w-0 flex-1">
-                <span className="block text-[11px] font-bold text-muted">出典: {sourceName}</span>
+                <span className="block text-meta font-bold text-muted">出典: {sourceName}</span>
                 <a href={sourceUrl} target="_blank" rel="noopener" className="font-bold text-ink hover:text-accent hover:underline">
                   「{article.videoTitle}」
                 </a>
@@ -141,7 +141,7 @@ export default async function PreviewArticle({ view, slots }: { view: ArticleVie
           <div id="article-flow" data-read-mode="expert">
             {easyHtml && (
               <div className="read-easy">
-                <p className="mt-8 inline-flex items-center gap-2 rounded-full bg-go-soft px-3 py-1 text-[12px] font-bold text-go">
+                <p className="mt-8 inline-flex items-center gap-2 rounded-full bg-go-soft px-3 py-1 text-badge font-bold text-go">
                   かんたん版：専門用語を使わずに説明しています
                 </p>
                 <article className={`${prose} mt-5`} dangerouslySetInnerHTML={{ __html: easyHtml }} />
@@ -174,14 +174,14 @@ export default async function PreviewArticle({ view, slots }: { view: ArticleVie
           {article.tags.length > 0 && (
             <div className="mt-12 flex flex-wrap gap-2">
               {article.tags.map((tag) => (
-                <Link key={tag} href={tagHref(tag)} className="rounded-full bg-surface px-3.5 py-1.5 text-xs font-medium text-ink-soft hover:bg-surface-2 hover:text-accent">
+                <Link key={tag} href={tagHref(tag)} className="rounded-full bg-surface px-3.5 py-1.5 text-meta font-medium text-ink-soft hover:bg-surface-2 hover:text-accent">
                   #{tag}
                 </Link>
               ))}
             </div>
           )}
 
-          <p className="mt-10 rounded-2xl bg-surface px-5 py-4 text-xs leading-relaxed text-muted">
+          <p className="mt-10 rounded-2xl bg-surface px-5 py-4 text-meta leading-relaxed text-muted">
             {article.disclaimer || "本記事はAIが解析して自動生成したものです。正確な情報は公式発表をご確認ください。"}（解析モデル: {article.model}）
           </p>
 

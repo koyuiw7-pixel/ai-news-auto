@@ -14,7 +14,8 @@
   --surface-2: #ecece7;
   --ink: #111111;
   --ink-soft: #3b3b37;
-  --muted: #62625d;
+  /* 補足・メタ情報。白地 7.9:1・薄灰地 7.1:1（docs/typography.md の「補足は 7:1 以上」） */
+  --muted: #52524d;
   --line: #e4e4de;
   --line-strong: #cfcfc7;
   --accent: #0a6fa0;
@@ -26,6 +27,8 @@
   --roundup: #0a6fa0;
   /* 速報性（LIVE・新着）だけに使う赤 */
   --live: #d92d20;
+  /* 赤地に載せる文字（白地 4.8:1） */
+  --live-ink: #ffffff;
   /* 「使える」判定だけに使う緑 */
   --go: #0b7a43;
   --go-soft: #e4f3ea;
@@ -40,7 +43,8 @@
   --surface-2: #16203f;
   --ink: #e8ecf7;
   --ink-soft: #c4cbe0;
-  --muted: #8e9bbd;
+  /* 紺地 8.3:1・カード地 7.6:1 */
+  --muted: #a0abc9;
   --line: #243158;
   --line-strong: #34437a;
   --accent: #58c7f3;
@@ -51,6 +55,8 @@
   --official: #ffb547;
   --roundup: #58c7f3;
   --live: #ff6b5e;
+  /* 明るい赤地には白でなく紺（2.8:1 → 6.8:1） */
+  --live-ink: #0a0f1e;
   --go: #4fd18b;
   --go-soft: #0f2c22;
   --glass: rgb(10 15 30 / 0.72);
@@ -77,19 +83,30 @@
   --color-official: var(--official);
   --color-roundup: var(--roundup);
   --color-live: var(--live);
+  --color-live-ink: var(--live-ink);
   --color-go: var(--go);
   --color-go-soft: var(--go-soft);
 
+  /* Web フォントが届くまでの代わりも線の太い書体から選ぶ（Windows の游ゴシック Regular は細くかすれるので入れない） */
   --font-sans:
-    var(--font-zen), "Hiragino Kaku Gothic ProN", "Hiragino Sans",
-    "Noto Sans JP", Meiryo, sans-serif;
+    var(--font-noto), "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "BIZ UDPGothic", Meiryo, sans-serif;
   --font-display:
-    var(--font-dela), var(--font-zen), "Hiragino Sans", sans-serif;
+    var(--font-dela), var(--font-noto), "Hiragino Sans", sans-serif;
   --font-mono:
     var(--font-martian), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   /* 旧デザインの明朝指定は、本文ゴシックの太字として受け止める */
-  --font-serif:
-    var(--font-zen), "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-serif: var(--font-sans);
+
+  /*
+   * 文字サイズの役割（docs/typography.md）。px を直接書かず、役割で選ぶ。
+   * scripts/check_readability.mjs が実ページで下限を確かめる
+   */
+  --text-badge: 0.75rem; /* 12px バッジ（短い札）だけ */
+  --text-meta: 0.8125rem; /* 13px 日付・件数・分類などの短いラベル */
+  --text-note: 0.875rem; /* 14px 注記・出典・表のセル */
+  --text-desc: 1rem; /* 16px 説明文・要約・リード */
+  --text-body: 1.0625rem; /* 17px 記事本文（PC） */
 }
 
 /* --------------------------------------------------------------------- */
@@ -131,10 +148,77 @@ body {
   .display {
     font-family: var(--font-sans);
     font-weight: 900;
-    line-height: 1.42;
-    letter-spacing: 0;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
     font-feature-settings: "palt" 1;
     text-wrap: balance;
+  }
+
+  /*
+   * 見出しの型（docs/typography.md）。読みやすく階層がはっきりした文字ほど
+   * 「確かな情報」と受け取られる（処理流暢性）。小さく細い題名は自信がなく見えるので、
+   * 本文との大きさの差をはっきり付ける：h1 は本文の 1.8 倍以上（スマホ）・2.5 倍以上（PC）
+   */
+  .t-h1 {
+    font-family: var(--font-sans);
+    font-size: 1.875rem; /* 30px */
+    font-weight: 900;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    font-feature-settings: "palt" 1;
+    text-wrap: balance;
+  }
+  .t-h2 {
+    font-size: 1.4375rem; /* 23px */
+    font-weight: 800;
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    font-feature-settings: "palt" 1;
+    text-wrap: balance;
+  }
+  /* 小見出し・枠の見出し（目次・要点など） */
+  .t-h3 {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 700;
+    line-height: 1.5;
+    font-feature-settings: "palt" 1;
+  }
+  /* 一覧の記事・製品の題名 */
+  .t-card {
+    font-size: 1.0625rem; /* 17px */
+    font-weight: 700;
+    line-height: 1.55;
+    font-feature-settings: "palt" 1;
+  }
+  /* 題名のすぐ下の説明（灰色にしない） */
+  .t-lead {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    font-feature-settings: normal;
+    max-width: 40em;
+  }
+  @media (min-width: 640px) {
+    .t-h1 {
+      font-size: 2.375rem; /* 38px */
+    }
+    .t-h2 {
+      font-size: 1.625rem; /* 26px */
+    }
+    .t-card {
+      font-size: 1.125rem; /* 18px */
+    }
+    .t-lead {
+      font-size: 1.0625rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .t-h1 {
+      font-size: 2.75rem; /* 44px */
+    }
+    .t-h2 {
+      font-size: 1.75rem; /* 28px */
+    }
   }
 }
 
@@ -145,10 +229,11 @@ body {
   letter-spacing: 0.02em;
 }
 
+/* 英大文字の小見出し。バッジと同じ扱いで 12px（docs/typography.md） */
 .eyebrow {
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
 }
@@ -247,11 +332,22 @@ mark {
   --tw-prose-bullets: var(--line-strong);
 }
 
+/* 本文 16px（スマホ）/ 17px（PC）。1行は全角 40 字まで（max-w-[40em]） */
+.prose {
+  font-size: 1rem;
+  line-height: 1.9;
+}
+@media (min-width: 768px) {
+  .prose {
+    font-size: var(--text-body);
+  }
+}
+
 .prose :where(h2) {
   scroll-margin-top: 5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.5;
+  font-size: 1.4375rem;
+  font-weight: 800;
+  line-height: 1.45;
   margin-top: 3.5rem;
   margin-bottom: 1.25rem;
   padding-top: 1.1rem;
@@ -259,24 +355,32 @@ mark {
   text-wrap: balance;
 }
 
+@media (min-width: 1024px) {
+  .prose :where(h2) {
+    font-size: 1.75rem;
+  }
+}
+
 .prose :where(h3) {
   scroll-margin-top: 5rem;
-  font-size: 1.125rem;
+  font-size: 1.1875rem;
   font-weight: 700;
-  line-height: 1.6;
+  line-height: 1.5;
   margin-top: 2.25rem;
   margin-bottom: 0.85rem;
   padding-left: 0.75rem;
   border-left: 3px solid var(--marker);
 }
 
+/* 長い文章は詰め組み（palt）にせず、全角の字送りのまま少しだけ字間を空ける */
 .prose :where(p, li) {
   line-height: 1.9;
-  letter-spacing: 0.012em;
+  letter-spacing: 0.02em;
+  font-feature-settings: normal;
 }
 
 .prose > :where(h2:first-child + p) {
-  font-size: 1.0625rem;
+  font-size: 1.0625em;
 }
 
 /* 本文の太字は要点。蛍光ペンで引く */
@@ -352,4 +456,9 @@ mark {
 }
 #article-flow[data-read-mode="easy"] .read-expert {
   display: none;
+}
+
+/* 説明文（16px）は長い文章なので詰め組みにしない */
+.text-desc {
+  font-feature-settings: normal;
 }

@@ -37,11 +37,11 @@ export default function ChannelView({ channel, page }: { channel: string; page: 
 
   return (
     <div className="mx-auto max-w-[1240px] px-5 py-12 sm:px-8">
-      <p className="text-xs font-bold tracking-widest text-accent">CHANNEL</p>
-      <h1 className="mt-2 text-2xl font-black tracking-tight text-ink sm:text-3xl">
+      <p className="text-meta font-bold tracking-widest text-accent">CHANNEL</p>
+      <h1 className="t-h1 mt-2">
         {label} の最新発表まとめ{pageSuffix(page)}
       </h1>
-      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">
+      <p className="t-lead mt-3">
         {label}{" "}
         {web
           ? "で公開された公式ブログ・プレスリリースをAIが解析し、日本語の解説記事として"

@@ -16,7 +16,7 @@ export default function NewsletterStatus() {
   return (
     <p
       role="status"
-      className={`mt-6 border-l-2 pl-3 text-[14px] leading-[1.8] ${message.ok ? "border-go text-ink" : "border-live text-ink"}`}
+      className={`mt-6 border-l-2 pl-3 text-desc leading-[1.8] ${message.ok ? "border-go text-ink" : "border-live text-ink"}`}
     >
       {message.text}
     </p>

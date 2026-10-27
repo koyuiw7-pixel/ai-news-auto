@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/newsletter" },
 };
 
-const FONT = '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", Meiryo, system-ui, sans-serif';
+// サイト共通の Noto Sans JP（以前は細い Zen Kaku を避けるため OS の書体にしていた。游ゴシックは細いので使わない）
+const FONT = "var(--font-sans)";
 
 const POINTS = [
   { head: "毎朝7時に1通", body: "前日（24時間）に公開した記事から選びます。通勤前に読み終わる分量です。" },
@@ -31,10 +32,10 @@ export default function NewsletterPage() {
   return (
     <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8" style={{ fontFamily: FONT }}>
       <p className="eyebrow">NEWSLETTER</p>
-      <h1 className="mt-2 text-[1.6rem] font-bold leading-[1.45] text-ink sm:text-[2rem]">
+      <h1 className="t-h1 mt-2">
         毎朝7時、昨日のAIニュースの要点を5本
       </h1>
-      <p className="mt-4 text-[15px] leading-[1.9] text-ink-soft">
+      <p className="mt-4 text-desc leading-[1.9] text-ink-soft">
         {siteConfig.siteName}のメール配信です。サイトを毎日のぞかなくても、前日に出た大事な発表だけを朝のうちに押さえられます。
       </p>
 
@@ -46,29 +47,29 @@ export default function NewsletterPage() {
         <NewsletterSignup variant="page" />
       </div>
 
-      <h2 className="mt-12 text-[17px] font-bold text-ink">届く内容</h2>
+      <h2 className="t-h2 mt-12">届く内容</h2>
       <dl className="mt-4 grid gap-x-8 gap-y-5 sm:grid-cols-2">
         {POINTS.map((p) => (
           <div key={p.head}>
-            <dt className="text-[14px] font-bold text-ink">{p.head}</dt>
-            <dd className="mt-1 text-[13.5px] leading-[1.8] text-ink-soft">{p.body}</dd>
+            <dt className="text-note font-bold text-ink">{p.head}</dt>
+            <dd className="mt-1 text-desc leading-[1.8] text-ink-soft">{p.body}</dd>
           </div>
         ))}
       </dl>
 
       {sample.length > 0 && (
         <>
-          <h2 className="mt-12 text-[17px] font-bold text-ink">見本</h2>
-          <p className="mt-1 text-[12.5px] text-muted">最近の記事で組んだ場合の例です（実際は5本）。</p>
+          <h2 className="t-h2 mt-12">見本</h2>
+          <p className="mt-1 text-meta text-muted">最近の記事で組んだ場合の例です（実際は5本）。</p>
           <ol className="mt-4 divide-y divide-line border-y border-line">
             {sample.map((a, i) => (
               <li key={a.slug} className="grid grid-cols-[1.5rem_minmax(0,1fr)] gap-3 py-4">
-                <span className="index-num pt-0.5 text-[12px] text-muted">{i + 1}</span>
+                <span className="index-num pt-0.5 text-meta text-muted">{i + 1}</span>
                 <div>
                   <Link href={`/articles/${a.slug}`} className="text-[15px] font-bold leading-snug text-ink hover:text-accent">
                     {a.seoTitle || a.title}
                   </Link>
-                  <p className="mt-1.5 line-clamp-2 text-[13.5px] leading-[1.75] text-ink-soft">
+                  <p className="mt-1.5 line-clamp-2 text-desc leading-[1.75] text-ink-soft">
                     {a.highlights.slice(0, 2).join(" ")}
                   </p>
                 </div>
@@ -78,8 +79,8 @@ export default function NewsletterPage() {
         </>
       )}
 
-      <h2 className="mt-12 text-[17px] font-bold text-ink">登録と解除について</h2>
-      <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[13.5px] leading-[1.8] text-ink-soft">
+      <h2 className="t-h2 mt-12">登録と解除について</h2>
+      <ul className="mt-3 list-disc space-y-1.5 pl-5 text-desc leading-[1.8] text-ink-soft">
         <li>入力したアドレスに確認メールが届きます。メール内のリンクを開いた時点で登録が完了します（他人のアドレスで勝手に登録されることを防ぐため）。</li>
         <li>アドレスは配信と解除の管理にだけ使い、第三者に提供しません。詳しくは<Link href="/privacy" className="underline underline-offset-2">プライバシーポリシー</Link>をご覧ください。</li>
         <li>解除は各メール末尾のリンクから。ご不明な点は<Link href="/contact" className="underline underline-offset-2">お問い合わせ</Link>へ。</li>

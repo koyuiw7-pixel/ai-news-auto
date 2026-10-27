@@ -41,7 +41,7 @@ export default async function ArticlePreviewPage({ params, searchParams }: Props
   return (
     <>
       <nav aria-label="デザイン案の切り替え" className="border-b border-line bg-surface">
-        <div className="mx-auto flex max-w-[1240px] flex-wrap items-center gap-2 px-4 py-2 text-[12px] sm:px-8">
+        <div className="mx-auto flex max-w-[1240px] flex-wrap items-center gap-2 px-4 py-2 text-meta sm:px-8">
           <Link href="/article-preview" className="font-bold text-muted hover:text-ink">
             確認用（検索には出ません）
           </Link>

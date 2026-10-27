@@ -17,13 +17,13 @@ export default function LegalPage({
   return (
     <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8">
       <p className="eyebrow">{eyebrow}</p>
-      <h1 className="display mt-2 text-[1.75rem] sm:text-[2.25rem]">{title}</h1>
+      <h1 className="t-h1 mt-2">{title}</h1>
       {lead && (
-        <p className="mt-5 border-l-[3px] border-accent pl-4 text-[15px] leading-[1.9] text-ink-soft">
+        <p className="mt-5 border-l-[3px] border-accent pl-4 text-desc leading-[1.9] text-ink-soft">
           {lead}
         </p>
       )}
-      <p className="index-num mt-6 text-[11px] text-muted">
+      <p className="index-num mt-6 text-meta text-muted">
         最終更新: {updatedAt}
       </p>
 

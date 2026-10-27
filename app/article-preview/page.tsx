@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 export default function ArticlePreviewIndex() {
   return (
     <div className="mx-auto max-w-[820px] px-5 py-10 sm:px-8">
-      <p className="text-[12px] font-bold text-muted">確認用（検索には出ません）</p>
+      <p className="text-meta font-bold text-muted">確認用（検索には出ません）</p>
       <h1 className="display mt-2 text-[1.8rem] text-ink">記事ページのデザイン案</h1>
-      <p className="mt-3 text-[15px] leading-[1.9] text-ink-soft">
+      <p className="mt-3 text-desc leading-[1.9] text-ink-soft">
         同じ記事（GPT-6.1 Terra）を3つのデザインで表示しています。どれも「文字の読みやすさ・要点・比較表・長い記事の目次」の4点に対応しています。スマホでもご確認ください。
       </p>
       <ol className="mt-8 grid gap-4">
@@ -31,8 +31,8 @@ export default function ArticlePreviewIndex() {
                   <span className="text-[1.25rem] font-black text-ink group-hover:underline">{v.name}</span>
                   <span aria-hidden className="ml-auto text-muted">→</span>
                 </span>
-                <span className="mt-1.5 block text-[15px] font-medium leading-[1.8] text-ink">{v.desc}</span>
-                <ul className="mt-3 grid gap-1 text-[13.5px] leading-[1.75] text-ink-soft">
+                <span className="mt-1.5 block text-desc font-medium leading-[1.8] text-ink">{v.desc}</span>
+                <ul className="mt-3 grid gap-1 text-desc leading-[1.75] text-ink-soft">
                   {v.points.map((p) => (
                     <li key={p}>・{p}</li>
                   ))}

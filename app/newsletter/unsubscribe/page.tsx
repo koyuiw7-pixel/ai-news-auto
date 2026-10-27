@@ -12,7 +12,7 @@ export default function UnsubscribePage() {
   return (
     <div className="mx-auto max-w-xl px-5 py-16 sm:px-8">
       <p className="eyebrow">NEWSLETTER</p>
-      <h1 className="mt-2 text-[1.5rem] font-bold text-ink">メール配信の解除</h1>
+      <h1 className="t-h1 mt-2">メール配信の解除</h1>
       <Suspense fallback={null}>
         <UnsubscribeForm />
       </Suspense>

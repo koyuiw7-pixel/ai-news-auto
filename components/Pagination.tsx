@@ -7,7 +7,7 @@ export default function Pagination({ base, page, totalPages }: { base: string; p
   const pages = [...new Set([1, page - 2, page - 1, page, page + 1, page + 2, totalPages])]
     .filter((n) => n >= 1 && n <= totalPages)
     .sort((a, b) => a - b);
-  const item = "flex h-10 min-w-10 items-center justify-center rounded-full border px-3 text-[13px] font-bold";
+  const item = "flex h-10 min-w-10 items-center justify-center rounded-full border px-3 text-meta font-bold";
 
   return (
     <nav aria-label="ページ送り" className="mt-12 flex flex-wrap items-center justify-center gap-2">

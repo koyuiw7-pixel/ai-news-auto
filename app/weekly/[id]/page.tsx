@@ -106,16 +106,16 @@ export default async function WeeklyPage({ params }: Props) {
       <Crumbs items={[{ href: "/", label: "ホーム" }, { href: "/weekly", label: "今週のAIニュース" }, { label: weekRangeLabel(week) }]} />
 
       <header className="mt-5">
-        <p className="text-[12.5px] font-bold text-muted">
+        <p className="text-meta font-bold text-muted">
           毎週月曜 7時更新 ・ <span className="tabular-nums">{week.id.replace("-", "年 第")}週</span>
         </p>
-        <h1 className="mt-2 text-[1.65rem] font-bold leading-[1.4] text-ink sm:text-[2.1rem]">{week.title}</h1>
-        <div className="mt-4 grid gap-1.5 text-[15.5px] leading-[1.85] text-ink-soft">
+        <h1 className="t-h1 headline mt-2">{week.title}</h1>
+        <div className="mt-4 grid gap-1.5 text-desc leading-[1.85] text-ink-soft">
           {week.lede.map((line) => (
             <p key={line}>{line}</p>
           ))}
         </div>
-        <p className="mt-3 text-[12.5px] text-muted">
+        <p className="mt-3 text-meta text-muted">
           この週にサイソクが出したAIの記事 <span className="tabular-nums">{week.articleCount}</span>本から選びました。
         </p>
       </header>
@@ -149,7 +149,7 @@ export default async function WeeklyPage({ params }: Props) {
             {upcoming.map((event) => (
               <li key={event.slug}>
                 <Link href={`/events/${event.slug}`} className="group flex flex-wrap items-baseline gap-x-3 gap-y-0.5 rounded-lg border border-line px-4 py-3 hover:border-ink">
-                  <span className="text-[13px] tabular-nums text-muted">{localDateRange(event)}</span>
+                  <span className="text-meta tabular-nums text-muted">{localDateRange(event)}</span>
                   <span className="text-[15px] font-bold text-ink group-hover:underline">{event.nameJa}</span>
                 </Link>
               </li>
@@ -160,7 +160,7 @@ export default async function WeeklyPage({ params }: Props) {
 
       <div className="mt-12 grid gap-4 border-t border-line pt-6">
         <ShareLinks url={url} title={week.title} />
-        <nav aria-label="ほかの週" className="flex flex-wrap justify-between gap-3 text-[13.5px]">
+        <nav aria-label="ほかの週" className="flex flex-wrap justify-between gap-3 text-note">
           {older ? (
             <Link href={`/weekly/${older.id}`} className="font-bold text-ink-soft hover:text-ink hover:underline">
               ← 前の週（{weekRangeLabel(older)}）
@@ -178,7 +178,7 @@ export default async function WeeklyPage({ params }: Props) {
             </Link>
           )}
         </nav>
-        <p className="text-[12.5px] text-muted">
+        <p className="text-meta text-muted">
           AIの料金を比べるなら <Link href="/ai-pricing" className="underline underline-offset-2 hover:text-ink">AIの料金・日本対応 早見表</Link>
         </p>
       </div>
@@ -195,9 +195,9 @@ function Item({ item, rank, large = false }: { item: WeeklyItem; rank: number; l
     >
       <span className={`tabular-nums font-bold text-muted ${large ? "text-[1.4rem] leading-none" : "text-[1.05rem] leading-tight"}`}>{rank}</span>
       <div className="min-w-0">
-        <p className="flex flex-wrap items-center gap-x-2 text-[12px] text-muted">
+        <p className="flex flex-wrap items-center gap-x-2 text-meta text-muted">
           {item.company && (
-            <span className="font-bold" style={{ color }}>
+            <span className="font-bold text-ink">
               {item.company}
             </span>
           )}
@@ -206,10 +206,10 @@ function Item({ item, rank, large = false }: { item: WeeklyItem; rank: number; l
         <Link href={`/articles/${item.slug}`} className={`mt-1 block font-bold leading-snug text-ink hover:underline ${large ? "text-[17px]" : "text-[15.5px]"}`}>
           {item.title}
         </Link>
-        <p className="mt-2 text-[14.5px] leading-[1.8] text-ink">{item.what}</p>
+        <p className="mt-2 text-desc leading-[1.8] text-ink">{item.what}</p>
         {item.why && (
-          <p className="mt-1 text-[14px] leading-[1.8] text-ink-soft">
-            <span className="mr-1.5 text-[12px] font-bold text-muted">なぜ大事？</span>
+          <p className="mt-1 text-desc leading-[1.8] text-ink-soft">
+            <span className="mr-1.5 text-meta font-bold text-muted">なぜ大事？</span>
             {item.why}
           </p>
         )}

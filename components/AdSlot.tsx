@@ -37,7 +37,7 @@ export default function AdSlot({ position, className }: Props) {
       aria-label="広告"
       data-ad-position={position}
     >
-      <p className="mb-1 text-[10px] tracking-widest text-muted">広告</p>
+      <p className="mb-1 text-meta tracking-widest text-muted">広告</p>
 
       {enabled ? (
         <>
@@ -57,7 +57,7 @@ export default function AdSlot({ position, className }: Props) {
           />
         </>
       ) : (
-        <div className="rounded-2xl border border-dashed border-line-strong bg-surface px-5 py-5 text-center text-xs text-muted">
+        <div className="rounded-2xl border border-dashed border-line-strong bg-surface px-5 py-5 text-center text-meta text-muted">
           AdSense Dummy
         </div>
       )}

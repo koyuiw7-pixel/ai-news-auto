@@ -17,10 +17,10 @@ export default function AffiliateBox({ links, compact }: Props) {
       className={`rounded-2xl border border-line bg-surface ${compact ? "p-5" : "p-6"}`}
     >
       <div className="flex items-baseline justify-between gap-2">
-        <h2 className={`font-bold text-ink ${compact ? "text-sm" : "text-lg"}`}>
+        <h2 className={compact ? "t-card" : "t-h3"}>
           この記事に関連するツール・サービス
         </h2>
-        <span className="shrink-0 rounded bg-line px-1.5 py-0.5 text-[10px] text-muted">
+        <span className="shrink-0 rounded bg-line px-1.5 py-0.5 text-meta text-muted">
           PR
         </span>
       </div>
@@ -34,15 +34,15 @@ export default function AffiliateBox({ links, compact }: Props) {
               rel="sponsored noopener noreferrer"
               className="group flex items-start gap-3 rounded-xl border border-line px-4 py-3 transition-colors hover:border-accent hover:bg-accent-soft/40"
             >
-              <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-md bg-accent text-[11px] font-bold text-accent-ink">
+              <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-md bg-accent text-meta font-bold text-accent-ink">
                 ↗
               </span>
               <span className="min-w-0">
-                <span className="block text-sm font-semibold text-ink group-hover:text-accent">
+                <span className="block text-note font-semibold text-ink group-hover:text-accent">
                   {link.label}
                 </span>
                 {link.note && (
-                  <span className="mt-0.5 block text-xs leading-relaxed text-muted">
+                  <span className="mt-0.5 block text-note leading-relaxed text-muted">
                     {link.note}
                   </span>
                 )}
@@ -57,7 +57,7 @@ export default function AffiliateBox({ links, compact }: Props) {
         ))}
       </ul>
 
-      <p className="mt-4 text-[11px] leading-relaxed text-muted">
+      <p className="mt-4 text-note leading-relaxed text-muted">
         ※ 上記リンクはアフィリエイトリンクを含みます。リンク経由で申し込まれた場合、
         当サイトに紹介料が支払われることがあります。価格・提供条件は各公式サイトをご確認ください。
       </p>

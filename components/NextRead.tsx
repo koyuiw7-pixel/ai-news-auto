@@ -15,7 +15,7 @@ export default function NextRead({ items }: { items: NextReadItem[] }) {
   const [first, ...rest] = items;
   return (
     <section aria-labelledby="next-read-heading" className="mt-12 max-w-[46em]">
-      <h2 id="next-read-heading" className="display flex items-center gap-2 text-[1.35rem] text-ink">
+      <h2 id="next-read-heading" className="t-h2 flex items-center gap-2">
         次に読むならこれ
         <span aria-hidden className="text-live">→</span>
       </h2>
@@ -31,9 +31,9 @@ export default function NextRead({ items }: { items: NextReadItem[] }) {
             {first.article.seoTitle || first.article.title}
           </span>
           {first.article.highlights[0] && (
-            <span className="line-clamp-3 text-[13.5px] leading-[1.75] text-ink-soft">{first.article.highlights[0]}</span>
+            <span className="line-clamp-3 text-desc leading-[1.75] text-ink-soft">{first.article.highlights[0]}</span>
           )}
-          <span className="mt-auto inline-flex items-center gap-1 pt-1 text-[13px] font-bold text-live">
+          <span className="mt-auto inline-flex items-center gap-1 pt-1 text-meta font-bold text-live">
             続きを読む <span aria-hidden>→</span>
           </span>
         </span>
@@ -50,7 +50,7 @@ export default function NextRead({ items }: { items: NextReadItem[] }) {
                 <Cover item={item} sizes="112px" small />
                 <span className="flex min-w-0 flex-col gap-1">
                   <Meta item={item} />
-                  <span className="line-clamp-3 text-[13.5px] font-bold leading-snug text-ink group-hover:underline">
+                  <span className="line-clamp-3 text-note font-bold leading-snug text-ink group-hover:underline">
                     {item.article.seoTitle || item.article.title}
                   </span>
                 </span>
@@ -67,7 +67,7 @@ function Meta({ item }: { item: NextReadItem }) {
   const verdict = verdictOf(item.article);
   return (
     <span className="flex flex-wrap items-center gap-1.5">
-      <span className="rounded-full bg-ink px-2 py-[2px] text-[10.5px] font-bold text-paper">{item.reason}</span>
+      <span className="rounded-full bg-ink px-2 py-[2px] text-badge font-bold text-paper">{item.reason}</span>
       {verdict && <VerdictBadge kind={usability(verdict)} />}
     </span>
   );

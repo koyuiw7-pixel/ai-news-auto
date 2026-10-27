@@ -56,11 +56,11 @@ export default function GenreView({ genre, page }: { genre: string; page: number
 
   return (
     <div className="mx-auto max-w-[1240px] px-5 py-12 sm:px-8">
-      <p className="text-xs font-bold tracking-[0.2em] text-accent">{broad ? "NEWS" : "GENRE"}</p>
-      <h1 className="mt-3 font-serif text-[1.75rem] font-bold leading-[1.45] tracking-tight text-ink sm:text-[2.25rem]">
+      <p className="text-meta font-bold tracking-[0.2em] text-accent">{broad ? "NEWS" : "GENRE"}</p>
+      <h1 className="t-h1 mt-3">
         {label}の最新ニュース・解説{pageSuffix(page)}
       </h1>
-      <p className="mt-4 max-w-3xl text-[15px] leading-[1.9] text-muted">
+      <p className="t-lead mt-4">
         {genreCopy(genre) ?? `${label}に関する解説記事を${articles.length}本掲載しています。`}
       </p>
 
@@ -76,7 +76,7 @@ export default function GenreView({ genre, page }: { genre: string; page: number
             <Link
               key={channel.slug}
               href={`/channels/${channel.slug}`}
-              className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-xs text-ink-soft transition-colors hover:border-accent hover:text-accent"
+              className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-meta text-ink-soft transition-colors hover:border-accent hover:text-accent"
             >
               {channel.label}
               <span className="ml-1.5 text-muted">{channel.count}</span>

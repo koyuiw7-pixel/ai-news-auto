@@ -56,14 +56,14 @@ export default function EventsPage() {
     <AssetShell>
       <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Crumbs items={[{ href: "/", label: "ホーム" }, { label: "AIイベント" }]} />
-      <h1 className="mt-5 text-[1.75rem] font-bold leading-[1.35] text-ink sm:text-[2.2rem]">AI・テックイベントの日程</h1>
-      <p className="mt-3 max-w-[60ch] text-[14.5px] leading-[1.85] text-ink-soft">
+      <h1 className="t-h1 mt-5">AI・テックイベントの日程</h1>
+      <p className="t-lead mt-3">
         主要なAI・テックイベントを、日本時間の基調講演とあわせてまとめています。公式に決まったことだけを載せ、開催後は発表内容を自動で追加します。
       </p>
 
       {months.map(({ label, events }) => (
         <section key={label} aria-labelledby={`m-${label}`} className="mt-10">
-          <h2 id={`m-${label}`} className="mb-3 border-b border-line-strong pb-2 text-[1.1rem] font-bold text-ink">
+          <h2 id={`m-${label}`} className="t-h3 mb-3 border-b border-line-strong pb-2">
             {label}
           </h2>
           <ul className="grid gap-3">
@@ -101,15 +101,15 @@ function EventRow({ event }: { event: TechEvent }) {
         className="group grid gap-1 rounded-xl border border-line px-4 py-3.5 transition-colors hover:border-ink sm:grid-cols-[10.5rem_minmax(0,1fr)_auto] sm:items-center sm:gap-4"
         style={{ borderLeft: `4px solid ${color}` }}
       >
-        <span className="text-[13px] tabular-nums text-ink-soft">{localDateRange(event).replace(/^\d{4}年/, "")}</span>
+        <span className="text-meta tabular-nums text-ink-soft">{localDateRange(event).replace(/^\d{4}年/, "")}</span>
         <span className="min-w-0">
           <span className="block text-[16px] font-bold leading-snug text-ink group-hover:underline">{event.nameJa}</span>
-          <span className="mt-0.5 block text-[12.5px] text-muted">
+          <span className="mt-0.5 block text-meta text-muted">
             {event.location.split(",")[0]}
             {keynote?.startUtc && <> ・ 基調講演 日本時間 {formatJst(keynote.startUtc)}</>}
           </span>
         </span>
-        <span className="text-[12px] font-bold">
+        <span className="text-meta font-bold">
           {status === "live" ? (
             <span className="text-live">開催中</span>
           ) : status === "ended" ? (

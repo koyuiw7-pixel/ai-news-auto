@@ -47,7 +47,7 @@ export function Stars({ value, size = 12 }: { value: number; size?: number }) {
 export function Rating({ item, size = 12 }: { item: OfferItem; size?: number }) {
   if (item.rating == null || !item.reviews) return null;
   return (
-    <span className="flex items-center gap-1 text-[12px] text-ink-soft">
+    <span className="flex items-center gap-1 text-meta text-ink-soft">
       <Stars value={item.rating} size={size} />
       <span className="index-num font-semibold">{item.rating.toFixed(1)}</span>
       <span className="index-num text-muted">（{item.reviews}件）</span>
@@ -76,10 +76,10 @@ export function ProductImage({
       ) : (
         // 写真の無いサービス（ConoHa AI Canvas など）は、名前と一言を文字で見せる
         <span className="flex size-full flex-col items-center justify-center gap-2 bg-[linear-gradient(135deg,#eef6fb,#ffffff_55%,#f3f0fb)] px-4 text-center">
-          <span className="text-[10px] font-bold tracking-[0.2em] text-[#0a6fa0]">{item.badge ?? "WEB SERVICE"}</span>
+          <span className="text-badge font-bold tracking-[0.2em] text-[#0a6fa0]">{item.badge ?? "WEB SERVICE"}</span>
           <span className="text-[17px] font-bold leading-tight text-[#111111] text-balance">{item.name}</span>
           {item.label && (
-            <span className="rounded-full bg-[#111111] px-2.5 py-1 text-[10.5px] font-bold text-white">{item.label}</span>
+            <span className="rounded-full bg-[#111111] px-2.5 py-1 text-badge font-bold text-white">{item.label}</span>
           )}
         </span>
       )}
@@ -89,7 +89,7 @@ export function ProductImage({
 
 export function PrNote({ checkedAt, hasBook }: { checkedAt: string; hasBook: boolean }) {
   return (
-    <p className="text-[10.5px] leading-relaxed text-muted">
+    <p className="text-note leading-relaxed text-muted">
       価格{hasBook ? "・評価" : ""}は{checkedDate(checkedAt)}時点{hasBook ? "（楽天ブックス・各公式サイト）" : "（各公式サイト）"}。
       リンク経由の購入で当サイトに紹介料が入ることがあります。
     </p>

@@ -42,14 +42,14 @@ export default function RailRanking({
 function Header({ offer, wide, title }: { offer: Offer; wide: boolean; title: string }) {
   return (
     <div className={`bg-ink text-paper ${wide ? "px-5 py-4 sm:px-6" : "px-4 py-3.5"}`}>
-      <p className="flex items-center gap-2 text-[11px] font-bold opacity-75">
-        <span className="rounded border border-current px-1.5 text-[10px] tracking-wider">PR</span>
+      <p className="flex items-center gap-2 text-meta font-bold opacity-75">
+        <span className="rounded border border-current px-1.5 text-meta tracking-wider">PR</span>
         {offer.eyebrow}
       </p>
       <p className={`font-display mt-1.5 leading-snug ${wide ? "text-[22px]" : "text-[19px]"}`}>
         {title}
       </p>
-      <p className="mt-1 text-[12.5px] leading-snug opacity-85">{offer.headline}</p>
+      <p className="mt-1 text-meta leading-snug opacity-85">{offer.headline}</p>
     </div>
   );
 }

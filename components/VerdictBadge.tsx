@@ -13,12 +13,12 @@ export default function VerdictBadge({ kind, block }: { kind: Usability; block?:
     return (
       <span className={`grid justify-items-center gap-1 rounded-lg px-1 py-2 ${STYLE[kind]}`}>
         <VerdictIcon kind={kind} size={18} />
-        <span className="text-[11.5px] font-bold leading-none">{USABILITY_LABEL[kind]}</span>
+        <span className="text-meta font-bold leading-none">{USABILITY_LABEL[kind]}</span>
       </span>
     );
   }
   return (
-    <span className={`inline-flex items-center gap-1 rounded-full px-2 py-[2px] text-[11px] font-bold ${STYLE[kind]}`}>
+    <span className={`inline-flex items-center gap-1 rounded-full px-2 py-[2px] text-badge font-bold ${STYLE[kind]}`}>
       <VerdictIcon kind={kind} size={12} />
       {USABILITY_LABEL[kind]}
     </span>

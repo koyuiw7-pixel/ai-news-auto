@@ -53,7 +53,7 @@ export default function MobilePrBar({ item, watchId }: { item: OfferItem; watchI
           tabIndex={visible ? 0 : -1}
           className="flex min-w-0 flex-1 items-center gap-3"
         >
-          <span className="grid size-12 shrink-0 place-items-center overflow-hidden rounded-lg border border-line bg-white">
+          <span aria-hidden data-decorative="" className="grid size-12 shrink-0 place-items-center overflow-hidden rounded-lg border border-line bg-white">
             {item.image ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={item.image} alt="" fetchPriority="low" decoding="async" className="size-full object-contain p-1" />
@@ -62,14 +62,14 @@ export default function MobilePrBar({ item, watchId }: { item: OfferItem; watchI
             )}
           </span>
           <span className="min-w-0 flex-1">
-            <span className="flex items-center gap-1.5 text-[10.5px] font-bold">
-              <span className="rounded border border-line-strong px-1 text-[9px] text-muted">PR</span>
+            <span className="flex items-center gap-1.5 text-meta font-bold">
+              <span className="rounded border border-line-strong px-1 text-badge text-muted">PR</span>
               <span className="text-live">サイソクのイチオシ</span>
             </span>
-            <span className="block truncate text-[13px] font-bold text-ink">{item.name}</span>
-            {price && <span className="index-num text-[12.5px] font-bold text-ink">{price}</span>}
+            <span className="block truncate text-meta font-bold text-ink">{item.name}</span>
+            {price && <span className="index-num text-meta font-bold text-ink">{price}</span>}
           </span>
-          <span className="shrink-0 rounded-full bg-live px-3.5 py-2 text-[12.5px] font-bold text-white">見る ↗</span>
+          <span className="shrink-0 rounded-full bg-live px-3.5 py-2 text-meta font-bold text-live-ink">見る ↗</span>
         </a>
         <button
           type="button"

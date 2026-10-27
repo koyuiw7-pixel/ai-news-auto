@@ -7,12 +7,12 @@ export default function NotFound() {
       <h1 className="mt-4 text-xl font-bold text-ink">
         ページが見つかりませんでした
       </h1>
-      <p className="mt-2 text-sm text-muted">
+      <p className="mt-2 text-note text-muted">
         記事が削除されたか、URLが変更された可能性があります。
       </p>
       <Link
         href="/"
-        className="mt-8 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-paper transition-opacity hover:opacity-85"
+        className="mt-8 rounded-full bg-ink px-6 py-3 text-note font-semibold text-paper transition-opacity hover:opacity-85"
       >
         トップへ戻る
       </Link>

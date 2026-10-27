@@ -34,6 +34,8 @@ export default function Thumb({ source, ...props }: ImageProps & { source?: Thum
     return (
       <span
         aria-hidden
+        // 写真の代わりの図版。文字の大きさ・コントラストのルールの対象外（docs/typography.md）
+        data-decorative=""
         className="@container absolute inset-0 overflow-hidden"
         style={{ background: `linear-gradient(135deg, ${source.color} 0%, color-mix(in srgb, ${source.color} 62%, #000) 100%)` }}
       >
@@ -55,7 +57,7 @@ export default function Thumb({ source, ...props }: ImageProps & { source?: Thum
 
   if (stage === "failed") {
     return (
-      <span aria-hidden className="absolute inset-0 grid place-items-center bg-surface-2">
+      <span aria-hidden data-decorative="" className="absolute inset-0 grid place-items-center bg-surface-2">
         <span className="font-display text-lg text-line-strong">サイソク</span>
       </span>
     );

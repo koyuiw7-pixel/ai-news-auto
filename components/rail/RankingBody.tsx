@@ -119,8 +119,8 @@ function First({ item, wide, badge, onClick }: { item: OfferItem; wide: boolean;
     >
       <span className="flex items-center gap-2">
         <span className="font-display text-[34px] leading-none text-live">1</span>
-        <span className="rounded-full bg-live px-2.5 py-1 text-[11px] font-bold text-white">{badge}</span>
-        {item.label && <span className="text-[11.5px] font-bold text-live">{item.label}</span>}
+        <span className="rounded-full bg-live px-2.5 py-1 text-badge font-bold text-live-ink">{badge}</span>
+        {item.label && <span className="text-meta font-bold text-live">{item.label}</span>}
       </span>
 
       <span className={wide ? "mt-3 grid gap-5 sm:grid-cols-[200px_minmax(0,1fr)]" : "block"}>
@@ -133,7 +133,7 @@ function First({ item, wide, badge, onClick }: { item: OfferItem; wide: boolean;
         <span className={`flex min-w-0 flex-col ${wide ? "" : "mt-2.5"}`}>
           <span className="line-clamp-2 text-[15px] font-bold leading-[1.5] text-ink group-hover:underline">{item.name}</span>
           {reason && (
-            <span className="mt-1.5 rounded-lg bg-surface px-2.5 py-2 text-[12px] leading-[1.6] text-ink-soft">
+            <span className="mt-1.5 rounded-lg bg-surface px-2.5 py-2 text-note leading-[1.6] text-ink-soft">
               <span className="font-bold text-ink">ここがおすすめ：</span>
               {reason}
             </span>
@@ -143,9 +143,9 @@ function First({ item, wide, badge, onClick }: { item: OfferItem; wide: boolean;
           </span>
           <span className="mt-1.5 flex items-baseline justify-between gap-2">
             <span className="index-num text-[23px] font-bold tracking-tight text-ink">{priceText(item)}</span>
-            <span className="text-[11px] text-muted">{item.shop}</span>
+            <span className="text-meta text-muted">{item.shop}</span>
           </span>
-          <span className="mt-2.5 flex h-12 items-center justify-center gap-1.5 rounded-xl bg-live text-[14px] font-bold text-white shadow-[0_6px_16px_-8px_var(--live)] transition-transform group-hover:-translate-y-px motion-reduce:transition-none">
+          <span className="mt-2.5 flex h-12 items-center justify-center gap-1.5 rounded-xl bg-live text-note font-bold text-live-ink shadow-[0_6px_16px_-8px_var(--live)] transition-transform group-hover:-translate-y-px motion-reduce:transition-none">
             {item.cta}
             <span aria-hidden>↗</span>
           </span>
@@ -168,14 +168,14 @@ function Row({ item, rank, onClick }: { item: OfferItem; rank: number; onClick: 
         <span className="font-display text-[22px] leading-none text-ink">{rank}</span>
         <ProductImage item={item} className="size-[72px] rounded-lg border border-line" pad="p-1.5" />
         <span className="min-w-0">
-          {item.label && <span className="block text-[11px] font-bold text-live">{item.label}</span>}
-          <span className="line-clamp-2 text-[13px] font-bold leading-snug text-ink group-hover:underline">{item.name}</span>
+          {item.label && <span className="block text-meta font-bold text-live">{item.label}</span>}
+          <span className="line-clamp-2 text-meta font-bold leading-snug text-ink group-hover:underline">{item.name}</span>
           <span className="mt-0.5 block">
             <Rating item={item} size={11} />
           </span>
           <span className="mt-1 flex items-center justify-between gap-2">
-            <span className="index-num text-[14px] font-bold text-ink">{priceText(item)}</span>
-            <span className="shrink-0 rounded-full bg-ink px-2.5 py-1 text-[11px] font-bold text-paper group-hover:opacity-85">
+            <span className="index-num text-note font-bold text-ink">{priceText(item)}</span>
+            <span className="shrink-0 rounded-full bg-ink px-2.5 py-1 text-badge font-bold text-paper group-hover:opacity-85">
               見る ↗
             </span>
           </span>

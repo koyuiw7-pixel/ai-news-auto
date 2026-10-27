@@ -30,7 +30,7 @@ export function VariantA({ view }: { view: ArticleView }) {
             {lead && (
               <section aria-labelledby="a-points" className="mt-6 rounded-2xl border border-line-strong bg-paper">
                 <div className="px-5 pt-5 sm:px-7 sm:pt-6">
-                  <h2 id="a-points" className="text-[12px] font-bold tracking-[0.08em] text-muted">
+                  <h2 id="a-points" className="text-meta font-bold tracking-[0.08em] text-muted">
                     {view.article.highlights.length}行でわかる
                   </h2>
                   <p
@@ -41,7 +41,7 @@ export function VariantA({ view }: { view: ArticleView }) {
                 {rest.length > 0 && (
                   <ul className="mt-4 grid gap-2.5 border-t border-line px-5 py-4 sm:px-7">
                     {rest.map((text) => (
-                      <li key={text} className="grid grid-cols-[14px_1fr] gap-2.5 text-[15.5px] font-medium leading-[1.75] text-ink-soft">
+                      <li key={text} className="grid grid-cols-[14px_1fr] gap-2.5 text-desc font-medium leading-[1.75] text-ink-soft">
                         <span aria-hidden className="mt-[0.7em] h-[2px] w-[10px] bg-ink-soft" />
                         <span dangerouslySetInnerHTML={{ __html: emphasizeFigures(text) }} />
                       </li>
@@ -56,9 +56,9 @@ export function VariantA({ view }: { view: ArticleView }) {
         topToc:
           view.headings.length > 1 ? (
             <details className="ap-toc-a group mt-8 rounded-2xl border border-line">
-              <summary className="flex cursor-pointer list-none items-center gap-3 px-5 py-3.5 text-[14px] font-bold text-ink">
+              <summary className="flex cursor-pointer list-none items-center gap-3 px-5 py-3.5 text-note font-bold text-ink">
                 目次
-                <span className="index-num text-[12px] font-normal text-muted">
+                <span className="index-num text-meta font-normal text-muted">
                   全{view.headings.length}章・約{view.readMinutes}分
                 </span>
                 <span aria-hidden className="ml-auto text-muted transition-transform group-open:rotate-180">▾</span>
@@ -66,8 +66,8 @@ export function VariantA({ view }: { view: ArticleView }) {
               <ol className="grid gap-0.5 border-t border-line px-3 py-3 sm:grid-cols-2 sm:gap-x-4">
                 {view.headings.map((h, i) => (
                   <li key={h.id}>
-                    <a href={`#${h.id}`} className="grid grid-cols-[1.75rem_1fr] rounded-lg px-2 py-1.5 text-[14px] leading-snug text-ink-soft hover:bg-surface hover:text-ink">
-                      <span className="index-num text-[11px] text-muted">{i + 1}</span>
+                    <a href={`#${h.id}`} className="grid grid-cols-[1.75rem_1fr] rounded-lg px-2 py-1.5 text-note leading-snug text-ink-soft hover:bg-surface hover:text-ink">
+                      <span className="index-num text-meta text-muted">{i + 1}</span>
                       {h.text}
                     </a>
                   </li>
@@ -88,7 +88,7 @@ function TelopRow({ label, children }: { label: string; children: React.ReactNod
   return (
     <div className="grid border-t border-line first:border-t-0 sm:grid-cols-[7.5rem_1fr]">
       <div className="flex items-start px-4 pt-4 sm:px-5 sm:py-4">
-        <span className="bg-ink px-2 py-0.5 text-[11.5px] font-bold tracking-[0.08em] text-paper">{label}</span>
+        <span className="bg-ink px-2 py-0.5 text-meta font-bold tracking-[0.08em] text-paper">{label}</span>
       </div>
       <div className="px-4 pb-4 pt-2 sm:px-5 sm:py-4">{children}</div>
     </div>
@@ -106,7 +106,7 @@ export function VariantB({ view }: { view: ArticleView }) {
         className: `ap-b ${noto.variable}`,
         summary: (
           <section aria-labelledby="b-sum" className="mt-6 overflow-hidden border-2 border-ink">
-            <div className="flex items-stretch text-[12px] font-bold">
+            <div className="flex items-stretch text-meta font-bold">
               <span className="bg-live px-3 py-1.5 tracking-[0.12em] text-white">要点</span>
               <h2 id="b-sum" className="flex-1 bg-ink px-3 py-1.5 text-paper">このニュースを30秒で</h2>
               {verdict && (
@@ -125,7 +125,7 @@ export function VariantB({ view }: { view: ArticleView }) {
                   {changes.map((s) => (
                     <li key={s.text} className={`grid items-baseline gap-x-4 gap-y-0.5 ${s.value ? "sm:grid-cols-[minmax(7.5rem,auto)_1fr]" : ""}`}>
                       {s.value && <span className="ap-bignum index-num text-[1.6rem] font-semibold leading-none tracking-tight text-ink">{s.value}</span>}
-                      <span className="text-[15px] font-medium leading-[1.75] text-ink-soft">{s.text}</span>
+                      <span className="text-desc font-medium leading-[1.75] text-ink-soft">{s.text}</span>
                     </li>
                   ))}
                 </ul>
@@ -134,7 +134,7 @@ export function VariantB({ view }: { view: ArticleView }) {
             {verdict && (
               <TelopRow label="誰に関係">
                 {verdict.audience && <p className="text-[16px] font-bold text-ink">{verdict.audience}</p>}
-                <dl className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-[13px]">
+                <dl className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-meta">
                   <div className="flex gap-1.5"><dt className="text-muted">日本</dt><dd className="font-bold text-ink">{japanLabel(verdict)}</dd></div>
                   <div className="flex gap-1.5"><dt className="text-muted">料金</dt><dd className="index-num font-bold text-ink">{verdict.price || "不明"}</dd></div>
                   <div className="flex gap-1.5"><dt className="text-muted">無料</dt><dd className="font-bold text-ink">{freeLabel(verdict.free)}</dd></div>
@@ -147,12 +147,12 @@ export function VariantB({ view }: { view: ArticleView }) {
         topToc:
           view.headings.length > 1 ? (
             <nav aria-label="目次" className="mt-8 border-y-2 border-ink py-3 xl:hidden">
-              <p className="text-[11.5px] font-bold tracking-[0.1em] text-muted">目次・全{view.headings.length}章</p>
+              <p className="text-meta font-bold tracking-[0.1em] text-muted">目次・全{view.headings.length}章</p>
               <ol className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">
                 {view.headings.map((h, i) => (
                   <li key={h.id}>
-                    <a href={`#${h.id}`} className="text-[13.5px] font-bold text-ink hover:underline">
-                      <span className="index-num mr-1 text-[11px] font-normal text-muted">{String(i + 1).padStart(2, "0")}</span>
+                    <a href={`#${h.id}`} className="text-note font-bold text-ink hover:underline">
+                      <span className="index-num mr-1 text-meta font-normal text-muted">{String(i + 1).padStart(2, "0")}</span>
                       {h.text}
                     </a>
                   </li>
@@ -202,9 +202,9 @@ export function VariantC({ view }: { view: ArticleView }) {
           <section aria-labelledby="c-sum" className="mt-6">
             <div className="rounded-3xl bg-ink p-5 text-paper sm:p-7">
               <div className="flex flex-wrap items-center gap-2">
-                <h2 id="c-sum" className="text-[12px] font-bold tracking-[0.14em] opacity-70">結論</h2>
+                <h2 id="c-sum" className="text-meta font-bold tracking-[0.14em] opacity-70">結論</h2>
                 {verdict && kind && (
-                  <span className={`ml-auto inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12.5px] font-bold ${kind === "go" ? "bg-go-soft text-go" : "bg-surface text-ink"}`}>
+                  <span className={`ml-auto inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-meta font-bold ${kind === "go" ? "bg-go-soft text-go" : "bg-surface text-ink"}`}>
                     <VerdictIcon kind={kind} size={15} />
                     {STATUS_LABEL[verdict.status]}
                   </span>
@@ -220,8 +220,8 @@ export function VariantC({ view }: { view: ArticleView }) {
                     ["向いている人", verdict.audience || "—"],
                   ].map(([k, v]) => (
                     <div key={k} className="rounded-xl bg-paper/10 px-3 py-2">
-                      <dt className="text-[10.5px] opacity-65">{k}</dt>
-                      <dd className="mt-0.5 text-[13.5px] font-bold leading-snug">{v}</dd>
+                      <dt className="text-meta opacity-65">{k}</dt>
+                      <dd className="mt-0.5 text-note font-bold leading-snug">{v}</dd>
                     </div>
                   ))}
                 </dl>
@@ -235,7 +235,7 @@ export function VariantC({ view }: { view: ArticleView }) {
                       <span className="grid size-9 place-items-center rounded-xl bg-accent-soft">
                         <PointIcon text={p.text} />
                       </span>
-                      <span className="index-num ml-auto text-[11px] text-muted">POINT {i + 1}</span>
+                      <span className="index-num ml-auto text-meta text-muted">POINT {i + 1}</span>
                     </div>
                     {p.value && <p className="index-num mt-3 text-[1.45rem] font-semibold leading-none tracking-tight text-ink">{p.value}</p>}
                     <p className="mt-2 text-[14.5px] font-bold leading-[1.7] text-ink-soft">{p.text}</p>
@@ -248,7 +248,7 @@ export function VariantC({ view }: { view: ArticleView }) {
         topToc:
           view.headings.length > 1 ? (
             <nav aria-label="この記事の流れ" className="mt-8">
-              <p className="text-[12px] font-bold text-muted">この記事の流れ</p>
+              <p className="text-meta font-bold text-muted">この記事の流れ</p>
               <ol className="ap-flow mt-2">
                 {view.headings.map((h, i) => (
                   <li key={h.id}>

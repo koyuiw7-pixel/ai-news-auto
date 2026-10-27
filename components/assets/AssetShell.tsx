@@ -3,10 +3,10 @@ import type { ReactNode } from "react";
 
 /**
  * 早見表・週まとめ・イベントの3ページの外枠。
- * 本文の書体はOS標準のゴシック（ヒラギノ・Noto Sans JP）にする（サイト既定の書体を使わない方針のページ）。
+ * 書体はサイト共通の Noto Sans JP（docs/typography.md）。以前は細い Zen Kaku を避けて OS の書体にしていたが、
+ * Windows では細い游ゴシックになるため共通の書体に戻した。
  */
-export const CALM_FONT =
-  '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", Meiryo, system-ui, sans-serif';
+export const CALM_FONT = "var(--font-sans)";
 
 export default function AssetShell({ children, wide = false }: { children: ReactNode; wide?: boolean }) {
   return (
@@ -22,7 +22,7 @@ export default function AssetShell({ children, wide = false }: { children: React
 /** パンくず（ホーム / 親 / 今のページ） */
 export function Crumbs({ items }: { items: { href?: string; label: string }[] }) {
   return (
-    <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-[12px] text-muted">
+    <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-meta text-muted">
       {items.map((item, index) => (
         <span key={item.label} className="flex items-center gap-1.5">
           {index > 0 && <span aria-hidden>/</span>}
@@ -43,10 +43,10 @@ export function Crumbs({ items }: { items: { href?: string; label: string }[] })
 export function QHeading({ id, children, note }: { id: string; children: ReactNode; note?: ReactNode }) {
   return (
     <div className="mb-5 border-b border-line-strong pb-2.5">
-      <h2 id={id} className="text-[1.2rem] font-bold leading-snug text-ink sm:text-[1.35rem]">
+      <h2 id={id} className="t-h2">
         {children}
       </h2>
-      {note && <p className="mt-1 text-[12.5px] leading-relaxed text-muted">{note}</p>}
+      {note && <p className="mt-1 text-note leading-relaxed text-muted">{note}</p>}
     </div>
   );
 }

@@ -46,9 +46,9 @@ export default function Timeline({
     <div className="grid gap-9">
       {days.map(({ day, items }) => (
         <section key={day} aria-label={day}>
-          <h3 className="sticky top-16 z-10 -mx-1 flex items-baseline justify-between bg-paper/95 px-1 py-2 text-[13px] font-bold backdrop-blur">
+          <h3 className="sticky top-16 z-10 -mx-1 flex items-baseline justify-between bg-paper/95 px-1 py-2 text-[1.0625rem] font-bold backdrop-blur">
             <DayLabel day={day} />
-            <span className="index-num text-[11px] font-normal text-muted">{items.length}本</span>
+            <span className="index-num text-meta font-normal text-muted">{items.length}本</span>
           </h3>
 
           <ol className="border-t border-ink">
@@ -86,7 +86,7 @@ function TimelineRow({ article }: { article: ArticleSummary }) {
         <div className="hidden content-start gap-2.5 sm:grid">
           <time
             dateTime={postedAt}
-            className="index-num pt-[3px] text-[12px] font-semibold text-muted"
+            className="index-num pt-[3px] text-meta font-semibold text-muted"
           >
             {time}
           </time>
@@ -94,7 +94,7 @@ function TimelineRow({ article }: { article: ArticleSummary }) {
         </div>
 
         <div className="min-w-0">
-          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px]">
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-meta">
             {kind && (
               <span className="sm:hidden">
                 <VerdictBadge kind={kind} />
@@ -103,21 +103,21 @@ function TimelineRow({ article }: { article: ArticleSummary }) {
             <span className="index-num font-semibold text-muted sm:hidden">{time}</span>
             <CompanyMark company={company} size={16} withName />
             {isRoundup && (
-              <span className="rounded-full bg-ink px-2 py-[1px] text-[10.5px] font-bold text-paper">
+              <span className="rounded-full bg-ink px-2 py-[1px] text-badge font-bold text-paper">
                 まとめ {article.sourceCount}本
               </span>
             )}
             {updatedRecently(article) && (
-              <span className="rounded-full bg-go-soft px-2 py-[1px] text-[10.5px] font-bold text-go">更新</span>
+              <span className="rounded-full bg-go-soft px-2 py-[1px] text-badge font-bold text-go">更新</span>
             )}
           </p>
 
-          <h4 className="mt-1.5 text-[15.5px] font-bold leading-[1.6] text-ink decoration-1 underline-offset-4 group-hover:underline sm:text-[16.5px]">
+          <h4 className="t-card mt-1.5 decoration-1 underline-offset-4 group-hover:underline">
             <Highlight text={article.title} />
           </h4>
 
           {verdict && (
-            <p className="mt-1 text-[12.5px] text-muted">
+            <p className="mt-1 text-meta text-muted">
               {[verdict.price !== "不明" ? verdict.price : "", verdict.japan === "ok" ? "日本から利用可" : verdict.japan === "no" && kind !== "wait" ? "日本では未提供" : "", verdict.audience ? `${verdict.audience}向け` : ""]
                 .filter(Boolean)
                 .join(" ・ ")}
@@ -125,7 +125,7 @@ function TimelineRow({ article }: { article: ArticleSummary }) {
           )}
 
           {point && (
-            <p className="mt-1.5 line-clamp-2 text-[13.5px] leading-[1.75] text-ink-soft">
+            <p className="mt-1.5 line-clamp-2 text-desc leading-[1.75] text-ink-soft">
               <span aria-hidden className="mr-1.5 font-bold text-accent">
                 要点
               </span>
