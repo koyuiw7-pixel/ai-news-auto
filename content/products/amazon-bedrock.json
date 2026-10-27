@@ -6,33 +6,39 @@
   "companyName": "Amazon",
   "category": "開発ツール",
   "overview": {
-    "text": "Amazon Bedrockは、AWSが提供する生成AIの開発・運用プラットフォームです。2026年10月に、OpenAIモデル向けのプロンプトキャッシュ機能やマネージド知識ベースを活用した自律的データ検索の構築手法が発表されました。",
+    "text": "Amazon Bedrockは、AWS上でAIモデルを活用できるサービスです。AWS Machine Learning Blogなどで新機能や最適化手法が発表されています。",
     "sources": [
+      "aws-bedrock-evaluation-bias-property-finder",
       "amazon-bedrock-openai-prompt-caching",
-      "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
+      "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
+      "aws-weekly-20261019-updates"
     ]
   },
   "facts": [
     {
       "label": "料金",
-      "value": "API従量課金",
+      "value": "AWSおよびモデルの標準料金・従量課金",
       "sources": [
+        "aws-bedrock-evaluation-bias-property-finder",
         "amazon-bedrock-openai-prompt-caching",
-        "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
-      ]
-    },
-    {
-      "label": "提供開始",
-      "value": "今すぐ使える",
-      "sources": [
-        "amazon-bedrock-openai-prompt-caching",
-        "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
+        "aws-weekly-20261019-updates"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本から利用できる",
+      "value": "提供されているリージョンで利用可能",
       "sources": [
+        "aws-bedrock-evaluation-bias-property-finder",
+        "amazon-bedrock-openai-prompt-caching",
+        "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
+        "aws-weekly-20261019-updates"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "AI開発者・エンジニア",
+      "sources": [
+        "aws-bedrock-evaluation-bias-property-finder",
         "amazon-bedrock-openai-prompt-caching",
         "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
       ]
@@ -40,27 +46,41 @@
   ],
   "capabilities": [
     {
-      "text": "OpenAIモデルのプロンプトキャッシュにより入力コストを約61%から62%削減できる。",
+      "text": "ClaudeモデルでJSON Schemaに完全準拠したレスポンスを受け取る構造化出力に対応しています。",
+      "sources": [
+        "aws-weekly-20261019-updates"
+      ]
+    },
+    {
+      "text": "OpenAIモデルの利用時にプロンプトキャッシュを活用し、入力コストを約6割削減できます。",
       "sources": [
         "amazon-bedrock-openai-prompt-caching"
       ]
     },
     {
-      "text": "マネージド知識ベースを使ってベクトルストアの保守不要で自律的な検索システムを構築できる。",
+      "text": "マネージド知識ベースにより、ベクトルストアの保守やインデックス管理が不要になります。",
       "sources": [
         "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
       ]
     },
     {
-      "text": "ClaudeモデルでStructured Outputsが一般提供されJSON Schemaに準拠したレスポンスを受け取れる。",
+      "text": "エージェント型検索により、複数回にわたる検索や引用付きの回答生成を行えます。",
       "sources": [
-        "aws-weekly-20261019-updates"
+        "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "Amazon BedrockにおけるOpenAIモデルの標準的なAPI従量課金に準拠します。",
+      "text": "AWSの標準料金および利用するモデルの従量課金に準拠します。",
+      "sources": [
+        "aws-bedrock-evaluation-bias-property-finder",
+        "amazon-bedrock-openai-prompt-caching",
+        "aws-weekly-20261019-updates"
+      ]
+    },
+    {
+      "text": "プロンプトキャッシュが適用された部分は、通常の入力価格よりも安価に処理されます。",
       "sources": [
         "amazon-bedrock-openai-prompt-caching"
       ]
@@ -68,42 +88,58 @@
   ],
   "japan": [
     {
-      "text": "Amazon Bedrockが提供されている対応リージョンにおいて今日から導入を検証できます。",
+      "text": "Amazon Bedrockが提供されているAWSリージョンにおいて利用可能です。",
       "sources": [
-        "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
+        "aws-bedrock-evaluation-bias-property-finder",
+        "amazon-bedrock-openai-prompt-caching",
+        "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
+        "aws-weekly-20261019-updates"
       ]
     }
   ],
   "howto": [
     {
-      "text": "AWS CDKを用いたPythonアプリケーションを使って環境全体を構築します。",
+      "text": "マネージド知識ベースなどはAWS CDKを用いてPythonアプリケーションとしてデプロイできます。",
       "sources": [
         "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
+      ]
+    },
+    {
+      "text": "マネジメントコンソールから対象モデルの利用有効化を行い、API等から実装します。",
+      "sources": [
+        "aws-bedrock-evaluation-bias-property-finder",
+        "amazon-bedrock-openai-prompt-caching"
       ]
     }
   ],
   "differences": [],
   "faq": [
     {
-      "q": "無料トライアルはありますか？",
-      "a": "記事内での無料枠についての言及はありません。",
-      "sources": [
-        "amazon-bedrock-openai-prompt-caching",
-        "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
-      ]
-    },
-    {
-      "q": "プロンプトキャッシュを使うとどのくらい安くなりますか？",
-      "a": "入力コストを約61%から62%削減できます。",
+      "q": "プロンプトキャッシュの効果はどのくらいですか？",
+      "a": "テストでは入力コストが約61から62パーセント削減されることが確認されています。",
       "sources": [
         "amazon-bedrock-openai-prompt-caching"
       ]
     },
     {
-      "q": "Claudeモデルの構造化出力は利用できますか？",
-      "a": "全モデルで一般提供されており、JSON Schemaに準拠したレスポンスを受け取れます。",
+      "q": "マネージド知識ベースではベクトルストアの管理が必要ですか？",
+      "a": "ストレージやインデックス作成の管理はサービス側で行われるため不要です。",
+      "sources": [
+        "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
+      ]
+    },
+    {
+      "q": "構造化出力ではどのような形式を指定できますか？",
+      "a": "ユーザーが定義したJSON Schemaに完全準拠した形式でレスポンスを受け取れます。",
       "sources": [
         "aws-weekly-20261019-updates"
+      ]
+    },
+    {
+      "q": "モデル評価のバイアスはどう解消しますか？",
+      "a": "独立した専門家による人手注釈で正解データを作り、プロンプトを反復的に最適化します。",
+      "sources": [
+        "aws-bedrock-evaluation-bias-property-finder"
       ]
     }
   ],
@@ -111,29 +147,36 @@
     {
       "date": "2026-10-27",
       "slug": "amazon-bedrock-openai-prompt-caching",
-      "event": "OpenAIモデルのプロンプトキャッシュ活用パターンが公開された"
+      "event": "OpenAIモデルのプロンプトキャッシュ活用法を公開"
     },
     {
       "date": "2026-10-27",
       "slug": "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
-      "event": "AWS CDKでマネージド知識ベースを構築する手法が公開された"
+      "event": "マネージド知識ベースとCDKによる検索構築法を公開"
+    },
+    {
+      "date": "2026-10-28",
+      "slug": "aws-bedrock-evaluation-bias-property-finder",
+      "event": "AI評価のバイアス解消とモデル選定手法を発表"
     }
   ],
   "related": [
     "gpt-6-astra"
   ],
   "articles": [
+    "aws-bedrock-evaluation-bias-property-finder",
     "amazon-bedrock-openai-prompt-caching",
     "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
     "aws-weekly-20261019-updates"
   ],
   "linkFrom": [
+    "aws-bedrock-evaluation-bias-property-finder",
     "amazon-bedrock-openai-prompt-caching",
     "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
   ],
-  "signature": "7750415108627ee7",
-  "primarySignature": "859e2d2fbb2179df",
+  "signature": "372750a7d8c042d9",
+  "primarySignature": "04db73e9d70d40c5",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:46:34+00:00",
-  "updatedAt": "2026-10-27T10:50:55+00:00"
+  "updatedAt": "2026-10-27T17:38:32+00:00"
 }
