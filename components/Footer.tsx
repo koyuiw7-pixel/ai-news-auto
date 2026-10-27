@@ -14,6 +14,13 @@ const LEGAL_LINKS = [
   { href: "/contact", label: "お問い合わせ" },
 ];
 
+// 何度も見に来てもらう定番ページ（ヘッダーのメニューは5つに絞っているので足元に置く）
+const REFERENCE_LINKS = [
+  { href: "/ai-pricing", label: "AIの料金・日本対応 早見表" },
+  { href: "/weekly", label: "今週のAIニュースまとめ" },
+  { href: "/events", label: "AIイベントの日程（日本時間）" },
+];
+
 export default function Footer() {
   const ai = getAllArticles().filter((a) => a.genreSlug === "ai");
   const liveChannels = new Set(ai.map((a) => a.channelSlug));
@@ -61,6 +68,17 @@ export default function Footer() {
           </div>
 
           <div>
+            <p className="eyebrow">REFERENCE</p>
+            <ul className="mb-8 mt-4 space-y-2.5">
+              {REFERENCE_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm font-semibold text-ink-soft hover:text-accent">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
             <p className="eyebrow">COMPANIES</p>
             <ul className="mt-4 space-y-2.5">
               {companies.map(({ company, count }) => (

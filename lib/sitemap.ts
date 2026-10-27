@@ -11,6 +11,9 @@ import {
 import { companyCounts } from "@/lib/companies";
 import { getAllGuides, guideArticles } from "@/lib/guides";
 import { getAllBuyingGuides } from "@/lib/buying-guides";
+import { getAllEvents } from "@/lib/events";
+import { getPricing } from "@/lib/pricing";
+import { getAllWeeks, weekPublishedAt } from "@/lib/weekly";
 import { siteConfig } from "@/site.config";
 
 export type SitemapEntry = {
@@ -77,6 +80,24 @@ export function sitemapEntries(): SitemapEntry[] {
       priority: 0.7,
     })),
     { url: `${base}/usable`, lastModified, changeFrequency: "daily" as const, priority: 0.9 },
+    // 料金早見表・週まとめ・イベント（被リンクとブックマークを狙う定番ページ）
+    { url: `${base}/ai-pricing`, lastModified: new Date(getPricing().updatedAt), changeFrequency: "weekly" as const, priority: 0.9 },
+    ...(getAllWeeks().length > 0
+      ? [{ url: `${base}/weekly`, lastModified: new Date(weekPublishedAt(getAllWeeks()[0])), changeFrequency: "weekly" as const, priority: 0.8 }]
+      : []),
+    ...getAllWeeks().map((week) => ({
+      url: `${base}/weekly/${week.id}`,
+      lastModified: new Date(week.generatedAt),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    { url: `${base}/events`, lastModified, changeFrequency: "daily" as const, priority: 0.8 },
+    ...getAllEvents().map((event) => ({
+      url: `${base}/events/${event.slug}`,
+      lastModified,
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    })),
     { url: `${base}/guides`, lastModified, changeFrequency: "daily" as const, priority: 0.8 },
     ...getAllGuides().map((guide) => ({
       url: `${base}/guides/${guide.slug}`,

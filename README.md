@@ -39,6 +39,9 @@ APIキー取得: https://aistudio.google.com/apikey
 | `scripts/resolve_handle.py` | `@ハンドル` → `channel_id` 変換ユーティリティ |
 | `content/articles/` | 生成された記事（1記事 = 1 JSON） |
 | `content/state.json` | 処理済み動画IDの記録（重複生成の防止） |
+| `content/pricing.json` | AI料金・日本対応の早見表（`/ai-pricing`）。`scripts/pricing_table.py` が記事から抽出し、数字が記事本文にあるかを機械的に確認（毎晩） |
+| `content/weekly.json` | 今週のAIニュースまとめ（`/weekly`）。`scripts/weekly.py` が毎週月曜 07:00 JST に追加 |
+| `content/events.json` | イベント速報（`/events`）。日程・基調講演は公式で確認したものだけを手で入れ、`scripts/events.py` が開催状況・関連記事・発表内容を毎晩更新 |
 | `.github/workflows/auto_run.yml` | 3時間ごとの自動実行 |
 | `site.config.ts` | サイト名・説明文などのブランディング設定 |
 

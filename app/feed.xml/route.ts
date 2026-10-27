@@ -1,4 +1,5 @@
 import { getAllArticles } from "@/lib/articles";
+import { getAllWeeks, weekPublishedAt } from "@/lib/weekly";
 import { siteConfig } from "@/site.config";
 
 export const dynamic = "force-static";
@@ -15,9 +16,9 @@ function escapeXml(value: string): string {
 export function GET() {
   const articles = getAllArticles().slice(0, 50);
 
-  const items = articles
-    .map(
-      (article) => `    <item>
+  const articleItems = articles.map((article) => ({
+    at: Date.parse(article.publishedAt),
+    xml: `    <item>
       <title>${escapeXml(article.title)}</title>
       <link>${siteConfig.url}/articles/${article.slug}</link>
       <guid isPermaLink="true">${siteConfig.url}/articles/${article.slug}</guid>
@@ -26,7 +27,24 @@ export function GET() {
       <category>${escapeXml(article.channel)}</category>
       <pubDate>${new Date(article.publishedAt).toUTCString()}</pubDate>
     </item>`,
-    )
+  }));
+  // 週まとめ（直近4週）も同じフィードに流す
+  const weekItems = getAllWeeks()
+    .slice(0, 4)
+    .map((week) => ({
+      at: Date.parse(weekPublishedAt(week)),
+      xml: `    <item>
+      <title>${escapeXml(week.title)}</title>
+      <link>${siteConfig.url}/weekly/${week.id}</link>
+      <guid isPermaLink="true">${siteConfig.url}/weekly/${week.id}</guid>
+      <description>${escapeXml(week.lede.join(""))}</description>
+      <category>今週のAIニュース</category>
+      <pubDate>${new Date(weekPublishedAt(week)).toUTCString()}</pubDate>
+    </item>`,
+    }));
+  const items = [...articleItems, ...weekItems]
+    .sort((a, b) => b.at - a.at)
+    .map((item) => item.xml)
     .join("\n");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

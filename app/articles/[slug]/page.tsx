@@ -16,6 +16,7 @@ import NewsletterSignup from "@/components/NewsletterSignup";
 import InlineRead from "@/components/InlineRead";
 import ReadingMode from "@/components/ReadingMode";
 import VerdictCard from "@/components/VerdictCard";
+import AssetLinks from "@/components/assets/AssetLinks";
 import { companyOf, thumbSource } from "@/lib/companies";
 import { guideForArticle } from "@/lib/guides";
 import { buyingGuideForTopic, guideShortName } from "@/lib/buying-guides";
@@ -323,6 +324,8 @@ export default async function ArticlePage({ params }: Props) {
           )}
           {/* 「使える？」判定 */}
           {verdict && <VerdictCard verdict={verdict} judgedAt={verdict.judgedAt || article.generatedAt || article.publishedAt} />}
+          {/* 料金早見表・イベントページへの案内（当てはまる記事だけ） */}
+          <AssetLinks article={article} />
 
           {/* 読み方の切り替え（かんたん／専門家）。選んだ読み方は次の記事でも引き継ぐ */}
           {easyHtml && <ReadingMode easyMinutes={easyMinutes} expertMinutes={readMinutes} />}
