@@ -4257,6 +4257,14 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/4e54d479bcde6ceddf494f6e91cce169eb2afce1"
     },
+    "676ef500d0b9460f": {
+      "at": "2026-10-27T22:41:34.505548+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "japan-population-mobility-september-2026",
+      "url": "https://www.stat.go.jp/data/idou/sokuhou/tsuki/index.html"
+    },
     "676fae481dbca519": {
       "at": "2026-10-26T16:51:25.926760+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6292,44 +6300,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-26T23:21:32.727684+00:00",
-      "attempt": 1,
-      "id": "27f8be5bb347e6c8",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1679字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "dreamnews",
-      "title": "日本ビタミン市場：予防栄養、機能性食品の革新、消費者の健康トレンドが新たなビジネス機会を創出"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T23:21:40.234483+00:00",
-      "attempt": 2,
-      "id": "27f8be5bb347e6c8",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "dreamnews",
-      "title": "日本ビタミン市場：予防栄養、機能性食品の革新、消費者の健康トレンドが新たなビジネス機会を創出"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T23:41:07.186880+00:00",
-      "attempt": 1,
-      "id": "89882f16bf91aea9",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "dreamnews",
-      "title": "日本AIインフラストラクチャーソフトウェア市場：GPUオーケストレーション、AIクラウドプラットフォーム、ワークロード最適化が新たなビジネス機会を創出"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T00:01:40.680454+00:00",
@@ -12188,6 +12158,72 @@
       "score": 100,
       "source": "nli-research",
       "title": "医療レセプトの審査支払機関、10月に大幅改組－医療DX推進が前面に、医療提供体制改革を担う都道府県などとの連携などが焦点に"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T22:41:13.271530+00:00",
+      "attempt": 1,
+      "id": "676ef500d0b9460f",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1491字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 106.9,
+        "avg_sentence": 40.6,
+        "long_share": 0.069,
+        "max_paragraph": 217,
+        "paragraphs": 11,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "stat",
+      "title": "住民基本台帳人口移動報告 2026年（令和8年）9月分"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T22:41:17.188967+00:00",
+      "attempt": 1,
+      "id": "676ef500d0b9460f",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "段落が長い（平均 133.2字・最長 245字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 133.2,
+        "avg_sentence": 39.6,
+        "long_share": 0.054,
+        "max_paragraph": 245,
+        "paragraphs": 11,
+        "sentences": 37
+      },
+      "score": 100,
+      "source": "stat",
+      "title": "住民基本台帳人口移動報告 2026年（令和8年）9月分"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T22:41:34.505145+00:00",
+      "attempt": 0,
+      "id": "676ef500d0b9460f",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 本文が縮んだ（1822→1759字）"
+      ],
+      "readability": {
+        "avg_paragraph": 133.2,
+        "avg_sentence": 39.6,
+        "long_share": 0.054,
+        "max_paragraph": 245,
+        "paragraphs": 11,
+        "sentences": 37
+      },
+      "score": 100,
+      "source": "stat",
+      "title": "住民基本台帳人口移動報告 2026年（令和8年）9月分"
     }
   ],
   "short_text_retry": {
