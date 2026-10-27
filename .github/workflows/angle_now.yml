@@ -47,12 +47,26 @@ jobs:
           for s in $SOURCES; do args+=(--source "$s"); done
           IFS=$'\n'; for a in $(printf '%s' "$ANGLES" | sed 's/;;/\n/g'); do args+=(--angle "$a"); done
           python scripts/angle_articles.py "${args[@]}"
+      # デプロイは1時間に1回にまとめる（auto_run.yml の Commit & push と同じ決まり）。
+      # 前回から55分たっていなければ "[no-deploy]" を付け、次の自動実行（20分ごと）で公開する
       - name: Commit
         run: |
           if [ -z "$(git status --porcelain content)" ]; then exit 0; fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content
-          git commit -m "chore(content): 別の角度の記事を追加"
+          mkdir -p state
+          NOW=$(date -u +%s)
+          LAST=$(cat state/last_deploy 2>/dev/null | tr -cd '0-9')
+          LAST=${LAST:-0}
+          MSG="chore(content): 別の角度の記事を追加"
+          if [ $((NOW - LAST)) -ge 3300 ]; then
+            echo "$NOW" > state/last_deploy
+            echo 0 > state/deploy_pending
+          else
+            echo 1 > state/deploy_pending
+            MSG="${MSG} [no-deploy]"
+          fi
+          git add content state/last_deploy state/deploy_pending
+          git commit -m "$MSG"
           for i in 1 2 3; do git pull --rebase --autostash origin main && git push && exit 0; sleep 5; done
           exit 1

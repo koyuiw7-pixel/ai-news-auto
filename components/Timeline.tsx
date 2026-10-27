@@ -4,13 +4,13 @@ import DayLabel from "@/components/DayLabel";
 import Thumb from "@/components/Thumb";
 import UsableFilter from "@/components/UsableFilter";
 import VerdictBadge from "@/components/VerdictBadge";
-import type { Article } from "@/lib/articles";
+import type { ArticleSummary } from "@/lib/articles";
 import { companyOf, thumbSource } from "@/lib/companies";
 import { Highlight } from "@/lib/highlight";
 import { usability, verdictOf } from "@/lib/verdict";
 
 /** 48時間以内に続報を足した記事（並び順は作成日時のまま、印だけ付ける） */
-const updatedRecently = (article: Article) =>
+const updatedRecently = (article: ArticleSummary) =>
   Boolean(article.updatedAt) && Date.now() - Date.parse(article.updatedAt!) < 48 * 3_600_000;
 
 const clock = new Intl.DateTimeFormat("ja-JP", {
@@ -30,11 +30,11 @@ export default function Timeline({
   articles,
   filterable = false,
 }: {
-  articles: Article[];
+  articles: ArticleSummary[];
   /** 「今すぐ使えるものだけ」スイッチを出す */
   filterable?: boolean;
 }) {
-  const days: { day: string; items: Article[] }[] = [];
+  const days: { day: string; items: ArticleSummary[] }[] = [];
   for (const article of articles) {
     const day = jstDay(article.generatedAt || article.publishedAt);
     const last = days.at(-1);
@@ -66,7 +66,7 @@ export default function Timeline({
   return filterable && hasVerdict ? <UsableFilter>{list}</UsableFilter> : list;
 }
 
-function TimelineRow({ article }: { article: Article }) {
+function TimelineRow({ article }: { article: ArticleSummary }) {
   const company = companyOf(article);
   const point = article.highlights[0];
   const isRoundup = article.type === "roundup";
@@ -104,7 +104,7 @@ function TimelineRow({ article }: { article: Article }) {
             <CompanyMark company={company} size={16} withName />
             {isRoundup && (
               <span className="rounded-full bg-ink px-2 py-[1px] text-[10.5px] font-bold text-paper">
-                まとめ {article.sources?.length ?? 0}本
+                まとめ {article.sourceCount}本
               </span>
             )}
             {updatedRecently(article) && (

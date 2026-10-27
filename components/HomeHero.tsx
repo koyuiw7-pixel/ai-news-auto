@@ -3,7 +3,7 @@ import Link from "next/link";
 import Morph from "@/components/Morph";
 import CompanyMark from "@/components/CompanyMark";
 import RelTime from "@/components/RelTime";
-import type { Article } from "@/lib/articles";
+import type { ArticleSummary } from "@/lib/articles";
 import { companyOf, thumbSource } from "@/lib/companies";
 import { Highlight } from "@/lib/highlight";
 
@@ -12,9 +12,9 @@ import { Highlight } from "@/lib/highlight";
  * 人は文字より画像を強く記憶する（画像優位性効果）ので、左に大きな写真、右に見出しを置く。
  * 強調は「何本を統合したか」の黒いバッジと、見出しの蛍光ペンの2か所だけに絞る。
  */
-export default function HomeHero({ lead }: { lead: Article }) {
+export default function HomeHero({ lead }: { lead: ArticleSummary }) {
   const isRoundup = lead.type === "roundup";
-  const sources = lead.sources?.length ?? 0;
+  const sources = lead.sourceCount;
   const href = `/articles/${lead.slug}`;
 
   return (

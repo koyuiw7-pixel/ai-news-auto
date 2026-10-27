@@ -9,7 +9,7 @@ import RailRanking from "@/components/rail/RailRanking";
 import StoryRail from "@/components/story/SwipeDeck";
 import { getStoryBundles } from "@/lib/stories";
 import { offerForArticle } from "@/lib/offers";
-import { getAllArticles, getAllGenres, tagSlug, type Article } from "@/lib/articles";
+import { getAllArticles, getAllGenres, tagSlug, type ArticleSummary } from "@/lib/articles";
 import { companyCounts, thumbSource } from "@/lib/companies";
 import { broadGenresWithArticles, getBroadArticles, isBroadGenre } from "@/lib/sections";
 import { siteConfig } from "@/site.config";
@@ -171,7 +171,7 @@ export default function HomePage() {
   );
 }
 
-function topTags(articles: Article[], limit: number) {
+function topTags(articles: ArticleSummary[], limit: number) {
   const counts = new Map<string, { label: string; count: number }>();
   for (const article of articles) {
     for (const tag of article.tags) {
@@ -195,14 +195,14 @@ function RailHead({ id, title, note }: { id: string; title: string; note?: strin
   );
 }
 
-function RailRoundup({ article }: { article: Article }) {
+function RailRoundup({ article }: { article: ArticleSummary }) {
   return (
     <li>
       <Link href={`/articles/${article.slug}`} className="group grid grid-cols-[88px_minmax(0,1fr)] gap-3">
         <span className="relative aspect-video overflow-hidden rounded-lg bg-surface-2">
           <Thumb src={article.thumbnail.replace("maxresdefault", "mqdefault")} source={thumbSource(article)} alt="" fill sizes="88px" className="object-cover" />
           <span className="index-num absolute bottom-1 left-1 rounded bg-ink/85 px-1.5 py-[1px] text-[10px] font-semibold text-paper">
-            {article.sources?.length ?? 0}本
+            {article.sourceCount}本
           </span>
         </span>
         <span className="line-clamp-3 text-[13px] font-bold leading-[1.55] text-ink group-hover:underline">

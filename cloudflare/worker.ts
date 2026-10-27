@@ -25,9 +25,8 @@ const FULL_LIMIT = 200;
 
 let baseLoading: Promise<void> | null = null;
 let fontsLoading: Promise<void> | null = null;
-/** 本文まで読み込んだ記事（古いものから索引の中身に戻す） */
+/** 本文まで読み込んだ記事（古いものから捨てる） */
 const fullSlugs: string[] = [];
-const metaOf = new Map<string, string>();
 
 async function asset(env: Env, pathname: string): Promise<Response> {
   return env.ASSETS.fetch(new Request(`${ORIGIN}${pathname}`));
@@ -35,26 +34,14 @@ async function asset(env: Env, pathname: string): Promise<Response> {
 
 function loadBase(env: Env): Promise<void> {
   baseLoading ??= (async () => {
-    const [baseRes, indexRes] = await Promise.all([asset(env, "/_content/base.json"), asset(env, "/_content/articles.ndjson")]);
-    if (!baseRes.ok || !indexRes.ok) throw new Error(`content assets missing: ${baseRes.status} ${indexRes.status}`);
-    const base = (await baseRes.json()) as Base;
-    const vfs: VirtualFs = {
+    const res = await asset(env, "/_content/base.json");
+    if (!res.ok) throw new Error(`content assets missing: ${res.status}`);
+    const base = (await res.json()) as Base;
+    g.__SAISOKU_VFS__ = {
       files: new Map(Object.entries(base.files)),
       dirs: new Map(Object.entries(base.dirs)),
       roots: ["content", "affiliate_links.json", "monetization.json", "assets/fonts"],
     };
-    const names: string[] = [];
-    for (const line of (await indexRes.text()).split("\n")) {
-      const tab = line.indexOf("\t");
-      if (tab < 0) continue;
-      const slug = line.slice(0, tab);
-      const json = line.slice(tab + 1);
-      metaOf.set(slug, json);
-      vfs.files.set(`content/articles/${slug}.json`, json);
-      names.push(`${slug}.json`);
-    }
-    vfs.dirs.set("content/articles", names);
-    g.__SAISOKU_VFS__ = vfs;
   })().catch((error) => {
     baseLoading = null;
     throw error;
@@ -79,21 +66,19 @@ function loadFonts(env: Env): Promise<void> {
   return fontsLoading;
 }
 
-/** 記事ページを描く前に、その記事の本文入り JSON を読み込む */
+/** 記事ページ・カバーを描く前に、その記事の本文入り JSON を読み込む（無い記事は 404 のまま） */
 async function loadArticle(env: Env, slug: string): Promise<void> {
-  if (!metaOf.has(slug) || fullSlugs.includes(slug)) return;
-  const res = await asset(env, `/_content/articles/${encodeURIComponent(slug)}.json`);
-  if (!res.ok) throw new Error(`article asset missing: ${slug} ${res.status}`);
+  if (!/^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(slug) || fullSlugs.includes(slug)) return;
+  const res = await asset(env, `/_content/articles/${slug}.json`);
+  if (res.status === 404) return;
+  if (!res.ok) throw new Error(`article asset failed: ${slug} ${res.status}`);
   const vfs = g.__SAISOKU_VFS__!;
   vfs.files.set(`content/articles/${slug}.json`, await res.text());
   fullSlugs.push(slug);
-  while (fullSlugs.length > FULL_LIMIT) {
-    const old = fullSlugs.shift()!;
-    vfs.files.set(`content/articles/${old}.json`, metaOf.get(old)!);
-  }
+  while (fullSlugs.length > FULL_LIMIT) vfs.files.delete(`content/articles/${fullSlugs.shift()}.json`);
 }
 
-const ARTICLE = /^\/articles\/([^/]+?)(?:\.rsc)?\/?$/;
+const ARTICLE = /^\/(?:articles|cover)\/([^/]+?)(?:\.rsc)?\/?$/;
 
 export default {
   async fetch(request: Request, env: Env, ctx: unknown): Promise<Response> {

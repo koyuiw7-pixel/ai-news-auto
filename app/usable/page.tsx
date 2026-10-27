@@ -4,7 +4,7 @@ import CompanyMark from "@/components/CompanyMark";
 import Timeline from "@/components/Timeline";
 import VerdictBadge from "@/components/VerdictBadge";
 import RailRanking from "@/components/rail/RailRanking";
-import { getAllArticles, type Article } from "@/lib/articles";
+import { getAllArticles, type ArticleSummary } from "@/lib/articles";
 import { companyOf } from "@/lib/companies";
 import { offerForTopic } from "@/lib/offers";
 import { usability, verdictOf } from "@/lib/verdict";
@@ -38,7 +38,7 @@ export default function UsablePage() {
   const offer = offerForTopic("business", "AIを仕事に取り入れるなら", 9);
 
   // 企業ごとの「今すぐ使える」本数
-  const byCompany = new Map<string, { article: Article; count: number }>();
+  const byCompany = new Map<string, { article: ArticleSummary; count: number }>();
   for (const article of usable) {
     const slug = companyOf(article).slug;
     const found = byCompany.get(slug);
@@ -158,7 +158,7 @@ function RailHead({ id, title, note }: { id: string; title: string; note?: strin
   );
 }
 
-function RailList({ id, title, note, articles }: { id: string; title: string; note?: string; articles: Article[] }) {
+function RailList({ id, title, note, articles }: { id: string; title: string; note?: string; articles: ArticleSummary[] }) {
   if (articles.length === 0) return null;
   return (
     <section aria-labelledby={id}>

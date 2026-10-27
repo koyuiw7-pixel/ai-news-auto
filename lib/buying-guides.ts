@@ -1,6 +1,6 @@
 import fs from "@/lib/content-fs";
 import path from "node:path";
-import { getArticle, type Article } from "@/lib/articles";
+import { getArticleSummary, type ArticleSummary } from "@/lib/articles";
 import { partnerItem, type OfferItem } from "@/lib/offers";
 
 /**
@@ -160,8 +160,8 @@ export function isRichGuide(guide: BuyingGuide): boolean {
   return (guide.schemaVersion ?? 1) >= 2;
 }
 
-export function guideRelatedArticles(guide: BuyingGuide, limit = 6): Article[] {
-  return guide.relatedArticleSlugs.flatMap((slug) => getArticle(slug) ?? []).slice(0, limit);
+export function guideRelatedArticles(guide: BuyingGuide, limit = 6): ArticleSummary[] {
+  return guide.relatedArticleSlugs.flatMap((slug) => getArticleSummary(slug) ?? []).slice(0, limit);
 }
 
 /** 記事の商品枠の話題（offers.json のキー）に対応する比較ガイド */

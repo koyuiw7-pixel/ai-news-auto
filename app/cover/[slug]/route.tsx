@@ -3,7 +3,7 @@ import path from "node:path";
 import { loadDefaultJapaneseParser } from "budoux";
 import { ImageResponse } from "next/og";
 import sharp from "sharp";
-import { coverPath, getAllArticles, getArticle, PRERENDER_LIMIT, type Article } from "@/lib/articles";
+import { coverPath, getAllArticles, getArticle, PRERENDER_LIMIT, type FullArticle } from "@/lib/articles";
 import { companyOf } from "@/lib/companies";
 import { siteConfig } from "@/site.config";
 import {
@@ -109,10 +109,23 @@ function Phrases({
   );
 }
 
+// 写真入りの画像は PNG だと1枚 600KB 前後になるので、JPEG にして 1/5〜1/10 にする
+// （ビルド時に作る分は Deployment Storage、実行時に作る分は Fast Origin Transfer を食う）。
+// URL（/cover/<slug>）は変えないので、OGP タグや SNS のカードはそのまま
+const JPEG_QUALITY = 82;
 const CACHE_HEADERS = {
-  "Content-Type": "image/png",
-  "Cache-Control": "public, max-age=604800, stale-while-revalidate=86400",
+  "Content-Type": "image/jpeg",
+  // 同じデプロイの間は内容が変わらない。CDN では7日、ブラウザでも7日使い回す
+  "Cache-Control": "public, max-age=604800, s-maxage=604800, stale-while-revalidate=86400, immutable",
 };
+
+async function toJpeg(image: ArrayBuffer | Buffer): Promise<Uint8Array<ArrayBuffer>> {
+  const jpeg = await sharp(Buffer.isBuffer(image) ? image : Buffer.from(image))
+    .flatten({ background: "#111111" })
+    .jpeg({ quality: JPEG_QUALITY, mozjpeg: true, chromaSubsampling: "4:2:0" })
+    .toBuffer();
+  return new Uint8Array(jpeg);
+}
 
 export async function GET(_request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -120,9 +133,12 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
   if (!article || !coverPath(article)) return new Response("Not found", { status: 404 });
 
   try {
-    // 描画の失敗も捕まえるため、ここで最後まで描き切る
+    // 描画の失敗も捕まえるため、ここで最後まで描き切ってから JPEG にする
     const png = await (await renderCover(article)).arrayBuffer();
-    return new Response(png, { headers: CACHE_HEADERS });
+    const jpeg = await toJpeg(png).catch(() => null);
+    // Cloudflare Workers（sharp なし）では PNG のまま返す
+    if (!jpeg) return new Response(png, { headers: { ...CACHE_HEADERS, "Content-Type": "image/png" } });
+    return new Response(jpeg, { headers: CACHE_HEADERS });
   } catch (error) {
     console.error(`[cover] fallback: ${slug}`, error);
     return fallbackCover(companyOf(article).color);
@@ -132,12 +148,12 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
 /** 描画に失敗したときの単色カバー（500 にしない） */
 async function fallbackCover(color: string): Promise<Response> {
   try {
-    const png = await sharp({
+    const jpeg = await sharp({
       create: { width: WIDTH, height: HEIGHT, channels: 3, background: /^#[0-9a-f]{3,8}$/i.test(color) ? color : "#1d1d22" },
     })
-      .png()
+      .jpeg({ quality: JPEG_QUALITY })
       .toBuffer();
-    return new Response(new Uint8Array(png), { headers: { ...CACHE_HEADERS, "Cache-Control": "public, max-age=3600" } });
+    return new Response(new Uint8Array(jpeg), { headers: { ...CACHE_HEADERS, "Cache-Control": "public, max-age=3600" } });
   } catch {
     return Response.redirect(new URL("/logo.png", siteConfig.url), 302);
   }
@@ -177,7 +193,7 @@ async function reachablePhoto(url: string): Promise<string | null> {
   return null;
 }
 
-async function renderCover(article: Article): Promise<ImageResponse> {
+async function renderCover(article: FullArticle): Promise<ImageResponse> {
   const company = companyOf(article);
   const isOther = company.slug === "other";
   // 公式ブログ・プレスリリース記事で企業が判別できないときは、発信元名を出す

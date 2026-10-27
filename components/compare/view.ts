@@ -1,4 +1,4 @@
-import type { Article } from "@/lib/articles";
+import type { ArticleSummary } from "@/lib/articles";
 import { checkedDate } from "@/components/rail/parts";
 import {
   guideRelatedArticles,
@@ -17,7 +17,7 @@ export type GuideView = {
   byKey: Map<string, ResolvedProduct>;
   personas: { who: string; why: string; products: ResolvedProduct[] }[];
   rows: { key: string; label: string }[];
-  related: Article[];
+  related: ArticleSummary[];
   pixels: string[];
   /** 例: 10月27日時点・公式サイトより */
   checkedLabel: string;
@@ -46,7 +46,7 @@ export function buildGuideView(guide: BuyingGuide): GuideView {
     jsonLd: [
       {
         "@context": "https://schema.org",
-        "@type": "Article",
+        "@type": "ArticleSummary",
         headline: guide.title,
         description: guide.description,
         inLanguage: "ja",

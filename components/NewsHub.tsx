@@ -1,7 +1,7 @@
 import Link from "next/link";
 import RelTime from "@/components/RelTime";
 import Thumb from "@/components/Thumb";
-import type { Article } from "@/lib/articles";
+import type { ArticleSummary } from "@/lib/articles";
 import { thumbSource } from "@/lib/companies";
 
 type GenreChip = { slug: string; label: string; count: number };
@@ -46,7 +46,7 @@ export function GenreChips({ genres, active }: { genres: GenreChip[]; active?: s
  * ニュースの一覧。スマホでは「小さい写真＋見出し」の行、
  * 幅のある画面では写真を上に置いたカードを格子状に並べる。
  */
-export function NewsGrid({ articles, priority = 0 }: { articles: Article[]; priority?: number }) {
+export function NewsGrid({ articles, priority = 0 }: { articles: ArticleSummary[]; priority?: number }) {
   return (
     <ul className="grid gap-x-6 gap-y-5 sm:grid-cols-2 sm:gap-y-8 lg:grid-cols-4">
       {articles.map((article, index) => (
@@ -58,7 +58,7 @@ export function NewsGrid({ articles, priority = 0 }: { articles: Article[]; prio
   );
 }
 
-function NewsItem({ article, priority }: { article: Article; priority: boolean }) {
+function NewsItem({ article, priority }: { article: ArticleSummary; priority: boolean }) {
   const postedAt = article.generatedAt || article.publishedAt;
   return (
     <Link
@@ -90,7 +90,7 @@ function NewsItem({ article, priority }: { article: Article; priority: boolean }
 }
 
 /** トップの下段に置く「ニュース」の入口。記事が無ければ何も出さない */
-export default function NewsHub({ articles, genres }: { articles: Article[]; genres: GenreChip[] }) {
+export default function NewsHub({ articles, genres }: { articles: ArticleSummary[]; genres: GenreChip[] }) {
   if (articles.length === 0) return null;
   return (
     <section aria-labelledby="news-heading" className="mt-20 border-t-2 border-ink pt-6">

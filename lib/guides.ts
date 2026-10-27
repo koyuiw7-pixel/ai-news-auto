@@ -1,6 +1,6 @@
 import fs from "@/lib/content-fs";
 import path from "node:path";
-import { getAllArticles, type Article } from "@/lib/articles";
+import { getAllArticles, type ArticleSummary } from "@/lib/articles";
 
 /**
  * 製品ガイド（content/guides/*.json）。
@@ -46,10 +46,10 @@ export function getGuide(slug: string): Guide | undefined {
   return getAllGuides().find((guide) => guide.slug === slug);
 }
 
-const articleCache = new Map<string, Article[]>();
+const articleCache = new Map<string, ArticleSummary[]>();
 
 /** ガイドに関係するAI記事（新しい順） */
-export function guideArticles(guide: Guide): Article[] {
+export function guideArticles(guide: Guide): ArticleSummary[] {
   const cached = articleCache.get(guide.slug);
   if (cached) return cached;
   const pattern = new RegExp(guide.match);
@@ -62,7 +62,7 @@ export function guideArticles(guide: Guide): Article[] {
 }
 
 /** 記事に対応するガイド（記事ページから案内するため） */
-export function guideForArticle(article: Article): Guide | undefined {
+export function guideForArticle(article: ArticleSummary): Guide | undefined {
   return getAllGuides().find((guide) =>
     new RegExp(guide.match).test(`${article.title} ${article.seoTitle ?? ""}`),
   );

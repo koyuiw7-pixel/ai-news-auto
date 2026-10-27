@@ -1,6 +1,6 @@
 import fs from "@/lib/content-fs";
 import path from "node:path";
-import type { Article } from "@/lib/articles";
+import type { ArticleSummary } from "@/lib/articles";
 
 /**
  * 記事の途中に出す「試すなら」枠。
@@ -138,17 +138,17 @@ function partnerUrl(base: string, page: string | null): string {
   return page ? `${base}&a8ejpredirect=${encodeURIComponent(page)}` : base;
 }
 
-function fallbackKey(article: Article, offers: OffersFile): string {
+function fallbackKey(article: ArticleSummary, offers: OffersFile): string {
   return offers.fallbackByGenre?.[article.genreSlug] ?? offers.fallback;
 }
 
-function pickTopic(article: Article, offers: OffersFile): Topic | undefined {
+function pickTopic(article: ArticleSummary, offers: OffersFile): Topic | undefined {
   const byKey = new Map(offers.topics.map((topic) => [topic.key, topic]));
   // ジャンルの違う話題（AI記事に投資の本など）は出さない
   const topics = offers.topics.filter((topic) => (topic.genre ?? "ai") === article.genreSlug);
 
   // 本文の言及で提携商品が自動挿入されている記事は、その商品の話題を優先する
-  const linked = new Set(article.affiliates.map((a) => a.name));
+  const linked = new Set(article.affiliateNames);
   const partnerTopic = topics.find((topic) =>
     topic.partners.some((key) => linked.has(offers.partners[key]?.program)),
   );
@@ -165,7 +165,7 @@ function pickTopic(article: Article, offers: OffersFile): Topic | undefined {
   return byKey.get(fallbackKey(article, offers));
 }
 
-export function offerForArticle(article: Article, maxItems = MAX_ITEMS): Offer | undefined {
+export function offerForArticle(article: ArticleSummary, maxItems = MAX_ITEMS): Offer | undefined {
   const { offers } = load();
   const topic = pickTopic(article, offers);
   if (!topic) return undefined;

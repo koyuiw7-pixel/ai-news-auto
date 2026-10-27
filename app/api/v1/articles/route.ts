@@ -1,5 +1,5 @@
 import { apiJson, authorize, handleOptions } from "@/lib/api-auth";
-import { getAllArticles, type Article } from "@/lib/articles";
+import { getAllArticles, getArticle, type FullArticle } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
 
 export const dynamic = "force-dynamic";
@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 const MAX_LIMIT = 100;
 
 /** 一覧では本文を返さない。必要なら ?include=body で明示的に取得させる */
-function serialize(article: Article, includeBody: boolean) {
+function serialize(article: FullArticle, includeBody: boolean) {
   const base = {
     slug: article.slug,
     url: `${siteConfig.url}/articles/${article.slug}`,
@@ -71,6 +71,10 @@ export function GET(request: Request) {
     limit,
     offset,
     hasMore: offset + page.length < items.length,
-    items: page.map((a) => serialize(a, includeBody)),
+    // 一覧の索引には本文が無いので、返す分（最大100本）だけ記事ファイルを読む
+    items: page.flatMap((a) => {
+      const full = getArticle(a.slug);
+      return full ? [serialize(full, includeBody)] : [];
+    }),
   });
 }
