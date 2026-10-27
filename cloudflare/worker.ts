@@ -129,6 +129,10 @@ export default {
         await loadBase(env);
         const match = ARTICLE.exec(url.pathname);
         if (match) await loadArticle(env, decodeURIComponent(match[1]));
+        // 記事デザイン案の確認用ページ（?slug=。既定は app/article-preview/variants.ts と同じ記事）
+        if (url.pathname.startsWith("/article-preview/")) {
+          await loadArticle(env, url.searchParams.get("slug") || "openai-gpt-6-1-terra-announcement");
+        }
         if (url.pathname.startsWith("/cover/")) await loadFonts(env);
       } catch (error) {
         console.error("[worker] content preload failed", error);

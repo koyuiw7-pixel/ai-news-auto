@@ -1,0 +1,409 @@
+/* 記事ページのデザイン案（/article-preview）だけで使う組版。本番の記事ページには読み込まれない */
+
+/* ---- 共通：本文の文字・行長 ---- */
+.ap .ap-prose {
+  --tw-prose-body: var(--ink);
+  max-width: 38em;
+  font-size: 17px;
+}
+.ap .ap-prose :where(p, li) {
+  line-height: 1.95;
+  letter-spacing: 0.03em;
+}
+.ap .ap-lede {
+  max-width: 38em;
+  font-size: 16.5px;
+  line-height: 1.95;
+  color: var(--ink-soft);
+}
+.ap .ap-num {
+  font-weight: 700;
+  color: var(--ink);
+  background: none;
+  font-feature-settings: "tnum" 1;
+}
+@media (min-width: 640px) {
+  .ap .ap-prose {
+    font-size: 17.5px;
+  }
+}
+
+/* ---- 共通：表 ---- */
+.ap .ap-tbl {
+  margin: 1.75em 0;
+}
+.ap .ap-tbl-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.75rem;
+  /* 左右にまだ続きがあるときだけ影が出る */
+  background:
+    linear-gradient(to right, var(--paper) 30%, transparent) left / 2rem 100% no-repeat local,
+    linear-gradient(to left, var(--paper) 30%, transparent) right / 2rem 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgb(0 0 0 / 0.16), transparent) left / 0.75rem 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgb(0 0 0 / 0.16), transparent) right / 0.75rem 100% no-repeat scroll;
+}
+.ap .ap-prose .ap-tbl table {
+  display: table;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.86em;
+  line-height: 1.7;
+  overflow: visible;
+}
+.ap .ap-prose .ap-tbl :where(th, td) {
+  padding: 0.75rem 0.9rem;
+  min-width: 9em;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  text-align: left;
+}
+.ap .ap-prose .ap-tbl tbody tr:last-child td {
+  border-bottom: 0;
+}
+.ap .ap-prose .ap-tbl th {
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--surface);
+  border-bottom: 1px solid var(--line-strong);
+  white-space: normal;
+}
+.ap .ap-prose .ap-tbl :where(td.is-key, th.is-key) {
+  min-width: 8em;
+  max-width: 12em;
+  white-space: normal;
+  font-weight: 700;
+  color: var(--ink);
+}
+.ap .ap-prose .ap-tbl td.is-note {
+  color: var(--muted);
+  font-size: 0.94em;
+}
+.ap .ap-focus-tag {
+  display: inline-block;
+  margin-left: 0.25em;
+  padding: 0 0.45em;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.75em;
+  line-height: 1.6;
+  vertical-align: 0.1em;
+}
+.ap .ap-tbl-hint,
+.ap .ap-tbl-note {
+  margin: 0.5em 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0;
+}
+@media (min-width: 900px) {
+  .ap .ap-tbl-hint {
+    display: none;
+  }
+}
+.ap.ap-a .ap-cols-2 + .ap-tbl-hint {
+  display: none;
+}
+
+/* ===================================================================== */
+/* A：読みやすさ重視                                                        */
+/* ===================================================================== */
+.ap-a .ap-prose {
+  font-weight: 500;
+}
+.ap-a .ap-prose :where(strong) {
+  font-weight: 700;
+}
+.ap-a .ap-prose :where(h2) {
+  font-size: 1.45rem;
+  font-weight: 900;
+  border-top: 2px solid var(--ink);
+}
+.ap-a .ap-prose :where(h3) {
+  border-left-color: var(--ink);
+}
+.ap-a .ap-lead .ap-num {
+  color: var(--accent);
+}
+/* 表：1列目を固定・縞・注目列 */
+.ap-a .ap-prose .ap-tbl :where(td.is-key, th.is-key) {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--paper);
+  box-shadow: inset -1px 0 0 var(--line-strong);
+}
+.ap-a .ap-prose .ap-tbl th.is-key {
+  background: var(--surface);
+}
+.ap-a .ap-prose .ap-tbl tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--surface) 70%, var(--paper));
+}
+.ap-a .ap-prose .ap-tbl tbody tr:nth-child(even) td.is-key {
+  background: color-mix(in srgb, var(--surface) 70%, var(--paper));
+}
+.ap-a .ap-prose .ap-tbl :where(td.is-focus) {
+  background: var(--accent-soft) !important;
+  color: var(--ink);
+  font-weight: 700;
+}
+.ap-a .ap-prose .ap-tbl th.is-focus {
+  background: var(--accent-soft);
+  box-shadow: inset 0 3px 0 var(--accent);
+}
+
+/* ===================================================================== */
+/* B：ニュース番組型                                                        */
+/* ===================================================================== */
+.ap-b .ap-prose,
+.ap-b .ap-lede {
+  font-family: var(--font-ap-noto), var(--font-sans);
+  font-weight: 450;
+}
+.ap-b .ap-prose :where(strong) {
+  font-weight: 700;
+  background-image: none;
+}
+.ap-b .ap-prose :where(h2) {
+  font-family: var(--font-ap-noto), var(--font-sans);
+  font-weight: 900;
+  font-size: 1.4rem;
+  border-top: 0;
+  padding: 0.5rem 0 0.5rem 0.9rem;
+  border-left: 6px solid var(--live);
+  border-bottom: 2px solid var(--ink);
+}
+.ap-b .ap-prose :where(h3) {
+  font-weight: 800;
+  border-left: 0;
+  padding-left: 0;
+}
+.ap-b .ap-prose :where(h3)::before {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  margin-right: 0.45em;
+  background: var(--ink);
+  vertical-align: 0.1em;
+}
+.ap-b .ap-bignum {
+  font-family: var(--font-ap-noto), var(--font-mono);
+  font-weight: 900;
+}
+.ap-b .ap-prose .ap-tbl-scroll {
+  border: 2px solid var(--ink);
+  border-radius: 0;
+}
+.ap-b .ap-prose .ap-tbl th {
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: 0;
+}
+.ap-b .ap-prose .ap-tbl th.is-focus {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.ap-b .ap-prose .ap-tbl th.is-focus .ap-focus-tag {
+  background: var(--paper);
+  color: var(--ink);
+}
+.ap-b .ap-prose .ap-tbl td.is-focus {
+  font-weight: 700;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--accent-soft) 60%, transparent);
+}
+.ap-b .ap-diff {
+  display: inline-block;
+  padding: 0 0.4em;
+  margin: 0 0.1em;
+  border: 1px solid var(--live);
+  color: var(--live);
+  font-weight: 700;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+/* スマホ：表を1行ずつのカードにする */
+@media (max-width: 639px) {
+  .ap-b .ap-prose .ap-tbl-scroll {
+    border: 0;
+    background: none;
+    overflow: visible;
+  }
+  .ap-b .ap-prose .ap-tbl table,
+  .ap-b .ap-prose .ap-tbl tbody,
+  .ap-b .ap-prose .ap-tbl tr,
+  .ap-b .ap-prose .ap-tbl td {
+    display: block;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+  }
+  .ap-b .ap-prose .ap-tbl thead {
+    display: none;
+  }
+  .ap-b .ap-prose .ap-tbl tr {
+    margin-bottom: 0.75rem;
+    border: 2px solid var(--ink);
+  }
+  .ap-b .ap-prose .ap-tbl td {
+    display: grid;
+    grid-template-columns: 6.5em 1fr;
+    gap: 0.75em;
+    padding: 0.55rem 0.8rem;
+    border-bottom: 1px solid var(--line) !important;
+  }
+  .ap-b .ap-prose .ap-tbl td::before {
+    content: attr(data-label);
+    font-size: 0.85em;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .ap-b .ap-prose .ap-tbl td.is-key {
+    display: block;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .ap-b .ap-prose .ap-tbl td.is-key::before {
+    display: none;
+  }
+  .ap-b .ap-prose .ap-tbl td:last-child {
+    border-bottom: 0 !important;
+  }
+}
+
+/* ===================================================================== */
+/* C：要点ファースト・図解                                                  */
+/* ===================================================================== */
+.ap-c .ap-prose,
+.ap-c .ap-lede {
+  font-family: var(--font-ap-ud), var(--font-sans);
+}
+.ap-c .ap-prose :where(strong) {
+  font-weight: 700;
+}
+.ap-c .ap-prose :where(h2) {
+  font-family: var(--font-ap-ud), var(--font-sans);
+  font-size: 1.4rem;
+  border-top: 0;
+  padding-top: 0;
+  counter-increment: ap-h2;
+  display: flex;
+  gap: 0.6em;
+  align-items: baseline;
+}
+.ap-c .ap-prose :where(h2)::before {
+  content: counter(ap-h2);
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.75em;
+  height: 1.75em;
+  border-radius: 0.5em;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  transform: translateY(-0.1em);
+}
+.ap-c #article-flow {
+  counter-reset: ap-h2;
+}
+.ap-c .ap-prose :where(h3) {
+  border-left-color: var(--accent);
+}
+/* 小見出し直後の1段落を「ポイント」として目立たせる */
+.ap-c .ap-prose :where(h3 + p) {
+  position: relative;
+  padding: 1.6em 1.1em 0.9em;
+  border-radius: 0.9rem;
+  background: var(--accent-soft);
+  color: var(--ink);
+  font-weight: 700;
+}
+.ap-c .ap-prose :where(h3 + p)::before {
+  content: "ポイント";
+  position: absolute;
+  top: 0.55em;
+  left: 1.1em;
+  font-size: 0.68em;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+.ap-c .ap-cellnum {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.95em;
+  color: var(--ink);
+}
+.ap-c .ap-prose .ap-tbl td.is-focus {
+  font-weight: 700;
+}
+.ap-c .ap-prose .ap-tbl th.is-focus {
+  color: var(--accent);
+}
+.ap-c .ap-prose .ap-tbl td.is-win {
+  background: var(--go-soft);
+  color: var(--ink);
+  box-shadow: inset 3px 0 0 var(--go);
+}
+.ap-c .ap-flow {
+  display: grid;
+  gap: 0.25rem;
+  counter-reset: none;
+  padding: 0;
+  list-style: none;
+}
+.ap-c .ap-flow a {
+  display: grid;
+  grid-template-columns: 1.9rem 1fr;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: 0.6rem;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  position: relative;
+}
+.ap-c .ap-flow a:hover {
+  background: var(--surface);
+  color: var(--ink);
+}
+.ap-c .ap-flow .index-num {
+  display: inline-grid;
+  place-items: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  font-size: 11px;
+  background: var(--paper);
+  position: relative;
+  z-index: 1;
+}
+.ap-c .ap-flow li:not(:last-child) a::after {
+  content: "";
+  position: absolute;
+  left: calc(0.5rem + 0.72rem - 0.75px);
+  top: 1.6rem;
+  bottom: -0.65rem;
+  width: 1.5px;
+  background: var(--line-strong);
+}
+@media (min-width: 640px) {
+  .ap-c .ap-flow {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+  }
+  .ap-c .ap-flow li:not(:last-child) a::after {
+    display: none;
+  }
+}
