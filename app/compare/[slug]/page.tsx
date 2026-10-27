@@ -1,3 +1,4 @@
+import { COMPARE_PUBLIC } from "@/lib/buying-guides";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -31,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: guide.description,
     keywords: guide.targetQueries,
     alternates: { canonical: url },
+    ...(COMPARE_PUBLIC ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
       type: "article",
       url,

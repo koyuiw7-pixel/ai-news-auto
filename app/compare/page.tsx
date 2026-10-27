@@ -1,3 +1,4 @@
+import { COMPARE_PUBLIC } from "@/lib/buying-guides";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { formatDate } from "@/lib/articles";
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "セキュリティソフト、Dify・n8n用のVPS、AIボイスレコーダー、ローカルLLM用PC、動画編集ソフト、AI英会話などを、公式情報と価格をもとに比較。選び方とよくある質問もまとめています。",
   alternates: { canonical: "/compare" },
+  ...(COMPARE_PUBLIC ? {} : { robots: { index: false, follow: true } }),
 };
 
 /** 比較ガイドの一覧 */

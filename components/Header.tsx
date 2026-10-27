@@ -9,7 +9,6 @@ const NAV: { href: string; label: string; wide?: boolean }[] = [
   { href: "/companies/google", label: "Google" },
   { href: "/companies/anthropic", label: "Anthropic" },
   { href: "/guides", label: "ガイド" },
-  { href: "/compare", label: "比較" },
   { href: "/news", label: "ニュース" },
   // 幅の狭いタブレット幅では折り返すので、後ろの2つは広い画面だけ
   { href: "/#roundups", label: "まとめ", wide: true },

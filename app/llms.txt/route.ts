@@ -35,7 +35,7 @@ ${siteConfig.name}は、AI企業の公式発表動画とAI専門の解説動画$
 ${line("トップ（新着の時系列）", `${base}/`)}
 ${line("記事一覧", `${base}/articles`)}
 ${line("製品ガイド一覧", `${base}/guides`, "主要AI製品の「とは・できること・料金・使い方・FAQ」")}
-${line("比較ガイド一覧", `${base}/compare`, "AIを使うための道具・サービスを公式情報と価格で比較")}
+
 ${line("RSS", `${base}/feed.xml`)}
 
 ## 製品ガイド
@@ -44,7 +44,7 @@ ${getAllGuides().map((g) => line(g.title, `${base}/guides/${g.slug}`, g.descript
 
 ## 比較ガイド（公式情報と価格をもとに比較。広告を含む）
 
-${getAllBuyingGuides().map((g) => line(g.title, `${base}/compare/${g.slug}`, g.description)).join("\n")}
+
 
 ## 企業別の最新発表
 

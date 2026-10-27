@@ -54,6 +54,12 @@ const DIR = path.join(/*turbopackIgnore: true*/ process.cwd(), "content", "buyin
 
 let cache: BuyingGuide[] | null = null;
 
+/**
+ * 比較ガイドを公開（検索・メニュー・記事からの導線）するか。
+ * 中身とデザインを作り直すまでは false：ページは残すが検索には出さず、導線も出さない。
+ */
+export const COMPARE_PUBLIC = false;
+
 export function getAllBuyingGuides(): BuyingGuide[] {
   // 開発中は生成スクリプトが書き足したガイドをすぐ見られるよう、毎回読み直す
   if (cache && process.env.NODE_ENV === "production") return cache;
@@ -93,6 +99,7 @@ export function guideRelatedArticles(guide: BuyingGuide, limit = 6): Article[] {
 
 /** 記事の商品枠の話題（offers.json のキー）に対応する比較ガイド */
 export function buyingGuideForTopic(topic: string | undefined): BuyingGuide | undefined {
+  if (!COMPARE_PUBLIC) return undefined;
   if (!topic) return undefined;
   return getAllBuyingGuides().find((guide) => guide.topics.includes(topic));
 }

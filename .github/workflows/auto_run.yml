@@ -127,7 +127,7 @@ jobs:
           CLAUDE_DAILY_MAX: ${{ vars.CLAUDE_DAILY_MAX || '40' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          python scripts/buying_guides.py --limit 1
+          # 比較ガイドは作り直し中のため、新規作成は止めて価格の確認だけ続ける
           python scripts/buying_guides.py --refresh --max-age 7
 
       - name: Commit & push

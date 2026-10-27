@@ -1,3 +1,4 @@
+import { COMPARE_PUBLIC } from "@/lib/buying-guides";
 import { isIndexable } from "@/lib/indexing";
 import {
   getAllArticles,
@@ -84,10 +85,10 @@ export function sitemapEntries(): SitemapEntry[] {
       priority: 0.9,
     })),
     // 比較ガイド（購買意図の強い検索の受け皿）
-    ...(getAllBuyingGuides().length > 0
+    ...(COMPARE_PUBLIC && getAllBuyingGuides().length > 0
       ? [{ url: `${base}/compare`, lastModified, changeFrequency: "weekly" as const, priority: 0.8 }]
       : []),
-    ...getAllBuyingGuides().map((guide) => ({
+    ...(COMPARE_PUBLIC ? getAllBuyingGuides() : []).map((guide) => ({
       url: `${base}/compare/${guide.slug}`,
       lastModified: new Date(guide.updatedAt),
       changeFrequency: "weekly" as const,
