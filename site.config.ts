@@ -26,8 +26,8 @@ export const siteConfig = {
    */
   operator: {
     name: "サイソク編集部",
-    representative: "koyuiw7",
-    location: "日本",
+    representative: "小室勇世",
+    location: "東京都",
     email: "koyuiw7@gmail.com",
     established: "2026年7月",
   },

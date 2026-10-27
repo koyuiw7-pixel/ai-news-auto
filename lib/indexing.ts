@@ -17,8 +17,8 @@ export function isIndexable(article: ArticleSummary): boolean {
   // 動画の解析記事・まとめ記事は独自の解説が厚い
   if (article.sourceType !== "web" || article.type === "roundup") return true;
   const length = article.bodyLength;
-  // プレスリリースの配信は、十分に厚い記事だけ
-  if (WIRE_SOURCES.has(article.channelSlug)) return length >= 3200;
+  // プレスリリースの配信は検索に出さない（2026-10-27 から新規の取得も停止）
+  if (WIRE_SOURCES.has(article.channelSlug)) return false;
   // 話題のニュース（複数の報道をまとめたもの）と、公式ブログ・官公庁・企業の一次情報
   return length >= 2000;
 }

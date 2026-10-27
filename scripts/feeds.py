@@ -98,12 +98,8 @@ FEEDS_BY_SLUG = {f["slug"]: f for f in FEEDS}
 #   シャープ news/rss.xml: 日付が入っていない / 日本マイクロソフト: 2025-09 で更新停止
 #   NHK・新聞・Yahoo!ニュースなど報道機関の本文は対象外
 BROAD_FEEDS: list[dict] = [
-    # --- プレスリリース配信（量の柱。転載・紹介される前提の文書） ---
-    {"slug": "prtimes-all", "name": "PR TIMES", "url": "https://prtimes.jp/index.rdf", "section": "auto", "kind": "wire", "priority": 5},
-    {"slug": "atpress", "name": "@Press", "url": "https://www.atpress.ne.jp/rss/index.rdf", "section": "auto", "kind": "wire", "priority": 5},
-    {"slug": "value-press", "name": "ValuePress", "url": "https://www.value-press.com/rss/index.rdf", "section": "auto", "kind": "wire", "priority": 6},
-    {"slug": "kyodo-prwire", "name": "共同通信PRワイヤー", "url": "https://kyodonewsprwire.jp/feed/release", "section": "auto", "kind": "wire", "priority": 5},
-    {"slug": "dreamnews", "name": "ドリームニューズ", "url": "https://www.dreamnews.jp/rss/", "section": "auto", "kind": "wire", "priority": 6},
+    # プレスリリース配信（PR TIMES・@Press・ValuePress・共同通信PRワイヤー・ドリームニューズ）は 2026-10-27 に外した。
+    # 誰でも出せる告知文の言い換えは薄く、ニュースアプリや Google の評価を下げるため（オーナー判断）。
     # --- 官公庁・公的機関 ---
     {"slug": "kantei", "name": "首相官邸", "url": "https://www.kantei.go.jp/index-jnews.rdf", "section": "public", "kind": "gov", "priority": 3},
     {"slug": "gov-online", "name": "政府広報オンライン", "url": "https://www.gov-online.go.jp/rss/index.rdf", "section": "public", "kind": "gov", "priority": 2},

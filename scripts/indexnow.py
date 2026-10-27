@@ -98,7 +98,7 @@ def is_indexable(article: dict) -> bool:
         return True
     length = len(article.get("body", ""))
     if article.get("channelSlug") in WIRE_SOURCES:
-        return length >= 3200
+        return False
     return length >= 2000
 
 
