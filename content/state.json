@@ -3507,6 +3507,13 @@
       "slug": "kaitori-koji-sns-meo-management",
       "url": "https://www.dreamnews.jp/press/0000366438"
     },
+    "34370e88c88d0cd4": {
+      "at": "2026-10-27T16:33:58.480379+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2414字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（365字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://huggingface.co/blog/allenai/novelty-bench"
+    },
     "344482fd6d727bf9": {
       "at": "2026-10-27T01:31:15.466182+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4221,6 +4228,14 @@
       "slug": "lizon-farms-agent-growth-2026",
       "url": "https://www.atpress.ne.jp/news/643880"
     },
+    "7cbd3a287b51bf61": {
+      "at": "2026-10-27T16:33:31.220253+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "apple-imac-m6-2026-10",
+      "url": "https://www.apple.com/jp/newsroom/2026/10/apple-unveils-new-imac-with-m6/"
+    },
     "7d398bbabacb0711": {
       "at": "2026-10-27T01:53:44.181605+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -4845,6 +4860,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000296.000073594.html"
     },
+    "b7dc23ae3cdc5826": {
+      "at": "2026-10-27T16:33:03.199906+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2165字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-genie-4/"
+    },
     "b82ff39f5a908a6e": {
       "at": "2026-10-26T12:40:42.848181+00:00",
       "reason": "dedupe: 固有名詞が一致（app・samurai・samuraiapp）: SamuraiAX、業務AIエージェントOS「Samurai App」で、会議の",
@@ -5416,6 +5438,14 @@
       "slug": "tokyo-grade-a-office-market-2026-q3",
       "url": "https://kyodonewsprwire.jp/release/202610238608"
     },
+    "f021b117984cad55": {
+      "at": "2026-10-27T16:35:31.980348+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "ntt-bbtower-iown-apn-storage-integration",
+      "url": "https://www.ntt-east.co.jp/release/detail/20261027_01.html"
+    },
     "f06f500d38fecbd3": {
       "at": "2026-10-27T03:05:10.758606+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（講座）",
@@ -5597,133 +5627,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:40:19.589756+00:00",
-      "attempt": 2,
-      "id": "ec5fe7a1ee1f741e",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2314字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "レノボ、AIで現場課題の解決に挑む共創コンテスト第2回「Lenovo AI Innovation Challenge」を開催"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:40:32.640996+00:00",
-      "attempt": 1,
-      "id": "fbf8b1ec238ba2a5",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "元記事の文をそのまま書き写している（3文。例「- **株式会社Betimo**：「リリースから成長し続けるBetimoの裏側、車券購入アプリならで」）。自分の言葉で要約する"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "ソウルで約400名が参加、「AIが縮めた時間、縮められなかった時間」 ThinkingAI Summit、日本版を11月10日に五反田で開催"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:40:42.847579+00:00",
-      "attempt": 2,
-      "id": "fbf8b1ec238ba2a5",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2330字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "元記事の文をそのまま書き写している（3文。例「- 株式会社Betimo：「リリースから成長し続けるBetimoの裏側、車券購入アプリならではのデー」）。自分の言葉で要約する"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "ソウルで約400名が参加、「AIが縮めた時間、縮められなかった時間」 ThinkingAI Summit、日本版を11月10日に五反田で開催"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:40:55.436150+00:00",
-      "attempt": 1,
-      "id": "86da6649e4437d88",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2252字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "ROUTE06、リグリットパートナーズとパートナー契約を締結。AI要件定義「Acsim」と現場伴走型エンジニアリング組織で、エンタープライズのAXを推進"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:41:09.196531+00:00",
-      "attempt": 2,
-      "id": "86da6649e4437d88",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2226字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "ROUTE06、リグリットパートナーズとパートナー契約を締結。AI要件定義「Acsim」と現場伴走型エンジニアリング組織で、エンタープライズのAXを推進"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:41:20.152917+00:00",
-      "attempt": 1,
-      "id": "53624072d5bd82fb",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2100字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "動画で見つけた「行きたい」を、AIがそのまま旅程に。One Laplace、AIおでかけ・旅行アプリ「BLAIGHT（ブライト）」をリリース ― 鉄道・アクティ"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:41:40.252462+00:00",
-      "attempt": 2,
-      "id": "53624072d5bd82fb",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1860字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "動画で見つけた「行きたい」を、AIがそのまま旅程に。One Laplace、AIおでかけ・旅行アプリ「BLAIGHT（ブライト）」をリリース ― 鉄道・アクティ"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:41:54.839340+00:00",
-      "attempt": 1,
-      "id": "d114e17ae39da754",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2241字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "Tokyo Artisan Intelligence（TAI）、シリーズC 1stクローズで総額12.7億円を調達～AIソリューションとAI半導体チップの2軸で"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:42:15.173945+00:00",
-      "attempt": 2,
-      "id": "d114e17ae39da754",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2294字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "Tokyo Artisan Intelligence（TAI）、シリーズC 1stクローズで総額12.7億円を調達～AIソリューションとAI半導体チップの2軸で"
-    },
     {
       "accepted": false,
       "at": "2026-10-26T12:42:35.281184+00:00",
@@ -10130,6 +10033,207 @@
       "score": 100,
       "source": "salesforce-jp",
       "title": "Salesforce、「企業におけるエージェント型AI最新事情」（第1版）の日本語版を公開"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T16:32:42.075098+00:00",
+      "attempt": 1,
+      "id": "b7dc23ae3cdc5826",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1753字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 112.8,
+        "avg_sentence": 61.1,
+        "long_share": 0.458,
+        "max_paragraph": 167,
+        "paragraphs": 13,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "google-blog-all",
+      "title": "We’re announcing Genie 4, our new world model for real-time interactive simulati"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T16:32:55.350942+00:00",
+      "attempt": 2,
+      "id": "b7dc23ae3cdc5826",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2165字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 118.9,
+        "avg_sentence": 65.6,
+        "long_share": 0.517,
+        "max_paragraph": 252,
+        "paragraphs": 16,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "google-blog-all",
+      "title": "We’re announcing Genie 4, our new world model for real-time interactive simulati"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T16:33:20.793143+00:00",
+      "attempt": 1,
+      "id": "7cbd3a287b51bf61",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 65.0字・60字超の文が 62% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 187.9字・最長 230字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 187.9,
+        "avg_sentence": 65.0,
+        "long_share": 0.615,
+        "max_paragraph": 230,
+        "paragraphs": 9,
+        "sentences": 26
+      },
+      "score": 100,
+      "source": "apple-newsroom-jp-all",
+      "title": "Apple、M6を搭載した新しいiMacを発表"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T16:33:31.219835+00:00",
+      "attempt": 0,
+      "id": "7cbd3a287b51bf61",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 44.2字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 191.4字・最長 233字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 191.4,
+        "avg_sentence": 44.2,
+        "long_share": 0.205,
+        "max_paragraph": 233,
+        "paragraphs": 9,
+        "sentences": 39
+      },
+      "score": 100,
+      "source": "apple-newsroom-jp-all",
+      "title": "Apple、M6を搭載した新しいiMacを発表"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T16:33:40.735628+00:00",
+      "attempt": 1,
+      "id": "34370e88c88d0cd4",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文章が元なのに動画前提の表現がある（「動画内」）。「元記事」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 150.5,
+        "avg_sentence": 72.8,
+        "long_share": 0.645,
+        "max_paragraph": 269,
+        "paragraphs": 15,
+        "sentences": 31
+      },
+      "score": null,
+      "source": "hugging-face-blog",
+      "title": "Can we trust LLMs to judge whether a research idea is novel?"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T16:33:58.480348+00:00",
+      "attempt": 2,
+      "id": "34370e88c88d0cd4",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2414字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（365字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 128.3,
+        "avg_sentence": 71.3,
+        "long_share": 0.667,
+        "max_paragraph": 189,
+        "paragraphs": 15,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "hugging-face-blog",
+      "title": "Can we trust LLMs to judge whether a research idea is novel?"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T16:34:13.199084+00:00",
+      "attempt": 1,
+      "id": "f021b117984cad55",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2162字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 68.6,
+        "avg_sentence": 68.6,
+        "long_share": 0.609,
+        "max_paragraph": 123,
+        "paragraphs": 23,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "ntt-news-ai",
+      "title": "次世代通信基盤「IOWN APN」を活用し、東京～北海道データセンター間1,000km超のストレージ統合実証に成功～遠隔地でも同一拠点と同等の読み出し性能により"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T16:35:01.592558+00:00",
+      "attempt": 2,
+      "id": "f021b117984cad55",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 70.9字・60字超の文が 72% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 126.6字・最長 287字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 126.6,
+        "avg_sentence": 70.9,
+        "long_share": 0.72,
+        "max_paragraph": 287,
+        "paragraphs": 14,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "ntt-news-ai",
+      "title": "次世代通信基盤「IOWN APN」を活用し、東京～北海道データセンター間1,000km超のストレージ統合実証に成功～遠隔地でも同一拠点と同等の読み出し性能により"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T16:35:31.979918+00:00",
+      "attempt": 0,
+      "id": "f021b117984cad55",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 75.7,
+        "avg_sentence": 42.5,
+        "long_share": 0.146,
+        "max_paragraph": 132,
+        "paragraphs": 23,
+        "sentences": 41
+      },
+      "score": 100,
+      "source": "ntt-news-ai",
+      "title": "次世代通信基盤「IOWN APN」を活用し、東京～北海道データセンター間1,000km超のストレージ統合実証に成功～遠隔地でも同一拠点と同等の読み出し性能により"
     }
   ],
   "short_text_retry": {
