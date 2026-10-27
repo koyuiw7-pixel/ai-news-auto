@@ -3255,6 +3255,12 @@
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366513"
     },
+    "2ad041b9e11b5d6b": {
+      "at": "2026-10-27T02:41:12.429526+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（議事）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_76904.html"
+    },
     "2cd0e1760990091a": {
       "at": "2026-10-26T14:11:39.308950+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3627,6 +3633,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000209.000068112.html"
     },
+    "64b723bef18a4cfc": {
+      "at": "2026-10-27T02:41:12.429501+00:00",
+      "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/tyoukanpress/202610/27_a.html"
+    },
     "64c05351fd08b827": {
       "at": "2026-10-27T02:33:09.598189+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -3854,6 +3866,12 @@
       "skipped": true,
       "url": "https://www.riken.jp/press/2026/20261026_1/index.html"
     },
+    "83fb7a2e6a782254": {
+      "at": "2026-10-27T02:41:12.429493+00:00",
+      "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326712.html"
+    },
     "86955c1d8d2892d9": {
       "at": "2026-10-27T01:31:41.775329+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3881,6 +3899,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005966.000054842.html"
     },
+    "87f48d4e54b85bce": {
+      "at": "2026-10-27T02:40:58.361744+00:00",
+      "reason": "precheck: 配信の本文が薄い（定型を除いて451字 / 基準 900字）",
+      "skipped": true,
+      "url": "https://www.dreamnews.jp/press/0000366586"
+    },
     "88525dbba76b19c2": {
       "at": "2026-10-27T01:53:03.666504+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3907,6 +3931,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（公開再開）",
       "skipped": true,
       "url": "https://www.mext.go.jp/a_menu/mext_00007.html"
+    },
+    "89a4261200efbd25": {
+      "at": "2026-10-27T02:41:21.294952+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "研究会の開催案内・議事録の公開であり、国民向けの制度・給付・手続き等の直接的な情報ではないため対象外。",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/miraishakaiomisueta/07_siryou.html"
     },
     "8a0b2a52543d7d01": {
       "at": "2026-10-27T00:02:01.355124+00:00",
@@ -4180,6 +4211,13 @@
       "section": "sports",
       "slug": "nadeshiko-brazil-ticket-additional-sale",
       "url": "https://www.jfa.jp/news/00036955/"
+    },
+    "b4e679186caafff0": {
+      "at": "2026-10-27T02:41:12.429468+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1796字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.jst.go.jp/pr/announce/20261026/index.html"
     },
     "b5933abf7b3004fc": {
       "at": "2026-10-26T10:31:00.945549+00:00",
@@ -4718,6 +4756,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/discourse/20261026message1.html"
+    },
+    "fd63ce7910a1039c": {
+      "at": "2026-10-27T02:41:35.319535+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "itoham-yonekyu-future-logistics-project",
+      "url": "https://kyodonewsprwire.jp/release/202610268660"
     },
     "fdba22f8a8926616": {
       "at": "2026-10-26T12:31:25.707776+00:00",
@@ -8698,6 +8744,46 @@
       "score": 100,
       "source": "softbank-news",
       "title": "「Fast Access」は混雑エリアでも本当に速いの？ 実際に人混みでスピードを比較してみた"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T02:41:05.611166+00:00",
+      "attempt": 1,
+      "id": "b4e679186caafff0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1771字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "jst",
+      "title": "AIモデルによる薬剤推奨は特定製品に集中～約88万件の分析から医療費への影響を示唆～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T02:41:12.429439+00:00",
+      "attempt": 2,
+      "id": "b4e679186caafff0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1796字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "jst",
+      "title": "AIモデルによる薬剤推奨は特定製品に集中～約88万件の分析から医療費への影響を示唆～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T02:41:35.319108+00:00",
+      "attempt": 1,
+      "id": "fd63ce7910a1039c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "kyodo-prwire",
+      "title": "伊藤ハム米久ホールディングス、フューチャーアーキテクトと 輸配送効率化と共同輸配送の具体化に向けて「物流変革プロジェクト」を本格始動"
     }
   ]
 }
