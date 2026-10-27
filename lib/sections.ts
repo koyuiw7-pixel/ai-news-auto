@@ -1,4 +1,4 @@
-import { getAllArticles, type Article } from "@/lib/articles";
+import { getAllArticles, type ArticleSummary } from "@/lib/articles";
 
 /**
  * AI以外の幅広い話題（scripts/genres.py の BROAD_GENRES と同じ slug）。
@@ -61,12 +61,12 @@ export function broadSection(slug: string) {
 }
 
 /** 幅広い話題の記事（新しい順） */
-export function getBroadArticles(): Article[] {
+export function getBroadArticles(): ArticleSummary[] {
   return getAllArticles().filter((a) => isBroadGenre(a.genreSlug));
 }
 
 /** 記事がある幅広い話題だけを、BROAD_SECTIONS の並び順で（ラベルは記事の genre を優先） */
-export function broadGenresWithArticles(articles: Article[] = getBroadArticles()) {
+export function broadGenresWithArticles(articles: ArticleSummary[] = getBroadArticles()) {
   return BROAD_SECTIONS.map((section) => {
     const items = articles.filter((a) => a.genreSlug === section.slug);
     return { slug: section.slug, label: items[0]?.genre || section.label, count: items.length };

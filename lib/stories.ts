@@ -1,10 +1,10 @@
 import type { Bundle, StoryItem } from "@/components/story/SwipeDeck";
-import { coverPath, getAllArticles, type Article } from "@/lib/articles";
+import { coverPath, getAllArticles, type ArticleSummary } from "@/lib/articles";
 import { companyOf } from "@/lib/companies";
 import { easyGist, pickGeneral } from "@/lib/general";
 import { freeLabel, japanLabel, usability, USABILITY_LABEL } from "@/lib/verdict";
 
-function toItem(a: Article): StoryItem {
+function toItem(a: ArticleSummary): StoryItem {
   const c = companyOf(a);
   const v = a.verdict ?? null;
   return {
@@ -27,7 +27,7 @@ function toItem(a: Article): StoryItem {
 
 /** トップ上段の「ストーリーの丸」の束。3本未満の束は出さない */
 export function getStoryBundles(): Bundle[] {
-  const ai = getAllArticles().filter((a) => a.genreSlug === "ai" && a.type !== "roundup" && a.easy);
+  const ai = getAllArticles().filter((a) => a.genreSlug === "ai" && a.type !== "roundup" && a.hasEasy);
   const recent = ai.slice(0, 60);
   const byCompany = (slug: string) => recent.filter((a) => companyOf(a).slug === slug).slice(0, 6);
   return [

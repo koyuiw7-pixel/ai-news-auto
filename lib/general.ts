@@ -1,4 +1,4 @@
-import type { Article } from "@/lib/articles";
+import type { ArticleSummary } from "@/lib/articles";
 import { usability } from "@/lib/verdict";
 
 /**
@@ -10,7 +10,7 @@ const EVERYDAY =
 const ENTERPRISE =
   /Azure|Foundry|SQL|Cosmos|DB|半導体|ファブ|データセンター|API|SDK|学習効率|オプティマイザ|デコーディング|パラメータ|ベンチマーク|導入事例|全社|法務|金融|IT運用|障害対応|基盤/;
 
-export function generalScore(article: Article): number {
+export function generalScore(article: ArticleSummary): number {
   const text = `${article.title} ${article.tags.join(" ")} ${article.verdict?.audience ?? ""}`;
   let score = 0;
   if (EVERYDAY.test(text)) score += 3;
@@ -22,12 +22,12 @@ export function generalScore(article: Article): number {
     score += u === "go" ? 2 : u === "partial" ? 0 : -1;
     if (article.verdict.free) score += 1;
   }
-  if (!article.easy) score -= 5;
+  if (!article.hasEasy) score -= 5;
   return score;
 }
 
 /** 新しさを保ったまま、一般向けの話を選ぶ（直近 pool 本から上位 n 本、表示は新しい順） */
-export function pickGeneral(articles: Article[], n: number, pool = 40): Article[] {
+export function pickGeneral(articles: ArticleSummary[], n: number, pool = 40): ArticleSummary[] {
   const recent = articles.filter((a) => a.type !== "roundup").slice(0, pool);
   const chosen = new Set(
     [...recent]
@@ -39,9 +39,7 @@ export function pickGeneral(articles: Article[], n: number, pool = 40): Article[
   return recent.filter((a) => chosen.has(a.slug));
 }
 
-/** 「かんたん」版の「ひとことで言うと」段落だけを取り出す */
-export function easyGist(article: Article): string {
-  const easy = article.easy ?? "";
-  const match = easy.match(/##\s*ひとことで言うと\s*\n+([\s\S]*?)(?=\n##\s|$)/);
-  return (match?.[1] ?? article.lede).trim().replace(/\s*\n+\s*/g, "");
+/** 「かんたん」版の「ひとことで言うと」段落（索引を作るときに取り出し済み。無ければリード文） */
+export function easyGist(article: ArticleSummary): string {
+  return article.easyGist || article.lede.trim().replace(/\s*\n+\s*/g, "");
 }

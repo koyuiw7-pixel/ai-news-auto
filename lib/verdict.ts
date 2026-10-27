@@ -1,4 +1,4 @@
-import type { Article } from "@/lib/articles";
+import type { ArticleSummary } from "@/lib/articles";
 
 /**
  * 「使えるかどうか」の判定。記事生成時に Gemini が本文の料金・提供状況から付ける。
@@ -59,7 +59,7 @@ export function freeLabel(free: boolean | null): string {
 }
 
 /** まとめ記事や判定のない古い記事には出さない */
-export function verdictOf(article: Article): Verdict | undefined {
+export function verdictOf(article: ArticleSummary): Verdict | undefined {
   if (article.type === "roundup") return undefined;
   return article.verdict ?? undefined;
 }

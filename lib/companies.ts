@@ -1,7 +1,7 @@
-import type { Article } from "@/lib/articles";
+import type { ArticleSummary } from "@/lib/articles";
 
 // クライアント部品からも読めるよう、articles.ts（fs を使う）は型だけ読み込む
-const isWeb = (a: Article) => a.sourceType === "web";
+const isWeb = (a: ArticleSummary) => a.sourceType === "web";
 
 /**
  * 記事を「どの企業の発表か」で分類する。
@@ -140,7 +140,7 @@ function firstMention(text: string): Company | undefined {
 
 const cache = new Map<string, Company>();
 
-export function companyOf(article: Article): Company {
+export function companyOf(article: ArticleSummary): Company {
   const cached = cache.get(article.slug);
   if (cached) return cached;
 
@@ -162,7 +162,7 @@ export function getCompany(slug: string): Company | undefined {
 }
 
 /** 記事数の多い順。トップの企業チップと /companies の一覧に使う */
-export function companyCounts(articles: Article[]): { company: Company; count: number }[] {
+export function companyCounts(articles: ArticleSummary[]): { company: Company; count: number }[] {
   const counts = new Map<string, number>();
   for (const article of articles) {
     const { slug } = companyOf(article);
@@ -182,7 +182,7 @@ export function companyCounts(articles: Article[]): { company: Company; count: n
 export type ThumbSource = { label: string; color: string; mark: string };
 
 /** web 記事だけ発信元入りの代替表示にする（動画記事は従来どおり undefined） */
-export function thumbSource(article: Article): ThumbSource | undefined {
+export function thumbSource(article: ArticleSummary): ThumbSource | undefined {
   if (!isWeb(article)) return undefined;
   const company = companyOf(article);
   const isOther = company.slug === OTHER.slug;

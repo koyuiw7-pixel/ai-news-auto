@@ -1,4 +1,4 @@
-import type { Article } from "@/lib/articles";
+import type { ArticleSummary } from "@/lib/articles";
 
 /**
  * Google に見せる記事を選ぶ（サイトでは全記事を読める）。
@@ -11,12 +11,12 @@ import type { Article } from "@/lib/articles";
 /** プレスリリースの配信サービス（量が多く、言い換えになりやすい） */
 export const WIRE_SOURCES = new Set(["prtimes", "prtimes-all", "atpress", "value-press", "kyodo-prwire", "dreamnews"]);
 
-export function isIndexable(article: Article): boolean {
+export function isIndexable(article: ArticleSummary): boolean {
   // 手動で決めたものを優先（あとで反応の良い記事を検索に出す、などに使う）
   if (typeof article.indexable === "boolean") return article.indexable;
   // 動画の解析記事・まとめ記事は独自の解説が厚い
   if (article.sourceType !== "web" || article.type === "roundup") return true;
-  const length = article.body.length;
+  const length = article.bodyLength;
   // プレスリリースの配信は、十分に厚い記事だけ
   if (WIRE_SOURCES.has(article.channelSlug)) return length >= 3200;
   // 話題のニュース（複数の報道をまとめたもの）と、公式ブログ・官公庁・企業の一次情報

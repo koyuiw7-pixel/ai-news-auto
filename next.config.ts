@@ -22,11 +22,15 @@ const nextConfig: NextConfig = {
     }));
   },
   // 新しい記事・カバーだけビルド時に静的化し、残りは初回アクセス時に生成する（ISR）。
-  // そのとき記事の JSON・フォント・設定ファイルをサーバー関数から読むので、必ず同梱させる
-  // （同梱されないと本番で古い記事が 404 になる）
+  // そのとき JSON・フォント・設定ファイルをサーバー関数から読むので、必ず同梱させる
+  // （同梱されないと本番で古い記事が 404 になる）。
+  // 記事の本文（content/articles、記事数に比例して増える）は1本ずつ読むページにだけ同梱し、
+  // 一覧・タグ・サイトマップなどには軽い索引（content/index.json、npm run build の最初に作る）だけを渡す。
+  // 全ページに本文を同梱すると、デプロイのたびに容量（Deployment Storage）が膨らむため。
+  // キーは picomatch のパターンなので、[slug] の角かっこはエスケープする
   outputFileTracingIncludes: {
     "/**": [
-      "./content/articles/**/*.json",
+      "./content/index.json",
       "./content/guides/**/*.json",
       "./content/buying-guides/**/*.json",
       "./content/offers.json",
@@ -35,7 +39,9 @@ const nextConfig: NextConfig = {
       "./affiliate_links.json",
       "./monetization.json",
     ],
-    "/cover/**": ["./assets/fonts/**/*"],
+    "/articles/\\[slug\\]": ["./content/articles/**/*.json"],
+    "/cover/**": ["./content/articles/**/*.json", "./assets/fonts/**/*"],
+    "/api/v1/articles": ["./content/articles/**/*.json"],
   },
   experimental: {
     optimizePackageImports: ["marked"],

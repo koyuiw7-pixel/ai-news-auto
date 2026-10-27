@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { Verdict } from "@/lib/verdict";
+import { buildIndex, derivedOf, INDEX_VERSION, isArticleLike, withDefaults } from "@/lib/article-index.mjs";
 
 export type TimetableItem = {
   time: string;
@@ -92,109 +93,156 @@ export type Article = {
   model: string;
 };
 
-const ARTICLES_DIR = path.join(process.cwd(), "content", "articles");
+/** 本文から計算する、一覧で使う値（lib/article-index.mjs の derivedOf） */
+export type ArticleDerived = {
+  /** 本文の文字数（検索に出すかの判定・読了時間） */
+  bodyLength: number;
+  /** 「かんたんに読む」版があるか */
+  hasEasy: boolean;
+  /** 「かんたん」版の「ひとことで言うと」段落（無ければ空。表示側でリード文に戻す） */
+  easyGist: string;
+  /** まとめ記事が統合した本数 */
+  sourceCount: number;
+  /** 本文に自動挿入された提携リンクの名前（「試すなら」枠の話題選び） */
+  affiliateNames: string[];
+};
+
+/** 一覧・関連記事・サイトマップ・カード用の軽い記事データ（content/index.json の1件） */
+export type ArticleSummary = Pick<
+  Article,
+  | "slug"
+  | "type"
+  | "roundupSlug"
+  | "roundupTitle"
+  | "title"
+  | "seoTitle"
+  | "lede"
+  | "description"
+  | "keywords"
+  | "tags"
+  | "highlights"
+  | "verdict"
+  | "channel"
+  | "channelId"
+  | "channelSlug"
+  | "genre"
+  | "genreSlug"
+  | "sourceType"
+  | "sourceUrl"
+  | "sourceName"
+  | "indexable"
+  | "videoId"
+  | "videoUrl"
+  | "publishedAt"
+  | "generatedAt"
+  | "updatedAt"
+  | "relatedSlugs"
+  | "thumbnail"
+> &
+  ArticleDerived;
+
+/** 記事ページ用の全データ（本文つき）。一覧用の値も持つので ArticleSummary として扱える */
+export type FullArticle = Article & ArticleDerived;
+
+// 記事のファイルの場所。path.join(process.cwd(), "content") のように書くと、Turbopack のファイル追跡が
+// content/ 全体（記事の本文。記事数に比例して増える）を、この部品を使う全ページのサーバー関数に同梱してしまう。
+// そのため文字列で組み立て、fs の呼び出しにも turbopackIgnore を付けて追跡させない。
+// 何を同梱するかは next.config.ts の outputFileTracingIncludes で明示している
+function contentPath(...parts: string[]): string {
+  return [process.cwd(), "content", ...parts].join(path.sep);
+}
+const ARTICLES_DIR = contentPath("articles");
+const INDEX_FILE = contentPath("index.json");
 
 function isArticle(value: unknown): value is Article {
-  if (typeof value !== "object" || value === null) return false;
-  const a = value as Record<string, unknown>;
-  return (
-    typeof a.slug === "string" &&
-    typeof a.title === "string" &&
-    typeof a.body === "string" &&
-    typeof a.videoId === "string"
-  );
+  return isArticleLike(value);
 }
 
-function normalize(parsed: Article): Article {
-  return {
-    ...parsed,
-    keywords: parsed.keywords ?? [],
-    tags: parsed.tags ?? [],
-    highlights: parsed.highlights ?? [],
-    timetable: parsed.timetable ?? [],
-    affiliates: parsed.affiliates ?? [],
-    sources: parsed.sources ?? [],
-    lede: parsed.lede ?? "",
-    genre: parsed.genre ?? "AI・テクノロジー",
-    genreSlug: parsed.genreSlug ?? "ai",
-    disclaimer: parsed.disclaimer ?? "",
-  };
+function normalize(parsed: Article): FullArticle {
+  const article = withDefaults(parsed) as Article;
+  return { ...article, ...(derivedOf(article) as ArticleDerived) };
 }
 
-/** 壊れた JSON が 1 本混ざってもビルドを落とさないよう、個別に握り潰す */
-function readAll(): Article[] {
-  if (!fs.existsSync(ARTICLES_DIR)) return [];
-
-  const articles: Article[] = [];
-  for (const file of fs.readdirSync(ARTICLES_DIR)) {
-    if (!file.endsWith(".json")) continue;
+/**
+ * 一覧用の索引を読む。本番はビルド前に作った content/index.json（scripts/build_index.mjs）。
+ * 開発中は記事が増えても反映されるよう、毎回 content/articles から作る（索引が無いときも同じ）。
+ * サーバー関数には content/articles を同梱しない（記事ページ・カバー以外）ので、索引が頼り。
+ */
+function readIndex(): ArticleSummary[] {
+  if (process.env.NODE_ENV !== "development") {
     try {
-      const raw = fs.readFileSync(path.join(ARTICLES_DIR, file), "utf8");
-      const parsed: unknown = JSON.parse(raw);
-      if (!isArticle(parsed)) {
-        console.warn(`[articles] skip (schema mismatch): ${file}`);
-        continue;
+      const parsed = JSON.parse(fs.readFileSync(/* turbopackIgnore: true */ INDEX_FILE, "utf8")) as { version?: number; articles?: unknown };
+      if (parsed.version === INDEX_VERSION && Array.isArray(parsed.articles)) {
+        return parsed.articles as ArticleSummary[];
       }
-      articles.push(normalize(parsed));
-    } catch (error) {
-      console.warn(`[articles] skip (invalid JSON): ${file}`, error);
+      console.warn("[articles] content/index.json is outdated; rebuilding from content/articles");
+    } catch {
+      console.warn("[articles] content/index.json not found; rebuilding from content/articles");
     }
   }
-
-  // サイソクに載った順（新しい記事が必ず一番上に来るように）。元動画の公開日順だと、
-  // 少し前の動画を今日記事にしたとき、一覧の下の方に埋もれて「更新が止まった」ように見えるため
-  return articles.sort(
-    (a, b) =>
-      new Date(b.generatedAt || b.publishedAt).getTime() - new Date(a.generatedAt || a.publishedAt).getTime(),
-  );
+  return buildIndex(ARTICLES_DIR) as ArticleSummary[];
 }
 
 /** 動画から作った記事か（web 記事・videoId が空の記事は false） */
-export function isVideo(article: Article): boolean {
+export function isVideo(article: ArticleSummary): boolean {
   return article.sourceType !== "web" && article.videoId !== "";
 }
 
 /** 公式ブログ・プレスリリースから作った記事か */
-export function isWeb(article: Article): boolean {
+export function isWeb(article: ArticleSummary): boolean {
   return article.sourceType === "web";
 }
 
 /** 出典の表示名（web は発信元名、動画はチャンネル名） */
-export function sourceLabel(article: Article): string {
+export function sourceLabel(article: ArticleSummary): string {
   return (isWeb(article) && article.sourceName) || article.channel;
 }
 
 /** 出典へのリンク（web は元記事、動画は YouTube） */
-export function sourceHref(article: Article): string {
+export function sourceHref(article: ArticleSummary): string {
   return isWeb(article) ? article.sourceUrl || "" : article.videoUrl;
 }
 
 // モジュールスコープでキャッシュ（ビルド中に何百回も呼ばれるため）
-let cache: Article[] | null = null;
+let cache: ArticleSummary[] | null = null;
+let bySlug: Map<string, ArticleSummary> | null = null;
 
-export function getAllArticles(): Article[] {
-  if (cache === null) cache = readAll();
+/** 全記事の一覧用データ（新しい順）。本文は含まない。本文が要るときは getArticle */
+export function getAllArticles(): ArticleSummary[] {
+  if (cache === null) cache = readIndex();
   return cache;
 }
 
+/** 一覧用データを slug で引く（関連記事・比較ガイドのリンク用。本文は読まない） */
+export function getArticleSummary(slug: string): ArticleSummary | undefined {
+  if (bySlug === null) bySlug = new Map(getAllArticles().map((a) => [a.slug, a]));
+  return bySlug.get(slug);
+}
+
 /** 横断まとめ記事だけを新しい順に返す（トップのハブ枠用） */
-export function getRoundups(): Article[] {
+export function getRoundups(): ArticleSummary[] {
   return getAllArticles().filter((a) => a.type === "roundup");
 }
 
-export function getArticle(slug: string): Article | undefined {
-  if (cache === null) {
-    // 実行時（ISR）は全件を読まず、ファイル名＝slug の1本だけを先に読む
-    const one = readOne(slug);
-    if (one) return one;
-  }
-  return getAllArticles().find((a) => a.slug === slug);
+const fullCache = new Map<string, FullArticle | null>();
+
+/**
+ * 記事1本の全データ（本文つき）。ファイル名＝slug の1本だけを読む。
+ * content/articles を同梱しているのは記事ページ・カバー画像・API だけ（next.config.ts）なので、
+ * それ以外のページからは呼ばないこと（一覧には getAllArticles / getArticleSummary を使う）。
+ */
+export function getArticle(slug: string): FullArticle | undefined {
+  if (fullCache.has(slug)) return fullCache.get(slug) ?? undefined;
+  const one = readOne(slug);
+  // ビルド中は同じ記事を何度も読むので覚えておく（実行時は1関数で数本しか読まない）
+  if (fullCache.size < 2000) fullCache.set(slug, one ?? null);
+  return one;
 }
 
-function readOne(slug: string): Article | undefined {
+function readOne(slug: string): FullArticle | undefined {
   if (!/^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(slug)) return undefined;
   try {
-    const parsed: unknown = JSON.parse(fs.readFileSync(path.join(ARTICLES_DIR, `${slug}.json`), "utf8"));
+    const parsed: unknown = JSON.parse(fs.readFileSync(/* turbopackIgnore: true */ `${ARTICLES_DIR}${path.sep}${slug}.json`, "utf8"));
     return isArticle(parsed) && parsed.slug === slug ? normalize(parsed) : undefined;
   } catch {
     return undefined;
@@ -205,23 +253,23 @@ function readOne(slug: string): Article | undefined {
 export const PRERENDER_LIMIT = 150;
 
 /** 最終更新日時（続報があれば updatedAt。サイトマップ・構造化データ用） */
-export function lastModifiedOf(article: Article): string {
+export function lastModifiedOf(article: ArticleSummary): string {
   return article.updatedAt || article.generatedAt || article.publishedAt;
 }
 
 /** 直近 hours 時間以内に続報を足した記事か（一覧の「更新」バッジ） */
-export function isRecentlyUpdated(article: Article, hours = 48): boolean {
+export function isRecentlyUpdated(article: ArticleSummary, hours = 48): boolean {
   if (!article.updatedAt) return false;
   const age = Date.now() - Date.parse(article.updatedAt);
   return age >= 0 && age < hours * 3_600_000;
 }
 
-export function getRelatedArticles(article: Article, limit = 4): Article[] {
+export function getRelatedArticles(article: ArticleSummary, limit = 4): ArticleSummary[] {
   // 記事を作るときに文脈として使った過去記事を先に出す
   const picked = (article.relatedSlugs ?? [])
     .filter((slug) => slug !== article.slug)
-    .map((slug) => getArticle(slug))
-    .filter((a): a is Article => Boolean(a))
+    .map((slug) => getArticleSummary(slug))
+    .filter((a): a is ArticleSummary => Boolean(a))
     .slice(0, limit);
   const used = new Set([article.slug, ...picked.map((a) => a.slug)]);
   const tags = new Set(article.tags);
@@ -285,7 +333,7 @@ export function getAllTags(onlyAi = false): Facet[] {
   return [...map.values()].sort((a, b) => b.count - a.count);
 }
 
-export function getArticlesByTag(slug: string): Article[] {
+export function getArticlesByTag(slug: string): ArticleSummary[] {
   // Next.js が渡す params はデコード済みだが、念のため両方で照合する
   const decoded = safeDecode(slug);
   return getAllArticles().filter((a) =>
@@ -333,7 +381,7 @@ export function getAllGenres(): Facet[] {
   return [...map.values()].sort((a, b) => b.count - a.count);
 }
 
-export function getArticlesByGenre(genreSlug: string): Article[] {
+export function getArticlesByGenre(genreSlug: string): ArticleSummary[] {
   return getAllArticles().filter((a) => a.genreSlug === genreSlug);
 }
 
@@ -369,7 +417,7 @@ export function getAllChannels(): Facet[] {
   return [...map.values()].sort((a, b) => b.count - a.count);
 }
 
-export function getArticlesByChannel(channelSlug: string): Article[] {
+export function getArticlesByChannel(channelSlug: string): ArticleSummary[] {
   return getAllArticles().filter((a) => a.channelSlug === channelSlug);
 }
 
@@ -403,22 +451,22 @@ export function formatDate(iso: string): string {
  * 独自カバー画像（/cover/[slug]）のパス。AI記事だけ生成する（不動産・投資は検索対象外のため）。
  * 生成対象外なら null を返すので、元動画のサムネイルにフォールバックする。
  */
-export function coverPath(article: Article): string | null {
+export function coverPath(article: ArticleSummary): string | null {
   // 全ジャンルを検索対象にしたので、共有用の画像も全記事で作る
   return `/cover/${article.slug}`;
 }
 
-export type NextRead = { article: Article; reason: string };
+export type NextRead = { article: ArticleSummary; reason: string };
 
 /**
  * 「次に読むならこれ」。記事を読み終えた人に、もう1本だけ読んでもらうための候補。
  * 1. 同じ話題のまとめ記事（全体像） 2. 同じ企業の新しい発表 3. タグが重なる発表 の順に選ぶ。
  */
-export function getNextReads(article: Article, companySlugOf: (a: Article) => string, limit = 3): NextRead[] {
+export function getNextReads(article: ArticleSummary, companySlugOf: (a: ArticleSummary) => string, limit = 3): NextRead[] {
   const all = getAllArticles().filter((a) => a.slug !== article.slug && a.genreSlug === article.genreSlug);
   const picked: NextRead[] = [];
   const used = new Set<string>();
-  const add = (candidate: Article | undefined, reason: string) => {
+  const add = (candidate: ArticleSummary | undefined, reason: string) => {
     if (!candidate || used.has(candidate.slug) || picked.length >= limit) return;
     used.add(candidate.slug);
     picked.push({ article: candidate, reason });

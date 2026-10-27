@@ -2,12 +2,12 @@ import Thumb from "@/components/Thumb";
 import Link from "next/link";
 import Morph from "@/components/Morph";
 import Image from "next/image";
-import { coverPath, formatDate, isRecentlyUpdated, sourceLabel, type Article } from "@/lib/articles";
+import { coverPath, formatDate, isRecentlyUpdated, sourceLabel, type ArticleSummary } from "@/lib/articles";
 import { thumbSource } from "@/lib/companies";
 import { Highlight } from "@/lib/highlight";
 
 type Props = {
-  article: Article;
+  article: ArticleSummary;
   priority?: boolean;
   /** 記事ページへの画面遷移で、写真と見出しをつなぐ。ページ内で同じ記事に1回だけ使う */
   morph?: boolean;
@@ -19,7 +19,7 @@ type Props = {
  */
 export default function ArticleCard({ article, priority, morph = false }: Props) {
   const isRoundup = article.type === "roundup";
-  const sources = article.sources?.length ?? 0;
+  const sources = article.sourceCount;
   const cover = coverPath(article);
 
   return (
