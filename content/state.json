@@ -28,6 +28,7 @@
     "YQYckl38zpo": 1,
     "YcFnDg6dl0s": 2,
     "a75xDflRooI": 1,
+    "dQMYDBGX0uk": 1,
     "eNuyyBJwOEw": 1,
     "f-3fGNfMfqU": 1,
     "iTiKeH3FDoQ": 2,
@@ -3013,6 +3014,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000099.000048788.html"
     },
+    "13bc1f882e6cd17c": {
+      "at": "2026-10-27T00:01:48.372583+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2057字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000031.000045667.html"
+    },
     "14fe58965fdb4ed4": {
       "at": "2026-10-26T14:57:42.113226+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3209,6 +3217,12 @@
       "reason": "quality: 本文が短い（1798字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000070.000051277.html"
+    },
+    "31317bfb9b6a32d8": {
+      "at": "2026-10-27T00:02:14.132711+00:00",
+      "reason": "prefilter: 告知・お知らせ系",
+      "skipped": true,
+      "url": "https://prtimes.jp/main/html/rd/p/000000022.000154651.html"
     },
     "31b8b3e9ba1b5f37": {
       "at": "2026-10-26T13:33:26.418088+00:00",
@@ -3680,6 +3694,13 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/a_menu/mext_00007.html"
     },
+    "8a0b2a52543d7d01": {
+      "at": "2026-10-27T00:02:01.355124+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1538字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（374字 / 基準 400字以上）; 元記事の文をそのまま書き写している（2文。例「WOWPASSは、韓国国内での決済機能とT-money機能を備えた、訪韓外国人向けのプリペイドカード」）。自分の言葉で要約する",
+      "skipped": true,
+      "url": "https://www.dreamnews.jp/press/0000366439"
+    },
     "8ed93bec790144d5": {
       "at": "2026-10-26T18:18:23.045318+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3809,6 +3830,14 @@
       "reason": "dedupe: 固有名詞が一致（llm・ローカル）: llama-app-mac-local-ai-hugging-face",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000077.000058475.html"
+    },
+    "a5f74e121560fc9a": {
+      "at": "2026-10-27T00:02:14.132460+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "true-temper-jgto-pga-2026-10",
+      "url": "https://prtimes.jp/main/html/rd/p/000000026.000182292.html"
     },
     "a7068035e151c3b0": {
       "at": "2026-10-26T21:14:17.873324+00:00",
@@ -7260,6 +7289,91 @@
       "score": 100,
       "source": "dreamnews",
       "title": "日本AIインフラストラクチャーソフトウェア市場：GPUオーケストレーション、AIクラウドプラットフォーム、ワークロード最適化が新たなビジネス機会を創出"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T00:01:40.680454+00:00",
+      "attempt": 1,
+      "id": "13bc1f882e6cd17c",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1895字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "【宮崎県内企業初※初期費用0円】病院・自治体・大型施設の「電気代高騰対策」と「脱炭素化」を同時実現。空調特化型AIサブスクリプション「MP-1 SYSTEM」を"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T00:01:48.372549+00:00",
+      "attempt": 2,
+      "id": "13bc1f882e6cd17c",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2057字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "score": null,
+      "source": "prtimes",
+      "title": "【宮崎県内企業初※初期費用0円】病院・自治体・大型施設の「電気代高騰対策」と「脱炭素化」を同時実現。空調特化型AIサブスクリプション「MP-1 SYSTEM」を"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T00:01:55.857020+00:00",
+      "attempt": 1,
+      "id": "8a0b2a52543d7d01",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "title / seo_title に感嘆符がある"
+      ],
+      "score": null,
+      "source": "dreamnews",
+      "title": "韓国の交通カード徹底比較！T-money・WOWPASS・Travel Walletどれがおすすめ？"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T00:02:01.355079+00:00",
+      "attempt": 2,
+      "id": "8a0b2a52543d7d01",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1538字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（374字 / 基準 400字以上）",
+        "元記事の文をそのまま書き写している（2文。例「WOWPASSは、韓国国内での決済機能とT-money機能を備えた、訪韓外国人向けのプリペイドカード」）。自分の言葉で要約する"
+      ],
+      "score": null,
+      "source": "dreamnews",
+      "title": "韓国の交通カード徹底比較！T-money・WOWPASS・Travel Walletどれがおすすめ？"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T00:02:07.681576+00:00",
+      "attempt": 1,
+      "id": "a5f74e121560fc9a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（357字 / 基準 400字以上）"
+      ],
+      "score": null,
+      "source": "prtimes-all",
+      "title": "【ツアー報告】JGTOでDynamic Goldが今季2勝目を支える、PGAツアーは使用選手がプレーオフ進出"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T00:02:14.131974+00:00",
+      "attempt": 2,
+      "id": "a5f74e121560fc9a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "prtimes-all",
+      "title": "【ツアー報告】JGTOでDynamic Goldが今季2勝目を支える、PGAツアーは使用選手がプレーオフ進出"
     }
   ]
 }
