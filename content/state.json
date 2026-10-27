@@ -4745,6 +4745,14 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/useful/article/201711/1.html"
     },
+    "8aa32361150b0215": {
+      "at": "2026-10-27T23:04:35.550137+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "starbucks-chilled-cup-merry-berry-chocolate-latte",
+      "url": "https://www.suntory.co.jp/softdrink/news/pr/article/2026/SBF1745.html?rss=0000000029"
+    },
     "8b194740047c4986": {
       "at": "2026-10-27T03:07:28.604494+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
@@ -5660,6 +5668,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000126.000044789.html"
     },
+    "d42fb1eb3362412f": {
+      "at": "2026-10-27T23:02:17.637242+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 本文が短い（2020字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://openai.com/index/retell-ai"
+    },
     "d47435300ada2314": {
       "at": "2026-10-26T10:30:52.037562+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6300,65 +6315,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T00:01:40.680454+00:00",
-      "attempt": 1,
-      "id": "13bc1f882e6cd17c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1895字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "【宮崎県内企業初※初期費用0円】病院・自治体・大型施設の「電気代高騰対策」と「脱炭素化」を同時実現。空調特化型AIサブスクリプション「MP-1 SYSTEM」を"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T00:01:48.372549+00:00",
-      "attempt": 2,
-      "id": "13bc1f882e6cd17c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2057字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "【宮崎県内企業初※初期費用0円】病院・自治体・大型施設の「電気代高騰対策」と「脱炭素化」を同時実現。空調特化型AIサブスクリプション「MP-1 SYSTEM」を"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T00:01:55.857020+00:00",
-      "attempt": 1,
-      "id": "8a0b2a52543d7d01",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "title / seo_title に感嘆符がある"
-      ],
-      "score": null,
-      "source": "dreamnews",
-      "title": "韓国の交通カード徹底比較！T-money・WOWPASS・Travel Walletどれがおすすめ？"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T00:02:01.355079+00:00",
-      "attempt": 2,
-      "id": "8a0b2a52543d7d01",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1538字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（374字 / 基準 400字以上）",
-        "元記事の文をそのまま書き写している（2文。例「WOWPASSは、韓国国内での決済機能とT-money機能を備えた、訪韓外国人向けのプリペイドカード」）。自分の言葉で要約する"
-      ],
-      "score": null,
-      "source": "dreamnews",
-      "title": "韓国の交通カード徹底比較！T-money・WOWPASS・Travel Walletどれがおすすめ？"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T00:02:07.681576+00:00",
@@ -12224,6 +12180,93 @@
       "score": 100,
       "source": "stat",
       "title": "住民基本台帳人口移動報告 2026年（令和8年）9月分"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T23:01:24.495677+00:00",
+      "attempt": 1,
+      "id": "d42fb1eb3362412f",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1847字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 90.9,
+        "avg_sentence": 45.4,
+        "long_share": 0.125,
+        "max_paragraph": 166,
+        "paragraphs": 16,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "Retell uses OpenAI models to help power 100M monthly calls"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T23:02:11.850927+00:00",
+      "attempt": 2,
+      "id": "d42fb1eb3362412f",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（2020字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 100.9,
+        "avg_sentence": 49.0,
+        "long_share": 0.229,
+        "max_paragraph": 198,
+        "paragraphs": 17,
+        "sentences": 35
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "Retell uses OpenAI models to help power 100M monthly calls"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T23:04:26.424026+00:00",
+      "attempt": 1,
+      "id": "8aa32361150b0215",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 49.8字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 134.5字・最長 175字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 134.5,
+        "avg_sentence": 49.8,
+        "long_share": 0.296,
+        "max_paragraph": 175,
+        "paragraphs": 10,
+        "sentences": 27
+      },
+      "score": 100,
+      "source": "suntory",
+      "title": "大切な人に贈るワクワクなホリデーを。 スターバックス チルドカップ 「DELIGHT ME メリーベリーチョコレートラテ」11月3日（火）より期間限定発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T23:04:35.549610+00:00",
+      "attempt": 0,
+      "id": "8aa32361150b0215",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.5,
+        "avg_sentence": 28.3,
+        "long_share": 0.022,
+        "max_paragraph": 132,
+        "paragraphs": 16,
+        "sentences": 45
+      },
+      "score": 100,
+      "source": "suntory",
+      "title": "大切な人に贈るワクワクなホリデーを。 スターバックス チルドカップ 「DELIGHT ME メリーベリーチョコレートラテ」11月3日（火）より期間限定発売"
     }
   ],
   "short_text_retry": {
