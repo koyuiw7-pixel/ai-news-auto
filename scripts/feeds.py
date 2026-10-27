@@ -480,8 +480,47 @@ def _decode(data: bytes) -> str:
     return data.decode("utf-8", "ignore")
 
 
+def _fetch_via_reader(url: str) -> dict:
+    """ボット除けで弾かれるページ（openai.com など）を、無料の読み取りサービス（r.jina.ai）経由で取る"""
+    data, _ = fetch("https://r.jina.ai/" + url, accept="text/plain")
+    body = _decode(data)
+    title = ""
+    m = re.search(r"^Title:\s*(.+)$", body, re.M)
+    if m:
+        title = m.group(1).strip()
+    if "Markdown Content:" in body:
+        body = body.split("Markdown Content:", 1)[1]
+    # 画像・リンクの記法を外して読みやすい本文にする
+    body = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", body)
+    body = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", body)
+    text = _collapse(body)
+    return {"text": text[:TEXT_CAP], "image": None, "title": title, "description": "", "final_url": url}
+
+
 def fetch_article_text(url: str) -> dict:
-    """{"text", "image", "title", "description", "final_url"}。取得失敗時は例外。"""
+    """{"text", "image", "title", "description", "final_url"}。取得失敗時は例外。
+    直接取れない・中身が薄いときは読み取りサービス経由で取り直す（一次情報を落とさないため）。"""
+    try:
+        direct = _fetch_direct(url)
+    except Exception:  # noqa: BLE001
+        direct = None
+    if direct and len(direct["text"]) >= 600:
+        return direct
+    try:
+        via = _fetch_via_reader(url)
+        if len(via["text"]) > len(direct["text"] if direct else ""):
+            if direct:
+                via["image"] = direct.get("image")
+                via["description"] = direct.get("description", "")
+            return via
+    except Exception:  # noqa: BLE001
+        pass
+    if direct:
+        return direct
+    raise RuntimeError(f"本文を取得できません: {url}")
+
+
+def _fetch_direct(url: str) -> dict:
     data, final_url = fetch(url, accept="text/html,application/xhtml+xml;q=0.9,*/*;q=0.8")
     parser = _Extractor()
     try:
