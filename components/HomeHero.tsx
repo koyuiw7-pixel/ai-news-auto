@@ -35,7 +35,9 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
               source={thumbSource(lead)}
               alt=""
               fill
-              priority
+              // トップの LCP。他の画像より先に最優先で読む
+              preload
+              fetchPriority="high"
               sizes="(max-width: 1024px) 100vw, 640px"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             />

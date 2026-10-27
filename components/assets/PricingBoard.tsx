@@ -191,7 +191,16 @@ export default function PricingBoard({ rows }: { rows: PriceRow[] }) {
               {/* モデル */}
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  <span className="text-[15.5px] font-bold leading-snug text-ink">{row.product}</span>
+                  {row.productSlug ? (
+                    <Link
+                      href={`/products/${row.productSlug}`}
+                      className="text-[15.5px] font-bold leading-snug text-ink underline decoration-transparent underline-offset-[3px] hover:decoration-ink"
+                    >
+                      {row.product}
+                    </Link>
+                  ) : (
+                    <span className="text-[15.5px] font-bold leading-snug text-ink">{row.product}</span>
+                  )}
                   {cheapest?.row.id === row.id && (
                     <span className="rounded-[4px] bg-go px-1.5 py-[1px] text-[10.5px] font-bold text-paper">最安</span>
                   )}

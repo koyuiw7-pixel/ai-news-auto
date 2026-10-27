@@ -56,7 +56,7 @@ export default function MobilePrBar({ item, watchId }: { item: OfferItem; watchI
           <span className="grid size-12 shrink-0 place-items-center overflow-hidden rounded-lg border border-line bg-white">
             {item.image ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={item.image} alt="" className="size-full object-contain p-1" />
+              <img src={item.image} alt="" fetchPriority="low" decoding="async" className="size-full object-contain p-1" />
             ) : (
               <span className="px-1 text-center text-[9px] font-bold leading-tight text-ink">{item.name}</span>
             )}

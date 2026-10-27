@@ -1,5 +1,6 @@
 import data from "@/content/pricing.json";
 import { getCompany, OTHER } from "@/lib/companies";
+import { getAllProducts } from "@/lib/products";
 
 /**
  * AI料金・日本対応の早見表（/ai-pricing）のデータ。scripts/pricing_table.py が作る content/pricing.json。
@@ -46,8 +47,17 @@ export type PricingData = {
   items: PriceItem[];
 };
 
-/** 画面に渡す形（企業の色・名前つき。クライアント部品に渡せる値だけ） */
-export type PriceRow = PriceItem & { color: string; companyName: string };
+/** 画面に渡す形（企業の色・名前・製品まとめページつき。クライアント部品に渡せる値だけ） */
+export type PriceRow = PriceItem & { color: string; companyName: string; productSlug: string | null };
+
+const squash = (text: string) => text.normalize("NFKC").toLowerCase().replace(/[\s\-‐‑–—_・]/g, "");
+
+/** 製品名が製品まとめページ（/products）の名前・別名と一致すれば、その slug */
+function productSlugOf(name: string): string | null {
+  const key = squash(name);
+  const found = getAllProducts().find((p) => [p.name, ...(p.aliases ?? [])].some((n) => squash(n) === key));
+  return found?.slug ?? null;
+}
 
 const pricing = data as unknown as PricingData;
 
@@ -63,6 +73,7 @@ export function priceRows(): PriceRow[] {
       ...item,
       color: known ? company.color : OTHER.color,
       companyName: known ? company.name : item.vendor || OTHER.name,
+      productSlug: item.kind === "api" ? productSlugOf(item.product) : null,
     };
   });
 }

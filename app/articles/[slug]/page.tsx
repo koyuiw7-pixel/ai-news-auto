@@ -19,6 +19,7 @@ import VerdictCard from "@/components/VerdictCard";
 import AssetLinks from "@/components/assets/AssetLinks";
 import { companyOf, thumbSource } from "@/lib/companies";
 import { guideForArticle } from "@/lib/guides";
+import { getProduct, productForArticle } from "@/lib/products";
 import { buyingGuideForTopic, guideShortName } from "@/lib/buying-guides";
 import { STATUS_LABEL, freeLabel, japanLabel, verdictOf } from "@/lib/verdict";
 import { offerForArticle } from "@/lib/offers";
@@ -115,7 +116,10 @@ export default async function ArticlePage({ params }: Props) {
   const sourceName = sourceLabel(article);
   const affiliates = article.affiliates ?? [];
   const company = companyOf(article);
-  const guide = guideForArticle(article);
+  const product = productForArticle(article.slug);
+  // まとめページへ移した製品ガイドは案内しない（/guides/<slug> は /products/<slug> へ転送）
+  const guideMatch = product ? undefined : guideForArticle(article);
+  const guide = guideMatch && !getProduct(guideMatch.slug) ? guideMatch : undefined;
   const verdict = verdictOf(article);
   // 全AI記事に、文脈に合った「試すなら」枠を1つ出す。無い場合（AI以外など）は従来の関連ツール枠
   // 右側と本文中で同じ商品を出さないよう、候補を多めに取って2つに分ける。
@@ -330,8 +334,17 @@ export default async function ArticlePage({ params }: Props) {
           {/* 読み方の切り替え（かんたん／専門家）。選んだ読み方は次の記事でも引き継ぐ */}
           {easyHtml && <ReadingMode easyMinutes={easyMinutes} expertMinutes={readMinutes} />}
 
-          {/* 製品ガイドへの案内（「〇〇とは」「料金」を知りたい読者の受け皿） */}
-          {guide && (
+          {/* 製品のまとめページへの案内（「〇〇とは」「料金」を知りたい読者の受け皿）。目立たせず1行だけ */}
+          {product ? (
+            <p className="mt-4 text-[13.5px]">
+              <Link
+                href={`/products/${product.slug}`}
+                className="font-bold text-ink-soft underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"
+              >
+                {product.name}のまとめページ →
+              </Link>
+            </p>
+          ) : guide && (
             <Link
               href={`/guides/${guide.slug}`}
               className="group mt-4 flex items-center gap-3 rounded-2xl border border-line px-5 py-3.5 transition-colors hover:border-ink"

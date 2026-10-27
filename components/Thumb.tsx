@@ -6,9 +6,18 @@ import type { ThumbSource } from "@/lib/companies";
 
 type Stage = "original" | "fallback" | "failed";
 
+const YT_JPG = /^https:\/\/i\.ytimg\.com\/vi\/([^/]+)\/([a-z0-9]+)\.jpg$/;
+
+/** YouTube のサムネイルは同じ画質の WebP（JPEG の約3分の1）で配信する */
+function ytWebp(src: string): string {
+  const m = YT_JPG.exec(src);
+  return m ? `https://i.ytimg.com/vi_webp/${m[1]}/${m[2]}.webp` : src;
+}
+
 /**
  * 記事のサムネイル。壊れた画像アイコンを読者に見せないための受け皿を2段持つ。
  *
+ * 0. YouTube は軽い WebP 版を先に使う（読めなければ 1 の JPEG 標準画質へ）
  * 1. 高解像度版（maxresdefault）は後から消えることがあるので、読み込めなければ標準画質（hqdefault）へ
  * 2. それも無い（元動画が削除・非公開になった）場合や、画像欄が空の場合は、サイト名入りの代替表示へ
  *
@@ -52,10 +61,11 @@ export default function Thumb({ source, ...props }: ImageProps & { source?: Thum
     );
   }
 
+  const webp = typeof original === "string" ? ytWebp(original) : original;
   const src =
     stage === "fallback" && typeof original === "string"
       ? original.replace("maxresdefault", "hqdefault")
-      : original;
+      : webp;
 
   return (
     <Image
@@ -65,7 +75,7 @@ export default function Thumb({ source, ...props }: ImageProps & { source?: Thum
         const canFallback =
           stage === "original" &&
           typeof original === "string" &&
-          original.includes("maxresdefault");
+          (original.includes("maxresdefault") || webp !== original);
         setStage(canFallback ? "fallback" : "failed");
       }}
     />

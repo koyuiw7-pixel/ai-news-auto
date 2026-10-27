@@ -1,4 +1,26 @@
+import fs from "node:fs";
 import type { NextConfig } from "next";
+
+/**
+ * 製品のまとめページ（content/products）ができた製品の古い製品ガイドは、まとめページへ恒久的に転送する。
+ * 同じ検索語を2ページで取り合わないため。ガイドがすべて移ったら一覧も転送する
+ */
+function guideRedirects() {
+  try {
+    const names = (dir: string) => fs.readdirSync(dir).filter((f) => f.endsWith(".json")).map((f) => f.slice(0, -5));
+    const products = new Set(names("content/products"));
+    const guides = names("content/guides");
+    const moved = guides.filter((slug) => products.has(slug));
+    return [
+      ...moved.map((slug) => ({ source: `/guides/${slug}`, destination: `/products/${slug}`, permanent: true })),
+      ...(guides.length > 0 && moved.length === guides.length
+        ? [{ source: "/guides", destination: "/products", permanent: true }]
+        : []),
+    ];
+  } catch {
+    return [];
+  }
+}
 
 // Cloudflare Workers 向けビルド（scripts/cf_build.sh が CF_BUILD=1 を立てる）
 const isCloudflare = process.env.CF_BUILD === "1";
@@ -19,12 +41,15 @@ const nextConfig: NextConfig = {
   // 独自ドメインへの引っ越し。旧URLとwwwは恒久的（301相当）に新ドメインへ転送し、
   // 検索エンジンの評価と外部リンクを引き継ぐ。プレビュー用の *.vercel.app は対象外
   async redirects() {
-    return ["ai-news-auto.vercel.app", "www.ai-tech-express.jp"].map((host) => ({
-      source: "/:path*",
-      has: [{ type: "host" as const, value: host }],
-      destination: "https://ai-tech-express.jp/:path*",
-      permanent: true,
-    }));
+    return [
+      ...["ai-news-auto.vercel.app", "www.ai-tech-express.jp"].map((host) => ({
+        source: "/:path*",
+        has: [{ type: "host" as const, value: host }],
+        destination: "https://ai-tech-express.jp/:path*",
+        permanent: true,
+      })),
+      ...guideRedirects(),
+    ];
   },
   // 新しい記事・カバーだけビルド時に静的化し、残りは初回アクセス時に生成する（ISR）。
   // そのとき JSON・フォント・設定ファイルをサーバー関数から読むので、必ず同梱させる
@@ -37,6 +62,7 @@ const nextConfig: NextConfig = {
     "/**": [
       "./content/index.json",
       "./content/guides/**/*.json",
+      "./content/products/**/*.json",
       "./content/buying-guides/**/*.json",
       "./content/offers.json",
       "./content/products.json",

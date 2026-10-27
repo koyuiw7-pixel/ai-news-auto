@@ -10,14 +10,19 @@ import type { IncrementalCache, Queue } from "@opennextjs/aws/types/overrides.js
  * KV にビルド結果を毎回書き込むと 200MB・20分以上かかるため、アップロードの速い静的アセットに置く。
  * キーにビルド ID が入るので、デプロイをまたいで古いものが混ざることはない。
  * （R2 はダッシュボードで有効化が必要。有効化したら KV の代わりに r2-incremental-cache でもよい）
+ *
+ * 読む順は静的アセット → KV。デプロイ直後はビルド ID が新しいので KV は必ず空振りし、
+ * その空振り（各地のエッジで初回は中央まで問い合わせる）が初回表示を数百ms遅らせていた。
+ * 再生成をしない（下の noRevalidation）ので、ビルド時に作ったページが KV に書かれることはなく、順番を変えても中身は同じ
  */
 const kvOverAssets: IncrementalCache = {
   name: "saisoku-kv-over-assets",
   async get(key, cacheType) {
-    const fromKv = await kvIncrementalCache.get(key, cacheType);
-    if (fromKv) return fromKv;
-    if (cacheType === "composable") return null;
-    return staticAssetsIncrementalCache.get(key, cacheType);
+    if (cacheType !== "composable") {
+      const fromAssets = await staticAssetsIncrementalCache.get(key, cacheType);
+      if (fromAssets) return fromAssets;
+    }
+    return kvIncrementalCache.get(key, cacheType);
   },
   set: (key, value, cacheType) => kvIncrementalCache.set(key, value, cacheType),
   delete: (key) => kvIncrementalCache.delete(key),

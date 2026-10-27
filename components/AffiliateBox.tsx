@@ -51,7 +51,7 @@ export default function AffiliateBox({ links, compact }: Props) {
             {link.pixel && !compact && process.env.VERCEL_ENV === "production" && (
               // ASPの表示回数計測（A8.net 推奨）。見た目には影響しない
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={link.pixel} width={1} height={1} alt="" className="absolute size-px opacity-0" />
+              <img src={link.pixel} width={1} height={1} alt="" fetchPriority="low" className="absolute size-px opacity-0" />
             )}
           </li>
         ))}
