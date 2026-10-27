@@ -1,7 +1,7 @@
 import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
 import HomeHero from "@/components/HomeHero";
-import LiveBar from "@/components/LiveBar";
+import CompanyChips from "@/components/CompanyChips";
 import NewsHub from "@/components/NewsHub";
 import Thumb from "@/components/Thumb";
 import Timeline from "@/components/Timeline";
@@ -16,7 +16,6 @@ import { siteConfig } from "@/site.config";
 
 export const revalidate = false;
 
-const DAY_MS = 24 * 60 * 60 * 1000;
 const TIMELINE_SIZE = 24;
 const NEWS_SIZE = 12;
 
@@ -33,17 +32,6 @@ export default function HomePage() {
   const lead = ai[0];
   const timeline = ai.filter((a) => a.slug !== lead.slug).slice(0, TIMELINE_SIZE);
   const roundups = ai.filter((a) => a.type === "roundup" && a.slug !== lead.slug).slice(0, 5);
-
-  // 新しさの手がかり。ビルド時点の実データだけを出す
-  const buildTime = Date.now();
-  const updatedAt = ai
-    .map((a) => a.generatedAt)
-    .filter(Boolean)
-    .sort()
-    .at(-1);
-  const recentCount = ai.filter(
-    (a) => a.generatedAt && buildTime - Date.parse(a.generatedAt) < DAY_MS,
-  ).length;
 
   // トップにもPR枠。いちばん新しい話題に合う商品を出す（話題が合わなければ汎用の枠）
   const found = offerForArticle(lead, 9);
@@ -62,12 +50,11 @@ export default function HomePage() {
   return (
     <>
       {bundles.length > 0 && (
-        <div className="mx-auto max-w-[1240px] sm:px-4">
+        <div className="mx-auto max-w-[1240px]">
           <StoryRail bundles={bundles} />
         </div>
       )}
-      <LiveBar updatedAt={updatedAt} recentCount={recentCount}
-        weekCount={ai.filter((a) => a.generatedAt && Date.now() - Date.parse(a.generatedAt) < 7 * 86_400_000).length} companies={companies.slice(0, 8)} />
+      <CompanyChips companies={companies.slice(0, 8)} />
 
       <div className="mx-auto max-w-[1240px] px-5 pb-8 pt-8 sm:px-8 sm:pt-10">
         <HomeHero lead={lead} />
