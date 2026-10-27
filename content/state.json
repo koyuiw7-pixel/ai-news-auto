@@ -4212,6 +4212,13 @@
       "skipped": true,
       "url": "https://www.value-press.com/pressrelease/383157"
     },
+    "69554c9d70abcd03": {
+      "at": "2026-10-27T19:51:32.830710+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2301字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://cloud.google.com/blog/ja/topics/public-sector/gps-suny-launch-ai-enabled-platform-to-accelerate-university-research/"
+    },
     "69b343e8a29aa74d": {
       "at": "2026-10-27T00:51:23.899281+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5212,6 +5219,13 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326725.html"
     },
+    "bc8cfff4cc188327": {
+      "at": "2026-10-27T19:52:54.945406+00:00",
+      "model": "gemini-flash-lite-latest",
+      "reason": "quality: 本文が短い（1546字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（374字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/conference/minister/2026b/20261023-1.html"
+    },
     "bca647483d5deec8": {
       "at": "2026-10-27T03:04:42.978207+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（出展）",
@@ -5811,6 +5825,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000054.000060051.html"
     },
+    "efafd44f677cc4cf": {
+      "at": "2026-10-27T19:55:26.315163+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "it-services-industry-market-analysis",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203376_1527.html"
+    },
     "effbff5a585bc50f": {
       "at": "2026-10-26T22:41:08.183632+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6038,101 +6060,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-26T18:32:34.995596+00:00",
-      "attempt": 2,
-      "id": "2504bf7e57b1f9b6",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "atpress",
-      "title": "『ディズニー ツイステッドワンダーランド』リリア・ヴァンルージュ歌唱の楽曲「RACING STAR☆」スペシャルPV特設サイトにて公開！"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T18:32:45.349930+00:00",
-      "attempt": 1,
-      "id": "925b506256fa21c6",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2103字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "AIが人の状況を察し、安心・安全を守りながら適切な対応に自律改善する「高EQな音声対話技術」を確立"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T18:32:54.991934+00:00",
-      "attempt": 2,
-      "id": "925b506256fa21c6",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2381字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "AIが人の状況を察し、安心・安全を守りながら適切な対応に自律改善する「高EQな音声対話技術」を確立"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T18:33:01.696970+00:00",
-      "attempt": 1,
-      "id": "4e9ce8cacf873c06",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1402字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "フォーティエンスコンサルティング、AIが適切に参照できるデータと組織基盤を整備する「AI-readyデータ構築支援サービス」を提供開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T18:33:08.905260+00:00",
-      "attempt": 2,
-      "id": "4e9ce8cacf873c06",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1886字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "フォーティエンスコンサルティング、AIが適切に参照できるデータと組織基盤を整備する「AI-readyデータ構築支援サービス」を提供開始"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T18:39:37.939219+00:00",
-      "attempt": 1,
-      "id": "4049d96cecb68ca5",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "microsoft-source",
-      "title": "When AI rewrites millions of lines of code, verification becomes essential"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T18:39:48.677980+00:00",
-      "attempt": 1,
-      "id": "5a508ce5e5172782",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1723字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "atpress",
-      "title": "人気インフルエンサー「りち」とキラキラポップなつくる菓子シリーズ「CANDY Magic Lab」がコラボ！「りちスライミーポットゼリー」が新発売"
-    },
     {
       "accepted": true,
       "at": "2026-10-26T18:40:05.834124+00:00",
@@ -11532,6 +11459,164 @@
       "score": 100,
       "source": "ntt-news",
       "title": "オムロンとNTTドコモビジネス、製造現場のサイバー脅威に挑む"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T19:51:22.532314+00:00",
+      "attempt": 1,
+      "id": "69554c9d70abcd03",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1894字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 64.5,
+        "avg_sentence": 55.2,
+        "long_share": 0.393,
+        "max_paragraph": 163,
+        "paragraphs": 24,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "google-cloud-blog-ja",
+      "title": "Google Public Sector と SUNY、大学の研究を加速する AI 対応プラットフォームを開設"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T19:51:32.830658+00:00",
+      "attempt": 2,
+      "id": "69554c9d70abcd03",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2301字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 151.8,
+        "avg_sentence": 61.7,
+        "long_share": 0.562,
+        "max_paragraph": 261,
+        "paragraphs": 13,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "google-cloud-blog-ja",
+      "title": "Google Public Sector と SUNY、大学の研究を加速する AI 対応プラットフォームを開設"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T19:51:41.168481+00:00",
+      "attempt": 1,
+      "id": "bc8cfff4cc188327",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1644字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 115.7,
+        "avg_sentence": 51.4,
+        "long_share": 0.37,
+        "max_paragraph": 182,
+        "paragraphs": 12,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "fsa",
+      "title": "記者会見,片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要（令和８年10月23日）について掲載しました。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T19:52:54.945372+00:00",
+      "attempt": 2,
+      "id": "bc8cfff4cc188327",
+      "kind": "broad",
+      "model": "gemini-flash-lite-latest",
+      "problems": [
+        "本文が短い（1546字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（374字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 180.0,
+        "avg_sentence": 60.0,
+        "long_share": 0.417,
+        "max_paragraph": 239,
+        "paragraphs": 8,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "fsa",
+      "title": "記者会見,片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要（令和８年10月23日）について掲載しました。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T19:53:04.058699+00:00",
+      "attempt": 1,
+      "id": "efafd44f677cc4cf",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1784字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 151.0,
+        "avg_sentence": 54.4,
+        "long_share": 0.24,
+        "max_paragraph": 239,
+        "paragraphs": 9,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "tsr",
+      "title": "「情報サービス業」が好調 利益は5年間で1.8倍 DX・AI需要で業績が過去最高、大手寡占が進む"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T19:55:04.363178+00:00",
+      "attempt": 2,
+      "id": "efafd44f677cc4cf",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 54.9字・60字超の文が 34% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 177.0字・最長 278字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 177.0,
+        "avg_sentence": 54.9,
+        "long_share": 0.345,
+        "max_paragraph": 278,
+        "paragraphs": 9,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "tsr",
+      "title": "「情報サービス業」が好調 利益は5年間で1.8倍 DX・AI需要で業績が過去最高、大手寡占が進む"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T19:55:26.314687+00:00",
+      "attempt": 0,
+      "id": "efafd44f677cc4cf",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "段落が長い（平均 141.2字・最長 268字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 141.2,
+        "avg_sentence": 31.1,
+        "long_share": 0.0,
+        "max_paragraph": 268,
+        "paragraphs": 11,
+        "sentences": 50
+      },
+      "score": 100,
+      "source": "tsr",
+      "title": "「情報サービス業」が好調 利益は5年間で1.8倍 DX・AI需要で業績が過去最高、大手寡占が進む"
     }
   ],
   "short_text_retry": {
