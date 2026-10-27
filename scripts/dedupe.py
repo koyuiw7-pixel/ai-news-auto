@@ -42,6 +42,9 @@ STOP_ENTITIES = {
     # 英語の見出しによく出る一般語（固有名詞ではない）
     "using", "use", "more", "build", "building", "data", "agent", "agents", "brings", "all", "about", "look", "does",
     "run", "app", "apps", "make", "our", "you", "can", "get", "turning", "this", "that", "are", "will", "its", "over",
+    # 発表の定型語（「Introducing GPT-7」と「Introducing GPT-6」を同じ話題にしない）
+    "introducing", "introduces", "introduce", "announcing", "announces", "announced", "launch", "launches", "launching",
+    "launched", "available", "today", "meet", "update", "updates", "release", "released", "releases",
 }
 BRACKET_RE = re.compile(r"[「『【\[(（]([^」』】\])）]{2,30})[」』】\])）]")
 KATAKANA_RE = re.compile(r"[ァ-ヴー・]{3,}")
@@ -114,17 +117,24 @@ class Index:
             return "同じ出典URL", ""
         grams = bigrams(title)
         ents = {e for e in entities(title, *(extra or [])) if self.df.get(e, 0) < COMMON_ENTITY_DF}
+        # 当たった中でいちばん強い相手を返す（先に見つかった弱い一致で、続報の宛先を取り違えないため）
+        best: tuple[tuple, str, str] | None = None
         for entry in self.entries:
             score = jaccard(grams, entry["bigrams"])
             label = entry["label"]
-            if score >= JACCARD_DUP:
-                return f"見出しが類似（{score:.2f}）: {label[:40]}", label
             shared = ents & entry["entities"]
-            if len(shared) >= 2:
-                return f"固有名詞が一致（{'・'.join(sorted(shared)[:3])}）: {label[:40]}", label
-            if shared and score >= JACCARD_WITH_ENTITY:
-                return f"固有名詞＋見出しが類似（{next(iter(shared))} / {score:.2f}）: {label[:40]}", label
-        return None
+            if score >= JACCARD_DUP:
+                hit = (f"見出しが類似（{score:.2f}）: {label[:40]}", label)
+            elif len(shared) >= 2:
+                hit = (f"固有名詞が一致（{'・'.join(sorted(shared)[:3])}）: {label[:40]}", label)
+            elif shared and score >= JACCARD_WITH_ENTITY:
+                hit = (f"固有名詞＋見出しが類似（{next(iter(shared))} / {score:.2f}）: {label[:40]}", label)
+            else:
+                continue
+            strength = (len(shared) + (2 if score >= JACCARD_DUP else 0), score)
+            if best is None or strength > best[0]:
+                best = (strength, *hit)
+        return (best[1], best[2]) if best else None
 
 
 def _norm_url(url: str) -> str:

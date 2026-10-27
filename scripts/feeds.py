@@ -51,28 +51,28 @@ TEXT_CAP = 12_000
 #   二次メディア（ITmedia AI+ 等）は一次情報ではないので対象外
 FEEDS: list[dict] = [
     # --- 海外 AI 企業の公式 ---
-    {"slug": "openai-news", "name": "OpenAI公式ブログ", "url": "https://openai.com/news/rss.xml", "lang": "en", "priority": 1},
-    {"slug": "google-ai-blog", "name": "Google公式ブログ（AI）", "url": "https://blog.google/technology/ai/rss/", "lang": "en", "priority": 1},
-    {"slug": "google-gemini-blog", "name": "Google公式ブログ（Gemini）", "url": "https://blog.google/products/gemini/rss/", "lang": "en", "priority": 1},
-    {"slug": "google-deepmind-blog", "name": "Google DeepMind公式ブログ", "url": "https://deepmind.google/blog/rss.xml", "lang": "en", "priority": 1},
-    {"slug": "google-developers-blog", "name": "Google Developers Blog", "url": "https://developers.googleblog.com/feeds/posts/default", "lang": "en", "priority": 2, "ai_only": True},
-    {"slug": "google-research-blog", "name": "Google Research公式ブログ", "url": "https://research.google/blog/rss/", "lang": "en", "priority": 3},
-    {"slug": "microsoft-blog", "name": "Microsoft公式ブログ", "url": "https://blogs.microsoft.com/feed/", "lang": "en", "priority": 2, "ai_only": True},
-    {"slug": "microsoft-source", "name": "Microsoft Source（ニュースルーム）", "url": "https://news.microsoft.com/source/feed/", "lang": "en", "priority": 2, "ai_only": True},
-    {"slug": "microsoft-research-blog", "name": "Microsoft Research Blog", "url": "https://www.microsoft.com/en-us/research/feed/", "lang": "en", "priority": 3},
-    {"slug": "nvidia-blog", "name": "NVIDIA公式ブログ", "url": "https://blogs.nvidia.com/feed/", "lang": "en", "priority": 2},
-    {"slug": "meta-newsroom", "name": "Metaニュースルーム", "url": "https://about.fb.com/news/feed/", "lang": "en", "priority": 2, "ai_only": True},
-    {"slug": "hugging-face-blog", "name": "Hugging Face公式ブログ", "url": "https://huggingface.co/blog/feed.xml", "lang": "en", "priority": 3},
-    {"slug": "aws-ml-blog", "name": "AWS Machine Learning Blog", "url": "https://aws.amazon.com/blogs/machine-learning/feed/", "lang": "en", "priority": 3},
-    {"slug": "github-changelog-copilot", "name": "GitHub Changelog（Copilot）", "url": "https://github.blog/changelog/label/copilot/feed/", "lang": "en", "priority": 2},
-    {"slug": "github-blog", "name": "GitHub公式ブログ", "url": "https://github.blog/feed/", "lang": "en", "priority": 3, "ai_only": True},
+    {"slug": "openai-news", "name": "OpenAI公式ブログ", "url": "https://openai.com/news/rss.xml", "lang": "en", "priority": 1, "kind": "official", "primary_for": "openai"},
+    {"slug": "google-ai-blog", "name": "Google公式ブログ（AI）", "url": "https://blog.google/technology/ai/rss/", "lang": "en", "priority": 1, "kind": "official", "primary_for": "google"},
+    {"slug": "google-gemini-blog", "name": "Google公式ブログ（Gemini）", "url": "https://blog.google/products/gemini/rss/", "lang": "en", "priority": 1, "kind": "official", "primary_for": "google"},
+    {"slug": "google-deepmind-blog", "name": "Google DeepMind公式ブログ", "url": "https://deepmind.google/blog/rss.xml", "lang": "en", "priority": 1, "kind": "official", "primary_for": "google"},
+    {"slug": "google-developers-blog", "name": "Google Developers Blog", "url": "https://developers.googleblog.com/feeds/posts/default", "lang": "en", "priority": 2, "ai_only": True, "kind": "official", "primary_for": "google"},
+    {"slug": "google-research-blog", "name": "Google Research公式ブログ", "url": "https://research.google/blog/rss/", "lang": "en", "priority": 3, "kind": "official"},
+    {"slug": "microsoft-blog", "name": "Microsoft公式ブログ", "url": "https://blogs.microsoft.com/feed/", "lang": "en", "priority": 2, "ai_only": True, "kind": "official", "primary_for": "microsoft"},
+    {"slug": "microsoft-source", "name": "Microsoft Source（ニュースルーム）", "url": "https://news.microsoft.com/source/feed/", "lang": "en", "priority": 2, "ai_only": True, "kind": "official", "primary_for": "microsoft"},
+    {"slug": "microsoft-research-blog", "name": "Microsoft Research Blog", "url": "https://www.microsoft.com/en-us/research/feed/", "lang": "en", "priority": 3, "kind": "official"},
+    {"slug": "nvidia-blog", "name": "NVIDIA公式ブログ", "url": "https://blogs.nvidia.com/feed/", "lang": "en", "priority": 2, "kind": "official", "primary_for": "nvidia"},
+    {"slug": "meta-newsroom", "name": "Metaニュースルーム", "url": "https://about.fb.com/news/feed/", "lang": "en", "priority": 2, "ai_only": True, "kind": "official", "primary_for": "meta"},
+    {"slug": "hugging-face-blog", "name": "Hugging Face公式ブログ", "url": "https://huggingface.co/blog/feed.xml", "lang": "en", "priority": 3, "kind": "official"},
+    {"slug": "aws-ml-blog", "name": "AWS Machine Learning Blog", "url": "https://aws.amazon.com/blogs/machine-learning/feed/", "lang": "en", "priority": 3, "kind": "derivative"},
+    {"slug": "github-changelog-copilot", "name": "GitHub Changelog（Copilot）", "url": "https://github.blog/changelog/label/copilot/feed/", "lang": "en", "priority": 2, "kind": "derivative"},
+    {"slug": "github-blog", "name": "GitHub公式ブログ", "url": "https://github.blog/feed/", "lang": "en", "priority": 3, "ai_only": True, "kind": "derivative"},
     # --- 日本の一次情報 ---
-    {"slug": "google-japan-blog", "name": "Google Japan Blog", "url": "https://blog.google/intl/ja-jp/rss/", "lang": "ja", "priority": 1, "ai_only": True},
-    {"slug": "microsoft-japan-news", "name": "日本マイクロソフト ニュースセンター", "url": "https://news.microsoft.com/ja-jp/feed/", "lang": "ja", "priority": 1, "ai_only": True},
-    {"slug": "apple-newsroom-jp", "name": "Apple Newsroom（日本）", "url": "https://www.apple.com/jp/newsroom/rss-feed.rss", "lang": "ja", "priority": 2, "ai_only": True},
-    {"slug": "nvidia-japan-blog", "name": "NVIDIA日本版ブログ", "url": "https://blogs.nvidia.co.jp/feed/", "lang": "ja", "priority": 2},
-    {"slug": "aws-japan-blog", "name": "AWS ブログ（日本）", "url": "https://aws.amazon.com/jp/blogs/news/feed/", "lang": "ja", "priority": 3, "ai_only": True},
-    {"slug": "prtimes", "name": "PR TIMES", "url": "https://prtimes.jp/index.rdf", "lang": "ja", "priority": 4, "ai_only": True, "title_only": True},
+    {"slug": "google-japan-blog", "name": "Google Japan Blog", "url": "https://blog.google/intl/ja-jp/rss/", "lang": "ja", "priority": 1, "ai_only": True, "kind": "official", "primary_for": "google"},
+    {"slug": "microsoft-japan-news", "name": "日本マイクロソフト ニュースセンター", "url": "https://news.microsoft.com/ja-jp/feed/", "lang": "ja", "priority": 1, "ai_only": True, "kind": "official", "primary_for": "microsoft"},
+    {"slug": "apple-newsroom-jp", "name": "Apple Newsroom（日本）", "url": "https://www.apple.com/jp/newsroom/rss-feed.rss", "lang": "ja", "priority": 2, "ai_only": True, "kind": "official", "primary_for": "apple"},
+    {"slug": "nvidia-japan-blog", "name": "NVIDIA日本版ブログ", "url": "https://blogs.nvidia.co.jp/feed/", "lang": "ja", "priority": 2, "kind": "official", "primary_for": "nvidia"},
+    {"slug": "aws-japan-blog", "name": "AWS ブログ（日本）", "url": "https://aws.amazon.com/jp/blogs/news/feed/", "lang": "ja", "priority": 3, "ai_only": True, "kind": "derivative"},
+    # PR TIMES は幅広い話題の prtimes-all（同じ index.rdf）で拾う。AIの書式（2500字）では薄い記事が落ち続け、無料枠を浪費していたため外した
 ]
 FEEDS_BY_SLUG = {f["slug"]: f for f in FEEDS}
 
@@ -132,8 +132,8 @@ BROAD_FEEDS: list[dict] = [
     {"slug": "softbank-news", "name": "ソフトバンクニュース", "url": "https://www.softbank.jp/sbnews/feed", "section": "tech-gadget", "kind": "company", "priority": 3},
     {"slug": "au-topics", "name": "au トピックス", "url": "https://www.au.com/rss/topic.xml", "section": "tech-gadget", "kind": "company", "priority": 2},
     {"slug": "sony-jp", "name": "ソニー（製品ニュース）", "url": "https://www.sony.jp/xml/index.xml", "section": "tech-gadget", "kind": "company", "priority": 2},
-    {"slug": "apple-newsroom-jp-all", "name": "Apple Newsroom（日本）", "url": "https://www.apple.com/jp/newsroom/rss-feed.rss", "section": "tech-gadget", "kind": "company", "priority": 1},
-    {"slug": "google-japan-blog-all", "name": "Google Japan Blog", "url": "https://blog.google/intl/ja-jp/rss/", "section": "tech-gadget", "kind": "company", "priority": 1},
+    {"slug": "apple-newsroom-jp-all", "name": "Apple Newsroom（日本）", "url": "https://www.apple.com/jp/newsroom/rss-feed.rss", "section": "tech-gadget", "kind": "company", "priority": 1, "primary_for": "apple"},
+    {"slug": "google-japan-blog-all", "name": "Google Japan Blog", "url": "https://blog.google/intl/ja-jp/rss/", "section": "tech-gadget", "kind": "company", "priority": 1, "primary_for": "google"},
     {"slug": "nintendo-topics", "name": "任天堂 トピックス", "url": "https://www.nintendo.com/jp/topics/c/feed/rss/", "section": "entertainment", "kind": "company", "priority": 1},
     {"slug": "playstation-blog-jp", "name": "PlayStation.Blog 日本語", "url": "https://blog.ja.playstation.com/feed/", "section": "entertainment", "kind": "company", "priority": 2},
     # --- スポーツ（競技団体の公式） ---
@@ -142,6 +142,37 @@ BROAD_FEEDS: list[dict] = [
 for _feed in BROAD_FEEDS:
     _feed.setdefault("lang", "ja")
 FEEDS_BY_SLUG.update({f["slug"]: f for f in BROAD_FEEDS})
+
+# 一次情報の順位付け。kind: official（企業の公式ブログ）/ derivative（他社製品の対応・提供の告知）/ wire（配信）
+#   primary_for … その企業の発表の「本家」。同じ話題が複数のフィードに来たら本家を残す
+ENTITY_RES: dict[str, re.Pattern] = {
+    "openai": re.compile(r"OpenAI|ChatGPT|GPT[-‐ ]?\d|\bo\d(?:-mini|-pro)?\b|\bSora\b|\bCodex\b|DALL", re.I),
+    "anthropic": re.compile(r"Anthropic|\bClaude\b", re.I),
+    "google": re.compile(r"Google|Gemini|Gemma|DeepMind|\bVeo\b|Imagen|\bPixel\b|NotebookLM", re.I),
+    "microsoft": re.compile(r"Microsoft|マイクロソフト|\bPhi-\d|\bCopilot\b", re.I),
+    "nvidia": re.compile(r"NVIDIA|エヌビディア|GeForce|\bRTX\b|Blackwell|Rubin", re.I),
+    "apple": re.compile(r"\bApple\b|アップル|iPhone|iPad|\bMac\b|Apple Intelligence|Siri", re.I),
+    "meta": re.compile(r"\bMeta\b|Llama|Instagram|WhatsApp|Facebook", re.I),
+    "xai": re.compile(r"\bxAI\b|\bGrok\b", re.I),
+}
+KIND_RANK = {"official": 1, "company": 2, "gov": 2, "science": 2, "": 2, "derivative": 3, "wire": 4}
+
+
+def entities_in(text: str) -> set[str]:
+    return {name for name, pattern in ENTITY_RES.items() if pattern.search(text or "")}
+
+
+def source_rank(item: dict) -> int:
+    """小さいほど一次情報。0=その企業の本家（OpenAI の話題を openai-news が出した等）"""
+    feed = FEEDS_BY_SLUG.get(item.get("source_slug", ""), {})
+    owner = feed.get("primary_for")
+    if owner and owner in entities_in(item.get("title", "")):
+        return 0
+    return KIND_RANK.get(feed.get("kind", ""), 2)
+
+
+def feed_kind(item: dict) -> str:
+    return FEEDS_BY_SLUG.get(item.get("source_slug", ""), {}).get("kind", "")
 
 # プレスリリース配信（section="auto"）の振り分け。当たった語の数が多いセクションに入れる（同点は並び順）。
 SECTION_RULES: list[tuple[str, re.Pattern]] = [
