@@ -2,17 +2,13 @@ import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import { siteConfig } from "@/site.config";
 
+// 上のメニューは5つまでに絞る（企業別はトップの企業チップから、まとめは記事一覧から辿れる）
 const NAV: { href: string; label: string; wide?: boolean }[] = [
-  { href: "/", label: "新着" },
+  { href: "/", label: "AI速報" },
   { href: "/usable", label: "使えるAI" },
-  { href: "/companies/openai", label: "OpenAI" },
-  { href: "/companies/google", label: "Google" },
-  { href: "/companies/anthropic", label: "Anthropic" },
-  { href: "/guides", label: "ガイド" },
   { href: "/news", label: "ニュース" },
-  // 幅の狭いタブレット幅では折り返すので、後ろの2つは広い画面だけ
-  { href: "/#roundups", label: "まとめ", wide: true },
-  { href: "/articles", label: "記事一覧", wide: true },
+  { href: "/guides", label: "ガイド" },
+  { href: "/articles", label: "記事一覧" },
 ];
 
 export default function Header() {
