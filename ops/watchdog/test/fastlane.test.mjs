@@ -309,12 +309,28 @@ test("パイプラインの結果（state/fast_lane.json）が来たら完了に
   h.world.runs = [{ status: "in_progress", display_title: `${RUN_PREFIX} https://ex.test/gpt-7`, created_at: new Date(T0 + 2 * MIN).toISOString() }];
   await h.run(T0 + 4 * MIN);
   assert.equal(h.state().queue[id].status, "dispatched");
-  h.world.acks = { [id]: { outcome: "created", slug: "gpt-7-launch" } };
+  h.world.acks = { [id]: { outcome: "created", slug: "gpt-7-launch", finishedAt: new Date(T0 + 7 * MIN).toISOString() } };
   const log = await h.run(T0 + 8 * MIN);
   assert.equal(h.state().queue[id].status, "done");
   assert.equal(h.state().queue[id].slug, "gpt-7-launch");
   assert.ok(log.done[0].includes("gpt-7-launch"));
   assert.equal(h.calls.dispatches.length, 1);
+});
+
+test("同じ記事の古い結果（今回の起動より前）は完了とみなさない", async () => {
+  const h = harness();
+  await h.run(T0);
+  h.feeds["https://feeds.test/openai.xml"].unshift({ title: "Introducing GPT-7", url: "https://ex.test/gpt-7", at: T0 });
+  const id = await itemId("https://ex.test/gpt-7");
+  h.world.acks = { [id]: { outcome: "duplicate", finishedAt: new Date(T0 - 3600e3).toISOString() } };
+  await h.run(T0 + 2 * MIN);
+  h.world.runs = [{ status: "in_progress", display_title: `${RUN_PREFIX} https://ex.test/gpt-7`, created_at: new Date(T0 + 2 * MIN).toISOString() }];
+  await h.run(T0 + 4 * MIN);
+  assert.equal(h.state().queue[id].status, "dispatched");
+  h.world.acks = { [id]: { outcome: "created", slug: "gpt-7", finishedAt: new Date(T0 + 5 * MIN).toISOString() } };
+  await h.run(T0 + 6 * MIN);
+  assert.equal(h.state().queue[id].status, "done");
+  assert.equal(h.state().queue[id].outcome, "created");
 });
 
 test("取り消し・結果なしなら起動し直し、max_dispatches 回で諦める", async () => {
@@ -343,7 +359,7 @@ test("作れなかった（retry）なら実行の終了後に起動し直す", 
   h.feeds["https://feeds.test/openai.xml"].unshift({ title: "Introducing GPT-7", url: "https://ex.test/gpt-7", at: T0 });
   await h.run(T0 + 2 * MIN);
   const id = await itemId("https://ex.test/gpt-7");
-  h.world.acks = { [id]: { outcome: "retry" } };
+  h.world.acks = { [id]: { outcome: "retry", finishedAt: new Date(T0 + 3 * MIN).toISOString() } };
   h.world.runs = [{ status: "in_progress", display_title: `${RUN_PREFIX} https://ex.test/gpt-7`, created_at: new Date(T0 + 2 * MIN).toISOString() }];
   await h.run(T0 + 4 * MIN);
   assert.equal(h.calls.dispatches.length, 1);

@@ -655,6 +655,57 @@ def mark(state: dict, item: dict, **extra) -> None:
     state["failed_web"].pop(item["id"], None)
 
 
+# 速報レーンで作り直さない見送り（ほかの記事と同じ話題・続報に新しい事実が無い）
+KEEP_SKIP_PREFIXES = ("dedupe", "followup")
+# 主要企業の公式発表で本文が読めなかったとき、processed にせず読み直す時間
+SHORT_RETRY_HOURS = 24
+
+
+def top_tier(item_or_url) -> bool:
+    """速報レーンの対象の発信元（主要企業の公式ニュースルーム）か"""
+    url = item_or_url if isinstance(item_or_url, str) else item_or_url.get("url", "")
+    return fast_lane.allowed_url(url)
+
+
+def short_text_retry(state: dict, item: dict) -> bool:
+    """本文が読めなかった主要企業の公式発表を、SHORT_RETRY_HOURS のあいだ processed にせず再挑戦させるか"""
+    if not top_tier(item):
+        return False
+    retry = state.setdefault("short_text_retry", {})
+    first = retry.setdefault(item["id"], datetime.now(timezone.utc).isoformat())
+    try:
+        if datetime.now(timezone.utc) - datetime.fromisoformat(first) < timedelta(hours=SHORT_RETRY_HOURS):
+            return True
+    except ValueError:
+        pass
+    retry.pop(item["id"], None)
+    return False
+
+
+def reopen_short_text(state: dict, now: datetime) -> None:
+    """以前の回で「本文が短い」として processed にした主要企業の公式発表のうち、24時間以内のものを再挑戦に戻す
+    （読み取りサービスの鍵が無かった・一時的に読めなかったなど）。古い再挑戦の記録は消す"""
+    retry = state.setdefault("short_text_retry", {})
+    for key, value in list(state.get("processed_web", {}).items()):
+        if not (isinstance(value, dict) and value.get("skipped") and str(value.get("reason", "")).startswith("short text")):
+            continue
+        try:
+            # 再挑戦の期間は「最初に読めなかった時刻」から数える（見送りの記録を付け直すたびに延びないように）
+            first = datetime.fromisoformat(retry.get(key) or value["at"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        if now - first < timedelta(hours=SHORT_RETRY_HOURS) and top_tier(value.get("url", "")):
+            del state["processed_web"][key]
+            retry.setdefault(key, value["at"])
+            log(f"[info] 本文が読めず見送った公式発表を再挑戦に戻します: {value.get('url', '')[:90]}")
+    for key, first in list(retry.items()):
+        try:
+            if now - datetime.fromisoformat(first) > timedelta(hours=SHORT_RETRY_HOURS * 3):
+                retry.pop(key, None)
+        except (TypeError, ValueError):
+            retry.pop(key, None)
+
+
 def prune_processed(state: dict, keep_days: int = 14) -> None:
     """processed_web が際限なく増えないよう、対象期間（--days）より十分古い記録を消す"""
     since = datetime.now(timezone.utc) - timedelta(days=keep_days)
@@ -790,7 +841,7 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
     by_url = {feeds.item_id(meta["url"]): meta for meta in metas}
     ordered = list(dict.fromkeys([*urls, *(meta["url"] for meta in metas)]))[:3]
     acks = fast_lane.load_acks()
-    cap = int(fast_lane.rules()["daily_max"]) + 2  # Worker の上限＋手動の余裕
+    cap = int(fast_lane.rules()["daily_max"])  # 1日の上限（Worker と同じ。通常の回の --daily-cap とは別枠）
     items: list[dict] = []
     results: dict[str, dict] = {}
     for url in ordered:
@@ -853,13 +904,12 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
             results[key] = {**base, "outcome": "retry", "reason": "見出しが取れない"}
             continue
         done = state["processed_web"].get(iid) or {}
-        if done.get("skipped") and str(done.get("reason", "")).startswith(("short text", "major gave up")) and len(
-            item.get("content") or ""
-        ) >= MIN_TEXT_CHARS:
-            # 通常の回が本文を読めずに見送った記事（openai.com の 403 など）。Worker の本文で作り直す
-            log(f"[fast] 通常の回では本文が読めず見送っていた記事を、Worker の本文で作り直します（{done.get('reason')}）")
+        if done and not (done.get("slug") or done.get("updated")) and not str(done.get("reason", "")).startswith(KEEP_SKIP_PREFIXES):
+            # 処理済みでも記事になっていない（本文が読めない・品質で落ちた・足切りなど）。速報レーンでは作り直す
+            log(f"[fast] 前に見送った記事（{str(done.get('reason', ''))[:60]}）を作り直します")
             del state["processed_web"][iid]
             state["major_tries"].pop(iid, None)
+            state["failed_web"].pop(iid, None)
         if iid in state["processed_web"]:
             done = state["processed_web"][iid]
             results[key] = {
@@ -941,6 +991,7 @@ def main() -> int:
     state.setdefault("failed_web", {})
     state.setdefault("major_tries", {})
     run_detected_at = datetime.now(timezone.utc)
+    reopen_short_text(state, run_detected_at)
 
     if fast_mode:
         # 速報レーン: 待たせないよう、生成・事実確認・続報の判定をすべて quality の段で行い、ほかのレーンは回さない
@@ -1405,6 +1456,9 @@ def main() -> int:
             log(f"   [skip] 本文が短い（{len(text)}字）")
             if major:
                 major_retry(item, f"本文が短い（{len(text)}字）")
+            elif short_text_retry(state, item):
+                log(f"   [retry] 主要企業の公式発表なので processed にせず、{SHORT_RETRY_HOURS}時間は次の回で読み直す")
+                run_status[item["id"]] = ("failed", feeds.source_rank(item))
             else:
                 mark(state, item, skipped=True, reason=f"short text {len(text)}")
                 run_status[item["id"]] = ("failed", feeds.source_rank(item))
