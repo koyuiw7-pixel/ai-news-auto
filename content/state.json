@@ -3950,6 +3950,14 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/news/r8/sonota/20260819.html"
     },
+    "50be6356c75cd37f": {
+      "at": "2026-10-27T21:24:03.368566+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "softbank-net-safety-education-oita",
+      "url": "https://www.softbank.jp/sbnews/entry/20261027_02"
+    },
     "5123d02aff8feaa8": {
       "at": "2026-10-27T03:05:10.759248+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -3989,6 +3997,12 @@
       "reason": "quality: 本文が短い（1860字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000004.000181678.html"
+    },
+    "56abb930daea0460": {
+      "at": "2026-10-27T21:22:00.215462+00:00",
+      "reason": "followup: 新しい事実なし（ntt-docomo-kumamoto-earthquake-volunteer）",
+      "skipped": true,
+      "url": "https://www.docomo.ne.jp/info/news_release/2026/10/27_00.html"
     },
     "57626b3cad5444ca": {
       "at": "2026-10-26T23:21:40.235044+00:00",
@@ -5324,6 +5338,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000069.000011615.html"
     },
+    "bd1d4bdc3c50f366": {
+      "at": "2026-10-27T21:21:25.475509+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "当該記事は大臣の記者会見の開催案内およびその要旨の掲載予告であり、読者が実際に手続きや利用を行うための新しい制度やサービス、給付等の具体的な情報が含まれていないため。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202610/video-326677.html"
+    },
     "bd382eb30859e3bb": {
       "at": "2026-10-27T03:04:42.979015+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -6189,60 +6210,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-26T21:01:05.956895+00:00",
-      "attempt": 1,
-      "id": "1797980fa3e7a238",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "mhlw",
-      "title": "薬剤師免許に関するオンライン申請手続きのご案内"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T21:14:34.391185+00:00",
-      "attempt": 1,
-      "id": "7ca3445894680534",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "atpress",
-      "title": "農地管理代行「ファーマーズエージェント(R)」、利用農家数が2023年から2年間で約2.3倍に増加"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T21:41:07.222323+00:00",
-      "attempt": 1,
-      "id": "157f623c815d8fdb251103227384a9b6600381ff",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1493字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "フィラデルフィア半導体株指数"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T21:41:13.628255+00:00",
-      "attempt": 2,
-      "id": "157f623c815d8fdb251103227384a9b6600381ff",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1463字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（392字 / 基準 400字以上）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "フィラデルフィア半導体株指数"
-    },
     {
       "accepted": false,
       "at": "2026-10-26T21:41:22.076654+00:00",
@@ -11931,6 +11898,94 @@
       "score": 100,
       "source": "mhlw",
       "title": "令和７(2025)年度衛生行政報告例の概況"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T21:22:07.542843+00:00",
+      "attempt": 1,
+      "id": "50be6356c75cd37f",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1105字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 128.9,
+        "avg_sentence": 49.1,
+        "long_share": 0.333,
+        "max_paragraph": 197,
+        "paragraphs": 8,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "softbank-news",
+      "title": "スマホやSNSの「わが家のルール」を考えるきっかけに。大分県内120校の子どもたちに伝える情報モラル"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T21:22:26.910356+00:00",
+      "attempt": 2,
+      "id": "50be6356c75cd37f",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1546字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 129.3,
+        "avg_sentence": 44.8,
+        "long_share": 0.115,
+        "max_paragraph": 171,
+        "paragraphs": 9,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "softbank-news",
+      "title": "スマホやSNSの「わが家のルール」を考えるきっかけに。大分県内120校の子どもたちに伝える情報モラル"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T21:23:57.833040+00:00",
+      "attempt": 2,
+      "id": "50be6356c75cd37f",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "段落が長い（平均 163.0字・最長 188字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 163.0,
+        "avg_sentence": 44.5,
+        "long_share": 0.091,
+        "max_paragraph": 188,
+        "paragraphs": 9,
+        "sentences": 33
+      },
+      "score": 100,
+      "source": "softbank-news",
+      "title": "スマホやSNSの「わが家のルール」を考えるきっかけに。大分県内120校の子どもたちに伝える情報モラル"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T21:24:03.368066+00:00",
+      "attempt": 0,
+      "id": "50be6356c75cd37f",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: スペックと価格の表で「費用：無料」と記載 → 元記事に費用の言及はなく、断定できないため。; 「昨年度は100校でした」 → 元記事では「昨年度は100校」とあるが、文脈上「昨年度（2025年度）」と明記されておらず、断定的な記述は不正確。"
+      ],
+      "readability": {
+        "avg_paragraph": 163.0,
+        "avg_sentence": 44.5,
+        "long_share": 0.091,
+        "max_paragraph": 188,
+        "paragraphs": 9,
+        "sentences": 33
+      },
+      "score": 100,
+      "source": "softbank-news",
+      "title": "スマホやSNSの「わが家のルール」を考えるきっかけに。大分県内120校の子どもたちに伝える情報モラル"
     }
   ],
   "short_text_retry": {
