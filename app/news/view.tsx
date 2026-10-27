@@ -40,7 +40,8 @@ export default function NewsView({ page }: { page: number }) {
             <GenreChips genres={genres} active="all" />
           </div>
           <div className="mt-8">
-            <NewsGrid articles={paged.items} priority={page === 1 ? 4 : 0} />
+            {/* LCP は上の説明文。写真（配信元のまま数百KBのものもある）は先読みせず遅延読み込みにする */}
+            <NewsGrid articles={paged.items} />
           </div>
           <Pagination base="/news" page={page} totalPages={paged.totalPages} />
         </>
