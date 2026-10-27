@@ -3004,6 +3004,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000003729.000022425.html"
     },
+    "077bebe706eb696a": {
+      "at": "2026-10-27T18:31:51.429066+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "science",
+      "slug": "hiroshima-u-baseball-umpire-bayesian-model",
+      "url": "https://www.hiroshima-u.ac.jp/news/100883"
+    },
     "07b58d791bb981c0": {
       "at": "2026-10-27T03:04:42.977544+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（オープン）",
@@ -3211,6 +3219,12 @@
       "section": "public",
       "slug": "pharmacist-license-online-application",
       "url": "https://www.mhlw.go.jp/bunya/iyakuhin/yakuzaishi/menkyo.html"
+    },
+    "17afb76fbd6d3e2b": {
+      "at": "2026-10-27T18:31:29.945936+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（講座）",
+      "skipped": true,
+      "url": "https://www.nii.ac.jp/news/2026/1027-1.html"
     },
     "17f01e402b890883": {
       "at": "2026-10-27T01:54:49.658772+00:00",
@@ -5447,6 +5461,14 @@
       "slug": "attic-family-jewels-auction-100m-yen",
       "url": "https://www.atpress.ne.jp/news/644497"
     },
+    "d762cc9acb4c6ed6": {
+      "at": "2026-10-27T18:31:29.945739+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "amazon-renaissance-developer-ai-guidelines",
+      "url": "https://www.aboutamazon.com/news/company-news/amazon-software-engineer-role-guideline-ai?utm_source=rss"
+    },
     "d767bd74c5768f01": {
       "at": "2026-10-27T03:04:42.977867+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
@@ -5893,77 +5915,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-26T16:11:24.751923+00:00",
-      "attempt": 1,
-      "id": "188e9fbc4643b05c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1674字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（394字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "score": null,
-      "source": "google-ai-blog",
-      "title": "Our newest AI Quest: Mapping the human brain"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T16:11:49.835511+00:00",
-      "attempt": 2,
-      "id": "188e9fbc4643b05c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1945字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "google-ai-blog",
-      "title": "Our newest AI Quest: Mapping the human brain"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T16:12:15.505504+00:00",
-      "attempt": 1,
-      "id": "3650ab66a57422eb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1643字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（392字 / 基準 400字以上）"
-      ],
-      "score": null,
-      "source": "softbank-news",
-      "title": "学びを生かし、東北で働く若者を増やしたい。地域の人材育成と活性化を目指す連携協定を東北学院大学と締結"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T16:13:30.244208+00:00",
-      "attempt": 2,
-      "id": "3650ab66a57422eb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "softbank-news",
-      "title": "学びを生かし、東北で働く若者を増やしたい。地域の人材育成と活性化を目指す連携協定を東北学院大学と締結"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T16:31:28.230618+00:00",
-      "attempt": 1,
-      "id": "45f0e915baa687e3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1792字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "書籍『生成AIでつくる小さな会社の人事のしくみ』10月26日（月）発売"
-    },
     {
       "accepted": false,
       "at": "2026-10-26T16:31:58.142474+00:00",
@@ -11088,6 +11039,120 @@
       "score": 100,
       "source": "kddi-news",
       "title": "産業創出の実践拠点「アライアンスパーク・プロジェクト」始動"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T18:31:15.332219+00:00",
+      "attempt": 1,
+      "id": "d762cc9acb4c6ed6",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2082字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（356字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 142.3,
+        "avg_sentence": 59.3,
+        "long_share": 0.542,
+        "max_paragraph": 217,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "about-amazon",
+      "title": "An update from Amazon engineering leadership on the role of the developer in the"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T18:31:24.771768+00:00",
+      "attempt": 2,
+      "id": "d762cc9acb4c6ed6",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 74.2字・60字超の文が 60% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 148.4字・最長 191字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 148.4,
+        "avg_sentence": 74.2,
+        "long_share": 0.6,
+        "max_paragraph": 191,
+        "paragraphs": 15,
+        "sentences": 30
+      },
+      "score": 100,
+      "source": "about-amazon",
+      "title": "An update from Amazon engineering leadership on the role of the developer in the"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T18:31:29.945304+00:00",
+      "attempt": 0,
+      "id": "d762cc9acb4c6ed6",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（74.2→74.2字）"
+      ],
+      "readability": {
+        "avg_paragraph": 148.4,
+        "avg_sentence": 74.2,
+        "long_share": 0.6,
+        "max_paragraph": 191,
+        "paragraphs": 15,
+        "sentences": 30
+      },
+      "score": 100,
+      "source": "about-amazon",
+      "title": "An update from Amazon engineering leadership on the role of the developer in the"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T18:31:41.944536+00:00",
+      "attempt": 1,
+      "id": "077bebe706eb696a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 63.2字・60字超の文が 60% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 175.7字・最長 227字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 175.7,
+        "avg_sentence": 63.2,
+        "long_share": 0.6,
+        "max_paragraph": 227,
+        "paragraphs": 9,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "hiroshima-u",
+      "title": "【研究成果】3ボールだとストライクゾーンが広がる？ ～米大リーグ審判の判定の偏りを、脳の「予測」のしくみで説明～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T18:31:51.428647+00:00",
+      "attempt": 0,
+      "id": "077bebe706eb696a",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 45.7字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 160.0字・最長 213字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 160.0,
+        "avg_sentence": 45.7,
+        "long_share": 0.171,
+        "max_paragraph": 213,
+        "paragraphs": 10,
+        "sentences": 35
+      },
+      "score": 100,
+      "source": "hiroshima-u",
+      "title": "【研究成果】3ボールだとストライクゾーンが広がる？ ～米大リーグ審判の判定の偏りを、脳の「予測」のしくみで説明～"
     }
   ],
   "short_text_retry": {
