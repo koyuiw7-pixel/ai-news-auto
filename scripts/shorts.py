@@ -249,12 +249,20 @@ def unread_numbers(script: dict) -> list[str]:
     return bad
 
 
+def latin_words(script: dict) -> list[str]:
+    """読み上げ文に残った英単語（AI・API などの大文字略語は読めるので許す）"""
+    found = []
+    for line in [script["hook"]] + script["points"]:
+        found += re.findall(r"[A-Za-z]*[a-z]{2,}[A-Za-z]*", line.get("speech", ""))
+    return found
+
+
 def write_script(a: dict) -> tuple[dict, str]:
     material = article_material(a)
     prompt = f"# 資料\n{material}\n\n上の資料だけを使って、決まりどおりの台本を JSON で書いてください。"
     feedback = ""
     last: Exception | None = None
-    for attempt in range(3):
+    for attempt in range(4):
         try:
             data, model = llm.generate_json(SCRIPT_SYSTEM, prompt + feedback, SCRIPT_SCHEMA, temperature=0.4, max_output_tokens=4096, tier="bulk")
         except RuntimeError as error:
@@ -275,6 +283,11 @@ def write_script(a: dict) -> tuple[dict, str]:
         if unread:
             log(f"   [shorts] 読み上げ文に数字が無い {unread} -> 書き直し")
             feedback = f"\n\n# 前回の問題\nspeech で数字 {', '.join(unread)} をかなで書きました。speech でも数字はアラビア数字のまま書いてください。"
+            continue
+        latin = latin_words(data)
+        if latin:
+            log(f"   [shorts] 読み上げ文に英単語 {latin} -> 書き直し")
+            feedback = f"\n\n# 前回の問題\nspeech に英単語 {', '.join(latin)} が残っています。speech では英単語をカタカナにしてください。"
             continue
         claims = unsupported_claims(data, material)
         if claims:
