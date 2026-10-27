@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import fs from "@/lib/content-fs";
 import path from "node:path";
 import { apiJson, authorize, handleOptions } from "@/lib/api-auth";
 import { getAllArticles, getAllChannels, getAllGenres } from "@/lib/articles";

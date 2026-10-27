@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import fs from "@/lib/content-fs";
 import path from "node:path";
 import { getArticle, type Article } from "@/lib/articles";
 import { partnerItem, type OfferItem } from "@/lib/offers";

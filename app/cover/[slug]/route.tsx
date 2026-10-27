@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+import { promises as fs } from "@/lib/content-fs";
 import path from "node:path";
 import { loadDefaultJapaneseParser } from "budoux";
 import { ImageResponse } from "next/og";
@@ -143,6 +143,40 @@ async function fallbackCover(color: string): Promise<Response> {
   }
 }
 
+type CoverBackground = { src: string | null; photo: boolean; cssShade: boolean };
+
+/**
+ * 背景。通常は sharp で切り抜き・陰影を焼き込む。
+ * Cloudflare Workers では sharp が使えないので、写真は URL のまま敷き、陰影は CSS で付ける
+ */
+async function coverBackground(url: string, color: string): Promise<CoverBackground> {
+  try {
+    const photo = await fetchPhoto(url);
+    const base = await basePhoto(photo, color);
+    return { src: await toDataUrl(await withBottomShade(base, 0.38, 0.88)), photo: Boolean(photo), cssShade: false };
+  } catch {
+    const src = await reachablePhoto(url);
+    return { src, photo: Boolean(src), cssShade: true };
+  }
+}
+
+/** 画像として取得できる URL（YouTube の高解像度版が無ければ標準画質） */
+async function reachablePhoto(url: string): Promise<string | null> {
+  if (!url || !/^https?:\/\//.test(url)) return null;
+  const candidates = url.includes("maxresdefault") ? [url, url.replace("maxresdefault", "hqdefault")] : [url];
+  for (const candidate of candidates) {
+    try {
+      const res = await fetch(candidate, { method: "HEAD", signal: AbortSignal.timeout(5000) });
+      const type = res.headers.get("content-type") ?? "";
+      // 描画エンジンが読める形式だけ
+      if (res.ok && /image\/(jpeg|png)/.test(type)) return candidate;
+    } catch {
+      // 次の候補へ
+    }
+  }
+  return null;
+}
+
 async function renderCover(article: Article): Promise<ImageResponse> {
   const company = companyOf(article);
   const isOther = company.slug === "other";
@@ -152,9 +186,9 @@ async function renderCover(article: Article): Promise<ImageResponse> {
   const title = article.seoTitle || article.title;
   const parts = splitTitle(title);
 
-  const [photo, fontData] = await Promise.all([fetchPhoto(article.thumbnail), loadFonts()]);
-  const base = await basePhoto(photo, isOther ? "#1d1d22" : company.color);
-  const background = await toDataUrl(await withBottomShade(base, 0.38, 0.88));
+  const baseColor = isOther ? "#1d1d22" : company.color;
+  const [bg, fontData] = await Promise.all([coverBackground(article.thumbnail, baseColor), loadFonts()]);
+  const photo = bg.photo;
 
   // 製品名は1行に収める（長ければ小さくする）
   const headSize = parts ? Math.min(58, Math.floor(TEXT_WIDTH / Math.max(emWidth(parts.head), 1))) : 0;
@@ -167,12 +201,27 @@ async function renderCover(article: Article): Promise<ImageResponse> {
           height: HEIGHT,
           display: "flex",
           position: "relative",
-          background: "#111",
+          background: bg.src ? "#111" : baseColor,
           fontFamily: "Noto",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={background} alt="" width={WIDTH} height={HEIGHT} style={{ position: "absolute", left: 0, top: 0 }} />
+        {bg.src && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={bg.src} alt="" width={WIDTH} height={HEIGHT} style={{ position: "absolute", left: 0, top: 0, objectFit: "cover" }} />
+        )}
+        {bg.cssShade && (
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              width: WIDTH,
+              height: HEIGHT,
+              backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0) 38%, rgba(0,0,0,0.88) 100%)",
+            }}
+          />
+        )}
 
         {/* 元動画が削除されて写真が無いときは、企業色の地に企業名を大きく敷く */}
         {!photo && (

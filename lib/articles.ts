@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import fs, { hasVirtualFs } from "@/lib/content-fs";
 import path from "node:path";
 import type { Verdict } from "@/lib/verdict";
 
@@ -183,7 +183,8 @@ export function getRoundups(): Article[] {
 }
 
 export function getArticle(slug: string): Article | undefined {
-  if (cache === null) {
+  // Cloudflare では一覧用の索引に本文が無いので、常に1本ずつ読む
+  if (cache === null || hasVirtualFs()) {
     // 実行時（ISR）は全件を読まず、ファイル名＝slug の1本だけを先に読む
     const one = readOne(slug);
     if (one) return one;

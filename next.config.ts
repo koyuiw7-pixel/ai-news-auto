@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
+// Cloudflare Workers 向けビルド（scripts/cf_build.sh が CF_BUILD=1 を立てる）
+const isCloudflare = process.env.CF_BUILD === "1";
+
 const nextConfig: NextConfig = {
+  // Workers では sharp（ネイティブ）が動かないので代役に差し替える（lib/sharp-cf.ts）
+  ...(isCloudflare ? { turbopack: { resolveAlias: { sharp: "./lib/sharp-cf.ts" } } } : {}),
   images: {
     // Vercel の画像最適化は無料プランの月間上限があり、超えると画像が出なくなる（2026-10 に発生）。
     // YouTube のサムネイルも独自カバーも配信時点で十分軽いので、最適化を使わずそのまま配信する
@@ -39,9 +44,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["marked"],
-    // 記事カードから記事ページへの画面遷移（React の ViewTransition）。
-    // 非対応ブラウザでは何も起きず、通常の遷移になる。
-    viewTransition: true,
+    // 記事カードから記事ページへの画面遷移（React の ViewTransition）は Next 16.4 から標準で有効
   },
 };
 

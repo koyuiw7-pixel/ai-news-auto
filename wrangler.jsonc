@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "saisoku-site",
+  // OpenNext の出力を包み、記事 JSON を静的アセットから先読みする入口
+  "main": "cloudflare/worker.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+    // 記事の元データは公開しない（worker が 404 を返す。env.ASSETS からは読める）
+    "run_worker_first": ["/_content/*"]
+  },
+  "observability": { "enabled": true },
+  "vars": {
+    "NEXT_PUBLIC_SITE_URL": "https://ai-tech-express.jp",
+    // ASP の表示回数ピクセルを本番として出す（components/rail/parts.tsx などが見ている）
+    "VERCEL_ENV": "production"
+  },
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "saisoku-site" }],
+  "kv_namespaces": [{ "binding": "NEXT_INC_CACHE_KV", "id": "15923fe8d91c4b3e8557971d9393656f" }],
+  "durable_objects": {
+    "bindings": [{ "name": "NEXT_CACHE_DO_QUEUE", "class_name": "DOQueueHandler" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["DOQueueHandler"] }]
+}

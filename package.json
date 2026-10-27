@@ -6,24 +6,29 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "cf:build": "sh scripts/cf_build.sh",
+    "cf:deploy": "npm run cf:build && wrangler deploy",
+    "cf:preview": "npm run cf:build && wrangler dev"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "budoux": "^0.9.1",
     "marked": "^18.0.7",
-    "next": "^16.2.12",
+    "next": "^16.4.3",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.20.13",
     "@tailwindcss/postcss": "^4.3.3",
     "@tailwindcss/typography": "^0.5.20",
     "@types/node": "^26.1.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.153.0"
   }
 }

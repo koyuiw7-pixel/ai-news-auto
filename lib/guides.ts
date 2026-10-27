@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import fs from "@/lib/content-fs";
 import path from "node:path";
 import { getAllArticles, type Article } from "@/lib/articles";
 

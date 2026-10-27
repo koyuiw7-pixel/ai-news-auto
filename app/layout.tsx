@@ -70,6 +70,7 @@ export default function RootLayout({
   };
 
   const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+  const cfBeaconToken = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN;
 
   return (
     <html
@@ -110,8 +111,18 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         {/* Vercelダッシュボードで Web Analytics を有効にした時点で計測が始まる。
-            無効のうちは何も送信されないので、先に仕込んでおいて問題ない。 */}
-        <Analytics />
+            無効のうちは何も送信されないので、先に仕込んでおいて問題ない。
+            Cloudflare では NEXT_PUBLIC_VERCEL_ANALYTICS=off で外す */}
+        {process.env.NEXT_PUBLIC_VERCEL_ANALYTICS !== "off" && <Analytics />}
+        {/* Cloudflare Web Analytics。トークンを設定したときだけ読み込む */}
+        {cfBeaconToken && (
+          <Script
+            id="cf-beacon"
+            strategy="afterInteractive"
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({ token: cfBeaconToken })}
+          />
+        )}
       </body>
     </html>
   );
