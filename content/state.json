@@ -4698,6 +4698,14 @@
       "skipped": true,
       "url": "https://www.atpress.ne.jp/news/644549"
     },
+    "952e90918f03ac9c": {
+      "at": "2026-10-27T18:52:13.755124+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "microsoft-copilot-cowork-new-skills",
+      "url": "https://blogs.windows.com/japan/2026/10/26/microsoft-copilot-blog-whats-new-in-cowork-expanded-plugins-and-role-based-skills-4566221/"
+    },
     "95364ce770790d21": {
       "at": "2026-10-26T11:33:38.547453+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5517,6 +5525,12 @@
       "skipped": true,
       "url": "https://huggingface.co/blog/LiquidAI/lfm3"
     },
+    "dc24ba9175b652cd": {
+      "at": "2026-10-27T18:52:14.708443+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（職員）",
+      "skipped": true,
+      "url": "https://www.nii.ac.jp/about/recruit/2026/1027.html"
+    },
     "dc7fa81a76c6698b": {
       "at": "2026-10-26T22:01:24.273435+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5912,92 +5926,17 @@
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000012.000135076.html"
+    },
+    "ffaa4a29c645a46c": {
+      "at": "2026-10-27T18:54:52.268605+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "science",
+      "slug": "hiroshima-u-glioblastoma-mri-ai",
+      "url": "https://www.hiroshima-u.ac.jp/news/100822"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-26T16:31:58.142474+00:00",
-      "attempt": 2,
-      "id": "45f0e915baa687e3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1679字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "書籍『生成AIでつくる小さな会社の人事のしくみ』10月26日（月）発売"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T16:34:20.747067+00:00",
-      "attempt": 1,
-      "id": "422d0454e07d37ab",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "ipa",
-      "title": "ITパスポート試験合格者の学習実態等に関するアンケート結果を公表しました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T16:34:51.088458+00:00",
-      "attempt": 1,
-      "id": "aaf22fbf6fabb7c9",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1911字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "スペースデータ、人型ロボットのラーメン搬送でスープの揺れを比べる物理シミュレーションデモ「RamenLab」を公開"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T16:35:20.540703+00:00",
-      "attempt": 2,
-      "id": "aaf22fbf6fabb7c9",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2095字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "スペースデータ、人型ロボットのラーメン搬送でスープの揺れを比べる物理シミュレーションデモ「RamenLab」を公開"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T16:35:55.669972+00:00",
-      "attempt": 1,
-      "id": "08ef10f23f8f0696",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1916字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（376字 / 基準 400字以上）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "【プレスリリース】スカウト自動化サービス「AIスカウトかんりくん」、リリースから10カ月で導入企業数200社を突破"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T16:36:52.258494+00:00",
-      "attempt": 2,
-      "id": "08ef10f23f8f0696",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "prtimes",
-      "title": "【プレスリリース】スカウト自動化サービス「AIスカウトかんりくん」、リリースから10カ月で導入企業数200社を突破"
-    },
     {
       "accepted": false,
       "at": "2026-10-26T16:49:31.239978+00:00",
@@ -11153,6 +11092,138 @@
       "score": 100,
       "source": "hiroshima-u",
       "title": "【研究成果】3ボールだとストライクゾーンが広がる？ ～米大リーグ審判の判定の偏りを、脳の「予測」のしくみで説明～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T18:51:28.931689+00:00",
+      "attempt": 1,
+      "id": "952e90918f03ac9c",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「2026年10月26日：Windows ブログにて『Cowork の新機能: プラグインの拡充とロールベースのスキル』を発表」→元記事の冒頭には「米国時間 2026 年 10 月 21 日 (水) に公開された」とあり、日付が矛盾しています。"
+      ],
+      "readability": {
+        "avg_paragraph": 140.5,
+        "avg_sentence": 65.8,
+        "long_share": 0.594,
+        "max_paragraph": 294,
+        "paragraphs": 15,
+        "sentences": 32
+      },
+      "score": 85,
+      "source": "windows-blog-jp",
+      "title": "Cowork の新機能: プラグインの拡充とロールベースのスキル"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T18:51:38.578904+00:00",
+      "attempt": 2,
+      "id": "952e90918f03ac9c",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（2448字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 106.1,
+        "avg_sentence": 53.0,
+        "long_share": 0.406,
+        "max_paragraph": 164,
+        "paragraphs": 16,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "windows-blog-jp",
+      "title": "Cowork の新機能: プラグインの拡充とロールベースのスキル"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T18:52:06.342874+00:00",
+      "attempt": 2,
+      "id": "952e90918f03ac9c",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 49.6字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 137.2字・最長 217字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 137.2,
+        "avg_sentence": 49.6,
+        "long_share": 0.277,
+        "max_paragraph": 217,
+        "paragraphs": 17,
+        "sentences": 47
+      },
+      "score": 100,
+      "source": "windows-blog-jp",
+      "title": "Cowork の新機能: プラグインの拡充とロールベースのスキル"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T18:52:13.754644+00:00",
+      "attempt": 0,
+      "id": "952e90918f03ac9c",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「2026年10月21日（米国時間）に発表を行いました」→元記事の冒頭には「米国時間 2026 年 10 月 21 日 (水)」とあるが、2026年10月21日は水曜日ではなく水曜日ではない（2026年10月21日は水曜日であるため、日付と曜日の整合性は取れてい"
+      ],
+      "readability": {
+        "avg_paragraph": 137.2,
+        "avg_sentence": 49.6,
+        "long_share": 0.277,
+        "max_paragraph": 217,
+        "paragraphs": 17,
+        "sentences": 47
+      },
+      "score": 100,
+      "source": "windows-blog-jp",
+      "title": "Cowork の新機能: プラグインの拡充とロールベースのスキル"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T18:54:04.727371+00:00",
+      "attempt": 1,
+      "id": "ffaa4a29c645a46c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 50.5字・60字超の文が 26% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 130.4字・最長 220字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 130.4,
+        "avg_sentence": 50.5,
+        "long_share": 0.258,
+        "max_paragraph": 220,
+        "paragraphs": 12,
+        "sentences": 31
+      },
+      "score": 100,
+      "source": "hiroshima-u",
+      "title": "【研究成果】MRI画像から予後に関わる免疫状態を解明 -画像/遺伝子情報のAI解析より治療薬候補へつながる免疫状態を探索-"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T18:54:52.268183+00:00",
+      "attempt": 0,
+      "id": "ffaa4a29c645a46c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 91.8,
+        "avg_sentence": 43.2,
+        "long_share": 0.118,
+        "max_paragraph": 175,
+        "paragraphs": 16,
+        "sentences": 34
+      },
+      "score": 100,
+      "source": "hiroshima-u",
+      "title": "【研究成果】MRI画像から予後に関わる免疫状態を解明 -画像/遺伝子情報のAI解析より治療薬候補へつながる免疫状態を探索-"
     }
   ],
   "short_text_retry": {
