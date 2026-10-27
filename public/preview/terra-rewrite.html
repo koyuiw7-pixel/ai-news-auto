@@ -1,0 +1,365 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terra記事 書き直し比較</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfaf7;--paper:#ffffff;--ink:#16181d;--soft:#3d424d;--mute:#737985;--line:#e4e2dc;--accent:#0f8a6a;--warn:#c2410c;--good:#0f8a6a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1117;--paper:#151a22;--ink:#eef0f4;--soft:#c9ced8;--mute:#8b93a3;--line:#262d39;--accent:#3cc59b;--warn:#fb923c;--good:#3cc59b}}
+:root[data-theme="dark"]{--bg:#0e1117;--paper:#151a22;--ink:#eef0f4;--soft:#c9ced8;--mute:#8b93a3;--line:#262d39;--accent:#3cc59b;--warn:#fb923c;--good:#3cc59b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;padding:0 16px}
+.wrap{max-width:1240px;margin:0 auto;padding-block:28px 80px}
+h1.page{font-size:clamp(22px,3vw,32px);font-weight:900;margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--mute);font-size:14px;margin:0 0 22px}
+.metrics{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:28px;font-variant-numeric:tabular-nums;background:var(--paper);border:1px solid var(--line)}
+.metrics th,.metrics td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
+.metrics td.n{text-align:right;font-weight:700}.bad{color:var(--warn)}.ok{color:var(--good)}
+.tabs{display:none;gap:8px;margin-bottom:14px}.tabs button{flex:1;padding:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;font-weight:700;border-radius:8px;cursor:pointer}
+.tabs button[aria-selected="true"]{border-color:var(--ink)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.col{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px 26px;min-width:0}
+.label{font-size:12px;letter-spacing:.08em;font-weight:700;color:var(--mute);margin-bottom:6px}
+.col h2.t{font-size:22px;font-weight:900;margin:0 0 18px;line-height:1.45}
+.art{font-size:17px;line-height:1.95;color:var(--soft);max-width:36em;letter-spacing:.01em}
+.art h2{font-size:21px;line-height:1.5;color:var(--ink);font-weight:800;margin:2.2em 0 .7em;padding-top:.9em;border-top:1px solid var(--line)}
+.art h2:first-child{margin-top:0;border-top:0;padding-top:0}
+.art h3{font-size:18px;color:var(--ink);font-weight:700;margin:1.8em 0 .5em}
+.art p{margin:0 0 1.05em}.art strong{color:var(--ink);font-weight:700}
+.art ul{padding-left:1.2em;margin:0 0 1.1em}.art li{margin:.25em 0}
+.art a{color:var(--accent)}
+.art code{font-size:.9em;background:var(--bg);padding:1px 5px;border-radius:4px}
+.tbl{overflow-x:auto;margin:0 0 1.3em}
+.art table{border-collapse:collapse;font-size:14.5px;line-height:1.6;min-width:100%;font-variant-numeric:tabular-nums}
+.art th,.art td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.art th{color:var(--ink);font-weight:700;white-space:nowrap}
+@media (max-width:820px){.tabs{display:flex}.cols{grid-template-columns:1fr}.col{display:none;padding:20px 18px}.col.on{display:block}}
+</style></head><body><div class="wrap">
+<h1 class="page">同じ記事を「読みやすさのルール」で書き直すと</h1>
+<p class="sub">GPT-6.1 Terraの記事。事実・数字はそのまま、書き方だけを変えています（デザインは両方同じ）。</p>
+<table class="metrics"><thead><tr><th></th><th>読みやすい目安</th><th style="text-align:right">今の記事</th><th style="text-align:right">書き直し</th></tr></thead><tbody>
+<tr><td>1文の平均の長さ</td><td>40〜50字</td><td class="n bad">67字</td><td class="n ok">33字</td></tr>
+<tr><td>60字を超える長い文</td><td>なるべく少なく</td><td class="n bad">52%</td><td class="n ok">6%</td></tr>
+<tr><td>1段落の平均の長さ</td><td>100字前後</td><td class="n">102字</td><td class="n ok">47字</td></tr>
+<tr><td>一番長い段落</td><td>—</td><td class="n bad">287字</td><td class="n ok">89字</td></tr>
+<tr><td>記事全体の文字数</td><td>—</td><td class="n">5,169字</td><td class="n ok">3,387字</td></tr>
+</tbody></table>
+<div class="tabs" role="tablist"><button id="tb" role="tab" aria-selected="false" data-t="b">今の記事</button><button id="ta" role="tab" aria-selected="true" data-t="a">書き直し</button></div>
+<div class="cols">
+<section class="col" id="cb"><div class="label">BEFORE ・ 今の記事</div><h2 class="t">ChatGPTのOpenAIが新AIモデル「GPT-6.1 Terra」 料金は半分、パソコン操作も得意に</h2><div class="art"><h2>ひとことで言うと</h2>
+<p>OpenAIは2026年10月26日、AIモデルの新しい標準となる「GPT-6.1 Terra」を公開しました。このモデルは、人間の代わりにパソコンの画面を見てキーボードやマウスを操作する能力と、複雑な図面や画像を読み解く能力を、従来の半分のコストで実現します。</p>
+<p>これまで高額な費用がかかっていた大量のデータ処理や複雑なPC操作を、迅速かつ低価格で自動化できる点が特徴です。実務の現場におけるAI活用を一歩先へ進めるモデルといえます。</p>
+<h2>これまでの流れ</h2>
+<p>OpenAIはこれまで、エージェント能力の向上と運用の効率化を両立させる開発を進めてきました。</p>
+<p>10月2日には自律型エージェントの最高峰モデルとして「GPT-6 Astra」の詳細を公表し（<a href="https://ai-tech-express.jp/articles/openai-gpt-6-astra-comprehensive-guide-matome">「GPT-6 Astra」全機能まとめ</a>）、極めて高い処理能力を示しました。一方で、10月22日には「GPT-5.6」モデルが企業向けナレッジツール「V7 Go」に統合される（[V7がGPT-5.6統合のV7 Goを発表](/articles/v7-go-gpt-5-6-integration-context-graph]）など、実務への適用も広がっていました。</p>
+<p>さらに10月26日には、フラッグシップモデルの系譜として「GPT-6.1 Sol」の活用事例が報じられるなど（<a href="https://ai-tech-express.jp/articles/ai-hack-claude-sonnet-5-5-gpt-6-1-sol">AIO分析AI HackがClaude Sonnet 5.5とGPT-6.1 Solに対応</a>）、用途に応じたモデルの分化が進んでいました。今回の「GPT-6.1 Terra」は、これらの流れを受けてコストパフォーマンスと処理速度を極限まで突き詰めた位置づけとなります。</p>
+<h2>何が発表されたのか</h2>
+<p>OpenAI公式ブログによると、今回発表された「GPT-6.1 Terra」は即日提供が開始されています。</p>
+<p>研究段階のデモではなく、製品版として一般提供（GA）されたモデルです。ChatGPTの法人・個人向け有料プランである「ChatGPT Work」や「Codex」、そして開発者向けの「OpenAI API」を通じて、世界中で一斉に利用可能になりました。</p>
+<p>前世代の軽量モデル「GPT-5.6 Terra」の正統な後継でありつつ、上位モデルである「GPT-6.1 Sol」や「GPT-6 Astra」が持つ高度な機能を、極めて低い単価で提供することを目的としています。</p>
+<h2>発表された機能・アップデートの全容</h2>
+<p>元記事で明かされた主要な性能向上と実務上の変化について解説します。</p>
+<h3>50%のコスト削減と3倍以上の高速化</h3>
+<p>GPT-6.1 Terraの最大の魅力は、圧倒的な経済性とレスポンスの速さです。標準API価格は前世代の「GPT-5.6 Terra」および同世代の上位版「GPT-6.1 Sol」と比較して半額（50%オフ）に設定されました。</p>
+<p>処理スピードにおいても、「GPT-6 Astra」や「GPT-6.1 Sol」と比べて3倍以上高速に動作します。これにより、これまで費用や時間の観点から断念していた「届いた大量のPDF請求書を画像として読み取り、そのまま会計ソフトに入力する」といった高ボリュームなルーチン業務の自動化が現実的になります。</p>
+<p>ChatGPT WorkやCodexのユーザーにとっても、従来の利用枠制限（利用上限）の中で、より多くのタスクを消化できるようになります。</p>
+<h3>建築図面の3D化や動画編集をこなす視覚・PC操作能力</h3>
+<p>単に文章を生成するだけでなく、画面上の情報を読み取って実際の操作につなげる「Computer Use」機能が大幅に向上しました。</p>
+<p>実務タスクの総合ベンチマーク「Agents&#39; Last Exam」では、建築の平面図面を読み込んで3Dモデルに変換する作業や、アニメーション映画を1フレームずつ確認して復元チーム向けのタイムコードログを作成するような専門的作業を評価しています。</p>
+<p>中程度の推論設定（medium reasoning effort）において、GPT-6.1 Terraは前世代（GPT-5.6 Terra）より15パーセンタイル高いスコアを、約3分の1のコストで記録しました。さらに最上位モデルの「GPT-6 Astra」と同等の精度を、10分の1のトークン単価で達成しています。</p>
+<h3>誤答（ハルシネーション）率の大幅な低下</h3>
+<p>AIがもっともらしい嘘をつく「ハルシネーション」の抑制は、ビジネス利用における最優先課題でした。OpenAIはこの1年間で事実性の向上に重点的な投資を行ってきたと説明しています。</p>
+<p>誤導を引き起こしやすいプロンプトを集めた内部ベンチマークテストにおいて、低い推論設定時のエラー率は、GPT-5.6 Terraの53.6%から、GPT-6.1 Terraでは16.7%へと激減しました。約37ポイントという大幅な改善です。</p>
+<p>最大推論設定（max effort）ではエラー率が4.3%まで低下し、最高峰モデルであるGPT-6 AstraやGPT-6.1 Solの精度に肉薄しています。</p>
+<h3>ターミナル操作による開発作業の自動化</h3>
+<p>ソフトウェアエンジニアリングの領域でも顕著な進化が見られます。コマンドラインを通じて問題を解決するベンチマーク「Terminal-Bench 4.0」では、Webページの読み込み時に起きるレイアウト崩れを修正するようなタスクが課されます。</p>
+<p>最大推論設定において、GPT-6.1 Terraは50.3%の成功率を記録しました。これはGPT-5.6 Terraが記録していた21.5%の2倍以上のスコアです。科学的な研究コードを実行する「Terminal-Bench-Science 0.1」でも上位モデルに匹敵する成果を示しています。ただし元記事では、最も極限的な複雑さを持つコーディング作業には、依然として「GPT-6.1 Sol」や「GPT-6 Astra」が最適であると添えられています。</p>
+<h2>性能・ベンチマーク</h2>
+<p>元記事で示された評価指標とスコアの比較結果を以下の表にまとめます。</p>
+<table>
+<thead>
+<tr>
+<th>ベンチマーク名 / 評価内容</th>
+<th>GPT-6.1 Terraの成果</th>
+<th>比較対象との差分 / 出典</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agents&#39; Last Exam (中推論)</td>
+<td>GPT-5.6 Terra比で+15%</td>
+<td>コストは約1/3に低減</td>
+<td>元記事</td>
+</tr>
+<tr>
+<td>Agents&#39; Last Exam (中推論)</td>
+<td>GPT-6 Astraと同等精度</td>
+<td>トークン単価は1/10</td>
+<td>元記事</td>
+</tr>
+<tr>
+<td>Agents&#39; Last Exam (最大推論)</td>
+<td>タスクあたりコスト約9x削減</td>
+<td>Claude Opus 5.5比で単価1/4・効率3倍</td>
+<td>元記事</td>
+</tr>
+<tr>
+<td>処理速度 (タスク完了時間)</td>
+<td>3倍以上高速</td>
+<td>GPT-6 Astra / GPT-6.1 Sol比</td>
+<td>元記事</td>
+</tr>
+<tr>
+<td>内部ハルシネーションテスト (低推論)</td>
+<td>エラー率 16.7%</td>
+<td>GPT-5.6 Terra (53.6%) から約37%改善</td>
+<td>元記事</td>
+</tr>
+<tr>
+<td>内部ハルシネーションテスト (最大推論)</td>
+<td>エラー率 4.3%</td>
+<td>GPT-5.6 Terraから18%改善、上位水準に到達</td>
+<td>元記事</td>
+</tr>
+<tr>
+<td>Terminal-Bench 4.0 (最大推論)</td>
+<td>タスク解決率 50.3%</td>
+<td>GPT-5.6 Terra (21.5%) の2倍以上</td>
+<td>元記事</td>
+</tr>
+<tr>
+<td>Terminal-Bench-Science 0.1 (最大推論)</td>
+<td>GPT-6.1 Solを上回る</td>
+<td>Opus 5.5の5pt差以内に迫りコスト1/5未満</td>
+<td>元記事</td>
+</tr>
+</tbody></table>
+<h2>競合サービスとの比較</h2>
+<p>今回の発表内容を、競合他社であるAnthropicの最上位モデル「Claude Opus 5.5」と比較した状況は以下の通りです。</p>
+<table>
+<thead>
+<tr>
+<th>評価項目</th>
+<th>GPT-6.1 Terra</th>
+<th>Claude Opus 5.5（競合）</th>
+<th>補足・考察（編集部注）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>トークンあたりの価格</td>
+<td>非常に安価（入力$1/1M）</td>
+<td>高価（Terraの約4倍）</td>
+<td>Terraは圧倒的なコスト優位性を持つ</td>
+</tr>
+<tr>
+<td>トークン処理効率</td>
+<td>高い（Opusの3倍以上）</td>
+<td>標準的</td>
+<td>同じタスクにかかるトークン数が少ない</td>
+</tr>
+<tr>
+<td>タスクあたりの総合コスト</td>
+<td>約9分の1</td>
+<td>基準値</td>
+<td>量的処理においてTerraが圧倒的</td>
+</tr>
+<tr>
+<td>科学研究コード実行精度</td>
+<td>Opusの5ポイント以内に到達</td>
+<td>最優秀クラス</td>
+<td>僅差まで迫りつつコストを大幅削減</td>
+</tr>
+</tbody></table>
+<p>編集部の見立てでは、絶対的な思考力や極限の複雑さを求める処理ではClaude Opus 5.5やGPT-6 Astraに軍配が上がる局面もあります。しかし、実務で日常的に発生する自動化処理においては、GPT-6.1 Terraの圧倒的なコストパフォーマンスとスピードが強烈な武器になります。</p>
+<h2>料金・提供プラン</h2>
+<p>GPT-6.1 Terraの料金体系および提供状況は以下の通り整理されています。</p>
+<ul>
+<li><strong>ChatGPT環境での提供</strong>: Plus、Pro、Enterprise、Eduの各プランを利用中の「ChatGPT Work」および「Codex」ユーザーに対し、即日開放されました。</li>
+<li><strong>API経由での利用</strong>: モデル識別子 <code>gpt-6.1-terra</code> として利用可能です。</li>
+<li><strong>標準API価格</strong>: <ul>
+<li>入力トークン（Input）: 100万トークンあたり 1.00ドル</li>
+<li>キャッシュ済み入力トークン（Cached Input）: 100万トークンあたり 0.05ドル</li>
+<li>出力トークン（Output）: 100万トークンあたり 5.00ドル</li>
+</ul>
+</li>
+</ul>
+<p>前世代比で半額となった価格設定により、開発者や事業会社は予算の圧迫を抑えながら大規模なAIエージェントの構築が可能になります。</p>
+<h2>日本から使う方法</h2>
+<p>日本のユーザーが本モデルを利用するための手順と注意点を記載します。</p>
+<ul>
+<li><strong>ChatGPTで使う場合</strong>: ChatGPTのWEBブラウザ版またはアプリ版にログインし、モデル選択メニューから切り替えて使用します（Plus以上の有料アカウントが必要です）。</li>
+<li><strong>APIで使う場合</strong>: OpenAIのPlaygroundまたは自社システム環境から、モデル名に <code>gpt-6.1-terra</code> を指定してリクエストを送信します。</li>
+<li><strong>日本語対応とリージョン restriction</strong>: 日本からのアクセス制限はなく、日本語での入出力にも対応しています。</li>
+</ul>
+<h2>誰にどう効くのか</h2>
+<p>立場ごとの実務への影響とメリットを解説します。</p>
+<h3>エンジニア</h3>
+<p>ターミナルを通じたコード修正やビルドエラーの解決が50%超の精度で自動化されます。APIコストが従来の半額になったため、バックグラウンドで常時監視・修正を行う自律エージェントを予算内で常時稼働させやすくなります。</p>
+<h3>企画・マーケティング</h3>
+<p>画像や動画を含む競合リサーチや、大量の提案資料の作成において、レスポンス速度が3倍になったことで待ち時間が短縮されます。ハルシネーションの激減により、出力結果の裏取り作業にかかる負担も軽減されます。</p>
+<h3>経営層・管理者</h3>
+<p>請求書処理や手書きデータの文字起こしといった、人件費と時間がかかっていたバックオフィス業務の自動化コストが劇的に下がります。API代金を従来の半分に抑えつつ、業務処理能力を安全に引き上げることが可能です。</p>
+<h2>まとめ</h2>
+<p>GPT-6.1 Terraの登場により、「高性能なAIエージェントはコストが高い」という従来の常識が崩れつつあります。</p>
+<p>まずは自社で扱っているルーチン業務やAPI連携ツールにおいて、モデル指定を <code>gpt-6.1-terra</code> に変更し、処理速度とコスト削減の効果を検証することをおすすめします。</p>
+</div></section>
+<section class="col on" id="ca"><div class="label" style="color:var(--accent)">AFTER ・ 書き直し</div><h2 class="t">ChatGPTのOpenAIが新AIモデル「GPT-6.1 Terra」 料金は半分、パソコン操作も得意に</h2><div class="art"><h2>ひとことで言うと</h2>
+<p>OpenAIは2026年10月26日、新しいAIモデル「GPT-6.1 Terra」を公開しました。</p>
+<p>できることは2つです。パソコンの画面を見て、人の代わりにマウスやキーボードを操作すること。図面や画像を読み解くこと。</p>
+<p>しかも料金は、これまでの半分です。</p>
+<h2>何が発表された？</h2>
+<p>発表と同時に、すぐ使えるようになりました。お試し版ではなく、正式な製品です。</p>
+<p>使える場所は3つあります。</p>
+<ul>
+<li>有料プランの「ChatGPT Work」</li>
+<li>プログラミング向けの「Codex」</li>
+<li>開発者向けの「OpenAI API」</li>
+</ul>
+<p>位置づけは、軽量モデル「GPT-5.6 Terra」の後継です。上位モデル「GPT-6.1 Sol」「GPT-6 Astra」の高い性能を、安い料金で使えるようにしたモデルです。</p>
+<h2>前と何が違う？</h2>
+<h3>料金は半分、速さは3倍以上</h3>
+<p>API（開発者がアプリから呼び出す仕組み）の料金は、前の世代の<strong>半額</strong>です。上位版の「GPT-6.1 Sol」と比べても半額です。</p>
+<p>速さは、上位モデルの<strong>3倍以上</strong>です。</p>
+<p>たとえば「届いた大量のPDF請求書を読み取り、会計ソフトに入力する」作業。これまでは費用と時間の面であきらめていた量でも、自動化しやすくなります。</p>
+<p>ChatGPT WorkやCodexを使う人は、同じ利用上限のまま、より多くの作業をこなせます。</p>
+<h3>画面を見て、パソコンを操作できる</h3>
+<p>文章を書くだけではありません。画面の内容を読み取って、実際に操作する力（Computer Use）が大きく伸びました。</p>
+<p>実務を想定したテスト「Agents&#39; Last Exam」では、次のような専門的な作業が出されます。</p>
+<ul>
+<li>建築の平面図を読み込み、3Dモデルにする</li>
+<li>アニメ映画を1コマずつ確認し、修復チーム向けの記録を作る</li>
+</ul>
+<p>このテストで、Terraは前の世代より<strong>15パーセンタイル高い</strong>点を取りました。かかった費用は約<strong>3分の1</strong>です。</p>
+<p>最上位の「GPT-6 Astra」と同じくらいの正確さを、<strong>10分の1</strong>の単価で出しています。</p>
+<h3>うそをつくことが大きく減った</h3>
+<p>AIがもっともらしいうそをつく「ハルシネーション」。仕事で使ううえで、一番の心配ごとでした。</p>
+<p>OpenAIは、この1年で正確さの改善に力を入れてきたと説明しています。</p>
+<p>ひっかけ問題を集めた社内テストでは、誤答の割合がこう変わりました。</p>
+<ul>
+<li>前の世代（GPT-5.6 Terra）：<strong>53.6%</strong></li>
+<li>今回（GPT-6.1 Terra）：<strong>16.7%</strong></li>
+</ul>
+<p>約37ポイントの改善です。じっくり考える設定（最大推論）なら、誤答は**4.3%**まで下がります。上位モデルに迫る水準です。</p>
+<h3>プログラミング作業の自動化も進んだ</h3>
+<p>コマンド操作で問題を解くテスト「Terminal-Bench 4.0」。Webページの表示崩れを直すような課題が出ます。</p>
+<p>Terraの成功率は**50.3%**でした。前の世代の21.5%から、2倍以上に伸びています。</p>
+<p>ただし、とびきり複雑なプログラミングには、今も「GPT-6.1 Sol」や「GPT-6 Astra」が向いている、とOpenAIは添えています。</p>
+<h2>テストの結果を一覧で</h2>
+<table>
+<thead>
+<tr>
+<th>テスト</th>
+<th>Terraの結果</th>
+<th>比べた相手との差</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agents&#39; Last Exam（中くらいの推論）</td>
+<td>前の世代より+15パーセンタイル</td>
+<td>費用は約1/3</td>
+</tr>
+<tr>
+<td>Agents&#39; Last Exam（中くらいの推論）</td>
+<td>GPT-6 Astraと同じくらいの正確さ</td>
+<td>単価は1/10</td>
+</tr>
+<tr>
+<td>Agents&#39; Last Exam（最大推論）</td>
+<td>作業1回の費用が約9分の1</td>
+<td>Claude Opus 5.5より単価1/4、効率3倍</td>
+</tr>
+<tr>
+<td>速さ</td>
+<td>3倍以上</td>
+<td>GPT-6 Astra・GPT-6.1 Sol比</td>
+</tr>
+<tr>
+<td>誤答テスト（低い推論）</td>
+<td>誤答16.7%</td>
+<td>前の世代は53.6%</td>
+</tr>
+<tr>
+<td>誤答テスト（最大推論）</td>
+<td>誤答4.3%</td>
+<td>上位モデルに迫る</td>
+</tr>
+<tr>
+<td>Terminal-Bench 4.0（最大推論）</td>
+<td>成功率50.3%</td>
+<td>前の世代（21.5%）の2倍以上</td>
+</tr>
+<tr>
+<td>Terminal-Bench-Science 0.1（最大推論）</td>
+<td>GPT-6.1 Solを上回る</td>
+<td>Opus 5.5との差は5ポイント以内、費用は1/5未満</td>
+</tr>
+</tbody></table>
+<h2>ライバルのClaudeと比べてどう？</h2>
+<p>Anthropicの最上位モデル「Claude Opus 5.5」と比べると、次のとおりです。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>GPT-6.1 Terra</th>
+<th>Claude Opus 5.5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>料金の単価</td>
+<td>入力100万トークンで1ドル</td>
+<td>Terraの約4倍</td>
+</tr>
+<tr>
+<td>処理の効率</td>
+<td>Opusの3倍以上</td>
+<td>標準</td>
+</tr>
+<tr>
+<td>作業1回あたりの費用</td>
+<td>約9分の1</td>
+<td>基準</td>
+</tr>
+<tr>
+<td>研究用プログラムの正確さ</td>
+<td>Opusとの差は5ポイント以内</td>
+<td>最高クラス</td>
+</tr>
+</tbody></table>
+<p>とびきり難しい作業では、Opus 5.5やGPT-6 Astraが上回る場面もあります。</p>
+<p>一方で、毎日くり返す作業の自動化なら、安くて速いTerraが強い武器になります。</p>
+<h2>料金は？</h2>
+<p>ChatGPTでは、Plus・Pro・Enterprise・Eduの各プランで、ChatGPT WorkとCodexからすぐ使えます。</p>
+<p>APIの料金は、100万トークン（文字数の単位）あたり次のとおりです。</p>
+<ul>
+<li>入力：<strong>1.00ドル</strong></li>
+<li>前に送った内容の再利用（キャッシュ）：<strong>0.05ドル</strong></li>
+<li>出力：<strong>5.00ドル</strong></li>
+</ul>
+<h2>日本で使える？</h2>
+<p>使えます。日本からの利用制限はなく、日本語にも対応しています。</p>
+<ul>
+<li><strong>ChatGPTで使う</strong>：Plus以上の有料プランでログインし、モデル選択で切り替えます</li>
+<li><strong>APIで使う</strong>：モデル名に <code>gpt-6.1-terra</code> を指定します</li>
+</ul>
+<h2>自分にはどう関係する？</h2>
+<h3>エンジニアなら</h3>
+<p>コードの修正やビルドエラーの解決を、50%を超える成功率で任せられます。</p>
+<p>料金が半分になったので、裏で常に動かしておく自動修正の仕組みも、予算内で回しやすくなります。</p>
+<h3>企画・マーケティングなら</h3>
+<p>画像や動画を含む調べものや、資料づくりの待ち時間が短くなります。</p>
+<p>うその回答が減ったので、結果を確かめる手間も軽くなります。</p>
+<h3>経営者・管理者なら</h3>
+<p>請求書の処理や手書きメモの文字起こし。人手と時間がかかっていた事務作業を、ずっと安く自動化できます。</p>
+<h2>これまでの流れ</h2>
+<ul>
+<li><strong>10月2日</strong>：最上位モデル「GPT-6 Astra」の詳細を公表（<a href="https://ai-tech-express.jp/articles/openai-gpt-6-astra-comprehensive-guide-matome">「GPT-6 Astra」全機能まとめ</a>）</li>
+<li><strong>10月22日</strong>：「GPT-5.6」が企業向けツール「V7 Go」に組み込まれる（<a href="https://ai-tech-express.jp/articles/v7-go-gpt-5-6-integration-context-graph">V7がGPT-5.6統合のV7 Goを発表</a>）</li>
+<li><strong>10月26日</strong>：上位モデル「GPT-6.1 Sol」の活用例が報じられる（<a href="https://ai-tech-express.jp/articles/ai-hack-claude-sonnet-5-5-gpt-6-1-sol">AI HackがGPT-6.1 Solに対応</a>）</li>
+<li><strong>10月26日</strong>：今回の「GPT-6.1 Terra」を公開。安さと速さに振り切ったモデル</li>
+</ul>
+<h2>まとめ</h2>
+<p>「高性能なAIは高い」という常識が、崩れはじめています。</p>
+<p>API連携ツールを使っているなら、モデル名を <code>gpt-6.1-terra</code> に変えて、速さと費用の変化を試してみるのがおすすめです。</p>
+</div></section>
+</div></div>
+<script>
+document.querySelectorAll('.art table').forEach(t=>{const d=document.createElement('div');d.className='tbl';t.parentNode.insertBefore(d,t);d.appendChild(t)});
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));document.getElementById('cb').classList.toggle('on',b.dataset.t==='b');document.getElementById('ca').classList.toggle('on',b.dataset.t==='a')}));
+</script></body></html>
