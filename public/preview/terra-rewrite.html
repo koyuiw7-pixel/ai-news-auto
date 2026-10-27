@@ -31,15 +31,20 @@ h1.page{font-size:clamp(22px,3vw,32px);font-weight:900;margin:0 0 6px;text-wrap:
 .art th,.art td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
 .art th{color:var(--ink);font-weight:700;white-space:nowrap}
 @media (max-width:820px){.tabs{display:flex}.cols{grid-template-columns:1fr}.col{display:none;padding:20px 18px}.col.on{display:block}}
+.art thead th{background:var(--bg);font-size:13px;color:var(--mute);font-weight:700;line-height:1.4}
+.art td:first-child{color:var(--ink);font-weight:600}
+.art td:last-child strong{color:var(--accent);white-space:nowrap}
+.art tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--bg) 60%,transparent)}
+.art td{white-space:normal}
 </style></head><body><div class="wrap">
 <h1 class="page">同じ記事を「読みやすさのルール」で書き直すと</h1>
 <p class="sub">GPT-6.1 Terraの記事。事実・数字はそのまま、書き方だけを変えています（デザインは両方同じ）。</p>
 <table class="metrics"><thead><tr><th></th><th>読みやすい目安</th><th style="text-align:right">今の記事</th><th style="text-align:right">書き直し</th></tr></thead><tbody>
 <tr><td>1文の平均の長さ</td><td>40〜50字</td><td class="n bad">67字</td><td class="n ok">33字</td></tr>
 <tr><td>60字を超える長い文</td><td>なるべく少なく</td><td class="n bad">52%</td><td class="n ok">6%</td></tr>
-<tr><td>1段落の平均の長さ</td><td>100字前後</td><td class="n">102字</td><td class="n ok">47字</td></tr>
-<tr><td>一番長い段落</td><td>—</td><td class="n bad">287字</td><td class="n ok">89字</td></tr>
-<tr><td>記事全体の文字数</td><td>—</td><td class="n">5,169字</td><td class="n ok">3,387字</td></tr>
+<tr><td>1段落の平均の長さ</td><td>100字前後</td><td class="n">102字</td><td class="n ok">48字</td></tr>
+<tr><td>一番長い段落</td><td>—</td><td class="n bad">287字</td><td class="n ok">90字</td></tr>
+<tr><td>記事全体の文字数</td><td>—</td><td class="n">5,169字</td><td class="n ok">3,321字</td></tr>
 </tbody></table>
 <div class="tabs" role="tablist"><button id="tb" role="tab" aria-selected="false" data-t="b">今の記事</button><button id="ta" role="tab" aria-selected="true" data-t="a">書き直し</button></div>
 <div class="cols">
@@ -200,7 +205,7 @@ h1.page{font-size:clamp(22px,3vw,32px);font-weight:900;margin:0 0 6px;text-wrap:
 <p>GPT-6.1 Terraの登場により、「高性能なAIエージェントはコストが高い」という従来の常識が崩れつつあります。</p>
 <p>まずは自社で扱っているルーチン業務やAPI連携ツールにおいて、モデル指定を <code>gpt-6.1-terra</code> に変更し、処理速度とコスト削減の効果を検証することをおすすめします。</p>
 </div></section>
-<section class="col on" id="ca"><div class="label" style="color:var(--accent)">AFTER ・ 書き直し</div><h2 class="t">ChatGPTのOpenAIが新AIモデル「GPT-6.1 Terra」 料金は半分、パソコン操作も得意に</h2><div class="art"><h2>ひとことで言うと</h2>
+<section class="col on" id="ca"><div class="label" style="color:var(--accent)">AFTER ・ 書き直し</div><h2 class="t">ChatGPTのOpenAIが新AIモデル「GPT-6.1 Terra」 料金は半分、パソコン操作も得意に</h2><div class="art"><h2>概要</h2>
 <p>OpenAIは2026年10月26日、新しいAIモデル「GPT-6.1 Terra」を公開しました。</p>
 <p>できることは2つです。パソコンの画面を見て、人の代わりにマウスやキーボードを操作すること。図面や画像を読み解くこと。</p>
 <p>しかも料金は、これまでの半分です。</p>
@@ -241,89 +246,79 @@ h1.page{font-size:clamp(22px,3vw,32px);font-weight:900;margin:0 0 6px;text-wrap:
 <p>コマンド操作で問題を解くテスト「Terminal-Bench 4.0」。Webページの表示崩れを直すような課題が出ます。</p>
 <p>Terraの成功率は**50.3%**でした。前の世代の21.5%から、2倍以上に伸びています。</p>
 <p>ただし、とびきり複雑なプログラミングには、今も「GPT-6.1 Sol」や「GPT-6 Astra」が向いている、とOpenAIは添えています。</p>
-<h2>テストの結果を一覧で</h2>
+<h2>前の世代からどれだけ良くなった？</h2>
 <table>
 <thead>
 <tr>
-<th>テスト</th>
-<th>Terraの結果</th>
-<th>比べた相手との差</th>
+<th>比べること</th>
+<th>前の世代<br>GPT-5.6 Terra</th>
+<th>今回<br>GPT-6.1 Terra</th>
+<th>変化</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>Agents&#39; Last Exam（中くらいの推論）</td>
-<td>前の世代より+15パーセンタイル</td>
-<td>費用は約1/3</td>
+<td>うその回答の割合<br>（ひっかけ問題・低い推論）</td>
+<td>53.6%</td>
+<td>16.7%</td>
+<td><strong>約37ポイント減</strong></td>
 </tr>
 <tr>
-<td>Agents&#39; Last Exam（中くらいの推論）</td>
-<td>GPT-6 Astraと同じくらいの正確さ</td>
-<td>単価は1/10</td>
+<td>プログラミング課題の成功率<br>（Terminal-Bench 4.0）</td>
+<td>21.5%</td>
+<td>50.3%</td>
+<td><strong>2倍以上</strong></td>
 </tr>
 <tr>
-<td>Agents&#39; Last Exam（最大推論）</td>
-<td>作業1回の費用が約9分の1</td>
-<td>Claude Opus 5.5より単価1/4、効率3倍</td>
+<td>APIの料金</td>
+<td>基準</td>
+<td>半額</td>
+<td><strong>50%安い</strong></td>
 </tr>
 <tr>
-<td>速さ</td>
-<td>3倍以上</td>
-<td>GPT-6 Astra・GPT-6.1 Sol比</td>
-</tr>
-<tr>
-<td>誤答テスト（低い推論）</td>
-<td>誤答16.7%</td>
-<td>前の世代は53.6%</td>
-</tr>
-<tr>
-<td>誤答テスト（最大推論）</td>
-<td>誤答4.3%</td>
-<td>上位モデルに迫る</td>
-</tr>
-<tr>
-<td>Terminal-Bench 4.0（最大推論）</td>
-<td>成功率50.3%</td>
-<td>前の世代（21.5%）の2倍以上</td>
-</tr>
-<tr>
-<td>Terminal-Bench-Science 0.1（最大推論）</td>
-<td>GPT-6.1 Solを上回る</td>
-<td>Opus 5.5との差は5ポイント以内、費用は1/5未満</td>
+<td>実務テストの点<br>（Agents&#39; Last Exam）</td>
+<td>基準</td>
+<td>+15パーセンタイル</td>
+<td><strong>費用は約3分の1</strong></td>
 </tr>
 </tbody></table>
+<p>上位モデルと比べると、速さは「GPT-6 Astra」「GPT-6.1 Sol」の<strong>3倍以上</strong>。正確さは「GPT-6 Astra」と同じくらいで、単価は<strong>10分の1</strong>です。</p>
 <h2>ライバルのClaudeと比べてどう？</h2>
-<p>Anthropicの最上位モデル「Claude Opus 5.5」と比べると、次のとおりです。</p>
+<p><strong>安さと速さならTerra。とびきり難しい作業なら、Anthropicの「Claude Opus 5.5」。</strong></p>
 <table>
 <thead>
 <tr>
-<th></th>
+<th>比べること</th>
 <th>GPT-6.1 Terra</th>
 <th>Claude Opus 5.5</th>
+<th>有利なのは</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>料金の単価</td>
-<td>入力100万トークンで1ドル</td>
+<td>Opusの約4分の1</td>
 <td>Terraの約4倍</td>
+<td><strong>Terra</strong></td>
+</tr>
+<tr>
+<td>同じ作業にかかる費用</td>
+<td>Opusの約9分の1</td>
+<td>基準</td>
+<td><strong>Terra</strong></td>
 </tr>
 <tr>
 <td>処理の効率</td>
 <td>Opusの3倍以上</td>
-<td>標準</td>
-</tr>
-<tr>
-<td>作業1回あたりの費用</td>
-<td>約9分の1</td>
 <td>基準</td>
+<td><strong>Terra</strong></td>
 </tr>
 <tr>
 <td>研究用プログラムの正確さ</td>
 <td>Opusとの差は5ポイント以内</td>
 <td>最高クラス</td>
+<td><strong>Opus（わずかに）</strong></td>
 </tr>
 </tbody></table>
-<p>とびきり難しい作業では、Opus 5.5やGPT-6 Astraが上回る場面もあります。</p>
-<p>一方で、毎日くり返す作業の自動化なら、安くて速いTerraが強い武器になります。</p>
+<p>毎日くり返す作業の自動化なら、安くて速いTerraが強い武器になります。</p>
 <h2>料金は？</h2>
 <p>ChatGPTでは、Plus・Pro・Enterprise・Eduの各プランで、ChatGPT WorkとCodexからすぐ使えます。</p>
 <p>APIの料金は、100万トークン（文字数の単位）あたり次のとおりです。</p>
