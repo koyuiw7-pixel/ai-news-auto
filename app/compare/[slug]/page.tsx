@@ -61,7 +61,7 @@ export default async function ComparePage({ params }: Props) {
   if (!guide) notFound();
 
   // 作り直した新形式のガイド（提携外の商品も並べる）は新しいデザインで出す。
-  // デザイン案 B・C は /compare-preview/b, /compare-preview/c で同じデータを確認できる
+  // 採用したデザイン（A 報道テロップ型）。比較用の B・C 案は 2026-10-28 に削除
   if (isRichGuide(guide)) return <VariantA view={buildGuideView(guide)} />;
 
   const products = resolveProducts(guide);
@@ -132,7 +132,7 @@ export default async function ComparePage({ params }: Props) {
       {/* 広告の明示（A8・景品表示法）と、情報の時点 */}
       <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-meta">
         <span className="rounded border border-ink px-1.5 text-badge font-bold tracking-wider text-ink">PR</span>
-        <span className="rounded-full bg-ink px-2.5 py-0.5 text-badge font-bold tracking-wider text-paper">比較ガイド</span>
+        <span className="rounded-sm bg-ink px-2.5 py-0.5 text-badge font-bold tracking-wider text-paper">比較ガイド</span>
         <span className="index-num text-muted">
           最終更新 <time dateTime={guide.updatedAt} className="font-semibold text-ink">{formatDate(guide.updatedAt)}</time>
         </span>
@@ -212,7 +212,7 @@ export default async function ComparePage({ params }: Props) {
                       href={product.item.url}
                       target="_blank"
                       rel="sponsored noopener noreferrer"
-                      className="inline-block whitespace-nowrap rounded-full bg-ink px-3 py-1.5 text-badge font-bold text-paper hover:opacity-85"
+                      className="inline-block whitespace-nowrap rounded-sm bg-ink px-3 py-1.5 text-badge font-bold text-paper hover:opacity-85"
                     >
                       公式 ↗
                     </a>

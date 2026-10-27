@@ -2,64 +2,86 @@
 @plugin "@tailwindcss/typography";
 
 /* --------------------------------------------------------------------- */
-/* カラートークン                                                          */
-/* ライト＝要点マーカー（白地・墨・黄色マーカー）                            */
-/* ダーク＝シグナルルーム（濃紺・琥珀＝公式発表・シアン＝まとめ）             */
-/* --marker（淡い青）は両モードで「要点」を意味する                          */
+/* カラートークン：報道ネイビー×速報レッド（A案・2026-10-28 採用）           */
+/* 紺＝骨組み（ヘッダーの帯・リンク・ボタン・選択中でない強調）               */
+/* 赤＝速報・ライブ（--live）と、要の数字・選択中（--signal）だけ            */
+/* 白地＋青みのある灰の面、1px の罫線、影は1段だけ（--shadow / --shadow-lift） */
 /* --------------------------------------------------------------------- */
 
 :root {
   --paper: #ffffff;
-  --surface: #f4f4f1;
-  --surface-2: #ecece7;
-  --ink: #111111;
-  --ink-soft: #3b3b37;
-  /* 補足・メタ情報。白地 7.9:1・薄灰地 7.1:1（docs/typography.md の「補足は 7:1 以上」） */
-  --muted: #52524d;
-  --line: #e4e4de;
-  --line-strong: #cfcfc7;
-  --accent: #0a6fa0;
+  --surface: #f3f5f8;
+  --surface-2: #e9edf3;
+  --ink: #0b1a33;
+  /* 記事本文。白地 11.6:1・面 10.6:1 */
+  --ink-soft: #2b3954;
+  /* 補足・メタ情報。白地 7.9:1・面 7.2:1（docs/typography.md の「補足は 7:1 以上」） */
+  --muted: #465268;
+  --line: #dce2eb;
+  --line-strong: #bfc8d6;
+  /* リンク・ボタン・骨組みの紺（白地 8.7:1） */
+  --accent: #1d4a8f;
   --accent-ink: #ffffff;
-  --accent-soft: #e3f1f8;
-  --marker: #cfe6f3;
+  --accent-soft: #e6ecf6;
+  /* 要の数字・選択中の赤（白地 5.7:1） */
+  --signal: #c8221a;
+  --signal-ink: #ffffff;
+  --signal-soft: #fcebe9;
+  --marker: #dce6f5;
   --marker-h: 38%;
-  --official: #8a5200;
-  --roundup: #0a6fa0;
-  /* 速報性（LIVE・新着）だけに使う赤 */
-  --live: #d92d20;
-  /* 赤地に載せる文字（白地 4.8:1） */
+  --official: #8f5600;
+  --roundup: #1d4a8f;
+  /* 速報・ライブ */
+  --live: #c8221a;
+  /* 赤地に載せる文字（5.7:1） */
   --live-ink: #ffffff;
   /* 「使える」判定だけに使う緑 */
-  --go: #0b7a43;
-  --go-soft: #e4f3ea;
+  --go: #0b7344;
+  --go-soft: #e3f2ea;
+  /* ヘッダーの濃紺の帯 */
+  --mast: #0b1f45;
+  --mast-ink: #ffffff;
+  --mast-muted: #b4c0d8;
+  --mast-line: rgb(255 255 255 / 0.16);
+  --shadow: 0 1px 2px rgb(11 26 51 / 0.06), 0 0 0 1px rgb(11 26 51 / 0.05);
+  --shadow-lift: 0 14px 28px -14px rgb(11 26 51 / 0.32), 0 0 0 1px rgb(11 26 51 / 0.07);
   --glass: rgb(255 255 255 / 0.74);
   color-scheme: light;
 }
 
 /* 既定は白。暗い画面は右上のボタンで選んだときだけ（OSのダーク設定には追従しない） */
 :root[data-theme="dark"] {
-  --paper: #0a0f1e;
-  --surface: #111831;
-  --surface-2: #16203f;
-  --ink: #e8ecf7;
-  --ink-soft: #c4cbe0;
-  /* 紺地 8.3:1・カード地 7.6:1 */
-  --muted: #a0abc9;
-  --line: #243158;
-  --line-strong: #34437a;
-  --accent: #58c7f3;
-  --accent-ink: #06101f;
-  --accent-soft: #12294a;
-  --marker: #58c7f3;
+  --paper: #08101f;
+  --surface: #0f1a2e;
+  --surface-2: #16233d;
+  --ink: #e8edf6;
+  --ink-soft: #c1cadb;
+  /* 紺地 8.3:1・面 7.6:1 */
+  --muted: #a0acc2;
+  --line: #1f2c46;
+  --line-strong: #34456a;
+  --accent: #8fb3f0;
+  --accent-ink: #08101f;
+  --accent-soft: #16264a;
+  --signal: #ff6a5c;
+  /* 明るい赤地には白でなく紺（6.8:1） */
+  --signal-ink: #08101f;
+  --signal-soft: #3a1717;
+  --marker: #8fb3f0;
   --marker-h: 22%;
-  --official: #ffb547;
-  --roundup: #58c7f3;
-  --live: #ff6b5e;
-  /* 明るい赤地には白でなく紺（2.8:1 → 6.8:1） */
-  --live-ink: #0a0f1e;
+  --official: #f2b54a;
+  --roundup: #8fb3f0;
+  --live: #ff6a5c;
+  --live-ink: #08101f;
   --go: #4fd18b;
   --go-soft: #0f2c22;
-  --glass: rgb(10 15 30 / 0.72);
+  --mast: #0c1628;
+  --mast-ink: #ffffff;
+  --mast-muted: #a0acc2;
+  --mast-line: rgb(255 255 255 / 0.1);
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.04);
+  --shadow-lift: 0 16px 30px -14px rgb(0 0 0 / 0.6), 0 0 0 1px rgb(143 179 240 / 0.18);
+  --glass: rgb(8 16 31 / 0.72);
   color-scheme: dark;
 }
 
@@ -86,13 +108,25 @@
   --color-live-ink: var(--live-ink);
   --color-go: var(--go);
   --color-go-soft: var(--go-soft);
+  --color-signal: var(--signal);
+  --color-signal-ink: var(--signal-ink);
+  --color-signal-soft: var(--signal-soft);
+  --color-mast: var(--mast);
+  --color-mast-ink: var(--mast-ink);
+  --color-mast-muted: var(--mast-muted);
+  --shadow-card: var(--shadow);
+  --shadow-lift: var(--shadow-lift);
 
   /* Web フォントが届くまでの代わりも線の太い書体から選ぶ（Windows の游ゴシック Regular は細くかすれるので入れない） */
+  /*
+   * Apple の端末は内蔵のヒラギノを先に使い、日本語の Web フォント（Noto Sans JP、ホームで約 2.7MB）を読み込まない。
+   * ヒラギノが無い Windows・Android だけが Noto Sans JP を読み込む（ブラウザは使う書体のファイルしか取りに行かない）
+   */
   --font-sans:
-    var(--font-noto), "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "Hiragino Kaku Gothic ProN", var(--font-noto),
     "BIZ UDPGothic", Meiryo, sans-serif;
   --font-display:
-    var(--font-dela), var(--font-noto), "Hiragino Sans", sans-serif;
+    var(--font-dela), "Hiragino Sans", var(--font-noto), sans-serif;
   --font-mono:
     var(--font-martian), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   /* 旧デザインの明朝指定は、本文ゴシックの太字として受け止める */
@@ -107,6 +141,17 @@
   --text-note: 0.875rem; /* 14px 注記・出典・表のセル */
   --text-desc: 1rem; /* 16px 説明文・要約・リード */
   --text-body: 1.0625rem; /* 17px 記事本文（PC） */
+}
+
+/* 角丸は 3・6・8px に揃える（rounded-sm/md・lg・xl/2xl/3xl）。丸い札は rounded-full のまま */
+@theme {
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-2xl: 8px;
+  --radius-3xl: 8px;
 }
 
 /* --------------------------------------------------------------------- */
@@ -272,10 +317,40 @@ mark {
 /* ヘッダー                                                               */
 /* --------------------------------------------------------------------- */
 
+/* 濃紺の帯。帯の中では文字・罫線のトークンを白系に差し替える（ThemeToggle などがそのまま白くなる） */
 .site-header {
-  background: var(--glass);
-  -webkit-backdrop-filter: blur(14px) saturate(1.2);
-  backdrop-filter: blur(14px) saturate(1.2);
+  background: var(--mast);
+  color: var(--mast-ink);
+  --ink: var(--mast-ink);
+  --ink-soft: var(--mast-muted);
+  --muted: var(--mast-muted);
+  --line: var(--mast-line);
+  --accent: #ffffff;
+}
+
+/* 速報の1行（ヘッダーの下。スクロールで流れる） */
+.live-line {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+/* カードのホバー：少し持ち上げて影を1段 */
+.lift {
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.2s;
+}
+.lift:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+}
+@media (prefers-reduced-motion: reduce) {
+  .lift,
+  .lift:hover {
+    transition: none;
+    transform: none;
+  }
 }
 
 /* 情報の種類を示す点。琥珀＝公式発表、シアン＝まとめ記事 */
@@ -408,7 +483,7 @@ mark {
   font-size: 0.875rem;
   line-height: 1.75;
   border: 1px solid var(--line);
-  border-radius: 0.75rem;
+  border-radius: 6px;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -425,6 +500,7 @@ mark {
 
 .prose :where(thead) {
   background: var(--surface);
+  border-bottom: 2px solid var(--ink);
 }
 
 .prose :where(td, th) {
@@ -436,7 +512,7 @@ mark {
 }
 
 .prose :where(img) {
-  border-radius: 0.75rem;
+  border-radius: 6px;
 }
 
 /* 「今すぐ使えるものだけ」スイッチ（components/UsableFilter.tsx） */
@@ -461,4 +537,22 @@ mark {
 /* 説明文（16px）は長い文章なので詰め組みにしない */
 .text-desc {
   font-feature-settings: normal;
+}
+
+/* 棒グラフが順に伸びる（料金表など）。--i は並び順 */
+.bar-grow {
+  animation: bar-grow 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 60ms + 120ms);
+  transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes bar-grow {
+  from {
+    width: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bar-grow {
+    animation: none;
+    transition: none;
+  }
 }

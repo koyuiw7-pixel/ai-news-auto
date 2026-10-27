@@ -11,7 +11,7 @@ type GenreChip = { slug: string; label: string; count: number };
  * スマホでは横にスクロールさせて1行に収める。
  */
 export function GenreChips({ genres, active }: { genres: GenreChip[]; active?: string }) {
-  const base = "shrink-0 rounded-full border px-3.5 py-1.5 text-meta font-bold transition-colors";
+  const base = "shrink-0 rounded-md border px-3.5 py-1.5 text-meta font-bold transition-colors";
   const on = `${base} border-ink bg-ink text-paper`;
   const off = `${base} border-line text-ink-soft hover:border-ink hover:text-ink`;
   return (

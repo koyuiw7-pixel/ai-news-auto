@@ -64,7 +64,7 @@ function BlockCta({
             ? "sponsored noopener noreferrer"
             : "nofollow noopener noreferrer"
         }
-        className={`mt-5 inline-flex items-center gap-2 rounded-full bg-accent font-bold text-accent-ink transition-transform hover:scale-[1.02] ${
+        className={`mt-5 inline-flex items-center gap-2 rounded-md bg-accent font-bold text-accent-ink transition-transform hover:scale-[1.02] ${
           compact ? "px-5 py-2.5 text-meta" : "px-7 py-3.5 text-note"
         }`}
       >
@@ -117,7 +117,7 @@ function InlineCta({
             ? "sponsored noopener noreferrer"
             : "nofollow noopener noreferrer"
         }
-        className="shrink-0 self-start rounded-full border-2 border-accent px-5 py-2.5 text-meta font-bold text-accent transition-colors hover:bg-accent hover:text-accent-ink sm:self-auto"
+        className="shrink-0 self-start rounded-md border-2 border-accent px-5 py-2.5 text-meta font-bold text-accent transition-colors hover:bg-accent hover:text-accent-ink sm:self-auto"
       >
         {cta.buttonLabel} →
       </a>

@@ -103,12 +103,12 @@ function TimelineRow({ article }: { article: ArticleSummary }) {
             <span className="index-num font-semibold text-muted sm:hidden">{time}</span>
             <CompanyMark company={company} size={16} withName />
             {isRoundup && (
-              <span className="rounded-full bg-ink px-2 py-[1px] text-badge font-bold text-paper">
+              <span className="rounded-sm bg-ink px-2 py-[1px] text-badge font-bold text-paper">
                 まとめ {article.sourceCount}本
               </span>
             )}
             {updatedRecently(article) && (
-              <span className="rounded-full bg-go-soft px-2 py-[1px] text-badge font-bold text-go">更新</span>
+              <span className="rounded-sm bg-go-soft px-2 py-[1px] text-badge font-bold text-go">更新</span>
             )}
           </p>
 

@@ -69,7 +69,7 @@ export default function MobilePrBar({ item, watchId }: { item: OfferItem; watchI
             <span className="block truncate text-meta font-bold text-ink">{item.name}</span>
             {price && <span className="index-num text-meta font-bold text-ink">{price}</span>}
           </span>
-          <span className="shrink-0 rounded-full bg-live px-3.5 py-2 text-meta font-bold text-live-ink">見る ↗</span>
+          <span className="shrink-0 rounded-md bg-accent px-3.5 py-2 text-meta font-bold text-accent-ink">見る ↗</span>
         </a>
         <button
           type="button"

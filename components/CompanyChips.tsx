@@ -44,7 +44,7 @@ function Chip({
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-meta font-bold transition-colors ${
+      className={`inline-flex shrink-0 items-center gap-1.5 rounded-md border px-3 py-1.5 text-meta font-bold transition-colors ${
         active
           ? "border-ink bg-ink text-paper [&_.text-muted]:text-paper/70"
           : "border-line text-ink-soft hover:border-ink hover:text-ink"

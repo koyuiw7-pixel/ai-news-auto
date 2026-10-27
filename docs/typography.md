@@ -17,8 +17,10 @@
 
 ## 1. 書体
 
-- 本文・見出し・UI は **Noto Sans JP**（`app/fonts.ts`、可変フォント 1 本で 400〜900）。線がしっかりしていて小さくてもかすれない
-- Web フォントが届くまでの代わり: `Hiragino Sans` → `Hiragino Kaku Gothic ProN` → `BIZ UDPGothic` → `Meiryo`。
+- 書体の順番: `Hiragino Sans` → `Hiragino Kaku Gothic ProN` → **Noto Sans JP**（Web フォント）→ `BIZ UDPGothic` → `Meiryo`。
+  Apple の端末は内蔵のヒラギノで表示し、日本語の Web フォントを読み込まない（ホームで 2,733KB → 38KB、2026-10-28 計測）。
+  ヒラギノが無い Windows・Android は **Noto Sans JP**（`app/fonts.ts`、可変フォント 1 本で 400〜900）で表示する。どちらも線がしっかりしていて小さくてもかすれない
+- Noto Sans JP が届くまでの代わり: `BIZ UDPGothic` → `Meiryo`。
   **游ゴシック（Yu Gothic）は入れない**（Windows の Regular は線が細くかすれる）
 - 旧 Zen Kaku Gothic New は 400 の線が細く「見えない」ため廃止
 - Dela Gothic One はロゴ「サイソク」だけ。Martian Mono は時刻・件数など小さな数字だけ

@@ -104,7 +104,7 @@ export default function UsablePage() {
                     <li key={company.slug}>
                       <Link
                         href={`/companies/${company.slug}`}
-                        className="flex items-center gap-2.5 rounded-full border border-line py-1.5 pl-2 pr-3 hover:border-ink"
+                        className="flex items-center gap-2.5 rounded-md border border-line py-1.5 pl-2 pr-3 hover:border-ink"
                       >
                         <CompanyMark company={company} size={18} withName />
                         <span className="index-num text-meta font-bold text-go">{count}</span>

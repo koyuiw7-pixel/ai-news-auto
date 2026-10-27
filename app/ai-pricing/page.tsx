@@ -104,11 +104,11 @@ export default function AiPricingPage() {
       <Crumbs items={[{ href: "/", label: "ホーム" }, { label: "AI料金・日本対応 早見表" }]} />
 
       <header className="mt-5">
-        <h1 className="text-[1.75rem] font-extrabold leading-[1.35] text-ink sm:text-[2.3rem]">AIの料金・日本対応 早見表</h1>
-        <p className="mt-3 max-w-[60ch] text-[15px] leading-[1.85] text-ink-soft">
+        <h1 className="t-h1 text-ink">AIの料金・日本対応 早見表</h1>
+        <p className="t-lead mt-3">
           ChatGPT・Claude・GeminiなどのAIを使うと、月にいくらかかるか。使い方を選ぶだけで、円でわかります。日本で使えるかも一緒に見られます。
         </p>
-        <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[12.5px] text-muted">
+        <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-meta text-muted">
           <span>
             最終更新 <span className="font-bold tabular-nums text-ink">{formatDate(pricing.updatedAt)}</span>
           </span>
@@ -133,7 +133,7 @@ export default function AiPricingPage() {
           <li>・日本で使えるかは、そのモデルを扱った記事の判定を使います。</li>
           <li>・新しい記事に料金が出るたびに、自動で更新されます。</li>
         </ul>
-        <p className="mt-4 rounded-xl bg-surface px-4 py-3 text-[12.5px] leading-[1.8] text-muted">
+        <p className="mt-4 rounded-xl bg-surface px-4 py-3 text-note leading-[1.8] text-muted">
           料金は変わることがあります。契約や開発の前に、必ず各社の公式の料金ページを確認してください。各行の「記事で確認」から、数字が書かれた記事を開けます。
           集め方は<Link href="/editorial-policy" className="underline underline-offset-2">編集方針</Link>にも書いています。
         </p>
@@ -181,7 +181,7 @@ function MoreLink({ href, title, note }: { href: string; title: string; note: st
   return (
     <Link href={href} className="group rounded-xl border border-line p-4 transition-colors hover:border-ink">
       <span className="block text-[14.5px] font-bold text-ink group-hover:underline">{title} →</span>
-      <span className="mt-1 block text-[12.5px] text-muted">{note}</span>
+      <span className="mt-1 block text-meta text-muted">{note}</span>
     </Link>
   );
 }

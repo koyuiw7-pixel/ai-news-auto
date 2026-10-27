@@ -27,7 +27,7 @@ export default function ArticleCard({ article, priority, morph = false }: Props)
     <article className="group">
       <Link href={`/articles/${article.slug}`} className="flex flex-col gap-3.5">
         <Morph name={`cover-${article.slug}`} enabled={morph}>
-          <div className="relative aspect-[40/21] overflow-hidden rounded-2xl bg-surface-2">
+          <div className="relative aspect-[40/21] overflow-hidden rounded-xl bg-surface-2 shadow-card transition-[transform,box-shadow] duration-300 ease-out group-hover:-translate-y-[3px] group-hover:shadow-lift motion-reduce:transition-none motion-reduce:group-hover:translate-y-0">
             {cover ? (
               // 日本語見出し・企業・サイト名入りの独自カバー（統合本数もカバー内に入っている）
               <Image
@@ -52,12 +52,12 @@ export default function ArticleCard({ article, priority, morph = false }: Props)
             {!cover && (isRoundup || article.genreSlug !== "ai") && (
               <span className="absolute left-3 top-3 flex gap-1.5">
                 {isRoundup && (
-                  <span className="rounded-full bg-ink/90 px-2.5 py-1 text-badge font-bold text-paper">
+                  <span className="rounded-sm bg-ink/90 px-2.5 py-1 text-badge font-bold text-paper">
                     {sources > 0 ? `${sources}本を統合` : "まとめ"}
                   </span>
                 )}
                 {article.genreSlug !== "ai" && (
-                  <span className="rounded-full bg-paper/90 px-2.5 py-1 text-badge font-bold text-ink">
+                  <span className="rounded-sm bg-paper/90 px-2.5 py-1 text-badge font-bold text-ink">
                     {article.genre}
                   </span>
                 )}
@@ -74,10 +74,10 @@ export default function ArticleCard({ article, priority, morph = false }: Props)
               {formatDate(article.publishedAt)}
             </time>
             {isRecentlyUpdated(article) && (
-              <span className="rounded-full bg-go-soft px-2 py-[1px] text-badge font-bold text-go">更新</span>
+              <span className="rounded-sm bg-go-soft px-2 py-[1px] text-badge font-bold text-go">更新</span>
             )}
             {speed && (
-              <span className="rounded-full border border-live/40 px-2 py-[1px] text-badge font-bold text-live">{speed}</span>
+              <span className="rounded-sm border border-live/40 px-2 py-[1px] text-badge font-bold text-live">{speed}</span>
             )}
           </div>
 

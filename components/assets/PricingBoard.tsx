@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { formatMoney, formatYen } from "@/lib/money";
 import type { PriceRow } from "@/lib/pricing";
 
@@ -142,22 +142,21 @@ export default function PricingBoard({ rows }: { rows: PriceRow[] }) {
       {/* スマホは「大きな数字 → 使い方 → 補足」、広い画面は左に数字と補足・右に使い方 */}
       <section
         aria-labelledby="hero-heading"
-        className="grid gap-x-12 gap-y-7 rounded-2xl border border-line-strong p-5 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
+        className="grid gap-x-12 gap-y-7 rounded-xl border border-line border-t-[3px] border-t-ink bg-paper p-5 shadow-card sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
       >
         <div className="min-w-0 lg:col-start-1 lg:row-start-1">
-          <h2 id="hero-heading" className="text-[13px] font-bold text-muted">
+          <p id="hero-heading" className="text-meta font-bold text-muted">
             APIで使うと月いくら？
             <span className="block font-normal">アプリやサービスに組み込んで使うときの料金です</span>
-          </h2>
+          </p>
           {cheapest ? (
             <>
               <p className="mt-4 text-[16px] font-bold text-ink">いちばん安いモデルなら</p>
               <p className="mt-1 flex flex-wrap items-baseline gap-x-1 leading-none" aria-live="polite">
                 <span className="text-[22px] font-bold text-ink">月</span>
-                {yenNumber(cheapest.jpy!).startsWith("約") && <span className="text-[22px] font-bold text-accent">約</span>}
-                <span className="text-[3.6rem] font-black tracking-tight tabular-nums text-accent sm:text-[4.75rem]">
-                  {yenNumber(cheapest.jpy!).replace(/^約/, "")}
-                </span>
+                {yenNumber(cheapest.jpy!).startsWith("約") && <span className="text-[22px] font-bold text-signal">約</span>}
+                {/* 要の数字だけ赤。読み込み時と使い方を変えたときに数え上げる */}
+                <CountUp value={cheapest.jpy!} className="text-[3.6rem] font-black tracking-tight tabular-nums text-signal sm:text-[4.75rem]" />
                 <span className="text-[26px] font-bold text-ink">円</span>
                 <span className="ml-1 text-[18px] font-bold text-ink-soft">から</span>
               </p>
@@ -196,14 +195,14 @@ export default function PricingBoard({ rows }: { rows: PriceRow[] }) {
 
         <div className="min-w-0 border-t border-line pt-5 lg:col-start-1 lg:row-start-2">
           {cheapest && priciest && priciest !== cheapest && (
-            <p className="text-[13.5px] leading-[1.8] text-ink-soft">
+            <p className="text-note leading-[1.8] text-ink-soft">
               同じ使い方でも、いちばん高い{priciest.row.product}だと月
               <strong className="mx-0.5 font-bold tabular-nums text-ink">{yen(priciest.jpy!)}</strong>
               （約{Math.round(priciest.jpy! / cheapest.jpy!).toLocaleString()}倍）です。
             </p>
           )}
           {cheapestPlan && (
-            <p className="mt-2 text-[13.5px] leading-[1.8] text-ink-soft">
+            <p className="mt-2 text-note leading-[1.8] text-ink-soft">
               ChatGPTやClaudeをアプリで使うなら、
               <a href="#plan-heading" className="font-bold text-ink underline underline-offset-[3px]">
                 月額プラン
@@ -211,7 +210,7 @@ export default function PricingBoard({ rows }: { rows: PriceRow[] }) {
               （月 {yen(planYen(cheapestPlan, rate))}〜）を選ぶ方法もあります。
             </p>
           )}
-          <p className="mt-3 text-[12px] text-muted">{usageLabel}・1ドル＝{rate}円で計算</p>
+          <p className="mt-3 text-meta text-muted">{usageLabel}・1ドル＝{rate}円で計算</p>
         </div>
       </section>
 
@@ -220,7 +219,7 @@ export default function PricingBoard({ rows }: { rows: PriceRow[] }) {
         <SectionHead id="rank-heading" note={`${usageLabel}。棒が短いほど安い。`}>
           同じ使い方だと、モデルごとに月いくら？
         </SectionHead>
-        <label className="mb-4 inline-flex items-center gap-2 text-[13.5px] text-ink-soft">
+        <label className="mb-4 inline-flex items-center gap-2 text-note text-ink-soft">
           <input type="checkbox" checked={japanOnly} onChange={(e) => setJapanOnly(e.target.checked)} className="size-4 accent-[var(--accent)]" />
           日本で使えるものだけ
         </label>
@@ -233,26 +232,25 @@ export default function PricingBoard({ rows }: { rows: PriceRow[] }) {
                 className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-1.5 border-b border-line py-3 sm:grid-cols-[16.5rem_minmax(0,1fr)_7rem]"
               >
                 <span className="flex min-w-0 items-center gap-2">
-                  <span className="w-5 shrink-0 text-right text-[12px] tabular-nums text-muted">{jpy === null ? "" : index + 1}</span>
+                  <span className="w-5 shrink-0 text-right text-meta tabular-nums text-muted">{jpy === null ? "" : index + 1}</span>
                   <Chip row={row} />
                   <span className="truncate text-[14.5px] font-bold text-ink">{row.product}</span>
-                  {best && <span className="shrink-0 rounded-[4px] bg-accent px-1.5 py-[1px] text-[10.5px] font-bold text-accent-ink">最安</span>}
+                  {best && <span className="shrink-0 rounded-sm bg-signal px-1.5 py-[1px] text-badge font-bold text-signal-ink">最安</span>}
                 </span>
-                <span className={`text-right tabular-nums sm:order-last ${best ? "text-[15px] font-black text-accent" : "text-[14px] font-bold text-ink"}`}>
-                  {jpy === null ? <span className="text-[12px] font-normal text-muted">計算できません</span> : yen(jpy)}
+                <span className={`text-right tabular-nums sm:order-last ${best ? "text-[15px] font-black text-signal" : "text-[14px] font-bold text-ink"}`}>
+                  {jpy === null ? <span className="text-meta font-normal text-muted">計算できません</span> : yen(jpy)}
                 </span>
                 <span className="col-span-2 sm:col-span-1">
                   {jpy === null ? (
-                    <span className="text-[12px] text-muted">{row.input === null ? "入力" : "出力"}の料金がまだ記事で確認できていません</span>
+                    <span className="text-meta text-muted">{row.input === null ? "入力" : "出力"}の料金がまだ記事で確認できていません</span>
                   ) : (
-                    <span className="block h-3 overflow-hidden rounded-full bg-surface" aria-hidden>
+                    <span className="block h-2.5 overflow-hidden rounded-[2px] bg-surface" aria-hidden>
+                      {/* 最安だけ赤、ほかは紺。読み込み時に順に伸びる */}
                       <span
-                        className="block h-full rounded-full"
+                        className={`bar-grow block h-full rounded-[2px] ${best ? "bg-signal" : "bg-accent"}`}
                         style={{
                           width: `${maxJpy > 0 ? Math.max(1.5, (jpy / maxJpy) * 100) : 0}%`,
-                          background: "var(--accent)",
-                          // いちばん安いものだけ濃く。ほかは同じ色を薄く（明るい画面でも暗い画面でも見える）
-                          opacity: best ? 1 : 0.42,
+                          ["--i" as string]: index,
                         }}
                       />
                     </span>
@@ -293,7 +291,7 @@ export default function PricingBoard({ rows }: { rows: PriceRow[] }) {
 
         <div
           aria-hidden
-          className="hidden grid-cols-[minmax(0,1.4fr)_6.5rem_5.5rem_6.5rem_minmax(0,1.2fr)] gap-4 border-b border-ink pb-2 text-[11.5px] font-bold text-muted md:grid"
+          className="hidden grid-cols-[minmax(0,1.4fr)_6.5rem_5.5rem_6.5rem_minmax(0,1.2fr)] gap-4 border-b border-ink pb-2 text-meta font-bold text-muted md:grid"
         >
           <span>モデル</span>
           <span className="text-right">入力</span>
@@ -317,9 +315,9 @@ export default function PricingBoard({ rows }: { rows: PriceRow[] }) {
                     <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
                       {sort !== "company" && <Chip row={row} />}
                       <ProductName row={row} />
-                      {row.legacy && <span className="rounded-[4px] border border-line-strong px-1.5 text-[10.5px] text-muted">以前のモデル</span>}
+                      {row.legacy && <span className="rounded-sm border border-line-strong px-1.5 text-badge text-muted">以前のモデル</span>}
                     </p>
-                    <p className="mt-0.5 text-[12px] text-muted">
+                    <p className="mt-0.5 text-meta text-muted">
                       {sort !== "company" && <>{row.companyName} · </>}
                       <SourceLink row={row} />
                     </p>
@@ -328,11 +326,11 @@ export default function PricingBoard({ rows }: { rows: PriceRow[] }) {
                   {/* スマホ: 料金を右にまとめる */}
                   <div className="text-right text-[13px] tabular-nums text-ink md:hidden">
                     <p>
-                      <span className="text-[11px] text-muted">入力 </span>
+                      <span className="text-meta text-muted">入力 </span>
                       <Usd value={row.input} />
                     </p>
                     <p>
-                      <span className="text-[11px] text-muted">出力 </span>
+                      <span className="text-meta text-muted">出力 </span>
                       <Usd value={row.output} />
                     </p>
                     {jpy !== null && <p className="mt-0.5 font-bold">月{yen(jpy)}</p>}
@@ -341,7 +339,7 @@ export default function PricingBoard({ rows }: { rows: PriceRow[] }) {
                   <p className="hidden text-right text-[14px] tabular-nums text-ink md:block">
                     <Usd value={row.input} />
                     {row.cachedInput !== null && (
-                      <span className="block whitespace-nowrap text-[11px] text-muted">キャッシュ {formatMoney(row.cachedInput, "USD")}</span>
+                      <span className="block whitespace-nowrap text-meta text-muted">キャッシュ {formatMoney(row.cachedInput, "USD")}</span>
                     )}
                   </p>
                   <p className="hidden text-right text-[14px] tabular-nums text-ink md:block">
@@ -384,14 +382,14 @@ export default function PricingBoard({ rows }: { rows: PriceRow[] }) {
                     {yenNumber(planYen(row, rate))}
                   </span>
                   <span className="text-[13px] font-bold text-ink">円</span>
-                  {row.currency === "USD" && <span className="ml-1.5 text-[12px] text-muted">（{formatMoney(row.monthly ?? 0, "USD")}）</span>}
+                  {row.currency === "USD" && <span className="ml-1.5 text-meta text-muted">（{formatMoney(row.monthly ?? 0, "USD")}）</span>}
                 </span>
               </p>
               <div className="mt-3 flex flex-wrap items-center gap-1.5">
                 <JapanCue japan={row.japan} status={row.status} />
                 <FreeCue free={row.free} kind="plan" />
               </div>
-              <p className="mt-3 text-[12px] text-muted">
+              <p className="mt-3 text-meta text-muted">
                 <SourceLink row={row} />
               </p>
             </li>
@@ -452,7 +450,7 @@ function UsagePanel({
           <li key={a.key} className="flex items-center justify-between gap-3">
             <span className="min-w-0">
               <span className="block text-[14px] font-bold text-ink">{a.label}</span>
-              <span className="block text-[11.5px] leading-snug text-muted">
+              <span className="block text-note leading-snug text-muted">
                 <span className="font-bold text-ink-soft">{a.per === "day" ? "1日あたり" : "1か月あたり"}</span>・{a.note}
               </span>
             </span>
@@ -460,7 +458,7 @@ function UsagePanel({
           </li>
         ))}
       </ul>
-      <p className="mt-4 text-[12px] leading-[1.7] text-muted">
+      <p className="mt-4 text-note leading-[1.7] text-muted">
         トークンは、AIが文章を数える単位です。日本語はおよそ1文字＝1トークン前後。1日の回数は30日分で計算しています。
       </p>
 
@@ -481,11 +479,11 @@ function UsagePanel({
           />
           <NumberField label="1ドル" unit="円" value={rate} onChange={onRate} />
         </div>
-        <p className="mt-2 text-[11.5px] leading-[1.7] text-muted">
+        <p className="mt-2 text-note leading-[1.7] text-muted">
           入力＝AIに渡す文章、出力＝AIが書く文章。ここを変えると、上の使い方ではなくこの数で計算します。
         </p>
         {custom && (
-          <button type="button" onClick={() => onCustom(null)} className="mt-2 text-[12.5px] font-bold text-ink underline underline-offset-2">
+          <button type="button" onClick={() => onCustom(null)} className="mt-2 text-meta font-bold text-ink underline underline-offset-2">
             使い方から計算に戻す
           </button>
         )}
@@ -515,7 +513,7 @@ function Stepper({
       </button>
       <span className="w-12 text-center text-[16px] font-bold tabular-nums text-ink" aria-live="polite">
         {value}
-        <span className="text-[11px] font-normal text-muted">{unit}</span>
+        <span className="text-meta font-normal text-muted">{unit}</span>
       </span>
       <button type="button" aria-label={`${label}を増やす`} className={button} onClick={() => onChange(Math.min(500, value + step))}>
         ＋
@@ -527,7 +525,7 @@ function Stepper({
 function NumberField({ label, unit, value, onChange }: { label: string; unit: string; value: number; onChange: (value: number) => void }) {
   return (
     <label className="grid min-w-0 gap-1">
-      <span className="text-[11.5px] font-bold text-ink-soft">
+      <span className="text-meta font-bold text-ink-soft">
         {label}
         <span className="block font-normal text-muted">{unit}</span>
       </span>
@@ -553,22 +551,40 @@ function SectionHead({ id, children, note }: { id: string; children: React.React
       <h2 id={id} className="text-balance text-[1.4rem] font-extrabold leading-snug text-ink sm:text-[1.65rem]">
         {children}
       </h2>
-      {note && <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{note}</p>}
+      {note && <p className="text-note mt-1.5 leading-relaxed text-muted">{note}</p>}
     </div>
   );
 }
 
-/** 会社の目印（色は会社を見分けるこの小さな印だけに使う） */
+/** 会社の目印。企業の色は小さな四角だけに使い、文字は載せない（白い文字が企業の色の上で読めないため） */
 function Chip({ row }: { row: PriceRow }) {
-  return (
-    <span
-      aria-hidden
-      className="inline-grid size-[18px] shrink-0 place-items-center rounded-[5px] text-[9.5px] font-bold leading-none text-white ring-1 ring-inset ring-white/15"
-      style={{ background: row.color }}
-    >
-      {row.mark}
-    </span>
-  );
+  return <span aria-hidden data-decorative="" className="inline-block size-2.5 shrink-0 rounded-[2px]" style={{ background: row.color }} />;
+}
+
+/** 数字を数え上げて表示する（動きを減らす設定では、すぐ最終の値） */
+function CountUp({ value, className }: { value: number; className?: string }) {
+  const [shown, setShown] = useState(value);
+  const from = useRef(0);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      from.current = value;
+      setShown(value);
+      return;
+    }
+    const start = from.current;
+    const t0 = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - t0) / 900);
+      const v = start + (value - start) * (1 - (1 - p) ** 3);
+      from.current = v;
+      setShown(v);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [value]);
+  return <span className={className}>{yenNumber(shown).replace(/^約/, "")}</span>;
 }
 
 function ProductName({ row }: { row: PriceRow }) {
@@ -614,7 +630,7 @@ function JapanCue({ japan, status }: { japan: PriceRow["japan"]; status: PriceRo
   const pre = status === "soon" || status === "demo";
   const item = pre ? { label: "提供前", className: "bg-surface text-muted", icon: "unknown" as const } : JAPAN[japan];
   return (
-    <span className={`inline-flex items-center gap-1 rounded-[5px] px-1.5 py-[2px] text-[11.5px] font-bold ${item.className}`}>
+    <span className={`inline-flex items-center gap-1 rounded-sm px-1.5 py-[2px] text-badge font-bold ${item.className}`}>
       <CueIcon kind={item.icon} />
       {item.label}
     </span>
@@ -624,12 +640,12 @@ function JapanCue({ japan, status }: { japan: PriceRow["japan"]; status: PriceRo
 function FreeCue({ free, kind }: { free: boolean | null; kind: "api" | "plan" }) {
   if (free === true) {
     return (
-      <span className="inline-flex items-center rounded-[5px] border border-line-strong px-1.5 py-[1px] text-[11.5px] font-bold text-ink-soft">
+      <span className="inline-flex items-center rounded-sm border border-line-strong px-1.5 py-[1px] text-badge font-bold text-ink-soft">
         {kind === "plan" ? "無料プランあり" : "無料で試せる"}
       </span>
     );
   }
-  if (free === false) return <span className="text-[11.5px] text-muted">有料のみ</span>;
+  if (free === false) return <span className="text-meta text-muted">有料のみ</span>;
   return null;
 }
 

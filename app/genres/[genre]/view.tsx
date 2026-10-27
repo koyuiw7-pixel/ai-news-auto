@@ -76,7 +76,7 @@ export default function GenreView({ genre, page }: { genre: string; page: number
             <Link
               key={channel.slug}
               href={`/channels/${channel.slug}`}
-              className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-meta text-ink-soft transition-colors hover:border-accent hover:text-accent"
+              className="rounded-md border border-line bg-surface px-3.5 py-1.5 text-meta text-ink-soft transition-colors hover:border-accent hover:text-accent"
             >
               {channel.label}
               <span className="ml-1.5 text-muted">{channel.count}</span>

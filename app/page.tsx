@@ -122,7 +122,7 @@ export default function HomePage() {
                     <Link
                       key={slug}
                       href={`/tags/${encodeURIComponent(slug)}`}
-                      className="rounded-full bg-surface px-3 py-1.5 text-meta font-medium text-ink-soft transition-colors hover:bg-surface-2 hover:text-ink"
+                      className="rounded-md bg-surface px-3 py-1.5 text-meta font-medium text-ink-soft transition-colors hover:bg-surface-2 hover:text-ink"
                     >
                       {tag.label}
                     </Link>

@@ -67,7 +67,7 @@ function Meta({ item }: { item: NextReadItem }) {
   const verdict = verdictOf(item.article);
   return (
     <span className="flex flex-wrap items-center gap-1.5">
-      <span className="rounded-full bg-ink px-2 py-[2px] text-badge font-bold text-paper">{item.reason}</span>
+      <span className="rounded-sm bg-ink px-2 py-[2px] text-badge font-bold text-paper">{item.reason}</span>
       {verdict && <VerdictBadge kind={usability(verdict)} />}
     </span>
   );

@@ -106,7 +106,7 @@ export default async function GuidePage({ params }: Props) {
       </nav>
 
       <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-meta">
-        <span className="rounded-full bg-ink px-2.5 py-0.5 text-badge font-bold tracking-wider text-paper">
+        <span className="rounded-sm bg-ink px-2.5 py-0.5 text-badge font-bold tracking-wider text-paper">
           製品ガイド
         </span>
         {company.slug !== OTHER.slug && <CompanyMark company={company} size={20} withName />}
@@ -127,7 +127,7 @@ export default async function GuidePage({ params }: Props) {
         <ol className="mt-4 grid gap-3.5">
           {guide.summary.map((point, index) => (
             <li key={index} className="grid grid-cols-[24px_1fr] gap-3 text-desc font-medium leading-[1.7] text-ink">
-              <span className="index-num mt-0.5 grid size-6 place-items-center rounded-full bg-ink text-meta font-semibold text-paper">
+              <span className="index-num mt-0.5 grid size-6 place-items-center rounded-sm bg-ink text-meta font-semibold text-paper">
                 {index + 1}
               </span>
               {point}
@@ -137,7 +137,7 @@ export default async function GuidePage({ params }: Props) {
       </section>
 
       <p className="mt-6 text-desc leading-[1.95] text-ink-soft">{guide.intro}</p>
-      <p className="mt-3 inline-block rounded-full bg-surface px-2 py-0.5 text-badge font-bold text-muted">
+      <p className="mt-3 inline-block rounded-sm bg-surface px-2 py-0.5 text-badge font-bold text-muted">
         本ページはプロモーションを含みます
       </p>
 

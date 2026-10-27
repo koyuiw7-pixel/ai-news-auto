@@ -59,7 +59,7 @@ export default function Sidebar({ current, affiliates = [] }: Props) {
               <Link
                 key={tag.slug}
                 href={`/tags/${encodeURIComponent(tag.slug)}`}
-                className="rounded-full bg-surface-2 px-2.5 py-1 text-meta text-muted hover:bg-accent-soft hover:text-accent"
+                className="rounded-md bg-surface-2 px-2.5 py-1 text-meta text-muted hover:bg-accent-soft hover:text-accent"
               >
                 #{tag.label}
               </Link>

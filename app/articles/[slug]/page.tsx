@@ -283,11 +283,11 @@ export default async function ArticlePage({ params }: Props) {
 
           <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-meta">
             <CompanyMark company={company} size={20} withName />
-            <span className="rounded-full border border-line-strong px-2 py-[1px] text-badge font-bold text-ink-soft">
+            <span className="rounded-sm border border-line-strong px-2 py-[1px] text-badge font-bold text-ink-soft">
               {isRoundup ? `まとめ ${article.sources?.length ?? 0}本` : "公式発表"}
             </span>
             {speedLabel(article) && (
-              <span className="rounded-full border border-live/40 px-2 py-[1px] text-badge font-bold text-live">
+              <span className="rounded-sm border border-live/40 px-2 py-[1px] text-badge font-bold text-live">
                 {speedLabel(article)}
               </span>
             )}
@@ -316,7 +316,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 3秒でわかる要点 */}
           {article.highlights.length > 0 && (
-            <section aria-labelledby="points-heading" className="mt-6 rounded-2xl border-l-4 border-live bg-surface p-5 sm:p-6">
+            <section aria-labelledby="points-heading" className="mt-6 rounded-xl border-l-4 border-accent bg-surface p-5 sm:p-6">
               <h2 id="points-heading" className="t-h3">
                 3秒でわかる要点
               </h2>
@@ -355,7 +355,7 @@ export default async function ArticlePage({ params }: Props) {
               href={`/guides/${guide.slug}`}
               className="group mt-4 flex items-center gap-3 rounded-2xl border border-line px-5 py-3.5 transition-colors hover:border-ink"
             >
-              <span className="shrink-0 rounded-full bg-ink px-2.5 py-0.5 text-badge font-bold text-paper">ガイド</span>
+              <span className="shrink-0 rounded-sm bg-ink px-2.5 py-0.5 text-badge font-bold text-paper">ガイド</span>
               <span className="min-w-0 text-note font-bold leading-snug text-ink group-hover:underline">
                 {guide.name}とは？できること・料金・使い方を1ページで
               </span>
@@ -371,7 +371,7 @@ export default async function ArticlePage({ params }: Props) {
 
           <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-meta text-muted">
             {/* ステマ規制（景品表示法）に沿い、広告を含みうる全記事の冒頭で明示する */}
-            <span className="rounded-full bg-surface px-2 py-0.5 text-badge font-bold">
+            <span className="rounded-sm bg-surface px-2 py-0.5 text-badge font-bold">
               本ページはプロモーションを含みます
             </span>
           </div>
@@ -382,7 +382,7 @@ export default async function ArticlePage({ params }: Props) {
               href={`/articles/${article.roundupSlug}`}
               className="group mt-6 flex items-start gap-3 rounded-2xl bg-surface px-5 py-4 transition-colors hover:bg-surface-2"
             >
-              <span className="mt-0.5 shrink-0 rounded-full bg-ink px-2.5 py-0.5 text-badge font-bold text-paper">
+              <span className="mt-0.5 shrink-0 rounded-sm bg-ink px-2.5 py-0.5 text-badge font-bold text-paper">
                 まとめ
               </span>
               <span className="min-w-0">
@@ -455,7 +455,7 @@ export default async function ArticlePage({ params }: Props) {
                     href={sourceUrl}
                     target="_blank"
                     rel="noopener"
-                    className="hidden shrink-0 items-center gap-1.5 rounded-full border border-line-strong px-3.5 py-1.5 text-badge font-bold text-ink-soft transition-colors hover:border-ink hover:text-ink sm:inline-flex"
+                    className="hidden shrink-0 items-center gap-1.5 rounded-sm border border-line-strong px-3.5 py-1.5 text-badge font-bold text-ink-soft transition-colors hover:border-ink hover:text-ink sm:inline-flex"
                   >
                     元記事を読む
                     <span aria-hidden>↗</span>
@@ -503,7 +503,7 @@ export default async function ArticlePage({ params }: Props) {
           <div id="article-flow" data-read-mode="expert">
           {easyHtml && (
             <div className="read-easy">
-              <p className="mt-8 inline-flex items-center gap-2 rounded-full bg-go-soft px-3 py-1 text-badge font-bold text-go">
+              <p className="mt-8 inline-flex items-center gap-2 rounded-sm bg-go-soft px-3 py-1 text-badge font-bold text-go">
                 かんたん版：専門用語を使わずに説明しています
               </p>
               <article className="prose mt-5 max-w-[40em]" dangerouslySetInnerHTML={{ __html: easyHtml }} />
@@ -621,7 +621,7 @@ export default async function ArticlePage({ params }: Props) {
                 <Link
                   key={tag}
                   href={tagHref(tag)}
-                  className="rounded-full bg-surface px-3.5 py-1.5 text-meta font-medium text-ink-soft hover:bg-surface-2 hover:text-accent"
+                  className="rounded-md bg-surface px-3.5 py-1.5 text-meta font-medium text-ink-soft hover:bg-surface-2 hover:text-accent"
                 >
                   #{tag}
                 </Link>
@@ -701,7 +701,7 @@ function CompareLink({ slug, name, className = "" }: { slug: string; name: strin
       href={`/compare/${slug}`}
       className={`group mt-2.5 items-center gap-2 rounded-xl border border-line px-3.5 py-2.5 text-meta transition-colors hover:border-ink ${className}`}
     >
-      <span className="shrink-0 rounded-full bg-ink px-2 py-0.5 text-badge font-bold text-paper">比較</span>
+      <span className="shrink-0 rounded-sm bg-ink px-2 py-0.5 text-badge font-bold text-paper">比較</span>
       <span className="min-w-0 font-bold leading-snug text-ink group-hover:underline">
         {name}を選ぶなら：比較ガイドを見る
       </span>

@@ -18,7 +18,7 @@ export default function VerdictBadge({ kind, block }: { kind: Usability; block?:
     );
   }
   return (
-    <span className={`inline-flex items-center gap-1 rounded-full px-2 py-[2px] text-badge font-bold ${STYLE[kind]}`}>
+    <span className={`inline-flex items-center gap-1 rounded-sm px-2 py-[2px] text-badge font-bold ${STYLE[kind]}`}>
       <VerdictIcon kind={kind} size={12} />
       {USABILITY_LABEL[kind]}
     </span>

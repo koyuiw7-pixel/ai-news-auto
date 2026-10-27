@@ -44,7 +44,7 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
           </div>
         </Morph>
         {isRoundup && sources > 0 && (
-          <span className="absolute bottom-4 left-4 inline-flex items-baseline gap-1.5 rounded-full bg-ink/90 px-4 py-2 text-paper">
+          <span className="absolute bottom-4 left-4 inline-flex items-baseline gap-1.5 rounded-sm bg-ink/90 px-4 py-2 text-paper">
             <span className="index-num text-xl font-semibold leading-none">{sources}</span>
             <span className="text-meta font-bold">本の発表を統合</span>
           </span>
@@ -53,7 +53,7 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
 
       <div className="flex min-w-0 flex-col gap-4">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-meta">
-          <span className="rounded-full bg-live px-2.5 py-0.5 text-badge font-bold tracking-wider text-live-ink">
+          <span className="rounded-sm bg-live px-2.5 py-0.5 text-badge font-bold tracking-wider text-live-ink">
             {isRoundup ? "まとめ" : "最新"}
           </span>
           <CompanyMark company={companyOf(lead)} size={18} withName />
@@ -90,7 +90,7 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
 
         <Link
           href={href}
-          className="mt-1 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-note font-bold text-paper transition-opacity hover:opacity-85"
+          className="mt-1 inline-flex w-fit items-center gap-2 rounded-md bg-ink px-5 py-2.5 text-note font-bold text-paper transition-opacity hover:opacity-85"
         >
           {isRoundup ? "まとめを読む" : "記事を読む"}
           <span aria-hidden>→</span>
