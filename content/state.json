@@ -3223,12 +3223,6 @@
       "skipped": true,
       "url": "https://sakana.ai/vp-of-gtm-interview/"
     },
-    "1a1d4bf2fc111eb8": {
-      "at": "2026-10-26T22:01:15.183025+00:00",
-      "reason": "short text 155",
-      "skipped": true,
-      "url": "https://openai.com/index/gpt-6-1-sol-coderabbit-code-security"
-    },
     "1a59e98674ccc9fb": {
       "at": "2026-10-26T14:11:39.308982+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（アワード）",
@@ -3321,12 +3315,6 @@
       "section": "entertainment",
       "slug": "twst-lilia-racing-star-pv-2026",
       "url": "https://www.atpress.ne.jp/news/644374"
-    },
-    "250e5d8f302445e7": {
-      "at": "2026-10-26T22:40:58.175082+00:00",
-      "reason": "short text 114",
-      "skipped": true,
-      "url": "https://openai.com/index/greptile-code-review-codex-astra"
     },
     "25eee40fa7809dbe": {
       "at": "2026-10-26T14:53:37.359789+00:00",
@@ -3968,9 +3956,13 @@
       "url": "https://www.softbank.jp/sbnews/entry/20261027_01"
     },
     "64d59b55a8fb8666": {
-      "at": "2026-10-26T18:11:48.185954+00:00",
-      "reason": "short text 154",
-      "skipped": true,
+      "at": "2026-10-27T15:27:59.298082+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "openai-signals-chatgpt-work-data",
       "url": "https://openai.com/index/chatgpt-expanding-world-of-work"
     },
     "66c4ad230d132d33": {
@@ -4407,12 +4399,6 @@
       "reason": "quality: AWS Machine Learning Blogによると、2026年10月27日に「Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3」と題した記事が公開されました。 → 元記事には2026年10月27日という具体的な日付の記載がない。",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/fleet-wide-computer-vision-lifecycle-at-the-edge-with-sagemaker-sdk-v3/"
-    },
-    "8f2f08b6e197805b": {
-      "at": "2026-10-26T19:21:22.163807+00:00",
-      "reason": "short text 154",
-      "skipped": true,
-      "url": "https://openai.com/index/openai-cut-incident-investigation"
     },
     "90b31744ef4440aa": {
       "at": "2026-10-26T14:10:58.214509+00:00",
@@ -5347,12 +5333,6 @@
       "skipped": true,
       "url": "https://www.riken.jp/press/2026/20261027_1/index.html"
     },
-    "f16aefe89a6e3f3b": {
-      "at": "2026-10-26T22:01:24.342392+00:00",
-      "reason": "short text 159",
-      "skipped": true,
-      "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities"
-    },
     "f1770af1eb030863": {
       "at": "2026-10-27T03:04:42.976911+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -5505,49 +5485,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-26T11:33:12.751771+00:00",
-      "attempt": 2,
-      "id": "057a86be6882ac7b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「アフリカやアジアでの実際の導入成果」→元記事で具体的な国名として挙げられているのは南アフリカ、シエラレオネ、コートジボワール（アフリカ）およびインドネシア（アジア）であり「アフリカやアジア」は間違いではないが、本文中の導入国数に関して一部「6カ国」とある部分で南アフリカ、シエラレオネ、コートジボワールと今後の拡張予定",
-        "「サハラ以南のアフリカにおけるCIDRZ、アウルム研究所、HELINAなどの研究協力」→元記事の最後の部分が「CIDRZ (Zambia), the Aurum Institute (Ghana, supported by a $」と途切れており、HELINAという名称や統合的な診断カスケードが構築されつつあるという詳"
-      ],
-      "score": 85,
-      "source": "google-research-blog",
-      "title": "Bringing foundational models to the front lines of TB screening"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T11:33:26.682424+00:00",
-      "attempt": 1,
-      "id": "95364ce770790d21",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "元記事の文をそのまま書き写している（3文。例「- Amazon Nova 2 Lite: US East (N. Virginia) (us-ea」）。自分の言葉で要約する"
-      ],
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "Multi-Turn Reinforcement Learning on Amazon SageMaker AI: A hands-on guide"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T11:33:38.547431+00:00",
-      "attempt": 2,
-      "id": "95364ce770790d21",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2467字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "Multi-Turn Reinforcement Learning on Amazon SageMaker AI: A hands-on guide"
-    },
     {
       "accepted": false,
       "at": "2026-10-26T11:33:51.666412+00:00",
@@ -9754,6 +9691,82 @@
       "score": 100,
       "source": "nvidia-blog",
       "title": "How AI Is Changing the Pace of Discovery for Millions Living With Dementia"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T15:25:26.165569+00:00",
+      "attempt": 1,
+      "id": "64d59b55a8fb8666",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "アクセス先「OpenAIの公式ブログ「ChatGPT’s expanding world of work」」→ 元記事にブログのタイトルは書かれておらず、固有名詞を創作している。"
+      ],
+      "readability": {
+        "avg_paragraph": 66.8,
+        "avg_sentence": 31.4,
+        "long_share": 0.0,
+        "max_paragraph": 131,
+        "paragraphs": 32,
+        "sentences": 68
+      },
+      "score": 85,
+      "source": "openai-news",
+      "title": "ChatGPT’s expanding world of work"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T15:26:44.464431+00:00",
+      "attempt": 2,
+      "id": "64d59b55a8fb8666",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "かんたん版「荷物を運ぶ、乗り物を運転するなど、ChatGPTでは扱いにくい仕事が多いからです」→ 元記事は閾値(consistent representation)を満たさなかったためとしており、「ChatGPTで扱いにくい」という理由は創作・矛盾。",
+        "まとめ「上位10業務の割合が下がったことは、使い方が多様化している兆しです」→ 元記事は「専門化」と説明しており、多様化という解釈は元記事にない言い過ぎ。",
+        "かんたん版「使い方が国ごとにばらけてきた、ということです」→ 元記事は集中度低下と国ごとの専門化を述べており、「ばらけた」は言い換えを超えた解釈。",
+        "まとめ「何の仕事に…増えたかを…追えるようになりました」→ 元記事は増加を示しておらず、割合の変化のみ。",
+        "「これまでの利用調査では、仕事で使われたかどうかが中心でした」→ 元記事に根拠がない過去の調査についての断定（直後の編集部注と矛盾）。",
+        "経営者向け「人材や業務設計の議論に役立ちます」「エンジニアなら…AIがどの作業に向いているかを見る参考」→ 元記事にない効用の断定。"
+      ],
+      "readability": {
+        "avg_paragraph": 57.2,
+        "avg_sentence": 31.1,
+        "long_share": 0.044,
+        "max_paragraph": 108,
+        "paragraphs": 37,
+        "sentences": 68
+      },
+      "score": 72,
+      "source": "openai-news",
+      "title": "ChatGPT’s expanding world of work"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T15:27:59.297437+00:00",
+      "attempt": 3,
+      "id": "64d59b55a8fb8666",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 64.8,
+        "avg_sentence": 33.8,
+        "long_share": 0.014,
+        "max_paragraph": 113,
+        "paragraphs": 38,
+        "sentences": 73
+      },
+      "score": 92,
+      "source": "openai-news",
+      "title": "ChatGPT’s expanding world of work"
     }
-  ]
+  ],
+  "short_text_retry": {
+    "1a1d4bf2fc111eb8": "2026-10-26T22:01:15.183025+00:00",
+    "250e5d8f302445e7": "2026-10-26T22:40:58.175082+00:00",
+    "64d59b55a8fb8666": "2026-10-26T18:11:48.185954+00:00",
+    "8f2f08b6e197805b": "2026-10-26T19:21:22.163807+00:00",
+    "f16aefe89a6e3f3b": "2026-10-26T22:01:24.342392+00:00"
+  }
 }
