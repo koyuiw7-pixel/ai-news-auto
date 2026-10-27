@@ -3589,6 +3589,13 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/discourse/20261026danwa.html"
     },
+    "3a37808a86b2e58d": {
+      "at": "2026-10-27T16:53:33.719042+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "followup quality: 続報の長さが不適切（210字 / 400〜900字）",
+      "skipped": true,
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1219_4789.html"
+    },
     "3a5b52bd15b080b3": {
       "at": "2026-10-27T03:05:10.757968+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（オープン）",
@@ -4655,6 +4662,14 @@
       "slug": "next-ipo-club-pitch-event-2026",
       "url": "https://prtimes.jp/main/html/rd/p/000000334.000054393.html"
     },
+    "a3a879144b2984ac": {
+      "at": "2026-10-27T16:53:03.045319+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "openai-oracle-partnership-chatgpt",
+      "url": "https://openai.com/index/oracle-apps-in-chatgpt"
+    },
     "a42cbd0dcd40e943": {
       "at": "2026-10-26T17:14:17.179772+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5295,6 +5310,14 @@
       "skipped": true,
       "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1211_4785.html"
     },
+    "e2437ef711cac173": {
+      "at": "2026-10-27T16:54:50.157475+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "caa-recall-accident-report-202610",
+      "url": "https://www.caa.go.jp/notice/entry/047930/"
+    },
     "e25f5395926e8641": {
       "at": "2026-10-27T01:54:43.563246+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5627,102 +5650,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:42:35.281184+00:00",
-      "attempt": 1,
-      "id": "800950a0771930f6",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1889字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "AI Hack提供のAIO分析ツール「AI Hack」が最新AIモデル「Claude Sonnet 5.5」「GPT-6.1 Sol」に対応"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T12:43:43.880714+00:00",
-      "attempt": 2,
-      "id": "800950a0771930f6",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "prtimes",
-      "title": "AI Hack提供のAIO分析ツール「AI Hack」が最新AIモデル「Claude Sonnet 5.5」「GPT-6.1 Sol」に対応"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:51:17.327368+00:00",
-      "attempt": 1,
-      "id": "9159549a940483f3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2034字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（353字 / 基準 400字以上）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "【開催報告】倉敷中央病院と医療現場が主役となる「生成AI×市民開発」の祭典『せとうちMED Innovationカンファレンス』をSUNABACOと共催"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:51:45.036676+00:00",
-      "attempt": 2,
-      "id": "9159549a940483f3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1905字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "【開催報告】倉敷中央病院と医療現場が主役となる「生成AI×市民開発」の祭典『せとうちMED Innovationカンファレンス』をSUNABACOと共催"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T12:52:02.818112+00:00",
-      "attempt": 1,
-      "id": "e34661f9a884f584",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1720字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "score": null,
-      "source": "dreamnews",
-      "title": "日本産業保健市場：2028年のストレスチェック義務化と職場安全改革が企業向け健康サービスを再編する"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T12:52:30.412756+00:00",
-      "attempt": 2,
-      "id": "e34661f9a884f584",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "dreamnews",
-      "title": "日本産業保健市場：2028年のストレスチェック義務化と職場安全改革が企業向け健康サービスを再編する"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T13:12:01.539498+00:00",
-      "attempt": 1,
-      "id": "ae2898f665e29e0d",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1553字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "jpcert",
-      "title": "注意喚起: BrotliのC言語実装における境界外書き込みの脆弱性（CVE-2026-111497）に関する注意喚起 (公開)"
-    },
     {
       "accepted": true,
       "at": "2026-10-26T13:12:34.090132+00:00",
@@ -10234,6 +10161,154 @@
       "score": 100,
       "source": "ntt-news-ai",
       "title": "次世代通信基盤「IOWN APN」を活用し、東京～北海道データセンター間1,000km超のストレージ統合実証に成功～遠隔地でも同一拠点と同等の読み出し性能により"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T16:51:46.320576+00:00",
+      "attempt": 1,
+      "id": "a3a879144b2984ac",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2264字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（379字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 113.2,
+        "avg_sentence": 60.4,
+        "long_share": 0.467,
+        "max_paragraph": 203,
+        "paragraphs": 16,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "OpenAI expands partnership with Oracle to bring its apps to ChatGPT"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T16:52:26.964977+00:00",
+      "attempt": 2,
+      "id": "a3a879144b2984ac",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 64.8字・60字超の文が 53% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 90.2,
+        "avg_sentence": 64.8,
+        "long_share": 0.531,
+        "max_paragraph": 198,
+        "paragraphs": 23,
+        "sentences": 32
+      },
+      "score": 100,
+      "source": "openai-news",
+      "title": "OpenAI expands partnership with Oracle to bring its apps to ChatGPT"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T16:53:03.044882+00:00",
+      "attempt": 0,
+      "id": "a3a879144b2984ac",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 123.3字・最長 272字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 123.3,
+        "avg_sentence": 25.5,
+        "long_share": 0.0,
+        "max_paragraph": 272,
+        "paragraphs": 23,
+        "sentences": 111
+      },
+      "score": 100,
+      "source": "openai-news",
+      "title": "OpenAI expands partnership with Oracle to bring its apps to ChatGPT"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T16:53:33.719018+00:00",
+      "attempt": 1,
+      "id": "3a37808a86b2e58d",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "続報の長さが不適切（210字 / 400〜900字）"
+      ],
+      "score": null,
+      "source": "kddi-news",
+      "title": "au、まったく新しい「iPad mini」を11月6日に発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T16:53:54.142967+00:00",
+      "attempt": 1,
+      "id": "e2437ef711cac173",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1597字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 123.4,
+        "avg_sentence": 50.3,
+        "long_share": 0.259,
+        "max_paragraph": 180,
+        "paragraphs": 11,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "caa",
+      "title": "消費生活用製品の重大製品事故:リコール製品で火災等(電気シェーバー、マッサージ器(充電式))(10月27日)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T16:54:33.240615+00:00",
+      "attempt": 2,
+      "id": "e2437ef711cac173",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 55.6字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 111.2,
+        "avg_sentence": 55.6,
+        "long_share": 0.429,
+        "max_paragraph": 182,
+        "paragraphs": 14,
+        "sentences": 28
+      },
+      "score": 100,
+      "source": "caa",
+      "title": "消費生活用製品の重大製品事故:リコール製品で火災等(電気シェーバー、マッサージ器(充電式))(10月27日)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T16:54:50.157008+00:00",
+      "attempt": 0,
+      "id": "e2437ef711cac173",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 本文が縮んだ（1841→1776字）"
+      ],
+      "readability": {
+        "avg_paragraph": 111.2,
+        "avg_sentence": 55.6,
+        "long_share": 0.429,
+        "max_paragraph": 182,
+        "paragraphs": 14,
+        "sentences": 28
+      },
+      "score": 100,
+      "source": "caa",
+      "title": "消費生活用製品の重大製品事故:リコール製品で火災等(電気シェーバー、マッサージ器(充電式))(10月27日)"
     }
   ],
   "short_text_retry": {
