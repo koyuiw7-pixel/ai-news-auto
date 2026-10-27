@@ -188,7 +188,7 @@ SCRIPT_SYSTEM = """あなたはニュースサイト「サイソク」の縦型�
 # caption と speech
 - caption は画面に出す字幕。資料の表記（英数字・記号）のまま。読みやすいように読点（、）を入れる。
 - speech は読み上げ用。caption と同じ内容を、音声合成が正しく読めるように書く。
-  英語の製品名・社名はカタカナ（例: OpenAI→オープンエーアイ、GPT-6.1→ジーピーティー ろくてんいち、iPad→アイパッド）、
+  英語の製品名・社名はカタカナ（例: OpenAI→オープンエーアイ、GPT-6.1→ジーピーティー6.1、iPad→アイパッド）、
   記号は言葉に（$1→1ドル、50%→50パーセント、5.4mm→5.4ミリ、〜→から）。
   数字は必ずアラビア数字のまま書く（かなや漢数字にしない）。5桁以上の金額だけ「11万9800円」の形にする。
 
@@ -262,7 +262,8 @@ def write_script(a: dict) -> tuple[dict, str]:
     prompt = f"# 資料\n{material}\n\n上の資料だけを使って、決まりどおりの台本を JSON で書いてください。"
     feedback = ""
     last: Exception | None = None
-    for attempt in range(4):
+    tries = 4
+    for attempt in range(1, tries + 1):
         try:
             data, model = llm.generate_json(SCRIPT_SYSTEM, prompt + feedback, SCRIPT_SCHEMA, temperature=0.4, max_output_tokens=4096, tier="bulk")
         except RuntimeError as error:
@@ -270,31 +271,26 @@ def write_script(a: dict) -> tuple[dict, str]:
             break
         points = [p for p in data.get("points", []) if isinstance(p, dict) and p.get("caption") and p.get("speech")]
         hook = data.get("hook") or {}
-        if not hook.get("caption") or len(points) < 3:
-            feedback = "\n\n# 前回の問題\nhook と points 3つ（caption と speech）をそろえてください。"
+        if not hook.get("caption") or not hook.get("speech") or len(points) < 3:
+            feedback = "\n\n# 前回の問題\n- hook と points 3つ（caption と speech）をそろえてください。"
             continue
         data["points"] = points[:3]
-        bad = unknown_numbers(data, material)
-        if bad:
-            log(f"   [shorts] 資料に無い数字 {bad} -> 書き直し")
-            feedback = f"\n\n# 前回の問題\n資料に無い数字 {', '.join(sorted(set(bad)))} を使いました。資料にある数字だけを使ってください。"
-            continue
-        unread = unread_numbers(data)
-        if unread:
-            log(f"   [shorts] 読み上げ文に数字が無い {unread} -> 書き直し")
-            feedback = f"\n\n# 前回の問題\nspeech で数字 {', '.join(unread)} をかなで書きました。speech でも数字はアラビア数字のまま書いてください。"
-            continue
-        latin = latin_words(data)
-        if latin:
-            log(f"   [shorts] 読み上げ文に英単語 {latin} -> 書き直し")
-            feedback = f"\n\n# 前回の問題\nspeech に英単語 {', '.join(latin)} が残っています。speech では英単語をカタカナにしてください。"
-            continue
-        claims = unsupported_claims(data, material)
-        if claims:
-            log(f"   [shorts] 資料に無い評価語 {claims} -> 書き直し")
-            feedback = f"\n\n# 前回の問題\n資料に無い言葉「{'」「'.join(claims)}」を使いました。資料にある事実だけで書いてください。"
-            continue
-        return data, model
+        # 事実の問題（必ず直す）と読み上げの問題（最後は妥協する）を分けて、まとめて伝える
+        facts, reading = [], []
+        if bad := sorted(set(unknown_numbers(data, material))):
+            facts.append(f"資料に無い数字 {', '.join(bad)} を使いました。資料にある数字だけを使ってください。")
+        if claims := unsupported_claims(data, material):
+            facts.append(f"資料に無い言葉「{'」「'.join(claims)}」を使いました。資料にある事実だけで書いてください。")
+        if unread := unread_numbers(data):
+            reading.append(f"speech で数字 {', '.join(unread)} をかなや漢数字にしました。speech でも数字はアラビア数字のまま（例: ジーピーティー6.1）。")
+        if latin := latin_words(data):
+            reading.append(f"speech に英単語 {', '.join(latin)} が残っています。speech では英単語をカタカナに（例: Terra→テラ）。")
+        if not facts and (not reading or attempt == tries):
+            if reading:
+                log(f"   [shorts] 読み上げの注意を残したまま採用: {reading}")
+            return data, model
+        log(f"   [shorts] 書き直し: {facts + reading}")
+        feedback = "\n\n# 前回の問題（すべて直す）\n" + "\n".join(f"- {x}" for x in facts + reading)
     raise RuntimeError(f"台本を作れませんでした: {last or feedback.strip()}")
 
 
