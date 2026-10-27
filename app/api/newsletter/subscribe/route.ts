@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 
 const EMAIL_RE = /^[^\s@<>()[\]\\,;:"]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/;
 /** 確認メールの再送間隔 */
-const RESEND_AFTER_MS = 10 * 60_000;
+const RESEND_AFTER_MS = 2 * 60_000;
 
 function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
 
   // ボット除け: 見えない入力欄に何か入っている／表示から1.5秒未満の送信は、受け付けたふりをして捨てる
   const elapsed = Date.now() - Number(body.ts ?? 0);
-  if ((typeof body.company === "string" && body.company !== "") || !(elapsed > 1500)) {
+  if ((typeof body.company === "string" && body.company !== "") || !(elapsed > 800)) {
     return json({ ok: true, state: "sent" });
   }
 
