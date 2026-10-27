@@ -5121,6 +5121,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000004.000187109.html"
     },
+    "b14982713531bab0": {
+      "at": "2026-10-27T20:31:53.481484+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "ntt-docomo-kumamoto-earthquake-volunteer",
+      "url": "https://www.docomosolutions.co.jp/news/pr26102701.html"
+    },
     "b21238f8afcf5915": {
       "at": "2026-10-27T03:04:42.979118+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -5640,6 +5648,13 @@
       "slug": "ps5-marvels-wolverine-photo-mode-guide",
       "url": "https://blog.ja.playstation.com/2026/10/26/20261026-marvels-wolverine-photo-mode-o/"
     },
+    "d975b1f51a07385e": {
+      "at": "2026-10-27T20:31:17.370179+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大臣の定例記者会見における質疑応答であり、特定の国民生活に関わる新しい制度や法律の制定、給付金の支給などの告知ではないため対象外とします。",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/conference/minister/2026b/20261016-1.html"
+    },
     "da2e27d38193bff0": {
       "at": "2026-10-27T03:04:42.978102+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
@@ -6108,61 +6123,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-26T19:22:03.028167+00:00",
-      "attempt": 2,
-      "id": "344482fd6d727bf9",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1992字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "GPT-6.1 Terra in GitHub Copilot"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T19:41:01.663326+00:00",
-      "attempt": 1,
-      "id": "5854ffdfb8165007",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1545字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（350字 / 基準 400字以上）"
-      ],
-      "score": null,
-      "source": "dreamnews",
-      "title": "【ソフトテニス】ルーセントカップ「東京インドア2027」＆「社会人対学生2027」の特設サイトを公開"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-26T19:41:09.355209+00:00",
-      "attempt": 2,
-      "id": "5854ffdfb8165007",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "dreamnews",
-      "title": "【ソフトテニス】ルーセントカップ「東京インドア2027」＆「社会人対学生2027」の特設サイトを公開"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T20:01:18.719691+00:00",
-      "attempt": 1,
-      "id": "236c687371b6fbfc",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1645字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "digital-agency",
-      "title": "地方公共団体情報システムデータ要件・連携要件の標準仕様に係る適合確認ウェブサイトを更新しました"
-    },
     {
       "accepted": false,
       "at": "2026-10-26T20:01:27.448083+00:00",
@@ -11751,6 +11711,92 @@
       "score": 100,
       "source": "kddi-news",
       "title": "KDDIとWing、国内のドローン配送実現に向け提携"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:31:26.612995+00:00",
+      "attempt": 1,
+      "id": "b14982713531bab0",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1750字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 130.4,
+        "avg_sentence": 57.4,
+        "long_share": 0.44,
+        "max_paragraph": 227,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "ntt-news",
+      "title": "令和8年熊本地震の被災地域で社員ボランティア活動を開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T20:31:41.617609+00:00",
+      "attempt": 2,
+      "id": "b14982713531bab0",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1549字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 145.9,
+        "avg_sentence": 52.5,
+        "long_share": 0.32,
+        "max_paragraph": 199,
+        "paragraphs": 9,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "ntt-news",
+      "title": "令和8年熊本地震の被災地域で社員ボランティア活動を開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T20:31:47.359949+00:00",
+      "attempt": 2,
+      "id": "b14982713531bab0",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "段落が長い（平均 199.6字・最長 255字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 199.6,
+        "avg_sentence": 42.8,
+        "long_share": 0.167,
+        "max_paragraph": 255,
+        "paragraphs": 9,
+        "sentences": 42
+      },
+      "score": 100,
+      "source": "ntt-news",
+      "title": "令和8年熊本地震の被災地域で社員ボランティア活動を開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T20:31:53.480932+00:00",
+      "attempt": 0,
+      "id": "b14982713531bab0",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.2,
+        "avg_sentence": 39.5,
+        "long_share": 0.116,
+        "max_paragraph": 108,
+        "paragraphs": 22,
+        "sentences": 43
+      },
+      "score": 100,
+      "source": "ntt-news",
+      "title": "令和8年熊本地震の被災地域で社員ボランティア活動を開始"
     }
   ],
   "short_text_retry": {
