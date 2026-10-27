@@ -36,6 +36,7 @@
     "iTiKeH3FDoQ": 2,
     "l37ZnSjKRxo": 1,
     "lTQHImoeuEY": 1,
+    "mMzaL15KFVY": 1,
     "nJV3yUuz6DU": 1,
     "nfpVl4pC0UM": 1,
     "nqAri_t8xRA": 1,
@@ -2017,6 +2018,11 @@
     "fJzwX3_AL4k": {
       "at": "2026-08-08T21:21:47.605644+00:00",
       "reason": "この動画は39秒のショート動画であり、出演者の為替取引における損失とYouTubeのスーパーチャット（スパチャ）に関する雑談・エンタメコンテンツです。不動産投資、住宅購入、エリア相場、金利動向などの実質的な不動産・投資情報が含まれておらず、商業メディアの記事として執筆するに足る情報価値を満たしていないため、記事化をスキップします。",
+      "skipped": true
+    },
+    "fKYjE9_qNSg": {
+      "at": "2026-10-27T22:06:33.714213+00:00",
+      "reason": "本動画は34秒のYouTube Shorts（ショート動画）であり、学生向けの学習ハックを紹介する短尺動画です。実質的な新製品発表や深い技術解説が含まれないため、単独の専門解説記事としての要件を満たしていません。",
       "skipped": true
     },
     "fMgcm9aXZyY": {
@@ -4793,6 +4799,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005972.000054842.html"
     },
+    "8dea1bb43e1fdbc8": {
+      "at": "2026-10-27T22:07:14.193520+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "shiharai-kikin-reorganization-medical-dx",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87173?site=nli"
+    },
     "8ed93bec790144d5": {
       "at": "2026-10-26T18:18:23.045318+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5696,6 +5710,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000074.000134829.html"
     },
+    "d63a28d3d1aad26e": {
+      "at": "2026-10-27T22:06:53.519749+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（開催について）",
+      "skipped": true,
+      "url": "https://www.fsc.go.jp/senmon/sonota/annai/wg_amr_annai_65.html"
+    },
     "d6e3530c14e6a22a": {
       "at": "2026-10-27T18:08:11.485680+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -6272,34 +6292,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-26T23:21:18.885065+00:00",
-      "attempt": 1,
-      "id": "e52a1eb6f54ddd76",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1369字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "kyodo-prwire",
-      "title": "小諸の情報はこれ一つで完結！楽しい街アプリ『Komomag.（コモマグ）』誕生"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-26T23:21:25.860434+00:00",
-      "attempt": 2,
-      "id": "e52a1eb6f54ddd76",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "価格欄の「編集部注: 言及なし（一般的な自治体アプリとして無料配信）」→ 無料配信である旨や前提は元記事に記載されていない。"
-      ],
-      "score": 90,
-      "source": "kyodo-prwire",
-      "title": "小諸の情報はこれ一つで完結！楽しい街アプリ『Komomag.（コモマグ）』誕生"
-    },
     {
       "accepted": false,
       "at": "2026-10-26T23:21:32.727684+00:00",
@@ -12153,6 +12145,49 @@
       "score": 100,
       "source": "suntory",
       "title": "サントリーの薬膳ブランド「薬膳好日（やくぜんこうじつ）」からチャイのおいしさに、薬膳素材をバランスよく配合した「薬膳チャイ」新発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-27T22:07:06.870088+00:00",
+      "attempt": 1,
+      "id": "8dea1bb43e1fdbc8",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 54.9字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 164.7字・最長 217字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 164.7,
+        "avg_sentence": 54.9,
+        "long_share": 0.296,
+        "max_paragraph": 217,
+        "paragraphs": 9,
+        "sentences": 27
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "医療レセプトの審査支払機関、10月に大幅改組－医療DX推進が前面に、医療提供体制改革を担う都道府県などとの連携などが焦点に"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-27T22:07:14.193061+00:00",
+      "attempt": 0,
+      "id": "8dea1bb43e1fdbc8",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 118.0,
+        "avg_sentence": 29.5,
+        "long_share": 0.021,
+        "max_paragraph": 214,
+        "paragraphs": 12,
+        "sentences": 48
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "医療レセプトの審査支払機関、10月に大幅改組－医療DX推進が前面に、医療提供体制改革を担う都道府県などとの連携などが焦点に"
     }
   ],
   "short_text_retry": {
