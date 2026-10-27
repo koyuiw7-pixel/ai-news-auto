@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CompanyMark from "@/components/CompanyMark";
-import LiveBar from "@/components/LiveBar";
+import CompanyChips from "@/components/CompanyChips";
 import Pagination from "@/components/Pagination";
 import Timeline from "@/components/Timeline";
 import { getAllArticles } from "@/lib/articles";
@@ -34,20 +34,10 @@ export default function CompanyView({ slug, page }: { slug: string; page: number
   if (page > paged.totalPages) notFound();
 
   const name = company.slug === "other" ? "その他のAI企業" : company.name;
-  const updatedAt = articles.map((a) => a.generatedAt).filter(Boolean).sort().at(-1);
-  const recentCount = articles.filter(
-    (a) => a.generatedAt && Date.now() - Date.parse(a.generatedAt) < 86_400_000,
-  ).length;
 
   return (
     <>
-      <LiveBar
-        updatedAt={updatedAt}
-        recentCount={recentCount}
-        weekCount={articles.filter((a) => a.generatedAt && Date.now() - Date.parse(a.generatedAt) < 7 * 86_400_000).length}
-        companies={companyCounts(all).slice(0, 8)}
-        active={slug}
-      />
+      <CompanyChips companies={companyCounts(all).slice(0, 8)} active={slug} />
       <div className="mx-auto max-w-[920px] px-5 py-10 sm:px-8 sm:py-14">
         <div className="flex items-center gap-3">
           <CompanyMark company={company} size={40} />

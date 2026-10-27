@@ -19,7 +19,8 @@ export type StoryItem = {
   price: string | null;
 };
 
-export type Bundle = { key: string; label: string; items: StoryItem[] };
+/** cover は丸の表紙（束どうしで重ならないようサーバー側で選ぶ） */
+export type Bundle = { key: string; label: string; cover?: string; items: StoryItem[] };
 type Mode = "easy" | "expert";
 
 const FONTS =
@@ -60,13 +61,8 @@ export default function StoryRail({ bundles }: { bundles: Bundle[] }) {
     document.body.style.overflow = open === null ? "" : "hidden";
   }, [open]);
 
-  // 丸ごとに違う写真を使う（同じ記事が先頭に来ても見分けられるように）
-  const used = new Set<string>();
-  const covers = bundles.map((b) => {
-    const pick = b.items.find((s) => !used.has(s.slug)) ?? b.items[0];
-    if (pick) used.add(pick.slug);
-    return pick?.image.replace("maxresdefault", "hqdefault") ?? "";
-  });
+  // 表紙は lib/stories.ts で丸ごとに違う見た目を選んである
+  const covers = bundles.map((b) => (b.cover || b.items[0]?.image || "").replace("maxresdefault", "hqdefault"));
 
   return (
     <>
@@ -353,14 +349,25 @@ function Card({ it, mode }: { it: StoryItem; mode: Mode }) {
 }
 
 const CSS = `
-.sr{display:flex;gap:14px;overflow-x:auto;padding:14px 16px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sr{display:flex;gap:12px;overflow-x:auto;padding:14px 20px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .sr::-webkit-scrollbar{display:none}
 .sr-ring{flex:none;display:flex;flex-direction:column;align-items:center;gap:5px;width:70px}
-.sr-img{width:64px;height:64px;border-radius:50%;padding:2.5px;background:conic-gradient(from 210deg,#2fd27f,#0a6fa0,#2fd27f)}
+.sr-img{width:64px;height:64px;border-radius:50%;padding:2.5px;background:conic-gradient(from 210deg,#2fd27f,#0a6fa0,#2fd27f);transition:transform .15s}
 .sr-ring.seen .sr-img{background:var(--line-strong,#cfcfc7)}
-.sr-img img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2.5px solid var(--paper,#fff)}
-.sr-label{font-size:11.5px;font-weight:700;line-height:1.2;text-align:center;color:var(--ink,#111)}
+.sr-img img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2.5px solid var(--paper,#fff);background:var(--surface-2,#eee)}
+.sr-label{max-width:100%;font-size:11.5px;font-weight:700;line-height:1.2;text-align:center;color:var(--ink,#111);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sr-n{font-family:var(--font-martian),monospace;font-size:9.5px;color:var(--muted,#62625d);margin-top:-3px}
+.sr-ring:hover .sr-img{transform:scale(1.04)}
+.sr-ring:focus-visible{outline:2px solid var(--ink,#111);outline-offset:4px;border-radius:12px}
+@media (min-width:640px){.sr{padding:18px 32px 12px}}
+/* PC は丸を少し大きくし、1列（最大12個）に均等に並べて横幅を使い切る */
+@media (min-width:1024px){
+  .sr{gap:8px}
+  .sr-ring{flex:1 1 0;min-width:78px;max-width:104px;width:auto;gap:7px}
+  .sr-img{width:76px;height:76px;padding:3px}
+  .sr-label{font-size:12.5px}
+  .sr-n{font-size:10px}
+}
 
 .dk{position:fixed;inset:0;z-index:90;background:#0b0d10;color:#f4f5f7;font-family:"Noto Sans JP",system-ui,sans-serif;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;overscroll-behavior:contain;touch-action:pan-y}
 .dk-top{padding:10px 14px 6px}
