@@ -1,6 +1,7 @@
 import Link from "next/link";
 import RelTime from "@/components/RelTime";
 import Thumb from "@/components/Thumb";
+import { smallThumb } from "@/lib/thumb-url";
 import type { ArticleSummary } from "@/lib/articles";
 import { thumbSource } from "@/lib/companies";
 
@@ -67,7 +68,7 @@ function NewsItem({ article, priority }: { article: ArticleSummary; priority: bo
     >
       <span className="relative aspect-video overflow-hidden rounded-lg bg-surface-2 sm:rounded-xl">
         <Thumb
-          src={article.thumbnail.replace("maxresdefault", "hqdefault")}
+          src={smallThumb(article.thumbnail)}
           source={thumbSource(article)}
           alt=""
           fill

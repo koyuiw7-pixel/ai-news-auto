@@ -2,6 +2,7 @@ import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
 import DayLabel from "@/components/DayLabel";
 import Thumb from "@/components/Thumb";
+import { smallThumb } from "@/lib/thumb-url";
 import UsableFilter from "@/components/UsableFilter";
 import VerdictBadge from "@/components/VerdictBadge";
 import type { ArticleSummary } from "@/lib/articles";
@@ -117,7 +118,7 @@ function TimelineRow({ article }: { article: ArticleSummary }) {
           </h4>
 
           {verdict && (
-            <p className="mt-1 text-meta text-muted">
+            <p className="mt-1 text-note text-muted">
               {[verdict.price !== "不明" ? verdict.price : "", verdict.japan === "ok" ? "日本から利用可" : verdict.japan === "no" && kind !== "wait" ? "日本では未提供" : "", verdict.audience ? `${verdict.audience}向け` : ""]
                 .filter(Boolean)
                 .join(" ・ ")}
@@ -138,7 +139,7 @@ function TimelineRow({ article }: { article: ArticleSummary }) {
         <div className="relative hidden aspect-video overflow-hidden rounded-lg bg-surface-2 sm:block">
           <Thumb
             // 一覧の小さな枠には軽い画像（480px）を使う。最高画質（1280px）は記事ページだけ
-            src={article.thumbnail.replace("maxresdefault", "hqdefault")}
+            src={smallThumb(article.thumbnail)}
             source={thumbSource(article)}
             alt=""
             fill

@@ -1,6 +1,7 @@
 import { isIndexable } from "@/lib/indexing";
 import type { Metadata } from "next";
 import Thumb from "@/components/Thumb";
+import ImageCredit from "@/components/ImageCredit";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
@@ -113,6 +114,8 @@ export default async function ArticlePage({ params }: Props) {
   // 公式ブログ・プレスリリースから作った記事（動画の埋め込み・タイムテーブルを出さない）
   const web = isWeb(article);
   const video = isVideo(article);
+  // フリー素材・AI 生成のイメージ写真（scripts/images.py）
+  const stockPhoto = article.imageCredit?.kind === "stock" || article.imageCredit?.kind === "ai";
   const sourceUrl = sourceHref(article);
   const sourceName = sourceLabel(article);
   const affiliates = article.affiliates ?? [];
@@ -433,6 +436,7 @@ export default async function ArticlePage({ params }: Props) {
                   </a>
                 </Morph>
               )}
+              <ImageCredit credit={article.imageCredit} className="bg-surface px-5 pt-3" />
               <figcaption className="flex items-center gap-4 bg-surface px-5 py-4">
                 <CompanyMark company={company} size={36} />
                 <span className="min-w-0 flex-1">
@@ -484,6 +488,8 @@ export default async function ArticlePage({ params }: Props) {
                     sizes="(max-width: 1024px) 100vw, 860px"
                     className="object-cover opacity-90 transition-opacity group-hover:opacity-100"
                   />
+                  {/* 元動画のサムネイルが消えてイメージ写真に替えた記事は、再生ボタンを出さない */}
+                  {!stockPhoto && (
                   <span className="absolute inset-0 grid place-items-center">
                     <span className="grid h-14 w-20 place-items-center rounded-2xl bg-red-600/95 text-white shadow-lg transition-transform group-hover:scale-110">
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
@@ -491,8 +497,10 @@ export default async function ArticlePage({ params }: Props) {
                       </svg>
                     </span>
                   </span>
+                  )}
                 </a>
               </Morph>
+              {stockPhoto && <ImageCredit credit={article.imageCredit} className="px-5 pt-3 !text-white/80" />}
               <p className="truncate px-5 py-3 text-note text-white/75">
                 元動画: {article.videoTitle}
               </p>

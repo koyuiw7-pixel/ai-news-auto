@@ -34,6 +34,22 @@ export type ArticleUpdate = {
   sourceName: string;
 };
 
+/**
+ * 記事の写真の出典（scripts/images.py）。
+ * source=元記事の写真 / stock=フリー素材（CC0・PD・CC BY）/ ai=Workers AI で生成したイメージ
+ */
+export type ImageCredit = {
+  kind: "source" | "stock" | "ai";
+  provider?: string;
+  title?: string;
+  creator?: string;
+  creatorUrl?: string;
+  license?: string;
+  licenseUrl?: string;
+  sourceUrl?: string;
+  model?: string;
+};
+
 export type Article = {
   slug: string;
   /** "roundup" は複数記事を統合した横断まとめ。省略時は通常記事 */
@@ -90,6 +106,8 @@ export type Article = {
   /** 「これまでの流れ」で文脈に使った過去記事の slug */
   relatedSlugs?: string[];
   thumbnail: string;
+  /** 写真の出典。stock・ai のときは記事ページに「写真はイメージです」とクレジットを出す */
+  imageCredit?: ImageCredit;
   model: string;
   /** 主要企業の公式発表の速報（scripts/web_articles.py が付け、デプロイ直後に SNS へ即時投稿する） */
   breaking?: boolean;

@@ -111,10 +111,42 @@ function forEdge(response: Response): Response {
   return copy;
 }
 
+type KvNamespace = { get(key: string, type: "arrayBuffer"): Promise<ArrayBuffer | null> };
+
+const IMAGE_NAME = /^\/img\/([A-Za-z0-9][A-Za-z0-9_-]{0,160}\.(jpg|sm\.webp))$/;
+
+/**
+ * 記事の写真（フリー素材・AI 生成。scripts/images.py が Workers KV の saisoku-images に置く）。
+ * 名前に中身のハッシュが入っていて変わらないので、ブラウザ・エッジとも1年使い回す。
+ * エッジのキャッシュはデプロイの版に関係なく使う（KV の読み出しはキャッシュが無いときだけ）
+ */
+async function serveImage(request: Request, url: URL, env: Env, ctx: Ctx): Promise<Response> {
+  const match = IMAGE_NAME.exec(url.pathname);
+  if (!match || (request.method !== "GET" && request.method !== "HEAD")) return new Response("Not Found", { status: 404 });
+  const edge = (caches as unknown as { default: Cache }).default;
+  const key = new Request(`${url.origin}${url.pathname}`, { method: "GET" });
+  let response = await edge.match(key);
+  if (!response) {
+    const kv = env.IMAGES_KV as KvNamespace | undefined;
+    const body = kv ? await kv.get(match[1], "arrayBuffer") : null;
+    if (!body) return new Response("Not Found", { status: 404, headers: { "Cache-Control": "public, max-age=60" } });
+    response = new Response(body, {
+      headers: {
+        "Content-Type": match[2] === "jpg" ? "image/jpeg" : "image/webp",
+        "Cache-Control": "public, max-age=31536000, immutable",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+    ctx.waitUntil(edge.put(key, response.clone()));
+  }
+  return request.method === "HEAD" ? new Response(null, { headers: response.headers }) : response;
+}
+
 export default {
   async fetch(request: Request, env: Env, ctx: Ctx): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname.startsWith("/_content/")) return new Response("Not Found", { status: 404 });
+    if (url.pathname.startsWith("/img/")) return serveImage(request, url, env, ctx);
 
     const cacheKey = edgeCacheKey(request, url, env);
     const edge = cacheKey ? (caches as unknown as { default: Cache }).default : null;

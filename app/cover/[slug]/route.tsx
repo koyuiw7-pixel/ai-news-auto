@@ -193,6 +193,15 @@ async function reachablePhoto(url: string): Promise<string | null> {
   return null;
 }
 
+/** カバー左上の注記（フリー素材・AI 生成のときだけ。CC BY は作者とライセンスの表示が条件） */
+function coverCredit(article: FullArticle): string {
+  const c = article.imageCredit;
+  if (c?.kind === "ai") return "画像はイメージ（AI生成）";
+  if (c?.kind !== "stock") return "";
+  const who = (c.creator || "").slice(0, 28);
+  return c.license?.startsWith("CC BY") ? `写真はイメージ　Photo: ${who} / ${c.license}` : "写真はイメージ";
+}
+
 async function renderCover(article: FullArticle): Promise<ImageResponse> {
   const company = companyOf(article);
   const isOther = company.slug === "other";
@@ -205,6 +214,7 @@ async function renderCover(article: FullArticle): Promise<ImageResponse> {
   const baseColor = isOther ? "#1d1d22" : company.color;
   const [bg, fontData] = await Promise.all([coverBackground(article.thumbnail, baseColor), loadFonts()]);
   const photo = bg.photo;
+  const credit = coverCredit(article);
 
   // 製品名は1行に収める（長ければ小さくする）
   const headSize = parts ? Math.min(58, Math.floor(TEXT_WIDTH / Math.max(emWidth(parts.head), 1))) : 0;
@@ -255,6 +265,24 @@ async function renderCover(article: FullArticle): Promise<ImageResponse> {
             }}
           >
             {isOther ? sourceName || "AI NEWS" : company.name}
+          </div>
+        )}
+
+        {/* イメージ写真の注記 */}
+        {photo && credit && (
+          <div
+            style={{
+              position: "absolute",
+              left: 48,
+              top: 46,
+              display: "flex",
+              fontSize: 17,
+              fontWeight: 700,
+              color: "rgba(255,255,255,0.86)",
+              textShadow: "0 1px 8px rgba(0,0,0,0.6)",
+            }}
+          >
+            {credit}
           </div>
         )}
 

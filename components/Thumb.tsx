@@ -3,6 +3,7 @@
 import Image, { type ImageProps } from "next/image";
 import { useState } from "react";
 import type { ThumbSource } from "@/lib/companies";
+import { largeThumb } from "@/lib/thumb-url";
 
 type Stage = "original" | "fallback" | "failed";
 
@@ -18,7 +19,8 @@ function ytWebp(src: string): string {
  * 記事のサムネイル。壊れた画像アイコンを読者に見せないための受け皿を2段持つ。
  *
  * 0. YouTube は軽い WebP 版を先に使う（読めなければ 1 の JPEG 標準画質へ）
- * 1. 高解像度版（maxresdefault）は後から消えることがあるので、読み込めなければ標準画質（hqdefault）へ
+ * 1. 高解像度版（maxresdefault）は後から消えることがあるので、読み込めなければ標準画質（hqdefault）へ。
+ *    サイトの写真（/img/）の一覧用 WebP が読めなければ元の JPEG へ
  * 2. それも無い（元動画が削除・非公開になった）場合や、画像欄が空の場合は、サイト名入りの代替表示へ
  *
  * 公式ブログ・プレスリリースの記事（source あり）は、企業色の地に発信元名を載せた代替表示にする。
@@ -64,9 +66,10 @@ export default function Thumb({ source, ...props }: ImageProps & { source?: Thum
   }
 
   const webp = typeof original === "string" ? ytWebp(original) : original;
+  const large = typeof original === "string" ? largeThumb(original) : null;
   const src =
     stage === "fallback" && typeof original === "string"
-      ? original.replace("maxresdefault", "hqdefault")
+      ? large ?? original.replace("maxresdefault", "hqdefault")
       : webp;
 
   return (
@@ -77,7 +80,7 @@ export default function Thumb({ source, ...props }: ImageProps & { source?: Thum
         const canFallback =
           stage === "original" &&
           typeof original === "string" &&
-          (original.includes("maxresdefault") || webp !== original);
+          (original.includes("maxresdefault") || webp !== original || large !== null);
         setStage(canFallback ? "fallback" : "failed");
       }}
     />

@@ -28,7 +28,9 @@
   "kv_namespaces": [
     { "binding": "NEXT_INC_CACHE_KV", "id": "15923fe8d91c4b3e8557971d9393656f" },
     // メール購読者（ダブルオプトイン・解除トークン・連投制限）。lib/newsletter/store.ts
-    { "binding": "NEWSLETTER_KV", "id": "d0108c8275074124b8fdfbd577111999" }
+    { "binding": "NEWSLETTER_KV", "id": "d0108c8275074124b8fdfbd577111999" },
+    // 記事の写真（フリー素材・AI 生成）。scripts/images.py が書き、cloudflare/worker.ts の /img/<名前> が配信する
+    { "binding": "IMAGES_KV", "id": "358e46161fdb4857865dec69dd72285b" }
   ],
   "durable_objects": {
     "bindings": [{ "name": "NEXT_CACHE_DO_QUEUE", "class_name": "DOQueueHandler" }]
