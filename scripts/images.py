@@ -16,6 +16,7 @@ YouTube のサムネイルはそのまま使う。
   python3 scripts/images.py --recent 40          # 新しい40本のうち未確認のもの
   python3 scripts/images.py --all --max 50       # 全記事（新しい順）を点検して直す（さかのぼり）
   python3 scripts/images.py --slug <slug> --dry-run
+  python3 scripts/images.py --recheck-source        # 元記事の写真を採用した記事を今の基準で見直す
   python3 scripts/images.py --retry-ai --max 30     # AI 生成にした記事でフリー素材を探し直す（Commons が落ちていた日の後に）
 
 必要な環境変数: CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_API_TOKEN（Workers AI）/ CF_KV_TOKEN（KV への書き込み。無ければ
@@ -48,12 +49,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import llm  # noqa: E402
 
 try:
-    from PIL import Image, ImageOps
+    from PIL import Image, ImageChops, ImageOps
 
     Image.MAX_IMAGE_PIXELS = 60_000_000
 except ImportError:  # pragma: no cover - CI では requirements.txt で入る
     Image = None
     ImageOps = None
+    ImageChops = None
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -407,7 +409,8 @@ def pick_source_image(article: dict, repeats: Counter) -> tuple[str | None, str]
             if ctype and not ctype.startswith("image/") and "octet-stream" not in ctype:
                 reasons.append("画像ではない")
                 continue
-            problem = image_problem(open_image(data), MIN_SOURCE_WIDTH)
+            image = open_image(data)
+            problem = image_problem(image, MIN_SOURCE_WIDTH) or graphic_problem(image)
         except Exception as error:  # noqa: BLE001
             problem = f"読めない（{str(error)[:40]}）"
         if problem:
@@ -442,16 +445,17 @@ QUERY_SCHEMA = {
     "required": ["queries", "scene"],
 }
 
-# 記事づくりと Gemini の無料枠を取り合わないよう、Workers AI（1本あたり0.1円未満）→ Gemma の順に使う。
+# 記事づくりと Gemini の無料枠を取り合わないよう、Workers AI（1本あたり0.1円未満）→ Gemma だけを使う（画像判定も Workers AI）。
 # Claude は使わない（オーナーの枠のため）
-IMAGE_LLM_PREFER = [m.strip() for m in (os.environ.get("IMAGES_LLM_MODELS") or "cloudflare:@cf/openai/gpt-oss-120b,gemma-4-26b-a4b-it,gemini-3.1-flash-lite").split(",") if m.strip()]
+IMAGE_LLM_PREFER = [m.strip() for m in (os.environ.get("IMAGES_LLM_MODELS") or "cloudflare:@cf/openai/gpt-oss-120b,cloudflare:@cf/meta/llama-3.3-70b-instruct-fp8-fast,gemma-4-26b-a4b-it,gemma-4-31b-it").split(",") if m.strip()]
 
 
 def llm_tier() -> str:
     if "images" not in llm._tiers:
         bulk = llm.models_for("bulk")
         prefer = [m for m in IMAGE_LLM_PREFER if m in bulk]
-        rest = [m for m in bulk if m not in prefer and not m.startswith(("claude:", "codex:"))]
+        # 記事づくりの Gemini（flash 系）の枠と Claude は使わない
+        rest = [m for m in bulk if m not in prefer and m.startswith(("groq:", "openrouter:", "cloudflare:"))]
         llm._tiers["images"] = prefer + rest
     return "images"
 
@@ -763,57 +767,121 @@ VISION_SCHEMA = {
 }
 
 
-def vision_check(image, article: dict) -> str | None:
-    """選んだ素材を画像で確かめる（軽量モデル）。問題があれば理由。確かめられないときは None（通す）"""
-    try:
-        from google.genai import types
-    except ImportError:
-        return None
-    if not (os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")):
+def doc_stats(image) -> dict:
+    """資料・スライド・グラフ・文字バナーの目印。white=白っぽい地の割合、flat=隣と同じ明るさの画素の割合（写真はざらつく）"""
+    small = image.resize((320, 168))
+    px = small.tobytes()
+    n = len(px) // 3
+    white = 0
+    for i in range(0, len(px), 3):
+        lo, hi = min(px[i], px[i + 1], px[i + 2]), max(px[i], px[i + 1], px[i + 2])
+        if lo > 215 and hi - lo < 25:
+            white += 1
+    gray = small.convert("L")
+    dx = ImageChops.difference(gray, ImageChops.offset(gray, 1, 0))
+    dy = ImageChops.difference(gray, ImageChops.offset(gray, 0, 1))
+    diff = ImageChops.lighter(dx, dy).tobytes()
+    flat = sum(1 for v in diff if v <= 2) / len(diff)
+    return {"white": white / n, "flat": flat}
+
+
+VISION_MODELS = ["@cf/meta/llama-4-scout-17b-16e-instruct", "@cf/mistralai/mistral-small-3.1-24b-instruct"]
+
+
+def cf_vision(image, prompt: str, max_tokens: int = 60) -> str | None:
+    """Workers AI の画像を読めるモデルに聞く（記事づくりの Gemini の枠を使わない）。答えの文字列か None"""
+    token = cf_token("ai")
+    if not token:
         return None
     small = image.copy()
-    small.thumbnail((640, 640))
+    small.thumbnail((512, 512))
     buf = io.BytesIO()
     small.save(buf, "JPEG", quality=80)
-    prompt = (
+    uri = "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
+    for model in VISION_MODELS:
+        body = {
+            "model": model,
+            "messages": [{"role": "user", "content": [{"type": "text", "text": prompt}, {"type": "image_url", "image_url": {"url": uri}}]}],
+            "max_tokens": max_tokens,
+            "temperature": 0,
+        }
+        req = urllib.request.Request(
+            f"https://api.cloudflare.com/client/v4/accounts/{ACCOUNT_ID}/ai/v1/chat/completions",
+            data=json.dumps(body).encode(),
+            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=60) as res:
+                data = json.loads(res.read())
+            text = str(((data.get("choices") or [{}])[0].get("message") or {}).get("content") or "").strip()
+            if text:
+                return text
+        except Exception as error:  # noqa: BLE001
+            log(f"   [img] 画像判定 {model.rsplit('/', 1)[-1]}: {str(error)[:80]}")
+    return None
+
+
+def vision_kind(image) -> str | None:
+    """写真（人物・製品・場所・会場・食べ物）か、文字や図が主役の画像（資料・スライド・グラフ・表・図解・画面・文字バナー）か。
+    判定できないときは None"""
+    text = cf_vision(
+        image,
+        'Is this image mainly a "photo" (a photograph or realistic render of real people, products, places, venues, food, '
+        'nature or events; a small logo or a few words on it are fine) or a "graphic" (slide, chart, graph, table, document, '
+        "infographic, diagram, screenshot, title card, logo card, or a flyer, poster, advertisement or banner with large headline text, prices or dates - even if it also contains photos of people or products)? Answer with one word: photo or graphic.",
+        max_tokens=10,
+    )
+    low = (text or "").lower()
+    if "graphic" in low:
+        return "graphic"
+    if "photo" in low:
+        # 写真入りのチラシ・告知バナーは「写真」と答えがちなので、大きな文字の有無を別に聞く
+        text = cf_vision(
+            image,
+            "Is a large part of this image covered by big overlaid text such as headlines, slogans, prices or dates "
+            "(not small logos, product labels or signs in the scene)? Answer with one word: yes or no.",
+            max_tokens=5,
+        )
+        return "graphic" if (text or "").strip().lower().startswith("yes") else "photo"
+    log("   [img] 画像判定ができない（白地・平坦さの目安で判断）")
+    return None
+
+
+def graphic_problem(image) -> str | None:
+    """文字・図が主役の画像なら理由。チラシや図解は色が多く Pillow の指標だけでは見分けられないので、毎回画像判定にかける。
+    判定できないときだけ白地・平坦さの目安で決める"""
+    stats = doc_stats(image)
+    kind = vision_kind(image)
+    if kind == "graphic":
+        return f"文字・図が主役の画像（白地 {stats['white']:.0%}）"
+    if kind is None and (stats["white"] >= 0.6 or stats["flat"] >= 0.8):
+        return f"資料・図らしい画像（白地 {stats['white']:.0%}・平坦 {stats['flat']:.0%}）"
+    return None
+
+
+def vision_check(image, article: dict) -> str | None:
+    """選んだ素材を画像で確かめる。問題があれば理由。確かめられないときは None（通す）"""
+    text = cf_vision(
+        image,
         f"News article title (Japanese): {article.get('title', '')}\n"
-        "This photo will be the article thumbnail, labeled as an illustrative image.\n"
-        "related: is the photo clearly related to the article topic?\n"
-        "brand_or_text: does it show a readable brand name, company logo, or prominent text/numbers?\n"
-        "person_main: is an identifiable person's face (or any child) a main subject?"
+        "This photo will be the article thumbnail, labeled as an illustrative image. Answer in JSON only: "
+        '{"related": true/false (is the photo clearly related to the article topic?), '
+        '"brand_or_text": true/false (does it show a readable brand name, company logo, or prominent text/numbers?), '
+        '"person_main": true/false (is an identifiable person face or any child a main subject?)}',
+        max_tokens=80,
     )
     try:
-        have = llm.available_models()
+        data = llm.parse_json_lenient(text or "")
     except Exception:  # noqa: BLE001
         return None
-    order = list(dict.fromkeys(IMAGE_LLM_PREFER + llm.BULK_MODELS))
-    for model in [m for m in order if m in have and m not in llm._exhausted][:4]:
-        gemma = model.startswith("gemma")
-        cfg = {"temperature": 0, "max_output_tokens": 300}
-        if not gemma:
-            cfg.update(response_mime_type="application/json", response_schema=VISION_SCHEMA)
-        text = prompt + ('\nReturn JSON only: {"related": bool, "brand_or_text": bool, "person_main": bool, "why": "short"}' if gemma else "")
-        try:
-            response = llm._gemini_client().models.generate_content(
-                model=model,
-                contents=[types.Part.from_bytes(data=buf.getvalue(), mime_type="image/jpeg"), text],
-                config=types.GenerateContentConfig(**cfg),
-            )
-            llm._record_usage(model)
-            data = llm.parse_json_lenient(response.text or "")
-        except Exception as error:  # noqa: BLE001
-            if llm._classify(error) == "quota":
-                llm._exhausted.add(model)
-            continue
-        if not isinstance(data, dict) or "related" not in data:
-            continue
-        if data.get("related") is False:
-            return "記事と関係が薄い"
-        if data.get("brand_or_text"):
-            return "ブランド名・文字が写っている"
-        if data.get("person_main"):
-            return "人物が主役"
+    if not isinstance(data, dict) or "related" not in data:
         return None
+    if data.get("related") is False:
+        return "記事と関係が薄い"
+    if data.get("brand_or_text") is True:
+        return "ブランド名・文字が写っている"
+    if data.get("person_main") is True:
+        return "人物が主役"
     return None
 
 
@@ -897,7 +965,7 @@ def find_stock(article: dict, plan: dict, used: set[str]) -> tuple[dict | None, 
                 pick.pop("pendingLicense", None)
             data, ctype, _ = http_get(pick["download"], ua=BOT_UA, accept="image/jpeg,image/*", timeout=40)
             image = open_image(data)
-            problem = image_problem(image, MIN_STOCK_WIDTH) or vision_check(image, article)
+            problem = image_problem(image, MIN_STOCK_WIDTH) or graphic_problem(image) or vision_check(image, article)
             if problem:
                 raise ValueError(problem)
             return pick, image
@@ -1176,6 +1244,7 @@ def main() -> int:
     parser.add_argument("--budget", type=float, default=0, help="この秒数を過ぎたら新しい記事に手を付けない")
     parser.add_argument("--fast", action="store_true", help="速報の回: AI は速いモデルだけ")
     parser.add_argument("--ai-only", action="store_true", help="素材を探さず AI 生成だけ（確認用）")
+    parser.add_argument("--recheck-source", action="store_true", help="元記事の写真を採用した記事を今の基準で見直す")
     parser.add_argument("--retry-ai", action="store_true", help="AI 生成の画像の記事でフリー素材を探し直す（見つからなければそのまま）")
     parser.add_argument("--dry-run", action="store_true", help="保存しない")
     parser.add_argument("--preview", help="出来上がった JPEG をこのフォルダにも書く（確認用）")
@@ -1211,6 +1280,11 @@ def main() -> int:
     ordered = sorted(articles.items(), key=newest_first, reverse=True)
     if args.slug:
         targets = [(p, a) for p, a in ordered if a.get("slug") in args.slug or p.stem in args.slug]
+        for _, a in targets:
+            a.pop("imageCredit", None)
+    elif args.recheck_source:
+        # 元記事の写真を採用した記事を、今の基準（文字・図が主役の画像は不採用）で見直す
+        targets = [(p, a) for p, a in ordered if (a.get("imageCredit") or {}).get("kind") == "source"]
         for _, a in targets:
             a.pop("imageCredit", None)
     elif args.retry_ai:
