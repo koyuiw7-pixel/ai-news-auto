@@ -6,7 +6,7 @@
   "companyName": "Amazon",
   "category": "開発ツール",
   "overview": {
-    "text": "Amazon Bedrockは、AWS上でAIモデルを活用できるサービスです。AWS Machine Learning Blogなどで新機能や最適化手法が発表されています。",
+    "text": "Amazon Bedrockは、AWSが提供するAIモデルの開発・活用を支援するサービスです。2026年10月に、構造化出力やプロンプトキャッシュなどの新機能が発表されました。",
     "sources": [
       "aws-bedrock-evaluation-bias-property-finder",
       "amazon-bedrock-openai-prompt-caching",
@@ -17,20 +17,28 @@
   "facts": [
     {
       "label": "料金",
-      "value": "AWSおよびモデルの標準料金・従量課金",
+      "value": "AWSの標準料金およびAPI従量課金に準拠",
       "sources": [
         "aws-bedrock-evaluation-bias-property-finder",
         "amazon-bedrock-openai-prompt-caching",
+        "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
+      ]
+    },
+    {
+      "label": "提供開始",
+      "value": "今すぐ使える",
+      "sources": [
+        "aws-bedrock-evaluation-bias-property-finder",
+        "amazon-bedrock-openai-prompt-caching",
+        "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
         "aws-weekly-20261019-updates"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "提供されているリージョンで利用可能",
+      "value": "利用できる",
       "sources": [
         "aws-bedrock-evaluation-bias-property-finder",
-        "amazon-bedrock-openai-prompt-caching",
-        "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
         "aws-weekly-20261019-updates"
       ]
     },
@@ -46,25 +54,19 @@
   ],
   "capabilities": [
     {
-      "text": "ClaudeモデルでJSON Schemaに完全準拠したレスポンスを受け取る構造化出力に対応しています。",
+      "text": "ClaudeモデルでJSON Schemaに準拠したレスポンスを受け取れます。",
       "sources": [
         "aws-weekly-20261019-updates"
       ]
     },
     {
-      "text": "OpenAIモデルの利用時にプロンプトキャッシュを活用し、入力コストを約6割削減できます。",
+      "text": "OpenAIモデルの利用時にプロンプトキャッシュを適用できます。",
       "sources": [
         "amazon-bedrock-openai-prompt-caching"
       ]
     },
     {
-      "text": "マネージド知識ベースにより、ベクトルストアの保守やインデックス管理が不要になります。",
-      "sources": [
-        "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
-      ]
-    },
-    {
-      "text": "エージェント型検索により、複数回にわたる検索や引用付きの回答生成を行えます。",
+      "text": "マネージド知識ベースにより、ベクトルストアの保守不要で検索を行えます。",
       "sources": [
         "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
       ]
@@ -75,12 +77,11 @@
       "text": "AWSの標準料金および利用するモデルの従量課金に準拠します。",
       "sources": [
         "aws-bedrock-evaluation-bias-property-finder",
-        "amazon-bedrock-openai-prompt-caching",
-        "aws-weekly-20261019-updates"
+        "amazon-bedrock-openai-prompt-caching"
       ]
     },
     {
-      "text": "プロンプトキャッシュが適用された部分は、通常の入力価格よりも安価に処理されます。",
+      "text": "キャッシュ適用部分は通常より安価に処理されます。",
       "sources": [
         "amazon-bedrock-openai-prompt-caching"
       ]
@@ -88,58 +89,55 @@
   ],
   "japan": [
     {
-      "text": "Amazon Bedrockが提供されているAWSリージョンにおいて利用可能です。",
+      "text": "Amazon Bedrockが提供されている対応リージョンにおいて利用可能です。",
       "sources": [
         "aws-bedrock-evaluation-bias-property-finder",
-        "amazon-bedrock-openai-prompt-caching",
-        "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
         "aws-weekly-20261019-updates"
       ]
     }
   ],
   "howto": [
     {
-      "text": "マネージド知識ベースなどはAWS CDKを用いてPythonアプリケーションとしてデプロイできます。",
+      "text": "マネージドコンソールにアクセスし、対象モデルの利用有効化を行います。",
       "sources": [
-        "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
+        "aws-bedrock-evaluation-bias-property-finder"
       ]
     },
     {
-      "text": "マネジメントコンソールから対象モデルの利用有効化を行い、API等から実装します。",
+      "text": "AWS CDKを用いてインフラ全体を一括デプロイできます。",
       "sources": [
-        "aws-bedrock-evaluation-bias-property-finder",
-        "amazon-bedrock-openai-prompt-caching"
+        "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
       ]
     }
   ],
   "differences": [],
   "faq": [
     {
-      "q": "プロンプトキャッシュの効果はどのくらいですか？",
-      "a": "テストでは入力コストが約61から62パーセント削減されることが確認されています。",
+      "q": "コスト削減の効果はどれくらいですか？",
+      "a": "プロンプトキャッシュのテストでは約61から62パーセントの入力コスト削減が確認されています。",
       "sources": [
         "amazon-bedrock-openai-prompt-caching"
       ]
     },
     {
-      "q": "マネージド知識ベースではベクトルストアの管理が必要ですか？",
-      "a": "ストレージやインデックス作成の管理はサービス側で行われるため不要です。",
+      "q": "どのような検索システムが構築できますか？",
+      "a": "マネージド知識ベースを使い、複数回の検索や引用付き回答を行う仕組みを作れます。",
       "sources": [
         "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
       ]
     },
     {
-      "q": "構造化出力ではどのような形式を指定できますか？",
-      "a": "ユーザーが定義したJSON Schemaに完全準拠した形式でレスポンスを受け取れます。",
+      "q": "AIモデルの評価で注意すべき点はありますか？",
+      "a": "既存モデルの出力に依存したバイアスを排除し、独立した正解データを用意することが重要です。",
       "sources": [
-        "aws-weekly-20261019-updates"
+        "aws-bedrock-evaluation-bias-property-finder"
       ]
     },
     {
-      "q": "モデル評価のバイアスはどう解消しますか？",
-      "a": "独立した専門家による人手注釈で正解データを作り、プロンプトを反復的に最適化します。",
+      "q": "構造化出力はどのモデルに対応していますか？",
+      "a": "AnthropicのClaudeモデル全モデルで一般提供されています。",
       "sources": [
-        "aws-bedrock-evaluation-bias-property-finder"
+        "aws-weekly-20261019-updates"
       ]
     }
   ],
@@ -147,17 +145,17 @@
     {
       "date": "2026-10-27",
       "slug": "amazon-bedrock-openai-prompt-caching",
-      "event": "OpenAIモデルのプロンプトキャッシュ活用法を公開"
+      "event": "OpenAIモデルでプロンプトキャッシュの利用パターン公開"
     },
     {
       "date": "2026-10-27",
       "slug": "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
-      "event": "マネージド知識ベースとCDKによる検索構築法を公開"
+      "event": "マネージド知識ベースとCDKによる検索構築法が公開"
     },
     {
       "date": "2026-10-28",
       "slug": "aws-bedrock-evaluation-bias-property-finder",
-      "event": "AI評価のバイアス解消とモデル選定手法を発表"
+      "event": "AI評価のバイアス解消とプロンプト最適化手法が公開"
     }
   ],
   "related": [
@@ -174,9 +172,9 @@
     "amazon-bedrock-openai-prompt-caching",
     "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
   ],
-  "signature": "372750a7d8c042d9",
-  "primarySignature": "04db73e9d70d40c5",
+  "signature": "a395844b3b5ed2cc",
+  "primarySignature": "6b87f27ff88c6b97",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:46:34+00:00",
-  "updatedAt": "2026-10-27T17:38:32+00:00"
+  "updatedAt": "2026-10-28T19:35:40+00:00"
 }
