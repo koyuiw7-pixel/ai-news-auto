@@ -190,7 +190,7 @@ const BROWSER_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/
 /** {text, image, published, status, via}。直接読めない・薄いときはブラウザの UA、読み取りサービス（r.jina.ai）の順に取り直す。
  *  失敗しても例外にしない（status に最後の HTTP 状態・エラーを残す） */
 export async function fetchArticle(url, fetchImpl, readerKey = "") {
-  const out = { text: "", image: "", published: "", status: [], via: "" };
+  const out = { text: "", image: "", published: "", title: "", status: [], via: "" };
   for (const ua of [UA, BROWSER_UA]) {
     try {
       const res = await fetchImpl(url, {
@@ -204,6 +204,7 @@ export async function fetchArticle(url, fetchImpl, readerKey = "") {
         if (text.length > out.text.length) [out.text, out.via] = [text, ua === UA ? "direct" : "direct-browser"];
         out.image ||= metaContent(html, "og:image") || metaContent(html, "twitter:image");
         out.published ||= metaContent(html, "article:published_time");
+        out.title ||= metaContent(html, "og:title") || textOf((html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || "");
       }
     } catch (e) {
       out.status.push(String(e).slice(0, 40));
@@ -576,7 +577,8 @@ async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl, notify =
   // パイプライン側の取得（直接→読み取りサービス）に任せる。openai.com の記事ページは Worker からは 403（2026-10-27 確認）
   const pages = await Promise.all(batch.map((e) => fetchArticle(e.url, fetchImpl, env.JINA_API_KEY)));
   const meta = batch.map((e, k) => ({
-    id: e.id, url: e.url, title: e.title, source: e.source,
+    // レーダーの話題で出典が公式なら、まとめサイトの見出し（観測・見立てを含むことがある）ではなく公式ページの題を使う
+    id: e.id, url: e.url, title: e.via && !e.secondary && pages[k].title.length >= 8 ? pages[k].title.slice(0, 200) : e.title, source: e.source,
     publishedAt: e.publishedAt || pages[k].published || null, detectedAt: e.detectedAt,
     image: pages[k].image || "", text: pages[k].text || "",
     // レーダーの話題: 出典の名前・報道が出典か（パイプラインが「〇〇の報道によると」と書く）
