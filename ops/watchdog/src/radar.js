@@ -560,7 +560,7 @@ export async function radar(env, now, deps = {}) {
     }
     const entry = {
       id: pid, url: prim.url, title: head.title.slice(0, 200), source: prim.source, sourceName: prim.sourceName,
-      secondary: prim.secondary, via: head.source, found: head.url, entities: head.entities,
+      secondary: prim.secondary, via: req ? `request:${req.via || "manual"}` : head.source, found: head.url, entities: head.entities,
       publishedAt: head.publishedAt || null, detectedAt: now.toISOString(),
     };
     log.dispatched.push({ title: entry.title.slice(0, 80), url: entry.url, sourceName: entry.sourceName, secondary: entry.secondary, via: entry.via, also: g.length - 1 });

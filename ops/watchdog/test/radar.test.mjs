@@ -338,6 +338,7 @@ test("記事にならずに終わった登録は、見逃しチェック・手�
   const { reopenable } = await import("../src/fastlane.js");
   const done = (outcome, status = "done") => ({ status, outcome });
   assert.equal(reopenable(done("skipped"), { via: "manual" }), true);
+  assert.equal(reopenable(done("skipped"), { via: "request:manual" }), true); // レーダーが依頼を outbox に置くときの via
   assert.equal(reopenable(done("skipped"), { via: "missed-check:itmedia-news" }), true);
   assert.equal(reopenable(done("skipped"), { via: "techmeme" }), false); // 見出しから見つけただけなら、判定済みの見送りは尊重する
   assert.equal(reopenable(done(undefined, "gave_up"), { via: "techmeme" }), true);

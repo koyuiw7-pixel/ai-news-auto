@@ -355,7 +355,7 @@ export function makeNotify(gh, seen, now) {
 /** 記事にならずに終わった登録を、見逃しチェック・手動の依頼（または諦めた・上限で止めた話題）なら起動し直してよいか */
 export function reopenable(cur, e) {
   if (["new", "dispatched"].includes(cur.status) || ["created", "updated", "duplicate"].includes(cur.outcome)) return false;
-  return /^(manual|missed-check)/.test(e.via || "") || ["gave_up", "capped", "dry"].includes(cur.status);
+  return /^(request|manual|missed-check)/.test(e.via || "") || ["gave_up", "capped", "dry"].includes(cur.status);
 }
 
 /** レーダーが outbox に置いた話題を queue に取り込む（"radar" は読むだけ。取り込んだ印は state.radarTaken） */
