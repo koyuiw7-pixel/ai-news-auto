@@ -53,9 +53,7 @@
     "zoohZ1BiHs0": 1
   },
   "failed_web": {},
-  "major_tries": {
-    "45a374d069fd87b2": 2
-  },
+  "major_tries": {},
   "processed": {
     "--kyzoeUuBk": {
       "at": "2026-08-10T15:58:56.932533+00:00",
@@ -3868,6 +3866,16 @@
       "skipped": true,
       "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm"
     },
+    "45a374d069fd87b2": {
+      "at": "2026-10-28T00:50:36.170686+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 93,
+      "section": "ai",
+      "slug": "meta-muse-singapore-launch",
+      "url": "https://about.fb.com/news/2026/10/muse-is-now-available-in-singapore-the-worlds-first-personal-ai-agent-built-for-everyone/"
+    },
     "45f0e915baa687e3": {
       "at": "2026-10-26T16:31:58.142501+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6392,46 +6400,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:32:18.480944+00:00",
-      "attempt": 2,
-      "id": "2ed4c294adb1febd",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2279字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "株式会社ノックデザインがAI支援の新サービス「AI実行支援」をリリース。AIの仕組みを業務に組み込み、改善を進める"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:32:28.862048+00:00",
-      "attempt": 1,
-      "id": "f3f1a7cbbd5c0df4",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2337字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "株式会社アガタ、「RAG＋AIチャットボット」で新サービス。運用を支える5つの取り組みとVPN接続を提供"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T01:32:51.742053+00:00",
-      "attempt": 2,
-      "id": "f3f1a7cbbd5c0df4",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "prtimes",
-      "title": "株式会社アガタ、「RAG＋AIチャットボット」で新サービス。運用を支える5つの取り組みとVPN接続を提供"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T01:51:09.768651+00:00",
@@ -12554,6 +12522,76 @@
         "sentences": 68
       },
       "score": 72,
+      "source": "meta-newsroom",
+      "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built fo"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T00:48:06.058330+00:00",
+      "attempt": 1,
+      "id": "45a374d069fd87b2",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "リード・本文「Metaは10月28日…発表しました」→ 元記事に発表日の記載はなく、日付が創作されている。",
+        "「提供開始はシンガポールで10月28日の発表時点」→ 元記事に提供開始日の記載はなく、日付が創作されている。",
+        "これまでの流れ「10月28日：Museがシンガポールで提供開始」→ 元記事にない日付で、提供開始日を断定している。",
+        "「グローバル版の発表にはなかった、地域に根ざした連携が加わった」→ グローバル版の内容は元記事に書かれておらず、比較は裏付けがない。",
+        "「大事な操作の前には、必ずあなたに確認します」→ 元記事は「sensitive actionsの前に確認する」とだけ述べており、「必ず」は言い過ぎ。",
+        "「ShopeeやLazadaのように、AIの窓口経由で選ばれる側にとっては、商品情報の見せ方が重要になります」→ 元記事に根拠のない推測を、効果として述べている（編集部の見立てとは断っている）。"
+      ],
+      "readability": {
+        "avg_paragraph": 64.9,
+        "avg_sentence": 31.0,
+        "long_share": 0.03,
+        "max_paragraph": 142,
+        "paragraphs": 32,
+        "sentences": 67
+      },
+      "score": 62,
+      "source": "meta-newsroom",
+      "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built fo"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T00:49:25.878811+00:00",
+      "attempt": 2,
+      "id": "45a374d069fd87b2",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「10月28日：Metaニュースルームが、シンガポールでの利用可能を伝えた」→ 元記事に発表日の記載はなく、本文の「日付を断定しません」とも矛盾する日付の創作。",
+        "「初期の連携パートナーが8社」「8社の連携先」→ 元記事は「Early partners include」と列挙しただけで、8社が全てとは書いていない（軽微な言い過ぎ）。"
+      ],
+      "readability": {
+        "avg_paragraph": 75.5,
+        "avg_sentence": 35.0,
+        "long_share": 0.043,
+        "max_paragraph": 148,
+        "paragraphs": 32,
+        "sentences": 69
+      },
+      "score": 72,
+      "source": "meta-newsroom",
+      "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built fo"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T00:50:36.170195+00:00",
+      "attempt": 3,
+      "id": "45a374d069fd87b2",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 66.0,
+        "avg_sentence": 35.0,
+        "long_share": 0.076,
+        "max_paragraph": 157,
+        "paragraphs": 35,
+        "sentences": 66
+      },
+      "score": 93,
       "source": "meta-newsroom",
       "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built fo"
     }
