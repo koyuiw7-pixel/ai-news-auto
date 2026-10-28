@@ -148,6 +148,8 @@ def main() -> int:
             aid, wid, eno, mid, mc = bgt.split(",")
             image = f"https://www{bpx}.a8.net/svt/bgt?aid={aid}&wid={wid}&eno={eno}&mid={mid}&mc={mc}"
         offers["partners"][meta["key"]] = {
+            # 選び方ガイド（lib/choose.ts）が提携済みかを programId で引く
+            "programId": pid,
             "program": program,
             "name": meta["name"],
             "label": meta["label"],

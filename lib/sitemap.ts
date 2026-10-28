@@ -1,3 +1,4 @@
+import { getAllChooseGuides } from "@/lib/choose";
 import { COMPARE_PUBLIC } from "@/lib/buying-guides";
 import { isIndexable } from "@/lib/indexing";
 import {
@@ -86,6 +87,13 @@ export function sitemapEntries(): SitemapEntry[] {
     { url: `${base}/usable`, lastModified, changeFrequency: "daily" as const, priority: 0.9 },
     // 料金早見表・週まとめ・イベント（被リンクとブックマークを狙う定番ページ）
     { url: `${base}/ai-pricing`, lastModified: new Date(getPricing().updatedAt), changeFrequency: "weekly" as const, priority: 0.9 },
+    // 選び方ガイド（回線・転職など。公式情報で比べた常設ページ）
+    ...getAllChooseGuides().map((guide) => ({
+      url: `${base}/choose/${guide.slug}`,
+      lastModified: new Date(guide.updatedAt),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     ...(getAllWeeks().length > 0
       ? [{ url: `${base}/weekly`, lastModified: new Date(weekPublishedAt(getAllWeeks()[0])), changeFrequency: "weekly" as const, priority: 0.8 }]
       : []),

@@ -23,6 +23,8 @@ import { companyOf, thumbSource } from "@/lib/companies";
 import { guideForArticle } from "@/lib/guides";
 import { getProduct, productForArticle } from "@/lib/products";
 import { buyingGuideForTopic, guideShortName } from "@/lib/buying-guides";
+import { chooseGuideForArticle } from "@/lib/choose";
+import type { ChooseGuide } from "@/lib/choose-data";
 import { STATUS_LABEL, freeLabel, japanLabel, verdictOf } from "@/lib/verdict";
 import { offerForArticle } from "@/lib/offers";
 import Morph from "@/components/Morph";
@@ -137,6 +139,8 @@ export default async function ArticlePage({ params }: Props) {
     offerAll && inlineItems.length >= 2 ? { ...offerAll, eyebrow: "あわせてチェック", items: inlineItems } : undefined;
   // 商品枠の話題に比較ガイドがあれば、商品枠のすぐ下に1行だけ案内する
   const buyingGuide = buyingGuideForTopic(offerAll?.topic);
+  // 回線・転職など、記事の話題に合う選び方ガイド（見出しとタグが合うときだけ）
+  const chooseGuide = chooseGuideForArticle(article);
   // 日本語の黙読はおよそ毎分600字
   const readMinutes = Math.max(1, Math.round(article.body.length / 600));
   // 「かんたんに読む」版（ある記事だけ、読み方を切り替えられる）
@@ -556,6 +560,8 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 本文に馴染ませる収益導線。関連ツールは本文の途中（読者がまだ読んでいる位置）に置く。
               記事末だけだと、ページの4分の3より下まで読んだ人にしか見えなかった */}
+          {bodyTail && chooseGuide && <ChooseGuideNote guide={chooseGuide} className="my-10" />}
+
           {bodyTail && inlineOffer && (
             <div className="my-10 max-w-[46em]">
               <RailRanking offer={inlineOffer} wide id="offer-inline" title="もっと深く知るための3選" />
@@ -604,6 +610,8 @@ export default async function ArticlePage({ params }: Props) {
               </ul>
             </section>
           )}
+
+          {!bodyTail && chooseGuide && <ChooseGuideNote guide={chooseGuide} className="mt-12" />}
 
           {/* 記事末の主導線 */}
           <CtaBanner genreSlug={article.genreSlug} slot="primary" className="mt-12" />
@@ -705,6 +713,19 @@ export default async function ArticlePage({ params }: Props) {
 }
 
 /** 比較ガイドへの1行の案内（商品枠の直下） */
+/** 記事の話題に合う選び方ガイドへの案内（本文と同じ調子の囲み1つ） */
+function ChooseGuideNote({ guide, className = "" }: { guide: ChooseGuide; className?: string }) {
+  return (
+    <aside aria-label="関連する選び方ガイド" className={`max-w-[40em] border-l-[3px] border-accent bg-surface px-4 py-3.5 ${className}`}>
+      <p className="text-meta font-bold text-muted">あわせて読みたい</p>
+      <Link href={`/choose/${guide.slug}`} className="mt-1 block text-[16px] font-bold leading-snug text-ink hover:text-accent hover:underline">
+        {guide.articleLabel}
+      </Link>
+      <p className="mt-1 text-note leading-[1.7] text-ink-soft">{guide.articleNote}</p>
+    </aside>
+  );
+}
+
 function CompareLink({ slug, name, className = "" }: { slug: string; name: string; className?: string }) {
   return (
     <Link
