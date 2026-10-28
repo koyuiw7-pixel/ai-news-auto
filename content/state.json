@@ -4770,6 +4770,16 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000880.000059164.html"
     },
+    "7d55bf793aaf58cc": {
+      "at": "2026-10-28T16:17:02.434065+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 80,
+      "section": "ai",
+      "slug": "reddit-for-you-following-feed",
+      "url": "https://techcrunch.com/2026/10/28/reddit-is-the-latest-platform-to-embrace-the-for-you-feed/"
+    },
     "7f0dec178da37fe0": {
       "at": "2026-10-26T12:33:20.217255+00:00",
       "reason": "dedupe: 固有名詞が一致（amazon・aws・bedrock）: aws-weekly-20261019-updates",
@@ -6752,51 +6762,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:56:20.936216+00:00",
-      "attempt": 2,
-      "id": "7087d444d8f5d17d",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2469字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 104.7,
-        "avg_sentence": 72.2,
-        "long_share": 0.759,
-        "max_paragraph": 165,
-        "paragraphs": 20,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "google-blog-all",
-      "title": "We’re helping farmers around the world connect to essential services online."
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:56:31.301831+00:00",
-      "attempt": 1,
-      "id": "13412a369e090d4c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（367字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 140.6,
-        "avg_sentence": 70.3,
-        "long_share": 0.6,
-        "max_paragraph": 249,
-        "paragraphs": 15,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "about-amazon",
-      "title": "Some of Amazon's Q3 2026 announcements, from new devices to AI breakthroughs"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T15:56:39.504999+00:00",
@@ -13380,6 +13345,58 @@
       "score": 100,
       "source": "sony-jp",
       "title": "6インチで小型の空間再現ディスプレイ『ELF-MN1』を発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T16:16:36.826328+00:00",
+      "attempt": 1,
+      "id": "7d55bf793aaf58cc",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「上のタブで切り替えて使います」「ホーム画面の上部に、For YouとFollowingのタブが出るか」→ 元記事に「タブ」や画面上部という配置の記述はなく、UIの詳細を補っている。",
+        "「研究段階の話でもありません」「新製品ではなく既存画面の作り替え」→ 元記事に明示はなく、記事側の解釈である。",
+        "「利用者の反応が、今後の運営判断に影響します」→ 元記事にない推測である。",
+        "「おすすめを別フィードに分ける設計は、推薦の精度を測りやすい形です」→ 元記事に技術的説明はなく、根拠のない断定である。"
+      ],
+      "readability": {
+        "avg_paragraph": 67.3,
+        "avg_sentence": 31.1,
+        "long_share": 0.031,
+        "max_paragraph": 120,
+        "paragraphs": 30,
+        "sentences": 65
+      },
+      "score": 80,
+      "source": "radar-techcrunch.com",
+      "title": "Reddit rolls out a dual-feed homepage, with For You and Following feeds, joining"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T16:17:02.433469+00:00",
+      "attempt": 1,
+      "id": "7d55bf793aaf58cc",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「これまでのRedditは、ホームに参加コミュニティの投稿を中心に表示していました」→元記事にはこの旧ホームの説明がなく、編集部注の明記もない推測的記述。",
+        "「Followingを選んで使い続ければ、次回もFollowingから始まる」→元記事は「最後に見たフィードに戻る」とのみ述べており、これは妥当な言い換えだが断定がやや踏み込んでいる。",
+        "「アプリを最新版に更新する」「ホーム画面に…2つのフィードが出るか確かめる」→元記事にアプリ更新が条件との記述はなく、更新で表示されるかのように読める。",
+        "「Followingは…これまでに近い使い心地です」→元記事に旧来の使い心地との比較はなく、根拠のない言い切り。",
+        "「かんたん版」の「提供状況=limited」→元記事は世界展開を数週間かけて行うとのみで、limitedという区分は元記事にない。",
+        "「Redditで情報発信している企業には影響があります」「参加者以外の目に触れる可能性が上がる」→元記事に企業発信への影響の記述はなく、編集部注とはいえ見立ての断定。"
+      ],
+      "readability": {
+        "avg_paragraph": 64.1,
+        "avg_sentence": 31.5,
+        "long_share": 0.033,
+        "max_paragraph": 120,
+        "paragraphs": 30,
+        "sentences": 61
+      },
+      "score": 80,
+      "source": "radar-techcrunch.com",
+      "title": "Reddit rolls out a dual-feed homepage, with For You and Following feeds, joining"
     }
   ],
   "short_text_retry": {
