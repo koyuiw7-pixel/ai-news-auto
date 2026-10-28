@@ -5374,6 +5374,16 @@
       "slug": "nadeshiko-brazil-ticket-additional-sale",
       "url": "https://www.jfa.jp/news/00036955/"
     },
+    "b459574059fadb91": {
+      "at": "2026-10-28T02:11:02.231729+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 90,
+      "section": "ai",
+      "slug": "nvidia-meta-muse-partnership-expansion",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-and-meta-to-expand-collaboration-on-muse-and-muse-family-of-models-amid-robust-growth"
+    },
     "b4777d59445209d1": {
       "at": "2026-10-27T03:05:10.758958+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（出展）",
@@ -6449,34 +6459,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:53:58.777565+00:00",
-      "attempt": 2,
-      "id": "cb9152cb3e3b49db",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2050字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "あなたのAI顧問株式会社、経営者向け「Muse」活用ノウハウの無料提供を開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:08.496631+00:00",
-      "attempt": 1,
-      "id": "ca70d454adc7e571",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2255字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "LeapAI、撮影ゼロでCM水準の映像をつくるAI動画制作サービス「LeapAI.Zero」を提供開始。制作サンプル「正解は、現場にある。｜株式会社みどり野フー"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T01:54:15.440577+00:00",
@@ -12863,6 +12845,50 @@
       "score": 90,
       "source": "anthropic-news",
       "title": "Early progress on accelerating drug development with Claude"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T02:10:33.646949+00:00",
+      "attempt": 1,
+      "id": "b459574059fadb91",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「10月28日：NVIDIAとMetaがMuseの協業拡大と30億ドル出資を発表（本記事）」→ 元記事の日付は10月26日で、本文の「10月26日付」とも食い違い、時差の範囲を超えている。",
+        "かんたん版「判定: 提供状況=soon」→ 元記事に提供予定や時期の記載はなく、利用者向けの提供が近いと読める表現は根拠がない。",
+        "かんたん版「AIの返事が速くなったり運用の費用が下がったりする土台」→ 元記事は性能とTCOの最適化を狙うとするだけで、利用者への効果は推測。"
+      ],
+      "readability": {
+        "avg_paragraph": 59.2,
+        "avg_sentence": 31.8,
+        "long_share": 0.015,
+        "max_paragraph": 119,
+        "paragraphs": 36,
+        "sentences": 67
+      },
+      "score": 86,
+      "source": "radar-official",
+      "title": "NVIDIA and Meta to Expand Collaboration on Muse and Muse Family of Models Amid R"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T02:11:02.231151+00:00",
+      "attempt": 1,
+      "id": "b459574059fadb91",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 59.2,
+        "avg_sentence": 31.8,
+        "long_share": 0.015,
+        "max_paragraph": 119,
+        "paragraphs": 36,
+        "sentences": 67
+      },
+      "score": 90,
+      "source": "radar-official",
+      "title": "NVIDIA and Meta to Expand Collaboration on Muse and Muse Family of Models Amid R"
     }
   ],
   "short_text_retry": {
