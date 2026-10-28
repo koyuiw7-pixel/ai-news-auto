@@ -4,6 +4,9 @@
 - 判定のルールは scripts/fast_lane_rules.json（Worker の ops/watchdog/src/fastlane.js と同じ判定）
 - 処理結果は state/fast_lane.json に残す。Worker はこれを読んで「受け取った」と判断し、再起動をやめる
   （outcome: created / updated / duplicate / skipped / retry / failed / capped）
+- レーダー（Worker の src/radar.js・scripts/radar.py）が見つけた話題も同じ速報レーンで作る。受け付ける URL は
+  対象の発信元・レーダーの一次情報（公式・SEC）・信頼できる報道機関（rules の radar）。配信サービスは受け付けない
+- daily_max（30）は速報レーン＋レーダーの1日の安全上限（暴走よけ）。通常の記事の上限（WEB_DAILY_CAP）とは別
 
   python3 scripts/fast_lane.py --check              # いまの公式フィードで、速報レーンに乗る見出しを表示（API 不要）
   python3 scripts/fast_lane.py --check --days 14    # 過去14日分で判定の様子を見る（ルールの調整用）
@@ -72,26 +75,55 @@ def relevant(title: str, slug: str) -> tuple[bool, str]:
     return False, "発表の語がない"
 
 
+def _host_in(host: str, base: str) -> bool:
+    base = base.lower().removeprefix("www.")
+    return host == base or host.endswith("." + base)
+
+
 def allowed_url(url: str) -> bool:
-    """速報レーンで受け付ける URL か（https で、対象の発信元と同じサイト）"""
+    """速報レーンで受け付ける URL か（https で、対象の発信元・レーダーの一次情報（公式・SEC）・信頼できる報道機関のサイト。配信サービスは除く）"""
     try:
         parts = urllib.parse.urlsplit(url.strip())
     except ValueError:
         return False
     if parts.scheme != "https" or not parts.netloc:
         return False
-    host = parts.netloc.lower()
-    for src in rules()["sources"]:
-        base = urllib.parse.urlsplit(src["url"]).netloc.lower()
-        base = base[4:] if base.startswith("www.") else base
-        if host == base or host.endswith("." + base):
-            return True
-    return False
+    host = parts.netloc.lower().split(":")[0]
+    radar = rules().get("radar") or {}
+    if any(_host_in(host, b) for b in radar.get("blocked_hosts") or []):
+        return False
+    bases = [urllib.parse.urlsplit(src["url"]).netloc for src in rules()["sources"]]
+    bases += [h["host"] for h in radar.get("primary_hosts") or []] + [o["host"] for o in radar.get("outlets") or []]
+    return any(_host_in(host, base) for base in bases)
+
+
+def outlet(url: str) -> dict | None:
+    """信頼できる報道機関（レーダーの outlets）の URL なら {host, name}。公式の一次情報が無いときだけ出典にする"""
+    try:
+        host = urllib.parse.urlsplit(url.strip()).netloc.lower()
+    except ValueError:
+        return None
+    for o in (rules().get("radar") or {}).get("outlets") or []:
+        if _host_in(host, o["host"]):
+            return o
+    return None
+
+
+def primary_name(url: str) -> str:
+    """レーダーの一次情報（公式・SEC）の URL なら発信元の名前"""
+    try:
+        host = urllib.parse.urlsplit(url.strip()).netloc.lower()
+    except ValueError:
+        return ""
+    for h in (rules().get("radar") or {}).get("primary_hosts") or []:
+        if _host_in(host, h["host"]):
+            return h["name"]
+    return ""
 
 
 def register_sources(feeds_module) -> None:
-    """RSS の無い発信元（Anthropic など）を feeds.FEEDS_BY_SLUG に足す（source_rank・発信元名を引けるように）。
-    FEEDS には入れないので、通常の収集（collect）では読まない"""
+    """RSS の無い発信元（Anthropic など）と、レーダーの出典（公式・報道機関）を feeds.FEEDS_BY_SLUG に足す
+    （source_rank・発信元名を引けるように）。FEEDS には入れないので、通常の収集（collect）では読まない"""
     for src in rules()["sources"]:
         if src["slug"] in feeds_module.FEEDS_BY_SLUG:
             continue
@@ -99,6 +131,16 @@ def register_sources(feeds_module) -> None:
             "slug": src["slug"], "name": src["name"], "url": src["url"], "lang": "en", "priority": 1,
             "kind": "official", "primary_for": src.get("entity"), "fast_only": True,
         }
+    radar = rules().get("radar") or {}
+    feeds_module.FEEDS_BY_SLUG.setdefault("radar-official", {
+        "slug": "radar-official", "name": "公式発表", "url": "", "lang": "en", "priority": 1, "kind": "official", "fast_only": True,
+    })
+    for o in radar.get("outlets") or []:
+        slug = f"radar-{o['host']}"
+        feeds_module.FEEDS_BY_SLUG.setdefault(slug, {
+            "slug": slug, "name": o["name"], "url": f"https://{o['host']}/", "lang": "ja" if o["host"].endswith(".jp") or o["host"] == "gori.me" else "en",
+            "priority": 2, "kind": "press", "fast_only": True,
+        })
 
 
 # --------------------------------------------------------------------------- #

@@ -25,6 +25,10 @@
 結果は state/fast_lane.json に書く（Worker が受領を確認する）。詳しくは scripts/fast_lane.py
   python3 scripts/web_articles.py --fast-url https://openai.com/index/xxx --fast-meta '[{"url": "...", "detectedAt": "..."}]'
 通常の回は、速報レーンの実行が待機していると今の記事を作り終えたところで早めに終える（fast_lane.fast_waiting）。
+レーダー（ops/watchdog/src/radar.js）の話題で一次情報が無いものは、信頼できる報道機関の記事を出典にする（secondary。
+「〇〇の報道によると」と書かせ、免責文も報道向けにする）。
+大きなニュース（速報レーン・major）は品質ゲートを実用的にする: 本文の長さの基準を8割に緩め、事実確認には発信元・公開日時を渡し、
+致命的でない細かい指摘（言い過ぎ・訳語など。点数75以上）は作り直さず指摘の文だけ直して公開する（quality.surgical_fix）。
 記事には sourcePublishedAt（発表の時刻）と detectedAt（こちらが見つけた時刻）を残す（scripts/latency.py が速さを集計）。
 """
 
@@ -94,8 +98,8 @@ EVENT_RE = re.compile(
     re.IGNORECASE,
 )
 NOTABLE_RE = re.compile(
-    r"launch|introduc|announc|release|available|general availability|\bGA\b|new model|open[- ]source|"
-    r"発表|提供開始|公開|リリース|一般提供|新機能|新モデル|オープンソース|搭載",
+    r"launch|introduc|announc|release|available|general availability|\bGA\b|new model|open[- ]source|unveil|debut|rolling out|"
+    r"発表|提供開始|公開|リリース|一般提供|新機能|新モデル|オープンソース|搭載|利用可能|利用できる|日本語対応|対応開始|登場",
     re.IGNORECASE,
 )
 
@@ -103,12 +107,21 @@ NOTABLE_RE = re.compile(
 MAJOR_RE = re.compile(
     r"GPT[-‐ ]?\d|(?<![A-Za-z])o[1-9](?:-mini|-pro)?(?![A-Za-z])|ChatGPT|(?<![A-Za-z])Sora(?![A-Za-z])|"
     r"Claude\s?(?:\d|Opus|Sonnet|Haiku)|Gemini\s?(?:\d|Ultra|Pro|Flash|Nano)|Gemma\s?\d|(?<![A-Za-z])Veo\s?\d|"
-    r"Imagen\s?\d|Llama\s?\d|(?<![A-Za-z])Grok\s?\d|Apple Intelligence|iPhone\s?\d{2}|Pixel\s?\d{2}|Nemotron",
+    r"Imagen\s?\d|Llama\s?\d|(?<![A-Za-z])Grok\s?\d|Apple Intelligence|iPhone\s?\d{2}|Pixel\s?\d{2}|Nemotron|"
+    # 2026-10-27 に取りこぼした Genie 4・Siri AI を受けて追加（世界モデル・OS の大型アップデート・音声アシスタント）
+    r"Genie\s?\d|(?<![A-Za-z])Siri(?![A-Za-z])|(?<![A-Za-z])i(?:Pad)?OS\s?\d{2}|macOS\s?\d{2}|Android\s?\d{2}|Windows\s?1\d|NotebookLM",
     re.IGNORECASE,
 )
-# 「GPT-6.1 Terra」のように名前だけの見出しも発表とみなす
-MAJOR_HEAD_RE = re.compile(r"^\s*(?:Introducing\s+|新しい|新)?(?:GPT|Claude|Gemini|Gemma|Llama|Grok|Sora|Veo|o\d)\b", re.I)
-MAJOR_MAX_RUNS = 3  # 失敗しても processed にせず、この回数の実行まで再挑戦する
+# 「GPT-6.1 Terra」「Genie 4: ...」のように名前だけの見出しも発表とみなす
+MAJOR_HEAD_RE = re.compile(r"^\s*(?:Introducing\s+|新しい|新)?(?:GPT|Claude|Gemini|Gemma|Llama|Grok|Sora|Veo|Genie|Siri|o\d)\b", re.I)
+# 会社そのものの大きな出来事（上場申請・買収）。その会社自身の公式発表（source_rank 0）なら製品名が無くても大きなニュース
+BIG_EVENT_RE = re.compile(
+    r"(?<![A-Za-z])IPO(?![A-Za-z])|(?<![A-Za-z])S-1(?![0-9])|initial public offering|go(?:es|ing)? public|上場|新規株式公開|"
+    r"(?<![A-Za-z])acquir(?:es|ed|ing)(?![A-Za-z])|acquisition|merger|買収|経営統合",
+    re.IGNORECASE,
+)
+MAJOR_MAX_RUNS = 3  # 失敗しても processed にせず、この回数の実行まで再挑戦する（本家の公式発表は MAJOR_MAX_RUNS_TOP）
+MAJOR_MAX_RUNS_TOP = 5
 MAJOR_ATTEMPTS = 3  # 1回の実行での生成の試行回数（通常は2）
 
 # 配信（PR TIMES など）の生成前チェック。生成してから落ちると無料枠を2〜4回分むだにするため
@@ -162,19 +175,25 @@ def is_major(item: dict, trend_index: dedupe.Index | None = None) -> bool:
     title = item["title"]
     if feeds.source_rank(item) <= 1 and MAJOR_RE.search(title) and (NOTABLE_RE.search(title) or MAJOR_HEAD_RE.match(title)):
         return True
+    if feeds.source_rank(item) == 0 and BIG_EVENT_RE.search(title):
+        return True
     return bool(trend_index and trend_index.entries and trend_index.find(title))
+
+
+def major_max_runs(item: dict) -> int:
+    """大きなニュースを何回の実行まで再挑戦するか（本家・公式の発表は長めに粘る）"""
+    return MAJOR_MAX_RUNS_TOP if feeds.source_rank(item) <= 1 else MAJOR_MAX_RUNS
 
 
 def is_breaking(item: dict) -> bool:
     """速報としてすぐ SNS に出すか。大きなニュースのうち、本家の公式発信（source_rank 0〜1）で
     主要企業の新モデル・新製品の名前が見出しにあるものだけ（トレンドに載っただけの話題は含めない）"""
     title = item.get("title", "")
-    return (
-        feeds.source_rank(item) <= 1
-        and not prefilter(item)
-        and bool(MAJOR_RE.search(title))
-        and bool(NOTABLE_RE.search(title) or MAJOR_HEAD_RE.match(title))
-    )
+    if feeds.source_rank(item) > 1 or prefilter(item):
+        return False
+    if MAJOR_RE.search(title) and (NOTABLE_RE.search(title) or MAJOR_HEAD_RE.match(title)):
+        return True
+    return feeds.source_rank(item) == 0 and bool(BIG_EVENT_RE.search(title))
 
 
 def rank_bucket(item: dict) -> int:
@@ -564,6 +583,26 @@ def prefilter(item: dict) -> str | None:
     return None
 
 
+SECONDARY_SOURCE_NOTE = """## 今回の元記事は報道です（重要）
+今回の元記事は企業の公式発表ではなく、報道機関「{name}」の記事です（公式の発表文が見つからなかったため）。
+- リードと本文の最初の段落で「{name}の報道によると」のように、報道が出典であることを必ず書く。見出しでも公式発表と断定しない。
+- 元記事が紹介している企業の発表・発言は「（{name}によると）」と添えて書き、元記事に無い公式の数字・発言・引用は作らない。
+- 報道の見立て・推測・未確認の情報は事実として書かない。元記事の文を書き写さず、自分の言葉で要約する。"""
+
+
+def source_header(item: dict) -> str:
+    """事実確認に渡す元記事の情報（発信元・公開日時・URL）。記事に書いた発信元名・日付を「創作」と誤判定させない"""
+    published = item.get("published_at")
+    when = ""
+    if published and not item.get("published_guessed"):
+        when = f"{published.astimezone(timezone.utc):%Y-%m-%d %H:%M} UTC（日本時間 {published.astimezone(JST):%Y-%m-%d %H:%M}）"
+    kind = f"報道機関（{item['source_name']}）" if item.get("secondary") else "公式の発表"
+    return (
+        f"[元記事の情報] 発信元: {item['source_name']}（{kind}） / 公開日時: {when or '不明（検知した時刻で代用）'} / URL: {item['url']}\n"
+        f"タイトル: {item['title']}"
+    )
+
+
 def web_disclaimer(genre) -> str:
     text = genre.disclaimer.replace("元動画の映像・音声をAIが解析して", "公式発表の文章をもとにAIが要約・解説して")
     if "文章をもとに" in text:
@@ -601,7 +640,11 @@ def build_web_record(item: dict, data: dict, page: dict, model_name: str, voice_
         "channelSlug": item["source_slug"],
         "genre": resolved.name,
         "genreSlug": resolved.slug,
-        "disclaimer": web_disclaimer(resolved),
+        "disclaimer": (
+            f"本記事は報道（{item['source_name']}）の記事をもとにAIが要約・解説して自動生成したものです。"
+            "誤りが含まれる可能性があるため、正確な情報は元の報道と公式発表をご確認ください。"
+            if item.get("secondary") else web_disclaimer(resolved)
+        ),
         "videoId": "",
         "videoUrl": "",
         "videoTitle": item["title"],
@@ -877,13 +920,22 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
                 page = feeds.fetch_article_text(url)
             except Exception as error:  # noqa: BLE001
                 log(f"[fast] 記事ページの取得に失敗: {str(error)[:120]}")
+        outlet = fast_lane.outlet(url)
+        secondary = bool(meta.get("secondary")) if "secondary" in meta else bool(outlet and not fast_lane.primary_name(url))
         if item is None:
             item = {
                 "id": iid, "url": url, "title": base["title"] or (page or {}).get("title", ""),
                 "summary": (page or {}).get("description", "")[:600], "content": "",
-                "published_at": None, "source_name": feed.get("name") or urllib.parse.urlsplit(url).netloc,
-                "source_slug": slug or "fast", "lang": feed.get("lang", "en"), "image": None, "priority": 1,
+                "published_at": None,
+                "source_name": (feed.get("name") if feed and not secondary and slug != "radar-official" else "")
+                or str(meta.get("sourceName") or "") or (outlet or {}).get("name") or fast_lane.primary_name(url) or urllib.parse.urlsplit(url).netloc,
+                "source_slug": slug or (f"radar-{outlet['host']}" if outlet else "fast"), "lang": feed.get("lang", "en"), "image": None, "priority": 1,
             }
+        if secondary:
+            # 報道が出典（レーダーで一次情報が見つからなかった話題）。記事に「〇〇の報道によると」と書かせる
+            item["secondary"] = True
+            if meta.get("sourceName"):
+                item["source_name"] = str(meta["sourceName"])
         if len(worker_text) > len(item.get("content") or ""):
             item["content"] = worker_text
         if meta.get("image") and not item.get("image"):
@@ -1107,7 +1159,7 @@ def main() -> int:
         for i in items:
             if args.max_major > 0 and is_major(i, trend_index):
                 # 大きなニュースは失敗回数ではなく実行回数で区切る（MAJOR_MAX_RUNS 回まで再挑戦）
-                if state["major_tries"].get(i["id"], 0) < MAJOR_MAX_RUNS:
+                if state["major_tries"].get(i["id"], 0) < major_max_runs(i):
                     major_ids.add(i["id"])
                     kept.append(i)
             elif state["failed_web"].get(i["id"], 0) < MAX_FAILURES:
@@ -1330,6 +1382,21 @@ def main() -> int:
                         log(f"   [grow] 書き足して合格 {quality._plain_len(record.get('body') or '')}→{quality._plain_len(grown['body'])}字（{info.get('expanded_by')}）")
                         record, verdict = grown, info
                         log_quality(state, item, kind, verdict, attempt, True, str(info.get("expanded_by") or ""))
+                if not verdict["ok"] and not verdict.get("soft") and quality.MAJOR and quality.surgical_ok(verdict):
+                    # 大きなニュース: 致命的でない細かい指摘（言い過ぎ・訳語・補足の程度）は、作り直さず指摘された文だけ直す
+                    try:
+                        fixed, info = quality.surgical_fix(record, source_text, kind, verdict.get("problems") or [], context,
+                                                           check_facts=not args.no_gate)
+                    except Exception as error:  # noqa: BLE001
+                        fixed, info = None, f"外科的な修正に失敗（{str(error)[:80]}）"
+                    if fixed is None:
+                        log(f"   [fix] 指摘の箇所だけの修正では救えず: {info}")
+                    else:
+                        minor = info.get("accepted_minor") or []
+                        log(f"   [fix] 指摘の箇所だけ直して合格 score={info.get('score')}（{info.get('fixed_by')}）"
+                            f"{' / 残りの細かい指摘は受理: ' + ' | '.join(minor[:2])[:200] if minor else ''}")
+                        record, verdict = fixed, info
+                        log_quality(state, item, kind, verdict, attempt, True, str(info.get("fixed_by") or ""))
                 if verdict.get("soft"):
                     record, verdict = polish_or_keep(item, kind, record, verdict, source_text, context)
                 if verdict["ok"] or verdict.get("soft"):
@@ -1437,15 +1504,15 @@ def main() -> int:
         return "take", target
 
     def major_retry(item: dict, why: str) -> None:
-        """大きなニュースが作れなかった: processed にせず次の実行で再挑戦（MAJOR_MAX_RUNS 回まで）"""
+        """大きなニュースが作れなかった: processed にせず次の実行で再挑戦（major_max_runs 回まで）"""
         tries = state["major_tries"].get(item["id"], 0) + 1
         state["major_tries"][item["id"]] = tries
-        if tries >= MAJOR_MAX_RUNS:
+        if tries >= major_max_runs(item):
             log(f"   [major] {tries} 回の実行で作れなかったため諦めます: {why[:120]}")
             mark(state, item, skipped=True, reason=f"major gave up x{tries}: {why}"[:200])
             run_status[item["id"]] = ("failed", 99)  # 派生の発表で作り直してよい
         else:
-            log(f"   [major] 作れなかった（{tries}/{MAJOR_MAX_RUNS}）。processed にせず次の実行で再挑戦: {why[:120]}")
+            log(f"   [major] 作れなかった（{tries}/{major_max_runs(item)}）。processed にせず次の実行で再挑戦: {why[:120]}")
             run_status[item["id"]] = ("pending", item["id"])
 
     def process_web(item: dict, lane: str, target, major: bool = False) -> None:
@@ -1494,17 +1561,18 @@ def main() -> int:
 
         related = arch.related(item["title"], text, item["url"], "ai" if is_ai else lane)
         context = archive.prompt_block(related)
+        secondary_note = f"\n\n{SECONDARY_SOURCE_NOTE.format(name=item['source_name'])}" if item.get("secondary") else ""
         if related:
             log(f"   [context] 過去記事 {len(related)} 本: {', '.join(r['slug'] for r in related)}")
         voice_key, voice_text = m.pick_voice()
         if is_ai:
             genre = AI
-            system = f"{m.SYSTEM_INSTRUCTION_BASE}\n\n{AI.persona}\n\n{WEB_SOURCE_NOTE}\n\n## 今回の語り口\n{voice_text}"
+            system = f"{m.SYSTEM_INSTRUCTION_BASE}\n\n{AI.persona}\n\n{WEB_SOURCE_NOTE}{secondary_note}\n\n## 今回の語り口\n{voice_text}"
             prompt, schema, kind = build_prompt(item, text, context), WEB_SCHEMA, "ai"
         else:
             genre = GENRES_BY_SLUG[lane]
             system = (
-                f"{m.SYSTEM_INSTRUCTION_BASE}\n\n{genre.persona}\n\n{WEB_SOURCE_NOTE}\n\n{BROAD_SOURCE_NOTE}"
+                f"{m.SYSTEM_INSTRUCTION_BASE}\n\n{genre.persona}\n\n{WEB_SOURCE_NOTE}{secondary_note}\n\n{BROAD_SOURCE_NOTE}"
                 f"\n\n## 今回の語り口\n{voice_text}"
             )
             prompt, schema, kind = build_broad_prompt(item, text, genre, context), TREND_SCHEMA, "broad"
@@ -1517,16 +1585,23 @@ def main() -> int:
         started = time.time()
         if major:
             log(f"   [major] tier={major_tier()} / 最大{MAJOR_ATTEMPTS}回試行（これまでの失敗 {state['major_tries'].get(item['id'], 0)} 回）")
-        status, record, model_name, info = gated(
-            item, kind, system, prompt, schema, text, build, archive.check_block(related),
-            tier=major_tier() if major else None, attempts=MAJOR_ATTEMPTS if major else 2,
-        )
+        # 事実確認には発信元・公開日時も渡す（記事に書いた「〇〇によると」「10月26日に発表」を創作と誤判定させない）。
+        # 大きなニュースは長さの基準を緩め、細かい指摘は外科的に直して公開する（quality.MAJOR）
+        quality.MAJOR = bool(major)
+        try:
+            status, record, model_name, info = gated(
+                item, kind, system, prompt, schema, f"{source_header(item)}\n\n{text}", build, archive.check_block(related),
+                tier=major_tier() if major else None, attempts=MAJOR_ATTEMPTS if major else 2,
+            )
+        finally:
+            quality.MAJOR = False
         if status != "ok":
             if status in ("skip", "reject"):
                 log(f"   [{status}] {info}（{model_name}）")
                 rejected += status == "reject"
-            if major:
-                # 大きなニュースは長さ等で落ちても processed にしない
+            if major and status != "skip":
+                # 大きなニュースは長さ等で落ちても processed にしない。
+                # ただし「記事化の価値なし」（skip。例: 社内の人事施策）は作り直しても同じなので見送りで確定する
                 major_retry(item, f"{status}: {info or '生成に失敗'}")
                 return
             run_status[item["id"]] = ("failed", feeds.source_rank(item))

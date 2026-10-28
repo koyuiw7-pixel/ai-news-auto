@@ -12,7 +12,9 @@
 
 決まりごと（数字は threads_post.py）:
 - 対象は生成から BREAKING_MAX_AGE_MIN 分以内・未投稿の速報記事。それより古ければ通常の予約に回る
-- 1日 BREAKING_PER_DAY 本まで（通常の SNS_PER_DAY とは別枠、最大5）。深夜（日本時間1〜5時）は出さない
+- 1日 BREAKING_PER_DAY 本まで（通常の SNS_PER_DAY とは別枠。既定15・最大30の安全上限。本物の速報はすべて出す）
+- 深夜（日本時間1〜5時）は出さず、その間に作った速報は朝 6:00 にまとめて出す（見張り番の Worker が 6:00 にこのワークフローを起動。
+  1回 MORNING_PER_RUN 本まで、間を空けて出す）
 - 記事ページと図解カードが 200 を返すまで最大 --wait 秒待つ。間に合わなければ出さない（通常の予約に回る）
 - 出した記事は state/threads_posted.json に breaking: true で記録し、通常の予約で二重に出さない
 - 他人の投稿へのコメント・返信は一切しない（返信するのは自分の投稿のリンクだけ）
@@ -32,8 +34,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import threads_post as tp  # noqa: E402
 
-# 1回の実行で出す最大本数（同時に2本来たときだけ。間を空ける）
+# 1回の実行で出す最大本数（同時に2本来たときだけ。間を空ける）。朝 6:00 の回は深夜の分をまとめて出す
 MAX_PER_RUN = 2
+MORNING_PER_RUN = 4
 GAP_SEC = 180
 
 
@@ -49,7 +52,7 @@ def targets(state: dict, now: datetime) -> list[dict]:
         if not article.get("breaking") or article["slug"] in state["posted"]:
             continue
         age = now - datetime.fromisoformat(article["generatedAt"])
-        if age <= timedelta(minutes=tp.BREAKING_MAX_AGE_MIN):
+        if age <= timedelta(minutes=tp.BREAKING_MAX_AGE_MIN) or tp.queued_for_morning(article, now):
             found.append(article)
     return sorted(found, key=lambda a: a["generatedAt"], reverse=True)
 
@@ -124,7 +127,8 @@ def main() -> int:
         )
         return 0
     room = max(0, tp.BREAKING_PER_DAY - tp.breaking_today(state, now))
-    found = found[: min(MAX_PER_RUN, room if not args.slug else 1)]
+    morning = any(tp.queued_for_morning(a, now) for a in found)
+    found = found[: min(MORNING_PER_RUN if morning else MAX_PER_RUN, room if not args.slug else 1)]
     if live and not key:
         log("[breaking] BUFFER_API_KEY が無いため投稿できません")
         return 0

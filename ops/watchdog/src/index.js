@@ -2,6 +2,8 @@
  * サイソクの見張り番（Cloudflare Workers の Cron Triggers で2分ごとに動く）
  *
  * 0. 速報レーン（毎回）: 主要企業の公式ニュースルームの新着を見て、重要な発表ならすぐ記事作りを起動する（src/fastlane.js）
+ * R. レーダー（別の Cron・4分ごと）: まとめサイトで大きなニュースを見つけ、一次情報を探して速報レーンに回す（src/radar.js）
+ * M. 毎朝 6:00（日本時間）: 深夜（1〜5時）に作った速報を SNS に出す breaking_post.yml を起動する
  *
  * 以下は10分ごと（UTC の分が10の倍数の回）:
  * 1. GitHub Actions の記事作り（auto_run.yml）が START_GAP_MIN 分以上始まっていなければ、自分で起動する
@@ -11,11 +13,14 @@
  *
  * 必要な秘密情報: GH_TOKEN（このリポジトリの Actions の読み書きと Issues の書き込みだけを許可した細かい権限のトークン）
  */
-import { fastLane } from "./fastlane.js";
+import { fastLane, makeGh, makeNotify } from "./fastlane.js";
+import { radar } from "./radar.js";
 // Python 側（scripts/fast_lane.py）と同じルールを使う。変えたら npx wrangler deploy し直す
 import rules from "../../../scripts/fast_lane_rules.json";
 
 const ALERT_TITLE = "【自動通知】記事の自動作成が止まっています";
+// wrangler.toml の crons と同じ文字列（どちらの Cron で起きたかを見分ける）
+const RADAR_CRON = "1-59/4 * * * *";
 
 async function gh(env, path, init = {}) {
   const res = await fetch(`https://api.github.com/repos/${env.REPO}${path}`, {
@@ -92,6 +97,17 @@ async function tick(env, now) {
     console.error(`fast: ${String(e)}`);
   }
   if (now.getUTCMinutes() % 10 !== 0) return;
+  if (now.getUTCHours() === 21 && now.getUTCMinutes() === 0) {
+    // 日本時間 6:00: 深夜に作って出せなかった速報を SNS に出す（scripts/breaking_post.py が朝の分を拾う）
+    try {
+      await gh(env, `/actions/workflows/${env.BREAKING_WORKFLOW || "breaking_post.yml"}/dispatches`, {
+        method: "POST", body: JSON.stringify({ ref: "main" }),
+      });
+      console.log(JSON.stringify({ morning: "breaking_post dispatched" }));
+    } catch (e) {
+      console.error(`morning: ${String(e)}`);
+    }
+  }
   try {
     // 速報レーンがいま起動したなら、通常の回は重ねて起動しない
     const l = await check(env, now, { skipDispatch: Boolean(fast?.dispatched) });
@@ -101,9 +117,21 @@ async function tick(env, now) {
   }
 }
 
+async function radarTick(env, now) {
+  try {
+    const st = { notified: {} };
+    const notify = makeNotify(makeGh(env), st.notified, now);
+    const l = await radar(env, now, { rules, notify });
+    console.log(JSON.stringify({ radar: l }));
+  } catch (e) {
+    console.error(`radar: ${String(e)}`);
+  }
+}
+
 export default {
   async scheduled(event, env, ctx) {
-    ctx.waitUntil(tick(env, new Date(event.scheduledTime)));
+    const now = new Date(event.scheduledTime);
+    ctx.waitUntil(event.cron === RADAR_CRON ? radarTick(env, now) : tick(env, now));
   },
   // 動作確認用（外から呼べる URL は無い。wrangler dev のときだけ使う。中身は見せない）
   async fetch(_req, env) {
