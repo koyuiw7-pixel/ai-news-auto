@@ -16,6 +16,7 @@ YouTube のサムネイルはそのまま使う。
   python3 scripts/images.py --recent 40          # 新しい40本のうち未確認のもの
   python3 scripts/images.py --all --max 50       # 全記事（新しい順）を点検して直す（さかのぼり）
   python3 scripts/images.py --slug <slug> --dry-run
+  python3 scripts/images.py --retry-ai --max 30     # AI 生成にした記事でフリー素材を探し直す（Commons が落ちていた日の後に）
 
 必要な環境変数: CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_API_TOKEN（Workers AI）/ CF_KV_TOKEN（KV への書き込み。無ければ
 CLOUDFLARE_API_TOKEN）。手元では wrangler のログイン情報を使う。検索語づくりは GEMINI_API_KEY など（llm.py と同じ）。
@@ -386,10 +387,15 @@ def pick_source_image(article: dict, repeats: Counter) -> tuple[str | None, str]
     current = article.get("thumbnail", "") or ""
     reasons = []
     page = article.get("sourceUrl", "") if article.get("sourceType") == "web" else ""
+    # 一覧に同じ写真が並ばないよう、ほかの記事で使っていない画像を優先する（無ければ使用済みでも使う）
+    fallback = None
     for index, url in enumerate(source_candidates(page, current)[:6]):
+        used = repeats.get(url, 0) - (1 if url == current else 0)
         problem = url_problem(url, repeats.get(url, 0))
         if problem:
             reasons.append(problem)
+            continue
+        if used > 0 and fallback:
             continue
         try:
             data, ctype, _ = http_get(url, accept="image/avif,image/webp,image/*,*/*;q=0.8", referer=page, timeout=20)
@@ -402,7 +408,18 @@ def pick_source_image(article: dict, repeats: Counter) -> tuple[str | None, str]
         if problem:
             reasons.append(problem)
             continue
+        if used > 0:
+            # 2本までは同じ発表の写真を共有してよい。3本目からは素材・AI で変化を付ける
+            if used < 2:
+                fallback = url
+            else:
+                reasons.append(f"ほかの{used}本と同じ写真")
+            continue
+        repeats[url] += 0 if url == current else 1
         return url, ""
+    if fallback:
+        repeats[fallback] += 0 if fallback == current else 1
+        return fallback, ""
     return None, " / ".join(dict.fromkeys(reasons)) or "候補なし"
 
 
@@ -502,15 +519,108 @@ def normalize_license(name: str) -> str:
 
 _wiki_failures = 0
 _wiki_last = 0.0
-WIKI_INTERVAL = float(os.environ.get("WIKI_INTERVAL") or "3")
+_api_down_until = 0.0
+_rest_down_until = 0.0
+WIKI_INTERVAL = float(os.environ.get("WIKI_INTERVAL") or "2")
+
+
+def wiki_get(url: str, tries: int = 2) -> dict:
+    """Wikimedia への問い合わせ。続けて叩くと締め出されるので間を空け、混雑（429・5xx）は1回だけ待ってやり直す"""
+    global _wiki_last
+    for attempt in range(tries):
+        time.sleep(max(0.0, WIKI_INTERVAL - (time.time() - _wiki_last)))
+        _wiki_last = time.time()
+        try:
+            return http_json(url, timeout=25)
+        except urllib.error.HTTPError as error:
+            if error.code not in (429, 500, 502, 503, 504) or attempt == tries - 1:
+                raise
+            time.sleep(min(int(error.headers.get("Retry-After") or 0) or 5, 15))
+    raise RuntimeError("unreachable")
+
+
+def search_wikimedia_rest(search: str, limit: int, query: str, quality: bool) -> list[dict] | None:
+    """api.wikimedia.org の REST 検索。題名と縦横比だけ分かるので、ライセンスと作者は選んだ後に wiki_license で確かめる"""
+    global _rest_down_until
+    if time.time() < _rest_down_until:
+        return None
+    url = "https://api.wikimedia.org/core/v1/commons/search/page?" + urllib.parse.urlencode({"q": search, "limit": str(limit)})
+    try:
+        data = wiki_get(url, tries=1)
+    except Exception as error:  # noqa: BLE001
+        log(f"   [img] Wikimedia REST にも失敗: {str(error)[:60]}")
+        _rest_down_until = time.time() + 120
+        return None
+    out = []
+    for page in data.get("pages") or []:
+        key = page.get("key") or ""
+        thumb = page.get("thumbnail") or {}
+        excerpt = strip_tags(page.get("excerpt") or "")
+        if not key.startswith("File:") or not thumb.get("url") or re.search(r"share ?alike|gfdl", excerpt, re.I):
+            continue
+        tw, th = int(thumb.get("width") or 0), int(thumb.get("height") or 0)
+        title = key.removeprefix("File:").replace("_", " ")
+        out.append(
+            {
+                "provider": "Wikimedia Commons",
+                "title": re.sub(r"\.(jpe?g)$", "", title, flags=re.I),
+                "description": excerpt[:200],
+                "creator": "",
+                "creatorUrl": "",
+                "license": "",
+                "licenseUrl": "",
+                "pendingLicense": key,
+                "sourceUrl": f"https://commons.wikimedia.org/wiki/{urllib.parse.quote(key)}",
+                # 検索結果の小さなサムネイルの URL を 1280px 版に替える（元は幅1200px以上に絞っている）
+                "download": re.sub(r"/\d+px-", "/1280px-", thumb["url"].split("?")[0]),
+                # 縦横比だけ分かる（大きさは検索条件の filew で保証）
+                "width": MIN_STOCK_WIDTH if tw and th else 0,
+                "height": round(MIN_STOCK_WIDTH * th / tw) if tw and th else 0,
+                "query": query,
+                "quality": quality,
+            }
+        )
+    return out
+
+
+def wiki_license(key: str) -> dict | None:
+    """ファイルページの wikitext からライセンスと作者を読む（CC0・PD・CC BY だけ。SA・GFDL・ロゴ類は None）"""
+    try:
+        data = wiki_get(f"https://api.wikimedia.org/core/v1/commons/page/{urllib.parse.quote(key)}")
+    except Exception:  # noqa: BLE001
+        return None
+    text = str(data.get("source") or "")
+    low = text.lower()
+    if re.search(r"pd-textlogo|pd-shape|trademarked|non-free|copyvio|delete", low):
+        return None
+    license_name, license_url = "", ""
+    if re.search(r"\{\{\s*(cc-zero|cc0)\b|\|\s*cc-zero\b", low):
+        license_name, license_url = "CC0", "https://creativecommons.org/publicdomain/zero/1.0/"
+    elif re.search(r"\{\{\s*(pd-|public domain)", low):
+        license_name = "Public Domain"
+    else:
+        match = re.search(r"cc-by-(\d\.\d)\b", low)
+        if match:
+            license_name, license_url = f"CC BY {match.group(1)}", f"https://creativecommons.org/licenses/by/{match.group(1)}/"
+    if not license_name:
+        return None
+    author = ""
+    match = re.search(r"^\s*\|\s*author\s*=\s*(.+)$", text, re.I | re.M)
+    if match:
+        raw = match.group(1)
+        raw = re.sub(r"\[\[(?:[^|\]]*\|)?([^\]]+)\]\]", r"\1", raw)  # [[User:X|名前]] → 名前
+        raw = re.sub(r"\[https?://\S+\s+([^\]]+)\]", r"\1", raw)  # [URL 名前] → 名前
+        raw = re.sub(r"\{\{[^{}]*\}\}", "", raw)
+        author = re.sub(r"\s+", " ", re.sub(r"['\[\]{}<>]", "", raw)).strip()[:80]
+    if license_name.startswith("CC BY") and not author:
+        return None
+    return {"license": license_name, "licenseUrl": license_url, "creator": author or "不明"}
 
 
 def search_wikimedia(query: str, limit: int = 10, quality: bool = False) -> list[dict]:
     """quality=True は Commons の「Quality images」（写りの審査を通ったもの）だけから探す。
-    混雑（429・503）は少し待って3回まで。5回続けて失敗したらその回は使わない"""
+    落ちている窓口はしばらく使わない（_api_down_until / _rest_down_until）"""
     global _wiki_failures
-    if _wiki_failures >= 5:
-        return []
     search = f'{query} filetype:bitmap filemime:image/jpeg filew:>{MIN_STOCK_WIDTH - 1} -incategory:"Images with watermarks"'
     if quality:
         search += ' incategory:"Quality images"'
@@ -528,26 +638,21 @@ def search_wikimedia(query: str, limit: int = 10, quality: bool = False) -> list
         "iiextmetadatafilter": "LicenseShortName|Artist|LicenseUrl|ImageDescription|ObjectName|Restrictions|AttributionRequired",
     }
     data = None
-    global _wiki_last
-    for attempt in range(3):
-        # 続けて叩くと 503 で締め出されるので、間を空ける
-        time.sleep(max(0.0, WIKI_INTERVAL - (time.time() - _wiki_last)))
-        _wiki_last = time.time()
+    global _api_down_until
+    if time.time() >= _api_down_until:
         try:
-            data = http_json("https://commons.wikimedia.org/w/api.php?" + urllib.parse.urlencode(params), timeout=25)
-            break
-        except urllib.error.HTTPError as error:
-            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
-                log(f"   [img] Wikimedia 検索に失敗: {error.code}")
-                break
-            wait = int(error.headers.get("Retry-After") or 0) or 5 * (attempt + 1)
-            time.sleep(min(wait, 30))
+            data = wiki_get("https://commons.wikimedia.org/w/api.php?" + urllib.parse.urlencode(params), tries=1)
         except Exception as error:  # noqa: BLE001
-            log(f"   [img] Wikimedia 検索に失敗: {str(error)[:80]}")
-            break
+            # 本体の API（action API）が落ちていることがある。5分は REST の窓口で探す（ライセンスは選んだ後に確かめる）
+            log(f"   [img] Wikimedia API に失敗（{str(error)[:40]}）→ しばらく REST で探す")
+            _api_down_until = time.time() + 300
     if data is None:
-        _wiki_failures += 1
-        return []
+        rest = search_wikimedia_rest(search, limit, query, quality)
+        if rest is None:
+            _wiki_failures += 1
+            return []
+        _wiki_failures = 0
+        return rest
     _wiki_failures = 0
     pages = sorted((data.get("query") or {}).get("pages") or [], key=lambda p: p.get("index", 0))
     out = []
@@ -779,6 +884,12 @@ def find_stock(article: dict, plan: dict, used: set[str]) -> tuple[dict | None, 
         if not pick:
             return None, None
         try:
+            if pick.get("pendingLicense"):
+                info = wiki_license(pick["pendingLicense"])
+                if not info:
+                    raise ValueError("ライセンスを確かめられない（CC0・PD・CC BY 以外）")
+                pick.update(info)
+                pick.pop("pendingLicense", None)
             data, ctype, _ = http_get(pick["download"], ua=BOT_UA, accept="image/jpeg,image/*", timeout=40)
             image = open_image(data)
             problem = image_problem(image, MIN_STOCK_WIDTH) or vision_check(image, article)
@@ -939,8 +1050,9 @@ def process(path: Path, article: dict, ctx: dict) -> str:
     thumb = article.get("thumbnail", "") or ""
     log(f"[img] {slug} | {title}")
 
+    previous = article.get("imageCredit") or {}
     # 自前の画像（まとめ記事・別の切り口の記事が元記事の画像を引き継いだ）なら出典も引き継ぐ
-    if is_ours(thumb):
+    if is_ours(thumb) and not ctx.get("retry_ai"):
         credit = ctx["credit_by_thumb"].get(thumb)
         if credit:
             article["imageCredit"] = credit
@@ -948,16 +1060,17 @@ def process(path: Path, article: dict, ctx: dict) -> str:
                 save(path, article)
             return "inherit"
 
-    # 1. 元記事の写真
-    url, why = pick_source_image(article, ctx["repeats"])
-    if url:
-        log(f"   [img] 元記事の写真を使う: {url[:100]}")
-        article["thumbnail"] = url
-        article["imageCredit"] = {"kind": "source", "provider": article.get("sourceName") or article.get("channel", ""), "sourceUrl": article.get("sourceUrl", "")}
-        if not ctx["dry_run"]:
-            save(path, article)
-        return "source"
-    log(f"   [img] 元記事の写真は使わない: {why}")
+    # 1. 元記事の写真（AI 画像の探し直しでは検査済みなので飛ばす）
+    if not ctx.get("retry_ai"):
+        url, why = pick_source_image(article, ctx["repeats"])
+        if url:
+            log(f"   [img] 元記事の写真を使う: {url[:100]}")
+            article["thumbnail"] = url
+            article["imageCredit"] = {"kind": "source", "provider": article.get("sourceName") or article.get("channel", ""), "sourceUrl": article.get("sourceUrl", "")}
+            if not ctx["dry_run"]:
+                save(path, article)
+            return "source"
+        log(f"   [img] 元記事の写真は使わない: {why}")
 
     # 2. フリー素材 → 3. AI 生成
     try:
@@ -989,6 +1102,9 @@ def process(path: Path, article: dict, ctx: dict) -> str:
         # Commons が落ちているだけなら AI の枠を使わず、次の回に探し直す（速報の回と、何時間も直らないときは AI）
         log("   [img] Wikimedia Commons に繋がらないので次の回に回す")
         return "deferred"
+    if image is None and ctx.get("retry_ai"):
+        log("   [img] 素材が見つからないので AI 生成の画像のまま")
+        return "kept"
     if image is None:
         made = generate_ai(plan, article, fast=ctx.get("fast", False))
         if not made:
@@ -1002,7 +1118,9 @@ def process(path: Path, article: dict, ctx: dict) -> str:
     except Exception as error:  # noqa: BLE001
         log(f"   [img] 保存に失敗: {str(error)[:120]}")
         return "error"
-    if thumb and thumb != new_url:
+    if previous.get("original"):
+        credit["original"] = previous["original"]
+    elif thumb and thumb != new_url and not is_ours(thumb):
         credit["original"] = thumb
     credit["at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     article["thumbnail"] = new_url
@@ -1053,6 +1171,7 @@ def main() -> int:
     parser.add_argument("--budget", type=float, default=0, help="この秒数を過ぎたら新しい記事に手を付けない")
     parser.add_argument("--fast", action="store_true", help="速報の回: AI は速いモデルだけ")
     parser.add_argument("--ai-only", action="store_true", help="素材を探さず AI 生成だけ（確認用）")
+    parser.add_argument("--retry-ai", action="store_true", help="AI 生成の画像の記事でフリー素材を探し直す（見つからなければそのまま）")
     parser.add_argument("--dry-run", action="store_true", help="保存しない")
     parser.add_argument("--preview", help="出来上がった JPEG をこのフォルダにも書く（確認用）")
     parser.add_argument("--shard", help="並列実行の分担（例: 0/3）")
@@ -1079,6 +1198,7 @@ def main() -> int:
         "fast": args.fast,
         "ai_only": args.ai_only,
         "defer_hours": args.defer_hours,
+        "retry_ai": args.retry_ai,
     }
 
     ordered = sorted(articles.items(), key=newest_first, reverse=True)
@@ -1086,6 +1206,8 @@ def main() -> int:
         targets = [(p, a) for p, a in ordered if a.get("slug") in args.slug or p.stem in args.slug]
         for _, a in targets:
             a.pop("imageCredit", None)
+    elif args.retry_ai:
+        targets = [(p, a) for p, a in ordered if (a.get("imageCredit") or {}).get("kind") == "ai"]
     elif args.changed or args.recent or args.all:
         # 追加・変更された記事を先に、次に新しい順の未確認の記事（前の回で直し損ねたもの）
         changed = changed_paths() if args.changed else set()
