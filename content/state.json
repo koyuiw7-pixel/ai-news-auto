@@ -4661,6 +4661,16 @@
       "skipped": true,
       "url": "https://jtta.or.jp/news/38493"
     },
+    "81b193a67be7f973": {
+      "at": "2026-10-28T02:40:17.550553+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "discord-public-server-google-search",
+      "url": "https://www.itmedia.co.jp/news/article/2610/28/2000002656/"
+    },
     "81c99a3c49073f9f": {
       "at": "2026-10-26T15:34:23.254431+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -6463,22 +6473,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:22.694665+00:00",
-      "attempt": 1,
-      "id": "d5eed8b6a4c8614b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1828字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-        "訳されていない英文が残っている（「A Framework for National Wealth Accounti…」）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "DroR、AIと人的資本・国富会計を扱うワーキングペーパー「AI調整済み包括的富（AIW）」の日本語による要約と解説を公開"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T01:54:29.609060+00:00",
@@ -12899,6 +12893,26 @@
       "score": 93,
       "source": "apple-newsroom-jp",
       "title": "Apple Creator Studioにパワフルな新しいAI機能と、さらに多くのクリエイティブツールが登場"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T02:40:17.550010+00:00",
+      "attempt": 1,
+      "id": "81b193a67be7f973",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 61.4,
+        "avg_sentence": 32.2,
+        "long_share": 0.032,
+        "max_paragraph": 178,
+        "paragraphs": 33,
+        "sentences": 63
+      },
+      "score": 92,
+      "source": "radar-itmedia.co.jp",
+      "title": "Discord、公開サーバの会話をGoogle検索などの対象に プライバシーへの懸念も"
     }
   ],
   "short_text_retry": {
