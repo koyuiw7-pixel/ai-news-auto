@@ -470,6 +470,16 @@ def gather(hours: int, now: datetime) -> tuple[list[dict], list[str]]:
     return [i for i in items if i.get("published") and i["published"] >= since], errors
 
 
+def judged_records() -> list[dict]:
+    """速報レーンで扱って記事にしなかった話題（記事化の価値なし・重複と判定済み。state/fast_lane.json）。毎朝くり返し知らせない"""
+    try:
+        acks = json.loads((ROOT / "state" / "fast_lane.json").read_text("utf-8")).get("items", {})
+    except (OSError, ValueError):
+        return []
+    return [{"slug": f"見送り済み:{a.get('outcome')}", "title": str(a.get("title") or ""), "text": str(a.get("title") or ""), "urls": [a.get("url", "")]}
+            for a in acks.values() if a.get("outcome") in ("skipped", "duplicate") and a.get("url")]
+
+
 def find_missed(items: list[dict], records: list[dict], resolve_links: bool = True) -> tuple[list[dict], dict]:
     """大きなニュースで記事が無いもの（同じ話題はまとめる）と、件数の内訳"""
     prepared = prepare(records)
@@ -594,7 +604,7 @@ def open_issue(title: str, body: str) -> str:
 def missed(args) -> int:
     now = datetime.now(timezone.utc)
     items, errors = gather(args.hours, now)
-    stories, stats = find_missed(items, load_records(args.hours + 72, now))
+    stories, stats = find_missed(items, load_records(args.hours + 72, now) + judged_records())
     report = markdown(stories, stats, errors, args.hours, now)
     print(report)
     summary = os.environ.get("GITHUB_STEP_SUMMARY")

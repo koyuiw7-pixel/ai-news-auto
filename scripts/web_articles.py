@@ -1599,8 +1599,9 @@ def main() -> int:
             if status in ("skip", "reject"):
                 log(f"   [{status}] {info}（{model_name}）")
                 rejected += status == "reject"
-            if major:
-                # 大きなニュースは長さ等で落ちても processed にしない
+            if major and status != "skip":
+                # 大きなニュースは長さ等で落ちても processed にしない。
+                # ただし「記事化の価値なし」（skip。例: 社内の人事施策）は作り直しても同じなので見送りで確定する
                 major_retry(item, f"{status}: {info or '生成に失敗'}")
                 return
             run_status[item["id"]] = ("failed", feeds.source_rank(item))
