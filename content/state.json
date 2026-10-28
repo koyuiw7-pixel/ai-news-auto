@@ -3056,6 +3056,13 @@
       "skipped": true,
       "url": "https://research.google/blog/bringing-foundational-models-to-the-front-lines-of-tb-screening/"
     },
+    "05a87e963785dcee": {
+      "at": "2026-10-28T21:12:02.308340+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1711字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://github.blog/changelog/2026-10-28-generate-and-edit-images-directly-in-copilot"
+    },
     "0621b3885b27cba1": {
       "at": "2026-10-28T19:52:10.662515+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3678,6 +3685,14 @@
       "skipped": true,
       "url": "https://www.atpress.ne.jp/news/644295"
     },
+    "29ec0ec9e94d7484": {
+      "at": "2026-10-28T21:12:28.741493+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "alternative-foods-commodity-luxury-future",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87192?site=nli"
+    },
     "29ffa0cabc5fef70": {
       "at": "2026-10-28T19:52:54.199954+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3738,6 +3753,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（億米ドル）",
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366547"
+    },
+    "2e43ea3f8e52b220": {
+      "at": "2026-10-28T21:12:53.262487+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "aws-kiro-crew-1000-prs-stability",
+      "url": "https://aws.amazon.com/jp/blogs/news/software-factory-stability/"
     },
     "2e5ae7a5070b5cde": {
       "at": "2026-10-27T15:15:38.584341+00:00",
@@ -5902,6 +5925,13 @@
       "skipped": true,
       "url": "https://engineering.fb.com/2026/10/27/developer-tools/python-typing-survey-2026-ai-tools-checker-landscape/"
     },
+    "a830b0664237f855": {
+      "at": "2026-10-28T21:12:14.735873+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大臣の日程や会議の開催案内・申入れに関する行政の動きであり、国民生活への直接的な制度変更や物販・サービスなどの利用を伴うものではないため。",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/actions/202610/28teigen2.html"
+    },
     "aa6d52cd8b1b4fdd": {
       "at": "2026-10-27T03:07:28.604592+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -7324,184 +7354,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:11:20.693166+00:00",
-      "attempt": 1,
-      "id": "b2a6276dc7239368",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2159字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 61.4,
-        "avg_sentence": 61.4,
-        "long_share": 0.5,
-        "max_paragraph": 101,
-        "paragraphs": 26,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "windows-blog-jp",
-      "title": "主要ワークロード全体に広がる Windows on Arm のアプリ エコシステム"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:11:35.700557+00:00",
-      "attempt": 2,
-      "id": "b2a6276dc7239368",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1864字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "文章が元なのに動画前提の表現がある（「動画内」）。「元記事」と書く"
-      ],
-      "readability": {
-        "avg_paragraph": 106.4,
-        "avg_sentence": 49.7,
-        "long_share": 0.233,
-        "max_paragraph": 174,
-        "paragraphs": 14,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "windows-blog-jp",
-      "title": "主要ワークロード全体に広がる Windows on Arm のアプリ エコシステム"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:11:45.352159+00:00",
-      "attempt": 1,
-      "id": "d789d6f6ff19d15c",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 54.2字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 138.0字・最長 241字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 138.0,
-        "avg_sentence": 54.2,
-        "long_share": 0.286,
-        "max_paragraph": 241,
-        "paragraphs": 11,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "hiroshima-u",
-      "title": "【研究成果】CT画像により「肺がんの治りにくさ」の仕組みを解明 -画像と遺伝子情報をつなぎ、薬の候補探索まで行うAI解析基盤を開発-"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T19:11:50.871536+00:00",
-      "attempt": 0,
-      "id": "d789d6f6ff19d15c",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「AIモデルを512症例のデータで構築しました」→元記事では「402例の治療前CT画像から予後予測モデルを作り、独立した110例で検証した」とあり、合計512症例ですが、モデル構築に使用したのは402例であり、512例で構築したという表現は誤解を招く可能性があり"
-      ],
-      "readability": {
-        "avg_paragraph": 138.0,
-        "avg_sentence": 54.2,
-        "long_share": 0.286,
-        "max_paragraph": 241,
-        "paragraphs": 11,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "hiroshima-u",
-      "title": "【研究成果】CT画像により「肺がんの治りにくさ」の仕組みを解明 -画像と遺伝子情報をつなぎ、薬の候補探索まで行うAI解析基盤を開発-"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:12:00.716298+00:00",
-      "attempt": 1,
-      "id": "685f0df653a9c59c",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2477字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 127.7,
-        "avg_sentence": 53.2,
-        "long_share": 0.306,
-        "max_paragraph": 206,
-        "paragraphs": 15,
-        "sentences": 36
-      },
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "AWS named a Leader in the 2026 Gartner Magic Quadrant for Contact Center as a Se"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:12:16.366078+00:00",
-      "attempt": 2,
-      "id": "685f0df653a9c59c",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2387字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 129.8,
-        "avg_sentence": 53.4,
-        "long_share": 0.324,
-        "max_paragraph": 199,
-        "paragraphs": 14,
-        "sentences": 34
-      },
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "AWS named a Leader in the 2026 Gartner Magic Quadrant for Contact Center as a Se"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:12:31.828092+00:00",
-      "attempt": 1,
-      "id": "31a9693efa24b882",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1950字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 92.6,
-        "avg_sentence": 39.3,
-        "long_share": 0.03,
-        "max_paragraph": 167,
-        "paragraphs": 14,
-        "sentences": 33
-      },
-      "score": null,
-      "source": "aws-japan-blog",
-      "title": "Claude Haiku 5.5 が Kiro で利用可能になりました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:12:54.662698+00:00",
-      "attempt": 2,
-      "id": "31a9693efa24b882",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2042字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 83.5,
-        "avg_sentence": 49.0,
-        "long_share": 0.345,
-        "max_paragraph": 151,
-        "paragraphs": 17,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "aws-japan-blog",
-      "title": "Claude Haiku 5.5 が Kiro で利用可能になりました"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T19:13:13.332968+00:00",
@@ -13902,6 +13754,181 @@
       "score": 100,
       "source": "aws-ml-blog",
       "title": "Accelerating software delivery with agentic QA automation using Amazon Nova Act "
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:11:53.692214+00:00",
+      "attempt": 1,
+      "id": "05a87e963785dcee",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1965字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（395字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 108.8,
+        "avg_sentence": 52.5,
+        "long_share": 0.31,
+        "max_paragraph": 201,
+        "paragraphs": 14,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "Generate and edit images directly in Copilot"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:12:00.055851+00:00",
+      "attempt": 2,
+      "id": "05a87e963785dcee",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1711字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 91.3,
+        "avg_sentence": 48.9,
+        "long_share": 0.143,
+        "max_paragraph": 138,
+        "paragraphs": 15,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "Generate and edit images directly in Copilot"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:12:24.062818+00:00",
+      "attempt": 1,
+      "id": "29ec0ec9e94d7484",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 69.8字・60字超の文が 70% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 200.8字・最長 255字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 200.8,
+        "avg_sentence": 69.8,
+        "long_share": 0.696,
+        "max_paragraph": 255,
+        "paragraphs": 8,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "「本物」が贅沢品になる日－コーヒー豆を使わないコーヒーから考える代替食品と消費社会の未来"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T21:12:28.741048+00:00",
+      "attempt": 0,
+      "id": "29ec0ec9e94d7484",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 67.2,
+        "avg_sentence": 30.1,
+        "long_share": 0.0,
+        "max_paragraph": 107,
+        "paragraphs": 26,
+        "sentences": 58
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "「本物」が贅沢品になる日－コーヒー豆を使わないコーヒーから考える代替食品と消費社会の未来"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:12:36.811104+00:00",
+      "attempt": 1,
+      "id": "2e43ea3f8e52b220",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（298字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 128.7,
+        "avg_sentence": 60.3,
+        "long_share": 0.469,
+        "max_paragraph": 221,
+        "paragraphs": 15,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "週 1,000 件の PR でもソフトウェアファクトリーを安定させる方法"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:12:44.350541+00:00",
+      "attempt": 2,
+      "id": "2e43ea3f8e52b220",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2314字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 116.7,
+        "avg_sentence": 63.2,
+        "long_share": 0.625,
+        "max_paragraph": 171,
+        "paragraphs": 13,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "週 1,000 件の PR でもソフトウェアファクトリーを安定させる方法"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T21:12:48.514039+00:00",
+      "attempt": 2,
+      "id": "2e43ea3f8e52b220",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 58.1字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 116.1字・最長 221字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 116.1,
+        "avg_sentence": 58.1,
+        "long_share": 0.5,
+        "max_paragraph": 221,
+        "paragraphs": 16,
+        "sentences": 32
+      },
+      "score": 100,
+      "source": "aws-japan-blog",
+      "title": "週 1,000 件の PR でもソフトウェアファクトリーを安定させる方法"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T21:12:53.262057+00:00",
+      "attempt": 0,
+      "id": "2e43ea3f8e52b220",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 68.5,
+        "avg_sentence": 40.8,
+        "long_share": 0.128,
+        "max_paragraph": 126,
+        "paragraphs": 28,
+        "sentences": 47
+      },
+      "score": 100,
+      "source": "aws-japan-blog",
+      "title": "週 1,000 件の PR でもソフトウェアファクトリーを安定させる方法"
     }
   ],
   "short_text_retry": {
