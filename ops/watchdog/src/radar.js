@@ -12,7 +12,7 @@
  * - 初回は「いまから後に出た見出しだけを見る」印（since）を付けるだけ（デプロイ直後に昔の話題を流さない）
  * - KV への書き込みは候補が出たときだけ（見ただけの見出しは記録しない）
  */
-import { decode, itemId, jstDate, parseFeed, textOf } from "./fastlane.js";
+import { buzzPatterns, decode, itemId, jstDate, parseFeed, textOf } from "./fastlane.js";
 
 const UA = "Mozilla/5.0 (compatible; SaisokuRadar/1.0; +https://ai-tech-express.jp)";
 const KEEP_HANDLED_HOURS = 96;
@@ -40,6 +40,8 @@ export function compileRadar(rules) {
     versionedOk: new Set(r.versioned_ok),
     stop: new Set(r.stop_words),
     fastSources: rules.sources,
+    // 追加の発信元（tier B・C）の会社の名前（速報レーンの「話題待ち」用に、見出しを KV の "buzz" に残す）
+    buzz: buzzPatterns(rules),
   };
 }
 
@@ -436,6 +438,11 @@ export async function radar(env, now, deps = {}) {
       items.push({ ...it, source: src.slug, sourceName: src.name });
     }
   }
+  try {
+    await recordBuzz(env, items, RR, now, log, dry);
+  } catch (e) {
+    log.errors.buzz = String(e).slice(0, 80);
+  }
   const ids = await Promise.all(items.map((it) => itemId(it.url)));
   const open = (id) => {
     const h = st.handled[id];
@@ -574,6 +581,40 @@ export async function radar(env, now, deps = {}) {
   if (prune(st, now)) dirty = true;
   if (dirty && !dry) await env.FAST.put("radar", JSON.stringify(st));
   return log;
+}
+
+const BUZZ_KEEP_HOURS = 12;
+const BUZZ_MAX = 20;
+
+/** まとめサイトの見出しのうち、追加の発信元の会社の名前が出たものを KV の "buzz" に残す（{entity: [{at, t, src}]}・新しいものがあるときだけ書く） */
+export async function recordBuzz(env, items, RR, now, log = {}, dry = false) {
+  const ents = Object.entries(RR.buzz || {});
+  if (!ents.length) return 0;
+  const from = now.getTime() - BUZZ_KEEP_HOURS * 3600e3;
+  const st = (await env.FAST.get("buzz", "json")) || {};
+  let added = 0;
+  let changed = false;
+  for (const it of items) {
+    const at = Date.parse(it.publishedAt || "") || now.getTime();
+    if (at < from) continue;
+    for (const [ent, re] of ents) {
+      if (!re.test(it.title)) continue;
+      const list = (st[ent] ||= []);
+      const t = String(it.title).slice(0, 160);
+      if (list.some((b) => b.t === t)) continue;
+      list.unshift({ at: new Date(at).toISOString(), t, src: it.sourceName || it.source || "" });
+      added += 1;
+    }
+  }
+  for (const [ent, list] of Object.entries(st)) {
+    const kept = list.filter((b) => Date.parse(b.at) >= from).slice(0, BUZZ_MAX);
+    if (kept.length !== list.length) changed = true;
+    if (kept.length) st[ent] = kept;
+    else delete st[ent];
+  }
+  if (added) log.buzz = added;
+  if ((added || changed) && !dry) await env.FAST.put("buzz", JSON.stringify(st));
+  return added;
 }
 
 function prune(st, now) {

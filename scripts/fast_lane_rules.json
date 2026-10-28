@@ -136,13 +136,13 @@
       "genre": "entertainment"
     }
   ],
-  "model_re": "GPT[-‐ ]?\\d|(?<![A-Za-z])o[1-9](?:-mini|-pro)?(?![A-Za-z])|ChatGPT|(?<![A-Za-z])Sora(?![A-Za-z])|Codex|Claude\\s?(?:\\d|Opus|Sonnet|Haiku|Code)|Gemini\\s?(?:\\d|Ultra|Pro|Flash|Nano|Live|API|CLI|app)|Gemma\\s?\\d|(?<![A-Za-z])Veo\\s?\\d|Imagen\\s?\\d|Genie\\s?\\d|NotebookLM|Project Astra|Alpha(?:Fold|Evolve|Proof|Genome)|Llama\\s?\\d|(?<![A-Za-z])Grok\\s?\\d|Apple Intelligence|iPhone\\s?\\d{2}|Pixel\\s?\\d{2}|Nemotron|(?<![A-Za-z])Phi-\\d|MAI-\\d|Copilot|Siri(?:\\s?AI)?|(?<![A-Za-z])i(?:Pad)?OS\\s?\\d{2}|macOS\\s?\\d{2}|Android\\s?\\d{2}|(?:Mistral|Mixtral|Ministral|Magistral|Codestral|Devstral|Voxtral|Pixtral)\\s?(?:\\d|Large|Medium|Small)",
+  "model_re": "GPT[-‐ ]?\\d|(?<![A-Za-z])o[1-9](?:-mini|-pro)?(?![A-Za-z])|ChatGPT|(?<![A-Za-z])Sora(?![A-Za-z])|Codex|Claude\\s?(?:\\d|Opus|Sonnet|Haiku|Code)|Gemini\\s?(?:\\d|Ultra|Pro|Flash|Nano|Live|API|CLI|app)|Gemma\\s?\\d|(?<![A-Za-z])Veo\\s?\\d|Imagen\\s?\\d|Genie\\s?\\d|NotebookLM|Project Astra|Alpha(?:Fold|Evolve|Proof|Genome)|Llama\\s?\\d|(?<![A-Za-z])Grok\\s?\\d|Apple Intelligence|iPhone\\s?\\d{2}|Pixel\\s?\\d{2}|Nemotron|(?<![A-Za-z])Phi-\\d|MAI-\\d|Copilot|Siri(?:\\s?AI)?|(?<![A-Za-z])i(?:Pad)?OS\\s?\\d{2}|macOS\\s?\\d{2}|Android\\s?\\d{2}|(?:Mistral|Mixtral|Ministral|Magistral|Codestral|Devstral|Voxtral|Pixtral)\\s?(?:\\d|Large|Medium|Small)|tsuzumi\\s?\\d?|PLaMo|Sarashina",
   "head_re": "^\\s*(?:Introducing\\s+|Meet\\s+|新しい|新)?[A-Za-z]*(?:GPT|ChatGPT|Claude|Gemini|Gemma|Llama|Grok|Sora|Veo|Codex|Genie|Imagen|Siri|NotebookLM|Nemotron|Mistral|Mixtral|Ministral|Magistral|Codestral|Devstral|Voxtral|Pixtral|o\\d)(?![a-z])",
   "launch_re": "introduc|launch|announc|unveil|releas|now available|available (?:now|today|in|to|for|on|starting)|general(?:ly)? availab|(?<![A-Za-z])GA(?![A-Za-z])|rolling out|rolls out|coming to|comes to|arriv(?:e|es|ing) (?:in|on|to)|expands? to|^\\s*new\\s|new model|open[- ]sourc|open[- ]weight|pricing|price|cheaper|preview|(?<![A-Za-z])beta(?![A-Za-z])|upgrade|(?<![A-Za-z])IPO(?![A-Za-z])|initial public offering|(?<![A-Za-z])S-1(?![0-9])|acquir|acquisition|merger|上場|買収|発表|提供開始|一般提供|公開|リリース|新機能|新モデル|搭載|値下げ|料金|登場|発売|開始|利用可能|利用できる|日本語対応|対応開始",
   "exclude_re": "webinar|ウェビナー|seminar|セミナー|meetup|hackathon|ハッカソン|register now|join us|livestream|ライブ配信|イベント開催|開催のお知らせ|参加者募集|登壇|出展|展示会|podcast|episode|GFN Thursday|GeForce NOW|live updates|hiring|careers|(?<![A-Za-z])joins (?:the |our )?(?:board|team|trust)|appoint|customer stor|case study|success stor|(?<![A-Za-z])helps(?![A-Za-z])|how [A-Za-z0-9 .&'’-]{1,40} (?:uses|is using|used|built|transformed)|(?<![A-Za-z])tips(?![A-Za-z])|ways to|things to know|best practices|earnings|quarterly results|dividend|決算|award|受賞|grant(?:s|ees)? |fellowship|scholarship|donat|office opening|opens? (?:a |an |its |new )?(?:office|offices)|(?<![A-Za-z])election|midterm|testimony|congress|人事|採用|募集|キャンペーン|プレゼント|事例",
   "ai_re": "(?<![A-Za-z])(?:AI|A\\.I\\.|LLMs?|GPT[-\\w]*|Gemini|Gemma|Copilot|Claude|ChatGPT|agents?|agentic|machine learning|deep learning|neural|generative|models?|inference|Llama|NVIDIA|GPU|robot\\w*)(?![A-Za-z])|人工知能|生成AI|機械学習|深層学習|大規模言語|言語モデル|エージェント|チャットボット|ロボット|推論|Apple Intelligence",
   "genres": {
-    "_doc": "genre のある発信元の判定。上の exclude_re → そのジャンルの exclude_re（細かいお知らせ）→ 主要な製品名＋発表の語 → major_re（大きな発表の語）の順に見る",
+    "_doc": "genre のある発信元の判定。上の exclude_re（own_exclude のジャンルは使わない）→ そのジャンルの exclude_re（細かいお知らせ）→ 主要な製品名＋発表の語 → major_re（大きな発表の語）の順に見る。reason は判定の理由の文言",
     "tech-gadget": {
       "major_re": "発表|発売|導入|予約(?:受付)?(?:を)?開始|販売開始|提供開始|出荷開始|登場|値上げ|値下げ|価格(?:改定|変更)|新製品|新型|新モデル|(?<![A-Za-z])(?:launch|announc|unveil|introduc)",
       "exclude_re": "方法|ご紹介|紹介します|ヒント|楽しむ|ランキング|ガイド|レポート|インタビュー|おすすめ|[0-9０-９]+選|ストーリー|クリエイター|コラボ|ブランド価値|首位|受賞|展示|美術|アート|博物館|スポンサー|寄付|社会貢献|研究契約|共同研究|整備済"
@@ -150,6 +150,13 @@
     "entertainment": {
       "major_re": "Direct|ダイレクト|State of Play|Showcase|ショーケース|新型|本体|新ハード|次世代機|価格(?:改定|変更)|値上げ|値下げ|発表|サービス終了|生産終了|販売終了",
       "exclude_re": "ランキング|ガイド|レポート|インタビュー|おすすめ|[0-9０-９]+選|懇談会|相談会|採用|募集|ギャラリー|更新しました|新作ソフト情報|フォトモード|プレゼント|コラボ|体験版|アップデート|ウォーボンド|理由|いっせいトライアル|遊び放題|追加タイトル|公式生放送|大会|e[- ]?スポーツ"
+    },
+    "business": {
+      "_doc": "日本の大手企業の公式ニュース・IR（scripts/sources_registry.json の genre=business）。決算・業績修正・M&A・社長交代・大型の出資・新会社など。上の exclude_re は決算・人事を除くので使わない（own_exclude）。記事は business ジャンルの形（数字は元の発表どおり・投資の勧誘ではない旨の注記つき）",
+      "own_exclude": true,
+      "reason": "企業の重要な発表",
+      "major_re": "業績予想|業績(?:の)?修正|上方修正|下方修正|決算(?:短信|発表|概要|のお知らせ)|通期(?:業績|決算)|四半期決算|買収|合併|経営統合|株式交換|株式移転|公開買付|(?<![A-Za-z])TOB(?![A-Za-z])|子会社化|完全子会社|資本業務提携|資本提携|追加出資|出資(?:の実行|契約|比率)|代表取締役(?:の異動|社長)|社長(?:交代|就任|の異動)|(?<![A-Za-z])CEO(?:交代|就任)|新会社|事業譲渡|事業売却|撤退|リコール|フルモデルチェンジ|新型車|世界初|大規模(?:障害|投資)|通信障害|値上げ|値下げ|料金改定|(?<![A-Za-z])(?:acquir|merger|IPO)",
+      "exclude_re": "配当|社債|償還|自己株式|株主総会|招集|ガバナンス|統合報告|サステナビリティ|(?<![A-Za-z])ESG(?![A-Za-z])|説明会|資料|動画|訂正|開示資料|モータースポーツ|MotoGP|スーパーフォーミュラ|ラリー|レース|ランキング|キャンペーン|プレゼント|イベント|展示|出展|受賞|寄付|協賛|スポンサー|累計(?:販売|生産)|突破|特別仕様車|一部改良|マイナーモデルチェンジ|ニュースレター|トレンド通信|お詫び|セミナー|ウェビナー|採用|募集|検討開始|実証|（トピックス）|覚書|基本合意に向けた|ポイント|クーポン"
     }
   },
   "genre_caps": {

@@ -10,6 +10,7 @@
 
   python3 scripts/fast_lane.py --check              # いまの公式フィードで、速報レーンに乗る見出しを表示（API 不要）
   python3 scripts/fast_lane.py --check --days 14    # 過去14日分で判定の様子を見る（ルールの調整用）
+  python3 scripts/fast_lane.py --verify-registry     # 追加の発信元（sources_registry.json）が読めるか（robots.txt も見る）
   echo '[{"title": "...", "source": "openai-news"}]' | python3 scripts/fast_lane.py --classify   # Worker のテスト用
 """
 
@@ -29,29 +30,59 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 RULES_PATH = Path(__file__).resolve().with_name("fast_lane_rules.json")
+REGISTRY_PATH = Path(__file__).resolve().with_name("sources_registry.json")
 ACK_PATH = ROOT / "state" / "fast_lane.json"
 ACK_KEEP_DAYS = 14
 JST = timezone(timedelta(hours=9))
 
 
+def merge_registry(data: dict, registry: dict) -> dict:
+    """sources_registry.json（追加の発信元）を sources に足す（Worker の mergeRegistry と同じ。同じ slug は rules 側を優先）"""
+    have = {s["slug"] for s in data["sources"]}
+    extra = [{**s, "registry": True} for s in registry.get("sources") or [] if s["slug"] not in have]
+    data["sources"] = [*data["sources"], *extra]
+    data["registry"] = {k: v for k, v in registry.items() if k != "sources"}
+    return data
+
+
 @lru_cache(maxsize=1)
 def rules() -> dict:
     data = json.loads(RULES_PATH.read_text("utf-8"))
+    if REGISTRY_PATH.exists():
+        merge_registry(data, json.loads(REGISTRY_PATH.read_text("utf-8")))
     flags = re.IGNORECASE
+    reg = data.get("registry") or {}
     data["_re"] = {
         "model": re.compile(data["model_re"], flags),
         "head": re.compile(data["head_re"], flags),
         "launch": re.compile(data["launch_re"], flags),
         "exclude": re.compile(data["exclude_re"], flags),
         "ai": re.compile(data["ai_re"], flags),
+        # 追加の発信元（tier B・C）の強い語・新モデル
+        "strong": re.compile(reg["strong_re"], flags) if reg.get("strong_re") else None,
+        "reg_model": re.compile(reg["model_re"], flags) if reg.get("model_re") else None,
     }
     data["_by_slug"] = {s["slug"]: s for s in data["sources"]}
-    # ジャンル（新製品・ゲーム）ごとの判定
+    # 発信元ごとの除外語・必須語
+    data["_src_re"] = {
+        s["slug"]: {
+            "exclude": re.compile(s["exclude_re"], flags) if s.get("exclude_re") else None,
+            "include": re.compile(s["include_re"], flags) if s.get("include_re") else None,
+        }
+        for s in data["sources"] if s.get("exclude_re") or s.get("include_re")
+    }
+    # ジャンル（新製品・ゲーム・ビジネス）ごとの判定
     data["_genre_re"] = {
-        k: {"major": re.compile(g["major_re"], flags), "exclude": re.compile(g["exclude_re"], flags)}
+        k: {
+            "major": re.compile(g["major_re"], flags), "exclude": re.compile(g["exclude_re"], flags),
+            "own": bool(g.get("own_exclude")), "reason": g.get("reason") or "新製品・ゲームの発表",
+        }
         for k, g in (data.get("genres") or {}).items() if not k.startswith("_")
     }
     return data
+
+
+WAIT_REASON = "話題待ち（強い語なし）"  # fastlane.js の WAIT_REASON と同じ
 
 
 def genre_of(slug: str) -> str:
@@ -70,24 +101,40 @@ def relevant(title: str, slug: str) -> tuple[bool, str]:
     if not src:
         return False, "対象外の発信元"
     t = str(title or "").strip()
-    ex = r["_re"]["exclude"].search(t)
-    if ex:
-        return False, f"除外語（{ex.group(0)}）"
     g = r["_genre_re"].get(src.get("genre") or "")
+    if not (g and g["own"]):
+        ex = r["_re"]["exclude"].search(t)
+        if ex:
+            return False, f"除外語（{ex.group(0)}）"
+    own = r["_src_re"].get(slug) or {}
+    ox = own.get("exclude") and own["exclude"].search(t)
+    if ox:
+        return False, f"除外語（{ox.group(0)}）"
+    if own.get("include") and not own["include"].search(t):
+        return False, "必須の語がない"
     if g:
-        # 新製品・ゲームの公式: 細かいお知らせを除き、大きな発表の語があるものだけ
+        # 新製品・ゲーム・ビジネスの公式: 細かいお知らせを除き、大きな発表の語があるものだけ
         gx = g["exclude"].search(t)
         if gx:
             return False, f"除外語（{gx.group(0)}）"
         if r["_re"]["model"].search(t) and (r["_re"]["launch"].search(t) or r["_re"]["head"].search(t)):
             return True, "新モデル・新製品"
         if g["major"].search(t):
-            return True, "新製品・ゲームの発表"
+            return True, g["reason"]
         return False, "大きな発表の語がない"
     model = bool(r["_re"]["model"].search(t))
     if src.get("ai_only") and not model and not r["_re"]["ai"].search(t):
         return False, "AI の話題ではない"
     launch = bool(r["_re"]["launch"].search(t))
+    if src.get("tier") in ("B", "C"):
+        # tier B・C: 強い語・新モデルだけすぐ。発表の語だけなら、まとめサイトで話題になるのを待つ（Worker の pending）
+        if r["_re"]["strong"] and r["_re"]["strong"].search(t):
+            return True, "大きな発表"
+        if r["_re"]["reg_model"] and r["_re"]["reg_model"].search(t) and (launch or r["_re"]["head"].search(t)):
+            return True, "新モデル・新製品"
+        if launch:
+            return False, WAIT_REASON
+        return False, "発表の語がない"
     if model and (launch or r["_re"]["head"].search(t)):
         return True, "新モデル・新製品"
     if launch:
@@ -149,7 +196,7 @@ def register_sources(feeds_module) -> None:
         if src["slug"] in feeds_module.FEEDS_BY_SLUG:
             continue
         feeds_module.FEEDS_BY_SLUG[src["slug"]] = {
-            "slug": src["slug"], "name": src["name"], "url": src["url"], "lang": "en", "priority": 1,
+            "slug": src["slug"], "name": src["name"], "url": src["url"], "lang": src.get("lang") or "en", "priority": 1 if src.get("tier", "A") == "A" else 2,
             "kind": "official", "primary_for": src.get("entity"), "fast_only": True,
         }
     radar = rules().get("radar") or {}
@@ -282,10 +329,10 @@ def missed_genres(hours: int) -> int:
             if url:
                 have.add(feeds.item_id(url))
     since = datetime.now(timezone.utc) - timedelta(hours=hours)
-    lines = ["### 新製品・ゲームの公式発表", ""]
+    lines = ["### 新製品・ゲーム・ビジネスの公式発表", ""]
     missing = 0
     for src in rules()["sources"]:
-        if not src.get("genre"):
+        if not src.get("genre") or src.get("type") != "rss":
             continue
         try:
             items = feeds.parse_feed({**src, "lang": "ja"})
@@ -313,6 +360,121 @@ def missed_genres(hours: int) -> int:
     return 0
 
 
+def _have_ids(feeds) -> set:
+    have = set()
+    for path in (ROOT / "content" / "articles").glob("*.json"):
+        try:
+            data = json.loads(path.read_text("utf-8"))
+        except ValueError:
+            continue
+        for url in [data.get("sourceUrl"), *(u.get("sourceUrl") for u in data.get("updates") or [])]:
+            if url:
+                have.add(feeds.item_id(url))
+    return have
+
+
+def _summary(lines: list[str]) -> None:
+    print("\n".join(lines))
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if path:
+        with open(path, "a", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+
+
+def missed_registry(hours: int) -> int:
+    """追加の発信元（sources_registry.json・genre なし・RSS）の直近 hours 時間の見出しのうち、すぐ速報になる（◎）・話題待ち（△）で
+    記事が無いもの。取得できない発信元も並べる（フィードの故障に気づくため）。LLM は使わない。一覧ページ（html）は Worker だけが読む"""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import feeds  # noqa: PLC0415
+
+    have = _have_ids(feeds)
+    since = datetime.now(timezone.utc) - timedelta(hours=hours)
+    lines = ["### 追加の発信元（AI 企業・AI につながる道具）の公式発表", "", "◎=すぐ速報 / △=話題になったら速報（話題待ち）", ""]
+    missing, broken = 0, []
+    for src in rules()["sources"]:
+        if not src.get("registry") or src.get("genre") or src.get("type") != "rss":
+            continue
+        try:
+            items = feeds.parse_feed({**src, "lang": src.get("lang", "en")})
+        except Exception as error:  # noqa: BLE001
+            broken.append(f"{src['name']}（{str(error)[:50]}）")
+            continue
+        if not items:
+            broken.append(f"{src['name']}（0件）")
+        for item in items:
+            if not item["published_at"] or item["published_at"] < since:
+                continue
+            ok, why = relevant(item["title"], src["slug"])
+            if not ok and why != WAIT_REASON:
+                continue
+            exists = item["id"] in have
+            missing += ok and not exists
+            mark = "◎" if ok else "△"
+            lines.append(f"- {mark} {'記事あり' if exists else '**記事なし**'}（tier {src.get('tier')}）{src['name']}: {item['title'][:70]}  {item['url']}")
+    if len(lines) == 4:
+        lines.append(f"- 直近{hours}時間に対象の発表はありません")
+    if broken:
+        lines += ["", f"取得できない発信元（{len(broken)}）: " + "、".join(broken)]
+    _summary(lines)
+    if missing:
+        print(f"::warning::追加の発信元ですぐ速報になるはずの発表で記事が無いものが {missing} 件あります（ジョブのサマリーを確認）")
+    return 0
+
+
+def verify_registry() -> int:
+    """sources_registry.json の発信元が読めるか（HTTP・件数・いちばん新しい記事の日付・robots.txt）。足すときに使う"""
+    import urllib.robotparser  # noqa: PLC0415
+
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import feeds  # noqa: PLC0415
+
+    ua = "SaisokuFastLane"
+    bad = 0
+    robots: dict = {}
+    for src in rules()["sources"]:
+        if not src.get("registry"):
+            continue
+        parts = urllib.parse.urlsplit(src["url"])
+        base = f"{parts.scheme}://{parts.netloc}"
+        if base not in robots:
+            # robots.txt は自分の UA で読む（urllib の既定の UA だと 403 で「全部不可」になるサイトがある）
+            rp = urllib.robotparser.RobotFileParser()
+            try:
+                req = urllib.request.Request(base + "/robots.txt", headers={"User-Agent": f"Mozilla/5.0 (compatible; {ua}/1.0; +https://ai-tech-express.jp)"})
+                with urllib.request.urlopen(req, timeout=15) as res:
+                    rp.parse(res.read().decode("utf-8", "replace").splitlines())
+            except urllib.error.HTTPError as error:
+                rp.parse(["User-agent: *", "Disallow: /"] if error.code in (401, 403) else [])
+            except Exception:  # noqa: BLE001
+                rp.parse([])
+            robots[base] = rp
+        allowed = robots[base].can_fetch(ua, src["url"])
+        note = ""
+        try:
+            if src["type"] == "rss":
+                items = feeds.parse_feed({**src, "lang": src.get("lang", "en")})
+                dates = [i["published_at"] for i in items if i["published_at"]]
+                newest = max(dates).astimezone(JST).strftime("%Y-%m-%d") if dates else "日付なし"
+                note = f"{len(items)}件・最新 {newest}"
+                ok = bool(items)
+            else:
+                req = urllib.request.Request(src["url"], headers={"User-Agent": f"Mozilla/5.0 (compatible; {ua}/1.0; +https://ai-tech-express.jp)"})
+                with urllib.request.urlopen(req, timeout=20) as res:
+                    body = res.read().decode("utf-8", "replace")
+                link_re = re.compile(src.get("link_re") or ".", re.IGNORECASE)
+                hrefs = {urllib.parse.urlsplit(urllib.parse.urljoin(src["url"], h)) for h in re.findall(r"href=[\"']([^\"'#?]+)", body)}
+                links = len({h.path for h in hrefs if h.netloc == parts.netloc and link_re.search(h.path)})
+                note = f"一覧 {len(body) // 1024}KB・記事らしいリンク {links}"
+                ok = links > 0
+        except Exception as error:  # noqa: BLE001
+            ok, note = False, str(error)[:60]
+        ok = ok and allowed
+        bad += not ok
+        print(f"{'OK' if ok else 'NG'} [{src.get('tier')}] {src['slug']}: {note}{'' if allowed else '・robots.txt で不可'}")
+    print(f"\n読めない発信元: {bad}")
+    return 1 if bad else 0
+
+
 # --------------------------------------------------------------------------- #
 
 
@@ -322,11 +484,17 @@ def main() -> int:
     parser.add_argument("--days", type=int, default=7)
     parser.add_argument("--classify", action="store_true", help="標準入力の [{title, source}] を判定して JSON で返す")
     parser.add_argument("--missed-genres", action="store_true", help="新製品・ゲームの公式で、対象なのに記事が無いものを表示（見逃しチェック）")
+    parser.add_argument("--missed-registry", action="store_true", help="追加の発信元で、速報になるはずなのに記事が無いものを表示（見逃しチェック）")
+    parser.add_argument("--verify-registry", action="store_true", help="追加の発信元が読めるか確かめる")
     parser.add_argument("--hours", type=int, default=30)
     args = parser.parse_args()
 
     if args.missed_genres:
         return missed_genres(args.hours)
+    if args.missed_registry:
+        return missed_registry(args.hours)
+    if args.verify_registry:
+        return verify_registry()
 
     if args.classify:
         items = json.load(sys.stdin)

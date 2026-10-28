@@ -6,6 +6,7 @@
     "test": "node --test \"test/*.test.mjs\"",
     "live": "node test/live_check.mjs",
     "radar-live": "node test/radar_live.mjs",
-    "deploy": "npx wrangler deploy --config wrangler.toml"
+    "deploy": "npx wrangler deploy --config wrangler.toml",
+    "registry-dry": "node test/registry_dry.mjs"
   }
 }

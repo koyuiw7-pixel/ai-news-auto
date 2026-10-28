@@ -48,12 +48,18 @@ jobs:
           if [ "${{ inputs.request || '1' }}" = "1" ]; then ARGS="$ARGS --request"; fi
           python scripts/radar.py missed $ARGS
 
-      # 新しいジャンル（新製品・ゲームの公式・気象庁の地震・津波）の取りこぼし。サマリーに出すだけ（LLM なし・数件の取得だけ）
+      # 新しいジャンル（新製品・ゲーム・ビジネスの公式・気象庁の地震・津波）の取りこぼし。サマリーに出すだけ（LLM なし・数件の取得だけ）
       - name: Check other genres
         continue-on-error: true
         run: |
           python scripts/fast_lane.py --missed-genres --hours "${{ inputs.hours || '30' }}"
           python scripts/quake.py --missed --hours "${{ inputs.hours || '30' }}"
+
+      # 追加の発信元（scripts/sources_registry.json の AI 企業・AI につながる道具）の取りこぼしと、読めなくなったフィード。
+      # サマリーに出すだけ（LLM なし・RSS を1回ずつ取得するだけ。一覧ページ（html）は Worker だけが読む）
+      - name: Check source registry
+        continue-on-error: true
+        run: python scripts/fast_lane.py --missed-registry --hours "${{ inputs.hours || '30' }}"
 
       # 速報レーンへの依頼（state/radar_requests.json）を main に足す。待っている間に main が進んでいても衝突しないよう、最新に足し直す
       - name: Commit requests

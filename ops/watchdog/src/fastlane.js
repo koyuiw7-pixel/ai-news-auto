@@ -29,8 +29,32 @@ const WAITING = new Set(["queued", "pending", "waiting", "requested"]);
 // ルール
 // --------------------------------------------------------------------------- //
 
+/** scripts/sources_registry.json（追加の発信元）を rules の sources に足す。同じ slug は rules 側を優先 */
+export function mergeRegistry(rules, registry) {
+  if (!registry?.sources?.length) return rules;
+  const have = new Set(rules.sources.map((s) => s.slug));
+  const extra = registry.sources.filter((s) => !have.has(s.slug)).map((s) => ({ ...s, registry: true }));
+  const { sources: _omit, ...conf } = registry;
+  return { ...rules, sources: [...rules.sources, ...extra], registry: conf };
+}
+
+export const WAIT_REASON = "話題待ち（強い語なし）";
+const escapeRe = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/** 会社（entity）ごとの「まとめサイトに名前が出たか」の正規化前の正規表現（大文字小文字を区別する）。tier B・C の追加の発信元だけ */
+export function buzzPatterns(rules) {
+  const out = {};
+  for (const s of rules.sources || []) {
+    if (!s.registry || !s.entity || !["B", "C"].includes(s.tier)) continue;
+    const re = s.buzz_re || `(?<![A-Za-z])${escapeRe(s.company || s.entity)}(?![A-Za-z])`;
+    (out[s.entity] ||= new Set()).add(re);
+  }
+  return Object.fromEntries(Object.entries(out).map(([k, v]) => [k, new RegExp([...v].join("|"))]));
+}
+
 export function compile(rules) {
   const re = (s) => new RegExp(s, "i");
+  const reg = rules.registry || {};
   return {
     ...rules,
     sources: rules.sources.filter((s) => !s.disabled),
@@ -40,9 +64,19 @@ export function compile(rules) {
     launch: re(rules.launch_re),
     exclude: re(rules.exclude_re),
     ai: re(rules.ai_re),
-    // ジャンル（新製品・ゲーム）ごとの判定
+    // ジャンル（新製品・ゲーム・ビジネス）ごとの判定
     genreRe: Object.fromEntries(
-      Object.entries(rules.genres || {}).filter(([k]) => !k.startsWith("_")).map(([k, g]) => [k, { major: re(g.major_re), exclude: re(g.exclude_re) }]),
+      Object.entries(rules.genres || {}).filter(([k]) => !k.startsWith("_")).map(([k, g]) => [
+        k, { major: re(g.major_re), exclude: re(g.exclude_re), own: Boolean(g.own_exclude), reason: g.reason || "新製品・ゲームの発表" },
+      ]),
+    ),
+    // 追加の発信元（tier B・C）の強い語・新モデル、発信元ごとの除外語・必須語
+    strong: reg.strong_re ? re(reg.strong_re) : null,
+    regModel: reg.model_re ? re(reg.model_re) : null,
+    srcRe: Object.fromEntries(
+      rules.sources.filter((s) => s.exclude_re || s.include_re).map((s) => [
+        s.slug, { exclude: s.exclude_re ? re(s.exclude_re) : null, include: s.include_re ? re(s.include_re) : null },
+      ]),
     ),
   };
 }
@@ -50,29 +84,91 @@ export function compile(rules) {
 /** 発信元のジャンル（無ければ ai。レーダーの話題も ai として数える） */
 export const genreOf = (R, slug) => R.bySlug[slug]?.genre || "ai";
 
+/** tier B・C（強い語か話題が要る発信元） */
+export const lazyTier = (src) => src?.tier === "B" || src?.tier === "C";
+
+/** この回に見に行くか。tier A と元からの発信元は毎回、B・C は間隔ごと（発信元ごとに回をずらして負荷を散らす） */
+export function due(src, now, R) {
+  const every = Number(R.registry?.tiers?.[src.tier] || 2);
+  const slots = Math.max(1, Math.round(every / 2));
+  if (slots <= 1) return true;
+  const tick = now.getUTCHours() * 30 + Math.floor(now.getUTCMinutes() / 2);
+  let h = 0;
+  for (const c of src.slug) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return tick % slots === h % slots;
+}
+
 /** 速報レーンに乗せるか。理由の文言は scripts/fast_lane.py の relevant() と同じ */
 export function relevant(title, slug, R) {
   const src = R.bySlug[slug];
   if (!src) return { ok: false, reason: "対象外の発信元" };
   const t = String(title || "").trim();
-  const ex = t.match(R.exclude);
-  if (ex) return { ok: false, reason: `除外語（${ex[0]}）` };
   const g = src.genre && R.genreRe[src.genre];
+  if (!g?.own) {
+    const ex = t.match(R.exclude);
+    if (ex) return { ok: false, reason: `除外語（${ex[0]}）` };
+  }
+  const own = R.srcRe[slug];
+  const ox = own?.exclude && t.match(own.exclude);
+  if (ox) return { ok: false, reason: `除外語（${ox[0]}）` };
+  if (own?.include && !own.include.test(t)) return { ok: false, reason: "必須の語がない" };
   if (g) {
-    // 新製品・ゲームの公式: 細かいお知らせを除き、大きな発表の語があるものだけ
+    // 新製品・ゲーム・ビジネスの公式: 細かいお知らせを除き、大きな発表の語があるものだけ
     const gx = t.match(g.exclude);
     if (gx) return { ok: false, reason: `除外語（${gx[0]}）` };
     if (R.model.test(t) && (R.launch.test(t) || R.head.test(t))) return { ok: true, reason: "新モデル・新製品" };
-    if (g.major.test(t)) return { ok: true, reason: "新製品・ゲームの発表" };
+    if (g.major.test(t)) return { ok: true, reason: g.reason };
     return { ok: false, reason: "大きな発表の語がない" };
   }
   const model = R.model.test(t);
   if (src.ai_only && !model && !R.ai.test(t)) return { ok: false, reason: "AI の話題ではない" };
   const launch = R.launch.test(t);
+  if (lazyTier(src)) {
+    // tier B・C: 強い語・新モデルだけすぐ。発表の語だけなら、まとめサイトで話題になるのを待つ（fastLane の pending）
+    if (R.strong?.test(t)) return { ok: true, reason: "大きな発表" };
+    if (R.regModel?.test(t) && (launch || R.head.test(t))) return { ok: true, reason: "新モデル・新製品" };
+    if (launch) return { ok: false, reason: WAIT_REASON };
+    return { ok: false, reason: "発表の語がない" };
+  }
   if (model && (launch || R.head.test(t))) return { ok: true, reason: "新モデル・新製品" };
   // 対象は各社の公式ニュースルームだけなので、発表の語があれば自社（か提携先と共同）の発表とみなす
   if (launch) return { ok: true, reason: "公式の発表" };
   return { ok: false, reason: "発表の語がない" };
+}
+
+/** 見出しの語（話題の突き合わせ用）: 英数字3文字以上・カタカナ3文字以上・漢字2文字以上。stop は除く */
+export function tokens(text, stop = new Set()) {
+  const out = new Set();
+  for (const w of String(text || "").toLowerCase().match(/[a-z0-9][a-z0-9.+-]*[a-z0-9]|[ァ-ヶー]{3,}|[一-龠々]{2,}/g) || []) {
+    if ((/^[a-z0-9]/.test(w) && w.length < 3) || stop.has(w) || /^\d+$/.test(w)) continue;
+    out.add(w);
+  }
+  return out;
+}
+
+/** 話題の突き合わせで数えない語（レーダーの stop_words ＋ sources_registry.json の buzz_stop） */
+export const buzzStop = (R) => new Set([...(R.radar?.stop_words || []), ...(R.registry?.buzz_stop || [])]);
+
+/** 2つの見出しがほぼ同じか（語の重なり。短い方の7割以上が共通） */
+export function similar(a, b, stop) {
+  const x = tokens(a, stop);
+  const y = tokens(b, stop);
+  if (x.size < 2 || y.size < 2) return false;
+  const shared = [...x].filter((w) => y.has(w)).length;
+  return shared / Math.min(x.size, y.size) >= 0.7;
+}
+
+/** 話題待ちの見出しが、まとめサイトの見出し（buzz[entity]）と同じ話題か。会社名の語は数えない */
+export function buzzMatch(title, list, nameRe, stop) {
+  const name = nameRe ? new RegExp(nameRe.source, "i") : null;
+  const mine = new Set([...tokens(title, stop)].filter((w) => !name?.test(w)));
+  // 短い見出し（語が2つまで）は1語、それより長ければ2語の重なりが要る（「Gemini」だけの重なりで別の話題を拾わない）
+  const need = mine.size <= 2 ? 1 : 2;
+  for (const b of list || []) {
+    const shared = [...tokens(b.t, stop)].filter((w) => mine.has(w));
+    if (shared.length >= need) return { ...b, shared };
+  }
+  return null;
 }
 
 // --------------------------------------------------------------------------- //
@@ -147,7 +243,7 @@ export function parseFeed(xml) {
 export function parseHtmlList(html, src) {
   const base = new URL(src.url);
   const linkRe = new RegExp(src.link_re || ".", "i");
-  const seen = new Set();
+  const seen = new Map();
   const items = [];
   for (const m of html.matchAll(/<a\b[^>]*?\bhref=["']([^"'#?]+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
     let url;
@@ -157,13 +253,21 @@ export function parseHtmlList(html, src) {
       continue;
     }
     if (url.host !== base.host || !linkRe.test(url.pathname)) continue;
+    // 見出し（h1〜h4）を含むリンクだけ。title_from: "text" の発信元はリンクの文字そのもの（見出しタグの無い一覧）
     const h = m[2].match(/<h[1-4]\b[^>]*>([\s\S]*?)<\/h[1-4]>/i);
-    if (!h) continue;
-    const title = textOf(h[1]);
+    if (!h && src.title_from !== "text") continue;
+    const title = textOf(h ? h[1] : m[2]).slice(0, 200);
     const key = url.origin + url.pathname.replace(/\/+$/, "");
-    if (title.length < 8 || seen.has(key)) continue;
-    seen.add(key);
-    items.push({ title, url: key, publishedAt: null });
+    if (title.length < 8) continue;
+    if (seen.has(key)) {
+      // 同じ記事へのリンクが何度も出る一覧（「Learn more」など）は、いちばん長い文字を見出しにする
+      const it = seen.get(key);
+      if (src.title_from === "text" && title.length > it.title.length) it.title = title;
+      continue;
+    }
+    const it = { title, url: key, publishedAt: null };
+    seen.set(key, it);
+    items.push(it);
   }
   return items;
 }
@@ -291,19 +395,19 @@ async function poll(src, st, fetchImpl) {
  * 新着の判定（KV の state.sources を書き換える）。戻り値: { fresh: [...], changed: bool }
  * - 初回は既読にするだけ / 0件（解析失敗）なら既読の記録を触らない
  */
-export async function detect(srcState, src, result, now) {
+export async function detect(srcState, src, result, now, maxSeen = MAX_SEEN) {
   if (!result.items) return { fresh: [], changed: false };
   if (result.items.length === 0) return { fresh: [], changed: false, empty: true };
   const ids = await Promise.all(result.items.map((it) => itemId(it.url)));
   const withIds = result.items.map((it, k) => ({ ...it, id: ids[k] }));
   const meta = { etag: result.etag || "", lm: result.lm || "" };
   if (!srcState) {
-    return { fresh: [], changed: true, baseline: true, next: { ...meta, seen: [...new Set(ids)].slice(0, MAX_SEEN), since: now.toISOString() } };
+    return { fresh: [], changed: true, baseline: true, next: { ...meta, seen: [...new Set(ids)].slice(0, maxSeen), since: now.toISOString() } };
   }
   const seen = new Set(srcState.seen || []);
   const fresh = withIds.filter((it) => !seen.has(it.id));
   const next = { ...srcState, ...meta };
-  if (fresh.length) next.seen = [...new Set([...ids, ...(srcState.seen || [])])].slice(0, MAX_SEEN);
+  if (fresh.length) next.seen = [...new Set([...ids, ...(srcState.seen || [])])].slice(0, maxSeen);
   const changed = fresh.length > 0 || meta.etag !== (srcState.etag || "") || meta.lm !== (srcState.lm || "");
   return { fresh, changed, next };
 }
@@ -418,16 +522,21 @@ export async function fastLane(env, now, deps = {}) {
   state.daily ||= {};
   state.notified ||= {};
   const notify = makeNotify(gh, state.notified, now);
+  state.pending ||= {};
   const log = { dry, polled: 0, notModified: 0, errors: {}, baseline: [], new: [], queued: [], radar: [] };
   let dirty = false;
 
-  // 1. 取得と新着の判定
+  // 1. 取得と新着の判定（追加の発信元の tier B・C は間隔ごと）
+  const order = new Map(R.sources.map((s, k) => [s.slug, k]));
+  const dueSources = R.sources.filter((src) => due(src, now, R));
   const results = await Promise.all(
-    R.sources.map((src) => poll(src, state.sources[src.slug], fetchImpl).catch((e) => ({ error: String(e).slice(0, 120) }))),
+    dueSources.map((src) => poll(src, state.sources[src.slug], fetchImpl).catch((e) => ({ error: String(e).slice(0, 120) }))),
   );
   const candidates = [];
-  for (const [k, src] of R.sources.entries()) {
-    const r = results[k];
+  const buzzHours = Number(R.registry?.buzz_hours || 6);
+  for (const [i, src] of dueSources.entries()) {
+    const r = results[i];
+    const k = order.get(src.slug);
     log.polled += 1;
     if (r.error || (!r.items && r.status !== 304)) {
       log.errors[src.slug] = r.error || r.status;
@@ -437,7 +546,7 @@ export async function fastLane(env, now, deps = {}) {
       log.notModified += 1;
       continue;
     }
-    const d = await detect(state.sources[src.slug], src, r, now);
+    const d = await detect(state.sources[src.slug], src, r, now, src.registry ? Number(R.registry?.max_seen || MAX_SEEN) : MAX_SEEN);
     if (d.empty) {
       log.errors[src.slug] = "0件（解析できず）";
       continue;
@@ -453,28 +562,69 @@ export async function fastLane(env, now, deps = {}) {
       let verdict = rel.ok ? "対象" : rel.reason;
       if (rel.ok && ageH > R.max_age_hours) verdict = `古い（${Math.round(ageH)}時間前）`;
       if (rel.ok && state.queue[it.id]) verdict = "処理待ちに登録済み";
+      if (rel.reason === WAIT_REASON && ageH <= R.max_age_hours && !state.queue[it.id]) {
+        // tier B・C の発表の語だけの見出し: buzz_hours 時間以内にまとめサイトで話題になったら速報にする
+        state.pending[it.id] = {
+          id: it.id, url: it.url, title: it.title, source: src.slug, entity: src.entity, publishedAt: it.publishedAt,
+          detectedAt: now.toISOString(), until: new Date(now.getTime() + buzzHours * 3600e3).toISOString(), order: k,
+        };
+        dirty = true;
+      }
       log.new.push(`${src.slug}: ${it.title.slice(0, 70)} → ${verdict}`);
       if (verdict === "対象") candidates.push({ ...it, source: src.slug, entity: src.entity, reason: rel.reason, order: k });
     }
   }
 
+  // 話題待ち: レーダーが KV の "buzz" に残したまとめサイトの見出しに、同じ会社・同じ話題が出たか
+  if (Object.keys(state.pending).length) {
+    let buzz = {};
+    try {
+      buzz = (await env.FAST.get("buzz", "json")) || {};
+    } catch (e) {
+      log.errors.buzz = String(e).slice(0, 80);
+    }
+    const names = buzzPatterns(R);
+    const stop = buzzStop(R);
+    for (const [id, p] of Object.entries(state.pending)) {
+      const from = Date.parse(p.detectedAt) - buzzHours * 3600e3;
+      const list = (buzz[p.entity] || []).filter((b) => Date.parse(b.at) >= from);
+      const hit = state.queue[id] ? null : buzzMatch(p.title, list, names[p.entity], stop);
+      if (hit) {
+        candidates.push({ ...p, reason: `公式の発表＋話題（${hit.src}）`, buzz: hit.t.slice(0, 80) });
+        log.new.push(`${p.source}: ${p.title.slice(0, 70)} → 話題になった（${hit.src}: ${hit.t.slice(0, 50)}）`);
+      } else if (!state.queue[id] && now < Date.parse(p.until)) {
+        continue;
+      }
+      delete state.pending[id];
+      dirty = true;
+    }
+  }
+
   // 同じ回に同じ会社の発表が複数あれば1本だけ（大きな発表は Google の複数のブログに同時に載るため）。
   // 新モデル・新製品を優先し、同じならルールの並び順（本家のブログが先）
+  // 同じ会社の同じ発表が別の URL で載ったもの（NVIDIA のブログとニュースルームなど）は、48時間以内の登録と見出しがほぼ同じなら見送る
+  const stop = buzzStop(R);
+  const recent = Object.values(state.queue).filter((e) => now - Date.parse(e.detectedAt) < 48 * 3600e3);
+  const dup = (c) => recent.find((e) => (R.bySlug[e.source]?.entity || "") === c.entity && e.id !== c.id && similar(e.title, c.title, stop));
   const best = new Map();
   for (const c of candidates) {
+    if ((c.dup = dup(c))) continue;
     const cur = best.get(c.entity);
-    const rank = (x) => (x.reason === "新モデル・新製品" ? 0 : 1) * 100 + x.order;
+    const rank = (x) => (x.reason === "新モデル・新製品" ? 0 : 1) * 1000 + x.order;
     if (!cur || rank(c) < rank(cur)) best.set(c.entity, c);
   }
   for (const c of candidates) {
-    const picked = best.get(c.entity) === c;
+    const picked = !c.dup && best.get(c.entity) === c;
     state.queue[c.id] = {
       id: c.id, url: c.url, title: c.title, source: c.source, reason: c.reason,
       publishedAt: c.publishedAt, detectedAt: now.toISOString(), genre: genreOf(R, c.source),
       status: picked ? "new" : "merged", dispatches: 0,
+      // 一覧ページの文字から取った見出し（日付・筆者が混じる）は、起動するとき記事ページの題に置き換える
+      ...(R.bySlug[c.source]?.page_title ? { pageTitle: true } : {}),
+      ...(c.buzz ? { found: c.buzz } : {}),
     };
     dirty = true;
-    log.queued.push(`${picked ? "登録" : "同じ会社の発表と重複（見送り）"}: ${c.title.slice(0, 60)}`);
+    log.queued.push(`${picked ? "登録" : c.dup ? `登録済みの発表と同じ（${c.dup.source}）` : "同じ会社の発表と重複（見送り）"}: ${c.title.slice(0, 60)}`);
   }
 
   // レーダーの話題（KV の "radar" の outbox）
@@ -620,7 +770,7 @@ async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl, notify =
   const pages = await Promise.all(batch.map((e) => fetchArticle(e.url, fetchImpl, env.JINA_API_KEY)));
   const meta = batch.map((e, k) => ({
     // レーダーの話題で出典が公式なら、まとめサイトの見出し（観測・見立てを含むことがある）ではなく公式ページの題を使う
-    id: e.id, url: e.url, title: e.via && !e.secondary && pages[k].title.length >= 8 ? pages[k].title.slice(0, 200) : e.title, source: e.source,
+    id: e.id, url: e.url, title: ((e.via && !e.secondary) || e.pageTitle) && pages[k].title.length >= 8 ? pages[k].title.slice(0, 200) : e.title, source: e.source,
     genre: e.genre || genreOf(R, e.source),
     publishedAt: e.publishedAt || pages[k].published || null, detectedAt: e.detectedAt,
     image: pages[k].image || "", text: pages[k].text || "",
