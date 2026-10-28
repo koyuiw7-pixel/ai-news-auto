@@ -54,7 +54,7 @@
   },
   "failed_web": {},
   "major_tries": {
-    "45a374d069fd87b2": 1
+    "45a374d069fd87b2": 2
   },
   "processed": {
     "--kyzoeUuBk": {
@@ -6394,49 +6394,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-10-27T01:31:50.167923+00:00",
-      "attempt": 1,
-      "id": "978f7a192a09e479",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1834字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "HTC、新たなパーソナルAI「VIVEE」を正式発表"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:31:56.901594+00:00",
-      "attempt": 2,
-      "id": "978f7a192a09e479",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1939字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "HTC、新たなパーソナルAI「VIVEE」を正式発表"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:32:05.429355+00:00",
-      "attempt": 1,
-      "id": "2ed4c294adb1febd",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1704字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "株式会社ノックデザインがAI支援の新サービス「AI実行支援」をリリース。AIの仕組みを業務に組み込み、改善を進める"
-    },
-    {
-      "accepted": false,
       "at": "2026-10-27T01:32:18.480944+00:00",
       "attempt": 2,
       "id": "2ed4c294adb1febd",
@@ -12526,6 +12483,77 @@
         "sentences": 65
       },
       "score": 82,
+      "source": "meta-newsroom",
+      "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built fo"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T00:44:06.795894+00:00",
+      "attempt": 1,
+      "id": "45a374d069fd87b2",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "リードと「何が発表された？」の「2026年10月28日」に発表／提供開始 → 元記事にシンガポール版の発表日は書かれておらず、日付が創作。「これまでの流れ」の10月28日も同様。",
+        "「シンガポールに住む人や、旅行で訪れる人にとってうれしい発表」→ 旅行者が利用できるかは元記事に無く、根拠のない言い過ぎ。",
+        "かんたん版「大事な操作の前には、必ず本人に確認します」→ 元記事は「sensitive actionsの前に確認する」とのみ述べており、「必ず」は断定的な言い過ぎ。",
+        "「Metaのニュースルームは…発表しました」→ 元記事はAPAC Newsroomの記事で、発表主体の表現がやや不正確（軽微）。"
+      ],
+      "readability": {
+        "avg_paragraph": 57.3,
+        "avg_sentence": 29.4,
+        "long_share": 0.027,
+        "max_paragraph": 125,
+        "paragraphs": 38,
+        "sentences": 74
+      },
+      "score": 68,
+      "source": "meta-newsroom",
+      "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built fo"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T00:45:12.191343+00:00",
+      "attempt": 2,
+      "id": "45a374d069fd87b2",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「10月4日：米Metaが自律型AIエージェントアプリ「Muse」を発表」→ 元記事ではMuseの世界向け発表は9月8日で、10月4日は過去記事の掲載日にすぎず、発表日と矛盾する。",
+        "「Museの特徴は、シンガポールの人気サービスと最初からつながる点です」→ 他社との比較は元記事になく、編集部注でも他社の連携状況を確認せず特徴だと断定しており、言い過ぎ。",
+        "「これまでは、Museの機能の紹介が中心でした」→ 元記事に根拠がなく、過去の流れについての推測。"
+      ],
+      "readability": {
+        "avg_paragraph": 55.5,
+        "avg_sentence": 29.2,
+        "long_share": 0.026,
+        "max_paragraph": 122,
+        "paragraphs": 40,
+        "sentences": 76
+      },
+      "score": 72,
+      "source": "meta-newsroom",
+      "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built fo"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T00:46:23.293707+00:00",
+      "attempt": 3,
+      "id": "45a374d069fd87b2",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「10月28日：MetaのAPACニュースルームが、シンガポールでの提供の記事を公開」→ 元記事に公開日の記載はなく、本文の「発表日は明記されていません」とも矛盾する日付の創作。"
+      ],
+      "readability": {
+        "avg_paragraph": 57.7,
+        "avg_sentence": 32.3,
+        "long_share": 0.029,
+        "max_paragraph": 138,
+        "paragraphs": 38,
+        "sentences": 68
+      },
+      "score": 72,
       "source": "meta-newsroom",
       "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built fo"
     }
