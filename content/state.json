@@ -5409,6 +5409,13 @@
       "skipped": true,
       "url": "https://www.value-press.com/pressrelease/382979"
     },
+    "99e0e76bd5ab3b42": {
+      "at": "2026-10-28T18:03:32.148088+00:00",
+      "model": "claude:sonnet",
+      "reason": "followup quality: 「Apple Newsroom（日本）が公開したMac Studioの購入ページ」→ 元記事は発信元の記載がなく、ドル表記($9)などから米国のApple購入ページと見られ、Apple Newsroom（日本）とする根拠がない。; 「検証動画の測定条件も、このページには記載されていません」→ 元記事・文脈に検証動画への言及がなく、動画の存在を前提にした記述は裏付",
+      "skipped": true,
+      "url": "https://www.apple.com/shop/buy-mac/mac-studio/m5-ultra-chip-30-core-cpu-64-core-gpu-96gb-memory-1tb-storage"
+    },
     "9a3067e0f29dee44": {
       "at": "2026-10-26T14:34:23.118751+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -6920,29 +6927,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T16:53:54.142967+00:00",
-      "attempt": 1,
-      "id": "e2437ef711cac173",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1597字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 123.4,
-        "avg_sentence": 50.3,
-        "long_share": 0.259,
-        "max_paragraph": 180,
-        "paragraphs": 11,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "caa",
-      "title": "消費生活用製品の重大製品事故:リコール製品で火災等(電気シェーバー、マッサージ器(充電式))(10月27日)"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T16:54:33.240615+00:00",
@@ -13550,6 +13534,21 @@
       "score": 100,
       "source": "github-changelog-copilot",
       "title": "Route and orchestrate models with GitHub Copilot Fusion"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T18:03:32.148062+00:00",
+      "attempt": 1,
+      "id": "99e0e76bd5ab3b42",
+      "kind": "update",
+      "model": "claude:sonnet",
+      "problems": [
+        "「Apple Newsroom（日本）が公開したMac Studioの購入ページ」→ 元記事は発信元の記載がなく、ドル表記($9)などから米国のApple購入ページと見られ、Apple Newsroom（日本）とする根拠がない。",
+        "「検証動画の測定条件も、このページには記載されていません」→ 元記事・文脈に検証動画への言及がなく、動画の存在を前提にした記述は裏付けがない。"
+      ],
+      "score": 62,
+      "source": "apple-newsroom-jp-all",
+      "title": "Buy Mac Studio, M5 Ultra Chip, 30-core CPU, 64-core GPU, 96GB memory, 1TB storag"
     }
   ],
   "short_text_retry": {
