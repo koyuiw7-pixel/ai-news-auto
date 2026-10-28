@@ -1,0 +1,70 @@
+{
+  "slug": "github-agentic-workflows-generally-available",
+  "sourceType": "web",
+  "sourceUrl": "https://github.blog/changelog/2026-10-28-github-agentic-workflows-generally-available",
+  "sourceName": "GitHub Changelog（Copilot）",
+  "title": "GitHub、AIが自律作業する「Agentic Workflows」を一般提供開始",
+  "seoTitle": "GitHub Agentic Workflowsとは？料金と使い方",
+  "threadsPost": "ついに来た。GitHubが開発タスクを自動化する仕組みを一般向けに公開しました。\n自然言語で指示を出すだけで、AIエージェントがコードの修正やテストまで自律的にこなしてくれる機能です。\nGitHub Copilotなどのライセンスがあれば今日から試せます。",
+  "threadsHook": "finally",
+  "threadsStyle": 2,
+  "writingVoice": "honest",
+  "lede": "GitHubは、開発タスクをAIエージェントに自動化させる「GitHub Agentic Workflows」の一般提供を開始しました。自然言語による指示で、コードの修正やCI障害解析などを自律的に実行できる仕組みです。",
+  "description": "GitHubは、開発タスクを自動化する「GitHub Agentic Workflows」の一般提供を開始しました。自然言語による指示で、AIエージェントが自律的に作業を進める仕組みや料金、提供条件を解説します。",
+  "keywords": [
+    "GitHub",
+    "Agentic Workflows",
+    "GitHub Actions",
+    "GitHub Copilot",
+    "AIエージェント",
+    "CI障害解析",
+    "開発自動化"
+  ],
+  "tags": [
+    "生成AI",
+    "開発ツール",
+    "GitHub"
+  ],
+  "highlights": [
+    "GitHub Agentic Workflowsが一般提供（GA）を迎え、すべてのユーザーが利用可能に",
+    "自然言語のマークダウンファイルで自動化を定義し、標準のActions YAMLにコンパイル",
+    "Copilotなどのコーディングエージェントを活用し、イシューの分類やテスト作成を自動化"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "Copilotライセンスが必要",
+    "free": true,
+    "audience": "開発者・エンジニア",
+    "take": "GitHub Free、Team、Enterpriseの各プランで利用可能。CLI拡張機能をインストールして試してみましょう。",
+    "judgedAt": "2026-10-28T21:54:16.721718+00:00"
+  },
+  "body": "## 概要\nGitHubは、「GitHub Agentic Workflows」の一般提供を開始しました。これは開発タスクをAIエージェントに自動化させる機能です。\nGitHubの公式ブログによると、自然言語の指示をもとにAIが自律的に推論を行います。テストの作成や不具合の解析といった作業をこなす仕組みです。\n既存のGitHub Actionsの仕組みをそのまま利用できます。開発チームの生産性を高める機能として注目されています。\n\n## 何が発表された？\n今回一般提供が始まった「GitHub Agentic Workflows」は、もともとGitHub Nextのオープンソースプロジェクトとして開発されていました。\nGitHub Actionsの環境内でコーディングエージェントを動かします。推論を伴うタスクを自動化する仕組みです。具体的には、次のタスクを自動化します。\n- イシューの分類（issue triage）\n- CI障害解析\n- ドキュメントの更新\n- テストの作成\nユーザーは自然言語で書かれたマークダウン（Markdown）ファイルとして自動化を定義します。それが標準のActions YAMLにコンパイルされる仕組みです。\n公式ブログによると、利用できる主なプランや環境は次のとおりです。\n\n- GitHub Free\n- GitHub Team\n- GitHub Enterprise\n- GitHub Copilot CLIエンジン（標準のエンジンとして利用する場合にCopilotライセンスが必要）\n\n## 前と何が違う？\n### パブリックプレビューからの機能拡張と統合\n今回の一般提供にあたり、パブリックプレビューの段階から多くの機能が追加されました。機能は改善もされています。\nActions Runner Controller（ARC）とDocker-in-Dockerがサポートされました。セルフホストランナー上でエージェントワークフローを実行できるようになりました。\nまた、予算予測機能である「gh aw forecast」が非実験的機能となりました。脅威検出のクレジットや月ごとのAIクレジットの支出範囲がより正確に把握できるようになっています。\n\n### モデル選択とモデルルーティングの柔軟性\nモデルのインプレッションが刷新されました。ワークフローごとに好みのモデルプロバイダーを選択できるようになりました。\nさらに、最適なモデルを自動で割り当てる「モデルルーティング」機能も導入されています。これはタスクの種類や難易度に応じた機能です。\nこれにより、用途に合わせた効率的なAIの運用が可能になっています。\n\n### セキュリティとアイソレーションの強化\nエージェントの実行環境における安全性も高められています。\nCloud HypervisorやNVXマイクロVMを用いたエージェントの隔離が行われました。クロスリポジトリのワークフローにおけるデータ漏洩を防ぐ機能（enclaves）が備わっています。\n\n## 数字で見るとどう変わった？\n公式ブログで紹介されている導入事例では、開発チームにおける測定可能な成果が示されています。\nある開発チームのリーダーは、自身の開発作業において週におよそ29時間の削減を見込んでいます。\nチーム全体で見ると、測定された開発の速度（ベロシティ）は平均して2倍以上になりました。また、コミットの91%がAIによって作成されるようになりました。\nさらに、本番環境でのエラーを1日あたり約11,000件から1,000件未満へと大幅に削減しました。技術的な移行作業をエンドツーエンドで推進したと報告されています。\n\n## ライバルと比べてどう？\n（編集部注：競合する開発支援ツールやAIエージェント基盤との直接的なベンチマーク比較は元記事に記載されていません。）\nしかし、既存のCI/CD基盤であるGitHub Actionsと深く統合されている点は強みです。既存のランナーグループやポリシー制約をそのまま再利用できる点も、他の単体型AIツールにはない強みと言えます。\nDocker-in-Dockerのサポートや独自のマイクロVMによる隔離など、エンタープライズ環境で求められるセキュリティ要件を標準で満たしていることも大きな特徴です。\n\n## 料金は？\nGitHub Agentic Workflows自体は、github.com上のGitHub Free、Team、Enterpriseの各プランで利用可能です。\nただし、標準のGitHub Copilot CLIエンジンをワークフローの駆動に利用するには、別途Copilotのライセンスが必要となります。\n予算予測コマンドである「gh aw forecast」を利用することで、脅威検出クレジットを含めた月ごとの支出を把握できるようになります。\n\n## 日本で使える？\n日本国内のユーザーでも、今日から利用を始めることができます。対象となるアカウント（Free、Team、Enterprise）と必要なCopilotライセンスを持っていれば利用可能です。\n今日から試すための具体的な手順は次のとおりです。\n\n- クイックスタートガイドに従ってCLI拡張機能をインストールする数分で最初のワークフローをトリガーする\n- GitHub Nextのagenticsリポジトリにある、イシューの分類、依存関係の管理、コードレビュー、レポート作成などの事前構築済みワークフローを探索する\n\n## 自分にはどう関係する？\n### エンジニアなら\n日々のテスト作成やCIの障害解析といった定型的な推論作業をAIに任せられます。そのため、より創造的なプログラミングや機能開発に集中できるようになります。\n\n### 企画・マーケティングなら\n開発チーム全体のスピードが向上します。プロダクトの機能追加や改善のサイクルが早まることで、新しいアイデアを素早く形にできるようになります。\n\n### 経営者・管理者なら\nチームの開発ベロシティが倍増し、本番環境のエラーを削減できる可能性があります。そのため、開発生産性の向上と品質の担保を同時に進める強力な手段となります。\n\n## まとめ\nGitHub Agentic Workflowsの一般提供により、AIによる開発プロセスの自動化は実用的な段階へと進みました。\n公式ドキュメントやコミュニティの議論を参照しながら、まずは手元の小さなタスクからエージェントによる自動化を試してみるのが良さそうです。",
+  "easy": "## ひとことで言うと\nGitHubが提供する「Agentic Workflows（エージェント・ワークフロー）」とは、プログラムの不具合修正やテストの作成といった面倒な開発作業を、AIが自分で考えて進めてくれる仕組みのことです。\n\n## 何がすごいの？\nこれまでは人間が細かく指示を出して一つずつ進めていた作業を、自然な言葉（マークダウン形式）でまとめておくだけで、AIエージェントが自動で完了させてくれます。\nたとえば、プログラムのテストが失敗した原因を調べさせたり、ドキュメントの更新や不具合の分類を任せたりすることが可能です。AIが自動で最後までやり遂げるため、エンジニアは複数の作業を同時に進められるようになります。\n\n## 自分に関係ある？\n普段からGitHubを使ってアプリやシステムの開発を行っているエンジニアや開発チームのリーダーにとって、日々のルーティンワークを大幅に減らせる大きな変化となります。\nセキュリティ面でも、読み取り専用の権限で安全なコンテナ内（隔離された環境）で動作する仕組みが備わっています。\n\n## 使ってみるには\nGitHub.com上のGitHub Free、Team、Enterpriseの各プランで利用できます。\nCLI（コマンドラインツール）の拡張機能をインストールし、簡単な設定を行うことですぐに使い始めることができます。なお、標準のGitHub Copilotエンジンを使うにはCopilotのライセンスが必要です。",
+  "channel": "GitHub Changelog（Copilot）",
+  "channelId": "",
+  "channelSlug": "github-changelog-copilot",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "GitHub Agentic Workflows generally available",
+  "publishedAt": "2026-10-28T15:30:15+00:00",
+  "generatedAt": "2026-10-28T21:54:16.721755+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/github-agentic-workflows-generally-available-7ad0d65e.jpg",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "qualityScore": 100,
+  "sourcePublishedAt": "2026-10-28T15:30:15+00:00",
+  "detectedAt": "2026-10-28T21:53:47+00:00",
+  "imageCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A close-up of a modern computer workstation with a code editor open on the monitor, a mechanical keyboard, and a robotic arm reaching toward the keyboard under soft office lighting.",
+    "provider": "Cloudflare Workers AI",
+    "original": "https://github.blog/wp-content/uploads/2026/10/680621053-8ccb2d63-3035-4ec2-b12d-2455b119183a.png",
+    "at": "2026-10-28T21:58:06+00:00"
+  }
+}

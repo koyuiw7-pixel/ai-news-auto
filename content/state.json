@@ -3123,6 +3123,12 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/recruit/r8/kokusai-01/kokusai-01.html"
     },
+    "0cb7ee166a550142": {
+      "at": "2026-10-28T21:55:13.754157+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（職員）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102820"
+    },
     "0d16c53ac8066208": {
       "at": "2026-10-28T12:29:50.136954+00:00",
       "breaking": true,
@@ -3213,6 +3219,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
       "skipped": true,
       "url": "https://www.jfa.jp/news/00036956/"
+    },
+    "1242ecb20bb43f56": {
+      "at": "2026-10-28T21:54:27.444026+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "官公庁の会議の開催案内・議事録の公示であり、国民の暮らしや制度に直接的な変更が生じるものではないため対象外とします。",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/ai_network/02tsushin06_04000146.html"
     },
     "13412a369e090d4c": {
       "at": "2026-10-27T15:56:39.505118+00:00",
@@ -3467,6 +3480,14 @@
       "reason": "quality: 本文が短い（2149字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/exowatt-beats-frontier-models-on-accuracy-with-sagemaker-serverless-model-customization/"
+    },
+    "1d4e78b6d168bccd": {
+      "at": "2026-10-28T21:54:21.903385+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "github-agentic-workflows-generally-available",
+      "url": "https://github.blog/changelog/2026-10-28-github-agentic-workflows-generally-available"
     },
     "1d69506adc9560dd": {
       "at": "2026-10-28T18:37:15.904906+00:00",
@@ -3745,6 +3766,12 @@
       "slug": "meta-waddle-world-ai-pet",
       "url": "https://www.engadget.com/2299227/meta-tamagotchi-like-ai-digital-pet-app-waddle-world/"
     },
+    "2c04b5d1f5cb1e4a": {
+      "at": "2026-10-28T21:54:27.444085+00:00",
+      "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
+      "skipped": true,
+      "url": "https://www.telwel-east.co.jp/news/media/000349.html"
+    },
     "2cd0e1760990091a": {
       "at": "2026-10-26T14:11:39.308950+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3829,6 +3856,13 @@
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005973.000054842.html"
+    },
+    "30d3db8faf33da06": {
+      "at": "2026-10-28T21:55:01.707746+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1679字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3225"
     },
     "31317bfb9b6a32d8": {
       "at": "2026-10-27T00:02:14.132711+00:00",
@@ -4461,6 +4495,19 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000004.000181678.html"
     },
+    "536d3e58d5c92fe6": {
+      "at": "2026-10-28T21:54:39.573883+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1579字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（380字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.ipa.go.jp/news/2026/shiken_20261028.html"
+    },
+    "56086e2c77c38346": {
+      "at": "2026-10-28T21:54:21.903523+00:00",
+      "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei11/rousai-hassei/index.html"
+    },
     "56abb930daea0460": {
       "at": "2026-10-27T21:22:00.215462+00:00",
       "reason": "followup: 新しい事実なし（ntt-docomo-kumamoto-earthquake-volunteer）",
@@ -4903,6 +4950,14 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/conference/minister/2026b/20261009-1.html"
     },
+    "721a7217e1f0447f": {
+      "at": "2026-10-28T21:56:16.478699+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "abema-mahoyo-special-channel-2026",
+      "url": "https://www.cyberagent.co.jp/news/detail/id=33955"
+    },
     "72ce2995014524fc": {
       "at": "2026-10-27T01:53:28.335014+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5306,6 +5361,13 @@
       "reason": "quality: 本文が短い（2272字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000095.000010009.html"
+    },
+    "876a647c66f4636e": {
+      "at": "2026-10-28T21:55:28.165080+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（314字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/actions/202610/27bangladesh.html"
     },
     "876da7bfa614094c": {
       "at": "2026-10-27T01:31:25.544284+00:00",
@@ -5955,6 +6017,12 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202610/28teigen2.html"
     },
+    "a8ad57a472dbfbb5": {
+      "at": "2026-10-28T21:55:28.165164+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（開催について）",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/press/chikusan/c_sinko/261028.html"
+    },
     "aa6d52cd8b1b4fdd": {
       "at": "2026-10-27T03:07:28.604592+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -6273,6 +6341,13 @@
       "skipped": true,
       "url": "https://www.apple.com/jp/newsroom/2026/10/apple-unveils-groundbreaking-macbook-pro-with-proled-xdr-display/"
     },
+    "bbbfd283209baa5a": {
+      "at": "2026-10-28T21:55:13.754103+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1543字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（365字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.ntt-east.co.jp/release/detail/20261028_02.html"
+    },
     "bbf98d62f5f83ec4": {
       "at": "2026-10-26T21:41:14.037879+00:00",
       "reason": "short text 394",
@@ -6530,11 +6605,23 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000002213.000026157.html"
     },
+    "ccb7e90515f4de26": {
+      "at": "2026-10-28T21:54:27.444092+00:00",
+      "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
+      "skipped": true,
+      "url": "https://www.telwel-east.co.jp/news/media/000348.html"
+    },
     "cd69600d9623203f": {
       "at": "2026-10-27T03:05:10.758700+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000161.000000268.html"
+    },
+    "ce440a8690960035": {
+      "at": "2026-10-28T21:54:27.444112+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
+      "skipped": true,
+      "url": "https://www.ipa.go.jp/jinzai/riss/interview/riss/riss-interview18.html"
     },
     "cec9b68d0bfb231b": {
       "at": "2026-10-27T01:31:25.544315+00:00",
@@ -6909,6 +6996,12 @@
       "slug": "japan-occupational-health-market-2028",
       "url": "https://www.dreamnews.jp/press/0000366537"
     },
+    "e3592a534946ca55": {
+      "at": "2026-10-28T21:55:28.165152+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（寄贈）",
+      "skipped": true,
+      "url": "https://www.meiji.co.jp/corporate/pressrelease/2026/10_24/index.html?link=rss"
+    },
     "e3ae10844146bde8": {
       "at": "2026-10-26T16:50:25.785656+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
@@ -7010,6 +7103,12 @@
       "reason": "short text 158",
       "skipped": true,
       "url": "https://openai.com/index/fanatics-streamline-fan-experience"
+    },
+    "ec24eda5b910db29": {
+      "at": "2026-10-28T21:55:28.165134+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（協賛）",
+      "skipped": true,
+      "url": "https://www.suntory.co.jp/news/article/2026/15161.html?rss=0000000029"
     },
     "ec44a9ae423be13a": {
       "at": "2026-10-27T01:53:58.777632+00:00",
@@ -7194,6 +7293,13 @@
       "slug": "agata-rag-ai-chatbot-new-services",
       "url": "https://prtimes.jp/main/html/rd/p/000000021.000125274.html"
     },
+    "f43e4e245bb43bd0": {
+      "at": "2026-10-28T21:55:53.955614+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1638字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.suntory.co.jp/news/article/2026/15162.html?rss=0000000029"
+    },
     "f4a6b0459f7f5daf": {
       "at": "2026-10-27T21:01:10.369250+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -7340,6 +7446,12 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/discourse/20261026message1.html"
     },
+    "fd454a8307d73c9b": {
+      "at": "2026-10-28T21:54:21.903515+00:00",
+      "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/a_menu/shougai/kyoiku-bunka/index.htm"
+    },
     "fd63ce7910a1039c": {
       "at": "2026-10-27T02:41:35.319535+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -7394,355 +7506,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:15:39.950554+00:00",
-      "attempt": 2,
-      "id": "1caf0a8b5ac4be62",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2149字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 101.2,
-        "avg_sentence": 56.2,
-        "long_share": 0.37,
-        "max_paragraph": 175,
-        "paragraphs": 15,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "Exowatt beats frontier models on accuracy with SageMaker serverless model custom"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:15:57.800315+00:00",
-      "attempt": 1,
-      "id": "986b8e56080b2b21",
-      "kind": "update",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "AWS ブログ（日本）は2026年10月27日、SAP ABAP向けスペック駆動開発（SDD）を支援する「AWS Coding Plugin for SAP ABAP」の最新情報を発表しました。→元記事には発表日（2026年10月27日）の記載がない。"
-      ],
-      "score": 85,
-      "source": "aws-japan-blog",
-      "title": "AWS Coding Plugin for SAP ABAP, powered by Kiro のご紹介"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:16:10.604318+00:00",
-      "attempt": 1,
-      "id": "92307ab3344b6762",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2036字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 106.3,
-        "avg_sentence": 55.0,
-        "long_share": 0.414,
-        "max_paragraph": 191,
-        "paragraphs": 15,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "google-cloud-blog-ja",
-      "title": "最新生成 AI 活用事例 121 社を一挙公開！ AI エージェントの本格活用が広がる（2026 年 10 月更新）"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T19:16:20.411830+00:00",
-      "attempt": 1,
-      "id": "92307ab3344b6762",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 52.7字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 148.8字・最長 228字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 148.8,
-        "avg_sentence": 52.7,
-        "long_share": 0.396,
-        "max_paragraph": 228,
-        "paragraphs": 17,
-        "sentences": 48
-      },
-      "score": 100,
-      "source": "google-cloud-blog-ja",
-      "title": "最新生成 AI 活用事例 121 社を一挙公開！ AI エージェントの本格活用が広がる（2026 年 10 月更新）"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T19:16:30.008480+00:00",
-      "attempt": 0,
-      "id": "92307ab3344b6762",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 44.9字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 109.4,
-        "avg_sentence": 44.9,
-        "long_share": 0.214,
-        "max_paragraph": 177,
-        "paragraphs": 23,
-        "sentences": 56
-      },
-      "score": 100,
-      "source": "google-cloud-blog-ja",
-      "title": "最新生成 AI 活用事例 121 社を一挙公開！ AI エージェントの本格活用が広がる（2026 年 10 月更新）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:31:18.145659+00:00",
-      "attempt": 1,
-      "id": "8cb333260a17a324",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2335字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 170.9,
-        "avg_sentence": 67.1,
-        "long_share": 0.571,
-        "max_paragraph": 365,
-        "paragraphs": 11,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "How Check Point accelerates vulnerability research with Daybreak"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T19:31:24.807824+00:00",
-      "attempt": 1,
-      "id": "8cb333260a17a324",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 63.1字・60字超の文が 47% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 206.5字・最長 415字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 206.5,
-        "avg_sentence": 63.1,
-        "long_share": 0.472,
-        "max_paragraph": 415,
-        "paragraphs": 11,
-        "sentences": 36
-      },
-      "score": 100,
-      "source": "openai-news",
-      "title": "How Check Point accelerates vulnerability research with Daybreak"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T19:31:34.885678+00:00",
-      "attempt": 0,
-      "id": "8cb333260a17a324",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 69.0,
-        "avg_sentence": 44.1,
-        "long_share": 0.14,
-        "max_paragraph": 109,
-        "paragraphs": 32,
-        "sentences": 50
-      },
-      "score": 100,
-      "source": "openai-news",
-      "title": "How Check Point accelerates vulnerability research with Daybreak"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:32:03.656854+00:00",
-      "attempt": 1,
-      "id": "8ced72865c0be442",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 53.1字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 123.8字・最長 197字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 123.8,
-        "avg_sentence": 53.1,
-        "long_share": 0.357,
-        "max_paragraph": 197,
-        "paragraphs": 12,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "ntt-news",
-      "title": "オムロンとNTTドコモビジネス、製造現場のサイバー脅威に挑む"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T19:32:11.287291+00:00",
-      "attempt": 0,
-      "id": "8ced72865c0be442",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "段落が長い（平均 120.8字・最長 197字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 120.8,
-        "avg_sentence": 40.3,
-        "long_share": 0.194,
-        "max_paragraph": 197,
-        "paragraphs": 12,
-        "sentences": 36
-      },
-      "score": 100,
-      "source": "ntt-news",
-      "title": "オムロンとNTTドコモビジネス、製造現場のサイバー脅威に挑む"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:51:22.532314+00:00",
-      "attempt": 1,
-      "id": "69554c9d70abcd03",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1894字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 64.5,
-        "avg_sentence": 55.2,
-        "long_share": 0.393,
-        "max_paragraph": 163,
-        "paragraphs": 24,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "google-cloud-blog-ja",
-      "title": "Google Public Sector と SUNY、大学の研究を加速する AI 対応プラットフォームを開設"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:51:32.830658+00:00",
-      "attempt": 2,
-      "id": "69554c9d70abcd03",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2301字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 151.8,
-        "avg_sentence": 61.7,
-        "long_share": 0.562,
-        "max_paragraph": 261,
-        "paragraphs": 13,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "google-cloud-blog-ja",
-      "title": "Google Public Sector と SUNY、大学の研究を加速する AI 対応プラットフォームを開設"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:51:41.168481+00:00",
-      "attempt": 1,
-      "id": "bc8cfff4cc188327",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1644字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 115.7,
-        "avg_sentence": 51.4,
-        "long_share": 0.37,
-        "max_paragraph": 182,
-        "paragraphs": 12,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "fsa",
-      "title": "記者会見,片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要（令和８年10月23日）について掲載しました。"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:52:54.945372+00:00",
-      "attempt": 2,
-      "id": "bc8cfff4cc188327",
-      "kind": "broad",
-      "model": "gemini-flash-lite-latest",
-      "problems": [
-        "本文が短い（1546字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（374字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 180.0,
-        "avg_sentence": 60.0,
-        "long_share": 0.417,
-        "max_paragraph": 239,
-        "paragraphs": 8,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "fsa",
-      "title": "記者会見,片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要（令和８年10月23日）について掲載しました。"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:53:04.058699+00:00",
-      "attempt": 1,
-      "id": "efafd44f677cc4cf",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1784字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 151.0,
-        "avg_sentence": 54.4,
-        "long_share": 0.24,
-        "max_paragraph": 239,
-        "paragraphs": 9,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "tsr",
-      "title": "「情報サービス業」が好調 利益は5年間で1.8倍 DX・AI需要で業績が過去最高、大手寡占が進む"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:55:04.363178+00:00",
-      "attempt": 2,
-      "id": "efafd44f677cc4cf",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 54.9字・60字超の文が 34% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 177.0字・最長 278字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 177.0,
-        "avg_sentence": 54.9,
-        "long_share": 0.345,
-        "max_paragraph": 278,
-        "paragraphs": 9,
-        "sentences": 29
-      },
-      "score": 100,
-      "source": "tsr",
-      "title": "「情報サービス業」が好調 利益は5年間で1.8倍 DX・AI需要で業績が過去最高、大手寡占が進む"
-    },
     {
       "accepted": true,
       "at": "2026-10-27T19:55:26.314687+00:00",
@@ -13960,6 +13723,371 @@
       "score": 100,
       "source": "aws-japan-blog",
       "title": "AWS で AI 生成コンテンツのオーディオ来歴情報を生成元で構築する"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:54:09.064323+00:00",
+      "attempt": 1,
+      "id": "1d4e78b6d168bccd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2133字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（389字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 83.7,
+        "avg_sentence": 53.0,
+        "long_share": 0.367,
+        "max_paragraph": 157,
+        "paragraphs": 19,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "GitHub Agentic Workflows generally available"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:54:17.694407+00:00",
+      "attempt": 2,
+      "id": "1d4e78b6d168bccd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 68.4字・60字超の文が 71% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 163.2字・最長 292字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 163.2,
+        "avg_sentence": 68.4,
+        "long_share": 0.71,
+        "max_paragraph": 292,
+        "paragraphs": 13,
+        "sentences": 31
+      },
+      "score": 100,
+      "source": "github-changelog-copilot",
+      "title": "GitHub Agentic Workflows generally available"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T21:54:21.903076+00:00",
+      "attempt": 0,
+      "id": "1d4e78b6d168bccd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 153.6字・最長 247字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 153.6,
+        "avg_sentence": 43.0,
+        "long_share": 0.18,
+        "max_paragraph": 247,
+        "paragraphs": 14,
+        "sentences": 50
+      },
+      "score": 100,
+      "source": "github-changelog-copilot",
+      "title": "GitHub Agentic Workflows generally available"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:54:33.679057+00:00",
+      "attempt": 1,
+      "id": "536d3e58d5c92fe6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1198字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（324字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 78.5,
+        "avg_sentence": 46.4,
+        "long_share": 0.136,
+        "max_paragraph": 130,
+        "paragraphs": 13,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "ipa",
+      "title": "令和8年度 前期特別措置試験受験の方の試験会場・受験番号等がマイページで確認可能となりました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:54:39.573856+00:00",
+      "attempt": 2,
+      "id": "536d3e58d5c92fe6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1579字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（380字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 122.6,
+        "avg_sentence": 53.3,
+        "long_share": 0.261,
+        "max_paragraph": 214,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "ipa",
+      "title": "令和8年度 前期特別措置試験受験の方の試験会場・受験番号等がマイページで確認可能となりました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:54:55.713183+00:00",
+      "attempt": 1,
+      "id": "30d3db8faf33da06",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1250字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（334字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 109.3,
+        "avg_sentence": 47.5,
+        "long_share": 0.174,
+        "max_paragraph": 198,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "morinaga",
+      "title": "好評につき「森永ミルクココア」と『ちびまる子ちゃん』コラボレーションが再び。 「まる子は知らない」篇TVCMオンエア決定！ 11月2日より全国放映開始。 家族と"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:55:01.707720+00:00",
+      "attempt": 2,
+      "id": "30d3db8faf33da06",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1679字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 139.7,
+        "avg_sentence": 60.7,
+        "long_share": 0.348,
+        "max_paragraph": 240,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "morinaga",
+      "title": "好評につき「森永ミルクココア」と『ちびまる子ちゃん』コラボレーションが再び。 「まる子は知らない」篇TVCMオンエア決定！ 11月2日より全国放映開始。 家族と"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:55:08.180025+00:00",
+      "attempt": 1,
+      "id": "bbbfd283209baa5a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1313字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（383字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 117.4,
+        "avg_sentence": 55.9,
+        "long_share": 0.333,
+        "max_paragraph": 181,
+        "paragraphs": 10,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "ntt-news",
+      "title": "郵便局の集配用バイクを活用したインフラ管理の実証実験に参画～ドライブレコーダーデータを活用したインフラ設備異常の把握に向けた検証を実施～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:55:13.754077+00:00",
+      "attempt": 2,
+      "id": "bbbfd283209baa5a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1543字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（365字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 208.5,
+        "avg_sentence": 69.5,
+        "long_share": 0.778,
+        "max_paragraph": 285,
+        "paragraphs": 6,
+        "sentences": 18
+      },
+      "score": null,
+      "source": "ntt-news",
+      "title": "郵便局の集配用バイクを活用したインフラ管理の実証実験に参画～ドライブレコーダーデータを活用したインフラ設備異常の把握に向けた検証を実施～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:55:21.943194+00:00",
+      "attempt": 1,
+      "id": "876a647c66f4636e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（374字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 66.6,
+        "avg_sentence": 56.5,
+        "long_share": 0.424,
+        "max_paragraph": 124,
+        "paragraphs": 28,
+        "sentences": 33
+      },
+      "score": null,
+      "source": "kantei",
+      "title": "高市総理はバングラデシュ人民共和国のタレク・ラーマン首相と首脳会談を行いました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:55:28.165055+00:00",
+      "attempt": 2,
+      "id": "876a647c66f4636e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（314字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 61.1,
+        "avg_sentence": 61.1,
+        "long_share": 0.481,
+        "max_paragraph": 97,
+        "paragraphs": 27,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "kantei",
+      "title": "高市総理はバングラデシュ人民共和国のタレク・ラーマン首相と首脳会談を行いました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:55:41.950414+00:00",
+      "attempt": 1,
+      "id": "f43e4e245bb43bd0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1682字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 154.9,
+        "avg_sentence": 43.6,
+        "long_share": 0.156,
+        "max_paragraph": 219,
+        "paragraphs": 9,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "suntory",
+      "title": "次世代太陽電池を搭載した自動販売機の実証実験を完了 約45％の省エネルギー・GHG排出量削減効果を確認"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:55:51.180728+00:00",
+      "attempt": 2,
+      "id": "f43e4e245bb43bd0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1638字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 146.8,
+        "avg_sentence": 53.4,
+        "long_share": 0.364,
+        "max_paragraph": 254,
+        "paragraphs": 8,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "suntory",
+      "title": "次世代太陽電池を搭載した自動販売機の実証実験を完了 約45％の省エネルギー・GHG排出量削減効果を確認"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:56:02.096531+00:00",
+      "attempt": 1,
+      "id": "721a7217e1f0447f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "title / seo_title に感嘆符がある"
+      ],
+      "readability": {
+        "avg_paragraph": 130.9,
+        "avg_sentence": 55.4,
+        "long_share": 0.423,
+        "max_paragraph": 279,
+        "paragraphs": 11,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "cyberagent",
+      "title": "劇場アニメーション『魔法使いの夜』公開記念 ABEMAにTYPE-MOON×ufotable作品の専門チャンネルを初開設"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:56:11.663071+00:00",
+      "attempt": 2,
+      "id": "721a7217e1f0447f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 60.7字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 208.1字・最長 308字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 208.1,
+        "avg_sentence": 60.7,
+        "long_share": 0.417,
+        "max_paragraph": 308,
+        "paragraphs": 7,
+        "sentences": 24
+      },
+      "score": 100,
+      "source": "cyberagent",
+      "title": "劇場アニメーション『魔法使いの夜』公開記念 ABEMAにTYPE-MOON×ufotable作品の専門チャンネルを初開設"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T21:56:16.478376+00:00",
+      "attempt": 0,
+      "id": "721a7217e1f0447f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 49.3字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 211.4字・最長 313字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 211.4,
+        "avg_sentence": 49.3,
+        "long_share": 0.2,
+        "max_paragraph": 313,
+        "paragraphs": 7,
+        "sentences": 30
+      },
+      "score": 100,
+      "source": "cyberagent",
+      "title": "劇場アニメーション『魔法使いの夜』公開記念 ABEMAにTYPE-MOON×ufotable作品の専門チャンネルを初開設"
     }
   ],
   "short_text_retry": {
