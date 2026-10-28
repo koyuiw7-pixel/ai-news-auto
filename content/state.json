@@ -4089,6 +4089,16 @@
       "skipped": true,
       "url": "https://jtta.or.jp/news/38434"
     },
+    "4b9ad4180246a1db": {
+      "at": "2026-10-28T16:54:39.593265+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 95,
+      "section": "ai",
+      "slug": "microsoft-copilot-harness-foundry",
+      "url": "https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/"
+    },
     "4bca925a5c53b276": {
       "at": "2026-10-26T11:34:17.113362+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6772,28 +6782,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:56:52.192324+00:00",
-      "attempt": 1,
-      "id": "9401fe00400266b3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1943字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 108.8,
-        "avg_sentence": 63.5,
-        "long_share": 0.708,
-        "max_paragraph": 183,
-        "paragraphs": 14,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "meta-engineering",
-      "title": "Meta Networking at the 2026 OCP Global Summit: Open Innovation for Scale-Up, Sca"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T15:57:44.143122+00:00",
@@ -13404,6 +13392,26 @@
       "score": 91,
       "source": "github-changelog",
       "title": "GitHub Copilot app, Universe releases"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T16:54:39.592554+00:00",
+      "attempt": 1,
+      "id": "4b9ad4180246a1db",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 68.1,
+        "avg_sentence": 34.0,
+        "long_share": 0.054,
+        "max_paragraph": 159,
+        "paragraphs": 37,
+        "sentences": 74
+      },
+      "score": 95,
+      "source": "microsoft-blog",
+      "title": "Introducing the Microsoft Copilot harness: Unlocking the potential of truly mult"
     }
   ],
   "short_text_retry": {
