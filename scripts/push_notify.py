@@ -11,7 +11,8 @@
 
 決まりごと（数字は lib/push-config.ts。判定は Worker の cloudflare/push.ts がする）:
 - 対象は生成から3時間以内の速報記事。新しい順に頼み、同じ記事は Worker が二度と送らない
-- 1日3回まで・前の通知から2時間は空ける・夜22時〜朝7時は保留して朝7時に一番新しい1本だけ送る
+- 1日4回まで・前の通知から1時間は空ける・夜22時〜朝7時は保留して朝7時に一番新しい1本だけ送る
+- 例外（安全）: 地震・津波の記事で大津波警報・津波警報・震度6弱以上（safetyAlert）は、夜間・上限・間隔を問わず送る
 - 記事ページが 200 を返すまで最大 --wait 秒待つ（開けない記事の通知は出さない）
 - 送り先（購読者の情報）はこのスクリプトには来ない。Worker の中だけで扱う
 """
@@ -37,13 +38,20 @@ def log(message: str) -> None:
     print(message, flush=True)
 
 
+def ref_time(article: dict) -> str:
+    """古さの基準。安全の通知（地震・津波で safetyAlert）は続報で警報が出ることがあるので最後の更新時刻"""
+    if article.get("safetyAlert") and article.get("updatedAt"):
+        return article["updatedAt"]
+    return article["generatedAt"]
+
+
 def targets(now: datetime) -> list[dict]:
     found = []
     for path in tp.ARTICLES_DIR.glob("*.json"):
         article = json.loads(path.read_text("utf-8"))
         if not article.get("breaking"):
             continue
-        if now - datetime.fromisoformat(article["generatedAt"]) <= timedelta(minutes=MAX_AGE_MIN):
+        if now - datetime.fromisoformat(ref_time(article)) <= timedelta(minutes=MAX_AGE_MIN):
             found.append(article)
     return sorted(found, key=lambda a: a["generatedAt"], reverse=True)
 
@@ -113,7 +121,9 @@ def main() -> int:
         if not args.dry_run and not page_live(slug, args.wait):
             log(f"[push] {slug}: {args.wait}秒待っても記事が開けないため見送り")
             continue
-        body = {"slug": slug, "title": article["title"], "body": lead(article), "generatedAt": article["generatedAt"], "dryRun": args.dry_run}
+        # urgent: 大津波警報・津波警報・震度6弱以上（scripts/quake.py の safetyAlert）。夜間・1日の上限を超えて送る
+        body = {"slug": slug, "title": article["title"], "body": lead(article), "generatedAt": ref_time(article), "dryRun": args.dry_run,
+                "urgent": bool(article.get("safetyAlert") and article.get("disaster"))}
         status, data = call("POST", "/api/push/send", token, body)
         # 購読者が多いときは続きから送る
         while status == 200 and data.get("status") == "sent" and data.get("cursor"):

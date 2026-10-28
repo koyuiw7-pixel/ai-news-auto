@@ -40,8 +40,15 @@ export function compile(rules) {
     launch: re(rules.launch_re),
     exclude: re(rules.exclude_re),
     ai: re(rules.ai_re),
+    // ジャンル（新製品・ゲーム）ごとの判定
+    genreRe: Object.fromEntries(
+      Object.entries(rules.genres || {}).filter(([k]) => !k.startsWith("_")).map(([k, g]) => [k, { major: re(g.major_re), exclude: re(g.exclude_re) }]),
+    ),
   };
 }
+
+/** 発信元のジャンル（無ければ ai。レーダーの話題も ai として数える） */
+export const genreOf = (R, slug) => R.bySlug[slug]?.genre || "ai";
 
 /** 速報レーンに乗せるか。理由の文言は scripts/fast_lane.py の relevant() と同じ */
 export function relevant(title, slug, R) {
@@ -50,6 +57,15 @@ export function relevant(title, slug, R) {
   const t = String(title || "").trim();
   const ex = t.match(R.exclude);
   if (ex) return { ok: false, reason: `除外語（${ex[0]}）` };
+  const g = src.genre && R.genreRe[src.genre];
+  if (g) {
+    // 新製品・ゲームの公式: 細かいお知らせを除き、大きな発表の語があるものだけ
+    const gx = t.match(g.exclude);
+    if (gx) return { ok: false, reason: `除外語（${gx[0]}）` };
+    if (R.model.test(t) && (R.launch.test(t) || R.head.test(t))) return { ok: true, reason: "新モデル・新製品" };
+    if (g.major.test(t)) return { ok: true, reason: "新製品・ゲームの発表" };
+    return { ok: false, reason: "大きな発表の語がない" };
+  }
   const model = R.model.test(t);
   if (src.ai_only && !model && !R.ai.test(t)) return { ok: false, reason: "AI の話題ではない" };
   const launch = R.launch.test(t);
@@ -316,7 +332,7 @@ export function makeGh(env, fetchImpl = fetch) {
 }
 
 /** パイプラインの処理結果（state/fast_lane.json の items）。API で読めなければ公開の raw（最大5分古い）で読む */
-async function readAcks(gh, env, fetchImpl, now) {
+export async function readAcks(gh, env, fetchImpl, now) {
   let text;
   try {
     text = await gh(`/contents/state/fast_lane.json?ref=main`, {
@@ -454,7 +470,7 @@ export async function fastLane(env, now, deps = {}) {
     const picked = best.get(c.entity) === c;
     state.queue[c.id] = {
       id: c.id, url: c.url, title: c.title, source: c.source, reason: c.reason,
-      publishedAt: c.publishedAt, detectedAt: now.toISOString(),
+      publishedAt: c.publishedAt, detectedAt: now.toISOString(), genre: genreOf(R, c.source),
       status: picked ? "new" : "merged", dispatches: 0,
     };
     dirty = true;
@@ -479,10 +495,12 @@ export async function fastLane(env, now, deps = {}) {
       dirty = true;
     }
   }
-  for (const day of Object.keys(state.daily)) {
-    if (day < jstDate(new Date(now.getTime() - 7 * 86400e3))) {
-      delete state.daily[day];
-      dirty = true;
+  for (const book of [state.daily, state.dailyGenre || {}]) {
+    for (const day of Object.keys(book)) {
+      if (day < jstDate(new Date(now.getTime() - 7 * 86400e3))) {
+        delete book[day];
+        dirty = true;
+      }
     }
   }
   for (const [k, at] of Object.entries(state.notified)) {
@@ -564,16 +582,33 @@ async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl, notify =
   const cap = Number(env.FAST_DAILY_MAX || R.daily_max);
   const fresh = open.filter((e) => e.status === "new").sort((a, b) => a.detectedAt.localeCompare(b.detectedAt));
   const allowance = Math.max(0, cap - (state.daily[day] || 0));
-  const over = fresh.slice(allowance);
+  // ジャンルごとの上限（genre_caps）。1つのジャンルが合計の上限を食いつぶさないように
+  state.dailyGenre ||= {};
+  const usedG = { ...(state.dailyGenre[day] || {}) };
+  const caps = R.genre_caps || {};
+  const over = [];
+  let taken = 0;
+  for (const e of fresh) {
+    const g = e.genre || genreOf(R, e.source);
+    const gcap = Number.isFinite(caps[g]) ? caps[g] : Infinity;
+    if (taken >= allowance || (usedG[g] || 0) >= gcap) {
+      over.push(e);
+      continue;
+    }
+    taken += 1;
+    usedG[g] = (usedG[g] || 0) + 1;
+  }
   for (const e of over) {
     Object.assign(e, { status: "capped", doneAt: now.toISOString() });
     log.capped = [...(log.capped || []), e.title.slice(0, 50)];
     dirty = true;
   }
   if (over.length) {
-    // 安全上限（暴走よけ）に達した。黙って落とさず知らせる（同じ日の知らせは1回。2件目以降はコメントせず KV のログに残る）
-    await tell(`cap:${day}`, `【自動通知】速報レーンの安全上限（1日${cap}本）に達しました`,
-      `今日（${day}）の速報レーン＋レーダーの起動が安全上限 ${cap} 本に達したため、次の話題を起動していません。\n\n` +
+    // 安全上限（暴走よけ）に達した。黙って落とさず知らせる（同じ日・同じ上限の知らせは1回。2件目以降はコメントせず KV のログに残る）
+    const g = taken >= allowance ? "" : over[0].genre || genreOf(R, over[0].source);
+    const what = g ? `ジャンル「${g}」の上限（1日${caps[g]}本）` : `安全上限（1日${cap}本）`;
+    await tell(`cap:${day}${g ? `:${g}` : ""}`, `【自動通知】速報レーンの${what}に達しました`,
+      `今日（${day}）の速報レーン＋レーダーの起動が${what}に達したため、次の話題を起動していません。\n\n` +
       `${over.map(describe).join("\n")}\n\n本当に大きなニュースなら、Actions の Auto Article Pipeline を fast_url にこの URL を入れて手動で実行してください。` +
       `誤検知が続いている場合は scripts/fast_lane_rules.json を見直してください（上限は Worker の FAST_DAILY_MAX）。`);
   }
@@ -586,6 +621,7 @@ async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl, notify =
   const meta = batch.map((e, k) => ({
     // レーダーの話題で出典が公式なら、まとめサイトの見出し（観測・見立てを含むことがある）ではなく公式ページの題を使う
     id: e.id, url: e.url, title: e.via && !e.secondary && pages[k].title.length >= 8 ? pages[k].title.slice(0, 200) : e.title, source: e.source,
+    genre: e.genre || genreOf(R, e.source),
     publishedAt: e.publishedAt || pages[k].published || null, detectedAt: e.detectedAt,
     image: pages[k].image || "", text: pages[k].text || "",
     // レーダーの話題: 出典の名前・報道が出典か（パイプラインが「〇〇の報道によると」と書く）
@@ -612,7 +648,11 @@ async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl, notify =
     body: JSON.stringify({ ref: "main", inputs: { mode: "web", fast_url: batch[0].url, fast_meta: JSON.stringify(meta) } }),
   });
   for (const e of batch) {
-    if (e.status === "new") state.daily[day] = (state.daily[day] || 0) + 1;
+    if (e.status === "new") {
+      state.daily[day] = (state.daily[day] || 0) + 1;
+      const g = e.genre || genreOf(R, e.source);
+      state.dailyGenre[day] = { ...(state.dailyGenre[day] || {}), [g]: ((state.dailyGenre[day] || {})[g] || 0) + 1 };
+    }
     Object.assign(e, { status: "dispatched", dispatchedAt: now.toISOString(), dispatches: (e.dispatches || 0) + 1, runKey: batch[0].url });
   }
   log.dispatched = summary.map((x, k) => ({ ...x, redo: batch[k].redoReason || "" }));

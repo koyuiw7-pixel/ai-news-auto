@@ -134,7 +134,8 @@ def compose(article: dict, recent: list[str] | None = None, breaking: bool = Fal
     if not breaking and not article.get("breaking") and lines[0].startswith("【速報】"):
         # 速報扱いでない記事に【速報】とは書かない（煽りに見えるため）
         lines[0] = lines[0].removeprefix("【速報】").strip() or lines[0]
-    if breaking and speed_line(article):
+    if breaking and speed_line(article) and not article.get("disaster"):
+        # 地震・津波（disaster）の投稿では速さを誇らない（記事ページのラベルには出す）
         # 速さが確かな速報は1行目を「【速報】発表から12分で掲載」にする（数字は記事の speedMinutes。見出しには入れない）
         lines[0] = lines[0].removeprefix("【速報】").strip()
         lines = [speed_line(article)] + [line for line in lines if line]

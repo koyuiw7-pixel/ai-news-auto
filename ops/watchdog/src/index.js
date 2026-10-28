@@ -1,6 +1,7 @@
 /**
  * サイソクの見張り番（Cloudflare Workers の Cron Triggers で2分ごとに動く）
  *
+ * Q. 地震・津波（毎回）: 気象庁の防災情報XMLで震度5弱以上・津波警報が出たら記事作りを起動する（src/quake.js。LLM は使わない）
  * 0. 速報レーン（毎回）: 主要企業の公式ニュースルームの新着を見て、重要な発表ならすぐ記事作りを起動する（src/fastlane.js）
  * R. レーダー（別の Cron・4分ごと）: まとめサイトで大きなニュースを見つけ、一次情報を探して速報レーンに回す（src/radar.js）
  * M. 毎朝 6:00（日本時間）: 深夜（1〜5時）に作った速報を SNS に出す breaking_post.yml を起動する
@@ -15,6 +16,7 @@
  */
 import { fastLane, makeGh, makeNotify } from "./fastlane.js";
 import { radar } from "./radar.js";
+import { quakeLane } from "./quake.js";
 // Python 側（scripts/fast_lane.py）と同じルールを使う。変えたら npx wrangler deploy し直す
 import rules from "../../../scripts/fast_lane_rules.json";
 
@@ -89,9 +91,19 @@ async function check(env, now = new Date(), opts = {}) {
 }
 
 async function tick(env, now) {
+  // 地震・津波（気象庁）。安全の情報なので速報レーンより先に見る
+  let quaked = false;
+  try {
+    const q = await quakeLane(env, now, { rules, gh: makeGh(env) });
+    quaked = Boolean(q?.dispatched.length && !q.dry);
+    if (q && (q.fresh || q.dispatched.length || q.error || q.skip || q.baseline)) console.log(JSON.stringify({ quake: q }));
+  } catch (e) {
+    console.error(`quake: ${String(e)}`);
+  }
   let fast = null;
   try {
-    fast = await fastLane(env, now, { rules });
+    // 地震の記事作りをいま起動したなら、速報レーンは次の回に（同じ回に続けて起動すると待機中の地震の実行を取り消しかねない）
+    fast = quaked ? { dispatched: null, skipped: "地震の起動を優先" } : await fastLane(env, now, { rules });
     console.log(JSON.stringify({ fast }));
   } catch (e) {
     console.error(`fast: ${String(e)}`);
@@ -110,7 +122,7 @@ async function tick(env, now) {
   }
   try {
     // 速報レーンがいま起動したなら、通常の回は重ねて起動しない
-    const l = await check(env, now, { skipDispatch: Boolean(fast?.dispatched) });
+    const l = await check(env, now, { skipDispatch: Boolean(fast?.dispatched) || quaked });
     console.log(JSON.stringify({ watchdog: l }));
   } catch (e) {
     console.error(`watchdog: ${String(e)}`);

@@ -48,6 +48,13 @@ jobs:
           if [ "${{ inputs.request || '1' }}" = "1" ]; then ARGS="$ARGS --request"; fi
           python scripts/radar.py missed $ARGS
 
+      # 新しいジャンル（新製品・ゲームの公式・気象庁の地震・津波）の取りこぼし。サマリーに出すだけ（LLM なし・数件の取得だけ）
+      - name: Check other genres
+        continue-on-error: true
+        run: |
+          python scripts/fast_lane.py --missed-genres --hours "${{ inputs.hours || '30' }}"
+          python scripts/quake.py --missed --hours "${{ inputs.hours || '30' }}"
+
       # 速報レーンへの依頼（state/radar_requests.json）を main に足す。待っている間に main が進んでいても衝突しないよう、最新に足し直す
       - name: Commit requests
         run: |

@@ -1097,8 +1097,8 @@ def newest_first(item: tuple[Path, dict]) -> str:
 
 def needs_check(article: dict) -> bool:
     """点検の対象か。YouTube のサムネイルがある動画記事・確認済みの記事は対象外"""
-    if article.get("imageCredit"):
-        return False
+    if article.get("imageCredit") or article.get("noPhoto"):
+        return False  # noPhoto: 地震・津波の記事（scripts/quake.py）。写真・イメージ画像を付けない
     thumb = article.get("thumbnail", "") or ""
     if is_youtube(thumb):
         return False

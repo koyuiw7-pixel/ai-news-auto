@@ -46,7 +46,17 @@ def rules() -> dict:
         "ai": re.compile(data["ai_re"], flags),
     }
     data["_by_slug"] = {s["slug"]: s for s in data["sources"]}
+    # ジャンル（新製品・ゲーム）ごとの判定
+    data["_genre_re"] = {
+        k: {"major": re.compile(g["major_re"], flags), "exclude": re.compile(g["exclude_re"], flags)}
+        for k, g in (data.get("genres") or {}).items() if not k.startswith("_")
+    }
     return data
+
+
+def genre_of(slug: str) -> str:
+    """発信元のジャンル（無ければ ai）"""
+    return (source(slug) or {}).get("genre") or "ai"
 
 
 def source(slug: str) -> dict | None:
@@ -63,6 +73,17 @@ def relevant(title: str, slug: str) -> tuple[bool, str]:
     ex = r["_re"]["exclude"].search(t)
     if ex:
         return False, f"除外語（{ex.group(0)}）"
+    g = r["_genre_re"].get(src.get("genre") or "")
+    if g:
+        # 新製品・ゲームの公式: 細かいお知らせを除き、大きな発表の語があるものだけ
+        gx = g["exclude"].search(t)
+        if gx:
+            return False, f"除外語（{gx.group(0)}）"
+        if r["_re"]["model"].search(t) and (r["_re"]["launch"].search(t) or r["_re"]["head"].search(t)):
+            return True, "新モデル・新製品"
+        if g["major"].search(t):
+            return True, "新製品・ゲームの発表"
+        return False, "大きな発表の語がない"
     model = bool(r["_re"]["model"].search(t))
     if src.get("ai_only") and not model and not r["_re"]["ai"].search(t):
         return False, "AI の話題ではない"
@@ -176,7 +197,8 @@ def created_today(data: dict, now: datetime | None = None) -> int:
     today = (now or datetime.now(timezone.utc)).astimezone(JST).date()
     count = 0
     for entry in data.get("items", {}).values():
-        if entry.get("outcome") != "created":
+        # 地震・津波（quake.py）は安全のため全体の上限に数えない
+        if entry.get("outcome") != "created" or entry.get("lane") == "disaster":
             continue
         try:
             if datetime.fromisoformat(entry["finishedAt"]).astimezone(JST).date() == today:
@@ -244,6 +266,53 @@ def parse_time(value) -> datetime | None:
     return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
 
 
+def missed_genres(hours: int) -> int:
+    """genre のある発信元（新製品・ゲーム）の直近 hours 時間の見出しのうち、速報レーンの対象なのに記事が無いもの。
+    記事の有無は出典 URL（sourceUrl・続報の sourceUrl）で見る。LLM は使わない"""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import feeds  # noqa: PLC0415
+
+    have = set()
+    for path in (ROOT / "content" / "articles").glob("*.json"):
+        try:
+            data = json.loads(path.read_text("utf-8"))
+        except ValueError:
+            continue
+        for url in [data.get("sourceUrl"), *(u.get("sourceUrl") for u in data.get("updates") or [])]:
+            if url:
+                have.add(feeds.item_id(url))
+    since = datetime.now(timezone.utc) - timedelta(hours=hours)
+    lines = ["### 新製品・ゲームの公式発表", ""]
+    missing = 0
+    for src in rules()["sources"]:
+        if not src.get("genre"):
+            continue
+        try:
+            items = feeds.parse_feed({**src, "lang": "ja"})
+        except Exception as error:  # noqa: BLE001
+            lines.append(f"- {src['name']}: 取得失敗（{str(error)[:60]}）")
+            continue
+        for item in items:
+            if not item["published_at"] or item["published_at"] < since:
+                continue
+            ok, _ = relevant(item["title"], src["slug"])
+            if not ok:
+                continue
+            exists = item["id"] in have
+            missing += not exists
+            lines.append(f"- {'記事あり' if exists else '**記事なし**'}（{src['genre']}）{src['name']}: {item['title'][:70]}  {item['url']}")
+    if len(lines) == 2:
+        lines.append(f"- 直近{hours}時間に対象の発表はありません")
+    print("\n".join(lines))
+    summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary:
+        with open(summary, "a", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+    if missing:
+        print(f"::warning::新製品・ゲームの公式発表で記事が無いものが {missing} 件あります（ジョブのサマリーを確認）")
+    return 0
+
+
 # --------------------------------------------------------------------------- #
 
 
@@ -252,7 +321,12 @@ def main() -> int:
     parser.add_argument("--check", action="store_true", help="いまの公式フィードの見出しを判定して表示")
     parser.add_argument("--days", type=int, default=7)
     parser.add_argument("--classify", action="store_true", help="標準入力の [{title, source}] を判定して JSON で返す")
+    parser.add_argument("--missed-genres", action="store_true", help="新製品・ゲームの公式で、対象なのに記事が無いものを表示（見逃しチェック）")
+    parser.add_argument("--hours", type=int, default=30)
     args = parser.parse_args()
+
+    if args.missed_genres:
+        return missed_genres(args.hours)
 
     if args.classify:
         items = json.load(sys.stdin)

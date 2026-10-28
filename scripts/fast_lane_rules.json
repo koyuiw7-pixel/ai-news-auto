@@ -1,5 +1,5 @@
 {
-  "_doc": "速報レーンの共通ルール。見張り番の Worker（ops/watchdog/src/fastlane.js・radar.js）と scripts/fast_lane.py・scripts/radar.py が同じ判定をする。判定: 除外語なし かつ（主要な製品名＋発表の語/製品名で始まる見出し、または 発表の語だけ＝公式ニュースルームの発表）。ai_only の発信元は AI の語か製品名が要る。daily_max は速報レーン＋レーダーを合わせた1日の安全上限（暴走よけ。通常の記事の上限とは別。超えたら Issue で知らせる）。正規表現は Python と JavaScript の両方で動く書き方だけ（大文字小文字は区別しない）。変えたら ops/watchdog で npm test → npx wrangler deploy",
+  "_doc": "速報レーンの共通ルール。見張り番の Worker（ops/watchdog/src/fastlane.js・radar.js）と scripts/fast_lane.py・scripts/radar.py が同じ判定をする。判定: 除外語なし かつ（主要な製品名＋発表の語/製品名で始まる見出し、または 発表の語だけ＝公式ニュースルームの発表）。ai_only の発信元は AI の語か製品名が要る。daily_max は速報レーン＋レーダーを合わせた1日の安全上限（暴走よけ。通常の記事の上限とは別。超えたら Issue で知らせる）。正規表現は Python と JavaScript の両方で動く書き方だけ（大文字小文字は区別しない）。変えたら ops/watchdog で npm test → npx wrangler deploy。genre のある発信元（新製品・ゲーム）は、AI の判定の代わりに genres の major_re（大きな発表の語）で判定する（主要な製品名＋発表の語でも可）。genre_caps はジャンルごとの1日の上限（1つのジャンルが全体の上限を食いつぶさないように）。quake は気象庁の地震・津波（LLM を使わず決まった書式。全体の上限とは別枠）",
   "daily_max": 30,
   "max_age_hours": 12,
   "max_per_run": 1,
@@ -88,12 +88,52 @@
       "entity": "mistral"
     },
     {
-      "slug": "apple-newsroom-jp",
+      "slug": "apple-newsroom-jp-all",
       "name": "Apple Newsroom（日本）",
       "type": "rss",
       "url": "https://www.apple.com/jp/newsroom/rss-feed.rss",
       "entity": "apple",
-      "ai_only": true
+      "genre": "tech-gadget"
+    },
+    {
+      "slug": "google-japan-blog-all",
+      "name": "Google Japan Blog",
+      "type": "rss",
+      "url": "https://blog.google/intl/ja-jp/rss/",
+      "entity": "google",
+      "genre": "tech-gadget"
+    },
+    {
+      "slug": "samsung-jp",
+      "name": "Samsung Newsroom 日本",
+      "type": "rss",
+      "url": "https://news.samsung.com/jp/feed",
+      "entity": "samsung",
+      "genre": "tech-gadget"
+    },
+    {
+      "slug": "nintendo-news",
+      "name": "任天堂 ニュースリリース・お知らせ",
+      "type": "rss",
+      "url": "https://www.nintendo.co.jp/news/whatsnew.xml",
+      "entity": "nintendo",
+      "genre": "entertainment"
+    },
+    {
+      "slug": "playstation-blog-jp",
+      "name": "PlayStation.Blog 日本語",
+      "type": "rss",
+      "url": "https://blog.ja.playstation.com/feed/",
+      "entity": "sony",
+      "genre": "entertainment"
+    },
+    {
+      "slug": "xbox-wire-jp",
+      "name": "Xbox Wire Japan",
+      "type": "rss",
+      "url": "https://news.xbox.com/ja-jp/feed/",
+      "entity": "xbox",
+      "genre": "entertainment"
     }
   ],
   "model_re": "GPT[-‐ ]?\\d|(?<![A-Za-z])o[1-9](?:-mini|-pro)?(?![A-Za-z])|ChatGPT|(?<![A-Za-z])Sora(?![A-Za-z])|Codex|Claude\\s?(?:\\d|Opus|Sonnet|Haiku|Code)|Gemini\\s?(?:\\d|Ultra|Pro|Flash|Nano|Live|API|CLI|app)|Gemma\\s?\\d|(?<![A-Za-z])Veo\\s?\\d|Imagen\\s?\\d|Genie\\s?\\d|NotebookLM|Project Astra|Alpha(?:Fold|Evolve|Proof|Genome)|Llama\\s?\\d|(?<![A-Za-z])Grok\\s?\\d|Apple Intelligence|iPhone\\s?\\d{2}|Pixel\\s?\\d{2}|Nemotron|(?<![A-Za-z])Phi-\\d|MAI-\\d|Copilot|Siri(?:\\s?AI)?|(?<![A-Za-z])i(?:Pad)?OS\\s?\\d{2}|macOS\\s?\\d{2}|Android\\s?\\d{2}|(?:Mistral|Mixtral|Ministral|Magistral|Codestral|Devstral|Voxtral|Pixtral)\\s?(?:\\d|Large|Medium|Small)",
@@ -101,6 +141,38 @@
   "launch_re": "introduc|launch|announc|unveil|releas|now available|available (?:now|today|in|to|for|on|starting)|general(?:ly)? availab|(?<![A-Za-z])GA(?![A-Za-z])|rolling out|rolls out|coming to|comes to|arriv(?:e|es|ing) (?:in|on|to)|expands? to|^\\s*new\\s|new model|open[- ]sourc|open[- ]weight|pricing|price|cheaper|preview|(?<![A-Za-z])beta(?![A-Za-z])|upgrade|(?<![A-Za-z])IPO(?![A-Za-z])|initial public offering|(?<![A-Za-z])S-1(?![0-9])|acquir|acquisition|merger|上場|買収|発表|提供開始|一般提供|公開|リリース|新機能|新モデル|搭載|値下げ|料金|登場|発売|開始|利用可能|利用できる|日本語対応|対応開始",
   "exclude_re": "webinar|ウェビナー|seminar|セミナー|meetup|hackathon|ハッカソン|register now|join us|livestream|ライブ配信|イベント開催|開催のお知らせ|参加者募集|登壇|出展|展示会|podcast|episode|GFN Thursday|GeForce NOW|live updates|hiring|careers|(?<![A-Za-z])joins (?:the |our )?(?:board|team|trust)|appoint|customer stor|case study|success stor|(?<![A-Za-z])helps(?![A-Za-z])|how [A-Za-z0-9 .&'’-]{1,40} (?:uses|is using|used|built|transformed)|(?<![A-Za-z])tips(?![A-Za-z])|ways to|things to know|best practices|earnings|quarterly results|dividend|決算|award|受賞|grant(?:s|ees)? |fellowship|scholarship|donat|office opening|opens? (?:a |an |its |new )?(?:office|offices)|(?<![A-Za-z])election|midterm|testimony|congress|人事|採用|募集|キャンペーン|プレゼント|事例",
   "ai_re": "(?<![A-Za-z])(?:AI|A\\.I\\.|LLMs?|GPT[-\\w]*|Gemini|Gemma|Copilot|Claude|ChatGPT|agents?|agentic|machine learning|deep learning|neural|generative|models?|inference|Llama|NVIDIA|GPU|robot\\w*)(?![A-Za-z])|人工知能|生成AI|機械学習|深層学習|大規模言語|言語モデル|エージェント|チャットボット|ロボット|推論|Apple Intelligence",
+  "genres": {
+    "_doc": "genre のある発信元の判定。上の exclude_re → そのジャンルの exclude_re（細かいお知らせ）→ 主要な製品名＋発表の語 → major_re（大きな発表の語）の順に見る",
+    "tech-gadget": {
+      "major_re": "発表|発売|導入|予約(?:受付)?(?:を)?開始|販売開始|提供開始|出荷開始|登場|値上げ|値下げ|価格(?:改定|変更)|新製品|新型|新モデル|(?<![A-Za-z])(?:launch|announc|unveil|introduc)",
+      "exclude_re": "方法|ご紹介|紹介します|ヒント|楽しむ|ランキング|ガイド|レポート|インタビュー|おすすめ|[0-9０-９]+選|ストーリー|クリエイター|コラボ|ブランド価値|首位|受賞|展示|美術|アート|博物館|スポンサー|寄付|社会貢献|研究契約|共同研究|整備済"
+    },
+    "entertainment": {
+      "major_re": "Direct|ダイレクト|State of Play|Showcase|ショーケース|新型|本体|新ハード|次世代機|価格(?:改定|変更)|値上げ|値下げ|発表|サービス終了|生産終了|販売終了",
+      "exclude_re": "ランキング|ガイド|レポート|インタビュー|おすすめ|[0-9０-９]+選|懇談会|相談会|採用|募集|ギャラリー|更新しました|新作ソフト情報|フォトモード|プレゼント|コラボ|体験版|アップデート|ウォーボンド|理由|いっせいトライアル|遊び放題|追加タイトル|公式生放送|大会|e[- ]?スポーツ"
+    }
+  },
+  "genre_caps": {
+    "_doc": "ジャンルごとの1日（日本時間）の起動の上限。合計は上の daily_max（Worker の FAST_DAILY_MAX）まで。ここに無いジャンル（ai・レーダー）は合計の上限だけ。地震・津波は安全のため合計に数えず quake.daily_max だけ",
+    "tech-gadget": 6,
+    "entertainment": 5,
+    "business": 8
+  },
+  "quake": {
+    "_doc": "気象庁の防災情報XML（地震・津波）。震度5弱以上・大津波警報・津波警報だけを、LLM を使わない決まった書式の記事にする（scripts/quake.py）。同じ地震（EventID）の続報は同じ記事を更新する。Worker（src/quake.js）が2分ごとに feed を見る。daily_max はこのレーンだけの1日の起動の上限（全体の daily_max には数えない）。push_min_int 以上か大津波警報・津波警報なら、夜間・1日の上限を超えてもプッシュ通知する（安全のため）",
+    "feed": "https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml",
+    "titles": [
+      "震度速報",
+      "震源・震度に関する情報",
+      "震源に関する情報",
+      "津波警報・注意報・予報a"
+    ],
+    "min_int": "5-",
+    "push_min_int": "6-",
+    "follow_hours": 24,
+    "daily_max": 20,
+    "genre": "public"
+  },
   "radar": {
     "_doc": "大きなニュースのレーダー（ops/watchdog/src/radar.js が数分おき・scripts/radar.py が毎朝の見逃しチェック）。まとめサイト（Techmeme・Hacker News・日本の IT メディア）は「見つけるため」だけに使い、記事の出典は一次情報（公式の発表・SEC の書類）を探して使う。一次情報が見つからないときだけ outlets（信頼できる報道機関）の記事を出典にする（「〇〇の報道によると」と明記）。配信サービス（PR Wire 等）は使わない。daily_max はレーダーだけの1日の安全上限（速報レーンと合わせた上限は上の daily_max）",
     "daily_max": 20,
@@ -366,6 +438,16 @@
         "host": "sec.gov",
         "entity": "*",
         "name": "米証券取引委員会（SEC）"
+      },
+      {
+        "host": "nintendo.co.jp",
+        "entity": "nintendo",
+        "name": "任天堂公式"
+      },
+      {
+        "host": "news.xbox.com",
+        "entity": "xbox",
+        "name": "Xbox Wire（公式）"
       }
     ],
     "primary_path_re": "/(?:news|newsroom|blog|blogs|research|index|press|pressroom|stories|story|announcements?|releases?)/[^?#]{4,}|/Archives/edgar/data/|^/(?:[A-Za-z0-9_-]+/){0,5}[a-z0-9]+(?:-[a-z0-9]+){2,}/?$",

@@ -112,13 +112,31 @@ const CASES = [
   ["meta-newsroom", "Introducing Muse 2: frontier models for agents", true],
   ["nvidia-blog", "GFN Thursday: 12 new games launch in the cloud", false],
   ["nvidia-blog", "NVIDIA Unveils Rubin Ultra", true],
-  ["apple-newsroom-jp", "Apple、新しいiPad miniを発表", false],
-  ["apple-newsroom-jp", "Apple Intelligence、日本語で提供開始", true],
+  // Apple 日本は新製品の発信元（genre: tech-gadget）。AI の話題でなくても新製品の発表なら対象
+  ["apple-newsroom-jp-all", "Apple、新しいiPad miniを発表", true],
+  ["apple-newsroom-jp-all", "Apple Intelligence、日本語で提供開始", true],
+  ["apple-newsroom-jp-all", "東京のクリエイターたちがiPhoneで描く街の物語", false],
+  // 新製品・ゲームの公式（2026-10 の実際の見出し）
+  ["google-japan-blog-all", "Android のマイナンバーカード、本日より提供開始。日常生活での本人確認をよりスマートに", true],
+  ["google-japan-blog-all", "新製品 Google Fitbit Edge 登場、これまでで最もスマートなフィットネス トラッカー", true],
+  ["google-japan-blog-all", "Google マップで最高のグルメ体験を楽しむ 3 つの方法", false],
+  ["samsung-jp", "Samsung 3年連続「企業ブランド価値」アジア首位にランクイン", false],
+  ["samsung-jp", "「Samsung Galaxy Z Fold8シリーズ」購入で最大2,000円分のLINEマンガコインがもらえるキャンペーン本日開始", false],
+  ["samsung-jp", "Samsung、新型「Galaxy S27」シリーズを発表", true],
+  ["nintendo-news", "「Nintendo Direct 2026.11.5」を11月5日（木）7:00から放送。", true],
+  ["nintendo-news", "Nintendo Switch 2 の本体価格改定について", true],
+  ["nintendo-news", "ニンテンドーeショップ新作ソフト情報 10/23（金）号。", false],
+  ["nintendo-news", "子供から大人まで、世代を超えて、体感スポーツ。Nintendo Switch 2 ソフト『Nintendo Switch Sports Resort』は本日発売。", false],
+  ["nintendo-news", "「デザイン系 社員懇談会&ポートフォリオ相談会」のお申し込み受付を開始しました。", false],
+  ["playstation-blog-jp", "2026年9月のPS Storeダウンロードランキング！ PS5®では『鬼武者 Way of the Sword』が第1位！", false],
+  ["playstation-blog-jp", "State of Play が11月12日（木）朝7時より放送決定！", true],
+  ["playstation-blog-jp", "『SAROS』の無料アップデート「SAROS: Zenith」が本日10月19日（月）配信開始！", false],
+  ["xbox-wire-jp", "Game Pass に『FINAL FANTASY VII REMAKE INTERGRADE』などが登場", false],
   ["mistral-news", "Voxtral 3", true],
   // 2026-10-26〜27 に取りこぼした公式発表（Genie 4 は「発表の語」が無い見出しだった）
   ["google-deepmind-blog", "Genie 4: A new generation of world simulation", true],
-  ["apple-newsroom-jp", "Siri AI、日本語で提供開始", true],
-  ["apple-newsroom-jp", "iOS 28で使える新機能", true],
+  ["apple-newsroom-jp-all", "Siri AI、日本語で提供開始", true],
+  ["apple-newsroom-jp-all", "iOS 28で使える新機能", true],
   ["anthropic-news", "Anthropic files S-1 with the SEC for proposed initial public offering", true],
   ["mistral-news", "Mistral Advances AI for Engineering with NVIDIA", false],
   ["unknown-feed", "Introducing GPT-7", false],
@@ -238,6 +256,33 @@ test("初回は既読にするだけで起動しない → 次の回の新着で
   // 同じ記事はもう新着ではない
   await h.run(T0 + 4 * MIN);
   assert.equal(h.calls.dispatches.length, 1);
+});
+
+test("ジャンルごとの上限: ゲームが上限に達しても AI の速報は止まらない（ゲームの上限は Issue で知らせる）", async () => {
+  const rules = {
+    ...TEST_RULES,
+    genre_caps: { entertainment: 1 },
+    sources: [
+      TEST_RULES.sources[0],
+      { slug: "nintendo-news", name: "N", type: "rss", url: "https://feeds.test/google-ai.xml", entity: "nintendo", genre: "entertainment" },
+    ],
+  };
+  const h = harness(rules);
+  await h.run(T0);
+  h.feeds["https://feeds.test/google-ai.xml"].unshift({ title: "「Nintendo Direct 2026.11.5」を放送", url: "https://ex.test/nd1", at: T0 });
+  await h.run(T0 + 2 * MIN);
+  assert.equal(h.calls.dispatches.length, 1);
+  assert.equal(JSON.parse(h.calls.dispatches[0].inputs.fast_meta)[0].genre, "entertainment");
+  h.world.acks[await itemId("https://ex.test/nd1")] = { outcome: "created", finishedAt: new Date(T0 + 3 * MIN).toISOString() };
+  h.feeds["https://feeds.test/google-ai.xml"].unshift({ title: "Nintendo Switch 2 の本体価格改定について", url: "https://ex.test/nd2", at: T0 + 3 * MIN });
+  h.feeds["https://feeds.test/openai.xml"].unshift({ title: "Introducing GPT-7", url: "https://ex.test/gpt-7", at: T0 + 3 * MIN });
+  const log = await h.run(T0 + 4 * MIN);
+  assert.equal(h.calls.dispatches.length, 2);
+  assert.equal(h.calls.dispatches[1].inputs.fast_url, "https://ex.test/gpt-7");
+  assert.equal(h.state().queue[await itemId("https://ex.test/nd2")].status, "capped");
+  assert.ok(log.capped.some((t) => t.includes("価格改定")));
+  assert.match(h.calls.issues[0].title, /entertainment/);
+  assert.deepEqual(h.state().dailyGenre["2026-10-27"], { entertainment: 1, ai: 1 });
 });
 
 test("起動するとき記事ページの本文・画像も渡す（パイプラインから読めないサイト向け）", async () => {

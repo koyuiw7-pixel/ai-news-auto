@@ -113,6 +113,10 @@ export type Article = {
   breaking?: boolean;
   /** 公式発表から掲載までの分数（デプロイの約3分を含む目安）。発表の時刻が確かで60分以内のときだけ入る */
   speedMinutes?: number;
+  /** 地震・津波の記事（scripts/quake.py。気象庁の電文を決まった書式で掲載。LLM を使わない） */
+  disaster?: boolean;
+  /** 写真・イメージ画像を付けない（地震・津波の記事） */
+  noPhoto?: boolean;
 };
 
 /** 本文から計算する、一覧で使う値（lib/article-index.mjs の derivedOf） */

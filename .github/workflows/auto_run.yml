@@ -97,7 +97,9 @@ jobs:
         run: python scripts/ramp.py
 
       # Claude Code（オーナーの契約）を質重視の記事に使う。1日の上限は CLAUDE_DAILY_MAX
+      # 地震・津波の回（気象庁の電文）は LLM を使わないので入れない（公開を急ぐ）
       - name: Install Claude Code CLI
+        if: ${{ !startsWith(inputs.fast_url || '', 'https://www.data.jma.go.jp/') }}
         continue-on-error: true
         run: npm i -g @anthropic-ai/claude-code
 
@@ -119,6 +121,12 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
+          # 地震・津波（気象庁の電文）は LLM を使わず決まった書式で作る（scripts/quake.py。続報は同じ記事を書き直す）
+          case "$FAST_URL" in
+            https://www.data.jma.go.jp/*)
+              python scripts/quake.py --fast-url "$FAST_URL" --fast-meta "$FAST_META"
+              exit 0 ;;
+          esac
           if [ -n "$FAST_URL" ]; then
             python scripts/web_articles.py --fast-url "$FAST_URL" --fast-meta "$FAST_META" --days 3
             exit 0
@@ -175,7 +183,9 @@ jobs:
       # 記事の写真（scripts/images.py）。元記事の写真が無い・ロゴだけの記事に、フリー素材（Wikimedia Commons・Openverse）か
       # AI 生成（Workers AI、1日40枚まで）の写真を付ける。画像は Workers KV に置き /img/ で配信する。失敗しても記事の公開は止めない
       # 速報レーンの回は公開を急ぐので、時間を短く区切って速いモデルだけ使う
+      # 地震・津波の回は写真を付けない（災害の写真・イメージ画像は使わない。記事も noPhoto）
       - name: Article images
+        if: ${{ !startsWith(inputs.fast_url || '', 'https://www.data.jma.go.jp/') }}
         continue-on-error: true
         timeout-minutes: 9
         env:
@@ -237,6 +247,10 @@ jobs:
             MSG="chore(content): 記事を自動生成・まとめを更新 (+${COUNT}本)"
             BREAKING=$(git diff --cached --name-only --diff-filter=A -- 'content/articles/*.json' \
               | xargs -r jq -r 'select(.breaking == true) | .slug' | tr '\n' ' ')
+            # 地震・津波の続報で安全の通知（大津波警報・津波警報・震度6弱以上）になった記事も、すぐ通知に回す
+            SAFETY=$(git diff --cached --name-only --diff-filter=M -- 'content/articles/quake-*.json' \
+              | xargs -r jq -r 'select(.safetyAlert == true) | .slug' | tr '\n' ' ')
+            BREAKING="${BREAKING}${SAFETY}"
             if [ -n "$BREAKING" ]; then
               echo "速報の記事: ${BREAKING}→ すぐデプロイして即時投稿します"
               DUE=1

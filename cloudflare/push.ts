@@ -313,10 +313,16 @@ async function startJob(env: PushEnv, payload: Payload, reason: string): Promise
 }
 
 /** その記事を送るか決める（同じ記事は二度と送らない・夜は保留・1日の上限・間隔） */
-async function decide(env: PushEnv, payload: Payload, dryRun: boolean): Promise<Record<string, unknown>> {
+async function decide(env: PushEnv, payload: Payload, dryRun: boolean, urgent = false): Promise<Record<string, unknown>> {
   const kv = env.PUSH_KV!;
   const seen = await getJson<{ status: string }>(kv, `seen:${payload.slug}`);
-  if (seen) return { status: "duplicate", previous: seen.status };
+  // urgent（大津波警報・津波警報・震度6弱以上）: 夜間・1日の上限・間隔を超えて送る。まだ送っていなければ続報でも送る
+  if (seen && !(urgent && seen.status !== "sent")) return { status: "duplicate", previous: seen.status };
+  if (urgent) {
+    if (dryRun) return { status: "would-send", urgent, dryRun };
+    await kv.delete(`held:${payload.slug}`);
+    return startJob(env, payload, "safety");
+  }
   const mark = async (status: string) => {
     if (!dryRun) await kv.put(`seen:${payload.slug}`, JSON.stringify({ status, at: new Date().toISOString() }), { expirationTtl: 90 * 86400 });
     return { status, dryRun };
@@ -398,7 +404,7 @@ async function send(request: Request, env: PushEnv): Promise<Response> {
 
   const payload = buildPayload(body, env);
   if (!payload) return json({ ok: false, error: "invalid-payload" }, 400);
-  return json({ ok: true, ...(await decide(env, payload, body.dryRun === true)) });
+  return json({ ok: true, ...(await decide(env, payload, body.dryRun === true, body.urgent === true)) });
 }
 
 async function stats(request: Request, env: PushEnv): Promise<Response> {

@@ -140,8 +140,8 @@ def load_target(slug: str, days: int = FOLLOWUP_DAYS) -> tuple[Path, dict] | Non
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return None
-    if data.get("type") == "roundup":
-        return None
+    if data.get("type") == "roundup" or data.get("disaster"):
+        return None  # 地震・津波の記事は気象庁の電文だけで書き直す（scripts/quake.py）。AI の続報を足さない
     created = _parse_time(data.get("generatedAt") or data.get("publishedAt") or "")
     if created is None or created < datetime.now(timezone.utc) - timedelta(days=days):
         return None

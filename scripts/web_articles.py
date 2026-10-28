@@ -949,6 +949,10 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
         item["published_at"] = published or detected
         item["published_guessed"] = published is None
         item.update({"fast": True, "fast_key": key, "detected_at": detected})
+        # 新製品・ゲームの公式（rules の genre）は、そのジャンルの形で作る
+        genre_slug = str(meta.get("genre") or fast_lane.genre_of(item["source_slug"]))
+        if genre_slug != "ai" and genre_slug in GENRES_BY_SLUG:
+            item["section"] = genre_slug
         if page:
             item["_page"] = page
         if not item["title"]:

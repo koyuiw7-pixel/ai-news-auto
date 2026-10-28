@@ -168,8 +168,8 @@ def load_articles() -> list[dict]:
             data = json.loads(path.read_text("utf-8"))
         except json.JSONDecodeError:
             continue
-        # まとめ記事どうしをさらにまとめない
-        if data.get("type") == "roundup":
+        # まとめ記事どうしをさらにまとめない。地震・津波の記事（決まった書式）もまとめに使わない
+        if data.get("type") == "roundup" or data.get("disaster"):
             continue
         articles.append(data)
     return articles
