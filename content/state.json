@@ -3552,6 +3552,16 @@
       "skipped": true,
       "url": "https://news.mynavi.jp/article/20261028-5211663/"
     },
+    "2b3c8743ac8faea6": {
+      "at": "2026-10-28T12:08:40.147579+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 95,
+      "section": "ai",
+      "slug": "meta-waddle-world-ai-pet",
+      "url": "https://www.engadget.com/2299227/meta-tamagotchi-like-ai-digital-pet-app-waddle-world/"
+    },
     "2cd0e1760990091a": {
       "at": "2026-10-26T14:11:39.308950+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6647,28 +6657,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:11:29.242862+00:00",
-      "attempt": 2,
-      "id": "acba861221feb78809883b66d044c885651b8682",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1587字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 67.0,
-        "avg_sentence": 64.1,
-        "long_share": 0.565,
-        "max_paragraph": 121,
-        "paragraphs": 22,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "trends",
-      "title": "ドコモ"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T15:12:05.098435+00:00",
@@ -13291,6 +13279,26 @@
       "score": 80,
       "source": "radar-news.mynavi.jp",
       "title": "ソフトバンク、AppleのiPad mini最新モデル（第8世代）の取り扱いと価格を発表"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T12:08:40.146961+00:00",
+      "attempt": 1,
+      "id": "2b3c8743ac8faea6",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 68.9,
+        "avg_sentence": 30.7,
+        "long_share": 0.024,
+        "max_paragraph": 143,
+        "paragraphs": 37,
+        "sentences": 83
+      },
+      "score": 95,
+      "source": "radar-engadget.com",
+      "title": "Meta quietly launched Waddle World, a Tamagotchi-like, AI pet-rearing game, in t"
     }
   ],
   "short_text_retry": {
