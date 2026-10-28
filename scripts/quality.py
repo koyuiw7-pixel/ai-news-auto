@@ -34,7 +34,9 @@ MAJOR = False
 MAJOR_BODY_RATIO = 0.8
 # 外科的な修正に回す・修正後に受理する事実確認の点数（致命的な誤り＝fatal が無いときだけ）
 SURGICAL_MIN_SCORE = 75
-SOURCE_CAP = 9000
+# 事実確認に渡す元記事の長さ。生成に渡す長さ（feeds.TEXT_CAP = 12000）＋元記事の情報の見出しより短いと、
+# 元記事の後半にある事実（2026-10-28 の Mithril の買収は 9400 字目）を「創作」と誤判定するので、それより長くする
+SOURCE_CAP = 13000
 ARTICLE_CAP = 9000
 
 BOILERPLATE_RE = re.compile(
@@ -293,10 +295,29 @@ def fact_check(record: dict, source_text: str, context: str = "") -> dict:
     return {"grounded": grounded, "score": max(0, min(100, score)), "problems": problems, "fatal": fatal, "model": model}
 
 
+VIDEO_FIX = {"映像では": "元記事では", "スライドでは": "元記事では", "音声では": "元記事では"}
+
+
+def fix_video_leftover(record: dict) -> None:
+    """文章が元の記事に残った「動画では」などを「元記事では」に機械的に直す（作り直しで無料枠・時間を使わない。
+    2026-10-28 の速報3本がこれで1回ずつ作り直しになった）。record をその場で書き換える"""
+    if record.get("sourceType") != "web":
+        return
+    for key in ("body", "easy", "lede"):
+        text = record.get(key)
+        if not isinstance(text, str) or not VIDEO_LEFTOVER_RE.search(text):
+            continue
+        text = re.sub(r"動画(内|では|の中で|で示|で紹介|で語ら|の冒頭)", r"元記事\1", text)
+        for a, b in VIDEO_FIX.items():
+            text = text.replace(a, b)
+        record[key] = text
+
+
 def evaluate(record: dict, source_text: str, kind: str, context: str = "", check_facts: bool = True) -> dict:
     """{ok, soft, score, problems, structural, fact, readability, readability_problems}。形で落ちたときは事実確認を省く（API の節約）。
     soft=True は「形と事実は合格、読みやすさだけが基準外」。polish() で文を分け、だめでも受理してよい。
     形・事実の不合格のときの problems には読みやすさを混ぜない（作り直しで本文が縮み、長さで落ちるのを防ぐ）"""
+    fix_video_leftover(record)
     read = readability(record.get("body") or "")
     read_problems = readability_problems("", read)
     base = {"structural": [], "fact": None, "readability": read, "readability_problems": read_problems}
