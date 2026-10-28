@@ -16,6 +16,8 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.siteName,
+  // iPhone で「ホーム画面に追加」したときの名前（プッシュ通知はホーム画面から開いたときだけ使える）。manifest は app/manifest.ts
+  appleWebApp: { capable: true, title: siteConfig.shortName, statusBarStyle: "default" },
   // Google Search Console の所有権確認。環境変数に確認コードを入れるだけで有効になる
   verification: process.env.GOOGLE_SITE_VERIFICATION
     ? { google: process.env.GOOGLE_SITE_VERIFICATION }

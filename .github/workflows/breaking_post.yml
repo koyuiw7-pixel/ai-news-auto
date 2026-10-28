@@ -5,6 +5,7 @@ name: Breaking post
 # 上限・対象の条件は scripts/breaking_post.py を参照（1日 BREAKING_PER_DAY 本まで・深夜は出さず朝 6:00 に出す）。
 # 見張り番の Worker（ops/watchdog）が毎朝 6:00（日本時間）にも起動する（深夜に作った速報を出すため）。
 # 自分の投稿だけを扱う。他人の投稿へのコメント・返信は自動化しない。
+# 同時に push ジョブが、読者のブラウザへの速報のプッシュ通知を頼む（scripts/push_notify.py → サイトの /api/push/send）。
 on:
   workflow_dispatch:
 
@@ -16,6 +17,23 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # 速報のプッシュ通知（記事ページが開けるようになったらすぐ。1日3回まで・夜は朝7時に回すなどの判定は Worker がする）
+  # 失敗しても SNS の投稿は止めない（別のジョブ）
+  push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Push notification
+        env:
+          PUSH_SEND_TOKEN: ${{ secrets.PUSH_SEND_TOKEN }}
+        run: python scripts/push_notify.py --wait 480
+
   post:
     runs-on: ubuntu-latest
     timeout-minutes: 30
