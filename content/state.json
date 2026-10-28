@@ -5871,6 +5871,16 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000220.000087046.html"
     },
+    "ad10900db6cdd66b": {
+      "at": "2026-10-28T20:12:33.259864+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 95,
+      "section": "ai",
+      "slug": "ai-for-science-expansion-institutions",
+      "url": "https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions"
+    },
     "adf1996fc9707c2b": {
       "at": "2026-10-28T19:12:24.996973+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7223,28 +7233,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T18:07:50.487539+00:00",
-      "attempt": 1,
-      "id": "d6e3530c14e6a22a",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1651字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 120.8,
-        "avg_sentence": 51.8,
-        "long_share": 0.214,
-        "max_paragraph": 158,
-        "paragraphs": 12,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "kddi-news",
-      "title": "産業創出の実践拠点「アライアンスパーク・プロジェクト」始動"
-    },
     {
       "accepted": true,
       "at": "2026-10-27T18:08:04.728057+00:00",
@@ -13817,6 +13805,26 @@
       "score": 100,
       "source": "digital-agency",
       "title": "三角デジタル監がDFFT Expert Community初の対面会合に出席しました"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T20:12:33.259342+00:00",
+      "attempt": 1,
+      "id": "ad10900db6cdd66b",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 70.6,
+        "avg_sentence": 33.1,
+        "long_share": 0.031,
+        "max_paragraph": 147,
+        "paragraphs": 30,
+        "sentences": 64
+      },
+      "score": 95,
+      "source": "anthropic-news",
+      "title": "AI for Science expands to foundations and research institutions"
     }
   ],
   "short_text_retry": {
