@@ -53,7 +53,9 @@
     "zoohZ1BiHs0": 1
   },
   "failed_web": {},
-  "major_tries": {},
+  "major_tries": {
+    "fdf27bf9960b1109": 1
+  },
   "processed": {
     "--kyzoeUuBk": {
       "at": "2026-08-10T15:58:56.932533+00:00",
@@ -3665,10 +3667,13 @@
       "url": "https://www.softbank.jp/sbnews/entry/20261026_01"
     },
     "36ccb3101b7cb129": {
-      "at": "2026-10-26T19:01:37.120319+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: Appleは2026年10月27日のソフトウェアアップデート（27.2）で → 元記事の日付は2026年10月26日である。",
-      "skipped": true,
+      "at": "2026-10-28T01:52:56.696303+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 91,
+      "section": "ai",
+      "slug": "siri-ai-japanese-launch",
       "url": "https://www.apple.com/jp/newsroom/2026/10/siri-ai-is-available-today-in-more-languages/"
     },
     "37e18adfd2ff499b": {
@@ -6151,6 +6156,16 @@
       "skipped": true,
       "url": "https://cloud.google.com/blog/ja/products/serverless/temporal-serverless-workers-on-cloud-run-worker-pools/"
     },
+    "edf59637f599d673": {
+      "at": "2026-10-28T01:44:10.714558+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 96,
+      "section": "ai",
+      "slug": "anthropic-s1-sec-ipo-filing",
+      "url": "https://www.anthropic.com/news/s1-sec"
+    },
     "ee28ccb62e546dc6": {
       "at": "2026-10-27T21:01:42.608618+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -6419,138 +6434,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:52:51.337866+00:00",
-      "attempt": 2,
-      "id": "93694452a1acf035",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1873字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "会社の書類・メール・会議の記録をAIが参照して答える、会社専用のAI基盤「マスターブレイン」を11月1日より本格提供。販売代理店の募集も開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:52:57.348649+00:00",
-      "attempt": 1,
-      "id": "88525dbba76b19c2",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1248字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "“労働力不足解決カンパニー”うるる、PeopleXのAI面接・AI面談・AIロープレを導入"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:53:03.666482+00:00",
-      "attempt": 2,
-      "id": "88525dbba76b19c2",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1772字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（376字 / 基準 400字以上）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "“労働力不足解決カンパニー”うるる、PeopleXのAI面接・AI面談・AIロープレを導入"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:53:09.208304+00:00",
-      "attempt": 1,
-      "id": "cbe0ba8852adf755",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1526字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（389字 / 基準 400字以上）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "株式会社100、AI開発プラットフォーム「Lovable」の東京コミュニティイベント「Lovable Community Tokyo #1」を11月5日に下北沢"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:53:14.804345+00:00",
-      "attempt": 2,
-      "id": "cbe0ba8852adf755",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1709字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "株式会社100、AI開発プラットフォーム「Lovable」の東京コミュニティイベント「Lovable Community Tokyo #1」を11月5日に下北沢"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:53:21.725347+00:00",
-      "attempt": 1,
-      "id": "72ce2995014524fc",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1984字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "【DX推進・情報システム担当者必見】「Copilot Cowork【完全版】活用ガイドブック」を株式会社NINAEが無料公開"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:53:28.334992+00:00",
-      "attempt": 2,
-      "id": "72ce2995014524fc",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2041字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "【DX推進・情報システム担当者必見】「Copilot Cowork【完全版】活用ガイドブック」を株式会社NINAEが無料公開"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:53:36.160296+00:00",
-      "attempt": 1,
-      "id": "244e575abaa1f8eb",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1673字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "現場監督から、CADの仕事をなくす。AIと会話するだけで土木3Dを描く「AI-CAD」の実現方法を、全4回で指導"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:53:44.181462+00:00",
-      "attempt": 2,
-      "id": "244e575abaa1f8eb",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2176字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "現場監督から、CADの仕事をなくす。AIと会話するだけで土木3Dを描く「AI-CAD」の実現方法を、全4回で指導"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T01:53:51.879289+00:00",
@@ -12746,6 +12629,219 @@
       "score": 100,
       "source": "nintendo-topics",
       "title": "『Minecraft』が、より鮮やかなグラフィックにアップデートしてNintendo Switch 2 に登場。本日より発売開始。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:42:49.393033+00:00",
+      "attempt": 1,
+      "id": "edf59637f599d673",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「この2社が上場の実務を担う主要な証券会社とみられます」「引受に関わる証券会社が示された」→ 元記事は目論見書の入手先として2社を挙げただけで、引受会社だとは書かれておらず推測が強い。",
+        "「（編集部注）一般に、この区分はナスダックの中で上場基準が最も厳しいとされます」→ 元記事に無い背景説明で、断定的な評価を含む。",
+        "「動画ならぬ元記事では」→ 不自然な表現で、動画の話は元記事に無く意味不明。",
+        "「これまでの流れ」の「9月23日：Claude Opus 5.5を公開、コスト40%削減」→ 確認済みの文脈にあるため問題は小さいが、今回の発表との関連付けは元記事に無い。",
+        "かんたん版「ゴールドマン・サックスかモルガン・スタンレーという大手証券会社から入手できる」→ 元記事は目論見書が『利用可能になった時点で』入手可能とするもので、現時点で入手できるように読める。",
+        "判定「提供状況=soon」→ 株は購入できず、上場時期も未定なので、近日提供と受け取れる表示は言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 63.5,
+        "avg_sentence": 34.4,
+        "long_share": 0.068,
+        "max_paragraph": 145,
+        "paragraphs": 32,
+        "sentences": 59
+      },
+      "score": 72,
+      "source": "anthropic-news",
+      "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:43:50.958596+00:00",
+      "attempt": 2,
+      "id": "edf59637f599d673",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "リード「米証券取引所委員会（SEC）」→ 正しくは「米証券取引委員会」で、機関名が誤記（本文では正しく表記されている）。"
+      ],
+      "readability": {
+        "avg_paragraph": 57.1,
+        "avg_sentence": 30.8,
+        "long_share": 0.038,
+        "max_paragraph": 102,
+        "paragraphs": 28,
+        "sentences": 52
+      },
+      "score": 92,
+      "source": "anthropic-news",
+      "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T01:44:10.713927+00:00",
+      "attempt": 2,
+      "id": "edf59637f599d673",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 57.1,
+        "avg_sentence": 30.8,
+        "long_share": 0.038,
+        "max_paragraph": 102,
+        "paragraphs": 28,
+        "sentences": 52
+      },
+      "score": 96,
+      "source": "anthropic-news",
+      "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:45:38.534652+00:00",
+      "attempt": 1,
+      "id": "fdf27bf9960b1109",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "文章が元なのに動画前提の表現がある（「動画では」）。「元記事」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 67.0,
+        "avg_sentence": 35.7,
+        "long_share": 0.044,
+        "max_paragraph": 131,
+        "paragraphs": 48,
+        "sentences": 90
+      },
+      "score": null,
+      "source": "anthropic-news",
+      "title": "Early progress on accelerating drug development with Claude"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:47:21.344518+00:00",
+      "attempt": 2,
+      "id": "fdf27bf9960b1109",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "要点・本文「Mithril Medicineを買収、筋ジストロフィー治療を18か月未満でマウス試験へ」→ 提示された元記事にMithril Medicineの買収や18か月未満という記載がなく、確認できない。",
+        "「創業者のCody Tranbarger氏は、Claudeで11の外部ラボとの契約、物流、実験を整理してきました」→ 人名と「11の外部ラボ」が元記事に無い。",
+        "「早ければ2028年末に人への治験を始められる見込み」→ 2028年末という日付が元記事に無い。",
+        "「BMSのMichael Pourdehnad氏は、1回の指示でClaudeが堅実な初期分析を出した…通常なら数日かかる」→ 元記事は発言の冒頭で途切れており、人名・内容・「数日」「機密データの安全」は確認できない。",
+        "「AI作業台「Claude Science」の提供」「Life Sciences Verification Program」「ゲスト研究者の公募」「生命科学者向けのClaudeクレジット」→ 元記事に記載がなく、支援施策が創作の疑いがある。",
+        "「元記事末尾の問い合わせ窓口」→ 元記事に問い合わせ窓口の記載が確認できない。"
+      ],
+      "readability": {
+        "avg_paragraph": 89.0,
+        "avg_sentence": 32.7,
+        "long_share": 0.026,
+        "max_paragraph": 177,
+        "paragraphs": 43,
+        "sentences": 117
+      },
+      "score": 45,
+      "source": "anthropic-news",
+      "title": "Early progress on accelerating drug development with Claude"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:49:00.284400+00:00",
+      "attempt": 3,
+      "id": "fdf27bf9960b1109",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「Anthropicは、Mithril Medicineという会社を買収しました。1人で運営され…」→ 元記事（提示範囲）にMithril Medicineの買収の記載がない。",
+        "「創業者のCody Tranbarger氏は、Claudeで11の外部ラボとの契約、物流、実験を整理し」→ 人名と「11の外部ラボ」が元記事に無い。",
+        "「アイデアからマウスでの有望な結果まで、18か月未満で進みました」→ 元記事に無い具体的数値と成果の記述。",
+        "「早ければ2028年末にも、人への治験を始められる見込みです」→ 元記事に無い日付の記述。",
+        "「BMSのMichael Pourdehnad氏の発言では…単一の指示から、堅実な初期分析を出せた」→ 元記事の引用は途中で切れており、人名や発言内容が確認できない。",
+        "「元記事は…まだ初期段階とし、これまでの研究はおもに前臨床…と述べています」「多くは人に使う前の段階」→ 元記事に該当する記述が無い。"
+      ],
+      "readability": {
+        "avg_paragraph": 83.3,
+        "avg_sentence": 36.2,
+        "long_share": 0.051,
+        "max_paragraph": 192,
+        "paragraphs": 43,
+        "sentences": 99
+      },
+      "score": 55,
+      "source": "anthropic-news",
+      "title": "Early progress on accelerating drug development with Claude"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:50:25.340480+00:00",
+      "attempt": 1,
+      "id": "36ccb3101b7cb129",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "判定の「価格=無料（将来有料枠予定）」→ 元記事に無料との記載はなく、価格は不明（本文の「具体的な価格は書かれていません」とも矛盾）。",
+        "「画像や映像について質問できる機能」→ 元記事は画像理解とマルチモーダルと書くのみで、映像への対応は明記されていない。",
+        "「対応機種の詳細は、Appleのサポートページ（support.apple.com/ja-jp/148587）で確認する」→ 元記事ではこのページは利用回数制限や規約の案内先で、対応機種の案内とは書かれていない。",
+        "「App Toolboxなどのデバイス上で動く仕組みを使い、アプリ内のアクションをSiriから呼べる」→ 元記事ではApp Toolboxはシステムオーケストレータが使うデバイス上の中核機能として挙がっているだけで、開発者向けにアクションを呼ぶ仕組みという説明はない。",
+        "「Siri AIを動かすための土台となるハードが整い」→ 新iMac発表とSiri AI提供を因果づける記述は元記事・文脈になく、憶測の言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 72.1,
+        "avg_sentence": 35.6,
+        "long_share": 0.108,
+        "max_paragraph": 145,
+        "paragraphs": 41,
+        "sentences": 83
+      },
+      "score": 72,
+      "source": "apple-newsroom-jp",
+      "title": "Siri AI、日本語で提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:51:41.533674+00:00",
+      "attempt": 2,
+      "id": "36ccb3101b7cb129",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "文章が元なのに動画前提の表現がある（「動画では」）。「元記事」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 73.0,
+        "avg_sentence": 34.3,
+        "long_share": 0.059,
+        "max_paragraph": 128,
+        "paragraphs": 40,
+        "sentences": 85
+      },
+      "score": null,
+      "source": "apple-newsroom-jp",
+      "title": "Siri AI、日本語で提供開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T01:52:56.695798+00:00",
+      "attempt": 3,
+      "id": "36ccb3101b7cb129",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 69.6,
+        "avg_sentence": 35.2,
+        "long_share": 0.079,
+        "max_paragraph": 147,
+        "paragraphs": 45,
+        "sentences": 89
+      },
+      "score": 91,
+      "source": "apple-newsroom-jp",
+      "title": "Siri AI、日本語で提供開始"
     }
   ],
   "short_text_retry": {
