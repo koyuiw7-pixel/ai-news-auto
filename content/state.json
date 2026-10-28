@@ -53,7 +53,9 @@
     "zoohZ1BiHs0": 1
   },
   "failed_web": {},
-  "major_tries": {},
+  "major_tries": {
+    "45a374d069fd87b2": 1
+  },
   "processed": {
     "--kyzoeUuBk": {
       "at": "2026-08-10T15:58:56.932533+00:00",
@@ -6391,48 +6393,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-10-27T01:31:25.543633+00:00",
-      "attempt": 1,
-      "id": "3b1f004eeecdcbe8",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "value-press",
-      "title": "「東方LostWord」MV楽曲 東方LostWord feat.伴 都美子 from Do As Infinity×豚乙女による東方アレンジ楽曲「朝露」公開"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:31:33.809366+00:00",
-      "attempt": 1,
-      "id": "86955c1d8d2892d9",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1591字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-        "文章が元なのに動画前提の表現がある（「動画内」）。「元記事」と書く"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "岡谷のプレス加工グループが自社工場で使う「AI作業マニュアル」、ミャンマー語・インドネシア語に対応し6言語へ｜諏訪圏工業メッセ2026で実演"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:31:41.775301+00:00",
-      "attempt": 2,
-      "id": "86955c1d8d2892d9",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2075字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "岡谷のプレス加工グループが自社工場で使う「AI作業マニュアル」、ミャンマー語・インドネシア語に対応し6言語へ｜諏訪圏工業メッセ2026で実演"
-    },
-    {
       "accepted": false,
       "at": "2026-10-27T01:31:50.167923+00:00",
       "attempt": 1,
@@ -12492,6 +12452,82 @@
       "score": 100,
       "source": "digital-agency",
       "title": "「防災分野のデータ流通促進」の取組概要と「デジタル庁における官民共創による防災DXの推進」の資料を更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T00:38:11.064573+00:00",
+      "attempt": 1,
+      "id": "45a374d069fd87b2",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "リード・本文・「これまでの流れ」の「Metaは10月28日…提供開始」→ 元記事にシンガポール発表・提供開始の日付は書かれておらず、10月28日は創作。",
+        "かんたん版「大事な操作の前には、必ず本人に確認します」→ 元記事は「機微な操作の前に確認する」とあるだけで、「必ず」は言い過ぎ。",
+        "「Museは、あなた専属の秘書のように動くAI」→ 元記事は「personal agent」とあるのみで、秘書のたとえは元記事にない補足表現（軽微）。"
+      ],
+      "readability": {
+        "avg_paragraph": 66.3,
+        "avg_sentence": 30.3,
+        "long_share": 0.029,
+        "max_paragraph": 123,
+        "paragraphs": 32,
+        "sentences": 70
+      },
+      "score": 70,
+      "source": "meta-newsroom",
+      "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built fo"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T00:39:21.664447+00:00",
+      "attempt": 2,
+      "id": "45a374d069fd87b2",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「旅行は航空券から予約まで探せる」→ 元記事は「旅行、チケット、予約の選択肢」を探せるとするだけで、「航空券」とは書かれていない。",
+        "「世界向けの発表で挙げられた連携先に加え、地域に根づいたサービスが入った点」→ 世界向け発表の連携先は元記事に無く、比較は裏付けがない。",
+        "「これまでの流れ」の「10月4日：米Metaが…Museを発表」→ 元記事の関連記事では世界向け発表は9月8日で、確認済み文脈の10月4日記事は検証記事なので、発表日として矛盾する。",
+        "「Museは、あなたに代わって調べものや手続きを進めてくれる」「基本は無料」→ 元記事は「ほとんどのことは無料」で、手続きの代行までは明記されていない（やや言い過ぎ）。",
+        "「AIがスマホの中のアプリに出入りするための通り道」→ コネクターの説明は元記事に無い比喩で、クラウド上のサービス連携という実態とずれる。"
+      ],
+      "readability": {
+        "avg_paragraph": 69.7,
+        "avg_sentence": 34.3,
+        "long_share": 0.015,
+        "max_paragraph": 140,
+        "paragraphs": 33,
+        "sentences": 67
+      },
+      "score": 80,
+      "source": "meta-newsroom",
+      "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built fo"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T00:40:34.711788+00:00",
+      "attempt": 3,
+      "id": "45a374d069fd87b2",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「Facebookを運営するMetaが」（かんたん版）→ 元記事にFacebook運営の記述はなく、補足が元記事に裏付けられていない。",
+        "「これまでの流れ」の「9月8日：Metaが世界向けに「Muse」を発表」→ 関連ニュース欄の日付は「September 8, 2026 September 30, 2026」と2つあり、9月8日を発表日と断定するのは不確か。",
+        "「かんたん版」の「保存した投稿を使った用事の手伝い」→ 元記事は「saved content」で、投稿に限定する記述はなく言い換えが過剰。",
+        "「連携機能は…少しずつ広がります」は元記事に沿うが、「まずGmail、Google Calendar、Instagramにつなげられます」の「まず」は元記事に順序の記述がない。",
+        "「Museは個人向けの位置づけです」→ 元記事は「personal agent」と書くが、同じ関連ニュースに小規模事業者向けMuseがあり、業務利用に触れないとの記述と整合性が弱い。"
+      ],
+      "readability": {
+        "avg_paragraph": 69.2,
+        "avg_sentence": 34.0,
+        "long_share": 0.046,
+        "max_paragraph": 164,
+        "paragraphs": 32,
+        "sentences": 65
+      },
+      "score": 82,
+      "source": "meta-newsroom",
+      "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built fo"
     }
   ],
   "short_text_retry": {
