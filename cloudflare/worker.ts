@@ -9,6 +9,7 @@
 // @ts-ignore ビルド時に生成される
 import { default as handler } from "../.open-next/worker.js";
 import { flushHeld, handlePush, type PushEnv } from "./push";
+import { handleAff, type AffEnv } from "./aff";
 
 type Env = { ASSETS: { fetch: (input: string | Request) => Promise<Response> } } & Record<string, unknown>;
 
@@ -153,6 +154,8 @@ export default {
     if (url.pathname.startsWith("/img/")) return serveImage(request, url, env, ctx);
     // 速報のプッシュ通知（cloudflare/push.ts。Next を通さずここで返す）
     if (url.pathname.startsWith("/api/push/")) return handlePush(request, url, env as unknown as PushEnv, ctx);
+    // 提携リンクのクリックの自前集計（cloudflare/aff.ts）
+    if (url.pathname.startsWith("/api/aff/")) return handleAff(request, url, env as unknown as AffEnv, ctx);
 
     const cacheKey = edgeCacheKey(request, url, env);
     const edge = cacheKey ? (caches as unknown as { default: Cache }).default : null;

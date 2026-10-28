@@ -1,6 +1,7 @@
 import { isIndexable } from "@/lib/indexing";
 import { getAllArticles, getArticle, sourceHref, sourceLabel, type ArticleSummary, type FullArticle } from "@/lib/articles";
 import { renderMarkdown } from "@/lib/markdown";
+import { isAffiliateUrl } from "@/lib/affiliate";
 import { siteConfig } from "@/site.config";
 
 /**
@@ -23,19 +24,6 @@ export const publishedOf = (a: ArticleSummary) => a.generatedAt || a.publishedAt
 
 export const articleUrl = (a: ArticleSummary) => `${siteConfig.url}/articles/${a.slug}`;
 export const coverUrl = (a: ArticleSummary) => `${siteConfig.url}/cover/${a.slug}`;
-
-/** 本文に紛れた提携リンク（配信先では広告扱いになるので外す） */
-const AFFILIATE_HOST = /(?:^|\.)(?:a8\.net|moshimo\.com|valuecommerce\.com|accesstrade\.net|afi-b\.com|rakuten\.co\.jp|amzn\.to|felmat\.net)$/i;
-
-function isAffiliate(href: string, affiliateUrls: Set<string>): boolean {
-  if (affiliateUrls.has(href)) return true;
-  try {
-    const url = new URL(href);
-    return AFFILIATE_HOST.test(url.hostname) || (/amazon\.co\.jp$/i.test(url.hostname) && url.searchParams.has("tag"));
-  } catch {
-    return false;
-  }
-}
 
 /** <a> を外して中の文字だけ残す */
 const unwrap = (html: string, keep: (href: string) => boolean) =>
@@ -73,7 +61,7 @@ export async function feedHtml(article: FullArticle, options: FeedHtmlOptions): 
     // 配信先では不要な属性
     .replace(/\s(?:id|class|style|target|align)="[^"]*"/g, "")
     .replace(/\srel="[^"]*"/g, "");
-  body = unwrap(body, (href) => options.links && /^https?:\/\//.test(href) && !isAffiliate(href, affiliateUrls));
+  body = unwrap(body, (href) => options.links && /^https?:\/\//.test(href) && !isAffiliateUrl(href.replace(/&amp;/g, "&"), affiliateUrls) && !affiliateUrls.has(href));
   if (!options.tables) body = flattenTables(body);
 
   const parts: string[] = [];

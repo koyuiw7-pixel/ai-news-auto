@@ -106,7 +106,10 @@ export default function PrivacyPage() {
         これらのリンクを経由した際、提携先の判断でCookieが保存され、
         成果の計測に使用されることがあります。当サイトが利用者の個人情報を
         提携先に提供することはありません。該当するリンクには「PR」表記と
-        <code>rel=&quot;sponsored&quot;</code> 属性を付与しています。
+        <code>rel=&quot;sponsored nofollow&quot;</code> 属性を付与しています。
+      </p>
+      <p>
+        広告・提携リンクが押された回数は、どの記事のどのリンクかだけを匿名で集計しています（IPアドレスや個人を特定する情報は保存しません）。
       </p>
 
       <h2>5. 情報の第三者提供</h2>

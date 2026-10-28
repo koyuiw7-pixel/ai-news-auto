@@ -32,6 +32,7 @@ function BlockCta({
 
   return (
     <section
+      data-aff-pos={compact ? "cta-secondary" : "cta-primary"}
       className={`relative overflow-hidden rounded-2xl border border-accent/25 bg-accent-soft ${
         compact ? "p-5" : "p-6 sm:p-8"
       } ${className ?? ""}`}
@@ -61,7 +62,7 @@ function BlockCta({
         target="_blank"
         rel={
           cta.isAffiliate
-            ? "sponsored noopener noreferrer"
+            ? "sponsored nofollow noopener noreferrer"
             : "nofollow noopener noreferrer"
         }
         className={`mt-5 inline-flex items-center gap-2 rounded-md bg-accent font-bold text-accent-ink transition-transform hover:scale-[1.02] ${
@@ -93,6 +94,7 @@ function InlineCta({
 
   return (
     <aside
+      data-aff-pos="cta-inline"
       className={`flex flex-col gap-4 border-y-2 border-accent/30 py-5 sm:flex-row sm:items-center sm:justify-between ${
         className ?? ""
       }`}
@@ -114,7 +116,7 @@ function InlineCta({
         target="_blank"
         rel={
           cta.isAffiliate
-            ? "sponsored noopener noreferrer"
+            ? "sponsored nofollow noopener noreferrer"
             : "nofollow noopener noreferrer"
         }
         className="shrink-0 self-start rounded-md border-2 border-accent px-5 py-2.5 text-meta font-bold text-accent transition-colors hover:bg-accent hover:text-accent-ink sm:self-auto"

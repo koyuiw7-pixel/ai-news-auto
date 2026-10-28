@@ -32,7 +32,9 @@
     // 記事の写真（フリー素材・AI 生成）。scripts/images.py が書き、cloudflare/worker.ts の /img/<名前> が配信する
     { "binding": "IMAGES_KV", "id": "358e46161fdb4857865dec69dd72285b" },
     // 速報のプッシュ通知の購読者・送信記録。cloudflare/push.ts（秘密鍵 VAPID_PRIVATE_KEY・PUSH_SEND_TOKEN は wrangler secret put で入れる）
-    { "binding": "PUSH_KV", "id": "7eefb0fb8f5546e18c214ad9cd1dc1bd" }
+    { "binding": "PUSH_KV", "id": "7eefb0fb8f5546e18c214ad9cd1dc1bd" },
+    // 提携リンクの人によるクリックの日別記録。cloudflare/aff.ts（集計を読む鍵 AFF_STATS_TOKEN は wrangler secret put で入れる）
+    { "binding": "AFF_KV", "id": "5de7984f700648c58d0400adaf75a614" }
   ],
   // 毎朝 7:00（日本時間）: 夜のあいだ保留した速報の通知を1本送る（cloudflare/worker.ts の PUSH_MORNING_CRON と同じ文字列）
   "triggers": { "crons": ["0 22 * * *"] },

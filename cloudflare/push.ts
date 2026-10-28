@@ -20,8 +20,8 @@
 import { PUSH_RULES, VAPID_PUBLIC_KEY } from "../lib/push-config";
 import { b64urlDecode, sendPush, type PushTarget, type Vapid } from "./webpush";
 
-type KvListKey = { name: string; metadata?: unknown };
-type KvNamespace = {
+export type KvListKey = { name: string; metadata?: unknown };
+export type KvNamespace = {
   get(key: string): Promise<string | null>;
   put(key: string, value: string, options?: { expirationTtl?: number; metadata?: unknown }): Promise<void>;
   delete(key: string): Promise<void>;
@@ -51,14 +51,14 @@ const CONCURRENCY = 50;
 const PUSH_HOST =
   /^(fcm\.googleapis\.com|android\.googleapis\.com|([a-z0-9-]+\.)*push\.services\.mozilla\.com|([a-z0-9-]+\.)*push\.apple\.com|([a-z0-9-]+\.)*notify\.windows\.com)$/;
 
-function json(body: unknown, status = 200): Response {
+export function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
     status,
     headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
   });
 }
 
-async function sha256Hex(text: string): Promise<string> {
+export async function sha256Hex(text: string): Promise<string> {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
@@ -66,7 +66,7 @@ async function sha256Hex(text: string): Promise<string> {
 const subId = async (endpoint: string) => (await sha256Hex(endpoint)).slice(0, 32);
 
 /** 長さ・内容の違いで時間が変わらない比較 */
-function safeEqual(a: string, b: string): boolean {
+export function safeEqual(a: string, b: string): boolean {
   if (a.length !== b.length) return false;
   let diff = 0;
   for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
@@ -81,12 +81,12 @@ function authorized(request: Request, env: PushEnv): boolean {
 }
 
 /** 画面からの呼び出しだけ受け付ける（同じオリジンの Origin ヘッダーが必要） */
-function sameOrigin(request: Request): boolean {
+export function sameOrigin(request: Request): boolean {
   const origin = request.headers.get("origin");
   return !!origin && origin === new URL(request.url).origin;
 }
 
-async function readJson<T>(request: Request, max = 4096): Promise<T | null> {
+export async function readJson<T>(request: Request, max = 4096): Promise<T | null> {
   const text = await request.text();
   if (text.length > max) return null;
   try {

@@ -26,7 +26,7 @@ export default function RailRanking({
   const hasBook = offer.items.some((i) => i.kind === "book");
 
   return (
-    <aside id={id} aria-label="PR：サイソクのおすすめ" className="relative overflow-hidden rounded-2xl border border-ink bg-paper">
+    <aside id={id} data-aff-pos={wide ? "ranking-inline" : "ranking-rail"} aria-label="PR：サイソクのおすすめ" className="relative overflow-hidden rounded-2xl border border-ink bg-paper">
       <Header offer={offer} wide={wide} title={title ?? `サイソクのおすすめ${Math.min(3, offer.items.length)}選`} />
 
       <RankingBody items={offer.items} visible={3} wide={wide} badge={badge} />

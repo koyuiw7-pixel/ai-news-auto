@@ -113,7 +113,8 @@ function First({ item, wide, badge, onClick }: { item: OfferItem; wide: boolean;
     <a
       href={item.url}
       target="_blank"
-      rel="sponsored noopener noreferrer"
+      rel="sponsored nofollow noopener noreferrer"
+      data-aff-rank={1}
       onClick={() => onClick(item)}
       className={`group block ${wide ? "p-5 sm:p-6" : "border-b border-line p-4"}`}
     >
@@ -161,7 +162,8 @@ function Row({ item, rank, onClick }: { item: OfferItem; rank: number; onClick: 
       <a
         href={item.url}
         target="_blank"
-        rel="sponsored noopener noreferrer"
+        rel="sponsored nofollow noopener noreferrer"
+        data-aff-rank={rank}
         onClick={() => onClick(item)}
         className="group grid grid-cols-[22px_72px_minmax(0,1fr)] items-center gap-3 px-4 py-3.5 hover:bg-surface"
       >

@@ -76,7 +76,7 @@ export default function DisclaimerPage() {
       <ul>
         <li>広告・アフィリエイトを含む箇所には「PR」と明示する</li>
         <li>
-          アフィリエイトリンクには <code>rel=&quot;sponsored&quot;</code>{" "}
+          アフィリエイトリンクには <code>rel=&quot;sponsored nofollow&quot;</code>{" "}
           属性を付与する
         </li>
         <li>記事本文の評価は、広告出稿の有無と切り離して生成する</li>

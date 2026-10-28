@@ -55,7 +55,8 @@ export function OutLink({
     <a
       href={product.item.url}
       target="_blank"
-      rel={product.sponsored ? "sponsored noopener noreferrer" : "nofollow noopener"}
+      rel={product.sponsored ? "sponsored nofollow noopener noreferrer" : "nofollow noopener"}
+      data-aff-pos="compare"
       className={className}
     >
       {children}

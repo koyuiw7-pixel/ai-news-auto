@@ -146,7 +146,8 @@ export default function Diagnosis({ quiz, products }: { quiz: Question[]; produc
                 <a
                   href={best.product.url}
                   target="_blank"
-                  rel={best.product.sponsored ? "sponsored noopener noreferrer" : "nofollow noopener"}
+                  rel={best.product.sponsored ? "sponsored nofollow noopener noreferrer" : "nofollow noopener"}
+                  data-aff-pos="diagnosis"
                   className="flex h-11 flex-1 items-center justify-center gap-1.5 rounded-lg bg-accent text-note font-bold text-white hover:opacity-90"
                 >
                   公式サイトで見る <span aria-hidden>↗</span>

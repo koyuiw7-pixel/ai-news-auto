@@ -49,7 +49,8 @@ export default function MobilePrBar({ item, watchId }: { item: OfferItem; watchI
         <a
           href={item.url}
           target="_blank"
-          rel="sponsored noopener noreferrer"
+          rel="sponsored nofollow noopener noreferrer"
+          data-aff-pos="mobile-bar"
           tabIndex={visible ? 0 : -1}
           className="flex min-w-0 flex-1 items-center gap-3"
         >

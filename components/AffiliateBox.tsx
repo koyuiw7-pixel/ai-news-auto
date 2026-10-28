@@ -14,6 +14,7 @@ export default function AffiliateBox({ links, compact }: Props) {
 
   return (
     <section
+      data-aff-pos="box"
       className={`rounded-2xl border border-line bg-surface ${compact ? "p-5" : "p-6"}`}
     >
       <div className="flex items-baseline justify-between gap-2">
@@ -31,7 +32,7 @@ export default function AffiliateBox({ links, compact }: Props) {
             <a
               href={link.url}
               target="_blank"
-              rel="sponsored noopener noreferrer"
+              rel="sponsored nofollow noopener noreferrer"
               className="group flex items-start gap-3 rounded-xl border border-line px-4 py-3 transition-colors hover:border-accent hover:bg-accent-soft/40"
             >
               <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-md bg-accent text-meta font-bold text-accent-ink">
