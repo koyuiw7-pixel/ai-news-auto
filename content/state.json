@@ -6188,6 +6188,13 @@
       "slug": "hiroshima-u-lung-cancer-ai-ct",
       "url": "https://www.hiroshima-u.ac.jp/news/100805"
     },
+    "d8103b8af50d92a5": {
+      "at": "2026-10-28T17:19:52.844388+00:00",
+      "model": "claude:sonnet",
+      "reason": "followup quality: 「当初は10月29日（木）としていました」→ 元記事にも確認済みの文脈にも当初の予約開始日が10月29日とする根拠がなく、日付の創作の疑いがある。; 「Liquid Retina XDRディスプレイ」という当初記事の記載→ 元記事にも確認済みの文脈にもなく、当初記事の内容として根拠が確認できない。",
+      "skipped": true,
+      "url": "https://www.apple.com/newsroom/2026/10/apple-unveils-groundbreaking-macbook-pro-with-proled-xdr-display/"
+    },
     "d933013ac8b95522": {
       "at": "2026-10-26T16:50:25.785482+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6792,28 +6799,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:58:14.063752+00:00",
-      "attempt": 1,
-      "id": "f16aefe89a6e3f3b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1978字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 115.4,
-        "avg_sentence": 59.8,
-        "long_share": 0.444,
-        "max_paragraph": 172,
-        "paragraphs": 14,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "Working with academic communities to build scientific understanding"
-    },
     {
       "accepted": true,
       "at": "2026-10-27T15:58:49.223537+00:00",
@@ -13420,6 +13405,21 @@
       "score": 92,
       "source": "google-blog-all",
       "title": "Gemini 4 Carbon: our next frontier model"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T17:19:52.844363+00:00",
+      "attempt": 1,
+      "id": "d8103b8af50d92a5",
+      "kind": "update",
+      "model": "claude:sonnet",
+      "problems": [
+        "「当初は10月29日（木）としていました」→ 元記事にも確認済みの文脈にも当初の予約開始日が10月29日とする根拠がなく、日付の創作の疑いがある。",
+        "「Liquid Retina XDRディスプレイ」という当初記事の記載→ 元記事にも確認済みの文脈にもなく、当初記事の内容として根拠が確認できない。"
+      ],
+      "score": 72,
+      "source": "apple-newsroom-jp-all",
+      "title": "Apple unveils groundbreaking MacBook Pro with PROLED XDR Display"
     }
   ],
   "short_text_retry": {
