@@ -4722,6 +4722,13 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326712.html"
     },
+    "8526199ec7b5548b": {
+      "at": "2026-10-28T03:23:53.297166+00:00",
+      "model": "claude:sonnet",
+      "reason": "followup quality: 「既存記事の早見表にある14万4800円から」→ 元記事にも確認済みの文脈にも14万4800円という価格や早見表の記載はなく、創作の可能性が高い。",
+      "skipped": true,
+      "url": "https://k-tai.watch.impress.co.jp/docs/news/2151814.html"
+    },
     "852b29afdb702e51": {
       "at": "2026-10-27T03:05:10.759657+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セール）",
@@ -6489,20 +6496,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:31:30.162027+00:00",
-      "attempt": 2,
-      "id": "c0e2f38aabbe8325",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）"
-      ],
-      "score": null,
-      "source": "digital-agency",
-      "title": "「マイナポータル自治体手続申請サービス」の本格運用開始について掲載しました"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T02:32:17.097218+00:00",
@@ -12988,6 +12981,20 @@
       "score": 100,
       "source": "jst",
       "title": "蚊のオスが「メスの羽音」に惹かれる理由を解明～行動の性差を生む遺伝子fruitlessがオスの耳をつくる～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:23:53.297138+00:00",
+      "attempt": 1,
+      "id": "8526199ec7b5548b",
+      "kind": "update",
+      "model": "claude:sonnet",
+      "problems": [
+        "「既存記事の早見表にある14万4800円から」→ 元記事にも確認済みの文脈にも14万4800円という価格や早見表の記載はなく、創作の可能性が高い。"
+      ],
+      "score": 70,
+      "source": "radar-k-tai.watch.impress.co.jp",
+      "title": "ソフトバンク、新型「iPad mini（A20 Pro）」価格発表 11万9800円～"
     }
   ],
   "short_text_retry": {
