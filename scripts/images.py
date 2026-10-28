@@ -62,6 +62,7 @@ KV_NAMESPACE = os.environ.get("IMAGES_KV_ID") or "358e46161fdb4857865dec69dd7228
 IMAGE_BASE = (os.environ.get("IMAGE_BASE_URL") or "https://ai-tech-express.jp/img/").rstrip("/") + "/"
 AI_DAILY_MAX = int(os.environ.get("IMAGE_AI_DAILY_MAX") or "40")
 PREVIEW_DIR: Path | None = None  # --preview で指定すると、出来上がった JPEG をここにも書く（確認用）
+PAGES_BY_IMAGE: dict[str, set[str]] = {}  # 画像 URL → それを使っている記事の元記事ページ（main で作る）
 
 # Wikimedia は連絡先入りの UA を求める（https://meta.wikimedia.org/wiki/User-Agent_policy）
 BOT_UA = "SaisokuNewsBot/1.0 (+https://ai-tech-express.jp/contact)"
@@ -85,7 +86,7 @@ SHARED_DIR = re.compile(r"/(common|themes?|assets?|shared|static|img/common|imag
 BAD_STOCK_TITLE = re.compile(
     r"\b(logos?|maps?|diagrams?|charts?|graphs?|plots?|posters?|flyers?|leaflets?|signs?|signage|screenshots?|screen shot|flags?|emblems?|"
     r"coat of arms|portraits?|selfies?|headshots?|signatures?|documents?|scanned|page \d+|book cover|cover art|stamps?|banknotes?|"
-    r"banners?|infographics?|illustrations?|drawings?|cartoons?|icons?|texts?|memes?|watermarks?|nude|naked|weapons?|corpses?|blood)\b",
+    r"banners?|infographics?|illustrations?|drawings?|cartoons?|icons?|texts?|memes?|watermarks?|paintings?|engravings?|lithographs?|MET DP\d+|nude|naked|weapons?|corpses?|blood)\b",
     re.I,
 )
 # 人物が主役の写真（特に子ども）は避ける
@@ -392,6 +393,10 @@ def pick_source_image(article: dict, repeats: Counter) -> tuple[str | None, str]
     for index, url in enumerate(source_candidates(page, current)[:6]):
         used = repeats.get(url, 0) - (1 if url == current else 0)
         problem = url_problem(url, repeats.get(url, 0))
+        # 別の発表（元記事のページが違う）と同じ画像は、サイト共通・使い回しの画像なので使わない
+        others = PAGES_BY_IMAGE.get(url, set()) - {page, ""}
+        if not problem and page and others:
+            problem = "別の発表と同じ画像"
         if problem:
             reasons.append(problem)
             continue
@@ -832,7 +837,7 @@ Rules:
 - clearly related scene or object (a reader should see the connection at a glance), a real photograph
 - generic is better than specific: reject photos tied to a different organization, government agency, military,
   event, product brand or foreign landmark that is not in the article (it would mislead readers)
-- no map/document/logo/screenshot, no famous person as the subject, no visible brand logos
+- a real modern photograph: no painting, artwork, map, document, logo or screenshot; no famous person as the subject, no visible brand logos
 - "[QI]" marks photos that passed Wikimedia's quality review; prefer them when equally relevant
 Return {{"pick": index}} or {{"pick": -1}} if none fits."""
     try:
@@ -1190,6 +1195,8 @@ def main() -> int:
         for url in {a.get("thumbnail") or "", (a.get("imageCredit") or {}).get("original") or ""}:
             if url and not is_youtube(url) and not is_ours(url):
                 repeats[url] += 1
+                if a.get("sourceType") == "web":
+                    PAGES_BY_IMAGE.setdefault(url, set()).add(a.get("sourceUrl") or "")
     ctx = {
         "repeats": repeats,
         "used_stock": {(a.get("imageCredit") or {}).get("sourceUrl") for a in articles.values() if (a.get("imageCredit") or {}).get("kind") == "stock"},
