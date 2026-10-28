@@ -6868,6 +6868,16 @@
       "slug": "uda-san-festa-2026-nara",
       "url": "https://kyodonewsprwire.jp/release/202610268708"
     },
+    "c8c0435586ef694f": {
+      "at": "2026-10-28T23:47:53.171807+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 91,
+      "section": "ai",
+      "slug": "kddi-iret-ai-use-cases-113",
+      "url": "https://www.itmedia.co.jp/aiplus/article/2610/29/2000002685/"
+    },
     "c9a13ebac0afcac0": {
       "at": "2026-10-26T14:31:00.675093+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（出張）",
@@ -7972,50 +7982,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-27T22:41:17.188967+00:00",
-      "attempt": 1,
-      "id": "676ef500d0b9460f",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "段落が長い（平均 133.2字・最長 245字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 133.2,
-        "avg_sentence": 39.6,
-        "long_share": 0.054,
-        "max_paragraph": 245,
-        "paragraphs": 11,
-        "sentences": 37
-      },
-      "score": 100,
-      "source": "stat",
-      "title": "住民基本台帳人口移動報告 2026年（令和8年）9月分"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T22:41:34.505145+00:00",
-      "attempt": 0,
-      "id": "676ef500d0b9460f",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 本文が縮んだ（1822→1759字）"
-      ],
-      "readability": {
-        "avg_paragraph": 133.2,
-        "avg_sentence": 39.6,
-        "long_share": 0.054,
-        "max_paragraph": 245,
-        "paragraphs": 11,
-        "sentences": 37
-      },
-      "score": 100,
-      "source": "stat",
-      "title": "住民基本台帳人口移動報告 2026年（令和8年）9月分"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T23:01:24.495677+00:00",
@@ -14588,6 +14554,53 @@
       "score": null,
       "source": "mext",
       "title": "令和9年度からの私立大学医学部の収容定員の増加に係る学則変更について（答申）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T23:47:20.764071+00:00",
+      "attempt": 1,
+      "id": "c8c0435586ef694f",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「今回は約4割がエンジニア以外の仕事」→ 50/113は約44%で概ね妥当だが、元記事に割合の記載はなく編集側の算出。",
+        "「GeminiとClaudeという複数のAIを使い分けた事例を載せています。特定の一社に偏らない点は…」→ 元記事に使い分けや偏りがない旨の記載はなく、編集部注の範囲を超えた評価。",
+        "「AIの事例集は、開発者向けに偏りがちです」→ 元記事に根拠がない一般論の断定。",
+        "「上司や社内に導入を説明するときの材料になります」「事例を社内で募り、AIで資料化したという進め方」→ 元記事は収集や資料作成にGeminiを活用としか書かれておらず、効果の言い過ぎ。",
+        "「かんたん版：書かれている手順を小さく試して」→ 元記事に具体的な手順が掲載されているとは書かれていない。",
+        "「日本から使えます」→ 元記事に地域制限の記載はなく、断定は推測。"
+      ],
+      "readability": {
+        "avg_paragraph": 62.9,
+        "avg_sentence": 34.4,
+        "long_share": 0.062,
+        "max_paragraph": 114,
+        "paragraphs": 35,
+        "sentences": 64
+      },
+      "score": 80,
+      "source": "radar-itmedia.co.jp",
+      "title": "KDDI傘下、社内のAI活用事例113件を無料公開 「Gemini Notebook」で稟議データのチェック支援も"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T23:47:53.171342+00:00",
+      "attempt": 1,
+      "id": "c8c0435586ef694f",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 60.2,
+        "avg_sentence": 34.0,
+        "long_share": 0.065,
+        "max_paragraph": 114,
+        "paragraphs": 35,
+        "sentences": 62
+      },
+      "score": 91,
+      "source": "radar-itmedia.co.jp",
+      "title": "KDDI傘下、社内のAI活用事例113件を無料公開 「Gemini Notebook」で稟議データのチェック支援も"
     }
   ],
   "short_text_retry": {
