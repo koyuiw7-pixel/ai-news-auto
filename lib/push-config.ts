@@ -9,9 +9,9 @@ export const VAPID_PUBLIC_KEY = "BPzjJX1wahQ48HeDlmQ_FdIOImDxG-PSwHTv0QAZi1rarOz
 /** 通知の決まりごと（画面の説明文もこの数字を使う） */
 export const PUSH_RULES = {
   /** 1日（日本時間）に送る最大の回数 */
-  perDay: 3,
+  perDay: 4,
   /** 前の通知からこの時間（分）は次を送らない（鳴りすぎ防止） */
-  minGapMin: 120,
+  minGapMin: 60,
   /** 鳴らさない時間（日本時間）。この間の速報は朝に1本だけ送る */
   quietFrom: 22,
   quietUntil: 7,

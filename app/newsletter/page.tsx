@@ -35,7 +35,7 @@ export default function NewsletterPage() {
     <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8" style={{ fontFamily: FONT }}>
       <p className="eyebrow">NEWSLETTER</p>
       <h1 className="t-h1 mt-2">
-        毎朝7時、昨日のAIニュースの要点を5本
+        毎朝7時、昨日のAIニュースの<span className="whitespace-nowrap">要点を5本</span>
       </h1>
       <p className="mt-4 text-desc leading-[1.9] text-ink-soft">
         {siteConfig.siteName}のメール配信です。サイトを毎日のぞかなくても、前日に出た大事な発表だけを朝のうちに押さえられます。
