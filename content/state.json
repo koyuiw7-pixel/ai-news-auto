@@ -3545,6 +3545,13 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76904.html"
     },
+    "2ad38473eb930e41": {
+      "at": "2026-10-28T11:52:12.468139+00:00",
+      "model": "claude:sonnet",
+      "reason": "followup quality: 「既存記事に記したApple公式の発売日と同じです」→ 元記事にも確認済み文脈にもApple公式の発売日の記載はなく、既存記事に書かれていたという根拠がない。; 要点「ドコモとソフトバンクが…発売は11月6日です」→ ドコモの発売日は元記事・文脈のどちらにも無く、ソフトバンクの発売日をドコモにも当てはめている。; 「IP67等級…といった仕様は、既存記事の内容と",
+      "skipped": true,
+      "url": "https://news.mynavi.jp/article/20261028-5211663/"
+    },
     "2cd0e1760990091a": {
       "at": "2026-10-26T14:11:39.308950+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6640,28 +6647,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:11:20.477456+00:00",
-      "attempt": 1,
-      "id": "acba861221feb78809883b66d044c885651b8682",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1368字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 186.8,
-        "avg_sentence": 65.9,
-        "long_share": 0.588,
-        "max_paragraph": 328,
-        "paragraphs": 6,
-        "sentences": 17
-      },
-      "score": null,
-      "source": "trends",
-      "title": "ドコモ"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T15:11:29.242862+00:00",
@@ -13290,6 +13275,22 @@
       "score": 100,
       "source": "radar-official",
       "title": "Microsoft.UI.Reactor: a C#-first way to build WinUI apps - #ifdef Windows"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T11:52:12.468103+00:00",
+      "attempt": 1,
+      "id": "2ad38473eb930e41",
+      "kind": "update",
+      "model": "claude:sonnet",
+      "problems": [
+        "「既存記事に記したApple公式の発売日と同じです」→ 元記事にも確認済み文脈にもApple公式の発売日の記載はなく、既存記事に書かれていたという根拠がない。",
+        "要点「ドコモとソフトバンクが…発売は11月6日です」→ ドコモの発売日は元記事・文脈のどちらにも無く、ソフトバンクの発売日をドコモにも当てはめている。",
+        "「IP67等級…といった仕様は、既存記事の内容と重なります」→ 確認済み文脈にこれらの仕様の記載はなく、既存記事との一致を裏付けられない。"
+      ],
+      "score": 80,
+      "source": "radar-news.mynavi.jp",
+      "title": "ソフトバンク、AppleのiPad mini最新モデル（第8世代）の取り扱いと価格を発表"
     }
   ],
   "short_text_retry": {
