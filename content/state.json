@@ -3000,6 +3000,14 @@
       "skipped": true,
       "url": "https://www.esri.cao.go.jp/jp/stat/di/di.html"
     },
+    "00c85acf9d22d94f": {
+      "at": "2026-10-28T20:51:33.894877+00:00",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "updated": "github-copilot-app-projects-computer-use",
+      "url": "https://github.blog/changelog/2026-10-28-github-copilot-in-vs-code-universe-releases"
+    },
     "010276ea668bdd08": {
       "at": "2026-10-26T11:31:53.187669+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3520,6 +3528,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（講座）",
       "skipped": true,
       "url": "https://www.value-press.com/pressrelease/383122"
+    },
+    "21f4761ac0bc4960": {
+      "at": "2026-10-28T20:52:17.541097+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "aws-qa-studio-team-management-nova-act",
+      "url": "https://aws.amazon.com/blogs/machine-learning/accelerating-software-delivery-with-agentic-qa-automation-using-amazon-nova-act-part-3/"
     },
     "222f3715a6dc5508": {
       "at": "2026-10-26T12:33:34.802938+00:00",
@@ -4801,6 +4817,12 @@
       "slug": "spec-driven-development-sap-abap-aws",
       "url": "https://aws.amazon.com/jp/blogs/news/spec-driven-development-for-sap-abap/"
     },
+    "6e01cc3fe6afc73d": {
+      "at": "2026-10-28T20:51:33.895137+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（採用）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/recruit/r8/shiho-01/shiho-01.html"
+    },
     "6e40bd74cb28725d": {
       "at": "2026-10-26T11:34:34.687395+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5723,6 +5745,14 @@
       "reason": "quality: easy_markdown が短い（346字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://www.jfa.jp/news/00036958/"
+    },
+    "9ffbd8f146ab9326": {
+      "at": "2026-10-28T20:51:57.827603+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "india-upi-cashless-revolution",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87193?site=nli"
     },
     "a06c1b81e0e42828": {
       "at": "2026-10-26T15:09:45.887874+00:00",
@@ -7169,6 +7199,13 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01ryutsu04_02000270.html"
     },
+    "f872fdc76a2a6c67": {
+      "at": "2026-10-28T20:51:43.132455+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "閣議の概要に関する官房長官の定例記者会見であり、国民生活に直接関わる具体的な新制度の開始や法改正、料金改定等の発表が含まれていないため対象外とします。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326756.html"
+    },
     "f87ae5ea12aee762": {
       "at": "2026-10-26T14:34:23.118709+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7287,138 +7324,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T18:51:28.931689+00:00",
-      "attempt": 1,
-      "id": "952e90918f03ac9c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「2026年10月26日：Windows ブログにて『Cowork の新機能: プラグインの拡充とロールベースのスキル』を発表」→元記事の冒頭には「米国時間 2026 年 10 月 21 日 (水) に公開された」とあり、日付が矛盾しています。"
-      ],
-      "readability": {
-        "avg_paragraph": 140.5,
-        "avg_sentence": 65.8,
-        "long_share": 0.594,
-        "max_paragraph": 294,
-        "paragraphs": 15,
-        "sentences": 32
-      },
-      "score": 85,
-      "source": "windows-blog-jp",
-      "title": "Cowork の新機能: プラグインの拡充とロールベースのスキル"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T18:51:38.578904+00:00",
-      "attempt": 2,
-      "id": "952e90918f03ac9c",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2448字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 106.1,
-        "avg_sentence": 53.0,
-        "long_share": 0.406,
-        "max_paragraph": 164,
-        "paragraphs": 16,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "windows-blog-jp",
-      "title": "Cowork の新機能: プラグインの拡充とロールベースのスキル"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T18:52:06.342874+00:00",
-      "attempt": 2,
-      "id": "952e90918f03ac9c",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 49.6字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 137.2字・最長 217字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 137.2,
-        "avg_sentence": 49.6,
-        "long_share": 0.277,
-        "max_paragraph": 217,
-        "paragraphs": 17,
-        "sentences": 47
-      },
-      "score": 100,
-      "source": "windows-blog-jp",
-      "title": "Cowork の新機能: プラグインの拡充とロールベースのスキル"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T18:52:13.754644+00:00",
-      "attempt": 0,
-      "id": "952e90918f03ac9c",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「2026年10月21日（米国時間）に発表を行いました」→元記事の冒頭には「米国時間 2026 年 10 月 21 日 (水)」とあるが、2026年10月21日は水曜日ではなく水曜日ではない（2026年10月21日は水曜日であるため、日付と曜日の整合性は取れてい"
-      ],
-      "readability": {
-        "avg_paragraph": 137.2,
-        "avg_sentence": 49.6,
-        "long_share": 0.277,
-        "max_paragraph": 217,
-        "paragraphs": 17,
-        "sentences": 47
-      },
-      "score": 100,
-      "source": "windows-blog-jp",
-      "title": "Cowork の新機能: プラグインの拡充とロールベースのスキル"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T18:54:04.727371+00:00",
-      "attempt": 1,
-      "id": "ffaa4a29c645a46c",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 50.5字・60字超の文が 26% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 130.4字・最長 220字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 130.4,
-        "avg_sentence": 50.5,
-        "long_share": 0.258,
-        "max_paragraph": 220,
-        "paragraphs": 12,
-        "sentences": 31
-      },
-      "score": 100,
-      "source": "hiroshima-u",
-      "title": "【研究成果】MRI画像から予後に関わる免疫状態を解明 -画像/遺伝子情報のAI解析より治療薬候補へつながる免疫状態を探索-"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T18:54:52.268183+00:00",
-      "attempt": 0,
-      "id": "ffaa4a29c645a46c",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 91.8,
-        "avg_sentence": 43.2,
-        "long_share": 0.118,
-        "max_paragraph": 175,
-        "paragraphs": 16,
-        "sentences": 34
-      },
-      "score": 100,
-      "source": "hiroshima-u",
-      "title": "【研究成果】MRI画像から予後に関わる免疫状態を解明 -画像/遺伝子情報のAI解析より治療薬候補へつながる免疫状態を探索-"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T19:11:20.693166+00:00",
@@ -13876,6 +13781,127 @@
       "score": 100,
       "source": "ipa",
       "title": "【DXSQUARE】新着記事「DSSを全社の共通言語とし、デジタル人材育成を加速。 実践で学び、事業成長につなぐリコーの挑戦」を公開しました"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T20:51:33.894024+00:00",
+      "attempt": 1,
+      "id": "00c85acf9d22d94f",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "github-changelog-copilot",
+      "title": "GitHub Copilot in VS Code, Universe releases"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T20:51:53.255105+00:00",
+      "attempt": 1,
+      "id": "9ffbd8f146ab9326",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 57.2字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 171.5字・最長 275字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 171.5,
+        "avg_sentence": 57.2,
+        "long_share": 0.364,
+        "max_paragraph": 275,
+        "paragraphs": 11,
+        "sentences": 33
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "インドの現金社会に決済革命～UPI急成長の背景と新たな課題～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T20:51:57.827114+00:00",
+      "attempt": 0,
+      "id": "9ffbd8f146ab9326",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 36.6,
+        "avg_sentence": 36.6,
+        "long_share": 0.074,
+        "max_paragraph": 75,
+        "paragraphs": 54,
+        "sentences": 54
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "インドの現金社会に決済革命～UPI急成長の背景と新たな課題～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T20:52:04.928112+00:00",
+      "attempt": 1,
+      "id": "21f4761ac0bc4960",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2245字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（357字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 123.7,
+        "avg_sentence": 59.6,
+        "long_share": 0.556,
+        "max_paragraph": 257,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "Accelerating software delivery with agentic QA automation using Amazon Nova Act "
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T20:52:12.916233+00:00",
+      "attempt": 2,
+      "id": "21f4761ac0bc4960",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 54.2字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 149.2字・最長 331字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 149.2,
+        "avg_sentence": 54.2,
+        "long_share": 0.333,
+        "max_paragraph": 331,
+        "paragraphs": 12,
+        "sentences": 33
+      },
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "Accelerating software delivery with agentic QA automation using Amazon Nova Act "
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T20:52:17.540586+00:00",
+      "attempt": 0,
+      "id": "21f4761ac0bc4960",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 59.5,
+        "avg_sentence": 29.7,
+        "long_share": 0.0,
+        "max_paragraph": 91,
+        "paragraphs": 33,
+        "sentences": 66
+      },
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "Accelerating software delivery with agentic QA automation using Amazon Nova Act "
     }
   ],
   "short_text_retry": {
