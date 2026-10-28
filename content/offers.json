@@ -149,6 +149,53 @@
       ]
     },
     {
+      "key": "telecom",
+      "match": "光回線|ネット回線|インターネット回線|固定回線|回線速度|通信速度|通信障害|WiMAX|ポケットWi-?Fi|モバイルWi-?Fi|ホームルーター|置くだけWi-?Fi|Wi-?Fiルーター|Wi-?Fi ?7|格安SIM|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|携帯キャリア|携帯料金|スマホ料金|通信料金|プロバイダ|テザリング|Starlink|スターリンク|10ギガ",
+      "eyebrow": "ネット環境を見直すなら",
+      "headline": "AIを快適に使うなら、まず回線から",
+      "lead": "動画やクラウドのAIを毎日使うなら、速くて安定した回線がいちばん効きます。工事不要のWi-Fiという選び方もあります。",
+      "partners": [
+        "gmo-hikari",
+        "biglobe-hikari",
+        "gmo-home-wifi",
+        "gmo-wimax",
+        "biglobe-wimax"
+      ],
+      "search": [
+        "ネットワーク 入門",
+        "通信 5G"
+      ],
+      "require": "ネットワーク|通信|5G|回線|インターネット",
+      "fill": [
+        "gadget",
+        "business"
+      ]
+    },
+    {
+      "key": "telecom-gadget",
+      "genre": "tech-gadget",
+      "match": "光回線|ネット回線|インターネット回線|固定回線|回線速度|通信速度|通信障害|WiMAX|ポケットWi-?Fi|モバイルWi-?Fi|ホームルーター|置くだけWi-?Fi|Wi-?Fiルーター|Wi-?Fi ?7|格安SIM|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|携帯キャリア|携帯料金|スマホ料金|通信料金|プロバイダ|テザリング|Starlink|スターリンク|10ギガ|5G回線|5G通信|モバイル通信",
+      "eyebrow": "ネット環境を見直すなら",
+      "headline": "スマホもPCも、つなぐ回線で快適さが変わる",
+      "lead": "家の光回線か、工事不要のWi-Fiか。使い方に合う回線を選ぶと、毎日のストレスが減ります。",
+      "partners": [
+        "gmo-hikari",
+        "biglobe-hikari",
+        "gmo-home-wifi",
+        "gmo-wimax",
+        "biglobe-wimax"
+      ],
+      "search": [
+        "ネットワーク 入門",
+        "通信 5G"
+      ],
+      "require": "ネットワーク|通信|5G|回線|インターネット",
+      "fill": [
+        "gadget",
+        "business"
+      ]
+    },
+    {
       "key": "gadget",
       "match": "スマートリング|ウェアラブル|イヤホン|スマートグラス|Pixel|iPhone|Galaxy|ヘルスケア|睡眠|AIデバイス|スマホ",
       "eyebrow": "AIガジェットを選ぶなら",
@@ -157,7 +204,9 @@
       "partners": [
         "ringconn",
         "e-earphone",
-        "plaud-notepin-s"
+        "plaud-notepin-s",
+        "gmo-wimax",
+        "gmo-home-wifi"
       ],
       "search": [
         "ガジェット AI",
@@ -957,6 +1006,51 @@
       "image": "https://www23.a8.net/svt/bgt?aid=261026994283&wid=001&eno=01&mid=s00000026713001008000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4OHOZ6+5Q4A+5YJRM",
       "shop": "Coloso公式"
+    },
+    "gmo-hikari": {
+      "program": "GMOとくとくBB光",
+      "name": "GMOとくとくBB光",
+      "label": "縛りなしの光回線",
+      "note": "契約期間の縛りがない光回線。今のフレッツ光やドコモ光からの乗り換え（転用・事業者変更）もWebで完結",
+      "image": "https://www24.a8.net/svt/bgt?aid=261029018871&wid=001&eno=01&mid=s00000000018040038000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BERA2+EEKKOI+50+6M9W0I",
+      "shop": "GMOとくとくBB"
+    },
+    "biglobe-hikari": {
+      "program": "BIGLOBE光",
+      "name": "BIGLOBE光",
+      "label": "1ギガも10ギガも",
+      "note": "1ギガと10ギガから選べる光回線。auやUQ mobileのスマホとまとめると割引あり",
+      "image": "https://www29.a8.net/svt/bgt?aid=261029018876&wid=001&eno=01&mid=s00000000040016006000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BERA2+EHJQPE+B4+2NBPO2",
+      "shop": "BIGLOBE"
+    },
+    "gmo-wimax": {
+      "program": "GMOとくとくBB WiMAX",
+      "name": "GMOとくとくBB WiMAX",
+      "label": "持ち歩けるWi-Fi",
+      "note": "工事なしで使えるWiMAX +5G。家でも外出先でも、ノートPCやタブレットをすぐネットにつなげる",
+      "image": "https://www26.a8.net/svt/bgt?aid=261029018872&wid=001&eno=01&mid=s00000000018021192000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BERA2+EF60AA+50+3I06GY",
+      "shop": "GMOとくとくBB"
+    },
+    "biglobe-wimax": {
+      "program": "BIGLOBE WiMAX +5G",
+      "name": "BIGLOBE WiMAX +5G",
+      "label": "端末つきで始める",
+      "note": "データ端末つきで申し込めるWiMAX +5G。工事不要で、届いたその日から使える",
+      "image": "https://www27.a8.net/svt/bgt?aid=261029018855&wid=001&eno=01&mid=s00000000040014074000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BERA2+E51N02+B4+2BKM6Q",
+      "shop": "BIGLOBE"
+    },
+    "gmo-home-wifi": {
+      "program": "GMOとくとくBB ホームWi-Fi",
+      "name": "GMOとくとくBB ホームWi-Fi",
+      "label": "工事不要の家Wi-Fi",
+      "note": "コンセントに挿すだけで使える置き型Wi-Fi。光回線の工事ができない部屋や、引っ越し直後に",
+      "image": "https://www27.a8.net/svt/bgt?aid=261029018877&wid=001&eno=01&mid=s00000000018046013000&mc=1",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BERA2+EI56B6+50+7LVLZM",
+      "shop": "GMOとくとくBB"
     }
   },
   "fallbackByGenre": {

@@ -66,6 +66,12 @@ PARTNERS: dict[str, dict] = {
     "s00000001418002": {"key": "office-english", "name": "6週間チャレンジ オフィス英会話", "label": "仕事の英会話に絞る", "note": "会議や電話など、仕事で使う英語のフレーズを6週間で練習する教材", "shop": "IQ-Strategy"},
     "s00000018318001": {"key": "matsui", "name": "松井証券", "label": "老舗のネット証券", "note": "株式・投資信託・NISAに対応した、創業100年超の証券会社", "shop": "松井証券公式"},
     "s00000008903007": {"key": "dmm-kabu", "name": "DMM 株", "label": "アプリで取引", "note": "日本株・米国株・NISAをアプリで取引できる。取引でポイントもたまる", "shop": "DMM.com証券"},
+    # 2026-10-29 追加：通信回線（光回線・WiMAX・ホームWi-Fi）。BIGLOBE は公式サイトの素材NG（A8の素材のみ使う）
+    "s00000000018040": {"key": "gmo-hikari", "name": "GMOとくとくBB光", "label": "縛りなしの光回線", "note": "契約期間の縛りがない光回線。今のフレッツ光やドコモ光からの乗り換え（転用・事業者変更）もWebで完結", "shop": "GMOとくとくBB"},
+    "s00000000040016": {"key": "biglobe-hikari", "name": "BIGLOBE光", "label": "1ギガも10ギガも", "note": "1ギガと10ギガから選べる光回線。auやUQ mobileのスマホとまとめると割引あり", "shop": "BIGLOBE"},
+    "s00000000018021": {"key": "gmo-wimax", "name": "GMOとくとくBB WiMAX", "label": "持ち歩けるWi-Fi", "note": "工事なしで使えるWiMAX +5G。家でも外出先でも、ノートPCやタブレットをすぐネットにつなげる", "shop": "GMOとくとくBB"},
+    "s00000000040014": {"key": "biglobe-wimax", "name": "BIGLOBE WiMAX +5G", "label": "端末つきで始める", "note": "データ端末つきで申し込めるWiMAX +5G。工事不要で、届いたその日から使える", "shop": "BIGLOBE"},
+    "s00000000018046": {"key": "gmo-home-wifi", "name": "GMOとくとくBB ホームWi-Fi", "label": "工事不要の家Wi-Fi", "note": "コンセントに挿すだけで使える置き型Wi-Fi。光回線の工事ができない部屋や、引っ越し直後に", "shop": "GMOとくとくBB"},
     "s00000023754001": {"key": "ohya", "name": "Oh!Ya（オーヤ）", "label": "面談をまとめて予約", "note": "不動産投資の会社との面談を、まとめて比較・予約できるサービス", "shop": "セレス"},
 }
 
@@ -75,6 +81,8 @@ NEW_TOPICS = [
     {"key": "video", "match": "動画生成|動画編集|Sora|Veo|Runway|Kling|動画AI|ショート動画|YouTube|字幕", "eyebrow": "この記事の技術を試すなら", "headline": "AIで動画を作るなら、編集まで一気に", "lead": "生成した動画は、字幕やカットを足すと一気に使えるものになります。", "partners": ["video-editor", "movie-school", "bandicut"], "search": ["動画編集 入門", "動画生成AI"], "require": "動画|映像|YouTube", "fill": ["image", "business"]},
     {"key": "english", "match": "翻訳|英語|英会話|通訳|DeepL|多言語|リアルタイム翻訳|語学", "eyebrow": "AIで英語を伸ばすなら", "headline": "AI翻訳の次は、自分で話せるように", "lead": "AIで訳せる時代でも、自分で話せると仕事の幅が広がります。", "partners": ["idiy", "sparta", "studysapuri-en", "lancul"], "search": ["英語 学習 AI", "英会話 独学"], "require": "英語|英会話|翻訳", "fill": ["chatgpt", "business"]},
     {"key": "security", "match": "セキュリティ|詐欺|フィッシング|マルウェア|ディープフェイク|脆弱性|プライバシー|不正アクセス|ランサム|なりすまし", "eyebrow": "AI時代の自衛策", "headline": "AIを悪用した詐欺から、PCとスマホを守る", "lead": "偽メールや偽サイトはAIで見分けがつきにくくなっています。対策ソフトは入れておくのが安心です。", "partners": ["virusbuster", "norton", "eset", "surfshark"], "search": ["サイバーセキュリティ 入門", "情報セキュリティ"], "require": "セキュリティ|サイバー|ハッカー|情報漏", "fill": ["business"]},
+    {"key": "telecom", "match": "光回線|ネット回線|インターネット回線|固定回線|回線速度|通信速度|通信障害|WiMAX|ポケットWi-?Fi|モバイルWi-?Fi|ホームルーター|置くだけWi-?Fi|Wi-?Fiルーター|Wi-?Fi ?7|格安SIM|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|携帯キャリア|携帯料金|スマホ料金|通信料金|プロバイダ|テザリング|Starlink|スターリンク|10ギガ", "eyebrow": "ネット環境を見直すなら", "headline": "AIを快適に使うなら、まず回線から", "lead": "動画やクラウドのAIを毎日使うなら、速くて安定した回線がいちばん効きます。工事不要のWi-Fiという選び方もあります。", "partners": ["gmo-hikari", "biglobe-hikari", "gmo-home-wifi", "gmo-wimax", "biglobe-wimax"], "search": ["ネットワーク 入門", "通信 5G"], "require": "ネットワーク|通信|5G|回線|インターネット", "fill": ["gadget", "business"]},
+    {"key": "telecom-gadget", "genre": "tech-gadget", "match": "光回線|ネット回線|インターネット回線|固定回線|回線速度|通信速度|通信障害|WiMAX|ポケットWi-?Fi|モバイルWi-?Fi|ホームルーター|置くだけWi-?Fi|Wi-?Fiルーター|Wi-?Fi ?7|格安SIM|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|携帯キャリア|携帯料金|スマホ料金|通信料金|プロバイダ|テザリング|Starlink|スターリンク|10ギガ|5G回線|5G通信|モバイル通信", "eyebrow": "ネット環境を見直すなら", "headline": "スマホもPCも、つなぐ回線で快適さが変わる", "lead": "家の光回線か、工事不要のWi-Fiか。使い方に合う回線を選ぶと、毎日のストレスが減ります。", "partners": ["gmo-hikari", "biglobe-hikari", "gmo-home-wifi", "gmo-wimax", "biglobe-wimax"], "search": ["ネットワーク 入門", "通信 5G"], "require": "ネットワーク|通信|5G|回線|インターネット", "fill": ["gadget", "business"]},
     {"key": "gadget", "match": "スマートリング|ウェアラブル|イヤホン|スマートグラス|Pixel|iPhone|Galaxy|ヘルスケア|睡眠|AIデバイス|スマホ", "eyebrow": "AIガジェットを選ぶなら", "headline": "身につけるAIは、軽さと電池持ちで選ぶ", "lead": "毎日使うものほど、着けているのを忘れるくらいの軽さが大事です。", "partners": ["ringconn", "e-earphone", "plaud-notepin-s"], "search": ["ガジェット AI", "スマートウォッチ"], "require": "ガジェット|スマート|デバイス|AI", "fill": ["voice", "business"]},
     {"key": "kids", "match": "子ども|子供|小学生|中学生|高校生|学校|教師|先生|教育現場|宿題", "eyebrow": "子どもとAIの付き合い方", "headline": "AIを「使われる側」でなく「作る側」に", "lead": "ゲーム感覚でプログラミングに触れると、AIへの理解も自然に深まります。", "partners": ["digitane", "litalico"], "search": ["子ども プログラミング", "AI 教育"], "require": "子ども|こども|プログラミング|教育|AI", "fill": ["coding"]},
 ]
@@ -101,6 +109,7 @@ ADD_TO_TOPIC = {
     "invest-nisa": ["matsui", "dmm-kabu"],
     "invest": ["matsui", "dmm-kabu"],
     "re-invest": ["ohya"],
+    "gadget": ["gmo-wimax", "gmo-home-wifi"],
 }
 
 
@@ -157,6 +166,13 @@ def main() -> int:
             for t in offers["topics"]:
                 if t["key"] == topic["key"]:
                     t.update(topic)
+    # 上から順に照合するので、通信回線の話題は「スマホ」で当たるガジェットより前に置く
+    order = [t["key"] for t in offers["topics"]]
+    for key in ("telecom", "telecom-gadget"):
+        if key in order and "gadget" in order and order.index(key) > order.index("gadget"):
+            t = offers["topics"].pop(order.index(key))
+            offers["topics"].insert([x["key"] for x in offers["topics"]].index("gadget"), t)
+            order = [x["key"] for x in offers["topics"]]
     for key, extra in ADD_TO_TOPIC.items():
         for t in offers["topics"]:
             if t["key"] == key:
