@@ -5023,6 +5023,14 @@
       "skipped": true,
       "url": "https://blog.cloudflare.com/kv-cache-exposure-remediation/"
     },
+    "95e7279c4133d4f8": {
+      "at": "2026-10-28T03:02:05.151993+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "ntt-docomo-business-ancar-agent",
+      "url": "https://www.ntt.com/about-us/press-releases/news/article/2026/1028.html"
+    },
     "95f54d2264b5894b": {
       "at": "2026-10-27T00:52:03.380928+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6106,6 +6114,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005964.000054842.html"
     },
+    "e6b690b26d8be60c": {
+      "at": "2026-10-28T03:02:34.788222+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "science",
+      "slug": "mosquito-mating-gene-discovery",
+      "url": "https://www.jst.go.jp/pr/announce/20261028/index.html"
+    },
     "e7e58cd7761fc453": {
       "at": "2026-10-26T11:02:34.699451+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6473,121 +6489,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:29.609060+00:00",
-      "attempt": 2,
-      "id": "d5eed8b6a4c8614b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2205字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-        "訳されていない英文が残っている（「A Framework for National Wealth Accounti…」）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "DroR、AIと人的資本・国富会計を扱うワーキングペーパー「AI調整済み包括的富（AIW）」の日本語による要約と解説を公開"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:36.398411+00:00",
-      "attempt": 1,
-      "id": "e25f5395926e8641",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1864字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "HubSpotのデータを毎日解析し、営業アクションを自動提案するAIエージェント「LisCore」が特許3件を取得。10社限定でβ版の申込受付を開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:43.563213+00:00",
-      "attempt": 2,
-      "id": "e25f5395926e8641",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2157字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "元記事の文をそのまま書き写している（2文。例「- 契約期間：初年度13ヶ月（初月は初期設定・データ読み込み期間として無償、課金は12ヶ月分。」）。自分の言葉で要約する"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "HubSpotのデータを毎日解析し、営業アクションを自動提案するAIエージェント「LisCore」が特許3件を取得。10社限定でβ版の申込受付を開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:57.989663+00:00",
-      "attempt": 1,
-      "id": "c49c4a64400ededc",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2250字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "プルーフポイントの調査で判明、ランサムウェア被害組織の65％が「AIによって攻撃の効果が高まった」と回答"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:55:06.418521+00:00",
-      "attempt": 2,
-      "id": "c49c4a64400ededc",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "プルーフポイントの調査で判明、ランサムウェア被害組織の65％が「AIによって攻撃の効果が高まった」と回答"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:31:02.519292+00:00",
-      "attempt": 1,
-      "id": "f13bf850a6274660",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1616字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "riken",
-      "title": "金星大気「スーパーローテーション」の長期変動を再現"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:31:09.461016+00:00",
-      "attempt": 2,
-      "id": "f13bf850a6274660",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1689字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "riken",
-      "title": "金星大気「スーパーローテーション」の長期変動を再現"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:31:22.975566+00:00",
-      "attempt": 1,
-      "id": "c0e2f38aabbe8325",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）"
-      ],
-      "score": null,
-      "source": "digital-agency",
-      "title": "「マイナポータル自治体手続申請サービス」の本格運用開始について掲載しました"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T02:31:30.162027+00:00",
@@ -12913,6 +12814,180 @@
       "score": 92,
       "source": "radar-itmedia.co.jp",
       "title": "Discord、公開サーバの会話をGoogle検索などの対象に プライバシーへの懸念も"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:01:34.869380+00:00",
+      "attempt": 1,
+      "id": "95e7279c4133d4f8",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2418字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 141.9,
+        "avg_sentence": 70.9,
+        "long_share": 0.643,
+        "max_paragraph": 262,
+        "paragraphs": 14,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "ntt-news-ai",
+      "title": "AIで顧客接点を高度化する「docomo business ANCAR(R)」、AIエージェント、マーケティングの新機能を追加"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:01:47.200940+00:00",
+      "attempt": 2,
+      "id": "95e7279c4133d4f8",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（2085字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 124.3,
+        "avg_sentence": 51.2,
+        "long_share": 0.206,
+        "max_paragraph": 232,
+        "paragraphs": 14,
+        "sentences": 34
+      },
+      "score": null,
+      "source": "ntt-news-ai",
+      "title": "AIで顧客接点を高度化する「docomo business ANCAR(R)」、AIエージェント、マーケティングの新機能を追加"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:02:00.285515+00:00",
+      "attempt": 2,
+      "id": "95e7279c4133d4f8",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 49.5字・60字超の文が 16% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 159.0字・最長 232字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 159.0,
+        "avg_sentence": 49.5,
+        "long_share": 0.156,
+        "max_paragraph": 232,
+        "paragraphs": 14,
+        "sentences": 45
+      },
+      "score": 100,
+      "source": "ntt-news-ai",
+      "title": "AIで顧客接点を高度化する「docomo business ANCAR(R)」、AIエージェント、マーケティングの新機能を追加"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:02:05.151543+00:00",
+      "attempt": 0,
+      "id": "95e7279c4133d4f8",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.5,
+        "avg_sentence": 44.7,
+        "long_share": 0.083,
+        "max_paragraph": 128,
+        "paragraphs": 27,
+        "sentences": 48
+      },
+      "score": 100,
+      "source": "ntt-news-ai",
+      "title": "AIで顧客接点を高度化する「docomo business ANCAR(R)」、AIエージェント、マーケティングの新機能を追加"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:02:14.756178+00:00",
+      "attempt": 1,
+      "id": "e6b690b26d8be60c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "訳されていない英文が残っている（「fruitless is essential for male Aedes ae…」）"
+      ],
+      "readability": {
+        "avg_paragraph": 152.4,
+        "avg_sentence": 54.1,
+        "long_share": 0.323,
+        "max_paragraph": 234,
+        "paragraphs": 11,
+        "sentences": 31
+      },
+      "score": null,
+      "source": "jst",
+      "title": "蚊のオスが「メスの羽音」に惹かれる理由を解明～行動の性差を生む遺伝子fruitlessがオスの耳をつくる～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:02:21.036806+00:00",
+      "attempt": 2,
+      "id": "e6b690b26d8be60c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1607字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 123.1,
+        "avg_sentence": 50.1,
+        "long_share": 0.222,
+        "max_paragraph": 195,
+        "paragraphs": 11,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "jst",
+      "title": "蚊のオスが「メスの羽音」に惹かれる理由を解明～行動の性差を生む遺伝子fruitlessがオスの耳をつくる～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:02:26.704700+00:00",
+      "attempt": 2,
+      "id": "e6b690b26d8be60c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 46.1字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 146.8字・最長 195字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 146.8,
+        "avg_sentence": 46.1,
+        "long_share": 0.143,
+        "max_paragraph": 195,
+        "paragraphs": 11,
+        "sentences": 35
+      },
+      "score": 100,
+      "source": "jst",
+      "title": "蚊のオスが「メスの羽音」に惹かれる理由を解明～行動の性差を生む遺伝子fruitlessがオスの耳をつくる～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:02:34.787875+00:00",
+      "attempt": 0,
+      "id": "e6b690b26d8be60c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 102.7,
+        "avg_sentence": 40.1,
+        "long_share": 0.098,
+        "max_paragraph": 166,
+        "paragraphs": 16,
+        "sentences": 41
+      },
+      "score": 100,
+      "source": "jst",
+      "title": "蚊のオスが「メスの羽音」に惹かれる理由を解明～行動の性差を生む遺伝子fruitlessがオスの耳をつくる～"
     }
   ],
   "short_text_retry": {
