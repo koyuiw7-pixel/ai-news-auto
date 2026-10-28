@@ -9,7 +9,10 @@
  *   取り消し・失敗・行方不明なら起動し直す（最大 max_dispatches 回）
  * - GitHub は同じ concurrency group の待機を1つしか持てない（新しい方が古い待機を取り消す）ので、
  *   速報レーンの実行が待機中なら新しく起動しない（次の回に回す）
- * - 1日の新規起動は FAST_DAILY_MAX（既定 daily_max）まで。FAST_DRY_RUN=1 なら起動せずログだけ
+ * - レーダー（radar.js）が KV の "radar" の outbox に置いた話題も、ここで queue に取り込んで同じ流れで起動する
+ * - 1日の新規起動は FAST_DAILY_MAX（既定 daily_max・速報レーン＋レーダー合計）まで。これは暴走よけの安全上限で、
+ *   通常の記事の上限とは別。超えた・諦めた話題は黙って落とさず GitHub の Issue（ラベル missed-news）で知らせる
+ * - FAST_DRY_RUN=1 なら起動せずログだけ
  */
 
 const UA = "Mozilla/5.0 (compatible; SaisokuFastLane/1.0; +https://ai-tech-express.jp)";
@@ -338,6 +341,44 @@ async function readAcks(gh, env, fetchImpl, now) {
 // 1回分
 // --------------------------------------------------------------------------- //
 
+/** オーナーへの知らせ（GitHub の Issue。ラベル missed-news でメールが届く）。同じ key は seen に記録して1回だけ */
+export function makeNotify(gh, seen, now) {
+  return async (key, title, body) => {
+    if (seen[key]) return false;
+    await gh(`/issues`, { method: "POST", body: JSON.stringify({ title, body, labels: ["missed-news"] }) });
+    seen[key] = now.toISOString();
+    return true;
+  };
+}
+
+/** レーダーが outbox に置いた話題を queue に取り込む（"radar" は読むだけ。取り込んだ印は state.radarTaken） */
+export function takeRadar(state, radarState, now, log) {
+  let dirty = false;
+  state.radarTaken ||= {};
+  for (const e of Object.values(radarState?.outbox || {})) {
+    if (!e?.id || state.radarTaken[e.id]) continue;
+    state.radarTaken[e.id] = now.toISOString();
+    dirty = true;
+    if (state.queue[e.id]) {
+      log.radar.push(`登録済み: ${String(e.title).slice(0, 60)}`);
+      continue;
+    }
+    state.queue[e.id] = {
+      id: e.id, url: e.url, title: e.title, source: e.source, reason: `レーダー（${e.via}）`,
+      publishedAt: e.publishedAt || null, detectedAt: e.detectedAt || now.toISOString(), status: "new", dispatches: 0,
+      sourceName: e.sourceName || "", secondary: Boolean(e.secondary), via: e.via || "", found: e.found || "",
+    };
+    log.radar.push(`取り込み: ${String(e.title).slice(0, 60)}${e.secondary ? `（報道: ${e.sourceName}）` : ""}`);
+  }
+  for (const [id, at] of Object.entries(state.radarTaken)) {
+    if (now - Date.parse(at) > 96 * 3600e3) {
+      delete state.radarTaken[id];
+      dirty = true;
+    }
+  }
+  return dirty;
+}
+
 /**
  * @param env  KV（FAST）・GH_TOKEN・REPO・WORKFLOW・FAST_DRY_RUN・FAST_DAILY_MAX
  * @param deps テスト用の差し替え { rules, fetch, gh }
@@ -351,7 +392,9 @@ export async function fastLane(env, now, deps = {}) {
   state.sources ||= {};
   state.queue ||= {};
   state.daily ||= {};
-  const log = { dry, polled: 0, notModified: 0, errors: {}, baseline: [], new: [], queued: [] };
+  state.notified ||= {};
+  const notify = makeNotify(gh, state.notified, now);
+  const log = { dry, polled: 0, notModified: 0, errors: {}, baseline: [], new: [], queued: [], radar: [] };
   let dirty = false;
 
   // 1. 取得と新着の判定
@@ -410,8 +453,15 @@ export async function fastLane(env, now, deps = {}) {
     log.queued.push(`${picked ? "登録" : "同じ会社の発表と重複（見送り）"}: ${c.title.slice(0, 60)}`);
   }
 
+  // レーダーの話題（KV の "radar" の outbox）
+  try {
+    if (takeRadar(state, await env.FAST.get("radar", "json"), now, log)) dirty = true;
+  } catch (e) {
+    log.errors.radar = String(e).slice(0, 80);
+  }
+
   // 2. 起動済みの記事の確認と、新規・再起動
-  if (await manageQueue(env, state, now, log, R, gh, dry, fetchImpl)) dirty = true;
+  if (await manageQueue(env, state, now, log, R, gh, dry, fetchImpl, notify)) dirty = true;
 
   // 3. 古い記録を消す
   for (const [id, e] of Object.entries(state.queue)) {
@@ -427,15 +477,32 @@ export async function fastLane(env, now, deps = {}) {
       dirty = true;
     }
   }
+  for (const [k, at] of Object.entries(state.notified)) {
+    if (now - Date.parse(at) > 7 * 86400e3) {
+      delete state.notified[k];
+      dirty = true;
+    }
+  }
   if (dirty) await env.FAST.put("state", JSON.stringify(state));
   log.open = Object.values(state.queue).filter((e) => ["new", "dispatched"].includes(e.status)).length;
   return log;
 }
 
-async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl) {
+/** 話題の説明（Issue の本文用） */
+const describe = (e) => `- ${e.title}\n  - ${e.url}${e.found ? `\n  - 見つけた見出し: ${e.found}` : ""}`;
+
+async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl, notify = async () => false) {
   const open = Object.values(state.queue).filter((e) => e.status === "new" || e.status === "dispatched");
   if (!open.length) return false;
   let dirty = false;
+  const tell = async (key, title, body) => {
+    if (dry) return;
+    try {
+      if (await notify(key, title, body)) dirty = true;
+    } catch (e) {
+      log.errors.notify = String(e).slice(0, 120);
+    }
+  };
   let runs = null;
   const getRuns = async () => (runs ??= (await gh(`/actions/workflows/${env.WORKFLOW}/runs?per_page=30`)).workflow_runs || []);
   const minutes = (iso) => (now - Date.parse(iso)) / 60000;
@@ -453,6 +520,11 @@ async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl) {
         Object.assign(e, { status: "done", outcome: ack.outcome, slug: ack.slug || "", doneAt: now.toISOString() });
         log.done = [...(log.done || []), `${ack.outcome}: ${e.title.slice(0, 50)}${ack.slug ? ` → ${ack.slug}` : ""}`];
         dirty = true;
+        if (ack.outcome === "capped" || ack.outcome === "failed") {
+          // パイプライン側の安全上限・失敗で記事にならなかった（黙って落とさない）
+          await tell(`ack:${e.id}`, `【自動通知】速報が記事になりませんでした（${ack.outcome}）`,
+            `速報レーンで起動した話題が記事になりませんでした（${ack.reason || ack.outcome}）。手動で確認してください。\n\n${describe(e)}`);
+        }
         continue;
       }
       const run = (await getRuns()).find(
@@ -470,6 +542,8 @@ async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl) {
         Object.assign(e, { status: "gave_up", outcome: why, doneAt: now.toISOString() });
         log.gaveUp = [...(log.gaveUp || []), `${e.title.slice(0, 50)}（${why}）`];
         dirty = true;
+        await tell(`gaveup:${e.id}`, "【自動通知】速報を記事にできませんでした（起動を諦めました）",
+          `${R.max_dispatches}回起動しても記事になりませんでした（${why}）。GitHub の Actions の「速報レーン」の実行を確認してください。\n\n${describe(e)}`);
         continue;
       }
       e.redoReason = why;
@@ -482,10 +556,18 @@ async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl) {
   const cap = Number(env.FAST_DAILY_MAX || R.daily_max);
   const fresh = open.filter((e) => e.status === "new").sort((a, b) => a.detectedAt.localeCompare(b.detectedAt));
   const allowance = Math.max(0, cap - (state.daily[day] || 0));
-  for (const e of fresh.slice(allowance)) {
+  const over = fresh.slice(allowance);
+  for (const e of over) {
     Object.assign(e, { status: "capped", doneAt: now.toISOString() });
     log.capped = [...(log.capped || []), e.title.slice(0, 50)];
     dirty = true;
+  }
+  if (over.length) {
+    // 安全上限（暴走よけ）に達した。黙って落とさず知らせる（同じ日の知らせは1回。2件目以降はコメントせず KV のログに残る）
+    await tell(`cap:${day}`, `【自動通知】速報レーンの安全上限（1日${cap}本）に達しました`,
+      `今日（${day}）の速報レーン＋レーダーの起動が安全上限 ${cap} 本に達したため、次の話題を起動していません。\n\n` +
+      `${over.map(describe).join("\n")}\n\n本当に大きなニュースなら、Actions の Auto Article Pipeline を fast_url にこの URL を入れて手動で実行してください。` +
+      `誤検知が続いている場合は scripts/fast_lane_rules.json を見直してください（上限は Worker の FAST_DAILY_MAX）。`);
   }
   const batch = [...redo, ...fresh.filter((e) => e.status === "new")].slice(0, R.max_per_run);
   if (!batch.length) return dirty;
@@ -497,6 +579,8 @@ async function manageQueue(env, state, now, log, R, gh, dry, fetchImpl) {
     id: e.id, url: e.url, title: e.title, source: e.source,
     publishedAt: e.publishedAt || pages[k].published || null, detectedAt: e.detectedAt,
     image: pages[k].image || "", text: pages[k].text || "",
+    // レーダーの話題: 出典の名前・報道が出典か（パイプラインが「〇〇の報道によると」と書く）
+    ...(e.via ? { sourceName: e.sourceName || "", secondary: Boolean(e.secondary), via: e.via, found: e.found || "" } : {}),
   }));
   const summary = meta.map((x, k) => ({
     url: x.url, title: x.title.slice(0, 60), textChars: x.text.length, image: Boolean(x.image), via: pages[k].via, status: pages[k].status,

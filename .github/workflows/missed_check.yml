@@ -1,0 +1,68 @@
+name: Missed news check
+
+# 毎朝の見逃しチェック（オーナーの朝の確認の前・日本時間 8:30）。
+# 前日〜今朝（直近30時間）の大きなニュース（Techmeme の river・Hacker News・ITmedia / Impress Watch / マイナビ / ゴリミー）のうち、
+# サイソクに記事が無いものを一覧にして、ジョブのサマリーと Issue（ラベル missed-news。オーナーにメールが届く）に出す。
+# 出典の候補（公式の発表、無ければ信頼できる報道）が見つかったものは state/radar_requests.json に足し、
+# 見張り番の Worker のレーダーが数分以内に速報レーンへ回す（取りこぼしを自動で埋める）。
+# 判定のルールは scripts/fast_lane_rules.json の radar（Worker と同じ）。Claude・Gemini は使わない（正規表現と取得だけ）
+on:
+  schedule:
+    - cron: "30 23 * * *"
+  workflow_dispatch:
+    inputs:
+      hours:
+        description: "何時間前までの見出しを調べるか"
+        required: false
+        default: "30"
+      request:
+        description: "出典の候補が見つかったものを速報レーンに回す（1=回す）"
+        required: false
+        default: "1"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: missed-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Check missed big stories
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          ARGS="--hours ${{ inputs.hours || '30' }} --issue"
+          if [ "${{ inputs.request || '1' }}" = "1" ]; then ARGS="$ARGS --request"; fi
+          python scripts/radar.py missed $ARGS
+
+      # 速報レーンへの依頼（state/radar_requests.json）を main に足す。待っている間に main が進んでいても衝突しないよう、最新に足し直す
+      - name: Commit requests
+        run: |
+          if [ -z "$(git status --porcelain state/radar_requests.json)" ]; then exit 0; fi
+          cp state/radar_requests.json "$RUNNER_TEMP/requests.json"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main
+            cp "$RUNNER_TEMP/requests.json" state/radar_requests.json
+            git add state/radar_requests.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "chore(radar): 見逃しチェックの速報レーンへの依頼"
+            git push origin HEAD:main && exit 0
+            echo "push に失敗しました。リトライ $i/5"
+            sleep 5
+          done
+          echo "::warning::速報レーンへの依頼を push できませんでした（Issue の一覧を見て手動で対応してください）"

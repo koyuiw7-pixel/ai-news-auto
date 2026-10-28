@@ -5,6 +5,7 @@
   "scripts": {
     "test": "node --test \"test/*.test.mjs\"",
     "live": "node test/live_check.mjs",
+    "radar-live": "node test/radar_live.mjs",
     "deploy": "npx wrangler deploy --config wrangler.toml"
   }
 }

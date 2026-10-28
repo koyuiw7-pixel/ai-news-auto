@@ -28,6 +28,12 @@ TITLE_RANGE = (18, 64)
 PASS_SCORE = 70
 # 事実確認・文の書き直しに使うモデルの段（速報レーンは待たせないよう quality にする。web_articles.py が切り替える）
 CHECK_TIER = "bulk"
+# 大きなニュース（速報レーン・主要企業の新モデルなど）を確認しているか（web_articles.py が切り替える）。
+# True のとき: 本文の長さの基準を MAJOR_BODY_RATIO 倍に緩め、細かい指摘は外科的に直して公開する（落とさない）
+MAJOR = False
+MAJOR_BODY_RATIO = 0.8
+# 外科的な修正に回す・修正後に受理する事実確認の点数（致命的な誤り＝fatal が無いときだけ）
+SURGICAL_MIN_SCORE = 75
 SOURCE_CAP = 9000
 ARTICLE_CAP = 9000
 
@@ -48,9 +54,10 @@ FACT_SCHEMA = {
         "grounded": {"type": "BOOLEAN"},
         "score": {"type": "INTEGER"},
         "problems": {"type": "ARRAY", "items": {"type": "STRING"}},
+        "fatal": {"type": "BOOLEAN"},
     },
     "required": ["grounded", "score", "problems"],
-    "propertyOrdering": ["grounded", "score", "problems"],
+    "propertyOrdering": ["grounded", "score", "problems", "fatal"],
 }
 
 FACT_SYSTEM = """あなたは報道機関の校閲記者です。AIが書いた記事を、元記事（一次情報）と1文ずつ突き合わせて事実確認します。
@@ -71,13 +78,18 @@ FACT_PROMPT = """# 元記事（一次情報。自動抽出なのでメニュー�
 - 記事にある数値・日付・価格・固有名詞・発言・対象者・提供状況が、元記事に書かれているか、元記事と矛盾しないかを確かめる。
 - 次は問題にしない: 元記事の内容の言い換え・要約、「確認済みの文脈」に書かれた事実（過去の経緯・日付・価格など）、「（編集部注）」と明記した一般的な背景説明（具体的な数値を含まないもの）、
   「元記事では言及なし」「発表されていない」といった記述、読者への一般的な助言（公式情報を確認しよう等）。
+- 「[元記事の情報]」の発信元・公開日時に基づく記述（「〇〇の公式ブログによると」「10月26日に発表」など）は元記事に書かれた事実として扱う。
+  米国時間と日本時間の時差による1日の日付のずれも問題にしない。
+- 広く知られた一般常識・定訳は創作として扱わない（例: SEC＝米証券取引委員会、IPO（上場）前の会社は株式を公開していない、Nasdaq は米国の株式市場）。
 - 次は必ず問題にする: 元記事に無い具体的な数値・日付・価格・機能・発言の創作、元記事との矛盾、
   予定や研究段階のものを提供開始済み・実用化済みのように書くこと、効能・効果の断定、特定個人への憶測。
 
 # 出力
 - grounded: 創作・矛盾が1つも無ければ true。1つでもあれば false。
 - score: 記事全体が元記事に裏付けられている度合い（0〜100）。軽微な言い過ぎは減点、創作・矛盾は大きく減点。
-- problems: 見つけた問題を最大8個。各項目は「記事の該当箇所（短く引用）→ 何が問題か」を1文で。問題が無ければ空配列。"""
+- problems: 見つけた問題を最大8個。各項目は「記事の該当箇所（短く引用）→ 何が問題か」を1文で。問題が無ければ空配列。
+- fatal: 数値・日付・価格・固有名詞・発表内容（何が・いつ・誰に提供されるか）の取り違えや創作が1つでもあれば true。
+  言い過ぎ・訳語の選び方・言い回し・補足説明の程度の問題だけなら false。"""
 
 
 CONTEXT_BLOCK = """
@@ -211,7 +223,7 @@ def structural_problems(record: dict, kind: str, source_text: str = "") -> list[
     easy = (record.get("easy") or "").strip()
     title = record.get("title") or ""
 
-    min_body = MIN_BODY.get(kind, 1800)
+    min_body = int(MIN_BODY.get(kind, 1800) * (MAJOR_BODY_RATIO if MAJOR else 1))
     if _plain_len(body) < min_body:
         problems.append(f"本文が短い（{_plain_len(body)}字 / 基準 {min_body}字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）")
     if _plain_len(easy) < MIN_EASY:
@@ -275,7 +287,10 @@ def fact_check(record: dict, source_text: str, context: str = "") -> dict:
     except (TypeError, ValueError):
         score = 0
     problems = [str(p).strip() for p in (data.get("problems") or []) if str(p).strip()][:8]
-    return {"grounded": bool(data.get("grounded")), "score": max(0, min(100, score)), "problems": problems, "model": model}
+    grounded = bool(data.get("grounded"))
+    # fatal が無い（古い形の応答）ときは、不合格を致命的とみなす（緩める方向に倒さない）
+    fatal = bool(data.get("fatal")) if "fatal" in data else not grounded
+    return {"grounded": grounded, "score": max(0, min(100, score)), "problems": problems, "fatal": fatal, "model": model}
 
 
 def evaluate(record: dict, source_text: str, kind: str, context: str = "", check_facts: bool = True) -> dict:
@@ -363,7 +378,7 @@ def polish(record: dict, source_text: str, kind: str, context: str = "", check_f
     for a, b in zip(heads_old, heads_new):
         if _PROTECTED_HEADING_RE.match(a) and _norm(a) != _norm(b):
             return None, f"決まった章名が変わった（{a}→{b}）"[:80]
-    if _plain_len(new_body) < max(length * 0.9, MIN_BODY.get(kind, 1800)):
+    if _plain_len(new_body) < max(length * 0.9, MIN_BODY.get(kind, 1800) * (MAJOR_BODY_RATIO if MAJOR else 1)):
         return None, f"本文が縮んだ（{length}→{_plain_len(new_body)}字）"
     # 「3つあります」のような1桁の数は箇条書きにするときに増えるので見逃す（事実確認は後で通す）
     added = {n for n in _numbers(new_body) - _numbers(body) if len(n) > 1}
@@ -429,7 +444,7 @@ def length_only(verdict: dict) -> bool:
 def expand(record: dict, source_text: str, kind: str, context: str = "", check_facts: bool = True):
     """本文が少し短いだけの原稿を、元の情報源の事実で書き足す。(record, verdict) か (None, 理由)"""
     body = record.get("body") or ""
-    length, target = _plain_len(body), MIN_BODY.get(kind, 1800)
+    length, target = _plain_len(body), int(MIN_BODY.get(kind, 1800) * (MAJOR_BODY_RATIO if MAJOR else 1))
     prompt = EXPAND_PROMPT.format(length=length, target=target, source=(source_text or "")[:12000], body=body)
     data, model = llm.generate_json(EXPAND_SYSTEM, prompt, POLISH_SCHEMA, temperature=0.4, max_output_tokens=16384, tier=CHECK_TIER)
     new_body = re.sub(r"^(#{1,6}) +(?:#{1,6} +)+", r"\1 ", str(data.get("body_markdown") or "").strip(), flags=re.M)
@@ -444,6 +459,97 @@ def expand(record: dict, source_text: str, kind: str, context: str = "", check_f
         return None, "書き足し後の確認に不合格: " + "; ".join(verdict["problems"][:2])
     verdict["expanded_by"] = model
     return expanded, verdict
+
+
+SURGICAL_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "title": {"type": "STRING"},
+        "lede": {"type": "STRING"},
+        "highlights": {"type": "ARRAY", "items": {"type": "STRING"}},
+        "body_markdown": {"type": "STRING"},
+        "easy_markdown": {"type": "STRING"},
+    },
+    "required": ["title", "lede", "highlights", "body_markdown", "easy_markdown"],
+}
+
+SURGICAL_SYSTEM = """あなたはニュースサイトのデスクです。校閲で指摘された箇所だけを、最小限の手直しで直します。
+出力は指定の JSON だけ。"""
+
+SURGICAL_PROMPT = """校閲記者が次の記事に指摘をしました。指摘された箇所だけを直してください。
+
+# 校閲の指摘
+{problems}
+
+# 直し方
+- 指摘された文（または文の一部）だけを直す。元記事に無い事実・言い過ぎは削るか、元記事どおりの弱い言い方に直す。
+  訳語の指摘は正しい訳語に直す。直せないときはその文を削る。
+- 指摘されていない文・見出し（## と ###）・表・リンク・数字は一字も変えない。
+- 新しい事実・数字・日付・固有名詞を足さない。
+- タイトル・リード・要点（highlights）・かんたん版も、指摘があればそこだけ直し、なければそのまま返す。
+
+# 元記事
+<<<
+{source}
+>>>
+
+# 記事
+タイトル: {title}
+リード: {lede}
+要点: {highlights}
+
+本文:
+<<<
+{body}
+>>>
+
+かんたん版:
+<<<
+{easy}
+>>>"""
+
+
+def surgical_ok(verdict: dict) -> bool:
+    """外科的な修正に回せる不合格か（形のチェックは通り、事実確認が致命的でなく SURGICAL_MIN_SCORE 点以上）"""
+    fact = verdict.get("fact") or {}
+    return bool(fact) and not verdict.get("structural") and not fact.get("fatal") and fact.get("score", 0) >= SURGICAL_MIN_SCORE
+
+
+def surgical_fix(record: dict, source_text: str, kind: str, problems: list[str], context: str = "", check_facts: bool = True):
+    """大きなニュースの細かい指摘（言い過ぎ・訳語・補足の程度）を、指摘された文だけ直して受理する。
+    (record, verdict) か (None, 理由)。直したあとも致命的でなく SURGICAL_MIN_SCORE 点以上なら、残った細かい指摘は受理する"""
+    body = record.get("body") or ""
+    prompt = SURGICAL_PROMPT.format(
+        problems="\n".join(f"- {p}" for p in problems[:8]), source=(source_text or "")[:SOURCE_CAP],
+        title=record.get("title", ""), lede=record.get("lede", ""), highlights=" / ".join(record.get("highlights") or []),
+        body=body, easy=record.get("easy", ""),
+    )
+    data, model = llm.generate_json(SURGICAL_SYSTEM, prompt, SURGICAL_SCHEMA, temperature=0.2, max_output_tokens=16384, tier=CHECK_TIER)
+    new_body = re.sub(r"^(#{1,6}) +(?:#{1,6} +)+", r"\1 ", str(data.get("body_markdown") or "").strip(), flags=re.M)
+    heads_old, heads_new = _HEADING_RE.findall(body), _HEADING_RE.findall(new_body)
+    if [_norm(h) for h in heads_old] != [_norm(h) for h in heads_new]:
+        return None, f"見出しが変わった（{len(heads_old)}→{len(heads_new)}個）"
+    if _plain_len(new_body) < _plain_len(body) * 0.85:
+        return None, f"本文を削りすぎた（{_plain_len(body)}→{_plain_len(new_body)}字）"
+    added = {n for n in _numbers(new_body) - _numbers(body) - _numbers(source_text) if len(n) > 1}
+    if added:
+        return None, f"元に無い数字が増えた（{', '.join(sorted(added)[:5])}）"
+    fixed = {**record, "body": new_body}
+    for key, field in (("title", "title"), ("lede", "lede"), ("easy_markdown", "easy")):
+        value = str(data.get(key) or "").strip()
+        if value:
+            fixed[field] = value
+    highlights = [str(h).strip() for h in data.get("highlights") or [] if str(h).strip()]
+    if highlights:
+        fixed["highlights"] = highlights[:3]
+    verdict = evaluate(fixed, source_text, kind, context, check_facts=check_facts)
+    verdict["fixed_by"] = model
+    if verdict["ok"] or verdict.get("soft"):
+        return fixed, verdict
+    if MAJOR and surgical_ok(verdict):
+        # 残りは細かい指摘だけ（致命的な誤りなし・点数も基準以上）。大きなニュースは落とさない
+        return fixed, {**verdict, "ok": True, "accepted_minor": verdict.get("problems") or []}
+    return None, "直したあとの確認に不合格: " + "; ".join(verdict.get("problems", [])[:2])
 
 
 def feedback_block(problems: list[str]) -> str:

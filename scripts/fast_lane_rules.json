@@ -1,26 +1,756 @@
 {
-  "_doc": "速報レーンの共通ルール。見張り番の Worker（ops/watchdog/src/fastlane.js）と scripts/fast_lane.py が同じ判定をする。判定: 除外語なし かつ（主要な製品名＋発表の語/製品名で始まる見出し、または 発表の語だけ＝公式ニュースルームの発表）。ai_only の発信元は AI の語か製品名が要る。正規表現は Python と JavaScript の両方で動く書き方だけ（大文字小文字は区別しない）。変えたら ops/watchdog で npm test → npx wrangler deploy",
-  "daily_max": 10,
+  "_doc": "速報レーンの共通ルール。見張り番の Worker（ops/watchdog/src/fastlane.js・radar.js）と scripts/fast_lane.py・scripts/radar.py が同じ判定をする。判定: 除外語なし かつ（主要な製品名＋発表の語/製品名で始まる見出し、または 発表の語だけ＝公式ニュースルームの発表）。ai_only の発信元は AI の語か製品名が要る。daily_max は速報レーン＋レーダーを合わせた1日の安全上限（暴走よけ。通常の記事の上限とは別。超えたら Issue で知らせる）。正規表現は Python と JavaScript の両方で動く書き方だけ（大文字小文字は区別しない）。変えたら ops/watchdog で npm test → npx wrangler deploy",
+  "daily_max": 30,
   "max_age_hours": 12,
   "max_per_run": 1,
   "max_dispatches": 3,
   "sources": [
-    {"slug": "openai-news", "name": "OpenAI公式ブログ", "type": "rss", "url": "https://openai.com/news/rss.xml", "entity": "openai"},
-    {"slug": "anthropic-news", "name": "Anthropic公式ニュース", "type": "html", "url": "https://www.anthropic.com/news", "link_re": "^/news/[a-z0-9][a-z0-9-]+$", "entity": "anthropic"},
-    {"slug": "google-ai-blog", "name": "Google公式ブログ（AI）", "type": "rss", "url": "https://blog.google/technology/ai/rss/", "entity": "google"},
-    {"slug": "google-gemini-blog", "name": "Google公式ブログ（Gemini）", "type": "rss", "url": "https://blog.google/products/gemini/rss/", "entity": "google"},
-    {"slug": "google-deepmind-blog", "name": "Google DeepMind公式ブログ", "type": "rss", "url": "https://deepmind.google/blog/rss.xml", "entity": "google"},
-    {"slug": "google-developers-blog", "name": "Google Developers Blog", "type": "rss", "url": "https://developers.googleblog.com/feeds/posts/default", "entity": "google", "ai_only": true},
-    {"slug": "microsoft-blog", "name": "Microsoft公式ブログ", "type": "rss", "url": "https://blogs.microsoft.com/feed/", "entity": "microsoft", "ai_only": true},
-    {"slug": "microsoft-source", "name": "Microsoft Source（ニュースルーム）", "type": "rss", "url": "https://news.microsoft.com/source/feed/", "entity": "microsoft", "ai_only": true},
-    {"slug": "nvidia-blog", "name": "NVIDIA公式ブログ", "type": "rss", "url": "https://blogs.nvidia.com/feed/", "entity": "nvidia"},
-    {"slug": "meta-newsroom", "name": "Metaニュースルーム", "type": "rss", "url": "https://about.fb.com/news/feed/", "entity": "meta", "ai_only": true},
-    {"slug": "mistral-news", "name": "Mistral AI公式ニュース", "type": "rss", "url": "https://mistral.ai/news/rss", "entity": "mistral"},
-    {"slug": "apple-newsroom-jp", "name": "Apple Newsroom（日本）", "type": "rss", "url": "https://www.apple.com/jp/newsroom/rss-feed.rss", "entity": "apple", "ai_only": true}
+    {
+      "slug": "openai-news",
+      "name": "OpenAI公式ブログ",
+      "type": "rss",
+      "url": "https://openai.com/news/rss.xml",
+      "entity": "openai"
+    },
+    {
+      "slug": "anthropic-news",
+      "name": "Anthropic公式ニュース",
+      "type": "html",
+      "url": "https://www.anthropic.com/news",
+      "link_re": "^/news/[a-z0-9][a-z0-9-]+$",
+      "entity": "anthropic"
+    },
+    {
+      "slug": "google-ai-blog",
+      "name": "Google公式ブログ（AI）",
+      "type": "rss",
+      "url": "https://blog.google/technology/ai/rss/",
+      "entity": "google"
+    },
+    {
+      "slug": "google-gemini-blog",
+      "name": "Google公式ブログ（Gemini）",
+      "type": "rss",
+      "url": "https://blog.google/products/gemini/rss/",
+      "entity": "google"
+    },
+    {
+      "slug": "google-deepmind-blog",
+      "name": "Google DeepMind公式ブログ",
+      "type": "rss",
+      "url": "https://deepmind.google/blog/rss.xml",
+      "entity": "google"
+    },
+    {
+      "slug": "google-developers-blog",
+      "name": "Google Developers Blog",
+      "type": "rss",
+      "url": "https://developers.googleblog.com/feeds/posts/default",
+      "entity": "google",
+      "ai_only": true
+    },
+    {
+      "slug": "microsoft-blog",
+      "name": "Microsoft公式ブログ",
+      "type": "rss",
+      "url": "https://blogs.microsoft.com/feed/",
+      "entity": "microsoft",
+      "ai_only": true
+    },
+    {
+      "slug": "microsoft-source",
+      "name": "Microsoft Source（ニュースルーム）",
+      "type": "rss",
+      "url": "https://news.microsoft.com/source/feed/",
+      "entity": "microsoft",
+      "ai_only": true
+    },
+    {
+      "slug": "nvidia-blog",
+      "name": "NVIDIA公式ブログ",
+      "type": "rss",
+      "url": "https://blogs.nvidia.com/feed/",
+      "entity": "nvidia"
+    },
+    {
+      "slug": "meta-newsroom",
+      "name": "Metaニュースルーム",
+      "type": "rss",
+      "url": "https://about.fb.com/news/feed/",
+      "entity": "meta",
+      "ai_only": true
+    },
+    {
+      "slug": "mistral-news",
+      "name": "Mistral AI公式ニュース",
+      "type": "rss",
+      "url": "https://mistral.ai/news/rss",
+      "entity": "mistral"
+    },
+    {
+      "slug": "apple-newsroom-jp",
+      "name": "Apple Newsroom（日本）",
+      "type": "rss",
+      "url": "https://www.apple.com/jp/newsroom/rss-feed.rss",
+      "entity": "apple",
+      "ai_only": true
+    }
   ],
-  "model_re": "GPT[-‐ ]?\\d|(?<![A-Za-z])o[1-9](?:-mini|-pro)?(?![A-Za-z])|ChatGPT|(?<![A-Za-z])Sora(?![A-Za-z])|Codex|Claude\\s?(?:\\d|Opus|Sonnet|Haiku|Code)|Gemini\\s?(?:\\d|Ultra|Pro|Flash|Nano|Live|API|CLI|app)|Gemma\\s?\\d|(?<![A-Za-z])Veo\\s?\\d|Imagen\\s?\\d|Genie\\s?\\d|NotebookLM|Project Astra|Alpha(?:Fold|Evolve|Proof|Genome)|Llama\\s?\\d|(?<![A-Za-z])Grok\\s?\\d|Apple Intelligence|iPhone\\s?\\d{2}|Pixel\\s?\\d{2}|Nemotron|(?<![A-Za-z])Phi-\\d|MAI-\\d|Copilot|(?:Mistral|Mixtral|Ministral|Magistral|Codestral|Devstral|Voxtral|Pixtral)\\s?(?:\\d|Large|Medium|Small)",
-  "head_re": "^\\s*(?:Introducing\\s+|Meet\\s+|新しい|新)?[A-Za-z]*(?:GPT|ChatGPT|Claude|Gemini|Gemma|Llama|Grok|Sora|Veo|Codex|Nemotron|Mistral|Mixtral|Ministral|Magistral|Codestral|Devstral|Voxtral|Pixtral|o\\d)(?![a-z])",
-  "launch_re": "introduc|launch|announc|unveil|releas|now available|available (?:now|today|in|to|for|on|starting)|general(?:ly)? availab|(?<![A-Za-z])GA(?![A-Za-z])|rolling out|rolls out|coming to|comes to|arriv(?:e|es|ing) (?:in|on|to)|expands? to|^\\s*new\\s|new model|open[- ]sourc|open[- ]weight|pricing|price|cheaper|preview|(?<![A-Za-z])beta(?![A-Za-z])|upgrade|(?<![A-Za-z])IPO(?![A-Za-z])|initial public offering|acquir|発表|提供開始|一般提供|公開|リリース|新機能|新モデル|搭載|値下げ|料金|登場|発売|開始",
+  "model_re": "GPT[-‐ ]?\\d|(?<![A-Za-z])o[1-9](?:-mini|-pro)?(?![A-Za-z])|ChatGPT|(?<![A-Za-z])Sora(?![A-Za-z])|Codex|Claude\\s?(?:\\d|Opus|Sonnet|Haiku|Code)|Gemini\\s?(?:\\d|Ultra|Pro|Flash|Nano|Live|API|CLI|app)|Gemma\\s?\\d|(?<![A-Za-z])Veo\\s?\\d|Imagen\\s?\\d|Genie\\s?\\d|NotebookLM|Project Astra|Alpha(?:Fold|Evolve|Proof|Genome)|Llama\\s?\\d|(?<![A-Za-z])Grok\\s?\\d|Apple Intelligence|iPhone\\s?\\d{2}|Pixel\\s?\\d{2}|Nemotron|(?<![A-Za-z])Phi-\\d|MAI-\\d|Copilot|Siri(?:\\s?AI)?|(?<![A-Za-z])i(?:Pad)?OS\\s?\\d{2}|macOS\\s?\\d{2}|Android\\s?\\d{2}|(?:Mistral|Mixtral|Ministral|Magistral|Codestral|Devstral|Voxtral|Pixtral)\\s?(?:\\d|Large|Medium|Small)",
+  "head_re": "^\\s*(?:Introducing\\s+|Meet\\s+|新しい|新)?[A-Za-z]*(?:GPT|ChatGPT|Claude|Gemini|Gemma|Llama|Grok|Sora|Veo|Codex|Genie|Imagen|Siri|NotebookLM|Nemotron|Mistral|Mixtral|Ministral|Magistral|Codestral|Devstral|Voxtral|Pixtral|o\\d)(?![a-z])",
+  "launch_re": "introduc|launch|announc|unveil|releas|now available|available (?:now|today|in|to|for|on|starting)|general(?:ly)? availab|(?<![A-Za-z])GA(?![A-Za-z])|rolling out|rolls out|coming to|comes to|arriv(?:e|es|ing) (?:in|on|to)|expands? to|^\\s*new\\s|new model|open[- ]sourc|open[- ]weight|pricing|price|cheaper|preview|(?<![A-Za-z])beta(?![A-Za-z])|upgrade|(?<![A-Za-z])IPO(?![A-Za-z])|initial public offering|(?<![A-Za-z])S-1(?![0-9])|acquir|acquisition|merger|上場|買収|発表|提供開始|一般提供|公開|リリース|新機能|新モデル|搭載|値下げ|料金|登場|発売|開始|利用可能|利用できる|日本語対応|対応開始",
   "exclude_re": "webinar|ウェビナー|seminar|セミナー|meetup|hackathon|ハッカソン|register now|join us|livestream|ライブ配信|イベント開催|開催のお知らせ|参加者募集|登壇|出展|展示会|podcast|episode|GFN Thursday|GeForce NOW|live updates|hiring|careers|(?<![A-Za-z])joins (?:the |our )?(?:board|team|trust)|appoint|customer stor|case study|success stor|(?<![A-Za-z])helps(?![A-Za-z])|how [A-Za-z0-9 .&'’-]{1,40} (?:uses|is using|used|built|transformed)|(?<![A-Za-z])tips(?![A-Za-z])|ways to|things to know|best practices|earnings|quarterly results|dividend|決算|award|受賞|grant(?:s|ees)? |fellowship|scholarship|donat|office opening|opens? (?:a |an |its |new )?(?:office|offices)|(?<![A-Za-z])election|midterm|testimony|congress|人事|採用|募集|キャンペーン|プレゼント|事例",
-  "ai_re": "(?<![A-Za-z])(?:AI|A\\.I\\.|LLMs?|GPT[-\\w]*|Gemini|Gemma|Copilot|Claude|ChatGPT|agents?|agentic|machine learning|deep learning|neural|generative|models?|inference|Llama|NVIDIA|GPU|robot\\w*)(?![A-Za-z])|人工知能|生成AI|機械学習|深層学習|大規模言語|言語モデル|エージェント|チャットボット|ロボット|推論|Apple Intelligence"
+  "ai_re": "(?<![A-Za-z])(?:AI|A\\.I\\.|LLMs?|GPT[-\\w]*|Gemini|Gemma|Copilot|Claude|ChatGPT|agents?|agentic|machine learning|deep learning|neural|generative|models?|inference|Llama|NVIDIA|GPU|robot\\w*)(?![A-Za-z])|人工知能|生成AI|機械学習|深層学習|大規模言語|言語モデル|エージェント|チャットボット|ロボット|推論|Apple Intelligence",
+  "radar": {
+    "_doc": "大きなニュースのレーダー（ops/watchdog/src/radar.js が数分おき・scripts/radar.py が毎朝の見逃しチェック）。まとめサイト（Techmeme・Hacker News・日本の IT メディア）は「見つけるため」だけに使い、記事の出典は一次情報（公式の発表・SEC の書類）を探して使う。一次情報が見つからないときだけ outlets（信頼できる報道機関）の記事を出典にする（「〇〇の報道によると」と明記）。配信サービス（PR Wire 等）は使わない。daily_max はレーダーだけの1日の安全上限（速報レーンと合わせた上限は上の daily_max）",
+    "daily_max": 20,
+    "max_age_hours": 36,
+    "max_per_run": 2,
+    "coverage_hours": 72,
+    "sources": [
+      {
+        "slug": "techmeme",
+        "name": "Techmeme",
+        "type": "rss",
+        "url": "https://www.techmeme.com/feed.xml",
+        "lang": "en"
+      },
+      {
+        "slug": "hn",
+        "name": "Hacker News",
+        "type": "hn",
+        "url": "https://hacker-news.firebaseio.com/v0/topstories.json",
+        "lang": "en",
+        "top": 20
+      },
+      {
+        "slug": "itmedia-news",
+        "name": "ITmedia NEWS",
+        "type": "rss",
+        "url": "https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml",
+        "lang": "ja"
+      },
+      {
+        "slug": "itmedia-aiplus",
+        "name": "ITmedia AI+",
+        "type": "rss",
+        "url": "https://rss.itmedia.co.jp/rss/2.0/aiplus.xml",
+        "lang": "ja"
+      },
+      {
+        "slug": "ktai-watch",
+        "name": "ケータイ Watch",
+        "type": "rss",
+        "url": "https://k-tai.watch.impress.co.jp/data/rss/1.0/ktw/feed.rdf",
+        "lang": "ja"
+      },
+      {
+        "slug": "pc-watch",
+        "name": "PC Watch",
+        "type": "rss",
+        "url": "https://pc.watch.impress.co.jp/data/rss/1.0/pcw/feed.rdf",
+        "lang": "ja"
+      },
+      {
+        "slug": "mynavi",
+        "name": "マイナビニュース",
+        "type": "rss",
+        "url": "https://news.mynavi.jp/rss/index",
+        "lang": "ja"
+      },
+      {
+        "slug": "gori-me",
+        "name": "ゴリミー",
+        "type": "rss",
+        "url": "https://gori.me/feed",
+        "lang": "ja"
+      }
+    ],
+    "entities": [
+      {
+        "name": "openai",
+        "re": "OpenAI|ChatGPT|GPT[-‐ ]?\\d|(?<![A-Za-z])Sora(?![A-Za-z])|(?<![A-Za-z])Codex(?![A-Za-z])|Sam Altman|アルトマン"
+      },
+      {
+        "name": "anthropic",
+        "re": "Anthropic|アンソロピック|(?<![A-Za-z])Claude(?![A-Za-z])"
+      },
+      {
+        "name": "google",
+        "re": "Google|グーグル|Gemini|DeepMind|(?<![A-Za-z])Gemma(?![A-Za-z])|(?<![A-Za-z])Genie\\s?\\d|(?<![A-Za-z])Veo\\s?\\d|NotebookLM|(?<![A-Za-z])Pixel\\s?\\d|Android\\s?\\d{2}|Alphabet"
+      },
+      {
+        "name": "apple",
+        "re": "(?<![A-Za-z])Apple(?![A-Za-z])|アップル|iPhone|(?<![A-Za-z])iPad|(?<![A-Za-z])i(?:Pad)?OS\\s?\\d{2}|macOS|(?<![A-Za-z])Siri(?![A-Za-z])|Apple Intelligence|Vision Pro|(?<![A-Za-z])Mac(?:Book)?(?![A-Za-z])"
+      },
+      {
+        "name": "microsoft",
+        "re": "Microsoft|マイクロソフト|(?<![A-Za-z])Copilot(?![A-Za-z])|Windows\\s?1\\d|(?<![A-Za-z])Azure(?![A-Za-z])|Satya Nadella"
+      },
+      {
+        "name": "meta",
+        "re": "(?<![A-Za-z])Meta(?![A-Za-z])|(?<![A-Za-z])Llama\\s?\\d|Instagram|WhatsApp|Facebook|Zuckerberg|ザッカーバーグ"
+      },
+      {
+        "name": "nvidia",
+        "re": "NVIDIA|エヌビディア|GeForce|Blackwell|(?<![A-Za-z])Rubin(?![A-Za-z])|Jensen Huang"
+      },
+      {
+        "name": "xai",
+        "re": "(?<![A-Za-z])xAI(?![A-Za-z])|(?<![A-Za-z])Grok(?![A-Za-z])"
+      },
+      {
+        "name": "amazon",
+        "re": "Amazon|アマゾン|(?<![A-Za-z])AWS(?![A-Za-z])|(?<![A-Za-z])Alexa(?![A-Za-z])",
+        "ai_only": true
+      },
+      {
+        "name": "samsung",
+        "re": "Samsung|サムスン|(?<![A-Za-z])Galaxy\\s?(?:S|Z|Fold|Flip)\\s?\\d",
+        "ai_only": true
+      },
+      {
+        "name": "sony",
+        "re": "(?<![A-Za-z])Sony(?![A-Za-z])|ソニー|PlayStation|(?<![A-Za-z])PS[56](?![A-Za-z0-9])",
+        "ai_only": true
+      },
+      {
+        "name": "softbank",
+        "re": "SoftBank|ソフトバンクグループ|孫正義|Masayoshi Son",
+        "ai_only": true
+      },
+      {
+        "name": "mistral",
+        "re": "Mistral AI|(?<![A-Za-z])Mistral(?![A-Za-z])"
+      },
+      {
+        "name": "deepseek",
+        "re": "DeepSeek"
+      }
+    ],
+    "signal_re": "(?<![A-Za-z])(?:launch(?:es|ed)?|releas(?:es|ed)|unveil(?:s|ed)?|introduc(?:es|ed)|announc(?:es|ed)|debuts?|rolls? out|rolling out)(?![A-Za-z])|now available|available (?:today|now)|generally available|(?<![A-Za-z])IPO(?![A-Za-z])|(?<![A-Za-z])S-1(?![0-9])|initial public offering|go(?:es|ing)? public|(?<![A-Za-z])acquir(?:es|ed|ing)(?![A-Za-z])|acquisition of|(?<![A-Za-z])(?:buys|to buy)(?![A-Za-z])|merger|price cuts?|cuts prices|open[- ]sources|発表|提供開始|配信開始|一般提供|正式公開|公開|リリース|発売|日本語対応|対応開始|利用可能|利用できる|買収|上場|新規株式公開|正式申請|値下げ|新モデル|登場",
+    "exclude_re": "^\\s*(?:sources?|report|filing)s?:|sources say|according to (?:people|sources)|reportedly|rumou?r|(?<![A-Za-z])leak|噂|リーク|うわさ|(?<![A-Za-z])(?:might|could|may|plans to|planning to|considering|weighs|in talks|nears? deal)(?![A-Za-z])|検討|交渉|lawsuit|(?<![A-Za-z])sues?(?![A-Za-z])|(?<![A-Za-z])sued(?![A-Za-z])|(?<![A-Za-z])court(?![A-Za-z])|(?<![A-Za-z])judge(?![A-Za-z])|訴訟|提訴|earnings|(?<![A-Za-z])Q[1-4](?![A-Za-z0-9])|quarterly|決算|四半期|interview|インタビュー|opinion|op-ed|podcast|(?<![A-Za-z])review(?![A-Za-z])|hands-on|レビュー|使ってみた|試してみた|比較|まとめ|解説|セール|お得|割引|クーポン|キャンペーン|予約|ポイント|how to|(?<![A-Za-z])tips(?![A-Za-z])|方法|やり方|設定|使い方|連載|コラム|週間|今週|先週|ランキング|webinar|ウェビナー|セミナー|イベント|hiring|careers|採用|人事|就任|退任",
+    "ai_re": "(?<![A-Za-z])(?:AI|A\\.I\\.|LLMs?|GPT[-\\w]*|Gemini|Gemma|Copilot|Claude|ChatGPT|agents?|agentic|machine learning|deep learning|neural|generative|models?|inference|Llama|NVIDIA|GPU|robot\\w*)(?![A-Za-z])|人工知能|生成AI|機械学習|深層学習|大規模言語|言語モデル|エージェント|チャットボット|ロボット|推論|Apple Intelligence",
+    "primary_hosts": [
+      {
+        "host": "openai.com",
+        "entity": "openai",
+        "name": "OpenAI公式"
+      },
+      {
+        "host": "chatgpt.com",
+        "entity": "openai",
+        "name": "OpenAI公式"
+      },
+      {
+        "host": "anthropic.com",
+        "entity": "anthropic",
+        "name": "Anthropic公式"
+      },
+      {
+        "host": "claude.com",
+        "entity": "anthropic",
+        "name": "Anthropic公式"
+      },
+      {
+        "host": "blog.google",
+        "entity": "google",
+        "name": "Google公式ブログ"
+      },
+      {
+        "host": "deepmind.google",
+        "entity": "google",
+        "name": "Google DeepMind公式ブログ"
+      },
+      {
+        "host": "research.google",
+        "entity": "google",
+        "name": "Google Research公式ブログ"
+      },
+      {
+        "host": "googleblog.com",
+        "entity": "google",
+        "name": "Google公式ブログ"
+      },
+      {
+        "host": "apple.com",
+        "entity": "apple",
+        "name": "Apple公式"
+      },
+      {
+        "host": "microsoft.com",
+        "entity": "microsoft",
+        "name": "Microsoft公式"
+      },
+      {
+        "host": "blogs.windows.com",
+        "entity": "microsoft",
+        "name": "Windows公式ブログ"
+      },
+      {
+        "host": "github.blog",
+        "entity": "microsoft",
+        "name": "GitHub公式ブログ"
+      },
+      {
+        "host": "about.fb.com",
+        "entity": "meta",
+        "name": "Metaニュースルーム"
+      },
+      {
+        "host": "ai.meta.com",
+        "entity": "meta",
+        "name": "Meta AI公式"
+      },
+      {
+        "host": "nvidia.com",
+        "entity": "nvidia",
+        "name": "NVIDIA公式"
+      },
+      {
+        "host": "x.ai",
+        "entity": "xai",
+        "name": "xAI公式"
+      },
+      {
+        "host": "aboutamazon.com",
+        "entity": "amazon",
+        "name": "Amazon公式"
+      },
+      {
+        "host": "aboutamazon.jp",
+        "entity": "amazon",
+        "name": "Amazon公式（日本）"
+      },
+      {
+        "host": "aws.amazon.com",
+        "entity": "amazon",
+        "name": "AWS公式"
+      },
+      {
+        "host": "news.samsung.com",
+        "entity": "samsung",
+        "name": "Samsung Newsroom"
+      },
+      {
+        "host": "sony.com",
+        "entity": "sony",
+        "name": "ソニー公式"
+      },
+      {
+        "host": "sony.jp",
+        "entity": "sony",
+        "name": "ソニー公式"
+      },
+      {
+        "host": "playstation.com",
+        "entity": "sony",
+        "name": "PlayStation公式"
+      },
+      {
+        "host": "group.softbank",
+        "entity": "softbank",
+        "name": "ソフトバンクグループ公式"
+      },
+      {
+        "host": "mistral.ai",
+        "entity": "mistral",
+        "name": "Mistral AI公式"
+      },
+      {
+        "host": "deepseek.com",
+        "entity": "deepseek",
+        "name": "DeepSeek公式"
+      },
+      {
+        "host": "sec.gov",
+        "entity": "*",
+        "name": "米証券取引委員会（SEC）"
+      }
+    ],
+    "primary_path_re": "/(?:news|newsroom|blog|blogs|research|index|press|pressroom|stories|story|announcements?|releases?)/[^?#]{4,}|/Archives/edgar/data/|^/(?:[A-Za-z0-9_-]+/){0,5}[a-z0-9]+(?:-[a-z0-9]+){2,}/?$",
+    "outlets": [
+      {
+        "host": "k-tai.watch.impress.co.jp",
+        "name": "ケータイ Watch"
+      },
+      {
+        "host": "pc.watch.impress.co.jp",
+        "name": "PC Watch"
+      },
+      {
+        "host": "internet.watch.impress.co.jp",
+        "name": "INTERNET Watch"
+      },
+      {
+        "host": "impress.co.jp",
+        "name": "Impress Watch"
+      },
+      {
+        "host": "itmedia.co.jp",
+        "name": "ITmedia"
+      },
+      {
+        "host": "news.mynavi.jp",
+        "name": "マイナビニュース"
+      },
+      {
+        "host": "gori.me",
+        "name": "ゴリミー"
+      },
+      {
+        "host": "japan.cnet.com",
+        "name": "CNET Japan"
+      },
+      {
+        "host": "endpoints.news",
+        "name": "Endpoints News"
+      },
+      {
+        "host": "techcrunch.com",
+        "name": "TechCrunch"
+      },
+      {
+        "host": "theverge.com",
+        "name": "The Verge"
+      },
+      {
+        "host": "reuters.com",
+        "name": "ロイター"
+      },
+      {
+        "host": "cnbc.com",
+        "name": "CNBC"
+      },
+      {
+        "host": "axios.com",
+        "name": "Axios"
+      },
+      {
+        "host": "arstechnica.com",
+        "name": "Ars Technica"
+      },
+      {
+        "host": "wired.com",
+        "name": "WIRED"
+      },
+      {
+        "host": "engadget.com",
+        "name": "Engadget"
+      },
+      {
+        "host": "macrumors.com",
+        "name": "MacRumors"
+      },
+      {
+        "host": "9to5mac.com",
+        "name": "9to5Mac"
+      },
+      {
+        "host": "9to5google.com",
+        "name": "9to5Google"
+      },
+      {
+        "host": "bloomberg.com",
+        "name": "ブルームバーグ",
+        "paywall": true
+      },
+      {
+        "host": "theinformation.com",
+        "name": "The Information",
+        "paywall": true
+      },
+      {
+        "host": "wsj.com",
+        "name": "ウォール・ストリート・ジャーナル",
+        "paywall": true
+      },
+      {
+        "host": "ft.com",
+        "name": "フィナンシャル・タイムズ",
+        "paywall": true
+      }
+    ],
+    "blocked_hosts": [
+      "prnewswire.com",
+      "businesswire.com",
+      "globenewswire.com",
+      "prtimes.jp",
+      "atpress.ne.jp",
+      "value-press.com",
+      "kyodonewsprwire.jp",
+      "dreamnews.jp",
+      "accesswire.com",
+      "einpresswire.com"
+    ],
+    "aliases": [
+      "openai",
+      "chatgpt",
+      "anthropic",
+      "claude",
+      "google",
+      "gemini",
+      "deepmind",
+      "alphabet",
+      "apple",
+      "iphone",
+      "ipad",
+      "mac",
+      "macbook",
+      "microsoft",
+      "copilot",
+      "windows",
+      "azure",
+      "meta",
+      "facebook",
+      "instagram",
+      "whatsapp",
+      "nvidia",
+      "xai",
+      "grok",
+      "amazon",
+      "aws",
+      "alexa",
+      "samsung",
+      "galaxy",
+      "sony",
+      "playstation",
+      "softbank",
+      "mistral",
+      "deepseek",
+      "グーグル",
+      "アップル",
+      "マイクロソフト",
+      "アマゾン",
+      "エヌビディア",
+      "サムスン",
+      "ソニー",
+      "ソフトバンク",
+      "アンソロピック"
+    ],
+    "versioned_ok": [
+      "gemini",
+      "claude",
+      "grok",
+      "galaxy",
+      "iphone",
+      "windows"
+    ],
+    "stop_words": [
+      "2024",
+      "2025",
+      "2026",
+      "2027",
+      "about",
+      "after",
+      "agent",
+      "agents",
+      "ai",
+      "all",
+      "also",
+      "amid",
+      "and",
+      "announced",
+      "announces",
+      "announcing",
+      "api",
+      "app",
+      "apps",
+      "are",
+      "available",
+      "been",
+      "before",
+      "being",
+      "brings",
+      "build",
+      "building",
+      "but",
+      "can",
+      "ceo",
+      "cfo",
+      "co",
+      "com",
+      "companies",
+      "company",
+      "corp",
+      "cto",
+      "data",
+      "day",
+      "does",
+      "feature",
+      "features",
+      "first",
+      "for",
+      "free",
+      "from",
+      "get",
+      "has",
+      "have",
+      "her",
+      "his",
+      "how",
+      "http",
+      "https",
+      "inc",
+      "into",
+      "introduce",
+      "introduces",
+      "introducing",
+      "its",
+      "jp",
+      "launch",
+      "launched",
+      "launches",
+      "launching",
+      "llm",
+      "llms",
+      "look",
+      "ltd",
+      "make",
+      "max",
+      "meet",
+      "mini",
+      "model",
+      "models",
+      "month",
+      "more",
+      "new",
+      "news",
+      "not",
+      "now",
+      "off",
+      "our",
+      "out",
+      "over",
+      "people",
+      "per",
+      "plus",
+      "pro",
+      "release",
+      "released",
+      "releases",
+      "report",
+      "reports",
+      "run",
+      "said",
+      "says",
+      "source",
+      "sources",
+      "startup",
+      "than",
+      "that",
+      "the",
+      "their",
+      "then",
+      "this",
+      "today",
+      "top",
+      "turning",
+      "ultra",
+      "update",
+      "updates",
+      "use",
+      "user",
+      "users",
+      "using",
+      "version",
+      "via",
+      "was",
+      "week",
+      "were",
+      "what",
+      "when",
+      "where",
+      "which",
+      "while",
+      "who",
+      "why",
+      "will",
+      "with",
+      "www",
+      "year",
+      "years",
+      "you",
+      "your",
+      "お知らせ",
+      "アップデート",
+      "アプリ",
+      "アンケート",
+      "イベント",
+      "インターネット",
+      "ウェブ",
+      "エリア",
+      "オリジナル",
+      "オンライン",
+      "オンラインショップ",
+      "カフェ",
+      "キャラクター",
+      "キャンペーン",
+      "ギフト",
+      "クラブ",
+      "クリスマス",
+      "グッズ",
+      "グループ",
+      "ゲーム",
+      "コラボ",
+      "コレクション",
+      "コンテンツ",
+      "サイト",
+      "サポート",
+      "サービス",
+      "システム",
+      "ショップ",
+      "シリーズ",
+      "スイーツ",
+      "スクール",
+      "スタンプラリー",
+      "スタート",
+      "ストア",
+      "スペシャル",
+      "スマホ",
+      "スマートフォン",
+      "セット",
+      "セミナー",
+      "センター",
+      "ソリューション",
+      "チケット",
+      "チーム",
+      "ツアー",
+      "ツール",
+      "テクノロジー",
+      "デザイン",
+      "デジタル",
+      "データ",
+      "ニュース",
+      "ハロウィン",
+      "バージョン",
+      "パッケージ",
+      "パートナー",
+      "ビジネス",
+      "フェア",
+      "フェス",
+      "フェスタ",
+      "ブランド",
+      "プラットフォーム",
+      "プラン",
+      "プレスリリース",
+      "プロジェクト",
+      "ページ",
+      "ホテル",
+      "ホームページ",
+      "ポイント",
+      "マルシェ",
+      "マーケット",
+      "メニュー",
+      "モデル",
+      "モバイル",
+      "ユーザー",
+      "ライブ",
+      "ランキング",
+      "リアルタイム",
+      "リリース",
+      "レストラン",
+      "レポート"
+    ]
+  }
 }

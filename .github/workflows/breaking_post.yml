@@ -2,7 +2,8 @@ name: Breaking post
 
 # 速報の即時投稿。auto_run.yml が速報記事（breaking: true）を作ってデプロイした回に呼ぶ。
 # 記事ページと図解カード（/card/<slug>）が 200 になるのを最大8分待ち、Buffer で Threads・X・Facebook にすぐ出す。
-# 上限・対象の条件は scripts/breaking_post.py を参照（1日 BREAKING_PER_DAY 本まで・深夜は出さない）。
+# 上限・対象の条件は scripts/breaking_post.py を参照（1日 BREAKING_PER_DAY 本まで・深夜は出さず朝 6:00 に出す）。
+# 見張り番の Worker（ops/watchdog）が毎朝 6:00（日本時間）にも起動する（深夜に作った速報を出すため）。
 # 自分の投稿だけを扱う。他人の投稿へのコメント・返信は自動化しない。
 on:
   workflow_dispatch:
@@ -17,7 +18,7 @@ concurrency:
 jobs:
   post:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7

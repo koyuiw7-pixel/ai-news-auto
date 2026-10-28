@@ -316,15 +316,21 @@ def candidates(state: dict, hours: int) -> list[dict]:
     return articles
 
 
-# 速報の即時投稿（scripts/breaking_post.py）。通常の予約枠とは別に、1日 BREAKING_PER_DAY 本まで（最大5）。
+# 速報の即時投稿（scripts/breaking_post.py）。通常の予約枠（SNS_PER_DAY）とは別枠。
+# 速報は本物の大きなニュース（主要企業の公式発表・速報レーン）だけなので、すべて出せる本数にする（2026-10-28 オーナー判断）。
+# BREAKING_PER_DAY は暴走よけの安全上限（既定15・最大30。速報レーン＋レーダーの1日の安全上限30と同じ）
 # 速報は投稿時刻を dueAt に記録するので、前後90分の通常枠は空けられ、1日の総数はほぼ増えない
-BREAKING_PER_DAY = max(0, min(5, int(os.environ.get("BREAKING_PER_DAY") or 3)))
+BREAKING_PER_DAY = max(0, min(30, int(os.environ.get("BREAKING_PER_DAY") or 15)))
 # 生成からこの時間以内の速報記事だけ即時に出す（それより古いものは通常の予約に回す）
 BREAKING_MAX_AGE_MIN = 90
 # 通常の予約が速報記事に手を出さない時間（即時投稿の待ち時間より十分長く）
 BREAKING_RESERVE_HOURS = 3
-# 深夜（日本時間 1:00〜5:59）は即時投稿しない。朝の通常枠で出す
+# 深夜（日本時間 1:00〜5:59）は即時投稿しない。その間に作った速報は 6:00 に出す
+# （見張り番の Worker が 6:00 に breaking_post.yml を起動し、queued_for_morning の記事を出す。通常の予約には回さない）
 BREAKING_QUIET_HOURS_JST = range(1, 6)
+BREAKING_MORNING_HOUR_JST = 6
+# 朝の分を出せる時間（6:00〜この時刻まで。Worker の起動が遅れても拾えるように）
+BREAKING_MORNING_UNTIL_JST = 9
 
 
 def breaking_today(state: dict, now: datetime | None = None) -> int:
@@ -343,10 +349,25 @@ def breaking_allowed(state: dict, now: datetime | None = None) -> bool:
     return now.astimezone(JST).hour not in BREAKING_QUIET_HOURS_JST and breaking_today(state, now) < BREAKING_PER_DAY
 
 
+def queued_for_morning(article: dict, now: datetime | None = None) -> bool:
+    """深夜（日本時間 1〜5時）に出せなかった速報で、朝 6:00 に出す分か。
+    対象は前日 23:30〜当日 6:00 に作った記事（23:30〜1:00 は即時投稿がデプロイ待ちで深夜に入った分）。いまが 1:00〜9:00 のときだけ"""
+    now = (now or datetime.now(timezone.utc)).astimezone(JST)
+    if not (BREAKING_QUIET_HOURS_JST.start <= now.hour < BREAKING_MORNING_UNTIL_JST):
+        return False
+    morning = now.replace(hour=BREAKING_MORNING_HOUR_JST, minute=0, second=0, microsecond=0)
+    start = morning - timedelta(hours=6, minutes=30)
+    generated = datetime.fromisoformat(article["generatedAt"]).astimezone(JST)
+    return start <= generated < morning
+
+
 def reserved_for_breaking(article: dict, state: dict, now: datetime | None = None) -> bool:
     now = now or datetime.now(timezone.utc)
     if not article.get("breaking") or article["slug"] in state["posted"]:
         return False
+    if queued_for_morning(article, now):
+        # 深夜の速報は朝 6:00 の即時投稿に取っておく（通常の予約で後回しにしない）
+        return breaking_today(state, now) < BREAKING_PER_DAY
     age = now - datetime.fromisoformat(article["generatedAt"])
     return age < timedelta(hours=BREAKING_RESERVE_HOURS) and breaking_allowed(state, now)
 

@@ -115,6 +115,11 @@ const CASES = [
   ["apple-newsroom-jp", "Apple、新しいiPad miniを発表", false],
   ["apple-newsroom-jp", "Apple Intelligence、日本語で提供開始", true],
   ["mistral-news", "Voxtral 3", true],
+  // 2026-10-26〜27 に取りこぼした公式発表（Genie 4 は「発表の語」が無い見出しだった）
+  ["google-deepmind-blog", "Genie 4: A new generation of world simulation", true],
+  ["apple-newsroom-jp", "Siri AI、日本語で提供開始", true],
+  ["apple-newsroom-jp", "iOS 28で使える新機能", true],
+  ["anthropic-news", "Anthropic files S-1 with the SEC for proposed initial public offering", true],
   ["mistral-news", "Mistral Advances AI for Engineering with NVIDIA", false],
   ["unknown-feed", "Introducing GPT-7", false],
 ];
@@ -193,6 +198,10 @@ function harness(rules = TEST_RULES) {
       const body = JSON.parse(init.body);
       calls.dispatches.push(body);
       return null;
+    }
+    if (path === "/issues") {
+      calls.issues = [...(calls.issues || []), JSON.parse(init.body)];
+      return { number: 1 };
     }
     throw new Error(`unexpected ${path}`);
   };
@@ -351,6 +360,7 @@ test("取り消し・結果なしなら起動し直し、max_dispatches 回で�
   assert.equal(h.calls.dispatches.length, RULES.max_dispatches);
   assert.equal(h.state().queue[id].status, "gave_up");
   assert.ok(log.gaveUp.length === 1);
+  assert.match(h.calls.issues[0].title, /諦めました/);
 });
 
 test("作れなかった（retry）なら実行の終了後に起動し直す", async () => {
@@ -369,7 +379,7 @@ test("作れなかった（retry）なら実行の終了後に起動し直す", 
   assert.equal(h.calls.dispatches.length, 2);
 });
 
-test("1日の上限を超えた分は capped（起動しない）", async () => {
+test("1日の安全上限を超えた分は capped（起動しない）・Issue で知らせる", async () => {
   const h = harness();
   await h.run(T0, { FAST_DAILY_MAX: "1" });
   h.feeds["https://feeds.test/openai.xml"].unshift({ title: "Introducing GPT-7", url: "https://ex.test/gpt-7", at: T0 });
@@ -379,6 +389,13 @@ test("1日の上限を超えた分は capped（起動しない）", async () => 
   assert.equal(h.calls.dispatches.length, 1);
   assert.equal(h.state().queue[await itemId("https://ex.test/g5")].status, "capped");
   assert.equal(log.capped.length, 1);
+  // 黙って落とさず Issue（ラベル missed-news）で知らせる。同じ日は1回だけ
+  assert.equal(h.calls.issues.length, 1);
+  assert.deepEqual(h.calls.issues[0].labels, ["missed-news"]);
+  assert.match(h.calls.issues[0].body, /Introducing Gemini 5/);
+  h.feeds["https://feeds.test/openai.xml"].unshift({ title: "Introducing GPT-8", url: "https://ex.test/gpt-8", at: T0 });
+  await h.run(T0 + 6 * MIN, { FAST_DAILY_MAX: "1" });
+  assert.equal(h.calls.issues.length, 1);
 });
 
 test("ETag があれば条件付きで取得し、304 なら KV に書かない", async () => {

@@ -206,6 +206,9 @@ jobs:
           ACK=0
           if [ -n "$(git status --porcelain state/fast_lane.json)" ]; then ACK=1; fi
           if [ -n "$(git status --porcelain content)" ]; then
+            # 直近の記事の索引（見張り番のレーダーが「同じ話題の記事がもうあるか」を見る）。記事が変わった回だけ書き直す
+            python scripts/radar.py coverage || echo "::warning::記事の索引（state/coverage.json）を更新できませんでした"
+            if [ -f state/coverage.json ]; then git add state/coverage.json; fi
             git add content
             COUNT=$(git diff --cached --name-only --diff-filter=A -- 'content/articles/*.json' | wc -l | tr -d ' ')
             echo "count=${COUNT}" >> "$GITHUB_OUTPUT"
