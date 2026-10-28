@@ -4398,6 +4398,16 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000209.000068112.html"
     },
+    "6318bf62f2c5750d": {
+      "at": "2026-10-28T17:02:42.932741+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "gemini-4-carbon-cybersecurity-model",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/"
+    },
     "63ed6ece3476ff3d": {
       "at": "2026-10-27T03:04:42.977885+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
@@ -6782,28 +6792,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:57:44.143122+00:00",
-      "attempt": 2,
-      "id": "9401fe00400266b3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「2026年10月に開催された」→元記事には「2026 Open Compute Project (OCP) Global Summit」とあるが「10月」という月は指定されていないため不正確。"
-      ],
-      "readability": {
-        "avg_paragraph": 128.9,
-        "avg_sentence": 69.1,
-        "long_share": 0.679,
-        "max_paragraph": 257,
-        "paragraphs": 15,
-        "sentences": 28
-      },
-      "score": 90,
-      "source": "meta-engineering",
-      "title": "Meta Networking at the 2026 OCP Global Summit: Open Innovation for Scale-Up, Sca"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T15:58:14.063752+00:00",
@@ -13412,6 +13400,26 @@
       "score": 95,
       "source": "microsoft-blog",
       "title": "Introducing the Microsoft Copilot harness: Unlocking the potential of truly mult"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T17:02:42.932112+00:00",
+      "attempt": 1,
+      "id": "6318bf62f2c5750d",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 61.9,
+        "avg_sentence": 33.9,
+        "long_share": 0.065,
+        "max_paragraph": 124,
+        "paragraphs": 34,
+        "sentences": 62
+      },
+      "score": 92,
+      "source": "google-blog-all",
+      "title": "Gemini 4 Carbon: our next frontier model"
     }
   ],
   "short_text_retry": {
