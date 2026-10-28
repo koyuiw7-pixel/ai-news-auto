@@ -88,6 +88,23 @@ function parseArgs(argv) {
 // ---------------------------------------------------------------------------
 // Chrome を起動して DevTools プロトコルでつなぐ
 // ---------------------------------------------------------------------------
+// 広告・提携リンクの計測先には一切つながない（本番を開くと ASP の表示回数・クリック数が機械で水増しされる）。
+// ブラウザ全体で名前解決させないので、新しいタブ・ポップアップでも届かない。ルールは docs/automation.md
+const BLOCKED_HOSTS = [
+  "a8.net",
+  "*.a8.net",
+  "*.afl.rakuten.co.jp",
+  "*.amazon-adsystem.com",
+  "*.googlesyndication.com",
+  "*.doubleclick.net",
+  "*.googleadservices.com",
+  "adservice.google.com",
+  "*.adtrafficquality.google",
+];
+const BLOCK_FLAG = `--host-resolver-rules=${BLOCKED_HOSTS.map((h) => `MAP ${h} ~NOTFOUND`).join(", ")}`;
+// 1枚のタブの中でも念のため止める（Network.setBlockedURLs のパターン）
+const BLOCKED_URLS = BLOCKED_HOSTS.map((h) => `*://${h}/*`);
+
 function findChrome() {
   if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
   const candidates = [
@@ -137,6 +154,7 @@ async function launchChrome() {
       "--disable-renderer-backgrounding",
       "--disable-backgrounding-occluded-windows",
       "--font-render-hinting=none",
+      BLOCK_FLAG,
       ...(process.env.CI ? ["--no-sandbox"] : []),
       "about:blank",
     ],
@@ -213,6 +231,8 @@ async function openPage(cdp, { viewport, theme }) {
   const send = (m, p) => cdp.send(m, p, sessionId);
   await send("Page.enable");
   await send("Runtime.enable");
+  await send("Network.enable");
+  await send("Network.setBlockedURLs", { urls: BLOCKED_URLS }).catch(() => {});
   await send("Page.bringToFront");
   await send("Emulation.setFocusEmulationEnabled", { enabled: true });
   await send("Emulation.setDeviceMetricsOverride", {

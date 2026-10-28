@@ -154,7 +154,7 @@ export default function ConceptArticle({ view, affiliates }: Props) {
                     <ul className="cx-pr-list">
                       {affiliates.map((link) => (
                         <li key={link.url}>
-                          <a href={link.url} target="_blank" rel="sponsored noopener noreferrer">
+                          <a href={link.url} target="_blank" rel="sponsored nofollow noopener noreferrer">
                             {link.label || link.name}
                             <span aria-hidden> ↗</span>
                           </a>

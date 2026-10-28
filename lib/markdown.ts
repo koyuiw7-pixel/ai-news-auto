@@ -1,4 +1,5 @@
 import { marked } from "marked";
+import { AFFILIATE_REL, isAffiliateUrl } from "@/lib/affiliate";
 
 marked.setOptions({ gfm: true, breaks: false });
 
@@ -19,15 +20,15 @@ function sanitize(html: string): string {
 
 /**
  * 外部リンクに rel/target を付与。
- * アフィリエイトリンクは Google のガイドラインどおり rel="sponsored" にする。
+ * アフィリエイトリンクは rel="sponsored nofollow"（lib/affiliate.ts）。data-aff-pos はクリック計測の位置名
  */
 function hardenLinks(html: string, affiliateUrls: string[] = []): string {
   const sponsored = new Set(affiliateUrls);
   return html.replace(
     /<a\s+href="(https?:\/\/[^"]+)"/gi,
     (_match, href: string) =>
-      sponsored.has(href)
-        ? `<a href="${href}" target="_blank" rel="sponsored noopener noreferrer"`
+      isAffiliateUrl(href.replace(/&amp;/g, "&"), sponsored) || sponsored.has(href)
+        ? `<a href="${href}" target="_blank" rel="${AFFILIATE_REL}" data-aff-pos="body"`
         : `<a href="${href}" target="_blank" rel="noopener noreferrer nofollow"`,
   );
 }

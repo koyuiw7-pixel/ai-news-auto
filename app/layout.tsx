@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AffClickTracker from "@/components/AffClickTracker";
 import { siteConfig } from "@/site.config";
 import { dela, martian, noto } from "./fonts";
 import "./globals.css";
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.siteName,
+  // iPhone で「ホーム画面に追加」したときの名前（プッシュ通知はホーム画面から開いたときだけ使える）。manifest は app/manifest.ts
+  appleWebApp: { capable: true, title: siteConfig.shortName, statusBarStyle: "default" },
   // Google Search Console の所有権確認。環境変数に確認コードを入れるだけで有効になる
   verification: process.env.GOOGLE_SITE_VERIFICATION
     ? { google: process.env.GOOGLE_SITE_VERIFICATION }
@@ -111,6 +114,8 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        {/* 提携リンクの人によるクリックを数える（ASP の数字と見比べる用。cloudflare/aff.ts） */}
+        <AffClickTracker />
         {/* Vercelダッシュボードで Web Analytics を有効にした時点で計測が始まる。
             無効のうちは何も送信されないので、先に仕込んでおいて問題ない。
             Cloudflare では NEXT_PUBLIC_VERCEL_ANALYTICS=off で外す */}

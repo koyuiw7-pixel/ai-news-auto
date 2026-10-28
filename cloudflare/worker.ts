@@ -8,6 +8,8 @@
  */
 // @ts-ignore ビルド時に生成される
 import { default as handler } from "../.open-next/worker.js";
+import { flushHeld, handlePush, type PushEnv } from "./push";
+import { handleAff, type AffEnv } from "./aff";
 
 type Env = { ASSETS: { fetch: (input: string | Request) => Promise<Response> } } & Record<string, unknown>;
 
@@ -78,6 +80,9 @@ async function loadArticle(env: Env, slug: string): Promise<void> {
   while (fullSlugs.length > FULL_LIMIT) vfs.files.delete(`content/articles/${fullSlugs.shift()}.json`);
 }
 
+/** wrangler.jsonc の triggers.crons と同じ文字列（UTC 22:00 = 日本時間 7:00） */
+const PUSH_MORNING_CRON = "0 22 * * *";
+
 const ARTICLE = /^\/(?:articles|cover|card)\/([^/]+?)(?:\.rsc)?\/?$/;
 
 type Ctx = { waitUntil(promise: Promise<unknown>): void };
@@ -147,6 +152,10 @@ export default {
     const url = new URL(request.url);
     if (url.pathname.startsWith("/_content/")) return new Response("Not Found", { status: 404 });
     if (url.pathname.startsWith("/img/")) return serveImage(request, url, env, ctx);
+    // 速報のプッシュ通知（cloudflare/push.ts。Next を通さずここで返す）
+    if (url.pathname.startsWith("/api/push/")) return handlePush(request, url, env as unknown as PushEnv, ctx);
+    // 提携リンクのクリックの自前集計（cloudflare/aff.ts）
+    if (url.pathname.startsWith("/api/aff/")) return handleAff(request, url, env as unknown as AffEnv, ctx);
 
     const cacheKey = edgeCacheKey(request, url, env);
     const edge = cacheKey ? (caches as unknown as { default: Cache }).default : null;
@@ -178,6 +187,18 @@ export default {
       return cached;
     }
     return response;
+  },
+
+  /** Cron（wrangler.jsonc の triggers）。毎朝 7:00（日本時間）に夜のあいだ保留した速報の通知を1本送る */
+  async scheduled(event: { cron: string }, env: Env, ctx: Ctx): Promise<void> {
+    if (event.cron === PUSH_MORNING_CRON) {
+      ctx.waitUntil(
+        flushHeld(env as unknown as PushEnv).then(
+          (result) => console.log("[push] morning", JSON.stringify(result)),
+          (error) => console.error("[push] morning failed", String(error)),
+        ),
+      );
+    }
   },
 };
 

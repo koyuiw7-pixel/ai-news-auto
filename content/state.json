@@ -53,9 +53,7 @@
     "zoohZ1BiHs0": 1
   },
   "failed_web": {},
-  "major_tries": {
-    "7aba0b7952f79735": 1
-  },
+  "major_tries": {},
   "processed": {
     "--kyzoeUuBk": {
       "at": "2026-08-10T15:58:56.932533+00:00",
@@ -3337,6 +3335,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005977.000054842.html"
     },
+    "1be01c37adb5db5e": {
+      "at": "2026-10-28T03:54:17.983093+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 本文が短い（2307字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://blogs.windows.com/japan/2026/10/28/introducing-a-team-knowledge-base-curated-by-copilot-and-agents/"
+    },
     "1caf0a8b5ac4be62": {
       "at": "2026-10-27T19:15:49.048054+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -3453,9 +3458,13 @@
       "url": "https://www.dreamnews.jp/press/0000366572"
     },
     "274aedb084ae6e00": {
-      "at": "2026-10-27T13:27:05.673771+00:00",
-      "reason": "major gave up x3: fail: 生成に失敗",
-      "skipped": true,
+      "at": "2026-10-28T02:28:35.667895+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 93,
+      "section": "ai",
+      "slug": "apple-creator-studio-new-ai-features",
       "url": "https://www.apple.com/jp/newsroom/2026/10/apple-creator-studio-adds-powerful-new-ai-features-and-even-more-creative-tools/"
     },
     "278eaae2a5f3ba0b": {
@@ -3529,6 +3538,12 @@
       "reason": "quality: 本文が短い（1798字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000070.000051277.html"
+    },
+    "2cf13f308d8bcb28": {
+      "at": "2026-10-28T03:52:35.195652+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（採用）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/recruit/index-general.html"
     },
     "2dc52d226a3057d6": {
       "at": "2026-10-27T03:05:10.759044+00:00",
@@ -3615,6 +3630,12 @@
       "section": "business",
       "slug": "kaitori-koji-sns-meo-management",
       "url": "https://www.dreamnews.jp/press/0000366438"
+    },
+    "3322e009de895582": {
+      "at": "2026-10-28T03:52:51.787253+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/finsys/intlact_fs/risk/ris261028a.htm"
     },
     "334dbbd92f5dc473": {
       "at": "2026-10-27T23:41:05.859206+00:00",
@@ -3843,6 +3864,14 @@
       "section": "tech-gadget",
       "slug": "it-passport-study-survey-ipa",
       "url": "https://www.ipa.go.jp/shiken/kubun/ip/ip_goukaku_anq_all.html"
+    },
+    "42cef1bdc3da9dbc": {
+      "at": "2026-10-28T03:54:56.716616+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "docomo-smtb-net-bank-amazon-connect-ai",
+      "url": "https://aws.amazon.com/jp/blogs/news/docomo-smtb-net-bank-amazon-connect-customer-ai-agents/"
     },
     "436c8feca450cd5e": {
       "at": "2026-10-26T18:16:43.711146+00:00",
@@ -4322,6 +4351,14 @@
       "slug": "ipa-personal-data-leak-countermeasures",
       "url": "https://www.ipa.go.jp/security/anshin/attention/2026/mgdayori20261026.html"
     },
+    "67fdd4b11bd82e4e": {
+      "at": "2026-10-28T03:52:34.628750+00:00",
+      "kind": "update",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "updated": "attosecond-xray-laser-riken-2026",
+      "url": "https://www.jst.go.jp/pr/announce/20261027/index.html"
+    },
     "6821f94ba9166dd6": {
       "at": "2026-10-26T12:37:50.156908+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4489,6 +4526,22 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000172.000021828.html"
     },
+    "73c7084640d94745": {
+      "at": "2026-10-28T04:02:46.712719+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 93,
+      "section": "ai",
+      "slug": "ios-18-7-11-security-update",
+      "url": "https://k-tai.watch.impress.co.jp/docs/news/2151840.html"
+    },
+    "74366a108e3c771b": {
+      "at": "2026-10-28T03:52:35.195682+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（調達）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/councils/procurement-reform/FY2026/24cfea22-3e10-418e-abbd-983af697d751"
+    },
     "747b76bde702bc0b": {
       "at": "2026-10-27T22:01:49.260374+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -4545,6 +4598,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000065.000142572.html"
+    },
+    "7aba0b7952f79735": {
+      "at": "2026-10-28T02:08:10.049800+00:00",
+      "model": "claude:sonnet",
+      "reason": "AI・ソフトウェアなど技術の発表ではなく、社員向けの人事制度（希望退職の募集）の社内連絡であり、このジャンルの対象範囲外のため。",
+      "skipped": true,
+      "url": "https://blogs.microsoft.com/blog/2026/10/26/introducing-a-voluntary-exit-offer/"
     },
     "7b7a9b09c0599cf2": {
       "at": "2026-10-27T17:12:19.208475+00:00",
@@ -4652,6 +4712,16 @@
       "skipped": true,
       "url": "https://jtta.or.jp/news/38493"
     },
+    "81b193a67be7f973": {
+      "at": "2026-10-28T02:40:17.550553+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "discord-public-server-google-search",
+      "url": "https://www.itmedia.co.jp/news/article/2610/28/2000002656/"
+    },
     "81c99a3c49073f9f": {
       "at": "2026-10-26T15:34:23.254431+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -4703,6 +4773,13 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326712.html"
     },
+    "8526199ec7b5548b": {
+      "at": "2026-10-28T03:23:53.297166+00:00",
+      "model": "claude:sonnet",
+      "reason": "followup quality: 「既存記事の早見表にある14万4800円から」→ 元記事にも確認済みの文脈にも14万4800円という価格や早見表の記載はなく、創作の可能性が高い。",
+      "skipped": true,
+      "url": "https://k-tai.watch.impress.co.jp/docs/news/2151814.html"
+    },
     "852b29afdb702e51": {
       "at": "2026-10-27T03:05:10.759657+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セール）",
@@ -4720,6 +4797,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/syouan/nouan/261027.html"
+    },
+    "86454a32fece036b": {
+      "at": "2026-10-28T03:53:36.171237+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "pharmaceutical-wholesalers-market-trends",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203379_1527.html"
     },
     "86955c1d8d2892d9": {
       "at": "2026-10-27T01:31:41.775329+00:00",
@@ -5004,6 +5089,14 @@
       "skipped": true,
       "url": "https://blog.cloudflare.com/kv-cache-exposure-remediation/"
     },
+    "95e7279c4133d4f8": {
+      "at": "2026-10-28T03:02:05.151993+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "ntt-docomo-business-ancar-agent",
+      "url": "https://www.ntt.com/about-us/press-releases/news/article/2026/1028.html"
+    },
     "95f54d2264b5894b": {
       "at": "2026-10-27T00:52:03.380928+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5173,6 +5266,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（ライブ配信）",
       "skipped": true,
       "url": "https://jtta.or.jp/news/38403"
+    },
+    "a319b463616d119f": {
+      "at": "2026-10-28T03:52:07.047989+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 本文が短い（2147字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://jp.newsroom.ibm.com/2026-10-28-ibm-introduces-identity-and-control-for-ai-agents,-securing-frontier-intelligence-for-the-enterprise"
     },
     "a3a879144b2984ac": {
       "at": "2026-10-27T16:53:03.045319+00:00",
@@ -5369,6 +5469,16 @@
       "slug": "nadeshiko-brazil-ticket-additional-sale",
       "url": "https://www.jfa.jp/news/00036955/"
     },
+    "b459574059fadb91": {
+      "at": "2026-10-28T02:11:02.231729+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 90,
+      "section": "ai",
+      "slug": "nvidia-meta-muse-partnership-expansion",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-and-meta-to-expand-collaboration-on-muse-and-muse-family-of-models-amid-robust-growth"
+    },
     "b4777d59445209d1": {
       "at": "2026-10-27T03:05:10.758958+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（出展）",
@@ -5389,6 +5499,13 @@
       "section": "ai",
       "slug": "nvidia-local-ai-gtc-berlin-spark-station",
       "url": "https://blogs.nvidia.co.jp/blog/local-ai-gtc-rtx-dgx-spark-station-sync/"
+    },
+    "b64d489d45134fc3": {
+      "at": "2026-10-28T03:25:45.476344+00:00",
+      "model": "claude:sonnet",
+      "reason": "followup quality: 「マイナビニュースは10月28日、…と報じました」→ 元記事には媒体名も「10月28日」という日付も書かれておらず、出典と日付が創作されている。",
+      "skipped": true,
+      "url": "https://news.mynavi.jp/article/20261028-5209377/"
     },
     "b69be4baefaaedcb": {
       "at": "2026-10-27T03:05:10.757566+00:00",
@@ -5596,6 +5713,13 @@
       "reason": "quality: 本文が短い（2488字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/orchestrating-sagemaker-ai-endpoint-auto-scaling-with-aws-cdk/"
+    },
+    "c7e4ec69cb51d969": {
+      "at": "2026-10-28T03:52:51.787211+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "本件は首脳会談の開催事実を伝えるのみであり、国民の生活や手続きに直接影響する制度変更やサービス開始等の実質的な情報が含まれていないため、対象外と判断しました。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326796.html"
     },
     "c8962f2408138eaf": {
       "at": "2026-10-26T14:13:35.074024+00:00",
@@ -6077,6 +6201,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005964.000054842.html"
     },
+    "e6b690b26d8be60c": {
+      "at": "2026-10-28T03:02:34.788222+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "science",
+      "slug": "mosquito-mating-gene-discovery",
+      "url": "https://www.jst.go.jp/pr/announce/20261028/index.html"
+    },
     "e7e58cd7761fc453": {
       "at": "2026-10-26T11:02:34.699451+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6444,405 +6576,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:53:58.777565+00:00",
-      "attempt": 2,
-      "id": "cb9152cb3e3b49db",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2050字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "あなたのAI顧問株式会社、経営者向け「Muse」活用ノウハウの無料提供を開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:08.496631+00:00",
-      "attempt": 1,
-      "id": "ca70d454adc7e571",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2255字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "LeapAI、撮影ゼロでCM水準の映像をつくるAI動画制作サービス「LeapAI.Zero」を提供開始。制作サンプル「正解は、現場にある。｜株式会社みどり野フー"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:15.440577+00:00",
-      "attempt": 2,
-      "id": "ca70d454adc7e571",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1728字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "LeapAI、撮影ゼロでCM水準の映像をつくるAI動画制作サービス「LeapAI.Zero」を提供開始。制作サンプル「正解は、現場にある。｜株式会社みどり野フー"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:22.694665+00:00",
-      "attempt": 1,
-      "id": "d5eed8b6a4c8614b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1828字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-        "訳されていない英文が残っている（「A Framework for National Wealth Accounti…」）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "DroR、AIと人的資本・国富会計を扱うワーキングペーパー「AI調整済み包括的富（AIW）」の日本語による要約と解説を公開"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:29.609060+00:00",
-      "attempt": 2,
-      "id": "d5eed8b6a4c8614b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2205字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-        "訳されていない英文が残っている（「A Framework for National Wealth Accounti…」）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "DroR、AIと人的資本・国富会計を扱うワーキングペーパー「AI調整済み包括的富（AIW）」の日本語による要約と解説を公開"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:36.398411+00:00",
-      "attempt": 1,
-      "id": "e25f5395926e8641",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1864字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "HubSpotのデータを毎日解析し、営業アクションを自動提案するAIエージェント「LisCore」が特許3件を取得。10社限定でβ版の申込受付を開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:43.563213+00:00",
-      "attempt": 2,
-      "id": "e25f5395926e8641",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2157字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "元記事の文をそのまま書き写している（2文。例「- 契約期間：初年度13ヶ月（初月は初期設定・データ読み込み期間として無償、課金は12ヶ月分。」）。自分の言葉で要約する"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "HubSpotのデータを毎日解析し、営業アクションを自動提案するAIエージェント「LisCore」が特許3件を取得。10社限定でβ版の申込受付を開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:57.989663+00:00",
-      "attempt": 1,
-      "id": "c49c4a64400ededc",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2250字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "プルーフポイントの調査で判明、ランサムウェア被害組織の65％が「AIによって攻撃の効果が高まった」と回答"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:55:06.418521+00:00",
-      "attempt": 2,
-      "id": "c49c4a64400ededc",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "プルーフポイントの調査で判明、ランサムウェア被害組織の65％が「AIによって攻撃の効果が高まった」と回答"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:31:02.519292+00:00",
-      "attempt": 1,
-      "id": "f13bf850a6274660",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1616字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "riken",
-      "title": "金星大気「スーパーローテーション」の長期変動を再現"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:31:09.461016+00:00",
-      "attempt": 2,
-      "id": "f13bf850a6274660",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1689字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "riken",
-      "title": "金星大気「スーパーローテーション」の長期変動を再現"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:31:22.975566+00:00",
-      "attempt": 1,
-      "id": "c0e2f38aabbe8325",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）"
-      ],
-      "score": null,
-      "source": "digital-agency",
-      "title": "「マイナポータル自治体手続申請サービス」の本格運用開始について掲載しました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:31:30.162027+00:00",
-      "attempt": 2,
-      "id": "c0e2f38aabbe8325",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）"
-      ],
-      "score": null,
-      "source": "digital-agency",
-      "title": "「マイナポータル自治体手続申請サービス」の本格運用開始について掲載しました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:32:17.097218+00:00",
-      "attempt": 1,
-      "id": "f7930f5692647d14",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1457字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "boj",
-      "title": "企業向けサービス価格指数（9月）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:32:51.684934+00:00",
-      "attempt": 2,
-      "id": "f7930f5692647d14",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1267字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）"
-      ],
-      "score": null,
-      "source": "boj",
-      "title": "企業向けサービス価格指数（9月）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:32:59.567614+00:00",
-      "attempt": 1,
-      "id": "64c05351fd08b827",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1579字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）"
-      ],
-      "score": null,
-      "source": "softbank-news",
-      "title": "「Fast Access」は混雑エリアでも本当に速いの？ 実際に人混みでスピードを比較してみた"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T02:33:09.597743+00:00",
-      "attempt": 2,
-      "id": "64c05351fd08b827",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "softbank-news",
-      "title": "「Fast Access」は混雑エリアでも本当に速いの？ 実際に人混みでスピードを比較してみた"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:41:05.611166+00:00",
-      "attempt": 1,
-      "id": "b4e679186caafff0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1771字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "jst",
-      "title": "AIモデルによる薬剤推奨は特定製品に集中～約88万件の分析から医療費への影響を示唆～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:41:12.429439+00:00",
-      "attempt": 2,
-      "id": "b4e679186caafff0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1796字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "jst",
-      "title": "AIモデルによる薬剤推奨は特定製品に集中～約88万件の分析から医療費への影響を示唆～"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T02:41:35.319108+00:00",
-      "attempt": 1,
-      "id": "fd63ce7910a1039c",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "kyodo-prwire",
-      "title": "伊藤ハム米久ホールディングス、フューチャーアーキテクトと 輸配送効率化と共同輸配送の具体化に向けて「物流変革プロジェクト」を本格始動"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T03:01:05.461488+00:00",
-      "attempt": 1,
-      "id": "e3d7ad0ea6ab5632",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1257字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（380字 / 基準 400字以上）"
-      ],
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "GitHub Copilot assisted permissions generally available"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T03:01:13.632275+00:00",
-      "attempt": 2,
-      "id": "e3d7ad0ea6ab5632",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2208字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "GitHub Copilot assisted permissions generally available"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T03:01:22.404043+00:00",
-      "attempt": 1,
-      "id": "92e285f26dfcc585",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1569字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "kyodo-prwire",
-      "title": "三井情報と東北大学、ヒト・ロボット協働モデルの共同研究を開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T03:01:29.612225+00:00",
-      "attempt": 2,
-      "id": "92e285f26dfcc585",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1789字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）"
-      ],
-      "score": null,
-      "source": "kyodo-prwire",
-      "title": "三井情報と東北大学、ヒト・ロボット協働モデルの共同研究を開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T03:02:33.866074+00:00",
-      "attempt": 1,
-      "id": "9a4dd73762c5fd4c",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1786字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "kyodo-prwire",
-      "title": "2026年度JCSI(日本版顧客満足度指数) 第4回調査結果発表"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T03:03:16.664446+00:00",
-      "attempt": 2,
-      "id": "9a4dd73762c5fd4c",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "「今回の発表対象は、シティホテル、ビジネスホテル、国内長距離交通、教育サービス、生命保険、損害保険（自動車／住宅・火災）の7業種に、特別調査として有料特急を加えたもの」→元記事では有料特急を含めて7業種と記載されており、7業種に加えたという表現は矛盾する。",
-        "「編集部の見立てでは、航空業界内の競争激化の中で、顧客がスカイマークのサービス品質や価格設定に対して高い満足感を示していることが背景にあると考えられます」→元記事にない編集部独自の推測が含まれている。",
-        "「特に近年は、単なる機能的な満足度だけでなく、SNSなどで共有したくなるような『感動体験』が推奨意向に直結する傾向があります（編集部注）」→元記事にない編集部独自の推測が含まれている。"
-      ],
-      "score": 85,
-      "source": "kyodo-prwire",
-      "title": "2026年度JCSI(日本版顧客満足度指数) 第4回調査結果発表"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T03:03:32.148351+00:00",
-      "attempt": 1,
-      "id": "f1770af1eb030863",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1671字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "ipa",
-      "title": "「2026年4月：ソフトウェアエンジニアリングの海外動向調査」を公開しました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T03:04:42.976881+00:00",
-      "attempt": 2,
-      "id": "f1770af1eb030863",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "「2026年10月27日に『2026年4月：ソフトウェアエンジニアリングの海外動向調査』を公開しました」→元記事の更新履歴では、2026年10月27日は「最終更新日」であり、公開日は「2026年4月」と記載されているため、公開日と更新日を混同している。"
-      ],
-      "score": 85,
-      "source": "ipa",
-      "title": "「2026年4月：ソフトウェアエンジニアリングの海外動向調査」を公開しました"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T03:05:00.275584+00:00",
@@ -12858,6 +12591,587 @@
       "score": 90,
       "source": "anthropic-news",
       "title": "Early progress on accelerating drug development with Claude"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T02:10:33.646949+00:00",
+      "attempt": 1,
+      "id": "b459574059fadb91",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「10月28日：NVIDIAとMetaがMuseの協業拡大と30億ドル出資を発表（本記事）」→ 元記事の日付は10月26日で、本文の「10月26日付」とも食い違い、時差の範囲を超えている。",
+        "かんたん版「判定: 提供状況=soon」→ 元記事に提供予定や時期の記載はなく、利用者向けの提供が近いと読める表現は根拠がない。",
+        "かんたん版「AIの返事が速くなったり運用の費用が下がったりする土台」→ 元記事は性能とTCOの最適化を狙うとするだけで、利用者への効果は推測。"
+      ],
+      "readability": {
+        "avg_paragraph": 59.2,
+        "avg_sentence": 31.8,
+        "long_share": 0.015,
+        "max_paragraph": 119,
+        "paragraphs": 36,
+        "sentences": 67
+      },
+      "score": 86,
+      "source": "radar-official",
+      "title": "NVIDIA and Meta to Expand Collaboration on Muse and Muse Family of Models Amid R"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T02:11:02.231151+00:00",
+      "attempt": 1,
+      "id": "b459574059fadb91",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 59.2,
+        "avg_sentence": 31.8,
+        "long_share": 0.015,
+        "max_paragraph": 119,
+        "paragraphs": 36,
+        "sentences": 67
+      },
+      "score": 90,
+      "source": "radar-official",
+      "title": "NVIDIA and Meta to Expand Collaboration on Muse and Muse Family of Models Amid R"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T02:28:35.667280+00:00",
+      "attempt": 1,
+      "id": "274aedb084ae6e00",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 85.3,
+        "avg_sentence": 36.6,
+        "long_share": 0.104,
+        "max_paragraph": 150,
+        "paragraphs": 33,
+        "sentences": 77
+      },
+      "score": 93,
+      "source": "apple-newsroom-jp",
+      "title": "Apple Creator Studioにパワフルな新しいAI機能と、さらに多くのクリエイティブツールが登場"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T02:40:17.550010+00:00",
+      "attempt": 1,
+      "id": "81b193a67be7f973",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 61.4,
+        "avg_sentence": 32.2,
+        "long_share": 0.032,
+        "max_paragraph": 178,
+        "paragraphs": 33,
+        "sentences": 63
+      },
+      "score": 92,
+      "source": "radar-itmedia.co.jp",
+      "title": "Discord、公開サーバの会話をGoogle検索などの対象に プライバシーへの懸念も"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:01:34.869380+00:00",
+      "attempt": 1,
+      "id": "95e7279c4133d4f8",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2418字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 141.9,
+        "avg_sentence": 70.9,
+        "long_share": 0.643,
+        "max_paragraph": 262,
+        "paragraphs": 14,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "ntt-news-ai",
+      "title": "AIで顧客接点を高度化する「docomo business ANCAR(R)」、AIエージェント、マーケティングの新機能を追加"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:01:47.200940+00:00",
+      "attempt": 2,
+      "id": "95e7279c4133d4f8",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（2085字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 124.3,
+        "avg_sentence": 51.2,
+        "long_share": 0.206,
+        "max_paragraph": 232,
+        "paragraphs": 14,
+        "sentences": 34
+      },
+      "score": null,
+      "source": "ntt-news-ai",
+      "title": "AIで顧客接点を高度化する「docomo business ANCAR(R)」、AIエージェント、マーケティングの新機能を追加"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:02:00.285515+00:00",
+      "attempt": 2,
+      "id": "95e7279c4133d4f8",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 49.5字・60字超の文が 16% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 159.0字・最長 232字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 159.0,
+        "avg_sentence": 49.5,
+        "long_share": 0.156,
+        "max_paragraph": 232,
+        "paragraphs": 14,
+        "sentences": 45
+      },
+      "score": 100,
+      "source": "ntt-news-ai",
+      "title": "AIで顧客接点を高度化する「docomo business ANCAR(R)」、AIエージェント、マーケティングの新機能を追加"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:02:05.151543+00:00",
+      "attempt": 0,
+      "id": "95e7279c4133d4f8",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.5,
+        "avg_sentence": 44.7,
+        "long_share": 0.083,
+        "max_paragraph": 128,
+        "paragraphs": 27,
+        "sentences": 48
+      },
+      "score": 100,
+      "source": "ntt-news-ai",
+      "title": "AIで顧客接点を高度化する「docomo business ANCAR(R)」、AIエージェント、マーケティングの新機能を追加"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:02:14.756178+00:00",
+      "attempt": 1,
+      "id": "e6b690b26d8be60c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "訳されていない英文が残っている（「fruitless is essential for male Aedes ae…」）"
+      ],
+      "readability": {
+        "avg_paragraph": 152.4,
+        "avg_sentence": 54.1,
+        "long_share": 0.323,
+        "max_paragraph": 234,
+        "paragraphs": 11,
+        "sentences": 31
+      },
+      "score": null,
+      "source": "jst",
+      "title": "蚊のオスが「メスの羽音」に惹かれる理由を解明～行動の性差を生む遺伝子fruitlessがオスの耳をつくる～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:02:21.036806+00:00",
+      "attempt": 2,
+      "id": "e6b690b26d8be60c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1607字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 123.1,
+        "avg_sentence": 50.1,
+        "long_share": 0.222,
+        "max_paragraph": 195,
+        "paragraphs": 11,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "jst",
+      "title": "蚊のオスが「メスの羽音」に惹かれる理由を解明～行動の性差を生む遺伝子fruitlessがオスの耳をつくる～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:02:26.704700+00:00",
+      "attempt": 2,
+      "id": "e6b690b26d8be60c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 46.1字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 146.8字・最長 195字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 146.8,
+        "avg_sentence": 46.1,
+        "long_share": 0.143,
+        "max_paragraph": 195,
+        "paragraphs": 11,
+        "sentences": 35
+      },
+      "score": 100,
+      "source": "jst",
+      "title": "蚊のオスが「メスの羽音」に惹かれる理由を解明～行動の性差を生む遺伝子fruitlessがオスの耳をつくる～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:02:34.787875+00:00",
+      "attempt": 0,
+      "id": "e6b690b26d8be60c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 102.7,
+        "avg_sentence": 40.1,
+        "long_share": 0.098,
+        "max_paragraph": 166,
+        "paragraphs": 16,
+        "sentences": 41
+      },
+      "score": 100,
+      "source": "jst",
+      "title": "蚊のオスが「メスの羽音」に惹かれる理由を解明～行動の性差を生む遺伝子fruitlessがオスの耳をつくる～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:23:53.297138+00:00",
+      "attempt": 1,
+      "id": "8526199ec7b5548b",
+      "kind": "update",
+      "model": "claude:sonnet",
+      "problems": [
+        "「既存記事の早見表にある14万4800円から」→ 元記事にも確認済みの文脈にも14万4800円という価格や早見表の記載はなく、創作の可能性が高い。"
+      ],
+      "score": 70,
+      "source": "radar-k-tai.watch.impress.co.jp",
+      "title": "ソフトバンク、新型「iPad mini（A20 Pro）」価格発表 11万9800円～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:25:45.476313+00:00",
+      "attempt": 1,
+      "id": "b64d489d45134fc3",
+      "kind": "update",
+      "model": "claude:sonnet",
+      "problems": [
+        "「マイナビニュースは10月28日、…と報じました」→ 元記事には媒体名も「10月28日」という日付も書かれておらず、出典と日付が創作されている。"
+      ],
+      "score": 60,
+      "source": "radar-news.mynavi.jp",
+      "title": "ラウダ、holditとCellularlineの「iPhone Duo」対応ケース全6種を発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:51:42.366536+00:00",
+      "attempt": 1,
+      "id": "a319b463616d119f",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2134字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 116.7,
+        "avg_sentence": 62.5,
+        "long_share": 0.643,
+        "max_paragraph": 177,
+        "paragraphs": 15,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "ibm-newsroom-jp",
+      "title": "IBM、AIエージェントにアイデンティティーと制御を導入し、企業におけるフロンティアAIのセキュリティーを強化"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:51:54.966006+00:00",
+      "attempt": 2,
+      "id": "a319b463616d119f",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（2147字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 122.9,
+        "avg_sentence": 53.8,
+        "long_share": 0.375,
+        "max_paragraph": 253,
+        "paragraphs": 14,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "ibm-newsroom-jp",
+      "title": "IBM、AIエージェントにアイデンティティーと制御を導入し、企業におけるフロンティアAIのセキュリティーを強化"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:52:34.627931+00:00",
+      "attempt": 1,
+      "id": "67fdd4b11bd82e4e",
+      "kind": "update",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "jst",
+      "title": "アト秒X線レーザーの生成に成功～電子の超高速な動きを捉える新たな光を実現～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:52:45.294463+00:00",
+      "attempt": 1,
+      "id": "c7e4ec69cb51d969",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1537字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（395字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 98.0,
+        "avg_sentence": 43.6,
+        "long_share": 0.148,
+        "max_paragraph": 164,
+        "paragraphs": 12,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "gov-online",
+      "title": "日・バングラデシュ首脳会談-令和8年10月27日"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:52:59.819292+00:00",
+      "attempt": 1,
+      "id": "86454a32fece036b",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1534字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 137.4,
+        "avg_sentence": 45.8,
+        "long_share": 0.111,
+        "max_paragraph": 196,
+        "paragraphs": 9,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "tsr",
+      "title": "「医薬品・医療用品卸」 17兆円産業に迫る 売上1千億円以上29社でシェア8割超、二極化が加速"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:53:04.577929+00:00",
+      "attempt": 1,
+      "id": "86454a32fece036b",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "段落が長い（平均 173.8字・最長 227字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 173.8,
+        "avg_sentence": 44.7,
+        "long_share": 0.086,
+        "max_paragraph": 227,
+        "paragraphs": 9,
+        "sentences": 35
+      },
+      "score": 100,
+      "source": "tsr",
+      "title": "「医薬品・医療用品卸」 17兆円産業に迫る 売上1千億円以上29社でシェア8割超、二極化が加速"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:53:36.170885+00:00",
+      "attempt": 0,
+      "id": "86454a32fece036b",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 70.3,
+        "avg_sentence": 28.1,
+        "long_share": 0.0,
+        "max_paragraph": 118,
+        "paragraphs": 22,
+        "sentences": 55
+      },
+      "score": 100,
+      "source": "tsr",
+      "title": "「医薬品・医療用品卸」 17兆円産業に迫る 売上1千億円以上29社でシェア8割超、二極化が加速"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:53:52.422583+00:00",
+      "attempt": 1,
+      "id": "1be01c37adb5db5e",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（2290字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 111.9,
+        "avg_sentence": 54.1,
+        "long_share": 0.29,
+        "max_paragraph": 203,
+        "paragraphs": 15,
+        "sentences": 31
+      },
+      "score": null,
+      "source": "windows-blog-jp",
+      "title": "Copilot とエージェントがキュレーションする、チームのナレッジ ベースのご紹介"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:54:12.695360+00:00",
+      "attempt": 2,
+      "id": "1be01c37adb5db5e",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（2307字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 105.8,
+        "avg_sentence": 54.5,
+        "long_share": 0.394,
+        "max_paragraph": 187,
+        "paragraphs": 17,
+        "sentences": 33
+      },
+      "score": null,
+      "source": "windows-blog-jp",
+      "title": "Copilot とエージェントがキュレーションする、チームのナレッジ ベースのご紹介"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:54:29.974979+00:00",
+      "attempt": 1,
+      "id": "42cef1bdc3da9dbc",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "「2026年10月28日：ドコモSMTBネット銀行がAmazon Connect Customer AI agentsによる応対を開始」→元記事の公開日は2026年10月28日だが、実際の運用開始は2026年9月であるため、時系列の整理として誤解を招く。",
+        "「AIの応答時間は出力トークン数に比例し、検証環境では1トークンあたり15〜21ミリ秒で推移した」→元記事では「15〜21ミリ秒」は推論時間（所要時間）の単位であり、トークン数そのものの単位ではない。"
+      ],
+      "readability": {
+        "avg_paragraph": 102.2,
+        "avg_sentence": 52.7,
+        "long_share": 0.364,
+        "max_paragraph": 168,
+        "paragraphs": 17,
+        "sentences": 33
+      },
+      "score": 85,
+      "source": "aws-japan-blog",
+      "title": "ドコモSMTBネット銀行が電話・チャット両チャネルで実践する Amazon Connect Customer AI agents による応対高度化"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:54:39.658841+00:00",
+      "attempt": 2,
+      "id": "42cef1bdc3da9dbc",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（2179字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 102.3,
+        "avg_sentence": 56.1,
+        "long_share": 0.419,
+        "max_paragraph": 167,
+        "paragraphs": 17,
+        "sentences": 31
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "ドコモSMTBネット銀行が電話・チャット両チャネルで実践する Amazon Connect Customer AI agents による応対高度化"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:54:48.428048+00:00",
+      "attempt": 2,
+      "id": "42cef1bdc3da9dbc",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 52.8字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 151.3字・最長 302字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 151.3,
+        "avg_sentence": 52.8,
+        "long_share": 0.326,
+        "max_paragraph": 302,
+        "paragraphs": 15,
+        "sentences": 43
+      },
+      "score": 100,
+      "source": "aws-japan-blog",
+      "title": "ドコモSMTBネット銀行が電話・チャット両チャネルで実践する Amazon Connect Customer AI agents による応対高度化"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T03:54:56.716201+00:00",
+      "attempt": 0,
+      "id": "42cef1bdc3da9dbc",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.0,
+        "avg_sentence": 44.7,
+        "long_share": 0.173,
+        "max_paragraph": 138,
+        "paragraphs": 25,
+        "sentences": 52
+      },
+      "score": 100,
+      "source": "aws-japan-blog",
+      "title": "ドコモSMTBネット銀行が電話・チャット両チャネルで実践する Amazon Connect Customer AI agents による応対高度化"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T04:02:46.712330+00:00",
+      "attempt": 1,
+      "id": "73c7084640d94745",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 55.1,
+        "avg_sentence": 30.5,
+        "long_share": 0.036,
+        "max_paragraph": 110,
+        "paragraphs": 31,
+        "sentences": 56
+      },
+      "score": 93,
+      "source": "radar-k-tai.watch.impress.co.jp",
+      "title": "アップル、古いiPhone向けに「iOS 18.7.11」を公開 悪用報告のあるゼロデイ脆弱性など3件を修正"
     }
   ],
   "short_text_retry": {

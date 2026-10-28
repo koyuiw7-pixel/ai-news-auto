@@ -334,6 +334,18 @@ test("速報レーンの安全上限は30本（通常の記事の上限とは別
   assert.ok(RR.signal.test("Siri AI、日本語で提供開始"));
 });
 
+test("記事にならずに終わった登録は、見逃しチェック・手動の依頼なら起動し直す（Apple Creator Studio は生成に3回失敗して止まっていた）", async () => {
+  const { reopenable } = await import("../src/fastlane.js");
+  const done = (outcome, status = "done") => ({ status, outcome });
+  assert.equal(reopenable(done("skipped"), { via: "manual" }), true);
+  assert.equal(reopenable(done("skipped"), { via: "request:manual" }), true); // レーダーが依頼を outbox に置くときの via
+  assert.equal(reopenable(done("skipped"), { via: "missed-check:itmedia-news" }), true);
+  assert.equal(reopenable(done("skipped"), { via: "techmeme" }), false); // 見出しから見つけただけなら、判定済みの見送りは尊重する
+  assert.equal(reopenable(done(undefined, "gave_up"), { via: "techmeme" }), true);
+  assert.equal(reopenable(done("created"), { via: "manual" }), false);
+  assert.equal(reopenable(done(undefined, "dispatched"), { via: "manual" }), false);
+});
+
 // 2026-10-28 の試運転（npm run radar-live）で見つけた誤判定の再発防止
 test("同じページの言語違い（apple.com/newsroom と /jp/newsroom）は同じ出典・古い年月の公式リンクは使わない・提携の話は別の話題", async () => {
   const records = prepare([...BEFORE, {

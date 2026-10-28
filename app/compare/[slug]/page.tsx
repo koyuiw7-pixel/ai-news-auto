@@ -161,7 +161,7 @@ export default async function ComparePage({ params }: Props) {
                 <a
                   href={product.item.url}
                   target="_blank"
-                  rel="sponsored noopener noreferrer"
+                  rel="sponsored nofollow noopener noreferrer"
                   className="group flex w-full flex-col gap-2.5 p-4"
                 >
                   <span className="text-meta font-bold leading-snug text-live">{reason}</span>
@@ -211,7 +211,7 @@ export default async function ComparePage({ params }: Props) {
                     <a
                       href={product.item.url}
                       target="_blank"
-                      rel="sponsored noopener noreferrer"
+                      rel="sponsored nofollow noopener noreferrer"
                       className="inline-block whitespace-nowrap rounded-sm bg-ink px-3 py-1.5 text-badge font-bold text-paper hover:opacity-85"
                     >
                       公式 ↗
@@ -278,7 +278,7 @@ export default async function ComparePage({ params }: Props) {
               <a
                 href={product.item.url}
                 target="_blank"
-                rel="sponsored noopener noreferrer"
+                rel="sponsored nofollow noopener noreferrer"
                 className="mt-4 flex h-12 items-center justify-center gap-1.5 rounded-xl bg-live text-note font-bold text-live-ink transition-transform hover:-translate-y-px motion-reduce:transition-none"
               >
                 {product.item.name}の公式サイトを見る <span aria-hidden>↗</span>

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Suspense } from "react";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import NewsletterStatus from "@/components/NewsletterStatus";
+import PushOptIn from "@/components/PushOptIn";
+import { PUSH_RULES } from "@/lib/push-config";
 import { getAllArticles } from "@/lib/articles";
 import { isIndexable } from "@/lib/indexing";
 import { siteConfig } from "@/site.config";
@@ -33,7 +35,7 @@ export default function NewsletterPage() {
     <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8" style={{ fontFamily: FONT }}>
       <p className="eyebrow">NEWSLETTER</p>
       <h1 className="t-h1 mt-2">
-        毎朝7時、昨日のAIニュースの要点を5本
+        毎朝7時、昨日のAIニュースの<span className="whitespace-nowrap">要点を5本</span>
       </h1>
       <p className="mt-4 text-desc leading-[1.9] text-ink-soft">
         {siteConfig.siteName}のメール配信です。サイトを毎日のぞかなくても、前日に出た大事な発表だけを朝のうちに押さえられます。
@@ -78,6 +80,13 @@ export default function NewsletterPage() {
           </ol>
         </>
       )}
+
+      <h2 id="push" className="t-h2 mt-12">速報はプッシュ通知でも</h2>
+      <p className="mt-3 text-desc leading-[1.8] text-ink-soft">
+        主要企業の大きな発表があったとき、スマホやパソコンに通知でお知らせします。メールアドレスは要りません。
+        {`1日${PUSH_RULES.perDay}回まで、夜${PUSH_RULES.quietFrom}時〜朝${PUSH_RULES.quietUntil}時は鳴らしません（夜の速報は朝${PUSH_RULES.quietUntil}時に1本だけ）。`}
+      </p>
+      <PushOptIn variant="page" />
 
       <h2 className="t-h2 mt-12">登録と解除について</h2>
       <ul className="mt-3 list-disc space-y-1.5 pl-5 text-desc leading-[1.8] text-ink-soft">

@@ -336,3 +336,6 @@ if not hmac.compare_digest(expected, request.headers["X-Saisoku-Signature"]):
 - **失敗時の挙動**: 動画の解析に2回失敗した動画は `content/state.json` の `failed` に記録され、以降スキップされます。
   再挑戦させたい場合は該当エントリを削除してください。
 - **ショート動画**: RSSにはShortsも含まれます。Geminiが `is_relevant: false` と判定した動画は記事化されません。
+- **本番ページを機械で開くとき**: 自動ブラウザ・スクショ・CI では A8 などの計測ドメインへの通信を止め、提携リンクは押さない
+  （ASP のクリック・表示回数が水増しされるため）。決まりと止め方は [docs/automation.md](docs/automation.md)。
+  人による提携リンクのクリック数は `python3 scripts/aff_stats.py --yesterday` で見られます。

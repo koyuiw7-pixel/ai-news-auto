@@ -476,20 +476,24 @@ export async function radar(env, now, deps = {}) {
   const [coverage, fast] = await Promise.all([readCoverage(env, fetchImpl, now), env.FAST.get("state", "json")]);
   if (coverage === null) log.errors.coverage = "記事の索引を読めない（URL と速報レーンの登録だけで判定）";
   const horizon = now.getTime() - RR.coverage_hours * 3600e3;
+  // 速報レーンの登録は、処理中か記事になった（または価値なしと判定された）ものだけ「記事あり」に数える。諦めた・上限で止めたものは数えない
+  const counted = (e) => ["new", "dispatched"].includes(e.status) || (e.status === "done" && !["failed", "capped", "retry"].includes(e.outcome));
   const records = [
     ...(coverage || []).filter((c) => Date.parse(c.at) >= horizon),
-    ...Object.values(fast?.queue || {}).filter((e) => Date.parse(e.detectedAt) >= horizon && e.status !== "capped")
-      .map((e) => ({ slug: `fast:${e.slug || e.id}`, title: e.title, text: e.title, urls: [e.url] })),
+    ...Object.values(fast?.queue || {}).filter((e) => Date.parse(e.detectedAt) >= horizon && counted(e))
+      .map((e) => ({ slug: `fast:${e.slug || e.id}`, title: e.title, text: e.title, urls: [e.url], fast: true })),
     ...Object.values(st.outbox).filter((e) => Date.parse(e.detectedAt) >= horizon)
       .map((e) => ({ slug: `radar:${e.id}`, title: e.title, text: e.title, urls: [e.url, e.found] })),
   ];
   let prepared = prepare(records, RR);
+  // 見逃しチェック・手動の依頼は、記事の索引とレーダーの起動だけで判定する（速報レーンで記事にならずに終わった話題も作り直す）
+  const preparedReq = prepare(records.filter((r) => !r.fast), RR);
 
   // 同じ回の同じ話題はまとめる（リンクを合わせて一次情報を探す）
   cands.sort((a, b) => SOURCE_ORDER.indexOf(a.source) - SOURCE_ORDER.indexOf(b.source));
   const groups = [];
   for (const c of cands) {
-    const hit = covered(c.title, c.links, prepared, RR);
+    const hit = covered(c.title, c.links, c.request ? preparedReq : prepared, RR);
     if (hit) {
       st.handled[c.id] = { at: now.toISOString(), status: "covered", by: hit.slug, reason: hit.reason, title: c.title.slice(0, 80) };
       log.covered.push(`${c.title.slice(0, 60)} → ${hit.slug}（${hit.reason}）`);
@@ -546,8 +550,9 @@ export async function radar(env, now, deps = {}) {
       continue;
     }
     const pid = await itemId(prim.url);
-    const again = covered(head.title, [prim.url], prepared, RR);
-    if (fast?.queue?.[pid] || st.outbox[pid] || (again && again.reason === "同じ出典URL")) {
+    const again = covered(head.title, [prim.url], req ? preparedReq : prepared, RR);
+    const inFast = fast?.queue?.[pid] && (!req || ["new", "dispatched"].includes(fast.queue[pid].status) || ["created", "updated", "duplicate"].includes(fast.queue[pid].outcome));
+    if (inFast || st.outbox[pid] || (again && again.reason === "同じ出典URL")) {
       for (const c of g) st.handled[c.id] = { at: now.toISOString(), status: "covered", by: again?.slug || `fast:${pid}`, reason: "同じ出典URL", title: c.title.slice(0, 80) };
       log.covered.push(`${head.title.slice(0, 60)} → 同じ出典URL（${prim.url}）`);
       dirty = true;
@@ -555,7 +560,7 @@ export async function radar(env, now, deps = {}) {
     }
     const entry = {
       id: pid, url: prim.url, title: head.title.slice(0, 200), source: prim.source, sourceName: prim.sourceName,
-      secondary: prim.secondary, via: head.source, found: head.url, entities: head.entities,
+      secondary: prim.secondary, via: req ? `request:${req.via || "manual"}` : head.source, found: head.url, entities: head.entities,
       publishedAt: head.publishedAt || null, detectedAt: now.toISOString(),
     };
     log.dispatched.push({ title: entry.title.slice(0, 80), url: entry.url, sourceName: entry.sourceName, secondary: entry.secondary, via: entry.via, also: g.length - 1 });

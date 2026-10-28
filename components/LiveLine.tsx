@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import RelTime from "@/components/RelTime";
+import { PushBell } from "@/components/PushOptIn";
 
 type Item = { slug: string; title: string; publishedAt: string };
 
-/** ヘッダー下の速報の1行。トップでは先頭の大きな記事と重ならないよう2番目を出す */
+/** ヘッダー下の速報の1行。トップでは先頭の大きな記事と重ならないよう2番目を出す。右端に通知の鈴 */
 export default function LiveLine({ items }: { items: [Item, Item] | Item[] }) {
   const path = usePathname() ?? "/";
   const item = path === "/" ? (items[1] ?? items[0]) : items[0];
@@ -22,6 +23,8 @@ export default function LiveLine({ items }: { items: [Item, Item] | Item[] }) {
         >
           {item.title}
         </Link>
+        {/* 速報のプッシュ通知（押すと説明の吹き出し → 登録） */}
+        <PushBell />
       </div>
     </div>
   );

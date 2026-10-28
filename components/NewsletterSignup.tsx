@@ -80,7 +80,7 @@ export default function NewsletterSignup({ variant = "article" }: { variant?: Va
           id={`nl-${variant}`}
           className={`mt-1.5 leading-snug ${compact ? "t-card" : "t-h3"}`}
         >
-          毎朝7時、昨日のAIニュースの要点を5本
+          毎朝7時、昨日のAIニュースの<span className="whitespace-nowrap">要点を5本</span>
         </h2>
         {!compact && (
           <p className="mt-2 text-desc leading-[1.8] text-ink-soft">
