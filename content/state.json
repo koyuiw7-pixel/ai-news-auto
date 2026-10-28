@@ -53,9 +53,7 @@
     "zoohZ1BiHs0": 1
   },
   "failed_web": {},
-  "major_tries": {
-    "edf59637f599d673": 2
-  },
+  "major_tries": {},
   "processed": {
     "--kyzoeUuBk": {
       "at": "2026-08-10T15:58:56.932533+00:00",
@@ -4096,6 +4094,14 @@
       "skipped": true,
       "url": "https://www.ntt.com/about-us/press-releases/news/article/2026/1027.html"
     },
+    "5992879ed38f66ca": {
+      "at": "2026-10-28T01:32:51.270104+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "minecraft-nintendo-switch-2-launch",
+      "url": "https://www.nintendo.com/jp/topics/article/c8c6ed2b-cff7-4ff5-8953-32bd770e2537"
+    },
     "5a508ce5e5172782": {
       "at": "2026-10-26T18:40:05.834526+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5053,6 +5059,14 @@
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005948.000054842.html"
+    },
+    "9bc65f24ba4d545f": {
+      "at": "2026-10-28T01:32:02.608465+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "kddi-ai-vulnerability-management-solution",
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1212_4787.html"
     },
     "9cd6e2587ed02367": {
       "at": "2026-10-26T12:39:03.007958+00:00",
@@ -6405,92 +6419,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:52:09.402961+00:00",
-      "attempt": 2,
-      "id": "c2d4c5570f4f4496",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2320字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "Sprocket、データ分析エージェントがMCPに対応。生成AIから直接分析を呼び出せる基盤を整備"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:52:17.106137+00:00",
-      "attempt": 1,
-      "id": "5cf7c4a2445b103e",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1756字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "【ITエンジニアが見た「勧めない助言」】8割以上が「転職しない方がよいなら勧めないエージェントを信頼できる」と回答 実際にその助言を受けた人の約7割が、担当者へ"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:52:24.904737+00:00",
-      "attempt": 2,
-      "id": "5cf7c4a2445b103e",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1847字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "【ITエンジニアが見た「勧めない助言」】8割以上が「転職しない方がよいなら勧めないエージェントを信頼できる」と回答 実際にその助言を受けた人の約7割が、担当者へ"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:52:31.570655+00:00",
-      "attempt": 1,
-      "id": "18319346c05da9cf",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1603字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "「Kukurie（ククリエ）」を始動 新潟発 DX・AI総合ブランド"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:52:38.060571+00:00",
-      "attempt": 2,
-      "id": "18319346c05da9cf",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1651字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "「Kukurie（ククリエ）」を始動 新潟発 DX・AI総合ブランド"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:52:44.756171+00:00",
-      "attempt": 1,
-      "id": "93694452a1acf035",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1747字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "会社の書類・メール・会議の記録をAIが参照して答える、会社専用のAI基盤「マスターブレイン」を11月1日より本格提供。販売代理店の募集も開始"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T01:52:51.337866+00:00",
@@ -12686,6 +12614,138 @@
       "score": 82,
       "source": "anthropic-news",
       "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:31:28.961232+00:00",
+      "attempt": 1,
+      "id": "9bc65f24ba4d545f",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1926字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 102.6,
+        "avg_sentence": 47.9,
+        "long_share": 0.267,
+        "max_paragraph": 171,
+        "paragraphs": 14,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "kddi-news-ai",
+      "title": "リスク診断・対処を効率化、AI脆弱性管理ソリューションを提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:31:46.345546+00:00",
+      "attempt": 2,
+      "id": "9bc65f24ba4d545f",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 59.9字・60字超の文が 53% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 127.4字・最長 195字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 127.4,
+        "avg_sentence": 59.9,
+        "long_share": 0.529,
+        "max_paragraph": 195,
+        "paragraphs": 16,
+        "sentences": 34
+      },
+      "score": 100,
+      "source": "kddi-news-ai",
+      "title": "リスク診断・対処を効率化、AI脆弱性管理ソリューションを提供開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T01:32:02.607996+00:00",
+      "attempt": 0,
+      "id": "9bc65f24ba4d545f",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.5,
+        "avg_sentence": 34.2,
+        "long_share": 0.068,
+        "max_paragraph": 138,
+        "paragraphs": 26,
+        "sentences": 59
+      },
+      "score": 100,
+      "source": "kddi-news-ai",
+      "title": "リスク診断・対処を効率化、AI脆弱性管理ソリューションを提供開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:32:10.670572+00:00",
+      "attempt": 1,
+      "id": "5992879ed38f66ca",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1586字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 110.0,
+        "avg_sentence": 45.8,
+        "long_share": 0.125,
+        "max_paragraph": 181,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "nintendo-topics",
+      "title": "『Minecraft』が、より鮮やかなグラフィックにアップデートしてNintendo Switch 2 に登場。本日より発売開始。"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T01:32:30.188877+00:00",
+      "attempt": 1,
+      "id": "5992879ed38f66ca",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 47.0字・60字超の文が 16% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 150.3字・最長 221字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 150.3,
+        "avg_sentence": 47.0,
+        "long_share": 0.156,
+        "max_paragraph": 221,
+        "paragraphs": 10,
+        "sentences": 32
+      },
+      "score": 100,
+      "source": "nintendo-topics",
+      "title": "『Minecraft』が、より鮮やかなグラフィックにアップデートしてNintendo Switch 2 に登場。本日より発売開始。"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T01:32:51.269569+00:00",
+      "attempt": 0,
+      "id": "5992879ed38f66ca",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「Mojangおよび日本マイクロソフトが開発する」→元記事にはMojang/日本マイクロソフトから発売されたとあるが、開発主体が両社であるとは明記されていない。; 「パッケージ版をお持ちの方は、Nintendo Switch 2 版 『Minecraft: Ul"
+      ],
+      "readability": {
+        "avg_paragraph": 150.3,
+        "avg_sentence": 47.0,
+        "long_share": 0.156,
+        "max_paragraph": 221,
+        "paragraphs": 10,
+        "sentences": 32
+      },
+      "score": 100,
+      "source": "nintendo-topics",
+      "title": "『Minecraft』が、より鮮やかなグラフィックにアップデートしてNintendo Switch 2 に登場。本日より発売開始。"
     }
   ],
   "short_text_retry": {
