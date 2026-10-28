@@ -53,7 +53,9 @@
     "zoohZ1BiHs0": 1
   },
   "failed_web": {},
-  "major_tries": {},
+  "major_tries": {
+    "edf59637f599d673": 1
+  },
   "processed": {
     "--kyzoeUuBk": {
       "at": "2026-08-10T15:58:56.932533+00:00",
@@ -6402,49 +6404,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-10-27T01:51:09.768651+00:00",
-      "attempt": 1,
-      "id": "e9d3b73b309274e41acf6a6be9ce9f55e73fd6d2",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1092字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "アドバンテスト"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:51:14.885940+00:00",
-      "attempt": 2,
-      "id": "e9d3b73b309274e41acf6a6be9ce9f55e73fd6d2",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1028字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "アドバンテスト"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:51:21.920404+00:00",
-      "attempt": 1,
-      "id": "8d66812a807d04fb",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1564字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "マーケ経営者の単価と継続を考える生成AI活用教材をコミクスが制作"
-    },
-    {
-      "accepted": false,
       "at": "2026-10-27T01:51:29.785273+00:00",
       "attempt": 2,
       "id": "8d66812a807d04fb",
@@ -12594,6 +12553,82 @@
       "score": 93,
       "source": "meta-newsroom",
       "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built fo"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:00:48.406857+00:00",
+      "attempt": 1,
+      "id": "edf59637f599d673",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "文章が元なのに動画前提の表現がある（「動画では」）。「元記事」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 56.4,
+        "avg_sentence": 31.8,
+        "long_share": 0.018,
+        "max_paragraph": 100,
+        "paragraphs": 31,
+        "sentences": 55
+      },
+      "score": null,
+      "source": "anthropic-news",
+      "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:02:03.260979+00:00",
+      "attempt": 2,
+      "id": "edf59637f599d673",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「公開日は2026年10月26日です」→ 元記事に日付の記載はなく、創作された日付。",
+        "「両社が売り出しの案内役を務める形です」→ 元記事は目論見書の入手先として挙げているだけで、両社の役割（引受等）は述べていない。",
+        "「これまでAnthropicの株は、一般の投資家が市場で売買できるものではありませんでした」→ 元記事に書かれていない現状説明で、編集部注の一般論の範囲を超えて断定している。",
+        "「新製品の発表ではなく、会社の資金調達と株の売買に関する手続きの第一歩です」→ 元記事は資金調達目的に言及しておらず、推測を事実のように書いている。",
+        "「判定: 提供状況=soon」→ 株は買えず、売り出し時期も未定なのに「soon」とするのは近日提供の印象を与え、元記事の裏付けがない。",
+        "「上場企業になると、一般に情報開示の範囲が広がります」「AI企業の上場は、投資家が各社の事業を比べる機会を増やします」→ 編集部注・見立てとして書かれているが、元記事に根拠はない（軽微）。"
+      ],
+      "readability": {
+        "avg_paragraph": 61.6,
+        "avg_sentence": 33.2,
+        "long_share": 0.031,
+        "max_paragraph": 118,
+        "paragraphs": 35,
+        "sentences": 65
+      },
+      "score": 72,
+      "source": "anthropic-news",
+      "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:03:15.752789+00:00",
+      "attempt": 3,
+      "id": "edf59637f599d673",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「Goldman Sachs & Co. LLC（Prospectus Department、ニューヨーク）」「Morgan Stanley…（…ニューヨーク）」→ 元記事に住所はあるが、これは問題なし。ただし「かんたん版」の「発表に載っている連絡先から入手できます」は、元記事では「when available」で提供",
+        "「Anthropic公式ニュースによると」→ 元記事は出典媒体を示しておらず、「公式ニュース」という出所の特定は元記事から裏付けられない。",
+        "「3文字の銘柄コード」→ 元記事は「ANT」と記すのみで、「3文字」という説明は元記事にない補足。ただし内容は誤りではなく軽微。",
+        "「判定: 提供状況=demo」→ 株式公開は予定段階で、「demo」という提供状況は元記事に根拠がなく不適切。",
+        "「お店にたとえると、開店前の届け出を役所に出した段階です」→ 元記事にない比喩で、S-1を開店前の届け出とするのは不正確な単純化。",
+        "「元記事は英語のみで、日本語の案内は元記事にはありません」→ 元記事の言語に関する記述で、元記事から確認できない。"
+      ],
+      "readability": {
+        "avg_paragraph": 56.5,
+        "avg_sentence": 32.4,
+        "long_share": 0.033,
+        "max_paragraph": 118,
+        "paragraphs": 35,
+        "sentences": 61
+      },
+      "score": 82,
+      "source": "anthropic-news",
+      "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
     }
   ],
   "short_text_retry": {
