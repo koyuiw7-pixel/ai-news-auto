@@ -1,0 +1,71 @@
+{
+  "slug": "github-copilot-fusion-release",
+  "sourceType": "web",
+  "sourceUrl": "https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion",
+  "sourceName": "GitHub Changelog（Copilot）",
+  "title": "GitHub Copilotが複数のAIモデルを自動で使い分ける新機能を提供開始",
+  "seoTitle": "GitHub Copilot Fusionとは？料金と使い方｜日本での提供状況",
+  "threadsPost": "これまでのように自分でAIモデルを選ばなくても、GitHub Copilotが作業に合わせて最適なモデルを自動で使い分けてくれる新機能が登場しました。有料プランのユーザーなら、Visual Studio Codeなどで今日から使えます。",
+  "threadsHook": "conclusion",
+  "threadsStyle": 2,
+  "writingVoice": "honest",
+  "lede": "GitHubは、複数のAIモデルを自動で選択・連携させて複雑なコーディング作業を効率化する新機能「GitHub Copilot Fusion」の一般提供を開始した。公式ブログによると、パフォーマンスとコスト効率のバランスを取りながら、作業ごとに最適なモデルを自動的に割り当てるという。",
+  "description": "GitHub Copilotが複数のAIモデルを自動で選択・連携する新機能「GitHub Copilot Fusion」を一般提供開始。料金、使い方、導入のメリットを解説。",
+  "keywords": [
+    "GitHub Copilot Fusion",
+    "GitHub",
+    "AIモデル",
+    "オーケストレーション",
+    "マルチモデル",
+    "開発ツール",
+    "VS Code",
+    "プログラミング"
+  ],
+  "tags": [
+    "生成AI",
+    "開発ツール",
+    "GitHub"
+  ],
+  "highlights": [
+    "複数のAIモデルを自動で最適にルーティングする新機能「GitHub Copilot Fusion」が一般提供を開始した。",
+    "人工解析のコーディングエージェント指標でClaude Codeと同等のスコアを約半分のコストと時間で達成した。",
+    "有料プランのユーザーを対象に、期間限定でモデル費用が30%オフになる割引が提供される。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "標準料金＋期間限定30%割引",
+    "free": false,
+    "audience": "開発者・エンジニア",
+    "take": "対応クライアントアプリを最新版にアップデートし、モデル選択画面からCopilot Fusionを選んで試してみましょう。",
+    "judgedAt": "2026-10-28T17:59:03.446988+00:00"
+  },
+  "body": "## 概要\nGitHubは新機能「GitHub Copilot Fusion」の一般提供を開始しました。複数のAIモデルを自動で選択・連携させて開発作業を効率化します。公式ブログによると、この機能は作業ごとに最適なモデルを自動で割り当てます。これでパフォーマンスとコスト効率のバランスが最適化されます。開発者が手動でモデルを切り替える手間に悩まされることがなくなります。Copilot Fusionは2つのシステムを統合したものです。1つはProject HydraFusionのマルチモデルオーケストレーションです。もう1つはCopilot auto model selectionの微調整されたモデル選択です。\n\n## 何が発表された？\nGitHubは現地時間の2026年10月28日に発表を行いました。開発支援ツール「GitHub Copilot」の新機能の一般提供（GA）開始です。名前は「GitHub Copilot Fusion」です。複数のAIモデルを自動でルーティング・オーケストレーションします。これまではタスクごとに特定のモデルを自分で選ぶ必要がありました。今後はCopilot Fusionを選択するだけです。これでシステムが自動的に最適なモデルの組み合わせを判断してくれます。\n\n利用できるクライアント環境は次のとおりです。\n- Visual Studio Code\n- GitHub Copilot app\n- GitHub Copilot CLI\n- JetBrains IDEs\n\n対応するクライアントを最新版にアップデートして利用します。研究プレビュー参加者の選択は対応する努力レベルに自動で移行します。\n\n## 前と何が違う？\n### 自動でモデルを賢く選んでくれる\nこれまでは複雑な作業のために強力なモデルに切り替えました。そのあと日常的な作業に戻ってもモデルを戻し忘れることがありました。これで無駄なコストがかかることがありました。Copilot Fusionはプロンプトごとに最適なモデルを自動で判断します。そのため手動で切り替える手間がかかりません。AT&Tのエンジニアからも評価の声が出ています。無駄な出費が減って本来の業務に集中できるようになったとのことです。\n\n### 3つのeffortレベルを選べる\n利用者はモデル picker（モデル選択画面）でCopilot Fusionを選びます。そのあと作業の難易度に合わせてeffort（努力量）のレベルを指定できます。日常的なコーディング向けの「Fusion Standard」があります。より深い推論が必要な課題向けの「Fusion High」もあります。最も複雑な作業向けの「Fusion Max」が用意されています。Fusion Standardは汎用的なモデルを優先します。Fusion Highは能力の高いモデルを優先します。Fusion Maxは最も demanding なタスクと複雑な推論のために最も能力の高いモデルを優先します。\n\n### 複数のワークフローを自動で組み合わせる\nCopilot Fusionは単一のモデルで解決する「Single」に対応しています。それだけではありません。「Cascade」というワークフローもあります。これは効率的なモデルが下書きを作って品質チェックで強いモデルに引き上げる仕組みです。「Critique」というワークフローもあります。これはモデル同士でレビューと修正を繰り返す仕組みです。必要に応じてこれらを自動で使い分けます。Cascadeでは受け入れるか強いモデルにエスカレートするかを判定します。Critiqueでは1つのモデルが初稿を作成します。そして別のモデルがレビューします。最後に元のモデルが修正します。\n\n## 数字で見るとどう変わった？\n公式ブログにデータが掲載されています。人工解析のコーディングエージェント指標（Artificial Analysis Coding Agent Index）に関するデータです。ここで「Copilot Fusion Max」は60点を記録しました。これはClaude Code with Opus 5.5 Maxにわずか2ポイント差と迫るスコアです。特筆すべきポイントがあります。その成果を約半分の平均APIコストで達成したことです。さらにトークン消費量も約半分になりました。完了までの時間も約40%短縮した点にあります。Project HydraFusionの発表以来の成果です。パフォーマンスが継続的に改善された結果です。\n\n## ライバルと比べてどう？\n今回の発表には特徴があります。単一の高性能モデルをそのまま提供するわけではありません。複数のモデルを適材適所で組み合わせています。これでコストと速度の最適化を図るアプローチです。編集部の見立てでは次のように分析しています。Anthropicの「Claude Code」などの強力な単体エージェントとほぼ同等の性能です。それをより低いコストと短い時間で実現している点が最大の強みです。一方で注意点もあります。どのモデルを組み合わせるかの制御はGitHubのシステム側に依存します。そのため特定のモデルを完全に固定して使いたい場合があります。その場合には管理者のポリシー設定が必要になります。\n\n## 料金は？\nGitHub Copilot Fusionを利用する場合の料金体系です。使用された各モデルの標準レートに基づいて料金が請求されます。ただし例外があります。有料のCopilotプランを利用しているユーザー向けです。期間限定でモデル費用が30%オフになる割引が提供されます。複数のモデルが使われた場合でも適用されます。それぞれの標準レートから割引が適用されます。\n\n## 日本で使える？\n日本国内のユーザーでも利用可能です。対応する開発環境をアップデートすれば今日から利用可能です。今日から試すための手順は次のとおりです。\n- Visual Studio CodeやJetBrainsなどの対応クライアントを最新版にアップデートする\n- モデル選択画面を開く\n- 「Copilot Fusion」を選択する\n- 希望するeffortレベル（Standard、High、Max）を選ぶ\n追加のクライアントサポートもまもなく提供される予定です。\n\n## 自分にはどう関係する？\n### エンジニアなら\nタスクのたびにどのAIモデルを使うべきか迷う時間が一切なくなります。日常の簡単な補完から複雑な設計の相談まで対応します。常に最適な状態のAIが自動でサポートしてくれます。\n\n### 経営者・管理者なら\nエンタープライズ管理設定から操作できます。Copilot Fusionが使用できるモデルの制限を自由に管理できます。デフォルト設定の管理も可能です。無駄なモデル利用によるコスト増を防ぎます。開発チーム全体の生産性を引き上げることができます。管理者は企業や組織のモデルポリシーで有効になっているモデルだけを使用させることができます。エンタープライズ管理者はCopilot Fusionが選択するモデルを確認できます。そして個別にポリシー状態を設定して特定のモデルを無効化できます。Copilotユーザーのデフォルトモデルとして任意の努力レベルで設定することも可能です。\n\n## まとめ\nGitHub Copilot Fusionは実用的な機能です。モデル選びの煩わしさを解消します。コストとパフォーマンスを同時に最適化します。開発環境を最新版にアップデートしましょう。まずはモデル選択画面から試してみましょう。",
+  "easy": "## ひとことで言うと\nGitHub Copilotが、作業に合わせて一番適したAIモデルを自分で選んで使ってくれる新しい機能のことです。\n\n## 何がすごいの？\nこれまで開発者は、簡単な作業でも難しい作業でも、どのAIモデルを使うか自分で選んで切り替える必要がありました。Copilot Fusionでは、AI自身がタスクの難易度を判断して、1つのモデルで解いたり、複数のモデルで協力させたりして効率よく処理してくれます。人工解析のテストでは、従来の強力なモデルに匹敵する結果を、より少ない時間とコストで実現しました。\n\n## 自分に関係ある？\nコードを書くエンジニアなら、モデル選びに迷う時間がなくなります。管理者の立場であれば、組織ごとにどのモデルを使わせるか、細かいポリシーを設定してコントロールできるようになります。\n\n## 使ってみるには\nVisual Studio CodeやJetBrainsなどの対応するアプリを最新版にアップデートします。モデルを選ぶ画面で「Copilot Fusion」を選び、作業の難しさに合わせたレベル（Standard、High、Max）を指定すれば、今日からすぐに使えます。",
+  "channel": "GitHub Changelog（Copilot）",
+  "channelId": "",
+  "channelSlug": "github-changelog-copilot",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Route and orchestrate models with GitHub Copilot Fusion",
+  "publishedAt": "2026-10-28T16:00:00+00:00",
+  "generatedAt": "2026-10-28T17:59:03.447020+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/github-copilot-fusion-release-a8f9df1e.jpg",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "qualityScore": 100,
+  "sourcePublishedAt": "2026-10-28T16:00:00+00:00",
+  "detectedAt": "2026-10-28T17:51:15+00:00",
+  "imageCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A programmer viewed from behind works at a laptop on a desk, the screen displaying lines of code in a softly lit modern office.",
+    "provider": "Cloudflare Workers AI",
+    "original": "https://github.blog/wp-content/uploads/2026/11/683299408-b1d020a6-0c6d-49a5-ab57-5434d64fb7f9.png",
+    "at": "2026-10-28T18:02:33+00:00"
+  }
+}
