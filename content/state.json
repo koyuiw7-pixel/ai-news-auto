@@ -3730,6 +3730,12 @@
       "skipped": true,
       "url": "https://github.blog/changelog/2026-10-26-gpt-6-1-terra-in-github-copilot"
     },
+    "34b0bf3f94c3851e": {
+      "at": "2026-10-28T17:27:30.201417+00:00",
+      "reason": "followup: 新しい事実なし（gemini-4-carbon-cybersecurity-model）",
+      "skipped": true,
+      "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/"
+    },
     "34cd8a997767520d": {
       "at": "2026-10-27T17:56:40.815615+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3994,6 +4000,13 @@
       "reason": "trend sources 1",
       "skipped": true,
       "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm"
+    },
+    "459c4ca756185452": {
+      "at": "2026-10-28T17:30:39.592009+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: title / seo_title に感嘆符がある",
+      "skipped": true,
+      "url": "https://blog.ja.playstation.com/2026/10/29/20261029-dualsense-prism-collection-o/"
     },
     "45a374d069fd87b2": {
       "at": "2026-10-28T00:50:36.170686+00:00",
@@ -5094,6 +5107,13 @@
       "slug": "atam-academy-drawing-survey-causes",
       "url": "https://www.value-press.com/pressrelease/383143"
     },
+    "8c09187c205ca7d6": {
+      "at": "2026-10-28T17:32:31.148933+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1415字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（323字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.jfa.jp/news/00036959/"
+    },
     "8cb333260a17a324": {
       "at": "2026-10-27T19:31:34.886048+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5101,6 +5121,14 @@
       "section": "ai",
       "slug": "openai-daybreak-check-point-vulnerability",
       "url": "https://openai.com/index/check-point-daybreak"
+    },
+    "8cbc7d4302903d73": {
+      "at": "2026-10-28T17:29:22.402492+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "xreal-aura-android-xr-glasses",
+      "url": "https://blog.google/products-and-platforms/platforms/android/xreal-aura/"
     },
     "8ce4ce6d3f521ef3": {
       "at": "2026-10-27T21:01:10.369212+00:00",
@@ -5344,6 +5372,13 @@
       "reason": "quality: 「今回の発表対象は、シティホテル、ビジネスホテル、国内長距離交通、教育サービス、生命保険、損害保険（自動車／住宅・火災）の7業種に、特別調査として有料特急を加えたもの」→元記事では有料特急を含めて7業種と記載されており、7業種に加えたという表現は矛盾する。; 「編集部の見立てでは、航空業界内の競争激化の中で、顧客がスカイマークのサービス品質や価格設定に対して高い満足感を示している",
       "skipped": true,
       "url": "https://kyodonewsprwire.jp/release/202610228532"
+    },
+    "9b15837d33fd0259": {
+      "at": "2026-10-28T17:30:04.857541+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1580字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.caa.go.jp/notice/entry/047891/"
     },
     "9b550bca21ad1fc3": {
       "at": "2026-10-26T12:33:20.217270+00:00",
@@ -6648,6 +6683,14 @@
       "skipped": true,
       "url": "https://www.atpress.ne.jp/news/644341"
     },
+    "f5b54c1bebe91857": {
+      "at": "2026-10-28T17:37:11.315727+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "science",
+      "slug": "riken-xray-laser-terahertz-wave",
+      "url": "https://www.riken.jp/press/2026/20261028_1/index.html"
+    },
     "f5dab0c444cc799f": {
       "at": "2026-10-27T03:04:42.977847+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開店）",
@@ -6806,295 +6849,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-27T15:58:57.739475+00:00",
-      "attempt": 0,
-      "id": "f16aefe89a6e3f3b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 60.4,
-        "avg_sentence": 22.7,
-        "long_share": 0.0,
-        "max_paragraph": 120,
-        "paragraphs": 48,
-        "sentences": 128
-      },
-      "score": 100,
-      "source": "openai-news",
-      "title": "Working with academic communities to build scientific understanding"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T16:05:48.472343+00:00",
-      "attempt": 1,
-      "id": "5ef94984dce414f6",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1910字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 101.4,
-        "avg_sentence": 56.3,
-        "long_share": 0.481,
-        "max_paragraph": 183,
-        "paragraphs": 15,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "google-deepmind-blog",
-      "title": "Genie 4: A new generation of world simulation"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T16:06:36.604317+00:00",
-      "attempt": 2,
-      "id": "5ef94984dce414f6",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2240字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 139.4,
-        "avg_sentence": 62.5,
-        "long_share": 0.483,
-        "max_paragraph": 247,
-        "paragraphs": 13,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "google-deepmind-blog",
-      "title": "Genie 4: A new generation of world simulation"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T16:07:57.299217+00:00",
-      "attempt": 1,
-      "id": "a528c04c331c051e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 179.8,
-        "avg_sentence": 65.4,
-        "long_share": 0.591,
-        "max_paragraph": 276,
-        "paragraphs": 8,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "apple-newsroom-jp-all",
-      "title": "Apple、M6を搭載した新しい14インチMacBook Proを発表"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T16:08:56.169554+00:00",
-      "attempt": 2,
-      "id": "a528c04c331c051e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 59.0字・60字超の文が 39% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 150.9字・最長 221字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 150.9,
-        "avg_sentence": 59.0,
-        "long_share": 0.391,
-        "max_paragraph": 221,
-        "paragraphs": 9,
-        "sentences": 23
-      },
-      "score": 100,
-      "source": "apple-newsroom-jp-all",
-      "title": "Apple、M6を搭載した新しい14インチMacBook Proを発表"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T16:09:39.298292+00:00",
-      "attempt": 0,
-      "id": "a528c04c331c051e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 133.6字・最長 232字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 133.6,
-        "avg_sentence": 28.4,
-        "long_share": 0.0,
-        "max_paragraph": 232,
-        "paragraphs": 10,
-        "sentences": 47
-      },
-      "score": 100,
-      "source": "apple-newsroom-jp-all",
-      "title": "Apple、M6を搭載した新しい14インチMacBook Proを発表"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T16:10:06.894368+00:00",
-      "attempt": 1,
-      "id": "8f2f08b6e197805b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2153字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 116.7,
-        "avg_sentence": 62.5,
-        "long_share": 0.536,
-        "max_paragraph": 210,
-        "paragraphs": 15,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "How Ultrafast cut incident investigation from hours to minutes at OpenAI"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T16:10:56.045060+00:00",
-      "attempt": 2,
-      "id": "8f2f08b6e197805b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2243字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 98.9,
-        "avg_sentence": 64.8,
-        "long_share": 0.621,
-        "max_paragraph": 171,
-        "paragraphs": 19,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "How Ultrafast cut incident investigation from hours to minutes at OpenAI"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T16:11:44.567839+00:00",
-      "attempt": 1,
-      "id": "a7fcfcf24af1c1ba",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1863字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（349字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 104.3,
-        "avg_sentence": 60.2,
-        "long_share": 0.5,
-        "max_paragraph": 178,
-        "paragraphs": 15,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "meta-engineering",
-      "title": "Python Typing Survey 2026: AI Tools and the Shifting Checker Landscape"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T16:12:08.091502+00:00",
-      "attempt": 2,
-      "id": "a7fcfcf24af1c1ba",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1910字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 90.4,
-        "avg_sentence": 59.1,
-        "long_share": 0.462,
-        "max_paragraph": 186,
-        "paragraphs": 17,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "meta-engineering",
-      "title": "Python Typing Survey 2026: AI Tools and the Shifting Checker Landscape"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T16:12:24.138655+00:00",
-      "attempt": 1,
-      "id": "c9c03a759210419f",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1900字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（386字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 112.4,
-        "avg_sentence": 54.1,
-        "long_share": 0.37,
-        "max_paragraph": 213,
-        "paragraphs": 13,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "ntt-news-ai",
-      "title": "AIとロボットが人と安全・快適に共存する世界へ、Physical AI連携基盤を開発"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T16:12:44.531529+00:00",
-      "attempt": 2,
-      "id": "c9c03a759210419f",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1832字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 99.0,
-        "avg_sentence": 51.3,
-        "long_share": 0.296,
-        "max_paragraph": 149,
-        "paragraphs": 14,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "ntt-news-ai",
-      "title": "AIとロボットが人と安全・快適に共存する世界へ、Physical AI連携基盤を開発"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T16:13:23.231436+00:00",
-      "attempt": 1,
-      "id": "c39fc6a231d46dae",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1828字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 117.7,
-        "avg_sentence": 66.5,
-        "long_share": 0.609,
-        "max_paragraph": 227,
-        "paragraphs": 13,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "kddi-news-ai",
-      "title": "フィジカルAIを推進する新会社「ELYZA Robotics」事業開始"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T16:13:48.874814+00:00",
@@ -13422,6 +13176,297 @@
       "score": 62,
       "source": "apple-newsroom-jp-all",
       "title": "Apple、PROLED XDRディスプレイを搭載した画期的なMacBook Proを発表"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T17:27:49.487719+00:00",
+      "attempt": 1,
+      "id": "8cbc7d4302903d73",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1891字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 149.6,
+        "avg_sentence": 53.1,
+        "long_share": 0.258,
+        "max_paragraph": 369,
+        "paragraphs": 11,
+        "sentences": 31
+      },
+      "score": null,
+      "source": "google-gemini-blog",
+      "title": "XREAL AURA: Wired XR glasses to watch, work, and play"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T17:28:17.093513+00:00",
+      "attempt": 2,
+      "id": "8cbc7d4302903d73",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2315字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 121.9,
+        "avg_sentence": 55.4,
+        "long_share": 0.394,
+        "max_paragraph": 244,
+        "paragraphs": 15,
+        "sentences": 33
+      },
+      "score": null,
+      "source": "google-gemini-blog",
+      "title": "XREAL AURA: Wired XR glasses to watch, work, and play"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T17:28:53.175351+00:00",
+      "attempt": 2,
+      "id": "8cbc7d4302903d73",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 50.7字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 145.5字・最長 244字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 145.5,
+        "avg_sentence": 50.7,
+        "long_share": 0.302,
+        "max_paragraph": 244,
+        "paragraphs": 15,
+        "sentences": 43
+      },
+      "score": 100,
+      "source": "google-gemini-blog",
+      "title": "XREAL AURA: Wired XR glasses to watch, work, and play"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T17:29:22.402114+00:00",
+      "attempt": 0,
+      "id": "8cbc7d4302903d73",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 107.5,
+        "avg_sentence": 33.8,
+        "long_share": 0.071,
+        "max_paragraph": 208,
+        "paragraphs": 22,
+        "sentences": 70
+      },
+      "score": 100,
+      "source": "google-gemini-blog",
+      "title": "XREAL AURA: Wired XR glasses to watch, work, and play"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T17:29:38.936976+00:00",
+      "attempt": 1,
+      "id": "9b15837d33fd0259",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1195字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 107.7,
+        "avg_sentence": 51.0,
+        "long_share": 0.368,
+        "max_paragraph": 167,
+        "paragraphs": 9,
+        "sentences": 19
+      },
+      "score": null,
+      "source": "caa",
+      "title": "注文住宅の建築請負に係る役務の提供事業者4社に対する景品表示法に基づく課徴金納付命令について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T17:29:52.902907+00:00",
+      "attempt": 2,
+      "id": "9b15837d33fd0259",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1580字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 134.9,
+        "avg_sentence": 56.2,
+        "long_share": 0.417,
+        "max_paragraph": 190,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "caa",
+      "title": "注文住宅の建築請負に係る役務の提供事業者4社に対する景品表示法に基づく課徴金納付命令について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T17:30:22.095368+00:00",
+      "attempt": 1,
+      "id": "459c4ca756185452",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1745字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "title の長さが不適切（65字 / 18〜64字）"
+      ],
+      "readability": {
+        "avg_paragraph": 130.8,
+        "avg_sentence": 56.9,
+        "long_share": 0.391,
+        "max_paragraph": 255,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "playstation-blog-jp",
+      "title": "スケルトンデザインの新色3種類が登場！ PS5®周辺機器「プリズム コレクション」初公開"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T17:30:39.591982+00:00",
+      "attempt": 2,
+      "id": "459c4ca756185452",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "title / seo_title に感嘆符がある"
+      ],
+      "readability": {
+        "avg_paragraph": 123.8,
+        "avg_sentence": 56.8,
+        "long_share": 0.458,
+        "max_paragraph": 257,
+        "paragraphs": 11,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "playstation-blog-jp",
+      "title": "スケルトンデザインの新色3種類が登場！ PS5®周辺機器「プリズム コレクション」初公開"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T17:32:07.322910+00:00",
+      "attempt": 1,
+      "id": "8c09187c205ca7d6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1648字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（298字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 133.4,
+        "avg_sentence": 63.5,
+        "long_share": 0.381,
+        "max_paragraph": 178,
+        "paragraphs": 10,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "jfa",
+      "title": "副会長辞任に関するお知らせ #jfa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T17:32:31.148908+00:00",
+      "attempt": 2,
+      "id": "8c09187c205ca7d6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1415字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（323字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 129.3,
+        "avg_sentence": 49.7,
+        "long_share": 0.231,
+        "max_paragraph": 203,
+        "paragraphs": 10,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "jfa",
+      "title": "副会長辞任に関するお知らせ #jfa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T17:35:49.282502+00:00",
+      "attempt": 1,
+      "id": "f5b54c1bebe91857",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1534字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 129.7,
+        "avg_sentence": 61.8,
+        "long_share": 0.524,
+        "max_paragraph": 201,
+        "paragraphs": 10,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "riken",
+      "title": "世界で初めてX線レーザー照射による固体からのテラヘルツ波放射を観測"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T17:36:40.089739+00:00",
+      "attempt": 2,
+      "id": "f5b54c1bebe91857",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 59.7字・60字超の文が 45% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 144.2字・最長 199字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 144.2,
+        "avg_sentence": 59.7,
+        "long_share": 0.448,
+        "max_paragraph": 199,
+        "paragraphs": 12,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "riken",
+      "title": "世界で初めてX線レーザー照射による固体からのテラヘルツ波放射を観測"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T17:37:11.315373+00:00",
+      "attempt": 0,
+      "id": "f5b54c1bebe91857",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 136.9字・最長 217字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 136.9,
+        "avg_sentence": 39.1,
+        "long_share": 0.02,
+        "max_paragraph": 217,
+        "paragraphs": 14,
+        "sentences": 49
+      },
+      "score": 100,
+      "source": "riken",
+      "title": "世界で初めてX線レーザー照射による固体からのテラヘルツ波放射を観測"
     }
   ],
   "short_text_retry": {
