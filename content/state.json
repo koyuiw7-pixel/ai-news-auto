@@ -5434,6 +5434,13 @@
       "slug": "nvidia-local-ai-gtc-berlin-spark-station",
       "url": "https://blogs.nvidia.co.jp/blog/local-ai-gtc-rtx-dgx-spark-station-sync/"
     },
+    "b64d489d45134fc3": {
+      "at": "2026-10-28T03:25:45.476344+00:00",
+      "model": "claude:sonnet",
+      "reason": "followup quality: 「マイナビニュースは10月28日、…と報じました」→ 元記事には媒体名も「10月28日」という日付も書かれておらず、出典と日付が創作されている。",
+      "skipped": true,
+      "url": "https://news.mynavi.jp/article/20261028-5209377/"
+    },
     "b69be4baefaaedcb": {
       "at": "2026-10-27T03:05:10.757566+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（世界市場）",
@@ -6496,20 +6503,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T02:32:17.097218+00:00",
-      "attempt": 1,
-      "id": "f7930f5692647d14",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1457字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "boj",
-      "title": "企業向けサービス価格指数（9月）"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T02:32:51.684934+00:00",
@@ -12995,6 +12988,20 @@
       "score": 70,
       "source": "radar-k-tai.watch.impress.co.jp",
       "title": "ソフトバンク、新型「iPad mini（A20 Pro）」価格発表 11万9800円～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T03:25:45.476313+00:00",
+      "attempt": 1,
+      "id": "b64d489d45134fc3",
+      "kind": "update",
+      "model": "claude:sonnet",
+      "problems": [
+        "「マイナビニュースは10月28日、…と報じました」→ 元記事には媒体名も「10月28日」という日付も書かれておらず、出典と日付が創作されている。"
+      ],
+      "score": 60,
+      "source": "radar-news.mynavi.jp",
+      "title": "ラウダ、holditとCellularlineの「iPhone Duo」対応ケース全6種を発売"
     }
   ],
   "short_text_retry": {
