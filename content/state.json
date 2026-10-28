@@ -53,9 +53,7 @@
     "zoohZ1BiHs0": 1
   },
   "failed_web": {},
-  "major_tries": {
-    "fdf27bf9960b1109": 1
-  },
+  "major_tries": {},
   "processed": {
     "--kyzoeUuBk": {
       "at": "2026-08-10T15:58:56.932533+00:00",
@@ -6411,6 +6409,16 @@
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366517"
     },
+    "fdf27bf9960b1109": {
+      "at": "2026-10-28T01:56:58.980273+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 90,
+      "section": "ai",
+      "slug": "claude-drug-development-progress",
+      "url": "https://www.anthropic.com/research/early-progress-drug-development"
+    },
     "feb4caa835f163bd": {
       "at": "2026-10-27T17:51:36.497157+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6434,20 +6442,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:53:51.879289+00:00",
-      "attempt": 1,
-      "id": "cb9152cb3e3b49db",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1839字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "あなたのAI顧問株式会社、経営者向け「Muse」活用ノウハウの無料提供を開始"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T01:53:58.777565+00:00",
@@ -12842,6 +12836,26 @@
       "score": 91,
       "source": "apple-newsroom-jp",
       "title": "Siri AI、日本語で提供開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T01:56:58.979628+00:00",
+      "attempt": 1,
+      "id": "fdf27bf9960b1109",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 75.5,
+        "avg_sentence": 34.2,
+        "long_share": 0.035,
+        "max_paragraph": 179,
+        "paragraphs": 39,
+        "sentences": 86
+      },
+      "score": 90,
+      "source": "anthropic-news",
+      "title": "Early progress on accelerating drug development with Claude"
     }
   ],
   "short_text_retry": {
