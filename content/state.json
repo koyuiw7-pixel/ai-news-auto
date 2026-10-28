@@ -3415,6 +3415,14 @@
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366549"
     },
+    "20cc7c9e1bb19e7a": {
+      "at": "2026-10-28T15:44:12.732582+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "amazon-alexa-plus-launch",
+      "url": "https://www.aboutamazon.jp/news/devices/things-you-can-do-with-new-alexa-plus?utm_source=rss"
+    },
     "2122e422380b5543": {
       "at": "2026-10-26T16:50:25.785682+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（講座）",
@@ -3647,6 +3655,13 @@
       "reason": "quality: 本文が短い（2001字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; title / seo_title に感嘆符がある",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/announcing-soci-indexed-images-for-faster-sagemaker-ai-jobs/"
+    },
+    "2fc8e689e413caad": {
+      "at": "2026-10-28T15:42:40.487041+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "followup quality: OpenAI公式ブログは2026年10月28日 → 元記事に「2026年10月28日」という具体的な日付の記載がない",
+      "skipped": true,
+      "url": "https://openai.com/index/legora-agentic-operating-system-for-legal-work"
     },
     "30c26e066d3951dd": {
       "at": "2026-10-27T01:54:15.440638+00:00",
@@ -4695,6 +4710,14 @@
       "reason": "AI・ソフトウェアなど技術の発表ではなく、社員向けの人事制度（希望退職の募集）の社内連絡であり、このジャンルの対象範囲外のため。",
       "skipped": true,
       "url": "https://blogs.microsoft.com/blog/2026/10/26/introducing-a-voluntary-exit-offer/"
+    },
+    "7ae8eb20550eee76": {
+      "at": "2026-10-28T15:48:04.787605+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "nvidia-nemotron-35-transcribe",
+      "url": "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary"
     },
     "7b7a9b09c0599cf2": {
       "at": "2026-10-27T17:12:19.208475+00:00",
@@ -6713,137 +6736,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:19:20.832208+00:00",
-      "attempt": 2,
-      "id": "4a299d1e9f3d5424",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 71.3字・60字超の文が 58% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 105.3,
-        "avg_sentence": 71.3,
-        "long_share": 0.581,
-        "max_paragraph": 186,
-        "paragraphs": 21,
-        "sentences": 31
-      },
-      "score": 100,
-      "source": "nvidia-blog",
-      "title": "How AI Is Changing the Pace of Discovery for Millions Living With Dementia"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T15:19:52.426248+00:00",
-      "attempt": 0,
-      "id": "4a299d1e9f3d5424",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 108.7,
-        "avg_sentence": 35.7,
-        "long_share": 0.045,
-        "max_paragraph": 188,
-        "paragraphs": 22,
-        "sentences": 67
-      },
-      "score": 100,
-      "source": "nvidia-blog",
-      "title": "How AI Is Changing the Pace of Discovery for Millions Living With Dementia"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:25:26.165569+00:00",
-      "attempt": 1,
-      "id": "64d59b55a8fb8666",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "アクセス先「OpenAIの公式ブログ「ChatGPT’s expanding world of work」」→ 元記事にブログのタイトルは書かれておらず、固有名詞を創作している。"
-      ],
-      "readability": {
-        "avg_paragraph": 66.8,
-        "avg_sentence": 31.4,
-        "long_share": 0.0,
-        "max_paragraph": 131,
-        "paragraphs": 32,
-        "sentences": 68
-      },
-      "score": 85,
-      "source": "openai-news",
-      "title": "ChatGPT’s expanding world of work"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:26:44.464431+00:00",
-      "attempt": 2,
-      "id": "64d59b55a8fb8666",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "かんたん版「荷物を運ぶ、乗り物を運転するなど、ChatGPTでは扱いにくい仕事が多いからです」→ 元記事は閾値(consistent representation)を満たさなかったためとしており、「ChatGPTで扱いにくい」という理由は創作・矛盾。",
-        "まとめ「上位10業務の割合が下がったことは、使い方が多様化している兆しです」→ 元記事は「専門化」と説明しており、多様化という解釈は元記事にない言い過ぎ。",
-        "かんたん版「使い方が国ごとにばらけてきた、ということです」→ 元記事は集中度低下と国ごとの専門化を述べており、「ばらけた」は言い換えを超えた解釈。",
-        "まとめ「何の仕事に…増えたかを…追えるようになりました」→ 元記事は増加を示しておらず、割合の変化のみ。",
-        "「これまでの利用調査では、仕事で使われたかどうかが中心でした」→ 元記事に根拠がない過去の調査についての断定（直後の編集部注と矛盾）。",
-        "経営者向け「人材や業務設計の議論に役立ちます」「エンジニアなら…AIがどの作業に向いているかを見る参考」→ 元記事にない効用の断定。"
-      ],
-      "readability": {
-        "avg_paragraph": 57.2,
-        "avg_sentence": 31.1,
-        "long_share": 0.044,
-        "max_paragraph": 108,
-        "paragraphs": 37,
-        "sentences": 68
-      },
-      "score": 72,
-      "source": "openai-news",
-      "title": "ChatGPT’s expanding world of work"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T15:27:59.297437+00:00",
-      "attempt": 3,
-      "id": "64d59b55a8fb8666",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 64.8,
-        "avg_sentence": 33.8,
-        "long_share": 0.014,
-        "max_paragraph": 113,
-        "paragraphs": 38,
-        "sentences": 73
-      },
-      "score": 92,
-      "source": "openai-news",
-      "title": "ChatGPT’s expanding world of work"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T15:52:12.080775+00:00",
-      "attempt": 1,
-      "id": "1a1d4bf2fc111eb8",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 61.8,
-        "avg_sentence": 31.8,
-        "long_share": 0.044,
-        "max_paragraph": 133,
-        "paragraphs": 35,
-        "sentences": 68
-      },
-      "score": 100,
-      "source": "openai-news",
-      "title": "GPT-6.1 Sol helps CodeRabbit strengthen security across complex codebases"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T15:52:56.865697+00:00",
@@ -13349,6 +13241,129 @@
       "score": 55,
       "source": "nvidia-newsroom",
       "title": "NVIDIA RTX Spark Windows Laptops Gain New Models, Agent Tools and Games"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T15:42:40.487012+00:00",
+      "attempt": 1,
+      "id": "2fc8e689e413caad",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "OpenAI公式ブログは2026年10月28日 → 元記事に「2026年10月28日」という具体的な日付の記載がない"
+      ],
+      "score": 85,
+      "source": "openai-news",
+      "title": "Legora is building the agentic operating system for legal work"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T15:43:38.569969+00:00",
+      "attempt": 1,
+      "id": "20cc7c9e1bb19e7a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 76.3字・60字超の文が 78% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 195.0字・最長 262字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 195.0,
+        "avg_sentence": 76.3,
+        "long_share": 0.783,
+        "max_paragraph": 262,
+        "paragraphs": 9,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "about-amazon-jp",
+      "title": "「Alexa+」で今すぐ試したいこと"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T15:44:12.732149+00:00",
+      "attempt": 0,
+      "id": "20cc7c9e1bb19e7a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 208.8字・最長 290字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 208.8,
+        "avg_sentence": 39.1,
+        "long_share": 0.104,
+        "max_paragraph": 290,
+        "paragraphs": 9,
+        "sentences": 48
+      },
+      "score": 100,
+      "source": "about-amazon-jp",
+      "title": "「Alexa+」で今すぐ試したいこと"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T15:46:47.714899+00:00",
+      "attempt": 1,
+      "id": "7ae8eb20550eee76",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2145字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 107.1,
+        "avg_sentence": 55.4,
+        "long_share": 0.448,
+        "max_paragraph": 180,
+        "paragraphs": 15,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "hugging-face-blog",
+      "title": "NVIDIA Nemotron 3.5 Transcribe and Granary v2: Intelligent Multilingual Transcri"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T15:47:20.738838+00:00",
+      "attempt": 1,
+      "id": "7ae8eb20550eee76",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 46.1字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 90.4,
+        "avg_sentence": 46.1,
+        "long_share": 0.245,
+        "max_paragraph": 180,
+        "paragraphs": 27,
+        "sentences": 53
+      },
+      "score": 100,
+      "source": "hugging-face-blog",
+      "title": "NVIDIA Nemotron 3.5 Transcribe and Granary v2: Intelligent Multilingual Transcri"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T15:48:04.787169+00:00",
+      "attempt": 0,
+      "id": "7ae8eb20550eee76",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 101.6,
+        "avg_sentence": 31.2,
+        "long_share": 0.034,
+        "max_paragraph": 204,
+        "paragraphs": 27,
+        "sentences": 88
+      },
+      "score": 100,
+      "source": "hugging-face-blog",
+      "title": "NVIDIA Nemotron 3.5 Transcribe and Granary v2: Intelligent Multilingual Transcri"
     }
   ],
   "short_text_retry": {
