@@ -420,6 +420,20 @@ QUERY_SCHEMA = {
     "required": ["queries", "scene"],
 }
 
+# 記事づくりと Gemini の無料枠を取り合わないよう、Workers AI（1本あたり0.1円未満）→ Gemma の順に使う。
+# Claude は使わない（オーナーの枠のため）
+IMAGE_LLM_PREFER = [m.strip() for m in (os.environ.get("IMAGES_LLM_MODELS") or "cloudflare:@cf/openai/gpt-oss-120b,gemma-4-26b-a4b-it,gemini-3.1-flash-lite").split(",") if m.strip()]
+
+
+def llm_tier() -> str:
+    if "images" not in llm._tiers:
+        bulk = llm.models_for("bulk")
+        prefer = [m for m in IMAGE_LLM_PREFER if m in bulk]
+        rest = [m for m in bulk if m not in prefer and not m.startswith(("claude:", "codex:"))]
+        llm._tiers["images"] = prefer + rest
+    return "images"
+
+
 QUERY_SYSTEM = (
     "You are a photo editor at a Japanese news site. For each article you choose a stock photo for the thumbnail. "
     "Return JSON only."
@@ -444,7 +458,7 @@ Return:
 - "scene": one English sentence describing a neutral, photorealistic editorial news photo for this article
   (subject, setting, light). No text, no signs, no logos, no brand names, no identifiable real people
   (people only from behind, as hands, or out of focus)."""
-    data, model = llm.generate_json(QUERY_SYSTEM, prompt, QUERY_SCHEMA, tier="bulk", temperature=0.3, max_output_tokens=600)
+    data, model = llm.generate_json(QUERY_SYSTEM, prompt, QUERY_SCHEMA, tier=llm_tier(), temperature=0.3, max_output_tokens=2048)
     queries = []
     for q in data.get("queries") or []:
         q = re.sub(r"[^\w\s'-]", " ", str(q)).strip()
@@ -486,13 +500,16 @@ def normalize_license(name: str) -> str:
     return ""
 
 
-_wiki_down = False
+_wiki_failures = 0
+_wiki_last = 0.0
+WIKI_INTERVAL = float(os.environ.get("WIKI_INTERVAL") or "3")
 
 
 def search_wikimedia(query: str, limit: int = 10, quality: bool = False) -> list[dict]:
-    """quality=True は Commons の「Quality images」（写りの審査を通ったもの）だけから探す"""
-    global _wiki_down
-    if _wiki_down:
+    """quality=True は Commons の「Quality images」（写りの審査を通ったもの）だけから探す。
+    混雑（429・503）は少し待って3回まで。5回続けて失敗したらその回は使わない"""
+    global _wiki_failures
+    if _wiki_failures >= 5:
         return []
     search = f'{query} filetype:bitmap filemime:image/jpeg filew:>{MIN_STOCK_WIDTH - 1} -incategory:"Images with watermarks"'
     if quality:
@@ -510,12 +527,28 @@ def search_wikimedia(query: str, limit: int = 10, quality: bool = False) -> list
         "iiurlwidth": "1280",
         "iiextmetadatafilter": "LicenseShortName|Artist|LicenseUrl|ImageDescription|ObjectName|Restrictions|AttributionRequired",
     }
-    try:
-        data = http_json("https://commons.wikimedia.org/w/api.php?" + urllib.parse.urlencode(params), timeout=25)
-    except Exception as error:  # noqa: BLE001
-        log(f"   [img] Wikimedia 検索に失敗: {str(error)[:80]}")
-        _wiki_down = True
+    data = None
+    global _wiki_last
+    for attempt in range(3):
+        # 続けて叩くと 503 で締め出されるので、間を空ける
+        time.sleep(max(0.0, WIKI_INTERVAL - (time.time() - _wiki_last)))
+        _wiki_last = time.time()
+        try:
+            data = http_json("https://commons.wikimedia.org/w/api.php?" + urllib.parse.urlencode(params), timeout=25)
+            break
+        except urllib.error.HTTPError as error:
+            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+                log(f"   [img] Wikimedia 検索に失敗: {error.code}")
+                break
+            wait = int(error.headers.get("Retry-After") or 0) or 5 * (attempt + 1)
+            time.sleep(min(wait, 30))
+        except Exception as error:  # noqa: BLE001
+            log(f"   [img] Wikimedia 検索に失敗: {str(error)[:80]}")
+            break
+    if data is None:
+        _wiki_failures += 1
         return []
+    _wiki_failures = 0
     pages = sorted((data.get("query") or {}).get("pages") or [], key=lambda p: p.get("index", 0))
     out = []
     for page in pages:
@@ -576,7 +609,7 @@ def search_openverse(query: str, limit: int = 12) -> list[dict]:
         if not license_name or not item.get("url"):
             continue
         # Flickr の中サイズ（_b=1024px 以下）は幅が足りない
-        if re.search(r"staticflickr\.com/.+_[bczmnstq]\.jpg$", item["url"]):
+        if re.search(r"staticflickr\.com/.+_[bczmnstq]\.jpg$", item["url"]) or "rawpixel" in str(item.get("source") or item.get("provider") or ""):
             continue
         out.append(
             {
@@ -643,18 +676,26 @@ def vision_check(image, article: dict) -> str | None:
         have = llm.available_models()
     except Exception:  # noqa: BLE001
         return None
-    for model in [m for m in llm.BULK_MODELS if m in have and not m.startswith("gemma") and m not in llm._exhausted][:3]:
+    order = list(dict.fromkeys(IMAGE_LLM_PREFER + llm.BULK_MODELS))
+    for model in [m for m in order if m in have and m not in llm._exhausted][:4]:
+        gemma = model.startswith("gemma")
+        cfg = {"temperature": 0, "max_output_tokens": 300}
+        if not gemma:
+            cfg.update(response_mime_type="application/json", response_schema=VISION_SCHEMA)
+        text = prompt + ('\nReturn JSON only: {"related": bool, "brand_or_text": bool, "person_main": bool, "why": "short"}' if gemma else "")
         try:
             response = llm._gemini_client().models.generate_content(
                 model=model,
-                contents=[types.Part.from_bytes(data=buf.getvalue(), mime_type="image/jpeg"), prompt],
-                config=types.GenerateContentConfig(temperature=0, max_output_tokens=200, response_mime_type="application/json", response_schema=VISION_SCHEMA),
+                contents=[types.Part.from_bytes(data=buf.getvalue(), mime_type="image/jpeg"), text],
+                config=types.GenerateContentConfig(**cfg),
             )
             llm._record_usage(model)
             data = llm.parse_json_lenient(response.text or "")
         except Exception as error:  # noqa: BLE001
             if llm._classify(error) == "quota":
                 llm._exhausted.add(model)
+            continue
+        if not isinstance(data, dict) or "related" not in data:
             continue
         if data.get("related") is False:
             return "記事と関係が薄い"
@@ -690,7 +731,7 @@ Rules:
 - "[QI]" marks photos that passed Wikimedia's quality review; prefer them when equally relevant
 Return {{"pick": index}} or {{"pick": -1}} if none fits."""
     try:
-        data, _ = llm.generate_json("You are a careful photo editor. Return JSON only.", prompt, PICK_SCHEMA, tier="bulk", temperature=0.1, max_output_tokens=200)
+        data, _ = llm.generate_json("You are a careful photo editor. Return JSON only.", prompt, PICK_SCHEMA, tier=llm_tier(), temperature=0.1, max_output_tokens=1024)
         index = int(data.get("pick", -1))
     except Exception as error:  # noqa: BLE001
         log(f"   [img] 選定に失敗、検索順の先頭を使う: {str(error)[:80]}")
@@ -702,15 +743,24 @@ def find_stock(article: dict, plan: dict, used: set[str]) -> tuple[dict | None, 
     candidates: list[dict] = []
     seen = set()
     queries = plan["queries"] + ([plan["query_ja"]] if plan.get("query_ja") else [])
-    for query in queries:
-        for item in search_wikimedia(query, limit=6, quality=True) + search_wikimedia(query) + search_openverse(query):
+    def add(items: list[dict]) -> None:
+        for item in items:
             if item["sourceUrl"] in seen or not stock_ok(item, used):
                 continue
             seen.add(item["sourceUrl"])
             candidates.append(item)
-        if len(candidates) >= 18:
+
+    # 呼び出しを減らす: 審査済み（QI）は最初の検索語だけ、日本語の検索語は足りないときだけ
+    for index, query in enumerate(queries):
+        if index == len(plan["queries"]) and len(candidates) >= 6:
             break
-        time.sleep(0.5)
+        add((search_wikimedia(query, limit=6, quality=True) if index == 0 else []) + search_wikimedia(query))
+        if len(candidates) >= 12:
+            break
+    # Openverse（Flickr など）は応答が遅く、実際の画像が小さいことも多いので、Commons で足りないときだけ
+    if len(candidates) < 6:
+        for query in plan["queries"]:
+            add(search_openverse(query))
     if not candidates:
         return None, None
     # 同じ検索語の上位に偏らないよう、検索語ごとに交互に並べる
@@ -871,6 +921,14 @@ def needs_check(article: dict) -> bool:
     return True
 
 
+def age_hours(article: dict) -> float:
+    try:
+        made = datetime.fromisoformat(str(article.get("generatedAt") or article.get("publishedAt")).replace("Z", "+00:00"))
+        return (datetime.now(timezone.utc) - made).total_seconds() / 3600
+    except Exception:  # noqa: BLE001
+        return 0.0
+
+
 def save(path: Path, article: dict) -> None:
     path.write_text(json.dumps(article, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -927,6 +985,10 @@ def process(path: Path, article: dict, ctx: dict) -> str:
             }
             ctx["used_stock"].add(pick["sourceUrl"])
             log(f"   [img] 素材: {pick['title'][:60]}（{pick['creator'][:30]} / {pick['license']}）")
+    if image is None and _wiki_failures > 0 and not ctx.get("fast") and not ctx.get("ai_only") and age_hours(article) < ctx["defer_hours"]:
+        # Commons が落ちているだけなら AI の枠を使わず、次の回に探し直す（速報の回と、何時間も直らないときは AI）
+        log("   [img] Wikimedia Commons に繋がらないので次の回に回す")
+        return "deferred"
     if image is None:
         made = generate_ai(plan, article, fast=ctx.get("fast", False))
         if not made:
@@ -960,7 +1022,11 @@ def load_env_local() -> None:
             match = re.match(r"^(GEMINI_API_KEY|GOOGLE_API_KEY|GROQ_API_KEY|OPENROUTER_API_KEY)=(.+)$", line.strip())
             if match and not os.environ.get(match.group(1)):
                 os.environ[match.group(1)] = match.group(2).strip().strip("\"'")
-        return
+        break
+    # 手元では wrangler のログインで Workers AI（検索語づくり・画像生成）を使う
+    if not os.environ.get("CLOUDFLARE_API_TOKEN") and wrangler_token():
+        os.environ["CLOUDFLARE_API_TOKEN"] = wrangler_token()
+        os.environ.setdefault("CLOUDFLARE_ACCOUNT_ID", ACCOUNT_ID)
 
 
 def changed_paths() -> set[Path]:
@@ -989,6 +1055,8 @@ def main() -> int:
     parser.add_argument("--ai-only", action="store_true", help="素材を探さず AI 生成だけ（確認用）")
     parser.add_argument("--dry-run", action="store_true", help="保存しない")
     parser.add_argument("--preview", help="出来上がった JPEG をこのフォルダにも書く（確認用）")
+    parser.add_argument("--shard", help="並列実行の分担（例: 0/3）")
+    parser.add_argument("--defer-hours", type=float, default=3, help="Commons に繋がらないとき、作成からこの時間までは AI にせず次の回に回す")
     args = parser.parse_args()
     global PREVIEW_DIR
     if args.preview:
@@ -1010,6 +1078,7 @@ def main() -> int:
         "dry_run": args.dry_run,
         "fast": args.fast,
         "ai_only": args.ai_only,
+        "defer_hours": args.defer_hours,
     }
 
     ordered = sorted(articles.items(), key=newest_first, reverse=True)
@@ -1031,6 +1100,10 @@ def main() -> int:
     else:
         parser.error("--changed / --recent / --all / --slug のどれかを指定してください")
 
+    if args.shard:
+        # さかのぼりを並列に流すとき用（"0/3" なら 0,3,6…番目）
+        index, total = (int(x) for x in args.shard.split("/"))
+        targets = [t for i, t in enumerate(targets) if i % total == index]
     log(f"[img] 対象 {len(targets)} 本（最大 {args.max} 本）")
     tally: Counter = Counter()
     for path, article in targets:
