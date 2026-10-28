@@ -1,0 +1,73 @@
+{
+  "slug": "microsoft-ui-reactor-winui-csharp-mvu",
+  "sourceType": "web",
+  "sourceUrl": "https://devblogs.microsoft.com/ifdef-windows/microsoft-ui-reactor-a-c-first-way-to-build-winui-apps/",
+  "sourceName": "Microsoft公式",
+  "title": "MicrosoftがWinUIアプリ開発の新ツール「Reactor」発表 XAML不要でC#だけで記述可能に",
+  "seoTitle": "Microsoft.UI.Reactorとは？使い方と料金｜日本での提供状況",
+  "threadsPost": "Windowsアプリを作っている人には、気になるニュースです。\n\nMicrosoftがデザイン言語（XAML）を使わず、C#だけで画面を作れるツール「Reactor」を実験公開しました。\n\nオープンソースなので、今すぐ無料で手元で試せます。",
+  "threadsHook": "callout",
+  "threadsStyle": 2,
+  "writingVoice": "senpai",
+  "lede": "Microsoftは公式ブログにて、Windowsデスクトップアプリ（WinUI）をC#コードだけで構築できる実験的フレームワーク「Microsoft.UI.Reactor」を発表しました。従来のXAMLファイルや複雑な状態管理コードを不要にし、画面デザインをC#の関数としてシンプルに記述できます。オープンソースとして公開されており、開発者は今すぐ無料で試せます。",
+  "description": "MicrosoftがWinUIアプリ向けの新ツール「Microsoft.UI.Reactor」を発表。XAMLを使わずC#だけで画面を記述できるMVUフレームワークです。特徴や既存開発との違い、エンジニアへの影響を解説します。",
+  "keywords": [
+    "Microsoft",
+    "WinUI",
+    "Reactor",
+    "C#",
+    "XAML",
+    "MVU",
+    "Windowsアプリ開発",
+    "オープンソース",
+    ".NET 10"
+  ],
+  "tags": [
+    "開発ツール",
+    "Windows",
+    "C#",
+    "オープンソース"
+  ],
+  "highlights": [
+    "XAMLファイルや ViewModelが不要になり、C#だけでWinUIアプリの画面を構築可能",
+    "画面表示のズレやバグをリアルタイムで検知する専用のアナライザーを60以上提供",
+    "MITライセンスのオープンソースとしてGitHubで公開され、今すぐ誰でも無料で体験可能"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "無料",
+    "free": true,
+    "audience": "C#開発者",
+    "take": "XAMLを使わずにC#だけで画面を組めるか、まずは手元で体験してみるのがおすすめです。",
+    "judgedAt": "2026-10-28T04:51:44.489750+00:00"
+  },
+  "body": "## 概要\n\nMicrosoftは、Windowsアプリの画面をC#だけで作れる新しい仕組み「Microsoft.UI.Reactor」を発表しました。\n\nこれまでは画面デザイン用の専用言語（XAML）が必要でしたが、それが一切いらなくなります。\n\nWebやスマホアプリ開発で人気の最新スタイルを導入しており、画面を作る作業がシンプルになります。\n\n## 何が発表された？\n\nMicrosoft公式ブログによると、2026年10月28日に「Microsoft.UI.Reactor」が実験的プロジェクトとしてオープンソース公開されました。\n\nこれはWindows向けの画面構築ライブラリ「WinUI」で、MVU（Model-View-Update）と呼ばれる開発パターンを実現する C# フレームワークです。\n\n現在はプレビュー段階であり、正式なサポートや仕様固定の保証はありません。フィードバックを集めるために早い段階で公開されています。\n\n利用できる対象や特徴は以下のとおりです。\n\n- Windows 10/11向けのデスクトップアプリ開発者\n- .NET 10 SDK および winapp CLI（v0.7以降）を利用する環境\n- GitHub上でオープンソース（MITライセンス）として全世界に公開\n\n## 前と何が違う？\n\n### デザイン言語（XAML）を使わずC#だけで画面を書ける\n\nこれまでのWinUIアプリ開発では、画面のデザインを「XAML」というマークアップ言語で書き、動きを「C#」で書く必要がありました。\n\nReactorではXAMLファイルを一切使いません。ボタンやテキスト領域などの表示要素を、すべてC#の関数として直接記述します。\n\nデザインもコードもC#に統一されるため、名前の変更や修正がプログラム全体に即座に反映されます。\n\n### UIの状態変化をシンプルに管理できる「MVUパターン」\n\n従来の開発（MVVMパターン）では、画面の状態を保持するクラスを作り、変更を通知する仕組みを複雑に組み込む必要がありました。\n\nReactorが採用する「MVUパターン」では、画面の状態を一箇所で管理し、状態が変わると画面全体を表す関数が新しい表示内容を返します。\n\n差分だけを自動で裏側の表示コントロールに反映するため、データと画面の食い違いが起きにくくなります。\n\n### エラーや崩れを即座に教える60以上の専用チェック機能\n\nReactorには、C#コードを分析する専用のアナライザーが60以上用意されています。\n\nダークモードで文字が見えなくなる設定や、画面読み上げソフトで認識できないボタンなど、見落としがちな問題をコード入力中に指摘してくれます。\n\n実行して確認する前に手元でミスに気づけるため、修正の手間が減ります。\n\n### AIエージェントにとっても理解しやすい設計\n\n画面の構造と動きが単一のC#コードにまとまっているため、AIツール（コーディングエージェント）がコードを読み書きしやすくなっています。\n\nMicrosoftは人間だけでなく、AIと一緒に開発を進めることも考慮して設計しています。\n\n## 数字で見るとどう変わった？\n\n今回の発表ではベンチマークテストのような数値は提示されていません。\n\nただし、コードのファイル数や構成において以下のような明確な違いがあります。\n\n- **必要な最低ファイル数**：従来のXAML開発では5ファイル以上が必要だった構成が、Reactorでは1ファイルで記述可能\n- **専用アナライザー数**：開発中のミスを検知するルールを60以上提供\n- **レイアウトエンジン**：Metaの「Yoga」エンジンをC#に移植したFlexレイアウトを標準搭載\n\n## ライバルと比べてどう？\n\n**Webや他OSの現代的なUI開発と同じ感覚でWindowsアプリが作れる**\n\nWeb開発の「React」、iOS開発の「SwiftUI」、Android開発の「Jetpack Compose」を経験した人なら、ほぼ同じ考え方でWindowsアプリを作れます。\n\n競合フレームワーク（FlutterやReact Nativeなど）と比べた場合の強みは、Microsoft公式の「WinUI」と同じ本物のWindowsコントロールを直接操作する点です。\n\n独自レンダラーで描画するのではなく、OS標準のボタンやメニューをそのまま使うため、見た目や動作の違和感がありません。\n\n## 料金は？\n\nMicrosoft.UI.Reactorは完全なオープンソースソフトウェアとして提供されています。\n\n- **利用料金**：無料（MITライセンス）\n- **商用利用**：可能\n- **入手先**：GitHubのリポジトリ（microsoft/microsoft-ui-reactor）から取得可能\n\n## 日本で使える？\n\n今日から日本でも問題なく使えます。\n\n日本語の環境制限やリージョン制限はありません。開発手順は以下のとおりです。\n\n- .NET 10 SDK をインストールする\n- コマンドプロンプト等で `winget install Microsoft.WinAppCli` を実行し、CLIツール（v0.7以降）を入れる\n- C#コード（例: counter.cs）を作成し、`winapp run counter.cs` を実行する\n\n## 自分にはどう関係する？\n\n### エンジニアなら\n\nXAMLや複雑なバインディングロジックに悩まされず、C#の知識だけで素早くWindowsアプリの試作や開発が行えます。\n\nReactやSwiftUIの経験がある人にとっては、学習コストを低く抑えてWindowsアプリ開発に参入できるチャンスです。\n\n### 企画・マーケティングなら\n\n画面開発のスピードが上がるため、新しいアイデアをアプリとして形にするまでの試行錯誤（プロトタイピング）が速くなります。\n\n### 経営者・管理者なら\n\nC#に詳しいエンジニアがいれば、XAMLの専門知識を持つ人がいなくてもWindowsアプリを開発・保守できる体制を作りやすくなります。\n\n## まとめ\n\nMicrosoft.UI.Reactorは、XAMLを使わずにC#だけでシンプルなWindowsアプリ開発を実現する注目の実験的ツールです。\n\nまずはGitHubでサンプルコードをクローンするか、手元で小さなC#ファイルを作成して動かしてみるのがおすすめです。",
+  "easy": "## ひとことで言うと\n\nWindowsのアプリ画面を作るときに、難しいデザイン専用の言葉（＝XAML）を使わず、見慣れたC#のプログラムだけで作れる新しい仕組みです。\n\n見た目のデザインも、裏側の動きも、ぜんぶ1つのC#プログラムにまとめて書けます。\n\n## 何がすごいの？\n\nこれまでは、画面のデザインを書くファイルと、動きを書くファイルの2つを行き来する必要がありました。\n\n例えるなら、お店の「メニュー表」と「厨房への注文票」を別々に作っていたようなものです。\n\n新しい「Reactor」を使うと、注文から調理までを1つのノートでまとめて管理できます。ファイルが減って、直しやすくなります。\n\nさらに、自動でプログラムを書いてくれるAI（＝コーディングエージェント）にとっても読みやすい形になっています。\n\n## 自分に関係ある？\n\nパソコン用のアプリを作っている開発者なら、画面を作る手間がぐっと減る可能性があります。\n\nこれまでWeb（Reactなど）やスマホ（SwiftUIなど）で画面を作っていた人なら、同じ感覚でWindowsアプリを作れます。\n\n## 使ってみるには\n\nすでにオープンソースとして無料で公開されています。\n\nパソコンに最新の開発環境を入れて、専用のコマンドを叩くだけで、今日から試すことができます。",
+  "channel": "Microsoft公式",
+  "channelId": "",
+  "channelSlug": "radar-official",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Microsoft.UI.Reactor: a C#-first way to build WinUI apps - #ifdef Windows",
+  "publishedAt": "2026-10-28T04:47:19+00:00",
+  "generatedAt": "2026-10-28T04:51:44.489807+00:00",
+  "thumbnail": "https://devblogs.microsoft.com/ifdef-windows/wp-content/uploads/sites/61/2026/10/reactor-01-header-v2.webp",
+  "model": "gemini-3.5-flash",
+  "affiliates": [],
+  "qualityScore": 100,
+  "breaking": true,
+  "sourcePublishedAt": "2026-10-28T04:47:19+00:00",
+  "detectedAt": "2026-10-28T04:49:51+00:00",
+  "fastLane": true,
+  "speedMinutes": 8,
+  "imageCredit": {
+    "kind": "source",
+    "provider": "Microsoft公式",
+    "sourceUrl": "https://devblogs.microsoft.com/ifdef-windows/microsoft-ui-reactor-a-c-first-way-to-build-winui-apps/"
+  }
+}
