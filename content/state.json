@@ -3070,6 +3070,16 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/recruit/r8/kokusai-01/kokusai-01.html"
     },
+    "0d16c53ac8066208": {
+      "at": "2026-10-28T12:29:50.136954+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "samsung-galaxy-buds-on-cuff-earbuds",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-28/samsung-unveils-galaxy-buds-on-clip-on-earbuds-for-229"
+    },
     "0d9de70491705807": {
       "at": "2026-10-26T21:14:24.575558+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6657,51 +6667,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:12:05.098435+00:00",
-      "attempt": 1,
-      "id": "3812e52740a44b1dbcdd52914c2abc976c2d3445",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1416字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（371字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 163.2,
-        "avg_sentence": 56.8,
-        "long_share": 0.348,
-        "max_paragraph": 202,
-        "paragraphs": 8,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "trends",
-      "title": "コーニング"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:12:33.746325+00:00",
-      "attempt": 2,
-      "id": "3812e52740a44b1dbcdd52914c2abc976c2d3445",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1464字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 168.4,
-        "avg_sentence": 58.6,
-        "long_share": 0.478,
-        "max_paragraph": 218,
-        "paragraphs": 8,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "trends",
-      "title": "コーニング"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T15:14:52.613427+00:00",
@@ -13299,6 +13264,48 @@
       "score": 95,
       "source": "radar-engadget.com",
       "title": "Meta quietly launched Waddle World, a Tamagotchi-like, AI pet-rearing game, in t"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T12:28:19.760076+00:00",
+      "attempt": 1,
+      "id": "0d16c53ac8066208",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "本文が短い（1917字 / 基準 2000字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 41.9,
+        "avg_sentence": 26.7,
+        "long_share": 0.017,
+        "max_paragraph": 83,
+        "paragraphs": 37,
+        "sentences": 58
+      },
+      "score": null,
+      "source": "radar-bloomberg.com",
+      "title": "Samsung unveils the $229 Galaxy Buds On, its first open-fit, C-shaped cuff earbu"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T12:29:50.136465+00:00",
+      "attempt": 2,
+      "id": "0d16c53ac8066208",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 49.2,
+        "avg_sentence": 28.4,
+        "long_share": 0.014,
+        "max_paragraph": 88,
+        "paragraphs": 41,
+        "sentences": 71
+      },
+      "score": 92,
+      "source": "radar-bloomberg.com",
+      "title": "Samsung unveils the $229 Galaxy Buds On, its first open-fit, C-shaped cuff earbu"
     }
   ],
   "short_text_retry": {
