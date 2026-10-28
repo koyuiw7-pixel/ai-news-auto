@@ -4569,6 +4569,16 @@
       "skipped": true,
       "url": "https://github.blog/changelog/2026-10-27-github-copilot-supports-server-to-server-authentication"
     },
+    "748766fd79db6652": {
+      "at": "2026-10-28T04:51:51.646213+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "gemini-3.5-flash",
+      "score": 100,
+      "section": "ai",
+      "slug": "microsoft-ui-reactor-winui-csharp-mvu",
+      "url": "https://devblogs.microsoft.com/ifdef-windows/microsoft-ui-reactor-a-c-first-way-to-build-winui-apps/"
+    },
     "74ff1aa266d81f91": {
       "at": "2026-10-27T03:05:10.758136+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（億米ドル）",
@@ -6629,33 +6639,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T03:07:28.604372+00:00",
-      "attempt": 2,
-      "id": "117b2c162c1e1e8d",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1566字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）"
-      ],
-      "score": null,
-      "source": "mhlw",
-      "title": "公益事業に関する争議行為の予告公表ページについて更新されました"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T03:21:03.357518+00:00",
-      "attempt": 1,
-      "id": "d7461b52f3ef9488",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "atpress",
-      "title": "祖母のジュエリーが屋根裏から発見、201ロットが約1億円で落札 おもいおが遺品整理で見落としやすいジュエリーの価値を解説"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T15:11:20.477456+00:00",
@@ -13262,6 +13245,50 @@
       "score": 100,
       "source": "rakuten",
       "title": "「楽天市場」、2026年冬のトレンド予測を発表"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T04:51:51.276088+00:00",
+      "attempt": 1,
+      "id": "748766fd79db6652",
+      "kind": "ai",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "文が長い（1文の平均 51.2字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 55.9,
+        "avg_sentence": 51.2,
+        "long_share": 0.361,
+        "max_paragraph": 92,
+        "paragraphs": 33,
+        "sentences": 36
+      },
+      "score": 100,
+      "source": "radar-official",
+      "title": "Microsoft.UI.Reactor: a C#-first way to build WinUI apps - #ifdef Windows"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T04:51:51.645600+00:00",
+      "attempt": 0,
+      "id": "748766fd79db6652",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直しに失敗（すべてのモデルで失敗しました: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You ）"
+      ],
+      "readability": {
+        "avg_paragraph": 55.9,
+        "avg_sentence": 51.2,
+        "long_share": 0.361,
+        "max_paragraph": 92,
+        "paragraphs": 33,
+        "sentences": 36
+      },
+      "score": 100,
+      "source": "radar-official",
+      "title": "Microsoft.UI.Reactor: a C#-first way to build WinUI apps - #ifdef Windows"
     }
   ],
   "short_text_retry": {
