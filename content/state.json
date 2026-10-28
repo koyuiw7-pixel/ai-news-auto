@@ -6577,6 +6577,16 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/info/info1878/index.html"
     },
+    "f3aa6dba8d09be59": {
+      "at": "2026-10-28T16:38:33.914354+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 91,
+      "section": "ai",
+      "slug": "github-copilot-app-projects-computer-use",
+      "url": "https://github.blog/changelog/2026-10-28-github-copilot-app-universe-releases"
+    },
     "f3d855bbde243772": {
       "at": "2026-10-27T23:41:05.859191+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
@@ -6762,29 +6772,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:56:39.504999+00:00",
-      "attempt": 2,
-      "id": "13412a369e090d4c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2098字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 151.8,
-        "avg_sentence": 70.1,
-        "long_share": 0.577,
-        "max_paragraph": 204,
-        "paragraphs": 12,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "about-amazon",
-      "title": "Some of Amazon's Q3 2026 announcements, from new devices to AI breakthroughs"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T15:56:52.192324+00:00",
@@ -13397,6 +13384,26 @@
       "score": 80,
       "source": "radar-techcrunch.com",
       "title": "Reddit rolls out a dual-feed homepage, with For You and Following feeds, joining"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T16:38:33.913619+00:00",
+      "attempt": 1,
+      "id": "f3aa6dba8d09be59",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 69.3,
+        "avg_sentence": 35.3,
+        "long_share": 0.053,
+        "max_paragraph": 144,
+        "paragraphs": 29,
+        "sentences": 57
+      },
+      "score": 91,
+      "source": "github-changelog",
+      "title": "GitHub Copilot app, Universe releases"
     }
   ],
   "short_text_retry": {
