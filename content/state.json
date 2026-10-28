@@ -3451,9 +3451,13 @@
       "url": "https://www.dreamnews.jp/press/0000366572"
     },
     "274aedb084ae6e00": {
-      "at": "2026-10-27T13:27:05.673771+00:00",
-      "reason": "major gave up x3: fail: 生成に失敗",
-      "skipped": true,
+      "at": "2026-10-28T02:28:35.667895+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 93,
+      "section": "ai",
+      "slug": "apple-creator-studio-new-ai-features",
       "url": "https://www.apple.com/jp/newsroom/2026/10/apple-creator-studio-adds-powerful-new-ai-features-and-even-more-creative-tools/"
     },
     "278eaae2a5f3ba0b": {
@@ -6459,20 +6463,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:54:15.440577+00:00",
-      "attempt": 2,
-      "id": "ca70d454adc7e571",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1728字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "LeapAI、撮影ゼロでCM水準の映像をつくるAI動画制作サービス「LeapAI.Zero」を提供開始。制作サンプル「正解は、現場にある。｜株式会社みどり野フー"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T01:54:22.694665+00:00",
@@ -12889,6 +12879,26 @@
       "score": 90,
       "source": "radar-official",
       "title": "NVIDIA and Meta to Expand Collaboration on Muse and Muse Family of Models Amid R"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T02:28:35.667280+00:00",
+      "attempt": 1,
+      "id": "274aedb084ae6e00",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 85.3,
+        "avg_sentence": 36.6,
+        "long_share": 0.104,
+        "max_paragraph": 150,
+        "paragraphs": 33,
+        "sentences": 77
+      },
+      "score": 93,
+      "source": "apple-newsroom-jp",
+      "title": "Apple Creator Studioにパワフルな新しいAI機能と、さらに多くのクリエイティブツールが登場"
     }
   ],
   "short_text_retry": {
