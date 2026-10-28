@@ -212,7 +212,8 @@ export function newest(items) {
   return sorted.slice(0, MAX_ITEMS);
 }
 
-export function parseFeed(xml) {
+/** base があれば相対リンク（Sakana AI の Atom など）を絶対 URL にする */
+export function parseFeed(xml, base = "") {
   let blocks = firstBlocks(xml, "item", MAX_BLOCKS);
   if (!blocks.length) blocks = firstBlocks(xml, "entry", MAX_BLOCKS);
   const items = [];
@@ -229,6 +230,13 @@ export function parseFeed(xml) {
           link = decode(href).trim();
           break;
         }
+      }
+    }
+    if (base && link && !/^https?:\/\//i.test(link)) {
+      try {
+        link = new URL(link, base).toString();
+      } catch {
+        // 壊れたリンクは飛ばす
       }
     }
     if (!title || !/^https?:\/\//i.test(link)) continue;
@@ -387,7 +395,7 @@ async function poll(src, st, fetchImpl) {
   if (res.status === 304) return { status: 304, items: null };
   if (!res.ok) return { status: res.status, items: null };
   const body = await res.text();
-  const items = newest(src.type === "html" ? parseHtmlList(body, src) : parseFeed(body));
+  const items = newest(src.type === "html" ? parseHtmlList(body, src) : parseFeed(body, src.url));
   return { status: res.status, items, etag: res.headers.get("etag") || "", lm: res.headers.get("last-modified") || "" };
 }
 
