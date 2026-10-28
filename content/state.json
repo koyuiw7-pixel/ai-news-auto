@@ -3755,6 +3755,13 @@
       "slug": "siri-ai-japanese-launch",
       "url": "https://www.apple.com/jp/newsroom/2026/10/siri-ai-is-available-today-in-more-languages/"
     },
+    "36eb3dda48d9ab1e": {
+      "at": "2026-10-28T15:08:12.635282+00:00",
+      "model": "claude:sonnet",
+      "reason": "followup quality: 要点「100社超のパートナーが参画」→ 元記事にも確認済みの文脈にも無い数値で、創作。; 「価格や各社の具体的な機種名は、今回の発表では確認できていません」→ 元記事には「starting at $2,599」と価格が明記されており、記述が元記事と食い違う。",
+      "skipped": true,
+      "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-laptops-updates-models-agents-games/"
+    },
     "37e18adfd2ff499b": {
       "at": "2026-10-26T11:01:59.803581+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6706,28 +6713,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T15:18:45.620584+00:00",
-      "attempt": 1,
-      "id": "4a299d1e9f3d5424",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2183字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 124.7,
-        "avg_sentence": 67.5,
-        "long_share": 0.625,
-        "max_paragraph": 226,
-        "paragraphs": 13,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "nvidia-blog",
-      "title": "How AI Is Changing the Pace of Discovery for Millions Living With Dementia"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T15:19:20.832208+00:00",
@@ -13349,6 +13334,21 @@
       "score": null,
       "source": "trends",
       "title": "トーメンデバイス 株価"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T15:08:12.635259+00:00",
+      "attempt": 1,
+      "id": "36eb3dda48d9ab1e",
+      "kind": "update",
+      "model": "claude:sonnet",
+      "problems": [
+        "要点「100社超のパートナーが参画」→ 元記事にも確認済みの文脈にも無い数値で、創作。",
+        "「価格や各社の具体的な機種名は、今回の発表では確認できていません」→ 元記事には「starting at $2,599」と価格が明記されており、記述が元記事と食い違う。"
+      ],
+      "score": 55,
+      "source": "nvidia-newsroom",
+      "title": "NVIDIA RTX Spark Windows Laptops Gain New Models, Agent Tools and Games"
     }
   ],
   "short_text_retry": {
