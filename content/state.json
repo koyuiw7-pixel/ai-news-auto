@@ -5384,10 +5384,13 @@
       "url": "https://prtimes.jp/main/html/rd/p/000000296.000073594.html"
     },
     "b7dc23ae3cdc5826": {
-      "at": "2026-10-27T16:33:03.199906+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2165字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
+      "at": "2026-10-28T01:06:40.222980+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 88,
+      "section": "ai",
+      "slug": "google-genie-4-world-model",
       "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-genie-4/"
     },
     "b82ff39f5a908a6e": {
@@ -6402,34 +6405,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:51:29.785273+00:00",
-      "attempt": 2,
-      "id": "8d66812a807d04fb",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2006字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "prtimes",
-      "title": "マーケ経営者の単価と継続を考える生成AI活用教材をコミクスが制作"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T01:51:38.090487+00:00",
-      "attempt": 1,
-      "id": "68ec9b8f34fdcb17",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1782字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "score": null,
-      "source": "value-press",
-      "title": "【イベント紹介】台湾で開催された「 TAIPEI TOY FESTIVAL（TTF）」に参加してきました！現地の様子をご紹介！！／T-BASE JAPAN"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T01:51:46.347579+00:00",
@@ -12629,6 +12604,53 @@
       "score": 82,
       "source": "anthropic-news",
       "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T01:05:30.332116+00:00",
+      "attempt": 1,
+      "id": "b7dc23ae3cdc5826",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「従来は、場面を変えたければ作り直す必要がある作業でした」→ 元記事に従来手法についての記述はなく、根拠のない比較・断定。",
+        "「扉を開けたあとに部屋の様子が急に変わってしまっては…そうした破綻を防ぐ仕組みを、Geminiの推論力で支えている」→ 扉の例や破綻防止の具体的な仕組みは元記事に無い創作的な説明。",
+        "「雨を降らせれば雨音がする。人を登場させれば会話ができる。そんな体験が、ひとつのモデルで完結します」→ 元記事に無い具体的な動作の断定で、実用化済みのように読める。",
+        "「無声映画に、リアルタイムで音をつけてくれる係がいるようなものです」→ 元記事に無い比喩で、音声生成の仕組みを不正確に説明している恐れ。",
+        "「ゲームや映画を作る人…にとって、ありがたい道具になりそうです」「地味にすごいんです」→ 元記事に無い効果の評価・推測。",
+        "「絵や動画をただ作るのではなく、中に入って動かせる世界を作る」「動画生成AIは、一度作った映像を見るものが中心」→ 元記事に無い他技術との比較や機能の断定（「中に入って」等）。"
+      ],
+      "readability": {
+        "avg_paragraph": 63.5,
+        "avg_sentence": 32.2,
+        "long_share": 0.013,
+        "max_paragraph": 117,
+        "paragraphs": 40,
+        "sentences": 79
+      },
+      "score": 72,
+      "source": "google-ai-blog",
+      "title": "We’re announcing Genie 4, our new world model for real-time interactive simulati"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T01:06:40.222349+00:00",
+      "attempt": 2,
+      "id": "b7dc23ae3cdc5826",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 57.4,
+        "avg_sentence": 32.8,
+        "long_share": 0.048,
+        "max_paragraph": 143,
+        "paragraphs": 36,
+        "sentences": 63
+      },
+      "score": 88,
+      "source": "google-ai-blog",
+      "title": "We’re announcing Genie 4, our new world model for real-time interactive simulati"
     }
   ],
   "short_text_retry": {
