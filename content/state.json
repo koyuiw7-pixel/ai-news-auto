@@ -3179,6 +3179,13 @@
       "skipped": true,
       "url": "https://openai.com/index/the-future-of-the-firm"
     },
+    "0e4b12bec5929bad": {
+      "at": "2026-10-28T23:31:55.873588+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1561字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（350字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01toukei05_01000348.html"
+    },
     "0f715e1693d7c6b7": {
       "at": "2026-10-26T17:31:35.423776+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3575,6 +3582,13 @@
       "reason": "政治家への提言申入れに関する行事であり、国民向けの新しい制度・サービス・製品・法律の施行などの実質的な情報が含まれないため。",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326851.html"
+    },
+    "206d2c539e8e0d62": {
+      "at": "2026-10-28T23:32:47.313346+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1510字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（397字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/shingi/daigaku/toushin/1422602_00014.htm"
     },
     "208fc7885b1c3a9b": {
       "at": "2026-10-27T03:05:10.757778+00:00",
@@ -4664,6 +4678,13 @@
       "skipped": true,
       "url": "https://www.docomo.ne.jp/info/news_release/2026/10/27_00.html"
     },
+    "56b239e993113c3a": {
+      "at": "2026-10-28T23:32:12.244006+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（359字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/houdou/2024/mext_00011.html"
+    },
     "57626b3cad5444ca": {
       "at": "2026-10-26T23:21:40.235044+00:00",
       "reason": "dedupe: 固有名詞が一致（ai-bpo・ゴムマリ）: ゴムマリの専門業務AI-BPO、『苦情・VoC・クレームのデータベース化』を提供",
@@ -5611,6 +5632,13 @@
       "reason": "precheck: 配信の本文が薄い（定型を除いて451字 / 基準 900字）",
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366586"
+    },
+    "87fef4a478a5f05b": {
+      "at": "2026-10-28T23:32:26.897012+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/02kiban14_04001374.html"
     },
     "88525dbba76b19c2": {
       "at": "2026-10-27T01:53:03.666504+00:00",
@@ -7730,6 +7758,13 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo3/118/gijiroku/mext_00019.html"
     },
+    "f522743b37a80504292a593266c5e50fc905f5e1": {
+      "at": "2026-10-28T23:31:43.097498+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1484字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.aboutamazon.com/news/devices/new-alexa-devices-2026"
+    },
     "f5a63a1af5067430": {
       "at": "2026-10-26T21:41:28.789476+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7937,226 +7972,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T22:01:19.061236+00:00",
-      "attempt": 1,
-      "id": "747b76bde702bc0b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1869字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 71.4,
-        "avg_sentence": 45.7,
-        "long_share": 0.2,
-        "max_paragraph": 118,
-        "paragraphs": 16,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "GitHub Copilot supports server-to-server authentication"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T22:01:44.608880+00:00",
-      "attempt": 2,
-      "id": "747b76bde702bc0b",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2205字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 120.0,
-        "avg_sentence": 52.5,
-        "long_share": 0.344,
-        "max_paragraph": 206,
-        "paragraphs": 14,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "GitHub Copilot supports server-to-server authentication"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T22:01:58.529206+00:00",
-      "attempt": 1,
-      "id": "3ec2313b14f30f93",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1563字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 108.1,
-        "avg_sentence": 45.7,
-        "long_share": 0.115,
-        "max_paragraph": 208,
-        "paragraphs": 11,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "cao",
-      "title": "月例経済報告（10月）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T22:02:24.043577+00:00",
-      "attempt": 2,
-      "id": "3ec2313b14f30f93",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "内閣府は2026年10月27日、最新の月例経済報告を公表しました。→元記事には10月の公表資料は存在するが、公表日が27日であるという記載はない。",
-        "総雇用者所得データ 2026年10月26日更新 →元記事の更新日は10月26日だが、これが「総雇用者所得データ」の更新日であるという記述は元記事にはない。",
-        "輸出・輸入数量指数 2026年10月21日更新 →元記事の更新日は10月21日だが、これが「輸出・輸入数量指数」の更新日であるという記述は元記事にはない。",
-        "実質サービス輸出入 2026年10月13日更新 →元記事の更新日は10月13日だが、これが「実質サービス輸出入」の更新日であるという記述は元記事にはない。"
-      ],
-      "readability": {
-        "avg_paragraph": 135.1,
-        "avg_sentence": 46.6,
-        "long_share": 0.103,
-        "max_paragraph": 234,
-        "paragraphs": 10,
-        "sentences": 29
-      },
-      "score": 70,
-      "source": "cao",
-      "title": "月例経済報告（10月）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T22:02:59.304431+00:00",
-      "attempt": 1,
-      "id": "cb8f474555ed7ccd",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1494字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 123.5,
-        "avg_sentence": 45.7,
-        "long_share": 0.259,
-        "max_paragraph": 198,
-        "paragraphs": 10,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "suntory",
-      "title": "サントリーの薬膳ブランド「薬膳好日（やくぜんこうじつ）」からチャイのおいしさに、薬膳素材をバランスよく配合した「薬膳チャイ」新発売"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T22:03:06.307217+00:00",
-      "attempt": 1,
-      "id": "cb8f474555ed7ccd",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "段落が長い（平均 158.3字・最長 211字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 158.3,
-        "avg_sentence": 42.8,
-        "long_share": 0.189,
-        "max_paragraph": 211,
-        "paragraphs": 10,
-        "sentences": 37
-      },
-      "score": 100,
-      "source": "suntory",
-      "title": "サントリーの薬膳ブランド「薬膳好日（やくぜんこうじつ）」からチャイのおいしさに、薬膳素材をバランスよく配合した「薬膳チャイ」新発売"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T22:03:18.095860+00:00",
-      "attempt": 0,
-      "id": "cb8f474555ed7ccd",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 66.8,
-        "avg_sentence": 28.1,
-        "long_share": 0.018,
-        "max_paragraph": 101,
-        "paragraphs": 24,
-        "sentences": 57
-      },
-      "score": 100,
-      "source": "suntory",
-      "title": "サントリーの薬膳ブランド「薬膳好日（やくぜんこうじつ）」からチャイのおいしさに、薬膳素材をバランスよく配合した「薬膳チャイ」新発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T22:07:06.870088+00:00",
-      "attempt": 1,
-      "id": "8dea1bb43e1fdbc8",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 54.9字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 164.7字・最長 217字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 164.7,
-        "avg_sentence": 54.9,
-        "long_share": 0.296,
-        "max_paragraph": 217,
-        "paragraphs": 9,
-        "sentences": 27
-      },
-      "score": 100,
-      "source": "nli-research",
-      "title": "医療レセプトの審査支払機関、10月に大幅改組－医療DX推進が前面に、医療提供体制改革を担う都道府県などとの連携などが焦点に"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T22:07:14.193061+00:00",
-      "attempt": 0,
-      "id": "8dea1bb43e1fdbc8",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 118.0,
-        "avg_sentence": 29.5,
-        "long_share": 0.021,
-        "max_paragraph": 214,
-        "paragraphs": 12,
-        "sentences": 48
-      },
-      "score": 100,
-      "source": "nli-research",
-      "title": "医療レセプトの審査支払機関、10月に大幅改組－医療DX推進が前面に、医療提供体制改革を担う都道府県などとの連携などが焦点に"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T22:41:13.271530+00:00",
-      "attempt": 1,
-      "id": "676ef500d0b9460f",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1491字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 106.9,
-        "avg_sentence": 40.6,
-        "long_share": 0.069,
-        "max_paragraph": 217,
-        "paragraphs": 11,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "stat",
-      "title": "住民基本台帳人口移動報告 2026年（令和8年）9月分"
-    },
     {
       "accepted": true,
       "at": "2026-10-27T22:41:17.188967+00:00",
@@ -14547,6 +14362,232 @@
       "score": null,
       "source": "soumu",
       "title": "令和8年度分基地交付金及び調整交付金の決定"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T23:31:35.325670+00:00",
+      "attempt": 1,
+      "id": "f522743b37a80504292a593266c5e50fc905f5e1",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1416字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 122.5,
+        "avg_sentence": 53.3,
+        "long_share": 0.348,
+        "max_paragraph": 197,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "trends",
+      "title": "alexa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T23:31:41.030143+00:00",
+      "attempt": 2,
+      "id": "f522743b37a80504292a593266c5e50fc905f5e1",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1484字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 167.9,
+        "avg_sentence": 56.0,
+        "long_share": 0.375,
+        "max_paragraph": 277,
+        "paragraphs": 8,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "trends",
+      "title": "alexa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T23:31:50.566765+00:00",
+      "attempt": 1,
+      "id": "0e4b12bec5929bad",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1359字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（251字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 102.2,
+        "avg_sentence": 46.5,
+        "long_share": 0.136,
+        "max_paragraph": 200,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "「2025年経済構造実態調査」三次集計結果 産業横断調査（事業所に関する集計）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T23:31:55.873525+00:00",
+      "attempt": 2,
+      "id": "0e4b12bec5929bad",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1561字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（350字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 119.1,
+        "avg_sentence": 49.6,
+        "long_share": 0.208,
+        "max_paragraph": 170,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "「2025年経済構造実態調査」三次集計結果 産業横断調査（事業所に関する集計）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T23:32:03.023733+00:00",
+      "attempt": 1,
+      "id": "56b239e993113c3a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1579字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 137.7,
+        "avg_sentence": 51.0,
+        "long_share": 0.185,
+        "max_paragraph": 217,
+        "paragraphs": 10,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "mext",
+      "title": "創発的研究支援事業における2026年度新規研究課題の決定について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T23:32:12.243971+00:00",
+      "attempt": 2,
+      "id": "56b239e993113c3a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（359字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 163.6,
+        "avg_sentence": 62.3,
+        "long_share": 0.619,
+        "max_paragraph": 235,
+        "paragraphs": 8,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "mext",
+      "title": "創発的研究支援事業における2026年度新規研究課題の決定について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T23:32:20.133157+00:00",
+      "attempt": 1,
+      "id": "87fef4a478a5f05b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1635字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 166.8,
+        "avg_sentence": 60.6,
+        "long_share": 0.364,
+        "max_paragraph": 256,
+        "paragraphs": 8,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "「業務用陸上無線通信の高度化等に関する技術的条件」のうち 「300MHz帯無線式列車制御システムに係る技術的条件」"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T23:32:26.896975+00:00",
+      "attempt": 2,
+      "id": "87fef4a478a5f05b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 160.4,
+        "avg_sentence": 57.3,
+        "long_share": 0.357,
+        "max_paragraph": 229,
+        "paragraphs": 10,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "「業務用陸上無線通信の高度化等に関する技術的条件」のうち 「300MHz帯無線式列車制御システムに係る技術的条件」"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T23:32:41.195705+00:00",
+      "attempt": 1,
+      "id": "206d2c539e8e0d62",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1503字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（340字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 123.8,
+        "avg_sentence": 53.8,
+        "long_share": 0.174,
+        "max_paragraph": 187,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "mext",
+      "title": "令和9年度からの私立大学医学部の収容定員の増加に係る学則変更について（答申）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T23:32:47.313295+00:00",
+      "attempt": 2,
+      "id": "206d2c539e8e0d62",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1510字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（397字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 161.5,
+        "avg_sentence": 58.7,
+        "long_share": 0.364,
+        "max_paragraph": 220,
+        "paragraphs": 8,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "mext",
+      "title": "令和9年度からの私立大学医学部の収容定員の増加に係る学則変更について（答申）"
     }
   ],
   "short_text_retry": {
