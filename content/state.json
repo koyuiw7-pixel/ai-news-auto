@@ -3565,6 +3565,14 @@
       "skipped": true,
       "url": "https://www.digital.go.jp/policies/local_governments/specification"
     },
+    "24128a17ed6c828c": {
+      "at": "2026-10-28T21:52:26.575448+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "aws-sentinel-ai-audio-provenance",
+      "url": "https://aws.amazon.com/jp/blogs/news/jpmne-building-audio-provenance-for-ai-generated-content-at-the-source-with-aws/"
+    },
     "244e575abaa1f8eb": {
       "at": "2026-10-27T01:53:44.181495+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3594,6 +3602,14 @@
       "reason": "quality: 本文が短い（2281字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://openai.com/index/greptile-code-review-codex-astra"
+    },
+    "25cf8aad52336be1": {
+      "at": "2026-10-28T21:52:13.378874+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "suwa-lake-fireworks-nli-report",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87165?site=nli"
     },
     "25eee40fa7809dbe": {
       "at": "2026-10-26T14:53:37.359789+00:00",
@@ -3834,6 +3850,13 @@
       "section": "tech-gadget",
       "slug": "php-vulnerabilities-jpcert-alert-2026",
       "url": "https://www.jpcert.or.jp/at/2026/at260033.html"
+    },
+    "326d641a8db7f800": {
+      "at": "2026-10-28T21:51:50.348648+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大臣の日程および自由民主党からの提言の申し入れを受けたという事実を伝えるものであり、国民生活に直接関わる制度、給付、料金、規制の発表ではないため対象外とします。",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/actions/202610/28teigen.html"
     },
     "3296111ad417e2fe": {
       "at": "2026-10-27T03:05:10.759476+00:00",
@@ -7304,6 +7327,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000078.000104020.html"
     },
+    "fc595589053fff86": {
+      "at": "2026-10-28T21:51:39.239838+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "followup quality: 要点: 複数のAIモデルを自動で最適にルーティングする新機能「GitHub Copilot Fusion」が一般提供を開始しました。 → 元記事では「experimental preview（実験的プレビュー）」としてリリースされたとあり、「一般提供」との記述は矛盾する。; 本文: GitHub Changelog（Copilot）は2026年10月29日 → ",
+      "skipped": true,
+      "url": "https://github.blog/changelog/2026-10-28-github-copilot-fusion-now-supports-selection-of-local-models"
+    },
     "fd4005969d43bd8a": {
       "at": "2026-10-26T21:14:17.873361+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
@@ -7364,138 +7394,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:13:38.826159+00:00",
-      "attempt": 2,
-      "id": "ed7ed4b401931f62",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2254字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 118.8,
-        "avg_sentence": 57.3,
-        "long_share": 0.448,
-        "max_paragraph": 274,
-        "paragraphs": 14,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "google-cloud-blog-ja",
-      "title": "Cloud Run 上の Temporal Serverless Workers: 需要の変動を見越してワーカーをスケーリング"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:13:54.608603+00:00",
-      "attempt": 1,
-      "id": "e00bd16118d03e84",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2241字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 99.8,
-        "avg_sentence": 51.5,
-        "long_share": 0.29,
-        "max_paragraph": 187,
-        "paragraphs": 16,
-        "sentences": 31
-      },
-      "score": null,
-      "source": "aws-news-blog",
-      "title": "AWS Weekly Roundup: Amazon Polly Generative engine, TorchNeuron for Trainium, an"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:14:18.503126+00:00",
-      "attempt": 2,
-      "id": "e00bd16118d03e84",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2096字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 107.8,
-        "avg_sentence": 49.0,
-        "long_share": 0.121,
-        "max_paragraph": 218,
-        "paragraphs": 15,
-        "sentences": 33
-      },
-      "score": null,
-      "source": "aws-news-blog",
-      "title": "AWS Weekly Roundup: Amazon Polly Generative engine, TorchNeuron for Trainium, an"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:14:32.222547+00:00",
-      "attempt": 1,
-      "id": "6c286827905701a0",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1906字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 116.1,
-        "avg_sentence": 50.8,
-        "long_share": 0.219,
-        "max_paragraph": 203,
-        "paragraphs": 14,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "windows-blog-jp",
-      "title": "AI 時代の学びを支える一台へ。 東京大学と東大生協が進めた Surface Laptop 13 インチ Snapdragon 検証プロジェクト"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:14:53.954184+00:00",
-      "attempt": 2,
-      "id": "6c286827905701a0",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1958字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 120.8,
-        "avg_sentence": 56.4,
-        "long_share": 0.367,
-        "max_paragraph": 232,
-        "paragraphs": 14,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "windows-blog-jp",
-      "title": "AI 時代の学びを支える一台へ。 東京大学と東大生協が進めた Surface Laptop 13 インチ Snapdragon 検証プロジェクト"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T19:15:13.820806+00:00",
-      "attempt": 1,
-      "id": "1caf0a8b5ac4be62",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2114字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 109.4,
-        "avg_sentence": 61.3,
-        "long_share": 0.44,
-        "max_paragraph": 205,
-        "paragraphs": 14,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "Exowatt beats frontier models on accuracy with SageMaker serverless model custom"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T19:15:39.950554+00:00",
@@ -13937,6 +13835,131 @@
       "score": 94,
       "source": "google-blog-all",
       "title": "Ads in AI Mode expand to new markets."
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:51:39.239810+00:00",
+      "attempt": 1,
+      "id": "fc595589053fff86",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "要点: 複数のAIモデルを自動で最適にルーティングする新機能「GitHub Copilot Fusion」が一般提供を開始しました。 → 元記事では「experimental preview（実験的プレビュー）」としてリリースされたとあり、「一般提供」との記述は矛盾する。",
+        "本文: GitHub Changelog（Copilot）は2026年10月29日 → 元記事の日付は「Oct.28」であり、日付が異なる。"
+      ],
+      "score": 85,
+      "source": "github-changelog-copilot",
+      "title": "GitHub Copilot Fusion now supports selection of local models"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:51:58.427616+00:00",
+      "attempt": 1,
+      "id": "25cf8aad52336be1",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1620字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 155.4,
+        "avg_sentence": 59.2,
+        "long_share": 0.381,
+        "max_paragraph": 203,
+        "paragraphs": 8,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "地域行事を続ける力は、どこから生まれるのか～諏訪湖祭湖上花火大会にみる、支え手の広がりと継承"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:52:09.052029+00:00",
+      "attempt": 2,
+      "id": "25cf8aad52336be1",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 60.7字・60字超の文が 59% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 163.8字・最長 227字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 163.8,
+        "avg_sentence": 60.7,
+        "long_share": 0.593,
+        "max_paragraph": 227,
+        "paragraphs": 10,
+        "sentences": 27
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "地域行事を続ける力は、どこから生まれるのか～諏訪湖祭湖上花火大会にみる、支え手の広がりと継承"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T21:52:13.378328+00:00",
+      "attempt": 0,
+      "id": "25cf8aad52336be1",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 58.5,
+        "avg_sentence": 35.8,
+        "long_share": 0.02,
+        "max_paragraph": 94,
+        "paragraphs": 30,
+        "sentences": 49
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "地域行事を続ける力は、どこから生まれるのか～諏訪湖祭湖上花火大会にみる、支え手の広がりと継承"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T21:52:22.096425+00:00",
+      "attempt": 1,
+      "id": "24128a17ed6c828c",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 77.1字・60字超の文が 77% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 121.2字・最長 228字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 121.2,
+        "avg_sentence": 77.1,
+        "long_share": 0.773,
+        "max_paragraph": 228,
+        "paragraphs": 14,
+        "sentences": 22
+      },
+      "score": 100,
+      "source": "aws-japan-blog",
+      "title": "AWS で AI 生成コンテンツのオーディオ来歴情報を生成元で構築する"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T21:52:26.574911+00:00",
+      "attempt": 0,
+      "id": "24128a17ed6c828c",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 127.9字・最長 245字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 127.9,
+        "avg_sentence": 44.8,
+        "long_share": 0.15,
+        "max_paragraph": 245,
+        "paragraphs": 14,
+        "sentences": 40
+      },
+      "score": 100,
+      "source": "aws-japan-blog",
+      "title": "AWS で AI 生成コンテンツのオーディオ来歴情報を生成元で構築する"
     }
   ],
   "short_text_retry": {
