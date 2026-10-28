@@ -69,6 +69,7 @@ export default function RootLayout({
       contactPoint: { "@type": "ContactPoint", email: siteConfig.operator.email, contactType: "editorial" },
       publishingPrinciples: `${siteConfig.url}/editorial-policy`,
       correctionsPolicy: `${siteConfig.url}/editorial-policy`,
+      sameAs: siteConfig.social.map((s) => s.url),
     },
   };
 

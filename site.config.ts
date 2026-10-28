@@ -32,6 +32,12 @@ export const siteConfig = {
     established: "2026年7月",
   },
 
+  // 公式SNS（構造化データの sameAs と足元のリンクに使う。Google にサイトと同じ運営だと伝える）
+  social: [
+    { label: "X", url: "https://x.com/saisoku_ai" },
+    { label: "Threads", url: "https://www.threads.com/@saisoku637" },
+  ],
+
   // トップに出す記事件数
   topArticles: 24,
 } as const;

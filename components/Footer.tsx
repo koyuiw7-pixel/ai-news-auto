@@ -53,6 +53,18 @@ export default function Footer() {
               記事内に広告（プロモーション）を含む場合があります。
             </p>
 
+            <p className="mt-6 text-note font-bold text-ink">
+              公式SNS：
+              {siteConfig.social.map((s, i) => (
+                <span key={s.url}>
+                  {i > 0 && " ・ "}
+                  <a href={s.url} target="_blank" rel="me noopener" className="text-accent underline-offset-4 hover:underline">
+                    {s.label}
+                  </a>
+                </span>
+              ))}
+            </p>
+
             <ul className="mt-6 space-y-2">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
