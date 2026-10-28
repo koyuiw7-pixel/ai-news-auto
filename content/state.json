@@ -4526,6 +4526,16 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000172.000021828.html"
     },
+    "73c7084640d94745": {
+      "at": "2026-10-28T04:02:46.712719+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 93,
+      "section": "ai",
+      "slug": "ios-18-7-11-security-update",
+      "url": "https://k-tai.watch.impress.co.jp/docs/news/2151840.html"
+    },
     "74366a108e3c771b": {
       "at": "2026-10-28T03:52:35.195682+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（調達）",
@@ -6566,20 +6576,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T03:04:42.976881+00:00",
-      "attempt": 2,
-      "id": "f1770af1eb030863",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "「2026年10月27日に『2026年4月：ソフトウェアエンジニアリングの海外動向調査』を公開しました」→元記事の更新履歴では、2026年10月27日は「最終更新日」であり、公開日は「2026年4月」と記載されているため、公開日と更新日を混同している。"
-      ],
-      "score": 85,
-      "source": "ipa",
-      "title": "「2026年4月：ソフトウェアエンジニアリングの海外動向調査」を公開しました"
-    },
     {
       "accepted": false,
       "at": "2026-10-27T03:05:00.275584+00:00",
@@ -13156,6 +13152,26 @@
       "score": 100,
       "source": "aws-japan-blog",
       "title": "ドコモSMTBネット銀行が電話・チャット両チャネルで実践する Amazon Connect Customer AI agents による応対高度化"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-28T04:02:46.712330+00:00",
+      "attempt": 1,
+      "id": "73c7084640d94745",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 55.1,
+        "avg_sentence": 30.5,
+        "long_share": 0.036,
+        "max_paragraph": 110,
+        "paragraphs": 31,
+        "sentences": 56
+      },
+      "score": 93,
+      "source": "radar-k-tai.watch.impress.co.jp",
+      "title": "アップル、古いiPhone向けに「iOS 18.7.11」を公開 悪用報告のあるゼロデイ脆弱性など3件を修正"
     }
   ],
   "short_text_retry": {
