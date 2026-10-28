@@ -5775,6 +5775,13 @@
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366583"
     },
+    "bb93f5cb923dac27": {
+      "at": "2026-10-28T17:23:59.918796+00:00",
+      "model": "claude:sonnet",
+      "reason": "followup quality: 「M6、Wi-Fi 7などの記述は、この発表では裏付けられていません」→元記事にはWi-Fi 7とBluetooth 6対応（N1ワイヤレスチップ）が明記されており、矛盾している。; 「本記事は『Liquid Retina XDR』で最大1,600ニト、コントラスト比1,000,000:1としていました」→元記事にも確認済みの文脈にもなく、過去記事の内容として裏",
+      "skipped": true,
+      "url": "https://www.apple.com/jp/newsroom/2026/10/apple-unveils-groundbreaking-macbook-pro-with-proled-xdr-display/"
+    },
     "bbf98d62f5f83ec4": {
       "at": "2026-10-26T21:41:14.037879+00:00",
       "reason": "short text 394",
@@ -6799,29 +6806,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-27T15:58:49.223537+00:00",
-      "attempt": 1,
-      "id": "f16aefe89a6e3f3b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 58.6字・60字超の文が 41% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 163.3字・最長 225字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 163.3,
-        "avg_sentence": 58.6,
-        "long_share": 0.41,
-        "max_paragraph": 225,
-        "paragraphs": 14,
-        "sentences": 39
-      },
-      "score": 100,
-      "source": "openai-news",
-      "title": "Working with academic communities to build scientific understanding"
-    },
     {
       "accepted": true,
       "at": "2026-10-27T15:58:57.739475+00:00",
@@ -13420,6 +13404,24 @@
       "score": 72,
       "source": "apple-newsroom-jp-all",
       "title": "Apple unveils groundbreaking MacBook Pro with PROLED XDR Display"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-28T17:23:59.918771+00:00",
+      "attempt": 1,
+      "id": "bb93f5cb923dac27",
+      "kind": "update",
+      "model": "claude:sonnet",
+      "problems": [
+        "「M6、Wi-Fi 7などの記述は、この発表では裏付けられていません」→元記事にはWi-Fi 7とBluetooth 6対応（N1ワイヤレスチップ）が明記されており、矛盾している。",
+        "「本記事は『Liquid Retina XDR』で最大1,600ニト、コントラスト比1,000,000:1としていました」→元記事にも確認済みの文脈にもなく、過去記事の内容として裏付けがない。",
+        "「本記事はThunderbolt 4としていました」→元記事・文脈に根拠がなく、過去記事の記述として確認できない。",
+        "「Nano-textureのオプションは、本記事の内容と一致します」→過去記事にNano-textureの記載があるという根拠が文脈にない。",
+        "「画面上部にはDynamic Islandが加わり」→元記事に「画面上部」という位置の記載はない。"
+      ],
+      "score": 62,
+      "source": "apple-newsroom-jp-all",
+      "title": "Apple、PROLED XDRディスプレイを搭載した画期的なMacBook Proを発表"
     }
   ],
   "short_text_retry": {
