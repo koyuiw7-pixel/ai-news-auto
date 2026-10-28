@@ -477,7 +477,8 @@ def judged_records() -> list[dict]:
     except (OSError, ValueError):
         return []
     return [{"slug": f"見送り済み:{a.get('outcome')}", "title": str(a.get("title") or ""), "text": str(a.get("title") or ""), "urls": [a.get("url", "")]}
-            for a in acks.values() if a.get("outcome") in ("skipped", "duplicate") and a.get("url")]
+            for a in acks.values()
+            if a.get("outcome") in ("skipped", "duplicate") and a.get("url") and not str(a.get("reason", "")).startswith("major gave up")]
 
 
 def find_missed(items: list[dict], records: list[dict], resolve_links: bool = True) -> tuple[list[dict], dict]:

@@ -352,6 +352,12 @@ export function makeNotify(gh, seen, now) {
   };
 }
 
+/** 記事にならずに終わった登録を、見逃しチェック・手動の依頼（または諦めた・上限で止めた話題）なら起動し直してよいか */
+export function reopenable(cur, e) {
+  if (["new", "dispatched"].includes(cur.status) || ["created", "updated", "duplicate"].includes(cur.outcome)) return false;
+  return /^(manual|missed-check)/.test(e.via || "") || ["gave_up", "capped", "dry"].includes(cur.status);
+}
+
 /** レーダーが outbox に置いた話題を queue に取り込む（"radar" は読むだけ。取り込んだ印は state.radarTaken） */
 export function takeRadar(state, radarState, now, log) {
   let dirty = false;
@@ -360,7 +366,8 @@ export function takeRadar(state, radarState, now, log) {
     if (!e?.id || state.radarTaken[e.id]) continue;
     state.radarTaken[e.id] = now.toISOString();
     dirty = true;
-    if (state.queue[e.id]) {
+    const cur = state.queue[e.id];
+    if (cur && !reopenable(cur, e)) {
       log.radar.push(`登録済み: ${String(e.title).slice(0, 60)}`);
       continue;
     }
