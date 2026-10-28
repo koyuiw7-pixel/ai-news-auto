@@ -36,8 +36,8 @@ export default function ChooseView({ guide, services, related, others, jsonLd }:
       <Pixels pixels={pixels} />
       <Crumbs items={[{ href: "/", label: "ホーム" }, { label: "選び方ガイド" }]} />
 
-      <header className="mt-5 max-w-[760px]">
-        <h1 className="t-h1 text-ink">{guide.h1}</h1>
+      <header className="mt-5 max-w-[880px]">
+        <h1 className="t-h1 text-balance text-ink">{guide.h1}</h1>
         <p className="t-lead mt-3">{guide.lead}</p>
         <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-meta text-muted">
           <span>
