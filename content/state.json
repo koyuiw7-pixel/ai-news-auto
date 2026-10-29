@@ -3468,6 +3468,12 @@
       "slug": "github-copilot-fusion-release",
       "url": "https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion"
     },
+    "1984c7e2b8451fba": {
+      "at": "2026-10-29T00:01:30.843705+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（出演）",
+      "skipped": true,
+      "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3227"
+    },
     "1a1d4bf2fc111eb8": {
       "at": "2026-10-27T15:52:12.081442+00:00",
       "breaking": true,
@@ -4666,6 +4672,13 @@
       "skipped": true,
       "url": "https://www.ipa.go.jp/news/2026/shiken_20261028.html"
     },
+    "54b214d174b0abcd": {
+      "at": "2026-10-29T00:01:45.038131+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1790字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（384字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.jst.go.jp/pr/info/info1882/index.html"
+    },
     "56086e2c77c38346": {
       "at": "2026-10-28T21:54:21.903523+00:00",
       "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
@@ -5627,6 +5640,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005966.000054842.html"
     },
+    "878fb1b560808c41": {
+      "at": "2026-10-29T00:01:59.299870+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（371字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102817"
+    },
     "87f48d4e54b85bce": {
       "at": "2026-10-27T02:40:58.361744+00:00",
       "reason": "precheck: 配信の本文が薄い（定型を除いて451字 / 基準 900字）",
@@ -6550,6 +6570,14 @@
       "section": "ai",
       "slug": "nvidia-local-ai-gtc-berlin-spark-station",
       "url": "https://blogs.nvidia.co.jp/blog/local-ai-gtc-rtx-dgx-spark-station-sync/"
+    },
+    "b5f9ab760f168a02": {
+      "at": "2026-10-29T00:02:16.684845+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "soumu-kkj-2025-3rd-result",
+      "url": "https://www.stat.go.jp/data/kkj/kekka/index.html"
     },
     "b64d489d45134fc3": {
       "at": "2026-10-28T03:25:45.476344+00:00",
@@ -7982,160 +8010,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T23:01:24.495677+00:00",
-      "attempt": 1,
-      "id": "d42fb1eb3362412f",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1847字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 90.9,
-        "avg_sentence": 45.4,
-        "long_share": 0.125,
-        "max_paragraph": 166,
-        "paragraphs": 16,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "Retell uses OpenAI models to help power 100M monthly calls"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T23:02:11.850927+00:00",
-      "attempt": 2,
-      "id": "d42fb1eb3362412f",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2020字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 100.9,
-        "avg_sentence": 49.0,
-        "long_share": 0.229,
-        "max_paragraph": 198,
-        "paragraphs": 17,
-        "sentences": 35
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "Retell uses OpenAI models to help power 100M monthly calls"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T23:04:26.424026+00:00",
-      "attempt": 1,
-      "id": "8aa32361150b0215",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 49.8字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 134.5字・最長 175字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 134.5,
-        "avg_sentence": 49.8,
-        "long_share": 0.296,
-        "max_paragraph": 175,
-        "paragraphs": 10,
-        "sentences": 27
-      },
-      "score": 100,
-      "source": "suntory",
-      "title": "大切な人に贈るワクワクなホリデーを。 スターバックス チルドカップ 「DELIGHT ME メリーベリーチョコレートラテ」11月3日（火）より期間限定発売"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T23:04:35.549610+00:00",
-      "attempt": 0,
-      "id": "8aa32361150b0215",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 79.5,
-        "avg_sentence": 28.3,
-        "long_share": 0.022,
-        "max_paragraph": 132,
-        "paragraphs": 16,
-        "sentences": 45
-      },
-      "score": 100,
-      "source": "suntory",
-      "title": "大切な人に贈るワクワクなホリデーを。 スターバックス チルドカップ 「DELIGHT ME メリーベリーチョコレートラテ」11月3日（火）より期間限定発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T23:22:18.329301+00:00",
-      "attempt": 1,
-      "id": "4c5c673386bda904",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1692字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 113.2,
-        "avg_sentence": 46.9,
-        "long_share": 0.276,
-        "max_paragraph": 192,
-        "paragraphs": 12,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "suntory",
-      "title": "スライムたちが のんでほしそうに こちらを みている！「ギルティ炭酸 NOPE」が『ドラゴンクエストモンスターズ4』とコラボ！"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T23:22:47.402037+00:00",
-      "attempt": 2,
-      "id": "4c5c673386bda904",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1462字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 120.9,
-        "avg_sentence": 48.4,
-        "long_share": 0.24,
-        "max_paragraph": 212,
-        "paragraphs": 10,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "suntory",
-      "title": "スライムたちが のんでほしそうに こちらを みている！「ギルティ炭酸 NOPE」が『ドラゴンクエストモンスターズ4』とコラボ！"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T23:22:52.747558+00:00",
-      "attempt": 2,
-      "id": "4c5c673386bda904",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 48.5字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 160.1字・最長 272字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 160.1,
-        "avg_sentence": 48.5,
-        "long_share": 0.242,
-        "max_paragraph": 272,
-        "paragraphs": 10,
-        "sentences": 33
-      },
-      "score": 100,
-      "source": "suntory",
-      "title": "スライムたちが のんでほしそうに こちらを みている！「ギルティ炭酸 NOPE」が『ドラゴンクエストモンスターズ4』とコラボ！"
-    },
     {
       "accepted": true,
       "at": "2026-10-27T23:22:57.312634+00:00",
@@ -14601,6 +14475,164 @@
       "score": 91,
       "source": "radar-itmedia.co.jp",
       "title": "KDDI傘下、社内のAI活用事例113件を無料公開 「Gemini Notebook」で稟議データのチェック支援も"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T00:01:38.902583+00:00",
+      "attempt": 1,
+      "id": "54b214d174b0abcd",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（372字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 176.8,
+        "avg_sentence": 63.6,
+        "long_share": 0.48,
+        "max_paragraph": 227,
+        "paragraphs": 9,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "jst",
+      "title": "創発的研究支援事業における2026年度新規研究課題の決定について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T00:01:45.038089+00:00",
+      "attempt": 2,
+      "id": "54b214d174b0abcd",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1790字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（384字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 161.6,
+        "avg_sentence": 58.8,
+        "long_share": 0.545,
+        "max_paragraph": 284,
+        "paragraphs": 8,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "jst",
+      "title": "創発的研究支援事業における2026年度新規研究課題の決定について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T00:01:52.567382+00:00",
+      "attempt": 1,
+      "id": "878fb1b560808c41",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1796字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（356字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 121.4,
+        "avg_sentence": 55.2,
+        "long_share": 0.273,
+        "max_paragraph": 213,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "11月12日～25日は「女性に対する暴力をなくす運動」期間です！パープル・ライトアップ、都内全高校1年生に啓発カード配布等を実施"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T00:01:59.299841+00:00",
+      "attempt": 2,
+      "id": "878fb1b560808c41",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（371字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 153.6,
+        "avg_sentence": 56.9,
+        "long_share": 0.407,
+        "max_paragraph": 238,
+        "paragraphs": 10,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "11月12日～25日は「女性に対する暴力をなくす運動」期間です！パープル・ライトアップ、都内全高校1年生に啓発カード配布等を実施"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T00:02:05.049106+00:00",
+      "attempt": 1,
+      "id": "b5f9ab760f168a02",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1360字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 114.7,
+        "avg_sentence": 49.9,
+        "long_share": 0.217,
+        "max_paragraph": 149,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "stat",
+      "title": "「2025年経済構造実態調査」三次集計結果 産業横断調査（事業所に関する集計）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T00:02:12.589907+00:00",
+      "attempt": 2,
+      "id": "b5f9ab760f168a02",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 63.2字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 145.3字・最長 194字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 145.3,
+        "avg_sentence": 63.2,
+        "long_share": 0.435,
+        "max_paragraph": 194,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "stat",
+      "title": "「2025年経済構造実態調査」三次集計結果 産業横断調査（事業所に関する集計）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T00:02:16.684511+00:00",
+      "attempt": 0,
+      "id": "b5f9ab760f168a02",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 71.2,
+        "avg_sentence": 41.9,
+        "long_share": 0.088,
+        "max_paragraph": 126,
+        "paragraphs": 20,
+        "sentences": 34
+      },
+      "score": 100,
+      "source": "stat",
+      "title": "「2025年経済構造実態調査」三次集計結果 産業横断調査（事業所に関する集計）"
     }
   ],
   "short_text_retry": {
