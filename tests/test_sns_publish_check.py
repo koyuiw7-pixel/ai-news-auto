@@ -1,6 +1,8 @@
 """公開確認の回帰テスト。ネット接続・SNS投稿は行わない。"""
 
 import sys
+import json
+import tempfile
 import unittest
 import urllib.error
 from pathlib import Path
@@ -8,6 +10,7 @@ from unittest.mock import MagicMock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import threads_post
+import threads_learn
 
 
 class PublishCheckTest(unittest.TestCase):
@@ -64,6 +67,29 @@ class PublishCheckTest(unittest.TestCase):
             self.assertFalse(threads_post.wait_until_live(self.url, timeout=30))
             self.assertEqual(open_url.call_count, 2)
             sleep.assert_called_once_with(15)
+
+
+class LearningIsolationTest(unittest.TestCase):
+    def test_verification_post_does_not_change_threads_or_x_format_results(self):
+        common = {"postedAt": "2026-10-30T01:00:00+00:00", "style": "standalone", "format": "classic"}
+        state = {"posted": {
+            "ordinary": {**common, "metrics": {"views": 10}, "xMetrics": {"impressions": 20}},
+            "verification": {**common, "format": "hook_thread", "metrics": {"views": 1000}, "xMetrics": {"impressions": 2000},
+                             "verification": {"excludeFromLearning": True}},
+            "digest": {**common, "style": "digest", "metrics": {"views": 1000}, "xMetrics": {"impressions": 2000}},
+        }}
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "learning.json"
+            with patch.object(sys, "argv", ["threads_learn.py", "--offline"]), \
+                 patch.object(threads_learn, "load_state", return_value=state), \
+                 patch.object(threads_learn, "LEARNING_PATH", output), \
+                 patch.object(threads_learn, "fetch_metrics", side_effect=AssertionError("network forbidden")):
+                self.assertEqual(threads_learn.main(), 0)
+            result = json.loads(output.read_text())
+        self.assertEqual((result["posts"], result["xPosts"]), (1, 1))
+        self.assertEqual(result["axes"]["postFormat"]["classic"]["avgViews"], 10)
+        self.assertEqual(result["xAxes"]["postFormat"]["classic"]["avgViews"], 20)
+        self.assertNotIn("hook_thread", result["axes"]["postFormat"])
 
 
 if __name__ == "__main__":

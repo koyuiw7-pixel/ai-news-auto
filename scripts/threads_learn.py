@@ -152,6 +152,11 @@ def summarize(rows: list[dict]) -> dict:
     return out
 
 
+def learning_sample(entry: dict) -> bool:
+    """形式比較を崩さないよう、別企画と時刻を変えた動作検証投稿を除く。"""
+    return entry.get("style") not in ("digest", "poll") and not (entry.get("verification") or {}).get("excludeFromLearning")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--offline", action="store_true")
@@ -184,8 +189,8 @@ def main() -> int:
     rows = []
     for slug, entry in state["posted"].items():
         metrics = entry.get("metrics")
-        # 朝のまとめ・問いかけ投稿は記事の投稿と性質が違うので、型の学習には入れない
-        if not metrics or entry.get("style") in ("digest", "poll"):
+        # 朝のまとめ・問いかけ・時刻を変えた動作検証投稿は型の学習には入れない
+        if not metrics or not learning_sample(entry):
             continue
         rows.append({
             "slug": slug,
@@ -196,7 +201,7 @@ def main() -> int:
         })
     x_rows = [
         {"slug": slug, "views": views_of(e["xMetrics"]), "engagement": engagement_of(e["xMetrics"]), "features": features(slug, e)}
-        for slug, e in state["posted"].items() if e.get("xMetrics") and e.get("style") not in ("digest", "poll")
+        for slug, e in state["posted"].items() if e.get("xMetrics") and learning_sample(e)
     ]
     learning = {
         "updatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
