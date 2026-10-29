@@ -3106,6 +3106,14 @@
       "slug": "hiroshima-u-baseball-umpire-bayesian-model",
       "url": "https://www.hiroshima-u.ac.jp/news/100883"
     },
+    "07b389c6b52900ce": {
+      "at": "2026-10-29T03:52:46.823080+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "google-gke-inference-gateway-4x-speed",
+      "url": "https://cloud.google.com/blog/ja/products/containers-kubernetes/zenteiq-scales-physical-ai-inference-4x-with-gke-and-llm-d/"
+    },
     "07b58d791bb981c0": {
       "at": "2026-10-27T03:04:42.977544+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（オープン）",
@@ -3145,6 +3153,13 @@
       "reason": "quality: easy_markdown が短い（344字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/10/29/20261029-psplus-freeplay-o/"
+    },
+    "0b49b02e51904f80": {
+      "at": "2026-10-29T03:53:31.084159+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 本文が短い（1671字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102705"
     },
     "0b68d1c870480822": {
       "at": "2026-10-28T23:13:03.555460+00:00",
@@ -5536,6 +5551,13 @@
       "slug": "apple-imac-m6-2026-10",
       "url": "https://www.apple.com/jp/newsroom/2026/10/apple-unveils-new-imac-with-m6/"
     },
+    "7cc85f64fdd707de": {
+      "at": "2026-10-29T03:51:43.858389+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2437字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://blog.google/innovation-and-ai/technology/health/google-for-health-summit-singapore/"
+    },
     "7d398bbabacb0711": {
       "at": "2026-10-27T01:53:44.181605+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -6242,6 +6264,13 @@
       "reason": "quality: 「今回の発表対象は、シティホテル、ビジネスホテル、国内長距離交通、教育サービス、生命保険、損害保険（自動車／住宅・火災）の7業種に、特別調査として有料特急を加えたもの」→元記事では有料特急を含めて7業種と記載されており、7業種に加えたという表現は矛盾する。; 「編集部の見立てでは、航空業界内の競争激化の中で、顧客がスカイマークのサービス品質や価格設定に対して高い満足感を示している",
       "skipped": true,
       "url": "https://kyodonewsprwire.jp/release/202610228532"
+    },
+    "9b0f6140a4fd5eba": {
+      "at": "2026-10-29T03:51:57.553738+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（378字 / 基準 400字以上）; body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102703"
     },
     "9b15837d33fd0259": {
       "at": "2026-10-28T17:30:04.857541+00:00",
@@ -7778,6 +7807,12 @@
       "slug": "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
       "url": "https://aws.amazon.com/blogs/machine-learning/build-agentic-retrieval-on-a-managed-amazon-bedrock-knowledge-base-with-cdk/"
     },
+    "e6946ccebe084c64": {
+      "at": "2026-10-29T03:51:57.553808+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（億米ドル）",
+      "skipped": true,
+      "url": "https://news.samsung.com/jp/samsung-to-invest-usd-1-billion-in-ai-infrastructure-company-helix2610?utm_source=rss&utm_medium=direct"
+    },
     "e69b2c60e94ddef1": {
       "at": "2026-10-27T01:31:25.544456+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -8295,223 +8330,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-28T03:54:48.428048+00:00",
-      "attempt": 2,
-      "id": "42cef1bdc3da9dbc",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 52.8字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 151.3字・最長 302字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 151.3,
-        "avg_sentence": 52.8,
-        "long_share": 0.326,
-        "max_paragraph": 302,
-        "paragraphs": 15,
-        "sentences": 43
-      },
-      "score": 100,
-      "source": "aws-japan-blog",
-      "title": "ドコモSMTBネット銀行が電話・チャット両チャネルで実践する Amazon Connect Customer AI agents による応対高度化"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T03:54:56.716201+00:00",
-      "attempt": 0,
-      "id": "42cef1bdc3da9dbc",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.0,
-        "avg_sentence": 44.7,
-        "long_share": 0.173,
-        "max_paragraph": 138,
-        "paragraphs": 25,
-        "sentences": 52
-      },
-      "score": 100,
-      "source": "aws-japan-blog",
-      "title": "ドコモSMTBネット銀行が電話・チャット両チャネルで実践する Amazon Connect Customer AI agents による応対高度化"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T04:02:46.712330+00:00",
-      "attempt": 1,
-      "id": "73c7084640d94745",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 55.1,
-        "avg_sentence": 30.5,
-        "long_share": 0.036,
-        "max_paragraph": 110,
-        "paragraphs": 31,
-        "sentences": 56
-      },
-      "score": 93,
-      "source": "radar-k-tai.watch.impress.co.jp",
-      "title": "アップル、古いiPhone向けに「iOS 18.7.11」を公開 悪用報告のあるゼロデイ脆弱性など3件を修正"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T04:21:52.602531+00:00",
-      "attempt": 1,
-      "id": "476ace2fe1accb7b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2189字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 149.1,
-        "avg_sentence": 66.3,
-        "long_share": 0.593,
-        "max_paragraph": 244,
-        "paragraphs": 12,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "salesforce-jp",
-      "title": "ClaudeからもSlackからも：AIforceでSalesforceの仕事を進める2つの体験"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T04:22:02.263423+00:00",
-      "attempt": 1,
-      "id": "476ace2fe1accb7b",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 58.1字・60字超の文が 45% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 183.9字・最長 294字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 183.9,
-        "avg_sentence": 58.1,
-        "long_share": 0.447,
-        "max_paragraph": 294,
-        "paragraphs": 12,
-        "sentences": 38
-      },
-      "score": 100,
-      "source": "salesforce-jp",
-      "title": "ClaudeからもSlackからも：AIforceでSalesforceの仕事を進める2つの体験"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T04:22:17.392968+00:00",
-      "attempt": 0,
-      "id": "476ace2fe1accb7b",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 44.8字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 89.7,
-        "avg_sentence": 44.8,
-        "long_share": 0.217,
-        "max_paragraph": 149,
-        "paragraphs": 23,
-        "sentences": 46
-      },
-      "score": 100,
-      "source": "salesforce-jp",
-      "title": "ClaudeからもSlackからも：AIforceでSalesforceの仕事を進める2つの体験"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T04:22:43.320657+00:00",
-      "attempt": 1,
-      "id": "95acebd2bc110fc1",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 50.2字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 156.2字・最長 257字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 156.2,
-        "avg_sentence": 50.2,
-        "long_share": 0.357,
-        "max_paragraph": 257,
-        "paragraphs": 9,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "rakuten",
-      "title": "「楽天市場」、2026年冬のトレンド予測を発表"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T04:22:50.223031+00:00",
-      "attempt": 0,
-      "id": "95acebd2bc110fc1",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 85.9,
-        "avg_sentence": 35.3,
-        "long_share": 0.026,
-        "max_paragraph": 151,
-        "paragraphs": 16,
-        "sentences": 39
-      },
-      "score": 100,
-      "source": "rakuten",
-      "title": "「楽天市場」、2026年冬のトレンド予測を発表"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T04:51:51.276088+00:00",
-      "attempt": 1,
-      "id": "748766fd79db6652",
-      "kind": "ai",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "文が長い（1文の平均 51.2字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 55.9,
-        "avg_sentence": 51.2,
-        "long_share": 0.361,
-        "max_paragraph": 92,
-        "paragraphs": 33,
-        "sentences": 36
-      },
-      "score": 100,
-      "source": "radar-official",
-      "title": "Microsoft.UI.Reactor: a C#-first way to build WinUI apps - #ifdef Windows"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T04:51:51.645600+00:00",
-      "attempt": 0,
-      "id": "748766fd79db6652",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直しに失敗（すべてのモデルで失敗しました: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You ）"
-      ],
-      "readability": {
-        "avg_paragraph": 55.9,
-        "avg_sentence": 51.2,
-        "long_share": 0.361,
-        "max_paragraph": 92,
-        "paragraphs": 33,
-        "sentences": 36
-      },
-      "score": 100,
-      "source": "radar-official",
-      "title": "Microsoft.UI.Reactor: a C#-first way to build WinUI apps - #ifdef Windows"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T11:52:12.468103+00:00",
@@ -14909,6 +14727,230 @@
       "score": 91,
       "source": "radar-k-tai.watch.impress.co.jp",
       "title": "楽天モバイル、iPadを取り扱い開始 11月6日8時発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:51:33.161048+00:00",
+      "attempt": 1,
+      "id": "7cc85f64fdd707de",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2319字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（347字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 109.4,
+        "avg_sentence": 58.6,
+        "long_share": 0.464,
+        "max_paragraph": 250,
+        "paragraphs": 15,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "google-blog-all",
+      "title": "Partnering with Singapore to bring frontier AI to public health"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:51:41.002292+00:00",
+      "attempt": 2,
+      "id": "7cc85f64fdd707de",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2437字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 138.4,
+        "avg_sentence": 60.6,
+        "long_share": 0.5,
+        "max_paragraph": 314,
+        "paragraphs": 14,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "google-blog-all",
+      "title": "Partnering with Singapore to bring frontier AI to public health"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:51:50.686164+00:00",
+      "attempt": 1,
+      "id": "9b0f6140a4fd5eba",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1423字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（304字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 111.3,
+        "avg_sentence": 38.5,
+        "long_share": 0.077,
+        "max_paragraph": 161,
+        "paragraphs": 9,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "犯罪被害者等支援に係る経済的支援策の拡充について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:51:57.553699+00:00",
+      "attempt": 2,
+      "id": "9b0f6140a4fd5eba",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（378字 / 基準 400字以上）",
+        "body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）"
+      ],
+      "readability": {
+        "avg_paragraph": 131.3,
+        "avg_sentence": 43.8,
+        "long_share": 0.222,
+        "max_paragraph": 246,
+        "paragraphs": 12,
+        "sentences": 36
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "犯罪被害者等支援に係る経済的支援策の拡充について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:52:06.933049+00:00",
+      "attempt": 1,
+      "id": "07b389c6b52900ce",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（2142字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 102.9,
+        "avg_sentence": 56.4,
+        "long_share": 0.323,
+        "max_paragraph": 201,
+        "paragraphs": 17,
+        "sentences": 31
+      },
+      "score": null,
+      "source": "google-cloud-blog-ja",
+      "title": "ZenteiQ、llm-d を搭載した GKE Inference Gateway でバッチ推論のスループットを 4 倍に拡大"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:52:29.041676+00:00",
+      "attempt": 2,
+      "id": "07b389c6b52900ce",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（2176字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 113.0,
+        "avg_sentence": 53.0,
+        "long_share": 0.188,
+        "max_paragraph": 216,
+        "paragraphs": 15,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "google-cloud-blog-ja",
+      "title": "ZenteiQ、llm-d を搭載した GKE Inference Gateway でバッチ推論のスループットを 4 倍に拡大"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T03:52:40.271987+00:00",
+      "attempt": 2,
+      "id": "07b389c6b52900ce",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 52.4字・60字超の文が 16% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 132.6字・最長 216字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 132.6,
+        "avg_sentence": 52.4,
+        "long_share": 0.163,
+        "max_paragraph": 216,
+        "paragraphs": 17,
+        "sentences": 43
+      },
+      "score": 100,
+      "source": "google-cloud-blog-ja",
+      "title": "ZenteiQ、llm-d を搭載した GKE Inference Gateway でバッチ推論のスループットを 4 倍に拡大"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T03:52:46.822571+00:00",
+      "attempt": 0,
+      "id": "07b389c6b52900ce",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「日本で使える？ はい、Google CloudのGKEを利用可能なすべてのリージョンで使用可能です。」→元記事にリージョン展開に関する言及はなく、断定は不正確です。"
+      ],
+      "readability": {
+        "avg_paragraph": 132.6,
+        "avg_sentence": 52.4,
+        "long_share": 0.163,
+        "max_paragraph": 216,
+        "paragraphs": 17,
+        "sentences": 43
+      },
+      "score": 100,
+      "source": "google-cloud-blog-ja",
+      "title": "ZenteiQ、llm-d を搭載した GKE Inference Gateway でバッチ推論のスループットを 4 倍に拡大"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:53:02.752813+00:00",
+      "attempt": 1,
+      "id": "0b49b02e51904f80",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1796字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 108.7,
+        "avg_sentence": 45.0,
+        "long_share": 0.069,
+        "max_paragraph": 180,
+        "paragraphs": 12,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "知事指定薬物の新規指定について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:53:24.738336+00:00",
+      "attempt": 2,
+      "id": "0b49b02e51904f80",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1671字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 112.6,
+        "avg_sentence": 41.7,
+        "long_share": 0.111,
+        "max_paragraph": 154,
+        "paragraphs": 10,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "知事指定薬物の新規指定について"
     }
   ],
   "short_text_retry": {
