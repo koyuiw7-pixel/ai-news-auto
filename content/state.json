@@ -6101,6 +6101,13 @@
       "skipped": true,
       "url": "https://finance.yahoo.co.jp/news/detail/9d95797449c78d42bc2c74eb52cd6e8adb6007f1"
     },
+    "7fd3d90be223b966": {
+      "at": "2026-10-29T20:06:24.619131+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1692字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（361字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.waterworks.metro.tokyo.lg.jp/information/press/r8/10/2026102902"
+    },
     "7ff375b869dfa204": {
       "at": "2026-10-29T18:34:41.300010+00:00",
       "reason": "dedupe: 見出しが類似（0.83）: 令和8年10月29日(木)午後-内閣官房長官記者会見",
@@ -8451,6 +8458,14 @@
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-amazon-polly-generative-engine-torchneuron-for-trainium-and-more-october-26-2026/"
     },
+    "e0b2bbdde388a2c0": {
+      "at": "2026-10-29T20:06:48.324754+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "tokyo-water-smart-meter-power-network",
+      "url": "https://www.waterworks.metro.tokyo.lg.jp/information/press/r8/10/2026102901"
+    },
     "e191ec74d66f83b7": {
       "at": "2026-10-27T20:14:54.135273+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -9235,93 +9250,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:12:25.038071+00:00",
-      "attempt": 1,
-      "id": "f2a2f776cb245f9f",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（367字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 97.4,
-        "avg_sentence": 60.1,
-        "long_share": 0.471,
-        "max_paragraph": 226,
-        "paragraphs": 21,
-        "sentences": 34
-      },
-      "score": null,
-      "source": "aws-japan-blog",
-      "title": "Amazon Bedrock AgentCore を使用した電力・公益事業向けのインテリジェントなアラーム管理"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:12:34.185981+00:00",
-      "attempt": 2,
-      "id": "f2a2f776cb245f9f",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 58.6字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 103.4,
-        "avg_sentence": 58.6,
-        "long_share": 0.4,
-        "max_paragraph": 174,
-        "paragraphs": 17,
-        "sentences": 30
-      },
-      "score": 100,
-      "source": "aws-japan-blog",
-      "title": "Amazon Bedrock AgentCore を使用した電力・公益事業向けのインテリジェントなアラーム管理"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T22:12:38.673639+00:00",
-      "attempt": 0,
-      "id": "f2a2f776cb245f9f",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 106.0,
-        "avg_sentence": 34.1,
-        "long_share": 0.036,
-        "max_paragraph": 181,
-        "paragraphs": 18,
-        "sentences": 56
-      },
-      "score": 100,
-      "source": "aws-japan-blog",
-      "title": "Amazon Bedrock AgentCore を使用した電力・公益事業向けのインテリジェントなアラーム管理"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:12:45.255729+00:00",
-      "attempt": 1,
-      "id": "dc0a7bf6cf1b8f0c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1623字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（329字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 133.3,
-        "avg_sentence": 54.3,
-        "long_share": 0.333,
-        "max_paragraph": 233,
-        "paragraphs": 11,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "cyberagent",
-      "title": "サイバーエージェントと嵯峨美術大学・嵯峨美術短期大学が包括連携協定を締結"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T22:12:51.125941+00:00",
@@ -15945,6 +15873,95 @@
       "score": null,
       "source": "tokyo-metro",
       "title": "ひきこもりでお悩みの方へ 座談会をオンデマンドで配信します"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T20:06:18.012835+00:00",
+      "attempt": 1,
+      "id": "7fd3d90be223b966",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1382字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（326字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 142.8,
+        "avg_sentence": 49.4,
+        "long_share": 0.192,
+        "max_paragraph": 180,
+        "paragraphs": 9,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "金町浄水場テロ対処合同訓練の実施について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T20:06:24.619099+00:00",
+      "attempt": 2,
+      "id": "7fd3d90be223b966",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1692字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（361字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 135.6,
+        "avg_sentence": 48.4,
+        "long_share": 0.214,
+        "max_paragraph": 185,
+        "paragraphs": 10,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "金町浄水場テロ対処合同訓練の実施について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T20:06:44.507018+00:00",
+      "attempt": 1,
+      "id": "e0b2bbdde388a2c0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 58.4字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 109.4,
+        "avg_sentence": 58.4,
+        "long_share": 0.3,
+        "max_paragraph": 181,
+        "paragraphs": 16,
+        "sentences": 30
+      },
+      "score": 100,
+      "source": "tokyo-metro",
+      "title": "水道スマートメータに新たな通信方式を導入～電力通信ネットワークを活用したデータ取得を開始～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T20:06:48.324454+00:00",
+      "attempt": 0,
+      "id": "e0b2bbdde388a2c0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 114.6,
+        "avg_sentence": 35.3,
+        "long_share": 0.019,
+        "max_paragraph": 203,
+        "paragraphs": 16,
+        "sentences": 52
+      },
+      "score": 100,
+      "source": "tokyo-metro",
+      "title": "水道スマートメータに新たな通信方式を導入～電力通信ネットワークを活用したデータ取得を開始～"
     }
   ],
   "short_text_retry": {
