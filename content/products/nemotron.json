@@ -1,0 +1,174 @@
+{
+  "slug": "nemotron",
+  "name": "Nemotron",
+  "aliases": [],
+  "company": "nvidia",
+  "companyName": "NVIDIA",
+  "category": "AIモデル",
+  "overview": {
+    "text": "Nemotronは、NVIDIAが提供するオープンなAIモデルです。マルチモーダル処理や音声認識に対応する最新モデルが発表されています。",
+    "sources": [
+      "aws-nvidia-nemotron-35-super-vl",
+      "nvidia-nemotron-35-transcribe"
+    ]
+  },
+  "facts": [
+    {
+      "label": "料金",
+      "value": "オープンウェイト",
+      "sources": [
+        "aws-nvidia-nemotron-35-super-vl",
+        "nvidia-nemotron-35-transcribe"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "利用できる",
+      "sources": [
+        "aws-nvidia-nemotron-35-super-vl",
+        "nvidia-nemotron-35-transcribe"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "AI開発者・研究者",
+      "sources": [
+        "aws-nvidia-nemotron-35-super-vl",
+        "nvidia-nemotron-35-transcribe"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "テキスト、画像、ドキュメント、動画の理解と推論を1つで処理できます。",
+      "sources": [
+        "aws-nvidia-nemotron-35-super-vl"
+      ]
+    },
+    {
+      "text": "最大1Mトークンの長大なコンテキスト長を効率的に処理できます。",
+      "sources": [
+        "aws-nvidia-nemotron-35-super-vl"
+      ]
+    },
+    {
+      "text": "40言語の文字起こしや31言語の翻訳に対応しています。",
+      "sources": [
+        "nvidia-nemotron-35-transcribe"
+      ]
+    },
+    {
+      "text": "最大1時間の録音データや最大8人までの話者分離に対応しています。",
+      "sources": [
+        "nvidia-nemotron-35-transcribe"
+      ]
+    }
+  ],
+  "pricing": [
+    {
+      "text": "モデルの重みやデータパイプラインはHugging Face上で無償で公開されています。",
+      "sources": [
+        "nvidia-nemotron-35-transcribe"
+      ]
+    },
+    {
+      "text": "AWS上での利用時は各種インスタンス料金やストレージ料金に準じます。",
+      "sources": [
+        "aws-nvidia-nemotron-35-super-vl"
+      ]
+    }
+  ],
+  "japan": [
+    {
+      "text": "日本国内のAWS環境においても対応するインスタンスを利用してデプロイや検証が可能です。",
+      "sources": [
+        "aws-nvidia-nemotron-35-super-vl"
+      ]
+    },
+    {
+      "text": "Hugging Faceにアクセスできる環境があれば日本から利用できます。",
+      "sources": [
+        "nvidia-nemotron-35-transcribe"
+      ]
+    }
+  ],
+  "howto": [
+    {
+      "text": "AWS上ではAmazon EKSやSageMaker HyperPod EKSを用いてデプロイが可能です。",
+      "sources": [
+        "aws-nvidia-nemotron-35-super-vl"
+      ]
+    },
+    {
+      "text": "Hugging Faceなどのプラットフォームからモデルをダウンロードして実行できます。",
+      "sources": [
+        "nvidia-nemotron-35-transcribe"
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "text": "音声認識モデルでは、1つのチェックポイントに複数のタスクが統合され、自然言語の指示で出力を切り替えられます。",
+      "sources": [
+        "nvidia-nemotron-35-transcribe"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "無料で使える？",
+      "a": "モデルの重みや学習データはオープンに公開されており無償で取得できますが、実行には対応するGPU環境のコストがかかります。",
+      "sources": [
+        "aws-nvidia-nemotron-35-super-vl",
+        "nvidia-nemotron-35-transcribe"
+      ]
+    },
+    {
+      "q": "商用利用はできる？",
+      "a": "公開された規約に従うことで商用利用を含めて活用できます。",
+      "sources": [
+        "nvidia-nemotron-35-transcribe"
+      ]
+    },
+    {
+      "q": "音声認識モデルはリアルタイム配信に対応している？",
+      "a": "リアルタイム配信には向いておらず、録音された音声の処理に適しています。",
+      "sources": [
+        "nvidia-nemotron-35-transcribe"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-10-28",
+      "slug": "nvidia-nemotron-35-transcribe",
+      "event": "NVIDIAがNemotron 3.5 Transcribeを発表"
+    },
+    {
+      "date": "2026-10-30",
+      "slug": "aws-nvidia-nemotron-35-super-vl",
+      "event": "AWSがNemotron 3.5 Super VLのサポートを発表"
+    }
+  ],
+  "related": [
+    "rtx-spark",
+    "vera-rubin",
+    "blackwell"
+  ],
+  "articles": [
+    "aws-nvidia-nemotron-35-super-vl",
+    "nvidia-nemotron-35-transcribe",
+    "nvidia-gtc-berlin-2026-vera-rubin-openshell",
+    "nvidia-secure-agent-ai-factory",
+    "bharatgen-india-sovereign-ai-nvidia-nemotron"
+  ],
+  "linkFrom": [
+    "aws-nvidia-nemotron-35-super-vl",
+    "nvidia-nemotron-35-transcribe"
+  ],
+  "signature": "43810d052ca37a5d",
+  "primarySignature": "4b3c28532fa39c8e",
+  "model": "gemini-3.5-flash-lite",
+  "createdAt": "2026-10-29T17:50:17+00:00",
+  "updatedAt": "2026-10-29T17:50:17+00:00"
+}
