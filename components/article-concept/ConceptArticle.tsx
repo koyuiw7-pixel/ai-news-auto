@@ -63,7 +63,6 @@ export default function ConceptArticle({ view, affiliates }: Props) {
           {view.source.href && (
             <a className="cx-official" href={view.source.href} target="_blank" rel="noopener noreferrer">
               {view.source.cta}
-              <span aria-hidden> ↗</span>
             </a>
           )}
           <p className="cx-cut">
@@ -156,7 +155,6 @@ export default function ConceptArticle({ view, affiliates }: Props) {
                         <li key={link.url}>
                           <a href={link.url} target="_blank" rel="sponsored nofollow noopener noreferrer">
                             {link.label || link.name}
-                            <span aria-hidden> ↗</span>
                           </a>
                           {link.note && <span className="cx-pr-note">{link.note}</span>}
                         </li>
@@ -176,7 +174,7 @@ export default function ConceptArticle({ view, affiliates }: Props) {
               <>
                 {" "}
                 <a href={view.source.href} target="_blank" rel="noopener noreferrer">
-                  {view.source.cta} ↗
+                  {view.source.cta}
                 </a>
               </>
             )}

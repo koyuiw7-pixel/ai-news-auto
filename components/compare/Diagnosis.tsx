@@ -150,7 +150,7 @@ export default function Diagnosis({ quiz, products }: { quiz: Question[]; produc
                   data-aff-pos="diagnosis"
                   className="flex h-11 flex-1 items-center justify-center gap-1.5 rounded-lg bg-accent text-note font-bold text-white hover:opacity-90"
                 >
-                  公式サイトで見る <span aria-hidden>↗</span>
+                  公式サイトで見る
                 </a>
               </div>
             </div>

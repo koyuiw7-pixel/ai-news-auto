@@ -148,7 +148,6 @@ function First({ item, wide, badge, onClick }: { item: OfferItem; wide: boolean;
           </span>
           <span className="mt-2.5 flex h-12 items-center justify-center gap-1.5 rounded-md bg-accent text-note font-bold text-accent-ink shadow-card transition-transform group-hover:-translate-y-px motion-reduce:transition-none">
             {item.cta}
-            <span aria-hidden>↗</span>
           </span>
         </span>
       </span>
@@ -178,7 +177,7 @@ function Row({ item, rank, onClick }: { item: OfferItem; rank: number; onClick: 
           <span className="mt-1 flex items-center justify-between gap-2">
             <span className="index-num text-note font-bold text-ink">{priceText(item)}</span>
             <span className="shrink-0 rounded-sm bg-ink px-2.5 py-1 text-badge font-bold text-paper group-hover:opacity-85">
-              見る ↗
+              見る
             </span>
           </span>
         </span>

@@ -229,7 +229,7 @@ export function CompareTable({
                     product={product}
                     className="inline-flex h-9 items-center gap-1 whitespace-nowrap rounded-md border border-ink px-3 text-badge font-bold text-ink hover:bg-ink hover:text-paper"
                   >
-                    公式 <span aria-hidden>↗</span>
+                    公式
                   </OutLink>
                 </td>
               ))}

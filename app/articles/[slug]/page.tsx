@@ -485,7 +485,6 @@ export default async function ArticlePage({ params }: Props) {
                     className="hidden shrink-0 items-center gap-1.5 rounded-sm border border-line-strong px-3.5 py-1.5 text-badge font-bold text-ink-soft transition-colors hover:border-ink hover:text-ink sm:inline-flex"
                   >
                     元記事を読む
-                    <span aria-hidden>↗</span>
                   </a>
                 )}
               </figcaption>

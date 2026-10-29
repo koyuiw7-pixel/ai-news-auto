@@ -153,7 +153,7 @@ export default function VariantA({ view }: { view: GuideView }) {
                   product={product}
                   className="flex h-11 shrink-0 items-center justify-center gap-1.5 rounded-md bg-ink px-5 text-note font-bold text-paper hover:opacity-85"
                 >
-                  {product.sponsored ? "公式ストアで見る" : "公式サイトで見る"} <span aria-hidden>↗</span>
+                  {product.sponsored ? "公式ストアで見る" : "公式サイトで見る"}
                 </OutLink>
               </div>
             </article>

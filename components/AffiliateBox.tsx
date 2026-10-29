@@ -35,9 +35,6 @@ export default function AffiliateBox({ links, compact }: Props) {
               rel="sponsored nofollow noopener noreferrer"
               className="group flex items-start gap-3 rounded-xl border border-line px-4 py-3 transition-colors hover:border-accent hover:bg-accent-soft/40"
             >
-              <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-md bg-accent text-meta font-bold text-accent-ink">
-                ↗
-              </span>
               <span className="min-w-0">
                 <span className="block text-note font-semibold text-ink group-hover:text-accent">
                   {link.label}

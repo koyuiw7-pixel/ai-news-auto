@@ -169,7 +169,7 @@ export default async function ComparePage({ params }: Props) {
                   <span className="text-[14.5px] font-bold leading-snug text-ink group-hover:underline">{product.item.name}</span>
                   <span className="index-num text-[15px] font-bold text-ink">{priceText(product.item)}</span>
                   <span className="mt-auto flex h-11 items-center justify-center gap-1.5 rounded-xl bg-live text-note font-bold text-live-ink">
-                    公式サイトで見る <span aria-hidden>↗</span>
+                    公式サイトで見る
                   </span>
                 </a>
               </li>
@@ -214,7 +214,7 @@ export default async function ComparePage({ params }: Props) {
                       rel="sponsored nofollow noopener noreferrer"
                       className="inline-block whitespace-nowrap rounded-sm bg-ink px-3 py-1.5 text-badge font-bold text-paper hover:opacity-85"
                     >
-                      公式 ↗
+                      公式
                     </a>
                   </td>
                 </tr>
@@ -281,7 +281,7 @@ export default async function ComparePage({ params }: Props) {
                 rel="sponsored nofollow noopener noreferrer"
                 className="mt-4 flex h-12 items-center justify-center gap-1.5 rounded-xl bg-live text-note font-bold text-live-ink transition-transform hover:-translate-y-px motion-reduce:transition-none"
               >
-                {product.item.name}の公式サイトを見る <span aria-hidden>↗</span>
+                {product.item.name}の公式サイトを見る
               </a>
             </article>
           ))}
