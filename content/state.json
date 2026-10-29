@@ -3223,6 +3223,13 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01toukei05_01000348.html"
     },
+    "0eeaf12b012d820c37d58d0e46c509208d7e2569": {
+      "at": "2026-10-29T06:12:29.214614+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 本文が短い（1383字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.reuters.com/jp/markets/japan/N3QCKQ4EWVNG5BHSPZNYN5GUME-2026-10-28/"
+    },
     "0f715e1693d7c6b7": {
       "at": "2026-10-26T17:31:35.423776+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5370,6 +5377,14 @@
       "reason": "quality: 本文が短い（1437字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（291字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102822"
+    },
+    "6f92f0fc2ee4af29": {
+      "at": "2026-10-29T06:12:54.576885+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "kddi-london-datacenter-expansion",
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1222_4792.html"
     },
     "6fb118c02ff58754": {
       "at": "2026-10-29T05:12:44.876743+00:00",
@@ -8412,99 +8427,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-28T16:38:33.913619+00:00",
-      "attempt": 1,
-      "id": "f3aa6dba8d09be59",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 69.3,
-        "avg_sentence": 35.3,
-        "long_share": 0.053,
-        "max_paragraph": 144,
-        "paragraphs": 29,
-        "sentences": 57
-      },
-      "score": 91,
-      "source": "github-changelog",
-      "title": "GitHub Copilot app, Universe releases"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T16:54:39.592554+00:00",
-      "attempt": 1,
-      "id": "4b9ad4180246a1db",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 68.1,
-        "avg_sentence": 34.0,
-        "long_share": 0.054,
-        "max_paragraph": 159,
-        "paragraphs": 37,
-        "sentences": 74
-      },
-      "score": 95,
-      "source": "microsoft-blog",
-      "title": "Introducing the Microsoft Copilot harness: Unlocking the potential of truly mult"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T17:02:42.932112+00:00",
-      "attempt": 1,
-      "id": "6318bf62f2c5750d",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 61.9,
-        "avg_sentence": 33.9,
-        "long_share": 0.065,
-        "max_paragraph": 124,
-        "paragraphs": 34,
-        "sentences": 62
-      },
-      "score": 92,
-      "source": "google-blog-all",
-      "title": "Gemini 4 Carbon: our next frontier model"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T17:19:52.844363+00:00",
-      "attempt": 1,
-      "id": "d8103b8af50d92a5",
-      "kind": "update",
-      "model": "claude:sonnet",
-      "problems": [
-        "「当初は10月29日（木）としていました」→ 元記事にも確認済みの文脈にも当初の予約開始日が10月29日とする根拠がなく、日付の創作の疑いがある。",
-        "「Liquid Retina XDRディスプレイ」という当初記事の記載→ 元記事にも確認済みの文脈にもなく、当初記事の内容として根拠が確認できない。"
-      ],
-      "score": 72,
-      "source": "apple-newsroom-jp-all",
-      "title": "Apple unveils groundbreaking MacBook Pro with PROLED XDR Display"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T17:23:59.918771+00:00",
-      "attempt": 1,
-      "id": "bb93f5cb923dac27",
-      "kind": "update",
-      "model": "claude:sonnet",
-      "problems": [
-        "「M6、Wi-Fi 7などの記述は、この発表では裏付けられていません」→元記事にはWi-Fi 7とBluetooth 6対応（N1ワイヤレスチップ）が明記されており、矛盾している。",
-        "「本記事は『Liquid Retina XDR』で最大1,600ニト、コントラスト比1,000,000:1としていました」→元記事にも確認済みの文脈にもなく、過去記事の内容として裏付けがない。",
-        "「本記事はThunderbolt 4としていました」→元記事・文脈に根拠がなく、過去記事の記述として確認できない。",
-        "「Nano-textureのオプションは、本記事の内容と一致します」→過去記事にNano-textureの記載があるという根拠が文脈にない。",
-        "「画面上部にはDynamic Islandが加わり」→元記事に「画面上部」という位置の記載はない。"
-      ],
-      "score": 62,
-      "source": "apple-newsroom-jp-all",
-      "title": "Apple、PROLED XDRディスプレイを搭載した画期的なMacBook Proを発表"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T17:27:49.487719+00:00",
@@ -15033,6 +14955,117 @@
       "score": 100,
       "source": "cao",
       "title": "消費動向調査（令和8年10月実施分）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T06:11:57.592328+00:00",
+      "attempt": 1,
+      "id": "0eeaf12b012d820c37d58d0e46c509208d7e2569",
+      "kind": "trend",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1205字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 138.8,
+        "avg_sentence": 58.4,
+        "long_share": 0.421,
+        "max_paragraph": 174,
+        "paragraphs": 8,
+        "sentences": 19
+      },
+      "score": null,
+      "source": "trends",
+      "title": "電力"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T06:12:26.756597+00:00",
+      "attempt": 2,
+      "id": "0eeaf12b012d820c37d58d0e46c509208d7e2569",
+      "kind": "trend",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1383字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 168.0,
+        "avg_sentence": 58.8,
+        "long_share": 0.35,
+        "max_paragraph": 215,
+        "paragraphs": 7,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "trends",
+      "title": "電力"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T06:12:40.846754+00:00",
+      "attempt": 1,
+      "id": "6f92f0fc2ee4af29",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1502字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 135.4,
+        "avg_sentence": 50.8,
+        "long_share": 0.208,
+        "max_paragraph": 221,
+        "paragraphs": 9,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "kddi-news",
+      "title": "世界No.1のコネクティビティを有するロンドン データセンターの受電容量を倍増"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T06:12:49.681487+00:00",
+      "attempt": 1,
+      "id": "6f92f0fc2ee4af29",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 49.4字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 181.0字・最長 271字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 181.0,
+        "avg_sentence": 49.4,
+        "long_share": 0.212,
+        "max_paragraph": 271,
+        "paragraphs": 9,
+        "sentences": 33
+      },
+      "score": 100,
+      "source": "kddi-news",
+      "title": "世界No.1のコネクティビティを有するロンドン データセンターの受電容量を倍増"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T06:12:54.576446+00:00",
+      "attempt": 0,
+      "id": "6f92f0fc2ee4af29",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "段落が長い（平均 161.6字・最長 240字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 161.6,
+        "avg_sentence": 38.5,
+        "long_share": 0.071,
+        "max_paragraph": 240,
+        "paragraphs": 10,
+        "sentences": 42
+      },
+      "score": 100,
+      "source": "kddi-news",
+      "title": "世界No.1のコネクティビティを有するロンドン データセンターの受電容量を倍増"
     }
   ],
   "short_text_retry": {
