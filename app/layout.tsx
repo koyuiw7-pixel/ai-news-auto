@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AffClickTracker from "@/components/AffClickTracker";
 import { siteConfig } from "@/site.config";
-import { dela, martian, noto } from "./fonts";
+import { dela, martian } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -48,6 +48,9 @@ export const metadata: Metadata = {
   },
 };
 
+/** 本文の Noto Sans JP（可変フォント 1 本で 400〜900。docs/typography.md） */
+const NOTO_CSS = "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400..900&display=swap";
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -79,7 +82,7 @@ export default function RootLayout({
   return (
     <html
       lang={siteConfig.lang}
-      className={`${noto.variable} ${dela.variable} ${martian.variable}`}
+      className={`${dela.variable} ${martian.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -88,10 +91,12 @@ export default function RootLayout({
           <meta name="google-adsense-account" content={adsenseClient} />
         )}
         {/* 描画前にテーマを確定させ、リロード時の白フラッシュを防ぐ。
-            Android は内蔵の Noto Sans CJK（Noto Sans JP と同じ字形）を使い、Web フォント（約 2.7MB）を読まない（globals.css の .sys-jp） */}
+            本文の Noto Sans JP（Google Fonts）は、内蔵の日本語書体が使えない端末（Windows など）だけ読み込む。
+            Apple はヒラギノ、Android は内蔵の Noto Sans CJK（同じ字形）で足りる。
+            スクリプトから足したスタイルシートは描画を止めないので、@font-face 120 個分の CSS（約 33KB）が全端末の初回表示から外れる */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{if(/Android/.test(navigator.userAgent))document.documentElement.classList.add("sys-jp");var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}`,
+            __html: `try{var u=navigator.userAgent;if(!/Android|iPhone|iPad|Macintosh|Mac OS X/.test(u)){var h=document.head,c=document.createElement("link");c.rel="preconnect";c.href="https://fonts.gstatic.com";c.crossOrigin="";h.appendChild(c);var l=document.createElement("link");l.rel="stylesheet";l.href="${NOTO_CSS}";h.appendChild(l)}}catch(e){}try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}`,
           }}
         />
       </head>
