@@ -45,7 +45,7 @@ COMPANIES = [
 
 
 def fetch_metrics(api_key: str) -> dict[str, dict]:
-    """送信済みの Threads 投稿の反応（Buffer の投稿ID → 指標）"""
+    """送信済みの Threads・X 投稿の反応（Buffer の投稿ID → 指標）"""
     orgs = buffer_graphql(api_key, "query { account { organizations { id } } }")["account"]["organizations"]
     result: dict[str, dict] = {}
     for org in orgs:
@@ -53,7 +53,7 @@ def fetch_metrics(api_key: str) -> dict[str, dict]:
             api_key,
             f"query {{ channels(input: {{ organizationId: {json.dumps(org['id'])} }}) {{ id service }} }}",
         )["channels"]
-        ids = [c["id"] for c in channels if str(c.get("service", "")).lower() == "threads"]
+        ids = [c["id"] for c in channels if str(c.get("service", "")).lower() in ("threads", "twitter")]
         if not ids:
             continue
         cursor = None
@@ -114,6 +114,10 @@ def features(slug: str, entry: dict) -> dict:
         "ending": "問いかけ" if post.endswith(("？", "?")) else "完結型" if entry.get("style") == "standalone" else "記事で👇",
         "format": "速報" if entry.get("breaking") else "図解カード+返信リンク" if entry.get("image") == "card"
         else "画像+返信リンク" if entry.get("dueAt") else "リンクカード",
+        # 投稿の形式の A/B（hook_thread / classic）。A/B 前の投稿は別枠
+        "postFormat": entry.get("format") or "A/B前",
+        # 速報と通常で閲覧数の桁が違うので、形式×種類でも比べる
+        "postFormatKind": f"{entry.get('format') or 'A/B前'}/{'速報' if entry.get('breaking') else '通常'}",
     }
 
 
@@ -124,7 +128,7 @@ def summarize(rows: list[dict]) -> dict:
     overall_views = sum(r["views"] for r in rows) / len(rows)
     overall_eng = sum(r["engagement"] for r in rows) / len(rows)
     out: dict[str, dict] = {}
-    for axis in ("hook", "slot", "company", "ending", "format"):
+    for axis in ("hook", "slot", "company", "ending", "format", "postFormat", "postFormatKind"):
         groups: dict[str, list[dict]] = {}
         for row in rows:
             groups.setdefault(row["features"][axis], []).append(row)
@@ -167,6 +171,10 @@ def main() -> int:
                 if info and info["metrics"]:
                     entry.update(info)
                     updated += 1
+                # X の反応は xMetrics に分けて持つ（Buffer が X の数値を返すときだけ）
+                x_info = fetched.get((entry.get("channels") or {}).get("twitter", ""))
+                if x_info and x_info["metrics"]:
+                    entry["xMetrics"] = x_info["metrics"]
             print(f"[learn] {len(fetched)}件の投稿の反応を取得、{updated}件を履歴に反映")
             save_state(state)
 
@@ -181,10 +189,17 @@ def main() -> int:
             "engagement": engagement_of(metrics),
             "features": features(slug, entry),
         })
+    x_rows = [
+        {"slug": slug, "views": views_of(e["xMetrics"]), "engagement": engagement_of(e["xMetrics"]), "features": features(slug, e)}
+        for slug, e in state["posted"].items() if e.get("xMetrics")
+    ]
     learning = {
         "updatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "posts": len(rows),
         "axes": summarize(rows),
+        # X の成績（形式の比較用。hook などの学習には使わない）
+        "xPosts": len(x_rows),
+        "xAxes": {k: v for k, v in summarize(x_rows).items() if k in ("postFormat", "postFormatKind")},
         "top": sorted(
             ({"slug": r["slug"], "views": r["views"], "engagement": r["engagement"], **r["features"]} for r in rows),
             key=lambda r: -(r["views"] + 10 * r["engagement"]),
@@ -195,6 +210,10 @@ def main() -> int:
     print(f"[learn] 学習に使えた投稿: {len(rows)}本")
     for key, value in list(hooks.items())[:5]:
         print(f"  {key}: {value['n']}本 平均閲覧{value['avgViews']} 平均反応{value['avgEngagement']}")
+    # 形式の A/B の比較（平均閲覧）
+    for label, axes in (("Threads", learning["axes"]), ("X", learning["xAxes"])):
+        for key, value in (axes.get("postFormatKind") or {}).items():
+            print(f"  [形式 {label}] {key}: {value['n']}本 平均閲覧{value['avgViews']} 平均反応{value['avgEngagement']}")
     return 0
 
 

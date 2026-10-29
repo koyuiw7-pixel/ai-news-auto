@@ -20,6 +20,7 @@ Actions ではジョブサマリーに投稿文を書き出すだけで、何も
 from __future__ import annotations
 
 import argparse
+import difflib
 import json
 import re
 import os
@@ -570,6 +571,164 @@ def card_url(article: dict) -> str:
     return f"{site_url()}/card/{article['slug']}"
 
 
+# ---- 投稿の形式（A/B） ----
+# hook_thread: 本文は2〜4行の書き出し＋👇（リンクなし・画像1枚）、詳細（要点・数字・結論・リンク）は自分への返信
+# classic: これまでの完結型の本文＋図解カード、返信はリンクだけ
+FORMATS = ("hook_thread", "classic")
+# この時刻までは2つの形式を交互に出して比べる（日本時間 11/2 0:00）
+AB_UNTIL = datetime(2026, 11, 1, 15, 0, tzinfo=timezone.utc)
+# A/B 後に勝ちを決めるのに要る1形式あたりの本数
+AB_MIN_N = 4
+
+
+def ab_winner() -> str:
+    """A/B の結果（threads_learn.py の postFormat 軸）から平均閲覧の高い形式。足りなければ hook_thread"""
+    try:
+        axis = json.loads(LEARNING_PATH.read_text("utf-8")).get("axes", {}).get("postFormat", {})
+    except Exception:
+        return FORMATS[0]
+    scored = {k: v for k, v in axis.items() if k in FORMATS and v.get("n", 0) >= AB_MIN_N}
+    if len(scored) < 2:
+        return FORMATS[0]
+    return max(scored, key=lambda k: scored[k]["avgViews"])
+
+
+def choose_format(state: dict, article: dict, breaking: bool, offset: int = 0, now: datetime | None = None) -> str:
+    """投稿の形式を決める。SNS_FORMAT で固定可。地震・津波は従来どおり。
+
+    A/B 中は速報・通常それぞれで交互にする（速報は閲覧数の桁が違うので、別々に数えて偏りを防ぐ）
+    """
+    forced = os.environ.get("SNS_FORMAT", "").strip()
+    if forced in FORMATS:
+        return forced
+    if article.get("disaster"):
+        return "classic"
+    if (now or datetime.now(timezone.utc)) < AB_UNTIL:
+        same = [p for p in state["posted"].values() if p.get("format") in FORMATS and bool(p.get("breaking")) == breaking]
+        return FORMATS[(len(same) + offset) % 2]
+    return ab_winner()
+
+
+def utm_link(link: str, source: str, fmt: str) -> str:
+    return f"{link}?utm_source={source}&utm_medium=social&utm_campaign={fmt}"
+
+
+IMAGE_EXT_RE = re.compile(r"\.(jpe?g|png)(\?|$)", re.I)
+
+
+def thread_image(article: dict) -> str:
+    """hook_thread の本文に添える画像。元記事の写真（製品画像など）が使えるならそれ、なければ報道テロップ型のカバー（1200×630）
+
+    フリー素材・AI 生成の写真は記事と直接関係しない絵なので、見出し入りのカバーの方が伝わる
+    """
+    credit = article.get("imageCredit") or {}
+    thumb = str(article.get("thumbnail") or "")
+    if credit.get("kind") == "source" and thumb.startswith("https://") and IMAGE_EXT_RE.search(thumb):
+        return thumb
+    return f"{site_url()}/cover/{article['slug']}"
+
+
+def post_image(article: dict, fmt: str) -> str:
+    return thread_image(article) if fmt == "hook_thread" else card_url(article)
+
+
+def short_line(line: str, limit: int) -> str:
+    return line if len(line) <= limit else ""
+
+
+def compose_hook(article: dict, recent: list[str] | None = None, breaking: bool = False) -> str:
+    """hook_thread の本文：書き出し／何の発表か／ひとこと（あれば）＋👇。リンク・ハッシュタグなし
+
+    すべて記事の紹介文・見出し・判定から取るので、記事にない主張はしない
+    """
+    post = clean_lines(article.get("threadsPost", "")) if int(article.get("threadsStyle") or 1) >= 2 else []
+    title = str(article.get("title") or article.get("seoTitle") or "").strip()
+    head = re.split(r"[\s　]", title)[0] if title else ""
+    what = short_line(post[1], 64) if len(post) >= 2 else ""
+    what = what or title
+    if breaking:
+        speed = speed_line(article) if not article.get("disaster") else ""
+        article["_hook"] = "breaking"
+        if speed:
+            first = speed.replace("発表から", "公式発表から").replace("分で掲載", "分でお届け")
+        else:
+            # 速さの数字がなければ「【速報】何の発表か」を1行目に、紹介文の書き出しを2行目に回す
+            first, what = f"【速報】{what}", short_line(post[0], 34) if post else ""
+    else:
+        weak = set(weak_hook_keys())
+        if post and len(post[0]) <= 34 and article.get("threadsHook") not in weak:
+            first = post[0]
+            article["_hook"] = article.get("threadsHook") or ""
+        else:
+            hook, first = opening_line(article, recent or [])
+            article["_hook"] = hook
+            if hook == "breaking":
+                first = f"【速報】{head}"
+    punch = short_line(post[-1], 36) if len(post) >= 3 else ""
+    # 書き出しが判定から作った型（結論・無料）なら、同じことを繰り返さない
+    if not punch and (article.get("verdict") or {}).get("status") == "available" and article["_hook"] not in ("conclusion", "free"):
+        punch = short_line(relevance_line(article), 30)
+    lines: list[str] = []
+    for line in [first, what, punch]:
+        if line and not any(line in x or x in line or overlap(line, x) >= 10 for x in lines):
+            lines.append(line)
+    # X（全角2・280）にも収まるよう、入らなければ最後の行から落とす
+    while len(lines) > 2 and x_weight("\n".join(lines)) + 4 > X_LIMIT:
+        lines.pop()
+    lines[-1] = lines[-1].rstrip("。") + "👇"
+    return "\n".join(lines)
+
+
+def overlap(a: str, b: str) -> int:
+    """2つの文で共通するいちばん長い部分の文字数"""
+    match = difflib.SequenceMatcher(None, a, str(b)).find_longest_match(0, len(a), 0, len(str(b)))
+    return match.size
+
+
+def detail_parts(article: dict) -> tuple[str, list[str], str]:
+    """返信（スレッド）の中身：要約1〜2行／要点（数字は記事のまま）／結論の1行"""
+    desc = str(article.get("description") or "").strip()
+    sentences = [s for s in re.split(r"(?<=。)", desc) if s.strip()]
+    summary = sentences[0].strip() if sentences else ""
+    # 長すぎる要約と、要点の1つとほぼ同じ要約は省く
+    if len(summary) > 70 or any(overlap(summary, b) >= 12 for b in article.get("highlights", [])):
+        summary = ""
+    bullets = [EMOJI_RE.sub("", str(h)).strip() for h in article.get("highlights", []) if str(h).strip()][:4]
+    verdict = article.get("verdict") or {}
+    if verdict.get("status") == "available" and len(bullets) < 4:
+        fact = relevance_line(article).rstrip("。").replace("。", "／")
+        if fact and fact not in bullets:
+            bullets.append(fact)
+    take = str(verdict.get("take") or "").strip()
+    return summary, bullets, take
+
+
+def compose_detail(article: dict) -> str:
+    """Threads の返信の文（リンクはリンクカードで付ける）。上限 MAX_CHARS"""
+    summary, bullets, take = detail_parts(article)
+    blocks = [summary or "ポイントをまとめると：", "\n".join(f"・{b}" for b in bullets), f"→ {take}" if take else ""]
+    return "\n\n".join(b for b in blocks if b)[:MAX_CHARS]
+
+
+def x_weight_url(text: str) -> int:
+    """URL を23字と数える X の文字数"""
+    urls = re.findall(r"https?://\S+", text)
+    return x_weight(re.sub(r"https?://\S+", "", text)) + 23 * len(urls)
+
+
+def compose_detail_x(article: dict, link: str) -> str:
+    """X の返信の文。280（全角2・URL 23）に収まるまで、結論→要約→後ろの要点の順に削る。リンクは必ず残す"""
+    summary, bullets, take = detail_parts(article)
+    take_line = f"→ {take}" if take else ""
+    options = [(summary, bullets, take_line), (summary, bullets, ""), ("", bullets, take_line), ("", bullets, "")]
+    options += [("", bullets[:n], "") for n in range(len(bullets) - 1, 0, -1)]
+    for s, b, t in options:
+        text = "\n\n".join(x for x in [s, "\n".join(f"・{i}" for i in b), t, link] if x)
+        if x_weight_url(text) <= X_LIMIT:
+            return text
+    return f"{(article.get('seoTitle') or article['title'])[:60]}\n{link}"
+
+
 def publish_extra_channels(
     api_key: str,
     channels: dict[str, dict],
@@ -579,29 +738,42 @@ def publish_extra_channels(
     due_at: datetime | None,
     draft: bool = False,
     offsets: tuple[int, int] = (12, 27),
+    fmt: str = "classic",
+    fb_text: str | None = None,
 ) -> dict[str, str]:
     """X と Facebook にも同じ記事を出す。時刻は Threads から少しずらす（3つ同時に流れないように）
 
     due_at が None ならいますぐ出す（shareNow。通らなければ数分後の予約に切り替える）
+    fmt=hook_thread なら X は「書き出し＋画像」→「詳細＋リンク」のスレッド。Facebook は形式を問わず完結型（fb_text）＋リンク
     """
     results: dict[str, str] = {}
     cover = f"{site_url()}/cover/{article['slug']}"
     card = card_url(article)
     title = article.get("seoTitle") or article["title"]
-    link_card = {"url": link, "title": title, "description": article.get("description", "")[:120], "thumbnail": {"url": cover}}
+    fb_link = utm_link(link, "facebook", fmt)
+    link_card = {"url": fb_link, "title": title, "description": article.get("description", "")[:120], "thumbnail": {"url": cover}}
     plans = []
     if "twitter" in channels:
-        x_text = compose_x(article, text)
+        x_link = utm_link(link, "x", fmt)
+        if fmt == "hook_thread":
+            x_text = text
+            thread = [
+                {"text": x_text, "assets": [{"image": {"url": thread_image(article)}}]},
+                {"text": compose_detail_x(article, x_link), "assets": []},
+            ]
+        else:
+            x_text = compose_x(article, text)
+            thread = [
+                {"text": x_text, "assets": [{"image": {"url": card}}]},
+                {"text": f"{link_reply_text(article)}\n{x_link}", "assets": []},
+            ]
         plans.append(("twitter", offsets[0], {
             "text": x_text,
             "assets": [],
-            "metadata": {"twitter": {"thread": [
-                {"text": x_text, "assets": [{"image": {"url": card}}]},
-                {"text": f"{link_reply_text(article)}\n{link}", "assets": []},
-            ]}},
+            "metadata": {"twitter": {"thread": thread}},
         }))
     if "facebook" in channels:
-        fb_text = "\n\n".join([text.strip(), link_reply_text(article).replace("👇", "：")])
+        fb_text = "\n\n".join([(fb_text or text).strip(), link_reply_text(article).replace("👇", "：")])
         plans.append(("facebook", offsets[1], {
             "text": fb_text,
             "assets": [],
@@ -663,23 +835,27 @@ def publish_via_buffer(
     article: dict,
     due_at: datetime | None = None,
     draft: bool = False,
+    fmt: str = "classic",
 ) -> dict:
     """Buffer に予約投稿する。
 
-    本文にはリンクを付けず、図解カード（見出し＋要点3つ）を添える。記事へのリンクは、すぐ下に続く返信（スレッドの2件目）に置く。
+    本文にはリンクを付けず、画像を1枚添える。記事へのリンクは、すぐ下に続く返信（スレッドの2件目）に置く。
     リンクだけの投稿は反応が付きにくく、表示が伸びにくいと言われているため。
+    classic: 本文は完結型＋図解カード、返信はリンクの案内だけ
+    hook_thread: 本文は短い書き出し＋写真（またはカバー）、返信に要約・要点・結論（＋リンクカード）
     """
     cover = f"{site_url()}/cover/{article['slug']}"
     title = article.get("seoTitle") or article["title"]
+    reply = compose_detail(article) if fmt == "hook_thread" else link_reply_text(article)
     thread = [
-        {"text": text, "assets": [{"image": {"url": card_url(article)}}]},
+        {"text": text, "assets": [{"image": {"url": post_image(article, fmt)}}]},
         {
-            "text": link_reply_text(article),
+            "text": reply,
             "assets": [],
             "metadata": {
                 "threads": {
                     "linkAttachment": {
-                        "url": link,
+                        "url": utm_link(link, "threads", fmt),
                         "title": title,
                         "description": article.get("description", "")[:120],
                         "thumbnail": {"url": cover},
@@ -713,7 +889,7 @@ def publish_via_buffer(
     return {"id": create_post(api_key, post_input), "via": "buffer", "permalink": ""}
 
 
-def share_now(api_key: str, article: dict, text: str) -> dict:
+def share_now(api_key: str, article: dict, text: str, fmt: str = "classic", fb_text: str | None = None) -> dict:
     """いますぐ Threads・X・Facebook に出す（速報用）。
 
     Buffer の shareNow を使い、通らなければ1分後の予約に切り替える。戻り値は投稿履歴にそのまま入れられる形
@@ -725,13 +901,15 @@ def share_now(api_key: str, article: dict, text: str) -> dict:
     now = datetime.now(timezone.utc)
     due: datetime | None = None
     try:
-        result = publish_via_buffer(api_key, channels["threads"]["id"], text, link, article)
+        result = publish_via_buffer(api_key, channels["threads"]["id"], text, link, article, fmt=fmt)
     except RuntimeError as error:
         log(f"  [threads] いますぐの投稿が通らないため、1分後の予約にします: {error}")
         due = now + timedelta(minutes=1)
-        result = publish_via_buffer(api_key, channels["threads"]["id"], text, link, article, due_at=due)
+        result = publish_via_buffer(api_key, channels["threads"]["id"], text, link, article, due_at=due, fmt=fmt)
     extra = {k: v for k, v in channels.items() if k in ("twitter", "facebook")}
-    result["channels"] = publish_extra_channels(api_key, extra, text, link, article, due_at=due, offsets=(1, 2))
+    result["channels"] = publish_extra_channels(
+        api_key, extra, text, link, article, due_at=due, offsets=(1, 2), fmt=fmt, fb_text=fb_text
+    )
     result["dueAt"] = (due or now).isoformat(timespec="seconds")
     return result
 
@@ -787,8 +965,13 @@ def main() -> int:
         if sample is None:
             log("[test] 確認に使える記事がありません")
             return 1
+        # 確かめる形式は SNS_FORMAT（未設定なら新しい hook_thread）
+        test_fmt = os.environ.get("SNS_FORMAT", "").strip()
+        test_fmt = test_fmt if test_fmt in FORMATS else "hook_thread"
+        test_text = compose_hook(sample) if test_fmt == "hook_thread" else compose(sample)
+        log(f"[test] 形式: {test_fmt}")
         result = publish_via_buffer(
-            buffer_key, buffer_channel["id"], compose(sample), f"{site_url()}/articles/{sample['slug']}", sample, draft=True
+            buffer_key, buffer_channel["id"], test_text, f"{site_url()}/articles/{sample['slug']}", sample, draft=True, fmt=test_fmt
         )
         log(f"[test] 下書きの作成に成功しました: {result['id']}")
         deleted = buffer_graphql(
@@ -802,7 +985,8 @@ def main() -> int:
         # X・Facebook もつながっていれば、同じように下書きを作って消す
         if extra_channels:
             extra = publish_extra_channels(
-                buffer_key, extra_channels, compose(sample), f"{site_url()}/articles/{sample['slug']}", sample, None, draft=True
+                buffer_key, extra_channels, test_text, f"{site_url()}/articles/{sample['slug']}", sample, None, draft=True,
+                fmt=test_fmt, fb_text=compose(sample),
             )
             for service, post_id in extra.items():
                 deleted = buffer_graphql(
@@ -813,7 +997,7 @@ def main() -> int:
                     {"input": {"id": post_id}},
                 )
                 log(f"[test] {service} の下書きを削除しました: {deleted}")
-            log("[test] X 用の本文:\n" + compose_x(sample, compose(sample)))
+            log("[test] X 用の本文:\n" + (test_text if test_fmt == "hook_thread" else compose_x(sample, compose(sample))))
         return 0
 
     token = None
@@ -867,14 +1051,19 @@ def main() -> int:
     # 直近の投稿で使った書き出しの型（同じ型を続けないため）
     history = sorted(state["posted"].values(), key=lambda p: p.get("postedAt", ""), reverse=True)
     recent = [p["hook"] for p in history if p.get("hook")][:4]
-    for article, due_at in plan:
+    for offset, (article, due_at) in enumerate(plan):
         link = f"{site_url()}/articles/{article['slug']}"
-        text = compose(article, recent)
+        # 下書きモードでは履歴が増えないので、何本目かを足して交互にする（本番は保存済みの履歴で数える）
+        # 公式 API の経路（返信を作れない）は従来の形式のまま
+        fmt = choose_format(state, article, breaking=False, offset=0 if live else offset) if buffer_channel or not live else "classic"
+        classic_text = compose(article, recent)
+        text = compose_hook(article, recent) if fmt == "hook_thread" else classic_text
         hook = article.get("threadsHook") or article.get("_hook", "")
         if hook:
             recent = [hook, *recent][:4]
-        log(f"--- {article['slug']} ({len(text)}文字)\n{text}\n{link}\n")
-        summary += [f"**{article['slug']}**", "", "```", text, link, "```", ""]
+        detail = compose_detail(article) if fmt == "hook_thread" else link_reply_text(article)
+        log(f"--- {article['slug']} [{fmt}] ({len(text)}文字)\n{text}\n[返信]\n{detail}\n[画像] {post_image(article, fmt)}\n{link}\n")
+        summary += [f"**{article['slug']}** [{fmt}]", "", "```", text, "---", detail, link, "```", ""]
         if not live:
             continue
 
@@ -883,9 +1072,11 @@ def main() -> int:
             continue
         try:
             if buffer_channel:
-                result = publish_via_buffer(buffer_key, buffer_channel["id"], text, link, article, due_at)
+                result = publish_via_buffer(buffer_key, buffer_channel["id"], text, link, article, due_at, fmt=fmt)
                 if extra_channels:
-                    result["channels"] = publish_extra_channels(buffer_key, extra_channels, text, link, article, due_at)
+                    result["channels"] = publish_extra_channels(
+                        buffer_key, extra_channels, text, link, article, due_at, fmt=fmt, fb_text=classic_text
+                    )
             else:
                 result = publish(token, text, link)
         except RuntimeError as error:
@@ -897,7 +1088,8 @@ def main() -> int:
             "hook": hook,
             "score": score(article),
             "style": "standalone",
-            "image": "card",
+            "image": "card" if fmt == "classic" else "photo" if post_image(article, fmt) != f"{site_url()}/cover/{article['slug']}" else "cover",
+            "format": fmt,
             **({"dueAt": due_at.isoformat(timespec="seconds")} if due_at and buffer_channel else {}),
             "postedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         }

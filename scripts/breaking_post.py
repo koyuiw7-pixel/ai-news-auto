@@ -68,10 +68,10 @@ def is_ok(url: str, image: bool) -> bool:
         return False
 
 
-def wait_live(article: dict, timeout: int) -> bool:
-    """記事ページと図解カードの両方が開けるまで待つ（Buffer が画像を取りに来るため）"""
+def wait_live(article: dict, timeout: int, fmt: str = "classic") -> bool:
+    """記事ページと添える画像（図解カード、またはカバー・写真）が開けるまで待つ（Buffer が画像を取りに来るため）"""
     page = f"{tp.site_url()}/articles/{article['slug']}"
-    card = tp.card_url(article)
+    card = tp.post_image(article, fmt)
     deadline = time.monotonic() + timeout
     while True:
         if is_ok(page, image=False) and is_ok(card, image=True):
@@ -135,18 +135,28 @@ def main() -> int:
 
     summary = [f"### 速報の即時投稿 {'（投稿）' if live else '（下書き・未投稿）'}", ""]
     for index, article in enumerate(found):
-        text = tp.compose(article, [], breaking=True)
-        log(f"--- {article['slug']} ({len(text)}文字)\n{text}\n[X]\n{tp.compose_x(article, text)}\n[card] {tp.card_url(article)}\n")
-        summary += [f"**{article['slug']}**", "", "```", text, "```", f"カード: {tp.card_url(article)}", ""]
+        # 形式の A/B（速報どうしで交互）。下書きでは何本目かを足して交互に見せる
+        fmt = tp.choose_format(state, article, breaking=True, offset=0 if live else index)
+        classic_text = tp.compose(article, [], breaking=True)
+        text = tp.compose_hook(article, [], breaking=True) if fmt == "hook_thread" else classic_text
+        link = f"{tp.site_url()}/articles/{article['slug']}"
+        if fmt == "hook_thread":
+            x_preview = f"{text}\n[X 返信]\n{tp.compose_detail_x(article, tp.utm_link(link, 'x', fmt))}"
+            detail = tp.compose_detail(article)
+        else:
+            x_preview, detail = tp.compose_x(article, text), tp.link_reply_text(article)
+        image = tp.post_image(article, fmt)
+        log(f"--- {article['slug']} [{fmt}] ({len(text)}文字)\n{text}\n[返信]\n{detail}\n[X]\n{x_preview}\n[画像] {image}\n")
+        summary += [f"**{article['slug']}** [{fmt}]", "", "```", text, "---", detail, "```", f"画像: {image}", ""]
         if not live:
             continue
         if index:
             time.sleep(GAP_SEC)
-        if not wait_live(article, args.wait):
+        if not wait_live(article, args.wait, fmt):
             log(f"  [skip] {args.wait}秒待っても記事か図解カードが開けません。通常の予約に回します")
             continue
         try:
-            result = tp.share_now(key, article, text)
+            result = tp.share_now(key, article, text, fmt=fmt, fb_text=classic_text)
         except Exception as error:  # noqa: BLE001  失敗しても次の記事・通常の予約は止めない
             log(f"  [error] {error}")
             continue
@@ -156,7 +166,8 @@ def main() -> int:
             "breaking": True,
             "score": tp.score(article),
             "style": "standalone",
-            "image": "card",
+            "image": "card" if fmt == "classic" else "photo" if image != f"{tp.site_url()}/cover/{article['slug']}" else "cover",
+            "format": fmt,
             "postedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         }
         tp.save_state(state)
