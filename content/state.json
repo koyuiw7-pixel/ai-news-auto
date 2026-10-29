@@ -3286,6 +3286,14 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202610/27seijo60anniversary.html"
     },
+    "13199e1cbdfa06a8": {
+      "at": "2026-10-29T02:02:19.923589+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "science",
+      "slug": "riken-keystone-species-analysis",
+      "url": "https://www.riken.jp/press/2026/20261029_1/index.html"
+    },
     "13412a369e090d4c": {
       "at": "2026-10-27T15:56:39.505118+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8154,77 +8162,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-28T01:32:51.269569+00:00",
-      "attempt": 0,
-      "id": "5992879ed38f66ca",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「Mojangおよび日本マイクロソフトが開発する」→元記事にはMojang/日本マイクロソフトから発売されたとあるが、開発主体が両社であるとは明記されていない。; 「パッケージ版をお持ちの方は、Nintendo Switch 2 版 『Minecraft: Ul"
-      ],
-      "readability": {
-        "avg_paragraph": 150.3,
-        "avg_sentence": 47.0,
-        "long_share": 0.156,
-        "max_paragraph": 221,
-        "paragraphs": 10,
-        "sentences": 32
-      },
-      "score": 100,
-      "source": "nintendo-topics",
-      "title": "『Minecraft』が、より鮮やかなグラフィックにアップデートしてNintendo Switch 2 に登場。本日より発売開始。"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:42:49.393033+00:00",
-      "attempt": 1,
-      "id": "edf59637f599d673",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "「この2社が上場の実務を担う主要な証券会社とみられます」「引受に関わる証券会社が示された」→ 元記事は目論見書の入手先として2社を挙げただけで、引受会社だとは書かれておらず推測が強い。",
-        "「（編集部注）一般に、この区分はナスダックの中で上場基準が最も厳しいとされます」→ 元記事に無い背景説明で、断定的な評価を含む。",
-        "「動画ならぬ元記事では」→ 不自然な表現で、動画の話は元記事に無く意味不明。",
-        "「これまでの流れ」の「9月23日：Claude Opus 5.5を公開、コスト40%削減」→ 確認済みの文脈にあるため問題は小さいが、今回の発表との関連付けは元記事に無い。",
-        "かんたん版「ゴールドマン・サックスかモルガン・スタンレーという大手証券会社から入手できる」→ 元記事は目論見書が『利用可能になった時点で』入手可能とするもので、現時点で入手できるように読める。",
-        "判定「提供状況=soon」→ 株は購入できず、上場時期も未定なので、近日提供と受け取れる表示は言い過ぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 63.5,
-        "avg_sentence": 34.4,
-        "long_share": 0.068,
-        "max_paragraph": 145,
-        "paragraphs": 32,
-        "sentences": 59
-      },
-      "score": 72,
-      "source": "anthropic-news",
-      "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:43:50.958596+00:00",
-      "attempt": 2,
-      "id": "edf59637f599d673",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "リード「米証券取引所委員会（SEC）」→ 正しくは「米証券取引委員会」で、機関名が誤記（本文では正しく表記されている）。"
-      ],
-      "readability": {
-        "avg_paragraph": 57.1,
-        "avg_sentence": 30.8,
-        "long_share": 0.038,
-        "max_paragraph": 102,
-        "paragraphs": 28,
-        "sentences": 52
-      },
-      "score": 92,
-      "source": "anthropic-news",
-      "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
-    },
     {
       "accepted": true,
       "at": "2026-10-28T01:44:10.713927+00:00",
@@ -14748,6 +14685,73 @@
       "score": 100,
       "source": "jst",
       "title": "高いアルカリ度が海洋酸性化による有孔虫の殻形成への悪影響を軽減～恐竜時代の海を手がかりに、海洋環境と石灰化生物の殻形成の関係を探る～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T02:01:37.656105+00:00",
+      "attempt": 1,
+      "id": "13199e1cbdfa06a8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1642字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 142.4,
+        "avg_sentence": 50.9,
+        "long_share": 0.25,
+        "max_paragraph": 260,
+        "paragraphs": 10,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "riken",
+      "title": "生態系を制御する「キーストーン種」を探す"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T02:02:11.630489+00:00",
+      "attempt": 2,
+      "id": "13199e1cbdfa06a8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 82.1字・60字超の文が 79% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 155.9字・最長 207字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 155.9,
+        "avg_sentence": 82.1,
+        "long_share": 0.789,
+        "max_paragraph": 207,
+        "paragraphs": 10,
+        "sentences": 19
+      },
+      "score": 100,
+      "source": "riken",
+      "title": "生態系を制御する「キーストーン種」を探す"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T02:02:19.923108+00:00",
+      "attempt": 0,
+      "id": "13199e1cbdfa06a8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 169.9字・最長 223字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 169.9,
+        "avg_sentence": 37.8,
+        "long_share": 0.067,
+        "max_paragraph": 223,
+        "paragraphs": 10,
+        "sentences": 45
+      },
+      "score": 100,
+      "source": "riken",
+      "title": "生態系を制御する「キーストーン種」を探す"
     }
   ],
   "short_text_retry": {
