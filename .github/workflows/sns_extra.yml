@@ -44,7 +44,9 @@ jobs:
           SNS_FORMAT=classic python scripts/threads_post.py --test-draft
           python scripts/morning_digest.py --test-draft --force
           python scripts/morning_digest.py --kind poll --test-draft --force
-          python scripts/threads_inbox.py --no-save | head -80
+          python scripts/threads_inbox.py --no-save > "$RUNNER_TEMP/inbox.txt"
+          grep -c '"url"' "$RUNNER_TEMP/inbox.txt" || true
+          cat "$RUNNER_TEMP/inbox.txt"
       - name: Post
         if: ${{ github.event_name == 'schedule' || (inputs.test != 'true' && inputs.kind != 'inbox') }}
         env:

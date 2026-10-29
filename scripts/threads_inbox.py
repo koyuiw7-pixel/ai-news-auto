@@ -7,6 +7,7 @@
 
 取れるもの・取れないもの（2026-10-29 に確認）:
 - Buffer の API は投稿ごとのコメント数（metrics の comments）だけを返す。コメントした人・本文は返さない
+  （この数には自分のスレッドの返信＝リンクの返信も入るので、threadCount - 1 を引いて他人のコメントだけにする）
 - threads.com は robots.txt で全体を Disallow（自動収集は禁止）なので、ページの取得はしない
 - Threads 公式 API（threads_read_replies）は Meta の電話番号認証が通らず使えない
 → コメントが付いた投稿（と前回からの増分）を JSON に出し、本文は Chrome で開いて人が確かめる（manual の手順）
@@ -52,7 +53,7 @@ def fetch(api_key: str, since: datetime) -> list[dict]:
                     organizationId: {json.dumps(org['id'])},
                     filter: {{ status: [sent], channelIds: {json.dumps(ids)} }}
                 }}) {{
-                    edges {{ node {{ id text sentAt externalLink metricsUpdatedAt metrics {{ type value }} }} }}
+                    edges {{ node {{ id text sentAt externalLink metricsUpdatedAt metrics {{ type value }} metadata {{ ... on ThreadsPostMetadata {{ threadCount }} }} }} }}
                     pageInfo {{ endCursor hasNextPage }}
                 }} }}""",
             )["posts"]
@@ -97,7 +98,9 @@ def main() -> int:
     slugs = {v.get("id"): k for k, v in tp.load_state()["posted"].items() if v.get("id")}
     for node in posts:
         metrics = {m["type"]: m["value"] for m in node.get("metrics") or []}
-        comments = int(float(metrics.get("comments", 0) or 0))
+        # Buffer のコメント数には、自分で付けた返信（リンクの返信など、スレッドの2件目以降）も入っている
+        own = max(0, int((node.get("metadata") or {}).get("threadCount") or 1) - 1)
+        comments = int(float(metrics.get("comments", 0) or 0)) - own
         if comments <= 0:
             continue
         result["items"].append({
