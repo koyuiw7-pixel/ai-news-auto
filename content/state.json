@@ -4818,6 +4818,13 @@
       "slug": "richi-slimy-pot-jelly-candy-magic-lab",
       "url": "https://www.atpress.ne.jp/news/640099"
     },
+    "5aa5ef7ac0fd88b0": {
+      "at": "2026-10-29T02:21:49.887414+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1789字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102812"
+    },
     "5ac8226e346a2ea6": {
       "at": "2026-10-26T12:51:45.036729+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（世界市場）",
@@ -6135,6 +6142,14 @@
       "skipped": true,
       "url": "https://www.ntt-east.co.jp/release/detail/20261028_01.html"
     },
+    "996d4e50b70768eb": {
+      "at": "2026-10-29T02:22:02.433172+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "kirin-hyoketsu-gobobi-sparkling",
+      "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1029_01.html"
+    },
     "99e0e76bd5ab3b42": {
       "at": "2026-10-28T18:03:32.148088+00:00",
       "model": "claude:sonnet",
@@ -6175,6 +6190,14 @@
       "reason": "quality: 本文が短い（1580字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047891/"
+    },
+    "9b31899470f3b663": {
+      "at": "2026-10-29T02:21:34.074812+00:00",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "updated": "riken-keystone-species-analysis",
+      "url": "https://www.jst.go.jp/pr/announce/20261029-4/index.html"
     },
     "9b550bca21ad1fc3": {
       "at": "2026-10-26T12:33:20.217270+00:00",
@@ -8162,128 +8185,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-28T01:44:10.713927+00:00",
-      "attempt": 2,
-      "id": "edf59637f599d673",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 57.1,
-        "avg_sentence": 30.8,
-        "long_share": 0.038,
-        "max_paragraph": 102,
-        "paragraphs": 28,
-        "sentences": 52
-      },
-      "score": 96,
-      "source": "anthropic-news",
-      "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:45:38.534652+00:00",
-      "attempt": 1,
-      "id": "fdf27bf9960b1109",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "文章が元なのに動画前提の表現がある（「動画では」）。「元記事」と書く"
-      ],
-      "readability": {
-        "avg_paragraph": 67.0,
-        "avg_sentence": 35.7,
-        "long_share": 0.044,
-        "max_paragraph": 131,
-        "paragraphs": 48,
-        "sentences": 90
-      },
-      "score": null,
-      "source": "anthropic-news",
-      "title": "Early progress on accelerating drug development with Claude"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:47:21.344518+00:00",
-      "attempt": 2,
-      "id": "fdf27bf9960b1109",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "要点・本文「Mithril Medicineを買収、筋ジストロフィー治療を18か月未満でマウス試験へ」→ 提示された元記事にMithril Medicineの買収や18か月未満という記載がなく、確認できない。",
-        "「創業者のCody Tranbarger氏は、Claudeで11の外部ラボとの契約、物流、実験を整理してきました」→ 人名と「11の外部ラボ」が元記事に無い。",
-        "「早ければ2028年末に人への治験を始められる見込み」→ 2028年末という日付が元記事に無い。",
-        "「BMSのMichael Pourdehnad氏は、1回の指示でClaudeが堅実な初期分析を出した…通常なら数日かかる」→ 元記事は発言の冒頭で途切れており、人名・内容・「数日」「機密データの安全」は確認できない。",
-        "「AI作業台「Claude Science」の提供」「Life Sciences Verification Program」「ゲスト研究者の公募」「生命科学者向けのClaudeクレジット」→ 元記事に記載がなく、支援施策が創作の疑いがある。",
-        "「元記事末尾の問い合わせ窓口」→ 元記事に問い合わせ窓口の記載が確認できない。"
-      ],
-      "readability": {
-        "avg_paragraph": 89.0,
-        "avg_sentence": 32.7,
-        "long_share": 0.026,
-        "max_paragraph": 177,
-        "paragraphs": 43,
-        "sentences": 117
-      },
-      "score": 45,
-      "source": "anthropic-news",
-      "title": "Early progress on accelerating drug development with Claude"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:49:00.284400+00:00",
-      "attempt": 3,
-      "id": "fdf27bf9960b1109",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "「Anthropicは、Mithril Medicineという会社を買収しました。1人で運営され…」→ 元記事（提示範囲）にMithril Medicineの買収の記載がない。",
-        "「創業者のCody Tranbarger氏は、Claudeで11の外部ラボとの契約、物流、実験を整理し」→ 人名と「11の外部ラボ」が元記事に無い。",
-        "「アイデアからマウスでの有望な結果まで、18か月未満で進みました」→ 元記事に無い具体的数値と成果の記述。",
-        "「早ければ2028年末にも、人への治験を始められる見込みです」→ 元記事に無い日付の記述。",
-        "「BMSのMichael Pourdehnad氏の発言では…単一の指示から、堅実な初期分析を出せた」→ 元記事の引用は途中で切れており、人名や発言内容が確認できない。",
-        "「元記事は…まだ初期段階とし、これまでの研究はおもに前臨床…と述べています」「多くは人に使う前の段階」→ 元記事に該当する記述が無い。"
-      ],
-      "readability": {
-        "avg_paragraph": 83.3,
-        "avg_sentence": 36.2,
-        "long_share": 0.051,
-        "max_paragraph": 192,
-        "paragraphs": 43,
-        "sentences": 99
-      },
-      "score": 55,
-      "source": "anthropic-news",
-      "title": "Early progress on accelerating drug development with Claude"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:50:25.340480+00:00",
-      "attempt": 1,
-      "id": "36ccb3101b7cb129",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "判定の「価格=無料（将来有料枠予定）」→ 元記事に無料との記載はなく、価格は不明（本文の「具体的な価格は書かれていません」とも矛盾）。",
-        "「画像や映像について質問できる機能」→ 元記事は画像理解とマルチモーダルと書くのみで、映像への対応は明記されていない。",
-        "「対応機種の詳細は、Appleのサポートページ（support.apple.com/ja-jp/148587）で確認する」→ 元記事ではこのページは利用回数制限や規約の案内先で、対応機種の案内とは書かれていない。",
-        "「App Toolboxなどのデバイス上で動く仕組みを使い、アプリ内のアクションをSiriから呼べる」→ 元記事ではApp Toolboxはシステムオーケストレータが使うデバイス上の中核機能として挙がっているだけで、開発者向けにアクションを呼ぶ仕組みという説明はない。",
-        "「Siri AIを動かすための土台となるハードが整い」→ 新iMac発表とSiri AI提供を因果づける記述は元記事・文脈になく、憶測の言い過ぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 72.1,
-        "avg_sentence": 35.6,
-        "long_share": 0.108,
-        "max_paragraph": 145,
-        "paragraphs": 41,
-        "sentences": 83
-      },
-      "score": 72,
-      "source": "apple-newsroom-jp",
-      "title": "Siri AI、日本語で提供開始"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T01:51:41.533674+00:00",
@@ -14752,6 +14653,106 @@
       "score": 100,
       "source": "riken",
       "title": "生態系を制御する「キーストーン種」を探す"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T02:21:34.073846+00:00",
+      "attempt": 1,
+      "id": "9b31899470f3b663",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "jst",
+      "title": "生態系を制御する「キーストーン種」を探す～森林地下の共生ネットワークに潜む「隠れた司令塔」～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T02:21:42.238987+00:00",
+      "attempt": 1,
+      "id": "5aa5ef7ac0fd88b0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（353字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 154.4,
+        "avg_sentence": 57.2,
+        "long_share": 0.259,
+        "max_paragraph": 286,
+        "paragraphs": 10,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "地震や消火を体験し、災害への備えを学ぶ外国人向け防災体験ツアーを実施 英語・中国語の通訳付き Let's learn about disaster preven"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T02:21:49.887359+00:00",
+      "attempt": 2,
+      "id": "5aa5ef7ac0fd88b0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1789字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 106.7,
+        "avg_sentence": 49.2,
+        "long_share": 0.231,
+        "max_paragraph": 223,
+        "paragraphs": 12,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "地震や消火を体験し、災害への備えを学ぶ外国人向け防災体験ツアーを実施 英語・中国語の通訳付き Let's learn about disaster preven"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T02:21:57.709840+00:00",
+      "attempt": 1,
+      "id": "996d4e50b70768eb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 63.3字・60字超の文が 48% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 189.9字・最長 247字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 189.9,
+        "avg_sentence": 63.3,
+        "long_share": 0.476,
+        "max_paragraph": 247,
+        "paragraphs": 7,
+        "sentences": 21
+      },
+      "score": 100,
+      "source": "kirin",
+      "title": "12月に高まる「自分へのご褒美」ニーズに冬限定「氷結® ご褒美スパークリング」 旬の果実を心地よい炭酸感で楽しめるアップルと洋梨の2品発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T02:22:02.432675+00:00",
+      "attempt": 0,
+      "id": "996d4e50b70768eb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 98.5,
+        "avg_sentence": 31.3,
+        "long_share": 0.045,
+        "max_paragraph": 180,
+        "paragraphs": 14,
+        "sentences": 44
+      },
+      "score": 100,
+      "source": "kirin",
+      "title": "12月に高まる「自分へのご褒美」ニーズに冬限定「氷結® ご褒美スパークリング」 旬の果実を心地よい炭酸感で楽しめるアップルと洋梨の2品発売"
     }
   ],
   "short_text_retry": {
