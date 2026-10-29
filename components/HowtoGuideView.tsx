@@ -237,7 +237,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
       )}
 
       <section aria-labelledby="sources-heading" className="mt-14 rounded-2xl bg-surface px-5 py-5">
-        <h2 id="sources-heading" className="text-note font-bold text-ink">参考にした公式情報（確認日 {checked}）</h2>
+        <p id="sources-heading" className="text-note font-bold text-ink">参考にした公式情報（確認日 {checked}）</p>
         <ul className="mt-3 grid gap-2 text-note leading-relaxed">
           {guide.sources.map((source) => (
             <li key={source.url} className="min-w-0 break-words">
