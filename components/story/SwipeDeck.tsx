@@ -23,22 +23,7 @@ export type StoryItem = {
 export type Bundle = { key: string; label: string; cover?: string; items: StoryItem[] };
 type Mode = "easy" | "expert";
 
-const FONTS =
-  "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap";
 const SAVED_KEY = "saisoku:saved";
-
-/**
- * デッキ専用のフォント（120KB の CSS）。<head> に置くとトップの初回描画を止めるので、
- * 読み込み後の空き時間か、デッキを開くときに後から足す
- */
-function loadDeckFont() {
-  if (document.getElementById("deck-font")) return;
-  const link = document.createElement("link");
-  link.id = "deck-font";
-  link.rel = "stylesheet";
-  link.href = FONTS;
-  document.head.appendChild(link);
-}
 
 /** 丸の表紙（64〜76px）用の小さい画像。縮小版を出せる配信元だけ差し替える */
 function ringImage(url: string): string {
@@ -81,16 +66,7 @@ export default function StoryRail({ bundles }: { bundles: Bundle[] }) {
 
   useEffect(() => {
     document.body.style.overflow = open === null ? "" : "hidden";
-    if (open !== null) loadDeckFont();
   }, [open]);
-
-  // 開く前にフォントを用意しておく（ページの読み込みが終わってから）
-  useEffect(() => {
-    const idle = () => ("requestIdleCallback" in window ? requestIdleCallback(loadDeckFont, { timeout: 4000 }) : setTimeout(loadDeckFont, 2000));
-    if (document.readyState === "complete") idle();
-    else window.addEventListener("load", idle, { once: true });
-    return () => window.removeEventListener("load", idle);
-  }, []);
 
   // 表紙は lib/stories.ts で丸ごとに違う見た目を選んである
   const covers = bundles.map((b) => ringImage(b.cover || b.items[0]?.image || ""));
