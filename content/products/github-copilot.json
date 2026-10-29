@@ -10,66 +10,66 @@
   "companyName": "Microsoft",
   "category": "開発ツール",
   "overview": {
-    "text": "GitHub Copilotは、複数のAIモデルを自動で選択し開発作業を効率化するAI支援ツールです。GitHubおよびMicrosoftが提供しています。",
+    "text": "GitHub Copilotは、複数のAIモデルを自動で選択・連携させて開発作業を効率化する開発支援ツールです。GitHubとMicrosoftにより提供され、アプリや各種エディタ向けに新機能や新モデルが順次発表されています。",
     "sources": [
       "github-copilot-fusion-release",
-      "github-enterprise-includes-copilot"
+      "github-copilot-app-projects-computer-use"
     ]
   },
   "facts": [
     {
       "label": "料金",
-      "value": "月額10ドル、Enterprise内包など",
+      "value": "月額10ドルから、またはプラン内包",
       "sources": [
         "github-enterprise-includes-copilot"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本国内のユーザーでも利用可能です",
+      "value": "日本からでも利用可能",
       "sources": [
-        "github-copilot-fusion-release",
-        "github-enterprise-includes-copilot"
+        "microsoft-copilot-harness-foundry-agent-builder",
+        "github-copilot-fusion-release"
       ]
     },
     {
       "label": "使える場所",
-      "value": "VS Code、JetBrains、アプリなど",
+      "value": "VS Code、アプリ、CLIなど",
       "sources": [
         "github-copilot-fusion-release",
-        "gpt-6-1-terra-github-copilot-guide"
+        "github-copilot-plugin-controls-ga"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者や法務担当者など",
+      "value": "開発者、エンジニア、管理者",
       "sources": [
-        "microsoft-copilot-harness-foundry",
-        "github-copilot-native-app-released"
+        "microsoft-copilot-harness-foundry-agent-builder",
+        "github-copilot-fusion-release"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "複数のAIモデルを自動でルーティングし、最適な組み合わせで作業を処理できます。",
+      "text": "複数のAIモデルを自動で最適にルーティングする機能が使えます。",
       "sources": [
         "github-copilot-fusion-release"
       ]
     },
     {
-      "text": "複数のリポジトリや資料をまとめてAIに作業を任せるプロジェクト機能が使えます。",
+      "text": "複数のリポジトリや資料をまとめてAIが作業する「プロジェクト」機能に対応しています。",
       "sources": [
         "github-copilot-app-projects-computer-use"
       ]
     },
     {
-      "text": "macOSやWindowsでAIが画面を見てパソコンのアプリを操作できます。",
+      "text": "AIが画面を見てパソコン上のアプリを操作する「コンピューター使用」機能を利用できます。",
       "sources": [
         "github-copilot-app-projects-computer-use"
       ]
     },
     {
-      "text": "アプリ内でコードのセキュリティ脆弱性を確認し、直接修正を依頼できます。",
+      "text": "アプリ内でセキュリティの脆弱性確認や修正依頼が行えます。",
       "sources": [
         "github-copilot-security-extension"
       ]
@@ -77,19 +77,19 @@
   ],
   "pricing": [
     {
-      "text": "EnterpriseプランのライセンスにGitHub Copilotが標準で含まれます。",
+      "text": "Copilot Standaloneは月額10ドルで提供されます。",
       "sources": [
         "github-enterprise-includes-copilot"
       ]
     },
     {
-      "text": "ライセンスがない場合はCopilot Standaloneを月額10ドルで利用できます。",
+      "text": "GitHub EnterpriseにGitHub Copilotが標準内包されます。",
       "sources": [
         "github-enterprise-includes-copilot"
       ]
     },
     {
-      "text": "Copilot Fusion利用時は期間限定でモデル費用が30%オフになります。",
+      "text": "Fusion利用時は期間限定でモデル費用が30%オフになる割引が提供されます。",
       "sources": [
         "github-copilot-fusion-release"
       ]
@@ -97,71 +97,91 @@
   ],
   "japan": [
     {
-      "text": "対応する開発環境を最新版にアップデートすれば今日から利用可能です。",
+      "text": "日本国内のユーザーでも対応する開発環境をアップデートすれば今日から利用可能です。",
       "sources": [
         "github-copilot-fusion-release",
-        "github-enterprise-includes-copilot"
+        "github-copilot-plugin-controls-ga"
+      ]
+    },
+    {
+      "text": "Microsoft Foundryポータルを利用して日本からでも試すことができます。",
+      "sources": [
+        "microsoft-copilot-harness-foundry-agent-builder",
+        "microsoft-copilot-harness-agent-scaling"
       ]
     }
   ],
   "howto": [
     {
-      "text": "対応クライアントを最新版にアップデートして利用します。",
+      "text": "Visual Studio CodeやJetBrainsなどの対応クライアントを最新版にアップデートして使います。",
+      "sources": [
+        "github-copilot-fusion-release",
+        "github-copilot-plugin-controls-ga"
+      ]
+    },
+    {
+      "text": "モデル選択画面を開き、「Copilot Fusion」や希望する努力レベルを選びます。",
       "sources": [
         "github-copilot-fusion-release"
       ]
     },
     {
-      "text": "モデル選択画面を開き、Copilot Fusionや好みの努力レベルを選びます。",
+      "text": "セキュリティ拡張はターミナルからのインストールやアプリのカスタマイズ画面から追加できます。",
       "sources": [
-        "github-copilot-fusion-release"
+        "github-copilot-security-extension"
       ]
     }
   ],
   "differences": [
     {
-      "text": "手動でモデルを切り替える必要がなくなり、プロンプトごとに自動で選択されます。",
+      "text": "従来はタスクごとに特定のモデルを手動で選ぶ必要がありましたが、自動で最適なモデルが割り当てられるようになりました。",
       "sources": [
         "github-copilot-fusion-release"
       ]
     },
     {
-      "text": "独立したワークツリーを使い、開発中のコードと衝突させずに作業を自動処理できます。",
+      "text": "リポジトリ単体の作業だけでなく、複数のリポジトリや資料をまとめて扱えるようになりました。",
       "sources": [
-        "github-copilot-native-app-released"
+        "github-copilot-app-projects-computer-use"
+      ]
+    },
+    {
+      "text": "ブラウザを開かずにCopilotアプリ内でセキュリティ脆弱性の確認から修正まで完結できるようになりました。",
+      "sources": [
+        "github-copilot-security-extension"
       ]
     }
   ],
   "faq": [
     {
-      "q": "どのようなプランがありますか？",
-      "a": "ProやBusinessなどのプランがあり、Enterpriseには標準で内包されます。",
+      "q": "無料で使える？",
+      "a": "有料プランのユーザーを対象に提供されています。法人プランには標準内包される場合があります。",
       "sources": [
-        "github-enterprise-includes-copilot",
-        "gpt-6-1-terra-github-copilot-guide"
+        "github-copilot-fusion-release",
+        "github-enterprise-includes-copilot"
       ]
     },
     {
-      "q": "セキュリティの脆弱性は修正できますか？",
-      "a": "アプリ内のセキュリティ拡張を使い、確認から修正の依頼まで1つの画面で行えます。",
+      "q": "いつから使える？",
+      "a": "新機能や新モデルは順次提供されており、対応環境を最新版にアップデートすることで今すぐ利用できます。",
       "sources": [
-        "github-copilot-security-extension"
+        "github-copilot-fusion-release",
+        "github-copilot-plugin-controls-ga"
       ]
     },
     {
-      "q": "どのエディタで使えますか？",
-      "a": "VS CodeやJetBrains、Xcodeなどで利用できます。",
+      "q": "どのエディタで使える？",
+      "a": "Visual Studio Code、JetBrains IDES、Copilotアプリ、CLIなどで利用可能です。",
       "sources": [
         "github-copilot-fusion-release",
         "gpt-6-1-terra-github-copilot-guide"
       ]
     },
     {
-      "q": "新しいAIモデルを追加できますか？",
-      "a": "Kimi K3やGPT-6.1 Terraなどのモデルが選択肢に追加されています。",
+      "q": "セキュリティ機能はどこから使う？",
+      "a": "Copilotアプリ内からプラグインをインストールするか、専用のセキュリティ拡張機能から利用できます。",
       "sources": [
-        "gpt-6-1-terra-github-copilot-guide",
-        "github-copilot-kimi-k3-multi-agent"
+        "github-copilot-security-extension"
       ]
     }
   ],
@@ -169,27 +189,22 @@
     {
       "date": "2026-08-15",
       "slug": "github-copilot-kimi-k3-multi-agent",
-      "event": "GitHub CopilotにKimi K3を追加"
-    },
-    {
-      "date": "2026-09-12",
-      "slug": "github-copilot-native-app-released",
-      "event": "Copilotアプリの一般提供を開始"
+      "event": "高性能AI「Kimi K3」を追加"
     },
     {
       "date": "2026-10-26",
       "slug": "gpt-6-1-terra-github-copilot-guide",
-      "event": "GPT-6.1 Terraが利用可能に"
+      "event": "GPT-6.1 Terraを一般提供"
+    },
+    {
+      "date": "2026-10-29",
+      "slug": "microsoft-copilot-harness-foundry",
+      "event": "Copilot harnessを提供開始"
     },
     {
       "date": "2026-10-29",
       "slug": "github-copilot-fusion-release",
       "event": "GitHub Copilot Fusionを提供開始"
-    },
-    {
-      "date": "2026-10-29",
-      "slug": "github-copilot-app-projects-computer-use",
-      "event": "プロジェクトとコンピューター使用を追加"
     }
   ],
   "related": [
@@ -206,6 +221,7 @@
     "github-copilot-app-projects-computer-use",
     "github-enterprise-includes-copilot",
     "github-copilot-security-extension",
+    "github-copilot-plugin-controls-ga",
     "github-agentic-workflows-generally-available",
     "gpt-6-1-terra-github-copilot-guide",
     "azure-sql-ai-agent-skills-guide",
@@ -229,6 +245,7 @@
     "github-copilot-app-projects-computer-use",
     "github-enterprise-includes-copilot",
     "github-copilot-security-extension",
+    "github-copilot-plugin-controls-ga",
     "gpt-6-1-terra-github-copilot-guide",
     "github-copilot-native-app-released",
     "github-copilot-native-app-ga",
@@ -236,9 +253,9 @@
     "github-copilot-reusable-agent-skills-guide",
     "github-copilot-kimi-k3-multi-agent"
   ],
-  "signature": "71579542f29c4df5",
-  "primarySignature": "be902bc1692200ed",
+  "signature": "4da1010a90a5b393",
+  "primarySignature": "bd40bf1f6ec806f6",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:48+00:00",
-  "updatedAt": "2026-10-28T20:52:28+00:00"
+  "updatedAt": "2026-10-29T19:12:19+00:00"
 }

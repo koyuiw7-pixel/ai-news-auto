@@ -3346,6 +3346,14 @@
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/protect-mcp-endpoints-at-the-edge-with-amazon-cloudfront-and-aws-waf/"
     },
+    "10ae8e116e06d0fb": {
+      "at": "2026-10-29T19:12:06.995789+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "tokyo-world-diabetes-day-2026",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102914"
+    },
     "10d411a13de70561": {
       "at": "2026-10-27T03:04:42.978049+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -8645,6 +8653,14 @@
       "skipped": true,
       "url": "https://openai.com/index/fanatics-streamline-fan-experience"
     },
+    "eb9069225e782eff": {
+      "at": "2026-10-29T19:11:52.860991+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "github-copilot-plugin-controls-ga",
+      "url": "https://github.blog/changelog/2026-10-28-repository-plugin-defaults-and-enterprise-plugin-controls-generally-available"
+    },
     "ebee271797294dcb": {
       "at": "2026-10-29T04:31:23.344370+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -9177,120 +9193,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:55:01.707720+00:00",
-      "attempt": 2,
-      "id": "30d3db8faf33da06",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1679字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 139.7,
-        "avg_sentence": 60.7,
-        "long_share": 0.348,
-        "max_paragraph": 240,
-        "paragraphs": 10,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "morinaga",
-      "title": "好評につき「森永ミルクココア」と『ちびまる子ちゃん』コラボレーションが再び。 「まる子は知らない」篇TVCMオンエア決定！ 11月2日より全国放映開始。 家族と"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:55:08.180025+00:00",
-      "attempt": 1,
-      "id": "bbbfd283209baa5a",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1313字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（383字 / 基準 400字以上）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 117.4,
-        "avg_sentence": 55.9,
-        "long_share": 0.333,
-        "max_paragraph": 181,
-        "paragraphs": 10,
-        "sentences": 21
-      },
-      "score": null,
-      "source": "ntt-news",
-      "title": "郵便局の集配用バイクを活用したインフラ管理の実証実験に参画～ドライブレコーダーデータを活用したインフラ設備異常の把握に向けた検証を実施～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:55:13.754077+00:00",
-      "attempt": 2,
-      "id": "bbbfd283209baa5a",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1543字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（365字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 208.5,
-        "avg_sentence": 69.5,
-        "long_share": 0.778,
-        "max_paragraph": 285,
-        "paragraphs": 6,
-        "sentences": 18
-      },
-      "score": null,
-      "source": "ntt-news",
-      "title": "郵便局の集配用バイクを活用したインフラ管理の実証実験に参画～ドライブレコーダーデータを活用したインフラ設備異常の把握に向けた検証を実施～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:55:21.943194+00:00",
-      "attempt": 1,
-      "id": "876a647c66f4636e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（374字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 66.6,
-        "avg_sentence": 56.5,
-        "long_share": 0.424,
-        "max_paragraph": 124,
-        "paragraphs": 28,
-        "sentences": 33
-      },
-      "score": null,
-      "source": "kantei",
-      "title": "高市総理はバングラデシュ人民共和国のタレク・ラーマン首相と首脳会談を行いました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:55:28.165055+00:00",
-      "attempt": 2,
-      "id": "876a647c66f4636e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（314字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 61.1,
-        "avg_sentence": 61.1,
-        "long_share": 0.481,
-        "max_paragraph": 97,
-        "paragraphs": 27,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "kantei",
-      "title": "高市総理はバングラデシュ人民共和国のタレク・ラーマン首相と首脳会談を行いました"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T21:55:41.950414+00:00",
@@ -15895,6 +15797,113 @@
       "score": 100,
       "source": "tokyo-metro",
       "title": "ナフサ代替素材等開発の支援対象事業者を決定"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T19:11:41.988504+00:00",
+      "attempt": 1,
+      "id": "eb9069225e782eff",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2139字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 111.8,
+        "avg_sentence": 54.0,
+        "long_share": 0.276,
+        "max_paragraph": 212,
+        "paragraphs": 14,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "Repository plugin defaults and enterprise plugin controls generally available"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T19:11:48.951938+00:00",
+      "attempt": 1,
+      "id": "eb9069225e782eff",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 152.9字・最長 255字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 152.9,
+        "avg_sentence": 38.2,
+        "long_share": 0.143,
+        "max_paragraph": 255,
+        "paragraphs": 14,
+        "sentences": 56
+      },
+      "score": 100,
+      "source": "github-changelog-copilot",
+      "title": "Repository plugin defaults and enterprise plugin controls generally available"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T19:11:52.860506+00:00",
+      "attempt": 0,
+      "id": "eb9069225e782eff",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.3,
+        "avg_sentence": 34.1,
+        "long_share": 0.095,
+        "max_paragraph": 138,
+        "paragraphs": 23,
+        "sentences": 63
+      },
+      "score": 100,
+      "source": "github-changelog-copilot",
+      "title": "Repository plugin defaults and enterprise plugin controls generally available"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T19:12:02.765443+00:00",
+      "attempt": 1,
+      "id": "10ae8e116e06d0fb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 52.5字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 162.7字・最長 208字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 162.7,
+        "avg_sentence": 52.5,
+        "long_share": 0.323,
+        "max_paragraph": 208,
+        "paragraphs": 10,
+        "sentences": 31
+      },
+      "score": 100,
+      "source": "tokyo-metro",
+      "title": "糖尿病への正しい理解の輪を広げよう！11月14日は「World Diabetes Day（ワールド ダイアベティス デイ）」（世界糖尿病デー）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T19:12:06.995373+00:00",
+      "attempt": 0,
+      "id": "10ae8e116e06d0fb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 78.4,
+        "avg_sentence": 25.0,
+        "long_share": 0.0,
+        "max_paragraph": 173,
+        "paragraphs": 22,
+        "sentences": 69
+      },
+      "score": 100,
+      "source": "tokyo-metro",
+      "title": "糖尿病への正しい理解の輪を広げよう！11月14日は「World Diabetes Day（ワールド ダイアベティス デイ）」（世界糖尿病デー）"
     }
   ],
   "short_text_retry": {
