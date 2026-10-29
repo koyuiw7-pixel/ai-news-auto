@@ -3098,6 +3098,13 @@
       "skipped": true,
       "url": "https://finance.yahoo.co.jp/news/detail/2a2ed4e2d11d4b797087d7b732efb8a26e93054c"
     },
+    "046300f6ecc44a79": {
+      "at": "2026-10-29T18:33:46.663659+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2305字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://aws.amazon.com/jp/blogs/news/aws-security-handson-series/"
+    },
     "04ca88d8da4ddc40": {
       "at": "2026-10-27T03:04:42.979524+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（周年）",
@@ -3748,6 +3755,13 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/discourse/20261024message.html"
     },
+    "1fcf22f867e2d9da": {
+      "at": "2026-10-29T18:32:52.560145+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: これまでの流れの項目にある「2025年10月29日」→ 元記事および確認済みの文脈の年号は2026年であるため、日付の年が矛盾している。",
+      "skipped": true,
+      "url": "https://aws.amazon.com/blogs/machine-learning/building-intent-driven-ui-testing-with-amazon-nova-act/"
+    },
     "1feedfe1c6dd597e": {
       "at": "2026-10-27T17:35:46.651016+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3853,6 +3867,12 @@
       "reason": "quality: 本文が短い（2176字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000001.000190789.html"
+    },
+    "246293b23c7ad3f0": {
+      "at": "2026-10-29T18:35:20.173519+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（職員）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102910"
     },
     "2479fd3a59c35d02": {
       "at": "2026-10-27T15:55:42.967534+00:00",
@@ -4034,6 +4054,12 @@
       "skipped": true,
       "url": "https://news.mynavi.jp/article/20261028-5211663/"
     },
+    "2b3073ee02ff6eca": {
+      "at": "2026-10-29T18:35:20.173463+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/kaisai/02kiban16_04000966.html"
+    },
     "2b3c8743ac8faea6": {
       "at": "2026-10-28T12:08:40.147579+00:00",
       "breaking": true,
@@ -4068,6 +4094,19 @@
       "reason": "followup: 新しい事実なし（minecraft-nintendo-switch-2-launch）",
       "skipped": true,
       "url": "https://www.minecraft.net/ja-jp/article/play-minecraft-on-nintendo-switch-2-jp#new_tab"
+    },
+    "2d15124703b5483d": {
+      "at": "2026-10-29T18:34:45.364174+00:00",
+      "reason": "short text 499",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/actions/202610/29tel_kaidan.html"
+    },
+    "2d9928289658e986": {
+      "at": "2026-10-29T18:32:00.645134+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2373字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://openai.com/index/ropes-gray-ai-diligence"
     },
     "2dc52d226a3057d6": {
       "at": "2026-10-27T03:05:10.759044+00:00",
@@ -4271,6 +4310,12 @@
       "reason": "厚生労働省の審議会（検討会）の開催案内であり、国民生活に直接関わる新しい制度や法律の決定ではなく、行政の会議スケジュールのお知らせであるため。",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76989.html"
+    },
+    "3616f4f33295716d": {
+      "at": "2026-10-29T18:35:20.173681+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102918"
     },
     "3629fe9a667af90e": {
       "at": "2026-10-26T15:57:06.774439+00:00",
@@ -4611,6 +4656,12 @@
       "skipped": true,
       "url": "https://techcommunity.microsoft.com/blog/microsoft-discovery-blog/adapting-biological-monitoring-for-food-security-with-agents/4565992"
     },
+    "43cf872cce10db1b": {
+      "at": "2026-10-29T18:34:45.364271+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（職員）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102906"
+    },
     "4430856536e9007c": {
       "at": "2026-10-29T15:08:25.181600+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4765,6 +4816,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102808"
+    },
+    "4a1d41a2d88c2331": {
+      "at": "2026-10-29T18:32:00.645228+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（開催について）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/inter/etc/20261029/20261029-2.html"
     },
     "4a299d1e9f3d5424": {
       "at": "2026-10-27T15:19:52.426643+00:00",
@@ -5414,6 +5471,12 @@
       "slug": "ipa-personal-data-leak-countermeasures",
       "url": "https://www.ipa.go.jp/security/anshin/attention/2026/mgdayori20261026.html"
     },
+    "678a1cfd1086e7f2": {
+      "at": "2026-10-29T18:35:20.173702+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を開催）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102919"
+    },
     "67fdd4b11bd82e4e": {
       "at": "2026-10-28T03:52:34.628750+00:00",
       "kind": "update",
@@ -5453,6 +5516,13 @@
       "reason": "quality: 本文が短い（2387字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/aws-named-a-leader-in-the-2026-gartner-magic-quadrant-for-contact-center-as-a-service/"
+    },
+    "688d1b49cb2bc2af": {
+      "at": "2026-10-29T18:34:03.716142+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大臣の日程や定例会見の冒頭発言なしの記録であり、国民の暮らしに関わる具体的な制度・給付・新しいサービスの発表ではないため。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326881.html"
     },
     "68c01e18210096fb": {
       "at": "2026-10-29T01:21:42.486077+00:00",
@@ -5603,6 +5673,13 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/recruit/r8/shiho-01/shiho-01.html"
     },
+    "6e407509f5de8aa8": {
+      "at": "2026-10-29T18:35:07.396129+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1599字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（367字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/article/202610/tv-6660.html"
+    },
     "6e40bd74cb28725d": {
       "at": "2026-10-26T11:34:34.687395+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5676,6 +5753,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102802"
+    },
+    "71a07098bdbfcb83": {
+      "at": "2026-10-29T18:34:23.669967+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（周年）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/actions/202610/29chuokai.html"
     },
     "71b8566a1f06ece6": {
       "at": "2026-10-26T20:21:25.132784+00:00",
@@ -5836,6 +5919,13 @@
       "slug": "nvidia-nemotron-35-transcribe",
       "url": "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary"
     },
+    "7b147aedaa65a0fe": {
+      "at": "2026-10-29T18:34:40.873004+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1422字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102905"
+    },
     "7b7a9b09c0599cf2": {
       "at": "2026-10-27T17:12:19.208475+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5965,6 +6055,12 @@
       "reason": "quality: 本文が短い（917字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（341字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://finance.yahoo.co.jp/news/detail/9d95797449c78d42bc2c74eb52cd6e8adb6007f1"
+    },
+    "7ff375b869dfa204": {
+      "at": "2026-10-29T18:34:41.300010+00:00",
+      "reason": "dedupe: 見出しが類似（0.83）: 令和8年10月29日(木)午後-内閣官房長官記者会見",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326861.html"
     },
     "800950a0771930f6": {
       "at": "2026-10-26T12:43:43.881112+00:00",
@@ -6148,6 +6244,13 @@
       "section": "business",
       "slug": "pharmaceutical-wholesalers-market-trends",
       "url": "https://www.tsr-net.co.jp/data/detail/1203379_1527.html"
+    },
+    "86602ce5e09cd64b": {
+      "at": "2026-10-29T18:33:09.463595+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1527字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（248字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102904"
     },
     "8680d800c55fcf4a4471ad82d47e6d61b87c0911": {
       "at": "2026-10-28T15:06:35.113783+00:00",
@@ -6615,6 +6718,20 @@
       "reason": "quality: 本文が短い（1939字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000243.000033579.html"
+    },
+    "97940a5736ed8dc2": {
+      "at": "2026-10-29T18:35:20.173428+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（入札）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/singi/kanmin/02shingi06_02001103.html"
+    },
+    "983901472b072637": {
+      "at": "2026-10-29T18:34:23.669773+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "aws-php-to-java-migration-engine-kiro",
+      "url": "https://aws.amazon.com/blogs/machine-learning/build-a-repeatable-php-to-java-migration-engine-with-kiro/"
     },
     "986b8e56080b2b21": {
       "at": "2026-10-27T19:15:57.800333+00:00",
@@ -7280,6 +7397,12 @@
       "slug": "soumu-kkj-2025-3rd-result",
       "url": "https://www.stat.go.jp/data/kkj/kekka/index.html"
     },
+    "b6273c74809e5d80": {
+      "at": "2026-10-29T18:35:20.173484+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102909"
+    },
     "b64d489d45134fc3": {
       "at": "2026-10-28T03:25:45.476344+00:00",
       "model": "claude:sonnet",
@@ -7387,6 +7510,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
       "skipped": true,
       "url": "https://www.fsa.go.jp/inter/bis/20261028/20261028.html"
+    },
+    "ba7bebc7fd8b29e0": {
+      "at": "2026-10-29T18:35:20.173755+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102921"
     },
     "baa33b64d8c0eb19": {
       "at": "2026-10-28T04:22:17.393772+00:00",
@@ -7605,12 +7734,24 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000018.000184049.html"
     },
+    "c4d2ce6732b78a42": {
+      "at": "2026-10-29T18:32:00.645249+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（周年）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326905.html"
+    },
     "c4daa579ee136511": {
       "at": "2026-10-29T03:22:11.183310+00:00",
       "model": "gemini-3.5-flash-lite",
       "reason": "quality: 本文が短い（2167字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（393字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/how-financial-institutions-can-operationalize-ai-dlc-quickly-and-effectivel/"
+    },
+    "c4e2e68ef12472ae": {
+      "at": "2026-10-29T18:35:20.173495+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/kaisai/02kiban09_04000745.html"
     },
     "c4fa576cddca007e": {
       "at": "2026-10-27T01:53:58.777693+00:00",
@@ -7768,6 +7909,12 @@
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000002213.000026157.html"
+    },
+    "cc73e8238fbc9935": {
+      "at": "2026-10-29T18:35:20.173381+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を開催）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102907"
     },
     "ccb7e90515f4de26": {
       "at": "2026-10-28T21:54:27.444092+00:00",
@@ -8061,6 +8208,12 @@
       "slug": "hiroshima-u-lung-cancer-ai-ct",
       "url": "https://www.hiroshima-u.ac.jp/news/100805"
     },
+    "d80f9a7dc3cfba00": {
+      "at": "2026-10-29T18:34:45.364253+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01cyber01_02000001_00309.html"
+    },
     "d8103b8af50d92a5": {
       "at": "2026-10-28T17:19:52.844388+00:00",
       "model": "claude:sonnet",
@@ -8322,6 +8475,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
       "skipped": true,
       "url": "https://case-studies.ipa.go.jp/jirei-data/case_studies/237"
+    },
+    "e3cd5b3f92a1ebab": {
+      "at": "2026-10-29T18:32:52.560235+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（募集）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01kiban07_02000133.html"
     },
     "e3d7ad0ea6ab5632": {
       "at": "2026-10-27T03:01:13.632306+00:00",
@@ -8721,6 +8880,13 @@
       "skipped": true,
       "url": "https://news.samsung.com/jp/samsung-ranks-no-5-in-interbrands-best-global-brands-2026?utm_source=rss&utm_medium=direct"
     },
+    "f5a3765811c7c11a": {
+      "at": "2026-10-29T18:32:28.510471+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大臣の会見・記者会見の案内に関する発表であり、具体的な新しい制度やサービス、製品の開始情報が含まれないため対象外です。",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/actions/202610/29kaiken.html"
+    },
     "f5a63a1af5067430": {
       "at": "2026-10-26T21:41:28.789476+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8762,6 +8928,13 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76958.html"
     },
+    "f73833c9320a088c": {
+      "at": "2026-10-29T18:34:26.064006+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "官公庁の会議の開催案内であり、国民の暮らしやお金に直接関わる制度や給付、規制の変更などの実質的な情報が含まれないため。",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/digital_shokadai/02ryutsu02_04000609.html"
+    },
     "f765de31f223c172": {
       "at": "2026-10-27T17:34:33.268060+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8769,6 +8942,12 @@
       "section": "science",
       "slug": "fish-dha-food-web-riken",
       "url": "https://www.riken.jp/press/2026/20261027_3/index.html"
+    },
+    "f771f4fd0502eba9": {
+      "at": "2026-10-29T18:35:20.173538+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102911"
     },
     "f7930f5692647d14": {
       "at": "2026-10-27T02:32:51.684975+00:00",
@@ -8952,370 +9131,16 @@
       "section": "science",
       "slug": "hiroshima-u-glioblastoma-mri-ai",
       "url": "https://www.hiroshima-u.ac.jp/news/100822"
+    },
+    "ffff32ebfd0624b0": {
+      "at": "2026-10-29T18:35:20.173321+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（343字 / 基準 400字以上）; body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001290.html"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-28T20:51:57.827114+00:00",
-      "attempt": 0,
-      "id": "9ffbd8f146ab9326",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 36.6,
-        "avg_sentence": 36.6,
-        "long_share": 0.074,
-        "max_paragraph": 75,
-        "paragraphs": 54,
-        "sentences": 54
-      },
-      "score": 100,
-      "source": "nli-research",
-      "title": "インドの現金社会に決済革命～UPI急成長の背景と新たな課題～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T20:52:04.928112+00:00",
-      "attempt": 1,
-      "id": "21f4761ac0bc4960",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2245字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（357字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 123.7,
-        "avg_sentence": 59.6,
-        "long_share": 0.556,
-        "max_paragraph": 257,
-        "paragraphs": 13,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "Accelerating software delivery with agentic QA automation using Amazon Nova Act "
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T20:52:12.916233+00:00",
-      "attempt": 2,
-      "id": "21f4761ac0bc4960",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 54.2字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 149.2字・最長 331字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 149.2,
-        "avg_sentence": 54.2,
-        "long_share": 0.333,
-        "max_paragraph": 331,
-        "paragraphs": 12,
-        "sentences": 33
-      },
-      "score": 100,
-      "source": "aws-ml-blog",
-      "title": "Accelerating software delivery with agentic QA automation using Amazon Nova Act "
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T20:52:17.540586+00:00",
-      "attempt": 0,
-      "id": "21f4761ac0bc4960",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 59.5,
-        "avg_sentence": 29.7,
-        "long_share": 0.0,
-        "max_paragraph": 91,
-        "paragraphs": 33,
-        "sentences": 66
-      },
-      "score": 100,
-      "source": "aws-ml-blog",
-      "title": "Accelerating software delivery with agentic QA automation using Amazon Nova Act "
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:11:53.692214+00:00",
-      "attempt": 1,
-      "id": "05a87e963785dcee",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1965字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（395字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 108.8,
-        "avg_sentence": 52.5,
-        "long_share": 0.31,
-        "max_paragraph": 201,
-        "paragraphs": 14,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "Generate and edit images directly in Copilot"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:12:00.055851+00:00",
-      "attempt": 2,
-      "id": "05a87e963785dcee",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1711字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 91.3,
-        "avg_sentence": 48.9,
-        "long_share": 0.143,
-        "max_paragraph": 138,
-        "paragraphs": 15,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "Generate and edit images directly in Copilot"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:12:24.062818+00:00",
-      "attempt": 1,
-      "id": "29ec0ec9e94d7484",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 69.8字・60字超の文が 70% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 200.8字・最長 255字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 200.8,
-        "avg_sentence": 69.8,
-        "long_share": 0.696,
-        "max_paragraph": 255,
-        "paragraphs": 8,
-        "sentences": 23
-      },
-      "score": 100,
-      "source": "nli-research",
-      "title": "「本物」が贅沢品になる日－コーヒー豆を使わないコーヒーから考える代替食品と消費社会の未来"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T21:12:28.741048+00:00",
-      "attempt": 0,
-      "id": "29ec0ec9e94d7484",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 67.2,
-        "avg_sentence": 30.1,
-        "long_share": 0.0,
-        "max_paragraph": 107,
-        "paragraphs": 26,
-        "sentences": 58
-      },
-      "score": 100,
-      "source": "nli-research",
-      "title": "「本物」が贅沢品になる日－コーヒー豆を使わないコーヒーから考える代替食品と消費社会の未来"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:12:36.811104+00:00",
-      "attempt": 1,
-      "id": "2e43ea3f8e52b220",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（298字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 128.7,
-        "avg_sentence": 60.3,
-        "long_share": 0.469,
-        "max_paragraph": 221,
-        "paragraphs": 15,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "aws-japan-blog",
-      "title": "週 1,000 件の PR でもソフトウェアファクトリーを安定させる方法"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:12:44.350541+00:00",
-      "attempt": 2,
-      "id": "2e43ea3f8e52b220",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2314字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 116.7,
-        "avg_sentence": 63.2,
-        "long_share": 0.625,
-        "max_paragraph": 171,
-        "paragraphs": 13,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "aws-japan-blog",
-      "title": "週 1,000 件の PR でもソフトウェアファクトリーを安定させる方法"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T21:12:48.514039+00:00",
-      "attempt": 2,
-      "id": "2e43ea3f8e52b220",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 58.1字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 116.1字・最長 221字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 116.1,
-        "avg_sentence": 58.1,
-        "long_share": 0.5,
-        "max_paragraph": 221,
-        "paragraphs": 16,
-        "sentences": 32
-      },
-      "score": 100,
-      "source": "aws-japan-blog",
-      "title": "週 1,000 件の PR でもソフトウェアファクトリーを安定させる方法"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T21:12:53.262057+00:00",
-      "attempt": 0,
-      "id": "2e43ea3f8e52b220",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 68.5,
-        "avg_sentence": 40.8,
-        "long_share": 0.128,
-        "max_paragraph": 126,
-        "paragraphs": 28,
-        "sentences": 47
-      },
-      "score": 100,
-      "source": "aws-japan-blog",
-      "title": "週 1,000 件の PR でもソフトウェアファクトリーを安定させる方法"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T21:32:22.433159+00:00",
-      "attempt": 1,
-      "id": "f1af937fcc0acf6b",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 70.8,
-        "avg_sentence": 33.5,
-        "long_share": 0.018,
-        "max_paragraph": 115,
-        "paragraphs": 27,
-        "sentences": 57
-      },
-      "score": 94,
-      "source": "google-blog-all",
-      "title": "Ads in AI Mode expand to new markets."
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:51:39.239810+00:00",
-      "attempt": 1,
-      "id": "fc595589053fff86",
-      "kind": "update",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "要点: 複数のAIモデルを自動で最適にルーティングする新機能「GitHub Copilot Fusion」が一般提供を開始しました。 → 元記事では「experimental preview（実験的プレビュー）」としてリリースされたとあり、「一般提供」との記述は矛盾する。",
-        "本文: GitHub Changelog（Copilot）は2026年10月29日 → 元記事の日付は「Oct.28」であり、日付が異なる。"
-      ],
-      "score": 85,
-      "source": "github-changelog-copilot",
-      "title": "GitHub Copilot Fusion now supports selection of local models"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:51:58.427616+00:00",
-      "attempt": 1,
-      "id": "25cf8aad52336be1",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1620字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 155.4,
-        "avg_sentence": 59.2,
-        "long_share": 0.381,
-        "max_paragraph": 203,
-        "paragraphs": 8,
-        "sentences": 21
-      },
-      "score": null,
-      "source": "nli-research",
-      "title": "地域行事を続ける力は、どこから生まれるのか～諏訪湖祭湖上花火大会にみる、支え手の広がりと継承"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:52:09.052029+00:00",
-      "attempt": 2,
-      "id": "25cf8aad52336be1",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 60.7字・60字超の文が 59% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 163.8字・最長 227字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 163.8,
-        "avg_sentence": 60.7,
-        "long_share": 0.593,
-        "max_paragraph": 227,
-        "paragraphs": 10,
-        "sentences": 27
-      },
-      "score": 100,
-      "source": "nli-research",
-      "title": "地域行事を続ける力は、どこから生まれるのか～諏訪湖祭湖上花火大会にみる、支え手の広がりと継承"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T21:52:13.378328+00:00",
-      "attempt": 0,
-      "id": "25cf8aad52336be1",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 58.5,
-        "avg_sentence": 35.8,
-        "long_share": 0.02,
-        "max_paragraph": 94,
-        "paragraphs": 30,
-        "sentences": 49
-      },
-      "score": 100,
-      "source": "nli-research",
-      "title": "地域行事を続ける力は、どこから生まれるのか～諏訪湖祭湖上花火大会にみる、支え手の広がりと継承"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T21:52:22.096425+00:00",
@@ -15643,12 +15468,404 @@
       "score": 100,
       "source": "tokyo-metro",
       "title": "令和8年度新規事業 「地域企業グループチャレンジ促進事業」事業変革に取り組む4つの地域企業グループを決定"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:31:40.209608+00:00",
+      "attempt": 1,
+      "id": "2d9928289658e986",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2197字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 136.9,
+        "avg_sentence": 63.9,
+        "long_share": 0.533,
+        "max_paragraph": 192,
+        "paragraphs": 14,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "How Ropes & Gray is developing AI for transactional diligence"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:31:56.324294+00:00",
+      "attempt": 2,
+      "id": "2d9928289658e986",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2373字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 88.0,
+        "avg_sentence": 53.2,
+        "long_share": 0.342,
+        "max_paragraph": 198,
+        "paragraphs": 23,
+        "sentences": 38
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "How Ropes & Gray is developing AI for transactional diligence"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:32:12.200452+00:00",
+      "attempt": 1,
+      "id": "f5a3765811c7c11a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1738字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（338字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 142.9,
+        "avg_sentence": 58.5,
+        "long_share": 0.364,
+        "max_paragraph": 211,
+        "paragraphs": 9,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "kantei",
+      "title": "高市総理は中東情勢を踏まえた「緊急的激変緩和措置」の今後の対応についての会見を行いました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:32:40.415826+00:00",
+      "attempt": 1,
+      "id": "1fcf22f867e2d9da",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1984字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（398字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 118.4,
+        "avg_sentence": 63.8,
+        "long_share": 0.5,
+        "max_paragraph": 183,
+        "paragraphs": 14,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "Building intent-driven UI testing with Amazon Nova Act"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:32:52.560100+00:00",
+      "attempt": 2,
+      "id": "1fcf22f867e2d9da",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "これまでの流れの項目にある「2025年10月29日」→ 元記事および確認済みの文脈の年号は2026年であるため、日付の年が矛盾している。"
+      ],
+      "readability": {
+        "avg_paragraph": 139.4,
+        "avg_sentence": 84.6,
+        "long_share": 0.75,
+        "max_paragraph": 239,
+        "paragraphs": 17,
+        "sentences": 28
+      },
+      "score": 85,
+      "source": "aws-ml-blog",
+      "title": "Building intent-driven UI testing with Amazon Nova Act"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:32:58.953632+00:00",
+      "attempt": 1,
+      "id": "86602ce5e09cd64b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1221字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（309字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 122.8,
+        "avg_sentence": 48.0,
+        "long_share": 0.261,
+        "max_paragraph": 176,
+        "paragraphs": 9,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "「東京都の人口（推計）」の概要（令和8年10月1日現在）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:33:09.463545+00:00",
+      "attempt": 2,
+      "id": "86602ce5e09cd64b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1527字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（248字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 157.7,
+        "avg_sentence": 59.1,
+        "long_share": 0.417,
+        "max_paragraph": 294,
+        "paragraphs": 9,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "「東京都の人口（推計）」の概要（令和8年10月1日現在）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:33:18.832746+00:00",
+      "attempt": 1,
+      "id": "046300f6ecc44a79",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1802字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（322字 / 基準 400字以上）",
+        "元記事の文をそのまま書き写している（2文。例「- AWS Security Agent (now part of AWS Continuum) :」）。自分の言葉で要約する"
+      ],
+      "readability": {
+        "avg_paragraph": 81.0,
+        "avg_sentence": 51.5,
+        "long_share": 0.364,
+        "max_paragraph": 154,
+        "paragraphs": 14,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "AWS セキュリティハンズオン連続開催のご案内"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:33:28.724275+00:00",
+      "attempt": 2,
+      "id": "046300f6ecc44a79",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2305字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 105.3,
+        "avg_sentence": 60.2,
+        "long_share": 0.5,
+        "max_paragraph": 168,
+        "paragraphs": 16,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "AWS セキュリティハンズオン連続開催のご案内"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:34:15.248241+00:00",
+      "attempt": 1,
+      "id": "983901472b072637",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 76.0字・60字超の文が 75% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 163.7字・最長 243字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 163.7,
+        "avg_sentence": 76.0,
+        "long_share": 0.75,
+        "max_paragraph": 243,
+        "paragraphs": 13,
+        "sentences": 28
+      },
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "Build a repeatable PHP-to-Java migration engine with Kiro"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T18:34:23.669307+00:00",
+      "attempt": 0,
+      "id": "983901472b072637",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 54.7字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 138.5字・最長 244字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 138.5,
+        "avg_sentence": 54.7,
+        "long_share": 0.395,
+        "max_paragraph": 244,
+        "paragraphs": 15,
+        "sentences": 38
+      },
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "Build a repeatable PHP-to-Java migration engine with Kiro"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:34:34.066323+00:00",
+      "attempt": 1,
+      "id": "7b147aedaa65a0fe",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1601字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（326字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 89.5,
+        "avg_sentence": 44.8,
+        "long_share": 0.176,
+        "max_paragraph": 184,
+        "paragraphs": 17,
+        "sentences": 34
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "多摩動物公園 ライオンの状況について（最終報告）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:34:40.872968+00:00",
+      "attempt": 2,
+      "id": "7b147aedaa65a0fe",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1422字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 165.5,
+        "avg_sentence": 66.2,
+        "long_share": 0.65,
+        "max_paragraph": 235,
+        "paragraphs": 8,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "多摩動物公園 ライオンの状況について（最終報告）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:35:00.227968+00:00",
+      "attempt": 1,
+      "id": "6e407509f5de8aa8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1434字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（327字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 114.5,
+        "avg_sentence": 45.8,
+        "long_share": 0.12,
+        "max_paragraph": 176,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "gov-online",
+      "title": "創薬の最前線「湘南アイパーク」"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:35:07.396092+00:00",
+      "attempt": 2,
+      "id": "6e407509f5de8aa8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1599字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（367字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 134.1,
+        "avg_sentence": 53.6,
+        "long_share": 0.36,
+        "max_paragraph": 219,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "gov-online",
+      "title": "創薬の最前線「湘南アイパーク」"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:35:13.426839+00:00",
+      "attempt": 1,
+      "id": "ffff32ebfd0624b0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1175字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（325字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 90.3,
+        "avg_sentence": 47.8,
+        "long_share": 0.235,
+        "max_paragraph": 142,
+        "paragraphs": 9,
+        "sentences": 17
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "令和8年11月5日（木）に緊急地震速報の訓練を行います"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T18:35:20.173289+00:00",
+      "attempt": 2,
+      "id": "ffff32ebfd0624b0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（343字 / 基準 400字以上）",
+        "body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）"
+      ],
+      "readability": {
+        "avg_paragraph": 132.4,
+        "avg_sentence": 50.2,
+        "long_share": 0.241,
+        "max_paragraph": 205,
+        "paragraphs": 11,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "令和8年11月5日（木）に緊急地震速報の訓練を行います"
     }
   ],
   "short_text_retry": {
     "1a1d4bf2fc111eb8": "2026-10-26T22:01:15.183025+00:00",
     "250e5d8f302445e7": "2026-10-26T22:40:58.175082+00:00",
-    "64d59b55a8fb8666": "2026-10-26T18:11:48.185954+00:00",
     "8f2f08b6e197805b": "2026-10-26T19:21:22.163807+00:00",
     "f16aefe89a6e3f3b": "2026-10-26T22:01:24.342392+00:00"
   }
