@@ -4512,6 +4512,14 @@
       "slug": "igakushoin-ptashop-goods-2026",
       "url": "https://prtimes.jp/main/html/rd/p/000007784.000005875.html"
     },
+    "49384cd85f07d187": {
+      "at": "2026-10-29T01:41:58.847293+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "science",
+      "slug": "ocean-acidification-foraminifera-alkalinity",
+      "url": "https://www.jst.go.jp/pr/announce/20261029-5/index.html"
+    },
     "496aed00f56378c9": {
       "at": "2026-10-28T22:30:58.505934+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -5149,6 +5157,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102807"
+    },
+    "6aa0232a2b135089": {
+      "at": "2026-10-29T01:41:42.144015+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1696字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; title の長さが不適切（72字 / 18〜64字）",
+      "skipped": true,
+      "url": "https://www.nintendo.com/jp/topics/article/d8cda5f3-adbe-403c-98e1-66d69711d293"
     },
     "6abae41fe27c47b4": {
       "at": "2026-10-27T00:51:23.899336+00:00",
@@ -8139,116 +8154,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:31:28.961232+00:00",
-      "attempt": 1,
-      "id": "9bc65f24ba4d545f",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1926字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 102.6,
-        "avg_sentence": 47.9,
-        "long_share": 0.267,
-        "max_paragraph": 171,
-        "paragraphs": 14,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "kddi-news-ai",
-      "title": "リスク診断・対処を効率化、AI脆弱性管理ソリューションを提供開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:31:46.345546+00:00",
-      "attempt": 2,
-      "id": "9bc65f24ba4d545f",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 59.9字・60字超の文が 53% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 127.4字・最長 195字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 127.4,
-        "avg_sentence": 59.9,
-        "long_share": 0.529,
-        "max_paragraph": 195,
-        "paragraphs": 16,
-        "sentences": 34
-      },
-      "score": 100,
-      "source": "kddi-news-ai",
-      "title": "リスク診断・対処を効率化、AI脆弱性管理ソリューションを提供開始"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T01:32:02.607996+00:00",
-      "attempt": 0,
-      "id": "9bc65f24ba4d545f",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 77.5,
-        "avg_sentence": 34.2,
-        "long_share": 0.068,
-        "max_paragraph": 138,
-        "paragraphs": 26,
-        "sentences": 59
-      },
-      "score": 100,
-      "source": "kddi-news-ai",
-      "title": "リスク診断・対処を効率化、AI脆弱性管理ソリューションを提供開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:32:10.670572+00:00",
-      "attempt": 1,
-      "id": "5992879ed38f66ca",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1586字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 110.0,
-        "avg_sentence": 45.8,
-        "long_share": 0.125,
-        "max_paragraph": 181,
-        "paragraphs": 10,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "nintendo-topics",
-      "title": "『Minecraft』が、より鮮やかなグラフィックにアップデートしてNintendo Switch 2 に登場。本日より発売開始。"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T01:32:30.188877+00:00",
-      "attempt": 1,
-      "id": "5992879ed38f66ca",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 47.0字・60字超の文が 16% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 150.3字・最長 221字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 150.3,
-        "avg_sentence": 47.0,
-        "long_share": 0.156,
-        "max_paragraph": 221,
-        "paragraphs": 10,
-        "sentences": 32
-      },
-      "score": 100,
-      "source": "nintendo-topics",
-      "title": "『Minecraft』が、より鮮やかなグラフィックにアップデートしてNintendo Switch 2 に登場。本日より発売開始。"
-    },
     {
       "accepted": true,
       "at": "2026-10-28T01:32:51.269569+00:00",
@@ -14734,6 +14639,115 @@
       "score": 100,
       "source": "tokyo-metro",
       "title": "11月から1月は「冬季大気汚染対策」推進期間です！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T01:41:29.939542+00:00",
+      "attempt": 1,
+      "id": "6aa0232a2b135089",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1535字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 127.0,
+        "avg_sentence": 49.7,
+        "long_share": 0.217,
+        "max_paragraph": 162,
+        "paragraphs": 9,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "nintendo-topics",
+      "title": "「Hello! インディー」1000を超えるパズルが待ち受ける『Order of the Sinking Star』"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T01:41:42.143985+00:00",
+      "attempt": 2,
+      "id": "6aa0232a2b135089",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1696字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "title の長さが不適切（72字 / 18〜64字）"
+      ],
+      "readability": {
+        "avg_paragraph": 153.6,
+        "avg_sentence": 51.2,
+        "long_share": 0.259,
+        "max_paragraph": 200,
+        "paragraphs": 9,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "nintendo-topics",
+      "title": "「Hello! インディー」1000を超えるパズルが待ち受ける『Order of the Sinking Star』"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T01:41:48.834245+00:00",
+      "attempt": 1,
+      "id": "49384cd85f07d187",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1775字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 78.1,
+        "avg_sentence": 64.5,
+        "long_share": 0.609,
+        "max_paragraph": 131,
+        "paragraphs": 19,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "jst",
+      "title": "高いアルカリ度が海洋酸性化による有孔虫の殻形成への悪影響を軽減～恐竜時代の海を手がかりに、海洋環境と石灰化生物の殻形成の関係を探る～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T01:41:54.279460+00:00",
+      "attempt": 1,
+      "id": "49384cd85f07d187",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 61.2字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 80.5,
+        "avg_sentence": 61.2,
+        "long_share": 0.56,
+        "max_paragraph": 131,
+        "paragraphs": 19,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "jst",
+      "title": "高いアルカリ度が海洋酸性化による有孔虫の殻形成への悪影響を軽減～恐竜時代の海を手がかりに、海洋環境と石灰化生物の殻形成の関係を探る～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T01:41:58.846994+00:00",
+      "attempt": 0,
+      "id": "49384cd85f07d187",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.0,
+        "avg_sentence": 25.8,
+        "long_share": 0.0,
+        "max_paragraph": 152,
+        "paragraphs": 20,
+        "sentences": 72
+      },
+      "score": 100,
+      "source": "jst",
+      "title": "高いアルカリ度が海洋酸性化による有孔虫の殻形成への悪影響を軽減～恐竜時代の海を手がかりに、海洋環境と石灰化生物の殻形成の関係を探る～"
     }
   ],
   "short_text_retry": {
