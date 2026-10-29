@@ -42,6 +42,10 @@ const nextConfig: NextConfig = {
   },
   // 独自ドメインへの引っ越し。旧URLとwwwは恒久的（301相当）に新ドメインへ転送し、
   // 検索エンジンの評価と外部リンクを引き継ぐ。プレビュー用の *.vercel.app は対象外
+  // public/.well-known はデプロイに載らないため、ルートで返す
+  async rewrites() {
+    return [{ source: "/.well-known/atproto-did", destination: "/api/atproto-did" }];
+  },
   async redirects() {
     return [
       ...["ai-news-auto.vercel.app", "www.ai-tech-express.jp"].map((host) => ({

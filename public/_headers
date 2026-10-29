@@ -3,7 +3,3 @@
 # 指定しないと max-age=0 になり、ページを開くたびに CSS・JS・フォントを1本ずつ問い合わせ直す
 /_next/static/*
   Cache-Control: public,max-age=31536000,immutable
-
-# Bluesky の独自ドメインハンドル（HTTP 方式）
-/.well-known/atproto-did
-  Content-Type: text/plain; charset=utf-8
