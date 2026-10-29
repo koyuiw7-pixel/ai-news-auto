@@ -27,6 +27,8 @@ import { chooseGuideForArticle } from "@/lib/choose";
 import type { ChooseGuide } from "@/lib/choose-data";
 import { STATUS_LABEL, freeLabel, japanLabel, verdictOf } from "@/lib/verdict";
 import { offerForArticle } from "@/lib/offers";
+import { shopLinkForArticle } from "@/lib/amazon";
+import ShopLinks from "@/components/ShopLinks";
 import Morph from "@/components/Morph";
 import RoundupSources from "@/components/RoundupSources";
 import Sidebar from "@/components/Sidebar";
@@ -139,6 +141,8 @@ export default async function ArticlePage({ params }: Props) {
     offerAll && inlineItems.length >= 2 ? { ...offerAll, eyebrow: "あわせてチェック", items: inlineItems } : undefined;
   // 商品枠の話題に比較ガイドがあれば、商品枠のすぐ下に1行だけ案内する
   const buyingGuide = buyingGuideForTopic(offerAll?.topic);
+  // 製品を扱う記事だけ、本文中の商品枠のそばに「Amazon / 楽天で見る」を1行（右側には出さない）
+  const shopLink = shopLinkForArticle(article);
   // 回線・転職など、記事の話題に合う選び方ガイド（見出しとタグが合うときだけ）
   const chooseGuide = chooseGuideForArticle(article);
   // 日本語の黙読はおよそ毎分600字
@@ -568,6 +572,7 @@ export default async function ArticlePage({ params }: Props) {
               {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex lg:hidden" />}
             </div>
           )}
+          {bodyTail && shopLink && <ShopLinks link={shopLink} className="my-10" />}
           {bodyTail && !offer && affiliates.length > 0 && (
             <div className="my-10">
               <AffiliateBox links={affiliates} />
@@ -627,6 +632,7 @@ export default async function ArticlePage({ params }: Props) {
               {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex lg:hidden" />}
             </div>
           )}
+          {!bodyTail && shopLink && <ShopLinks link={shopLink} className="mt-12" />}
           {!bodyTail && !offer && affiliates.length > 0 && (
             <div className="mt-12">
               <AffiliateBox links={affiliates} />

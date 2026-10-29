@@ -57,7 +57,8 @@ def load_token() -> str:
 
 def program_names() -> dict[str, str]:
     """a8mat → 提携先の名前（affiliate_links.json・content/offers.json・content/products.json から）"""
-    names: dict[str, str] = {}
+    # A8 以外はドメインで数えている（components/AffClickTracker.tsx の programOf）
+    names: dict[str, str] = {"amazon": "Amazonアソシエイト", "rakuten": "楽天アフィリエイト"}
 
     def take(text: str, name: str) -> None:
         for code in re.findall(r"a8mat=([0-9A-Z+]+)", text or ""):
@@ -75,7 +76,7 @@ def program_names() -> dict[str, str]:
     except (OSError, ValueError, AttributeError):
         pass
     try:
-        take((ROOT / "content/products.json").read_text("utf-8"), "楽天ブックス")
+        take((ROOT / "content/products.json").read_text("utf-8"), "楽天（A8経由。ブックス・市場検索）")
     except OSError:
         pass
     return names

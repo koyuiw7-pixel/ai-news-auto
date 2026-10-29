@@ -9,6 +9,7 @@
 1. **本番を実ブラウザで開くときは、次のドメインへの通信を止める**（スクショ・見た目の確認・読みやすさの検査すべて）
    - `*.a8.net`（`px.a8.net` `rpx.a8.net` `www*.a8.net` の計測画像・バナー）
    - `*.afl.rakuten.co.jp`（楽天アフィリエイト）
+   - `amazon.co.jp` `*.amazon.co.jp` `amzn.to`（Amazonアソシエイト。tag=saisokuai-22 のリンク）
    - `*.amazon-adsystem.com`
    - `*.googlesyndication.com` `*.doubleclick.net` `*.googleadservices.com` `adservice.google.com` `*.adtrafficquality.google`（AdSense）
 2. **提携リンク（`rel` に `sponsored` を含む a）は押さない・URL を取りに行かない**（curl・WebFetch・リンク切れ検査も禁止）。
@@ -19,11 +20,11 @@
 ## 止め方
 
 - **Chrome を自分で起動する場合**（いちばん確実。新しいタブ・ポップアップも止まる）:
-  `--host-resolver-rules="MAP a8.net ~NOTFOUND, MAP *.a8.net ~NOTFOUND, MAP *.afl.rakuten.co.jp ~NOTFOUND, MAP *.amazon-adsystem.com ~NOTFOUND, MAP *.googlesyndication.com ~NOTFOUND, MAP *.doubleclick.net ~NOTFOUND"`
+  `--host-resolver-rules="MAP a8.net ~NOTFOUND, MAP *.a8.net ~NOTFOUND, MAP *.afl.rakuten.co.jp ~NOTFOUND, MAP amazon.co.jp ~NOTFOUND, MAP *.amazon.co.jp ~NOTFOUND, MAP amzn.to ~NOTFOUND, MAP *.amazon-adsystem.com ~NOTFOUND, MAP *.googlesyndication.com ~NOTFOUND, MAP *.doubleclick.net ~NOTFOUND"`
 - **スクショが欲しいだけなら** `npm run check:readability -- --paths /articles/<slug> --shots out/shots` を使う（上の止め方が入っている。scripts/check_readability.mjs）
 - **Playwright**:
   ```js
-  await context.route(/^https?:\/\/([^/]+\.)?(a8\.net|afl\.rakuten\.co\.jp|amazon-adsystem\.com|googlesyndication\.com|doubleclick\.net|googleadservices\.com)\//, (r) => r.abort());
+  await context.route(/^https?:\/\/([^/]+\.)?(a8\.net|afl\.rakuten\.co\.jp|amazon\.co\.jp|amzn\.to|amazon-adsystem\.com|googlesyndication\.com|doubleclick\.net|googleadservices\.com)\//, (r) => r.abort());
   ```
 - **通信を止められないブラウザ**（Claude のブラウザ画面・Chrome 拡張など）では本番の記事ページを開かない。開いた場合も PR 枠には触れない。
 
