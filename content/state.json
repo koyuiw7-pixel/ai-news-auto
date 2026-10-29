@@ -3918,6 +3918,13 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/about/release_2026/rel261027a.htm"
     },
+    "287490af4d6d8d6e": {
+      "at": "2026-10-29T17:23:23.709097+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1009字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "https://www.caa.go.jp/notice/entry/047408/"
+    },
     "28c905a0024836c7": {
       "at": "2026-10-26T15:32:06.663662+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4414,6 +4421,14 @@
       "reason": "quality: 本文が短い（1765字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76850.html"
+    },
+    "3dcfe747ba6ccec0": {
+      "at": "2026-10-29T17:29:43.225208+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "aws-moengage-agentcore-gateway",
+      "url": "https://aws.amazon.com/blogs/machine-learning/how-moengage-turned-over-400-apis-into-agent-tools-with-agentcore-gateway/"
     },
     "3ea80bf60317bab8": {
       "at": "2026-10-28T23:13:03.555506+00:00",
@@ -5433,6 +5448,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo3/128/siryo/1412213_00003.htm"
+    },
+    "6cf6502bdfb52e40": {
+      "at": "2026-10-29T17:28:16.642695+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（384字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://aws.amazon.com/jp/blogs/news/use-ai-to-manage-your-ai-spend-your-guide-to-cloud-financial-management-sessions-at-reinvent-2026/"
     },
     "6d1989cd521302ff": {
       "at": "2026-10-28T19:52:25.754499+00:00",
@@ -6859,6 +6881,13 @@
       "skipped": true,
       "url": "https://www.atpress.ne.jp/news/600302"
     },
+    "aa702b033bfda9cd": {
+      "at": "2026-10-29T17:22:36.018865+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://aws.amazon.com/blogs/machine-learning/lend-and-borrow-resources-across-teams-with-aws-batchs-quota-management-for-sagemaker-training-jobs/"
+    },
     "aaf22fbf6fabb7c9": {
       "at": "2026-10-26T16:35:20.540731+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7751,6 +7780,14 @@
       "section": "ai",
       "slug": "copilot-in-sharepoint-october-2026",
       "url": "https://blogs.windows.com/japan/2026/10/27/whats-new-in-copilot-in-sharepoint-october-2026/"
+    },
+    "d4ecbbd246c68d79": {
+      "at": "2026-10-29T17:26:15.965392+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "sports",
+      "slug": "jfa-storz-medical-japan-partner",
+      "url": "https://www.jfa.jp/news/00036960/"
     },
     "d5037902ead88567": {
       "at": "2026-10-28T23:13:03.555131+00:00",
@@ -8718,242 +8755,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:33:22.257555+00:00",
-      "attempt": 1,
-      "id": "0fed12977c1a8fbf",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1564字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 139.8,
-        "avg_sentence": 48.4,
-        "long_share": 0.154,
-        "max_paragraph": 249,
-        "paragraphs": 9,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "hiroshima-u",
-      "title": "【研究成果】広島菜の古漬けがニワトリの腸内環境を改善！ －飼料への1％添加で、餌の消費量が9パーセント減少－"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:33:32.439463+00:00",
-      "attempt": 2,
-      "id": "0fed12977c1a8fbf",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1729字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 161.9,
-        "avg_sentence": 64.8,
-        "long_share": 0.5,
-        "max_paragraph": 245,
-        "paragraphs": 8,
-        "sentences": 20
-      },
-      "score": null,
-      "source": "hiroshima-u",
-      "title": "【研究成果】広島菜の古漬けがニワトリの腸内環境を改善！ －飼料への1％添加で、餌の消費量が9パーセント減少－"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T19:33:50.070963+00:00",
-      "attempt": 1,
-      "id": "af1d3727299b6578",
-      "kind": "update",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "about-amazon-jp",
-      "title": "Amazon、生成AI搭載の次世代パーソナルアシスタント、「Alexa+」を国内で提供開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:33:58.839132+00:00",
-      "attempt": 1,
-      "id": "1612ad56da1498eb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 61.1字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 133.3字・最長 230字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 133.3,
-        "avg_sentence": 61.1,
-        "long_share": 0.417,
-        "max_paragraph": 230,
-        "paragraphs": 11,
-        "sentences": 24
-      },
-      "score": 100,
-      "source": "jpcert",
-      "title": "Weekly Report: VeloCloud OrchestratorにSQLインジェクションの脆弱性"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T19:34:03.571074+00:00",
-      "attempt": 0,
-      "id": "1612ad56da1498eb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 66.7,
-        "avg_sentence": 34.8,
-        "long_share": 0.043,
-        "max_paragraph": 160,
-        "paragraphs": 24,
-        "sentences": 46
-      },
-      "score": 100,
-      "source": "jpcert",
-      "title": "Weekly Report: VeloCloud OrchestratorにSQLインジェクションの脆弱性"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:34:11.213833+00:00",
-      "attempt": 1,
-      "id": "eda7f4c481a4612a",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1847字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 103.1,
-        "avg_sentence": 51.5,
-        "long_share": 0.308,
-        "max_paragraph": 221,
-        "paragraphs": 13,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "windows-blog-jp",
-      "title": "SharePoint の AI ページ作成: 選択して、伝えて、磨き上げる"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:34:21.708467+00:00",
-      "attempt": 2,
-      "id": "eda7f4c481a4612a",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2271字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 59.0,
-        "avg_sentence": 57.0,
-        "long_share": 0.448,
-        "max_paragraph": 133,
-        "paragraphs": 28,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "windows-blog-jp",
-      "title": "SharePoint の AI ページ作成: 選択して、伝えて、磨き上げる"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T19:34:30.976454+00:00",
-      "attempt": 1,
-      "id": "b8bfa4647f108004",
-      "kind": "update",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "aws-ml-blog",
-      "title": "Building an Agentic AI Platform on Amazon Bedrock AgentCore"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:34:38.545256+00:00",
-      "attempt": 1,
-      "id": "85daa6a854746cd3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2075字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 118.1,
-        "avg_sentence": 51.2,
-        "long_share": 0.267,
-        "max_paragraph": 194,
-        "paragraphs": 13,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "github-blog",
-      "title": "Octoverse: Commits, pushes, reach new highs in 2026 as developers build with age"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:34:51.370350+00:00",
-      "attempt": 2,
-      "id": "85daa6a854746cd3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2410字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 112.4,
-        "avg_sentence": 56.2,
-        "long_share": 0.375,
-        "max_paragraph": 247,
-        "paragraphs": 16,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "github-blog",
-      "title": "Octoverse: Commits, pushes, reach new highs in 2026 as developers build with age"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:35:06.632562+00:00",
-      "attempt": 1,
-      "id": "b7b19ea4715d7ab8",
-      "kind": "update",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "AWS ブログ（日本）は2026年10月29日 → 元記事の日付「2026年10月29日」は元記事内に存在しない日付（または未来の日付）の創作。"
-      ],
-      "score": 85,
-      "source": "aws-japan-blog",
-      "title": "AMOREPACIFIC が Kiro でレガシー SAP ECC に AI 駆動開発を導入した方法"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:35:13.489368+00:00",
-      "attempt": 1,
-      "id": "41b6d223bb026d8a",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1982字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "title の長さが不適切（66字 / 18〜64字）"
-      ],
-      "readability": {
-        "avg_paragraph": 119.4,
-        "avg_sentence": 57.6,
-        "long_share": 0.483,
-        "max_paragraph": 185,
-        "paragraphs": 14,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "google-cloud-blog-ja",
-      "title": "Gemini エージェントがスタートアップにもたらすメリット"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T19:35:24.974543+00:00",
@@ -15352,6 +15153,276 @@
       "score": 100,
       "source": "playstation-blog-jp",
       "title": "「PlayStation® Partner Awards 2026 Japan Asia」12月3日開催決定！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:21:48.313866+00:00",
+      "attempt": 1,
+      "id": "aa702b033bfda9cd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2123字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 168.1,
+        "avg_sentence": 64.7,
+        "long_share": 0.615,
+        "max_paragraph": 355,
+        "paragraphs": 10,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "Lend and borrow resources across teams with AWS Batch’s quota management for Sag"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:22:36.018827+00:00",
+      "attempt": 2,
+      "id": "aa702b033bfda9cd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 85.7,
+        "avg_sentence": 59.5,
+        "long_share": 0.556,
+        "max_paragraph": 213,
+        "paragraphs": 25,
+        "sentences": 36
+      },
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "Lend and borrow resources across teams with AWS Batch’s quota management for Sag"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:23:04.813648+00:00",
+      "attempt": 1,
+      "id": "287490af4d6d8d6e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1415字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（348字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 127.9,
+        "avg_sentence": 45.7,
+        "long_share": 0.179,
+        "max_paragraph": 182,
+        "paragraphs": 10,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "caa",
+      "title": "食品、添加物等の規格基準の一部を改正する告示について(カスガマイシン等)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:23:23.709059+00:00",
+      "attempt": 2,
+      "id": "287490af4d6d8d6e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1009字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 132.3,
+        "avg_sentence": 48.7,
+        "long_share": 0.158,
+        "max_paragraph": 152,
+        "paragraphs": 7,
+        "sentences": 19
+      },
+      "score": null,
+      "source": "caa",
+      "title": "食品、添加物等の規格基準の一部を改正する告示について(カスガマイシン等)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:25:00.206060+00:00",
+      "attempt": 1,
+      "id": "d4ecbbd246c68d79",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1351字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 122.3,
+        "avg_sentence": 55.6,
+        "long_share": 0.273,
+        "max_paragraph": 168,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "jfa",
+      "title": "ストルツメディカル・ジャパン株式会社とJFAサポーター契約を締結 ～選手のコンディショニングと傷害予防を支えるメディカルサポートを強化～ #jfa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:25:39.690736+00:00",
+      "attempt": 2,
+      "id": "d4ecbbd246c68d79",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 70.7字・60字超の文が 65% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 180.6字・最長 277字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 180.6,
+        "avg_sentence": 70.7,
+        "long_share": 0.652,
+        "max_paragraph": 277,
+        "paragraphs": 9,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "jfa",
+      "title": "ストルツメディカル・ジャパン株式会社とJFAサポーター契約を締結 ～選手のコンディショニングと傷害予防を支えるメディカルサポートを強化～ #jfa"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T17:26:15.964977+00:00",
+      "attempt": 0,
+      "id": "d4ecbbd246c68d79",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（70.7→70.6字）"
+      ],
+      "readability": {
+        "avg_paragraph": 180.6,
+        "avg_sentence": 70.7,
+        "long_share": 0.652,
+        "max_paragraph": 277,
+        "paragraphs": 9,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "jfa",
+      "title": "ストルツメディカル・ジャパン株式会社とJFAサポーター契約を締結 ～選手のコンディショニングと傷害予防を支えるメディカルサポートを強化～ #jfa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:27:36.295967+00:00",
+      "attempt": 1,
+      "id": "6cf6502bdfb52e40",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1831字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 99.8,
+        "avg_sentence": 51.7,
+        "long_share": 0.37,
+        "max_paragraph": 177,
+        "paragraphs": 14,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "re:Invent 2026 クラウドと AI の支出管理 ガイド: 参加前に押さえておきたいポイント"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:28:16.642667+00:00",
+      "attempt": 2,
+      "id": "6cf6502bdfb52e40",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（384字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 116.3,
+        "avg_sentence": 68.9,
+        "long_share": 0.667,
+        "max_paragraph": 219,
+        "paragraphs": 16,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "re:Invent 2026 クラウドと AI の支出管理 ガイド: 参加前に押さえておきたいポイント"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:28:32.833194+00:00",
+      "attempt": 1,
+      "id": "3dcfe747ba6ccec0",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2372字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 133.9,
+        "avg_sentence": 61.4,
+        "long_share": 0.625,
+        "max_paragraph": 238,
+        "paragraphs": 11,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "How MoEngage turned over 400 APIs into agent tools with AgentCore Gateway"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T17:29:25.040098+00:00",
+      "attempt": 1,
+      "id": "3dcfe747ba6ccec0",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 64.3字・60字超の文が 64% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 146.2字・最長 286字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 146.2,
+        "avg_sentence": 64.3,
+        "long_share": 0.64,
+        "max_paragraph": 286,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "How MoEngage turned over 400 APIs into agent tools with AgentCore Gateway"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T17:29:43.224687+00:00",
+      "attempt": 0,
+      "id": "3dcfe747ba6ccec0",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（64.3→64.2字）"
+      ],
+      "readability": {
+        "avg_paragraph": 146.2,
+        "avg_sentence": 64.3,
+        "long_share": 0.64,
+        "max_paragraph": 286,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "How MoEngage turned over 400 APIs into agent tools with AgentCore Gateway"
     }
   ],
   "short_text_retry": {
