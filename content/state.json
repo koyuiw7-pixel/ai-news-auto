@@ -4773,6 +4773,13 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/news/r8/shouken/20261027/20261027.html"
     },
+    "58efe63b0e288aad": {
+      "at": "2026-10-29T01:21:20.297921+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: Nintendo Switch 2 → 元記事には「Nintendo Switch 2 Indie World」という表記はあるものの、対象機種が「Nintendo Switch 2」であるとは明記されていない。",
+      "skipped": true,
+      "url": "https://www.nintendo.com/jp/topics/article/3f2dcaf9-b6bf-40a2-8335-ddbb6108397e"
+    },
     "5903aa4c766455af": {
       "at": "2026-10-27T20:41:56.129434+00:00",
       "reason": "followup: 新しい事実なし（ntt-docomo-kumamoto-earthquake-volunteer）",
@@ -5094,6 +5101,14 @@
       "reason": "quality: 本文が短い（2387字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/aws-named-a-leader-in-the-2026-gartner-magic-quadrant-for-contact-center-as-a-service/"
+    },
+    "68c01e18210096fb": {
+      "at": "2026-10-29T01:21:42.486077+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "tokyo-winter-air-pollution-control-2026",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102814"
     },
     "68ec9b8f34fdcb17": {
       "at": "2026-10-27T01:51:46.347603+00:00",
@@ -8124,129 +8139,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:05:30.332116+00:00",
-      "attempt": 1,
-      "id": "b7dc23ae3cdc5826",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "「従来は、場面を変えたければ作り直す必要がある作業でした」→ 元記事に従来手法についての記述はなく、根拠のない比較・断定。",
-        "「扉を開けたあとに部屋の様子が急に変わってしまっては…そうした破綻を防ぐ仕組みを、Geminiの推論力で支えている」→ 扉の例や破綻防止の具体的な仕組みは元記事に無い創作的な説明。",
-        "「雨を降らせれば雨音がする。人を登場させれば会話ができる。そんな体験が、ひとつのモデルで完結します」→ 元記事に無い具体的な動作の断定で、実用化済みのように読める。",
-        "「無声映画に、リアルタイムで音をつけてくれる係がいるようなものです」→ 元記事に無い比喩で、音声生成の仕組みを不正確に説明している恐れ。",
-        "「ゲームや映画を作る人…にとって、ありがたい道具になりそうです」「地味にすごいんです」→ 元記事に無い効果の評価・推測。",
-        "「絵や動画をただ作るのではなく、中に入って動かせる世界を作る」「動画生成AIは、一度作った映像を見るものが中心」→ 元記事に無い他技術との比較や機能の断定（「中に入って」等）。"
-      ],
-      "readability": {
-        "avg_paragraph": 63.5,
-        "avg_sentence": 32.2,
-        "long_share": 0.013,
-        "max_paragraph": 117,
-        "paragraphs": 40,
-        "sentences": 79
-      },
-      "score": 72,
-      "source": "google-ai-blog",
-      "title": "We’re announcing Genie 4, our new world model for real-time interactive simulati"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T01:06:40.222349+00:00",
-      "attempt": 2,
-      "id": "b7dc23ae3cdc5826",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 57.4,
-        "avg_sentence": 32.8,
-        "long_share": 0.048,
-        "max_paragraph": 143,
-        "paragraphs": 36,
-        "sentences": 63
-      },
-      "score": 88,
-      "source": "google-ai-blog",
-      "title": "We’re announcing Genie 4, our new world model for real-time interactive simulati"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:10:49.800915+00:00",
-      "attempt": 1,
-      "id": "edf59637f599d673",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "リード・本文の「10月26日」→ 元記事は「Today」とあるだけで具体的な日付の記載がなく、日付を創作している。",
-        "判定の「提供状況=soon」→ 株の売り出しや上場時期は元記事で未定であり、「近日提供」と読める表現は言い過ぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 58.5,
-        "avg_sentence": 30.9,
-        "long_share": 0.028,
-        "max_paragraph": 139,
-        "paragraphs": 38,
-        "sentences": 72
-      },
-      "score": 70,
-      "source": "anthropic-news",
-      "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:12:17.641009+00:00",
-      "attempt": 2,
-      "id": "edf59637f599d673",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "「米証券取引所委員会（SEC）」「アメリカの証券取引所委員会」→ SECは証券取引委員会で、元記事はU.S. Securities and Exchange Commissionであり表記が不正確。",
-        "「用意ができたら主幹事の証券会社から受け取れます」（かんたん版）→ 元記事はGoldman SachsとMorgan Stanleyを目論見書の入手先とするのみで、主幹事（引受幹事）とは書いていない。本文の編集部注では役割は読み取れないとしており自己矛盾もある。",
-        "「Goldman Sachsの連絡先は、ニューヨークの住所、電話、メールで示されています」→ 元記事ではMorgan Stanleyにも住所があり、Morgan Stanleyの連絡先が電話・メールなしである点は正確だが、「Goldmanのみ」と読める書き方は不完全。",
-        "「判定: 提供状況=limited」→ 元記事にその区分の根拠はなく、売買できない未実施の段階を示す表現として不正確（実際は未提供）。",
-        "「で、結局いつ何が起きたの？」「発表当日」→ 元記事は『Today』とあるのみで、Anthropic公式ニュースの発表とは書かれていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 50.6,
-        "avg_sentence": 30.6,
-        "long_share": 0.025,
-        "max_paragraph": 131,
-        "paragraphs": 49,
-        "sentences": 81
-      },
-      "score": 80,
-      "source": "anthropic-news",
-      "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T01:13:28.215518+00:00",
-      "attempt": 3,
-      "id": "edf59637f599d673",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "位置づけとしては…「会社の資金調達と上場に関わる手続きの開始」→ 元記事に資金調達の記載はなく、言い過ぎ。",
-        "「これまでのAnthropicは、株式を一般向けに公開していない会社でした」→ 元記事に明記がなく、編集部注の外で断定している。",
-        "「元記事は、特定の州や地域で法律に反する場合は、売りや勧誘を行わない」→ 元記事は「州または管轄区域」での登録・資格取得前の売却を述べており、「地域」とやや拡張した言い換え。",
-        "「予備的な目論見書は…次の2社から受け取れる」→ 元記事は入手先として挙げただけで、「Goldman SachsまたはMorgan Stanleyから受け取れる形」は断定的。",
-        "判定「提供状況=demo」→ 株式は未発行・未発効で、提供状況の分類として根拠がなく不適切。",
-        "「（編集部注）…Googleはその例です。一方、OpenAIのように、AI開発を専業とする会社」→ 他社の位置づけは元記事になく、OpenAIが専業かどうかなど未確認の主張を含む。"
-      ],
-      "readability": {
-        "avg_paragraph": 53.0,
-        "avg_sentence": 31.2,
-        "long_share": 0.035,
-        "max_paragraph": 119,
-        "paragraphs": 50,
-        "sentences": 85
-      },
-      "score": 82,
-      "source": "anthropic-news",
-      "title": "Anthropic files S-1 with the SEC for proposed initial public offering"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T01:31:28.961232+00:00",
@@ -14729,6 +14621,119 @@
       "score": 100,
       "source": "soumu",
       "title": "藤井総務大臣閣議後記者会見の概要"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T01:21:13.136331+00:00",
+      "attempt": 1,
+      "id": "58efe63b0e288aad",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（334字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 185.0,
+        "avg_sentence": 56.9,
+        "long_share": 0.308,
+        "max_paragraph": 292,
+        "paragraphs": 8,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "nintendo-topics",
+      "title": "「Hello! インディー」1ターンで勝負が決まる『One Turn Kill』"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T01:21:20.297870+00:00",
+      "attempt": 2,
+      "id": "58efe63b0e288aad",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "Nintendo Switch 2 → 元記事には「Nintendo Switch 2 Indie World」という表記はあるものの、対象機種が「Nintendo Switch 2」であるとは明記されていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 180.9,
+        "avg_sentence": 60.3,
+        "long_share": 0.458,
+        "max_paragraph": 234,
+        "paragraphs": 8,
+        "sentences": 24
+      },
+      "score": 85,
+      "source": "nintendo-topics",
+      "title": "「Hello! インディー」1ターンで勝負が決まる『One Turn Kill』"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T01:21:27.436069+00:00",
+      "attempt": 1,
+      "id": "68c01e18210096fb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1765字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（388字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 132.5,
+        "avg_sentence": 54.0,
+        "long_share": 0.444,
+        "max_paragraph": 243,
+        "paragraphs": 11,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "11月から1月は「冬季大気汚染対策」推進期間です！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T01:21:37.002286+00:00",
+      "attempt": 2,
+      "id": "68c01e18210096fb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 62.8字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 182.0字・最長 266字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 182.0,
+        "avg_sentence": 62.8,
+        "long_share": 0.517,
+        "max_paragraph": 266,
+        "paragraphs": 10,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "tokyo-metro",
+      "title": "11月から1月は「冬季大気汚染対策」推進期間です！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T01:21:42.485658+00:00",
+      "attempt": 0,
+      "id": "68c01e18210096fb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 45.7字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 107.6,
+        "avg_sentence": 45.7,
+        "long_share": 0.15,
+        "max_paragraph": 180,
+        "paragraphs": 17,
+        "sentences": 40
+      },
+      "score": 100,
+      "source": "tokyo-metro",
+      "title": "11月から1月は「冬季大気汚染対策」推進期間です！"
     }
   ],
   "short_text_retry": {
