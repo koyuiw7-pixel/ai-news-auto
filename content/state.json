@@ -5927,6 +5927,12 @@
       "slug": "shiharai-kikin-reorganization-medical-dx",
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87173?site=nli"
     },
+    "8e811dafcc2d0858": {
+      "at": "2026-10-29T03:01:46.246225+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（説明会）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/saiyou/sougoujimu/setumei/1421199_00009.htm"
+    },
     "8ed93bec790144d5": {
       "at": "2026-10-26T18:18:23.045318+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6757,6 +6763,13 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102810"
     },
+    "b776005e8a875d75": {
+      "at": "2026-10-29T03:01:46.246178+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1949字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://nttsportict.co.jp/topics/20261029_saitamastadium/"
+    },
     "b78ac8a961aced77": {
       "at": "2026-10-28T19:12:53.361982+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -7453,6 +7466,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000057.000117353.html"
     },
+    "da69831ef2855322": {
+      "at": "2026-10-29T03:02:01.573086+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1605字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（373字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102809"
+    },
     "da9d70b3b843edb8": {
       "at": "2026-10-28T23:12:20.999690+00:00",
       "reason": "dedupe: 見出しが類似（0.81）: 令和8年（5月～9月）の熱中症による救急搬送状況",
@@ -7825,6 +7845,14 @@
       "section": "ai",
       "slug": "anthropic-s1-sec-ipo-filing",
       "url": "https://www.anthropic.com/news/s1-sec"
+    },
+    "ee1d539e25c1f8b4": {
+      "at": "2026-10-29T03:02:15.065690+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "acnh-zelda-collaboration-mydesign-2026",
+      "url": "https://www.nintendo.com/jp/topics/article/72628ca2-91a6-42e6-8041-82df388b3f0c"
     },
     "ee28ccb62e546dc6": {
       "at": "2026-10-27T21:01:42.608618+00:00",
@@ -8201,135 +8229,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-28T02:40:17.550010+00:00",
-      "attempt": 1,
-      "id": "81b193a67be7f973",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 61.4,
-        "avg_sentence": 32.2,
-        "long_share": 0.032,
-        "max_paragraph": 178,
-        "paragraphs": 33,
-        "sentences": 63
-      },
-      "score": 92,
-      "source": "radar-itmedia.co.jp",
-      "title": "Discord、公開サーバの会話をGoogle検索などの対象に プライバシーへの懸念も"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T03:01:34.869380+00:00",
-      "attempt": 1,
-      "id": "95e7279c4133d4f8",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2418字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 141.9,
-        "avg_sentence": 70.9,
-        "long_share": 0.643,
-        "max_paragraph": 262,
-        "paragraphs": 14,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "ntt-news-ai",
-      "title": "AIで顧客接点を高度化する「docomo business ANCAR(R)」、AIエージェント、マーケティングの新機能を追加"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T03:01:47.200940+00:00",
-      "attempt": 2,
-      "id": "95e7279c4133d4f8",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2085字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 124.3,
-        "avg_sentence": 51.2,
-        "long_share": 0.206,
-        "max_paragraph": 232,
-        "paragraphs": 14,
-        "sentences": 34
-      },
-      "score": null,
-      "source": "ntt-news-ai",
-      "title": "AIで顧客接点を高度化する「docomo business ANCAR(R)」、AIエージェント、マーケティングの新機能を追加"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T03:02:00.285515+00:00",
-      "attempt": 2,
-      "id": "95e7279c4133d4f8",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 49.5字・60字超の文が 16% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 159.0字・最長 232字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 159.0,
-        "avg_sentence": 49.5,
-        "long_share": 0.156,
-        "max_paragraph": 232,
-        "paragraphs": 14,
-        "sentences": 45
-      },
-      "score": 100,
-      "source": "ntt-news-ai",
-      "title": "AIで顧客接点を高度化する「docomo business ANCAR(R)」、AIエージェント、マーケティングの新機能を追加"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T03:02:05.151543+00:00",
-      "attempt": 0,
-      "id": "95e7279c4133d4f8",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 79.5,
-        "avg_sentence": 44.7,
-        "long_share": 0.083,
-        "max_paragraph": 128,
-        "paragraphs": 27,
-        "sentences": 48
-      },
-      "score": 100,
-      "source": "ntt-news-ai",
-      "title": "AIで顧客接点を高度化する「docomo business ANCAR(R)」、AIエージェント、マーケティングの新機能を追加"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T03:02:14.756178+00:00",
-      "attempt": 1,
-      "id": "e6b690b26d8be60c",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "訳されていない英文が残っている（「fruitless is essential for male Aedes ae…」）"
-      ],
-      "readability": {
-        "avg_paragraph": 152.4,
-        "avg_sentence": 54.1,
-        "long_share": 0.323,
-        "max_paragraph": 234,
-        "paragraphs": 11,
-        "sentences": 31
-      },
-      "score": null,
-      "source": "jst",
-      "title": "蚊のオスが「メスの羽音」に惹かれる理由を解明～行動の性差を生む遺伝子fruitlessがオスの耳をつくる～"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T03:02:21.036806+00:00",
@@ -14775,6 +14674,138 @@
       "score": 100,
       "source": "hiroshima-u",
       "title": "【研究成果】AI活用で訪問看護師の精神的負担が低減 ～診療ガイドライン学習AIを用いた比較実験で検証～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:01:31.918625+00:00",
+      "attempt": 1,
+      "id": "b776005e8a875d75",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2117字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 59.0,
+        "avg_sentence": 59.0,
+        "long_share": 0.379,
+        "max_paragraph": 115,
+        "paragraphs": 29,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "ntt-news-ai",
+      "title": "埼玉スタジアム2〇〇2公園 第4グラウンドにて、スポーツ専用AIカメラを活用した「STADIUM TUBE らくらく撮影」および「動画配信・販売サービス」を本格"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:01:42.962472+00:00",
+      "attempt": 2,
+      "id": "b776005e8a875d75",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1949字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 102.6,
+        "avg_sentence": 59.8,
+        "long_share": 0.417,
+        "max_paragraph": 205,
+        "paragraphs": 14,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "ntt-news-ai",
+      "title": "埼玉スタジアム2〇〇2公園 第4グラウンドにて、スポーツ専用AIカメラを活用した「STADIUM TUBE らくらく撮影」および「動画配信・販売サービス」を本格"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:01:55.531137+00:00",
+      "attempt": 1,
+      "id": "da69831ef2855322",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1398字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 115.5,
+        "avg_sentence": 48.1,
+        "long_share": 0.208,
+        "max_paragraph": 187,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "一般都道250号あきる野羽村線（草花大橋）開通による効果"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:02:01.573045+00:00",
+      "attempt": 2,
+      "id": "da69831ef2855322",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1605字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（373字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 102.9,
+        "avg_sentence": 51.5,
+        "long_share": 0.083,
+        "max_paragraph": 216,
+        "paragraphs": 12,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "一般都道250号あきる野羽村線（草花大橋）開通による効果"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T03:02:10.886081+00:00",
+      "attempt": 1,
+      "id": "ee1d539e25c1f8b4",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 56.4字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 92.6,
+        "avg_sentence": 56.4,
+        "long_share": 0.522,
+        "max_paragraph": 150,
+        "paragraphs": 14,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "nintendo-topics",
+      "title": "『あつまれ どうぶつの森』で「ゼルダの伝説」のマイデザインを配布中。"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T03:02:15.065273+00:00",
+      "attempt": 0,
+      "id": "ee1d539e25c1f8b4",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 96.0,
+        "avg_sentence": 36.3,
+        "long_share": 0.081,
+        "max_paragraph": 161,
+        "paragraphs": 14,
+        "sentences": 37
+      },
+      "score": 100,
+      "source": "nintendo-topics",
+      "title": "『あつまれ どうぶつの森』で「ゼルダの伝説」のマイデザインを配布中。"
     }
   ],
   "short_text_retry": {
