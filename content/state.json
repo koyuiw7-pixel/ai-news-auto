@@ -4763,6 +4763,13 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/announce/20261026-2/index.html"
     },
+    "4709068104f929f7": {
+      "at": "2026-10-29T19:32:12.094069+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1651字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（376字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102912"
+    },
     "47097ee488013dee": {
       "at": "2026-10-28T19:13:25.608302+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5703,6 +5710,14 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/recruit/r8/shiho-01/shiho-01.html"
     },
+    "6e237ee9ceca83f2": {
+      "at": "2026-10-29T19:32:38.738633+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "tokyo-elderly-living-survey-2025",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102916"
+    },
     "6e407509f5de8aa8": {
       "at": "2026-10-29T18:35:07.396129+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6516,6 +6531,13 @@
       "reason": "quality: AWS Machine Learning Blogによると、2026年10月27日に「Fleet-wide computer vision lifecycle at the edge with SageMaker SDK v3」と題した記事が公開されました。 → 元記事には2026年10月27日という具体的な日付の記載がない。",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/fleet-wide-computer-vision-lifecycle-at-the-edge-with-sagemaker-sdk-v3/"
+    },
+    "8eef8a1c6a51e974": {
+      "at": "2026-10-29T19:31:56.276613+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（334字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.microsoft.com/en-us/research/podcast/microsoft-research-focus-edition-97/"
     },
     "8f2f08b6e197805b": {
       "at": "2026-10-27T16:11:16.648053+00:00",
@@ -8752,6 +8774,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000054.000060051.html"
     },
+    "ef6b9dae255757d6": {
+      "at": "2026-10-29T19:32:12.803294+00:00",
+      "reason": "dedupe: 固有名詞＋見出しが類似（model / 0.32）: openai-frontier-model-misalignment-monit",
+      "skipped": true,
+      "url": "https://www.figma.com/blog/training-a-figma-fluent-editing-model/"
+    },
     "efafd44f677cc4cf": {
       "at": "2026-10-27T19:55:26.315163+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -9193,164 +9221,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:55:41.950414+00:00",
-      "attempt": 1,
-      "id": "f43e4e245bb43bd0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1682字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 154.9,
-        "avg_sentence": 43.6,
-        "long_share": 0.156,
-        "max_paragraph": 219,
-        "paragraphs": 9,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "suntory",
-      "title": "次世代太陽電池を搭載した自動販売機の実証実験を完了 約45％の省エネルギー・GHG排出量削減効果を確認"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:55:51.180728+00:00",
-      "attempt": 2,
-      "id": "f43e4e245bb43bd0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1638字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 146.8,
-        "avg_sentence": 53.4,
-        "long_share": 0.364,
-        "max_paragraph": 254,
-        "paragraphs": 8,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "suntory",
-      "title": "次世代太陽電池を搭載した自動販売機の実証実験を完了 約45％の省エネルギー・GHG排出量削減効果を確認"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:56:02.096531+00:00",
-      "attempt": 1,
-      "id": "721a7217e1f0447f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "title / seo_title に感嘆符がある"
-      ],
-      "readability": {
-        "avg_paragraph": 130.9,
-        "avg_sentence": 55.4,
-        "long_share": 0.423,
-        "max_paragraph": 279,
-        "paragraphs": 11,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "cyberagent",
-      "title": "劇場アニメーション『魔法使いの夜』公開記念 ABEMAにTYPE-MOON×ufotable作品の専門チャンネルを初開設"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T21:56:11.663071+00:00",
-      "attempt": 2,
-      "id": "721a7217e1f0447f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 60.7字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 208.1字・最長 308字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 208.1,
-        "avg_sentence": 60.7,
-        "long_share": 0.417,
-        "max_paragraph": 308,
-        "paragraphs": 7,
-        "sentences": 24
-      },
-      "score": 100,
-      "source": "cyberagent",
-      "title": "劇場アニメーション『魔法使いの夜』公開記念 ABEMAにTYPE-MOON×ufotable作品の専門チャンネルを初開設"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T21:56:16.478376+00:00",
-      "attempt": 0,
-      "id": "721a7217e1f0447f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 49.3字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 211.4字・最長 313字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 211.4,
-        "avg_sentence": 49.3,
-        "long_share": 0.2,
-        "max_paragraph": 313,
-        "paragraphs": 7,
-        "sentences": 30
-      },
-      "score": 100,
-      "source": "cyberagent",
-      "title": "劇場アニメーション『魔法使いの夜』公開記念 ABEMAにTYPE-MOON×ufotable作品の専門チャンネルを初開設"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:11:37.510157+00:00",
-      "attempt": 1,
-      "id": "9d2ad546f53b8456",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1815字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 157.8,
-        "avg_sentence": 59.2,
-        "long_share": 0.5,
-        "max_paragraph": 403,
-        "paragraphs": 9,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "google-cloud-blog-ja",
-      "title": "Google Antigravity で Claude Opus 5.5 と Claude Sonnet 5.5 が利用可能に"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:11:46.741958+00:00",
-      "attempt": 2,
-      "id": "9d2ad546f53b8456",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1980字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（355字 / 基準 400字以上）",
-        "title の長さが不適切（78字 / 18〜64字）"
-      ],
-      "readability": {
-        "avg_paragraph": 112.6,
-        "avg_sentence": 65.7,
-        "long_share": 0.542,
-        "max_paragraph": 227,
-        "paragraphs": 14,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "google-cloud-blog-ja",
-      "title": "Google Antigravity で Claude Opus 5.5 と Claude Sonnet 5.5 が利用可能に"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T22:11:54.414052+00:00",
@@ -15904,12 +15774,172 @@
       "score": 100,
       "source": "tokyo-metro",
       "title": "糖尿病への正しい理解の輪を広げよう！11月14日は「World Diabetes Day（ワールド ダイアベティス デイ）」（世界糖尿病デー）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T19:31:45.029351+00:00",
+      "attempt": 1,
+      "id": "8eef8a1c6a51e974",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2265字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（254字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 107.6,
+        "avg_sentence": 57.4,
+        "long_share": 0.333,
+        "max_paragraph": 162,
+        "paragraphs": 16,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "microsoft-research-blog",
+      "title": "Microsoft Research Focus – Edition #97"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T19:31:56.276570+00:00",
+      "attempt": 2,
+      "id": "8eef8a1c6a51e974",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（334字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 148.6,
+        "avg_sentence": 64.8,
+        "long_share": 0.641,
+        "max_paragraph": 221,
+        "paragraphs": 17,
+        "sentences": 39
+      },
+      "score": null,
+      "source": "microsoft-research-blog",
+      "title": "Microsoft Research Focus – Edition #97"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T19:32:03.224054+00:00",
+      "attempt": 1,
+      "id": "4709068104f929f7",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1775字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（331字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 153.4,
+        "avg_sentence": 53.1,
+        "long_share": 0.308,
+        "max_paragraph": 261,
+        "paragraphs": 9,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "都政課題の解決に向けたスタートアップピッチイベント UPGRADE with TOKYO 第63回開催決定！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T19:32:12.094030+00:00",
+      "attempt": 2,
+      "id": "4709068104f929f7",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1651字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（376字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 134.1,
+        "avg_sentence": 50.3,
+        "long_share": 0.333,
+        "max_paragraph": 188,
+        "paragraphs": 9,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "都政課題の解決に向けたスタートアップピッチイベント UPGRADE with TOKYO 第63回開催決定！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T19:32:20.096412+00:00",
+      "attempt": 1,
+      "id": "6e237ee9ceca83f2",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1755字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（341字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 161.0,
+        "avg_sentence": 50.0,
+        "long_share": 0.207,
+        "max_paragraph": 225,
+        "paragraphs": 9,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "「高齢者の生活実態」の結果 令和7年度東京都福祉保健基礎調査"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T19:32:31.407851+00:00",
+      "attempt": 2,
+      "id": "6e237ee9ceca83f2",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 46.8字・60字超の文が 19% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 216.5字・最長 294字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 216.5,
+        "avg_sentence": 46.8,
+        "long_share": 0.189,
+        "max_paragraph": 294,
+        "paragraphs": 8,
+        "sentences": 37
+      },
+      "score": 100,
+      "source": "tokyo-metro",
+      "title": "「高齢者の生活実態」の結果 令和7年度東京都福祉保健基礎調査"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T19:32:38.738158+00:00",
+      "attempt": 0,
+      "id": "6e237ee9ceca83f2",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 171.2字・最長 293字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 171.2,
+        "avg_sentence": 34.2,
+        "long_share": 0.04,
+        "max_paragraph": 293,
+        "paragraphs": 10,
+        "sentences": 50
+      },
+      "score": 100,
+      "source": "tokyo-metro",
+      "title": "「高齢者の生活実態」の結果 令和7年度東京都福祉保健基礎調査"
     }
   ],
   "short_text_retry": {
     "1a1d4bf2fc111eb8": "2026-10-26T22:01:15.183025+00:00",
     "250e5d8f302445e7": "2026-10-26T22:40:58.175082+00:00",
-    "8f2f08b6e197805b": "2026-10-26T19:21:22.163807+00:00",
     "f16aefe89a6e3f3b": "2026-10-26T22:01:24.342392+00:00"
   }
 }
