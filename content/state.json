@@ -7929,6 +7929,14 @@
       "slug": "ntt-tx-foresight-voice-mining-ai-navigation",
       "url": "https://www.ntt-tx.co.jp/whatsnew/2026/261029.html"
     },
+    "c9b79da91c9b9309": {
+      "at": "2026-10-29T23:31:48.700986+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "mhlw-job-openings-september-2026",
+      "url": "https://www.mhlw.go.jp/stf/newpage_76960.html"
+    },
     "c9c03a759210419f": {
       "at": "2026-10-27T16:12:57.596609+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9264,48 +9272,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:13:15.045405+00:00",
-      "attempt": 2,
-      "id": "d33ed333d0ff410b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 57.4字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 110.5,
-        "avg_sentence": 57.4,
-        "long_share": 0.28,
-        "max_paragraph": 188,
-        "paragraphs": 13,
-        "sentences": 25
-      },
-      "score": 100,
-      "source": "ntt-news",
-      "title": "デジタルと伝統を生かしたまちづくりを進める山形県長井市を舞台に、企業向け「越境研修」を共同開発 〜地域の実課題への挑戦と行動評価を通じ、次世代リーダーを育成〜"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T22:13:18.674520+00:00",
-      "attempt": 0,
-      "id": "d33ed333d0ff410b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 110.4,
-        "avg_sentence": 38.8,
-        "long_share": 0.081,
-        "max_paragraph": 192,
-        "paragraphs": 13,
-        "sentences": 37
-      },
-      "score": 100,
-      "source": "ntt-news",
-      "title": "デジタルと伝統を生かしたまちづくりを進める山形県長井市を舞台に、企業向け「越境研修」を共同開発 〜地域の実課題への挑戦と行動評価を通じ、次世代リーダーを育成〜"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T22:30:36.797710+00:00",
@@ -15977,6 +15943,49 @@
       "score": 100,
       "source": "aws-ml-blog",
       "title": "How the UK Amazon Quick User Group grew in 2026"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T23:31:44.684755+00:00",
+      "attempt": 1,
+      "id": "c9b79da91c9b9309",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 53.2字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 171.6字・最長 241字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 171.6,
+        "avg_sentence": 53.2,
+        "long_share": 0.241,
+        "max_paragraph": 241,
+        "paragraphs": 9,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "一般職業紹介状況(令和8年9月分)について"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T23:31:48.700585+00:00",
+      "attempt": 0,
+      "id": "c9b79da91c9b9309",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 105.4,
+        "avg_sentence": 32.1,
+        "long_share": 0.0,
+        "max_paragraph": 162,
+        "paragraphs": 14,
+        "sentences": 46
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "一般職業紹介状況(令和8年9月分)について"
     }
   ],
   "short_text_retry": {}
