@@ -4801,6 +4801,12 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/houdou/2024/mext_00011.html"
     },
+    "56ba5261efb5221e": {
+      "at": "2026-10-29T04:31:38.854871+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ブース）",
+      "skipped": true,
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1215_4788.html"
+    },
     "57626b3cad5444ca": {
       "at": "2026-10-26T23:21:40.235044+00:00",
       "reason": "dedupe: 固有名詞が一致（ai-bpo・ゴムマリ）: ゴムマリの専門業務AI-BPO、『苦情・VoC・クレームのデータベース化』を提供",
@@ -4814,6 +4820,13 @@
       "section": "sports",
       "slug": "lucent-cup-tokyo-indoor-2027",
       "url": "https://www.dreamnews.jp/press/0000366359"
+    },
+    "5886c5f29f0241fb": {
+      "at": "2026-10-29T04:31:38.854810+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1614字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102707"
     },
     "589231a9efbec26b": {
       "at": "2026-10-28T19:13:45.185026+00:00",
@@ -7908,6 +7921,12 @@
       "skipped": true,
       "url": "https://openai.com/index/fanatics-streamline-fan-experience"
     },
+    "ebee271797294dcb": {
+      "at": "2026-10-29T04:31:23.344370+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/singi/chizai/02zaisei02_04001397_00975.html"
+    },
     "ec24eda5b910db29": {
       "at": "2026-10-28T21:55:28.165134+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（協賛）",
@@ -8022,6 +8041,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（講座）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000045.000061037.html"
+    },
+    "f0974527a57e05ee": {
+      "at": "2026-10-29T04:36:16.971171+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "tokyo-waste-management-dx-tool",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102711"
     },
     "f13bf850a6274660": {
       "at": "2026-10-27T02:31:09.461045+00:00",
@@ -8353,113 +8380,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T15:06:18.411104+00:00",
-      "attempt": 1,
-      "id": "8680d800c55fcf4a4471ad82d47e6d61b87c0911",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1700字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "title / seo_title に感嘆符がある"
-      ],
-      "readability": {
-        "avg_paragraph": 91.7,
-        "avg_sentence": 55.0,
-        "long_share": 0.4,
-        "max_paragraph": 131,
-        "paragraphs": 15,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "trends",
-      "title": "桐谷さん"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T15:06:35.113748+00:00",
-      "attempt": 2,
-      "id": "8680d800c55fcf4a4471ad82d47e6d61b87c0911",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1359字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 179.3,
-        "avg_sentence": 54.6,
-        "long_share": 0.391,
-        "max_paragraph": 302,
-        "paragraphs": 7,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "trends",
-      "title": "桐谷さん"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T15:07:00.979231+00:00",
-      "attempt": 1,
-      "id": "7f8195a895d8e8b800bd144de3744ccecb1cf778",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1104字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（391字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 121.2,
-        "avg_sentence": 53.9,
-        "long_share": 0.278,
-        "max_paragraph": 150,
-        "paragraphs": 8,
-        "sentences": 18
-      },
-      "score": null,
-      "source": "trends",
-      "title": "トーメンデバイス 株価"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T15:07:21.970497+00:00",
-      "attempt": 2,
-      "id": "7f8195a895d8e8b800bd144de3744ccecb1cf778",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（917字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（341字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 117.1,
-        "avg_sentence": 63.1,
-        "long_share": 0.538,
-        "max_paragraph": 150,
-        "paragraphs": 7,
-        "sentences": 13
-      },
-      "score": null,
-      "source": "trends",
-      "title": "トーメンデバイス 株価"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T15:08:12.635259+00:00",
-      "attempt": 1,
-      "id": "36eb3dda48d9ab1e",
-      "kind": "update",
-      "model": "claude:sonnet",
-      "problems": [
-        "要点「100社超のパートナーが参画」→ 元記事にも確認済みの文脈にも無い数値で、創作。",
-        "「価格や各社の具体的な機種名は、今回の発表では確認できていません」→ 元記事には「starting at $2,599」と価格が明記されており、記述が元記事と食い違う。"
-      ],
-      "score": 55,
-      "source": "nvidia-newsroom",
-      "title": "NVIDIA RTX Spark Windows Laptops Gain New Models, Agent Tools and Games"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T15:42:40.487012+00:00",
@@ -14973,6 +14893,119 @@
       "score": 100,
       "source": "kddi-news",
       "title": "自動運転の複数台運行を見守る、安定した映像伝送技術を実証"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T04:31:30.457599+00:00",
+      "attempt": 1,
+      "id": "5886c5f29f0241fb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1745字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（380字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 143.6,
+        "avg_sentence": 65.3,
+        "long_share": 0.455,
+        "max_paragraph": 254,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "シンガポール企業庁とイノベーション及びスタートアップの発展促進に関する覚書を締結しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T04:31:36.681148+00:00",
+      "attempt": 2,
+      "id": "5886c5f29f0241fb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1614字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 166.2,
+        "avg_sentence": 57.5,
+        "long_share": 0.346,
+        "max_paragraph": 317,
+        "paragraphs": 9,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "シンガポール企業庁とイノベーション及びスタートアップの発展促進に関する覚書を締結しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T04:31:47.505956+00:00",
+      "attempt": 1,
+      "id": "f0974527a57e05ee",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1758字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 164.7,
+        "avg_sentence": 54.9,
+        "long_share": 0.296,
+        "max_paragraph": 238,
+        "paragraphs": 9,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "都事業所のプラスチックリサイクル高度化に向けて廃棄物データ管理DXツールを導入します"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T04:35:59.425408+00:00",
+      "attempt": 1,
+      "id": "f0974527a57e05ee",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 51.2字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 199.1字・最長 289字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 199.1,
+        "avg_sentence": 51.2,
+        "long_share": 0.2,
+        "max_paragraph": 289,
+        "paragraphs": 9,
+        "sentences": 35
+      },
+      "score": 100,
+      "source": "tokyo-metro",
+      "title": "都事業所のプラスチックリサイクル高度化に向けて廃棄物データ管理DXツールを導入します"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T04:36:16.970780+00:00",
+      "attempt": 0,
+      "id": "f0974527a57e05ee",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「東京都は『ゼロエミッション都庁行動計画（2025年度～2030年度）』を策定しました」→元記事では「策定しました」ではなく、計画において目標を掲げているという記述であり、今回の発表で策定したわけではないため誤解を招く表現です。"
+      ],
+      "readability": {
+        "avg_paragraph": 199.1,
+        "avg_sentence": 51.2,
+        "long_share": 0.2,
+        "max_paragraph": 289,
+        "paragraphs": 9,
+        "sentences": 35
+      },
+      "score": 100,
+      "source": "tokyo-metro",
+      "title": "都事業所のプラスチックリサイクル高度化に向けて廃棄物データ管理DXツールを導入します"
     }
   ],
   "short_text_retry": {
