@@ -1,0 +1,122 @@
+# サイソクAIニュース 開発ガイド（AIアシスタント向け）
+
+このファイルは、ChatGPT / Codex / Claude などのAIが、このリポジトリで開発や補助をするときに最初に読む説明書です。
+オーナーはエンジニアではありません。**返事は日本語で、専門用語を避けて短く**伝えてください。
+
+---
+
+## 1. サイソクとは
+
+- **サイト**: https://ai-tech-express.jp （サイソクAIニュース）
+- **一言で**: 海外・国内のAIやテックの新発表を、**公式発表から最短数分で**日本語の記事にするニュースサイト。
+- **強み**: 「どこよりも最速」。速報が最優先。
+- **記事の特徴**: 結論→要点→「日本で使える？」「無料？」まで書く。専門用語なしの「かんたん版」と「専門家版」を切り替えられる。
+- **運営**: 個人（オーナー1人）。記事・速報・SNS投稿はほぼ全自動。
+
+## 2. 目標（数字）
+
+| 時期 | 月の収益 | 日本の訪問者（1日） |
+|---|---|---|
+| 2026/11/26 | 10万円（努力目標） | 2,500人 |
+| 2027/01/26 | **50万円（必達）** | 10,000人 |
+| 2027/04/26 | 100万円 | — |
+
+日々の数字は `.claude/metrics.json`（ローカルのみ）に記録している。
+
+## 3. 仕組みの全体像
+
+```
+公式発表・ニュース ──▶ 見張り番(Cloudflare Worker, 2分ごと) ──▶ GitHub Actions で記事生成(Python + LLM)
+                                                               │
+                                     品質チェック(読みやすさ・事実確認) ─┤
+                                                               ▼
+                         content/articles/*.json ──▶ Next.js をビルド ──▶ Cloudflare Workers で公開
+                                                               │
+                                       SNS自動投稿(Threads / X / Facebook / Bluesky) ・ プッシュ通知 ・ メルマガ
+```
+
+- **サイト本体**: Next.js 16（App Router）＋ OpenNext で **Cloudflare Workers**（worker名 `saisoku-site`）に載せている。Vercel はもう使っていない。
+- **記事を作る側**: `scripts/` の Python。GitHub Actions（`auto_run.yml`）が定期実行する。
+- **速報の見張り**: `ops/watchdog/`（別の Cloudflare Worker）。公式サイト65社以上を2〜30分ごとに見て、大きな発表があれば記事生成をすぐ起動する。地震・津波（気象庁）も見ている。
+- **公開**: main に push すると `deploy_cloudflare.yml` が自動でデプロイ（約3〜5分）。
+
+## 4. フォルダの地図
+
+| 場所 | 中身 |
+|---|---|
+| `app/` | ページ（トップ、記事、/news、/guides、/choose、/products、/ai-pricing など） |
+| `components/` | 画面の部品 |
+| `lib/` | 共通の処理（記事の読み込み、広告、インデックス判定など） |
+| `cloudflare/` | Worker 側の処理（プッシュ通知、クリック計測、画像配信など） |
+| `content/articles/` | 記事データ（1記事＝1つのJSON）。**ボットが毎日大量に更新する** |
+| `content/howto/` | 「使い方・料金」の解説記事データ |
+| `content/offers.json`, `content/affiliate_links.json` | 広告（A8・楽天・Amazon）の設定。`scripts/a8_import.py` で作り直す |
+| `scripts/` | 記事生成・品質チェック・画像・SNS投稿・計測などのPython |
+| `ops/watchdog/` | 速報の見張り番 Worker |
+| `state/` | 自動処理の記録（投稿履歴など）。ボットが更新する |
+| `docs/` | 文字の見やすさのルール（`typography.md`）、自動テストの決まり（`automation.md`）など |
+| `.github/workflows/` | 自動実行の設定 |
+
+## 5. 主な自動処理（GitHub Actions）
+
+| ワークフロー | 役割 |
+|---|---|
+| `auto_run.yml` | 記事の生成（通常＋速報）、画像付け、公開判定 |
+| `deploy_cloudflare.yml` | サイトの公開 |
+| `breaking_post.yml` | 速報のSNS即時投稿＋プッシュ通知 |
+| `sns_extra.yml` | 朝7:30のまとめ投稿、火・金の問いかけ投稿 |
+| `bluesky.yml` | Bluesky への投稿 |
+| `evergreen.yml` | 「使い方・料金」解説記事を1日4本 |
+| `missed_check.yml` | 毎朝8:30、取りこぼした大ニュースがないか確認 |
+| `newsletter.yml` | 毎朝7時のメルマガ |
+| `readability.yml` | 文字の見やすさの自動チェック |
+
+## 6. 大事なルール（必ず守る）
+
+### 中身
+- **事実だけを書く**。推測で数字や機能を作らない。出典は公式発表を優先し、確認日を書く。
+- **地震・津波の記事はAIに文章を書かせない**（気象庁のデータを型に入れるだけ）。推測・被害の記述は禁止。
+- 誇張した見出し・「戻れなくなる」等の根拠のない言い切りは禁止。
+
+### 見た目（オーナーの好み）
+- デザインは「報道ネイビー×速報レッド」（紺 `#1d4a8f` / 赤 `#c8221a` / 背景 `#f3f5f8` / 文字 `#0b1a33`）。
+- **嫌いなもの**: 地味すぎる見た目、ごちゃごちゃ、AIっぽいボタン（右上矢印「↗」など）、黄色いマーカー、Zen Kaku フォント、PR感の強い広告枠。
+- 広告は**ふつうのページと同じ見た目で自然に**。広告表記は小さな1行（法律上必要なので消さない）。
+- 文字の見やすさ: `npm run check:readability` が **0件** であること（`docs/typography.md`）。
+
+### 広告・計測
+- 広告リンクは `rel="sponsored nofollow noopener noreferrer"`。**リンク先（href）やA8の計測タグ自体は改変しない**（A8の規約）。
+- テストでブラウザを動かすときは、a8.net・楽天・Amazon・AdSense への通信を止める（`docs/automation.md`）。止めないと広告の数字が水増しされる。
+- 訪問者数は **Cloudflare Web Analytics（ロボット除外）** を見る。Facebook からの大量アクセスはロボット（リンクプレビュー）なので人として数えない。
+- 広告の「人によるクリック」は `python3 scripts/aff_stats.py --yesterday`。
+
+### 安全
+- **秘密の値（APIキー・パスワード・トークン）を画面やログに出さない**。保存場所は GitHub Secrets / Cloudflare の secret。
+- パスワード入力・課金・規約への同意・アカウント作成は**オーナー本人が行う**。
+- オーナーの名前でSNSに投稿・コメントするときは、**必ず事前にオーナーのOKをもらう**。
+- 別プロジェクト（マイソク: maisoku-maker.jp、ポート3000 など）には触らない。
+- 住所・電話番号はサイトに載せない（サイト上は「東京都」まで）。
+
+## 7. 作業の進め方
+
+1. `git fetch && git merge origin/main` で最新にする（ボットが頻繁に push している）。
+   - 衝突したら `content/*`・`state/*`・`content/llm_usage.json` は **main 側（相手）を採用**。
+2. 変更する。
+3. 確認: `npx tsc --noEmit` / `npm run build` / `npm run check:readability`（0件）。
+4. コミット → main に push → `deploy_cloudflare.yml` の成功を確認 → 本番で表示を確認。
+5. オーナーへの報告は、**結果を最初に、日本語で短く**。
+
+## 8. 主な秘密・設定の名前（値はここに書かない）
+
+- GitHub Secrets: `CF_DEPLOY_TOKEN`, `BUFFER_API_KEY`, `RESEND_API_KEY`, `JINA_API_KEY`, `BLUESKY_APP_PASSWORD`, `VAPID_PRIVATE_KEY`, `PUSH_SEND_TOKEN`, `AFF_STATS_TOKEN` ほか
+- GitHub Variables: `WEB_DAILY_CAP`（通常記事の1日上限）, `THREADS_MODE`, `BLUESKY_HANDLE`, `EVERGREEN_DAILY_CAP`, `SNS_FORMAT`, `SNS_DIGEST`
+- Cloudflare: アカウント `51e37d82e15d397b9666dc3d09bd5b92`、KV（記事キャッシュ・画像・メルマガ・プッシュ・クリック計測）
+
+## 9. アカウント（参考）
+
+- SNS: Threads `@saisoku637` / X `@saisoku_ai` / Facebookページ「サイソクニュース」/ Bluesky `@ai-tech-express.jp`
+- 収益: A8.net（通信・転職・ガジェットなど）、楽天（A8経由）、Amazonアソシエイト（`saisokuai-22`、180日以内に3件の販売が必要）、AdSense（審査中）
+- 検索: Google Search Console（`sc-domain:ai-tech-express.jp`）、Bing Webmaster Tools、IndexNow
+
+---
+最終更新: 2026-10-30
