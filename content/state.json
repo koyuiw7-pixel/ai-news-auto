@@ -4573,6 +4573,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000196.000048688.html"
     },
+    "3fa519422b2c3b84": {
+      "at": "2026-10-29T20:21:47.829615+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "uk-amazon-quick-user-group-2026-roundup",
+      "url": "https://aws.amazon.com/blogs/machine-learning/how-the-uk-amazon-quick-user-group-grew-in-2026/"
+    },
     "4049d96cecb68ca5": {
       "at": "2026-10-26T18:39:37.939575+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9250,50 +9258,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:12:51.125941+00:00",
-      "attempt": 2,
-      "id": "dc0a7bf6cf1b8f0c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1695字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 133.8,
-        "avg_sentence": 64.2,
-        "long_share": 0.52,
-        "max_paragraph": 261,
-        "paragraphs": 12,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "cyberagent",
-      "title": "サイバーエージェントと嵯峨美術大学・嵯峨美術短期大学が包括連携協定を締結"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:13:07.074538+00:00",
-      "attempt": 1,
-      "id": "d33ed333d0ff410b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（356字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 177.8,
-        "avg_sentence": 54.7,
-        "long_share": 0.346,
-        "max_paragraph": 233,
-        "paragraphs": 8,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "ntt-news",
-      "title": "デジタルと伝統を生かしたまちづくりを進める山形県長井市を舞台に、企業向け「越境研修」を共同開発 〜地域の実課題への挑戦と行動評価を通じ、次世代リーダーを育成〜"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T22:13:15.045405+00:00",
@@ -15962,6 +15926,51 @@
       "score": 100,
       "source": "tokyo-metro",
       "title": "水道スマートメータに新たな通信方式を導入～電力通信ネットワークを活用したデータ取得を開始～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T20:21:42.205794+00:00",
+      "attempt": 1,
+      "id": "3fa519422b2c3b84",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 61.4字・60字超の文が 53% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 147.4字・最長 224字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 147.4,
+        "avg_sentence": 61.4,
+        "long_share": 0.528,
+        "max_paragraph": 224,
+        "paragraphs": 15,
+        "sentences": 36
+      },
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "How the UK Amazon Quick User Group grew in 2026"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T20:21:47.829168+00:00",
+      "attempt": 0,
+      "id": "3fa519422b2c3b84",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 164.5字・最長 257字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 164.5,
+        "avg_sentence": 32.9,
+        "long_share": 0.013,
+        "max_paragraph": 257,
+        "paragraphs": 15,
+        "sentences": 75
+      },
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "How the UK Amazon Quick User Group grew in 2026"
     }
   ],
   "short_text_retry": {
