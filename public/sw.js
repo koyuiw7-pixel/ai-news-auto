@@ -26,8 +26,8 @@ self.addEventListener("push", (event) => {
   event.waitUntil(
     self.registration.showNotification(title, {
       body: data.body || "",
-      icon: data.icon || "/apple-icon",
-      badge: data.badge || "/icon",
+      icon: data.icon || "/icons/icon-192.png",
+      badge: data.badge || "/icons/badge-96.png",
       // 同じ記事の通知は1つにまとめる
       tag: data.tag || "saisoku",
       lang: "ja",

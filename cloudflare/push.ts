@@ -213,8 +213,9 @@ function buildPayload(input: Record<string, unknown>, env: PushEnv): Payload | n
     title,
     body: clip(input.body, 120),
     url: `${site}/articles/${slug}?utm_source=push&utm_medium=web-push`,
-    icon: `${site}/apple-icon`,
-    badge: `${site}/icon`,
+    icon: `${site}/icons/icon-192.png`,
+    // Android のステータスバー用。白い「速」だけの透過PNG（色は端末側で付く）
+    badge: `${site}/icons/badge-96.png`,
     tag: slug,
     slug,
     generatedAt: typeof input.generatedAt === "string" ? input.generatedAt : undefined,
