@@ -87,10 +87,11 @@ export default function RootLayout({
         {adsenseClient && (
           <meta name="google-adsense-account" content={adsenseClient} />
         )}
-        {/* 描画前にテーマを確定させ、リロード時の白フラッシュを防ぐ */}
+        {/* 描画前にテーマを確定させ、リロード時の白フラッシュを防ぐ。
+            Android は内蔵の Noto Sans CJK（Noto Sans JP と同じ字形）を使い、Web フォント（約 2.7MB）を読まない（globals.css の .sys-jp） */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}`,
+            __html: `try{if(/Android/.test(navigator.userAgent))document.documentElement.classList.add("sys-jp");var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}`,
           }}
         />
       </head>

@@ -2,8 +2,9 @@
 
 import Image, { type ImageProps } from "next/image";
 import { useState } from "react";
+import { preload } from "react-dom";
 import type { ThumbSource } from "@/lib/companies";
-import { largeThumb } from "@/lib/thumb-url";
+import { largeThumb, ownSrcSet, ytSrcSet } from "@/lib/thumb-url";
 
 type Stage = "original" | "fallback" | "failed";
 
@@ -72,17 +73,40 @@ export default function Thumb({ source, ...props }: ImageProps & { source?: Thum
       ? large ?? original.replace("maxresdefault", "hqdefault")
       : webp;
 
-  return (
-    <Image
-      {...props}
-      src={src}
-      onError={() => {
-        const canFallback =
-          stage === "original" &&
-          typeof original === "string" &&
-          (original.includes("maxresdefault") || webp !== original || large !== null);
-        setStage(canFallback ? "fallback" : "failed");
-      }}
-    />
-  );
+  const onError = () => {
+    const canFallback =
+      stage === "original" &&
+      typeof original === "string" &&
+      (original.includes("maxresdefault") || webp !== original || large !== null || srcSet !== null);
+    setStage(canFallback ? "fallback" : "failed");
+  };
+
+  // 幅の候補がある写真は srcset 付きの <img> で出す（next/image は unoptimized だと srcset を作らない）
+  const srcSet =
+    stage === "original" && typeof webp === "string" && props.fill && props.sizes
+      ? ownSrcSet(webp) ?? ytSrcSet(webp)
+      : null;
+  if (srcSet && typeof src === "string") {
+    const { fill: _fill, priority, preload: preloadProp, sizes, fetchPriority, alt, className, style } = props;
+    const eager = Boolean(priority || preloadProp);
+    // LCP 候補は HTML の先頭で先読みさせる（next/image の priority と同じ扱いを srcset 付きで）
+    if (eager) preload(src, { as: "image", imageSrcSet: srcSet, imageSizes: sizes, fetchPriority: "high" });
+    return (
+      <img
+        alt={alt}
+        src={src}
+        srcSet={srcSet}
+        sizes={sizes}
+        decoding="async"
+        loading={eager ? undefined : "lazy"}
+        fetchPriority={eager ? "high" : fetchPriority}
+        data-nimg="fill"
+        className={className}
+        style={{ position: "absolute", height: "100%", width: "100%", inset: 0, color: "transparent", ...style }}
+        onError={onError}
+      />
+    );
+  }
+
+  return <Image {...props} src={src} onError={onError} />;
 }

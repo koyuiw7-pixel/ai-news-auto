@@ -8,6 +8,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 
 const OUT = path.join(".open-next", "assets", "_content");
 fs.rmSync(OUT, { recursive: true, force: true });
@@ -48,3 +49,23 @@ const CACHE_OUT = path.join(".open-next", "assets", "cdn-cgi", "_next_cache");
 fs.rmSync(CACHE_OUT, { recursive: true, force: true });
 fs.cpSync(path.join(".open-next", "cache"), CACHE_OUT, { recursive: true });
 console.log(`[cf_content] build cache -> ${CACHE_OUT}`);
+
+// エッジキャッシュのキー（cloudflare/worker.ts）。JS・CSS・フォントのファイル名（中身のハッシュ入り）の組。
+// 記事だけ増えたデプロイでは変わらないので、前の版の HTML を返しながら裏で作り直せる
+const STATIC = path.join(".open-next", "assets", "_next", "static");
+const staticNames = [];
+const walk = (dir) => {
+  if (!fs.existsSync(dir)) return;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) walk(full);
+    else staticNames.push(path.relative(STATIC, full));
+  }
+};
+walk(path.join(STATIC, "chunks"));
+walk(path.join(STATIC, "media"));
+const codeHash = staticNames.length
+  ? createHash("sha256").update(staticNames.sort().join("\n")).digest("hex").slice(0, 16)
+  : "";
+fs.writeFileSync(path.join(".open-next", "saisoku-code.json"), JSON.stringify({ hash: codeHash }));
+console.log(`[cf_content] code hash ${codeHash || "(none)"} (${staticNames.length} static files)`);

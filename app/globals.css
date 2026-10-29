@@ -8,6 +8,15 @@
 /* 白地＋青みのある灰の面、1px の罫線、影は1段だけ（--shadow / --shadow-lift） */
 /* --------------------------------------------------------------------- */
 
+/*
+ * Android は内蔵の Noto Sans CJK JP（Noto Sans JP と同じ字形）で表示し、Web フォントを読み込まない。
+ * html の class は app/layout.tsx の先頭のスクリプトが付ける。next/font の変数（.xxx_variable）より強い指定で上書きする。
+ * "Noto Sans JP" は next/font の Web フォントの名前なので、ここに書くと読み込まれてしまう（書かない）
+ */
+html.sys-jp {
+  --font-noto: "Noto Sans CJK JP", sans-serif;
+}
+
 :root {
   --paper: #ffffff;
   --surface: #f3f5f8;

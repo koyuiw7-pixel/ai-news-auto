@@ -10,6 +10,8 @@
 import { default as handler } from "../.open-next/worker.js";
 import { flushHeld, handlePush, type PushEnv } from "./push";
 import { handleAff, type AffEnv } from "./aff";
+// @ts-ignore ビルド時に生成される（scripts/cf_content.mjs。JS・CSS のファイル名の組のハッシュ）
+import codeInfo from "../.open-next/saisoku-code.json";
 
 type Env = { ASSETS: { fetch: (input: string | Request) => Promise<Response> } } & Record<string, unknown>;
 
@@ -89,17 +91,26 @@ type Ctx = { waitUntil(promise: Promise<unknown>): void };
 
 /**
  * 出来上がったページを Cloudflare のエッジ（Cache API）に置き、次からは描画もキャッシュ読み出しもせずに返す。
- * キーにデプロイの版を入れるので、デプロイ後に古い HTML（消えた JS を参照）が返ることはない。
+ * キーはデプロイの版ではなく「JS・CSS のファイル名の組」（scripts/cf_content.mjs が作る CODE_HASH）にする。
+ * 記事だけ増えたデプロイ（1日に数十回）ではファイル名が変わらないので、前の版の HTML をそのまま返しつつ
+ * 裏で作り直す（stale-while-revalidate）。デプロイのたびに全ページが各地のエッジで空振りして TTFB が伸びていた。
+ * JS・CSS が変わったデプロイではキーが変わるので、消えた JS を参照する古い HTML は返らない。
  * 画面遷移用の RSC リクエストは対象外。workers.dev では Cache API が効かない（独自ドメインでだけ効く）
  */
+function deployVersion(env: Env): string {
+  return (env.CF_VERSION_METADATA as { id?: string } | undefined)?.id ?? "dev";
+}
+
 function edgeCacheKey(request: Request, url: URL, env: Env): Request | null {
   if (request.method !== "GET" || request.headers.has("rsc") || url.searchParams.has("_rsc")) return null;
   if (url.pathname.startsWith("/_next/") || url.pathname.startsWith("/api/")) return null;
-  const version = (env.CF_VERSION_METADATA as { id?: string } | undefined)?.id ?? "dev";
   const key = new URL(url);
-  key.searchParams.set("__v", version);
+  key.searchParams.set("__c", (codeInfo as { hash?: string }).hash || deployVersion(env));
   return new Request(key.toString(), { method: "GET" });
 }
+
+/** 作り直し中のキー（同じ isolate で重ねて描かない） */
+const refreshing = new Set<string>();
 
 /** ISR・静的化されたものだけ（初回の描画中の no-store や、動的なものは置かない） */
 function edgeCacheable(response: Response): boolean {
@@ -108,11 +119,12 @@ function edgeCacheable(response: Response): boolean {
   return /s-maxage=\d+/.test(cc) || response.headers.has("x-nextjs-cache");
 }
 
-/** エッジには1日置く（デプロイで版が変われば自然に使われなくなる）。ブラウザには毎回確かめさせる */
-function forEdge(response: Response): Response {
+/** エッジには1日置く（JS・CSS が変われば自然に使われなくなる）。ブラウザには毎回確かめさせる。どの版で描いたかを残す */
+function forEdge(response: Response, env: Env): Response {
   const copy = new Response(response.body, response);
   const image = (copy.headers.get("content-type") ?? "").startsWith("image/");
   copy.headers.set("cache-control", image ? "public, max-age=604800, s-maxage=86400" : "public, max-age=0, s-maxage=86400");
+  copy.headers.set("x-saisoku-ver", deployVersion(env));
   return copy;
 }
 
@@ -147,6 +159,27 @@ async function serveImage(request: Request, url: URL, env: Env, ctx: Ctx): Promi
   return request.method === "HEAD" ? new Response(null, { headers: response.headers }) : response;
 }
 
+/** 記事 JSON などを先読みしてから OpenNext（Next）で描く */
+async function render(request: Request, url: URL, env: Env, ctx: Ctx): Promise<Response> {
+  // 静的ファイルは OpenNext/アセットに任せる（先読み不要）
+  if (!url.pathname.startsWith("/_next/static/")) {
+    try {
+      await loadBase(env);
+      const match = ARTICLE.exec(url.pathname);
+      if (match) await loadArticle(env, decodeURIComponent(match[1]));
+      // 記事デザイン案・新コンセプトの確認用ページ（?slug=。既定は app/article-preview/variants.ts・app/article-concept/page.tsx と同じ記事）
+      if (url.pathname.startsWith("/article-preview/") || url.pathname === "/article-concept" || url.pathname.startsWith("/article-concept/")) {
+        await loadArticle(env, url.searchParams.get("slug") || "openai-gpt-6-1-terra-announcement");
+      }
+      if (url.pathname.startsWith("/cover/") || url.pathname.startsWith("/card/")) await loadFonts(env);
+    } catch (error) {
+      console.error("[worker] content preload failed", error);
+      return new Response("Service Unavailable", { status: 503, headers: { "Retry-After": "5" } });
+    }
+  }
+  return handler.fetch(request, env, ctx);
+}
+
 export default {
   async fetch(request: Request, env: Env, ctx: Ctx): Promise<Response> {
     const url = new URL(request.url);
@@ -161,29 +194,31 @@ export default {
     const edge = cacheKey ? (caches as unknown as { default: Cache }).default : null;
     if (edge && cacheKey) {
       const hit = await edge.match(cacheKey);
-      if (hit) return hit;
-    }
-
-    // 静的ファイルは OpenNext/アセットに任せる（先読み不要）
-    if (!url.pathname.startsWith("/_next/static/")) {
-      try {
-        await loadBase(env);
-        const match = ARTICLE.exec(url.pathname);
-        if (match) await loadArticle(env, decodeURIComponent(match[1]));
-        // 記事デザイン案・新コンセプトの確認用ページ（?slug=。既定は app/article-preview/variants.ts・app/article-concept/page.tsx と同じ記事）
-        if (url.pathname.startsWith("/article-preview/") || url.pathname === "/article-concept" || url.pathname.startsWith("/article-concept/")) {
-          await loadArticle(env, url.searchParams.get("slug") || "openai-gpt-6-1-terra-announcement");
+      if (hit) {
+        const fresh = hit.headers.get("x-saisoku-ver") === deployVersion(env);
+        // 前のデプロイで描いたもの: すぐ返し、裏で今の版に作り直す
+        if (!fresh && !refreshing.has(cacheKey.url)) {
+          refreshing.add(cacheKey.url);
+          ctx.waitUntil(
+            render(new Request(request.url, { method: "GET", headers: request.headers }), url, env, ctx)
+              .then(async (response) => {
+                if (edgeCacheable(response)) await edge.put(cacheKey, forEdge(response, env));
+              })
+              .catch((error) => console.error("[worker] refresh failed", url.pathname, String(error)))
+              .finally(() => refreshing.delete(cacheKey.url)),
+          );
         }
-        if (url.pathname.startsWith("/cover/") || url.pathname.startsWith("/card/")) await loadFonts(env);
-      } catch (error) {
-        console.error("[worker] content preload failed", error);
-        return new Response("Service Unavailable", { status: 503, headers: { "Retry-After": "5" } });
+        const out = new Response(hit.body, hit);
+        out.headers.set("x-saisoku-edge", fresh ? "hit" : "stale");
+        return out;
       }
     }
-    const response: Response = await handler.fetch(request, env, ctx);
+
+    const response = await render(request, url, env, ctx);
     if (edge && cacheKey && edgeCacheable(response)) {
-      const cached = forEdge(response);
+      const cached = forEdge(response, env);
       ctx.waitUntil(edge.put(cacheKey, cached.clone()));
+      cached.headers.set("x-saisoku-edge", "miss");
       return cached;
     }
     return response;

@@ -109,7 +109,7 @@ export function Pixels({ pixels }: { pixels: string[] }) {
       {pixels.map((pixel) => (
         // 低優先度にして先読み（preload）させない。読み込み自体はすぐ始まるので計測は変わらない
         // eslint-disable-next-line @next/next/no-img-element
-        <img key={pixel} src={pixel} width={1} height={1} alt="" fetchPriority="low" className="absolute size-px opacity-0" />
+        <img key={pixel} src={pixel} width={1} height={1} alt="" loading="lazy" fetchPriority="low" className="absolute size-px opacity-0" />
       ))}
     </>
   );
