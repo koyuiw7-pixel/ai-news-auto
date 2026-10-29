@@ -3172,6 +3172,16 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001278.html"
     },
+    "0b04c8892989c151": {
+      "at": "2026-10-29T16:03:49.934294+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 93,
+      "section": "ai",
+      "slug": "gemini-notebook-free-textbooks",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-notebook/new-access-textbooks/"
+    },
     "0b089d0bbbca477d": {
       "at": "2026-10-28T23:13:03.555145+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -8621,28 +8631,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:12:19.528685+00:00",
-      "attempt": 2,
-      "id": "adf1996fc9707c2b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 67.1字・60字超の文が 53% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 111.9,
-        "avg_sentence": 67.1,
-        "long_share": 0.533,
-        "max_paragraph": 211,
-        "paragraphs": 18,
-        "sentences": 30
-      },
-      "score": 100,
-      "source": "github-changelog-copilot",
-      "title": "Security extension for the GitHub Copilot app"
-    },
     {
       "accepted": true,
       "at": "2026-10-28T19:12:24.996452+00:00",
@@ -15254,6 +15242,26 @@
       "score": 100,
       "source": "hugging-face-blog",
       "title": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T16:03:49.933635+00:00",
+      "attempt": 1,
+      "id": "0b04c8892989c151",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 52.5,
+        "avg_sentence": 29.0,
+        "long_share": 0.0,
+        "max_paragraph": 120,
+        "paragraphs": 37,
+        "sentences": 67
+      },
+      "score": 93,
+      "source": "google-blog-all",
+      "title": "Gemini Notebook makes hundreds of textbooks available to help students learn eve"
     }
   ],
   "short_text_retry": {
