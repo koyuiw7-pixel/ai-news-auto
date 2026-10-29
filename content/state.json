@@ -3571,6 +3571,14 @@
       "slug": "github-copilot-fusion-release",
       "url": "https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion"
     },
+    "194b54512c312610": {
+      "at": "2026-10-29T15:55:04.369774+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "ntt-west-zero-trust-service",
+      "url": "http://www.ntt-west.co.jp/news/2610/261029a.html"
+    },
     "1984c7e2b8451fba": {
       "at": "2026-10-29T00:01:30.843705+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（出演）",
@@ -5198,6 +5206,13 @@
       "slug": "openai-signals-chatgpt-work-data",
       "url": "https://openai.com/index/chatgpt-expanding-world-of-work"
     },
+    "653882b3da5b8f0b": {
+      "at": "2026-10-29T15:53:20.348732+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1887字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 訳されていない英文が残っている（「Use my raw, unedited notes about my past…」）",
+      "skipped": true,
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/update-resume-with-gemini/"
+    },
     "6687f834982bd2f1": {
       "at": "2026-10-29T01:14:14.760103+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5901,6 +5916,14 @@
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/syouan/nouan/261027.html"
     },
+    "85d975255b4f9d00": {
+      "at": "2026-10-29T15:58:58.789191+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "hugging-face-any-speech-decision-apple",
+      "url": "https://huggingface.co/blog/anydecisionmodel"
+    },
     "85daa6a854746cd3": {
       "at": "2026-10-28T19:34:56.934449+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6596,6 +6619,14 @@
       "section": "business",
       "slug": "next-ipo-club-pitch-event-2026",
       "url": "https://prtimes.jp/main/html/rd/p/000000334.000054393.html"
+    },
+    "a1765f446c5b64b5": {
+      "at": "2026-10-29T15:56:24.153629+00:00",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "updated": "mistral-large-4-preview",
+      "url": "https://huggingface.co/blog/mistral-large4"
     },
     "a2ff4102256b5786": {
       "at": "2026-10-27T17:51:57.399683+00:00",
@@ -8590,187 +8621,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T18:32:42.092615+00:00",
-      "attempt": 2,
-      "id": "1d69506adc9560dd",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 68.0字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 135.9字・最長 407字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 135.9,
-        "avg_sentence": 68.0,
-        "long_share": 0.462,
-        "max_paragraph": 407,
-        "paragraphs": 13,
-        "sentences": 26
-      },
-      "score": 100,
-      "source": "jfa",
-      "title": "フットサル日本女子代表候補 メンバー・スケジュール 国内トレーニングキャンプ（10.31-11.3 千葉／高円宮記念JFA夢フィールド） #jfa #nades"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T18:37:15.904482+00:00",
-      "attempt": 0,
-      "id": "1d69506adc9560dd",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 59.4,
-        "avg_sentence": 27.6,
-        "long_share": 0.036,
-        "max_paragraph": 111,
-        "paragraphs": 26,
-        "sentences": 56
-      },
-      "score": 100,
-      "source": "jfa",
-      "title": "フットサル日本女子代表候補 メンバー・スケジュール 国内トレーニングキャンプ（10.31-11.3 千葉／高円宮記念JFA夢フィールド） #jfa #nades"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T18:37:42.017167+00:00",
-      "attempt": 1,
-      "id": "393d97d2e4478dbd",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2472字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（389字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 114.0,
-        "avg_sentence": 48.0,
-        "long_share": 0.316,
-        "max_paragraph": 197,
-        "paragraphs": 16,
-        "sentences": 38
-      },
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "GitHub Enterprise now includes access to GitHub Copilot"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T18:38:41.866301+00:00",
-      "attempt": 2,
-      "id": "393d97d2e4478dbd",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 64.0字・60字超の文が 59% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 120.4字・最長 198字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 120.4,
-        "avg_sentence": 64.0,
-        "long_share": 0.594,
-        "max_paragraph": 198,
-        "paragraphs": 17,
-        "sentences": 32
-      },
-      "score": 100,
-      "source": "github-changelog-copilot",
-      "title": "GitHub Enterprise now includes access to GitHub Copilot"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T18:39:43.942592+00:00",
-      "attempt": 0,
-      "id": "393d97d2e4478dbd",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 46.5字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 120.5字・最長 192字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 120.5,
-        "avg_sentence": 46.5,
-        "long_share": 0.25,
-        "max_paragraph": 192,
-        "paragraphs": 17,
-        "sentences": 44
-      },
-      "score": 100,
-      "source": "github-changelog-copilot",
-      "title": "GitHub Enterprise now includes access to GitHub Copilot"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:11:53.830772+00:00",
-      "attempt": 1,
-      "id": "1eabbb64216942938ae7fb8532595e34945bc67b",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 54.0字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 129.5字・最長 225字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 129.5,
-        "avg_sentence": 54.0,
-        "long_share": 0.375,
-        "max_paragraph": 225,
-        "paragraphs": 10,
-        "sentences": 24
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "apple"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T19:11:59.736762+00:00",
-      "attempt": 0,
-      "id": "1eabbb64216942938ae7fb8532595e34945bc67b",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 51.0字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 127.5字・最長 204字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 127.5,
-        "avg_sentence": 51.0,
-        "long_share": 0.32,
-        "max_paragraph": 204,
-        "paragraphs": 10,
-        "sentences": 25
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "apple"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:12:07.933992+00:00",
-      "attempt": 1,
-      "id": "adf1996fc9707c2b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2301字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 117.7,
-        "avg_sentence": 56.8,
-        "long_share": 0.483,
-        "max_paragraph": 188,
-        "paragraphs": 14,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "Security extension for the GitHub Copilot app"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T19:12:19.528685+00:00",
@@ -15235,6 +15085,175 @@
       "score": 100,
       "source": "hugging-face-blog",
       "title": "Announcing Project ProtoStar: Making Publicly Funded Science AI-Ready"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T15:52:19.751358+00:00",
+      "attempt": 1,
+      "id": "653882b3da5b8f0b",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1908字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 75.8,
+        "avg_sentence": 58.5,
+        "long_share": 0.409,
+        "max_paragraph": 144,
+        "paragraphs": 17,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "google-gemini-blog",
+      "title": "How to use Gemini to update your resume"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T15:53:20.348632+00:00",
+      "attempt": 2,
+      "id": "653882b3da5b8f0b",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1887字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "訳されていない英文が残っている（「Use my raw, unedited notes about my past…」）"
+      ],
+      "readability": {
+        "avg_paragraph": 98.9,
+        "avg_sentence": 57.7,
+        "long_share": 0.417,
+        "max_paragraph": 210,
+        "paragraphs": 14,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "google-gemini-blog",
+      "title": "How to use Gemini to update your resume"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T15:53:56.911674+00:00",
+      "attempt": 1,
+      "id": "194b54512c312610",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 65.5字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 174.7字・最長 264字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 174.7,
+        "avg_sentence": 65.5,
+        "long_share": 0.5,
+        "max_paragraph": 264,
+        "paragraphs": 9,
+        "sentences": 24
+      },
+      "score": 100,
+      "source": "ntt-news",
+      "title": "ゼロトラスト導入・運用支援サービスの提供開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T15:55:04.369307+00:00",
+      "attempt": 0,
+      "id": "194b54512c312610",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 55.4字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 59.7,
+        "avg_sentence": 55.4,
+        "long_share": 0.286,
+        "max_paragraph": 176,
+        "paragraphs": 26,
+        "sentences": 28
+      },
+      "score": 100,
+      "source": "ntt-news",
+      "title": "ゼロトラスト導入・運用支援サービスの提供開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T15:56:24.108780+00:00",
+      "attempt": 1,
+      "id": "a1765f446c5b64b5",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "hugging-face-blog",
+      "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T15:57:05.403087+00:00",
+      "attempt": 1,
+      "id": "85d975255b4f9d00",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（2245字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 112.8,
+        "avg_sentence": 54.7,
+        "long_share": 0.364,
+        "max_paragraph": 198,
+        "paragraphs": 16,
+        "sentences": 33
+      },
+      "score": null,
+      "source": "hugging-face-blog",
+      "title": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T15:58:01.613651+00:00",
+      "attempt": 1,
+      "id": "85d975255b4f9d00",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 48.9字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 134.4字・最長 218字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 134.4,
+        "avg_sentence": 48.9,
+        "long_share": 0.273,
+        "max_paragraph": 218,
+        "paragraphs": 16,
+        "sentences": 44
+      },
+      "score": 100,
+      "source": "hugging-face-blog",
+      "title": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T15:58:58.788771+00:00",
+      "attempt": 0,
+      "id": "85d975255b4f9d00",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 132.1字・最長 224字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 132.1,
+        "avg_sentence": 31.6,
+        "long_share": 0.042,
+        "max_paragraph": 224,
+        "paragraphs": 17,
+        "sentences": 71
+      },
+      "score": 100,
+      "source": "hugging-face-blog",
+      "title": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and"
     }
   ],
   "short_text_retry": {
