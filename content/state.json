@@ -3250,6 +3250,14 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76922.html"
     },
+    "0db54afa17f2004e": {
+      "at": "2026-10-29T17:07:53.482351+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "playstation-partner-awards-2026-announcement",
+      "url": "https://blog.ja.playstation.com/2026/10/29/20261029-pspawards-event-announcement-s/"
+    },
     "0dc3cf0b7c98dcde": {
       "at": "2026-10-28T17:55:11.489946+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4866,6 +4874,13 @@
       "reason": "人事・採用・イベントの参加者募集だけのお知らせであるため。",
       "skipped": true,
       "url": "https://www.atpress.ne.jp/news/643878"
+    },
+    "52f1edc28ca2ef81": {
+      "at": "2026-10-29T17:05:52.528666+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1264字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（320字 / 基準 400字以上）; title / seo_title に感嘆符がある",
+      "skipped": true,
+      "url": "https://www.caa.go.jp/notice/entry/047927/"
     },
     "534a8c2da0020056": {
       "at": "2026-10-26T14:35:29.164627+00:00",
@@ -7653,6 +7668,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000012.000175615.html"
     },
+    "d28967fce9c692cd": {
+      "at": "2026-10-29T17:04:53.516126+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "openai-frontier-model-misalignment-monitoring",
+      "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment"
+    },
     "d290a28d44092657": {
       "at": "2026-10-29T00:28:48.912285+00:00",
       "breaking": true,
@@ -8695,189 +8718,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:32:07.051621+00:00",
-      "attempt": 1,
-      "id": "d739341503470be57955540dc33416b7a16f7c83",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1399字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（308字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 96.7,
-        "avg_sentence": 53.7,
-        "long_share": 0.333,
-        "max_paragraph": 166,
-        "paragraphs": 10,
-        "sentences": 18
-      },
-      "score": null,
-      "source": "trends",
-      "title": "アップル"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:32:12.611880+00:00",
-      "attempt": 2,
-      "id": "d739341503470be57955540dc33416b7a16f7c83",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1534字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 130.3,
-        "avg_sentence": 55.9,
-        "long_share": 0.333,
-        "max_paragraph": 180,
-        "paragraphs": 9,
-        "sentences": 21
-      },
-      "score": null,
-      "source": "trends",
-      "title": "アップル"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:32:39.916662+00:00",
-      "attempt": 1,
-      "id": "509d3ecd816a2b422849fb541755826fda0f2c5e",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1136字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（300字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 86.6,
-        "avg_sentence": 47.2,
-        "long_share": 0.136,
-        "max_paragraph": 124,
-        "paragraphs": 12,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "trends",
-      "title": "経済産業省"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:32:43.814151+00:00",
-      "attempt": 2,
-      "id": "509d3ecd816a2b422849fb541755826fda0f2c5e",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（808字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（255字 / 基準 400字以上）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 106.7,
-        "avg_sentence": 49.8,
-        "long_share": 0.333,
-        "max_paragraph": 141,
-        "paragraphs": 7,
-        "sentences": 15
-      },
-      "score": null,
-      "source": "trends",
-      "title": "経済産業省"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:32:53.152455+00:00",
-      "attempt": 1,
-      "id": "3a09379f6ade51a6",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "日本で使える？の項目（日本国内からの利用については、公式発表において地域制限に関する特段の言及はない。有料のGitHub Copilotプランを契約している日本のユーザーであれば...） → 元記事に日本での利用に関する特段の言及や国・地域ごとの提供状況についての記載はない"
-      ],
-      "readability": {
-        "avg_paragraph": 97.8,
-        "avg_sentence": 57.5,
-        "long_share": 0.412,
-        "max_paragraph": 172,
-        "paragraphs": 20,
-        "sentences": 34
-      },
-      "score": 85,
-      "source": "github-changelog-copilot",
-      "title": "GitHub intelligence puts your code, context, and history to work"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:33:00.941660+00:00",
-      "attempt": 2,
-      "id": "3a09379f6ade51a6",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2490字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（392字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 128.7,
-        "avg_sentence": 58.8,
-        "long_share": 0.514,
-        "max_paragraph": 197,
-        "paragraphs": 16,
-        "sentences": 35
-      },
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "GitHub intelligence puts your code, context, and history to work"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:33:08.343934+00:00",
-      "attempt": 1,
-      "id": "9fcca17d9c9df23f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1792字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（329字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 113.7,
-        "avg_sentence": 46.5,
-        "long_share": 0.227,
-        "max_paragraph": 201,
-        "paragraphs": 9,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "jfa",
-      "title": "元日本代表のハーフナー・マイクさん、安田理大さん、柏木陽介さんの参加が決定！「JFA×文京 Dream Project」 第7弾 「街のオフィスの交流フェス」（"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T19:33:15.094444+00:00",
-      "attempt": 2,
-      "id": "9fcca17d9c9df23f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（346字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 173.7,
-        "avg_sentence": 55.8,
-        "long_share": 0.357,
-        "max_paragraph": 250,
-        "paragraphs": 9,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "jfa",
-      "title": "元日本代表のハーフナー・マイクさん、安田理大さん、柏木陽介さんの参加が決定！「JFA×文京 Dream Project」 第7弾 「街のオフィスの交流フェス」（"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T19:33:22.257555+00:00",
@@ -15329,6 +15169,189 @@
       "score": 100,
       "source": "xbox-wire-jp",
       "title": "ララ・クロフトの 30 年を振り返る"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:02:23.313505+00:00",
+      "attempt": 1,
+      "id": "d28967fce9c692cd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2320字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 119.5,
+        "avg_sentence": 64.0,
+        "long_share": 0.5,
+        "max_paragraph": 232,
+        "paragraphs": 15,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "How we detect frontier model misalignment"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:03:13.252418+00:00",
+      "attempt": 2,
+      "id": "d28967fce9c692cd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2398字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 133.6,
+        "avg_sentence": 66.8,
+        "long_share": 0.607,
+        "max_paragraph": 199,
+        "paragraphs": 14,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "How we detect frontier model misalignment"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T17:03:57.666618+00:00",
+      "attempt": 2,
+      "id": "d28967fce9c692cd",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 59.9字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 157.3字・最長 269字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 157.3,
+        "avg_sentence": 59.9,
+        "long_share": 0.429,
+        "max_paragraph": 269,
+        "paragraphs": 16,
+        "sentences": 42
+      },
+      "score": 100,
+      "source": "openai-news",
+      "title": "How we detect frontier model misalignment"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T17:04:53.515731+00:00",
+      "attempt": 0,
+      "id": "d28967fce9c692cd",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: フロントエンドの強化学習や内部Codexトラフィックなどは、この層をスキップして直接次の層へ進みます。→元記事では「frontier RL runs and internal Codex traffic skip this layer」とあるが、フロントエンドで"
+      ],
+      "readability": {
+        "avg_paragraph": 157.3,
+        "avg_sentence": 59.9,
+        "long_share": 0.429,
+        "max_paragraph": 269,
+        "paragraphs": 16,
+        "sentences": 42
+      },
+      "score": 100,
+      "source": "openai-news",
+      "title": "How we detect frontier model misalignment"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:05:22.056154+00:00",
+      "attempt": 1,
+      "id": "52f1edc28ca2ef81",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（961字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（327字 / 基準 400字以上）",
+        "title / seo_title に感嘆符がある",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 45.7,
+        "avg_sentence": 31.8,
+        "long_share": 0.043,
+        "max_paragraph": 112,
+        "paragraphs": 16,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "caa",
+      "title": "電動爪削りによる巻き込み事故に注意!-皮膚や舌などが回転刃から外せなくなる事態に-"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:05:52.528631+00:00",
+      "attempt": 2,
+      "id": "52f1edc28ca2ef81",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1264字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（320字 / 基準 400字以上）",
+        "title / seo_title に感嘆符がある"
+      ],
+      "readability": {
+        "avg_paragraph": 110.3,
+        "avg_sentence": 52.3,
+        "long_share": 0.211,
+        "max_paragraph": 171,
+        "paragraphs": 9,
+        "sentences": 19
+      },
+      "score": null,
+      "source": "caa",
+      "title": "電動爪削りによる巻き込み事故に注意!-皮膚や舌などが回転刃から外せなくなる事態に-"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T17:06:39.697134+00:00",
+      "attempt": 1,
+      "id": "0db54afa17f2004e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 68.0字・60字超の文が 64% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 169.9字・最長 238字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 169.9,
+        "avg_sentence": 68.0,
+        "long_share": 0.64,
+        "max_paragraph": 238,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "playstation-blog-jp",
+      "title": "「PlayStation® Partner Awards 2026 Japan Asia」12月3日開催決定！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T17:07:53.481940+00:00",
+      "attempt": 0,
+      "id": "0db54afa17f2004e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 45.1字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 66.6,
+        "avg_sentence": 45.1,
+        "long_share": 0.294,
+        "max_paragraph": 117,
+        "paragraphs": 23,
+        "sentences": 34
+      },
+      "score": 100,
+      "source": "playstation-blog-jp",
+      "title": "「PlayStation® Partner Awards 2026 Japan Asia」12月3日開催決定！"
     }
   ],
   "short_text_retry": {
