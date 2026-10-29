@@ -3695,6 +3695,14 @@
       "slug": "aws-qa-studio-team-management-nova-act",
       "url": "https://aws.amazon.com/blogs/machine-learning/accelerating-software-delivery-with-agentic-qa-automation-using-amazon-nova-act-part-3/"
     },
+    "22206107cdaed414": {
+      "at": "2026-10-29T05:32:00.492824+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "household-savings-rate-discrepancy",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87222?site=nli"
+    },
     "222f3715a6dc5508": {
       "at": "2026-10-26T12:33:34.802938+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4659,6 +4667,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（データベース届出情報の更新）",
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047898/"
+    },
+    "4de73cebe8f8701c": {
+      "at": "2026-10-29T05:35:07.037628+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "cao-consumer-confidence-survey-oct-2026",
+      "url": "https://www.esri.cao.go.jp/jp/stat/shouhi/shouhi.html"
     },
     "4e1da1e89922caa5": {
       "at": "2026-10-28T17:58:25.739552+00:00",
@@ -8396,171 +8412,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T16:01:56.829010+00:00",
-      "attempt": 1,
-      "id": "3c23d4960b1f8efe",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2122字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 143.5,
-        "avg_sentence": 58.3,
-        "long_share": 0.406,
-        "max_paragraph": 250,
-        "paragraphs": 13,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "about-amazon",
-      "title": "Amazon's most advanced chip helps power the AI behind Prime 360—here's how"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T16:03:58.728735+00:00",
-      "attempt": 2,
-      "id": "3c23d4960b1f8efe",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 66.8字・60字超の文が 62% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 130.1字・最長 295字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 130.1,
-        "avg_sentence": 66.8,
-        "long_share": 0.622,
-        "max_paragraph": 295,
-        "paragraphs": 19,
-        "sentences": 37
-      },
-      "score": 100,
-      "source": "about-amazon",
-      "title": "Amazon's most advanced chip helps power the AI behind Prime 360—here's how"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T16:04:52.003738+00:00",
-      "attempt": 0,
-      "id": "3c23d4960b1f8efe",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 46.3字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 124.9字・最長 243字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 124.9,
-        "avg_sentence": 46.3,
-        "long_share": 0.148,
-        "max_paragraph": 243,
-        "paragraphs": 20,
-        "sentences": 54
-      },
-      "score": 100,
-      "source": "about-amazon",
-      "title": "Amazon's most advanced chip helps power the AI behind Prime 360—here's how"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T16:05:48.838300+00:00",
-      "attempt": 1,
-      "id": "83548c83d8b70a3b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 60.1字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 180.4字・最長 228字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 180.4,
-        "avg_sentence": 60.1,
-        "long_share": 0.458,
-        "max_paragraph": 228,
-        "paragraphs": 8,
-        "sentences": 24
-      },
-      "score": 100,
-      "source": "sony-jp",
-      "title": "6インチで小型の空間再現ディスプレイ『ELF-MN1』を発売"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T16:06:41.328815+00:00",
-      "attempt": 0,
-      "id": "83548c83d8b70a3b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 174.4字・最長 233字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 174.4,
-        "avg_sentence": 32.4,
-        "long_share": 0.07,
-        "max_paragraph": 233,
-        "paragraphs": 8,
-        "sentences": 43
-      },
-      "score": 100,
-      "source": "sony-jp",
-      "title": "6インチで小型の空間再現ディスプレイ『ELF-MN1』を発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T16:16:36.826328+00:00",
-      "attempt": 1,
-      "id": "7d55bf793aaf58cc",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "「上のタブで切り替えて使います」「ホーム画面の上部に、For YouとFollowingのタブが出るか」→ 元記事に「タブ」や画面上部という配置の記述はなく、UIの詳細を補っている。",
-        "「研究段階の話でもありません」「新製品ではなく既存画面の作り替え」→ 元記事に明示はなく、記事側の解釈である。",
-        "「利用者の反応が、今後の運営判断に影響します」→ 元記事にない推測である。",
-        "「おすすめを別フィードに分ける設計は、推薦の精度を測りやすい形です」→ 元記事に技術的説明はなく、根拠のない断定である。"
-      ],
-      "readability": {
-        "avg_paragraph": 67.3,
-        "avg_sentence": 31.1,
-        "long_share": 0.031,
-        "max_paragraph": 120,
-        "paragraphs": 30,
-        "sentences": 65
-      },
-      "score": 80,
-      "source": "radar-techcrunch.com",
-      "title": "Reddit rolls out a dual-feed homepage, with For You and Following feeds, joining"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T16:17:02.433469+00:00",
-      "attempt": 1,
-      "id": "7d55bf793aaf58cc",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "「これまでのRedditは、ホームに参加コミュニティの投稿を中心に表示していました」→元記事にはこの旧ホームの説明がなく、編集部注の明記もない推測的記述。",
-        "「Followingを選んで使い続ければ、次回もFollowingから始まる」→元記事は「最後に見たフィードに戻る」とのみ述べており、これは妥当な言い換えだが断定がやや踏み込んでいる。",
-        "「アプリを最新版に更新する」「ホーム画面に…2つのフィードが出るか確かめる」→元記事にアプリ更新が条件との記述はなく、更新で表示されるかのように読める。",
-        "「Followingは…これまでに近い使い心地です」→元記事に旧来の使い心地との比較はなく、根拠のない言い切り。",
-        "「かんたん版」の「提供状況=limited」→元記事は世界展開を数週間かけて行うとのみで、limitedという区分は元記事にない。",
-        "「Redditで情報発信している企業には影響があります」「参加者以外の目に触れる可能性が上がる」→元記事に企業発信への影響の記述はなく、編集部注とはいえ見立ての断定。"
-      ],
-      "readability": {
-        "avg_paragraph": 64.1,
-        "avg_sentence": 31.5,
-        "long_share": 0.033,
-        "max_paragraph": 120,
-        "paragraphs": 30,
-        "sentences": 61
-      },
-      "score": 80,
-      "source": "radar-techcrunch.com",
-      "title": "Reddit rolls out a dual-feed homepage, with For You and Following feeds, joining"
-    },
     {
       "accepted": true,
       "at": "2026-10-28T16:38:33.913619+00:00",
@@ -15028,6 +14879,160 @@
       "score": 100,
       "source": "toyota",
       "title": "2026年度上半期（4月－9月）販売・生産・輸出実績"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T05:31:33.552190+00:00",
+      "attempt": 1,
+      "id": "22206107cdaed414",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1718字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 158.3,
+        "avg_sentence": 67.9,
+        "long_share": 0.476,
+        "max_paragraph": 226,
+        "paragraphs": 9,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "国民経済計算と家計調査の家計貯蓄率はなぜ乖離するのか"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T05:31:48.216406+00:00",
+      "attempt": 2,
+      "id": "22206107cdaed414",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 53.8字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 156.0字・最長 270字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 156.0,
+        "avg_sentence": 53.8,
+        "long_share": 0.276,
+        "max_paragraph": 270,
+        "paragraphs": 10,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "国民経済計算と家計調査の家計貯蓄率はなぜ乖離するのか"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T05:32:00.492419+00:00",
+      "attempt": 0,
+      "id": "22206107cdaed414",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 59.8,
+        "avg_sentence": 37.4,
+        "long_share": 0.05,
+        "max_paragraph": 109,
+        "paragraphs": 25,
+        "sentences": 40
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "国民経済計算と家計調査の家計貯蓄率はなぜ乖離するのか"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T05:34:36.784309+00:00",
+      "attempt": 1,
+      "id": "4de73cebe8f8701c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1409字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 113.4,
+        "avg_sentence": 47.2,
+        "long_share": 0.167,
+        "max_paragraph": 177,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "cao",
+      "title": "消費動向調査（令和8年10月実施分）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T05:34:56.200443+00:00",
+      "attempt": 2,
+      "id": "4de73cebe8f8701c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1762字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 139.8,
+        "avg_sentence": 51.8,
+        "long_share": 0.259,
+        "max_paragraph": 211,
+        "paragraphs": 10,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "cao",
+      "title": "消費動向調査（令和8年10月実施分）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T05:35:01.465914+00:00",
+      "attempt": 2,
+      "id": "4de73cebe8f8701c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 49.9字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 174.7字・最長 250字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 174.7,
+        "avg_sentence": 49.9,
+        "long_share": 0.2,
+        "max_paragraph": 250,
+        "paragraphs": 10,
+        "sentences": 35
+      },
+      "score": 100,
+      "source": "cao",
+      "title": "消費動向調査（令和8年10月実施分）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T05:35:07.037229+00:00",
+      "attempt": 0,
+      "id": "4de73cebe8f8701c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 102.9,
+        "avg_sentence": 36.6,
+        "long_share": 0.044,
+        "max_paragraph": 155,
+        "paragraphs": 16,
+        "sentences": 45
+      },
+      "score": 100,
+      "source": "cao",
+      "title": "消費動向調査（令和8年10月実施分）"
     }
   ],
   "short_text_retry": {
