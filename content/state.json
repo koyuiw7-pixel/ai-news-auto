@@ -4075,6 +4075,16 @@
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/keiei/kourei/261027.html"
     },
+    "3399ec20c63f8ce6": {
+      "at": "2026-10-29T03:25:46.360670+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 91,
+      "section": "ai",
+      "slug": "rakuten-mobile-ipad-sale-nov6",
+      "url": "https://k-tai.watch.impress.co.jp/docs/news/2152180.html"
+    },
     "34370e88c88d0cd4": {
       "at": "2026-10-27T16:33:58.480379+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8285,28 +8295,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T03:54:39.658841+00:00",
-      "attempt": 2,
-      "id": "42cef1bdc3da9dbc",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2179字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 102.3,
-        "avg_sentence": 56.1,
-        "long_share": 0.419,
-        "max_paragraph": 167,
-        "paragraphs": 17,
-        "sentences": 31
-      },
-      "score": null,
-      "source": "aws-japan-blog",
-      "title": "ドコモSMTBネット銀行が電話・チャット両チャネルで実践する Amazon Connect Customer AI agents による応対高度化"
-    },
     {
       "accepted": true,
       "at": "2026-10-28T03:54:48.428048+00:00",
@@ -14901,6 +14889,26 @@
       "score": 100,
       "source": "tokyo-metro",
       "title": "水と緑、モノレールがつなぐ、未来の風景"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T03:25:46.360268+00:00",
+      "attempt": 1,
+      "id": "3399ec20c63f8ce6",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 64.3,
+        "avg_sentence": 30.9,
+        "long_share": 0.038,
+        "max_paragraph": 140,
+        "paragraphs": 38,
+        "sentences": 79
+      },
+      "score": 91,
+      "source": "radar-k-tai.watch.impress.co.jp",
+      "title": "楽天モバイル、iPadを取り扱い開始 11月6日8時発売"
     }
   ],
   "short_text_retry": {
