@@ -6597,6 +6597,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000017.000082558.html"
     },
+    "9160fd7588bbc93d": {
+      "at": "2026-10-29T19:52:05.611318+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（388字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102920"
+    },
     "9217c0f90ebe5e32": {
       "at": "2026-10-27T03:07:28.604435+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
@@ -7393,6 +7400,13 @@
       "section": "public",
       "slug": "soumu-vice-capital-cabinet-order",
       "url": "https://www.soumu.go.jp/menu_news/kaiken/01koho01_02001586.html"
+    },
+    "b4357728ad4b8bd0": {
+      "at": "2026-10-29T19:51:49.722286+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102917"
     },
     "b44a2cf25c279e1e": {
       "at": "2026-10-26T19:01:52.271485+00:00",
@@ -9221,99 +9235,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:11:54.414052+00:00",
-      "attempt": 1,
-      "id": "a78385f90422680a",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1416字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（384字 / 基準 400字以上）",
-        "title / seo_title に感嘆符がある"
-      ],
-      "readability": {
-        "avg_paragraph": 126.9,
-        "avg_sentence": 48.8,
-        "long_share": 0.231,
-        "max_paragraph": 204,
-        "paragraphs": 10,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "ntt-news",
-      "title": "郵便局の集配用バイクを活用したインフラ管理の実証実験に参画 ～ドライブレコーダーデータを活用したインフラ設備異常の把握に向けた検証を実施～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:12:01.195679+00:00",
-      "attempt": 2,
-      "id": "a78385f90422680a",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1548字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 147.2,
-        "avg_sentence": 55.2,
-        "long_share": 0.25,
-        "max_paragraph": 241,
-        "paragraphs": 9,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "ntt-news",
-      "title": "郵便局の集配用バイクを活用したインフラ管理の実証実験に参画 ～ドライブレコーダーデータを活用したインフラ設備異常の把握に向けた検証を実施～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:12:10.349683+00:00",
-      "attempt": 1,
-      "id": "9e7ecbc092a05005",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1466字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（356字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 106.8,
-        "avg_sentence": 46.4,
-        "long_share": 0.13,
-        "max_paragraph": 211,
-        "paragraphs": 10,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "mext",
-      "title": "第68次南極地域観測行動計画、 および第69次南極地域観測隊長・副隊長を決定しました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:12:16.619622+00:00",
-      "attempt": 2,
-      "id": "9e7ecbc092a05005",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1350字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（310字 / 基準 400字以上）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 156.5,
-        "avg_sentence": 50.1,
-        "long_share": 0.24,
-        "max_paragraph": 195,
-        "paragraphs": 8,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "mext",
-      "title": "第68次南極地域観測行動計画、 および第69次南極地域観測隊長・副隊長を決定しました"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T22:12:25.038071+00:00",
@@ -15935,6 +15856,95 @@
       "score": 100,
       "source": "tokyo-metro",
       "title": "「高齢者の生活実態」の結果 令和7年度東京都福祉保健基礎調査"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T19:51:38.432525+00:00",
+      "attempt": 1,
+      "id": "b4357728ad4b8bd0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1632字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 161.6,
+        "avg_sentence": 58.8,
+        "long_share": 0.455,
+        "max_paragraph": 230,
+        "paragraphs": 8,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "Airソーラーの量産化・市場形成を支援します！Airソーラー量産化・市場形成促進事業のお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T19:51:49.722230+00:00",
+      "attempt": 2,
+      "id": "b4357728ad4b8bd0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 187.3,
+        "avg_sentence": 53.5,
+        "long_share": 0.314,
+        "max_paragraph": 254,
+        "paragraphs": 10,
+        "sentences": 35
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "Airソーラーの量産化・市場形成を支援します！Airソーラー量産化・市場形成促進事業のお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T19:51:57.452392+00:00",
+      "attempt": 1,
+      "id": "9160fd7588bbc93d",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1749字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（399字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 143.1,
+        "avg_sentence": 51.5,
+        "long_share": 0.2,
+        "max_paragraph": 236,
+        "paragraphs": 9,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "ひきこもりでお悩みの方へ 座談会をオンデマンドで配信します"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T19:52:05.611245+00:00",
+      "attempt": 2,
+      "id": "9160fd7588bbc93d",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（388字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 177.0,
+        "avg_sentence": 59.0,
+        "long_share": 0.433,
+        "max_paragraph": 242,
+        "paragraphs": 10,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "ひきこもりでお悩みの方へ 座談会をオンデマンドで配信します"
     }
   ],
   "short_text_retry": {
