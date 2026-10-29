@@ -5610,6 +5610,14 @@
       "skipped": true,
       "url": "https://blog.google/innovation-and-ai/technology/health/google-for-health-summit-singapore/"
     },
+    "7ce53b651c4285c7": {
+      "at": "2026-10-29T06:52:01.073610+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "ntt-data-strategy-spark-ai-consulting",
+      "url": "https://www.nttdata-strategy.com/newsrelease/261029/"
+    },
     "7d398bbabacb0711": {
       "at": "2026-10-27T01:53:44.181605+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -5631,6 +5639,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76725.html"
+    },
+    "7f04b62d80588514": {
+      "at": "2026-10-29T06:52:46.939109+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "caa-consumer-safety-report-oct2026",
+      "url": "https://www.caa.go.jp/notice/entry/047971/"
     },
     "7f0dec178da37fe0": {
       "at": "2026-10-26T12:33:20.217255+00:00",
@@ -8427,162 +8443,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T17:27:49.487719+00:00",
-      "attempt": 1,
-      "id": "8cbc7d4302903d73",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1891字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 149.6,
-        "avg_sentence": 53.1,
-        "long_share": 0.258,
-        "max_paragraph": 369,
-        "paragraphs": 11,
-        "sentences": 31
-      },
-      "score": null,
-      "source": "google-gemini-blog",
-      "title": "XREAL AURA: Wired XR glasses to watch, work, and play"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T17:28:17.093513+00:00",
-      "attempt": 2,
-      "id": "8cbc7d4302903d73",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2315字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 121.9,
-        "avg_sentence": 55.4,
-        "long_share": 0.394,
-        "max_paragraph": 244,
-        "paragraphs": 15,
-        "sentences": 33
-      },
-      "score": null,
-      "source": "google-gemini-blog",
-      "title": "XREAL AURA: Wired XR glasses to watch, work, and play"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T17:28:53.175351+00:00",
-      "attempt": 2,
-      "id": "8cbc7d4302903d73",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 50.7字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 145.5字・最長 244字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 145.5,
-        "avg_sentence": 50.7,
-        "long_share": 0.302,
-        "max_paragraph": 244,
-        "paragraphs": 15,
-        "sentences": 43
-      },
-      "score": 100,
-      "source": "google-gemini-blog",
-      "title": "XREAL AURA: Wired XR glasses to watch, work, and play"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T17:29:22.402114+00:00",
-      "attempt": 0,
-      "id": "8cbc7d4302903d73",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 107.5,
-        "avg_sentence": 33.8,
-        "long_share": 0.071,
-        "max_paragraph": 208,
-        "paragraphs": 22,
-        "sentences": 70
-      },
-      "score": 100,
-      "source": "google-gemini-blog",
-      "title": "XREAL AURA: Wired XR glasses to watch, work, and play"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T17:29:38.936976+00:00",
-      "attempt": 1,
-      "id": "9b15837d33fd0259",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1195字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 107.7,
-        "avg_sentence": 51.0,
-        "long_share": 0.368,
-        "max_paragraph": 167,
-        "paragraphs": 9,
-        "sentences": 19
-      },
-      "score": null,
-      "source": "caa",
-      "title": "注文住宅の建築請負に係る役務の提供事業者4社に対する景品表示法に基づく課徴金納付命令について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T17:29:52.902907+00:00",
-      "attempt": 2,
-      "id": "9b15837d33fd0259",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1580字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 134.9,
-        "avg_sentence": 56.2,
-        "long_share": 0.417,
-        "max_paragraph": 190,
-        "paragraphs": 10,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "caa",
-      "title": "注文住宅の建築請負に係る役務の提供事業者4社に対する景品表示法に基づく課徴金納付命令について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T17:30:22.095368+00:00",
-      "attempt": 1,
-      "id": "459c4ca756185452",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1745字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "title の長さが不適切（65字 / 18〜64字）"
-      ],
-      "readability": {
-        "avg_paragraph": 130.8,
-        "avg_sentence": 56.9,
-        "long_share": 0.391,
-        "max_paragraph": 255,
-        "paragraphs": 10,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "playstation-blog-jp",
-      "title": "スケルトンデザインの新色3種類が登場！ PS5®周辺機器「プリズム コレクション」初公開"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T17:30:39.591982+00:00",
@@ -15066,6 +14926,159 @@
       "score": 100,
       "source": "kddi-news",
       "title": "世界No.1のコネクティビティを有するロンドン データセンターの受電容量を倍増"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T06:51:47.382722+00:00",
+      "attempt": 1,
+      "id": "7ce53b651c4285c7",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1960字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 93.0,
+        "avg_sentence": 53.7,
+        "long_share": 0.385,
+        "max_paragraph": 180,
+        "paragraphs": 15,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "ntt-news-ai",
+      "title": "「SPARK」始動 ─ AIで未来を先読みする、人間との学習ループ ～NTTデータ経営研究所、AIを活用したコンサルティングサービス「SPARK」を提供開始～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T06:51:52.476072+00:00",
+      "attempt": 1,
+      "id": "7ce53b651c4285c7",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 51.7字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 130.9字・最長 180字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 130.9,
+        "avg_sentence": 51.7,
+        "long_share": 0.316,
+        "max_paragraph": 180,
+        "paragraphs": 15,
+        "sentences": 38
+      },
+      "score": 100,
+      "source": "ntt-news-ai",
+      "title": "「SPARK」始動 ─ AIで未来を先読みする、人間との学習ループ ～NTTデータ経営研究所、AIを活用したコンサルティングサービス「SPARK」を提供開始～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T06:52:01.073113+00:00",
+      "attempt": 0,
+      "id": "7ce53b651c4285c7",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "段落が長い（平均 132.9字・最長 182字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 132.9,
+        "avg_sentence": 35.0,
+        "long_share": 0.035,
+        "max_paragraph": 182,
+        "paragraphs": 15,
+        "sentences": 57
+      },
+      "score": 100,
+      "source": "ntt-news-ai",
+      "title": "「SPARK」始動 ─ AIで未来を先読みする、人間との学習ループ ～NTTデータ経営研究所、AIを活用したコンサルティングサービス「SPARK」を提供開始～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T06:52:14.873682+00:00",
+      "attempt": 1,
+      "id": "7f04b62d80588514",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1622字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 115.3,
+        "avg_sentence": 50.7,
+        "long_share": 0.4,
+        "max_paragraph": 274,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "caa",
+      "title": "消費者安全法の重大事故等に係る公表について(10月29日)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T06:52:34.647188+00:00",
+      "attempt": 2,
+      "id": "7f04b62d80588514",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1672字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 99.1,
+        "avg_sentence": 40.2,
+        "long_share": 0.094,
+        "max_paragraph": 178,
+        "paragraphs": 13,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "caa",
+      "title": "消費者安全法の重大事故等に係る公表について(10月29日)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T06:52:42.573316+00:00",
+      "attempt": 2,
+      "id": "7f04b62d80588514",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "段落が長い（平均 144.5字・最長 269字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 144.5,
+        "avg_sentence": 40.5,
+        "long_share": 0.06,
+        "max_paragraph": 269,
+        "paragraphs": 14,
+        "sentences": 50
+      },
+      "score": 100,
+      "source": "caa",
+      "title": "消費者安全法の重大事故等に係る公表について(10月29日)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T06:52:46.938674+00:00",
+      "attempt": 0,
+      "id": "7f04b62d80588514",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.6,
+        "avg_sentence": 39.8,
+        "long_share": 0.04,
+        "max_paragraph": 110,
+        "paragraphs": 25,
+        "sentences": 50
+      },
+      "score": 100,
+      "source": "caa",
+      "title": "消費者安全法の重大事故等に係る公表について(10月29日)"
     }
   ],
   "short_text_retry": {
