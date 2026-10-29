@@ -6043,6 +6043,14 @@
       "slug": "aws-ray-train-dlcs-efa-on-eks",
       "url": "https://aws.amazon.com/blogs/machine-learning/distributed-training-with-ray-train-dlcs-and-efa-on-eks/"
     },
+    "911b3d4994ebb534": {
+      "at": "2026-10-29T04:12:23.151083+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "kddi-l4s-autonomous-driving-shiojiri",
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1217_4791.html"
+    },
     "9159549a940483f3": {
       "at": "2026-10-26T12:51:45.036697+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6190,6 +6198,13 @@
       "reason": "quality: 本文が短い（2046字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000035.000121195.html"
+    },
+    "976f026c98b7ab3e": {
+      "at": "2026-10-29T04:11:55.257197+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 「対象者 | 関係省庁（防衛省、警察庁、国土交通省など）」→元記事には関係省庁の具体的な名称は記載されていないため、創作にあたる。; 「会社員・学生：通勤や通学中に情報が流れた場合、まずは落ち着いて屋内に避難してください。」→元記事には具体的な避難行動の指示は含まれていないため、過度な補足である。; 「鉄道などの公共交通機関が一時停止する可能性もあります。」→元記事には記載がない",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/discourse/20261029shiji.html"
     },
     "978f7a192a09e479": {
       "at": "2026-10-27T01:31:56.901617+00:00",
@@ -7841,6 +7856,14 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102819"
     },
+    "e82c5b36285f7f3f": {
+      "at": "2026-10-29T04:11:35.400790+00:00",
+      "kind": "update",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "updated": "php-vulnerabilities-jpcert-alert-2026",
+      "url": "https://cloud.google.com/blog/ja/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619/"
+    },
     "e84c4224744ad33b": {
       "at": "2026-10-26T14:31:00.675082+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -8330,131 +8353,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T11:52:12.468103+00:00",
-      "attempt": 1,
-      "id": "2ad38473eb930e41",
-      "kind": "update",
-      "model": "claude:sonnet",
-      "problems": [
-        "「既存記事に記したApple公式の発売日と同じです」→ 元記事にも確認済み文脈にもApple公式の発売日の記載はなく、既存記事に書かれていたという根拠がない。",
-        "要点「ドコモとソフトバンクが…発売は11月6日です」→ ドコモの発売日は元記事・文脈のどちらにも無く、ソフトバンクの発売日をドコモにも当てはめている。",
-        "「IP67等級…といった仕様は、既存記事の内容と重なります」→ 確認済み文脈にこれらの仕様の記載はなく、既存記事との一致を裏付けられない。"
-      ],
-      "score": 80,
-      "source": "radar-news.mynavi.jp",
-      "title": "ソフトバンク、AppleのiPad mini最新モデル（第8世代）の取り扱いと価格を発表"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T12:08:40.146961+00:00",
-      "attempt": 1,
-      "id": "2b3c8743ac8faea6",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 68.9,
-        "avg_sentence": 30.7,
-        "long_share": 0.024,
-        "max_paragraph": 143,
-        "paragraphs": 37,
-        "sentences": 83
-      },
-      "score": 95,
-      "source": "radar-engadget.com",
-      "title": "Meta quietly launched Waddle World, a Tamagotchi-like, AI pet-rearing game, in t"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T12:28:19.760076+00:00",
-      "attempt": 1,
-      "id": "0d16c53ac8066208",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "本文が短い（1917字 / 基準 2000字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 41.9,
-        "avg_sentence": 26.7,
-        "long_share": 0.017,
-        "max_paragraph": 83,
-        "paragraphs": 37,
-        "sentences": 58
-      },
-      "score": null,
-      "source": "radar-bloomberg.com",
-      "title": "Samsung unveils the $229 Galaxy Buds On, its first open-fit, C-shaped cuff earbu"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T12:29:50.136465+00:00",
-      "attempt": 2,
-      "id": "0d16c53ac8066208",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 49.2,
-        "avg_sentence": 28.4,
-        "long_share": 0.014,
-        "max_paragraph": 88,
-        "paragraphs": 41,
-        "sentences": 71
-      },
-      "score": 92,
-      "source": "radar-bloomberg.com",
-      "title": "Samsung unveils the $229 Galaxy Buds On, its first open-fit, C-shaped cuff earbu"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T15:04:34.837766+00:00",
-      "attempt": 1,
-      "id": "44c40aaac29222c10f7c6b4d0af9467078985b1c",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1450字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 144.9,
-        "avg_sentence": 62.1,
-        "long_share": 0.571,
-        "max_paragraph": 199,
-        "paragraphs": 9,
-        "sentences": 21
-      },
-      "score": null,
-      "source": "trends",
-      "title": "マイン クラフト switch2"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T15:04:53.742644+00:00",
-      "attempt": 2,
-      "id": "44c40aaac29222c10f7c6b4d0af9467078985b1c",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1488字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（383字 / 基準 400字以上）",
-        "title / seo_title に感嘆符がある"
-      ],
-      "readability": {
-        "avg_paragraph": 114.4,
-        "avg_sentence": 62.4,
-        "long_share": 0.5,
-        "max_paragraph": 173,
-        "paragraphs": 12,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "trends",
-      "title": "マイン クラフト switch2"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T15:06:18.411104+00:00",
@@ -14951,6 +14849,130 @@
       "score": null,
       "source": "tokyo-metro",
       "title": "知事指定薬物の新規指定について"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T04:11:35.400116+00:00",
+      "attempt": 1,
+      "id": "e82c5b36285f7f3f",
+      "kind": "update",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "google-cloud-blog-ja",
+      "title": "PHP コアの脆弱性 CVE-2026-109618 および CVE-2026-109619 への対応"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T04:11:45.525035+00:00",
+      "attempt": 1,
+      "id": "976f026c98b7ab3e",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1280字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（348字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 98.1,
+        "avg_sentence": 38.5,
+        "long_share": 0.107,
+        "max_paragraph": 157,
+        "paragraphs": 11,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "kantei",
+      "title": "高市総理は北朝鮮からの弾道ミサイルの可能性があるものの発射に関する指示を行いました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T04:11:55.257157+00:00",
+      "attempt": 2,
+      "id": "976f026c98b7ab3e",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "「対象者 | 関係省庁（防衛省、警察庁、国土交通省など）」→元記事には関係省庁の具体的な名称は記載されていないため、創作にあたる。",
+        "「会社員・学生：通勤や通学中に情報が流れた場合、まずは落ち着いて屋内に避難してください。」→元記事には具体的な避難行動の指示は含まれていないため、過度な補足である。",
+        "「鉄道などの公共交通機関が一時停止する可能性もあります。」→元記事には記載がない推測である。"
+      ],
+      "readability": {
+        "avg_paragraph": 94.6,
+        "avg_sentence": 41.4,
+        "long_share": 0.062,
+        "max_paragraph": 154,
+        "paragraphs": 14,
+        "sentences": 32
+      },
+      "score": 70,
+      "source": "kantei",
+      "title": "高市総理は北朝鮮からの弾道ミサイルの可能性があるものの発射に関する指示を行いました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T04:12:06.335649+00:00",
+      "attempt": 1,
+      "id": "911b3d4994ebb534",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1659字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 96.1,
+        "avg_sentence": 48.1,
+        "long_share": 0.25,
+        "max_paragraph": 155,
+        "paragraphs": 14,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "kddi-news",
+      "title": "自動運転の複数台運行を見守る、安定した映像伝送技術を実証"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T04:12:12.084119+00:00",
+      "attempt": 1,
+      "id": "911b3d4994ebb534",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "段落が長い（平均 124.8字・最長 192字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 124.8,
+        "avg_sentence": 44.8,
+        "long_share": 0.179,
+        "max_paragraph": 192,
+        "paragraphs": 14,
+        "sentences": 39
+      },
+      "score": 100,
+      "source": "kddi-news",
+      "title": "自動運転の複数台運行を見守る、安定した映像伝送技術を実証"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T04:12:23.150762+00:00",
+      "attempt": 0,
+      "id": "911b3d4994ebb534",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 75.3,
+        "avg_sentence": 38.5,
+        "long_share": 0.022,
+        "max_paragraph": 118,
+        "paragraphs": 23,
+        "sentences": 45
+      },
+      "score": 100,
+      "source": "kddi-news",
+      "title": "自動運転の複数台運行を見守る、安定した映像伝送技術を実証"
     }
   ],
   "short_text_retry": {
