@@ -6,8 +6,9 @@
   "companyName": "Google",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Gemini Liveは、Googleが提供する音声処理モデルです。音声をテキストに変換せず直接処理することで、超低遅延で自然な音声対話を実現します。",
+    "text": "Gemini Liveは、Googleが提供する音声を使った自然な対話やネイティブな音声処理を行うAIモデルです。2026年8月頃から開発者向けのプレビューや各種ツールとの統合機能が発表されています。",
     "sources": [
+      "google-gemini-live-plant-robot-sprout",
       "google-gemini-live-sprout-plant-robot",
       "google-gemini-college-student-features",
       "gemini-live-langsmith-observability",
@@ -17,45 +18,63 @@
   "facts": [
     {
       "label": "料金",
-      "value": "無料利用枠あり（従量課金）",
+      "value": "無料枠あり・従量課金",
       "sources": [
-        "google-gemini-live-sprout-plant-robot"
+        "google-gemini-live-plant-robot-sprout",
+        "google-gemini-live-sprout-plant-robot",
+        "google-gemini-college-student-features",
+        "gemini-live-langsmith-observability",
+        "voice-agent-observability-langsmith-gemini-live"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本からも利用可能",
+      "value": "日本から利用できる",
       "sources": [
-        "google-gemini-live-sprout-plant-robot"
+        "google-gemini-live-plant-robot-sprout",
+        "google-gemini-live-sprout-plant-robot",
+        "google-gemini-college-student-features",
+        "gemini-live-langsmith-observability"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者および学生",
+      "value": "開発者、学生",
       "sources": [
+        "google-gemini-live-plant-robot-sprout",
         "google-gemini-live-sprout-plant-robot",
-        "google-gemini-college-student-features"
+        "google-gemini-college-student-features",
+        "gemini-live-langsmith-observability",
+        "voice-agent-observability-langsmith-gemini-live"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "音声をテキストに変換せず直接処理する仕組みで、超低遅延なリアルタイム音声対話ができます。",
+      "text": "音声をテキストに変換せず直接処理するSpeech-to-Speechで超低遅延な音声対話ができます。",
       "sources": [
         "gemini-live-langsmith-observability",
         "voice-agent-observability-langsmith-gemini-live"
       ]
     },
     {
-      "text": "面接やプレゼンの練習で自分のアイデアがどう聞こえるかを確認できます。",
+      "text": "カメラを起動して画面を見せながら新しいデザインツールの使い方などを教わることができます。",
       "sources": [
         "google-gemini-college-student-features"
       ]
     },
     {
-      "text": "カメラを起動して画面を見せながらデザインの使い方をステップバイステップで教わることができます。",
+      "text": "音声対話の途中でユーザーが発言を遮る割り込みイベントを正確に検知できます。",
       "sources": [
-        "google-gemini-college-student-features"
+        "gemini-live-langsmith-observability",
+        "voice-agent-observability-langsmith-gemini-live"
+      ]
+    },
+    {
+      "text": "音声トークンとテキストトークンの消費量を分離して詳細に可視化できます。",
+      "sources": [
+        "gemini-live-langsmith-observability",
+        "voice-agent-observability-langsmith-gemini-live"
       ]
     }
   ],
@@ -63,21 +82,25 @@
     {
       "text": "Google AI Studioを通じて一定の無料利用枠が用意されています。",
       "sources": [
+        "google-gemini-live-plant-robot-sprout",
         "google-gemini-live-sprout-plant-robot"
       ]
     },
     {
-      "text": "無料枠を超えた分はトークン数に応じた従量課金となります。",
+      "text": "無料枠を超えた分は、トークン数に応じた従量課金となります。",
       "sources": [
+        "google-gemini-live-plant-robot-sprout",
         "google-gemini-live-sprout-plant-robot"
       ]
     }
   ],
   "japan": [
     {
-      "text": "Google AI StudioでAPIキーを発行し、日本から利用可能です。",
+      "text": "Google AI StudioでAPIキーを取得することで、日本からでも利用可能です。",
       "sources": [
+        "google-gemini-live-plant-robot-sprout",
         "google-gemini-live-sprout-plant-robot",
+        "gemini-live-langsmith-observability",
         "voice-agent-observability-langsmith-gemini-live"
       ]
     },
@@ -90,25 +113,30 @@
   ],
   "howto": [
     {
-      "text": "Google AI Studioにアクセスし、ログインしてAPIキーを取得します。",
+      "text": "Google AI Studioにアクセスしてログインし、APIキーを発行します。",
       "sources": [
+        "google-gemini-live-plant-robot-sprout",
         "google-gemini-live-sprout-plant-robot",
+        "gemini-live-langsmith-observability",
         "voice-agent-observability-langsmith-gemini-live"
       ]
     },
     {
-      "text": "開発環境からGemini APIを呼び出して利用します。",
+      "text": "Python環境などに必要なパッケージをインストールし、APIを呼び出して利用します。",
       "sources": [
+        "google-gemini-live-plant-robot-sprout",
         "google-gemini-live-sprout-plant-robot",
+        "gemini-live-langsmith-observability",
         "voice-agent-observability-langsmith-gemini-live"
       ]
     }
   ],
   "differences": [
     {
-      "text": "従来の音声認識や音声合成のステップを排除し、低遅延な対話を実現しています。",
+      "text": "音声データを直接入力・出力するSpeech-to-Speechを採用しています。",
       "sources": [
-        "gemini-live-langsmith-observability"
+        "gemini-live-langsmith-observability",
+        "voice-agent-observability-langsmith-gemini-live"
       ]
     }
   ],
@@ -117,23 +145,34 @@
       "q": "無料で使える？",
       "a": "Google AI Studioを通じて一定の無料利用枠が用意されています。",
       "sources": [
+        "google-gemini-live-plant-robot-sprout",
         "google-gemini-live-sprout-plant-robot"
       ]
     },
     {
-      "q": "誰に向いている？",
-      "a": "音声AIエージェントを開発するエンジニアや、学習を効率化したい学生に向いています。",
+      "q": "海外からでもアクセスできる？",
+      "a": "Google AI StudioでAPIキーを取得すれば日本などの環境から利用できます。",
       "sources": [
+        "google-gemini-live-plant-robot-sprout",
         "google-gemini-live-sprout-plant-robot",
+        "gemini-live-langsmith-observability"
+      ]
+    },
+    {
+      "q": "どのような用途に向いている？",
+      "a": "音声対話の練習や、開発者による音声AIエージェントの構築に向いています。",
+      "sources": [
         "google-gemini-college-student-features",
+        "gemini-live-langsmith-observability",
         "voice-agent-observability-langsmith-gemini-live"
       ]
     },
     {
-      "q": "前のモデルと何が違う？",
-      "a": "音声をテキストに変換せず直接処理するため、処理の遅延が大幅に削減されています。",
+      "q": "従来の音声アシスタントと何が違う？",
+      "a": "音声をテキストに変換せず直接処理するため、極めて低い遅延で対話が可能です。",
       "sources": [
-        "gemini-live-langsmith-observability"
+        "gemini-live-langsmith-observability",
+        "voice-agent-observability-langsmith-gemini-live"
       ]
     }
   ],
@@ -141,17 +180,22 @@
     {
       "date": "2026-08-01",
       "slug": "voice-agent-observability-langsmith-gemini-live",
-      "event": "Gemini Liveの音声AIエージェントの可観測性実装を発表"
+      "event": "Google ADKとGemini Liveを公開"
     },
     {
       "date": "2026-08-06",
       "slug": "gemini-live-langsmith-observability",
-      "event": "LangSmithでGemini Liveを可視化する手法を発表"
+      "event": "Gemini Liveの開発手法を発表"
+    },
+    {
+      "date": "2026-10-29",
+      "slug": "google-gemini-live-plant-robot-sprout",
+      "event": "植物ロボットSproutを公開"
     },
     {
       "date": "2026-10-29",
       "slug": "google-gemini-live-sprout-plant-robot",
-      "event": "Gemini Liveを搭載した植物ロボットSproutのデモを公開"
+      "event": "Gemini搭載ロボットSproutのデモ公開"
     }
   ],
   "related": [
@@ -161,19 +205,21 @@
     "antigravity"
   ],
   "articles": [
+    "google-gemini-live-plant-robot-sprout",
     "google-gemini-live-sprout-plant-robot",
     "google-gemini-college-student-features",
     "gemini-live-langsmith-observability",
     "voice-agent-observability-langsmith-gemini-live"
   ],
   "linkFrom": [
+    "google-gemini-live-plant-robot-sprout",
     "google-gemini-live-sprout-plant-robot",
     "gemini-live-langsmith-observability",
     "voice-agent-observability-langsmith-gemini-live"
   ],
-  "signature": "fe0222abf17182b0",
-  "primarySignature": "f8525a5a8d935dfe",
+  "signature": "3e50aa77decac87e",
+  "primarySignature": "0464d6ce5e257859",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:59:22+00:00",
-  "updatedAt": "2026-10-28T22:33:13+00:00"
+  "updatedAt": "2026-10-29T12:04:22+00:00"
 }
