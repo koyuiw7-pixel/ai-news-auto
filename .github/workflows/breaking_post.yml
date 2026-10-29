@@ -48,6 +48,14 @@ jobs:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BREAKING_PER_DAY: ${{ vars.BREAKING_PER_DAY }}
         run: python scripts/breaking_post.py --wait 480
+      # Bluesky にもすぐ出す（AT Protocol を直接。失敗しても止めない）
+      - name: Post to Bluesky
+        continue-on-error: true
+        env:
+          THREADS_MODE: ${{ vars.THREADS_MODE }}
+          BLUESKY_HANDLE: ${{ vars.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+        run: python scripts/bluesky_post.py
       # 待っている間に main が進んでいても衝突しないよう、最新の state に投稿記録だけを足して push する
       - name: Commit history
         run: |
@@ -58,6 +66,7 @@ jobs:
           for i in 1 2 3 4 5; do
             git fetch origin main && git reset --hard origin/main
             python scripts/breaking_post.py --merge "$RUNNER_TEMP/mine.json"
+            python scripts/bluesky_post.py --merge "$RUNNER_TEMP/mine.json"
             git add state/threads_posted.json
             if git diff --cached --quiet; then exit 0; fi
             git commit -m "chore(threads): 速報の投稿を記録"
