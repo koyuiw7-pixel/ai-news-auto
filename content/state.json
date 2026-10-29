@@ -3209,6 +3209,13 @@
       "slug": "aws-bedrock-evaluation-bias-property-finder",
       "url": "https://aws.amazon.com/blogs/machine-learning/fix-evaluation-bias-to-unlock-better-models-on-amazon-bedrock/"
     },
+    "10a18e979b16806a": {
+      "at": "2026-10-29T00:52:45.915652+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2321字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（380字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://aws.amazon.com/jp/blogs/news/protect-mcp-endpoints-at-the-edge-with-amazon-cloudfront-and-aws-waf/"
+    },
     "10d411a13de70561": {
       "at": "2026-10-27T03:04:42.978049+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -6463,6 +6470,14 @@
       "updated": "amazon-alexa-plus-launch",
       "url": "https://www.aboutamazon.jp/news/devices/amazon-launches-alexa-plus-in-japan?utm_source=rss"
     },
+    "afb260a097b98536": {
+      "at": "2026-10-29T00:52:22.977340+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "science",
+      "slug": "carbon-electrode-degradation-water-network",
+      "url": "https://www.jst.go.jp/pr/announce/20261028-3/index.html"
+    },
     "afe1fd13305d8454": {
       "at": "2026-10-27T03:04:42.979511+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（部会）",
@@ -6833,6 +6848,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（求人）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000001.000193445.html"
+    },
+    "c3faa8bab2cf2ce3": {
+      "at": "2026-10-29T00:51:46.046709+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1559字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://cloud.google.com/blog/ja/topics/customers/sky-implements-gemini-company-wide/"
     },
     "c49c4a64400ededc": {
       "at": "2026-10-27T01:55:06.418543+00:00",
@@ -8020,187 +8042,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-27T23:41:12.167196+00:00",
-      "attempt": 1,
-      "id": "dfa6a52031c0de0b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1456字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（328字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 132.5,
-        "avg_sentence": 57.6,
-        "long_share": 0.348,
-        "max_paragraph": 220,
-        "paragraphs": 10,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "maff",
-      "title": "株式会社釣八における業務用加工食品（塩さば）の不適正表示に対する措置について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-27T23:41:19.160295+00:00",
-      "attempt": 2,
-      "id": "dfa6a52031c0de0b",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1669字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 125.3,
-        "avg_sentence": 53.0,
-        "long_share": 0.308,
-        "max_paragraph": 178,
-        "paragraphs": 11,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "maff",
-      "title": "株式会社釣八における業務用加工食品（塩さば）の不適正表示に対する措置について"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T23:41:31.085499+00:00",
-      "attempt": 2,
-      "id": "dfa6a52031c0de0b",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 50.6字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 156.0字・最長 206字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 156.0,
-        "avg_sentence": 50.6,
-        "long_share": 0.243,
-        "max_paragraph": 206,
-        "paragraphs": 12,
-        "sentences": 37
-      },
-      "score": 100,
-      "source": "maff",
-      "title": "株式会社釣八における業務用加工食品（塩さば）の不適正表示に対する措置について"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-27T23:42:20.122790+00:00",
-      "attempt": 0,
-      "id": "dfa6a52031c0de0b",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 77.3,
-        "avg_sentence": 39.6,
-        "long_share": 0.024,
-        "max_paragraph": 119,
-        "paragraphs": 21,
-        "sentences": 41
-      },
-      "score": 100,
-      "source": "maff",
-      "title": "株式会社釣八における業務用加工食品（塩さば）の不適正表示に対する措置について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T00:01:56.821693+00:00",
-      "attempt": 1,
-      "id": "ec806dd2c72a090f226332b298d5c7a3184952ac",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1145字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（389字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 148.4,
-        "avg_sentence": 54.7,
-        "long_share": 0.368,
-        "max_paragraph": 264,
-        "paragraphs": 7,
-        "sentences": 19
-      },
-      "score": null,
-      "source": "trends",
-      "title": "東京消防庁"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T00:02:02.994873+00:00",
-      "attempt": 2,
-      "id": "ec806dd2c72a090f226332b298d5c7a3184952ac",
-      "kind": "trend",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（998字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 133.0,
-        "avg_sentence": 57.0,
-        "long_share": 0.571,
-        "max_paragraph": 146,
-        "paragraphs": 6,
-        "sentences": 14
-      },
-      "score": null,
-      "source": "trends",
-      "title": "東京消防庁"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T00:02:11.527568+00:00",
-      "attempt": 1,
-      "id": "9a34c263e7375b84",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1473字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 92.5,
-        "avg_sentence": 46.3,
-        "long_share": 0.231,
-        "max_paragraph": 131,
-        "paragraphs": 13,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "maff",
-      "title": "農林水産省とバングラデシュ人民共和国農業省及び漁業・畜産省との協力覚書の署名・交換について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T00:02:22.030230+00:00",
-      "attempt": 2,
-      "id": "9a34c263e7375b84",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1507字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 100.7,
-        "avg_sentence": 46.8,
-        "long_share": 0.179,
-        "max_paragraph": 217,
-        "paragraphs": 13,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "maff",
-      "title": "農林水産省とバングラデシュ人民共和国農業省及び漁業・畜産省との協力覚書の署名・交換について"
-    },
     {
       "accepted": true,
       "at": "2026-10-28T00:02:30.688592+00:00",
@@ -14643,6 +14484,185 @@
       "score": 93,
       "source": "nvidia-blog",
       "title": "Europe’s Industrial Leaders Reinvent Engineering and Manufacturing With NVIDIA"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T00:51:36.908163+00:00",
+      "attempt": 1,
+      "id": "c3faa8bab2cf2ce3",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2102字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "title / seo_title に感嘆符がある"
+      ],
+      "readability": {
+        "avg_paragraph": 113.9,
+        "avg_sentence": 63.3,
+        "long_share": 0.63,
+        "max_paragraph": 219,
+        "paragraphs": 15,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "google-cloud-blog-ja",
+      "title": "Sky: Gemini を全社で一斉に導入し、98% の利用定着率と 2,000 個近いエージェントの共有を実現"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T00:51:42.950410+00:00",
+      "attempt": 2,
+      "id": "c3faa8bab2cf2ce3",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1559字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 109.8,
+        "avg_sentence": 49.2,
+        "long_share": 0.207,
+        "max_paragraph": 198,
+        "paragraphs": 13,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "google-cloud-blog-ja",
+      "title": "Sky: Gemini を全社で一斉に導入し、98% の利用定着率と 2,000 個近いエージェントの共有を実現"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T00:51:53.248747+00:00",
+      "attempt": 1,
+      "id": "afb260a097b98536",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1706字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 159.6,
+        "avg_sentence": 63.9,
+        "long_share": 0.45,
+        "max_paragraph": 262,
+        "paragraphs": 8,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "jst",
+      "title": "電極表面の“水のつながり”が炭素電極の劣化を左右することを解明～水の構造を整えて、安価な炭素電極を長持ちさせる新たな設計指針～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T00:52:11.807877+00:00",
+      "attempt": 2,
+      "id": "afb260a097b98536",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1729字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 158.6,
+        "avg_sentence": 66.1,
+        "long_share": 0.625,
+        "max_paragraph": 322,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "jst",
+      "title": "電極表面の“水のつながり”が炭素電極の劣化を左右することを解明～水の構造を整えて、安価な炭素電極を長持ちさせる新たな設計指針～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T00:52:18.523604+00:00",
+      "attempt": 2,
+      "id": "afb260a097b98536",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 62.4字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 181.1字・最長 322字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 181.1,
+        "avg_sentence": 62.4,
+        "long_share": 0.517,
+        "max_paragraph": 322,
+        "paragraphs": 10,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "jst",
+      "title": "電極表面の“水のつながり”が炭素電極の劣化を左右することを解明～水の構造を整えて、安価な炭素電極を長持ちさせる新たな設計指針～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-29T00:52:22.976893+00:00",
+      "attempt": 0,
+      "id": "afb260a097b98536",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 185.2字・最長 306字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 185.2,
+        "avg_sentence": 36.3,
+        "long_share": 0.039,
+        "max_paragraph": 306,
+        "paragraphs": 10,
+        "sentences": 51
+      },
+      "score": 100,
+      "source": "jst",
+      "title": "電極表面の“水のつながり”が炭素電極の劣化を左右することを解明～水の構造を整えて、安価な炭素電極を長持ちさせる新たな設計指針～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T00:52:30.060632+00:00",
+      "attempt": 1,
+      "id": "10a18e979b16806a",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2293字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 150.5,
+        "avg_sentence": 72.2,
+        "long_share": 0.6,
+        "max_paragraph": 271,
+        "paragraphs": 12,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "Amazon CloudFront と AWS WAF によりエッジで MCP エンドポイントを保護する"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-29T00:52:45.915613+00:00",
+      "attempt": 2,
+      "id": "10a18e979b16806a",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2321字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（380字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 129.0,
+        "avg_sentence": 75.2,
+        "long_share": 0.667,
+        "max_paragraph": 199,
+        "paragraphs": 14,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "Amazon CloudFront と AWS WAF によりエッジで MCP エンドポイントを保護する"
     }
   ],
   "short_text_retry": {
