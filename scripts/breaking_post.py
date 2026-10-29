@@ -146,8 +146,12 @@ def main() -> int:
         else:
             x_preview, detail = tp.compose_x(article, text), tp.link_reply_text(article)
         image = tp.post_image(article, fmt)
-        log(f"--- {article['slug']} [{fmt}] ({len(text)}文字)\n{text}\n[返信]\n{detail}\n[X]\n{x_preview}\n[画像] {image}\n")
-        summary += [f"**{article['slug']}** [{fmt}]", "", "```", text, "---", detail, "```", f"画像: {image}", ""]
+        # Threads の本文に編集部の一言（地震・津波は付けない）。速報には問いかけを付けない
+        comment = tp.voice.editor_comment(article, tp.recent_voice(state, "comment"))
+        threads_text = tp.voice.add_voice(text, comment, "", tp.MAX_CHARS)
+        comment = comment if comment and comment in threads_text else ""
+        log(f"--- {article['slug']} [{fmt}] トピック={tp.topic_of(article)} ({len(threads_text)}文字)\n{threads_text}\n[返信]\n{detail}\n[X]\n{x_preview}\n[画像] {image}\n")
+        summary += [f"**{article['slug']}** [{fmt}]", "", "```", threads_text, "---", detail, "```", f"画像: {image}", ""]
         if not live:
             continue
         if index:
@@ -156,7 +160,7 @@ def main() -> int:
             log(f"  [skip] {args.wait}秒待っても記事か図解カードが開けません。通常の予約に回します")
             continue
         try:
-            result = tp.share_now(key, article, text, fmt=fmt, fb_text=classic_text)
+            result = tp.share_now(key, article, text, fmt=fmt, fb_text=classic_text, threads_text=threads_text)
         except Exception as error:  # noqa: BLE001  失敗しても次の記事・通常の予約は止めない
             log(f"  [error] {error}")
             continue
@@ -168,6 +172,9 @@ def main() -> int:
             "style": "standalone",
             "image": "card" if fmt == "classic" else "photo" if image != f"{tp.site_url()}/cover/{article['slug']}" else "cover",
             "format": fmt,
+            "topic": tp.topic_of(article),
+            "question": False,
+            **({"comment": comment} if comment else {}),
             "postedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         }
         tp.save_state(state)

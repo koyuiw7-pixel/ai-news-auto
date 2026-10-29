@@ -1,0 +1,81 @@
+name: SNS extra posts
+
+# 朝のまとめ「今朝のAIニュース3本」（毎朝 7:30 JST）と、週2回の問いかけ投稿（火・金 12:15 JST）。
+# 少し早めに起動し、Buffer で枠の時刻に予約する（Actions の起動の遅れを吸収）。中身は scripts/morning_digest.py。
+# 朝の回は、自分の投稿に付いたコメントの一覧（scripts/threads_inbox.py → state/threads_inbox.json）も更新する。自動返信はしない。
+# 手動実行で test=true にすると、Buffer に下書きを作って消すだけ（何も公開しない）。
+on:
+  schedule:
+    - cron: "5 22 * * *"      # 毎日 7:05 JST → 7:30 に予約
+    - cron: "45 2 * * 2,5"    # 火・金 11:45 JST → 12:15 に予約
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: "digest / poll / inbox"
+        required: false
+        default: "inbox"
+      test:
+        description: "true=下書きを作って消すだけ（トピック・本文の確認。公開しない）"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sns-extra
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Test drafts (nothing is published)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.test == 'true' }}
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: |
+          SNS_FORMAT=hook_thread python scripts/threads_post.py --test-draft
+          SNS_FORMAT=classic python scripts/threads_post.py --test-draft
+          python scripts/morning_digest.py --test-draft --force
+          python scripts/morning_digest.py --kind poll --test-draft --force
+          python scripts/threads_inbox.py --no-save | head -80
+      - name: Post
+        if: ${{ github.event_name == 'schedule' || (inputs.test != 'true' && inputs.kind != 'inbox') }}
+        env:
+          THREADS_MODE: ${{ vars.THREADS_MODE }}
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          SNS_DIGEST: ${{ vars.SNS_DIGEST }}
+          KIND: ${{ github.event.schedule == '45 2 * * 2,5' && 'poll' || inputs.kind || 'digest' }}
+        run: python scripts/morning_digest.py --kind "$KIND"
+      - name: Comment inbox (read only)
+        if: ${{ github.event.schedule == '5 22 * * *' || (inputs.test != 'true' && inputs.kind == 'inbox') }}
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: python scripts/threads_inbox.py | tail -40
+      # main が進んでいても衝突しないよう、最新の state に記録だけを足して push する
+      - name: Commit history
+        if: ${{ inputs.test != 'true' }}
+        run: |
+          if [ -z "$(git status --porcelain state)" ]; then exit 0; fi
+          cp state/threads_posted.json "$RUNNER_TEMP/mine.json"
+          if [ -f state/threads_inbox.json ]; then cp state/threads_inbox.json "$RUNNER_TEMP/inbox.json"; fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main
+            python scripts/morning_digest.py --merge "$RUNNER_TEMP/mine.json"
+            if [ -f "$RUNNER_TEMP/inbox.json" ]; then cp "$RUNNER_TEMP/inbox.json" state/threads_inbox.json; git add state/threads_inbox.json; fi
+            git add state/threads_posted.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "chore(threads): 朝のまとめ・問いかけ投稿・コメント一覧を記録 [no-deploy]"
+            git push origin HEAD:main && exit 0
+            echo "push に失敗しました。リトライ $i/5"
+            sleep 5
+          done
+          exit 1

@@ -34,6 +34,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from threads_token import API_BASE, load_token, refresh_if_needed  # noqa: E402
+import threads_voice as voice  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -225,10 +226,38 @@ def opening_line(article: dict, recent: list[str]) -> tuple[str, str]:
     return fresh[index]
 
 
+# Threads のトピック（1投稿に1つ。Buffer の metadata.threads.topic で付ける＝本文にハッシュタグは入れない）
+# 製品名 → 企業名の順に見る（「GoogleのGemini」は Gemini に）。見出しを先に、なければタグで判定
+TOPIC_RULES = [
+    (r"地震|震度", "地震"),
+    (r"津波", "津波"),
+    (r"ChatGPT|OpenAI|GPT-|Sora|Codex", "ChatGPT"),
+    (r"Claude|Anthropic", "Claude"),
+    (r"Gemini|Gemma|NotebookLM|DeepMind", "Gemini"),
+    (r"Copilot", "Copilot"),
+    (r"DeepSeek", "DeepSeek"),
+    (r"NVIDIA|GeForce", "NVIDIA"),
+    (r"Apple|iPhone|iPad|Mac|iOS|Vision Pro", "Apple"),
+    (r"Google|Android|YouTube|Pixel", "Google"),
+    (r"Microsoft|Windows|Azure", "Microsoft"),
+    (r"Meta|Llama|Instagram|Facebook", "Meta"),
+    (r"AWS|Amazon|Alexa", "Amazon"),
+    (r"ゲーム|PS5|Nintendo|Switch|Xbox|Steam", "ゲーム"),
+]
+
+
 def topic_of(article: dict) -> str:
-    """Threads のトピック（1つだけ付けられる）。企業名などの最初のタグを使う"""
-    tags = [t for t in article.get("tags", []) if t]
-    return tags[0][:50] if tags else "AI"
+    """Threads のトピック（1つだけ）。主要な製品・企業 → 生成AI → AI の順。50字以内・「.」「&」は使えない"""
+    title = f"{article.get('title', '')} {article.get('seoTitle', '')}"
+    tags = " ".join(str(t) for t in article.get("tags", []) if t)
+    for text in (title, tags):
+        for pattern, topic in TOPIC_RULES:
+            if re.search(pattern, text):
+                return topic
+    if article.get("genreSlug") not in (None, "ai"):
+        first = re.sub(r"[.&]", "", str((article.get("tags") or [""])[0])).strip()
+        return first[:50] or "ニュース"
+    return "生成AI" if "生成AI" in f"{title} {tags}" else "AI"
 
 
 # Threads で反応が取りやすい話題（大手・一般向け）と、取りにくい話題（企業の開発基盤など）
@@ -380,6 +409,13 @@ SLOT_PRIORITY = [(7, 30), (12, 15), (18, 30), (21, 0), (22, 45), (9, 45), (15, 3
 SNS_PER_DAY = max(1, min(len(SLOT_PRIORITY), int(os.environ.get("SNS_PER_DAY") or 7)))
 SLOTS_JST = sorted(SLOT_PRIORITY[:SNS_PER_DAY])
 JST = timezone(timedelta(hours=9))
+# 朝のまとめ投稿（scripts/morning_digest.py「今朝のAIニュース3本」）が使う枠。通常の予約はこの枠を空けておく
+# （1日の本数 SNS_PER_DAY はまとめを含めて数える）。SNS_DIGEST=0 でまとめを止め、通常の投稿に戻す
+DIGEST_SLOT_JST = (7, 30)
+DIGEST_ON = os.environ.get("SNS_DIGEST", "1").strip() != "0"
+# 週2回（火・金の昼）の問いかけ投稿（morning_digest.py --kind poll。Buffer の API は Threads のアンケートに未対応のため）
+POLL_SLOT_JST = (12, 15)
+POLL_WEEKDAYS_JST = (1, 4)  # 月=0 → 火・金
 # 自動処理は約6時間ごとに動くので、次の処理までの枠をまとめて予約する（処理の遅れも見込んで少し長めに）
 LOOKAHEAD_HOURS = 8
 
@@ -392,7 +428,11 @@ def free_slots(state: dict, now: datetime | None = None) -> list[datetime]:
     found = []
     for day in range(2):
         for hour, minute in SLOTS_JST:
+            if DIGEST_ON and (hour, minute) == DIGEST_SLOT_JST:
+                continue
             slot = (base + timedelta(days=day)).replace(hour=hour, minute=minute)
+            if DIGEST_ON and (hour, minute) == POLL_SLOT_JST and slot.weekday() in POLL_WEEKDAYS_JST:
+                continue
             if slot < base + timedelta(minutes=20) or slot > base + timedelta(hours=LOOKAHEAD_HOURS):
                 continue
             # すでに予約した投稿と90分以内に重なる枠は使わない（枠の時刻を変えた日でも詰まりすぎないように）
@@ -550,7 +590,7 @@ def compose_x(article: dict, root_text: str) -> str:
     lines = clean_lines(root_text)
     text_src = f"{article.get('title', '')} {' '.join(article.get('tags', []))}"
     tag = next((t for pattern, t in COMPANY_TAGS if re.search(pattern, text_src)), "")
-    tags = " ".join(t for t in ["#AI", tag] if t)
+    tags = " ".join(t for t in ["#AI", tag] if t) if not article.get("disaster") else "#地震" if "地震" in text_src else ""
     if lines and lines[0].startswith("【速報】"):
         options = [lines[:n] for n in range(len(lines), 0, -1)]
     else:
@@ -607,6 +647,17 @@ def choose_format(state: dict, article: dict, breaking: bool, offset: int = 0, n
         same = [p for p in state["posted"].values() if p.get("format") in FORMATS and bool(p.get("breaking")) == breaking]
         return FORMATS[(len(same) + offset) % 2]
     return ab_winner()
+
+
+def normal_index(state: dict) -> int:
+    """A/B の対象になった通常投稿の本数（choose_format と同じ数え方。問いかけの有無もこれで決める）"""
+    return sum(1 for p in state["posted"].values() if p.get("format") in FORMATS and not p.get("breaking"))
+
+
+def recent_voice(state: dict, field: str, n: int = 5) -> list[str]:
+    """直近の投稿で使った「編集部の一言」や「問いかけ」（同じ言い回しを続けないため）"""
+    history = sorted(state["posted"].values(), key=lambda p: p.get("postedAt", ""), reverse=True)
+    return [p[field] for p in history if p.get(field)][:n]
 
 
 def utm_link(link: str, source: str, fmt: str) -> str:
@@ -889,7 +940,9 @@ def publish_via_buffer(
     return {"id": create_post(api_key, post_input), "via": "buffer", "permalink": ""}
 
 
-def share_now(api_key: str, article: dict, text: str, fmt: str = "classic", fb_text: str | None = None) -> dict:
+def share_now(
+    api_key: str, article: dict, text: str, fmt: str = "classic", fb_text: str | None = None, threads_text: str | None = None
+) -> dict:
     """いますぐ Threads・X・Facebook に出す（速報用）。
 
     Buffer の shareNow を使い、通らなければ1分後の予約に切り替える。戻り値は投稿履歴にそのまま入れられる形
@@ -901,11 +954,11 @@ def share_now(api_key: str, article: dict, text: str, fmt: str = "classic", fb_t
     now = datetime.now(timezone.utc)
     due: datetime | None = None
     try:
-        result = publish_via_buffer(api_key, channels["threads"]["id"], text, link, article, fmt=fmt)
+        result = publish_via_buffer(api_key, channels["threads"]["id"], threads_text or text, link, article, fmt=fmt)
     except RuntimeError as error:
         log(f"  [threads] いますぐの投稿が通らないため、1分後の予約にします: {error}")
         due = now + timedelta(minutes=1)
-        result = publish_via_buffer(api_key, channels["threads"]["id"], text, link, article, due_at=due, fmt=fmt)
+        result = publish_via_buffer(api_key, channels["threads"]["id"], threads_text or text, link, article, due_at=due, fmt=fmt)
     extra = {k: v for k, v in channels.items() if k in ("twitter", "facebook")}
     result["channels"] = publish_extra_channels(
         api_key, extra, text, link, article, due_at=due, offsets=(1, 2), fmt=fmt, fb_text=fb_text
@@ -970,10 +1023,25 @@ def main() -> int:
         test_fmt = test_fmt if test_fmt in FORMATS else "hook_thread"
         test_text = compose_hook(sample) if test_fmt == "hook_thread" else compose(sample)
         log(f"[test] 形式: {test_fmt}")
+        # 編集部の一言と問いかけも入れた形で確かめる
+        threads_test = voice.add_voice(
+            test_text, voice.editor_comment(sample, []), voice.question_line(sample, topic_of(sample), []), MAX_CHARS
+        )
+        log(f"[test] Threads の本文:\n{threads_test}")
         result = publish_via_buffer(
-            buffer_key, buffer_channel["id"], test_text, f"{site_url()}/articles/{sample['slug']}", sample, draft=True, fmt=test_fmt
+            buffer_key, buffer_channel["id"], threads_test, f"{site_url()}/articles/{sample['slug']}", sample, draft=True, fmt=test_fmt
         )
         log(f"[test] 下書きの作成に成功しました: {result['id']}")
+        # トピックが Buffer に保存されたかを読み戻して確かめる
+        try:
+            saved = buffer_graphql(
+                buffer_key,
+                "query($id: PostId!) { post(input: { id: $id }) { metadata { ... on ThreadsPostMetadata { topic } } } }",
+                {"id": result["id"]},
+            )
+            log(f"[test] トピック: 送った値={topic_of(sample)} / Buffer の保存値={(saved.get('post') or {}).get('metadata')}")
+        except RuntimeError as error:
+            log(f"[test] トピックの読み戻しに失敗: {error}")
         deleted = buffer_graphql(
             buffer_key,
             """mutation($input: DeletePostInput!) {
@@ -1051,6 +1119,7 @@ def main() -> int:
     # 直近の投稿で使った書き出しの型（同じ型を続けないため）
     history = sorted(state["posted"].values(), key=lambda p: p.get("postedAt", ""), reverse=True)
     recent = [p["hook"] for p in history if p.get("hook")][:4]
+    recent_comments, recent_questions = recent_voice(state, "comment"), recent_voice(state, "questionText")
     for offset, (article, due_at) in enumerate(plan):
         link = f"{site_url()}/articles/{article['slug']}"
         # 下書きモードでは履歴が増えないので、何本目かを足して交互にする（本番は保存済みの履歴で数える）
@@ -1061,9 +1130,22 @@ def main() -> int:
         hook = article.get("threadsHook") or article.get("_hook", "")
         if hook:
             recent = [hook, *recent][:4]
+        # Threads の本文だけに「編集部の一言」と、約半分は「問いかけ」を足す（両形式に同じ条件。X・Facebook は元の本文）
+        comment = voice.editor_comment(article, recent_comments)
+        question = ""
+        if voice.want_question(normal_index(state) + (0 if live else offset)):
+            question = voice.question_line(article, topic_of(article), recent_questions)
+        threads_text = voice.add_voice(text, comment, question, MAX_CHARS)
+        comment = comment if comment and comment in threads_text else ""
+        question = question if question and threads_text.endswith(question) else ""
+        recent_comments = [comment, *recent_comments][:5] if comment else recent_comments
+        recent_questions = [question, *recent_questions][:5] if question else recent_questions
         detail = compose_detail(article) if fmt == "hook_thread" else link_reply_text(article)
-        log(f"--- {article['slug']} [{fmt}] ({len(text)}文字)\n{text}\n[返信]\n{detail}\n[画像] {post_image(article, fmt)}\n{link}\n")
-        summary += [f"**{article['slug']}** [{fmt}]", "", "```", text, "---", detail, link, "```", ""]
+        log(
+            f"--- {article['slug']} [{fmt}] 問いかけ={'あり' if question else 'なし'} トピック={topic_of(article)} "
+            f"({len(threads_text)}文字)\n{threads_text}\n[返信]\n{detail}\n[画像] {post_image(article, fmt)}\n{link}\n"
+        )
+        summary += [f"**{article['slug']}** [{fmt}]", "", "```", threads_text, "---", detail, link, "```", ""]
         if not live:
             continue
 
@@ -1072,13 +1154,13 @@ def main() -> int:
             continue
         try:
             if buffer_channel:
-                result = publish_via_buffer(buffer_key, buffer_channel["id"], text, link, article, due_at, fmt=fmt)
+                result = publish_via_buffer(buffer_key, buffer_channel["id"], threads_text, link, article, due_at, fmt=fmt)
                 if extra_channels:
                     result["channels"] = publish_extra_channels(
                         buffer_key, extra_channels, text, link, article, due_at, fmt=fmt, fb_text=classic_text
                     )
             else:
-                result = publish(token, text, link)
+                result = publish(token, threads_text, link)
         except RuntimeError as error:
             # 1本の失敗でパイプライン全体を止めない。未投稿のまま次回再挑戦する
             log(f"  [error] {error}")
@@ -1090,6 +1172,10 @@ def main() -> int:
             "style": "standalone",
             "image": "card" if fmt == "classic" else "photo" if post_image(article, fmt) != f"{site_url()}/cover/{article['slug']}" else "cover",
             "format": fmt,
+            "topic": topic_of(article),
+            "question": bool(question),
+            **({"questionText": question} if question else {}),
+            **({"comment": comment} if comment else {}),
             **({"dueAt": due_at.isoformat(timespec="seconds")} if due_at and buffer_channel else {}),
             "postedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         }

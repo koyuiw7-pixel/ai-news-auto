@@ -118,6 +118,8 @@ def features(slug: str, entry: dict) -> dict:
         "postFormat": entry.get("format") or "A/B前",
         # 速報と通常で閲覧数の桁が違うので、形式×種類でも比べる
         "postFormatKind": f"{entry.get('format') or 'A/B前'}/{'速報' if entry.get('breaking') else '通常'}",
+        # 本文の最後の問いかけ（2026-10-29〜。記録のない投稿は別枠）
+        "question": "問いかけあり" if entry.get("question") else "なし" if "question" in entry else "記録前",
     }
 
 
@@ -128,7 +130,7 @@ def summarize(rows: list[dict]) -> dict:
     overall_views = sum(r["views"] for r in rows) / len(rows)
     overall_eng = sum(r["engagement"] for r in rows) / len(rows)
     out: dict[str, dict] = {}
-    for axis in ("hook", "slot", "company", "ending", "format", "postFormat", "postFormatKind"):
+    for axis in ("hook", "slot", "company", "ending", "format", "postFormat", "postFormatKind", "question"):
         groups: dict[str, list[dict]] = {}
         for row in rows:
             groups.setdefault(row["features"][axis], []).append(row)
@@ -141,6 +143,7 @@ def summarize(rows: list[dict]) -> dict:
                 "n": n,
                 "avgViews": round(views / n, 1),
                 "avgEngagement": round(eng / n, 2),
+                "avgComments": round(sum(i.get("comments", 0) for i in items) / n, 2),
                 # 本数が少ない型ほど全体平均に寄せる（たまたまの1本で決めつけない）
                 "score": round(((views + PRIOR * overall_views) / (n + PRIOR))
                                + 10 * ((eng + PRIOR * overall_eng) / (n + PRIOR)), 2),
@@ -181,17 +184,19 @@ def main() -> int:
     rows = []
     for slug, entry in state["posted"].items():
         metrics = entry.get("metrics")
-        if not metrics:
+        # 朝のまとめ・問いかけ投稿は記事の投稿と性質が違うので、型の学習には入れない
+        if not metrics or entry.get("style") in ("digest", "poll"):
             continue
         rows.append({
             "slug": slug,
             "views": views_of(metrics),
             "engagement": engagement_of(metrics),
+            "comments": float(metrics.get("comments", 0) or 0),
             "features": features(slug, entry),
         })
     x_rows = [
         {"slug": slug, "views": views_of(e["xMetrics"]), "engagement": engagement_of(e["xMetrics"]), "features": features(slug, e)}
-        for slug, e in state["posted"].items() if e.get("xMetrics")
+        for slug, e in state["posted"].items() if e.get("xMetrics") and e.get("style") not in ("digest", "poll")
     ]
     learning = {
         "updatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -214,6 +219,8 @@ def main() -> int:
     for label, axes in (("Threads", learning["axes"]), ("X", learning["xAxes"])):
         for key, value in (axes.get("postFormatKind") or {}).items():
             print(f"  [形式 {label}] {key}: {value['n']}本 平均閲覧{value['avgViews']} 平均反応{value['avgEngagement']}")
+    for key, value in (learning["axes"].get("question") or {}).items():
+        print(f"  [問いかけ] {key}: {value['n']}本 平均閲覧{value['avgViews']} 平均返信{value['avgComments']}")
     return 0
 
 
