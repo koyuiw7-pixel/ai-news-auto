@@ -188,11 +188,13 @@ def main() -> int:
     live = os.environ.get("THREADS_MODE") == "live" and not args.dry_run
     state = tp.load_state()
     now = datetime.now(timezone.utc)
-    if now.astimezone(tp.JST).hour in tp.BREAKING_QUIET_HOURS_JST and not args.slug:
+    if now.astimezone(tp.JST).hour in tp.BREAKING_QUIET_HOURS_JST and live:
         log("[bluesky] 深夜のため出しません")
         return 0
     todo = [(args.slug, state["posted"][args.slug])] if args.slug else pending(state, now)
     room = max(0, PER_DAY - posted_today(state, now))
+    if not todo and not live:  # 下書きは最新の記事を見本にする
+        todo = [kv for kv in state["posted"].items() if not kv[1].get("style")][-1:]
     if not todo:
         log("[bluesky] 出すものはありません")
         return 0
@@ -205,7 +207,7 @@ def main() -> int:
     except Exception as error:  # noqa: BLE001  Bluesky の失敗で他を止めない
         log(f"[bluesky] ログイン失敗: {error}")
         return 0
-    for key, entry in todo[: max(room, 1 if args.slug else 0)]:
+    for key, entry in todo[: max(room, 1 if args.slug or not live else 0)]:
         try:
             p = plan(key, entry)
             if not p:
