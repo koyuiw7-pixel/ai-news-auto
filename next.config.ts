@@ -11,9 +11,11 @@ function guideRedirects() {
     const products = new Set(names("content/products"));
     const guides = names("content/guides");
     const moved = guides.filter((slug) => products.has(slug));
+    // 使い方ガイド（content/howto）があれば一覧（/guides）は残す
+    const howtos = fs.existsSync("content/howto") ? names("content/howto") : [];
     return [
       ...moved.map((slug) => ({ source: `/guides/${slug}`, destination: `/products/${slug}`, permanent: true })),
-      ...(guides.length > 0 && moved.length === guides.length
+      ...(howtos.length === 0 && guides.length > 0 && moved.length === guides.length
         ? [{ source: "/guides", destination: "/products", permanent: true }]
         : []),
     ];
@@ -62,6 +64,7 @@ const nextConfig: NextConfig = {
     "/**": [
       "./content/index.json",
       "./content/guides/**/*.json",
+      "./content/howto/**/*.json",
       "./content/products/**/*.json",
       "./content/buying-guides/**/*.json",
       "./content/offers.json",

@@ -9,6 +9,11 @@ on:
     workflows: ["Deploy to Cloudflare Workers"]
     types: [completed]
   workflow_dispatch:
+    inputs:
+      paths:
+        description: "調べるページ（カンマ区切り。空なら既定の主要ページ）"
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -32,7 +37,8 @@ jobs:
       - name: Check readability on production
         env:
           CHROME_PATH: /usr/bin/google-chrome
-        run: node scripts/check_readability.mjs --json readability.json --limit 40
+          PATHS: ${{ inputs.paths }}
+        run: node scripts/check_readability.mjs --json readability.json --limit 40 ${PATHS:+--paths "$PATHS"}
 
       - uses: actions/upload-artifact@v7
         if: always()

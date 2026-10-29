@@ -1,50 +1,100 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
+import { formatDate } from "@/lib/articles";
 import { getCompany, OTHER } from "@/lib/companies";
 import { getAllGuides, guideArticles } from "@/lib/guides";
+import { getAllHowtos, type HowtoGuide } from "@/lib/howto";
+import { getProduct } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "AI製品ガイド：できること・料金・使い方",
+  title: "AIの使い方ガイド：始め方・料金・無料でどこまで使えるか",
   description:
-    "ChatGPT Work、GPT-6 Astra、Claude Opus 5.5など注目のAI製品を、できること・料金・使い方・よくある質問まで1ページずつ解説。関連ニュースは自動で更新されます。",
+    "ChatGPT・Gemini・Claude・NotebookLMなど人気のAIツールの使い方、料金、無料でどこまで使えるか、日本で使えるかを、公式ページをもとに1ページずつ解説。内容は定期的に公式ページで確認し直しています。",
   alternates: { canonical: "/guides" },
 };
 
-/** 製品ガイドの一覧 */
+/** 使い方ガイドと製品ガイドの一覧 */
 export default function GuidesPage() {
-  const guides = getAllGuides();
+  const howtos = getAllHowtos();
+  // まとめページ（/products）へ移した製品ガイドは転送しているので出さない
+  const guides = getAllGuides().filter((guide) => !getProduct(guide.slug));
+  const groups = new Map<string, HowtoGuide[]>();
+  for (const guide of howtos) {
+    const key = guide.toolName.split(" / ")[0];
+    groups.set(key, [...(groups.get(key) ?? []), guide]);
+  }
+
   return (
     <div className="mx-auto max-w-[920px] px-5 py-10 sm:px-8 sm:py-14">
       <p className="eyebrow">GUIDES</p>
-      <h1 className="t-h1 mt-2">AI製品ガイド</h1>
+      <h1 className="t-h1 mt-2">AIの使い方ガイド</h1>
       <p className="t-lead mt-3">
-        注目のAI製品を「何ができるか・いくらか・どう始めるか」で1ページずつ整理しました。関連ニュースは新しい発表があるたびに自動で更新されます。
+        人気のAIツールの始め方、料金、無料でどこまで使えるか、日本で使えるかを1ページずつまとめました。公式ページだけをもとに書き、定期的に確認し直しています。
       </p>
-      <ul className="mt-10 grid gap-3 sm:grid-cols-2">
-        {guides.map((guide) => {
-          const company = getCompany(guide.companySlug) ?? OTHER;
-          return (
-            <li key={guide.slug}>
-              <Link
-                href={`/guides/${guide.slug}`}
-                className="group flex h-full flex-col gap-3 rounded-2xl border border-line p-5 transition-colors hover:border-ink"
-              >
-                <span className="flex items-center gap-2 text-meta">
-                  {company.slug !== OTHER.slug ? (
-                    <CompanyMark company={company} size={18} withName />
-                  ) : (
-                    <span className="font-bold text-ink-soft">注目のAI</span>
-                  )}
-                  <span className="index-num ml-auto text-muted">関連 {guideArticles(guide).length}本</span>
-                </span>
-                <span className="text-[17px] font-bold leading-snug text-ink group-hover:underline">{guide.title}</span>
-                <span className="line-clamp-2 text-desc leading-[1.75] text-ink-soft">{guide.summary[0]}</span>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+
+      {[...groups.entries()].map(([tool, items]) => (
+        <section key={tool} aria-labelledby={`tool-${items[0].slug}`} className="mt-12">
+          <h2 id={`tool-${items[0].slug}`} className="t-h2 border-b border-ink pb-2">{tool}</h2>
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+            {items.map((guide) => {
+              const company = getCompany(guide.company) ?? OTHER;
+              return (
+                <li key={guide.slug}>
+                  <Link
+                    href={`/guides/${guide.slug}`}
+                    className="group flex h-full flex-col gap-3 rounded-2xl border border-line p-5 transition-colors hover:border-ink"
+                  >
+                    <span className="flex items-center gap-2 text-meta">
+                      {company.slug !== OTHER.slug ? (
+                        <CompanyMark company={company} size={18} withName />
+                      ) : (
+                        <span className="font-bold text-ink-soft">{guide.intent}</span>
+                      )}
+                      <span className="index-num ml-auto text-muted">確認 {formatDate(guide.checkedAt)}</span>
+                    </span>
+                    <span className="text-[17px] font-bold leading-snug text-ink group-hover:underline">{guide.title}</span>
+                    <span className="line-clamp-2 text-desc leading-[1.75] text-ink-soft">{guide.conclusion[0]}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))}
+
+      {guides.length > 0 && (
+        <section aria-labelledby="product-guides" className="mt-12">
+          <h2 id="product-guides" className="t-h2 border-b border-ink pb-2">製品ガイド</h2>
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+            {guides.map((guide) => {
+              const company = getCompany(guide.companySlug) ?? OTHER;
+              return (
+                <li key={guide.slug}>
+                  <Link
+                    href={`/guides/${guide.slug}`}
+                    className="group flex h-full flex-col gap-3 rounded-2xl border border-line p-5 transition-colors hover:border-ink"
+                  >
+                    <span className="flex items-center gap-2 text-meta">
+                      {company.slug !== OTHER.slug && <CompanyMark company={company} size={18} withName />}
+                      <span className="index-num ml-auto text-muted">関連 {guideArticles(guide).length}本</span>
+                    </span>
+                    <span className="text-[17px] font-bold leading-snug text-ink group-hover:underline">{guide.title}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
+
+      <p className="mt-14 text-note leading-relaxed text-muted">
+        新しいAIの「とは・料金・日本で使える？」は
+        <Link href="/products" className="mx-1 font-bold text-ink underline underline-offset-4">製品のまとめページ</Link>
+        、各社の料金の一覧は
+        <Link href="/ai-pricing" className="mx-1 font-bold text-ink underline underline-offset-4">AIの料金・日本対応 早見表</Link>
+        にまとめています。
+      </p>
     </div>
   );
 }

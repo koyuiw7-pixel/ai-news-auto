@@ -16,6 +16,7 @@ const LEGAL_LINKS = [
 
 // 何度も見に来てもらう定番ページ（ヘッダーのメニューは5つに絞っているので足元に置く）
 const REFERENCE_LINKS = [
+  { href: "/guides", label: "AIの使い方ガイド" },
   { href: "/ai-pricing", label: "AIの料金・日本対応 早見表" },
   { href: "/choose/internet-for-ai", label: "AIのための通信回線の選び方" },
   { href: "/choose/ai-career", label: "AI転職・学び直しの選び方" },

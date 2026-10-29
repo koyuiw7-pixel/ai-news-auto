@@ -7,6 +7,7 @@ IndexNow はアカウント不要で Bing / DuckDuckGo / Yandex などに直接�
 
   python3 scripts/indexnow.py --all      # 全記事を送信（初回用）
   python3 scripts/indexnow.py --hours 12 # 直近12時間に生成された記事だけ
+  python3 scripts/indexnow.py --urls https://ai-tech-express.jp/guides/a,...  # 指定した URL だけ
 """
 
 from __future__ import annotations
@@ -21,6 +22,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
+HOWTO_DIR = ROOT / "content" / "howto"
 PUBLIC_DIR = ROOT / "public"
 ENDPOINT = "https://api.indexnow.org/indexnow"
 MAX_URLS = 10000  # 1リクエストあたりの上限
@@ -67,6 +69,19 @@ def collect_urls(base: str, hours: int | None) -> list[str]:
                 continue
         urls.append(f"{base}/articles/{article['slug']}")
 
+    # 使い方ガイド（/guides/<slug>）。作成・確認し直した（確認日が変わった）ものも送る
+    guides = []
+    for path in sorted(HOWTO_DIR.glob("*.json")):
+        try:
+            guide = json.loads(path.read_text("utf-8"))
+            touched = datetime.fromisoformat(guide.get("checkedAt") or guide.get("updatedAt") or "")
+        except (json.JSONDecodeError, ValueError):
+            continue
+        if threshold is None or touched >= threshold:
+            guides.append(f"{base}/guides/{guide['slug']}")
+    if guides:
+        urls += [f"{base}/guides", *guides]
+
     return urls[:MAX_URLS]
 
 
@@ -107,6 +122,7 @@ def main() -> int:
     parser.add_argument("--all", action="store_true", help="全記事を送信")
     parser.add_argument("--hours", type=int, default=12, help="直近N時間の記事のみ")
     parser.add_argument("--dry-run", action="store_true", help="送信せず対象を表示")
+    parser.add_argument("--urls", default="", help="カンマ区切りの URL だけを送る")
     args = parser.parse_args()
 
     key = find_key()
@@ -115,7 +131,8 @@ def main() -> int:
         return 1
 
     base = site_url()
-    urls = collect_urls(base, None if args.all else args.hours)
+    explicit = [u.strip() for u in args.urls.split(",") if u.strip().startswith(base)]
+    urls = explicit or collect_urls(base, None if args.all else args.hours)
 
     print(f"[info] 送信先ホスト: {base} / 対象 {len(urls)} 件")
     for url in urls[:5]:
@@ -126,7 +143,7 @@ def main() -> int:
     if args.dry_run:
         print("[dry-run] 送信しませんでした")
         return 0
-    if len(urls) <= 3:
+    if not explicit and len(urls) <= 3:
         print("[skip] 新規URLがないため送信しません")
         return 0
 

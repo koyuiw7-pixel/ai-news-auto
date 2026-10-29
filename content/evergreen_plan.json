@@ -1,0 +1,1899 @@
+{
+  "about": "常に検索される「使い方・料金・無料でどこまで・日本で使える？」の解説ページ（/guides/<slug>）の予定表。scripts/evergreen.py が上から順に作る。",
+  "createdAt": "2026-10-30",
+  "dailyCap": 4,
+  "refreshDays": 14,
+  "signals": "Google のサジェスト（suggestqueries.google.com、2026-10-29 取得）で候補語に出る組み合わせを需要の目安にし、公式ヘルプ・料金ページがあるかで正確さを評価。priority = demand × accuracy",
+  "topics": [
+    {
+      "slug": "chatgpt-how-to-use",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt"
+      ],
+      "toolName": "ChatGPT",
+      "company": "openai",
+      "intent": "使い方",
+      "title": "ChatGPTの使い方【初心者向け】登録から質問のコツまで",
+      "keyword": "chatgpt 使い方",
+      "queries": [
+        "chatgpt 使い方",
+        "chatgpt 使い方 初心者",
+        "chatgpt 使い方 コツ"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "ChatGPT",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://openai.com/ja-JP/chatgpt/overview/"
+      ],
+      "rank": 1,
+      "day": 0
+    },
+    {
+      "slug": "chatgpt-free-plan",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt"
+      ],
+      "toolName": "ChatGPT",
+      "company": "openai",
+      "intent": "料金・無料でどこまで",
+      "title": "ChatGPTは無料でどこまで使える？有料プランとの違い",
+      "keyword": "chatgpt 無料 どこまで",
+      "queries": [
+        "chatgpt 無料 どこまで",
+        "chatgpt 無料 制限",
+        "chatgpt 無料 有料 違い"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "ChatGPT",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://openai.com/ja-JP/chatgpt/overview/"
+      ],
+      "rank": 2,
+      "day": 0
+    },
+    {
+      "slug": "gemini-free-plan",
+      "tool": "gemini",
+      "tools": [
+        "gemini"
+      ],
+      "toolName": "Gemini",
+      "company": "google",
+      "intent": "料金・無料でどこまで",
+      "title": "Geminiは無料でどこまで使える？Google AI Proとの違い",
+      "keyword": "gemini 無料 どこまで",
+      "queries": [
+        "gemini 無料 どこまで",
+        "gemini 無料 制限",
+        "gemini 無料 有料 違い"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "Gemini(?! ?Notebook)",
+      "products": [
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live"
+      ],
+      "sources": [
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja",
+        "https://gemini.google/jp/overview/?hl=ja"
+      ],
+      "rank": 3,
+      "day": 0
+    },
+    {
+      "slug": "notebooklm-how-to-use",
+      "tool": "notebooklm",
+      "tools": [
+        "notebooklm"
+      ],
+      "toolName": "NotebookLM（Gemini Notebook）",
+      "company": "google",
+      "intent": "使い方",
+      "title": "NotebookLM（Gemini Notebook）の使い方と料金・無料の上限",
+      "keyword": "notebooklm 使い方",
+      "queries": [
+        "notebooklm 使い方",
+        "notebooklm とは",
+        "notebooklm 料金"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "NotebookLM|Gemini Notebook",
+      "products": [],
+      "sources": [
+        "https://support.google.com/gemininotebook/answer/16164461?hl=ja",
+        "https://support.google.com/gemininotebook/answer/16206563?hl=ja",
+        "https://support.google.com/gemininotebook/answer/17670842?hl=ja",
+        "https://support.google.com/gemininotebook/answer/16213268?hl=ja"
+      ],
+      "rank": 4,
+      "day": 0
+    },
+    {
+      "slug": "chatgpt-pricing",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt"
+      ],
+      "toolName": "ChatGPT",
+      "company": "openai",
+      "intent": "料金・無料でどこまで",
+      "title": "ChatGPTの料金プラン比較：無料・Go・Plus・Proの違い",
+      "keyword": "chatgpt 料金",
+      "queries": [
+        "chatgpt 料金",
+        "chatgpt 料金 日本円",
+        "chatgpt プラン"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "ChatGPT",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://openai.com/ja-JP/chatgpt/overview/"
+      ],
+      "rank": 5,
+      "day": 1
+    },
+    {
+      "slug": "gemini-how-to-use",
+      "tool": "gemini",
+      "tools": [
+        "gemini"
+      ],
+      "toolName": "Gemini",
+      "company": "google",
+      "intent": "使い方",
+      "title": "Geminiの使い方【初心者向け】スマホ・PCでの始め方",
+      "keyword": "gemini 使い方",
+      "queries": [
+        "gemini 使い方",
+        "gemini 使い方 スマホ",
+        "gemini アプリ"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "Gemini(?! ?Notebook)",
+      "products": [
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live"
+      ],
+      "sources": [
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja",
+        "https://gemini.google/jp/overview/?hl=ja"
+      ],
+      "rank": 6,
+      "day": 1
+    },
+    {
+      "slug": "claude-code-how-to-use",
+      "tool": "claude-code",
+      "tools": [
+        "claude-code"
+      ],
+      "toolName": "Claude Code",
+      "company": "anthropic",
+      "intent": "始め方",
+      "title": "Claude Codeの使い方：インストールから最初の指示まで",
+      "keyword": "claude code 使い方",
+      "queries": [
+        "claude code 使い方",
+        "claude code インストール",
+        "claude code 始め方"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "Claude Code",
+      "products": [
+        "claude-opus-5-5"
+      ],
+      "sources": [
+        "https://code.claude.com/docs/ja/overview",
+        "https://code.claude.com/docs/ja/quickstart",
+        "https://claude.com/pricing"
+      ],
+      "rank": 7,
+      "day": 1
+    },
+    {
+      "slug": "chatgpt-image-generation",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt"
+      ],
+      "toolName": "ChatGPT",
+      "company": "openai",
+      "intent": "使い方",
+      "title": "ChatGPTで画像生成するやり方：無料で何枚まで作れる？",
+      "keyword": "chatgpt 画像生成",
+      "queries": [
+        "chatgpt 画像生成",
+        "chatgpt 画像生成 無料",
+        "chatgpt 画像生成 何枚まで"
+      ],
+      "demand": 5,
+      "accuracy": 4,
+      "priority": 20,
+      "match": "ChatGPT",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://openai.com/ja-JP/chatgpt/overview/"
+      ],
+      "rank": 8,
+      "day": 1
+    },
+    {
+      "slug": "claude-pricing",
+      "tool": "claude",
+      "tools": [
+        "claude"
+      ],
+      "toolName": "Claude",
+      "company": "anthropic",
+      "intent": "料金・無料でどこまで",
+      "title": "Claudeの料金プラン：無料版・Pro・Maxの違いと日本円の目安",
+      "keyword": "claude 料金",
+      "queries": [
+        "claude 料金",
+        "claude プラン",
+        "claude 料金 日本円"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "Claude(?! Code)",
+      "products": [
+        "claude-opus-5-5",
+        "claude-fable-5-1"
+      ],
+      "sources": [
+        "https://claude.com/pricing",
+        "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
+      ],
+      "rank": 9,
+      "day": 2
+    },
+    {
+      "slug": "claude-how-to-use",
+      "tool": "claude",
+      "tools": [
+        "claude"
+      ],
+      "toolName": "Claude",
+      "company": "anthropic",
+      "intent": "使い方",
+      "title": "Claudeの使い方【初心者向け】日本語での始め方とコツ",
+      "keyword": "claude 使い方",
+      "queries": [
+        "claude 使い方",
+        "claude ai",
+        "claude 使い方 初心者"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "Claude(?! Code)",
+      "products": [
+        "claude-opus-5-5",
+        "claude-fable-5-1"
+      ],
+      "sources": [
+        "https://claude.com/pricing",
+        "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
+      ],
+      "rank": 10,
+      "day": 2
+    },
+    {
+      "slug": "chatgpt-privacy",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt"
+      ],
+      "toolName": "ChatGPT",
+      "company": "openai",
+      "intent": "安全性・個人情報",
+      "title": "ChatGPTに学習させない設定と安全な使い方",
+      "keyword": "chatgpt 学習させない",
+      "queries": [
+        "chatgpt 学習させない",
+        "chatgpt 安全性",
+        "chatgpt 個人情報"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "ChatGPT",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://openai.com/ja-JP/chatgpt/overview/"
+      ],
+      "rank": 11,
+      "day": 2
+    },
+    {
+      "slug": "chatgpt-smartphone",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt"
+      ],
+      "toolName": "ChatGPT",
+      "company": "openai",
+      "intent": "スマホで使う",
+      "title": "ChatGPTをスマホで使う方法：iPhone・Androidアプリの始め方",
+      "keyword": "chatgpt アプリ",
+      "queries": [
+        "chatgpt アプリ",
+        "chatgpt 使い方 スマホ",
+        "chatgpt スマホ"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "ChatGPT",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://openai.com/ja-JP/chatgpt/overview/"
+      ],
+      "rank": 12,
+      "day": 2
+    },
+    {
+      "slug": "claude-code-pricing",
+      "tool": "claude-code",
+      "tools": [
+        "claude-code"
+      ],
+      "toolName": "Claude Code",
+      "company": "anthropic",
+      "intent": "料金・無料でどこまで",
+      "title": "Claude Codeの料金：無料で使える？必要なプランまとめ",
+      "keyword": "claude code 料金",
+      "queries": [
+        "claude code 料金",
+        "claude code 無料",
+        "claude code プラン"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "Claude Code",
+      "products": [
+        "claude-opus-5-5"
+      ],
+      "sources": [
+        "https://code.claude.com/docs/ja/overview",
+        "https://code.claude.com/docs/ja/quickstart",
+        "https://claude.com/pricing"
+      ],
+      "rank": 13,
+      "day": 3
+    },
+    {
+      "slug": "gemini-privacy",
+      "tool": "gemini",
+      "tools": [
+        "gemini"
+      ],
+      "toolName": "Gemini",
+      "company": "google",
+      "intent": "安全性・個人情報",
+      "title": "Geminiに学習させない設定：アクティビティの管理方法",
+      "keyword": "gemini 学習させない",
+      "queries": [
+        "gemini 学習させない",
+        "gemini 安全性",
+        "gemini 個人情報"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "Gemini(?! ?Notebook)",
+      "products": [
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live"
+      ],
+      "sources": [
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja",
+        "https://gemini.google/jp/overview/?hl=ja"
+      ],
+      "rank": 14,
+      "day": 3
+    },
+    {
+      "slug": "gemini-pricing",
+      "tool": "gemini",
+      "tools": [
+        "gemini"
+      ],
+      "toolName": "Gemini",
+      "company": "google",
+      "intent": "料金・無料でどこまで",
+      "title": "Geminiの料金プラン：Google AI Pro・Ultraの違い",
+      "keyword": "gemini 料金",
+      "queries": [
+        "gemini 料金",
+        "gemini 有料プラン",
+        "gemini 料金 プラン"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "Gemini(?! ?Notebook)",
+      "products": [
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live"
+      ],
+      "sources": [
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja",
+        "https://gemini.google/jp/overview/?hl=ja"
+      ],
+      "rank": 15,
+      "day": 3
+    },
+    {
+      "slug": "deepl-how-to-use",
+      "tool": "deepl",
+      "tools": [
+        "deepl"
+      ],
+      "toolName": "DeepL",
+      "company": "other",
+      "intent": "使い方",
+      "title": "DeepLの使い方：無料版の制限とProの違い",
+      "keyword": "deepl 翻訳",
+      "queries": [
+        "deepl 翻訳",
+        "deepl 無料 制限",
+        "deepl pro"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "DeepL",
+      "products": [],
+      "sources": [
+        "https://www.deepl.com/ja/pro",
+        "https://support.deepl.com/hc/ja"
+      ],
+      "rank": 16,
+      "day": 3
+    },
+    {
+      "slug": "cursor-pricing",
+      "tool": "cursor",
+      "tools": [
+        "cursor"
+      ],
+      "toolName": "Cursor",
+      "company": "other",
+      "intent": "料金・無料でどこまで",
+      "title": "Cursorの料金プラン：無料のHobbyとProの違い",
+      "keyword": "cursor 料金",
+      "queries": [
+        "cursor 料金",
+        "cursor pro",
+        "cursor 無料"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "Cursor",
+      "products": [],
+      "sources": [
+        "https://cursor.com/ja/pricing",
+        "https://cursor.com/ja/docs/get-started/quickstart"
+      ],
+      "rank": 17,
+      "day": 4
+    },
+    {
+      "slug": "chatgpt-desktop-app",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt"
+      ],
+      "toolName": "ChatGPT",
+      "company": "openai",
+      "intent": "始め方",
+      "title": "ChatGPTデスクトップアプリの入れ方：Mac・Windows",
+      "keyword": "chatgpt デスクトップアプリ",
+      "queries": [
+        "chatgpt デスクトップアプリ",
+        "chatgpt アプリ pc",
+        "chatgpt mac"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "ChatGPT",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://openai.com/ja-JP/chatgpt/overview/"
+      ],
+      "rank": 18,
+      "day": 4
+    },
+    {
+      "slug": "gemini-smartphone",
+      "tool": "gemini",
+      "tools": [
+        "gemini"
+      ],
+      "toolName": "Gemini",
+      "company": "google",
+      "intent": "スマホで使う",
+      "title": "Geminiアプリをスマホで使う方法：iPhone・Android",
+      "keyword": "gemini アプリ",
+      "queries": [
+        "gemini アプリ",
+        "gemini 使い方 スマホ",
+        "gemini iphone"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "Gemini(?! ?Notebook)",
+      "products": [
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live"
+      ],
+      "sources": [
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja",
+        "https://gemini.google/jp/overview/?hl=ja"
+      ],
+      "rank": 19,
+      "day": 4
+    },
+    {
+      "slug": "copilot-how-to-use",
+      "tool": "copilot",
+      "tools": [
+        "copilot"
+      ],
+      "toolName": "Microsoft Copilot",
+      "company": "microsoft",
+      "intent": "使い方",
+      "title": "Microsoft Copilotの使い方：無料版でできることと始め方",
+      "keyword": "copilot 使い方",
+      "queries": [
+        "copilot 使い方",
+        "copilot とは",
+        "copilot 無料"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "(?<!GitHub )Copilot",
+      "products": [],
+      "sources": [
+        "https://www.microsoft.com/ja-jp/microsoft-copilot/for-individuals",
+        "https://www.microsoft.com/ja-jp/microsoft-365/copilot/pricing",
+        "https://support.microsoft.com/ja-jp/copilot"
+      ],
+      "rank": 20,
+      "day": 4
+    },
+    {
+      "slug": "perplexity-how-to-use",
+      "tool": "perplexity",
+      "tools": [
+        "perplexity"
+      ],
+      "toolName": "Perplexity",
+      "company": "other",
+      "intent": "使い方",
+      "title": "Perplexityとは？使い方と無料版・Proの違い",
+      "keyword": "perplexity とは",
+      "queries": [
+        "perplexity とは",
+        "perplexity 使い方",
+        "perplexity 無料"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Perplexity",
+      "products": [],
+      "sources": [
+        "https://www.perplexity.ai/help-center/ja/",
+        "https://www.perplexity.ai/ja/hub/faq/what-is-perplexity"
+      ],
+      "rank": 21,
+      "day": 5
+    },
+    {
+      "slug": "grok-how-to-use",
+      "tool": "grok",
+      "tools": [
+        "grok"
+      ],
+      "toolName": "Grok",
+      "company": "xai",
+      "intent": "使い方",
+      "title": "Grokの使い方：Xでの呼び出し方と無料でできること",
+      "keyword": "grok 使い方",
+      "queries": [
+        "grok 使い方",
+        "grok 使い方 無料",
+        "grok 使い方 x"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Grok",
+      "products": [],
+      "sources": [
+        "https://x.ai/grok",
+        "https://grok.com/plans"
+      ],
+      "rank": 22,
+      "day": 5
+    },
+    {
+      "slug": "cursor-how-to-use",
+      "tool": "cursor",
+      "tools": [
+        "cursor"
+      ],
+      "toolName": "Cursor",
+      "company": "other",
+      "intent": "使い方",
+      "title": "Cursorとは？使い方・日本語化・料金をやさしく解説",
+      "keyword": "cursor とは",
+      "queries": [
+        "cursor とは",
+        "cursor 使い方",
+        "cursor 日本語化"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Cursor",
+      "products": [],
+      "sources": [
+        "https://cursor.com/ja/pricing",
+        "https://cursor.com/ja/docs/get-started/quickstart"
+      ],
+      "rank": 23,
+      "day": 5
+    },
+    {
+      "slug": "canva-ai-how-to-use",
+      "tool": "canva",
+      "tools": [
+        "canva"
+      ],
+      "toolName": "Canva AI",
+      "company": "other",
+      "intent": "使い方",
+      "title": "Canva AIの使い方：無料でできることと上限",
+      "keyword": "canva ai 使い方",
+      "queries": [
+        "canva ai 使い方",
+        "canva ai 無料",
+        "canva ai できること"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Canva",
+      "products": [],
+      "sources": [
+        "https://www.canva.com/ja_jp/ai-assistant/",
+        "https://www.canva.com/ja_jp/pricing/"
+      ],
+      "rank": 24,
+      "day": 5
+    },
+    {
+      "slug": "notion-ai-how-to-use",
+      "tool": "notion",
+      "tools": [
+        "notion"
+      ],
+      "toolName": "Notion AI",
+      "company": "other",
+      "intent": "使い方",
+      "title": "Notion AIでできること・使い方と料金",
+      "keyword": "notion ai 何ができる",
+      "queries": [
+        "notion ai 何ができる",
+        "notion ai 使い方",
+        "notion ai 料金"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Notion",
+      "products": [],
+      "sources": [
+        "https://www.notion.com/ja/product/ai",
+        "https://www.notion.com/ja/pricing",
+        "https://www.notion.com/ja/help/notion-ai-faqs"
+      ],
+      "rank": 25,
+      "day": 6
+    },
+    {
+      "slug": "midjourney-how-to-use",
+      "tool": "midjourney",
+      "tools": [
+        "midjourney"
+      ],
+      "toolName": "Midjourney",
+      "company": "other",
+      "intent": "使い方",
+      "title": "Midjourneyの使い方と料金：無料で使える？",
+      "keyword": "midjourney 使い方",
+      "queries": [
+        "midjourney 使い方",
+        "midjourney 料金",
+        "midjourney 無料"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Midjourney",
+      "products": [],
+      "sources": [
+        "https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans",
+        "https://docs.midjourney.com/hc/en-us/articles/33329261836941-Getting-Started-Guide"
+      ],
+      "rank": 26,
+      "day": 6
+    },
+    {
+      "slug": "codex-how-to-use",
+      "tool": "codex",
+      "tools": [
+        "codex"
+      ],
+      "toolName": "Codex",
+      "company": "openai",
+      "intent": "使い方",
+      "title": "OpenAI Codexの使い方：ChatGPTプランで始める手順",
+      "keyword": "codex 使い方",
+      "queries": [
+        "codex 使い方",
+        "codex とは",
+        "codex 料金"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Codex",
+      "products": [
+        "codex"
+      ],
+      "sources": [
+        "https://developers.openai.com/codex/quickstart",
+        "https://openai.com/ja-JP/codex/",
+        "https://help.openai.com/ja-jp/articles/11369540-using-codex-with-your-chatgpt-plan",
+        "https://chatgpt.com/ja-JP/pricing/"
+      ],
+      "rank": 27,
+      "day": 6
+    },
+    {
+      "slug": "veo-how-to-use",
+      "tool": "veo",
+      "tools": [
+        "veo"
+      ],
+      "toolName": "Veo",
+      "company": "google",
+      "intent": "使い方",
+      "title": "Veoの使い方：Geminiで動画を生成する手順と無料の範囲",
+      "keyword": "veo 使い方",
+      "queries": [
+        "veo 使い方",
+        "veo 無料",
+        "veo 動画生成"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Veo",
+      "products": [],
+      "sources": [
+        "https://gemini.google/jp/overview/video-generation/?hl=ja",
+        "https://gemini.google/jp/subscriptions/",
+        "https://deepmind.google/models/veo/"
+      ],
+      "rank": 28,
+      "day": 6
+    },
+    {
+      "slug": "notebooklm-slides",
+      "tool": "notebooklm",
+      "tools": [
+        "notebooklm"
+      ],
+      "toolName": "NotebookLM（Gemini Notebook）",
+      "company": "google",
+      "intent": "使い方",
+      "title": "NotebookLMでスライド・音声解説を作る方法",
+      "keyword": "notebooklm スライド作成",
+      "queries": [
+        "notebooklm スライド作成",
+        "notebooklm 音声解説",
+        "notebooklm 使い方"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "NotebookLM|Gemini Notebook",
+      "products": [],
+      "sources": [
+        "https://support.google.com/gemininotebook/answer/16757456?hl=ja",
+        "https://support.google.com/gemininotebook/answer/16212820?hl=ja",
+        "https://support.google.com/gemininotebook/answer/16454555?hl=ja",
+        "https://support.google.com/gemininotebook/answer/16164461?hl=ja",
+        "https://support.google.com/gemininotebook/answer/16206563?hl=ja",
+        "https://support.google.com/gemininotebook/answer/17670842?hl=ja"
+      ],
+      "rank": 29,
+      "day": 7
+    },
+    {
+      "slug": "copilot-free-vs-paid",
+      "tool": "copilot",
+      "tools": [
+        "copilot"
+      ],
+      "toolName": "Microsoft Copilot",
+      "company": "microsoft",
+      "intent": "料金・無料でどこまで",
+      "title": "Copilotの無料版と有料版の違い：Microsoft 365との関係",
+      "keyword": "copilot 無料 有料 違い",
+      "queries": [
+        "copilot 無料 有料 違い",
+        "copilot 無料 制限",
+        "copilot 365"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "(?<!GitHub )Copilot",
+      "products": [],
+      "sources": [
+        "https://www.microsoft.com/ja-jp/microsoft-copilot/for-individuals",
+        "https://www.microsoft.com/ja-jp/microsoft-365/copilot/pricing",
+        "https://support.microsoft.com/ja-jp/copilot"
+      ],
+      "rank": 30,
+      "day": 7
+    },
+    {
+      "slug": "perplexity-pro",
+      "tool": "perplexity",
+      "tools": [
+        "perplexity"
+      ],
+      "toolName": "Perplexity",
+      "company": "other",
+      "intent": "料金・無料でどこまで",
+      "title": "Perplexity Proの料金と無料版の違い",
+      "keyword": "perplexity pro",
+      "queries": [
+        "perplexity pro",
+        "perplexity 料金",
+        "perplexity 無料"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Perplexity",
+      "products": [],
+      "sources": [
+        "https://www.perplexity.ai/help-center/ja/",
+        "https://www.perplexity.ai/ja/hub/faq/what-is-perplexity"
+      ],
+      "rank": 31,
+      "day": 7
+    },
+    {
+      "slug": "canva-ai-pricing",
+      "tool": "canva",
+      "tools": [
+        "canva"
+      ],
+      "toolName": "Canva AI",
+      "company": "other",
+      "intent": "料金・無料でどこまで",
+      "title": "Canva AIは無料で何回使える？料金と上限",
+      "keyword": "canva ai 料金",
+      "queries": [
+        "canva ai 料金",
+        "canva ai 上限",
+        "canva ai 無料"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Canva",
+      "products": [],
+      "sources": [
+        "https://www.canva.com/ja_jp/ai-assistant/",
+        "https://www.canva.com/ja_jp/pricing/"
+      ],
+      "rank": 32,
+      "day": 7
+    },
+    {
+      "slug": "notion-ai-pricing",
+      "tool": "notion",
+      "tools": [
+        "notion"
+      ],
+      "toolName": "Notion AI",
+      "company": "other",
+      "intent": "料金・無料でどこまで",
+      "title": "Notion AIの料金と無料枠：どのプランで使える？",
+      "keyword": "notion ai 料金",
+      "queries": [
+        "notion ai 料金",
+        "notion ai 無料枠",
+        "notion ai 上限"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Notion",
+      "products": [],
+      "sources": [
+        "https://www.notion.com/ja/product/ai",
+        "https://www.notion.com/ja/pricing",
+        "https://www.notion.com/ja/help/notion-ai-faqs"
+      ],
+      "rank": 33,
+      "day": 8
+    },
+    {
+      "slug": "gemini-image-generation",
+      "tool": "gemini",
+      "tools": [
+        "gemini"
+      ],
+      "toolName": "Gemini",
+      "company": "google",
+      "intent": "使い方",
+      "title": "Geminiで画像生成するやり方と無料の回数",
+      "keyword": "gemini 画像生成",
+      "queries": [
+        "gemini 画像生成",
+        "gemini 無料 画像生成",
+        "gemini 使い方 画像"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Gemini(?! ?Notebook)",
+      "products": [
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live"
+      ],
+      "sources": [
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja",
+        "https://gemini.google/jp/overview/?hl=ja"
+      ],
+      "rank": 34,
+      "day": 8
+    },
+    {
+      "slug": "claude-free-plan",
+      "tool": "claude",
+      "tools": [
+        "claude"
+      ],
+      "toolName": "Claude",
+      "company": "anthropic",
+      "intent": "料金・無料でどこまで",
+      "title": "Claudeは無料でどこまで使える？制限とProの違い",
+      "keyword": "claude 無料",
+      "queries": [
+        "claude 無料",
+        "claude 使い方 無料",
+        "claude 制限"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Claude(?! Code)",
+      "products": [
+        "claude-opus-5-5",
+        "claude-fable-5-1"
+      ],
+      "sources": [
+        "https://claude.com/pricing",
+        "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
+      ],
+      "rank": 35,
+      "day": 8
+    },
+    {
+      "slug": "chatgpt-login",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt"
+      ],
+      "toolName": "ChatGPT",
+      "company": "openai",
+      "intent": "始め方",
+      "title": "ChatGPTの登録・ログイン方法：できないときの対処",
+      "keyword": "chatgpt ログイン",
+      "queries": [
+        "chatgpt ログイン",
+        "chatgpt 登録",
+        "chatgpt 始め方"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "ChatGPT",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://openai.com/ja-JP/chatgpt/overview/"
+      ],
+      "rank": 36,
+      "day": 8
+    },
+    {
+      "slug": "ai-privacy-settings",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt",
+        "gemini",
+        "claude",
+        "copilot"
+      ],
+      "toolName": "ChatGPT / Gemini / Claude / Microsoft Copilot",
+      "company": "openai",
+      "intent": "安全性・個人情報",
+      "title": "生成AIに学習させない設定まとめ：ChatGPT・Gemini・Claude・Copilot",
+      "keyword": "生成ai 学習させない",
+      "queries": [
+        "生成ai 学習させない",
+        "ai 個人情報 設定",
+        "copilot 無料 学習させない"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "(?:ChatGPT)|(?:Gemini(?! ?Notebook))|(?:Claude(?! Code))|(?:(?<!GitHub )Copilot)",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice",
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live",
+        "claude-opus-5-5",
+        "claude-fable-5-1"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja",
+        "https://claude.com/pricing",
+        "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
+      ],
+      "rank": 37,
+      "day": 9
+    },
+    {
+      "slug": "image-ai-free",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt",
+        "gemini",
+        "copilot",
+        "canva"
+      ],
+      "toolName": "ChatGPT / Gemini / Microsoft Copilot / Canva AI",
+      "company": "openai",
+      "intent": "比較",
+      "title": "無料で使える画像生成AIの比較：ChatGPT・Gemini・Copilot・Canva",
+      "keyword": "画像生成ai 無料",
+      "queries": [
+        "画像生成ai 無料",
+        "画像生成ai おすすめ",
+        "画像生成ai 無料 おすすめ"
+      ],
+      "demand": 5,
+      "accuracy": 3,
+      "priority": 15,
+      "match": "(?:ChatGPT)|(?:Gemini(?! ?Notebook))|(?:(?<!GitHub )Copilot)|(?:Canva)",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice",
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja",
+        "https://www.microsoft.com/ja-jp/microsoft-copilot/for-individuals",
+        "https://www.microsoft.com/ja-jp/microsoft-365/copilot/pricing"
+      ],
+      "rank": 38,
+      "day": 9
+    },
+    {
+      "slug": "ai-minutes-free",
+      "tool": "minutes",
+      "tools": [
+        "minutes"
+      ],
+      "toolName": "AI議事録",
+      "company": "other",
+      "intent": "比較",
+      "title": "AI議事録を無料で作る方法：ChatGPT・Gemini・Teamsの機能比較",
+      "keyword": "議事録 ai 無料",
+      "queries": [
+        "議事録 ai 無料",
+        "議事録 ai 文字起こし",
+        "ai 文字起こし 無料"
+      ],
+      "demand": 5,
+      "accuracy": 3,
+      "priority": 15,
+      "match": "議事録|文字起こし|Meet|Teams",
+      "products": [],
+      "sources": [
+        "https://help.openai.com/ja-jp/articles/11487532-chatgpt-record",
+        "https://support.google.com/meet/answer/14754931?hl=ja",
+        "https://www.microsoft.com/ja-jp/microsoft-teams/premium"
+      ],
+      "rank": 39,
+      "day": 9
+    },
+    {
+      "slug": "ai-transcription-free",
+      "tool": "whisper",
+      "tools": [
+        "whisper",
+        "minutes"
+      ],
+      "toolName": "Whisper / AI議事録",
+      "company": "openai",
+      "intent": "比較",
+      "title": "AI文字起こしを無料でする方法：Whisper・ChatGPT・Gemini",
+      "keyword": "ai 文字起こし 無料",
+      "queries": [
+        "ai 文字起こし 無料",
+        "ai 文字起こし おすすめ",
+        "whisper 使い方"
+      ],
+      "demand": 5,
+      "accuracy": 3,
+      "priority": 15,
+      "match": "(?:Whisper|文字起こし)|(?:議事録|文字起こし|Meet|Teams)",
+      "products": [],
+      "sources": [
+        "https://openai.com/ja-JP/index/whisper/",
+        "https://github.com/openai/whisper",
+        "https://help.openai.com/ja-jp/articles/11487532-chatgpt-record",
+        "https://support.google.com/meet/answer/14754931?hl=ja"
+      ],
+      "rank": 40,
+      "day": 9
+    },
+    {
+      "slug": "video-ai-free",
+      "tool": "veo",
+      "tools": [
+        "veo",
+        "grok"
+      ],
+      "toolName": "Veo / Grok",
+      "company": "google",
+      "intent": "比較",
+      "title": "無料で使える動画生成AI：Veo・Grokなどの比較",
+      "keyword": "動画生成ai 無料",
+      "queries": [
+        "動画生成ai 無料",
+        "動画生成ai おすすめ",
+        "動画生成ai 無料 スマホ"
+      ],
+      "demand": 5,
+      "accuracy": 3,
+      "priority": 15,
+      "match": "(?:Veo)|(?:Grok)",
+      "products": [],
+      "sources": [
+        "https://gemini.google/jp/overview/video-generation/?hl=ja",
+        "https://gemini.google/jp/subscriptions/",
+        "https://x.ai/grok",
+        "https://grok.com/plans"
+      ],
+      "rank": 41,
+      "day": 10
+    },
+    {
+      "slug": "github-copilot-free",
+      "tool": "github-copilot",
+      "tools": [
+        "github-copilot"
+      ],
+      "toolName": "GitHub Copilot",
+      "company": "microsoft",
+      "intent": "料金・無料でどこまで",
+      "title": "GitHub Copilotの無料プランと始め方",
+      "keyword": "github copilot 無料",
+      "queries": [
+        "github copilot 無料",
+        "github copilot 使い方",
+        "github copilot 料金"
+      ],
+      "demand": 3,
+      "accuracy": 5,
+      "priority": 15,
+      "match": "GitHub Copilot",
+      "products": [
+        "github-copilot"
+      ],
+      "sources": [
+        "https://github.com/features/copilot/plans",
+        "https://docs.github.com/ja/copilot/get-started/quickstart"
+      ],
+      "rank": 42,
+      "day": 10
+    },
+    {
+      "slug": "deepl-free-vs-pro",
+      "tool": "deepl",
+      "tools": [
+        "deepl"
+      ],
+      "toolName": "DeepL",
+      "company": "other",
+      "intent": "料金・無料でどこまで",
+      "title": "DeepL Proの料金と無料版の違い",
+      "keyword": "deepl pro 料金",
+      "queries": [
+        "deepl pro 料金",
+        "deepl 無料 制限",
+        "deepl 有料"
+      ],
+      "demand": 3,
+      "accuracy": 5,
+      "priority": 15,
+      "match": "DeepL",
+      "products": [],
+      "sources": [
+        "https://www.deepl.com/ja/pro",
+        "https://support.deepl.com/hc/ja"
+      ],
+      "rank": 43,
+      "day": 10
+    },
+    {
+      "slug": "midjourney-pricing",
+      "tool": "midjourney",
+      "tools": [
+        "midjourney"
+      ],
+      "toolName": "Midjourney",
+      "company": "other",
+      "intent": "料金・無料でどこまで",
+      "title": "Midjourneyの料金プラン比較と解約方法",
+      "keyword": "midjourney 料金",
+      "queries": [
+        "midjourney 料金",
+        "midjourney 解約",
+        "midjourney 無料版"
+      ],
+      "demand": 3,
+      "accuracy": 5,
+      "priority": 15,
+      "match": "Midjourney",
+      "products": [],
+      "sources": [
+        "https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans",
+        "https://docs.midjourney.com/hc/en-us/articles/33329261836941-Getting-Started-Guide"
+      ],
+      "rank": 44,
+      "day": 10
+    },
+    {
+      "slug": "chatgpt-vs-gemini",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt",
+        "gemini"
+      ],
+      "toolName": "ChatGPT / Gemini",
+      "company": "openai",
+      "intent": "比較",
+      "title": "ChatGPTとGeminiの違い：無料版・料金・できることを比較",
+      "keyword": "chatgpt gemini 比較",
+      "queries": [
+        "chatgpt gemini 比較",
+        "chatgpt gemini 違い",
+        "生成ai 比較"
+      ],
+      "demand": 4,
+      "accuracy": 3,
+      "priority": 12,
+      "match": "(?:ChatGPT)|(?:Gemini(?! ?Notebook))",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice",
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja"
+      ],
+      "rank": 45,
+      "day": 11
+    },
+    {
+      "slug": "chatgpt-vs-claude",
+      "tool": "claude",
+      "tools": [
+        "chatgpt",
+        "claude"
+      ],
+      "toolName": "ChatGPT / Claude",
+      "company": "anthropic",
+      "intent": "比較",
+      "title": "ChatGPTとClaudeの違い：料金・得意なこと・日本語",
+      "keyword": "chatgpt claude 比較",
+      "queries": [
+        "chatgpt claude 比較",
+        "claude chatgpt 違い",
+        "claude 料金 比較"
+      ],
+      "demand": 4,
+      "accuracy": 3,
+      "priority": 12,
+      "match": "(?:ChatGPT)|(?:Claude(?! Code))",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice",
+        "claude-opus-5-5",
+        "claude-fable-5-1"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://claude.com/pricing",
+        "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
+      ],
+      "rank": 46,
+      "day": 11
+    },
+    {
+      "slug": "grok-image-video",
+      "tool": "grok",
+      "tools": [
+        "grok"
+      ],
+      "toolName": "Grok",
+      "company": "xai",
+      "intent": "使い方",
+      "title": "Grokで画像・動画を生成するやり方と無料の範囲",
+      "keyword": "grok 画像生成",
+      "queries": [
+        "grok 画像生成",
+        "grok 動画生成",
+        "grok 使い方 画像生成"
+      ],
+      "demand": 4,
+      "accuracy": 3,
+      "priority": 12,
+      "match": "Grok",
+      "products": [],
+      "sources": [
+        "https://x.ai/grok",
+        "https://grok.com/plans"
+      ],
+      "rank": 47,
+      "day": 11
+    },
+    {
+      "slug": "notebooklm-vs-gemini",
+      "tool": "notebooklm",
+      "tools": [
+        "notebooklm",
+        "gemini"
+      ],
+      "toolName": "NotebookLM（Gemini Notebook） / Gemini",
+      "company": "google",
+      "intent": "比較",
+      "title": "NotebookLMとGeminiの違い：使い分けのポイント",
+      "keyword": "notebooklm gemini 違い",
+      "queries": [
+        "notebooklm gemini 違い",
+        "notebooklm とは",
+        "gemini notebook"
+      ],
+      "demand": 3,
+      "accuracy": 4,
+      "priority": 12,
+      "match": "(?:NotebookLM|Gemini Notebook)|(?:Gemini(?! ?Notebook))",
+      "products": [
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live"
+      ],
+      "sources": [
+        "https://support.google.com/gemininotebook/answer/17003757?hl=ja",
+        "https://support.google.com/gemininotebook/answer/16164461?hl=ja",
+        "https://support.google.com/gemininotebook/answer/16206563?hl=ja",
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja"
+      ],
+      "rank": 48,
+      "day": 11
+    },
+    {
+      "slug": "gemini-students",
+      "tool": "gemini",
+      "tools": [
+        "gemini"
+      ],
+      "toolName": "Gemini",
+      "company": "google",
+      "intent": "料金・無料でどこまで",
+      "title": "Geminiの学生向け無料プラン：対象と申し込み方",
+      "keyword": "gemini 無料 学生",
+      "queries": [
+        "gemini 無料 学生",
+        "gemini 料金 学生",
+        "gemini 無料 大学生"
+      ],
+      "demand": 3,
+      "accuracy": 4,
+      "priority": 12,
+      "match": "Gemini(?! ?Notebook)",
+      "products": [
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live"
+      ],
+      "sources": [
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja",
+        "https://gemini.google/jp/overview/?hl=ja"
+      ],
+      "rank": 49,
+      "day": 12
+    },
+    {
+      "slug": "chatgpt-deep-research",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt"
+      ],
+      "toolName": "ChatGPT",
+      "company": "openai",
+      "intent": "使い方",
+      "title": "ChatGPTのディープリサーチの使い方と回数制限",
+      "keyword": "chatgpt ディープリサーチ",
+      "queries": [
+        "chatgpt ディープリサーチ",
+        "deep research 使い方",
+        "chatgpt 調べもの"
+      ],
+      "demand": 3,
+      "accuracy": 4,
+      "priority": 12,
+      "match": "ChatGPT",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://openai.com/ja-JP/chatgpt/overview/"
+      ],
+      "rank": 50,
+      "day": 12
+    },
+    {
+      "slug": "firefly-free",
+      "tool": "firefly",
+      "tools": [
+        "firefly"
+      ],
+      "toolName": "Adobe Firefly",
+      "company": "other",
+      "intent": "料金・無料でどこまで",
+      "title": "Adobe Fireflyは無料で使える？生成クレジットと商用利用",
+      "keyword": "adobe firefly 無料",
+      "queries": [
+        "adobe firefly 無料",
+        "firefly 商用利用",
+        "firefly 使い方"
+      ],
+      "demand": 3,
+      "accuracy": 4,
+      "priority": 12,
+      "match": "Firefly",
+      "products": [],
+      "sources": [
+        "https://www.adobe.com/jp/products/firefly/plans.html",
+        "https://www.adobe.com/jp/products/firefly.html"
+      ],
+      "rank": 51,
+      "day": 12
+    },
+    {
+      "slug": "copilot-microsoft365",
+      "tool": "copilot",
+      "tools": [
+        "copilot"
+      ],
+      "toolName": "Microsoft Copilot",
+      "company": "microsoft",
+      "intent": "使い方",
+      "title": "Microsoft 365 Copilotの使い方：Word・Excel・Teamsでできること",
+      "keyword": "copilot 365",
+      "queries": [
+        "copilot 365",
+        "microsoft 365 copilot 使い方",
+        "copilot excel"
+      ],
+      "demand": 3,
+      "accuracy": 4,
+      "priority": 12,
+      "match": "(?<!GitHub )Copilot",
+      "products": [],
+      "sources": [
+        "https://www.microsoft.com/ja-jp/microsoft-copilot/for-individuals",
+        "https://www.microsoft.com/ja-jp/microsoft-365/copilot/pricing",
+        "https://support.microsoft.com/ja-jp/copilot"
+      ],
+      "rank": 52,
+      "day": 12
+    },
+    {
+      "slug": "whisper-how-to-use",
+      "tool": "whisper",
+      "tools": [
+        "whisper"
+      ],
+      "toolName": "Whisper",
+      "company": "openai",
+      "intent": "使い方",
+      "title": "Whisperの使い方：無料で文字起こしする手順",
+      "keyword": "whisper 使い方",
+      "queries": [
+        "whisper 使い方",
+        "whisper 文字起こし",
+        "whisper 無料"
+      ],
+      "demand": 3,
+      "accuracy": 4,
+      "priority": 12,
+      "match": "Whisper|文字起こし",
+      "products": [],
+      "sources": [
+        "https://openai.com/ja-JP/index/whisper/",
+        "https://github.com/openai/whisper"
+      ],
+      "rank": 53,
+      "day": 13
+    },
+    {
+      "slug": "gemini-deep-research",
+      "tool": "gemini",
+      "tools": [
+        "gemini"
+      ],
+      "toolName": "Gemini",
+      "company": "google",
+      "intent": "使い方",
+      "title": "Geminiのディープリサーチの使い方と無料の回数",
+      "keyword": "gemini deep research",
+      "queries": [
+        "gemini deep research",
+        "gemini ディープリサーチ",
+        "gemini 使い方 調べもの"
+      ],
+      "demand": 3,
+      "accuracy": 4,
+      "priority": 12,
+      "match": "Gemini(?! ?Notebook)",
+      "products": [
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live"
+      ],
+      "sources": [
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja",
+        "https://gemini.google/jp/overview/?hl=ja"
+      ],
+      "rank": 54,
+      "day": 13
+    },
+    {
+      "slug": "generative-ai-free",
+      "tool": "gemini",
+      "tools": [
+        "chatgpt",
+        "gemini",
+        "claude",
+        "copilot"
+      ],
+      "toolName": "ChatGPT / Gemini / Claude / Microsoft Copilot",
+      "company": "google",
+      "intent": "比較",
+      "title": "無料で使える生成AIの比較：ChatGPT・Gemini・Claude・Copilot",
+      "keyword": "生成ai 無料",
+      "queries": [
+        "生成ai 無料",
+        "生成ai おすすめ",
+        "生成ai 種類"
+      ],
+      "demand": 4,
+      "accuracy": 3,
+      "priority": 12,
+      "match": "(?:ChatGPT)|(?:Gemini(?! ?Notebook))|(?:Claude(?! Code))|(?:(?<!GitHub )Copilot)",
+      "products": [
+        "gpt-6",
+        "chatgpt-work",
+        "chatgpt-voice",
+        "gemini-4-argon",
+        "gemini-4-carbon",
+        "gemini-live",
+        "claude-opus-5-5",
+        "claude-fable-5-1"
+      ],
+      "sources": [
+        "https://chatgpt.com/ja-JP/pricing/",
+        "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+        "https://gemini.google/jp/subscriptions/",
+        "https://support.google.com/gemini/answer/13275745?hl=ja",
+        "https://claude.com/pricing",
+        "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
+      ],
+      "rank": 55,
+      "day": 13
+    },
+    {
+      "slug": "claude-japan",
+      "tool": "claude",
+      "tools": [
+        "claude"
+      ],
+      "toolName": "Claude",
+      "company": "anthropic",
+      "intent": "日本対応",
+      "title": "Claudeは日本で使える？日本語対応と支払い方法",
+      "keyword": "claude 日本語",
+      "queries": [
+        "claude 日本語",
+        "claude 使い方 日本語",
+        "claude 料金 日本円"
+      ],
+      "demand": 3,
+      "accuracy": 4,
+      "priority": 12,
+      "match": "Claude(?! Code)",
+      "products": [
+        "claude-opus-5-5",
+        "claude-fable-5-1"
+      ],
+      "sources": [
+        "https://claude.com/pricing",
+        "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
+      ],
+      "rank": 56,
+      "day": 13
+    },
+    {
+      "slug": "claude-code-vs-codex-vs-cursor",
+      "tool": "claude-code",
+      "tools": [
+        "claude-code",
+        "codex",
+        "cursor"
+      ],
+      "toolName": "Claude Code / Codex / Cursor",
+      "company": "anthropic",
+      "intent": "比較",
+      "title": "Claude Code・Codex・Cursorの違い：初心者はどれを選ぶ？",
+      "keyword": "claude code codex 比較",
+      "queries": [
+        "claude code codex 比較",
+        "cursor claude code 違い",
+        "ai コーディング 比較"
+      ],
+      "demand": 3,
+      "accuracy": 3,
+      "priority": 9,
+      "match": "(?:Claude Code)|(?:Codex)|(?:Cursor)",
+      "products": [
+        "claude-opus-5-5",
+        "codex"
+      ],
+      "sources": [
+        "https://code.claude.com/docs/ja/overview",
+        "https://code.claude.com/docs/ja/quickstart",
+        "https://developers.openai.com/codex/quickstart",
+        "https://openai.com/ja-JP/codex/",
+        "https://cursor.com/ja/pricing",
+        "https://cursor.com/ja/docs/get-started/quickstart"
+      ],
+      "rank": 57,
+      "day": 14
+    },
+    {
+      "slug": "copilot-agent",
+      "tool": "copilot",
+      "tools": [
+        "copilot"
+      ],
+      "toolName": "Microsoft Copilot",
+      "company": "microsoft",
+      "intent": "使い方",
+      "title": "Copilotのエージェントの作り方：Copilot Studioの基本",
+      "keyword": "copilot エージェント 作り方",
+      "queries": [
+        "copilot エージェント 作り方",
+        "copilot studio とは",
+        "copilot エージェント"
+      ],
+      "demand": 3,
+      "accuracy": 3,
+      "priority": 9,
+      "match": "(?<!GitHub )Copilot",
+      "products": [],
+      "sources": [
+        "https://www.microsoft.com/ja-jp/microsoft-copilot/for-individuals",
+        "https://www.microsoft.com/ja-jp/microsoft-365/copilot/pricing",
+        "https://support.microsoft.com/ja-jp/copilot"
+      ],
+      "rank": 58,
+      "day": 14
+    },
+    {
+      "slug": "perplexity-softbank",
+      "tool": "perplexity",
+      "tools": [
+        "perplexity"
+      ],
+      "toolName": "Perplexity",
+      "company": "other",
+      "intent": "日本対応",
+      "title": "Perplexity Proのソフトバンク特典：対象と使い方",
+      "keyword": "perplexity pro for softbank",
+      "queries": [
+        "perplexity pro for softbank",
+        "ソフトバンク perplexity 使い方",
+        "linemo perplexity"
+      ],
+      "demand": 3,
+      "accuracy": 3,
+      "priority": 9,
+      "match": "Perplexity",
+      "products": [],
+      "sources": [
+        "https://www.perplexity.ai/help-center/ja/",
+        "https://www.perplexity.ai/ja/hub/faq/what-is-perplexity"
+      ],
+      "rank": 59,
+      "day": 14
+    },
+    {
+      "slug": "sora-status",
+      "tool": "sora",
+      "tools": [
+        "sora"
+      ],
+      "toolName": "Sora",
+      "company": "openai",
+      "intent": "日本対応",
+      "title": "Soraはいま使える？提供状況と代わりのサービス",
+      "keyword": "sora 2 終了",
+      "queries": [
+        "sora 2 終了",
+        "sora 2 使い方",
+        "sora 2 代替"
+      ],
+      "demand": 4,
+      "accuracy": 2,
+      "priority": 8,
+      "match": "Sora",
+      "products": [],
+      "sources": [
+        "https://openai.com/ja-JP/index/sora-2/"
+      ],
+      "rank": 60,
+      "day": 14
+    }
+  ]
+}

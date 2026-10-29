@@ -15,6 +15,7 @@ import {
   type Sourced,
 } from "@/lib/products";
 import { Phrases } from "@/lib/highlight";
+import { howtosForProduct } from "@/lib/howto";
 import { siteConfig } from "@/site.config";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -101,6 +102,7 @@ export default async function ProductPage({ params }: Props) {
   };
   const cited = order.map((s) => getArticleSummary(s)!);
   const others = articles.filter((a) => !order.includes(a.slug)).slice(0, 8);
+  const howtos = howtosForProduct(product.slug);
   const related = product.related.map((s) => getProduct(s)).filter((p): p is Product => Boolean(p));
 
   const joined = (items: Sourced[]) => items.map((i) => i.text).join("");
@@ -301,6 +303,23 @@ export default async function ProductPage({ params }: Props) {
             {others.map((article) => (
               <li key={article.slug}>
                 <ArticleLine article={article} />
+              </li>
+            ))}
+          </ul>
+        </Section>
+      )}
+
+      {howtos.length > 0 && (
+        <Section id="howto-guides" title="使い方ガイド">
+          <ul className="grid gap-2.5">
+            {howtos.map((guide) => (
+              <li key={guide.slug} className="text-[14.5px] leading-snug">
+                <Link
+                  href={`/guides/${guide.slug}`}
+                  className="font-bold text-ink underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"
+                >
+                  {guide.title}
+                </Link>
               </li>
             ))}
           </ul>

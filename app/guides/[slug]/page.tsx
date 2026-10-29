@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AffiliateBox from "@/components/AffiliateBox";
+import HowtoGuideView from "@/components/HowtoGuideView";
 import CompanyMark from "@/components/CompanyMark";
 import RelTime from "@/components/RelTime";
 import Timeline from "@/components/Timeline";
@@ -11,18 +12,29 @@ import { coverPath, formatDate, type AffiliateLink } from "@/lib/articles";
 import { getCompany, OTHER } from "@/lib/companies";
 import { getAllGuides, getGuide, guideArticles } from "@/lib/guides";
 import { Highlight } from "@/lib/highlight";
+import { getAllHowtos, getHowto } from "@/lib/howto";
 import { siteConfig } from "@/site.config";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
 
+// 製品ガイド（content/guides）と使い方ガイド（content/howto）が同じ /guides/<slug> を使う
 export function generateStaticParams() {
-  return getAllGuides().map((guide) => ({ slug: guide.slug }));
+  return [...getAllHowtos(), ...getAllGuides()].map((guide) => ({ slug: guide.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const howto = getHowto(slug);
+  if (howto) {
+    return {
+      title: howto.seoTitle,
+      description: howto.description,
+      alternates: { canonical: `/guides/${howto.slug}` },
+      openGraph: { type: "article", url: `/guides/${howto.slug}`, title: howto.title, description: howto.description },
+    };
+  }
   const guide = getGuide(slug);
   if (!guide) return {};
   const latest = guideArticles(guide)[0];
@@ -58,6 +70,8 @@ function guideAffiliates(names: string[]): AffiliateLink[] {
 
 export default async function GuidePage({ params }: Props) {
   const { slug } = await params;
+  const howto = getHowto(slug);
+  if (howto) return <HowtoGuideView guide={howto} />;
   const guide = getGuide(slug);
   if (!guide) notFound();
 

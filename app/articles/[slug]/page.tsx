@@ -21,6 +21,7 @@ import VerdictCard from "@/components/VerdictCard";
 import AssetLinks from "@/components/assets/AssetLinks";
 import { companyOf, thumbSource } from "@/lib/companies";
 import { guideForArticle } from "@/lib/guides";
+import { howtoForArticle } from "@/lib/howto";
 import { getProduct, productForArticle } from "@/lib/products";
 import { buyingGuideForTopic, guideShortName } from "@/lib/buying-guides";
 import { chooseGuideForArticle } from "@/lib/choose";
@@ -129,6 +130,8 @@ export default async function ArticlePage({ params }: Props) {
   // まとめページへ移した製品ガイドは案内しない（/guides/<slug> は /products/<slug> へ転送）
   const guideMatch = product ? undefined : guideForArticle(article);
   const guide = guideMatch && !getProduct(guideMatch.slug) ? guideMatch : undefined;
+  // 題材の使い方ガイド（「料金・無料でどこまで」を知りたい読者の受け皿）
+  const howto = guide ? undefined : howtoForArticle(article);
   const verdict = verdictOf(article);
   // 全AI記事に、文脈に合った「試すなら」枠を1つ出す。無い場合（AI以外など）は従来の関連ツール枠
   // 右側と本文中で同じ商品を出さないよう、候補を多めに取って2つに分ける。
@@ -362,7 +365,18 @@ export default async function ArticlePage({ params }: Props) {
                 {product.name}のまとめページ →
               </Link>
             </p>
-          ) : guide && (
+          ) : null}
+          {howto && (
+            <p className="mt-2 text-note">
+              <Link
+                href={`/guides/${howto.slug}`}
+                className="font-bold text-ink-soft underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"
+              >
+                {howto.title} →
+              </Link>
+            </p>
+          )}
+          {!product && guide && (
             <Link
               href={`/guides/${guide.slug}`}
               className="group mt-4 flex items-center gap-3 rounded-2xl border border-line px-5 py-3.5 transition-colors hover:border-ink"

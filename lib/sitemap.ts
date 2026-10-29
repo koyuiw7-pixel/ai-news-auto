@@ -11,6 +11,7 @@ import {
 } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
 import { getAllGuides, guideArticles } from "@/lib/guides";
+import { getAllHowtos } from "@/lib/howto";
 import { getAllBuyingGuides } from "@/lib/buying-guides";
 import { getAllEvents } from "@/lib/events";
 import { getPricing } from "@/lib/pricing";
@@ -38,6 +39,7 @@ export function sitemapEntries(): SitemapEntry[] {
   const products = getAllProducts();
   const productSlugs = new Set(products.map((p) => p.slug));
   const guides = getAllGuides().filter((guide) => !productSlugs.has(guide.slug));
+  const howtos = getAllHowtos();
   const lastModified = articles[0]?.generatedAt
     ? new Date(articles[0].generatedAt)
     : new Date();
@@ -121,7 +123,16 @@ export function sitemapEntries(): SitemapEntry[] {
       priority: 0.9,
     })),
     // まとめページへ移した製品ガイドは転送しているので載せない
-    ...(guides.length > 0 ? [{ url: `${base}/guides`, lastModified, changeFrequency: "daily" as const, priority: 0.8 }] : []),
+    ...(guides.length > 0 || howtos.length > 0
+      ? [{ url: `${base}/guides`, lastModified, changeFrequency: "daily" as const, priority: 0.8 }]
+      : []),
+    // 使い方ガイド（長く検索される「使い方・料金・無料でどこまで」）。公式ページで確認し直した日を更新日にする
+    ...howtos.map((guide) => ({
+      url: `${base}/guides/${guide.slug}`,
+      lastModified: new Date(guide.checkedAt > guide.updatedAt ? guide.checkedAt : guide.updatedAt),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
     ...guides.map((guide) => ({
       url: `${base}/guides/${guide.slug}`,
       lastModified: new Date(guideArticles(guide)[0]?.publishedAt ?? lastModified),

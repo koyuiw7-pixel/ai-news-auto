@@ -1,0 +1,124 @@
+name: Evergreen guides
+
+# 使い方ガイド（/guides/<slug>、scripts/evergreen.py）。ニュースとは別のレーンで、ニュースの1日上限（WEB_DAILY_CAP）に数えない。
+# 1日4回、未作成のガイドを1本ずつ作り（1日の上限は変数 EVERGREEN_DAILY_CAP、既定4本）、
+# 14日たった・料金などの関連ニュースが出たガイドを公式ページで確認し直す。
+# 変わったときだけデプロイし、ページが公開されたのを確かめてから IndexNow に通知する。
+on:
+  schedule:
+    - cron: "41 0,6,12,18 * * *"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "作る slug（カンマ区切り。空なら予定表の上から）"
+        required: false
+        default: ""
+      max:
+        description: "この回で新しく作る本数"
+        required: false
+        default: "1"
+      force:
+        description: "作成済みでも作り直す（only と併用）"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: evergreen
+  cancel-in-progress: false
+
+jobs:
+  guides:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      # 原稿は Claude（オーナーの契約）で書き、事実確認は別のモデル（scripts/quality.py の CHECK_TIER）で行う
+      - name: Install Claude Code CLI
+        continue-on-error: true
+        run: npm i -g @anthropic-ai/claude-code
+
+      - name: Write and re-check guides
+        continue-on-error: true
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          CLAUDE_DAILY_MAX: ${{ vars.CLAUDE_DAILY_MAX || '40' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
+          EVERGREEN_DAILY_CAP: ${{ vars.EVERGREEN_DAILY_CAP || '4' }}
+          ONLY: ${{ inputs.only }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          if [ -n "$ONLY" ]; then
+            timeout 2700 python scripts/evergreen.py --only "$ONLY" $([ "$FORCE" = "true" ] && echo --force) --budget 2400
+          else
+            timeout 2700 python scripts/evergreen.py --max "${{ inputs.max || '1' }}" --refresh --refresh-max 2 --budget 2100
+          fi
+
+      - name: Commit & push
+        id: commit
+        run: |
+          # LLM の使用回数（content/llm_usage.json）は記事の回が記録するので、ここでは捨てる（push の衝突を避ける）
+          git checkout -- content/llm_usage.json 2>/dev/null || true
+          git add content/howto 2>/dev/null || true
+          git add state/evergreen_failed.json 2>/dev/null || true
+          CHANGED=$(git diff --cached --name-only -- content/howto | sed -n 's#content/howto/\(.*\)\.json#\1#p' | tr '\n' ',')
+          echo "changed=${CHANGED}" >> "$GITHUB_OUTPUT"
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(guides): 使い方ガイドを作成・確認 (${CHANGED%,})"
+          for i in 1 2 3 4 5; do
+            git pull --rebase --autostash origin main && git push && exit 0
+            sleep 7
+          done
+          echo "::error::push に失敗しました"
+          exit 1
+
+      - name: Deploy to Cloudflare
+        if: ${{ steps.commit.outputs.changed != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy_cloudflare.yml --ref main
+
+      # 公開されたのを確かめてから IndexNow に通知する（公開前の URL を送らない）
+      - name: Notify IndexNow
+        if: ${{ steps.commit.outputs.changed != '' }}
+        continue-on-error: true
+        env:
+          CHANGED: ${{ steps.commit.outputs.changed }}
+        run: |
+          BASE=https://ai-tech-express.jp
+          URLS="$BASE/guides"
+          for slug in $(echo "$CHANGED" | tr ',' ' '); do URLS="$URLS,$BASE/guides/$slug"; done
+          FIRST=$(echo "$CHANGED" | cut -d, -f1)
+          for i in $(seq 1 40); do
+            CODE=$(curl -s -o /tmp/page.html -w '%{http_code}' "$BASE/guides/$FIRST?v=$(date +%s)")
+            if [ "$CODE" = "200" ] && grep -q "$(jq -r '.checkedAt[0:10]' "content/howto/$FIRST.json" | tr '-' '/')" /tmp/page.html; then
+              echo "公開を確認（${i}回目）"
+              python scripts/indexnow.py --urls "$URLS"
+              exit 0
+            fi
+            sleep 30
+          done
+          echo "::warning::20分待っても公開を確認できなかったので IndexNow は次の記事の回に任せる"

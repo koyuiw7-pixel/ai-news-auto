@@ -53,6 +53,7 @@ const DEFAULT_PATHS = [
   "/usable",
   "/companies/openai",
   "/ai-pricing",
+  "/guides",
   "/about",
 ];
 const VIEWPORTS = [
