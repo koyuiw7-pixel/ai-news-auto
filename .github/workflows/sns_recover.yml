@@ -1,0 +1,84 @@
+name: Recover normal SNS posts
+
+# 通常SNS投稿だけを再実行する。記事生成やLLMを呼ばず、既存の枠・履歴・本数制限を使う。
+# 定期実行は追加しない。通常運転はauto_run.ymlのまま。
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-article-pipeline
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Test publication check
+        run: python3 -m unittest discover -s tests -p 'test_sns_publish_check.py' -v
+      - name: Read existing limits
+        id: ramp
+        env:
+          SNS_PER_DAY_OVERRIDE: ${{ vars.SNS_PER_DAY }}
+        run: python3 scripts/ramp.py
+      - name: Schedule normal posts
+        env:
+          THREADS_MODE: ${{ vars.THREADS_MODE }}
+          THREADS_TOKEN_KEY: ${{ secrets.THREADS_TOKEN_KEY }}
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          SNS_PER_DAY: ${{ steps.ramp.outputs.sns_per_day }}
+          BREAKING_PER_DAY: ${{ vars.BREAKING_PER_DAY }}
+          SNS_DIGEST: ${{ vars.SNS_DIGEST }}
+        run: |
+          cp state/threads_posted.json "$RUNNER_TEMP/sns-before.json"
+          python3 scripts/threads_post.py --max 2
+      - name: Save posting history without losing concurrent updates
+        if: always()
+        run: |
+          if git diff --quiet -- state/threads_posted.json state/threads_token.enc; then exit 0; fi
+          cp state/threads_posted.json "$RUNNER_TEMP/sns-posted.json"
+          TOKEN_CHANGED=0
+          if ! git diff --quiet -- state/threads_token.enc; then
+            TOKEN_CHANGED=1
+            cp state/threads_token.enc "$RUNNER_TEMP/sns-token.enc"
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main
+            python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          temp = Path(os.environ["RUNNER_TEMP"])
+          before = json.loads((temp / "sns-before.json").read_text())
+          mine = json.loads((temp / "sns-posted.json").read_text())
+          path = Path("state/threads_posted.json")
+          latest = json.loads(path.read_text())
+          for slug, entry in mine["posted"].items():
+              if slug not in before["posted"]:
+                  if slug in latest["posted"] and latest["posted"][slug].get("id") != entry.get("id"):
+                      raise RuntimeError(f"投稿履歴の競合: {slug}。Bufferを確認してから再実行してください。")
+                  latest["posted"].setdefault(slug, entry)
+          path.write_text(json.dumps(latest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+            git add state/threads_posted.json
+            if [ "$TOKEN_CHANGED" = "1" ]; then
+              cp "$RUNNER_TEMP/sns-token.enc" state/threads_token.enc
+              git add state/threads_token.enc
+            fi
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "chore(sns): 通常投稿の復旧履歴を記録 [no-deploy]"
+            git push origin HEAD:main && exit 0
+            sleep 5
+          done
+          echo "::error::投稿履歴を保存できませんでした。再実行前にBufferの受付と履歴を照合してください。"
+          exit 1

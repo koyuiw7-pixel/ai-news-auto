@@ -447,11 +447,14 @@ def next_free_slot(state: dict, now: datetime | None = None) -> datetime | None:
 
 
 def wait_until_live(url: str, timeout: int) -> bool:
-    """Vercel の反映前に投稿するとリンクプレビューが壊れるので、記事が開けるまで待つ。"""
+    """公開前の投稿を防ぐ。Cloudflare に自社の公開確認だと識別できるよう UA を付ける。"""
     deadline = time.monotonic() + timeout
     while True:
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, method="HEAD"), timeout=20) as res:
+            request = urllib.request.Request(
+                url, method="HEAD", headers={"User-Agent": "SaisokuPublishCheck/1.0 (+https://ai-tech-express.jp)"}
+            )
+            with urllib.request.urlopen(request, timeout=20) as res:
                 if res.status == 200:
                     return True
         except urllib.error.URLError:
