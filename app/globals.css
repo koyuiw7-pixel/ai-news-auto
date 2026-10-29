@@ -8,16 +8,10 @@
 /* 白地＋青みのある灰の面、1px の罫線、影は1段だけ（--shadow / --shadow-lift） */
 /* --------------------------------------------------------------------- */
 
-/*
- * Android は内蔵の Noto Sans CJK JP（Noto Sans JP と同じ字形）で表示し、Web フォントを読み込まない。
- * html の class は app/layout.tsx の先頭のスクリプトが付ける。next/font の変数（.xxx_variable）より強い指定で上書きする。
- * "Noto Sans JP" は next/font の Web フォントの名前なので、ここに書くと読み込まれてしまう（書かない）
- */
-html.sys-jp {
-  --font-noto: "Noto Sans CJK JP", sans-serif;
-}
-
 :root {
+  /* 本文の Noto Sans JP。Web フォントを読むのは Windows など内蔵の日本語書体が無い端末だけ（app/layout.tsx）。
+     Android では同じ名前の書体が無いので後ろの sans-serif（内蔵の Noto Sans CJK JP）になる */
+  --font-noto: "Noto Sans JP";
   --paper: #ffffff;
   --surface: #f3f5f8;
   --surface-2: #e9edf3;
@@ -128,8 +122,8 @@ html.sys-jp {
 
   /* Web フォントが届くまでの代わりも線の太い書体から選ぶ（Windows の游ゴシック Regular は細くかすれるので入れない） */
   /*
-   * Apple の端末は内蔵のヒラギノを先に使い、日本語の Web フォント（Noto Sans JP、ホームで約 2.7MB）を読み込まない。
-   * ヒラギノが無い Windows・Android だけが Noto Sans JP を読み込む（ブラウザは使う書体のファイルしか取りに行かない）
+   * Apple の端末は内蔵のヒラギノ、Android は内蔵の Noto Sans CJK JP を使い、日本語の Web フォント（1ページ約 0.9MB）を読み込まない。
+   * Windows など内蔵の日本語書体が無い端末だけが Noto Sans JP を読み込む（app/layout.tsx。ブラウザは使う書体のファイルしか取りに行かない）
    */
   --font-sans:
     "Hiragino Sans", "Hiragino Kaku Gothic ProN", var(--font-noto),

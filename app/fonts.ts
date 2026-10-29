@@ -1,23 +1,7 @@
-import { Martian_Mono, Noto_Sans_JP } from "next/font/google";
+import { Martian_Mono } from "next/font/google";
+
+// 本文の Noto Sans JP は next/font を使わず、必要な端末だけ後から読む（app/layout.tsx の先頭のスクリプト）
 import localFont from "next/font/local";
-
-/*
- * 日本語フォントは next/font の subsets に "japanese" が無いため、
- * preload を切って全ての文字範囲を自前配信する（読み込みは unicode-range で必要分だけ）。
- */
-
-/**
- * 本文・見出し・UI。線がしっかりしていて小さくてもかすれない Noto Sans JP（デジタル庁デザインシステムの本文書体）。
- * 太さを指定しない＝可変フォント1本で 400〜900 を賄う。太さを列挙しても Google は同じ可変フォントのファイルを返すため、
- * 列挙すると @font-face が太さの数だけ増えて CSS が重くなるだけ（3太さで 47KB→113KB、2026-10-27 計測）。
- * 旧 Zen Kaku Gothic New は 400 の線が細く「文字が見えない」と言われたため替えた（docs/typography.md）
- */
-export const noto = Noto_Sans_JP({
-  subsets: ["latin"],
-  display: "swap",
-  preload: false,
-  variable: "--font-noto",
-});
 
 /**
  * ロゴ「サイソク」と決まった見出しだけに使う極太。
