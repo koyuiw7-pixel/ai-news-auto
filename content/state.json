@@ -4907,6 +4907,14 @@
       "skipped": true,
       "url": "https://www.au.com/information/topic/pontapass/2026-002/"
     },
+    "4b341558ccb63f63": {
+      "at": "2026-10-30T00:06:38.917049+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "digital-genai-survey-result",
+      "url": "https://www.digital.go.jp/policies/genai/f9ed1b1c-b22f-4466-8e50-c1c9adf9f8eb"
+    },
     "4b7179257f66c6e5": {
       "at": "2026-10-28T19:52:40.823030+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9317,74 +9325,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T22:31:34.833492+00:00",
-      "attempt": 1,
-      "id": "ad57ea38b2e32ef4",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 52.2字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 161.7字・最長 235字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 161.7,
-        "avg_sentence": 52.2,
-        "long_share": 0.226,
-        "max_paragraph": 235,
-        "paragraphs": 10,
-        "sentences": 31
-      },
-      "score": 100,
-      "source": "mhlw",
-      "title": "危険ドラッグの成分３物質を新たに指定薬物に指定"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T22:31:38.177673+00:00",
-      "attempt": 0,
-      "id": "ad57ea38b2e32ef4",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 146.6字・最長 236字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 146.6,
-        "avg_sentence": 41.4,
-        "long_share": 0.128,
-        "max_paragraph": 236,
-        "paragraphs": 11,
-        "sentences": 39
-      },
-      "score": 100,
-      "source": "mhlw",
-      "title": "危険ドラッグの成分３物質を新たに指定薬物に指定"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:11:39.832860+00:00",
-      "attempt": 1,
-      "id": "6f5661fd194b6f6c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1534字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（283字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 71.6,
-        "avg_sentence": 53.0,
-        "long_share": 0.304,
-        "max_paragraph": 135,
-        "paragraphs": 17,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "（図表2）人件費の内訳（7年度普通会計決算）"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T23:11:45.339924+00:00",
@@ -16032,6 +15972,72 @@
       "score": null,
       "source": "stat",
       "title": "小売物価統計調査 主要品目の東京都区部小売価格及び全国統一価格品目の価格（2026年10月分）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T00:06:25.458519+00:00",
+      "attempt": 1,
+      "id": "4b341558ccb63f63",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1708字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 232.7,
+        "avg_sentence": 49.4,
+        "long_share": 0.333,
+        "max_paragraph": 429,
+        "paragraphs": 7,
+        "sentences": 33
+      },
+      "score": null,
+      "source": "digital-agency",
+      "title": "ガバメントAI 源内 利用状況アンケート調査（第1回）の結果を公表しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T00:06:35.112566+00:00",
+      "attempt": 2,
+      "id": "4b341558ccb63f63",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 38.4字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 87.8,
+        "avg_sentence": 38.4,
+        "long_share": 0.208,
+        "max_paragraph": 155,
+        "paragraphs": 21,
+        "sentences": 48
+      },
+      "score": 100,
+      "source": "digital-agency",
+      "title": "ガバメントAI 源内 利用状況アンケート調査（第1回）の結果を公表しました"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T00:06:38.916536+00:00",
+      "attempt": 0,
+      "id": "4b341558ccb63f63",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（38.4→38.4字）"
+      ],
+      "readability": {
+        "avg_paragraph": 87.8,
+        "avg_sentence": 38.4,
+        "long_share": 0.208,
+        "max_paragraph": 155,
+        "paragraphs": 21,
+        "sentences": 48
+      },
+      "score": 100,
+      "source": "digital-agency",
+      "title": "ガバメントAI 源内 利用状況アンケート調査（第1回）の結果を公表しました"
     }
   ],
   "short_text_retry": {}
