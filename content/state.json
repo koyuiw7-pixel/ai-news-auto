@@ -4852,6 +4852,13 @@
       "skipped": true,
       "url": "https://www.digital.go.jp/speech/minister-261027-01"
     },
+    "4547043af805dc93": {
+      "at": "2026-10-30T03:42:04.460834+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（341字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.ipa.go.jp/shiken/syllabus/henkou/2026/20260622.html"
+    },
     "4551cf1ba9ff1f3d": {
       "at": "2026-10-26T13:53:40.778421+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5422,6 +5429,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（議事）",
       "skipped": true,
       "url": "https://www.digital.go.jp/councils/ai-advisory-board/162953b0-3dc0-46a6-a24c-0e3a335e0495"
+    },
+    "5bd202a12453fed9": {
+      "at": "2026-10-30T03:41:29.231318+00:00",
+      "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000149274_00001.html"
     },
     "5be4ac9924a0293a": {
       "at": "2026-10-27T03:04:42.978014+00:00",
@@ -6935,6 +6948,13 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/singi/dokuritugyousei/02gyokan01_04000547.html"
     },
+    "945983c3baeb8f93": {
+      "at": "2026-10-30T03:41:53.007043+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1396字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（329字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030a.pdf"
+    },
     "948f28b89431d9b7": {
       "at": "2026-10-29T15:22:25.276063+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7005,6 +7025,13 @@
       "reason": "quality: easy_markdown が短い（365字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001287.html"
+    },
+    "96392a0c8111c13f": {
+      "at": "2026-10-30T03:42:19.797923+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1421字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（283字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
+      "skipped": true,
+      "url": "https://www.caa.go.jp/notice/entry/047949/"
     },
     "96c6180860078329": {
       "at": "2026-10-29T01:13:19.632805+00:00",
@@ -8950,6 +8977,14 @@
       "slug": "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
       "url": "https://aws.amazon.com/blogs/machine-learning/build-agentic-retrieval-on-a-managed-amazon-bedrock-knowledge-base-with-cdk/"
     },
+    "e5ec03234183a95a": {
+      "at": "2026-10-30T03:42:36.523276+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "entertainment",
+      "slug": "fallout-collab-cafe-tower-records",
+      "url": "https://news.xbox.com/ja-jp/2026/10/30/fallout-collab-cafe-tower-records-omotesando/"
+    },
     "e6946ccebe084c64": {
       "at": "2026-10-29T03:51:57.553808+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（億米ドル）",
@@ -9615,182 +9650,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:21:37.002286+00:00",
-      "attempt": 2,
-      "id": "68c01e18210096fb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 62.8字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 182.0字・最長 266字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 182.0,
-        "avg_sentence": 62.8,
-        "long_share": 0.517,
-        "max_paragraph": 266,
-        "paragraphs": 10,
-        "sentences": 29
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "11月から1月は「冬季大気汚染対策」推進期間です！"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T01:21:42.485658+00:00",
-      "attempt": 0,
-      "id": "68c01e18210096fb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 45.7字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 107.6,
-        "avg_sentence": 45.7,
-        "long_share": 0.15,
-        "max_paragraph": 180,
-        "paragraphs": 17,
-        "sentences": 40
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "11月から1月は「冬季大気汚染対策」推進期間です！"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:41:29.939542+00:00",
-      "attempt": 1,
-      "id": "6aa0232a2b135089",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1535字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 127.0,
-        "avg_sentence": 49.7,
-        "long_share": 0.217,
-        "max_paragraph": 162,
-        "paragraphs": 9,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "nintendo-topics",
-      "title": "「Hello! インディー」1000を超えるパズルが待ち受ける『Order of the Sinking Star』"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:41:42.143985+00:00",
-      "attempt": 2,
-      "id": "6aa0232a2b135089",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1696字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "title の長さが不適切（72字 / 18〜64字）"
-      ],
-      "readability": {
-        "avg_paragraph": 153.6,
-        "avg_sentence": 51.2,
-        "long_share": 0.259,
-        "max_paragraph": 200,
-        "paragraphs": 9,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "nintendo-topics",
-      "title": "「Hello! インディー」1000を超えるパズルが待ち受ける『Order of the Sinking Star』"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:41:48.834245+00:00",
-      "attempt": 1,
-      "id": "49384cd85f07d187",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1775字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 78.1,
-        "avg_sentence": 64.5,
-        "long_share": 0.609,
-        "max_paragraph": 131,
-        "paragraphs": 19,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "jst",
-      "title": "高いアルカリ度が海洋酸性化による有孔虫の殻形成への悪影響を軽減～恐竜時代の海を手がかりに、海洋環境と石灰化生物の殻形成の関係を探る～"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T01:41:54.279460+00:00",
-      "attempt": 1,
-      "id": "49384cd85f07d187",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 61.2字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 80.5,
-        "avg_sentence": 61.2,
-        "long_share": 0.56,
-        "max_paragraph": 131,
-        "paragraphs": 19,
-        "sentences": 25
-      },
-      "score": 100,
-      "source": "jst",
-      "title": "高いアルカリ度が海洋酸性化による有孔虫の殻形成への悪影響を軽減～恐竜時代の海を手がかりに、海洋環境と石灰化生物の殻形成の関係を探る～"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T01:41:58.846994+00:00",
-      "attempt": 0,
-      "id": "49384cd85f07d187",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.0,
-        "avg_sentence": 25.8,
-        "long_share": 0.0,
-        "max_paragraph": 152,
-        "paragraphs": 20,
-        "sentences": 72
-      },
-      "score": 100,
-      "source": "jst",
-      "title": "高いアルカリ度が海洋酸性化による有孔虫の殻形成への悪影響を軽減～恐竜時代の海を手がかりに、海洋環境と石灰化生物の殻形成の関係を探る～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T02:01:37.656105+00:00",
-      "attempt": 1,
-      "id": "13199e1cbdfa06a8",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1642字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 142.4,
-        "avg_sentence": 50.9,
-        "long_share": 0.25,
-        "max_paragraph": 260,
-        "paragraphs": 10,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "riken",
-      "title": "生態系を制御する「キーストーン種」を探す"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T02:02:11.630489+00:00",
@@ -16307,6 +16166,192 @@
       "score": 100,
       "source": "mhlw",
       "title": "キャリアコンサルタントになりたい方へ（キャリアコンサルタント養成講習一覧を更新しました）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:41:47.554732+00:00",
+      "attempt": 1,
+      "id": "945983c3baeb8f93",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1503字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（359字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 111.0,
+        "avg_sentence": 61.0,
+        "long_share": 0.55,
+        "max_paragraph": 190,
+        "paragraphs": 11,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "boj",
+      "title": "「指数連動型上場投資信託受益権等の処分の指針」の一部改正について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:41:53.006999+00:00",
+      "attempt": 2,
+      "id": "945983c3baeb8f93",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1396字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（329字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 119.1,
+        "avg_sentence": 56.4,
+        "long_share": 0.316,
+        "max_paragraph": 199,
+        "paragraphs": 9,
+        "sentences": 19
+      },
+      "score": null,
+      "source": "boj",
+      "title": "「指数連動型上場投資信託受益権等の処分の指針」の一部改正について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:41:58.225376+00:00",
+      "attempt": 1,
+      "id": "4547043af805dc93",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1605字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（321字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 151.1,
+        "avg_sentence": 71.6,
+        "long_share": 0.684,
+        "max_paragraph": 230,
+        "paragraphs": 9,
+        "sentences": 19
+      },
+      "score": null,
+      "source": "ipa",
+      "title": "プロフェッショナルデジタルスキル（データ・AI）試験（仮称） 科目Bのサンプル問題を公表しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:42:04.460794+00:00",
+      "attempt": 2,
+      "id": "4547043af805dc93",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（341字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 141.6,
+        "avg_sentence": 51.5,
+        "long_share": 0.212,
+        "max_paragraph": 236,
+        "paragraphs": 12,
+        "sentences": 33
+      },
+      "score": null,
+      "source": "ipa",
+      "title": "プロフェッショナルデジタルスキル（データ・AI）試験（仮称） 科目Bのサンプル問題を公表しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:42:14.084721+00:00",
+      "attempt": 1,
+      "id": "96392a0c8111c13f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1434字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（317字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 53.0,
+        "avg_sentence": 46.3,
+        "long_share": 0.25,
+        "max_paragraph": 87,
+        "paragraphs": 21,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "caa",
+      "title": "令和8年12月1日に施行される改正公益通報者保護法の法定指針の内容を説明した動画を公表しました。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:42:19.797890+00:00",
+      "attempt": 2,
+      "id": "96392a0c8111c13f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1421字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（283字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 128.3,
+        "avg_sentence": 51.3,
+        "long_share": 0.28,
+        "max_paragraph": 202,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "caa",
+      "title": "令和8年12月1日に施行される改正公益通報者保護法の法定指針の内容を説明した動画を公表しました。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:42:29.814265+00:00",
+      "attempt": 1,
+      "id": "e5ec03234183a95a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 62.5字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 187.5字・最長 294字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 187.5,
+        "avg_sentence": 62.5,
+        "long_share": 0.458,
+        "max_paragraph": 294,
+        "paragraphs": 8,
+        "sentences": 24
+      },
+      "score": 100,
+      "source": "xbox-wire-jp",
+      "title": "ウェイストランド体験を表参道で！「Fallout」× TOWER RECORDS CAFE コラボ先行体験をファンの声とともにお届け"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T03:42:36.522831+00:00",
+      "attempt": 0,
+      "id": "e5ec03234183a95a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 173.8字・最長 306字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 173.8,
+        "avg_sentence": 39.1,
+        "long_share": 0.1,
+        "max_paragraph": 306,
+        "paragraphs": 9,
+        "sentences": 40
+      },
+      "score": 100,
+      "source": "xbox-wire-jp",
+      "title": "ウェイストランド体験を表参道で！「Fallout」× TOWER RECORDS CAFE コラボ先行体験をファンの声とともにお届け"
     }
   ],
   "short_text_retry": {}
