@@ -4027,6 +4027,16 @@
       "slug": "apple-creator-studio-new-ai-features",
       "url": "https://www.apple.com/jp/newsroom/2026/10/apple-creator-studio-adds-powerful-new-ai-features-and-even-more-creative-tools/"
     },
+    "277d5156ec35d8c2": {
+      "at": "2026-10-30T02:09:36.609004+00:00",
+      "breaking": true,
+      "major": true,
+      "model": "claude:sonnet",
+      "score": 93,
+      "section": "ai",
+      "slug": "claude-finds-critical-vulnerabilities",
+      "url": "https://www.anthropic.com/research/discovering-vulnerabilities-with-claude"
+    },
     "278eaae2a5f3ba0b": {
       "at": "2026-10-27T17:13:09.104876+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -9480,26 +9490,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-29T00:28:48.911587+00:00",
-      "attempt": 1,
-      "id": "d290a28d44092657",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 65.7,
-        "avg_sentence": 40.0,
-        "long_share": 0.159,
-        "max_paragraph": 149,
-        "paragraphs": 42,
-        "sentences": 69
-      },
-      "score": 93,
-      "source": "nvidia-blog",
-      "title": "Europe’s Industrial Leaders Reinvent Engineering and Manufacturing With NVIDIA"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T00:51:36.908163+00:00",
@@ -16180,6 +16170,26 @@
       "score": 100,
       "source": "ipa",
       "title": "2025年度下期 未踏アドバンスト事業で実施したプロジェクトの成果概要、成果詳細を公開しました"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T02:09:36.608374+00:00",
+      "attempt": 1,
+      "id": "277d5156ec35d8c2",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 83.9,
+        "avg_sentence": 32.3,
+        "long_share": 0.018,
+        "max_paragraph": 184,
+        "paragraphs": 42,
+        "sentences": 109
+      },
+      "score": 93,
+      "source": "anthropic-news",
+      "title": "Discovering and exploiting vulnerabilities in critical, real-world software with"
     }
   ],
   "short_text_retry": {}
