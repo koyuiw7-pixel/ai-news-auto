@@ -31,12 +31,16 @@ class DifySearchWatchTest(unittest.TestCase):
         return ("# Knowledge Request Rate Limit\n\n## What Counts\nEach retrieval counts.\n"
                 + "## When You Reach the Limit\n" + tail).encode()
 
-    def fetcher(self, release=None, docs=None, model_providers=None, knowledge_limit=None):
+    def deployment_faqs(self, tail="Remote branch null not found can follow an API rate limit."):
+        return ("# FAQs\n\n## Clone Fails with Remote branch null not found\n" + tail).encode()
+
+    def fetcher(self, release=None, docs=None, model_providers=None, knowledge_limit=None, deployment_faqs=None):
         values = {
             "release": self.release() if release is None else release,
             "docker-compose": self.docs() if docs is None else docs,
             "model-providers": self.model_providers() if model_providers is None else model_providers,
             "knowledge-request-rate-limit": self.knowledge_limit() if knowledge_limit is None else knowledge_limit,
+            "deployment-faqs": self.deployment_faqs() if deployment_faqs is None else deployment_faqs,
         }
         return lambda source: values[source["id"]]
 
@@ -45,15 +49,15 @@ class DifySearchWatchTest(unittest.TestCase):
 
     def test_first_run_is_baseline_not_a_change_or_question(self):
         state, report = watch.run_watch({}, self.date1, self.fetcher())
-        self.assertEqual([r["status"] for r in report["sources"]], ["baseline"] * 4)
+        self.assertEqual([r["status"] for r in report["sources"]], ["baseline"] * 5)
         self.assertEqual(report["candidates"], [])
-        self.assertEqual(len(state["sources"]), 4)
+        self.assertEqual(len(state["sources"]), 5)
 
     def test_unchanged_ignores_download_counts_metadata_and_line_endings(self):
         state = self.baseline()
         body = "Before upgrade, back up the database and files.\r\n\r\n"
         _, report = watch.run_watch(state, self.date2, self.fetcher(self.release(body, assets=[{"download_count": 999}], updated_at=self.date2)))
-        self.assertEqual([r["status"] for r in report["sources"]], ["unchanged"] * 4)
+        self.assertEqual([r["status"] for r in report["sources"]], ["unchanged"] * 5)
         self.assertEqual(report["candidates"], [])
 
     def test_changed_token_creates_review_evidence_and_keeps_queue(self):
@@ -66,7 +70,7 @@ class DifySearchWatchTest(unittest.TestCase):
         self.assertNotEqual(item["previousHash"], item["currentHash"])
         self.assertEqual(item["previousCheckedAt"], self.date1)
         self.assertEqual(item["status"], "needs_editorial_review")
-        self.assertEqual(item["destination"], "/choose/dify-hosting")
+        self.assertEqual(item["destination"], "/guides/dify-1-18-startup-check")
         self.assertIn("DIFY_AGENT_LOCAL_SANDBOX_AUTH_TOKEN", item["evidenceAfter"])
         _, repeated = watch.run_watch(updated, self.date2, self.fetcher(changed))
         self.assertEqual(repeated["candidates"], [])
@@ -148,7 +152,7 @@ class DifySearchWatchTest(unittest.TestCase):
 
     def test_compose_and_unclassified_cost_changes_keep_correct_destinations(self):
         for inputs, destination in (
-            ({"docs": self.docs("* RAM >= 8 GiB")}, "/choose/dify-hosting"),
+            ({"docs": self.docs("* RAM >= 8 GiB")}, "/guides/dify-1-18-startup-check"),
             ({"model_providers": self.model_providers() + b"\nNew explanatory paragraph."}, "/guides/dify-free-api-cost"),
             ({"knowledge_limit": self.knowledge_limit() + b"\nNew explanatory paragraph."}, "/guides/dify-free-api-cost"),
         ):
@@ -177,7 +181,7 @@ class DifySearchWatchTest(unittest.TestCase):
         state["archivedCandidateCount"] = 7
         updated, report = watch.run_watch(state, self.date2, self.fetcher())
         self.assertFalse(report["baselineReset"])
-        self.assertEqual([row["status"] for row in report["sources"]], ["unchanged", "unchanged", "baseline", "baseline"])
+        self.assertEqual([row["status"] for row in report["sources"]], ["unchanged", "unchanged", "baseline", "baseline", "baseline"])
         self.assertEqual(report["candidates"], [])
         self.assertEqual(updated["reviewQueue"], state["reviewQueue"])
         self.assertEqual(updated["archivedCandidateCount"], 7)
@@ -192,6 +196,24 @@ class DifySearchWatchTest(unittest.TestCase):
         recovered, recovery = watch.run_watch(updated, self.date2, self.fetcher())
         self.assertEqual(recovery["sources"][2]["status"], "baseline")
         self.assertEqual(recovery["candidates"], [])
+
+    def test_fifth_source_only_baselines_then_clone_null_change_is_a_question(self):
+        state = self.baseline()
+        del state["sources"]["deployment-faqs"]
+        state["reviewQueue"] = [{"id": "old-review", "status": "needs_editorial_review"}]
+        upgraded, baseline = watch.run_watch(state, self.date2, self.fetcher())
+        self.assertEqual(watch.SOURCE_FINGERPRINT, "bea8f580f106af9b")
+        self.assertEqual([row["status"] for row in baseline["sources"]], ["unchanged"] * 4 + ["baseline"])
+        self.assertEqual(upgraded["reviewQueue"], state["reviewQueue"])
+        self.assertEqual(baseline["candidates"], [])
+        changed = self.fetcher(deployment_faqs=self.deployment_faqs("Remote branch null not found: check unauthenticated API requests."))
+        _, report = watch.run_watch(upgraded, self.date2, changed)
+        self.assertEqual(len(report["candidates"]), 1)
+        candidate = report["candidates"][0]
+        self.assertEqual(candidate["sourceId"], "deployment-faqs")
+        self.assertEqual(candidate["category"], "clone-null")
+        self.assertEqual(candidate["demandStatus"], "hypothesis_not_measured")
+        self.assertIn("Remote branch null", candidate["question"])
 
     def test_review_queue_is_bounded_and_existing_candidate_is_not_duplicated(self):
         state = self.baseline()

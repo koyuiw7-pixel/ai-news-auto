@@ -56,11 +56,18 @@ SOURCES = ORIGINAL_SOURCES + (
         "url": "https://docs.dify.ai/en/cloud/use-dify/knowledge/knowledge-request-rate-limit.md",
         "publicUrl": "https://docs.dify.ai/en/cloud/use-dify/knowledge/knowledge-request-rate-limit",
     },
+    {
+        "id": "deployment-faqs",
+        "kind": "markdown",
+        "url": "https://docs.dify.ai/en/self-host/deploy/quick-start/faqs.md",
+        "publicUrl": "https://docs.dify.ai/en/self-host/deploy/quick-start/faqs",
+    },
 )
 DOCUMENT_BODIES = {
     "docker-compose": ("Deploy Dify with Docker Compose", ("Before Deployment",)),
     "model-providers": ("Model Providers", ("Use Models with Your AI Credits", "Use Your Own Account with a Supported Provider")),
     "knowledge-request-rate-limit": ("Knowledge Request Rate Limit", ("What Counts", "When You Reach the Limit")),
+    "deployment-faqs": ("FAQs", ("Clone Fails with",)),
 }
 COST_GUIDE_SOURCES = frozenset({"model-providers", "knowledge-request-rate-limit"})
 
@@ -83,6 +90,13 @@ QUESTION_RULES = (
     ),
 )
 SOURCE_QUESTION_RULES = {
+    "deployment-faqs": (
+        (
+            "clone-null", r"Remote branch null|Clone Fails|git clone|rate limit|unauthenticated|jq",
+            "Difyの取得でRemote branch null not foundと出たら？起動設定との切り分けは？",
+            "Difyを公式手順で取得する段階で止まった人",
+        ),
+    ),
     "model-providers": (
         (
             "ai-credits", r"credits?|AI response|model call|tokens?",
@@ -203,13 +217,14 @@ def candidates_for(source: dict, before: dict, after: dict, observed_at: str) ->
         result.append({
             "id": hashlib.sha256(identity.encode()).hexdigest()[:20],
             "status": "needs_editorial_review",
+            "category": category, "demandStatus": "hypothesis_not_measured",
             "sourceId": source["id"], "sourceUrl": after["sourceUrl"],
             "previousHash": before["hash"], "currentHash": after["hash"],
             "previousCheckedAt": before["checkedAt"], "observedAt": observed_at,
             "question": question, "affectedReader": reader,
             "evidenceBefore": excerpt(removed, pattern), "evidenceAfter": excerpt(added, pattern),
             "nextStep": "原文と対象版を確認し、既存ガイドへの追記で足りるか判断。需要・順位・動作の実証とは扱わない。",
-            "destination": "/guides/dify-free-api-cost" if source["id"] in COST_GUIDE_SOURCES else "/choose/dify-hosting",
+            "destination": "/guides/dify-free-api-cost" if source["id"] in COST_GUIDE_SOURCES else "/guides/dify-1-18-startup-check",
             "commercialBoundary": (
                 "AIクレジット・モデル提供元の料金・Knowledgeの回数制限を混同しない。無料枠で足りる人に新規契約を勧めない。"
                 if source["id"] in COST_GUIDE_SOURCES else
