@@ -105,6 +105,10 @@
     {
       "q": "この手順は全てのVPSの自動構築に使えますか？",
       "a": "いいえ。提供元のアプリイメージが使うDifyの版や構成は別途確認が必要です。本稿はXServer等のアプリイメージを実機検証したものではありません。"
+    },
+    {
+      "q": "Difyの導入で「Remote branch null not found」と出て進めません。起動設定の問題ですか？",
+      "a": "公式手順でGitHubから版番号を取得する処理が失敗し、版番号の代わりにnullが渡された場合に起きる、取得段階のエラーです。公式FAQは、未認証のGitHub APIの要求上限を主な原因として挙げています。この段階ではsandbox用トークンを変えても原因の解消にはなりません。公式Releasesで導入対象のタグを確認し、その版を明示して取得する手順を参照してください。mainの設定ファイルは開発に合わせて変わるため、対象タグの構成と同じとは限りません。既存のDifyフォルダーや.envを上書きしてやり直さず、新規導入か更新かを分けて確認します。"
     }
   ],
   "match": "\\bDify\\b|ディファイ",
@@ -137,6 +141,24 @@
     }
   ],
   "createdAt": "2026-10-30T13:28:00+09:00",
-  "updatedAt": "2026-10-30T19:13:40+09:00",
-  "checkedAt": "2026-10-30T13:28:00+09:00"
+  "updatedAt": "2026-10-31T01:34:08+09:00",
+  "checkedAt": "2026-10-30T13:28:00+09:00",
+  "answerUpdateHistory": [
+    {
+      "id": "3228782bfea1d92ff69600f0",
+      "candidateId": "d2c90ed1094c77e05f6f",
+      "trigger": "manual_current_source_review",
+      "reviewer": "Codex editorial review",
+      "checkedAt": "2026-10-30T16:34:01+00:00",
+      "appliedAt": "2026-10-30T16:34:08+00:00",
+      "sourceId": "deployment-faqs",
+      "sourceUrl": "https://docs.dify.ai/en/self-host/deploy/quick-start/faqs",
+      "sourceHash": "24855aa804b4c0212d0ae91097b13fc4c909758224a47615bfe786b678fd4249",
+      "articleBeforeHash": "ad575289a60b47991c40558c0885e9bc863abf55abf98525c789643a92999128",
+      "paths": [
+        "/faq/-"
+      ],
+      "rationale": "公式資料を独立照合した既存回答の補足。新変更の検知ではなく、検索需要は未測定の仮説。起動・再起動の対処を、まだソース取得に失敗している人が誤適用するのを防ぐ。公式の完全一致エラー文字列を既存起動ガイドで受け止める。"
+    }
+  ]
 }

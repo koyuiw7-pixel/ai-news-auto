@@ -119,6 +119,10 @@
     {
       "q": "Dify CloudのSandboxで、元ファイルが50MB以下なのに文書を追加できないことはありますか？",
       "a": "あります。ナレッジ保存量は元ファイルの容量ではなく、検索できる形に加工されたテキストやベクトルの容量です。文書数にも別の上限があり、無効・アーカイブ・処理失敗の文書も数えられます。オーナーか管理者がSettings > BillingでDocuments Upload QuotaとKnowledge Data Storageを別々に確認してください。容量の表示は反映まで数分かかる場合があります。必要な文書を安易に削除せず、上限の種類を先に確かめます。"
+    },
+    {
+      "q": "Dify Cloudで質問は少ないのに、ナレッジの要求数制限に達するのはなぜ？",
+      "a": "上限はワークスペース単位で、ClassicとAgentのナレッジが共有します。ClassicのKnowledge Retrievalノードは実行ごとに数えられ、繰り返し処理の中では周回ごとに1回です。文書のアップロードや検索テストなども対象なので、利用者の質問回数だけでは判断できません。Agent Knowledge Baseではファイル追加時と処理開始時をそれぞれ数える一方、新しいAgentやAgent Knowledge Retrievalノードからの検索はこの上限の対象外です。まずナレッジの種類、同時に行った操作、繰り返しの回数を確認してください。クレジット不足や外部モデルの利用制限とは別です。"
     }
   ],
   "match": "\\bDify\\b|ディファイ",
@@ -161,6 +165,24 @@
     }
   ],
   "createdAt": "2026-10-30T13:28:00+09:00",
-  "updatedAt": "2026-10-30T22:23:07+09:00",
-  "checkedAt": "2026-10-30T13:28:00+09:00"
+  "updatedAt": "2026-10-31T01:34:08+09:00",
+  "checkedAt": "2026-10-30T13:28:00+09:00",
+  "answerUpdateHistory": [
+    {
+      "id": "af387653f0f02b3c146e2fe1",
+      "candidateId": "98f55a54876cc4497258",
+      "trigger": "manual_current_source_review",
+      "reviewer": "Codex editorial review",
+      "checkedAt": "2026-10-30T16:34:01+00:00",
+      "appliedAt": "2026-10-30T16:34:08+00:00",
+      "sourceId": "knowledge-request-rate-limit",
+      "sourceUrl": "https://docs.dify.ai/en/cloud/use-dify/knowledge/knowledge-request-rate-limit",
+      "sourceHash": "86b9e655665519c7d54816d67fb8f1b8bb6e056f3c83d5add7406d598e8cbd4a",
+      "articleBeforeHash": "b6de6dc0f5bfa4050be371d7ac93ae3da566039563e5347f6546a5ca0ad23ea1",
+      "paths": [
+        "/faq/-"
+      ],
+      "rationale": "公式資料を独立照合した既存回答の補足。新変更の検知ではなく、検索需要は未測定の仮説。既存403 FAQの原因判定に、質問回数だけでなく処理単位とワークスペース全体を見る具体的な手掛かりを追加する。ClassicとAgentで対象操作が違うため一律カウントの誤解を防ぐ。"
+    }
+  ]
 }
