@@ -4015,6 +4015,14 @@
       "skipped": true,
       "url": "https://www.digital.go.jp/policies/local_governments/specification"
     },
+    "23ac914e0e3febaf": {
+      "at": "2026-10-30T06:51:53.376953+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "digital-agency-pmh-medical-subsidy",
+      "url": "https://www.digital.go.jp/policies/health/public-medical-hub"
+    },
     "24128a17ed6c828c": {
       "at": "2026-10-28T21:52:26.575448+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7601,6 +7609,14 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/discourse/20261026message2.html"
     },
+    "a505f7dd029a9adb": {
+      "at": "2026-10-30T06:51:02.214123+00:00",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "updated": "caa-recall-accident-report-202610",
+      "url": "https://www.caa.go.jp/notice/entry/047983/"
+    },
     "a520b9d3ebeda8b7": {
       "at": "2026-10-28T17:52:41.572140+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8056,6 +8072,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102810"
+    },
+    "b749fcda386da4a4": {
+      "at": "2026-10-30T06:51:20.843102+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 「今年で3回目となる記念日『自由の日』のイベントが開始されました」→元記事には「今年で3回目を迎える」との記述はあるが、イベントが「開始された」という明示的な記述はない（配布は祝祭終了時）。; 「配信サービス | PlayStation Plus ゲームカタログ」→元記事の注釈には「ゲームカタログで配信中のため」とあるが、表形式で断定的に記載するのは誤解を招く可能性がある。; 「",
+      "skipped": true,
+      "url": "https://blog.ja.playstation.com/2026/10/30/20261030-helldivers2-in-game-event-reveal-o/"
     },
     "b776005e8a875d75": {
       "at": "2026-10-29T03:01:46.246178+00:00",
@@ -10082,139 +10105,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-29T06:12:54.576446+00:00",
-      "attempt": 0,
-      "id": "6f92f0fc2ee4af29",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "段落が長い（平均 161.6字・最長 240字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 161.6,
-        "avg_sentence": 38.5,
-        "long_share": 0.071,
-        "max_paragraph": 240,
-        "paragraphs": 10,
-        "sentences": 42
-      },
-      "score": 100,
-      "source": "kddi-news",
-      "title": "世界No.1のコネクティビティを有するロンドン データセンターの受電容量を倍増"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T06:51:47.382722+00:00",
-      "attempt": 1,
-      "id": "7ce53b651c4285c7",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1960字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 93.0,
-        "avg_sentence": 53.7,
-        "long_share": 0.385,
-        "max_paragraph": 180,
-        "paragraphs": 15,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "ntt-news-ai",
-      "title": "「SPARK」始動 ─ AIで未来を先読みする、人間との学習ループ ～NTTデータ経営研究所、AIを活用したコンサルティングサービス「SPARK」を提供開始～"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T06:51:52.476072+00:00",
-      "attempt": 1,
-      "id": "7ce53b651c4285c7",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 51.7字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 130.9字・最長 180字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 130.9,
-        "avg_sentence": 51.7,
-        "long_share": 0.316,
-        "max_paragraph": 180,
-        "paragraphs": 15,
-        "sentences": 38
-      },
-      "score": 100,
-      "source": "ntt-news-ai",
-      "title": "「SPARK」始動 ─ AIで未来を先読みする、人間との学習ループ ～NTTデータ経営研究所、AIを活用したコンサルティングサービス「SPARK」を提供開始～"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T06:52:01.073113+00:00",
-      "attempt": 0,
-      "id": "7ce53b651c4285c7",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "段落が長い（平均 132.9字・最長 182字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 132.9,
-        "avg_sentence": 35.0,
-        "long_share": 0.035,
-        "max_paragraph": 182,
-        "paragraphs": 15,
-        "sentences": 57
-      },
-      "score": 100,
-      "source": "ntt-news-ai",
-      "title": "「SPARK」始動 ─ AIで未来を先読みする、人間との学習ループ ～NTTデータ経営研究所、AIを活用したコンサルティングサービス「SPARK」を提供開始～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T06:52:14.873682+00:00",
-      "attempt": 1,
-      "id": "7f04b62d80588514",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1622字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 115.3,
-        "avg_sentence": 50.7,
-        "long_share": 0.4,
-        "max_paragraph": 274,
-        "paragraphs": 11,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "caa",
-      "title": "消費者安全法の重大事故等に係る公表について(10月29日)"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T06:52:34.647188+00:00",
-      "attempt": 2,
-      "id": "7f04b62d80588514",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1672字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 99.1,
-        "avg_sentence": 40.2,
-        "long_share": 0.094,
-        "max_paragraph": 178,
-        "paragraphs": 13,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "caa",
-      "title": "消費者安全法の重大事故等に係る公表について(10月29日)"
-    },
     {
       "accepted": true,
       "at": "2026-10-29T06:52:42.573316+00:00",
@@ -16842,6 +16732,132 @@
       "score": 100,
       "source": "maff",
       "title": "令和8年9月の米穀流通の動向（集荷、販売、民間在庫）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T06:51:02.213445+00:00",
+      "attempt": 1,
+      "id": "a505f7dd029a9adb",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "caa",
+      "title": "消費生活用製品の重大製品事故:リコール製品で火災等(スピーカー(充電式))(10月30日)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:51:11.799988+00:00",
+      "attempt": 1,
+      "id": "b749fcda386da4a4",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "武器の付与時期 10月27日（火）7時59分 → 元記事の注釈では「10月27日（火）7時59分」とあるが、元記事の公開日が2026年10月30日であり、過去の日付を未来のイベントとして記載している矛盾がある。",
+        "武器配布の対象 2026年9月26日（土）8時00分以降にプレイしたプレイヤー → 元記事の注釈と日付が一致するが、イベント公開日（10月30日）より前の日付を基準としており、文脈上不自然な記載となっている。"
+      ],
+      "readability": {
+        "avg_paragraph": 163.4,
+        "avg_sentence": 59.4,
+        "long_share": 0.455,
+        "max_paragraph": 208,
+        "paragraphs": 8,
+        "sentences": 22
+      },
+      "score": 85,
+      "source": "playstation-blog-jp",
+      "title": "『HELLDIVERS 2』で“自由の日”を祝おう！ ゲーム内で記念ギフトを配布"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:51:20.843034+00:00",
+      "attempt": 2,
+      "id": "b749fcda386da4a4",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "「今年で3回目となる記念日『自由の日』のイベントが開始されました」→元記事には「今年で3回目を迎える」との記述はあるが、イベントが「開始された」という明示的な記述はない（配布は祝祭終了時）。",
+        "「配信サービス | PlayStation Plus ゲームカタログ」→元記事の注釈には「ゲームカタログで配信中のため」とあるが、表形式で断定的に記載するのは誤解を招く可能性がある。",
+        "「価格 | スタンダード版 4,480円 / スーパー市民版 6,480円」→元記事の表には「販売価格」として記載されているが、イベントの価格ではなくゲーム本体の価格であるため、イベントの項目として記載するのは不適切。"
+      ],
+      "readability": {
+        "avg_paragraph": 136.4,
+        "avg_sentence": 55.8,
+        "long_share": 0.364,
+        "max_paragraph": 238,
+        "paragraphs": 9,
+        "sentences": 22
+      },
+      "score": 85,
+      "source": "playstation-blog-jp",
+      "title": "『HELLDIVERS 2』で“自由の日”を祝おう！ ゲーム内で記念ギフトを配布"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:51:29.836305+00:00",
+      "attempt": 1,
+      "id": "23ac914e0e3febaf",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文が短い（1646字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 135.7,
+        "avg_sentence": 48.8,
+        "long_share": 0.28,
+        "max_paragraph": 212,
+        "paragraphs": 9,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "digital-agency",
+      "title": "自治体・医療機関等をつなぐ情報連携システム（Public Medical Hub：PMH）に係る「先行実施事業の実施状況」「自治体・自治体システムベンダー向けの"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T06:51:45.890062+00:00",
+      "attempt": 1,
+      "id": "23ac914e0e3febaf",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 47.5字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 156.8字・最長 252字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 156.8,
+        "avg_sentence": 47.5,
+        "long_share": 0.182,
+        "max_paragraph": 252,
+        "paragraphs": 10,
+        "sentences": 33
+      },
+      "score": 100,
+      "source": "digital-agency",
+      "title": "自治体・医療機関等をつなぐ情報連携システム（Public Medical Hub：PMH）に係る「先行実施事業の実施状況」「自治体・自治体システムベンダー向けの"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T06:51:53.376557+00:00",
+      "attempt": 0,
+      "id": "23ac914e0e3febaf",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「2026年10月末時点で614自治体が先行実施に参加」→元記事では「2026年10月28日時点」とされており、月末時点という表現は正確ではない。; 「マイナンバーカードを健康保険証として使うことで、受給者証の役割も兼ねさせることが可能になります」→元記事には「"
+      ],
+      "readability": {
+        "avg_paragraph": 156.8,
+        "avg_sentence": 47.5,
+        "long_share": 0.182,
+        "max_paragraph": 252,
+        "paragraphs": 10,
+        "sentences": 33
+      },
+      "score": 100,
+      "source": "digital-agency",
+      "title": "自治体・医療機関等をつなぐ情報連携システム（Public Medical Hub：PMH）に係る「先行実施事業の実施状況」「自治体・自治体システムベンダー向けの"
     }
   ],
   "short_text_retry": {}
