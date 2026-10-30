@@ -71,6 +71,14 @@ export default function HomePage() {
             DifyにVPSは必要？無料で試す方法と費用を比べる →
           </Link>
           <Link href="/guides" className="text-note font-semibold text-accent underline underline-offset-4">AIの使い方ガイド一覧</Link>
+          <div className="mt-2 flex w-full flex-wrap gap-x-6 gap-y-2">
+            <Link href="/guides/dify-free-api-cost" className="text-note font-semibold text-ink-soft underline decoration-line-strong underline-offset-4 hover:text-accent">
+              Difyは無料？200クレジットとAPI料金を確認
+            </Link>
+            <Link href="/guides/dify-1-18-startup-check" className="text-note font-semibold text-ink-soft underline decoration-line-strong underline-offset-4 hover:text-accent">
+              Dify 1.18.0が起動しないときの確認手順
+            </Link>
+          </div>
         </nav>
 
         <div className="mt-14 grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-12">
