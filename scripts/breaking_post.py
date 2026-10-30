@@ -172,6 +172,7 @@ def main() -> int:
             "style": "standalone",
             "image": "card" if fmt == "classic" else "photo" if image != f"{tp.site_url()}/cover/{article['slug']}" else "cover",
             "format": fmt,
+            **({"hookTextVersion": tp.HOOK_TEXT_VERSION} if fmt == "hook_thread" else {}),
             "topic": tp.topic_of(article),
             "question": False,
             **({"comment": comment} if comment else {}),

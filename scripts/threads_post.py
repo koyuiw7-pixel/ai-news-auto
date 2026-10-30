@@ -618,6 +618,8 @@ def card_url(article: dict) -> str:
 # hook_thread: 本文は2〜4行の書き出し＋👇（リンクなし・画像1枚）、詳細（要点・数字・結論・リンク）は自分への返信
 # classic: これまでの完結型の本文＋図解カード、返信はリンクだけ
 FORMATS = ("hook_thread", "classic")
+# 書き出しを差し替えても数字・主語を欠落させない本文。旧本文との比較時に区別する。
+HOOK_TEXT_VERSION = 2
 # この時刻までは2つの形式を交互に出して比べる（日本時間 11/2 0:00）
 AB_UNTIL = datetime(2026, 11, 1, 15, 0, tzinfo=timezone.utc)
 # A/B 後に勝ちを決めるのに要る1形式あたりの本数
@@ -700,14 +702,18 @@ def compose_hook(article: dict, recent: list[str] | None = None, breaking: bool 
     head = re.split(r"[\s　]", title)[0] if title else ""
     what = short_line(post[1], 64) if len(post) >= 2 else ""
     what = what or title
+    replaced_opening = False
+    keep_context_pair = False
     if breaking:
         speed = speed_line(article) if not article.get("disaster") else ""
         article["_hook"] = "breaking"
         if speed:
             first = speed.replace("発表から", "公式発表から").replace("分で掲載", "分でお届け")
+            replaced_opening = True
+            keep_context_pair = True
         else:
-            # 速さの数字がなければ「【速報】何の発表か」を1行目に、紹介文の書き出しを2行目に回す
-            first, what = f"【速報】{what}", short_line(post[0], 34) if post else ""
+            # 元の2行目だけでは「見つけた数です」などの主語・数字が欠ける。
+            first, what = f"【速報】{title}", ""
     else:
         weak = set(weak_hook_keys())
         if post and len(post[0]) <= 34 and article.get("threadsHook") not in weak:
@@ -716,8 +722,21 @@ def compose_hook(article: dict, recent: list[str] | None = None, breaking: bool 
         else:
             hook, first = opening_line(article, recent or [])
             article["_hook"] = hook
+            replaced_opening = True
             if hook == "breaking":
                 first = f"【速報】{head}"
+    if replaced_opening:
+        # 速報の速度表示で元の1行目を上書きするときは、1・2行目を一緒に残す。
+        # 入らなければ独立した見出しを使い、文の途中では切らない。
+        context = " ".join(post[:2]) if keep_context_pair and len(post) >= 2 else ""
+        if first.startswith("【速報】"):
+            context = re.sub(r"^【速報】\s*", "", context)
+        candidates = [context] if context else []
+        candidates += [title, str(article.get("seoTitle") or "").strip()]
+        what = next((text for text in candidates if text and x_weight(f"{first}\n{text}") + 4 <= X_LIMIT), title)
+        # 装飾的な書き出しより、何の発表か分かる本文を優先する。
+        if what and (overlap(first, what) >= 10 or x_weight(f"{first}\n{what}") + 4 > X_LIMIT):
+            first = ""
     punch = short_line(post[-1], 36) if len(post) >= 3 else ""
     # 書き出しが判定から作った型（結論・無料）なら、同じことを繰り返さない
     if not punch and (article.get("verdict") or {}).get("status") == "available" and article["_hook"] not in ("conclusion", "free"):
@@ -1175,6 +1194,7 @@ def main() -> int:
             "style": "standalone",
             "image": "card" if fmt == "classic" else "photo" if post_image(article, fmt) != f"{site_url()}/cover/{article['slug']}" else "cover",
             "format": fmt,
+            **({"hookTextVersion": HOOK_TEXT_VERSION} if fmt == "hook_thread" else {}),
             "topic": topic_of(article),
             "question": bool(question),
             **({"questionText": question} if question else {}),
