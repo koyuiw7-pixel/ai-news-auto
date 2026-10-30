@@ -5831,6 +5831,14 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102822"
     },
+    "6f5c086e08d35232": {
+      "at": "2026-10-30T00:51:48.600068+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "science",
+      "slug": "nemuri-antimicrobial-peptides-discovery",
+      "url": "https://www.jst.go.jp/pr/announce/20261029-2/index.html"
+    },
     "6f92f0fc2ee4af29": {
       "at": "2026-10-29T06:12:54.576885+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -9357,75 +9365,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:12:11.434065+00:00",
-      "attempt": 2,
-      "id": "960c9f2606637759",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（365字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 164.9,
-        "avg_sentence": 61.8,
-        "long_share": 0.531,
-        "max_paragraph": 278,
-        "paragraphs": 12,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "soumu",
-      "title": "令和8年（5月～9月）の熱中症による救急搬送状況"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:12:38.010150+00:00",
-      "attempt": 1,
-      "id": "814c05b82d09a238",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1657字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（388字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 143.9,
-        "avg_sentence": 61.7,
-        "long_share": 0.476,
-        "max_paragraph": 207,
-        "paragraphs": 9,
-        "sentences": 21
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "FC東京と共に「やさしい日本語」を応援しています！"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:12:45.343386+00:00",
-      "attempt": 2,
-      "id": "814c05b82d09a238",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1718字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 148.9,
-        "avg_sentence": 53.6,
-        "long_share": 0.24,
-        "max_paragraph": 267,
-        "paragraphs": 9,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "FC東京と共に「やさしい日本語」を応援しています！"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T23:12:53.260834+00:00",
@@ -16066,6 +16005,74 @@
       "score": null,
       "source": "digital-agency",
       "title": "ガバメントAI 源内で「国会答弁作成支援AIアプリ」のプロトタイプ版を提供開始します"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T00:51:36.300437+00:00",
+      "attempt": 1,
+      "id": "6f5c086e08d35232",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1719字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 143.3,
+        "avg_sentence": 59.7,
+        "long_share": 0.417,
+        "max_paragraph": 298,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "jst",
+      "title": "ショウジョウバエの睡眠誘引因子に由来する抗菌ペプチドを発見"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T00:51:44.519193+00:00",
+      "attempt": 2,
+      "id": "6f5c086e08d35232",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 55.5字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 183.0字・最長 355字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 183.0,
+        "avg_sentence": 55.5,
+        "long_share": 0.242,
+        "max_paragraph": 355,
+        "paragraphs": 10,
+        "sentences": 33
+      },
+      "score": 100,
+      "source": "jst",
+      "title": "ショウジョウバエの睡眠誘引因子に由来する抗菌ペプチドを発見"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T00:51:48.599668+00:00",
+      "attempt": 0,
+      "id": "6f5c086e08d35232",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 172.8字・最長 368字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 172.8,
+        "avg_sentence": 35.2,
+        "long_share": 0.074,
+        "max_paragraph": 368,
+        "paragraphs": 11,
+        "sentences": 54
+      },
+      "score": 100,
+      "source": "jst",
+      "title": "ショウジョウバエの睡眠誘引因子に由来する抗菌ペプチドを発見"
     }
   ],
   "short_text_retry": {}
