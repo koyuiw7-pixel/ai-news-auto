@@ -3214,6 +3214,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000120.000115515.html"
     },
+    "09f3bad4d1c00581": {
+      "at": "2026-10-30T03:22:00.563292+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "career-consultant-exam-schedule-mhlw",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/jinzaikaihatsu/career_consultant01.html"
+    },
     "0ad26ba6b13d4d29": {
       "at": "2026-10-29T18:10:45.707932+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9607,74 +9615,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:21:13.136331+00:00",
-      "attempt": 1,
-      "id": "58efe63b0e288aad",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（334字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 185.0,
-        "avg_sentence": 56.9,
-        "long_share": 0.308,
-        "max_paragraph": 292,
-        "paragraphs": 8,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "nintendo-topics",
-      "title": "「Hello! インディー」1ターンで勝負が決まる『One Turn Kill』"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:21:20.297870+00:00",
-      "attempt": 2,
-      "id": "58efe63b0e288aad",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "Nintendo Switch 2 → 元記事には「Nintendo Switch 2 Indie World」という表記はあるものの、対象機種が「Nintendo Switch 2」であるとは明記されていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 180.9,
-        "avg_sentence": 60.3,
-        "long_share": 0.458,
-        "max_paragraph": 234,
-        "paragraphs": 8,
-        "sentences": 24
-      },
-      "score": 85,
-      "source": "nintendo-topics",
-      "title": "「Hello! インディー」1ターンで勝負が決まる『One Turn Kill』"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:21:27.436069+00:00",
-      "attempt": 1,
-      "id": "68c01e18210096fb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1765字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（388字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 132.5,
-        "avg_sentence": 54.0,
-        "long_share": 0.444,
-        "max_paragraph": 243,
-        "paragraphs": 11,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "11月から1月は「冬季大気汚染対策」推進期間です！"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T01:21:37.002286+00:00",
@@ -16303,6 +16243,70 @@
       "score": 100,
       "source": "nli-research",
       "title": "雇用関連統計2026年９月－就業者数は振れが大きい中で増加傾向"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:21:48.381332+00:00",
+      "attempt": 1,
+      "id": "09f3bad4d1c00581",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（279字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 77.3,
+        "avg_sentence": 49.7,
+        "long_share": 0.143,
+        "max_paragraph": 169,
+        "paragraphs": 18,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "キャリアコンサルタントになりたい方へ（キャリアコンサルタント養成講習一覧を更新しました）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:21:56.667541+00:00",
+      "attempt": 2,
+      "id": "09f3bad4d1c00581",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 61.3字・60字超の文が 48% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 82.9,
+        "avg_sentence": 61.3,
+        "long_share": 0.478,
+        "max_paragraph": 136,
+        "paragraphs": 17,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "キャリアコンサルタントになりたい方へ（キャリアコンサルタント養成講習一覧を更新しました）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T03:22:00.562979+00:00",
+      "attempt": 0,
+      "id": "09f3bad4d1c00581",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 86.4,
+        "avg_sentence": 28.8,
+        "long_share": 0.0,
+        "max_paragraph": 141,
+        "paragraphs": 18,
+        "sentences": 54
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "キャリアコンサルタントになりたい方へ（キャリアコンサルタント養成講習一覧を更新しました）"
     }
   ],
   "short_text_retry": {}
