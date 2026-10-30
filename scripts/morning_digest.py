@@ -98,18 +98,20 @@ def pick(state: dict, now: datetime) -> list[dict]:
     return chosen
 
 
-def compose(items: list[dict]) -> str:
-    head = f"今朝のAIニュース{len(items)}本"
+def compose(items: list[dict], now: datetime | None = None) -> str:
+    jst = (now or datetime.now(timezone.utc)).astimezone(tp.JST)
+    period = "今朝" if jst.hour < 10 else "今日"
+    head = f"{period}のAIニュース{len(items)}本（{jst:%Y/%m/%d}）"
     return "\n".join([head, "", *(f"・{one_line(a)}" for a in items)])
 
 
-def compose_x(items: list[dict], link: str) -> str:
+def compose_x(items: list[dict], link: str, now: datetime | None = None) -> str:
     """X は1本で（全角2・URL 23 の280字）。入らなければ後ろの項目から落とす"""
     for n in range(len(items), 0, -1):
-        text = f"{compose(items[:n])}\n\n{link}\n#AI"
+        text = f"{compose(items[:n], now)}\n\n{link}\n#AI"
         if tp.x_weight_url(text) <= tp.X_LIMIT:
             return text
-    return f"今朝のAIニュース\n{link}"
+    return f"{compose([], now).splitlines()[0].replace('0本', '')}\n{link}"
 
 
 ASSISTANTS = ["ChatGPT", "Gemini", "Claude", "Copilot"]
@@ -158,11 +160,27 @@ def compose_poll(state: dict, now: datetime) -> str:
     evergreen = [
         ("ふだんAIをいちばん使う場面は？", ["調べもの", "文章づくり", "プログラミング", "画像・動画づくり"]),
         ("AIの新機能が出たら？", ["すぐ試す", "評判を見てから", "あまり使わない"]),
-        (f"今週いちばん話題になったのは{assistants[0]}。ふだん使っているAIは？", assistants + ["特に使っていない"]),
+        ("ふだん使っているAIは？", assistants + ["特に使っていない"]),
     ]
     question, options = evergreen[week % len(evergreen)]
     body = "\n".join(f"{marks[i]}{o}" for i, o in enumerate(options[:4]))
     return f"{question}\n\n{body}\n\n{ending}"
+
+
+def compose_poll_x(body: str, now: datetime) -> str:
+    """日付と全選択肢を残す。結びの省略→長い記事見出しの短縮の順。"""
+    heading = f"AIの問いかけ（{now.astimezone(tp.JST):%Y/%m/%d}）"
+    parts = body.split("\n\n")
+    candidates = [f"{heading}\n{body}\n\n#AI"]
+    if len(parts) >= 2:
+        candidates.append(f"{heading}\n{parts[0]}\n\n{parts[1]}\n#AI")
+        for limit in (30, 24, 18):
+            choices = "\n".join(line if len(line) <= limit else line[:limit - 1] + "…" for line in parts[1].splitlines())
+            candidates.append(f"{heading}\n{parts[0]}\n\n{choices}\n#AI")
+    for text in candidates:
+        if tp.x_weight_url(text) <= tp.X_LIMIT:
+            return text
+    raise RuntimeError("問いかけの全選択肢をXの文字数内に収められません")
 
 
 def slot_due(slot: tuple[int, int], now: datetime) -> datetime | None:
@@ -180,32 +198,40 @@ def merge(mine_path: str) -> int:
     mine = json.loads(Path(mine_path).read_text("utf-8"))
     state = tp.load_state()
     added = 0
-    for key, entry in mine.get("posted", {}).items():
-        if entry.get("style") in ("digest", "poll") and key not in state["posted"]:
-            state["posted"][key] = entry
-            added += 1
+    for collection in ("extraPending", "posted"):
+        for key, entry in mine.get(collection, {}).items():
+            if entry.get("style") not in ("digest", "poll"):
+                continue
+            current = daily_entry(state, key)
+            combined = merge_entry(current, entry)
+            if combined != current:
+                store_entry(state, key, combined, save=False)
+                added += 1
     tp.save_state(state)
     log(f"[digest] 投稿履歴に {added} 件を足しました")
     return 0
 
 
 def delete_post(api_key: str, post_id: str) -> None:
-    tp.buffer_graphql(
+    data = tp.buffer_graphql(
         api_key,
         """mutation($input: DeletePostInput!) { deletePost(input: $input) { __typename ... on MutationError { message } } }""",
         {"input": {"id": post_id}},
     )
+    if data["deletePost"].get("message"):
+        raise RuntimeError("Buffer: 下書きの削除が拒否されました")
 
 
 def build(kind: str, state: dict, now: datetime) -> dict | None:
     """投稿の中身（Threads の本文・返信・X の本文・記録用の情報）。出さないなら None"""
     jst = now.astimezone(tp.JST)
     if kind == "poll":
-        text = compose_poll(state, now)
-        x_text = f"{text}\n\n#AI"
+        body = compose_poll(state, now)
+        text = f"AIの問いかけ（{jst:%Y/%m/%d}）\n{body}"
+        x_text = compose_poll_x(body, now)
         return {
             "key": f"poll-{jst:%Y%m%d}", "text": text, "reply": "", "link": "",
-            "x_text": x_text if tp.x_weight_url(x_text) <= tp.X_LIMIT else "",
+            "x_text": x_text,
             "slot": tp.POLL_SLOT_JST, "items": [],
         }
     items = pick(state, now)
@@ -216,9 +242,9 @@ def build(kind: str, state: dict, now: datetime) -> dict | None:
     for a in items:
         log(f"  {a['slug']} (速報={bool(a.get('breaking'))} 点={tp.score(a)} トピック={tp.topic_of(a)})")
     return {
-        "key": f"digest-{jst:%Y%m%d}", "text": compose(items),
-        "reply": REPLY_LINES[jst.toordinal() % len(REPLY_LINES)], "link": link,
-        "x_text": compose_x(items, tp.utm_link(link, "x", "digest")),
+        "key": f"digest-{jst:%Y%m%d}", "text": compose(items, now),
+        "reply": REPLY_LINES[jst.toordinal() % len(REPLY_LINES)] if jst.hour < 10 else REPLY_LINES[0], "link": link,
+        "x_text": compose_x(items, tp.utm_link(link, "x", "digest"), now),
         "slot": tp.DIGEST_SLOT_JST, "items": [a["slug"] for a in items],
     }
 
@@ -238,94 +264,327 @@ def threads_input(channel_id: str, post: dict, when: dict) -> dict:
     }
 
 
+ACCEPTED_STATUSES = {"accepted", "scheduled", "sending", "sent"}
+REMOTE_FIELDS = "id text status createdAt dueAt sentAt externalLink"
+
+
+def in_window(kind: str, now: datetime) -> bool:
+    """当日だけ回収する。遅い朝まとめも直近12時間の記事から組み直す。"""
+    jst = now.astimezone(tp.JST)
+    minutes = jst.hour * 60 + jst.minute
+    if kind == "poll":
+        return jst.weekday() in tp.POLL_WEEKDAYS_JST and 11 * 60 <= minutes < 20 * 60
+    return 6 * 60 + 30 <= minutes < 18 * 60
+
+
+def daily_entry(state: dict, key: str) -> dict:
+    return state.get("posted", {}).get(key) or state.get("extraPending", {}).get(key) or {}
+
+
+def store_entry(state: dict, key: str, entry: dict, save: bool = True) -> None:
+    # Threads未成功の準備記録をpostedに置くと、Blueskyが先に配信してしまう。
+    threads_status = entry.get("delivery", {}).get("threads", {}).get("status", "accepted")
+    if entry.get("id") and threads_status in ACCEPTED_STATUSES:
+        state.setdefault("posted", {})[key] = entry
+        state.setdefault("extraPending", {}).pop(key, None)
+    else:
+        state.setdefault("extraPending", {})[key] = entry
+        state.setdefault("posted", {}).pop(key, None)
+    if save:
+        tp.save_state(state)
+
+
+def merge_entry(current: dict, incoming: dict) -> dict:
+    """既存の反応・他媒体を保ち、片側だけ記録された成功も取り込む。"""
+    merged = {**incoming, **current}
+    for service in ("threads", "twitter"):
+        old_id = current.get("id") if service == "threads" else current.get("channels", {}).get(service)
+        new_id = incoming.get("id") if service == "threads" else incoming.get("channels", {}).get(service)
+        if old_id and new_id and old_id != new_id:
+            raise RuntimeError(f"{service} の投稿IDが競合しています。自動で上書きしません")
+        if service == "threads" and (old_id or new_id):
+            merged["id"] = old_id or new_id
+    merged["channels"] = {**incoming.get("channels", {}), **current.get("channels", {})}
+    delivery = dict(current.get("delivery", {}))
+    for service, info in incoming.get("delivery", {}).items():
+        if media_id(current, service) and not media_id(incoming, service):
+            continue  # 古い準備journalで、すでに保存した受理結果を巻き戻さない。
+        if info.get("updatedAt", "") >= delivery.get(service, {}).get("updatedAt", ""):
+            delivery[service] = info
+    merged["delivery"] = delivery
+    return merged
+
+
+def buffer_posts(api_key: str, channel_id: str, now: datetime) -> list[dict]:
+    """全statusを当日に絞って照合。取得不完全なら新規作成を許可しない。
+
+    Bufferには冪等キーがないため、日付・kindを本文で識別する。
+    入口はworkflowのsns-extra concurrencyで必ず直列化する。
+    https://developers.buffer.com/guides/efficient-api-usage.html
+    """
+    start = now.astimezone(tp.JST).replace(hour=0, minute=0, second=0, microsecond=0)
+    orgs = tp.buffer_graphql(api_key, "query { account { organizations { id } } }")["account"]["organizations"]
+    if not orgs:
+        raise RuntimeError("Bufferの組織を確認できません")
+    posts: dict[str, dict] = {}
+    for org in orgs:
+        cursor = None
+        for _ in range(5):
+            after = f", after: {json.dumps(cursor)}" if cursor else ""
+            filters = f"channelIds: [{json.dumps(channel_id)}], startDate: {json.dumps(tp.utc_z(start - timedelta(seconds=1)))}, endDate: {json.dumps(tp.utc_z(start + timedelta(days=1)))}"
+            data = tp.buffer_graphql(api_key, f"""query {{ posts(first: 50{after}, input: {{
+                organizationId: {json.dumps(org['id'])}, filter: {{ {filters} }}
+            }}) {{ edges {{ node {{ {REMOTE_FIELDS} }} }} pageInfo {{ endCursor hasNextPage }} }} }}""")
+            page = data["posts"]
+            for edge in page["edges"]:
+                node = edge["node"]
+                posts[node["id"]] = node
+            if not page["pageInfo"]["hasNextPage"]:
+                break
+            next_cursor = page["pageInfo"]["endCursor"]
+            if not next_cursor or next_cursor == cursor:
+                raise RuntimeError("Buffer投稿一覧のページ送りを確認できません")
+            cursor = next_cursor
+        else:
+            raise RuntimeError("Buffer投稿一覧の上限に達しました。照合を省略して投稿しません")
+    return list(posts.values())
+
+
+def matches_daily(node: dict, kind: str, now: datetime) -> bool:
+    """再生成で記事が変わっても同じ日・企画を重複作成しない。旧本文も当日分だけ検知。"""
+    text = str(node.get("text") or "")
+    stamp = now.astimezone(tp.JST).strftime("%Y/%m/%d")
+    if kind == "digest":
+        prefix = re.match(r"^(?:今朝|今日)のAIニュース(?:\d+本)?", text)
+    else:
+        prefix = text.startswith("AIの問いかけ")
+    if prefix and f"（{stamp}）" in text.splitlines()[0]:
+        return True
+    # 旧版の当日投稿をGit記録の欠落時にも再作成しない。別日の再送はしない。
+    today = now.astimezone(tp.JST).date()
+    dates = []
+    for field in ("createdAt", "dueAt", "sentAt"):
+        if node.get(field):
+            dates.append(datetime.fromisoformat(node[field].replace("Z", "+00:00")).astimezone(tp.JST).date())
+    if today not in dates or re.search(r"（\d{4}/\d{2}/\d{2}）", text):
+        return False
+    if kind == "digest":
+        return bool(re.match(r"^(?:今朝|今日)のAIニュース\d+本", text))
+    return text.startswith(("今週のAIニュースで、いちばん気になったのは？", "仕事で使うならどれ？", "ふだんAIをいちばん使う場面は？", "AIの新機能が出たら？", "今週いちばん話題になったのは", "ふだん使っているAIは？"))
+
+
+def media_id(entry: dict, service: str) -> str:
+    return str(entry.get("id", "") if service == "threads" else entry.get("channels", {}).get(service, ""))
+
+
+def record_remote(entry: dict, service: str, node: dict, now: datetime) -> None:
+    if service == "threads":
+        first_id = not entry.get("id")
+        entry["id"] = node["id"]
+        entry["permalink"] = node.get("externalLink") or entry.get("permalink", "")
+        if first_id:
+            # 通信結果不明からの復元でも、朝の準備時刻を実配信時刻と取り違えない。
+            # 既知IDの再照合時は時刻を動かさない（Blueskyの再配信候補化を防ぐ）。
+            observed_time = node.get("sentAt") or node.get("dueAt") or node.get("createdAt")
+            if observed_time:
+                entry["dueAt"] = observed_time
+            if node.get("createdAt"):
+                entry["postedAt"] = node["createdAt"]
+    else:
+        entry.setdefault("channels", {})[service] = node["id"]
+    entry.setdefault("delivery", {})[service] = {
+        "status": node.get("status", "accepted"), "updatedAt": now.isoformat(timespec="seconds"),
+        **{field: node[field] for field in ("sentAt", "externalLink") if node.get(field)},
+    }
+
+
+def verify(api_key: str, channels: dict, state: dict, key: str, kind: str, now: datetime) -> int:
+    """外部・履歴とも読み取りのみ。受付と実配信を分け、未確認を成功にしない。"""
+    entry = daily_entry(state, key)
+    expected = entry.get("expectedChannels") or ["threads", "twitter"]
+    ok = True
+    for service in expected:
+        if service not in channels:
+            log(f"[verify] {service}: channel missing")
+            ok = False
+            continue
+        found = [p for p in buffer_posts(api_key, channels[service]["id"], now)
+                 if p["id"] == media_id(entry, service) or matches_daily(p, kind, now)]
+        log("[verify] " + json.dumps({"key": key, "channel": service, "posts": [
+            {k: p.get(k) for k in ("id", "status", "dueAt", "sentAt", "externalLink")} for p in found
+        ]}, ensure_ascii=False))
+        ok = ok and len(found) == 1 and found[0].get("status") in ACCEPTED_STATUSES
+    return 0 if ok else 1
+
+
+def deliver(api_key: str, channels: dict, state: dict, post: dict, kind: str, now: datetime) -> int:
+    key = post["key"]
+    if key != f"{kind}-{now.astimezone(tp.JST):%Y%m%d}" or not post.get("x_text"):
+        raise RuntimeError("当日の本文・対象媒体を確定できません")
+    due = slot_due(tuple(post["slot"]), now)
+    current = daily_entry(state, key)
+    entry = {"style": kind, "format": kind, "hook": kind, "question": kind == "poll", "topic": TOPIC,
+             "items": post["items"], "via": "buffer", "channels": {}, "permalink": "",
+             "dueAt": (due or now).isoformat(timespec="seconds"), "postedAt": now.isoformat(timespec="seconds"),
+             **current, "postPlan": post, "expectedChannels": ["threads", "twitter"]}
+    store_entry(state, key, entry)
+    # 全対象の照合が完了するまでは、どの媒体にも新規作成しない。
+    remote = {service: buffer_posts(api_key, channels[service]["id"], now)
+              for service in entry["expectedChannels"] if service in channels}
+    failed = False
+    for service in entry["expectedChannels"]:
+        if service not in channels:
+            previous = entry.get("delivery", {}).get(service, {}).get("status")
+            # チャンネルの一時切断は、前回の受理不明を「未受付」に変える証拠ではない。
+            status = previous if previous in ("attempting", "unknown") else "unknown" if media_id(entry, service) else "rejected"
+            entry.setdefault("delivery", {})[service] = {"status": status, "updatedAt": now.isoformat(timespec="seconds"), "reason": "channel missing"}
+            store_entry(state, key, entry)
+            log(f"[{service}] チャンネルが見つかりません")
+            failed = True
+            continue
+        found = [p for p in remote[service] if p["id"] == media_id(entry, service) or matches_daily(p, kind, now)]
+        if len(found) > 1:
+            entry.setdefault("delivery", {})[service] = {"status": "unknown", "updatedAt": now.isoformat(timespec="seconds"), "reason": "multiple remote matches"}
+            store_entry(state, key, entry)
+            log(f"[{service}] 同日の投稿候補が複数あります。追加しません")
+            failed = True
+            continue
+        if found:
+            if media_id(entry, service) and media_id(entry, service) != found[0]["id"]:
+                log(f"[{service}] 保存済みIDとBufferの候補が異なります。追加・上書きしません")
+                failed = True
+                continue
+            record_remote(entry, service, found[0], now)
+            store_entry(state, key, entry)
+            log(f"[{service}] 既存投稿を照合: {found[0]['id']} ({found[0]['status']})")
+            failed = failed or found[0].get("status") not in ACCEPTED_STATUSES
+            continue
+        previous = entry.get("delivery", {}).get(service, {}).get("status")
+        if media_id(entry, service) or previous in ("attempting", "unknown"):
+            entry.setdefault("delivery", {})[service] = {"status": "unknown", "updatedAt": now.isoformat(timespec="seconds"), "reason": "previous acceptance unconfirmed"}
+            store_entry(state, key, entry)
+            log(f"[{service}] 前回の受理結果を確定できません。重複防止のため再作成しません")
+            failed = True
+            continue
+        media_due = due + timedelta(minutes=2) if due and service == "twitter" else due
+        when = {"mode": "customScheduled", "dueAt": tp.utc_z(media_due)} if media_due else {"mode": "shareNow"}
+        payload = threads_input(channels[service]["id"], post, when) if service == "threads" else {
+            "channelId": channels[service]["id"], "text": post["x_text"], "schedulingType": "automatic", "assets": [], **when,
+        }
+        entry.setdefault("delivery", {})[service] = {"status": "attempting", "updatedAt": now.isoformat(timespec="seconds")}
+        store_entry(state, key, entry)  # 通信前にも記録。クラッシュ後は照合なしに再作成しない。
+        try:
+            post_id = tp.create_post(api_key, payload)
+        except Exception as error:  # 片側だけ成功した場合も、そのIDを先に確実に残す
+            # createPostのMutationErrorは明確な拒否。それ以外は受理不明として止める。
+            status = "rejected" if isinstance(error, RuntimeError) and str(error).startswith("Buffer: ") else "unknown"
+            entry["delivery"][service] = {"status": status, "updatedAt": now.isoformat(timespec="seconds")}
+            store_entry(state, key, entry)
+            log(f"[{service}] 投稿を確認できません ({status}, {type(error).__name__})")
+            failed = True
+            continue
+        record_remote(entry, service, {"id": post_id, "status": "accepted"}, now)
+        if service == "threads":
+            # 朝の準備後に遅れてThreadsを受理した場合、Blueskyの鮮度判定にも実際の時刻を渡す。
+            entry["dueAt"] = (media_due or now).isoformat(timespec="seconds")
+            entry["postedAt"] = now.isoformat(timespec="seconds")
+        store_entry(state, key, entry)  # 次の媒体へ進む前に受理IDを保存する
+        log(f"[{service}] Buffer受理（公開は未確認）: {post_id}")
+    return 1 if failed else 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--kind", choices=["digest", "poll"], default="digest")
-    parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--test-draft", action="store_true", help="Buffer に下書きを作って消す（公開しない）")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--dry-run", action="store_true")
+    mode.add_argument("--test-draft", action="store_true", help="Buffer に下書きを作って消す（公開しない）")
+    mode.add_argument("--verify", action="store_true", help="当日のBuffer受付・送信状況を読むだけ。履歴も変更しない")
+    parser.add_argument("--date", default="", help="対象の日本日付 YYYY-MM-DD。当日以外は公開しない")
     parser.add_argument("--merge", default="")
-    parser.add_argument("--force", action="store_true", help="曜日・時刻の条件を問わない（確認用。--dry-run / --test-draft と一緒に）")
+    parser.add_argument("--force", action="store_true", help="確認用の時刻判定省略。liveでは禁止")
     args = parser.parse_args()
     if args.merge:
+        if args.verify or args.dry_run or args.test_draft:
+            log("[digest] --merge と確認モードは同時に指定できません")
+            return 1
         return merge(args.merge)
-    if not tp.DIGEST_ON:
-        log("[digest] SNS_DIGEST=0 のため出しません")
-        return 0
-
-    live = os.environ.get("THREADS_MODE") == "live" and not args.dry_run and not args.test_draft
+    live = os.environ.get("THREADS_MODE") == "live" and not (args.dry_run or args.test_draft or args.verify)
     if args.force and live:
         log("[digest] --force は確認用です（--dry-run か --test-draft と一緒に使う）")
         return 1
     now = datetime.now(timezone.utc)
     jst = now.astimezone(tp.JST)
+    if args.date:
+        try:
+            target = datetime.strptime(args.date, "%Y-%m-%d").date()
+        except ValueError:
+            log("[digest] --date は YYYY-MM-DD で指定してください")
+            return 1
+        if target != jst.date():
+            log("[digest] 対象日が今日ではありません。別日の投稿は自動で再送しません")
+            return 1
     state = tp.load_state()
-    minutes = jst.hour * 60 + jst.minute
-    # Actions の遅れを見込んだ時間帯だけ（朝のまとめ 6:30〜10:00、問いかけは火・金の 11:00〜14:00）
-    if args.kind == "poll":
-        in_time = jst.weekday() in tp.POLL_WEEKDAYS_JST and 11 * 60 <= minutes < 14 * 60
-    else:
-        in_time = 6 * 60 + 30 <= minutes < 10 * 60
-    if not in_time and not args.force:
+    key = f"{args.kind}-{jst:%Y%m%d}"
+    entry = daily_entry(state, key)
+    if args.verify:
+        api_key = os.environ.get("BUFFER_API_KEY", "").strip()
+        if not api_key:
+            log("[verify] BUFFER_API_KEY がありません")
+            return 1
+        try:
+            return verify(api_key, tp.buffer_channels(api_key), state, key, args.kind, now)
+        except Exception as error:
+            log(f"[verify] 照合に失敗しました ({type(error).__name__})")
+            return 1
+    if not tp.DIGEST_ON:
+        log("[digest] SNS_DIGEST=0 のため出しません")
+        return 0
+    if not in_window(args.kind, now) and not args.force:
         log(f"[{args.kind}] いまは出す時間ではありません（{jst:%a %H:%M}）")
         return 0
-    post = build(args.kind, state, now)
-    if post is None:
-        return 0
-    if post["key"] in state["posted"] and not args.test_draft:
-        log(f"[{args.kind}] 今日の分は投稿済みです: {post['key']}")
-        return 0
-    log(f"--- {post['key']}\n{post['text']}\n[返信]\n{post['reply']}\n{post['link']}\n[X]\n{post['x_text'] or '（X には出さない）'}\n")
-    tp.write_summary([f"### {post['key']} {'（投稿）' if live else '（下書き・未投稿）'}", "", "```", post["text"], "---", post["reply"], post["link"], "```", ""])
-    if not live and not args.test_draft:
-        return 0
-    api_key = os.environ.get("BUFFER_API_KEY", "").strip()
-    if not api_key:
-        log("[digest] BUFFER_API_KEY が無いため投稿できません")
-        return 0 if live else 1
-    channels = tp.buffer_channels(api_key)
-    if "threads" not in channels:
-        log("[digest] Buffer に Threads のチャンネルが見つかりません")
+    try:
+        post = dict(entry["postPlan"]) if entry.get("postPlan") and not args.test_draft else build(args.kind, state, now)
+        if post is None:
+            # 前回一部だけ送れたものを、材料不足の成功終了で隠さない。
+            return 1 if entry else 0
+        if args.kind == "digest" and jst.hour >= 10:
+            for field in ("text", "x_text"):
+                post[field] = post[field].replace("今朝のAIニュース", "今日のAIニュース", 1)
+            post["reply"] = REPLY_LINES[0]
+        if not post.get("x_text"):
+            raise RuntimeError("Xに送る本文がありません")
+        log(f"--- {post['key']}\n{post['text']}\n[返信]\n{post['reply']}\n{post['link']}\n[X]\n{post['x_text']}\n")
+        tp.write_summary([f"### {post['key']} {'（受付予定・公開は別途確認）' if live else '（下書き・未投稿）'}", "", "```", post["text"], "---", post["reply"], post["link"], "```", ""])
+        if not live and not args.test_draft:
+            return 0
+        api_key = os.environ.get("BUFFER_API_KEY", "").strip()
+        if not api_key:
+            log("[digest] BUFFER_API_KEY が無いため投稿できません")
+            return 1
+        channels = tp.buffer_channels(api_key)
+        if args.test_draft:
+            if "threads" not in channels or "twitter" not in channels:
+                log("[test] 対象チャンネルがありません")
+                return 1
+            draft = {"mode": "addToQueue", "saveToDraft": True}
+            created = []
+            try:
+                created.append(tp.create_post(api_key, threads_input(channels["threads"]["id"], post, draft)))
+                created.append(tp.create_post(api_key, {
+                    "channelId": channels["twitter"]["id"], "text": post["x_text"], "schedulingType": "automatic", "assets": [], **draft,
+                }))
+                log(f"[test] 下書きを作りました: {created}")
+            finally:
+                for post_id in created:
+                    delete_post(api_key, post_id)
+            log("[test] 下書きを削除しました")
+            return 0
+        return deliver(api_key, channels, state, post, args.kind, now)
+    except Exception as error:
+        # API本文・秘密値をログに残さず、失敗は非ゼロでworkflowへ伝える。
+        log(f"[{args.kind}] 確認または投稿に失敗しました ({type(error).__name__})")
         return 1
-
-    if args.test_draft:
-        draft = {"mode": "addToQueue", "saveToDraft": True}
-        created = {"threads": tp.create_post(api_key, threads_input(channels["threads"]["id"], post, draft))}
-        if "twitter" in channels and post["x_text"]:
-            created["twitter"] = tp.create_post(api_key, {
-                "channelId": channels["twitter"]["id"], "text": post["x_text"], "schedulingType": "automatic", "assets": [], **draft,
-            })
-        log(f"[test] 下書きを作りました: {created}")
-        for post_id in created.values():
-            delete_post(api_key, post_id)
-        log("[test] 下書きを削除しました")
-        return 0
-
-    due = slot_due(post["slot"], now)
-    when = {"mode": "customScheduled", "dueAt": tp.utc_z(due)} if due else {"mode": "shareNow"}
-    result = {"id": tp.create_post(api_key, threads_input(channels["threads"]["id"], post, when)), "via": "buffer", "permalink": "", "channels": {}}
-    log(f"  [threads] 予約しました: {result['id']}")
-    if "twitter" in channels and post["x_text"]:
-        x_when = {"mode": "customScheduled", "dueAt": tp.utc_z(due + timedelta(minutes=2))} if due else {"mode": "shareNow"}
-        try:
-            result["channels"]["twitter"] = tp.create_post(api_key, {
-                "channelId": channels["twitter"]["id"], "text": post["x_text"], "schedulingType": "automatic", "assets": [], **x_when,
-            })
-            log(f"  [twitter] 予約しました: {result['channels']['twitter']}")
-        except RuntimeError as error:  # X の失敗で Threads の記録を止めない
-            log(f"  [twitter] 失敗: {error}")
-    state["posted"][post["key"]] = {
-        **result,
-        "style": args.kind,
-        "format": args.kind,
-        "hook": args.kind,
-        "question": args.kind == "poll",
-        "topic": TOPIC,
-        "items": post["items"],
-        "dueAt": (due or now).isoformat(timespec="seconds"),
-        "postedAt": now.isoformat(timespec="seconds"),
-    }
-    tp.save_state(state)
-    return 0
 
 
 if __name__ == "__main__":

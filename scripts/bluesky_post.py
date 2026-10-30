@@ -110,11 +110,15 @@ def plan(key: str, entry: dict) -> dict | None:
             path = tp.ARTICLES_DIR / f"{slug}.json"
             if path.exists():
                 items.append(json.loads(path.read_text("utf-8")))
-        if not items:
-            return None
+        text = str((entry.get("postPlan") or {}).get("text") or "").strip()
+        if not text:
+            recorded_at = entry.get("dueAt") or entry.get("postedAt")
+            if not items or not recorded_at:
+                return None
+            text = md.compose(items, datetime.fromisoformat(recorded_at.replace("Z", "+00:00")))
         link = tp.utm_link(f"{tp.site_url()}/news", "bluesky", "digest")
-        return {"text": md.compose(items), "link": link, "title": "けさのAIニュースまとめ｜サイソクAIニュース",
-                "desc": "直近のAIニュースを1分で。", "images": [f"{tp.site_url()}/cover/{items[0]['slug']}"]}
+        return {"text": text, "link": link, "title": "AIニュースまとめ｜サイソクAIニュース",
+                "desc": "直近のAIニュースを1分で。", "images": [f"{tp.site_url()}/cover/{items[0]['slug']}"] if items else []}
     path = tp.ARTICLES_DIR / f"{key}.json"
     if not path.exists():
         return None
@@ -163,14 +167,15 @@ def merge(mine_path: str) -> int:
     state = tp.load_state()
     added = 0
     for key, entry in mine.get("posted", {}).items():
-        if key not in state["posted"]:
+        target = state.get("posted", {}).get(key) or state.get("extraPending", {}).get(key)
+        if target is None:
             continue
         for field in ("blueskyAt", "blueskyFailed"):
-            if entry.get(field) and not state["posted"][key].get(field):
-                state["posted"][key][field] = entry[field]
+            if entry.get(field) and not target.get(field):
+                target[field] = entry[field]
         uri = (entry.get("channels") or {}).get("bluesky")
-        if uri and not (state["posted"][key].get("channels") or {}).get("bluesky"):
-            state["posted"][key].setdefault("channels", {})["bluesky"] = uri
+        if uri and not (target.get("channels") or {}).get("bluesky"):
+            target.setdefault("channels", {})["bluesky"] = uri
             added += 1
     tp.save_state(state)
     log(f"[bluesky] 投稿履歴に {added} 件を足しました")

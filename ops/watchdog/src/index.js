@@ -18,6 +18,7 @@
 import { fastLane, makeGh, makeNotify, mergeRegistry } from "./fastlane.js";
 import { radar } from "./radar.js";
 import { quakeLane } from "./quake.js";
+import { snsExtra } from "./sns-extra.js";
 // Python 側（scripts/fast_lane.py）と同じルールを使う。変えたら npx wrangler deploy し直す
 import baseRules from "../../../scripts/fast_lane_rules.json";
 // 追加の発信元（tier A/B/C）。fast_lane_rules.json の sources に足して使う
@@ -28,6 +29,8 @@ const rules = mergeRegistry(baseRules, registry);
 const ALERT_TITLE = "【自動通知】記事の自動作成が止まっています";
 // wrangler.toml の crons と同じ文字列（どちらの Cron で起きたかを見分ける）
 const RADAR_CRON = "1-59/4 * * * *";
+// 投稿回収は別の呼び出しにして、速報・災害レーンの時間や取得上限を消費しない。
+const SNS_CRON = "3-59/10 * * * *";
 
 async function gh(env, path, init = {}) {
   const res = await fetch(`https://api.github.com/repos/${env.REPO}${path}`, {
@@ -145,10 +148,19 @@ async function radarTick(env, now) {
   }
 }
 
+async function snsTick(env, now) {
+  try {
+    const result = await snsExtra(env, now);
+    console.log(JSON.stringify({ snsExtra: result }));
+  } catch (e) {
+    console.error(`snsExtra: ${String(e)}`);
+  }
+}
+
 export default {
   async scheduled(event, env, ctx) {
     const now = new Date(event.scheduledTime);
-    ctx.waitUntil(event.cron === RADAR_CRON ? radarTick(env, now) : tick(env, now));
+    ctx.waitUntil(event.cron === RADAR_CRON ? radarTick(env, now) : event.cron === SNS_CRON ? snsTick(env, now) : tick(env, now));
   },
   // 動作確認用（外から呼べる URL は無い。wrangler dev のときだけ使う。中身は見せない）
   async fetch(_req, env) {

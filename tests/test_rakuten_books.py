@@ -96,7 +96,7 @@ class RakutenBooksTest(unittest.TestCase):
         output, report = self.refresh(offers, before, fetcher=lambda q: card() if q == "ok" else "blocked")
         self.assertEqual(report["outcome"], "partial")
         self.assertEqual(output, before)
-        self.assertIn("voice", report["updatedTopics"])
+        self.assertIn("voice", report["validatedTopics"])
         self.assertEqual(before, untouched)
 
     def test_failed_second_query_retains_whole_topic(self):

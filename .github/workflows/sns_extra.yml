@@ -1,7 +1,8 @@
 name: SNS extra posts
 
 # 朝のまとめ「今朝のAIニュース3本」（毎朝 7:30 JST）と、週2回の問いかけ投稿（火・金 12:15 JST）。
-# 少し早めに起動し、Buffer で枠の時刻に予約する（Actions の起動の遅れを吸収）。中身は scripts/morning_digest.py。
+# 少し早めに起動し、Buffer で枠の時刻に予約する。別系統のCloudflare見張り番も未完了分を回収する。
+# 同じconcurrencyで直列化し、最新mainとBufferの既存投稿を照合してから不足媒体だけを送る。
 # 朝の回は、自分の投稿に付いたコメントの一覧（scripts/threads_inbox.py → state/threads_inbox.json）も更新する。自動返信はしない。
 # 手動実行で test=true にすると、Buffer に下書きを作って消すだけ（何も公開しない）。
 on:
@@ -18,6 +19,14 @@ on:
         description: "true=下書きを作って消すだけ（トピック・本文の確認。公開しない）"
         required: false
         default: "false"
+      date:
+        description: "対象の日本日付 YYYY-MM-DD（見張り番は必ず指定。翌日への遅延誤送信を防ぐ）"
+        required: false
+        default: ""
+      verify:
+        description: "true=投稿先の状態照合のみ。投稿しない"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -32,14 +41,24 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: main
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
+      - name: Test delay and duplicate protection
+        run: python -m unittest discover -s tests -p 'test_morning_digest.py'
       - name: Test drafts (nothing is published)
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.test == 'true' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.test == 'true' && inputs.verify != true }}
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          KIND: ${{ inputs.kind }}
         run: |
+          # 日次企画の修正検証では対象企画だけを確認し、不要なAPI消費を避ける。
+          if [ "$KIND" = "digest" ] || [ "$KIND" = "poll" ]; then
+            python scripts/morning_digest.py --kind "$KIND" --test-draft --force
+            exit 0
+          fi
           SNS_FORMAT=hook_thread python scripts/threads_post.py --test-draft
           SNS_FORMAT=classic python scripts/threads_post.py --test-draft
           python scripts/morning_digest.py --test-draft --force
@@ -48,21 +67,35 @@ jobs:
           grep -c '"url"' "$RUNNER_TEMP/inbox.txt" || true
           cat "$RUNNER_TEMP/inbox.txt"
       - name: Post
-        if: ${{ github.event_name == 'schedule' || (inputs.test != 'true' && inputs.kind != 'inbox') }}
+        if: ${{ inputs.verify != true && (github.event_name == 'schedule' || (inputs.test != 'true' && inputs.kind != 'inbox')) }}
         env:
           THREADS_MODE: ${{ vars.THREADS_MODE }}
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           SNS_DIGEST: ${{ vars.SNS_DIGEST }}
           KIND: ${{ github.event.schedule == '45 2 * * 2,5' && 'poll' || inputs.kind || 'digest' }}
-        run: python scripts/morning_digest.py --kind "$KIND"
+          TARGET_DATE: ${{ inputs.date }}
+        run: |
+          ARGS=(--kind "$KIND")
+          if [ -n "$TARGET_DATE" ]; then ARGS+=(--date "$TARGET_DATE"); fi
+          python scripts/morning_digest.py "${ARGS[@]}"
+      - name: Verify Buffer state (read only)
+        if: ${{ inputs.verify == true }}
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          KIND: ${{ inputs.kind }}
+          TARGET_DATE: ${{ inputs.date }}
+        run: |
+          ARGS=(--kind "$KIND" --verify)
+          if [ -n "$TARGET_DATE" ]; then ARGS+=(--date "$TARGET_DATE"); fi
+          python scripts/morning_digest.py "${ARGS[@]}"
       - name: Comment inbox (read only)
-        if: ${{ github.event.schedule == '5 22 * * *' || (inputs.test != 'true' && inputs.kind == 'inbox') }}
+        if: ${{ inputs.verify != true && (github.event.schedule == '5 22 * * *' || (inputs.test != 'true' && inputs.kind == 'inbox')) }}
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
         run: python scripts/threads_inbox.py | tail -40
       # main が進んでいても衝突しないよう、最新の state に記録だけを足して push する
       - name: Commit history
-        if: ${{ inputs.test != 'true' }}
+        if: ${{ !cancelled() && inputs.test != 'true' && inputs.verify != true }}
         run: |
           if [ -z "$(git status --porcelain state)" ]; then exit 0; fi
           cp state/threads_posted.json "$RUNNER_TEMP/mine.json"

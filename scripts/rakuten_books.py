@@ -226,11 +226,8 @@ def refresh_catalog(offers: dict, previous: dict, checked_at: str, *, fetcher=fe
     """全体を確認できた場合だけ新snapshotを返す。部分失敗も既存全体を保持する。"""
     output = copy.deepcopy(previous)
     result = output.setdefault("books", {})
-    dates = output.setdefault("checkedAtByTopic", {})
-    partner_dates = output.setdefault("checkedAtByPartner", {})
-    old_date = previous.get("fetchedAt")
-    report = {"checkedAt": checked_at, "updatedTopics": [], "retainedTopics": [],
-              "updatedPartners": [], "retainedPartners": [], "errors": [], "outcome": "failed"}
+    report = {"checkedAt": checked_at, "validatedTopics": [], "retainedTopics": [],
+              "validatedPartners": [], "retainedPartners": [], "errors": [], "outcome": "failed"}
     used: set[str] = set()
     for topic in offers["topics"]:
         key = topic["key"]
@@ -257,7 +254,6 @@ def refresh_catalog(offers: dict, previous: dict, checked_at: str, *, fetcher=fe
         # 取得成功と「選定条件に合う候補0件」を区別し、空配列で既存を消さない。
         if failed or (not chosen and old_books):
             result[key] = copy.deepcopy(old_books)
-            dates.setdefault(key, old_date)
             report["retainedTopics"].append(key)
             if not failed:
                 report["errors"].append({"topic": key, "type": "NoMatchingBooks", "message": "既存候補がある話題で選定結果0件のため保持"})
@@ -265,12 +261,11 @@ def refresh_catalog(offers: dict, previous: dict, checked_at: str, *, fetcher=fe
             continue
         used.update(item["rbId"] for item in chosen)
         result[key] = [{**item, "url": affiliate_url(item["rbId"], item["itemId"])} for item in chosen]
-        dates[key] = checked_at
-        report["updatedTopics"].append(key)
+        report["validatedTopics"].append(key)
         print(f"[books] {key}: " + " / ".join(i["title"][:20] for i in chosen))
 
     # 全ての本が取得できない日は、提携先価格を含めて既存の完全なスナップショットを保持。
-    if not any(result.get(key) for key in report["updatedTopics"]):
+    if not any(result.get(key) for key in report["validatedTopics"]):
         report["errors"].append({"type": "NoFreshBooks", "message": "新たに確認できた本が0件のため保存しません"})
         return copy.deepcopy(previous), report
 
@@ -286,11 +281,9 @@ def refresh_catalog(offers: dict, previous: dict, checked_at: str, *, fetcher=fe
             report["errors"].append({"partner": key, "type": type(error).__name__, "message": str(error)[:200]})
         if isinstance(price, int) and price > 0:
             partner_prices[key] = price
-            partner_dates[key] = checked_at
-            report["updatedPartners"].append(key)
+            report["validatedPartners"].append(key)
             print(f"[partner] {key}: {price:,}円")
         else:
-            partner_dates.setdefault(key, old_date)
             report["retainedPartners"].append(key)
             report["errors"].append({"partner": key, "type": "PriceNotVerified", "message": "価格を確認できないため既存値を保持"})
 
