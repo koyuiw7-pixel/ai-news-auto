@@ -6029,6 +6029,14 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/tyoukanpress/202610/26_a.html"
     },
+    "6263ebc41abd08ca": {
+      "at": "2026-10-30T22:01:29.491217+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "amended-insurance-business-law-tokyo-shoko-research",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203367_1527.html"
+    },
     "62a23b09751441ec": {
       "at": "2026-10-26T20:01:09.893173+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（採用）",
@@ -9362,6 +9370,13 @@
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/024740/"
     },
+    "d2282bcce1625c64": {
+      "at": "2026-10-30T22:01:11.556786+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1470字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（390字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://openai.com/index/fair-use-benefits-everyone"
+    },
     "d231ace80af05c51": {
       "at": "2026-10-27T03:05:10.757478+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -10881,121 +10896,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T19:32:12.094030+00:00",
-      "attempt": 2,
-      "id": "4709068104f929f7",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1651字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（376字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 134.1,
-        "avg_sentence": 50.3,
-        "long_share": 0.333,
-        "max_paragraph": 188,
-        "paragraphs": 9,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "都政課題の解決に向けたスタートアップピッチイベント UPGRADE with TOKYO 第63回開催決定！"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T19:32:20.096412+00:00",
-      "attempt": 1,
-      "id": "6e237ee9ceca83f2",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1755字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（341字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 161.0,
-        "avg_sentence": 50.0,
-        "long_share": 0.207,
-        "max_paragraph": 225,
-        "paragraphs": 9,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "「高齢者の生活実態」の結果 令和7年度東京都福祉保健基礎調査"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T19:32:31.407851+00:00",
-      "attempt": 2,
-      "id": "6e237ee9ceca83f2",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 46.8字・60字超の文が 19% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 216.5字・最長 294字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 216.5,
-        "avg_sentence": 46.8,
-        "long_share": 0.189,
-        "max_paragraph": 294,
-        "paragraphs": 8,
-        "sentences": 37
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "「高齢者の生活実態」の結果 令和7年度東京都福祉保健基礎調査"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T19:32:38.738158+00:00",
-      "attempt": 0,
-      "id": "6e237ee9ceca83f2",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 171.2字・最長 293字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 171.2,
-        "avg_sentence": 34.2,
-        "long_share": 0.04,
-        "max_paragraph": 293,
-        "paragraphs": 10,
-        "sentences": 50
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "「高齢者の生活実態」の結果 令和7年度東京都福祉保健基礎調査"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T19:51:38.432525+00:00",
-      "attempt": 1,
-      "id": "b4357728ad4b8bd0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1632字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 161.6,
-        "avg_sentence": 58.8,
-        "long_share": 0.455,
-        "max_paragraph": 230,
-        "paragraphs": 8,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "Airソーラーの量産化・市場形成を支援します！Airソーラー量産化・市場形成促進事業のお知らせ"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T19:51:49.722230+00:00",
@@ -17639,6 +17539,121 @@
       "score": 100,
       "source": "gov-online",
       "title": "フードバンク 寄附された未利用食品を無償提供"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T22:01:04.054574+00:00",
+      "attempt": 1,
+      "id": "d2282bcce1625c64",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1461字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 94.0,
+        "avg_sentence": 55.5,
+        "long_share": 0.273,
+        "max_paragraph": 173,
+        "paragraphs": 13,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "Fair use benefits everyone"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T22:01:11.556730+00:00",
+      "attempt": 2,
+      "id": "d2282bcce1625c64",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1470字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（390字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 113.1,
+        "avg_sentence": 54.1,
+        "long_share": 0.304,
+        "max_paragraph": 191,
+        "paragraphs": 11,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "Fair use benefits everyone"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T22:01:18.151704+00:00",
+      "attempt": 1,
+      "id": "6263ebc41abd08ca",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1628字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（368字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 127.5,
+        "avg_sentence": 47.2,
+        "long_share": 0.185,
+        "max_paragraph": 205,
+        "paragraphs": 10,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "tsr",
+      "title": "改正保険業法のポイント、「実態に即した契約書の修正がカギ」～ 法律事務所あかつき・岡本大毅弁護士インタビュー ～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T22:01:25.538477+00:00",
+      "attempt": 2,
+      "id": "6263ebc41abd08ca",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 58.4字・60字超の文が 41% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 188.2字・最長 237字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 188.2,
+        "avg_sentence": 58.4,
+        "long_share": 0.414,
+        "max_paragraph": 237,
+        "paragraphs": 9,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "tsr",
+      "title": "改正保険業法のポイント、「実態に即した契約書の修正がカギ」～ 法律事務所あかつき・岡本大毅弁護士インタビュー ～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T22:01:29.490870+00:00",
+      "attempt": 0,
+      "id": "6263ebc41abd08ca",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 165.3字・最長 242字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 165.3,
+        "avg_sentence": 39.4,
+        "long_share": 0.119,
+        "max_paragraph": 242,
+        "paragraphs": 10,
+        "sentences": 42
+      },
+      "score": 100,
+      "source": "tsr",
+      "title": "改正保険業法のポイント、「実態に即した契約書の修正がカギ」～ 法律事務所あかつき・岡本大毅弁護士インタビュー ～"
     }
   ],
   "short_text_retry": {}
