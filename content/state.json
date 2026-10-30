@@ -4474,6 +4474,14 @@
       "skipped": true,
       "url": "https://www.fsc.go.jp/senmon/idensi/annai/idensi_annai_282.html"
     },
+    "38dfb07257c2059f": {
+      "at": "2026-10-30T01:31:55.080332+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "mhlw-exam-schedule-2027",
+      "url": "https://www.mhlw.go.jp/kouseiroudoushou/shikaku_shiken/index.html"
+    },
     "38e13729c84ba2c8": {
       "at": "2026-10-27T03:05:10.759276+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（協賛）",
@@ -7873,6 +7881,13 @@
       "skipped": true,
       "url": "https://blog.google/innovation-and-ai/products/gemini-app/immersive-explorations-student-hub/"
     },
+    "c091029267ceffbc": {
+      "at": "2026-10-30T01:31:43.852591+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1371字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（312字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://jtta.or.jp/news/38576"
+    },
     "c0b1a4fa30cf9a07": {
       "at": "2026-10-27T03:07:12.942016+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -8486,6 +8501,12 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/conference/minister/2026b/20261016-1.html"
     },
+    "d9e1320a612eeb80": {
+      "at": "2026-10-30T01:31:43.852665+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/speech/minister-261030-01"
+    },
     "da2e27d38193bff0": {
       "at": "2026-10-27T03:04:42.978102+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
@@ -9094,6 +9115,12 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/info/info1878/index.html"
     },
+    "f3a744592f30667e": {
+      "at": "2026-10-30T01:31:32.001614+00:00",
+      "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
+      "skipped": true,
+      "url": "https://www.aboutamazon.jp/news/entertainment/amazon-prime-video-new-content-november-2026?utm_source=rss"
+    },
     "f3aa6dba8d09be59": {
       "at": "2026-10-28T16:38:33.914354+00:00",
       "breaking": true,
@@ -9418,97 +9445,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:32:20.133157+00:00",
-      "attempt": 1,
-      "id": "87fef4a478a5f05b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1635字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 166.8,
-        "avg_sentence": 60.6,
-        "long_share": 0.364,
-        "max_paragraph": 256,
-        "paragraphs": 8,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "soumu",
-      "title": "「業務用陸上無線通信の高度化等に関する技術的条件」のうち 「300MHz帯無線式列車制御システムに係る技術的条件」"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:32:26.896975+00:00",
-      "attempt": 2,
-      "id": "87fef4a478a5f05b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 160.4,
-        "avg_sentence": 57.3,
-        "long_share": 0.357,
-        "max_paragraph": 229,
-        "paragraphs": 10,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "soumu",
-      "title": "「業務用陸上無線通信の高度化等に関する技術的条件」のうち 「300MHz帯無線式列車制御システムに係る技術的条件」"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:32:41.195705+00:00",
-      "attempt": 1,
-      "id": "206d2c539e8e0d62",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1503字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（340字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 123.8,
-        "avg_sentence": 53.8,
-        "long_share": 0.174,
-        "max_paragraph": 187,
-        "paragraphs": 10,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "mext",
-      "title": "令和9年度からの私立大学医学部の収容定員の増加に係る学則変更について（答申）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:32:47.313295+00:00",
-      "attempt": 2,
-      "id": "206d2c539e8e0d62",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1510字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（397字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 161.5,
-        "avg_sentence": 58.7,
-        "long_share": 0.364,
-        "max_paragraph": 220,
-        "paragraphs": 8,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "mext",
-      "title": "令和9年度からの私立大学医学部の収容定員の増加に係る学則変更について（答申）"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T23:47:20.764071+00:00",
@@ -16125,6 +16061,97 @@
       "score": null,
       "source": "windows-blog-jp",
       "title": "SharePoint Showcase: 組織が Copilot in SharePoint で業務プロセスを改善する 5 つの方法"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T01:31:38.156963+00:00",
+      "attempt": 1,
+      "id": "c091029267ceffbc",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1338字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（347字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 97.1,
+        "avg_sentence": 42.2,
+        "long_share": 0.13,
+        "max_paragraph": 152,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "jtta",
+      "title": "百十四銀行 第60回全日本社会人卓球選手権大会 開幕！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T01:31:43.852534+00:00",
+      "attempt": 2,
+      "id": "c091029267ceffbc",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1371字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（312字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 120.0,
+        "avg_sentence": 53.3,
+        "long_share": 0.222,
+        "max_paragraph": 164,
+        "paragraphs": 8,
+        "sentences": 18
+      },
+      "score": null,
+      "source": "jtta",
+      "title": "百十四銀行 第60回全日本社会人卓球選手権大会 開幕！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T01:31:51.937564+00:00",
+      "attempt": 1,
+      "id": "38dfb07257c2059f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 53.1字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 147.4字・最長 193字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 147.4,
+        "avg_sentence": 53.1,
+        "long_share": 0.28,
+        "max_paragraph": 193,
+        "paragraphs": 9,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "令和９年 医政局所管国家試験会場（予定）一覧"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T01:31:55.079896+00:00",
+      "attempt": 0,
+      "id": "38dfb07257c2059f",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 本文が縮んだ（1805→1795字）"
+      ],
+      "readability": {
+        "avg_paragraph": 147.4,
+        "avg_sentence": 53.1,
+        "long_share": 0.28,
+        "max_paragraph": 193,
+        "paragraphs": 9,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "令和９年 医政局所管国家試験会場（予定）一覧"
     }
   ],
   "short_text_retry": {}
