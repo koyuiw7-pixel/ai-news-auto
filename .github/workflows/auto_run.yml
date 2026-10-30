@@ -147,11 +147,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/roundup.py --max 1
 
-      # 「試すなら」枠の本・価格を1日1回更新する（楽天ブックスの売れ筋と提携先の公式価格）
-      - name: Refresh product picks
-        if: ${{ (inputs.fast_url || '') == '' }}
-        continue-on-error: true
-        run: python scripts/rakuten_books.py --if-older-than 20
+      # 商品・価格の更新は product_refresh.yml で1日1回行う。
+      # 取得先の障害や再試行で、記事の公開・後続の記事生成を待たせない。
 
       # 比較ガイド（/compare）。未作成のものを1本ずつ作り、価格は7日ごとに公式ページで確認し直す
       - name: Buying guides
