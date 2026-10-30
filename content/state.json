@@ -7670,6 +7670,13 @@
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/introducing-aws-coding-plugin-for-sap-abap/"
     },
+    "98aa4f3fa33120c5": {
+      "at": "2026-10-30T13:21:56.481654+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2344字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（388字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.microsoft.com/en-us/research/blog/from-synthetic-enterprise-data-evaluations-to-real-microsoft-copilot-ai-confidence/"
+    },
     "9902a9841a9349fe": {
       "at": "2026-10-28T04:22:17.393745+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
@@ -7778,6 +7785,13 @@
       "reason": "quality: 本文が短い（1664字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000020.000155520.html"
+    },
+    "9cda69f4c6975ef5c38025132289b9cc53f7db8a": {
+      "at": "2026-10-30T13:21:37.694665+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1215字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://news.web.nhk/newsweb/na/nd-20261030de68227"
     },
     "9d2ad546f53b8456": {
       "at": "2026-10-28T22:11:46.741999+00:00",
@@ -9253,6 +9267,13 @@
       "slug": "nvidia-fox-factory-agents-europe",
       "url": "https://blogs.nvidia.com/blog/europe-industrial-leaders-engineering-manufacturing/"
     },
+    "d29cd6cf0fec0f2f388b4fb4ad0a95578914c99f": {
+      "at": "2026-10-30T13:21:21.881404+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1172字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/96e3c45f22506b331d9bb22e054c25150ba49841"
+    },
     "d33ed333d0ff410b": {
       "at": "2026-10-28T22:13:18.674966+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10674,140 +10695,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-29T18:15:51.809064+00:00",
-      "attempt": 0,
-      "id": "52375a72cfe3699b",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: かんたん版の「大田区や墨田区などのものづくりに関わる企業グループです。 → 元記事には大田区や墨田区という固有名詞は明記されていない（I-OTA等が大田区に関連する等はあるが、自治体名としての直接の記載はない）。"
-      ],
-      "readability": {
-        "avg_paragraph": 173.0,
-        "avg_sentence": 59.9,
-        "long_share": 0.5,
-        "max_paragraph": 293,
-        "paragraphs": 9,
-        "sentences": 26
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "令和8年度新規事業 「地域企業グループチャレンジ促進事業」事業変革に取り組む4つの地域企業グループを決定"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:31:40.209608+00:00",
-      "attempt": 1,
-      "id": "2d9928289658e986",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2197字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 136.9,
-        "avg_sentence": 63.9,
-        "long_share": 0.533,
-        "max_paragraph": 192,
-        "paragraphs": 14,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "How Ropes & Gray is developing AI for transactional diligence"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:31:56.324294+00:00",
-      "attempt": 2,
-      "id": "2d9928289658e986",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2373字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 88.0,
-        "avg_sentence": 53.2,
-        "long_share": 0.342,
-        "max_paragraph": 198,
-        "paragraphs": 23,
-        "sentences": 38
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "How Ropes & Gray is developing AI for transactional diligence"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:32:12.200452+00:00",
-      "attempt": 1,
-      "id": "f5a3765811c7c11a",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1738字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（338字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 142.9,
-        "avg_sentence": 58.5,
-        "long_share": 0.364,
-        "max_paragraph": 211,
-        "paragraphs": 9,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "kantei",
-      "title": "高市総理は中東情勢を踏まえた「緊急的激変緩和措置」の今後の対応についての会見を行いました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:32:40.415826+00:00",
-      "attempt": 1,
-      "id": "1fcf22f867e2d9da",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1984字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（398字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 118.4,
-        "avg_sentence": 63.8,
-        "long_share": 0.5,
-        "max_paragraph": 183,
-        "paragraphs": 14,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "Building intent-driven UI testing with Amazon Nova Act"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:32:52.560100+00:00",
-      "attempt": 2,
-      "id": "1fcf22f867e2d9da",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "これまでの流れの項目にある「2025年10月29日」→ 元記事および確認済みの文脈の年号は2026年であるため、日付の年が矛盾している。"
-      ],
-      "readability": {
-        "avg_paragraph": 139.4,
-        "avg_sentence": 84.6,
-        "long_share": 0.75,
-        "max_paragraph": 239,
-        "paragraphs": 17,
-        "sentences": 28
-      },
-      "score": 85,
-      "source": "aws-ml-blog",
-      "title": "Building intent-driven UI testing with Amazon Nova Act"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T18:32:58.953632+00:00",
@@ -17437,6 +17324,141 @@
       "score": null,
       "source": "mhlw",
       "title": "インフルエンザの発生状況を更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T13:21:11.772428+00:00",
+      "attempt": 1,
+      "id": "d29cd6cf0fec0f2f388b4fb4ad0a95578914c99f",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1312字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 118.0,
+        "avg_sentence": 46.2,
+        "long_share": 0.13,
+        "max_paragraph": 222,
+        "paragraphs": 9,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "trends",
+      "title": "kddi"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T13:21:18.473414+00:00",
+      "attempt": 2,
+      "id": "d29cd6cf0fec0f2f388b4fb4ad0a95578914c99f",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1172字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 59.7,
+        "avg_sentence": 53.8,
+        "long_share": 0.35,
+        "max_paragraph": 93,
+        "paragraphs": 18,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "trends",
+      "title": "kddi"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T13:21:29.543849+00:00",
+      "attempt": 1,
+      "id": "9cda69f4c6975ef5c38025132289b9cc53f7db8a",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1121字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（388字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 147.0,
+        "avg_sentence": 54.2,
+        "long_share": 0.316,
+        "max_paragraph": 214,
+        "paragraphs": 7,
+        "sentences": 19
+      },
+      "score": null,
+      "source": "trends",
+      "title": "ラグタグ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T13:21:35.229723+00:00",
+      "attempt": 2,
+      "id": "9cda69f4c6975ef5c38025132289b9cc53f7db8a",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1215字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 139.1,
+        "avg_sentence": 53.0,
+        "long_share": 0.333,
+        "max_paragraph": 166,
+        "paragraphs": 8,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "trends",
+      "title": "ラグタグ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T13:21:48.990676+00:00",
+      "attempt": 1,
+      "id": "98aa4f3fa33120c5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2277字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "title の長さが不適切（93字 / 18〜64字）"
+      ],
+      "readability": {
+        "avg_paragraph": 138.4,
+        "avg_sentence": 64.2,
+        "long_share": 0.571,
+        "max_paragraph": 267,
+        "paragraphs": 13,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "microsoft-research-blog",
+      "title": "From synthetic enterprise data evaluations to real Microsoft Copilot AI confiden"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T13:21:56.481616+00:00",
+      "attempt": 2,
+      "id": "98aa4f3fa33120c5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2344字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（388字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 123.7,
+        "avg_sentence": 68.7,
+        "long_share": 0.481,
+        "max_paragraph": 217,
+        "paragraphs": 15,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "microsoft-research-blog",
+      "title": "From synthetic enterprise data evaluations to real Microsoft Copilot AI confiden"
     }
   ],
   "short_text_retry": {}
