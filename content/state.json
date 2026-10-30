@@ -3369,6 +3369,12 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01toukei05_01000348.html"
     },
+    "0e4d5c218a333d03": {
+      "at": "2026-10-30T07:11:06.566512+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（出張）",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/press/yusyutu_kokusai/chiiki/261030.html"
+    },
     "0eeaf12b012d820c37d58d0e46c509208d7e2569": {
       "at": "2026-10-29T06:12:29.214614+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -8880,6 +8886,14 @@
       "slug": "copilot-in-sharepoint-october-2026",
       "url": "https://blogs.windows.com/japan/2026/10/27/whats-new-in-copilot-in-sharepoint-october-2026/"
     },
+    "d4c7b707664f4813": {
+      "at": "2026-10-30T07:11:44.359904+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "toyota-waymo-autonomous-taxi-2027",
+      "url": "https://global.toyota/jp/newsroom/corporate/44960910.html"
+    },
     "d4ecbbd246c68d79": {
       "at": "2026-10-29T17:26:15.965392+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9062,6 +9076,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
       "skipped": true,
       "url": "https://www.digital.go.jp/speech/minister-261030-01"
+    },
+    "da267ffdca032156": {
+      "at": "2026-10-30T07:11:31.858568+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（370字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/about/research/20261030/20261030.html"
     },
     "da2e27d38193bff0": {
       "at": "2026-10-27T03:04:42.978102+00:00",
@@ -9646,6 +9667,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000045.000061037.html"
     },
+    "f07042d19f879aaf": {
+      "at": "2026-10-30T07:11:18.096753+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1689字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "http://global.nissannews.com/ja-JP/releases/261030-01-j"
+    },
     "f0974527a57e05ee": {
       "at": "2026-10-29T04:36:16.971171+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -10105,136 +10133,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-29T06:52:42.573316+00:00",
-      "attempt": 2,
-      "id": "7f04b62d80588514",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "段落が長い（平均 144.5字・最長 269字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 144.5,
-        "avg_sentence": 40.5,
-        "long_share": 0.06,
-        "max_paragraph": 269,
-        "paragraphs": 14,
-        "sentences": 50
-      },
-      "score": 100,
-      "source": "caa",
-      "title": "消費者安全法の重大事故等に係る公表について(10月29日)"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T06:52:46.938674+00:00",
-      "attempt": 0,
-      "id": "7f04b62d80588514",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 79.6,
-        "avg_sentence": 39.8,
-        "long_share": 0.04,
-        "max_paragraph": 110,
-        "paragraphs": 25,
-        "sentences": 50
-      },
-      "score": 100,
-      "source": "caa",
-      "title": "消費者安全法の重大事故等に係る公表について(10月29日)"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T14:36:49.979142+00:00",
-      "attempt": 1,
-      "id": "820bd24a41c4e68d",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 72.4,
-        "avg_sentence": 33.9,
-        "long_share": 0.063,
-        "max_paragraph": 124,
-        "paragraphs": 37,
-        "sentences": 79
-      },
-      "score": 93,
-      "source": "mistral-news",
-      "title": "Introducing Mistral Large 4"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T15:02:18.652356+00:00",
-      "attempt": 1,
-      "id": "fcf6901fbd725b70",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1579字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 88.9,
-        "avg_sentence": 49.8,
-        "long_share": 0.36,
-        "max_paragraph": 168,
-        "paragraphs": 14,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "sakana-ai",
-      "title": "Intelligence Report: SNSのAI分析からみる米中間選挙"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T15:04:07.394200+00:00",
-      "attempt": 2,
-      "id": "fcf6901fbd725b70",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2367字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（382字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 128.4,
-        "avg_sentence": 62.2,
-        "long_share": 0.424,
-        "max_paragraph": 207,
-        "paragraphs": 16,
-        "sentences": 33
-      },
-      "score": null,
-      "source": "sakana-ai",
-      "title": "Intelligence Report: SNSのAI分析からみる米中間選挙"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T15:04:50.597377+00:00",
-      "attempt": 1,
-      "id": "cf9e04d889375e82",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1253字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（258字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 121.6,
-        "avg_sentence": 53.2,
-        "long_share": 0.312,
-        "max_paragraph": 189,
-        "paragraphs": 7,
-        "sentences": 16
-      },
-      "score": null,
-      "source": "rakuten",
-      "title": "連結子会社（楽天証券株式会社）の決算について"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T15:05:17.713401+00:00",
@@ -16858,6 +16756,142 @@
       "score": 100,
       "source": "digital-agency",
       "title": "自治体・医療機関等をつなぐ情報連携システム（Public Medical Hub：PMH）に係る「先行実施事業の実施状況」「自治体・自治体システムベンダー向けの"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T07:11:12.417407+00:00",
+      "attempt": 1,
+      "id": "f07042d19f879aaf",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（300字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 174.3,
+        "avg_sentence": 67.0,
+        "long_share": 0.577,
+        "max_paragraph": 278,
+        "paragraphs": 10,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "nissan",
+      "title": "日産フォーミュラEチーム、シーズン13においてサム バードとアビー プリングを継続起用"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T07:11:18.096708+00:00",
+      "attempt": 2,
+      "id": "f07042d19f879aaf",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1689字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 159.4,
+        "avg_sentence": 65.2,
+        "long_share": 0.5,
+        "max_paragraph": 220,
+        "paragraphs": 9,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "nissan",
+      "title": "日産フォーミュラEチーム、シーズン13においてサム バードとアビー プリングを継続起用"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T07:11:24.260691+00:00",
+      "attempt": 1,
+      "id": "da267ffdca032156",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1737字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（250字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 133.9,
+        "avg_sentence": 49.6,
+        "long_share": 0.222,
+        "max_paragraph": 230,
+        "paragraphs": 10,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "fsa",
+      "title": "その他,「諸外国における金融制度の概要に関する調査」報告書について公表しました。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T07:11:31.858523+00:00",
+      "attempt": 2,
+      "id": "da267ffdca032156",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（370字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 123.2,
+        "avg_sentence": 49.3,
+        "long_share": 0.2,
+        "max_paragraph": 161,
+        "paragraphs": 12,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "fsa",
+      "title": "その他,「諸外国における金融制度の概要に関する調査」報告書について公表しました。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T07:11:40.195528+00:00",
+      "attempt": 1,
+      "id": "d4c7b707664f4813",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 63.2字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 177.1字・最長 322字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 177.1,
+        "avg_sentence": 63.2,
+        "long_share": 0.464,
+        "max_paragraph": 322,
+        "paragraphs": 10,
+        "sentences": 28
+      },
+      "score": 100,
+      "source": "toyota",
+      "title": "トヨタ自動車とWaymo、安全な交通社会とすべての人の移動の自由に向け、自動運転分野における協業を拡大 -Waymoの自動運転タクシーに使用するトヨタbZ4Xの"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T07:11:44.359363+00:00",
+      "attempt": 0,
+      "id": "d4c7b707664f4813",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 197.6字・最長 354字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 197.6,
+        "avg_sentence": 30.9,
+        "long_share": 0.016,
+        "max_paragraph": 354,
+        "paragraphs": 10,
+        "sentences": 64
+      },
+      "score": 100,
+      "source": "toyota",
+      "title": "トヨタ自動車とWaymo、安全な交通社会とすべての人の移動の自由に向け、自動運転分野における協業を拡大 -Waymoの自動運転タクシーに使用するトヨタbZ4Xの"
     }
   ],
   "short_text_retry": {}
