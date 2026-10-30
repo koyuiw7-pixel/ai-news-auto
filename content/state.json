@@ -6101,6 +6101,13 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/4e54d479bcde6ceddf494f6e91cce169eb2afce1"
     },
+    "6750c2461412185f": {
+      "at": "2026-10-30T16:01:57.168620+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2118字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; title の長さが不適切（74字 / 18〜64字）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれ",
+      "skipped": true,
+      "url": "https://openai.com/index/credit-saison"
+    },
     "676ef500d0b9460f": {
       "at": "2026-10-27T22:41:34.505548+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -10703,52 +10710,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:33:18.832746+00:00",
-      "attempt": 1,
-      "id": "046300f6ecc44a79",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1802字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（322字 / 基準 400字以上）",
-        "元記事の文をそのまま書き写している（2文。例「- AWS Security Agent (now part of AWS Continuum) :」）。自分の言葉で要約する"
-      ],
-      "readability": {
-        "avg_paragraph": 81.0,
-        "avg_sentence": 51.5,
-        "long_share": 0.364,
-        "max_paragraph": 154,
-        "paragraphs": 14,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "aws-japan-blog",
-      "title": "AWS セキュリティハンズオン連続開催のご案内"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:33:28.724275+00:00",
-      "attempt": 2,
-      "id": "046300f6ecc44a79",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2305字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 105.3,
-        "avg_sentence": 60.2,
-        "long_share": 0.5,
-        "max_paragraph": 168,
-        "paragraphs": 16,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "aws-japan-blog",
-      "title": "AWS セキュリティハンズオン連続開催のご案内"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T18:34:15.248241+00:00",
@@ -17464,6 +17425,52 @@
       "score": 100,
       "source": "nvidia-blog",
       "title": "Things That Go Beep in the Night: Agentic AI Joins the Search for Extraterrestri"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T16:01:28.749931+00:00",
+      "attempt": 1,
+      "id": "6750c2461412185f",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（348字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 115.7,
+        "avg_sentence": 52.9,
+        "long_share": 0.229,
+        "max_paragraph": 181,
+        "paragraphs": 16,
+        "sentences": 35
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T16:01:57.168484+00:00",
+      "attempt": 2,
+      "id": "6750c2461412185f",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2118字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "title の長さが不適切（74字 / 18〜64字）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 92.4,
+        "avg_sentence": 55.4,
+        "long_share": 0.343,
+        "max_paragraph": 143,
+        "paragraphs": 21,
+        "sentences": 35
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot"
     }
   ],
   "short_text_retry": {}
