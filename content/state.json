@@ -6717,6 +6717,13 @@
       "slug": "survivor-pension-tax-inequality",
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87229?site=nli"
     },
+    "7dffce5784804cf9": {
+      "at": "2026-10-30T11:11:10.529870+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "人事・自治体向け交付金の内示（追加内示）に関する事務的な発表であり、個人の暮らしやお金に直接関わる新しい制度・手続き・給付・料金・規制などの情報が含まれていないため。",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/hard2026-10_00001.html"
+    },
     "7e1c750e37804647": {
       "at": "2026-10-29T18:09:25.202112+00:00",
       "reason": "followup: 新しい事実なし（ntt-west-zero-trust-service）",
@@ -7910,6 +7917,14 @@
       "section": "lifestyle",
       "slug": "alice-gakuen-october-enrollment-2026",
       "url": "https://www.value-press.com/pressrelease/382552"
+    },
+    "a4be21c02d238c64": {
+      "at": "2026-10-30T11:11:26.735515+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "mhlw-izoku-nenkin-chosa-2026",
+      "url": "https://www.mhlw.go.jp/toukei/list/95-1.html"
     },
     "a4fb9d3db92d6da7": {
       "at": "2026-10-26T21:00:58.053431+00:00",
@@ -10584,73 +10599,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:10:45.707890+00:00",
-      "attempt": 2,
-      "id": "0ad26ba6b13d4d29",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（335字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 173.4,
-        "avg_sentence": 57.8,
-        "long_share": 0.407,
-        "max_paragraph": 283,
-        "paragraphs": 9,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "digital-agency",
-      "title": "10月28日（水）、英国とデジタル政府分野における協力覚書を取り交わしました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:11:07.332159+00:00",
-      "attempt": 1,
-      "id": "501f73ebd3323562",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1636字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（374字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 137.0,
-        "avg_sentence": 52.7,
-        "long_share": 0.154,
-        "max_paragraph": 198,
-        "paragraphs": 10,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "nissan",
-      "title": "日産自動車2026年9月度および2026年4月～9月累計 販売・生産・輸出実績（速報）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:11:23.465722+00:00",
-      "attempt": 2,
-      "id": "501f73ebd3323562",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（385字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 171.8,
-        "avg_sentence": 52.8,
-        "long_share": 0.269,
-        "max_paragraph": 229,
-        "paragraphs": 8,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "nissan",
-      "title": "日産自動車2026年9月度および2026年4月～9月累計 販売・生産・輸出実績（速報）"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T18:11:59.173159+00:00",
@@ -17346,6 +17294,73 @@
       "score": null,
       "source": "tokyo-metro",
       "title": "土木の魅力を発信するイベント「東京 橋と土木展」開催"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T11:11:15.644868+00:00",
+      "attempt": 1,
+      "id": "a4be21c02d238c64",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1221字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（334字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 87.1,
+        "avg_sentence": 41.5,
+        "long_share": 0.095,
+        "max_paragraph": 138,
+        "paragraphs": 10,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "「遺族年金受給者実態調査」にご協力ください"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T11:11:22.591661+00:00",
+      "attempt": 2,
+      "id": "a4be21c02d238c64",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 54.0字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 140.3字・最長 196字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 140.3,
+        "avg_sentence": 54.0,
+        "long_share": 0.269,
+        "max_paragraph": 196,
+        "paragraphs": 10,
+        "sentences": 26
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "「遺族年金受給者実態調査」にご協力ください"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T11:11:26.735035+00:00",
+      "attempt": 0,
+      "id": "a4be21c02d238c64",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 54.6,
+        "avg_sentence": 40.6,
+        "long_share": 0.143,
+        "max_paragraph": 94,
+        "paragraphs": 26,
+        "sentences": 35
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "「遺族年金受給者実態調査」にご協力ください"
     }
   ],
   "short_text_retry": {}

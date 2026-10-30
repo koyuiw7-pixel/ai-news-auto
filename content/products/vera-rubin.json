@@ -6,17 +6,30 @@
   "companyName": "NVIDIA",
   "category": "半導体・インフラ",
   "overview": {
-    "text": "Vera Rubinは、NVIDIAが開発した次世代GPUアーキテクチャおよび計算基盤です。2026年10月に開催されたGTC Berlin 2026などで発表されました。AI推論のコスト低減や電力効率の飛躍的な向上を実現します。",
+    "text": "Vera Rubinは、NVIDIAが開発した次世代AI計算基盤です。AIファクトリーの運用を支える中核インフラとして展開されています。",
     "sources": [
-      "nvidia-gtc-berlin-2026-keynote-highlights",
       "nvidia-gtc-berlin-2026-vera-rubin-openshell",
-      "nvidia-vera-rubin-performance-coreweave"
+      "nvidia-dgx-10-years-history-vera-rubin"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "フル生産フェーズに移行",
+      "value": "フル生産のフェーズに移行済み",
+      "sources": [
+        "nvidia-vera-rubin-performance-coreweave"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "発表時点では案内なし",
+      "sources": [
+        "nvidia-meta-muse-partnership-expansion"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "データセンターやクラウド環境",
       "sources": [
         "nvidia-vera-rubin-performance-coreweave"
       ]
@@ -25,36 +38,33 @@
       "label": "向いている人",
       "value": "企業のIT部門や開発者",
       "sources": [
-        "nvidia-gtc-berlin-2026-keynote-highlights",
-        "nvidia-gtc-berlin-2026-vera-rubin-openshell",
         "nvidia-dgx-10-years-history-vera-rubin"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "次世代計算基盤「Vera Rubin NVL72 DSX POD」により25 exaFLOPSの計算能力を発揮します。",
-      "sources": [
-        "nvidia-gtc-berlin-2026-keynote-highlights"
-      ]
-    },
-    {
-      "text": "Blackwell世代と比較して、推論トークンコストを最大10分の1に低減させます。",
-      "sources": [
-        "nvidia-gtc-berlin-2026-vera-rubin-openshell",
-        "nvidia-dgx-10-years-history-vera-rubin"
-      ]
-    },
-    {
-      "text": "消費電力1メガワットあたりのトークン数で、Blackwell比10倍の電力効率を実証しました。",
+      "text": "Vera Rubin NVL72システムでは、Blackwell世代と比較して電力効率が10倍に向上しています。",
       "sources": [
         "nvidia-vera-rubin-performance-coreweave"
       ]
     },
     {
-      "text": "100%液体冷却仕様のモジュール設計により、5分未満で組み立てが完了します。",
+      "text": "ラック規模のシステムにより、推論トークンコストを最大10分の1に削減できます。",
       "sources": [
-        "nvidia-gtc-berlin-2026-vera-rubin-openshell"
+        "nvidia-dgx-10-years-history-vera-rubin"
+      ]
+    },
+    {
+      "text": "新開発のVera CPUは、従来のx86プロセッサと比較してコア単体で最大1.8倍の処理性能を達成します。",
+      "sources": [
+        "nvidia-vera-rubin-performance-coreweave"
+      ]
+    },
+    {
+      "text": "第6世代のNVLinkスイッチにより、標準イーサネット比でデコードスループットが2倍以上に向上します。",
+      "sources": [
+        "nvidia-vera-rubin-performance-coreweave"
       ]
     }
   ],
@@ -63,55 +73,59 @@
     {
       "text": "発表の時点では、日本での提供について案内はありません。",
       "sources": [
-        "nvidia-gtc-berlin-2026-keynote-highlights"
+        "nvidia-meta-muse-partnership-expansion"
+      ]
+    },
+    {
+      "text": "利用者が直接触るものではなく、裏側の設備として導入されるインフラ製品です。",
+      "sources": [
+        "nvidia-meta-muse-partnership-expansion"
       ]
     }
   ],
   "howto": [],
   "differences": [
     {
-      "text": "前世代のBlackwellと比較して、同等条件でのAI処理性能や電力効率が大幅に向上しています。",
+      "text": "前世代のBlackwellと比較して、同一条件でのAI処理における電力効率が10倍に向上しています。",
       "sources": [
-        "nvidia-gtc-berlin-2026-vera-rubin-openshell",
         "nvidia-vera-rubin-performance-coreweave"
       ]
     },
     {
-      "text": "配線を排した100%液冷モジュール設計により、組み立て時間が短縮されています。",
+      "text": "推論トークンコストを最大10分の1に抑える経済合理性を備えています。",
       "sources": [
-        "nvidia-gtc-berlin-2026-vera-rubin-openshell"
+        "nvidia-dgx-10-years-history-vera-rubin"
       ]
     }
   ],
   "faq": [
     {
-      "q": "誰に向いている製品ですか？",
-      "a": "大規模なAIインフラを導入する企業や開発者に向いています。",
-      "sources": [
-        "nvidia-gtc-berlin-2026-keynote-highlights",
-        "nvidia-gtc-berlin-2026-vera-rubin-openshell",
-        "nvidia-dgx-10-years-history-vera-rubin"
-      ]
-    },
-    {
-      "q": "電力効率はどのくらい優れていますか？",
-      "a": "現行のBlackwell世代と比較して、電力効率が10倍に向上しています。",
+      "q": "いつから使える？",
+      "a": "すでにフル生産のフェーズに移行しており、市場投入に向けた準備が完了しています。",
       "sources": [
         "nvidia-vera-rubin-performance-coreweave"
       ]
     },
     {
-      "q": "推論コストは削減されますか？",
-      "a": "ラック規模のシステムにより、推論トークンコストを最大10分の1に低減できます。",
+      "q": "誰に向いている？",
+      "a": "大規模なAIインフラを構築する企業のIT部門や開発者に向いています。",
       "sources": [
         "nvidia-dgx-10-years-history-vera-rubin"
       ]
     },
     {
-      "q": "どのような冷却方式を採用していますか？",
-      "a": "配線を排した100%液体冷却仕様のモジュール設計を採用しています。",
+      "q": "前モデルとの違いは？",
+      "a": "前世代のBlackwellに比べて電力効率が10倍に向上し、推論コストを最大10分の1に低減できます。",
       "sources": [
-        "nvidia-gtc-berlin-2026-vera-rubin-openshell"
+        "nvidia-dgx-10-years-history-vera-rubin",
+        "nvidia-vera-rubin-performance-coreweave"
+      ]
+    },
+    {
+      "q": "CPUの性能はどう違う？",
+      "a": "新開発のVera CPUは、従来のx86プロセッサと比較してコア単体で最大1.8倍の処理性能を達成します。",
+      "sources": [
+        "nvidia-vera-rubin-performance-coreweave"
       ]
     }
   ],
@@ -119,22 +133,17 @@
     {
       "date": "2026-08-20",
       "slug": "nvidia-vera-rubin-performance-coreweave",
-      "event": "次世代Vera Rubinの実機測定データを公開"
+      "event": "Vera Rubinの実機測定データを公開"
     },
     {
       "date": "2026-09-25",
       "slug": "nvidia-dgx-10-years-history-vera-rubin",
-      "event": "Vera Rubinラック規模で推論コスト削減を発表"
+      "event": "次世代Vera Rubinの展望を発表"
     },
     {
       "date": "2026-10-23",
       "slug": "nvidia-gtc-berlin-2026-vera-rubin-openshell",
       "event": "GTC Berlin 2026でVera Rubinを発表"
-    },
-    {
-      "date": "2026-10-26",
-      "slug": "nvidia-gtc-berlin-2026-keynote-highlights",
-      "event": "Vera Rubin NVL72 DSX PODを発表"
     }
   ],
   "related": [
@@ -155,9 +164,9 @@
     "nvidia-dgx-10-years-history-vera-rubin",
     "nvidia-vera-rubin-performance-coreweave"
   ],
-  "signature": "f10c49d582dc6c19",
+  "signature": "d2bdafb32f42e639",
   "primarySignature": "f10c49d582dc6c19",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:50:52+00:00",
-  "updatedAt": "2026-10-27T11:09:21+00:00"
+  "updatedAt": "2026-10-30T11:11:43+00:00"
 }

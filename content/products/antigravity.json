@@ -6,43 +6,64 @@
   "companyName": "Google",
   "category": "開発ツール",
   "overview": {
-    "text": "Antigravityは、複数の自律型AIエージェントを並行して実行・管理できる開発者向けのプラットフォームです。Googleが提供し、デスクトップアプリやCLIなどで利用できます。",
+    "text": "Antigravityは、複数の自律型AIエージェントを並行して実行・管理できる開発者向けプラットフォームです。Googleが提供し、2026年8月に「Antigravity 2.0」が発表されました。",
     "sources": [
       "google-antigravity-2-desktop-ai-agents"
     ]
   },
   "facts": [
     {
-      "label": "日本での提供",
-      "value": "日本からも利用できます",
+      "label": "提供開始",
+      "value": "2026年8月",
       "sources": [
-        "google-deepmind-antigravity-remote-control"
+        "google-antigravity-2-desktop-ai-agents"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "発表時点で案内なし",
+      "sources": [
+        "google-gemini-4-argon-surf-clock-hardware"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "開発者",
+      "sources": [
+        "google-antigravity-2-desktop-ai-agents"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "インタビューモードを利用して、曖昧な要件定義を自動化できます。",
+      "text": "自然言語で指示を出すだけで、計画の策定やコード記述、テストの実行を自律的に行います。",
       "sources": [
         "google-antigravity-2-desktop-ai-agents"
       ]
     },
     {
-      "text": "Markdown形式の実装計画を生成し、人間の承認を得てコードを作成します。",
+      "text": "「/grill-me」コマンドを入力すると、要件定義のインタビューモードへ移行します。",
       "sources": [
         "google-antigravity-2-desktop-ai-agents"
       ]
     },
     {
-      "text": "複数の異なるプロジェクトを完全に並行して実行・管理できます。",
+      "text": "1つのデスクトップアプリから複数の開発プロジェクトを同時に並行して進められます。",
       "sources": [
         "google-antigravity-2-desktop-ai-agents"
       ]
     },
     {
-      "text": "スマートフォンから遠隔監視し、コードの承認やコマンドの実行許可を行えます。",
+      "text": "スマートフォンやブラウザから稼働中のエージェントを遠隔監視・操作できます。",
       "sources": [
         "google-deepmind-antigravity-remote-control"
+      ]
+    },
+    {
+      "text": "Google AI StudioやGeminiと連携し、コード生成を支援します。",
+      "sources": [
+        "building-digital-synth-with-google-gemini",
+        "google-gemini-4-argon-surf-clock-hardware"
       ]
     }
   ],
@@ -51,39 +72,52 @@
     {
       "text": "発表の時点では、日本での提供について案内はありません。",
       "sources": [
-        "google-deepmind-antigravity-remote-control"
+        "google-gemini-4-argon-surf-clock-hardware"
       ]
     }
   ],
   "howto": [
     {
-      "text": "デスクトップアプリのほか、CLI、専用IDE、開発者向けのSDKとして提供されています。",
+      "text": "デスクトップアプリのほか、CLI、専用IDE、開発者向けのSDKが用意されています。",
+      "sources": [
+        "google-antigravity-2-desktop-ai-agents"
+      ]
+    },
+    {
+      "text": "Google AI Studioなどと組み合わせて利用できます。",
+      "sources": [
+        "building-digital-synth-with-google-gemini"
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "text": "Antigravity 2.0では、複数エージェントの並行実行に対応しました。",
       "sources": [
         "google-antigravity-2-desktop-ai-agents"
       ]
     }
   ],
-  "differences": [],
   "faq": [
     {
-      "q": "Antigravityは何をするツールですか？",
-      "a": "複数の自律型AIエージェントを並行して実行し、開発業務を自動化するプラットフォームです。",
-      "sources": [
-        "google-antigravity-2-desktop-ai-agents"
-      ]
-    },
-    {
-      "q": "誰に向いているツールですか？",
-      "a": "開発者やエンジニア向けに提供されています。",
-      "sources": [
-        "google-antigravity-2-desktop-ai-agents"
-      ]
-    },
-    {
-      "q": "スマートフォンから操作できますか？",
-      "a": "遠隔監視やコードの承認などを行える機能が用意されています。",
+      "q": "スマートフォンからも操作できますか？",
+      "a": "はい。Remote Control機能によりスマホから遠隔操作できます。",
       "sources": [
         "google-deepmind-antigravity-remote-control"
+      ]
+    },
+    {
+      "q": "要件定義の自動化はできますか？",
+      "a": "「/grill-me」コマンドでインタビューモードに移行できます。",
+      "sources": [
+        "google-antigravity-2-desktop-ai-agents"
+      ]
+    },
+    {
+      "q": "複数のプロジェクトを同時に進められますか？",
+      "a": "並行エージェント機能により同時に進めることが可能です。",
+      "sources": [
+        "google-antigravity-2-desktop-ai-agents"
       ]
     }
   ],
@@ -118,9 +152,9 @@
     "google-deepmind-antigravity-remote-control",
     "google-antigravity-2-desktop-ai-agents"
   ],
-  "signature": "a509ee527c8a73d8",
+  "signature": "0128b72d0d493adc",
   "primarySignature": "f08d6712dc24768d",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:45:54+00:00",
-  "updatedAt": "2026-10-27T11:04:07+00:00"
+  "updatedAt": "2026-10-30T11:11:49+00:00"
 }
