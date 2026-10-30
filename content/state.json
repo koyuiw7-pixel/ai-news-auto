@@ -10853,6 +10853,14 @@
       "skipped": true,
       "url": "https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/"
     },
+    "feb912e225e8e3aa": {
+      "at": "2026-10-30T22:51:18.417835+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "amazon-bedrock-cost-management-playbook",
+      "url": "https://aws.amazon.com/blogs/machine-learning/managing-amazon-bedrock-costs-end-to-end-a-playbook-for-finops-and-platform-teams/"
+    },
     "fede0c2a6931a1c0": {
       "at": "2026-10-28T22:12:59.409781+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10897,73 +10905,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T19:51:49.722230+00:00",
-      "attempt": 2,
-      "id": "b4357728ad4b8bd0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 187.3,
-        "avg_sentence": 53.5,
-        "long_share": 0.314,
-        "max_paragraph": 254,
-        "paragraphs": 10,
-        "sentences": 35
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "Airソーラーの量産化・市場形成を支援します！Airソーラー量産化・市場形成促進事業のお知らせ"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T19:51:57.452392+00:00",
-      "attempt": 1,
-      "id": "9160fd7588bbc93d",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1749字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（399字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 143.1,
-        "avg_sentence": 51.5,
-        "long_share": 0.2,
-        "max_paragraph": 236,
-        "paragraphs": 9,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "ひきこもりでお悩みの方へ 座談会をオンデマンドで配信します"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T19:52:05.611245+00:00",
-      "attempt": 2,
-      "id": "9160fd7588bbc93d",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（388字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 177.0,
-        "avg_sentence": 59.0,
-        "long_share": 0.433,
-        "max_paragraph": 242,
-        "paragraphs": 10,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "ひきこもりでお悩みの方へ 座談会をオンデマンドで配信します"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T20:06:18.012835+00:00",
@@ -17655,6 +17596,75 @@
       "score": 100,
       "source": "tsr",
       "title": "改正保険業法のポイント、「実態に即した契約書の修正がカギ」～ 法律事務所あかつき・岡本大毅弁護士インタビュー ～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T22:51:05.143542+00:00",
+      "attempt": 1,
+      "id": "feb912e225e8e3aa",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1815字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（398字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 135.3,
+        "avg_sentence": 62.0,
+        "long_share": 0.625,
+        "max_paragraph": 191,
+        "paragraphs": 11,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "Managing Amazon Bedrock costs end to end: A playbook for FinOps and platform tea"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T22:51:14.462882+00:00",
+      "attempt": 2,
+      "id": "feb912e225e8e3aa",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 76.4字・60字超の文が 67% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 147.4字・最長 228字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 147.4,
+        "avg_sentence": 76.4,
+        "long_share": 0.667,
+        "max_paragraph": 228,
+        "paragraphs": 14,
+        "sentences": 27
+      },
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "Managing Amazon Bedrock costs end to end: A playbook for FinOps and platform tea"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T22:51:18.417320+00:00",
+      "attempt": 0,
+      "id": "feb912e225e8e3aa",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 58.8字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 151.2字・最長 232字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 151.2,
+        "avg_sentence": 58.8,
+        "long_share": 0.444,
+        "max_paragraph": 232,
+        "paragraphs": 14,
+        "sentences": 36
+      },
+      "score": 100,
+      "source": "aws-ml-blog",
+      "title": "Managing Amazon Bedrock costs end to end: A playbook for FinOps and platform tea"
     }
   ],
   "short_text_retry": {}
