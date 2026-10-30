@@ -6926,6 +6926,14 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/02kiban14_04001374.html"
     },
+    "882512038a7997cd": {
+      "at": "2026-10-30T09:11:15.103300+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "fsa-personal-info-leak-consultation",
+      "url": "https://www.fsa.go.jp/receipt/soudansitu/index.html#kojinjouhou"
+    },
     "88525dbba76b19c2": {
       "at": "2026-10-27T01:53:03.666504+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10288,51 +10296,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T16:42:16.889687+00:00",
-      "attempt": 1,
-      "id": "1112027d5901b6f1",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 70.1字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 151.1字・最長 310字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 151.1,
-        "avg_sentence": 70.1,
-        "long_share": 0.571,
-        "max_paragraph": 310,
-        "paragraphs": 13,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "nvidia-blog",
-      "title": "Into the Omniverse: How Developers Turn Ideas Into Simulations With Frontier AI "
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T16:42:53.516242+00:00",
-      "attempt": 0,
-      "id": "1112027d5901b6f1",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: ライバルと比べてどう？のセクション → 元記事には記載のないAWSやMicrosoft Azureなどの競合他社比較やプラットフォーム比較の言及が含まれている。"
-      ],
-      "readability": {
-        "avg_paragraph": 151.1,
-        "avg_sentence": 70.1,
-        "long_share": 0.571,
-        "max_paragraph": 310,
-        "paragraphs": 13,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "nvidia-blog",
-      "title": "Into the Omniverse: How Developers Turn Ideas Into Simulations With Frontier AI "
-    },
     {
       "accepted": false,
       "at": "2026-10-29T16:43:25.037974+00:00",
@@ -17061,6 +17024,50 @@
       "score": 100,
       "source": "fsa",
       "title": "国際関係,欧州財務報告諮問グループ（EFRAG）による「非EU企業向け欧州サステナビリティ報告基準（ESRS-40a）公開草案」へのコメントレター発出について公"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T09:11:11.523605+00:00",
+      "attempt": 1,
+      "id": "882512038a7997cd",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 132.1字・最長 191字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 132.1,
+        "avg_sentence": 44.0,
+        "long_share": 0.2,
+        "max_paragraph": 191,
+        "paragraphs": 10,
+        "sentences": 30
+      },
+      "score": 100,
+      "source": "fsa",
+      "title": "その他,個人情報流出の被害に遭われた方・ご心配のある方向けの相談窓口について掲載しました。"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T09:11:15.102806+00:00",
+      "attempt": 0,
+      "id": "882512038a7997cd",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 137.9字・最長 204字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 137.9,
+        "avg_sentence": 40.6,
+        "long_share": 0.088,
+        "max_paragraph": 204,
+        "paragraphs": 10,
+        "sentences": 34
+      },
+      "score": 100,
+      "source": "fsa",
+      "title": "その他,個人情報流出の被害に遭われた方・ご心配のある方向けの相談窓口について掲載しました。"
     }
   ],
   "short_text_retry": {}
