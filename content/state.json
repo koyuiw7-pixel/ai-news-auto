@@ -5204,6 +5204,14 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01kiban07_02000134.html"
     },
+    "4bf8b53fa4880823": {
+      "at": "2026-10-30T07:31:11.449773+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "sports",
+      "slug": "futsal-japan-morocco-oita-2026",
+      "url": "https://www.jfa.jp/news/00036963/"
+    },
     "4c5c673386bda904": {
       "at": "2026-10-27T23:22:57.313216+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -5996,6 +6004,12 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/daigaku/toushin/attach/1420729_00026.htm"
     },
+    "6a505d1a5069e5f9": {
+      "at": "2026-10-30T07:30:56.719300+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会見要旨）",
+      "skipped": true,
+      "url": "https://www.caa.go.jp/notice/entry/047995/"
+    },
     "6a8869fa29bc84ae": {
       "at": "2026-10-27T03:05:10.758655+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（登壇）",
@@ -6463,6 +6477,12 @@
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000880.000059164.html"
+    },
+    "7d50ff6d90680d78": {
+      "at": "2026-10-30T07:30:56.719346+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（就任）",
+      "skipped": true,
+      "url": "https://www.jfa.jp/news/00036962/"
     },
     "7d55bf793aaf58cc": {
       "at": "2026-10-28T16:17:02.434065+00:00",
@@ -10133,52 +10153,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T15:05:17.713401+00:00",
-      "attempt": 2,
-      "id": "cf9e04d889375e82",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1237字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（285字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 149.3,
-        "avg_sentence": 55.0,
-        "long_share": 0.316,
-        "max_paragraph": 205,
-        "paragraphs": 7,
-        "sentences": 19
-      },
-      "score": null,
-      "source": "rakuten",
-      "title": "連結子会社（楽天証券株式会社）の決算について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T15:07:18.132193+00:00",
-      "attempt": 1,
-      "id": "4430856536e9007c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 63.0字・60字超の文が 55% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 153.9字・最長 224字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 153.9,
-        "avg_sentence": 63.0,
-        "long_share": 0.545,
-        "max_paragraph": 224,
-        "paragraphs": 9,
-        "sentences": 22
-      },
-      "score": 100,
-      "source": "samsung-jp",
-      "title": "「Samsung Galaxy Z Fold8」に買い替えた若手が語る、毎日持ち歩く折りたたみスマートフォンの使い心地"
-    },
     {
       "accepted": true,
       "at": "2026-10-29T15:08:25.181119+00:00",
@@ -16892,6 +16866,51 @@
       "score": 100,
       "source": "toyota",
       "title": "トヨタ自動車とWaymo、安全な交通社会とすべての人の移動の自由に向け、自動運転分野における協業を拡大 -Waymoの自動運転タクシーに使用するトヨタbZ4Xの"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T07:31:06.855692+00:00",
+      "attempt": 1,
+      "id": "4bf8b53fa4880823",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 51.1字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 130.6字・最長 188字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 130.6,
+        "avg_sentence": 51.1,
+        "long_share": 0.304,
+        "max_paragraph": 188,
+        "paragraphs": 9,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "jfa",
+      "title": "【ホットピ！～HotTopic～】フットサル日本代表、大分で強豪モロッコと対戦 #jfa #daihyo"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T07:31:11.449386+00:00",
+      "attempt": 0,
+      "id": "4bf8b53fa4880823",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 134.6字・最長 197字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 134.6,
+        "avg_sentence": 36.7,
+        "long_share": 0.03,
+        "max_paragraph": 197,
+        "paragraphs": 9,
+        "sentences": 33
+      },
+      "score": 100,
+      "source": "jfa",
+      "title": "【ホットピ！～HotTopic～】フットサル日本代表、大分で強豪モロッコと対戦 #jfa #daihyo"
     }
   ],
   "short_text_retry": {}
