@@ -3290,6 +3290,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000357.000032053.html"
     },
+    "0c5e0ff6475dedc5": {
+      "at": "2026-10-30T05:21:51.010243+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1653字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/press/nousan/engei/261030.html"
+    },
     "0ca77fee05927596": {
       "at": "2026-10-26T11:01:12.982206+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（採用）",
@@ -3615,6 +3622,12 @@
       "reason": "quality: 本文が短い（2278字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000081.000141649.html"
+    },
+    "150442e45e5b7996": {
+      "at": "2026-10-30T05:21:28.250002+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
+      "skipped": true,
+      "url": "https://www.caa.go.jp/notice/entry/047978/"
     },
     "157f623c815d8fdb251103227384a9b6600381ff": {
       "at": "2026-10-26T21:41:13.628283+00:00",
@@ -4711,6 +4724,13 @@
       "slug": "amazon-trainium-ai-chip-nba-prime-360",
       "url": "https://www.aboutamazon.com/news/innovation/trainium-ai-chip-prime-360-nba-highlights?utm_source=rss"
     },
+    "3cb550be35eb2430": {
+      "at": "2026-10-30T05:22:04.333351+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1303字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（325字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://blog.ja.playstation.com/2026/10/30/20261030-psvr2-monthly-release-roundup-s/"
+    },
     "3cdd01a312c89a46": {
       "at": "2026-10-27T03:05:10.758859+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（求人）",
@@ -4944,6 +4964,14 @@
       "section": "ai",
       "slug": "meta-muse-singapore-launch",
       "url": "https://about.fb.com/news/2026/10/muse-is-now-available-in-singapore-the-worlds-first-personal-ai-agent-built-for-everyone/"
+    },
+    "45d97802e5e10632": {
+      "at": "2026-10-30T05:22:17.204086+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "science",
+      "slug": "riken-quantum-state-smoothing",
+      "url": "https://www.riken.jp/press/2026/20261030_2/index.html"
     },
     "45f0e915baa687e3": {
       "at": "2026-10-26T16:31:58.142501+00:00",
@@ -9826,140 +9854,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:23:19.316115+00:00",
-      "attempt": 2,
-      "id": "0b2a8d8a7eb89aae",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（344字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 181.1,
-        "avg_sentence": 58.2,
-        "long_share": 0.393,
-        "max_paragraph": 317,
-        "paragraphs": 9,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "playstation-blog-jp",
-      "title": "PlayStation®Plus 11月のフリープレイに『Secret Neighbor』『トゥームレイダー IV-VI リマスター』『Monster Trai"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:23:27.889038+00:00",
-      "attempt": 1,
-      "id": "5f43a7eade3ae8f4",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1581字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（386字 / 基準 400字以上）",
-        "body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 136.7,
-        "avg_sentence": 55.9,
-        "long_share": 0.318,
-        "max_paragraph": 171,
-        "paragraphs": 9,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "水と緑、モノレールがつなぐ、未来の風景"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:23:35.960877+00:00",
-      "attempt": 2,
-      "id": "5f43a7eade3ae8f4",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 55.5字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 160.2字・最長 222字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 160.2,
-        "avg_sentence": 55.5,
-        "long_share": 0.423,
-        "max_paragraph": 222,
-        "paragraphs": 9,
-        "sentences": 26
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "水と緑、モノレールがつなぐ、未来の風景"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T03:23:39.907672+00:00",
-      "attempt": 0,
-      "id": "5f43a7eade3ae8f4",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 137.8字・最長 185字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 137.8,
-        "avg_sentence": 39.4,
-        "long_share": 0.086,
-        "max_paragraph": 185,
-        "paragraphs": 10,
-        "sentences": 35
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "水と緑、モノレールがつなぐ、未来の風景"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T03:25:46.360268+00:00",
-      "attempt": 1,
-      "id": "3399ec20c63f8ce6",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 64.3,
-        "avg_sentence": 30.9,
-        "long_share": 0.038,
-        "max_paragraph": 140,
-        "paragraphs": 38,
-        "sentences": 79
-      },
-      "score": 91,
-      "source": "radar-k-tai.watch.impress.co.jp",
-      "title": "楽天モバイル、iPadを取り扱い開始 11月6日8時発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:51:33.161048+00:00",
-      "attempt": 1,
-      "id": "7cc85f64fdd707de",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2319字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（347字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 109.4,
-        "avg_sentence": 58.6,
-        "long_share": 0.464,
-        "max_paragraph": 250,
-        "paragraphs": 15,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "google-blog-all",
-      "title": "Partnering with Singapore to bring frontier AI to public health"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T03:51:41.002292+00:00",
@@ -16558,6 +16452,142 @@
       "score": 100,
       "source": "stat",
       "title": "統計Today No.210 社会生活基本調査から分かること（PDF：795KB）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T05:21:35.400257+00:00",
+      "attempt": 1,
+      "id": "0c5e0ff6475dedc5",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1603字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（299字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 144.2,
+        "avg_sentence": 48.1,
+        "long_share": 0.133,
+        "max_paragraph": 194,
+        "paragraphs": 10,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "maff",
+      "title": "野菜の生育状況及び価格見通し（令和8年11月）について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T05:21:42.790483+00:00",
+      "attempt": 2,
+      "id": "0c5e0ff6475dedc5",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1653字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 193.4,
+        "avg_sentence": 55.2,
+        "long_share": 0.429,
+        "max_paragraph": 280,
+        "paragraphs": 8,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "maff",
+      "title": "野菜の生育状況及び価格見通し（令和8年11月）について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T05:21:57.227821+00:00",
+      "attempt": 1,
+      "id": "3cb550be35eb2430",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（372字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 91.5,
+        "avg_sentence": 47.9,
+        "long_share": 0.19,
+        "max_paragraph": 143,
+        "paragraphs": 11,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "playstation-blog-jp",
+      "title": "2026年10月に発売・配信されたPS VR2タイトルはコレだ！（10月1日～30日）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T05:22:04.333313+00:00",
+      "attempt": 2,
+      "id": "3cb550be35eb2430",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1303字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（325字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 113.0,
+        "avg_sentence": 56.5,
+        "long_share": 0.375,
+        "max_paragraph": 143,
+        "paragraphs": 8,
+        "sentences": 16
+      },
+      "score": null,
+      "source": "playstation-blog-jp",
+      "title": "2026年10月に発売・配信されたPS VR2タイトルはコレだ！（10月1日～30日）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T05:22:13.390460+00:00",
+      "attempt": 1,
+      "id": "45d97802e5e10632",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 65.5字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 150.7字・最長 238字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 150.7,
+        "avg_sentence": 65.5,
+        "long_share": 0.522,
+        "max_paragraph": 238,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "riken",
+      "title": "「未来」の観測が明らかにする光の量子ダイナミクス"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T05:22:17.203647+00:00",
+      "attempt": 0,
+      "id": "45d97802e5e10632",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 65.3字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 115.6,
+        "avg_sentence": 65.3,
+        "long_share": 0.522,
+        "max_paragraph": 206,
+        "paragraphs": 13,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "riken",
+      "title": "「未来」の観測が明らかにする光の量子ダイナミクス"
     }
   ],
   "short_text_retry": {}
