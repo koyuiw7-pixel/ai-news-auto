@@ -5048,6 +5048,13 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/toukei/saikin/hw/k-iryohi/24/index.html"
     },
+    "43bbd8684f7d32bd": {
+      "at": "2026-10-30T11:42:49.670082+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1777字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（265字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00485.html"
+    },
     "43cf872cce10db1b": {
       "at": "2026-10-29T18:34:45.364271+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
@@ -10583,6 +10590,13 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/ai_network/02tsushin06_04000145.html"
     },
+    "fefa1b6c88ebec6f": {
+      "at": "2026-10-30T11:42:37.791481+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1702字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_76777.html"
+    },
     "ff5860a7e60d608b": {
       "at": "2026-10-26T15:37:17.057889+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -10613,99 +10627,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:13:29.008013+00:00",
-      "attempt": 1,
-      "id": "096b63af66cdaf4c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1608字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（318字 / 基準 400字以上）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 123.3,
-        "avg_sentence": 50.2,
-        "long_share": 0.259,
-        "max_paragraph": 189,
-        "paragraphs": 11,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "mext",
-      "title": "令和9年度からの私立大学等の収容定員の変更に係る学則変更予定一覧について（答申）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:13:41.962700+00:00",
-      "attempt": 2,
-      "id": "096b63af66cdaf4c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1661字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（340字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 139.0,
-        "avg_sentence": 57.9,
-        "long_share": 0.333,
-        "max_paragraph": 184,
-        "paragraphs": 10,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "mext",
-      "title": "令和9年度からの私立大学等の収容定員の変更に係る学則変更予定一覧について（答申）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:13:58.806951+00:00",
-      "attempt": 1,
-      "id": "367032270e6a1554",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1418字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（276字 / 基準 400字以上）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 118.3,
-        "avg_sentence": 56.3,
-        "long_share": 0.429,
-        "max_paragraph": 191,
-        "paragraphs": 10,
-        "sentences": 21
-      },
-      "score": null,
-      "source": "cao",
-      "title": "Economic & Social Research No.53 2026年夏号"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:14:13.267607+00:00",
-      "attempt": 2,
-      "id": "367032270e6a1554",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（280字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 168.3,
-        "avg_sentence": 62.3,
-        "long_share": 0.444,
-        "max_paragraph": 252,
-        "paragraphs": 10,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "cao",
-      "title": "Economic & Social Research No.53 2026年夏号"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T18:14:43.021107+00:00",
@@ -17378,6 +17299,96 @@
       "score": null,
       "source": "mhlw",
       "title": "令和６（2024）年度 国民医療費"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T11:42:28.314831+00:00",
+      "attempt": 1,
+      "id": "fefa1b6c88ebec6f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（321字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 152.2,
+        "avg_sentence": 47.8,
+        "long_share": 0.286,
+        "max_paragraph": 236,
+        "paragraphs": 11,
+        "sentences": 35
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "第１回「令和８年度管理栄養士国家試験出題基準（ガイドライン）改定検討会」開催案内"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T11:42:34.849876+00:00",
+      "attempt": 2,
+      "id": "fefa1b6c88ebec6f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1702字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 116.7,
+        "avg_sentence": 46.7,
+        "long_share": 0.2,
+        "max_paragraph": 214,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "第１回「令和８年度管理栄養士国家試験出題基準（ガイドライン）改定検討会」開催案内"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T11:42:43.858564+00:00",
+      "attempt": 1,
+      "id": "43bbd8684f7d32bd",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1513字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（296字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 128.9,
+        "avg_sentence": 51.5,
+        "long_share": 0.4,
+        "max_paragraph": 210,
+        "paragraphs": 8,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "新型コロナウイルス感染症に関する報道発表資料を更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T11:42:49.670032+00:00",
+      "attempt": 2,
+      "id": "43bbd8684f7d32bd",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1777字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（265字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 127.5,
+        "avg_sentence": 54.0,
+        "long_share": 0.308,
+        "max_paragraph": 202,
+        "paragraphs": 11,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "新型コロナウイルス感染症に関する報道発表資料を更新しました"
     }
   ],
   "short_text_retry": {}
