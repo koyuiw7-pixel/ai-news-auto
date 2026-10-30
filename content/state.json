@@ -5904,6 +5904,12 @@
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/aws-named-a-leader-in-the-2026-gartner-magic-quadrant-for-contact-center-as-a-service/"
     },
+    "6864a2aec530cc56": {
+      "at": "2026-10-30T06:13:05.561602+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/policies/electronic_invoice/global-activities"
+    },
     "688d1b49cb2bc2af": {
       "at": "2026-10-29T18:34:03.716142+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6308,6 +6314,13 @@
       "skipped": true,
       "url": "https://www.dazn.com/ja-JP/news/%E3%82%B5%E3%83%83%E3%82%AB%E3%83%BC/fleetwood-town-column/1quzs1xw6nfvd1vcf5ue16gob4"
     },
+    "792b349685b03dc3": {
+      "at": "2026-10-30T06:12:49.236533+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1507字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/kinkyu/151106.html"
+    },
     "79e6fb6d7787c932": {
       "at": "2026-10-27T01:53:44.181577+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -6646,6 +6659,13 @@
       "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326712.html"
+    },
+    "84ba605ae7c4de87": {
+      "at": "2026-10-30T06:13:05.036566+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1503字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（358字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01kiban06_02000143.html"
     },
     "84bc70ec28777018": {
       "at": "2026-10-28T22:30:42.874791+00:00",
@@ -7054,6 +7074,13 @@
       "reason": "元記事のPDFデータが暗号化またはバイナリ抽出状態であり、経済・物価情勢の展望に関する具体的なテキストや統計数値を確認できないため。",
       "skipped": true,
       "url": "http://www.boj.or.jp/mopo/outlook/gor2610a.pdf"
+    },
+    "91bb2960b5507835371cfe597ccd14fcdb4a5069": {
+      "at": "2026-10-30T06:11:40.148617+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 「4,389円の『トゥームレイダー IV-VI リマスター』」→元記事内に価格の記載はありません。",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/b75ce6c7ecac74b46f42c5d540c8417612a107d5"
     },
     "9217c0f90ebe5e32": {
       "at": "2026-10-27T03:07:28.604435+00:00",
@@ -7671,6 +7698,13 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202610/28teigen2.html"
     },
+    "a8a878b3129862cf": {
+      "at": "2026-10-30T06:13:16.132671+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1248字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（369字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/topics/medias/shika_iryou/2026/06/"
+    },
     "a8ad57a472dbfbb5": {
       "at": "2026-10-28T21:55:28.165164+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -7819,6 +7853,14 @@
       "score": 100,
       "updated": "amazon-alexa-plus-launch",
       "url": "https://www.aboutamazon.jp/news/devices/amazon-launches-alexa-plus-in-japan?utm_source=rss"
+    },
+    "afb1d0948e79346c": {
+      "at": "2026-10-30T06:13:36.048015+00:00",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "fire-disaster-research-grants-2026",
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001300.html"
     },
     "afb260a097b98536": {
       "at": "2026-10-29T00:52:22.977340+00:00",
@@ -8054,6 +8096,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000199.000085052.html"
     },
+    "b87dee658e56a539": {
+      "at": "2026-10-30T06:12:30.053088+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（講演）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/inter/etc/20261030-2/20261030.html"
+    },
     "b8bfa4647f108004": {
       "at": "2026-10-28T19:34:30.976951+00:00",
       "kind": "update",
@@ -8209,6 +8257,12 @@
       "section": "ai",
       "slug": "aws-weekly-20261019-updates",
       "url": "https://aws.amazon.com/jp/blogs/news/aws-weekly-20261019/"
+    },
+    "bf2ae4b67817f277": {
+      "at": "2026-10-30T06:12:30.053101+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/policies/mynumber/private-business/info"
     },
     "bf30529fb59df439": {
       "at": "2026-10-29T15:11:47.175490+00:00",
@@ -8395,6 +8449,13 @@
       "reason": "quality: 本文が短い（2035字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000325.000050142.html"
+    },
+    "c67ca313b240bcd406c01c3b192862c775d53459": {
+      "at": "2026-10-30T06:11:54.409511+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1096字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（296字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
+      "skipped": true,
+      "url": "https://finance.yahoo.co.jp/news/detail/65b4a0a7e70edecc612197f989383681afde2351"
     },
     "c6bc7dd4ef088420": {
       "at": "2026-10-30T02:21:48.744747+00:00",
@@ -8737,6 +8798,13 @@
       "reason": "quality: 本文が短い（2020字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://openai.com/index/retell-ai"
+    },
+    "d460f1a1fdc5a6e4": {
+      "at": "2026-10-30T06:12:36.878827+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "文部科学省によるいじめ対策・不登校支援等推進事業の一般競争入札（事業者公募・入札公告）に関する情報であり、国民向けの直接的な新制度やサービス・給付の開始ではなく、調達公告であるため対象外とします。",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/boshu/mext_00085.html"
     },
     "d47435300ada2314": {
       "at": "2026-10-26T10:30:52.037562+00:00",
@@ -9187,6 +9255,13 @@
       "skipped": true,
       "url": "https://case-studies.ipa.go.jp/jirei-data/case_studies/245"
     },
+    "e30d6cc077fe7638": {
+      "at": "2026-10-30T06:12:30.053038+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1490字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（326字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
+      "skipped": true,
+      "url": "https://www.jfa.jp/news/00036961/"
+    },
     "e34661f9a884f584": {
       "at": "2026-10-26T12:52:30.413191+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9447,6 +9522,14 @@
       "reason": "quality: 本文が短い（2271字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://blogs.windows.com/japan/2026/10/28/sharepoint-ai-page-authoring-select-describe-and-refine-4553193/"
+    },
+    "edcaaa64958b4e3e": {
+      "at": "2026-10-30T06:12:16.696871+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "aws-inter-bee-2026-preview",
+      "url": "https://aws.amazon.com/jp/blogs/news/jpmne-interbee2026-aws-introduction/"
     },
     "edf59637f599d673": {
       "at": "2026-10-28T01:44:10.714558+00:00",
@@ -9976,403 +10059,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T04:11:55.257157+00:00",
-      "attempt": 2,
-      "id": "976f026c98b7ab3e",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "「対象者 | 関係省庁（防衛省、警察庁、国土交通省など）」→元記事には関係省庁の具体的な名称は記載されていないため、創作にあたる。",
-        "「会社員・学生：通勤や通学中に情報が流れた場合、まずは落ち着いて屋内に避難してください。」→元記事には具体的な避難行動の指示は含まれていないため、過度な補足である。",
-        "「鉄道などの公共交通機関が一時停止する可能性もあります。」→元記事には記載がない推測である。"
-      ],
-      "readability": {
-        "avg_paragraph": 94.6,
-        "avg_sentence": 41.4,
-        "long_share": 0.062,
-        "max_paragraph": 154,
-        "paragraphs": 14,
-        "sentences": 32
-      },
-      "score": 70,
-      "source": "kantei",
-      "title": "高市総理は北朝鮮からの弾道ミサイルの可能性があるものの発射に関する指示を行いました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T04:12:06.335649+00:00",
-      "attempt": 1,
-      "id": "911b3d4994ebb534",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1659字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 96.1,
-        "avg_sentence": 48.1,
-        "long_share": 0.25,
-        "max_paragraph": 155,
-        "paragraphs": 14,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "kddi-news",
-      "title": "自動運転の複数台運行を見守る、安定した映像伝送技術を実証"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T04:12:12.084119+00:00",
-      "attempt": 1,
-      "id": "911b3d4994ebb534",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "段落が長い（平均 124.8字・最長 192字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 124.8,
-        "avg_sentence": 44.8,
-        "long_share": 0.179,
-        "max_paragraph": 192,
-        "paragraphs": 14,
-        "sentences": 39
-      },
-      "score": 100,
-      "source": "kddi-news",
-      "title": "自動運転の複数台運行を見守る、安定した映像伝送技術を実証"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T04:12:23.150762+00:00",
-      "attempt": 0,
-      "id": "911b3d4994ebb534",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 75.3,
-        "avg_sentence": 38.5,
-        "long_share": 0.022,
-        "max_paragraph": 118,
-        "paragraphs": 23,
-        "sentences": 45
-      },
-      "score": 100,
-      "source": "kddi-news",
-      "title": "自動運転の複数台運行を見守る、安定した映像伝送技術を実証"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T04:31:30.457599+00:00",
-      "attempt": 1,
-      "id": "5886c5f29f0241fb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1745字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（380字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 143.6,
-        "avg_sentence": 65.3,
-        "long_share": 0.455,
-        "max_paragraph": 254,
-        "paragraphs": 10,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "シンガポール企業庁とイノベーション及びスタートアップの発展促進に関する覚書を締結しました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T04:31:36.681148+00:00",
-      "attempt": 2,
-      "id": "5886c5f29f0241fb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1614字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 166.2,
-        "avg_sentence": 57.5,
-        "long_share": 0.346,
-        "max_paragraph": 317,
-        "paragraphs": 9,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "シンガポール企業庁とイノベーション及びスタートアップの発展促進に関する覚書を締結しました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T04:31:47.505956+00:00",
-      "attempt": 1,
-      "id": "f0974527a57e05ee",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1758字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 164.7,
-        "avg_sentence": 54.9,
-        "long_share": 0.296,
-        "max_paragraph": 238,
-        "paragraphs": 9,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "都事業所のプラスチックリサイクル高度化に向けて廃棄物データ管理DXツールを導入します"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T04:35:59.425408+00:00",
-      "attempt": 1,
-      "id": "f0974527a57e05ee",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 51.2字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 199.1字・最長 289字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 199.1,
-        "avg_sentence": 51.2,
-        "long_share": 0.2,
-        "max_paragraph": 289,
-        "paragraphs": 9,
-        "sentences": 35
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "都事業所のプラスチックリサイクル高度化に向けて廃棄物データ管理DXツールを導入します"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T04:36:16.970780+00:00",
-      "attempt": 0,
-      "id": "f0974527a57e05ee",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「東京都は『ゼロエミッション都庁行動計画（2025年度～2030年度）』を策定しました」→元記事では「策定しました」ではなく、計画において目標を掲げているという記述であり、今回の発表で策定したわけではないため誤解を招く表現です。"
-      ],
-      "readability": {
-        "avg_paragraph": 199.1,
-        "avg_sentence": 51.2,
-        "long_share": 0.2,
-        "max_paragraph": 289,
-        "paragraphs": 9,
-        "sentences": 35
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "都事業所のプラスチックリサイクル高度化に向けて廃棄物データ管理DXツールを導入します"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T04:55:49.660778+00:00",
-      "attempt": 1,
-      "id": "a8f3165f8078647d",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1636字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 76.1,
-        "avg_sentence": 45.1,
-        "long_share": 0.185,
-        "max_paragraph": 147,
-        "paragraphs": 16,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "メールアドレスの漏えい事故について"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T04:55:54.434277+00:00",
-      "attempt": 1,
-      "id": "a8f3165f8078647d",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 108.6,
-        "avg_sentence": 42.2,
-        "long_share": 0.139,
-        "max_paragraph": 214,
-        "paragraphs": 14,
-        "sentences": 36
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "メールアドレスの漏えい事故について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T05:11:58.119448+00:00",
-      "attempt": 1,
-      "id": "6fb118c02ff58754",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（309字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 129.5,
-        "avg_sentence": 51.8,
-        "long_share": 0.267,
-        "max_paragraph": 191,
-        "paragraphs": 12,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "toyota",
-      "title": "2026年度上半期（4月－9月）販売・生産・輸出実績"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T05:12:04.834627+00:00",
-      "attempt": 2,
-      "id": "6fb118c02ff58754",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（1684字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 137.9,
-        "avg_sentence": 51.7,
-        "long_share": 0.333,
-        "max_paragraph": 220,
-        "paragraphs": 9,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "toyota",
-      "title": "2026年度上半期（4月－9月）販売・生産・輸出実績"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T05:12:40.384102+00:00",
-      "attempt": 2,
-      "id": "6fb118c02ff58754",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 49.2字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 191.4字・最長 272字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 191.4,
-        "avg_sentence": 49.2,
-        "long_share": 0.286,
-        "max_paragraph": 272,
-        "paragraphs": 9,
-        "sentences": 35
-      },
-      "score": 100,
-      "source": "toyota",
-      "title": "2026年度上半期（4月－9月）販売・生産・輸出実績"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T05:12:44.876265+00:00",
-      "attempt": 0,
-      "id": "6fb118c02ff58754",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 105.4,
-        "avg_sentence": 34.4,
-        "long_share": 0.02,
-        "max_paragraph": 163,
-        "paragraphs": 16,
-        "sentences": 49
-      },
-      "score": 100,
-      "source": "toyota",
-      "title": "2026年度上半期（4月－9月）販売・生産・輸出実績"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T05:31:33.552190+00:00",
-      "attempt": 1,
-      "id": "22206107cdaed414",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1718字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 158.3,
-        "avg_sentence": 67.9,
-        "long_share": 0.476,
-        "max_paragraph": 226,
-        "paragraphs": 9,
-        "sentences": 21
-      },
-      "score": null,
-      "source": "nli-research",
-      "title": "国民経済計算と家計調査の家計貯蓄率はなぜ乖離するのか"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T05:31:48.216406+00:00",
-      "attempt": 2,
-      "id": "22206107cdaed414",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 53.8字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 156.0字・最長 270字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 156.0,
-        "avg_sentence": 53.8,
-        "long_share": 0.276,
-        "max_paragraph": 270,
-        "paragraphs": 10,
-        "sentences": 29
-      },
-      "score": 100,
-      "source": "nli-research",
-      "title": "国民経済計算と家計調査の家計貯蓄率はなぜ乖離するのか"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T05:32:00.492419+00:00",
-      "attempt": 0,
-      "id": "22206107cdaed414",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 59.8,
-        "avg_sentence": 37.4,
-        "long_share": 0.05,
-        "max_paragraph": 109,
-        "paragraphs": 25,
-        "sentences": 40
-      },
-      "score": 100,
-      "source": "nli-research",
-      "title": "国民経済計算と家計調査の家計貯蓄率はなぜ乖離するのか"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T05:34:36.784309+00:00",
@@ -16725,6 +16411,420 @@
       "score": null,
       "source": "mhlw",
       "title": "最近の調剤医療費（電算処理分）の動向 令和8年度6月号"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:11:33.416363+00:00",
+      "attempt": 1,
+      "id": "91bb2960b5507835371cfe597ccd14fcdb4a5069",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1461字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（333字 / 基準 400字以上）",
+        "title / seo_title に感嘆符がある",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 141.3,
+        "avg_sentence": 63.6,
+        "long_share": 0.5,
+        "max_paragraph": 260,
+        "paragraphs": 9,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "trends",
+      "title": "psplus フリープレイ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:11:40.148566+00:00",
+      "attempt": 2,
+      "id": "91bb2960b5507835371cfe597ccd14fcdb4a5069",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「4,389円の『トゥームレイダー IV-VI リマスター』」→元記事内に価格の記載はありません。"
+      ],
+      "readability": {
+        "avg_paragraph": 184.2,
+        "avg_sentence": 61.4,
+        "long_share": 0.37,
+        "max_paragraph": 335,
+        "paragraphs": 9,
+        "sentences": 27
+      },
+      "score": 85,
+      "source": "trends",
+      "title": "psplus フリープレイ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:11:49.278412+00:00",
+      "attempt": 1,
+      "id": "c67ca313b240bcd406c01c3b192862c775d53459",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1114字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（300字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 140.7,
+        "avg_sentence": 49.2,
+        "long_share": 0.25,
+        "max_paragraph": 182,
+        "paragraphs": 7,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "trends",
+      "title": "第一三共 株価"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:11:54.409479+00:00",
+      "attempt": 2,
+      "id": "c67ca313b240bcd406c01c3b192862c775d53459",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1096字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（296字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 123.8,
+        "avg_sentence": 55.0,
+        "long_share": 0.333,
+        "max_paragraph": 190,
+        "paragraphs": 8,
+        "sentences": 18
+      },
+      "score": null,
+      "source": "trends",
+      "title": "第一三共 株価"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:12:02.236359+00:00",
+      "attempt": 1,
+      "id": "edcaaa64958b4e3e",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2417字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（384字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 146.2,
+        "avg_sentence": 62.0,
+        "long_share": 0.515,
+        "max_paragraph": 244,
+        "paragraphs": 14,
+        "sentences": 33
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "【随時更新】Inter BEE 2026 AWS ブースのご案内：人が創り、人が決める。AI エージェントが支える次世代放送局"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:12:11.117042+00:00",
+      "attempt": 2,
+      "id": "edcaaa64958b4e3e",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 59.3字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 146.5字・最長 223字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 146.5,
+        "avg_sentence": 59.3,
+        "long_share": 0.5,
+        "max_paragraph": 223,
+        "paragraphs": 17,
+        "sentences": 42
+      },
+      "score": 100,
+      "source": "aws-japan-blog",
+      "title": "【随時更新】Inter BEE 2026 AWS ブースのご案内：人が創り、人が決める。AI エージェントが支える次世代放送局"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T06:12:16.696521+00:00",
+      "attempt": 0,
+      "id": "edcaaa64958b4e3e",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 34.9,
+        "avg_sentence": 34.5,
+        "long_share": 0.027,
+        "max_paragraph": 76,
+        "paragraphs": 74,
+        "sentences": 75
+      },
+      "score": 100,
+      "source": "aws-japan-blog",
+      "title": "【随時更新】Inter BEE 2026 AWS ブースのご案内：人が創り、人が決める。AI エージェントが支える次世代放送局"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:12:24.502915+00:00",
+      "attempt": 1,
+      "id": "e30d6cc077fe7638",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1661字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（325字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 106.9,
+        "avg_sentence": 50.9,
+        "long_share": 0.429,
+        "max_paragraph": 147,
+        "paragraphs": 10,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "jfa",
+      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に松田和輝選手（順天堂大）を認定 #jfa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:12:30.053005+00:00",
+      "attempt": 2,
+      "id": "e30d6cc077fe7638",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1490字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（326字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 139.7,
+        "avg_sentence": 59.9,
+        "long_share": 0.524,
+        "max_paragraph": 163,
+        "paragraphs": 9,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "jfa",
+      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に松田和輝選手（順天堂大）を認定 #jfa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:12:43.723581+00:00",
+      "attempt": 1,
+      "id": "792b349685b03dc3",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（383字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 144.1,
+        "avg_sentence": 56.4,
+        "long_share": 0.261,
+        "max_paragraph": 193,
+        "paragraphs": 9,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "労働基準関係法令違反に係る公表事案"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:12:49.236502+00:00",
+      "attempt": 2,
+      "id": "792b349685b03dc3",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1507字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 137.1,
+        "avg_sentence": 52.7,
+        "long_share": 0.269,
+        "max_paragraph": 207,
+        "paragraphs": 10,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "労働基準関係法令違反に係る公表事案"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:12:56.289012+00:00",
+      "attempt": 1,
+      "id": "84ba605ae7c4de87",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1648字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 152.3,
+        "avg_sentence": 45.7,
+        "long_share": 0.167,
+        "max_paragraph": 246,
+        "paragraphs": 9,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "電気通信番号に関する使用状況の公表（令和7年度）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:13:05.036534+00:00",
+      "attempt": 2,
+      "id": "84ba605ae7c4de87",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1503字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（358字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 136.9,
+        "avg_sentence": 54.8,
+        "long_share": 0.32,
+        "max_paragraph": 186,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "電気通信番号に関する使用状況の公表（令和7年度）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:13:11.310655+00:00",
+      "attempt": 1,
+      "id": "a8a878b3129862cf",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1297字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（340字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 117.2,
+        "avg_sentence": 52.8,
+        "long_share": 0.3,
+        "max_paragraph": 178,
+        "paragraphs": 9,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "最近の歯科医療費（電算処理分）の動向 令和8年度6月号"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:13:16.132641+00:00",
+      "attempt": 2,
+      "id": "a8a878b3129862cf",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1248字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（369字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 106.7,
+        "avg_sentence": 48.0,
+        "long_share": 0.1,
+        "max_paragraph": 156,
+        "paragraphs": 9,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "最近の歯科医療費（電算処理分）の動向 令和8年度6月号"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:13:23.562675+00:00",
+      "attempt": 1,
+      "id": "afb1d0948e79346c",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1638字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（320字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 133.4,
+        "avg_sentence": 55.6,
+        "long_share": 0.333,
+        "max_paragraph": 191,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "消防防災科学技術研究推進制度の令和8年度第2期緊急枠研究開発課題の採択"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T06:13:32.346632+00:00",
+      "attempt": 2,
+      "id": "afb1d0948e79346c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 49.8字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 116.2,
+        "avg_sentence": 49.8,
+        "long_share": 0.179,
+        "max_paragraph": 164,
+        "paragraphs": 12,
+        "sentences": 28
+      },
+      "score": 100,
+      "source": "soumu",
+      "title": "消防防災科学技術研究推進制度の令和8年度第2期緊急枠研究開発課題の採択"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T06:13:36.047719+00:00",
+      "attempt": 0,
+      "id": "afb1d0948e79346c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 62.5,
+        "avg_sentence": 29.3,
+        "long_share": 0.0,
+        "max_paragraph": 103,
+        "paragraphs": 22,
+        "sentences": 47
+      },
+      "score": 100,
+      "source": "soumu",
+      "title": "消防防災科学技術研究推進制度の令和8年度第2期緊急枠研究開発課題の採択"
     }
   ],
   "short_text_retry": {}
