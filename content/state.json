@@ -3370,6 +3370,12 @@
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/kiro-cli-agent-write-boundaries/"
     },
+    "0f9461fda21cb1f7": {
+      "at": "2026-10-30T04:21:34.815568+00:00",
+      "reason": "followup: 新しい事実なし（nvidia-meta-muse-partnership-expansion）",
+      "skipped": true,
+      "url": "https://blogs.nvidia.co.jp/blog/nvidia-and-meta-to-expand-collaboration-on-muse-and-muse-family-of-models-amid-robust-growth/"
+    },
     "0fae713d99d57a61": {
       "at": "2026-10-30T04:01:46.264004+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6902,6 +6908,13 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102920"
     },
+    "919a93a7bb387b8c": {
+      "at": "2026-10-30T04:21:56.177506+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "元記事のPDFデータが暗号化またはバイナリ抽出状態であり、経済・物価情勢の展望に関する具体的なテキストや統計数値を確認できないため。",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/mopo/outlook/gor2610a.pdf"
+    },
     "9217c0f90ebe5e32": {
       "at": "2026-10-27T03:07:28.604435+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
@@ -8396,6 +8409,14 @@
       "slug": "fpt-servicenow-service-provider-2026",
       "url": "https://prtimes.jp/main/html/rd/p/000000141.000017750.html"
     },
+    "cf750d0c8feca53f": {
+      "at": "2026-10-30T04:22:10.696193+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "maff-food-culture-support-2026",
+      "url": "https://www.maff.go.jp/j/press/shokuhin/kikaku/261030.html"
+    },
     "cf9e04d889375e82": {
       "at": "2026-10-29T15:05:17.713439+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9686,49 +9707,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-29T02:41:59.790464+00:00",
-      "attempt": 2,
-      "id": "c9a193118dc8da7c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 51.1字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 146.8字・最長 334字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 146.8,
-        "avg_sentence": 51.1,
-        "long_share": 0.326,
-        "max_paragraph": 334,
-        "paragraphs": 16,
-        "sentences": 46
-      },
-      "score": 100,
-      "source": "ntt-news-ai",
-      "title": "NTTテクノクロス、「ForeSight Voice Mining®」に「AIナビゲーション」機能を追加 ～会話に合わせて次に案内すべき内容をリアルタイムで提示"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T02:42:04.076148+00:00",
-      "attempt": 0,
-      "id": "c9a193118dc8da7c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 78.8,
-        "avg_sentence": 40.1,
-        "long_share": 0.169,
-        "max_paragraph": 182,
-        "paragraphs": 30,
-        "sentences": 59
-      },
-      "score": 100,
-      "source": "ntt-news-ai",
-      "title": "NTTテクノクロス、「ForeSight Voice Mining®」に「AIナビゲーション」機能を追加 ～会話に合わせて次に案内すべき内容をリアルタイムで提示"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T02:42:12.058984+00:00",
@@ -16405,6 +16383,49 @@
       "score": 100,
       "source": "ipa",
       "title": "「データ連携の仕組みに関するガイドラインの手引き サプライチェーン共通編」の2.0版を公開しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:22:06.150562+00:00",
+      "attempt": 1,
+      "id": "cf750d0c8feca53f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 61.5字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 212.0字・最長 588字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 212.0,
+        "avg_sentence": 61.5,
+        "long_share": 0.516,
+        "max_paragraph": 588,
+        "paragraphs": 9,
+        "sentences": 31
+      },
+      "score": 100,
+      "source": "maff",
+      "title": "食文化の海外展開・インバウンド拡大に取り組む外食事業者及び地方公共団体の支援対象を決定しました"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T04:22:10.695663+00:00",
+      "attempt": 0,
+      "id": "cf750d0c8feca53f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.2,
+        "avg_sentence": 21.4,
+        "long_share": 0.0,
+        "max_paragraph": 97,
+        "paragraphs": 24,
+        "sentences": 73
+      },
+      "score": 100,
+      "source": "maff",
+      "title": "食文化の海外展開・インバウンド拡大に取り組む外食事業者及び地方公共団体の支援対象を決定しました"
     }
   ],
   "short_text_retry": {}
