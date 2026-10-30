@@ -39,7 +39,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const event = getEvent(slug);
   if (!event) return {};
   const keynote = event.keynotes.find((k) => k.startUtc);
-  const description = `${event.nameJa}は${localDateRange(event)}（現地時間）に${event.location.split(",")[0]}で開催。${
+  const description = event.slug === "adobe-max-2026"
+    ? "Adobe MAX 2026は米国マイアミで11月10〜12日開催。日本からのオンライン視聴と、別イベントAdobe MAX Japanの確認情報を整理。"
+    : `${event.nameJa}は${localDateRange(event)}（現地時間）に${event.location.split(",")[0]}で開催。${
     keynote?.startUtc ? `基調講演は日本時間${formatJst(keynote.startUtc)}から。` : ""
   }公式に決まっていることと、発表内容をまとめます。`;
   return {
@@ -76,7 +78,7 @@ export default async function EventPage({ params }: Props) {
       q: `${event.nameJa}の基調講演は日本時間で何時？`,
       a: firstKeynote?.startUtc
         ? `${firstKeynote.title}は日本時間で${formatJst(firstKeynote.startUtc)}からです（現地時間 ${localDay(firstKeynote.startLocal)} ${localTime(firstKeynote.startLocal)}）。`
-        : `基調講演の日時は、${event.verifiedAt.replaceAll("-", "/")}の時点で公式に発表されていません。`,
+        : `基調講演の開始時刻は、${event.verifiedAt.replaceAll("-", "/")}時点の確認情報にありません。`,
     },
     ...(event.livestream
       ? [{ q: `${event.nameJa}はどこで見られる？`, a: "公式サイトでオンライン配信が案内されています。視聴の条件は公式サイトで確認してください。" }]
@@ -210,6 +212,21 @@ export default async function EventPage({ params }: Props) {
         </section>
       )}
 
+      {event.slug === "adobe-max-2026" && (
+        <section aria-labelledby="adobe-japan-heading" className="mt-12">
+          <QHeading id="adobe-japan-heading">Adobe MAX 2026は日本で開催される？</QHeading>
+          <p className="text-desc leading-[1.8] text-ink-soft">
+            Adobeの案内では、2026年のこのイベントの会場は米国マイアミビーチです。オンライン版も案内され、公式FAQでは無料とされています。日本時間の各配信時刻や言語は、参加前に公式ページで確認してください。
+          </p>
+          <p className="mt-3 text-desc leading-[1.8] text-ink-soft">
+            「Adobe MAX Japan」は別の国内イベント名です。今回確認したAdobeのイベント案内では、2026年の日本開催日を確認できませんでした（2026年10月31日確認）。<a href="https://maxjapan.adobe.com/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">日本版の公式ページ</a>には、2025年の東京開催が掲載されています。開催しないと断定するものではありません。
+          </p>
+          <p className="mt-3 text-note leading-[1.8] text-muted">
+            出典：<a href="https://www.adobe.com/jp/events.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Adobeのイベント案内</a>、<a href="https://www.max.adobe.com/faq/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Adobe MAX公式FAQ</a>
+          </p>
+        </section>
+      )}
+
       <section aria-labelledby="keynote-heading" className="mt-12">
         <QHeading id="keynote-heading">基調講演は日本時間で何時？</QHeading>
         {event.keynotes.length > 0 ? (
@@ -229,7 +246,7 @@ export default async function EventPage({ params }: Props) {
           </ul>
         ) : (
           <p className="text-desc leading-[1.8] text-ink-soft">
-            基調講演の日時は、{event.verifiedAt.replaceAll("-", "/")}の時点で公式に発表されていません。発表され次第、ここに日本時間で載せます。
+            基調講演の開始時刻は、{event.verifiedAt.replaceAll("-", "/")}時点の確認情報にありません。時刻が分かり次第、日本時間で載せます。
           </p>
         )}
       </section>
