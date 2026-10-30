@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { BOT_UA, CHOICES, FUNNEL, GUIDE_PATH, SOURCES, sourceOf, type Source, type Stage } from "@/lib/revenue-funnel";
+import { ARTICLE_MEASUREMENT_VERSION, BOT_UA, CHOICES, FUNNEL, GUIDE_PATH, SOURCES, isMeasuredArticle, sourceOf, type Source, type Stage } from "@/lib/revenue-funnel";
 
 const STORAGE_KEY = "saisoku-source-v1";
 const MAX_AGE = 30 * 60_000;
@@ -25,52 +25,64 @@ export default function RevenueFunnelTracker() {
     if (!pathname || navigator.webdriver || BOT_UA.test(navigator.userAgent) || navigator.doNotTrack === "1" ||
       (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl || typeof navigator.sendBeacon !== "function") return;
     const channel = channelRef.current ?? (channelRef.current = source());
-    const sent = new Set<string>();
-    const send = (stage: Stage, choice = "", pos = "other") => {
-      const key = `${stage}:${choice}`;
-      if (sent.has(key)) return;
-      // 失敗しても表示・リンク遷移を止めない。クエリ文字列やリンク先URLは送らない。
-      try {
-        if (navigator.sendBeacon("/api/aff/event", JSON.stringify({ funnel: FUNNEL, stage, path: pathname, source: channel, choice, pos }))) sent.add(key);
-      } catch { /* analytics must never interrupt reading or navigation */ }
-    };
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    const visible = () => {
-      clearTimeout(timer);
-      if (document.visibilityState !== "visible") return;
-      timer = setTimeout(() => {
-        if (pathname === "/guides") send("entry_view", "", "guide-list");
-        if (pathname === GUIDE_PATH) send("guide_view");
-      }, 1000);
-    };
-    visible();
-    document.addEventListener("visibilitychange", visible);
-    const click = (event: MouseEvent) => {
-      if (!event.isTrusted || event.button > 1) return;
-      const link = (event.target as Element | null)?.closest?.("a") as HTMLAnchorElement | null;
-      if (!link) return;
-      if (pathname !== GUIDE_PATH && link.origin === location.origin && link.pathname === GUIDE_PATH) {
-        send("guide_click", "", link.closest("[data-funnel-pos]")?.getAttribute("data-funnel-pos") || "other");
-      }
-      const choice = link.getAttribute("data-funnel-choice");
-      if (pathname === GUIDE_PATH && choice && CHOICES.includes(choice as typeof CHOICES[number])) {
-        send("choice_click", choice, link.closest("[data-aff-pos]")?.getAttribute("data-aff-pos") || "other");
-      }
-    };
-    document.addEventListener("click", click, { capture: true, passive: true });
-    document.addEventListener("auxclick", click, { capture: true, passive: true });
-    const heading = pathname === GUIDE_PATH ? document.getElementById("table-heading") : null;
-    const observer = heading && typeof IntersectionObserver !== "undefined" ? new IntersectionObserver((entries) => {
-      if (document.visibilityState === "visible" && entries.some((entry) => entry.isIntersecting)) send("comparison_view");
-    }, { threshold: 0.5 }) : null;
-    if (heading) observer?.observe(heading);
-    return () => {
-      clearTimeout(timer);
-      document.removeEventListener("visibilitychange", visible);
-      document.removeEventListener("click", click, true);
-      document.removeEventListener("auxclick", click, true);
-      observer?.disconnect();
-    };
+    return installFunnelTracking(pathname, channel);
   }, [pathname]);
   return null;
+}
+
+/** 実ブラウザや本番への送信を使わず、可視化・早いクリック・解除を回帰検証できる単位。 */
+export function installFunnelTracking(pathname: string, channel: Source) {
+  const article = isMeasuredArticle(pathname);
+  const sent = new Set<string>();
+  const send = (stage: Stage, choice = "", pos = "other") => {
+    const key = `${stage}:${choice}`;
+    if (sent.has(key)) return;
+    // 失敗しても表示・リンク遷移を止めない。クエリ文字列やリンク先URLは送らない。
+    try {
+      const articleMeasurement = article && (stage === "article_view" || stage === "guide_click") ? ARTICLE_MEASUREMENT_VERSION : undefined;
+      if (navigator.sendBeacon("/api/aff/event", JSON.stringify({ funnel: FUNNEL, stage, path: pathname, source: channel, choice, pos, articleMeasurement }))) sent.add(key);
+    } catch { /* analytics must never interrupt reading or navigation */ }
+  };
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const visible = () => {
+    clearTimeout(timer);
+    if (document.visibilityState !== "visible") return;
+    timer = setTimeout(() => {
+      if (document.visibilityState !== "visible") return;
+      if (article) send("article_view", "", "article");
+      if (pathname === "/guides") send("entry_view", "", "guide-list");
+      if (pathname === GUIDE_PATH) send("guide_view");
+    }, 1000);
+  };
+  visible();
+  document.addEventListener("visibilitychange", visible);
+  const click = (event: MouseEvent) => {
+    if (!event.isTrusted || event.button > 1) return;
+    const link = (event.target as Element | null)?.closest?.("a") as HTMLAnchorElement | null;
+    if (!link) return;
+    if (pathname !== GUIDE_PATH && link.origin === location.origin && link.pathname === GUIDE_PATH) {
+      // 1秒未満の操作も可視中の閲覧。送信失敗・逆順到着は集計側で欠測として区別する。
+      if (article && document.visibilityState !== "visible") return;
+      if (article) send("article_view", "", "article");
+      send("guide_click", "", link.closest("[data-funnel-pos]")?.getAttribute("data-funnel-pos") || "other");
+    }
+    const choice = link.getAttribute("data-funnel-choice");
+    if (pathname === GUIDE_PATH && choice && CHOICES.includes(choice as typeof CHOICES[number])) {
+      send("choice_click", choice, link.closest("[data-aff-pos]")?.getAttribute("data-aff-pos") || "other");
+    }
+  };
+  document.addEventListener("click", click, { capture: true, passive: true });
+  document.addEventListener("auxclick", click, { capture: true, passive: true });
+  const heading = pathname === GUIDE_PATH ? document.getElementById("table-heading") : null;
+  const observer = heading && typeof IntersectionObserver !== "undefined" ? new IntersectionObserver((entries) => {
+    if (document.visibilityState === "visible" && entries.some((entry) => entry.isIntersecting)) send("comparison_view");
+  }, { threshold: 0.5 }) : null;
+  if (heading) observer?.observe(heading);
+  return () => {
+    clearTimeout(timer);
+    document.removeEventListener("visibilitychange", visible);
+    document.removeEventListener("click", click, true);
+    document.removeEventListener("auxclick", click, true);
+    observer?.disconnect();
+  };
 }

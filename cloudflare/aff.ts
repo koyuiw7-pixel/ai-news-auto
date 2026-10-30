@@ -11,7 +11,7 @@
  * 連打・機械的な連投は Cache API（そのデータセンターの一時置き場）で間引く。
  */
 import { json, readJson, safeEqual, sameOrigin, sha256Hex, type KvNamespace } from "./push";
-import { BOT_UA, FUNNEL, SOURCES, STAGES, validFunnelEvent } from "../lib/revenue-funnel";
+import { ARTICLE_MEASUREMENT_VERSION, ARTICLE_PATHS, BOT_UA, FUNNEL, SOURCES, STAGES, isMeasuredArticle, validFunnelEvent } from "../lib/revenue-funnel";
 
 export type AffEnv = {
   AFF_KV?: KvNamespace;
@@ -20,7 +20,7 @@ export type AffEnv = {
 
 type Ctx = { waitUntil(promise: Promise<unknown>): void };
 type Meta = { path?: string; pos?: string; v?: string };
-type FunnelMeta = Meta & { stage?: string; source?: string; choice?: string };
+type FunnelMeta = Meta & { stage?: string; source?: string; choice?: string; articleMeasurement?: number };
 
 const PROGRAM = /^[A-Za-z0-9+._-]{1,60}$/;
 const PATH = /^\/[A-Za-z0-9\-._~%!$&'()*+,;=:@/]{0,200}$/;
@@ -106,6 +106,9 @@ async function funnelEvent(request: Request, url: URL, env: AffEnv, ctx: Ctx): P
   const field = (key: string) => typeof body?.[key] === "string" ? body[key] as string : "";
   const stage = field("stage"), path = field("path"), source = field("source"), choice = field("choice"), pos = field("pos") || "other";
   if (field("funnel") !== FUNNEL || !validFunnelEvent(stage, path, choice) || !SOURCES.includes(source as typeof SOURCES[number]) || !POS.test(pos)) return json({ error: "invalid" }, 400);
+  const articleMeasurement = body?.articleMeasurement;
+  if ((articleMeasurement !== undefined && (articleMeasurement !== ARTICLE_MEASUREMENT_VERSION || !isMeasuredArticle(path) || (stage !== "article_view" && stage !== "guide_click"))) ||
+    (stage === "article_view" && articleMeasurement !== ARTICLE_MEASUREMENT_VERSION)) return json({ error: "invalid" }, 400);
   const now = Date.now(), date = jstDate(now);
   const visitor = (await sha256Hex(`${env.AFF_STATS_TOKEN}|${date}|${request.headers.get("cf-connecting-ip") ?? ""}|${ua}`)).slice(0, 16);
   // 別カウンターにして、表示イベントが広告クリックの連投制限を消費しないようにする。
@@ -113,7 +116,7 @@ async function funnelEvent(request: Request, url: URL, env: AffEnv, ctx: Ctx): P
   const rand = crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
   ctx.waitUntil(env.AFF_KV.put(`f:${date}:${FUNNEL}:${jstTime(now)}${rand}`, "", {
     expirationTtl: 90 * 86400,
-    metadata: { stage, path, source, choice, pos, v: visitor } satisfies FunnelMeta,
+    metadata: { stage, path, source, choice, pos, v: visitor, ...(articleMeasurement === ARTICLE_MEASUREMENT_VERSION ? { articleMeasurement } : {}) } satisfies FunnelMeta,
   }).catch((error) => console.error("[funnel] put failed", String(error))));
   return noContent();
 }
@@ -123,6 +126,8 @@ async function funnelStats(date: string, kv: KvNamespace) {
   const sources = new Map<string, Row>();
   const entries = new Map<string, Row>();
   const choices = new Map<string, Row>();
+  const articleRows = new Map<string, ArticleRow>(ARTICLE_PATHS.map((path) => [path, newArticleRow()]));
+  const articleSources = new Map<string, ArticleRow>();
   let count = 0, cursor: string | undefined;
   do {
     const page = await kv.list({ prefix: `f:${date}:${FUNNEL}:`, cursor, limit: 1000 });
@@ -134,15 +139,51 @@ async function funnelStats(date: string, kv: KvNamespace) {
       bump(sources, `${meta.source ?? "other"}:${meta.stage}`, meta.v ?? "");
       if (meta.stage === "guide_click") bump(entries, `${meta.path ?? "?"}|${meta.pos ?? "other"}`, meta.v ?? "");
       if (meta.stage === "choice_click") bump(choices, meta.choice ?? "?", meta.v ?? "");
+      if (meta.path && isMeasuredArticle(meta.path) && (meta.stage === "article_view" || meta.stage === "guide_click")) {
+        const articleRow = articleRows.get(meta.path)!;
+        if (meta.articleMeasurement === ARTICLE_MEASUREMENT_VERSION) {
+          bumpArticle(articleRow, meta);
+          const sourceKey = `${meta.path}|${meta.source ?? "other"}`;
+          const sourceRow = articleSources.get(sourceKey) ?? newArticleRow();
+          bumpArticle(sourceRow, meta);
+          articleSources.set(sourceKey, sourceRow);
+        } else if (meta.stage === "guide_click") articleRow.legacyClickEventsExcluded++;
+      }
     }
     cursor = page.list_complete ? undefined : page.cursor;
   } while (cursor && count < 100_000);
   const events = (map: Map<string, Row>, name: string) => sorted(map, name).map(({ clicks, ...row }) => ({ ...row, events: clicks }));
   return {
-    id: FUNNEL, version: 1, enabled: true, retentionDays: 90, truncated: !!cursor,
+    id: FUNNEL, version: 2, enabled: true, retentionDays: 90, truncated: !!cursor,
     definition: "Visible browser events, not confirmed humans, ordered sessions, sales or approvals. Visitors are daily IP/UA hash estimates; do not sum them across days.",
     stages: STAGES.map((stage) => ({ stage, events: stages.get(stage)?.clicks ?? 0, visitors: stages.get(stage)?.visitors.size ?? 0 })),
     bySourceStage: events(sources, "sourceStage"), byEntry: events(entries, "entry"), byChoice: events(choices, "choice"),
+    articleMeasurement: {
+      version: ARTICLE_MEASUREMENT_VERSION,
+      coverage: "Version-2 browser events only; historical article views were not measured. Deployment-day coverage is partial; no observed events is not proof of zero visits.",
+      definition: "Per JST day, article and source. A view is visible for 1 second or a visible trusted comparison-link click. Matched readers share the existing daily IP/UA estimate; this is not an ordered session conversion rate. Missing views, delivery order and midnight boundaries can affect the counts. Do not sum visitors across days.",
+      byArticle: [...articleRows].map(([path, row]) => ({ path, ...articleSummary(row) })),
+      byArticleSource: [...articleSources].map(([key, row]) => { const [path, source] = key.split("|"); return { path, source, ...articleSummary(row) }; }),
+    },
+  };
+}
+
+type ArticleRow = { viewEvents: number; clickEvents: number; views: Set<string>; clicks: Set<string>; legacyClickEventsExcluded: number };
+const newArticleRow = (): ArticleRow => ({ viewEvents: 0, clickEvents: 0, views: new Set(), clicks: new Set(), legacyClickEventsExcluded: 0 });
+function bumpArticle(row: ArticleRow, meta: FunnelMeta) {
+  if (meta.stage === "article_view") { row.viewEvents++; if (meta.v) row.views.add(meta.v); }
+  if (meta.stage === "guide_click") { row.clickEvents++; if (meta.v) row.clicks.add(meta.v); }
+}
+function articleSummary(row: ArticleRow) {
+  const matched = [...row.clicks].filter((visitor) => row.views.has(visitor)).length;
+  return {
+    observedV2Events: row.viewEvents + row.clickEvents,
+    viewEvents: row.viewEvents, viewVisitors: row.views.size,
+    comparisonClickEvents: row.clickEvents, comparisonClickVisitors: row.clicks.size,
+    matchedReaderClickVisitors: matched,
+    clickVisitorsWithoutObservedView: row.clicks.size - matched,
+    observedReaderClickRate: row.views.size ? matched / row.views.size : null,
+    legacyClickEventsExcluded: row.legacyClickEventsExcluded,
   };
 }
 

@@ -1,7 +1,7 @@
 /** 実ASP・本番KVへ通信しない回帰テスト。node scripts/test_aff.mjs */
 import assert from "node:assert/strict";
 import { handleAff } from "./aff";
-import { sourceOf, GUIDE_PATH, FUNNEL, validFunnelEvent } from "../lib/revenue-funnel";
+import { ARTICLE_MEASUREMENT_VERSION, ARTICLE_PATHS, sourceOf, GUIDE_PATH, FUNNEL, validFunnelEvent } from "../lib/revenue-funnel";
 
 const records = new Map<string, { value: string; metadata?: unknown; expirationTtl?: number }>();
 const cache = new Map<string, { response: Response; until: number }>();
@@ -89,5 +89,75 @@ await test("stage cannot be attached to unrelated pages", () => {
   assert.equal(validFunnelEvent("guide_view", "/", ""), false);
   assert.equal(validFunnelEvent("entry_view", "/guides", ""), true);
   assert.equal(validFunnelEvent("choice_click", GUIDE_PATH, "dify-cloud"), true);
+});
+const articleEvent = { ...event, stage: "article_view", path: ARTICLE_PATHS[0], articleMeasurement: ARTICLE_MEASUREMENT_VERSION };
+await test("article measurement requires the exact pages and client version", async () => {
+  reset();
+  for (const change of [{ path: "/guides/unrelated" }, { path: GUIDE_PATH }, { path: ARTICLE_PATHS[0] + "?private=1" }, { articleMeasurement: undefined }, { articleMeasurement: 1 }, { articleMeasurement: "2" }]) {
+    assert.equal((await call("/api/aff/event", { ...articleEvent, ...change })).status, 400);
+  }
+  assert.equal((await call("/api/aff/event", { ...event, articleMeasurement: 2 })).status, 400);
+  assert.equal(records.size, 0);
+});
+await test("new article events keep bot and privacy exclusions", async () => {
+  for (const h of [{ "user-agent": "Google-InspectionTool" }, { "user-agent": "HeadlessChrome" }, { dnt: "1" }, { "sec-gpc": "1" }]) await call("/api/aff/event", articleEvent, h);
+  assert.equal(records.size, 0);
+});
+await test("both article pages and sources keep separate matched denominators", async () => {
+  reset();
+  await call("/api/aff/event", articleEvent);
+  await call("/api/aff/event", { ...articleEvent, stage: "guide_click" });
+  await call("/api/aff/event", { ...articleEvent, path: ARTICLE_PATHS[1], source: "bing" });
+  await call("/api/aff/event", { ...articleEvent, source: "threads" }, { "cf-connecting-ip": "192.0.2.2" });
+  const result = await stats();
+  const [a, b] = result.funnel.articleMeasurement.byArticle;
+  assert.equal(a.viewEvents, 2); assert.equal(a.viewVisitors, 2); assert.equal(a.comparisonClickEvents, 1); assert.equal(a.matchedReaderClickVisitors, 1); assert.equal(a.observedReaderClickRate, .5);
+  assert.equal(b.viewVisitors, 1); assert.equal(b.comparisonClickEvents, 0); assert.equal(b.observedReaderClickRate, 0);
+  assert.equal(result.funnel.articleMeasurement.byArticleSource.length, 3);
+  assert.equal(result.funnel.articleMeasurement.byArticleSource.find((r: { source: string }) => r.source === "google").observedReaderClickRate, 1);
+  assert.equal(result.funnel.byEntry[0].events, 1);
+  assert.equal(result.clicks, 0);
+});
+await test("legacy guide clicks remain counted but do not create a v2 denominator", async () => {
+  reset();
+  await call("/api/aff/event", { ...event, stage: "guide_click", path: ARTICLE_PATHS[0] });
+  await call("/api/aff/event", articleEvent, { "cf-connecting-ip": "192.0.2.2" });
+  await call("/api/aff/event", { ...articleEvent, stage: "guide_click" }, { "cf-connecting-ip": "192.0.2.2" });
+  const result = await stats(); const a = result.funnel.articleMeasurement.byArticle[0];
+  assert.equal(result.funnel.byEntry[0].events, 2); assert.equal(a.legacyClickEventsExcluded, 1); assert.equal(a.viewVisitors, 1); assert.equal(a.comparisonClickVisitors, 1); assert.equal(a.observedReaderClickRate, 1);
+});
+await test("click arriving before view reports missing view then matches after arrival", async () => {
+  reset();
+  await call("/api/aff/event", { ...articleEvent, stage: "guide_click" });
+  let a = (await stats()).funnel.articleMeasurement.byArticle[0];
+  assert.equal(a.clickVisitorsWithoutObservedView, 1); assert.equal(a.observedReaderClickRate, null); assert.equal(a.matchedReaderClickVisitors, 0);
+  await call("/api/aff/event", articleEvent);
+  a = (await stats()).funnel.articleMeasurement.byArticle[0];
+  assert.equal(a.clickVisitorsWithoutObservedView, 0); assert.equal(a.observedReaderClickRate, 1); assert.equal(a.matchedReaderClickVisitors, 1);
+});
+await test("view and click from different sources do not invent source-level matching", async () => {
+  reset();
+  await call("/api/aff/event", articleEvent);
+  await call("/api/aff/event", { ...articleEvent, stage: "guide_click", source: "direct" });
+  const result = await stats();
+  const direct = result.funnel.articleMeasurement.byArticleSource.find((r: { source: string }) => r.source === "direct");
+  assert.equal(direct.viewVisitors, 0); assert.equal(direct.clickVisitorsWithoutObservedView, 1); assert.equal(direct.observedReaderClickRate, null);
+  assert.equal(result.funnel.articleMeasurement.byArticle[0].matchedReaderClickVisitors, 1);
+});
+await test("article deduplication, legacy advertisement and retention are preserved", async () => {
+  reset();
+  for (let i = 0; i < 2; i++) { await call("/api/aff/event", articleEvent); await call("/api/aff/event", { ...articleEvent, stage: "guide_click" }); }
+  await call("/api/aff/click", { p: "A+B+C", path: ARTICLE_PATHS[0], pos: "existing" });
+  const result = await stats(); const a = result.funnel.articleMeasurement.byArticle[0];
+  assert.equal(a.viewEvents, 1); assert.equal(a.comparisonClickEvents, 1); assert.equal(result.clicks, 1); assert.equal(result.byProgram[0].program, "A+B+C");
+  for (const [key, item] of records) assert.equal(item.expirationTtl, (key.startsWith("f:") ? 90 : 400) * 86400);
+});
+await test("dates do not join previous-day article readers to today's clicks", async () => {
+  reset();
+  await call("/api/aff/event", articleEvent);
+  const [key, value] = [...records][0]; records.delete(key); records.set(key.replace(/^f:\d{4}-\d{2}-\d{2}:/, "f:2001-01-01:"), value);
+  await call("/api/aff/event", { ...articleEvent, stage: "guide_click" });
+  const a = (await stats()).funnel.articleMeasurement.byArticle[0];
+  assert.equal(a.viewVisitors, 0); assert.equal(a.clickVisitorsWithoutObservedView, 1); assert.equal(a.observedReaderClickRate, null);
 });
 console.log(`${passed} measurement checks passed; no external requests.`);

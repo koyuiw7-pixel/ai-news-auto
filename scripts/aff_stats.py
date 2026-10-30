@@ -95,12 +95,21 @@ def show(data: dict, names: dict[str, str]) -> None:
     print(f"■ {data['date']}（日本時間）自動アクセスを除いたクリック {data['clicks']} 回 / 推定 {data['visitors']} 訪問者")
     funnel = data.get("funnel")
     if funnel:
-        labels = {"entry_view": "ガイド一覧表示", "guide_click": "Difyガイドへの遷移", "guide_view": "Difyガイド表示", "comparison_view": "比較表到達", "choice_click": "行き先クリック"}
+        labels = {"entry_view": "ガイド一覧表示", "guide_click": "Dify比較への遷移", "guide_view": "Dify比較ページ表示", "comparison_view": "比較表到達", "choice_click": "行き先クリック", "article_view": "対象Dify記事の可視閲覧"}
         print(f"  導線 {funnel['id']}（日内推定。売上・承認・通過順序ではありません）:")
         for row in funnel["stages"]:
             print(f"    {labels.get(row['stage'], row['stage'])}: {row['events']}回 / 推定{row['visitors']}訪問者")
         for row in funnel["byChoice"]:
             print(f"    行き先 {row['choice']}: {row['events']}回")
+        article_measurement = funnel.get("articleMeasurement")
+        if article_measurement:
+            print("  記事別（新計測開始後のみ。日内推定の突合で、順序付きセッションCVRではありません）:")
+            for row in article_measurement.get("byArticle", []):
+                rate = row.get("observedReaderClickRate")
+                rate_text = "分母なし・算出不可" if rate is None else f"{rate:.1%}"
+                print(f"    {row['path']}: 可視閲覧{row['viewEvents']}回/推定{row['viewVisitors']}人、比較クリック{row['comparisonClickEvents']}回、双方観測{row['matchedReaderClickVisitors']}人（{rate_text}）")
+                print(f"      閲覧未観測のクリック推定{row['clickVisitorsWithoutObservedView']}人、旧計測クリック{row['legacyClickEventsExcluded']}回は新分母と混ぜない")
+            print("    注意: 導入日途中・送信欠測・日跨ぎの影響あり。観測0は全訪問0の証明ではありません。")
         if funnel.get("truncated"):
             print("    注意: 集計上限に達しました。全件集計ではありません。")
     if not data["clicks"]:

@@ -1,9 +1,12 @@
 /** 集計する導線を限定。参照元URL・検索語・自由入力をサーバーへ送らない。 */
 export const FUNNEL = "dify-hosting";
 export const GUIDE_PATH = "/choose/dify-hosting";
+export const ARTICLE_PATHS = ["/guides/dify-free-api-cost", "/guides/dify-1-18-startup-check"] as const;
+export const ARTICLE_MEASUREMENT_VERSION = 2;
+export const isMeasuredArticle = (path: string) => ARTICLE_PATHS.includes(path as typeof ARTICLE_PATHS[number]);
 export const SOURCES = ["google", "bing", "x", "threads", "facebook", "hatena", "direct", "internal", "other"] as const;
 export type Source = typeof SOURCES[number];
-export const STAGES = ["entry_view", "guide_click", "guide_view", "comparison_view", "choice_click"] as const;
+export const STAGES = ["entry_view", "guide_click", "guide_view", "comparison_view", "choice_click", "article_view"] as const;
 export type Stage = typeof STAGES[number];
 export const CHOICES = ["dify-cloud", "local-pc", "xserver-dify"] as const;
 // Search Consoleの検査はGooglebotを名乗らないため、検査用UAも明示して除外する。
@@ -29,6 +32,7 @@ export function sourceOf(search: string, referrer: string, origin: string): Sour
 }
 
 export function validFunnelEvent(stage: string, path: string, choice: string): boolean {
+  if (stage === "article_view") return isMeasuredArticle(path) && choice === "";
   if (stage === "entry_view") return path === "/guides" && choice === "";
   if (stage === "guide_click") return /^\/[A-Za-z0-9/._~-]{0,200}$/.test(path) && path !== GUIDE_PATH && choice === "";
   if (stage === "guide_view" || stage === "comparison_view") return path === GUIDE_PATH && choice === "";
