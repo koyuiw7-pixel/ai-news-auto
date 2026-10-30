@@ -1,3 +1,4 @@
+import { getAllChooseGuides } from "@/lib/choose";
 import type { Metadata } from "next";
 import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
@@ -32,6 +33,18 @@ export default function GuidesPage() {
       <p className="t-lead mt-3">
         人気のAIツールの始め方、料金、無料でどこまで使えるか、日本で使えるかを1ページずつまとめました。公式ページだけをもとに書き、定期的に確認し直しています。
       </p>
+
+      <section aria-labelledby="choose-guides" className="mt-12" data-funnel-pos="guide-list">
+        <h2 id="choose-guides" className="t-h2 border-b border-ink pb-2">導入する前に、費用と条件を比べる</h2>
+        <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+          {getAllChooseGuides().map((guide) => (
+            <li key={guide.slug}><Link href={`/choose/${guide.slug}`} className="group flex h-full flex-col gap-3 rounded-2xl border border-line p-5 transition-colors hover:border-ink">
+              <span className="text-[17px] font-bold leading-snug text-ink group-hover:underline">{guide.articleLabel}</span>
+              <span className="text-desc leading-[1.75] text-ink-soft">{guide.articleNote}</span>
+            </Link></li>
+          ))}
+        </ul>
+      </section>
 
       {[...groups.entries()].map(([tool, items]) => (
         <section key={tool} aria-labelledby={`tool-${items[0].slug}`} className="mt-12">

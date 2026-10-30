@@ -66,6 +66,13 @@ export default function HomePage() {
           </div>
         )}
 
+        <nav aria-label="AIの使い方と費用" data-funnel-pos="home-guides" className="mt-10 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-y border-line py-4">
+          <Link href="/choose/dify-hosting" className="text-[16px] font-bold leading-relaxed text-ink underline-offset-4 hover:text-accent hover:underline">
+            DifyにVPSは必要？無料で試す方法と費用を比べる →
+          </Link>
+          <Link href="/guides" className="text-note font-semibold text-accent underline underline-offset-4">AIの使い方ガイド一覧</Link>
+        </nav>
+
         <div className="mt-14 grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-12">
           <section aria-labelledby="latest-heading" className="min-w-0">
             <div className="mb-2 flex items-end justify-between gap-4">

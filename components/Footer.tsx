@@ -19,6 +19,7 @@ const REFERENCE_LINKS = [
   { href: "/guides", label: "AIの使い方ガイド" },
   { href: "/ai-pricing", label: "AIの料金・日本対応 早見表" },
   { href: "/choose/internet-for-ai", label: "AIのための通信回線の選び方" },
+  { href: "/choose/dify-hosting", label: "Difyの無料利用・VPSの選び方" },
   { href: "/choose/ai-career", label: "AI転職・学び直しの選び方" },
   { href: "/weekly", label: "今週のAIニュースまとめ" },
   { href: "/events", label: "AIイベントの日程（日本時間）" },
@@ -33,7 +34,7 @@ export default function Footer() {
   const tags = getAllTags(true).slice(0, 16);
 
   return (
-    <footer className="mt-24 border-t-2 border-ink bg-surface">
+    <footer data-funnel-pos="footer" className="mt-24 border-t-2 border-ink bg-surface">
       <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>

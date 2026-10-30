@@ -11,6 +11,7 @@
  * 連打・機械的な連投は Cache API（そのデータセンターの一時置き場）で間引く。
  */
 import { json, readJson, safeEqual, sameOrigin, sha256Hex, type KvNamespace } from "./push";
+import { FUNNEL, SOURCES, STAGES, validFunnelEvent } from "../lib/revenue-funnel";
 
 export type AffEnv = {
   AFF_KV?: KvNamespace;
@@ -19,6 +20,7 @@ export type AffEnv = {
 
 type Ctx = { waitUntil(promise: Promise<unknown>): void };
 type Meta = { path?: string; pos?: string; v?: string };
+type FunnelMeta = Meta & { stage?: string; source?: string; choice?: string };
 
 /** 画面側（components/AffClickTracker.tsx）と同じ。サーバーでも念のため弾く */
 const BOT_UA = /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|preview|phantom|puppeteer|playwright|selenium|python|curl|wget/i;
@@ -95,6 +97,57 @@ async function click(request: Request, url: URL, env: AffEnv, ctx: Ctx): Promise
   return noContent();
 }
 
+/** 新導線の表示・遷移。旧クリック(c:)と分離し、既存の集計値を変えない。 */
+async function funnelEvent(request: Request, url: URL, env: AffEnv, ctx: Ctx): Promise<Response> {
+  if (request.method !== "POST") return json({ error: "method" }, 405);
+  const site = request.headers.get("sec-fetch-site");
+  if (!sameOrigin(request) || (site && site !== "same-origin")) return json({ error: "origin" }, 403);
+  const ua = request.headers.get("user-agent") ?? "";
+  if (!ua || BOT_UA.test(ua) || request.headers.get("dnt") === "1" || request.headers.get("sec-gpc") === "1" || !env.AFF_KV || !env.AFF_STATS_TOKEN) return noContent();
+  const body = await readJson<Record<string, unknown>>(request, 1024);
+  const field = (key: string) => typeof body?.[key] === "string" ? body[key] as string : "";
+  const stage = field("stage"), path = field("path"), source = field("source"), choice = field("choice"), pos = field("pos") || "other";
+  if (field("funnel") !== FUNNEL || !validFunnelEvent(stage, path, choice) || !SOURCES.includes(source as typeof SOURCES[number]) || !POS.test(pos)) return json({ error: "invalid" }, 400);
+  const now = Date.now(), date = jstDate(now);
+  const visitor = (await sha256Hex(`${env.AFF_STATS_TOKEN}|${date}|${request.headers.get("cf-connecting-ip") ?? ""}|${ua}`)).slice(0, 16);
+  // 別カウンターにして、表示イベントが広告クリックの連投制限を消費しないようにする。
+  if (await limited(url.origin, `f-${visitor}`, `${stage}|${path}|${choice}`)) return noContent();
+  const rand = crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
+  ctx.waitUntil(env.AFF_KV.put(`f:${date}:${FUNNEL}:${jstTime(now)}${rand}`, "", {
+    expirationTtl: 90 * 86400,
+    metadata: { stage, path, source, choice, pos, v: visitor } satisfies FunnelMeta,
+  }).catch((error) => console.error("[funnel] put failed", String(error))));
+  return noContent();
+}
+
+async function funnelStats(date: string, kv: KvNamespace) {
+  const stages = new Map<string, Row>();
+  const sources = new Map<string, Row>();
+  const entries = new Map<string, Row>();
+  const choices = new Map<string, Row>();
+  let count = 0, cursor: string | undefined;
+  do {
+    const page = await kv.list({ prefix: `f:${date}:${FUNNEL}:`, cursor, limit: 1000 });
+    for (const key of page.keys) {
+      const meta = (key.metadata ?? {}) as FunnelMeta;
+      if (!meta.stage || !STAGES.includes(meta.stage as typeof STAGES[number])) continue;
+      count++;
+      bump(stages, meta.stage, meta.v ?? "");
+      bump(sources, `${meta.source ?? "other"}:${meta.stage}`, meta.v ?? "");
+      if (meta.stage === "guide_click") bump(entries, `${meta.path ?? "?"}|${meta.pos ?? "other"}`, meta.v ?? "");
+      if (meta.stage === "choice_click") bump(choices, meta.choice ?? "?", meta.v ?? "");
+    }
+    cursor = page.list_complete ? undefined : page.cursor;
+  } while (cursor && count < 100_000);
+  const events = (map: Map<string, Row>, name: string) => sorted(map, name).map(({ clicks, ...row }) => ({ ...row, events: clicks }));
+  return {
+    id: FUNNEL, version: 1, enabled: true, retentionDays: 90, truncated: !!cursor,
+    definition: "Visible browser events, not confirmed humans, ordered sessions, sales or approvals. Visitors are daily IP/UA hash estimates; do not sum them across days.",
+    stages: STAGES.map((stage) => ({ stage, events: stages.get(stage)?.clicks ?? 0, visitors: stages.get(stage)?.visitors.size ?? 0 })),
+    bySourceStage: events(sources, "sourceStage"), byEntry: events(entries, "entry"), byChoice: events(choices, "choice"),
+  };
+}
+
 type Row = { clicks: number; visitors: Set<string> };
 const bump = (map: Map<string, Row>, key: string, visitor: string) => {
   const row = map.get(key) ?? { clicks: 0, visitors: new Set<string>() };
@@ -146,11 +199,13 @@ async function stats(request: Request, url: URL, env: AffEnv): Promise<Response>
     byPage: sorted(pages, "path"),
     byPosition: sorted(positions, "pos"),
     byHour: sorted(hours, "hour").sort((a, b) => String(a.hour).localeCompare(String(b.hour))),
+    funnel: await funnelStats(date, env.AFF_KV),
   });
 }
 
 export async function handleAff(request: Request, url: URL, env: AffEnv, ctx: Ctx): Promise<Response> {
   if (url.pathname === "/api/aff/click") return click(request, url, env, ctx);
+  if (url.pathname === "/api/aff/event") return funnelEvent(request, url, env, ctx);
   if (url.pathname === "/api/aff/stats") return stats(request, url, env);
   return json({ error: "not found" }, 404);
 }

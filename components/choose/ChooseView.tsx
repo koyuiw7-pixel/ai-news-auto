@@ -70,7 +70,7 @@ export default function ChooseView({ guide, services, related, others, jsonLd }:
       <section aria-labelledby="table-heading" className="mt-14">
         <QHeading
           id="table-heading"
-          note={`${checked}に各社の公式サイトで確認。速度はすべて公称値（規格上の最大値）です。`}
+          note={guide.tableNote ?? `${checked}に各社の公式サイトで確認。速度はすべて公称値（規格上の最大値）です。`}
         >
           比較表：{services.length}件を同じ物差しで
         </QHeading>
@@ -152,6 +152,12 @@ export default function ChooseView({ guide, services, related, others, jsonLd }:
           ))}
         </div>
       </section>
+
+      {guide.extraSources && (
+        <p className="mt-6 text-note leading-relaxed text-muted">補足の出典：{guide.extraSources.map((source, i) => (
+          <span key={source.url}>{i > 0 && " ／ "}<a href={source.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{source.label}</a></span>
+        ))}</p>
+      )}
 
       <section aria-labelledby="faq-heading" className="mt-14 max-w-[760px]">
         <QHeading id="faq-heading">よくある質問</QHeading>
@@ -241,12 +247,13 @@ function OutLink({ service, className = "" }: { service: ResolvedService; classN
   return (
     <a
       href={service.href}
+      data-funnel-choice={service.id}
       target="_blank"
       rel={service.sponsored ? AFFILIATE_REL : "nofollow noopener"}
       className={`font-semibold text-accent underline underline-offset-2 ${className}`}
     >
-      公式サイト
-      <span className="sr-only">（{service.sponsored ? "広告・" : ""}新しいタブで開きます）</span>
+      公式サイト{service.sponsored && "（広告）"}
+      <span className="sr-only">（新しいタブで開きます）</span>
     </a>
   );
 }

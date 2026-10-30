@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import RevenueFunnelTracker from "@/components/RevenueFunnelTracker";
 import AffClickTracker from "@/components/AffClickTracker";
 import { siteConfig } from "@/site.config";
 import { dela, martian } from "./fonts";
@@ -123,6 +124,7 @@ export default function RootLayout({
         <Footer />
         {/* 提携リンクの人によるクリックを数える（ASP の数字と見比べる用。cloudflare/aff.ts） */}
         <AffClickTracker />
+        <RevenueFunnelTracker />
         {/* Vercelダッシュボードで Web Analytics を有効にした時点で計測が始まる。
             無効のうちは何も送信されないので、先に仕込んでおいて問題ない。
             Cloudflare では NEXT_PUBLIC_VERCEL_ANALYTICS=off で外す */}

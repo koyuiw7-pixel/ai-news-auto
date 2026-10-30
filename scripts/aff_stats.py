@@ -92,7 +92,17 @@ def fetch(token: str, date: str) -> dict:
 
 
 def show(data: dict, names: dict[str, str]) -> None:
-    print(f"■ {data['date']}（日本時間）人によるクリック {data['clicks']} 回 / {data['visitors']} 人")
+    print(f"■ {data['date']}（日本時間）自動アクセスを除いたクリック {data['clicks']} 回 / 推定 {data['visitors']} 訪問者")
+    funnel = data.get("funnel")
+    if funnel:
+        labels = {"entry_view": "ガイド一覧表示", "guide_click": "Difyガイドへの遷移", "guide_view": "Difyガイド表示", "comparison_view": "比較表到達", "choice_click": "行き先クリック"}
+        print(f"  導線 {funnel['id']}（日内推定。売上・承認・通過順序ではありません）:")
+        for row in funnel["stages"]:
+            print(f"    {labels.get(row['stage'], row['stage'])}: {row['events']}回 / 推定{row['visitors']}訪問者")
+        for row in funnel["byChoice"]:
+            print(f"    行き先 {row['choice']}: {row['events']}回")
+        if funnel.get("truncated"):
+            print("    注意: 集計上限に達しました。全件集計ではありません。")
     if not data["clicks"]:
         return
     print("  提携先別:")

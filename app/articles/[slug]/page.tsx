@@ -735,7 +735,7 @@ export default async function ArticlePage({ params }: Props) {
 /** 記事の話題に合う選び方ガイドへの案内（本文と同じ調子の囲み1つ） */
 function ChooseGuideNote({ guide, className = "" }: { guide: ChooseGuide; className?: string }) {
   return (
-    <aside aria-label="関連する選び方ガイド" className={`max-w-[40em] border-l-[3px] border-accent bg-surface px-4 py-3.5 ${className}`}>
+    <aside data-funnel-pos="article" aria-label="関連する選び方ガイド" className={`max-w-[40em] border-l-[3px] border-accent bg-surface px-4 py-3.5 ${className}`}>
       <p className="text-meta font-bold text-muted">あわせて読みたい</p>
       <Link href={`/choose/${guide.slug}`} className="mt-1 block text-[16px] font-bold leading-snug text-ink hover:text-accent hover:underline">
         {guide.articleLabel}

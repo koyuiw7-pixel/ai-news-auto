@@ -4,6 +4,8 @@
  */
 
 /** 表のセルの色分け：good=うれしい点、bad=気をつける点、なし=ふつう */
+import { difyHosting } from "./choose-dify";
+
 export type Tone = "good" | "bad";
 export type Cell = { text: string; tone?: Tone };
 
@@ -38,6 +40,8 @@ export type ChooseGuide = {
   updatedAt: string;
   /** 料金・特典を公式サイトで確かめた日 */
   checkedAt: string;
+  tableNote?: string;
+  extraSources?: { label: string; url: string }[];
   /** 表の列（1列目のサービス名は別） */
   columns: { key: string; label: string }[];
   services: ChooseService[];
@@ -534,4 +538,4 @@ const career: ChooseGuide = {
   articleNote: "IT転職エージェント・AI講座・国の支援制度を、対象と費用で比較",
 };
 
-export const CHOOSE_GUIDES: ChooseGuide[] = [internet, career];
+export const CHOOSE_GUIDES: ChooseGuide[] = [difyHosting, internet, career];

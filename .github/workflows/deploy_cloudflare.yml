@@ -39,6 +39,9 @@ jobs:
 
       - run: npm ci
 
+      - name: Verify affiliate and guide measurement without external requests
+        run: node scripts/test_aff.mjs
+
       - name: Build
         run: npm run cf:build
 
