@@ -148,6 +148,25 @@ export default async function ComparePage({ params }: Props) {
 
       <p className="mt-6 text-desc leading-[1.95] text-ink-soft">{guide.intro}</p>
 
+      {guide.slug === "vps-dify-n8n" && (
+        <aside aria-label="Difyとn8nの導入条件" className="mt-6 rounded-xl border border-line bg-surface p-5">
+          <h2 className="t-h2">料金を比べる前に、動かすアプリの要件を確認</h2>
+          <p className="mt-3 text-desc leading-[1.9] text-ink-soft">
+            2026年10月30日に確認したDify公式の最低条件はCPU 2コア・メモリ4GiBです。XServerのDifyアプリイメージも4GB以上のプランが対象です。
+            下のVPS全体の開始価格が、そのままDify対応プランの価格とは限りません。n8nは処理するデータ量や同時実行などで必要メモリが変わります。
+          </p>
+          <p className="mt-3 text-note leading-[1.8] text-ink-soft">
+            根拠：<a href="https://docs.dify.ai/en/self-host/deploy/quick-start/docker-compose" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Dify公式導入要件</a>
+            、<a href="https://vps.xserver.ne.jp/dify.php" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">XServerのDify対応条件</a>
+            、<a href="https://docs.n8n.io/deploy/host-n8n/configure-n8n/scaling/fix-memory-issues" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">n8n公式のメモリ説明</a>。
+          </p>
+          <ul className="mt-4 grid gap-2 text-desc leading-[1.8]">
+            <li><Link href="/guides/dify-free-api-cost" className="font-bold underline underline-offset-4">Difyを試す前に、無料枠とAPIの請求先を確認する</Link></li>
+            <li><Link href="/guides/dify-1-18-startup-check" className="font-bold underline underline-offset-4">Dify 1.18.0が起動しないときの確認順を読む</Link></li>
+          </ul>
+        </aside>
+      )}
+
       {/* 迷ったらこれ */}
       {picks.length > 0 && (
         <section aria-labelledby="pick-heading" className="mt-8 overflow-hidden rounded-2xl border border-ink">

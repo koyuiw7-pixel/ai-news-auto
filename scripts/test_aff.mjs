@@ -18,6 +18,18 @@ try {
     },
   }] });
   await import(pathToFileURL(clientOutfile).href);
+  const attributionOutfile = join(dir, "attribution-test.mjs");
+  await build({ entryPoints: ["lib/a8-attribution.test.ts"], outfile: attributionOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning" });
+  await import(pathToFileURL(attributionOutfile).href);
+  const footerOutfile = join(dir, "footer-link-test.mjs");
+  await build({ entryPoints: ["components/DifyDecisionLink.test.tsx"], outfile: footerOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning", plugins: [{
+    name: "next-pathname-for-footer-link-test",
+    setup(build) {
+      build.onResolve({ filter: /^next\/(navigation|link)$/ }, args => ({ path: args.path, namespace: "test-next-link" }));
+      build.onLoad({ filter: /.*/, namespace: "test-next-link" }, () => ({ contents: "export const usePathname=()=>globalThis.__testDifyPathname; export default function Link(){}", loader: "js" }));
+    },
+  }] });
+  await import(pathToFileURL(footerOutfile).href);
 } finally {
   await rm(dir, { recursive: true, force: true });
 }

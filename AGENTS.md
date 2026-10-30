@@ -91,7 +91,7 @@
 - 文字の見やすさ: `npm run check:readability` が **0件** であること（`docs/typography.md`）。
 
 ### 広告・計測
-- 広告リンクは `rel="sponsored nofollow noopener noreferrer"`。**リンク先（href）やA8の計測タグ自体は改変しない**（A8の規約）。
+- 広告リンクは `rel="sponsored nofollow noopener noreferrer"`。広告主の素材URL・計測タグを独自に作り替えない。2026/10/30のオーナー指示による例外は、Dify比較の指定XServer VPSリンク2か所への**A8公式パラメータ機能のid1〜id3追記だけ**。元のa8mat・遷移先・エンコード・画像タグは保持し、他の広告へ広げない。仕様・制約は `docs/dify-a8-attribution-20261030.md` を参照。
 - テストでブラウザを動かすときは、a8.net・楽天・Amazon・AdSense への通信を止める（`docs/automation.md`）。止めないと広告の数字が水増しされる。
 - 訪問者数は **Cloudflare Web Analytics（ロボット除外）** を見る。Facebook からの大量アクセスはロボット（リンクプレビュー）なので人として数えない。
 - 広告の「人によるクリック」は `python3 scripts/aff_stats.py --yesterday`。

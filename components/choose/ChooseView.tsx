@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Suspense } from "react";
+import DifyA8Attribution from "@/components/DifyA8Attribution";
 import ArticleCard from "@/components/ArticleCard";
 import AssetShell, { Crumbs, QHeading } from "@/components/assets/AssetShell";
 import { Pixels } from "@/components/rail/parts";
@@ -32,6 +34,7 @@ export default function ChooseView({ guide, services, related, others, jsonLd }:
 
   return (
     <AssetShell wide>
+      {guide.slug === "dify-hosting" && <Suspense fallback={null}><DifyA8Attribution /></Suspense>}
       <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Pixels pixels={pixels} />
       <Crumbs items={[{ href: "/", label: "ホーム" }, { label: "選び方ガイド" }]} />
@@ -243,11 +246,12 @@ function toneLabel(cell?: Cell): string {
 }
 
 /** 公式サイトへのリンク。提携リンクも普通のリンクも見た目は同じ */
-function OutLink({ service, className = "" }: { service: ResolvedService; className?: string }) {
+function OutLink({ service, dify = false, className = "" }: { service: ResolvedService; dify?: boolean; className?: string }) {
   return (
     <a
       href={service.href}
       data-funnel-choice={service.id}
+      data-a8-dify={dify && service.id === "xserver-dify" && service.sponsored ? "v1" : undefined}
       target="_blank"
       rel={service.sponsored ? AFFILIATE_REL : "nofollow noopener"}
       className={`font-semibold text-accent underline underline-offset-2 ${className}`}
@@ -295,7 +299,7 @@ function CompareTable({ guide, byId }: { guide: ChooseGuide; byId: Map<string, R
                 <th scope="row" className="sticky left-0 z-10 w-[11rem] min-w-[11rem] border-r border-line bg-paper px-3 py-3 text-left">
                   <span className="block text-[15px] font-bold leading-snug text-ink">{service.name}</span>
                   <span className="mt-0.5 block text-meta font-normal text-muted">{service.kind}</span>
-                  <OutLink service={service} className="mt-1.5 inline-block text-note" />
+                  <OutLink service={service} dify={guide.slug === "dify-hosting"} className="mt-1.5 inline-block text-note" />
                 </th>
                 {guide.columns.map((col) => {
                   const cell = service.cells[col.key];
@@ -334,7 +338,7 @@ function CompareCards({ guide, byId }: { guide: ChooseGuide; byId: Map<string, R
                     <span className="text-[16px] font-bold leading-snug text-ink">{service.name}</span>
                     <span className="ml-2 text-meta text-muted">{service.kind}</span>
                   </p>
-                  <OutLink service={service} className="shrink-0 text-note" />
+                  <OutLink service={service} dify={guide.slug === "dify-hosting"} className="shrink-0 text-note" />
                 </div>
                 <dl className="divide-y divide-line">
                   {guide.columns.map((col) => {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import DifyDecisionLink from "@/components/DifyDecisionLink";
 import { getAllArticles, getAllChannels, getAllTags } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
 import { hasActiveAffiliate } from "@/lib/monetization";
@@ -89,9 +90,13 @@ export default function Footer() {
             <ul className="mb-8 mt-4 space-y-2.5">
               {REFERENCE_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-note font-semibold text-ink-soft hover:text-accent">
-                    {link.label}
-                  </Link>
+                  {link.href === "/choose/dify-hosting" ? (
+                    <DifyDecisionLink className="text-note font-semibold text-ink-soft hover:text-accent">{link.label}</DifyDecisionLink>
+                  ) : (
+                    <Link href={link.href} className="text-note font-semibold text-ink-soft hover:text-accent">
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

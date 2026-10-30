@@ -7,6 +7,7 @@ import { howtoArticles, siblingHowtos, type HowtoGuide } from "@/lib/howto";
 import { getChooseGuide } from "@/lib/choose";
 import { getProduct } from "@/lib/products";
 import { siteConfig } from "@/site.config";
+import { difyDecisionHref } from "@/lib/a8-attribution";
 
 /** 使い方ガイド（/guides/<slug>）。結論 → 手順 → 料金・無料の範囲 → 日本で使える？ → よくある質問 */
 export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
@@ -208,7 +209,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
 
       {decisionGuide ? (
         <aside aria-label="関連する選び方ガイド" data-aff-pos="howto-decision" data-funnel-pos="howto-decision" className="mt-10 border-l-[3px] border-accent bg-surface px-4 py-4">
-          <Link href={`/choose/${decisionGuide.slug}`} className="text-[17px] font-bold leading-relaxed text-ink underline decoration-line-strong underline-offset-4 hover:text-accent">
+          <Link href={difyDecisionHref(`/guides/${guide.slug}`, `/choose/${decisionGuide.slug}`)} className="text-[17px] font-bold leading-relaxed text-ink underline decoration-line-strong underline-offset-4 hover:text-accent">
             {decisionGuide.articleLabel}
           </Link>
           <p className="mt-2 text-desc leading-[1.85] text-ink-soft">{decisionGuide.articleNote}</p>

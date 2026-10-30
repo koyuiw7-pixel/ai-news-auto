@@ -9,6 +9,7 @@
   "seoTitle": "Dify 1.18.0が起動しない？Agentの再起動・認証設定の確認順",
   "description": "Dify 1.18.0のDocker Compose環境でAgent関連サービスが起動しないときの確認ガイド。sandbox認証、古いイメージとの混在、更新前に保持する設定を公式資料から整理。Cloud利用者やVPSの自動構築とは区別します。",
   "editorialNote": "2026年10月30日に公式1.18.0リリースノート・Docker Compose導入資料・環境変数資料を確認して編集しました。リリース日は10月23日で、本日の新発表ではありません。実環境の構築・更新・障害再現は行っていません。実行例は状態の確認用に限り、更新や復旧の成功を保証しません。",
+  "refreshMode": "editorial",
   "conclusion": [
     "Dify 1.18.0を自分でDocker Compose運用する人向けです。まず、新規導入か更新か、どのサービスが止まっているかを分けます。Dify Cloudの利用者が同じサーバー設定を操作する必要はありません。",
     "標準のlocal構成ではsandboxの認証設定が必要です。また、旧版と新版のAgent関連イメージの混在も確認対象です。トークン一つで全ての起動問題が直るとは限りません。",
@@ -30,7 +31,7 @@
       ]
     },
     {
-      "title": "Agentとsandboxが再起動する場合は、認証設定の場所を確認する",
+      "title": "agent_backend・local_sandboxの再起動は認証設定を確認する",
       "body": "標準local backendで使うDIFY_AGENT_LOCAL_SANDBOX_AUTH_TOKENは空にできません。公式資料では、空の場合にAgent backendとsandboxが起動時に終了し、再起動を繰り返すと説明されています。設定場所はdocker/.envで、docker/envs以下のファイルだけに書いても反映されません。この値はAIモデルのAPIキーではありません。既存の設定を取り違えず、公式の環境変数説明に沿って、設定名と場所を確認します。"
     },
     {
@@ -82,6 +83,14 @@
       "a": "本稿は自分でDocker環境を管理する人向けです。Cloudをブラウザーで利用している人のモデル設定と、セルフホストのサーバー設定は別です。"
     },
     {
+      "q": "agent_backendとlocal_sandboxが再起動を繰り返すとき、最初に何を確認しますか？",
+      "a": "標準local構成では、docker/.envのDIFY_AGENT_LOCAL_SANDBOX_AUTH_TOKENが空でないかを確認します。公式資料は、空の場合に両サービスが起動時に終了すると説明しています。更新後ならAgent関連イメージの版の混在も確認対象です。サーバーの増強や再契約を先に行う必要はありません。"
+    },
+    {
+      "q": "sandbox用トークンを書いたのに反映されません。設定ファイルはどこですか？",
+      "a": "公式Compose構成ではdocker/.envに設定します。DIFY_AGENT_LOCAL_SANDBOX_AUTH_TOKENをdocker/envs以下のファイルだけに書いても反映されません。ファイル名と保存場所を確かめ、既存の.envをサンプルで丸ごと上書きしないでください。"
+    },
+    {
       "q": "DIFY_AGENT_LOCAL_SANDBOX_AUTH_TOKENを設定すれば必ず直りますか？",
       "a": "いいえ。標準local構成で空の場合の確認項目です。設定する場所、別の認証値の形式、イメージの版、止まっているサービスなどにより原因は異なります。"
     },
@@ -109,17 +118,17 @@
     {
       "url": "https://github.com/langgenius/dify/releases/tag/1.18.0",
       "title": "Dify 1.18.0公式リリース：互換性・更新時の保持事項",
-      "checkedAt": "2026-10-30T13:28:00+09:00"
+      "checkedAt": "2026-10-30T19:13:40+09:00"
     },
     {
       "url": "https://docs.dify.ai/en/self-host/deploy/quick-start/docker-compose",
       "title": "公式Docker Compose導入手順・サービスの状態",
-      "checkedAt": "2026-10-30T13:28:00+09:00"
+      "checkedAt": "2026-10-30T19:13:40+09:00"
     },
     {
       "url": "https://docs.dify.ai/en/self-host/deploy/configuration/environments",
       "title": "Agentの認証設定・環境変数",
-      "checkedAt": "2026-10-30T13:28:00+09:00"
+      "checkedAt": "2026-10-30T19:13:40+09:00"
     },
     {
       "url": "https://docs.dify.ai/en/self-host/deploy/quick-start/faqs",
@@ -128,6 +137,6 @@
     }
   ],
   "createdAt": "2026-10-30T13:28:00+09:00",
-  "updatedAt": "2026-10-30T13:28:00+09:00",
+  "updatedAt": "2026-10-30T19:13:40+09:00",
   "checkedAt": "2026-10-30T13:28:00+09:00"
 }
