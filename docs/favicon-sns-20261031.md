@@ -28,3 +28,7 @@ Threadsのサイソク公式プロフィールを通常UIで目視すると、�
 - `npx tsc --noEmit --incremental false` と `git diff --check` 成功。保持対象13ファイルが変更前と同一であることを確認。本番ビルド・公開・HTML表示確認は別工程。commitだけでGoogleのfavicon表示を直したとは扱わない。
 
 Google検索での地球アイコンは、サイト側の公開後もGoogleによる再取得・処理が必要。条件を満たしても表示は保証されず、数日〜数週間かかる場合がある。URLを頻繁に交換したり、再取得申請を連打したりしない。[Google公式faviconガイド](https://developers.google.com/search/docs/appearance/favicon-in-search)
+
+## 本番確認
+
+2026-10-31 01:39:48 JSTのDeploy41091544828で公開。本番favicon.icoは新ICOとバイト一致、6サイズを確認。stable PNG・旧/icon・旧/apple-icon・manifestはHTTP200、旧/iconと512PNG同一。検索監査fail0、旧Vercelの404警告3は既知で今回未解消。Google検索画面の地球アイコン置換は未確認。新しい課金やドメイン変更はしていない。
