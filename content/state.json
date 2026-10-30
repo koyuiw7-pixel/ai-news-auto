@@ -3370,6 +3370,13 @@
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/kiro-cli-agent-write-boundaries/"
     },
+    "0fae713d99d57a61": {
+      "at": "2026-10-30T04:01:46.264004+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1773字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（375字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.ipa.go.jp/shiken/syllabus/henkou/2026/20260630.html"
+    },
     "0fed12977c1a8fbf": {
       "at": "2026-10-28T19:33:35.339413+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3405,6 +3412,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000001.000193333.html"
+    },
+    "10e39f3c465923ee": {
+      "at": "2026-10-30T04:02:30.267195+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "ipa-supply-chain-data-guideline-v2",
+      "url": "https://www.ipa.go.jp/digital/architecture/guidelines/scdata-guide.html"
     },
     "1112027d5901b6f1": {
       "at": "2026-10-29T16:42:53.516721+00:00",
@@ -5108,6 +5123,13 @@
       "slug": "cao-consumer-confidence-survey-oct-2026",
       "url": "https://www.esri.cao.go.jp/jp/stat/shouhi/shouhi.html"
     },
+    "4e0f50b93d30ce0a": {
+      "at": "2026-10-30T04:01:33.939120+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "元記事のPDF内容が文字化け（バイナリデータ）しており、正常に金融政策の決定内容を読み取って記事化することが不可能なため。",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030a.pdf"
+    },
     "4e1da1e89922caa5": {
       "at": "2026-10-28T17:58:25.739552+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6759,6 +6781,13 @@
       "section": "business",
       "slug": "omron-ntt-docomo-business-ot-security",
       "url": "https://www.ntt.com/about-us/press-releases/news/article/2026/1027_2.html"
+    },
+    "8d2124d7838d1e30": {
+      "at": "2026-10-30T04:02:13.551866+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（388字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87231?site=nli"
     },
     "8d2560966ba9f6c1": {
       "at": "2026-10-27T17:57:07.707401+00:00",
@@ -9504,6 +9533,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000115.000077693.html"
     },
+    "f906c63ac8a581e2": {
+      "at": "2026-10-30T04:01:58.076702+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1621字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/press/yusyutu_kokusai/kikaku/261030.html"
+    },
     "f9bcba43eff0987b": {
       "at": "2026-10-30T03:01:57.220825+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9650,195 +9686,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T02:02:11.630489+00:00",
-      "attempt": 2,
-      "id": "13199e1cbdfa06a8",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 82.1字・60字超の文が 79% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 155.9字・最長 207字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 155.9,
-        "avg_sentence": 82.1,
-        "long_share": 0.789,
-        "max_paragraph": 207,
-        "paragraphs": 10,
-        "sentences": 19
-      },
-      "score": 100,
-      "source": "riken",
-      "title": "生態系を制御する「キーストーン種」を探す"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T02:02:19.923108+00:00",
-      "attempt": 0,
-      "id": "13199e1cbdfa06a8",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 169.9字・最長 223字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 169.9,
-        "avg_sentence": 37.8,
-        "long_share": 0.067,
-        "max_paragraph": 223,
-        "paragraphs": 10,
-        "sentences": 45
-      },
-      "score": 100,
-      "source": "riken",
-      "title": "生態系を制御する「キーストーン種」を探す"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T02:21:34.073846+00:00",
-      "attempt": 1,
-      "id": "9b31899470f3b663",
-      "kind": "update",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "jst",
-      "title": "生態系を制御する「キーストーン種」を探す～森林地下の共生ネットワークに潜む「隠れた司令塔」～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T02:21:42.238987+00:00",
-      "attempt": 1,
-      "id": "5aa5ef7ac0fd88b0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（353字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 154.4,
-        "avg_sentence": 57.2,
-        "long_share": 0.259,
-        "max_paragraph": 286,
-        "paragraphs": 10,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "地震や消火を体験し、災害への備えを学ぶ外国人向け防災体験ツアーを実施 英語・中国語の通訳付き Let's learn about disaster preven"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T02:21:49.887359+00:00",
-      "attempt": 2,
-      "id": "5aa5ef7ac0fd88b0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1789字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 106.7,
-        "avg_sentence": 49.2,
-        "long_share": 0.231,
-        "max_paragraph": 223,
-        "paragraphs": 12,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "地震や消火を体験し、災害への備えを学ぶ外国人向け防災体験ツアーを実施 英語・中国語の通訳付き Let's learn about disaster preven"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T02:21:57.709840+00:00",
-      "attempt": 1,
-      "id": "996d4e50b70768eb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 63.3字・60字超の文が 48% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 189.9字・最長 247字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 189.9,
-        "avg_sentence": 63.3,
-        "long_share": 0.476,
-        "max_paragraph": 247,
-        "paragraphs": 7,
-        "sentences": 21
-      },
-      "score": 100,
-      "source": "kirin",
-      "title": "12月に高まる「自分へのご褒美」ニーズに冬限定「氷結® ご褒美スパークリング」 旬の果実を心地よい炭酸感で楽しめるアップルと洋梨の2品発売"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T02:22:02.432675+00:00",
-      "attempt": 0,
-      "id": "996d4e50b70768eb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 98.5,
-        "avg_sentence": 31.3,
-        "long_share": 0.045,
-        "max_paragraph": 180,
-        "paragraphs": 14,
-        "sentences": 44
-      },
-      "score": 100,
-      "source": "kirin",
-      "title": "12月に高まる「自分へのご褒美」ニーズに冬限定「氷結® ご褒美スパークリング」 旬の果実を心地よい炭酸感で楽しめるアップルと洋梨の2品発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T02:41:37.918158+00:00",
-      "attempt": 1,
-      "id": "c9a193118dc8da7c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2374字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 101.6,
-        "avg_sentence": 52.3,
-        "long_share": 0.286,
-        "max_paragraph": 158,
-        "paragraphs": 18,
-        "sentences": 35
-      },
-      "score": null,
-      "source": "ntt-news-ai",
-      "title": "NTTテクノクロス、「ForeSight Voice Mining®」に「AIナビゲーション」機能を追加 ～会話に合わせて次に案内すべき内容をリアルタイムで提示"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T02:41:55.321470+00:00",
-      "attempt": 2,
-      "id": "c9a193118dc8da7c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2362字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 128.9,
-        "avg_sentence": 57.3,
-        "long_share": 0.417,
-        "max_paragraph": 282,
-        "paragraphs": 16,
-        "sentences": 36
-      },
-      "score": null,
-      "source": "ntt-news-ai",
-      "title": "NTTテクノクロス、「ForeSight Voice Mining®」に「AIナビゲーション」機能を追加 ～会話に合わせて次に案内すべき内容をリアルタイムで提示"
-    },
     {
       "accepted": true,
       "at": "2026-10-29T02:41:59.790464+00:00",
@@ -16352,6 +16199,212 @@
       "score": 100,
       "source": "xbox-wire-jp",
       "title": "ウェイストランド体験を表参道で！「Fallout」× TOWER RECORDS CAFE コラボ先行体験をファンの声とともにお届け"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:01:40.291457+00:00",
+      "attempt": 1,
+      "id": "0fae713d99d57a61",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1722字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（361字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 134.0,
+        "avg_sentence": 53.6,
+        "long_share": 0.24,
+        "max_paragraph": 242,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "ipa",
+      "title": "プロフェッショナルデジタルスキル（データ・AI）試験（仮称） 科目Bのシラバス案を公表しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:01:46.263932+00:00",
+      "attempt": 2,
+      "id": "0fae713d99d57a61",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1773字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（375字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 86.6,
+        "avg_sentence": 65.0,
+        "long_share": 0.542,
+        "max_paragraph": 125,
+        "paragraphs": 18,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "ipa",
+      "title": "プロフェッショナルデジタルスキル（データ・AI）試験（仮称） 科目Bのシラバス案を公表しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:01:52.217114+00:00",
+      "attempt": 1,
+      "id": "f906c63ac8a581e2",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1347字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（360字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 119.8,
+        "avg_sentence": 59.9,
+        "long_share": 0.65,
+        "max_paragraph": 272,
+        "paragraphs": 10,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "maff",
+      "title": "令和9年1月分からパックご飯、即席味噌汁、ラムネ等の炭酸飲料などの輸出額が把握できるようになります！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:01:58.076661+00:00",
+      "attempt": 2,
+      "id": "f906c63ac8a581e2",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1621字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 148.1,
+        "avg_sentence": 57.0,
+        "long_share": 0.385,
+        "max_paragraph": 231,
+        "paragraphs": 10,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "maff",
+      "title": "令和9年1月分からパックご飯、即席味噌汁、ラムネ等の炭酸飲料などの輸出額が把握できるようになります！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:02:07.088797+00:00",
+      "attempt": 1,
+      "id": "8d2124d7838d1e30",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）"
+      ],
+      "readability": {
+        "avg_paragraph": 173.5,
+        "avg_sentence": 63.6,
+        "long_share": 0.467,
+        "max_paragraph": 228,
+        "paragraphs": 11,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "「フレンドフレーション」について考えたことはありますか？"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:02:13.551829+00:00",
+      "attempt": 2,
+      "id": "8d2124d7838d1e30",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（388字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 178.6,
+        "avg_sentence": 64.3,
+        "long_share": 0.64,
+        "max_paragraph": 223,
+        "paragraphs": 9,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "「フレンドフレーション」について考えたことはありますか？"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:02:19.990828+00:00",
+      "attempt": 1,
+      "id": "10e39f3c465923ee",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1716字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（369字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 86.2,
+        "avg_sentence": 56.2,
+        "long_share": 0.348,
+        "max_paragraph": 145,
+        "paragraphs": 15,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "ipa",
+      "title": "「データ連携の仕組みに関するガイドラインの手引き サプライチェーン共通編」の2.0版を公開しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:02:26.632091+00:00",
+      "attempt": 2,
+      "id": "10e39f3c465923ee",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 58.0字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 126.5字・最長 259字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 126.5,
+        "avg_sentence": 58.0,
+        "long_share": 0.292,
+        "max_paragraph": 259,
+        "paragraphs": 11,
+        "sentences": 24
+      },
+      "score": 100,
+      "source": "ipa",
+      "title": "「データ連携の仕組みに関するガイドラインの手引き サプライチェーン共通編」の2.0版を公開しました"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T04:02:30.266683+00:00",
+      "attempt": 0,
+      "id": "10e39f3c465923ee",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 45.5字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 128.3字・最長 263字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 128.3,
+        "avg_sentence": 45.5,
+        "long_share": 0.129,
+        "max_paragraph": 263,
+        "paragraphs": 11,
+        "sentences": 31
+      },
+      "score": 100,
+      "source": "ipa",
+      "title": "「データ連携の仕組みに関するガイドラインの手引き サプライチェーン共通編」の2.0版を公開しました"
     }
   ],
   "short_text_retry": {}
