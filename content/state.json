@@ -3732,6 +3732,13 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/recruit/index-general-b.html"
     },
+    "160a9be6e09b24c8": {
+      "at": "2026-10-30T19:11:07.941986+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "発表の開催案内や動画配信の告知であり、国民生活に直結する具体的な制度変更、給付、料金改定などの新しい事実が含まれないため。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/vertical/online/video-784.html"
+    },
     "160f6fcc9e4022f5": {
       "at": "2026-10-27T17:14:35.267344+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4252,6 +4259,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（アワード）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/career-award/"
+    },
+    "273bceb43f673730": {
+      "at": "2026-10-30T19:11:07.942130+00:00",
+      "reason": "dedupe: 固有名詞が一致（ideco・パワーアップ）: 【縦型動画】iDeCoがパワーアップ!",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/useful/202610/video-326870.html"
     },
     "274aedb084ae6e00": {
       "at": "2026-10-28T02:28:35.667895+00:00",
@@ -6724,6 +6737,14 @@
       "section": "lifestyle",
       "slug": "kirin-good-ale-limited-message-can",
       "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1027_01.html"
+    },
+    "7bc8b4ac5fbcf892": {
+      "at": "2026-10-30T19:11:29.061196+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "government-food-loss-reduction-guide",
+      "url": "https://www.gov-online.go.jp/article/201303/entry-7526.html"
     },
     "7bf0065ceb1646f5": {
       "at": "2026-10-29T18:08:58.168669+00:00",
@@ -10834,69 +10855,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-29T19:11:52.860506+00:00",
-      "attempt": 0,
-      "id": "eb9069225e782eff",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.3,
-        "avg_sentence": 34.1,
-        "long_share": 0.095,
-        "max_paragraph": 138,
-        "paragraphs": 23,
-        "sentences": 63
-      },
-      "score": 100,
-      "source": "github-changelog-copilot",
-      "title": "Repository plugin defaults and enterprise plugin controls generally available"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T19:12:02.765443+00:00",
-      "attempt": 1,
-      "id": "10ae8e116e06d0fb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 52.5字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 162.7字・最長 208字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 162.7,
-        "avg_sentence": 52.5,
-        "long_share": 0.323,
-        "max_paragraph": 208,
-        "paragraphs": 10,
-        "sentences": 31
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "糖尿病への正しい理解の輪を広げよう！11月14日は「World Diabetes Day（ワールド ダイアベティス デイ）」（世界糖尿病デー）"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T19:12:06.995373+00:00",
-      "attempt": 0,
-      "id": "10ae8e116e06d0fb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 78.4,
-        "avg_sentence": 25.0,
-        "long_share": 0.0,
-        "max_paragraph": 173,
-        "paragraphs": 22,
-        "sentences": 69
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "糖尿病への正しい理解の輪を広げよう！11月14日は「World Diabetes Day（ワールド ダイアベティス デイ）」（世界糖尿病デー）"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T19:31:45.029351+00:00",
@@ -17587,6 +17545,73 @@
       "score": null,
       "source": "trends",
       "title": "sox"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T19:11:14.845089+00:00",
+      "attempt": 1,
+      "id": "7bc8b4ac5fbcf892",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1582字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 128.5,
+        "avg_sentence": 48.8,
+        "long_share": 0.172,
+        "max_paragraph": 217,
+        "paragraphs": 11,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "gov-online",
+      "title": "すぐできるコツがいっぱい!環境にもお財布にも優しい「食品ロス」の減らし方"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T19:11:22.913831+00:00",
+      "attempt": 2,
+      "id": "7bc8b4ac5fbcf892",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 60.3字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 196.1字・最長 437字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 196.1,
+        "avg_sentence": 60.3,
+        "long_share": 0.423,
+        "max_paragraph": 437,
+        "paragraphs": 8,
+        "sentences": 26
+      },
+      "score": 100,
+      "source": "gov-online",
+      "title": "すぐできるコツがいっぱい!環境にもお財布にも優しい「食品ロス」の減らし方"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T19:11:29.060820+00:00",
+      "attempt": 0,
+      "id": "7bc8b4ac5fbcf892",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 109.4,
+        "avg_sentence": 23.2,
+        "long_share": 0.0,
+        "max_paragraph": 171,
+        "paragraphs": 14,
+        "sentences": 66
+      },
+      "score": 100,
+      "source": "gov-online",
+      "title": "すぐできるコツがいっぱい!環境にもお財布にも優しい「食品ロス」の減らし方"
     }
   ],
   "short_text_retry": {}
