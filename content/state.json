@@ -5484,6 +5484,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000004.000181678.html"
     },
+    "53677684b3ba7949": {
+      "at": "2026-10-30T09:31:26.673167+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1639字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/ordinary/tariff202504/kashitsuke/202506.html"
+    },
     "536d3e58d5c92fe6": {
       "at": "2026-10-28T21:54:39.573883+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6373,6 +6380,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（調達）",
       "skipped": true,
       "url": "https://www.digital.go.jp/councils/procurement-reform/FY2026/24cfea22-3e10-418e-abbd-983af697d751"
+    },
+    "74684824c71b8449": {
+      "at": "2026-10-30T09:31:34.741298+00:00",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "updated": "ntt-bbtower-iown-apn-storage-integration",
+      "url": "http://www.ntt-west.co.jp/news/2610/261030a.html"
     },
     "747b76bde702bc0b": {
       "at": "2026-10-27T22:01:49.260374+00:00",
@@ -7362,6 +7377,13 @@
       "section": "business",
       "slug": "rakuten-ichiba-winter-2026-trend",
       "url": "https://corp.rakuten.co.jp/news/press/2026/1028_01.html"
+    },
+    "95b75c0235110758": {
+      "at": "2026-10-30T09:31:41.010168+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "セキュリティ上の不正アクセスによる情報漏えいの可能性に関するプレスリリースであり、テクノロジー・ガジェットの新製品や新サービスの話題ではないため。",
+      "skipped": true,
+      "url": "https://newsroom.kddi.com/news/assets/2026/kddi_nr_s-82_4796/kddi_nr_s-82_4796_pdf_01.pdf"
     },
     "95d5916fd6281c36": {
       "at": "2026-10-27T17:13:08.660817+00:00",
@@ -9134,6 +9156,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005959.000054842.html"
     },
+    "d73f8b83aa40db8a": {
+      "at": "2026-10-30T09:31:55.097696+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "digital-agency-mynumber-dashboard-update",
+      "url": "https://www.digital.go.jp/resources/govdashboard/mynumber_card_penetration_usage"
+    },
     "d7461b52f3ef9488": {
       "at": "2026-10-27T03:21:03.357890+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10296,122 +10326,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T16:43:25.037974+00:00",
-      "attempt": 1,
-      "id": "cfed9c89d189cfbc",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1314字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 99.2,
-        "avg_sentence": 57.4,
-        "long_share": 0.368,
-        "max_paragraph": 142,
-        "paragraphs": 11,
-        "sentences": 19
-      },
-      "score": null,
-      "source": "softbank-news",
-      "title": "全身全霊で掴んだ2年連続の頂点！ 福岡ソフトバンクホークスが4連勝で13度目の日本一に"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T16:43:53.592031+00:00",
-      "attempt": 2,
-      "id": "cfed9c89d189cfbc",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1259字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（375字 / 基準 400字以上）",
-        "title / seo_title に感嘆符がある"
-      ],
-      "readability": {
-        "avg_paragraph": 169.0,
-        "avg_sentence": 53.8,
-        "long_share": 0.273,
-        "max_paragraph": 262,
-        "paragraphs": 7,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "softbank-news",
-      "title": "全身全霊で掴んだ2年連続の頂点！ 福岡ソフトバンクホークスが4連勝で13度目の日本一に"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T16:44:29.482824+00:00",
-      "attempt": 1,
-      "id": "8feabbaa6b9ec38c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1100字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（220字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 71.4,
-        "avg_sentence": 39.2,
-        "long_share": 0.05,
-        "max_paragraph": 165,
-        "paragraphs": 11,
-        "sentences": 20
-      },
-      "score": null,
-      "source": "caa",
-      "title": "不正アクセスによる個人情報の漏えい等に関する注意喚起"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T16:44:48.056782+00:00",
-      "attempt": 2,
-      "id": "8feabbaa6b9ec38c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1487字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（375字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 110.6,
-        "avg_sentence": 55.3,
-        "long_share": 0.364,
-        "max_paragraph": 185,
-        "paragraphs": 11,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "caa",
-      "title": "不正アクセスによる個人情報の漏えい等に関する注意喚起"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T16:45:05.958260+00:00",
-      "attempt": 1,
-      "id": "b95c6de3a9285d8e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（375字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 174.3,
-        "avg_sentence": 62.8,
-        "long_share": 0.48,
-        "max_paragraph": 219,
-        "paragraphs": 9,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "xbox-wire-jp",
-      "title": "ララ・クロフトの 30 年を振り返る"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T16:45:45.815941+00:00",
@@ -17068,6 +16982,109 @@
       "score": 100,
       "source": "fsa",
       "title": "その他,個人情報流出の被害に遭われた方・ご心配のある方向けの相談窓口について掲載しました。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T09:31:20.552346+00:00",
+      "attempt": 1,
+      "id": "53677684b3ba7949",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1459字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（330字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 120.0,
+        "avg_sentence": 56.8,
+        "long_share": 0.368,
+        "max_paragraph": 206,
+        "paragraphs": 9,
+        "sentences": 19
+      },
+      "score": null,
+      "source": "fsa",
+      "title": "その他,金融機関における貸付条件の変更等の状況についてを更新しました。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T09:31:26.673134+00:00",
+      "attempt": 2,
+      "id": "53677684b3ba7949",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1639字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 128.9,
+        "avg_sentence": 52.7,
+        "long_share": 0.273,
+        "max_paragraph": 177,
+        "paragraphs": 9,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "fsa",
+      "title": "その他,金融機関における貸付条件の変更等の状況についてを更新しました。"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T09:31:34.740458+00:00",
+      "attempt": 1,
+      "id": "74684824c71b8449",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "ntt-news",
+      "title": "IOWN APNを用いたストレージ間の超高速大容量データ転送の実証実験を実施"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T09:31:50.580848+00:00",
+      "attempt": 1,
+      "id": "d73f8b83aa40db8a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 55.2字・60字超の文が 39% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 130.2字・最長 265字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 130.2,
+        "avg_sentence": 55.2,
+        "long_share": 0.394,
+        "max_paragraph": 265,
+        "paragraphs": 14,
+        "sentences": 33
+      },
+      "score": 100,
+      "source": "digital-agency",
+      "title": "マイナンバーカードの普及と利活用に関するダッシュボードを更新しました"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T09:31:55.097328+00:00",
+      "attempt": 0,
+      "id": "d73f8b83aa40db8a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 143.2字・最長 276字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 143.2,
+        "avg_sentence": 28.6,
+        "long_share": 0.0,
+        "max_paragraph": 276,
+        "paragraphs": 14,
+        "sentences": 70
+      },
+      "score": 100,
+      "source": "digital-agency",
+      "title": "マイナンバーカードの普及と利活用に関するダッシュボードを更新しました"
     }
   ],
   "short_text_retry": {}
