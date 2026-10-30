@@ -8,9 +8,8 @@
   "companyName": "Google",
   "category": "AIモデル",
   "overview": {
-    "text": "Gemma 4は、Google DeepMindが開発した新世代のオープンソースなマルチモーダルモデルです。スマートフォンからクラウドまでカバーする5つのモデルサイズを展開し、2026年9月に発表されました。",
+    "text": "Gemma 4は、Google DeepMindが開発した新世代のオープンなマルチモーダル大規模言語モデルです。テキストだけでなく音声や画像も処理できます。2026年9月に公開されました。",
     "sources": [
-      "gemma-4-ple-architecture-explained-matome",
       "google-deepmind-gemma-4-family-explained"
     ]
   },
@@ -19,31 +18,27 @@
       "label": "料金",
       "value": "オープンモデル",
       "sources": [
-        "gemma-4-per-layer-embeddings-explained",
-        "google-deepmind-gemma-4-family-explained"
+        "gemma-4-per-layer-embeddings-explained"
       ]
     },
     {
       "label": "提供開始",
-      "value": "一般提供（GA）",
+      "value": "2026年9月",
       "sources": [
-        "gemma-4-per-layer-embeddings-explained",
-        "gemma-4-12b-encoder-free-explained"
+        "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
       "label": "日本での提供",
       "value": "利用できる",
       "sources": [
-        "gemma-4-per-layer-embeddings-explained",
-        "gemma-4-12b-encoder-free-explained"
+        "gemma-4-per-layer-embeddings-explained"
       ]
     },
     {
       "label": "使える場所",
       "value": "Hugging FaceやGitHub",
       "sources": [
-        "gemma-4-ple-architecture-explained-matome",
         "gemma-4-per-layer-embeddings-explained"
       ]
     },
@@ -51,35 +46,31 @@
       "label": "向いている人",
       "value": "開発者",
       "sources": [
-        "gemma-4-per-layer-embeddings-explained",
-        "google-deepmind-gemma-4-family-explained"
+        "gemma-4-per-layer-embeddings-explained"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "レイヤー別埋め込み技術により、VRAMを圧迫せずにフラッシュストレージから必要なベクトルを動的ロードできます。",
+      "text": "E2BやE4Bモデルでは、レイヤー別埋め込み技術によりメモリ消費を抑えられます。",
       "sources": [
-        "gemma-4-ple-architecture-explained-matome",
         "gemma-4-per-layer-embeddings-explained"
       ]
     },
     {
-      "text": "12Bモデルでは専用エンコーダーを廃止し、音声を40msのセグメントに分割して直接LLMに投影します。",
+      "text": "12Bモデルでは専用エンコーダーを廃し、音声や画像を直接LLMに投影します。",
       "sources": [
-        "gemma-4-12b-encoder-free-explained",
+        "gemma-4-12b-encoder-free-explained"
+      ]
+    },
+    {
+      "text": "26B A4BモデルはMoEを導入し、総パラメータ260億のうち40億を活性化します。",
+      "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
-      "text": "26B A4BモデルはMoEを採用し、総パラメータ260億のうち40億のみを動的に活性化します。",
-      "sources": [
-        "gemma-4-ple-architecture-explained-matome",
-        "google-deepmind-gemma-4-family-explained"
-      ]
-    },
-    {
-      "text": "テキストだけでなく、音声や画像といった複数のモダリティをネイティブに処理できます。",
+      "text": "フラグシップの31Bモデルは、60層デコーダー構成で高い表現力を誇ります。",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
@@ -87,16 +78,15 @@
   ],
   "pricing": [
     {
-      "text": "オープンソースとして一般提供されています。",
+      "text": "オープンソースとして公開されています。",
       "sources": [
-        "gemma-4-per-layer-embeddings-explained",
-        "gemma-4-12b-encoder-free-explained"
+        "gemma-4-per-layer-embeddings-explained"
       ]
     }
   ],
   "japan": [
     {
-      "text": "Hugging FaceやGitHubを通じてグローバルに公開されています。",
+      "text": "発表の時点では、日本でも利用できるオープンモデルとして提供されています。",
       "sources": [
         "gemma-4-per-layer-embeddings-explained"
       ]
@@ -104,44 +94,53 @@
   ],
   "howto": [
     {
-      "text": "Hugging FaceやGitHubを通じて利用できます。",
+      "text": "Hugging FaceやGitHubを通じて入手できます。",
       "sources": [
-        "gemma-4-ple-architecture-explained-matome",
         "gemma-4-per-layer-embeddings-explained"
       ]
     }
   ],
-  "differences": [],
-  "faq": [
+  "differences": [
     {
-      "q": "無料で使える？",
-      "a": "オープンモデルとして一般提供されています。",
+      "text": "テキストに加えて音声や画像をネイティブに処理できるようになりました。",
       "sources": [
-        "gemma-4-per-layer-embeddings-explained",
         "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
-      "q": "どこから入手できる？",
-      "a": "Hugging FaceやGitHubを通じて提供が開始されています。",
+      "text": "レイヤー別埋め込みやエンコーダーフリーなどの新アーキテクチャが導入されました。",
       "sources": [
-        "gemma-4-per-layer-embeddings-explained",
-        "gemma-4-12b-encoder-free-explained"
+        "gemma-4-ple-architecture-explained-matome"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "無料で使えますか？",
+      "a": "オープンモデルとして提供されており、開発者が利用できます。",
+      "sources": [
+        "gemma-4-per-layer-embeddings-explained"
       ]
     },
     {
-      "q": "モデルの種類はいくつある？",
+      "q": "モデルのサイズには何種類ありますか？",
       "a": "スマートフォン向けからクラウド向けまで、5つのモデルサイズで構成されています。",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
-      "q": "12Bモデルの特徴は何？",
-      "a": "専用の音声・画像エンコーダーを持たないエンコーダーフリー構造を採用しています。",
+      "q": "エンコーダーフリーとは何ですか？",
+      "a": "画像や音声の専用エンコーダーを廃止し、直接LLMに投影する構造のことです。",
       "sources": [
-        "gemma-4-12b-encoder-free-explained",
-        "google-deepmind-gemma-4-family-explained"
+        "gemma-4-12b-encoder-free-explained"
+      ]
+    },
+    {
+      "q": "PLE技術とは何ですか？",
+      "a": "レイヤーごとに異なるベクトル表現を割り当て、フラッシュストレージを活用する技術です。",
+      "sources": [
+        "gemma-4-per-layer-embeddings-explained"
       ]
     }
   ],
@@ -149,26 +148,32 @@
     {
       "date": "2026-09-22",
       "slug": "google-deepmind-gemma-4-family-explained",
-      "event": "Google DeepMindがGemma 4を公開"
+      "event": "Gemma 4を公開"
     },
     {
       "date": "2026-09-23",
       "slug": "gemma-4-12b-encoder-free-explained",
-      "event": "Gemma 4 12Bの構造を公開"
+      "event": "Gemma 4 12Bの構造を解説"
     },
     {
       "date": "2026-09-26",
       "slug": "gemma-4-per-layer-embeddings-explained",
       "event": "PLEの技術仕様を公開"
+    },
+    {
+      "date": "2026-09-26",
+      "slug": "gemma-4-ple-architecture-explained-matome",
+      "event": "Gemma 4ファミリー徹底解説"
     }
   ],
   "related": [
+    "project-suncatcher",
     "gemini-4-argon",
     "gemini-4-carbon",
-    "gemini-robotics-2",
-    "antigravity"
+    "gemini-robotics-2"
   ],
   "articles": [
+    "google-project-suncatcher-satellite-response",
     "gemma-4-per-layer-embeddings-explained",
     "gemma-4-ple-architecture-explained-matome",
     "gemma-4-12b-encoder-free-explained",
@@ -180,9 +185,9 @@
     "gemma-4-12b-encoder-free-explained",
     "google-deepmind-gemma-4-family-explained"
   ],
-  "signature": "5aba8f3686174857",
+  "signature": "be6aafb0f9bc22a6",
   "primarySignature": "5aba8f3686174857",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:44:10+00:00",
-  "updatedAt": "2026-10-27T10:50:37+00:00"
+  "updatedAt": "2026-10-30T17:17:32+00:00"
 }

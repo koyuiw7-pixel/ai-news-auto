@@ -8862,6 +8862,14 @@
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366523"
     },
+    "c350724d4712c977": {
+      "at": "2026-10-30T17:17:22.949552+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "google-project-suncatcher-satellite-response",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/project-suncatcher-satellite-response/"
+    },
     "c37e361ee3708196": {
       "at": "2026-10-30T05:53:40.596135+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -10731,74 +10739,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:35:13.426839+00:00",
-      "attempt": 1,
-      "id": "ffff32ebfd0624b0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1175字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（325字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 90.3,
-        "avg_sentence": 47.8,
-        "long_share": 0.235,
-        "max_paragraph": 142,
-        "paragraphs": 9,
-        "sentences": 17
-      },
-      "score": null,
-      "source": "soumu",
-      "title": "令和8年11月5日（木）に緊急地震速報の訓練を行います"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:35:20.173289+00:00",
-      "attempt": 2,
-      "id": "ffff32ebfd0624b0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（343字 / 基準 400字以上）",
-        "body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 132.4,
-        "avg_sentence": 50.2,
-        "long_share": 0.241,
-        "max_paragraph": 205,
-        "paragraphs": 11,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "soumu",
-      "title": "令和8年11月5日（木）に緊急地震速報の訓練を行います"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:51:48.125948+00:00",
-      "attempt": 1,
-      "id": "5c50d4cdc1533c5b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1659字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 138.5,
-        "avg_sentence": 57.7,
-        "long_share": 0.375,
-        "max_paragraph": 201,
-        "paragraphs": 10,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "kantei",
-      "title": "日本成長戦略推進担当官及び地域未来戦略推進担当官について"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T18:52:25.418148+00:00",
@@ -17486,6 +17426,73 @@
       "score": 65,
       "source": "openai-news",
       "title": "Community safety report and new protections for teens"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T17:17:02.903020+00:00",
+      "attempt": 1,
+      "id": "c350724d4712c977",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2384字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 102.3,
+        "avg_sentence": 61.4,
+        "long_share": 0.44,
+        "max_paragraph": 150,
+        "paragraphs": 15,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "google-blog-all",
+      "title": "We’ve received our first response from the Project Suncatcher prototype satellit"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T17:17:17.854850+00:00",
+      "attempt": 2,
+      "id": "c350724d4712c977",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 74.0字・60字超の文が 66% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 85.9字・最長 275字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 85.9,
+        "avg_sentence": 74.0,
+        "long_share": 0.655,
+        "max_paragraph": 275,
+        "paragraphs": 25,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "google-blog-all",
+      "title": "We’ve received our first response from the Project Suncatcher prototype satellit"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T17:17:22.949077+00:00",
+      "attempt": 0,
+      "id": "c350724d4712c977",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 47.9字・60字超の文が 19% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 85.1,
+        "avg_sentence": 47.9,
+        "long_share": 0.188,
+        "max_paragraph": 140,
+        "paragraphs": 27,
+        "sentences": 48
+      },
+      "score": 100,
+      "source": "google-blog-all",
+      "title": "We’ve received our first response from the Project Suncatcher prototype satellit"
     }
   ],
   "short_text_retry": {}

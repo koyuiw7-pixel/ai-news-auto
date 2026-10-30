@@ -6,105 +6,126 @@
   "companyName": "Google",
   "category": "半導体・インフラ",
   "overview": {
-    "text": "Project Suncatcherは、宇宙空間にAIチップを搭載した人工衛星を打ち上げ、太陽光発電でAI処理を行うGoogleの研究開発プロジェクトです。宇宙空間の豊富な太陽光エネルギーを活用し、持続可能なAIインフラの構築を目指しています。2026年9月に発表されました。",
+    "text": "Project Suncatcherは、宇宙空間でAIの計算処理を行うGoogleの長期研究プロジェクトです。2026年9月に発表されました。",
     "sources": [
+      "google-project-suncatcher-satellite-response",
       "google-project-suncatcher-space-tpu"
     ]
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "未発表",
-      "sources": [
-        "google-project-suncatcher-space-tpu"
-      ]
-    },
-    {
       "label": "提供開始",
-      "value": "未発表（研究・デモ段階）",
+      "value": "研究・デモ段階",
       "sources": [
+        "google-project-suncatcher-satellite-response",
+        "google-project-suncatcher-thermal-engineering",
+        "google-project-suncatcher-laser-1-6tbps",
         "google-project-suncatcher-space-tpu"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "発表の時点では未提供",
+      "value": "未提供",
       "sources": [
+        "google-project-suncatcher-satellite-response",
+        "google-project-suncatcher-thermal-engineering",
+        "google-project-suncatcher-laser-1-6tbps",
         "google-project-suncatcher-space-tpu"
       ]
     },
     {
       "label": "向いている人",
-      "value": "研究者",
+      "value": "研究者・エンジニア",
       "sources": [
-        "google-project-suncatcher-space-tpu"
+        "google-project-suncatcher-satellite-response"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "地上と比較して5倍から8倍の太陽光発電エネルギーを獲得できます。",
+      "text": "地上と比較して5倍から8倍の太陽光発電効率を獲得し、AI処理の電力に充てる。",
       "sources": [
         "google-project-suncatcher-space-tpu"
       ]
     },
     {
-      "text": "衛星間で双方向1.6Tbpsの超高速レーザー通信を行います。",
+      "text": "移動する衛星間で双方向800Gbps、合計1.6Tbpsの超高速レーザー通信を行う。",
       "sources": [
         "google-project-suncatcher-laser-1-6tbps"
       ]
     },
     {
-      "text": "ヒートパイプと液循環ループを用いて真空空間でTPUを冷却します。",
+      "text": "ヒートパイプとポンプ式液ループを用いて、TPUの高熱を外部ラジエーターへ運んで排熱する。",
       "sources": [
         "google-project-suncatcher-thermal-engineering"
       ]
     },
     {
-      "text": "黎明・黄昏軌道に配備され、ほぼ24時間365日連続して発電します。",
+      "text": "オープンモデルGemma 4を使い、地上からのプロンプトに対する詩の生成に成功した。",
       "sources": [
-        "google-project-suncatcher-space-tpu"
+        "google-project-suncatcher-satellite-response"
       ]
     }
   ],
   "pricing": [],
   "japan": [
     {
-      "text": "発表の時点では、日本での提供について案内はありません。",
+      "text": "発表の時点では、日本の一般ユーザーが直接利用できるサービスやAPIとしては提供されていません。",
       "sources": [
-        "google-project-suncatcher-space-tpu"
+        "google-project-suncatcher-satellite-response"
       ]
     }
   ],
   "howto": [],
-  "differences": [],
-  "faq": [
+  "differences": [
     {
-      "q": "いつから使えますか？",
-      "a": "初期の研究・シミュレーション段階であり、一般提供やプレビュー提供の時期は未定です。",
+      "text": "従来の宇宙機と異なり、データセンタークラスの最先端TPUを軌道上に持ち込み、実用的な機械学習を実行した。",
       "sources": [
-        "google-project-suncatcher-space-tpu"
+        "google-project-suncatcher-satellite-response"
       ]
     },
     {
-      "q": "どこで太陽光発電を行いますか？",
-      "a": "地球の昼と夜の境界線上を飛行する黎明・黄昏軌道で行います。",
-      "sources": [
-        "google-project-suncatcher-space-tpu"
-      ]
-    },
-    {
-      "q": "どのようなチップを搭載しますか？",
-      "a": "Google独自のAI処理専用半導体TPUを搭載します。",
-      "sources": [
-        "google-project-suncatcher-space-tpu"
-      ]
-    },
-    {
-      "q": "通信速度はどのくらいですか？",
-      "a": "衛星間レーザー通信において双方向で合計1.6Tbpsを達成しています。",
+      "text": "長距離向けの既存OISLとは異なり、近距離でテラビット級の超広帯域通信を行う設計になっている。",
       "sources": [
         "google-project-suncatcher-laser-1-6tbps"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "いつ発表された？",
+      "a": "2026年9月にGoogleのムーンショットプロジェクトとして発表されました。",
+      "sources": [
+        "google-project-suncatcher-space-tpu"
+      ]
+    },
+    {
+      "q": "どんなチップが使われている？",
+      "a": "Googleのデータセンター向けチップであるTPUが搭載されています。",
+      "sources": [
+        "google-project-suncatcher-satellite-response",
+        "google-project-suncatcher-space-tpu"
+      ]
+    },
+    {
+      "q": "通信速度はどれくらい？",
+      "a": "衛星間のレーザー通信実験で双方向合計1.6Tbpsを達成しています。",
+      "sources": [
+        "google-project-suncatcher-laser-1-6tbps"
+      ]
+    },
+    {
+      "q": "どのような軌道で運用される？",
+      "a": "ほぼ24時間太陽光を受け続けられる黎明・黄昏軌道に配備されます。",
+      "sources": [
+        "google-project-suncatcher-space-tpu"
+      ]
+    },
+    {
+      "q": "どのようなテストが行われた？",
+      "a": "オープンモデルGemma 4を用いた宇宙をテーマにした詩の生成テストなどに成功しています。",
+      "sources": [
+        "google-project-suncatcher-satellite-response"
       ]
     }
   ],
@@ -112,7 +133,7 @@
     {
       "date": "2026-09-24",
       "slug": "google-project-suncatcher-space-tpu",
-      "event": "Project Suncatcherを発表"
+      "event": "GoogleがProject Suncatcherを発表"
     },
     {
       "date": "2026-09-30",
@@ -122,28 +143,35 @@
     {
       "date": "2026-10-01",
       "slug": "google-project-suncatcher-thermal-engineering",
-      "event": "冷却技術と真空でのTPU排熱機構を公開"
+      "event": "真空でのTPU排熱機構を公開"
+    },
+    {
+      "date": "2026-10-31",
+      "slug": "google-project-suncatcher-satellite-response",
+      "event": "試作衛星で世界初のAI応答に成功"
     }
   ],
   "related": [
+    "gemma-4",
     "gemini-robotics-2",
     "gemini-4-argon",
-    "antigravity",
-    "google-ai-studio"
+    "antigravity"
   ],
   "articles": [
+    "google-project-suncatcher-satellite-response",
     "google-project-suncatcher-thermal-engineering",
     "google-project-suncatcher-laser-1-6tbps",
     "google-project-suncatcher-space-tpu"
   ],
   "linkFrom": [
+    "google-project-suncatcher-satellite-response",
     "google-project-suncatcher-thermal-engineering",
     "google-project-suncatcher-laser-1-6tbps",
     "google-project-suncatcher-space-tpu"
   ],
-  "signature": "aac05e5167bb088d",
-  "primarySignature": "aac05e5167bb088d",
+  "signature": "0ac045d08e90eebe",
+  "primarySignature": "0ac045d08e90eebe",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:45:39+00:00",
-  "updatedAt": "2026-10-27T10:59:12+00:00"
+  "updatedAt": "2026-10-30T17:17:40+00:00"
 }
