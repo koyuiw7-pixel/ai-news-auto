@@ -779,6 +779,10 @@
       "at": "2026-10-17T14:34:54.749142+00:00",
       "slug": "openai-dot-on-call-agent-demo"
     },
+    "GNYHDltnwZQ": {
+      "at": "2026-10-30T12:03:26.362386+00:00",
+      "slug": "zendesk-chatgpt-enterprise-case-study"
+    },
     "GOjV9OzgPvs": {
       "at": "2026-08-06T11:18:18.753254+00:00",
       "reason": "この動画はストーカー対策および法制度に関する一般ニュースであり、株式・投資信託・NISAなどの個人のお金に関するテーマ（投資・マネー）に該当しないため、対象外と判断しました。",
@@ -983,6 +987,10 @@
       "at": "2026-07-30T16:23:57.902230+00:00",
       "reason": "本動画は13秒のショートプロモーション動画（スパイダーマンとのコラボレーションによるGoogle検索のイースターエッグ紹介）であり、AI技術や新製品に関する実質的な技術発表・詳細解説が含まれていないため。",
       "skipped": true
+    },
+    "JXEMFLQwi4A": {
+      "at": "2026-10-30T12:17:10.210687+00:00",
+      "slug": "nvidia-gtc-grid-reliability-resiliency"
     },
     "JagWYmiEF7Q": {
       "at": "2026-08-06T11:16:58.721031+00:00",
@@ -9984,6 +9992,13 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/singi/chizai/02zaisei02_04001397_00975.html"
     },
+    "ec2079a5cdf6ce4a": {
+      "at": "2026-10-30T12:17:55.401449+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1586字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（306字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou01/houdou.html"
+    },
     "ec24eda5b910db29": {
       "at": "2026-10-28T21:55:28.165134+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（協賛）",
@@ -10134,6 +10149,13 @@
       "section": "public",
       "slug": "tokyo-waste-management-dx-tool",
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102711"
+    },
+    "f0ec3df44a077b68": {
+      "at": "2026-10-30T12:17:35.301108+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "厚生労働省による定点当たり報告数の推移の定期的な統計データ更新であり、個別の制度変更や具体的な読者向けのアクションを伴わないため対象外とします。",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/houkokusuunosuii_00007.html"
     },
     "f12e12b87a42df36": {
       "at": "2026-10-30T08:11:42.393712+00:00",
@@ -10627,51 +10649,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:14:43.021107+00:00",
-      "attempt": 1,
-      "id": "52375a72cfe3699b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（384字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 125.7,
-        "avg_sentence": 53.2,
-        "long_share": 0.231,
-        "max_paragraph": 210,
-        "paragraphs": 11,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "令和8年度新規事業 「地域企業グループチャレンジ促進事業」事業変革に取り組む4つの地域企業グループを決定"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:15:34.776484+00:00",
-      "attempt": 2,
-      "id": "52375a72cfe3699b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 59.9字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 173.0字・最長 293字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 173.0,
-        "avg_sentence": 59.9,
-        "long_share": 0.5,
-        "max_paragraph": 293,
-        "paragraphs": 9,
-        "sentences": 26
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "令和8年度新規事業 「地域企業グループチャレンジ促進事業」事業変革に取り組む4つの地域企業グループを決定"
-    },
     {
       "accepted": true,
       "at": "2026-10-29T18:15:51.809064+00:00",
@@ -17389,6 +17366,52 @@
       "score": null,
       "source": "mhlw",
       "title": "新型コロナウイルス感染症に関する報道発表資料を更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T12:17:49.222302+00:00",
+      "attempt": 1,
+      "id": "ec2079a5cdf6ce4a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1735字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（338字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 146.6,
+        "avg_sentence": 57.3,
+        "long_share": 0.478,
+        "max_paragraph": 227,
+        "paragraphs": 9,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "インフルエンザの発生状況を更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T12:17:55.401410+00:00",
+      "attempt": 2,
+      "id": "ec2079a5cdf6ce4a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1586字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（306字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 133.9,
+        "avg_sentence": 53.6,
+        "long_share": 0.2,
+        "max_paragraph": 199,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "インフルエンザの発生状況を更新しました"
     }
   ],
   "short_text_retry": {}
