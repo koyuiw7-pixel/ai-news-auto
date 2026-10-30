@@ -3056,6 +3056,13 @@
       "slug": "digital-agency-national-qualifications-online",
       "url": "https://www.digital.go.jp/policies/government-certification"
     },
+    "011c99cc86af4261": {
+      "at": "2026-10-30T01:51:37.988882+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: マネージドPostgreSQL（リフレッシュされたオープンソースデータベース）データベースにメタデータを記録し → 元記事には「オープンソースデータベース」という表現はなく「検索用に最適化されたアプリのマネージド PostgreSQL データベース」とあるため、補足された表現が不正確。",
+      "skipped": true,
+      "url": "https://cloud.google.com/blog/ja/topics/hybrid-cloud/managed-rag-search-inside-the-sovereign-perimeter-gemini-on-gdc-enterprise-search/"
+    },
     "01c050212d7cc79e": {
       "at": "2026-10-27T20:13:19.059779+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -3464,6 +3471,13 @@
       "slug": "riken-keystone-species-analysis",
       "url": "https://www.riken.jp/press/2026/20261029_1/index.html"
     },
+    "131b86cc9cd34917": {
+      "at": "2026-10-30T01:52:11.086948+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1373字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01gyosei07_02000185.html"
+    },
     "13412a369e090d4c": {
       "at": "2026-10-27T15:56:39.505118+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3670,6 +3684,13 @@
       "reason": "quality: 本文が短い（1945字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://blog.google/products-and-platforms/products/education/ai-quests-polar-peaks/"
+    },
+    "18bd67bed46c5c04": {
+      "at": "2026-10-30T01:51:55.136266+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "https://www.riken.jp/press/2026/20261030_1/index.html"
     },
     "18ff4e0015efbefe": {
       "at": "2026-10-27T15:17:02.626158+00:00",
@@ -6587,6 +6608,12 @@
       "skipped": true,
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFAzWUlTeWtHbDVjR1R1Z3JYc2NJLTdZamlzZlRPYUp1R1FBVXA3UE5Ba1dLdk9RWGVjUS1VRUV5bUhiNWYwZjA2NnptTEpaMERsSllYOTIyYlR3UWs?oc=5"
     },
+    "8bad65ff8eb5b90d": {
+      "at": "2026-10-30T01:52:11.559588+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ポイント還元）",
+      "skipped": true,
+      "url": "https://www.au.com/information/topic/pontapass/2026-003/"
+    },
     "8be9d9b68151b035": {
       "at": "2026-10-27T00:51:32.495681+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8786,6 +8813,14 @@
       "skipped": true,
       "url": "https://kyodonewsprwire.jp/release/202610268681"
     },
+    "e5a0437380d206a8": {
+      "at": "2026-10-30T01:52:28.285231+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "ipa-mitou-advanced-2025-seika",
+      "url": "https://www.ipa.go.jp/jinzai/mitou/advanced/2025second/seika.html"
+    },
     "e5e4c3ae2b7984fd": {
       "at": "2026-10-26T17:52:08.272357+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9445,211 +9480,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:47:20.764071+00:00",
-      "attempt": 1,
-      "id": "c8c0435586ef694f",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "「今回は約4割がエンジニア以外の仕事」→ 50/113は約44%で概ね妥当だが、元記事に割合の記載はなく編集側の算出。",
-        "「GeminiとClaudeという複数のAIを使い分けた事例を載せています。特定の一社に偏らない点は…」→ 元記事に使い分けや偏りがない旨の記載はなく、編集部注の範囲を超えた評価。",
-        "「AIの事例集は、開発者向けに偏りがちです」→ 元記事に根拠がない一般論の断定。",
-        "「上司や社内に導入を説明するときの材料になります」「事例を社内で募り、AIで資料化したという進め方」→ 元記事は収集や資料作成にGeminiを活用としか書かれておらず、効果の言い過ぎ。",
-        "「かんたん版：書かれている手順を小さく試して」→ 元記事に具体的な手順が掲載されているとは書かれていない。",
-        "「日本から使えます」→ 元記事に地域制限の記載はなく、断定は推測。"
-      ],
-      "readability": {
-        "avg_paragraph": 62.9,
-        "avg_sentence": 34.4,
-        "long_share": 0.062,
-        "max_paragraph": 114,
-        "paragraphs": 35,
-        "sentences": 64
-      },
-      "score": 80,
-      "source": "radar-itmedia.co.jp",
-      "title": "KDDI傘下、社内のAI活用事例113件を無料公開 「Gemini Notebook」で稟議データのチェック支援も"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-28T23:47:53.171342+00:00",
-      "attempt": 1,
-      "id": "c8c0435586ef694f",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 60.2,
-        "avg_sentence": 34.0,
-        "long_share": 0.065,
-        "max_paragraph": 114,
-        "paragraphs": 35,
-        "sentences": 62
-      },
-      "score": 91,
-      "source": "radar-itmedia.co.jp",
-      "title": "KDDI傘下、社内のAI活用事例113件を無料公開 「Gemini Notebook」で稟議データのチェック支援も"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T00:01:38.902583+00:00",
-      "attempt": 1,
-      "id": "54b214d174b0abcd",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（372字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 176.8,
-        "avg_sentence": 63.6,
-        "long_share": 0.48,
-        "max_paragraph": 227,
-        "paragraphs": 9,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "jst",
-      "title": "創発的研究支援事業における2026年度新規研究課題の決定について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T00:01:45.038089+00:00",
-      "attempt": 2,
-      "id": "54b214d174b0abcd",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1790字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（384字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 161.6,
-        "avg_sentence": 58.8,
-        "long_share": 0.545,
-        "max_paragraph": 284,
-        "paragraphs": 8,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "jst",
-      "title": "創発的研究支援事業における2026年度新規研究課題の決定について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T00:01:52.567382+00:00",
-      "attempt": 1,
-      "id": "878fb1b560808c41",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1796字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（356字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 121.4,
-        "avg_sentence": 55.2,
-        "long_share": 0.273,
-        "max_paragraph": 213,
-        "paragraphs": 10,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "11月12日～25日は「女性に対する暴力をなくす運動」期間です！パープル・ライトアップ、都内全高校1年生に啓発カード配布等を実施"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T00:01:59.299841+00:00",
-      "attempt": 2,
-      "id": "878fb1b560808c41",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（371字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 153.6,
-        "avg_sentence": 56.9,
-        "long_share": 0.407,
-        "max_paragraph": 238,
-        "paragraphs": 10,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "11月12日～25日は「女性に対する暴力をなくす運動」期間です！パープル・ライトアップ、都内全高校1年生に啓発カード配布等を実施"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T00:02:05.049106+00:00",
-      "attempt": 1,
-      "id": "b5f9ab760f168a02",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1360字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 114.7,
-        "avg_sentence": 49.9,
-        "long_share": 0.217,
-        "max_paragraph": 149,
-        "paragraphs": 10,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "stat",
-      "title": "「2025年経済構造実態調査」三次集計結果 産業横断調査（事業所に関する集計）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T00:02:12.589907+00:00",
-      "attempt": 2,
-      "id": "b5f9ab760f168a02",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 63.2字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 145.3字・最長 194字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 145.3,
-        "avg_sentence": 63.2,
-        "long_share": 0.435,
-        "max_paragraph": 194,
-        "paragraphs": 10,
-        "sentences": 23
-      },
-      "score": 100,
-      "source": "stat",
-      "title": "「2025年経済構造実態調査」三次集計結果 産業横断調査（事業所に関する集計）"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T00:02:16.684511+00:00",
-      "attempt": 0,
-      "id": "b5f9ab760f168a02",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 71.2,
-        "avg_sentence": 41.9,
-        "long_share": 0.088,
-        "max_paragraph": 126,
-        "paragraphs": 20,
-        "sentences": 34
-      },
-      "score": 100,
-      "source": "stat",
-      "title": "「2025年経済構造実態調査」三次集計結果 産業横断調査（事業所に関する集計）"
-    },
     {
       "accepted": true,
       "at": "2026-10-29T00:28:48.911587+00:00",
@@ -16152,6 +15982,204 @@
       "score": 100,
       "source": "mhlw",
       "title": "令和９年 医政局所管国家試験会場（予定）一覧"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T01:51:28.857346+00:00",
+      "attempt": 1,
+      "id": "011c99cc86af4261",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1810字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（351字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 108.2,
+        "avg_sentence": 56.1,
+        "long_share": 0.407,
+        "max_paragraph": 222,
+        "paragraphs": 14,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "google-cloud-blog-ja",
+      "title": "データ主権の境界内におけるマネージド RAG 検索: Gemini on GDC エンタープライズ検索"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T01:51:37.988845+00:00",
+      "attempt": 2,
+      "id": "011c99cc86af4261",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "マネージドPostgreSQL（リフレッシュされたオープンソースデータベース）データベースにメタデータを記録し → 元記事には「オープンソースデータベース」という表現はなく「検索用に最適化されたアプリのマネージド PostgreSQL データベース」とあるため、補足された表現が不正確。"
+      ],
+      "readability": {
+        "avg_paragraph": 136.3,
+        "avg_sentence": 80.8,
+        "long_share": 0.704,
+        "max_paragraph": 250,
+        "paragraphs": 16,
+        "sentences": 27
+      },
+      "score": 90,
+      "source": "google-cloud-blog-ja",
+      "title": "データ主権の境界内におけるマネージド RAG 検索: Gemini on GDC エンタープライズ検索"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T01:51:46.026303+00:00",
+      "attempt": 1,
+      "id": "18bd67bed46c5c04",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1432字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 116.5,
+        "avg_sentence": 46.6,
+        "long_share": 0.2,
+        "max_paragraph": 206,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "riken",
+      "title": "卵子の染色体接着を長期間維持する新因子OMC1を発見"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T01:51:55.136238+00:00",
+      "attempt": 2,
+      "id": "18bd67bed46c5c04",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 177.6,
+        "avg_sentence": 57.3,
+        "long_share": 0.452,
+        "max_paragraph": 264,
+        "paragraphs": 10,
+        "sentences": 31
+      },
+      "score": null,
+      "source": "riken",
+      "title": "卵子の染色体接着を長期間維持する新因子OMC1を発見"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T01:52:02.428123+00:00",
+      "attempt": 1,
+      "id": "131b86cc9cd34917",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 146.7,
+        "avg_sentence": 60.0,
+        "long_share": 0.273,
+        "max_paragraph": 227,
+        "paragraphs": 9,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "ふるさと住民登録制度の推進に関する総務大臣書簡の発出"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T01:52:08.481795+00:00",
+      "attempt": 2,
+      "id": "131b86cc9cd34917",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1373字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 110.6,
+        "avg_sentence": 55.3,
+        "long_share": 0.3,
+        "max_paragraph": 165,
+        "paragraphs": 10,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "ふるさと住民登録制度の推進に関する総務大臣書簡の発出"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T01:52:17.582382+00:00",
+      "attempt": 1,
+      "id": "e5a0437380d206a8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1759字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 133.1,
+        "avg_sentence": 54.2,
+        "long_share": 0.296,
+        "max_paragraph": 186,
+        "paragraphs": 11,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "ipa",
+      "title": "2025年度下期 未踏アドバンスト事業で実施したプロジェクトの成果概要、成果詳細を公開しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T01:52:24.569918+00:00",
+      "attempt": 2,
+      "id": "e5a0437380d206a8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 55.5字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 118.4,
+        "avg_sentence": 55.5,
+        "long_share": 0.375,
+        "max_paragraph": 183,
+        "paragraphs": 15,
+        "sentences": 32
+      },
+      "score": 100,
+      "source": "ipa",
+      "title": "2025年度下期 未踏アドバンスト事業で実施したプロジェクトの成果概要、成果詳細を公開しました"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T01:52:28.284911+00:00",
+      "attempt": 0,
+      "id": "e5a0437380d206a8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 118.9,
+        "avg_sentence": 33.0,
+        "long_share": 0.093,
+        "max_paragraph": 183,
+        "paragraphs": 15,
+        "sentences": 54
+      },
+      "score": 100,
+      "source": "ipa",
+      "title": "2025年度下期 未踏アドバンスト事業で実施したプロジェクトの成果概要、成果詳細を公開しました"
     }
   ],
   "short_text_retry": {}
