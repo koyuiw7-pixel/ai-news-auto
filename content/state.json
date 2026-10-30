@@ -3335,6 +3335,13 @@
       "skipped": true,
       "url": "https://openai.com/index/the-future-of-the-firm"
     },
+    "0de465538c9fc2f4": {
+      "at": "2026-10-30T04:42:40.853885+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "元記事が破損したPDFデータ（バイナリ文字や制御文字の羅列）であり、日本銀行のETF売却ペースに関する具体的な決定内容や数値を読み取ることができないため。",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030c.pdf"
+    },
     "0e4b12bec5929bad": {
       "at": "2026-10-28T23:31:55.873588+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3369,6 +3376,13 @@
       "reason": "quality: easy_markdown が短い（369字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/kiro-cli-agent-write-boundaries/"
+    },
+    "0f79dbb44fd6885f": {
+      "at": "2026-10-30T04:41:59.718576+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1600字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
+      "skipped": true,
+      "url": "https://www.softbank.jp/sbnews/entry/20261030_01"
     },
     "0f9461fda21cb1f7": {
       "at": "2026-10-30T04:21:34.815568+00:00",
@@ -5184,6 +5198,13 @@
       "skipped": true,
       "url": "https://www.value-press.com/pressrelease/383142"
     },
+    "4fe412fe9cefe9d7": {
+      "at": "2026-10-30T04:42:11.048848+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1486字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（358字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/press/kanbo/b_kankyo/261030.html"
+    },
     "501f73ebd3323562": {
       "at": "2026-10-29T18:11:23.465767+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6502,6 +6523,13 @@
       "slug": "sony-spatial-reality-display-elf-mn1",
       "url": "https://www.sony.jp/CorporateCruise/Press/202610/26-1028/?s_tc=jp_app_msa_spatial-reality-display_bravia_home-theater_261028_1"
     },
+    "8380e89917a98439": {
+      "at": "2026-10-30T04:41:42.404579+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "提供された元記事のPDFデータがバイナリデータのみで具体的な経済・物価情勢に関する文章や数値が読み取れないため。",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030b.pdf"
+    },
     "838fa113d922e63b": {
       "at": "2026-10-26T10:30:42.540806+00:00",
       "reason": "dedupe: 同じ出典URL",
@@ -7706,6 +7734,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000016.000100959.html"
     },
+    "b2a0b28206b967e2": {
+      "at": "2026-10-30T04:42:29.008203+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（319字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87232?site=nli"
+    },
     "b2a6276dc7239368": {
       "at": "2026-10-27T19:11:35.700596+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -8077,6 +8112,12 @@
       "reason": "quality: body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）",
       "skipped": true,
       "url": "https://www.digital.go.jp/policies/administrative_procedures_online"
+    },
+    "c174217f0aa6d531": {
+      "at": "2026-10-30T04:42:29.522416+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（出張）",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/press/kanbo/bunsyo/saigai/261030.html"
     },
     "c19bf4dd8bc349cd": {
       "at": "2026-10-27T03:05:10.759098+00:00",
@@ -8688,6 +8729,13 @@
       "reason": "followup quality: 「当初は10月29日（木）としていました」→ 元記事にも確認済みの文脈にも当初の予約開始日が10月29日とする根拠がなく、日付の創作の疑いがある。; 「Liquid Retina XDRディスプレイ」という当初記事の記載→ 元記事にも確認済みの文脈にもなく、当初記事の内容として根拠が確認できない。",
       "skipped": true,
       "url": "https://www.apple.com/newsroom/2026/10/apple-unveils-groundbreaking-macbook-pro-with-proled-xdr-display/"
+    },
+    "d88212c96781972a": {
+      "at": "2026-10-30T04:42:57.911898+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1794字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87225?site=nli"
     },
     "d8a8903606ffb523": {
       "at": "2026-10-28T19:12:53.361927+00:00",
@@ -9501,6 +9549,12 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/statistics/pi/cspi_release/sppi2609.pdf"
     },
+    "f7a80f9f25f06106": {
+      "at": "2026-10-30T04:42:29.522450+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（出張）",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/press/kanbo/tiho/261030.html"
+    },
     "f7e9e3d6fd2caec9": {
       "at": "2026-10-27T03:06:38.812818+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（公募）",
@@ -9707,229 +9761,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T02:42:12.058984+00:00",
-      "attempt": 1,
-      "id": "01f423e7f6c35c6d",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 63.6字・60字超の文が 59% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 171.6字・最長 279字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 171.6,
-        "avg_sentence": 63.6,
-        "long_share": 0.593,
-        "max_paragraph": 279,
-        "paragraphs": 10,
-        "sentences": 27
-      },
-      "score": 100,
-      "source": "hiroshima-u",
-      "title": "【研究成果】AI活用で訪問看護師の精神的負担が低減 ～診療ガイドライン学習AIを用いた比較実験で検証～"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T02:42:20.101281+00:00",
-      "attempt": 0,
-      "id": "01f423e7f6c35c6d",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 192.7字・最長 290字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 192.7,
-        "avg_sentence": 33.2,
-        "long_share": 0.017,
-        "max_paragraph": 290,
-        "paragraphs": 10,
-        "sentences": 58
-      },
-      "score": 100,
-      "source": "hiroshima-u",
-      "title": "【研究成果】AI活用で訪問看護師の精神的負担が低減 ～診療ガイドライン学習AIを用いた比較実験で検証～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:01:31.918625+00:00",
-      "attempt": 1,
-      "id": "b776005e8a875d75",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2117字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 59.0,
-        "avg_sentence": 59.0,
-        "long_share": 0.379,
-        "max_paragraph": 115,
-        "paragraphs": 29,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "ntt-news-ai",
-      "title": "埼玉スタジアム2〇〇2公園 第4グラウンドにて、スポーツ専用AIカメラを活用した「STADIUM TUBE らくらく撮影」および「動画配信・販売サービス」を本格"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:01:42.962472+00:00",
-      "attempt": 2,
-      "id": "b776005e8a875d75",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1949字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 102.6,
-        "avg_sentence": 59.8,
-        "long_share": 0.417,
-        "max_paragraph": 205,
-        "paragraphs": 14,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "ntt-news-ai",
-      "title": "埼玉スタジアム2〇〇2公園 第4グラウンドにて、スポーツ専用AIカメラを活用した「STADIUM TUBE らくらく撮影」および「動画配信・販売サービス」を本格"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:01:55.531137+00:00",
-      "attempt": 1,
-      "id": "da69831ef2855322",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1398字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 115.5,
-        "avg_sentence": 48.1,
-        "long_share": 0.208,
-        "max_paragraph": 187,
-        "paragraphs": 10,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "一般都道250号あきる野羽村線（草花大橋）開通による効果"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:02:01.573045+00:00",
-      "attempt": 2,
-      "id": "da69831ef2855322",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1605字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（373字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 102.9,
-        "avg_sentence": 51.5,
-        "long_share": 0.083,
-        "max_paragraph": 216,
-        "paragraphs": 12,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "一般都道250号あきる野羽村線（草花大橋）開通による効果"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:02:10.886081+00:00",
-      "attempt": 1,
-      "id": "ee1d539e25c1f8b4",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 56.4字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 92.6,
-        "avg_sentence": 56.4,
-        "long_share": 0.522,
-        "max_paragraph": 150,
-        "paragraphs": 14,
-        "sentences": 23
-      },
-      "score": 100,
-      "source": "nintendo-topics",
-      "title": "『あつまれ どうぶつの森』で「ゼルダの伝説」のマイデザインを配布中。"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T03:02:15.065273+00:00",
-      "attempt": 0,
-      "id": "ee1d539e25c1f8b4",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 96.0,
-        "avg_sentence": 36.3,
-        "long_share": 0.081,
-        "max_paragraph": 161,
-        "paragraphs": 14,
-        "sentences": 37
-      },
-      "score": 100,
-      "source": "nintendo-topics",
-      "title": "『あつまれ どうぶつの森』で「ゼルダの伝説」のマイデザインを配布中。"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:22:04.801649+00:00",
-      "attempt": 1,
-      "id": "c4daa579ee136511",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2155字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 62.2,
-        "avg_sentence": 62.2,
-        "long_share": 0.414,
-        "max_paragraph": 127,
-        "paragraphs": 29,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "aws-japan-blog",
-      "title": "金融機関が AI-DLC を素早く効果的に運用に乗せる方法"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:22:11.183254+00:00",
-      "attempt": 2,
-      "id": "c4daa579ee136511",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2167字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（393字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 162.7,
-        "avg_sentence": 65.1,
-        "long_share": 0.5,
-        "max_paragraph": 290,
-        "paragraphs": 12,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "aws-japan-blog",
-      "title": "金融機関が AI-DLC を素早く効果的に運用に乗せる方法"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T03:22:18.578309+00:00",
@@ -16426,6 +16257,235 @@
       "score": 100,
       "source": "maff",
       "title": "食文化の海外展開・インバウンド拡大に取り組む外食事業者及び地方公共団体の支援対象を決定しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:41:37.472496+00:00",
+      "attempt": 1,
+      "id": "8380e89917a98439",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1415字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（303字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 131.6,
+        "avg_sentence": 53.8,
+        "long_share": 0.227,
+        "max_paragraph": 188,
+        "paragraphs": 9,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "boj",
+      "title": "（参考）経済・物価情勢の展望と基調的な物価上昇率に関連する各種指標"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:41:51.275238+00:00",
+      "attempt": 1,
+      "id": "0f79dbb44fd6885f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1563字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 137.8,
+        "avg_sentence": 56.4,
+        "long_share": 0.364,
+        "max_paragraph": 230,
+        "paragraphs": 9,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "softbank-news",
+      "title": "災害時に海上から通信を。通信事業者4社が共同で船上基地局の設置訓練 ー「つなぐ×かえる」プロジェクト"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:41:59.718537+00:00",
+      "attempt": 2,
+      "id": "0f79dbb44fd6885f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1600字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 132.4,
+        "avg_sentence": 52.0,
+        "long_share": 0.214,
+        "max_paragraph": 177,
+        "paragraphs": 11,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "softbank-news",
+      "title": "災害時に海上から通信を。通信事業者4社が共同で船上基地局の設置訓練 ー「つなぐ×かえる」プロジェクト"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:42:05.390416+00:00",
+      "attempt": 1,
+      "id": "4fe412fe9cefe9d7",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1352字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 120.1,
+        "avg_sentence": 54.6,
+        "long_share": 0.318,
+        "max_paragraph": 200,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "maff",
+      "title": "地域生物多様性増進法に基づく「自然共生サイト」の認定（令和8年度第2回）について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:42:11.048811+00:00",
+      "attempt": 2,
+      "id": "4fe412fe9cefe9d7",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1486字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（358字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 133.0,
+        "avg_sentence": 57.8,
+        "long_share": 0.478,
+        "max_paragraph": 190,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "maff",
+      "title": "地域生物多様性増進法に基づく「自然共生サイト」の認定（令和8年度第2回）について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:42:19.057535+00:00",
+      "attempt": 1,
+      "id": "b2a0b28206b967e2",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1713字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 135.1,
+        "avg_sentence": 67.5,
+        "long_share": 0.45,
+        "max_paragraph": 211,
+        "paragraphs": 10,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "気候変動による保険・年金分野の新たなリスクの認識－EIOPAの報告書の紹介"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:42:29.008170+00:00",
+      "attempt": 2,
+      "id": "b2a0b28206b967e2",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（319字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 152.9,
+        "avg_sentence": 63.7,
+        "long_share": 0.5,
+        "max_paragraph": 259,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "気候変動による保険・年金分野の新たなリスクの認識－EIOPAの報告書の紹介"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:42:35.795563+00:00",
+      "attempt": 1,
+      "id": "0de465538c9fc2f4",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1500字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（302字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 132.9,
+        "avg_sentence": 54.4,
+        "long_share": 0.364,
+        "max_paragraph": 188,
+        "paragraphs": 9,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "boj",
+      "title": "（参考）ETFの売却ペースの見直しに関する決定（2026年10月）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:42:47.932958+00:00",
+      "attempt": 1,
+      "id": "d88212c96781972a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1408字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（293字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 127.3,
+        "avg_sentence": 55.3,
+        "long_share": 0.304,
+        "max_paragraph": 178,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "米ＧＤＰ（26年7－9月期）－前期比年率+3.4％と前期から伸びが大幅に加速、市場予想（+3.2％）も上回る"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T04:42:54.984102+00:00",
+      "attempt": 2,
+      "id": "d88212c96781972a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1794字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 163.4,
+        "avg_sentence": 58.8,
+        "long_share": 0.44,
+        "max_paragraph": 248,
+        "paragraphs": 9,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "米ＧＤＰ（26年7－9月期）－前期比年率+3.4％と前期から伸びが大幅に加速、市場予想（+3.2％）も上回る"
     }
   ],
   "short_text_retry": {}
