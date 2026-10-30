@@ -8,33 +8,34 @@
   "companyName": "OpenAI",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "ChatGPT Workは、OpenAIが提供する法人向けのAIプラットフォームです。データ分析やコンテンツ作成、業務プロセスの自動化を行えます。2026年7月にEnterpriseプラン向けへ順次提供が開始されました。",
+    "text": "ChatGPT Workは、企業の業務効率化やデータ分析を自動化するビジネス向けAIワークスペースです。OpenAIが2026年7月にEnterpriseプラン向けに提供開始を発表しました。",
     "sources": [
       "openai-chatgpt-work-enterprise-rollout",
-      "chatgpt-work-realpage-ai-training",
-      "openai-chatgpt-work-data-agent-scale"
+      "chatgpt-work-realpage-ai-training"
     ]
   },
   "facts": [
     {
       "label": "料金",
-      "value": "Enterpriseプラン向け契約",
+      "value": "Enterprise契約",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
       "label": "提供開始",
-      "value": "2026年7月24日",
+      "value": "2026年7月",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本からも利用可能",
+      "value": "利用できる",
       "sources": [
-        "uber-openai-chatgpt-work-enterprise-deployment"
+        "chatgpt-work-realpage-ai-training",
+        "uber-openai-chatgpt-work-enterprise-deployment",
+        "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
@@ -46,34 +47,36 @@
     },
     {
       "label": "向いている人",
-      "value": "業務の自動化を目指す企業",
+      "value": "ビジネス職・企業管理者",
       "sources": [
+        "openai-oracle-partnership-chatgpt",
+        "chatgpt-work-realpage-ai-training",
         "uber-openai-chatgpt-work-enterprise-deployment"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "単一の指示から研修テキストやスライド、PDFを同時に自動生成できます。",
+      "text": "プロンプトを一度入力するだけで、研修テキスト、講義用スライド、配布用PDFの3種類の成果物を同時に出力できます。",
       "sources": [
         "chatgpt-work-realpage-ai-training"
       ]
     },
     {
-      "text": "自然言語の指示から数秒でインタラクティブなダッシュボードを作成できます。",
+      "text": "自然言語の指示から、インタラクティブなデータダッシュボードを数秒で自動生成できます。",
       "sources": [
-        "chatgpt-work-dashboard-generation"
+        "chatgpt-work-dashboard-generation",
+        "chatgpt-work-tailor-dashboards-demo"
       ]
     },
     {
-      "text": "DatabricksやSlackと連携し自律的にデータ分析とレポート生成を行います。",
+      "text": "社内のデータベース、Slack、Google Driveのデータを横断して統合分析を実行できます。",
       "sources": [
-        "openai-chatgpt-work-data-agent-scale",
-        "chatgpt-work-data-agent-setup"
+        "openai-chatgpt-work-product-insights-demo"
       ]
     },
     {
-      "text": "分析結果に基づく実行計画を作成し、Slackチャンネルへ直接投稿できます。",
+      "text": "生成したレポートやアクションプランを、画面から直接Slackチャンネルへ投稿できます。",
       "sources": [
         "openai-chatgpt-work-product-insights-demo"
       ]
@@ -81,35 +84,37 @@
   ],
   "pricing": [
     {
-      "text": "最上位のEnterpriseプラン契約ユーザー向けに順次提供されています。",
+      "text": "最上位プランである「Enterprise」の契約ユーザー向けに提供されています。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
-      "text": "具体的なライセンス料金についての言及は発表内でされていません。",
+      "text": "米国ではOracle Marketplaceなどからも購入可能です。",
       "sources": [
-        "uber-openai-chatgpt-work-enterprise-deployment"
+        "openai-oracle-partnership-chatgpt"
       ]
     }
   ],
   "japan": [
     {
-      "text": "日本からも利用できます。管理画面や機能は日本語に対応しています。",
+      "text": "日本語での利用に対応しており、日本国内の企業でも導入が進められています。",
       "sources": [
-        "uber-openai-chatgpt-work-enterprise-deployment"
+        "chatgpt-work-realpage-ai-training",
+        "uber-openai-chatgpt-work-enterprise-deployment",
+        "openai-chatgpt-work-enterprise-rollout"
       ]
     }
   ],
   "howto": [
     {
-      "text": "Webブラウザ、デスクトップアプリ、モバイルアプリから利用できます。",
+      "text": "Webブラウザ版、WindowsやmacOSのデスクトップアプリ、iOSやAndroidのモバイルアプリで利用できます。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
-      "text": "OpenAIの法人窓口に問い合わせてセキュリティ設計などを行い導入します。",
+      "text": "OpenAIの公式サイトの法人向けページや国内の正規リセラーを通じてEnterpriseプランの導入相談を行います。",
       "sources": [
         "uber-openai-chatgpt-work-enterprise-deployment"
       ]
@@ -117,51 +122,51 @@
   ],
   "differences": [
     {
-      "text": "単一の指示でドキュメントやプレゼン、PDFを一括生成できます。",
-      "sources": [
-        "chatgpt-work-realpage-ai-training"
-      ]
-    },
-    {
-      "text": "8分超の自律思考プロセスを経て精度の高い詳細レポートを生成します。",
-      "sources": [
-        "openai-chatgpt-work-data-agent-scale"
-      ]
-    }
-  ],
-  "faq": [
-    {
-      "q": "モバイルアプリで利用できますか？",
-      "a": "iOSやAndroidアプリに対応しています。端末間で同一文脈を同期できます。",
+      "text": "従来のチャット型AIを超えて、定義された業務プロセスを背後で自律的に実行するエージェントとして機能します。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
-      "q": "データ分析に専門知識は必要ですか？",
-      "a": "自然言語で指示できるため、SQLやBIツールの知識は不要です。",
+      "text": "セマンティックレイヤーを介して社内データベースや複数の外部ツールと直接連携できます。",
       "sources": [
         "chatgpt-work-dashboard-generation",
-        "openai-chatgpt-work-data-agent-scale"
+        "chatgpt-work-data-agent-setup"
       ]
-    },
+    }
+  ],
+  "faq": [
     {
-      "q": "作成されたグラフは編集できますか？",
-      "a": "文字の直接書き換えや、グラフ種類の変更をノーコードで行えます。",
-      "sources": [
-        "chatgpt-work-tailor-dashboards-demo"
-      ]
-    },
-    {
-      "q": "入力したデータはAIの学習に使われますか？",
-      "a": "社内データを学習に利用しないセキュリティ保証が含まれます。",
+      "q": "無料で使える？",
+      "a": "Enterpriseプランなどの法人向け契約が必要であり、無償プランやChatGPT Plusとは異なります。",
       "sources": [
         "uber-openai-chatgpt-work-enterprise-deployment"
       ]
     },
     {
-      "q": "エンジニア以外の社員も使えますか？",
-      "a": "非エンジニアの日常業務やマーケティングなど全職種で活用できます。",
+      "q": "いつから使える？",
+      "a": "2026年7月からEnterpriseプラン向けに順次提供が開始されています。",
+      "sources": [
+        "openai-chatgpt-work-enterprise-rollout"
+      ]
+    },
+    {
+      "q": "どんな端末で使える？",
+      "a": "Webブラウザ、デスクトップアプリ、モバイルアプリのすべての環境で利用できます。",
+      "sources": [
+        "openai-chatgpt-work-enterprise-rollout"
+      ]
+    },
+    {
+      "q": "安全に使える？",
+      "a": "社内データを学習に利用しないセキュリティ保証や、組織ごとの管理権限が含まれています。",
+      "sources": [
+        "uber-openai-chatgpt-work-enterprise-deployment"
+      ]
+    },
+    {
+      "q": "誰に向いている？",
+      "a": "開発者だけでなく、マーケティングや法務、経理などの非技術部門を含む企業のナレッジワーカーに向いています。",
       "sources": [
         "uber-openai-chatgpt-work-enterprise-deployment"
       ]
@@ -171,17 +176,27 @@
     {
       "date": "2026-07-24",
       "slug": "openai-chatgpt-work-enterprise-rollout",
-      "event": "Enterprise向けに提供開始"
+      "event": "Enterpriseプランに提供開始"
+    },
+    {
+      "date": "2026-09-18",
+      "slug": "chatgpt-work-dashboard-generation",
+      "event": "ダッシュボード自動生成を実演"
+    },
+    {
+      "date": "2026-09-18",
+      "slug": "chatgpt-work-tailor-dashboards-demo",
+      "event": "分析画面の自動生成デモを公開"
     },
     {
       "date": "2026-10-23",
       "slug": "uber-openai-chatgpt-work-enterprise-deployment",
-      "event": "米Uberが全社員向け導入を発表"
+      "event": "Uberが全社員向けに導入を発表"
     },
     {
       "date": "2026-10-24",
       "slug": "chatgpt-work-realpage-ai-training",
-      "event": "RealPageの研修自動化事例公開"
+      "event": "AI研修作成の自動化事例を公開"
     }
   ],
   "related": [
@@ -237,9 +252,9 @@
     "openai-chatgpt-work-admin-api",
     "openai-chatgpt-work-enterprise-rollout"
   ],
-  "signature": "43c142eb8879ed25",
+  "signature": "051caf8d2649832b",
   "primarySignature": "1b1e52514328374e",
-  "model": "gemini-3.5-flash",
+  "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:34:50+00:00",
-  "updatedAt": "2026-10-27T10:47:58+00:00"
+  "updatedAt": "2026-10-30T10:52:11+00:00"
 }

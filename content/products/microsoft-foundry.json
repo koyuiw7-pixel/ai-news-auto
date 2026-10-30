@@ -6,33 +6,29 @@
   "companyName": "Microsoft",
   "category": "開発ツール",
   "overview": {
-    "text": "Microsoft Foundryは、Microsoftが提供する統合AIプラットフォームです。AIエージェントの構築や運用コストの自動最適化、セキュリティ管理機能などを備えています。発表では、旧Azure AI Foundryの発展的ブランドとして機能の拡充が進められています。",
+    "text": "Microsoft Foundryは、Microsoftが提供する開発者向けの統合AIプラットフォームです。AIエージェントの構築や複数モデルの自動ルーティング機能を備えています。",
     "sources": [
-      "microsoft-foundry-ai-agent-cost-optimization",
+      "microsoft-copilot-harness-foundry-agent-builder",
       "microsoft-foundry-model-router-update"
     ]
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "API従量課金",
+      "label": "提供開始",
+      "value": "プレビューおよび一般提供中",
       "sources": [
-        "microsoft-foundry-agent-guardrails-security",
-        "microsoft-foundry-ai-agent-cost-optimization"
+        "microsoft-copilot-harness-foundry-agent-builder",
+        "dotnet-11-rc2-python-arm64-foundry-browser-automation",
+        "microsoft-foundry-model-router-update"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "利用できる",
+      "value": "日本からでも利用可能",
       "sources": [
-        "microsoft-foundry-agent-guardrails-security",
-        "dotnet-11-rc2-python-arm64-foundry-browser-automation"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "Microsoft Foundry Portal",
-      "sources": [
+        "microsoft-copilot-harness-foundry-agent-builder",
+        "microsoft-copilot-harness-agent-scaling",
+        "dotnet-11-rc2-python-arm64-foundry-browser-automation",
         "microsoft-foundry-agent-guardrails-security"
       ]
     },
@@ -40,33 +36,41 @@
       "label": "向いている人",
       "value": "開発者",
       "sources": [
-        "dotnet-11-rc2-python-arm64-foundry-browser-automation",
-        "microsoft-foundry-agent-guardrails-security"
+        "microsoft-copilot-harness-foundry-agent-builder",
+        "microsoft-copilot-harness-agent-scaling",
+        "microsoft-foundry-agent-optimizer-guide"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "単一のAPIエンドポイントから最大27種類のモデルへ自動で要求を振り分けられます。",
+      "text": "サーバーやコンテナの準備なしで、指示とツールを設定してAIエージェントを作成できます。",
+      "sources": [
+        "microsoft-copilot-harness-foundry-agent-builder",
+        "microsoft-copilot-harness-agent-scaling"
+      ]
+    },
+    {
+      "text": "単一のエンドポイントからOpenAIやAnthropicなどの複数モデルへ動的にルーティングできます。",
       "sources": [
         "microsoft-foundry-model-router-update"
       ]
     },
     {
-      "text": "AIエージェントの脱獄攻撃や個人情報の漏洩、タスク乖離を防ぐガードレールを設定できます。",
+      "text": "コンテンツセーフティや個人情報の漏洩防止を行うガードレール機能を利用できます。",
       "sources": [
         "microsoft-foundry-agent-guardrails-security"
       ]
     },
     {
-      "text": "本番環境のログから評価データを自動抽出し、エージェントの構成やプロンプトを自動最適化できます。",
+      "text": "本番環境のログを活用してプロンプトや構成を自動で最適化できます。",
       "sources": [
         "microsoft-foundry-agent-optimizer-guide",
         "microsoft-foundry-ai-agent-cost-optimization"
       ]
     },
     {
-      "text": "AIエージェント用のブラウザ自動化ツールを用いて、画面を直接操作する業務を実行できます。",
+      "text": "AIが画面を直接操作して仕事をこなすブラウザ自動化エージェントが導入可能です。",
       "sources": [
         "dotnet-11-rc2-python-arm64-foundry-browser-automation"
       ]
@@ -74,81 +78,86 @@
   ],
   "pricing": [
     {
-      "text": "基本料金は連携するサービスのAPI呼び出し回数に応じた従量課金制です。Azureの無料初期クレジット枠などを活用してテスト利用が可能です。",
+      "text": "ベースとなる利用料および裏側で呼び出すモデルのトークン消費に応じた従量課金が適用されます。",
       "sources": [
-        "microsoft-foundry-agent-guardrails-security",
-        "microsoft-foundry-ai-agent-cost-optimization"
+        "microsoft-copilot-harness-foundry-agent-builder",
+        "microsoft-copilot-harness-agent-scaling"
+      ]
+    },
+    {
+      "text": "最適化ツール等の実行時には、評価や改善案生成に伴うAPI呼び出し費用が発生します。",
+      "sources": [
+        "microsoft-foundry-agent-optimizer-guide",
+        "microsoft-foundry-model-router-auto-evaluation"
       ]
     }
   ],
   "japan": [
     {
-      "text": "日本からの利用が可能です。Azureアカウントを作成し、Microsoft Foundry Portalから利用できます。",
+      "text": "日本からでも今日からすぐ試すことができます。",
       "sources": [
-        "microsoft-foundry-agent-guardrails-security",
-        "dotnet-11-rc2-python-arm64-foundry-browser-automation"
+        "microsoft-copilot-harness-foundry-agent-builder"
+      ]
+    },
+    {
+      "text": "日本語のプロンプトや指示文も問題なく動作しますが、一部の最新モデルや機能名称は英語表記が基本です。",
+      "sources": [
+        "microsoft-copilot-harness-foundry-agent-builder",
+        "microsoft-copilot-harness-agent-scaling"
       ]
     }
   ],
   "howto": [
     {
-      "text": "Azureアカウントを作成し、Microsoft Foundry Portalへアクセスします。ポータル上でプロジェクトやAIエージェントを作成して設定を行います。",
+      "text": "Microsoft Foundryポータルにアクセスし、Azureアカウントでログインします。",
       "sources": [
-        "microsoft-foundry-agent-guardrails-security"
+        "microsoft-copilot-harness-foundry-agent-builder",
+        "microsoft-copilot-harness-agent-scaling"
+      ]
+    },
+    {
+      "text": "エージェント作成画面でツールやプロンプトを設定して作成します。",
+      "sources": [
+        "microsoft-copilot-harness-foundry-agent-builder",
+        "microsoft-copilot-harness-agent-scaling"
       ]
     }
   ],
   "differences": [
     {
-      "text": "旧Azure AI Foundryから発展したブランドとして機能拡充が行われています。",
+      "text": "従来は必要だったAIエージェント構築時のサーバーやコンテナの準備が不要になりました。",
       "sources": [
-        "microsoft-foundry-ai-agent-cost-optimization"
+        "microsoft-copilot-harness-foundry-agent-builder",
+        "microsoft-copilot-harness-agent-scaling"
       ]
     },
     {
-      "text": "手動でのプロンプト調整に頼らず、本番トレースに基づき自動で設定を改善できるようになりました。",
+      "text": "個別モデルデプロイの代わりに単一エンドポイントから複数LLMを自動振り分け可能になりました。",
       "sources": [
-        "microsoft-foundry-agent-optimizer-guide"
+        "microsoft-foundry-model-router-update"
       ]
     }
   ],
   "faq": [
     {
-      "q": "どのような安全対策機能がありますか？",
-      "a": "脱獄攻撃の遮断や個人情報の保護、タスク逸脱を防ぐガードレール機能が提供されています。",
+      "q": "サーバーの準備は必要ですか？",
+      "a": "サーバーやコンテナの準備なしでAIエージェントを作成できます。",
+      "sources": [
+        "microsoft-copilot-harness-foundry-agent-builder"
+      ]
+    },
+    {
+      "q": "セキュリティ対策機能はありますか？",
+      "a": "脱獄プロンプトや個人情報漏洩を防ぐガードレール機能が用意されています。",
       "sources": [
         "microsoft-foundry-agent-guardrails-security"
       ]
     },
     {
-      "q": "Model Routerとは何ですか？",
-      "a": "リクエストの難易度に応じて最適なモデルへ動的に処理を振り分ける機能です。",
+      "q": "モデルの自動振り分けはできますか？",
+      "a": "単一のエンドポイントから複数のLLMへ動的にルーティングできます。",
       "sources": [
-        "microsoft-foundry-ai-agent-cost-optimization",
         "microsoft-foundry-model-router-update"
-      ]
-    },
-    {
-      "q": "事前にかかる費用を確認できますか？",
-      "a": "Agent Optimizerではジョブの実行前に推定コストの内訳が提示されます。",
-      "sources": [
-        "microsoft-foundry-agent-optimizer-guide",
-        "microsoft-foundry-ai-agent-cost-optimization"
-      ]
-    },
-    {
-      "q": "評価ツールは無料で使えますか？",
-      "a": "Model Routerの検証ツール自体はGitHubで無料公開されています。API利用料は別途発生します。",
-      "sources": [
-        "microsoft-foundry-model-router-auto-evaluation"
-      ]
-    },
-    {
-      "q": "どのようなモデルを利用できますか？",
-      "a": "GPTシリーズやGrok-4.1などのほか、画像生成モデルなども追加されています。",
-      "sources": [
-        "microsoft-foundry-model-router-update",
-        "visual-studio-ai-agents-mcp-sdk"
       ]
     }
   ],
@@ -156,17 +165,17 @@
     {
       "date": "2026-09-26",
       "slug": "microsoft-foundry-model-router-update",
-      "event": "Model Router機能拡張を発表"
+      "event": "Model Routerの最新機能を公開"
     },
     {
-      "date": "2026-10-02",
-      "slug": "microsoft-foundry-model-router-auto-evaluation",
-      "event": "自動評価ツールをOSS公開"
+      "date": "2026-10-22",
+      "slug": "microsoft-foundry-agent-optimizer-guide",
+      "event": "Agent Optimizerの解説動画を公開"
     },
     {
-      "date": "2026-10-20",
-      "slug": "microsoft-foundry-ai-agent-cost-optimization",
-      "event": "AIコスト自動最適化の2機能を公開"
+      "date": "2026-10-26",
+      "slug": "microsoft-foundry-agent-guardrails-security",
+      "event": "ガードレール機能の解説を公開"
     }
   ],
   "related": [
@@ -196,9 +205,9 @@
     "microsoft-foundry-model-router-auto-evaluation",
     "microsoft-foundry-model-router-update"
   ],
-  "signature": "762a06276c688b47",
+  "signature": "b09854b3c5af6321",
   "primarySignature": "c243b3ecacda78a9",
-  "model": "gemini-3.5-flash",
+  "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:54+00:00",
-  "updatedAt": "2026-10-27T10:50:11+00:00"
+  "updatedAt": "2026-10-30T10:52:21+00:00"
 }

@@ -3459,6 +3459,13 @@
       "skipped": true,
       "url": "https://www.hiroshima-u.ac.jp/news/100929"
     },
+    "101256db11d36682": {
+      "at": "2026-10-30T10:52:05.025855+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1748字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026103006"
+    },
     "10659eb70d41a8da": {
       "at": "2026-10-27T17:37:49.739746+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5848,6 +5855,13 @@
       "slug": "cccskills-ai-agent-skills-market",
       "url": "https://prtimes.jp/main/html/rd/p/000000083.000041726.html"
     },
+    "5fafd66b334b35a1": {
+      "at": "2026-10-30T10:51:34.949699+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（396字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026103009"
+    },
     "5ffbb0f8c3ab7480": {
       "at": "2026-10-27T00:29:17.163979+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7965,6 +7979,12 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326821.html"
     },
+    "a600be7ff9e84ba0": {
+      "at": "2026-10-30T10:52:05.026026+00:00",
+      "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77069.html"
+    },
     "a62588fe134ad250": {
       "at": "2026-10-29T03:22:24.365708+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8274,6 +8294,13 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/policy/kashikin/tajusaimukondankai/20261028/20261028.html"
     },
+    "b34db828e28cd179": {
+      "at": "2026-10-30T10:51:47.719169+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1637字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（371字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/toukei/saikin/hw/kaigo/kyufu/2026/07.html"
+    },
     "b358218b8eb1d56d": {
       "at": "2026-10-27T03:05:10.759524+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（ウェビナー）",
@@ -8463,6 +8490,13 @@
       "score": 100,
       "updated": "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
       "url": "https://aws.amazon.com/blogs/machine-learning/building-an-agentic-ai-platform-on-amazon-bedrock-agentcore/"
+    },
+    "b8d7498382b4038f": {
+      "at": "2026-10-30T10:51:20.008928+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1717字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（344字 / 基準 400字以上）; body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の M",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01ryutsu09_02000399.html"
     },
     "b95c6de3a9285d8e": {
       "at": "2026-10-29T16:46:30.569757+00:00",
@@ -8723,6 +8757,13 @@
       "reason": "quality: 本文が短い（2320字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000233.000032195.html"
+    },
+    "c30b24f37f16a541": {
+      "at": "2026-10-30T10:51:06.423903+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "厚生労働省の定期的な統計データの掲載案内（月報のダウンロードページ）であり、国民の暮らしに関わる新しい制度の開始や法改正、料金の変更などを伴うものではないため、対象外と判断しました。",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/topics/medias/month/26/06.html"
     },
     "c3136a75dafafae6": {
       "at": "2026-10-26T22:21:00.450044+00:00",
@@ -10543,183 +10584,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T17:47:32.552736+00:00",
-      "attempt": 1,
-      "id": "415c05d3f517e27e",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2089字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 147.3,
-        "avg_sentence": 70.1,
-        "long_share": 0.571,
-        "max_paragraph": 275,
-        "paragraphs": 10,
-        "sentences": 21
-      },
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "Accelerate agentic AI with NVIDIA Nemotron models on Amazon EKS and SageMaker Hy"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T17:48:21.872340+00:00",
-      "attempt": 1,
-      "id": "415c05d3f517e27e",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 63.2字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 130.4字・最長 275字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 130.4,
-        "avg_sentence": 63.2,
-        "long_share": 0.424,
-        "max_paragraph": 275,
-        "paragraphs": 16,
-        "sentences": 33
-      },
-      "score": 100,
-      "source": "aws-ml-blog",
-      "title": "Accelerate agentic AI with NVIDIA Nemotron models on Amazon EKS and SageMaker Hy"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T17:49:00.393807+00:00",
-      "attempt": 0,
-      "id": "415c05d3f517e27e",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 121.4字・最長 216字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 121.4,
-        "avg_sentence": 33.8,
-        "long_share": 0.066,
-        "max_paragraph": 216,
-        "paragraphs": 17,
-        "sentences": 61
-      },
-      "score": 100,
-      "source": "aws-ml-blog",
-      "title": "Accelerate agentic AI with NVIDIA Nemotron models on Amazon EKS and SageMaker Hy"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:07:08.919298+00:00",
-      "attempt": 1,
-      "id": "7bf0065ceb1646f5",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1725字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（359字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 129.3,
-        "avg_sentence": 59.2,
-        "long_share": 0.5,
-        "max_paragraph": 288,
-        "paragraphs": 11,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "An updated Model Spec for more capable and beneficial AI"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:07:27.004162+00:00",
-      "attempt": 2,
-      "id": "7bf0065ceb1646f5",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2322字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 135.6,
-        "avg_sentence": 57.5,
-        "long_share": 0.485,
-        "max_paragraph": 262,
-        "paragraphs": 14,
-        "sentences": 33
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "An updated Model Spec for more capable and beneficial AI"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T18:08:14.001093+00:00",
-      "attempt": 2,
-      "id": "7bf0065ceb1646f5",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 57.7字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 169.1字・最長 244字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 169.1,
-        "avg_sentence": 57.7,
-        "long_share": 0.439,
-        "max_paragraph": 244,
-        "paragraphs": 14,
-        "sentences": 41
-      },
-      "score": 100,
-      "source": "openai-news",
-      "title": "An updated Model Spec for more capable and beneficial AI"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T18:08:58.168151+00:00",
-      "attempt": 0,
-      "id": "7bf0065ceb1646f5",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 103.1,
-        "avg_sentence": 40.6,
-        "long_share": 0.098,
-        "max_paragraph": 163,
-        "paragraphs": 24,
-        "sentences": 61
-      },
-      "score": 100,
-      "source": "openai-news",
-      "title": "An updated Model Spec for more capable and beneficial AI"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:10:18.802462+00:00",
-      "attempt": 1,
-      "id": "0ad26ba6b13d4d29",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（267字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 160.4,
-        "avg_sentence": 62.8,
-        "long_share": 0.478,
-        "max_paragraph": 247,
-        "paragraphs": 9,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "digital-agency",
-      "title": "10月28日（水）、英国とデジタル政府分野における協力覚書を取り交わしました"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T18:10:45.707890+00:00",
@@ -17298,6 +17162,190 @@
       "score": null,
       "source": "tokyo-metro",
       "title": "11月は「薬剤耐性（AMR）対策推進月間」新たなポータルサイトや動画等でAMRを分かりやすく発信"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T10:51:13.725511+00:00",
+      "attempt": 1,
+      "id": "b8d7498382b4038f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1504字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（344字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 131.0,
+        "avg_sentence": 53.6,
+        "long_share": 0.409,
+        "max_paragraph": 167,
+        "paragraphs": 9,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "令和7年度の字幕放送等の実績"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T10:51:20.008888+00:00",
+      "attempt": 2,
+      "id": "b8d7498382b4038f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1717字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（344字 / 基準 400字以上）",
+        "body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 159.7,
+        "avg_sentence": 57.0,
+        "long_share": 0.393,
+        "max_paragraph": 232,
+        "paragraphs": 10,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "令和7年度の字幕放送等の実績"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T10:51:27.396015+00:00",
+      "attempt": 1,
+      "id": "5fafd66b334b35a1",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1792字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 130.0,
+        "avg_sentence": 48.8,
+        "long_share": 0.25,
+        "max_paragraph": 225,
+        "paragraphs": 9,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "「身につけよう！疑う力」新たに11月を「特殊詐欺被害防止強化月間」に！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T10:51:34.949656+00:00",
+      "attempt": 2,
+      "id": "5fafd66b334b35a1",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（396字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 117.1,
+        "avg_sentence": 49.7,
+        "long_share": 0.242,
+        "max_paragraph": 175,
+        "paragraphs": 14,
+        "sentences": 33
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "「身につけよう！疑う力」新たに11月を「特殊詐欺被害防止強化月間」に！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T10:51:40.990718+00:00",
+      "attempt": 1,
+      "id": "b34db828e28cd179",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1310字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（306字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 110.0,
+        "avg_sentence": 48.9,
+        "long_share": 0.167,
+        "max_paragraph": 186,
+        "paragraphs": 8,
+        "sentences": 18
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "介護給付費等実態統計月報（令和８（2026）年７月審査分）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T10:51:47.719123+00:00",
+      "attempt": 2,
+      "id": "b34db828e28cd179",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1637字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（371字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 123.6,
+        "avg_sentence": 51.5,
+        "long_share": 0.208,
+        "max_paragraph": 206,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "介護給付費等実態統計月報（令和８（2026）年７月審査分）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T10:51:54.439845+00:00",
+      "attempt": 1,
+      "id": "101256db11d36682",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1390字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（365字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 109.0,
+        "avg_sentence": 49.5,
+        "long_share": 0.136,
+        "max_paragraph": 213,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "土木の魅力を発信するイベント「東京 橋と土木展」開催"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T10:52:01.628371+00:00",
+      "attempt": 2,
+      "id": "101256db11d36682",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1748字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 150.3,
+        "avg_sentence": 56.4,
+        "long_share": 0.292,
+        "max_paragraph": 215,
+        "paragraphs": 9,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "土木の魅力を発信するイベント「東京 橋と土木展」開催"
     }
   ],
   "short_text_retry": {}
