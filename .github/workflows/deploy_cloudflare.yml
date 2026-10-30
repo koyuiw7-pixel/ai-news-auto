@@ -18,9 +18,11 @@ on:
 permissions:
   contents: write
 
-# 連続でコミットされても最後の1回だけデプロイする
+# 公開する回は最後の1回だけデプロイする。
+# [no-deploy]の回は別groupへ。jobがskipでもworkflow concurrencyは先に評価されるため、
+# 同じgroupだと記録だけのpushが進行中の公開まで取り消してしまう。
 concurrency:
-  group: deploy-cloudflare
+  group: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[no-deploy]') && format('deploy-skipped-{0}', github.run_id) || 'deploy-cloudflare' }}
   cancel-in-progress: true
 
 jobs:
