@@ -155,6 +155,10 @@
       "at": "2026-08-04T13:52:52.697096+00:00",
       "slug": "bitcoin-market-outlook-2026-bottom-2029-peak"
     },
+    "1lX4bK3FTPk": {
+      "at": "2026-10-30T18:02:02.171378+00:00",
+      "slug": "automation-vs-physical-ai-microsoft-azure"
+    },
     "1pJj7RCqIyA": {
       "at": "2026-08-09T04:11:36.940859+00:00",
       "reason": "33秒のショート動画であり、かつ内容は旧ソ連のスパイマニュアルにおけるターゲット選定（30〜40代会社員の心理的隙）に関する雑談・教養的なテーマで、不動産の実質的な情報（物件、相場、ローン、投資、税制など）を含んでいないため、記事化の対象外と判断しました。",
@@ -647,6 +651,10 @@
     "CTkDi1THc_g": {
       "at": "2026-10-25T10:18:33.389259+00:00",
       "slug": "openai-codex-benefit-street-partners-financial-tool"
+    },
+    "CWdTBLsbaQs": {
+      "at": "2026-10-30T18:01:27.328138+00:00",
+      "slug": "openai-refutes-exponential-time-hypothesis"
     },
     "CiTPDm7PKW0": {
       "at": "2026-07-30T19:15:06.584388+00:00",
@@ -8360,6 +8368,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000225.000081704.html"
     },
+    "b2263e9f84127c76": {
+      "at": "2026-10-30T18:03:10.966691+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "ai",
+      "slug": "nvidia-nemotron-halloween-monsterhouse",
+      "url": "https://huggingface.co/blog/nvidia/nemotron-halloween"
+    },
     "b2405c6b346338a0": {
       "at": "2026-10-26T12:51:45.036739+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（アワード）",
@@ -10752,74 +10768,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:52:50.430364+00:00",
-      "attempt": 2,
-      "id": "ff5cbeba6a49e9a6",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（256字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 157.6,
-        "avg_sentence": 58.4,
-        "long_share": 0.37,
-        "max_paragraph": 291,
-        "paragraphs": 10,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "中小企業のための「カーボンクレジット」学びの場 東京都カーボンクレジット総合ポータルサイトを開設"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:52:56.511261+00:00",
-      "attempt": 1,
-      "id": "53c8b988068919e5",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1398字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（359字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 143.1,
-        "avg_sentence": 51.5,
-        "long_share": 0.2,
-        "max_paragraph": 220,
-        "paragraphs": 9,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "kantei",
-      "title": "高市総理はドイツ連邦共和国のフリードリヒ・メルツ首相と首脳会談を行いました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:53:02.809104+00:00",
-      "attempt": 2,
-      "id": "53c8b988068919e5",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1539字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 157.0,
-        "avg_sentence": 56.5,
-        "long_share": 0.36,
-        "max_paragraph": 208,
-        "paragraphs": 9,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "kantei",
-      "title": "高市総理はドイツ連邦共和国のフリードリヒ・メルツ首相と首脳会談を行いました"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T18:53:19.460728+00:00",
@@ -17506,6 +17454,73 @@
       "score": null,
       "source": "aws-ml-blog",
       "title": "How Worldwide Express automated freight exceptions with Amazon Bedrock"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T18:02:45.138606+00:00",
+      "attempt": 1,
+      "id": "b2263e9f84127c76",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1717字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 94.6,
+        "avg_sentence": 61.5,
+        "long_share": 0.5,
+        "max_paragraph": 134,
+        "paragraphs": 13,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "hugging-face-blog",
+      "title": "nemotron-halloween"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T18:03:05.100866+00:00",
+      "attempt": 2,
+      "id": "b2263e9f84127c76",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 70.4字・60字超の文が 64% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 145.2字・最長 233字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 145.2,
+        "avg_sentence": 70.4,
+        "long_share": 0.636,
+        "max_paragraph": 233,
+        "paragraphs": 16,
+        "sentences": 33
+      },
+      "score": 100,
+      "source": "hugging-face-blog",
+      "title": "nemotron-halloween"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T18:03:10.966258+00:00",
+      "attempt": 0,
+      "id": "b2263e9f84127c76",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 167.9字・最長 272字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 167.9,
+        "avg_sentence": 23.4,
+        "long_share": 0.0,
+        "max_paragraph": 272,
+        "paragraphs": 16,
+        "sentences": 115
+      },
+      "score": 100,
+      "source": "hugging-face-blog",
+      "title": "nemotron-halloween"
     }
   ],
   "short_text_retry": {}
