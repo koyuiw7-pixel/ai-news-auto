@@ -8,6 +8,7 @@ import { COMPANIES, OTHER } from "@/lib/companies";
 import { getAllEvents, localDateRange } from "@/lib/events";
 import { getAllWeeks, getWeek, neighborWeeks, weekPublishedAt, weekRangeLabel, type WeeklyItem } from "@/lib/weekly";
 import { siteConfig } from "@/site.config";
+import { publisherJsonLd } from "@/lib/publisher";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -75,7 +76,7 @@ export default async function WeeklyPage({ params }: Props) {
       inLanguage: "ja",
       mainEntityOfPage: url,
       author: { "@type": "Organization", name: siteConfig.author, url: `${siteConfig.url}/about` },
-      publisher: { "@type": "Organization", name: siteConfig.siteName, logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png` } },
+      publisher: publisherJsonLd,
     },
     {
       "@context": "https://schema.org",

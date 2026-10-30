@@ -7,6 +7,7 @@ import { howtoArticles, siblingHowtos, type HowtoGuide } from "@/lib/howto";
 import { getChooseGuide } from "@/lib/choose";
 import { getProduct } from "@/lib/products";
 import { siteConfig } from "@/site.config";
+import { publisherJsonLd } from "@/lib/publisher";
 import { difyDecisionHref } from "@/lib/a8-attribution";
 import DifyCreditEstimator from "@/components/DifyCreditEstimator";
 
@@ -32,12 +33,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
       dateModified: guide.checkedAt > guide.updatedAt ? guide.checkedAt : guide.updatedAt,
       mainEntityOfPage: url,
       author: { "@type": "Organization", name: siteConfig.author, url: `${siteConfig.url}/about` },
-      publisher: {
-        "@type": "Organization",
-        name: siteConfig.siteName,
-        url: siteConfig.url,
-        logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png`, width: 600, height: 60 },
-      },
+      publisher: publisherJsonLd,
     },
     {
       "@context": "https://schema.org",

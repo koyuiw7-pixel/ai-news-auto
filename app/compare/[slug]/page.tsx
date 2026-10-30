@@ -16,6 +16,7 @@ import {
 import VariantA from "@/components/compare/VariantA";
 import { buildGuideView } from "@/components/compare/view";
 import { siteConfig } from "@/site.config";
+import { publisherJsonLd } from "@/lib/publisher";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -86,12 +87,7 @@ export default async function ComparePage({ params }: Props) {
       dateModified: guide.updatedAt,
       mainEntityOfPage: url,
       author: { "@type": "Organization", name: siteConfig.author, url: `${siteConfig.url}/about` },
-      publisher: {
-        "@type": "Organization",
-        name: siteConfig.name,
-        url: siteConfig.url,
-        logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png`, width: 600, height: 60 },
-      },
+      publisher: publisherJsonLd,
       publishingPrinciples: `${siteConfig.url}/editorial-policy`,
       keywords: guide.targetQueries.join(", "),
     },

@@ -5,6 +5,7 @@ import { getAllArticles } from "@/lib/articles";
 import { getAllHowtos } from "@/lib/howto";
 import { chooseGuideForArticle, getAllChooseGuides, getChooseGuide, resolveService } from "@/lib/choose";
 import { siteConfig } from "@/site.config";
+import { publisherJsonLd } from "@/lib/publisher";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -68,12 +69,7 @@ export default async function ChoosePage({ params }: Props) {
       dateModified: guide.updatedAt,
       mainEntityOfPage: url,
       author: { "@type": "Organization", name: siteConfig.author, url: `${siteConfig.url}/about` },
-      publisher: {
-        "@type": "Organization",
-        name: siteConfig.siteName,
-        url: siteConfig.url,
-        logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png`, width: 600, height: 60 },
-      },
+      publisher: publisherJsonLd,
       publishingPrinciples: `${siteConfig.url}/editorial-policy`,
       keywords: guide.keywords.join(", "),
     },

@@ -57,6 +57,7 @@ import {
   splitBeforeHeading,
 } from "@/lib/markdown";
 import { siteConfig } from "@/site.config";
+import { publisherJsonLd } from "@/lib/publisher";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -201,13 +202,7 @@ export default async function ArticlePage({ params }: Props) {
       correctionsPolicy: `${siteConfig.url}/editorial-policy`,
       // AIを使った制作であることの開示（schema.org の backstory: 記事がどう作られたか）
       backstory: `生成AIで下書きを作成し、元の発表と照合してから公開しています。制作方法と事実確認の手順: ${siteConfig.url}/editorial-policy`,
-      publisher: {
-        "@type": "Organization",
-        // サイト全体の構造化データ（app/layout.tsx）・ニュースサイトマップと同じ媒体名
-        name: siteConfig.siteName,
-        url: siteConfig.url,
-        logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png`, width: 600, height: 60 },
-      },
+      publisher: publisherJsonLd,
       isAccessibleForFree: true,
       articleSection: company.name,
       about: article.tags.slice(0, 5).map((tag) => ({ "@type": "Thing", name: tag })),
@@ -328,6 +323,15 @@ export default async function ArticlePage({ params }: Props) {
               <Highlight text={article.title} />
             </h1>
           </Morph>
+
+          <p className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-note leading-relaxed text-ink-soft">
+            <span>
+              制作：<Link href="/about" rel="author" className="font-semibold underline decoration-line-strong underline-offset-4 hover:text-accent">{siteConfig.author}</Link>
+            </span>
+            <Link href="/editorial-policy" className="underline decoration-line-strong underline-offset-4 hover:text-accent">
+              編集方針・AI利用と事実確認
+            </Link>
+          </p>
 
           {/* 3秒でわかる要点 */}
           {article.highlights.length > 0 && (

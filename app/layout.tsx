@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import RevenueFunnelTracker from "@/components/RevenueFunnelTracker";
 import AffClickTracker from "@/components/AffClickTracker";
 import { siteConfig } from "@/site.config";
+import { publisherJsonLd } from "@/lib/publisher";
 import { dela, martian } from "./fonts";
 import "./globals.css";
 
@@ -60,21 +61,11 @@ export default function RootLayout({
     "@type": "WebSite",
     // Google の検索結果でアイコンの横に出るサイト名
     name: siteConfig.siteName,
-    alternateName: ["サイソク", "AI速報サイソク"],
+    alternateName: publisherJsonLd.alternateName,
     url: siteConfig.url,
     description: siteConfig.description,
     inLanguage: "ja",
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.siteName,
-      url: siteConfig.url,
-      logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png`, width: 600, height: 60 },
-      email: siteConfig.operator.email,
-      contactPoint: { "@type": "ContactPoint", email: siteConfig.operator.email, contactType: "editorial" },
-      publishingPrinciples: `${siteConfig.url}/editorial-policy`,
-      correctionsPolicy: `${siteConfig.url}/editorial-policy`,
-      sameAs: siteConfig.social.map((s) => s.url),
-    },
+    publisher: publisherJsonLd,
   };
 
   const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;

@@ -17,6 +17,7 @@ import {
 import { Phrases } from "@/lib/highlight";
 import { howtosForProduct } from "@/lib/howto";
 import { siteConfig } from "@/site.config";
+import { publisherJsonLd } from "@/lib/publisher";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -124,12 +125,7 @@ export default async function ProductPage({ params }: Props) {
       dateModified: product.updatedAt,
       mainEntityOfPage: url,
       author: { "@type": "Organization", name: siteConfig.author, url: `${siteConfig.url}/about` },
-      publisher: {
-        "@type": "Organization",
-        name: siteConfig.siteName,
-        url: siteConfig.url,
-        logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png`, width: 600, height: 60 },
-      },
+      publisher: publisherJsonLd,
       publishingPrinciples: `${siteConfig.url}/editorial-policy`,
       about: { "@type": "Thing", name: product.name },
       citation: cited.map((a) => ({ "@type": "NewsArticle", headline: a.title, url: `${siteConfig.url}/articles/${a.slug}` })),
