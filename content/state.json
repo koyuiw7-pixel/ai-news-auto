@@ -3199,6 +3199,14 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/chousa/shougai/054/kaisai/mext_02480.html"
     },
+    "0872902dfeb6a015": {
+      "at": "2026-10-30T08:31:58.769136+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "mhlw-cybersecurity-alert-2026",
+      "url": "https://www.mhlw.go.jp/stf/kinkyu/20261030.html"
+    },
     "089499b17632d7b0": {
       "at": "2026-10-30T05:01:58.633851+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（表敬）",
@@ -3999,6 +4007,13 @@
       "skipped": true,
       "url": "https://www.value-press.com/pressrelease/383122"
     },
+    "21cf65643bdcaa21": {
+      "at": "2026-10-30T08:31:03.946410+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "国際基準設定主体に関する会議のプレスリリース公表であり、国民の具体的な手続きや給付、料金などに直接関わる話題ではないため。",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/inter/etc/20261030/20261030.html"
+    },
     "21f4761ac0bc4960": {
       "at": "2026-10-28T20:52:17.541097+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4752,6 +4767,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（オープン）",
       "skipped": true,
       "url": "https://www.value-press.com/pressrelease/383169"
+    },
+    "3accf3bc15497543": {
+      "at": "2026-10-30T08:31:28.764872+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1666字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（361字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/resources/govdashboard/account_registration_status"
     },
     "3ae5a1d46d30f03b": {
       "at": "2026-10-27T03:05:10.758753+00:00",
@@ -7069,6 +7091,13 @@
       "skipped": true,
       "url": "https://www.suntory.co.jp/news/article/2026/15158.html?rss=0000000029"
     },
+    "8d5c737c495043c1": {
+      "at": "2026-10-30T08:31:43.288757+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（397字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.niandc.co.jp/news/20261030_78501/"
+    },
     "8d66812a807d04fb": {
       "at": "2026-10-27T01:51:29.785296+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8351,6 +8380,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（出展）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000069.000011615.html"
+    },
+    "bcbf10246dc16651": {
+      "at": "2026-10-30T08:31:14.868873+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1419字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（293字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030b.pdf"
     },
     "bcede774e887a3cb": {
       "at": "2026-10-29T03:22:36.623655+00:00",
@@ -10244,197 +10280,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-29T15:39:40.395076+00:00",
-      "attempt": 0,
-      "id": "e1c742c1d925baf7",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 118.4字・最長 250字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 118.4,
-        "avg_sentence": 39.5,
-        "long_share": 0.059,
-        "max_paragraph": 250,
-        "paragraphs": 17,
-        "sentences": 51
-      },
-      "score": 100,
-      "source": "hugging-face-blog",
-      "title": "Announcing Project ProtoStar: Making Publicly Funded Science AI-Ready"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T15:52:19.751358+00:00",
-      "attempt": 1,
-      "id": "653882b3da5b8f0b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1908字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 75.8,
-        "avg_sentence": 58.5,
-        "long_share": 0.409,
-        "max_paragraph": 144,
-        "paragraphs": 17,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "google-gemini-blog",
-      "title": "How to use Gemini to update your resume"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T15:53:20.348632+00:00",
-      "attempt": 2,
-      "id": "653882b3da5b8f0b",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1887字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "訳されていない英文が残っている（「Use my raw, unedited notes about my past…」）"
-      ],
-      "readability": {
-        "avg_paragraph": 98.9,
-        "avg_sentence": 57.7,
-        "long_share": 0.417,
-        "max_paragraph": 210,
-        "paragraphs": 14,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "google-gemini-blog",
-      "title": "How to use Gemini to update your resume"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T15:53:56.911674+00:00",
-      "attempt": 1,
-      "id": "194b54512c312610",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 65.5字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 174.7字・最長 264字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 174.7,
-        "avg_sentence": 65.5,
-        "long_share": 0.5,
-        "max_paragraph": 264,
-        "paragraphs": 9,
-        "sentences": 24
-      },
-      "score": 100,
-      "source": "ntt-news",
-      "title": "ゼロトラスト導入・運用支援サービスの提供開始"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T15:55:04.369307+00:00",
-      "attempt": 0,
-      "id": "194b54512c312610",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 55.4字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 59.7,
-        "avg_sentence": 55.4,
-        "long_share": 0.286,
-        "max_paragraph": 176,
-        "paragraphs": 26,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "ntt-news",
-      "title": "ゼロトラスト導入・運用支援サービスの提供開始"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T15:56:24.108780+00:00",
-      "attempt": 1,
-      "id": "a1765f446c5b64b5",
-      "kind": "update",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "hugging-face-blog",
-      "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T15:57:05.403087+00:00",
-      "attempt": 1,
-      "id": "85d975255b4f9d00",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文が短い（2245字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 112.8,
-        "avg_sentence": 54.7,
-        "long_share": 0.364,
-        "max_paragraph": 198,
-        "paragraphs": 16,
-        "sentences": 33
-      },
-      "score": null,
-      "source": "hugging-face-blog",
-      "title": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T15:58:01.613651+00:00",
-      "attempt": 1,
-      "id": "85d975255b4f9d00",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 48.9字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 134.4字・最長 218字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 134.4,
-        "avg_sentence": 48.9,
-        "long_share": 0.273,
-        "max_paragraph": 218,
-        "paragraphs": 16,
-        "sentences": 44
-      },
-      "score": 100,
-      "source": "hugging-face-blog",
-      "title": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T15:58:58.788771+00:00",
-      "attempt": 0,
-      "id": "85d975255b4f9d00",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 132.1字・最長 224字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 132.1,
-        "avg_sentence": 31.6,
-        "long_share": 0.042,
-        "max_paragraph": 224,
-        "paragraphs": 17,
-        "sentences": 71
-      },
-      "score": 100,
-      "source": "hugging-face-blog",
-      "title": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and"
-    },
     {
       "accepted": true,
       "at": "2026-10-29T16:03:49.933635+00:00",
@@ -17000,6 +16845,209 @@
       "score": null,
       "source": "google-cloud-blog-ja",
       "title": "BigQuery ObjectRef の一般提供を開始: 会話分析用のマルチモーダル データ プラットフォームをすべて SQL で構築"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T08:31:09.414293+00:00",
+      "attempt": 1,
+      "id": "bcbf10246dc16651",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1169字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（309字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 99.1,
+        "avg_sentence": 49.5,
+        "long_share": 0.25,
+        "max_paragraph": 142,
+        "paragraphs": 10,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "boj",
+      "title": "米ドル資金供給オペレーションのオファー日程（2026年11月～2027年3月）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T08:31:14.868820+00:00",
+      "attempt": 2,
+      "id": "bcbf10246dc16651",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1419字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（293字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 122.1,
+        "avg_sentence": 53.1,
+        "long_share": 0.261,
+        "max_paragraph": 174,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "boj",
+      "title": "米ドル資金供給オペレーションのオファー日程（2026年11月～2027年3月）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T08:31:23.290434+00:00",
+      "attempt": 1,
+      "id": "3accf3bc15497543",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（368字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 143.7,
+        "avg_sentence": 56.2,
+        "long_share": 0.391,
+        "max_paragraph": 205,
+        "paragraphs": 9,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "digital-agency",
+      "title": "公金受取口座の登録状況に関するダッシュボードを更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T08:31:28.764837+00:00",
+      "attempt": 2,
+      "id": "3accf3bc15497543",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1666字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（361字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 80.3,
+        "avg_sentence": 52.5,
+        "long_share": 0.308,
+        "max_paragraph": 128,
+        "paragraphs": 17,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "digital-agency",
+      "title": "公金受取口座の登録状況に関するダッシュボードを更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T08:31:37.116229+00:00",
+      "attempt": 1,
+      "id": "8d5c737c495043c1",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "title の長さが不適切（83字 / 18〜64字）"
+      ],
+      "readability": {
+        "avg_paragraph": 100.1,
+        "avg_sentence": 51.9,
+        "long_share": 0.259,
+        "max_paragraph": 186,
+        "paragraphs": 14,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "ntt-news",
+      "title": "NTTインテグレーション、「PowerCloudNEXT」にIBM Power11対応メニューおよびローカルメニューを追加 ～最新基盤への対応と、メニュー拡充に"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T08:31:43.288714+00:00",
+      "attempt": 2,
+      "id": "8d5c737c495043c1",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（397字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 201.3,
+        "avg_sentence": 100.7,
+        "long_share": 0.556,
+        "max_paragraph": 572,
+        "paragraphs": 9,
+        "sentences": 18
+      },
+      "score": null,
+      "source": "ntt-news",
+      "title": "NTTインテグレーション、「PowerCloudNEXT」にIBM Power11対応メニューおよびローカルメニューを追加 ～最新基盤への対応と、メニュー拡充に"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T08:31:50.778233+00:00",
+      "attempt": 1,
+      "id": "0872902dfeb6a015",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1740字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 143.8,
+        "avg_sentence": 65.4,
+        "long_share": 0.545,
+        "max_paragraph": 229,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "不正アクセスによる情報漏えい等の事案を踏まえたセキュリティ対策の徹底について（注意喚起）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T08:31:54.999561+00:00",
+      "attempt": 1,
+      "id": "0872902dfeb6a015",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 56.4字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 158.0字・最長 226字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 158.0,
+        "avg_sentence": 56.4,
+        "long_share": 0.429,
+        "max_paragraph": 226,
+        "paragraphs": 10,
+        "sentences": 28
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "不正アクセスによる情報漏えい等の事案を踏まえたセキュリティ対策の徹底について（注意喚起）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T08:31:58.768626+00:00",
+      "attempt": 0,
+      "id": "0872902dfeb6a015",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 148.5字・最長 245字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 148.5,
+        "avg_sentence": 29.7,
+        "long_share": 0.018,
+        "max_paragraph": 245,
+        "paragraphs": 11,
+        "sentences": 55
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "不正アクセスによる情報漏えい等の事案を踏まえたセキュリティ対策の徹底について（注意喚起）"
     }
   ],
   "short_text_retry": {}
