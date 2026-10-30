@@ -136,3 +136,5 @@
 - 定時SNSの遅延回収・媒体別履歴/Buffer照合・商品更新の分離: `docs/automation-recovery-2026-10-30.md`。今回の朝まとめ/火金企画の復旧検証はオーナー依頼済み。Dify単発草案の投稿許可とは別。商品更新は`product_refresh.yml`で行い、記事処理へ戻さない。SNSの受理不明記録を消して再送しない。
 
 - 検索流入改善（ChatGPT/IPA/Work IQ、Dify振分け、sitemap、手動改稿保護）: `docs/search-growth-2026-10-30.md`。`refreshMode: editorial` は自動再生成せず編集待ちを記録する。確認後はcheckedAtを更新しneedsReviewとneedsReviewReasonを消す。
+
+- 検索クリック改善（Copilot Fusion/IPA/Work IQの題名・回答・利用条件）: `docs/search-ctr-2026-10-30.md`。公開・Google再取得・検索表示・クリック増を別段階で判定し、少数の表示や未反映の数字で成否を断定しない。
