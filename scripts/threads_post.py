@@ -405,8 +405,8 @@ def reserved_for_breaking(article: dict, state: dict, now: datetime | None = Non
 
 # 投稿する時間帯（日本時間）。よく見られる時間から順に並べ、1日の本数 SNS_PER_DAY 個だけ使う。
 # 凍結を避けるため、本数は週に1〜2本ずつ増やす（GitHub の変数 SNS_PER_DAY で変更）
-SLOT_PRIORITY = [(7, 30), (12, 15), (18, 30), (21, 0), (22, 45), (9, 45), (15, 30), (11, 0), (20, 0), (17, 0)]
-SNS_PER_DAY = max(1, min(len(SLOT_PRIORITY), int(os.environ.get("SNS_PER_DAY") or 7)))
+SLOT_PRIORITY = [(7, 30), (12, 15), (18, 30), (21, 0), (22, 45), (9, 45), (15, 30), (23, 40), (0, 40), (11, 0), (20, 0), (17, 0)]
+SNS_PER_DAY = max(1, min(len(SLOT_PRIORITY), int(os.environ.get("SNS_PER_DAY") or 9)))
 SLOTS_JST = sorted(SLOT_PRIORITY[:SNS_PER_DAY])
 JST = timezone(timedelta(hours=9))
 # 朝のまとめ投稿（scripts/morning_digest.py「今朝のAIニュース3本」）が使う枠。通常の予約はこの枠を空けておく
