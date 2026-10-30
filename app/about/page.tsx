@@ -18,8 +18,8 @@ export default function AboutPage() {
     <LegalPage
       eyebrow="ABOUT"
       title="運営者情報・編集方針"
-      lead={`${siteConfig.siteName}は、公開されている一次情報（企業・研究機関・官公庁の公式発表、発表動画、プレスリリース）をAIで解析し、日本語の解説記事として再構成するメディアです。制作の手順と事実確認のルールは「編集方針」ページで開示しています。`}
-      updatedAt="2026年10月27日"
+      lead={`${siteConfig.siteName}（略称：${siteConfig.shortName}）は、公式発表をもとに、AI・テクノロジーの新情報と「日本で使えるか・料金はいくらか・何に注意するか」を日本語で伝えるニュースメディアです。制作にはAIを使い、情報源と確認方法を開示しています。`}
+      updatedAt="2026年10月31日"
     >
       <h2>運営者情報</h2>
       <table>
@@ -27,6 +27,14 @@ export default function AboutPage() {
           <tr>
             <th>サイト名</th>
             <td>{siteConfig.siteName}</td>
+          </tr>
+          <tr>
+            <th>略称</th>
+            <td>{siteConfig.shortName}</td>
+          </tr>
+          <tr>
+            <th>公式サイト</th>
+            <td><a href="https://ai-tech-express.jp">https://ai-tech-express.jp</a></td>
           </tr>
           <tr>
             <th>運営者</th>
@@ -54,6 +62,10 @@ export default function AboutPage() {
           </tr>
         </tbody>
       </table>
+      <p>
+        旧URL「ai-news-auto.vercel.app」から、現在の公式サイト「ai-tech-express.jp」へ移転しました。
+        サイソクの記事・運営情報は、この公式サイトで公開しています。
+      </p>
 
       <h2>このサイトが提供するもの</h2>
       <p>
@@ -72,10 +84,78 @@ export default function AboutPage() {
         の計 {articles.length} 本を公開中です。記事は毎日追加しています。
       </p>
 
+      <h2>速さと時刻の考え方</h2>
+      <p>
+        発表を早く見つけ、読者が判断に使える情報を早く届けることを目指しています。
+        速さを確かめる際は、「公式の発表」「新着の検知」「記事の生成」「サイトでの公開確認」を分けて記録します。
+        記事の生成が終わってから公開されるまでにも、確認や配信の時間がかかります。
+      </p>
+      <p>
+        発表元の日時と、サイソクが記事を作成・更新した日時は別のものです。
+        発表元が日付しか示していない場合は、発表から何分かを推定して実績に含めません。
+        すべての発表を一定の分数以内に掲載すると約束するものではありません。
+      </p>
+      <h3>発表から公開確認までの実例</h3>
+      <p>
+        公式ページにある発表日時と、サイソクの記事URLが正常な応答（HTTP 200）を返した初回確認日時を比較しました。
+        2026年10月31日に照合した3件の実例で、時刻は日本時間です。
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>発表・記事</th>
+            <th>公式発表 → 公開確認</th>
+            <th>所要時間</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a href="/articles/gemini-4-carbon-cybersecurity-model">Gemini 4 Carbon</a>
+              <br />
+              <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/">Google公式発表</a>
+            </td>
+            <td>
+              <time dateTime="2026-10-28T17:00:00+00:00">10月29日 02:00:00</time>
+              <br />→ <time dateTime="2026-10-28T17:05:17+00:00">02:05:17</time>
+            </td>
+            <td>5分17秒</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="/articles/gemini-notebook-free-textbooks">Gemini Notebookの教科書アクセス</a>
+              <br />
+              <a href="https://blog.google/innovation-and-ai/products/gemini-notebook/new-access-textbooks/">Google公式発表</a>
+            </td>
+            <td>
+              <time dateTime="2026-10-29T16:00:00+00:00">10月30日 01:00:00</time>
+              <br />→ <time dateTime="2026-10-29T16:07:24+00:00">01:07:24</time>
+            </td>
+            <td>7分24秒</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="/articles/gemini-edit-files-directly">Geminiのファイル直接編集</a>
+              <br />
+              <a href="https://blog.google/innovation-and-ai/products/gemini-app/edit-files-directly/">Google公式発表</a>
+            </td>
+            <td>
+              <time dateTime="2026-10-29T16:15:00+00:00">10月30日 01:15:00</time>
+              <br />→ <time dateTime="2026-10-29T16:23:20+00:00">01:23:20</time>
+            </td>
+            <td>8分20秒</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        公開確認は実際の公開より遅れる場合があり、本文全体の検証完了時刻を示すものではありません。
+        検知・生成だけの所要時間や、全記事の平均・最速値、他媒体との速度比較とは区別しています。
+      </p>
+
       <h2>記事の制作方法（AI利用の開示）</h2>
       <p>
         本サイトの記事は、<strong>生成AI（Google Gemini、Anthropic Claude ほか）を使って作成しています</strong>。
-        人間のライターが一本ずつ執筆しているわけではありません。主な工程は次のとおりです。
+        人間のライターが一本ずつ執筆・全文校閲しているわけではありません。主な工程は次のとおりです。
       </p>
       <ol>
         <li>企業・研究機関・官公庁の公式発表、発表動画、プレスリリースなどの公開情報から、新着の発表を検出します。</li>

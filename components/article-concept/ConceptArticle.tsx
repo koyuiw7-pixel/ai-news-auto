@@ -2,6 +2,7 @@ import { Noto_Sans_JP } from "next/font/google";
 import type { CSSProperties } from "react";
 import RelTime from "@/components/RelTime";
 import type { AffiliateLink } from "@/lib/articles";
+import { siteConfig } from "@/site.config";
 import Expand from "./Expand";
 import type { ConceptView } from "./view";
 import "./concept.css";
@@ -71,6 +72,12 @@ export default function ConceptArticle({ view, affiliates }: Props) {
         </aside>
 
         <div className="cx-main">
+          <p className="mb-4 mt-4 flex flex-wrap gap-x-5 gap-y-1 text-note leading-relaxed text-[var(--cx-ink-2)] lg:mt-0">
+            <span>
+              制作：<a href="/about" rel="author" className="font-semibold underline underline-offset-4">{siteConfig.author}</a>
+            </span>
+            <a href="/editorial-policy" className="underline underline-offset-4">編集方針・AI利用と事実確認</a>
+          </p>
           {/* 物語の線：続報がある記事だけ。細い1本の線 */}
           {view.timeline.length > 0 && (
             <ol className="cx-story" aria-label="この話の流れ">

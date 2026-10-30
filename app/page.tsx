@@ -153,7 +153,12 @@ export default function HomePage() {
 
         <footer className="mt-20 grid gap-3 border-t border-line pt-8">
           <p className="max-w-[70ch] text-desc leading-relaxed text-ink-soft">
-            {siteConfig.description}
+            <strong>{siteConfig.siteName}（{siteConfig.shortName}）</strong>は、公式発表をもとにAI・テクノロジーの新情報を日本語で伝えるニュースメディアです。
+            要点に加え、日本で使えるか、料金や注意点まで整理します。
+          </p>
+          <p className="flex flex-wrap gap-x-6 gap-y-2 text-note leading-relaxed text-ink-soft">
+            <Link href="/about" className="underline decoration-line-strong underline-offset-4 hover:text-accent">サイソクについて・運営者情報</Link>
+            <Link href="/editorial-policy" className="underline decoration-line-strong underline-offset-4 hover:text-accent">編集方針・AI利用と事実確認</Link>
           </p>
           {otherGenres.length > 0 && (
             <p className="text-meta text-muted">
