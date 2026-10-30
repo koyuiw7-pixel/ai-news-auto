@@ -5526,6 +5526,14 @@
       "slug": "peppy-natural-wood-cat-tower",
       "url": "https://www.atpress.ne.jp/news/639000"
     },
+    "5ffe8be254533625": {
+      "at": "2026-10-30T03:02:33.801915+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "nli-employment-stats-sep-2026",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87224?site=nli"
+    },
     "602f23208b9190cb": {
       "at": "2026-10-26T23:21:12.552422+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8259,6 +8267,13 @@
       "skipped": true,
       "url": "https://www.atpress.ne.jp/news/642097"
     },
+    "cc5503d4964317e2": {
+      "at": "2026-10-30T03:02:13.184774+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（399字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koushin.html"
+    },
     "cc5a7c27eb8e0b7c": {
       "at": "2026-10-26T14:58:03.842376+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -9446,6 +9461,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000115.000077693.html"
     },
+    "f9bcba43eff0987b": {
+      "at": "2026-10-30T03:01:57.220825+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（368字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://aws.amazon.com/jp/blogs/news/aws-weekly-roundup-amazon-polly-generative-engine-torchneuron-for-trainium-and-more-october-26-2026/"
+    },
     "f9f41744899d9dd8": {
       "at": "2026-10-26T21:14:17.873399+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -9585,165 +9607,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:13:47.341344+00:00",
-      "attempt": 1,
-      "id": "0d0546b337a4e8f4",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 196.1,
-        "avg_sentence": 65.4,
-        "long_share": 0.533,
-        "max_paragraph": 321,
-        "paragraphs": 10,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "nintendo-topics",
-      "title": "「Indie World 2026.10.28」を公開しました。"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:13:54.522856+00:00",
-      "attempt": 2,
-      "id": "0d0546b337a4e8f4",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 175.1,
-        "avg_sentence": 87.6,
-        "long_share": 0.611,
-        "max_paragraph": 357,
-        "paragraphs": 9,
-        "sentences": 18
-      },
-      "score": null,
-      "source": "nintendo-topics",
-      "title": "「Indie World 2026.10.28」を公開しました。"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:14:02.636320+00:00",
-      "attempt": 1,
-      "id": "6687f834982bd2f1",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1688字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 153.0,
-        "avg_sentence": 62.6,
-        "long_share": 0.455,
-        "max_paragraph": 298,
-        "paragraphs": 9,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "jst",
-      "title": "ヒトのDNA複製で「誤りがちな酵素」が働く場所を解明～DNAポリメラーゼηは複製のラギング鎖と後期領域で働き、がんゲノムの変異分布とも関連する～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:14:14.760055+00:00",
-      "attempt": 2,
-      "id": "6687f834982bd2f1",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "まだ分からないことは？この先は？の箇所 → 元記事に無い「元記事では、これら以外の臨床的な応用や実用化のスケジュールについては言及されていません。」という不自然な言及が含まれている。",
-        "かんたん版のひとことで言うとの箇所 → 元記事に無い「世界で初めて」という記述がある。"
-      ],
-      "readability": {
-        "avg_paragraph": 211.0,
-        "avg_sentence": 61.3,
-        "long_share": 0.355,
-        "max_paragraph": 276,
-        "paragraphs": 9,
-        "sentences": 31
-      },
-      "score": 90,
-      "source": "jst",
-      "title": "ヒトのDNA複製で「誤りがちな酵素」が働く場所を解明～DNAポリメラーゼηは複製のラギング鎖と後期領域で働き、がんゲノムの変異分布とも関連する～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:14:36.492108+00:00",
-      "attempt": 1,
-      "id": "b38635d70a4d698f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1753字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（295字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 151.0,
-        "avg_sentence": 54.4,
-        "long_share": 0.32,
-        "max_paragraph": 195,
-        "paragraphs": 9,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "soumu",
-      "title": "藤井総務大臣閣議後記者会見の概要"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T01:14:47.594617+00:00",
-      "attempt": 2,
-      "id": "b38635d70a4d698f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 56.6字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 147.1字・最長 209字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 147.1,
-        "avg_sentence": 56.6,
-        "long_share": 0.308,
-        "max_paragraph": 209,
-        "paragraphs": 10,
-        "sentences": 26
-      },
-      "score": 100,
-      "source": "soumu",
-      "title": "藤井総務大臣閣議後記者会見の概要"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T01:14:54.089514+00:00",
-      "attempt": 0,
-      "id": "b38635d70a4d698f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 153.7字・最長 221字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 153.7,
-        "avg_sentence": 40.4,
-        "long_share": 0.079,
-        "max_paragraph": 221,
-        "paragraphs": 10,
-        "sentences": 38
-      },
-      "score": 100,
-      "source": "soumu",
-      "title": "藤井総務大臣閣議後記者会見の概要"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T01:21:13.136331+00:00",
@@ -16283,6 +16146,163 @@
       "score": 100,
       "source": "nli-research",
       "title": "鉱工業生産26年9月－熊本地震や台風・豪雨の影響を受けながらも、7-9月期は小幅な増産を確保"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:01:38.879809+00:00",
+      "attempt": 1,
+      "id": "f9bcba43eff0987b",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2200字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（395字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 115.5,
+        "avg_sentence": 53.6,
+        "long_share": 0.429,
+        "max_paragraph": 201,
+        "paragraphs": 13,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "AWS Weekly Roundup: Amazon Polly の Generative エンジン、Trainium 向け TorchNeuron など (2"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:01:57.220790+00:00",
+      "attempt": 2,
+      "id": "f9bcba43eff0987b",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（368字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 124.1,
+        "avg_sentence": 64.4,
+        "long_share": 0.519,
+        "max_paragraph": 193,
+        "paragraphs": 14,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "AWS Weekly Roundup: Amazon Polly の Generative エンジン、Trainium 向け TorchNeuron など (2"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:02:03.285283+00:00",
+      "attempt": 1,
+      "id": "cc5503d4964317e2",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1781字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 93.8,
+        "avg_sentence": 41.7,
+        "long_share": 0.037,
+        "max_paragraph": 206,
+        "paragraphs": 12,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "キャリアコンサルタント更新講習について、技能講習一覧を更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:02:13.184735+00:00",
+      "attempt": 2,
+      "id": "cc5503d4964317e2",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（399字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 165.1,
+        "avg_sentence": 53.3,
+        "long_share": 0.194,
+        "max_paragraph": 307,
+        "paragraphs": 10,
+        "sentences": 31
+      },
+      "score": null,
+      "source": "mhlw",
+      "title": "キャリアコンサルタント更新講習について、技能講習一覧を更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:02:20.943915+00:00",
+      "attempt": 1,
+      "id": "5ffe8be254533625",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1617字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 133.2,
+        "avg_sentence": 57.9,
+        "long_share": 0.348,
+        "max_paragraph": 219,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "雇用関連統計2026年９月－就業者数は振れが大きい中で増加傾向"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T03:02:29.496676+00:00",
+      "attempt": 2,
+      "id": "5ffe8be254533625",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 54.0字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 173.9字・最長 241字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 173.9,
+        "avg_sentence": 54.0,
+        "long_share": 0.379,
+        "max_paragraph": 241,
+        "paragraphs": 9,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "雇用関連統計2026年９月－就業者数は振れが大きい中で増加傾向"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T03:02:33.801411+00:00",
+      "attempt": 0,
+      "id": "5ffe8be254533625",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 180.4字・最長 251字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 180.4,
+        "avg_sentence": 36.9,
+        "long_share": 0.023,
+        "max_paragraph": 251,
+        "paragraphs": 9,
+        "sentences": 44
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "雇用関連統計2026年９月－就業者数は振れが大きい中で増加傾向"
     }
   ],
   "short_text_retry": {}
