@@ -7741,6 +7741,14 @@
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/introducing-aws-coding-plugin-for-sap-abap/"
     },
+    "98816cf452e78c73": {
+      "at": "2026-10-30T19:31:39.186849+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "food-bank-gov-online-overview",
+      "url": "https://www.gov-online.go.jp/article/202610/entry-11733.html"
+    },
     "98aa4f3fa33120c5": {
       "at": "2026-10-30T13:21:56.481654+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10855,74 +10863,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T19:31:45.029351+00:00",
-      "attempt": 1,
-      "id": "8eef8a1c6a51e974",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2265字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（254字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 107.6,
-        "avg_sentence": 57.4,
-        "long_share": 0.333,
-        "max_paragraph": 162,
-        "paragraphs": 16,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "microsoft-research-blog",
-      "title": "Microsoft Research Focus – Edition #97"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T19:31:56.276570+00:00",
-      "attempt": 2,
-      "id": "8eef8a1c6a51e974",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（334字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 148.6,
-        "avg_sentence": 64.8,
-        "long_share": 0.641,
-        "max_paragraph": 221,
-        "paragraphs": 17,
-        "sentences": 39
-      },
-      "score": null,
-      "source": "microsoft-research-blog",
-      "title": "Microsoft Research Focus – Edition #97"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T19:32:03.224054+00:00",
-      "attempt": 1,
-      "id": "4709068104f929f7",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1775字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（331字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 153.4,
-        "avg_sentence": 53.1,
-        "long_share": 0.308,
-        "max_paragraph": 261,
-        "paragraphs": 9,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "都政課題の解決に向けたスタートアップピッチイベント UPGRADE with TOKYO 第63回開催決定！"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T19:32:12.094030+00:00",
@@ -17612,6 +17552,75 @@
       "score": 100,
       "source": "gov-online",
       "title": "すぐできるコツがいっぱい!環境にもお財布にも優しい「食品ロス」の減らし方"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T19:31:26.634627+00:00",
+      "attempt": 1,
+      "id": "98816cf452e78c73",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1319字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（323字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 118.9,
+        "avg_sentence": 49.5,
+        "long_share": 0.208,
+        "max_paragraph": 170,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "gov-online",
+      "title": "フードバンク 寄附された未利用食品を無償提供"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T19:31:35.476201+00:00",
+      "attempt": 2,
+      "id": "98816cf452e78c73",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 66.2字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 162.5字・最長 255字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 162.5,
+        "avg_sentence": 66.2,
+        "long_share": 0.556,
+        "max_paragraph": 255,
+        "paragraphs": 11,
+        "sentences": 27
+      },
+      "score": 100,
+      "source": "gov-online",
+      "title": "フードバンク 寄附された未利用食品を無償提供"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T19:31:39.186460+00:00",
+      "attempt": 0,
+      "id": "98816cf452e78c73",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 59.7字・60字超の文が 47% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 81.5,
+        "avg_sentence": 59.7,
+        "long_share": 0.467,
+        "max_paragraph": 164,
+        "paragraphs": 22,
+        "sentences": 30
+      },
+      "score": 100,
+      "source": "gov-online",
+      "title": "フードバンク 寄附された未利用食品を無償提供"
     }
   ],
   "short_text_retry": {}
