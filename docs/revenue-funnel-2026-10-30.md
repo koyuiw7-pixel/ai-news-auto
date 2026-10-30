@@ -52,7 +52,7 @@
 ## 検証・デプロイ
 2026-10-30 11:24 JSTの本番読み取り: 10/28と10/29は0、10/30は既存記事で広告クリック2・日内推定訪問者1。テストクリックはしていない。ASP売上ではない。
 14項目の計測回帰テスト node scripts/test_aff.mjs 成功。クロスオリジン拒否、認証、ボット/DNT/GPC除外、入力制限、重複排除、無料/広告の分離、旧クリック互換、ページネーションを確認。
-以下に本番確認結果を追記する。ロールバックは今回の変更コミットをrevert。既存KVの削除は不要。新しいf:データは旧コードから無視され90日後に消える。
+ロールバックは今回の変更コミットをrevert。既存KVの削除は不要。新しいf:データは旧コードから無視され90日後に消える。
 
 ローカル統合検証: 127.0.0.1のNext本番ビルドとhandleAffをメモリKVで接続。Chromeで/guides→Difyガイドへ操作し、entry_view / guide_click / guide_view / comparison_view / choice_clickを確認。無料先と広告先のchoice別保存、および従来c:クリックの保存を確認。検証用にローカルページのリンク既定遷移だけを止め、広告・外部解析の通信を遮断。実ASPと本番KVへの自己クリックなし。通信ログの保持範囲でも広告リクエストなし（ログは一部切り詰めあり）。
 一時的にDocumentsのiCloudプレースホルダでI/Oが停止。元の変更を退避し、/private/tmp/saisoku-funnel-20261030 の feat/trusted-revenue-funnel-local で継続。旧work/sns-publish-fixは同一作業の古い途中コピーのため、そのままpushしない。
@@ -60,5 +60,22 @@
 本番公開 38c9a96234028d10956cf889611426e75d8fc787 / Deploy run 40992654369 success（2026-10-30 11:38 JST）。
 本番7ページHTTP200、Dify canonical / index,follow / sitemap / JSON-LD有効、既存A8 URL完全一致を確認。旧広告集計2回/推定1訪問者を維持し、新funnelは0から開始。HTTP所要時間はLCPや実利用者性能ではない。
 既定Readability run 40992875115 は11ページ×2幅×2テーマ=44条件で違反0。
-Google Search Console 2026-10-30 11:44:16 のライブテスト: Google検査ツール（スマートフォン）、クロール許可=はい、ページ取得=成功、インデックス登録許可=はい。未登録状態は当然別。登録リクエスト結果を追記予定。
+Google Search Console 2026-10-30 11:44:16 のライブテスト: Google検査ツール（スマートフォン）、クロール許可=はい、ページ取得=成功、インデックス登録許可=はい。インデックスには未登録。登録リクエストはreCAPTCHAサービスへの接続エラーで失敗。再読み込み後も同じエラーだったため、2回で中止し、申請受理とは扱わない。CAPTCHAの解答・迂回はしていない。サイトマップからの発見は可能だが登録・順位・時期の保証はない。
 Google-InspectionToolはUAにbotを含まないため、画面/Worker共通の除外リストへ明記し回帰テストを追加。GoogleOtherも除外。サイトへのアクセス拒否ではなく計測対象から除くだけ。一次資料 https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers 。
+
+新ガイド・既存比較2本・プライバシー・編集方針の追加Readability run 40993371061 は5ページ×2幅×2テーマ=20条件で違反0。初回の44条件と合わせて64条件を完了。
+Google検査UAの除外修正 29e76b21101f40fbe5e2d19a20753692353302e9 / Deploy run 40993668196 success。14項目テスト・OpenNextビルド・Cloudflareデプロイが成功。
+11:55 JSTの最終読み取り: 新ガイドHTTP200、配信中のJavaScriptにも除外修正を確認。認証付き集計APIはfunnel version 1有効。旧集計2クリック/日内推定1訪問者、新導線の全5段階は0。実訪問・成約を証明する数字はまだない。
+ローカル検証では通常TypeScriptとWorker単体の型検査、npm run build、SNS公開確認の既存7テストが成功。モバイル375pxで横はみ出しなし、PC1440pxで比較表確認、ブラウザのコンソールエラーなし。これらは回帰確認であり全機能の無欠陥や実ユーザーLCP改善の証明ではない。
+
+## Claudeが次に見る順序
+1. origin/mainの最新を取得し、この記録とAGENTS.mdを読む。元のfeat/web-sourcesと古いwork/sns-publish-fixをmainへ上書きしない。実装は38c9a96、計測除外の追補は29e76b2。
+2. scripts/aff_stats.py --date YYYY-MM-DD --json で日付別の実測を読み、無料/有料の行き先と流入元を分ける。鍵は既存.env.localから読み、中身を表示・記録しない。
+3. A8で最新の提携状態・成果条件・認識クリック・発生・承認を照合する。今回A8は未ログインで、ログインや契約を代行していない。固定報酬額や成約率を仮定して収益確定としない。
+4. GSCのURL検査を後で再確認。取得成功とインデックス登録は分ける。登録申請の接続障害は未解消のまま記録する。
+5. 需要の観測に応じて上の改善基準を適用。購入不要な読者を有料へ追い込まず、料金や提供条件が変わったら同じURLを更新する。期間限定価格や未確認機能でクリックを煽らない。
+
+変更一覧: lib/choose-dify.ts、lib/choose-data.ts、components/choose/ChooseView.tsx、app/page.tsx、app/guides/page.tsx、components/Footer.tsx、app/articles/[slug]/page.tsx、lib/revenue-funnel.ts、components/RevenueFunnelTracker.tsx、components/AffClickTracker.tsx、app/layout.tsx、cloudflare/aff.ts、cloudflare/aff.test.ts、scripts/test_aff.mjs、scripts/aff_stats.py、.github/workflows/deploy_cloudflare.yml、app/privacy/page.tsx、app/editorial-policy/page.tsx、AGENTS.md、この記録。
+証拠はCodexチャットのoutputs/REVENUE-FUNNEL-change-record.txt、dify-funnel-production-verification.json、dify-funnel-local-verification.json、dify-readability-*.json、画面キャプチャ。SNSの前回記録はSNS-403-change-record.txtを参照。
+
+最終Readability run 40993891924 は初回に /ai-pricing 375/light のPage.navigate応答待ちで失敗（他43条件は違反0）。/ai-pricing と /usable は別のHTTP読取で200・約1.2〜1.3秒を確認。同じ検査ジョブを再実行し、attempt 2 は44条件で成功。コードや閾値を変更して通したものではない。初回エラーは検査中の一時的な応答停止で、発生原因の断定や実利用者の速度保証はしない。

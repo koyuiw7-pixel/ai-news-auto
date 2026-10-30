@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-提携リンクの「人による」クリック数（自前計測）を表示する。A8 などの管理画面のクリック数と見比べる用。
-ASP の数字にはクローラー・自動ブラウザが混ざるので、こちらが実際に人が押した回数の目安になる。
+提携リンクのブラウザ操作由来のクリック数（自前計測・推定）を表示する。A8 などの管理画面と見比べる用。
+既知の自動アクセスを除くが、実在人間・成約・承認を証明する数値ではない。
 
   python3 scripts/aff_stats.py                 # 今日（日本時間）
   python3 scripts/aff_stats.py --yesterday     # 昨日（毎晩・毎朝の報告用。A8 の前日分と並べる）
@@ -10,7 +10,7 @@ ASP の数字にはクローラー・自動ブラウザが混ざるので、こ�
   python3 scripts/aff_stats.py --json          # 生の JSON
 
 鍵 AFF_STATS_TOKEN は環境変数か .env.local（メインのフォルダ）から読む。中身は表示しない。
-数えるのは Worker（cloudflare/aff.ts）。画面側は components/AffClickTracker.tsx（機械・自動ブラウザは数えない）
+数えるのは Worker（cloudflare/aff.ts）。画面側は components/AffClickTracker.tsx（既知の機械・自動ブラウザを除外）
 同じことを curl でするなら:
   curl -s -H "Authorization: Bearer $AFF_STATS_TOKEN" "https://ai-tech-express.jp/api/aff/stats?date=2026-10-27"
 """
