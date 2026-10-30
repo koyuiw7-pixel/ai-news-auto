@@ -11,6 +11,7 @@ import argparse
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from html.parser import HTMLParser
+import hashlib
 import json
 import re
 import struct
@@ -20,6 +21,7 @@ import xml.etree.ElementTree as ET
 
 USER_AGENT = "SaisokuSearchIdentityAudit/1.0 (+https://ai-tech-express.jp/about; read-only)"
 MAX_BODY = 2_000_000
+MAX_IMAGE = 1_000_000
 
 
 def base_url(value: str) -> str:
@@ -57,7 +59,7 @@ class Fetcher:
         return (parts.scheme in {"http", "https"} and not parts.username
                 and not parts.password and parts.netloc.lower() in self.hosts)
 
-    def get(self, url: str, *, image: bool = False) -> Response:
+    def get(self, url: str, *, image: bool = False, full_image: bool = False) -> Response:
         redirects = []
         for _ in range(6):
             if not self.allowed(url):
@@ -78,8 +80,9 @@ class Fetcher:
                         redirects.append({"url": url, "status": response.status, "target": target})
                         url = target
                         continue
-                    body = response.read(32 if image else MAX_BODY + 1)
-                    if not image and len(body) > MAX_BODY:
+                    limit = MAX_IMAGE if image else MAX_BODY
+                    body = response.read(32 if image and not full_image else limit + 1)
+                    if (not image or full_image) and len(body) > limit:
                         return Response(url, response.status, headers, redirects=redirects, error="body_too_large")
                     return Response(url, response.status, headers, body, redirects)
             except (OSError, ValueError, error.URLError) as exc:
@@ -155,8 +158,8 @@ def audit(base, legacy_base, *, fetcher=None, legacy_retired=False, article_path
     def check(name, passed, details=None, *, warning=False):
         checks.append({"check": name, "status": "pass" if passed else "warning" if warning else "fail", "details": details})
 
-    def get(url, *, image=False):
-        result = fetcher.get(url, image=image)
+    def get(url, *, image=False, full_image=False):
+        result = fetcher.get(url, image=image, full_image=full_image)
         requests.append({"requested_url": url, "final_url": result.url, "status": result.status,
                          "redirects": result.redirects, "error": result.error})
         return result
@@ -192,8 +195,9 @@ def audit(base, legacy_base, *, fetcher=None, legacy_retired=False, article_path
     logo = publisher.get("logo", {})
     logo_url = logo.get("url", logo.get("contentUrl", "")) if isinstance(logo, dict) else logo
     logo_url = parse.urljoin(base + "/", logo_url) if isinstance(logo_url, str) and logo_url else ""
+    logo_response = None
     if logo_url:
-        image = get(logo_url, image=True)
+        image = logo_response = get(logo_url, image=True, full_image=True)
         dimensions = png_size(image.body)
         check("publisher_logo", image.status == 200 and not image.error and dimensions == [512, 512]
               and image.headers.get("content-type", "").split(";")[0] == "image/png"
@@ -204,11 +208,24 @@ def audit(base, legacy_base, *, fetcher=None, legacy_retired=False, article_path
 
     icons = list(dict.fromkeys(parse.urljoin(base + "/", href) for href in html.icons if href))
     check("favicon_links", bool(icons), icons)
+    stable_icon_url = base + "/icons/icon-512.png"
+    check("favicon_stable_link", stable_icon_url in icons, stable_icon_url)
     for icon_url in icons:
-        icon = get(icon_url, image=True)
+        icon = logo_response if icon_url == logo_url else get(icon_url, image=True)
         check("favicon_reachable", icon.status == 200 and not icon.error
               and icon.headers.get("content-type", "").lower().startswith("image/"),
               {"url": icon_url, "status": icon.status})
+
+    # Full bytes only for these two first-party assets (bounded to 1 MB); no image library.
+    stable_icon = logo_response if logo_url == stable_icon_url else get(stable_icon_url, image=True, full_image=True)
+    legacy_icon = get(base + "/icon", image=True, full_image=True)
+    same_icon = (stable_icon.status == legacy_icon.status == 200 and not stable_icon.error
+                 and not legacy_icon.error and png_size(stable_icon.body) == [512, 512]
+                 and stable_icon.body == legacy_icon.body)
+    check("favicon_legacy_route_matches", same_icon,
+          {"stable_url": stable_icon_url, "legacy_url": base + "/icon",
+           "stable_sha256": hashlib.sha256(stable_icon.body).hexdigest(),
+           "legacy_sha256": hashlib.sha256(legacy_icon.body).hexdigest()})
 
     robots = get(base + "/robots.txt")
     check("robots_http", robots.status == 200 and not robots.error, robots.status)
@@ -256,7 +273,7 @@ def audit(base, legacy_base, *, fetcher=None, legacy_retired=False, article_path
     warnings = sum(item["status"] == "warning" for item in checks)
     return {"checked_at": datetime.now(timezone.utc).isoformat(), "base": base, "legacy_base": legacy_base,
             "legacy_retired": legacy_retired, "user_agent": USER_AGENT,
-            "scope": "Direct HTML, robots, sitemap, and image headers only; no JavaScript, ads, posting, or indexing requests",
+            "scope": "Direct HTML, robots, sitemap, image headers, and bounded icon bytes only; no JavaScript, ads, posting, or indexing requests",
             "status": "fail" if failures else "warning" if warnings else "pass",
             "failures": failures, "warnings": warnings, "checks": checks, "requests": requests}
 

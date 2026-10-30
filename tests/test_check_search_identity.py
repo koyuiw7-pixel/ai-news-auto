@@ -26,7 +26,8 @@ class IdentityTest(unittest.TestCase):
                      "url": publisher_url, "logo": {"url": BASE + "/icons/icon-512.png"}}
         website = {"@type": "WebSite", "name": "サイソクAIニュース", "url": BASE, "publisher": publisher}
         html = (f'<link rel="canonical" href="{BASE}/"><meta name="robots" content="{robots_meta}">'
-                '<link rel="icon" href="/favicon.ico?v=1"><a href="/articles/sample">Article</a>'
+                '<link rel="icon" href="/favicon.ico?v=1"><link rel="icon" href="/icons/icon-512.png">'
+                '<a href="/articles/sample">Article</a>'
                 '<script src="https://ads.example/ad.js"></script><img src="https://ads.example/pixel">'
                 '<a href="https://ads.example/click">Ad</a>'
                 f'<script type="application/ld+json">{json.dumps(website)}</script>')
@@ -37,6 +38,8 @@ class IdentityTest(unittest.TestCase):
         return FakeFetcher({
             BASE + "/": identity.Response(BASE + "/", 200, {"content-type": "text/html"}, html.encode()),
             BASE + "/icons/icon-512.png": identity.Response(BASE + "/icons/icon-512.png", 200,
+                {"content-type": "image/png"}, b"\x89PNG\r\n\x1a\n" + struct.pack(">I", 13) + b"IHDR" + struct.pack(">II", 512, 512)),
+            BASE + "/icon": identity.Response(BASE + "/icon", 200,
                 {"content-type": "image/png"}, b"\x89PNG\r\n\x1a\n" + struct.pack(">I", 13) + b"IHDR" + struct.pack(">II", 512, 512)),
             BASE + "/favicon.ico?v=1": identity.Response(BASE + "/favicon.ico?v=1", 200, {"content-type": "image/vnd.microsoft.icon"}),
             BASE + "/robots.txt": identity.Response(BASE + "/robots.txt", 200, body=b"User-agent: *\nAllow: /\nDisallow: /api/"),
@@ -51,7 +54,7 @@ class IdentityTest(unittest.TestCase):
         result = self.run_audit(fetcher)
         self.assertEqual((result["failures"], result["warnings"]), (0, 3))
         self.assertTrue(all(url.startswith((BASE + "/", OLD + "/")) for url in fetcher.calls))
-        self.assertEqual(len(fetcher.calls), 8)
+        self.assertEqual(len(fetcher.calls), 9)
         news = next(row for row in result["checks"] if row["check"] == "news_sitemap_parse")
         self.assertEqual(news["details"]["news_count"], 1)
 
@@ -101,6 +104,28 @@ class IdentityTest(unittest.TestCase):
         self.assertEqual(result["failures"], 0)
         self.assertEqual(result["warnings"], 4)
 
+    def test_stable_icon_link_is_required(self):
+        fetcher = self.fixture()
+        fetcher.values[BASE + "/"].body = fetcher.values[BASE + "/"].body.replace(
+            b'<link rel="icon" href="/icons/icon-512.png">', b'')
+        result = self.run_audit(fetcher)
+        check = next(row for row in result["checks"] if row["check"] == "favicon_stable_link")
+        self.assertEqual(check["status"], "fail")
+
+    def test_same_size_different_icon_bytes_are_detected(self):
+        fetcher = self.fixture()
+        fetcher.values[BASE + "/icon"].body += b'different pixels'
+        result = self.run_audit(fetcher)
+        check = next(row for row in result["checks"] if row["check"] == "favicon_legacy_route_matches")
+        self.assertEqual(check["status"], "fail")
+
+    def test_legacy_icon_route_must_remain_available(self):
+        fetcher = self.fixture()
+        del fetcher.values[BASE + "/icon"]
+        result = self.run_audit(fetcher)
+        check = next(row for row in result["checks"] if row["check"] == "favicon_legacy_route_matches")
+        self.assertEqual(check["status"], "fail")
+
     def test_external_article_argument_is_rejected(self):
         with self.assertRaises(ValueError):
             self.run_audit(self.fixture(), article_path="https://ads.example/articles/a")
@@ -122,6 +147,20 @@ class IdentityTest(unittest.TestCase):
         self.assertEqual(len(fetcher.opener.requests), 1)
         self.assertEqual(fetcher.opener.requests[0].get_header("User-agent"), identity.USER_AGENT)
         self.assertNotIn("Googlebot", identity.USER_AGENT)
+
+    def test_full_icon_comparison_has_a_size_limit(self):
+        class LargeImage:
+            status, headers = 200, {"Content-Type": "image/png"}
+            def __enter__(self): return self
+            def __exit__(self, *args): pass
+            def read(self, size): return b'x' * size
+        class Opener:
+            def open(self, req, **kwargs): return LargeImage()
+        fetcher = identity.Fetcher([BASE, OLD])
+        fetcher.opener = Opener()
+        result = fetcher.get(BASE + "/icon", image=True, full_image=True)
+        self.assertEqual(result.error, "body_too_large")
+        self.assertEqual(result.body, b'')
 
 
 if __name__ == "__main__":

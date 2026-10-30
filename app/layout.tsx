@@ -19,6 +19,12 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.siteName,
+  // SNS と同じブランド画像を、変更頻度の低いURLで検索エンジンにも明示する。
+  // /icon・/apple-icon の旧URLはフィードや既存端末向けに引き続き配信する。
+  icons: {
+    icon: [{ url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" }],
+    apple: [{ url: "/icons/apple-icon-180.png", sizes: "180x180", type: "image/png" }],
+  },
   // iPhone で「ホーム画面に追加」したときの名前（プッシュ通知はホーム画面から開いたときだけ使える）。manifest は app/manifest.ts
   appleWebApp: { capable: true, title: siteConfig.shortName, statusBarStyle: "default" },
   // Google Search Console の所有権確認。環境変数に確認コードを入れるだけで有効になる
