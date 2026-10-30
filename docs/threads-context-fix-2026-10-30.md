@@ -17,3 +17,5 @@ SNS既存7件＋新7件の計14テスト成功。py_compile・diff check成功�
 
 ## 戻し方
 この修正commitだけをrevertする。stateや新しい記事を巻き戻さない。UI変更を含まないため[no-deploy]で反映し、既存サイトのデプロイは再実行しない。
+
+main反映: 4ef065a1ca29eb36aedaf64d24581211d3e0ed91。push先mainと一致確認。新しい自動生成記事・投稿履歴をrebaseで保持した。
