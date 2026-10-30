@@ -139,4 +139,4 @@
 
 - 検索クリック改善（Copilot Fusion/IPA/Work IQの題名・回答・利用条件）: `docs/search-ctr-2026-10-30.md`。公開・Google再取得・検索表示・クリック増を別段階で判定し、少数の表示や未反映の数字で成否を断定しない。
 
-- Google再取得申請エラーの切り分けとトップDify入口: `docs/google-reindex-recovery-20261030.md`。公開URLテスト成功、申請受付は本人操作の結果待ち。Googleの防御やAPIを迂回せず、取得成功と申請成功を区別する。
+- Google再取得申請エラーの切り分けとトップDify入口: `docs/google-reindex-recovery-20261030.md`。本人操作でも個別申請エラー、公開URLテスト成功、Googleサイトマップ送信は受付済み。Chrome更新完了待ち。取得成功・通知受付・検索反映を区別する。
