@@ -9491,6 +9491,14 @@
       "skipped": true,
       "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1"
     },
+    "f38d31ba51354487": {
+      "at": "2026-10-30T05:36:50.166011+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "science",
+      "slug": "qst-hyperpolarized-mri-liver-pon",
+      "url": "https://www.qst.go.jp/site/press/20261030.html"
+    },
     "f39a5f957cf2b8cb": {
       "at": "2026-10-26T10:30:42.540847+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
@@ -9854,74 +9862,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:51:41.002292+00:00",
-      "attempt": 2,
-      "id": "7cc85f64fdd707de",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2437字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 138.4,
-        "avg_sentence": 60.6,
-        "long_share": 0.5,
-        "max_paragraph": 314,
-        "paragraphs": 14,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "google-blog-all",
-      "title": "Partnering with Singapore to bring frontier AI to public health"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:51:50.686164+00:00",
-      "attempt": 1,
-      "id": "9b0f6140a4fd5eba",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1423字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（304字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 111.3,
-        "avg_sentence": 38.5,
-        "long_share": 0.077,
-        "max_paragraph": 161,
-        "paragraphs": 9,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "犯罪被害者等支援に係る経済的支援策の拡充について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T03:51:57.553699+00:00",
-      "attempt": 2,
-      "id": "9b0f6140a4fd5eba",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（378字 / 基準 400字以上）",
-        "body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 131.3,
-        "avg_sentence": 43.8,
-        "long_share": 0.222,
-        "max_paragraph": 246,
-        "paragraphs": 12,
-        "sentences": 36
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "犯罪被害者等支援に係る経済的支援策の拡充について"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T03:52:06.933049+00:00",
@@ -16588,6 +16528,74 @@
       "score": 100,
       "source": "riken",
       "title": "「未来」の観測が明らかにする光の量子ダイナミクス"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T05:36:31.813479+00:00",
+      "attempt": 1,
+      "id": "f38d31ba51354487",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1780字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 132.5,
+        "avg_sentence": 63.3,
+        "long_share": 0.522,
+        "max_paragraph": 286,
+        "paragraphs": 11,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "qst",
+      "title": "「沈黙の臓器」肝臓の酵素活性低下の可視化に成功 ～肝疾患に関わる酵素の働きを体外から捉える“超偏極MRI技術”を開発～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T05:36:41.865400+00:00",
+      "attempt": 2,
+      "id": "f38d31ba51354487",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 89.6字・60字超の文が 83% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 201.5字・最長 333字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 201.5,
+        "avg_sentence": 89.6,
+        "long_share": 0.833,
+        "max_paragraph": 333,
+        "paragraphs": 8,
+        "sentences": 18
+      },
+      "score": 100,
+      "source": "qst",
+      "title": "「沈黙の臓器」肝臓の酵素活性低下の可視化に成功 ～肝疾患に関わる酵素の働きを体外から捉える“超偏極MRI技術”を開発～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T05:36:50.165662+00:00",
+      "attempt": 0,
+      "id": "f38d31ba51354487",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 129.1字・最長 165字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 129.1,
+        "avg_sentence": 34.1,
+        "long_share": 0.057,
+        "max_paragraph": 165,
+        "paragraphs": 14,
+        "sentences": 53
+      },
+      "score": 100,
+      "source": "qst",
+      "title": "「沈黙の臓器」肝臓の酵素活性低下の可視化に成功 ～肝疾患に関わる酵素の働きを体外から捉える“超偏極MRI技術”を開発～"
     }
   ],
   "short_text_retry": {}
