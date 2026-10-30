@@ -10449,6 +10449,13 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102911"
     },
+    "f79033ac6daecade": {
+      "at": "2026-10-30T16:42:56.170503+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2330字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（300字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.aboutamazon.com/news/company-news/amazon-stores-growth-q3-2026-earnings?utm_source=rss"
+    },
     "f7930f5692647d14": {
       "at": "2026-10-27T02:32:51.684975+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -10635,6 +10642,13 @@
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366517"
     },
+    "fdecd0afca3c9702": {
+      "at": "2026-10-30T16:43:26.001622+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2395字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.aboutamazon.com/news/company-news/aws-growth-ai-demand-q3-2026-earnings?utm_source=rss"
+    },
     "fdf27bf9960b1109": {
       "at": "2026-10-28T01:56:58.980273+00:00",
       "breaking": true,
@@ -10710,99 +10724,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:34:15.248241+00:00",
-      "attempt": 1,
-      "id": "983901472b072637",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 76.0字・60字超の文が 75% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 163.7字・最長 243字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 163.7,
-        "avg_sentence": 76.0,
-        "long_share": 0.75,
-        "max_paragraph": 243,
-        "paragraphs": 13,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "aws-ml-blog",
-      "title": "Build a repeatable PHP-to-Java migration engine with Kiro"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T18:34:23.669307+00:00",
-      "attempt": 0,
-      "id": "983901472b072637",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 54.7字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 138.5字・最長 244字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 138.5,
-        "avg_sentence": 54.7,
-        "long_share": 0.395,
-        "max_paragraph": 244,
-        "paragraphs": 15,
-        "sentences": 38
-      },
-      "score": 100,
-      "source": "aws-ml-blog",
-      "title": "Build a repeatable PHP-to-Java migration engine with Kiro"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:34:34.066323+00:00",
-      "attempt": 1,
-      "id": "7b147aedaa65a0fe",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1601字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（326字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 89.5,
-        "avg_sentence": 44.8,
-        "long_share": 0.176,
-        "max_paragraph": 184,
-        "paragraphs": 17,
-        "sentences": 34
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "多摩動物公園 ライオンの状況について（最終報告）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:34:40.872968+00:00",
-      "attempt": 2,
-      "id": "7b147aedaa65a0fe",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1422字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 165.5,
-        "avg_sentence": 66.2,
-        "long_share": 0.65,
-        "max_paragraph": 235,
-        "paragraphs": 8,
-        "sentences": 20
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "多摩動物公園 ライオンの状況について（最終報告）"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T18:35:00.227968+00:00",
@@ -17471,6 +17392,96 @@
       "score": null,
       "source": "openai-news",
       "title": "Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T16:41:24.543551+00:00",
+      "attempt": 1,
+      "id": "f79033ac6daecade",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1416字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（360字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 85.5,
+        "avg_sentence": 50.5,
+        "long_share": 0.182,
+        "max_paragraph": 148,
+        "paragraphs": 13,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "about-amazon",
+      "title": "Q3 Earnings: Andy Jassy on faster delivery, lowering cost to serve, groceries, p"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T16:42:56.170394+00:00",
+      "attempt": 2,
+      "id": "f79033ac6daecade",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2330字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（300字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 123.9,
+        "avg_sentence": 53.1,
+        "long_share": 0.286,
+        "max_paragraph": 212,
+        "paragraphs": 15,
+        "sentences": 35
+      },
+      "score": null,
+      "source": "about-amazon",
+      "title": "Q3 Earnings: Andy Jassy on faster delivery, lowering cost to serve, groceries, p"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T16:43:05.919541+00:00",
+      "attempt": 1,
+      "id": "fdecd0afca3c9702",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1924字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 109.5,
+        "avg_sentence": 52.7,
+        "long_share": 0.407,
+        "max_paragraph": 204,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "about-amazon",
+      "title": "Q3 Earnings: Andy Jassy on why AWS growth keeps accelerating"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T16:43:18.975278+00:00",
+      "attempt": 2,
+      "id": "fdecd0afca3c9702",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2395字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 115.1,
+        "avg_sentence": 62.0,
+        "long_share": 0.5,
+        "max_paragraph": 242,
+        "paragraphs": 14,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "about-amazon",
+      "title": "Q3 Earnings: Andy Jassy on why AWS growth keeps accelerating"
     }
   ],
   "short_text_retry": {}
