@@ -63,6 +63,21 @@ class RakutenBooksTest(unittest.TestCase):
         page = card(stock=False) + card(rb="2", item="22").replace("rbcomp__category book", "rbcomp__category ebook")
         self.assertEqual(books.parse(page), [])
 
+    def test_preorder_is_not_in_stock_because_of_footer_analytics(self):
+        page = card(stock=False).replace("stock3", "stock5")
+        page += "<script>var status = 'outofstock1, instock1_asuraku, stock1';</script><i class='stock1'></i>"
+        self.assertEqual(books.parse(page), [])
+
+    def test_category_book_class_does_not_make_cd_or_magazine_a_book(self):
+        for label in ["CD", "雑誌"]:
+            with self.subTest(label=label):
+                self.assertEqual(books.parse(card().replace("book'>本</span>", f"book'>{label}</span>")), [])
+
+    def test_unknown_category_is_parse_failure_not_verified_empty(self):
+        page = card().replace("<span class='rbcomp__category book'>本</span>", "")
+        with self.assertRaises(books.ProductParseError):
+            books.parse(page)
+
     def test_missing_release_date_is_not_guessed_or_selected(self):
         rows = books.parse(card().replace("2026年01月09日頃発売", "発売日未定"))
         self.assertEqual(rows[0]["year"], 0)
@@ -105,10 +120,20 @@ class RakutenBooksTest(unittest.TestCase):
         self.assertEqual(output, self.previous())
         self.assertEqual(report["retainedTopics"], ["voice"])
 
-    def test_no_matching_books_does_not_erase_previous_topic(self):
+    def test_all_topics_without_fresh_books_keep_entire_previous_snapshot(self):
         output, report = self.refresh(self.offers(), fetcher=lambda _: card(title="無関係な本"))
         self.assertEqual(output, self.previous())
-        self.assertTrue(any(e["type"] == "NoMatchingBooks" for e in report["errors"]))
+        self.assertTrue(any(e["type"] == "NoFreshBooks" for e in report["errors"]))
+
+    def test_verified_empty_topic_removes_preorder_and_keeps_fill_available(self):
+        offers = self.offers(topics=[{"key": "voice", "search": ["preorder"], "fill": ["local"]},
+                                    {"key": "local", "search": ["available"]}])
+        output, report = self.refresh(offers, fetcher=lambda q: card(stock=False).replace("stock3", "stock5") if q == "preorder" else card())
+        self.assertEqual(report["outcome"], "success")
+        self.assertEqual(output["books"]["voice"], [])
+        self.assertTrue(output["books"][offers["topics"][0]["fill"][0]])
+        self.assertEqual(output["fetchedAt"], self.new_date)
+        self.assertEqual(report["retainedTopics"], [])
 
     def test_partner_failure_does_not_relabel_previous_price_as_fresh(self):
         output, report = self.refresh(self.offers(partners={"device": {"source": "plaud:example"}}), prices=lambda _: None)

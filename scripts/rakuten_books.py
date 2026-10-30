@@ -142,10 +142,15 @@ def parse(page: str) -> list[dict]:
         nodes = list(card.descendants())
         def field_node(suffix):
             return next((n for n in nodes if n.has_class("rbcomp__item-list__item__" + suffix)), None)
-        category = next((n for n in nodes if n.has_class("rbcomp__category")), None)
-        if category is not None and not category.has_class("book"):
-            continue
         if not any(n.has_class("stock1") for n in nodes):
+            continue
+        category = next((n for n in nodes if n.has_class("rbcomp__category")), None)
+        if category is None:
+            malformed += 1
+            continue
+        # 絞り込み0件時の代替結果ではCD/雑誌にもclass=bookが付く。
+        # 在庫と表示カテゴリの両方を、商品カードの中だけで確認する。
+        if not category.has_class("book") or category.text().strip() != "本":
             continue
         rb = next((match for n in nodes if n.tag == "a"
                    if (match := re.fullmatch(r"https://books\.rakuten\.co\.jp/rb/(\d+)/?(?:\?[^#]*)?(?:#.*)?", n.attrs.get("href", "")))), None)
@@ -250,13 +255,12 @@ def refresh_catalog(offers: dict, previous: dict, checked_at: str, *, fetcher=fe
             if len(chosen) >= PER_TOPIC:
                 break
         old_books = previous.get("books", {}).get(key, [])
-        # 途中の検索失敗や、今まであった候補が突然0件になった場合は話題単位で保持。
-        # 取得成功と「選定条件に合う候補0件」を区別し、空配列で既存を消さない。
-        if failed or (not chosen and old_books):
+        # 取得・解析が不明なら旧snapshotを保持するための印を付ける。
+        # 正しく確認できた在庫/年代/テーマ条件の0件は正常な空結果。
+        # サイトは既存のfill設定から別の関連テーマを選ぶ。
+        if failed:
             result[key] = copy.deepcopy(old_books)
             report["retainedTopics"].append(key)
-            if not failed:
-                report["errors"].append({"topic": key, "type": "NoMatchingBooks", "message": "既存候補がある話題で選定結果0件のため保持"})
             used.update(item["rbId"] for item in old_books)
             continue
         used.update(item["rbId"] for item in chosen)
