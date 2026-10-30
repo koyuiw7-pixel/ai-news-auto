@@ -3341,6 +3341,12 @@
       "skipped": true,
       "url": "https://www.reuters.com/jp/markets/japan/N3QCKQ4EWVNG5BHSPZNYN5GUME-2026-10-28/"
     },
+    "0f5fcb7257a2c170": {
+      "at": "2026-10-30T02:21:48.744779+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/ai_network/02tsushin06_04000147.html"
+    },
     "0f715e1693d7c6b7": {
       "at": "2026-10-26T17:31:35.423776+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3523,6 +3529,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（出演）",
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366459"
+    },
+    "14718ff7ab7b5ac7": {
+      "at": "2026-10-30T02:21:48.744805+00:00",
+      "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/statistics/set/kess/release/2026/kess2609.pdf"
     },
     "1477bbaf7f3e8163": {
       "at": "2026-10-27T01:31:25.544263+00:00",
@@ -4355,6 +4367,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
       "skipped": true,
       "url": "http://www.boj.or.jp/finsys/intlact_fs/risk/ris261028a.htm"
+    },
+    "3348d152eb91b9ce": {
+      "at": "2026-10-30T02:22:01.111916+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "docomo-d-value-pass-uber-luup-2026",
+      "url": "https://www.docomo.ne.jp/info/news_release/2026/10/30_00.html"
     },
     "334dbbd92f5dc473": {
       "at": "2026-10-27T23:41:05.859206+00:00",
@@ -5996,6 +6016,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（オープン）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000145.000007029.html"
+    },
+    "732aba1600924931": {
+      "at": "2026-10-30T02:21:48.744689+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2344字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://blogs.windows.com/japan/2026/10/30/sharepoint-ai-innovations-hit-ga-powering-new-copilot-app-and-agents/"
     },
     "73440a32f6e73441": {
       "at": "2026-10-27T03:05:10.757578+00:00",
@@ -7944,6 +7971,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000264.000124219.html"
     },
+    "c1c951b7ff0caff4": {
+      "at": "2026-10-30T02:22:16.398174+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2133字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://blogs.windows.com/japan/2026/10/30/transform-your-storytelling-with-interactive-slides-in-powerpoint-4564287/"
+    },
     "c26b1cc50c1438d4": {
       "at": "2026-10-27T17:57:42.414958+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8044,6 +8078,12 @@
       "reason": "quality: 本文が短い（2035字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000325.000050142.html"
+    },
+    "c6bc7dd4ef088420": {
+      "at": "2026-10-30T02:21:48.744747+00:00",
+      "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/tyoukanpress/202610/30_a.html"
     },
     "c6c8ce61afb7c3a6": {
       "at": "2026-10-28T17:53:13.329915+00:00",
@@ -9490,140 +9530,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T00:51:36.908163+00:00",
-      "attempt": 1,
-      "id": "c3faa8bab2cf2ce3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2102字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "title / seo_title に感嘆符がある"
-      ],
-      "readability": {
-        "avg_paragraph": 113.9,
-        "avg_sentence": 63.3,
-        "long_share": 0.63,
-        "max_paragraph": 219,
-        "paragraphs": 15,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "google-cloud-blog-ja",
-      "title": "Sky: Gemini を全社で一斉に導入し、98% の利用定着率と 2,000 個近いエージェントの共有を実現"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T00:51:42.950410+00:00",
-      "attempt": 2,
-      "id": "c3faa8bab2cf2ce3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1559字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 109.8,
-        "avg_sentence": 49.2,
-        "long_share": 0.207,
-        "max_paragraph": 198,
-        "paragraphs": 13,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "google-cloud-blog-ja",
-      "title": "Sky: Gemini を全社で一斉に導入し、98% の利用定着率と 2,000 個近いエージェントの共有を実現"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T00:51:53.248747+00:00",
-      "attempt": 1,
-      "id": "afb260a097b98536",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1706字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 159.6,
-        "avg_sentence": 63.9,
-        "long_share": 0.45,
-        "max_paragraph": 262,
-        "paragraphs": 8,
-        "sentences": 20
-      },
-      "score": null,
-      "source": "jst",
-      "title": "電極表面の“水のつながり”が炭素電極の劣化を左右することを解明～水の構造を整えて、安価な炭素電極を長持ちさせる新たな設計指針～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T00:52:11.807877+00:00",
-      "attempt": 2,
-      "id": "afb260a097b98536",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1729字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 158.6,
-        "avg_sentence": 66.1,
-        "long_share": 0.625,
-        "max_paragraph": 322,
-        "paragraphs": 10,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "jst",
-      "title": "電極表面の“水のつながり”が炭素電極の劣化を左右することを解明～水の構造を整えて、安価な炭素電極を長持ちさせる新たな設計指針～"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T00:52:18.523604+00:00",
-      "attempt": 2,
-      "id": "afb260a097b98536",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 62.4字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 181.1字・最長 322字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 181.1,
-        "avg_sentence": 62.4,
-        "long_share": 0.517,
-        "max_paragraph": 322,
-        "paragraphs": 10,
-        "sentences": 29
-      },
-      "score": 100,
-      "source": "jst",
-      "title": "電極表面の“水のつながり”が炭素電極の劣化を左右することを解明～水の構造を整えて、安価な炭素電極を長持ちさせる新たな設計指針～"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T00:52:22.976893+00:00",
-      "attempt": 0,
-      "id": "afb260a097b98536",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 185.2字・最長 306字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 185.2,
-        "avg_sentence": 36.3,
-        "long_share": 0.039,
-        "max_paragraph": 306,
-        "paragraphs": 10,
-        "sentences": 51
-      },
-      "score": 100,
-      "source": "jst",
-      "title": "電極表面の“水のつながり”が炭素電極の劣化を左右することを解明～水の構造を整えて、安価な炭素電極を長持ちさせる新たな設計指針～"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T00:52:30.060632+00:00",
@@ -16190,6 +16096,142 @@
       "score": 93,
       "source": "anthropic-news",
       "title": "Discovering and exploiting vulnerabilities in critical, real-world software with"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T02:21:38.455540+00:00",
+      "attempt": 1,
+      "id": "732aba1600924931",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（392字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 96.5,
+        "avg_sentence": 62.0,
+        "long_share": 0.5,
+        "max_paragraph": 242,
+        "paragraphs": 18,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "windows-blog-jp",
+      "title": "SharePoint の AI イノベーションが一般提供 (GA) を開始、新しい Copilot app とエージェントの原動力に"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T02:21:45.461683+00:00",
+      "attempt": 2,
+      "id": "732aba1600924931",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2344字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 105.7,
+        "avg_sentence": 58.7,
+        "long_share": 0.333,
+        "max_paragraph": 208,
+        "paragraphs": 15,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "windows-blog-jp",
+      "title": "SharePoint の AI イノベーションが一般提供 (GA) を開始、新しい Copilot app とエージェントの原動力に"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T02:21:57.251800+00:00",
+      "attempt": 1,
+      "id": "3348d152eb91b9ce",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 60.1字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 145.2字・最長 203字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 145.2,
+        "avg_sentence": 60.1,
+        "long_share": 0.276,
+        "max_paragraph": 203,
+        "paragraphs": 12,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "ntt-news",
+      "title": "「dバリューパス」に新たな特典を追加 -「 Uber 」や「 Uber Eats 」、「LUUP」でご利用になれる特典が追加！さらに、「デイリーチャンス」の拡充"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T02:22:01.111407+00:00",
+      "attempt": 0,
+      "id": "3348d152eb91b9ce",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 45.2字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 150.6字・最長 228字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 150.6,
+        "avg_sentence": 45.2,
+        "long_share": 0.15,
+        "max_paragraph": 228,
+        "paragraphs": 12,
+        "sentences": 40
+      },
+      "score": 100,
+      "source": "ntt-news",
+      "title": "「dバリューパス」に新たな特典を追加 -「 Uber 」や「 Uber Eats 」、「LUUP」でご利用になれる特典が追加！さらに、「デイリーチャンス」の拡充"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T02:22:06.926418+00:00",
+      "attempt": 1,
+      "id": "c1c951b7ff0caff4",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1686字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（349字 / 基準 400字以上）",
+        "title / seo_title に感嘆符がある"
+      ],
+      "readability": {
+        "avg_paragraph": 87.0,
+        "avg_sentence": 59.3,
+        "long_share": 0.409,
+        "max_paragraph": 128,
+        "paragraphs": 15,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "windows-blog-jp",
+      "title": "PowerPoint のインタラクティブ スライドでストーリーテリングを変革"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T02:22:13.536848+00:00",
+      "attempt": 2,
+      "id": "c1c951b7ff0caff4",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2133字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 99.4,
+        "avg_sentence": 66.2,
+        "long_share": 0.667,
+        "max_paragraph": 163,
+        "paragraphs": 16,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "windows-blog-jp",
+      "title": "PowerPoint のインタラクティブ スライドでストーリーテリングを変革"
     }
   ],
   "short_text_retry": {}
