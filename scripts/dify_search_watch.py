@@ -25,7 +25,7 @@ VERSION = 1
 MAX_BYTES = 512 * 1024
 TIMEOUT_SECONDS = 20
 MAX_QUEUE = 50
-SOURCES = (
+ORIGINAL_SOURCES = (
     {
         "id": "release",
         "kind": "github_release",
@@ -39,7 +39,30 @@ SOURCES = (
         "publicUrl": "https://docs.dify.ai/en/self-host/deploy/quick-start/docker-compose",
     },
 )
-SOURCE_FINGERPRINT = hashlib.sha256(json.dumps(SOURCES, sort_keys=True).encode()).hexdigest()[:16]
+# この値はworkflowのcacheキーにも使う。取得先が同じ資料の追加だけで、
+# 既存2資料の成功基準と確認待ちキューを捨てないようv1のキーを保つ。
+# 既存資料のURL・抽出仕様を非互換に変える場合はVERSIONも更新する。
+SOURCE_FINGERPRINT = hashlib.sha256(json.dumps(ORIGINAL_SOURCES, sort_keys=True).encode()).hexdigest()[:16]
+SOURCES = ORIGINAL_SOURCES + (
+    {
+        "id": "model-providers",
+        "kind": "markdown",
+        "url": "https://docs.dify.ai/en/cloud/use-dify/workspace/model-providers.md",
+        "publicUrl": "https://docs.dify.ai/en/cloud/use-dify/workspace/model-providers",
+    },
+    {
+        "id": "knowledge-request-rate-limit",
+        "kind": "markdown",
+        "url": "https://docs.dify.ai/en/cloud/use-dify/knowledge/knowledge-request-rate-limit.md",
+        "publicUrl": "https://docs.dify.ai/en/cloud/use-dify/knowledge/knowledge-request-rate-limit",
+    },
+)
+DOCUMENT_BODIES = {
+    "docker-compose": ("Deploy Dify with Docker Compose", ("Before Deployment",)),
+    "model-providers": ("Model Providers", ("Use Models with Your AI Credits", "Use Your Own Account with a Supported Provider")),
+    "knowledge-request-rate-limit": ("Knowledge Request Rate Limit", ("What Counts", "When You Reach the Limit")),
+}
+COST_GUIDE_SOURCES = frozenset({"model-providers", "knowledge-request-rate-limit"})
 
 # 単語への合致は「その疑問が検索される」「その現象が起きる」証明ではない。
 QUESTION_RULES = (
@@ -59,6 +82,27 @@ QUESTION_RULES = (
         "Difyの設置環境を選ぶ人、既存環境の資源を確認する人",
     ),
 )
+SOURCE_QUESTION_RULES = {
+    "model-providers": (
+        (
+            "ai-credits", r"credits?|AI response|model call|tokens?",
+            "DifyのAIクレジットは何回分？モデルと呼び出し回数で消費はどう変わる？",
+            "Dify Cloudの無料枠・AIクレジットで使える回数を確認する人",
+        ),
+        (
+            "provider-billing", r"API key|billing|bills?\b|own account|Usage Priority|falls? back",
+            "DifyのAPIキーとAIクレジットの優先順位は？どの利用分が提供元の請求対象になる？",
+            "自分のAPIキーとDify CloudのAIクレジットを併用する人",
+        ),
+    ),
+    "knowledge-request-rate-limit": (
+        (
+            "knowledge-limit", r"requests?|limits?|retrieval|\b403\b|forbidden|counts?|retry|minute|seconds?",
+            "DifyのKnowledge制限で403が出たら？何が回数に含まれ、いつ再試行できる？",
+            "Dify CloudのKnowledgeを使い、回数制限とクレジット残量を切り分けたい人",
+        ),
+    ),
+}
 
 
 def normalize(text: str) -> str:
@@ -118,10 +162,12 @@ def parse_source(source: dict, raw: bytes) -> dict:
         meta = {"sourceUrl": url, "releaseTag": tag, "publishedAt": release.get("published_at")}
     else:
         # ドキュメント索引の共通前置きは監視対象から除く。
-        match = re.search(r"(?m)^# Deploy Dify with Docker Compose\s*$", text)
-        if not match or "Before Deployment" not in text:
+        heading, required_sections = DOCUMENT_BODIES[source["id"]]
+        match = re.search(r"(?m)^# " + re.escape(heading) + r"\s*$", text)
+        body = text[match.start():] if match else ""
+        if not match or any(section not in body for section in required_sections):
             raise ValueError("expected documentation body missing")
-        text = normalize(text[match.start():])
+        text = normalize(body)
         meta = {"sourceUrl": source["publicUrl"]}
     return {**meta, "text": text, "hash": hashlib.sha256(text.encode()).hexdigest()}
 
@@ -147,7 +193,8 @@ def candidates_for(source: dict, before: dict, after: dict, observed_at: str) ->
         elif line.startswith("+ "):
             added.append(line[2:])
     changed_text = "\n".join(removed + added)
-    matched = [rule for rule in QUESTION_RULES if re.search(rule[1], changed_text, re.I)]
+    rules = SOURCE_QUESTION_RULES.get(source["id"], QUESTION_RULES)
+    matched = [rule for rule in rules if re.search(rule[1], changed_text, re.I)]
     if not matched:
         matched = [("general", "", "Difyの公式説明で何が変わり、既存の利用者に確認が必要？", "変更内容に該当するDify利用者（対象範囲は要確認）")]
     result = []
@@ -162,8 +209,12 @@ def candidates_for(source: dict, before: dict, after: dict, observed_at: str) ->
             "question": question, "affectedReader": reader,
             "evidenceBefore": excerpt(removed, pattern), "evidenceAfter": excerpt(added, pattern),
             "nextStep": "原文と対象版を確認し、既存ガイドへの追記で足りるか判断。需要・順位・動作の実証とは扱わない。",
-            "destination": "/choose/dify-hosting",
-            "commercialBoundary": "更新不具合を新規VPS契約で直ると案内しない。無料・既存環境で足りる選択も守る。",
+            "destination": "/guides/dify-free-api-cost" if source["id"] in COST_GUIDE_SOURCES else "/choose/dify-hosting",
+            "commercialBoundary": (
+                "AIクレジット・モデル提供元の料金・Knowledgeの回数制限を混同しない。無料枠で足りる人に新規契約を勧めない。"
+                if source["id"] in COST_GUIDE_SOURCES else
+                "更新不具合を新規VPS契約で直ると案内しない。無料・既存環境で足りる選択も守る。"
+            ),
         })
     return result
 

@@ -8,6 +8,7 @@ import { getChooseGuide } from "@/lib/choose";
 import { getProduct } from "@/lib/products";
 import { siteConfig } from "@/site.config";
 import { difyDecisionHref } from "@/lib/a8-attribution";
+import DifyCreditEstimator from "@/components/DifyCreditEstimator";
 
 /** 使い方ガイド（/guides/<slug>）。結論 → 手順 → 料金・無料の範囲 → 日本で使える？ → よくある質問 */
 export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
@@ -18,6 +19,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
   const decisionGuide = guide.decisionGuideSlug ? getChooseGuide(guide.decisionGuideSlug) : undefined;
   const url = `${siteConfig.url}/guides/${guide.slug}`;
   const checked = formatDate(guide.checkedAt);
+  const hasCreditEstimator = guide.slug === "dify-free-api-cost";
 
   const jsonLd = [
     {
@@ -116,11 +118,14 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
       <p className="mt-6 text-desc leading-[1.95] text-ink-soft">{guide.intro}</p>
 
       <nav aria-label="目次" className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-note font-bold text-ink-soft">
+        {hasCreditEstimator && <a href="#credit-estimator" className="underline decoration-line-strong underline-offset-4 hover:text-accent">回数の目安を計算</a>}
         <a href="#steps" className="underline decoration-line-strong underline-offset-4 hover:text-accent">手順</a>
         <a href="#pricing" className="underline decoration-line-strong underline-offset-4 hover:text-accent">料金・無料でどこまで</a>
         <a href="#japan" className="underline decoration-line-strong underline-offset-4 hover:text-accent">日本で使える？</a>
         <a href="#faq" className="underline decoration-line-strong underline-offset-4 hover:text-accent">よくある質問</a>
       </nav>
+
+      {hasCreditEstimator && <DifyCreditEstimator />}
 
       <Section id="steps" title="手順">
         <ol className="grid gap-6">
