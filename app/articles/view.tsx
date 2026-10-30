@@ -7,9 +7,9 @@ import { pageHref, pageSuffix, paginate } from "@/lib/paginate";
 
 export function articlesMetadata(page: number): Metadata {
   return {
-    title: `記事一覧${pageSuffix(page)}`,
+    title: `ニュース・解説記事一覧${pageSuffix(page)}`,
     description:
-      "AIが解析した世界のAI公式発表動画の解説記事をすべて時系列で掲載しています。",
+      "公式発表や公開動画をもとに、AI・テクノロジーを中心としたニュースと解説を掲載。新しい記事を時系列で探せます。",
     alternates: { canonical: pageHref("/articles", page) },
   };
 }
@@ -22,7 +22,7 @@ export default function ArticlesView({ page }: { page: number }) {
   return (
     <div className="mx-auto max-w-[1240px] px-5 py-12 sm:px-8">
       <h1 className="t-h1">
-        記事一覧{pageSuffix(page)}
+        ニュース・解説記事一覧{pageSuffix(page)}
       </h1>
       <p className="mt-2 text-note text-muted">全 {articles.length} 本</p>
 
