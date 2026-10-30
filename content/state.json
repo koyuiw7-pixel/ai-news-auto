@@ -6294,6 +6294,13 @@
       "skipped": true,
       "url": "https://blog.google/company-news/outreach-and-initiatives/google-org/digital-public-infrastructure-farmers/"
     },
+    "708c10cef0c38c26": {
+      "at": "2026-10-30T09:51:29.059918+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大臣の定例記者会見における質疑応答の予定や会議の開催案内・議事録に関する案内であり、国民生活に直接関わる新しい制度・給付・料金・規制の発表ではないため。",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/daijin/detail/mext_00747.html"
+    },
     "70d1c307ea1eb2d2": {
       "at": "2026-10-28T23:13:03.555337+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -10199,6 +10206,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000198.000085052.html"
     },
+    "fa3f46d9d12180d7": {
+      "at": "2026-10-30T09:55:09.522136+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "ecb-policy-rate-hold-2026-10",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87227?site=nli"
+    },
     "fae0cc209d8923b6": {
       "at": "2026-10-27T01:51:14.886009+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -10326,71 +10341,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T16:45:45.815941+00:00",
-      "attempt": 2,
-      "id": "b95c6de3a9285d8e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 66.5字・60字超の文が 54% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 216.1字・最長 284字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 216.1,
-        "avg_sentence": 66.5,
-        "long_share": 0.538,
-        "max_paragraph": 284,
-        "paragraphs": 8,
-        "sentences": 26
-      },
-      "score": 100,
-      "source": "xbox-wire-jp",
-      "title": "ララ・クロフトの 30 年を振り返る"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T16:46:30.569312+00:00",
-      "attempt": 0,
-      "id": "b95c6de3a9285d8e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 65.9,
-        "avg_sentence": 35.6,
-        "long_share": 0.06,
-        "max_paragraph": 106,
-        "paragraphs": 27,
-        "sentences": 50
-      },
-      "score": 100,
-      "source": "xbox-wire-jp",
-      "title": "ララ・クロフトの 30 年を振り返る"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T17:02:23.313505+00:00",
-      "attempt": 1,
-      "id": "d28967fce9c692cd",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2320字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 119.5,
-        "avg_sentence": 64.0,
-        "long_share": 0.5,
-        "max_paragraph": 232,
-        "paragraphs": 15,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "How we detect frontier model misalignment"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T17:03:13.252418+00:00",
@@ -17085,6 +17035,73 @@
       "score": 100,
       "source": "digital-agency",
       "title": "マイナンバーカードの普及と利活用に関するダッシュボードを更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T09:52:23.850377+00:00",
+      "attempt": 1,
+      "id": "fa3f46d9d12180d7",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1596字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 130.0,
+        "avg_sentence": 52.0,
+        "long_share": 0.28,
+        "max_paragraph": 190,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "ＥＣＢ政策理事会－利上げを示唆しつつも今回は利上げ見送り"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T09:53:57.821328+00:00",
+      "attempt": 1,
+      "id": "fa3f46d9d12180d7",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 46.7字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 158.8字・最長 228字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 158.8,
+        "avg_sentence": 46.7,
+        "long_share": 0.206,
+        "max_paragraph": 228,
+        "paragraphs": 10,
+        "sentences": 34
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "ＥＣＢ政策理事会－利上げを示唆しつつも今回は利上げ見送り"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T09:55:09.521776+00:00",
+      "attempt": 0,
+      "id": "fa3f46d9d12180d7",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "段落が長い（平均 150.3字・最長 208字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 150.3,
+        "avg_sentence": 26.7,
+        "long_share": 0.0,
+        "max_paragraph": 208,
+        "paragraphs": 11,
+        "sentences": 62
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "ＥＣＢ政策理事会－利上げを示唆しつつも今回は利上げ見送り"
     }
   ],
   "short_text_retry": {}
