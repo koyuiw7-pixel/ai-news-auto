@@ -1,6 +1,6 @@
 # 定時SNS・商品更新の復旧（2026-10-30）
 
-状態: 実装・検証中。本番反映と実配信の証拠は末尾に追記する。
+状態: 本番反映・当日の配信復旧・再実行検証を完了（2026-10-30 16:06 JST）。朝まとめと金曜企画はThreads/Xとも各1件を実配信。明朝の定刻実行は未来のため未観測。
 
 ## 依頼と境界
 
@@ -27,7 +27,7 @@
 - 変更前の本番watchdog JSを取得してローカルの未変更コードからのbundleと比較し、完全一致を確認。既存KV、秘密の名前、変数、2本のCronも一致。変更前versionは`b3f24cfa-f3b5-49b4-b94f-ef0d24d66d62`。
 - 通常投稿の枠/比較実験、速報、災害定型、返信の手動承認、広告リンクと自己クリック除外を維持。
 - SNSの同一workflowは`concurrency: sns-extra`で直列化し、開始時に最新mainを読む。失敗時にも部分履歴を保存する。
-- Blueskyが並行して成功したURIを`extraPending`への移動で捨てない。日次企画の保存済み本文を優先し、午後の復旧を「けさ」と表示しない。初回のThreads受理/受理ID復元時には実時刻を保持してBlueskyの対象から外さない。
+- Blueskyが並行して成功したURIを`extraPending`への移動で捨てない。日次企画の保存済み本文を優先し、午後の復旧を「けさ」と表示しない。初回のThreads受理/受理ID復元時には実時刻を保持してBlueskyの対象から外さない。Bluesky連携は既存仕様どおりdigestのみで、pollは対象外。今回の実配信の確認範囲はThreads・X。
 - `[no-deploy]`のpushが進行中の公開を中断する既存concurrencyを修正。スキップする回だけ一意の別groupにし、通常push/手動公開のキャンセル制御は従来どおりにした（d37f7f6）。
 
 ## 15:40時点の確認済み事実
@@ -42,14 +42,34 @@
 
 ## 運用・停止・限界
 
-- SNSの緊急停止は`sns_extra.yml`を無効化し、回収時計の`SNS_EXTRA_ENABLED=0`を反映する。通常投稿・速報・災害のworkflowは触らない。履歴やextraPendingを消して再送してはいけない。
+- SNSの新規起動停止は`sns_extra.yml`を無効化し、回収時計の`SNS_EXTRA_ENABLED=0`を反映する。この操作だけでは実行中runやBuffer受理済みの予約を止められない。緊急時は当該sns-extra runと当該digest/pollの予約状態も個別に確認する。通常予約・速報・災害のworkflowは触らない。履歴やextraPendingを消して再送してはいけない。
 - `--verify --kind digest|poll --date YYYY-MM-DD`は読み取り専用。予定受理と実配信をstatus/sentAt/externalLinkで区別する。
 - 投稿先APIには原子的な冪等キーがない。直列化・事前照合・媒体別記録・不明時の停止で防ぐが、強制終了と保存消失を含むあらゆる障害で「絶対に重複しない」とは保証しない。
 - 商品障害時は日次workflowの失敗とreport artifactを確認する。記事処理へ戻したり、毎記事の再試行を復活させたりしない。誤った旧パーサで予約商品を戻さない。
 - 明朝の定刻実行は未来のため未観測。当日の遅延回収実運転と、早朝/予約時刻/翌日拒否の模擬検証を区別する。
 
-## 検証と未確認事項
+## 本番結果（16:06 JSTまで）
 
-実測のテスト数・本番実行ID・投稿URL・商品件数・残る制約を完了時にここへ追記する。予約受理と実配信、コード反映と翌朝の定刻実行は別に扱う。
+- 金曜の問いかけは専用Cronの15:43:13 JST起動で自動回収された。`41015730594`成功。読み取り照合`41015843544`でThreads・Xが各1件、両方`sent`であることを確認。API受理だけを配信成功とはしていない。
+  - Threads: https://www.threads.com/@saisoku637/post/DfG9zriETXS （Buffer ID `6ae43c8e4b8768bfb2e3c13c`）
+  - X: https://x.com/2049369798979833857/status/2116058407799050579 （Buffer ID `6ae43c95a83a7fb63c9b0f36`）
+  - 同じlive処理の再実行`41015911414`で既存の2 IDを照合、新規作成0件。Buffer Sent画面でも本文と公開リンクを確認。
+- 15:53の専用Cronは、金曜企画を`accepted`として除外し、朝企画を`other-kind-spacing`として保留した。追加送信0件。20分未満（この回は約10分）の回収起動を本番で抑止した。手動dispatch自体に間隔判定はないため、今回の手動回収でも作業側で20分以上を確保する。
+- 楽天最終更新`41014866424`は15:47:34 JST成功。26テーマの取得・選定と提携価格4件の確認が完了、errors/retainedは0。商品は121冊、ユニークID121。telecom / telecom-gadget / gadget / serverは条件に合う在庫本0件として確認済み。
+- 商品だけのcommit `feaf8b021e5bc36c97bfe6d6acd352ea3708a5a6`を本番公開`41016155860`で15:50:10 JST反映。`fetchedAt`は取得開始15:34:37 JSTを表し、確認完了・公開時刻とは区別する。
+- 公開HTML検証: RTX記事はHTTP200で新価格340,800円あり、旧274,800円なし。Pixel Watch記事はHTTP200、予約本18847175なし、既存の関連テーマ補充でNotebookLM本18420245あり。HTML本文だけを監査UAで取得し、広告リンク・pixel・画像は取得していない。
+- 商品更新の再実行`41016619666`（force=false）は「前回の完全取得から0.3時間」で取得を省略し成功。商品コミットなし、Deploy stepはskipped。鮮度の判定は20時間で、毎朝07:43の独立workflowに移行済み。
+- `offers.json`を保持。A8 URL生成関数・定数・pixelは旧新一致、共通117冊のURLも全件一致。商品IDの入替だけを正規の既存生成方法で反映した。広告クリック・購入・成果発生の検証はしていない。
+
+本番表示検査`41016669235`は44条件（主要11ページ×スマホ/PC×ライト/ダーク）で違反0・エラー0。修正前の投稿履歴58件は、ID・投稿時刻・予約時刻・既存媒体のIDすべてを保持。通常予約もThreads15:30・X15:42・Facebook15:57をBuffer Sent画面で確認し、変更していない。
+
+- 朝まとめは16:03のCronでも20分未満のため保留。その後、20分以上経過した16:03:55に同じworkflowを手動起動して回収（`41017774814`）。金曜企画は自動回収、朝企画は時刻を確認した手動回収であり、両方が自動回収されたとは記録しない。
+- 当日午後のため「今日のAIニュース3本（2026/10/30）」と表示。Threadsは16:04:27、Xは16:04:22 JSTに実配信。読み取り照合`41017849771`で各1件・両方`sent`。
+  - Threads: https://www.threads.com/@saisoku637/post/DfHALwfHBOr （Buffer ID `6ae4416c56e01b97639044d1`）
+  - X: https://x.com/2049369798979833857/status/2116063646996468151 （Buffer ID `6ae44176ba1ca51fd3fdf1fd`）
+- 朝まとめのlive再実行`41017956024`でも同じ2 IDを照合、新規作成0。Threads Sentで本文・送信時刻・金曜企画との併存を確認し画像保存。今回新規に出したのは2企画×2媒体の親投稿4件と、Threadsまとめの既存仕様の返信1件。Dify草案は出していない。
+- この完了はThreads/Xの当日復旧と商品の公開更新を意味する。Blueskyでの将来のdigest転載、翌朝の定刻実行、閲覧増加、広告成果・収益は今回の完了判定に含めない。
+
+記録ファイル: チャットoutputsの`Automation-recovery-change-record-2026-10-30.txt` / `automation-recovery-evidence-20261030.json` / `sns-daily-recovery-20261030.png`。元リポジトリの`.claude/CODEX_HANDOFF_2026-10-30.txt`にも完了追記。元の`feat/web-sources`作業内容は上書きしていない。
 
 一次資料: [GitHubのschedule仕様](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)、[Buffer API Reference](https://developers.buffer.com/reference.html)。
