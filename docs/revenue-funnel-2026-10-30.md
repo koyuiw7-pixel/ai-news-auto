@@ -56,3 +56,9 @@
 
 ローカル統合検証: 127.0.0.1のNext本番ビルドとhandleAffをメモリKVで接続。Chromeで/guides→Difyガイドへ操作し、entry_view / guide_click / guide_view / comparison_view / choice_clickを確認。無料先と広告先のchoice別保存、および従来c:クリックの保存を確認。検証用にローカルページのリンク既定遷移だけを止め、広告・外部解析の通信を遮断。実ASPと本番KVへの自己クリックなし。通信ログの保持範囲でも広告リクエストなし（ログは一部切り詰めあり）。
 一時的にDocumentsのiCloudプレースホルダでI/Oが停止。元の変更を退避し、/private/tmp/saisoku-funnel-20261030 の feat/trusted-revenue-funnel-local で継続。旧work/sns-publish-fixは同一作業の古い途中コピーのため、そのままpushしない。
+
+本番公開 38c9a96234028d10956cf889611426e75d8fc787 / Deploy run 40992654369 success（2026-10-30 11:38 JST）。
+本番7ページHTTP200、Dify canonical / index,follow / sitemap / JSON-LD有効、既存A8 URL完全一致を確認。旧広告集計2回/推定1訪問者を維持し、新funnelは0から開始。HTTP所要時間はLCPや実利用者性能ではない。
+既定Readability run 40992875115 は11ページ×2幅×2テーマ=44条件で違反0。
+Google Search Console 2026-10-30 11:44:16 のライブテスト: Google検査ツール（スマートフォン）、クロール許可=はい、ページ取得=成功、インデックス登録許可=はい。未登録状態は当然別。登録リクエスト結果を追記予定。
+Google-InspectionToolはUAにbotを含まないため、画面/Worker共通の除外リストへ明記し回帰テストを追加。GoogleOtherも除外。サイトへのアクセス拒否ではなく計測対象から除くだけ。一次資料 https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers 。

@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import { BOT_UA } from "@/lib/revenue-funnel";
 
 /**
  * 提携リンク（rel に sponsored を含む a）の「人による」クリックを自前で数える。
  * ASP のクリック数にはクローラーや自動ブラウザが混ざるので、実数と見比べるため。
  * 個人を特定する情報は送らない（送るのは 提携先の ID・ページのパス・置き場所 だけ）。受け口は cloudflare/aff.ts
  */
-const BOT_UA = /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|preview|phantom|puppeteer|playwright|selenium|python|curl|wget/i;
 
 /** 提携先の ID（A8 は a8mat、それ以外はドメイン） */
 function programOf(href: string): string {

@@ -6,7 +6,8 @@ export type Source = typeof SOURCES[number];
 export const STAGES = ["entry_view", "guide_click", "guide_view", "comparison_view", "choice_click"] as const;
 export type Stage = typeof STAGES[number];
 export const CHOICES = ["dify-cloud", "local-pc", "xserver-dify"] as const;
-export const BOT_UA = /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|preview|phantom|puppeteer|playwright|selenium|python|curl|wget/i;
+// Search Consoleの検査はGooglebotを名乗らないため、検査用UAも明示して除外する。
+export const BOT_UA = /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|preview|phantom|puppeteer|playwright|selenium|python|curl|wget|google-inspectiontool|googleother/i;
 
 export function sourceOf(search: string, referrer: string, origin: string): Source {
   const utm = new URLSearchParams(search).get("utm_source")?.toLowerCase();

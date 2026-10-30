@@ -42,7 +42,7 @@ const stats = async () => (await call("/api/aff/stats", undefined, { authorizati
 await test("unauthorized stats reveal nothing", async () => assert.equal((await call("/api/aff/stats", undefined, {}, "GET")).status, 401));
 await test("cross-origin event rejected", async () => { assert.equal((await call("/api/aff/event", event, { origin: "https://evil.invalid" })).status, 403); assert.equal(records.size, 0); });
 await test("GET cannot record events", async () => assert.equal((await call("/api/aff/event", undefined, {}, "GET")).status, 405));
-await test("bots, DNT and GPC excluded", async () => { for (const h of [{ "user-agent": "Googlebot" }, { "user-agent": "HeadlessChrome" }, { dnt: "1" }, { "sec-gpc": "1" }]) await call("/api/aff/event", event, h); assert.equal(records.size, 0); });
+await test("bots, inspection tool, DNT and GPC excluded", async () => { for (const h of [{ "user-agent": "Googlebot" }, { "user-agent": "Mozilla/5.0 (compatible; Google-InspectionTool/1.0)" }, { "user-agent": "GoogleOther" }, { "user-agent": "HeadlessChrome" }, { dnt: "1" }, { "sec-gpc": "1" }]) await call("/api/aff/event", event, h); assert.equal(records.size, 0); });
 await test("missing KV fails closed", async () => { await call("/api/aff/event", event, {}, "POST", { ...env, AFF_KV: undefined } as unknown as typeof env); assert.equal(records.size, 0); });
 await test("unknown funnel, query strings, raw sources and choices rejected", async () => {
   for (const change of [{ funnel: "other" }, { path: GUIDE_PATH + "?email=private" }, { source: "https://private.invalid" }, { stage: "sale" }, { choice: "wrong" }, { pos: "bad space" }]) assert.equal((await call("/api/aff/event", { ...event, ...change })).status, 400);

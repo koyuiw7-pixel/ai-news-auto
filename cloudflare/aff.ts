@@ -11,7 +11,7 @@
  * 連打・機械的な連投は Cache API（そのデータセンターの一時置き場）で間引く。
  */
 import { json, readJson, safeEqual, sameOrigin, sha256Hex, type KvNamespace } from "./push";
-import { FUNNEL, SOURCES, STAGES, validFunnelEvent } from "../lib/revenue-funnel";
+import { BOT_UA, FUNNEL, SOURCES, STAGES, validFunnelEvent } from "../lib/revenue-funnel";
 
 export type AffEnv = {
   AFF_KV?: KvNamespace;
@@ -22,8 +22,6 @@ type Ctx = { waitUntil(promise: Promise<unknown>): void };
 type Meta = { path?: string; pos?: string; v?: string };
 type FunnelMeta = Meta & { stage?: string; source?: string; choice?: string };
 
-/** 画面側（components/AffClickTracker.tsx）と同じ。サーバーでも念のため弾く */
-const BOT_UA = /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|preview|phantom|puppeteer|playwright|selenium|python|curl|wget/i;
 const PROGRAM = /^[A-Za-z0-9+._-]{1,60}$/;
 const PATH = /^\/[A-Za-z0-9\-._~%!$&'()*+,;=:@/]{0,200}$/;
 const POS = /^[a-z0-9-]{1,32}$/;
