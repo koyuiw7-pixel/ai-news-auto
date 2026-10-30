@@ -4199,6 +4199,13 @@
       "slug": "stat-go-jp-social-life-basic-survey",
       "url": "https://www.stat.go.jp/info/today/pdf/210.pdf"
     },
+    "25cc4c9bb2e3e7e5": {
+      "at": "2026-10-30T18:31:17.256278+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2209字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://openai.com/index/helping-websites-express-ai-training-preferences"
+    },
     "25cf8aad52336be1": {
       "at": "2026-10-28T21:52:13.378874+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7685,6 +7692,13 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/singi/kanmin/02shingi06_02001103.html"
     },
+    "97f90c00b2bd8e72": {
+      "at": "2026-10-30T18:31:35.898709+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大臣の定例記者会見における個別発言の案内（質疑応答要旨の未掲載）であり、国民向けの新しい制度・給付・料金・規制などの具体的な発表ではないため。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202610/video-326814.html"
+    },
     "983901472b072637": {
       "at": "2026-10-29T18:34:23.669773+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8832,6 +8846,12 @@
       "skipped": true,
       "url": "https://www.digital.go.jp/policies/administrative_procedures_online"
     },
+    "c163e5401c88db95": {
+      "at": "2026-10-30T18:31:28.344172+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326966.html"
+    },
     "c174217f0aa6d531": {
       "at": "2026-10-30T04:42:29.522416+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（出張）",
@@ -9818,6 +9838,12 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76867.html"
     },
+    "e1c11ea8608e03cc": {
+      "at": "2026-10-30T18:31:35.898829+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（表敬）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326916.html"
+    },
     "e1c742c1d925baf7": {
       "at": "2026-10-29T15:39:40.395520+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10680,6 +10706,13 @@
       "slug": "itoham-yonekyu-future-logistics-project",
       "url": "https://kyodonewsprwire.jp/release/202610268660"
     },
+    "fd78ba27881cf500": {
+      "at": "2026-10-30T18:31:28.344039+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "内閣官房長官の定例記者会見の記録であり、国民生活に直接関わる新しい制度や給付金の発表、法改正などの具体的内容が含まれていないため対象外とします。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326944.html"
+    },
     "fdba22f8a8926616": {
       "at": "2026-10-26T12:31:25.707776+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（市場調査レポート）",
@@ -10768,52 +10801,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:53:19.460728+00:00",
-      "attempt": 1,
-      "id": "2b6ca2a2c1a09285",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 53.8字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 150.6字・最長 241字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 150.6,
-        "avg_sentence": 53.8,
-        "long_share": 0.321,
-        "max_paragraph": 241,
-        "paragraphs": 10,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "ナフサ代替素材等開発の支援対象事業者を決定"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T18:53:25.908129+00:00",
-      "attempt": 0,
-      "id": "2b6ca2a2c1a09285",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 50.6字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 133.5字・最長 241字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 133.5,
-        "avg_sentence": 50.6,
-        "long_share": 0.31,
-        "max_paragraph": 241,
-        "paragraphs": 11,
-        "sentences": 29
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "ナフサ代替素材等開発の支援対象事業者を決定"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T19:11:41.988504+00:00",
@@ -17521,6 +17508,50 @@
       "score": 100,
       "source": "hugging-face-blog",
       "title": "nemotron-halloween"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T18:31:04.348184+00:00",
+      "attempt": 1,
+      "id": "25cc4c9bb2e3e7e5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2040字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 97.8,
+        "avg_sentence": 55.0,
+        "long_share": 0.312,
+        "max_paragraph": 137,
+        "paragraphs": 18,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "Making it easier for websites to express AI training preferences"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T18:31:14.484737+00:00",
+      "attempt": 2,
+      "id": "25cc4c9bb2e3e7e5",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2209字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 148.6,
+        "avg_sentence": 69.0,
+        "long_share": 0.643,
+        "max_paragraph": 272,
+        "paragraphs": 13,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "Making it easier for websites to express AI training preferences"
     }
   ],
   "short_text_retry": {}
