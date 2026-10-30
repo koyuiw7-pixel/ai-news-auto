@@ -77,3 +77,16 @@
 - /news画像はmetadata参照とrouteを一緒に戻す。
 - 手動改稿を保持する間はrefreshMode保護を外さない。本文を新しいまま保護だけ外すと次の自動生成で上書きされうる。
 - 記事URL・元公開日・広告URL/タグ・SNS履歴は今回のために変更しない。
+
+## 公開後の確認（2026-10-30 17:18 JST）
+
+- 実装コミット `f0377ec` をmainへ反映。自動更新で先行した2記事と投稿/公開記録を保持してrebaseした。
+- Cloudflare公開run `41025016401` がsuccess。標準Turbopack/OpenNext build・計測14件・振分け7件もCIで成功。https://github.com/koyuiw7-pixel/ai-news-auto/actions/runs/41025016401
+- 本番9ページがHTTP200、自己canonical、index指定、h1が1つ。改稿内容の配信を確認。Dify2記事＋選び方＋一覧を維持。
+- /newsと2ページ目のOGが自己URL・新画像を指す。画像HTTP200、PNG、1200×630、47358B。
+- 本番sitemapは1113URL、重複0。ローカル1109との差は反映前に取り込んだ自動記事更新による。代表2URL（量子コンピュータのタグ・maffチャンネル）はHTTP200/noindex維持、sitemapから除外された。
+- 認証付き読み取りで10/30当日のDify5段階はすべて0、byEntry空。既存の広告2クリック/日内推定1人とは別。今日の修正が人の訪問や成果を発生させた証拠はまだない。
+- /guides一覧のOG URLは既存のトップ継承が残る。canonicalは自己URL。今回は/newsの欠落を修正し、他の一覧OG全面改修は未実施。
+- 証拠はチャットoutputsの search-growth-production-verification-2026-10-30.json / search-growth-baseline-2026-10-30.json / search-growth-funnel-snapshot-2026-10-30.json と表示検査画像に保存。
+
+- 更新した3記事・/news・/guidesの5URLを公開確認後にIndexNow通知。HTTP200で受理。Googleへの申請や検索掲載を証明するものではない。
