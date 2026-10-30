@@ -42,6 +42,23 @@ def find_key() -> str | None:
     return None
 
 
+def latest_guide_timestamp(guide: dict) -> datetime | None:
+    """全体確認日を維持した部分更新も拾う。時差を揃え、有効な最新日時を使う。"""
+    timestamps = []
+    for field in ("checkedAt", "updatedAt", "createdAt"):
+        value = guide.get(field)
+        if not isinstance(value, str) or not value.strip():
+            continue
+        try:
+            touched = datetime.fromisoformat(value.strip().replace("Z", "+00:00"))
+            # タイムゾーンのない値は日付を推測しない。他の有効な日時へフォールバックする。
+            if touched.tzinfo is not None:
+                timestamps.append(touched.astimezone(timezone.utc))
+        except (ValueError, OverflowError):
+            continue
+    return max(timestamps) if timestamps else None
+
+
 def collect_urls(base: str, hours: int | None) -> list[str]:
     """インデックス対象（AIジャンル）の記事URLを集める。
 
@@ -69,13 +86,17 @@ def collect_urls(base: str, hours: int | None) -> list[str]:
                 continue
         urls.append(f"{base}/articles/{article['slug']}")
 
-    # 使い方ガイド（/guides/<slug>）。作成・確認し直した（確認日が変わった）ものも送る
+    # 使い方ガイド（/guides/<slug>）。作成・全体確認・部分更新の最新日時で選ぶ。
     guides = []
     for path in sorted(HOWTO_DIR.glob("*.json")):
         try:
             guide = json.loads(path.read_text("utf-8"))
-            touched = datetime.fromisoformat(guide.get("checkedAt") or guide.get("updatedAt") or "")
-        except (json.JSONDecodeError, ValueError):
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(guide, dict):
+            continue
+        touched = latest_guide_timestamp(guide)
+        if touched is None:
             continue
         if threshold is None or touched >= threshold:
             guides.append(f"{base}/guides/{guide['slug']}")
