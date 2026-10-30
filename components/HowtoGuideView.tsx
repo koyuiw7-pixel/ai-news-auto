@@ -91,6 +91,11 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
         </span>
       </div>
 
+      {guide.disclosure && (
+        <p className="mt-3 border-l-4 border-ink bg-surface px-4 py-3 text-note leading-[1.8] text-ink" data-editorial-disclosure>
+          <strong>PR</strong>　{guide.disclosure}
+        </p>
+      )}
       <h1 className="t-h1 headline mt-3">{guide.title}</h1>
 
       <section aria-labelledby="conclusion-heading" className="mt-6 rounded-2xl border-l-4 border-ink bg-surface p-5 sm:p-6">
@@ -169,6 +174,11 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
         <p className="mt-4 text-note leading-relaxed text-muted">
           {checked}時点で公式ページの表記を確認した内容です。料金や上限は変わることがあるため、申し込む前に公式サイトで最新の情報を確認してください。
         </p>
+        {guide.officialAction && (
+          <a href={guide.officialAction.url} target="_blank" rel="sponsored nofollow noopener noreferrer" className="mt-5 inline-flex rounded-lg border border-ink px-5 py-3 text-note font-bold text-ink underline underline-offset-4 hover:text-accent">
+            {guide.officialAction.label}
+          </a>
+        )}
       </Section>
 
       <Section id="japan" title="日本で使える？">
@@ -228,7 +238,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
                   href={`/guides/${other.slug}`}
                   className="font-bold text-ink underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"
                 >
-                  {other.title}
+                  {other.disclosure && <span className="mr-1">PR</span>}{other.title}
                 </Link>
               </li>
             ))}
@@ -248,8 +258,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
           ))}
         </ul>
         <p className="mt-4 text-note leading-relaxed text-muted">
-          このページは、上の公式ページの内容だけをもとに編集部が作成し、別のAIで公式ページと照合しています。
-          公式ページは14日ごと、料金などの関連ニュースが出たときはその都度確認し直しています。
+          {guide.editorialNote ?? "このページは、上の公式ページの内容だけをもとに編集部が作成し、別のAIで公式ページと照合しています。公式ページは14日ごと、料金などの関連ニュースが出たときはその都度確認し直しています。"}
           <Link href="/editorial-policy" className="ml-1 text-accent underline">編集方針</Link>
         </p>
       </section>

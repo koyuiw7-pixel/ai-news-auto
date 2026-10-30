@@ -35,6 +35,11 @@ export type HowtoGuide = {
   updatedAt: string;
   /** 公式ページで内容を確かめた日時（確認日） */
   checkedAt: string;
+  /** 手動編集した広告・応募記事の開示。設定した記事だけ冒頭に表示する。 */
+  disclosure?: string;
+  /** 自動生成・別AI照合・定期更新の定型説明に代わる、実際の編集方法。 */
+  editorialNote?: string;
+  officialAction?: { url: string; label: string };
 };
 
 // 文字列で組み立てて、content/ 全体をサーバー関数に同梱させない（lib/articles.ts と同じ理由）

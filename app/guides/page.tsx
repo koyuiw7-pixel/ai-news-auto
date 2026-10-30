@@ -11,7 +11,7 @@ import { getProduct } from "@/lib/products";
 export const metadata: Metadata = {
   title: "AIの使い方ガイド：始め方・料金・無料でどこまで使えるか",
   description:
-    "ChatGPT・Gemini・Claude・NotebookLMなど人気のAIツールの使い方、料金、無料でどこまで使えるか、日本で使えるかを、公式ページをもとに1ページずつ解説。内容は定期的に公式ページで確認し直しています。",
+    "ChatGPT・Gemini・Claude・NotebookLMなどAIツールの使い方と、AIを使う仕事・サイト運営を解説。料金、無料で使える範囲、導入条件を公式情報と確認日付きで整理しています。",
   alternates: { canonical: "/guides" },
 };
 
@@ -31,7 +31,7 @@ export default function GuidesPage() {
       <p className="eyebrow">GUIDES</p>
       <h1 className="t-h1 mt-2">AIの使い方ガイド</h1>
       <p className="t-lead mt-3">
-        人気のAIツールの始め方、料金、無料でどこまで使えるか、日本で使えるかを1ページずつまとめました。公式ページだけをもとに書き、定期的に確認し直しています。
+        AIツールの使い方と、AIを使う仕事・サイト運営をまとめました。公式情報と確認日を示し、提供条件と編集部の判断を分けて整理しています。
       </p>
 
       <section aria-labelledby="choose-guides" className="mt-12" data-funnel-pos="guide-list">
@@ -59,6 +59,7 @@ export default function GuidesPage() {
                     className="group flex h-full flex-col gap-3 rounded-2xl border border-line p-5 transition-colors hover:border-ink"
                   >
                     <span className="flex items-center gap-2 text-meta">
+                      {guide.disclosure && <span className="font-bold text-ink">PR</span>}
                       {company.slug !== OTHER.slug ? (
                         <CompanyMark company={company} size={18} withName />
                       ) : (
