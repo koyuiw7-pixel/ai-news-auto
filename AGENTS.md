@@ -138,3 +138,5 @@
 - 検索流入改善（ChatGPT/IPA/Work IQ、Dify振分け、sitemap、手動改稿保護）: `docs/search-growth-2026-10-30.md`。`refreshMode: editorial` は自動再生成せず編集待ちを記録する。確認後はcheckedAtを更新しneedsReviewとneedsReviewReasonを消す。
 
 - 検索クリック改善（Copilot Fusion/IPA/Work IQの題名・回答・利用条件）: `docs/search-ctr-2026-10-30.md`。公開・Google再取得・検索表示・クリック増を別段階で判定し、少数の表示や未反映の数字で成否を断定しない。
+
+- Google再取得申請エラーの切り分けとトップDify入口: `docs/google-reindex-recovery-20261030.md`。公開URLテスト成功、申請受付は本人操作の結果待ち。Googleの防御やAPIを迂回せず、取得成功と申請成功を区別する。
