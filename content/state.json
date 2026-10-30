@@ -3333,6 +3333,13 @@
       "slug": "samsung-galaxy-buds-on-cuff-earbuds",
       "url": "https://www.bloomberg.com/news/articles/2026-10-28/samsung-unveils-galaxy-buds-on-clip-on-earbuds-for-229"
     },
+    "0d3e7ad71ee94605": {
+      "at": "2026-10-30T07:51:07.536432+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1550字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（238字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/policies/local_governments/common-feature-specification"
+    },
     "0d9de70491705807": {
       "at": "2026-10-26T21:14:24.575558+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3964,6 +3971,14 @@
       "section": "business",
       "slug": "amazon-alexa-plus-launch",
       "url": "https://www.aboutamazon.jp/news/devices/things-you-can-do-with-new-alexa-plus?utm_source=rss"
+    },
+    "20ce38e970e73a0f": {
+      "at": "2026-10-30T07:51:42.654846+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "boj-governor-press-conference-oct30",
+      "url": "http://www.boj.or.jp/about/release/sousaidouga.htm"
     },
     "2122e422380b5543": {
       "at": "2026-10-26T16:50:25.785682+00:00",
@@ -10153,117 +10168,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-10-29T15:08:25.181119+00:00",
-      "attempt": 0,
-      "id": "4430856536e9007c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 98.1,
-        "avg_sentence": 37.7,
-        "long_share": 0.103,
-        "max_paragraph": 203,
-        "paragraphs": 15,
-        "sentences": 39
-      },
-      "score": 100,
-      "source": "samsung-jp",
-      "title": "「Samsung Galaxy Z Fold8」に買い替えた若手が語る、毎日持ち歩く折りたたみスマートフォンの使い心地"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T15:08:57.920953+00:00",
-      "attempt": 1,
-      "id": "8ccea7e89b703086",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2460字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（390字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 122.3,
-        "avg_sentence": 65.8,
-        "long_share": 0.577,
-        "max_paragraph": 226,
-        "paragraphs": 14,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "mistral-news",
-      "title": "Le Chonk: Built for Coders, Trusted by Defenders."
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T15:09:34.200854+00:00",
-      "attempt": 2,
-      "id": "8ccea7e89b703086",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1706字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "title の長さが不適切（67字 / 18〜64字）"
-      ],
-      "readability": {
-        "avg_paragraph": 108.3,
-        "avg_sentence": 63.7,
-        "long_share": 0.471,
-        "max_paragraph": 176,
-        "paragraphs": 10,
-        "sentences": 17
-      },
-      "score": null,
-      "source": "mistral-news",
-      "title": "Le Chonk: Built for Coders, Trusted by Defenders."
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T15:10:13.061601+00:00",
-      "attempt": 1,
-      "id": "bf30529fb59df439",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1790字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 102.8,
-        "avg_sentence": 58.1,
-        "long_share": 0.435,
-        "max_paragraph": 176,
-        "paragraphs": 13,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "nvidia-blog",
-      "title": "Slice Into GFN Thursday: ‘Phantom Blade Zero’ Launches on GeForce NOW"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T15:11:00.483927+00:00",
-      "attempt": 1,
-      "id": "bf30529fb59df439",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 54.9字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 142.9字・最長 258字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 142.9,
-        "avg_sentence": 54.9,
-        "long_share": 0.282,
-        "max_paragraph": 258,
-        "paragraphs": 15,
-        "sentences": 39
-      },
-      "score": 100,
-      "source": "nvidia-blog",
-      "title": "Slice Into GFN Thursday: ‘Phantom Blade Zero’ Launches on GeForce NOW"
-    },
     {
       "accepted": true,
       "at": "2026-10-29T15:11:47.174936+00:00",
@@ -16911,6 +16815,118 @@
       "score": 100,
       "source": "jfa",
       "title": "【ホットピ！～HotTopic～】フットサル日本代表、大分で強豪モロッコと対戦 #jfa #daihyo"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T07:51:02.074427+00:00",
+      "attempt": 1,
+      "id": "0d3e7ad71ee94605",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1727字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（370字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 142.2,
+        "avg_sentence": 55.7,
+        "long_share": 0.435,
+        "max_paragraph": 185,
+        "paragraphs": 9,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "digital-agency",
+      "title": "「地方公共団体情報システム共通機能標準仕様書」に関するFAQの資料を更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T07:51:07.536391+00:00",
+      "attempt": 2,
+      "id": "0d3e7ad71ee94605",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1550字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（238字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 123.7,
+        "avg_sentence": 58.6,
+        "long_share": 0.316,
+        "max_paragraph": 165,
+        "paragraphs": 9,
+        "sentences": 19
+      },
+      "score": null,
+      "source": "digital-agency",
+      "title": "「地方公共団体情報システム共通機能標準仕様書」に関するFAQの資料を更新しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T07:51:29.905060+00:00",
+      "attempt": 1,
+      "id": "20ce38e970e73a0f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1561字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（362字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 99.8,
+        "avg_sentence": 57.0,
+        "long_share": 0.476,
+        "max_paragraph": 175,
+        "paragraphs": 12,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "boj",
+      "title": "総裁記者会見（10月30日）動画の配信開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T07:51:37.313642+00:00",
+      "attempt": 2,
+      "id": "20ce38e970e73a0f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "文が長い（1文の平均 65.7字・60字超の文が 62% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 172.5字・最長 221字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 172.5,
+        "avg_sentence": 65.7,
+        "long_share": 0.619,
+        "max_paragraph": 221,
+        "paragraphs": 8,
+        "sentences": 21
+      },
+      "score": 100,
+      "source": "boj",
+      "title": "総裁記者会見（10月30日）動画の配信開始"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-30T07:51:42.654444+00:00",
+      "attempt": 0,
+      "id": "20ce38e970e73a0f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 43.0,
+        "avg_sentence": 21.2,
+        "long_share": 0.0,
+        "max_paragraph": 79,
+        "paragraphs": 43,
+        "sentences": 87
+      },
+      "score": 100,
+      "source": "boj",
+      "title": "総裁記者会見（10月30日）動画の配信開始"
     }
   ],
   "short_text_retry": {}
