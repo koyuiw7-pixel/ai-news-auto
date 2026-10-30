@@ -5314,6 +5314,13 @@
       "slug": "igakushoin-ptashop-goods-2026",
       "url": "https://prtimes.jp/main/html/rd/p/000007784.000005875.html"
     },
+    "48d8034c8d85b180e8c17924961b6ac947a90f08": {
+      "at": "2026-10-30T23:11:57.532828+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1505字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://paypay.ne.jp/notice/20261030/cp-jichitai/"
+    },
     "49384cd85f07d187": {
       "at": "2026-10-29T01:41:58.847293+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10029,6 +10036,13 @@
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366561"
     },
+    "e498ae4e987b20aa7bd0f622fb7eee33ad6bcdb3": {
+      "at": "2026-10-30T23:11:38.173714+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1527字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/9d3373a46cfea4887461fe664f375c01b34080ce"
+    },
     "e529dedc8f0dfc23": {
       "at": "2026-10-26T15:03:53.336784+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10905,95 +10919,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T20:06:18.012835+00:00",
-      "attempt": 1,
-      "id": "7fd3d90be223b966",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1382字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（326字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 142.8,
-        "avg_sentence": 49.4,
-        "long_share": 0.192,
-        "max_paragraph": 180,
-        "paragraphs": 9,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "金町浄水場テロ対処合同訓練の実施について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T20:06:24.619099+00:00",
-      "attempt": 2,
-      "id": "7fd3d90be223b966",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1692字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（361字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 135.6,
-        "avg_sentence": 48.4,
-        "long_share": 0.214,
-        "max_paragraph": 185,
-        "paragraphs": 10,
-        "sentences": 28
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "金町浄水場テロ対処合同訓練の実施について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T20:06:44.507018+00:00",
-      "attempt": 1,
-      "id": "e0b2bbdde388a2c0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 58.4字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 109.4,
-        "avg_sentence": 58.4,
-        "long_share": 0.3,
-        "max_paragraph": 181,
-        "paragraphs": 16,
-        "sentences": 30
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "水道スマートメータに新たな通信方式を導入～電力通信ネットワークを活用したデータ取得を開始～"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T20:06:48.324454+00:00",
-      "attempt": 0,
-      "id": "e0b2bbdde388a2c0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 114.6,
-        "avg_sentence": 35.3,
-        "long_share": 0.019,
-        "max_paragraph": 203,
-        "paragraphs": 16,
-        "sentences": 52
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "水道スマートメータに新たな通信方式を導入～電力通信ネットワークを活用したデータ取得を開始～"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T20:21:42.205794+00:00",
@@ -17665,6 +17590,94 @@
       "score": 100,
       "source": "aws-ml-blog",
       "title": "Managing Amazon Bedrock costs end to end: A playbook for FinOps and platform tea"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T23:11:28.295209+00:00",
+      "attempt": 1,
+      "id": "e498ae4e987b20aa7bd0f622fb7eee33ad6bcdb3",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1508字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 172.4,
+        "avg_sentence": 65.7,
+        "long_share": 0.381,
+        "max_paragraph": 237,
+        "paragraphs": 8,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "trends",
+      "title": "linux 脆弱 性 9.8"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T23:11:36.078753+00:00",
+      "attempt": 2,
+      "id": "e498ae4e987b20aa7bd0f622fb7eee33ad6bcdb3",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1527字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 173.5,
+        "avg_sentence": 69.4,
+        "long_share": 0.5,
+        "max_paragraph": 208,
+        "paragraphs": 8,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "trends",
+      "title": "linux 脆弱 性 9.8"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T23:11:46.894766+00:00",
+      "attempt": 1,
+      "id": "48d8034c8d85b180e8c17924961b6ac947a90f08",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1422字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 116.4,
+        "avg_sentence": 58.2,
+        "long_share": 0.5,
+        "max_paragraph": 173,
+        "paragraphs": 8,
+        "sentences": 16
+      },
+      "score": null,
+      "source": "trends",
+      "title": "paypay 自治体 キャンペーン 2026"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T23:11:55.503789+00:00",
+      "attempt": 2,
+      "id": "48d8034c8d85b180e8c17924961b6ac947a90f08",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1505字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 70.1,
+        "avg_sentence": 70.1,
+        "long_share": 0.789,
+        "max_paragraph": 96,
+        "paragraphs": 19,
+        "sentences": 19
+      },
+      "score": null,
+      "source": "trends",
+      "title": "paypay 自治体 キャンペーン 2026"
     }
   ],
   "short_text_retry": {}
