@@ -5197,6 +5197,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000561.000082530.html"
     },
+    "4631762f587896d9": {
+      "at": "2026-10-30T18:52:07.853412+00:00",
+      "reason": "dedupe: 見出しが類似（0.75）: 小野田大臣記者会見(令和8年10月30日)",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202610/video-326818.html"
+    },
     "4657e4741ad21900": {
       "at": "2026-10-27T17:32:59.719394+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（周年）",
@@ -8229,6 +8235,13 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76887.html"
     },
+    "ac89431bd48894ec": {
+      "at": "2026-10-30T18:52:28.071340+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "内閣官房長官の定例記者会見の案内ページであり、国民の暮らしに直接影響する新しい制度やサービス、法改正の具体的な発表内容が含まれていないため対象外とします。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326920.html"
+    },
     "acba861221feb78809883b66d044c885651b8682": {
       "at": "2026-10-27T15:11:29.242902+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10030,6 +10043,13 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/a_menu/nihongo_kyoiku/mext_02916.html"
     },
+    "e7bf37c2ea0b7edcb7ba161e4879deccde91da2a": {
+      "at": "2026-10-30T18:51:55.455673+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1324字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://s.kabutan.jp/news/n202610301494/"
+    },
     "e7e58cd7761fc453": {
       "at": "2026-10-26T11:02:34.699451+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10168,6 +10188,13 @@
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005969.000054842.html"
+    },
+    "eccf6024c399098d": {
+      "at": "2026-10-30T18:52:07.852979+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "大臣の定例記者会見における質疑応答の概要のみであり、新規の制度、法律、価格、手続き等の具体的決定事項が含まれていないため",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202610/video-326816.html"
     },
     "ed2fb42a31ae5238": {
       "at": "2026-10-27T03:01:29.612312+00:00",
@@ -10639,6 +10666,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000198.000085052.html"
     },
+    "fa2f67be7c6bd039": {
+      "at": "2026-10-30T18:52:07.853478+00:00",
+      "reason": "dedupe: 見出しが類似（0.75）: 小野田大臣記者会見(令和8年10月30日)",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202610/video-326924.html"
+    },
     "fa3f46d9d12180d7": {
       "at": "2026-10-30T09:55:09.522136+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10801,50 +10834,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T19:11:41.988504+00:00",
-      "attempt": 1,
-      "id": "eb9069225e782eff",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（2139字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 111.8,
-        "avg_sentence": 54.0,
-        "long_share": 0.276,
-        "max_paragraph": 212,
-        "paragraphs": 14,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "Repository plugin defaults and enterprise plugin controls generally available"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T19:11:48.951938+00:00",
-      "attempt": 1,
-      "id": "eb9069225e782eff",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 152.9字・最長 255字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 152.9,
-        "avg_sentence": 38.2,
-        "long_share": 0.143,
-        "max_paragraph": 255,
-        "paragraphs": 14,
-        "sentences": 56
-      },
-      "score": 100,
-      "source": "github-changelog-copilot",
-      "title": "Repository plugin defaults and enterprise plugin controls generally available"
-    },
     {
       "accepted": true,
       "at": "2026-10-29T19:11:52.860506+00:00",
@@ -17552,6 +17541,52 @@
       "score": null,
       "source": "openai-news",
       "title": "Making it easier for websites to express AI training preferences"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T18:51:43.224428+00:00",
+      "attempt": 1,
+      "id": "e7bf37c2ea0b7edcb7ba161e4879deccde91da2a",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1216字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（362字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 157.9,
+        "avg_sentence": 61.4,
+        "long_share": 0.5,
+        "max_paragraph": 251,
+        "paragraphs": 7,
+        "sentences": 18
+      },
+      "score": null,
+      "source": "trends",
+      "title": "sox"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T18:51:51.249066+00:00",
+      "attempt": 2,
+      "id": "e7bf37c2ea0b7edcb7ba161e4879deccde91da2a",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1324字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 153.9,
+        "avg_sentence": 63.4,
+        "long_share": 0.529,
+        "max_paragraph": 247,
+        "paragraphs": 7,
+        "sentences": 17
+      },
+      "score": null,
+      "source": "trends",
+      "title": "sox"
     }
   ],
   "short_text_retry": {}
