@@ -3131,6 +3131,12 @@
       "skipped": true,
       "url": "https://github.blog/changelog/2026-10-28-generate-and-edit-images-directly-in-copilot"
     },
+    "05cd2fcfbdf9045c": {
+      "at": "2026-10-30T00:32:02.060251+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77031.html"
+    },
     "060437b41340e43f": {
       "at": "2026-10-29T23:51:56.590963+00:00",
       "reason": "dedupe: 見出しが類似（0.74）: 労働力調査（基本集計）2026年（令和8年）9月分",
@@ -3638,6 +3644,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000033.000011313.html"
     },
+    "186bcef5c82081bd": {
+      "at": "2026-10-30T00:32:02.060121+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1612字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/policies/genai/b736d2d7-b03b-43f0-9932-eba7da7f8142"
+    },
     "188e9fbc4643b05c": {
       "at": "2026-10-26T16:11:49.835535+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3922,6 +3935,12 @@
       "reason": "quality: 本文が短い（2281字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://openai.com/index/greptile-code-review-codex-astra"
+    },
+    "2522854c2f8363bb": {
+      "at": "2026-10-30T00:32:02.060178+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ライブ配信）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/about/release/sousailive.htm"
     },
     "25cf8aad52336be1": {
       "at": "2026-10-28T21:52:13.378874+00:00",
@@ -4253,6 +4272,12 @@
       "section": "tech-gadget",
       "slug": "php-vulnerabilities-jpcert-alert-2026",
       "url": "https://www.jpcert.or.jp/at/2026/at260033.html"
+    },
+    "32449f7b43814550": {
+      "at": "2026-10-30T00:32:02.060233+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77050.html"
     },
     "326d641a8db7f800": {
       "at": "2026-10-28T21:51:50.348648+00:00",
@@ -8805,6 +8830,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000137.000052152.html"
     },
+    "ec5d4434c569cf19": {
+      "at": "2026-10-30T00:31:47.061247+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2080字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://cloud.google.com/blog/ja/topics/customers/cainz-reduces-errors-in-demand-forecasting-with-alphaevolve/"
+    },
     "ec5fe7a1ee1f741e": {
       "at": "2026-10-26T12:40:19.589774+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9325,99 +9357,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:11:45.339924+00:00",
-      "attempt": 2,
-      "id": "6f5661fd194b6f6c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1437字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（291字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 120.8,
-        "avg_sentence": 49.4,
-        "long_share": 0.182,
-        "max_paragraph": 171,
-        "paragraphs": 9,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "（図表2）人件費の内訳（7年度普通会計決算）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:11:52.079309+00:00",
-      "attempt": 1,
-      "id": "4fc3e6cfad62dfa3",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（302字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 109.2,
-        "avg_sentence": 58.3,
-        "long_share": 0.433,
-        "max_paragraph": 178,
-        "paragraphs": 16,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "mext",
-      "title": "第169回南極地域観測統合推進本部総会"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:11:57.424251+00:00",
-      "attempt": 2,
-      "id": "4fc3e6cfad62dfa3",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1330字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（331字 / 基準 400字以上）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 135.3,
-        "avg_sentence": 45.1,
-        "long_share": 0.185,
-        "max_paragraph": 217,
-        "paragraphs": 9,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "mext",
-      "title": "第169回南極地域観測統合推進本部総会"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-28T23:12:03.722556+00:00",
-      "attempt": 1,
-      "id": "960c9f2606637759",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1378字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（281字 / 基準 400字以上）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 113.9,
-        "avg_sentence": 54.5,
-        "long_share": 0.261,
-        "max_paragraph": 184,
-        "paragraphs": 11,
-        "sentences": 23
-      },
-      "score": null,
-      "source": "soumu",
-      "title": "令和8年（5月～9月）の熱中症による救急搬送状況"
-    },
     {
       "accepted": false,
       "at": "2026-10-28T23:12:11.434065+00:00",
@@ -16038,6 +15977,95 @@
       "score": 100,
       "source": "digital-agency",
       "title": "ガバメントAI 源内 利用状況アンケート調査（第1回）の結果を公表しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T00:31:36.340427+00:00",
+      "attempt": 1,
+      "id": "ec5d4434c569cf19",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1827字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 105.0,
+        "avg_sentence": 68.5,
+        "long_share": 0.609,
+        "max_paragraph": 193,
+        "paragraphs": 15,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "google-cloud-blog-ja",
+      "title": "AI が自らモデルを進化させる時代へ。カインズが AlphaEvolve で需要予測の誤差を 19% 改善"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T00:31:43.535331+00:00",
+      "attempt": 2,
+      "id": "ec5d4434c569cf19",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2080字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 125.6,
+        "avg_sentence": 70.3,
+        "long_share": 0.6,
+        "max_paragraph": 227,
+        "paragraphs": 14,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "google-cloud-blog-ja",
+      "title": "AI が自らモデルを進化させる時代へ。カインズが AlphaEvolve で需要予測の誤差を 19% 改善"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T00:31:53.992259+00:00",
+      "attempt": 1,
+      "id": "186bcef5c82081bd",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 118.6,
+        "avg_sentence": 50.8,
+        "long_share": 0.25,
+        "max_paragraph": 165,
+        "paragraphs": 12,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "digital-agency",
+      "title": "ガバメントAI 源内で「国会答弁作成支援AIアプリ」のプロトタイプ版を提供開始します"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T00:31:59.656964+00:00",
+      "attempt": 2,
+      "id": "186bcef5c82081bd",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1612字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 122.3,
+        "avg_sentence": 53.8,
+        "long_share": 0.28,
+        "max_paragraph": 198,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "digital-agency",
+      "title": "ガバメントAI 源内で「国会答弁作成支援AIアプリ」のプロトタイプ版を提供開始します"
     }
   ],
   "short_text_retry": {}
