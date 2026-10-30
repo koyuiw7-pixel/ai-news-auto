@@ -20,7 +20,7 @@ export type HowtoGuide = {
   description: string;
   conclusion: string[];
   intro: string;
-  steps: { title: string; body: string }[];
+  steps: { title: string; body: string; commands?: string[] }[];
   pricing: { plan: string; price: string; note?: string }[];
   freeTier: string[];
   japan: { answer: string; body: string };
@@ -40,6 +40,8 @@ export type HowtoGuide = {
   /** 自動生成・別AI照合・定期更新の定型説明に代わる、実際の編集方法。 */
   editorialNote?: string;
   officialAction?: { url: string; label: string };
+  /** 回答を読んだあとに案内する選び方ガイド。既存の有効なslugだけ表示する。 */
+  decisionGuideSlug?: string;
 };
 
 // 文字列で組み立てて、content/ 全体をサーバー関数に同梱させない（lib/articles.ts と同じ理由）

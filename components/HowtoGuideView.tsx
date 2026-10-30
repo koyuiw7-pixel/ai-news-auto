@@ -4,6 +4,7 @@ import Timeline from "@/components/Timeline";
 import { formatDate } from "@/lib/articles";
 import { getCompany, OTHER } from "@/lib/companies";
 import { howtoArticles, siblingHowtos, type HowtoGuide } from "@/lib/howto";
+import { getChooseGuide } from "@/lib/choose";
 import { getProduct } from "@/lib/products";
 import { siteConfig } from "@/site.config";
 
@@ -13,6 +14,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
   const news = howtoArticles(guide).slice(0, 8);
   const products = guide.products.map((slug) => getProduct(slug)).filter((p) => p !== undefined);
   const siblings = siblingHowtos(guide);
+  const decisionGuide = guide.decisionGuideSlug ? getChooseGuide(guide.decisionGuideSlug) : undefined;
   const url = `${siteConfig.url}/guides/${guide.slug}`;
   const checked = formatDate(guide.checkedAt);
 
@@ -126,9 +128,14 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
               <span className="index-num grid size-8 place-items-center rounded-lg border border-line-strong text-meta font-semibold text-ink">
                 {index + 1}
               </span>
-              <div>
+              <div className="min-w-0">
                 <h3 className="t-card pt-1">{step.title}</h3>
-                <p className="mt-1.5 text-desc leading-[1.9] text-ink-soft">{step.body}</p>
+                <p className="mt-1.5 text-desc leading-[1.9] text-ink-soft [overflow-wrap:anywhere]">{step.body}</p>
+                {step.commands?.length ? (
+                  <pre className="mt-3 overflow-x-auto rounded-lg border border-line bg-surface p-4 text-[16px] leading-[1.8] text-ink" aria-label="状態を確認するコマンド">
+                    <code>{step.commands.join("\n")}</code>
+                  </pre>
+                ) : null}
               </div>
             </li>
           ))}
@@ -199,12 +206,21 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
         </Section>
       )}
 
+      {decisionGuide ? (
+        <aside aria-label="関連する選び方ガイド" data-aff-pos="howto-decision" data-funnel-pos="howto-decision" className="mt-10 border-l-[3px] border-accent bg-surface px-4 py-4">
+          <Link href={`/choose/${decisionGuide.slug}`} className="text-[17px] font-bold leading-relaxed text-ink underline decoration-line-strong underline-offset-4 hover:text-accent">
+            {decisionGuide.articleLabel}
+          </Link>
+          <p className="mt-2 text-desc leading-[1.85] text-ink-soft">{decisionGuide.articleNote}</p>
+        </aside>
+      ) : null}
+
       <Section id="faq" title="よくある質問">
         <div className="divide-y divide-line border-y border-line">
           {guide.faq.map((item) => (
             <details key={item.q} className="group py-4" open>
               <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[15.5px] font-bold text-ink">
-                <span>Q. {item.q}</span>
+                <span className="min-w-0 [overflow-wrap:anywhere]">Q. {item.q}</span>
                 <span aria-hidden className="mt-1 text-muted transition-transform group-open:rotate-45">＋</span>
               </summary>
               <p className="mt-3 text-desc leading-[1.9] text-ink-soft">A. {item.a}</p>

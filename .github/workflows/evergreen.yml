@@ -21,6 +21,11 @@ on:
         description: "作成済みでも作り直す（only と併用）"
         required: false
         default: "false"
+      watch_only:
+        description: "Dify公式の変更確認だけを実行（記事生成・公開なし）"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -32,6 +37,7 @@ concurrency:
 
 jobs:
   guides:
+    if: ${{ inputs.watch_only != true }}
     runs-on: ubuntu-latest
     timeout-minutes: 50
     steps:
@@ -122,3 +128,52 @@ jobs:
             sleep 30
           done
           echo "::warning::20分待っても公開を確認できなかったので IndexNow は次の記事の回に任せる"
+
+  dify-search-watch:
+    # 独立ジョブ。失敗しても既存のガイド生成や速報の処理を待たせない。
+    # 確認待ち資料を作るだけで、記事・SNS・メールは公開しない。
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Identify monitored source set
+        id: source-key
+        run: python -c 'from scripts.dify_search_watch import SOURCE_FINGERPRINT; print("fingerprint=" + SOURCE_FINGERPRINT)' >> "$GITHUB_OUTPUT"
+      - name: Restore last successful source snapshots
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/dify-search-watch/state.json
+          key: dify-search-watch-v1-${{ steps.source-key.outputs.fingerprint }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            dify-search-watch-v1-${{ steps.source-key.outputs.fingerprint }}-
+      - name: Check official sources without publishing
+        id: scan
+        continue-on-error: true
+        run: python scripts/dify_search_watch.py --state .cache/dify-search-watch/state.json --report work/dify-search-watch/report.json
+      - name: Preserve good baselines and review queue
+        if: ${{ always() && hashFiles('.cache/dify-search-watch/state.json') != '' }}
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/dify-search-watch/state.json
+          key: dify-search-watch-v1-${{ steps.source-key.outputs.fingerprint }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Save editorial review evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: dify-search-review
+          path: work/dify-search-watch/report.json
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Report source retrieval failure
+        if: ${{ steps.scan.outcome == 'failure' }}
+        run: |
+          echo "::error::Dify公式の取得に失敗。前回の成功基準を保持しました。ガイド生成ジョブとは独立しています。"
+          exit 1

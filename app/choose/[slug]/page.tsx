@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ChooseView from "@/components/choose/ChooseView";
 import { getAllArticles } from "@/lib/articles";
+import { getAllHowtos } from "@/lib/howto";
 import { chooseGuideForArticle, getAllChooseGuides, getChooseGuide, resolveService } from "@/lib/choose";
 import { siteConfig } from "@/site.config";
 
@@ -46,6 +47,9 @@ export default async function ChoosePage({ params }: Props) {
     .filter((article) => chooseGuideForArticle(article)?.slug === guide.slug)
     .slice(0, 4);
   const others = [
+    ...getAllHowtos()
+      .filter((howto) => howto.decisionGuideSlug === guide.slug)
+      .map((howto) => ({ href: `/guides/${howto.slug}`, title: howto.title, note: howto.description })),
     ...getAllChooseGuides()
       .filter((g) => g.slug !== guide.slug)
       .map((g) => ({ href: `/choose/${g.slug}`, title: g.articleLabel, note: g.articleNote })),
