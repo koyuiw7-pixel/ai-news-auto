@@ -4,16 +4,23 @@ import { GenreChips, NewsGrid } from "@/components/NewsHub";
 import Pagination from "@/components/Pagination";
 import { pageHref, pageSuffix, paginate } from "@/lib/paginate";
 import { broadGenresWithArticles, getBroadArticles } from "@/lib/sections";
+import { siteConfig } from "@/site.config";
 
 /** 1ページあたりの件数（4列で割り切れる数） */
 const PER_PAGE = 48;
 
 export function newsMetadata(page: number): Metadata {
+  const title = `ニュース｜ビジネス・テクノロジー・暮らし・科学ほか${pageSuffix(page)}`;
+  const description =
+    "AI以外の話題も、企業・研究機関・行政の公式発表から要点だけを日本語でまとめています。ビジネス・ガジェット・暮らし・エンタメ・スポーツ・科学・社会の最新ニュース。";
+  const url = pageHref("/news", page);
+  const image = { url: "/news/share.png", width: 1200, height: 630, alt: "サイソク ニュース — 企業・研究機関・行政の公式発表から" };
   return {
-    title: `ニュース｜ビジネス・テクノロジー・暮らし・科学ほか${pageSuffix(page)}`,
-    description:
-      "AI以外の話題も、企業・研究機関・行政の公式発表から要点だけを日本語でまとめています。ビジネス・ガジェット・暮らし・エンタメ・スポーツ・科学・社会の最新ニュース。",
-    alternates: { canonical: pageHref("/news", page) },
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { type: "website", siteName: siteConfig.siteName, locale: siteConfig.locale, title, description, url, images: [image] },
+    twitter: { card: "summary_large_image", title, description, images: [image] },
   };
 }
 

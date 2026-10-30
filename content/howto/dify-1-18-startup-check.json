@@ -99,6 +99,10 @@
     }
   ],
   "match": "\\bDify\\b|ディファイ",
+  "articleIntent": {
+    "match": "起動|再起動|導入|更新|アップグレード|セルフホスト|\\b(?:version|startup|upgrade|self[- ]?host(?:ed|ing)?|v?\\d+\\.\\d+(?:\\.\\d+)?)\\b",
+    "priority": 10
+  },
   "products": [],
   "decisionGuideSlug": "dify-hosting",
   "sources": [

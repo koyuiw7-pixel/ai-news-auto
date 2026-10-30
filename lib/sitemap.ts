@@ -17,6 +17,7 @@ import { getAllEvents } from "@/lib/events";
 import { getPricing } from "@/lib/pricing";
 import { getAllProducts } from "@/lib/products";
 import { getAllWeeks, weekPublishedAt } from "@/lib/weekly";
+import { isBroadGenre } from "@/lib/sections";
 import { siteConfig } from "@/site.config";
 
 export type SitemapEntry = {
@@ -33,9 +34,19 @@ export const SITEMAP_CHUNK = 40000;
 export function sitemapEntries(): SitemapEntry[] {
   const base = siteConfig.url;
   // 全ジャンルが対象。ただし薄くなりやすい記事は検索に出さないので載せない（lib/indexing.ts）
-  const articles = getAllArticles().filter(isIndexable);
+  const allArticles = getAllArticles();
+  const articles = allArticles.filter(isIndexable);
   const liveChannels = new Set(articles.map((a) => a.channelSlug));
   const liveTags = new Set(articles.flatMap((a) => a.tags.map(tagSlug)));
+  // 一覧ページの noindex 方針に合わせる。チャンネルは AI 記事があるもの、タグは記事が2本以上。
+  // 件数はページと同じく全記事で数え、同じ記事内の重複タグは1本として扱う。
+  const aiChannels = new Set(allArticles.filter((a) => a.genreSlug === "ai").map((a) => a.channelSlug));
+  const tagArticleCounts = new Map<string, number>();
+  for (const article of allArticles) {
+    for (const slug of new Set(article.tags.map(tagSlug))) {
+      tagArticleCounts.set(slug, (tagArticleCounts.get(slug) ?? 0) + 1);
+    }
+  }
   const products = getAllProducts();
   const productSlugs = new Set(products.map((p) => p.slug));
   const guides = getAllGuides().filter((guide) => !productSlugs.has(guide.slug));
@@ -57,6 +68,9 @@ export function sitemapEntries(): SitemapEntry[] {
       changeFrequency: "hourly" as const,
       priority: 0.9,
     },
+    ...(allArticles.some((article) => isBroadGenre(article.genreSlug))
+      ? [{ url: `${base}/news`, lastModified, changeFrequency: "hourly" as const, priority: 0.9 }]
+      : []),
     ...["/about", "/editorial-policy", "/privacy", "/disclaimer", "/contact"].map((path) => ({
       url: `${base}${path}`,
       lastModified,
@@ -71,7 +85,7 @@ export function sitemapEntries(): SitemapEntry[] {
       priority: 0.8,
     })),
     ...getAllGenres()
-      .filter((genre) => genre.slug === "ai")
+      .filter((genre) => genre.slug === "ai" || isBroadGenre(genre.slug))
       .map((genre) => ({
       url: `${base}/genres/${genre.slug}`,
       lastModified,
@@ -79,7 +93,7 @@ export function sitemapEntries(): SitemapEntry[] {
       priority: 0.9,
     })),
     ...getAllChannels()
-      .filter((channel) => liveChannels.has(channel.slug))
+      .filter((channel) => liveChannels.has(channel.slug) && aiChannels.has(channel.slug))
       .map((channel) => ({
       url: `${base}/channels/${channel.slug}`,
       lastModified,
@@ -156,7 +170,7 @@ export function sitemapEntries(): SitemapEntry[] {
       priority: 0.8,
     })),
     ...getAllTags()
-      .filter((tag) => liveTags.has(tag.slug))
+      .filter((tag) => liveTags.has(tag.slug) && (tagArticleCounts.get(tag.slug) ?? 0) >= 2)
       .map((tag) => ({
       url: `${base}/tags/${encodeURIComponent(tag.slug)}`,
       lastModified,

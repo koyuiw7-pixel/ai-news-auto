@@ -6,7 +6,8 @@ import { getAllArticles, type ArticleSummary } from "@/lib/articles";
  * 使い方ガイド（content/howto/*.json、scripts/evergreen.py が作る。URL は /guides/<slug>）。
  *
  * 「ChatGPT 使い方」「Gemini 無料 どこまで」のように長く検索される疑問に、公式ページだけを根拠に答える。
- * 公式ページは14日ごと（料金などの関連ニュースが出たときはすぐ）に確認し直し、確認日（checkedAt）を更新する。
+ * 自動更新の対象は14日ごと（料金などの関連ニュースが出たときはすぐ）に公式ページを確認し直す。
+ * 手動編集の対象は確認待ちとして記録し、編集者が確かめるまで本文・確認日（checkedAt）を更新しない。
  */
 export type HowtoGuide = {
   slug: string;
@@ -28,6 +29,8 @@ export type HowtoGuide = {
   faq: { q: string; a: string }[];
   /** 関連ニュースを見つける正規表現（見出しと短い題名に照合） */
   match: string;
+  /** 同じ題材のガイドが複数あるとき、記事の疑問に合うガイドを優先する。未一致なら従来順。 */
+  articleIntent?: { match: string; priority?: number };
   /** 関連する製品のまとめページ（content/products）の slug */
   products: string[];
   sources: { url: string; title: string; checkedAt: string }[];
@@ -35,6 +38,12 @@ export type HowtoGuide = {
   updatedAt: string;
   /** 公式ページで内容を確かめた日時（確認日） */
   checkedAt: string;
+  /** 手動原稿は自動生成せず、期限や関連ニュースを検知したら編集待ちにする。 */
+  refreshMode?: "editorial";
+  /** 手動編集が必要になった日時。確認が終わるまで本文・確認日とは分けて保持する。 */
+  needsReview?: string;
+  /** 編集待ちになった理由（確認期限・関連ニュースなど）。 */
+  needsReviewReason?: string;
   /** 手動編集した広告・応募記事の開示。設定した記事だけ冒頭に表示する。 */
   disclosure?: string;
   /** 自動生成・別AI照合・定期更新の定型説明に代わる、実際の編集方法。 */
@@ -107,13 +116,28 @@ export function siblingHowtos(guide: HowtoGuide, limit = 6): HowtoGuide[] {
 }
 
 /** 記事の見出しに題材が出てくるガイド（記事ページから1行だけ案内する） */
-export function howtoForArticle(article: ArticleSummary): HowtoGuide | undefined {
+export function howtoForArticle(article: ArticleSummary, guides: HowtoGuide[] = getAllHowtos()): HowtoGuide | undefined {
   const text = `${article.title} ${article.seoTitle ?? ""}`;
-  return getAllHowtos().find((guide) => {
+  const matches = (pattern: string | undefined, flags = "") => {
     try {
-      return guide.match && new RegExp(guide.match).test(text);
+      return Boolean(pattern && new RegExp(pattern, flags).test(text));
     } catch {
       return false;
     }
-  });
+  };
+  let fallback: HowtoGuide | undefined;
+  let preferred: HowtoGuide | undefined;
+  let highestPriority = -Infinity;
+  for (const guide of guides) {
+    if (!matches(guide.match)) continue;
+    fallback ??= guide;
+    if (!matches(guide.articleIntent?.match, "i")) continue;
+    const priority = guide.articleIntent?.priority ?? 0;
+    // 同点は従来順のまま。キャッシュされたガイド配列は並び替えない。
+    if (Number.isFinite(priority) && priority > highestPriority) {
+      preferred = guide;
+      highestPriority = priority;
+    }
+  }
+  return preferred ?? fallback;
 }

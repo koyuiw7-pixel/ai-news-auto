@@ -52,6 +52,9 @@ jobs:
 
       - run: pip install -r requirements.txt
 
+      - name: Verify editorial protection without external requests
+        run: python -m unittest discover -s tests -p test_evergreen_editorial.py
+
       # 原稿は Claude（オーナーの契約）で書き、事実確認は別のモデル（scripts/quality.py の CHECK_TIER）で行う
       - name: Install Claude Code CLI
         continue-on-error: true

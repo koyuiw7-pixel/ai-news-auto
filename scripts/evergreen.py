@@ -15,6 +15,8 @@
 - 使った・試したとは書かない。広告っぽい誇張（最強・絶対など）を書かない。
 - 確認し直し: 公式ページを取り直し、今のガイドを事実確認する。合っていれば確認日（checkedAt）だけ更新、
   ずれていれば作り直す。作り直しに失敗したら古い版を残し、確認日は更新しない（needsReview を立てる）。
+- refreshMode: editorial の手動原稿は自動生成・確認日の更新をしない。期限や関連ニュースを検知したら
+  needsReview と needsReviewReason を記録する。編集者が再確認し checkedAt を更新した際に両方を消す。
 """
 
 from __future__ import annotations
@@ -97,6 +99,10 @@ def existing() -> dict[str, dict]:
 def write(guide: dict) -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     (OUT_DIR / f"{guide['slug']}.json").write_text(json.dumps(guide, ensure_ascii=False, indent=2) + "\n", "utf-8")
+
+
+def is_editorial(guide: dict | None) -> bool:
+    return (guide or {}).get("refreshMode") == "editorial"
 
 
 # --------------------------------------------------------------------------- #
@@ -377,6 +383,10 @@ def assemble(topic: dict, data: dict, fact: dict, sources: list[dict], previous:
 
 
 def build(topic: dict, previous: dict | None = None) -> dict | None:
+    # --force を含むどの生成経路でも、明示的に保護された手動原稿は上書きしない。
+    if is_editorial(previous):
+        log(f"手動編集待ち: {topic['slug']}（refreshMode: editorial のため自動生成しない）")
+        return None
     log(f"■ {topic['slug']}（{topic['keyword']}）")
     sources = fetch_sources(topic.get("sources", []))
     if not sources or sum(len(s["text"]) for s in sources) < 2500:
@@ -399,6 +409,9 @@ def build(topic: dict, previous: dict | None = None) -> dict | None:
 
 
 def refresh_reason(guide: dict, days: int) -> str:
+    # 編集待ちの間は同じ期限・ニュースで繰り返し起票しない。編集者が確認後に解除する。
+    if is_editorial(guide) and guide.get("needsReview"):
+        return ""
     checked = guide.get("checkedAt", "")
     try:
         age = datetime.now(JST) - datetime.fromisoformat(checked)
@@ -406,7 +419,7 @@ def refresh_reason(guide: dict, days: int) -> str:
         return "確認日なし"
     if age >= timedelta(days=days):
         return f"{age.days}日経過"
-    if guide.get("promptVersion") != PROMPT_VERSION:
+    if not is_editorial(guide) and guide.get("promptVersion") != PROMPT_VERSION:
         return "原稿の作り方を更新"
     news = [n for n in related_news(guide.get("match", "$^"), since=checked) if PRICE_NEWS_RE.search(n["title"])]
     if news:
@@ -416,6 +429,13 @@ def refresh_reason(guide: dict, days: int) -> str:
 
 def refresh(guide: dict, topic: dict, reason: str) -> None:
     log(f"■ 確認し直し {guide['slug']}（{reason}）")
+    if is_editorial(guide):
+        if not guide.get("needsReview"):
+            guide["needsReview"] = now_iso()
+            guide["needsReviewReason"] = reason
+            write(guide)
+        log("   手動編集待ち（本文・確認日は変更しない）")
+        return
     sources = fetch_sources([s["url"] for s in guide.get("sources", [])] or topic.get("sources", []))
     if not sources:
         log("   公式ページが取れないので次回に回す")
@@ -488,8 +508,17 @@ def main() -> int:
     if args.refresh and not only:
         done = 0
         for slug, guide in guides.items():
-            if done >= args.refresh_max or over():
+            if over():
                 break
+            # 手動原稿の起票は外部取得・生成をせず、自動更新の本数枠を使わない。
+            # 計画外の手動原稿も検知し、通常記事の枠を使い切った後も起票できる。
+            if is_editorial(guide):
+                reason = refresh_reason(guide, args.refresh_days)
+                if reason:
+                    refresh(guide, by_slug.get(slug, {}), reason)
+                continue
+            if done >= args.refresh_max:
+                continue
             reason = refresh_reason(guide, args.refresh_days)
             if reason and slug in by_slug:
                 refresh(guide, by_slug[slug], reason)
@@ -507,6 +536,9 @@ def main() -> int:
     for topic in todo:
         if made >= limit or over():
             break
+        if is_editorial(guides.get(topic["slug"])):
+            log(f"手動編集で保護中: {topic['slug']}（--force でも自動生成しない）")
+            continue
         if topic["slug"] in guides and not args.force:
             log(f"作成済み: {topic['slug']}（作り直すなら --force）")
             continue

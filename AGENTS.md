@@ -128,3 +128,5 @@
 - Dify検索入口2記事・変更監視・検索申請・検証と未確認事項: `docs/dify-acquisition-2026-10-30.md`。今回は検索施策のみ。Threads草案に投稿許可はない。
 
 - 定時SNSの遅延回収・媒体別履歴/Buffer照合・商品更新の分離: `docs/automation-recovery-2026-10-30.md`。今回の朝まとめ/火金企画の復旧検証はオーナー依頼済み。Dify単発草案の投稿許可とは別。商品更新は`product_refresh.yml`で行い、記事処理へ戻さない。SNSの受理不明記録を消して再送しない。
+
+- 検索流入改善（ChatGPT/IPA/Work IQ、Dify振分け、sitemap、手動改稿保護）: `docs/search-growth-2026-10-30.md`。`refreshMode: editorial` は自動再生成せず編集待ちを記録する。確認後はcheckedAtを更新しneedsReviewとneedsReviewReasonを消す。
