@@ -10,66 +10,68 @@
   "companyName": "Microsoft",
   "category": "開発ツール",
   "overview": {
-    "text": "GitHub Copilotは、複数のAIモデルを自動で選択・連携させて開発作業を効率化する開発支援ツールです。GitHubとMicrosoftにより提供され、アプリや各種エディタ向けに新機能や新モデルが順次発表されています。",
+    "text": "GitHub Copilotは、エディタやデスクトップアプリからAIエージェントにコーディングや作業を任せられる開発支援ツールです。",
     "sources": [
-      "github-copilot-fusion-release",
+      "github-copilot-native-app-released",
       "github-copilot-app-projects-computer-use"
     ]
   },
   "facts": [
     {
       "label": "料金",
-      "value": "月額10ドルから、またはプラン内包",
+      "value": "月額10ドル〜（プランによる）",
       "sources": [
-        "github-enterprise-includes-copilot"
+        "github-enterprise-includes-copilot",
+        "github-copilot-native-app-released"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本からでも利用可能",
+      "value": "日本からも利用できます",
       "sources": [
         "microsoft-copilot-harness-foundry-agent-builder",
-        "github-copilot-fusion-release"
+        "github-enterprise-includes-copilot",
+        "github-copilot-security-extension"
       ]
     },
     {
       "label": "使える場所",
-      "value": "VS Code、アプリ、CLIなど",
+      "value": "VS Code、アプリ、Web",
       "sources": [
-        "github-copilot-fusion-release",
-        "github-copilot-plugin-controls-ga"
+        "gpt-6-1-terra-github-copilot-guide",
+        "github-copilot-app-projects-computer-use"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者、エンジニア、管理者",
+      "value": "開発者や企業の担当者",
       "sources": [
         "microsoft-copilot-harness-foundry-agent-builder",
-        "github-copilot-fusion-release"
+        "github-enterprise-includes-copilot"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "複数のAIモデルを自動で最適にルーティングする機能が使えます。",
+      "text": "自然言語の指示をもとに、AIがコードの修正やテスト作成などのタスクを自律的に進めます。",
       "sources": [
-        "github-copilot-fusion-release"
+        "github-copilot-native-app-released"
       ]
     },
     {
-      "text": "複数のリポジトリや資料をまとめてAIが作業する「プロジェクト」機能に対応しています。",
-      "sources": [
-        "github-copilot-app-projects-computer-use"
-      ]
-    },
-    {
-      "text": "AIが画面を見てパソコン上のアプリを操作する「コンピューター使用」機能を利用できます。",
+      "text": "複数のリポジトリやデザイン資料を「プロジェクト」にまとめて、裏で作業を進められます。",
       "sources": [
         "github-copilot-app-projects-computer-use"
       ]
     },
     {
-      "text": "アプリ内でセキュリティの脆弱性確認や修正依頼が行えます。",
+      "text": "macOSやWindowsで、AIが画面を見てパソコン内のアプリを操作できます。",
+      "sources": [
+        "github-copilot-app-projects-computer-use"
+      ]
+    },
+    {
+      "text": "アプリ内でコードスキャンアラートを確認し、脆弱性の説明や修正を直接依頼できます。",
       "sources": [
         "github-copilot-security-extension"
       ]
@@ -77,111 +79,85 @@
   ],
   "pricing": [
     {
-      "text": "Copilot Standaloneは月額10ドルで提供されます。",
+      "text": "エンタープライズライセンスを持たないユーザー向けには、スタンド版が月額10ドルで提供されています。",
       "sources": [
         "github-enterprise-includes-copilot"
       ]
     },
     {
-      "text": "GitHub EnterpriseにGitHub Copilotが標準内包されます。",
+      "text": "法人向けプランの「GitHub Enterprise」には、AI機能が標準で内包されます。",
       "sources": [
         "github-enterprise-includes-copilot"
-      ]
-    },
-    {
-      "text": "Fusion利用時は期間限定でモデル費用が30%オフになる割引が提供されます。",
-      "sources": [
-        "github-copilot-fusion-release"
       ]
     }
   ],
   "japan": [
     {
-      "text": "日本国内のユーザーでも対応する開発環境をアップデートすれば今日から利用可能です。",
+      "text": "日本国内のユーザーでも、対象のプランやエディションを利用していれば今日からすぐに試すことができます。",
       "sources": [
-        "github-copilot-fusion-release",
+        "github-enterprise-includes-copilot",
+        "github-copilot-security-extension",
         "github-copilot-plugin-controls-ga"
-      ]
-    },
-    {
-      "text": "Microsoft Foundryポータルを利用して日本からでも試すことができます。",
-      "sources": [
-        "microsoft-copilot-harness-foundry-agent-builder",
-        "microsoft-copilot-harness-agent-scaling"
       ]
     }
   ],
   "howto": [
     {
-      "text": "Visual Studio CodeやJetBrainsなどの対応クライアントを最新版にアップデートして使います。",
+      "text": "公式ページからOSに対応するインストーラーをダウンロードし、有効なアカウントでログインします。",
       "sources": [
-        "github-copilot-fusion-release",
+        "github-copilot-native-app-released"
+      ]
+    },
+    {
+      "text": "VS Codeなどの対応環境で最新状態にアップデートし、設定から必要な機能を有効化します。",
+      "sources": [
+        "github-copilot-app-projects-computer-use",
         "github-copilot-plugin-controls-ga"
-      ]
-    },
-    {
-      "text": "モデル選択画面を開き、「Copilot Fusion」や希望する努力レベルを選びます。",
-      "sources": [
-        "github-copilot-fusion-release"
-      ]
-    },
-    {
-      "text": "セキュリティ拡張はターミナルからのインストールやアプリのカスタマイズ画面から追加できます。",
-      "sources": [
-        "github-copilot-security-extension"
       ]
     }
   ],
   "differences": [
     {
-      "text": "従来はタスクごとに特定のモデルを手動で選ぶ必要がありましたが、自動で最適なモデルが割り当てられるようになりました。",
+      "text": "従来のIDE拡張機能だけでなく、独立したワークツリーで競合を避けて作業するデスクトップアプリ版が提供されています。",
       "sources": [
-        "github-copilot-fusion-release"
+        "github-copilot-native-app-released"
       ]
     },
     {
-      "text": "リポジトリ単体の作業だけでなく、複数のリポジトリや資料をまとめて扱えるようになりました。",
+      "text": "複数のリポジトリやSlackなどの資料をまとめて扱える「プロジェクト」機能が追加されました。",
       "sources": [
         "github-copilot-app-projects-computer-use"
-      ]
-    },
-    {
-      "text": "ブラウザを開かずにCopilotアプリ内でセキュリティ脆弱性の確認から修正まで完結できるようになりました。",
-      "sources": [
-        "github-copilot-security-extension"
       ]
     }
   ],
   "faq": [
     {
-      "q": "無料で使える？",
-      "a": "有料プランのユーザーを対象に提供されています。法人プランには標準内包される場合があります。",
+      "q": "無料プランはある？",
+      "a": "公式発表では、Freeプランについての明確な記載はありません。",
       "sources": [
-        "github-copilot-fusion-release",
-        "github-enterprise-includes-copilot"
-      ]
-    },
-    {
-      "q": "いつから使える？",
-      "a": "新機能や新モデルは順次提供されており、対応環境を最新版にアップデートすることで今すぐ利用できます。",
-      "sources": [
-        "github-copilot-fusion-release",
-        "github-copilot-plugin-controls-ga"
-      ]
-    },
-    {
-      "q": "どのエディタで使える？",
-      "a": "Visual Studio Code、JetBrains IDES、Copilotアプリ、CLIなどで利用可能です。",
-      "sources": [
-        "github-copilot-fusion-release",
         "gpt-6-1-terra-github-copilot-guide"
       ]
     },
     {
-      "q": "セキュリティ機能はどこから使う？",
-      "a": "Copilotアプリ内からプラグインをインストールするか、専用のセキュリティ拡張機能から利用できます。",
+      "q": "いつから使える？",
+      "a": "デスクトップアプリや各種新機能は、公開プレビューや一般提供として順次利用できるようになっています。",
+      "sources": [
+        "github-copilot-native-app-released",
+        "github-copilot-app-projects-computer-use"
+      ]
+    },
+    {
+      "q": "安全性は？",
+      "a": "変更はローカルの作業用コピーで行われ、勝手にコミットやプッシュをされない安全な設計になっています。",
       "sources": [
         "github-copilot-security-extension"
+      ]
+    },
+    {
+      "q": "誰に向いている？",
+      "a": "開発者だけでなく、仕様書の作成や法務などの非開発者の業務効率化にも活用できます。",
+      "sources": [
+        "github-copilot-native-app-released"
       ]
     }
   ],
@@ -192,19 +168,24 @@
       "event": "高性能AI「Kimi K3」を追加"
     },
     {
+      "date": "2026-09-12",
+      "slug": "github-copilot-native-app-released",
+      "event": "Copilotアプリを一般提供"
+    },
+    {
       "date": "2026-10-26",
       "slug": "gpt-6-1-terra-github-copilot-guide",
-      "event": "GPT-6.1 Terraを一般提供"
+      "event": "新AI「GPT-6.1 Terra」が利用可能に"
     },
     {
       "date": "2026-10-29",
       "slug": "microsoft-copilot-harness-foundry",
-      "event": "Copilot harnessを提供開始"
+      "event": "Copilot harnessをFoundryで提供"
     },
     {
       "date": "2026-10-29",
-      "slug": "github-copilot-fusion-release",
-      "event": "GitHub Copilot Fusionを提供開始"
+      "slug": "github-copilot-app-projects-computer-use",
+      "event": "アプリに「プロジェクト」等を追加"
     }
   ],
   "related": [
@@ -241,7 +222,6 @@
   ],
   "linkFrom": [
     "microsoft-copilot-harness-foundry",
-    "github-copilot-fusion-release",
     "github-copilot-app-projects-computer-use",
     "github-enterprise-includes-copilot",
     "github-copilot-security-extension",
@@ -253,9 +233,9 @@
     "github-copilot-reusable-agent-skills-guide",
     "github-copilot-kimi-k3-multi-agent"
   ],
-  "signature": "4da1010a90a5b393",
-  "primarySignature": "bd40bf1f6ec806f6",
+  "signature": "3f3c681b8927cdc5",
+  "primarySignature": "5014e5f0beeb3e9f",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:48+00:00",
-  "updatedAt": "2026-10-29T19:12:19+00:00"
+  "updatedAt": "2026-10-30T12:39:15+00:00"
 }
