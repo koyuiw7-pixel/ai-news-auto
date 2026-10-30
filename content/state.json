@@ -5102,6 +5102,13 @@
       "slug": "samsung-galaxy-z-fold8-review",
       "url": "https://news.samsung.com/jp/galaxy-z-fold8-interview2610?utm_source=rss&utm_medium=direct"
     },
+    "44854634469c462e": {
+      "at": "2026-10-30T17:41:39.494279+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2329字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（341字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
+      "skipped": true,
+      "url": "https://aws.amazon.com/blogs/machine-learning/how-worldwide-express-automated-freight-exceptions-with-amazon-bedrock/"
+    },
     "44c40aaac29222c10f7c6b4d0af9467078985b1c": {
       "at": "2026-10-28T15:04:53.742681+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9097,6 +9104,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000020.000149931.html"
     },
+    "cabe8a08dfb85810": {
+      "at": "2026-10-30T17:41:39.494492+00:00",
+      "reason": "dedupe: 固有名詞が一致（amazon・bedrock）: How Worldwide Express automated freight ",
+      "skipped": true,
+      "url": "https://aws.amazon.com/blogs/machine-learning/configure-the-chatgpt-desktop-app-with-amazon-bedrock-in-aws-govcloud-us/"
+    },
     "cb0512f3d37fe6de": {
       "at": "2026-10-27T03:04:42.979402+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（周年）",
@@ -10739,52 +10752,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:52:25.418148+00:00",
-      "attempt": 2,
-      "id": "5c50d4cdc1533c5b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "easy_markdown が短い（390字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 55.3,
-        "avg_sentence": 55.3,
-        "long_share": 0.281,
-        "max_paragraph": 97,
-        "paragraphs": 32,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "kantei",
-      "title": "日本成長戦略推進担当官及び地域未来戦略推進担当官について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T18:52:42.241772+00:00",
-      "attempt": 1,
-      "id": "ff5cbeba6a49e9a6",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1682字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（373字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 150.4,
-        "avg_sentence": 57.3,
-        "long_share": 0.429,
-        "max_paragraph": 225,
-        "paragraphs": 8,
-        "sentences": 21
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "中小企業のための「カーボンクレジット」学びの場 東京都カーボンクレジット総合ポータルサイトを開設"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T18:52:50.430364+00:00",
@@ -17493,6 +17460,52 @@
       "score": 100,
       "source": "google-blog-all",
       "title": "We’ve received our first response from the Project Suncatcher prototype satellit"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T17:41:13.604823+00:00",
+      "attempt": 1,
+      "id": "44854634469c462e",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2089字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 124.1,
+        "avg_sentence": 69.5,
+        "long_share": 0.64,
+        "max_paragraph": 210,
+        "paragraphs": 14,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "How Worldwide Express automated freight exceptions with Amazon Bedrock"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-30T17:41:39.494235+00:00",
+      "attempt": 2,
+      "id": "44854634469c462e",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2329字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（341字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 103.4,
+        "avg_sentence": 62.8,
+        "long_share": 0.536,
+        "max_paragraph": 179,
+        "paragraphs": 17,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "How Worldwide Express automated freight exceptions with Amazon Bedrock"
     }
   ],
   "short_text_retry": {}

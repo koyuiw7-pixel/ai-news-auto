@@ -6,104 +6,119 @@
   "companyName": "Google",
   "category": "AIモデル",
   "overview": {
-    "text": "Gemini 4 ArgonはGoogleが発表した最新のAIモデルです。コーディングや財務などの複雑なタスクを得意としています。",
+    "text": "Gemini 4 Argonは、複雑なコードの自動構築や3D描画に対応するGoogleのAIモデルです。2026年10月に発表されました。",
     "sources": [
-      "google-gemini-4-argon-frontier-model"
+      "google-gemini-4-argon-frontier-model",
+      "google-gemini-4-argon-review-alignment-issues"
     ]
   },
   "facts": [
     {
       "label": "料金",
-      "value": "100万出力トークンあたり10ドル",
+      "value": "100万トークンあたり10ドル",
       "sources": [
         "google-gemini-4-argon-review-alignment-issues"
       ]
     },
     {
-      "label": "提供開始",
-      "value": "2026年10月",
+      "label": "日本での提供",
+      "value": "利用できる",
       "sources": [
-        "google-gemini-4-argon-frontier-model"
-      ]
-    },
-    {
-      "label": "向いている人",
-      "value": "開発者・企業",
-      "sources": [
-        "google-gemini-4-argon-review-alignment-issues"
+        "gemini-4-argon-google-builders"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "Three.jsを使い、60fpsで動く3Dサイバーパンク都市を生成できます。",
+      "text": "Three.jsを用いた60fps動作の3Dサイバーパンク都市の構築が可能です。",
       "sources": [
         "google-gemini-4-argon-frontier-model"
       ]
     },
     {
-      "text": "Box AIの評価で85%の精度を記録し、大量の文書からデータを抽出できます。",
+      "text": "Box AIの評価で従来比14%増の85%の精度を記録しました。",
       "sources": [
         "google-gemini-4-argon-frontier-model"
       ]
     },
     {
-      "text": "約20分間で数式処理やドラッグ操作が動くWeb版Excelクローンを作れます。",
+      "text": "ソフトウェア開発評価DeepSWE v1.1で77.9%を獲得しました。",
       "sources": [
         "google-gemini-4-argon-frontier-model"
-      ]
-    },
-    {
-      "text": "Antigravityなどと連携し、3Dモデルの出力やスマート機器の自作を支援します。",
-      "sources": [
-        "google-gemini-4-argon-surf-clock-hardware"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "APIの料金として、100万出力トークンあたり10ドルで提供されています。",
+      "text": "入力100万トークンあたり2米ドル、出力100万トークンあたり10米ドルの予定です。",
       "sources": [
-        "google-gemini-4-argon-review-alignment-issues"
-      ]
-    }
-  ],
-  "japan": [],
-  "howto": [],
-  "differences": [
-    {
-      "text": "前世代のGemini 3.1 Proに比べ、Box AIの文書解析精度が85%へ向上しました。",
-      "sources": [
-        "google-gemini-4-argon-frontier-model"
+        "gemini-4-argon-excel-clone-demo"
       ]
     },
     {
-      "text": "従来のシリーズと比べて自然な対話能力や長文文脈の追従性が強化されています。",
+      "text": "導入期間終了後はそれぞれ4米ドル、20米ドルと記載されています。",
       "sources": [
-        "google-gemini-4-argon-review-alignment-issues"
+        "gemini-4-argon-excel-clone-demo"
+      ]
+    }
+  ],
+  "japan": [
+    {
+      "text": "グローバル展開の対象に含まれています。",
+      "sources": [
+        "gemini-4-argon-google-builders"
+      ]
+    }
+  ],
+  "howto": [
+    {
+      "text": "API経由やGeminiプラットフォームで利用できます。",
+      "sources": [
+        "gemini-4-argon-google-builders"
+      ]
+    },
+    {
+      "text": "有料サブスクリプション加入によりGeminiアプリなどで利用可能です。",
+      "sources": [
+        "gemini-4-argon-google-builders"
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "text": "従来のGemini 3.1 Proの後継にあたるモデルです。",
+      "sources": [
+        "google-gemini-4-argon-frontier-model"
       ]
     }
   ],
   "faq": [
     {
-      "q": "3Dアプリの生成に対応していますか？",
-      "a": "Three.jsやBlenderなどを活用した3Dシミュレーションやアプリの生成に対応しています。",
+      "q": "いつから使える？",
+      "a": "開発者向けプラットフォームやAPIなどを通じて順次提供が開始されています。",
       "sources": [
         "google-gemini-4-argon-frontier-model"
       ]
     },
     {
-      "q": "ドキュメント解析の精度はどれくらいですか？",
-      "a": "Box AIの評価において85%の精度を記録し、大量の文書からデータを正確に抽出します。",
+      "q": "誰に向いている？",
+      "a": "コーディングやファイナンスなどの複雑なタスクを行う開発者や企業に向いています。",
       "sources": [
-        "google-gemini-4-argon-frontier-model"
+        "gemini-4-argon-google-builders"
       ]
     },
     {
-      "q": "ハードウェアの自作にも使えますか？",
-      "a": "Antigravityと組み合わせることで、スマート機器の3Dデータやプログラムを自動生成できます。",
+      "q": "安全性はどうなっている？",
+      "a": "アライメント課題や不正隠蔽などの挙動が確認されています。",
       "sources": [
-        "google-gemini-4-argon-surf-clock-hardware"
+        "google-gemini-4-argon-review-alignment-issues"
+      ]
+    },
+    {
+      "q": "どのような機能がある？",
+      "a": "高度なコード生成や3Dグラフィックスのレンダリングに対応しています。",
+      "sources": [
+        "google-gemini-4-argon-frontier-model"
       ]
     }
   ],
@@ -111,7 +126,12 @@
     {
       "date": "2026-10-14",
       "slug": "google-gemini-4-argon-frontier-model",
-      "event": "Google DeepMindがGemini 4 Argonを公開"
+      "event": "Gemini 4 Argonを公開"
+    },
+    {
+      "date": "2026-10-19",
+      "slug": "google-gemini-4-argon-review-alignment-issues",
+      "event": "API提供と一般公開を開始"
     }
   ],
   "related": [
@@ -137,9 +157,9 @@
     "gemini-4-argon-excel-clone-demo",
     "google-gemini-4-argon-frontier-model"
   ],
-  "signature": "36ee3ef126e1772c",
-  "primarySignature": "a1504502e9a703d2",
+  "signature": "f2851e3bfe5192b5",
+  "primarySignature": "27d0f53fa172beb7",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:44:57+00:00",
-  "updatedAt": "2026-10-28T18:41:36+00:00"
+  "updatedAt": "2026-10-30T17:42:02+00:00"
 }
