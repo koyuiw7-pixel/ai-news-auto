@@ -9,3 +9,5 @@ NVIDIA公表 https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5
 記事のslug・元動画・公開日・生成日・画像・広告設定・SNS文面・投稿履歴は保持。旧SNS文面には256GBまでという表現が残るため、将来の再投稿や予約で使われる場合は別途訂正を検討し、投稿済み履歴は削除・再送しない。通常動画記事は自動再生成で手修正が失われる可能性があり続報時は再点検。ロールバックはgitの元記事の対象フィールドだけを参照し、最新のbot更新やstateは戻さない。検索流入・収益への効果は未測定。
 
 前回1c05241のAdobe/Gemini改善はdeploy 41100630527成功。後続更新を含む本番で内容を確認し、更新前後でAdobe/GitHubイベントのcanonical・robots・広告属性、Geminiの広告href/rel 10件とA8画像9件が一致。テストは広告先通信を遮断し、クリックや成果を発生させない。イベントに広告が0件であることは広告計測動作の実証ではない。
+
+公開確認: 本文コミット49d4d47、deploy 41152026385成功。初回HTTP応答は古いキャッシュだったが再取得後、訂正文・最大512GB・256GB検証機・59/48トークンを確認。広告href/rel12件とA8画像19件、canonical・robotsは公開前後一致、Cloudflare Web Analyticsコードあり。本番Macの375/1440×light/dark表示は各0違反（新しい本文を取得後に再検査）。前回Adobe/Geminiも本番8条件で各0。広告通信遮断、実際のASPクリック・申込・成果の確認は行っていない。3URLのIndexNow通知HTTP200受理、Googleの再取得や検索順位を保証するものではない。sitemap.xmlにも3URLを確認。
