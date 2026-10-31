@@ -90,7 +90,8 @@ export function ProductImage({
 export function PrNote({ checkedAt, hasBook }: { checkedAt: string; hasBook: boolean }) {
   return (
     <p className="text-note leading-relaxed text-muted">
-      価格{hasBook ? "・評価" : ""}は{checkedDate(checkedAt)}時点{hasBook ? "（楽天ブックス・各公式サイト）" : "（各公式サイト）"}。
+      {hasBook && <>書籍の価格・評価は取得時点（{checkedDate(checkedAt)}）。</>}
+      価格・在庫・利用条件はリンク先でご確認ください。
       リンク経由の購入で当サイトに紹介料が入ることがあります。
     </p>
   );

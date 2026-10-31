@@ -156,26 +156,18 @@ function fallbackKey(article: ArticleSummary, offers: OffersFile): string {
 }
 
 function pickTopic(article: ArticleSummary, offers: OffersFile): Topic | undefined {
-  const byKey = new Map(offers.topics.map((topic) => [topic.key, topic]));
   // ジャンルの違う話題（AI記事に投資の本など）は出さない
   const topics = offers.topics.filter((topic) => (topic.genre ?? "ai") === article.genreSlug);
 
-  // 本文の言及で提携商品が自動挿入されている記事は、その商品の話題を優先する
-  const linked = new Set(article.affiliateNames);
-  const partnerTopic = topics.find((topic) =>
-    topic.partners.some((key) => linked.has(offers.partners[key]?.program)),
-  );
-  if (partnerTopic) return partnerTopic;
-
-  const text = [article.title, article.seoTitle ?? "", ...article.tags, ...article.keywords].join(" ");
-  const matched = topics.find((topic) => new RegExp(topic.match, "i").test(text));
+  // 旧記事の自動挿入広告や広いタグより見出しの主題を優先する。
+  const headline = [article.title, article.seoTitle ?? ""].join(" ");
+  const metadata = [...article.tags, ...article.keywords].join(" ");
+  const matched = topics.find((topic) => new RegExp(topic.match, "i").test(headline))
+    ?? topics.find((topic) => new RegExp(topic.match, "i").test(metadata));
   if (matched) return matched;
 
-  const audience = article.verdict?.audience;
-  if (article.genreSlug === "ai" && audience && offers.audience[audience]) {
-    return byKey.get(offers.audience[audience]);
-  }
-  return byKey.get(fallbackKey(article, offers));
+  // 記事との関連が確認できない場合は、職業や既定ジャンルだけで広告を割り当てない。
+  return undefined;
 }
 
 export function offerForArticle(article: ArticleSummary, maxItems = MAX_ITEMS): Offer | undefined {
@@ -282,9 +274,10 @@ function buildOffer(topic: Topic, fallback: string, maxItems: number, seed = "")
     else if (pixel) pixels.add(pixel);
   }
 
-  // 話題の本 → 補充用の話題の本 → 既定の話題の本、の順に、必ず maxItems 個そろえる
+  // 本を補充する。記事では関連性を優先して最大数に達しなくてもよい。
   const seen = new Set<string>();
-  const sources = [topic.key, ...(topic.fill ?? []), fallback];
+  // 記事では別の話題の本で無理に枠を埋めない。一覧向けは従来の補充を維持。
+  const sources = seed ? [topic.key] : [topic.key, ...(topic.fill ?? []), fallback];
   let usedBooks = false;
   for (const source of sources) {
     const books = products?.books?.[source] ?? [];

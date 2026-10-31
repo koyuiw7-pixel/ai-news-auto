@@ -11,10 +11,10 @@
   "topics": [
     {
       "key": "voice",
-      "match": "文字起こし|議事録|ボイスレコーダー|音声認識|音声AI|ChatGPT Voice|transcri",
+      "match": "文字起こし|議事録|ボイスレコーダー|transcri",
       "eyebrow": "この記事の技術を試すなら",
       "headline": "会議の録音から、AIで議事録まで自動で",
-      "lead": "音声AIを仕事で使うなら、録音と文字起こしを1台で済ませるのが近道です。",
+      "lead": "会議や取材を記録したい人向けに、録音・文字起こしの選択肢を紹介します。",
       "partners": [
         "plaud-note-pro",
         "plaud-notepin-s"
@@ -57,7 +57,7 @@
     },
     {
       "key": "image",
-      "match": "画像生成|動画生成|イラスト|Stable Diffusion|Nano Banana|ChatGPT Images|Midjourney|Sora|Veo",
+      "match": "画像生成|イラスト|Stable Diffusion|Nano Banana|ChatGPT Images|Midjourney",
       "eyebrow": "この記事の技術を試すなら",
       "headline": "画像生成AIを、環境づくりなしで試す",
       "lead": "高性能なPCがなくても、ブラウザだけで本格的な画像生成を試せます。",
@@ -132,7 +132,7 @@
       "match": "セキュリティ|詐欺|フィッシング|マルウェア|ディープフェイク|脆弱性|プライバシー|不正アクセス|ランサム|なりすまし",
       "eyebrow": "AI時代の自衛策",
       "headline": "AIを悪用した詐欺から、PCとスマホを守る",
-      "lead": "偽メールや偽サイトはAIで見分けがつきにくくなっています。対策ソフトは入れておくのが安心です。",
+      "lead": "必要な対策は脅威や端末によって異なります。各サービスの対応範囲と条件を確認しましょう。",
       "partners": [
         "virusbuster",
         "norton",
@@ -197,16 +197,14 @@
     },
     {
       "key": "gadget",
-      "match": "スマートリング|ウェアラブル|イヤホン|スマートグラス|Pixel|iPhone|Galaxy|ヘルスケア|睡眠|AIデバイス|スマホ",
+      "match": "スマートリング|ウェアラブル|イヤホン|スマートグラス|睡眠",
       "eyebrow": "AIガジェットを選ぶなら",
       "headline": "身につけるAIは、軽さと電池持ちで選ぶ",
       "lead": "毎日使うものほど、着けているのを忘れるくらいの軽さが大事です。",
       "partners": [
         "ringconn",
         "e-earphone",
-        "plaud-notepin-s",
-        "gmo-wimax",
-        "gmo-home-wifi"
+        "plaud-notepin-s"
       ],
       "search": [
         "ガジェット AI",
@@ -242,7 +240,7 @@
       "match": "Dify|n8n|セルフホスト|VPS|レンタルサーバー|WordPress|デプロイ|ホスティング|Docker",
       "eyebrow": "この記事の技術を試すなら",
       "headline": "AIアプリを自分で動かすなら、サーバーから",
-      "lead": "DifyやOllamaなどを自分専用に動かすなら、VPSが近道です。",
+      "lead": "自分で運用する場合の選択肢です。無料で使える公式サービスと、必要な管理・料金を比較しましょう。",
       "partners": [
         "xserver-vps",
         "conoha-vps",
@@ -576,24 +574,26 @@
     "plaud-note-pro": {
       "program": "PLAUD",
       "name": "PLAUD NOTE Pro",
-      "label": "いちばん手軽",
-      "note": "カード型AIボイスレコーダー。録音から要約まで",
+      "label": "会議や通話の録音に",
+      "note": "カード型の録音機。録音した音声の文字起こしや要約に対応。",
       "price": 30800,
       "image": "https://cdn.shopify.com/s/files/1/0638/2983/5860/files/notepro-thumbnail-front-black-pc.png?width=600",
       "page": "https://jp.plaud.ai/products/plaud-note-pro",
       "shop": "PLAUD公式",
-      "source": "plaud:plaud-note-pro"
+      "source": "plaud:plaud-note-pro",
+      "caution": "無料プランは月300分まで文字起こし可能。追加利用は料金・条件を確認。"
     },
     "plaud-notepin-s": {
       "program": "PLAUD",
       "name": "PLAUD NotePin S",
-      "label": "身につけて録る",
-      "note": "クリップで留めるウェアラブル型。立ち話や外出先にも",
+      "label": "身につけて会話を録音",
+      "note": "身につけて会話を録音できるタイプ。移動先での記録に。",
       "price": 28600,
       "image": "https://cdn.shopify.com/s/files/1/0638/2983/5860/files/notepin-s-product-image-gray.webp?width=600",
       "page": "https://jp.plaud.ai/products/plaud-notepin-s",
       "shop": "PLAUD公式",
-      "source": "plaud:plaud-notepin-s"
+      "source": "plaud:plaud-notepin-s",
+      "caution": "無料プランは月300分まで文字起こし可能。追加利用は料金・条件を確認。"
     },
     "oz-rtx5070ti": {
       "program": "OZ GAMING",
@@ -631,17 +631,18 @@
     "conoha-ai-canvas": {
       "program": "ConoHa AI Canvas",
       "name": "ConoHa AI Canvas",
-      "label": "PCを買わずに試す",
-      "note": "ブラウザだけで使える画像生成AI。GMOインターネットのサービス",
+      "label": "PCを買わずに画像生成",
+      "note": "ブラウザで画像生成を試せるサービス。利用時間と料金を確認。",
       "price": null,
-      "priceText": "月額1,100円〜",
+      "priceText": "基本料 月1,100円〜",
       "image": "https://www20.a8.net/svt/bgt?aid=261021949728&wid=001&eno=01&mid=s00000000018047042000&mc=1",
       "page": null,
       "shop": "ConoHa公式",
       "source": null,
       "link": "https://px.a8.net/svt/ejp?a8mat=4BELTP+C1FL6A+50+7S2QE9",
       "pixel": "https://www19.a8.net/0.gif?a8mat=4BELTP+C1FL6A+50+7S2QE9",
-      "_image_note": "A8の公式バナー（素材ID 042・336x280）。画像とリンク・計測ピクセルは同じ素材のものを組で使う"
+      "_image_note": "A8の公式バナー（素材ID 042・336x280）。画像とリンク・計測ピクセルは同じ素材のものを組で使う",
+      "caution": "無料利用時間を超えるとWebUI利用料金が加算されます。"
     },
     "value-ai-writer": {
       "program": "Value AI Writer",
@@ -658,9 +659,9 @@
     "creators-japan": {
       "program": "クリエイターズジャパン",
       "name": "クリエイターズジャパン",
-      "label": "動画編集を仕事に",
+      "label": "動画編集を学ぶ",
       "badge": "ONLINE SCHOOL",
-      "note": "Premiere Proの動画編集を、未経験から最短2週間で学べるオンラインスクール",
+      "note": "動画編集のオンライン講座。講座内容や費用を確認できます。",
       "price": null,
       "image": null,
       "page": null,
@@ -680,7 +681,7 @@
       "program": "XServer VPS",
       "name": "XServer VPS",
       "label": "AIアプリを自分で動かす",
-      "note": "Dify・n8n・Ollamaなどを自分専用に動かせるVPS。アプリのテンプレートから数クリックで導入",
+      "note": "Difyなどを自分で運用したい人向けのVPS。対応環境と費用を確認。",
       "image": "https://www23.a8.net/svt/bgt?aid=261026994261&wid=001&eno=01&mid=s00000001642013012000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4BE5O2+CO4+25FMXU",
       "shop": "XServer公式"
@@ -688,8 +689,8 @@
     "conoha-vps": {
       "program": "ConoHa VPS",
       "name": "ConoHa VPS",
-      "label": "時間課金で気軽に",
-      "note": "使った時間だけ払える高速VPS。AIのお試し環境づくりに",
+      "label": "サーバーを借りる",
+      "note": "AIアプリなどを動かすVPS。プランごとの料金・条件を確認。",
       "image": "https://www21.a8.net/svt/bgt?aid=261026994372&wid=001&eno=01&mid=s00000000018030008000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+65H9TE+50+4YZJLE",
       "shop": "ConoHa公式"
@@ -715,8 +716,8 @@
     "sakura": {
       "program": "さくらのレンタルサーバ",
       "name": "さくらのレンタルサーバ",
-      "label": "老舗の安心感",
-      "note": "利用件数48万件超。安定運用の老舗レンタルサーバー",
+      "label": "Webサイトを運営",
+      "note": "サイト運営向けのレンタルサーバー。プランと費用を確認できます。",
       "image": "https://www28.a8.net/svt/bgt?aid=261026994270&wid=001&eno=01&mid=s00000001717001100000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4GR242+D8Y+65U42",
       "shop": "さくらインターネット公式"
@@ -733,8 +734,8 @@
     "gmktec": {
       "program": "GMKtec ミニPC",
       "name": "GMKtec ミニPC",
-      "label": "AI処理に強い小型PC",
-      "note": "AI処理用のNPUを積んだミニPCも。机の上でローカルAIを試すなら",
+      "label": "小型PCを選ぶ",
+      "note": "小型PCの選択肢。使いたいAIの動作要件と製品の構成を確認。",
       "image": "https://www28.a8.net/svt/bgt?aid=261026994311&wid=001&eno=01&mid=s00000027479001018000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+555TWY+5W12+5YRHE",
       "shop": "GMKtec公式"
@@ -742,8 +743,8 @@
     "minisforum": {
       "program": "MINISFORUM ミニPC",
       "name": "MINISFORUM ミニPC",
-      "label": "高性能ミニPC",
-      "note": "手のひらサイズでも高性能。ローカルLLMの入門機に人気",
+      "label": "小型PCを選ぶ",
+      "note": "小型PCの選択肢。使いたいAIの動作要件と製品の構成を確認。",
       "image": "https://www21.a8.net/svt/bgt?aid=261026994310&wid=001&eno=01&mid=s00000026462001007000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+54KEB6+5O6K+5YJRM",
       "shop": "MINISFORUM公式"
@@ -769,8 +770,8 @@
     "parallels": {
       "program": "Parallels Desktop",
       "name": "Parallels Desktop",
-      "label": "MacでWindows",
-      "note": "MacでWindows専用のAIツールも動かせる定番ソフト",
+      "label": "MacでWindowsを利用",
+      "note": "Mac上でWindowsを利用するソフト。アプリの互換性と別途必要な費用を確認。",
       "image": "https://www23.a8.net/svt/bgt?aid=261026994312&wid=001&eno=01&mid=s00000019939001025000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+55R9IQ+49UM+5YJRM",
       "shop": "Parallels公式"
@@ -796,8 +797,8 @@
     "movie-school": {
       "program": "クリエイターズジャパン",
       "name": "クリエイターズジャパン",
-      "label": "最短1ヶ月で習得",
-      "note": "動画編集を最短1ヶ月で仕事レベルまで学べるオンラインスクール",
+      "label": "動画編集を学ぶ",
+      "note": "動画編集のオンライン講座。講座内容や費用を確認できます。",
       "image": "https://www23.a8.net/svt/bgt?aid=261024973815&wid=001&eno=01&mid=s00000021455001004000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEO5P+DH8ASY+4LJQ+614CY",
       "shop": "クリエイターズジャパン"
@@ -814,8 +815,8 @@
     "bunken": {
       "program": "文賢",
       "name": "文賢",
-      "label": "AIで文章チェック",
-      "note": "AIが誤字・敬語・読みやすさをチェック。ライター・広報の定番ツール",
+      "label": "文章を見直す",
+      "note": "文章の推敲や校閲を支援するツール。機能と料金を確認できます。",
       "image": "https://www26.a8.net/svt/bgt?aid=261026994225&wid=001&eno=01&mid=s00000017376003012000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+3PYJW2+3Q2O+HVFKY",
       "shop": "ウェブライダー"
@@ -823,11 +824,12 @@
     "doraverse": {
       "program": "Doraverse",
       "name": "Doraverse",
-      "label": "複数のAIを1つで",
-      "note": "ChatGPT・Gemini・Claudeなど15以上のAIを1つの画面で使い分けられる",
+      "label": "複数のAIをまとめて",
+      "note": "複数のAIモデルを選べる別サービス。利用できる機能や料金はプランによります。",
       "image": "https://www24.a8.net/svt/bgt?aid=261026994229&wid=001&eno=01&mid=s00000027324001004000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+3SCAB6+5UU0+5YJRM",
-      "shop": "Doraverse公式"
+      "shop": "Doraverse公式",
+      "caution": "公式サービスとは別の提供元です。料金・利用上限を確認。"
     },
     "coconala": {
       "program": "ココナラ",
@@ -841,8 +843,8 @@
     "idiy": {
       "program": "英語添削アイディー",
       "name": "英語添削アイディー",
-      "label": "AI＋講師が添削",
-      "note": "AIと500人以上の講師が英作文を添削。英検・IELTS対策にも",
+      "label": "英作文を添削",
+      "note": "英作文の添削サービス。利用できる添削方法と料金を確認。",
       "image": "https://www25.a8.net/svt/bgt?aid=261026994256&wid=001&eno=01&mid=s00000012026001040000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+48EZN6+2KSK+5Z6WY",
       "shop": "アイディー公式"
@@ -859,8 +861,8 @@
     "lancul": {
       "program": "LanCul（ランカル）",
       "name": "LanCul（ランカル）",
-      "label": "月額1,100円から",
-      "note": "話し放題のオンライン英会話。AI翻訳の次は、自分で話せるように",
+      "label": "英会話の機会を探す",
+      "note": "英会話のサービス。利用できる形式・料金・条件を確認できます。",
       "image": "https://www28.a8.net/svt/bgt?aid=261026994364&wid=001&eno=01&mid=s00000020682003008000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+60PSZ6+4FL0+HV7V6",
       "shop": "LanCul公式"
@@ -886,8 +888,8 @@
     "norton": {
       "program": "ノートン 360",
       "name": "ノートン 360",
-      "label": "定番のセキュリティ",
-      "note": "AIを使った詐欺やフィッシングから、PCとスマホをまとめて守る",
+      "label": "端末の安全対策",
+      "note": "PCやスマホ向けのセキュリティ製品。機能と対象端末はプランで確認。",
       "image": "https://www21.a8.net/svt/bgt?aid=261026994328&wid=001&eno=01&mid=s00000016371001023000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+5FA776+3IBI+60WN6",
       "shop": "ノートン公式"
@@ -904,8 +906,8 @@
     "eset": {
       "program": "ESET HOME セキュリティ",
       "name": "ESET HOME セキュリティ",
-      "label": "軽くて強い",
-      "note": "動作が軽いのに検出力が高い総合セキュリティソフト",
+      "label": "セキュリティを検討",
+      "note": "端末向けセキュリティ製品。対応端末とプランを確認できます。",
       "image": "https://www28.a8.net/svt/bgt?aid=261026994314&wid=001&eno=01&mid=s00000005993007013000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+56Y4QA+1A8Q+15P77M",
       "shop": "ESET公式"
@@ -913,8 +915,8 @@
     "surfshark": {
       "program": "Surfshark",
       "name": "Surfshark",
-      "label": "軽いウイルス対策",
-      "note": "マルウェアや危険なサイトからPC・スマホを守る、動作の軽いウイルス対策ソフト",
+      "label": "ネット利用の安全対策",
+      "note": "VPNなどを提供するサービス。機能は契約プランにより異なります。",
       "image": "https://www23.a8.net/svt/bgt?aid=261026994319&wid=001&eno=01&mid=s00000021488002004000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+59XAR6+4LSW+BX3J6",
       "shop": "Surfshark公式"
@@ -922,8 +924,8 @@
     "ringconn": {
       "program": "RingConn スマートリング",
       "name": "RingConn スマートリング",
-      "label": "AIで睡眠分析",
-      "note": "重さ約2gのリングで、睡眠や心拍をAIが分析。月額料金なし",
+      "label": "睡眠を記録するリング",
+      "note": "睡眠や日々の体調管理に使うスマートリング。サイズと機能を確認。",
       "image": "https://www25.a8.net/svt/bgt?aid=261026994257&wid=001&eno=01&mid=s00000026776002008000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+490F8Y+5QLS+BWVTE",
       "shop": "RingConn公式"
@@ -940,8 +942,8 @@
     "digitane": {
       "program": "デジタネ",
       "name": "デジタネ",
-      "label": "小中学生のAI教材",
-      "note": "マイクラなどゲーム感覚で、AIとプログラミングを家で学べる",
+      "label": "子どものプログラミング",
+      "note": "ゲームなどを題材にプログラミングを学ぶ教材。対象年齢と内容を確認。",
       "image": "https://www22.a8.net/svt/bgt?aid=261026994274&wid=001&eno=01&mid=s00000018613001024000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4J4SJ6+3ZMA+5YJRM",
       "shop": "デジタネ公式"

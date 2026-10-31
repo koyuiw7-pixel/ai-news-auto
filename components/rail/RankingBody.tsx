@@ -198,6 +198,7 @@ function Row({ item, rank, onClick }: { item: OfferItem; rank: number; onClick: 
         <span className="min-w-0">
           {item.label && <span className="block text-meta font-bold text-live">{item.label}</span>}
           <span className="line-clamp-2 text-meta font-bold leading-snug text-ink group-hover:underline">{item.name}</span>
+          {item.caution && <span className="mt-1 block text-meta leading-snug text-ink-soft">{item.caution}</span>}
           <span className="mt-0.5 block">
             <Rating item={item} size={11} />
           </span>

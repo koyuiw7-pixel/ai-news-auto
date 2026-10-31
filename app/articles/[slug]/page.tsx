@@ -5,7 +5,6 @@ import ImageCredit from "@/components/ImageCredit";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
-import AffiliateBox from "@/components/AffiliateBox";
 import MobilePrBar from "@/components/rail/MobilePrBar";
 import RailRanking from "@/components/rail/RailRanking";
 import ArticleCard from "@/components/ArticleCard";
@@ -590,11 +589,6 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           )}
           {bodyTail && shopLink && <ShopLinks link={shopLink} className="my-10" />}
-          {bodyTail && !offer && affiliates.length > 0 && (
-            <div className="my-10">
-              <AffiliateBox links={affiliates} />
-            </div>
-          )}
           {bodyTail && <CtaBanner genreSlug={article.genreSlug} slot="inline" className="my-10" />}
 
           {bodyTail && (
@@ -650,11 +644,6 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           )}
           {!bodyTail && shopLink && <ShopLinks link={shopLink} className="mt-12" />}
-          {!bodyTail && !offer && affiliates.length > 0 && (
-            <div className="mt-12">
-              <AffiliateBox links={affiliates} />
-            </div>
-          )}
 
           {article.tags.length > 0 && (
             <div className="mt-12 flex flex-wrap gap-2">
@@ -724,7 +713,7 @@ export default async function ArticlePage({ params }: Props) {
               {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="hidden lg:flex" />}
             </div>
           ) : (
-            <Sidebar current={article} affiliates={affiliates} />
+            <Sidebar current={article} />
           )}
         </aside>
       </div>

@@ -31,3 +31,25 @@ test('クラウドゲームの記事にはローカルAI用のPCを勧めない'
  assert.equal(offerForArticle(cloud,12),undefined);
  assert.ok(offerForArticle(article,12).items.some(i=>i.key==='oz-rtx5070ti'));
 });
+
+test('関連が特定できない記事に既定の広告を挿入しない',()=>{
+ const unrelated={...article,slug:'unrelated',title:'宇宙望遠鏡の新しい観測',verdict:{audience:'business'}};
+ assert.equal(offerForArticle(unrelated,12),undefined);
+});
+test('録音や議事録が主題の記事でのみボイスレコーダーを候補にする',()=>{
+ const voice={...article,title:'AIで会議の議事録を文字起こし'};
+ assert.ok(offerForArticle(voice,12).items.some(i=>i.key==='plaud-note-pro'));
+ const chat={...article,title:'ChatGPT Voiceの会話機能が更新', affiliateNames:['PLAUD']};
+ assert.ok(!offerForArticle(chat,12)?.items.some(i=>i.key==='plaud-note-pro'));
+});
+test('画像生成の料金と録音の無料枠を候補に引き継ぐ',()=>{
+ const image={...article,title:'画像生成の新しい使い方'};
+ const canvas=offerForArticle(image,12).items.find(i=>i.key==='conoha-ai-canvas');
+ assert.match(canvas.priceText,/基本料/);assert.match(canvas.caution,/超える/);
+ const voice={...article,title:'会議の議事録を文字起こし'};
+ assert.match(offerForArticle(voice,12).items.find(i=>i.key==='plaud-note-pro').caution,/300分/);
+});
+test('動画タグより見出しの主題を優先する',()=>{
+ const item={...article,title:'ChatGPTの音声会話が進化',tags:['YouTube']};
+ assert.equal(offerForArticle(item,12).topic,'chatgpt');
+});
