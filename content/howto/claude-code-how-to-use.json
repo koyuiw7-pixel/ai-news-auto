@@ -1,0 +1,162 @@
+{
+  "slug": "claude-code-how-to-use",
+  "tool": "claude-code",
+  "toolName": "Claude Code",
+  "company": "anthropic",
+  "intent": "始め方",
+  "keyword": "claude code 使い方",
+  "title": "Claude Codeの使い方：インストールから最初の指示までの始め方",
+  "seoTitle": "Claude Codeの使い方：インストールから最初の指示まで",
+  "description": "Claude Codeはターミナルで claude と入力して始めます。公式の手順で、インストール、ログイン、最初の質問までを解説します。無料のFreeプランでは使えない点や、ほかの始め方も整理しました。",
+  "conclusion": [
+    "Claude Codeは、ターミナルにインストールして claude と入力すれば使い始められます。",
+    "ログインには、Claudeの有料サブスクリプションかConsoleアカウントなどが必要です。",
+    "料金ページでは、FreeプランのClaude Codeは「いいえ」です。無料プランでは使えません。",
+    "ターミナルが苦手なら、VS Code拡張機能やデスクトップアプリ、Webからも始められます。"
+  ],
+  "intro": "Claude Codeは、コードの作成やバグ修正を手伝うAIのコーディングアシスタントです。公式ドキュメントをもとに、インストール、ログイン、最初の質問、最初のコード変更までの流れをまとめました。使えるプランや料金、日本での使えるかどうかも、公式ページで分かる範囲で書いています。",
+  "steps": [
+    {
+      "title": "ターミナルとプロジェクトを用意する",
+      "body": "始める前に、ターミナル（またはコマンドプロンプト）を開き、作業するコードプロジェクトを用意します。ターミナルを使ったことがない人は、公式のターミナルガイドで開き方とコマンドの貼り付け方を確認できます。アカウントも必要です。"
+    },
+    {
+      "title": "インストールコマンドを実行する",
+      "body": "公式では「ネイティブインストール」が推奨です。macOS、Linux、WSLでは curl -fsSL https://claude.ai/install.sh | bash を実行します。Windows PowerShellでは irm https://claude.ai/install.ps1 | iex を実行します。途中で進行状況は表示されません。"
+    },
+    {
+      "title": "インストールを確認する",
+      "body": "終わったら、新しいターミナルウィンドウを開いて claude --version を実行します。バージョン番号が出れば成功です。claudeが見つからないと出たら、インストール先がPATHに入っていません。公式のPATH修正の案内を見てください。"
+    },
+    {
+      "title": "プロジェクトでClaude Codeを起動する",
+      "body": "cd で自分のプロジェクトのフォルダに移動し、claude と入力します。初回はログインを求められます。表示に従ってブラウザで認証を終えると、バージョンやモデル、作業ディレクトリが出て、入力待ちになります。"
+    },
+    {
+      "title": "最初の質問をする",
+      "body": "まずは what does this project do?（このプロジェクトは何をするものか）と聞いてみます。Claudeがファイルを読んで概要を答えます。必要なファイルは自分で読み取るので、内容を手で貼る必要はありません。日本語での質問もできるかは、公式ページでは案内されていません。"
+    },
+    {
+      "title": "小さなコード変更を頼む",
+      "body": "add a hello world function to the main file のように、小さな作業を頼みます。Claudeが変更内容を見せ、確認を求めることがあります。問題なければ Yes を選んで承認します。Shift+Tab で、確認なしで進める範囲（権限モード）を切り替えられます。"
+    },
+    {
+      "title": "終了と再開のしかたを覚える",
+      "body": "終了は /exit か、Ctrl+D を2回押します。/help で使えるコマンドを一覧でき、/clear で会話履歴を消せます。ターミナルから claude -c を実行すると、そのフォルダの最新の会話を続けられます。"
+    }
+  ],
+  "pricing": [
+    {
+      "plan": "Free",
+      "price": "$0",
+      "note": "料金ページの比較表で、Claude Codeは「いいえ」。使えません。"
+    },
+    {
+      "plan": "Pro",
+      "price": "$17/月",
+      "note": "年間サブスクリプション割引適用時（$200一括請求）。月払いは$20。Claude Codeは「はい」。"
+    },
+    {
+      "plan": "Max",
+      "price": "$100/月",
+      "note": "Proの5倍の使用量（5時間ごと・毎週）。Claude Codeは「はい」。"
+    },
+    {
+      "plan": "Ultra",
+      "price": "$200/月",
+      "note": "5時間制限なし。毎週はProの10倍の使用量。Claude Codeは「はい」。"
+    },
+    {
+      "plan": "Team（スタンダードシート）",
+      "price": "$20/シート/月",
+      "note": "年払い時。月払いは$25。2〜150名のチーム向けで、Claude Codeは「はい」。"
+    }
+  ],
+  "freeTier": [
+    "料金ページの比較表では、FreeプランのClaude Codeは「いいえ」です。",
+    "Freeプランでも、Web・iOS・Android・デスクトップアプリでのチャットは使えます。",
+    "クイックスタートには、Claude Consoleアカウント（前払いクレジットによるAPIアクセス）でのログインも載っています。",
+    "Consoleの料金は、今回の公式ページでは案内されていません。",
+    "デスクトップアプリは、公式で有料サブスクリプションが必要とされています。"
+  ],
+  "japan": {
+    "answer": "公式ページで確認を",
+    "body": "今回取得した公式ページでは、日本での提供状況や、円での支払いが可能かは案内されていません。ドキュメントには日本語版（/docs/ja）があり、手順は日本語で読めます。料金ページの価格はドル表記で、税金は含まれないと書かれています。日本から申し込めるか、円で払えるかは、申し込み画面や公式の案内で確認してください。"
+  },
+  "tips": [
+    {
+      "title": "PowerShellとCMDを間違えない",
+      "body": "Windowsでは、使うコマンドが画面で変わります。PS C:\\ と出ていればPowerShell、C:\\ だけならCMDです。エラーが出たら、まずどちらを使っているか確認してください。"
+    },
+    {
+      "title": "変更の承認は内容を見てから",
+      "body": "Claude Codeはファイルを編集し、コマンドも実行できます。確認が出たら、変更内容を読んでから Yes を選びます。権限モードを切り替える前に、何が自動で進むかを理解しておくと安心です。"
+    },
+    {
+      "title": "頼み方は具体的にする",
+      "body": "公式は「バグを直して」より、症状まで書くことを勧めています。大きな作業は段階に分けます。変更前に、まずコードを理解させるのも有効です。"
+    },
+    {
+      "title": "機密情報は扱いに注意する",
+      "body": "パスワードやAPIキー、個人情報が入ったファイルは、プロジェクトに置いたままAIに読ませないよう気をつけます。自分や組織のルールも先に確認しておきましょう。"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Claude Codeは無料で使える？",
+      "a": "料金ページの比較表では、FreeプランのClaude Codeは「いいえ」です。Pro、Max、Ultra、Teamなどで「はい」になっています。Consoleアカウントでのログインも案内されていますが、その料金は今回の公式ページにありません。"
+    },
+    {
+      "q": "Claude Codeのインストール方法は？",
+      "a": "ターミナルでOS別のコマンドを実行します。macOS、Linux、WSLは curl のコマンド、WindowsはPowerShellの irm のコマンドです。HomebrewやWinGetでも入れられます。終わったら claude --version で確認します。"
+    },
+    {
+      "q": "インストール後、claudeが見つからないと出たら？",
+      "a": "インストール先がPATHに入っていない状態です。公式の「PATHを修正する」を参照してください。新しいターミナルを開き直してから、claude --version を試すのも手順に含まれています。"
+    },
+    {
+      "q": "Claude Codeにはどんなログイン方法がある？",
+      "a": "Claude Pro、Max、Ultra、Team、Enterpriseのアカウントが推奨です。Claude Consoleや、Amazon Bedrockなどのクラウドプロバイダー経由もあります。初回起動時に表示に従ってブラウザで認証します。"
+    },
+    {
+      "q": "ターミナルを使わずにClaude Codeを使える？",
+      "a": "使えます。VS Code拡張機能、JetBrainsプラグイン、デスクトップアプリ、Webがあります。デスクトップアプリはCLIの別インストールが不要で、有料サブスクリプションが必要です。JetBrainsはCLIの別途インストールが必要です。"
+    },
+    {
+      "q": "Claude Codeは自動で更新される？",
+      "a": "ネイティブインストールは、バックグラウンドで自動更新されます。HomebrewとWinGetは自動更新されません。brew upgrade claude-code や winget upgrade Anthropic.ClaudeCode を自分で実行します。"
+    }
+  ],
+  "match": "Claude Code",
+  "products": [
+    "claude-opus-5-5"
+  ],
+  "related": [],
+  "sources": [
+    {
+      "url": "https://code.claude.com/docs/ja/overview",
+      "title": "概要 - Claude Code Docs",
+      "checkedAt": "2026-10-31T15:17:22+09:00"
+    },
+    {
+      "url": "https://code.claude.com/docs/ja/quickstart",
+      "title": "クイックスタート - Claude Code Docs",
+      "checkedAt": "2026-10-31T15:17:22+09:00"
+    },
+    {
+      "url": "https://claude.com/pricing",
+      "title": "プランと料金 | Claude by Anthropic",
+      "checkedAt": "2026-10-31T15:17:22+09:00"
+    }
+  ],
+  "sourceHash": "beff7cd296d24bb8",
+  "fact": {
+    "score": 100,
+    "model": "gemini-3.5-flash-lite"
+  },
+  "model": "claude:sonnet",
+  "promptVersion": 1,
+  "createdAt": "2026-10-31T15:17:22+09:00",
+  "updatedAt": "2026-10-31T15:17:22+09:00",
+  "checkedAt": "2026-10-31T15:17:22+09:00"
+}
