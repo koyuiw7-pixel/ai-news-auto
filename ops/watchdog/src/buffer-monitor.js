@@ -30,7 +30,13 @@ export async function bufferMonitorWatchdog(env, now = new Date(), deps = {}) {
   } catch {
     return { dry, error: 'run-state-unavailable' };
   }
-  if (runs.some(run => run.status !== 'completed')) return { dry, skip: 'workflow-active' };
+  const active = runs.filter(run => run.status !== 'completed');
+  if (active.length) {
+    const oldest = Math.min(...active.map(run => Date.parse(run.created_at)));
+    const activeMinutes = Math.max(0, Math.floor((now.getTime() - oldest) / 60000));
+    if (activeMinutes >= 20) return { dry, error: 'workflow-stuck', activeMinutes };
+    return { dry, skip: 'workflow-active', activeMinutes };
+  }
   const lastStart = Math.max(...runs.map(run => Date.parse(run.created_at)));
   const minutesSince = Math.max(0, Math.floor((now.getTime() - lastStart) / 60000));
   if (now.getTime() - lastStart < INTERVAL_MS) return { dry, skip: 'recent-run', minutesSince };

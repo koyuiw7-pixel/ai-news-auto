@@ -29,8 +29,11 @@ test('disabled leaves all services untouched', async () => {
 test('recent, active and exact time boundary', async () => {
   const h=harness({runs:[{status:'completed',created_at:'2026-10-31T02:26:00Z'}]});
   assert.equal((await h.run()).skip,'recent-run');
-  h.state.runs=[{status:'in_progress',created_at:'2026-10-31T02:00:00Z'}];
+  h.state.runs=[{status:'in_progress',created_at:'2026-10-31T02:59:00Z'}];
   assert.equal((await h.run()).skip,'workflow-active');
+  h.state.runs=[{status:'queued',created_at:'2026-10-31T02:39:00Z'}];
+  assert.equal((await h.run()).error,'workflow-stuck');
+  assert.equal(h.calls.gh.filter(x=>x.method==='POST').length,0);
   h.state.runs=[{status:'completed',created_at:'2026-10-31T02:25:00Z'}];
   assert.equal((await h.run()).dispatched,true);
 });

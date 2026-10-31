@@ -161,7 +161,8 @@ async function snsTick(env, now) {
 async function bufferMonitorTick(env, now) {
   try {
     const result = await bufferMonitorWatchdog(env, now);
-    console.log(JSON.stringify({ bufferMonitorWatchdog: result }));
+    if (result.error) console.error(JSON.stringify({ bufferMonitorWatchdog: result }));
+    else console.log(JSON.stringify({ bufferMonitorWatchdog: result }));
   } catch {
     console.error('bufferMonitorWatchdog: unexpected error');
   }
