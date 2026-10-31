@@ -47,3 +47,6 @@ SNS_EXTRA_DRY_RUN = "0"
 # Buffer監視だけを読み取り確認し、35分以上未起動なら読み取り専用workflowを起動。
 BUFFER_MONITOR_WATCHDOG_ENABLED = "1"
 BUFFER_MONITOR_WATCHDOG_DRY_RUN = "0"
+
+# 一度限りの復旧経路検証。時刻を過ぎると通常間隔に自動復帰。
+BUFFER_MONITOR_PROBE_UNTIL = "2026-10-31T03:27:00Z"

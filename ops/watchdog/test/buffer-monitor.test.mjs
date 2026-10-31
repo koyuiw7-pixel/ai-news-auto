@@ -72,3 +72,13 @@ test('invalid clock or missing KV fails before operations', async () => {
   assert.equal((await h.run(NOW,{FAST:null})).error,'kv-unavailable');
   assert.deepEqual(h.calls,{reads:[],writes:[],gh:[]});
 });
+
+
+test('temporary probe lowers threshold only within bounded time window', async () => {
+  const h=harness({runs:[{status:'completed',created_at:'2026-10-31T02:50:00Z'}]});
+  assert.equal((await h.run()).skip,'recent-run');
+  assert.equal((await h.run(NOW,{BUFFER_MONITOR_PROBE_UNTIL:'2026-10-31T03:30:00Z'})).skip,'recent-run');
+  assert.equal((await h.run(NOW,{BUFFER_MONITOR_PROBE_UNTIL:'2026-10-31T02:59:00Z'})).skip,'recent-run');
+  const r=await h.run(NOW,{BUFFER_MONITOR_PROBE_UNTIL:'2026-10-31T03:10:00Z'});
+  assert.equal(r.dispatched,true); assert.equal(r.probe,true);
+});
