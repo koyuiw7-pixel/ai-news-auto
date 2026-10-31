@@ -9228,6 +9228,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000136.000096332.html"
     },
+    "cb1963c79867e92f": {
+      "at": "2026-10-31T02:51:38.035479+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（2282字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+      "skipped": true,
+      "url": "https://aws.amazon.com/jp/blogs/news/spec-it-safe/"
+    },
     "cb8f474555ed7ccd": {
       "at": "2026-10-27T22:03:18.096293+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -10931,51 +10938,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T20:21:42.205794+00:00",
-      "attempt": 1,
-      "id": "3fa519422b2c3b84",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 61.4字・60字超の文が 53% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 147.4字・最長 224字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 147.4,
-        "avg_sentence": 61.4,
-        "long_share": 0.528,
-        "max_paragraph": 224,
-        "paragraphs": 15,
-        "sentences": 36
-      },
-      "score": 100,
-      "source": "aws-ml-blog",
-      "title": "How the UK Amazon Quick User Group grew in 2026"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-29T20:21:47.829168+00:00",
-      "attempt": 0,
-      "id": "3fa519422b2c3b84",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "段落が長い（平均 164.5字・最長 257字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 164.5,
-        "avg_sentence": 32.9,
-        "long_share": 0.013,
-        "max_paragraph": 257,
-        "paragraphs": 15,
-        "sentences": 75
-      },
-      "score": 100,
-      "source": "aws-ml-blog",
-      "title": "How the UK Amazon Quick User Group grew in 2026"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T23:31:44.684755+00:00",
@@ -17690,6 +17652,50 @@
       "score": null,
       "source": "trends",
       "title": "paypay 自治体 キャンペーン 2026"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-31T02:51:24.195868+00:00",
+      "attempt": 1,
+      "id": "cb1963c79867e92f",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2160字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 100.5,
+        "avg_sentence": 52.0,
+        "long_share": 0.241,
+        "max_paragraph": 184,
+        "paragraphs": 15,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "Spec it safe：セキュリティ要件で仕様をハードニングし、シフトレフトを実現する"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-31T02:51:34.272104+00:00",
+      "attempt": 2,
+      "id": "cb1963c79867e92f",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（2282字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
+      ],
+      "readability": {
+        "avg_paragraph": 108.2,
+        "avg_sentence": 57.7,
+        "long_share": 0.433,
+        "max_paragraph": 247,
+        "paragraphs": 16,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "Spec it safe：セキュリティ要件で仕様をハードニングし、シフトレフトを実現する"
     }
   ],
   "short_text_retry": {}
