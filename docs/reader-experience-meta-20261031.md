@@ -25,3 +25,5 @@
 2026-10-31調査追記: Meta公式RSSは10件を返し、その時点ではMuse SingaporeのみがMuseを含んでいた。古いMuse Wonder発表は同RSSから確認できなかったが、これだけで当時の見落とし原因は確定しない。発表の履歴を別途さかのぼる検査が必要。
 
 ローカル検証補足: 通常Turbopack buildは環境のport binding拒否で失敗。webpack buildは631ページで1回成功、最終差分の再ビルドは画像カードの取得待ちで再試行中。ローカルの読みやすさ検査は変更対象ページ・375/1440・明暗で各0件表示を確認したが、レポート集計の終了待ちが長いため中断した。生産環境はCloudflareのCIビルドと配信の結果を別途記録する。
+
+本番表示確認で、関連記事の「Nemotron 3.5 Transcribe」が「AI半導体」と誤表記されていたのを発見。NVIDIA執筆のHugging Face記事で音声認識AIモデルと確認し、見出しを訂正した。URL・SEOタイトル・SNS履歴は変えていない。一次情報: https://huggingface.co/blog/nvidia/nemotron-transcribe-granary
