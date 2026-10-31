@@ -18,6 +18,8 @@ type Topic = {
   search?: string | string[];
   /** 商品が足りないときに補う話題 */
   fill?: string[];
+  /** 本の題名に必要なテーマ */
+  require?: string;
   /** この話題を使う記事のジャンル（省略時は ai） */
   genre?: string;
 };
@@ -283,6 +285,7 @@ function buildOffer(topic: Topic, fallback: string, maxItems: number, seed = "")
     const books = products?.books?.[source] ?? [];
     for (const book of source === topic.key ? rotate(books, seed || topic.key) : books) {
       if (items.length >= maxItems) break;
+      if (seed && topic.require && !new RegExp(topic.require, "i").test(book.title)) continue;
       if (seen.has(book.rbId)) continue;
       seen.add(book.rbId);
       usedBooks = true;

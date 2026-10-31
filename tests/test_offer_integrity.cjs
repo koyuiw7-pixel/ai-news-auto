@@ -53,3 +53,9 @@ test('動画タグより見出しの主題を優先する',()=>{
  const item={...article,title:'ChatGPTの音声会話が進化',tags:['YouTube']};
  assert.equal(offerForArticle(item,12).topic,'chatgpt');
 });
+test('記事の関連書籍は話題に合うタイトルだけ選ぶ',()=>{
+ const voice={...article,title:'会議の議事録を文字起こし'};
+ const books=offerForArticle(voice,12).items.filter(i=>i.kind==='book');
+ assert.ok(books.length>0);
+ assert.ok(books.every(i=>/議事録|文字起こし|音声|会議|録音|ボイス|transcri/i.test(i.name)));
+});
