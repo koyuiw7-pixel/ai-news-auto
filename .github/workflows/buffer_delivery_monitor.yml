@@ -3,6 +3,12 @@ on:
   schedule:
     - cron: '12,42 * * * *'
   workflow_dispatch:
+  # GitHub scheduleの遅延・欠落に備え、既存の記事処理が完了した後も確認する。
+  # SNS投稿を行うworkflowは変更・起動しない。
+  workflow_run:
+    workflows: ['Auto Article Pipeline']
+    types: [completed]
+    branches: [main]
 permissions:
   contents: read
 concurrency:
@@ -10,6 +16,13 @@ concurrency:
   cancel-in-progress: false
 jobs:
   monitor:
+    # workflow_runでは同一repo/mainの通常処理だけ。外部PRや速報レーンは除外。
+    if: >-
+      ${{ github.event_name != 'workflow_run' ||
+          (github.event.workflow_run.head_repository.full_name == github.repository &&
+           github.event.workflow_run.head_branch == 'main' &&
+           contains(fromJSON('["schedule", "workflow_dispatch"]'), github.event.workflow_run.event) &&
+           startsWith(github.event.workflow_run.display_title, 'Auto Article Pipeline (')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
