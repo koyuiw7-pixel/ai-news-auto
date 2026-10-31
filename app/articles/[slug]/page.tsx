@@ -293,7 +293,7 @@ export default async function ArticlePage({ params }: Props) {
           <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-meta">
             <CompanyMark company={company} size={20} withName />
             <span className="rounded-sm border border-line-strong px-2 py-[1px] text-badge font-bold text-ink-soft">
-              {isRoundup ? `まとめ ${article.sources?.length ?? 0}本` : "公式発表"}
+              {isRoundup ? `まとめ ${article.sources?.length ?? 0}本` : article.sourceType === "web" ? "公開情報" : "動画紹介"}
             </span>
             {speedLabel(article) && (
               <span className="rounded-sm border border-live/40 px-2 py-[1px] text-badge font-bold text-live">
