@@ -6905,6 +6905,13 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76725.html"
     },
+    "7e57fe29156770b5b0125eeddeffbdd683ed29bb": {
+      "at": "2026-10-31T10:01:23.850958+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1226字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（347字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/0556300a827429ca485e05c44d178c464fa2b267"
+    },
     "7f04b62d80588514": {
       "at": "2026-10-29T06:52:46.939109+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -11015,50 +11022,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-30T00:06:35.112566+00:00",
-      "attempt": 2,
-      "id": "4b341558ccb63f63",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "文が長い（1文の平均 38.4字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 87.8,
-        "avg_sentence": 38.4,
-        "long_share": 0.208,
-        "max_paragraph": 155,
-        "paragraphs": 21,
-        "sentences": 48
-      },
-      "score": 100,
-      "source": "digital-agency",
-      "title": "ガバメントAI 源内 利用状況アンケート調査（第1回）の結果を公表しました"
-    },
-    {
-      "accepted": true,
-      "at": "2026-10-30T00:06:38.916536+00:00",
-      "attempt": 0,
-      "id": "4b341558ccb63f63",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（38.4→38.4字）"
-      ],
-      "readability": {
-        "avg_paragraph": 87.8,
-        "avg_sentence": 38.4,
-        "long_share": 0.208,
-        "max_paragraph": 155,
-        "paragraphs": 21,
-        "sentences": 48
-      },
-      "score": 100,
-      "source": "digital-agency",
-      "title": "ガバメントAI 源内 利用状況アンケート調査（第1回）の結果を公表しました"
-    },
     {
       "accepted": false,
       "at": "2026-10-30T00:31:36.340427+00:00",
@@ -17766,6 +17729,54 @@
       "score": null,
       "source": "cyberagent",
       "title": "アニメーションの企画・制作およびプロデュースを行う子会社 「株式会社LATENT ONE」を設立"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-31T10:01:18.566361+00:00",
+      "attempt": 1,
+      "id": "7e57fe29156770b5b0125eeddeffbdd683ed29bb",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（935字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（284字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 119.9,
+        "avg_sentence": 64.5,
+        "long_share": 0.462,
+        "max_paragraph": 188,
+        "paragraphs": 7,
+        "sentences": 13
+      },
+      "score": null,
+      "source": "trends",
+      "title": "柳田 悠 岐 馬"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-31T10:01:23.850920+00:00",
+      "attempt": 2,
+      "id": "7e57fe29156770b5b0125eeddeffbdd683ed29bb",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1226字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（347字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 159.1,
+        "avg_sentence": 61.9,
+        "long_share": 0.444,
+        "max_paragraph": 229,
+        "paragraphs": 7,
+        "sentences": 18
+      },
+      "score": null,
+      "source": "trends",
+      "title": "柳田 悠 岐 馬"
     }
   ],
   "short_text_retry": {}
