@@ -23,3 +23,13 @@ Buffer公式は、画像は予約時だけでなく公開時まで公開URLで�
 監視のみ停止するにはGitHub Actionsの当該workflowを無効化。既存SNSワークフローやBuffer予約には影響しない。監視自体は再送しない。新規サービス契約・課金はなし。GitHub公式によれば公開repoの標準GitHub-hosted runnerは無料（公開状態や課金条件が変われば再確認）: https://docs.github.com/en/actions/reference/runners/github-hosted-runners 。
 
 隔離テストは`python3 -m unittest discover -s tests -p 'test_buffer_delivery_monitor.py'`。Bufferを模擬し、取得/媒体別状態/過去と新しいerror/予定超過/不明時失敗/重複ID/ページ送り/画像検査先とリダイレクト/ログ秘匿を確認。既存のSNS関連テストも実行する。
+
+## 2026-10-31: 定期起動の遅延調査と独立した復旧経路
+
+10:42と11:12のmonitor `schedule` は11:53 JST時点でrunなし。workflowはactive、mainに存在し、手動および記事処理完了後の`workflow_run`は成功。別workflowでも同日に、07:00予定のメール処理が10:24、07:05予定のSNS追加処理が10:26、07:43予定の商品更新が10:51に`event=schedule`で開始した。これは当該runの起動時刻と、各ファイルに定義された時刻との比較であり、各処理の配信や更新完了時刻ではない。GitHub Statusは調査時点でActions operational、10/31の障害報告なし。10/30にはActions等の障害が報告され解決済みだが、今回の遅延との因果関係は未確定。GitHubはschedule遅延や欠落を明記する: https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule 。個別に落ちたか、遅れて実行されるかは未特定。
+
+従来のworkflow_run経由に加え、既存Cloudflare見張り番のSNS専用10分Cronから`bufferMonitorWatchdog`を**別のwaitUntil**で起動。`ops/watchdog/src/buffer-monitor.js`は監視workflowのrun一覧だけを読み、直近runから35分以上経過し、監視中runがない場合に限り、読み取り専用monitorのworkflow_dispatchを1回依頼する。SNSやBufferに対するPOST・更新・削除は一切しない。開始時刻を記した専用KV `buffer_monitor_watchdog:v1:last_attempt` をdispatch前に作り、35分の連続起動抑止（TTL2時間）。KVや履歴が読めない・不正・空、未知の応答、clock異常時は起動しない。dispatch応答が不明でも記録を戻さない。KVは原子的ロックではないため、同時刻競合の完全防止は保証せず、監視workflowのconcurrencyも維持。監視runが20分以上待機/実行中の場合は重複起動せずWorker Logsに `workflow-stuck` エラーを残す。GitHub通知やメールが届く保証はない。
+
+切替は`BUFFER_MONITOR_WATCHDOG_ENABLED=0`のWorker反映。`BUFFER_MONITOR_WATCHDOG_DRY_RUN=1`は読み取りのみ。既存SNS回収用のKV・concurrency・cron、速報/災害・記事作成設定、Buffer予約を変更しない。元のGitHub scheduleは残す。Cloudflare Cron・GitHub API/Actionsの両方が止まる場合は自動回復できず、35〜45分程度の検知間隔も厳密な保証ではない。
+
+本番の直前versionは`87d0ebec-c817-4c9f-ac15-a3cb5fd4ab0a`、先行版`a3b32965-5db2-4b74-ac38-72fc441d8f73`、停止中runの検知を加えた現行版`3812ea7d-b901-4a23-bc34-7b9b60318f48`。既存デプロイ済みbundleがローカルbaseと一致すること、vars・KV・secret binding、3 cronの維持を確認。11:53 JSTに先行版の本番Cronで `bufferMonitorWatchdog: recent-run` を観測し、同じCronで既存SNS回収もaccepted・新規投稿なし。記事処理後の監視も11:31・11:51に自動成功。最終versionも12:03 JSTの本番Cronで `bufferMonitorWatchdog: recent-run`（直近11分）とsnsExtra digest accepted / dispatched null、outcome okを確認。停止中の復旧dispatchは隔離テストとGitHub実データの未来時刻を用いたdry-runで確認しており、本番で実際に停止させて復旧させたわけではない。
