@@ -44,21 +44,21 @@ function editorialCorrections(product: Product): Product {
     return {
       ...product,
       category: "アプリ・サービス",
-      overview: { text: "Museは、買い物や旅行の下調べなどを手伝うMetaの個人向けAIエージェントです。", sources: ["meta-muse-singapore-launch"] },
+      overview: { text: "Museは、買い物や旅行の下調べなどを手伝うMetaの個人向けAIエージェントです。", sources: [] },
       facts: [
-        { label: "提供状況", value: "シンガポールで提供。日本向けの提供はこの発表では確認できません", sources: ["meta-muse-singapore-launch"] },
-        { label: "料金", value: "シンガポールでは大半の用途が無料。有料プランもあります", sources: ["meta-muse-singapore-launch"] },
-        { label: "利用環境", value: "シンガポールではiOS・Android・Webで提供", sources: ["meta-muse-singapore-launch"] },
+        { label: "日本での提供", value: "2026年10月23日から提供", sources: [] },
+        { label: "料金", value: "多くの基本機能は無料。有料プランもあります", sources: [] },
+        { label: "利用環境", value: "iOS・Android・Web（muse.ai）", sources: [] },
       ],
       capabilities: [
-        { text: "提携サービスを通じた買い物の比較や旅行・予約候補の検索を支援します。連携機能は順次提供されます。", sources: ["meta-muse-singapore-launch"] },
-        { text: "メールや購入などの重要な操作の前に確認する設計です。", sources: ["meta-muse-singapore-launch"] },
+        { text: "買い物や旅行の計画などを支援します。連携機能の提供状況はサービスごとに確認してください。", sources: [] },
+        { text: "メール送信や購入などの重要な操作の前に確認する設計です。", sources: [] },
       ],
-      pricing: [{ text: "シンガポールでは大半の用途が無料で、有料プランもあります。", sources: ["meta-muse-singapore-launch"] }],
-      japan: [{ text: "シンガポール向け公式発表には、日本での提供時期は記載されていません。", sources: ["meta-muse-singapore-launch"] }],
-      howto: [{ text: "シンガポールではiOS、Android、muse.aiで提供されています。", sources: ["meta-muse-singapore-launch"] }],
+      pricing: [{ text: "日本では多くの基本機能が無料。有料プランもあり、料金・上限は公式画面で確認してください。", sources: [] }],
+      japan: [{ text: "Metaは2026年10月23日から日本での提供を開始したと発表しています。国内企業との一部連携は進行中です。", sources: [] }],
+      howto: [{ text: "iOS、Android、muse.aiで案内を確認し、接続先や権限を選びます。", sources: [] }],
       differences: [], faq: [],
-      officialCheck: { date: "2026-10-31", url: "https://about.fb.com/news/2026/10/muse-is-now-available-in-singapore-the-worlds-first-personal-ai-agent-built-for-everyone/", label: "Meta公式：シンガポールでの提供" },
+      officialCheck: { date: "2026-10-31", url: "https://about.fb.com/ja/news/2026/10/muse-personal-ai-agent-launches-in-japan/", label: "Meta公式：日本での提供" },
     };
   }
   if (product.slug !== "openai-dot") return product;

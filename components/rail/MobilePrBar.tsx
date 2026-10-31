@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import type { OfferItem } from "@/lib/offers";
-import { offerIsActive } from "@/lib/offer-time";
+import { offerIsActive, nextOfferExpiry } from "@/lib/offer-time";
+import { catalogPriceText } from "./parts";
 
 const STORAGE_KEY = "saisoku:pr-bar-closed";
 
@@ -15,21 +16,22 @@ export default function MobilePrBar({ item, watchId }: { item: OfferItem; watchI
   const [blocked, setBlocked] = useState(false);
   const [closed, setClosed] = useState(true);
   const [active, setActive] = useState(!item.activeUntil);
+  const [now, setNow] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!item.activeUntil) { setActive(true); return; }
-    const end = Date.parse(item.activeUntil);
     let timer: number | undefined;
     const check = () => {
       if (timer) window.clearTimeout(timer);
-      const remaining = end - Date.now();
-      setActive(offerIsActive(item.activeUntil, Date.now()));
-      if (remaining > 0) timer = window.setTimeout(check, Math.min(remaining + 50, 2_147_483_647));
+      const current = Date.now();
+      setNow(current);
+      setActive(offerIsActive(item.activeUntil, current));
+      const next = nextOfferExpiry([item.activeUntil, item.priceFreshUntil], current);
+      if (next) timer = window.setTimeout(check, Math.min(next - current + 50, 2_147_483_647));
     };
     check();
     document.addEventListener("visibilitychange", check);
     return () => { if (timer) window.clearTimeout(timer); document.removeEventListener("visibilitychange", check); };
-  }, [item.activeUntil]);
+  }, [item.activeUntil, item.priceFreshUntil]);
 
   useEffect(() => {
     try {
@@ -61,7 +63,7 @@ export default function MobilePrBar({ item, watchId }: { item: OfferItem; watchI
   }, [watchId]);
 
   const visible = active && scrolled && !blocked && !closed;
-  const price = item.price != null ? `¥${new Intl.NumberFormat("ja-JP").format(item.price)}` : item.priceText;
+  const price = catalogPriceText(item, now);
 
   return (
     <div

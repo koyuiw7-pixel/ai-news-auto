@@ -31,6 +31,9 @@ type Partner = {
   note?: string;
   price: number | null;
   priceText?: string;
+  /** 手動確認した静的な料金の日時 */
+  priceCheckedAt?: string;
+  source?: string;
   image: string | null;
   page: string | null;
   shop: string;
@@ -90,6 +93,8 @@ export type OfferItem = {
   author?: string;
   price?: number | null;
   priceText?: string;
+  /** この時刻を過ぎたら金額を表示しない。 */
+  priceFreshUntil?: string;
   image?: string | null;
   url: string;
   shop: string;
@@ -120,6 +125,12 @@ export type Offer = {
 };
 
 const MAX_ITEMS = 3;
+const PRICE_MAX_AGE_MS = 48 * 60 * 60 * 1000;
+
+function priceFreshUntil(checkedAt: string | undefined): string | undefined {
+  const checked = Date.parse(checkedAt ?? "");
+  return Number.isFinite(checked) ? new Date(checked + PRICE_MAX_AGE_MS).toISOString() : undefined;
+}
 
 function readJson<T>(file: string): T | null {
   // 引数のパスだとプロジェクト全体が同梱されるので追跡を止める（必要なファイルは next.config.ts で同梱）
@@ -266,6 +277,7 @@ function buildOffer(topic: Topic, fallback: string, maxItems: number, seed = "")
       imageNote: partner.imageNote,
       price: products?.partnerPrices?.[key] ?? partner.price,
       priceText: partner.priceText,
+      priceFreshUntil: priceFreshUntil(partner.source ? products?.fetchedAt : partner.priceCheckedAt),
       image: partner.image,
       url: partner.link ?? partnerUrl(program.url, partner.page),
       shop: partner.shop,
@@ -295,6 +307,7 @@ function buildOffer(topic: Topic, fallback: string, maxItems: number, seed = "")
         name: book.title,
         author: book.author,
         price: book.price,
+        priceFreshUntil: priceFreshUntil(products?.fetchedAt),
         image: book.image,
         url: book.url,
         shop: "楽天ブックス",

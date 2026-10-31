@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { OfferItem } from "@/lib/offers";
 import { nextOfferExpiry, offerIsActive } from "@/lib/offer-time";
-import { ProductImage, Rating, priceText, reasonOf } from "./parts";
+import { ProductImage, Rating, catalogPriceText, reasonOf } from "./parts";
 
 const SEEN_KEY = "saisoku:offers-seen";
 type Seen = Record<string, { n: number; at: number; clicked?: number }>;
@@ -62,7 +62,7 @@ export default function RankingBody({
       if (timer) window.clearTimeout(timer);
       const current = Date.now();
       setNow(current);
-      const next = nextOfferExpiry(items.map((item) => item.activeUntil), current);
+      const next = nextOfferExpiry(items.flatMap((item) => [item.activeUntil, item.priceFreshUntil]), current);
       if (next) timer = window.setTimeout(tick, Math.min(next - current + 50, 2_147_483_647));
     };
     tick();
@@ -112,11 +112,11 @@ export default function RankingBody({
   if (!first) return null;
   return (
     <div ref={root}>
-      <First item={first} wide={wide} badge={badge} onClick={onClick} />
+      <First item={first} wide={wide} badge={badge} onClick={onClick} now={now} />
       {rest.length > 0 && (
         <ol className={wide ? "grid border-t border-line sm:grid-cols-2 sm:[&>li:nth-child(2)]:border-l sm:[&>li]:border-b-0" : ""} start={2}>
           {rest.map((item, index) => (
-            <Row key={item.key} item={item} rank={index + 2} onClick={onClick} />
+            <Row key={item.key} item={item} rank={index + 2} onClick={onClick} now={now} />
           ))}
         </ol>
       )}
@@ -124,7 +124,7 @@ export default function RankingBody({
   );
 }
 
-function First({ item, wide, badge, onClick }: { item: OfferItem; wide: boolean; badge: string; onClick: (item: OfferItem) => void }) {
+function First({ item, wide, badge, onClick, now }: { item: OfferItem; wide: boolean; badge: string; onClick: (item: OfferItem) => void; now: number | null }) {
   const reason = reasonOf(item);
   return (
     <a
@@ -170,7 +170,7 @@ function First({ item, wide, badge, onClick }: { item: OfferItem; wide: boolean;
             <Rating item={item} />
           </span>
           <span className="mt-1.5 flex items-baseline justify-between gap-2">
-            <span className="text-[23px] font-bold tabular-nums tracking-normal text-ink">{priceText(item)}</span>
+            <span className="text-[23px] font-bold tabular-nums tracking-normal text-ink">{catalogPriceText(item, now)}</span>
             <span className="text-meta text-muted">{item.shop}</span>
           </span>
           <span className="mt-2.5 flex h-12 items-center justify-center gap-1.5 rounded-md bg-accent text-note font-bold text-accent-ink shadow-card transition-transform group-hover:-translate-y-px motion-reduce:transition-none">
@@ -182,7 +182,7 @@ function First({ item, wide, badge, onClick }: { item: OfferItem; wide: boolean;
   );
 }
 
-function Row({ item, rank, onClick }: { item: OfferItem; rank: number; onClick: (item: OfferItem) => void }) {
+function Row({ item, rank, onClick, now }: { item: OfferItem; rank: number; onClick: (item: OfferItem) => void; now: number | null }) {
   return (
     <li className="border-b border-line last:border-b-0">
       <a
@@ -203,7 +203,7 @@ function Row({ item, rank, onClick }: { item: OfferItem; rank: number; onClick: 
             <Rating item={item} size={11} />
           </span>
           <span className="mt-1 flex items-center justify-between gap-2">
-            <span className="text-note font-bold tabular-nums tracking-normal text-ink">{priceText(item)}</span>
+            <span className="text-note font-bold tabular-nums tracking-normal text-ink">{catalogPriceText(item, now)}</span>
             <span className="shrink-0 rounded-sm bg-ink px-2.5 py-1 text-badge font-bold text-paper group-hover:opacity-85">
               見る
             </span>

@@ -32,6 +32,8 @@ const CREATIVE = /(画像|動画|映像|イラスト|音楽)を?(生成|編集|�
 const DEV = /開発者|エンジニア|開発ツール|API|SDK|GitHub|Codex|コーディング|プログラ/;
 const AGENT = /エージェント|Agent/i;
 const LIFE = /旅行|予約|買い物|ショッピング|生活|暮らし|献立|家事|翻訳/;
+/** AI自体の学習ではなく、読者の勉強に役立つ使い道。 */
+const STUDY = /勉強|教科書|教材|学習アプリ|学習AI|学習支援|授業|受験|学生/;
 
 function textOf(a: ArticleSummary): string {
   return `${a.title} ${a.tags.join(" ")} ${a.verdict?.audience ?? ""}`;
@@ -61,7 +63,7 @@ function toItem(a: ArticleSummary): StoryItem {
 }
 
 /** theme は用途別の束（中身が重なりやすいので、ほぼ同じなら出さない）。企業・ジャンルは道しるべなので常に出す */
-type Draft = { key: string; label: string; items: ArticleSummary[]; theme?: boolean };
+type Draft = { key: string; label: string; items: ArticleSummary[]; theme?: boolean; minItems?: number };
 
 /** 見た目が同じになる画像を見分けるキー（独自カバーは企業色が同じなら見分けがつかない） */
 function lookKey(a: ArticleSummary): string {
@@ -137,6 +139,7 @@ export function getStoryBundles(): Bundle[] {
   const candidates: Draft[] = [
     { key: "today", label: "最新のAIニュース", items: pickGeneral(ai, MAX_ITEMS) },
     { key: "life", label: "暮らしと旅行のAI", items: pickGeneral(monthAi.filter((a) => LIFE.test(textOf(a))), MAX_ITEMS, 60), theme: true },
+    { key: "study", label: "勉強に使えるAI", items: pickGeneral(monthAi.filter((a) => STUDY.test(a.title)), MAX_ITEMS, 60), theme: true, minItems: 2 },
     // 「使える」は注目と中身が重ならないよう、新しい順のまま出す
     {
       key: "go",
@@ -166,8 +169,9 @@ export function getStoryBundles(): Bundle[] {
   const drafts: Draft[] = [];
   for (const d of candidates) {
     if (drafts.length >= MAX_BUNDLES) break;
-    if (d.items.length < MIN_ITEMS) continue;
-    if (d.theme && isNearDuplicate(d.items, drafts)) continue;
+    if (d.items.length < (d.minItems ?? MIN_ITEMS)) continue;
+    // 総合ニュースと同じ記事があっても、用途から探せる束は残す。
+    if (d.theme && isNearDuplicate(d.items, drafts.filter((x) => x.theme))) continue;
     drafts.push(d);
   }
 

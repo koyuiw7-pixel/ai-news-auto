@@ -1,4 +1,5 @@
 import type { OfferItem } from "@/lib/offers";
+import { priceIsFresh } from "@/lib/offer-time";
 
 const yen = new Intl.NumberFormat("ja-JP");
 const dateFormat = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numeric", timeZone: "Asia/Tokyo" });
@@ -6,6 +7,12 @@ const dateFormat = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "nu
 export function priceText(item: OfferItem): string | undefined {
   if (item.price != null) return `¥${yen.format(item.price)}`;
   return item.priceText;
+}
+
+/** 商品カタログのみ、確認後48時間を超えた金額は表示しない。 */
+export function catalogPriceText(item: OfferItem, now: number | null): string | undefined {
+  if ((item.price != null || item.priceText) && !priceIsFresh(item.priceFreshUntil, now)) return "最新価格を確認";
+  return priceText(item);
 }
 
 export function checkedDate(iso: string): string {

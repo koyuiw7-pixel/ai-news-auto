@@ -11,3 +11,11 @@ export function nextOfferExpiry(values: (string | undefined)[], now: number): nu
     .filter((time) => Number.isFinite(time) && time > now)
     .sort((a, b) => a - b)[0];
 }
+
+/** 金額は取得時刻が不明・未来・期限切れなら表示しない。 */
+export function priceIsFresh(freshUntil: string | undefined, now: number | null): boolean {
+  if (!freshUntil || now === null || !Number.isFinite(now)) return false;
+  const end = Date.parse(freshUntil);
+  const maxAge = 48 * 60 * 60 * 1000;
+  return Number.isFinite(end) && now >= end - maxAge && now < end;
+}

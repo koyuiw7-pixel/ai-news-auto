@@ -1,0 +1,73 @@
+name: Editorial source and offer audits
+
+# 読み取り専用。価格の修正、記事生成、SNS投稿や広告リンクの呼び出しは行わない。
+on:
+  schedule:
+    - cron: '12 0 * * *' # 09:12 JST
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: editorial-audits
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Test audit parsers and state
+        run: python -m unittest tests.test_affiliate_price_audit tests.test_meta_japan_coverage_audit
+      - name: Audit offer source prices and availability
+        id: offers
+        continue-on-error: true
+        run: python scripts/affiliate_price_audit.py --output "$RUNNER_TEMP/offer-audit.json"
+      - name: Audit Meta Japan coverage
+        id: meta
+        continue-on-error: true
+        run: python scripts/meta_japan_coverage_audit.py --output "$RUNNER_TEMP/meta-japan-audit.json"
+      - name: Save audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: editorial-audit-reports
+          path: |
+            ${{ runner.temp }}/offer-audit.json
+            ${{ runner.temp }}/meta-japan-audit.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Surface monitoring failures and action items
+        if: always()
+        env:
+          OFFER_STATUS: ${{ steps.offers.outcome }}
+          META_STATUS: ${{ steps.meta.outcome }}
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, os
+          from pathlib import Path
+          folder = Path(os.environ['RUNNER_TEMP'])
+          print('## 確認結果（記事・価格・SNSは変更しません）')
+          offer = folder / 'offer-audit.json'
+          if offer.exists():
+              data = json.loads(offer.read_text())
+              print('商品:', data['counts'], '要確認:', data['reviewCount'])
+              for item in data['results']:
+                  if item.get('needsReview') or item['result'] in ('error', 'incomplete'):
+                      print('-', item['name'], item.get('needsReview', item['result']))
+          meta = folder / 'meta-japan-audit.json'
+          if meta.exists():
+              data = json.loads(meta.read_text())
+              print('Meta日本：一覧ページ内の未掲載候補（一次URL単位）')
+              for item in data.get('relevant', []):
+                  if not item['covered']:
+                      print('-', item['title'], item['url'])
+          PY
+          test "$OFFER_STATUS" = success && test "$META_STATUS" = success
