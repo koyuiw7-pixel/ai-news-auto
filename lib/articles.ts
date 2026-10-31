@@ -493,6 +493,7 @@ export function coverPath(article: ArticleSummary): string | null {
 }
 
 export type NextRead = { article: ArticleSummary; reason: string };
+const COMPANY_TAGS = ["OpenAI", "Microsoft", "Google", "NVIDIA", "Meta", "Anthropic", "Hugging Face", "DeepSeek", "ChatGPT", "Gemini", "Claude"];
 
 /**
  * 「次に読むならこれ」。記事を読み終えた人に、もう1本だけ読んでもらうための候補。
@@ -512,14 +513,16 @@ export function getNextReads(article: ArticleSummary, companySlugOf: (a: Article
 
   const company = companySlugOf(article);
   const sameCompany = all.filter((a) => companySlugOf(a) === company && company !== "other");
-  add(sameCompany[0], "同じ企業の最新の発表");
 
-  const tags = new Set(article.tags);
+  // 「生成AI」のような全記事共通タグだけでは同じ話題と言えない。
+  const genericTags = new Set(["AI", "AIツール", "AIニュース", "生成AI", "人工知能", "テクノロジー", "AIエージェント", "LLM", ...COMPANY_TAGS]);
+  const tags = new Set(article.tags.filter((tag) => !genericTags.has(tag)));
+  const keywords = new Set(article.keywords.filter((word) => word.length >= 3 && !genericTags.has(word) && !/^(使い方|料金|無料|日本語|とは|開発|アップデート)$/i.test(word)).map((word) => word.toLowerCase()));
   const byTags = all
-    .map((a) => ({ a, n: a.tags.filter((t) => tags.has(t)).length }))
+    .map((a) => ({ a, n: a.tags.filter((t) => tags.has(t)).length + 2 * a.keywords.filter((word) => keywords.has(word.toLowerCase())).length }))
     .filter((x) => x.n > 0)
     .sort((x, y) => y.n - x.n || Date.parse(y.a.publishedAt) - Date.parse(x.a.publishedAt));
-  for (const { a } of byTags) add(a, "あわせて読みたい");
-  for (const a of sameCompany.slice(1)) add(a, "同じ企業の発表");
+  for (const { a } of byTags) add(a, "同じ話題の記事");
+  for (const a of sameCompany) add(a, "同じ企業の発表");
   return picked;
 }

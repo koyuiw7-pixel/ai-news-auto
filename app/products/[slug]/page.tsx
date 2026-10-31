@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import CompanyMark from "@/components/CompanyMark";
+import Thumb from "@/components/Thumb";
 import { coverPath, formatDate, getArticleSummary, type ArticleSummary } from "@/lib/articles";
-import { getCompany } from "@/lib/companies";
+import { getCompany, thumbSource } from "@/lib/companies";
 import {
   getAllProducts,
   getProduct,
@@ -135,7 +137,7 @@ export default async function ProductPage({ params }: Props) {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "ホーム", item: siteConfig.url },
-        { "@type": "ListItem", position: 2, name: "製品まとめ", item: `${siteConfig.url}/products` },
+        { "@type": "ListItem", position: 2, name: "AIサービス図鑑", item: `${siteConfig.url}/products` },
         { "@type": "ListItem", position: 3, name: product.name },
       ],
     },
@@ -185,7 +187,7 @@ export default async function ProductPage({ params }: Props) {
       <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-meta text-muted">
         <Link href="/" className="hover:text-accent">ホーム</Link>
         <span aria-hidden>/</span>
-        <Link href="/products" className="hover:text-accent">製品まとめ</Link>
+        <Link href="/products" className="hover:text-accent">AIサービス図鑑</Link>
         <span aria-hidden>/</span>
         <span>{product.name}</span>
       </nav>
@@ -208,13 +210,33 @@ export default async function ProductPage({ params }: Props) {
         <Phrases text={heading} />
       </h1>
 
+      {articles[0] && (
+        <Link href={`/articles/${articles[0].slug}`} className="group mt-6 block overflow-hidden rounded-xl border border-line" aria-label={`最新の関連記事：${articles[0].title}`}>
+          <span className="relative block aspect-[40/21] bg-surface-2">
+            {articles[0].thumbnail ? (
+              <Thumb src={articles[0].thumbnail} source={thumbSource(articles[0])} alt="" fill sizes="(max-width: 760px) 100vw, 760px" className="object-contain" />
+            ) : (
+              <Image src={coverPath(articles[0])!} alt="" fill sizes="(max-width: 760px) 100vw, 760px" className="object-contain" />
+            )}
+          </span>
+          <span className="block px-4 py-3 text-note font-bold text-ink group-hover:underline">関連記事：{articles[0].title}</span>
+        </Link>
+      )}
+
       <p className="mt-6 text-[16px] leading-[2] text-ink">
         {product.overview.text}
         <Refs numbers={blocks.overview} />
       </p>
 
+      {product.officialCheck && (
+        <p className="mt-4 rounded-lg border border-line bg-surface px-4 py-3 text-note leading-[1.8] text-ink-soft">
+          利用条件は公式情報を{product.officialCheck.date.replaceAll("-", "/")}に確認しました。
+          <a href={product.officialCheck.url} className="ml-1 text-accent underline" target="_blank" rel="noopener noreferrer">{product.officialCheck.label}</a>
+        </p>
+      )}
+
       {product.facts.length > 0 && (
-        <dl className="mt-7 border-t border-ink text-[14.5px]">
+        <dl className="mt-7 border-t border-ink text-[16px]">
           {product.facts.map((fact, index) => (
             <div key={fact.label} className="grid grid-cols-[6.5rem_1fr] gap-3 border-b border-line py-3 sm:grid-cols-[8.5rem_1fr]">
               <dt className="font-bold text-ink-soft">{fact.label}</dt>
@@ -341,8 +363,8 @@ export default async function ProductPage({ params }: Props) {
       )}
 
       <p className="mt-14 border-t border-line pt-5 text-note leading-[1.9] text-muted">
-        このページは、サイソクが公開した{articles.length}本の記事（各社の公式発表をもとに作成）から編集部がまとめています。
-        数字と日付は出典の記事と照合しています。料金や提供条件は変わることがあるため、最新の情報は公式発表をご確認ください。
+        このページは、サイソクが公開した{articles.length}本の関連記事をもとに情報を整理しています。
+        各記事の出典と確認日をご覧ください。料金や提供条件は変わることがあるため、最新の情報は公式発表をご確認ください。
         <Link href="/editorial-policy" className="ml-1 text-accent underline">
           編集方針
         </Link>

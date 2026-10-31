@@ -204,6 +204,30 @@ def pick(items: list[dict], used: set[str], require: str, exclude: str, min_year
     return chosen
 
 
+def plaud_base_price(data: dict) -> int | None:
+    """商品本体のバリエーションだけを照合する。別仕様の最安値は採用しない。"""
+    title = str(data.get("title", "")).strip().casefold()
+    variants = data.get("variants") or []
+    if not title or not variants:
+        return None
+    prices = set()
+    for variant in variants:
+        name = str(variant.get("title", "")).strip()
+        if not name:
+            return None
+        # Shopifyの表記は「製品名 / 色」または「色」。前者で別製品名なら対象外。
+        if "/" in name and name.split("/", 1)[0].strip().casefold() != title:
+            continue
+        if "/" not in name and re.search(r"edition|エディション", name, re.I):
+            continue
+        amount = variant.get("price")
+        if not isinstance(amount, int) or isinstance(amount, bool) or amount <= 0 or amount % 100:
+            return None
+        prices.add(amount // 100)
+    # 色などで価格が違う場合は勝手に最安を代表価格にしない。
+    return next(iter(prices)) if len(prices) == 1 else None
+
+
 def partner_price(source: str) -> int | None:
     """提携先の商品価格を公式サイトから取り直す（値下げ・値上げに追従するため）。"""
     kind, _, ident = source.partition(":")
@@ -213,7 +237,7 @@ def partner_price(source: str) -> int | None:
             request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
             with urllib.request.urlopen(request, timeout=20) as response:
                 data = json.loads(response.read().decode("utf-8"))
-            return int(data["price"]) // 100
+            return plaud_base_price(data)
         if kind == "oz":
             url = f"https://www.ozgaming-pcshop.com/view/item/{ident}"
             request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})

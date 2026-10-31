@@ -26,8 +26,8 @@ export default function RailRanking({
   const hasBook = offer.items.some((i) => i.kind === "book");
 
   return (
-    <aside id={id} data-aff-pos={wide ? "ranking-inline" : "ranking-rail"} aria-label="PR：サイソクのおすすめ" className="relative overflow-hidden rounded-2xl border border-ink bg-paper">
-      <Header offer={offer} wide={wide} title={title ?? `サイソクのおすすめ${Math.min(3, offer.items.length)}選`} />
+    <aside id={id} data-aff-pos={wide ? "ranking-inline" : "ranking-rail"} aria-label="PR：広告・紹介" className="relative overflow-hidden rounded-2xl border border-ink bg-paper">
+      <Header offer={offer} wide={wide} title={title ?? offer.headline} />
 
       <RankingBody items={offer.items} visible={3} wide={wide} badge={badge} />
 
@@ -44,12 +44,12 @@ function Header({ offer, wide, title }: { offer: Offer; wide: boolean; title: st
     <div className={`bg-ink text-paper ${wide ? "px-5 py-4 sm:px-6" : "px-4 py-3.5"}`}>
       <p className="flex items-center gap-2 text-meta font-bold opacity-75">
         <span className="rounded border border-current px-1.5 text-meta tracking-wider">PR</span>
-        {offer.eyebrow}
+        広告・紹介
       </p>
       <p className={`font-display mt-1.5 leading-snug ${wide ? "text-[22px]" : "text-[19px]"}`}>
         {title}
       </p>
-      <p className="mt-1 text-meta leading-snug opacity-85">{offer.headline}</p>
+      {title !== offer.headline && <p className="mt-1 text-meta leading-snug opacity-85">{offer.headline}</p>}
     </div>
   );
 }

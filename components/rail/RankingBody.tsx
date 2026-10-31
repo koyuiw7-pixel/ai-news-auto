@@ -143,7 +143,7 @@ function First({ item, wide, badge, onClick }: { item: OfferItem; wide: boolean;
             <Rating item={item} />
           </span>
           <span className="mt-1.5 flex items-baseline justify-between gap-2">
-            <span className="index-num text-[23px] font-bold tracking-tight text-ink">{priceText(item)}</span>
+            <span className="text-[23px] font-bold tabular-nums tracking-normal text-ink">{priceText(item)}</span>
             <span className="text-meta text-muted">{item.shop}</span>
           </span>
           <span className="mt-2.5 flex h-12 items-center justify-center gap-1.5 rounded-md bg-accent text-note font-bold text-accent-ink shadow-card transition-transform group-hover:-translate-y-px motion-reduce:transition-none">
@@ -175,7 +175,7 @@ function Row({ item, rank, onClick }: { item: OfferItem; rank: number; onClick: 
             <Rating item={item} size={11} />
           </span>
           <span className="mt-1 flex items-center justify-between gap-2">
-            <span className="index-num text-note font-bold text-ink">{priceText(item)}</span>
+            <span className="text-note font-bold tabular-nums tracking-normal text-ink">{priceText(item)}</span>
             <span className="shrink-0 rounded-sm bg-ink px-2.5 py-1 text-badge font-bold text-paper group-hover:opacity-85">
               見る
             </span>

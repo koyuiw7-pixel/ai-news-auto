@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
-import { formatDate } from "@/lib/articles";
-import { COMPANIES, getCompany } from "@/lib/companies";
+import Thumb from "@/components/Thumb";
+import { coverPath, formatDate, getArticleSummary } from "@/lib/articles";
+import { COMPANIES, getCompany, thumbSource } from "@/lib/companies";
 import { getAllProducts, type Product } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "製品まとめ：AIモデル・アプリの料金と日本で使えるか",
+  title: "AIサービス図鑑：できること・料金・最新ニュース",
   description:
     "GPT-6.1 Terra、Claude Opus 5.5、Gemini 4 Argonなど、記事に出てきたAIモデル・アプリ・ガジェットを製品ごとに1ページで整理。料金・日本で使えるか・これまでの流れを、記事が増えるたびに更新します。",
   alternates: { canonical: "/products" },
@@ -33,10 +34,10 @@ export default function ProductsPage() {
 
   return (
     <div className="mx-auto max-w-[860px] px-4 py-10 sm:px-8 sm:py-14">
-      <h1 className="t-h1">製品まとめ</h1>
+      <h1 className="t-h1">AIサービス図鑑</h1>
       <p className="t-lead mt-3">
         記事に出てきたAIモデル・アプリ・ガジェットを、製品ごとに1ページにまとめています。
-        料金や日本で使えるかは、新しい記事が出るたびに更新します。
+        できることや提供状況、関連記事を調べられます。料金や利用条件は必ず公式情報もご確認ください。
       </p>
 
       <div className="mt-10 grid gap-12">
@@ -50,9 +51,15 @@ export default function ProductsPage() {
                 <span className="index-num ml-auto text-meta font-normal text-muted">{items.length}製品</span>
               </h2>
               <ul>
-                {items.map((product) => (
+                {items.map((product) => {
+                  const article = product.articles.map(getArticleSummary).find(Boolean);
+                  return (
                   <li key={product.slug} className="border-b border-line">
-                    <Link href={`/products/${product.slug}`} className="group block py-4">
+                    <Link href={`/products/${product.slug}`} className="group grid grid-cols-[96px_minmax(0,1fr)] gap-4 py-4 sm:grid-cols-[160px_minmax(0,1fr)]">
+                      <span className="relative block aspect-[40/21] overflow-hidden rounded-lg bg-surface-2">
+                        {article && <Thumb src={article.thumbnail || coverPath(article) || ""} source={thumbSource(article)} alt="" fill sizes="(max-width: 640px) 96px, 160px" className="object-contain" />}
+                      </span>
+                      <span className="min-w-0">
                       <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                         <span className="t-card group-hover:underline">{product.name}</span>
                         <span className="text-meta text-muted">{product.category}</span>
@@ -63,9 +70,10 @@ export default function ProductsPage() {
                       <span className="mt-1.5 line-clamp-2 block text-desc leading-[1.8] text-ink-soft">
                         {product.overview.text}
                       </span>
+                      </span>
                     </Link>
                   </li>
-                ))}
+                );})}
               </ul>
             </section>
           );

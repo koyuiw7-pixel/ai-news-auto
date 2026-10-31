@@ -34,6 +34,19 @@ class RakutenBooksTest(unittest.TestCase):
     old_date = "2026-10-28T23:45:38+00:00"
     new_date = "2026-10-30T06:00:00+00:00"
 
+    def test_plaud_price_ignores_different_edition_minimum(self):
+        data = {"title": "Plaud Note Pro", "price": 2970000, "variants": [
+            {"title": "Plaud Note Pro / ブラック", "price": 3080000},
+            {"title": "Plaud Note Pro Flow Edition / ブラック", "price": 2970000},
+        ]}
+        self.assertEqual(books.plaud_base_price(data), 30800)
+
+    def test_plaud_color_variants_with_different_prices_are_not_guessed(self):
+        data = {"title": "Plaud NotePin S", "variants": [
+            {"title": "ブラック", "price": 2860000}, {"title": "シルバー", "price": 3000000},
+        ]}
+        self.assertIsNone(books.plaud_base_price(data))
+
     def previous(self):
         return {"fetchedAt": self.old_date, "pixel": books.PIXEL,
                 "books": {"voice": [{"rbId": "100", "title": "以前の本", "price": 1800, "url": "unchanged-ad-url"}],

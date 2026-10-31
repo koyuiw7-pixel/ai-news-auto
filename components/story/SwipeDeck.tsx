@@ -88,6 +88,7 @@ export default function StoryRail({ bundles }: { bundles: Bundle[] }) {
             </span>
             <span className="sr-label">{b.label}</span>
             <span className="sr-n">{b.items.length}本</span>
+            <span className="sr-preview" title={b.items[0]?.title}>{Array.from(b.items[0]?.title ?? "").slice(0, 26).join("")}{(b.items[0]?.title.length ?? 0) > 26 ? "…" : ""}</span>
           </button>
         ))}
       </div>
@@ -363,19 +364,20 @@ const CSS = `
 .sr{display:flex;gap:12px;overflow-x:auto;padding:14px 20px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .sr::-webkit-scrollbar{display:none}
 /* ラベルは 13px（docs/typography.md）。6 字の「今すぐ使える」が切れない幅にする */
-.sr-ring{flex:none;display:flex;flex-direction:column;align-items:center;gap:5px;width:80px}
+.sr-ring{flex:none;display:flex;flex-direction:column;align-items:center;gap:5px;width:108px}
 .sr-img{width:64px;height:64px;border-radius:50%;padding:2.5px;background:conic-gradient(from 210deg,#2fd27f,#0a6fa0,#2fd27f);transition:transform .15s}
 .sr-ring.seen .sr-img{background:var(--line-strong,#cfcfc7)}
 .sr-img img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2.5px solid var(--paper,#fff);background:var(--surface-2,#eee)}
-.sr-label{max-width:100%;font-size:13px;font-weight:700;line-height:1.2;text-align:center;color:var(--ink,#111);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-label{width:100%;font-size:13px;font-weight:700;line-height:1.3;text-align:center;color:var(--ink,#111);overflow-wrap:anywhere}
 .sr-n{font-family:var(--font-martian),monospace;font-size:13px;color:var(--muted,#52524d);margin-top:-4px}
+.sr-preview{width:100%;font-size:13px;line-height:1.4;text-align:center;color:var(--muted,#52524d);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
 .sr-ring:hover .sr-img{transform:scale(1.04)}
 .sr-ring:focus-visible{outline:2px solid var(--ink,#111);outline-offset:4px;border-radius:12px}
 @media (min-width:640px){.sr{padding:18px 32px 12px}}
 /* PC は丸を少し大きくし、1列（最大12個）に均等に並べて横幅を使い切る */
 @media (min-width:1024px){
   .sr{gap:8px}
-  .sr-ring{flex:1 1 0;min-width:78px;max-width:104px;width:auto;gap:7px}
+  .sr-ring{flex:0 0 120px;min-width:120px;max-width:120px;gap:7px}
   .sr-img{width:76px;height:76px;padding:3px}
   .sr-label{font-size:14px}
   .sr-n{font-size:13px}

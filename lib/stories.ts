@@ -10,9 +10,9 @@ const DAY_MS = 86_400_000;
 const WINDOW_DAYS = 7;
 /** これ未満の束は出さない（スカスカの丸は意味がない） */
 const MIN_ITEMS = 3;
-const MAX_ITEMS = 7;
-/** PC の1列（1240px）にちょうど収まる数 */
-const MAX_BUNDLES = 12;
+const MAX_ITEMS = 12;
+/** 横にスクロールして見られる。性能のため上限は設ける */
+const MAX_BUNDLES = 24;
 
 /** 幅広い話題の丸の名前（丸の下は短くないと切れる） */
 const GENRE_LABEL: Record<string, string> = {
@@ -31,6 +31,7 @@ const WORK =
 const CREATIVE = /(画像|動画|映像|イラスト|音楽)を?(生成|編集|作成|制作)|Sora|Veo|Imagen|Nano Banana|Midjourney|Firefly/;
 const DEV = /開発者|エンジニア|開発ツール|API|SDK|GitHub|Codex|コーディング|プログラ/;
 const AGENT = /エージェント|Agent/i;
+const LIFE = /旅行|予約|買い物|ショッピング|生活|暮らし|献立|家事|翻訳/;
 
 function textOf(a: ArticleSummary): string {
   return `${a.title} ${a.tags.join(" ")} ${a.verdict?.audience ?? ""}`;
@@ -114,7 +115,12 @@ export function getStoryBundles(): Bundle[] {
   const ofAi = (test: (a: ArticleSummary) => boolean) => pickGeneral(ai.filter(test), MAX_ITEMS, 60);
 
   // 企業別は、直近の記事が多い企業から
-  const companies = COMPANIES.map((c) => ({ c, items: ai.filter((a) => companyOf(a).slug === c.slug) }))
+  const now = Date.now();
+  const monthAi = all.filter((a) => {
+    const published = Date.parse(a.publishedAt) || 0;
+    return a.genreSlug === "ai" && published <= now && now - published < 30 * DAY_MS;
+  });
+  const companies = COMPANIES.map((c) => ({ c, items: monthAi.filter((a) => companyOf(a).slug === c.slug) }))
     .filter((x) => x.items.length >= MIN_ITEMS)
     .sort((x, y) => y.items.length - x.items.length);
 
@@ -129,17 +135,18 @@ export function getStoryBundles(): Bundle[] {
   }));
 
   const candidates: Draft[] = [
-    { key: "today", label: "注目の7本", items: pickGeneral(ai, MAX_ITEMS) },
+    { key: "today", label: "最新のAIニュース", items: pickGeneral(ai, MAX_ITEMS) },
+    { key: "life", label: "暮らしと旅行のAI", items: pickGeneral(monthAi.filter((a) => LIFE.test(textOf(a))), MAX_ITEMS, 60), theme: true },
     // 「使える」は注目と中身が重ならないよう、新しい順のまま出す
     {
       key: "go",
-      label: "今すぐ使える",
+      label: "今使えるAI新機能",
       items: ai.filter((a) => a.verdict && usability(a.verdict) === "go").slice(0, MAX_ITEMS),
       theme: true,
     },
-    { key: "free", label: "無料で試せる", items: ofAi((a) => a.verdict?.free === true), theme: true },
-    { key: "work", label: "仕事で使える", items: ofAi((a) => WORK.test(textOf(a))), theme: true },
-    { key: "creative", label: "画像・動画", items: ofAi((a) => CREATIVE.test(a.title)), theme: true },
+    { key: "free", label: "無料で試せるAI", items: ofAi((a) => a.verdict?.free === true), theme: true },
+    { key: "work", label: "仕事を助けるAI", items: ofAi((a) => WORK.test(textOf(a))), theme: true },
+    { key: "creative", label: "画像・動画を作るAI", items: ofAi((a) => CREATIVE.test(a.title)), theme: true },
     {
       key: "followup",
       label: "続報あり",
@@ -148,7 +155,7 @@ export function getStoryBundles(): Bundle[] {
         .sort((x, y) => Date.parse(y.updatedAt!) - Date.parse(x.updatedAt!))
         .slice(0, MAX_ITEMS),
     },
-    ...companies.slice(0, 5).map(({ c, items }) => ({ key: c.slug, label: c.name, items: items.slice(0, MAX_ITEMS) })),
+    ...companies.map(({ c, items }) => ({ key: c.slug, label: `${c.name}の30日`, items: items.slice(0, MAX_ITEMS) })),
     // AI以外の話題は多い順に3つまで先に出し、残りは枠が余ったときだけ
     ...byGenre.slice(0, 3),
     { key: "dev", label: "開発者向け", items: ofAi((a) => DEV.test(textOf(a))), theme: true },

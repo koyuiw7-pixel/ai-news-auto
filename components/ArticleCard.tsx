@@ -11,16 +11,18 @@ type Props = {
   priority?: boolean;
   /** 記事ページへの画面遷移で、写真と見出しをつなぐ。ページ内で同じ記事に1回だけ使う */
   morph?: boolean;
+  /** 記事末尾では生成画像より元画像を優先し、読み込み待ちを減らす */
+  quickImage?: boolean;
 };
 
 /**
  * 記事カード。箱で囲まず、写真と見出しだけで構成する。
  * 全てを箱に入れると強弱が消えて、どこを見るべきか分からなくなるため。
  */
-export default function ArticleCard({ article, priority, morph = false }: Props) {
+export default function ArticleCard({ article, priority, morph = false, quickImage = false }: Props) {
   const isRoundup = article.type === "roundup";
   const sources = article.sourceCount;
-  const cover = coverPath(article);
+  const cover = quickImage && article.thumbnail ? null : coverPath(article);
   const speed = speedLabel(article);
 
   return (

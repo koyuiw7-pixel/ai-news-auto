@@ -35,7 +35,54 @@ export type Product = {
   linkFrom: string[];
   createdAt: string;
   updatedAt: string;
+  officialCheck?: { date: string; url: string; label: string };
 };
+
+/** 自動再生成より優先する、公式資料で確認した編集部の訂正。 */
+function editorialCorrections(product: Product): Product {
+  if (product.slug === "meta-muse") {
+    return {
+      ...product,
+      category: "アプリ・サービス",
+      overview: { text: "Museは、買い物や旅行の下調べなどを手伝うMetaの個人向けAIエージェントです。", sources: ["meta-muse-singapore-launch"] },
+      facts: [
+        { label: "提供状況", value: "シンガポールで提供。日本向けの提供はこの発表では確認できません", sources: ["meta-muse-singapore-launch"] },
+        { label: "料金", value: "シンガポールでは大半の用途が無料。有料プランもあります", sources: ["meta-muse-singapore-launch"] },
+        { label: "利用環境", value: "シンガポールではiOS・Android・Webで提供", sources: ["meta-muse-singapore-launch"] },
+      ],
+      capabilities: [
+        { text: "提携サービスを通じた買い物の比較や旅行・予約候補の検索を支援します。連携機能は順次提供されます。", sources: ["meta-muse-singapore-launch"] },
+        { text: "メールや購入などの重要な操作の前に確認する設計です。", sources: ["meta-muse-singapore-launch"] },
+      ],
+      pricing: [{ text: "シンガポールでは大半の用途が無料で、有料プランもあります。", sources: ["meta-muse-singapore-launch"] }],
+      japan: [{ text: "シンガポール向け公式発表には、日本での提供時期は記載されていません。", sources: ["meta-muse-singapore-launch"] }],
+      howto: [{ text: "シンガポールではiOS、Android、muse.aiで提供されています。", sources: ["meta-muse-singapore-launch"] }],
+      differences: [], faq: [],
+      officialCheck: { date: "2026-10-31", url: "https://about.fb.com/news/2026/10/muse-is-now-available-in-singapore-the-worlds-first-personal-ai-agent-built-for-everyone/", label: "Meta公式：シンガポールでの提供" },
+    };
+  }
+  if (product.slug !== "openai-dot") return product;
+  const source = "chatgpt-mobile-dot-setup";
+  return {
+    ...product,
+    category: "アプリ・サービス",
+    overview: { text: "OpenAIのdotは、ChatGPTで目標を伝えると、接続したアプリや専用の環境を使って調査や作業を進めるAIエージェントです。", sources: [source] },
+    facts: [
+      { label: "対象", value: "対象地域の18歳以上のPro、対象のBusiness Premium。Enterpriseなどは管理者によるベータ有効化が必要", sources: [] },
+      { label: "料金", value: "最初の1体は対象プランに含まれます。より深い作業には利用枠があります", sources: [] },
+      { label: "提供状況", value: "段階的に提供中。アカウントに届くまで数日かかる場合があります", sources: [] },
+    ],
+    capabilities: [
+      { text: "接続を許可したアプリを使って、調査、資料作成、作業の整理などを進めます。", sources: [] },
+      { text: "旅行手配のような用途もデモされています。購入や共有などの重要な操作は設定と確認条件を確かめてください。", sources: [] },
+    ],
+    pricing: [{ text: "最初のdotは対象プランに追加料金なしで含まれます。深い作業にはプランごとの利用枠があります。", sources: [] }],
+    japan: [{ text: "提供対象はプラン、年齢、地域、組織の設定によって異なります。アカウントに表示される案内を確認してください。", sources: [] }],
+    howto: [{ text: "対象アカウントではChatGPTのモバイルアプリ、デスクトップアプリ、デスクトップ版Webから設定を始められます。", sources: [] }],
+    differences: [], faq: [],
+    officialCheck: { date: "2026-10-31", url: "https://help.openai.com/en/articles/20001530-getting-started-with-your-dot", label: "OpenAI公式：dotの利用条件と設定" },
+  };
+}
 
 // 文字列で組み立てて、content/ 全体をサーバー関数に同梱させない（lib/articles.ts と同じ理由）
 const PRODUCTS_DIR = [process.cwd(), "content", "products"].join(path.sep);
@@ -52,7 +99,7 @@ export function getAllProducts(): Product[] {
     .flatMap((file) => {
       try {
         const data = JSON.parse(fs.readFileSync(/* turbopackIgnore: true */ `${PRODUCTS_DIR}${path.sep}${file}`, "utf8")) as Product;
-        return data.slug && data.overview?.text ? [data] : [];
+        return data.slug && data.overview?.text ? [editorialCorrections(data)] : [];
       } catch {
         return [];
       }

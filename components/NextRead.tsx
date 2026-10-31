@@ -28,7 +28,7 @@ export default function NextRead({ items }: { items: NextReadItem[] }) {
         <span className="flex flex-col gap-2 p-5">
           <Meta item={first} />
           <span className="text-[17px] font-bold leading-[1.55] text-ink text-balance group-hover:underline">
-            {first.article.seoTitle || first.article.title}
+            {first.article.title}
           </span>
           {first.article.highlights[0] && (
             <span className="line-clamp-3 text-desc leading-[1.75] text-ink-soft">{first.article.highlights[0]}</span>
@@ -51,7 +51,7 @@ export default function NextRead({ items }: { items: NextReadItem[] }) {
                 <span className="flex min-w-0 flex-col gap-1">
                   <Meta item={item} />
                   <span className="line-clamp-3 text-note font-bold leading-snug text-ink group-hover:underline">
-                    {item.article.seoTitle || item.article.title}
+                    {item.article.title}
                   </span>
                 </span>
               </Link>
@@ -74,13 +74,13 @@ function Meta({ item }: { item: NextReadItem }) {
 }
 
 function Cover({ item, sizes, small = false }: { item: NextReadItem; sizes: string; small?: boolean }) {
-  const cover = coverPath(item.article);
+  const cover = item.article.thumbnail ? null : coverPath(item.article);
   return (
     <span className={`relative block overflow-hidden bg-surface-2 ${small ? "aspect-[40/21] self-start rounded-lg" : "aspect-[40/21] sm:aspect-auto sm:min-h-full"}`}>
       {cover ? (
-        <Image src={cover} alt="" fill sizes={sizes} className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+        <Image src={cover} alt="" fill sizes={sizes} className="object-contain" />
       ) : (
-        <Thumb src={item.article.thumbnail} source={thumbSource(item.article)} alt="" fill sizes={sizes} className="object-cover" />
+        <Thumb src={item.article.thumbnail} source={thumbSource(item.article)} alt="" fill sizes={sizes} className="object-contain" />
       )}
     </span>
   );

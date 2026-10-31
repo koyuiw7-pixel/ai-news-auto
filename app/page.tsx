@@ -62,7 +62,7 @@ export default function HomePage() {
 
         {offer && (
           <div className="mt-12">
-            <RailRanking offer={offer} wide title="今日の話題をもっと深く知る3選" />
+            <RailRanking offer={offer} wide title={offer.headline} />
           </div>
         )}
 

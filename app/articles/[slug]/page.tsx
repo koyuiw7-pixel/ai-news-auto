@@ -543,7 +543,7 @@ export default async function ArticlePage({ params }: Props) {
               <article className="prose mt-5 max-w-[40em]" dangerouslySetInnerHTML={{ __html: easyHtml }} />
               {inlineOffer && (
                 <div className="my-10 max-w-[46em]">
-                  <RailRanking offer={inlineOffer} wide title="もっと深く知るための3選" countImpression={false} />
+                  <RailRanking offer={inlineOffer} wide title={inlineOffer.headline} countImpression={false} />
                 </div>
               )}
             </div>
@@ -585,7 +585,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {bodyTail && inlineOffer && (
             <div className="my-10 max-w-[46em]">
-              <RailRanking offer={inlineOffer} wide id="offer-inline" title="もっと深く知るための3選" />
+              <RailRanking offer={inlineOffer} wide id="offer-inline" title={inlineOffer.headline} />
               {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex lg:hidden" />}
             </div>
           )}
@@ -645,7 +645,7 @@ export default async function ArticlePage({ params }: Props) {
           {/* 本文が短く途中に置けなかった記事だけ、記事末に出す */}
           {!bodyTail && inlineOffer && (
             <div className="mt-12 max-w-[46em]">
-              <RailRanking offer={inlineOffer} wide id="offer-inline" title="もっと深く知るための3選" />
+              <RailRanking offer={inlineOffer} wide id="offer-inline" title={inlineOffer.headline} />
               {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex lg:hidden" />}
             </div>
           )}
@@ -706,7 +706,7 @@ export default async function ArticlePage({ params }: Props) {
               </h2>
               <div className="grid gap-3.5 sm:grid-cols-2">
                 {related.map((item) => (
-                  <ArticleCard key={item.slug} article={item} />
+                  <ArticleCard key={item.slug} article={item} quickImage />
                 ))}
               </div>
             </section>
