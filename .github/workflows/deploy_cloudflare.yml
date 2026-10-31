@@ -50,6 +50,11 @@ jobs:
       - name: Verify guide routing without external requests
         run: node --test tests/test_howto_routing.cjs
 
+      - name: Verify search eligibility and unchanged distribution
+        run: |
+          node --test tests/test_search_index_policy.cjs
+          python3 -m unittest tests.test_indexnow
+
       - name: Build
         run: npm run cf:build
 

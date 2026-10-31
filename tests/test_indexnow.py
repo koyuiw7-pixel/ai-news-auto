@@ -99,7 +99,7 @@ class IndexNowGuideSelectionTest(unittest.TestCase):
         self.assertNotIn(BASE + "/guides/sample", self.selected())
         self.assertIn(BASE + "/guides/sample", self.selected(hours=None))
 
-    def test_article_selection_urls_and_indexability_are_unchanged(self):
+    def test_short_article_is_selected_but_manual_noindex_and_wire_stay_excluded(self):
         cases = [
             {"slug": "ai-long", "genreSlug": "ai", "sourceType": "web", "body": "a" * 2000, "generatedAt": NEW},
             {"slug": "ai-short", "genreSlug": "ai", "sourceType": "web", "body": "a" * 1999, "generatedAt": NEW},
@@ -111,7 +111,24 @@ class IndexNowGuideSelectionTest(unittest.TestCase):
         for article in cases:
             (self.articles / (article["slug"] + ".json")).write_text(json.dumps(article))
         self.assertEqual(self.selected(), [BASE, BASE + "/articles", BASE + "/genres/ai",
-                                           BASE + "/articles/ai-long", BASE + "/articles/video"])
+                                           BASE + "/articles/ai-long", BASE + "/articles/ai-short",
+                                           BASE + "/articles/video"])
+
+    def test_search_and_distribution_policies_are_separate(self):
+        cases = [
+            ({"sourceType": "web", "body": "a"}, True, False),
+            ({"sourceType": "web", "body": "a" * 2000}, True, True),
+            ({"sourceType": "web", "body": ""}, False, False),
+            ({"sourceType": "web", "body": "a", "indexable": False}, False, False),
+            ({"sourceType": "web", "body": "a", "channelSlug": "prtimes"}, False, False),
+            ({"sourceType": "web", "body": "a", "channelSlug": "prtimes", "indexable": True}, True, True),
+            ({"sourceType": "web", "type": "roundup", "body": "a"}, True, True),
+            ({"sourceType": "video"}, True, True),
+        ]
+        for article, search, distribution in cases:
+            with self.subTest(article=article):
+                self.assertEqual(indexnow.is_indexable(article), search)
+                self.assertEqual(indexnow.is_distribution_eligible(article), distribution)
 
 
 if __name__ == "__main__":

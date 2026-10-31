@@ -2,7 +2,7 @@
 """配信用に「直近の主要記事」を選ぶ共通部品（newsletter.py / line_digest.py / crosspost_drafts.py）。
 
 並び順: 大きなニュース（major）→ まとめ記事 → AI ジャンル → 使える判定 → 品質点 → 新しさ。
-検索に出す記事（indexnow.is_indexable）だけを対象にする（薄い記事を外に出さない）。
+配信対象は検索対象とは分けて、従来の配信基準を維持する。
 
   python3 scripts/digest.py --hours 24 --n 5   # 選ばれる記事を表示
 """
@@ -18,7 +18,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from indexnow import is_indexable  # noqa: E402
+from indexnow import is_distribution_eligible  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -74,7 +74,7 @@ def pick_top(hours: int = 24, n: int = 5, now: datetime | None = None, ai_only: 
     seen_roundups: set[str] = set()
     for article in load_articles():
         at = _parse(article.get("generatedAt"))
-        if not at or not (since <= at <= now) or not is_indexable(article):
+        if not at or not (since <= at <= now) or not is_distribution_eligible(article):
             continue
         if ai_only and article.get("genreSlug") != "ai":
             continue

@@ -132,10 +132,22 @@ def is_indexable(article: dict) -> bool:
         return article["indexable"]
     if article.get("sourceType") != "web" or article.get("type") == "roundup":
         return True
-    length = len(article.get("body", ""))
     if article.get("channelSlug") in WIRE_SOURCES:
         return False
-    return length >= 2000
+    if not article.get("body", ""):
+        return False
+    return True
+
+
+def is_distribution_eligible(article: dict) -> bool:
+    """既存の配信選定を維持する。検索の文字数制限とは別の基準。"""
+    if isinstance(article.get("indexable"), bool):
+        return article["indexable"]
+    if article.get("sourceType") != "web" or article.get("type") == "roundup":
+        return True
+    if article.get("channelSlug") in WIRE_SOURCES:
+        return False
+    return len(article.get("body", "")) >= 2000
 
 
 def main() -> int:

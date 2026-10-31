@@ -1,4 +1,4 @@
-import { isIndexable } from "@/lib/indexing";
+import { isDistributionEligible } from "@/lib/indexing";
 import { getAllArticles, getArticle, sourceHref, sourceLabel, type ArticleSummary, type FullArticle } from "@/lib/articles";
 import { renderMarkdown } from "@/lib/markdown";
 import { isAffiliateUrl } from "@/lib/affiliate";
@@ -7,7 +7,7 @@ import { siteConfig } from "@/site.config";
 /**
  * ニュースアプリ（スマートニュース・グノシーなど）向けフィードの共通部品。
  * フィードはビルド時に静的化する（force-static）ので、Workers の実行時には本文を読まない。
- * 載せるのは検索に出している記事（lib/indexing.ts）だけ。薄いプレスリリースは配信先でも嫌われる。
+ * 配信対象は検索対象と分け、従来の配信基準を維持する。
  */
 
 export const escapeXml = (value: string) =>
@@ -89,7 +89,7 @@ export async function feedHtml(article: FullArticle, options: FeedHtmlOptions): 
 export function pickFeedArticles({ limit, maxAgeDays }: { limit: number; maxAgeDays: number }): FullArticle[] {
   const now = Date.now();
   return getAllArticles()
-    .filter(isIndexable)
+    .filter(isDistributionEligible)
     .filter((a) => {
       const age = now - Date.parse(publishedOf(a));
       return age >= 0 && age < maxAgeDays * 86_400_000;

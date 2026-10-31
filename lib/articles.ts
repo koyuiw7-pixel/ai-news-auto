@@ -121,7 +121,7 @@ export type Article = {
 
 /** 本文から計算する、一覧で使う値（lib/article-index.mjs の derivedOf） */
 export type ArticleDerived = {
-  /** 本文の文字数（検索に出すかの判定・読了時間） */
+  /** 本文の文字数（読了時間・従来の外部配信選定。検索可否は短さだけでは決めない） */
   bodyLength: number;
   /** 「かんたんに読む」版があるか */
   hasEasy: boolean;

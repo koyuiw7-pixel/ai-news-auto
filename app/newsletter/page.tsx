@@ -6,7 +6,7 @@ import NewsletterStatus from "@/components/NewsletterStatus";
 import PushOptIn from "@/components/PushOptIn";
 import { PUSH_RULES } from "@/lib/push-config";
 import { getAllArticles } from "@/lib/articles";
-import { isIndexable } from "@/lib/indexing";
+import { isDistributionEligible } from "@/lib/indexing";
 import { siteConfig } from "@/site.config";
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ const POINTS = [
 export default function NewsletterPage() {
   // 配信の見本（実際の配信は scripts/newsletter.py が前日分から選ぶ）
   const sample = getAllArticles()
-    .filter((a) => a.genreSlug === "ai" && isIndexable(a) && a.highlights.length > 0)
+    .filter((a) => a.genreSlug === "ai" && isDistributionEligible(a) && a.highlights.length > 0)
     .slice(0, 3);
 
   return (

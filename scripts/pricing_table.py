@@ -29,7 +29,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from indexnow import is_indexable  # noqa: E402
+from indexnow import is_distribution_eligible  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -173,7 +173,7 @@ def price_lines(article: dict) -> list[str]:
 def is_candidate(article: dict) -> bool:
     if article.get("genreSlug", "ai") != "ai":
         return False
-    if not is_indexable(article):
+    if not is_distribution_eligible(article):
         return False
     verdict = article.get("verdict") or {}
     if re.search(r"\d", str(verdict.get("price") or "")) and PRODUCT_RE.search(article.get("title", "") + str(verdict.get("price"))):

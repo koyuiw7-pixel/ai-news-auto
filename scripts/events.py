@@ -27,7 +27,7 @@ from zoneinfo import ZoneInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from digest import load_articles  # noqa: E402
-from indexnow import is_indexable  # noqa: E402
+from indexnow import is_distribution_eligible  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 EVENTS_PATH = ROOT / "content" / "events.json"
@@ -116,7 +116,7 @@ def matched_articles(event: dict, articles: list[dict]) -> list[dict]:
         at = parse_dt(article.get("generatedAt") or article.get("publishedAt"))
         if not at or not (start - WINDOW_BEFORE <= at <= end + WINDOW_AFTER):
             continue
-        if not is_indexable(article):
+        if not is_distribution_eligible(article):
             continue
         text = " ".join([article.get("title", ""), article.get("seoTitle", ""), " ".join(article.get("tags") or []), article.get("description", "")])
         if pattern.search(text):

@@ -24,7 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from digest import load_articles, score as digest_score  # noqa: E402
-from indexnow import is_indexable  # noqa: E402
+from indexnow import is_distribution_eligible  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT_PATH = ROOT / "content" / "weekly.json"
@@ -163,7 +163,7 @@ def candidates_for(wid: str, limit: int = 40) -> list[dict]:
         at = parse_dt(article.get("generatedAt") or article.get("publishedAt"))
         if not at or not (start <= at < end):
             continue
-        if article.get("genreSlug", "ai") != "ai" or not is_indexable(article):
+        if article.get("genreSlug", "ai") != "ai" or not is_distribution_eligible(article):
             continue
         picked.append(article)
     picked.sort(key=lambda a: (score(a), a.get("generatedAt", "")), reverse=True)

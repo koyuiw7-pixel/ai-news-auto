@@ -1,6 +1,6 @@
 import data from "@/content/events.json";
 import { getAllArticles, type ArticleSummary } from "@/lib/articles";
-import { isIndexable } from "@/lib/indexing";
+import { isDistributionEligible } from "@/lib/indexing";
 
 /**
  * イベント速報ページ（/events/[slug]）。content/events.json は公式サイトで確かめた情報だけを手で入れ、
@@ -86,7 +86,7 @@ export function eventArticles(event: TechEvent): ArticleSummary[] {
   const to = Date.parse(event.endUtc) + WINDOW_AFTER;
   const found = getAllArticles().filter((article) => {
     const at = Date.parse(article.generatedAt || article.publishedAt);
-    return at >= from && at <= to && isIndexable(article) && pattern.test(text(article));
+    return at >= from && at <= to && isDistributionEligible(article) && pattern.test(text(article));
   });
   articleCache.set(event.slug, found);
   return found;
@@ -100,7 +100,7 @@ export function eventLeadUp(event: TechEvent, limit = 6): ArticleSummary[] {
   return getAllArticles()
     .filter((article) => {
       const at = Date.parse(article.generatedAt || article.publishedAt);
-      return at >= from && at < to && article.genreSlug === "ai" && isIndexable(article) && pattern.test(text(article));
+      return at >= from && at < to && article.genreSlug === "ai" && isDistributionEligible(article) && pattern.test(text(article));
     })
     .slice(0, limit);
 }
