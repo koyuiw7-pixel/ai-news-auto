@@ -15,11 +15,6 @@ export async function bufferMonitorWatchdog(env, now = new Date(), deps = {}) {
   if (env.BUFFER_MONITOR_WATCHDOG_ENABLED !== '1') return { dry, skip: 'disabled' };
   if (!(now instanceof Date) || !Number.isFinite(now.getTime())) return { dry, error: 'invalid-clock' };
   if (!env.FAST?.get || !env.FAST?.put) return { dry, error: 'kv-unavailable' };
-  // 一度限りの本番復旧試験。期限を過ぎれば自動的に通常の35分へ戻る。
-  const probeUntil = Date.parse(env.BUFFER_MONITOR_PROBE_UNTIL || '');
-  const remaining = probeUntil - now.getTime();
-  const probe = Number.isFinite(probeUntil) && remaining >= 0 && remaining <= 15 * 60 * 1000;
-  const interval = probe ? 60 * 1000 : INTERVAL_MS;
   const gh = deps.gh || makeGh(env, (url, init = {}) => fetch(url, {
     ...init, signal: AbortSignal.timeout(15000),
   }));
@@ -44,13 +39,13 @@ export async function bufferMonitorWatchdog(env, now = new Date(), deps = {}) {
   }
   const lastStart = Math.max(...runs.map(run => Date.parse(run.created_at)));
   const minutesSince = Math.max(0, Math.floor((now.getTime() - lastStart) / 60000));
-  if (now.getTime() - lastStart < interval) return { dry, skip: 'recent-run', minutesSince };
+  if (now.getTime() - lastStart < INTERVAL_MS) return { dry, skip: 'recent-run', minutesSince };
   let last;
   try {
     last = await env.FAST.get(BUFFER_MONITOR_LAST_ATTEMPT, 'json');
     if (last !== null && last !== undefined &&
       (last.version !== 1 || typeof last.at !== 'string' || !Number.isFinite(Date.parse(last.at)))) throw new Error('invalid kv');
-    if (last && now.getTime() - Date.parse(last.at) < interval) return { dry, skip: 'attempt-cooldown', minutesSince };
+    if (last && now.getTime() - Date.parse(last.at) < INTERVAL_MS) return { dry, skip: 'attempt-cooldown', minutesSince };
   } catch {
     return { dry, error: 'dispatch-state-unavailable' };
   }
@@ -70,5 +65,5 @@ export async function bufferMonitorWatchdog(env, now = new Date(), deps = {}) {
     // HTTPタイムアウトでも起動済みの可能性があるため、KVを消さず次の期間まで待つ。
     return { dry, error: 'dispatch-outcome-unknown', minutesSince };
   }
-  return { dry, dispatched: true, minutesSince, probe };
+  return { dry, dispatched: true, minutesSince };
 }
