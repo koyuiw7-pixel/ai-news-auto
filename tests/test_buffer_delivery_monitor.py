@@ -16,7 +16,7 @@ NOW = datetime(2026, 10, 31, 2, 0, tzinfo=timezone.utc)
 
 def node(pid, channel, status, due='2026-10-31T01:30:00Z', error=None, image=None):
     return {'id': pid, 'channelId': channel, 'status': status, 'dueAt': due,
-            'createdAt': '2026-10-31T01:00:00Z', 'error': error, 'assets': [],
+            'createdAt': '2026-10-31T01:00:00Z', 'sentAt': '2026-10-31T01:31:00Z' if status == 'sent' else None, 'error': error, 'assets': [],
             'metadata': {'thread': [{'assets': ([{'type':'image','source':image}] if image else [])}]}}
 
 
@@ -68,6 +68,11 @@ class MonitorTest(unittest.TestCase):
         with patch.object(monitor,'buffer_graphql',side_effect=RuntimeError('sensitive provider error')), patch.dict('os.environ', {'BUFFER_API_KEY':'fake'}, clear=True), patch('sys.stdout',new_callable=io.StringIO) as stdout:
             self.assertEqual(monitor.main(),2)
             self.assertNotIn('sensitive provider error',stdout.getvalue())
+
+    def test_unverifiable_empty_provider_listing_fails_closed(self):
+        self.sent=[]; self.pending=[]
+        with patch.object(monitor,'buffer_graphql',side_effect=self.fake):
+            with self.assertRaises(ValueError): monitor.collect('fake',NOW)
 
     def test_missing_channel_and_repeated_cursor_raise(self):
         self.channels=self.channels[:2]

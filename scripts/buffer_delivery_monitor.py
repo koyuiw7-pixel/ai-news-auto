@@ -115,11 +115,13 @@ def collect(key: str, now: datetime, image_checker=check_image) -> dict:
         if not ids:
             continue
         # Sent is deliberately queried separately: mixed sent/non-sent filters have returned empty results.
-        for states, since in [(['sent'], now - timedelta(days=7)), (['scheduled', 'sending', 'needs_approval', 'error'], None)]:
+        for states, since in [(['sent'], None), (['scheduled', 'sending', 'needs_approval', 'draft', 'error'], None)]:
             for node in query_posts(key, oid, ids, states, since):
                 if node.get('id') in posts:
                     raise ValueError('duplicate post id in listing')
                 posts[node['id']] = node
+    if not posts:
+        raise ValueError('empty provider listing cannot be verified')
     if not set(SERVICES).issubset(set(channels.values())):
         raise ValueError('expected channel missing')
     counts = {service: Counter() for service in SERVICES}
@@ -132,8 +134,16 @@ def collect(key: str, now: datetime, image_checker=check_image) -> dict:
         if not service:
             raise ValueError('unknown channel')
         status = node.get('status')
+        if status == 'draft':
+            continue  # drafts are not accepted for delivery
         if status not in ('sent', 'scheduled', 'sending', 'needs_approval', 'error'):
             raise ValueError('unknown status')
+        if status == 'sent':
+            sent_at = utc(node.get('sentAt'))
+            if not sent_at:
+                raise ValueError('sent post missing sentAt')
+            if sent_at < now - timedelta(days=7):
+                continue
         counts[service][status] += 1
         if status == 'error':
             errors[error_kind(node)] += 1
