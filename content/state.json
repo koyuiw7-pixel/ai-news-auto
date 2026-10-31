@@ -4651,6 +4651,12 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/finsys/intlact_fs/risk/ris261028a.htm"
     },
+    "333c13aab03cae3f": {
+      "at": "2026-10-31T06:01:11.937401+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（公募）",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/mopo/measures/select/s_release/srel261028a.htm"
+    },
     "3348d152eb91b9ce": {
       "at": "2026-10-30T02:22:01.111916+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5364,6 +5370,12 @@
       "section": "ai",
       "slug": "nvidia-ai-c-brain-dementia-research",
       "url": "https://blogs.nvidia.com/blog/open-source-ai-tools-cbrain-dementia/"
+    },
+    "4a56adcbf564bd61": {
+      "at": "2026-10-31T06:00:55.626831+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（入札）",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030c.pdf"
     },
     "4a5d85df09fdc406": {
       "at": "2026-10-26T14:58:57.208371+00:00",
@@ -6103,6 +6115,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
       "skipped": true,
       "url": "https://www.nintendo.com/jp/topics/article/e5c65331-dd99-431f-8d4d-d2dabee40279"
+    },
+    "633bbdcdf71bbe9b": {
+      "at": "2026-10-31T06:01:05.862027+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1286字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（316字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030b.pdf"
     },
     "63ed6ece3476ff3d": {
       "at": "2026-10-27T03:04:42.977885+00:00",
@@ -8014,6 +8033,14 @@
       "skipped": true,
       "url": "https://www.aboutamazon.jp/news/aws/aws-student-rewards-free-cloud-ai-training?utm_source=rss"
     },
+    "a113d2d75254b38d": {
+      "at": "2026-10-31T06:01:11.937084+00:00",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "updated": "boj-governor-press-conference-oct30",
+      "url": "https://www.boj.or.jp/about/release/sousaidouga.htm"
+    },
     "a118f8be4e82f52f": {
       "at": "2026-10-27T03:05:10.758721+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（導入事例）",
@@ -9904,6 +9931,12 @@
       "slug": "tokyo-water-smart-meter-power-network",
       "url": "https://www.waterworks.metro.tokyo.lg.jp/information/press/r8/10/2026102901"
     },
+    "e0f931a5dccfafa2": {
+      "at": "2026-10-31T06:01:11.937375+00:00",
+      "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/statistics/set/kess/release/2026/kess2609.pdf"
+    },
     "e12e0370f6709ae3": {
       "at": "2026-10-30T05:53:17.494067+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -10190,6 +10223,12 @@
       "reason": "quality: 本文が短い（2475字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000114.000048768.html"
+    },
+    "e9ce710af4dea7e4": {
+      "at": "2026-10-31T06:01:11.937389+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（役員）",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/about/release_2026/rel261030a.htm"
     },
     "e9d3b73b309274e41acf6a6be9ce9f55e73fd6d2": {
       "at": "2026-10-27T01:51:14.885966+00:00",
@@ -10949,78 +10988,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T23:51:36.687068+00:00",
-      "attempt": 1,
-      "id": "b7b756160c1e5fbc",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1298字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（299字 / 基準 400字以上）",
-        "easy_markdown が「## ひとことで言うと」から始まっていない",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 109.8,
-        "avg_sentence": 45.8,
-        "long_share": 0.083,
-        "max_paragraph": 152,
-        "paragraphs": 10,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "soumu",
-      "title": "2025年基準 消費者物価指数 東京都区部 2026年(令和8年)10月分(中旬速報値)"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T23:51:42.542959+00:00",
-      "attempt": 2,
-      "id": "b7b756160c1e5fbc",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1609字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（306字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 138.5,
-        "avg_sentence": 57.7,
-        "long_share": 0.292,
-        "max_paragraph": 195,
-        "paragraphs": 10,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "soumu",
-      "title": "2025年基準 消費者物価指数 東京都区部 2026年(令和8年)10月分(中旬速報値)"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T23:51:50.514519+00:00",
-      "attempt": 1,
-      "id": "682a3d6aa5bd15c7",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1157字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（396字 / 基準 400字以上）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 102.2,
-        "avg_sentence": 43.8,
-        "long_share": 0.095,
-        "max_paragraph": 149,
-        "paragraphs": 9,
-        "sentences": 21
-      },
-      "score": null,
-      "source": "stat",
-      "title": "労働力調査（基本集計）2026年（令和8年）9月分"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T23:51:56.590735+00:00",
@@ -17711,6 +17678,65 @@
       "score": null,
       "source": "cyberagent",
       "title": "「ちいかわクリスマスマーケット」限定オリジナルグッズ公開！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-31T06:01:00.763097+00:00",
+      "attempt": 1,
+      "id": "633bbdcdf71bbe9b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1249字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（319字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 127.6,
+        "avg_sentence": 55.8,
+        "long_share": 0.375,
+        "max_paragraph": 137,
+        "paragraphs": 7,
+        "sentences": 16
+      },
+      "score": null,
+      "source": "boj",
+      "title": "米ドル資金供給オペレーションのオファー日程（2026年11月～2027年3月）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-31T06:01:05.861979+00:00",
+      "attempt": 2,
+      "id": "633bbdcdf71bbe9b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1286字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（316字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 106.1,
+        "avg_sentence": 48.2,
+        "long_share": 0.227,
+        "max_paragraph": 160,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "boj",
+      "title": "米ドル資金供給オペレーションのオファー日程（2026年11月～2027年3月）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-10-31T06:01:11.936114+00:00",
+      "attempt": 1,
+      "id": "a113d2d75254b38d",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 100,
+      "source": "boj",
+      "title": "総裁記者会見（10月30日）動画の配信開始"
     }
   ],
   "short_text_retry": {}
