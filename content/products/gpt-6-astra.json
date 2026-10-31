@@ -8,16 +8,22 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "GPT-6 Astraは、米OpenAIが2026年9月に発表した次世代のフラグシップAIモデルです。PCの自動操作機能と高度な論理推論を融合させ、数時間から数日間にわたるタスクを自律的に実行します。",
+    "text": "GPT-6 Astraは、PC操作や3D制作などを自律的に実行する次世代のフラグシップAIモデル群です。米OpenAIが2026年9月に発表しました。",
     "sources": [
-      "openai-announces-gpt-6-astra",
-      "openai-gpt-6-astra-comprehensive-guide-matome"
+      "openai-announces-gpt-6-astra"
     ]
   },
   "facts": [
     {
+      "label": "料金",
+      "value": "Plus以上で利用可能",
+      "sources": [
+        "openai-announces-gpt-6-astra"
+      ]
+    },
+    {
       "label": "提供開始",
-      "value": "2026年9月より順次提供",
+      "value": "2026年9月3日から順次",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
@@ -28,53 +34,39 @@
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
-    },
-    {
-      "label": "使える場所",
-      "value": "ChatGPTやAPIなど",
-      "sources": [
-        "openai-announces-gpt-6-astra"
-      ]
-    },
-    {
-      "label": "向いている人",
-      "value": "AI開発者やビジネス職",
-      "sources": [
-        "amazon-bedrock-openai-prompt-caching",
-        "openai-announces-gpt-6-astra"
-      ]
     }
   ],
   "capabilities": [
     {
-      "text": "PCのブラウザやアプリを自律的に操作し、業務を代行できます。",
+      "text": "PCアプリを自動操作するComputer Use機能を搭載しています。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
-      "text": "音声の指示から、Blenderでの3Dモデリングやゲーム開発をこなします。",
+      "text": "Ultrafastモードにより、APIやCodexで最大8倍の超高速推論を利用できます。",
       "sources": [
-        "openai-announces-gpt-6-astra"
+        "openai-gpt6-astra-ultrafast-release"
       ]
     },
     {
-      "text": "15万行の大規模コード移行や、アプリの機能実装を自動で行います。",
+      "text": "NVIDIA Isaacとの統合により、CADからのシミュレーション自動生成が可能です。",
       "sources": [
-        "openai-gpt-6-astra-comprehensive-guide-matome"
-      ]
-    },
-    {
-      "text": "Amazon Bedrockでの入力コストを約6割削減する機能が使えます。",
-      "sources": [
-        "amazon-bedrock-openai-prompt-caching"
+        "nvidia-isaac-gpt6-astra-robotics-agile-one"
       ]
     }
   ],
-  "pricing": [],
+  "pricing": [
+    {
+      "text": "Plus、Pro、Business、Enterprise、API等へ順次拡大されます。",
+      "sources": [
+        "openai-announces-gpt-6-astra"
+      ]
+    }
+  ],
   "japan": [
     {
-      "text": "エンタープライズ企業やPlusユーザー向けなどに順次提供されています。",
+      "text": "日本からも利用できます。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
@@ -82,69 +74,46 @@
   ],
   "howto": [
     {
-      "text": "Plus、Pro、Business、Enterprise、APIなどで順次利用できます。",
+      "text": "ChatGPTデスクトップアプリを通じてOSやローカル・Webアプリと連携します。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
-      "text": "Amazon Bedrock上のOpenAIモデルでも活用できます。",
+      "text": "エンタープライズやTrusted Access Program参加ユーザー向けに提供が開始されています。",
       "sources": [
-        "amazon-bedrock-openai-prompt-caching"
+        "openai-announces-gpt-6-astra"
       ]
     }
   ],
   "differences": [
     {
-      "text": "従来のチャット型AIを超えて、PCや物理世界を自律操作する機能が統合されています。",
+      "text": "従来テキストや画像生成にとどまっていた役割を広げ、PC操作やソフトウェアエージェント機能を完全に統合しています。",
       "sources": [
-        "openai-announces-gpt-6-astra",
-        "openai-gpt-6-astra-comprehensive-guide-matome"
-      ]
-    },
-    {
-      "text": "超高速推論オプションのUltrafastモードにより、知性を保ったまま処理速度が向上しています。",
-      "sources": [
-        "openai-gpt6-astra-ultrafast-release"
+        "openai-announces-gpt-6-astra"
       ]
     }
   ],
   "faq": [
     {
       "q": "いつから使えますか？",
-      "a": "2026年9月3日の発表当日から、Trusted Access向けなどに順次提供が開始されています。",
+      "a": "2026年9月3日からエンタープライズ向けなどに順次提供が開始されています。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
-      "q": "対応しているプラットフォームは何ですか？",
-      "a": "ChatGPTのデスクトップアプリやAPI、AWSのAmazon Bedrockなどで利用できます。",
-      "sources": [
-        "amazon-bedrock-openai-prompt-caching",
-        "openai-announces-gpt-6-astra"
-      ]
-    },
-    {
-      "q": "どのようなタスクをこなせますか？",
-      "a": "PCの自動操作、3Dモデリング、ゲーム開発、アプリのコード実装などを自律的に行えます。",
+      "q": "どのようなプランで使えますか？",
+      "a": "Plus、Pro、Business、Enterprise、APIなどで順次提供されます。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
-      "q": "Ultrafastモードとは何ですか？",
-      "a": "GPT-6 Astraの知性を保ったまま、処理速度を極限まで高める新しい実行モードです。",
+      "q": "超高速で処理するモードはありますか？",
+      "a": "Ultrafastモードが追加され、APIやCodexで最大8倍の高速化を実現しています。",
       "sources": [
         "openai-gpt6-astra-ultrafast-release"
-      ]
-    },
-    {
-      "q": "誰に向いていますか？",
-      "a": "開発者やビジネス職など、高度な作業をAIに任せたいユーザーに向いています。",
-      "sources": [
-        "amazon-bedrock-openai-prompt-caching",
-        "openai-announces-gpt-6-astra"
       ]
     }
   ],
@@ -155,24 +124,19 @@
       "event": "GPT-6 Astraを発表"
     },
     {
-      "date": "2026-09-22",
-      "slug": "openai-gpt-6-astra-ramp-demo",
-      "event": "Rampでの自律開発デモを公開"
-    },
-    {
       "date": "2026-09-30",
       "slug": "openai-gpt6-astra-ultrafast-release",
-      "event": "超高速推論Ultrafastを追加"
+      "event": "Ultrafastを追加"
     },
     {
       "date": "2026-10-24",
       "slug": "nvidia-isaac-gpt6-astra-robotics-agile-one",
-      "event": "NVIDIA Isaacとのロボット開発基盤を発表"
+      "event": "NVIDIAとロボティクス基盤を発表"
     },
     {
       "date": "2026-10-24",
       "slug": "openai-astra-shield-forge-it-support",
-      "event": "ShieldのForgeでITサポート自動化"
+      "event": "ShieldのForgeで採用"
     }
   ],
   "related": [
@@ -229,9 +193,9 @@
     "openai-gpt-6-astra-first-impressions",
     "openai-announces-gpt-6-astra"
   ],
-  "signature": "0f5a3078f68e1687",
+  "signature": "4eff8b3512ff8346",
   "primarySignature": "35278586796975a9",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:41:21+00:00",
-  "updatedAt": "2026-10-27T11:09:07+00:00"
+  "updatedAt": "2026-10-31T11:01:27+00:00"
 }
