@@ -1,0 +1,25 @@
+name: Buffer delivery monitor (read only)
+on:
+  schedule:
+    - cron: '12,42 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: buffer-delivery-monitor
+  cancel-in-progress: false
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Read Buffer delivery and check upcoming images
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: python scripts/buffer_delivery_monitor.py
