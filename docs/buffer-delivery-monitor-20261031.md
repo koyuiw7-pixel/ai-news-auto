@@ -33,3 +33,11 @@ Buffer公式は、画像は予約時だけでなく公開時まで公開URLで�
 切替は`BUFFER_MONITOR_WATCHDOG_ENABLED=0`のWorker反映。`BUFFER_MONITOR_WATCHDOG_DRY_RUN=1`は読み取りのみ。既存SNS回収用のKV・concurrency・cron、速報/災害・記事作成設定、Buffer予約を変更しない。元のGitHub scheduleは残す。Cloudflare Cron・GitHub API/Actionsの両方が止まる場合は自動回復できず、35〜45分程度の検知間隔も厳密な保証ではない。
 
 本番の直前versionは`87d0ebec-c817-4c9f-ac15-a3cb5fd4ab0a`、先行版`a3b32965-5db2-4b74-ac38-72fc441d8f73`、停止中runの検知を加えた現行版`3812ea7d-b901-4a23-bc34-7b9b60318f48`。既存デプロイ済みbundleがローカルbaseと一致すること、vars・KV・secret binding、3 cronの維持を確認。11:53 JSTに先行版の本番Cronで `bufferMonitorWatchdog: recent-run` を観測し、同じCronで既存SNS回収もaccepted・新規投稿なし。記事処理後の監視も11:31・11:51に自動成功。最終versionも12:03 JSTの本番Cronで `bufferMonitorWatchdog: recent-run`（直近11分）とsnsExtra digest accepted / dispatched null、outcome okを確認。停止中の復旧dispatchは隔離テストとGitHub実データの未来時刻を用いたdry-runで確認しており、本番で実際に停止させて復旧させたわけではない。
+
+## 2026-10-31: 本番の復旧経路を安全に実行
+
+依頼に基づき、実際の障害を起こさず監視間隔を一時的に1分へ短縮し、直近の監視から12分経過した状態を「監視が古い」と判定させた。通常の投稿/予約/記事作成や監視を止めず、見張り番からの実際の起動だけを確認する試験。試験設定には12:27 JSTの自動終了期限を設けた。12:23 JSTの本番Cronは `bufferMonitorWatchdog: dispatched=true, probe=true, minutesSince=12` を記録し、同時のsnsExtraはdigest accepted / dispatched null。実際の[monitor run 41164156896](https://github.com/koyuiw7-pixel/ai-news-auto/actions/runs/41164156896)は12:23:15にworkflow_dispatchで起動、Bufferを読み取るstepまでsuccess。これは擬似的な停止判定を用いた実dispatchの証拠であり、実障害を発生させての検証ではない。
+
+同runはThreads 58 sent/1 scheduled/1 error、X 47/2/1、Facebook 46/2/0、30分超過0。12:11からのThreads予約1件・送信済み1件の変化は、既存の12:15予約の進行と整合するが、当該IDの詳細照合は未実施。監視はSNS投稿しない。データは時点値。実行前にKV専用キーへ12:23:13を保存したことを確認、通常どおりTTL2時間・35分のcooldownを維持し、手動で消さない。試験コード・変数は削除し、workerは通常の35分へ復元、version `880e4181-9fc2-4b51-900b-8f7067551af7`。試験変数が本番から消えたこと、既存vars/KV/secret bindingおよび3 cronを確認した。試験用コミット `1be7348`、復元 `54ff711` とも[no-deploy]。10:42・11:12・11:42・12:12の元schedule起動は12:37時点で未観測、記事完了後の監視は12:11にも成功。原因やGitHub定期起動自体の正常化は未確定。
+
+復元版は12:33:13 JSTの実Cronでoutcome ok、bufferMonitorWatchdogはrecent-run（1分）で重複起動なし、同時のsnsExtraはdigest accepted / dispatched null。試験後の通常運用に戻ったことを確認。
