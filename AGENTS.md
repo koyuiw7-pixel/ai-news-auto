@@ -152,3 +152,5 @@
 - GeminiのExcelクローン記事の信頼性・検索入口の改善と未検証のM5比較記事: `docs/search-gemini-excel-20261031.md`。第三者デモと公式発表を分け、Googleの反映・検索流入は別途確認する。
 
 - M5 UltraとRTX 5090の比較記事の仕様・測定条件・価格の訂正: `docs/mac-studio-correction-20261031.md`。256GB検証機と最大512GB仕様を区別し、形式や試行の異なる数値を混ぜない。通常記事の自動再生成・古いSNS文面に注意。
+
+- Buffer受付後の配信状態・予約画像の読み取り専用監視: `docs/buffer-delivery-monitor-20261031.md`。Buffer受付を配信成功と混同しない。既存の重複防止履歴や予約を変更せず、不明時は自動再送しない。
