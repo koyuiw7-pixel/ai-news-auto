@@ -58,6 +58,12 @@ function editorialCorrections(product: Product): Product {
       japan: [{ text: "Metaは2026年10月23日から日本での提供を開始したと発表しています。国内企業との一部連携は進行中です。", sources: [] }],
       howto: [{ text: "iOS、Android、muse.aiで案内を確認し、接続先や権限を選びます。", sources: [] }],
       differences: [], faq: [],
+      // 自動生成の日付は記事の取得日と発表日が混ざるため、元の発表日を確認して固定する。
+      timeline: [
+        { date: "2026-10-02", slug: "meta-muse-ai-agent-app-launch", event: "Museの紹介動画を取り上げた記事" },
+        { date: "2026-10-26", slug: "nvidia-meta-muse-partnership-expansion", event: "NVIDIAとMetaがMuseの協業拡大を発表" },
+        { date: "2026-10-27", slug: "meta-muse-singapore-launch", event: "Museがシンガポールで提供開始" },
+      ],
       officialCheck: { date: "2026-10-31", url: "https://about.fb.com/ja/news/2026/10/muse-personal-ai-agent-launches-in-japan/", label: "Meta公式：日本での提供" },
     };
   }
