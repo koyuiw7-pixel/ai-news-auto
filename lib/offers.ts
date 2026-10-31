@@ -37,6 +37,14 @@ type Partner = {
   /** A8 のバナー素材など、素材ごとのリンクを使う場合（画像と組で使う） */
   link?: string;
   pixel?: string;
+  /** 在庫等の問題が確認された広告は、確認するまで表示しない */
+  hidden?: boolean;
+  /** 販売終了時刻（確認済みの案件だけ） */
+  activeUntil?: string;
+  facts?: string[];
+  caution?: string;
+  imageNote?: string;
+  cta?: string;
 };
 
 type Book = {
@@ -90,6 +98,10 @@ export type OfferItem = {
   rank?: number;
   keyword?: string;
   badge?: string;
+  activeUntil?: string;
+  facts?: string[];
+  caution?: string;
+  imageNote?: string;
 };
 
 export type Offer = {
@@ -102,6 +114,7 @@ export type Offer = {
   checkedAt: string;
   /** ASPの表示計測用ピクセル */
   pixels: string[];
+  timedPixels?: { url: string; activeUntil: string }[];
 };
 
 const MAX_ITEMS = 3;
@@ -166,6 +179,10 @@ function pickTopic(article: ArticleSummary, offers: OffersFile): Topic | undefin
 }
 
 export function offerForArticle(article: ArticleSummary, maxItems = MAX_ITEMS): Offer | undefined {
+  // GeForce NOWはクラウドでゲームを動かすサービス。名前にGeForceが含まれるだけで
+  // 高額なローカルAI向けPCを「この記事の選択肢」として勧めない。
+  const headline = `${article.title} ${article.seoTitle ?? ""}`;
+  if (/GeForce\s*NOW|クラウドゲーム/i.test(headline) && !/ローカルAI|ローカルLLM|Ollama|画像生成/i.test(headline)) return undefined;
   const { offers } = load();
   const topic = pickTopic(article, offers);
   if (!topic) return undefined;
@@ -190,7 +207,7 @@ export function partnerItem(key: string): { item: OfferItem; pixel?: string } | 
   const { offers, affiliates } = load();
   const partner = offers.partners[key];
   const program = partner ? affiliates[partner.program] : undefined;
-  if (!partner || !program?.url) return undefined;
+  if (!partner || partner.hidden || !program?.url) return undefined;
   return {
     item: {
       key,
@@ -199,10 +216,14 @@ export function partnerItem(key: string): { item: OfferItem; pixel?: string } | 
       label: partner.label,
       badge: partner.badge,
       note: partner.note,
+      activeUntil: partner.activeUntil,
+      facts: partner.facts,
+      caution: partner.caution,
+      imageNote: partner.imageNote,
       image: partner.image,
       url: partner.link ?? partnerUrl(program.url, partner.page),
       shop: partner.shop,
-      cta: "公式サイトで見る",
+      cta: partner.cta ?? "公式サイトで見る",
     },
     pixel: partner.pixel ?? program.pixel,
   };
@@ -232,11 +253,12 @@ function buildOffer(topic: Topic, fallback: string, maxItems: number, seed = "")
 
   const items: OfferItem[] = [];
   const pixels = new Set<string>();
+  const timedPixels = new Map<string, string>();
 
   for (const key of topic.partners) {
     const partner = offers.partners[key];
     const program = partner ? affiliates[partner.program] : undefined;
-    if (!partner || !program?.url) continue;
+    if (!partner || partner.hidden || !program?.url) continue;
     items.push({
       key,
       kind: "partner",
@@ -244,15 +266,20 @@ function buildOffer(topic: Topic, fallback: string, maxItems: number, seed = "")
       label: partner.label,
       badge: partner.badge,
       note: partner.note,
+      activeUntil: partner.activeUntil,
+      facts: partner.facts,
+      caution: partner.caution,
+      imageNote: partner.imageNote,
       price: products?.partnerPrices?.[key] ?? partner.price,
       priceText: partner.priceText,
       image: partner.image,
       url: partner.link ?? partnerUrl(program.url, partner.page),
       shop: partner.shop,
-      cta: "公式サイトで見る",
+      cta: partner.cta ?? "公式サイトで見る",
     });
     const pixel = partner.pixel ?? program.pixel;
-    if (pixel) pixels.add(pixel);
+    if (pixel && partner.activeUntil) timedPixels.set(pixel, partner.activeUntil);
+    else if (pixel) pixels.add(pixel);
   }
 
   // 話題の本 → 補充用の話題の本 → 既定の話題の本、の順に、必ず maxItems 個そろえる
@@ -294,5 +321,6 @@ function buildOffer(topic: Topic, fallback: string, maxItems: number, seed = "")
     items,
     checkedAt: products?.fetchedAt ?? new Date().toISOString(),
     pixels: [...pixels],
+    timedPixels: [...timedPixels].filter(([url]) => !pixels.has(url)).map(([url, activeUntil]) => ({ url, activeUntil })),
   };
 }

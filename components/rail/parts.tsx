@@ -72,7 +72,7 @@ export function ProductImage({
     <span className={`relative grid place-items-center overflow-hidden bg-white ${className}`}>
       {item.image ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={item.image} alt="" loading={eager ? "eager" : "lazy"} className={`size-full object-contain ${pad}`} />
+        <img src={item.image} alt="" loading={eager ? "eager" : "lazy"} className={`absolute inset-0 h-full w-full object-contain ${pad}`} />
       ) : (
         // 写真の無いサービス（ConoHa AI Canvas など）は、名前と一言を文字で見せる
         <span className="flex size-full flex-col items-center justify-center gap-2 bg-[linear-gradient(135deg,#eef6fb,#ffffff_55%,#f3f0fb)] px-4 text-center">

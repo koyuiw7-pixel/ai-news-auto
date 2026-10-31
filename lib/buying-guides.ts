@@ -135,6 +135,8 @@ export function resolveProducts(guide: BuyingGuide): ResolvedProduct[] {
     if (product.partner) {
       const found = partnerItem(product.partner);
       if (!found) return [];
+      // 静的な比較ページは期限を迎えた時点で再生成される保証がないため、期限つきの販売は載せない。
+      if (found.item.activeUntil) return [];
       const item = { ...found.item, price: null, priceText };
       return [{ ...product, key: product.id ?? product.partner, item, pixel: found.pixel, sponsored: true }];
     }

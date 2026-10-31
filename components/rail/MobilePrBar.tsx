@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { OfferItem } from "@/lib/offers";
+import { offerIsActive } from "@/lib/offer-time";
 
 const STORAGE_KEY = "saisoku:pr-bar-closed";
 
@@ -13,6 +14,22 @@ export default function MobilePrBar({ item, watchId }: { item: OfferItem; watchI
   const [scrolled, setScrolled] = useState(false);
   const [blocked, setBlocked] = useState(false);
   const [closed, setClosed] = useState(true);
+  const [active, setActive] = useState(!item.activeUntil);
+
+  useEffect(() => {
+    if (!item.activeUntil) { setActive(true); return; }
+    const end = Date.parse(item.activeUntil);
+    let timer: number | undefined;
+    const check = () => {
+      if (timer) window.clearTimeout(timer);
+      const remaining = end - Date.now();
+      setActive(offerIsActive(item.activeUntil, Date.now()));
+      if (remaining > 0) timer = window.setTimeout(check, Math.min(remaining + 50, 2_147_483_647));
+    };
+    check();
+    document.addEventListener("visibilitychange", check);
+    return () => { if (timer) window.clearTimeout(timer); document.removeEventListener("visibilitychange", check); };
+  }, [item.activeUntil]);
 
   useEffect(() => {
     try {
@@ -24,18 +41,26 @@ export default function MobilePrBar({ item, watchId }: { item: OfferItem; watchI
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    const target = document.getElementById(watchId);
-    const observer = target
-      ? new IntersectionObserver(([entry]) => setBlocked(entry.isIntersecting), { threshold: 0.1 })
+    const targets = [document.getElementById(watchId), document.querySelector('[data-aff-pos="ranking-rail"]')]
+      .filter((element): element is Element => element !== null);
+    const intersecting = new Set<Element>();
+    const observer = targets.length
+      ? new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) intersecting.add(entry.target);
+            else intersecting.delete(entry.target);
+          }
+          setBlocked(intersecting.size > 0);
+        }, { threshold: 0 })
       : undefined;
-    if (target && observer) observer.observe(target);
+    for (const target of targets) observer?.observe(target);
     return () => {
       window.removeEventListener("scroll", onScroll);
       observer?.disconnect();
     };
   }, [watchId]);
 
-  const visible = scrolled && !blocked && !closed;
+  const visible = active && scrolled && !blocked && !closed;
   const price = item.price != null ? `¥${new Intl.NumberFormat("ja-JP").format(item.price)}` : item.priceText;
 
   return (
@@ -65,10 +90,10 @@ export default function MobilePrBar({ item, watchId }: { item: OfferItem; watchI
           <span className="min-w-0 flex-1">
             <span className="flex items-center gap-1.5 text-meta font-bold">
               <span className="rounded border border-line-strong px-1 text-badge text-muted">PR</span>
-              <span className="text-live">サイソクのイチオシ</span>
+              <span className="text-live">掲載中の商品</span>
             </span>
             <span className="block truncate text-meta font-bold text-ink">{item.name}</span>
-            {price && <span className="index-num text-meta font-bold text-ink">{price}</span>}
+            {price && <span className="text-meta font-bold tabular-nums tracking-normal text-ink">{price}</span>}
           </span>
           <span className="shrink-0 rounded-md bg-accent px-3.5 py-2 text-meta font-bold text-accent-ink">見る</span>
         </a>

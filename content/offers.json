@@ -34,8 +34,8 @@
       "key": "local",
       "match": "ローカルLLM|ローカルAI|RTX|GeForce|VRAM|llama\\.cpp|Ollama|ゲーミングPC|オンデバイス",
       "eyebrow": "この記事の技術を試すなら",
-      "headline": "AIを手元のPCで動かすなら、まずGPUのメモリ",
-      "lead": "ローカルLLMや画像生成を快適に動かす目安は、VRAM 16GB以上のGPUです。",
+      "headline": "手元でAIを動かすPCの選択肢",
+      "lead": "使いたいAIの動作要件やGPUメモリ、予算を確認して選びます。",
       "partners": [
         "oz-rtx5070ti",
         "oz-rx9060xt",
@@ -598,13 +598,23 @@
     "oz-rtx5070ti": {
       "program": "OZ GAMING",
       "name": "OZ GAMING View 380（Ryzen7 9800X3D・RTX 5070 Ti）",
-      "label": "VRAM 16GBで余裕",
-      "note": "中規模のローカルLLMや画像生成も快適に動く構成",
+      "label": "手元で画像生成・AIを試す",
+      "note": "RTX 5070 TiのGPUを搭載。クラウドだけに頼らず、自分のPCで画像生成や言語AIを試したい人向け。",
       "price": 469800,
       "image": "https://makeshop-multi-images.akamaized.net/OZgaming/itemimages/000000002716_TQLRhR3.png",
       "page": "https://www.ozgaming-pcshop.com/view/item/000000002716",
       "shop": "OZ GAMING",
-      "source": "oz:000000002716"
+      "source": "oz:000000002716",
+      "facts": [
+        "RTX 5070 Ti・VRAM 16GB",
+        "Ryzen 7 9800X3D",
+        "メモリ32GB・SSD 1TB",
+        "1年保証"
+      ],
+      "caution": "動くAIの種類や速度はモデル・設定次第です。購入前に使いたいソフトの動作要件と構成をご確認ください。",
+      "imageNote": "画像はイメージです。色や構成により異なります。",
+      "activeUntil": "2026-11-01T00:00:00+09:00",
+      "cta": "構成と価格を公式サイトで見る"
     },
     "oz-rx9060xt": {
       "program": "OZ GAMING",
@@ -615,7 +625,8 @@
       "image": "https://makeshop-multi-images.akamaized.net/OZgaming/itemimages/000000002781_SJs0KPH.png",
       "page": "https://www.ozgaming-pcshop.com/view/item/000000002781",
       "shop": "OZ GAMING",
-      "source": "oz:000000002781"
+      "source": "oz:000000002781",
+      "hidden": true
     },
     "conoha-ai-canvas": {
       "program": "ConoHa AI Canvas",
@@ -659,8 +670,8 @@
     "xserver": {
       "program": "エックスサーバー",
       "name": "エックスサーバー",
-      "label": "国内シェアNo.1",
-      "note": "WordPressもAIツールのサイトも、まずはここから。速さと安定性で定番のレンタルサーバー",
+      "label": "WordPressでサイト運営",
+      "note": "WordPressを使ったサイトの運営を検討する人向け。料金と契約条件を確認できます。",
       "image": "https://www25.a8.net/svt/bgt?aid=261026994259&wid=001&eno=01&mid=s00000001642001130000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4A7AGI+CO4+61C2Q",
       "shop": "エックスサーバー公式"
@@ -749,8 +760,8 @@
     "silicon-power": {
       "program": "シリコンパワー SSD・メモリ",
       "name": "シリコンパワー SSD・メモリ",
-      "label": "メモリ増設で快適に",
-      "note": "生成AIで足りなくなりがちなメモリとSSDを、メーカー直営で",
+      "label": "SSD・メモリを選ぶ",
+      "note": "容量や接続規格を確かめ、使っているPCに対応するSSD・メモリを選べます。",
       "image": "https://www29.a8.net/svt/bgt?aid=261026994227&wid=001&eno=01&mid=s00000027812001008000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+3R5F3M+5YLK+5YRHE",
       "shop": "Silicon Power Direct"
@@ -767,8 +778,8 @@
     "video-editor": {
       "program": "Movavi Video Editor",
       "name": "Movavi Video Editor",
-      "label": "初心者でもプロ並み",
-      "note": "AI機能つきの多機能動画編集ソフト。字幕やノイズ除去も自動で",
+      "label": "動画編集を始めたい人へ",
+      "note": "動画のカットや字幕付けなどを行う編集ソフト。対応機能と料金を確認できます。",
       "image": "https://www20.a8.net/svt/bgt?aid=261026994326&wid=001&eno=01&mid=s00000018520001006000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+5E3BZM+3YWG+5YJRM",
       "shop": "Movavi公式"
@@ -884,8 +895,8 @@
     "virusbuster": {
       "program": "ウイルスバスター クラウド",
       "name": "ウイルスバスター クラウド",
-      "label": "販売本数No.1",
-      "note": "詐欺サイトや偽メールをAIで見分けて警告。国内で定番の総合セキュリティ",
+      "label": "端末のセキュリティ対策",
+      "note": "パソコンやスマホのセキュリティ対策を検討する人向け。対応端末と料金を確認できます。",
       "image": "https://www24.a8.net/svt/bgt?aid=261026994315&wid=001&eno=01&mid=s00000015315001020000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+57JKC2+3A66+5YRHE",
       "shop": "トレンドマイクロ公式"
@@ -956,8 +967,8 @@
     "aio-diagnosis": {
       "program": "AIO診断サービス",
       "name": "AIO診断サービス",
-      "label": "無料で診断",
-      "note": "ChatGPTなどのAI検索で自社がどう紹介されるかを、約30ページのレポートで無料診断",
+      "label": "AI検索での見え方を調べる",
+      "note": "AI検索における自社の見え方を調べるサービス。内容と利用条件を確認できます。",
       "image": "https://www21.a8.net/svt/bgt?aid=261024973814&wid=001&eno=01&mid=s00000027820001003000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEO5P+DGMV76+5YNS+5YJRM",
       "shop": "ドットアンドノード"

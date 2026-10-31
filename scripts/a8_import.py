@@ -20,7 +20,7 @@ OFFERS = ROOT / "content" / "offers.json"
 # programId → サイトでの見せ方。key は offers.json の partners のキー
 PARTNERS: dict[str, dict] = {
     # レンタルサーバー・VPS（AIアプリやサイトを自分で公開する人向け）
-    "s00000001642001": {"key": "xserver", "name": "エックスサーバー", "label": "国内シェアNo.1", "note": "WordPressもAIツールのサイトも、まずはここから。速さと安定性で定番のレンタルサーバー", "shop": "エックスサーバー公式"},
+    "s00000001642001": {"key": "xserver", "name": "エックスサーバー", "label": "WordPressでサイト運営", "note": "WordPressを使ったサイトの運営を検討する人向け。料金と契約条件を確認できます。", "shop": "エックスサーバー公式"},
     "s00000001642013": {"key": "xserver-vps", "name": "XServer VPS", "label": "AIアプリを自分で動かす", "note": "Dify・n8n・Ollamaなどを自分専用に動かせるVPS。アプリのテンプレートから数クリックで導入", "shop": "XServer公式"},
     "s00000000018030": {"key": "conoha-vps", "name": "ConoHa VPS", "label": "時間課金で気軽に", "note": "使った時間だけ払える高速VPS。AIのお試し環境づくりに", "shop": "ConoHa公式"},
     "s00000025450001": {"key": "shin-server", "name": "シンレンタルサーバー", "label": "新世代の高速サーバー", "note": "最新の高速化技術を採り入れたエックスサーバー系の新ブランド", "shop": "シン・レンタルサーバー公式"},
@@ -31,10 +31,10 @@ PARTNERS: dict[str, dict] = {
     "s00000027479001": {"key": "gmktec", "name": "GMKtec ミニPC", "label": "AI処理に強い小型PC", "note": "AI処理用のNPUを積んだミニPCも。机の上でローカルAIを試すなら", "shop": "GMKtec公式"},
     "s00000026462001": {"key": "minisforum", "name": "MINISFORUM ミニPC", "label": "高性能ミニPC", "note": "手のひらサイズでも高性能。ローカルLLMの入門機に人気", "shop": "MINISFORUM公式"},
     "s00000025652001": {"key": "mdl", "name": "MDL BTOゲーミングPC", "label": "GPU構成を選べる", "note": "画像生成やローカルLLM向けに、GPUから構成を選べるBTOパソコン", "shop": "MDL公式"},
-    "s00000027812001": {"key": "silicon-power", "name": "シリコンパワー SSD・メモリ", "label": "メモリ増設で快適に", "note": "生成AIで足りなくなりがちなメモリとSSDを、メーカー直営で", "shop": "Silicon Power Direct"},
+    "s00000027812001": {"key": "silicon-power", "name": "シリコンパワー SSD・メモリ", "label": "SSD・メモリを選ぶ", "note": "容量や接続規格を確かめ、使っているPCに対応するSSD・メモリを選べます。", "shop": "Silicon Power Direct"},
     "s00000019939001": {"key": "parallels", "name": "Parallels Desktop", "label": "MacでWindows", "note": "MacでWindows専用のAIツールも動かせる定番ソフト", "shop": "Parallels公式"},
     # 動画
-    "s00000018520001": {"key": "video-editor", "name": "Movavi Video Editor", "label": "初心者でもプロ並み", "note": "AI機能つきの多機能動画編集ソフト。字幕やノイズ除去も自動で", "shop": "Movavi公式"},
+    "s00000018520001": {"key": "video-editor", "name": "Movavi Video Editor", "label": "動画編集を始めたい人へ", "note": "動画のカットや字幕付けなどを行う編集ソフト。対応機能と料金を確認できます。", "shop": "Movavi公式"},
     "s00000016141002": {"key": "bandicut", "name": "Bandicut", "label": "無劣化カット", "note": "撮った動画を劣化させずに、速く切って結合できるソフト", "shop": "Bandicam Company"},
     "s00000021455001": {"key": "movie-school", "name": "クリエイターズジャパン", "label": "最短1ヶ月で習得", "note": "動画編集を最短1ヶ月で仕事レベルまで学べるオンラインスクール", "shop": "クリエイターズジャパン"},
     "s00000021268001": {"key": "skillhacks", "name": "SkillHacks", "label": "動画で学ぶプログラミング", "note": "未経験からWebアプリを作れるまで。買い切りの動画講座", "shop": "SkillHacks公式"},
@@ -50,7 +50,7 @@ PARTNERS: dict[str, dict] = {
     "s00000018721001": {"key": "sparta", "name": "スパルタ英会話", "label": "3ヶ月で短期集中", "note": "マンツーマンで会話量を徹底的に増やす、短期集中型の英会話スクール", "shop": "スパルタ英会話"},
     # セキュリティ
     "s00000016371001": {"key": "norton", "name": "ノートン 360", "label": "定番のセキュリティ", "note": "AIを使った詐欺やフィッシングから、PCとスマホをまとめて守る", "shop": "ノートン公式"},
-    "s00000015315001": {"key": "virusbuster", "name": "ウイルスバスター クラウド", "label": "販売本数No.1", "note": "詐欺サイトや偽メールをAIで見分けて警告。国内で定番の総合セキュリティ", "shop": "トレンドマイクロ公式"},
+    "s00000015315001": {"key": "virusbuster", "name": "ウイルスバスター クラウド", "label": "端末のセキュリティ対策", "note": "パソコンやスマホのセキュリティ対策を検討する人向け。対応端末と料金を確認できます。", "shop": "トレンドマイクロ公式"},
     "s00000005993007": {"key": "eset", "name": "ESET HOME セキュリティ", "label": "軽くて強い", "note": "動作が軽いのに検出力が高い総合セキュリティソフト", "shop": "ESET公式"},
     "s00000021488002": {"key": "surfshark", "name": "Surfshark", "label": "軽いウイルス対策", "note": "マルウェアや危険なサイトからPC・スマホを守る、動作の軽いウイルス対策ソフト", "shop": "Surfshark公式"},
     # ガジェット
@@ -62,7 +62,7 @@ PARTNERS: dict[str, dict] = {
     # 2026-10-27 追加
     "s00000026713001": {"key": "coloso", "name": "Coloso", "label": "プロに学ぶ講座", "note": "イラスト・3D・映像など、第一線のクリエイターが教えるオンライン講座", "shop": "Coloso公式"},
     "s00000008659009": {"key": "gomcam", "name": "GOM Cam", "label": "画面録画ソフト", "note": "パソコン画面の録画と簡単な編集ができる。操作説明やAIツールの解説動画づくりに", "shop": "GOM＆Company"},
-    "s00000027820001": {"key": "aio-diagnosis", "name": "AIO診断サービス", "label": "無料で診断", "note": "ChatGPTなどのAI検索で自社がどう紹介されるかを、約30ページのレポートで無料診断", "shop": "ドットアンドノード"},
+    "s00000027820001": {"key": "aio-diagnosis", "name": "AIO診断サービス", "label": "AI検索での見え方を調べる", "note": "AI検索における自社の見え方を調べるサービス。内容と利用条件を確認できます。", "shop": "ドットアンドノード"},
     "s00000001418002": {"key": "office-english", "name": "6週間チャレンジ オフィス英会話", "label": "仕事の英会話に絞る", "note": "会議や電話など、仕事で使う英語のフレーズを6週間で練習する教材", "shop": "IQ-Strategy"},
     "s00000018318001": {"key": "matsui", "name": "松井証券", "label": "老舗のネット証券", "note": "株式・投資信託・NISAに対応した、創業100年超の証券会社", "shop": "松井証券公式"},
     "s00000008903007": {"key": "dmm-kabu", "name": "DMM 株", "label": "アプリで取引", "note": "日本株・米国株・NISAをアプリで取引できる。取引でポイントもたまる", "shop": "DMM.com証券"},

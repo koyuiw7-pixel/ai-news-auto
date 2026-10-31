@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { OfferItem } from "@/lib/offers";
+import { nextOfferExpiry, offerIsActive } from "@/lib/offer-time";
 import { ProductImage, Rating, priceText, reasonOf } from "./parts";
 
 const SEEN_KEY = "saisoku:offers-seen";
@@ -50,8 +51,24 @@ export default function RankingBody({
   // 最初の表示はサーバーと同じ並び。読み込み後に、この端末の記録で並べ替える
   const [order, setOrder] = useState(items);
   const [ready, setReady] = useState(false);
+  // 期限つき商品は時刻が確認できるまで表示せず、期限到来時にも差し替える。
+  const [now, setNow] = useState<number | null>(null);
   const root = useRef<HTMLDivElement>(null);
-  const shown = order.slice(0, visible);
+  const shown = order.filter((item) => offerIsActive(item.activeUntil, now)).slice(0, visible);
+
+  useEffect(() => {
+    let timer: number | undefined;
+    const tick = () => {
+      if (timer) window.clearTimeout(timer);
+      const current = Date.now();
+      setNow(current);
+      const next = nextOfferExpiry(items.map((item) => item.activeUntil), current);
+      if (next) timer = window.setTimeout(tick, Math.min(next - current + 50, 2_147_483_647));
+    };
+    tick();
+    document.addEventListener("visibilitychange", tick);
+    return () => { if (timer) window.clearTimeout(timer); document.removeEventListener("visibilitychange", tick); };
+  }, [items]);
 
   useEffect(() => {
     const seen = readSeen();
@@ -125,20 +142,30 @@ function First({ item, wide, badge, onClick }: { item: OfferItem; wide: boolean;
       </span>
 
       <span className={wide ? "mt-3 grid gap-5 sm:grid-cols-[200px_minmax(0,1fr)]" : "block"}>
+        <span className="block">
         <ProductImage
           item={item}
-          className={`rounded-xl border border-line ${wide ? "aspect-square" : "mt-2.5 aspect-[16/10]"}`}
+          className={`rounded-xl border border-line ${wide ? "aspect-square" : "mt-2.5 aspect-[4/3]"}`}
           pad={item.kind === "book" ? "p-5" : "p-3"}
           // 先読みすると本文の LCP と取り合う（スマホでは右枠はページの最下部）ので遅延読み込みのまま
         />
+        {item.imageNote && <span className="mt-1 block text-meta leading-[1.5] text-muted">{item.imageNote}</span>}
+        </span>
         <span className={`flex min-w-0 flex-col ${wide ? "" : "mt-2.5"}`}>
           <span className="line-clamp-2 text-[15px] font-bold leading-[1.5] text-ink group-hover:underline">{item.name}</span>
           {reason && (
             <span className="mt-1.5 rounded-lg bg-surface px-2.5 py-2 text-note leading-[1.6] text-ink-soft">
-              <span className="font-bold text-ink">ここがおすすめ：</span>
+              <span className="font-bold text-ink">注目する理由：</span>
               {reason}
             </span>
           )}
+          {item.facts && item.facts.length > 0 && (
+            <span className="mt-2 flex flex-wrap gap-1.5" aria-label="主な仕様">
+              {item.facts.map((fact) => <span key={fact} className="rounded-md border border-line bg-paper px-2 py-1 text-meta font-semibold leading-snug text-ink-soft">{fact}</span>)}
+            </span>
+          )}
+          {item.caution && <span className="mt-2 block text-note leading-[1.65] text-ink-soft">{item.caution}</span>}
+          {item.activeUntil && <span className="mt-2 block text-meta font-bold text-ink-soft">販売終了予定：{new Intl.DateTimeFormat("ja-JP", { timeZone: "Asia/Tokyo", month: "numeric", day: "numeric", hour: "numeric", minute: "2-digit", hourCycle: "h23" }).format(new Date(item.activeUntil))}（変更の場合あり）</span>}
           <span className="mt-1.5">
             <Rating item={item} />
           </span>

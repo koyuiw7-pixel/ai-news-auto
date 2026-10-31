@@ -42,7 +42,10 @@ jobs:
       - run: npm ci
 
       - name: Verify affiliate and guide measurement without external requests
-        run: node scripts/test_aff.mjs
+        run: |
+          node scripts/test_aff.mjs
+          node --test tests/test_offer_time.cjs tests/test_offer_integrity.cjs
+          python3 -m unittest tests/test_a8_pr_copy.py
 
       - name: Verify guide routing without external requests
         run: node --test tests/test_howto_routing.cjs
