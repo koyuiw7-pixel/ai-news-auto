@@ -42,7 +42,7 @@ def audit(key):
         cursor, seen = None, set()
         for page in range(100):
             after = ', after: ' + json.dumps(cursor) if cursor else ''
-            q = f'''query {{ posts(first: 50{after}, input: {{ organizationId: {json.dumps(oid)}, filter: {{ status: [sent], channelIds: {json.dumps([c['id'] for c in included])} }} }}) {{ edges {{ node {{ {FIELDS} }} }} pageInfo {{endCursor hasNextPage}} }} }}'''
+            q = f'''query {{ posts(first: 50{after}, input: {{ organizationId: {json.dumps(oid)}, filter: {{ status: [scheduled, sending, needs_approval, draft, error], channelIds: {json.dumps([c['id'] for c in included])} }} }}) {{ edges {{ node {{ {FIELDS} }} }} pageInfo {{endCursor hasNextPage}} }} }}'''
             data = tp.buffer_graphql(key, q)['posts']
             entry['posts'].extend(e['node'] for e in data['edges'])
             entry['pages'] = page + 1
