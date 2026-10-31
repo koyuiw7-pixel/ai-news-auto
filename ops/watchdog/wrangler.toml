@@ -43,3 +43,7 @@ FAST_DRY_RUN = "0"
 # 無効化はこの値だけを0へ。速報/災害/レーダーの動作は変えない。
 SNS_EXTRA_ENABLED = "1"
 SNS_EXTRA_DRY_RUN = "0"
+
+# Buffer監視だけを読み取り確認し、35分以上未起動なら読み取り専用workflowを起動。
+BUFFER_MONITOR_WATCHDOG_ENABLED = "1"
+BUFFER_MONITOR_WATCHDOG_DRY_RUN = "0"

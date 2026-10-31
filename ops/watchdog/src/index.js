@@ -19,6 +19,7 @@ import { fastLane, makeGh, makeNotify, mergeRegistry } from "./fastlane.js";
 import { radar } from "./radar.js";
 import { quakeLane } from "./quake.js";
 import { snsExtra } from "./sns-extra.js";
+import { bufferMonitorWatchdog } from "./buffer-monitor.js";
 // Python 側（scripts/fast_lane.py）と同じルールを使う。変えたら npx wrangler deploy し直す
 import baseRules from "../../../scripts/fast_lane_rules.json";
 // 追加の発信元（tier A/B/C）。fast_lane_rules.json の sources に足して使う
@@ -157,10 +158,25 @@ async function snsTick(env, now) {
   }
 }
 
+async function bufferMonitorTick(env, now) {
+  try {
+    const result = await bufferMonitorWatchdog(env, now);
+    console.log(JSON.stringify({ bufferMonitorWatchdog: result }));
+  } catch {
+    console.error('bufferMonitorWatchdog: unexpected error');
+  }
+}
+
 export default {
   async scheduled(event, env, ctx) {
     const now = new Date(event.scheduledTime);
-    ctx.waitUntil(event.cron === RADAR_CRON ? radarTick(env, now) : event.cron === SNS_CRON ? snsTick(env, now) : tick(env, now));
+    if (event.cron === SNS_CRON) {
+      // 別のwaitUntilでSNS回収の成功・失敗や待機時間と分離する。
+      ctx.waitUntil(snsTick(env, now));
+      ctx.waitUntil(bufferMonitorTick(env, now));
+    } else {
+      ctx.waitUntil(event.cron === RADAR_CRON ? radarTick(env, now) : tick(env, now));
+    }
   },
   // 動作確認用（外から呼べる URL は無い。wrangler dev のときだけ使う。中身は見せない）
   async fetch(_req, env) {
