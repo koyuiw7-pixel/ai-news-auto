@@ -74,6 +74,11 @@ class MonitorTest(unittest.TestCase):
         with patch.object(monitor,'buffer_graphql',side_effect=self.fake):
             with self.assertRaises(ValueError): monitor.collect('fake',NOW)
 
+    def test_known_sent_post_missing_is_unknown_not_healthy(self):
+        with patch.object(monitor,'buffer_graphql',side_effect=self.fake):
+            with self.assertRaises(ValueError): monitor.collect('fake',NOW,known_sent_id='missing')
+            self.assertEqual(monitor.collect('fake',NOW,image_checker=lambda url:'ok',known_sent_id='a')['counts']['threads']['sent'],1)
+
     def test_missing_channel_and_repeated_cursor_raise(self):
         self.channels=self.channels[:2]
         with patch.object(monitor,'buffer_graphql',side_effect=self.fake):
@@ -96,11 +101,22 @@ class MonitorTest(unittest.TestCase):
             self.assertEqual(monitor.check_image('https://ai-tech-express.jp/card/x'),'ok')
             resp.read.return_value=b'<html>challenge'
             self.assertEqual(monitor.check_image('https://ai-tech-express.jp/card/x'),'unavailable')
+            self.assertEqual(monitor.check_image('https://images.buffer.com/services/test'),'unavailable')
             self.assertEqual(monitor.check_image('https://evil.example/x'),'external_unchecked')
             self.assertEqual(monitor.check_image('http://ai-tech-express.jp/x'),'external_unchecked')
             opener.open.side_effect=urllib.error.HTTPError('https://ai-tech-express.jp/x',302,'redirect',{},None)
             self.assertEqual(monitor.check_image('https://ai-tech-express.jp/card/x'),'unavailable')
-        self.assertEqual(opener.open.call_count,3)
+        self.assertEqual(opener.open.call_count,4)
+
+    def test_actionable_findings_fail_but_old_error_is_warning(self):
+        base={'counts':{k:Counter() for k in monitor.SERVICES}, 'errors':Counter({'画像取得関連':1}), 'recent_errors':0, 'overdue':0, 'images':Counter()}
+        with patch.dict('os.environ', {'BUFFER_API_KEY':'fake'}, clear=True), patch.object(monitor,'known_sent_anchor',return_value=None), patch('sys.stdout',new_callable=io.StringIO):
+            with patch.object(monitor,'collect',return_value=base): self.assertEqual(monitor.main(),0)
+            for field in ('recent_errors','overdue'):
+                problem={**base,field:1}
+                with patch.object(monitor,'collect',return_value=problem): self.assertEqual(monitor.main(),1)
+            problem={**base,'images':Counter({'unavailable':1})}
+            with patch.object(monitor,'collect',return_value=problem): self.assertEqual(monitor.main(),1)
 
     def test_url_dedup_and_image_priority(self):
         self.pending=[node('c','t','scheduled',due='2026-10-31T02:30:00Z',image='https://ai-tech-express.jp/card/a'),node('d','x','scheduled',due='2026-10-31T02:30:00Z',image='https://ai-tech-express.jp/card/a')]

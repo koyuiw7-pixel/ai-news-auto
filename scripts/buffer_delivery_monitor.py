@@ -83,10 +83,10 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 
 def check_image(url: str) -> str:
-    """Only our origin, no redirects; examine bytes, not just a 200 HTML challenge."""
+    """Our origin or Buffer image proxy only, no redirects; reject 200 HTML challenges."""
     try:
         parsed = urllib.parse.urlsplit(url)
-        if parsed.scheme != 'https' or parsed.hostname != 'ai-tech-express.jp' or parsed.username or parsed.password or parsed.port not in (None, 443):
+        if parsed.scheme != 'https' or parsed.hostname not in ('ai-tech-express.jp', 'images.buffer.com') or parsed.username or parsed.password or parsed.port not in (None, 443):
             return 'external_unchecked'
         req = urllib.request.Request(url, headers={'User-Agent': 'SaisokuPublishCheck/1.0 (+https://ai-tech-express.jp)', 'Accept': 'image/*'})
         with urllib.request.build_opener(NoRedirect()).open(req, timeout=12) as resp:
@@ -94,11 +94,14 @@ def check_image(url: str) -> str:
             mime = resp.headers.get('Content-Type', '').lower().split(';', 1)[0]
             valid = head.startswith(b'\x89PNG\r\n\x1a\n') or head.startswith(b'\xff\xd8\xff') or (head.startswith(b'RIFF') and head[8:12] == b'WEBP')
             return 'ok' if resp.status == 200 and mime.startswith('image/') and valid else 'unavailable'
+    except urllib.error.HTTPError as exc:
+        exc.close()
+        return 'unavailable'
     except (OSError, ValueError, urllib.error.URLError):
         return 'unavailable'
 
 
-def collect(key: str, now: datetime, image_checker=check_image) -> dict:
+def collect(key: str, now: datetime, image_checker=check_image, known_sent_id: str | None = None) -> dict:
     if not key:
         raise ValueError('credential unavailable')
     orgs = buffer_graphql(key, 'query { account { organizations { id } } }')['account']['organizations']
@@ -122,6 +125,8 @@ def collect(key: str, now: datetime, image_checker=check_image) -> dict:
                 posts[node['id']] = node
     if not posts:
         raise ValueError('empty provider listing cannot be verified')
+    if known_sent_id and (known_sent_id not in posts or posts[known_sent_id].get('status') != 'sent'):
+        raise ValueError('known sent post absent from provider listing')
     if not set(SERVICES).issubset(set(channels.values())):
         raise ValueError('expected channel missing')
     counts = {service: Counter() for service in SERVICES}
@@ -173,17 +178,32 @@ def render(report: dict, now: datetime) -> str:
         lines.append(f"| {LABELS[service]} | {c['sent']} | {c['scheduled']} | {c['sending']} | {c['needs_approval']} | {c['error']} |")
     lines += ['', f"失敗の内訳: 画像取得関連 {report['errors']['画像取得関連']}件、その他・要確認 {report['errors']['その他・要確認']}件。",
               f"予定時刻を30分超過して未送信: {report['overdue']}件。",
-              f"2時間以内に予約された自社画像の事前確認: 正常 {report['images']['ok']}件、取得不可 {report['images']['unavailable']}件、外部URLのため未確認 {report['images']['external_unchecked']}件。",
-              '画像確認は自社サイトからの取得に限り、Buffer・SNS側からの取得成功を保証しません。',
+              f"2時間以内に予約された画像の事前確認（自社・Buffer経由）: 正常 {report['images']['ok']}件、取得不可 {report['images']['unavailable']}件、外部URLのため未確認 {report['images']['external_unchecked']}件。",
+              '画像確認は自社・Bufferの画像URLに限り、Buffer・SNS側からの取得成功を保証しません。',
               '', '[Bufferで対象の投稿を確認](https://publish.buffer.com/)。エラーや受理不明は再送前にSNS実画面で重複を確認してください。',
               'この監視は投稿・再送・削除・予約変更・履歴変更を行いません。']
     return '\n'.join(lines) + '\n'
 
 
+def known_sent_anchor(now: datetime) -> str | None:
+    """Cross-check against one recent previously observed sent post when available."""
+    path = Path(__file__).resolve().parent.parent / 'state' / 'threads_posted.json'
+    try:
+        entries = json.loads(path.read_text(encoding='utf-8')).get('posted', {}).values()
+        candidates = []
+        for entry in entries:
+            when = utc(entry.get('sentAt'))
+            if entry.get('via') == 'buffer' and entry.get('id') and when and now - timedelta(days=7) <= when <= now:
+                candidates.append((when, entry['id']))
+        return max(candidates)[1] if candidates else None
+    except (OSError, ValueError, TypeError, AttributeError):
+        raise ValueError('could not read existing delivery anchor')
+
+
 def main() -> int:
     now = datetime.now(timezone.utc)
     try:
-        report = collect(os.environ.get('BUFFER_API_KEY', '').strip(), now)
+        report = collect(os.environ.get('BUFFER_API_KEY', '').strip(), now, known_sent_id=known_sent_anchor(now))
         summary = render(report, now)
     except Exception:
         # API exceptions may contain sensitive provider response; never echo them.
