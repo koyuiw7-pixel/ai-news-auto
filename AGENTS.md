@@ -150,3 +150,5 @@
 - Dify公式変更→回答更新の経路: `docs/dify-answer-update-20261031.md`。5公式資料を1日4回監視し、同じrunのpacket/stateでレビューする。初期動作は提案のみ、内容確認後の明示applyだけ既存2ガイドを更新。手編集・原文hash・重複・広告を保護し、部分確認で全体checkedAtを進めない。検索需要は実測まで仮説。
 - SNSとサイトfaviconの統一: `docs/favicon-sns-20261031.md`。既存赤白の原本を使い、ICO6サイズと安定PNGを指定。旧icon/apple/manifest/通知経路を保持。サイト配信の成功とGoogle検索アイコンの反映を区別する。
 - GeminiのExcelクローン記事の信頼性・検索入口の改善と未検証のM5比較記事: `docs/search-gemini-excel-20261031.md`。第三者デモと公式発表を分け、Googleの反映・検索流入は別途確認する。
+
+- M5 UltraとRTX 5090の比較記事の仕様・測定条件・価格の訂正: `docs/mac-studio-correction-20261031.md`。256GB検証機と最大512GB仕様を区別し、形式や試行の異なる数値を混ぜない。通常記事の自動再生成・古いSNS文面に注意。
