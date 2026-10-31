@@ -6,168 +6,162 @@
   "companyName": "OpenAI",
   "category": "開発ツール",
   "overview": {
-    "text": "Codexは、OpenAIが提供するコード生成および開発支援AIです。人間が細かく指示しなくても常識を使って不足部分を補い、非エンジニアでも業務ツールを作れるのが特徴です。2026年9月から順次、さまざまな機能アップデートが発表されています。",
+    "text": "Codexは、OpenAIが提供するAIプログラミングツールです。コードの自動生成やタスク実行を自然言語の指示で行うことができます。2026年9月から10月にかけて、新機能の追加や高速化が発表されています。",
     "sources": [
+      "openai-servicenow-partnership-expansion",
       "openai-codex-astra-merge-ceo-interview",
-      "openai-codex-benefit-street-partners-financial-tool",
       "openai-gpt6-astra-ultrafast-release"
     ]
   },
   "facts": [
     {
-      "label": "提供開始",
-      "value": "2026年9月から順次提供",
+      "label": "料金",
+      "value": "ChatGPT等のプランに準拠",
       "sources": [
-        "openai-codex-astra-merge-ceo-interview",
-        "openai-gpt6-astra-ultrafast-release"
+        "openai-codex-astra-merge-ceo-interview"
+      ]
+    },
+    {
+      "label": "提供開始",
+      "value": "提供中",
+      "sources": [
+        "openai-servicenow-partnership-expansion",
+        "openai-codex-astra-merge-ceo-interview"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本からも利用可能",
+      "value": "日本から利用できる",
       "sources": [
+        "chatgpt-pro-business-api-credits-benefit",
         "openai-codex-astra-merge-ceo-interview"
       ]
     },
     {
       "label": "使える場所",
-      "value": "ChatGPT、API、CLI、Sites",
+      "value": "ChatGPT、API、CLIなど",
       "sources": [
-        "openai-codex-astra-merge-ceo-interview",
-        "openai-codex-sites-update-scheduled-tasks-personalization",
-        "openai-meet-new-codex-cli-terminal-update"
+        "chatgpt-pro-business-api-credits-benefit",
+        "openai-meet-new-codex-cli-terminal-update",
+        "openai-gpt6-astra-ultrafast-release"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者、非エンジニア、経営者",
+      "value": "開発者およびビジネス職",
       "sources": [
-        "openai-codex-astra-merge-ceo-interview",
-        "openai-codex-benefit-street-partners-financial-tool",
-        "openai-meet-new-codex-cli-terminal-update"
+        "chatgpt-pro-business-api-credits-benefit",
+        "openai-codex-astra-merge-ceo-interview"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "指示し切れていない部分や行間をAIが自動で補完して作業を進めます。",
+      "text": "自然言語の指示だけでアプリケーションを内製できます。",
       "sources": [
-        "openai-codex-astra-merge-ceo-interview"
-      ]
-    },
-    {
-      "text": "SECのEDGARから財務データを自動でスクレイピングし、Webサイトを生成できます。",
-      "sources": [
+        "openai-codex-astra-merge-ceo-interview",
+        "sullivan-cromwell-openai-codex-legal-tool",
         "openai-codex-benefit-street-partners-financial-tool"
       ]
     },
     {
-      "text": "Sites機能でスケジュールタスクを設定し、サイトデータを定時自動更新できます。",
+      "text": "音声入力やスマートフォンから複数タスクを制御できます。",
       "sources": [
-        "openai-codex-sites-update-scheduled-tasks-personalization"
+        "openai-meet-new-codex-cli-terminal-update"
       ]
     },
     {
-      "text": "GrafanaやKubernetesと連携し、システム障害の原因特定や自動修正を行います。",
+      "text": "システム障害を自動特定して修正パッチを適用できます。",
       "sources": [
         "openai-codex-production-monitoring-demo"
       ]
     },
     {
-      "text": "音声入力による複数タスクの並行起動や、スマートフォンからの遠隔操作が可能です。",
+      "text": "Sites機能で定時自動更新や個人向け最適化を行えます。",
       "sources": [
-        "openai-meet-new-codex-cli-terminal-update"
+        "openai-codex-sites-update-scheduled-tasks-personalization"
       ]
     }
   ],
-  "pricing": [],
-  "japan": [
+  "pricing": [
     {
-      "text": "発表の時点では、日本からも問題なく利用可能です。",
+      "text": "ChatGPT ProやBusinessの加入者は、毎月最大500ドルのAPI利用枠を追加料金なしで利用できます。",
       "sources": [
-        "openai-codex-astra-merge-ceo-interview"
+        "chatgpt-pro-business-api-credits-benefit"
       ]
     },
     {
-      "text": "OpenAIのアカウントを作成し、ChatGPTや開発者用プラットフォームにアクセスすることで試せます。",
+      "text": "定額プランやAPI利用料に準拠する形で提供されています。",
       "sources": [
+        "openai-codex-astra-merge-ceo-interview"
+      ]
+    }
+  ],
+  "japan": [
+    {
+      "text": "日本からも問題なく利用可能です。ChatGPTのProやBusinessを契約しているユーザーも即座に対象となります。",
+      "sources": [
+        "chatgpt-pro-business-api-credits-benefit",
         "openai-codex-astra-merge-ceo-interview"
       ]
     }
   ],
   "howto": [
     {
-      "text": "OpenAIの公式サイトでアカウントを作成またはログインします。",
+      "text": "公式サイトでアカウントを作成し、ChatGPTや開発者用プラットフォームにアクセスして利用します。",
       "sources": [
         "openai-codex-astra-merge-ceo-interview"
       ]
     },
     {
-      "text": "ChatGPTの有料プランに加入するか、API利用手続きを行います。",
+      "text": "ChatGPTの画面から請求設定を開き、APIクレジットの特典を有効化します。",
       "sources": [
-        "openai-codex-astra-merge-ceo-interview"
-      ]
-    },
-    {
-      "text": "プログラミングや業務自動化の指示を入力し、出力結果を確認します。",
-      "sources": [
-        "openai-codex-astra-merge-ceo-interview"
+        "chatgpt-pro-business-api-credits-benefit"
       ]
     }
   ],
   "differences": [
     {
-      "text": "従来のツールは完璧な仕様が必要でしたが、AstraではAIが常識で不足部分を自動補完します。",
-      "sources": [
-        "openai-codex-astra-merge-ceo-interview"
-      ]
-    },
-    {
-      "text": "最新のアップデートにより、Sitesでの定時自動更新やパーソナライズ表示が可能になりました。",
-      "sources": [
-        "openai-codex-sites-update-scheduled-tasks-personalization"
-      ]
-    },
-    {
-      "text": "CLI環境ではフルスクリーンUIや音声入力による複数タスクの並行制御に対応しました。",
-      "sources": [
-        "openai-meet-new-codex-cli-terminal-update"
-      ]
-    },
-    {
-      "text": "GPT-6 Astraとの組み合わせにより、従来のStandard比で最大8倍の高速化を達成しています。",
+      "text": "従来のStandard比で最大8倍、Fast比で4倍の超高速なトークン生成を実現しています。",
       "sources": [
         "openai-gpt6-astra-ultrafast-release"
+      ]
+    },
+    {
+      "text": "指示の行間をAIが自動補完する機能や、CLIでのフルスクリーンUIが追加されました。",
+      "sources": [
+        "openai-codex-astra-merge-ceo-interview",
+        "openai-meet-new-codex-cli-terminal-update"
       ]
     }
   ],
   "faq": [
     {
-      "q": "プログラミング知識がなくても使えますか？",
-      "a": "はい。非エンジニアでも自分で業務ツールやワークフローを作成できるようになっています。",
+      "q": "無料で使える？",
+      "a": "ChatGPTの有料プラン契約者向けに毎月最大500ドルのAPI利用枠が自動付与されます。",
+      "sources": [
+        "chatgpt-pro-business-api-credits-benefit"
+      ]
+    },
+    {
+      "q": "いつから使える？",
+      "a": "API利用枠の特典などは2026年10月28日から提供が始まっています。",
+      "sources": [
+        "chatgpt-pro-business-api-credits-benefit"
+      ]
+    },
+    {
+      "q": "プログラミング未経験でも使える？",
+      "a": "非エンジニアのビジネス職でも、自然言語で指示を出して業務ツールを自作できます。",
       "sources": [
         "openai-codex-astra-merge-ceo-interview"
       ]
     },
     {
-      "q": "スマートフォンから操作できますか？",
-      "a": "はい。モバイルアプリを使って、実行中のタスクの進捗監視や指示が可能です。",
+      "q": "スマートフォンから操作できる？",
+      "a": "新しいCodex CLIでは、スマートフォンからエージェントの進捗監視や承認が行えます。",
       "sources": [
         "openai-meet-new-codex-cli-terminal-update"
-      ]
-    },
-    {
-      "q": "システム障害の復旧も自動化できますか？",
-      "a": "はい。GrafanaやKubernetesと連携し、原因の特定からパッチ適用まで自動で行うデモが公開されています。",
-      "sources": [
-        "openai-codex-production-monitoring-demo"
-      ]
-    },
-    {
-      "q": "処理速度はどれくらい速くなりましたか？",
-      "a": "Codex環境において、従来のStandard比で最大8倍の高速化を達成しています。",
-      "sources": [
-        "openai-gpt6-astra-ultrafast-release"
       ]
     }
   ],
@@ -175,37 +169,37 @@
     {
       "date": "2026-09-30",
       "slug": "openai-gpt6-astra-ultrafast-release",
-      "event": "GPT-6 Astraに超高速推論「Ultrafast」を追加"
+      "event": "GPT-6 Astraに超高速推論Ultrafastを追加"
     },
     {
       "date": "2026-10-06",
       "slug": "openai-meet-new-codex-cli-terminal-update",
-      "event": "開発者向け「Codex CLI」を刷新"
+      "event": "開発者向けCodex CLIを刷新"
     },
     {
       "date": "2026-10-09",
       "slug": "openai-codex-production-monitoring-demo",
-      "event": "システム障害を自動特定・復旧させるデモを公開"
+      "event": "本番障害の自動復旧デモを公開"
     },
     {
       "date": "2026-10-16",
       "slug": "openai-codex-sites-update-scheduled-tasks-personalization",
-      "event": "Sitesに定時自動更新と個人向け表示機能を追加"
+      "event": "Sitesに定時自動更新と個人向け最適化を追加"
     },
     {
       "date": "2026-10-24",
       "slug": "openai-codex-benefit-street-partners-financial-tool",
-      "event": "Benefit Street Partnersの金融分析ツール事例を公開"
+      "event": "金融分析ツールの構築事例を公開"
     },
     {
       "date": "2026-10-27",
       "slug": "sullivan-cromwell-openai-codex-legal-tool",
-      "event": "サリバン＆クロムウェルの法務ツール開発事例を公開"
+      "event": "法律事務所の契約書分析ツール開発事例を公開"
     },
     {
       "date": "2026-10-28",
       "slug": "openai-codex-astra-merge-ceo-interview",
-      "event": "Merge社のCEOがCodex・Astraの活用術を明かす"
+      "event": "Merge社の非エンジニアによるAI活用事例を公開"
     }
   ],
   "related": [
@@ -249,9 +243,9 @@
     "openai-codex-production-monitoring-demo",
     "openai-meet-new-codex-cli-terminal-update"
   ],
-  "signature": "76285a67ab06a864",
+  "signature": "ef70915ba6ada4f3",
   "primarySignature": "5a434f26a230d504",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:42:14+00:00",
-  "updatedAt": "2026-10-28T12:45:24+00:00"
+  "updatedAt": "2026-10-31T12:51:11+00:00"
 }
