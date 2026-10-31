@@ -65,7 +65,11 @@ export default function StoryRail({ bundles }: { bundles: Bundle[] }) {
   const [seen, setSeen] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    document.body.style.overflow = open === null ? "" : "hidden";
+    if (open === null) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    // 記事への画面遷移でもアンマウント時に解除し、移動先のスクロールを妨げない。
+    return () => { document.body.style.overflow = previousOverflow; };
   }, [open]);
 
   // 表紙は lib/stories.ts で丸ごとに違う見た目を選んである
