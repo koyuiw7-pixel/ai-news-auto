@@ -4991,6 +4991,13 @@
       "skipped": true,
       "url": "https://www5.cao.go.jp/keizai3/getsurei/getsurei-index.html"
     },
+    "3f1629502128b181": {
+      "at": "2026-10-31T06:59:38.639306+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文が短い（1423字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（389字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030a.pdf"
+    },
     "3f2d74271c15d2c9": {
       "at": "2026-10-28T22:31:25.191260+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10390,6 +10397,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000054.000060051.html"
     },
+    "ef37749084efd88d": {
+      "at": "2026-10-31T06:59:44.884243+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "元記事のPDFデータがバイナリ形式の残骸のみであり、金融政策運営に関する具体的な数値や本文のテキストを読み取ることができないため。",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030a.pdf"
+    },
     "ef6b9dae255757d6": {
       "at": "2026-10-29T19:32:12.803294+00:00",
       "reason": "dedupe: 固有名詞＋見出しが類似（model / 0.32）: openai-frontier-model-misalignment-monit",
@@ -10988,53 +11002,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T23:51:56.590735+00:00",
-      "attempt": 2,
-      "id": "682a3d6aa5bd15c7",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1530字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（365字 / 基準 400字以上）",
-        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
-      ],
-      "readability": {
-        "avg_paragraph": 115.5,
-        "avg_sentence": 50.8,
-        "long_share": 0.16,
-        "max_paragraph": 174,
-        "paragraphs": 11,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "stat",
-      "title": "労働力調査（基本集計）2026年（令和8年）9月分"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-29T23:52:04.401558+00:00",
-      "attempt": 1,
-      "id": "42fdc8615b3e9eec",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1476字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-        "easy_markdown が短い（366字 / 基準 400字以上）"
-      ],
-      "readability": {
-        "avg_paragraph": 123.8,
-        "avg_sentence": 50.6,
-        "long_share": 0.318,
-        "max_paragraph": 157,
-        "paragraphs": 9,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "stat",
-      "title": "小売物価統計調査 主要品目の東京都区部小売価格及び全国統一価格品目の価格（2026年10月分）"
-    },
     {
       "accepted": false,
       "at": "2026-10-29T23:52:10.813563+00:00",
@@ -17737,6 +17704,55 @@
       "score": 100,
       "source": "boj",
       "title": "総裁記者会見（10月30日）動画の配信開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-31T06:59:32.755922+00:00",
+      "attempt": 1,
+      "id": "3f1629502128b181",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1172字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（299字 / 基準 400字以上）",
+        "easy_markdown が「## ひとことで言うと」から始まっていない",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 100.1,
+        "avg_sentence": 47.7,
+        "long_share": 0.143,
+        "max_paragraph": 142,
+        "paragraphs": 10,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "boj",
+      "title": "「指数連動型上場投資信託受益権等の処分の指針」の一部改正について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-31T06:59:38.639257+00:00",
+      "attempt": 2,
+      "id": "3f1629502128b181",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文が短い（1423字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
+        "easy_markdown が短い（389字 / 基準 400字以上）",
+        "独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる"
+      ],
+      "readability": {
+        "avg_paragraph": 125.3,
+        "avg_sentence": 59.7,
+        "long_share": 0.429,
+        "max_paragraph": 178,
+        "paragraphs": 10,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "boj",
+      "title": "「指数連動型上場投資信託受益権等の処分の指針」の一部改正について"
     }
   ],
   "short_text_retry": {}
