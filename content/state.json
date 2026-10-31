@@ -6934,6 +6934,13 @@
       "slug": "digital-agency-disaster-prevention-dx",
       "url": "https://www.digital.go.jp/policies/disaster_prevention"
     },
+    "7f40581db2f3c2f0": {
+      "at": "2026-10-31T09:21:10.562187+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: easy_markdown が短い（361字 / 基準 400字以上）",
+      "skipped": true,
+      "url": "https://www.cyberagent.co.jp/news/detail/id=33971"
+    },
     "7f604f562750bc6a": {
       "at": "2026-10-27T03:05:10.759675+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（採用）",
@@ -11008,50 +11015,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-10-29T23:52:10.813563+00:00",
-      "attempt": 2,
-      "id": "42fdc8615b3e9eec",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1714字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 120.6,
-        "avg_sentence": 55.3,
-        "long_share": 0.333,
-        "max_paragraph": 170,
-        "paragraphs": 11,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "stat",
-      "title": "小売物価統計調査 主要品目の東京都区部小売価格及び全国統一価格品目の価格（2026年10月分）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-10-30T00:06:25.458519+00:00",
-      "attempt": 1,
-      "id": "4b341558ccb63f63",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文が短い（1708字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）"
-      ],
-      "readability": {
-        "avg_paragraph": 232.7,
-        "avg_sentence": 49.4,
-        "long_share": 0.333,
-        "max_paragraph": 429,
-        "paragraphs": 7,
-        "sentences": 33
-      },
-      "score": null,
-      "source": "digital-agency",
-      "title": "ガバメントAI 源内 利用状況アンケート調査（第1回）の結果を公表しました"
-    },
     {
       "accepted": false,
       "at": "2026-10-30T00:06:35.112566+00:00",
@@ -17759,6 +17722,50 @@
       "score": null,
       "source": "boj",
       "title": "「指数連動型上場投資信託受益権等の処分の指針」の一部改正について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-31T09:21:04.480364+00:00",
+      "attempt": 1,
+      "id": "7f40581db2f3c2f0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（325字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 92.0,
+        "avg_sentence": 60.0,
+        "long_share": 0.565,
+        "max_paragraph": 169,
+        "paragraphs": 15,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "cyberagent",
+      "title": "アニメーションの企画・制作およびプロデュースを行う子会社 「株式会社LATENT ONE」を設立"
+    },
+    {
+      "accepted": false,
+      "at": "2026-10-31T09:21:10.562138+00:00",
+      "attempt": 2,
+      "id": "7f40581db2f3c2f0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "easy_markdown が短い（361字 / 基準 400字以上）"
+      ],
+      "readability": {
+        "avg_paragraph": 99.4,
+        "avg_sentence": 56.8,
+        "long_share": 0.357,
+        "max_paragraph": 151,
+        "paragraphs": 16,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "cyberagent",
+      "title": "アニメーションの企画・制作およびプロデュースを行う子会社 「株式会社LATENT ONE」を設立"
     }
   ],
   "short_text_retry": {}
