@@ -18,7 +18,12 @@ TARGET_IDS = ['6ae1e674dee6d1a87ac2bb0e', '6ae1e67e38e33389fb60a63a', '6ae0cb1b9
 def audit(key):
     if not key:
         raise ValueError('Buffer credential unavailable')
-    result = {'complete': False, 'target_posts': {}, 'organizations': []}
+    result = {'complete': False, 'target_posts': {}, 'organizations': [], 'schema': {}}
+    for type_name in ('Post', 'PostAssets', 'Asset', 'ThreadsPostMetadata', 'TwitterPostMetadata'):
+        try:
+            result['schema'][type_name] = tp.buffer_graphql(key, 'query($name: String!) { __type(name: $name) { name fields { name type { kind name ofType { kind name ofType { kind name } } } } } }', {'name': type_name}).get('__type')
+        except Exception as exc:
+            result['schema'][type_name] = {'error': str(exc)[:300]}
     for post_id in TARGET_IDS:
         try:
             result['target_posts'][post_id] = tp.buffer_graphql(key, 'query($id: PostId!) { post(input: { id: $id }) { ' + FIELDS + ' } }', {'id': post_id}).get('post')
@@ -37,7 +42,7 @@ def audit(key):
         cursor, seen = None, set()
         for page in range(100):
             after = ', after: ' + json.dumps(cursor) if cursor else ''
-            q = f'''query {{ posts(first: 50{after}, input: {{ organizationId: {json.dumps(oid)}, filter: {{ status: [sent, scheduled, sending, needs_approval, error], channelIds: {json.dumps([c['id'] for c in included])} }} }}) {{ edges {{ node {{ {FIELDS} }} }} pageInfo {{endCursor hasNextPage}} }} }}'''
+            q = f'''query {{ posts(first: 50{after}, input: {{ organizationId: {json.dumps(oid)}, filter: {{ status: [sent], channelIds: {json.dumps([c['id'] for c in included])} }} }}) {{ edges {{ node {{ {FIELDS} }} }} pageInfo {{endCursor hasNextPage}} }} }}'''
             data = tp.buffer_graphql(key, q)['posts']
             entry['posts'].extend(e['node'] for e in data['edges'])
             entry['pages'] = page + 1
