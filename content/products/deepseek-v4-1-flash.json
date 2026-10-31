@@ -8,25 +8,28 @@
   "companyName": "DeepSeek",
   "category": "AIモデル",
   "overview": {
-    "text": "DeepSeek-V4.1-Flashは、中国のAI企業DeepSeekが公開した最新のオープンウェイトAIモデルです。パラメータ数が5000億を超える巨大モデルでありながら、メモリ消費を大幅に抑えた長文脈推論を実現しています。2026年9月10日に技術論文の公開とAPI提供が開始されました。",
+    "text": "DeepSeek-V4.1-Flashは、中国のDeepSeekが公開した最新のAIモデルです。プログラミングや画像認識で高い性能を発揮します。",
     "sources": [
-      "deepseek-v4-1-flash-architecture-optimization-report",
-      "deepseek-v4-1-flash-kv-cache-compression",
-      "deepseek-v41-flash-1017-self-feedback"
+      "deepseek-v41-flash-1017-self-feedback",
+      "deepseek-v41-flash-review-benchmarks",
+      "deepseek-v4-1-flash-architecture-optimization-report"
     ]
   },
   "facts": [
     {
       "label": "料金",
-      "value": "Web版無料、API約1ドル強",
+      "value": "Web版無料、API従量課金",
       "sources": [
-        "deepseek-v41-flash-1017-self-feedback"
+        "deepseek-v41-flash-1017-self-feedback",
+        "deepseek-v41-flash-review-benchmarks"
       ]
     },
     {
       "label": "提供開始",
-      "value": "2026年9月10日",
+      "value": "2026年9月10日より順次",
       "sources": [
+        "deepseek-v41-flash-1017-self-feedback",
+        "deepseek-v41-flash-review-benchmarks",
         "deepseek-v4-1-flash-architecture-optimization-report"
       ]
     },
@@ -34,55 +37,51 @@
       "label": "日本での提供",
       "value": "日本から利用できる",
       "sources": [
-        "deepseek-v41-flash-1017-self-feedback"
+        "deepseek-v41-flash-1017-self-feedback",
+        "deepseek-v41-flash-review-benchmarks"
       ]
     },
     {
       "label": "使える場所",
-      "value": "Web版、公式アプリ、API",
+      "value": "公式Web、公式アプリ、API",
       "sources": [
-        "deepseek-v41-flash-1017-self-feedback"
+        "deepseek-v41-flash-1017-self-feedback",
+        "deepseek-v41-flash-review-benchmarks",
+        "deepseek-v4-1-flash-architecture-optimization-report"
       ]
     },
     {
       "label": "向いている人",
       "value": "エンジニア、開発者",
       "sources": [
-        "deepseek-v41-flash-1017-self-feedback"
+        "deepseek-v41-flash-1017-self-feedback",
+        "deepseek-v41-flash-review-benchmarks"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "エラーが発生したときに自分で解決する自己フィードバック学習を備え、プログラミング評価指標で「29.1」を記録しました。",
+      "text": "複雑なソフトウェア構築の評価指標で29.1を記録し、エラーを自分で解決する能力を備えています。",
       "sources": [
         "deepseek-v41-flash-1017-self-feedback"
       ]
     },
     {
-      "text": "1トークンあたりのKVキャッシュサイズを890バイトに圧縮し、長文脈セッションのメモリ負荷を軽減しています。",
+      "text": "プロンプトで指示するだけで、立体的に動く3DグラフィックやWebアプリケーションを生成できます。",
       "sources": [
-        "deepseek-v4-1-flash-architecture-optimization-report",
-        "deepseek-v4-1-flash-kv-cache-compression"
+        "deepseek-v41-flash-review-benchmarks"
       ]
     },
     {
-      "text": "高解像度の画像を取り込み、UIのレイアウトやメニュー項目の配置を読み取ってフロントエンドコードを再構築できます。",
+      "text": "大量のスイーツの画像から、見えている137個のカウントと奥に隠れた個数の推論を行えます。",
       "sources": [
-        "deepseek-v4-1-flash-architecture-optimization-report",
-        "deepseek-v4-1-flash-kv-cache-compression"
+        "deepseek-v41-flash-review-benchmarks"
       ]
     },
     {
-      "text": "1から100までの連続値で「Reasoning Effort」を設定し、タスクの難易度に応じた思考量の調整が可能です。",
+      "text": "思考プロセスオフの状態では、1秒あたり800から1280トークン以上の爆速出力を記録します。",
       "sources": [
-        "deepseek-v4-1-flash-architecture-optimization-report"
-      ]
-    },
-    {
-      "text": "Three.jsやWebGLを用いた3Dドラムブレーキの動作シミュレーションなどのプログラムコードを出力できます。",
-      "sources": [
-        "deepseek-v4-1-flash-kv-cache-compression"
+        "deepseek-v41-flash-review-benchmarks"
       ]
     }
   ],
@@ -94,7 +93,7 @@
       ]
     },
     {
-      "text": "APIの利用料は、100万出力トークンあたり約1ドル強の従量課金となっています。",
+      "text": "API利用料は100万出力トークンあたり約1ドル強の従量課金となっています。",
       "sources": [
         "deepseek-v41-flash-1017-self-feedback"
       ]
@@ -108,53 +107,56 @@
   ],
   "japan": [
     {
-      "text": "日本からも利用できます。",
+      "text": "発表の時点では、日本国内から問題なく利用できるとされています。",
       "sources": [
-        "deepseek-v41-flash-1017-self-feedback"
+        "deepseek-v41-flash-1017-self-feedback",
+        "deepseek-v41-flash-review-benchmarks"
       ]
     },
     {
-      "text": "日本語でのやり取りに対応しており、特別なリージョン制限はありません。",
+      "text": "日本語でのやり取りにも標準対応しており、特別なリージョン制限はありません。",
       "sources": [
-        "deepseek-v41-flash-1017-self-feedback"
+        "deepseek-v41-flash-1017-self-feedback",
+        "deepseek-v41-flash-review-benchmarks"
       ]
     }
   ],
   "howto": [
     {
-      "text": "DeepSeekの公式サイト（chat.deepseek.com）にアクセスし、無料会員登録をして利用します。",
+      "text": "DeepSeekの公式サイトにアクセスし、メールアドレスなどで無料会員登録をして始めます。",
       "sources": [
         "deepseek-v41-flash-1017-self-feedback"
       ]
     },
     {
-      "text": "アプリ版のチャット形式や、公式プラットフォームのAPI経由で接続して利用できます。",
+      "text": "APIを利用する場合は、マイページからAPIキーを発行して従量課金クレジットをチャージします。",
       "sources": [
         "deepseek-v41-flash-1017-self-feedback"
       ]
     },
     {
-      "text": "Hugging Faceなどのモデル配布サイトから重みデータを無料でダウンロードすることも可能です。",
+      "text": "Hugging Faceなどのモデル配布サイトから、重みデータを無料でダウンロードして使うことも可能です。",
       "sources": [
-        "deepseek-v41-flash-1017-self-feedback"
+        "deepseek-v41-flash-1017-self-feedback",
+        "deepseek-v41-flash-review-benchmarks"
       ]
     }
   ],
   "differences": [
     {
-      "text": "前回のバージョンと比べてプログラミング評価のスコアが上昇し、自己フィードバック学習によるエラー解決能力が向上しました。",
+      "text": "前回のバージョンと比べ、プログラミング評価の指標が20.3から29.1へと上昇しました。",
       "sources": [
         "deepseek-v41-flash-1017-self-feedback"
       ]
     },
     {
-      "text": "総パラメータ数が前世代から拡大する一方で、入力処理時のアクティブパラメータ数は80億に抑えられています。",
+      "text": "総パラメータ数が5520億へ拡大しつつ、アクティブパラメータ数を80億に抑えて高速化を実現しています。",
       "sources": [
         "deepseek-v4-1-flash-architecture-optimization-report"
       ]
     },
     {
-      "text": "独自のCSA2技術により、1トークンあたりのKVキャッシュサイズが前世代の3514バイトから890バイトに削減されました。",
+      "text": "独自のCSA2技術の導入により、KVキャッシュのメモリ容量が大幅に縮小されました。",
       "sources": [
         "deepseek-v4-1-flash-architecture-optimization-report",
         "deepseek-v4-1-flash-kv-cache-compression"
@@ -163,30 +165,30 @@
   ],
   "faq": [
     {
-      "q": "無料で使える？",
-      "a": "Web版やアプリ版の基本チャット機能は無料で利用できます。モデルデータのダウンロードも無料です。",
+      "q": "ローカル環境で動かせる？",
+      "a": "モデルデータのダウンロードは無料で、自分のPCや自社サーバーに置いて動かすことができます。",
       "sources": [
-        "deepseek-v41-flash-1017-self-feedback"
+        "deepseek-v41-flash-1017-self-feedback",
+        "deepseek-v41-flash-review-benchmarks"
       ]
     },
     {
-      "q": "APIの費用はどのくらい？",
-      "a": "100万出力トークンあたり約1ドル強の従量課金制となっています。",
+      "q": "対応しているプログラミング言語は何？",
+      "a": "Electron、React、TypeScriptなどのコード生成に対応しています。",
       "sources": [
-        "deepseek-v41-flash-1017-self-feedback"
+        "deepseek-v41-flash-review-benchmarks"
       ]
     },
     {
-      "q": "どのような機能が追加された？",
-      "a": "自己フィードバック学習によるエラー解決能力の向上や、長文脈推論のメモリ効率化などが追加されました。",
+      "q": "出力速度はどれくらい？",
+      "a": "思考プロセスをオフにした状態では、1秒あたり800から1280トークン以上の出力を記録します。",
       "sources": [
-        "deepseek-v4-1-flash-architecture-optimization-report",
-        "deepseek-v41-flash-1017-self-feedback"
+        "deepseek-v41-flash-review-benchmarks"
       ]
     },
     {
-      "q": "誰に向いている？",
-      "a": "アプリを作りたいエンジニアや、日常の作業を自動化したいビジネスパーソンに向いています。",
+      "q": "商用利用はできる？",
+      "a": "オープンソースとして商用利用が可能です。",
       "sources": [
         "deepseek-v41-flash-1017-self-feedback"
       ]
@@ -196,27 +198,34 @@
     {
       "date": "2026-09-18",
       "slug": "deepseek-v4-1-flash-kv-cache-compression",
-      "event": "DeepSeek V4.1 Flash発表"
+      "event": "DeepSeek V4.1 Flashを発表"
     },
     {
       "date": "2026-10-11",
       "slug": "deepseek-v4-1-flash-architecture-optimization-report",
-      "event": "技術論文とAPIを公開"
+      "event": "技術論文を公開しAPI提供を開始"
+    },
+    {
+      "date": "2026-10-28",
+      "slug": "deepseek-v41-flash-review-benchmarks",
+      "event": "新モデルのベンチマーク結果を公開"
     }
   ],
   "related": [],
   "articles": [
     "deepseek-v41-flash-1017-self-feedback",
+    "deepseek-v41-flash-review-benchmarks",
     "deepseek-v4-1-flash-architecture-optimization-report",
     "deepseek-v4-1-flash-kv-cache-compression"
   ],
   "linkFrom": [
+    "deepseek-v41-flash-review-benchmarks",
     "deepseek-v4-1-flash-architecture-optimization-report",
     "deepseek-v4-1-flash-kv-cache-compression"
   ],
-  "signature": "3b535c694e7f8cc1",
-  "primarySignature": "289fffde1f194bdf",
+  "signature": "de334faa4cf716ec",
+  "primarySignature": "3a7ea92fa0a5c0c9",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-28T18:42:02+00:00",
-  "updatedAt": "2026-10-28T18:42:02+00:00"
+  "updatedAt": "2026-10-31T05:23:26+00:00"
 }
