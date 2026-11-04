@@ -18,6 +18,7 @@ import { buildGuideView } from "@/components/compare/view";
 import { siteConfig } from "@/site.config";
 import { publisherJsonLd } from "@/lib/publisher";
 import { Phrases } from "@/lib/highlight";
+import { stripListNumber } from "@/lib/list-number";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -239,13 +240,10 @@ export default async function ComparePage({ params }: Props) {
       </Section>
 
       <Section id="criteria" title="選び方・比べたポイント">
-        <ol className="grid gap-3">
+        <ol className="num-list num-list--box grid gap-3">
           {guide.criteria.map((point, index) => (
             <li key={index} className="grid grid-cols-[2rem_1fr] items-start gap-3">
-              <span className="index-num grid size-8 place-items-center rounded-lg border border-line-strong text-meta font-semibold text-ink">
-                {index + 1}
-              </span>
-              <span className="pt-1 text-desc leading-[1.8] text-ink">{point}</span>
+              <span className="pt-1 text-desc leading-[1.8] text-ink">{stripListNumber(point)}</span>
             </li>
           ))}
         </ol>

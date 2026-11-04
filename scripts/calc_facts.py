@@ -158,6 +158,8 @@ def values(text: str) -> list[float]:
     # 決算の表は「百万ドル単位」「in millions」で書かれる（6,540 → 65億4,000万ドル）。単位の断り書きがある資料だけ、
     # 表の数字を単位どおりに直した値も「使ってよい数字」に入れる（2026-11-03: 決算の記事が製品別・地域別の数字を書けるように）
     plain = [q.value for q in extract(text) if q.value >= 1]
+    # 文の「約77百万件」（資料の書き方）は 7,700万件 と同じ値（記事は万・億で書く。scripts/number_units.py・台帳 A45）
+    found += [float(n.replace(",", "") + (f or "")) * 1e6 for n, f in MILLION_WORD_RE.findall(nfkc(text or ""))]
     if UNIT_MILLIONS_RE.search(text or ""):
         found += [v * 1e6 for v in plain]
     if UNIT_THOUSANDS_RE.search(text or ""):
@@ -165,6 +167,7 @@ def values(text: str) -> list[float]:
     return found
 
 
+MILLION_WORD_RE = re.compile(r"(?<![\d.,])(\d{1,3}(?:,\d{3})+|\d+)(\.\d+)?\s?百万")
 UNIT_MILLIONS_RE = re.compile(r"in millions|\(millions|millions of (?:dollars|U\.S\.)|百万(?:円|ドル|ユーロ)|単位[:：]\s*百万", re.I)
 UNIT_THOUSANDS_RE = re.compile(r"in thousands|\(thousands|千(?:円|ドル)|単位[:：]\s*千", re.I)
 

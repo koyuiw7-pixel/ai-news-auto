@@ -57,7 +57,7 @@ OWNER_NAME_PAGES = ("/about", "/editorial-policy")
 AUDIT_RULES = (
     "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11", "S13", "S14", "S20", "S19",
     "I2", "I4", "I5",
-    "A1", "A2", "A3", "A4", "A5", "A6", "A10", "A11", "A12", "A17", "A18", "A19", "A22", "A23", "A24", "A25", "A26", "A28", "A29", "A30", "A32", "A37", "A38",
+    "A1", "A2", "A3", "A4", "A5", "A6", "A10", "A11", "A12", "A17", "A18", "A19", "A22", "A23", "A24", "A25", "A26", "A28", "A29", "A30", "A32", "A37", "A38", "A45",
     "W3", "W5", "W6", "W10", "W11", "W12", "W13", "W17", "W18", "W19", "W20", "W21", "W22", "W23",
 )
 
@@ -264,10 +264,12 @@ def label_problems(record: dict) -> list[str]:
 
 # ニュースの種類の型（scripts/news_types.py）に切り替えた時刻。これより後に作った Web 記事を A18・A19 で見る
 TYPES_CUTOVER = "2026-11-03T13:45:00+00:00"
+# 読者順の型（台帳 A45）の門ができたあとに作った記事だけ見る（2026-11-05 12:00 日本時間）
+READER_ORDER_CUTOVER = "2026-11-05T03:00:00+00:00"
 
 
 def type_problems(record: dict) -> list[str]:
-    """[A18]・[A19]: 種類ごとの型で書かれているか（見出しの数・リードで新しさを言い切るか・くり返し）。公開前の門 scripts/article_style.py と同じ規則"""
+    """[A18]・[A19]・[A38]・[A45]: 種類ごとの型で書かれているか（見出しの数・リードで新しさを言い切るか・くり返し）。公開前の門 scripts/article_style.py と同じ規則"""
     if record.get("sourceType") != "web" or record.get("type") == "roundup":
         return []
     if str(record.get("generatedAt") or "") < TYPES_CUTOVER:
@@ -279,6 +281,9 @@ def type_problems(record: dict) -> list[str]:
     out = [] if record.get("newsType") else ["[A18] ニュースの種類の型で書かれていない（newsType が無い）"]
     # [A38]: 「この記事のポイント」の1つ目が一番のニュースの言い換えになっていない（article_style.lead_point_problem）
     out += [f"[{code}] {msg}" for code, msg in article_style.coded_problems(record) if code in ("A18", "A19", "A38")]
+    # [A45]: 読者順の型（数字の単位・煽りの言葉・感嘆符・本文のくり返しの FAQ・用語の2回目の説明。2026-11-05 オーナー承認）
+    if str(record.get("generatedAt") or "") >= READER_ORDER_CUTOVER:
+        out += [f"[{code}] {msg}" for code, msg in article_style.coded_problems(record) if code == "A45"]
     return out
 
 

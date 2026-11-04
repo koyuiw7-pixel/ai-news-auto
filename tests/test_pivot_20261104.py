@@ -112,7 +112,7 @@ class PivotLedeTest(unittest.TestCase):
 
     def test_lede_rule_has_three_sentences(self):
         rule = st.LEDE_RULE
-        for needle in ("1文目: 読者にとって何が変わるか", "2文目: いちばん大事な数字か条件", "3文目: 読者が今やること、またはまだ決まっていないこと",
+        for needle in ("1文目: 読者にとって何が変わるか", "2文目: いちばん大事な数字か条件", "3文目: 読者個人が今やること・自分への影響、またはまだ決まっていないこと",
                        "発表したことだけの文で始めない"):
             self.assertIn(needle, rule)
         self.assertNotIn("{", rule)
@@ -141,7 +141,7 @@ class EveryPathUsesSharedRulesTest(unittest.TestCase):
         for key in nt.TYPES:
             block = nt.prompt_block(key)
             with self.subTest(key=key):
-                self.assertIn("本文の最初の段落（見出しを付けない）: だれに関係するか", block)
+                self.assertIn("本文の最初の段落（見出しを付けない）＝読者個人への影響", block)
                 self.assertIn("読者が知りたいことに答えたら終わる", block)
 
     def test_other_writers_reuse_the_shared_prompts(self):

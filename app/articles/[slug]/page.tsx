@@ -82,6 +82,7 @@ import { getFx, getPlanProduct } from "@/lib/plan-prices";
 import PriceTable from "@/components/PriceTable";
 import { hasPriceBlock, markPriceSlot, pricingForArticle, pricingRelevant, PRICE_SLOT, withPriceSlot } from "@/lib/price-slot";
 import { authorJsonLd, publisherJsonLd } from "@/lib/publisher";
+import { stripListNumber } from "@/lib/list-number";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -296,9 +297,9 @@ export default async function ArticlePage({ params }: Props) {
   // 「〇〇とは？…」型の題は「とは」「？」の前までを名前にする。長すぎる名前は問いが崩れるので「この発表」にする
   const titleName = article.seoTitle?.split(/[｜|：:？?]|とは/)[0]?.trim() ?? "";
   const name = titleName && titleName.length <= 30 ? titleName : "この発表";
-  // 本文の「よくある質問」（記事に表示している問いと答え）があればそれを使う。
+  // 本文の「よくある質問」（記事に表示している問いと答え）があればそれを使う（2026-11-05 台帳 A45: 本文に無い情報だけの1〜4問。無ければ欄を出さない）。
   // Google の FAQ のリッチリザルトは 2026-05 に終了したが、ページに見えている Q&A の印は他の検索・AI の答えに使われうるので残す
-  const faq = articleFaq.length >= 3
+  const faq = articleFaq.length >= 1
     ? articleFaq.map((row) => ({ q: row.q, a: row.a }))
     : verdict && cardKind === "product"
     ? [
@@ -485,13 +486,11 @@ export default async function ArticlePage({ params }: Props) {
               <h2 id="points-heading" className="t-h3">
                 この記事のポイント
               </h2>
-              <ol className="mt-4 grid gap-3.5">
+              {/* 番号は CSS（.num-list）で描く。文字の番号を足すと、文字だけを取り出したとき「1. 1〜」と二重になる */}
+              <ol className="num-list num-list--dot mt-4 grid gap-3.5">
                 {article.highlights.map((highlight, index) => (
                   <li key={index} className="grid grid-cols-[24px_1fr] gap-3 text-desc font-medium leading-[1.7] text-ink">
-                    <span className="index-num mt-0.5 grid size-6 place-items-center rounded-full bg-ink text-meta font-semibold text-paper">
-                      {index + 1}
-                    </span>
-                    {highlight}
+                    <span>{stripListNumber(highlight)}</span>
                   </li>
                 ))}
               </ol>
@@ -798,7 +797,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 今日やること（2〜3個）と、よくある質問（3〜5問）。合うジャンルの新しい記事だけ */}
           {todayActions.length >= 2 && <TodayActions actions={todayActions} />}
-          {articleFaq.length >= 3 && <ArticleFaq items={articleFaq} />}
+          {articleFaq.length >= 1 && <ArticleFaq items={articleFaq} />}
 
           {/* 読み終えたところでもう一度シェア */}
           <div className="mt-12 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-y border-line py-4">

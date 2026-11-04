@@ -35,6 +35,9 @@ import unicodedata
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import number_units  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "content" / "articles"
 
@@ -244,6 +247,9 @@ TITLE_STYLE_PROMPT = """報道記事の見出し。落ち着いた自然な日�
   - 製品名・サービス名は「」で囲む。種類が分からない製品だけ短く添える（例「AIコーディングツール「Antigravity」」）。
   - 子どもっぽい言い方・話し言葉は使わない。例: 勝手な／お任せ／〜が1本に／人手なしで／〜しちゃう／すごい／ラクに／AI秘書／AI助手。
     報道の言葉に言い換える（無断の・意図しない／自動で／1つのアプリに統合／自動で再開／AIアシスタント）。
+  - 数字は読者に意味の分かる単位で（2026-11-05 オーナー承認・台帳 A45）: 「約77百万件」ではなく「約7,700万件」。
+    見出しでは細かい数字を丸めてよい（「議決権19.99%」→「議決権の約2割」）。正確な数字は本文に書く。
+  - 決まり文句の見出し（「〜に迫る」「〜の全貌」「〜の真相」「徹底解説」）は使わない。
   - 答えを隠す・あおる見出しにしない: 「〜とは」「〜とは？」で終わる問いの見出し、「〇〇な人は要注意」、「〇選」「〇つの理由」、
     誇張・煽り語（衝撃／ついに／ヤバい／必見／知らないと損）と感嘆符は使わない。見出しの約束には本文の最初の3文で答える。
   - 記号: かっこ（「」）のすぐ前後に「、」を置かない。区切りは全角の空白1つだけ。末尾に「、」「。」を付けない。
@@ -283,6 +289,8 @@ INVERTED_RE = re.compile(r"^[^　、]{1,24}が(?:公開|発表|開始)、")
 PRESS_TITLE_RE = re.compile(r"(?:を|の|について|に関して)?(?:発表|公表|発表へ|公表へ|発表した|公表した)$")
 # 答えを隠す・あおる型（台帳 A5・A6）。「〜とは？」で終わる問い・「要注意」・「〇選」「〇つの理由」
 HIDDEN_ANSWER_RE = re.compile(r"とは[？?]?$")
+# 決まり文句の見出し（2026-11-05 オーナー承認の記事の質のピボット・台帳 A45。前からの決まり「〜に迫る」「〜の全貌」をコードで守らせる）
+CLICHE_TITLE_RE = re.compile(r"に迫る|の全貌|の真相|の舞台裏|徹底解説|徹底比較|を深掘り|のすべて$|とは何か")
 BAIT_RE = re.compile(r"要注意|[0-9０-９一二三四五六七八九十]+選(?![手挙択])|[0-9０-９一二三四五六七八九十]+つの理由")
 
 
@@ -353,6 +361,10 @@ def title_problems(title: str) -> list[str]:
         problems.append("「〜とは？」で終わる問いの見出し（答えを隠す）。答えを見出しに書く")
     if m := BAIT_RE.search(outside):
         problems.append(f"あおりの型（「{m.group(0)}」）")
+    if m := CLICHE_TITLE_RE.search(outside):
+        problems.append(f"決まり文句の見出し（「{m.group(0)}」）。中身（何が・いくら・いつから）を書く")
+    if bad := number_units.unnatural_units(title):
+        problems.append(f"読者に分かりにくい数字の単位（「{bad[0]}」）。「約7,700万件」のように万・億で書く")
     width = em_width(title)
     if width > TITLE_HARD_LEN:
         problems.append(f"長すぎる（全角換算{width:g}字。最大{TITLE_HARD_LEN}字）")
@@ -378,6 +390,7 @@ def normalize_title(title: str, record: dict | None = None) -> str:
     t = unify_separators(t)
     t = strip_known_descriptors(t)
     t = fix_comma_before_bracket(t)
+    t = number_units.natural_units(t)  # 「約77百万件」→「約7,700万件」（台帳 A45）
     if not REIWA_RE.search(str(record.get("videoTitle") or "")):
         t = reiwa_to_seireki(t)
     return t

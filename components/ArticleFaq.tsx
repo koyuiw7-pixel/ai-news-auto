@@ -1,5 +1,5 @@
 /**
- * 記事の「よくある質問」（3〜5問）。答えは本文・元記事に書かれた事実だけ（scripts/web_articles.py の faq、品質ゲートで事実確認）。
+ * 記事の「よくある質問」（1〜4問。本文に無い情報か読者が検索しそうな問いだけ。2026-11-05 台帳 A45）。答えは本文・元記事に書かれた事実だけ（scripts/web_articles.py の faq、品質ゲートで事実確認）。
  * 同じ問いと答えを記事ページの FAQPage の構造化データにも使う（表示している内容と一致させる）。
  */
 export default function ArticleFaq({ items }: { items: { q: string; a: string }[] }) {

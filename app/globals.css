@@ -301,6 +301,47 @@ body {
   letter-spacing: 0.02em;
 }
 
+/*
+ * 番号つきの並び（記事の「この記事のポイント」・ガイドの要点・始め方）。番号は CSS で描く。
+ * <ol> の番号に加えて文字の番号（<span>1</span>）を置くと、文字だけを取り出す読み方（リーダー表示・読み上げ・コピー・AI の要約）で
+ * 「1. 1〜」と二重になる（2026-11-05 アララの記事で見つかった）。ここはレイヤーの外に置く（Tailwind の before: の content に負けないように）
+ */
+.num-list {
+  counter-reset: num-list;
+}
+.num-list > li {
+  counter-increment: num-list;
+}
+.num-list > li::before {
+  content: counter(num-list);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  font-size: var(--text-meta);
+  font-weight: 600;
+}
+.num-list--dot > li::before,
+.num-list--square > li::before {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.125rem;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-radius: 9999px;
+}
+.num-list--square > li::before {
+  border-radius: var(--radius-sm);
+}
+.num-list--box > li::before {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-lg);
+  color: var(--color-ink);
+}
+
 /* 英大文字の小見出し。バッジと同じ扱いで 12px（docs/typography.md） */
 .eyebrow {
   font-size: 0.75rem;

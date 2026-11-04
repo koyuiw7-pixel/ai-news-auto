@@ -28,6 +28,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import news_types  # noqa: E402
+import number_units  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -35,6 +36,21 @@ ARTICLES_DIR = ROOT / "content" / "articles"
 # --------------------------------------------------------------------------- #
 # 生成に渡す文体の決まり（すべての段で同じものを使う）
 # --------------------------------------------------------------------------- #
+
+# やわらかい大人の言い回しと、読者に意味の分かる数字（2026-11-05 オーナー承認の記事の質のピボット。とろいも〔Muse〕の批評
+# out/muse/saisoku-article-quality-critique.md の表を短くしたもの・台帳 A45）。STYLE_PROMPT の最後に入る（すべての生成の段で同じ）
+SOFT_STYLE_RULE = """## やわらかい大人の言い回し・数字の書き方（2026-11-05 オーナー承認。台帳 A45）
+- 漢語を続けない。受け身を減らす。まだ決まっていないことは、そのまま「まだ決まっていません」と書く。例:
+  ×「サービスはすべて停止しています」→ ○「サービスは10月31日から止まっています。再開の時期はまだ決まっていません」
+  ×「再開時にパスワードとAPIキーの再設定が必要になる見込みです」→ ○「再開のときに、パスワードなどの設定し直しが求められる見込みです」
+  ×「不正利用の被害は確認されていない（現時点）」→ ○「いまのところ、不正に使われたという報告は出ていません」（資料にそう書いてあるときだけ）
+  ×「対象の企業は最大約380社と推計され、精査中です」→ ○「対象は最大で約380社と見られていますが、正確な数はまだ調べているところです」
+  ×「今後両社で検討していく段階です」→ ○「買えるようになる時期はまだ決まっておらず、これから両社で詰めていく段階です」
+- 数字は読者に意味の分かる単位で書く。「約77百万件」ではなく「約7,700万件」、「150百万人」ではなく「1億5,000万人」（「百万件」「百万人」は使わない）。
+  見出しでは「議決権19.99%」を「約2割」のように丸めてよい。正確な数字（19.99%・5,148万9,700株）は本文の中身の章に書く。
+- 1つの段落で大事な数字は1つ。同じ数字・同じ説明を2回書かない（リード・要点・本文・よくある質問を通して）。
+  専門用語の説明は初めて出たところで1回だけ。2回目からは説明しない（よくある質問でも言い直さない）。
+- 煽りの言葉（ヤバい・衝撃・驚愕・震撼）と感嘆符（！）は使わない。"""
 
 STYLE_PROMPT = """## サイソクの文体（ITmedia・日経クロステック水準の、伝わりやすい大人の日本語。すべてに優先する）
 - 読者は忙しい会社員。です・ます調。詳しい先輩が同僚に説明する温度で、落ち着いて具体的に書く。
@@ -59,7 +75,8 @@ STYLE_PROMPT = """## サイソクの文体（ITmedia・日経クロステック�
 - 見出しは記事の中身の言葉で、本文1,000字に1つまで。決まった質問の見出し（料金は？／日本で使える？／自分に関係ある？／
   ライバルと比べてどう？／もう使える？／何がすごいの？／数字で見ると？）と「## 概要」は使わない。
 - 材料の無い章・欄は作らない。「元記事」「言及なし」「記載なし」「書かれていません」「確認できていません」「判断できません」は書かない。
-  大事なのに発表されていないことは、最後に「## まだ分からないこと」の箇条書きで1回だけ（「〇〇はまだ発表されていません」）。
+  大事なのに発表されていないことは、本文の後半の「## まだ分からないこと」の箇条書きで1回だけ（「〇〇はまだ発表されていません」。
+  企業・契約者向けの章があるときは、その前に置く）。
 - 宣伝の言葉（「最も変革的」「業界初」「画期的」「革新的」）は地の文で書かない。「〇〇氏は…と説明しました」と誰の言葉かを書く。
 - 根拠の無いつなぎ（「〜にとっても重要です」「〜と言えます」「〜の機会が生まれる可能性があります」「注目です」「見逃せない」
   「チェックしておきたい」「判断材料になります」）は書かない。
@@ -69,14 +86,17 @@ STYLE_PROMPT = """## サイソクの文体（ITmedia・日経クロステック�
   背景知識で補う「（編集部注）」は記事全体で2か所まで（それ以上要るなら、その補足は書かない）。
 - 一部改良を「新型」と書かない。前からあるものを「新たに」と書かない。「ざっくり」は使わない。
 - 本文・かんたん版の頭に「要約すると、」の段落を置かない（リードと「この記事のポイント」が要約の役目。同じことのくり返しになる）。
-  リードの次は、それが何か・誰のためかの1〜2文か、リードに無い新しい事実から始める。"""
+  リードの次は、それが何か・誰のためかの1〜2文か、リードに無い新しい事実から始める。
+""" + "\n" + SOFT_STYLE_RULE
 
 # リードの書き方（2026-11-04 オーナー承認のピボット・台帳 A19）。生成のすべての段のプロンプトの lede の欄に同じ文を入れる
 # （scripts/main.py・web_articles.py の3つの型。tests/test_article_style.py::PivotLedeTest が確かめる）。テンプレートに埋め込むので { } は使わない
 LEDE_RULE = """記事冒頭のリード文。150〜200字の3文（2026-11-04 オーナー承認）。
   1文目: 読者にとって何が変わるか（だれの・何が・いつから・いくら）。主語は会社でなく、製品・料金・サービス・「〇〇を使っている人」でもよい。
   2文目: いちばん大事な数字か条件（対象・期限・料金・規模）。
-  3文目: 読者が今やること、またはまだ決まっていないこと（例「今の契約のままで変わりません」「配信日はまだ発表されていません」）。
+  3文目: 読者個人が今やること・自分への影響、またはまだ決まっていないこと（例「今の契約のままで変わりません」「配信日はまだ発表されていません」）。
+  企業・契約者向けの手続き（管理画面の再設定・社内の対応）はリードに書かない（本文の最後の企業向けの章に書く。2026-11-05 台帳 A45）。
+  数字は読者に意味の分かる単位で（「約77百万件」ではなく「約7,700万件」）。
   「〇〇は11月4日、△△を発表しました」「〇〇が…と発表しました」のような、発表したことだけの文で始めない。発信元の名前は3文目までに1回でよい。
   報道記事のリードの文体（です・ます調で落ち着いた書き方）。よく知られた会社に「ChatGPTのOpenAI」のような説明を付けない。幼い言い方・話し言葉・あおりは使わない。
   事実は資料にあることだけ。資料に無い「やること」は作らず、まだ決まっていないことを書く。
@@ -119,7 +139,7 @@ UNKNOWN_HEADING = "まだ分からないこと"
 TEMPLATE_HEADING_RE = re.compile(
     r"^(?:料金は[？?]|料金・提供(?:プラン|状況)は?[？?]?|日本で(?:も)?使える[？?]|自分(?:に|には)?(?:どう)?関係(?:する|ある)[？?]|"
     r"ライバルと比べてどう[？?]|もう(?:使える|買える)[？?].*|取引できる[？?]|スペックと価格は[？?]|数字で見ると.*|何がすごいの[？?]|"
-    r"何が発表された[？?]|前と何が違う[？?]|何が変わる[？?]|いつから[？?]|誰が対象[？?]|使ってみるには|概要|詳細|ポイント)$"
+    r"何が発表された[？?]|前と何が違う[？?]|何が変わる[？?]|いつから[？?]|誰が対象[？?]|使ってみるには|概要|詳細|ポイント|あなたへの影響|読者への影響|何が起きた(?:か|の)?[？?]?|まだ分からないこと・続報|続報|契約企業の(?:方|皆様|みなさま)へ|企業の方へ)$"
 )
 EASY_TEMPLATE_RE = re.compile(r"^(?:何がすごいの[？?]|自分(?:に|には)?関係(?:ある|する)[？?]|使ってみるには)$")
 NONANSWER_RE = re.compile(
@@ -314,6 +334,197 @@ def strip_summary_opener(text: str, lede: str) -> str:
 
 
 
+# --------------------------------------------------------------------------- #
+# 読者順の型・やわらかい言い回し・数字の単位・よくある質問（2026-11-05 オーナー承認の記事の質のピボット。台帳 A45）
+# とろいも〔Muse〕の批評 out/muse/saisoku-article-quality-critique.md の「型のルール」をここで守らせる
+# --------------------------------------------------------------------------- #
+
+# 煽りの言葉（題名は headline_normalize も見る）。引用の中は除く
+SENSATIONAL_RE = re.compile(r"ヤバ[いイ]|やばい|衝撃(?:的|の|が|を)?|驚愕|震撼|激震|大炎上|悲報|朗報")
+# 感嘆符（「Yahoo!」のような名前の一部は数えない）
+EXCLAIM_RE = re.compile(r"！|(?<![A-Za-z])!")
+# どの記事にも当てはまる問い（本文のくり返しになる。2026-11-05 アララの記事の FAQ の1・2問目）
+FAQ_GENERIC_Q_RE = re.compile(r"(?:何が|なにが)(?:発表|公表|起き)(?:され)?(?:た|ました)|前(?:回)?(?:の発表)?と(?:は)?何が違う|誰に関係(?:する|ある)|何が変わる[？?]?$|の概要は")
+FAQ_REPEAT_SIMILAR = 0.8  # よくある質問の答えの文がすべて本文の文とこれ以上重なれば、本文のくり返し
+# 本文の「用語（説明）」。説明はひらがなを含む言い換え（「（精査中）」「（11月1日時点）」のような注記は数えない）
+GLOSS_RE = re.compile(r"([A-Za-z][A-Za-z0-9.\-]{1,20}|[ァ-ヴー]{2,20}|[一-龥々]{2,12})[（(]([^（）()\n]{4,40})[）)]")
+GLOSS_NOTE_RE = re.compile(r"^[\d０-９]|精査中|予定|時点|確認|編集部|発表|税込|税抜|以下|以上|現在|速報|注[）)]?$|^注")
+# 企業・契約者向けの手続きの言葉（本文の最初の段落＝読者個人への影響に入れない。記録だけ）
+BUSINESS_STEP_RE = re.compile(r"(?:ご)?契約企業|管理画面|APIキー|API接続|社内で|導入企業|取引先|法人の管理者|管理者は")
+
+
+# 言い換えの説明の終わり方（「CVSS（深刻さを示す点数）」「脆弱性（ソフトの弱点）」）。「（ウェブのみ）」のような注記は説明とみなさない
+GLOSS_END_RE = re.compile(r"(?:仕組み|こと|もの|点数|会社|機能|技術|方式|規格|制度|指標|サービス|ソフト|弱点|団体|組織|機関|ルール|形式|"
+                          r"番号|情報|ファンド|投資会社|証券会社|認証情報|手法|モデル|装置|部品|ツール|道具|考え方|割合|基準)$")
+
+
+def _is_gloss(text: str) -> bool:
+    return bool(re.search(r"[ぁ-ん]", text)) and not GLOSS_NOTE_RE.search(text) and bool(GLOSS_END_RE.search(text.strip()))
+
+
+def dedupe_glosses(text: str) -> tuple[str, list[str]]:
+    """同じ用語の2回目からの言い換え「（…）」を外す（専門用語の説明は初めの1回だけ）。外した用語の一覧も返す"""
+    seen: dict[str, str] = {}
+    removed: list[str] = []
+
+    def repl(m: re.Match) -> str:
+        term, gloss = m.group(1), m.group(2)
+        if not _is_gloss(gloss):
+            return m.group(0)
+        # 同じ用語に同じ（ほぼ同じ）説明が2回目に付いたときだけ外す（「API（アプリから呼び出す仕組み）」と別の API の説明は残す）
+        if term in seen and similarity(seen[term], gloss) >= 0.6:
+            removed.append(term)
+            return term
+        seen.setdefault(term, gloss)
+        return m.group(0)
+
+    if not text:
+        return text, []
+    out_lines = []
+    for line in text.split("\n"):
+        out_lines.append(line if line.lstrip().startswith("|") else GLOSS_RE.sub(repl, line))
+    return "\n".join(out_lines), removed
+
+
+def repeated_glosses(text: str) -> list[str]:
+    return dedupe_glosses(text)[1]
+
+
+def faq_repeats_body(row: dict, body: str) -> bool:
+    """よくある質問の1問が、本文のくり返し（どの記事にもある問い、または答えの文がすべて本文の文とほぼ同じ）"""
+    q = str((row or {}).get("q") or "")
+    a = str((row or {}).get("a") or "")
+    if FAQ_GENERIC_Q_RE.search(q):
+        return True
+    sents = [x for x in _sentences(a) if len(x) >= 12]
+    body_sents = _sentences(body)
+    if not sents or not body_sents:
+        return False
+    return all(any(similarity(x, b) >= FAQ_REPEAT_SIMILAR for b in body_sents) for x in sents)
+
+
+def faq_repeat_rows(record: dict) -> list[str]:
+    body = f"{record.get('body') or ''}\n{record.get('lede') or ''}"
+    return [str(r.get("q") or "") for r in record.get("faq") or [] if isinstance(r, dict) and faq_repeats_body(r, body)]
+
+
+LIST_NUMBER_RE = re.compile(r"^\s*(?:[(（]\s*\d{1,2}\s*[)）]|\d{1,2}\s*[.．)）、:：](?!\d)|[①-⑳])\s*")
+
+
+def strip_list_number(text: str) -> str:
+    """要点・今日やることの頭の番号（「1. 」「①」）を外す。画面が番号を付けるので「1. 1〜」と二重になる（lib/list-number.ts と同じ式）"""
+    value = str(text or "")
+    stripped = LIST_NUMBER_RE.sub("", value)
+    return stripped if stripped.strip() else value
+
+
+def first_paragraph(body: str) -> str:
+    """本文の最初の段落（見出しの前・表と箇条書きを除く最初のかたまり）"""
+    for block in re.split(r"\n\s*\n", body or ""):
+        b = block.strip()
+        if not b:
+            continue
+        if b.startswith("#"):
+            return ""
+        if b.startswith(("|", "!")):
+            continue
+        return b
+    return ""
+
+
+UNIT_FIELDS = ("title", "seoTitle", "lede", "description", "body", "easy")
+
+
+def apply_natural_units(record: dict) -> list[str]:
+    """「約77百万件」を「約7,700万件」に（本文・リード・要点・よくある質問・今日やること・仕事とお金への影響）"""
+    changed: list[str] = []
+    for key in UNIT_FIELDS:
+        text = record.get(key)
+        if isinstance(text, str) and (new := number_units.natural_units(text)) != text:
+            record[key] = new
+            changed.append(key)
+    for key in ("highlights", "todayActions"):
+        vals = record.get(key)
+        if isinstance(vals, list):
+            new_vals = [number_units.natural_units(v) if isinstance(v, str) else v for v in vals]
+            if new_vals != vals:
+                record[key] = new_vals
+                changed.append(key)
+    faq = record.get("faq")
+    if isinstance(faq, list):
+        new_faq = [{**r, "q": number_units.natural_units(str(r.get("q") or "")), "a": number_units.natural_units(str(r.get("a") or ""))}
+                   if isinstance(r, dict) else r for r in faq]
+        if new_faq != faq:
+            record["faq"] = new_faq
+            changed.append("faq")
+    wm = record.get("workMoney")
+    if isinstance(wm, dict) and isinstance(wm.get("points"), list):
+        pts = [number_units.natural_units(p) if isinstance(p, str) else p for p in wm["points"]]
+        if pts != wm["points"]:
+            record["workMoney"] = {**wm, "points": pts}
+            changed.append("workMoney")
+    return changed
+
+
+def reader_order_autofix(record: dict) -> list[str]:
+    """読者順の型でプログラムが直せるもの（数字の単位・要点の頭の番号・用語の2回目の説明・本文のくり返しの FAQ）"""
+    changes: list[str] = []
+    if fields := apply_natural_units(record):
+        changes.append(f"数字の単位を読者に分かる形にした（百万→万・億: {'・'.join(fields)}）")
+    for key in ("highlights", "todayActions"):
+        vals = record.get(key)
+        if isinstance(vals, list):
+            new_vals = [strip_list_number(v) if isinstance(v, str) else v for v in vals]
+            if new_vals != vals:
+                record[key] = new_vals
+                changes.append(f"{key}: 頭の番号を外した（画面が番号を付ける）")
+    body = record.get("body")
+    if isinstance(body, str):
+        new_body, removed = dedupe_glosses(body)
+        if removed:
+            record["body"] = new_body
+            changes.append(f"用語の2回目の説明を外した（{'・'.join(dict.fromkeys(removed))}）")
+    faq = record.get("faq")
+    if isinstance(faq, list) and faq:
+        text = f"{record.get('body') or ''}\n{record.get('lede') or ''}"
+        kept = [r for r in faq if not (isinstance(r, dict) and faq_repeats_body(r, text))]
+        if len(kept) != len(faq):
+            record["faq"] = kept
+            changes.append(f"本文のくり返しのよくある質問を{len(faq) - len(kept)}問外した（新しい情報か読者が検索しそうな問いだけ残す）")
+    return changes
+
+
+def reader_order_problems(record: dict) -> list[str]:
+    """読者順の型の公開前の門（台帳 A45）。autofix のあとに残ったもの"""
+    out: list[str] = []
+    fields = {
+        "題名": record.get("title") or "", "リード": record.get("lede") or "", "本文": record.get("body") or "",
+        "要点": "\n".join(str(h) for h in record.get("highlights") or []),
+        "よくある質問": "\n".join(f"{r.get('q', '')} {r.get('a', '')}" for r in record.get("faq") or [] if isinstance(r, dict)),
+    }
+    for key, text in fields.items():
+        if bad := number_units.unnatural_units(text):
+            out.append(f"{key}に読者に分かりにくい数字の単位（「{bad[0]}」）。「約7,700万件」のように万・億で書く")
+    for key in ("題名", "リード", "本文", "要点"):
+        if m := SENSATIONAL_RE.search(_no_quotes(fields[key])):
+            out.append(f"{key}に煽りの言葉（「{m.group(0)}」）。落ち着いた言葉で事実を書く")
+    if len(EXCLAIM_RE.findall(_no_quotes(f"{fields['リード']}\n{fields['本文']}\n{fields['題名']}"))) >= 2:
+        out.append("感嘆符（！）が多い。感嘆符は使わない")
+    if rows := faq_repeat_rows(record):
+        out.append(f"よくある質問が本文のくり返し（「{rows[0][:24]}」）。新しい情報か読者が実際に検索しそうな問いだけにし、無ければ欄ごと出さない")
+    if terms := repeated_glosses(record.get("body") or ""):
+        out.append(f"同じ用語の説明が2回ある（「{terms[0]}」）。説明は初めて出たところで1回だけ")
+    return out
+
+
+def reader_order_warnings(record: dict) -> list[str]:
+    """記録だけ: 本文の最初の段落（読者個人への影響）に企業・契約者向けの手続きがある"""
+    first = first_paragraph(record.get("body") or "")
+    if first and (m := BUSINESS_STEP_RE.search(first)) and re.search(r"(?:再設定|手続き|連絡|対応|確認)して|必要があります|必要になる", first):
+        return [f"本文の最初の段落（読者個人への影響）に企業向けの手続き（「{m.group(0)}」）。企業向けは最後の章に分ける"]
+    return []
+
+
 def autofix(record: dict) -> list[str]:
     """プログラムで直せるもの。直した内容の一覧"""
     changes: list[str] = []
@@ -401,6 +612,8 @@ def autofix(record: dict) -> list[str]:
     if key and record.get("verdict") and not news_types.allows_verdict(key) and key not in ("general", "explainer"):
         record["verdict"] = None
         changes.append(f"判定カードを外した（{news_types.get(key).label}の記事には出さない）")
+    # 読者順の型（2026-11-05 台帳 A45）: 数字の単位・要点の番号・用語の2回目の説明・本文のくり返しの FAQ
+    changes += reader_order_autofix(record)
     return changes
 
 
@@ -552,6 +765,9 @@ def coded_problems(record: dict) -> list[tuple[str, str]]:
     bad_easy = [h for h in headings(easy) if EASY_TEMPLATE_RE.match(h)]
     if bad_easy:
         add("A1", f"かんたん版に決まった型の見出し（「{bad_easy[0]}」）。中身の言葉にするか見出しを消す")
+    # 読者順の型（2026-11-05 オーナー承認・台帳 A45）
+    for msg in reader_order_problems(record):
+        add("A45", msg)
     return out
 
 
@@ -606,6 +822,7 @@ def warnings(record: dict) -> list[str]:
         out.append("本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）")
     if any(h.strip() == "まとめ" for h in headings(body)):
         out.append("「## まとめ」の見出し（次に起きること・読者がやることを書いているか）")
+    out += reader_order_warnings(record)
     key = news_type_of(record)
     if key:
         lo, hi = news_types.get(key).length

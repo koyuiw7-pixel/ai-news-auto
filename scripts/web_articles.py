@@ -540,7 +540,7 @@ for _schema in (WEB_SCHEMA, TREND_SCHEMA):
     _verdict["properties"]["when"] = {"type": "STRING"}
     _verdict["properties"]["broadcast"] = {"type": "STRING"}
     _verdict["propertyOrdering"] += ["when", "broadcast"]
-    # よくある質問（3〜5問）と「今日やること」（2〜3個）。合うジャンルだけ。任意の項目
+    # よくある質問（0〜4問。本文に無い情報があるときだけ）と「今日やること」（2〜3個）。合うジャンルだけ。任意の項目
     _schema["properties"]["faq"] = {
         "type": "ARRAY",
         "items": {
@@ -582,17 +582,20 @@ NON_PRODUCT_RE = re.compile(
     r"統計(?!的)|倒産|件数|調査結果|決算|業績|自社株買い|株主還元|配当|物価|雇用統計|失業率|景気|口座数|契約数|販売台数|出荷台数|上方修正|下方修正|前年同月比|前年比|突破|有効求人倍率|短観"
 )
 
-FAQ_TODAY_FIELD = """# faq と today_actions（記事ページの「よくある質問」「今日やること」欄。このジャンルでは必須）
-- faq: 読者が検索しそうな疑問を必ず3〜5個（q と a）。質問は次の候補から、**この記事に答えがあるものだけ**選ぶ:
-  何が発表された？／前と何が違う？／誰に関係する？／無料で使える？／日本で使える？／いつから？／いくら？／どうやって申し込む・始める？／注意点は？
-  （「何が発表された？」「前と何が違う？」「誰に関係する？」はどの記事にも答えがあるので、ほかが足りないときに使う）
-  q は製品名・制度名を入れた20〜40字の疑問文（例「Claude Ultraは無料で使える？」）。
-  a は40〜120字。**body_markdown と元記事、「当サイトで確認済み」の欄に書かれた事実だけ**で答える。新しい数字・条件を足さない。
+FAQ_TODAY_FIELD = """# faq と today_actions（記事ページの「よくある質問」「今日やること」欄）
+- faq（2026-11-05 オーナー承認・台帳 A45）: 本文のくり返しにしない。入れてよいのは次の2つだけ。0〜4問（無ければ空配列 [] にして欄を出さない）。
+  1) 本文に書いていない新しい事実で答えられる問い（元記事・確認済みの事実の束にある事実だけ）。
+  2) 読者が実際に検索しそうな問いで、本文とは違う角度で答えるもの（例: 流出なら「自分のアドレスが流出したか分かる？」→
+     資料にある正直な答え「アララは各契約企業に個別に連絡するとしています。個人向けの窓口は第2報にはありません」）。
+  「何が発表された？」「前と何が違う？」「誰に関係する？」のような、どの記事にもある問いは使わない。本文の文をそのまま写した答え、
+  本文で説明した用語の言い直しは不可（プログラムが外す）。
+  q は製品名・制度名を入れた20〜40字の疑問文。a は40〜120字で、元記事・確認済みの事実の束の事実だけで答える。新しい数字・条件を作らない。
   答えが「元記事には書かれていません」になる質問は入れない。
-- today_actions: 「今日やること」を必ず2〜3個。各20〜60字の1文で、読者が今日できる具体的な行動を書く（例「設定の使用状況画面で、今の上限を確かめる」）。
+- today_actions: 「今日やること」を2〜3個。各20〜60字の1文。読者個人が今日できる具体的な行動を先に書く（例「10月28〜30日に届いた
+  『利用内容確認のご依頼』のメールは、URLを開かずに削除する」）。企業・契約者・管理者だけの手続きは、個人向けの行動が無いときだけ書く。
   画面の場所・ボタン名は元記事にあるときだけ書く。無ければ「公式の設定画面で確認する」のように書き、場所を作らない。
-  提供予定・研究段階・統計や業績の話題でも、公式発表で条件を確かめる・自分の契約や設定を見直す・社内で共有する など、記事に沿った行動を書く。
-  特定の銘柄・物件の売買はすすめない。"""
+  提供予定・研究段階・統計や業績の話題でも、公式発表で条件を確かめる・自分の契約や設定を見直す など、記事に沿った行動を書く。
+  特定の銘柄・物件の売買はすすめない。頭に番号（「1.」）を付けない。"""
 FAQ_TODAY_OFF = """# faq と today_actions
 - このジャンルでは faq と today_actions は空配列 [] にする。"""
 
@@ -688,7 +691,8 @@ def fill_faq_actions(record: dict, source_text: str = "", context: str = "") -> 
     書き足せた欄の名前を返す。答えの事実は、このあと品質ゲートの事実確認で本文・元記事と突き合わせる"""
     if record.get("genreSlug") not in FAQ_GENRES:
         return []
-    need = [k for k in ("faq", "todayActions") if not record.get(k)]
+    # よくある質問は本文に無い情報があるときだけ（2026-11-05 台帳 A45）。空は「書くことが無い」答えなので書き足さない
+    need = [k for k in ("todayActions",) if not record.get(k)]
     if not need:
         return []
     verdict = record.get("verdict") or {}
@@ -734,7 +738,7 @@ def write_tier(tier: str) -> str:
 
 
 def clean_faq(raw: object) -> list[dict]:
-    """生成された faq を整える（3〜5問。足りなければ出さない）"""
+    """生成された faq を整える（1〜4問。本文のくり返しは article_style.autofix が外す。2026-11-05 台帳 A45）"""
     out, seen = [], set()
     for row in raw if isinstance(raw, list) else []:
         if not isinstance(row, dict):
@@ -745,7 +749,7 @@ def clean_faq(raw: object) -> list[dict]:
             continue
         seen.add(q)
         out.append({"q": q[:60], "a": a[:200]})
-    return out[:5] if len(out) >= 3 else []
+    return out[:4]
 
 
 def clean_actions(raw: object) -> list[str]:
@@ -1178,7 +1182,7 @@ def build_web_record(item: dict, data: dict, page: dict, model_name: str, voice_
             record["pricingProduct"] = bundle.ladder["product"]
             if bundle.ladder.get("compare"):
                 record["pricingCompare"] = bundle.ladder["compare"]
-    # よくある質問（3〜5問）と「今日やること」（2〜3個）。合うジャンルだけ（FAQ_GENRES）
+    # よくある質問（0〜4問。本文に無い情報があるときだけ）と「今日やること」（2〜3個）。合うジャンルだけ（FAQ_GENRES）
     if resolved.slug in FAQ_GENRES:
         if faq := clean_faq(data.get("faq")):
             record["faq"] = faq

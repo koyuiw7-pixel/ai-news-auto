@@ -153,8 +153,8 @@ def faq_problems(record: dict) -> list[str]:
     """よくある質問・今日やることの形と禁止表現（API 不要）"""
     problems = []
     faq = record.get("faq") or []
-    if faq and not 3 <= len(faq) <= 5:
-        problems.append(f"faq は3〜5問（{len(faq)}問）")
+    if len(faq) > 5:
+        problems.append(f"faq は4問まで（{len(faq)}問。本文に無い情報があるときだけ。2026-11-05 台帳 A45）")
     for row in faq:
         if not str(row.get("q", "")).rstrip().endswith(("？", "?")):
             problems.append(f"faq の質問が疑問文になっていない（「{str(row.get('q', ''))[:20]}」）")

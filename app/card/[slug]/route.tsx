@@ -10,6 +10,7 @@ import { articleTitle } from "@/lib/headline";
 import { fetchPhoto } from "@/lib/cover";
 import { renderCardDesign, type CardDesign } from "@/lib/card-designs";
 import { siteConfig } from "@/site.config";
+import { stripListNumber } from "@/lib/list-number";
 
 /**
  * どのカードを出すか。"tall" は今の縦長（見出し＋要点3つ）。
@@ -107,7 +108,7 @@ function fitSizes(title: string, points: string[]): { head: number; point: numbe
 /** 要点3つ（無ければリード文の文から補う）。文末の「。」は落とす */
 function keyPoints(article: FullArticle): string[] {
   const clean = (s: string) => s.replace(/[✅👇]/gu, "").trim().replace(/。$/, "");
-  const points = (article.highlights ?? []).map(clean).filter(Boolean);
+  const points = (article.highlights ?? []).map((h) => clean(stripListNumber(h))).filter(Boolean);
   if (points.length < 3) {
     for (const sentence of (article.lede ?? "").split(/(?<=。)/)) {
       const s = clean(sentence);

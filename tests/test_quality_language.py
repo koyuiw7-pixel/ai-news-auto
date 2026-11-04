@@ -165,13 +165,19 @@ class FaqRequiredAndFill(unittest.TestCase):
         self.assertNotIn("faq", w.WEB_SCHEMA["required"])  # 元の形は変えない
 
     def test_fill_only_missing_fields(self):
+        # 2026-11-05 台帳 A45: よくある質問は本文に無い情報があるときだけ。空の FAQ は書き足さず、今日やることだけ書き足す
         rec = record(todayActions=["公式発表で条件を確かめる", "社内で共有する"])
         faq = [{"q": f"AICRの質問{i}は何？", "a": "本文に書かれた答えです。"} for i in range(3)]
         with patch.object(w.llm, "generate_json", return_value=({"faq": faq, "today_actions": ["x", "y"]}, "lite")) as call:
             added = w.fill_faq_actions(rec, "元記事", "")
-        self.assertEqual(added, ["faq"])
-        self.assertEqual(len(rec["faq"]), 3)
-        self.assertEqual(rec["todayActions"], ["公式発表で条件を確かめる", "社内で共有する"])  # あるものは変えない
+        self.assertEqual(added, [])
+        self.assertFalse(rec.get("faq"))
+        call.assert_not_called()
+        rec = record(faq=[])
+        with patch.object(w.llm, "generate_json", return_value=({"faq": faq, "today_actions": ["公式発表で条件を確かめる", "社内で共有する"]}, "lite")) as call:
+            added = w.fill_faq_actions(rec, "元記事", "")
+        self.assertEqual(added, ["todayActions"])
+        self.assertFalse(rec.get("faq"))
         self.assertEqual(call.call_args.kwargs["tier"], quality.CHECK_TIER)
 
     def test_no_fill_for_other_genres_or_complete(self):

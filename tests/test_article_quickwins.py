@@ -120,7 +120,7 @@ class GenreVerdictTests(unittest.TestCase):
         self.assertEqual((v["kind"], v["when"], v["japan"]), ("public", "12月1日から", "ok"))
 
     def test_extra_fields_by_genre(self):
-        self.assertIn("faq: 読者が検索しそうな疑問", w.extra_fields_block("ai"))
+        self.assertIn("本文のくり返しにしない", w.extra_fields_block("ai"))  # 2026-11-05 台帳 A45
         self.assertIn("空配列 [] にする", w.extra_fields_block("sports"))
         self.assertIn("観戦・参加できるか", w.extra_fields_block("sports"))
         self.assertIn("null", w.extra_fields_block("business"))
@@ -182,14 +182,15 @@ class FaqAndSeoTests(unittest.TestCase):
         rows = [{"q": "無料で使える？", "a": "使えません。月200ドルです。"}, {"q": "日本で使える？", "a": "使えます。"},
                 {"q": "いつから？", "a": "元記事には書かれていません。"}, {"q": "誰に向いている？", "a": "上限に当たる人です。"}]
         self.assertEqual([r["q"] for r in w.clean_faq(rows)], ["無料で使える？", "日本で使える？", "誰に向いている？"])
-        self.assertEqual(w.clean_faq(rows[:2]), [])  # 3問に満たなければ出さない
+        self.assertEqual(len(w.clean_faq(rows[:2])), 2)  # 2026-11-05 台帳 A45: 本文に無い情報なら1問からでも出す
         self.assertEqual(w.clean_actions(["1. 設定を開く", "上限を確かめる", "上限を確かめる"]), ["設定を開く", "上限を確かめる"])
         self.assertEqual(w.clean_actions(["ひとつだけ"]), [])
 
     def test_faq_shape_in_gate_and_fact_check(self):
         rec = web_record(seoTitle="Claude Ultraとは？料金", faq=[{"q": "無料？", "a": "いいえ"}], todayActions=["必ず儲かる銘柄を買う", "設定を見る"])
         problems = quality.faq_problems(rec)
-        self.assertTrue(any("3〜5問" in p for p in problems))
+        self.assertFalse(any("問まで" in p for p in problems))  # 1問は可（2026-11-05 台帳 A45）
+        self.assertTrue(any("4問まで" in p for p in quality.faq_problems({"faq": [{"q": "無料？", "a": "いいえ"}] * 6})))
         self.assertTrue(any("投資助言" in p for p in problems))
         text = quality._article_for_check({**rec, "faq": [{"q": "無料？", "a": "いいえ"}] * 3})
         self.assertIn("よくある質問", text)

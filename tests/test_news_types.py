@@ -85,7 +85,7 @@ class PromptTest(unittest.TestCase):
                 # リードは3文（2026-11-04 オーナー承認のピボット。台帳 A19）: 読者にとって何が変わるか → 数字か条件 → 今やること／未定のこと
                 self.assertIn("1文目＝読者にとって何が変わるか", block)
                 self.assertIn("3文目＝今やること、またはまだ決まっていないこと", block)
-                self.assertIn("本文の最初の段落（見出しを付けない）: だれに関係するか", block)  # 台帳 A42
+                self.assertIn("本文の最初の段落（見出しを付けない）＝読者個人への影響", block)  # 台帳 A42・A45（2026-11-05 読者順の型）
                 self.assertIn("材料の無い章は作らない", block)
                 self.assertIn("1,000字につき1つまで", block)
                 self.assertIn("「## 概要」「## これまでの流れ」の章は作らない", block)

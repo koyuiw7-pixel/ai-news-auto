@@ -15,6 +15,7 @@ import { getAllGuides, getGuide, guideArticles, isThinGuide } from "@/lib/guides
 import { Highlight } from "@/lib/highlight";
 import { getAllHowtos, getHowto } from "@/lib/howto";
 import { siteConfig } from "@/site.config";
+import { stripListNumber } from "@/lib/list-number";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -141,13 +142,10 @@ export default async function GuidePage({ params }: Props) {
 
       <section aria-labelledby="summary-heading" className="mt-6 rounded-2xl border-l-4 border-live bg-surface p-5 sm:p-6">
         <h2 id="summary-heading" className="t-h3">30秒でわかる{guide.name}</h2>
-        <ol className="mt-4 grid gap-3.5">
+        <ol className="num-list num-list--square mt-4 grid gap-3.5">
           {guide.summary.map((point, index) => (
             <li key={index} className="grid grid-cols-[24px_1fr] gap-3 text-desc font-medium leading-[1.7] text-ink">
-              <span className="index-num mt-0.5 grid size-6 place-items-center rounded-sm bg-ink text-meta font-semibold text-paper">
-                {index + 1}
-              </span>
-              {point}
+              <span>{stripListNumber(point)}</span>
             </li>
           ))}
         </ol>
@@ -196,13 +194,10 @@ export default async function GuidePage({ params }: Props) {
       </Section>
 
       <Section id="howto" title="始め方">
-        <ol className="grid gap-3">
+        <ol className="num-list num-list--box grid gap-3">
           {guide.howto.map((step, index) => (
             <li key={index} className="grid grid-cols-[2rem_1fr] items-start gap-3">
-              <span className="index-num grid size-8 place-items-center rounded-lg border border-line-strong text-meta font-semibold text-ink">
-                {index + 1}
-              </span>
-              <span className="pt-1 text-desc leading-[1.8] text-ink">{step}</span>
+              <span className="pt-1 text-desc leading-[1.8] text-ink">{stripListNumber(step)}</span>
             </li>
           ))}
         </ol>
