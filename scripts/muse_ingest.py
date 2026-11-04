@@ -38,6 +38,19 @@ def log(msg: str) -> None:
     print(msg, file=sys.stderr, flush=True)
 
 
+def faststart(mp4: Path) -> Path:
+    """moov を先頭に移した写し（中身はそのまま -c copy）。SNS の門（sns_rules.fetch_size）は先頭 1MB だけ読んで縦横を測るので、
+    moov が末尾にある Muse の書き出しは「動画の縦横を確かめられない（ルール2）」で止まる（2026-11-05 アララの投稿が止まった）"""
+    out = Path(tempfile.mkdtemp(prefix="muse-faststart-")) / mp4.name
+    try:
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(mp4), "-c", "copy", "-map", "0", "-movflags", "+faststart", str(out)],
+                       check=True, timeout=300)
+    except (OSError, subprocess.SubprocessError):
+        log("[muse] 注意: faststart に直せませんでした（元のファイルのまま置きます）")
+        return mp4
+    return out
+
+
 def probe(mp4: Path) -> dict:
     """ffprobe で長さ・画面の大きさ・音声の有無"""
     exe = shutil.which("ffprobe") or "ffprobe"
@@ -198,6 +211,7 @@ def main() -> int:
         return 0
     import sns_video_followup as f  # noqa: PLC0415 - 置き方は今の SNS 動画と同じ（Workers KV）
 
+    mp4 = faststart(mp4)
     url = f.upload_kv(mp4, args.slug)
     urls = {"short": url}
     if info["width"] > info["height"]:
