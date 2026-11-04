@@ -7302,6 +7302,17 @@
       "skipped": true,
       "url": "https://www.softbank.jp/sbnews/entry/20261028_01"
     },
+    "58a090b4c9116a8f": {
+      "at": "2026-11-04T19:09:48.151092+00:00",
+      "breaking": true,
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 78,
+      "section": "ai",
+      "slug": "claude-marketplace-new-agents-products",
+      "url": "https://claude.com/resources/articles/new-agents-and-products-claude-marketplace"
+    },
     "58b52d986f9888ef": {
       "at": "2026-11-04T08:03:10.192620+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -14727,38 +14738,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-02T23:38:17.794694+00:00",
-      "attempt": 1,
-      "id": "9f7e69613023002a",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 54.4,
-        "avg_sentence": 30.9,
-        "long_share": 0.015,
-        "max_paragraph": 148,
-        "paragraphs": 38,
-        "sentences": 67
-      },
-      "score": 100,
-      "source": "nvidia-developer-blog",
-      "title": "Keep Distributed Training Running with Automated Workload Recovery"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-02T23:51:22.047913+00:00",
-      "attempt": 1,
-      "id": "aa3a748ce9da0c45",
-      "kind": "update",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 100,
-      "source": "nvidia-developer-blog",
-      "title": "Diagnose Distributed AI Workload Failures with NVIDIA Attribution"
-    },
-    {
       "accepted": false,
       "at": "2026-11-02T23:53:55.268387+00:00",
       "attempt": 1,
@@ -21084,6 +21063,63 @@
       "score": null,
       "source": "jfa",
       "title": "SAMURAI BLUE（日本代表）メンバー・スケジュール MIZUHO BLUE CHALLENGE THE KALLANG FOOTBALL SERIES "
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-04T19:09:27.583541+00:00",
+      "attempt": 1,
+      "id": "58a090b4c9116a8f",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「対象となる大企業・法人の顧客」→ 元記事は「Eligible enterprise customers」とだけ書いており、「大企業」という条件は元記事にない記述である。",
+        "「個人でClaudeを使っている人の契約や料金は変わりません」→ 元記事にない断定で、個人の契約への影響は元記事では言及されていない。",
+        "「提供状況=limited」→ 元記事に「limited」という提供状況の記載はなく、判定欄の分類が元記事にない用語で書かれている。"
+      ],
+      "readability": {
+        "avg_paragraph": 69.5,
+        "avg_sentence": 42.8,
+        "long_share": 0.231,
+        "max_paragraph": 178,
+        "paragraphs": 16,
+        "sentences": 26
+      },
+      "score": 85,
+      "source": "claude-blog",
+      "title": "New agents and products for security, productivity, and creative work on Claude ",
+      "warnings": [
+        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（PMO）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-04T19:09:48.136714+00:00",
+      "attempt": 1,
+      "id": "58a090b4c9116a8f",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「対象となる法人の顧客」を「条件を満たす大企業・法人の顧客」と書いているが、元記事は「eligible enterprise customers」とだけ述べ、大企業とは書いていない。",
+        "判定欄の「提供状況=limited」は元記事・確認済みの文脈のどこにも根拠がない。",
+        "「セキュリティや開発基盤の担当者は、既存ツールの置き換え候補を一覧で比べられます」は元記事にない用途の拡大で、置き換えとは書かれていない。",
+        "「価格=法人向け」は元記事の「eligible enterprise customers」からの推測であり、価格体系の情報としては言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 67.4,
+        "avg_sentence": 43.1,
+        "long_share": 0.24,
+        "max_paragraph": 178,
+        "paragraphs": 16,
+        "sentences": 25
+      },
+      "score": 78,
+      "source": "claude-blog",
+      "title": "New agents and products for security, productivity, and creative work on Claude ",
+      "warnings": [
+        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（PMO）"
+      ]
     }
   ],
   "short_text_retry": {
