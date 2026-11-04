@@ -7586,6 +7586,17 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005968.000054842.html"
     },
+    "5f6a505c00e638f5": {
+      "at": "2026-11-04T20:04:34.084536+00:00",
+      "breaking": true,
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "kumamoto-quake-27th-meeting",
+      "url": "https://www.city.kumamoto.jp/kiji00372080/index.html"
+    },
     "5f9dc1efca710145": {
       "at": "2026-10-26T17:15:09.059191+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -14750,48 +14761,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-02T23:56:10.462509+00:00",
-      "attempt": 1,
-      "id": "4338b997783eb31c",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "段落が長い（平均 76.1字・最長 258字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 76.1,
-        "avg_sentence": 38.0,
-        "long_share": 0.0,
-        "max_paragraph": 258,
-        "paragraphs": 12,
-        "sentences": 24
-      },
-      "score": 100,
-      "source": "elevenlabs-blog",
-      "title": "How are synthetic voices created for natural speech?"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-02T23:56:14.005123+00:00",
-      "attempt": 0,
-      "id": "4338b997783eb31c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 65.2,
-        "avg_sentence": 38.0,
-        "long_share": 0.0,
-        "max_paragraph": 133,
-        "paragraphs": 14,
-        "sentences": 24
-      },
-      "score": 100,
-      "source": "elevenlabs-blog",
-      "title": "How are synthetic voices created for natural speech?"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-03T00:15:17.290304+00:00",
       "attempt": 1,
       "id": "52056732d51a05e6",
@@ -21140,6 +21109,58 @@
       "title": "緊急地震速報の訓練（令和８年11月５日）",
       "warnings": [
         "初めて出たところで言い換えていない略語（FM）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-04T20:04:06.082592+00:00",
+      "attempt": 1,
+      "id": "5f6a505c00e638f5",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「申請の約4割が南区に集中しています」→ 9,104/22,835 から算出した割合で、計算済みの数字に無い自己計算のため創作扱い",
+        "「約2か月半で、調査の件数は約3倍に増えています（サイソク編集部が資料の数字を比べたもの）」→ 11,405/3,791 から算出した倍率で、計算済みの数字に無い。比較の条件も不十分",
+        "「発行は申請より約1,100件少ない」→ 22,835−21,744 の自己計算で、計算済みの数字に無い",
+        "「避難所で暮らしている人はいません」→ 元資料は全指定避難所の閉鎖のみを示し、避難者がゼロとは書かれていない",
+        "「住まいの被害認定の結果は市の窓口で確認します」（リード）→ 元資料に窓口での確認方法の記載はなく、手続きの説明として裏付けが不足"
+      ],
+      "readability": {
+        "avg_paragraph": 77.9,
+        "avg_sentence": 35.3,
+        "long_share": 0.048,
+        "max_paragraph": 161,
+        "paragraphs": 19,
+        "sentences": 42
+      },
+      "score": 80,
+      "source": "fast",
+      "title": "令和8年熊本地震 熊本市災害対策本部会議（第27回）資料",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JR）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-04T20:04:34.026441+00:00",
+      "attempt": 1,
+      "id": "5f6a505c00e638f5",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 74.5,
+        "avg_sentence": 35.4,
+        "long_share": 0.075,
+        "max_paragraph": 145,
+        "paragraphs": 19,
+        "sentences": 40
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "令和8年熊本地震 熊本市災害対策本部会議（第27回）資料",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JR）"
       ]
     }
   ],
