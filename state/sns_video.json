@@ -2114,7 +2114,7 @@
     },
     "yucho-bank-matsui-securities-alliance": {
       "at": "2026-11-04T19:20:39+00:00",
-      "status": "ready",
+      "status": "article_only",
       "tries": 1,
       "ok": true,
       "adopted": "muse",
@@ -2155,7 +2155,8 @@
         "short": "https://ai-tech-express.jp/video/yucho-bank-matsui-securities-alliance-67b3b3b3d1.mp4",
         "poster": "https://ai-tech-express.jp/video/yucho-bank-matsui-securities-alliance-58a94777f0.jpg"
       },
-      "variant": "short"
+      "variant": "short",
+      "why": "差し替えられない形の投稿（返信つき・Buffer 以外など）"
     }
   },
   "queued": {
@@ -2260,6 +2261,21 @@
       "why": "海外の企業向け・開発者向けの話題（「AWS」）は SNS に出さない（サイトだけ）",
       "checkedAt": "2026-11-04T15:21:44+00:00",
       "at": "2026-11-04T16:36:49+00:00"
+    },
+    "jpcert-weekly-report-20261028-vulnerabilities": {
+      "status": "waiting",
+      "why": "Muse の動画を 12:10 まで待っている",
+      "checkedAt": "2026-11-04T19:33:14+00:00"
+    },
+    "arara-message-data-leak-second-report": {
+      "status": "skipped",
+      "errors": {
+        "threads": "SNSルール違反のため投稿しません（threads/sns_video_followup.publish_queued）: [ルール2] 動画の縦横を確かめられない（https://ai-tech-express.jp/video/arara-message-data-leak-second-report-ff8ba1512）"
+      },
+      "channels": {
+        "threads": ""
+      },
+      "why": "Buffer に動画つきの投稿を作れなかった: SNSルール違反のため投稿しません（threads/sns_video_followup.publish_queued）: [ルール2] 動画の縦横を確かめられない（https://ai-tech-express.jp/video/arara-message-data-leak-second-report-ff8ba1512）"
     }
   },
   "converted": {
