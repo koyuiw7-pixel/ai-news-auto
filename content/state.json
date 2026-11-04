@@ -11890,6 +11890,15 @@
       "slug": "aws-weekly-20261019-updates",
       "url": "https://aws.amazon.com/jp/blogs/news/aws-weekly-20261019/"
     },
+    "bf25be8f87794d7d": {
+      "at": "2026-11-04T22:53:46.467483+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "devrev-self-service-agents",
+      "url": "https://openai.com/index/devrev-enterprise-self-service"
+    },
     "bf2ae4b67817f277": {
       "at": "2026-10-30T06:12:30.053101+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
@@ -14777,50 +14786,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-03T00:36:28.376725+00:00",
-      "attempt": 0,
-      "id": "c246a0edd354bc64",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 窓口欄のURL（https://www.bousai.go.jp） → 元記事内にURLの記載がないため不正確または創作。; 千葉の大雨 → 元記事では「千葉県をはじめ各地で大雨による水害」であり、表現の一部省略や位置づけの微妙な違いがある。"
-      ],
-      "readability": {
-        "avg_paragraph": 120.3,
-        "avg_sentence": 40.1,
-        "long_share": 0.0,
-        "max_paragraph": 275,
-        "paragraphs": 10,
-        "sentences": 30
-      },
-      "score": 95,
-      "source": "gov-online",
-      "title": "防災庁発足! みんなでつくる、災害に強い社会"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T00:53:02.187007+00:00",
-      "attempt": 1,
-      "id": "136a46008993a284",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「プレスリリースページ」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
-      ],
-      "readability": {
-        "avg_paragraph": 89.0,
-        "avg_sentence": 40.0,
-        "long_share": 0.05,
-        "max_paragraph": 183,
-        "paragraphs": 9,
-        "sentences": 20
-      },
-      "score": null,
-      "source": "soumu",
-      "title": "革新的情報通信技術（Beyond 5G（6G））基金事業 社会実装・海外展開志向型戦略的プログラム【事業戦略支援型】 に係る予備調査（第6回）"
-    },
     {
       "accepted": false,
       "at": "2026-11-03T00:55:25.985837+00:00",
@@ -21147,6 +21112,50 @@
       "score": 92,
       "source": "openai-news",
       "title": "A thousand fewer paths to root"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-04T22:53:21.941230+00:00",
+      "attempt": 1,
+      "id": "bf25be8f87794d7d",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 48.1字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 99.4,
+        "avg_sentence": 48.1,
+        "long_share": 0.129,
+        "max_paragraph": 142,
+        "paragraphs": 15,
+        "sentences": 31
+      },
+      "score": 88,
+      "source": "openai-news",
+      "title": "DevRev delivers autonomous self-service with GPT-6.1 Sol"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-04T22:53:44.477766+00:00",
+      "attempt": 0,
+      "id": "bf25be8f87794d7d",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（48.1→45.4字）"
+      ],
+      "readability": {
+        "avg_paragraph": 99.4,
+        "avg_sentence": 48.1,
+        "long_share": 0.129,
+        "max_paragraph": 142,
+        "paragraphs": 15,
+        "sentences": 31
+      },
+      "score": 88,
+      "source": "openai-news",
+      "title": "DevRev delivers autonomous self-service with GPT-6.1 Sol"
     }
   ],
   "short_text_retry": {

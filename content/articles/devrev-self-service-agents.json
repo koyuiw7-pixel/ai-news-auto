@@ -1,0 +1,122 @@
+{
+  "slug": "devrev-self-service-agents",
+  "sourceType": "web",
+  "sourceUrl": "https://openai.com/index/devrev-enterprise-self-service",
+  "sourceName": "OpenAI公式ブログ",
+  "title": "DevRevの顧客対応AI、GPT-6.1 Solで強化　操作は取り消せる設計",
+  "seoTitle": "DevRevのAIエージェントとは？GPT-6.1 Solで強化",
+  "threadsPost": "問い合わせ対応を担当している人に、知っておいてほしい話です。\n\nDevRevは、OpenAIのGPT-6.1 Solを使い、顧客や社員の依頼を最後まで処理するAIエージェントを開発しました。\n操作は取り消せるようになっており、回答には根拠の出どころも示されます。\n\n問い合わせ対応を、AIにどこまで任せてよいと考えますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "問い合わせ対応を、AIにどこまで任せてよいと考えますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "AIに手続きを最後まで任せるなら、途中の確認はどこまで残しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "DevRevは、顧客や社員の依頼を最後まで処理するAIエージェント「Computer」と「Operator」を作りました。OpenAIの推論モデル（考えてから答えるAI）「GPT-6.1 Sol」などを使い、操作は取り消せる設計で、回答には根拠の出どころも示されます。DevRevの製品の提供時期と料金、日本での利用は、まだ発表されていません。",
+  "description": "DevRevは、OpenAIのGPT-6.1 Solなどを使い、顧客や社員の依頼を最後まで処理するAIエージェント「Computer」と「Operator」を開発しました。操作は取り消せ、回答には根拠の出どころが示されます。提供時期と料金はまだ発表されていません。",
+  "keywords": [
+    "DevRev",
+    "AIエージェント",
+    "GPT-6.1 Sol",
+    "OpenAI",
+    "DevRev Computer",
+    "DevRev Operator",
+    "顧客対応 AI",
+    "問い合わせ対応 自動化",
+    "Codex",
+    "推論モデル",
+    "API料金"
+  ],
+  "tags": [
+    "生成AI",
+    "AIエージェント",
+    "GPT-6.1 Sol",
+    "顧客対応",
+    "OpenAI"
+  ],
+  "highlights": [
+    "DevRevのAIエージェント「Computer」「Operator」が、顧客や社員の依頼を最後まで処理します。",
+    "Operatorが承認された操作を実行し、手に負えない依頼はComputerに回して、対応する人の準備を整えます。",
+    "GPT-6.1 SolのAPI料金は、100万トークンあたり入力2ドル・出力10ドル。DevRevの製品料金は未発表です。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "顧客対応の担当者",
+    "take": "DevRevの製品を導入するなら、料金と日本での提供を公式発表で確かめるとよいでしょう。",
+    "judgedAt": "2026-11-04T22:53:13.812445+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "顧客対応や社内の問い合わせを担当する人にとっては、依頼を最後まで処理するAIの具体例になります。",
+      "自社の業務にAIを組み込む場合、GPT-6.1 Solの料金は入力が100万トークンあたり2ドル（約320円）です（税別の目安）。"
+    ]
+  },
+  "body": "ここでいうAIエージェントは、依頼に応じて自分で手順を選び、社内のシステムを動かしながら作業を進めるAIです。質問に答えるだけのチャットと違い、問い合わせを完了まで処理するのが特徴です。\n\n関係するのは、顧客対応や社内の問い合わせを担当する人と、こうした仕組みの導入を検討する人です。いまの業務を変えていない人の日常に、すぐ影響が出るわけではありません。\n\nDevRevは、OpenAIのモデルと、社内の情報をつなぐ仕組み（ハーネス）を組み合わせています。このハーネスによって、AIがどの情報を見てよいか、どの操作をしてよいかを、担当者が決められます。\n\n## OperatorとComputerで分担、操作は取り消せる設計\n\nOperatorは、問い合わせの内容を理解し、承認された操作を実行します。手に負えない依頼は、Computerに回します。Computerは、対応する人が動けるように準備を整える役目です。\n\n両方とも、いま更新されている業務データをもとに推論（学習済みのAIが答えを出す処理）をします。Agent Studioでは、担当者が会話の形でツールの振る舞いを説明し、固定のルールも決められます。\n\nDevRevのAhmed Bashir最高技術責任者（CTO）によると、操作は取り消せるようになっており、回答には根拠の出どころも示されます。\n\n同社が次に目指すのは、Operatorにより長く、より難しい依頼を任せることです。Ahmed氏は、資料の検索、プラン変更、返金といったよくある対応は、いわば入り口にすぎないと述べています。\n\n## 速さと費用で選んだGPT-6.1 Solの料金\n\nDevRevは、GPT-6.1 Solについて、推論の力と信頼性が高く、同社の評価でも良い結果が出ていると説明しています。Ahmed氏は「バランスが完璧に取れている」と話しています。\n\n顧客や社員と話すAIには、依頼の細かな意図を読み取ることと、素早く返すことの両方が求められます。さらに、企業が続けられる費用であることも条件になります。\n\n同社は、自社の性能テスト（ベンチマーク）「Enterprise-Bench」で、モデルを評価しています。データが複数の版に分かれている場合や、情報が別々のシステムにある場合、閲覧できる範囲が役割で決まる場合を想定しています。\n\nGPT-6.1 Solの料金は、OpenAIのAPI（アプリから呼び出す仕組み）の公式ページで確認できます。100万トークン（AIが文字を数える単位）あたりの料金は次のとおりです（OpenAI公式のAPI料金ページ、11/4確認）。\n\n- 入力：2ドル（約320円）\n- 出力：10ドル（約1,580円）\n\nこれは入力が272K（1K＝1,000トークン）以下の場合の料金です。円は1ドル＝158.29円で換算した目安で、税は別です（サイソク編集部の計算）。これはAPIの料金で、DevRevの製品の料金ではありません。\n\n社内の開発では、エンジニアが全員Codexを使う形に切り替えました。Ahmed氏によると、複数のツールを試したあとに自然と広がり、Cursorのライセンスも手放したそうです。Codexはプログラムを書く作業を手伝うOpenAIのツールです（編集部注）。\n\nAhmed氏は、Codexについて「ずっと抜きん出て最良の体験」と話しています（原文は We think that Codex is far and away the best experience.）。営業のエンジニアは、国際カンファレンスの展示ブース用のデモ作成に、GPT-6 Astraを使っています。\n\nサイソクは10月28日、CodeRabbitがセキュリティ調査の主力にGPT-6.1 Solを使う例を報じています（[CodeRabbitが「GPT-6.1 Sol」をセキュリティ調査の主力に採用](/articles/coderabbit-secure-gpt-6-1-sol-security)）。\n\n## まだ分からないこと\n\n- DevRevのComputerとOperatorの提供時期と料金は、まだ発表されていません。\n- 日本で使えるかどうか、日本語にどこまで対応するかは、まだ発表されていません。\n- Enterprise-Benchの比較対象や測定条件は、まだ発表されていません。\n- 導入している企業の数や、業務の効果を示す数字は、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nDevRevは、OpenAIのAIを使って、顧客や社員の依頼を最後まで処理するAIエージェントを作りました。操作は取り消せ、回答には根拠も示されます。\n\n## 仕組みをかんたんに\n\nAIエージェントは、依頼に応じて自分で手順を選び、作業を進めるAIです。Operatorは承認された操作を実行し、手に負えない依頼はComputerに回します。\n\nAIがどこまで動くかは、担当者が会話の形でルールを決めて制御します。",
+  "channel": "OpenAI公式ブログ",
+  "channelId": "",
+  "channelSlug": "openai-news",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "DevRev delivers autonomous self-service with GPT-6.1 Sol",
+  "publishedAt": "2026-11-04T00:00:00+00:00",
+  "generatedAt": "2026-11-04T22:53:13.812433+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/devrev-self-service-agents-ebee3118.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "general",
+  "todayActions": [
+    "OpenAIのAPI料金ページで、GPT-6.1 Solの入力と出力の料金を確かめる",
+    "DevRevの公式発表で、ComputerとOperatorの提供時期と料金が出ていないか確かめる",
+    "自社の問い合わせ業務で、AIに任せてよい操作と承認が必要な操作を書き出しておく"
+  ],
+  "relatedSlugs": [
+    "coderabbit-secure-gpt-6-1-sol-security"
+  ],
+  "qualityScore": 88,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "OpenAI公式の料金ページ",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "checkedAt": "2026-11-04"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-04T00:00:00+00:00",
+  "detectedAt": "2026-11-04T22:51:03+00:00",
+  "imageCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A softly lit office space with an empty wooden desk, a stack of paper folders and a notebook, illuminated by natural light filtering through blinds, conveying a quiet, professional atmosphere.",
+    "provider": "Cloudflare Workers AI",
+    "noProduct": true,
+    "at": "2026-11-04T22:54:17+00:00"
+  },
+  "imageFocus": {
+    "x": 0.512,
+    "y": 0.438,
+    "box": [
+      0.025,
+      0.0,
+      1.0,
+      0.875
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/devrev-self-service-agents-ebee3118.jpg"
+  }
+}
