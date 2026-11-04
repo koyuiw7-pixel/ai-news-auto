@@ -14701,6 +14701,17 @@
       "skipped": true,
       "url": "https://openai.com/index/dan-driscoll-joins-openai"
     },
+    "ff253471bb83388e": {
+      "at": "2026-11-04T19:57:27.001344+00:00",
+      "breaking": true,
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 85,
+      "section": "ai",
+      "slug": "eew-drill-2026-11-05",
+      "url": "https://www.jma.go.jp/jma/kishou/know/jishin/eew/kunren/2026/kunren.html"
+    },
     "ff5860a7e60d608b": {
       "at": "2026-10-26T15:37:17.057889+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -14737,48 +14748,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-02T23:53:55.268387+00:00",
-      "attempt": 1,
-      "id": "f630cc700b2dd358",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "段落が長い（平均 124.2字・最長 209字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 124.2,
-        "avg_sentence": 38.8,
-        "long_share": 0.125,
-        "max_paragraph": 209,
-        "paragraphs": 5,
-        "sentences": 16
-      },
-      "score": 100,
-      "source": "playstation-blog-jp",
-      "title": "『SAROS』で立ちはだかる、カルコサを支配する君臨者たちの制作秘話"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-02T23:53:58.599820+00:00",
-      "attempt": 0,
-      "id": "f630cc700b2dd358",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 57.5,
-        "avg_sentence": 33.3,
-        "long_share": 0.053,
-        "max_paragraph": 126,
-        "paragraphs": 11,
-        "sentences": 19
-      },
-      "score": 100,
-      "source": "playstation-blog-jp",
-      "title": "『SAROS』で立ちはだかる、カルコサを支配する君臨者たちの制作秘話"
-    },
     {
       "accepted": false,
       "at": "2026-11-02T23:56:10.462509+00:00",
@@ -21119,6 +21088,58 @@
       "warnings": [
         "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（PMO）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-04T19:57:08.141931+00:00",
+      "attempt": 1,
+      "id": "ff253471bb83388e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "本文「自分のスマートフォンやテレビが鳴るわけではないため、何もしなければ当日は普段どおりです」→ 元記事は、携帯・スマホの防災メールや災害情報アプリでは訓練と明記した速報が流れる場合があり、受信端末の動作も事業者や端末による、と述べている。一律に「鳴らない」「普段どおり」と言い切るのは言い過ぎ。",
+        "リード「訓練用の速報は、自治体の防災行政無線や一部の商業施設などで流れます」→ 元記事は「訓練に参加する地方自治体」の防災行政無線などと限定しており、参加しない自治体では流れない点が省かれている。"
+      ],
+      "readability": {
+        "avg_paragraph": 87.2,
+        "avg_sentence": 42.0,
+        "long_share": 0.111,
+        "max_paragraph": 140,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": 82,
+      "source": "fast",
+      "title": "緊急地震速報の訓練（令和８年11月５日）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（FM）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-04T19:57:26.988929+00:00",
+      "attempt": 1,
+      "id": "ff253471bb83388e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "今日やること「10時ごろに、その場で…約1分間試す」→ 元記事ではシェイクアウト訓練は「指定された日時」に行うとあり、10時に行うとは書かれていない。時刻を結びつけたのは記事側の補足で、元記事に無い情報。",
+        "「職場や学校の防災担当者は、当日10時ごろに身を守る行動の訓練を実施できます」→ 10時は訓練用速報の配信時刻であり、各機関が訓練を行う時刻ではない。対象や時刻の対応づけが元記事より踏み込んでいる。"
+      ],
+      "readability": {
+        "avg_paragraph": 91.7,
+        "avg_sentence": 44.1,
+        "long_share": 0.148,
+        "max_paragraph": 188,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": 85,
+      "source": "fast",
+      "title": "緊急地震速報の訓練（令和８年11月５日）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（FM）"
       ]
     }
   ],
