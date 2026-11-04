@@ -2022,7 +2022,7 @@
     },
     "arara-message-data-leak-second-report": {
       "at": "2026-11-04T20:35:32+00:00",
-      "status": "ready",
+      "status": "article_only",
       "tries": 1,
       "ok": true,
       "adopted": "muse",
@@ -2063,7 +2063,8 @@
         "short": "https://ai-tech-express.jp/video/arara-message-data-leak-second-report-8fc189892d.mp4",
         "poster": "https://ai-tech-express.jp/video/arara-message-data-leak-second-report-eb84908d85.jpg"
       },
-      "variant": "short"
+      "variant": "short",
+      "why": "差し替えられない形の投稿（返信つき・Buffer 以外など）"
     },
     "ntt-fy2026-q2-results": {
       "at": "2026-11-04T20:36:10+00:00",
@@ -2156,6 +2157,150 @@
       },
       "variant": "short",
       "why": "差し替えられない形の投稿（返信つき・Buffer 以外など）"
+    },
+    "kumamoto-quake-27th-meeting": {
+      "at": "2026-11-04T21:04:59+00:00",
+      "status": "gate_failed",
+      "tries": 1,
+      "textAt": "2026-11-04T21:00:44+00:00",
+      "textId": "",
+      "breaking": true,
+      "scheduled": false,
+      "versions": {
+        "full": {
+          "ok": false,
+          "seconds": 43.734,
+          "reasons": [
+            "v3: QA(目視): 場面1（選択の青・画面の切れ）: 選択の青が行頭の「り災証明書」の途中から付いており、「熊本市内で住まいに被害を受けた人は、」の文頭は付いているが、2行目の文末「ます。」の後ろに次の文の「熊本市",
+            "v3: QA(目視): 場面2（選択の青・話の食い違い）: 青が文末の後ろ「市の」まではみ出している。左のキーワードが「2,835件」で、読み上げと文の「2万2,835件」と合わず、「2万」が欠けている。",
+            "v3: QA(目視): 場面3（選択の青）: 青が「市の第27回…」の文頭から付いているが、直前の「ました。」の後ろから始まり、文末の後ろに次の文「区別では」まではみ出している。"
+          ],
+          "qa": {
+            "geometry": true,
+            "vision": false,
+            "version": 1,
+            "v3": false
+          },
+          "template": "",
+          "level": null,
+          "base_layout": "screen-left-headline"
+        },
+        "short": {
+          "ok": false,
+          "seconds": 33.499,
+          "reasons": [
+            "v3: QA(目視): 場面1（選択の青・画面の切れ）: 青が文末の後ろ「熊本市の」まではみ出している。右端「発行の」で行が画面端に寄り切れ気味。",
+            "v3: QA(目視): 場面2（選択の青・話の食い違い）: 青が文末の後ろ「市の」まではみ出している。左のキーワード「2,835件」で「2万」が欠けている。",
+            "v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 最初が「熊本地震のり災証明書」だけで何の話か分からず、「知っておいてほしい話です」は中身が無い。続く硬い文は要約の読み聞かせに近く、5秒以降も見たくなりにくい。冒頭で「2万件超の申請」とその意味を口語"
+          ],
+          "qa": {
+            "geometry": true,
+            "vision": false,
+            "version": 1,
+            "v3": false
+          },
+          "template": "",
+          "level": null,
+          "base_layout": "screen-left-headline"
+        }
+      },
+      "timings": {
+        "full": {
+          "script": 0.0,
+          "tts": 18.96,
+          "plan_audio": 3.55,
+          "render": 33.84,
+          "gate": 4.37,
+          "sheet": 1.91,
+          "total": 62.7,
+          "ladder_total": 172.9
+        },
+        "short": {
+          "script": 0.0,
+          "tts": 13.9,
+          "plan_audio": 2.76,
+          "render": 25.6,
+          "gate": 3.42,
+          "sheet": 1.48,
+          "total": 47.2,
+          "ladder_total": 172.9
+        }
+      },
+      "ok": false,
+      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Clau / short: どの段でも合格しなかった（あとの回で作り直す）: full: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Clau",
+      "pages": [
+        "ai-tech-express.jp"
+      ]
+    },
+    "eew-drill-2026-11-05": {
+      "at": "2026-11-04T21:04:59+00:00",
+      "status": "gate_failed",
+      "tries": 1,
+      "textAt": "2026-11-04T21:03:45+00:00",
+      "textId": "6aeb9db366cdd5eb28571ccc",
+      "breaking": true,
+      "scheduled": false,
+      "versions": {
+        "full": {
+          "ok": false,
+          "seconds": 45.369,
+          "reasons": [
+            "v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 最初の左の文字「テレビやスマホには流れず」だけでは何の話か分からず、読み上げも日付と訓練の事実を淡々と読むだけで、なぜ大事か（自分に関係があるか）が伝わらない。「今日10時、スマホには鳴らない緊急地震"
+          ],
+          "qa": {
+            "geometry": true,
+            "vision": false,
+            "version": 1,
+            "v3": false
+          },
+          "template": "",
+          "level": null,
+          "base_layout": "screen-left-headline"
+        },
+        "short": {
+          "ok": false,
+          "seconds": 38.213,
+          "reasons": [
+            "v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 最初の左の文字「テレビやスマホには流れず」だけでは何の話か分からず、読み上げも記事の要約の読み聞かせで硬い。なぜ大事かが無く、5秒以降も見続けたくなる引きが弱い。「今日10時、スマホが鳴らなくても慌て"
+          ],
+          "qa": {
+            "geometry": true,
+            "vision": false,
+            "version": 1,
+            "v3": false
+          },
+          "template": "",
+          "level": null,
+          "base_layout": "screen-left-headline"
+        }
+      },
+      "timings": {
+        "full": {
+          "script": 0.0,
+          "tts": 18.38,
+          "plan_audio": 3.68,
+          "render": 35.25,
+          "gate": 4.35,
+          "sheet": 1.88,
+          "total": 63.6,
+          "ladder_total": 158.3
+        },
+        "short": {
+          "script": 0.0,
+          "tts": 15.4,
+          "plan_audio": 2.27,
+          "render": 29.05,
+          "gate": 3.98,
+          "sheet": 1.6,
+          "total": 52.3,
+          "ladder_total": 158.3
+        }
+      },
+      "ok": false,
+      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Clau / short: どの段でも合格しなかった（あとの回で作り直す）: full: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Clau",
+      "pages": [
+        "ai-tech-express.jp"
+      ]
     }
   },
   "queued": {
@@ -2275,6 +2420,11 @@
         "threads": ""
       },
       "why": "Buffer に動画つきの投稿を作れなかった: SNSルール違反のため投稿しません（threads/sns_video_followup.publish_queued）: [ルール2] 動画の縦横を確かめられない（https://ai-tech-express.jp/video/arara-message-data-leak-second-report-ff8ba1512）"
+    },
+    "kumamoto-quake-27th-meeting": {
+      "status": "waiting",
+      "why": "動画が検査に落ちたので、あとの回で作り直す（この投稿だけ遅らせる）",
+      "checkedAt": "2026-11-04T21:04:59+00:00"
     }
   },
   "converted": {
