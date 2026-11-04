@@ -2114,7 +2114,7 @@
     },
     "kumamoto-quake-risai-online-application": {
       "at": "2026-11-04T20:36:44+00:00",
-      "status": "article_only",
+      "status": "attached",
       "tries": 1,
       "ok": true,
       "adopted": "muse",
@@ -2156,12 +2156,14 @@
         "poster": "https://ai-tech-express.jp/video/kumamoto-quake-risai-online-application-ddc03abc6a.jpg"
       },
       "variant": "short",
-      "why": "差し替えられない形の投稿（返信つき・Buffer 以外など）"
+      "why": "差し替えられない形の投稿（返信つき・Buffer 以外など）",
+      "bufferId": "6aeba4f5dce07267a1944fc2",
+      "postedAt": "2026-11-05T03:15:00+00:00"
     },
     "kumamoto-quake-27th-meeting": {
-      "at": "2026-11-04T21:12:16+00:00",
+      "at": "2026-11-04T21:31:51+00:00",
       "status": "gate_failed",
-      "tries": 2,
+      "tries": 3,
       "textAt": "2026-11-04T21:00:44+00:00",
       "textId": "",
       "breaking": true,
@@ -2171,9 +2173,8 @@
           "ok": false,
           "seconds": 43.734,
           "reasons": [
-            "v3: QA(目視): 場面1（選択の青・画面の切れ）: 選択の青が行頭の「り災証明書」の途中から始まる形で、「熊本市内で…」の文頭が左端で切れて見える。また、選択が文末の「確かめることになります。」までで、次の文の頭",
-            "v3: QA(目視): 場面2（話の食い違い）: 左のキーワードが「2,835件」で「2万」が抜けており、読み上げ・選択文の「2万2,835件」と数字が合わない。",
-            "v3: QA(目視): 場面4（話の食い違い）: 左のキーワード「9,104件」は南区の申請件数だが、補足に「全指定避難所」とあり、避難所の閉鎖の話に見える。数字と補足が合わない。"
+            "v3: QA(目視): 場面2（話の食い違い）: 左のキーワードが「2,835件」で「2万」が抜けている。読み上げと選択文は2万2,835件なので、数字が違って見える。",
+            "v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 最初の読み上げが「知っておいてほしい話です」という前置きだけで、何のニュースかが分からない。続く読み上げも「確かめることになります」という硬い説明文。冒頭で「熊本地震のり災証明書の申請が2万2,835"
           ],
           "qa": {
             "geometry": true,
@@ -2189,9 +2190,8 @@
           "ok": false,
           "seconds": 33.499,
           "reasons": [
-            "v3: QA(目視): 場面1（選択の青・画面の切れ）: 選択の青が行頭で文頭「熊本市内で…」から始まっておらず切れて見える。文末の青も次の文の頭に食い込んでいる。",
-            "v3: QA(目視): 場面2（話の食い違い）: 左のキーワードが「2,835件」で「2万」が抜けており、読み上げ・選択文の「2万2,835件」と数字が合わない。",
-            "v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 最初に「熊本地震のり災証明書」だけが出て、何が起きたか分からない。読み上げは前置きが長く、2コマ目以降も窓口で確かめるという硬い説明が続く。「り災証明書の申請が2万件超」と数字と理由を最初に示し、続き"
+            "v3: QA(目視): 場面2（話の食い違い）: 左のキーワードが「2,835件」で「2万」が抜けている。読み上げと選択文は2万2,835件なので、数字が違って見える。",
+            "v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 最初の読み上げが「知っておいてほしい話です」という前置きだけで、何のニュースかが分からない。続く読み上げも「確かめることになります」という硬い説明文。冒頭で「熊本地震のり災証明書の申請が2万2,835"
           ],
           "qa": {
             "geometry": true,
@@ -2207,23 +2207,23 @@
       "timings": {
         "full": {
           "script": 0.0,
-          "tts": 19.06,
-          "plan_audio": 3.66,
-          "render": 35.15,
-          "gate": 4.5,
-          "sheet": 1.93,
-          "total": 64.4,
-          "ladder_total": 156.8
+          "tts": 14.38,
+          "plan_audio": 2.89,
+          "render": 30.21,
+          "gate": 3.55,
+          "sheet": 1.58,
+          "total": 52.7,
+          "ladder_total": 145.1
         },
         "short": {
           "script": 0.0,
-          "tts": 13.71,
-          "plan_audio": 2.87,
-          "render": 25.49,
-          "gate": 3.73,
-          "sheet": 1.5,
-          "total": 47.3,
-          "ladder_total": 156.8
+          "tts": 10.93,
+          "plan_audio": 2.25,
+          "render": 23.52,
+          "gate": 2.85,
+          "sheet": 1.25,
+          "total": 40.8,
+          "ladder_total": 145.1
         }
       },
       "ok": false,
@@ -2303,6 +2303,58 @@
       "pages": [
         "ai-tech-express.jp"
       ]
+    },
+    "jpcert-weekly-report-20261028-vulnerabilities": {
+      "at": "2026-11-04T21:31:51+00:00",
+      "status": "gate_failed",
+      "tries": 1,
+      "textAt": "2026-11-04T19:32:03+00:00",
+      "textId": "",
+      "breaking": false,
+      "scheduled": false,
+      "versions": {
+        "full": {
+          "ok": false,
+          "seconds": null,
+          "reasons": [
+            "記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い"
+          ],
+          "qa": {
+            "geometry": false,
+            "vision": false,
+            "version": 1
+          },
+          "template": "",
+          "level": null,
+          "base_layout": ""
+        },
+        "short": {
+          "ok": false,
+          "seconds": null,
+          "reasons": [
+            "記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い"
+          ],
+          "qa": {
+            "geometry": false,
+            "vision": false,
+            "version": 1
+          },
+          "template": "",
+          "level": null,
+          "base_layout": ""
+        }
+      },
+      "timings": {
+        "full": {
+          "ladder_total": 22.5
+        },
+        "short": {
+          "ladder_total": 22.5
+        }
+      },
+      "ok": false,
+      "reason": "full: 記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い / short: 記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い",
+      "pages": []
     }
   },
   "queued": {
@@ -2426,7 +2478,19 @@
     "kumamoto-quake-27th-meeting": {
       "status": "waiting",
       "why": "動画が検査に落ちたので、あとの回で作り直す（この投稿だけ遅らせる）",
-      "checkedAt": "2026-11-04T21:12:16+00:00"
+      "checkedAt": "2026-11-04T21:31:51+00:00"
+    },
+    "kumamoto-quake-risai-online-application": {
+      "status": "created",
+      "channels": {
+        "threads": "6aeba4f5dce07267a1944fc2",
+        "twitter": "6aeba4f73a6057e11e770aaa",
+        "facebook": "6aeba4f74cb090f0ac3e329a"
+      },
+      "id": "6aeba4f5dce07267a1944fc2",
+      "dueAt": "2026-11-05T03:15:00+00:00",
+      "variant": "short",
+      "delayedMin": 0
     }
   },
   "converted": {
