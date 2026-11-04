@@ -150,13 +150,25 @@ class MuseTest(unittest.TestCase):
         return patch.object(sns_plan, "load_muse_queue", return_value={"items": items})
 
     def test_pick_rules(self):
-        now = datetime(2026, 11, 4, 22, 0, tzinfo=timezone.utc)  # 7:00 JST（朝の回）
+        # 2026-11-05〜 Muse の受け渡し＝SNS の予定（動画待ちの記録）。枠の順・枠の日ごとに6本まで・速報と出さない話題は入れない
+        now = datetime(2026, 11, 4, 22, 0, tzinfo=timezone.utc)  # 7:00 JST
+
+        def rec(hh, mm, **kw):
+            slot = at(5, hh, mm)
+            return {"status": "awaiting_video", "dueAt": slot.isoformat(), "pending": {"slot": slot.isoformat(), "inputs": {"threads": {}}}, **kw}
+
+        posted = {"honda": rec(12, 15), "yucho": rec(8, 10), "aws-x": rec(18, 45), "brk": rec(9, 0, breaking=True), "done": {"id": "x", "dueAt": at(5, 8, 0).isoformat()}}
+        arts = [YUCHO, HONDA, AWS, {**YUCHO, "slug": "brk"}, {**YUCHO, "slug": "done"}]
         with self.queue([]), patch.object(sns_plan, "muse_slugs", return_value=set()):
-            got = muse_queue.pick({"items": []}, now, [YUCHO, HONDA, AWS, {**YUCHO, "slug": "nonum", "title": "ゆうちょ銀行が提携", "lede": ""}], {})
+            got = muse_queue.pick({"items": []}, now, arts, posted)
         self.assertEqual([g["slug"] for g in got], ["yucho", "honda"])
         self.assertTrue(all(g["status"] == "queued" and g["file"] == f"news-{g['slug']}.mp4" for g in got))
-        full = {"items": [{"slug": f"s{i}", "queuedAt": now.isoformat(), "status": "queued"} for i in range(3)]}
-        self.assertEqual(muse_queue.pick(full, now, [YUCHO], {}), [])  # 1日3本まで
+        self.assertEqual(got[0]["url"], "https://ai-tech-express.jp/articles/yucho")
+        self.assertEqual(got[0]["slot"], at(5, 8, 10).isoformat())
+        self.assertEqual(got[0]["deadline"], (at(5, 8, 10) + timedelta(hours=4)).isoformat())
+        self.assertTrue(got[0]["title"])
+        full = {"items": [{"slug": f"s{i}", "slot": at(5, 7, i).isoformat(), "queuedAt": now.isoformat(), "status": "queued"} for i in range(6)]}
+        self.assertEqual(muse_queue.pick(full, now, arts, posted), [])  # 枠の日ごとに6本まで
 
     def test_wait_until(self):
         slot = datetime(2026, 11, 5, 3, 15, tzinfo=timezone.utc)
@@ -175,11 +187,13 @@ class MuseTest(unittest.TestCase):
                                     creator=lambda *a: self.fail("送ってはいけない"), issue=lambda *a: self.fail("issue を立ててはいけない"),
                                     eligible=lambda s: True, remote=lambda s: {})
             self.assertIn("Muse の動画", out[0]["why"])
-            # 待ちの間は自動動画を作らない。期限（4時間）を過ぎたら作る
+            # 枠の時刻までは自動動画を作らない。枠を過ぎたら Muse が来なかったときの予備を作っておく（2026-11-05〜。投稿は期限まで Muse を待つ）
             posted = {"posted": {"yucho": {**rec, "postedAt": slot.isoformat()}}}
-            pick = fu.candidates(posted, {"videos": {}}, slot + timedelta(hours=1), 12, load_article=lambda s: YUCHO, eligible=lambda a: True, score=lambda a: 0)
+            item_early = {**item, "queuedAt": (slot - timedelta(hours=3)).isoformat()}
+            with self.queue([item_early]):
+                pick = fu.candidates(posted, {"videos": {}}, slot - timedelta(hours=1), 12, load_article=lambda s: YUCHO, eligible=lambda a: True, score=lambda a: 0)
             self.assertEqual(pick, [])
-            pick = fu.candidates(posted, {"videos": {}}, slot + timedelta(hours=4, minutes=5), 12, load_article=lambda s: YUCHO, eligible=lambda a: True, score=lambda a: 0)
+            pick = fu.candidates(posted, {"videos": {}}, slot + timedelta(hours=1), 12, load_article=lambda s: YUCHO, eligible=lambda a: True, score=lambda a: 0)
             self.assertEqual(pick, ["yucho"])
             self.assertEqual(fu.muse_extra_h("yucho", rec), 4.0)
 

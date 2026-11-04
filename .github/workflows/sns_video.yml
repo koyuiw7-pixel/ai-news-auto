@@ -106,6 +106,7 @@ jobs:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           # Buffer の呼び出しは「動画ができて、差し替える予約がある」ときだけ。回数の記録は state/buffer_calls/video.json
           BUFFER_LEDGER: video
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
           BUFFER_DAILY_CAP: ${{ vars.BUFFER_DAILY_CAP }}
           CF_KV_TOKEN: ${{ secrets.CF_DEPLOY_TOKEN }}  # images.py の kv_put と同じ（Workers KV Storage:Edit）
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -124,8 +125,8 @@ jobs:
           SNS_VIDEO_BREAKING_FOLLOWUP: ${{ vars.SNS_VIDEO_BREAKING_FOLLOWUP || 'off' }}
           # 中身に合わせた動画の型（scripts/video_templates.py）。2026-11-04 オーナー承認で既定 on（off で今までの1つの型）
           SNS_VIDEO_TEMPLATES: ${{ vars.SNS_VIDEO_TEMPLATES || 'on' }}
-          SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '0' }}  # Muse の型の文面（オーナー承認まで 0。台帳 S30）
-          THREADS_LINK_AB: ${{ vars.THREADS_LINK_AB || '0' }}  # Threads のリンクの位置の比べ（オーナー承認まで 0。S31）
+          SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '1' }}  # Muse の型の文面（2026-11-05 オーナー承認で既定 1。止めるなら変数を 0。台帳 S30）
+          THREADS_LINK_AB: ${{ vars.THREADS_LINK_AB || '1' }}  # Threads のリンクの位置の比べ（2026-11-05 オーナー承認・11/5〜11/12。S31）
           MUSE_WAIT_HOURS: ${{ vars.MUSE_WAIT_HOURS }}  # Muse の動画を待つ時間（空なら scripts/sns_plan.json の4時間）
         run: |
           if [ -n "${{ github.event.inputs.queue_fix }}" ]; then

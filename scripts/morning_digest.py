@@ -430,7 +430,7 @@ def buffer_posts(api_key: str, channel_id: str, now: datetime) -> list[dict]:
     https://developers.buffer.com/guides/efficient-api-usage.html
     """
     start = now.astimezone(tp.JST).replace(hour=0, minute=0, second=0, microsecond=0)
-    orgs = tp.buffer_graphql(api_key, "query { account { organizations { id } } }")["account"]["organizations"]
+    orgs = [{"id": oid} for oid in tp.buffer_org_ids(api_key)]  # 保存した ID（2026-11-05 呼び出しを減らす）
     if not orgs:
         raise RuntimeError("Bufferの組織を確認できません")
     posts: dict[str, dict] = {}

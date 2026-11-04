@@ -908,8 +908,15 @@ def comment_time_ok(hhmm: str) -> bool:
 
 
 def comment_log_problems(entries: list[dict], since: str = "2026-11-03") -> list[str]:
-    return [f"[O4] {e.get('date')} {e.get('time')} に {e.get('sns')} へコメント（10:20〜22:59 だけ）"
-            for e in entries if str(e.get("date") or "") >= since and not comment_time_ok(str(e.get("time") or ""))]
+    out = [f"[O4] {e.get('date')} {e.get('time')} に {e.get('sns')} へコメント（10:20〜22:59 だけ）"
+           for e in entries if str(e.get("date") or "") >= since and not comment_time_ok(str(e.get("time") or ""))]
+    # O14（2026-11-05）: 履歴に本文があれば、偉そうに絡まない・具体的な一言があるかも見る（scripts/comment_tone.py と同じ基準）
+    import comment_tone
+
+    for e in entries:
+        if str(e.get("date") or "") >= "2026-11-05" and e.get("text"):
+            out += [f"{p}（{e.get('date')} {e.get('time')} {e.get('sns')} {e.get('url', '')}）" for p in comment_tone.problems(e["text"])]
+    return out
 
 
 # ---- まとめ ---------------------------------------------------------------------
@@ -1194,7 +1201,7 @@ def main() -> int:
     if args.comment_log:
         entries = json.loads(Path(args.comment_log).expanduser().read_text("utf-8"))
         bad = comment_log_problems(entries)
-        print("\n".join(bad) or "ok: コメントはすべて 10:20〜22:59")
+        print("\n".join(bad) or "ok: コメントはすべて 10:20〜22:59・言い方の点検（O14）も問題なし")
         return 0
     found = run(args.latest, args.sns_days, not args.no_network, args.base)
     body = render(found, args.latest, legacy_backlog(load_articles()))

@@ -11,7 +11,8 @@
   daily_cap() / cap_exempt(article_or_entry)  → 1日の上限と、上限に数えない種類（ミサイル・災害）
   count_today(posted, day, extra) → その日（日本時間）に出した（予約した）自分の投稿の数
   utm_content(ptype, pos) → "video_body" など
-  hook_format_on() / link_ab_on()  → オーナー承認待ちの形（既定 off）
+  hook_format_on() / link_ab_on()  → 2026-11-05 オーナー承認でワークフローの既定は on（変数で 0 にすれば止まる）
+  slot_priority(slot, article)  → Buffer の30日の上限が近いときにまだ作る投稿か
 """
 from __future__ import annotations
 
@@ -210,6 +211,20 @@ def cap_left(posted: dict, day: date, skipped: set[str] | None = None) -> int:
     return max(0, daily_cap() - count_today(posted, day, skipped))
 
 
+def slot_priority(slot: datetime | None, article: dict | None = None, breaking: bool = False) -> str:
+    """Buffer の30日の上限が近いときにまだ作る投稿か（"high"）。速報・safety/money の記事・優先の枠（plan の priority）"""
+    pr = plan().get("priority") or {}
+    if breaking or (article or {}).get("breaking"):
+        return "high"
+    if article and lane_of(article)[0] in (pr.get("lanes") or []):
+        return "high"
+    if slot is not None:
+        hm = slot.astimezone(JST).strftime("%H:%M")
+        if hm in (pr.get("slots_jst") or []):
+            return "high"
+    return "normal"
+
+
 # ---- UTM ----
 
 def utm_content(ptype: str, pos: str) -> str:
@@ -222,7 +237,7 @@ def utm_content(ptype: str, pos: str) -> str:
 UTM_CONTENT_RE = re.compile(r"^(?:video|hook|card|digest)_(?:body|reply)$")
 
 
-# ---- オーナー承認待ちの形（既定 off） ----
+# ---- 文面の形・リンクの位置（2026-11-05 オーナー承認。ワークフローの既定は 1。環境変数が無い手元・テストでは off） ----
 
 def _flag(name: str) -> bool:
     return os.environ.get(name, "0").strip().lower() in ("1", "on", "true", "yes")
@@ -238,10 +253,33 @@ def link_ab_on() -> bool:
     return _flag("THREADS_LINK_AB")
 
 
+def link_ab_window() -> dict:
+    """リンクの位置の比べの期間（2026-11-05〜11-12）と、決まった位置（decided。空なら未定）"""
+    return dict(plan().get("link_ab") or {})
+
+
+def link_ab_reminder(now: datetime | None = None) -> str:
+    """比べの期間を過ぎて、まだ位置が決まっていなければ、決めてほしい旨（ログに出す）。それ以外は "" """
+    w = link_ab_window()
+    now = now or datetime.now(timezone.utc)
+    if not link_ab_on() or w.get("decided") or not w.get("end"):
+        return ""
+    if now.astimezone(JST).date().isoformat() > str(w["end"]):
+        return (f"[reminder] Threads のリンクの位置の比べ（{w.get('start')}〜{w['end']}）は終わりました。"
+                "結果（1,000閲覧あたりの訪問・utm_content の body と reply）を見て scripts/sns_plan.json の link_ab.decided に body か reply を入れてください（それまでは交互を続けます）")
+    return ""
+
+
 def threads_link_position(posted: dict) -> str:
-    """THREADS_LINK_AB=1 のとき、記事の投稿ごとに body と reply を交互にする（off なら body）"""
+    """THREADS_LINK_AB=1 のとき、記事の投稿ごとに body と reply を交互にする（off なら body）。
+    比べが終わって link_ab.decided が決まったら、その位置だけ"""
     if not link_ab_on():
         return "body"
+    decided = str(link_ab_window().get("decided") or "")
+    if decided in ("body", "reply"):
+        return decided
+    if note := link_ab_reminder():
+        print(note, flush=True)
     n = sum(1 for r in (posted or {}).values() if r.get("linkPosition") in ("body", "reply"))
     return "reply" if n % 2 else "body"
 

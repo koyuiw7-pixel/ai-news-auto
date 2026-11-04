@@ -11,7 +11,7 @@ on:
         default: "4"
 
 permissions:
-  contents: read
+  contents: write  # Buffer の呼び出し回数の記録（state/buffer_calls）を残す
 
 jobs:
   audit:
@@ -28,6 +28,7 @@ jobs:
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_LEDGER: audit
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
         run: python scripts/sns_audit.py --days "${{ inputs.days || '4' }}" --out out/sns_audit.json
       - uses: actions/upload-artifact@v7
         if: always()
@@ -36,3 +37,15 @@ jobs:
           path: out/sns_audit.json
           retention-days: 3
           if-no-files-found: ignore
+      # Buffer の呼び出し回数を main に残す（30日の合計を全部のワークフローで数える。scripts/buffer_budget.py・2026-11-05）
+      - name: Save Buffer call ledger
+        if: ${{ always() }}
+        continue-on-error: true
+        run: |
+          f=state/buffer_calls/audit.json
+          if [ ! -f "$f" ] || [ -z "$(git status --porcelain "$f")" ]; then exit 0; fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$f"
+          git commit -m "chore(buffer): Buffer の呼び出し回数を記録 [no-deploy]"
+          python3 scripts/git_safe_push.py

@@ -287,19 +287,19 @@ class MergeAndQueryTests(unittest.TestCase):
         self.assertEqual(md.merge_entry(saved,pending)['delivery']['threads']['status'],'accepted')
 
     def test_buffer_pagination_and_all_statuses(self):
-        responses=[{'account':{'organizations':[{'id':'org'}]}},
-                   {'posts':{'edges':[{'node':remote('t',post()['text'],'scheduled')}],'pageInfo':{'hasNextPage':True,'endCursor':'next'}}},
+        # 組織の ID は保存したもの（2026-11-05〜 毎回の問い合わせをやめた）
+        responses=[{'posts':{'edges':[{'node':remote('t',post()['text'],'scheduled')}],'pageInfo':{'hasNextPage':True,'endCursor':'next'}}},
                    {'posts':{'edges':[],'pageInfo':{'hasNextPage':False,'endCursor':None}}}]
-        with patch.object(md.tp,'buffer_graphql',side_effect=responses) as api:
+        with patch.object(md.tp,'buffer_org_ids',return_value=['org']), patch.object(md.tp,'buffer_graphql',side_effect=responses) as api:
             rows=md.buffer_posts('fake','channel',NOW)
         self.assertEqual(rows[0]['status'],'scheduled')
         self.assertIn('after: "next"',api.call_args_list[-1].args[1])
-        self.assertNotIn('status:',api.call_args_list[1].args[1])
-        self.assertIn('startDate:',api.call_args_list[1].args[1])
+        self.assertNotIn('status:',api.call_args_list[0].args[1])
+        self.assertIn('startDate:',api.call_args_list[0].args[1])
 
     def test_incomplete_remote_pagination_fails_closed(self):
-        responses=[{'account':{'organizations':[{'id':'org'}]}},{'posts':{'edges':[],'pageInfo':{'hasNextPage':True,'endCursor':None}}}]
-        with patch.object(md.tp,'buffer_graphql',side_effect=responses):
+        responses=[{'posts':{'edges':[],'pageInfo':{'hasNextPage':True,'endCursor':None}}}]
+        with patch.object(md.tp,'buffer_org_ids',return_value=['org']), patch.object(md.tp,'buffer_graphql',side_effect=responses):
             with self.assertRaises(RuntimeError):md.buffer_posts('fake','channel',NOW)
 
 

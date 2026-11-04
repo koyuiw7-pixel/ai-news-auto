@@ -39,12 +39,9 @@ def fetch(api_key: str, since: datetime) -> list[dict]:
 
     buffer_budget.set_role("monitor")  # 読むだけ（予約の分の回数を残す）
     out: list[dict] = []
-    orgs = tp.buffer_graphql(api_key, "query { account { organizations { id } } }")["account"]["organizations"]
-    for org in orgs:
-        channels = tp.buffer_graphql(
-            api_key, f"query {{ channels(input: {{ organizationId: {json.dumps(org['id'])} }}) {{ id service }} }}"
-        )["channels"]
-        ids = [c["id"] for c in channels if str(c.get("service", "")).lower() == "threads"]
+    # 組織とチャンネルの ID は保存したもの（state/buffer_channels.json。2026-11-05 呼び出しを減らす）
+    for org in tp.buffer_account(api_key):
+        ids = [c["id"] for c in org["channels"] if str(c.get("service", "")).lower() == "threads"]
         if not ids:
             continue
         cursor = None
@@ -54,7 +51,7 @@ def fetch(api_key: str, since: datetime) -> list[dict]:
                 api_key,
                 f"""query {{ posts(first: 50{after}, input: {{
                     organizationId: {json.dumps(org['id'])},
-                    filter: {{ status: [sent], channelIds: {json.dumps(ids)} }}
+                    filter: {{ status: [sent], channelIds: {json.dumps(ids)}, startDate: {json.dumps(tp.utc_z(since))} }}
                 }}) {{
                     edges {{ node {{ id text sentAt externalLink metricsUpdatedAt metrics {{ type value }} metadata {{ ... on ThreadsPostMetadata {{ threadCount }} }} }} }}
                     pageInfo {{ endCursor hasNextPage }}

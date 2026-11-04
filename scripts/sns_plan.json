@@ -6,6 +6,11 @@
   "daily_cap": 6,
   "min_gap_min": 45,
   "digest_slot_jst": "07:15",
+  "priority": {
+    "_doc": "Buffer の30日の呼び出しがソフトの上限（scripts/buffer_budget.py の BUFFER_30D_CAP）を超えたときに、まだ作ってよい投稿（2026-11-05 オーナー承認）。速報・lanes の safety と money の記事・slots_jst の中の slots の枠だけ",
+    "lanes": ["safety", "money"],
+    "slots_jst": ["12:15", "20:30"]
+  },
   "fill_without_lane": true,
   "lanes": {
     "safety": {
@@ -39,8 +44,8 @@
   },
   "cap_exempt": ["missile", "disaster"],
   "muse": {
-    "_doc": "とろいも（Muse）に頼む動画。毎朝と強い記事が出たときに最大 max_per_day 本を state/muse_queue.json に入れる。条件: 公式の出どころ・立つ数字が1つ・ブランド／お金／暮らし。投稿は wait_hours（速報は breaking_wait_hours）まで Muse の動画を待ち、来なければ今の自動動画（同じ検査）に戻す",
-    "max_per_day": 3,
+    "_doc": "とろいも（Muse）に頼む動画。2026-11-05 オーナー決定: SNS に出すすべての記事の動画を Muse で（Muse の受け渡し＝SNS の予定）。予定（state/threads_posted.json の動画待ち）に入った記事を、枠の日（日本時間）ごとに最大 max_per_day 本まで state/muse_queue.json に入れる（URL・題名・枠の時刻・期限つき）。投稿は wait_hours（速報は breaking_wait_hours）まで Muse の動画を待ち、来なければ今の自動動画（同じ検査）に戻す（投稿の本数は減らさない）",
+    "max_per_day": 6,
     "wait_hours": 4,
     "breaking_wait_hours": 0,
     "strong_score": 9,
@@ -48,6 +53,12 @@
     "min_seconds": 30,
     "max_seconds": 120,
     "sizes": [[1920, 1080], [1080, 1920]]
+  },
+  "link_ab": {
+    "_doc": "Threads のリンクの位置の比べ（THREADS_LINK_AB=1。2026-11-05 オーナー承認）。start〜end の1週間、記事の投稿ごとに本文（utm_content=*_body）と返信（*_reply）を交互。end を過ぎたら after（decided が空のあいだは交互を続け、ログに決めてほしい旨を出す）",
+    "start": "2026-11-05",
+    "end": "2026-11-12",
+    "decided": ""
   },
   "utm": {
     "_doc": "utm_content=<投稿の種類>_<リンクの位置>。種類は video（動画つきの記事の投稿）・hook（Muse の型の文面。SNS_HOOK_FORMAT=1 のときだけ）・card（災害など写真のカードで急いで出すもの）・digest（朝のまとめ）。位置は body（本文）・reply（返信）",

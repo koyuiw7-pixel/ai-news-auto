@@ -37,6 +37,9 @@ jobs:
           THREADS_TOKEN_KEY: ${{ secrets.THREADS_TOKEN_KEY }}
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_LEDGER: recover
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
+          SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '1' }}  # Muse の型の文面（2026-11-05 オーナー承認で既定 1。止めるなら変数を 0。台帳 S30）
+          THREADS_LINK_AB: ${{ vars.THREADS_LINK_AB || '1' }}  # Threads のリンクの位置の比べ（2026-11-05 オーナー承認・11/5〜11/12。S31）
           SNS_PER_DAY: ${{ steps.ramp.outputs.sns_per_day }}
           BREAKING_PER_DAY: ${{ vars.BREAKING_PER_DAY }}
           SNS_DIGEST: ${{ vars.SNS_DIGEST }}
@@ -47,8 +50,10 @@ jobs:
       - name: Save posting history without losing concurrent updates
         if: always()
         run: |
-          if git diff --quiet -- state/threads_posted.json state/threads_token.enc; then exit 0; fi
+          if git diff --quiet -- state/threads_posted.json state/threads_token.enc && [ -z "$(git status --porcelain state/buffer_calls)" ]; then exit 0; fi
           cp state/threads_posted.json "$RUNNER_TEMP/sns-posted.json"
+          cp state/buffer_calls/recover.json "$RUNNER_TEMP/buffer_ledger.json" 2>/dev/null || true  # Buffer の呼び出し回数（30日の合計に要る。2026-11-05）
+
           TOKEN_CHANGED=0
           if ! git diff --quiet -- state/threads_token.enc; then
             TOKEN_CHANGED=1
@@ -74,6 +79,7 @@ jobs:
           path.write_text(json.dumps(latest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
           PY
             git add state/threads_posted.json
+            if [ -f "$RUNNER_TEMP/buffer_ledger.json" ]; then mkdir -p state/buffer_calls; cp "$RUNNER_TEMP/buffer_ledger.json" state/buffer_calls/recover.json; git add state/buffer_calls/recover.json; fi
             if [ "$TOKEN_CHANGED" = "1" ]; then
               cp "$RUNNER_TEMP/sns-token.enc" state/threads_token.enc
               git add state/threads_token.enc

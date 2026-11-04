@@ -1302,18 +1302,22 @@ def publish(token: dict, text: str, link: str, article: dict | None = None, fetc
 POSTING_MUTATION_RE = re.compile(r"\b(?:createPost|editPost|updatePost|createIdea)\s*\(")
 
 
-def buffer_graphql(api_key: str, query: str, variables: dict | None = None, gated: bool = False, role: str | None = None) -> dict:
-    """Buffer の GraphQL を1回呼ぶ。呼ぶ前に回数の上限・429 の待ち時間を確かめる（scripts/buffer_budget.py）。
+def buffer_graphql(api_key: str, query: str, variables: dict | None = None, gated: bool = False, role: str | None = None, probe: bool | str = False) -> dict:
+    """Buffer の GraphQL を1回呼ぶ。呼ぶ前に回数の上限（1日・30日）・429 の待ち時間を確かめる（scripts/buffer_budget.py）。
 
     書き込み（mutation）は予約扱いで優先。読むだけは buffer_budget.set_role で monitor にしたスクリプトの分を少なめに抑える。
-    429 を受けたら Retry-After の時刻まで止め、BufferRateLimited を投げる（ここでは再試行しない）
+    429 を受けたら Retry-After の時刻まで止め、BufferRateLimited を投げる（ここでは再試行しない）。
+    probe=True は止まっている間の6時間に1回の確かめ（buffer_probe からだけ）
     """
     import buffer_budget as bb
 
     if POSTING_MUTATION_RE.search(query) and not gated:
         raise sns_rules.SnsRuleViolation(["投稿を作る・変える Buffer の操作は sns_rules を通した所からだけ呼べる"], "buffer", "buffer_graphql")
     role = role or bb.current_role(write=query.lstrip().startswith("mutation"))
-    bb.check(role)
+    kind = "probe" if probe else "create" if re.search(r"\bcreatePost\s*\(", query) else ""
+    bb.check(role, probe=probe)
+    if probe:
+        bb.mark_probe()
     body = json.dumps({"query": query, "variables": variables or {}}).encode()
     request = urllib.request.Request(
         BUFFER_API,
@@ -1328,24 +1332,46 @@ def buffer_graphql(api_key: str, query: str, variables: dict | None = None, gate
     except urllib.error.HTTPError as error:
         text = error.read().decode(errors="replace")
         if error.code == 429 or "RATE_LIMIT_EXCEEDED" in text:
-            until = bb.record_429(error.headers, text)
+            until = bb.record_429(error.headers, text, probe=probe)
             raise bb.BufferRateLimited(
                 f"Buffer API 429 RATE_LIMIT_EXCEEDED: {until.isoformat(timespec='minutes')} まで呼び出しを止めます"
+                f"（Retry-After {error.headers.get('Retry-After') if error.headers else ''}）"
             ) from error
-        bb.record(role, error.headers)
+        bb.record(role, error.headers, kind=kind, ok=False)
         raise RuntimeError(f"Buffer API {error.code}: {text[:300]}") from error
     if any(((e or {}).get("extensions") or {}).get("code") == "RATE_LIMIT_EXCEEDED" for e in payload.get("errors") or []):
-        until = bb.record_429(headers, json.dumps(payload.get("errors")))
+        until = bb.record_429(headers, json.dumps(payload.get("errors")), probe=probe)
         raise bb.BufferRateLimited(f"Buffer API RATE_LIMIT_EXCEEDED: {until.isoformat(timespec='minutes')} まで呼び出しを止めます")
-    bb.record(role, headers)
+    bb.record(role, headers, kind=kind)
     if payload.get("errors"):
         raise RuntimeError(f"Buffer API: {json.dumps(payload['errors'], ensure_ascii=False)[:300]}")
     return payload["data"]
 
 
+def buffer_probe(api_key: str, force: bool = False) -> dict:
+    """（2026-11-05）429 で止まっている間、6時間に1回だけ軽い問い合わせ1回で、上限が解けたかを確かめる（回数に数える）。
+    戻り値 {"probed": bool, "ok": bool, "detail": str}。解けていれば buffer_budget の待ちが消え、次の呼び出しから再開する"""
+    import buffer_budget as bb
+
+    if not api_key or not (force or bb.probe_due()):
+        return {"probed": False, "ok": False, "detail": "確かめの時刻ではない"}
+    try:
+        buffer_graphql(api_key, "query { account { organizations { id } } }", role="book", probe="force" if force else True)
+    except bb.BufferUnavailable as error:
+        log(f"[buffer] 確かめ（probe）: まだ止まっています: {error}")
+        return {"probed": True, "ok": False, "detail": str(error)[:300]}
+    except RuntimeError as error:
+        log(f"[buffer] 確かめ（probe）が失敗しました: {str(error)[:200]}")
+        return {"probed": True, "ok": False, "detail": str(error)[:300]}
+    cleared = bb.clear_blocks()
+    log(f"[buffer] 確かめ（probe）: Buffer の上限は解けています。投稿を再開します（待ちを消した記録: {cleared}）")
+    return {"probed": True, "ok": True, "detail": "ok", "cleared": cleared}
+
+
 # Buffer の組織とチャンネルの ID（ほとんど変わらない）。毎回の問い合わせ（1回に2回の呼び出し）をやめるため保存しておく
+# 2026-11-05: 30日に延ばし、Buffer を呼べないとき（上限・429）は古くても保存を使う（投稿の予定づくりを Buffer に左右させない）
 CHANNEL_CACHE = ROOT / "state" / "buffer_channels.json"
-CHANNEL_CACHE_DAYS = 7
+CHANNEL_CACHE_DAYS = 30
 _account_memo: dict = {}
 
 
@@ -1370,6 +1396,18 @@ def buffer_account(api_key: str, refresh: bool = False, gql=None) -> list[dict]:
                     return cached["orgs"]
             except (OSError, ValueError, KeyError, TypeError):
                 pass
+    stale = None
+    if not refresh and CHANNEL_CACHE.exists():
+        try:
+            stale = json.loads(CHANNEL_CACHE.read_text("utf-8")).get("orgs") or None
+        except (OSError, ValueError, AttributeError):
+            stale = None
+    if stale and not refresh:
+        try:
+            bb.check(bb.current_role())
+        except bb.BufferUnavailable:
+            log("[buffer] Buffer を今は呼べないため、保存したチャンネルの ID（古い）を使います")
+            return stale
     orgs = []
     for org in gql(api_key, "query { account { organizations { id } } }")["account"]["organizations"]:
         # ID の型名に依存しないよう、値をクエリに直接埋め込む（JSON文字列としてエスケープ済み）
@@ -1829,7 +1867,7 @@ _BUFFER_RECENT: dict[str, list[tuple[str, str]]] = {}
 _BUFFER_RECENT_AT: dict[str, float] = {}
 # 読んでからこの秒数を過ぎたら、作る直前に読み直す（同時に動いたほかのワークフローが作った投稿を見落とさない。2026-11-04 一貫性の点検）
 RECENT_POSTS_MAX_AGE_SEC = 90
-RECENT_POSTS_FIELDS = "id status dueAt text metadata { ... on ThreadsPostMetadata { thread { text } } ... on TwitterPostMetadata { thread { text } } }"
+RECENT_POSTS_FIELDS = "id status dueAt channelId text metadata { ... on ThreadsPostMetadata { thread { text } } ... on TwitterPostMetadata { thread { text } } }"
 
 
 def post_needle(article: dict | None, kind: str) -> str:
@@ -1847,18 +1885,27 @@ def recent_channel_posts(api_key: str, channel_id: str, gql=None) -> list[tuple[
         return _BUFFER_RECENT[channel_id]
     gql = gql or buffer_graphql
     now = datetime.now(timezone.utc)
-    found: list[tuple[str, str]] = []
+    # 2026-11-05: Threads・X・Facebook をまとめて1回で読む（以前はチャンネルごとに1回＝投稿1本で3回）
+    try:
+        ids = sorted({c["id"] for k, c in buffer_channels(api_key).items() if k in ("threads", "twitter", "facebook") and c.get("id")} | {channel_id})
+    except Exception:  # noqa: BLE001 - チャンネルの一覧が無ければこのチャンネルだけ
+        ids = [channel_id]
+    found_by: dict[str, list[tuple[str, str]]] = {cid: [] for cid in ids}
     for org_id in buffer_org_ids(api_key):
-        flt = (f"status: [scheduled, sending, sent], channelIds: [{json.dumps(channel_id)}], "
+        flt = (f"status: [scheduled, sending, sent], channelIds: {json.dumps(ids)}, "
                f"startDate: {json.dumps(utc_z(now - timedelta(hours=48)))}, endDate: {json.dumps(utc_z(now + timedelta(hours=48)))}")
         data = gql(api_key, f"query {{ posts(first: 100, input: {{ organizationId: {json.dumps(org_id)}, filter: {{ {flt} }} }}) {{ edges {{ node {{ {RECENT_POSTS_FIELDS} }} }} }} }}")
         for edge in data["posts"]["edges"]:
             node = edge["node"]
             thread = ((node.get("metadata") or {}).get("thread")) or []
-            found.append((node.get("id", ""), "\n".join([node.get("text") or ""] + [t.get("text") or "" for t in thread])))
-    _BUFFER_RECENT[channel_id] = found
-    _BUFFER_RECENT_AT[channel_id] = time.time()
-    return found
+            text = "\n".join([node.get("text") or ""] + [t.get("text") or "" for t in thread])
+            cid = node.get("channelId") or ""
+            for target in ([cid] if cid in found_by else ids):  # チャンネルが分からない投稿は全部に入れる（重複の見落としより安全）
+                found_by[target].append((node.get("id", ""), text))
+    for cid, rows in found_by.items():
+        _BUFFER_RECENT[cid] = rows
+        _BUFFER_RECENT_AT[cid] = time.time()
+    return found_by[channel_id]
 
 
 def ensure_not_duplicate(api_key: str, post_input: dict, service: str, article: dict | None, kind: str, gql=None, allow: list[str] | None = None) -> None:
@@ -2102,7 +2149,18 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="投稿せず文面だけ表示する")
     parser.add_argument("--check-buffer", action="store_true", help="Buffer の接続先を確認するだけ")
     parser.add_argument("--test-draft", action="store_true", help="投稿形式の確認用に、Buffer へ下書きを作って消す")
+    parser.add_argument("--probe-buffer", action="store_true", help="Buffer の上限が解けたかを軽い問い合わせ1回で確かめる（6時間に1回。回数に数える）")
+    parser.add_argument("--force", action="store_true", help="--probe-buffer で6時間を待たずに1回だけ確かめる")
     args = parser.parse_args()
+    if args.probe_buffer:
+        import buffer_budget as bb
+
+        before = bb.summary()
+        res = buffer_probe(os.environ.get("BUFFER_API_KEY", "").strip(), force=args.force)
+        after = bb.summary()
+        print(json.dumps({"before": before, "probe": res, "after": after}, ensure_ascii=False, indent=2, default=str))
+        write_summary(["### Buffer の確かめ（probe）", "", "```", json.dumps({"probe": res, "after": after}, ensure_ascii=False, indent=2, default=str), "```"])
+        return 0
 
     live = os.environ.get("THREADS_MODE") == "live" and not args.dry_run
     state = load_state()
@@ -2258,18 +2316,24 @@ def main() -> int:
         log("[done] 投稿できる記事がありません")
         return 0
     if live and buffer_key:
-        # ここで初めて Buffer を呼ぶ（チャンネルは保存から。Buffer に入っている予約と突き合わせて二重予約を防ぐ）
+        # チャンネルの ID は保存から（Buffer を呼べないときも古い保存を使う）。2026-11-05: 記事の投稿は「動画待ち」として記録するだけで
+        # Buffer には送らないので、ここでは Buffer の予約一覧を読まない（二重投稿は作る直前の ensure_not_duplicate が確かめる）。
+        # Buffer が止まっていても SNS の予定（state/threads_posted.json）は作る → Bluesky と Muse の受け渡しは予定どおり動く
         if not connect_buffer():
-            log("[skip] Buffer を今は呼べないため、この回は予約しません。過ぎていない枠は次の回で予約します")
+            log("[skip] Buffer のチャンネルの ID が分からないため、この回は予定を作りません")
             return 0
+    if live and buffer_key and any(sns_rules.is_urgent(a) for a, _ in plan):
+        # 急ぎの安全の知らせだけはここで Buffer に直接予約するので、Buffer の予約と突き合わせる
         try:
             remote = scheduled_in_buffer(buffer_key, buffer_channel["id"])
         except RuntimeError as error:
             if is_buffer_unavailable(error):
-                log(f"[skip] {error}。過ぎていない枠は次の回で予約します")
-                return 0
-            log(f"[warn] Buffer の予約一覧を読めませんでした（手元の履歴だけで判断します）: {str(error)[:200]}")
-            remote = []
+                log(f"[skip] {error}。急ぎの知らせは次の回に回し、ほかの記事の予定は作ります")
+                plan = [(a, t) for a, t in plan if not sns_rules.is_urgent(a)]
+                remote = []
+            else:
+                log(f"[warn] Buffer の予約一覧を読めませんでした（手元の履歴だけで判断します）: {str(error)[:200]}")
+                remote = []
         plan = drop_remote_duplicates(plan, remote)
         if not plan:
             log("[done] Buffer にすでに予約が入っています（手元の履歴に無い分）。二重に予約しません")
@@ -2352,8 +2416,9 @@ def main() -> int:
             # 1本の失敗でパイプライン全体を止めない。未投稿のまま次回再挑戦する
             log(f"  [error] {error}")
             if is_buffer_unavailable(error):
-                log("  [stop] Buffer の上限のため、この回の残りの予約はやめます（過ぎていない枠は次の回で予約）")
-                break
+                # 急ぎの知らせの直接の予約だけが Buffer を呼ぶ。ほかの記事は「動画待ち」の記録なので続ける（Buffer にはもう送らない）
+                log("  [skip] Buffer の上限のため、この記事は次の回に回します")
+                continue
             if "channel" in str(error).lower():
                 forget_buffer_account()  # 投稿先の ID が古いかもしれないので、次の回に問い合わせ直す
             continue

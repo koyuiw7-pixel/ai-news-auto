@@ -1,12 +1,17 @@
 name: Buffer delivery monitor (read only)
 on:
-  # 2026-11-03: Buffer API の24時間の上限に当たったため、30分ごと＋記事処理のたび（1日 約90回×約9回の呼び出し）から
-  # 4時間ごと（1日6回）に減らした。予約の呼び出しを優先する（scripts/buffer_budget.py）
+  # 2026-11-03: Buffer API の24時間の上限に当たったため、30分ごと＋記事処理のたびから4時間ごとに減らした。
+  # 2026-11-05: 30日の上限（無料 3,000回）を約2週間で使い切ったため、1日2回（朝・夜）にした。予約の呼び出しを優先する（scripts/buffer_budget.py）
   schedule:
-    - cron: '12 */4 * * *'
+    - cron: '12 0,11 * * *'  # 9:12・20:12 JST
   workflow_dispatch:
+    inputs:
+      probe:
+        description: "true=監視の代わりに、Buffer の上限が解けたかを軽い問い合わせ1回で確かめる（回数に数える・投稿はしない）"
+        type: boolean
+        default: false
 permissions:
-  contents: read
+  contents: write  # 呼び出し回数の記録（state/buffer_calls/monitor.json）を main に残す
 concurrency:
   group: buffer-delivery-monitor
   cancel-in-progress: false
@@ -22,10 +27,31 @@ jobs:
         with:
           python-version: '3.12'
       - name: Read Buffer delivery and check upcoming images
+        if: ${{ inputs.probe != true }}
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
-          # 他の処理の呼び出し回数・429 の待ち時間（state/buffer_calls/）を読み、上限が近ければ確認を見送る（この記録は保存しない）
+          # 他の処理の呼び出し回数・429 の待ち時間（state/buffer_calls/）を読み、上限が近ければ確認を見送る
           BUFFER_LEDGER: monitor
           BUFFER_DAILY_CAP: ${{ vars.BUFFER_DAILY_CAP }}
           BUFFER_MONITOR_CAP: ${{ vars.BUFFER_MONITOR_CAP }}
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}
         run: python scripts/buffer_delivery_monitor.py
+      - name: Probe whether the Buffer limit has lifted (one call, counted)
+        if: ${{ inputs.probe == true }}
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_LEDGER: monitor
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}
+        run: python scripts/threads_post.py --probe-buffer --force
+      # Buffer の呼び出し回数を main に残す（30日の合計を全部のワークフローで数える。scripts/buffer_budget.py・2026-11-05）
+      - name: Save Buffer call ledger
+        if: ${{ always() }}
+        continue-on-error: true
+        run: |
+          f=state/buffer_calls  # 確かめが通ったときは、ほかの書き手の記録の待ちも消すので全部
+          if [ -z "$(git status --porcelain "$f")" ]; then exit 0; fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$f"
+          git commit -m "chore(buffer): Buffer の呼び出し回数を記録 [no-deploy]"
+          python3 scripts/git_safe_push.py

@@ -49,6 +49,9 @@ COMPANIES = [
 ]
 
 
+METRICS_DAYS = 14  # 反応を取り直す投稿の新しさ（日）
+
+
 def fetch_metrics(api_key: str) -> dict[str, dict]:
     """送信済みの Threads・X 投稿の反応（Buffer の投稿ID → 指標）"""
     import buffer_budget
@@ -61,13 +64,15 @@ def fetch_metrics(api_key: str) -> dict[str, dict]:
         if not ids:
             continue
         cursor = None
-        for _ in range(10):  # 最大 500 件
+        # 2026-11-05: 直近 METRICS_DAYS 日に出た投稿だけ読む（以前は毎日 全部の送信済みを最大10ページ＝10回。古い投稿の数値は履歴に残っている）
+        since = (datetime.now(timezone.utc) - timedelta(days=METRICS_DAYS)).isoformat(timespec="seconds").replace("+00:00", "Z")
+        for _ in range(4):  # 最大 200 件
             after = f", after: {json.dumps(cursor)}" if cursor else ""
             data = buffer_graphql(
                 api_key,
                 f"""query {{ posts(first: 50{after}, input: {{
                     organizationId: {json.dumps(org['id'])},
-                    filter: {{ status: [sent], channelIds: {json.dumps(ids)} }}
+                    filter: {{ status: [sent], channelIds: {json.dumps(ids)}, startDate: {json.dumps(since)} }}
                 }}) {{
                     edges {{ node {{ id sentAt externalLink metricsUpdatedAt metrics {{ type value }} metadata {{ ... on ThreadsPostMetadata {{ threadCount }} }} }} }}
                     pageInfo {{ endCursor hasNextPage }}

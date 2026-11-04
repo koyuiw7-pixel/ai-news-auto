@@ -238,8 +238,10 @@ def candidates(posted: dict, state: dict, now: datetime, window_h: float, load_a
             continue  # オーナーに見せるまで、動画も投稿も自動では進めない
         if awaiting(rec) and (rec.get("pending") or {}).get("hold"):
             continue  # オーナーに見せた動画を置くのを待っている（作らない）
-        if awaiting(rec) and muse_waiting(slug, rec, now):
-            continue  # とろいも（Muse）の動画を待っている間は、自動動画を作らない（S30。期限を過ぎたら作る）
+        if awaiting(rec) and muse_waiting(slug, rec, now) and now < at:
+            # とろいも（Muse）の動画を待っている間、枠の時刻までは自動動画を作らない。枠を過ぎたら、Muse が来なかったときの
+            # 予備として作っておく（期限で すぐ出せる。投稿は期限まで Muse を待つ。2026-11-05 すべての投稿を Muse に）
+            continue
         if awaiting(rec) and queued.get("status") not in ("created", "skipped"):
             group = 0  # 動画を待っている投稿（動画が無いと出せない）は、枠が過ぎていても最優先・枠の順
         elif at > now:
@@ -537,6 +539,39 @@ def muse_extra_h(slug: str, rec: dict) -> float:
     return float(m["breaking_wait_hours"] if rec.get("breaking") else os.environ.get("MUSE_WAIT_HOURS") or m["wait_hours"])
 
 
+STALE_POST_H = 6  # 出せる時刻（枠・Muse の待ちの期限の遅い方）からこれだけ過ぎた投稿は、遅れて出さない（2026-11-05 オーナー）
+
+
+def stale_post(slug: str, rec: dict, slot: datetime, now: datetime) -> bool:
+    import sns_plan
+
+    ready_at = slot
+    until = sns_plan.muse_wait_until(slug, slot, breaking=bool(rec.get("breaking")))
+    if until and until > ready_at:
+        ready_at = until
+    return now - ready_at > timedelta(hours=STALE_POST_H)
+
+
+def slot_priority(slug: str, rec: dict, slot: datetime) -> str:
+    import sns_plan
+
+    try:
+        art = json.loads((ARTICLES / f"{slug}.json").read_text("utf-8"))
+    except (OSError, ValueError):
+        art = {}
+    return sns_plan.slot_priority(slot, art, breaking=bool(rec.get("breaking")))
+
+
+def probe_buffer() -> dict:
+    """止まっている間の6時間に1回の確かめ（threads_post.buffer_probe）。鍵が無い・テストでは何もしない"""
+    key = os.environ.get("BUFFER_API_KEY", "")
+    if not key:
+        return {"probed": False}
+    import threads_post
+
+    return threads_post.buffer_probe(key)
+
+
 QUEUE_LEAD_MIN = 3  # 枠が過ぎた（または今すぐの）投稿は、送ってからこれだけ先に予約する（shareNow は使わない＝時刻を記録できる）
 MISSING_LABEL = "sns-video-missing"
 
@@ -641,6 +676,9 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
     remote = remote or remote_queued
     queue = state.setdefault("queued", {})
     videos = state.get("videos") or {}
+    probe = probe_buffer()
+    if probe.get("probed"):
+        state["bufferProbe"] = {"at": now.isoformat(timespec="seconds"), **probe}
     rows = []
     for slug, rec in (posted.get("posted") or {}).items():
         if not awaiting(rec) or rec.get("ownerHold") or (queue.get(slug) or {}).get("status") in ("created", "skipped"):
@@ -672,9 +710,17 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
             q.update({"status": "waiting", "why": "Muse の動画をオーナーに見せている（muse_ingest --release で出す）"})
             out.append({"slug": slug, **q})
             continue  # ほかの投稿の順番は止めない
-        if not urls and (until := muse_waiting(slug, rec, now, v)):
-            # とろいも（Muse）の動画を待つ（既定4時間・速報は待たない）。ほかの投稿の順番は止めない（S30）
+        if until := muse_waiting(slug, rec, now, v):
+            # とろいも（Muse）の動画を待つ（既定4時間・速報は待たない）。自動動画が先にできていても期限までは Muse を待つ（2026-11-05
+            # オーナー: すべての投稿の動画は Muse）。ほかの投稿の順番は止めない（S30）
             q.update({"status": "waiting", "why": f"Muse の動画を {until.astimezone(JST):%H:%M} まで待っている", "checkedAt": now.isoformat(timespec="seconds")})
+            out.append({"slug": slug, **q})
+            continue
+        if urls and stale_post(slug, rec, slot, now):
+            # （2026-11-05）動画はあるが、Buffer が止まっていた等で出せないまま、出せる時刻から STALE_POST_H 時間を過ぎた → 遅れて出さない
+            q.update({"status": "skipped", "why": f"出せる時刻から{STALE_POST_H}時間を過ぎた（Buffer の上限などで出せなかった）ので遅れて出さない", "stale": True,
+                      "at": now.isoformat(timespec="seconds")})
+            log(f"[video-followup] {slug} は古くなったので出しません（枠 {slot.astimezone(JST):%m/%d %H:%M}）")
             out.append({"slug": slug, **q})
             continue
         if not urls or v.get("status") in ("started", "upload_failed"):  # 置いた動画があれば使う（前に記事ページだけにした動画も）
@@ -758,7 +804,11 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
             if allow:
                 inp["_allowDuplicateOf"] = list(allow)  # オーナー承認の出し直し（消した前の投稿だけ重複と数えない）
             try:
-                created[service] = creator(service, inp, article)
+                import buffer_budget
+
+                # 30日のソフトの上限を超えたら、優先の枠（sns_plan.slot_priority）の投稿だけ作る
+                with buffer_budget.priority(slot_priority(slug, rec, slot)):
+                    created[service] = creator(service, inp, article)
             except Exception as error:  # noqa: BLE001
                 if _buffer_unavailable(error):
                     q["deferred"] = str(error)[:200]

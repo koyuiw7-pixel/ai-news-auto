@@ -1,7 +1,7 @@
 name: Muse video queue
 
-# とろいも（Muse）に頼む動画の候補（最大3本/日）を state/muse_queue.json に書く（2026-11-05 とろいも案 v1・台帳 S30）。
-# 朝の回（6:20 JST）で今日の分を入れ、日中は強い記事が出たときだけ足す（scripts/muse_queue.py が時刻で判断）。
+# とろいも（Muse）に頼む動画を state/muse_queue.json に書く（台帳 S30）。2026-11-05 オーナー決定: SNS の予定に入った記事は全部（1日6本まで）。
+# ふだんは記事の自動処理（auto_run の投稿の段）のあとに足す。ここは取りこぼしの拾いと期限切れの整理。
 # 読むのは記事だけ。投稿はしない。Muse の動画の取り込みは Claude が対話の回で scripts/muse_ingest.py を使う。
 on:
   schedule:

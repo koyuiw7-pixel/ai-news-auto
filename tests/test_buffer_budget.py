@@ -151,7 +151,13 @@ class GraphqlTest(LedgerCase):
         tp._account_memo.clear()
         with patch.object(tp, "buffer_graphql", side_effect=fake):
             tp.buffer_channels("k")
-        self.assertEqual(len(calls), 4)  # 7日より古ければ問い合わせ直す
+        self.assertEqual(len(calls), 2)  # 2026-11-05〜 保存は30日使う
+        cached["fetchedAt"] = (datetime.now(timezone.utc) - timedelta(days=31)).isoformat()
+        tp.CHANNEL_CACHE.write_text(json.dumps(cached))
+        tp._account_memo.clear()
+        with patch.object(tp, "buffer_graphql", side_effect=fake):
+            tp.buffer_channels("k")
+        self.assertEqual(len(calls), 4)  # 30日より古ければ問い合わせ直す
 
 
 class SlotTest(unittest.TestCase):

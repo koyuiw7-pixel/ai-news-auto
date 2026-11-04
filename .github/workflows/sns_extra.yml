@@ -56,6 +56,7 @@ jobs:
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_LEDGER: extra
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
           KIND: ${{ inputs.kind }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -78,6 +79,7 @@ jobs:
           THREADS_MODE: ${{ vars.THREADS_MODE }}
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_LEDGER: extra
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
           SNS_DIGEST: ${{ vars.SNS_DIGEST }}
           # 朝のまとめの号ページ（/digest/<日付>）のデータを KV に置く・案Cの背景を Workers AI で作る（scripts/digest_page.py）
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -95,6 +97,7 @@ jobs:
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_LEDGER: extra
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
           KIND: ${{ inputs.kind }}
           TARGET_DATE: ${{ inputs.date }}
         run: |
@@ -106,6 +109,7 @@ jobs:
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_LEDGER: extra
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
         run: python scripts/threads_inbox.py | tail -40
       # main が進んでいても衝突しないよう、最新の state に記録だけを足して push する
       - name: Commit history
@@ -113,6 +117,7 @@ jobs:
         run: |
           if [ -z "$(git status --porcelain state content/digests)" ]; then exit 0; fi
           cp state/threads_posted.json "$RUNNER_TEMP/mine.json"
+          cp state/buffer_calls/extra.json "$RUNNER_TEMP/buffer_ledger.json" 2>/dev/null || true  # Buffer の呼び出し回数（30日の合計に要る。2026-11-05）
           if [ -f state/threads_inbox.json ]; then cp state/threads_inbox.json "$RUNNER_TEMP/inbox.json"; fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -121,6 +126,7 @@ jobs:
             python scripts/morning_digest.py --merge "$RUNNER_TEMP/mine.json"
             if [ -f "$RUNNER_TEMP/inbox.json" ]; then cp "$RUNNER_TEMP/inbox.json" state/threads_inbox.json; git add state/threads_inbox.json; fi
             git add state/threads_posted.json
+            if [ -f "$RUNNER_TEMP/buffer_ledger.json" ]; then mkdir -p state/buffer_calls; cp "$RUNNER_TEMP/buffer_ledger.json" state/buffer_calls/extra.json; git add state/buffer_calls/extra.json; fi
             # 号のデータ（--merge が投稿記録から書き戻す）。次のデプロイからサイトに同梱される
             git add content/digests 2>/dev/null || true
             if git diff --cached --quiet; then exit 0; fi

@@ -8,6 +8,9 @@
   まだ Bluesky に出していない最新の1本（記録は state/bluesky_extra.json）
 1日 PER_DAY 本まで・深夜（1〜5時）は出さない。通常の投稿は1回の実行で1本まで、前の投稿から GAP_MIN 分あける。
 結果は channels.bluesky に URI を記録。失敗しても他の SNS には影響しない
+2026-11-05（オーナー承認）: Bluesky は Threads の投稿を待たずに、SNS の予定（threads_post が枠に入れた「動画待ち」の記録）から
+直接出す。Buffer（Threads・X・Facebook）が止まっていても、枠の時刻＋ DELAY_MIN 分に、動画（Muse の動画を待つ期限のあとは自動動画）で出す。
+本文は Threads に送る予定の本文（SNS_HOOK_FORMAT の型も同じ）からリンクの行を除いたもの。同じ記事は1回だけ（channels.bluesky・自分の投稿の確かめ）
 2026-11-03〜（オーナー指示「SNS の投稿は動画のはず」・sns_rules ルール8）: 記事の投稿は**動画つきだけ**。動画（state/sns_video.json の
 SNS 用）ができるまで待ち、Bluesky の動画（app.bsky.embed.video）で出す。動画が無い記事は出さない（写真のカードでは出さない）。
 朝のまとめだけ号のシェア画像のまま。
@@ -40,7 +43,7 @@ DELAY_MIN = 20
 # 1日（日本時間）の自分の投稿の上限。2026-11-05〜 Threads と同じ sns_plan の daily_cap（6本）まで（台帳 S27。変数で減らすのはよい）
 PER_DAY = min(int(os.environ.get("BLUESKY_PER_DAY") or 24), tp.sns_plan.daily_cap())
 GAP_MIN = int(os.environ.get("BLUESKY_GAP_MIN") or 40)  # 通常の投稿どうしの間隔（同じ時刻に2本並ばないように）
-LOOKBACK_H = 6  # これより古い記録は出さない（取りこぼしを後から大量に出さない。間隔をあける分の待ちは見込む）
+LOOKBACK_H = 6  # 出せる時刻（枠・Muse の待ちの期限の遅い方）からこれより古い記録は出さない（取りこぼしを後から大量に出さない）
 FILL_HOURS = 12  # 埋め合わせに使う記事の新しさ（生成から）
 FILL_MIN_AGE_MIN = 15  # 生成直後はまだ公開（デプロイ）前のことがあるので待つ
 SIMILAR_HOURS = 24  # この時間内に出した投稿と同じ話題の記事は埋め合わせに使わない
@@ -148,11 +151,15 @@ def needs_video(entry: dict) -> bool:
     return entry.get("style") not in ("digest", "poll") and not entry.get("urgent")
 
 
+class VideoUnsupported(RuntimeError):
+    """Bluesky がこの動画を受け付けない（大きさ・形式・処理の失敗）。一時的な失敗（通信・時間切れ）とは分ける"""
+
+
 def upload_video(session: dict, url: str) -> dict:
     """SNS 用の動画を Bluesky の動画サービスに上げて、処理が終わった blob を返す（失敗したら例外）"""
     data, ctype = fetch(url, MAX_VIDEO + 1)
     if len(data) > MAX_VIDEO or not ctype.startswith("video/"):
-        raise RuntimeError(f"動画を使えません（{ctype}・{len(data) / 1e6:.1f}MB）")
+        raise VideoUnsupported(f"動画を使えません（{ctype}・{len(data) / 1e6:.1f}MB）")
     pds = next((s.get("serviceEndpoint", "") for s in ((session.get("didDoc") or {}).get("service") or []) if s.get("id") == "#atproto_pds"), "")
     host = urllib.parse.urlsplit(pds).netloc or "bsky.social"
     auth = xrpc(f"com.atproto.server.getServiceAuth?aud={urllib.parse.quote('did:web:' + host)}&lxm=com.atproto.repo.uploadBlob"
@@ -171,8 +178,10 @@ def upload_video(session: dict, url: str) -> dict:
             return job["blob"]
         if job.get("error") == "unconfirmed_email":
             raise RuntimeError("Bluesky のアカウントのメールアドレスが未確認のため、動画を上げられません（Bluesky の設定でメールを確認すると出せるようになります）")
-        if job.get("state") == "JOB_STATE_FAILED" or not job.get("jobId"):
-            raise RuntimeError(f"Bluesky の動画の処理に失敗しました: {str(job)[:200]}")
+        if job.get("state") == "JOB_STATE_FAILED":
+            raise VideoUnsupported(f"Bluesky の動画の処理に失敗しました: {str(job)[:200]}")
+        if not job.get("jobId"):
+            raise RuntimeError(f"Bluesky の動画を上げられませんでした: {str(job)[:200]}")
         time.sleep(5)
         with urllib.request.urlopen(f"{VIDEO_SERVICE}/app.bsky.video.getJobStatus?jobId={urllib.parse.quote(job['jobId'])}", timeout=30) as res:
             job = json.loads(res.read() or b"{}").get("jobStatus", {})
@@ -239,7 +248,8 @@ def existing_uri(session: dict, link: str, fetcher=None) -> str:
 def create_record(session: dict, record: dict, p: dict, media: list[dict]) -> dict:
     """Bluesky に1件出す。出す直前に SNS ルールの門番（sns_rules）を通し、同じ記事の投稿がもう無いかを自分の投稿で確かめる
     （あればそれを返す＝二重に出さない）。違反なら SnsRuleViolation（出さない）"""
-    sns_rules.enforce("bluesky", record["text"], media, p.get("gate"), source="bluesky_post", kind=p.get("kind", "article"), links=[p["link"]])
+    sns_rules.enforce("bluesky", record["text"], media, p.get("gate"), source="bluesky_post", kind=p.get("kind", "article"), links=[p["link"]],
+                      video_unsupported=bool(p.get("videoUnsupported")))
     if uri := existing_uri(session, p["link"]):
         log(f"  [bluesky] 同じ記事の投稿がもうあります（{uri}）。二重に出しません")
         return {"uri": uri, "existing": True}
@@ -283,6 +293,8 @@ def plan(key: str, entry: dict) -> dict | None:
     # 問いかけは Threads に出したものと同じにする（記録が無ければ話題・主役から作る）
     text = tp.compose(article, [], breaking=bool(entry.get("breaking")), fixed_question=str(entry.get("questionText") or ""),
                     fixed_pattern=str(entry.get("questionPattern") or ""))
+    if planned := planned_text(entry):
+        text = planned  # Threads と同じ予定の本文（SNS_HOOK_FORMAT の型も同じ。2026-11-05）
     spec = tp.ROOT / "content" / "sns_reposts" / f"{key}.json"
     if spec.exists():  # オーナーに見せて承認をもらった出し直しの文面（Threads と同じ）
         text = json.loads(spec.read_text("utf-8")).get("classic") or text
@@ -296,7 +308,14 @@ def plan(key: str, entry: dict) -> dict | None:
     }
 
 
+def planned_slot(entry: dict) -> datetime | None:
+    """SNS の予定の枠の時刻（動画待ちの記録の pending.slot）"""
+    return _parse((entry.get("pending") or {}).get("slot"))
+
+
 def due(entry: dict) -> datetime | None:
+    if entry.get("status") == "awaiting_video" and (slot := planned_slot(entry)) and not entry.get("breaking") and entry.get("style") != "digest":
+        return slot + timedelta(minutes=DELAY_MIN)  # Threads（Buffer）を待たずに、予定の枠から出す（2026-11-05）
     raw = entry.get("dueAt") or entry.get("postedAt")
     if not raw:
         return None
@@ -350,6 +369,19 @@ def fast(entry: dict) -> bool:
     return bool(entry.get("breaking")) or entry.get("style") == "digest"
 
 
+def muse_until(key: str, entry: dict, now: datetime) -> datetime | None:
+    """この記事の投稿が Muse の動画を待っている期限（待っていなければ None。Threads と同じ判定）"""
+    if not needs_video(entry) or entry.get("breaking"):
+        return None
+    try:
+        import sns_video_followup as fu  # noqa: PLC0415
+
+        videos = json.loads(VIDEO_STATE.read_text("utf-8")).get("videos") or {} if VIDEO_STATE.exists() else {}
+        return fu.muse_waiting(key, entry, now, videos.get(key))
+    except Exception:  # noqa: BLE001 - 分からなければ待たない（自動動画も同じ検査）
+        return None
+
+
 def pending(state: dict, now: datetime, extra: dict | None = None) -> list[tuple[str, dict]]:
     out = []
     for key, entry in state["posted"].items():
@@ -358,11 +390,34 @@ def pending(state: dict, now: datetime, extra: dict | None = None) -> list[tuple
             continue  # ownerHold: オーナーに見せるまで出さない記事
         if key in (extra or {}):  # 埋め合わせで先に出した記事は Threads に出た後も重ねない
             continue
-        if entry.get("status") in ("awaiting_video", "skipped_no_video") or (needs_video(entry) and not video_of(key)):
+        if entry.get("status") == "skipped_no_video" or (needs_video(entry) and not video_of(key)):
             continue  # 動画ができるまで待つ（写真のカードでは出さない。ルール8）
-        if when <= now and now - when <= timedelta(hours=LOOKBACK_H):
+        if entry.get("status") == "awaiting_video" and not planned_slot(entry):
+            continue
+        ready = when
+        if muse_until(key, entry, now):
+            continue  # Muse の動画を待っている（期限のあとは自動動画で出す）
+        m_until = None
+        try:
+            import sns_plan  # noqa: PLC0415
+
+            m_until = sns_plan.muse_wait_until(key, planned_slot(entry) or when, breaking=bool(entry.get("breaking")))
+        except Exception:  # noqa: BLE001
+            m_until = None
+        if m_until and m_until > ready:
+            ready = m_until  # Muse を待った分だけ、遅れて出すのを許す
+        if when <= now and now - ready <= timedelta(hours=LOOKBACK_H):
             out.append((key, entry))
     return sorted(out, key=lambda kv: due(kv[1]))
+
+
+def planned_text(entry: dict) -> str:
+    """Threads に送る予定の本文から、記事のリンクの行と案内の行を除いたもの（無ければ ""）"""
+    text = str((((entry.get("pending") or {}).get("inputs") or {}).get("threads") or {}).get("text") or "")
+    if not text:
+        return ""
+    lines = [ln for ln in text.splitlines() if "http" not in ln and not ln.strip().startswith(tp.THREADS_LINK_LINE)]
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(lines)).strip()
 
 
 TITLE_NOISE = re.compile(r"[\s「」『』【】()（）・、。，．,.！？!?:：|｜\-—〜~\"'“”]")
@@ -574,11 +629,20 @@ def main() -> int:
                     continue
                 media = [{"type": "video", "url": vid["url"], "width": 1920, "height": 1080}]
                 if session and live:
-                    blob = upload_video(session, vid["url"])
-                p["link"] = tp.utm_link(f"{tp.site_url()}/articles/{key}", "bluesky", "sns_video", vid["variant"])
+                    try:
+                        blob = upload_video(session, vid["url"])
+                    except VideoUnsupported as error:
+                        # Bluesky が動画を受け付けない（大きさ・形式・処理の失敗）→ 記事の写真のカードで出す（2026-11-05 オーナー承認）
+                        log(f"  [bluesky] {key}: {error}。リンクカード（記事の写真）で出します")
+                        p["videoUnsupported"] = True
+                p["link"] = tp.utm_link(f"{tp.site_url()}/articles/{key}", "bluesky", "sns_video", vid["variant"],
+                                        ptype="hook" if entry.get("hookFormat") else "")
                 if vid.get("credit") and len(p["text"]) + len(vid["credit"]) + 60 <= MAX_GRAPHEMES:
                     p["text"] = f"{p['text'].rstrip()}\n音声：{vid['credit']}"  # VOICEVOX の規約のクレジット（入るときだけ）
                 thumb = None
+                if p.get("videoUnsupported"):
+                    thumb = upload_thumb(session, p["images"], used)
+                    media = [{"type": "image", "url": u} for u in used]
             else:
                 thumb = upload_thumb(session, p["images"], used) if session and (live or args.slug) else None
                 media = [{"type": "image", "url": u} for u in used]
@@ -589,7 +653,7 @@ def main() -> int:
                                               kind=p.get("kind", "article"), links=[p["link"]]):
                     log(f"  [check] {v}")
                 continue
-            if p.get("kind", "article") != "digest" and not sns_rules.is_urgent(p.get("gate")) and not blob:
+            if p.get("kind", "article") != "digest" and not sns_rules.is_urgent(p.get("gate")) and not blob and not p.get("videoUnsupported"):
                 raise RuntimeError("動画を Bluesky に上げられませんでした（写真では出しません）")
             res = create_record(session, record, p, media)
             at = datetime.now(timezone.utc).isoformat(timespec="seconds")

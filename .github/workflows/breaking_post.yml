@@ -55,6 +55,9 @@ jobs:
           THREADS_MODE: ${{ vars.THREADS_MODE }}
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_LEDGER: breaking
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
+          SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '1' }}  # Muse の型の文面（2026-11-05 オーナー承認で既定 1。止めるなら変数を 0。台帳 S30）
+          THREADS_LINK_AB: ${{ vars.THREADS_LINK_AB || '1' }}  # Threads のリンクの位置の比べ（2026-11-05 オーナー承認・11/5〜11/12。S31）
           BREAKING_PER_DAY: ${{ vars.BREAKING_PER_DAY }}
           GH_TOKEN: ${{ github.token }}  # 門番が止めた投稿の issue を立てる
         run: python scripts/breaking_post.py --wait 480
@@ -65,8 +68,8 @@ jobs:
           THREADS_MODE: ${{ vars.THREADS_MODE }}
           BLUESKY_HANDLE: ${{ vars.BLUESKY_HANDLE }}
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
-          SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '0' }}  # Muse の型の文面（オーナー承認まで 0。台帳 S30）
-          THREADS_LINK_AB: ${{ vars.THREADS_LINK_AB || '0' }}  # S31
+          SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '1' }}  # Muse の型の文面（2026-11-05 オーナー承認で既定 1。止めるなら変数を 0。台帳 S30）
+          THREADS_LINK_AB: ${{ vars.THREADS_LINK_AB || '1' }}  # Threads のリンクの位置の比べ（2026-11-05 オーナー承認・11/5〜11/12。S31）
           GH_TOKEN: ${{ github.token }}  # 門番が止めた投稿の issue を立てる
         run: python scripts/bluesky_post.py
       # 待っている間に main が進んでいても衝突しないよう、最新の state に投稿記録だけを足して push する
@@ -74,6 +77,7 @@ jobs:
         run: |
           if [ -z "$(git status --porcelain state)" ]; then exit 0; fi
           cp state/threads_posted.json "$RUNNER_TEMP/mine.json"
+          cp state/buffer_calls/breaking.json "$RUNNER_TEMP/buffer_ledger.json" 2>/dev/null || true  # Buffer の呼び出し回数（30日の合計に要る。2026-11-05）
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3 4 5; do
@@ -81,6 +85,7 @@ jobs:
             python scripts/breaking_post.py --merge "$RUNNER_TEMP/mine.json"
             python scripts/bluesky_post.py --merge "$RUNNER_TEMP/mine.json"
             git add state/threads_posted.json
+            if [ -f "$RUNNER_TEMP/buffer_ledger.json" ]; then mkdir -p state/buffer_calls; cp "$RUNNER_TEMP/buffer_ledger.json" state/buffer_calls/breaking.json; git add state/buffer_calls/breaking.json; fi
             if git diff --cached --quiet; then exit 0; fi
             git commit -m "chore(threads): 速報の投稿を記録"
             git push origin HEAD:main && exit 0

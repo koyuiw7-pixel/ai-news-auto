@@ -416,6 +416,7 @@ jobs:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           # Buffer の呼び出し回数の記録の名前（state/buffer_calls/pipeline.json。scripts/buffer_budget.py）
           BUFFER_LEDGER: pipeline
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
           # 学習の目当て（投稿ごとの訪問）を自前の計測から読む鍵（scripts/threads_learn.py。読むだけ）
           AFF_STATS_TOKEN: ${{ secrets.AFF_STATS_TOKEN }}
           # 通常枠の AI 以外の記事のテスト（12:15・21:00。11/4〜11/10）。off で止める
@@ -424,8 +425,8 @@ jobs:
           BUFFER_MONITOR_CAP: ${{ vars.BUFFER_MONITOR_CAP }}
           # 1日の投稿本数（Threads・X・Facebook 共通）。凍結を避けて週に1〜2本ずつ増やす
           SNS_PER_DAY: ${{ steps.ramp.outputs.sns_per_day }}
-          SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '0' }}  # Muse の型の文面（オーナー承認まで 0。台帳 S30）
-          THREADS_LINK_AB: ${{ vars.THREADS_LINK_AB || '0' }}  # Threads のリンクの位置の比べ（オーナー承認まで 0。S31）
+          SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '1' }}  # Muse の型の文面（2026-11-05 オーナー承認で既定 1。止めるなら変数を 0。台帳 S30）
+          THREADS_LINK_AB: ${{ vars.THREADS_LINK_AB || '1' }}  # Threads のリンクの位置の比べ（2026-11-05 オーナー承認・11/5〜11/12。S31）
           # 速報の即時投稿の1日の上限（別枠・最大5）。速報待ちの記事を通常の予約に回さない判定に使う
           BREAKING_PER_DAY: ${{ vars.BREAKING_PER_DAY }}
           # 朝のまとめ・問いかけ投稿（sns_extra.yml）の枠を空けるか。0 で止めて通常の投稿に戻す
@@ -442,6 +443,8 @@ jobs:
           # 反応の取得は1日1回（Buffer の数値も1日1回更新）。前回の取得から20時間たっていなければ Buffer を呼ばずにすぐ終わる
           python scripts/threads_learn.py || echo "::warning::Threads の学習に失敗しました（投稿は続けます）"
           python scripts/threads_post.py --max 2
+          # SNS の予定に入った記事を Muse の受け渡し（state/muse_queue.json）に足す（2026-11-05 すべての投稿の動画を Muse で。台帳 S30）
+          python scripts/muse_queue.py || echo "::warning::Muse の受け渡しを更新できませんでした（投稿は自動動画で続きます）"
           if [ -z "$(git status --porcelain state)" ]; then
             exit 0
           fi

@@ -651,8 +651,12 @@ def check_post(
     measurer=None,
     draft: bool = False,
     pending_video: bool = False,
+    video_unsupported: bool = False,
 ) -> list[str]:
     """投稿1件のルール違反の一覧（空なら OK）。
+
+    video_unsupported: （Bluesky だけ・2026-11-05 オーナー承認）作った動画を Bluesky が受け付けなかった（大きさ・形式・処理の失敗）。
+      このときだけ、リンクカード（記事の写真だけのカード）で出してよい（ルール8の例外。ほかの SNS には効かない）
 
     draft: 下書き（公開しない）。動画の決まり（ルール8）は見ない
     pending_video: 動画を付ける前の文面の下見（threads_post が予約の前に文面だけ確かめる）。動画の決まりは見ない。
@@ -707,7 +711,8 @@ def check_post(
     if kind != "digest":
         out += descriptor_problems(content)
     # ルール8: 記事の投稿は動画つきだけ（朝のまとめだけ画像）。写真・カードだけの投稿は出さない
-    if kind not in ("digest", "disaster") and not is_urgent(article) and not draft and not pending_video and not has_video(media):
+    bluesky_fallback = video_unsupported and norm_platform(platform) == "bluesky" and any((m or {}).get("type") == "image" for m in (media or []))
+    if kind not in ("digest", "disaster") and not is_urgent(article) and not draft and not pending_video and not bluesky_fallback and not has_video(media):
         out.append("[ルール8] 動画が付いていない（記事の投稿は必ず動画つき。写真・カードだけでは出さない。動画が間に合わなければ遅らせる）")
     out += check_media(platform, media or [], article, kind, measurer)
     out += check_length(platform, text, reply_text)
@@ -780,11 +785,13 @@ def enforce(
     state: dict | None = None,
     measurer=None,
     pending_video: bool = False,
+    video_unsupported: bool = False,
 ) -> None:
     """投稿 API を呼ぶ直前に呼ぶ。違反があれば記録して SnsRuleViolation を投げる（呼び出し側は投稿しない）。
     pending_video=True は予約の前の文面の下見だけ（API は呼ばない所）。送る直前は必ず False（動画が無ければ止まる）"""
     violations = check_post(platform, text, media, article, kind=kind, reply_text=reply_text, links=links,
-                            history=history and not draft, state=state, measurer=measurer, draft=draft, pending_video=pending_video)
+                            history=history and not draft, state=state, measurer=measurer, draft=draft, pending_video=pending_video,
+                            video_unsupported=video_unsupported)
     if violations:
         report(violations, norm_platform(platform), source, text, article, draft=draft)
         raise SnsRuleViolation(violations, norm_platform(platform), source)

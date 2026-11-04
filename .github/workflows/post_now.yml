@@ -35,6 +35,7 @@ jobs:
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_LEDGER: post-now
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
           SLUG: ${{ github.event.inputs.slug }}
           TEXT: ${{ github.event.inputs.text }}
           DELETE: ${{ github.event.inputs.delete }}
