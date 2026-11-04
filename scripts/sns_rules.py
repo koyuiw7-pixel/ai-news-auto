@@ -411,12 +411,33 @@ def known_size(url: str) -> tuple[int, int] | None:
     return None
 
 
+def recorded_video_size(url: str) -> tuple[int, int] | None:
+    """自分のサイトの動画（/video/*.mp4）なら、取り込み時に測った縦横（state/sns_video.json の qa）。
+    Muse の書き出しは moov が末尾にあり、先頭 1MB では測れない（2026-11-05 アララの投稿が2回止まった）"""
+    parsed = urllib.parse.urlsplit(str(url or ""))
+    if not (parsed.hostname and parsed.hostname.endswith(SITE_HOST) and parsed.path.startswith("/video/")):
+        return None
+    try:
+        data = json.loads((Path(__file__).resolve().parent.parent / "state" / "sns_video.json").read_text("utf-8"))
+    except (OSError, ValueError):
+        return None
+    for group in ("videos", "videosArchive"):
+        for rec in (data.get(group) or {}).values():
+            if not isinstance(rec, dict) or url not in json.dumps(rec.get("urls") or {}):
+                continue
+            for ver in (rec.get("versions") or {}).values():
+                for qa in ((ver or {}).get("qa") or {}).values():
+                    if isinstance(qa, dict) and qa.get("width") and qa.get("height"):
+                        return int(qa["width"]), int(qa["height"])
+    return None
+
+
 def media_size(item: dict, measurer=None) -> tuple[int, int] | None:
     if item.get("width") and item.get("height"):
         return int(item["width"]), int(item["height"])
     url = str(item.get("url") or "")
     measured = (measurer or fetch_size)(url) if url else None
-    return measured or known_size(url)
+    return measured or known_size(url) or (recorded_video_size(url) if measurer is None else None)
 
 
 def is_text_band(url: str) -> bool:
