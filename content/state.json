@@ -96,14 +96,6 @@
       "tries": 1,
       "url": "http://www.npa.go.jp/newlyarrived/2026/20260331001.html"
     },
-    "4ed107f4ce3d226c": {
-      "first": "2026-11-04T15:47:29.707173+00:00",
-      "next": "2026-11-04T21:57:17.933498+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "第60回全国ろうあ者スポーツ大会 サッカー競技開催！ #jfa",
-      "tries": 2,
-      "url": "https://www.jfa.jp/news/00036972/"
-    },
     "52567fa092b78f28": {
       "first": "2026-11-04T03:34:46.235755+00:00",
       "next": "2026-11-04T06:34:46.235755+00:00",
@@ -135,14 +127,6 @@
       "title": "営業毎旬報告（10月31日現在）",
       "tries": 1,
       "url": "http://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261031.htm"
-    },
-    "ddd64db69903db7d": {
-      "first": "2026-11-04T15:51:25.032175+00:00",
-      "next": "2026-11-04T22:00:44.151214+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "SAMURAI BLUE（日本代表）メンバー・スケジュール MIZUHO BLUE CHALLENGE THE KALLANG FOOTBALL SERIES SINGAPORE ブラジル代表戦（11.14）・パ #jfa #daihyo",
-      "tries": 2,
-      "url": "https://www.jfa.jp/news/00036974/"
     },
     "e2654f5d2f822277": {
       "first": "2026-11-04T03:04:00.517719+00:00",
@@ -6914,6 +6898,13 @@
       "slug": "atlassian-context-quality-score-cqs",
       "url": "https://www.atlassian.com/blog/context/context-quality-score"
     },
+    "4ed107f4ce3d226c": {
+      "at": "2026-11-04T22:09:03.786499+00:00",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://www.jfa.jp/news/00036972/"
+    },
     "4eebfe08bde633ea": {
       "at": "2026-10-29T18:12:14.465098+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -13232,6 +13223,13 @@
       "skipped": true,
       "url": "https://blog.google/innovation-and-ai/technology/research/partnering-singapore-advance-scientific-discovery/"
     },
+    "ddd64db69903db7d": {
+      "at": "2026-11-04T22:11:14.838922+00:00",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://www.jfa.jp/news/00036974/"
+    },
     "de3657a54534136e": {
       "at": "2026-11-02T18:44:08.097727+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -14770,93 +14768,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T00:17:50.324169+00:00",
-      "attempt": 2,
-      "id": "52056732d51a05e6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "バタフライが後援する第45回全日本クラブ卓球選手権 → 元記事には「バタフライが後援する」とは記載されていない（バタフライは大会名や協賛の文脈だが後援の明記はない）。",
-        "チケット販売に関する案内は現時点で未掲載。 → 元記事にはチケット販売に関する情報は一切言及されていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 180.2,
-        "avg_sentence": 48.1,
-        "long_share": 0.067,
-        "max_paragraph": 245,
-        "paragraphs": 4,
-        "sentences": 15
-      },
-      "score": 65,
-      "source": "jtta",
-      "title": "バタフライ 第45回全日本クラブ卓球選手権大会 大会情報更新（11/2）"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T00:20:50.184818+00:00",
-      "attempt": 1,
-      "id": "d57ad97ed73f8c5d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 91.0,
-        "avg_sentence": 38.5,
-        "long_share": 0.077,
-        "max_paragraph": 178,
-        "paragraphs": 11,
-        "sentences": 26
-      },
-      "score": 100,
-      "source": "kantei",
-      "title": "高市総理は防災庁発足式に出席しました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T00:32:52.446358+00:00",
-      "attempt": 1,
-      "id": "a343e882fa87e60d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "トレーニングと試合スケジュール → 11月19日から27日までグループステージ3試合。とあるが、グループステージ第1戦は11月21日、第2戦は24日、第3戦は27日であり、19日・20日はAM/PMトレーニングとなっているため記述が不正確。"
-      ],
-      "readability": {
-        "avg_paragraph": 130.0,
-        "avg_sentence": 37.1,
-        "long_share": 0.071,
-        "max_paragraph": 240,
-        "paragraphs": 4,
-        "sentences": 14
-      },
-      "score": 60,
-      "source": "jfa",
-      "title": "U-17日本代表 メンバー・スケジュール FIFA U-17ワールドカップカタール2026（11.11-12.13 カタール） #jfa #daihyo"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T00:34:53.218223+00:00",
-      "attempt": 2,
-      "id": "a343e882fa87e60d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "過去に大谷翔平や香川真司といった選手が同年代で活躍しています。 → 元記事に無い記述であり、事実確認ができない。"
-      ],
-      "readability": {
-        "avg_paragraph": 135.0,
-        "avg_sentence": 47.6,
-        "long_share": 0.294,
-        "max_paragraph": 295,
-        "paragraphs": 6,
-        "sentences": 17
-      },
-      "score": 85,
-      "source": "jfa",
-      "title": "U-17日本代表 メンバー・スケジュール FIFA U-17ワールドカップカタール2026（11.11-12.13 カタール） #jfa #daihyo"
-    },
     {
       "accepted": false,
       "at": "2026-11-03T00:36:24.144589+00:00",
@@ -21173,6 +21084,62 @@
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（GLM・CNBC・MCP）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-04T22:07:34.669175+00:00",
+      "attempt": 1,
+      "id": "4ed107f4ce3d226c",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jfa",
+      "title": "第60回全国ろうあ者スポーツ大会 サッカー競技開催！ #jfa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-04T22:09:03.786395+00:00",
+      "attempt": 2,
+      "id": "4ed107f4ce3d226c",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jfa",
+      "title": "第60回全国ろうあ者スポーツ大会 サッカー競技開催！ #jfa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-04T22:10:07.700386+00:00",
+      "attempt": 1,
+      "id": "ddd64db69903db7d",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jfa",
+      "title": "SAMURAI BLUE（日本代表）メンバー・スケジュール MIZUHO BLUE CHALLENGE THE KALLANG FOOTBALL SERIES "
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-04T22:11:14.838826+00:00",
+      "attempt": 2,
+      "id": "ddd64db69903db7d",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jfa",
+      "title": "SAMURAI BLUE（日本代表）メンバー・スケジュール MIZUHO BLUE CHALLENGE THE KALLANG FOOTBALL SERIES "
     }
   ],
   "short_text_retry": {
