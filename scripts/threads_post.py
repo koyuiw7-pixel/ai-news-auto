@@ -2022,6 +2022,12 @@ def publish_via_buffer(
     return {"id": create_post(api_key, post_input, service="threads", article=article, source="threads_post.publish_via_buffer"), "via": "buffer", "permalink": ""}
 
 
+def x_root_text(article: dict, text: str, classic_text: str) -> str:
+    """X の本文のもと。Muse の型の文面（SNS_HOOK_FORMAT）は Threads・Facebook 以外（X）の門番に通らないので、X は今の形（S1〜S5）のまま
+    （2026-11-05 フラグを有効にした最初の回で、X の文面が門番に止められて記事ごと出せなくなった）"""
+    return classic_text if article.get("_hookFormat") else text
+
+
 def queue_for_video(api_key: str, channels: dict[str, dict], threads_text: str, text: str, link: str, article: dict,
                     due_at: datetime | None, fmt: str = "classic", fb_text: str | None = None, offsets: tuple[int, int] = (12, 27)) -> dict:
     """（2026-11-03 オーナー指示「SNS の投稿は動画のはず」）記事の投稿は動画つきだけ。ここでは Buffer を呼ばず、
@@ -2404,8 +2410,8 @@ def main() -> int:
                 result["urgent"] = True
             elif buffer_channel:
                 # 記事の投稿は動画つきだけ（ルール8）。ここでは予約せず「動画待ち」にする（動画ができたら sns_video_followup が予約する）
-                result = queue_for_video(buffer_key, {"threads": buffer_channel, **extra_channels}, threads_text, text, link, article, due_at,
-                                         fmt=fmt, fb_text=classic_text)
+                result = queue_for_video(buffer_key, {"threads": buffer_channel, **extra_channels}, threads_text, x_root_text(article, text, classic_text),
+                                         link, article, due_at, fmt=fmt, fb_text=classic_text)
             else:
                 result = publish(token, threads_text, link, article)
         except sns_rules.SnsRuleViolation as error:

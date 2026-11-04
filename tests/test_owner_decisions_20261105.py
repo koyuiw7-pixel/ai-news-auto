@@ -289,6 +289,13 @@ class FlagsTest(unittest.TestCase):
             src = (ROOT / ".github" / "workflows" / name).read_text("utf-8")
             self.assertIn("SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '1' }}", src, name)
 
+    def test_x_keeps_the_classic_text_when_hook_format_is_on(self):
+        # 2026-11-05: フラグを有効にした最初の回で、X に Muse の型の文面を渡して門番に止められ、記事ごと出せなくなった
+        self.assertEqual(tp.x_root_text({"_hookFormat": True}, "型の3行", "今の形"), "今の形")
+        self.assertEqual(tp.x_root_text({}, "今の形", "今の形"), "今の形")
+        src = (ROOT / "scripts" / "threads_post.py").read_text("utf-8")
+        self.assertIn("x_root_text(article, text, classic_text)", src)
+
     def test_link_ab_week_and_reminder(self):
         w = sns_plan.link_ab_window()
         self.assertEqual((w["start"], w["end"]), ("2026-11-05", "2026-11-12"))
