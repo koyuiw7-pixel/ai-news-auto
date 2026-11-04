@@ -136,7 +136,7 @@
     "plan": null,
     "product": "GPT-6.1 Terra",
     "quote": "GPT-6.1 Terraは、API料金が入力1ドル・出力5ドルで、Solの半額とされています。",
-    "reason": "編集部注の段落",
+    "reason": "引用が記事に無い",
     "vendor": "OpenAI"
    }
   ]
@@ -209,6 +209,12 @@
   "model": "gemini-3.1-flash-lite",
   "rows": []
  },
+ "cwe-bench-v2-security-benchmark": {
+  "at": "2026-11-04T23:55:30+00:00",
+  "hash": "b0ecca4ad161e7cd",
+  "model": "gemini-3.5-flash-lite",
+  "rows": []
+ },
  "dotnet-aspire-github-copilot-integration": {
   "at": "2026-10-27T10:51:53+00:00",
   "hash": "02d8372f466a2fb5",
@@ -226,6 +232,84 @@
   "hash": "1dad6aabb5d4d757",
   "model": "gemini-3.1-flash-lite",
   "rows": []
+ },
+ "gemini-plans-daily-brief-added": {
+  "at": "2026-11-04T23:55:30+00:00",
+  "hash": "52523f8b7b65b7a9",
+  "model": "gemini-3.5-flash-lite",
+  "rows": [
+   {
+    "currency": "JPY",
+    "kind": "plan",
+    "monthlyPrice": 0,
+    "ok": true,
+    "plan": "無料",
+    "product": "Gemini",
+    "quote": "| 無料 | 0円/月 |  | Gmail、Google ドライブ、Google フォト共通で利用できる 15 GB のクラウド ストレージ |",
+    "vendor": "Google"
+   },
+   {
+    "currency": "JPY",
+    "kind": "plan",
+    "monthlyPrice": 725,
+    "ok": true,
+    "plan": "Google AI Plus",
+    "product": "Gemini",
+    "quote": "| Google AI Plus | 725円/月（月払い） |  | 無料版の 2 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 400 GB のクラウド ストレージ |",
+    "vendor": "Google"
+   },
+   {
+    "currency": "JPY",
+    "kind": "plan",
+    "monthlyPrice": 2900,
+    "ok": true,
+    "plan": "Google AI Pro",
+    "product": "Gemini",
+    "quote": "| Google AI Pro | 2,900円/月（月払い） |  | 無料版の 4 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 5 TB のクラウド ストレージ |",
+    "vendor": "Google"
+   },
+   {
+    "currency": "JPY",
+    "kind": "plan",
+    "monthlyPrice": 14500,
+    "ok": true,
+    "plan": "Google AI Ultra",
+    "product": "Gemini",
+    "quote": "| Google AI Ultra（AI Pro の 5 倍） | 14,500円/月（月払い） |  | AI Pro の 5 倍の使用量上限 |",
+    "vendor": "Google"
+   },
+   {
+    "currency": "JPY",
+    "kind": "plan",
+    "monthlyPrice": 32000,
+    "ok": true,
+    "plan": "Google AI Ultra",
+    "product": "Gemini",
+    "quote": "| Google AI Ultra（AI Pro の 20 倍） | 32,000円/月（月払い） |  | AI Pro の 20 倍の使用量上限 |",
+    "vendor": "Google"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 21,
+    "ok": true,
+    "plan": "Gemini Enterprise Business エディション",
+    "product": "Gemini",
+    "quote": "| Gemini Enterprise Business エディション | $21/人・月から | 約3,650円（税込みの目安） | ユーザー数: 最大 300 人 |",
+    "vendor": "Google"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 30,
+    "ok": false,
+    "plan": "Gemini Enterprise Standard / Plus エディション",
+    "product": "Gemini",
+    "quote": "| Gemini Enterprise Standard / Plus エディション | $30/人・月から | 約5,210円（税込みの目安） |  |",
+    "reason": "プラン名が1つに決まらない",
+    "vendor": "Google"
+   }
+  ]
  },
  "github-copilot-app-projects-computer-use": {
   "at": "2026-11-03T23:40:18+00:00",
@@ -303,8 +387,8 @@
   ]
  },
  "github-copilot-fusion-release": {
-  "at": "2026-10-30T22:38:40+00:00",
-  "hash": "acc232a45860d0b1",
+  "at": "2026-11-04T23:55:32+00:00",
+  "hash": "2ca75797a73507ee",
   "model": "gemini-3.5-flash-lite",
   "rows": []
  },
@@ -349,8 +433,8 @@
   ]
  },
  "github-enterprise-includes-copilot": {
-  "at": "2026-10-28T22:51:05+00:00",
-  "hash": "f097978ee1a42f50",
+  "at": "2026-11-04T23:55:33+00:00",
+  "hash": "747eb082a5f9117a",
   "model": "gemini-3.5-flash-lite",
   "rows": [
    {
@@ -359,12 +443,11 @@
     "inputPerM": null,
     "kind": "plan",
     "monthlyPrice": 10,
-    "ok": false,
+    "ok": true,
     "outputPerM": null,
     "plan": "Standalone",
-    "product": "GitHub Copilot",
+    "product": "Copilot",
     "quote": "- Copilot Standaloneの価格：月額10ドル（1ユーザーあたり）",
-    "reason": "引用に製品名が無い",
     "vendor": "GitHub"
    }
   ]
@@ -387,9 +470,15 @@
    }
   ]
  },
+ "google-gemini-4-argon-surf-clock-hardware": {
+  "at": "2026-11-04T23:55:33+00:00",
+  "hash": "036aa8700b54640f",
+  "model": "gemini-3.5-flash-lite",
+  "rows": []
+ },
  "google-gemini-agent-startups": {
-  "at": "2026-10-28T22:51:06+00:00",
-  "hash": "90320adca0321fb7",
+  "at": "2026-11-04T23:55:34+00:00",
+  "hash": "36f15040a418c477",
   "model": "gemini-3.5-flash-lite",
   "rows": []
  },
@@ -496,8 +585,8 @@
   "rows": []
  },
  "microsoft-research-focus-97-agents-bioemu2": {
-  "at": "2026-10-30T22:38:40+00:00",
-  "hash": "896e2fc3fb5bc739",
+  "at": "2026-11-04T23:55:31+00:00",
+  "hash": "d74d3f29555b8d93",
   "model": "gemini-3.5-flash-lite",
   "rows": []
  },
@@ -859,128 +948,17 @@
   "model": "gemini-3.1-flash-lite",
   "rows": []
  },
- "openai-retail-shopping-agent-demo": {
-  "at": "2026-10-27T10:48:54+00:00",
-  "hash": "4d518737b2d874e4",
+ "openai-linux-kernel-vulnerability-ai": {
+  "at": "2026-11-04T23:55:18+00:00",
+  "hash": "2787181cd18f1551",
   "model": "gemini-3.5-flash-lite",
   "rows": []
  },
- "oracle-ai-workspace-chatgpt": {
-  "at": "2026-11-03T23:40:15+00:00",
-  "hash": "804034c728fde230",
+ "openai-retail-shopping-agent-demo": {
+  "at": "2026-11-04T23:55:35+00:00",
+  "hash": "7bfe6434f38f30e6",
   "model": "gemini-3.5-flash-lite",
-  "rows": [
-   {
-    "currency": "USD",
-    "kind": "plan",
-    "monthlyPrice": 25,
-    "ok": true,
-    "plan": "Business",
-    "product": "ChatGPT",
-    "quote": "ChatGPT Businessの単体料金は、スタンダードシートが年払いで1人あたり月$20、月払いで$25です（OpenAI公式の料金ページ、11/3確認）。バンドルに含まれる範囲と、この単体料金との関係は、まだ発表されていません。",
-    "vendor": "OpenAI"
-   },
-   {
-    "currency": "JPY",
-    "kind": "plan",
-    "monthlyPrice": 0,
-    "ok": true,
-    "plan": "無料版",
-    "product": "ChatGPT",
-    "quote": "| 無料版 | 0円/月 |  |  |",
-    "vendor": "OpenAI"
-   },
-   {
-    "currency": "JPY",
-    "kind": "plan",
-    "monthlyPrice": 1400,
-    "ok": true,
-    "plan": "Go",
-    "product": "ChatGPT",
-    "quote": "| Go | 1,400円/月（月払い） |  | This plan may include ads.（広告が表示される場合あり） |",
-    "vendor": "OpenAI"
-   },
-   {
-    "currency": "JPY",
-    "kind": "plan",
-    "monthlyPrice": 3000,
-    "ok": true,
-    "plan": "Plus",
-    "product": "ChatGPT",
-    "quote": "| Plus | 3,000円/月（月払い） / $20/月（月払い） |  |  |",
-    "vendor": "OpenAI"
-   },
-   {
-    "currency": "USD",
-    "kind": "plan",
-    "monthlyPrice": 20,
-    "ok": true,
-    "plan": "Plus",
-    "product": "ChatGPT",
-    "quote": "| Plus | 3,000円/月（月払い） / $20/月（月払い） |  |  |",
-    "vendor": "OpenAI"
-   },
-   {
-    "currency": "JPY",
-    "kind": "plan",
-    "monthlyPrice": 16800,
-    "ok": true,
-    "plan": "Pro 100",
-    "product": "ChatGPT",
-    "quote": "| Pro 100 | 16,800円/月から（月払い） / $100/月（月払い） |  | Ultrafast: Not included、月額 ￥16,800 分の API クレジット（日本向けページ） |",
-    "vendor": "OpenAI"
-   },
-   {
-    "currency": "USD",
-    "kind": "plan",
-    "monthlyPrice": 100,
-    "ok": true,
-    "plan": "Pro 100",
-    "product": "ChatGPT",
-    "quote": "| Pro 100 | 16,800円/月から（月払い） / $100/月（月払い） |  | Ultrafast: Not included、月額 ￥16,800 分の API クレジット（日本向けページ） |",
-    "vendor": "OpenAI"
-   },
-   {
-    "currency": "USD",
-    "kind": "plan",
-    "monthlyPrice": 200,
-    "ok": true,
-    "plan": "Pro 200",
-    "product": "ChatGPT",
-    "quote": "| Pro 200 | $200/月（月払い） | 約34,740円（税込みの目安） | Ultrafast: Not included、月額 ￥30,000 分の API クレジット（日本向けページ） |",
-    "vendor": "OpenAI"
-   },
-   {
-    "currency": "USD",
-    "kind": "plan",
-    "monthlyPrice": 500,
-    "ok": true,
-    "plan": "Pro 500",
-    "product": "ChatGPT",
-    "quote": "| Pro 500 | $500/月（月払い） | 約86,840円（税込みの目安） | Ultrafast: Included、月額 ￥84,000 分の API クレジット（日本向けページ） |",
-    "vendor": "OpenAI"
-   },
-   {
-    "currency": "USD",
-    "kind": "plan",
-    "monthlyPrice": 25,
-    "ok": true,
-    "plan": "Business（スタンダードシート）",
-    "product": "ChatGPT",
-    "quote": "| Business（スタンダードシート） | $20/人・月（年払い） / $25/人・月（月払い） | 約4,340円（税込みの目安） | ChatGPT, ChatGPT Work, and Codex |",
-    "vendor": "OpenAI"
-   },
-   {
-    "currency": "USD",
-    "kind": "plan",
-    "monthlyPrice": 125,
-    "ok": true,
-    "plan": "Business（プレミアムシート）",
-    "product": "ChatGPT",
-    "quote": "| Business（プレミアムシート） | $100/人・月（年払い） / $125/人・月（月払い） | 約21,710円（税込みの目安） | ChatGPT, ChatGPT Work, and Codex with higher usage limits |",
-    "vendor": "OpenAI"
-   }
-  ]
+  "rows": []
  },
  "prompt-caching-explained-huggingface": {
   "at": "2026-10-27T10:53:22+00:00",
@@ -1154,7 +1132,7 @@
     "plan": "Plus",
     "product": "ChatGPT",
     "quote": "一般向けの無償プランや「ChatGPT Plus」（月額20ドル）とは異なり、全社展開向けの専用ボリュームライセンス契約と専任サポートが必要です。",
-    "reason": "編集部注の段落",
+    "reason": "引用が記事に無い",
     "vendor": "OpenAI"
    }
   ]
