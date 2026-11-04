@@ -164,7 +164,8 @@ def main() -> int:
             x_preview, detail = tp.compose_x(article, text), tp.link_reply_text(article)
         image = tp.post_image(article, fmt)
         if fmt == "classic" and not article.get("disaster"):
-            # 本文は「（本当の速報だけ【速報】）読者への呼びかけ／要約すると、2文／問いかけ」で完結（2026-11-03）。編集部の一言は足さない
+            # 本文は「（本当の速報だけ【速報】）記事の中身からの書き出し／事実2文／問いかけ」で完結（2026-11-03。「要約すると、」は 2026-11-05 にやめた。
+            # 災害・事故・安全の話題は事実だけ＝呼びかけ・問いかけなし。台帳 S4・S34）。編集部の一言は足さない
             comment = ""
             for problem in tp.post_problems(text, article):
                 log(f"  [check] {article['slug']}: {problem}")
@@ -210,6 +211,7 @@ def main() -> int:
             "question": bool(question),
             **({"questionText": question} if question else {}),
             **tp.question_pattern_fields(article, question),
+            **({"summaryLead": article["_summaryLead"]} if article.get("_summaryLead") else {}),
             **({"comment": comment} if comment else {}),
             "postedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         }

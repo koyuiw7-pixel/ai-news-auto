@@ -5,8 +5,9 @@
   sns_rules.enforce(platform, text, media, article, source="threads_post")  # 違反なら記録して SnsRuleViolation を投げる（投稿しない）
 
 ルール（オーナー承認）
-  1. 投稿は必ず実在の記事について。書き出し → 「要約すると、」＋短い事実2文 → 答えやすい問いかけ → 記事のリンクを本文に
+  1. 投稿は必ず実在の記事について。書き出し → 短い事実2文 → 答えやすい問いかけ → 記事のリンクを本文に
      （X だけはリンクを返信に）。リンクには SNS ごとの utm を付ける。
+     （2026-11-05 オーナー判断「毎回要約するとで始まるのは嫌だ」）事実の文は「要約すると、」で始めない（ルール13）。
   2. 画像は 16:9 の横長・写真だけのカード（文字の帯なし）。発表された製品を AI で描いた画像は使わない。動画も 16:9。
   3. 決まった型の投稿・中身のない投稿はしない（記事のない問いかけ、「気軽にコメントください」、「番号でコメント」など）。
   4. 自然な日本語。「ざっくり」・硬い言い回しを使わない。英語の文を残さない。スポーツは日本のスポーツだけ（五輪・世界陸上・W杯・WBC は例外）。
@@ -27,6 +28,12 @@
 
   10. （2026-11-05 とろいも案 v1・台帳 S28）海外の企業向け・開発者向けの話題は SNS に出さない（サイトだけ。sns_plan.excluded）。
   11. （2026-11-05・台帳 S29）記事のリンクの utm_content は <投稿の種類>_<リンクの位置>（video_body・hook_reply・digest_body など）。
+  13. （2026-11-05 オーナー判断・台帳 S4）「要約すると」を投稿に書かない。決まった前置き（「ポイントは、」「まとめると、」など）を
+     毎回の投稿で繰り返さない。門番は止めずに直す（autofix が「要約すると、」を外して文は残す）。同じ前置きが直近の投稿で続けばログに出す。
+  14. （2026-11-05 オーナー指摘「不謹慎」・台帳 S34）書き出しにジャンル・分類から作った決まった呼びかけ（「新しいガジェットが好きな人、」
+     「〇〇好きの皆さん、」「働く皆さん、」など）を使わない。書き出しは記事の中身から（呼びかけなら記事に出てくる人・立場、
+     無ければ事実の1行＝何が・いつ・だれに）。災害・事故・安全の話題（safety_topic）は事実だけ: 呼びかけ・問いかけ・絵文字を付けない
+     （autofix が呼びかけの行・問いかけ・絵文字を外す）。
   （フラグ・オーナー承認待ち）SNS_HOOK_FORMAT=1 のときだけ、Muse の型（1行目＝結論＋数字か読者への影響／2行目＝なぜ大事か／
      3行目＝記事にだけあるもの）も通す（S30）。THREADS_LINK_AB=1 のときだけ Threads のリンクを返信に置いてよい（S31）。
 
@@ -76,8 +83,32 @@ CONTENT_MAX = 200
 ASPECT = 16 / 9
 ASPECT_TOL = 0.08
 
-SUMMARY = f"{persona.SUMMARY_OPENER}、"
+SUMMARY = f"{persona.SUMMARY_OPENER}、"  # 以前の形の前置き（ルール13で使わない。古い文面から外すために残す）
 QUESTION_END = ("？", "?")
+# ルール13: 行の頭の「要約すると、」（「要約すると：」「要約すると」も）
+SUMMARY_LEAD_RE = re.compile(r"(?m)^(【速報】)?[ \t\u3000]*要約すると[ \t\u3000]*[、,:：]?[ \t\u3000]*")
+# ルール13: 事実のかたまりの頭の前置き（「ポイントは、」「まとめると、」など。8字までの言葉＋読点）。同じものが続いたらログに出す
+LEAD_IN_RE = re.compile(r"^([^、。！？\n\d]{2,8})[、,]")
+LEAD_WORD_RE = re.compile(r"要約すると|まとめると|ポイントは|結論は|結論から言うと|簡単に言うと|ひとことで言うと|一言でいうと|つまり|要するに|"
+                          r"大事なのは|注目は|今回は|先に言うと|ざっくり言うと")
+LEAD_IN_WINDOW = 5   # 直近の何本を見るか
+LEAD_IN_LIMIT = 2    # そのうち同じ前置きが何本あれば「繰り返し」か（今の投稿を足して3本目）
+# ルール14: ジャンル・分類から作った決まった呼びかけ（記事の中身から作っていない。2026-11-05「新しいガジェットが好きな人」）
+# 記事の中身から書いた呼びかけ（「自転車好きの人に、」＝ Honda の電動マウンテンバイク）は止めない。止めるのは、記事に関係なく
+# ジャンルだけで決めていた言い回し（threads_hooks.GENRE_AUDIENCES・DEFAULT_AUDIENCE と、以前のだれにでも当てはまる言い方）
+TEMPLATE_CALLOUT_RE = re.compile(
+    r"新しいガジェットが好きな(?:人|方)|ガジェット好きの(?:人|皆さん|みなさん)|スポーツ好きの(?:人|皆さん|みなさん)|テック好きの(?:人|皆さん|みなさん)|"
+    r"(?:仕事|仕事とお金)のニュースを追っている(?:人|皆さん)|^(?:【速報】)?働く皆さん|AIを(?:仕事で)?使っている(?:人|皆さん)|"
+    r"暮らしの制度が気になる(?:人|皆さん)|資産づくりを考えている(?:人|皆さん)|新しい技術を追っている(?:人|皆さん)"
+)
+# ルール14: 災害・事故・安全の話題（呼びかけ・問いかけ・絵文字を付けない）。sns_plan のレーン safety・is_urgent に加えて
+SAFETY_RE = re.compile(
+    r"地震|津波|噴火|火山|ミサイル|Jアラート|弾道|防災|避難|台風|大雨|豪雨|洪水|土砂|警報|災害|被災|事故|火災|爆発|"
+    r"リコール|自主回収|流出|漏えい|漏洩|不正アクセス|サイバー攻撃|ランサムウェア|訓練"
+)
+SAFETY_CALLOUT_RE = re.compile(r"要チェック|朗報|見てほしい|見てください|知っておいてほしい|確認を。?$")
+OLD_FOOTER_RE = re.compile(r"(?m)^[ \t]*詳しくはこちら👇[^\n]*\n?(?:[ \t]*（専門用語なしの「かんたん版」もあります）[ \t]*\n?)?")
+EMOJI_RE = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F\u200D\u2B00-\u2BFF]")
 
 # ルール3: 決まった型・中身のない呼びかけ・アンケートのふり
 BANNED = [
@@ -179,8 +210,8 @@ SUMMARY_SENTENCE_MAX = 70
 
 
 def summary_sentences(summary: str) -> list[str]:
-    """要約のかたまりの文（「要約すると、」を除き、改行と句点で分ける）"""
-    body = str(summary or "").strip().removeprefix(SUMMARY)
+    """要約（事実）のかたまりの文（以前の形の「要約すると、」があれば除き、改行と句点で分ける）"""
+    body = SUMMARY_LEAD_RE.sub(lambda m: m.group(1) or "", str(summary or "").strip())
     return [x.strip() for line in body.splitlines() for x in re.split(r"(?<=[。！!])", line) if x.strip()]
 
 
@@ -190,13 +221,44 @@ def impolite_sentences(summary: str) -> list[str]:
 
 
 def is_fast_news(article: dict | None) -> bool:
-    """【速報】を付けてよい記事か（画像の赤い「速報」と同じ決まり。lib/cover-path.ts の isFastNews）。
-    まとめ記事は付けない。主要企業の公式発表の速報（article.breaking）か、公式発表から60分以内に載せた記事（speedMinutes）だけ"""
+    """サイトの赤い「速報」の札を付けてよい記事か（画像の札・ヘッダー下の帯と同じ決まり。lib/cover-path.ts の isFastNews）。
+    まとめ記事は付けない。主要企業の公式発表の速報（article.breaking）か、公式発表から60分以内に載せた記事（speedMinutes）だけ。
+    SNS の【速報】はもっと狭い（sns_breaking_ok）"""
     article = article or {}
     if article.get("type") == "roundup":
         return False
     minutes = article.get("speedMinutes")
     return bool(article.get("breaking")) or (isinstance(minutes, (int, float)) and not isinstance(minutes, bool))
+
+
+FAST_NEWS_HOURS = 2  # SNS の【速報】は公式の発表からこの時間まで（2026-11-05 オーナー指摘・台帳 S35）
+# 続報・会議の資料・まとめは速報にしない（熊本地震の第27回の会議の資料に【速報】が付いた）
+FOLLOWUP_RE = re.compile(r"続報|第\d+報|第\d+回|会議|資料|まとめ|振り返り|second-report|meeting|update-\d|followup")
+
+
+def sns_breaking_ok(article: dict | None, now=None) -> bool:
+    """SNS の投稿に【速報】を付けてよいか（2026-11-05 オーナー指摘「速報でないものに【速報】」・台帳 S35）。
+    サイトの速報の札（is_fast_news）に当たり、続報・会議の資料・まとめでなく、公式の発表から FAST_NEWS_HOURS 時間以内のものだけ
+    （発表の時刻が分からなければ付けない）"""
+    from datetime import datetime, timedelta, timezone  # noqa: PLC0415
+
+    article = article or {}
+    if not is_fast_news(article):
+        return False
+    if FOLLOWUP_RE.search(f"{article.get('title', '')} {article.get('slug', '')}"):
+        return False
+    minutes = article.get("speedMinutes")
+    stamp = article.get("sourcePublishedAt")
+    if not stamp and isinstance(minutes, (int, float)) and article.get("publishedAt"):
+        stamp = article.get("publishedAt")
+    try:
+        when = datetime.fromisoformat(str(stamp).replace("Z", "+00:00")) if stamp else None
+    except ValueError:
+        when = None
+    if when is None or when.tzinfo is None:
+        return False
+    now = now or datetime.now(timezone.utc)
+    return -timedelta(minutes=10) <= now - when <= timedelta(hours=FAST_NEWS_HOURS)
 
 
 def question_needs_article(question: str) -> bool:
@@ -462,33 +524,222 @@ def hook_problems(content: str) -> list[str]:
     return out
 
 
-def check_structure(platform: str, content: str) -> list[str]:
-    """書き出し → 要約すると、＋事実2文 → 問いかけ"""
-    out = []
+def strip_summary_lead(text: str) -> str:
+    """ルール13: 行の頭の「要約すると、」を外す（文は残す。【速報】は残す）"""
+    return SUMMARY_LEAD_RE.sub(lambda m: m.group(1) or "", str(text or ""))
+
+
+def safety_topic(article: dict | None) -> bool:
+    """ルール14: 災害・事故・安全の話題か（事実だけの書き方にする）。地震・津波の型（disaster）・急ぎの知らせ（is_urgent）・
+    sns_plan のレーン safety（障害・流出・リコールなど）・見出しとタグの災害・事故・訓練の言葉"""
+    article = article or {}
+    if not article or article.get("items"):
+        return False
+    if article.get("disaster") or is_urgent(article):
+        return True
+    try:
+        if sns_plan.lane_of(article)[0] == "safety":
+            return True
+    except Exception:  # noqa: BLE001
+        pass
+    tags = " ".join(str(t) for t in article.get("tags") or [])
+    return bool(SAFETY_RE.search(f"{article.get('title', '')} {article.get('seoTitle', '')} {tags}"))
+
+
+def template_callout(line: str) -> bool:
+    """ルール14: ジャンル・分類から作った決まった呼びかけか（「新しいガジェットが好きな人、」など）"""
+    return bool(TEMPLATE_CALLOUT_RE.search(str(line or "")))
+
+
+def is_callout_line(line: str) -> bool:
+    line = re.sub(r"^【速報】\s*", "", str(line or "").strip())
+    return callout_ok(line) or bool(SAFETY_CALLOUT_RE.search(line) and len(line) <= CALLOUT_MAX + 6)
+
+
+def fact_opener_ok(line: str) -> bool:
+    """呼びかけでない書き出し: 事実の1行（何が・いつ・だれに）。問いでなく、短く、日本語"""
+    line = re.sub(r"^【速報】\s*", "", str(line or "").strip())
+    return (10 <= len(line) <= FACT_OPENER_MAX and not line.endswith(QUESTION_END) and not re.search(r"か[。.]?$", line)
+            and bool(POLITE_END.search(line)) and bool(JAPANESE_CHAR.search(line))
+            and not SUMMARY_LEAD_RE.match(line) and not re.match(r"結論[：:]", line))
+
+
+FACT_OPENER_MAX = 60
+
+
+def _is_link_block(block: str) -> bool:
+    return not strip_links(block)
+
+
+def autofix(text: str, article: dict | None = None, platform: str = "") -> tuple[str, list[str]]:
+    """止めずに直せる崩れを直す（ルール13・14）。(直した本文, 直したことの一覧)。
+    - 「要約すると、」を外す（文は残す）
+    - 災害・事故・安全の話題: 呼びかけの書き出しの行・最後の問いかけ・絵文字を外す（事実だけにする）"""
+    text = str(text or "")
+    changes: list[str] = []
+    fixed = strip_summary_lead(text)
+    if fixed != text:
+        changes.append("「要約すると、」を外した（ルール13）")
+    try:
+        import number_units  # noqa: PLC0415
+
+        natural = number_units.natural_units(fixed)
+    except Exception:  # noqa: BLE001
+        natural = fixed
+    if natural != fixed:
+        fixed = natural
+        changes.append("数字の単位を「万・億」に直した（台帳 A45）")
+    # 台帳 S35: 毎回同じ「詳しくはこちら👇（かんたん版あり）」の行はやめる（リンクの行は残す）
+    no_footer = OLD_FOOTER_RE.sub("", fixed)
+    if no_footer != fixed:
+        fixed = re.sub(r"\n{3,}", "\n\n", no_footer)
+        changes.append("決まった「詳しくはこちら👇」の行を外した（台帳 S35）")
+    # 台帳 S35: #AI は AI の話だけ。災害・事故・安全の話題にはハッシュタグを付けない
+    if article and not article.get("items") and HASHTAG_RE.search(fixed):
+        try:
+            import labels  # noqa: PLC0415
+
+            ai = labels.ai_topic(str(article.get("title") or ""), article.get("tags") or [])
+        except Exception:  # noqa: BLE001
+            ai = True
+        pattern = HASHTAG_RE if safety_topic(article) else (re.compile(r"(?<!\S)#AI(?![\w])") if not ai else None)
+        if pattern:
+            stripped = re.sub(r"[ \t]+\n", "\n", pattern.sub("", fixed)).rstrip()
+            stripped = re.sub(r"\n{3,}", "\n\n", stripped)
+            if stripped != fixed:
+                fixed = stripped
+                changes.append("話題に合わないハッシュタグを外した（台帳 S35）")
+    if (article and not article.get("items") and not article.get("disaster") and not is_urgent(article)
+            and re.match(r"\s*【速報】", fixed) and not sns_breaking_ok(article)):
+        fixed = re.sub(r"^\s*【速報】\s*", "", fixed)
+        changes.append("本当の速報ではない記事の【速報】を外した（台帳 S35）")
+    if safety_topic(article) and not (article or {}).get("disaster"):
+        raw = [b for b in re.split(r"\n\s*\n", fixed.strip()) if b.strip()]
+        content_idx = [i for i, b in enumerate(raw) if not _is_link_block(b)]
+        drop: set[int] = set()
+        if len(content_idx) >= 2:
+            first = raw[content_idx[0]].strip()
+            if "\n" not in first and is_callout_line(first):
+                drop.add(content_idx[0])
+                changes.append("災害・安全の話題の呼びかけの書き出しを外した（ルール14）")
+            last = strip_links(raw[content_idx[-1]]).strip()
+            if content_idx[-1] not in drop and "\n" not in last and last.endswith(QUESTION_END) and len(content_idx) - len(drop) >= 2:
+                drop.add(content_idx[-1])
+                changes.append("災害・安全の話題の問いかけを外した（ルール14）")
+        if drop:
+            keep = [b for i, b in enumerate(raw) if i not in drop]
+            # 【速報】は事実の行の頭に移す
+            if raw[content_idx[0]].strip().startswith("【速報】") and content_idx[0] in drop:
+                for i, b in enumerate(keep):
+                    if not _is_link_block(b):
+                        keep[i] = "【速報】" + b.lstrip()
+                        break
+            fixed = "\n\n".join(keep)
+        no_emoji = EMOJI_RE.sub("", fixed)
+        if no_emoji != fixed:
+            fixed = no_emoji
+            changes.append("災害・安全の話題の絵文字を外した（ルール14）")
+    return fixed, changes
+
+
+def autofix_buffer_input(service: str, post_input: dict, article: dict | None) -> list[str]:
+    """Buffer の入力（本文と metadata の thread の1件目）を、その場で直す（autofix）。直したことの一覧"""
+    changes: list[str] = []
+    platform = norm_platform(service)
+    if post_input.get("text"):
+        post_input["text"], ch = autofix(post_input["text"], article, platform)
+        changes += ch
+    for meta in (post_input.get("metadata") or {}).values():
+        thread = (meta or {}).get("thread") if isinstance(meta, dict) else None
+        for item in thread or []:
+            if item.get("text"):
+                item["text"], ch = autofix(item["text"], article, platform)
+                changes += ch
+    if changes:
+        _log(f"[sns-rules] 直してから出します（{platform}）: " + " / ".join(dict.fromkeys(changes)))
+    return list(dict.fromkeys(changes))
+
+
+def lead_in_of(text: str) -> str:
+    """事実のかたまりの頭の前置き（「ポイントは」など。無ければ ""）。書き出し・問いかけ・リンクの行は見ない"""
+    blocks = blocks_of(strip_links(text))
+    summary = blocks[-2] if len(blocks) >= 3 else blocks[0] if len(blocks) == 2 else ""
+    if SUMMARY_LEAD_RE.match(summary):
+        return persona.SUMMARY_OPENER
+    m = LEAD_IN_RE.match(summary)
+    if not m:
+        return ""
+    word = m.group(1)
+    # 決まった前置きの言葉か、「〜と、」で終わる言い方（まとめると・簡単に言うと）だけ。主語・日付・場所（「気象庁が」「熊本市で」）は前置きではない
+    return word if LEAD_WORD_RE.fullmatch(word) or (word.endswith("と") and not re.search(r"[月日年時]|ごろ", word)) else ""
+
+
+def recent_lead_ins(state: dict | None = None, limit: int = LEAD_IN_WINDOW) -> list[str]:
+    """直近の投稿の前置き（state/threads_posted.json の summaryLead。新しい順）"""
+    if state is None:
+        try:
+            state = json.loads(STATE_PATH.read_text("utf-8"))
+        except (OSError, ValueError):
+            return []
+    posted = list((state.get("posted") or {}).values())
+    posted.sort(key=lambda p: str(p.get("sentAt") or p.get("dueAt") or p.get("postedAt") or ""), reverse=True)
+    return [str(p.get("summaryLead") or "") for p in posted[:limit]]
+
+
+def lead_in_warnings(text: str, recent: list[str] | None = None) -> list[str]:
+    """ルール13: 同じ前置きを直近の投稿で繰り返していないか（止めない。ログに出す）"""
+    lead = lead_in_of(text)
+    if not lead:
+        return []
+    recent = recent_lead_ins() if recent is None else recent
+    same = sum(1 for r in recent[:LEAD_IN_WINDOW] if r == lead)
+    if same >= LEAD_IN_LIMIT:
+        return [f"[ルール13] 前置き「{lead}、」が直近{LEAD_IN_WINDOW}本中{same}本と同じ（毎回同じ前置きにしない）"]
+    return []
+
+
+def parts_of(platform: str, content: str) -> tuple[str, str, str]:
+    """(書き出し, 事実のかたまり, 問いかけ)。X は文字数で書き出しを落とすことがある（2つのかたまり＝事実＋問い）"""
     blocks = blocks_of(content)
-    summary = [b for b in blocks if b.startswith(SUMMARY)]
-    count = content.count(persona.SUMMARY_OPENER)
-    if not summary:
-        out.append(f"[ルール1] 「{SUMMARY}」で始まる要約のかたまりがない")
-    elif count > 1:
-        out.append(f"[ルール4] 「{persona.SUMMARY_OPENER}」が{count}回ある")
+    if len(blocks) >= 3:
+        return blocks[0], "\n".join(blocks[1:-1]), blocks[-1]
+    if len(blocks) == 2:
+        return "", blocks[0], blocks[1]
+    return "", blocks[0] if blocks else "", ""
+
+
+def check_structure(platform: str, content: str, article: dict | None = None) -> list[str]:
+    """書き出し → 事実2文 → 問いかけ（災害・事故・安全の話題は 事実だけ）"""
+    out = []
+    if persona.SUMMARY_OPENER in content:
+        out.append(f"[ルール13] 「{persona.SUMMARY_OPENER}」で始めない（2026-11-05 オーナー判断。前置きなしで事実の文から書く）")
+    if safety_topic(article):
+        blocks = blocks_of(content)
+        if not blocks:
+            out.append("[ルール1] 事実の文がない")
+        elif blocks[-1].endswith(QUESTION_END):
+            out.append("[ルール14] 災害・事故・安全の話題に問いかけを付けない（事実だけ）")
+        if len(content) > CONTENT_MAX:
+            out.append(f"[ルール1] 本文が長すぎる（{len(content)}字 / {CONTENT_MAX}字まで）")
+        return out
+    blocks = blocks_of(content)
+    opener, summary, question = parts_of(platform, content)
+    if not summary or summary.endswith(QUESTION_END):
+        out.append("[ルール1] 事実の文のかたまりがない")
     else:
-        sentences = [s for s in re.split(r"(?<=[。！!])", summary[0].removeprefix(SUMMARY)) if s.strip()]
+        sentences = summary_sentences(summary)
         if not 1 <= len(sentences) <= 3:
-            out.append(f"[ルール1] 要約の文が{len(sentences)}つ（短い事実の文を2つ）")
-        for bad in impolite_sentences(summary[0]):
-            out.append(f"[ルール7] 要約の文が「です・ます」になっていない（「…{bad[-16:]}」）。やさしい です・ます の文にする")
-        if m := HARD_WORDS.search(summary[0]):
-            out.append(f"[ルール7] 要約に硬い言葉（「{m.group(0)}」）。やさしい言葉に言い換える")
-        for long in [x for x in summary_sentences(summary[0]) if len(x) > SUMMARY_SENTENCE_MAX]:
-            out.append(f"[ルール7] 要約の文が長すぎる（{len(long)}字 / {SUMMARY_SENTENCE_MAX}字まで）")
-    if platform != "x" and (len(blocks) < 3 or blocks[0].startswith(SUMMARY)):
+            out.append(f"[ルール1] 事実の文が{len(sentences)}つ（短い事実の文を2つ）")
+        for bad in impolite_sentences(summary):
+            out.append(f"[ルール7] 事実の文が「です・ます」になっていない（「…{bad[-16:]}」）。やさしい です・ます の文にする")
+        if m := HARD_WORDS.search(summary):
+            out.append(f"[ルール7] 事実の文に硬い言葉（「{m.group(0)}」）。やさしい言葉に言い換える")
+        for long in [x for x in sentences if len(x) > SUMMARY_SENTENCE_MAX]:
+            out.append(f"[ルール7] 事実の文が長すぎる（{len(long)}字 / {SUMMARY_SENTENCE_MAX}字まで）")
+    if platform != "x" and len(blocks) < 3:
         out.append("[ルール1] 最初に書き出しの行がない")
-    question = blocks[-1] if blocks else ""
     if not question.endswith(QUESTION_END):
         out.append("[ルール1] 最後が読者への問いかけ（？）になっていない")
-    elif summary and blocks.index(summary[0]) > len(blocks) - 2:
-        out.append("[ルール1] 問いかけが要約より前にある")
     elif "\n" in question or len(question) < 10 or GENERIC_QUESTION.match(question) or GENERIC_QUESTION.match(re.sub(r"^[^、]{1,6}、", "", question)):
         out.append(f"[ルール3] 問いかけが決まり文句・中身がない（「{question[:30]}」）")
     if len(content) > CONTENT_MAX:
@@ -509,12 +760,23 @@ def check_opener(platform: str, text: str, content: str, article: dict | None) -
             out.append(f"[ルール6] {label}（「{m.group(0)[:24]}」）")
     blocks = blocks_of(content)
     first = blocks[0].splitlines()[0].strip() if blocks else ""
-    # X は文字数で書き出しを落とすことがある（要約から始まる形）。書き出しがあるときだけ確かめる
-    if first and not (platform == "x" and first.startswith(SUMMARY)):
-        if not callout_ok(first):
-            out.append(f"[ルール6] 1行目が読者への呼びかけ（「〇〇な人、これは要チェックです」など）になっていない（「{first[:24]}」）")
-        if first.startswith("【速報】") and not is_fast_news(article):
+    safety = safety_topic(article)
+    if first and safety:
+        if is_callout_line(first):
+            out.append(f"[ルール14] 災害・事故・安全の話題に呼びかけの書き出し（「{first[:24]}」）。事実だけにする")
+        if first.startswith("【速報】") and not sns_breaking_ok(article) and not is_urgent(article):
             out.append("[ルール6] 速報ではない記事に【速報】を付けている")
+        if m := EMOJI_RE.search(str(text or "")):
+            out.append("[ルール14] 災害・事故・安全の話題に絵文字")
+        return out
+    # X は文字数で書き出しを落とすことがある（事実から始まる2つのかたまりの形）。書き出しがあるときだけ確かめる
+    if first and not (platform == "x" and len(blocks) < 3):
+        if template_callout(first):
+            out.append(f"[ルール14] ジャンルから作った決まった呼びかけ（「{first[:24]}」）。記事の中身から書き出す")
+        elif not (callout_ok(first) or fact_opener_ok(first)):
+            out.append(f"[ルール6] 1行目が読者への呼びかけか事実の1行になっていない（「{first[:24]}」）")
+        if first.startswith("【速報】") and not sns_breaking_ok(article):
+            out.append("[ルール6] 速報ではない記事に【速報】を付けている（SNS の【速報】は発表から2時間以内の本当の速報だけ。台帳 S35）")
     question = blocks[-1] if blocks else ""
     if question.endswith(QUESTION_END) and question_needs_article(question):
         out.append(f"[ルール6] 問いかけが記事を読まないと答えられない（「{question[:30]}」）。読者自身の好み・経験を聞く")
@@ -697,12 +959,17 @@ def check_post(
             out.append(f"[ルール10] {why}")
         hook_form = sns_plan.hook_format_on() and platform != "x" and not hook_problems(_body_without_link_line(content))
         if not hook_form:
-            out += check_structure(platform, content)
+            out += check_structure(platform, content, article)
             out += check_opener(platform, text, content, article)
         else:
             for pattern, label in BANNED_OPENERS:
                 if m := pattern.search(str(text or "")):
                     out.append(f"[ルール6] {label}（「{m.group(0)[:24]}」）")
+            if persona.SUMMARY_OPENER in content:
+                out.append(f"[ルール13] 「{persona.SUMMARY_OPENER}」で始めない（2026-11-05 オーナー判断）")
+            first = (content.strip().splitlines() or [""])[0]
+            if template_callout(first) or (safety_topic(article) and is_callout_line(first)):
+                out.append(f"[ルール14] 決まった呼びかけ・災害の話題の呼びかけ（「{first[:24]}」）")
     for pattern, label in BANNED:
         if m := pattern.search(f"{text}\n{reply_text}"):
             out.append(f"[ルール3] {label}（「{m.group(0)[:20]}」）")
@@ -795,6 +1062,9 @@ def enforce(
     if violations:
         report(violations, norm_platform(platform), source, text, article, draft=draft)
         raise SnsRuleViolation(violations, norm_platform(platform), source)
+    if kind not in ("digest", "disaster") and not pending_video:
+        for warning in lead_in_warnings(text):
+            _log(f"[sns-rules] {warning}")  # 止めない（同じ前置きの繰り返しをログに出す。ルール13）
 
 
 # ---- Buffer の createPost の入力から、SNS ごとの本文・返信・画像を取り出す ----
@@ -837,6 +1107,8 @@ def enforce_buffer(service: str, post_input: dict, article: dict | None, *, sour
         if post_input.get("saveToDraft") is not True or post_input.get("mode") or post_input.get("dueAt"):
             raise SnsRuleViolation(["[ルール8] 下書きに戻す編集に、公開・予約の指定が入っている"], norm_platform(service), source)
         return
+    if kind not in ("digest",):
+        autofix_buffer_input(service, post_input, article)  # 止めずに直す（ルール13・14・台帳 S35）。送る入力そのものを直す
     text, reply, media, _links = buffer_parts(service, post_input)
     platform = norm_platform(service)
     # X 以外は返信を作らない（リンクは本文）。返信やリンクカードにだけリンクがある形は、本文のリンク無しとして止める
@@ -877,10 +1149,26 @@ def audit_post(post: dict) -> list[str]:
     if before_growth_rules(post.get("at")):
         # ルール10・11（2026-11-05〜）より前に作った投稿は、点検でも違反に数えない（決まりを後から当てない）
         out = [v for v in out if not v.startswith(("[ルール10]", "[ルール11]"))]
+    if before_rules(post.get("at"), TEMPLATE_RULES_FROM):
+        # ルール13・14・S35（2026-11-05 の「要約すると」・ジャンルの呼びかけ・【速報】の決まり）より前に予約した投稿も数えない
+        out = [v for v in out if not v.startswith(("[ルール13]", "[ルール14]")) and "台帳 S35" not in v]
     return out
 
 
 GROWTH_RULES_FROM = "2026-11-05T15:00:00+00:00"  # ルール10・11の点検は 11/6 0:00 日本時間より後に出た投稿から（入れる前に予約済みの投稿を数えない）
+
+
+TEMPLATE_RULES_FROM = "2026-11-05T04:00:00+00:00"  # 11/5 13:00 日本時間より前に Buffer に入っていた投稿（直す前の文面）は点検で数えない
+
+
+def before_rules(at, since: str) -> bool:
+    from datetime import datetime  # noqa: PLC0415
+
+    try:
+        when = datetime.fromisoformat(str(at or "").replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    return when.tzinfo is not None and when < datetime.fromisoformat(since)
 
 
 def before_growth_rules(at) -> bool:

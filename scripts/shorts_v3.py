@@ -818,7 +818,7 @@ def script_system() -> str:
 - short_beats: SNS 用の短い版（30〜40秒）に使う beat の番号を2つ（beat 1 以外。例: [2, 3]）。1つめは「答え」、2つめは「並べて初めて分かる違い」を言う beat。
   短い版は hook → beat 1（これは何？）→ この2つ → 「◯◯は記事で」で終わるので、これだけで問いへの本当の答えが伝わる beat を選ぶ（長すぎるときは2つめを落とす）。
 - conclusion: 最後の一言。text は16字以内でこのニュースの要点を言う。speech は14〜30字。
-- title: 40字以内・主役の名前を入れて事実をそのまま。summary: 説明欄の要約。「要約すると、」で始めて80〜140字。hashtags: 3〜4個（#付き）。
+- title: 40字以内・主役の名前を入れて事実をそのまま。summary: 説明欄の要約。80〜140字。「要約すると、」などの決まった前置きは付けず、だれが・何を から書き始める。hashtags: 3〜4個（#付き）。
 
 # 画面の文字（text・payoff・keyword・sub・conclusion.text・ja・ladder）
 - 製品名・社名は資料の表記のまま英字で書く（Claude・Gemini・Ultra。カタカナにしない）。カタカナにするのは speech だけ。
@@ -3904,8 +3904,8 @@ def make_meta(a: dict, script: dict, voice: dict, pages: list[Page], image_credi
         if len(tag) > 1 and tag not in tags:
             tags.append(tag)
     summary = script.get("summary", "").strip()
-    if summary and not summary.startswith("要約すると"):
-        summary = "要約すると、" + summary
+    # 2026-11-05 オーナー判断（台帳 S4）: 毎回「要約すると、」で始めない。付いていれば外す
+    summary = re.sub(r"^要約すると\s*[、,:：]?\s*", "", summary)
     lines = [summary, "", "▼記事はこちら", url, ""]
     if voice.get("credit"):
         lines.append(f"音声：{voice['credit']}")

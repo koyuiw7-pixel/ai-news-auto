@@ -239,6 +239,7 @@ NON_PROSE = {
     "rewrite_titles.py": "見出しだけ（headline_normalize.title_problems の門を通す）",
     "rivals.py": "比較表の欄だけ（quality.rival_problems の門を通す）",
     "shorts.py": "動画の記録",
+    "sns_pending_refresh.py": "読むだけ（記事は書かない。動画待ちの投稿文の記録 state/threads_posted.json を直す）",
     "sns_video_followup.py": "動画の埋め込みの欄だけ",
     "story.py": "重複の印（duplicateOf）だけ",
     "threads_learn.py": "投稿の学びの記録",

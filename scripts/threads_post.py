@@ -40,6 +40,7 @@ import threads_hooks  # noqa: E402
 import question_patterns  # noqa: E402
 import sns_rules  # noqa: E402
 import sns_plan  # noqa: E402
+import number_units  # noqa: E402  数字を「万・億」で書く（SNS の文面にも。台帳 A45・S35）
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -139,8 +140,9 @@ def key_fact(article: dict) -> str:
 
 # ---- 本文の形（2026-11-02 オーナー承認）----
 # 画像（16:9 の写真＋見出し）に見出しが入るので、本文で見出しを繰り返さない。空行で区切った3つのかたまり:
-#   1. 短い書き出し（書き出しの型のローテーションはそのまま）
-#   2. 「要約すると、」＋事実の短い文2つ（1文に1つのこと）
+#   1. 短い書き出し（記事の中身から。読者がはっきりすれば呼びかけ、無ければ事実の1行。台帳 S34）
+#   2. 事実の短い文2つ（1文に1つのこと）。2026-11-05 オーナー判断で「要約すると、」は付けない（決まった前置きを付けない。台帳 S4）
+#   災害・事故・安全の話題（sns_rules.safety_topic）は 事実の1行＋事実の文だけ（呼びかけ・問いかけなし）
 #   3. 読者への問いかけ（自分の仕事・お金・副業・道具について、一言で答えられるもの。「？」で終える）
 # 全体で全角120〜150字くらい。記事へのリンクは返信（2/2）に置く。
 POST_TARGET_CHARS = 150
@@ -186,11 +188,14 @@ def post_problems(text: str, article: dict | None = None) -> list[str]:
     article = article or {}
     problems: list[str] = []
     blocks = post_blocks_of(text)
-    if len(blocks) != 3:
-        problems.append(f"かたまりが3つでない（{len(blocks)}個）")
-    if len(blocks) < 2 or not blocks[1].startswith(f"{persona.SUMMARY_OPENER}、"):
-        problems.append(f"2つ目のかたまりが「{persona.SUMMARY_OPENER}、」で始まっていない")
-    if not str(text).rstrip().endswith(QUESTION_END):
+    safety = sns_rules.safety_topic(article)
+    if len(blocks) != (2 if safety else 3):
+        problems.append(f"かたまりが{2 if safety else 3}つでない（{len(blocks)}個）")
+    if persona.SUMMARY_OPENER in str(text):
+        problems.append(f"「{persona.SUMMARY_OPENER}」が入っている（2026-11-05 オーナー判断で使わない）")
+    if safety and str(text).rstrip().endswith(QUESTION_END):
+        problems.append("災害・事故・安全の話題に問いかけを付けている")
+    if not safety and not str(text).rstrip().endswith(QUESTION_END):
         problems.append("最後が問いかけ（？）で終わっていない")
     if m := persona.STIFF_RE.search(text):
         problems.append(f"使わない言い回し（「{m.group(0)}」）")
@@ -329,11 +334,17 @@ def _polite_sentence(sentence: str) -> str:
     return ""
 
 
+ORG_END = re.compile(r"(?:省|庁|都|道|府|県|市|区|町|村|社|会社|機構|協会|委員会|大学|銀行|グループ|ホールディングス|研究所|センター|局|署|政府|官邸)$")
+
+
 def subject_of(article: dict) -> str:
     """記事の主役（だれが）。見出しの頭（「厚生労働省、」「Hondaが」）→ 出典の名前（報道機関の名前は使わない）"""
     title = str(article.get("title") or "")
     m = re.match(r"^([^、，,「」『』\s　]{2,14}?)(?:が|は|、|，)", title)
-    if m and not _MEDIA_NAME.search(m.group(1)):
+    # 日付・時刻（「11月5日10時ごろ、」）は主役ではない（2026-11-05「11月5日10時ごろが、」と出た）
+    # 「熊本地震のり災証明書、」のような話題の名前も主役ではない（「の」を含み、組織の名前で終わらない）
+    if (m and not _MEDIA_NAME.search(m.group(1)) and not re.search(r"\d|[月日年時]$|ごろ|頃", m.group(1))
+            and not ("の" in m.group(1) and not ORG_END.search(m.group(1)))):
         return m.group(1)
     name = str(article.get("sourceName") or "").strip()
     return name if 2 <= len(name) <= 14 and not _MEDIA_NAME.search(name) else ""
@@ -345,21 +356,22 @@ def has_subject(sentence: str, subject: str = "") -> bool:
 
 
 def with_subject(sentence: str, article: dict) -> str:
-    """主語の無い文に、記事の主役を足す（「厚生労働省が、毎年11月30日を…」）"""
-    subject = subject_of(article)
+    """主語の無い文に、記事の主役を足す（「厚生労働省が、毎年11月30日を…」）。主役は見出しの頭から分かるときだけ
+    （出典の名前で足すと、出典が主語でない文に「デジタル庁が、」が付いた。2026-11-05）"""
+    subject = subject_of({"title": article.get("title")})
     if not subject or has_subject(sentence, subject):
         return sentence
     return f"{subject}が、{sentence}"
 
 
 def polite_summary(summary: str, article: dict) -> str:
-    """「要約すると、」のかたまりの各文を です・ます にし、1文目に主語を足す。直せない文があれば空"""
+    """事実のかたまりの各文を です・ます にし、1文目に主語を足す。直せない文があれば空"""
     lines = [x for x in sns_rules.summary_sentences(summary)]
     fixed = [polite_sentence(x) for x in lines]
     if not fixed or not all(fixed):
         return ""
     fixed[0] = with_subject(fixed[0], article)
-    return f"{persona.SUMMARY_OPENER}、" + "\n".join(fixed)
+    return "\n".join(fixed)
 
 
 def fact_pool(article: dict, title: str, hook: str = "", max_len: int = SENTENCE_MAX) -> list[str]:
@@ -367,11 +379,10 @@ def fact_pool(article: dict, title: str, hook: str = "", max_len: int = SENTENCE
     raw: list[str] = []
     post = article.get("threadsPost", "")
     blocks = post_blocks_of(post) if int(article.get("threadsStyle") or 1) >= 3 else [post]
-    if len(blocks) > 1:  # 新しい形の紹介文は、要約のかたまりだけを材料にする（書き出し・問いかけは事実ではない）
-        blocks = [re.sub(r"^要点まとめ[：:]\s*", f"{persona.SUMMARY_OPENER}、", b) for b in blocks]
-        blocks = [b for b in blocks if b.startswith(persona.SUMMARY_OPENER)]
+    if len(blocks) > 1:  # 新しい形の紹介文は、事実のかたまり（書き出しと問いかけの間）だけを材料にする（書き出し・問いかけは事実ではない）
+        blocks = [re.sub(r"^要点まとめ[：:]\s*", "", b) for b in (blocks[1:-1] if len(blocks) >= 3 else blocks[:1])]
     for block in blocks:
-        sentences = [x for line in clean_lines(block) for x in split_sentences(line.removeprefix(f"{persona.SUMMARY_OPENER}、"))]
+        sentences = [x for line in clean_lines(sns_rules.strip_summary_lead(block)) for x in split_sentences(line)]
         if len(blocks) == 1 and len(sentences) > 1 and len(sentences[0]) <= HOOK_MAX:
             sentences = sentences[1:]  # 以前の紹介文の最初の文は書き出し（事実の文ではない）
         raw += sentences
@@ -382,9 +393,9 @@ def fact_pool(article: dict, title: str, hook: str = "", max_len: int = SENTENCE
     for sentence in raw:
         # 文の終わりを です・ます に（直せない文は使わない。sns_rules のルール7）
         s = polite_sentence(clean_sentence(sentence))
-        if not s or not 8 <= len(s) <= max_len or s.endswith(QUESTION_END) or (hook and (s in hook or hook in s)):
+        if not s or not 8 <= len(s) <= max_len or s.endswith(QUESTION_END) or (hook and similar_fact(s, re.sub(r"^【速報】", "", hook))):
             continue
-        if META_RE.search(s) or NUDGE_RE.search(s) or TEASER_RE.search(s) or CLICKBAIT_RE.search(s):
+        if META_RE.search(s) or NUDGE_RE.search(s) or TEASER_RE.search(s) or CLICKBAIT_RE.search(s) or BAIT_RE.search(s):
             continue
         if persona.STIFF_RE.search(s) or persona.ADVICE_RE.search(s) or repeats_title(s, title):
             continue
@@ -395,10 +406,10 @@ def fact_pool(article: dict, title: str, hook: str = "", max_len: int = SENTENCE
 
 
 def summary_block(article: dict, title: str, hook: str, budget: int) -> str:
-    """「要約すると、」＋事実の短い文2つ（入らなければ1つ）。文は記事の紹介文・要点から選び、数字・固有名詞は変えない"""
+    """事実の短い文2つ（入らなければ1つ。前置きは付けない）。文は記事の紹介文・要点から選び、数字・固有名詞は変えない"""
     # 短い文が無い記事は、少し長い文まで広げる（それでも無ければ説明文の1文目）
     pool = fact_pool(article, title, hook)[:8] or fact_pool(article, title, hook, budget - 6)[:8]
-    opener = f"{persona.SUMMARY_OPENER}、"
+    opener = ""  # 2026-11-05 オーナー判断: 「要約すると、」は付けない（台帳 S4）
     best: tuple[float, list[str]] | None = None
     for i, first in enumerate(pool):
         for j in [None, *range(i + 1, len(pool))]:
@@ -542,6 +553,81 @@ def compose_hook3(article: dict, use_llm: bool = False) -> str:
     return text
 
 
+FACT_OPENER_MAX = 60
+
+
+def similar_fact(a: str, b: str) -> bool:
+    """同じ事実を言っている2つの文か（書き出しと事実の文で同じことを繰り返さない）"""
+    a, b = str(a or ""), str(b or "")
+    return bool(a and b) and (a in b or b in a or overlap(a, b) >= 12 or difflib.SequenceMatcher(None, a, b).ratio() >= 0.45)
+
+
+def llm_fact_opener(article: dict, title: str) -> str:
+    """（2026-11-05 台帳 S34）呼びかけない書き出しの1行を LLM に書かせる: この記事の事実（何が・いつ・だれに関係するか）。
+    災害・事故・安全の話題は落ち着いた事実だけ。門番（文法・数字・使わない言い回し）を通らなければ空"""
+    if not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("GEMINI_API_KEY")) or os.environ.get("SNS_LLM_CALLOUT", "1").strip() == "0":
+        return ""
+    prompt = (
+        "次のニュースを SNS に出すときの1行目を1つだけ書く。\n"
+        f"- 全角{FACT_OPENER_MAX}字以内の1文。この記事の事実から、読者にいちばん関係すること（何が・いつ・だれに関係するか）を、やさしい です・ます で書く。\n"
+        "- 読者への呼びかけ（〜な人、〜の皆さん）・問いかけ・煽り（衝撃・必見・！）・絵文字・【速報】は書かない。見出しをそのまま繰り返さない。\n"
+        "- 災害・事故・情報流出の話題は、落ち着いた事実だけ。読者が取るべき行動が記事にあれば、それを短く入れてよい。\n"
+        "- 記事に無い事実・数字は書かない。数字は「7,700万件」のように万・億で書く。\n\n"
+        f"見出し: {title}\nリード: {article.get('lede', '')}\n要点: {' / '.join(str(h) for h in article.get('highlights') or [])}"
+    )
+    schema = {"type": "OBJECT", "properties": {"line": {"type": "STRING"}}, "required": ["line"]}
+    try:
+        import llm  # noqa: PLC0415
+
+        data, _ = llm.generate_json("あなたはニュースサイトのSNS担当の編集者です。正確で自然な日本語だけを書きます。", prompt, schema,
+                                    tier="bulk", max_output_tokens=256, purpose="sns")
+        line = EMOJI_RE.sub("", str(data.get("line") or "")).strip().strip("「」\"").splitlines()[0].strip()
+    except Exception as error:  # noqa: BLE001
+        log(f"  [opener] LLM で書き出しを作れませんでした: {str(error)[:120]}")
+        return ""
+    line = number_units.natural_units(line)
+    source = " ".join([title, str(article.get("lede") or ""), str(article.get("description") or ""),
+                       " ".join(str(h) for h in article.get("highlights") or []), str(article.get("body") or "")]).replace(",", "")
+    bad = (
+        not sns_rules.fact_opener_ok(line) or len(line) > FACT_OPENER_MAX or sns_rules.is_callout_line(line) or line.startswith("【速報】")
+        or sns_rules.grammar_problems(line) or persona.STIFF_RE.search(line) or persona.ADVICE_RE.search(line) or repeats_title(line, title)
+        or any(d.replace(",", "").rstrip(".") not in source for d in re.findall(r"\d[\d,.]*", line))
+    )
+    if bad:
+        log(f"  [opener] LLM の書き出しがチェックを通りません: {line[:60]}")
+        return ""
+    return line
+
+
+def fact_opener(article: dict, title: str = "", use_llm: bool = False) -> str:
+    """呼びかけない書き出し: 記事の事実の1行（何が・いつ・だれに）。LLM が使えれば書かせ、だめならリード → 説明 → 要点の文から、
+    短い です・ます の文を選ぶ。見出しの繰り返しは避ける（画像・動画に見出しが入る）。どれも合わなければリードの1文目"""
+    title = title or str(article.get("title") or "")
+    if use_llm and (written := llm_fact_opener(article, title)):
+        return written
+    raw = []
+    for key in ("lede", "description"):
+        raw += split_sentences(re.sub(r"\s+", " ", str(article.get(key) or "")))
+    for h in article.get("highlights") or []:
+        raw += split_sentences(str(h))
+    fallback = ""
+    for sentence in raw:
+        sentence = re.sub(r"（[^（）]{1,20}）(?=[。．]?$)", "", sentence.strip())  # 文末の（11月2日の第2報）などの添え書き
+        s = polite_sentence(clean_sentence(sentence))
+        if not s:
+            continue
+        fallback = fallback or s
+        if not 10 <= len(s) <= FACT_OPENER_MAX or s.endswith(QUESTION_END) or repeats_title(s, title):
+            continue
+        if META_RE.search(s) or NUDGE_RE.search(s) or persona.STIFF_RE.search(s) or sns_rules.grammar_problems(s):
+            continue
+        return number_units.natural_units(s)
+    if fallback and len(fallback) <= sns_rules.FACT_OPENER_MAX:
+        return number_units.natural_units(fallback)
+    head = re.split(r"[\u3000 ]", title)[0] if title else ""
+    return number_units.natural_units((head or title)[: sns_rules.FACT_OPENER_MAX])
+
+
 def first_line_hook(article: dict, recent: list[str], breaking: bool, title: str, use_llm: bool = False) -> str:
     """1行目の書き出し（2026-11-03 オーナー承認その2）: 関係する読者を名指しする呼びかけ。
 
@@ -549,6 +635,11 @@ def first_line_hook(article: dict, recent: list[str], breaking: bool, title: str
     ダメなら記事から読者を決めて組み立てる（threads_hooks.callout）。【速報】は本当の速報の記事だけ（sns_rules.is_fast_news）。
     breaking（いますぐ出す速報か）は【速報】の判定には使わない（画像の「速報」と同じ決まりにそろえる）
     """
+    if sns_rules.safety_topic(article):
+        # 災害・事故・安全の話題: 呼びかけない。事実の1行（何が・いつ・だれに）だけ（2026-11-05 オーナー指摘「不謹慎」・台帳 S34）
+        hook = threads_hooks.with_breaking(fact_opener(article, title, use_llm=use_llm), article)
+        article["_hook"], article["_opener"] = "fact", "fact"
+        return hook
     last = recent_openers(1)
     blocks = post_blocks_of(article.get("threadsPost", ""))
     old = clean_lines(blocks[0] if int(article.get("threadsStyle") or 1) >= 3 and blocks else article.get("threadsPost", ""))
@@ -557,6 +648,7 @@ def first_line_hook(article: dict, recent: list[str], breaking: bool, title: str
         line = split_sentences(line)[0]
     usable = (
         sns_rules.callout_ok(line) and not line.startswith(persona.SUMMARY_OPENER) and not repeats_title(line, title)
+        and not sns_rules.template_callout(line)
         and line not in HOOK_EXAMPLES and not persona.STIFF_RE.search(line) and not persona.ADVICE_RE.search(line)
         and not any(p.search(line) for p, _ in sns_rules.BANNED_OPENERS)
         and threads_hooks.callout_id(line) not in last
@@ -570,10 +662,15 @@ def first_line_hook(article: dict, recent: list[str], breaking: bool, title: str
         key, hook = threads_hooks.callout_id(written), written
     else:
         key, hook = threads_hooks.callout(article, last)
+    if not hook:
+        # 記事の中身で読者が決まらない → 呼びかけず、事実の1行で書き出す（ジャンルから呼びかけを作らない。台帳 S34）
+        key, hook = "fact", fact_opener(article, title, use_llm=use_llm)
     hook = threads_hooks.with_breaking(hook, article)
-    if not sns_rules.callout_ok(hook):
+    if key != "fact" and not sns_rules.callout_ok(hook):
         # 生成の1行目が【速報】を付けると長すぎる場合など
         key, hook = threads_hooks.callout(article, last)
+        if not hook:
+            key, hook = "fact", fact_opener(article, title)
         hook = threads_hooks.with_breaking(hook, article)
     article["_hook"] = "callout"
     article["_opener"] = key
@@ -604,25 +701,29 @@ def compose(
     blocks = post_blocks_of(article.get("threadsPost", "")) if int(article.get("threadsStyle") or 1) >= 3 else []
     # 問いかけ: 決まった問い（Bluesky が Threads と同じ問いを使う）→ 生成時の問いの候補（型つき。回し方で選ぶ）
     # → LLM に問いだけ書かせる → 話題・主役から作る。選んだ型は _question_pattern に残す（台帳 S19）
+    safety = sns_rules.safety_topic(article)
     question, pattern = (fixed_question, question_patterns.clean(fixed_pattern) or question_patterns.classify(fixed_question)) \
-        if question_ok(fixed_question, title) else ("", "")
-    if not question:
+        if question_ok(fixed_question, title) and not safety else ("", "")
+    if safety:
+        pass  # 災害・事故・安全の話題には問いかけを付けない（軽く扱っているように見える。2026-11-05 オーナー指摘・台帳 S34）
+    elif not question:
         choice = question_patterns.pick(question_candidates(article, blocks, title, hook))
         if choice:
             question, pattern = choice["question"], choice["pattern"]
-    if not question and use_llm:
+    if not question and use_llm and not safety:
         question, pattern = llm_question(article, title)
-    if not question:
+    if not question and not safety:
         question = voice.reader_question(article, topic_of(article), recent_questions)
         pattern = question_patterns.classify(question)
     summary = ""
-    generated = next((b for b in blocks if b.startswith(f"{persona.SUMMARY_OPENER}、")), "")
+    # 生成時の紹介文の事実のかたまり（書き出しと問いかけの間）。以前の形の「要約すると、」は外す（2026-11-05 オーナー判断・台帳 S4）
+    generated = sns_rules.strip_summary_lead("\n".join(blocks[1:-1])) if len(blocks) >= 3 else ""
     if generated:
-        # 生成時に「要約すると、」を各行の頭に重ねて書いた紹介文（2026-11-03 の実例）は、2行目以降の重複を落とす
-        lines = clean_lines(generated)
-        lines = lines[:1] + [line.removeprefix(f"{persona.SUMMARY_OPENER}、") for line in lines[1:]]
-        candidate = "\n".join(lines)
-        sentences = split_sentences(candidate.removeprefix(f"{persona.SUMMARY_OPENER}、"))
+        lines = [x for x in clean_lines(generated) if not similar_fact(x, re.sub(r"^【速報】", "", hook))]  # 書き出しと同じ事実は繰り返さない
+        if len(lines) < min(2, len(clean_lines(generated))):
+            lines = []  # 書き出しと重なって事実が1つしか残らない → 記事の文から2つ組み立て直す
+        candidate = number_units.natural_units("\n".join(lines))
+        sentences = split_sentences(candidate)
         if (
             1 <= len(sentences) <= 3 and len(candidate) <= SUMMARY_MAX
             and not persona.STIFF_RE.search(candidate) and not persona.ADVICE_RE.search(candidate)
@@ -648,8 +749,13 @@ def compose(
         import headline_normalize  # noqa: PLC0415
 
         summary = "\n".join(headline_normalize.strip_known_descriptors(x) for x in summary.splitlines())
+    summary = number_units.natural_units(sns_rules.strip_summary_lead(summary))
     text = "\n\n".join(b for b in (hook, summary, question) if b)
     article["_question"] = question
+    article["_summaryLead"] = sns_rules.lead_in_of(text)
+    if safety:
+        article["_question_pattern"] = ""
+        return text
     article["_question_pattern"] = pattern or question_patterns.PLAIN
     question_patterns.note_used(article["_question_pattern"])
     return ensure_question(text, article, recent_questions)
@@ -709,20 +815,20 @@ def llm_summary(article: dict, title: str, draft: str, budget: int) -> str:
         "- 1文目に、だれが（官庁・会社の名前）何をしたかを書く。2文目は読者に関係する一番具体的な事実。\n"
         "- 専門用語は使わないか、ふつうの言葉で言い換える。数字・日付・名前は元の文のとおり。新しい事実や推測は書かない。\n"
         "- 文法の正しい自然な日本語にする（×「実行が可能しました」→○「実行できるようにしました」）。よく知られた会社に説明を付けない（×「AI半導体のNVIDIAが」→○「NVIDIAが」）。\n"
-        "- 「要約すると、」は付けない。文ごとに改行する。\n\n"
-        f"見出し: {title}\n元の要約: {draft.removeprefix(persona.SUMMARY_OPENER + '、')}\n要点: {' / '.join(str(h) for h in article.get('highlights') or [])}"
+        "- 「要約すると、」「まとめると、」「ポイントは、」のような前置きは付けず、だれが・何を から書き始める。文ごとに改行する。\n\n"
+        f"見出し: {title}\n元の要約: {sns_rules.strip_summary_lead(draft)}\n要点: {' / '.join(str(h) for h in article.get('highlights') or [])}"
     )
     schema = {"type": "OBJECT", "properties": {"summary": {"type": "STRING"}}, "required": ["summary"]}
     try:
         import llm  # noqa: PLC0415
 
         data, _ = llm.generate_json("あなたはニュースサイトのSNS担当の編集者です。自然で正しい日本語だけを書きます。", prompt, schema, tier="bulk", max_output_tokens=512, purpose="sns")
-        text = EMOJI_RE.sub("", str(data.get("summary") or "")).strip().removeprefix(f"{persona.SUMMARY_OPENER}、")
+        text = sns_rules.strip_summary_lead(EMOJI_RE.sub("", str(data.get("summary") or "")).strip())
     except Exception as error:  # noqa: BLE001
         log(f"  [summary] LLM で書き直せませんでした: {str(error)[:120]}")
         return ""
     lines = [x for line in text.splitlines() for x in split_sentences(line)]
-    candidate = f"{persona.SUMMARY_OPENER}、" + "\n".join(lines)
+    candidate = "\n".join(lines)
     digits = re.findall(r"\d[\d,.]*", candidate)
     if (
         not 1 <= len(lines) <= 2 or len(candidate) > budget or sns_rules.impolite_sentences(candidate) or sns_rules.HARD_WORDS.search(candidate)
@@ -1267,6 +1373,7 @@ def meta_existing_post(token: dict, article: dict | None, fetch=None) -> str:
 
 def publish(token: dict, text: str, link: str, article: dict | None = None, fetch=None) -> dict:
     """Threads 公式 API で出す（Buffer が無いときの予備）。出す直前にルールの門番を通し、同じ記事の投稿がもう無いかを確かめる"""
+    text, _ = sns_rules.autofix(text, article, "threads")  # 止めずに直す（ルール13・14・S35）
     sns_rules.enforce("threads", text, [], article, source="threads_post.publish")
     if existing := meta_existing_post(token, article, fetch):
         log(f"  [threads] 同じ記事の投稿がもうあります（{existing}）。二重に出しません")
@@ -1462,10 +1569,9 @@ EASY_NOTE = "（専門用語なしの「かんたん版」もあります）"
 
 
 def link_reply_text(article: dict) -> str:
-    """記事リンクを付ける返信（2/2）の文。短く「詳しくはこちら👇」と、かんたん版があればその一言（2026-11-02）"""
-    if not str(article.get("easy") or "").strip():
-        return LINK_REPLY
-    return f"{LINK_REPLY}\n{EASY_NOTE}"
+    """記事リンクを付ける返信（X の 2/2）の、リンクの前の文。2026-11-05 オーナー指摘（台帳 S35）で、毎回同じ
+    「詳しくはこちら👇（かんたん版あり）」はやめた。リンクだけにする（空。呼ぶ側はリンクの行だけを置く）"""
+    return ""
 
 
 # X は全角1文字を2と数える280字まで（URLは23字扱い）
@@ -1483,6 +1589,19 @@ def x_weight(text: str) -> int:
     return sum(1 if ord(c) < 0x1100 else 2 for c in text)
 
 
+def x_hashtags(article: dict) -> str:
+    """X のハッシュタグ（2026-11-05 オーナー指摘・台帳 S35）: 話題に合うときだけ。AI の話でなければ #AI を付けない。
+    災害・事故・安全の話題には付けない。会社・製品のタグは記事に出てくるときだけ"""
+    if sns_rules.safety_topic(article):
+        return ""
+    text_src = f"{article.get('title', '')} {' '.join(str(t) for t in article.get('tags') or [])}"
+    import labels  # noqa: PLC0415
+
+    tag = next((t for pattern, t in COMPANY_TAGS if re.search(pattern, text_src)), "")
+    ai = labels.ai_topic(str(article.get("title") or ""), article.get("tags") or [])
+    return " ".join(t for t in ["#AI" if ai else "", tag] if t)
+
+
 def compose_x(article: dict, root_text: str) -> str:
     """X の本文。Threads と同じ完結型の本文から、280（全角は2）に収まる行の組み合わせを選び、ハッシュタグを2つ添える。
 
@@ -1490,10 +1609,18 @@ def compose_x(article: dict, root_text: str) -> str:
     """
     lines = clean_lines(root_text)
     text_src = f"{article.get('title', '')} {' '.join(article.get('tags', []))}"
-    tag = next((t for pattern, t in COMPANY_TAGS if re.search(pattern, text_src)), "")
-    tags = " ".join(t for t in ["#AI", tag] if t) if not article.get("disaster") else "#地震" if "地震" in text_src else ""
+    tags = x_hashtags(article)
     blocks = post_blocks_of(root_text)
-    if len(blocks) == 3 and blocks[1].startswith(persona.SUMMARY_OPENER) and blocks[2].endswith(QUESTION_END):
+    if len(blocks) == 2 and sns_rules.safety_topic(article) and not blocks[1].endswith(QUESTION_END):
+        # 災害・事故・安全の話題（事実の1行＋事実の文。問いかけなし）。入らなければ2文目から削る
+        hook, summary = blocks
+        first = summary.split("\n")[0]
+        for option in ([hook, summary], [hook, first], [summary], [first]):
+            candidate = "\n\n".join(option)
+            if x_weight(candidate) + x_weight(tags) + 2 <= X_LIMIT:
+                return f"{candidate}\n\n{tags}".rstrip() if tags else candidate
+        return first[:100]
+    if len(blocks) == 3 and blocks[2].endswith(QUESTION_END):
         # 新しい形（書き出し／要約2文／問いかけ）。入らなければ 書き出し → 2文目 の順に削る。【速報】の行は残す
         # 要約と問いかけはルール（sns_rules）で必須なので削らない（入らなければ門番が X への投稿を止める）
         hook, summary, question = blocks
@@ -1506,8 +1633,8 @@ def compose_x(article: dict, root_text: str) -> str:
         for option in options:
             candidate = "\n\n".join(option)
             if x_weight(candidate) + x_weight(tags) + 2 <= X_LIMIT:
-                return f"{candidate}\n\n{tags}"
-        return f"{first[:100]}\n\n{tags}"
+                return f"{candidate}\n\n{tags}" if tags else candidate
+        return f"{first[:100]}\n\n{tags}" if tags else first[:100]
     if lines and lines[0].startswith("【速報】"):
         options = [lines[:n] for n in range(len(lines), 0, -1)]
     else:
@@ -1520,7 +1647,7 @@ def compose_x(article: dict, root_text: str) -> str:
             break
     if not body:
         body = (article.get("seoTitle") or article["title"])[:100]
-    return f"{body}\n\n{tags}"
+    return f"{body}\n\n{tags}" if tags else body
 
 
 def card_url(article: dict) -> str:
@@ -1601,16 +1728,16 @@ def utm_link(link: str, source: str, fmt: str, content: str = "", *, ptype: str 
     return f"{link}{sep}utm_source={source}&utm_medium=social&utm_campaign={campaign}&utm_content={urllib.parse.quote(content)}"
 
 
-THREADS_LINK_LINE = "詳しくはこちら👇"
+THREADS_LINK_LINE = "詳しくはこちら👇"  # 以前の決まった案内（2026-11-05 にやめた。古い文面を見分けるために残す）
 THREADS_EASY_NOTE = "（かんたん版あり）"
+# 2026-11-05 オーナー指摘（台帳 S35）: 毎回同じ「詳しくはこちら👇（かんたん版あり）」をやめ、リンクだけの行にする（utm はそのまま）
 
 
 def with_link(text: str, article: dict, source: str = "threads", fmt: str = "classic", limit: int = MAX_CHARS) -> str:
     """本文の最後（問いかけの後）に、記事へのリンクを1行で足す（2026-11-03 オーナー決定。Threads・Bluesky・Facebook は本文にリンク）。
     上限を超えるときは書き出しのかたまりから削る"""
     url = utm_link(f"{site_url()}/articles/{article['slug']}", source, fmt, ptype=post_type(article, fmt), pos="body")
-    line = THREADS_LINK_LINE + (THREADS_EASY_NOTE if str(article.get("easy") or "").strip() else "")
-    tail = f"\n\n{line}\n{url}"
+    tail = f"\n\n{url}"
     body = str(text).rstrip()
     blocks = post_blocks_of(body)
     if len(body) + len(tail) > limit and len(blocks) == 3:
@@ -1796,7 +1923,7 @@ def publish_extra_channels(
             x_text = compose_x(article, text)
             thread = [
                 {"text": x_text, "assets": [{"image": {"url": card}}]},
-                {"text": f"{link_reply_text(article)}\n{x_link}", "assets": []},
+                {"text": "\n".join(x for x in (link_reply_text(article), x_link) if x), "assets": []},
             ]
         plans.append(("twitter", offsets[0], {
             "text": x_text,
@@ -1979,7 +2106,7 @@ def publish_via_buffer(
     # 2026-11-03〜: classic は本文の最後に記事のリンク（with_link）を入れ、返信（2/2）は作らない。画像はそのまま添える
     # （フラグ THREADS_LINK_AB=1・S31）リンクの位置の比べで reply の回だけ、返信にリンクを置く
     if fmt == "classic" and article.get("_linkPosition") == "reply" and sns_plan.link_ab_on():
-        thread.append({"text": f"{THREADS_LINK_LINE}\n{utm_link(link, 'threads', fmt, ptype=post_type(article, fmt), pos='reply')}", "assets": []})
+        thread.append({"text": utm_link(link, 'threads', fmt, ptype=post_type(article, fmt), pos='reply'), "assets": []})  # リンクだけ（台帳 S35）
     if fmt != "classic":
         thread.append({
             "text": reply,
@@ -2038,12 +2165,62 @@ def queue_for_video(api_key: str, channels: dict[str, dict], threads_text: str, 
     extra = {k: v for k, v in channels.items() if k in ("twitter", "facebook")}
     inputs = {"threads": threads_input, **publish_extra_channels(api_key, extra, text, link, article, due_at, fmt=fmt, fb_text=fb_text, offsets=offsets, build_only=True)}
     for service, post_input in inputs.items():
+        # 止めずに直せる崩れ（「要約すると、」・数字の単位・災害の話題の呼びかけ/問いかけ/絵文字・本当の速報でない【速報】）は、
+        # 記録する入力そのものを直す（2026-11-05 オーナー判断。台帳 S4・S34・S35）
+        sns_rules.autofix_buffer_input(service, post_input, article)
         clean = {k: v for k, v in post_input.items() if not k.startswith("_")}
         sns_rules.enforce_buffer(service, clean, article, source="threads_post.queue_for_video", pending_video=True)
     return {
         "id": "", "via": "buffer", "permalink": "", "status": "awaiting_video",
-        "pending": {"inputs": inputs, "slot": (due_at or datetime.now(timezone.utc)).isoformat(timespec="seconds"), "fmt": fmt},
+        "pending": {"inputs": inputs, "slot": (due_at or datetime.now(timezone.utc)).isoformat(timespec="seconds"), "fmt": fmt,
+                    "articleHash": article_hash(article)},
     }
+
+
+ARTICLE_HASH_KEYS = ("title", "seoTitle", "lede", "description", "highlights", "threadsPost", "tags", "genreSlug", "verdict")
+
+
+def article_hash(article: dict) -> str:
+    """投稿文のもとになる記事の中身の印（記事が書き直されたら、動画待ちの文面を作り直すため。2026-11-05 アララの 77百万件）"""
+    import hashlib  # noqa: PLC0415
+
+    data = json.dumps({k: article.get(k) for k in ARTICLE_HASH_KEYS}, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha1(data.encode("utf-8")).hexdigest()[:16]
+
+
+def rebuild_pending_inputs(rec: dict, article: dict, use_llm: bool = False, state: dict | None = None) -> dict:
+    """動画待ちの投稿（rec）の文面を、今の記事から作り直す（枠・リンクの位置の組・utm・SNS ごとの時刻のずれはそのまま）。
+    Buffer は呼ばない。作り直した入力（{service: input}）を返す。門番に通らなければ SnsRuleViolation"""
+    pending = rec.get("pending") or {}
+    old = pending.get("inputs") or {}
+    article = dict(article)
+    fmt = pending.get("fmt") or "classic"
+    recent_questions = recent_voice(state, "questionText") if state else []
+    classic_text = compose(article, [], breaking=bool(rec.get("breaking")), recent_questions=[q for q in recent_questions if q != rec.get("questionText")],
+                           use_llm=use_llm)
+    text = classic_text
+    if rec.get("hookFormat") == "muse3" and not sns_rules.is_urgent(article):
+        hook3 = compose_hook3(article, use_llm=use_llm)
+        if hook3:
+            text, article["_hookFormat"] = hook3, True
+    link_pos = rec.get("linkPosition") or "body"
+    article["_linkPosition"] = link_pos
+    threads_text = with_link(text, article, "threads", fmt) if link_pos == "body" else text
+    channels = {s: {"id": inp.get("channelId", "")} for s, inp in old.items()}
+    share_now_mode = (old.get("threads") or {}).get("mode") == "shareNow"
+    due = None if share_now_mode else datetime.fromisoformat(str(pending.get("slot")).replace("Z", "+00:00")) if pending.get("slot") else None
+    offsets = (int((old.get("twitter") or {}).get("_offsetMin") or 12), int((old.get("facebook") or {}).get("_offsetMin") or 27))
+    link = f"{site_url()}/articles/{article['slug']}"
+    built = queue_for_video("", channels, threads_text, x_root_text(article, text, classic_text), link, article, due, fmt=fmt,
+                            fb_text=classic_text, offsets=offsets)
+    new = built["pending"]["inputs"]
+    for service, inp in new.items():
+        for k, v in (old.get(service) or {}).items():
+            if k.startswith("_") and k not in inp:
+                inp[k] = v
+    rec["_rebuilt"] = {"question": article.get("_question") or "", "summaryLead": article.get("_summaryLead") or "",
+                       "opener": article.get("_opener") or "", "articleHash": built["pending"]["articleHash"]}
+    return new
 
 
 def share_now(
@@ -2370,7 +2547,7 @@ def main() -> int:
         if hook:
             recent = [hook, *recent][:4]
         if fmt == "classic":
-            # 本文は「書き出し／要約すると、2文／問いかけ」で完結（2026-11-02）。編集部の一言は足さない（形を崩さないため）
+            # 本文は「書き出し／事実2文／問いかけ」で完結（2026-11-02。「要約すると、」は 2026-11-05 にやめた）。編集部の一言は足さない
             comment, question = "", article.get("_question") or ""
             for problem in post_problems(text, article):
                 log(f"  [check] {article['slug']}: {problem}")
@@ -2441,6 +2618,7 @@ def main() -> int:
             **({"hookTextVersion": HOOK_TEXT_VERSION} if fmt == "hook_thread" else {}),
             **({"hookFormat": "muse3"} if article.get("_hookFormat") else {}),
             **({"linkPosition": article["_linkPosition"]} if article.get("_linkPosition") and sns_plan.link_ab_on() else {}),
+            **({"summaryLead": article["_summaryLead"]} if article.get("_summaryLead") else {}),
             "lane": sns_plan.lane_of(article)[0],
             "topic": topic_of(article),
             "question": bool(question),

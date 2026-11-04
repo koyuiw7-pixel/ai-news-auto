@@ -58,6 +58,15 @@ EARNINGS_RE = re.compile(r"決算|売上高|営業利益|純利益|最終利益|
 NUMBER_RE = re.compile(r"\d")
 # 科学・宇宙（AI の話ではない研究・宇宙開発）
 SCIENCE_RE = re.compile(r"NASA|JAXA|宇宙|ロケット|月面|月周回|天文|探査機|衛星|アルテミス|素粒子|量子(?!コンピュータ)")
+# 災害・防災・安全の知らせ（地震の訓練・警報・避難など）。AI・ガジェットの話ではない → 社会・行政
+# （2026-11-05 オーナー指摘: 気象庁の緊急地震速報の全国訓練が「テクノロジー・ガジェット」になり、SNS の書き出しが
+#  「新しいガジェットが好きな人、」になった。台帳 S34）。見出しかタグに当たれば public
+DISASTER_RE = re.compile(
+    r"緊急地震速報|地震|津波|噴火|火山|ミサイル|Jアラート|防災|避難|台風|大雨|豪雨|洪水|土砂災害|特別警報|警報|注意報|"
+    r"災害|被災|り災|罹災|気象庁|消防庁|防災訓練|避難訓練"
+)
+
+
 # ジャンルを動かしてよい元のジャンル（エンタメ・スポーツ・科学・地震などは動かさない）
 MOVABLE = ("ai", "tech-gadget", "business", "lifestyle", "public")
 
@@ -87,6 +96,8 @@ def genre_fix(record: dict) -> tuple[str, str] | None:
     tags = [str(t) for t in (record.get("tags") or [])]
     subject = subject_of(title)
     public = bool(PUBLIC_BODY_RE.match(subject or title))
+    if genre != "public" and DISASTER_RE.search(f"{title} {' '.join(tags)}") and not ai_topic(title, []):
+        return "public", "災害・防災・安全の知らせ（社会・行政。2026-11-05 地震の訓練がガジェットになった）"
     earnings = bool(EARNINGS_RE.search(title) and NUMBER_RE.search(title))
     if genre == "ai":
         if ai_topic(title, tags):

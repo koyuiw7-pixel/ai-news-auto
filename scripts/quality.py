@@ -542,7 +542,7 @@ def repair_language(record: dict, source_text: str = "") -> tuple[int, int, str]
 
 
 # --------------------------------------------------------------------------- #
-# Threads 紹介文の「要約すると、」（threads_hooks.POST_STYLE 3 の型。2つ目のかたまりの書き出し）
+# Threads 紹介文の形（threads_hooks.POST_STYLE 3 の型）。2026-11-05 オーナー判断: 事実のかたまりを「要約すると、」で始めない（台帳 S4）
 # --------------------------------------------------------------------------- #
 
 
@@ -550,30 +550,34 @@ def _post_blocks(text: str) -> list[str]:
     return [b.strip() for b in re.split(r"\n\s*\n", str(text or "").strip()) if b.strip()]
 
 
+SUMMARY_LEAD_RE = re.compile(rf"(?m)^(【速報】)?[ \t\u3000]*{persona.SUMMARY_OPENER}[ \t\u3000]*[、,:：]?[ \t\u3000]*")
+
+
 def summary_opener_problems(record: dict) -> list[str]:
-    """紹介文（threads_post）の2つ目のかたまりが「要約すると、」で始まっているか（型が3の記事だけ）"""
+    """紹介文（threads_post）が「書き出し／事実2文／問いかけ」の3つのかたまりか、「要約すると」が入っていないか（型が3の記事だけ）。
+    災害・事故・安全の話題（sns_rules.safety_topic）は 書き出し／事実 の2つでよい（問いかけを付けない。台帳 S34）"""
     if int(record.get("threadsStyle") or 0) < 3 or not str(record.get("threadsPost") or "").strip():
         return []
+    import sns_rules  # noqa: PLC0415
+
     blocks = _post_blocks(record["threadsPost"])
-    opener = f"{persona.SUMMARY_OPENER}、"
-    if len(blocks) == 3 and blocks[1].startswith(opener):
-        return []
-    return [f"threads_post が「書き出し／{opener}＋事実2文／問いかけ」の3つのかたまりになっていない（2つ目のかたまりを「{opener}」で始める）"]
+    out = []
+    if persona.SUMMARY_OPENER in record["threadsPost"]:
+        out.append(f"threads_post に「{persona.SUMMARY_OPENER}」が入っている（2026-11-05 オーナー判断で使わない。前置きなしで事実の文から書く）")
+    allowed = (2, 3) if sns_rules.safety_topic(record) else (3,)
+    if len(blocks) not in allowed:
+        out.append("threads_post が「書き出し／事実2文／問いかけ」の3つのかたまりになっていない")
+    return out
 
 
 def fix_summary_opener(record: dict) -> bool:
-    """機械で直せる崩れだけ直す（2つ目のかたまりの頭に「要約すると、」が無い・「要約すると：」になっている）"""
+    """機械で直せる崩れだけ直す（行の頭の「要約すると、」「要約すると：」を外す。文は残す）"""
     post = str(record.get("threadsPost") or "")
-    blocks = _post_blocks(post)
-    opener = f"{persona.SUMMARY_OPENER}、"
-    if len(blocks) != 3 or blocks[1].startswith(opener):
+    fixed = SUMMARY_LEAD_RE.sub(lambda m: m.group(1) or "", post)
+    if fixed == post:
         return False
-    second = re.sub(rf"^{persona.SUMMARY_OPENER}\s*[、,:：]?\s*", "", blocks[1])
-    second = re.sub(r"^(?:つまり|簡単に言うと|ざっくり言うと|ひとことで言うと)[、,:：]\s*", "", second)
-    if not second or second.endswith(("？", "?")):
-        return False
-    record["threadsPost"] = "\n\n".join([blocks[0], opener + second, blocks[2]])
-    return True
+    record["threadsPost"] = fixed
+    return not summary_opener_problems(record)
 
 
 POST_FIX_SCHEMA = {"type": "OBJECT", "properties": {"threads_post": {"type": "STRING"}}, "required": ["threads_post"]}
@@ -586,7 +590,7 @@ def repair_summary_opener(record: dict) -> str:
     prompt = (
         f"{threads_hooks.POST_RULES}\n\n# 記事\nタイトル: {record.get('title', '')}\nリード: {record.get('lede', '')}\n"
         f"要点: {' / '.join(record.get('highlights') or [])}\n\n# 今の紹介文（型が崩れている）\n{record.get('threadsPost', '')}\n\n"
-        "上のルールの3つのかたまり（書き出し／「要約すると、」で始まる事実2文／問いかけ）に直した threads_post を返す。"
+        "上のルールの3つのかたまり（書き出し／事実2文／問いかけ。「要約すると、」は付けない）に直した threads_post を返す。"
         "事実・数字は記事のとおり。記事に無いことを足さない。"
     )
     data, model = llm.generate_json("あなたはニュースサイトのSNS担当の編集者です。出力は指定の JSON だけ。", prompt, POST_FIX_SCHEMA,
@@ -839,13 +843,13 @@ def align_future_verdict(record: dict, source_text: str = "") -> list[str]:
 
 def pre_gate_repair(record: dict, source_text: str = "", log=print) -> list[str]:
     """品質ゲートの前の安い手直し（record をその場で書き換える）。行ったことの説明を返す。
-    1. 判定カードを本文にそろえる（制度の受付がまだ先なら「これから始まる」）  2. 紹介文の「要約すると、」（機械 → だめなら紹介文だけ書き直し）
+    1. 判定カードを本文にそろえる（制度の受付がまだ先なら「これから始まる」）  2. 紹介文の形（「要約すると、」を外す・3つのかたまり。機械 → だめなら紹介文だけ書き直し）
     3. 中国語・訳し残しの英単語・誤訳・まだ始まっていないことを始まったと書いた文だけ直す。ここで直らなかったものは evaluate の形のチェックで不合格になる"""
     notes = align_verdict(record) + align_future_verdict(record, source_text)
     notes += public_interest.autofix(record)  # ミサイル・災害の記事に公式の安全情報のリンク（台帳 A39）
     if summary_opener_problems(record):
         if fix_summary_opener(record):
-            notes.append("紹介文の2つ目のかたまりに「要約すると、」を付けた")
+            notes.append("紹介文の「要約すると、」を外した")
         else:
             try:
                 model = repair_summary_opener(record)

@@ -25,7 +25,7 @@ ART = {"slug": "acme-tool", "title": "Acme が新しいAIツールを公開", "g
 LINK = "https://ai-tech-express.jp/articles/acme-tool"
 GOOD = (
     "会議のメモを取っている人、これは要チェックです。\n\n"
-    "要約すると、Acmeが会議の内容を自動でまとめるAIを公開しました。\n"
+    "Acmeが会議の内容を自動でまとめるAIを公開しました。\n"
     "月額は1人1,000円で、日本語にも対応しています。\n\n"
     "あなたの職場では、会議の議事録を誰が書いていますか？"
 )
@@ -117,7 +117,7 @@ class UrgentExceptionTest(unittest.TestCase):
 
 class GrammarGateTest(unittest.TestCase):
     def test_na_adjective_plus_shimashita_is_rejected(self):
-        bad = "要約すると、NVIDIAが、DGX Spark 64GBを活用し、数コマンドでAIモデルの実行が可能しました。"
+        bad = "NVIDIAが、DGX Spark 64GBを活用し、数コマンドでAIモデルの実行が可能しました。"
         self.assertTrue(r.grammar_problems(bad))
         for ok in ("実行が可能になりました。", "実行できるようにしました。", "発売を予定しています。", "よかったです。", "必要です。"):
             self.assertEqual(r.grammar_problems(ok), [], ok)

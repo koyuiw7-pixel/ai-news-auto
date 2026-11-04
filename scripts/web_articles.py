@@ -366,7 +366,7 @@ WEB_PROMPT_TEMPLATE = """以下の一次情報（公式発表の文章）を読�
   製品名・企業名・機能名を**先頭**に置き、何が分かる記事かを続ける。記号は「｜」「：」を最大1つまで。
   **新しい製品・機能・モデルの発表**なら、日本の人が実際に検索する形にする:「〇〇とは？日本で使える？料金も」「〇〇の使い方と料金｜日本での提供状況」など、
   名前の直後に「とは／使い方／料金／日本で使える」のどれかを入れる（発表直後は日本語の記事がまだ少なく、この形の検索で1位を取りやすい）。
-- threads_post: Threads・X に出す投稿文。末尾の「Threads 紹介文（threads_post）のルール」と「書き出し」に従う（書き出し／要約すると、＋2文／問いかけ の3つのかたまり・URLなし）。
+- threads_post: Threads・X に出す投稿文。末尾の「Threads 紹介文（threads_post）のルール」と「書き出し」に従う（書き出し／事実2文（「要約すると、」は付けない）／問いかけ の3つのかたまり・URLなし）。
 <<EASY_RULE>>
 - lede: <<LEDE_RULE>>
 - description: 100〜130文字のメタディスクリプション。結論を含める。
@@ -435,7 +435,7 @@ BROAD_PROMPT_TEMPLATE = """以下の一次情報（公式発表の文章）を�
 - title: <<TITLE_STYLE>>
   **感嘆符・煽り語（衝撃／ヤバい／ついに／必見／知らないと損）は使わない**。元記事のタイトルをそのまま使わない。
 - seo_title: 全角24〜30文字。固有名詞（商品名・制度名・組織名）を先頭に置く。記号は「｜」「：」を最大1つまで。
-- threads_post: Threads・X に出す投稿文。末尾の「Threads 紹介文（threads_post）のルール」と「書き出し」に従う（書き出し／要約すると、＋2文／問いかけ の3つのかたまり・URLなし）。
+- threads_post: Threads・X に出す投稿文。末尾の「Threads 紹介文（threads_post）のルール」と「書き出し」に従う（書き出し／事実2文（「要約すると、」は付けない）／問いかけ の3つのかたまり・URLなし）。
 <<EASY_RULE>>
 - lede: <<LEDE_RULE>>
 - description: 100〜130文字のメタディスクリプション。結論を含める。
@@ -723,7 +723,7 @@ def fill_faq_actions(record: dict, source_text: str = "", context: str = "") -> 
 
 def pre_gate(record: dict, source_text: str = "", context: str = "") -> None:
     """品質ゲートの前の安い手直し（通常の実行と試し書きの道具が同じものを使う）:
-    足りない FAQ・今日やることの書き足し → 判定カードを本文にそろえる・紹介文の「要約すると、」・言葉の問題の文だけ直す"""
+    足りない FAQ・今日やることの書き足し → 判定カードを本文にそろえる・紹介文の形（「要約すると、」を外す）・言葉の問題の文だけ直す"""
     try:
         fill_faq_actions(record, source_text, context)
     except Exception as error:  # noqa: BLE001 - 書き足せなくても記事は出せる（欄を出さないだけ）
@@ -829,7 +829,7 @@ TREND_PROMPT_TEMPLATE = """日本でいま話題になっているキーワー�
 # 各フィールドの要件
 - title: <<TITLE_STYLE>>
 - seo_title: 全角24〜30文字。検索されるキーワードを先頭に置く。記号は「｜」「：」を最大1つまで。
-- threads_post: Threads・X に出す投稿文。末尾の「Threads 紹介文（threads_post）のルール」と「書き出し」に従う（書き出し／要約すると、＋2文／問いかけ の3つのかたまり・URLなし）。
+- threads_post: Threads・X に出す投稿文。末尾の「Threads 紹介文（threads_post）のルール」と「書き出し」に従う（書き出し／事実2文（「要約すると、」は付けない）／問いかけ の3つのかたまり・URLなし）。
 <<EASY_RULE>>
 - lede: <<LEDE_RULE>>
 - description: 100〜130文字。

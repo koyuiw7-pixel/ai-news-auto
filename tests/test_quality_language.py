@@ -17,7 +17,8 @@ import page_watch  # noqa: E402
 import quality  # noqa: E402
 import web_articles as w  # noqa: E402
 
-POST_OK = "クラウド担当の人に関係します。\n\n要約すると、NVIDIAが新しいツールを公開しました。\n設定が数時間で終わります。\n\nあなたの会社では使っていますか？"
+# 2026-11-05 オーナー判断（台帳 S4）: 紹介文は「要約すると、」で始めない（以前は必須だった）
+POST_OK = "クラウド担当の人に関係します。\n\nNVIDIAが新しいツールを公開しました。\n設定が数時間で終わります。\n\nあなたの会社では使っていますか？"
 
 
 def record(**extra) -> dict:
@@ -92,15 +93,16 @@ class LanguageChecks(unittest.TestCase):
 class SummaryOpener(unittest.TestCase):
     def test_ok_and_missing(self):
         self.assertEqual(quality.summary_opener_problems(record()), [])
-        rec = record(threadsPost=POST_OK.replace("要約すると、", ""))
-        self.assertTrue(quality.summary_opener_problems(rec))
+        rec = record(threadsPost=POST_OK.replace("NVIDIAが", "要約すると、NVIDIAが"))
+        self.assertTrue(any("要約すると" in p for p in quality.summary_opener_problems(rec)))
         # 古い形（型2以下）の紹介文は見ない
         self.assertEqual(quality.summary_opener_problems(record(threadsPost="古い形の紹介文", threadsStyle=2)), [])
 
     def test_fix_mechanically(self):
-        rec = record(threadsPost=POST_OK.replace("要約すると、", "要約すると："))
+        rec = record(threadsPost=POST_OK.replace("NVIDIAが", "要約すると：NVIDIAが"))
         self.assertTrue(quality.fix_summary_opener(rec))
         self.assertEqual(quality.summary_opener_problems(rec), [])
+        self.assertEqual(rec["threadsPost"], POST_OK)  # 前置きだけ外して、文は残す
 
     def test_llm_repair_when_blocks_broken(self):
         rec = record(threadsPost="一つのかたまりだけの紹介文です。")

@@ -1,7 +1,10 @@
 """SNS 投稿の本文の形（2026-11-02 オーナー承認）。ネット接続・投稿なし。
 
-書き出し／「要約すると、」＋事実2文／読者への問いかけ の3つのかたまり。見出しは繰り返さない。リンクは返信に置く。
+書き出し／事実2文／読者への問いかけ の3つのかたまり。見出しは繰り返さない。
+2026-11-05 オーナー判断（台帳 S4）: 事実の文は「要約すると、」で始めない（以前は必須だった）。
+2026-11-05（台帳 S34）: 書き出しは記事の中身から（読者が決まれば呼びかけ、無ければ事実の1行）。ジャンルの決まった呼びかけは使わない。
 """
+from datetime import datetime, timedelta, timezone
 
 import sys
 import unittest
@@ -14,6 +17,12 @@ import sns_rules  # noqa: E402
 import threads_hooks  # noqa: E402
 import threads_post as tp  # noqa: E402
 import threads_voice as voice  # noqa: E402
+
+FRESH = (datetime.now(timezone.utc) - timedelta(minutes=30)).isoformat()  # 本当の速報（発表から2時間以内。台帳 S35）
+
+
+def opener_ok(line):
+    return sns_rules.callout_ok(line) or sns_rules.fact_opener_ok(line)
 
 OLD = {
     "slug": "yen-bankruptcy",
@@ -51,7 +60,7 @@ class PostShapeTest(unittest.TestCase):
         self.assertEqual(tp.post_problems(text, article), [], text)
         blocks = tp.post_blocks_of(text)
         self.assertEqual(len(blocks), 3)
-        self.assertTrue(blocks[1].startswith("要約すると、"))
+        self.assertNotIn("要約すると", text)
         self.assertTrue(text.endswith("？"))
         self.assertNotIn("ざっくり", text)
         self.assertIsNone(persona.STIFF_RE.search(text))
@@ -74,7 +83,7 @@ class PostShapeTest(unittest.TestCase):
         article = dict(NEW)
         with no_weak():
             text = tp.compose(article, [])
-        self.assertEqual(text, NEW["threadsPost"])
+        self.assertEqual(text, NEW["threadsPost"].replace("要約すると、", ""))  # 以前の形の前置きは外して使う（台帳 S4）
         self.assert_shape(text, article)
         self.assertEqual(article["_question"], "証券口座、どこを使っていますか？NISAは始めましたか？")
 
@@ -110,7 +119,7 @@ class PostShapeTest(unittest.TestCase):
     def test_post_problems_flags_old_style(self):
         problems = " ".join(tp.post_problems("ざっくり言うと便利です。\n詳細は記事で。", OLD))
         self.assertIn("3つ", problems)
-        self.assertIn("要約すると", problems)
+        self.assertIn("要約すると", " ".join(tp.post_problems("書き出し\n\n要約すると、事実です。\n\n使っていますか？", OLD)))
         self.assertIn("？", problems)
         self.assertIn("ざっくり", problems)
         repeated = f"書き出し\n\n要約すると、{OLD['title']}。\n\nどうですか？"
@@ -118,12 +127,12 @@ class PostShapeTest(unittest.TestCase):
 
     def test_breaking_starts_with_breaking_label_and_callout(self):
         """2026-11-03 オーナー承認その2: 本当の速報だけ【速報】＋読者への呼びかけ。「発表からN分で掲載」は使わない"""
-        for article in (dict(OLD, breaking=True), dict(OLD, speedMinutes=12)):
+        for article in (dict(OLD, breaking=True, sourcePublishedAt=FRESH), dict(OLD, speedMinutes=12, publishedAt=FRESH)):
             with no_weak():
                 text = tp.compose(article, [], breaking=True)
             first = text.splitlines()[0]
             self.assertTrue(first.startswith("【速報】"), first)
-            self.assertTrue(sns_rules.callout_ok(first), first)
+            self.assertTrue(opener_ok(first), first)
             self.assertNotIn("発表から", text)
             self.assertEqual(text.count("【速報】"), 1)
             self.assert_shape(text, article)
@@ -134,7 +143,7 @@ class PostShapeTest(unittest.TestCase):
             with no_weak():
                 text = tp.compose(dict(OLD), [], breaking=flag)
             self.assertNotIn("【速報】", text)
-            self.assertTrue(sns_rules.callout_ok(text.splitlines()[0]), text)
+            self.assertTrue(opener_ok(text.splitlines()[0]), text)
 
     def test_disaster_keeps_legacy_post_without_question(self):
         quake = {"slug": "q", "title": "震度5強", "disaster": True, "breaking": True, "threadsStyle": 2,
@@ -159,7 +168,7 @@ class PostShapeTest(unittest.TestCase):
         self.assertNotIn("これ、無料で試せます。", lines)
 
     def test_hook_rotation_avoids_recent_types(self):
-        article = {"slug": "s", "seoTitle": "会計アプリ｜料金", "title": "会計アプリが値下げ", "threadsStyle": 2, "threadsPost": "",
+        article = {"slug": "s", "seoTitle": "会計アプリ｜料金", "title": "個人事業の会計アプリが値下げ", "threadsStyle": 2, "threadsPost": "",
                    "verdict": {"status": "available", "japan": "ok", "price": "月980円", "free": True},
                    "highlights": ["会計アプリの料金が月980円になりました。", "日本でもすぐ使えます。"]}
         first = dict(article)
@@ -176,12 +185,12 @@ class PostShapeTest(unittest.TestCase):
 class OtherChannelsTest(unittest.TestCase):
     def test_x_fits_and_keeps_question_when_possible(self):
         for base, breaking in ((OLD, False), (NEW, False), (OLD, True)):
-            article = dict(base, breaking=breaking)
+            article = dict(base, breaking=breaking, sourcePublishedAt=FRESH)
             with no_weak(), patch.object(tp, "speed_line", return_value=""):
                 text = tp.compose(article, [], breaking=breaking)
             x = tp.compose_x(article, text)
             self.assertLessEqual(tp.x_weight(x), tp.X_LIMIT, x)
-            self.assertIn("要約すると、", x)
+            self.assertNotIn("要約すると", x)
             if breaking:
                 self.assertTrue(x.startswith("【速報】"))
 
@@ -195,8 +204,9 @@ class OtherChannelsTest(unittest.TestCase):
         self.assertLessEqual(tp.x_weight(x), tp.X_LIMIT)
 
     def test_link_reply_is_short(self):
-        self.assertEqual(tp.link_reply_text(OLD), "詳しくはこちら👇\n（専門用語なしの「かんたん版」もあります）")
-        self.assertEqual(tp.link_reply_text({**OLD, "easy": ""}), "詳しくはこちら👇")
+        # 2026-11-05（台帳 S35）: 決まった「詳しくはこちら👇（かんたん版あり）」はやめ、リンクだけ
+        self.assertEqual(tp.link_reply_text(OLD), "")
+        self.assertEqual(tp.link_reply_text({**OLD, "easy": ""}), "")
 
 
 class ReaderQuestionTest(unittest.TestCase):
@@ -285,10 +295,12 @@ class LinkInBodyTest(unittest.TestCase):
         text = tp.with_link(body, OLD, "threads", "classic")
         self.assertTrue(text.startswith(body))
         lines = text.splitlines()
-        self.assertEqual(lines[-2], "詳しくはこちら👇（かんたん版あり）")
+        # 2026-11-05（台帳 S35）: 毎回同じ「詳しくはこちら👇（かんたん版あり）」はやめ、リンクだけの行（utm はそのまま）
+        self.assertNotIn("詳しくはこちら", text)
+        self.assertNotIn("👇", text)
+        self.assertEqual(lines[-2], "")
         self.assertTrue(lines[-1].startswith(f"{tp.site_url()}/articles/{OLD['slug']}?utm_source=threads&utm_medium=social"))
         self.assertLessEqual(len(text), tp.MAX_CHARS)
-        self.assertEqual(tp.with_link(body, {**OLD, "easy": ""}).splitlines()[-2], "詳しくはこちら👇")
 
     def test_long_body_drops_hook_first(self):
         body = "書き出し" * 20 + "\n\n要約すると、" + "あ" * 300 + "。\n\nどれですか？"

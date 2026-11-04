@@ -289,7 +289,7 @@ def compose_post(report: dict, variant: str = "short") -> str:
     summary = (sv3.get("summary") or "").strip()
     head = f"{hook}\n" + (f"{seconds}秒で解説しました。" if report.get("level") in ("L3", "L4", "MUSE") else f"公式ページの画面を見ながら、{seconds}秒で解説しました。")
     voice = (report.get("voice") or {}).get("credit")
-    tail = f"\n\n詳しくはこちら👇\n{article_link(report, variant)}" + (f"\n音声：{voice}" if voice else "")
+    tail = f"\n\n{article_link(report, variant)}" + (f"\n音声：{voice}" if voice else "")  # 決まった「詳しくはこちら👇」は付けない（台帳 S35）
     room = MAX_CHARS - len(head) - len(tail) - 2
     if summary and room > 20:
         body = f"{head}\n\n{summary if len(summary) <= room else summary[: room - 1] + '…'}"
@@ -660,6 +660,36 @@ def remote_queued(slug: str) -> dict:
     return q if (q.get("status") == "created" or any((q.get("channels") or {}).values())) else (extra if extra.get("status") == "created" else {})
 
 
+def refresh_if_article_changed(slug: str, rec: dict, article: dict | None, use_llm: bool | None = None) -> bool:
+    """（2026-11-05 オーナー指摘「アララの X が書き直す前の 77百万件・企業向けの呼びかけのまま」・台帳 S35）
+    動画待ちの文面を作ったあとに記事が書き直されていたら、今の記事から文面を作り直す（枠・リンクの位置の組・utm はそのまま）。
+    作り直せなければ前の文面のまま（送る直前に門番の autofix が数字の単位などを直す）。作り直したら True"""
+    pending = rec.get("pending") or {}
+    if not article or not pending.get("inputs") or not pending.get("articleHash"):
+        return False
+    import threads_post as tp
+
+    if tp.article_hash(article) == pending.get("articleHash"):
+        return False
+    try:
+        llm_on = use_llm if use_llm is not None else bool(os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("GEMINI_API_KEY"))
+        new = tp.rebuild_pending_inputs(rec, article, use_llm=llm_on)
+    except Exception as error:  # noqa: BLE001
+        log(f"[video-followup] {slug}: 記事が書き直されたので文面を作り直そうとしましたができませんでした（前の文面で出します）: {str(error)[:160]}")
+        return False
+    info = rec.pop("_rebuilt", {}) or {}
+    pending["inputs"], pending["articleHash"] = new, info.get("articleHash") or tp.article_hash(article)
+    pending["rebuiltAt"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    for key, field in (("question", "questionText"), ("summaryLead", "summaryLead"), ("opener", "opener")):
+        if info.get(key):
+            rec[field] = info[key]
+        elif key == "question":
+            rec.pop("questionText", None)
+            rec["question"] = False
+    log(f"[video-followup] {slug}: 記事が書き直されていたので、今の記事から文面を作り直しました")
+    return True
+
+
 def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=None, issue=None, eligible=None, remote=None) -> list[dict]:
     """（2026-11-03 オーナー指示「SNS の投稿は動画のはず」）動画を待っている記事の投稿（threads_post.queue_for_video）を、
     動画ができたものから**枠の順番に**動画つきで Buffer に送る。
@@ -694,6 +724,7 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
             q.update({"status": "waiting", "why": "オーナーに見せた動画を置くのを待っている"})
             out.append({"slug": slug, **q})
             continue  # ほかの投稿の順番は止めない
+        art_now = None
         try:
             import sns_plan
 
@@ -790,6 +821,7 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
         base = max(slot, now + timedelta(minutes=QUEUE_LEAD_MIN))
         if last_due and base <= last_due:
             base = last_due + timedelta(minutes=2)  # 前の投稿より後に（順番を保つ）
+        refresh_if_article_changed(slug, rec, art_now)
         inputs = (rec.get("pending") or {}).get("inputs") or {}
         created = dict(q.get("channels") or {})
         stop = False
@@ -999,6 +1031,7 @@ def requeue_inputs(api_key: str, chans: dict, slug: str, services: list[str], sl
     extra = {k: chans[k] for k in ("twitter", "facebook") if k in services and k in chans}
     inputs.update(tp.publish_extra_channels(api_key, extra, classic, link, article, slot, fb_text=classic, build_only=True))
     for service, inp in inputs.items():
+        sns_rules.autofix_buffer_input(service, inp, article)
         sns_rules.enforce_buffer(service, {k: v for k, v in inp.items() if not k.startswith("_")}, article,
                                  source="sns_video_followup.requeue_inputs", pending_video=True, history=False)
     return {"inputs": inputs, "slot": slot.isoformat(timespec="seconds"), "fmt": "classic"}
@@ -1258,7 +1291,9 @@ def merged_text(text: str, report: dict, variant: str, limit: int = MAX_CHARS) -
     line = form.format(seconds=seconds) if seconds else ""
     credit = (report.get("voice") or {}).get("credit", "")
     if line:
-        idx = new.find("詳しくはこちら")
+        idx = new.find("詳しくはこちら")  # 以前の決まった案内の行（2026-11-05 からはリンクだけの行）
+        if idx < 0 and (u := URL_RE.search(new)):
+            idx = new.rfind("\n", 0, u.start()) + 1  # リンクの行の前
         cand = (new[:idx] + line + "\n" + new[idx:]) if idx > 0 else (new.rstrip() + "\n\n" + line)
         if len(cand) <= limit:
             new, notes["line"] = cand, True

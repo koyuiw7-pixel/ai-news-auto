@@ -298,6 +298,7 @@ def plan(key: str, entry: dict) -> dict | None:
     spec = tp.ROOT / "content" / "sns_reposts" / f"{key}.json"
     if spec.exists():  # オーナーに見せて承認をもらった出し直しの文面（Threads と同じ）
         text = json.loads(spec.read_text("utf-8")).get("classic") or text
+    text, _ = sns_rules.autofix(text, article, "bluesky")  # 「要約すると、」・数字の単位・災害の話題の呼びかけ/問い（ルール13・14・S35）
     text = re.sub(r"\s*👇\s*$", "", text)
     link = tp.utm_link(f"{tp.site_url()}/articles/{key}", "bluesky", entry.get("format") or "classic")
     return {
@@ -529,7 +530,7 @@ def choose(state: dict, extra: dict, now: datetime, fill: bool, articles: list[d
 
 def plan_fill(article: dict) -> dict:
     key = article["slug"]
-    text = re.sub(r"\s*👇\s*$", "", tp.compose(article, [], breaking=False))
+    text = re.sub(r"\s*👇\s*$", "", sns_rules.autofix(tp.compose(article, [], breaking=False), article, "bluesky")[0])
     return {
         "text": text, "link": tp.utm_link(f"{tp.site_url()}/articles/{key}", "bluesky", "fill"),
         "title": article.get("seoTitle") or article["title"], "desc": article.get("description", ""),

@@ -19,7 +19,7 @@ ART = {"slug": "acme-tool", "title": "Acme が新しいAIツールを公開", "g
 LINK = "https://ai-tech-express.jp/articles/acme-tool"
 GOOD = (
     "会議のメモを取っている人、これは要チェックです。\n\n"
-    "要約すると、Acmeが会議の内容を自動でまとめるAIを公開しました。\n"
+    "Acmeが会議の内容を自動でまとめるAIを公開しました。\n"
     "月額は1人1,000円で、日本語にも対応しています。\n\n"
     "あなたの職場では、会議の議事録を誰が書いていますか？"
 )
@@ -77,12 +77,13 @@ class CheckPostTest(unittest.TestCase):
         self.assertFalse(any("決まり文句" in v for v in self.check("threads", specific)))
 
     def test_structure(self):
-        double = GOOD.replace("月額は", "要約すると、月額は")
-        self.assertTrue(any("2回" in v for v in self.check("threads", with_link(double, "threads"))))
+        # 2026-11-05 オーナー判断（台帳 S4・ルール13）: 「要約すると」は書かない（以前は必須だった）
+        old = GOOD.replace("Acmeが", "要約すると、Acmeが")
+        self.assertTrue(any("ルール13" in v for v in self.check("threads", with_link(old, "threads"))))
         no_question = with_link(GOOD.rsplit("\n\n", 1)[0], "threads")
         self.assertTrue(any("問いかけ" in v for v in self.check("threads", no_question)))
-        no_summary = with_link(GOOD.replace("要約すると、", ""), "threads")
-        self.assertTrue(any("要約" in v for v in self.check("threads", no_summary)))
+        no_summary = with_link("会議のメモを取っている人、これは要チェックです。\n\nあなたの職場では、会議の議事録を誰が書いていますか？", "threads")
+        self.assertTrue(any("書き出しの行がない" in v or "事実" in v for v in self.check("threads", no_summary)))
 
     def test_english_sentence(self):
         text = with_link(GOOD.replace("月額は1人1,000円で、日本語にも対応しています。", "This tool is available for everyone today."), "threads")
@@ -241,8 +242,9 @@ class CalloutRuleTest(unittest.TestCase):
         for bad in ("会議のメモ、まだ手で取っていますか。", "結論：個人なら無料で使えます。", "1日で1,211件。"):
             text = with_link(GOOD.replace("会議のメモを取っている人、これは要チェックです。", bad), "threads")
             self.assertTrue(any("呼びかけ" in v for v in self.rule6(self.check("threads", text))), bad)
-        for ok in ("マウンテンバイク好きの人、これは要チェックです。", "コードを書く開発者の皆さん、朗報です。",
-                   "電気代が気になる人に、知っておいてほしい話です。", "株や業績をチェックしている人へ。"):
+        # 2026-11-05（台帳 S34）: 呼びかけでなく、記事の事実の1行（何が・いつ・だれに）でもよい
+        for ok in ("コードを書く開発者の皆さん、朗報です。", "電気代が気になる人に、知っておいてほしい話です。", "株や業績をチェックしている人へ。",
+                   "11月30日まで、14の市町でオンライン申請ができます。"):
             text = with_link(GOOD.replace("会議のメモを取っている人、これは要チェックです。", ok), "threads")
             self.assertEqual(self.rule6(self.check("threads", text)), [], ok)
 
@@ -253,11 +255,19 @@ class CalloutRuleTest(unittest.TestCase):
             self.assertTrue(any("先に言うと" in v or "発表からN分" in v for v in out), bad)
 
     def test_breaking_label_only_for_fast_news(self):
+        from datetime import datetime, timedelta, timezone
+
         text = with_link("【速報】" + GOOD, "threads")
+        fresh = (datetime.now(timezone.utc) - timedelta(minutes=30)).isoformat()
+        old = (datetime.now(timezone.utc) - timedelta(hours=5)).isoformat()
         self.assertTrue(any("速報ではない記事" in v for v in self.check("threads", text)))
-        self.assertEqual(self.rule6(self.check("threads", text, article={**ART, "breaking": True})), [])
-        self.assertEqual(self.rule6(self.check("threads", text, article={**ART, "speedMinutes": 14})), [])
-        self.assertTrue(any("速報ではない記事" in v for v in self.check("threads", text, article={**ART, "breaking": True, "type": "roundup"})))
+        self.assertEqual(self.rule6(self.check("threads", text, article={**ART, "breaking": True, "sourcePublishedAt": fresh})), [])
+        self.assertEqual(self.rule6(self.check("threads", text, article={**ART, "speedMinutes": 14, "publishedAt": fresh})), [])
+        self.assertTrue(any("速報ではない記事" in v for v in self.check("threads", text, article={**ART, "breaking": True, "sourcePublishedAt": fresh, "type": "roundup"})))
+        # 2026-11-05（台帳 S35）: 発表から2時間を過ぎた・発表の時刻が分からない・続報や会議の資料には付けない
+        for art in ({**ART, "breaking": True, "sourcePublishedAt": old}, {**ART, "breaking": True},
+                    {**ART, "breaking": True, "sourcePublishedAt": fresh, "title": "熊本地震の第27回会議の資料"}):
+            self.assertTrue(any("速報ではない記事" in v for v in self.check("threads", text, article=art)), art)
 
     def test_question_answerable_without_article(self):
         for bad in ("あなたの仕事で、いちばん気になった発表はどれですか？", "この機能、仕事で使ってみたいですか？", "無料なら試してみますか？"):

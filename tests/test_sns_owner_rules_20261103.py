@@ -62,9 +62,17 @@ class CalloutTest(unittest.TestCase):
             self.assertNotIn("確認を", threads_hooks.callout(neutral, prev)[1])
 
     def test_breaking_prefix_follows_cover_rule(self):
+        from datetime import datetime, timedelta, timezone
+
         line = "車好きの人、これは要チェックです。"
-        self.assertEqual(threads_hooks.with_breaking(line, {"breaking": True}), "【速報】" + line)
-        self.assertEqual(threads_hooks.with_breaking(line, {"speedMinutes": 20}), "【速報】" + line)
+        fresh = (datetime.now(timezone.utc) - timedelta(minutes=20)).isoformat()
+        self.assertEqual(threads_hooks.with_breaking(line, {"breaking": True, "sourcePublishedAt": fresh}), "【速報】" + line)
+        self.assertEqual(threads_hooks.with_breaking(line, {"speedMinutes": 20, "publishedAt": fresh}), "【速報】" + line)
+        # 2026-11-05（台帳 S35）: SNS の【速報】は発表から2時間以内の本当の速報だけ（発表の時刻が無い・古い・会議の資料は付けない）
+        stale = (datetime.now(timezone.utc) - timedelta(hours=3)).isoformat()
+        self.assertEqual(threads_hooks.with_breaking(line, {"breaking": True}), line)
+        self.assertEqual(threads_hooks.with_breaking(line, {"breaking": True, "sourcePublishedAt": stale}), line)
+        self.assertEqual(threads_hooks.with_breaking(line, {"breaking": True, "sourcePublishedAt": fresh, "slug": "kumamoto-quake-27th-meeting"}), line)
         self.assertEqual(threads_hooks.with_breaking("【速報】" + line, {}), line)
         self.assertEqual(threads_hooks.with_breaking("【速報】" + line, {"breaking": True, "type": "roundup"}), line)
 
@@ -192,7 +200,7 @@ class GeneratedPostsPassGate(unittest.TestCase):
                 out = sns_rules.check_post(platform, body, [], article, pending_video=True)
                 self.assertEqual(out, [], f"{slug} {platform}\n{body}")
             x = tp.compose_x(article, text)
-            reply = f"{tp.link_reply_text(article)}\n{tp.utm_link(f'{tp.site_url()}/articles/{slug}', 'x', 'classic')}"
+            reply = tp.utm_link(f'{tp.site_url()}/articles/{slug}', 'x', 'classic')
             self.assertEqual(sns_rules.check_post("x", x, [], article, reply_text=reply, pending_video=True), [], f"{slug} x\n{x}")
 
 

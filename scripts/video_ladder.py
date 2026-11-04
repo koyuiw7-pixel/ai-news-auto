@@ -233,21 +233,28 @@ def lede_candidates(article: dict) -> list[str]:
     for h2, h3, para in body_sections(article.get("body", "")):
         if not h3 and (re.search(r"概要|何が発表", h2) or not h2):
             out += [narration_sentence(x, max_len=88) for x in sentences(para)[:1]]
-    for line in str(article.get("threadsPost") or "").splitlines():
-        if line.startswith("要約すると、"):
-            out.append(narration_sentence(line.removeprefix("要約すると、"), max_len=88))
+    for line in post_fact_lines(article):
+        out.append(narration_sentence(line, max_len=88))
     return [x for x in dict.fromkeys(out) if x]
+
+
+def post_fact_lines(article: dict) -> list[str]:
+    """投稿文（threadsPost）の事実の行（書き出しと問いかけの間のかたまり）。以前の形の「要約すると、」は外す（2026-11-05・台帳 S4）"""
+    blocks = [b.strip() for b in re.split(r"\n\s*\n", str(article.get("threadsPost") or "").strip()) if b.strip()]
+    middle = blocks[1:-1] if len(blocks) >= 3 else [b for b in blocks if b.startswith("要約すると")]
+    lines = [re.sub(r"^要約すると\s*[、,:：]?\s*", "", ln).strip() for b in middle for ln in b.splitlines()]
+    return [ln for ln in lines if ln]
 
 
 
 def summary_of(article: dict) -> str:
-    """投稿文の要約（threadsPost の「要約すると、」の行があればそれ。無ければリードの最初の文）"""
-    for line in str(article.get("threadsPost") or "").splitlines():
-        if line.startswith("要約すると"):
-            return line.strip()
+    """投稿文の要約（threadsPost の事実のかたまりの1行目。無ければリードの最初の文）。「要約すると、」は付けない（2026-11-05・台帳 S4）"""
+    facts = post_fact_lines(article)
+    if facts:
+        return facts[0]
     lede = [narration_sentence(s) for s in sentences(article.get("lede", ""))]
     lede = [s for s in lede if s]
-    return ("要約すると、" + lede[0]) if lede else ""
+    return lede[0] if lede else ""
 
 
 
