@@ -3875,6 +3875,17 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030c.pdf"
     },
+    "0e072c9f8e9dff5a": {
+      "at": "2026-11-04T20:11:45.955080+00:00",
+      "breaking": true,
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "databricks-open-weight-models-enterprise",
+      "url": "https://www.databricks.com/blog/enterprise-case-open-weight-models-databricks"
+    },
     "0e170a29357ca076": {
       "at": "2026-11-04T15:40:06.149417+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -14761,30 +14772,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-03T00:15:17.290304+00:00",
-      "attempt": 1,
-      "id": "52056732d51a05e6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "競技ウエアの広告やチーム名の申請手続きも開始されています。 → 元記事には申請手続きが「開始された」とは明記されておらず、申請ページや情報が更新・公開された旨のみが記載されている。",
-        "ウエア広告の申請がオンライン化されたことで、クラブ側がスポンサー収入を得やすくなる期待があります。 → オンライン化されたという記述は元記事に存在しないため創作にあたる。",
-        "過去は曖昧だった → 元記事にこのような背景説明の記述はない。"
-      ],
-      "readability": {
-        "avg_paragraph": 163.0,
-        "avg_sentence": 44.5,
-        "long_share": 0.182,
-        "max_paragraph": 218,
-        "paragraphs": 3,
-        "sentences": 11
-      },
-      "score": 60,
-      "source": "jtta",
-      "title": "バタフライ 第45回全日本クラブ卓球選手権大会 大会情報更新（11/2）"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-03T00:17:50.324169+00:00",
       "attempt": 2,
       "id": "52056732d51a05e6",
@@ -21161,6 +21148,30 @@
       "title": "令和8年熊本地震 熊本市災害対策本部会議（第27回）資料",
       "warnings": [
         "初めて出たところで言い換えていない略語（JR）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-04T20:11:45.942412+00:00",
+      "attempt": 1,
+      "id": "0e072c9f8e9dff5a",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 91.9,
+        "avg_sentence": 43.5,
+        "long_share": 0.158,
+        "max_paragraph": 183,
+        "paragraphs": 18,
+        "sentences": 38
+      },
+      "score": 90,
+      "source": "databricks-blog",
+      "title": "The Enterprise Case for Open-Weight Models on Databricks",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GLM・CNBC・MCP）"
       ]
     }
   ],
