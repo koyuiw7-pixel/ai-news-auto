@@ -105,9 +105,10 @@ def excluded(article: dict | None) -> str:
 
 
 def muse_slugs(now: datetime | None = None) -> set[str]:
-    """Muse に頼んで、まだ待っている記事（state/muse_queue.json）"""
+    """Muse に頼んで、まだ待っている記事と、Muse の動画が届いた記事（state/muse_queue.json）。
+    2026-11-05 オーナー判断「動画は全投稿を Muse に任せる」: 届いた動画がある記事を先に出す（queued だけだと、届いた途端に順位が下がっていた）"""
     data = load_muse_queue()
-    return {i["slug"] for i in data.get("items", []) if i.get("status") == "queued"}
+    return {i["slug"] for i in data.get("items", []) if i.get("status") in ("queued", "delivered")}
 
 
 def sns_score(article: dict) -> float:
