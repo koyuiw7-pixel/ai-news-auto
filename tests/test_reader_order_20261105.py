@@ -200,7 +200,7 @@ class PromptTest(unittest.TestCase):
             with self.subTest(key=key):
                 self.assertIn(nt.READER_ORDER_RULE, block)
         for phrase in ("読者個人への影響", "企業・契約者向けの章", "まだ分からないこと", "1つの段落で大事な数字は1つ",
-                       "専門用語は初めて出たところで1回だけ"):
+                       "専門用語は初めて出たところで1回だけ", "判定カード（verdict）を null にする記事では"):
             self.assertIn(phrase, nt.READER_ORDER_RULE)
 
     def test_style_prompt_has_soft_phrasing_and_units(self):
