@@ -76,10 +76,10 @@
   "gate_retry": {
     "06a6a6db73347aad": {
       "first": "2026-11-05T11:53:10.801665+00:00",
-      "next": "2026-11-05T14:53:10.801665+00:00",
+      "next": "2026-11-05T18:28:14.320952+00:00",
       "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "title": "blue-ing!で楽しむ飲み放題付きパーティープランを販売開始 懇親会や歓送迎会にも最適、JFA公式施設ならではのパーティー体験を提供 #jfa",
-      "tries": 1,
+      "tries": 2,
       "url": "https://www.jfa.jp/news/00036979/"
     },
     "0e889c44fa0a25a1": {
@@ -14019,6 +14019,15 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/info/info1883/index.html"
     },
+    "d8fa341b96c36837": {
+      "at": "2026-11-05T15:22:56.109583+00:00",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "agile-deliberation-image-classifier",
+      "url": "https://research.google/blog/agile-deliberation-how-ai-helps-humans-define-the-gray-areas/"
+    },
     "d933013ac8b95522": {
       "at": "2026-10-26T16:50:25.785482+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15886,60 +15895,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T02:23:48.494788+00:00",
-      "attempt": 1,
-      "id": "fcef20cfe9a085695b48ac38e18921b0c08df987",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "住友ファーマ 株価"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T02:24:31.069171+00:00",
-      "attempt": 2,
-      "id": "fcef20cfe9a085695b48ac38e18921b0c08df987",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "住友ファーマ 株価"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T02:25:59.017130+00:00",
-      "attempt": 1,
-      "id": "ce9b39562dd42cfe",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「Cイベント数や実行時間が5%」、「ント数や実行時間が5%〜46%」、「%減、Monorepoは0.3%」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 354.5,
-        "avg_sentence": 25.8,
-        "long_share": 0.0,
-        "max_paragraph": 629,
-        "paragraphs": 4,
-        "sentences": 55
-      },
-      "score": null,
-      "source": "jetbrains-blog",
-      "title": "Where Did the Saved Bytes Go? Compact Object Headers in IntelliJ IDEA",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IDEA・JBR・RSS）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-04T02:27:36.803093+00:00",
@@ -22141,6 +22096,58 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（TTS・CC・BY）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T15:22:56.102971+00:00",
+      "attempt": 1,
+      "id": "d8fa341b96c36837",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 96.9,
+        "avg_sentence": 34.6,
+        "long_share": 0.024,
+        "max_paragraph": 166,
+        "paragraphs": 15,
+        "sentences": 42
+      },
+      "score": 92,
+      "source": "google-research-blog",
+      "title": "Agile Deliberation: How AI helps humans define the gray areas",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（VLM）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T15:25:39.080536+00:00",
+      "attempt": 1,
+      "id": "06a6a6db73347aad",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jfa",
+      "title": "blue-ing!で楽しむ飲み放題付きパーティープランを販売開始 懇親会や歓送迎会にも最適、JFA公式施設ならではのパーティー体験を提供 #jfa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T15:28:14.320905+00:00",
+      "attempt": 2,
+      "id": "06a6a6db73347aad",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jfa",
+      "title": "blue-ing!で楽しむ飲み放題付きパーティープランを販売開始 懇親会や歓送迎会にも最適、JFA公式施設ならではのパーティー体験を提供 #jfa"
     }
   ],
   "short_text_retry": {
