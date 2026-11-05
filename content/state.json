@@ -11266,6 +11266,15 @@
       "slug": "morinaga-cocoa-bowel-movement-study",
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3229"
     },
+    "9c9e5f41bc5712d7": {
+      "at": "2026-11-05T21:13:17.735241+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 85,
+      "section": "ai",
+      "slug": "windows-vulnerability-ai-patch-speed",
+      "url": "https://blogs.windows.com/windowsexperience/2026/11/05/a-new-standard-for-vulnerability-management-in-the-ai-era/"
+    },
     "9cb8acb22504c471": {
       "at": "2026-11-02T17:32:10.579290+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16095,54 +16104,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T05:46:08.024547+00:00",
-      "attempt": 1,
-      "id": "ce253a4b2ae2e919",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "段落が長い（平均 122.5字・最長 262字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 122.5,
-        "avg_sentence": 39.0,
-        "long_share": 0.114,
-        "max_paragraph": 262,
-        "paragraphs": 14,
-        "sentences": 44
-      },
-      "score": 90,
-      "source": "tsr",
-      "title": "「すし店」 売上増も「減益」企業が約4割 コメ価格など物価高が重し、廃業・倒産が急増",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FOOD・LIFE・LC）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-04T05:47:03.065264+00:00",
-      "attempt": 0,
-      "id": "ce253a4b2ae2e919",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 53.1,
-        "avg_sentence": 30.7,
-        "long_share": 0.038,
-        "max_paragraph": 110,
-        "paragraphs": 30,
-        "sentences": 52
-      },
-      "score": 93,
-      "source": "tsr",
-      "title": "「すし店」 売上増も「減益」企業が約4割 コメ価格など物価高が重し、廃業・倒産が急増",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FOOD・LIFE・LC）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-04T06:23:34.637692+00:00",
@@ -22290,6 +22251,55 @@
       "score": null,
       "source": "google-gemini-blog",
       "title": "Transform a quick drawing into a live app with Gemini."
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T21:12:46.518026+00:00",
+      "attempt": 1,
+      "id": "9c9e5f41bc5712d7",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 41.9字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 122.6字・最長 184字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 122.6,
+        "avg_sentence": 41.9,
+        "long_share": 0.211,
+        "max_paragraph": 184,
+        "paragraphs": 13,
+        "sentences": 38
+      },
+      "score": 88,
+      "source": "microsoft-source",
+      "title": "AI is speeding up how Windows security flaws are found and fixed",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MDASH）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T21:13:17.719147+00:00",
+      "attempt": 0,
+      "id": "9c9e5f41bc5712d7",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 78.5,
+        "avg_sentence": 39.2,
+        "long_share": 0.125,
+        "max_paragraph": 126,
+        "paragraphs": 20,
+        "sentences": 40
+      },
+      "score": 85,
+      "source": "microsoft-source",
+      "title": "AI is speeding up how Windows security flaws are found and fixed",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MDASH）"
+      ]
     }
   ],
   "short_text_retry": {
