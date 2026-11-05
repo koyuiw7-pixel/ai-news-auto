@@ -1,12 +1,12 @@
 {
- "updatedAt": "2026-11-04T01:11:29.558002+00:00",
- "generatedAt": "2026-11-04T23:55:35+00:00",
+ "updatedAt": "2026-11-05T22:28:51+00:00",
+ "generatedAt": "2026-11-05T23:50:31+00:00",
  "stats": {
-  "articlesScanned": 502,
-  "candidateArticles": 59,
-  "rowsVerified": 25,
-  "rowsRejected": 33,
-  "plans": 11,
+  "articlesScanned": 542,
+  "candidateArticles": 62,
+  "rowsVerified": 29,
+  "rowsRejected": 41,
+  "plans": 15,
   "apis": 7
  },
  "items": [
@@ -236,6 +236,56 @@
    "legacy": false
   },
   {
+   "id": "plan-claude-team",
+   "kind": "plan",
+   "vendor": "Anthropic",
+   "companySlug": "anthropic",
+   "product": "Claude",
+   "plan": "Team(月払い)",
+   "currency": "USD",
+   "monthly": 25,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": "limited",
+   "free": null,
+   "source": {
+    "slug": "claude-personal-finance-beta",
+    "title": "Claude Personal Financeとは？日本で使える？料金も",
+    "publishedAt": "2026-11-05T00:00:00+00:00",
+    "quote": "| Team(スタンダードシート) | $20/人・月(年払い) / $25/人・月(月払い) | 約4,350円(税込みの目安) | すべてのClaude 機能、さらにProより多い使用量 |"
+   },
+   "verdictSource": null,
+   "confirmedIn": 1,
+   "legacy": false
+  },
+  {
+   "id": "plan-claude-max",
+   "kind": "plan",
+   "vendor": "Anthropic",
+   "companySlug": "anthropic",
+   "product": "Claude",
+   "plan": "Max",
+   "currency": "USD",
+   "monthly": 100,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": "limited",
+   "free": null,
+   "source": {
+    "slug": "claude-personal-finance-beta",
+    "title": "Claude Personal Financeとは？日本で使える？料金も",
+    "publishedAt": "2026-11-05T00:00:00+00:00",
+    "quote": "| Max | $100/月(月払い) | 約17,410円(税込みの目安) | Pro の 5 倍の使用量(5 時間ごと・毎週)、Claude Platform での開発に利用できる月額 $100 分の API クレジット |"
+   },
+   "verdictSource": null,
+   "confirmedIn": 1,
+   "legacy": false
+  },
+  {
    "id": "plan-gemini",
    "kind": "plan",
    "vendor": "Google",
@@ -361,6 +411,31 @@
    "legacy": false
   },
   {
+   "id": "plan-geminienterprise-business",
+   "kind": "plan",
+   "vendor": "Google",
+   "companySlug": "google",
+   "product": "Gemini Enterprise",
+   "plan": "Business エディション",
+   "currency": "USD",
+   "monthly": 21,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": null,
+   "free": null,
+   "source": {
+    "slug": "gemini-omni-12-flash-ga",
+    "title": "Gemini Omni 1.2 Flashとは？料金と日本での提供状況",
+    "publishedAt": "2026-11-05T17:00:00+00:00",
+    "quote": "| Gemini Enterprise Business エディション | $21/人・月から | 約3,660円(税込みの目安) | ユーザー数: 最大 300 人 |"
+   },
+   "verdictSource": null,
+   "confirmedIn": 1,
+   "legacy": false
+  },
+  {
    "id": "plan-copilot-standalone",
    "kind": "plan",
    "vendor": "Microsoft",
@@ -430,6 +505,31 @@
     "title": "Copilotアプリの「プロジェクト」機能と使い方",
     "publishedAt": "2026-10-28T15:55:00+00:00",
     "quote": "| Microsoft 365 Copilot(大企業向け) | 4,497円/人・月(年払い・税別) / 4,722円/人・月(月払い・税別) | 約5,190円(税込みの目安) | |"
+   },
+   "verdictSource": null,
+   "confirmedIn": 1,
+   "legacy": false
+  },
+  {
+   "id": "plan-microsoft365copilot",
+   "kind": "plan",
+   "vendor": "Microsoft",
+   "companySlug": "microsoft",
+   "product": "Microsoft 365 Copilot",
+   "plan": "法人向け",
+   "currency": "JPY",
+   "monthly": 4722,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": null,
+   "free": null,
+   "source": {
+    "slug": "copilot-whats-new-october-2026",
+    "title": "Microsoft Copilotの新機能とは？2026年10月版　日本で使える？",
+    "publishedAt": "2026-11-05T22:28:51+00:00",
+    "quote": "法人向けのMicrosoft 365 Copilotは、1人あたり月4,722円(月払い・税別)、年払いは4,497円(税別)です(同ページ、11/5確認)。"
    },
    "verdictSource": null,
    "confirmedIn": 1,
