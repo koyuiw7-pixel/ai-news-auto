@@ -5158,6 +5158,15 @@
       "skipped": true,
       "url": "https://www.value-press.com/pressrelease/383122"
     },
+    "216a05e8195adc71": {
+      "at": "2026-11-05T22:33:23.717499+00:00",
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "copilot-whats-new-october-2026",
+      "url": "https://blogs.windows.com/japan/2026/11/06/whats-new-in-microsoft-copilot-october-2026/"
+    },
     "21b9ad530469352ed79e298118d1b253bad891fc": {
       "at": "2026-11-04T01:57:48.878910+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -16106,20 +16115,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-04T06:23:34.637692+00:00",
-      "attempt": 1,
-      "id": "3d509e27bae229a3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "openai-news",
-      "title": "OpenAI appoints Jill Hazelbaker as Chief Corporate Affairs Officer"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-04T06:24:27.285830+00:00",
       "attempt": 2,
       "id": "3d509e27bae229a3",
@@ -22299,6 +22294,30 @@
       "title": "AI is speeding up how Windows security flaws are found and fixed",
       "warnings": [
         "初めて出たところで言い換えていない略語（MDASH）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T22:33:18.818064+00:00",
+      "attempt": 1,
+      "id": "216a05e8195adc71",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 97.6,
+        "avg_sentence": 43.9,
+        "long_share": 0.125,
+        "max_paragraph": 162,
+        "paragraphs": 18,
+        "sentences": 40
+      },
+      "score": 88,
+      "source": "windows-blog-jp",
+      "title": "Microsoft Copilot の新機能 | 2026 年 10 月",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "初めて出たところで言い換えていない略語（GCC）"
       ]
     }
   ],
