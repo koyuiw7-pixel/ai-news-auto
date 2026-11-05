@@ -3688,6 +3688,15 @@
       "slug": "career-consultant-exam-schedule-mhlw",
       "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/jinzaikaihatsu/career_consultant01.html"
     },
+    "0a437d67f2effbc5": {
+      "at": "2026-11-05T00:22:52.852233+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "openai-images-2-6-gif-faster",
+      "url": "https://openai.com/index/introducing-images-2-6"
+    },
     "0ad26ba6b13d4d29": {
       "at": "2026-10-29T18:10:45.707932+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8958,6 +8967,12 @@
       "slug": "reddit-for-you-following-feed",
       "url": "https://techcrunch.com/2026/10/28/reddit-is-the-latest-platform-to-embrace-the-for-you-feed/"
     },
+    "7d77be3bcb44aee6": {
+      "at": "2026-11-05T00:22:59.585012+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（議事）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77172.html"
+    },
     "7da9fc739690622b": {
       "at": "2026-11-04T15:41:53.379361+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -9481,6 +9496,13 @@
       "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01kanbo01_02001186.html"
+    },
+    "881fb5883a54332e": {
+      "at": "2026-11-05T00:22:59.581299+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "元記事の本文は、xlsx（Excel）ファイルの内部データが文字化けして抽出されたもので、増減要因の項目名や金額・日付を読み取れません。日銀の公式発表であり対象範囲には入りますが、記事に書ける事実が確認できないため、正しい本文を再抽出してから作成し直してください。",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/statistics/boj/fm/juqp/juqp2611.xlsx"
     },
     "882512038a7997cd": {
       "at": "2026-10-30T09:11:15.103300+00:00",
@@ -11285,6 +11307,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102803"
+    },
+    "b05476f8122be4bf": {
+      "at": "2026-11-05T00:22:59.583298+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（議事）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/mopo/mpmsche_minu/minu_2026/g260918.pdf"
     },
     "b083716eb979e302": {
       "at": "2026-11-02T19:11:47.469097+00:00",
@@ -14046,6 +14074,12 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01kanbo01_02001187.html"
     },
+    "f064ab766e9f884b": {
+      "at": "2026-11-05T00:22:53.167648+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://blog.ja.playstation.com/2026/11/05/20261105-tombraider-evolution-of-lara-crofts-design-o/"
+    },
     "f06f500d38fecbd3": {
       "at": "2026-10-27T03:05:10.758606+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（講座）",
@@ -14797,26 +14831,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-03T00:55:29.234904+00:00",
-      "attempt": 0,
-      "id": "136a46008993a284",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 64.8,
-        "avg_sentence": 30.1,
-        "long_share": 0.0,
-        "max_paragraph": 106,
-        "paragraphs": 13,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "soumu",
-      "title": "革新的情報通信技術（Beyond 5G（6G））基金事業 社会実装・海外展開志向型戦略的プログラム【事業戦略支援型】 に係る予備調査（第6回）"
-    },
     {
       "accepted": false,
       "at": "2026-11-03T00:59:37.235400+00:00",
@@ -21168,6 +21182,29 @@
       "warnings": [
         "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（PFN・LLM・MT）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T00:22:52.838047+00:00",
+      "attempt": 1,
+      "id": "0a437d67f2effbc5",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 108.0,
+        "avg_sentence": 42.0,
+        "long_share": 0.194,
+        "max_paragraph": 172,
+        "paragraphs": 14,
+        "sentences": 36
+      },
+      "score": 88,
+      "source": "openai-news",
+      "title": "Introducing Images 2.6",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GIF）"
       ]
     }
   ],
