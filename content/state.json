@@ -58,6 +58,7 @@
     "nfpVl4pC0UM": 1,
     "nqAri_t8xRA": 1,
     "o4D1J1YWjhg": 2,
+    "pheCh2nQPjQ": 1,
     "qVGa1VU2YfA": 2,
     "roVDIuW_6HI": 1,
     "tTuk4pGnT0A": 1,
@@ -170,14 +171,6 @@
       "tries": 1,
       "url": "https://www.softbank.jp/sbnews/entry/20261104_01"
     },
-    "e6c9c7fda0339b68": {
-      "first": "2026-11-05T11:29:07.458796+00:00",
-      "next": "2026-11-05T18:06:55.528713+00:00",
-      "reason": "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「益(売上にあたる収益)は26兆9,624億円」、「24億円で、前年同期より2兆3,317億円」、「## 日本の持分法利益は2,863億円」、「・中国: 286億円」、「中国: 286億円(同△194億円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）",
-      "title": "[トヨタイムズ記事] 【2027年3月期第2四半期決算】3年ぶり増益 事業構造改革へ加速",
-      "tries": 2,
-      "url": "https://toyotatimes.jp/toyota_news/financial_results_2027/002.html?padid=ag478_from_newsroom"
-    },
     "e92adb95112b5264": {
       "first": "2026-11-04T15:10:10.114870+00:00",
       "next": "2026-11-04T18:10:10.114870+00:00",
@@ -195,9 +188,7 @@
       "url": "https://developers.cyberagent.co.jp/blog/archives/67267/"
     }
   },
-  "major_tries": {
-    "1fef8fc8257a5b71": 2
-  },
+  "major_tries": {},
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -5063,6 +5054,12 @@
       "skipped": true,
       "url": "https://blogs.windows.com/japan/2026/10/27/microsoft-copilot-blog-building-trust-aware-controls-for-ai-differentiated-handling-of-untrusted-conten-4562160/"
     },
+    "1fef8fc8257a5b71": {
+      "at": "2026-11-05T18:21:22.522657+00:00",
+      "reason": "major gave up x3: 本文が短い（455字）",
+      "skipped": true,
+      "url": "https://support.claude.com/en/articles/12138966-release-notes#entry-2026-11-05"
+    },
     "1ff21a1fea64f84e": {
       "at": "2026-11-02T05:48:42.542932+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6579,6 +6576,12 @@
       "slug": "microsoft-agentic-software-engineering-code-modernization",
       "url": "https://commandline.microsoft.com/agentic-software-engineering-large-scale-code-migration-language-modernization-spec-driven-development/"
     },
+    "408d83e364fa3424": {
+      "at": "2026-11-05T18:23:10.492398+00:00",
+      "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/media/commercials/202611/video-327032.html"
+    },
     "40e0a497a975ed34": {
       "at": "2026-10-27T03:01:43.650271+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -7946,6 +7949,13 @@
       "reason": "quality: easy_markdown が短い（390字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/tyoukanpress/202610/29_a.html"
+    },
+    "5c50ec5a21173eae": {
+      "at": "2026-11-05T18:23:21.768503+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "首相官邸での会計検査院の令和7年度決算検査報告の受け取りを伝える行事のお知らせで、元資料に具体的な数字や読者が使う・受けるものの条件がなく、投資・マネーの対象範囲にも当たらないため。",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327089.html"
     },
     "5c632984dfd76a2f": {
       "at": "2026-11-05T09:43:05.496053+00:00",
@@ -9748,6 +9758,12 @@
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/build-efficient-agents-with-knowledge-distillation-on-amazon-sagemaker-ai/"
     },
+    "80e79a78498c7241": {
+      "at": "2026-11-05T18:23:10.492895+00:00",
+      "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/article/200810/entry-9113.html"
+    },
     "80f02472d74f44ab": {
       "at": "2026-11-05T17:31:50.641186+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（議事）",
@@ -9858,6 +9874,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/singi/chizai/02zaisei02_04001397_00976.html"
+    },
+    "82ba3b5f71aacf8f": {
+      "at": "2026-11-05T18:23:10.492855+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/article/201404/entry-9030.html"
     },
     "82c166eb3403fd1d": {
       "at": "2026-10-30T05:54:26.203641+00:00",
@@ -10118,6 +10140,12 @@
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005966.000054842.html"
+    },
+    "877948a180f4280d": {
+      "at": "2026-11-05T18:23:10.492752+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/article/202011/entry-8618.html"
     },
     "878fb1b560808c41": {
       "at": "2026-10-29T00:01:59.299870+00:00",
@@ -10527,6 +10555,12 @@
       "reason": "short text 548",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110208"
+    },
+    "8fb0b9dcb6ac4d10": {
+      "at": "2026-11-05T18:23:10.492381+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202611/video-327085.html"
     },
     "8fd688b05729e308": {
       "at": "2026-10-28T19:53:31.954500+00:00",
@@ -11738,6 +11772,12 @@
       "skipped": true,
       "url": "https://case-studies.ipa.go.jp/jirei-data/case_studies/240"
     },
+    "a77360a4ea150a6d": {
+      "at": "2026-11-05T18:23:10.492476+00:00",
+      "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/article/202611/tv-6667.html"
+    },
     "a78385f90422680a": {
       "at": "2026-10-28T22:12:03.551537+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -12013,6 +12053,12 @@
       "section": "tech-gadget",
       "slug": "brotli-vulnerability-cve-2026-111497",
       "url": "https://www.jpcert.or.jp/at/2026/at260034.html"
+    },
+    "ae4a63cc6b522d86": {
+      "at": "2026-11-05T18:23:10.492330+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202611/video-327102.html"
     },
     "ae5d372b066fa00d": {
       "at": "2026-10-26T15:58:59.859446+00:00",
@@ -14767,6 +14813,13 @@
       "slug": "secure-samba-mac-drive-app",
       "url": "https://news.mynavi.jp/techplus/article/20261103-5248905/"
     },
+    "e6c9c7fda0339b68": {
+      "at": "2026-11-05T18:23:09.959059+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://toyotatimes.jp/toyota_news/financial_results_2027/002.html?padid=ag478_from_newsroom"
+    },
     "e6d56825e06fc5a3": {
       "at": "2026-11-02T13:21:41.531788+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15050,6 +15103,12 @@
       "reason": "quality: 本文が短い（2254字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://cloud.google.com/blog/ja/products/serverless/temporal-serverless-workers-on-cloud-run-worker-pools/"
+    },
+    "ed8882990ef515aa": {
+      "at": "2026-11-05T18:23:10.492264+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-327119.html"
     },
     "eda7f4c481a4612a": {
       "at": "2026-10-28T19:34:24.811687+00:00",
@@ -15990,46 +16049,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:49:06.536642+00:00",
-      "attempt": 2,
-      "id": "7f05432d1620715c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "microsoft-research-blog",
-      "title": "Learn the rules: The hacker mindset"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:53:05.688485+00:00",
-      "attempt": 1,
-      "id": "bc4177032a04e266",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "段落が長い（平均 131.8字・最長 218字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 131.8,
-        "avg_sentence": 38.4,
-        "long_share": 0.062,
-        "max_paragraph": 218,
-        "paragraphs": 14,
-        "sentences": 48
-      },
-      "score": 92,
-      "source": "hugging-face-blog",
-      "title": "Palette: teaching a small model to build decks in your design language",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JSON）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-04T03:53:34.466757+00:00",
@@ -22236,6 +22255,34 @@
         "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（APR・GA）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T18:22:59.280457+00:00",
+      "attempt": 1,
+      "id": "e6c9c7fda0339b68",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "toyota",
+      "title": "[トヨタイムズ記事] 【2027年3月期第2四半期決算】3年ぶり増益 事業構造改革へ加速"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T18:23:09.958998+00:00",
+      "attempt": 2,
+      "id": "e6c9c7fda0339b68",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "toyota",
+      "title": "[トヨタイムズ記事] 【2027年3月期第2四半期決算】3年ぶり増益 事業構造改革へ加速"
     }
   ],
   "short_text_retry": {
