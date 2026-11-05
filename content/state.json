@@ -209,7 +209,9 @@
       "url": "https://developers.cyberagent.co.jp/blog/archives/67267/"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "be080fcaa0a3f4c9": 1
+  },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -15150,48 +15152,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-03T17:37:41.235235+00:00",
-      "attempt": 2,
-      "id": "a55665cf48953af7",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "hugging-face-blog",
-      "title": "StateBench: Testing how language models track state changes over long documents"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T17:41:39.522016+00:00",
-      "attempt": 1,
-      "id": "7f05432d1620715c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "microsoft-research-blog",
-      "title": "Learn the rules: The hacker mindset"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T17:45:37.679660+00:00",
-      "attempt": 2,
-      "id": "7f05432d1620715c",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "microsoft-research-blog",
-      "title": "Learn the rules: The hacker mindset"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-03T17:46:02.227037+00:00",
       "attempt": 1,
       "id": "6e8810a5139499c0",
@@ -21320,6 +21280,81 @@
       "title": "リコールの届出について（ヨコハマ LT151R 他）",
       "warnings": [
         "初めて出たところで言い換えていない略語（LT・GUARD・PARADA）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:17:04.047862+00:00",
+      "attempt": 1,
+      "id": "be080fcaa0a3f4c9",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "題名・リードに比べる基準（変更前(2026年8月4日の取締役会決議)）が書かれていない。何と比べた増減かをリードの数字のそばに書く"
+      ],
+      "readability": {
+        "avg_paragraph": 73.7,
+        "avg_sentence": 31.6,
+        "long_share": 0.041,
+        "max_paragraph": 133,
+        "paragraphs": 21,
+        "sentences": 49
+      },
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:17:49.233771+00:00",
+      "attempt": 2,
+      "id": "be080fcaa0a3f4c9",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "題名・リードに比べる基準（変更前(2026年8月4日の取締役会決議)）が書かれていない。何と比べた増減かをリードの数字のそばに書く"
+      ],
+      "readability": {
+        "avg_paragraph": 80.4,
+        "avg_sentence": 37.9,
+        "long_share": 0.083,
+        "max_paragraph": 131,
+        "paragraphs": 17,
+        "sentences": 36
+      },
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:18:17.118909+00:00",
+      "attempt": 3,
+      "id": "be080fcaa0a3f4c9",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "要点の数字「2,963億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "題名・リードに比べる基準（変更前(2026年8月4日の取締役会決議)）が書かれていない。何と比べた増減かをリードの数字のそばに書く",
+        "要点に予想・見通しの言い方（「見込み」）があるが、公式の資料に無い。資料の事実だけを書く"
+      ],
+      "readability": {
+        "avg_paragraph": 67.2,
+        "avg_sentence": 30.7,
+        "long_share": 0.022,
+        "max_paragraph": 126,
+        "paragraphs": 21,
+        "sentences": 46
+      },
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NISA）",
+        "同じ数字が多い（「4社」が5回）"
       ]
     }
   ],
