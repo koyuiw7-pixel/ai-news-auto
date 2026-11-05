@@ -7744,6 +7744,13 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102707"
     },
+    "588776d5fd509bfe": {
+      "at": "2026-11-05T14:11:27.460900+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "followup style: 見出しが多すぎる（3個 / 本文1990字なら2個まで）。章をまとめて見出しを減らす",
+      "skipped": true,
+      "url": "https://blogs.nvidia.com/blog/geforce-now-thursday-hogwarts-legacy-dlss-5/"
+    },
     "588b2b1e46b1c520": {
       "at": "2026-10-30T05:54:26.203697+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（表彰）",
@@ -11888,6 +11895,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000220.000087046.html"
     },
+    "acefadff72bf4c8c": {
+      "at": "2026-11-05T14:11:27.462690+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://blog.ja.playstation.com/2026/11/05/20261105-acv-post-launch-update-o/"
+    },
     "ad10900db6cdd66b": {
       "at": "2026-10-28T20:12:33.259864+00:00",
       "breaking": true,
@@ -12173,6 +12186,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
       "skipped": true,
       "url": "http://global.nissannews.com/ja-JP/releases/261104-01-j"
+    },
+    "b31fc267e6b94265": {
+      "at": "2026-11-05T14:11:27.476743+00:00",
+      "reason": "prefilter: 告知・お知らせ系",
+      "skipped": true,
+      "url": "https://blog.google/company-news/outreach-and-initiatives/grow-with-google/national-veterans-small-business-week-2026/"
     },
     "b32fc1ff91add27f": {
       "at": "2026-10-27T02:31:09.461076+00:00",
@@ -15846,20 +15865,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T01:48:23.619748+00:00",
-      "attempt": 1,
-      "id": "bd77db82486b50a500f6bc90bee4f34482b22617",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "ihi 株価"
-    },
     {
       "accepted": false,
       "at": "2026-11-04T01:49:11.275737+00:00",
@@ -22053,6 +22058,18 @@
       "score": null,
       "source": "tokyo-metro",
       "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T14:11:27.445017+00:00",
+      "attempt": 1,
+      "id": "588776d5fd509bfe",
+      "kind": "update",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "score": 84,
+      "source": "nvidia-blog",
+      "title": "‘Hogwarts Legacy’ Gets a Magical NVIDIA DLSS 5 Upgrade on GeForce NOW"
     }
   ],
   "short_text_retry": {
