@@ -298,3 +298,20 @@ class ControlPostTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ControlPostPlainTest(unittest.TestCase):
+    """11/6 リンク無しの比べの投稿は、Muse と決めた「問いかけなしの事実だけ」で門番を通る（ふつうの投稿は今までどおり問いかけが要る）"""
+
+    def test_control_without_question_passes_but_normal_post_still_needs_question(self):
+        import importlib, json as _json
+        from pathlib import Path as _P
+        root = _P(__file__).resolve().parents[1]
+        sys.path.insert(0, str(root / 'scripts'))
+        sr = importlib.import_module('sns_rules')
+        art = _json.loads((root / 'content/articles/suntory-alcohol-price-hike-2027.json').read_text('utf-8'))
+        text = 'サントリーが、ウイスキーなどの値上げを発表しました。\n\n2027年4月1日出荷分から、「響」「山崎」などの価格を改定します。\n\n値上げの幅は、まだ発表されていません。'
+        media = [{'url': 'https://ai-tech-express.jp/card/x', 'type': 'image'}]
+        self.assertEqual(sr.check_post('threads', text, media, art, kind='control', reply_text='', links=[]), [])
+        normal = sr.check_structure('threads', text, art)
+        self.assertTrue(any('問いかけ' in x for x in normal))

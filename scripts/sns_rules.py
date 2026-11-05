@@ -1015,16 +1015,17 @@ def parts_of(platform: str, content: str) -> tuple[str, str, str]:
     return "", blocks[0] if blocks else "", ""
 
 
-def check_structure(platform: str, content: str, article: dict | None = None) -> list[str]:
-    """書き出し → 事実2文 → 問いかけ（災害・事故・安全の話題は 事実だけ）"""
+def check_structure(platform: str, content: str, article: dict | None = None, plain: bool = False) -> list[str]:
+    """書き出し → 事実2文 → 問いかけ（災害・事故・安全の話題と、リンク無しの比べの投稿（plain）は 事実だけ）"""
     out = []
     if persona.SUMMARY_OPENER in content:
         out.append(f"[ルール13] 「{persona.SUMMARY_OPENER}」で始めない（2026-11-05 オーナー判断。前置きなしで事実の文から書く）")
-    if safety_topic(article):
+    # plain: 2026-11-06 テストの日（台帳 S39）のリンク無しの比べの投稿。Muse と決めた「問いかけなしの事実だけ」の形で、リンクの有無だけを比べる
+    if safety_topic(article) or plain:
         blocks = blocks_of(content)
         if not blocks:
             out.append("[ルール1] 事実の文がない")
-        elif blocks[-1].endswith(QUESTION_END):
+        elif blocks[-1].endswith(QUESTION_END) and safety_topic(article):
             out.append("[ルール14] 災害・事故・安全の話題に問いかけを付けない（事実だけ）")
         if len(content) > CONTENT_MAX:
             out.append(f"[ルール1] 本文が長すぎる（{len(content)}字 / {CONTENT_MAX}字まで）")
@@ -1279,7 +1280,7 @@ def check_post(
             out.append(f"[ルール10] {why}")
         hook_form = sns_plan.hook_format_on() and platform != "x" and not hook_problems(_body_without_link_line(content))
         if not hook_form:
-            out += check_structure(platform, content, article)
+            out += check_structure(platform, content, article, plain=kind == "control")
             out += check_opener(platform, text, content, article)
         else:
             for pattern, label in BANNED_OPENERS:
