@@ -12097,6 +12097,15 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/housou_seisaku/02ryutsu07_04000602.html"
     },
+    "bb2f74751471878b": {
+      "at": "2026-11-05T09:02:42.894442+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "medical-ai-platform-ubie-trial",
+      "url": "https://www.ntt.com/about-us/press-releases/news/article/2026/1105.html"
+    },
     "bb5942a1c9ce2622": {
       "at": "2026-11-02T21:17:54.326220+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
@@ -15221,32 +15230,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T19:47:55.475365+00:00",
-      "attempt": 1,
-      "id": "841c3ce16d85bb46",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "title の長さが不適切（77字 / 18〜64字）"
-      ],
-      "readability": {
-        "avg_paragraph": 171.7,
-        "avg_sentence": 85.9,
-        "long_share": 1.0,
-        "max_paragraph": 230,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "ServiceNow on-behalf-of token exchange with Bedrock AgentCore Gateway",
-      "warnings": [
-        "見出しが77字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LLM・OBO・JSON）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-03T19:51:14.544610+00:00",
@@ -21585,6 +21568,29 @@
       "score": 91,
       "source": "rakuten",
       "title": "「楽天インサイト」、「生活者のAI活用購買における調査」結果を発表"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T09:02:42.884162+00:00",
+      "attempt": 1,
+      "id": "bb2f74751471878b",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 86.4,
+        "avg_sentence": 36.4,
+        "long_share": 0.079,
+        "max_paragraph": 163,
+        "paragraphs": 16,
+        "sentences": 38
+      },
+      "score": 92,
+      "source": "ntt-news-ai",
+      "title": "医学書院、NTT、NTTドコモビジネス、医療現場での「信頼できるAI」の実現に向け、Ubieと医療AI情報プラットフォームの共同実証を開始",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（RAG）"
+      ]
     }
   ],
   "short_text_retry": {
