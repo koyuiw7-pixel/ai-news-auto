@@ -154,10 +154,10 @@
     },
     "8ec46f72407133f6": {
       "first": "2026-11-05T02:03:40.923265+00:00",
-      "next": "2026-11-05T05:03:40.923265+00:00",
+      "next": "2026-11-05T13:14:06.028803+00:00",
       "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "title": "政府債務の指標と公的年金",
-      "tries": 1,
+      "tries": 2,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87103?site=nli"
     },
     "9824d9cb50fa7b55": {
@@ -183,6 +183,14 @@
       "title": "営業毎旬報告（10月31日現在）",
       "tries": 1,
       "url": "http://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261031.htm"
+    },
+    "dd699d29ee35f836": {
+      "first": "2026-11-05T10:36:29.714499+00:00",
+      "next": "2026-11-05T13:36:29.714499+00:00",
+      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します",
+      "tries": 1,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110512"
     },
     "e2654f5d2f822277": {
       "first": "2026-11-04T03:04:00.517719+00:00",
@@ -3691,6 +3699,13 @@
       "skipped": true,
       "url": "https://www.sumitomo-rd.co.jp/news/2026110422463/"
     },
+    "0867c96acf5bcec0": {
+      "at": "2026-11-05T10:11:53.442287+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "マスコットキャラクター「みーも」の特設サイト公開と、イベントブースの告知が中心で、技術的な中身がない宣伝発表のため対象外とします。",
+      "skipped": true,
+      "url": "https://corp.moneyforward.com/news/info/20261105-mf-press-1/"
+    },
     "0872902dfeb6a015": {
       "at": "2026-10-30T08:31:58.769136+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5042,6 +5057,13 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/inter/etc/20261030/20261030.html"
     },
+    "21efe9d9333210ec": {
+      "at": "2026-11-05T10:14:28.898341+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "元記事の本文が「ページが見つかりません」のエラーページで、確認できるのは見出しの内容（地域創生Coデザイン研究所がJ-クレジット・プロバイダーに登録したこと）だけです。登録の日付、森林由来J-クレジットの量や価格、事業の規模、読者に関係する条件が資料になく、1,600字以上の記事を事実だけで書けないため見送ります。",
+      "skipped": true,
+      "url": "http://www.ntt-west.co.jp/newscms/news/15553/1_20261105.pdf"
+    },
     "21f4761ac0bc4960": {
       "at": "2026-10-28T20:52:17.541097+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5458,11 +5480,23 @@
       "slug": "meta-jittestings-human-on-the-loop-approach",
       "url": "https://engineering.fb.com/2026/10/29/security/catching-bugs-before-they-land-jittestings-human-on-the-loop-approach-at-full-scale/"
     },
+    "2b2f8d9b6bf63742": {
+      "at": "2026-11-05T10:14:28.900404+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_76993.html"
+    },
     "2b3073ee02ff6eca": {
       "at": "2026-10-29T18:35:20.173463+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/kaisai/02kiban16_04000966.html"
+    },
+    "2b348a8b578e32ca": {
+      "at": "2026-11-05T10:14:28.900707+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_kyotsuu/important/kinkyu02_000638.html"
     },
     "2b3c8743ac8faea6": {
       "at": "2026-10-28T12:08:40.147579+00:00",
@@ -5817,6 +5851,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（採用）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000062.000061700.html"
+    },
+    "32dde20d2ebdd4a3": {
+      "at": "2026-11-05T10:14:28.900423+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_76982.html"
     },
     "32df6aacf0f7d92c": {
       "at": "2026-10-28T23:13:03.555392+00:00",
@@ -7315,6 +7355,12 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01tsushin06_02000364.html"
+    },
+    "53394f83cc24d57d": {
+      "at": "2026-11-05T10:14:28.900513+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110518"
     },
     "534a8c2da0020056": {
       "at": "2026-10-26T14:35:29.164627+00:00",
@@ -9059,6 +9105,12 @@
       "reason": "AI・ソフトウェアなど技術の発表ではなく、社員向けの人事制度（希望退職の募集）の社内連絡であり、このジャンルの対象範囲外のため。",
       "skipped": true,
       "url": "https://blogs.microsoft.com/blog/2026/10/26/introducing-a-voluntary-exit-offer/"
+    },
+    "7ad858314204b4c0": {
+      "at": "2026-11-05T10:11:53.444612+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://www.cyberagent.co.jp/news/detail/id=33979"
     },
     "7ae8eb20550eee76": {
       "at": "2026-10-28T15:48:04.787605+00:00",
@@ -12627,6 +12679,12 @@
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047747/"
     },
+    "c6cebe525578bdc4": {
+      "at": "2026-11-05T10:14:28.900454+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/councils/smartphone-mynumbercard/963f6b16-1056-4bcf-b22f-dbc11ceaf322"
+    },
     "c6d9238c83518589": {
       "at": "2026-11-02T09:14:44.806759+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -12718,6 +12776,13 @@
       "section": "tech-gadget",
       "slug": "ipa-dx-certification-nov-2026",
       "url": "https://disclosure.dx-portal.ipa.go.jp/"
+    },
+    "c99873828d835e64": {
+      "at": "2026-11-05T10:14:42.166103+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "東京都の青山スタートアップアクセラレーションセンターで第23期・第4期プログラムの採択企業が決まったという案内です。採択企業の一覧が中心で、読者が申し込んだり使ったりできる制度・給付・料金の情報ではないため、対象外としました。",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110520"
     },
     "c9a13ebac0afcac0": {
       "at": "2026-10-26T14:31:00.675093+00:00",
@@ -13280,6 +13345,12 @@
       "section": "public",
       "slug": "disaster-agency-launch-2026",
       "url": "https://www.kantei.go.jp/jp/105/actions/202611/02hossokushiki.html"
+    },
+    "d5d0f31755500e58": {
+      "at": "2026-11-05T10:14:28.900622+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77001.html"
     },
     "d5dfb55b012918e7": {
       "at": "2026-10-26T11:34:03.294314+00:00",
@@ -15251,136 +15322,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T21:43:08.615677+00:00",
-      "attempt": 3,
-      "id": "62d66d433201899c",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「表ではClaude Mythos 5、Claude Opus 4.7、Claude Sonnet 4.6に「*」が付いています」→ 表の注記「*」は抽出上 Mythos 5、Opus 4.7、Sonnet 4.6の「✅*」に付くが、Sonnet 4.6は「✅*†」とあり、Bedrock注記の対象を3モデルすべてと断定",
-        "「今回の3モデルには、表に「✅」の印が付いています」→ 抽出表は崩れており、これは妥当だが同時に「*」の対象を断定している点と整合しない",
-        "「今回の項目は、その対象に挙がった3モデルの記載です」→ 3モデルが8月2日前のモデルの対象として挙がったとの説明は元記事に明記がなく、Mythos 5等の扱いも推測を含む",
-        "「Anthropicは、検出APIの提供範囲を順次広げる計画です」の下で列挙した「法執行機関」などは元記事にあるが、「行動規範に沿って」企業が申請フォームから「利用を申し込めます」→ 申請フォームは関心登録（register interest）であり、利用を申し込めると言い過ぎ",
-        "「判定: 提供状況=limited」→ 3モデルでは提供済みの機能であり、限定提供とするのは検出機能と混同した表現で不正確",
-        "「人が読んでも見えません」「どのClaudeの製品や画面で出た文章でも付くとされています」→ 後者は元記事で「一部のプラットフォームや機能は特定の印に非対応の場合がある」とも書かれ、断定が強い"
-      ],
-      "readability": {
-        "avg_paragraph": 70.5,
-        "avg_sentence": 41.3,
-        "long_share": 0.189,
-        "max_paragraph": 122,
-        "paragraphs": 31,
-        "sentences": 53
-      },
-      "score": 55,
-      "source": "watch-claude-api-release-notes",
-      "title": "Claude API: Text generated by Claude Mythos 5, Claude Opus 4.7, and Claude Sonne",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T21:56:19.339960+00:00",
-      "attempt": 1,
-      "id": "62d66d433201899c",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「Mythos 5とOpus 4.7の提携先欄には、Amazon Bedrockでの提供は11月10日までに完了するという注記」→ 一覧表では✅*はMythos 5とOpus 4.7、Sonnet 4.6の提携先欄に付いており、Sonnet 4.6の「✅*†」にも同じ注記がある。Sonnet 4.6は注記なしと読めるが",
-        "「Sonnet 4.6は、提携先の欄にも注記があります。」→ 注記の内容（Bedrock 11月10日完了と†）を明示せず曖昧で、Mythos 5/Opus 4.7との違いが誤解を生む。",
-        "「他のモデルでは通常、対応は不要です。」（編集部の見方）→ 元資料に根拠のない断定で、他のモデルの扱いは元記事に書かれていない。",
-        "「自社の画面と、AWS・Google Cloud・Microsoft Foundryなど…の両方で透かしが付くと確認できるのは次のとおりです」→ 表の記号の列対応が不明確なまま3モデルのみと断定しており、他のモデルが対応していないと誤読させる。",
-        "「提供状況=limited」→ 元記事は3モデルで透かしが付くと述べており、limited（一部提供）と区分する根拠は元記事にない。",
-        "「Anthropicは、これらにも順次、表示の対応を加えているところです。」→ 元記事は「working to add」で、対応は進行中とするだけだが、「加えている」は一部は提供済みとも読め、やや言い過ぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 87.9,
-        "avg_sentence": 40.0,
-        "long_share": 0.182,
-        "max_paragraph": 148,
-        "paragraphs": 20,
-        "sentences": 44
-      },
-      "score": 68,
-      "source": "watch-claude-api-release-notes",
-      "title": "Claude API: Text generated by Claude Mythos 5, Claude Opus 4.7, and Claude Sonne",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PA）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T21:56:54.301631+00:00",
-      "attempt": 2,
-      "id": "62d66d433201899c",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "タイトル「Claude 3モデルの生成文に透かし」→ 対象はMythos 5、Opus 4.7、Sonnet 4.6の3モデルで、「Claude 3モデル」は「Claude 3」シリーズと誤読される誤りであり、元記事と食い違う。",
-        "「Sonnet 4.6だけは…付かない場合があります」→ 元記事は他モデルに同条件が示されていないと述べるのみで、「だけ」と断定するのは言い過ぎ。",
-        "「文章をコピーして別の場所に貼っても付いたままです」→ 元記事は「travel with the text」「may persist through some editing」とあり、「付いたまま」と断定するのは言い過ぎ。",
-        "「Sonnet 4.6：チェックが2つあります。自社の画面側に「†」付き、提携クラウド側に「*」と「†」」→ 抽出された表の列位置は判別できず、記事が列の割り当てを推測している。",
-        "「Mythos 5とOpus 4.7：提携クラウドの列にチェックがあり」→ 表の列は抽出で崩れており、どの列かは元記事から確定できない。",
-        "「ただし、機能によっては一部の印に対応しない場合があります」→ 元記事は「Some platforms or features」とあり、概ね裏付けられるが、「かんたん版」の「3モデルが対象」は他モデルの対応可能性を除外するような言い方になっている。"
-      ],
-      "readability": {
-        "avg_paragraph": 85.0,
-        "avg_sentence": 41.6,
-        "long_share": 0.133,
-        "max_paragraph": 210,
-        "paragraphs": 22,
-        "sentences": 45
-      },
-      "score": 62,
-      "source": "watch-claude-api-release-notes",
-      "title": "Claude API: Text generated by Claude Mythos 5, Claude Opus 4.7, and Claude Sonne",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PA）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T21:57:23.548347+00:00",
-      "attempt": 3,
-      "id": "62d66d433201899c",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.0,
-        "avg_sentence": 39.4,
-        "long_share": 0.163,
-        "max_paragraph": 190,
-        "paragraphs": 23,
-        "sentences": 49
-      },
-      "score": 93,
-      "source": "watch-claude-api-release-notes",
-      "title": "Claude API: Text generated by Claude Mythos 5, Claude Opus 4.7, and Claude Sonne",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PA）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T23:36:43.942743+00:00",
-      "attempt": 1,
-      "id": "3d509e27bae229a3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "openai-news",
-      "title": "OpenAI appoints Jill Hazelbaker as Chief Corporate Affairs Officer"
-    },
     {
       "accepted": false,
       "at": "2026-11-03T23:40:53.182897+00:00",
@@ -21537,6 +21478,76 @@
       "score": null,
       "source": "soumu",
       "title": "武力攻撃事態等における安否情報収集・提供システムへの不正アクセスについて"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T10:11:49.084087+00:00",
+      "attempt": 1,
+      "id": "0867c96acf5bcec0",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "moneyforward-news",
+      "title": "マネーフォワード、AI時代のお金の価値観を 公式マスコットキャラクター「みーも」とともに考える特設サイトを公開"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T10:12:53.862970+00:00",
+      "attempt": 1,
+      "id": "8ec46f72407133f6",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "nli-research",
+      "title": "政府債務の指標と公的年金"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T10:14:06.028730+00:00",
+      "attempt": 2,
+      "id": "8ec46f72407133f6",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "nli-research",
+      "title": "政府債務の指標と公的年金"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T10:17:35.936801+00:00",
+      "attempt": 1,
+      "id": "dd699d29ee35f836",
+      "kind": "broad",
+      "model": "gemini-3.7-flash",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T10:36:29.714454+00:00",
+      "attempt": 2,
+      "id": "dd699d29ee35f836",
+      "kind": "broad",
+      "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
     }
   ],
   "short_text_retry": {
