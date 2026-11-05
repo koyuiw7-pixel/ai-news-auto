@@ -210,7 +210,7 @@
     }
   },
   "major_tries": {
-    "5179ed8e3f9e5114": 1,
+    "5179ed8e3f9e5114": 2,
     "771f7b3c35a2e5cc": 2,
     "b3a04c021ff2b99e": 1
   },
@@ -15187,88 +15187,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-03T18:43:37.459284+00:00",
-      "attempt": 1,
-      "id": "2479059235a0b85f",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「8月24日に公開された企業向けの認証」→ 元記事は「August」としか書いておらず、24日という日付は元記事にも確認済み文脈にも無い。",
-        "「編集部の見方では、IdPを無効にすれば全サービスが止まるという前提で運用している会社ほど…」→ 元記事に無い推測だが、「編集部の見方」と明示されており軽微。"
-      ],
-      "readability": {
-        "avg_paragraph": 86.7,
-        "avg_sentence": 36.7,
-        "long_share": 0.096,
-        "max_paragraph": 226,
-        "paragraphs": 22,
-        "sentences": 52
-      },
-      "score": 88,
-      "source": "supabase-blog",
-      "title": "Enterprise-managed auth for MCP: Claude can now issue the identity assertion",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JWT・SSO・GA）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T18:44:12.084565+00:00",
-      "attempt": 2,
-      "id": "2479059235a0b85f",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.6,
-        "avg_sentence": 35.8,
-        "long_share": 0.075,
-        "max_paragraph": 176,
-        "paragraphs": 23,
-        "sentences": 53
-      },
-      "score": 93,
-      "source": "supabase-blog",
-      "title": "Enterprise-managed auth for MCP: Claude can now issue the identity assertion",
-      "warnings": [
-        "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（MCP・SSO・JWT）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T18:52:19.912906+00:00",
-      "attempt": 1,
-      "id": "f5a0d7153ecc99c8",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「評価ツール「skill-reach」はオープンソースで提供されています」「判定: …価格=ツールは無料公開」→ 元記事は「open-sourced」とだけ述べており、価格や無料公開の記述はなく、価格の断定になっている。",
-        "「エージェントが採点を欺く例が多く見つかりました」→ 元記事は「surprisingly common pattern」と述べるだけで、「多く見つかった」とは書いていない。件数を示す言い方がやや強い。",
-        "「かんたん版」の「混ぜると、AIが答えのファイルを直接読むなどの不正で高得点を取ります」→ 元記事で不正が起きたのは正しさと効率を1つの点数に混ぜた最適化ループの場合に限られる。「混ぜると必ず起きる」ような一般化は言い過ぎ。",
-        "「NVIDIAのオープンソース評価ツールには、KubernetesとGeminiの機能を提供した」→ 元記事は「Gemini platform」の機能を上流に提供したとしており、「Gemini」だけに略すと意味が変わる。",
-        "「Claude Sonnet 5を…動かしています」→ 元記事は「Claude Sonnet 5 on Gemini platform」であり、プラットフォームの情報が抜けている。",
-        "「Claudeは日本で使えます。当サイトの確認：11/3」→ 日本での提供状況は確認済みの文脈にあり、問題ない。"
-      ],
-      "readability": {
-        "avg_paragraph": 82.2,
-        "avg_sentence": 40.4,
-        "long_share": 0.115,
-        "max_paragraph": 159,
-        "paragraphs": 30,
-        "sentences": 61
-      },
-      "score": 72,
-      "source": "google-cloud-blog",
-      "title": "Five rules for evaluating agent skills before they bloat your context window",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SKILL・MCP・GKE）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-03T18:52:56.353111+00:00",
       "attempt": 2,
       "id": "f5a0d7153ecc99c8",
@@ -21520,6 +21438,89 @@
       "title": "ソニーグループ 決算短信（2026年11月5日）",
       "warnings": [
         "初めて出たところで言い換えていない略語（SFGI）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:56:22.912891+00:00",
+      "attempt": 1,
+      "id": "5179ed8e3f9e5114",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リードの数字「2兆9,107億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "リードの数字「2,707億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "リードの数字「185円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "リードの数字「370円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「2兆9,107億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「242億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 72.9,
+        "avg_sentence": 33.0,
+        "long_share": 0.019,
+        "max_paragraph": 134,
+        "paragraphs": 24,
+        "sentences": 53
+      },
+      "score": null,
+      "source": "fast",
+      "title": "ダイキン工業 決算短信（2026年11月5日）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IR）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:57:02.702437+00:00",
+      "attempt": 2,
+      "id": "5179ed8e3f9e5114",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リードの数字「4,360億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「185.00円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「370.00円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「340.00円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 89.0,
+        "avg_sentence": 38.4,
+        "long_share": 0.059,
+        "max_paragraph": 148,
+        "paragraphs": 22,
+        "sentences": 51
+      },
+      "score": null,
+      "source": "fast",
+      "title": "ダイキン工業 決算短信（2026年11月5日）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（VRV・IR）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:57:49.226730+00:00",
+      "attempt": 3,
+      "id": "5179ed8e3f9e5114",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "要点の数字「242億1,400万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 89.4,
+        "avg_sentence": 36.9,
+        "long_share": 0.087,
+        "max_paragraph": 138,
+        "paragraphs": 19,
+        "sentences": 46
+      },
+      "score": null,
+      "source": "fast",
+      "title": "ダイキン工業 決算短信（2026年11月5日）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（VRV・FIVE・STAR）"
       ]
     }
   ],
