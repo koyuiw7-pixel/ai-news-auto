@@ -6,152 +6,139 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "GPT-6は、OpenAIが開発した大規模言語モデルです。パソコンの画面操作や高度な論理推論を融合させており、2026年9月から10月にかけて発表されました。",
+    "text": "GPT-6はOpenAIが発表した次世代AIモデル群です。回答画面をアプリ化する機能や、PC操作を自律的に行うエージェント機能を備えています。",
     "sources": [
       "openai-announces-gpt6-with-intelligent-ui",
-      "openai-chatgpt-voice-update-gpt6-astra",
       "openai-announces-gpt-6-astra"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年9月〜10月",
+      "value": "2026年10月7日より順次",
       "sources": [
-        "openai-gpt-6-1-terra-announcement",
-        "openai-announces-gpt6-with-intelligent-ui",
-        "openai-announces-gpt-6-astra"
+        "openai-announces-gpt6-with-intelligent-ui"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本から利用できる",
+      "value": "利用できます",
       "sources": [
         "openai-gpt-6-1-terra-announcement",
-        "openai-announces-gpt6-with-intelligent-ui",
-        "openai-chatgpt-voice-update-gpt6-astra"
+        "openai-announces-gpt6-with-intelligent-ui"
       ]
     },
     {
-      "label": "向いている人",
-      "value": "開発者・実務担当者",
+      "label": "使える場所",
+      "value": "ChatGPT、API",
       "sources": [
         "openai-gpt-6-1-terra-announcement",
-        "openai-announces-gpt-6-astra"
+        "openai-announces-gpt6-with-intelligent-ui"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "人間の代わりにパソコン画面を見てキーボードやマウスを操作する。",
-      "sources": [
-        "openai-gpt-6-1-terra-announcement",
-        "openai-announces-gpt-6-astra"
-      ]
-    },
-    {
-      "text": "回答画面をインタラクティブなミニアプリケーションにする。",
+      "text": "Intelligent UIにより、回答をその場で操作可能なアプリ画面として生成します。",
       "sources": [
         "openai-announces-gpt6-with-intelligent-ui"
       ]
     },
     {
-      "text": "カレンダーやメールなどの外部ツールと連携してタスクを実行する。",
+      "text": "PC上のアプリを自律的に操作するComputer Use機能を搭載しています。",
+      "sources": [
+        "openai-announces-gpt-6-astra"
+      ]
+    },
+    {
+      "text": "音声指示のみでWebサイト構築や決済機能の追加が可能です。",
       "sources": [
         "openai-chatgpt-voice-update-gpt6-astra"
       ]
     },
     {
-      "text": "音声指示だけで決済機能付きのWebサイトを構築する。",
+      "text": "3Dモデリングやゲームのコーディングを自律的に実行できます。",
       "sources": [
-        "openai-chatgpt-voice-update-gpt6-astra"
+        "openai-announces-gpt-6-astra"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "GPT-6.1 Terraの標準API価格は、入力トークンが100万トークンあたり1.00ドルです。",
+      "text": "無料プランと有料プランの両方で利用可能です。",
       "sources": [
-        "openai-gpt-6-1-terra-announcement"
-      ]
-    },
-    {
-      "text": "出力トークンは100万トークンあたり5.00ドルです。",
-      "sources": [
-        "openai-gpt-6-1-terra-announcement"
+        "openai-announces-gpt6-with-intelligent-ui"
       ]
     }
   ],
   "japan": [
     {
-      "text": "日本からのアクセス制限はなく、日本語での入出力にも対応しています。",
+      "text": "日本から利用できます。",
       "sources": [
-        "openai-gpt-6-1-terra-announcement"
+        "openai-gpt-6-1-terra-announcement",
+        "openai-announces-gpt6-with-intelligent-ui"
       ]
     }
   ],
   "howto": [
     {
-      "text": "ChatGPTのWEBブラウザ版またはアプリ版にログインし、モデル選択メニューから切り替えます。",
+      "text": "ChatGPTのWebブラウザ版またはモバイルアプリから利用を開始できます。",
       "sources": [
-        "openai-gpt-6-1-terra-announcement"
-      ]
-    },
-    {
-      "text": "APIを利用する場合は、モデル名にgpt-6.1-terraを指定してリクエストを送信します。",
-      "sources": [
-        "openai-gpt-6-1-terra-announcement"
+        "openai-announces-gpt6-with-intelligent-ui",
+        "openai-chatgpt-voice-update-gpt6-astra"
       ]
     }
   ],
   "differences": [
     {
-      "text": "従来モデルのテキスト中心のチャットから、動的なUIを生成する機能へ進化しています。",
+      "text": "テキスト主体の回答から、動的なUIを生成する形式へ進化しました。",
       "sources": [
         "openai-announces-gpt6-with-intelligent-ui"
-      ]
-    },
-    {
-      "text": "前世代比でAPI価格が50%削減され、処理速度が3倍以上に向上しています。",
-      "sources": [
-        "openai-gpt-6-1-terra-announcement"
       ]
     }
   ],
   "faq": [
     {
-      "q": "いつから使える？",
-      "a": "有料プラン向けなどに順次提供が開始されています。",
-      "sources": [
-        "openai-announces-gpt6-with-intelligent-ui",
-        "openai-announces-gpt-6-astra"
-      ]
-    },
-    {
-      "q": "無料でも使える？",
-      "a": "無料プランのユーザーにも順次展開されています。",
+      "q": "無料で使えますか？",
+      "a": "無料プランのユーザーも利用できます。",
       "sources": [
         "openai-announces-gpt6-with-intelligent-ui"
       ]
     },
     {
-      "q": "誰に向いている？",
-      "a": "開発者や実務担当者に向いています。",
+      "q": "誰に向いていますか？",
+      "a": "一般ユーザーから開発者、業務自動化を目指すビジネス職まで幅広く対応します。",
       "sources": [
-        "openai-gpt-6-1-terra-announcement"
+        "openai-gpt-6-1-terra-announcement",
+        "openai-announces-gpt6-with-intelligent-ui",
+        "openai-chatgpt-voice-update-gpt6-astra"
+      ]
+    },
+    {
+      "q": "安全性はどうですか？",
+      "a": "サイバー分野のリスク評価を行い、監視と制限を強めています。",
+      "sources": [
+        "gpt-6-cyber-aligned-security-agents"
+      ]
+    },
+    {
+      "q": "いつから使えますか？",
+      "a": "2026年10月7日より順次提供が開始されています。",
+      "sources": [
+        "openai-announces-gpt6-with-intelligent-ui"
       ]
     }
   ],
   "timeline": [
     {
-      "date": "2026-09-24",
-      "slug": "openai-chatgpt-voice-update-gpt6-astra",
-      "event": "ChatGPT Voiceを更新"
-    },
-    {
       "date": "2026-10-08",
       "slug": "openai-announces-gpt6-with-intelligent-ui",
       "event": "GPT-6を発表"
+    },
+    {
+      "date": "2026-11-05",
+      "slug": "gpt-6-cyber-aligned-security-agents",
+      "event": "GPT-6 Cyberを発表"
     }
   ],
   "related": [
@@ -161,6 +148,7 @@
     "chatgpt-work"
   ],
   "articles": [
+    "gpt-6-cyber-aligned-security-agents",
     "openai-gpt-6-1-terra-announcement",
     "openai-announces-gpt6-with-intelligent-ui",
     "openai-gpt-6-astra-comprehensive-guide-matome",
@@ -172,11 +160,12 @@
     "openai-announces-gpt-6-astra"
   ],
   "linkFrom": [
+    "gpt-6-cyber-aligned-security-agents",
     "openai-announces-gpt6-with-intelligent-ui"
   ],
-  "signature": "88e3d0d7481c6be2",
-  "primarySignature": "22142fd6e78d818e",
-  "model": "gemini-3.5-flash-lite",
+  "signature": "caca34ce78d8376c",
+  "primarySignature": "6bc9c35aff4b784d",
+  "model": "gemini-3.1-flash-lite",
   "createdAt": "2026-10-27T10:45:46+00:00",
-  "updatedAt": "2026-11-03T13:02:29+00:00"
+  "updatedAt": "2026-11-05T19:05:17+00:00"
 }

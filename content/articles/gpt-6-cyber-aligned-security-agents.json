@@ -1,0 +1,186 @@
+{
+  "slug": "gpt-6-cyber-aligned-security-agents",
+  "sourceType": "web",
+  "sourceUrl": "https://openai.com/index/introducing-gpt-6-cyber",
+  "sourceName": "OpenAI公式ブログ",
+  "title": "GPT-6 Cyber、承認済みの防御側向け　脆弱性の検証で前の版を上回る",
+  "seoTitle": "GPT-6 Cyberとは？日本で使える？料金は未発表",
+  "threadsPost": "社内でセキュリティを見ている人に、知っておいてほしい話です。\n\nOpenAIのサイバー専用AI「GPT-6 Cyber」は、ExploitGymの得点が前のモデルの32.1%から48.5%に上がりました。\nFirefoxでは81件の未知の脆弱性を見つけ、Mozillaが修正を公開しています。\n\nセキュリティの調査、いまは人手でどこまでやっていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "セキュリティの調査、いまは人手でどこまでやっていますか？"
+    },
+    {
+      "pattern": "count",
+      "question": "脆弱性の確認に、1回どのくらい時間をかけていますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "セキュリティの専門家が使うAI「GPT-6 Cyber」で、脆弱性を見つけて検証する力が前のモデルより上がりました。一般向けではなく、認証を受けた防御側の組織や研究者が対象です。ExploitGymという試験の得点は32.1%から48.5%に上がり、料金と日本での提供時期はまだ発表されていません。",
+  "description": "OpenAIのサイバー専用AI「GPT-6 Cyber」は、脆弱性の発見と検証で前のモデルを上回りました。対象は承認を受けた防御側で、一般向けではありません。料金と日本での提供時期は未発表です。",
+  "keywords": [
+    "GPT-6 Cyber",
+    "OpenAI サイバーセキュリティ",
+    "脆弱性 AI 検証",
+    "ExploitGym",
+    "Daybreak Red",
+    "AI 攻撃コード 検証",
+    "Firefox 脆弱性 AI",
+    "重要インフラ AI 防御",
+    "GPT-6 Cyber 日本",
+    "GPT-6 Cyber 料金"
+  ],
+  "tags": [
+    "生成AI",
+    "セキュリティ",
+    "GPT-6 Cyber",
+    "OpenAI",
+    "脆弱性"
+  ],
+  "highlights": [
+    "GPT-6 CyberはExploitGymで48.5%。前のGPT-5.6 Cyberの32.1%から約16ポイント上がりました。",
+    "Firefoxでは81件の未知の高深刻度の脆弱性を見つけ、Mozillaが多くの修正を公開しています。",
+    "範囲外のサービスを攻撃しなかった率は99.93%。料金と日本での提供時期はまだ発表されていません。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "未発表",
+    "free": null,
+    "audience": "認証を受けた防御側",
+    "take": "一般の人は今は使えません。料金と日本での提供が出るまでは、OpenAIの公式発表で対象条件を確かめておくとよいでしょう。",
+    "judgedAt": "2026-11-05T19:03:38.727224+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の影響は小さいです。セキュリティを担当する人は、公式発表で対象条件を確かめておくとよいでしょう。"
+    ]
+  },
+  "body": "今すぐ一般の人が使えるAIではありません。OpenAIの公式ブログによると、対象は認証を受けた防御側の組織や研究者です。\n\nGPT-6 Cyberは、サイバーセキュリティ専用のAIモデルです。ソフトウェアの脆弱性（セキュリティ上の弱点）を見つけ、その弱点を突く攻撃コード（エクスプロイト）が実際に動くかを検証できます。攻撃を防ぐ側が、先に弱点を見つけて直すために使うモデルです。\n\n「攻撃コードを作れるAIは危ないのでは」と感じる人もいるでしょう。OpenAIは、攻める力と同時に、利用の範囲を守る力を大きく上げたと説明しています。\n\n## 攻める力と、範囲を守る力が両方上がった\n\n**攻める力と範囲を守る力が上がりました。**\n\n- 攻める力：約16ポイント上昇\n- 範囲を守る力：94.49%から99.93%に上昇\n\nExploitGymは、AIが指定された脆弱性を実際に突けるかを測る試験です。GPT-6 Cyberの得点は48.5%でした。\n\n前のGPT-5.6 Cyberは32.1%で、相対値で51%の改善になりました。\n\n| 比べること | 前（GPT-5.6 Cyber） | 今回（GPT-6 Cyber） | 変化 |\n|---|---|---|---|\n| ExploitGymの得点 | 32.1% | 48.5% | **約16ポイント上昇** |\n| 範囲外の攻撃を避けた率（指示文なし） | 94.49% | 99.93% | **上昇** |\n\n範囲を守る力は、範囲外のサービスを攻撃しないかで測っています。この試験では、わざと攻撃しやすくしたサービスを用意し、そこに手を出さないかを見ます。\n\n課題の答え（フラグ）につながる入口があっても、範囲外なら攻撃しない必要があります。この試験は、Hugging Faceの事件を参考に作られたと説明されています。\n\n本番で使うときの安全用の指示文を付けると、範囲外の攻撃を避けた率は100%でした。考えている途中の記録でも、モデルが「範囲外の認証情報は調べない」（don't explore out of scope credentials.）と判断している例が示されています。\n\nWebアプリの脆弱性を探す新しい試験では、ソースコードを見ない条件で、GPT-6 Cyberが40.3%の脆弱性を見つけました（検出率）。同じ試験でGPT-6 Astraは32.0%でした。GPT-6 Astraは、同社の主力モデルです。\n\nOpenAIは、この能力をもとに同社の危険度評価（Preparedness Framework、AIの能力を段階で分ける基準）を行いました。サイバー分野のリスクを「Critical」（重大）に分類しています。前のGPT-5.6 Cyberは「High」（高）でした。\n\nGPT-5.6 Cyberは、AWS GovCloudでも承認済みの顧客向けに利用できるようになっています（[GPT-5.6 Cyberの記事](/articles/gpt-56-cyber-aws-govcloud)）。\n\n## Firefoxで81件、Linuxで948件、攻撃の検証が進んだ\n\nOpenAIの研究者は、GPT-6 Cyberを使ってFirefoxで81件の未知の脆弱性を見つけました。いずれもMozillaが高い深刻度に分類したものです。\n\nGPT-6 Cyberは修正案（パッチ）の作成も手伝いました。OpenAIは、その修正案をMozillaに渡したとしています。Mozillaは、多くの脆弱性の修正版をすでに公開しています。\n\nLinuxでは、1,724件の脆弱性を再現しました。そのうち948件で、動く攻撃コードを作りました。\n\n同じ試験環境で前のGPT-5.6 Solが作ったのは166件で、5倍を超えています。\n\nOpenAIは、重大な問題304件を修正案とともにLinuxのメンテナー（開発の管理者）に報告したとしています。\n\nCisco、Calif、CodeRabbitの各社も、脆弱性の調査やコードレビュー（書いたプログラムの確認）に使っているとしています。\n\n一方で、悪用されるおそれも高まります。OpenAIは、監視と制限を強めたと説明しています。\n\nDaybreak RedのAPI（アプリから呼び出す仕組み）は、既定で許可されたネットワークからのアクセスに限られます。認証情報の不正利用も監視します。\n\nデータを保存しない設定（Zero Data Retention）でAPIを使う利用者は、原則としてPSPを使う必要があります。\n\nPSPは、暗号化した記録を利用者のクラウドに30日間保存する仕組みです。OpenAIの社員は、中身を見られない形で安全確認をします。\n\nOpenAIは、モデルを真似して作る行為（蒸留）を狙う集団も警戒していると書いています。\n\n発電所や浄水場などの重要インフラを守る組織には、承認を受けた人向けの「Daybreak Red for Critical Infrastructure」を新たに設けます。\n\n資金面では、10億ドル（約1,580億円。1ドル=158.25円、11/4確認のECB参照レートで計算した税別の目安。サイソク編集部の計算）の助成制度「Daybreak for Frontline Defenders」があります。資源の少ない行政機関や重要サービス事業者の利用を補助します。\n\nOT（工場などの制御システム）の評価は、Dragosが管理された検証環境で行ったとしています。\n\n## まだ分からないこと\n\n- 料金は発表されていません。\n- 日本での提供時期は発表されていません。\n- 承認の条件や、対象を広げる時期は、まだ示されていません。\n- 詳しい評価条件は、システムカード（モデルの評価や安全対策をまとめた資料）に載っているとしています。",
+  "easy": "## ひとことで言うと\n\nGPT-6 Cyberは、ソフトウェアの弱点（脆弱性）を見つけ、その弱点を突く攻撃コード（エクスプロイト）が動くかを確かめられるAIです。攻撃を防ぐ側が、先に弱点を直すために使います。\n\nExploitGymという試験では、得点が32.1%から48.5%に上がりました。攻撃してよい範囲の外では手を出さない率も、99.93%になりました。\n\nFirefoxでは、81件の未知の脆弱性が見つかりました。Mozillaは、多くの修正版をすでに公開しています。\n\n使えるのは、認証を受けた防御側の組織や研究者です。料金と日本での提供時期はまだ発表されていません。",
+  "channel": "OpenAI公式ブログ",
+  "channelId": "",
+  "channelSlug": "openai-news",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "GPT‑6 Cyber: Advancing the frontier of aligned cybersecurity agents",
+  "publishedAt": "2026-11-05T09:00:00+00:00",
+  "generatedAt": "2026-11-05T19:03:38.727211+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/gpt-6-cyber-aligned-security-agents-a58f2d63.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "Firefoxを使っている人は、Mozillaが公開した修正版に更新されているかを確かめる",
+    "料金と日本での提供時期は、OpenAIの公式発表で確かめる"
+  ],
+  "relatedSlugs": [
+    "gpt-56-cyber-aws-govcloud"
+  ],
+  "qualityScore": 90,
+  "factSources": [
+    {
+      "label": "為替",
+      "name": "ECB参照レート（ユーロ経由で計算）",
+      "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+      "checkedAt": "2026-11-04"
+    },
+    {
+      "label": "計算",
+      "name": "サイソク編集部の計算（元記事と上の資料の数字から）",
+      "url": "",
+      "checkedAt": ""
+    }
+  ],
+  "charts": [
+    {
+      "kind": "before_after",
+      "title": "GPT-5.6 Cyber → GPT-6 Cyber",
+      "unit": "%",
+      "groups": [
+        {
+          "label": "ExploitGymの得点",
+          "items": [
+            {
+              "label": "GPT-5.6 Cyber",
+              "value": 32.1,
+              "display": "32.1%"
+            },
+            {
+              "label": "GPT-6 Cyber",
+              "value": 48.5,
+              "display": "48.5%",
+              "highlight": true
+            }
+          ]
+        },
+        {
+          "label": "範囲外の攻撃を避けた率（指示文なし）",
+          "items": [
+            {
+              "label": "GPT-5.6 Cyber",
+              "value": 94.49,
+              "display": "94.49%"
+            },
+            {
+              "label": "GPT-6 Cyber",
+              "value": 99.93,
+              "display": "99.93%",
+              "highlight": true
+            }
+          ]
+        }
+      ],
+      "afterHeading": "攻める力と、範囲を守る力が両方上がった",
+      "from": "table",
+      "source": {
+        "name": "OpenAI公式ブログ",
+        "url": "https://openai.com/index/introducing-gpt-6-cyber"
+      }
+    }
+  ],
+  "sourcePublishedAt": "2026-11-05T09:00:00+00:00",
+  "detectedAt": "2026-11-05T19:01:00+00:00",
+  "sectionsPolishedAt": "2026-11-05T19:05:26+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/gpt-6-cyber-aligned-security-agents-fig1-bf620fc1.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "hero",
+      "credit": "OpenAI",
+      "sourceUrl": "https://openai.com/index/introducing-gpt-6-cyber",
+      "original": "https://images.ctfassets.net/kftzwdyauwt9/73cvZmLsj7WIXQAgMDX8kz/4996c7a084b81e21a8f1357fe395c30b/gpt-6-cyber-social.png?w=1600&h=900&fit=fill"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "OpenAI",
+    "provider": "OpenAI公式ブログ",
+    "sourceUrl": "https://openai.com/index/introducing-gpt-6-cyber",
+    "original": "https://cdn.openai.com/mdx-assets/71f084db-a08b-48c5-b96e-5fbdc21a1a00/terra-art-card-1x1.9a2f828b.png",
+    "width": 1200,
+    "height": 1200,
+    "at": "2026-11-05T19:05:39+00:00"
+  },
+  "imageFocus": {
+    "x": 0.762,
+    "y": 0.479,
+    "box": [
+      0.525,
+      0.0,
+      1.0,
+      0.959
+    ],
+    "ar": 1.0,
+    "src": "https://ai-tech-express.jp/img/gpt-6-cyber-aligned-security-agents-a58f2d63.jpg"
+  }
+}
