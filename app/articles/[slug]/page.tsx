@@ -36,6 +36,7 @@ import { guideLinksForArticle, insertAfterPricingSection } from "@/lib/guide-lin
 import ArticleFaq from "@/components/ArticleFaq";
 import TodayActions from "@/components/TodayActions";
 import ShareButtons from "@/components/ShareButtons";
+import ThreadsFollow from "@/components/ThreadsFollow";
 import { offerPlanForArticle } from "@/lib/offers";
 import { getCta } from "@/lib/monetization";
 import { inlineReadForArticle, readNextForArticle } from "@/lib/read-next";
@@ -804,6 +805,9 @@ export default async function ArticlePage({ params }: Props) {
             <p className="text-note font-bold text-ink">この記事をシェアする</p>
             <ShareButtons url={`${siteConfig.url}/articles/${article.slug}`} title={articleTitle(article)} />
           </div>
+
+          {/* 読み終えた人に Threads のフォローを案内（毎朝7時の要点5本） */}
+          <ThreadsFollow />
 
           {/* 出典（公式）・日時・確認方法・更新履歴 */}
           {!isRoundup && (
