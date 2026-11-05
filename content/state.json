@@ -72,14 +72,6 @@
   },
   "failed_web": {},
   "gate_retry": {
-    "010f1ded905a0578": {
-      "first": "2026-11-05T01:04:07.991859+00:00",
-      "next": "2026-11-05T04:04:07.991859+00:00",
-      "reason": "lede に取引のやり方の説明がある（「売買の方法」）。売買の手順は書かず、制度・数字・影響の説明にする; 1つの文を2つに割っている（「課題があります。ひとつは、スタートアップへの成長資金の供給を増やすことです。」）。1文にまとめる",
-      "title": "[JPX総研]株式会社スマートラウンドへの出資について",
-      "tries": 1,
-      "url": "https://www.jpx.co.jp/corporate/news/news-releases/6020/20261105-01.html"
-    },
     "0e889c44fa0a25a1": {
       "first": "2026-11-03T18:43:01.853190+00:00",
       "next": "2026-11-04T05:34:06.965439+00:00",
@@ -218,7 +210,7 @@
     }
   },
   "major_tries": {
-    "d3075633a71e6442": 1
+    "d3075633a71e6442": 2
   },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
@@ -3443,6 +3435,15 @@
       "section": "public",
       "slug": "digital-agency-national-qualifications-online",
       "url": "https://www.digital.go.jp/policies/government-certification"
+    },
+    "010f1ded905a0578": {
+      "at": "2026-11-05T04:24:42.099509+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "investment",
+      "slug": "jpx-research-invests-smartround",
+      "url": "https://www.jpx.co.jp/corporate/news/news-releases/6020/20261105-01.html"
     },
     "011c99cc86af4261": {
       "at": "2026-10-30T01:51:37.988882+00:00",
@@ -15087,104 +15088,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-03T14:07:36.916101+00:00",
-      "attempt": 0,
-      "id": "9ab77893703db959",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「Googleは、学習向けに追加学習（ファインチューニング）したモデル群「LearnLM」の成果をGeminiに組み込みました。この機能は、それを使って作られたと説明しています」→ 関連ページではLearnLMの組み込みやGuided Learningの導入が説"
-      ],
-      "readability": {
-        "avg_paragraph": 120.4,
-        "avg_sentence": 44.8,
-        "long_share": 0.093,
-        "max_paragraph": 249,
-        "paragraphs": 16,
-        "sentences": 43
-      },
-      "score": 93,
-      "source": "google-blog-all",
-      "title": "Designing responsible AI for learning",
-      "warnings": [
-        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T14:22:27.485198+00:00",
-      "attempt": 1,
-      "id": "9aef92b29b8064d2",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "「インドへの展開は、5月19日にロンドンで開かれた「Education World Forum 2026」で発表された」→ 確認済み文脈には5月19日付の記事でロンドンのフォーラムでの発表とあるが、5月19日が開催日とは限らず、開催日の断定は言い過ぎ。",
-        "「米国では…K-12と大学の教員600万人を対象」「修了するとバッジ」→ 確認済み文脈の内容と一致するが、元記事の「Earn your badge」以外はGESがオンデマンドで全員にバッジという断定はFAQ内でやや言い過ぎ。",
-        "「教育省は、全国の教職員と事務職員にGESを推奨する公式の通達を出しました」→ 元記事は「teaching and non-teaching staff」で、「事務職員」への訳は非教員職員全般より狭く不正確。",
-        "「経済の授業で、市場の動きをGeminiで模擬する」→ 元記事は「complex market scenarios」で、「複雑な市場シナリオ」の趣旨が落ちているが軽微。",
-        "「誤答にヒントと即時の解説を返す例」→ 元記事は「instant feedback and hints」で、「解説」を返すとは書かれていない。",
-        "「英国：65万人の教員が…研修を受けられます」→ 元記事は「can receive」で問題ないが、アイルランドを含む対象人数であることが曖昧。"
-      ],
-      "readability": {
-        "avg_paragraph": 86.5,
-        "avg_sentence": 45.5,
-        "long_share": 0.211,
-        "max_paragraph": 141,
-        "paragraphs": 10,
-        "sentences": 19
-      },
-      "score": 80,
-      "source": "google-blog-all",
-      "title": "Expanding AI educator training to new countries",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T14:24:15.549104+00:00",
-      "attempt": 2,
-      "id": "9aef92b29b8064d2",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "「教員が「いちばん時間を減らしたい」と挙げた作業に絞っています」→ 元記事は「教員が最も必要とする場面で時間を節約できるよう」とあるだけで、「いちばん減らしたい」作業に絞ったとまでは言っていない（やや言い過ぎ）。",
-        "「3つ目は、生成AIの普及で宿題をAIに丸投げされる心配に向き合う内容です。AIを使わせない方向ではなく…」→ 元記事に無い背景・方針の解釈で、事実として断定している。",
-        "「英国では、教育分野の職務の74%がAIで高度化できる」→ 確認済みの文脈にある事実だが、元記事のGES記事にあるのではなく関連ページ由来で、「英国・アイルランドの教員65万人」など一部の範囲の書き分けにも注意が必要。",
-        "「教員の研修と、生徒の利用の管理が並行して整えられています」→ 両者の関係を結びつけた解釈で、元記事・文脈に根拠がない。",
-        "Q&Aの「日本向けの提供予定はまだ発表されていません」「5地域とも日本は含まれず」→ 元記事に日本の言及が無いことの言い換えで問題は軽微だが、Classroom記事の「4つがオフ」などの詳細は文脈の要旨に記載が無く、Gemini Notebookなど4つの内訳を作っている可能性がある。"
-      ],
-      "readability": {
-        "avg_paragraph": 117.1,
-        "avg_sentence": 42.8,
-        "long_share": 0.122,
-        "max_paragraph": 216,
-        "paragraphs": 15,
-        "sentences": 41
-      },
-      "score": 80,
-      "source": "google-blog-all",
-      "title": "Expanding AI educator training to new countries",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T14:29:16.076336+00:00",
-      "attempt": 1,
-      "id": "63cd61900c41a18d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "lifull",
-      "title": "LIFULL Investmentが利用するクラウドサービスにおける不正アクセスに関するお知らせ"
-    },
-    {
       "accepted": false,
       "at": "2026-11-03T14:36:42.320897+00:00",
       "attempt": 2,
@@ -21280,6 +21183,106 @@
       "score": null,
       "source": "mof",
       "title": "全国財務局管内経済情勢報告概要（令和8年10月）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T04:22:09.782499+00:00",
+      "attempt": 1,
+      "id": "d3075633a71e6442",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "Webページの英語の残骸が残っている（「Cookie」）"
+      ],
+      "readability": {
+        "avg_paragraph": 95.9,
+        "avg_sentence": 40.5,
+        "long_share": 0.111,
+        "max_paragraph": 198,
+        "paragraphs": 19,
+        "sentences": 45
+      },
+      "score": null,
+      "source": "watch-m365-copilot-release-notes",
+      "title": "Microsoft 365 Copilot: Excel ほか6件",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T04:22:42.542073+00:00",
+      "attempt": 2,
+      "id": "d3075633a71e6442",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "Webページの英語の残骸が残っている（「Cookie」）"
+      ],
+      "readability": {
+        "avg_paragraph": 103.6,
+        "avg_sentence": 41.0,
+        "long_share": 0.163,
+        "max_paragraph": 199,
+        "paragraphs": 17,
+        "sentences": 43
+      },
+      "score": null,
+      "source": "watch-m365-copilot-release-notes",
+      "title": "Microsoft 365 Copilot: Excel ほか6件",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T04:23:13.841808+00:00",
+      "attempt": 3,
+      "id": "d3075633a71e6442",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "Webページの英語の残骸が残っている（「Cookie」）"
+      ],
+      "readability": {
+        "avg_paragraph": 87.3,
+        "avg_sentence": 39.4,
+        "long_share": 0.078,
+        "max_paragraph": 159,
+        "paragraphs": 23,
+        "sentences": 51
+      },
+      "score": null,
+      "source": "watch-m365-copilot-release-notes",
+      "title": "Microsoft 365 Copilot: Excel ほか6件",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T04:24:42.087884+00:00",
+      "attempt": 1,
+      "id": "010f1ded905a0578",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.5,
+        "avg_sentence": 40.1,
+        "long_share": 0.114,
+        "max_paragraph": 148,
+        "paragraphs": 15,
+        "sentences": 35
+      },
+      "score": 92,
+      "source": "jpx-news",
+      "title": "[JPX総研]株式会社スマートラウンドへの出資について",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JPX）"
+      ]
     }
   ],
   "short_text_retry": {
