@@ -11051,6 +11051,17 @@
       "slug": "alice-gakuen-october-enrollment-2026",
       "url": "https://www.value-press.com/pressrelease/382552"
     },
+    "a4481c2c2c90565d": {
+      "at": "2026-11-05T06:33:52.396018+00:00",
+      "breaking": true,
+      "major": true,
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "kao-2026-q3-results-operating-profit",
+      "url": "https://www.release.tdnet.info/inbs/140120261105565753.pdf"
+    },
     "a44fc1f7f488bd51": {
       "at": "2026-11-01T20:21:05.404842+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15159,43 +15170,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-03T17:53:08.196403+00:00",
-      "attempt": 2,
-      "id": "9aef92b29b8064d2",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 86.6,
-        "avg_sentence": 39.9,
-        "long_share": 0.103,
-        "max_paragraph": 154,
-        "paragraphs": 18,
-        "sentences": 39
-      },
-      "score": 93,
-      "source": "google-blog-all",
-      "title": "Expanding AI educator training to new countries",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GES・BETT・SNUE）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T17:55:28.385426+00:00",
-      "attempt": 1,
-      "id": "63cd61900c41a18d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "lifull",
-      "title": "LIFULL Investmentが利用するクラウドサービスにおける不正アクセスに関するお知らせ"
-    },
     {
       "accepted": false,
       "at": "2026-11-03T17:56:16.925038+00:00",
@@ -21372,6 +21346,54 @@
       "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ",
       "warnings": [
         "初めて出たところで言い換えていない略語（MS・AD）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:32:36.701439+00:00",
+      "attempt": 1,
+      "id": "a4481c2c2c90565d",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「- アジア:2,691億円」、「- 米州:1,688億円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
+      ],
+      "readability": {
+        "avg_paragraph": 80.8,
+        "avg_sentence": 34.2,
+        "long_share": 0.038,
+        "max_paragraph": 137,
+        "paragraphs": 22,
+        "sentences": 52
+      },
+      "score": null,
+      "source": "fast",
+      "title": "花王 2026年12月期 第３四半期決算短信〔ＩＦＲＳ会計基準〕（連結）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IFRS・SOFINA・BASIC）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T06:33:52.066858+00:00",
+      "attempt": 2,
+      "id": "a4481c2c2c90565d",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 105.0,
+        "avg_sentence": 36.8,
+        "long_share": 0.05,
+        "max_paragraph": 162,
+        "paragraphs": 14,
+        "sentences": 40
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "花王 2026年12月期 第３四半期決算短信〔ＩＦＲＳ会計基準〕（連結）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IFRS・UV・SOFINA）"
       ]
     }
   ],
