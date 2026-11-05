@@ -4715,6 +4715,17 @@
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/exowatt-beats-frontier-models-on-accuracy-with-sagemaker-serverless-model-customization/"
     },
+    "1cd3b0a2786f4ed3": {
+      "at": "2026-11-05T00:01:36.965214+00:00",
+      "breaking": true,
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "plamo-3-translate-open-weight",
+      "url": "https://www.preferred.jp/ja/news/pr20261105"
+    },
     "1d4e78b6d168bccd": {
       "at": "2026-10-28T21:54:21.903385+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -14787,28 +14798,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-03T00:55:25.985837+00:00",
-      "attempt": 2,
-      "id": "136a46008993a284",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "段落が長い（平均 84.2字・最長 270字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 84.2,
-        "avg_sentence": 30.1,
-        "long_share": 0.0,
-        "max_paragraph": 270,
-        "paragraphs": 10,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "soumu",
-      "title": "革新的情報通信技術（Beyond 5G（6G））基金事業 社会実装・海外展開志向型戦略的プログラム【事業戦略支援型】 に係る予備調査（第6回）"
-    },
-    {
       "accepted": true,
       "at": "2026-11-03T00:55:29.234904+00:00",
       "attempt": 0,
@@ -21156,6 +21145,30 @@
       "score": 88,
       "source": "openai-news",
       "title": "DevRev delivers autonomous self-service with GPT-6.1 Sol"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T00:01:36.955176+00:00",
+      "attempt": 1,
+      "id": "1cd3b0a2786f4ed3",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.3,
+        "avg_sentence": 38.6,
+        "long_share": 0.105,
+        "max_paragraph": 127,
+        "paragraphs": 20,
+        "sentences": 38
+      },
+      "score": 90,
+      "source": "pfn-news",
+      "title": "PFN、世界最高水準のAI翻訳がエッジで可能な大規模言語モデル PLaMo 3 Translate をオープンウェイトで公開",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（PFN・LLM・MT）"
+      ]
     }
   ],
   "short_text_retry": {
