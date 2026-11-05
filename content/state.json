@@ -112,6 +112,14 @@
       "tries": 1,
       "url": "http://www.npa.go.jp/newlyarrived/2026/20260331001.html"
     },
+    "3af0ef7d790a050b": {
+      "first": "2026-11-05T02:28:59.991330+00:00",
+      "next": "2026-11-05T05:28:59.991330+00:00",
+      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "title": "大迫力のダンスバトル！ ハーフタイムショーで推しと最接近！ 史上最多の20チームが参戦する「D.LEAGUE 26-27 SEASON」開幕戦レポート",
+      "tries": 1,
+      "url": "https://www.softbank.jp/sbnews/entry/20261105_01"
+    },
     "52567fa092b78f28": {
       "first": "2026-11-04T03:34:46.235755+00:00",
       "next": "2026-11-04T06:34:46.235755+00:00",
@@ -222,6 +230,7 @@
     "d1ca532e101a8cf0": "2026-11-04T13:10:52.830493+00:00",
     "d443e98d7d0d2b52": "2026-11-04T13:10:52.830493+00:00",
     "d9ab2f31cea858b4": "2026-11-04T13:10:52.830493+00:00",
+    "e20b9dad521b1e3b": "2026-11-05T02:20:49.929727+00:00",
     "e668e5e296aa7d6a": "2026-11-04T13:10:52.830493+00:00",
     "eaecd17577cb955c": "2026-11-04T13:10:52.830493+00:00",
     "f064ab766e9f884b": "2026-11-05T00:40:55.498924+00:00",
@@ -3512,6 +3521,12 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_kyotsuu/important/kinkyu02_000682.html"
     },
+    "03ef0f6a91d8d82a": {
+      "at": "2026-11-05T02:21:08.913655+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77023.html"
+    },
     "03f8a607b05da2e8cd73624ffc97819a0e4433ec": {
       "at": "2026-10-27T15:14:08.993393+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3812,6 +3827,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（周年）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000357.000032053.html"
+    },
+    "0c40826dc2c0af5c": {
+      "at": "2026-11-05T02:21:26.967900+00:00",
+      "model": "gemini-3.5-flash",
+      "reason": "D.LEAGUE（プロダンスリーグ）の新チーム「SBC NAIL the NAME」の開幕戦密着レポートであり、テクノロジー製品・サービスやガジェット等の発表ではないため。",
+      "skipped": true,
+      "url": "https://www.softbank.jp/sbnews/entry/20261105_02"
     },
     "0c5e0ff6475dedc5": {
       "at": "2026-10-30T05:21:51.010243+00:00",
@@ -12782,6 +12804,13 @@
       "slug": "samsung-micro-rgb-tv-announcement",
       "url": "https://news.samsung.com/global/video-inside-the-tech-samsung-micro-rgb-tv"
     },
+    "d112edf000570969": {
+      "at": "2026-11-05T02:24:51.780292+00:00",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "reason": "ハンドブックの公開は製品・サービスの提供ではなく情報提供のみであるため",
+      "skipped": true,
+      "url": "https://www.ipa.go.jp/digital/kaihatsu/youkyu-kanri.html"
+    },
     "d114e17ae39da754": {
       "at": "2026-10-26T12:42:15.173964+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -13591,7 +13620,7 @@
       "url": "https://huggingface.co/blog/announcing-project-protostar"
     },
     "e20b9dad521b1e3b": {
-      "at": "2026-11-05T02:06:17.117264+00:00",
+      "at": "2026-11-05T02:21:26.969464+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3228"
@@ -14965,59 +14994,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-03T05:32:33.792353+00:00",
-      "attempt": 1,
-      "id": "262cfa35f4308cc0",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 61.3,
-        "avg_sentence": 33.5,
-        "long_share": 0.027,
-        "max_paragraph": 112,
-        "paragraphs": 41,
-        "sentences": 75
-      },
-      "score": 88,
-      "source": "openai-news",
-      "title": "Preparing our next security sprint to harden OpenAI",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T05:53:10.665185+00:00",
-      "attempt": 1,
-      "id": "de4cf53f9db96311",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "見出し・要点「送信待ちを5分の1近くに」→ 元記事は「median push latency by nearly 5x」で、5倍近く短縮（約5分の1）という意味なら概ね整合するが、「5分の1近く」は「5分の1に近い」とも読め、実際は約5分の1まで短縮という表現が不正確",
-        "「従来の多くの仕組みは…」「従来は、利用者ごとに…専用のpackfileを作るのが普通です」→ 元記事は“conventional approaches”として説明しており、おおむね妥当だが「普通です」と断定する部分は言い過ぎ",
-        "「かんたん版」のたとえ「レジを何台も並べ、同じ商品はまとめて袋詰め」→ 元記事に無い比喩だが、説明用で許容範囲",
-        "「かんたん版」の「保存にかかる時間（真ん中の値）」→ 元記事はpush latencyであり、「保存」と言い換えており不正確",
-        "「かんたん版」の「作った改良の一部を…Git本体に返していく」→ 元記事は「those improvements」を upstream に貢献したいとあり、「一部」は元記事に無い限定",
-        "判定「提供状況=demo」→ 元記事は本番稼働の社内基盤で、デモ段階ではないため分類が誤解を招く"
-      ],
-      "readability": {
-        "avg_paragraph": 71.2,
-        "avg_sentence": 32.5,
-        "long_share": 0.025,
-        "max_paragraph": 141,
-        "paragraphs": 37,
-        "sentences": 81
-      },
-      "score": 80,
-      "source": "openai-news",
-      "title": "Scaling Git at OpenAI",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-03T05:55:06.469330+00:00",
@@ -21299,6 +21275,34 @@
       "score": 72,
       "source": "nli-research",
       "title": "企業文化の分析と企業評価"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T02:26:22.248200+00:00",
+      "attempt": 1,
+      "id": "3af0ef7d790a050b",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-news",
+      "title": "大迫力のダンスバトル！ ハーフタイムショーで推しと最接近！ 史上最多の20チームが参戦する「D.LEAGUE 26-27 SEASON」開幕戦レポート"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T02:28:59.991289+00:00",
+      "attempt": 2,
+      "id": "3af0ef7d790a050b",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-news",
+      "title": "大迫力のダンスバトル！ ハーフタイムショーで推しと最接近！ 史上最多の20チームが参戦する「D.LEAGUE 26-27 SEASON」開幕戦レポート"
     }
   ],
   "short_text_retry": {
