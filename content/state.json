@@ -210,7 +210,7 @@
     }
   },
   "major_tries": {
-    "be080fcaa0a3f4c9": 1
+    "be080fcaa0a3f4c9": 2
   },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
@@ -15152,70 +15152,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-03T17:46:02.227037+00:00",
-      "attempt": 1,
-      "id": "6e8810a5139499c0",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "google-blog-all",
-      "title": "AI in the learning era"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T17:46:25.838719+00:00",
-      "attempt": 2,
-      "id": "6e8810a5139499c0",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "文が長い（1文の平均 47.2字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 110.1,
-        "avg_sentence": 47.2,
-        "long_share": 0.143,
-        "max_paragraph": 219,
-        "paragraphs": 12,
-        "sentences": 28
-      },
-      "score": 93,
-      "source": "google-blog-all",
-      "title": "AI in the learning era",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T17:46:40.519205+00:00",
-      "attempt": 0,
-      "id": "6e8810a5139499c0",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 見出しの数・階層が変わった（3→4個）"
-      ],
-      "readability": {
-        "avg_paragraph": 110.1,
-        "avg_sentence": 47.2,
-        "long_share": 0.143,
-        "max_paragraph": 219,
-        "paragraphs": 12,
-        "sentences": 28
-      },
-      "score": 93,
-      "source": "google-blog-all",
-      "title": "AI in the learning era",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-03T17:52:00.412897+00:00",
       "attempt": 1,
       "id": "9aef92b29b8064d2",
@@ -21355,6 +21291,83 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（NISA）",
         "同じ数字が多い（「4社」が5回）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:20:13.747450+00:00",
+      "attempt": 1,
+      "id": "be080fcaa0a3f4c9",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "題名・リードに比べる基準（変更前）が書かれていない。何と比べた増減かをリードの数字のそばに書く"
+      ],
+      "readability": {
+        "avg_paragraph": 85.2,
+        "avg_sentence": 41.5,
+        "long_share": 0.128,
+        "max_paragraph": 127,
+        "paragraphs": 19,
+        "sentences": 39
+      },
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MS・AD）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:20:40.598195+00:00",
+      "attempt": 2,
+      "id": "be080fcaa0a3f4c9",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "題名・リードに比べる基準（変更前）が書かれていない。何と比べた増減かをリードの数字のそばに書く"
+      ],
+      "readability": {
+        "avg_paragraph": 84.9,
+        "avg_sentence": 35.9,
+        "long_share": 0.022,
+        "max_paragraph": 150,
+        "paragraphs": 19,
+        "sentences": 45
+      },
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MS・AD）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:21:05.603488+00:00",
+      "attempt": 3,
+      "id": "be080fcaa0a3f4c9",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "題名・リードに比べる基準（変更前）が書かれていない。何と比べた増減かをリードの数字のそばに書く"
+      ],
+      "readability": {
+        "avg_paragraph": 88.9,
+        "avg_sentence": 35.6,
+        "long_share": 0.0,
+        "max_paragraph": 160,
+        "paragraphs": 18,
+        "sentences": 45
+      },
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MS・AD）",
+        "本文の最初の段落（読者個人への影響）に企業向けの手続き（「取引先」）。企業向けは最後の章に分ける"
       ]
     }
   ],
