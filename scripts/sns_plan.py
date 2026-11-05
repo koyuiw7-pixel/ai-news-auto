@@ -11,7 +11,8 @@
   daily_cap() / cap_exempt(article_or_entry)  → 1日の上限と、上限に数えない種類（ミサイル・災害）
   count_today(posted, day, extra) → その日（日本時間）に出した（予約した）自分の投稿の数
   utm_content(ptype, pos) → "video_body" など
-  hook_format_on() / link_ab_on()  → 2026-11-05 オーナー承認でワークフローの既定は on（変数で 0 にすれば止まる）
+  hook_format_on()  → 2026-11-05 オーナー承認でワークフローの既定は on（変数で 0 にすれば止まる）
+  link_ab_on()      → 2026-11-05 夕方に終了（常に False。Threads のリンクは本文だけ。S31）
   slot_priority(slot, article)  → Buffer の30日の上限が近いときにまだ作る投稿か
 """
 from __future__ import annotations
@@ -250,39 +251,24 @@ def hook_format_on() -> bool:
 
 
 def link_ab_on() -> bool:
-    """Threads のリンクの位置の比べ（本文／返信を交互）。オーナー承認まで off"""
-    return _flag("THREADS_LINK_AB")
+    """Threads のリンクの位置の比べ（S31）。**2026-11-05 夕方 オーナー決定「すべて本文にリンクにしよう今後は」で終了**。
+    変数 THREADS_LINK_AB が何であっても常に False（リンクは本文だけ。返信には置かない）"""
+    return False
 
 
 def link_ab_window() -> dict:
-    """リンクの位置の比べの期間（2026-11-05〜11-12）と、決まった位置（decided。空なら未定）"""
+    """リンクの位置の比べの記録（2026-11-05 に終了。decided=body）"""
     return dict(plan().get("link_ab") or {})
 
 
 def link_ab_reminder(now: datetime | None = None) -> str:
-    """比べの期間を過ぎて、まだ位置が決まっていなければ、決めてほしい旨（ログに出す）。それ以外は "" """
-    w = link_ab_window()
-    now = now or datetime.now(timezone.utc)
-    if not link_ab_on() or w.get("decided") or not w.get("end"):
-        return ""
-    if now.astimezone(JST).date().isoformat() > str(w["end"]):
-        return (f"[reminder] Threads のリンクの位置の比べ（{w.get('start')}〜{w['end']}）は終わりました。"
-                "結果（1,000閲覧あたりの訪問・utm_content の body と reply）を見て scripts/sns_plan.json の link_ab.decided に body か reply を入れてください（それまでは交互を続けます）")
+    """比べは終わった（decided=body）。いつも "" """
     return ""
 
 
-def threads_link_position(posted: dict) -> str:
-    """THREADS_LINK_AB=1 のとき、記事の投稿ごとに body と reply を交互にする（off なら body）。
-    比べが終わって link_ab.decided が決まったら、その位置だけ"""
-    if not link_ab_on():
-        return "body"
-    decided = str(link_ab_window().get("decided") or "")
-    if decided in ("body", "reply"):
-        return decided
-    if note := link_ab_reminder():
-        print(note, flush=True)
-    n = sum(1 for r in (posted or {}).values() if r.get("linkPosition") in ("body", "reply"))
-    return "reply" if n % 2 else "body"
+def threads_link_position(posted: dict | None = None) -> str:
+    """Threads の記事のリンクの位置。2026-11-05 オーナー決定で常に本文（body）"""
+    return "body"
 
 
 # ---- Muse の受け渡しの記録 ----
@@ -300,15 +286,35 @@ def muse_item(slug: str, data: dict | None = None) -> dict:
     return next((i for i in data.get("items", []) if i.get("slug") == slug), {})
 
 
+def video_wait_hours() -> float:
+    """動画を作る記事の投稿が動画を待つ時間（枠から）。2026-11-05 夕方 オーナー決定「動画を待たない」「動画を作る記事を限定」で短く
+    （sns_plan.json の muse.wait_hours。変数 MUSE_WAIT_HOURS でも max_wait_hours より長くはできない）"""
+    m = plan()["muse"]
+    raw = os.environ.get("MUSE_WAIT_HOURS", "").strip()
+    try:
+        hours = float(raw) if raw else float(m["wait_hours"])
+    except ValueError:
+        hours = float(m["wait_hours"])
+    return max(0.0, min(hours, float(m.get("max_wait_hours", m["wait_hours"]))))
+
+
+def video_post(slug: str, data: dict | None = None) -> bool:
+    """この記事の投稿は動画で出す投稿か（2026-11-05 夕方 オーナー決定・台帳 S13）。
+    動画を作るのは、ビューを取れる話題の限られた記事だけ＝ Muse に頼んだ記事（state/muse_queue.json。muse_queue.pick が
+    1日 muse.max_per_day 本まで・点数（レーン＋数字＋公式）の高い順に選ぶ）。それ以外の投稿は動画を作らず、記事の写真・カードで枠の時刻に出す"""
+    item = muse_item(slug, data)
+    if item.get("status") == "delivered":
+        return True  # Muse の動画がもう届いている
+    # 2026-11-05 夕方より前に「すべての投稿を Muse で」で入れた項目（点数 0）は動画の投稿にしない
+    return item.get("status") == "queued" and float(item.get("score") or 0) > 0
+
+
 def muse_wait_until(slug: str, slot: datetime, breaking: bool = False, data: dict | None = None) -> datetime | None:
     """この記事の投稿が Muse の動画を待つ期限（頼んでいなければ None）。速報は breaking_wait_hours（既定0＝待たない）"""
     item = muse_item(slug, data)
-    if item.get("status") != "queued":
+    if item.get("status") != "queued" or not video_post(slug, data if data is not None else {"items": [item]}):
         return None
-    m = plan()["muse"]
-    hours = float(os.environ.get("MUSE_WAIT_HOURS") or m["wait_hours"])
-    if breaking:
-        hours = float(m["breaking_wait_hours"])
+    hours = float(plan()["muse"]["breaking_wait_hours"]) if breaking else video_wait_hours()
     if hours <= 0:
         return None
     try:

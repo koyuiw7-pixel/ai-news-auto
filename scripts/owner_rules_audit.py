@@ -817,13 +817,17 @@ def sns_problems(posts: list[dict], judge) -> list[str]:
     return out
 
 
-# S13: 記事の投稿は動画つきだけ（2026-11-03 オーナー指示「SNS の投稿は動画のはず」）。この日時より後に出た投稿だけ見る
+# S13: 記事の投稿は動画か記事の写真・カードを付ける。文字だけでは出さない（2026-11-05 夕方 オーナー決定「動画を待たない」
+# 「動画を作る記事を限定」で、2026-11-03 の「必ず動画つき」を置き換え）。この日時より後に出た投稿だけ見る
 VIDEO_RULE_SINCE = datetime(2026, 11, 3, 15, 0, tzinfo=timezone.utc)  # 11/4 0:00 JST
+PICTURE_RULE_SINCE = datetime(2026, 11, 5, 9, 30, tzinfo=timezone.utc)  # 11/5 18:30 JST（写真・カードで出してよくなった）
+PICTURE_KINDS = ("video", "card", "photo", "cover")
 
 
 def video_record_problems(posted: dict, videos: dict, queued: dict, now: datetime, days: float = 2.0) -> list[str]:
     """Buffer を呼ばずに、投稿の記録（state/threads_posted.json）と動画の記録（state/sns_video.json）で、
-    朝のまとめ以外の記事の投稿が動画なしで出ていないかを見る（Threads・X・Facebook。Bluesky は公開フィードで見る）"""
+    朝のまとめ以外の記事の投稿が、動画も写真・カードも無い（文字だけ）で出ていないかを見る（Threads・X・Facebook）。
+    2026-11-05 18:30 JST より前に出た投稿は、そのときの決まり（動画つきだけ）で見る"""
     out = []
     for slug, rec in (posted.get("posted") or {}).items():
         if rec.get("style") in ("digest", "poll") or rec.get("format") in ("digest", "poll") or slug.startswith(("digest-", "poll-")):
@@ -841,6 +845,11 @@ def video_record_problems(posted: dict, videos: dict, queued: dict, now: datetim
             continue  # 出していない
         v = videos.get(slug) or {}
         q = queued.get(slug) or {}
+        if when >= PICTURE_RULE_SINCE:
+            if rec.get("image") in PICTURE_KINDS or q.get("media") in ("video", "card") or v.get("status") in ("attached", "posted"):
+                continue
+            out.append(f"[S13] 動画も写真・カードも無い（文字だけの）記事の投稿（{slug}・{when.astimezone(JST):%m/%d %H:%M}・画像 {rec.get('image') or '不明'}）")
+            continue
         if rec.get("image") == "video" or q.get("status") == "created" or v.get("status") in ("attached", "posted"):
             continue
         out.append(f"[S13] 動画なしで出た記事の投稿（{slug}・{when.astimezone(JST):%m/%d %H:%M}・画像 {rec.get('image') or '不明'}・動画 {v.get('status') or 'なし'}）")

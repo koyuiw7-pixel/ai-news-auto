@@ -4,8 +4,10 @@
 - 出すもの: SNS の予定（state/threads_posted.json）の記録のうち、まだ Instagram に出していないもの。選び方は bluesky_post.pending
   （同じ枠・Muse の動画待ち・取りこぼしを後から大量に出さない）を channel="instagram" で使う。枠の時刻＋ DELAY_MIN 分
   （Bluesky の20分と同じ分にならないよう13分。実行も Bluesky の */10 とずらして 5,15,25…分）。
-- 記事の投稿は動画（リール。state/sns_video.json の SNS 用の動画 https://ai-tech-express.jp/video/...mp4）だけ（sns_rules ルール8）。
-  動画の無い記事は出さない。朝のまとめは号のシェア画像（16:9 に近い 1200×630）、急ぎの安全の知らせは記事の写真だけのカード（16:9）。
+- 記事の投稿は、動画があれば動画（リール。state/sns_video.json の SNS 用の動画 https://ai-tech-express.jp/video/...mp4）、
+  無ければ記事の写真だけのカード（16:9。2026-11-05 夕方 オーナー決定「動画を待たない」・sns_rules ルール8）。動画を待つのは
+  動画を作る限られた記事（sns_plan.video_post）だけで、Muse の待ちの期限（枠＋1時間）まで（bluesky_post.pending と同じ）。
+  朝のまとめは号のシェア画像（16:9 に近い 1200×630）。
   Instagram は JPEG しか受け付けないので、サイトの画像は Cloudflare の画像変換（/cdn-cgi/image/format=jpeg/...）で JPEG にして渡す。
 - 文面は Threads・Bluesky と同じ予定の本文（bluesky_post.plan → sns_rules.autofix）。キャプションのリンクは押せないので
   URL は書かず、最後に「記事はプロフィールのリンクから」の1行（sns_rules.INSTAGRAM_LINK_LINE）。出す直前に sns_rules.enforce を通す。
@@ -142,13 +144,13 @@ def build(key: str, entry: dict) -> dict | None:
         url = jpeg_url(image)
         return {"caption": caption(p["text"]), "link": p["link"], "kind": kind, "gate": p["gate"],
                 "media": [{"type": "image", "url": url}], "params": {"image_url": url}}
-    if sns_rules.is_urgent(p.get("gate")):  # 急ぎの安全の知らせ（ルール8の例外）は写真だけのカード
+    vid = {} if sns_rules.is_urgent(p.get("gate")) else bp.video_of(key)
+    if not vid:
+        # 2026-11-05 夕方 オーナー決定「動画を待たない」「動画を作る記事を限定」（ルール8・台帳 S13）: 動画が無い投稿は
+        # 記事の写真だけのカード（JPEG）で出す。Instagram はあとから返信で動画を足さない
         url = jpeg_url(tp.card_url(p["gate"]))
         return {"caption": caption(p["text"]), "link": p["link"], "kind": kind, "gate": p["gate"],
                 "media": [{"type": "image", "url": url}], "params": {"image_url": url}}
-    vid = bp.video_of(key)
-    if not vid:
-        return {"skip": "動画がまだありません（写真のカードでは出さない。ルール8）"}
     link = tp.utm_link(f"{tp.site_url()}/articles/{key}", CHANNEL, "sns_video", vid["variant"], ptype="hook" if entry.get("hookFormat") else "")
     return {"caption": caption(p["text"], vid.get("credit", "")), "link": link, "kind": kind, "gate": p["gate"],
             "media": [{"type": "video", "url": vid["url"], **VIDEO_SIZE}],
@@ -492,7 +494,7 @@ def main() -> int:
         todo = choose(state, now)
         log(f"[instagram] 今日 {posted_today(state, now)}/{PER_DAY} 本（まとめを除く）・前回 {last_sent(state)}")
         if not todo and not live:  # 下書きは動画のある最新の記事を見本にする
-            todo = [(k, e) for k, e in state["posted"].items() if not e.get("style") and bp.video_of(k)][-1:]
+            todo = [(k, e) for k, e in state["posted"].items() if not e.get("style")][-1:]
     if not todo:
         log("[instagram] 出すものはありません（上限・間隔・対象なし）")
         return 0

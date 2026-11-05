@@ -9,11 +9,11 @@
 1日 PER_DAY 本まで・深夜（1〜5時）は出さない。通常の投稿は1回の実行で1本まで、前の投稿から GAP_MIN 分あける。
 結果は channels.bluesky に URI を記録。失敗しても他の SNS には影響しない
 2026-11-05（オーナー承認）: Bluesky は Threads の投稿を待たずに、SNS の予定（threads_post が枠に入れた「動画待ち」の記録）から
-直接出す。Buffer（Threads・X・Facebook）が止まっていても、枠の時刻＋ DELAY_MIN 分に、動画（Muse の動画を待つ期限のあとは自動動画）で出す。
+直接出す。Buffer（Threads・X・Facebook）が止まっていても、枠の時刻＋ DELAY_MIN 分に出す。
 本文は Threads に送る予定の本文（SNS_HOOK_FORMAT の型も同じ）からリンクの行を除いたもの。同じ記事は1回だけ（channels.bluesky・自分の投稿の確かめ）
-2026-11-03〜（オーナー指示「SNS の投稿は動画のはず」・sns_rules ルール8）: 記事の投稿は**動画つきだけ**。動画（state/sns_video.json の
-SNS 用）ができるまで待ち、Bluesky の動画（app.bsky.embed.video）で出す。動画が無い記事は出さない（写真のカードでは出さない）。
-朝のまとめだけ号のシェア画像のまま。
+2026-11-05 夕方（オーナー決定「動画を待たない」「動画を作る記事を限定」・sns_rules ルール8・台帳 S13）: 動画を作る限られた記事
+（sns_plan.video_post）だけ、Muse の動画を待つ期限（枠＋1時間）まで待って動画（app.bsky.embed.video）で出す。ほかの投稿と、
+動画が無い・Bluesky が動画を受け付けないときは、記事の写真のリンクカードで出す（文字だけでは出さない）。朝のまとめは号のシェア画像のまま。
 
   python3 scripts/bluesky_post.py --dry-run [--fill]  # 下書きを表示（投稿しない。ログインできなければ画像なしで表示）
   python3 scripts/bluesky_post.py [--fill]            # 投稿（BLUESKY_HANDLE / BLUESKY_APP_PASSWORD が必要）
@@ -146,9 +146,12 @@ def video_of(slug: str, videos: dict | None = None) -> dict:
     return {}
 
 
-def needs_video(entry: dict) -> bool:
-    """動画が要る記録か（朝のまとめ・問いかけ・急ぎの安全の知らせ（災害・警報。2026-11-03 オーナー承認）以外の記事の投稿）"""
-    return entry.get("style") not in ("digest", "poll") and not entry.get("urgent")
+def needs_video(entry: dict, key: str = "") -> bool:
+    """動画で出したい記録か。2026-11-05 夕方 オーナー決定「動画を作る記事を限定」: 朝のまとめ・問いかけ・急ぎの安全の知らせ以外で、
+    動画を作る限られた記事（sns_plan.video_post＝Muse に頼んだ記事）だけ。key が無ければ False"""
+    if entry.get("style") in ("digest", "poll") or entry.get("urgent") or not key:
+        return False
+    return tp.sns_plan.video_post(key)
 
 
 class VideoUnsupported(RuntimeError):
@@ -375,7 +378,7 @@ def fast(entry: dict) -> bool:
 
 def muse_until(key: str, entry: dict, now: datetime) -> datetime | None:
     """この記事の投稿が Muse の動画を待っている期限（待っていなければ None。Threads と同じ判定）"""
-    if not needs_video(entry) or entry.get("breaking"):
+    if not needs_video(entry, key) or entry.get("breaking"):
         return None
     try:
         import sns_video_followup as fu  # noqa: PLC0415
@@ -395,8 +398,8 @@ def pending(state: dict, now: datetime, extra: dict | None = None, channel: str 
             continue  # ownerHold: オーナーに見せるまで出さない記事
         if key in (extra or {}):  # 埋め合わせで先に出した記事は Threads に出た後も重ねない
             continue
-        if entry.get("status") == "skipped_no_video" or (needs_video(entry) and not video_of(key)):
-            continue  # 動画ができるまで待つ（写真のカードでは出さない。ルール8）
+        if entry.get("status") == "skipped_no_video":
+            continue  # 前の決まりで見送った記録（出し直さない）
         if entry.get("status") == "awaiting_video" and not planned_slot(entry):
             continue
         ready = when
@@ -493,8 +496,6 @@ def fill_candidate(state: dict, extra: dict, now: datetime, articles: list[dict]
             continue
         if article["slug"] in taken or article.get("roundupSlug") in taken:
             continue
-        if not video_of(article["slug"]):
-            continue  # 動画のある記事だけ（ルール8）
         if tp.sns_plan.excluded(article):
             continue  # 海外の企業向け・開発者向けの話題は SNS に出さない（サイトだけ。S28）
         newest.append((generated, article))
@@ -649,18 +650,15 @@ def main() -> int:
             used: list[str] = []
             media: list[dict] = []
             blob = None
-            if p.get("kind", "article") != "digest" and not sns_rules.is_urgent(p.get("gate")):
-                vid = video_of(key)
-                if not vid:
-                    log(f"  [bluesky] {key} は動画がまだ無いので出しません（写真のカードでは出さない）")
-                    continue
+            vid = video_of(key) if p.get("kind", "article") != "digest" and not sns_rules.is_urgent(p.get("gate")) else {}
+            if vid:
                 media = [{"type": "video", "url": vid["url"], "width": 1920, "height": 1080}]
                 if session and live:
                     try:
                         blob = upload_video(session, vid["url"])
-                    except VideoUnsupported as error:
-                        # Bluesky が動画を受け付けない（大きさ・形式・処理の失敗）→ 記事の写真のカードで出す（2026-11-05 オーナー承認）
-                        log(f"  [bluesky] {key}: {error}。リンクカード（記事の写真）で出します")
+                    except Exception as error:  # noqa: BLE001
+                        # Bluesky が動画を受け付けない・上げられない → 記事の写真のカードで出す（2026-11-05 夕方 オーナー「動画を待たない」）
+                        log(f"  [bluesky] {key}: 動画を上げられません（{str(error)[:120]}）。リンクカード（記事の写真）で出します")
                         p["videoUnsupported"] = True
                 p["link"] = tp.utm_link(f"{tp.site_url()}/articles/{key}", "bluesky", "sns_video", vid["variant"],
                                         ptype="hook" if entry.get("hookFormat") else "")
@@ -671,8 +669,9 @@ def main() -> int:
                     thumb = upload_thumb(session, p["images"], used)
                     media = [{"type": "image", "url": u} for u in used]
             else:
+                # 動画を作らない投稿・動画がまだ無い投稿・朝のまとめは、記事の写真（号のシェア画像）のリンクカード（ルール8・台帳 S13）
                 thumb = upload_thumb(session, p["images"], used) if session and (live or args.slug) else None
-                media = [{"type": "image", "url": u} for u in used]
+                media = [{"type": "image", "url": u} for u in (used or ([] if live else p["images"][:1]))]  # 下書きは上げずに写真の URL で確かめる
             record = build_record(p["text"], p["link"], p["title"], p["desc"], thumb, video=blob)
             if not live:
                 log(f"--- {key} ({kind})\n{json.dumps(record, ensure_ascii=False, indent=1)}")
@@ -680,8 +679,8 @@ def main() -> int:
                                               kind=p.get("kind", "article"), links=[p["link"]]):
                     log(f"  [check] {v}")
                 continue
-            if p.get("kind", "article") != "digest" and not sns_rules.is_urgent(p.get("gate")) and not blob and not p.get("videoUnsupported"):
-                raise RuntimeError("動画を Bluesky に上げられませんでした（写真では出しません）")
+            if vid and not blob and not p.get("videoUnsupported"):
+                raise RuntimeError("動画を Bluesky に上げられませんでした")
             res = create_record(session, record, p, media)
             at = datetime.now(timezone.utc).isoformat(timespec="seconds")
             if kind == "fill":

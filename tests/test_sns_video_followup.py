@@ -21,6 +21,16 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import sns_video_followup as fu  # noqa: E402
+from unittest.mock import patch  # noqa: E402
+
+
+class VideoPostCase(unittest.TestCase):
+    """動画を作る記事（2026-11-05 夕方〜 sns_plan.video_post＝Muse に頼んだ限られた記事）として、動画づくりの順番を確かめる"""
+
+    def setUp(self):
+        p = patch.object(fu, "video_wanted", return_value=True)
+        p.start()
+        self.addCleanup(p.stop)
 
 NOW = datetime(2026, 11, 3, 3, 0, tzinfo=timezone.utc)  # 日本時間 12:00
 
@@ -52,7 +62,7 @@ class FlagsTest(unittest.TestCase):
         self.assertTrue(all(r["status"] == "planned" for r in rows))
 
 
-class SelectTest(unittest.TestCase):
+class SelectTest(VideoPostCase):
     def pick(self, p, state=None, window=12):
         scores = {"a": 1, "b": 5, "c": 3, "old": 9, "news": 9}
         return fu.candidates(
@@ -85,9 +95,13 @@ class SelectTest(unittest.TestCase):
         self.assertEqual(sorted(fu.candidates(posted(a=1, b=1, c=1, d=1, e=1), state, NOW, 12, **kw)), ["a", "b", "d", "e"])
 
     def test_breaking_gives_up_after_two_hours(self):
-        self.assertEqual(fu.give_up_h({"breaking": True}), fu.QUEUE_GIVE_UP_BREAKING_H)
-        self.assertEqual(fu.QUEUE_GIVE_UP_BREAKING_H, 2)
-        self.assertEqual(fu.give_up_h({}), fu.QUEUE_GIVE_UP_H)
+        # 2026-11-05 夕方 オーナー「動画を待たない」: 速報は動画を待たない。動画を作る記事でも枠から1時間まで
+        self.assertEqual(fu.video_wait_h({"breaking": True}), 0.0)
+        self.assertEqual(fu.video_wait_h({}), 1.0)
+
+    def test_only_video_posts_get_a_video(self):
+        with patch.object(fu, "video_wanted", side_effect=lambda s: s == "b"):
+            self.assertEqual(self.pick(posted(a=1, b=2, c=3)), ["b"])
 
     def test_skip_done(self):
         self.assertEqual(self.pick(posted(a=1, b=2), {"videos": {"b": {"status": "posted"}}}), ["a"])
@@ -116,7 +130,7 @@ class VariantTest(unittest.TestCase):
         self.assertEqual(fu.pick_variant({"videos": {}}, NOW, "2026-11-02", "full"), "full")
 
 
-class PostTimingTest(unittest.TestCase):
+class PostTimingTest(VideoPostCase):
     F = {"ab_until": "2026-11-10", "after_ab": "short"}
 
     def ready(self, minutes_since_text, variant_ok=("short", "full")):

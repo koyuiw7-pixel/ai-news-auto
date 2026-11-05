@@ -1,4 +1,5 @@
-"""記事の SNS 投稿は動画つきだけ（2026-11-03 オーナー指示「SNS の投稿は動画のはず」。台帳 S13）と、
+"""記事の SNS 投稿は動画か記事の写真・カード（2026-11-05 夕方 オーナー決定「動画を待たない」「動画を作る記事を限定」で
+2026-11-03 の「動画つきだけ」を置き換え。台帳 S13。文字だけは出さない）と、
 壊れた日本語・無理な説明・弱い呼びかけを出さない（台帳 S14）の検査。外部通信なし・何も投稿しない。
 
   python3 -m unittest tests.test_sns_video_required
@@ -16,6 +17,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
+import sns_plan  # noqa: E402
 import sns_rules as r  # noqa: E402
 import sns_video_followup as fu  # noqa: E402
 import threads_post as tp  # noqa: E402
@@ -51,8 +53,8 @@ class VideoRequiredGateTest(unittest.TestCase):
             "bluesky": (f"{GOOD}\nai-tech-express.jp/articles/acme-tool", {"links": [f"{LINK}?utm_source=bluesky&utm_medium=social&utm_campaign=x&utm_content=video_body"]}),
         }
         for platform, (text, kw) in cases.items():
-            for media in ([], CARD):  # 写真・カードだけ・何も無い → 止める
-                self.assertTrue(rule8(r.check_post(platform, text, media, ART, **kw)), f"{platform} {media}")
+            self.assertTrue(rule8(r.check_post(platform, text, [], ART, **kw)), platform)  # 文字だけ → 止める
+            self.assertEqual(rule8(r.check_post(platform, text, CARD, ART, **kw)), [], platform)  # 写真・カード → 通す（2026-11-05 夕方〜）
             self.assertEqual(rule8(r.check_post(platform, text, VIDEO, ART, **kw)), [], platform)
             self.assertEqual(rule8(r.check_post(platform, text, CARD + VIDEO, ART, **kw)), [], platform)
 
@@ -60,8 +62,9 @@ class VideoRequiredGateTest(unittest.TestCase):
         digest = {"link": "https://ai-tech-express.jp/digest/20261104", "items": [{"slug": "a"}, {"slug": "b"}]}
         share = [{"type": "image", "url": "https://ai-tech-express.jp/digest/20261104/share.png", "width": 1200, "height": 630}]
         self.assertEqual(rule8(r.check_post("threads", "今朝のAIニュース3本\n・x", share, digest, kind="digest")), [])
-        # 速報は例外にしない（地震・津波などの急ぎの安全の知らせだけ例外。UrgentExceptionTest）
-        self.assertTrue(rule8(r.check_post("threads", body("threads"), CARD, {**ART, "breaking": True})))
+        # 速報も写真・カードで出してよい（動画を待たない）。文字だけは止める
+        self.assertEqual(rule8(r.check_post("threads", body("threads"), CARD, {**ART, "breaking": True})), [])
+        self.assertTrue(rule8(r.check_post("threads", body("threads"), [], {**ART, "breaking": True})))
 
     def test_draft_and_text_preview_are_not_published_so_they_pass(self):
         self.assertEqual(rule8(r.check_post("threads", body("threads"), CARD, ART, draft=True)), [])
@@ -71,16 +74,17 @@ class VideoRequiredGateTest(unittest.TestCase):
         inp = {"channelId": "c", "text": body("threads"), "mode": "customScheduled", "dueAt": "2026-11-04T03:30:00Z",
                "metadata": {"threads": {"thread": [{"text": body("threads"), "assets": [{"image": {"url": CARD[0]["url"], "width": 1200, "height": 675}}]}]}}}
         with patch.dict("os.environ", {"SNS_RULES_NO_ISSUE": "1"}):
+            r.enforce_buffer("threads", inp, ART, source="test", history=False)  # 写真・カードは通る（2026-11-05 夕方〜）
+            inp["metadata"]["threads"]["thread"][0]["assets"] = []
             with self.assertRaises(r.SnsRuleViolation) as caught:
-                r.enforce_buffer("threads", inp, ART, source="test", history=False)
+                r.enforce_buffer("threads", inp, ART, source="test", history=False)  # 文字だけは止める
         self.assertTrue(rule8(caught.exception.violations))
-        inp["metadata"]["threads"]["thread"][0]["assets"] = [{"video": VIDEO[0] | {}}]
         inp["metadata"]["threads"]["thread"][0]["assets"] = [{"video": {k: v for k, v in VIDEO[0].items() if k != "type"}}]
         r.enforce_buffer("threads", inp, ART, source="test", history=False)  # 動画つきは通る
 
     def test_audit_flags_real_post_without_video(self):
-        post = {"platform": "threads", "text": body("threads"), "media": CARD}
-        self.assertTrue(rule8(r.audit_post(post)))
+        self.assertTrue(rule8(r.audit_post({"platform": "threads", "text": body("threads"), "media": []})))
+        self.assertFalse(rule8(r.audit_post({"platform": "threads", "text": body("threads"), "media": CARD})))
 
 
 class UrgentExceptionTest(unittest.TestCase):
@@ -93,10 +97,12 @@ class UrgentExceptionTest(unittest.TestCase):
             self.assertEqual(rule8(r.check_post("threads", body("threads"), CARD, art)), [], art["title"])
 
     def test_ordinary_news_mentioning_weather_still_needs_video(self):
+        # ふつうの記事は急ぎの知らせではない（is_urgent は False）。2026-11-05 夕方からは写真・カードでも出せ、文字だけは止める
         for title in ("地震保険の保険料が来年から上がる", "Acme が新しいAIツールを公開", "台風の時期に備える家電の選び方"):
             art = {**ART, "title": title}
             self.assertFalse(r.is_urgent(art), title)
-            self.assertTrue(rule8(r.check_post("threads", body("threads"), CARD, art)), title)
+            self.assertEqual(rule8(r.check_post("threads", body("threads"), CARD, art)), [], title)
+            self.assertTrue(rule8(r.check_post("threads", body("threads"), [], art)), title)
 
     def test_urgent_breaking_posts_now_without_queue(self):
         article = {**ART, "description": "d", "seoTitle": ART["title"], "disaster": True}
@@ -111,8 +117,10 @@ class UrgentExceptionTest(unittest.TestCase):
     def test_bluesky_does_not_wait_for_video_on_urgent(self):
         import bluesky_post as bp
 
-        self.assertFalse(bp.needs_video({"style": "standalone", "urgent": True}))
-        self.assertTrue(bp.needs_video({"style": "standalone"}))
+        self.assertFalse(bp.needs_video({"style": "standalone", "urgent": True}, "a"))
+        with patch.object(bp.tp.sns_plan, "video_post", side_effect=lambda s: s == "a"):
+            self.assertTrue(bp.needs_video({"style": "standalone"}, "a"))  # 動画を作る限られた記事だけ
+            self.assertFalse(bp.needs_video({"style": "standalone"}, "b"))
 
 
 class GrammarGateTest(unittest.TestCase):
@@ -199,20 +207,26 @@ FLAGS = {"post": True, "ab_until": "2026-11-10", "after_ab": "short"}
 
 
 class PublishQueuedTest(unittest.TestCase):
-    def run_queue(self, posted, videos, eligible=lambda s: True):
+    """2026-11-05 夕方 オーナー決定（「動画を待たない」「動画を作る記事を限定」・台帳 S13）: ふつうの投稿は枠の時刻に写真・カードで、
+    動画を作る限られた記事（sns_plan.video_post）だけ枠から1時間まで動画を待ち、無ければ写真・カードで出す"""
+
+    def run_queue(self, posted, videos, eligible=lambda s: True, video_posts=None, now=NOW):
         sent, issues = [], []
+        video_posts = set(posted) if video_posts is None else set(video_posts)
 
         def creator(service, inp, article):
-            # 送る直前の門番と同じ判定で、動画が付いているか確かめる（写真だけなら止まる）
+            # 送る直前の門番と同じ判定で、動画か写真・カードが付いているか確かめる（文字だけなら止まる）
             _text, _reply, media, _links = r.buffer_parts(service, inp)
-            self.assertTrue(r.has_video(media), f"{service} に動画が無い: {inp}")
-            self.assertNotIn("linkAttachment", (inp.get("metadata") or {}).get("facebook") or {})
+            self.assertTrue(media, f"{service} に動画も写真も無い: {inp}")
+            if r.has_video(media):
+                self.assertNotIn("linkAttachment", (inp.get("metadata") or {}).get("facebook") or {})
             sent.append((service, inp))
             return f"id-{service}"
 
         state = {"videos": videos}
-        with patch.object(fu, "article_of", lambda report: ART):
-            out = fu.publish_queued(state, {"posted": posted}, NOW, FLAGS, creator=creator, issue=lambda s, w: issues.append((s, w)), eligible=eligible)
+        with patch.object(fu, "article_of", lambda report: ART), \
+                patch.object(sns_plan, "video_post", side_effect=lambda s, *a: s in video_posts):
+            out = fu.publish_queued(state, {"posted": posted}, now, FLAGS, creator=creator, issue=lambda s, w: issues.append((s, w)), eligible=eligible)
         return state, sent, issues, out
 
     def test_ready_video_is_sent_at_the_slot_with_video(self):
@@ -222,46 +236,48 @@ class PublishQueuedTest(unittest.TestCase):
         self.assertEqual(sent[0][1]["dueAt"], fu._iso(slot))  # 枠の時刻のまま
         self.assertEqual(sent[1][1]["dueAt"], fu._iso(slot + timedelta(minutes=12)))
         self.assertIn("utm_campaign=sns_video", sent[0][1]["text"])
-        self.assertEqual(state["queued"]["a"]["status"], "created")
+        self.assertEqual((state["queued"]["a"]["status"], state["queued"]["a"]["media"]), ("created", "video"))
         self.assertEqual(state["videos"]["a"]["status"], "attached")
         self.assertEqual(issues, [])
 
     def test_late_video_delays_and_keeps_slot_order(self):
+        """動画を作る記事は枠から1時間まで動画を待つ。その間もあとの投稿は止めない。1時間を過ぎたら写真・カードで出す"""
         first, second = NOW - timedelta(minutes=30), NOW - timedelta(minutes=10)
-        # 前の枠（a）の動画がまだ → あとの枠（b）は動画ができていても先に出さない
         state, sent, issues, _ = self.run_queue({"a": queued_rec(first), "b": queued_rec(second)}, {"b": ready_video("b")})
-        self.assertEqual(sent, [])
         self.assertEqual(state["queued"]["a"]["status"], "waiting")
-        # 両方できたら、枠が過ぎていても今から遅らせて a → b の順に予約する
-        state, sent, issues, _ = self.run_queue({"a": queued_rec(first), "b": queued_rec(second)}, {"a": ready_video("a"), "b": ready_video("b")})
-        threads = [inp["dueAt"] for s, inp in sent if s == "threads"]
-        self.assertEqual(len(threads), 2)
-        self.assertLess(threads[0], threads[1])
-        self.assertGreaterEqual(threads[0], fu._iso(NOW + timedelta(minutes=fu.QUEUE_LEAD_MIN)))
+        self.assertEqual((state["queued"]["b"]["status"], state["queued"]["b"]["media"]), ("created", "video"))
+        self.assertGreaterEqual(sent[0][1]["dueAt"], fu._iso(NOW + timedelta(minutes=fu.QUEUE_LEAD_MIN)))  # 枠が過ぎていれば少しあとに
+        late = NOW - timedelta(minutes=65)
+        state, sent, issues, _ = self.run_queue({"a": queued_rec(late)}, {})
+        self.assertEqual((state["queued"]["a"]["status"], state["queued"]["a"]["media"]), ("created", "card"))
+        self.assertFalse(any(r.has_video(r.buffer_parts(s, i)[2]) for s, i in sent))
+        self.assertEqual(issues, [])
 
     def test_failed_or_unfit_video_skips_post_and_opens_issue(self):
-        slot = NOW + timedelta(hours=1)
+        """（2026-11-05 夕方〜）動画が作れなくても投稿は落とさない・issue も立てない。動画を作らない投稿は枠の75分前から写真・カードで予約"""
         failed = {"status": "gate_failed", "tries": fu.MAX_TRIES, "reason": "full: v3: 長さ"}
-        state, sent, issues, _ = self.run_queue({"a": queued_rec(slot)}, {"a": failed})
-        self.assertEqual(sent, [])
-        self.assertEqual(state["queued"]["a"]["status"], "skipped")
-        self.assertEqual([s for s, _ in issues], ["a"])
-        state, sent, issues, _ = self.run_queue({"b": queued_rec(slot)}, {}, eligible=lambda s: False)
-        self.assertEqual((sent, state["queued"]["b"]["status"]), ([], "skipped"))
-        late = NOW - timedelta(hours=fu.QUEUE_GIVE_UP_H + 1)
-        state, sent, issues, _ = self.run_queue({"c": queued_rec(late)}, {})
-        self.assertEqual((sent, state["queued"]["c"]["status"]), ([], "skipped"))
+        state, sent, issues, _ = self.run_queue({"a": queued_rec(NOW - timedelta(minutes=61))}, {"a": failed})
+        self.assertEqual((state["queued"]["a"]["status"], state["queued"]["a"]["media"], issues), ("created", "card", []))
+        slot = NOW + timedelta(hours=1)
+        state, sent, issues, _ = self.run_queue({"b": queued_rec(slot)}, {}, video_posts=())
+        self.assertEqual((state["queued"]["b"]["status"], state["queued"]["b"]["media"]), ("created", "card"))
+        self.assertEqual(sent[0][1]["dueAt"], fu._iso(slot))  # 枠の時刻のまま
+        state, sent, issues, _ = self.run_queue({"c": queued_rec(NOW + timedelta(hours=2))}, {}, video_posts=())
+        self.assertEqual((sent, state["queued"]["c"]["status"]), ([], "waiting"))  # まだ早い（枠の75分前から）
+        stale = NOW - timedelta(hours=fu.STALE_POST_H + 1)
+        state, sent, issues, _ = self.run_queue({"d": queued_rec(stale)}, {}, video_posts=())
+        self.assertEqual((sent, state["queued"]["d"]["status"]), ([], "skipped"))  # S33: 古いものは遅れて出さない
 
     def test_video_without_render_and_vision_qa_is_not_posted_but_rerendered(self):
-        slot = NOW + timedelta(hours=1)
+        """検査（描いた位置・画像のレビュー）に合格していない動画は使わない。待つ時間のあとは写真・カードで出す"""
         old = ready_video("a")
         for ver in old["versions"].values():
             ver["qa"] = {"geometry": True, "vision": False}
-        state, sent, issues, _ = self.run_queue({"a": queued_rec(slot)}, {"a": old})
-        self.assertEqual((sent, issues), ([], []))
-        self.assertNotIn("a", state["videos"])  # 作り直す
-        self.assertIn("a", state["videosArchive"])
-        self.assertEqual(state["queued"]["a"]["status"], "waiting")
+        state, sent, issues, _ = self.run_queue({"a": queued_rec(NOW + timedelta(hours=1))}, {"a": old})
+        self.assertEqual((sent, issues, state["queued"]["a"]["status"]), ([], [], "waiting"))
+        state, sent, issues, _ = self.run_queue({"a": queued_rec(NOW - timedelta(minutes=61))}, {"a": old})
+        self.assertEqual(state["queued"]["a"]["media"], "card")
+        self.assertFalse(any(r.has_video(r.buffer_parts(s, i)[2]) for s, i in sent))
         self.assertFalse(fu.qa_ok({"ok": True}, env={}))
         self.assertTrue(fu.qa_ok({"qa": {"geometry": True, "vision": True, "v3": True}}, env={}))
 
@@ -545,17 +561,22 @@ class KeepPostingTest(unittest.TestCase):
     """（2026-11-04 オーナー「投稿を止めない」）1本の動画が作れなくても、ほかの投稿は出る（遅れるのはその投稿だけ）"""
 
     def test_one_stuck_video_does_not_stop_later_posts_for_long(self):
-        stuck_slot = NOW - timedelta(minutes=fu.ORDER_HOLD_MIN + 5)
+        stuck_slot = NOW - timedelta(minutes=30)
         posted = {"stuck": queued_rec(stuck_slot), "next": queued_rec(NOW + timedelta(minutes=20))}
         videos = {"stuck": {"status": "gate_failed", "tries": 1, "reason": "full: 台本を作れない"}, "next": ready_video("next")}
         state = {"videos": videos}
         sent = []
-        with patch.object(fu, "article_of", lambda report: ART):
+        with patch.object(fu, "article_of", lambda report: ART), patch.object(sns_plan, "video_post", return_value=True):
             fu.publish_queued(state, {"posted": posted}, NOW, FLAGS, creator=lambda svc, inp, art: sent.append(svc) or f"id-{svc}",
                               issue=lambda s, w: None, eligible=lambda s: True, remote=lambda s: {})
-        self.assertEqual(state["queued"]["stuck"]["status"], "waiting")  # 遅れているのはこの投稿だけ（作り直しを続ける）
+        self.assertEqual(state["queued"]["stuck"]["status"], "waiting")  # 動画を作る記事なので枠から1時間まで待つ（この投稿だけ）
         self.assertEqual(state["queued"]["next"]["status"], "created")
         self.assertEqual(sent, ["threads", "twitter", "facebook"])
+        # 1時間を過ぎたら、待っていた投稿も写真・カードで出る（2026-11-05 夕方 オーナー「動画を待たない」）
+        with patch.object(fu, "article_of", lambda report: ART), patch.object(sns_plan, "video_post", return_value=True):
+            fu.publish_queued(state, {"posted": posted}, NOW + timedelta(minutes=31), FLAGS, creator=lambda svc, inp, art: sent.append(svc) or f"id-{svc}",
+                              issue=lambda s, w: None, eligible=lambda s: True, remote=lambda s: {})
+        self.assertEqual((state["queued"]["stuck"]["status"], state["queued"]["stuck"]["media"]), ("created", "card"))
 
     def test_breaking_and_scheduled_posts_are_queued_without_waiting_for_video(self):
         article = {**ART, "description": "d", "seoTitle": ART["title"]}

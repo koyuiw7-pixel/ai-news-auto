@@ -235,7 +235,8 @@ class PresendRecheckTest(unittest.TestCase):
 
 class PresendNodeCheckTest(unittest.TestCase):
     def test_threads_post_with_link_in_reply_is_not_a_violation(self):
-        # 2026-11-05 presend-plan の一覧で、リンクの位置の比べ（S31）で返信にリンクを置いた Threads の予約を「リンクがない」と読み違えた
+        # 2026-11-05 presend-plan の一覧で、リンクの位置の比べ（S31）で返信にリンクを置いた Threads の予約を「リンクがない」と読み違えた。
+        # S31 は 2026-11-05 夕方に終了: 返信のリンクは違反として見つけ（下の presend が本文に移す）、直したあとの形は通る
         url = utm("threads").replace("video_body", "video_reply")
         n = {"id": "t1", "service": "threads", "dueAt": "2026-11-05T09:45:00Z", "text": f"{OPENER}\n\n{NEXT_FACT}",
              "metadata": {"thread": [{"text": f"{OPENER}\n\n{NEXT_FACT}", "assets": [{"mimeType": "video/mp4", "source": "https://x/v.mp4"}]},
@@ -244,7 +245,12 @@ class PresendNodeCheckTest(unittest.TestCase):
             slug, video, problems = svf.node_problems(n)
         self.assertEqual(slug, ARARA["slug"])
         self.assertTrue(video)
-        self.assertFalse([p for p in problems if "リンク" in p], problems)
+        self.assertTrue([p for p in problems if "リンク" in p], problems)
+        merged = sns_rules.merge_reply_link_texts([f"{OPENER}\n\n{NEXT_FACT}", url])
+        self.assertEqual(len(merged), 1)
+        self.assertTrue(merged[0].endswith(utm("threads")), merged[0])
+        fixed = {**n, "metadata": {"thread": [{**n["metadata"]["thread"][0], "text": merged[0]}]}, "text": merged[0]}
+        self.assertFalse([p for p in svf.node_problems(fixed)[2] if "リンク" in p])
 
     def test_non_template_violation_is_left_with_an_issue_not_paused(self):
         t = PresendRecheckTest("test_plan_only_lists_and_does_not_edit")

@@ -19,10 +19,10 @@
      問いかけは、記事を読まなくても答えられる「読者自身の好み・経験」を聞く（「この機能、使ってみたい？」は×）。
   7. （2026-11-03 オーナー指示）要約の文は、やさしい「です・ます」の短い文。記事の硬い文（「〜する。」「〜である。」
      「〜した。」の言い切りや、「〜を発表。」で終わる文）をそのまま使わない。だれが（主語）を書く。
-  8. （2026-11-03 オーナー指示「SNS の投稿は動画のはず」・繰り返しの違反）記事の投稿は**必ず動画つき**。写真・カードだけの投稿は出さない。
-     例外は朝のまとめ（kind="digest"。号のシェア画像 share.png）と、（2026-11-03 オーナー承認）災害（地震・津波・噴火・大雨・台風の警報など）や
-     遅れると読者に害がある知らせ（is_urgent。記事の disaster / urgent / safetyAlert）。これらは写真のカードですぐ出してよい。動画が間に合わなければ投稿を遅らせ（枠の順番は保つ）、
-     作れなければ issue を立てて出さない（scripts/sns_video_followup.py の publish_queued）。下書き（saveToDraft）だけは公開されないので通す。
+  8. （2026-11-05 夕方 オーナー決定「動画を待たない」「動画を作る記事を限定した方がいいかな。かなり人気なジャンルで、ビューを取れるような
+     記事にしたいよね」。2026-11-03 の「必ず動画つき」を置き換え）記事の投稿は動画か、記事の写真・カード（16:9・ルール2）を付ける。文字だけでは出さない。
+     動画を作るのはビューを取れる限られた記事だけ（sns_plan.video_post＝Muse に頼んだ記事・1日4本まで）で、その投稿だけ短い時間（1時間）動画を待つ。
+     それ以外の投稿は動画を待たず、枠の時刻に写真・カードで出す（scripts/sns_video_followup.py の publish_queued）。下書き（saveToDraft）は見ない。
   9. （2026-11-03 オーナー指摘「可能しました」）壊れた日本語を出さない（な形容詞＋しました・です／ますの重なりなど。GRAMMAR_BREAKS）。
      よく知られた会社に無理な説明を付けない（「AI半導体のNVIDIAが」。headline_normalize と同じ判定）。
 
@@ -35,7 +35,7 @@
      無ければ事実の1行＝何が・いつ・だれに）。災害・事故・安全の話題（safety_topic）は事実だけ: 呼びかけ・問いかけ・絵文字を付けない
      （autofix が呼びかけの行・問いかけ・絵文字を外す）。
   （フラグ・オーナー承認待ち）SNS_HOOK_FORMAT=1 のときだけ、Muse の型（1行目＝結論＋数字か読者への影響／2行目＝なぜ大事か／
-     3行目＝記事にだけあるもの）も通す（S30）。THREADS_LINK_AB=1 のときだけ Threads のリンクを返信に置いてよい（S31）。
+     3行目＝記事にだけあるもの）も通す（S30）。Threads のリンクは本文だけ（S31 のリンクの位置の比べは 2026-11-05 夕方に終了「すべて本文にリンクにしよう今後は」）。
 
   15. （2026-11-05 オーナー承認・台帳 S36）Instagram（公式の Graph API で直接）: 文面は Threads・Bluesky と同じ予定の本文（autofix も同じ）。
      キャプションのリンクは押せないので本文に URL を書かず「記事はプロフィールのリンクから」の1行で案内する（記事のリンクは links で確かめる）。
@@ -533,8 +533,6 @@ def check_link(platform: str, text: str, reply_text: str, links: list[str], path
         if not reply_links:
             out.append("[ルール1] X の返信に記事のリンクがない")
         tagged = reply_links
-    elif platform == "threads" and sns_plan.link_ab_on() and reply_links and not body_links:
-        tagged = reply_links  # リンクの位置の比べ（THREADS_LINK_AB=1・S31）: 返信にリンク
     elif platform == "instagram":
         # キャプションのリンクは押せない（S36）。本文に URL を書かず、プロフィールのリンクへ案内する。記事のリンクは links（記録用）
         if links_in(text):
@@ -812,10 +810,44 @@ def autofix(text: str, article: dict | None = None, platform: str = "") -> tuple
     return fixed, changes
 
 
+def _article_link_only(text: str) -> bool:
+    """記事のリンクだけの行（S31 のリンクの位置の比べで返信に置いたもの）"""
+    body = strip_links(text).strip()
+    return bool(links_in(text)) and not body and all("/articles/" in u for u in links_in(text))
+
+
+def merge_reply_link_texts(texts: list[str]) -> list[str]:
+    """（2026-11-05 夕方 オーナー決定「すべて本文にリンクにしよう今後は」・S31 終了）Threads の投稿の返信にリンクだけを置いた形
+    （[本文, リンク]）を、本文の最後にリンクを入れた1件の形にする（utm_content の *_reply は *_body に）。当てはまらなければそのまま"""
+    if len(texts) < 2 or links_in(texts[0]) or not all(_article_link_only(t) for t in texts[1:]):
+        return list(texts)
+    links = [u.replace("_reply", "_body") for t in texts[1:] for u in links_in(t)]
+    return [texts[0].rstrip() + "\n\n" + links[0]]
+
+
+def move_reply_link_to_body(service: str, post_input: dict) -> bool:
+    """Threads の Buffer の入力で、返信にリンクだけを置いた形を本文のリンクに直す（その場で）。直したら True。
+    リンクの位置の比べ（S31）の間に作った動画待ち・予約の文面も、送る前にこの形に戻す"""
+    if norm_platform(service) != "threads":
+        return False
+    meta = (post_input.get("metadata") or {}).get("threads") or {}
+    thread = meta.get("thread") or []
+    if len(thread) < 2 or any(((t.get("metadata") or {}).get("threads") or {}).get("linkAttachment") for t in thread[1:]):
+        return False
+    merged = merge_reply_link_texts([t.get("text") or "" for t in thread])
+    if len(merged) != 1:
+        return False
+    meta["thread"] = [{**thread[0], "text": merged[0]}]
+    post_input["text"] = merged[0]
+    return True
+
+
 def autofix_buffer_input(service: str, post_input: dict, article: dict | None) -> list[str]:
     """Buffer の入力（本文と metadata の thread の1件目）を、その場で直す（autofix）。直したことの一覧"""
     changes: list[str] = []
     platform = norm_platform(service)
+    if move_reply_link_to_body(service, post_input):
+        changes.append("返信に置いた記事のリンクを本文に移した（S31 終了・2026-11-05 オーナー決定）")
     if post_input.get("text"):
         post_input["text"], ch = autofix(post_input["text"], article, platform)
         changes += ch
@@ -1155,10 +1187,11 @@ def check_post(
     out += grammar_problems(f"{content}\n{strip_links(reply_text)}")
     if kind != "digest":
         out += descriptor_problems(content)
-    # ルール8: 記事の投稿は動画つきだけ（朝のまとめだけ画像）。写真・カードだけの投稿は出さない
-    bluesky_fallback = video_unsupported and norm_platform(platform) == "bluesky" and any((m or {}).get("type") == "image" for m in (media or []))
-    if kind not in ("digest", "disaster") and not is_urgent(article) and not draft and not pending_video and not bluesky_fallback and not has_video(media):
-        out.append("[ルール8] 動画が付いていない（記事の投稿は必ず動画つき。写真・カードだけでは出さない。動画が間に合わなければ遅らせる）")
+    # ルール8（2026-11-05 夕方 オーナー決定「動画を待たない」・台帳 S13）: 記事の投稿は動画か、記事の写真・カード（16:9。ルール2）を付ける。
+    # 文字だけでは出さない。動画は限られた記事だけ（sns_plan.video_post）で、それ以外は写真・カードで枠の時刻に出す
+    has_picture = any((m or {}).get("type") == "image" for m in (media or []))
+    if kind not in ("digest", "disaster") and not is_urgent(article) and not draft and not pending_video and not has_video(media) and not has_picture:
+        out.append("[ルール8] 動画も記事の写真・カードも付いていない（文字だけでは出さない）")
     out += check_media(platform, media or [], article, kind, measurer)
     out += check_length(platform, text, reply_text)
     out += check_sports(article, content)
@@ -1290,7 +1323,7 @@ def enforce_buffer(service: str, post_input: dict, article: dict | None, *, sour
     text, reply, media, _links = buffer_parts(service, post_input)
     platform = norm_platform(service)
     # X 以外は返信を作らない（リンクは本文）。返信やリンクカードにだけリンクがある形は、本文のリンク無しとして止める
-    enforce(platform, text, media, article, source=source, kind=kind, reply_text=reply if platform == "x" or (platform == "threads" and sns_plan.link_ab_on()) else "",
+    enforce(platform, text, media, article, source=source, kind=kind, reply_text=reply if platform == "x" else "",
             history=history, draft=bool(post_input.get("saveToDraft")), measurer=measurer, pending_video=pending_video)
 
 
@@ -1322,7 +1355,7 @@ def audit_post(post: dict) -> list[str]:
         kind = "digest"
         article = {"link": digest, "items": [x for x in text.splitlines() if x.startswith("・")]}
     media = [m for m in post.get("media") or [] if m.get("url")]
-    out = check_post(platform, text, media, article, kind=kind, reply_text=replies if platform == "x" or (platform == "threads" and sns_plan.link_ab_on()) else "",
+    out = check_post(platform, text, media, article, kind=kind, reply_text=replies if platform == "x" else "",
                      links=list(post.get("links") or []))
     if before_growth_rules(post.get("at")):
         # ルール10・11（2026-11-05〜）より前に作った投稿は、点検でも違反に数えない（決まりを後から当てない）

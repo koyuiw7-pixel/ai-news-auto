@@ -142,7 +142,9 @@ class PostingPathTest(unittest.TestCase):
         self.assertIn("deferred", out[0])
 
     def test_extra_requeue_uses_the_same_video_bar_and_owner_hold(self):
-        """X・Facebook だけの出し直しも、Threads と同じ基準（検査に合格した動画だけ・ownerHold は自動で出さない）"""
+        """X・Facebook だけの出し直しも、Threads と同じ基準（検査に合格した動画だけ・ownerHold は自動で出さない）。
+        2026-11-05 夕方〜: 動画が使えなければ写真・カードで出す（動画を待たない）"""
+        import sns_rules
         import sns_video_followup as fu
         from test_sns_video_required import ART, FLAGS, NOW, queued_rec, ready_video
 
@@ -152,19 +154,20 @@ class PostingPathTest(unittest.TestCase):
                      "videos": {"a": video}}
             sent = []
             with patch.object(fu, "article_of", lambda report: ART):
-                fu.publish_extra_queued(state, NOW, FLAGS, creator=lambda svc, inp, art: sent.append(svc) or "id", issue=lambda s, w: None, posted=posted)
+                fu.publish_extra_queued(state, NOW, FLAGS, creator=lambda svc, inp, art: sent.append((svc, sns_rules.has_video(sns_rules.buffer_parts(svc, inp)[2]))) or "id",
+                                        issue=lambda s, w: None, posted=posted)
             return sent
 
         unreviewed = ready_video("a")
         for v in unreviewed["versions"].values():
             v["qa"] = {"geometry": True, "vision": False}
-        self.assertEqual(run(unreviewed, {"posted": {}}), [], "画像のレビューに通っていない動画を付けた")
+        self.assertEqual(run(unreviewed, {"posted": {}}), [("facebook", False)], "画像のレビューに通っていない動画を付けた")
         l4 = ready_video("a")
         for v in l4["versions"].values():
             v["level"] = "L4"
-        self.assertEqual(run(l4, {"posted": {}}), [], "L4 の動画を付けた（S23）")
+        self.assertEqual(run(l4, {"posted": {}}), [("facebook", False)], "L4 の動画を付けた（S23）")
         self.assertEqual(run(ready_video("a"), {"posted": {"a": {"ownerHold": True}}}), [], "ownerHold の記事を自動で出した")
-        self.assertEqual(run(ready_video("a"), {"posted": {}}), ["facebook"])
+        self.assertEqual(run(ready_video("a"), {"posted": {}}), [("facebook", True)])
 
 
 class SnsGateFailClosedTest(unittest.TestCase):

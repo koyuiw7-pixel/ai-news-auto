@@ -62,8 +62,10 @@ class GateTest(unittest.TestCase):
         self.assertLessEqual(len(r.HASHTAG_RE.findall(ig.caption(GOOD + "\n\n#AI #仕事 #お金 #副業"))), r.INSTAGRAM_HASHTAG_MAX)
 
     def test_article_posts_need_video_like_other_channels(self):
+        # 2026-11-05 夕方〜（ルール8・台帳 S13）: ほかの SNS と同じく、動画か記事の写真・カード。文字だけは止める
         card = [{"type": "image", "url": ig.jpeg_url("https://ai-tech-express.jp/card/acme-tool")}]
-        self.assertTrue(any("[ルール8]" in v for v in check(ig.caption(GOOD), media=card)))
+        self.assertFalse(any("[ルール8]" in v for v in check(ig.caption(GOOD), media=card)))
+        self.assertTrue(any("[ルール8]" in v for v in check(ig.caption(GOOD), media=[])))
 
     def test_summary_lead_and_rules_are_the_shared_ones(self):
         self.assertTrue(any("ルール13" in v for v in check(ig.caption(GOOD.replace("Acmeが", "要約すると、Acmeが")))))
@@ -151,9 +153,13 @@ class BuildTest(unittest.TestCase):
         self.assertEqual(check(item["caption"], media=item["media"], links=(item["link"],)), [])
 
     def test_no_video_means_no_post(self):
+        # 2026-11-05 夕方 オーナー「動画を待たない」: 動画が無ければ記事の写真だけのカード（JPEG）で出す。返信で動画は足さない
         plan = {"text": GOOD, "link": "x", "title": "t", "desc": "", "images": ["https://ai-tech-express.jp/card/acme-tool"], "gate": ART}
         with patch.object(ig.bp, "plan", lambda *a, **k: plan), patch.object(ig.bp, "video_of", lambda *a, **k: {}):
-            self.assertIn("skip", ig.build("acme-tool", {"style": "standalone"}))
+            item = ig.build("acme-tool", {"style": "standalone"})
+        self.assertNotIn("skip", item)
+        self.assertEqual(item["media"][0]["type"], "image")
+        self.assertEqual(item["params"], {"image_url": ig.jpeg_url("https://ai-tech-express.jp/card/acme-tool")})
 
     def test_digest_uses_the_issue_image_as_jpeg(self):
         page = "https://ai-tech-express.jp/digest/20261105"

@@ -39,7 +39,6 @@ jobs:
           BUFFER_LEDGER: recover
           BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
           SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '1' }}  # Muse の型の文面（2026-11-05 オーナー承認で既定 1。止めるなら変数を 0。台帳 S30）
-          THREADS_LINK_AB: ${{ vars.THREADS_LINK_AB || '1' }}  # Threads のリンクの位置の比べ（2026-11-05 オーナー承認・11/5〜11/12。S31）
           SNS_PER_DAY: ${{ steps.ramp.outputs.sns_per_day }}
           BREAKING_PER_DAY: ${{ vars.BREAKING_PER_DAY }}
           SNS_DIGEST: ${{ vars.SNS_DIGEST }}

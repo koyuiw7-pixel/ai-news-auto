@@ -150,7 +150,8 @@ class MuseTest(unittest.TestCase):
         return patch.object(sns_plan, "load_muse_queue", return_value={"items": items})
 
     def test_pick_rules(self):
-        # 2026-11-05〜 Muse の受け渡し＝SNS の予定（動画待ちの記録）。枠の順・枠の日ごとに6本まで・速報と出さない話題は入れない
+        # 2026-11-05 夕方〜（オーナー「動画を作る記事を限定」）: SNS の予定のうち、ビューを取れる話題（muse_score > 0）だけを
+        # 点数の高い順に、枠の日ごとに4本まで。速報と出さない話題は入れない
         now = datetime(2026, 11, 4, 22, 0, tzinfo=timezone.utc)  # 7:00 JST
 
         def rec(hh, mm, **kw):
@@ -165,25 +166,38 @@ class MuseTest(unittest.TestCase):
         self.assertTrue(all(g["status"] == "queued" and g["file"] == f"news-{g['slug']}.mp4" for g in got))
         self.assertEqual(got[0]["url"], "https://ai-tech-express.jp/articles/yucho")
         self.assertEqual(got[0]["slot"], at(5, 8, 10).isoformat())
-        self.assertEqual(got[0]["deadline"], (at(5, 8, 10) + timedelta(hours=4)).isoformat())
+        self.assertEqual(got[0]["deadline"], (at(5, 8, 10) + timedelta(hours=1)).isoformat())  # 待つのは枠から1時間まで
         self.assertTrue(got[0]["title"])
-        full = {"items": [{"slug": f"s{i}", "slot": at(5, 7, i).isoformat(), "queuedAt": now.isoformat(), "status": "queued"} for i in range(6)]}
-        self.assertEqual(muse_queue.pick(full, now, arts, posted), [])  # 枠の日ごとに6本まで
+        self.assertTrue(all(g["score"] > 0 for g in got))
+        full = {"items": [{"slug": f"s{i}", "slot": at(5, 7, i).isoformat(), "queuedAt": now.isoformat(), "status": "queued", "score": 8} for i in range(4)]}
+        self.assertEqual(muse_queue.pick(full, now, arts, posted), [])  # 枠の日ごとに4本まで
+        # 以前の「すべての投稿を Muse で」の点数0の項目は数えず、選び直す
+        old = {"items": [{"slug": f"s{i}", "slot": at(5, 7, i).isoformat(), "queuedAt": now.isoformat(), "status": "queued", "score": 0} for i in range(6)]
+                         + [{"slug": "yucho", "slot": at(5, 8, 10).isoformat(), "status": "queued", "score": 0}]}
+        self.assertEqual(sorted(g["slug"] for g in muse_queue.pick(old, now, arts, posted)), ["honda", "yucho"])
+        # 点数の高い順に選ぶ（上限が残り1本なら yucho（9点）を honda（8点）より先に）
+        three = {"items": [{"slug": f"s{i}", "slot": at(5, 7, i).isoformat(), "status": "queued", "score": 8} for i in range(3)]}
+        self.assertEqual([g["slug"] for g in muse_queue.pick(three, now, arts, posted)], ["yucho"])
+        plain = {**YUCHO, "slug": "plain", "title": "ゆうちょ銀行がお知らせを更新", "lede": "お知らせです。"}
+        self.assertEqual(muse_queue.pick({"items": []}, now, [plain], {"plain": rec(12, 15)}), [])  # 立つ数字の無い記事は動画を作らない
 
     def test_wait_until(self):
         slot = datetime(2026, 11, 5, 3, 15, tzinfo=timezone.utc)
-        item = {"slug": "yucho", "status": "queued", "queuedAt": "2026-11-04T22:00:00+00:00"}
+        item = {"slug": "yucho", "status": "queued", "queuedAt": "2026-11-04T22:00:00+00:00", "score": 9}
         data = {"items": [item]}
-        self.assertEqual(sns_plan.muse_wait_until("yucho", slot, data=data), slot + timedelta(hours=4))
+        self.assertEqual(sns_plan.muse_wait_until("yucho", slot, data=data), slot + timedelta(hours=1))
+        self.assertIsNone(sns_plan.muse_wait_until("yucho", slot, data={"items": [{**item, "score": 0}]}))  # 以前の点数0の項目は待たない
+        with patch.dict(os.environ, {"MUSE_WAIT_HOURS": "4"}):
+            self.assertEqual(sns_plan.muse_wait_until("yucho", slot, data=data), slot + timedelta(hours=1))  # 変数でも1時間より長くしない
         self.assertIsNone(sns_plan.muse_wait_until("yucho", slot, breaking=True, data=data))
         self.assertIsNone(sns_plan.muse_wait_until("other", slot, data=data))
 
     def test_publish_waits_for_muse_then_falls_back(self):
         slot = datetime(2026, 11, 5, 3, 15, tzinfo=timezone.utc)
         rec = {"id": "", "status": "awaiting_video", "dueAt": slot.isoformat(), "pending": {"slot": slot.isoformat(), "inputs": {"threads": {}}}}
-        item = {"slug": "yucho", "status": "queued", "queuedAt": slot.isoformat()}
+        item = {"slug": "yucho", "status": "queued", "queuedAt": slot.isoformat(), "score": 9}
         with self.queue([item]):
-            out = fu.publish_queued({"videos": {}}, {"posted": {"yucho": rec}}, slot + timedelta(hours=1), {"post": True, "ab_until": "", "after_ab": "short"},
+            out = fu.publish_queued({"videos": {}}, {"posted": {"yucho": rec}}, slot + timedelta(minutes=40), {"post": True, "ab_until": "", "after_ab": "short"},
                                     creator=lambda *a: self.fail("送ってはいけない"), issue=lambda *a: self.fail("issue を立ててはいけない"),
                                     eligible=lambda s: True, remote=lambda s: {})
             self.assertIn("Muse の動画", out[0]["why"])
@@ -193,9 +207,8 @@ class MuseTest(unittest.TestCase):
             with self.queue([item_early]):
                 pick = fu.candidates(posted, {"videos": {}}, slot - timedelta(hours=1), 12, load_article=lambda s: YUCHO, eligible=lambda a: True, score=lambda a: 0)
             self.assertEqual(pick, [])
-            pick = fu.candidates(posted, {"videos": {}}, slot + timedelta(hours=1), 12, load_article=lambda s: YUCHO, eligible=lambda a: True, score=lambda a: 0)
+            pick = fu.candidates(posted, {"videos": {}}, slot + timedelta(minutes=30), 12, load_article=lambda s: YUCHO, eligible=lambda a: True, score=lambda a: 0)
             self.assertEqual(pick, ["yucho"])
-            self.assertEqual(fu.muse_extra_h("yucho", rec), 4.0)
 
     def test_muse_video_passes_quality_bar(self):
         info = {"seconds": 62.0, "width": 1920, "height": 1080, "audio": True, "bytes": 5_000_000, "codec": "h264"}
@@ -256,13 +269,12 @@ class FlagsTest(unittest.TestCase):
         self.assertFalse(tp.hook3_facts_ok(["ゆうちょ銀行が30%を取得します。"], art))
 
     def test_link_ab_alternates_and_gate_allows_reply_only_with_flag(self):
+        # S31 は 2026-11-05 夕方に終了（オーナー「すべて本文にリンクにしよう今後は」）: 変数が 1 でも返信のリンクは通さない
         reply = f"{LINK}?utm_source=threads&utm_medium=social&utm_campaign=classic&utm_content=video_reply"
-        with patch.dict(os.environ, {"THREADS_LINK_AB": "1"}):
-            self.assertEqual(sns_plan.threads_link_position({}), "body")
-            self.assertEqual(sns_plan.threads_link_position({"a": {"linkPosition": "body"}}), "reply")
-            self.assertEqual(r.check_link("threads", "本文", reply, [], ["/articles/acme-tool"]), [])
-        with patch.dict(os.environ, {"THREADS_LINK_AB": "0"}):
-            self.assertTrue(r.check_link("threads", "本文", reply, [], ["/articles/acme-tool"]))
+        for flag in ("1", "0"):
+            with patch.dict(os.environ, {"THREADS_LINK_AB": flag}):
+                self.assertEqual(sns_plan.threads_link_position({"a": {"linkPosition": "body"}}), "body")
+                self.assertTrue(r.check_link("threads", "本文", reply, [], ["/articles/acme-tool"]))
 
 
 class FastLangTest(unittest.TestCase):

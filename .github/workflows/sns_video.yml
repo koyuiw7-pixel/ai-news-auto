@@ -1,9 +1,9 @@
 name: SNS video follow-up (flagged, default off)
 
 # SNS（Threads・X・Facebook）に出す記事の解説動画（v3）を作り、動画つきで Buffer に予約する（1記事1投稿。2026-11-03 オーナー決定）。
-# 2026-11-03 オーナー指示「SNS の投稿は動画のはず」: 記事の投稿は動画つきだけ（sns_rules ルール8）。threads_post / breaking_post は
-# 「動画待ち」として記録するだけで、ここ（sns_video_followup.publish_queued）が動画ができた順・枠の順に送る。間に合わなければ遅らせ、
-# 作れなければ issue（ラベル sns-video-missing）を立てて出さない。写真のカードでは出さない。記事ページにもサイト用を載せる。
+# 2026-11-05 夕方 オーナー決定「動画を待たない」「動画を作る記事を限定」（sns_rules ルール8・台帳 S13）: threads_post / breaking_post は
+# 「予定」として記録するだけで、ここ（sns_video_followup.publish_queued）が枠の順に送る。ふつうの投稿は記事の写真・カードで枠の時刻に、
+# 動画を作る限られた記事（sns_plan.video_post・1日4本まで）だけ枠から1時間まで動画を待つ（無ければ写真・カード）。記事ページにもサイト用を載せる。
 # 2026-11-03 オーナー決定「SNS に投稿した記事は全部」「同じ台本からサイト用（全部）と SNS 用（短い版）」「1週間、投稿ごとに短い版と全部の版を交互（A/B）」。
 # **既定では何もしない。** Actions の Variables で順に有効にする（docs/sns-video-v3-20261102.md「自動化の計画」）:
 #   SNS_VIDEO_FOLLOWUP=on  … 定期実行で動画を作る（ゲートまで。投稿しない）
@@ -126,7 +126,6 @@ jobs:
           # 中身に合わせた動画の型（scripts/video_templates.py）。2026-11-04 オーナー承認で既定 on（off で今までの1つの型）
           SNS_VIDEO_TEMPLATES: ${{ vars.SNS_VIDEO_TEMPLATES || 'on' }}
           SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '1' }}  # Muse の型の文面（2026-11-05 オーナー承認で既定 1。止めるなら変数を 0。台帳 S30）
-          THREADS_LINK_AB: ${{ vars.THREADS_LINK_AB || '1' }}  # Threads のリンクの位置の比べ（2026-11-05 オーナー承認・11/5〜11/12。S31）
           MUSE_WAIT_HOURS: ${{ vars.MUSE_WAIT_HOURS }}  # Muse の動画を待つ時間（空なら scripts/sns_plan.json の4時間）
         run: |
           qf="${{ github.event.inputs.queue_fix }}"

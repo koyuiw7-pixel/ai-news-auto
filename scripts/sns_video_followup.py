@@ -238,12 +238,14 @@ def candidates(posted: dict, state: dict, now: datetime, window_h: float, load_a
             continue  # オーナーに見せるまで、動画も投稿も自動では進めない
         if awaiting(rec) and (rec.get("pending") or {}).get("hold"):
             continue  # オーナーに見せた動画を置くのを待っている（作らない）
+        if not video_wanted(slug):
+            continue  # 2026-11-05 夕方 オーナー「動画を作る記事を限定」: 動画を作るのはビューを取れる限られた記事（Muse に頼んだ記事）だけ
         if awaiting(rec) and muse_waiting(slug, rec, now) and now < at:
             # とろいも（Muse）の動画を待っている間、枠の時刻までは自動動画を作らない。枠を過ぎたら、Muse が来なかったときの
             # 予備として作っておく（期限で すぐ出せる。投稿は期限まで Muse を待つ。2026-11-05 すべての投稿を Muse に）
             continue
         if awaiting(rec) and queued.get("status") not in ("created", "skipped"):
-            group = 0  # 動画を待っている投稿（動画が無いと出せない）は、枠が過ぎていても最優先・枠の順
+            group = 0  # 動画を待っている投稿（動画を作る記事。枠から1時間まで待つ）は最優先・枠の順
         elif at > now:
             if not mergeable(rec) or at - now < timedelta(minutes=MAKE_LEAD_MIN):
                 continue
@@ -261,6 +263,16 @@ def candidates(posted: dict, state: dict, now: datetime, window_h: float, load_a
         rows.append((group, at.timestamp() if group == 0 else -score(article), at, slug))
     rows.sort(key=lambda r: r[:3])
     return [r[3] for r in rows]
+
+
+def video_wanted(slug: str) -> bool:
+    """この記事の動画を作るか（sns_plan.video_post。読めなければ作らない＝動画を作る記事を限る）"""
+    try:
+        import sns_plan
+
+        return sns_plan.video_post(slug)
+    except Exception:  # noqa: BLE001
+        return False
 
 
 def ptype_of(url: str) -> str:
@@ -368,6 +380,7 @@ def run(now: datetime | None = None, env: dict | None = None, plan_only: bool = 
     ②用意できた動画で、予約中の投稿の写真を差し替える（1記事1投稿。間に合わなければ記事ページだけ）
     ③（フラグ）速報の後追いの動画の投稿を1本だけ"""
     f = flags(env)
+    fixed_now = now is not None
     now = now or datetime.now(timezone.utc)
     state = load_json(STATE, {"videos": {}})
     state.setdefault("videos", {})
@@ -388,6 +401,13 @@ def run(now: datetime | None = None, env: dict | None = None, plan_only: bool = 
         except Exception as error:  # noqa: BLE001 - 読み直しに失敗しても動画づくり・予約は止めない（次の回でもう一度）
             log(f"[presend] 読み直しをとばしました: {type(error).__name__}: {str(error)[:200]}")
         save_state(state)
+        # 2026-11-05 夕方 オーナー「動画を待たない」: 動画づくり（1本 最大12分）の前に、枠の近い投稿を写真・カード（または用意できた動画）で
+        # 予約しておく（動画づくりのあいだに枠の時刻を過ぎないように）。動画づくりのあとにもう一度呼ぶ（同じ投稿は二度作らない）
+        apply_converted(state, posted)
+        early = publish_queued(state, posted, now, f, creator=creator)
+        save_state(state)
+    else:
+        early = []
     if make_versions is None:
         # 2026-11-04 オーナー「動画がダメなら投稿しない、で投稿が止まってはいけない」: L1（今の型）→ L2（作り直し）→
         # L3（公式の画像＋字幕）→ L4（記事の文だけ）の順に試し、検査に通った最初の段を使う（scripts/video_ladder.py）
@@ -460,8 +480,9 @@ def run(now: datetime | None = None, env: dict | None = None, plan_only: bool = 
     except Exception as error:  # noqa: BLE001
         log(f"[video-followup] 段の見張りをとばしました: {type(error).__name__}")
     apply_converted(state, posted)
-    results += publish_queued(state, posted, now, f, creator=creator)
-    results += publish_extra_queued(state, now, f, creator=creator, posted=posted)
+    later = now if fixed_now else datetime.now(timezone.utc)  # 動画づくりのあとの今の時刻で予約する
+    results += early + publish_queued(state, posted, later, f, creator=creator)
+    results += publish_extra_queued(state, later, f, creator=creator, posted=posted)
     save_state(state)
     if f["post"] and f["breaking_followup"]:
         out = post_one(state, now, f, poster or post_video, only_breaking=True)
@@ -517,14 +538,6 @@ def attach_ready(state: dict, posted: dict, now: datetime, f: dict, editor) -> l
     return out
 
 
-QUEUE_GIVE_UP_H = 6  # 枠の時刻からこれだけ過ぎても動画ができなければ、出さない（issue を立てる）
-QUEUE_GIVE_UP_BREAKING_H = 2  # 速報はこれだけ（2026-11-04 オーナー承認: 速報は2時間まで作り直して待つ）
-ORDER_HOLD_MIN = 60  # 前の投稿の動画待ちで、あとの投稿を待たせるのは枠からこの分まで（投稿の流れを止めない）
-
-
-def give_up_h(rec: dict | None, video: dict | None = None) -> float:
-    """動画を待つ上限（時間）。速報は QUEUE_GIVE_UP_BREAKING_H、ふつうは QUEUE_GIVE_UP_H"""
-    return QUEUE_GIVE_UP_BREAKING_H if (rec or {}).get("breaking") or (video or {}).get("breaking") else QUEUE_GIVE_UP_H
 def muse_waiting(slug: str, rec: dict, now: datetime, video: dict | None = None) -> datetime | None:
     """（2026-11-05 S30）この投稿が、とろいも（Muse）の動画を待っている期限。待っていなければ None。
     Muse の動画がもう置かれた（adopted=muse）・頼んでいない・期限を過ぎた → None（今の自動動画に戻る）"""
@@ -537,14 +550,19 @@ def muse_waiting(slug: str, rec: dict, now: datetime, video: dict | None = None)
     return until if until and now < until else None
 
 
-def muse_extra_h(slug: str, rec: dict) -> float:
-    """Muse を待った分だけ、動画を待つ上限（give_up_h）を延ばす（待ったあとに自動動画を作る時間を残す）"""
+CARD_AHEAD_MIN = 75  # 動画を待たない投稿は、枠のこの分前から写真・カードで予約する（毎時の回＋動画づくりの時間が入っても枠に間に合う）
+
+
+def video_wait_h(rec: dict | None) -> float:
+    """動画を作る記事の投稿が動画を待つ時間（枠から。速報は待たない）。2026-11-05 夕方 オーナー「動画を待たない」で1時間"""
     import sns_plan
 
-    if not sns_plan.muse_item(slug).get("status"):
-        return 0.0
-    m = sns_plan.plan()["muse"]
-    return float(m["breaking_wait_hours"] if rec.get("breaking") else os.environ.get("MUSE_WAIT_HOURS") or m["wait_hours"])
+    return 0.0 if (rec or {}).get("breaking") else sns_plan.video_wait_hours()
+
+
+def card_input(post_input: dict) -> dict:
+    """動画を待たない投稿の Buffer の入力（予定の入力そのまま＝記事の写真・カード付き。"_" で始まる手元の印は外す）"""
+    return json.loads(json.dumps({k: v for k, v in post_input.items() if not k.startswith("_")}))
 
 
 STALE_POST_H = 6  # 出せる時刻（枠・Muse の待ちの期限の遅い方）からこれだけ過ぎた投稿は、遅れて出さない（2026-11-05 オーナー）
@@ -699,12 +717,13 @@ def refresh_if_article_changed(slug: str, rec: dict, article: dict | None, use_l
 
 
 def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=None, issue=None, eligible=None, remote=None) -> list[dict]:
-    """（2026-11-03 オーナー指示「SNS の投稿は動画のはず」）動画を待っている記事の投稿（threads_post.queue_for_video）を、
-    動画ができたものから**枠の順番に**動画つきで Buffer に送る。
-      - 枠の時刻がまだ先なら、その時刻に予約。過ぎていれば（動画が遅れた）今から QUEUE_LEAD_MIN 分後に予約（遅らせる）。
-      - 前の枠の投稿が動画を待っている間は、あとの枠の投稿を先に出さない（順番を保つ）。
-      - 動画がもう作れない（作り直しの回数切れ・対象外）か、枠から QUEUE_GIVE_UP_H 時間たったら、出さずに issue を立てる。
-      - 写真・カードだけでは絶対に出さない（送る直前に門番 sns_rules のルール8が動画を確かめる）"""
+    """SNS の予定の投稿（threads_post.queue_for_video の「動画待ち」の記録）を、枠の順番に Buffer に送る。
+    2026-11-05 夕方 オーナー決定（「動画を待たない」「動画を作る記事を限定した方がいいかな」・台帳 S13）:
+      - ふつうの投稿は動画を待たず、枠の CARD_AHEAD_MIN 分前から、記事の写真・カード（予定の入力にもとから付いている）で枠の時刻に予約する。
+      - 動画を作る限られた記事（sns_plan.video_post＝Muse に頼んだ記事・1日4本まで）だけ、枠から video_wait_h（1時間）まで動画を待つ
+        （Muse を先に。来なければ自前の v3 動画）。それでも動画が無ければ写真・カードで出す（投稿は落とさない）。
+      - 使える動画（検査に合格した版）があれば動画つきで出す。枠が過ぎていれば今から QUEUE_LEAD_MIN 分後に予約する。
+      - 出せる時刻から STALE_POST_H 時間を過ぎたもの（Buffer が止まっていた等）は出さない（S33）。文字だけでは出さない（門番のルール8）"""
     out: list[dict] = []
     if not f.get("post"):
         return out
@@ -728,10 +747,6 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
         q = queue.setdefault(slug, {"status": "waiting"})
         v = videos.get(slug) or {}
         urls = v.get("urls") or {}
-        if (rec.get("pending") or {}).get("hold") and not v.get("adopted"):
-            q.update({"status": "waiting", "why": "オーナーに見せた動画を置くのを待っている"})
-            out.append({"slug": slug, **q})
-            continue  # ほかの投稿の順番は止めない
         art_now = None
         try:
             import sns_plan
@@ -745,66 +760,44 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
             q.update({"status": "skipped", "why": why_ex, "at": now.isoformat(timespec="seconds")})
             out.append({"slug": slug, **q})
             continue
-        if v.get("museHold"):
-            q.update({"status": "waiting", "why": "Muse の動画をオーナーに見せている（muse_ingest --release で出す）"})
-            out.append({"slug": slug, **q})
-            continue  # ほかの投稿の順番は止めない
-        if until := muse_waiting(slug, rec, now, v):
-            # とろいも（Muse）の動画を待つ（既定4時間・速報は待たない）。自動動画が先にできていても期限までは Muse を待つ（2026-11-05
-            # オーナー: すべての投稿の動画は Muse）。ほかの投稿の順番は止めない（S30）
-            q.update({"status": "waiting", "why": f"Muse の動画を {until.astimezone(JST):%H:%M} まで待っている", "checkedAt": now.isoformat(timespec="seconds")})
-            out.append({"slug": slug, **q})
-            continue
-        if urls and stale_post(slug, rec, slot, now):
-            # （2026-11-05）動画はあるが、Buffer が止まっていた等で出せないまま、出せる時刻から STALE_POST_H 時間を過ぎた → 遅れて出さない
+        if stale_post(slug, rec, slot, now):
+            # （2026-11-05 S33）Buffer が止まっていた等で出せないまま、出せる時刻から STALE_POST_H 時間を過ぎた → 遅れて出さない
             q.update({"status": "skipped", "why": f"出せる時刻から{STALE_POST_H}時間を過ぎた（Buffer の上限などで出せなかった）ので遅れて出さない", "stale": True,
                       "at": now.isoformat(timespec="seconds")})
             log(f"[video-followup] {slug} は古くなったので出しません（枠 {slot.astimezone(JST):%m/%d %H:%M}）")
             out.append({"slug": slug, **q})
             continue
-        if not urls or v.get("status") in ("started", "upload_failed"):  # 置いた動画があれば使う（前に記事ページだけにした動画も）
-            failed = bool(v) and v.get("status") in ("gate_failed", "upload_failed", "dry_run") and not will_retry(v)
-            late = now - slot > timedelta(hours=give_up_h(rec, v) + muse_extra_h(slug, rec))
-            unfit = not v and not eligible(slug)
-            if failed or late or unfit:
-                why = (f"動画を作れなかった（{v.get('status')}: {(v.get('reason') or v.get('error') or '')[:160]}）" if failed
-                       else "動画を作れない記事（撮ってよい公式ページが無い）" if unfit
-                       else f"枠（{slot.astimezone(JST):%m/%d %H:%M}）から{give_up_h(rec, v):g}時間たっても動画ができない")
-                q.update({"status": "skipped", "why": why, "at": now.isoformat(timespec="seconds")})
-                log(f"[video-followup] 動画が無いので出しません {slug}: {why}")
-                issue(slug, why)
-                out.append({"slug": slug, **q})
-                continue
-            if v.get("status") == "gate_failed":
-                # 2026-11-04 オーナー: 動画が検査に落ちて作り直し中の投稿は、その投稿だけ遅らせる（あとの枠の投稿・記事づくりは止めない）
-                q.update({"status": "waiting", "why": "動画が検査に落ちたので、あとの回で作り直す（この投稿だけ遅らせる）", "checkedAt": now.isoformat(timespec="seconds")})
-                log(f"[video-followup] {slug} は動画の作り直し待ち。あとの枠の投稿は先に出します")
-                out.append({"slug": slug, **q})
-                continue
-            q.update({"status": "waiting", "why": "動画を作っている途中・順番待ち", "checkedAt": now.isoformat(timespec="seconds")})
+        # 2026-11-05 夕方 オーナー決定（「動画を待たない」「動画を作る記事を限定」・台帳 S13）: 動画を待つのは、動画を作る限られた記事
+        # （sns_plan.video_post＝Muse に頼んだ記事）だけで、枠から video_wait_hours（1時間）まで。ほかの投稿と、待っても動画が
+        # できなかった投稿は、記事の写真・カード（予定の入力にもとから付いている）で出す。動画が無いことでは投稿を落とさない
+        variant = ""
+        if urls and v.get("status") not in ("started", "upload_failed"):
+            variant = (rec.get("pending") or {}).get("forceVariant") or pick_variant(state, now, f["ab_until"], f["after_ab"])
+            versions = v.get("versions") or {}
+            usable = lambda k: (versions.get(k) or {}).get("ok") and k in urls and qa_ok(versions.get(k))  # noqa: E731
+            if not usable(variant):
+                variant = next((k for k in ("short", "full") if usable(k)), "")
+        hold = bool((rec.get("pending") or {}).get("hold") and not v.get("adopted")) or bool(v.get("museHold"))
+        until = muse_waiting(slug, rec, now, v)
+        window_end = slot + timedelta(hours=video_wait_h(rec))
+        wants_video = sns_plan.video_post(slug) or hold
+        if (until or hold) and now < window_end:
+            why = (f"Muse の動画を {until.astimezone(JST):%H:%M} まで待っている" if until
+                   else "オーナーに見せた動画を置くのを待っている")
+            q.update({"status": "waiting", "why": why, "checkedAt": now.isoformat(timespec="seconds")})
             out.append({"slug": slug, **q})
-            if now - slot > timedelta(minutes=ORDER_HOLD_MIN):
-                # 1本の動画の遅れで、ほかの投稿まで止めない（2026-11-04 オーナー「投稿を止めない」）。枠から60分を過ぎたら、あとの投稿は先に出す
-                log(f"[video-followup] {slug} は動画待ち（枠から{ORDER_HOLD_MIN}分を過ぎたので、あとの投稿は待たせない）")
-                continue
-            log(f"[video-followup] {slug} は動画待ち。あとの枠の投稿も順番を保って待たせます（枠から{ORDER_HOLD_MIN}分まで）")
-            break
-        variant = (rec.get("pending") or {}).get("forceVariant") or pick_variant(state, now, f["ab_until"], f["after_ab"])
-        versions = v.get("versions") or {}
-        usable = lambda k: (versions.get(k) or {}).get("ok") and k in urls and qa_ok(versions.get(k))  # noqa: E731
-        if not usable(variant):
-            variant = next((k for k in ("short", "full") if usable(k)), "")
-        if not variant and any((versions.get(k) or {}).get("ok") for k in ("short", "full")):
-            # 動画はあるが、描いた位置・画像のレビューの検査に合格していない（前のコードの動画など）→ 作り直す
-            state.setdefault("videosArchive", {})[slug] = state["videos"].pop(slug)
-            q.update({"status": "waiting", "why": "動画の検査（描いた位置・画像のレビュー）に合格していないので作り直す"})
-            out.append({"slug": slug, **q})
-            break
-        if not variant:
-            q.update({"status": "skipped", "why": "投稿に使える版が無い"})
-            issue(slug, q["why"])
+            continue  # ほかの投稿の順番は止めない
+        if not variant and wants_video and now < window_end:
+            q.update({"status": "waiting", "why": f"動画を作る記事なので {window_end.astimezone(JST):%H:%M} まで動画を待つ（来なければ写真・カードで出す）",
+                      "checkedAt": now.isoformat(timespec="seconds")})
             out.append({"slug": slug, **q})
             continue
+        if not variant and slot - now > timedelta(minutes=CARD_AHEAD_MIN):
+            q.update({"status": "waiting", "why": f"枠（{slot.astimezone(JST):%H:%M}）の{CARD_AHEAD_MIN}分前になったら写真・カードで予約する",
+                      "checkedAt": now.isoformat(timespec="seconds")})
+            out.append({"slug": slug, **q})
+            continue
+        media = "video" if variant else "card"
         try:
             theirs = remote(slug)
         except RemoteRecordUnknown as error:
@@ -824,8 +817,8 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
             log(f"[video-followup] {slug} はほかの実行がもう送っています。二重に作りません: {q.get('channels')}")
             out.append({"slug": slug, **q})
             continue
-        report = versions[variant]["post"]
-        article = article_of(report)
+        report = versions[variant]["post"] if variant else {}
+        article = article_of(report) if variant else art_now
         base = max(slot, now + timedelta(minutes=QUEUE_LEAD_MIN))
         if last_due and base <= last_due:
             base = last_due + timedelta(minutes=2)  # 前の投稿より後に（順番を保つ）
@@ -837,7 +830,7 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
             if service not in inputs or created.get(service):
                 continue
             offset = 0 if service == "threads" else int(inputs[service].get("_offsetMin") or 0)
-            inp = video_input(service, inputs[service], report, variant, urls[variant])
+            inp = video_input(service, inputs[service], report, variant, urls[variant]) if variant else card_input(inputs[service])
             inp.update({"mode": "customScheduled", "dueAt": _iso(base + timedelta(minutes=offset))})
             inp.pop("saveToDraft", None)
             allow = ((rec.get("pending") or {}).get("allowDuplicateOf") or {}).get(service)
@@ -857,7 +850,7 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
                     break
                 created[service] = ""
                 q.setdefault("errors", {})[service] = str(error)[:200]
-                log(f"[video-followup] {slug}/{service} を送れませんでした（写真では出しません）: {str(error)[:160]}")
+                log(f"[video-followup] {slug}/{service} を送れませんでした: {str(error)[:160]}")
                 if service == "threads":
                     break  # Threads が通らなければ X・Facebook も出さない（同じ記事の投稿をそろえる）
         q["channels"] = created
@@ -865,14 +858,16 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
             out.append({"slug": slug, **q})
             break
         if created.get("threads"):
-            q.update({"status": "created", "id": created["threads"], "dueAt": base.isoformat(timespec="seconds"), "variant": variant,
+            q.update({"status": "created", "id": created["threads"], "dueAt": base.isoformat(timespec="seconds"), "variant": variant, "media": media,
                       "delayedMin": max(0, int((base - slot).total_seconds() // 60))})
-            v.update({"status": "attached", "variant": variant, "bufferId": created["threads"], "postedAt": base.isoformat(timespec="seconds")})
+            if variant:
+                v.update({"status": "attached", "variant": variant, "bufferId": created["threads"], "postedAt": base.isoformat(timespec="seconds")})
             last_due = base
         else:
-            q.update({"status": "skipped", "why": "Buffer に動画つきの投稿を作れなかった: " + "・".join((q.get("errors") or {}).values())[:200]})
+            q.update({"status": "skipped", "why": "Buffer に投稿を作れなかった: " + "・".join((q.get("errors") or {}).values())[:200]})
             issue(slug, q["why"])
-        log(f"[video-followup] 動画つきで予約 {slug}（{variant}・{base.astimezone(JST):%H:%M}）: {q.get('status')} {created}")
+        label = f"動画つき（{variant}）" if variant else "記事の写真・カードで"
+        log(f"[video-followup] {label}予約 {slug}（{base.astimezone(JST):%H:%M}）: {q.get('status')} {created}")
         out.append({"slug": slug, **q})
     return out
 
@@ -915,10 +910,8 @@ def node_problems(node: dict) -> tuple[str, bool, list[str]]:
             article = None
     service = node.get("service", "")
     text = (thread[0].get("text") if thread else "") or node.get("text") or ""
-    import sns_plan
-
-    # X と、リンクの位置の比べ（S31・THREADS_LINK_AB）で返信にリンクを置いた Threads は、返信も合わせて確かめる（門番の enforce_buffer と同じ）
-    reply = "\n".join(t.get("text") or "" for t in thread[1:]) if service == "twitter" or (service == "threads" and sns_plan.link_ab_on()) else ""
+    # X は返信も合わせて確かめる（門番の enforce_buffer と同じ）。Threads のリンクは本文だけ（S31 は 2026-11-05 に終了）
+    reply = "\n".join(t.get("text") or "" for t in thread[1:]) if service == "twitter" else ""
     links = [] if service != "facebook" else [node.get("externalLink") or ""]
     problems = sns_rules.check_post({"twitter": "x"}.get(service, service), text, [], article, reply_text=reply, links=[x for x in links if x],
                                     pending_video=True) if service else ["SNS が分からない"]
@@ -1027,6 +1020,8 @@ def node_edit_input(node: dict, texts: list[str], topic: str = "") -> dict:
                 "metadata": {"facebook": {"type": "post"}}}
     key = "twitter" if service == "twitter" else "threads"
     items = thread or [{"text": node.get("text") or "", "assets": node.get("assets") or []}]
+    if key == "threads" and len(texts) < len(items):
+        items = items[: max(1, len(texts))]  # 返信のリンクを本文に移した（S31 終了）ときは、返信を外す
     new_thread = [{"text": texts[i] if i < len(texts) else (t.get("text") or ""), "assets": [_asset_input(a) for a in t.get("assets") or []]}
                   for i, t in enumerate(items)]
     if not thread and node.get("assets"):
@@ -1045,11 +1040,9 @@ def node_texts(node: dict) -> list[str]:
 def _input_problems(service: str, inp: dict, article: dict | None) -> list[str]:
     import sns_rules
 
-    import sns_plan
-
     text, reply, _media, links = sns_rules.buffer_parts(service, inp)
     platform = sns_rules.norm_platform(service)
-    with_reply = platform == "x" or (platform == "threads" and sns_plan.link_ab_on())
+    with_reply = platform == "x"
     return sns_rules.check_post(platform, text, [], article, reply_text=reply if with_reply else "", links=links, pending_video=True)
 
 
@@ -1063,7 +1056,7 @@ def rebuilt_texts(node: dict, slug: str, article: dict, state: dict, posted: dic
     q = (state.get("queued") or {}).get(slug) or {}
     fake = {"pending": {"inputs": {s: {"channelId": node.get("channelId", "") if s == service else ""} for s in ("threads", "twitter", "facebook")},
                         "slot": node.get("dueAt") or "", "fmt": "classic"},
-            "hookFormat": rec.get("hookFormat"), "linkPosition": rec.get("linkPosition") or "body", "breaking": rec.get("breaking"),
+            "hookFormat": rec.get("hookFormat"), "linkPosition": "body", "breaking": rec.get("breaking"),
             "questionText": rec.get("questionText")}
     new = tp.rebuild_pending_inputs(fake, article, use_llm=True)[service]
     variant = q.get("variant") or rec.get("videoVariant") or "short"
@@ -1122,8 +1115,10 @@ def presend_recheck(apply: bool = True, now: datetime | None = None, api_key: st
             row["action"] = "too_late"  # Buffer が出し始めている途中に触らない
             checked[node["id"]] = {**done, "left": "too_late"}
             continue
-        if not slug or slug.startswith(("digest-", "poll-")) or not video:
-            row["action"] = "left"  # 記事の分からない投稿・朝のまとめ・動画の無い投稿（queue_fix の受け持ち）はここでは触らない
+        if not slug or slug.startswith(("digest-", "poll-")):
+            # 記事の分からない投稿・朝のまとめはここでは触らない。写真・カードの記事の投稿は 2026-11-05 夕方から決まりどおりの形
+            # （オーナー「動画を待たない」）なので、動画つきと同じく直す
+            row["action"] = "left"
             checked[node["id"]] = {**done, "left": "left"}
             continue
         try:
@@ -1131,8 +1126,11 @@ def presend_recheck(apply: bool = True, now: datetime | None = None, api_key: st
         except (OSError, ValueError):
             article = None
         service = node.get("service", "")
+        texts = node_texts(node)
+        if service == "threads":
+            texts = sns_rules.merge_reply_link_texts(texts)  # 返信に置いたリンクを本文に（S31 終了。2026-11-05 オーナー「すべて本文にリンクに」）
         texts = [sns_rules.autofix(t, article, sns_rules.norm_platform(service))[0] if i == 0 or service != "twitter" else t
-                 for i, t in enumerate(node_texts(node))]
+                 for i, t in enumerate(texts)]
         how = "autofix"
         inp = node_edit_input(node, texts)
         if not article or _input_problems(service, inp, article):
@@ -1197,7 +1195,7 @@ def presend_recheck(apply: bool = True, now: datetime | None = None, api_key: st
 
 
 def publish_extra_queued(state: dict, now: datetime, f: dict, creator=None, issue=None, posted: dict | None = None) -> list[dict]:
-    """Threads はもう出ていて、X・Facebook だけ写真の予約を下書きに戻した記事を、動画つきで出す（動画ができしだい・元の時刻より後）。
+    """Threads はもう出ていて、X・Facebook だけ予約を下書きに戻した記事を出す（動画があれば動画つき、無ければ記事の写真・カード。元の時刻より後）。
     publish_queued と同じ基準（2026-11-04 一貫性の点検）: 動画は検査に合格した版（qa_ok・S23）だけ、ownerHold の記事は自動で出さない"""
     out: list[dict] = []
     if not f.get("post"):
@@ -1215,24 +1213,27 @@ def publish_extra_queued(state: dict, now: datetime, f: dict, creator=None, issu
         versions = v.get("versions") or {}
         urls = {k: u for k, u in (v.get("urls") or {}).items() if (versions.get(k) or {}).get("ok") and qa_ok(versions.get(k))}
         slot = _parse((item.get("pending") or {}).get("slot") or "") or now
-        if not urls:
-            if (v and not will_retry(v) and v.get("status") not in ("started",)) or now - slot > timedelta(hours=give_up_h(item, v)):
-                item.update({"status": "skipped", "why": "動画が無い"})
-                issue(slug, "X・Facebook の投稿を動画つきで出せませんでした（動画が無い）")
-            out.append({"slug": slug, "extra": True, **{k: item.get(k) for k in ("status", "why")}})
+        if not urls and v.get("status") == "started" and now < slot + timedelta(hours=video_wait_h(item)):
+            # 動画を作っている途中なら、枠から video_wait_h（1時間）までだけ待つ（2026-11-05 夕方 オーナー「動画を待たない」）
+            out.append({"slug": slug, "extra": True, "status": "waiting", "why": "動画を作っている途中"})
             continue
-        variant = v.get("variant") if v.get("variant") in urls else next((k for k in ("short", "full") if k in urls), "")
-        report = ((v.get("versions") or {}).get(variant) or {}).get("post") or {}
+        variant = (v.get("variant") if v.get("variant") in urls else next((k for k in ("short", "full") if k in urls), "")) if urls else ""
+        report = ((v.get("versions") or {}).get(variant) or {}).get("post") or {} if variant else {}
+        try:
+            art_now = json.loads((ARTICLES / f"{slug}.json").read_text("utf-8"))
+        except (OSError, ValueError):
+            art_now = None
         base = max(slot, now + timedelta(minutes=QUEUE_LEAD_MIN))
         created = dict(item.get("channels") or {})
         for service, inp0 in ((item.get("pending") or {}).get("inputs") or {}).items():
             if created.get(service):
                 continue
-            inp = video_input(service, inp0, report, variant, urls[variant])
+            # 動画が無ければ記事の写真・カード（予定の入力そのまま）で出す（2026-11-05 夕方 オーナー「動画を待たない」・台帳 S13）
+            inp = video_input(service, inp0, report, variant, urls[variant]) if variant else card_input(inp0)
             inp.update({"mode": "customScheduled", "dueAt": _iso(base + timedelta(minutes=int(inp0.get("_offsetMin") or 0)))})
             inp.pop("saveToDraft", None)
             try:
-                created[service] = creator(service, inp, article_of(report))
+                created[service] = creator(service, inp, article_of(report) if variant else art_now)
             except Exception as error:  # noqa: BLE001
                 if _buffer_unavailable(error):
                     break
@@ -1483,13 +1484,14 @@ def sync_posted(state: dict, posted: dict) -> int:
         if not awaiting(rec) and not stale:
             continue
         if q.get("status") == "created":
-            rec.update({"id": q.get("id", ""), "status": "scheduled", "dueAt": q.get("dueAt") or rec.get("dueAt"), "image": "video",
+            rec.update({"id": q.get("id", ""), "status": "scheduled", "dueAt": q.get("dueAt") or rec.get("dueAt"), "image": "card" if q.get("media") == "card" else "video",
                         "channels": {**{k: v for k, v in (rec.get("channels") or {}).items() if k == "bluesky"},
                                      **{k: v for k, v in (q.get("channels") or {}).items() if k != "threads" and v}},
                         "videoVariant": q.get("variant", "")})
             rec.pop("pending", None)
             changed += 1
         elif q.get("status") == "skipped":
+            # 見送った（SNS に出さない話題・古くなった・Buffer に作れなかった）。2026-11-05 夕方からは動画が無いことでは見送らない
             rec.update({"status": "skipped_no_video", "why": q.get("why", "")})
             rec.pop("pending", None)
             changed += 1

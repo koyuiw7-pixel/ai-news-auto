@@ -1,23 +1,26 @@
 #!/usr/bin/env python3
-"""とろいも（Muse）に頼む動画の受け渡し（state/muse_queue.json）。2026-11-05 オーナー決定: SNS に出すすべての記事の動画を Muse で。
+"""とろいも（Muse）に頼む動画の受け渡し（state/muse_queue.json）。
 
-Muse の受け渡し＝SNS の予定。threads_post が SNS の枠に入れた記事（state/threads_posted.json の「動画待ち」）を、枠の時刻の順に
-入れる（枠の日（日本時間）ごとに scripts/sns_plan.json の muse.max_per_day 本＝6本まで）。速報（Muse を待たない）は入れない。
+2026-11-05 夕方 オーナー決定（「返信欄にリンクつけてみない人が多いのだから、動画も同じことになるでしょ。なら動画を作る記事を
+限定した方がいいかな。かなり人気なジャンルで、ビューを取れるような記事にしたいよね。」・台帳 S13・S30）:
+動画を作るのは、ビューを取れる話題の限られた記事だけ。SNS の予定（state/threads_posted.json の「動画待ち」）に入った記事のうち、
+muse_score が 0 より大きいもの（レーン safety/money/brand/consumer_ai・立つ数字・公式の出どころ）を、枠の日（日本時間）ごとに
+点数の高い順に scripts/sns_plan.json の muse.max_per_day 本（4本）まで入れる。速報（Muse を待たない）は入れない。
+ここに入った記事だけが「動画の投稿」（sns_plan.video_post）。ほかの投稿は動画を待たず、枠の時刻に記事の写真・カードで出す。
 
   python3 scripts/muse_queue.py            # 予定に入った記事を足す（auto_run の投稿の段のあと・muse_queue.yml の定期実行）
   python3 scripts/muse_queue.py --dry-run  # 書かずに表示だけ
   python3 scripts/muse_queue.py --list     # 今の待ちの一覧（枠の時刻の順・URL・題名・期限）
 
-項目: slug・url（記事）・title・slot（枠の時刻）・deadline（この時刻まで Muse の動画を待つ＝枠＋ wait_hours）・file（news-<slug>.mp4）。
+項目: slug・url（記事）・title・slot（枠の時刻）・deadline（この時刻まで Muse の動画を待つ＝枠＋ wait_hours（1時間））・file（news-<slug>.mp4）。
 Claude（対話の回）が Muse に順に渡し、できた動画を `python3 scripts/muse_ingest.py <mp4> <slug>` で取り込む。
-期限までに来なければ、その投稿は今の自動動画（同じ検査）で出す（投稿の本数は減らさない。sns_video_followup）。
+期限までに来なければ、その投稿は自前の v3 動画（予備・同じ検査）、それも無ければ記事の写真・カードで出す（投稿は落とさない。sns_video_followup）。
 期限を過ぎて24時間たっても届かなかったものは expired にする。
 """
 from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import sys
 from datetime import datetime, timedelta, timezone
@@ -106,6 +109,8 @@ def queued_on(data: dict, day) -> int:
     """その日（日本時間・枠の日）の分として入れた本数"""
     n = 0
     for i in data.get("items", []):
+        if i.get("status") != "delivered" and float(i.get("score") or 0) <= 0:
+            continue  # 2026-11-05 夕方より前に「すべての投稿を Muse で」で入れた項目（点数 0）は数えない（動画の投稿ではない）
         raw = i.get("slot") or i.get("queuedAt")
         try:
             if raw and datetime.fromisoformat(raw).astimezone(JST).date() == day:
@@ -124,8 +129,9 @@ def pick(data: dict, now: datetime, articles: list[dict] | dict | None, posted: 
     もう出た・速報・オーナーの保留・SNS に出さない話題・枠から wait_hours を過ぎたものは入れない"""
     m = sns_plan.plan()["muse"]
     cap = int(m["max_per_day"])
-    wait = float(m["wait_hours"])
-    taken = {i["slug"] for i in data.get("items", [])}
+    wait = sns_plan.video_wait_hours()
+    # 点数 0 の古い項目（「すべての投稿を Muse で」のころ）は、今の基準で選び直してよい
+    taken = {i["slug"] for i in data.get("items", []) if i.get("status") != "queued" or float(i.get("score") or 0) > 0}
     by_slug = {a["slug"]: a for a in articles} if isinstance(articles, list) else dict(articles or {})
     rows = []
     for slug, rec in (posted or {}).items():
@@ -143,25 +149,29 @@ def pick(data: dict, now: datetime, articles: list[dict] | dict | None, posted: 
                 continue
         if sns_plan.excluded(article):
             continue
-        rows.append((slot, slug, article))
+        score, _why = muse_score(article)
+        if score <= 0:
+            continue  # ビューを取れる話題でない記事は動画を作らない（2026-11-05 夕方 オーナー「動画を作る記事を限定」）
+        rows.append((slot, slug, article, score))
     out = []
     per_day: dict = {}
-    for slot, slug, a in sorted(rows, key=lambda r: r[0]):
+    # 点数の高い順（同じ点数なら枠の早い順）に、枠の日ごとに max_per_day 本まで
+    for slot, slug, a, _score in sorted(rows, key=lambda r: (-r[3], r[0])):
         day = slot.astimezone(JST).date()
         per_day.setdefault(day, queued_on(data, day))
         if per_day[day] >= cap:
             continue
         per_day[day] += 1
         queued_at = now
-        deadline = max(slot, queued_at) + timedelta(hours=float(os.environ.get("MUSE_WAIT_HOURS") or wait))
+        deadline = max(slot, queued_at) + timedelta(hours=wait)
         score, why = muse_score(a)
         out.append({"slug": slug, "url": f"{SITE}/articles/{slug}", "title": a.get("title", ""),
                     "slot": slot.isoformat(timespec="seconds"), "slotJst": slot.astimezone(JST).strftime("%m/%d %H:%M"),
                     "deadline": deadline.isoformat(timespec="seconds"), "deadlineJst": deadline.astimezone(JST).strftime("%m/%d %H:%M"),
-                    "reason": why if score > 0 else "SNS の予定に入った記事（すべての投稿を Muse で）", "score": score,
+                    "reason": why, "score": score,
                     "lane": sns_plan.lane_of(a)[0], "breaking": False,
                     "file": f"news-{slug}.mp4", "queuedAt": queued_at.isoformat(timespec="seconds"), "status": "queued"})
-    return out
+    return sorted(out, key=lambda i: i["slot"])
 
 
 def main() -> int:
@@ -185,7 +195,8 @@ def main() -> int:
     if not new and not expired:
         log("[muse] 新しい候補はありません")
         return 0
-    data["items"] = (data["items"] + new)[-60:]
+    fresh = {i["slug"] for i in new}
+    data["items"] = ([i for i in data["items"] if i.get("slug") not in fresh] + new)[-60:]
     data["updatedAt"] = now.isoformat(timespec="seconds")
     if args.dry_run:
         print(json.dumps(new, ensure_ascii=False, indent=2))

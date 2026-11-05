@@ -1187,7 +1187,7 @@ _VIDEO_CHECK: dict = {}
 
 
 def video_possible(article: dict) -> bool:
-    """動画（shorts_v3）を作れる記事か（撮ってよい公式ページがある）。記事の投稿は動画つきだけなので、作れない記事は SNS の候補にしない。
+    """動画（shorts_v3）を作れる記事か（撮ってよい公式ページがある）。2026-11-05 夕方からは動画が無くても写真・カードで出す（ルール8）。
     動画の仕組みを読み込めない環境（軽いテスト）では判定しない（True）"""
     # 2026-11-04〜: 段（video_ladder）の L4 は記事の文だけで動画を作れるので、公式ページが撮れない記事も候補にする
     return bool(article.get("slug"))
@@ -1214,7 +1214,7 @@ def candidates(state: dict, hours: int, genres: set[str] | None = None) -> list[
         if reserved_for_breaking(article, state):
             continue
         if not sns_rules.is_urgent(article) and not video_possible(article):
-            continue  # 動画を作れない記事は SNS に出さない（ルール8: 記事の投稿は動画つきだけ。急ぎの安全の知らせは例外）
+            continue  # 記事の無い記録（video_possible は slug があれば True。動画が無くても写真・カードで出す。ルール8）
         if sns_plan.excluded(article):
             continue  # 海外の企業向け・開発者向けの話題は SNS に出さない（サイトだけ。S28）
         if article.get("genreSlug") == "sports" and not sns_plan.has_lane(article):
@@ -2132,9 +2132,7 @@ def publish_via_buffer(
     reply = compose_detail(article) if fmt == "hook_thread" else link_reply_text(article)
     thread = [{"text": text, "assets": [{"image": {"url": post_image(article, fmt)}}]}]
     # 2026-11-03〜: classic は本文の最後に記事のリンク（with_link）を入れ、返信（2/2）は作らない。画像はそのまま添える
-    # （フラグ THREADS_LINK_AB=1・S31）リンクの位置の比べで reply の回だけ、返信にリンクを置く
-    if fmt == "classic" and article.get("_linkPosition") == "reply" and sns_plan.link_ab_on():
-        thread.append({"text": utm_link(link, 'threads', fmt, ptype=post_type(article, fmt), pos='reply'), "assets": []})  # リンクだけ（台帳 S35）
+    # リンクの位置の比べ（S31）は 2026-11-05 夕方に終了。classic は必ず本文にリンク（返信にリンクを置かない）
     if fmt != "classic":
         thread.append({
             "text": reply,
@@ -2185,10 +2183,10 @@ def x_root_text(article: dict, text: str, classic_text: str) -> str:
 
 def queue_for_video(api_key: str, channels: dict[str, dict], threads_text: str, text: str, link: str, article: dict,
                     due_at: datetime | None, fmt: str = "classic", fb_text: str | None = None, offsets: tuple[int, int] = (12, 27)) -> dict:
-    """（2026-11-03 オーナー指示「SNS の投稿は動画のはず」）記事の投稿は動画つきだけ。ここでは Buffer を呼ばず、
-    Threads・X・Facebook に送る入力を作って文面だけ門番で確かめ（動画の決まりは後で）、「動画待ち」として記録する。
-    動画ができたら sns_video_followup.publish_queued が写真を動画に替えて、枠の時刻（過ぎていれば順番を保って直後）に送る。
-    動画が作れなければ issue を立てて出さない（写真のカードでは出さない）"""
+    """ここでは Buffer を呼ばず、Threads・X・Facebook に送る入力（記事の写真・カード付き）を作って文面だけ門番で確かめ、「予定」
+    （status=awaiting_video）として記録する。sns_video_followup.publish_queued が枠の時刻に送る: 2026-11-05 夕方 オーナー決定
+    「動画を待たない」「動画を作る記事を限定」（台帳 S13）で、ふつうの投稿はこの入力のまま（写真・カード）、動画を作る限られた記事
+    （sns_plan.video_post）は枠から1時間まで動画を待ち、できていれば写真を動画に替えて送る"""
     threads_input = publish_via_buffer(api_key, channels["threads"]["id"], threads_text, link, article, due_at, fmt=fmt, build_only=True)["input"]
     extra = {k: v for k, v in channels.items() if k in ("twitter", "facebook")}
     inputs = {"threads": threads_input, **publish_extra_channels(api_key, extra, text, link, article, due_at, fmt=fmt, fb_text=fb_text, offsets=offsets, build_only=True)}
@@ -2231,7 +2229,8 @@ def rebuild_pending_inputs(rec: dict, article: dict, use_llm: bool = False, stat
         hook3 = compose_hook3(article, use_llm=use_llm)
         if hook3:
             text, article["_hookFormat"] = hook3, True
-    link_pos = rec.get("linkPosition") or "body"
+    link_pos = "body"  # 2026-11-05 夕方 オーナー決定「すべて本文にリンクにしよう今後は」（S31 終了）。前に reply で作った文面も本文に
+    rec["linkPosition"] = "body"
     article["_linkPosition"] = link_pos
     threads_text = with_link(text, article, "threads", fmt) if link_pos == "body" else text
     channels = {s: {"id": inp.get("channelId", "")} for s, inp in old.items()}
@@ -2256,8 +2255,8 @@ def share_now(
 ) -> dict:
     """いますぐ Threads・X・Facebook に出す（速報用）。戻り値は投稿履歴にそのまま入れられる形。
 
-    2026-11-03〜: 動画つきだけ（sns_rules ルール8）。ここでは「動画待ち」として記録し、動画ができしだい
-    sns_video_followup.publish_queued が shareNow で出す（写真のカードでは出さない）
+    ここでは「予定」として記録し、sns_video_followup.publish_queued がすぐ写真・カードで出す（速報は動画を待たない。
+    2026-11-05 夕方 オーナー「動画を待たない」・台帳 S13）
     """
     link = f"{site_url()}/articles/{article['slug']}"
     channels = buffer_channels(api_key)
@@ -2267,7 +2266,7 @@ def share_now(
     if sns_rules.is_urgent(article):
         # 災害・警報など遅れると読者に害がある知らせ（2026-11-03 オーナー承認）: 動画を待たず、写真のカードでいますぐ出す
         return share_now_direct(api_key, channels, article, text, link, fmt=fmt, fb_text=fb_text, threads_text=threads_text)
-    # 速報も動画つきだけ（ルール8）。動画ができしだい sns_video_followup がすぐ出す（写真では出さない）
+    # 速報は動画を待たない（ルール8・S13）。sns_video_followup が次の回（速報の実行のすぐあと）に写真・カードで出す
     result = queue_for_video(api_key, channels, threads_text or text, text, link, article, None, fmt=fmt, fb_text=fb_text, offsets=(1, 2))
     result["dueAt"] = now.isoformat(timespec="seconds")
     return result
@@ -2579,10 +2578,9 @@ def main() -> int:
             comment, question = "", article.get("_question") or ""
             for problem in post_problems(text, article):
                 log(f"  [check] {article['slug']}: {problem}")
-            # 2026-11-03〜: Threads は本文の最後に記事のリンク（返信は作らない）。THREADS_LINK_AB=1 のときだけ返信と交互（S31）
-            link_pos = sns_plan.threads_link_position(state["posted"]) if not sns_rules.is_urgent(article) else "body"
-            article["_linkPosition"] = link_pos
-            threads_text = with_link(text, article, "threads", fmt) if link_pos == "body" else text
+            # 2026-11-03〜: Threads は本文の最後に記事のリンク（返信は作らない）。2026-11-05 夕方 オーナー決定「すべて本文にリンクにしよう今後は」（S31 終了）
+            article["_linkPosition"] = "body"
+            threads_text = with_link(text, article, "threads", fmt)
         else:
             # hook_thread（以前の A/B の形）: Threads の本文だけに「編集部の一言」と、約半分は「問いかけ」を足す
             comment = voice.editor_comment(article, recent_comments)
@@ -2614,7 +2612,7 @@ def main() -> int:
                     result["channels"] = publish_extra_channels(buffer_key, extra_channels, text, link, article, due_at, fmt=fmt, fb_text=classic_text)
                 result["urgent"] = True
             elif buffer_channel:
-                # 記事の投稿は動画つきだけ（ルール8）。ここでは予約せず「動画待ち」にする（動画ができたら sns_video_followup が予約する）
+                # ここでは予約せず「予定」にする（sns_video_followup が枠の時刻に写真・カード、限られた記事は動画で予約する。ルール8・S13）
                 result = queue_for_video(buffer_key, {"threads": buffer_channel, **extra_channels}, threads_text, x_root_text(article, text, classic_text),
                                          link, article, due_at, fmt=fmt, fb_text=classic_text)
             else:
@@ -2645,7 +2643,7 @@ def main() -> int:
             "format": fmt,
             **({"hookTextVersion": HOOK_TEXT_VERSION} if fmt == "hook_thread" else {}),
             **({"hookFormat": "muse3"} if article.get("_hookFormat") else {}),
-            **({"linkPosition": article["_linkPosition"]} if article.get("_linkPosition") and sns_plan.link_ab_on() else {}),
+            **({"linkPosition": "body"} if fmt == "classic" else {}),
             **({"summaryLead": article["_summaryLead"]} if article.get("_summaryLead") else {}),
             "lane": sns_plan.lane_of(article)[0],
             "topic": topic_of(article),

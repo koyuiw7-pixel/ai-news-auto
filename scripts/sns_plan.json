@@ -44,9 +44,10 @@
   },
   "cap_exempt": ["missile", "disaster"],
   "muse": {
-    "_doc": "とろいも（Muse）に頼む動画。2026-11-05 オーナー決定: SNS に出すすべての記事の動画を Muse で（Muse の受け渡し＝SNS の予定）。予定（state/threads_posted.json の動画待ち）に入った記事を、枠の日（日本時間）ごとに最大 max_per_day 本まで state/muse_queue.json に入れる（URL・題名・枠の時刻・期限つき）。投稿は wait_hours（速報は breaking_wait_hours）まで Muse の動画を待ち、来なければ今の自動動画（同じ検査）に戻す（投稿の本数は減らさない）",
-    "max_per_day": 6,
-    "wait_hours": 4,
+    "_doc": "とろいも（Muse）に頼む動画。2026-11-05 夕方 オーナー決定「返信欄にリンクつけてみない人が多いのだから、動画も同じことになるでしょ。なら動画を作る記事を限定した方がいいかな。かなり人気なジャンルで、ビューを取れるような記事にしたいよね。」: 動画を作るのは、SNS の予定（state/threads_posted.json の動画待ち）に入った記事のうち、ビューを取れる話題（muse_queue.muse_score が 0 より大きい＝レーン safety/money/brand/consumer_ai・立つ数字・公式の出どころ）だけ。枠の日（日本時間）ごとに点数の高い順に max_per_day 本まで state/muse_queue.json に入れる。その投稿だけ wait_hours（最大 max_wait_hours。速報は breaking_wait_hours）まで Muse の動画を待ち、来なければ自前の v3 動画（予備）、それも無ければ記事の写真・カードで出す。ほかの投稿は動画を待たず、枠の時刻に記事の写真・カードで出す（投稿の本数は減らさない）",
+    "max_per_day": 4,
+    "wait_hours": 1,
+    "max_wait_hours": 1,
     "breaking_wait_hours": 0,
     "strong_score": 9,
     "lookback_hours": 30,
@@ -55,10 +56,11 @@
     "sizes": [[1920, 1080], [1080, 1920]]
   },
   "link_ab": {
-    "_doc": "Threads のリンクの位置の比べ（THREADS_LINK_AB=1。2026-11-05 オーナー承認）。start〜end の1週間、記事の投稿ごとに本文（utm_content=*_body）と返信（*_reply）を交互。end を過ぎたら after（decided が空のあいだは交互を続け、ログに決めてほしい旨を出す）",
+    "_doc": "Threads のリンクの位置の比べ（S31）。2026-11-05 夕方 オーナー決定「すべて本文にリンクにしよう今後は」で終了。リンクは本文だけ（decided=body）。scripts/sns_plan.py の link_ab_on は常に False",
     "start": "2026-11-05",
-    "end": "2026-11-12",
-    "decided": ""
+    "end": "2026-11-05",
+    "ended": "2026-11-05",
+    "decided": "body"
   },
   "utm": {
     "_doc": "utm_content=<投稿の種類>_<リンクの位置>。種類は video（動画つきの記事の投稿）・hook（Muse の型の文面。SNS_HOOK_FORMAT=1 のときだけ）・card（災害など写真のカードで急いで出すもの）・digest（朝のまとめ）。位置は body（本文）・reply（返信）",

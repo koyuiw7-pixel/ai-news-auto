@@ -327,7 +327,7 @@ class PipelineFlowTest(unittest.TestCase):
         first, second = R.NOW - timedelta(minutes=30), R.NOW - timedelta(minutes=10)
         failing = {"status": "gate_failed", "tries": 2, "reason": "full: v3: QA(目視): 話の食い違い"}
         _R, (state, sent, issues, _) = self._queue({"a": R.queued_rec(first), "b": R.queued_rec(second)}, {"a": failing, "b": R.ready_video("b")})
-        self.assertEqual(state["queued"]["a"]["status"], "waiting")  # a は作り直しを待つ
+        self.assertEqual(state["queued"]["a"]["status"], "waiting")  # a は作り直しを待つ（動画を作る記事なので枠から1時間まで）
         self.assertEqual(state["queued"]["b"]["status"], "created")  # b は先に出る
         self.assertEqual({s for s, _ in sent}, {"threads", "twitter", "facebook"})
         self.assertEqual(issues, [])
@@ -338,15 +338,17 @@ class PipelineFlowTest(unittest.TestCase):
         import sns_video_followup as fu
         from tests import test_sns_video_required as R
 
-        old = R.queued_rec(R.NOW - timedelta(hours=fu.QUEUE_GIVE_UP_BREAKING_H, minutes=5))
+        # 2026-11-05 夕方 オーナー「動画を待たない」: 速報は動画を待たず、すぐ写真・カードで出す（issue は立てない）。ほかも止めない
+        old = R.queued_rec(R.NOW - timedelta(minutes=5))
         old["breaking"] = True
         failing = {"status": "gate_failed", "tries": 2, "breaking": True}
         _R, (state, sent, issues, _) = self._queue({"a": old, "b": R.queued_rec(R.NOW + timedelta(hours=1))}, {"a": failing, "b": R.ready_video("b")})
-        self.assertEqual(state["queued"]["a"]["status"], "skipped")
-        self.assertEqual([s for s, _ in issues], ["a"])
+        self.assertEqual((state["queued"]["a"]["status"], state["queued"]["a"]["media"]), ("created", "card"))
+        self.assertEqual(issues, [])
         self.assertEqual(state["queued"]["b"]["status"], "created")
-        # ふつうの投稿は同じ遅れでもまだ待つ（6時間まで）
-        normal = R.queued_rec(R.NOW - timedelta(hours=fu.QUEUE_GIVE_UP_BREAKING_H, minutes=5))
+        self.assertEqual(fu.video_wait_h({"breaking": True}), 0.0)
+        # 動画を作るふつうの投稿は枠から1時間までだけ待つ
+        normal = R.queued_rec(R.NOW - timedelta(minutes=30))
         _R, (state, sent, issues, _) = self._queue({"c": normal}, {"c": {"status": "gate_failed", "tries": 2}})
         self.assertEqual(state["queued"]["c"]["status"], "waiting")
 

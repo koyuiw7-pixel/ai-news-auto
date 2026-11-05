@@ -220,12 +220,14 @@ class PublishQueuedTest(unittest.TestCase):
                                      issue=lambda *a: self.fail("issue を立てない"), eligible=lambda s: True, remote=lambda s: {})
 
     def test_waits_for_muse_even_if_auto_video_is_ready(self):
-        item = {"slug": "yucho", "status": "queued", "queuedAt": self.SLOT.isoformat()}
-        out = self.run_publish(self.SLOT + timedelta(hours=1), [item], lambda *a: self.fail("まだ送らない"))
+        # 2026-11-05 夕方〜: Muse を待つのは動画を作る限られた記事（点数のある項目）だけで、枠から1時間まで
+        item = {"slug": "yucho", "status": "queued", "queuedAt": self.SLOT.isoformat(), "score": 9}
+        out = self.run_publish(self.SLOT + timedelta(minutes=30), [item], lambda *a: self.fail("まだ送らない"))
         self.assertIn("Muse の動画", out[0]["why"])
         sent = []
-        out = self.run_publish(self.SLOT + timedelta(hours=4, minutes=5), [item], lambda s, i, a: sent.append(s) or "id1")
+        out = self.run_publish(self.SLOT + timedelta(hours=1, minutes=5), [item], lambda s, i, a: sent.append(s) or "id1")
         self.assertEqual(sent, ["threads"])  # 期限のあとは自動動画で出す（本数を減らさない）
+        self.assertEqual(out[0]["media"], "video")
 
     def test_stale_post_is_dropped_not_posted_late(self):
         out = self.run_publish(self.SLOT + timedelta(hours=6, minutes=5), [], lambda *a: self.fail("遅れて出さない"))
@@ -259,9 +261,11 @@ class BlueskyDirectTest(unittest.TestCase):
             self.assertEqual(bp.pending(self.state(), self.SLOT + timedelta(hours=7)), [])  # 古いものは出さない
 
     def test_waits_for_muse_and_video(self):
+        # 2026-11-05 夕方 オーナー「動画を待たない」: 動画が無くても枠＋20分に出す（記事の写真のリンクカード）
         with patch.object(bp, "video_of", return_value={}), patch.object(sns_plan, "load_muse_queue", return_value={"items": []}):
-            self.assertEqual(bp.pending(self.state(), self.SLOT + timedelta(minutes=25)), [])
-        with patch.object(bp, "video_of", return_value={"url": "u", "variant": "short"}), patch.object(bp, "muse_until", return_value=self.SLOT + timedelta(hours=4)):
+            self.assertEqual([k for k, _ in bp.pending(self.state(), self.SLOT + timedelta(minutes=25))], ["yucho"])
+        # 動画を作る限られた記事だけ、Muse の待ちの期限（枠＋1時間）まで待つ
+        with patch.object(bp, "video_of", return_value={"url": "u", "variant": "short"}), patch.object(bp, "muse_until", return_value=self.SLOT + timedelta(hours=1)):
             self.assertEqual(bp.pending(self.state(), self.SLOT + timedelta(minutes=25)), [])
 
     def test_text_is_the_planned_threads_text_without_link(self):
@@ -274,15 +278,17 @@ class BlueskyDirectTest(unittest.TestCase):
         art = {"slug": "acme", "title": "Acme が新しいAIツールを公開", "genreSlug": "ai"}
         img = [{"type": "image", "url": "https://ai-tech-express.jp/card/acme", "width": 1200, "height": 675}]
         rule8 = lambda v: [x for x in v if x.startswith("[ルール8]")]  # noqa: E731
-        self.assertTrue(rule8(sns_rules.check_post("bluesky", "x", img, art)))
-        self.assertFalse(rule8(sns_rules.check_post("bluesky", "x", img, art, video_unsupported=True)))
-        self.assertTrue(rule8(sns_rules.check_post("threads", "x", img, art, video_unsupported=True)))  # ほかの SNS には効かない
+        # 2026-11-05 夕方〜: どの SNS も記事の写真のカードで出してよい（文字だけは止める）
+        for platform in ("bluesky", "threads"):
+            self.assertFalse(rule8(sns_rules.check_post(platform, "x", img, art)), platform)
+            self.assertTrue(rule8(sns_rules.check_post(platform, "x", [], art)), platform)
 
 
 class FlagsTest(unittest.TestCase):
     def test_flags_default_on_in_every_workflow(self):
         for path in (ROOT / ".github" / "workflows").glob("*.yml"):
-            for flag in ("SNS_HOOK_FORMAT", "THREADS_LINK_AB"):
+            self.assertNotIn("THREADS_LINK_AB", path.read_text("utf-8"), path.name)  # S31 は 2026-11-05 夕方に終了（変数は読まない）
+            for flag in ("SNS_HOOK_FORMAT",):
                 for m in re.finditer(rf"{flag}: \$\{{\{{ vars\.{flag} \|\| '(\d)' \}}\}}", path.read_text("utf-8")):
                     self.assertEqual(m.group(1), "1", f"{path.name} {flag}")
         for name in ("auto_run.yml", "sns_video.yml", "bluesky.yml", "breaking_post.yml", "sns_recover.yml", "threads_publish.yml"):
@@ -297,21 +303,19 @@ class FlagsTest(unittest.TestCase):
         self.assertIn("x_root_text(article, text, classic_text)", src)
 
     def test_link_ab_week_and_reminder(self):
+        # 2026-11-05 夕方 オーナー決定「すべて本文にリンクにしよう今後は」で比べは終了（decided=body。変数が 1 でも本文）
         w = sns_plan.link_ab_window()
-        self.assertEqual((w["start"], w["end"]), ("2026-11-05", "2026-11-12"))
+        self.assertEqual((w["decided"], w["ended"]), ("body", "2026-11-05"))
         with patch.dict(os.environ, {"THREADS_LINK_AB": "1"}):
-            self.assertEqual(sns_plan.link_ab_reminder(datetime(2026, 11, 10, tzinfo=timezone.utc)), "")
-            self.assertIn("link_ab.decided", sns_plan.link_ab_reminder(datetime(2026, 11, 13, 1, tzinfo=timezone.utc)))
-            posted = {"a": {"linkPosition": "body"}}
-            self.assertEqual(sns_plan.threads_link_position(posted), "reply")  # 決まるまで交互
-            with patch.object(sns_plan, "link_ab_window", return_value={"decided": "body"}):
-                self.assertEqual(sns_plan.threads_link_position(posted), "body")
+            self.assertFalse(sns_plan.link_ab_on())
+            self.assertEqual(sns_plan.link_ab_reminder(datetime(2026, 11, 13, 1, tzinfo=timezone.utc)), "")
+            self.assertEqual(sns_plan.threads_link_position({"a": {"linkPosition": "body"}}), "body")
         self.assertEqual(sns_plan.utm_content("video", "reply"), "video_reply")  # 2つの組を utm_content で分ける
         self.assertEqual(sns_plan.utm_content("video", "body"), "video_body")
 
     def test_muse_queue_is_the_sns_plan(self):
         m = sns_plan.plan()["muse"]
-        self.assertEqual((m["max_per_day"], m["wait_hours"]), (6, 4))
+        self.assertEqual((m["max_per_day"], m["wait_hours"], m["max_wait_hours"]), (4, 1, 1))  # 2026-11-05 夕方 オーナー「動画を作る記事を限定」
         self.assertIn("muse_queue.py", (ROOT / ".github" / "workflows" / "auto_run.yml").read_text("utf-8"))
 
 
