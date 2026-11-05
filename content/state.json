@@ -106,21 +106,13 @@
       "tries": 1,
       "url": "http://www.npa.go.jp/newlyarrived/2026/20260331001.html"
     },
-    "3af0ef7d790a050b": {
-      "first": "2026-11-05T02:28:59.991330+00:00",
-      "next": "2026-11-05T16:12:04.260233+00:00",
+    "3df4d68063a5a1b4": {
+      "first": "2026-11-05T16:35:57.775360+00:00",
+      "next": "2026-11-05T19:35:57.775360+00:00",
       "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "大迫力のダンスバトル！ ハーフタイムショーで推しと最接近！ 史上最多の20チームが参戦する「D.LEAGUE 26-27 SEASON」開幕戦レポート",
-      "tries": 2,
-      "url": "https://www.softbank.jp/sbnews/entry/20261105_01"
-    },
-    "4f67ee389287d817": {
-      "first": "2026-11-05T03:35:33.099125+00:00",
-      "next": "2026-11-05T16:15:06.996803+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "応用情報技術者試験・高度試験・情報処理安全確保支援士試験における答案の開示請求について",
-      "tries": 2,
-      "url": "https://www.ipa.go.jp/news/2026/shiken_20261105.html"
+      "title": "More Performance From Every Byte: How Full-Stack Codesign Solves AI’s Memory Challenge",
+      "tries": 1,
+      "url": "https://blogs.nvidia.com/blog/memory-full-stack-codesign/"
     },
     "52567fa092b78f28": {
       "first": "2026-11-04T03:34:46.235755+00:00",
@@ -137,14 +129,6 @@
       "title": "マネタリーベース（10月）",
       "tries": 1,
       "url": "http://www.boj.or.jp/statistics/boj/other/mb/mb.htm"
-    },
-    "84d6e3eaec4fdab1": {
-      "first": "2026-11-05T03:50:04.779950+00:00",
-      "next": "2026-11-05T16:19:38.818766+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "CBT方式で実施するITパスポート試験、情報セキュリティマネジメント試験及び基本情報技術者試験における2027年1月以降の実施予定について",
-      "tries": 2,
-      "url": "https://www.ipa.go.jp/shiken/2026/cbt-202701-yotei.html"
     },
     "9824d9cb50fa7b55": {
       "first": "2026-11-03T14:46:44.535250+00:00",
@@ -6348,6 +6332,13 @@
       "skipped": true,
       "url": "https://www.atpress.ne.jp/news/644123"
     },
+    "3af0ef7d790a050b": {
+      "at": "2026-11-05T16:34:20.814883+00:00",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://www.softbank.jp/sbnews/entry/20261105_01"
+    },
     "3b1f004eeecdcbe8": {
       "at": "2026-10-27T01:31:25.544076+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6927,6 +6918,13 @@
       "slug": "salesforce-aiforce-claude-slack",
       "url": "https://www.salesforce.com/jp/news/stories/japan-claudeforce-and-slackforce-domo/"
     },
+    "477cff6d6b4c7941": {
+      "at": "2026-11-05T16:31:21.264381+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "NVIDIAのエンジニアを紹介する社内カルチャー記事（NVIDIA Life）で、技術発表・技術解説・デモが中心ではなく、AI・テクノロジーの実質的な情報価値がないため対象外です。",
+      "skipped": true,
+      "url": "https://blogs.nvidia.com/blog/nvidia-life-chris-alexiuk/"
+    },
     "477d7aaf59d7fc3c": {
       "at": "2026-11-05T05:14:18.371432+00:00",
       "breaking": true,
@@ -7328,6 +7326,13 @@
       "reason": "quality: 公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルのまま」「日本の売上は1%減」）",
       "skipped": true,
       "url": "https://www.capcom.co.jp/ir/news/html/261102.html"
+    },
+    "4f67ee389287d817": {
+      "at": "2026-11-05T16:41:30.580542+00:00",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://www.ipa.go.jp/news/2026/shiken_20261105.html"
     },
     "4fc3e6cfad62dfa3": {
       "at": "2026-10-28T23:11:57.424302+00:00",
@@ -9942,6 +9947,13 @@
       "reason": "quality: 本文が短い（1898字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（397字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://cloud.google.com/blog/ja/topics/ai-infrastructure/confidential-g4-gpus-are-ga/"
+    },
+    "84d6e3eaec4fdab1": {
+      "at": "2026-11-05T16:46:40.467358+00:00",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://www.ipa.go.jp/shiken/2026/cbt-202701-yotei.html"
     },
     "8526199ec7b5548b": {
       "at": "2026-10-28T03:23:53.297166+00:00",
@@ -15911,151 +15923,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T02:38:34.242729+00:00",
-      "attempt": 1,
-      "id": "f5a0d7153ecc99c8",
-      "kind": "ai",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "problems": [
-        "文が長い（1文の平均 61.7字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 246.6字・最長 520字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 246.6,
-        "avg_sentence": 61.7,
-        "long_share": 0.375,
-        "max_paragraph": 520,
-        "paragraphs": 8,
-        "sentences": 32
-      },
-      "score": 88,
-      "source": "google-cloud-blog",
-      "title": "Five rules for evaluating agent skills before they bloat your context window",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（YAML・GKE・CI）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-04T02:39:05.872667+00:00",
-      "attempt": 0,
-      "id": "f5a0d7153ecc99c8",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 73.2,
-        "avg_sentence": 42.9,
-        "long_share": 0.122,
-        "max_paragraph": 117,
-        "paragraphs": 24,
-        "sentences": 41
-      },
-      "score": 88,
-      "source": "google-cloud-blog",
-      "title": "Five rules for evaluating agent skills before they bloat your context window",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（YAML・GKE・CI）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T02:56:12.535496+00:00",
-      "attempt": 1,
-      "id": "3d509e27bae229a3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "openai-news",
-      "title": "OpenAI appoints Jill Hazelbaker as Chief Corporate Affairs Officer"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:01:17.900122+00:00",
-      "attempt": 2,
-      "id": "3d509e27bae229a3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "openai-news",
-      "title": "OpenAI appoints Jill Hazelbaker as Chief Corporate Affairs Officer"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:03:08.796008+00:00",
-      "attempt": 1,
-      "id": "e2654f5d2f822277",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "softbank-news",
-      "title": "延焼につながる火種を上空から検知。国産ドローンとクラウドGCSによる山火事防災訓練をソフトバンクが支援"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:04:00.517673+00:00",
-      "attempt": 2,
-      "id": "e2654f5d2f822277",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "softbank-news",
-      "title": "延焼につながる火種を上空から検知。国産ドローンとクラウドGCSによる山火事防災訓練をソフトバンクが支援"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:06:14.519090+00:00",
-      "attempt": 1,
-      "id": "de5d8c3372c230d4",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "google-developers-blog",
-      "title": "Cost per task: Using cheap classifiers to route across Gemini models and thinkin"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:14:41.689985+00:00",
-      "attempt": 2,
-      "id": "de5d8c3372c230d4",
-      "kind": "ai",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "problems": [
-        "段落が長い（平均 176.9字・最長 261字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 176.9,
-        "avg_sentence": 43.0,
-        "long_share": 0.081,
-        "max_paragraph": 261,
-        "paragraphs": 9,
-        "sentences": 37
-      },
-      "score": 85,
-      "source": "google-developers-blog",
-      "title": "Cost per task: Using cheap classifiers to route across Gemini models and thinkin",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LOW）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-04T03:15:08.516057+00:00",
@@ -22168,6 +22035,131 @@
       "score": null,
       "source": "mof",
       "title": "全国財務局管内経済情勢報告概要（令和8年10月）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T16:33:23.084578+00:00",
+      "attempt": 1,
+      "id": "3af0ef7d790a050b",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-news",
+      "title": "大迫力のダンスバトル！ ハーフタイムショーで推しと最接近！ 史上最多の20チームが参戦する「D.LEAGUE 26-27 SEASON」開幕戦レポート"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T16:34:20.814798+00:00",
+      "attempt": 2,
+      "id": "3af0ef7d790a050b",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-news",
+      "title": "大迫力のダンスバトル！ ハーフタイムショーで推しと最接近！ 史上最多の20チームが参戦する「D.LEAGUE 26-27 SEASON」開幕戦レポート"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T16:35:35.979874+00:00",
+      "attempt": 1,
+      "id": "3df4d68063a5a1b4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "見出し「処理量は最大30倍」→ 元記事は「ドル当たり」の処理量（agentic throughput per dollar）の向上であり、見出しは指標の限定を落としている",
+        "判定行「提供状況=demo 価格=法人向け」→ 本記事の対象（データセンター向け発表）に対する根拠が元記事・確認済みの文脈に無く、読者に誤解を与えうる内部ラベルが残っている",
+        "「今日やること」の料金プランと利用上限の確認→ 一般的な行動として許容されるが、利用上限という具体的な確認対象は元記事に無い"
+      ],
+      "readability": {
+        "avg_paragraph": 93.9,
+        "avg_sentence": 39.4,
+        "long_share": 0.129,
+        "max_paragraph": 157,
+        "paragraphs": 13,
+        "sentences": 31
+      },
+      "score": 72,
+      "source": "nvidia-blog",
+      "title": "More Performance From Every Byte: How Full-Stack Codesign Solves AI’s Memory Cha",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HBM・KV・NVFP）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T16:35:57.775123+00:00",
+      "attempt": 2,
+      "id": "3df4d68063a5a1b4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "nvidia-blog",
+      "title": "More Performance From Every Byte: How Full-Stack Codesign Solves AI’s Memory Cha"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T16:38:46.124261+00:00",
+      "attempt": 1,
+      "id": "4f67ee389287d817",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "ipa",
+      "title": "応用情報技術者試験・高度試験・情報処理安全確保支援士試験における答案の開示請求について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T16:41:30.580465+00:00",
+      "attempt": 2,
+      "id": "4f67ee389287d817",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "ipa",
+      "title": "応用情報技術者試験・高度試験・情報処理安全確保支援士試験における答案の開示請求について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T16:43:55.189902+00:00",
+      "attempt": 1,
+      "id": "84d6e3eaec4fdab1",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "ipa",
+      "title": "CBT方式で実施するITパスポート試験、情報セキュリティマネジメント試験及び基本情報技術者試験における2027年1月以降の実施予定について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T16:46:40.467295+00:00",
+      "attempt": 2,
+      "id": "84d6e3eaec4fdab1",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "ipa",
+      "title": "CBT方式で実施するITパスポート試験、情報セキュリティマネジメント試験及び基本情報技術者試験における2027年1月以降の実施予定について"
     }
   ],
   "short_text_retry": {
