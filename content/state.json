@@ -7161,6 +7161,15 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77111.html"
     },
+    "501abd1900e6faea": {
+      "at": "2026-11-05T08:44:09.767758+00:00",
+      "mix": "brand",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 91,
+      "section": "business",
+      "slug": "rakuten-insight-ai-shopping-survey-2026",
+      "url": "https://corp.rakuten.co.jp/news/press/2026/1105_03.html"
+    },
     "501f73ebd3323562": {
       "at": "2026-10-29T18:11:23.465767+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10113,6 +10122,13 @@
       "slug": "design-industry-bankruptcies-record",
       "url": "https://www.tsr-net.co.jp/data/detail/1203387_1527.html"
     },
+    "9007c880161f9fcc": {
+      "at": "2026-11-05T08:41:35.693656+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "宿泊施設の朝食クチコミを集計したランキングで、働く人や家計の仕事・お金に直接かかわる経済の一次情報とは言いにくく、販促色の強い発表のため対象外としました。",
+      "skipped": true,
+      "url": "https://corp.rakuten.co.jp/news/press/2026/1105_04.html"
+    },
     "90327149489cf2ce": {
       "at": "2026-11-03T00:31:18.340916+00:00",
       "reason": "short text 497",
@@ -12848,6 +12864,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000161.000000268.html"
     },
+    "cdba7804825b8ef7": {
+      "at": "2026-11-05T08:41:23.643952+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "元記事は見出しと発表日のみで、実証の内容・期間・検証の方法・提供時期や料金が本文から確認できないため、読者に実質的な情報を届ける記事にできません。",
+      "skipped": true,
+      "url": "https://group.ntt/jp/newsrelease/2026/11/05/261105a.html"
+    },
     "ce253a4b2ae2e919": {
       "at": "2026-11-04T05:47:03.079562+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -15198,34 +15221,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T19:38:50.408203+00:00",
-      "attempt": 1,
-      "id": "0e7b16327df7de13",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "github-blog",
-      "title": "Arnis turns any place on Earth into a Minecraft world"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T19:40:51.152181+00:00",
-      "attempt": 2,
-      "id": "0e7b16327df7de13",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "github-blog",
-      "title": "Arnis turns any place on Earth into a Minecraft world"
-    },
     {
       "accepted": false,
       "at": "2026-11-03T19:47:55.475365+00:00",
@@ -21556,6 +21551,40 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（JAPAN・EBITDA・BEENOS）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T08:42:39.462761+00:00",
+      "attempt": 1,
+      "id": "501abd1900e6faea",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "rakuten",
+      "title": "「楽天インサイト」、「生活者のAI活用購買における調査」結果を発表"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T08:44:09.761929+00:00",
+      "attempt": 2,
+      "id": "501abd1900e6faea",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 85.2,
+        "avg_sentence": 38.9,
+        "long_share": 0.2,
+        "max_paragraph": 169,
+        "paragraphs": 16,
+        "sentences": 35
+      },
+      "score": 91,
+      "source": "rakuten",
+      "title": "「楽天インサイト」、「生活者のAI活用購買における調査」結果を発表"
     }
   ],
   "short_text_retry": {
