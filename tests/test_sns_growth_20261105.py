@@ -55,21 +55,22 @@ class SlotsAndCapTest(unittest.TestCase):
         self.addCleanup(q.stop)
 
     def test_six_slots_from_the_plan(self):
-        self.assertEqual(tp.SLOTS_JST, [(7, 15), (8, 10), (12, 15), (18, 45), (20, 30), (21, 45)])
-        self.assertEqual(sns_plan.daily_cap(), 6)
+        # 2026-11-06 テストの日（台帳 S39）から4枠・1日5本
+        self.assertEqual(tp.SLOTS_JST, [(7, 15), (12, 15), (18, 45), (20, 30)])
+        self.assertEqual(sns_plan.daily_cap(), 5)
         self.assertEqual(tp.DIGEST_SLOT_JST, (7, 15))
 
     def test_close_slots_are_both_usable(self):
-        # 7:15 と 8:10（55分）、20:30 と 21:45（75分）はどちらも使える（間隔は45分）
+        # 18:45 と 20:30（105分）はどちらも使える（間隔は45分）。2026-11-06〜 8:10・21:45 の枠は無い（S39）
         slots = tp.free_slots({"posted": {}}, at(5, 6, 0))
-        self.assertEqual([s.astimezone(JST).strftime("%H:%M") for s in slots], ["07:15", "08:10", "12:15"])
+        self.assertEqual([s.astimezone(JST).strftime("%H:%M") for s in slots], ["07:15", "12:15"])
         slots = tp.free_slots({"posted": {}}, at(5, 15, 0))
-        self.assertEqual([s.astimezone(JST).strftime("%H:%M") for s in slots], ["18:45", "20:30", "21:45"])
+        self.assertEqual([s.astimezone(JST).strftime("%H:%M") for s in slots], ["18:45", "20:30"])
 
     def test_daily_cap_counts_breaking_but_not_disaster(self):
-        posted = {f"b{i}": {"id": f"t{i}", "breaking": True, "dueAt": at(5, 9, i).isoformat()} for i in range(4)}
+        posted = {f"b{i}": {"id": f"t{i}", "breaking": True, "dueAt": at(5, 9, i).isoformat()} for i in range(3)}
         slots = tp.free_slots({"posted": posted}, at(5, 15, 0))
-        self.assertEqual(len(slots), 2)  # 6 - 速報4 = 2
+        self.assertEqual(len(slots), 2)  # 5 - 速報3 = 2
         posted["quake"] = {"id": "q", "disaster": True, "dueAt": at(5, 10, 0).isoformat()}
         self.assertEqual(len(tp.free_slots({"posted": posted}, at(5, 15, 0))), 2)  # 災害は数えない
         posted.update({f"c{i}": {"id": f"c{i}", "dueAt": at(5, 11, i).isoformat()} for i in range(2)})
@@ -142,7 +143,7 @@ class UtmTest(unittest.TestCase):
         text = f"1行目\n2行目\n記事に\n\n{LINK}?utm_source=threads&utm_medium=social&utm_campaign=classic&utm_content=hook_body"
         new, _ = fu.merged_text(text, report, "short")
         self.assertIn("utm_campaign=sns_video_short&utm_content=hook_body", new)
-        self.assertIn("40秒の動画で解説しています。", new)  # Muse の動画は「公式ページの画面を見ながら」と言わない
+        self.assertNotIn("動画で解説", new)  # 2026-11-06〜 決まった動画の行は足さない（台帳 S39）
 
 
 class MuseTest(unittest.TestCase):
@@ -170,13 +171,13 @@ class MuseTest(unittest.TestCase):
         self.assertTrue(got[0]["title"])
         self.assertTrue(all(g["score"] > 0 for g in got))
         full = {"items": [{"slug": f"s{i}", "slot": at(5, 7, i).isoformat(), "queuedAt": now.isoformat(), "status": "queued", "score": 8} for i in range(4)]}
-        self.assertEqual(muse_queue.pick(full, now, arts, posted), [])  # 枠の日ごとに4本まで
+        self.assertEqual(muse_queue.pick(full, now, arts, posted), [])  # 枠の日ごとに2本まで（2026-11-06〜・S39）
         # 以前の「すべての投稿を Muse で」の点数0の項目は数えず、選び直す
         old = {"items": [{"slug": f"s{i}", "slot": at(5, 7, i).isoformat(), "queuedAt": now.isoformat(), "status": "queued", "score": 0} for i in range(6)]
                          + [{"slug": "yucho", "slot": at(5, 8, 10).isoformat(), "status": "queued", "score": 0}]}
         self.assertEqual(sorted(g["slug"] for g in muse_queue.pick(old, now, arts, posted)), ["honda", "yucho"])
         # 点数の高い順に選ぶ（上限が残り1本なら yucho（9点）を honda（8点）より先に）
-        three = {"items": [{"slug": f"s{i}", "slot": at(5, 7, i).isoformat(), "status": "queued", "score": 8} for i in range(3)]}
+        three = {"items": [{"slug": f"s{i}", "slot": at(5, 7, i).isoformat(), "status": "queued", "score": 8} for i in range(1)]}
         self.assertEqual([g["slug"] for g in muse_queue.pick(three, now, arts, posted)], ["yucho"])
         plain = {**YUCHO, "slug": "plain", "title": "ゆうちょ銀行がお知らせを更新", "lede": "お知らせです。"}
         self.assertEqual(muse_queue.pick({"items": []}, now, [plain], {"plain": rec(12, 15)}), [])  # 立つ数字の無い記事は動画を作らない

@@ -110,7 +110,7 @@ class PictureInsteadOfWaitingTest(unittest.TestCase):
     def test_six_slots_all_go_out_on_time_without_any_video(self):
         """枠6つ（7:15〜21:45）の投稿は、動画が1本も無くてもすべて枠の時刻に出る（1日6本＋朝のまとめは別）"""
         slots = [DAY.replace(hour=h, minute=m) for h, m in sns_plan.slots_jst()]
-        self.assertEqual(len(slots), sns_plan.daily_cap())
+        self.assertLessEqual(len(slots), sns_plan.daily_cap())  # 2026-11-06〜 4枠・上限5（速報1本分の空き。S39）
         posted = {f"s{i}": queued_rec(slot.astimezone(timezone.utc)) for i, slot in enumerate(slots)}
         state = {"videos": {}}
         sent: list = []
@@ -148,7 +148,7 @@ class PictureInsteadOfWaitingTest(unittest.TestCase):
         data = {"items": [{"slug": "a", "status": "queued", "score": 9}, {"slug": "b", "status": "queued", "score": 0},
                           {"slug": "c", "status": "delivered"}, {"slug": "d", "status": "expired", "score": 9}]}
         self.assertEqual([s for s in "abcde" if sns_plan.video_post(s, data)], ["a", "c"])
-        self.assertEqual(sns_plan.plan()["muse"]["max_per_day"], 4)
+        self.assertEqual(sns_plan.plan()["muse"]["max_per_day"], 2)  # 2026-11-06〜（S39）
         self.assertEqual(sns_plan.video_wait_hours(), 1.0)
         with patch.dict(os.environ, {"MUSE_WAIT_HOURS": "6"}):
             self.assertEqual(sns_plan.video_wait_hours(), 1.0)

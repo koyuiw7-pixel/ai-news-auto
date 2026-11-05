@@ -315,7 +315,7 @@ class FlagsTest(unittest.TestCase):
 
     def test_muse_queue_is_the_sns_plan(self):
         m = sns_plan.plan()["muse"]
-        self.assertEqual((m["max_per_day"], m["wait_hours"], m["max_wait_hours"]), (4, 1, 1))  # 2026-11-05 夕方 オーナー「動画を作る記事を限定」
+        self.assertEqual((m["max_per_day"], m["wait_hours"], m["max_wait_hours"]), (2, 1, 1))  # 2026-11-06 テストの日から2本（S39）  # 2026-11-05 夕方 オーナー「動画を作る記事を限定」
         self.assertIn("muse_queue.py", (ROOT / ".github" / "workflows" / "auto_run.yml").read_text("utf-8"))
 
 

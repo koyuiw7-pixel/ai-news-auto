@@ -64,6 +64,11 @@ concurrency:
   group: sns-video-followup
   cancel-in-progress: false  # 実行中に来た分は1つだけ待ち、それ以上は取り消される（次の回で拾う）
 
+env:
+  # Threads の記事のリンクの位置（2026-11-06 テストの日・オーナー承認・台帳 S31/S39）。reply＝本文はリンク無し＋返信にリンク、body＝本文の最後。
+  # 空なら body（11/5 の決まり）。切り替えは Actions の Variables の THREADS_LINK_POS だけ（予約中の投稿も出る前の読み直しで今の位置に直る）
+  THREADS_LINK_POS: ${{ vars.THREADS_LINK_POS || 'body' }}
+
 jobs:
   followup:
     if: ${{ github.event_name == 'workflow_dispatch' || vars.SNS_VIDEO_FOLLOWUP == 'on' }}

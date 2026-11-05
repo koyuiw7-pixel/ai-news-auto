@@ -215,6 +215,7 @@ NON_PROSE = {
     "article_charts.py": "図の欄（charts）だけ",
     "article_quickfix.py": "LLM を使わない決まった置き換え（台帳 A の表示の段と同じ規則）",
     "audit.py": "ジャンルの付け替え（手で動かす）",
+    "threads_control_post.py": "記事を読むだけ（リンク無しの比べの Threads の投稿を state/threads_control.json に記録。台帳 S39）",
     "bluesky_post.py": "投稿の記録",
     "muse_ingest.py": "記事は読むだけ（Muse の動画の記録 state/sns_video.json・state/muse_queue.json を書く）",
     "muse_queue.py": "記事は読むだけ（Muse に頼む候補の記録 state/muse_queue.json を書く）",

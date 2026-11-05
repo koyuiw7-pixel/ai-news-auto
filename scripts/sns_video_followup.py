@@ -602,6 +602,13 @@ QUEUE_LEAD_MIN = 3  # 枠が過ぎた（または今すぐの）投稿は、送�
 MISSING_LABEL = "sns-video-missing"
 
 
+def sns_plan_pos() -> str:
+    """送った時の Threads のリンクの位置（記録用。台帳 S39）"""
+    import sns_plan
+
+    return sns_plan.threads_link_position()
+
+
 def video_input(service: str, post_input: dict, report: dict, variant: str, video_url: str) -> dict:
     """動画を待っていた Buffer の入力の写真・リンクカードを動画に替える（本文の中身は変えない。リンクは動画の A/B 用に）"""
     import threads_post
@@ -614,6 +621,10 @@ def video_input(service: str, post_input: dict, report: dict, variant: str, vide
         inp["text"] = text
         thread = (meta.get("threads") or {}).get("thread") or [{}]
         thread[0] = {**thread[0], "text": text, "assets": video}
+        for t in thread[1:]:  # THREADS_LINK_POS=reply（台帳 S39）: 返信の記事のリンクも動画の A/B 用に
+            m = URL_RE.search(t.get("text") or "")
+            if m:
+                t["text"] = t["text"][: m.start()] + article_link(report, variant, "threads", ptype_of(m.group(0)), "reply") + t["text"][m.end():]
         meta.setdefault("threads", {})["thread"] = thread
     elif service == "twitter":
         thread = (meta.get("twitter") or {}).get("thread") or [{"text": inp.get("text", "")}]
@@ -859,6 +870,7 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
             break
         if created.get("threads"):
             q.update({"status": "created", "id": created["threads"], "dueAt": base.isoformat(timespec="seconds"), "variant": variant, "media": media,
+                      "linkPosition": sns_plan_pos(),
                       "delayedMin": max(0, int((base - slot).total_seconds() // 60))})
             if variant:
                 v.update({"status": "attached", "variant": variant, "bufferId": created["threads"], "postedAt": base.isoformat(timespec="seconds")})
@@ -910,11 +922,15 @@ def node_problems(node: dict) -> tuple[str, bool, list[str]]:
             article = None
     service = node.get("service", "")
     text = (thread[0].get("text") if thread else "") or node.get("text") or ""
-    # X は返信も合わせて確かめる（門番の enforce_buffer と同じ）。Threads のリンクは本文だけ（S31 は 2026-11-05 に終了）
-    reply = "\n".join(t.get("text") or "" for t in thread[1:]) if service == "twitter" else ""
+    # X は返信も合わせて確かめる（門番の enforce_buffer と同じ）。Threads は THREADS_LINK_POS=reply のときだけ返信も（台帳 S39）
+    reply = "\n".join(t.get("text") or "" for t in thread[1:]) if service and sns_rules.reply_counted({"twitter": "x"}.get(service, service)) else ""
     links = [] if service != "facebook" else [node.get("externalLink") or ""]
     problems = sns_rules.check_post({"twitter": "x"}.get(service, service), text, [], article, reply_text=reply, links=[x for x in links if x],
                                     pending_video=True) if service else ["SNS が分からない"]
+    if service and article:
+        # リンクの位置が今の THREADS_LINK_POS と違う・決まった動画の行が残っている予約も、出る前に直す（台帳 S39。変数を切り替えたら次の回で効く）
+        own = [t.get("text") or "" for t in thread] or [node.get("text") or ""]
+        problems += [p for p in (sns_rules.link_shape_problem(service, own), sns_rules.video_line_problem(own)) if p]
     return slug, video, problems
 
 
@@ -985,7 +1001,10 @@ def rules_version() -> str:
     """今の門番の版（sns_rules.py の中身の印）。門番が変われば、読み直し済みの予約ももう一度見る"""
     import hashlib
 
-    return hashlib.sha1((Path(__file__).resolve().parent / "sns_rules.py").read_bytes()).hexdigest()[:12]
+    import sns_plan
+
+    # Threads のリンクの位置（THREADS_LINK_POS）も版に入れる: 変数を切り替えたら、読み直し済みの予約ももう一度見る（台帳 S39）
+    return hashlib.sha1((Path(__file__).resolve().parent / "sns_rules.py").read_bytes()).hexdigest()[:12] + "-" + sns_plan.threads_link_position()
 
 
 def presend_targets(state: dict, posted: dict, now: datetime, hours: float = PRESEND_HOURS) -> list[str]:
@@ -1021,7 +1040,9 @@ def node_edit_input(node: dict, texts: list[str], topic: str = "") -> dict:
     key = "twitter" if service == "twitter" else "threads"
     items = thread or [{"text": node.get("text") or "", "assets": node.get("assets") or []}]
     if key == "threads" and len(texts) < len(items):
-        items = items[: max(1, len(texts))]  # 返信のリンクを本文に移した（S31 終了）ときは、返信を外す
+        items = items[: max(1, len(texts))]  # 返信のリンクを本文に移した（THREADS_LINK_POS=body）ときは、返信を外す
+    if key == "threads" and len(texts) > len(items):
+        items = list(items) + [{"text": "", "assets": []} for _ in range(len(texts) - len(items))]  # 本文のリンクを返信に移した（reply・S39）
     new_thread = [{"text": texts[i] if i < len(texts) else (t.get("text") or ""), "assets": [_asset_input(a) for a in t.get("assets") or []]}
                   for i, t in enumerate(items)]
     if not thread and node.get("assets"):
@@ -1042,7 +1063,7 @@ def _input_problems(service: str, inp: dict, article: dict | None) -> list[str]:
 
     text, reply, _media, links = sns_rules.buffer_parts(service, inp)
     platform = sns_rules.norm_platform(service)
-    with_reply = platform == "x"
+    with_reply = sns_rules.reply_counted(platform)
     return sns_rules.check_post(platform, text, [], article, reply_text=reply if with_reply else "", links=links, pending_video=True)
 
 
@@ -1056,7 +1077,7 @@ def rebuilt_texts(node: dict, slug: str, article: dict, state: dict, posted: dic
     q = (state.get("queued") or {}).get(slug) or {}
     fake = {"pending": {"inputs": {s: {"channelId": node.get("channelId", "") if s == service else ""} for s in ("threads", "twitter", "facebook")},
                         "slot": node.get("dueAt") or "", "fmt": "classic"},
-            "hookFormat": rec.get("hookFormat"), "linkPosition": "body", "breaking": rec.get("breaking"),
+            "hookFormat": rec.get("hookFormat"), "linkPosition": tp.sns_plan.threads_link_position(), "breaking": rec.get("breaking"),
             "questionText": rec.get("questionText")}
     new = tp.rebuild_pending_inputs(fake, article, use_llm=True)[service]
     variant = q.get("variant") or rec.get("videoVariant") or "short"
@@ -1128,8 +1149,10 @@ def presend_recheck(apply: bool = True, now: datetime | None = None, api_key: st
         service = node.get("service", "")
         texts = node_texts(node)
         if service == "threads":
-            texts = sns_rules.merge_reply_link_texts(texts)  # 返信に置いたリンクを本文に（S31 終了。2026-11-05 オーナー「すべて本文にリンクに」）
-        texts = [sns_rules.autofix(t, article, sns_rules.norm_platform(service))[0] if i == 0 or service != "twitter" else t
+            texts = sns_rules.reshape_threads_texts(texts)  # リンクの位置を今の THREADS_LINK_POS（reply / body）に（台帳 S39・S31）
+        texts = [sns_rules.strip_video_line(t) for t in texts]  # 決まった動画の案内の行を外す（台帳 S39）
+        texts = [sns_rules.autofix(t, article, sns_rules.norm_platform(service))[0]
+                 if i == 0 or (service != "twitter" and not sns_rules._article_link_only(t)) else t
                  for i, t in enumerate(texts)]
         how = "autofix"
         inp = node_edit_input(node, texts)
@@ -1487,7 +1510,8 @@ def sync_posted(state: dict, posted: dict) -> int:
             rec.update({"id": q.get("id", ""), "status": "scheduled", "dueAt": q.get("dueAt") or rec.get("dueAt"), "image": "card" if q.get("media") == "card" else "video",
                         "channels": {**{k: v for k, v in (rec.get("channels") or {}).items() if k == "bluesky"},
                                      **{k: v for k, v in (q.get("channels") or {}).items() if k != "threads" and v}},
-                        "videoVariant": q.get("variant", "")})
+                        "videoVariant": q.get("variant", ""),
+                        "linkPosition": q.get("linkPosition") or rec.get("linkPosition") or "body"})
             rec.pop("pending", None)
             changed += 1
         elif q.get("status") == "skipped":
@@ -1498,15 +1522,16 @@ def sync_posted(state: dict, posted: dict) -> int:
     return changed
 
 
+# 2026-11-06〜 使わない（台帳 S39。merged_text は足さず、sns_rules.autofix が予約中の文面からも外す）。古い文面を見分けるために残す
 VIDEO_LINE = "公式ページの画面を見ながら、{seconds}秒の動画で解説しています。"
-VIDEO_LINE_PLAIN = "{seconds}秒の動画で解説しています。"  # L3/L4（公式ページの画面を使わない段）
+VIDEO_LINE_PLAIN = "{seconds}秒の動画で解説しています。"
 URL_RE = re.compile(r"https?://\S+/articles/[^\s?]+\S*")
 
 
 def merged_text(text: str, report: dict, variant: str, limit: int = MAX_CHARS) -> tuple[str, dict]:
     """予約中の投稿の本文を、動画つきの本文にする。中身は変えず
     ①記事のリンクを動画の A/B 用（utm_campaign=sns_video&utm_content=版）に替える（長すぎるなら元のまま）
-    ②入るなら「◯秒の動画で解説」の行（リンクの案内の前）と、音声のクレジット（最後）を足す"""
+    ②入るなら音声のクレジット（最後）を足す（「◯秒の動画で解説」の行は 2026-11-06 から足さない・台帳 S39）"""
     notes = {"link": "kept", "line": False, "credit": False}
     m = URL_RE.search(text)
     new = text
@@ -1518,9 +1543,8 @@ def merged_text(text: str, report: dict, variant: str, limit: int = MAX_CHARS) -
             tagged = text[: m.end()] + "&utm_content=video_body" + text[m.end():]  # 長くて替えられないときも種類と位置の印は付ける（S29）
             if len(tagged) <= limit:
                 new = tagged
-    seconds = int(round(float(report.get("total") or 0)))
-    form = VIDEO_LINE_PLAIN if report.get("level") in ("L3", "L4", "MUSE") else VIDEO_LINE
-    line = form.format(seconds=seconds) if seconds else ""
+    # 2026-11-06〜（台帳 S39）: 決まった動画の案内の行（VIDEO_LINE）は足さない（毎回同じ行は読み飛ばされる・リーチが落ちた時期と重なる）
+    line = ""
     credit = (report.get("voice") or {}).get("credit", "")
     if line:
         idx = new.find("詳しくはこちら")  # 以前の決まった案内の行（2026-11-05 からはリンクだけの行）

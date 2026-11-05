@@ -131,6 +131,10 @@ def main() -> int:
         if not tp.sns_plan.cap_exempt(article) and used >= tp.sns_plan.daily_cap():
             log(f"[breaking] {article['slug']}: 今日の自分の投稿が上限 {tp.sns_plan.daily_cap()} 本に達しているので SNS には出しません")
             continue
+        fin_kept = sum(1 for a in kept if tp.sns_plan.finance_topic(a))
+        if tp.sns_plan.finance_full(article, state["posted"], today, extra=fin_kept, skipped=tp.sns_plan.video_skipped()):
+            log(f"[breaking] {article['slug']}: 決算・株の話題が今日の上限 {tp.sns_plan.finance_cap()} 本に達しているので SNS には出しません（S39）")
+            continue
         kept.append(article)
     found = kept if not args.slug else found
     if not found:

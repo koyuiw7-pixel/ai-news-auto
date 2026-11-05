@@ -1,0 +1,54 @@
+name: Threads control post (no link)
+
+# リンク無しの比べの Threads の投稿を1本、spec の時刻に Buffer に予約する（2026-11-06 テストの日・台帳 S39。scripts/threads_control_post.py）。
+# spec は content/sns_reposts/<id>.json（nolink: true・slug・at・text・ownerApproved・image）。live を true にしないと下見だけ。
+on:
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: "spec の JSON（例: content/sns_reposts/control-20261106.json）"
+        required: true
+      live:
+        description: "true で Buffer に予約する（false は下見だけ）"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+  issues: write  # 門番（scripts/sns_rules.py）が止めた投稿の issue
+
+concurrency:
+  group: threads-control
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Schedule
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_LEDGER: control
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}
+          THREADS_MODE: ${{ vars.THREADS_MODE }}
+          SPEC: ${{ github.event.inputs.spec }}
+          LIVE: ${{ github.event.inputs.live }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "$LIVE" = "true" ]; then python scripts/threads_control_post.py --spec "$SPEC" --live; else python scripts/threads_control_post.py --spec "$SPEC"; fi
+      - name: Commit record
+        if: ${{ always() && github.event.inputs.live == 'true' }}
+        run: |
+          if [ -z "$(git status --porcelain state)" ]; then exit 0; fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state
+          git commit -m "chore(threads): リンク無しの比べの投稿を記録 [no-deploy]"
+          python3 scripts/git_safe_push.py

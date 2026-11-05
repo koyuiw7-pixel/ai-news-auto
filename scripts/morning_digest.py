@@ -17,7 +17,7 @@
 - 本文は見出しを1行ずつ（煽らない）。見出しは「だれが＋何を」（scripts/digest_page.py の short_headline。会社名だけにしない）
 - リンクは自分への返信に置く（Threads はリンクカード）。リンク先はその日の号のページ /digest/<YYYYMMDD>（UTM 付き）、
   Threads・X には号の横長画像（/digest/<id>/share.png）を添える。号のデータは投稿前に KV へ置き、出せなければ従来の /news・画像なし
-- 7:15 は通常の予約枠から外してある（threads_post.DIGEST_SLOT_JST）。1日6本の上限に数える（scripts/sns_plan.json）
+- 7:15 は通常の予約枠から外してある（threads_post.DIGEST_SLOT_JST）。1日5本（2026-11-06〜・S39）の上限に数える（scripts/sns_plan.json）
 - 1日1本だけ。state/threads_posted.json に digest-YYYYMMDD（style: digest）で記録する
 - SNS_DIGEST=0 なら何もしない
 """
@@ -359,8 +359,30 @@ def create_with_fallback(api_key: str, payload: dict) -> str:
         return tp.create_post(api_key, plain, **gate)
 
 
+def reply_thread_texts(post: dict) -> list[str]:
+    """（2026-11-06 テストの日・台帳 S39。THREADS_LINK_POS=reply）朝のまとめを短いスレッドにする（オーナー・Muse 案）:
+    1件目＝見出しの行＋いちばん大きい1本＋「ほかの◯本は、」で文の途中で終える（続きを開いてもらう。煽りの言葉・「！」は使わない）、
+    2件目＝残りの見出し（短い行）、最後の1件＝案内の1行＋号のページのリンク（utm_content=digest_reply）"""
+    lines = [x for x in str(post["text"]).splitlines() if x.strip()]
+    head, items = lines[0], [x for x in lines[1:] if x.startswith("・")]
+    if len(items) < 2 or not post.get("link"):
+        return []
+    rest = len(items) - 1
+    first = f"{head}\n\nいちばん大きいのはこちらです。\n{items[0]}\n\nほかの{rest}本は、"
+    link = tp.utm_link(post["link"], "threads", "digest", ptype="digest", pos="reply")
+    return [first, "\n".join(items[1:]), f"{post.get('reply') or REPLY_LINES[0]}\n{link}"]
+
+
 def threads_input(channel_id: str, post: dict, when: dict) -> dict:
-    """Threads は本文の最後に号のページのリンク（2026-11-03 ルール1: X 以外はリンクを本文に。返信は作らない）"""
+    """Threads は本文の最後に号のページのリンク（2026-11-03 ルール1: X 以外はリンクを本文に。返信は作らない）。
+    THREADS_LINK_POS=reply（2026-11-06〜・台帳 S39）のときは短いスレッド（reply_thread_texts）で、リンクは最後の返信"""
+    texts = reply_thread_texts(post) if tp.sns_plan.threads_link_position() == "reply" else []
+    if texts:
+        thread = [{"text": texts[0], "assets": image_assets(post)}] + [{"text": t, "assets": []} for t in texts[1:]]
+        return {
+            "channelId": channel_id, "text": texts[0], "schedulingType": "automatic", "assets": [], **when,
+            "metadata": {"threads": {"topic": TOPIC, "thread": thread}},
+        }
     text = post["text"]
     if post.get("link"):
         text = f"{text.rstrip()}\n\n{post.get('reply') or REPLY_LINES[0]}\n{tp.utm_link(post['link'], 'threads', 'digest')}"

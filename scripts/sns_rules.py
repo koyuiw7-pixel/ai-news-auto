@@ -35,7 +35,10 @@
      無ければ事実の1行＝何が・いつ・だれに）。災害・事故・安全の話題（safety_topic）は事実だけ: 呼びかけ・問いかけ・絵文字を付けない
      （autofix が呼びかけの行・問いかけ・絵文字を外す）。
   （フラグ・オーナー承認待ち）SNS_HOOK_FORMAT=1 のときだけ、Muse の型（1行目＝結論＋数字か読者への影響／2行目＝なぜ大事か／
-     3行目＝記事にだけあるもの）も通す（S30）。Threads のリンクは本文だけ（S31 のリンクの位置の比べは 2026-11-05 夕方に終了「すべて本文にリンクにしよう今後は」）。
+     3行目＝記事にだけあるもの）も通す（S30）。Threads のリンクの位置はリポジトリの変数 THREADS_LINK_POS（reply＝本文はリンク無し＋返信1件にリンク／
+     body＝本文の最後。空なら body）。2026-11-06 テストの日（台帳 S39）から。11/5 の「すべて本文に」（S31）は変数が body のときの形。
+  18. （2026-11-06〜・台帳 S39）決まった動画の案内の行（「公式ページの画面を見ながら、◯秒の動画で解説しています。」「◯秒の動画で解説しています。」）は
+     出さない（autofix が外す。音声のクレジットは残す）。
 
   15. （2026-11-05 オーナー承認・台帳 S36）Instagram（公式の Graph API で直接）: 文面は Threads・Bluesky と同じ予定の本文（autofix も同じ）。
      キャプションのリンクは押せないので本文に URL を書かず「記事はプロフィールのリンクから」の1行で案内する（記事のリンクは links で確かめる）。
@@ -520,7 +523,7 @@ def has_utm(url: str, platform: str) -> bool:
     return q.get("utm_source") == [UTM_SOURCE[platform]] and q.get("utm_medium") == ["social"]
 
 
-def check_link(platform: str, text: str, reply_text: str, links: list[str], paths: list[str]) -> list[str]:
+def check_link(platform: str, text: str, reply_text: str, links: list[str], paths: list[str], threads_pos: str = "") -> list[str]:
     out = []
     if not paths:
         return ["[ルール1] リンク先の記事が分からない"]
@@ -533,6 +536,12 @@ def check_link(platform: str, text: str, reply_text: str, links: list[str], path
         if not reply_links:
             out.append("[ルール1] X の返信に記事のリンクがない")
         tagged = reply_links
+    elif platform == "threads" and (threads_pos or sns_plan.threads_link_position()) == "reply":
+        # （2026-11-06 テストの日・台帳 S39）THREADS_LINK_POS=reply: 記事のリンクは返信に置く。出る前の読み直し・autofix が
+        # 形をそろえるので、ここでは本文・返信のどちらかにあれば通す（投稿を止めない）
+        if not (reply_links or body_links):
+            out.append("[ルール1] Threads の返信にも本文にも記事のリンクがない（THREADS_LINK_POS=reply）")
+        tagged = reply_links + body_links + extra
     elif platform == "instagram":
         # キャプションのリンクは押せない（S36）。本文に URL を書かず、プロフィールのリンクへ案内する。記事のリンクは links（記録用）
         if links_in(text):
@@ -842,12 +851,108 @@ def move_reply_link_to_body(service: str, post_input: dict) -> bool:
     return True
 
 
+def split_body_link_texts(texts: list[str]) -> list[str]:
+    """（2026-11-06 テストの日・台帳 S39。THREADS_LINK_POS=reply）本文の記事のリンク（リンクだけの行）を外し、返信1件にリンクだけを置く形
+    （[本文, リンク]）にする（utm_content の *_body は *_reply に）。リンクの案内の行（「詳しくはこちら」など）も外す。
+    当てはまらなければ（返信がもうある・記事のリンクが1本でない・リンクが文の途中）そのまま"""
+    if len(texts) != 1:
+        return list(texts)
+    text = texts[0]
+    urls = links_in(text)
+    if len(urls) != 1 or "/articles/" not in urls[0]:
+        return list(texts)
+    url = urls[0]
+    kept, found = [], False
+    for line in text.split("\n"):
+        if url in line:
+            if line.replace(url, "").strip().rstrip("👇").strip() and not LINK_LINE.match(line.strip()):
+                return list(texts)  # リンクが文の途中にある
+            found = True
+            continue
+        if LINK_LINE.match(line.strip()):
+            continue
+        kept.append(line)
+    body = re.sub(r"\n{3,}", "\n\n", "\n".join(kept)).strip()
+    if not found or not body:
+        return list(texts)
+    return [body, url.replace("_body", "_reply")]
+
+
+def reshape_threads_texts(texts: list[str], pos: str = "") -> list[str]:
+    """Threads の投稿の文面（[本文, 返信…]）を、リンクの位置 pos（空なら今の THREADS_LINK_POS）の形にする"""
+    pos = pos or sns_plan.threads_link_position()
+    return split_body_link_texts(texts) if pos == "reply" else merge_reply_link_texts(texts)
+
+
+def link_shape_problem(service: str, texts: list[str], pos: str = "") -> str:
+    """予約中の Threads の投稿のリンクの位置が今の THREADS_LINK_POS と違えば、その説明（出る前の読み直しが形を直す）。同じなら "" """
+    if norm_platform(service) != "threads":
+        return ""
+    pos = pos or sns_plan.threads_link_position()
+    if reshape_threads_texts(texts, pos) == list(texts):
+        return ""
+    return f"[ルール1] Threads の記事のリンクの位置が今の決まり（THREADS_LINK_POS={pos}）と違う（台帳 S39）"
+
+
+def video_line_problem(texts: list[str]) -> str:
+    """（2026-11-06 テストの日・台帳 S39）決まった動画の案内の行（「◯秒の動画で解説しています。」）が残っていれば、その説明"""
+    if any(VIDEO_NOTE_RE.search(t or "") for t in texts):
+        return "[ルール18] 決まった動画の案内の行（「◯秒の動画で解説しています。」）を出さない（2026-11-06〜・台帳 S39）"
+    return ""
+
+
+VIDEO_NOTE_RE = re.compile(r"^(?:公式ページの画面を見ながら、)?\d+秒の動画で解説しています。?[ \t]*$", re.M)
+
+
+def strip_video_line(text: str) -> str:
+    """決まった動画の案内の行を外す（音声のクレジットは残す）"""
+    new = VIDEO_NOTE_RE.sub("", str(text or ""))
+    return re.sub(r"\n{3,}", "\n\n", new).strip() if new != text else text
+
+
+def move_body_link_to_reply(service: str, post_input: dict) -> bool:
+    """Threads の Buffer の入力で、本文にリンクを置いた形を返信のリンクに直す（その場で。THREADS_LINK_POS=reply）。直したら True"""
+    if norm_platform(service) != "threads":
+        return False
+    meta = (post_input.get("metadata") or {}).get("threads") or {}
+    thread = meta.get("thread") or []
+    if len(thread) != 1:
+        return False
+    split = split_body_link_texts([thread[0].get("text") or ""])
+    if len(split) != 2:
+        return False
+    meta["thread"] = [{**thread[0], "text": split[0]}, {"text": split[1], "assets": []}]
+    post_input["text"] = split[0]
+    return True
+
+
+def reshape_threads_link(service: str, post_input: dict, pos: str = "") -> str:
+    """Threads の Buffer の入力のリンクの位置を、今の THREADS_LINK_POS（reply / body）の形にする（その場で）。直したことの説明か "" """
+    pos = pos or sns_plan.threads_link_position()
+    if pos == "reply":
+        return "本文の記事のリンクを返信に移した（THREADS_LINK_POS=reply・台帳 S39）" if move_body_link_to_reply(service, post_input) else ""
+    return "返信に置いた記事のリンクを本文に移した（THREADS_LINK_POS=body・S31）" if move_reply_link_to_body(service, post_input) else ""
+
+
+def reply_counted(platform: str, threads_pos: str = "") -> bool:
+    """門番が返信の文面も見るか（X はいつも。Threads は THREADS_LINK_POS=reply のときだけ）"""
+    platform = norm_platform(platform)
+    return platform == "x" or (platform == "threads" and (threads_pos or sns_plan.threads_link_position()) == "reply")
+
+
 def autofix_buffer_input(service: str, post_input: dict, article: dict | None) -> list[str]:
     """Buffer の入力（本文と metadata の thread の1件目）を、その場で直す（autofix）。直したことの一覧"""
     changes: list[str] = []
     platform = norm_platform(service)
-    if move_reply_link_to_body(service, post_input):
-        changes.append("返信に置いた記事のリンクを本文に移した（S31 終了・2026-11-05 オーナー決定）")
+    if how := reshape_threads_link(service, post_input):
+        changes.append(how)
+    holders = [post_input]
+    for k in ("threads", "twitter"):
+        holders += (((post_input.get("metadata") or {}).get(k) or {}).get("thread") or [])[:1]
+    for holder in holders:
+        if holder.get("text") and VIDEO_NOTE_RE.search(holder["text"]):
+            holder["text"] = strip_video_line(holder["text"])
+            changes.append("決まった動画の案内の行を外した（台帳 S39）")
     if post_input.get("text"):
         post_input["text"], ch = autofix(post_input["text"], article, platform)
         changes += ch
@@ -1073,7 +1178,7 @@ class PostingStateUnknown(RuntimeError):
 def already_posted(platform: str, article: dict | None, kind: str, state: dict | None = None, extra: dict | None = None) -> bool:
     """この記事をこの SNS にもう出したか（state/threads_posted.json・state/bluesky_extra.json）"""
     slug = str((article or {}).get("slug") or "")
-    if not slug or kind == "digest":
+    if not slug or kind in ("digest", "control"):
         return False
     if state is None:
         try:
@@ -1118,8 +1223,11 @@ def check_post(
     draft: bool = False,
     pending_video: bool = False,
     video_unsupported: bool = False,
+    threads_pos: str = "",
 ) -> list[str]:
     """投稿1件のルール違反の一覧（空なら OK）。
+
+    threads_pos: Threads のリンクの位置（"reply" / "body"）。空なら今の THREADS_LINK_POS（sns_plan.threads_link_position）
 
     video_unsupported: （Bluesky だけ・2026-11-05 オーナー承認）作った動画を Bluesky が受け付けなかった（大きさ・形式・処理の失敗）。
       このときだけ、リンクカード（記事の写真だけのカード）で出してよい（ルール8の例外。ほかの SNS には効かない）
@@ -1156,7 +1264,15 @@ def check_post(
         out.append("[ルール1] 記事の slug・見出しが分からない")
     elif (ARTICLES_DIR / f"{article['slug']}.json").parent.exists() and not (ARTICLES_DIR / f"{article['slug']}.json").exists() and not article.get("_virtual"):
         out.append(f"[ルール1] 記事が見つからない（{article['slug']}）")
-    out += check_link(platform, text, reply_text, links or [], article_paths(article, kind))
+    if kind == "control":
+        # （2026-11-06 テストの日・台帳 S39）リンク無しの比べの投稿: オーナー承認の spec（content/sns_reposts/<id>.json の nolink）だけ。
+        # Threads だけ・リンクを1本も書かない（ほかの決まり＝文の形・画像・言葉はふつうの投稿と同じ）
+        if platform != "threads":
+            out.append("[ルール1] リンク無しの比べの投稿は Threads だけ")
+        if links_in(f"{text}\n{reply_text}") or links:
+            out.append("[ルール1] リンク無しの比べの投稿にリンクが入っている")
+    else:
+        out += check_link(platform, text, reply_text, links or [], article_paths(article, kind), threads_pos=threads_pos)
     content = strip_links(text)
     if kind not in ("digest", "disaster"):
         if why := sns_plan.excluded(article):
@@ -1323,11 +1439,21 @@ def enforce_buffer(service: str, post_input: dict, article: dict | None, *, sour
     text, reply, media, _links = buffer_parts(service, post_input)
     platform = norm_platform(service)
     # X 以外は返信を作らない（リンクは本文）。返信やリンクカードにだけリンクがある形は、本文のリンク無しとして止める
-    enforce(platform, text, media, article, source=source, kind=kind, reply_text=reply if platform == "x" else "",
+    enforce(platform, text, media, article, source=source, kind=kind, reply_text=reply if reply_counted(platform) else "",
             history=history, draft=bool(post_input.get("saveToDraft")), measurer=measurer, pending_video=pending_video)
 
 
 # ---- 点検（scripts/sns_audit.py が実際の投稿に使う。記事は本文のリンクから探す） ----
+
+def _control_text(text: str) -> bool:
+    """state/threads_control.json に記録したリンク無しの比べの投稿の本文か（台帳 S39）"""
+    try:
+        data = json.loads((STATE_PATH.parent / "threads_control.json").read_text("utf-8"))
+    except (OSError, ValueError):
+        return False
+    norm = re.sub(r"\s+", "", str(text or ""))
+    return bool(norm) and any(re.sub(r"\s+", "", str(p.get("text") or "")) == norm for p in (data.get("posts") or {}).values())
+
 
 def audit_post(post: dict) -> list[str]:
     platform = norm_platform(post.get("platform") or "")
@@ -1344,6 +1470,8 @@ def audit_post(post: dict) -> list[str]:
             digest = u
     if post.get("reply"):
         return []
+    if platform == "threads" and not urls and _control_text(text):
+        return []  # リンク無しの比べの投稿（オーナー承認の spec・state/threads_control.json。台帳 S39）
     kind, article = "article", None
     if slug:
         path = ARTICLES_DIR / f"{slug}.json"
@@ -1355,8 +1483,9 @@ def audit_post(post: dict) -> list[str]:
         kind = "digest"
         article = {"link": digest, "items": [x for x in text.splitlines() if x.startswith("・")]}
     media = [m for m in post.get("media") or [] if m.get("url")]
-    out = check_post(platform, text, media, article, kind=kind, reply_text=replies if platform == "x" else "",
-                     links=list(post.get("links") or []))
+    # Threads の返信のリンク: 出した時の THREADS_LINK_POS は分からないので、点検では返信のリンクも認める（S31 の比べ・S39 のテストの日）
+    out = check_post(platform, text, media, article, kind=kind, reply_text=replies if platform in ("x", "threads") else "",
+                     links=list(post.get("links") or []), threads_pos="reply" if platform == "threads" else "")
     if before_growth_rules(post.get("at")):
         # ルール10・11（2026-11-05〜）より前に作った投稿は、点検でも違反に数えない（決まりを後から当てない）
         out = [v for v in out if not v.startswith(("[ルール10]", "[ルール11]"))]

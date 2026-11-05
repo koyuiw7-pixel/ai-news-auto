@@ -316,11 +316,10 @@ class MergeTest(unittest.TestCase):
         text, notes = fu.merged_text(self.TEXT, REPORT, "full")
         self.assertIn("utm_campaign=sns_video_full&utm_content=video_body", text)
         self.assertNotIn("utm_campaign=classic", text)
-        self.assertIn("35秒の動画で解説", text)
-        self.assertLess(text.index("35秒の動画で解説"), text.index("詳しくはこちら"))
+        self.assertNotIn("動画で解説", text)  # 2026-11-06〜 決まった動画の行は足さない（台帳 S39）
         self.assertTrue(text.endswith("音声：VOICEVOX:九州そら"))
         self.assertTrue(text.startswith("書き出し。\n\n要約すると、こうです。\n\nあなたはどう使う？"))  # 中身は変えない
-        self.assertEqual(notes, {"link": "video", "line": True, "credit": True})
+        self.assertEqual(notes, {"link": "video", "line": False, "credit": True})
 
     def test_merged_text_respects_limit(self):
         long = "あ" * 330 + self.TEXT  # 元の本文は上限の内側（約460字）

@@ -5,7 +5,7 @@
 限定した方がいいかな。かなり人気なジャンルで、ビューを取れるような記事にしたいよね。」・台帳 S13・S30）:
 動画を作るのは、ビューを取れる話題の限られた記事だけ。SNS の予定（state/threads_posted.json の「動画待ち」）に入った記事のうち、
 muse_score が 0 より大きいもの（レーン safety/money/brand/consumer_ai・立つ数字・公式の出どころ）を、枠の日（日本時間）ごとに
-点数の高い順に scripts/sns_plan.json の muse.max_per_day 本（4本）まで入れる。速報（Muse を待たない）は入れない。
+点数の高い順に scripts/sns_plan.json の muse.max_per_day 本（2026-11-06〜 2本）まで入れる。速報（Muse を待たない）は入れない。
 ここに入った記事だけが「動画の投稿」（sns_plan.video_post）。ほかの投稿は動画を待たず、枠の時刻に記事の写真・カードで出す。
 
   python3 scripts/muse_queue.py            # 予定に入った記事を足す（auto_run の投稿の段のあと・muse_queue.yml の定期実行）

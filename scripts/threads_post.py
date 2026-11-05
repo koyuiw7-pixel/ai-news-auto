@@ -1287,7 +1287,7 @@ def reserved_for_breaking(article: dict, state: dict, now: datetime | None = Non
     return age < timedelta(hours=BREAKING_RESERVE_HOURS) and breaking_allowed(state, now)
 
 
-# 投稿する時間帯（日本時間）。2026-11-05 とろいも案 v1（台帳 S27）: 7:15・8:10・12:15・18:45・20:30・21:45 の6枠。
+# 投稿する時間帯（日本時間）。2026-11-06 テストの日から（台帳 S39）: 7:15（朝のまとめ）・12:15・18:45・20:30 の4枠、1日5本まで（速報1本分の空き）。
 # 枠・1日の上限（自分の投稿は1日6本まで。速報も数える。ミサイル・災害だけ数えない）・間隔は scripts/sns_plan.json の1か所で持つ
 SLOT_PRIORITY = sns_plan.slots_jst()
 SNS_PER_DAY = len(SLOT_PRIORITY)
@@ -2028,6 +2028,8 @@ RECENT_POSTS_FIELDS = "id status dueAt channelId text metadata { ... on ThreadsP
 def post_needle(article: dict | None, kind: str) -> str:
     """同じ投稿かを見分ける印（記事のパス・朝のまとめの号のパス）"""
     article = article or {}
+    if kind == "control":
+        return ""  # リンク無しの比べの投稿（S39）: 同じ記事のふつうの投稿と同じ投稿とは数えない（spec ごとに1回は threads_control_post が見る）
     if kind == "digest":
         m = re.search(r"/digest/[^/?#\s]+", str(article.get("link") or ""))
         return m.group(0) if m else ""
@@ -2132,7 +2134,7 @@ def publish_via_buffer(
     reply = compose_detail(article) if fmt == "hook_thread" else link_reply_text(article)
     thread = [{"text": text, "assets": [{"image": {"url": post_image(article, fmt)}}]}]
     # 2026-11-03〜: classic は本文の最後に記事のリンク（with_link）を入れ、返信（2/2）は作らない。画像はそのまま添える
-    # リンクの位置の比べ（S31）は 2026-11-05 夕方に終了。classic は必ず本文にリンク（返信にリンクを置かない）
+    # classic は本文にリンクを入れて作る。THREADS_LINK_POS=reply（2026-11-06〜・台帳 S39）のときは門番の autofix が返信1件に移す
     if fmt != "classic":
         thread.append({
             "text": reply,
@@ -2229,10 +2231,12 @@ def rebuild_pending_inputs(rec: dict, article: dict, use_llm: bool = False, stat
         hook3 = compose_hook3(article, use_llm=use_llm)
         if hook3:
             text, article["_hookFormat"] = hook3, True
-    link_pos = "body"  # 2026-11-05 夕方 オーナー決定「すべて本文にリンクにしよう今後は」（S31 終了）。前に reply で作った文面も本文に
-    rec["linkPosition"] = "body"
+    # リンクの位置は今の THREADS_LINK_POS（2026-11-06 テストの日・台帳 S39）。文面は本文にリンクを入れて作り、
+    # 門番の autofix（sns_rules.reshape_threads_link）が reply のとき返信1件に移す（すべての経路で同じ形）
+    link_pos = sns_plan.threads_link_position()
+    rec["linkPosition"] = link_pos
     article["_linkPosition"] = link_pos
-    threads_text = with_link(text, article, "threads", fmt) if link_pos == "body" else text
+    threads_text = with_link(text, article, "threads", fmt)
     channels = {s: {"id": inp.get("channelId", "")} for s, inp in old.items()}
     share_now_mode = (old.get("threads") or {}).get("mode") == "shareNow"
     due = None if share_now_mode else datetime.fromisoformat(str(pending.get("slot")).replace("Z", "+00:00")) if pending.get("slot") else None
@@ -2512,6 +2516,14 @@ def main() -> int:
             if not pool:
                 break
             # 同じ書き出しの型が続かないようにするのは、同じ話題の点数（レーン）の中だけ（話題の順番を崩さない。S27）
+            # 決算・株の話題は Threads に1日 finance_cap 本まで（2026-11-06〜・台帳 S39）。超える記事は候補から外す（サイトには載っている）
+            day = slot.astimezone(JST).date() if slot else datetime.now(JST).date()
+            fin_used = sum(1 for a, t in plan if sns_plan.finance_topic(a) and (t.astimezone(JST).date() if t else datetime.now(JST).date()) == day)
+            for a in [a for a in pool if sns_plan.finance_full(a, state["posted"], day, extra=fin_used, skipped=sns_plan.video_skipped())]:
+                log(f"[finance] {a['slug']}: 決算・株の話題が今日の上限 {sns_plan.finance_cap()} 本に達しているので Threads には出しません（S39）")
+                pool.remove(a)
+            if not pool:
+                break
             top = sns_plan.sns_score(pool[0])
             pick = next((a for a in pool if a.get("threadsHook") not in recent_hooks and sns_plan.sns_score(a) >= top), pool[0])
             pool.remove(pick)
@@ -2578,8 +2590,8 @@ def main() -> int:
             comment, question = "", article.get("_question") or ""
             for problem in post_problems(text, article):
                 log(f"  [check] {article['slug']}: {problem}")
-            # 2026-11-03〜: Threads は本文の最後に記事のリンク（返信は作らない）。2026-11-05 夕方 オーナー決定「すべて本文にリンクにしよう今後は」（S31 終了）
-            article["_linkPosition"] = "body"
+            # リンクの位置は THREADS_LINK_POS（2026-11-06〜・台帳 S39。空なら本文＝S31）。本文に入れて作り、reply のときは門番の autofix が返信1件に移す
+            article["_linkPosition"] = sns_plan.threads_link_position()
             threads_text = with_link(text, article, "threads", fmt)
         else:
             # hook_thread（以前の A/B の形）: Threads の本文だけに「編集部の一言」と、約半分は「問いかけ」を足す
@@ -2643,7 +2655,7 @@ def main() -> int:
             "format": fmt,
             **({"hookTextVersion": HOOK_TEXT_VERSION} if fmt == "hook_thread" else {}),
             **({"hookFormat": "muse3"} if article.get("_hookFormat") else {}),
-            **({"linkPosition": "body"} if fmt == "classic" else {}),
+            **({"linkPosition": sns_plan.threads_link_position()} if fmt == "classic" else {}),
             **({"summaryLead": article["_summaryLead"]} if article.get("_summaryLead") else {}),
             "lane": sns_plan.lane_of(article)[0],
             "topic": topic_of(article),
