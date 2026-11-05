@@ -204,10 +204,10 @@
     },
     "dd699d29ee35f836": {
       "first": "2026-11-05T10:36:29.714499+00:00",
-      "next": "2026-11-05T13:36:29.714499+00:00",
+      "next": "2026-11-05T17:03:26.490632+00:00",
       "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します",
-      "tries": 1,
+      "tries": 2,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110512"
     },
     "e2654f5d2f822277": {
@@ -15848,34 +15848,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-04T01:45:08.211759+00:00",
-      "attempt": 1,
-      "id": "a66582ed2e2eb175addce91dcd8c3db3910baf4e",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "オリエンタルランド 株価"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T01:46:56.089248+00:00",
-      "attempt": 2,
-      "id": "a66582ed2e2eb175addce91dcd8c3db3910baf4e",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "オリエンタルランド 株価"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-04T01:48:23.619748+00:00",
       "attempt": 1,
       "id": "bd77db82486b50a500f6bc90bee4f34482b22617",
@@ -22053,6 +22025,34 @@
       "score": null,
       "source": "nli-research",
       "title": "政府債務の指標と公的年金"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T13:48:31.459514+00:00",
+      "attempt": 1,
+      "id": "dd699d29ee35f836",
+      "kind": "broad",
+      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T14:03:26.490603+00:00",
+      "attempt": 2,
+      "id": "dd699d29ee35f836",
+      "kind": "broad",
+      "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
     }
   ],
   "short_text_retry": {
