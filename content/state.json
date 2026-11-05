@@ -209,7 +209,9 @@
       "url": "https://developers.cyberagent.co.jp/blog/archives/67267/"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "f5001d451409d444": 1
+  },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -15116,84 +15118,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-03T16:12:59.630761+00:00",
-      "attempt": 1,
-      "id": "3bafb79045335714",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "「提供状況=demo」→ 元記事に提供状況の記載がなく、デモ段階という判定の根拠が確認できない。",
-        "「Advantest（編集部注：日本の半導体試験装置メーカー）」→ 元記事にない具体的な企業情報で、確認済みの文脈にも書かれていない。",
-        "「Applied Materials：…計算を最大35倍高速に」「Siemensは回路を焼き付ける工程の計算を最大17倍…速くした」（かんたん版）→ Siemensは統合中で「達成」ではなく、「速くした」と実績のように書いている。",
-        "「NVIDIA自身も、高速化で検討できる選択肢の数が変わると説明しています」→ 元記事の「より多くの案を試せる」という趣旨の言い換えで、おおむね妥当だが断定がやや強い。"
-      ],
-      "readability": {
-        "avg_paragraph": 99.6,
-        "avg_sentence": 37.9,
-        "long_share": 0.071,
-        "max_paragraph": 143,
-        "paragraphs": 16,
-        "sentences": 42
-      },
-      "score": 80,
-      "source": "nvidia-blog",
-      "title": "AI Is Changing How Semiconductor Fabs Work — and Engineers Are Moving Faster Bec",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（COMSOL・ACE）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T16:14:38.629810+00:00",
-      "attempt": 2,
-      "id": "3bafb79045335714",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 96.3,
-        "avg_sentence": 36.9,
-        "long_share": 0.128,
-        "max_paragraph": 185,
-        "paragraphs": 18,
-        "sentences": 47
-      },
-      "score": 88,
-      "source": "nvidia-blog",
-      "title": "AI Is Changing How Semiconductor Fabs Work — and Engineers Are Moving Faster Bec",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（COMSOL・ACE）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T16:30:08.666171+00:00",
-      "attempt": 1,
-      "id": "9c22661ce9de81e3",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "文が長い（1文の平均 45.3字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 101.4,
-        "avg_sentence": 45.3,
-        "long_share": 0.211,
-        "max_paragraph": 187,
-        "paragraphs": 17,
-        "sentences": 38
-      },
-      "score": 93,
-      "source": "github-changelog-copilot",
-      "title": "GitHub Copilot is now available in JetBrains Air",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IDE・ACP・IDEA）",
-        "英語の画面名（「Settings >」）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-03T16:30:33.356147+00:00",
       "attempt": 0,
@@ -21343,6 +21267,63 @@
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（LIFULL・HOME）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T04:57:38.991825+00:00",
+      "attempt": 1,
+      "id": "f5001d451409d444",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「円安などの為替の影響が、利益を押し上げた」→ 元記事は「為替変動の影響」としか書いておらず、円安という方向は元資料に無い補足（創作寄り）",
+        "「持分法による投資損益…3,583億円」→ 元資料は358,362百万円で、億円への四捨五入では3,584億円になる（1億円の誤差）",
+        "「販売の量ではなく、為替が利益を支えた構図です」→ 元資料では営業面の努力も1,650億円のプラスで、販売量の影響を断定する言い過ぎ",
+        "「2027年3月期の実績と見通しに、日野ブランド車は含まれません」→ 元注記は生産・販売台数には一部の日野ブランド車を含むとしており、単純化しすぎ",
+        "「前回予想の数字は、決算説明会の資料などで比べて確かめられます」→ 元資料に前回予想の数字は無く、決算説明会資料の内容も未確認の推測"
+      ],
+      "readability": {
+        "avg_paragraph": 94.4,
+        "avg_sentence": 34.9,
+        "long_share": 0.065,
+        "max_paragraph": 181,
+        "paragraphs": 17,
+        "sentences": 46
+      },
+      "score": 84,
+      "source": "fast",
+      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T04:59:06.168854+00:00",
+      "attempt": 2,
+      "id": "f5001d451409d444",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T05:00:11.992535+00:00",
+      "attempt": 3,
+      "id": "f5001d451409d444",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
     }
   ],
   "short_text_retry": {
