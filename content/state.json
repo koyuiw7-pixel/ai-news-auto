@@ -12916,6 +12916,17 @@
       "skipped": true,
       "url": "https://www.softbank.jp/sbnews/entry/20261029_01"
     },
+    "d08af41901f41b31": {
+      "at": "2026-11-05T05:42:01.131672+00:00",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "recall",
+      "score": 93,
+      "section": "business",
+      "slug": "yokohama-rubber-tire-recall-lt151r",
+      "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005882.html"
+    },
     "d0cdd7377e6aac3b": {
       "at": "2026-11-03T01:22:55.673782+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -15137,35 +15148,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T17:36:20.383874+00:00",
-      "attempt": 1,
-      "id": "a55665cf48953af7",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "かんたん版に幼い言い方（「すごい」）。落ち着いた大人の言葉にする",
-        "かんたん版に決まった型の見出し（「何がすごいの？」）。中身の言葉にするか見出しを消す",
-        "題名で「日本で使えるか」を約束しているのに、本文に日本での提供・使い方の説明が無い。答えるか、題名から外す",
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「はほぼ全モデルが高精度(90 %」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 98.2,
-        "avg_sentence": 49.1,
-        "long_share": 0.278,
-        "max_paragraph": 171,
-        "paragraphs": 9,
-        "sentences": 18
-      },
-      "score": null,
-      "source": "hugging-face-blog",
-      "title": "StateBench: Testing how language models track state changes over long documents",
-      "warnings": [
-        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CSV）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-03T17:37:41.235235+00:00",
@@ -21315,6 +21297,29 @@
       "warnings": [
         "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（IFRS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T05:42:01.113138+00:00",
+      "attempt": 1,
+      "id": "d08af41901f41b31",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 53.4,
+        "avg_sentence": 30.7,
+        "long_share": 0.0,
+        "max_paragraph": 96,
+        "paragraphs": 23,
+        "sentences": 40
+      },
+      "score": 93,
+      "source": "mlit-press",
+      "title": "リコールの届出について（ヨコハマ LT151R 他）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（LT・GUARD・PARADA）"
       ]
     }
   ],
