@@ -120,6 +120,14 @@
       "tries": 1,
       "url": "http://www.boj.or.jp/statistics/boj/other/mb/mb.htm"
     },
+    "6a2be6e66b96ae87": {
+      "first": "2026-11-05T01:42:50.522532+00:00",
+      "next": "2026-11-05T04:42:50.522532+00:00",
+      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "title": "金利上昇に直面するJ-REIT市場。求められる資本効率の向上",
+      "tries": 1,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87115?site=nli"
+    },
     "9824d9cb50fa7b55": {
       "first": "2026-11-03T14:46:44.535250+00:00",
       "next": "2026-11-03T17:46:44.535250+00:00",
@@ -167,6 +175,7 @@
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
     "0700ffb69ed06a25": "2026-11-04T13:10:52.830493+00:00",
     "0863d9ea9cb77229": "2026-11-04T13:10:52.830493+00:00",
+    "0db0355037c3b764": "2026-11-05T01:40:53.572998+00:00",
     "0e170a29357ca076": "2026-11-04T13:10:52.830493+00:00",
     "1518f82e6c28ebe0": "2026-11-04T13:10:52.830493+00:00",
     "18444c154a1fd1c8": "2026-11-04T13:10:52.830493+00:00",
@@ -3660,6 +3669,12 @@
       "slug": "gemini-robotics-er-2-google-cloud",
       "url": "https://cloud.google.com/blog/ja/products/ai-machine-learning/gemini-robotics-embodied-reasoning-2-is-now-available-on-google-cloud/"
     },
+    "08e32bcf3138a803": {
+      "at": "2026-11-05T01:42:51.232704+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.caa.go.jp/notice/entry/047998/"
+    },
     "08ef10f23f8f0696": {
       "at": "2026-10-26T16:36:52.258900+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3848,6 +3863,13 @@
       "slug": "afc-asian-cup-2027-schedule-change",
       "url": "https://www.jfa.jp/news/00036971/"
     },
+    "0d95f6103264d924": {
+      "at": "2026-11-05T01:41:26.336627+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "元記事は株式市場の先行きや割高感を論じる相場の見通しで、読者が使う制度・サービスや売買の判断材料として扱える情報ではないため対象外としました。",
+      "skipped": true,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87160?site=nli"
+    },
     "0d9de70491705807": {
       "at": "2026-10-26T21:14:24.575558+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3856,7 +3878,7 @@
       "url": "https://www.mhlw.go.jp/stf/newpage_76922.html"
     },
     "0db0355037c3b764": {
-      "at": "2026-11-05T01:22:51.054181+00:00",
+      "at": "2026-11-05T01:42:51.227448+00:00",
       "reason": "prefilter: サイトの主題外（エンタメの告知・ゴシップ・キャンペーン。ビジネス・テックの目線ではない）",
       "skipped": true,
       "url": "https://www.nintendo.com/jp/topics/article/c6084b0b-594c-4506-90c9-89b3fbb6ed9b"
@@ -4353,6 +4375,15 @@
       "reason": "quality: easy_markdown が「## ひとことで言うと」から始まっていない",
       "skipped": true,
       "url": "https://blog.jetbrains.com/mps/2026/11/mps-2026-1-2-released/"
+    },
+    "15f9cbb9c31a81bf": {
+      "at": "2026-11-05T01:45:27.187505+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "real-estate",
+      "slug": "tokyu-community-marutto-smart",
+      "url": "https://www.tokyu-fudosan-hd.co.jp/news/companies/pdf/TC20261105.pdf"
     },
     "160a9be6e09b24c8": {
       "at": "2026-10-30T19:11:07.941986+00:00",
@@ -14914,92 +14945,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-03T02:50:12.482404+00:00",
-      "attempt": 1,
-      "id": "7034baa092128424",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "事実確認を実行できなかった（すべてのモデルで失敗しました: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You ）"
-      ],
-      "readability": {
-        "avg_paragraph": 71.2,
-        "avg_sentence": 36.3,
-        "long_share": 0.036,
-        "max_paragraph": 123,
-        "paragraphs": 28,
-        "sentences": 55
-      },
-      "score": null,
-      "source": "apple-newsroom-jp-all",
-      "title": "Apple、第4四半期の業績を発表"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T02:52:59.463372+00:00",
-      "attempt": 1,
-      "id": "7034baa092128424",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "事実確認を実行できなかった（すべてのモデルで失敗しました: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You ）"
-      ],
-      "readability": {
-        "avg_paragraph": 63.9,
-        "avg_sentence": 28.8,
-        "long_share": 0.0,
-        "max_paragraph": 98,
-        "paragraphs": 23,
-        "sentences": 51
-      },
-      "score": null,
-      "source": "apple-newsroom-jp-all",
-      "title": "Apple、第4四半期の業績を発表"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T02:57:00.839485+00:00",
-      "attempt": 1,
-      "id": "7034baa092128424",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "事実確認を実行できなかった（すべてのモデルで失敗しました: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You ）"
-      ],
-      "readability": {
-        "avg_paragraph": 67.5,
-        "avg_sentence": 35.4,
-        "long_share": 0.048,
-        "max_paragraph": 105,
-        "paragraphs": 22,
-        "sentences": 42
-      },
-      "score": null,
-      "source": "apple-newsroom-jp-all",
-      "title": "Apple、第4四半期の業績を発表"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T03:23:11.587332+00:00",
-      "attempt": 1,
-      "id": "7034baa092128424",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 45.6,
-        "avg_sentence": 42.4,
-        "long_share": 0.138,
-        "max_paragraph": 70,
-        "paragraphs": 27,
-        "sentences": 29
-      },
-      "score": 100,
-      "source": "apple-newsroom-jp-all",
-      "title": "Apple、第4四半期の業績を発表"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-03T04:13:43.323518+00:00",
       "attempt": 1,
       "id": "626336898532a6f5",
@@ -21299,6 +21244,68 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（JPCERT・CVE・CISA）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T01:42:36.845917+00:00",
+      "attempt": 1,
+      "id": "6a2be6e66b96ae87",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "nli-research",
+      "title": "金利上昇に直面するJ-REIT市場。求められる資本効率の向上"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T01:42:50.522466+00:00",
+      "attempt": 2,
+      "id": "6a2be6e66b96ae87",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "nli-research",
+      "title": "金利上昇に直面するJ-REIT市場。求められる資本効率の向上"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T01:44:10.508311+00:00",
+      "attempt": 1,
+      "id": "15f9cbb9c31a81bf",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "tokyu-fudosan",
+      "title": "デジタルで変わるマンション管理「まるっとスマート」提供開始 〜デジタル連携で組合運営の持続化を支援～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T01:45:27.181832+00:00",
+      "attempt": 2,
+      "id": "15f9cbb9c31a81bf",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 104.9,
+        "avg_sentence": 40.8,
+        "long_share": 0.111,
+        "max_paragraph": 140,
+        "paragraphs": 14,
+        "sentences": 36
+      },
+      "score": 88,
+      "source": "tokyu-fudosan",
+      "title": "デジタルで変わるマンション管理「まるっとスマート」提供開始 〜デジタル連携で組合運営の持続化を支援～"
     }
   ],
   "short_text_retry": {
