@@ -257,8 +257,9 @@ def create_record(session: dict, record: dict, p: dict, media: list[dict]) -> di
                 {"repo": session["did"], "collection": "app.bsky.feed.post", "record": record}, session["accessJwt"])
 
 
-def plan(key: str, entry: dict) -> dict | None:
-    """投稿の中身（本文・リンク・カード）。出せないもの（アンケートなど）は None"""
+def plan(key: str, entry: dict, platform: str = "bluesky") -> dict | None:
+    """投稿の中身（本文・リンク・カード）。出せないもの（アンケートなど）は None。
+    platform: utm_source と autofix の投稿先（Instagram の直接投稿も同じ予定の本文を使う。scripts/instagram_post.py・台帳 S36）"""
     style = entry.get("style")
     if style == "poll":
         return None
@@ -279,11 +280,11 @@ def plan(key: str, entry: dict) -> dict | None:
         page = str((entry.get("postPlan") or {}).get("link") or "")
         covers = [tp.card_url(items[0])] if items else []  # 写真だけのカード（見出し入りのカバーは使わない。ルール2）
         if "/digest/" in page:
-            return {"text": text, "link": tp.utm_link(page, "bluesky", "digest"),
+            return {"text": text, "link": tp.utm_link(page, platform, "digest"),
                     "title": f"{text.splitlines()[0]}｜サイソクニュース", "desc": "直近のAIニュースを3本だけ。写真と要約つき。",
                     "images": [f"{page.rstrip('/')}/share.png?v={md.dp.image_rev()}", *covers],
                     "kind": "digest", "gate": {"link": page, "items": items}}
-        link = tp.utm_link(f"{tp.site_url()}/news", "bluesky", "digest")
+        link = tp.utm_link(f"{tp.site_url()}/news", platform, "digest")
         return {"text": text, "link": link, "title": "AIニュースまとめ｜サイソクニュース",
                 "desc": "直近のAIニュースを1分で。", "images": covers, "kind": "digest", "gate": {"link": link, "items": items}}
     path = tp.ARTICLES_DIR / f"{key}.json"
@@ -298,9 +299,9 @@ def plan(key: str, entry: dict) -> dict | None:
     spec = tp.ROOT / "content" / "sns_reposts" / f"{key}.json"
     if spec.exists():  # オーナーに見せて承認をもらった出し直しの文面（Threads と同じ）
         text = json.loads(spec.read_text("utf-8")).get("classic") or text
-    text, _ = sns_rules.autofix(text, article, "bluesky")  # 「要約すると、」・数字の単位・災害の話題の呼びかけ/問い（ルール13・14・S35）
+    text, _ = sns_rules.autofix(text, article, platform)  # 「要約すると、」・数字の単位・災害の話題の呼びかけ/問い（ルール13・14・S35）
     text = re.sub(r"\s*👇\s*$", "", text)
-    link = tp.utm_link(f"{tp.site_url()}/articles/{key}", "bluesky", entry.get("format") or "classic")
+    link = tp.utm_link(f"{tp.site_url()}/articles/{key}", platform, entry.get("format") or "classic")
     return {
         "text": text, "link": link, "title": article.get("seoTitle") or article["title"],
         "desc": article.get("description", ""),
@@ -314,15 +315,17 @@ def planned_slot(entry: dict) -> datetime | None:
     return _parse((entry.get("pending") or {}).get("slot"))
 
 
-def due(entry: dict) -> datetime | None:
+def due(entry: dict, delay: int | None = None) -> datetime | None:
+    """出す時刻。delay は枠からの遅れ（分。既定は Bluesky の DELAY_MIN。Instagram は別の分で呼ぶ）"""
+    delay = DELAY_MIN if delay is None else delay
     if entry.get("status") == "awaiting_video" and (slot := planned_slot(entry)) and not entry.get("breaking") and entry.get("style") != "digest":
-        return slot + timedelta(minutes=DELAY_MIN)  # Threads（Buffer）を待たずに、予定の枠から出す（2026-11-05）
+        return slot + timedelta(minutes=delay)  # Threads（Buffer）を待たずに、予定の枠から出す（2026-11-05）
     raw = entry.get("dueAt") or entry.get("postedAt")
     if not raw:
         return None
     when = datetime.fromisoformat(raw.replace("Z", "+00:00"))
     fast = entry.get("breaking") or entry.get("style") == "digest"
-    return when if fast else when + timedelta(minutes=DELAY_MIN)
+    return when if fast else when + timedelta(minutes=delay)
 
 
 def load_extra(path: Path | None = None) -> dict:
@@ -383,11 +386,12 @@ def muse_until(key: str, entry: dict, now: datetime) -> datetime | None:
         return None
 
 
-def pending(state: dict, now: datetime, extra: dict | None = None) -> list[tuple[str, dict]]:
+def pending(state: dict, now: datetime, extra: dict | None = None, channel: str = "bluesky", delay: int | None = None) -> list[tuple[str, dict]]:
+    """まだこの SNS（channel）に出していない、出す時刻の来た記録。Instagram（scripts/instagram_post.py）も同じ選び方を使う"""
     out = []
     for key, entry in state["posted"].items():
-        when = due(entry)
-        if not when or (entry.get("channels") or {}).get("bluesky") or entry.get("blueskyFailed") or entry.get("ownerHold"):
+        when = due(entry, delay)
+        if not when or (entry.get("channels") or {}).get(channel) or entry.get(f"{channel}Failed") or entry.get("ownerHold"):
             continue  # ownerHold: オーナーに見せるまで出さない記事
         if key in (extra or {}):  # 埋め合わせで先に出した記事は Threads に出た後も重ねない
             continue
@@ -409,7 +413,7 @@ def pending(state: dict, now: datetime, extra: dict | None = None) -> list[tuple
             ready = m_until  # Muse を待った分だけ、遅れて出すのを許す
         if when <= now and now - ready <= timedelta(hours=LOOKBACK_H):
             out.append((key, entry))
-    return sorted(out, key=lambda kv: due(kv[1]))
+    return sorted(out, key=lambda kv: due(kv[1], delay))
 
 
 def planned_text(entry: dict) -> str:
@@ -538,7 +542,8 @@ def plan_fill(article: dict) -> dict:
     }
 
 
-def merge(mine_path: str) -> int:
+def merge(mine_path: str, channel: str = "bluesky") -> int:
+    """手元の記録（channel の時刻・失敗・channels.<channel>）を最新の state に足す。Instagram も同じものを使う"""
     mine = json.loads(Path(mine_path).read_text("utf-8"))
     state = tp.load_state()
     added = 0
@@ -546,15 +551,15 @@ def merge(mine_path: str) -> int:
         target = state.get("posted", {}).get(key) or state.get("extraPending", {}).get(key)
         if target is None:
             continue
-        for field in ("blueskyAt", "blueskyFailed"):
+        for field in (f"{channel}At", f"{channel}Failed", f"{channel}Permalink"):
             if entry.get(field) and not target.get(field):
                 target[field] = entry[field]
-        uri = (entry.get("channels") or {}).get("bluesky")
-        if uri and not (target.get("channels") or {}).get("bluesky"):
-            target.setdefault("channels", {})["bluesky"] = uri
+        uri = (entry.get("channels") or {}).get(channel)
+        if uri and not (target.get("channels") or {}).get(channel):
+            target.setdefault("channels", {})[channel] = uri
             added += 1
     tp.save_state(state)
-    log(f"[bluesky] 投稿履歴に {added} 件を足しました")
+    log(f"[{channel}] 投稿履歴に {added} 件を足しました")
     return 0
 
 

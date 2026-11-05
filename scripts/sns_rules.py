@@ -37,6 +37,10 @@
   （フラグ・オーナー承認待ち）SNS_HOOK_FORMAT=1 のときだけ、Muse の型（1行目＝結論＋数字か読者への影響／2行目＝なぜ大事か／
      3行目＝記事にだけあるもの）も通す（S30）。THREADS_LINK_AB=1 のときだけ Threads のリンクを返信に置いてよい（S31）。
 
+  15. （2026-11-05 オーナー承認・台帳 S36）Instagram（公式の Graph API で直接）: 文面は Threads・Bluesky と同じ予定の本文（autofix も同じ）。
+     キャプションのリンクは押せないので本文に URL を書かず「記事はプロフィールのリンクから」の1行で案内する（記事のリンクは links で確かめる）。
+     ハッシュタグは3個まで。動画・画像の決まり（ルール2・8）はほかの SNS と同じ。
+
 違反したら: 投稿しない・ログに出す・GitHub の issue（ラベル sns-rule-violation）を立てるか、開いているものにコメントを足す。
 新しく Buffer / Bluesky / Threads の投稿 API を呼ぶ所を作るときは、必ずこの enforce を直前に呼ぶ（tests/test_sns_rules.py が確かめる）。
 
@@ -69,12 +73,16 @@ ISSUE_LABEL = "sns-rule-violation"
 ISSUE_TITLE = "SNSルール違反の投稿を止めました（sns_rules）"
 SITE_HOST = "ai-tech-express.jp"
 
-PLATFORMS = ("threads", "x", "facebook", "bluesky")
-ALIASES = {"twitter": "x"}
+PLATFORMS = ("threads", "x", "facebook", "bluesky", "instagram")
+ALIASES = {"twitter": "x", "ig": "instagram"}
 # utm_source の値（threads_post.utm_link と同じ）
-UTM_SOURCE = {"threads": "threads", "x": "x", "facebook": "facebook", "bluesky": "bluesky"}
-# 文字数の上限（Threads 500・Bluesky 300 書記素・X は全角2の280（URL 23）・Facebook は長文可だが SNS の短い形を守る）
-LIMITS = {"threads": 500, "bluesky": 300, "facebook": 600}
+UTM_SOURCE = {"threads": "threads", "x": "x", "facebook": "facebook", "bluesky": "bluesky", "instagram": "instagram"}
+# 文字数の上限（Threads 500・Bluesky 300 書記素・X は全角2の280（URL 23）・Facebook は長文可だが SNS の短い形を守る・Instagram 2200）
+LIMITS = {"threads": 500, "bluesky": 300, "facebook": 600, "instagram": 2200}
+# Instagram（2026-11-05 オーナー承認・台帳 S36）: キャプションのリンクは押せないので、本文に URL を書かず、この1行でプロフィールのリンクへ案内する。
+# 記事のリンク（utm_source=instagram）は links に渡して「実在の記事についての投稿か」を確かめる（記録用）
+INSTAGRAM_LINK_LINE = "記事はプロフィールのリンクから"
+INSTAGRAM_HASHTAG_MAX = 3
 X_LIMIT = 280
 # 書き出し・要約・問いかけの部分（リンクの行を除く）の目安の上限（本文の形 2026-11-02: 全角120〜150字くらい）
 CONTENT_MAX = 200
@@ -282,7 +290,7 @@ HASHTAG_RE = re.compile(r"(?<!\S)#\S+")
 # 英語の文: 5語以上の英単語の並び（製品名は3〜4語までが多い）
 ENGLISH_RUN = re.compile(r"[A-Za-z][A-Za-z'’\-]*(?:[ ,]+[A-Za-z][A-Za-z'’\-]*){4,}")
 JAPANESE_CHAR = re.compile(r"[぀-ヿ一-鿿ｦ-ﾟ]")
-LINK_LINE = re.compile(r"^(?:詳しくはこちら|記事はこちら|続きはこちら)")
+LINK_LINE = re.compile(r"^(?:詳しくはこちら|記事はこちら|続きはこちら|記事はプロフィールのリンクから)")
 # リンクの案内に添える行（動画の案内・音声のクレジット）も、書き出し・要約・問いかけの形の判定からは除く
 NOTE_LINE = re.compile(r"^(?:音声：|画像：|公式ページの画面を見ながら、\d+秒|\d+秒の動画で解説)")
 # 文字の帯がある画像（見出し入りのカバー・号の縦長画像・以前の縦長カード）
@@ -403,7 +411,7 @@ def fetch_size(url: str, limit: int = 1_048_576) -> tuple[int, int] | None:
 
 
 def known_size(url: str) -> tuple[int, int] | None:
-    parsed = urllib.parse.urlsplit(str(url or ""))
+    parsed = urllib.parse.urlsplit(unwrap_transform(url))  # 形式だけ変える画像変換（format=jpeg）は大きさを変えない
     if parsed.hostname and parsed.hostname.endswith(SITE_HOST):
         for pattern, size in KNOWN_SIZES:
             if pattern.fullmatch(parsed.path):
@@ -440,8 +448,19 @@ def media_size(item: dict, measurer=None) -> tuple[int, int] | None:
     return measured or known_size(url) or (recorded_video_size(url) if measurer is None else None)
 
 
+CF_TRANSFORM_RE = re.compile(r"^/cdn-cgi/image/[^/]+(/.*)$")
+
+
+def unwrap_transform(url: str) -> str:
+    """Cloudflare の画像変換（/cdn-cgi/image/format=jpeg,.../<元のパス>）の URL を、元の画像の URL に戻す。
+    Instagram は JPEG しか受け付けないので、サイトのカード（PNG）を JPEG にして渡す（S36）。決まりは元の画像で確かめる"""
+    parts = urllib.parse.urlsplit(str(url or ""))
+    m = CF_TRANSFORM_RE.match(parts.path)
+    return urllib.parse.urlunsplit(parts._replace(path=m.group(1))) if m and parts.hostname and parts.hostname.endswith(SITE_HOST) else str(url or "")
+
+
 def is_text_band(url: str) -> bool:
-    path = urllib.parse.urlsplit(str(url or "")).path
+    path = urllib.parse.urlsplit(unwrap_transform(url)).path
     return any(p.fullmatch(path) for p in TEXT_BAND_PATHS)
 
 
@@ -506,6 +525,21 @@ def check_link(platform: str, text: str, reply_text: str, links: list[str], path
         tagged = reply_links
     elif platform == "threads" and sns_plan.link_ab_on() and reply_links and not body_links:
         tagged = reply_links  # リンクの位置の比べ（THREADS_LINK_AB=1・S31）: 返信にリンク
+    elif platform == "instagram":
+        # キャプションのリンクは押せない（S36）。本文に URL を書かず、プロフィールのリンクへ案内する。記事のリンクは links（記録用）
+        if links_in(text):
+            out.append("[ルール1] Instagram の本文に URL を書かない（押せないため。「記事はプロフィールのリンクから」で案内する）")
+        if INSTAGRAM_LINK_LINE not in str(text or ""):
+            out.append(f"[ルール1] Instagram の本文に「{INSTAGRAM_LINK_LINE}」の案内がない")
+        if not extra:
+            out.append("[ルール1] Instagram の投稿に記事のリンク（links）がない（実在の記事についての投稿か確かめられない）")
+        elif not any(has_utm(u, platform) for u in extra):
+            out.append(f"[ルール1] 記事のリンクに utm_source={UTM_SOURCE[platform]}&utm_medium=social がない")
+        elif not any(utm_content_ok(u) for u in extra):
+            out.append("[ルール11] 記事のリンクに utm_content=<投稿の種類>_<リンクの位置>（video_body など）がない")
+        if len(HASHTAG_RE.findall(str(text or ""))) > INSTAGRAM_HASHTAG_MAX:
+            out.append(f"[ルール4] Instagram のハッシュタグが多すぎる（{INSTAGRAM_HASHTAG_MAX}個まで）")
+        return out
     else:
         if not body_links:
             out.append("[ルール1] 本文に記事のリンクがない（X 以外はリンクを本文に置く）")
@@ -843,7 +877,7 @@ def check_media(platform: str, media: list[dict], article: dict | None, kind: st
     article = article or {}
     credit = article.get("imageCredit") or {}
     for item in media or []:
-        url = str(item.get("url") or "")
+        url = unwrap_transform(str(item.get("url") or ""))  # 決まり（文字の帯・号の画像・記事の写真）は元の画像で見る
         kind_of = "動画" if item.get("type") == "video" else "画像"
         if item.get("type") != "video" and is_text_band(url):
             out.append(f"[ルール2] 文字の帯が入った画像（{urllib.parse.urlsplit(url).path}）。写真だけのカード（/card/）を使う")
@@ -910,6 +944,8 @@ def already_posted(platform: str, article: dict | None, kind: str, state: dict |
         return bool(channels.get("twitter"))
     if platform == "facebook":
         return bool(channels.get("facebook"))
+    if platform == "instagram":
+        return bool(channels.get("instagram"))
     if extra is None:
         try:
             extra = json.loads(BLUESKY_EXTRA_PATH.read_text("utf-8"))
@@ -945,7 +981,7 @@ def check_post(
     pending_video: 動画を付ける前の文面の下見（threads_post が予約の前に文面だけ確かめる）。動画の決まりは見ない。
       実際に Buffer / Bluesky に送るときは必ず pending_video=False で通す（動画が無ければ止まる）
 
-    platform: threads / x（twitter）/ facebook / bluesky
+    platform: threads / x（twitter）/ facebook / bluesky / instagram（本文に URL を書かず、記事のリンクは links。S36）
     text: 本文。reply_text: X の返信（リンクを置く所）。links: 本文の外のリンク（Bluesky の facet・リンクカード）
     media: [{"type": "image"|"video", "url": ..., "width"?, "height"?}]
     article: 記事の JSON（slug・title が要る）。kind="digest" のときは {"link": 号のページ, "items": [記事...]}

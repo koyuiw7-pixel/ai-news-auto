@@ -12,7 +12,7 @@
 数えないもの: ロボット・SNS のリンクプレビュー・自動ブラウザ（HeadlessChrome・webdriver）・Lighthouse・PageSpeed・
   JS の動かないアクセス・自社のテスト（?_internal=1 を付けて開いたブラウザ、ヘッダー X-Saisoku-Internal: 1）。
   同じ人が同じページを30分以内に開き直したものは1回。人数は「日付+IP+UA」のハッシュによる推定（日をまたいで足さない）。
-流入元: utm_source があればそれ（threads / x / facebook / bluesky / newsletter / line）、無ければ参照元のサイト
+流入元: utm_source があればそれ（threads / x / facebook / bluesky / instagram / newsletter / line）、無ければ参照元のサイト
   （google / yahoo / bing / discover / news / direct / other）。
 
 鍵 AFF_STATS_TOKEN は環境変数か .env.local（メインのフォルダ）から読む（scripts/aff_stats.py と同じ）。中身は表示しない。
@@ -35,11 +35,11 @@ from aff_stats import JST, load_token  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 
 LABELS = {
-    "threads": "Threads", "x": "X", "facebook": "Facebook", "bluesky": "Bluesky", "google": "Google検索",
+    "threads": "Threads", "x": "X", "facebook": "Facebook", "bluesky": "Bluesky", "instagram": "Instagram", "google": "Google検索",
     "yahoo": "Yahoo!検索", "bing": "Bing", "discover": "Googleアプリ/Discover", "news": "ニュースアプリ",
     "newsletter": "メルマガ", "line": "LINE", "direct": "直接・不明", "other": "その他のサイト",
 }
-SNS = ("threads", "x", "facebook", "bluesky")
+SNS = ("threads", "x", "facebook", "bluesky", "instagram")
 # 書き出しの型（state/threads_posted.json の opener → hook の順）。opener は 2026-11-03〜の1行目の呼びかけの言い回し
 HOOK_LABELS = {
     "check": "呼びかけ・要チェック", "good": "呼びかけ・朗報", "see": "呼びかけ・見てほしい", "know": "呼びかけ・知っておいて",

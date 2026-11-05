@@ -1,0 +1,131 @@
+name: Instagram post
+
+# Instagram（@saisoku637）への直接投稿（scripts/instagram_post.py・公式の Instagram Graph API。2026-11-05 オーナー承認・台帳 S36）。
+# SNS の予定の枠の約13分後に、動画（リール）で出す。朝のまとめは号の画像。1日6本（まとめを除く）・深夜1〜5時は出さない。
+# 切り替え: リポジトリの変数 INSTAGRAM_MODE = off（既定・動かない）／ dry（文面と URL の確認だけ。コンテナも作らない）／ live（投稿）。
+# 手動の確認: test_container=image|video でコンテナを作るだけ（公開しない）。トークンと権限の確認に使う。
+# トークンの健康診断（job token）: 毎日・手動（token_check）。INSTAGRAM_MODE に関係なく動き、期限を state/instagram_token.json に記録、
+# 残り7日未満・使えないときは issue（ラベル instagram-token）。META_APP_SECRET と GH_SECRETS_TOKEN があれば自動で延ばす。
+on:
+  schedule:
+    - cron: "5-59/10 * * * *"  # Bluesky（*/10）と同じ分にならないように
+    - cron: "17 0 * * *"  # 毎日 9:17（日本時間）トークンの健康診断（60日で切れる。残り7日未満で issue）
+  workflow_run:
+    workflows: ["Auto Article Pipeline"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "下書き表示だけ（投稿しない・コンテナも作らない）"
+        type: boolean
+        default: true
+      test_container:
+        description: "コンテナを作るだけ（公開しない）。トークン・権限の確認"
+        type: choice
+        options: ["none", "image", "video"]
+        default: "none"
+      token_check:
+        description: "トークンの健康診断だけ（読むだけ。期限を記録・7日未満で issue）"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write  # SNS ルールの門番（scripts/sns_rules.py）が止めた投稿の issue（ラベル sns-rule-violation）
+
+concurrency:
+  group: instagram-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    # off のときは動かさない（手動の実行は除く）。workflow_run は同じリポジトリの main の処理が終わったときだけ
+    if: >-
+      ${{ github.event.schedule != '17 0 * * *' && github.event.inputs.token_check != 'true' &&
+          (github.event_name == 'workflow_dispatch' || vars.INSTAGRAM_MODE == 'dry' || vars.INSTAGRAM_MODE == 'live') &&
+          (github.event_name != 'workflow_run' ||
+           (github.event.workflow_run.head_repository.full_name == github.repository &&
+            github.event.workflow_run.head_branch == 'main')) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main  # 最新の記録を読む（二重投稿よけ）
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Post
+        env:
+          INSTAGRAM_MODE: ${{ vars.INSTAGRAM_MODE || 'off' }}
+          IG_USER_ID: ${{ vars.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '1' }}  # Threads・Bluesky と同じ文面の型（S30）
+          THREADS_LINK_AB: ${{ vars.THREADS_LINK_AB || '1' }}
+          GH_TOKEN: ${{ github.token }}  # 門番が止めた投稿の issue を立てる
+          TEST_CONTAINER: ${{ github.event.inputs.test_container }}
+          DRY_INPUT: ${{ github.event.inputs.dry_run }}
+        run: |
+          if [ -n "$TEST_CONTAINER" ] && [ "$TEST_CONTAINER" != "none" ]; then
+            python scripts/instagram_post.py --test-container "$TEST_CONTAINER"
+            exit $?
+          fi
+          if [ "$INSTAGRAM_MODE" = "dry" ] || [ "$DRY_INPUT" = "true" ]; then
+            python scripts/instagram_post.py --dry-run
+          else
+            python scripts/instagram_post.py
+          fi
+      - name: Commit history
+        run: |
+          if [ -z "$(git status --porcelain state)" ]; then exit 0; fi
+          cp state/threads_posted.json "$RUNNER_TEMP/mine.json"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main
+            python scripts/instagram_post.py --merge "$RUNNER_TEMP/mine.json"
+            git add state/threads_posted.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "chore(instagram): 投稿を記録"
+            git push origin HEAD:main && exit 0
+            sleep 5
+          done
+          exit 1
+
+  token:
+    if: ${{ github.event.schedule == '17 0 * * *' || github.event.inputs.token_check == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Token health check (read-only)
+        env:
+          IG_USER_ID: ${{ vars.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          META_APP_ID: ${{ vars.META_APP_ID }}
+          META_APP_SECRET: ${{ secrets.META_APP_SECRET }}  # あれば自動で延ばす（無ければ知らせるだけ）
+          GH_SECRETS_TOKEN: ${{ secrets.GH_SECRETS_TOKEN }}  # シークレットを書ける GitHub のトークン（自動で延ばすときだけ）
+          GH_TOKEN: ${{ github.token }}  # 期限の issue を立てる
+        run: python scripts/instagram_post.py --token-check
+      - name: Commit token state
+        run: |
+          if [ -z "$(git status --porcelain state)" ]; then exit 0; fi
+          cp state/instagram_token.json "$RUNNER_TEMP/token.json"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main
+            cp "$RUNNER_TEMP/token.json" state/instagram_token.json
+            git add state/instagram_token.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "chore(instagram): トークンの期限を記録"
+            git push origin HEAD:main && exit 0
+            sleep 5
+          done
+          exit 1

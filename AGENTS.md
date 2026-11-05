@@ -86,6 +86,7 @@
 | `breaking_post.yml` | 速報のSNS即時投稿＋プッシュ通知 |
 | `sns_extra.yml` | 朝7:30のまとめ投稿（火・金の問いかけ投稿は 2026-11-03 に停止） |
 | `bluesky.yml` | Bluesky への投稿（Threads の写し＋直近の良い記事。1日24本まで・40分以上あける。記事の自動処理の後にも動く） |
+| `instagram.yml` | Instagram への直接投稿（公式 Graph API。予定の枠の13分後・動画（リール）だけ・1日6本＋朝のまとめ。変数 INSTAGRAM_MODE＝off／dry／live。毎日トークンの期限を確かめ、7日未満で issue。台帳 S36） |
 | `evergreen.yml` | 「使い方・料金」解説記事を1日4本 |
 | `missed_check.yml` | 毎朝8:30、取りこぼした大ニュースがないか確認 |
 | `newsletter.yml` | 毎朝7時のメルマガ |

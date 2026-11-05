@@ -5,7 +5,7 @@
 import { BOT_UA } from "./revenue-funnel";
 
 export const INFLOW_SOURCES = [
-  "threads", "x", "facebook", "bluesky", "google", "yahoo", "bing", "discover", "news", "newsletter", "line", "direct", "other",
+  "threads", "x", "facebook", "bluesky", "instagram", "google", "yahoo", "bing", "discover", "news", "newsletter", "line", "direct", "other",
 ] as const;
 export type InflowSource = typeof INFLOW_SOURCES[number];
 
@@ -43,7 +43,7 @@ export const validPageKey = (key: string) => SLUG.test(key) || key === "_home";
 export const validTag = (value: string) => value === "" || TAG.test(value);
 
 const UTM_ALIASES: Record<string, InflowSource> = {
-  twitter: "x", "t.co": "x", fb: "facebook", ig: "other", bsky: "bluesky", gnews: "news",
+  twitter: "x", "t.co": "x", fb: "facebook", ig: "instagram", bsky: "bluesky", gnews: "news",
 };
 
 /** 参照元のホスト名 → 流入元。同じサイト内からの移動は null（数えない） */
@@ -60,6 +60,7 @@ export function sourceFromReferrer(referrer: string, origin: string): InflowSour
   if (/^(t\.co|x\.com|twitter\.com|mobile\.twitter\.com|mobile\.x\.com)$/.test(host)) return "x";
   if (/(^|\.)(facebook\.com|fb\.com|fb\.me|messenger\.com)$/.test(host)) return "facebook";
   if (/(^|\.)(bsky\.app|bsky\.social)$/.test(host)) return "bluesky";
+  if (/(^|\.)instagram\.com$/.test(host)) return "instagram"; // プロフィールのリンク（l.instagram.com）から（S36）
   if (/^news\.google\./.test(host) || /^news\.yahoo\.co\.jp$/.test(host) || /(^|\.)(smartnews\.com|gunosy\.com|newspicks\.com|msn\.com|line\.me|antenna\.jp|nordot\.app)$/.test(host)) {
     return host.endsWith("line.me") ? "line" : "news";
   }

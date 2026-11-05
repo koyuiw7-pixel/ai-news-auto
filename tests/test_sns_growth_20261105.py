@@ -284,7 +284,7 @@ class IndicatorsTest(unittest.TestCase):
         files = {"threads_posted.json": posted, "sns_video.json": {}, "bluesky_extra.json": {}}
         with patch.object(gi, "load", side_effect=lambda n: files[n]):
             got = gi.build(date(2026, 11, 5), net=False)
-        self.assertEqual(got["posts"], {"threads": 2, "x": 1, "facebook": 0, "bluesky": 0})
+        self.assertEqual(got["posts"], {"threads": 2, "x": 1, "facebook": 0, "bluesky": 0, "instagram": 0})
         self.assertEqual(got["views"]["h24_max"], 2456)
         self.assertEqual(got["hits_day"], ["honda"])
         self.assertEqual(gi.target_for(date(2026, 11, 13))[2], "W2")

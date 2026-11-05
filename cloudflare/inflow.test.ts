@@ -68,6 +68,9 @@ await test("流入元の分類（utm を優先・参照元のホスト）", () =
   assert.equal(ref("https://t.co/abc"), "x");
   assert.equal(ref("https://lm.facebook.com/"), "facebook");
   assert.equal(ref("https://bsky.app/profile/x"), "bluesky");
+  assert.equal(ref("https://l.instagram.com/"), "instagram");
+  assert.equal(classifyInflow("?utm_source=ig", "", O)?.source, "instagram");
+  assert.equal(classifyInflow("?utm_source=instagram&utm_medium=social&utm_campaign=profile", "", O)?.source, "instagram");
   assert.equal(ref("https://www.google.co.jp/"), "google");
   assert.equal(ref("https://news.google.com/"), "news");
   assert.equal(ref("android-app://com.google.android.googlequicksearchbox/"), "discover");

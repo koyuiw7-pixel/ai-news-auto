@@ -69,7 +69,7 @@ def post_time(rec: dict, queued: dict) -> datetime | None:
 def posts_on(day: date, posted: dict, videos: dict, extra: dict) -> dict:
     """その日（日本時間）に出た投稿（SNS ごと）。Threads は記録の id か動画つきで送った記録"""
     queued = videos.get("queued") or {}
-    out: dict[str, list[str]] = {"threads": [], "x": [], "facebook": [], "bluesky": []}
+    out: dict[str, list[str]] = {"threads": [], "x": [], "facebook": [], "bluesky": [], "instagram": []}
     for slug, rec in posted.items():
         q = queued.get(slug) or {}
         when = post_time(rec, q)
@@ -84,6 +84,8 @@ def posts_on(day: date, posted: dict, videos: dict, extra: dict) -> dict:
             out["facebook"].append(slug)
         if ch.get("bluesky"):
             out["bluesky"].append(slug)
+        if ch.get("instagram"):  # Instagram の直接投稿（S36）
+            out["instagram"].append(slug)
     for slug, rec in extra.items():
         when = _dt(rec.get("postedAt") or rec.get("at"))
         if rec.get("uri") and when and when.astimezone(JST).date() == day and slug not in out["bluesky"]:
@@ -222,7 +224,7 @@ def build(day: date, net: bool = True) -> dict:
 def show(r: dict) -> None:
     p = r["posts"]
     print(f"■ 先行指標 {r['date']}（日本時間）")
-    print(f"  投稿数: Threads {p['threads']} / X {p['x']} / Facebook {p['facebook']} / Bluesky {p['bluesky']}")
+    print(f"  投稿数: Threads {p['threads']} / X {p['x']} / Facebook {p['facebook']} / Bluesky {p['bluesky']} / Instagram {p.get('instagram', 0)}")
     v = r["views"]
     print(f"  Threads の閲覧（24時間）: 最大 {v['h24_max']} / 中央値 {v['h24_median']}（数値あり {v['posts_with_metrics']}本・24時間たった {v['complete_24h']}本）")
     print(f"  1時間後の閲覧: n/a（{v['h1_note']}）")

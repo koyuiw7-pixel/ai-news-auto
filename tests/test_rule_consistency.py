@@ -60,8 +60,9 @@ CREATE_GUARDS = [
     (re.compile(r"\bcreatePost\s*\("), re.compile(r"\bensure_not_duplicate\s*\(")),
     (re.compile(r"com\.atproto\.repo\.createRecord"), re.compile(r"\bexisting_uri\s*\(")),
     (re.compile(r"/threads_publish\b|f\"\{user_id\}/threads\""), re.compile(r"\bmeta_existing_post\s*\(")),
+    (re.compile(r"/media_publish\b"), re.compile(r"\bexisting_media\s*\(")),  # Instagram（S36）
 ]
-POSTING_SCRIPTS = re.compile(r"scripts/(?:threads_post|breaking_post|bluesky_post|sns_video_followup|morning_digest|post_now|sns_video)\.py")
+POSTING_SCRIPTS = re.compile(r"scripts/(?:threads_post|breaking_post|bluesky_post|sns_video_followup|morning_digest|post_now|sns_video|instagram_post)\.py")
 
 
 class PostingPathTest(unittest.TestCase):
@@ -224,6 +225,7 @@ NON_PROSE = {
     "image_focus.py": "画像の位置の欄だけ",
     "images.py": "画像・本文の画像の欄だけ",
     "indexnow.py": "検索への通知の記録",
+    "instagram_post.py": "投稿の記録（記事は読むだけ）",
     "label_check.py": "ジャンル・タグの欄だけ",
     "latency.py": "公開時刻の記録",
     "notice_gate.py": "判定の書き出し（lib/notice-rules.json）",

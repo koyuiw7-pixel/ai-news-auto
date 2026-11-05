@@ -164,9 +164,9 @@ class CheckPostTest(unittest.TestCase):
 
 # ---- 投稿 API を呼ぶ所の検査（新しく作った経路が門番を飛ばしていないか） ----
 
-# 投稿を作る・中身を変える API（Buffer の GraphQL・Bluesky の AT Protocol・Threads 公式 API）
+# 投稿を作る・中身を変える API（Buffer の GraphQL・Bluesky の AT Protocol・Threads 公式 API・Instagram Graph API の media_publish）
 POSTING_API = re.compile(
-    r"\b(?:createPost|editPost|updatePost|createIdea)\s*\(|com\.atproto\.repo\.createRecord|/threads_publish\b|f\"\{user_id\}/threads\""
+    r"\b(?:createPost|editPost|updatePost|createIdea)\s*\(|com\.atproto\.repo\.createRecord|/threads_publish\b|f\"\{user_id\}/threads\"|/media_publish\b"
 )
 GATE_CALL = re.compile(r"\bsns_rules\.(?:enforce|enforce_buffer|check_post)\s*\(")
 SCAN = ["scripts", "ops", "lib", "app", "cloudflare"]
