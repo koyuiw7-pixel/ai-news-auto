@@ -58,7 +58,7 @@
     "nfpVl4pC0UM": 1,
     "nqAri_t8xRA": 1,
     "o4D1J1YWjhg": 2,
-    "pheCh2nQPjQ": 1,
+    "pheCh2nQPjQ": 2,
     "qVGa1VU2YfA": 2,
     "roVDIuW_6HI": 1,
     "tTuk4pGnT0A": 1,
@@ -98,14 +98,6 @@
       "title": "令和８年９月末の特殊詐欺の認知・検挙状況等について",
       "tries": 1,
       "url": "http://www.npa.go.jp/newlyarrived/2026/20260331001.html"
-    },
-    "3df4d68063a5a1b4": {
-      "first": "2026-11-05T16:35:57.775360+00:00",
-      "next": "2026-11-05T19:35:57.775360+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "More Performance From Every Byte: How Full-Stack Codesign Solves AI’s Memory Challenge",
-      "tries": 1,
-      "url": "https://blogs.nvidia.com/blog/memory-full-stack-codesign/"
     },
     "52567fa092b78f28": {
       "first": "2026-11-04T03:34:46.235755+00:00",
@@ -3220,6 +3212,11 @@
     "wK0zWeVyLM4": {
       "at": "2026-09-20T10:13:41.720968+00:00",
       "slug": "openai-chatgpt-work-product-insights-demo"
+    },
+    "wNZdVkiEZtE": {
+      "at": "2026-11-05T19:52:01.380968+00:00",
+      "reason": "Google検索のイースターエッグを紹介する6秒間のShorts動画であり、IT・テクノロジーに関する実質的な技術解説やニュースとしての情報価値が含まれていないため。",
+      "skipped": true
     },
     "wQzA1gcmz9E": {
       "at": "2026-08-09T01:04:48.801773+00:00",
@@ -6492,6 +6489,15 @@
       "section": "ai",
       "slug": "aws-moengage-agentcore-gateway",
       "url": "https://aws.amazon.com/blogs/machine-learning/how-moengage-turned-over-400-apis-into-agent-tools-with-agentcore-gateway/"
+    },
+    "3df4d68063a5a1b4": {
+      "at": "2026-11-05T19:54:24.433529+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "nvidia-hbm-codesign-throughput-per-dollar",
+      "url": "https://blogs.nvidia.com/blog/memory-full-stack-codesign/"
     },
     "3e4765c6fd3b0d54": {
       "at": "2026-11-02T19:54:10.723553+00:00",
@@ -16074,45 +16080,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-04T04:27:37.594717+00:00",
-      "attempt": 1,
-      "id": "45eff8f499ae341a",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「Impress Watchは2026年11月4日、iPad版「Affinity」の機能や料金について続報を伝えました」→ 元記事に発信元がImpress Watchであることや「続報」であることは書かれておらず、固有名詞と報道の関係が創作されている。",
-        "「既存記事では触れていなかった点を以下にまとめます」→ 既存記事との関係（何が追加情報か）は元記事や確認済みの文脈に根拠がなく、記事の位置づけを創作している。",
-        "「既存記事では金額を示していませんでしたが」→ 過去記事の内容を確認できる根拠がなく、言い過ぎの可能性がある。",
-        "「スケッチ、ベクター、写真編集、ページレイアウトなどの主要機能は引き続き無料」→ 元記事は「主要機能は無料」と書いており「引き続き」は時系列の補足で、元記事に無い断定。"
-      ],
-      "score": 60,
-      "source": "radar-impress.co.jp",
-      "title": "「Affinity」にiPad版登場 人気のデザイン・写真アプリが無料で"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T04:35:36.709490+00:00",
-      "attempt": 1,
-      "id": "5c4576623088d079",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「営業利益は前年の9,450億円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 56.0,
-        "avg_sentence": 35.7,
-        "long_share": 0.152,
-        "max_paragraph": 123,
-        "paragraphs": 21,
-        "sentences": 33
-      },
-      "score": null,
-      "source": "ntt-news-release",
-      "title": "2026年度 第2四半期決算について"
-    },
-    {
       "accepted": true,
       "at": "2026-11-04T04:36:08.986581+00:00",
       "attempt": 2,
@@ -22291,6 +22258,54 @@
       "title": "Give Your Muse a Voice",
       "warnings": [
         "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T19:53:57.653364+00:00",
+      "attempt": 1,
+      "id": "3df4d68063a5a1b4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "段落が長い（平均 154.5字・最長 311字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 154.5,
+        "avg_sentence": 42.5,
+        "long_share": 0.2,
+        "max_paragraph": 311,
+        "paragraphs": 11,
+        "sentences": 40
+      },
+      "score": 90,
+      "source": "nvidia-blog",
+      "title": "More Performance From Every Byte: How Full-Stack Codesign Solves AI’s Memory Cha",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（KV・NVFP・FLUX）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T19:54:24.418888+00:00",
+      "attempt": 0,
+      "id": "3df4d68063a5a1b4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 85.2,
+        "avg_sentence": 41.6,
+        "long_share": 0.171,
+        "max_paragraph": 122,
+        "paragraphs": 20,
+        "sentences": 41
+      },
+      "score": 88,
+      "source": "nvidia-blog",
+      "title": "More Performance From Every Byte: How Full-Stack Codesign Solves AI’s Memory Cha",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（KV・NVFP・FLUX）"
       ]
     }
   ],

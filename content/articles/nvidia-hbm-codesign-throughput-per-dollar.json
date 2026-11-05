@@ -1,0 +1,116 @@
+{
+  "slug": "nvidia-hbm-codesign-throughput-per-dollar",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.com/blog/memory-full-stack-codesign/",
+  "sourceName": "NVIDIA公式ブログ",
+  "title": "NVIDIA、HBMを増やさず処理量を伸ばす設計　1ドル当たり最大30倍",
+  "seoTitle": "NVIDIAのHBM効率化とは？処理量と日本での提供",
+  "threadsPost": "AIの利用料や社内のAI導入費を見ている人に、知っておいてほしい話です。\n\nNVIDIAは、GPUの高速メモリを増やすより、使い方を変えて処理量を伸ばす方針を示しました。\nVera Rubin NVL72は、GB300 NVL72比で1ドル当たりの処理量が最大30倍とされています。\n\n社内でAIを使うなら、速さと費用のどちらを先に見ますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "ab",
+      "question": "社内でAIを使うなら、速さと費用のどちらを先に見ますか？"
+    },
+    {
+      "pattern": "price",
+      "question": "社内で使うAIに、毎月いくらまでなら出せますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "AIを動かすGPUの高速メモリ（HBM）は量も価格も厳しくなっていますが、NVIDIAはHBMを増やすより使い方を変える方針を示しました。Vera Rubin NVL72は、GB300 NVL72に比べて1ドル当たりの処理量が最大30倍とされ、GPUあたりのHBM容量は約3%の増加にとどまります。日本での提供や料金はまだ発表されておらず、一般の利用者が今すぐ変えることはありません。",
+  "description": "NVIDIAが、AIのメモリ不足に対し、HBMを増やすより使い方を変える設計を公式ブログで説明しました。Vera Rubin NVL72は、GB300比で1ドル当たりの処理量が最大30倍とされます。日本での提供は未発表です。",
+  "keywords": [
+    "NVIDIA HBM",
+    "AIメモリ不足",
+    "KVキャッシュ",
+    "NVFP4",
+    "Vera Rubin NVL72",
+    "AI推論 コスト",
+    "AIデータセンター メモリ",
+    "GB300 NVL72",
+    "NVIDIA Dynamo",
+    "RAG 埋め込み",
+    "メモリの壁",
+    "AI推論 処理量"
+  ],
+  "tags": [
+    "生成AI",
+    "AIインフラ",
+    "GPU",
+    "NVIDIA",
+    "データセンター"
+  ],
+  "highlights": [
+    "HBMを増やさず、重み・KVキャッシュ・RAGの置き場所を変えて処理量を伸ばす設計をNVIDIAが示しました。",
+    "Vera Rubin NVL72は、GB300 NVL72比で1ドル当たりの処理量が最大30倍（毎秒125トークンの条件）とされています。",
+    "GPUあたりのHBM容量は、Blackwell UltraからVera Rubinまでで約3%増にとどまります。GB300はH200比で約2倍です。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "AIデータセンターの運用",
+    "take": "個人がすぐ使える製品ではありません。AI利用料の変化を見るために、提供元の発表を待つとよいでしょう。",
+    "judgedAt": "2026-11-05T19:53:50.002432+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の影響は小さいです。AIを大量に使う企業の担当者は、処理量あたりの費用を確認するとよいでしょう。"
+    ]
+  },
+  "body": "AIを業務で使う企業や、AIを動かすデータセンターを運営する人にとって、GPUのメモリの量と値段は費用に直結します。個人の利用者が今すぐ変えることは、今回の発表にはありません。\n\nNVIDIAの公式ブログは、この課題への答えとして「フルスタック共同設計」を挙げています。フルスタック共同設計とは、GPU・CPU・ネットワーク・保存装置・ソフトウェアを一体で設計する考え方です。メモリ1つあたりの仕事量を増やします。\n\nNVIDIAは、HBM（GPUのすぐ近くにある、速いが高価なメモリ）を単純に積み増すのではないと説明しています。\n\n## 重みとKVキャッシュを減らし、HBMを空ける\n\nAIモデルは大きくなり、長い文章を扱い、道具を次々に呼び出すエージェント型のAIも増えています。ブログは、この流れでGPUのHBMに対する負荷が高まっていると述べています。\n\nHBMの供給は逼迫し、価格も上がっています。ブログによると、この傾向は当面続くとみられています。\n\nHBMに置かれるものは、大きく2つあります。1つはモデルの重み（AIが学習した結果の数値）、もう1つはKVキャッシュ（AIが会話の文脈を覚えておく一時的な領域）です。どちらもHBMを奪い合っています。\n\nブログは、HBMの容量を増やすだけでは効果が頭打ちになると説明しています。倉庫（HBM）を広げても、出入口（メモリ帯域）の処理能力が足りなければ、荷物の出し入れが遅くなります。これを「メモリの壁」と呼びます。\n\nそこでNVIDIAは、重み・文脈・検索の索引の3つで工夫を重ねるとしています。まずは重みです。\n\n4ビットの数値形式「NVFP4」を使うと、8ビットのFP8より重みが小さくなると説明しています。NVFP4で公開されたモデルとして、FLUX.2 [klein]やMeta Muse Sparkなどの名前も挙がっています。\n\nさらに、72基のGPUを1つにまとめた「NVL72」という構成では、重みを最大72基に分けて持たせられます。1基あたりの持ち分が減り、空いたHBMを文脈や同時に使う利用者に回せます。\n\n次に文脈です。KVキャッシュにもNVFP4を使うと、FP8より小さくなり、HBMに多くの文脈を残せます。使っていない文脈は、保存領域へ移します。\n\nブログは、推論を動かすソフト「NVIDIA Dynamo」が、文脈専用の保存領域「CMX」へ移し、再利用の直前に戻すと説明しています。CMXはサーバーをまたいで共有でき、企業向けストレージのような長期の保存機能は省いているとしています。\n\n対応パートナーには、Dell TechnologiesやHPE、NetAppなどが挙がっています。Vera CPUのLPDDRメモリも、CPUとGPUを高速につなぐ接続「NVLink-C2C」を通じて、止まっている文脈の待機場所になるとしています。\n\n最後は検索です。社内文書を探すRAG（検索で得た情報をAIに渡す仕組み）では、文書を「埋め込み」（意味で検索するための数値表現）にして索引を作ります。\n\nブログは、NVIDIA Nemotron Retrieverモデルが、より小さな埋め込みで高い検索精度を出すとしています。索引はHBMの外に置き、必要な段落だけをAIの文脈に入れます。\n\n## 日本の運用者にとって効くのは、1ドル当たりの処理量\n\nブログは、SemiAnalysis AgentXのDeepSeek V4 Proという作業で測った結果を示しています。\n\n- GB300 NVL72は、H200プラットフォームに比べて1ドル当たりの処理量が最大10倍です（ユーザー1人あたり毎秒100トークンの条件）。GPUあたりのHBM容量は約2倍になっています。\n- Vera Rubin NVL72は、GB300 NVL72に比べて最大30倍です（ユーザー1人あたり毎秒125トークンの条件）。GPUあたりのHBM容量は約3%増です。\n\nHBM容量の伸びは小さいのに、処理量は大きく伸びています。ブログは、AIデータセンターで大事なのは、応答時間の条件を満たしながら電力の範囲で何トークンを届けられるかだと述べています。\n\n電力1ワットあたりの毎秒トークン数が増えれば、同じ電力でより多くの仕事を処理できると説明しています。\n\nVera Rubin NVL72は、サイソクが10月26日に報じたGTC Berlinの発表で取り上げた計算基盤です（[GTC Berlinの発表記事](/articles/nvidia-gtc-berlin-2026-keynote-highlights)）。\n\n編集部の見方では、30倍という数字は、ユーザーあたり毎秒125トークンという条件と、AgentXの特定の作業量で比べた値です。条件が変われば数字も変わります。自社の使い方に当てはめる前に、同じ条件での比較を確かめるとよいでしょう。\n\n## まだ分からないこと\n\n- Vera Rubin NVL72とCMXの提供時期は、まだ発表されていません。\n- 日本での提供や料金は、まだ発表されていません。\n- 個人向けのサービス料金に、この設計の効果がどう反映されるかは、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nNVIDIAは、AIを動かすGPUの高速メモリを増やす代わりに、メモリの使い方を変えて1ドル当たりの仕事量を増やす方針を示しました。Vera Rubin NVL72は、GB300 NVL72に比べて最大30倍とされています。\n\n## 何が変わったのか\n\nAIは大きくなり、長い文章も扱うようになりました。そのぶん、メモリ（作業場所）の取り合いが激しくなっています。NVIDIAは、重みを小さくする、文脈を保存領域へ逃がす、検索の索引をメモリの外に置く、という3つの方法で対応するとしています。\n\n数字には条件があります。毎秒125トークンというユーザー1人あたりの速さと、特定の作業量での比較です。日本での提供や料金は、まだ発表されていません。",
+  "channel": "NVIDIA公式ブログ",
+  "channelId": "",
+  "channelSlug": "nvidia-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "More Performance From Every Byte: How Full-Stack Codesign Solves AI’s Memory Challenge",
+  "publishedAt": "2026-11-05T16:00:00+00:00",
+  "generatedAt": "2026-11-05T19:53:50.002420+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/nvidia-hbm-codesign-throughput-per-dollar-fc789b68.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "general",
+  "todayActions": [
+    "AIの利用料を払っているなら、プランの利用上限と料金の変更を、提供元の公式ページで確認する",
+    "社内でAIを導入するなら、応答の速さと1回あたりの費用を同じ条件で比べる",
+    "数字の測定条件を確かめるなら、NVIDIAの公式ブログが案内している技術解説を読む"
+  ],
+  "relatedSlugs": [
+    "nvidia-gtc-berlin-2026-keynote-highlights"
+  ],
+  "qualityScore": 88,
+  "sourcePublishedAt": "2026-11-05T16:00:00+00:00",
+  "detectedAt": "2026-11-05T19:52:09+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA公式ブログ",
+    "sourceUrl": "https://blogs.nvidia.com/blog/memory-full-stack-codesign/",
+    "original": "https://blogs.nvidia.com/wp-content/uploads/2026/11/memory-codesign-1920x1080-1.jpg",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-05T19:57:23+00:00"
+  },
+  "imageFocus": {
+    "x": 0.495,
+    "y": 0.516,
+    "box": [
+      0.0,
+      0.133,
+      0.991,
+      0.9
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/nvidia-hbm-codesign-throughput-per-dollar-fc789b68.jpg"
+  }
+}
