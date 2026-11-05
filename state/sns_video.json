@@ -2334,6 +2334,58 @@
       "variant": "short",
       "bufferId": "6aebca63bc551efdea31d6e1",
       "postedAt": "2026-11-05T09:50:00+09:00"
+    },
+    "ipa-personal-data-leak-countermeasures": {
+      "at": "2026-11-05T04:50:38+00:00",
+      "status": "gate_failed",
+      "tries": 1,
+      "textAt": "2026-11-05T12:45:00+00:00",
+      "textId": "",
+      "breaking": false,
+      "scheduled": true,
+      "versions": {
+        "full": {
+          "ok": false,
+          "seconds": null,
+          "reasons": [
+            "記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（2場面）"
+          ],
+          "qa": {
+            "geometry": false,
+            "vision": false,
+            "version": 1
+          },
+          "template": "",
+          "level": null,
+          "base_layout": ""
+        },
+        "short": {
+          "ok": false,
+          "seconds": null,
+          "reasons": [
+            "記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（2場面）"
+          ],
+          "qa": {
+            "geometry": false,
+            "vision": false,
+            "version": 1
+          },
+          "template": "",
+          "level": null,
+          "base_layout": ""
+        }
+      },
+      "timings": {
+        "full": {
+          "ladder_total": 36.6
+        },
+        "short": {
+          "ladder_total": 36.6
+        }
+      },
+      "ok": false,
+      "reason": "full: 記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（2場面） / short: 記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（2場面）",
+      "pages": []
     }
   },
   "queued": {
@@ -2497,6 +2549,11 @@
       "dueAt": "2026-11-05T09:45:00+00:00",
       "variant": "short",
       "delayedMin": 0
+    },
+    "ipa-personal-data-leak-countermeasures": {
+      "status": "waiting",
+      "why": "動画が検査に落ちたので、あとの回で作り直す（この投稿だけ遅らせる）",
+      "checkedAt": "2026-11-05T04:50:38+00:00"
     }
   },
   "converted": {
