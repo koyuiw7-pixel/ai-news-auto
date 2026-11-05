@@ -210,7 +210,7 @@
     }
   },
   "major_tries": {
-    "a4de4f584112e3a4": 1
+    "a4de4f584112e3a4": 2
   },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
@@ -7686,6 +7686,12 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/tyoukanpress/202610/29_a.html"
     },
+    "5c632984dfd76a2f": {
+      "at": "2026-11-05T09:43:05.496053+00:00",
+      "reason": "dedupe: 同じ出典URL",
+      "skipped": true,
+      "url": "https://www.docomo.ne.jp/info/news_release/2026/11/05_00.html"
+    },
     "5c8890e4398a5839": {
       "at": "2026-10-27T20:41:56.129491+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
@@ -11322,6 +11328,15 @@
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/chikusan/c_sinko/261028.html"
+    },
+    "a8c2c68b354dec77": {
+      "at": "2026-11-05T09:45:10.228165+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "sarashina3-2-translate-style-control",
+      "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/05/163543"
     },
     "a8f3165f8078647d": {
       "at": "2026-10-29T04:55:54.434634+00:00",
@@ -15232,127 +15247,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T20:22:06.381776+00:00",
-      "attempt": 1,
-      "id": "a2357e701f020223",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「判定: 提供状況=demo」→ 元記事は顧客事例の紹介で、デモ段階とする根拠がなく、提供状況を取り違えている。",
-        "「今回は、攻撃対応と脆弱性修正の側面です」→ Codexデモとの関連づけは元記事にない編集上の解釈で、事実と区別されていない。",
-        "「step function improvements（段階的に大きく跳ね上がる改善）」→ 元記事は「ステップ関数的な改善」の発言のみで、訳語の補足が強め。",
-        "「OpenAIの推論AI（考えてから答えるAI）」→ 元記事は「frontier AI reasoning」で、推論AIという位置づけと補足説明は元記事にない。",
-        "「脆弱性の発見と修正、調査から対応までの時間を短縮できた」→ 元記事は「able to find and patch more efficiently, shortening time」という幹部の発言で、実績として断定しすぎ。",
-        "「Ciscoは『Daybreak』と『GPT-6 Astra』を使っています」→ 元記事は initiatives と呼んでいるだけで、使用の実態は確認できず断定しすぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 97.2,
-        "avg_sentence": 48.6,
-        "long_share": 0.219,
-        "max_paragraph": 143,
-        "paragraphs": 16,
-        "sentences": 32
-      },
-      "score": 72,
-      "source": "openai-news",
-      "title": "How Cisco defends at machine speed with OpenAI",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T20:22:38.112650+00:00",
-      "attempt": 2,
-      "id": "a2357e701f020223",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "判定: 提供状況=limited → 元記事は顧客事例の紹介で、一部提供や限定提供といった提供状況の記述がなく、根拠がない。",
-        "「これにより、Ciscoは…機微なネットワーク情報を損なわずに導入できると見ていた」→ 元記事は「機微なテレメトリ」であり、「ネットワーク情報」への言い換えはやや広いが軽微。",
-        "「かんたん版」の「これまでは、社内と社外の境目に防御を置く方法が中心でした」→ 元記事は「単一のセキュリティ境界」とあるだけで、社内と社外の境目という説明は補足的で言い過ぎ。",
-        "「顧客事例を紹介した動画とブログです。新製品の発売ではなく」→ 元記事に新製品でないという明示はなく、記事側の解釈。"
-      ],
-      "readability": {
-        "avg_paragraph": 85.4,
-        "avg_sentence": 43.9,
-        "long_share": 0.27,
-        "max_paragraph": 169,
-        "paragraphs": 19,
-        "sentences": 37
-      },
-      "score": 80,
-      "source": "openai-news",
-      "title": "How Cisco defends at machine speed with OpenAI"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T20:22:55.208407+00:00",
-      "attempt": 2,
-      "id": "a2357e701f020223",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 43.5字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 84.7,
-        "avg_sentence": 43.5,
-        "long_share": 0.27,
-        "max_paragraph": 169,
-        "paragraphs": 19,
-        "sentences": 37
-      },
-      "score": 90,
-      "source": "openai-news",
-      "title": "How Cisco defends at machine speed with OpenAI"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T20:23:12.361369+00:00",
-      "attempt": 0,
-      "id": "a2357e701f020223",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 86.7,
-        "avg_sentence": 39.2,
-        "long_share": 0.19,
-        "max_paragraph": 169,
-        "paragraphs": 19,
-        "sentences": 42
-      },
-      "score": 90,
-      "source": "openai-news",
-      "title": "How Cisco defends at machine speed with OpenAI"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T20:35:29.608412+00:00",
-      "attempt": 1,
-      "id": "35cf51a18907f6ab",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 86.3,
-        "avg_sentence": 38.4,
-        "long_share": 0.056,
-        "max_paragraph": 154,
-        "paragraphs": 16,
-        "sentences": 36
-      },
-      "score": 90,
-      "source": "radar-cnbc.com",
-      "title": "CrowdStrike launches an AI kill switch in Falcon Guardian to stop rogue internal",
-      "warnings": [
-        "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CNBC）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-03T21:15:42.749597+00:00",
@@ -21579,6 +21473,108 @@
       "score": 92,
       "source": "soumu",
       "title": "武力攻撃事態等における安否情報収集・提供システムへの不正アクセスについて"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T09:41:56.213420+00:00",
+      "attempt": 1,
+      "id": "a4de4f584112e3a4",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "soumu",
+      "title": "武力攻撃事態等における安否情報収集・提供システムへの不正アクセスについて"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T09:42:31.274695+00:00",
+      "attempt": 2,
+      "id": "a4de4f584112e3a4",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "答えになっていない見出し（「日本の住民が今すぐ取る手続きは示されていない」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
+      ],
+      "readability": {
+        "avg_paragraph": 88.1,
+        "avg_sentence": 34.2,
+        "long_share": 0.056,
+        "max_paragraph": 124,
+        "paragraphs": 14,
+        "sentences": 36
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "武力攻撃事態等における安否情報収集・提供システムへの不正アクセスについて"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T09:43:04.941130+00:00",
+      "attempt": 3,
+      "id": "a4de4f584112e3a4",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "soumu",
+      "title": "武力攻撃事態等における安否情報収集・提供システムへの不正アクセスについて"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T09:44:32.056080+00:00",
+      "attempt": 1,
+      "id": "a8c2c68b354dec77",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 42.0字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 109.1,
+        "avg_sentence": 42.0,
+        "long_share": 0.205,
+        "max_paragraph": 171,
+        "paragraphs": 15,
+        "sentences": 39
+      },
+      "score": 94,
+      "source": "sbintuitions-blog",
+      "title": "Sarashina3.2 translate: 常体・敬体を指定できる翻訳モデル",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SB・LLM・WMT）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T09:45:05.478393+00:00",
+      "attempt": 0,
+      "id": "a8c2c68b354dec77",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 78.6,
+        "avg_sentence": 35.1,
+        "long_share": 0.085,
+        "max_paragraph": 131,
+        "paragraphs": 21,
+        "sentences": 47
+      },
+      "score": 92,
+      "source": "sbintuitions-blog",
+      "title": "Sarashina3.2 translate: 常体・敬体を指定できる翻訳モデル",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SB・LLM・WMT）"
+      ]
     }
   ],
   "short_text_retry": {
