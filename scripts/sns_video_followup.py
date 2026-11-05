@@ -915,7 +915,10 @@ def node_problems(node: dict) -> tuple[str, bool, list[str]]:
             article = None
     service = node.get("service", "")
     text = (thread[0].get("text") if thread else "") or node.get("text") or ""
-    reply = "\n".join(t.get("text") or "" for t in thread[1:]) if service == "twitter" else ""
+    import sns_plan
+
+    # X と、リンクの位置の比べ（S31・THREADS_LINK_AB）で返信にリンクを置いた Threads は、返信も合わせて確かめる（門番の enforce_buffer と同じ）
+    reply = "\n".join(t.get("text") or "" for t in thread[1:]) if service == "twitter" or (service == "threads" and sns_plan.link_ab_on()) else ""
     links = [] if service != "facebook" else [node.get("externalLink") or ""]
     problems = sns_rules.check_post({"twitter": "x"}.get(service, service), text, [], article, reply_text=reply, links=[x for x in links if x],
                                     pending_video=True) if service else ["SNS が分からない"]
@@ -980,6 +983,8 @@ def queue_fix(apply: bool = False, now: datetime | None = None, api_key: str | N
 # 今の門番で読み直し、違反があればその場で今の決まりの文面に直す（editPost。時刻・動画はそのまま）。直せなければ下書きに戻す（消さない）。
 # Buffer の呼び出しは、手元の記録で「3時間以内に出る・今の決まりでまだ読み直していない予約」があるときだけ、一覧1回＋直す投稿ごとに2回。
 PRESEND_HOURS = 3.0
+# 直せなければ下書きに戻すのは、決まった型の違反（ルール13・14・16・17・S35）だけ
+PAUSE_RULES = ("[ルール13]", "[ルール14]", "[ルール16]", "[ルール17]")
 PRESEND_MARGIN_H = 1.0  # X・Facebook は Threads の枠から最大30分ほど後ろ。手元の記録の時刻にこれだけ余裕を見る
 
 
@@ -1040,9 +1045,12 @@ def node_texts(node: dict) -> list[str]:
 def _input_problems(service: str, inp: dict, article: dict | None) -> list[str]:
     import sns_rules
 
+    import sns_plan
+
     text, reply, _media, links = sns_rules.buffer_parts(service, inp)
     platform = sns_rules.norm_platform(service)
-    return sns_rules.check_post(platform, text, [], article, reply_text=reply if platform == "x" else "", links=links, pending_video=True)
+    with_reply = platform == "x" or (platform == "threads" and sns_plan.link_ab_on())
+    return sns_rules.check_post(platform, text, [], article, reply_text=reply if with_reply else "", links=links, pending_video=True)
 
 
 def rebuilt_texts(node: dict, slug: str, article: dict, state: dict, posted: dict) -> list[str]:
@@ -1143,6 +1151,12 @@ def presend_recheck(apply: bool = True, now: datetime | None = None, api_key: st
             continue
         if not cur or cur.get("status") != "scheduled":
             row["action"] = f"skip（Buffer の状態が {(cur or {}).get('status')}）"
+            continue
+        if inp is None and not any(v.startswith(PAUSE_RULES) or "台帳 S35" in v for v in problems):
+            # 決まった型・同じことの2回・以前の案内（ルール13・14・16・17・S35）でない違反は、ここでは止めない（読み違いで予約を止めないため）
+            row["action"] = "left_issue"
+            issue(slug, f"出る前の読み直しで、予約中の {service} の投稿に直せない違反がありました（予約はそのまま。確かめてください）: {'; '.join(problems[:3])}")
+            checked[node["id"]] = {**done, "left": "left_issue"}
             continue
         if inp is None:
             try:

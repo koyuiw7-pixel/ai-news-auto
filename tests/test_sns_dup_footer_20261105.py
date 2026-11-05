@@ -233,6 +233,30 @@ class PresendRecheckTest(unittest.TestCase):
         self.assertFalse(self.edits)
 
 
+class PresendNodeCheckTest(unittest.TestCase):
+    def test_threads_post_with_link_in_reply_is_not_a_violation(self):
+        # 2026-11-05 presend-plan の一覧で、リンクの位置の比べ（S31）で返信にリンクを置いた Threads の予約を「リンクがない」と読み違えた
+        url = utm("threads").replace("video_body", "video_reply")
+        n = {"id": "t1", "service": "threads", "dueAt": "2026-11-05T09:45:00Z", "text": f"{OPENER}\n\n{NEXT_FACT}",
+             "metadata": {"thread": [{"text": f"{OPENER}\n\n{NEXT_FACT}", "assets": [{"mimeType": "video/mp4", "source": "https://x/v.mp4"}]},
+                                     {"text": url, "assets": []}]}}
+        with patch.dict("os.environ", {"THREADS_LINK_AB": "1"}):
+            slug, video, problems = svf.node_problems(n)
+        self.assertEqual(slug, ARARA["slug"])
+        self.assertTrue(video)
+        self.assertFalse([p for p in problems if "リンク" in p], problems)
+
+    def test_non_template_violation_is_left_with_an_issue_not_paused(self):
+        t = PresendRecheckTest("test_plan_only_lists_and_does_not_edit")
+        t.setUp()
+        t.fake_problems = lambda n: ("kumamoto-quake-risai-online-application", True, ["[ルール1] 本文に記事のリンクがない（X 以外はリンクを本文に置く）"])
+        with patch.object(sns_rules, "autofix", side_effect=lambda x, a=None, p="": (x, [])):
+            rows, _ = t.run_check([node("n1", "threads", "本文です。", t.due)])
+        self.assertEqual(rows[0]["action"], "left_issue")
+        self.assertFalse(t.pauses)
+        self.assertFalse(t.edits)
+
+
 class WiringTest(unittest.TestCase):
     def test_hourly_run_calls_presend_and_workflow_offers_plan(self):
         src = (ROOT / "scripts" / "sns_video_followup.py").read_text("utf-8")
