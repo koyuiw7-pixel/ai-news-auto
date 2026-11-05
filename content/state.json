@@ -210,7 +210,7 @@
     }
   },
   "major_tries": {
-    "f5001d451409d444": 1
+    "f5001d451409d444": 2
   },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
@@ -15118,89 +15118,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-03T16:30:33.356147+00:00",
-      "attempt": 0,
-      "id": "9c22661ce9de81e3",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 元に無い数字が増えた（20, 21, 3066, 45, 45.3）"
-      ],
-      "readability": {
-        "avg_paragraph": 101.4,
-        "avg_sentence": 45.3,
-        "long_share": 0.211,
-        "max_paragraph": 187,
-        "paragraphs": 17,
-        "sentences": 38
-      },
-      "score": 93,
-      "source": "github-changelog-copilot",
-      "title": "GitHub Copilot is now available in JetBrains Air",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IDE・ACP・IDEA）",
-        "英語の画面名（「Settings >」）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T16:46:05.202080+00:00",
-      "attempt": 1,
-      "id": "020b7910e3b471cc",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 151.8,
-        "avg_sentence": 44.4,
-        "long_share": 0.244,
-        "max_paragraph": 253,
-        "paragraphs": 12,
-        "sentences": 41
-      },
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "Introducing India-based inference for Kimi K3 on Amazon Bedrock",
-      "warnings": [
-        "見出しが61字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LLM・JSON・YYYY）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T16:47:03.120897+00:00",
-      "attempt": 2,
-      "id": "020b7910e3b471cc",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "表の「費用 … Globalより高い可能性」→ 元記事はGlobalが最も安いとだけ述べており、Indiaが高いという推測は元記事にない。",
-        "「Indiaの料金の差額は、料金ページで確認する形です。」→ 元記事は料金ページを参照するよう案内しているだけで、Indiaの料金差の有無には触れていない。",
-        "「Bedrockの構造化出力は10月に一般提供されていました」→ 確認済みの文脈は10/26記事で、リンク先 /articles/aws-weekly-20261019-updates と日付が食い違う。10月の一般提供自体は文脈と整合するが、出典が不確か。",
-        "「かんたん版」の「データセンターだけで動かせる」→ 元記事はリージョン（ムンバイ・ハイデラバード）への限定と述べており、データセンターという表現は言い過ぎ。",
-        "「日本など他の国に処理を限るプロファイルの予定は、まだ発表されていません」→ 元記事に言及がなく、元記事では確認できない記述。ただし「発表されていない」型の記述なので軽微。"
-      ],
-      "readability": {
-        "avg_paragraph": 138.7,
-        "avg_sentence": 40.1,
-        "long_share": 0.178,
-        "max_paragraph": 246,
-        "paragraphs": 13,
-        "sentences": 45
-      },
-      "score": 72,
-      "source": "aws-ml-blog",
-      "title": "Introducing India-based inference for Kimi K3 on Amazon Bedrock",
-      "warnings": [
-        "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LLM・JSON・CLI）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-03T16:48:22.949051+00:00",
       "attempt": 3,
@@ -21317,6 +21234,72 @@
       "attempt": 3,
       "id": "f5001d451409d444",
       "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T05:02:30.849039+00:00",
+      "attempt": 1,
+      "id": "f5001d451409d444",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リードの数字「50円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「53兆5,000億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「3兆9,000億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 72.7,
+        "avg_sentence": 33.5,
+        "long_share": 0.04,
+        "max_paragraph": 126,
+        "paragraphs": 23,
+        "sentences": 50
+      },
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IFRS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T05:03:19.878496+00:00",
+      "attempt": 2,
+      "id": "f5001d451409d444",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
+        "リードの数字「535,000億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「50.00円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「100.00円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 86.1,
+        "avg_sentence": 33.8,
+        "long_share": 0.02,
+        "max_paragraph": 144,
+        "paragraphs": 20,
+        "sentences": 51
+      },
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T05:04:04.641951+00:00",
+      "attempt": 3,
+      "id": "f5001d451409d444",
+      "kind": "broad",
       "model": "claude:sonnet",
       "problems": [
         "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
