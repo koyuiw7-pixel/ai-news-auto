@@ -154,14 +154,6 @@
       "tries": 1,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87264?site=nli"
     },
-    "dd699d29ee35f836": {
-      "first": "2026-11-05T10:36:29.714499+00:00",
-      "next": "2026-11-05T17:03:26.490632+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します",
-      "tries": 2,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110512"
-    },
     "e2654f5d2f822277": {
       "first": "2026-11-04T03:04:00.517719+00:00",
       "next": "2026-11-04T06:04:00.517719+00:00",
@@ -13984,6 +13976,15 @@
       "slug": "hiroshima-u-lung-cancer-ai-ct",
       "url": "https://www.hiroshima-u.ac.jp/news/100805"
     },
+    "d7e9e3e89ee778d6": {
+      "at": "2026-11-05T17:13:10.497863+00:00",
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "gemini-omni-12-flash-ga",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/"
+    },
     "d80f9a7dc3cfba00": {
       "at": "2026-10-29T18:34:45.364253+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -14261,6 +14262,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（一覧へ）",
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/"
+    },
+    "dd699d29ee35f836": {
+      "at": "2026-11-05T17:18:02.940207+00:00",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110512"
     },
     "ddafe00fcfab2d61": {
       "at": "2026-10-28T22:30:58.505963+00:00",
@@ -15923,71 +15931,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-04T03:15:08.516057+00:00",
-      "attempt": 0,
-      "id": "de5d8c3372c230d4",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「最も安い構成は、Flash-Liteという思考を行わないモデルにまず処理させます」→ 元記事では、キーワード方式のヒューリスティックの方が安かったが誤りが多かったと書かれており、Jevルーターが最も安いとはされていない。Jevのコストは完全なルーターに近いとい"
-      ],
-      "readability": {
-        "avg_paragraph": 176.9,
-        "avg_sentence": 43.0,
-        "long_share": 0.081,
-        "max_paragraph": 261,
-        "paragraphs": 9,
-        "sentences": 37
-      },
-      "score": 85,
-      "source": "google-developers-blog",
-      "title": "Cost per task: Using cheap classifiers to route across Gemini models and thinkin",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LOW）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:24:23.205064+00:00",
-      "attempt": 1,
-      "id": "a55665cf48953af7",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "hugging-face-blog",
-      "title": "StateBench: Testing how language models track state changes over long documents"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:32:23.743284+00:00",
-      "attempt": 2,
-      "id": "a55665cf48953af7",
-      "kind": "ai",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "problems": [
-        "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める"
-      ],
-      "readability": {
-        "avg_paragraph": 169.9,
-        "avg_sentence": 55.0,
-        "long_share": 0.324,
-        "max_paragraph": 234,
-        "paragraphs": 11,
-        "sentences": 34
-      },
-      "score": null,
-      "source": "hugging-face-blog",
-      "title": "StateBench: Testing how language models track state changes over long documents",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-04T03:33:49.880450+00:00",
@@ -22160,6 +22103,58 @@
       "score": null,
       "source": "ipa",
       "title": "CBT方式で実施するITパスポート試験、情報セキュリティマネジメント試験及び基本情報技術者試験における2027年1月以降の実施予定について"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T17:13:10.476104+00:00",
+      "attempt": 1,
+      "id": "d7e9e3e89ee778d6",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 102.1,
+        "avg_sentence": 38.3,
+        "long_share": 0.075,
+        "max_paragraph": 138,
+        "paragraphs": 15,
+        "sentences": 40
+      },
+      "score": 88,
+      "source": "google-ai-blog",
+      "title": "Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（FPV）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T17:16:52.414878+00:00",
+      "attempt": 1,
+      "id": "dd699d29ee35f836",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T17:18:02.940120+00:00",
+      "attempt": 2,
+      "id": "dd699d29ee35f836",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "tokyo-metro",
+      "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
     }
   ],
   "short_text_retry": {
