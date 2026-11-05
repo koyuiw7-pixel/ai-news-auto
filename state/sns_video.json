@@ -2022,7 +2022,7 @@
     },
     "arara-message-data-leak-second-report": {
       "at": "2026-11-04T20:35:32+00:00",
-      "status": "ready",
+      "status": "attached",
       "tries": 1,
       "ok": true,
       "adopted": "muse",
@@ -2064,7 +2064,9 @@
         "poster": "https://ai-tech-express.jp/video/arara-message-data-leak-second-report-eb84908d85.jpg"
       },
       "variant": "short",
-      "why": "差し替えられない形の投稿（返信つき・Buffer 以外など）"
+      "why": "差し替えられない形の投稿（返信つき・Buffer 以外など）",
+      "bufferId": "6aebcf0401b5398f879db1bb",
+      "postedAt": "2026-11-05T11:00:00+09:00"
     },
     "ntt-fy2026-q2-results": {
       "at": "2026-11-04T20:36:10+00:00",
@@ -2440,16 +2442,6 @@
       "why": "Muse の動画を 12:10 まで待っている",
       "checkedAt": "2026-11-04T20:32:29+00:00"
     },
-    "arara-message-data-leak-second-report": {
-      "status": "skipped",
-      "errors": {
-        "threads": "SNSルール違反のため投稿しません（threads/sns_video_followup.publish_queued）: [ルール2] 動画の縦横を確かめられない（https://ai-tech-express.jp/video/arara-message-data-leak-second-report-ff8ba1512）"
-      },
-      "channels": {
-        "threads": ""
-      },
-      "why": "Buffer に動画つきの投稿を作れなかった: SNSルール違反のため投稿しません（threads/sns_video_followup.publish_queued）: [ルール2] 動画の縦横を確かめられない（https://ai-tech-express.jp/video/arara-message-data-leak-second-report-ff8ba1512）"
-    },
     "kumamoto-quake-27th-meeting": {
       "status": "skipped",
       "why": "動画を作れなかった（gate_failed: full: どの段でも合格しなかった（あとの回で作り直す）: full: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回））",
@@ -2477,6 +2469,18 @@
       },
       "id": "6aebca63bc551efdea31d6e1",
       "dueAt": "2026-11-05T09:50:00+09:00",
+      "variant": "short",
+      "delayedMin": 0
+    },
+    "arara-message-data-leak-second-report": {
+      "status": "created",
+      "channels": {
+        "threads": "6aebcf0401b5398f879db1bb",
+        "twitter": "6aebcf06ff03f6944a155ba4",
+        "facebook": "6aebcf07ff03f6944a155bf9"
+      },
+      "id": "6aebcf0401b5398f879db1bb",
+      "dueAt": "2026-11-05T11:00:00+09:00",
       "variant": "short",
       "delayedMin": 0
     }
@@ -2963,6 +2967,97 @@
       },
       "dropBlueskyExtra": true,
       "clearHold": true,
+      "applied": true
+    },
+    "arara-message-data-leak-second-report": {
+      "at": "2026-11-05T00:33:53+00:00",
+      "pending": {
+        "inputs": {
+          "threads": {
+            "channelId": "6ad942f3778b240e2f82f180",
+            "text": "メール配信サービス「アララメッセージ」で、メールアドレス約7,700万件が持ち出された恐れがあります。\n\nアララのメール配信サービスで不正アクセスがあり、約7,700万件のメールアドレスが流出した恐れがあります。\n被害は契約企業のサーバー97台に広がり、対象は最大約380社と推計されています。\n\nhttps://ai-tech-express.jp/articles/arara-message-data-leak-second-report?utm_source=threads&utm_medium=social&utm_campaign=classic&utm_content=video_body",
+            "schedulingType": "automatic",
+            "assets": [],
+            "metadata": {
+              "threads": {
+                "topic": "情報流出",
+                "thread": [
+                  {
+                    "text": "メール配信サービス「アララメッセージ」で、メールアドレス約7,700万件が持ち出された恐れがあります。\n\nアララのメール配信サービスで不正アクセスがあり、約7,700万件のメールアドレスが流出した恐れがあります。\n被害は契約企業のサーバー97台に広がり、対象は最大約380社と推計されています。\n\nhttps://ai-tech-express.jp/articles/arara-message-data-leak-second-report?utm_source=threads&utm_medium=social&utm_campaign=classic&utm_content=video_body",
+                    "assets": [
+                      {
+                        "image": {
+                          "url": "https://ai-tech-express.jp/card/arara-message-data-leak-second-report"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "mode": "customScheduled",
+            "dueAt": "2026-11-05T11:00:00+09:00"
+          },
+          "twitter": {
+            "channelId": "6ade35f52f1f5ed648cb07cf",
+            "schedulingType": "automatic",
+            "text": "メール配信サービス「アララメッセージ」で、メールアドレス約7,700万件が持ち出された恐れがあります。\n\nアララのメール配信サービスで不正アクセスがあり、約7,700万件のメールアドレスが流出した恐れがあります。\n被害は契約企業のサーバー97台に広がり、対象は最大約380社と推計されています。",
+            "assets": [],
+            "metadata": {
+              "twitter": {
+                "thread": [
+                  {
+                    "text": "メール配信サービス「アララメッセージ」で、メールアドレス約7,700万件が持ち出された恐れがあります。\n\nアララのメール配信サービスで不正アクセスがあり、約7,700万件のメールアドレスが流出した恐れがあります。\n被害は契約企業のサーバー97台に広がり、対象は最大約380社と推計されています。",
+                    "assets": [
+                      {
+                        "image": {
+                          "url": "https://ai-tech-express.jp/card/arara-message-data-leak-second-report"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "text": "https://ai-tech-express.jp/articles/arara-message-data-leak-second-report?utm_source=x&utm_medium=social&utm_campaign=classic&utm_content=video_reply",
+                    "assets": []
+                  }
+                ]
+              }
+            },
+            "mode": "customScheduled",
+            "dueAt": "2026-11-05T11:12:00+09:00",
+            "_offsetMin": 12
+          },
+          "facebook": {
+            "channelId": "6ade3ad12f1f5ed648cb6936",
+            "schedulingType": "automatic",
+            "text": "メール配信サービス「アララメッセージ」で、メールアドレス約7,700万件が持ち出された恐れがあります。\n\nアララのメール配信サービスで不正アクセスがあり、約7,700万件のメールアドレスが流出した恐れがあります。\n被害は契約企業のサーバー97台に広がり、対象は最大約380社と推計されています。\n\nhttps://ai-tech-express.jp/articles/arara-message-data-leak-second-report?utm_source=facebook&utm_medium=social&utm_campaign=classic&utm_content=video_body",
+            "assets": [],
+            "metadata": {
+              "facebook": {
+                "type": "post",
+                "linkAttachment": {
+                  "url": "https://ai-tech-express.jp/articles/arara-message-data-leak-second-report?utm_source=facebook&utm_medium=social&utm_campaign=classic&utm_content=video_body",
+                  "title": "アララメッセージ流出：約7,700万件と不審メールの件名",
+                  "description": "アララのメール配信サービス「アララメッセージ」で、メールアドレス約7,700万件が持ち出された恐れがあります。不審メールの件名と送信元、11月2日の第2報で分かった範囲、まだ決まっていないことを整理しました。",
+                  "thumbnail": {
+                    "url": "https://ai-tech-express.jp/card/arara-message-data-leak-second-report"
+                  }
+                }
+              }
+            },
+            "mode": "customScheduled",
+            "dueAt": "2026-11-05T11:27:00+09:00",
+            "_offsetMin": 27
+          }
+        },
+        "slot": "2026-11-05T11:00:00+09:00",
+        "fmt": "classic"
+      },
+      "threadsSent": false,
+      "repost": true,
+      "paused": {},
+      "dropBlueskyExtra": false,
+      "clearHold": false,
       "applied": true
     }
   },
