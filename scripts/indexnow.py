@@ -220,7 +220,8 @@ def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> s
         return "thin"
     if not is_focus(article):
         return "off-focus"
-    if not article.get("verdict") and not JAPAN_VALUE.search(body):
+    # 日本の会社の決算短信・国の統計の速報（scheduledRelease。台帳 W35）は、それ自体が日本の読者の話なので「日本で使える？」の章を求めない
+    if not article.get("verdict") and not article.get("scheduledRelease") and not JAPAN_VALUE.search(body):
         return "no-japan-value"
     if article.get("slug") in dups or (article.get("duplicateOf") and article.get("duplicateOf") != article.get("slug")):
         return "duplicate"

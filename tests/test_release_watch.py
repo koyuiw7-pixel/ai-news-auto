@@ -216,3 +216,12 @@ class GateTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_scheduled_release_needs_no_japan_value_section():
+    """日本の会社の決算・国の統計（scheduledRelease）は「日本で使える？」の章が無くても no-japan-value にしない（W35）"""
+    import indexnow
+    body = "## 中間期の業績\n" + "トヨタの営業収益は26兆9,624億円で前年同期比9.5%増えました。" * 120
+    base = {"title": "トヨタ、中間期は増収増益", "genreSlug": "ai", "tags": ["決算"], "body": body, "slug": "toyota-x"}
+    assert indexnow.noindex_reason({**base, "scheduledRelease": {"id": "tdnet"}}) != "no-japan-value"
+    assert indexnow.noindex_reason(base) == "no-japan-value"
