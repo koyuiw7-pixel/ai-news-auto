@@ -1,0 +1,129 @@
+{
+  "slug": "nvidia-vera-cpu-agents-per-watt",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.com/blog/vera-cpu-highest-throughput-fastest-agents/",
+  "sourceName": "NVIDIA公式ブログ",
+  "title": "NVIDIAの新CPU「Vera」は電力1ワットあたりのエージェント数が1.6倍",
+  "seoTitle": "NVIDIA Vera CPUとは？エージェント処理の速さと電力効率",
+  "threadsPost": "AIのデータセンターを担当している人に、知っておいてほしい話です。\n\nNVIDIAのCPU「Vera」は、x86の最速CPUと比べて、1ワットあたりのエージェント数が1.6倍だと説明しています。\n日本での提供時期と価格は、まだ未発表です。\n\nAIの施設を組むとき、1台の速さと電力あたりの量、どちらを優先しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "ab",
+      "question": "AIの施設を組むとき、1台の速さと電力あたりの量、どちらを優先しますか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "自社のシステムで、処理の待ち時間がいちばん長いのはどこだと感じますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "NVIDIAの新しいCPU「Vera」は、AIエージェントを多く動かすデータセンターで、速さと電力効率を1台で両立させると説明しています。電力1ワットあたりのエージェント数は、最速のx86 CPUと比べて1.6倍だとされています。日本での提供時期と価格は、まだ発表されていません。",
+  "description": "NVIDIAのCPU「Vera」は、AIエージェントの作業でx86の最速CPUより1ワットあたりのエージェント数が1.6倍と説明しました。導入企業の検証では最大2.2倍の速さも示されました。日本での提供時期と価格は未発表です。",
+  "keywords": [
+    "NVIDIA Vera",
+    "Vera CPU",
+    "AIエージェント",
+    "エージェント CPU",
+    "データセンター 電力効率",
+    "x86 CPU 比較",
+    "AIファクトリー",
+    "NVIDIA CPU 日本",
+    "推論 CPU"
+  ],
+  "tags": [
+    "NVIDIA Vera",
+    "CPU",
+    "AIエージェント",
+    "データセンター",
+    "AIインフラ"
+  ],
+  "highlights": [
+    "NVIDIAのCPU「Vera」は、x86の最速CPUより1ワットあたりのエージェント数が1.6倍だと説明",
+    "Daytonaの検証では、1,000個のサンドボックス起動が、x86の88.4秒からVeraの10.8秒に",
+    "DeepInfraは、最速のx86 CPUの最大2.2倍の速さを本番のエージェント処理で確認"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "AIデータセンターの運営",
+    "take": "導入を検討する事業者は、提供時期と条件を公式情報で確かめるとよいでしょう。",
+    "judgedAt": "2026-11-05T20:32:51.993378+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の影響は小さいです。AIを動かすデータセンターの運営者が、導入を検討するときに確かめる発表です。"
+    ]
+  },
+  "body": "NVIDIAの公式ブログによると、CPU「Vera」は、AIエージェントに求められる2つの性能を1つのチップで両立させるとされています。1つは一つひとつの作業を速く終える力です。もう1つは、同じ電力でより多くのエージェントを動かす力です。\n\nAIエージェントは、回答を作るだけでなく、情報を検索したり、データベースに問い合わせたり、コードを書いて試したりします。その途中で、GPU（画像や大量の計算を担うチップ）とCPU（コンピューターの処理を担う中心のチップ）を行き来します。つまり、エージェントの速さはCPUの速さに左右されます。\n\nデータセンターには、電力の上限があります。AIを大量に動かす施設（AIファクトリー）も、電力には限りがあります。NVIDIAは、1ワットあたりにどれだけ仕事ができるかで選ぶべきだと述べています。\n\n## 1ワットあたり1.6倍、x86の最速CPUと比べて\n\nNVIDIAは、100メガワット規模のデータセンターを想定した比較で、Vera 1台の優位を説明しました。相手は、最速のx86（多くのサーバーで使われてきたCPUの仕組み）と、電力効率の高いx86 CPUです。結果は次の2点です。\n\n- 最速のx86 CPUと比べて、1ワットあたりのエージェント数が1.6倍\n- 電力効率の高いx86 CPUと比べて、エージェントの処理速度が2倍\n\nNVIDIAの製品ページは、x86の処理より80%速くエージェント向けの作業を終えられるとしています（NVIDIA公式ブログ「NVIDIA Vera CPU」、11/6確認）。数字は比べる相手によって変わります。そのため、どの比較の数字かを押さえておく必要があります。\n\n速いCPUと、一台に多くを詰め込めるCPUを組み合わせる構成では、性能の違う2種類のx86を使い分けることになります。資料は、Veraならその使い分けが1種類で済むと説明しています。\n\n**導入を試した企業の結果（NVIDIAが紹介）**\n\n先行して試した企業の結果も、NVIDIAは紹介しています。いずれも各社の作業に近い条件での数字です。\n\n- Perplexity（AI検索の企業）：エージェント型のコーディング作業が、従来のCPUより1.5倍速い。今後の本番システムに導入する計画\n- DeepInfra（AIの推論基盤を提供する企業）：本番のエージェント調整処理で、最速のx86の最大2.2倍。試した4種類の中で最速\n- Daytona：1,000個のエージェント用サンドボックス（隔離された実行環境）の起動が、x86の88.4秒に対しVeraでは10.8秒。Veraで2,000の同時サンドボックスの場合、毎秒12.7件の作業を完了\n- DuckLabs：データベースの性能試験TPC-H（SF1000）の中央値で、Intel Xeon 6の基準構成の約1.5倍\n- Modal：同等のx86機器と比べ、コアあたりのサンドボックス処理量が最大2倍。高負荷ほど差が広がる\n- ClickHouse：特別な調整をしない標準版で176コアにほぼ比例して速くなり、データ分析の性能テストClickBench（ベンチマーク）のハードウェア部門で首位\n\n編集部の見立てでは、ベンチマークの数字は比べる相手と測定条件がそろって初めて意味を持ちます。上の数字はNVIDIAが紹介した各社の結果です。作業内容はそれぞれ異なります。\n\nサイソクは10月23日、NVIDIAのGTC Berlinでの発表を報じています（[NVIDIA、GTC Berlinで「Vera Rubin」とAI工場「DSX POD」を発表](/articles/nvidia-gtc-berlin-2026-vera-rubin-openshell)）。\n\n## 日本での提供と料金は、まだ発表されていません\n\nVeraの日本での提供時期と価格は、今回の発表では示されていません。日本の事業者が導入を考えるなら、NVIDIAの公式情報で提供状況の更新を確認するとよいでしょう。編集部の見立てでは、一般の利用者が直接使う機会は今のところ小さいです。\n\n## まだ分からないこと\n\n- 一般提供（誰でも買える状態）になる時期は、まだ発表されていません\n- Perplexityが本番システムに導入する時期は、「今後」とだけ示されています\n- 100メガワット規模の比較で使った作業内容や測定条件の詳細は、まだ明らかにされていません",
+  "easy": "## ひとことで言うと\n\nNVIDIAのCPU「Vera」は、AIエージェントの作業を速く終えられ、電力1ワットあたりでより多くのエージェントを動かせると説明しています。日本での提供時期と価格は、まだ発表されていません。\n\nAIエージェントは、回答を作るだけでなく、検索やコードの実行もこなします。そのたびにCPUが働くので、CPUの速さと電力効率が効いてきます。\n\nNVIDIAは、各社の検証結果も示しています。たとえばDaytonaは、1,000個の実行環境の起動が、x86の88.4秒に対しVeraでは10.8秒だったと説明しています。",
+  "channel": "NVIDIA公式ブログ",
+  "channelId": "",
+  "channelSlug": "nvidia-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Vera Delivers the Best of Both Worlds: Highest Throughput and Fastest Agents",
+  "publishedAt": "2026-11-05T20:00:41+00:00",
+  "generatedAt": "2026-11-05T20:32:51.993366+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/nvidia-vera-cpu-agents-per-watt-391fb8b8.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "general",
+  "faq": [
+    {
+      "q": "Vera CPUはGPUの代わりに使うものですか？",
+      "a": "GPUの代わりではありません。GPUを積んだシステムの親CPUとしても、単独のCPUとしても使えると、NVIDIAの製品ページは説明しています（NVIDIA公式ブログ「NVIDIA Vera CPU」、11/6確認）。"
+    }
+  ],
+  "todayActions": [
+    "NVIDIAの公式ブログで各社の検証内容を読み、自社の作業に近い事例があるかを確かめる。",
+    "導入を考えるなら、NVIDIAの公式サイトでVeraの提供状況の更新を確かめる。"
+  ],
+  "relatedSlugs": [
+    "nvidia-gtc-berlin-2026-vera-rubin-openshell"
+  ],
+  "qualityScore": 85,
+  "factSources": [
+    {
+      "label": "関連ページ",
+      "name": "NVIDIA公式ブログ「NVIDIA Vera CPU」",
+      "url": "https://www.nvidia.com/en-us/data-center/vera-cpu/",
+      "checkedAt": "2026-11-06"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-05T20:00:41+00:00",
+  "detectedAt": "2026-11-05T20:30:52+00:00",
+  "speedMinutes": 36,
+  "originalTitle": "NVIDIAのCPU「Vera」、電力あたりのエージェント数が1.6倍　日本での提供は未定",
+  "titleStyle": "2026-11-03",
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA公式ブログ",
+    "sourceUrl": "https://blogs.nvidia.com/blog/vera-cpu-highest-throughput-fastest-agents/",
+    "original": "https://blogs.nvidia.com/wp-content/uploads/2026/11/tech-blog-cpu-architecture-angled-vera-rack-5769445-1920x1080-1.png",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-05T20:33:36+00:00"
+  },
+  "imageFocus": {
+    "x": 0.509,
+    "y": 0.478,
+    "box": [
+      0.356,
+      0.022,
+      0.662,
+      0.933
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/nvidia-vera-cpu-agents-per-watt-391fb8b8.jpg"
+  }
+}

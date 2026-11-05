@@ -9674,6 +9674,15 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/0556300a827429ca485e05c44d178c464fa2b267"
     },
+    "7eab5dddcfa7727d": {
+      "at": "2026-11-05T20:33:26.776372+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 85,
+      "section": "ai",
+      "slug": "nvidia-vera-cpu-agents-per-watt",
+      "url": "https://blogs.nvidia.com/blog/vera-cpu-highest-throughput-fastest-agents/"
+    },
     "7f04b62d80588514": {
       "at": "2026-10-29T06:52:46.939109+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -16088,56 +16097,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-04T05:22:01.835729+00:00",
-      "attempt": 1,
-      "id": "431523e8b33d731a",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "文が長い（1文の平均 47.2字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 85.9,
-        "avg_sentence": 47.2,
-        "long_share": 0.2,
-        "max_paragraph": 150,
-        "paragraphs": 22,
-        "sentences": 40
-      },
-      "score": 90,
-      "source": "salesforce-jp",
-      "title": "Salesforce、「MuleSoft / Agent Fabric」の機能拡張を発表 トークンコスト増加とAIエージェントの障害が顧客に影響が及ぼす前に自動",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（MCP・IP・ASICS）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-04T05:22:36.778065+00:00",
-      "attempt": 0,
-      "id": "431523e8b33d731a",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.0,
-        "avg_sentence": 42.0,
-        "long_share": 0.13,
-        "max_paragraph": 150,
-        "paragraphs": 23,
-        "sentences": 46
-      },
-      "score": 92,
-      "source": "salesforce-jp",
-      "title": "Salesforce、「MuleSoft / Agent Fabric」の機能拡張を発表 トークンコスト増加とAIエージェントの障害が顧客に影響が及ぼす前に自動",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（MCP・IP・ASICS）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-04T05:42:39.004091+00:00",
       "attempt": 1,
       "id": "3c6177ead4c30c9c",
@@ -22303,6 +22262,58 @@
       "score": 95,
       "source": "google-blog-all",
       "title": "Generate longer AI videos with Omni 1.2 Flash in Google Vids at no cost."
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T20:32:59.342758+00:00",
+      "attempt": 1,
+      "id": "7eab5dddcfa7727d",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 47.8字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 95.5,
+        "avg_sentence": 47.8,
+        "long_share": 0.227,
+        "max_paragraph": 146,
+        "paragraphs": 11,
+        "sentences": 22
+      },
+      "score": 90,
+      "source": "nvidia-blog",
+      "title": "Vera Delivers the Best of Both Worlds: Highest Throughput and Fastest Agents",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（TPC・SF・GTC）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T20:33:20.234790+00:00",
+      "attempt": 0,
+      "id": "7eab5dddcfa7727d",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 96.2,
+        "avg_sentence": 39.2,
+        "long_share": 0.111,
+        "max_paragraph": 146,
+        "paragraphs": 11,
+        "sentences": 27
+      },
+      "score": 85,
+      "source": "nvidia-blog",
+      "title": "Vera Delivers the Best of Both Worlds: Highest Throughput and Fastest Agents",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（TPC・SF・GTC）"
+      ]
     }
   ],
   "short_text_retry": {
