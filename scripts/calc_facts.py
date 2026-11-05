@@ -46,6 +46,7 @@ UNIT = rf"(?P<unit>円|米ドル|ドル|ユーロ|%|％|パーセント|倍|(?<=
 QTY_RE = re.compile(
     rf"(?:{MONEY_PREFIX}\s?)?(?P<num>{JP_NUM})(?:\s?(?P<en>thousand|million|billion|trillion|bn|[kKmMbB](?![A-Za-z])))?\s?{UNIT}?"
 )
+SEN_RE = re.compile(r"\s?(\d{1,2})\s?銭")
 APPROX_BEFORE_RE = re.compile(r"(?:約|およそ|ほぼ|概ね|おおむね|推定|最大|最大で|少なくとも|over|about|approximately|nearly|around|~)\s*$", re.I)
 APPROX_AFTER_RE = re.compile(r"^\s*(?:前後|程度|ほど|強|弱|超|余り|あまり|近く|以上|未満|以下|超え|台)")
 SENTENCE_RE = re.compile(r"[^。！？!?\n]+[。！？!?]?")
@@ -121,7 +122,10 @@ def extract(text: str) -> list[Qty]:
     text = nfkc(text)
     out: list[Qty] = []
     para_starts = [m.start() for m in re.finditer(r"\n\s*\n", text)]
+    consumed = 0  # 「17円50銭」の「50銭」を別の数字として拾わない
     for m in QTY_RE.finditer(text):
+        if m.start() < consumed:
+            continue
         num = m.group("num")
         value = parse_jp(num)
         en = (m.group("en") or "").lower()
@@ -132,13 +136,19 @@ def extract(text: str) -> list[Qty]:
             value *= 1e4
         # 「2026年」の年・「11月」の月・「3日」の日は単位として扱わない（単位なし＝日付の数字）
         start, end = m.start(), m.end()
+        qty_text = m.group(0).strip()
+        # 配当などの「17円50銭」＝ 17.5円（資料の表は「17.50」と書く。2026-11-05 決算の速報）
+        if unit == "JPY" and (sen := SEN_RE.match(text, end)):
+            value += float(sen.group(1)) / 100
+            qty_text = (text[m.start():sen.end()]).strip()
+            end = consumed = sen.end()
         sent_start = max(text.rfind(c, 0, start) for c in "。！？!?\n") + 1
         sent_end_candidates = [i for i in (text.find(c, end) for c in "。！？!?\n") if i >= 0]
         sent_end = min(sent_end_candidates) + 1 if sent_end_candidates else len(text)
         before = text[max(sent_start, start - 30):start]
         after = text[end:end + 6]
         out.append(Qty(
-            value=value, unit=unit, text=m.group(0).strip(), start=start, end=end,
+            value=value, unit=unit, text=qty_text, start=start, end=end,
             approx=bool(APPROX_BEFORE_RE.search(before) or APPROX_AFTER_RE.search(after)),
             has_mult=bool(re.search(r"[兆億万千]", num) or en or m.group("unit") == "万人"),
             before=before, after=text[end:end + 24], sentence=text[sent_start:sent_end].strip(),
@@ -195,12 +205,97 @@ def sig_round(value: float, digits: int = 3) -> float:
 
 
 def supported(q: Qty, allowed: list[float]) -> bool:
-    """記事の数字 q が、使ってよい数字のどれかと（丸めの範囲で）一致するか。「約」などの付いた数字は6%まで、ほかは1%まで"""
+    """記事の数字 q が、使ってよい数字のどれかと（丸めの範囲で）一致するか。「約」などの付いた数字は6%まで、ほかは1%まで。
+    お金は、表示の桁での切り捨て・四捨五入でも一致とみなす（資料の 2,191,124 百万円 → 記事の「2兆円超」など。display_match）"""
     tol = 0.06 if q.approx else 0.01
+    step = display_step(q.text) if q.is_money else 0.0
     for a in allowed:
         if abs(q.value - a) <= tol * max(abs(a), 1e-9) or abs(q.value - a) < 1e-9:
             return True
+        if step and display_match(q.value, step, q.approx, a):
+            return True
     return False
+
+
+# --------------------------------------------------------------------------- #
+# 表の数字と記事の数字の照合（2026-11-05 決算の速報・台帳 W35）
+#   決算短信の表は「百万円」「千円」の単位で 2,191,124 と書き、記事は「2兆1,911億円」と書く。
+#   表の単位の断り書き（近くの行の「百万円」「千円」「円 銭」「%」）から表の数字を記事の単位に直し、
+#   記事の表示の桁での切り捨て・四捨五入で一致すれば同じ数字とみなす。△・▲は減る向き。
+#   使う所: scripts/release_quality.py（速報の門）・supported（元記事・事実の束の数字の門 quality.number_problems）
+# --------------------------------------------------------------------------- #
+
+_DISPLAY_PART_RE = re.compile(r"(\d[\d,]*)(?:\.(\d+))?\s?([兆億万千]?)")
+
+
+def display_step(num_text: str) -> float:
+    """記事の数字の「表示の最後の桁の1つ分」。「2兆1,911億円」→ 1億、「2.2兆円」→ 1,000億、「242億1,400万円」→ 1万、
+    「17.5円」→ 0.1、「17円50銭」→ 0.01、「29万7,145円」→ 1"""
+    text = nfkc(num_text)
+    if re.search(r"\d\s?銭", text):
+        return 0.01
+    parts = _DISPLAY_PART_RE.findall(text)
+    if not parts:
+        return 0.0
+    _, decimals, mult = parts[-1]
+    return JP_MULT.get(mult, 1.0) / 10 ** len(decimals)
+
+
+def display_match(value: float, step: float, approx: bool, source: float) -> bool:
+    """記事の値 value（表示の桁 step）が、資料の値 source を表示の桁で切り捨てか四捨五入したものか。
+    有効数字が1桁だけの書き方（「2兆円」）は「約」「超」などが付くときだけ丸めを認める（粗い数字で何にでも合わないように）"""
+    a, s = abs(value), abs(source)
+    if abs(a - s) <= 1e-9 * max(1.0, s):
+        return True
+    if step <= 0 or a <= 0 or s < step / 2:
+        return False
+    digits = int(math.floor(math.log10(a / step) + 1e-9)) + 1
+    if digits < 2 and not approx:
+        return False
+    q = s / step
+    eps = step * 1e-6
+    return abs(a - math.floor(q + 1e-9) * step) <= eps or abs(a - math.floor(q + 0.5) * step) <= eps
+
+
+TABLE_NUM_RE = re.compile(
+    r"(?<![\d.,])(?P<sign>[△▲]\s?|-(?=\d))?(?P<num>\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)"
+    r"(?![\d.]|,\d)(?!\s?(?:年|月|日|兆|億|万|千|百|円|銭|%|社|件|人|名|株|倍|ポイント|期|四半期|時|分|秒|か月|カ月|ヵ月|ヶ月|ページ|頁|号))"
+)
+TABLE_CTX = {
+    "百万円": re.compile(r"百万円|単位\s?[:：]?\s?百万"),
+    "千円": re.compile(r"(?<!百)千円|単位\s?[:：]?\s?千円"),
+    "円": re.compile(r"円\s*銭|[(（]円[)）]|単位\s?[:：]?\s?円"),
+    "%": re.compile(r"%"),
+}
+TABLE_SCALE = {"百万円": (1e6, "JPY"), "千円": (1e3, "JPY"), "円": (1.0, "JPY"), "%": (1.0, "%")}
+
+
+@dataclass
+class TableNum:
+    value: float  # 記事の単位に直した値（円・%）
+    unit: str  # JPY / %
+    neg: bool  # △・▲・- が付いている（減る向き・赤字）
+    raw: str
+
+
+def table_numbers(text: str, before: int = 30, after: int = 3) -> list[TableNum]:
+    """表の単位の付いていない数字を、近くの行（前 before 行・後 after 行）の単位の断り書きで円・%に直した候補。
+    1つの数字に複数の候補ができる（同じ表に「百万円」と「%」の欄があるため）"""
+    lines = nfkc(text).splitlines()
+    marks = [{k for k, r in TABLE_CTX.items() if r.search(line)} for line in lines]
+    out: list[TableNum] = []
+    for i, line in enumerate(lines):
+        nums = list(TABLE_NUM_RE.finditer(line))
+        if not nums:
+            continue
+        ctx = set().union(*marks[max(0, i - before):i + after + 1])
+        for m in nums:
+            value = float(m.group("num").replace(",", ""))
+            neg = bool(m.group("sign"))
+            for key in ctx:
+                scale, unit = TABLE_SCALE[key]
+                out.append(TableNum(value=value * scale, unit=unit, neg=neg, raw=m.group(0)))
+    return out
 
 
 # --------------------------------------------------------------------------- #

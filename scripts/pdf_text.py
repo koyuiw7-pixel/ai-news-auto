@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """PDF の資料（官公庁の統計の速報・適時開示の決算短信など）から文字を取り出す共通の処理（2026-11-05）。
 
-- 取り出しは pypdf（暗号化された PDF は cryptography で開く。財務省・内閣府の PDF は AES で暗号化されている）。
+- 取り出しは poppler の `pdftotext -layout` を先に使い（入っていれば）、無いか壊れた文字なら pypdf（暗号化された PDF は
+  cryptography で開く。財務省・内閣府の PDF は AES で暗号化されている）。決算短信の1ページ目の表（売上・利益の数字）は pypdf だと
+  数字が落ちるが、pdftotext -layout は表の行のまま残す（2026-11-05 トヨタ・任天堂・ソニー・ダイキンの決算短信で確認。台帳 W35）。
+  GitHub Actions では poppler-utils を入れる（release_watch.yml・auto_run.yml の速報レーン）。
 - 取り出した文字が壊れていないか（日本語の文字の割合・意味のない記号の多さ）を確かめ、壊れていれば例外にする。
   壊れた文字を「本文」として記事にしない（2026-11-03 に PDF のバイト列をそのまま文字として読み、壊れた本文になった件）。
 - 使う所: scripts/feeds.py（記事ページが PDF のとき）・scripts/release_watch.py（発表時刻が決まった速報の見張り）。
@@ -10,7 +13,11 @@
 from __future__ import annotations
 
 import io
+import os
 import re
+import shutil
+import subprocess
+import tempfile
 import unicodedata
 
 JP_RE = re.compile(r"[぀-ヿ㐀-鿿]")
@@ -30,10 +37,37 @@ def looks_clean(text: str, min_jp: int = 40) -> bool:
     return ok / max(len(body), 1) >= 0.95
 
 
+def poppler_text(data: bytes, max_pages: int = 40, timeout: int = 60) -> str:
+    """poppler の pdftotext -layout で取り出した文字（表の行を崩さない）。pdftotext が無い・失敗したら空"""
+    exe = shutil.which("pdftotext")
+    if not exe or not data:
+        return ""
+    fd, path = tempfile.mkstemp(suffix=".pdf")
+    try:
+        with os.fdopen(fd, "wb") as fh:
+            fh.write(data)
+        done = subprocess.run([exe, "-layout", "-enc", "UTF-8", "-f", "1", "-l", str(max_pages), path, "-"],
+                              capture_output=True, timeout=timeout, check=False)
+        if done.returncode != 0:
+            return ""
+        return done.stdout.decode("utf-8", "replace").replace("\f", "\n")
+    except (OSError, subprocess.SubprocessError):
+        return ""
+    finally:
+        try:
+            os.unlink(path)
+        except OSError:
+            pass
+
+
 def extract(data: bytes, max_pages: int = 40, min_jp: int = 40) -> str:
-    """PDF のバイト列 → 文字（NFKC で全角の数字・記号をそろえ、行の中の余計な空白を詰める）。読めなければ PdfTextError"""
+    """PDF のバイト列 → 文字（NFKC で全角の数字・記号をそろえ、行の中の余計な空白を詰める）。読めなければ PdfTextError。
+    poppler（pdftotext -layout）が読めればそれを使い、無い・壊れた文字なら pypdf で読む"""
     if not data or data[:5] != b"%PDF-":
         raise PdfTextError("PDF ではない")
+    layout = normalize(poppler_text(data, max_pages))
+    if layout and looks_clean(layout, min_jp):
+        return layout
     try:
         from pypdf import PdfReader  # noqa: PLC0415
     except ImportError as error:  # pragma: no cover - requirements.txt に入っている

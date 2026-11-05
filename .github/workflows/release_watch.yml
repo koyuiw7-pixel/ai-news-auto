@@ -92,6 +92,10 @@ jobs:
           python-version: "3.12"
       # 速さのため、要るものだけ入れる（PDF の文字の取り出し。財務省・内閣府の暗号化された PDF に cryptography）
       - run: pip install "pypdf>=5.0,<7" "cryptography>=42"
+      # 決算短信の1ページ目の表の数字は pypdf だと落ちる。poppler の pdftotext -layout を先に使う（scripts/pdf_text.py・台帳 W35）
+      - name: Install poppler
+        continue-on-error: true  # 入らなくても pypdf で読む（scripts/pdf_text.py）
+        run: (command -v pdftotext || (sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils)) >/dev/null && pdftotext -v 2>&1 | head -1
       - name: Watch
         env:
           GH_TOKEN: ${{ github.token }}

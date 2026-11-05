@@ -245,7 +245,14 @@ def excerpt(text: str, title: str, keywords: set[str] | None = None, cap: int = 
 
 
 def pdf_text(data: bytes) -> str:
-    """PDF の文字を取り出す（読み取りサービスが使えないときの予備。pypdf が無ければ空）"""
+    """PDF の文字を取り出す（読み取りサービスが使えないときの予備）。poppler（pdftotext -layout）で読めればそれ
+    （決算短信の表の数字が落ちない。scripts/pdf_text.py・台帳 W35）、だめなら pypdf。どちらも無ければ空"""
+    try:
+        import pdf_text as pdf_reader  # noqa: PLC0415
+
+        return pdf_reader.extract(data, max_pages=30, min_jp=0)
+    except Exception:  # noqa: BLE001
+        pass
     try:
         import io  # noqa: PLC0415
         from pypdf import PdfReader  # noqa: PLC0415

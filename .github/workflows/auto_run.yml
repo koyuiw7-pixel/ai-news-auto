@@ -66,6 +66,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt imageio-ffmpeg  # imageio-ffmpeg: scripts/images.py が公式動画のコマを取る
 
+      # 速報レーン: PDF の資料（決算短信など）の表の数字を落とさないよう poppler の pdftotext を入れる（scripts/pdf_text.py・台帳 W35）
+      - name: Install poppler (fast lane)
+        if: ${{ (inputs.fast_url || '') != '' }}
+        continue-on-error: true
+        run: (command -v pdftotext || (sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils)) >/dev/null && pdftotext -v 2>&1 | head -1
+
       - name: Check secret
         run: |
           if [ -z "${{ secrets.GEMINI_API_KEY }}" ]; then

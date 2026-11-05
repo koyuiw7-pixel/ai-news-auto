@@ -214,6 +214,97 @@ class GateTest(unittest.TestCase):
         self.assertIn('rec["scheduledRelease"] = item["release"]', src)
 
 
+# 2026-11-05 決算の速報で、正しい数字なのに止まった記事の材料（決算短信の1ページ目の表の形。単位は百万円・%・円 銭）
+TANSHIN = """2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結）
+(百万円未満切捨て)
+1. 2027年3月期第2四半期(中間期)の連結業績(2026年4月1日～2026年9月30日)
+(1) 連結経営成績(累計) (%表示は、対前年中間期増減率)
+                 営業収益            営業利益          中間利益
+                 百万円      %        百万円     %       百万円     %
+2027年3月期中間期 26,962,462 9.5 2,191,124 △12.1 24,214 △5.0
+2026年3月期中間期 24,630,753 12.3 2,492,602 8.1 25,488 3.1
+            基本的1株当たり中間利益
+                    円 銭
+2027年3月期中間期      17.50
+3. 2027年3月期の連結業績予想(2026年4月1日～2027年3月31日)
+                 営業利益 %
+通期            3,900,000 △18.3
+任天堂の表: 売上高 966,041 営業利益 216,500
+""" + "当中間期の経営成績の説明。" * 30
+TDNET_INFO = {"basis": "前年同期比", "preliminary": False, "hosts": ["www.release.tdnet.info"], "name": "決算短信", "publisher": "各社"}
+
+
+def tanshin_record(**change):
+    base = {"scheduledRelease": TDNET_INFO, "sourceUrl": "https://www.release.tdnet.info/inbs/140120261105500000.pdf",
+            "title": "トヨタ中間期、営業利益は前年同期比12.1%減の2兆1,911億円", "lede": "営業収益は26兆9,624億円で前年同期比9.5%増でした。",
+            "highlights": [], "body": "本文", "easy": ""}
+    return {**base, **change}
+
+
+class EarningsNumbersTest(unittest.TestCase):
+    """表の単位（百万円）と記事の単位（兆・億・万）を直して照合する（2026-11-05 決算の速報が正しい数字でも止まった件・W35）"""
+
+    GOOD_FIGURES = ["営業収益は26兆9,624億円", "営業利益は2兆1,911億円", "通期の営業利益予想は3兆9,000億円",
+                    "任天堂の売上高は9,660億円", "営業利益は2,165億円", "中間利益は242億1,400万円", "1株当たり中間利益は17.5円",
+                    "1株当たり中間利益は17円50銭", "営業利益は前年同期比12.1%減", "通期予想は3.9兆円"]
+
+    def test_converted_units_pass_both_gates(self):
+        for figure in self.GOOD_FIGURES:
+            rec = tanshin_record(highlights=[figure])
+            self.assertEqual(release_quality.release_problems(rec, TANSHIN), [], figure)
+            self.assertEqual(quality.number_problems({"title": figure, "lede": "", "body": "", "highlights": []}, TANSHIN), [], figure)
+
+    def test_wrong_number_or_direction_is_still_rejected(self):
+        for figure in ["営業利益は2兆2,911億円", "営業収益は27兆9,624億円", "中間利益は252億1,400万円", "1株当たり中間利益は17.6円"]:
+            problems = release_quality.release_problems(tanshin_record(highlights=[figure]), TANSHIN)
+            self.assertTrue(any("公式の資料に無い" in p for p in problems), f"{figure}: {problems}")
+            if not figure.endswith("17.6円"):  # 元記事の数字の門は1%までの差を許す（小さな差は速報の門が見る）
+                self.assertTrue(quality.number_problems({"title": figure, "lede": "", "body": "", "highlights": []}, TANSHIN), figure)
+        problems = release_quality.release_problems(tanshin_record(highlights=["営業利益は前年同期比12.1%増"]), TANSHIN)
+        self.assertTrue(any("向きが資料と逆" in p for p in problems), problems)
+        # 有効数字1桁の粗い書き方は「約」「超」が無ければ認めない（2兆1,911億円 → 「2兆円」）
+        self.assertTrue(release_quality.release_problems(tanshin_record(highlights=["営業利益は2兆円"]), TANSHIN))
+        self.assertEqual(release_quality.release_problems(tanshin_record(highlights=["営業利益は約2兆円"]), TANSHIN), [])
+        # 「約」付きでも表示の桁で丸めた値でなければ通さない（2兆1,911億円 → 「約2.3兆円」は誤り）
+        self.assertTrue(release_quality.release_problems(tanshin_record(highlights=["営業利益は約2.3兆円"]), TANSHIN))
+
+    def test_display_precision_helpers(self):
+        import calc_facts
+        self.assertEqual(calc_facts.display_step("2兆1,911億円"), 1e8)
+        self.assertEqual(calc_facts.display_step("242億1,400万円"), 1e4)
+        self.assertEqual(calc_facts.display_step("17円50銭"), 0.01)
+        self.assertTrue(calc_facts.display_match(26_962_4e8, 1e8, False, 26_962_462e6))  # 切り捨て
+        self.assertTrue(calc_facts.display_match(26_962_5e8, 1e8, False, 26_962_462e6))  # 四捨五入
+        self.assertFalse(calc_facts.display_match(26_962_6e8, 1e8, False, 26_962_462e6))
+        units = {(t.unit, t.neg) for t in calc_facts.table_numbers(TANSHIN) if t.raw.endswith("12.1")}
+        self.assertIn(("%", True), units)
+
+    def test_basis_accepts_natural_wording_but_not_omission(self):
+        ok = ["営業利益は前年同期より12.1%減りました", "営業利益は前年同期比12.1%減", "前年の同じ時期に比べて減益",
+              "通期の営業利益予想を1兆円から1.3兆円に引き上げた", "営業利益予想を1兆円→1.3兆円に上方修正"]
+        for lede in ok:
+            self.assertTrue(release_quality.basis_written("前年同期比", lede), lede)
+        self.assertTrue(release_quality.basis_written("変更前（2026年8月4日の取締役会決議）", "通期の純利益予想を1兆円から1.3兆円に引き上げた"))
+        self.assertTrue(release_quality.basis_written("変更前（2026年8月4日の取締役会決議）", "前回予想を上回る見込みに修正した"))
+        self.assertTrue(release_quality.basis_written("変更前（2026年8月4日の取締役会決議）", "8月に公表した予想を引き上げた"))
+        for lede in ["営業利益は12.1%減の2兆1,911億円", "営業利益は2兆1,911億円に減った"]:
+            self.assertFalse(release_quality.basis_written("前年同期比", lede), lede)
+        self.assertFalse(release_quality.basis_written("変更前（2026年8月4日の取締役会決議）", "純利益予想は1.3兆円に引き上げた"))
+
+    def test_pdf_text_prefers_poppler_layout_and_falls_back_to_pypdf(self):
+        layout = TANSHIN
+        with patch.object(pdf_text, "poppler_text", return_value=layout):
+            text = pdf_text.extract(b"%PDF-1.7 fake")
+        self.assertIn("2,191,124", text)
+        # pdftotext が無い・壊れた文字なら pypdf に回る（壊れた文字の門はそのまま）
+        with patch.object(pdf_text, "poppler_text", return_value="\x00\x01" * 300), self.assertRaises(pdf_text.PdfTextError):
+            pdf_text.extract(b"%PDF-1.7 fake")  # pypdf でも開けない偽物 → 例外（壊れた文字を本文にしない）
+        with patch.object(pdf_text.shutil, "which", return_value=None):
+            self.assertEqual(pdf_text.poppler_text(b"%PDF-1.7"), "")
+        for name in ("release_watch.yml", "auto_run.yml"):
+            self.assertIn("poppler-utils", (ROOT / ".github" / "workflows" / name).read_text("utf-8"), name)
+
+
 if __name__ == "__main__":
     unittest.main()
 
