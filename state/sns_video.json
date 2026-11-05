@@ -2336,9 +2336,9 @@
       "postedAt": "2026-11-05T09:50:00+09:00"
     },
     "ipa-personal-data-leak-countermeasures": {
-      "at": "2026-11-05T05:30:50+00:00",
+      "at": "2026-11-05T05:43:29+00:00",
       "status": "gate_failed",
-      "tries": 7,
+      "tries": 8,
       "textAt": "2026-11-05T12:45:00+00:00",
       "textId": "",
       "breaking": false,
@@ -2377,10 +2377,10 @@
       },
       "timings": {
         "full": {
-          "ladder_total": 33.6
+          "ladder_total": 28.5
         },
         "short": {
-          "ladder_total": 33.6
+          "ladder_total": 28.5
         }
       },
       "ok": false,
@@ -2598,9 +2598,10 @@
       "delayedMin": 0
     },
     "ipa-personal-data-leak-countermeasures": {
-      "status": "waiting",
-      "why": "動画が検査に落ちたので、あとの回で作り直す（この投稿だけ遅らせる）",
-      "checkedAt": "2026-11-05T05:32:38+00:00"
+      "status": "skipped",
+      "why": "動画を作れなかった（gate_failed: full: 記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（2場面） / short: 記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（2場面））",
+      "checkedAt": "2026-11-05T05:32:38+00:00",
+      "at": "2026-11-05T05:43:29+00:00"
     },
     "toyota-fy2027-interim-results": {
       "status": "created",
@@ -4070,6 +4071,23 @@
       "at": "2026-11-03T00:27:15+00:00",
       "title": "AI半導体のNVIDIAが学習の自動復旧ツール公開 止まったAI開発を人手なしで再開",
       "uri": "at://did:plc:nwiq4lvu5kt4jr2tomn6ui7k/app.bsky.feed.post/3mzeldk3das2w"
+    }
+  },
+  "presend": {
+    "6aec14fa660b2991f153be0e": {
+      "rules": "01805e490c78",
+      "at": "2026-11-05T05:43:29+00:00",
+      "ok": true
+    },
+    "6aec14f97877e0eab2783310": {
+      "rules": "01805e490c78",
+      "at": "2026-11-05T05:43:29+00:00",
+      "ok": true
+    },
+    "6aec14f8e22643a98791ce4a": {
+      "rules": "01805e490c78",
+      "at": "2026-11-05T05:43:29+00:00",
+      "ok": true
     }
   }
 }
