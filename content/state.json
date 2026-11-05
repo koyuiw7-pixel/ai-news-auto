@@ -209,9 +209,7 @@
       "url": "https://developers.cyberagent.co.jp/blog/archives/67267/"
     }
   },
-  "major_tries": {
-    "f5001d451409d444": 2
-  },
+  "major_tries": {},
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -14550,6 +14548,12 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo3/118/gijiroku/mext_00019.html"
     },
+    "f5001d451409d444": {
+      "at": "2026-11-05T05:08:28.300233+00:00",
+      "reason": "major gave up x3: reject: リードの数字「39,000億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+      "skipped": true,
+      "url": "https://www.release.tdnet.info/inbs/140120261030561115.pdf"
+    },
     "f522743b37a80504292a593266c5e50fc905f5e1": {
       "at": "2026-10-28T23:31:43.097498+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15117,86 +15121,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T16:48:22.949051+00:00",
-      "attempt": 3,
-      "id": "020b7910e3b471cc",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "文が長い（1文の平均 46.6字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 107.8,
-        "avg_sentence": 46.6,
-        "long_share": 0.273,
-        "max_paragraph": 197,
-        "paragraphs": 19,
-        "sentences": 44
-      },
-      "score": 93,
-      "source": "aws-ml-blog",
-      "title": "Introducing India-based inference for Kimi K3 on Amazon Bedrock",
-      "warnings": [
-        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JSON・CLI・ISO）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T16:48:43.249979+00:00",
-      "attempt": 0,
-      "id": "020b7910e3b471cc",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 45.8字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 87.7,
-        "avg_sentence": 45.8,
-        "long_share": 0.25,
-        "max_paragraph": 197,
-        "paragraphs": 23,
-        "sentences": 44
-      },
-      "score": 93,
-      "source": "aws-ml-blog",
-      "title": "Introducing India-based inference for Kimi K3 on Amazon Bedrock",
-      "warnings": [
-        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JSON・CLI・ISO）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T17:11:54.305071+00:00",
-      "attempt": 1,
-      "id": "4676cabae1997d08",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「教材づくりを支える」→ 元記事は1EdTech Globalを学習標準の公共基盤、Fab AIを授業計画と早期の読みを支えるモデルと説明しており、「教材づくり」という分担は元記事に無い。",
-        "「AI教育を学区に広げる」「現場に助言を届ける」という5団体の分担のまとめは、元記事の記述を超えた編集部の解釈で、事実と区別されていない。",
-        "「AIをどう使うかの前に、どのように安全に教えるかを整える役割です」→ Krause Centerの役割について元記事に無い解釈を追加している。",
-        "「今回はそこから一歩進み、教員と一緒に…資金面で支える」→ 元記事の「building with and for educators」の言い換えだが、「一歩進み」という位置づけは元記事に無い。"
-      ],
-      "readability": {
-        "avg_paragraph": 89.4,
-        "avg_sentence": 43.1,
-        "long_share": 0.103,
-        "max_paragraph": 154,
-        "paragraphs": 14,
-        "sentences": 29
-      },
-      "score": 80,
-      "source": "google-blog-all",
-      "title": "We’re providing funding for organizations building AI for teachers.",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CITE）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-03T17:12:07.864434+00:00",
@@ -21307,6 +21231,85 @@
       "score": null,
       "source": "fast",
       "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T05:06:55.015027+00:00",
+      "attempt": 1,
+      "id": "f5001d451409d444",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リードの数字「50円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「50円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「45円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「100円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "SNS の投稿文の数字「3兆9,000億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 77.9,
+        "avg_sentence": 32.6,
+        "long_share": 0.023,
+        "max_paragraph": 130,
+        "paragraphs": 18,
+        "sentences": 43
+      },
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T05:07:43.370679+00:00",
+      "attempt": 2,
+      "id": "f5001d451409d444",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リードの数字「3.6%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「39,000億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「3.6%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点に予想・見通しの言い方（「見込み」）があるが、公式の資料に無い。資料の事実だけを書く"
+      ],
+      "readability": {
+        "avg_paragraph": 80.2,
+        "avg_sentence": 29.9,
+        "long_share": 0.0,
+        "max_paragraph": 149,
+        "paragraphs": 25,
+        "sentences": 67
+      },
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T05:08:28.300142+00:00",
+      "attempt": 3,
+      "id": "f5001d451409d444",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リードの数字「39,000億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 68.5,
+        "avg_sentence": 32.3,
+        "long_share": 0.02,
+        "max_paragraph": 137,
+        "paragraphs": 24,
+        "sentences": 51
+      },
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IFRS）"
+      ]
     }
   ],
   "short_text_retry": {
