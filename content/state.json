@@ -210,7 +210,6 @@
     }
   },
   "major_tries": {
-    "5179ed8e3f9e5114": 2,
     "b3a04c021ff2b99e": 1
   },
   "pi_reopened": {
@@ -7228,6 +7227,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（採用）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/kouseiroudoushou/saiyou/ninkituki/ninki-igyoukeieisenmonkanorsyusa_00001.html"
+    },
+    "5179ed8e3f9e5114": {
+      "at": "2026-11-05T07:17:11.290106+00:00",
+      "reason": "major gave up x3: reject: 要点の数字「242億1,400万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）; 要点の数字「2,443億6,400万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+      "skipped": true,
+      "url": "https://www.release.tdnet.info/inbs/140120261104564375.pdf"
     },
     "518fca0cc16470ac": {
       "at": "2026-10-30T01:11:42.642488+00:00",
@@ -15196,89 +15201,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-03T18:53:54.392865+00:00",
-      "attempt": 2,
-      "id": "78a1dbd86988d2bb",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "かんたん版「開発者は29個の公開課題を無料で入手できます」→ 元記事に課題が無料とは書かれていない（GitHubからダウンロードできるとあるだけ）。",
-        "判定「提供状況=limited」→ 元記事に基づく区分ではなく、公開課題と非公開テスト課題の提供状況の扱いが曖昧。",
-        "「Googleは…ple-bench.comで公開しました」→ 元記事ではGitHubの公開課題・採点スクリプトとple-bench.comの順位表は別。公開課題がple-bench.comで公開されたと読める書き方は不正確。",
-        "「編集部の見方では…「下書きの支援」にとどまり」→ 元記事に「下書き支援」という位置づけは無く、解釈が踏み込みすぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 69.3,
-        "avg_sentence": 38.1,
-        "long_share": 0.175,
-        "max_paragraph": 147,
-        "paragraphs": 22,
-        "sentences": 40
-      },
-      "score": 88,
-      "source": "google-cloud-blog",
-      "title": "Introducing Physical-Engineering’s Last Exam for agents",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PLE・CAD・BIM）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T18:54:10.566483+00:00",
-      "attempt": 2,
-      "id": "78a1dbd86988d2bb",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 68.8,
-        "avg_sentence": 37.9,
-        "long_share": 0.15,
-        "max_paragraph": 147,
-        "paragraphs": 22,
-        "sentences": 40
-      },
-      "score": 93,
-      "source": "google-cloud-blog",
-      "title": "Introducing Physical-Engineering’s Last Exam for agents",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PLE・CAD・BIM）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T19:12:19.092553+00:00",
-      "attempt": 1,
-      "id": "26c6032e1d267765",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "結論として、設計の初期段階は大きく速くなった → 元記事は「設計の初期段階が大きく速くなった」とは述べておらず、社内チームの反復が速くなったという説明にとどまる。",
-        "「2人が1週間未満で試作機を作成」（要点） → 元記事では2人が設計を1週間未満で行い、試作機は委託工場が1か月未満で製造した。設計と試作の主体が混同されている。",
-        "Astraは工場ごとの製造上の制限 → 元記事は「the manufacturer's production limits」で、特定の工場ごとの制限とは書いていない。",
-        "評価は社内のもので、第三者による再現は示されていません → 元記事にこの記述はない。内容は妥当だが編集部注と明記されていない。",
-        "判定: 提供状況=demo → 元記事は研究・試作・協業段階の紹介で、提供形態の分類は元記事に根拠がない。"
-      ],
-      "readability": {
-        "avg_paragraph": 79.5,
-        "avg_sentence": 41.4,
-        "long_share": 0.188,
-        "max_paragraph": 154,
-        "paragraphs": 25,
-        "sentences": 48
-      },
-      "score": 80,
-      "source": "openai-news",
-      "title": "Accelerating engineering for the physical world",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CAD・CGR）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-03T19:12:35.187242+00:00",
       "attempt": 1,
@@ -21540,6 +21462,86 @@
       "title": "ソニーグループ 決算短信（2026年11月5日）",
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T07:15:52.282456+00:00",
+      "attempt": 1,
+      "id": "5179ed8e3f9e5114",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リードの数字「5兆1,500億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「4,360億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「2,780億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「242億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「2,443億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 79.2,
+        "avg_sentence": 33.3,
+        "long_share": 0.02,
+        "max_paragraph": 161,
+        "paragraphs": 21,
+        "sentences": 50
+      },
+      "score": null,
+      "source": "fast",
+      "title": "ダイキン工業 決算短信（2026年11月5日）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（VRV）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T07:16:27.836602+00:00",
+      "attempt": 2,
+      "id": "5179ed8e3f9e5114",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "要点の数字「242億1,400万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 75.5,
+        "avg_sentence": 38.7,
+        "long_share": 0.047,
+        "max_paragraph": 134,
+        "paragraphs": 22,
+        "sentences": 43
+      },
+      "score": null,
+      "source": "fast",
+      "title": "ダイキン工業 決算短信（2026年11月5日）",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T07:17:11.289934+00:00",
+      "attempt": 3,
+      "id": "5179ed8e3f9e5114",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "要点の数字「242億1,400万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「2,443億6,400万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 80.6,
+        "avg_sentence": 38.0,
+        "long_share": 0.113,
+        "max_paragraph": 131,
+        "paragraphs": 25,
+        "sentences": 53
+      },
+      "score": null,
+      "source": "fast",
+      "title": "ダイキン工業 決算短信（2026年11月5日）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（FUSION）"
       ]
     }
   ],
