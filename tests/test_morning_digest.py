@@ -398,7 +398,9 @@ class DigestPageTest(unittest.TestCase):
 
     def test_threads_post_has_image_and_edition_link_card(self):
         p = digest_post()
-        data = md.threads_input('ch', p, {'mode': 'shareNow'})
+        # 本文にリンクの形（THREADS_LINK_POS=body）を確かめる。CI の環境変数（11/6 は reply）に左右されないよう固定する
+        with patch.dict(os.environ, {'THREADS_LINK_POS': 'body'}):
+            data = md.threads_input('ch', p, {'mode': 'shareNow'})
         thread = data['metadata']['threads']['thread']
         self.assertEqual(thread[0]['assets'], [{'image': {'url': p['image']}}])
         # 2026-11-03 ルール1: Threads は本文の最後に号のページのリンク。返信は作らない
