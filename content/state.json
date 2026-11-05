@@ -3407,6 +3407,17 @@
     }
   },
   "processed_web": {
+    "00183b004892f2d6": {
+      "at": "2026-11-05T18:00:11.222800+00:00",
+      "breaking": true,
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "claude-personal-finance-beta",
+      "url": "https://claude.com/resources/articles/introducing-personal-finance-in-claude"
+    },
     "003a6dd08e360129": {
       "at": "2026-11-05T17:31:50.639884+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -15981,34 +15992,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-04T03:38:04.534951+00:00",
-      "attempt": 2,
-      "id": "17a357c5e54aa313",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "toyota",
-      "title": "トヨタ、2027年シーズン WRC参戦体制発表 -2チーム、2車種で参戦-"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:43:38.682294+00:00",
-      "attempt": 1,
-      "id": "7f05432d1620715c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "microsoft-research-blog",
-      "title": "Learn the rules: The hacker mindset"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-04T03:49:06.536642+00:00",
       "attempt": 2,
       "id": "7f05432d1620715c",
@@ -22201,6 +22184,58 @@
       "score": null,
       "source": "google-gemini-blog",
       "title": "Transform a quick drawing into a live app with Gemini."
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T17:59:50.008367+00:00",
+      "attempt": 1,
+      "id": "00183b004892f2d6",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "本文の「{{PRICING_TABLE}}」が未置換のテンプレート残骸のまま残っている → 読者に見える状態で出力されており、記事の体裁として不適切。",
+        "料金表の「Enterprise」行の備考欄に「。、シート料金 + APIレートでの使用量」のような崩れた文字列が残っている → 元資料の欄の書式が整理されず、意味の通らない文になっている。",
+        "「Claude自体は日本でも使えます（当サイトの確認：11/3）」と「料金表の出典確認日：2026-11-05」の確認日が混在している → 確認時期の表記が統一されておらず読者が混乱しうる。"
+      ],
+      "readability": {
+        "avg_paragraph": 86.8,
+        "avg_sentence": 35.7,
+        "long_share": 0.059,
+        "max_paragraph": 141,
+        "paragraphs": 21,
+        "sentences": 51
+      },
+      "score": 84,
+      "source": "claude-blog",
+      "title": "Introducing Personal Finance in Claude",
+      "warnings": [
+        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（APR・TABLE・GA）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T18:00:11.203254+00:00",
+      "attempt": 1,
+      "id": "00183b004892f2d6",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 90.5,
+        "avg_sentence": 36.2,
+        "long_share": 0.06,
+        "max_paragraph": 141,
+        "paragraphs": 20,
+        "sentences": 50
+      },
+      "score": 93,
+      "source": "claude-blog",
+      "title": "Introducing Personal Finance in Claude",
+      "warnings": [
+        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（APR・GA）"
+      ]
     }
   ],
   "short_text_retry": {
