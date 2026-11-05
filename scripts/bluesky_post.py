@@ -573,6 +573,23 @@ def merge_extra(mine_path: str) -> int:
     return 0
 
 
+def delete_approved(slug: str, session: dict | None = None, call=None) -> str:
+    """（オーナー承認の出し直しだけ）content/sns_reposts/<slug>.json の deletedBlueskyUri の自分の投稿を消す。
+    ownerApprovedDeleteRepost の無い記事・自分のものでない URI は消さない"""
+    spec_path = tp.ROOT / "content" / "sns_reposts" / f"{slug}.json"
+    spec = json.loads(spec_path.read_text("utf-8")) if spec_path.exists() else {}
+    uri = str(spec.get("deletedBlueskyUri") or "")
+    if not spec.get("ownerApprovedDeleteRepost") or not uri:
+        raise SystemExit(f"[bluesky] {slug}: オーナー承認の出し直しの記録（ownerApprovedDeleteRepost と deletedBlueskyUri）がありません")
+    session = session or login()
+    m = re.fullmatch(r"at://([^/]+)/app\.bsky\.feed\.post/([A-Za-z0-9]+)", uri)
+    if not m or m.group(1) != session.get("did"):
+        raise SystemExit(f"[bluesky] 自分の投稿の URI ではないので消しません: {uri}")
+    (call or xrpc)("com.atproto.repo.deleteRecord", {"repo": m.group(1), "collection": "app.bsky.feed.post", "rkey": m.group(2)}, session["accessJwt"])
+    log(f"[bluesky] オーナー承認で前の投稿を消しました: {uri}")
+    return uri
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--dry-run", action="store_true")
@@ -580,7 +597,11 @@ def main() -> int:
     parser.add_argument("--merge", default="")
     parser.add_argument("--merge-extra", default="")
     parser.add_argument("--slug", default="", help="確認用: この記録を対象にする（--dry-run と一緒に）")
+    parser.add_argument("--delete-approved", default="", metavar="SLUG", help="オーナー承認の出し直しで、前の Bluesky の投稿を消す（content/sns_reposts）")
     args = parser.parse_args()
+    if args.delete_approved:
+        delete_approved(args.delete_approved)
+        return 0
     if args.merge or args.merge_extra:
         if args.merge:
             merge(args.merge)

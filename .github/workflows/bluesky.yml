@@ -16,6 +16,9 @@ on:
         description: "ログイン確認と下書き表示だけ"
         type: boolean
         default: true
+      delete_approved:
+        description: "（オーナー承認の出し直しだけ）この記事の前の Bluesky の投稿を消す（content/sns_reposts の deletedBlueskyUri）。空なら何もしない"
+        default: ""
 
 permissions:
   contents: write
@@ -49,7 +52,12 @@ jobs:
           SNS_HOOK_FORMAT: ${{ vars.SNS_HOOK_FORMAT || '1' }}  # Muse の型の文面（2026-11-05 オーナー承認で既定 1。止めるなら変数を 0。台帳 S30）
           THREADS_LINK_AB: ${{ vars.THREADS_LINK_AB || '1' }}  # Threads のリンクの位置の比べ（2026-11-05 オーナー承認・11/5〜11/12。S31）
           GH_TOKEN: ${{ github.token }}  # 門番が止めた投稿の issue を立てる
-        run: python scripts/bluesky_post.py --fill ${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}
+        run: |
+          if [ -n "${{ github.event.inputs.delete_approved }}" ]; then
+            python scripts/bluesky_post.py --delete-approved "${{ github.event.inputs.delete_approved }}"
+            exit $?
+          fi
+          python scripts/bluesky_post.py --fill ${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}
       - name: Commit history
         run: |
           if [ -z "$(git status --porcelain state)" ]; then exit 0; fi
