@@ -5699,6 +5699,15 @@
       "skipped": true,
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3225"
     },
+    "31173fb106fd7dde": {
+      "at": "2026-11-05T02:55:16.641282+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 96,
+      "section": "business",
+      "slug": "meal-cancel-skip-vs-cannot-eat-nli",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87263?site=nli"
+    },
     "31239c46ad6a8bb6": {
       "at": "2026-11-03T01:27:34.744422+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -9957,6 +9966,12 @@
       "reason": "quality: 本文が短い（2243字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://openai.com/index/openai-cut-incident-investigation"
+    },
+    "8f321d911be5a10c": {
+      "at": "2026-11-05T02:51:20.597555+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://news.xbox.com/ja-jp/2026/11/05/xbox-series-x-bite-console/"
     },
     "8f8ad038d372731f": {
       "at": "2026-11-04T10:27:25.258637+00:00",
@@ -15004,84 +15019,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T05:58:03.398414+00:00",
-      "attempt": 2,
-      "id": "ddc65a2a91363189",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "「数字で見るとどう変わった？」の「NUS・NTUへの支援の総額：600万ドル超（約9億4,700万円）」→ 600万ドルの円換算は計算済みの数字にあり正しいが、「600万ドル超」に「約9億4,700万円」を付けると、実際の総額が超過分だけ多い点が曖昧になる軽い言い過ぎ。",
-        "「たとえるなら、強い部活のある学校に、企業が練習道具と指導者の費用を出すようなものです。すぐ試合に勝つわけではなく、数年先の力を育てるお金です」→ 元記事に「数年先」という時間軸の記述はなく、成果の時期は不明とする本文とも食い違う。",
-        "「Googleの関連団体などが、ビジネススクールINSEADの研究所に300万ドルを出します」→ 元記事ではGoogle.orgとGoogle DeepMindが資金提供者であり、「関連団体など」は不正確な言い換え。",
-        "「ただし、研究はこれからです。今の業務ルールを変える材料にはまだなりません」→ 元記事に研究時期の記述はなく、編集部の見方として示されてはいるものの断定がやや強い。"
-      ],
-      "readability": {
-        "avg_paragraph": 62.7,
-        "avg_sentence": 37.1,
-        "long_share": 0.092,
-        "max_paragraph": 144,
-        "paragraphs": 45,
-        "sentences": 76
-      },
-      "score": 80,
-      "source": "google-blog-all",
-      "title": "Advancing research and partnering with universities in Singapore",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T07:13:04.420438+00:00",
-      "attempt": 1,
-      "id": "fec0e46ceba430b8",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "元記事の文をそのまま書き写している（2文。例「pip install \"transformers-mic[runtime]\" \"hf-doc-bu」）。自分の言葉で要約する"
-      ],
-      "readability": {
-        "avg_paragraph": 70.9,
-        "avg_sentence": 37.0,
-        "long_share": 0.133,
-        "max_paragraph": 137,
-        "paragraphs": 47,
-        "sentences": 90
-      },
-      "score": null,
-      "source": "hugging-face-blog",
-      "title": "Transformers Model Integration Contracts",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T07:14:43.404953+00:00",
-      "attempt": 2,
-      "id": "fec0e46ceba430b8",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く"
-      ],
-      "readability": {
-        "avg_paragraph": 75.0,
-        "avg_sentence": 36.3,
-        "long_share": 0.093,
-        "max_paragraph": 188,
-        "paragraphs": 47,
-        "sentences": 97
-      },
-      "score": null,
-      "source": "hugging-face-blog",
-      "title": "Transformers Model Integration Contracts",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-03T08:40:05.305850+00:00",
@@ -21289,6 +21226,81 @@
       "score": 85,
       "source": "jnet21",
       "title": "10月LOBO調査、全産業業況DIは▲20.0 ほぼ横ばいで推移"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T02:53:12.944793+00:00",
+      "attempt": 1,
+      "id": "31173fb106fd7dde",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く"
+      ],
+      "readability": {
+        "avg_paragraph": 94.5,
+        "avg_sentence": 45.4,
+        "long_share": 0.24,
+        "max_paragraph": 151,
+        "paragraphs": 12,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "「食事キャンセル」について考える－食事をとらないのか、食事をとれないのか",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NPO）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T02:54:47.015263+00:00",
+      "attempt": 2,
+      "id": "31173fb106fd7dde",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 45.9字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 100.1,
+        "avg_sentence": 45.9,
+        "long_share": 0.25,
+        "max_paragraph": 169,
+        "paragraphs": 22,
+        "sentences": 48
+      },
+      "score": 96,
+      "source": "nli-research",
+      "title": "「食事キャンセル」について考える－食事をとらないのか、食事をとれないのか",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MJ・NPO・TBS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T02:55:16.600968+00:00",
+      "attempt": 0,
+      "id": "31173fb106fd7dde",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「若い世代の『食事キャンセル』は、食事を抜くという結果は同じです」は元記事の趣旨の言い換えとして問題ないが、リードの「同じ『食事を抜く』でも…見方が変わります」は軽微な言い過ぎ。; 「高校生から25〜29歳で食事の回数が減る」「日本の若者は」と一般化しているが、"
+      ],
+      "readability": {
+        "avg_paragraph": 100.1,
+        "avg_sentence": 45.9,
+        "long_share": 0.25,
+        "max_paragraph": 169,
+        "paragraphs": 22,
+        "sentences": 48
+      },
+      "score": 96,
+      "source": "nli-research",
+      "title": "「食事キャンセル」について考える－食事をとらないのか、食事をとれないのか",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MJ・NPO・TBS）"
+      ]
     }
   ],
   "short_text_retry": {
