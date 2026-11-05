@@ -154,14 +154,6 @@
       "tries": 1,
       "url": "https://www.tokyu-fudosan-hd.co.jp/news/companies/pdf/c63f39dc2efcf88691dcd42fe07a304905d1074a.pdf"
     },
-    "a17282f496fcba49": {
-      "first": "2026-11-05T04:05:45.528293+00:00",
-      "next": "2026-11-05T16:05:28.908453+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "全国財務局管内経済情勢報告概要（令和8年10月）",
-      "tries": 2,
-      "url": "https://www.mof.go.jp/about_mof/zaimu/kannai/202603/index.html"
-    },
     "a9ba99b8846683ac": {
       "first": "2026-11-04T01:24:17.644580+00:00",
       "next": "2026-11-04T04:24:17.644580+00:00",
@@ -4267,6 +4259,15 @@
       "reason": "quality: 本文が短い（1566字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/seisakunitsuite/bunya/koyou_roudou/roudouseisaku/sougikoui/index.html"
+    },
+    "1184d3a025fd9d05": {
+      "at": "2026-11-05T16:13:17.341822+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 94,
+      "section": "ai",
+      "slug": "mistral-studio-agents-workflows-apps",
+      "url": "https://mistral.ai/news/build-with-studio/"
     },
     "11ab3ef69c1a79e3": {
       "at": "2026-10-29T23:51:42.543088+00:00",
@@ -11376,6 +11377,13 @@
       "slug": "next-ipo-club-pitch-event-2026",
       "url": "https://prtimes.jp/main/html/rd/p/000000334.000054393.html"
     },
+    "a17282f496fcba49": {
+      "at": "2026-11-05T16:15:12.830663+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://www.mof.go.jp/about_mof/zaimu/kannai/202603/index.html"
+    },
     "a1765f446c5b64b5": {
       "at": "2026-10-29T15:56:24.153629+00:00",
       "kind": "update",
@@ -12367,6 +12375,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102810"
+    },
+    "b6d10506b1ce1e8d": {
+      "at": "2026-11-05T16:13:28.301207+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "元記事は月次の株式市場の概況で、読者が使う・申し込む制度や商品の変更がありません。取材できたのは要旨と見出しだけで、本文の1,600字以上を事実だけで書くことができないため、今回は見送ります。",
+      "skipped": true,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87264?site=nli"
     },
     "b749fcda386da4a4": {
       "at": "2026-10-30T06:51:20.843102+00:00",
@@ -15896,76 +15911,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T02:28:40.753182+00:00",
-      "attempt": 1,
-      "id": "ce253a4b2ae2e919",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "tsr",
-      "title": "「すし店」 売上増も「減益」企業が約4割 コメ価格など物価高が重し、廃業・倒産が急増"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T02:29:13.763345+00:00",
-      "attempt": 2,
-      "id": "ce253a4b2ae2e919",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "tsr",
-      "title": "「すし店」 売上増も「減益」企業が約4割 コメ価格など物価高が重し、廃業・倒産が急増"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T02:30:32.814048+00:00",
-      "attempt": 1,
-      "id": "0e889c44fa0a25a1",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "elevenlabs-blog",
-      "title": "What is call transcription? A practical business guide"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T02:34:06.965365+00:00",
-      "attempt": 2,
-      "id": "0e889c44fa0a25a1",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「判定: 提供状況=available 価格=API従量課金」→ 元記事は料金体系に一切触れておらず、「API従量課金」は創作の価格情報である",
-        "「判定: 提供状況=available」→ 元記事は提供状況を明記しておらず、「available」との記載は根拠がない",
-        "「ElevenLabsのAPIやツールを活用して…導入を検討するとよいでしょう」→ 一般的な助言としては許容されるが、料金面の前提が創作であるため読者が誤解するおそれがある"
-      ],
-      "readability": {
-        "avg_paragraph": 124.8,
-        "avg_sentence": 67.6,
-        "long_share": 0.5,
-        "max_paragraph": 234,
-        "paragraphs": 13,
-        "sentences": 24
-      },
-      "score": 62,
-      "source": "elevenlabs-blog",
-      "title": "What is call transcription? A practical business guide",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CRM・SOC・II）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-04T02:38:34.242729+00:00",
@@ -22144,6 +22089,85 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（BPS・BI・MSCI）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T16:12:56.645702+00:00",
+      "attempt": 1,
+      "id": "1184d3a025fd9d05",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 45.8字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 133.7字・最長 192字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 133.7,
+        "avg_sentence": 45.8,
+        "long_share": 0.229,
+        "max_paragraph": 192,
+        "paragraphs": 12,
+        "sentences": 35
+      },
+      "score": 92,
+      "source": "mistral-news",
+      "title": "Le Chonk brings the brains. Studio puts it to work.",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MCP・ABANCA・BNP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T16:13:17.333287+00:00",
+      "attempt": 0,
+      "id": "1184d3a025fd9d05",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 45.8字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 94.4,
+        "avg_sentence": 45.8,
+        "long_share": 0.229,
+        "max_paragraph": 160,
+        "paragraphs": 17,
+        "sentences": 35
+      },
+      "score": 94,
+      "source": "mistral-news",
+      "title": "Le Chonk brings the brains. Studio puts it to work.",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MCP・ABANCA・BNP）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T16:15:02.038568+00:00",
+      "attempt": 1,
+      "id": "a17282f496fcba49",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "mof",
+      "title": "全国財務局管内経済情勢報告概要（令和8年10月）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T16:15:12.830620+00:00",
+      "attempt": 2,
+      "id": "a17282f496fcba49",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "mof",
+      "title": "全国財務局管内経済情勢報告概要（令和8年10月）"
     }
   ],
   "short_text_retry": {
