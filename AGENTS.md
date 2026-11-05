@@ -81,6 +81,7 @@
 | ワークフロー | 役割 |
 |---|---|
 | `auto_run.yml` | 記事の生成（通常＋速報）、画像付け、公開判定 |
+| `release_watch.yml` | 発表時刻が決まった速報（統計・決算）の見張り。予定表 `scripts/release_calendar.json` の時刻の前後だけ動き、公式の PDF の数字が読めたときだけ速報レーンを起こす（台帳 W35。予定を足したら `python scripts/release_watch.py sync-workflow`） |
 | `deploy_cloudflare.yml` | サイトの公開 |
 | `breaking_post.yml` | 速報のSNS即時投稿＋プッシュ通知 |
 | `sns_extra.yml` | 朝7:30のまとめ投稿（火・金の問いかけ投稿は 2026-11-03 に停止） |

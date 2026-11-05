@@ -32,6 +32,7 @@ import ui_claims  # noqa: E402
 import genre_focus  # noqa: E402  投資助言・売買のすすめ・取引のやり方の門（2026-11-03・台帳 A22）
 import public_interest  # noqa: E402  事件・災害・政治の書き方の門（2026-11-04・台帳 A39）
 import facts_bundle  # noqa: E402  読めなかった開示資料があるときに「未発表」と書かせない（台帳 A44）
+import release_quality  # noqa: E402  発表時刻が決まった速報（統計・決算）の数字の門（2026-11-05・台帳 W35）
 
 TITLE_RANGE = (18, 64)
 PASS_SCORE = 70
@@ -1110,6 +1111,8 @@ def structural_problems(record: dict, kind: str, source_text: str = "", context:
             # 台帳 A24: 立場の小見出しは新旧どちらも作らない（前は「3つの立場にする」と直させていて、A24 と食い違っていた）
             problems.append(f"古い立場の小見出し（「{m.group(0).lstrip('# ')}」）がある。立場の小見出しは作らず、事実がある影響だけを地の文で書く")
         problems += number_problems(record, source_text, context)
+        # 発表時刻が決まった速報（統計・決算）: 題名・リード・要点の数字・単位・増減の向き・比べる基準・速報値・予想の言い方（台帳 W35）
+        problems += release_quality.release_problems(record, source_text)
         problems += rival_problems(record)
         problems += money_outline_problems(record)
         problems += ui_step_problems(record, source_text, context)

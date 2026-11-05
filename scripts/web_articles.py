@@ -74,6 +74,7 @@ import news_mix  # noqa: E402  1日の記事の配分（ピボット・台帳 A4
 import page_watch  # noqa: E402
 import persona  # noqa: E402
 import quality  # noqa: E402
+import release_quality  # noqa: E402  発表時刻が決まった速報（統計・決算）の書き方と門（台帳 W35）
 import research_firms  # noqa: E402  調査会社・情報会社の記事は「報道」（台帳 A37）
 import rivals  # noqa: E402
 import story  # noqa: E402
@@ -1025,7 +1026,8 @@ def prefilter(item: dict) -> str | None:
 
 def notice_reason(item: dict) -> str | None:
     """候補（フィードの項目）が、お知らせ・告知・統計の転載か（scripts/notice_gate.py。題名と出典だけで判断）"""
-    return notice_gate.notice_reason({"title": item.get("title") or "", "channelSlug": item.get("source_slug") or ""})
+    return notice_gate.notice_reason({"title": item.get("title") or "", "channelSlug": item.get("source_slug") or "",
+                                      "scheduledRelease": item.get("release")})
 
 
 SECONDARY_SOURCE_NOTE = """## 今回の元記事は報道です（重要）
@@ -1643,7 +1645,10 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
         # Worker が読んだ本文（GitHub Actions からは openai.com などが 403 で読めない）。十分な長さならページを読み直さない
         worker_text = str(meta.get("text") or "")[: feeds.TEXT_CAP]
         page = None
-        if len(worker_text) >= 2000:
+        # 発表時刻が決まった速報（scripts/release_watch.py）は、見張りが公式の PDF から取り出して数字の行を確かめた文字を渡す。
+        # 短い報道発表資料（2,000字未満）でもそれを材料にする（ページを読み直して別の文字に置き換えない。台帳 W35）
+        release = meta.get("release") if isinstance(meta.get("release"), dict) else None
+        if len(worker_text) >= 2000 or (release and len(worker_text) >= MIN_TEXT_CHARS):
             page = {"text": worker_text, "image": str(meta.get("image") or "") or None, "title": "", "description": "", "published": ""}
             log(f"[fast] Worker が読んだ本文を使います（{len(worker_text)}字）")
         elif item is None or not item.get("published_at"):
@@ -1690,6 +1695,8 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
         item["published_at"] = published or detected
         item["published_guessed"] = published is None
         item.update({"fast": True, "fast_key": key, "detected_at": detected})
+        if release:
+            item["release"] = release
         # 新製品・ゲームの公式（rules の genre）は、そのジャンルの形で作る
         genre_slug = str(meta.get("genre") or fast_lane.genre_of(item["source_slug"]))
         if genre_slug != "ai" and genre_slug in GENRES_BY_SLUG:
@@ -2314,6 +2321,11 @@ def main() -> int:
                 return "next", None  # スポーツは1日の上限まで（集客の入口。大きなものだけ）
             if is_wire(cand) and wire_attempts[0] >= args.max_wire:
                 return "next", None  # 配信は1回の上限まで。次の実行に回す
+        if cand.get("release") and cand.get("fast"):
+            # 発表時刻が決まった速報（統計・決算。台帳 W35）は毎月・毎期の新しい発表。前の月の記事の続報・重複にしない。
+            # 毎月同じ URL に上書きされる資料（家計調査・消費者物価）は ?period= で月を分けている（出典 URL の比べ方はクエリを落とすので使わない）。
+            # 同じ発表の二重作成は processed_web（URL の ID。クエリ込み）と見張りの実行の確認で防ぐ
+            return "take", None
         if recent.has_url(cand["url"]):
             mark(state, cand, skipped=True, reason="dedupe: 同じ出典URL")
             return "drop", None
@@ -2450,11 +2462,15 @@ def main() -> int:
             prompt += quality.feedback_block([str(retry_rec["reason"])])
         if item.get("_public_interest"):
             prompt += public_interest.prompt_note(item["_public_interest"])  # 事件・災害・政治の書き方（台帳 A39）
+        if item.get("release"):
+            prompt += release_quality.prompt_note(item["release"])  # 発表時刻が決まった速報（統計・決算）の書き方（台帳 W35）
 
         def build(data, model, item=item, page=page, voice_key=voice_key, genre=genre, related=related, bundle=bundle):
             if str(data.get("genre", "")).strip() not in GENRES_BY_SLUG:
                 data = {**data, "genre": genre.slug}
             rec = attach_related(build_web_record(item, data, page, model, voice_key, bundle), data, related)
+            if item.get("release"):
+                rec["scheduledRelease"] = item["release"]  # 公開前の門（release_quality.release_problems）とお知らせの門の例外に使う
             if item.get("_public_interest"):
                 rec["publicInterest"] = item["_public_interest"]  # 公共性の枠の印（1日の本数・門・安全情報のリンク。scripts/public_interest.py）
             return rec

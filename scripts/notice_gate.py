@@ -77,6 +77,10 @@ def notice_reason(record: dict) -> str | None:
     """お知らせ・告知・統計の転載の区分（当たらなければ None）。題名と出典だけで判断する"""
     if record.get("disaster") or record.get("type") == "roundup":
         return None
+    # 発表時刻が決まった速報（2026-11-05 オーナー承認・台帳 W35。統計・決算の公式発表を数分で記事にする）は、転載ではなく
+    # 読者への意味まで書く型で作り、数字は release_quality の門で資料と照合する。統計の名前の題名でも止めない
+    if record.get("scheduledRelease"):
+        return None
     title = str(record.get("title") or "")
     if not title or AI_RE.search(title):
         return None

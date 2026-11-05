@@ -27,6 +27,10 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import pdf_text  # noqa: E402  PDF の資料の文字の取り出し（壊れた文字は本文にしない）
 
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/125.0 Safari/537.36"
 TEXT_CAP = 12_000
@@ -990,8 +994,17 @@ def fetch_article_text(url: str) -> dict:
 def _fetch_direct(url: str) -> dict:
     data, final_url = fetch(url, accept="text/html,application/xhtml+xml;q=0.9,*/*;q=0.8")
     if data[:5] == b"%PDF-":
-        # PDF の中身をそのまま文字として読むと、壊れた文字列が「本文」になる（2026-11-03）。読み取りサービスに任せる
-        raise ValueError("PDF の資料は直接読まない（読み取りサービスで読む）")
+        # PDF の中身をそのまま文字として読むと、壊れた文字列が「本文」になる（2026-11-03）。pypdf で文字を取り出し、
+        # 壊れていない（読める日本語・英語の）ときだけ本文にする（2026-11-05 統計の速報の PDF。scripts/pdf_text.py）。
+        # 壊れていれば今までどおり読み取りサービスに任せる
+        try:
+            pdf = pdf_text.extract(data, min_jp=0)  # 英語の資料（SEC など）もあるので日本語の字数は問わない（読める文字の割合で見る）
+        except pdf_text.PdfTextError as error:
+            raise ValueError(f"PDF の文字を取り出せない（{error}。読み取りサービスで読む）") from error
+        return {
+            "text": pdf[:TEXT_CAP], "full_text": pdf[:400_000] if len(pdf) > TEXT_CAP else "", "image": None,
+            "title": "", "description": "", "final_url": final_url, "published": "", "links": [],
+        }
     parser = _Extractor()
     try:
         parser.feed(_decode(data))

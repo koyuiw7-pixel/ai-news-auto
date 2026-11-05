@@ -8,3 +8,5 @@ anthropic==1.17.0
 opencv-python-headless>=4.10,<5
 # IR の開示資料（PDF）の文字の取り出し（scripts/source_links.py。読み取りサービスが使えないときの予備）
 pypdf>=5.0,<7
+# 暗号化された PDF（財務省・内閣府の統計の速報）を pypdf で開く（scripts/pdf_text.py。台帳 W35）
+cryptography>=42

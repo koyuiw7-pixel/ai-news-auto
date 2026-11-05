@@ -655,6 +655,31 @@
         "host": "release.tdnet.info",
         "entity": "*",
         "name": "TDnet（適時開示）公式"
+      },
+      {
+        "host": "stat.go.jp",
+        "entity": "*",
+        "name": "総務省統計局公式"
+      },
+      {
+        "host": "e-stat.go.jp",
+        "entity": "*",
+        "name": "政府統計の総合窓口（e-Stat）"
+      },
+      {
+        "host": "boj.or.jp",
+        "entity": "*",
+        "name": "日本銀行公式"
+      },
+      {
+        "host": "customs.go.jp",
+        "entity": "*",
+        "name": "財務省税関公式（貿易統計）"
+      },
+      {
+        "host": "mof.go.jp",
+        "entity": "*",
+        "name": "財務省公式"
       }
     ],
     "primary_path_re": "/(?:news|newsroom|blog|blogs|research|index|press|pressroom|stories|story|announcements?|releases?)/[^?#]{4,}|/release-notes/[^?#]{2,}|/Archives/edgar/data/|^/(?:[A-Za-z0-9_-]+/){0,5}[a-z0-9]+(?:-[a-z0-9]+){2,}(?:\\.html?)?/?$",
