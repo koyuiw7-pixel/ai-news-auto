@@ -15021,6 +15021,15 @@
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/yusyutu_kokusai/kikaku/261030.html"
     },
+    "f93567576105c713": {
+      "at": "2026-11-05T11:02:33.606744+00:00",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "openai-national-community-compact",
+      "url": "https://openai.com/index/setting-new-standard-responsible-ai-infrastructure"
+    },
     "f94fc35fdadaf544": {
       "at": "2026-11-02T08:26:45.006205+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15329,20 +15338,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T23:41:54.214042+00:00",
-      "attempt": 1,
-      "id": "63cd61900c41a18d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "lifull",
-      "title": "LIFULL Investmentが利用するクラウドサービスにおける不正アクセスに関するお知らせ"
-    },
     {
       "accepted": false,
       "at": "2026-11-03T23:43:22.652914+00:00",
@@ -21563,6 +21558,31 @@
       "title": "ユーロ圏消費者物価（26年10月）－総合指数は前年比で4.0％まで上昇",
       "warnings": [
         "初めて出たところで言い換えていない略語（HICP・CPI）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T11:02:28.814557+00:00",
+      "attempt": 1,
+      "id": "f93567576105c713",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.9,
+        "avg_sentence": 37.2,
+        "long_share": 0.096,
+        "max_paragraph": 157,
+        "paragraphs": 22,
+        "sentences": 52
+      },
+      "score": 92,
+      "source": "openai-news",
+      "title": "Setting a new standard for responsible AI infrastructure",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NDA・SB）"
       ]
     }
   ],
