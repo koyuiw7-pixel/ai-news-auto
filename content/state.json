@@ -229,6 +229,7 @@
     "1518f82e6c28ebe0": "2026-11-04T13:10:52.830493+00:00",
     "18444c154a1fd1c8": "2026-11-04T13:10:52.830493+00:00",
     "27c11336cca71266": "2026-11-04T18:30:50.676395+00:00",
+    "2b348a8b578e32ca": "2026-11-05T10:41:04.124472+00:00",
     "322de511a9d70b13": "2026-11-04T13:10:52.830493+00:00",
     "35b09f9e9b4d07af": "2026-11-04T13:10:52.830493+00:00",
     "4745bed385b63a30": "2026-11-04T13:10:52.830493+00:00",
@@ -242,6 +243,7 @@
     "743775a8256fe105": "2026-11-04T13:10:52.830493+00:00",
     "75062b922de11e98": "2026-11-04T13:10:52.830493+00:00",
     "7520b30bdab115ce": "2026-11-04T18:30:50.676395+00:00",
+    "7ad858314204b4c0": "2026-11-05T10:41:04.124472+00:00",
     "7da9fc739690622b": "2026-11-04T13:10:52.830493+00:00",
     "82870a11b510856e": "2026-11-04T13:10:52.830493+00:00",
     "8d14de2cca67f1c1": "2026-11-04T13:10:52.830493+00:00",
@@ -255,6 +257,7 @@
     "d12138e172a3a7f9": "2026-11-04T13:10:52.830493+00:00",
     "d1ca532e101a8cf0": "2026-11-04T13:10:52.830493+00:00",
     "d443e98d7d0d2b52": "2026-11-04T13:10:52.830493+00:00",
+    "d5d0f31755500e58": "2026-11-05T10:41:04.124472+00:00",
     "d9ab2f31cea858b4": "2026-11-04T13:10:52.830493+00:00",
     "e20b9dad521b1e3b": "2026-11-05T02:20:49.929727+00:00",
     "e668e5e296aa7d6a": "2026-11-04T13:10:52.830493+00:00",
@@ -5492,12 +5495,6 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/kaisai/02kiban16_04000966.html"
     },
-    "2b348a8b578e32ca": {
-      "at": "2026-11-05T10:14:28.900707+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/menu_kyotsuu/important/kinkyu02_000638.html"
-    },
     "2b3c8743ac8faea6": {
       "at": "2026-10-28T12:08:40.147579+00:00",
       "breaking": true,
@@ -7508,6 +7505,13 @@
       "skipped": true,
       "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1215_4788.html"
     },
+    "56cccc4ff18aac82": {
+      "at": "2026-11-05T10:41:34.989313+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "国土交通省の検討ワーキンググループ第1回の開催告知で、制度の決定事項や数字はまだありません。会議は非公開で、議事内容は後日公開される予定のため、読者が今すぐ使う・申し込む・確かめる情報が乏しく、記事化の基準を満たしません。",
+      "skipped": true,
+      "url": "http://www.mlit.go.jp/report/press/house04_hh_001372.html"
+    },
     "572edca20982cec1": {
       "at": "2026-11-02T04:31:23.929798+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
@@ -9107,7 +9111,7 @@
       "url": "https://blogs.microsoft.com/blog/2026/10/26/introducing-a-voluntary-exit-offer/"
     },
     "7ad858314204b4c0": {
-      "at": "2026-11-05T10:11:53.444612+00:00",
+      "at": "2026-11-05T10:41:25.487702+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "https://www.cyberagent.co.jp/news/detail/id=33979"
@@ -13346,12 +13350,6 @@
       "slug": "disaster-agency-launch-2026",
       "url": "https://www.kantei.go.jp/jp/105/actions/202611/02hossokushiki.html"
     },
-    "d5d0f31755500e58": {
-      "at": "2026-11-05T10:14:28.900622+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/newpage_77001.html"
-    },
     "d5dfb55b012918e7": {
       "at": "2026-10-26T11:34:03.294314+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -14473,6 +14471,15 @@
       "slug": "acnh-zelda-collaboration-mydesign-2026",
       "url": "https://www.nintendo.com/jp/topics/article/72628ca2-91a6-42e6-8041-82df388b3f0c"
     },
+    "ee2555cc16099e14": {
+      "at": "2026-11-05T10:43:12.084298+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "business",
+      "slug": "eurozone-consumer-prices-oct-2026",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87261?site=nli"
+    },
     "ee28ccb62e546dc6": {
       "at": "2026-10-27T21:01:42.608618+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -15322,20 +15329,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T23:40:53.182897+00:00",
-      "attempt": 2,
-      "id": "3d509e27bae229a3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "openai-news",
-      "title": "OpenAI appoints Jill Hazelbaker as Chief Corporate Affairs Officer"
-    },
     {
       "accepted": false,
       "at": "2026-11-03T23:41:54.214042+00:00",
@@ -21548,6 +21541,29 @@
       "score": null,
       "source": "tokyo-metro",
       "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T10:43:12.049222+00:00",
+      "attempt": 1,
+      "id": "ee2555cc16099e14",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.7,
+        "avg_sentence": 38.8,
+        "long_share": 0.094,
+        "max_paragraph": 126,
+        "paragraphs": 15,
+        "sentences": 32
+      },
+      "score": 92,
+      "source": "nli-research",
+      "title": "ユーロ圏消費者物価（26年10月）－総合指数は前年比で4.0％まで上昇",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HICP・CPI）"
+      ]
     }
   ],
   "short_text_retry": {
