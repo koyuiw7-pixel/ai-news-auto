@@ -202,7 +202,12 @@ class DigestThreadTest(unittest.TestCase):
         thread = inp["metadata"]["threads"]["thread"]
         self.assertGreaterEqual(len(thread), 3)
         self.assertNotIn("http", thread[0]["text"])
-        self.assertTrue(thread[0]["text"].endswith("、"))  # 文の途中で終えて続きを開いてもらう
+        self.assertEqual(len(thread), 4)  # 1件目＋残りの記事1本ずつ＋リンク
+        self.assertTrue(thread[0]["text"].endswith("次は、ソニーがAI機能付きの新型カメラを発表、"))  # 一覧が続く形（Muse の見直し）
+        self.assertNotIn("ほかの", thread[0]["text"])
+        self.assertTrue(thread[1]["text"].startswith("2/4\n"))
+        self.assertTrue(thread[2]["text"].startswith("3/4\n"))
+        self.assertTrue(thread[3]["text"].startswith("4/4\n"))
         self.assertNotIn("！", thread[0]["text"])
         self.assertIn("utm_content=digest_reply", thread[-1]["text"])
         self.assertTrue(all("http" not in t["text"] for t in thread[:-1]))

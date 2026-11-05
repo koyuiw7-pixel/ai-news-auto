@@ -359,18 +359,45 @@ def create_with_fallback(api_key: str, payload: dict) -> str:
         return tp.create_post(api_key, plain, **gate)
 
 
+FACT_MAX = 110
+
+
+def _fact(slug: str, headline: str) -> str:
+    """記事の事実の1文（リードの最初の2文のうち数字のある文。です・ます）。記事が読めなければ見出しから1文を作る"""
+    try:
+        lede = str(json.loads((tp.ARTICLES_DIR / f"{slug}.json").read_text("utf-8")).get("lede") or "")
+    except (OSError, ValueError):
+        lede = ""
+    sentences = [x + "。" for x in lede.split("。") if x.strip()][:2]
+    pick = next((x for x in sentences if re.search(r"[0-9０-９]", x)), sentences[0] if sentences else "")
+    if pick and len(pick) <= FACT_MAX and re.search(r"(?:です|ます|ました|でした)。$", pick):
+        return pick
+    return f"{headline.rstrip('…')}というニュースです。"
+
+
+def _title(headline: str) -> str:
+    """続きの見出しの短い題（「・」を外す。途中で切れた見出しは最後の「、」の前まで）"""
+    t = headline.lstrip("・").strip()
+    if t.endswith("…") and "、" in t:
+        t = t[: t.rindex("、")]
+    return t.rstrip("…、")
+
+
 def reply_thread_texts(post: dict) -> list[str]:
-    """（2026-11-06 テストの日・台帳 S39。THREADS_LINK_POS=reply）朝のまとめを短いスレッドにする（オーナー・Muse 案）:
-    1件目＝見出しの行＋いちばん大きい1本＋「ほかの◯本は、」で文の途中で終える（続きを開いてもらう。煽りの言葉・「！」は使わない）、
-    2件目＝残りの見出し（短い行）、最後の1件＝案内の1行＋号のページのリンク（utm_content=digest_reply）"""
+    """（2026-11-06 テストの日・台帳 S39。THREADS_LINK_POS=reply）朝のまとめを短いスレッドにする（オーナー・Muse 案。11/6 Muse の見直しで直した形）:
+    1件目＝見出しの行＋いちばん大きい1本を事実と数字まで言い切る＋「次は、<次の記事の短い題>、」（一覧が続く読み方。煽りの言葉・「！」は使わない）、
+    返信は残りの記事1本ずつ（「2/N」の番号＋見出し＋事実の1文）、最後の返信＝案内の1行＋号のページのリンク（utm_content=digest_reply）。N は返信も含めた件数"""
     lines = [x for x in str(post["text"]).splitlines() if x.strip()]
-    head, items = lines[0], [x for x in lines[1:] if x.startswith("・")]
+    head, items = lines[0], [x.lstrip("・").strip() for x in lines[1:] if x.startswith("・")]
     if len(items) < 2 or not post.get("link"):
         return []
-    rest = len(items) - 1
-    first = f"{head}\n\nいちばん大きいのはこちらです。\n{items[0]}\n\nほかの{rest}本は、"
+    slugs = list(post.get("items") or [])
+    slugs += [""] * (len(items) - len(slugs))
+    total = len(items) + 1
+    first = f"{head}\n\n{_fact(slugs[0], items[0])}\n次は、{_title(items[1])}、"
+    replies = [f"{i + 1}/{total}\n{items[i]}\n{_fact(slugs[i], items[i])}" for i in range(1, len(items))]
     link = tp.utm_link(post["link"], "threads", "digest", ptype="digest", pos="reply")
-    return [first, "\n".join(items[1:]), f"{post.get('reply') or REPLY_LINES[0]}\n{link}"]
+    return [first, *replies, f"{total}/{total}\n{post.get('reply') or REPLY_LINES[0]}\n{link}"]
 
 
 def threads_input(channel_id: str, post: dict, when: dict) -> dict:
