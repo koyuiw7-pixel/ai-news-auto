@@ -90,14 +90,6 @@
       "tries": 2,
       "url": "https://elevenlabs.io/blog/what-is-call-transcription"
     },
-    "141794b8fcef0d3b": {
-      "first": "2026-11-05T02:06:16.675452+00:00",
-      "next": "2026-11-05T14:22:23.403956+00:00",
-      "reason": "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルのまま」「日本の売上は1%減」）",
-      "title": "企業文化の分析と企業評価",
-      "tries": 2,
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87110?site=nli"
-    },
     "17a357c5e54aa313": {
       "first": "2026-11-04T03:38:04.535003+00:00",
       "next": "2026-11-04T06:38:04.535003+00:00",
@@ -301,6 +293,7 @@
     "a1d85a4a9d1883e3": "2026-11-05T13:21:07.354021+00:00",
     "a31895744c54c87c": "2026-11-05T12:21:12.462815+00:00",
     "a840592d4a4f2b6d": "2026-11-05T12:02:48.521507+00:00",
+    "acefadff72bf4c8c": "2026-11-05T14:30:55.960654+00:00",
     "ae26df52e2687ef8": "2026-11-04T13:10:52.830493+00:00",
     "b5688b01957fdd9b": "2026-11-05T12:02:48.521507+00:00",
     "b97f9b0826d10747": "2026-11-05T12:02:48.521507+00:00",
@@ -4444,6 +4437,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（周年）",
       "skipped": true,
       "url": "https://www.nintendo.com/jp/topics/article/f4df5c50-0d01-4cc9-bcfc-489eb36274bf"
+    },
+    "141794b8fcef0d3b": {
+      "at": "2026-11-05T14:55:39.806562+00:00",
+      "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87110?site=nli"
     },
     "142f0e7c0832faf1": {
       "at": "2026-11-01T07:31:06.287083+00:00",
@@ -11896,7 +11896,7 @@
       "url": "https://prtimes.jp/main/html/rd/p/000000220.000087046.html"
     },
     "acefadff72bf4c8c": {
-      "at": "2026-11-05T14:11:27.462690+00:00",
+      "at": "2026-11-05T14:31:17.918521+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/05/20261105-acv-post-launch-update-o/"
@@ -14672,6 +14672,12 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/a_menu/nihongo_kyoiku/mext_02916.html"
     },
+    "e7b6faa23a645cf7": {
+      "at": "2026-11-05T14:31:17.920485+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/statistics/boj/other/col/col2610.xlsx"
+    },
     "e7bf37c2ea0b7edcb7ba161e4879deccde91da2a": {
       "at": "2026-10-30T18:51:55.455673+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15865,34 +15871,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T01:49:11.275737+00:00",
-      "attempt": 2,
-      "id": "bd77db82486b50a500f6bc90bee4f34482b22617",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "ihi 株価"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T01:50:39.360417+00:00",
-      "attempt": 1,
-      "id": "e5a5675e2d1ffd241d6b2d7e041969ccd68c838e",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "住友商事 株価"
-    },
     {
       "accepted": false,
       "at": "2026-11-04T01:51:40.324088+00:00",
@@ -22070,6 +22048,44 @@
       "score": 84,
       "source": "nvidia-blog",
       "title": "‘Hogwarts Legacy’ Gets a Magical NVIDIA DLSS 5 Upgrade on GeForce NOW"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T14:40:46.758468+00:00",
+      "attempt": 1,
+      "id": "141794b8fcef0d3b",
+      "kind": "broad",
+      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
+      "problems": [
+        "body に投資助言・売買のすすめの言い回しがある（「目標株価」）。一般的な情報と判断材料の提示に直す",
+        "1つの文を2つに割っている（「メリットがあります。１つ目は、細かなルールや監視に頼らなくても組織が動くことです」）。1文にまとめる",
+        "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める"
+      ],
+      "readability": {
+        "avg_paragraph": 129.1,
+        "avg_sentence": 44.2,
+        "long_share": 0.237,
+        "max_paragraph": 223,
+        "paragraphs": 13,
+        "sentences": 38
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "企業文化の分析と企業評価"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T14:55:39.806499+00:00",
+      "attempt": 2,
+      "id": "141794b8fcef0d3b",
+      "kind": "broad",
+      "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "nli-research",
+      "title": "企業文化の分析と企業評価"
     }
   ],
   "short_text_retry": {
