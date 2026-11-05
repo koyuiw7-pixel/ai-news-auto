@@ -209,9 +209,7 @@
       "url": "https://developers.cyberagent.co.jp/blog/archives/67267/"
     }
   },
-  "major_tries": {
-    "be080fcaa0a3f4c9": 2
-  },
+  "major_tries": {},
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -12192,6 +12190,17 @@
       "slug": "aws-weekly-20261019-updates",
       "url": "https://aws.amazon.com/jp/blogs/news/aws-weekly-20261019/"
     },
+    "be080fcaa0a3f4c9": {
+      "at": "2026-11-05T06:23:19.316709+00:00",
+      "breaking": true,
+      "major": true,
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 85,
+      "section": "investment",
+      "slug": "toyota-buyback-tender-offer-2725",
+      "url": "https://www.release.tdnet.info/inbs/140120261105565338.pdf"
+    },
     "bf25be8f87794d7d": {
       "at": "2026-11-04T22:53:46.467483+00:00",
       "mix": "other",
@@ -15150,65 +15159,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T17:52:00.412897+00:00",
-      "attempt": 1,
-      "id": "9aef92b29b8064d2",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "リード「すでに米国、インドなど6つの国・地域で始まっています」→元記事は米国、インド、韓国、マレーシア、フィリピン、英国とアイルランドで、数え方次第で6〜7になり「6つ」は元記事に明記がない。",
-        "「Googleは、先行する5つの国・地域の使い方を紹介しています」→元記事が紹介するのはインド、フィリピン、マレーシア、英国、韓国の5か国で米国は含まれない。5つの国・地域という数え方は元記事にない。",
-        "「開始日や料金、使える言語はまだ発表されていません」→料金は無料と公式ブログに書かれており、直後の文と矛盾する書き方。",
-        "「650,000人の教員が、オンラインまたは対面の催しで研修を受けられます」→元記事は「all 650,000 teachers can receive」で、受講可能という点はほぼ一致するが、対象は英国とアイルランドの教員で、元記事の対象範囲の記述が曖昧。",
-        "FAQ「Q. インドではどんな形で提供されますか？」→「今後は全教員に提供」は元記事で「bringing GES to all Indian educators」と述べているが、提供済みか予定かの区別が曖昧。"
-      ],
-      "readability": {
-        "avg_paragraph": 58.3,
-        "avg_sentence": 35.0,
-        "long_share": 0.133,
-        "max_paragraph": 158,
-        "paragraphs": 27,
-        "sentences": 45
-      },
-      "score": 80,
-      "source": "google-blog-all",
-      "title": "Expanding AI educator training to new countries",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GES・BETT・ISTE）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T17:52:53.517859+00:00",
-      "attempt": 2,
-      "id": "9aef92b29b8064d2",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「Googleによると、無料で、好きな時間に受けられる形式です」→ 元記事は「on-demand」としており、「好きな時間に」は言い換えの範囲だが、問題は軽微。",
-        "「提供は今後数カ月のうちに始まります」→ 元記事は「In the coming months」で一致。問題なし。",
-        "「GESは、GESの修了者にバッジを出し」→ 元記事は「Earn your badge today」とあり、関連ページでもバッジの記述があるため問題なし。",
-        "「教員は、Geminiで経済の授業の市場シナリオを模擬しています」→ 元記事と一致。",
-        "「判定: 提供状況=limited」→ 5地域は今後数カ月で提供予定であり、日本未発表との表記は妥当。",
-        "「カリキュラム、評価、視覚教材の準備で…節約できた」→ 元記事は「teachers report saving」で、「できたと報告」は一致。"
-      ],
-      "readability": {
-        "avg_paragraph": 86.4,
-        "avg_sentence": 39.9,
-        "long_share": 0.103,
-        "max_paragraph": 154,
-        "paragraphs": 18,
-        "sentences": 39
-      },
-      "score": 80,
-      "source": "google-blog-all",
-      "title": "Expanding AI educator training to new countries",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GES・BETT・SNUE）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-03T17:53:08.196403+00:00",
@@ -21368,6 +21318,60 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（MS・AD）",
         "本文の最初の段落（読者個人への影響）に企業向けの手続き（「取引先」）。企業向けは最後の章に分ける"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:22:53.179915+00:00",
+      "attempt": 1,
+      "id": "be080fcaa0a3f4c9",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "よくある質問の「消却の日が確定した時点で、改めて知らせるとしています」→ 元資料に消却日を後から知らせるとの記載はなく、創作の発表予定である",
+        "「今日やること」「かんたん版」の「トヨタの株を長く持っている保険会社」→ 元資料にない保有期間の断定である",
+        "「市場買付けや立会外取引では…取得しにくい面があると見ています」→ 元資料の該当箇所は途中で切れており、流動性に関する理由を言い換えて断定している",
+        "「取得が完了して確定した時点で改めて知らされます」→ 元資料は消却を四半期末に予定すると述べるのみで、改めて知らせる旨は書かれていない",
+        "「買付け期間の詳しい日程は…示されていません」→ 取得期間（2026年8月5日〜2027年8月4日）は元資料にあり、公開買付けの期間が不明という書き方は誤解を招く"
+      ],
+      "readability": {
+        "avg_paragraph": 90.4,
+        "avg_sentence": 35.3,
+        "long_share": 0.073,
+        "max_paragraph": 156,
+        "paragraphs": 16,
+        "sentences": 41
+      },
+      "score": 85,
+      "source": "fast",
+      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MS・AD）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T06:23:19.255910+00:00",
+      "attempt": 1,
+      "id": "be080fcaa0a3f4c9",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「消却の日が確定した時点で、改めて知らせるとしています」（よくある質問の答え）→ 元記事に、消却の日が確定した際に改めて知らせるという記述はない。発表内容の創作。"
+      ],
+      "readability": {
+        "avg_paragraph": 93.2,
+        "avg_sentence": 36.4,
+        "long_share": 0.073,
+        "max_paragraph": 160,
+        "paragraphs": 16,
+        "sentences": 41
+      },
+      "score": 85,
+      "source": "fast",
+      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MS・AD）"
       ]
     }
   ],
