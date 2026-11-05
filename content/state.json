@@ -172,7 +172,9 @@
       "url": "https://developers.cyberagent.co.jp/blog/archives/67267/"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "582d1c8b48613264": 1
+  },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -16124,79 +16126,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-04T07:02:43.039875+00:00",
-      "attempt": 1,
-      "id": "3230a95dc5ad0047",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.2,
-        "avg_sentence": 41.2,
-        "long_share": 0.081,
-        "max_paragraph": 153,
-        "paragraphs": 16,
-        "sentences": 37
-      },
-      "score": 93,
-      "source": "jnet21",
-      "title": "賃上げ後に業績が悪化した場合、賃金を元の水準に戻せますか。賃下げの注意点と進め方を教えてください。"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T07:22:59.847251+00:00",
-      "attempt": 1,
-      "id": "cba8f769dd5b673e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "訳されていない英文が残っている（「Slack helps us remove those obstacles th…」）",
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「- 社員の83%」、「- 営業担当の90%」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 109.7,
-        "avg_sentence": 48.4,
-        "long_share": 0.265,
-        "max_paragraph": 241,
-        "paragraphs": 15,
-        "sentences": 34
-      },
-      "score": null,
-      "source": "salesforce-news",
-      "title": "Half of Slack Messages Are No Longer From People. Here’s Slack by the Numbers.",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（MCP）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T07:24:36.166263+00:00",
-      "attempt": 2,
-      "id": "cba8f769dd5b673e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「社員の83%」、「botを使い、営業担当の90%」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 120.2,
-        "avg_sentence": 48.8,
-        "long_share": 0.219,
-        "max_paragraph": 180,
-        "paragraphs": 13,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "salesforce-news",
-      "title": "Half of Slack Messages Are No Longer From People. Here’s Slack by the Numbers.",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（MCP）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-04T07:26:05.672270+00:00",
       "attempt": 1,
@@ -22329,6 +22258,48 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（GW・WEC・DTE）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T23:07:24.996007+00:00",
+      "attempt": 1,
+      "id": "582d1c8b48613264",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-group-press",
+      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T23:07:48.495284+00:00",
+      "attempt": 2,
+      "id": "582d1c8b48613264",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-group-press",
+      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T23:08:07.681601+00:00",
+      "attempt": 3,
+      "id": "582d1c8b48613264",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-group-press",
+      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
     }
   ],
   "short_text_retry": {
