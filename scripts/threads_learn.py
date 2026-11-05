@@ -50,6 +50,7 @@ COMPANIES = [
 
 
 METRICS_DAYS = 14  # 反応を取り直す投稿の新しさ（日）
+METRICS_MAX_PAGES = 6  # 1回の取得で読む最大ページ数（50件/ページ。14日 × Threads・X で足りる）
 
 
 def fetch_metrics(api_key: str) -> dict[str, dict]:
@@ -64,15 +65,18 @@ def fetch_metrics(api_key: str) -> dict[str, dict]:
         if not ids:
             continue
         cursor = None
-        # 2026-11-05: 直近 METRICS_DAYS 日に出た投稿だけ読む（以前は毎日 全部の送信済みを最大10ページ＝10回。古い投稿の数値は履歴に残っている）
-        since = (datetime.now(timezone.utc) - timedelta(days=METRICS_DAYS)).isoformat(timespec="seconds").replace("+00:00", "Z")
-        for _ in range(4):  # 最大 200 件
+        # 直近 METRICS_DAYS 日に出た投稿だけ読む（古い投稿の数値は履歴に残っている）。
+        # 2026-11-05 修正: 送信済み（sent）に startDate だけを付けると Buffer は0件を返す（11/4 夜〜11/5 の取得がすべて0件で止まった）。
+        # 日付の絞り込みはやめ、作った順の新しい順に読み、そのページが全部 since より前に出た投稿になったら止める
+        since = datetime.now(timezone.utc) - timedelta(days=METRICS_DAYS)
+        for _ in range(METRICS_MAX_PAGES):
             after = f", after: {json.dumps(cursor)}" if cursor else ""
             data = buffer_graphql(
                 api_key,
                 f"""query {{ posts(first: 50{after}, input: {{
                     organizationId: {json.dumps(org['id'])},
-                    filter: {{ status: [sent], channelIds: {json.dumps(ids)}, startDate: {json.dumps(since)} }}
+                    filter: {{ status: [sent], channelIds: {json.dumps(ids)} }},
+                    sort: [{{ field: createdAt, direction: desc }}]
                 }}) {{
                     edges {{ node {{ id sentAt externalLink metricsUpdatedAt metrics {{ type value }} metadata {{ ... on ThreadsPostMetadata {{ threadCount }} }} }} }}
                     pageInfo {{ endCursor hasNextPage }}
@@ -93,6 +97,9 @@ def fetch_metrics(api_key: str) -> dict[str, dict]:
                     result[node["id"]]["ownReplies"] = max(0, int(thread_count) - 1)
             if not data["pageInfo"]["hasNextPage"]:
                 break
+            sent = [_utc(edge["node"].get("sentAt")) for edge in data["edges"]]
+            if sent and all(at is not None and at < since for at in sent):
+                break  # このページは全部 since より前（新しい順なので、この先も古い）
             cursor = data["pageInfo"]["endCursor"]
     return result
 
@@ -111,6 +118,17 @@ VISITS_MATURE_HOURS = 20
 VISITS_EVERY_HOURS = 3
 # 表示 → 訪問の置き換えの割合（訪問と表示の両方がそろった投稿が少ないうちの既定。10/28〜11/02 の実績で約2%）
 DEFAULT_VISIT_RATE = 0.02
+
+
+def recent_sent_posts(state: dict, now: datetime) -> int:
+    """直近 METRICS_DAYS 日に Buffer で出した投稿の本数（投稿の記録から）"""
+    since = now - timedelta(days=METRICS_DAYS)
+    count = 0
+    for e in state.get("posted", {}).values():
+        at = _utc(e.get("sentAt") or e.get("postedAt"))
+        if e.get("id") and e.get("status") != "scheduled" and at is not None and since < at <= now:
+            count += 1
+    return count
 
 
 def _utc(value: object) -> datetime | None:
@@ -359,6 +377,10 @@ def main() -> int:
                 fetched = {}
             if fetched:
                 fetched_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+            elif recent_sent_posts(state, now):
+                # 出したはずの投稿があるのに0件 = 取り方が壊れている。黙って学習を古いままにしない（11/4〜11/5 の取りこぼし）
+                print(f"::warning::[learn] Buffer から反応が0件でした（直近{METRICS_DAYS}日に {recent_sent_posts(state, now)} 本出しています）。"
+                      "取得の問い合わせを確かめてください", file=sys.stderr)
             updated = 0
             for entry in state["posted"].values():
                 info = fetched.get(entry.get("id", ""))

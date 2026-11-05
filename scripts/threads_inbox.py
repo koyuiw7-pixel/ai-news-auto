@@ -51,7 +51,8 @@ def fetch(api_key: str, since: datetime) -> list[dict]:
                 api_key,
                 f"""query {{ posts(first: 50{after}, input: {{
                     organizationId: {json.dumps(org['id'])},
-                    filter: {{ status: [sent], channelIds: {json.dumps(ids)}, startDate: {json.dumps(tp.utc_z(since))} }}
+                    filter: {{ status: [sent], channelIds: {json.dumps(ids)} }},
+                    sort: [{{ field: createdAt, direction: desc }}]
                 }}) {{
                     edges {{ node {{ id text sentAt externalLink metricsUpdatedAt metrics {{ type value }} metadata {{ ... on ThreadsPostMetadata {{ threadCount }} }} }} }}
                     pageInfo {{ endCursor hasNextPage }}
@@ -63,6 +64,10 @@ def fetch(api_key: str, since: datetime) -> list[dict]:
                 if sent and datetime.fromisoformat(sent.replace("Z", "+00:00")) >= since:
                     out.append(node)
             if not data["pageInfo"]["hasNextPage"]:
+                break
+            # 2026-11-05: sent に startDate だけを付けると Buffer が0件を返すため、新しい順に読んで since より前だけのページで止める
+            sent = [edge["node"].get("sentAt") for edge in data["edges"]]
+            if sent and all(at and datetime.fromisoformat(at.replace("Z", "+00:00")) < since for at in sent):
                 break
             cursor = data["pageInfo"]["endCursor"]
     return out
