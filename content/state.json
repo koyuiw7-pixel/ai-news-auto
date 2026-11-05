@@ -173,7 +173,7 @@
     }
   },
   "major_tries": {
-    "582d1c8b48613264": 2
+    "582d1c8b48613264": 3
   },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
@@ -16126,73 +16126,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-04T08:05:34.840677+00:00",
-      "attempt": 1,
-      "id": "2e3f3ef33d8db967",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "要点の「脳波の測定からAIによる分析までを3つのモジュールで無料で学べる」→ 元記事では、AI解析・評価を扱うのは未公開の残り4モジュールであり、公開済みの3モジュールは脳波の基礎・計測方法・ノイズの見分け方のみ。公開内容の取り違え。",
-        "本文「全7モジュールのうち3つを公開」は正しいが、要点の上記記述と矛盾する。",
-        "「日本語で学べるため、国内の学生や研究者が基礎から学ぶ際にも直接役立ちます」→ 元記事に無い「国内の学生や研究者に直接役立つ」という評価を事実のように書いている（言い過ぎ）。"
-      ],
-      "readability": {
-        "avg_paragraph": 87.4,
-        "avg_sentence": 45.1,
-        "long_share": 0.161,
-        "max_paragraph": 152,
-        "paragraphs": 16,
-        "sentences": 31
-      },
-      "score": 72,
-      "source": "hiroshima-u",
-      "title": "【研究成果】脳波の計測からAI解析までを学ぶ動画教材を公開 ― TNI Academy第1弾「EEG × AI」の提供を開始 ―",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TNI・ATR・BMI）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T08:05:46.530344+00:00",
-      "attempt": 2,
-      "id": "2e3f3ef33d8db967",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "hiroshima-u",
-      "title": "【研究成果】脳波の計測からAI解析までを学ぶ動画教材を公開 ― TNI Academy第1弾「EEG × AI」の提供を開始 ―"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T08:07:50.424189+00:00",
-      "attempt": 1,
-      "id": "0d2095d107034e0c",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 45.7字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 105.5,
-        "avg_sentence": 45.7,
-        "long_share": 0.167,
-        "max_paragraph": 169,
-        "paragraphs": 13,
-        "sentences": 30
-      },
-      "score": 88,
-      "source": "vercel-changelog",
-      "title": "Tencent Hy4 now available on AI Gateway",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（BYOK・JSON）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-04T08:08:18.636859+00:00",
       "attempt": 0,
@@ -22258,6 +22191,48 @@
     {
       "accepted": false,
       "at": "2026-11-05T23:11:30.657571+00:00",
+      "attempt": 3,
+      "id": "582d1c8b48613264",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-group-press",
+      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T23:13:24.846513+00:00",
+      "attempt": 1,
+      "id": "582d1c8b48613264",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-group-press",
+      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T23:13:43.607082+00:00",
+      "attempt": 2,
+      "id": "582d1c8b48613264",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-group-press",
+      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T23:14:03.156179+00:00",
       "attempt": 3,
       "id": "582d1c8b48613264",
       "kind": "broad",
