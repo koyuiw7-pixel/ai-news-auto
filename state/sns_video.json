@@ -2389,7 +2389,7 @@
     },
     "toyota-fy2027-interim-results": {
       "at": "2026-11-05T05:29:51+00:00",
-      "status": "ready",
+      "status": "attached",
       "tries": 1,
       "ok": true,
       "adopted": "muse",
@@ -2430,7 +2430,9 @@
         "short": "https://ai-tech-express.jp/video/toyota-fy2027-interim-results-6484862667.mp4",
         "poster": "https://ai-tech-express.jp/video/toyota-fy2027-interim-results-7a29d49501.jpg"
       },
-      "variant": "short"
+      "variant": "short",
+      "bufferId": "6aec14f8e22643a98791ce4a",
+      "postedAt": "2026-11-05T14:45:00+09:00"
     }
   },
   "queued": {
@@ -2598,12 +2600,19 @@
     "ipa-personal-data-leak-countermeasures": {
       "status": "waiting",
       "why": "動画が検査に落ちたので、あとの回で作り直す（この投稿だけ遅らせる）",
-      "checkedAt": "2026-11-05T05:23:22+00:00"
+      "checkedAt": "2026-11-05T05:32:38+00:00"
     },
     "toyota-fy2027-interim-results": {
-      "status": "waiting",
-      "why": "動画を作っている途中・順番待ち",
-      "checkedAt": "2026-11-05T05:29:21+00:00"
+      "status": "created",
+      "channels": {
+        "threads": "6aec14f8e22643a98791ce4a",
+        "twitter": "6aec14f97877e0eab2783310",
+        "facebook": "6aec14fa660b2991f153be0e"
+      },
+      "id": "6aec14f8e22643a98791ce4a",
+      "dueAt": "2026-11-05T14:45:00+09:00",
+      "variant": "short",
+      "delayedMin": 0
     }
   },
   "converted": {
@@ -3182,7 +3191,7 @@
       "applied": true
     },
     "toyota-fy2027-interim-results": {
-      "at": "2026-11-05T05:29:21+00:00",
+      "at": "2026-11-05T05:32:37+00:00",
       "pending": {
         "inputs": {
           "threads": {
@@ -3208,7 +3217,7 @@
               }
             },
             "mode": "customScheduled",
-            "dueAt": "2026-11-05T14:40:00+09:00"
+            "dueAt": "2026-11-05T14:45:00+09:00"
           },
           "twitter": {
             "channelId": "6ade35f52f1f5ed648cb07cf",
@@ -3236,7 +3245,7 @@
               }
             },
             "mode": "customScheduled",
-            "dueAt": "2026-11-05T14:52:00+09:00",
+            "dueAt": "2026-11-05T14:57:00+09:00",
             "_offsetMin": 12
           },
           "facebook": {
@@ -3258,11 +3267,11 @@
               }
             },
             "mode": "customScheduled",
-            "dueAt": "2026-11-05T15:07:00+09:00",
+            "dueAt": "2026-11-05T15:12:00+09:00",
             "_offsetMin": 27
           }
         },
-        "slot": "2026-11-05T14:40:00+09:00",
+        "slot": "2026-11-05T14:45:00+09:00",
         "fmt": "classic",
         "forceVariant": "short",
         "allowDuplicateOf": {
@@ -3279,23 +3288,7 @@
       },
       "threadsSent": false,
       "repost": true,
-      "paused": {
-        "threads": {
-          "id": "6aec12cde22643a9879154fc",
-          "ok": true,
-          "deleted": true
-        },
-        "twitter": {
-          "id": "6aec12cee22643a98791555b",
-          "ok": true,
-          "deleted": true
-        },
-        "facebook": {
-          "id": "6aec12cf7877e0eab277bc13",
-          "ok": true,
-          "deleted": true
-        }
-      },
+      "paused": {},
       "dropBlueskyExtra": true,
       "clearHold": true,
       "applied": true
