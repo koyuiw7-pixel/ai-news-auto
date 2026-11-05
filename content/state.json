@@ -109,10 +109,10 @@
     },
     "570227a5d2aea513": {
       "first": "2026-11-05T17:34:30.509196+00:00",
-      "next": "2026-11-05T20:34:30.509196+00:00",
+      "next": "2026-11-05T23:53:43.319327+00:00",
       "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "title": "Transform a quick drawing into a live app with Gemini.",
-      "tries": 1,
+      "tries": 2,
       "url": "https://blog.google/innovation-and-ai/products/gemini-app/turn-drawings-into-apps-gemini/"
     },
     "60e8d80f76ce81f6": {
@@ -16097,58 +16097,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-04T05:42:39.004091+00:00",
-      "attempt": 1,
-      "id": "3c6177ead4c30c9c",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "要点の1つ目（「AIを使う開発者は95%超でも、新しい価値づくり…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（効果）を、リードとは違う言い方で1つ目に書く"
-      ],
-      "readability": {
-        "avg_paragraph": 97.5,
-        "avg_sentence": 44.1,
-        "long_share": 0.214,
-        "max_paragraph": 156,
-        "paragraphs": 19,
-        "sentences": 42
-      },
-      "score": null,
-      "source": "atlassian-blog",
-      "title": "Measuring and orchestrating AI across the full engineering lifecycle",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PDLC）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T05:44:16.226755+00:00",
-      "attempt": 2,
-      "id": "3c6177ead4c30c9c",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "要点の1つ目（「個々のコーディングは速くなったが、組織全体の革新…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（効果）を、リードとは違う言い方で1つ目に書く"
-      ],
-      "readability": {
-        "avg_paragraph": 101.2,
-        "avg_sentence": 41.0,
-        "long_share": 0.108,
-        "max_paragraph": 169,
-        "paragraphs": 15,
-        "sentences": 37
-      },
-      "score": null,
-      "source": "atlassian-blog",
-      "title": "Measuring and orchestrating AI across the full engineering lifecycle",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DXI）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-04T05:46:08.024547+00:00",
       "attempt": 1,
       "id": "ce253a4b2ae2e919",
@@ -22314,6 +22262,34 @@
         "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（TPC・SF・GTC）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T20:52:34.740810+00:00",
+      "attempt": 1,
+      "id": "570227a5d2aea513",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "google-gemini-blog",
+      "title": "Transform a quick drawing into a live app with Gemini."
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T20:53:43.319169+00:00",
+      "attempt": 2,
+      "id": "570227a5d2aea513",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "google-gemini-blog",
+      "title": "Transform a quick drawing into a live app with Gemini."
     }
   ],
   "short_text_retry": {
