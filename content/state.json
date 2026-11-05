@@ -173,7 +173,7 @@
     }
   },
   "major_tries": {
-    "582d1c8b48613264": 1
+    "582d1c8b48613264": 2
   },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
@@ -16127,80 +16127,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-04T07:26:05.672270+00:00",
-      "attempt": 1,
-      "id": "e34c16449eb87ea4",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 46.9字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 84.4,
-        "avg_sentence": 46.9,
-        "long_share": 0.222,
-        "max_paragraph": 123,
-        "paragraphs": 15,
-        "sentences": 27
-      },
-      "score": 88,
-      "source": "ntt-news",
-      "title": "バイオマス発電の持続可能性に関する第三者検証を完了 ～RE100の技術要件への適合性の説明に必要な、持続可能性の根拠を示し、需要家の環境報告を支援～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（RE・MW）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-04T07:26:29.596114+00:00",
-      "attempt": 0,
-      "id": "e34c16449eb87ea4",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 78.6,
-        "avg_sentence": 39.3,
-        "long_share": 0.031,
-        "max_paragraph": 133,
-        "paragraphs": 16,
-        "sentences": 32
-      },
-      "score": 92,
-      "source": "ntt-news",
-      "title": "バイオマス発電の持続可能性に関する第三者検証を完了 ～RE100の技術要件への適合性の説明に必要な、持続可能性の根拠を示し、需要家の環境報告を支援～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（RE・MW）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T08:02:30.451196+00:00",
-      "attempt": 1,
-      "id": "0e889c44fa0a25a1",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "判定: 提供状況=demo 価格=不明 → 元記事にもコンテキストにも「demo」という提供状況の記載がなく、根拠のない表示になっている。",
-        "かんたん版「担当者が替わっても、前の話を確かめやすくなります」→ 元記事は全員が同じ顧客情報を見られると述べるだけで、担当者交代時の効果は元記事の直接の記述ではない（軽微な言い過ぎ）。"
-      ],
-      "readability": {
-        "avg_paragraph": 91.7,
-        "avg_sentence": 33.3,
-        "long_share": 0.03,
-        "max_paragraph": 165,
-        "paragraphs": 12,
-        "sentences": 33
-      },
-      "score": 90,
-      "source": "elevenlabs-blog",
-      "title": "What is call transcription? A practical business guide",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CRM・DOCX・JSON）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-04T08:05:34.840677+00:00",
       "attempt": 1,
       "id": "2e3f3ef33d8db967",
@@ -22290,6 +22216,48 @@
     {
       "accepted": false,
       "at": "2026-11-05T23:08:07.681601+00:00",
+      "attempt": 3,
+      "id": "582d1c8b48613264",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-group-press",
+      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T23:10:52.469407+00:00",
+      "attempt": 1,
+      "id": "582d1c8b48613264",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-group-press",
+      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T23:11:12.042886+00:00",
+      "attempt": 2,
+      "id": "582d1c8b48613264",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "softbank-group-press",
+      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T23:11:30.657571+00:00",
       "attempt": 3,
       "id": "582d1c8b48613264",
       "kind": "broad",
