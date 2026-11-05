@@ -3882,6 +3882,13 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/bunkakai/02tsushin10_04000739.html"
     },
+    "0b14ee5f1b1b64b7": {
+      "at": "2026-11-05T20:11:43.849724+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup style: 見出しが多すぎる（4個 / 本文2955字なら3個まで）。章をまとめて見出しを減らす",
+      "skipped": true,
+      "url": "https://blog.google/products-and-platforms/products/workspace/omni-1-2-flash-google-vids/"
+    },
     "0b2a8d8a7eb89aae": {
       "at": "2026-10-29T03:23:19.316148+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16080,29 +16087,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-04T04:36:08.986581+00:00",
-      "attempt": 2,
-      "id": "5c4576623088d079",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.4,
-        "avg_sentence": 37.3,
-        "long_share": 0.179,
-        "max_paragraph": 172,
-        "paragraphs": 13,
-        "sentences": 28
-      },
-      "score": 93,
-      "source": "ntt-news-release",
-      "title": "2026年度 第2四半期決算について",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IFRS）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-04T05:22:01.835729+00:00",
       "attempt": 1,
@@ -22307,6 +22291,18 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（KV・NVFP・FLUX）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T20:11:43.827838+00:00",
+      "attempt": 1,
+      "id": "0b14ee5f1b1b64b7",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "score": 95,
+      "source": "google-blog-all",
+      "title": "Generate longer AI videos with Omni 1.2 Flash in Google Vids at no cost."
     }
   ],
   "short_text_retry": {
