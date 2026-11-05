@@ -1,0 +1,111 @@
+{
+  "slug": "jpcert-security-advisory-wordpress-edge-chrome-updates",
+  "sourceType": "web",
+  "sourceUrl": "https://www.jpcert.or.jp/wr/2026/wr261105.html#1",
+  "sourceName": "JPCERT/CC",
+  "title": "WordPressやChromeなど主要ソフトに複数脆弱性　悪用事例の報告も",
+  "seoTitle": "JPCERT脆弱性注意喚起：WordPressやEdge等の更新を",
+  "threadsPost": "Webサイト管理者やPCを使う人に、知っておいてほしい話です。\n\nJPCERT/CCがWordPressやEdgeなどの脆弱性情報をまとめました。\nWordPressの拡張機能やCisco製品では悪用された攻撃事例も報告されています。\n\nお使いのブラウザやWebサービス、定期的に更新していますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "お使いのブラウザやWebサービス、定期的に更新していますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "Webサイトの保守作業、プラグインの更新頻度はどれくらいに設定していますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "JPCERT/CCは2026年11月5日、WordPressやMicrosoft Edgeなど多数のソフトに関する最新の脆弱性情報を公開しました。すでに実際の攻撃に悪用されたケースも含まれており、放置するとリモートからの任意コード実行やサービス停止につながる危険があります。対象製品の利用者は、速やかに開発者が提供する最新の修正版へ更新する必要があります。",
+  "description": "JPCERT/CCがWordPressやMicrosoft Edge、Google Chromeなどの脆弱性情報を公開しました。一部で攻撃への悪用も確認されているため、修正版への早期アップデートが推奨されます。",
+  "keywords": [
+    "JPCERT",
+    "脆弱性",
+    "セキュリティアップデート",
+    "WordPress",
+    "Microsoft Edge",
+    "Google Chrome",
+    "Mozilla",
+    "Cisco",
+    "Ruby",
+    "サイバーセキュリティ"
+  ],
+  "tags": [
+    "セキュリティ",
+    "アプリ",
+    "PC",
+    "Webサービス"
+  ],
+  "highlights": [
+    "JPCERT/CCがWordPressやMicrosoft Edgeなど多数の主要ソフトに関する脆弱性情報を一挙に公開しました。",
+    "WordPress本体や拡張機能YOOtheme Proなどで未認証でのコード実行が懸念される重大な危険が判明しています。",
+    "Cisco製ファイアウォールやRuby環境など一部で攻撃事例も報告されており各修正版への更新が必要です。"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "Webサイト管理者やシステム担当者は、不正アクセスや改ざんを防ぐため修正パッチの即時適用が必要です",
+      "個人ユーザーも日常的に使うブラウザを最新版に維持することで安全を確保できます"
+    ]
+  },
+  "body": "JPCERT/CC（セキュリティの連絡・調整を行う専門機関）は、普段多くの人が利用しているソフトウェアや通信機器において、複数の脆弱性（セキュリティ上の欠陥）が見つかったことを公表しました。\n\n対象となるのは、WebブラウザのMicrosoft EdgeやGoogle Chrome、Mozilla Firefox、Apple製品、さらにWebサイト構築ツールとして普及しているWordPressやRubyなど多岐にわたります。\nパソコンでインターネットを閲覧する個人ユーザーから、自社のサーバーやWebサイトを管理する実務担当者まで広く関係する内容です。安全を保つために最新バージョンへの速やかな更新手続きが求められます。\n\n## 日本の利用者は最新版への更新手続きが必要\n\n今回公表された情報のうち、特に注意が必要なのがすでに悪用攻撃が報告されているソフトウェアです。\n\nWordPressでは本体の更新処理中に認証なしで任意のコードが実行される問題（CVE-2026-119977）が確認されており、米国の安全保障機関CISAも警告リストに追加しています。さらにWordPressやJoomla!で使われる拡張機能「YOOtheme Pro」でも、外部から不正なファイルがアップロードされて遠隔操作される欠陥があり、実際の攻撃事例が把握されています。\n\nネットワーク機器や開発環境でも深刻な問題が確認されています。\nCiscoの「Secure Firewall ASA」および「FTD Software」では、通信を妨害されるサービス運用妨害（DoS）の欠陥が悪用されています。またプログラミング言語の「Ruby」に関する脆弱性では、Alpine Linuxが、GitLabサーバーに対して攻撃を試みる動きが観測されたと報告しています。\n\nこのほかにも以下の主要製品で複数の脆弱性が報告されています。\n各製品とも、開発者が提供する最新の修正版へ更新・適用することで問題を解決できます。\n\n* Webブラウザ：Microsoft Edge、Google Chrome、Mozilla（Firefox、Thunderbird、iOS版Firefox）\n* OS・スマートデバイス：複数のApple製品\n* Webサイトツール：WordPress、YOOtheme Pro、Jenkins\n* 開発・ライブラリ・データ圧縮：Ruby、Brotli（C言語実装）\n* ネットワーク・セキュリティ機器：Cisco製品、Sophos UTM（サポート終了製品のため手動パッチが必要）、ヤマハ製NWR100、WatchGuard製品、Veeam製品\n* その他：Adobe製品\n\n特にBrotliの圧縮展開処理における欠陥（CVE-2026-111497）は、細工されたデータを読み込むとプログラムが異常終了したり情報が漏洩したりする恐れがあり、影響を受けるアプリケーションなどで注意が必要です。\n\n## まだ分からないこと\n\n* Sophos UTMなど旧世代製品における手動パッチの配布時期やサポート適用範囲は、公式ヘルプでの確認が必要です。\n* 個別環境での攻撃ログの詳細については、各開発者が開示する追加のアドバイザリを参照する必要があります。\n\n## Webサイト管理者や企業管理者が実施すべきセキュリティ対応\n\n企業でWebサイトを保守している担当者やシステム管理者は、管理している環境のソフトウェアバージョンを直ちに確認してください。\n\nWordPressや各種拡張機能、Jenkinsなどの開発ツールを運用している場合は、バックアップを取得したうえで修正パッチを順次適用します。攻撃が確認されている脆弱性については優先的に作業を進めることが推奨されます。\n\n個人でPCやスマートフォンを利用している方は、ブラウザの更新設定が自動適用になっているか確認し、再起動を促す通知が出ていれば早めに更新を行ってください。",
+  "easy": "## ひとことで言うと\n\nJPCERT/CC（セキュリティ情報の連絡機関）が、普段よく使われている多くのソフトや機器に関する危険なセキュリティの欠陥情報を発表しました。\n\n## どんな危険があるの？\n\nWordPress（ホームページ作成ツール）や、Microsoft Edge、Google ChromeといったWebブラウザなどに、外部から勝手に操作されてしまうなどの問題が見つかりました。\n一部の欠陥では、すでに悪質な攻撃に悪用されているケースが確認されています。\n\n## 今すぐやるべきこと\n\nお使いのパソコンのWebブラウザや、管理しているWebサイトのソフトを、最新の修正済みバージョンに更新してください。自動更新が有効になっている場合は、最新版になっているか確認すると安心です。",
+  "channel": "JPCERT/CC",
+  "channelId": "",
+  "channelSlug": "jpcert",
+  "genre": "テクノロジー・ガジェット",
+  "genreSlug": "tech-gadget",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。価格・仕様・提供時期は変更される場合があるため、購入・利用の前に発表元の一次情報をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Weekly Report: Microsoft Edgeに複数の脆弱性",
+  "publishedAt": "2026-11-05T00:52:00+00:00",
+  "generatedAt": "2026-11-05T01:24:20.809628+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/jpcert-security-advisory-wordpress-edge-chrome-updates-5c938f49.jpg",
+  "model": "gemini-3.5-flash",
+  "affiliates": [],
+  "newsType": "security",
+  "faq": [
+    {
+      "q": "ブラウザのセキュリティ更新は自動で行われますか？",
+      "a": "Microsoft EdgeやGoogle Chrome、Firefoxなどの主要ブラウザは通常自動で更新されますが、ブラウザの再起動を行わないと適用されない場合があります。"
+    },
+    {
+      "q": "WordPressを使っている場合、何をすればよいですか？",
+      "a": "ダッシュボードから本体やプラグイン、テーマ（YOOtheme Proなど）を最新版にアップデートしてください。事前にサイトのバックアップをとることを推奨します。"
+    }
+  ],
+  "todayActions": [
+    "使っているブラウザ（Chrome、Edge、Firefox等）の更新状況を確認し最新にする",
+    "管理しているWordPressや拡張機能のバージョンを最新版へアップデートする"
+  ],
+  "qualityScore": 90,
+  "sourcePublishedAt": "2026-11-05T00:52:00+00:00",
+  "detectedAt": "2026-11-05T01:20:56+00:00",
+  "speedMinutes": 37,
+  "imageCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A close‑up of a computer monitor showing a generic warning icon, with a keyboard and a hand typing, illuminated by soft office lighting.",
+    "provider": "Cloudflare Workers AI",
+    "original": "https://www.jpcert.or.jp/common/image/ogp_image.jpg",
+    "at": "2026-11-05T01:26:14+00:00"
+  },
+  "imageFocus": {
+    "x": 0.495,
+    "y": 0.509,
+    "box": [
+      0.0,
+      0.018,
+      0.991,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/jpcert-security-advisory-wordpress-edge-chrome-updates-5c938f49.jpg"
+  }
+}
