@@ -211,7 +211,6 @@
   },
   "major_tries": {
     "5179ed8e3f9e5114": 2,
-    "771f7b3c35a2e5cc": 2,
     "b3a04c021ff2b99e": 1
   },
   "pi_reopened": {
@@ -8939,6 +8938,17 @@
       "slug": "nammu21-syndicated-loans-gcul",
       "url": "https://cloud.google.com/blog/topics/financial-services/how-nammu21-automates-syndicated-loans-on-google-cloud-universal-ledger/"
     },
+    "771f7b3c35a2e5cc": {
+      "at": "2026-11-05T07:13:45.234774+00:00",
+      "breaking": true,
+      "major": true,
+      "mix": "jp_corp",
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "investment",
+      "slug": "sony-group-fy2026-h1-results",
+      "url": "https://www.release.tdnet.info/inbs/140120261104564860.pdf"
+    },
     "77db3705f153125d": {
       "at": "2026-10-29T18:13:41.962786+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -15185,46 +15195,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T18:52:56.353111+00:00",
-      "attempt": 2,
-      "id": "f5a0d7153ecc99c8",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く"
-      ],
-      "readability": {
-        "avg_paragraph": 80.1,
-        "avg_sentence": 38.8,
-        "long_share": 0.129,
-        "max_paragraph": 141,
-        "paragraphs": 30,
-        "sentences": 62
-      },
-      "score": null,
-      "source": "google-cloud-blog",
-      "title": "Five rules for evaluating agent skills before they bloat your context window",
-      "warnings": [
-        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SKILL・GKE・YAML）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T18:53:22.466385+00:00",
-      "attempt": 1,
-      "id": "78a1dbd86988d2bb",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "新製品・新サービス・機能の記事に必要な「発売日・提供開始日」が資料にあるのに本文にありません（日付と、段階的な提供ならその順番）。資料の表記どおりに入れてください"
-      ],
-      "score": null,
-      "source": "google-cloud-blog",
-      "title": "Introducing Physical-Engineering’s Last Exam for agents"
-    },
     {
       "accepted": false,
       "at": "2026-11-03T18:53:54.392865+00:00",
@@ -21521,6 +21491,55 @@
       "title": "ダイキン工業 決算短信（2026年11月5日）",
       "warnings": [
         "初めて出たところで言い換えていない略語（VRV・FIVE・STAR）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T07:13:23.120936+00:00",
+      "attempt": 1,
+      "id": "771f7b3c35a2e5cc",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「事業別・地域別の内訳は、短信本体には載っていません」→ 元記事の目次には「１．セグメント情報」や製品カテゴリー別売上高内訳があり、事業別の数字は短信に含まれているため、元記事と矛盾する。",
+        "「今回の発表で、今の保有や口座の手続きが変わることはありません」→ 元記事に無い断定で、手続きへの影響は元資料から確認できない。"
+      ],
+      "readability": {
+        "avg_paragraph": 66.1,
+        "avg_sentence": 31.3,
+        "long_share": 0.026,
+        "max_paragraph": 129,
+        "paragraphs": 18,
+        "sentences": 38
+      },
+      "score": 80,
+      "source": "fast",
+      "title": "ソニーグループ 決算短信（2026年11月5日）",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T07:13:45.167334+00:00",
+      "attempt": 1,
+      "id": "771f7b3c35a2e5cc",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 66.8,
+        "avg_sentence": 31.6,
+        "long_share": 0.026,
+        "max_paragraph": 129,
+        "paragraphs": 18,
+        "sentences": 38
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "ソニーグループ 決算短信（2026年11月5日）",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
