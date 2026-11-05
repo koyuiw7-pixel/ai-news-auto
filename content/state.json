@@ -209,9 +209,7 @@
       "url": "https://developers.cyberagent.co.jp/blog/archives/67267/"
     }
   },
-  "major_tries": {
-    "d3075633a71e6442": 2
-  },
+  "major_tries": {},
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -6101,6 +6099,12 @@
       "slug": "github-enterprise-includes-copilot",
       "url": "https://github.blog/changelog/2026-10-28-github-enterprise-now-includes-access-to-github-copilot"
     },
+    "397907f6b884d495": {
+      "at": "2026-11-05T04:45:48.301741+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（役員）",
+      "skipped": true,
+      "url": "https://global.toyota/jp/newsroom/corporate/44969952.html"
+    },
     "39878fe63e916f40": {
       "at": "2026-10-28T23:11:57.424406+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -7048,6 +7052,15 @@
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu2/1421690_00022.html"
+    },
+    "4e651dd4e8b0f07a": {
+      "at": "2026-11-05T04:48:45.321630+00:00",
+      "mix": "alert",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 90,
+      "section": "real-estate",
+      "slug": "homes-hazard-map-polygon-used-property",
+      "url": "https://lifull.com/news/50859/"
     },
     "4e93fc18d4fb3178": {
       "at": "2026-11-04T08:08:19.194141+00:00",
@@ -12799,6 +12812,15 @@
       "skipped": true,
       "url": "https://www.ipa.go.jp/jinzai/riss/interview/riss/riss-interview18.html"
     },
+    "ce9494ab5f4fa6cb": {
+      "at": "2026-11-05T04:45:47.897676+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "mobile-society-whitepaper-2026-2027",
+      "url": "https://www.docomo.ne.jp/info/news_release/2026/11/05_00.html?cid=CRP_INF_news_release_2026_11_05_00_from_RSS_news_release"
+    },
     "ce9b39562dd42cfe": {
       "at": "2026-11-04T02:27:36.803179+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -12997,6 +13019,12 @@
       "reason": "dedupe: 固有名詞が一致（gpt-6.1・terra）: openai-gpt-61-terra-amazon-bedrock",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-gpt-6-1-terra-on-bedrock-step-functions-as-agent-tools-and-more-november-2-2026/"
+    },
+    "d3075633a71e6442": {
+      "at": "2026-11-05T04:44:09.449436+00:00",
+      "reason": "major gave up x3: reject: 判定行の「価格=Copilot契約が前提」→ 本文は「利用条件はリリースノートに書かれていない」としており、ライセンス条件について内部で矛盾している; 判定行の「提供状況=limited」→ 元記事にも確認済みの文脈にもない分類で、根拠が示されていない",
+      "skipped": true,
+      "url": "https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes?tabs=all#entry-2026-11-04"
     },
     "d312d7ed2455a4f9": {
       "at": "2026-11-02T04:31:23.929817+00:00",
@@ -15087,141 +15115,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T14:36:42.320897+00:00",
-      "attempt": 2,
-      "id": "63cd61900c41a18d",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "lifull",
-      "title": "LIFULL Investmentが利用するクラウドサービスにおける不正アクセスに関するお知らせ"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T14:37:15.776178+00:00",
-      "attempt": 1,
-      "id": "4f3b7c9dffa0995a",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「この数字は公開初週の集計で、速報値のため、最終的な数字とは変わる可能性があります」→ 元記事は速報値と注記するのみで、変動の可能性は書いていない。「公開初週」も元記事に明記がなく、記事の推測である。",
-        "「公開にあわせて日米でプレミア上映を行った」は元記事どおりだが、「日本の配給は東和ピクチャーズと東宝」の「日本の」は元記事に無い。元記事は「配給」とだけ書いている。",
-        "「アメリカの映画の売上を集計するサイト、Box Office Mojo」→ 元記事に無い説明で、一般的な補足の域を出ない。",
-        "「10月27日には2027年3月期第2四半期の決算を発表済み」→ 確認済み文脈とは整合するが、映画の売上が波及したかどうかを今後の資料で確かめられるという説明は、第2四半期資料の内容を確認しておらず断定的である。",
-        "「年間販売本数は6,500万本の達成を目指しています」→ 文脈のIR質疑に基づくが、文の流れでは映画の影響と結びついて読め、誤解を招く。"
-      ],
-      "readability": {
-        "avg_paragraph": 84.3,
-        "avg_sentence": 37.0,
-        "long_share": 0.098,
-        "max_paragraph": 160,
-        "paragraphs": 18,
-        "sentences": 41
-      },
-      "score": 80,
-      "source": "capcom-ir",
-      "title": "映画『ストリートファイター／ザ・ムービー』が、全米週間興行収入ランキング1位を獲得！～ 映画化を通じ、IPのグローバルな認知拡大と価値向上に寄与 ～",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T14:37:59.464731+00:00",
-      "attempt": 2,
-      "id": "4f3b7c9dffa0995a",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "capcom-ir",
-      "title": "映画『ストリートファイター／ザ・ムービー』が、全米週間興行収入ランキング1位を獲得！～ 映画化を通じ、IPのグローバルな認知拡大と価値向上に寄与 ～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T14:41:50.714885+00:00",
-      "attempt": 1,
-      "id": "9824d9cb50fa7b55",
-      "kind": "broad",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "tokyu-fudosan",
-      "title": "マンション内を“顔だけ”で移動できる暮らしを実現 ルジェンテシリーズ初導入！顔認証セキュリティサービス「FreeiD」を標準装備した「ルジェンテ新宿」が竣工 ～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T14:46:17.786433+00:00",
-      "attempt": 2,
-      "id": "9824d9cb50fa7b55",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「マンション内を顔認証だけで移動することができる」→ 元記事は入退室・本人確認・入退館の利便性を述べているだけで、マンション内の移動全般が顔認証でできるとは書いていない（見出しの「顔だけで移動」はあるが、機能範囲を広げて説明している）。",
-        "「過去30年間で3物件目となる希少な新築分譲マンション」→ 元記事は過去30年で3物件のみ（本物件を含む）という意味で、「3物件目」という順序づけは元記事にない。",
-        "「ZEH-M Orientedの採用により…光熱費を抑える設計」「BELS認証を取得し一次エネルギー消費量を25%削減するZEH-M Oriented」→ 元記事は光熱費を抑えると述べているが、25%削減は現行基準からの削減であり、BELS取得との因果関係を『これにより』とするのは言い過ぎ。",
-        "「ルジェンテ新宿販売センター」→ 元記事は問い合わせ窓口として「ルジェンテ新宿」のTELを記載しているだけで、「販売センター」という名称は書かれていない。",
-        "「専用アプリを通じて」→ 元記事は「アプリから」とあるのみで、「専用」は元記事にない。",
-        "「顔認証システムやZEH基準の省エネ性能を標準装備」→ ZEH-M Orientedは設備の標準装備ではなく基準を満たす性能であり、元記事の表現（標準化）と少しずれている。"
-      ],
-      "readability": {
-        "avg_paragraph": 91.3,
-        "avg_sentence": 57.7,
-        "long_share": 0.474,
-        "max_paragraph": 200,
-        "paragraphs": 12,
-        "sentences": 19
-      },
-      "score": 80,
-      "source": "tokyu-fudosan",
-      "title": "マンション内を“顔だけ”で移動できる暮らしを実現 ルジェンテシリーズ初導入！顔認証セキュリティサービス「FreeiD」を標準装備した「ルジェンテ新宿」が竣工 ～",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T14:52:01.559000+00:00",
-      "attempt": 1,
-      "id": "7cfa5e33983c373c",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "aja",
-      "title": "「アニメ産業レポート2026」刊行のお知らせ・2025年のアニメ産業市場規模 速報値 発表"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T14:52:32.743432+00:00",
-      "attempt": 2,
-      "id": "7cfa5e33983c373c",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 70.3,
-        "avg_sentence": 35.2,
-        "long_share": 0.094,
-        "max_paragraph": 140,
-        "paragraphs": 16,
-        "sentences": 32
-      },
-      "score": 88,
-      "source": "aja",
-      "title": "「アニメ産業レポート2026」刊行のお知らせ・2025年のアニメ産業市場規模 速報値 発表"
-    },
     {
       "accepted": false,
       "at": "2026-11-03T16:12:59.630761+00:00",
@@ -21282,6 +21175,173 @@
       "title": "[JPX総研]株式会社スマートラウンドへの出資について",
       "warnings": [
         "初めて出たところで言い換えていない略語（JPX）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T04:42:05.658832+00:00",
+      "attempt": 1,
+      "id": "d3075633a71e6442",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「Copilotのライセンスがない人には、この機能は関係しません。」→ 元記事のExcel項目にはライセンスの条件や対象外の利用者についての記載がなく、根拠のない断定になっている。",
+        "「仕事・お金にどう活かせる？」の欄（例：変更箇所へ直接移動して確認する手間を減らせます）は元記事のWhy/Business impactの言い換えの範囲内で、問題なし。",
+        "「Edgeの新しいタブ」の説明で「個人向けのニュースや予定」→ 元記事は personalized news and activities と書いており、「予定」は解釈の拡大にあたる。",
+        "「操作できるのは、グローバル管理者かグローバル閲覧者です」→ 元記事では閲覧（view）はGlobal reader、追加・削除・一括操作はGlobal admin等と役割が分かれており、一括の操作権限を両者にまとめて書いたのは言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 89.4,
+        "avg_sentence": 37.4,
+        "long_share": 0.093,
+        "max_paragraph": 165,
+        "paragraphs": 18,
+        "sentences": 43
+      },
+      "score": 72,
+      "source": "watch-m365-copilot-release-notes",
+      "title": "Microsoft 365 Copilot: Excel ほか6件",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T04:43:01.681570+00:00",
+      "attempt": 2,
+      "id": "d3075633a71e6442",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "Webページの英語の残骸が残っている（「Cookie」）"
+      ],
+      "readability": {
+        "avg_paragraph": 127.1,
+        "avg_sentence": 44.3,
+        "long_share": 0.163,
+        "max_paragraph": 219,
+        "paragraphs": 15,
+        "sentences": 43
+      },
+      "score": null,
+      "source": "watch-m365-copilot-release-notes",
+      "title": "Microsoft 365 Copilot: Excel ほか6件",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T04:43:50.037679+00:00",
+      "attempt": 3,
+      "id": "d3075633a71e6442",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "判定行の「価格=Copilot契約が前提」→ 本文は「利用条件はリリースノートに書かれていない」としており、ライセンス条件について内部で矛盾している",
+        "判定行の「提供状況=limited」→ 元記事にも確認済みの文脈にもない分類で、根拠が示されていない"
+      ],
+      "readability": {
+        "avg_paragraph": 131.4,
+        "avg_sentence": 44.9,
+        "long_share": 0.195,
+        "max_paragraph": 211,
+        "paragraphs": 14,
+        "sentences": 41
+      },
+      "score": 85,
+      "source": "watch-m365-copilot-release-notes",
+      "title": "Microsoft 365 Copilot: Excel ほか6件",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T04:45:43.645585+00:00",
+      "attempt": 1,
+      "id": "ce9494ab5f4fa6cb",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 101.9,
+        "avg_sentence": 38.2,
+        "long_share": 0.031,
+        "max_paragraph": 179,
+        "paragraphs": 12,
+        "sentences": 32
+      },
+      "score": 92,
+      "source": "docomo-news-release-ai",
+      "title": "17年分のモバイルICTや生成AI利用動向などをまとめた「モバイル社会白書2026-2027」を公開 -モバイル社会研究所の最新調査で女子のスマートフォン所有開",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ICT）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T04:47:01.154772+00:00",
+      "attempt": 1,
+      "id": "4e651dd4e8b0f07a",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "lifull",
+      "title": "LIFULL HOME'S、中古マンション・中古一戸建ての物件詳細におけるハザードマップ（洪水・土砂災害）の描画精度向上により、災害リスクをよりきめ細かく把握可"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T04:48:20.458114+00:00",
+      "attempt": 2,
+      "id": "4e651dd4e8b0f07a",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 46.1字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 92.1,
+        "avg_sentence": 46.1,
+        "long_share": 0.179,
+        "max_paragraph": 160,
+        "paragraphs": 14,
+        "sentences": 28
+      },
+      "score": 92,
+      "source": "lifull",
+      "title": "LIFULL HOME'S、中古マンション・中古一戸建ての物件詳細におけるハザードマップ（洪水・土砂災害）の描画精度向上により、災害リスクをよりきめ細かく把握可",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（LIFULL・HOME）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T04:48:45.310272+00:00",
+      "attempt": 0,
+      "id": "4e651dd4e8b0f07a",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.6,
+        "avg_sentence": 40.0,
+        "long_share": 0.061,
+        "max_paragraph": 134,
+        "paragraphs": 17,
+        "sentences": 33
+      },
+      "score": 90,
+      "source": "lifull",
+      "title": "LIFULL HOME'S、中古マンション・中古一戸建ての物件詳細におけるハザードマップ（洪水・土砂災害）の描画精度向上により、災害リスクをよりきめ細かく把握可",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（LIFULL・HOME）"
       ]
     }
   ],
