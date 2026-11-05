@@ -1117,8 +1117,8 @@ def repost(slug: str, api_key: str | None = None, now: datetime | None = None, s
     if spec.get("ownerApprovedDeleteRepost"):
         deleted = {x for v in (spec.get("deletedBufferIds") or {}).values() for x in v}
         old_ids = {k: v for k, v in old_ids.items() if v in deleted or k == "bluesky"}  # 消した投稿だけを「止めた」と記録する
-    if slug in (state.get("videos") or {}):
-        state.setdefault("videosArchive", {})[slug] = state["videos"].pop(slug)  # 動画はいまのコードで作り直す
+    if slug in (state.get("videos") or {}) and (state["videos"][slug].get("adopted") != "muse" or state["videos"][slug].get("status") != "ready"):
+        state.setdefault("videosArchive", {})[slug] = state["videos"].pop(slug)  # 動画はいまのコードで作り直す（置いた Muse の動画はそのまま使う）
     (state.get("queued") or {}).pop(slug, None)
     state.setdefault("converted", {})[slug] = {"at": now.isoformat(timespec="seconds"), "pending": pending, "threadsSent": False, "repost": True,
                                                "paused": {k: {"id": v, "ok": True, "deleted": True} for k, v in old_ids.items() if v},
