@@ -197,6 +197,7 @@
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
+    "03ef0f6a91d8d82a": "2026-11-05T02:29:39.911619+00:00",
     "0700ffb69ed06a25": "2026-11-04T13:10:52.830493+00:00",
     "0863d9ea9cb77229": "2026-11-04T13:10:52.830493+00:00",
     "0db0355037c3b764": "2026-11-05T01:40:53.572998+00:00",
@@ -3521,12 +3522,6 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_kyotsuu/important/kinkyu02_000682.html"
     },
-    "03ef0f6a91d8d82a": {
-      "at": "2026-11-05T02:21:08.913655+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/newpage_77023.html"
-    },
     "03f8a607b05da2e8cd73624ffc97819a0e4433ec": {
       "at": "2026-10-27T15:14:08.993393+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4091,6 +4086,12 @@
       "section": "ai",
       "slug": "aws-bedrock-evaluation-bias-property-finder",
       "url": "https://aws.amazon.com/blogs/machine-learning/fix-evaluation-bias-to-unlock-better-models-on-amazon-bedrock/"
+    },
+    "108f7344ddaa614b": {
+      "at": "2026-11-05T02:30:11.791783+00:00",
+      "reason": "stale: 発表から330時間（記事ページの日付）",
+      "skipped": true,
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010o55.html"
     },
     "10a18e979b16806a": {
       "at": "2026-10-29T00:52:45.915652+00:00",
@@ -11236,6 +11237,15 @@
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/lend-and-borrow-resources-across-teams-with-aws-batchs-quota-management-for-sagemaker-training-jobs/"
     },
+    "aada06cff4e4c0f6": {
+      "at": "2026-11-05T02:32:41.265587+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 85,
+      "section": "business",
+      "slug": "jcci-lobo-oct-2026-business-di",
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010o1i.html"
+    },
     "aaf22fbf6fabb7c9": {
       "at": "2026-10-26T16:35:20.540731+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -14994,64 +15004,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-03T05:55:06.469330+00:00",
-      "attempt": 2,
-      "id": "de4cf53f9db96311",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "「銀行の窓口にたとえると…前は、用件が違っても全員が1つの列に並ぶ形に近い面がありました」→ OpenAIの旧基盤がそうした構造だったとは元記事に書かれておらず、旧基盤の構造を推測で描いている（一般的な方式の説明にとどまる）。",
-        "「Pandoが目指したのは…」直後の「移行は…Gitの通信の決まりや、手元で使うGitの道具との互換性を保ったため」→ 元記事は互換性の維持と無停止移行を並べて述べており、互換性が理由で作業を止めずに済んだという因果関係は書かれていない。",
-        "「同社は公開している自社版のGitから、改良を本家へ返していきたい」→ 元記事は「our copy of Git」から upstream へ貢献したいとあるのみで、「公開している」自社版かどうかは明確ではない。",
-        "比較表の「3PC: 1つずつ更新」「WAL: 同じ台帳を奪い合う」「有利なのは Pando/3PC」→ 元記事の設計検討の説明を踏まえた整理だが、「有利」という判定自体は元記事にない編集部の評価である。"
-      ],
-      "readability": {
-        "avg_paragraph": 65.4,
-        "avg_sentence": 34.4,
-        "long_share": 0.039,
-        "max_paragraph": 108,
-        "paragraphs": 40,
-        "sentences": 76
-      },
-      "score": 80,
-      "source": "openai-news",
-      "title": "Scaling Git at OpenAI",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T05:56:16.530350+00:00",
-      "attempt": 1,
-      "id": "ddc65a2a91363189",
-      "kind": "ai",
-      "model": "anthropic-api:claude-opus-5-5",
-      "problems": [
-        "「600万ドル超は約9億4,700万円で、日本の感覚でも大学の研究費としては大きな額です」→「大学の研究費として大きい」は元記事にない編集部の評価を事実のように断定している。",
-        "「AIを少ない電力で動かす研究」「英語以外の言葉に強いAIを育てる狙いと読めます」→ 元記事は持続可能な計算とモデル提供の最適化、地域言語処理としか書いておらず、「少ない電力」「英語以外に強いAI」は推測・拡大解釈。",
-        "「東南アジアの言葉の処理」「東南アジアの言葉を扱う研究」→ 元記事は「regional language processing」としか書いておらず、東南アジアに限定する根拠がない。",
-        "「600万ドル超という金額は、Googleの事業規模から見て業績を左右する話ではない」→ 元記事にも確認済み文脈にもない業績への影響の判断で、根拠のない断定。",
-        "「2月にはAI Singaporeと組み、医療向けのAIモデル「MedGemma」を提供すると発表していました」→ 出典付きで文脈に概ね合うが、「今年に入って段階的に進んでいる」といった流れの整理は元記事にない推測を含む。",
-        "「ホー・テックフア教授が地域の取りまとめ役を務めます」「研究用のAIエージェントの育成」→ 元記事は「regional academic leadership」「foster internal research agents」で、役割や内容を断定的に言い換えすぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 72.1,
-        "avg_sentence": 39.5,
-        "long_share": 0.097,
-        "max_paragraph": 234,
-        "paragraphs": 34,
-        "sentences": 62
-      },
-      "score": 72,
-      "source": "google-blog-all",
-      "title": "Advancing research and partnering with universities in Singapore",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-03T05:58:03.398414+00:00",
@@ -21303,6 +21255,40 @@
       "score": null,
       "source": "softbank-news",
       "title": "大迫力のダンスバトル！ ハーフタイムショーで推しと最接近！ 史上最多の20チームが参戦する「D.LEAGUE 26-27 SEASON」開幕戦レポート"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T02:31:20.153988+00:00",
+      "attempt": 1,
+      "id": "aada06cff4e4c0f6",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jnet21",
+      "title": "10月LOBO調査、全産業業況DIは▲20.0 ほぼ横ばいで推移"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T02:32:41.253709+00:00",
+      "attempt": 2,
+      "id": "aada06cff4e4c0f6",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 78.4,
+        "avg_sentence": 34.8,
+        "long_share": 0.083,
+        "max_paragraph": 133,
+        "paragraphs": 16,
+        "sentences": 36
+      },
+      "score": 85,
+      "source": "jnet21",
+      "title": "10月LOBO調査、全産業業況DIは▲20.0 ほぼ横ばいで推移"
     }
   ],
   "short_text_retry": {
