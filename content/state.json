@@ -8869,6 +8869,16 @@
       "slug": "openai-bigger-bug-bounties",
       "url": "https://openai.com/index/rewarding-defenders-with-bigger-bug-bounties"
     },
+    "6fdbbedf41de3057": {
+      "at": "2026-11-05T12:43:58.647173+00:00",
+      "major": true,
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 88,
+      "section": "ai",
+      "slug": "nvidia-game-ready-driver-621-14-wow-forever",
+      "url": "https://www.nvidia.com/en-us/geforce/news/world-of-warcraft-forever-geforce-rtx-spark-game-ready-driver/"
+    },
     "701a674e4edfd0f9": {
       "at": "2026-10-28T23:13:03.555313+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
@@ -15707,34 +15717,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-04T00:35:52.208556+00:00",
-      "attempt": 1,
-      "id": "3c6177ead4c30c9c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "atlassian-blog",
-      "title": "Measuring and orchestrating AI across the full engineering lifecycle"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T00:40:44.797562+00:00",
-      "attempt": 2,
-      "id": "3c6177ead4c30c9c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "atlassian-blog",
-      "title": "Measuring and orchestrating AI across the full engineering lifecycle"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-04T00:44:46.720964+00:00",
       "attempt": 1,
       "id": "f1da59955392e79e",
@@ -21938,6 +21920,59 @@
       "score": null,
       "source": "nli-research",
       "title": "インドネシアGDP（26年7-9月期）～成長率は5.47％に加速、製造業とサービス業が牽引"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T12:43:37.174066+00:00",
+      "attempt": 1,
+      "id": "6fdbbedf41de3057",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「ほかのメーカーのグラフィックス製品を使っている人には、何も変わりません」→ 元記事にない推測。元記事は対象をGeForce RTXとRTX Sparkに限定しているが、他社製品への影響を断定する記述ではない。",
+        "「判定: 提供状況=available 価格=無料」→ 元記事にドライバーの価格や無料提供の記載はない。一般的な知識として扱えるとしても、根拠は示されていない。",
+        "「Forsaken PaladinやDwarf Shamanなどが選べます」→ 元記事は『expanded list of races and classes, including the new Skyborne, along with Forsaken Paladins, Dwarf Shaman』で、種族とクラス",
+        "「最大レベルのレイドは、最初は2つです」→ 元記事は『starting with two new max-level raids』。『最初は』は意味を補ったもので、軽微な言い換え。"
+      ],
+      "readability": {
+        "avg_paragraph": 96.4,
+        "avg_sentence": 39.9,
+        "long_share": 0.138,
+        "max_paragraph": 192,
+        "paragraphs": 12,
+        "sentences": 29
+      },
+      "score": 86,
+      "source": "radar-official",
+      "title": "WoW: Forever Game Ready Driver Released",
+      "warnings": [
+        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（RTX・WHQL・DLSS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T12:43:58.632739+00:00",
+      "attempt": 1,
+      "id": "6fdbbedf41de3057",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 94.9,
+        "avg_sentence": 40.7,
+        "long_share": 0.179,
+        "max_paragraph": 210,
+        "paragraphs": 12,
+        "sentences": 28
+      },
+      "score": 88,
+      "source": "radar-official",
+      "title": "WoW: Forever Game Ready Driver Released",
+      "warnings": [
+        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（RTX・WHQL・DLSS）"
+      ]
     }
   ],
   "short_text_retry": {
