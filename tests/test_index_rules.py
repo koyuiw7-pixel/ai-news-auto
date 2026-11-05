@@ -92,7 +92,7 @@ class IndexRulesTest(unittest.TestCase):
             article = {k: v for k, v in article.items() if k != "duplicateOf"}  # 重複は別の仕組み（索引側）で付く
             body = article.get("body", "")
             expected.append(indexnow.noindex_reason(article))
-            summaries.append(_summary(article, len(body), bool(indexnow.JAPAN_VALUE.search(body))))
+            summaries.append(_summary(article, len(body), bool(article.get("scheduledRelease")) or bool(indexnow.JAPAN_VALUE.search(body))))
         out = subprocess.run([node, "-e", NODE_SCRIPT], cwd=ROOT, input=json.dumps(summaries), capture_output=True,
                              text=True, check=True)
         got = json.loads(out.stdout)
