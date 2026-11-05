@@ -40,6 +40,11 @@
   15. （2026-11-05 オーナー承認・台帳 S36）Instagram（公式の Graph API で直接）: 文面は Threads・Bluesky と同じ予定の本文（autofix も同じ）。
      キャプションのリンクは押せないので本文に URL を書かず「記事はプロフィールのリンクから」の1行で案内する（記事のリンクは links で確かめる）。
      ハッシュタグは3個まで。動画・画像の決まり（ルール2・8）はほかの SNS と同じ。
+  16. （2026-11-05 オーナー指摘・台帳 S37）同じことを2回書かない。書き出しと事実の文など、2つの行がほぼ同じ（同じ数字＋文字の重なりが大きい）
+     なら止める（near_duplicate）。後ろの行を外しても形が崩れないときは autofix が外す。全部の SNS・全部の経路で同じ。
+  17. （2026-11-05 オーナー指摘・台帳 S38）以前の決まった「詳しくはこちら👇（かんたん版あり）」の行・「（かんたん版あり）」・👇 を
+     記事の投稿に残さない（autofix がリンクだけの行にする。残っていれば止める）。Buffer に前の晩から予約してある投稿も、出る前に
+     今の門番で読み直して直す（sns_video_followup.presend_recheck。毎時の SNS 動画の回で、3時間以内に出る予約だけ）。
 
 違反したら: 投稿しない・ログに出す・GitHub の issue（ラベル sns-rule-violation）を立てるか、開いているものにコメントを足す。
 新しく Buffer / Bluesky / Threads の投稿 API を呼ぶ所を作るときは、必ずこの enforce を直前に呼ぶ（tests/test_sns_rules.py が確かめる）。
@@ -116,6 +121,11 @@ SAFETY_RE = re.compile(
 )
 SAFETY_CALLOUT_RE = re.compile(r"要チェック|朗報|見てほしい|見てください|知っておいてほしい|確認を。?$")
 OLD_FOOTER_RE = re.compile(r"(?m)^[ \t]*詳しくはこちら👇[^\n]*\n?(?:[ \t]*（専門用語なしの「かんたん版」もあります）[ \t]*\n?)?")
+# ルール17: 以前の決まった案内の行（「詳しくはこちら👇（かんたん版あり）」など）。同じ行に URL があれば URL だけ残す
+OLD_FOOTER_LINE_RE = re.compile(
+    r"^[ \t]*(?:(?:詳しくは|記事は|続きは)こちら(?:から)?[ \t]*👇?|👇)[ \t]*(?:（かんたん版あり）|（専門用語なしの「かんたん版」もあります）)?[ \t]*(?P<url>https?://\S+)?[ \t]*$")
+EASY_NOTE_RE = re.compile(r"[ \t]*(?:（かんたん版あり）|（専門用語なしの「かんたん版」もあります）)")
+OLD_FOOTER_LEFT_RE = re.compile(r"(?m)👇|かんたん版あり|「かんたん版」もあります|^[ \t]*詳しくはこちら")
 EMOJI_RE = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F\u200D\u2B00-\u2BFF]")
 
 # ルール3: 決まった型・中身のない呼びかけ・アンケートのふり
@@ -626,6 +636,105 @@ def _is_link_block(block: str) -> bool:
     return not strip_links(block)
 
 
+# ---- ルール16: 同じことを2回書かない（2026-11-05 アララ: 書き出しと事実の1文目が同じ「約7,700万件が流出した恐れ」） ----
+DUP_NUMBER_RE = re.compile(r"\d[\d,，.]*(?:万|億|兆|千)?")
+DUP_STRIP_RE = re.compile(r"[\s、。，．,.!！?？「」『』（）()【】・:：\u3000]|^【速報】")
+DUP_MIN_CHARS = 8
+
+
+def _dup_norm(line: str) -> str:
+    return DUP_STRIP_RE.sub("", re.sub(r"^\s*【速報】", "", str(line or "")))
+
+
+def _dup_numbers(line: str) -> set[str]:
+    """行の中の数字（「約7,700万件」→ 7700万）。年・月・日の小さな数字も数える（同じ日付だけでは重なりと見なさない: 文字の重なりも見る）"""
+    return {re.sub(r"[,，]", "", m.group(0)).rstrip(".") for m in DUP_NUMBER_RE.finditer(str(line or ""))}
+
+
+def _bigrams(text: str) -> set[str]:
+    return {text[i:i + 2] for i in range(len(text) - 1)}
+
+
+def near_duplicate(a: str, b: str) -> bool:
+    """2つの行がほぼ同じことを言っているか（ルール16）。
+    - 片方がもう片方にそのまま入っている
+    - 同じ数字があり、文字の重なり（2文字のまとまりの共通の割合・短い方で割る）が 0.5 以上
+    - 数字が無くても、文字の並びの似かた 0.7 以上か、文字の重なり 0.75 以上"""
+    import difflib  # noqa: PLC0415
+
+    x, y = _dup_norm(a), _dup_norm(b)
+    if min(len(x), len(y)) < DUP_MIN_CHARS:
+        return False
+    if x in y or y in x:
+        return True
+    bx, by = _bigrams(x), _bigrams(y)
+    contain = len(bx & by) / max(1, min(len(bx), len(by)))
+    if (_dup_numbers(a) & _dup_numbers(b)) and contain >= 0.5:
+        return True
+    return contain >= 0.75 or difflib.SequenceMatcher(None, x, y).ratio() >= 0.7
+
+
+def _content_lines(text: str) -> list[str]:
+    """重なりを見る行: リンク・動画の説明・音声のクレジット・ハッシュタグだけの行は除く"""
+    out = []
+    for line in str(text or "").splitlines():
+        body = strip_links(line).strip()
+        if not body or LINK_LINE.match(body) or NOTE_LINE.match(body) or not HASHTAG_RE.sub("", body).strip():
+            continue
+        out.append(body)
+    return out
+
+
+def duplicate_lines(text: str) -> list[tuple[str, str]]:
+    """ほぼ同じことを言っている行の組（前の行, 後ろの行）"""
+    lines = _content_lines(text)
+    return [(lines[i], lines[j]) for j in range(len(lines)) for i in range(j) if near_duplicate(lines[i], lines[j])]
+
+
+def drop_duplicate_lines(text: str) -> tuple[str, int]:
+    """前の行とほぼ同じ後ろの行を外す。外すとかたまりが空になる行（書き出し・問いかけだけのかたまりなど）は外さない
+    （形が崩れるので門番が止める）。Muse の型（3行で1つのかたまり）も行を外すと型が崩れるので触らない。(直した本文, 外した行の数)"""
+    if not hook_problems(_body_without_link_line(strip_links(text))):
+        return text, 0
+    blocks = re.split(r"(\n[ \t]*\n)", str(text or ""))
+    kept: list[str] = []
+    dropped = 0
+    for bi in range(0, len(blocks), 2):
+        lines = blocks[bi].split("\n")
+        keep_lines = []
+        for li, line in enumerate(lines):
+            body = strip_links(line).strip()
+            countable = bool(body) and not LINK_LINE.match(body) and not NOTE_LINE.match(body) and bool(HASHTAG_RE.sub("", body).strip())
+            others = [x for x in lines[li + 1:] if strip_links(x).strip()] + [x for x in keep_lines if strip_links(x).strip()]
+            if countable and others and any(near_duplicate(prev, body) for prev in kept):
+                dropped += 1
+                continue
+            keep_lines.append(line)
+            if countable:
+                kept.append(body)
+        blocks[bi] = "\n".join(keep_lines)
+    return "".join(blocks), dropped
+
+
+def strip_old_footer(text: str, article: dict | None = None) -> str:
+    """ルール17: 以前の決まった案内（「詳しくはこちら👇（かんたん版あり）」など）を外す。同じ行の URL は残す。
+    朝のまとめ（article に items がある）は対象外（号への案内の 👇 は朝のまとめの形）"""
+    if article and article.get("items"):
+        return text
+    out = []
+    for line in str(text or "").split("\n"):
+        m = OLD_FOOTER_LINE_RE.match(line)
+        if m:
+            if m.group("url"):
+                out.append(m.group("url"))
+            continue
+        line = EASY_NOTE_RE.sub("", line)
+        line = re.sub(r"[ \t]*👇[ \t]*$", "", line)
+        out.append(line)
+    fixed = "\n".join(out)
+    return re.sub(r"\n{3,}", "\n\n", fixed) if fixed != text else text
+
+
 def autofix(text: str, article: dict | None = None, platform: str = "") -> tuple[str, list[str]]:
     """止めずに直せる崩れを直す（ルール13・14）。(直した本文, 直したことの一覧)。
     - 「要約すると、」を外す（文は残す）
@@ -644,11 +753,17 @@ def autofix(text: str, article: dict | None = None, platform: str = "") -> tuple
     if natural != fixed:
         fixed = natural
         changes.append("数字の単位を「万・億」に直した（台帳 A45）")
-    # 台帳 S35: 毎回同じ「詳しくはこちら👇（かんたん版あり）」の行はやめる（リンクの行は残す）
-    no_footer = OLD_FOOTER_RE.sub("", fixed)
+    # 台帳 S35・S38: 毎回同じ「詳しくはこちら👇（かんたん版あり）」の行はやめる（リンクは残す。同じ行にあっても URL は消さない）
+    no_footer = strip_old_footer(fixed, article)
     if no_footer != fixed:
-        fixed = re.sub(r"\n{3,}", "\n\n", no_footer)
-        changes.append("決まった「詳しくはこちら👇」の行を外した（台帳 S35）")
+        fixed = no_footer
+        changes.append("決まった「詳しくはこちら👇（かんたん版あり）」の行を外した（台帳 S35・S38）")
+    # 台帳 S37: 前の行とほぼ同じことを言っている後ろの行を外す（書き出しと事実の1文目の重なりなど）
+    if not (article or {}).get("items") and not (article or {}).get("disaster"):
+        deduped, n = drop_duplicate_lines(fixed)
+        if n:
+            fixed = deduped
+            changes.append(f"同じことを言っている行を{n}つ外した（ルール16・台帳 S37）")
     # 台帳 S35: #AI は AI の話だけ。災害・事故・安全の話題にはハッシュタグを付けない
     if article and not article.get("items") and HASHTAG_RE.search(fixed):
         try:
@@ -1027,6 +1142,12 @@ def check_post(
             first = (content.strip().splitlines() or [""])[0]
             if template_callout(first) or (safety_topic(article) and is_callout_line(first)):
                 out.append(f"[ルール14] 決まった呼びかけ・災害の話題の呼びかけ（「{first[:24]}」）")
+    if kind != "digest":
+        # 地震・津波の型（disaster）は気象庁のデータを入れた決まった文面なので、重なりの検査はしない（急ぎの知らせを止めない）
+        for first, second in (duplicate_lines(content)[:2] if kind != "disaster" else []):
+            out.append(f"[ルール16] 同じことを2回書いている（「{first[:20]}…」と「{second[:20]}…」）。後ろの行は次の新しい事実にする（台帳 S37）")
+        if m := OLD_FOOTER_LEFT_RE.search(f"{text}\n{reply_text}"):
+            out.append(f"[ルール17] 以前の決まった案内（「{m.group(0).strip()}」）が残っている。リンクだけの行にする（台帳 S38）")
     for pattern, label in BANNED:
         if m := pattern.search(f"{text}\n{reply_text}"):
             out.append(f"[ルール3] {label}（「{m.group(0)[:20]}」）")
@@ -1209,12 +1330,16 @@ def audit_post(post: dict) -> list[str]:
     if before_rules(post.get("at"), TEMPLATE_RULES_FROM):
         # ルール13・14・S35（2026-11-05 の「要約すると」・ジャンルの呼びかけ・【速報】の決まり）より前に予約した投稿も数えない
         out = [v for v in out if not v.startswith(("[ルール13]", "[ルール14]")) and "台帳 S35" not in v]
+    if before_rules(post.get("at"), DUP_FOOTER_RULES_FROM):
+        # ルール16・17（同じことの2回・以前の決まった案内）は入れたときより前に出た投稿には当てない（出た投稿は消さない。直すのは予約中まで）
+        out = [v for v in out if not v.startswith(("[ルール16]", "[ルール17]"))]
     return out
 
 
 GROWTH_RULES_FROM = "2026-11-05T15:00:00+00:00"  # ルール10・11の点検は 11/6 0:00 日本時間より後に出た投稿から（入れる前に予約済みの投稿を数えない）
 
 
+DUP_FOOTER_RULES_FROM = "2026-11-05T07:00:00+00:00"  # ルール16・17の点検は 11/5 16:00 日本時間より後に出た投稿から（台帳 S37・S38）
 TEMPLATE_RULES_FROM = "2026-11-05T04:00:00+00:00"  # 11/5 13:00 日本時間より前に Buffer に入っていた投稿（直す前の文面）は点検で数えない
 
 

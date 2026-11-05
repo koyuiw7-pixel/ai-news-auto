@@ -30,7 +30,7 @@ def size(w, h):
 
 
 def with_link(text, source):
-    return f"{text}\n\n詳しくはこちら👇\n{LINK}?utm_source={source}&utm_medium=social&utm_campaign=classic&utm_content=video_body"
+    return f"{text}\n\n{LINK}?utm_source={source}&utm_medium=social&utm_campaign=classic&utm_content=video_body"
 
 
 CARD = [{"type": "image", "url": "https://ai-tech-express.jp/card/acme-tool"}]
@@ -46,7 +46,7 @@ class CheckPostTest(unittest.TestCase):
     def test_good_posts_pass_on_every_platform(self):
         self.assertEqual(self.check("threads", with_link(GOOD, "threads")), [])
         self.assertEqual(self.check("facebook", with_link(GOOD, "facebook")), [])
-        reply = f"詳しくはこちら👇\n{LINK}?utm_source=x&utm_medium=social&utm_campaign=classic&utm_content=video_reply"
+        reply = f"{LINK}?utm_source=x&utm_medium=social&utm_campaign=classic&utm_content=video_reply"
         self.assertEqual(self.check("twitter", GOOD + "\n\n#AI", reply_text=reply), [])
         bsky = f"{GOOD}\nai-tech-express.jp/articles/acme-tool"
         self.assertEqual(self.check("bluesky", bsky, links=[f"{LINK}?utm_source=bluesky&utm_medium=social&utm_campaign=fill&utm_content=video_body"]), [])
@@ -104,7 +104,7 @@ class CheckPostTest(unittest.TestCase):
     def test_lengths(self):
         long = with_link(GOOD.replace("月額は", "月額は" + "あ" * 400), "threads")
         self.assertTrue(any("長すぎる" in v for v in self.check("threads", long)))
-        reply = f"詳しくはこちら👇\n{LINK}?utm_source=x&utm_medium=social&utm_campaign=classic&utm_content=video_reply"
+        reply = f"{LINK}?utm_source=x&utm_medium=social&utm_campaign=classic&utm_content=video_reply"
         self.assertTrue(any("X の本文が長すぎる" in v for v in self.check("x", GOOD + "あ" * 100, reply_text=reply)))
 
     def test_sports_scope(self):
@@ -277,7 +277,7 @@ class CalloutRuleTest(unittest.TestCase):
             self.assertFalse(r.question_needs_article(ok), ok)
 
     def test_x_body_and_other_platforms_follow_rule6(self):
-        reply = f"詳しくはこちら👇\n{LINK}?utm_source=x&utm_medium=social&utm_campaign=classic&utm_content=video_reply"
+        reply = f"{LINK}?utm_source=x&utm_medium=social&utm_campaign=classic&utm_content=video_reply"
         bad = GOOD.replace("会議のメモを取っている人、これは要チェックです。", "会議のメモ、まだ手で取っていますか。")
         self.assertTrue(self.rule6(self.check("x", bad + "\n\n#AI", reply_text=reply)))
         # X は字数で書き出しを落とした形（要約から始まる）も通す

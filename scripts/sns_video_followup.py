@@ -380,6 +380,14 @@ def run(now: datetime | None = None, env: dict | None = None, plan_only: bool = 
         if not f["followup"]:
             log("[video-followup] SNS_VIDEO_FOLLOWUP が on ではないので、何も作らない")
         return [{"slug": s, "status": "planned"} for s in picks]
+    if f["post"]:
+        # 出る前の読み直し（台帳 S38）: 3時間以内に出る予約を今の門番で確かめ、古い文面ならその場で直す（動画を作る前に。時間がかかるため）
+        try:
+            for row in presend_recheck(apply=True, now=now, state=state, posted=posted):
+                log(f"[presend] {json.dumps(row, ensure_ascii=False)[:400]}")
+        except Exception as error:  # noqa: BLE001 - 読み直しに失敗しても動画づくり・予約は止めない（次の回でもう一度）
+            log(f"[presend] 読み直しをとばしました: {type(error).__name__}: {str(error)[:200]}")
+        save_state(state)
     if make_versions is None:
         # 2026-11-04 オーナー「動画がダメなら投稿しない、で投稿が止まってはいけない」: L1（今の型）→ L2（作り直し）→
         # L3（公式の画像＋字幕）→ L4（記事の文だけ）の順に試し、検査に通った最初の段を使う（scripts/video_ladder.py）
@@ -963,6 +971,214 @@ def queue_fix(apply: bool = False, now: datetime | None = None, api_key: str | N
     rows += publish_extra_queued(state, now, f, posted=posted)
     save_state(state)
     POSTED.write_text(json.dumps(posted, ensure_ascii=False, indent=2) + "\n", "utf-8")
+    return rows
+
+
+# ---- 出る前の読み直し（2026-11-05 オーナー指摘・台帳 S38） ----
+# 前の晩に Buffer に予約した熊本地震の投稿が、朝に決まり（S34・S35）を変えたあとも古い「詳しくはこちら👇（かんたん版あり）」のまま出た。
+# Buffer に入った投稿は Buffer が時刻に出すので、送るときの門番は二度と通らない。そこで毎時の回で、3時間以内に出る予約だけを
+# 今の門番で読み直し、違反があればその場で今の決まりの文面に直す（editPost。時刻・動画はそのまま）。直せなければ下書きに戻す（消さない）。
+# Buffer の呼び出しは、手元の記録で「3時間以内に出る・今の決まりでまだ読み直していない予約」があるときだけ、一覧1回＋直す投稿ごとに2回。
+PRESEND_HOURS = 3.0
+PRESEND_MARGIN_H = 1.0  # X・Facebook は Threads の枠から最大30分ほど後ろ。手元の記録の時刻にこれだけ余裕を見る
+
+
+def rules_version() -> str:
+    """今の門番の版（sns_rules.py の中身の印）。門番が変われば、読み直し済みの予約ももう一度見る"""
+    import hashlib
+
+    return hashlib.sha1((Path(__file__).resolve().parent / "sns_rules.py").read_bytes()).hexdigest()[:12]
+
+
+def presend_targets(state: dict, posted: dict, now: datetime, hours: float = PRESEND_HOURS) -> list[str]:
+    """手元の記録から、これから hours 時間以内に出る予約の Buffer の ID のうち、今の門番でまだ読み直していないもの（Buffer は呼ばない）"""
+    checked = state.get("presend") or {}
+    version = rules_version()
+    ids: list[str] = []
+    horizon = now + timedelta(hours=hours + PRESEND_MARGIN_H)
+    for slug, rec in (posted.get("posted") or {}).items():
+        q = (state.get("queued") or {}).get(slug) or {}
+        due = _parse(q.get("dueAt") or rec.get("dueAt") or "")
+        if not due or not (now - timedelta(minutes=30) <= due <= horizon) or rec.get("status") != "scheduled":
+            continue
+        for pid in [rec.get("id"), q.get("id"), *((rec.get("channels") or {}).get(k) for k in ("twitter", "facebook")),
+                    *((q.get("channels") or {}).get(k) for k in ("threads", "twitter", "facebook"))]:
+            if pid and not str(pid).startswith("at://") and (checked.get(pid) or {}).get("rules") != version and pid not in ids:
+                ids.append(str(pid))
+    return ids
+
+
+def _asset_input(a: dict) -> dict:
+    kind = "video" if str(a.get("mimeType") or a.get("type") or "").startswith("video") else "image"
+    return {kind: {"url": a.get("source") or a.get("url") or ""}}
+
+
+def node_edit_input(node: dict, texts: list[str], topic: str = "") -> dict:
+    """予約中の投稿1件の本文だけを替える editPost の入力（付いている動画・画像はそのまま。mode・dueAt は送らない＝時刻はそのまま）"""
+    service = node.get("service", "")
+    thread = ((node.get("metadata") or {}).get("thread")) or []
+    if service == "facebook":
+        return {"id": node["id"], "text": texts[0], "assets": [_asset_input(a) for a in node.get("assets") or []],
+                "metadata": {"facebook": {"type": "post"}}}
+    key = "twitter" if service == "twitter" else "threads"
+    items = thread or [{"text": node.get("text") or "", "assets": node.get("assets") or []}]
+    new_thread = [{"text": texts[i] if i < len(texts) else (t.get("text") or ""), "assets": [_asset_input(a) for a in t.get("assets") or []]}
+                  for i, t in enumerate(items)]
+    if not thread and node.get("assets"):
+        new_thread[0]["assets"] = [_asset_input(a) for a in node.get("assets") or []]
+    meta: dict = {"thread": new_thread}
+    if topic and key == "threads":
+        meta["topic"] = topic
+    return {"id": node["id"], "text": new_thread[0]["text"], "assets": [], "metadata": {key: meta}}
+
+
+def node_texts(node: dict) -> list[str]:
+    thread = ((node.get("metadata") or {}).get("thread")) or []
+    return [t.get("text") or "" for t in thread] or [node.get("text") or ""]
+
+
+def _input_problems(service: str, inp: dict, article: dict | None) -> list[str]:
+    import sns_rules
+
+    text, reply, _media, links = sns_rules.buffer_parts(service, inp)
+    platform = sns_rules.norm_platform(service)
+    return sns_rules.check_post(platform, text, [], article, reply_text=reply if platform == "x" else "", links=links, pending_video=True)
+
+
+def rebuilt_texts(node: dict, slug: str, article: dict, state: dict, posted: dict) -> list[str]:
+    """autofix で直らない予約の文面を、今の決まり・今の記事から作り直す（threads_post.rebuild_pending_inputs と同じ作り）。
+    動画・リンクの版（utm）は今の予約のものをそのまま使う"""
+    import threads_post as tp
+
+    service = node.get("service", "")
+    rec = (posted.get("posted") or {}).get(slug) or {}
+    q = (state.get("queued") or {}).get(slug) or {}
+    fake = {"pending": {"inputs": {s: {"channelId": node.get("channelId", "") if s == service else ""} for s in ("threads", "twitter", "facebook")},
+                        "slot": node.get("dueAt") or "", "fmt": "classic"},
+            "hookFormat": rec.get("hookFormat"), "linkPosition": rec.get("linkPosition") or "body", "breaking": rec.get("breaking"),
+            "questionText": rec.get("questionText")}
+    new = tp.rebuild_pending_inputs(fake, article, use_llm=True)[service]
+    variant = q.get("variant") or rec.get("videoVariant") or "short"
+    v = (state.get("videos") or {}).get(slug) or {}
+    report = ((v.get("versions") or {}).get(variant) or {}).get("post") or {"url": f"{SITE}/articles/{slug}"}
+    video = next((a.get("source") for t in [node, *(((node.get("metadata") or {}).get("thread")) or [])] for a in (t.get("assets") or [])
+                  if str(a.get("mimeType") or a.get("type") or "").startswith("video")), "")
+    inp = video_input(service, new, report, variant, video or "")
+    if service == "facebook":
+        return [inp.get("text") or ""]
+    thread = ((inp.get("metadata") or {}).get("twitter" if service == "twitter" else "threads") or {}).get("thread") or [{"text": inp.get("text") or ""}]
+    return [t.get("text") or "" for t in thread]
+
+
+def presend_recheck(apply: bool = True, now: datetime | None = None, api_key: str | None = None, hours: float = PRESEND_HOURS,
+                    force: bool = False, state: dict | None = None, posted: dict | None = None, nodes=None, editor=None, reader=None,
+                    pauser=None, rebuild=None, issue=None) -> list[dict]:
+    """Buffer に予約中で hours 時間以内に出る投稿を、今の門番（sns_rules）で読み直す。違反があれば apply のとき
+    ①autofix（「詳しくはこちら👇」・同じことの2回・「要約すると、」など）→ ②今の決まりで作り直し → ③どちらもだめなら下書きに戻す（消さない）。
+    force=False（定期の回）は、手元の記録で読み直しが要る予約があるときだけ Buffer を読む（呼び出しを増やさない）"""
+    import sns_rules
+
+    now = now or datetime.now(timezone.utc)
+    key = api_key if api_key is not None else os.environ.get("BUFFER_API_KEY", "")
+    own_state = state is None
+    state = state if state is not None else load_json(STATE, {"videos": {}})
+    posted = posted if posted is not None else load_json(POSTED, {"posted": {}})
+    editor, reader, pauser = editor or edit_post, reader or read_post, pauser or pause_post
+    rebuild, issue = rebuild or rebuilt_texts, issue or missing_issue
+    if not force and not presend_targets(state, posted, now, hours):
+        return []
+    if nodes is None:
+        try:
+            nodes = scheduled_nodes(key, hours=hours)
+        except Exception as error:  # noqa: BLE001 - 上限・通信の失敗: 何も変えずに次の回でもう一度
+            log(f"[presend] Buffer の予約を読めませんでした（次の回でもう一度）: {str(error)[:200]}")
+            return [{"status": "deferred", "why": str(error)[:200]}]
+    version = rules_version()
+    checked = state.setdefault("presend", {})
+    rows: list[dict] = []
+    for node in nodes:
+        due = _parse(node.get("dueAt") or "")
+        if not due or due > now + timedelta(hours=hours):
+            continue
+        slug, video, problems = node_problems(node)
+        row = {"id": node["id"], "service": node.get("service"), "dueAt": node.get("dueAt"), "slug": slug, "video": video, "problems": problems[:4]}
+        rows.append(row)
+        if not problems:
+            checked[node["id"]] = {"rules": version, "at": now.isoformat(timespec="seconds"), "ok": True}
+            continue
+        if not apply:
+            row["action"] = "plan"
+            continue
+        done = {"rules": version, "at": now.isoformat(timespec="seconds")}
+        if due - now < timedelta(minutes=EDIT_LEAD_MIN):
+            row["action"] = "too_late"  # Buffer が出し始めている途中に触らない
+            checked[node["id"]] = {**done, "left": "too_late"}
+            continue
+        if not slug or slug.startswith(("digest-", "poll-")) or not video:
+            row["action"] = "left"  # 記事の分からない投稿・朝のまとめ・動画の無い投稿（queue_fix の受け持ち）はここでは触らない
+            checked[node["id"]] = {**done, "left": "left"}
+            continue
+        try:
+            article = json.loads((ARTICLES / f"{slug}.json").read_text("utf-8"))
+        except (OSError, ValueError):
+            article = None
+        service = node.get("service", "")
+        texts = [sns_rules.autofix(t, article, sns_rules.norm_platform(service))[0] if i == 0 or service != "twitter" else t
+                 for i, t in enumerate(node_texts(node))]
+        how = "autofix"
+        inp = node_edit_input(node, texts)
+        if not article or _input_problems(service, inp, article):
+            how = "rebuilt"
+            try:
+                inp = node_edit_input(node, rebuild(node, slug, article, state, posted)) if article else None
+            except Exception as error:  # noqa: BLE001
+                log(f"[presend] {slug}/{service}: 作り直せませんでした: {str(error)[:200]}")
+                inp = None
+            if inp is not None and _input_problems(service, inp, article):
+                inp = None
+        try:
+            cur = reader(key, node["id"], raise_unavailable=True)
+        except Exception as error:  # noqa: BLE001 - 上限: 何も変えずに次の回で
+            row.update({"action": "deferred", "why": str(error)[:200]})
+            continue
+        if not cur or cur.get("status") != "scheduled":
+            row["action"] = f"skip（Buffer の状態が {(cur or {}).get('status')}）"
+            continue
+        if inp is None:
+            try:
+                after = pauser(key, {**node, "text": node.get("text") or ""})
+                row.update({"action": "paused", "status": after.get("status")})
+            except Exception as error:  # noqa: BLE001
+                row.update({"action": "pause_failed", "error": str(error)[:200]})
+            issue(slug, f"出る前の読み直しで、予約中の {service} の投稿が今の決まりに合わず、直せなかったので下書きに戻しました: {'; '.join(problems[:3])}")
+            checked[node["id"]] = {**done, "left": row["action"]}
+            continue
+        topic = ((cur.get("metadata") or {}).get("topic")) or ""
+        if topic and service == "threads":
+            inp["metadata"]["threads"]["topic"] = topic
+        try:
+            after = editor(key, inp, article, service)
+        except Exception as error:  # noqa: BLE001
+            row.update({"action": "edit_failed", "error": str(error)[:200]})
+            if _buffer_unavailable(error):
+                continue
+            issue(slug, f"出る前の読み直しで、予約中の {service} の投稿を直せませんでした（Buffer で確かめてください）: {str(error)[:200]}")
+            checked[node["id"]] = {**done, "left": "edit_failed"}
+            continue
+        if after and (after.get("status") not in (None, "scheduled") or (after.get("dueAt") and _parse(after["dueAt"]) != due)):
+            try:
+                editor(key, {"id": node["id"], "mode": "customScheduled", "dueAt": node["dueAt"], "saveToDraft": False})
+                row["restored"] = True
+            except Exception as error:  # noqa: BLE001
+                row["restoreError"] = str(error)[:200]
+        row.update({"action": how, "text": inp.get("text", "")[:300]})
+        checked[node["id"]] = {**done, "fixed": how}
+        log(f"[presend] {slug}/{service} を今の決まりの文面に直しました（{how}）: {'; '.join(problems[:2])}")
+    # 古い記録は捨てる（2日）
+    for pid in [k for k, v in checked.items() if (_parse(v.get("at") or "") or now) < now - timedelta(days=2)]:
+        checked.pop(pid, None)
+    if own_state:
+        save_state(state)
     return rows
 
 
@@ -1718,6 +1934,8 @@ def main() -> None:
     parser.add_argument("--slot", default="", help="--repost の枠（ISO 8601。省略すると次のふつうの枠）")
     parser.add_argument("--adopt-video", nargs=2, metavar=("SLUG", "DIR"), help="検査に合格して保存した動画を、この記事の SNS 用に置く（作り直さない）")
     parser.add_argument("--swap-video", nargs=3, metavar=("SLUG", "MP4", "APPROVED"), help="予約中の投稿の動画を、オーナーが選んだ mp4 に替える（時刻・文面はそのまま）")
+    parser.add_argument("--presend", choices=("plan", "apply"), help="Buffer に予約中の投稿を今の門番で読み直す（plan＝一覧だけ／apply＝違反を直す。台帳 S38）")
+    parser.add_argument("--hours", type=float, default=PRESEND_HOURS, help="--presend で見る時間（既定3時間。全部見るなら48）")
     parser.add_argument("--publish", action="store_true", help="--repost / --adopt-video のあと、動画を待っている投稿を枠の順に予約する")
     args = parser.parse_args()
     if args.swap_video:
@@ -1746,6 +1964,13 @@ def main() -> None:
         llm._load_env_local()
         slug, _, svc = args.requeue.partition(":")
         print(json.dumps(requeue(slug, [x for x in svc.split(",") if x in ("twitter", "facebook")]), ensure_ascii=False))
+        return
+    if args.presend:
+        import llm
+
+        llm._load_env_local()
+        for row in presend_recheck(apply=args.presend == "apply", hours=args.hours, force=True):
+            print(json.dumps(row, ensure_ascii=False))
         return
     if args.queue_fix and args.queue_fix.startswith("pause:"):
         # 予約中の投稿のうち、この ID だけを下書きに戻す（公開しない・消さない。二重に入った予約を止めるとき）

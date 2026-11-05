@@ -542,13 +542,14 @@ def compose_hook3(article: dict, use_llm: bool = False) -> str:
         except Exception as error:  # noqa: BLE001
             log(f"  [hook3] LLM で書けませんでした: {str(error)[:120]}")
             lines = []
-    if not lines or sns_rules.hook_problems("\n".join(lines)) or not hook3_facts_ok(lines, article):
+    if not lines or sns_rules.hook_problems("\n".join(lines)) or not hook3_facts_ok(lines, article) or sns_rules.duplicate_lines("\n".join(lines)):
         one = _first_sentence(article.get("lede") or article.get("description") or "")
         points = (article.get("workMoney") or {}).get("points") or article.get("highlights") or []
         two = next((_first_sentence(str(x)) for x in points if _first_sentence(str(x)) and not re.search(r"影響は小さい|直接の影響", str(x))), "")
         lines = [one, two, HOOK3_TAIL] if one and two else []
     text = "\n".join(lines)
-    if not lines or sns_rules.hook_problems(text) or not hook3_facts_ok(lines, article) or sns_rules.grammar_problems(text):
+    if (not lines or sns_rules.hook_problems(text) or not hook3_facts_ok(lines, article) or sns_rules.grammar_problems(text)
+            or sns_rules.duplicate_lines(text)):  # 同じことを2回書く3行は使わない（台帳 S37）
         return ""
     return text
 
@@ -559,7 +560,32 @@ FACT_OPENER_MAX = 60
 def similar_fact(a: str, b: str) -> bool:
     """同じ事実を言っている2つの文か（書き出しと事実の文で同じことを繰り返さない）"""
     a, b = str(a or ""), str(b or "")
-    return bool(a and b) and (a in b or b in a or overlap(a, b) >= 12 or difflib.SequenceMatcher(None, a, b).ratio() >= 0.45)
+    return bool(a and b) and (a in b or b in a or overlap(a, b) >= 12 or difflib.SequenceMatcher(None, a, b).ratio() >= 0.45
+                              or sns_rules.near_duplicate(a, b))
+
+
+def dedupe_summary(summary: str, hook: str, article: dict, title: str, budget: int) -> str:
+    """（2026-11-05 アララ・台帳 S37）事実の文のうち、書き出しや前の文と同じことを言っている文を外し、記事の次の新しい事実で埋める。
+    LLM が書き直した要約は書き出しを見ていないので、最後にここで必ず確かめる。埋める事実が無ければ残った文だけ"""
+    head = re.sub(r"^【速報】", "", str(hook or ""))
+    lines = [x for x in str(summary or "").splitlines() if x.strip()]
+    kept: list[str] = []
+    for line in lines:
+        if (head and sns_rules.near_duplicate(head, line)) or any(sns_rules.near_duplicate(k, line) for k in kept):
+            continue
+        kept.append(line)
+    if len(kept) == len(lines) and kept:
+        return "\n".join(kept)
+    want = max(1, min(2, len(lines)))
+    for fact in fact_pool(article, title, hook):
+        if len(kept) >= want:
+            break
+        if (head and similar_fact(head, fact)) or any(similar_fact(k, fact) for k in kept):
+            continue
+        if sum(len(k) + 1 for k in kept) + len(fact) > budget:
+            continue
+        kept.append(fact)
+    return "\n".join(kept)
 
 
 def llm_fact_opener(article: dict, title: str) -> str:
@@ -750,6 +776,8 @@ def compose(
 
         summary = "\n".join(headline_normalize.strip_known_descriptors(x) for x in summary.splitlines())
     summary = number_units.natural_units(sns_rules.strip_summary_lead(summary))
+    # 書き出しと同じことを言う事実の文は外して、次の新しい事実にする（LLM の書き直しのあとも必ず。台帳 S37）
+    summary = dedupe_summary(summary, hook, article, title, budget)
     text = "\n\n".join(b for b in (hook, summary, question) if b)
     article["_question"] = question
     article["_summaryLead"] = sns_rules.lead_in_of(text)

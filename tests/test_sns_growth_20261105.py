@@ -99,7 +99,7 @@ class LaneAndExcludeTest(unittest.TestCase):
         self.assertEqual(sns_plan.excluded({"title": "NTT、API の料金を改定", "sourceUrl": "https://group.ntt/jp/x"}), "")
         self.assertTrue(sns_plan.excluded({"title": "Salesforce、Agentforce に新機能", "sourceUrl": "https://www.salesforce.com/jp/news/x"}))
         # 門番（すべての経路）も止める
-        text = f"{AWS['title']}\n\n詳しくはこちら👇\nhttps://ai-tech-express.jp/articles/aws-x?utm_source=threads&utm_medium=social&utm_campaign=classic&utm_content=video_body"
+        text = f"{AWS['title']}\n\nhttps://ai-tech-express.jp/articles/aws-x?utm_source=threads&utm_medium=social&utm_campaign=classic&utm_content=video_body"
         with patch.object(r, "ARTICLES_DIR", Path("/nonexistent")):
             out = r.check_post("threads", text, [], {**AWS, "_virtual": True}, pending_video=True)
         self.assertTrue(any(v.startswith("[ルール10]") for v in out), out)
@@ -139,7 +139,7 @@ class UtmTest(unittest.TestCase):
 
     def test_followup_keeps_post_type(self):
         report = {"url": LINK, "total": 40, "level": "MUSE"}
-        text = f"1行目\n2行目\n記事に\n\n詳しくはこちら👇\n{LINK}?utm_source=threads&utm_medium=social&utm_campaign=classic&utm_content=hook_body"
+        text = f"1行目\n2行目\n記事に\n\n{LINK}?utm_source=threads&utm_medium=social&utm_campaign=classic&utm_content=hook_body"
         new, _ = fu.merged_text(text, report, "short")
         self.assertIn("utm_campaign=sns_video_short&utm_content=hook_body", new)
         self.assertIn("40秒の動画で解説しています。", new)  # Muse の動画は「公式ページの画面を見ながら」と言わない
@@ -229,7 +229,7 @@ HOOK3 = "ゆうちょ銀行が、松井証券の議決権の19.99%を取得し�
 
 class FlagsTest(unittest.TestCase):
     def body(self, text: str) -> str:
-        return f"{text}\n\n詳しくはこちら👇\n{LINK}?utm_source=threads&utm_medium=social&utm_campaign=classic&utm_content=hook_body"
+        return f"{text}\n\n{LINK}?utm_source=threads&utm_medium=social&utm_campaign=classic&utm_content=hook_body"
 
     def test_flags_default_off(self):
         with patch.dict(os.environ, {}, clear=False):
@@ -256,7 +256,7 @@ class FlagsTest(unittest.TestCase):
         self.assertFalse(tp.hook3_facts_ok(["ゆうちょ銀行が30%を取得します。"], art))
 
     def test_link_ab_alternates_and_gate_allows_reply_only_with_flag(self):
-        reply = f"詳しくはこちら👇\n{LINK}?utm_source=threads&utm_medium=social&utm_campaign=classic&utm_content=video_reply"
+        reply = f"{LINK}?utm_source=threads&utm_medium=social&utm_campaign=classic&utm_content=video_reply"
         with patch.dict(os.environ, {"THREADS_LINK_AB": "1"}):
             self.assertEqual(sns_plan.threads_link_position({}), "body")
             self.assertEqual(sns_plan.threads_link_position({"a": {"linkPosition": "body"}}), "reply")
