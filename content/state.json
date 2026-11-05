@@ -210,6 +210,7 @@
     }
   },
   "major_tries": {
+    "5179ed8e3f9e5114": 1,
     "771f7b3c35a2e5cc": 1
   },
   "pi_reopened": {
@@ -15185,70 +15186,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-03T18:25:16.701406+00:00",
-      "attempt": 1,
-      "id": "20954e3ac0ff87f7",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "元記事の文をそのまま書き写している（2文。例「hf auth login --token $HF_TOKEN --add-to-git-crede」）。自分の言葉で要約する"
-      ],
-      "readability": {
-        "avg_paragraph": 74.1,
-        "avg_sentence": 35.6,
-        "long_share": 0.04,
-        "max_paragraph": 273,
-        "paragraphs": 12,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "hugging-face-blog",
-      "title": "CWE-bench v2: More coverage, quality, and transparency",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CWE・HF）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T18:26:13.990454+00:00",
-      "attempt": 2,
-      "id": "20954e3ac0ff87f7",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "hugging-face-blog",
-      "title": "CWE-bench v2: More coverage, quality, and transparency"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T18:26:50.563833+00:00",
-      "attempt": 1,
-      "id": "7709dfd32db6bb50",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 73.3,
-        "avg_sentence": 38.3,
-        "long_share": 0.136,
-        "max_paragraph": 144,
-        "paragraphs": 23,
-        "sentences": 44
-      },
-      "score": 93,
-      "source": "google-cloud-blog",
-      "title": "How Nammu21 automates syndicated loans on Google Cloud Universal Ledger",
-      "warnings": [
-        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（GCUL・LMA・DCI）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-03T18:34:01.158124+00:00",
       "attempt": 1,
       "id": "ce9b39562dd42cfe",
@@ -21463,6 +21400,90 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（SFGI）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:43:53.937898+00:00",
+      "attempt": 1,
+      "id": "5179ed8e3f9e5114",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リードの数字「8.5%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "リードの数字「9.6%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "リードの数字「370円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「242億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 62.1,
+        "avg_sentence": 31.0,
+        "long_share": 0.043,
+        "max_paragraph": 179,
+        "paragraphs": 23,
+        "sentences": 46
+      },
+      "score": null,
+      "source": "fast",
+      "title": "ダイキン工業 決算短信（2026年11月5日）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IR）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:44:36.421961+00:00",
+      "attempt": 2,
+      "id": "5179ed8e3f9e5114",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "題名の数字「2兆9,107億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "リードの数字「9,107億6,600万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "リードの数字「2,707億9,300万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "リードの数字「5兆1,500億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "リードの数字「4,360億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「9,107億6,600万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 85.6,
+        "avg_sentence": 38.3,
+        "long_share": 0.085,
+        "max_paragraph": 162,
+        "paragraphs": 21,
+        "sentences": 47
+      },
+      "score": null,
+      "source": "fast",
+      "title": "ダイキン工業 決算短信（2026年11月5日）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（VRV）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T06:45:20.508881+00:00",
+      "attempt": 3,
+      "id": "5179ed8e3f9e5114",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リードの数字「9,107億6,600万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "リードの数字「2,707億9,300万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「242億1,400万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「185円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「165円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 69.8,
+        "avg_sentence": 37.6,
+        "long_share": 0.051,
+        "max_paragraph": 116,
+        "paragraphs": 21,
+        "sentences": 39
+      },
+      "score": null,
+      "source": "fast",
+      "title": "ダイキン工業 決算短信（2026年11月5日）"
     }
   ],
   "short_text_retry": {
