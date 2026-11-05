@@ -138,14 +138,6 @@
       "tries": 1,
       "url": "http://www.boj.or.jp/statistics/boj/other/mb/mb.htm"
     },
-    "6a2be6e66b96ae87": {
-      "first": "2026-11-05T01:42:50.522532+00:00",
-      "next": "2026-11-05T14:30:29.658954+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "金利上昇に直面するJ-REIT市場。求められる資本効率の向上",
-      "tries": 2,
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87115?site=nli"
-    },
     "84d6e3eaec4fdab1": {
       "first": "2026-11-05T03:50:04.779950+00:00",
       "next": "2026-11-05T16:19:38.818766+00:00",
@@ -153,14 +145,6 @@
       "title": "CBT方式で実施するITパスポート試験、情報セキュリティマネジメント試験及び基本情報技術者試験における2027年1月以降の実施予定について",
       "tries": 2,
       "url": "https://www.ipa.go.jp/shiken/2026/cbt-202701-yotei.html"
-    },
-    "8ed2a5ebe510310e": {
-      "first": "2026-11-05T11:25:48.013883+00:00",
-      "next": "2026-11-05T14:25:48.013883+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "ウイスキー、スピリッツ・リキュール、輸入ワイン等の価格改定について",
-      "tries": 1,
-      "url": "https://www.suntory.co.jp/news/article/2026/15167.html?rss=0000000029"
     },
     "9824d9cb50fa7b55": {
       "first": "2026-11-03T14:46:44.535250+00:00",
@@ -212,10 +196,10 @@
     },
     "e6c9c7fda0339b68": {
       "first": "2026-11-05T11:29:07.458796+00:00",
-      "next": "2026-11-05T14:29:07.458796+00:00",
-      "reason": "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「億円となり、前年同期より1,854億円」、「売上にあたる営業収益は26兆9,624億円」、「24億円で、前年同期より2兆3,317億円」、「株主に帰属する当期利益は2兆2,364億円」、「4億円で、前年同期比では4,630億円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄に",
+      "next": "2026-11-05T18:06:55.528713+00:00",
+      "reason": "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「益(売上にあたる収益)は26兆9,624億円」、「24億円で、前年同期より2兆3,317億円」、「## 日本の持分法利益は2,863億円」、「・中国: 286億円」、「中国: 286億円(同△194億円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）",
       "title": "[トヨタイムズ記事] 【2027年3月期第2四半期決算】3年ぶり増益 事業構造改革へ加速",
-      "tries": 1,
+      "tries": 2,
       "url": "https://toyotatimes.jp/toyota_news/financial_results_2027/002.html?padid=ag478_from_newsroom"
     },
     "e92adb95112b5264": {
@@ -8679,6 +8663,13 @@
       "skipped": true,
       "url": "https://www.nttud.co.jp/news/detail/id/n28053.html"
     },
+    "6a2be6e66b96ae87": {
+      "at": "2026-11-05T15:07:35.484935+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87115?site=nli"
+    },
     "6a2cc601f31aa647": {
       "at": "2026-10-29T03:23:05.934918+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10167,6 +10158,15 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202611/video-326988.html"
     },
+    "89209ab642b10e25": {
+      "at": "2026-11-05T15:13:01.555030+00:00",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "phonon-tts-on-device-speech",
+      "url": "https://huggingface.co/blog/phonon-tts"
+    },
     "895b8ff93dbe4194": {
       "at": "2026-11-04T08:03:10.192592+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -10440,6 +10440,15 @@
       "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "skipped": true,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87103?site=nli"
+    },
+    "8ed2a5ebe510310e": {
+      "at": "2026-11-05T15:11:11.514196+00:00",
+      "mix": "money",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "lifestyle",
+      "slug": "suntory-alcohol-price-hike-2027",
+      "url": "https://www.suntory.co.jp/news/article/2026/15167.html?rss=0000000029"
     },
     "8ed93bec790144d5": {
       "at": "2026-10-26T18:18:23.045318+00:00",
@@ -13299,6 +13308,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000136.000096332.html"
     },
+    "cb07e37dc63a1663": {
+      "at": "2026-11-05T15:02:42.171941+00:00",
+      "reason": "stale: 発表から55時間（記事ページの日付）",
+      "skipped": true,
+      "url": "https://www.microsoft.com/en-us/microsoft-cloud/blog/government/2026/11/03/frontier-government-people-first-lessons-from-cities-around-the-world/"
+    },
     "cb1963c79867e92f": {
       "at": "2026-10-31T02:51:38.035479+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15871,128 +15886,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T01:51:40.324088+00:00",
-      "attempt": 2,
-      "id": "e5a5675e2d1ffd241d6b2d7e041969ccd68c838e",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "住友商事 株価"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T01:53:14.265390+00:00",
-      "attempt": 1,
-      "id": "fa5cf1d88191aa9356e9ecf426acce1aabb663dd",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "tdk 株価"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T01:54:23.431064+00:00",
-      "attempt": 2,
-      "id": "fa5cf1d88191aa9356e9ecf426acce1aabb663dd",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "tdk 株価"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T01:56:29.059048+00:00",
-      "attempt": 1,
-      "id": "21b9ad530469352ed79e298118d1b253bad891fc",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "三菱電機株価"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T01:57:48.878849+00:00",
-      "attempt": 2,
-      "id": "21b9ad530469352ed79e298118d1b253bad891fc",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "三菱電機株価"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T01:59:00.399159+00:00",
-      "attempt": 1,
-      "id": "1b841b9838c9bfc5ad064737752e51ee19fd48f6",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "商船三井 株価"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T02:00:09.134586+00:00",
-      "attempt": 2,
-      "id": "1b841b9838c9bfc5ad064737752e51ee19fd48f6",
-      "kind": "trend",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "trends",
-      "title": "商船三井 株価"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-04T02:03:01.689391+00:00",
-      "attempt": 1,
-      "id": "54c4ca6643eafba1",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.6,
-        "avg_sentence": 38.9,
-        "long_share": 0.103,
-        "max_paragraph": 145,
-        "paragraphs": 14,
-        "sentences": 29
-      },
-      "score": 92,
-      "source": "radar-gori.me",
-      "title": "Mac整備済製品、Mac StudioとiMacの在庫が一気に復活。新モデル追加で計123種類",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（XDR）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-04T02:23:48.494788+00:00",
@@ -22086,6 +21979,168 @@
       "score": null,
       "source": "nli-research",
       "title": "企業文化の分析と企業評価"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T15:04:40.141686+00:00",
+      "attempt": 1,
+      "id": "e6c9c7fda0339b68",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「11億円で、前年同期より1,854億円」、「911億円で、前年同期の20,056億円」、「売上にあたる営業収益は269,624億円」、「24億円で、前年同期より23,317億円」、「株主に帰属する当期利益は22,364億円」）。元記事か束の数字に直す",
+        "確認済みの事実の束（関連ページ：トヨタ自動車 グローバルニュースルーム IR（適時開示）「2027年3月期第２四半期決算報告プレゼンテーション資料」）の数字を使っているのに、出典が書かれていない。使った文の直後に「（トヨタ自動車 グローバルニュースルーム IR（適時開示）「2027年3月期第２四半期決算報告プレゼンテー"
+      ],
+      "readability": {
+        "avg_paragraph": 86.7,
+        "avg_sentence": 35.2,
+        "long_share": 0.054,
+        "max_paragraph": 160,
+        "paragraphs": 15,
+        "sentences": 37
+      },
+      "score": null,
+      "source": "toyota",
+      "title": "[トヨタイムズ記事] 【2027年3月期第2四半期決算】3年ぶり増益 事業構造改革へ加速",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（LG・IR）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T15:06:55.528642+00:00",
+      "attempt": 2,
+      "id": "e6c9c7fda0339b68",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「益(売上にあたる収益)は26兆9,624億円」、「24億円で、前年同期より2兆3,317億円」、「## 日本の持分法利益は2,863億円」、「・中国: 286億円」、「中国: 286億円(同△194億円」）。元記事か束の数字に直すか、その文を削る。割"
+      ],
+      "readability": {
+        "avg_paragraph": 104.2,
+        "avg_sentence": 39.7,
+        "long_share": 0.143,
+        "max_paragraph": 174,
+        "paragraphs": 16,
+        "sentences": 42
+      },
+      "score": null,
+      "source": "toyota",
+      "title": "[トヨタイムズ記事] 【2027年3月期第2四半期決算】3年ぶり増益 事業構造改革へ加速"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T15:07:12.371469+00:00",
+      "attempt": 1,
+      "id": "6a2be6e66b96ae87",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "nli-research",
+      "title": "金利上昇に直面するJ-REIT市場。求められる資本効率の向上"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T15:07:35.484840+00:00",
+      "attempt": 2,
+      "id": "6a2be6e66b96ae87",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "nli-research",
+      "title": "金利上昇に直面するJ-REIT市場。求められる資本効率の向上"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T15:09:14.104335+00:00",
+      "attempt": 1,
+      "id": "8ed2a5ebe510310e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "suntory",
+      "title": "ウイスキー、スピリッツ・リキュール、輸入ワイン等の価格改定について"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T15:11:11.503528+00:00",
+      "attempt": 2,
+      "id": "8ed2a5ebe510310e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.8,
+        "avg_sentence": 36.6,
+        "long_share": 0.088,
+        "max_paragraph": 148,
+        "paragraphs": 13,
+        "sentences": 34
+      },
+      "score": 92,
+      "source": "suntory",
+      "title": "ウイスキー、スピリッツ・リキュール、輸入ワイン等の価格改定について",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ROKU・KAN・DE）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T15:12:37.475538+00:00",
+      "attempt": 1,
+      "id": "89209ab642b10e25",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「本人の同意を得た短い録音から声をまねる方法」→ 確認済みの関連ページでは、音声エンコーダーが公開されておらず録音から声をクローンできないとされている。元記事の表現には沿うが、確認済み文脈と矛盾するため、記事側で注記するか確認が必要",
+        "「どちらもGradium Studioというツールで作れます」→ 元記事は声の作成先をGradium Studioとしているが、確認済み文脈の関連ページには声の作成に関する記述がなく、そのまま事実として扱える根拠が確認できない"
+      ],
+      "readability": {
+        "avg_paragraph": 105.8,
+        "avg_sentence": 35.3,
+        "long_share": 0.048,
+        "max_paragraph": 147,
+        "paragraphs": 14,
+        "sentences": 42
+      },
+      "score": 82,
+      "source": "hugging-face-blog",
+      "title": "A Closer Look at Phonon TTS. Launching High-Quality On-Device Speech That Tops t",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TTS・CC・BY）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T15:13:01.539463+00:00",
+      "attempt": 1,
+      "id": "89209ab642b10e25",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 112.3,
+        "avg_sentence": 35.7,
+        "long_share": 0.068,
+        "max_paragraph": 216,
+        "paragraphs": 14,
+        "sentences": 44
+      },
+      "score": 88,
+      "source": "hugging-face-blog",
+      "title": "A Closer Look at Phonon TTS. Launching High-Quality On-Device Speech That Tops t",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TTS・CC・BY）"
+      ]
     }
   ],
   "short_text_retry": {
