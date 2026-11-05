@@ -72,6 +72,14 @@
   },
   "failed_web": {},
   "gate_retry": {
+    "010f1ded905a0578": {
+      "first": "2026-11-05T01:04:07.991859+00:00",
+      "next": "2026-11-05T04:04:07.991859+00:00",
+      "reason": "lede に取引のやり方の説明がある（「売買の方法」）。売買の手順は書かず、制度・数字・影響の説明にする; 1つの文を2つに割っている（「課題があります。ひとつは、スタートアップへの成長資金の供給を増やすことです。」）。1文にまとめる",
+      "title": "[JPX総研]株式会社スマートラウンドへの出資について",
+      "tries": 1,
+      "url": "https://www.jpx.co.jp/corporate/news/news-releases/6020/20261105-01.html"
+    },
     "0e889c44fa0a25a1": {
       "first": "2026-11-03T18:43:01.853190+00:00",
       "next": "2026-11-04T05:34:06.965439+00:00",
@@ -4982,6 +4990,15 @@
       "skipped": true,
       "url": "https://www.digital.go.jp/policies/local_governments/specification"
     },
+    "237bc1e259371f3e": {
+      "at": "2026-11-05T01:06:31.124449+00:00",
+      "mix": "brand",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "business",
+      "slug": "nissan-serena-luxion-price-cut-2026",
+      "url": "http://global.nissannews.com/ja-JP/releases/261105-01-j"
+    },
     "23ac914e0e3febaf": {
       "at": "2026-10-30T06:51:53.376953+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -7991,6 +8008,12 @@
       "section": "business",
       "slug": "boj-ueda-press-conf-oct30",
       "url": "https://www.boj.or.jp/about/press/kaiken_2026/kk261102a.pdf"
+    },
+    "674606b2c14036da": {
+      "at": "2026-11-05T01:01:36.592319+00:00",
+      "reason": "prefilter: 投資・マネーの話題ではない",
+      "skipped": true,
+      "url": "https://www.jp-bank.japanpost.jp/aboutus/press/2026/abt_prs_id002130.html"
     },
     "6750c2461412185f": {
       "at": "2026-10-30T16:01:57.168620+00:00",
@@ -14839,92 +14862,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-03T00:59:37.235400+00:00",
-      "attempt": 1,
-      "id": "a5f075079c632990",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "文が長い（1文の平均 48.2字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 112.5,
-        "avg_sentence": 48.2,
-        "long_share": 0.143,
-        "max_paragraph": 210,
-        "paragraphs": 12,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "soumu",
-      "title": "弾道ミサイルを想定した住民避難訓練の実施"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T00:59:41.538097+00:00",
-      "attempt": 0,
-      "id": "a5f075079c632990",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 63.2,
-        "avg_sentence": 33.1,
-        "long_share": 0.048,
-        "max_paragraph": 99,
-        "paragraphs": 22,
-        "sentences": 42
-      },
-      "score": 100,
-      "source": "soumu",
-      "title": "弾道ミサイルを想定した住民避難訓練の実施"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T01:21:57.661553+00:00",
-      "attempt": 1,
-      "id": "c6c1b0634067cfe3",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "文が長い（1文の平均 50.5字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 64.3,
-        "avg_sentence": 50.5,
-        "long_share": 0.286,
-        "max_paragraph": 111,
-        "paragraphs": 22,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "アンダーパスの冠水事故防止に向けた「東京都防災アプリ」の機能追加"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T01:22:11.329532+00:00",
-      "attempt": 0,
-      "id": "c6c1b0634067cfe3",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（50.5→50.5字）"
-      ],
-      "readability": {
-        "avg_paragraph": 64.3,
-        "avg_sentence": 50.5,
-        "long_share": 0.286,
-        "max_paragraph": 111,
-        "paragraphs": 22,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "アンダーパスの冠水事故防止に向けた「東京都防災アプリ」の機能追加"
-    },
-    {
       "accepted": true,
       "at": "2026-11-03T01:22:55.670643+00:00",
       "attempt": 1,
@@ -21212,6 +21149,107 @@
       "title": "Introducing Images 2.6",
       "warnings": [
         "初めて出たところで言い換えていない略語（GIF）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T01:03:04.224533+00:00",
+      "attempt": 1,
+      "id": "010f1ded905a0578",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "body に取引のやり方の説明がある（「売買の方法」）。売買の手順は書かず、制度・数字・影響の説明にする"
+      ],
+      "readability": {
+        "avg_paragraph": 93.8,
+        "avg_sentence": 46.9,
+        "long_share": 0.192,
+        "max_paragraph": 141,
+        "paragraphs": 13,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "jpx-news",
+      "title": "[JPX総研]株式会社スマートラウンドへの出資について",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JPX・IR）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T01:04:07.991794+00:00",
+      "attempt": 2,
+      "id": "010f1ded905a0578",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "lede に取引のやり方の説明がある（「売買の方法」）。売買の手順は書かず、制度・数字・影響の説明にする",
+        "1つの文を2つに割っている（「課題があります。ひとつは、スタートアップへの成長資金の供給を増やすことです。」）。1文にまとめる"
+      ],
+      "readability": {
+        "avg_paragraph": 127.5,
+        "avg_sentence": 48.4,
+        "long_share": 0.276,
+        "max_paragraph": 172,
+        "paragraphs": 11,
+        "sentences": 29
+      },
+      "score": null,
+      "source": "jpx-news",
+      "title": "[JPX総研]株式会社スマートラウンドへの出資について",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JPX）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T01:06:00.389040+00:00",
+      "attempt": 1,
+      "id": "237bc1e259371f3e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 57.9字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 110.5,
+        "avg_sentence": 57.9,
+        "long_share": 0.429,
+        "max_paragraph": 188,
+        "paragraphs": 11,
+        "sentences": 21
+      },
+      "score": 88,
+      "source": "nissan",
+      "title": "日産、「セレナ」を一部仕様変更",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（LUXION・BIG・EASY）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T01:06:25.798795+00:00",
+      "attempt": 0,
+      "id": "237bc1e259371f3e",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 元に無い数字が増えた（1508, 43, 45, 50, 57.9）"
+      ],
+      "readability": {
+        "avg_paragraph": 110.5,
+        "avg_sentence": 57.9,
+        "long_share": 0.429,
+        "max_paragraph": 188,
+        "paragraphs": 11,
+        "sentences": 21
+      },
+      "score": 88,
+      "source": "nissan",
+      "title": "日産、「セレナ」を一部仕様変更",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（LUXION・BIG・EASY）"
       ]
     }
   ],
