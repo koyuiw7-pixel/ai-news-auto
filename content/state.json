@@ -122,6 +122,14 @@
       "tries": 1,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87260?site=nli"
     },
+    "570227a5d2aea513": {
+      "first": "2026-11-05T17:34:30.509196+00:00",
+      "next": "2026-11-05T20:34:30.509196+00:00",
+      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "title": "Transform a quick drawing into a live app with Gemini.",
+      "tries": 1,
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/turn-drawings-into-apps-gemini/"
+    },
     "60e8d80f76ce81f6": {
       "first": "2026-11-04T00:13:44.468528+00:00",
       "next": "2026-11-04T03:13:44.468528+00:00",
@@ -187,7 +195,9 @@
       "url": "https://developers.cyberagent.co.jp/blog/archives/67267/"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "1fef8fc8257a5b71": 1
+  },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -3397,6 +3407,13 @@
     }
   },
   "processed_web": {
+    "003a6dd08e360129": {
+      "at": "2026-11-05T17:31:50.639884+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup style: 見出しが多すぎる（4個 / 本文2982字なら3個まで）。章をまとめて見出しを減らす",
+      "skipped": true,
+      "url": "https://deepmind.google/blog/gemini-omni-12-flash-fast-and-cost-effective-with-longer-clips/"
+    },
     "003d54f4d366367a": {
       "at": "2026-11-03T16:28:57.179727+00:00",
       "reason": "dedupe: 固有名詞が一致（harness・model）: deepseek-harness-creator-mode",
@@ -7554,6 +7571,12 @@
       "skipped": true,
       "url": "https://www.ipa.go.jp/news/2026/shiken_20261028.html"
     },
+    "536e6e9d9529cb0d": {
+      "at": "2026-11-05T17:32:01.593727+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/statistics/boj/other/mb/mb.htm"
+    },
     "537d2d79ba7e867a": {
       "at": "2026-11-04T10:23:39.546192+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -9713,6 +9736,12 @@
       "reason": "dedupe: 固有名詞が一致（amazon・knowledge）: Prepare web content for Amazon Bedrock K",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/build-efficient-agents-with-knowledge-distillation-on-amazon-sagemaker-ai/"
+    },
+    "80f02472d74f44ab": {
+      "at": "2026-11-05T17:31:50.641186+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（議事）",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/mopo/mpmsche_minu/minu_2026/g260918.pdf"
     },
     "8104b48aec000a07": {
       "at": "2026-11-03T23:44:13.559310+00:00",
@@ -13058,6 +13087,13 @@
       "skipped": true,
       "url": "https://www.stat.go.jp/data/zenkokukakei/2024/kekka.html"
     },
+    "c57e3e0a06245733": {
+      "at": "2026-11-05T17:32:01.592421+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "金融機関どうしの業務継続訓練（市場レベルBCP）の一環で、対象は事前に参加を申し出た金融機関に限られます。一般の働く人や家計が申し込んだり行動したりできる内容ではないため、記事化の対象外です。",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/about/bcp/fin_bcp/fbcp261104a.pdf"
+    },
     "c583a2d982c5151e": {
       "at": "2026-11-01T14:31:35.149947+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -14270,6 +14306,12 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110512"
     },
+    "dda7ce70532dcd46": {
+      "at": "2026-11-05T17:32:01.593705+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261031.htm"
+    },
     "ddafe00fcfab2d61": {
       "at": "2026-10-28T22:30:58.505963+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
@@ -14614,6 +14656,12 @@
       "reason": "quality: 本文が短い（1527字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/9d3373a46cfea4887461fe664f375c01b34080ce"
+    },
+    "e51ca8fdcda4321b": {
+      "at": "2026-11-05T17:34:30.983399+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（開催について）",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/paym/bond/mbond_list/mbond261105.pdf"
     },
     "e529dedc8f0dfc23": {
       "at": "2026-10-26T15:03:53.336784+00:00",
@@ -15931,48 +15979,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:33:49.880450+00:00",
-      "attempt": 1,
-      "id": "52567fa092b78f28",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "nli-research",
-      "title": "AI半導体株に翻弄された日本株～2026年10月の日本株式の振り返りと今後のポイント"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:34:46.235673+00:00",
-      "attempt": 2,
-      "id": "52567fa092b78f28",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "nli-research",
-      "title": "AI半導体株に翻弄された日本株～2026年10月の日本株式の振り返りと今後のポイント"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T03:36:28.289100+00:00",
-      "attempt": 1,
-      "id": "17a357c5e54aa313",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "toyota",
-      "title": "トヨタ、2027年シーズン WRC参戦体制発表 -2チーム、2車種で参戦-"
-    },
     {
       "accepted": false,
       "at": "2026-11-04T03:38:04.534951+00:00",
@@ -22155,6 +22161,46 @@
       "score": null,
       "source": "tokyo-metro",
       "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T17:31:50.627742+00:00",
+      "attempt": 1,
+      "id": "003a6dd08e360129",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "score": 92,
+      "source": "google-deepmind-blog",
+      "title": "Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T17:33:28.494944+00:00",
+      "attempt": 1,
+      "id": "570227a5d2aea513",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "google-gemini-blog",
+      "title": "Transform a quick drawing into a live app with Gemini."
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T17:34:30.509055+00:00",
+      "attempt": 2,
+      "id": "570227a5d2aea513",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "google-gemini-blog",
+      "title": "Transform a quick drawing into a live app with Gemini."
     }
   ],
   "short_text_retry": {
