@@ -14549,9 +14549,14 @@
       "url": "https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo3/118/gijiroku/mext_00019.html"
     },
     "f5001d451409d444": {
-      "at": "2026-11-05T05:08:28.300233+00:00",
-      "reason": "major gave up x3: reject: リードの数字「39,000億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-      "skipped": true,
+      "at": "2026-11-05T05:11:33.149507+00:00",
+      "breaking": true,
+      "major": true,
+      "mix": "jp_corp",
+      "model": "claude:sonnet",
+      "score": 86,
+      "section": "investment",
+      "slug": "toyota-fy2027-interim-results",
       "url": "https://www.release.tdnet.info/inbs/140120261030561115.pdf"
     },
     "f522743b37a80504292a593266c5e50fc905f5e1": {
@@ -15121,83 +15126,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-03T17:12:07.864434+00:00",
-      "attempt": 1,
-      "id": "4676cabae1997d08",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.2,
-        "avg_sentence": 42.6,
-        "long_share": 0.111,
-        "max_paragraph": 154,
-        "paragraphs": 14,
-        "sentences": 27
-      },
-      "score": 93,
-      "source": "google-blog-all",
-      "title": "We’re providing funding for organizations building AI for teachers.",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CITE）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T17:12:40.645415+00:00",
-      "attempt": 2,
-      "id": "4676cabae1997d08",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「それぞれ研修、モデル開発、学区支援、現場支援、標準づくりを担います」→ 元記事は各団体の役割を個別に説明しているだけで、この分類は要約の範囲だが、CUNYを「研修」と断定している点はやや言い過ぎ。",
-        "「AIを教える側の先生が、まず基礎から学べる環境を整える取り組みです」→ 元記事はデジタル・計算リテラシーの育成としか書いておらず、AI教育の基礎という位置づけは補足による創作。",
-        "「授業の合間や運営の判断の場面で、その場で助けを得られる仕組みを目指すものです」→ 元記事に授業の合間や運営判断といった具体的な利用場面の記述はない。",
-        "「AIの使い方を決めるのは、個々の先生だけでは難しい場面があります」→ 元記事に根拠のない説明で、一般論としても断定的。",
-        "「標準が整えば、異なる会社の教育ツールを組み合わせやすくなります」→ 元記事に無い効果の断定。",
-        "「教育向けのAIは、先生の負担を減らす方向に開発が向かっています」→ 元記事に「負担を減らす」との記述はなく、編集部の見方として根拠が弱い。"
-      ],
-      "readability": {
-        "avg_paragraph": 90.9,
-        "avg_sentence": 39.0,
-        "long_share": 0.143,
-        "max_paragraph": 173,
-        "paragraphs": 18,
-        "sentences": 42
-      },
-      "score": 72,
-      "source": "google-blog-all",
-      "title": "We’re providing funding for organizations building AI for teachers.",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CITE）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-03T17:13:16.257539+00:00",
-      "attempt": 1,
-      "id": "e1491c4239ea20a0",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 114.7,
-        "avg_sentence": 35.0,
-        "long_share": 0.051,
-        "max_paragraph": 209,
-        "paragraphs": 18,
-        "sentences": 59
-      },
-      "score": 95,
-      "source": "meta-engineering",
-      "title": "F3 Lightning: How Meta Accelerates Ads ML Features to Production at Scale",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DAG）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-03T17:32:16.520748+00:00",
@@ -21310,6 +21238,77 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（IFRS）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T05:10:13.046016+00:00",
+      "attempt": 1,
+      "id": "f5001d451409d444",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リード: 「年間配当の予想は100円で、前期の95円から変わっていません」→ 元記事では年間配当予想100円と前期95円は異なり、5円増の予想である。「変わっていません」は事実と矛盾する。",
+        "「税引前の利益が営業利益より大きく伸びたことが背景にあります」→ 税引前利益が伸びた理由は元記事に記載がなく、因果関係は推測。",
+        "「車の購入を考えている人の契約や価格が、この決算で変わるわけではありません」→ 元記事にない断定。",
+        "「2027年3月期の実績と見通しには含まれません」→ 日野の除外70社は元記事にあるが、2027年3月期の見通しから除かれたとの記述は元記事の脚注が途切れており確認できない。",
+        "北米の「営業利益1,661億円（前年同期比2,340億円の増益）」→ 元記事の数値をそのまま写しているが、1,661億円の営業利益に対して2,340億円の増益は整合せず、注意書きなしで提示されている。"
+      ],
+      "readability": {
+        "avg_paragraph": 65.4,
+        "avg_sentence": 34.0,
+        "long_share": 0.04,
+        "max_paragraph": 128,
+        "paragraphs": 26,
+        "sentences": 50
+      },
+      "score": 60,
+      "source": "fast",
+      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T05:10:41.236829+00:00",
+      "attempt": 2,
+      "id": "f5001d451409d444",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "題名の数字「26.9兆円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「5円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "SNS の投稿文の数字「5円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "リードに予想・見通しの言い方（「見通し」）があるが、公式の資料に無い。資料の事実だけを書く"
+      ],
+      "readability": {
+        "avg_paragraph": 75.0,
+        "avg_sentence": 37.5,
+        "long_share": 0.059,
+        "max_paragraph": 163,
+        "paragraphs": 17,
+        "sentences": 34
+      },
+      "score": null,
+      "source": "fast",
+      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-05T05:11:33.114570+00:00",
+      "attempt": 3,
+      "id": "f5001d451409d444",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 68.9,
+        "avg_sentence": 32.5,
+        "long_share": 0.038,
+        "max_paragraph": 161,
+        "paragraphs": 25,
+        "sentences": 53
+      },
+      "score": 86,
+      "source": "fast",
+      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
     }
   ],
   "short_text_retry": {
