@@ -210,7 +210,7 @@
     }
   },
   "major_tries": {
-    "b3a04c021ff2b99e": 1
+    "b3a04c021ff2b99e": 2
   },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
@@ -15201,69 +15201,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-03T19:12:35.187242+00:00",
-      "attempt": 1,
-      "id": "26c6032e1d267765",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 79.8,
-        "avg_sentence": 41.6,
-        "long_share": 0.188,
-        "max_paragraph": 154,
-        "paragraphs": 25,
-        "sentences": 48
-      },
-      "score": 93,
-      "source": "openai-news",
-      "title": "Accelerating engineering for the physical world",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CAD・CGR）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T19:36:24.529817+00:00",
-      "attempt": 1,
-      "id": "81baaaf3b2d16a22",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "確認済みの事実の束（関連ページ：AWS Machine Learning Blog「Amazon Quick の料金」）の数字を使っているのに、出典が書かれていない。使った文の直後に「（AWS Machine Learning Blog「Amazon Quick の料金」、確認日）」のように書く"
-      ],
-      "readability": {
-        "avg_paragraph": 83.1,
-        "avg_sentence": 36.6,
-        "long_share": 0.04,
-        "max_paragraph": 145,
-        "paragraphs": 11,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "Bring structured and unstructured data together with Amazon Quick",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CSV・SPICE・SQL）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-03T19:37:51.089610+00:00",
-      "attempt": 2,
-      "id": "81baaaf3b2d16a22",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "Bring structured and unstructured data together with Amazon Quick"
-    },
-    {
       "accepted": false,
       "at": "2026-11-03T19:38:50.408203+00:00",
       "attempt": 1,
@@ -21542,6 +21479,84 @@
       "title": "ダイキン工業 決算短信（2026年11月5日）",
       "warnings": [
         "初めて出たところで言い換えていない略語（FUSION）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T07:18:32.072493+00:00",
+      "attempt": 1,
+      "id": "b3a04c021ff2b99e",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「ホームページのIRページ」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 85.5,
+        "avg_sentence": 34.2,
+        "long_share": 0.057,
+        "max_paragraph": 178,
+        "paragraphs": 14,
+        "sentences": 35
+      },
+      "score": null,
+      "source": "fast",
+      "title": "LINEヤフー 決算短信（2026年11月5日）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JAPAN・BEENOS・MAN）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T07:19:14.759795+00:00",
+      "attempt": 2,
+      "id": "b3a04c021ff2b99e",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "要点の数字「2兆2,400億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 99.8,
+        "avg_sentence": 38.0,
+        "long_share": 0.167,
+        "max_paragraph": 221,
+        "paragraphs": 16,
+        "sentences": 42
+      },
+      "score": null,
+      "source": "fast",
+      "title": "LINEヤフー 決算短信（2026年11月5日）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IFRS・EBITDA・BEENOS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-05T07:20:04.574365+00:00",
+      "attempt": 3,
+      "id": "b3a04c021ff2b99e",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「LINEやPayPayを使う利用者の料金や契約は、今回の決算では変わりません」→ 元記事に料金・契約の変更有無についての記載がなく、根拠のない断定である。",
+        "「中間配当は0円の予定です」（簡易版）→ 元記事の0.00円は第2四半期末の実績値で、予定ではない。",
+        "「日本の利用者に関わるサービスの変更」の見出し → 元記事は連結の数字を示しており、日本向けサービスの扱いを限定する根拠は示されていない。見出しと本文の対象範囲がずれている。",
+        "「PayPayの決済額が増えたことなどが理由です」（簡易版）→ 売上増の要因の一つとしては元記事に沿うが、『理由』と断定する書き方は言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 96.1,
+        "avg_sentence": 34.8,
+        "long_share": 0.043,
+        "max_paragraph": 213,
+        "paragraphs": 17,
+        "sentences": 47
+      },
+      "score": 85,
+      "source": "fast",
+      "title": "LINEヤフー 決算短信（2026年11月5日）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JAPAN・EBITDA・BEENOS）"
       ]
     }
   ],
