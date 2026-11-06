@@ -188,6 +188,8 @@ def is_focus(article: dict) -> bool:
     2. 読者像の話題（persona.is_persona_topic: ビジネス・投資・不動産のジャンル、制度・暮らし・テックのジャンルでお金・税・補助金・起業の話題）
     3. エンタメのビジネス・テックの目線（genre_focus.entertainment_focus: 料金・決算・販売本数・市場規模・AI・規約。告知・ゴシップは外す）
     4. 日本のスポーツ（persona.sports_scope。海外のリーグ・選手だけの話題は外す。世界的な大会は海外選手も可）
+    5. 公共性の高い話題と、広げた暮らしの話題（public_interest.focus_topic。交通・天気・値上げ・サービス終了・障害・給付・
+       コンビニ/外食/家電/スマホの発売。2026-11-07 台帳 A56。事件・事故・芸能・不祥事は外す）
     それ以外（作品の告知だけのエンタメ・ゲーム、お金に関係しない新商品や研究成果など）は主題外。"""
     text = article.get("title", "") + " " + " ".join(article.get("tags") or [])
     if article.get("genreSlug") in FOCUS_GENRES or AI_TOPIC.search(text):
@@ -237,7 +239,7 @@ PUBLISH_RETRYABLE = ("thin", "no-japan-value")
 PUBLISH_FEEDBACK = {
     "wire": "プレスリリース配信の言い換えは公開しません",
     "creator-video": "個人・他媒体の動画の要約は公開しません",
-    "off-focus": "サイトの主題（AI・テック／お金・投資・不動産・起業／制度のお金の話／日本のスポーツ）から外れた話題は公開しません",
+    "off-focus": "サイトの主題（AI・テック／お金・投資・不動産・起業／制度のお金の話／暮らしの交通・天気・値上げ・障害・給付・発売／日本のスポーツ）から外れた話題は公開しません",
     "no-japan-value": (
         "日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。"
         "見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める"
@@ -277,6 +279,9 @@ def candidate_off_focus(lane: str, title: str, summary: str = "", source_slug: s
         return False
     if lane in public_interest.FOCUS_GENRES and public_interest.FOCUS_TOPIC_RE.search(public_interest._nfkc(text)):
         return False
+    # 広げた暮らしの話題（交通・天気・値上げ・サービス終了・障害・給付・コンビニ/外食/家電/スマホの発売。2026-11-07 オーナー承認・台帳 A56）
+    if lane in public_interest.FOCUS_GENRES and public_interest.wide_category(title, source_slug):
+        return False
     return True
 
 
@@ -315,6 +320,13 @@ def index_rules() -> dict:
         "publicInterestShortTopic": _js_regex(public_interest.SHORT_TOPIC_RE),
         "shortNoticeTopic": _js_regex(public_interest.SHORT_NOTICE_RE),
         "thinBodyPublicInterest": public_interest.SHORT_BODY,
+        # 広げた暮らしの話題（public_interest.wide_category。台帳 A56）。順番どおりに当てる
+        "wideTopics": [{"name": k, **_js_regex(v)} for k, v in public_interest.WIDE_TOPIC_RES.items()],
+        "wideExclude": _js_regex(public_interest.WIDE_EXCLUDE_RE),
+        "wideNotOutage": _js_regex(public_interest.WIDE_NOT_OUTAGE_RE),
+        "launchTopic": _js_regex(public_interest.LAUNCH_RE),
+        "launchContext": _js_regex(public_interest.LAUNCH_CONTEXT_RE),
+        "launchSources": list(public_interest.LAUNCH_SOURCES),
     }
 
 

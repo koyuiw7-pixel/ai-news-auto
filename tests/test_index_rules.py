@@ -51,6 +51,16 @@ SAMPLES = [
     {"genreSlug": "entertainment", "title": "人気アニメのコラボグッズを発売、価格は1500円"},
     {"genreSlug": "investment", "title": "金融庁、NISAの手続きを簡素化"},
     {"genreSlug": "real-estate", "title": "公示地価が上昇"},
+    # 広げた暮らしの話題（台帳 A56）と、広げても入れない事件・事故・芸能
+    {"genreSlug": "lifestyle", "title": "常磐自動車道 夜間通行止めのお知らせ"},
+    {"genreSlug": "public", "title": "大雪に関する早期天候情報"},
+    {"genreSlug": "tech-gadget", "title": "通信障害の発生について"},
+    {"genreSlug": "lifestyle", "title": "ローソン 15品発売"},
+    {"genreSlug": "lifestyle", "title": "新フレーバー登場", "channelSlug": "lawson"},
+    {"genreSlug": "lifestyle", "title": "新フレーバー登場", "channelSlug": "nipponham"},
+    {"genreSlug": "lifestyle", "title": "人身事故による運転見合わせ"},
+    {"genreSlug": "lifestyle", "title": "障害対応ツールの提供"},
+    {"genreSlug": "public", "title": "子育て世帯への給付の申請受付"},
 ]
 
 

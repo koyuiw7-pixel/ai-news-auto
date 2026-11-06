@@ -135,7 +135,9 @@ LOW_VALUE_RE = re.compile(
 HARD_EXCLUDE_RE = re.compile(
     r"逮捕|容疑|送検|起訴|判決|事件|殺人|殺害|死亡事故|死傷|死者|負傷者|重傷|重体|遺体|行方不明|"
     r"訃報|逝去|死去|追悼|選挙|候補者|立候補|政党|支持率|不倫|熱愛|交際を|離婚|炎上|スキャンダル|"
-    r"噂|うわさ|リーク|治る|治療効果|完治|特効|がんが消|効く|痩せる|やせる|ダイエット効果",
+    r"噂|うわさ|リーク|治る|治療効果|完治|特効|がんが消|効く|痩せる|やせる|ダイエット効果|"
+    # 不祥事（2026-11-07 台帳 A56: 話題を広げてもオーナーの判断待ち。料金・値上げの語があっても通さない）
+    r"不祥事|横領|着服|懲戒|謝罪会見|隠蔽|隠ぺい",
 )
 
 # 告知だけの記事（ウェビナー・イベント募集など）は、製品発表を伴わない限り記事にしない
@@ -499,6 +501,15 @@ def publish_blocked(record: dict) -> str | None:
     return indexnow.publish_block_reason(record)
 
 
+# 障害のお知らせ・お詫び（通信・銀行・決済・クラウド）は価値の薄いお知らせに数えない（2026-11-07 オーナー「広めていいよ」・台帳 A56）。
+# 定期のメンテナンスの案内・訂正は今までどおり見送る
+OUTAGE_LOW_VALUE_WORDS = ("お詫び", "システム障害", "サービス障害")
+
+
+def outage_notice(title: str, low_word: str) -> bool:
+    return low_word in OUTAGE_LOW_VALUE_WORDS and public_interest.wide_category(title) == "outage"
+
+
 def broad_prefilter(item: dict) -> str | None:
     """幅広い話題の安い足切り。除外理由（文字列）か None"""
     title = item["title"]
@@ -506,7 +517,7 @@ def broad_prefilter(item: dict) -> str | None:
         return "扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）"
     if len(title) < 10:
         return "タイトルが短すぎる（一覧リンク等）"
-    if m_low := LOW_VALUE_RE.search(title):
+    if (m_low := LOW_VALUE_RE.search(title)) and not outage_notice(title, m_low.group(0)):
         return f"価値の薄いお知らせ（{m_low.group(0)}）"
     # お知らせ・告知・統計の転載（台帳 A26）。公開前の門で落ちるものは、書く前に見送る（LLM の費用を使わない）
     if notice_reason(item):
@@ -524,7 +535,7 @@ def broad_prefilter(item: dict) -> str | None:
             return f"スポーツの対象外（{why}）"
     if indexnow.candidate_off_focus(item.get("section", ""), title, item.get("summary", ""), item.get("source_slug", "")):
         # 作っても検索に出せず取り下げるだけ（2026-11-03 オーナー承認。scripts/indexnow.py の公開前の門）
-        return "サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）"
+        return "サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）"
     return None
 
 

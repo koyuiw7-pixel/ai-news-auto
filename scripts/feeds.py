@@ -352,6 +352,26 @@ BROAD_FEEDS: list[dict] = [
     # 自治体（給付・補助・防災）
     {"slug": "pref-aichi", "name": "愛知県 新着情報", "url": "https://www.pref.aichi.jp/rss/10/list1.xml", "section": "public", "kind": "gov", "priority": 3,
      "include_re": "給付|補助|助成|支援金|手当|防災|災害|避難|値上げ|料金|無料|申請|受付開始|物価|ポイント|税|奨学"},
+    # --- 2026-11-07 追加（オーナー「広めていいよ」・台帳 A56: 交通・天気・値上げ・障害・自治体の給付まで拾う話題を広げた分の発信元） ---
+    # robots.txt 許可（無いものは RFC 9309 どおり許可）・直近14日の更新・日付ありを 2026-11-07 に確かめた。公式の一次情報だけ。
+    # 量の多い一覧は include_re で暮らしに関わる題名だけにする（決算・人事・催し・寄附の告知は取らない）
+    {"slug": "jrkyushu", "name": "JR九州 ニュースリリース", "url": "https://www.jrkyushu.co.jp/news/", "type": "html", "section": "lifestyle", "kind": "company", "priority": 2,
+     "include_re": "運賃|料金|値上げ|運休|運転見合わせ|障害|ダイヤ|新幹線|臨時列車|増発|減便|きっぷ|SUGOCA|割引|終了|計画運休|不正アクセス|漏え?い|漏洩"},
+    {"slug": "energia", "name": "中国電力 プレスリリース", "url": "https://www.energia.co.jp/press/atom.xml", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "料金|値上げ|値下げ|燃料費|停電|障害|節電|需給|補助|流出|不正アクセス"},
+    {"slug": "yonden", "name": "四国電力 プレスリリース", "url": "https://www.yonden.co.jp/press/index.html", "type": "html", "link_re": r"yonden\.co\.jp/press/20", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "料金|値上げ|値下げ|燃料費|停電|障害|節電|需給|補助|流出|不正アクセス"},
+    {"slug": "rikuden", "name": "北陸電力 プレスリリース", "url": "https://www.rikuden.co.jp/press/index.html", "type": "html", "link_re": r"rikuden\.co\.jp/press/", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "料金|値上げ|値下げ|燃料費|停電|障害|節電|需給|補助|流出|不正アクセス"},
+    {"slug": "smbc", "name": "三井住友銀行 ニュースリリース", "url": "https://www.smbc.co.jp/news/", "type": "html", "link_re": r"smbc\.co\.jp/news/", "section": "business", "kind": "company", "priority": 2,
+     "include_re": "障害|不正アクセス|漏え?い|漏洩|流出|詐欺|なりすまし|手数料|改定|値上げ|終了|停止|サービス開始|提供開始|取扱い"},
+    {"slug": "yamazaki", "name": "山崎製パン ニュースリリース", "url": "https://www.yamazakipan.co.jp/company/news/", "type": "html", "link_re": r"yamazakipan\.co\.jp/company/news/pdf/20\d{6}", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "価格|改定|値上げ|値下げ|自主回収|回収"},
+    {"slug": "city-yokohama", "name": "横浜市 記者発表", "url": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/", "type": "html", "section": "public", "kind": "gov", "priority": 3,
+     "include_re": "給付|補助|助成|支援金|手当|商品券|無償|減免|申請|受付開始|防災|避難|災害|料金|値上げ|無料|ポイント|運休|通行止"},
+    # 確かめたが使えなかったもの（2026-11-07 A56 の追加分）: JR北海道・東京メトロ・小田急・京王・みずほ銀行・NEXCO西日本・大阪市・カルビー（403）、
+    #   東急・九州電力・東北電力・北海道電力・マクドナルド・吉野家・札幌市・福岡市（一覧の URL が 404）、東京都交通局・セブン‐イレブン・ゼンショー・ANA・
+    #   三菱UFJ銀行・名古屋市（一覧から日付つきの項目が読めない・直近14日に更新なし）、スターバックス（503）、東邦ガス（自己株式の開示ばかり）
     # 確かめたが使えなかったもの（2026-11-07）: 関西電力・味の素・カルビー・資源エネ庁の報道発表・JR東日本・JAL・NEXCO西日本・大阪市・福岡県（403）、
     #   中部電力・セブン‐イレブン・大阪府・愛知県の一部（一覧の URL が無い・404）、キッコーマン・山崎製パン・パナソニック・日立・スクエニ・
     #   バンダイナムコ・ホンダ・ANA・NPB・神奈川県・au/ソフトバンクの障害情報（一覧がスクリプトで描かれ、日付つきの項目が読めない）、

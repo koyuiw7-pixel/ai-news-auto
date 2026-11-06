@@ -13,7 +13,8 @@ import rules from "./index-rules.json";
  *  3. 読者像（scripts/persona.py）の話題: AI・テック（ジャンル ai / tech-gadget、または題名・タグにAI関連語）／
  *     ビジネス・投資・不動産のジャンル／制度・暮らし・テックのジャンルでお金・税・補助金・起業の話題（persona.is_persona_topic）／
  *     エンタメのビジネス・テックの目線（scripts/genre_focus.py: 料金・決算・販売本数・市場規模・AI・規約。告知・ゴシップは外す）／
- *     日本のスポーツ（persona.sports_scope。海外のリーグ・選手だけの話題は外す。世界的な大会は海外選手も可）
+ *     日本のスポーツ（persona.sports_scope。海外のリーグ・選手だけの話題は外す。世界的な大会は海外選手も可）／
+ *     公共性の高い話題と、広げた暮らしの話題（scripts/public_interest.py の focus_topic・wide_category。台帳 A40・A56）
  *  4. 日本の読者向けの価値がある（「日本で使える？」判定 verdict、または
  *     「日本・無料・料金・使い方・始め方・使える」の見出し）
  *  5. 同じ発表の重複記事（duplicateOf。scripts/story.py が付ける）や、同じ題名・同じ出典URLの重複のうち代表1本以外ではない
@@ -66,11 +67,33 @@ export function isShortArticle(article: Pick<ArticleSummary, "breaking" | "newsT
   return PUBLIC_INTEREST_SHORT_TOPIC.test(head);
 }
 
+/** 広げた暮らしの話題（交通・天気・値上げ・サービス終了・障害・給付・コンビニ/外食/家電/スマホの発売。2026-11-07 台帳 A56） */
+const WIDE_TOPICS: { name: string; re: RegExp }[] = rules.wideTopics.map((t) => ({ name: t.name, re: new RegExp(t.source, t.flags) }));
+const WIDE_EXCLUDE = new RegExp(rules.wideExclude.source, rules.wideExclude.flags);
+const WIDE_NOT_OUTAGE = new RegExp(rules.wideNotOutage.source, rules.wideNotOutage.flags);
+const LAUNCH_TOPIC = new RegExp(rules.launchTopic.source, rules.launchTopic.flags);
+const LAUNCH_CONTEXT = new RegExp(rules.launchContext.source, rules.launchContext.flags);
+const LAUNCH_SOURCES = new Set<string>(rules.launchSources);
+
+/** public_interest.wide_category と同じ（題名だけで見る。事件・事故・芸能・不祥事は null） */
+export function wideCategory(title: string, sourceSlug = ""): string | null {
+  const text = (title ?? "").normalize("NFKC");
+  if (!text || WIDE_EXCLUDE.test(text)) return null;
+  for (const { name, re } of WIDE_TOPICS) {
+    if (!re.test(text)) continue;
+    if (name === "outage" && WIDE_NOT_OUTAGE.test(text)) continue;
+    return name;
+  }
+  if (LAUNCH_TOPIC.test(text) && (LAUNCH_CONTEXT.test(text) || LAUNCH_SOURCES.has(sourceSlug))) return "launch";
+  return null;
+}
+
 /** public_interest.focus_topic と同じ */
 function isPublicInterest(article: ArticleSummary): boolean {
   if (!PUBLIC_INTEREST_GENRES.has(article.genreSlug || "")) return false;
   const text = `${article.title ?? ""} ${article.seoTitle ?? ""} ${(article.tags ?? []).join(" ")}`.normalize("NFKC");
-  return PUBLIC_INTEREST_TOPIC.test(text);
+  if (PUBLIC_INTEREST_TOPIC.test(text)) return true;
+  return wideCategory(`${article.title ?? ""} ${article.seoTitle ?? ""}`, article.channelSlug ?? "") !== null;
 }
 
 /** persona.is_persona_topic と同じ */

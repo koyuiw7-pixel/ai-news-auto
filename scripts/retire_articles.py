@@ -77,7 +77,7 @@ LABELS = {
     "wire": "プレスリリースの言い換え",
     "thin": "薄い記事（1,500字未満・表やよくある質問なし）",
     "duplicate": "同じ発表の重複（代表の記事へ転送）",
-    "off-focus": "サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
+    "off-focus": "サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
     "no-japan-value": "日本の読者に役立つ情報がない（使えるかの判定・料金・使い方などの章がない）",
 }
 NOINDEX_CATEGORIES = ("off-focus", "no-japan-value", "thin", "duplicate", "creator-video", "wire")
