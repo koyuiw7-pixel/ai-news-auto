@@ -1539,9 +1539,9 @@ FOREIGN_AI_DAILY_CAP = int(os.environ.get("FOREIGN_AI_DAILY_CAP", "15"))
 
 
 def is_foreign_ai(item: dict) -> bool:
-    """AI のレーンの候補が海外の発表か（フィードの言語が日本語でない）"""
-    lang = item.get("lang") or (feeds.FEEDS_BY_SLUG.get(item.get("source_slug") or "") or {}).get("lang") or "en"
-    return lang != "ja"
+    """AI のレーンの候補が海外の発表か（フィードの言語が日本語でない）。
+    2026-11-07 オーナー確認: 日本語の企業向け・開発者向けの発表（AWS・Google Cloud の日本語ブログなど）は国内のニュースで、この上限（A47）に数えない"""
+    return not news_mix.is_japanese_item(item)
 
 
 def _foreign_url(url: str) -> bool:

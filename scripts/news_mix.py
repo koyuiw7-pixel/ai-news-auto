@@ -64,6 +64,20 @@ def _hit(name: str, text: str) -> bool:
     return bool(pattern and pattern.search(text))
 
 
+def is_japanese_item(item: dict) -> bool:
+    """候補が日本語の発表か（2026-11-07 オーナー決定・台帳 A41/A47 の改定）。候補の lang か、発信元のフィードの言語（scripts/feeds.py）が ja。
+    題名の文字では決めない（このサイトの記事の題名はいつも日本語なので、記事から数え直すときに海外の発表まで国内になってしまう）"""
+    lang = str(item.get("lang") or "").lower()
+    if not lang:
+        try:
+            import feeds  # noqa: PLC0415 - 発信元の言語だけ使う
+        except Exception:  # noqa: BLE001
+            return False
+        slug = str(item.get("source_slug") or item.get("channelSlug") or "")
+        lang = str((feeds.FEEDS_BY_SLUG.get(slug) or {}).get("lang") or "").lower()
+    return lang == "ja"
+
+
 def classify(item: dict) -> str:
     """候補（フィードの項目）か記事の種類。判定の順: 注意喚起 → 企業向け（発信元・語）→ 一般向け AI → お金 → ブランド → 日本の大手 → 研究 → そのほか"""
     import public_interest  # noqa: PLC0415 - 公共性の判定と同じ語を使う
@@ -76,7 +90,9 @@ def classify(item: dict) -> str:
         return "alert"
     consumer_ai = _hit("ai_consumer", title)
     # 企業向け・開発者向けの発信元の記事と、企業向けの語のある題名は、AI の名前があっても企業向け（大きなニュースは上限の外）
-    if source in SOURCES.get("enterprise_dev", set()) or _hit("enterprise_dev", title):
+    # 2026-11-07 オーナー決定: 日本語の企業向け・開発者向けの発表（AWS・Google Cloud の日本語ブログのトヨタ・KDDI の事例など）は
+    # 国内のニュースとして扱い、企業向けの上限（A41）に数えない。英語など外国語の企業向けの発表は今までどおり上限あり
+    if (source in SOURCES.get("enterprise_dev", set()) or _hit("enterprise_dev", title)) and not is_japanese_item(item):
         return "enterprise_dev"
     if consumer_ai and source not in SOURCES.get("brand", set()):
         return "ai_consumer"  # 一般向けの AI の新機能・無料の範囲の変更（料金の語があっても AI の動きとして数える）
