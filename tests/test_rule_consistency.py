@@ -212,6 +212,7 @@ PROSE_WRITERS = {
 }
 # 文章を作らない（決まった欄だけ直す・記録だけ足す・読むだけで別のファイルに書く）もの。理由つき
 NON_PROSE = {
+    "topic_lists.py": "記事を読むだけ（値上げ・障害などの一覧 content/topic_lists.json を書く。台帳 A52）",
     "article_charts.py": "図の欄（charts）だけ",
     "article_quickfix.py": "LLM を使わない決まった置き換え（台帳 A の表示の段と同じ規則）",
     "audit.py": "ジャンルの付け替え（手で動かす）",

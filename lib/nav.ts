@@ -40,4 +40,5 @@ export const UTILITY_NAV: NavItem[] = [
   { href: "/guides", label: "使い方ガイド" },
   { href: "/ai-pricing", label: "AI料金表" },
   { href: "/products", label: "AIサービス図鑑" },
+  { href: "/roundups", label: "値上げ・障害一覧" },
 ];

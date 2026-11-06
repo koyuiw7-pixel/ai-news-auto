@@ -3,6 +3,7 @@ import { getAllArticles } from "@/lib/articles";
 import { getAllChooseGuides } from "@/lib/choose";
 import { getAllHowtos } from "@/lib/howto";
 import { officialPricingCheckedAt } from "@/lib/official-pricing";
+import { TOPIC_LISTS, weekCount } from "@/lib/topic-lists";
 
 /** トップの「サイソクで調べられること」。独自にまとめている定番ページを控えめに並べる */
 export default function HomeAssets() {
@@ -11,12 +12,15 @@ export default function HomeAssets() {
   const judged = getAllArticles().filter((a) => a.verdict).length;
   // 早見表のページと同じ値（公式の料金ページの確認日。lib/official-pricing.ts）
   const pricingAt = officialPricingCheckedAt().replace(/-/g, "/");
+  const weeklyChanges = TOPIC_LISTS.reduce((sum, m) => sum + weekCount(m.kind), 0);
 
   const items = [
     { href: "/usable", title: "日本で使える？無料？", note: `発表ごとに判定（${judged}本）` },
     { href: "/guides", title: "使い方ガイド", note: `料金・無料枠・始め方（${howtos}本）` },
     { href: "/ai-pricing", title: "AIの料金早見表", note: pricingAt ? `公式ページで確認 ${pricingAt}` : "主要AIの料金と日本対応" },
     { href: "/choose/internet-for-ai", title: "選び方ガイド", note: `回線・VPS・転職など（${chooses}本）` },
+    // 値上げ・障害・リコール・サービス終了の一覧（台帳 A52）
+    { href: "/roundups", title: "値上げ・障害・リコール一覧", note: `公式発表から自動で更新（今週${weeklyChanges}件）` },
   ];
 
   return (

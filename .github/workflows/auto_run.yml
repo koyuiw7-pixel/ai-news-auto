@@ -281,6 +281,12 @@ jobs:
             python scripts/story.py mark --days 7 | tail -20
           fi
 
+      # 値上げ・障害・リコール・サービス終了の一覧（/roundups/<kind>。台帳 A52）。公開中の記事から規則で作り直す（LLM なし）。
+      # 一覧が変わったときだけ content/topic_lists.json を書き直す（このあとのコミット・デプロイに入る）
+      - name: Topic lists
+        continue-on-error: true
+        run: python scripts/topic_lists.py
+
       # 新しい質の良い記事が出たら古い記事を取り下げる一回きりの決まり（scripts/genre_focus.py の REPLACE_ON_FIRST。2026-11-04 オーナー承認）。
       # 投資・マネーの新しい記事が公開に回った回に、証券会社の動画の要約の記事を取り下げる（同じ回のコミット・デプロイに入る）。済んだら何もしない
       - name: Retire replaced genre articles

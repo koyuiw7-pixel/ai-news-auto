@@ -1,4 +1,5 @@
 import { articleTitle } from "@/lib/headline";
+import TopicListMembership from "@/components/TopicListMembership";
 import { canonicalPathOf, isIndexable } from "@/lib/indexing";
 import type { Metadata } from "next";
 import Thumb from "@/components/Thumb";
@@ -888,6 +889,9 @@ export default async function ArticlePage({ params }: Props) {
           )}
           {!bodyTail && readNextInline && <ReadNextBox link={readNextInline} className={`mt-12 ${readNextInlineClass}`} />}
           {!bodyTail && !inlineOffer && shopLink && <ShopLinks link={shopLink} className="mt-12" />}
+
+          {/* 値上げ・障害・リコール・サービス終了の一覧に載っている記事（台帳 A52） */}
+          <TopicListMembership slug={article.slug} className="mt-12" />
 
           {article.tags.length > 0 && (
             <div className="mt-12 flex flex-wrap gap-2">

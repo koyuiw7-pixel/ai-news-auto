@@ -19,6 +19,7 @@ import { getAllBuyingGuides } from "@/lib/buying-guides";
 import { getAllEvents } from "@/lib/events";
 import { getPricing } from "@/lib/pricing";
 import { listedProducts, supersedesGuide } from "@/lib/products";
+import { archiveMonths, MIN_INDEX_ENTRIES, monthEntries, recentEntries, TOPIC_LISTS, topicListsUpdatedAt } from "@/lib/topic-lists";
 import { getAllWeeks, weekPublishedAt } from "@/lib/weekly";
 import { isBroadGenre } from "@/lib/sections";
 import { isThinSourceChannel } from "@/lib/news-outlets";
@@ -131,6 +132,20 @@ export function sitemapEntries(): SitemapEntry[] {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    // 値上げ・障害・リコール・サービス終了の一覧（台帳 A52）。載っている発表が少ない一覧は検索に出さないので載せない
+    { url: `${base}/roundups`, lastModified: new Date(topicListsUpdatedAt()), changeFrequency: "hourly" as const, priority: 0.8 },
+    ...TOPIC_LISTS.filter((m) => recentEntries(m.kind).length >= MIN_INDEX_ENTRIES).map((m) => ({
+      url: `${base}/roundups/${m.kind}`,
+      lastModified: new Date(topicListsUpdatedAt()),
+      changeFrequency: "hourly" as const,
+      priority: 0.8,
+    })),
+    ...TOPIC_LISTS.flatMap((m) => archiveMonths(m.kind).filter((month) => monthEntries(m.kind, month).length >= MIN_INDEX_ENTRIES).map((month) => ({
+      url: `${base}/roundups/${m.kind}/${month}`,
+      lastModified: new Date(topicListsUpdatedAt()),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }))),
     { url: `${base}/events`, lastModified, changeFrequency: "daily" as const, priority: 0.8 },
     ...getAllEvents().map((event) => ({
       url: `${base}/events/${event.slug}`,
