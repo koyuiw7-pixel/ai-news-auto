@@ -30,10 +30,16 @@ export function generateStaticParams() {
   return getAllEvents().map((event) => ({ slug: event.slug }));
 }
 
+/** 「11月18日〜25日」（年は出さない。検索結果の前半で開催日が分かるように） */
+function shortRange(event: TechEvent): string {
+  return localDateRange(event).replace(/^\d+年/, "").replace(/〜\d+年/, "〜");
+}
+
+// 題名の決まり（2026-11-07 オーナー承認・台帳 S45）: 開催日を題名の前半に入れる。「はいつ？」は日付を見せれば要らない
 function titleOf(event: TechEvent): string {
   return eventStatus(event) === "upcoming"
-    ? `${event.nameJa}はいつ？日本時間の日程と発表内容まとめ`
-    : `${event.nameJa}の発表内容まとめ・日本時間の日程`;
+    ? `${event.nameJa}【${shortRange(event)}開催】日本時間の日程と発表内容`
+    : `${event.nameJa}の発表内容まとめ（${shortRange(event)}開催）`;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
