@@ -56,7 +56,7 @@ class RescueTierTest(unittest.TestCase):
     def test_tiers_exist_and_are_not_protected(self):
         self.assertEqual(llm.API_TIERS["repair"][:4], (1, 1, 1, False))
         self.assertEqual(llm.API_TIERS["rescue"][:4], (2, 2, 2, False))
-        self.assertEqual(llm.RESCUE_PURPOSES, {"repair", "rescue"})
+        self.assertEqual(llm.RESCUE_PURPOSES, {"repair", "rescue", "ymyl"})
 
     def test_daily_pace_over_does_not_stop_rescue(self):
         """今日の目安額を大きく超えても、救済は Haiku / Sonnet のまま（下がるのは SNS・その他などの段）"""

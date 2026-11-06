@@ -852,9 +852,12 @@ API_TIERS = {
     # 費用を抑えるため、まず Haiku で書き足し・手直し（repair）→ それでもだめなら Sonnet で書き直し（rescue）
     "repair": (1, 1, 1, False, "救済の手直し"),
     "rescue": (2, 2, 2, False, "救済の書き直し"),
+    # 2026-11-07（台帳 A55）: 税金・年金・行政の手続きの使い方ガイド（YMYL）。Haiku の原稿が公式ページに無い数や扱いを足したため Sonnet で書く。
+    # 1日の配分では下げず、月の予算に届いたら使わない（守る段ではない）
+    "ymyl": (2, 2, 2, False, "手続きガイド"),
 }
 # 救済の段（1日の配分では下げない。月の予算に届いたら使わない）
-RESCUE_PURPOSES = {"repair", "rescue"}
+RESCUE_PURPOSES = {"repair", "rescue", "ymyl"}
 # Claude CLI（サブスクリプション）も使ってよい段（2026-11-03 オーナー決定: 速報・SNS・動画だけ）
 API_CLI_PURPOSES = {"breaking", "sns", "video", "video_review"}
 # 動画の台本・画像の確認は Claude だけで書く（2026-11-04 決定。無料のモデル（Gemini など）には回さない）。
@@ -886,17 +889,17 @@ API_STEPS = [("rest", 0, 1), ("sns", 1, 2), ("core", 1, 2)]
 API_UPGRADE_STEPS = [("check", 1, 2), ("rest", 1, 2)]  # Opus への格上げはしない（2026-11-04 オーナー決定）
 # 1日の呼び出し回数の見込み（実績が2日分たまるまでの仮の値。作り直しも1回と数える）
 API_DEMAND_DEFAULT = {"breaking": 7, "video": 5, "video_review": 5, "check": 90, "helper": 80, "sns": 13, "core": 27, "rest": 21,
-                      "repair": 20, "rescue": 6}
+                      "repair": 20, "rescue": 6, "ymyl": 6}
 # 1回あたりの料金の見込み（Sonnet で書いたとき。実績が3回分たまったらその平均を使う）。ほかのモデルは料金の比で換算
 # 2026-11-03 の実績: 速報 Opus 平均 $0.25/回・SNS Sonnet $0.09/回・動画 Opus $0.11/回（入力 約1.5万・出力 約0.5〜0.9万トークン）
 # Opus は Sonnet の2倍の料金なので、2026-11-04 からの Sonnet では 速報 約 $0.125/回・動画 約 $0.055/回の見込み
 API_COST_MID_DEFAULT = {"breaking": 0.125, "video": 0.055, "video_review": 0.02, "check": 0.045, "helper": 0.04, "sns": 0.09, "core": 0.09, "rest": 0.09,
-                         "repair": 0.09, "rescue": 0.10}
+                         "repair": 0.09, "rescue": 0.10, "ymyl": 0.12}
 API_LEVEL_COST_RATIO = {1: 0.05, 2: 1.0, 3: 2.0}
 # 1日の回数の安全上限（暴走よけ。環境変数 CLAUDE_API_DAILY_CALLS_<段> で変更）
 # video_review: 台本のレビュー＋動画の目視の確認（2026-11-04 QA。1記事1回・画像つき）で 20 → 40
 API_DAILY_CALLS = {"breaking": 40, "video": 20, "video_review": 40, "check": 600, "helper": 600, "sns": 30, "core": 120, "rest": 160,
-                   "repair": 300, "rescue": 150}  # 救済の段は暴走よけだけ（台帳 A48）
+                   "repair": 300, "rescue": 150, "ymyl": 60}  # 救済の段は暴走よけだけ（台帳 A48）
 # 2026-11-06 オーナー承認: breaking を 20→40 回（KDDI の決算の速報が上限で作れなかった。月の予算 $95 は変えない）
 # 2026-11-06 オーナー決定（台帳 A47）: 記事を1日100本へ。1日40本の上限のときの回数を本数に合わせて広げる
 #   check・helper 300→600（事実確認と指摘の手直しは全部の記事に通す。Haiku で1回 約 $0.002）、

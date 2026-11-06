@@ -316,10 +316,12 @@ PROCEDURE_NOTE = """
 - steps: 手続きの手順（「〜を用意する」「〜に出す」）。窓口・オンラインの両方があれば両方。
 - pricing: 「期限と金額」の表。plan に項目（例「提出の期限」「控除の上限」「対象になる年収」）、price に公式ページの表記どおりの期限・金額、note に補足。
 - free_tier: 「用意するもの」を3〜6個（書類・番号・カードなど。公式ページにある範囲で）。
-- japan_answer: 「対象になる人は？」への一言の答え（20字以内。例「会社員の多く（年収2,000万円以下）」）。
+- japan_answer: 「対象になる人は？」への一言の答え（20字以内。公式ページの言い方で。例「1年を通じて勤めている人など」）。
 - japan_body: 対象になる人・ならない人の条件（100〜250字）。
 - tips: 間違えやすい点・期限を過ぎたときの扱い（公式ページにある範囲で）。
 - work_money: 「仕事・お金にどう活かせる？」欄。会社員・副業の人・家族の手続きで、明日やることを短く。投資の勧誘・節税の勧めはしない。
+- 公式ページに無い数（「3つの申告書」など）・割合や多さ（「会社員の多く」）・決める人（「勤務先が決める」）・扱い（「遅れると対象外」）を足さない。
+- 質疑応答事例・パンフレットなど、公式ページに題名やリンクしか無い資料は、その資料があることだけを書き、中身を推測して書かない。
 - 書類・制度は、公式ページに書かれた名前と用途だけを書く。公式ページに無い用途・対象（例: どの控除に使う申告書か）を推測で足さない。
 - free_tier（用意するもの）には、実際に用意する書類・情報だけを書く（ページや動画・資料の案内は入れない）。
 - title・seo_title は、本文で答えている内容だけを約束する（本文に欄ごとの書き方が無いなら「書き方」と書かない）。対象（誰が）・期限・金額のうち公式ページにあるものを入れる。
@@ -385,11 +387,12 @@ def structural_problems(data: dict, sources: list[dict], procedure: bool = False
     return problems
 
 
-def to_record(data: dict) -> dict:
-    """quality.fact_check に渡す形"""
+def to_record(data: dict, procedure: bool = False) -> dict:
+    """quality.fact_check に渡す形。手続き・お金のページはページと同じ見出し（期限と金額・用意するもの・対象になる人は？）で渡す"""
     rows = "\n".join(f"- {p.get('plan')}: {p.get('price')}（{p.get('note', '')}）" for p in data.get("pricing", []))
     free = "\n".join(f"- {f}" for f in data.get("free_tier", []))
-    body = f"{prose_of(data)}\n\n## 料金\n{rows}\n\n## 無料でできること\n{free}\n\n## 日本で使える？\n{data.get('japan_answer', '')}"
+    heads = ("期限と金額", "用意するもの", "対象になる人は？") if procedure else ("料金", "無料でできること", "日本で使える？")
+    body = f"{prose_of(data)}\n\n## {heads[0]}\n{rows}\n\n## {heads[1]}\n{free}\n\n## {heads[2]}\n{data.get('japan_answer', '')}"
     # 「仕事・お金にどう活かせる？」欄も事実確認に入れる（quality._article_for_check が本文より前に置く）
     work_money = persona.clean_work_money({"relevance": "high", "points": data.get("work_money") or []})
     return {"title": data.get("title", ""), "lede": data.get("intro", ""), "highlights": data.get("conclusion", []), "body": body,
@@ -403,7 +406,7 @@ def check(data: dict, sources: list[dict], procedure: bool = False) -> dict:
     fact = None
     if not problems:
         cap = max(2500, 12500 // max(1, len(sources)))
-        fact = quality.fact_check(to_record(data), source_block(sources, cap))
+        fact = quality.fact_check(to_record(data, procedure), source_block(sources, cap))
         if fact["fatal"] or fact["score"] < pass_score:
             problems += [f"事実確認: {p}" for p in fact["problems"]] or [f"事実確認の点数が低い（{fact['score']}）"]
     return {"ok": not problems, "problems": problems, "fact": fact}
@@ -426,7 +429,9 @@ def generate(topic: dict, sources: list[dict], attempts: int = 3) -> tuple[dict,
             feedback=feedback,
         ) + (PROCEDURE_NOTE if procedure else "")
         try:
-            data, model = llm.generate_json(SYSTEM_PROCEDURE if procedure else SYSTEM, prompt, SCHEMA, temperature=0.4, max_output_tokens=12000, tier=os.environ.get("EVERGREEN_TIER", "quality"))
+            # 手続き・お金のページ（YMYL）は Claude API の「手続きガイド」の段（Sonnet。月の予算の範囲）で書く（台帳 A55）
+            data, model = llm.generate_json(SYSTEM_PROCEDURE if procedure else SYSTEM, prompt, SCHEMA, temperature=0.4, max_output_tokens=12000,
+                                            tier=os.environ.get("EVERGREEN_TIER", "quality"), **({"purpose": "ymyl"} if procedure else {}))
         except Exception as error:  # noqa: BLE001
             log(f"   生成に失敗: {str(error)[:120]}")
             return None

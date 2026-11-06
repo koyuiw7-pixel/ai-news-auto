@@ -93,7 +93,7 @@ class RoutingTests(Base):
             "breaking": "claude-sonnet-5-5", "video": "claude-sonnet-5-5", "video_review": "claude-sonnet-5-5",
             "check": "claude-haiku-5-5", "helper": "claude-haiku-5-5", "sns": "claude-sonnet-5-5", "core": "claude-sonnet-5-5", "rest": "claude-haiku-5-5",
             # 救済の段（2026-11-06 台帳 A48）: 書き足し・手直しは Haiku、作り直しは Sonnet
-            "repair": "claude-haiku-5-5", "rescue": "claude-sonnet-5-5",
+            "repair": "claude-haiku-5-5", "rescue": "claude-sonnet-5-5", "ymyl": "claude-sonnet-5-5",
         })
         with patch.dict(os.environ, {"CLAUDE_API_UPGRADES": "0", "CLAUDE_API_DAILY_BUDGET_USD": "50", "CLAUDE_API_MODEL_LOW": "claude-x"}):
             self.assertEqual(llm.api_choose("rest", record=False)[0], "claude-x")
