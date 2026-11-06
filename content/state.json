@@ -148,6 +148,14 @@
       "tries": 1,
       "url": "https://jtta.or.jp/news/38778"
     },
+    "8b68aefd38003561": {
+      "first": "2026-11-06T18:56:56.131085+00:00",
+      "next": "2026-11-06T21:56:56.131085+00:00",
+      "reason": "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く",
+      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
+      "tries": 1,
+      "url": "https://developers.cyberagent.co.jp/blog/archives/67259/"
+    },
     "8dc5cad25319e695": {
       "first": "2026-11-06T06:40:13.129552+00:00",
       "next": "2026-11-06T09:40:13.129552+00:00",
@@ -10943,6 +10951,12 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/shingi/shingi-tingin_127941.html"
     },
+    "8616929ea36bdf18": {
+      "at": "2026-11-06T18:56:56.620242+00:00",
+      "reason": "dedupe: 固有名詞が一致（agentforce・salesforce）: salesforce-acquires-cresta-voice-ai",
+      "skipped": true,
+      "url": "https://www.salesforce.com/jp/news/stories/video/rental819-customer-briefing/"
+    },
     "8637362590f96969": {
       "at": "2026-10-30T05:02:14.666277+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -12328,6 +12342,16 @@
       "reason": "dedupe: 固有名詞が一致（daihyo・jfa）: afc-asian-cup-2027-schedule-change",
       "skipped": true,
       "url": "https://www.jfa.jp/news/00036989/"
+    },
+    "9e6e62a6a89b5717": {
+      "at": "2026-11-06T19:01:05.327578+00:00",
+      "costUsd": 0.1819,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5+anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "marutto-dives-agentic-analytics",
+      "url": "https://www.brainpad.co.jp/topics/2026/11/05/26200"
     },
     "9e7cacb0e36c3375": {
       "at": "2026-11-05T11:25:48.614706+00:00",
@@ -17637,238 +17661,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T07:19:14.759795+00:00",
-      "attempt": 2,
-      "id": "b3a04c021ff2b99e",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "要点の数字「2兆2,400億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
-      ],
-      "readability": {
-        "avg_paragraph": 99.8,
-        "avg_sentence": 38.0,
-        "long_share": 0.167,
-        "max_paragraph": 221,
-        "paragraphs": 16,
-        "sentences": 42
-      },
-      "score": null,
-      "source": "fast",
-      "title": "LINEヤフー 決算短信（2026年11月5日）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IFRS・EBITDA・BEENOS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T07:20:04.574365+00:00",
-      "attempt": 3,
-      "id": "b3a04c021ff2b99e",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「LINEやPayPayを使う利用者の料金や契約は、今回の決算では変わりません」→ 元記事に料金・契約の変更有無についての記載がなく、根拠のない断定である。",
-        "「中間配当は0円の予定です」（簡易版）→ 元記事の0.00円は第2四半期末の実績値で、予定ではない。",
-        "「日本の利用者に関わるサービスの変更」の見出し → 元記事は連結の数字を示しており、日本向けサービスの扱いを限定する根拠は示されていない。見出しと本文の対象範囲がずれている。",
-        "「PayPayの決済額が増えたことなどが理由です」（簡易版）→ 売上増の要因の一つとしては元記事に沿うが、『理由』と断定する書き方は言い過ぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 96.1,
-        "avg_sentence": 34.8,
-        "long_share": 0.043,
-        "max_paragraph": 213,
-        "paragraphs": 17,
-        "sentences": 47
-      },
-      "score": 85,
-      "source": "fast",
-      "title": "LINEヤフー 決算短信（2026年11月5日）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JAPAN・EBITDA・BEENOS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T08:42:39.462761+00:00",
-      "attempt": 1,
-      "id": "501abd1900e6faea",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "rakuten",
-      "title": "「楽天インサイト」、「生活者のAI活用購買における調査」結果を発表"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T08:44:09.761929+00:00",
-      "attempt": 2,
-      "id": "501abd1900e6faea",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 85.2,
-        "avg_sentence": 38.9,
-        "long_share": 0.2,
-        "max_paragraph": 169,
-        "paragraphs": 16,
-        "sentences": 35
-      },
-      "score": 91,
-      "source": "rakuten",
-      "title": "「楽天インサイト」、「生活者のAI活用購買における調査」結果を発表"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T09:02:42.884162+00:00",
-      "attempt": 1,
-      "id": "bb2f74751471878b",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 86.4,
-        "avg_sentence": 36.4,
-        "long_share": 0.079,
-        "max_paragraph": 163,
-        "paragraphs": 16,
-        "sentences": 38
-      },
-      "score": 92,
-      "source": "ntt-news-ai",
-      "title": "医学書院、NTT、NTTドコモビジネス、医療現場での「信頼できるAI」の実現に向け、Ubieと医療AI情報プラットフォームの共同実証を開始",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（RAG）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T09:21:49.693437+00:00",
-      "attempt": 1,
-      "id": "a4de4f584112e3a4",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "soumu",
-      "title": "武力攻撃事態等における安否情報収集・提供システムへの不正アクセスについて"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T09:22:24.489635+00:00",
-      "attempt": 2,
-      "id": "a4de4f584112e3a4",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "soumu",
-      "title": "武力攻撃事態等における安否情報収集・提供システムへの不正アクセスについて"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T09:23:10.329553+00:00",
-      "attempt": 3,
-      "id": "a4de4f584112e3a4",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「総務省は、電話リレーサービス（手話リンク）の利用についても案内しています」→ 元記事に出てくるのは総務省サイトの共通フッターの注記だけで、今回の不正アクセスに関する案内ではない。本件の資料で案内しているかのように書いている。",
-        "「直接の影響は小さいとみられます」→ 元記事は影響の範囲や情報の流出有無が不明としている。影響が小さいという判断の根拠が示されていない。",
-        "「報道機関向けの連絡先として記載されています」→ 資料の連絡先欄から読み取れる範囲を超えて、対象読者を断定している。"
-      ],
-      "readability": {
-        "avg_paragraph": 80.9,
-        "avg_sentence": 37.9,
-        "long_share": 0.062,
-        "max_paragraph": 121,
-        "paragraphs": 15,
-        "sentences": 32
-      },
-      "score": 78,
-      "source": "soumu",
-      "title": "武力攻撃事態等における安否情報収集・提供システムへの不正アクセスについて"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T09:23:26.500380+00:00",
-      "attempt": 3,
-      "id": "a4de4f584112e3a4",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.7,
-        "avg_sentence": 37.7,
-        "long_share": 0.067,
-        "max_paragraph": 121,
-        "paragraphs": 14,
-        "sentences": 30
-      },
-      "score": 92,
-      "source": "soumu",
-      "title": "武力攻撃事態等における安否情報収集・提供システムへの不正アクセスについて"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T09:41:56.213420+00:00",
-      "attempt": 1,
-      "id": "a4de4f584112e3a4",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "soumu",
-      "title": "武力攻撃事態等における安否情報収集・提供システムへの不正アクセスについて"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T09:42:31.274695+00:00",
-      "attempt": 2,
-      "id": "a4de4f584112e3a4",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "答えになっていない見出し（「日本の住民が今すぐ取る手続きは示されていない」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
-      ],
-      "readability": {
-        "avg_paragraph": 88.1,
-        "avg_sentence": 34.2,
-        "long_share": 0.056,
-        "max_paragraph": 124,
-        "paragraphs": 14,
-        "sentences": 36
-      },
-      "score": null,
-      "source": "soumu",
-      "title": "武力攻撃事態等における安否情報収集・提供システムへの不正アクセスについて"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T09:43:04.941130+00:00",
-      "attempt": 3,
-      "id": "a4de4f584112e3a4",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "soumu",
-      "title": "武力攻撃事態等における安否情報収集・提供システムへの不正アクセスについて"
-    },
     {
       "accepted": false,
       "at": "2026-11-05T09:44:32.056080+00:00",
@@ -23260,6 +23052,299 @@
       "title": "Partnering with Hacktron to find vulnerabilities in OpenAI’s systems",
       "warnings": [
         "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T18:54:11.329811+00:00",
+      "attempt": 1,
+      "id": "8b68aefd38003561",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "cyberagent-developers",
+      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T18:54:54.649660+00:00",
+      "attempt": 1,
+      "id": "8b68aefd38003561",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 50.3字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 126.9字・最長 313字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 126.9,
+        "avg_sentence": 50.3,
+        "long_share": 0.321,
+        "max_paragraph": 313,
+        "paragraphs": 21,
+        "sentences": 53
+      },
+      "score": 92,
+      "source": "cyberagent-developers",
+      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（POS・SQL・OKF）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T18:55:28.407680+00:00",
+      "attempt": 0,
+      "id": "8b68aefd38003561",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 83.1,
+        "avg_sentence": 40.3,
+        "long_share": 0.091,
+        "max_paragraph": 191,
+        "paragraphs": 32,
+        "sentences": 66
+      },
+      "score": 93,
+      "source": "cyberagent-developers",
+      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（POS・SQL・OKF）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T18:56:00.114225+00:00",
+      "attempt": 2,
+      "id": "8b68aefd38003561",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く"
+      ],
+      "readability": {
+        "avg_paragraph": 99.4,
+        "avg_sentence": 42.9,
+        "long_share": 0.196,
+        "max_paragraph": 194,
+        "paragraphs": 22,
+        "sentences": 51
+      },
+      "score": null,
+      "source": "cyberagent-developers",
+      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（POS・SQL・OKF）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T18:56:29.622974+00:00",
+      "attempt": 2,
+      "id": "8b68aefd38003561",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く",
+        "題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す"
+      ],
+      "readability": {
+        "avg_paragraph": 129.4,
+        "avg_sentence": 49.9,
+        "long_share": 0.316,
+        "max_paragraph": 258,
+        "paragraphs": 22,
+        "sentences": 57
+      },
+      "score": null,
+      "source": "cyberagent-developers",
+      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（POS・SQL・OKF）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T18:56:56.130931+00:00",
+      "attempt": 2,
+      "id": "8b68aefd38003561",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す"
+      ],
+      "readability": {
+        "avg_paragraph": 155.1,
+        "avg_sentence": 52.4,
+        "long_share": 0.39,
+        "max_paragraph": 331,
+        "paragraphs": 26,
+        "sentences": 77
+      },
+      "score": null,
+      "source": "cyberagent-developers",
+      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（POS・LLM・SQL）",
+        "調査・統計・研究の記事としては長い（4242字 / 目安2200字まで）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T18:58:25.315365+00:00",
+      "attempt": 1,
+      "id": "9e6e62a6a89b5717",
+      "kind": "ai",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "brainpad-news",
+      "title": "アクティブコア、Agentic Analytics「maruttoDives（マルットダイブス）」の公式サイトを公開"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T18:58:57.959019+00:00",
+      "attempt": 1,
+      "id": "9e6e62a6a89b5717",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "work_money の1項目が長い（92字 / 70字以内）。「マーケティング担当者は、ファイルを投入す…」",
+        "work_money の1項目が長い（104字 / 70字以内）。「ソロプランは月額50,000円（税別・年…」",
+        "見出しが多すぎる（3個 / 本文1986字なら2個まで）。章をまとめて見出しを減らす",
+        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す"
+      ],
+      "readability": {
+        "avg_paragraph": 89.1,
+        "avg_sentence": 44.6,
+        "long_share": 0.25,
+        "max_paragraph": 325,
+        "paragraphs": 22,
+        "sentences": 44
+      },
+      "score": null,
+      "source": "brainpad-news",
+      "title": "アクティブコア、Agentic Analytics「maruttoDives（マルットダイブス）」の公式サイトを公開",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SQL・BI・BPO）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T18:59:31.460202+00:00",
+      "attempt": 2,
+      "id": "9e6e62a6a89b5717",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「すでに分析基盤を使っている会社も、30日間の無料トライアルで試せます」→ 元記事に、既存の分析基盤の有無による無料トライアルの対象条件は書かれておらず、誰に提供されるかについての創作にあたる。",
+        "「ほかの業種向けの提供はまだ決まっていません」→ 元記事は第一弾が流通・小売・サービス業だと述べるのみで、他業種の提供が未定とは書いていない。推測の言い切りである。",
+        "「30日間の無料トライアルで、自社の注文データを使って確かめられます」→ 元記事は「貴社のデータに触れていただければ幸いです」とのみ述べており、注文データを使えるという具体的な条件は書かれていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 88.2,
+        "avg_sentence": 40.5,
+        "long_share": 0.081,
+        "max_paragraph": 167,
+        "paragraphs": 17,
+        "sentences": 37
+      },
+      "score": 80,
+      "source": "brainpad-news",
+      "title": "アクティブコア、Agentic Analytics「maruttoDives（マルットダイブス）」の公式サイトを公開",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SQL・BI・RFM）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T19:00:11.878289+00:00",
+      "attempt": 2,
+      "id": "9e6e62a6a89b5717",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "本文「「分析して終わり？ これから何をするのか、ここで説明しよう。」」→ 元記事のトップページの問いは「分析して終わり？ これから何するの？」で、引用文の文言が変えられている（創作された引用）。",
+        "かんたん版の「判定: 提供状況=available」→ 元記事に「available」という表記はなく、販売開始日（2026年11月2日）から読み取った判定を未説明のまま記載している。"
+      ],
+      "readability": {
+        "avg_paragraph": 106.3,
+        "avg_sentence": 44.9,
+        "long_share": 0.178,
+        "max_paragraph": 253,
+        "paragraphs": 19,
+        "sentences": 45
+      },
+      "score": 88,
+      "source": "brainpad-news",
+      "title": "アクティブコア、Agentic Analytics「maruttoDives（マルットダイブス）」の公式サイトを公開",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SQL・BI・RFM）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T19:00:33.418943+00:00",
+      "attempt": 2,
+      "id": "9e6e62a6a89b5717",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "段落が長い（平均 105.8字・最長 253字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 105.8,
+        "avg_sentence": 44.7,
+        "long_share": 0.178,
+        "max_paragraph": 253,
+        "paragraphs": 19,
+        "sentences": 45
+      },
+      "score": 90,
+      "source": "brainpad-news",
+      "title": "アクティブコア、Agentic Analytics「maruttoDives（マルットダイブス）」の公式サイトを公開",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SQL・BI・RFM）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T19:01:05.310675+00:00",
+      "attempt": 0,
+      "id": "9e6e62a6a89b5717",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.1,
+        "avg_sentence": 41.1,
+        "long_share": 0.14,
+        "max_paragraph": 129,
+        "paragraphs": 27,
+        "sentences": 50
+      },
+      "score": 92,
+      "source": "brainpad-news",
+      "title": "アクティブコア、Agentic Analytics「maruttoDives（マルットダイブス）」の公式サイトを公開",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SQL・BI・RFM）"
       ]
     }
   ],
