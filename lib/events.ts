@@ -45,6 +45,8 @@ export type TechEvent = {
   attend?: string;
   /** 基調講演以外の主なセッション（公式に載っているものだけ） */
   sessions?: { title: string; when: string; speakers?: string[] }[];
+  /** 検索で探されている問いへの答え（公式ページで確かめた事実だけ。ページの冒頭に出し、FAQ の構造化データにも入れる。2026-11-07） */
+  answers?: { q: string; a: string; sources?: { title: string; url: string }[] }[];
 };
 
 export type EventStatus = "upcoming" | "live" | "ended";

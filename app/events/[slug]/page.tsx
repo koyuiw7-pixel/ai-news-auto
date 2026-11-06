@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!event) return {};
   const keynote = event.keynotes.find((k) => k.startUtc);
   const description = event.slug === "adobe-max-2026"
-    ? "Adobe MAX 2026は米国マイアミで11月10〜12日開催。日本からのオンライン視聴と、別イベントAdobe MAX Japanの確認情報を整理。"
+    ? "Adobe MAX 2026は米国マイアミで11月10〜12日開催。日本からは無料でオンライン視聴でき、基調講演は日本時間11月10日23時から。Adobe MAX Japan 2026の日程は未発表（11月7日確認）。"
     : `${event.nameJa}は${localDateRange(event)}（現地時間）に${event.location.split(",")[0]}で開催。${
     keynote?.startUtc ? `基調講演は日本時間${formatJst(keynote.startUtc)}から。` : ""
   }公式に決まっていることと、発表内容をまとめます。`;
@@ -82,6 +82,7 @@ export default async function EventPage({ params }: Props) {
   const firstKeynote = event.keynotes.find((k) => k.startUtc);
 
   const faq = [
+    ...(event.answers ?? []).map((item) => ({ q: item.q, a: item.a })),
     { q: `${event.nameJa}はいつ？`, a: `${event.dateLabel ? `${event.startDate.slice(0, 4)}年${event.dateLabel}` : localDateRange(event)}（現地時間）に、${event.location}で開かれます。` },
     ...(event.attend ? [{ q: `${event.nameJa}は誰でも参加できる？`, a: event.attend }] : []),
     {
@@ -172,6 +173,26 @@ export default async function EventPage({ params }: Props) {
         </Fact>
       </dl>
 
+      {/* 検索で探されている問いへの答え（公式ページで確かめた事実だけ。2026-11-07） */}
+      {(event.answers ?? []).map((item, i) => (
+        <section key={item.q} aria-labelledby={`answer-${i}`} className="mt-10">
+          <QHeading id={`answer-${i}`}>{item.q}</QHeading>
+          <p className="text-desc leading-[1.8] text-ink-soft">{item.a}</p>
+          {item.sources && item.sources.length > 0 && (
+            <p className="mt-2 text-note leading-[1.8] text-muted">
+              出典：
+              {item.sources.map((src, j) => (
+                <span key={src.url}>
+                  {j > 0 && "、"}
+                  <a href={src.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{src.title}</a>
+                </span>
+              ))}
+              （{event.verifiedAt.replaceAll("-", "/")}に確認）
+            </p>
+          )}
+        </section>
+      ))}
+
       {status !== "upcoming" && (
         <section aria-labelledby="recap-heading" className="mt-12">
           <QHeading
@@ -218,21 +239,6 @@ export default async function EventPage({ params }: Props) {
           </ul>
           <p className="mt-4 rounded-xl bg-surface px-4 py-3 text-desc leading-[1.8] text-ink-soft">
             発表の中身は、事前には公表されていません。開催が始まると、サイソクの記事がこのページに自動で並びます。
-          </p>
-        </section>
-      )}
-
-      {event.slug === "adobe-max-2026" && (
-        <section aria-labelledby="adobe-japan-heading" className="mt-12">
-          <QHeading id="adobe-japan-heading">Adobe MAX 2026は日本で開催される？</QHeading>
-          <p className="text-desc leading-[1.8] text-ink-soft">
-            Adobeの案内では、2026年のこのイベントの会場は米国マイアミビーチです。オンライン版も案内され、公式FAQでは無料とされています。日本時間の各配信時刻や言語は、参加前に公式ページで確認してください。
-          </p>
-          <p className="mt-3 text-desc leading-[1.8] text-ink-soft">
-            「Adobe MAX Japan」は別の国内イベント名です。今回確認したAdobeのイベント案内では、2026年の日本開催日を確認できませんでした（2026年10月31日確認）。<a href="https://maxjapan.adobe.com/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">日本版の公式ページ</a>には、2025年の東京開催が掲載されています。開催しないと断定するものではありません。
-          </p>
-          <p className="mt-3 text-note leading-[1.8] text-muted">
-            出典：<a href="https://www.adobe.com/jp/events.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Adobeのイベント案内</a>、<a href="https://www.max.adobe.com/faq/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Adobe MAX公式FAQ</a>
           </p>
         </section>
       )}
