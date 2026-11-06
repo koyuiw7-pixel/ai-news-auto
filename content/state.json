@@ -253,9 +253,7 @@
       "url": "https://news.samsung.com/jp/samsung-health-makes-sleep-coaching2611?utm_source=rss&utm_medium=direct"
     }
   },
-  "major_tries": {
-    "a307777d6ded3852": 2
-  },
+  "major_tries": {},
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -9204,6 +9202,12 @@
       "skipped": true,
       "url": "https://www.nttud.co.jp/news/detail/id/n28053.html"
     },
+    "6a17625077ae1262": {
+      "at": "2026-11-06T07:41:26.428429+00:00",
+      "reason": "public-interest: 資料が短い 679字",
+      "skipped": true,
+      "url": "https://www.caa.go.jp/notice/entry/048056/"
+    },
     "6a2be6e66b96ae87": {
       "at": "2026-11-05T15:07:35.484935+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -14807,6 +14811,13 @@
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/visualize-points-and-routes-with-geojson-in-amazon-quick-sight-layer-maps/"
     },
+    "d552556087747423": {
+      "at": "2026-11-06T08:08:19.192048+00:00",
+      "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "reason": "quality: 要点の1つ目（「組織的要因がAIインパクトの2倍以上を占め、技術…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（エージェント・全社展開）を、リードとは違う言い方で1つ目に書く; 元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「- PwCは36万人」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計",
+      "skipped": true,
+      "url": "https://blogs.windows.com/japan/2026/11/06/from-pilots-to-programs-a-structured-approach-to-scaling-ai-and-agents-for-real/"
+    },
     "d57ad97ed73f8c5d": {
       "at": "2026-11-03T00:20:50.186473+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -17023,40 +17034,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T01:22:15.726309+00:00",
-      "attempt": 1,
-      "id": "afafec6863eafe5f",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "about-amazon-jp",
-      "title": "Amazon、2026年「Amazon ブラックフライデー」を開催"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T01:22:50.378717+00:00",
-      "attempt": 2,
-      "id": "afafec6863eafe5f",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 77.0,
-        "avg_sentence": 38.5,
-        "long_share": 0.088,
-        "max_paragraph": 141,
-        "paragraphs": 17,
-        "sentences": 34
-      },
-      "score": 85,
-      "source": "about-amazon-jp",
-      "title": "Amazon、2026年「Amazon ブラックフライデー」を開催"
-    },
     {
       "accepted": false,
       "at": "2026-11-05T01:24:30.278398+00:00",
@@ -22996,6 +22973,64 @@
       "warnings": [
         "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（RTX・NOW・GTX）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T07:53:29.131860+00:00",
+      "attempt": 1,
+      "id": "d552556087747423",
+      "kind": "ai",
+      "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "problems": [
+        "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める",
+        "かんたん版に決まった型の見出し（「自分に関係ある？」）。中身の言葉にするか見出しを消す",
+        "元記事の文をそのまま書き写している（2文。例「Autopilot in Microsoft Copilot（現在プライベートプレビュー中）などのエ」）。自分の言葉で要約する"
+      ],
+      "readability": {
+        "avg_paragraph": 76.4,
+        "avg_sentence": 44.0,
+        "long_share": 0.212,
+        "max_paragraph": 225,
+        "paragraphs": 38,
+        "sentences": 66
+      },
+      "score": null,
+      "source": "windows-blog-jp",
+      "title": "パイロットからプログラムへ：AI とエージェントをスケールさせ、真のビジネス価値を実現するための体系的なアプローチ",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CAPE・HR・CISO）",
+        "新製品・新サービス・機能の記事としては長い（5456字 / 目安2200字まで）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T08:08:19.191972+00:00",
+      "attempt": 2,
+      "id": "d552556087747423",
+      "kind": "ai",
+      "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+      "problems": [
+        "要点の1つ目（「組織的要因がAIインパクトの2倍以上を占め、技術…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（エージェント・全社展開）を、リードとは違う言い方で1つ目に書く",
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「- PwCは36万人」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）",
+        "元記事の文をそのまま書き写している（2文。例「- Agentic AI Maturity ModelとAgent Readiness Assess」）。自分の言葉で要約する"
+      ],
+      "readability": {
+        "avg_paragraph": 82.7,
+        "avg_sentence": 39.5,
+        "long_share": 0.169,
+        "max_paragraph": 216,
+        "paragraphs": 31,
+        "sentences": 65
+      },
+      "score": null,
+      "source": "windows-blog-jp",
+      "title": "パイロットからプログラムへ：AI とエージェントをスケールさせ、真のビジネス価値を実現するための体系的なアプローチ",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（EVP・HR・CAPE）",
+        "新製品・新サービス・機能の記事としては長い（4942字 / 目安2200字まで）"
       ]
     }
   ],
