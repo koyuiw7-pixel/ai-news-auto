@@ -1,6 +1,6 @@
 {
-  "_doc": "1日の記事の配分のめやす（2026-11-04 オーナー承認のピボット。out/ピボット_ビューが取れるニュース_2026-11-04.md）。scripts/news_mix.py が読む。share は1日の割合、daily_basis はその割合をかける1日の本数のめやす。cap=true の種類は share×daily_basis（切り上げ）を1日の上限にする（大きなニュースは上限の外）。order_by_mix=true なら、各レーンの中で今日まだ足りない種類の候補を先にする。種類の判定の語は patterns・sources で変えられる",
-  "daily_basis": 30,
+  "_doc": "1日の記事の配分のめやす（2026-11-04 オーナー承認のピボット。out/ピボット_ビューが取れるニュース_2026-11-04.md）。scripts/news_mix.py が読む。share は1日の割合、daily_basis はその割合をかける1日の本数のめやす。cap=true の種類は share×daily_basis（切り上げ）を1日の上限にする（大きなニュースは上限の外）。max_per_day があればそれを上限にする（2026-11-06 台帳 A47: 1日100本にしても企業向け・開発者向けの海外の発表は今日と同じ2本まで）。order_by_mix=true なら、各レーンの中で今日まだ足りない種類の候補を先にする。種類の判定の語は patterns・sources で変えられる",
+  "daily_basis": 100,
   "order_by_mix": true,
   "categories": {
     "alert": {
@@ -30,7 +30,8 @@
     "enterprise_dev": {
       "label": "企業向け・開発者向けの海外の発表",
       "share": 0.05,
-      "cap": true
+      "cap": true,
+      "max_per_day": 2
     },
     "other": {
       "label": "そのほか",

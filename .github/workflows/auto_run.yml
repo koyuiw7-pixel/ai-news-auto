@@ -98,12 +98,13 @@ jobs:
 
       # 公式ブログ・プレスリリース（文章）と話題のニュース（Googleトレンド）から記事を作る。
       # 動画解析より軽いので、無料枠の大きい軽量モデルを順に使い回す（scripts/llm.py）。
-      # 本数は変数で段階的に増やす: WEB_MAX_PER_RUN / TREND_MAX_PER_RUN / WEB_DAILY_CAP
+      # 本数は変数で段階的に増やす: WEB_MAX_PER_RUN / TREND_MAX_PER_RUN / WEB_DAILY_CAP_BRAKE（止めるときだけ）
       # 今日の上限（週ごとに少しずつ増やす予定表。GitHub の変数があればそちらを優先）
       - name: Decide today's limits
         id: ramp
         env:
-          WEB_DAILY_CAP_OVERRIDE: ${{ vars.WEB_DAILY_CAP }}
+          # 2026-11-06 オーナー決定（台帳 A47）: 100本/日。古い変数 WEB_DAILY_CAP（80）は読まない。止めるときは WEB_DAILY_CAP_BRAKE を設定する
+          WEB_DAILY_CAP_OVERRIDE: ${{ vars.WEB_DAILY_CAP_BRAKE }}
           SNS_PER_DAY_OVERRIDE: ${{ vars.SNS_PER_DAY }}
           BROAD_MAX_PER_RUN_OVERRIDE: ${{ vars.BROAD_MAX_PER_RUN }}
         run: python scripts/ramp.py

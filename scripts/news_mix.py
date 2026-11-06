@@ -104,6 +104,9 @@ def cap_of(name: str, basis: int | None = None) -> int | None:
     spec = (CONFIG.get("categories") or {}).get(name) or {}
     if not spec.get("cap"):
         return None
+    if spec.get("max_per_day") is not None:
+        # 本数を決め打ちした上限（2026-11-06 台帳 A47: 1日の本数を増やしても海外の企業向け・開発者向けは増やさない）
+        return max(0, int(spec["max_per_day"]))
     return max(1, math.ceil(targets(basis).get(name, 0)))
 
 

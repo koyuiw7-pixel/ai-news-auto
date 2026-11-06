@@ -72,7 +72,7 @@ class OrderAndCapTest(unittest.TestCase):
         self.assertEqual(ranked[0], alert)
         self.assertEqual(ranked[-1], ent)
         cap = nm.cap_of("enterprise_dev")
-        self.assertEqual(cap, 2)  # 30本 × 5% = 1.5 → 切り上げ
+        self.assertEqual(cap, 2)  # 1日100本でも決め打ちの2本（max_per_day。台帳 A47）
         self.assertFalse(nm.over_cap(ent, {"enterprise_dev": cap - 1}))
         self.assertTrue(nm.over_cap(ent, {"enterprise_dev": cap}))
         self.assertFalse(nm.over_cap(alert, {"alert": 99}), "上限は企業向けだけ")

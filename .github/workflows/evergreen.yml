@@ -1,12 +1,13 @@
 name: Evergreen guides
 
-# 使い方ガイド（/guides/<slug>、scripts/evergreen.py）。ニュースとは別のレーンで、ニュースの1日上限（WEB_DAILY_CAP）に数えない。
-# 1日4回、未作成のガイドを1本ずつ作り（1日の上限は変数 EVERGREEN_DAILY_CAP、既定4本）、
+# 使い方ガイド（/guides/<slug>、scripts/evergreen.py）。ニュースとは別のレーンで、ニュースの1日上限に数えない。
+# 2026-11-06 オーナー決定（台帳 A47）: 検索される話題（使い方・料金・無料でどこまで・比較）を増やす。
+# 2時間ごと（1日12回）に未作成のガイドを2本まで作り（1日の上限は既定16本。下げるときだけ変数 EVERGREEN_DAILY_CAP_BRAKE）、
 # 14日たった・料金などの関連ニュースが出たガイドを公式ページで確認し直す。
 # 変わったときだけデプロイし、ページが公開されたのを確かめてから IndexNow に通知する。
 on:
   schedule:
-    - cron: "41 0,6,12,18 * * *"
+    - cron: "41 */2 * * *"
   workflow_dispatch:
     inputs:
       only:
@@ -16,7 +17,7 @@ on:
       max:
         description: "この回で新しく作る本数"
         required: false
-        default: "1"
+        default: "2"
       force:
         description: "作成済みでも作り直す（only と併用）"
         required: false
@@ -72,11 +73,13 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
-          EVERGREEN_DAILY_CAP: ${{ vars.EVERGREEN_DAILY_CAP || '4' }}
-          # Claude API の Haiku（その他の段。予算の配分で上下）→ 無料モデル。使用量はこのジョブ専用のファイルに記録（scripts/llm.py）
+          # 古い変数 EVERGREEN_DAILY_CAP（8）は読まない（台帳 A47 で 16 に上げた）
+          EVERGREEN_DAILY_CAP: ${{ vars.EVERGREEN_DAILY_CAP_BRAKE || '16' }}
+          # Claude API の Haiku（中心の段。予算が苦しくても無料モデルに下げない）→ 無料モデル。使用量はこのジョブ専用のファイルに記録（scripts/llm.py）
+          # 2026-11-06（台帳 A47）: 「その他」の段では予算の配分で無料モデルになり、無料枠切れで1本も作れない日が続いたので「中心」にする
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
-          LLM_DEFAULT_PURPOSE: rest
+          LLM_DEFAULT_PURPOSE: core
           CLAUDE_API_LEDGER: evergreen
           ONLY: ${{ inputs.only }}
           FORCE: ${{ inputs.force }}
@@ -84,7 +87,7 @@ jobs:
           if [ -n "$ONLY" ]; then
             timeout 2700 python scripts/evergreen.py --only "$ONLY" $([ "$FORCE" = "true" ] && echo --force) --budget 2400
           else
-            timeout 2700 python scripts/evergreen.py --max "${{ inputs.max || '1' }}" --refresh --refresh-max 2 --budget 2100
+            timeout 2700 python scripts/evergreen.py --max "${{ inputs.max || '2' }}" --refresh --refresh-max 2 --budget 2100
           fi
 
       - name: Commit & push

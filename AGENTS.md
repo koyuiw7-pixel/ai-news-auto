@@ -144,7 +144,7 @@
 ## 8. 主な秘密・設定の名前（値はここに書かない）
 
 - GitHub Secrets: `ANTHROPIC_API_KEY`（Claude API のクレジット。記事・動画の台本を段ごとのモデルで）, `CF_DEPLOY_TOKEN`, `BUFFER_API_KEY`, `RESEND_API_KEY`, `JINA_API_KEY`, `BLUESKY_APP_PASSWORD`, `VAPID_PRIVATE_KEY`, `PUSH_SEND_TOKEN`, `AFF_STATS_TOKEN` ほか
-- GitHub Variables: `WEB_DAILY_CAP`（通常記事の1日上限）, `THREADS_MODE`, `BLUESKY_HANDLE`, `EVERGREEN_DAILY_CAP`, `SNS_FORMAT`, `SNS_DIGEST`
+- GitHub Variables: `WEB_DAILY_CAP_BRAKE`（通常記事の1日上限を予定表より下げて止めるときだけ。2026-11-06 から予定表は100本/日・台帳 A47。古い `WEB_DAILY_CAP` は読まない）, `THREADS_MODE`, `BLUESKY_HANDLE`, `EVERGREEN_DAILY_CAP_BRAKE`（使い方ガイドの1日上限を下げるときだけ。既定16本）, `SNS_FORMAT`, `SNS_DIGEST`
 - Cloudflare: アカウント `51e37d82e15d397b9666dc3d09bd5b92`、KV（記事キャッシュ・画像・メルマガ・プッシュ・クリック計測）
 
 ## 9. アカウント（参考）

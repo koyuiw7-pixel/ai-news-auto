@@ -1521,6 +1521,56 @@ def off_persona(item: dict) -> bool:
     return persona.is_off_persona_candidate(item.get("title", ""), item.get("summary", ""))
 
 
+# 2026-11-06 オーナー決定（台帳 A47）: 記事を1日100本に増やしても、海外の AI の発表（英語の公式ブログ・ニュースルーム）は
+# 増やさない。増やす分は検索される話題と国内のニュース。11/5・11/6 の実績（1日14本ほど）に合わせた1日の上限。
+# 大きなニュース（本家の新モデルなど）・速報レーンはこの上限の外（従来どおり先に作る）
+FOREIGN_AI_DAILY_CAP = int(os.environ.get("FOREIGN_AI_DAILY_CAP", "15"))
+
+
+def is_foreign_ai(item: dict) -> bool:
+    """AI のレーンの候補が海外の発表か（フィードの言語が日本語でない）"""
+    lang = item.get("lang") or (feeds.FEEDS_BY_SLUG.get(item.get("source_slug") or "") or {}).get("lang") or "en"
+    return lang != "ja"
+
+
+def _foreign_url(url: str) -> bool:
+    """印の無い古い記録（11/6 より前）を数えるときの目安: 日本のドメイン・日本語版のパスでなければ海外"""
+    parsed = urllib.parse.urlparse(url or "")
+    path = parsed.path.lower()
+    return not (parsed.netloc.endswith(".jp") or "/ja" in path or "/jp/" in path or "ja-jp" in path)
+
+
+def foreign_ai_today(state: dict, now: datetime | None = None) -> int:
+    """今日（JST）作った海外の AI の発表の記事の本数（大きなニュースは数えない）"""
+    today = (now or datetime.now(JST)).astimezone(JST).date()
+    count = 0
+    for value in (state.get("processed_web") or {}).values():
+        if not (isinstance(value, dict) and value.get("slug")) or value.get("major") or value.get("section") != "ai":
+            continue
+        try:
+            at = datetime.fromisoformat(value["at"]).astimezone(JST)
+        except (KeyError, TypeError, ValueError):
+            continue
+        if at.date() != today:
+            continue
+        foreign = value.get("foreignAi")
+        if foreign is None:
+            foreign = _foreign_url(value.get("url", ""))
+        count += bool(foreign)
+    return count
+
+
+def demand_rank(item: dict, signals: list[dict]) -> int:
+    """レーンの中の並び（台帳 A47）: いま検索で急上昇している話題（state/trend_signals.json。記事の出典にはしない）に
+    当たる候補を先に（0）、ほかは 1。検索される話題から先に記事にするため"""
+    if item.get("_trend_hit"):
+        return 0
+    if signals and (hit := public_interest.trend_hit(item.get("title") or "", signals)):
+        item["_trend_hit"] = hit.get("title")
+        return 0
+    return 1
+
+
 def sports_today(state: dict, now: datetime | None = None) -> int:
     """今日（JST）作ったスポーツの記事の本数（processed_web の section）"""
     today = (now or datetime.now(JST)).astimezone(JST).date()
@@ -2007,8 +2057,15 @@ def main() -> int:
     for lane in lanes:
         for i in lanes[lane]:
             i["_mix"] = news_mix.classify(i)
-        lanes[lane].sort(key=lambda i: (news_mix.order_key(i, mix_counts), rank_bucket(i), 0 if lane == "ai" else persona_rank(i)))
+        lanes[lane].sort(key=lambda i: (demand_rank(i, pi_signals), news_mix.order_key(i, mix_counts), rank_bucket(i),
+                                        0 if lane == "ai" else persona_rank(i)))
     log(f"[mix] 今日の配分（作った/めやす）: {news_mix.summary(mix_counts)}")
+    # 海外の AI の発表は1日の上限まで（台帳 A47。大きなニュースは外）
+    foreign_left = [max(FOREIGN_AI_DAILY_CAP - foreign_ai_today(state), 0)]
+    log(f"[mix] 海外の AI の発表: 今日の残り {foreign_left[0]} 本（上限 {FOREIGN_AI_DAILY_CAP}。増やす分は検索される話題と国内のニュース）")
+    hits = sum(1 for lane in lanes for i in lanes[lane] if i.get("_trend_hit"))
+    if hits:
+        log(f"[demand] いま検索で急上昇している話題に当たる候補 {hits} 件を先に回します")
     log(
         f"[info] 大きなニュース {len(majors)} 件（上限 {args.max_major} 本・tier quality）/ "
         f"候補 AI {len(ai_items)} 件（上限 {ai_limit} 本）/ 幅広い話題 {len(broad_items)} 件（上限 {broad_limit} 本）"
@@ -2317,6 +2374,8 @@ def main() -> int:
                 return "next", None  # 次の実行に回す
             if news_mix.over_cap(cand, mix_counts):
                 return "next", None  # 企業向け・開発者向けの海外の発表は今日の上限まで（見送りの印は付けない。台帳 A41）
+            if is_ai and is_foreign_ai(cand) and foreign_left[0] <= 0:
+                return "next", None  # 海外の AI の発表は今日の上限まで（見送りの印は付けない。台帳 A47）
             if not is_ai and cand.get("section") == "sports" and sports_today(state) >= persona.SPORTS_DAILY_CAP:
                 return "next", None  # スポーツは1日の上限まで（集客の入口。大きなものだけ）
             if is_wire(cand) and wire_attempts[0] >= args.max_wire:
@@ -2536,7 +2595,10 @@ def main() -> int:
              **({"offPersona": True} if item.get("_off_persona") else {}),
              **({"major": True} if major else {}), **({"breaking": True} if record.get("breaking") else {}),
              **({"publicInterest": item["_public_interest"]} if item.get("_public_interest") else {}),
+             **({"foreignAi": True} if is_ai and is_foreign_ai(item) else {}),
              mix=item.get("_mix") or news_mix.classify(item))
+        if is_ai and not major and is_foreign_ai(item):
+            foreign_left[0] -= 1
         mix_key = item.get("_mix") or news_mix.classify(item)
         mix_counts[mix_key] = mix_counts.get(mix_key, 0) + 1
         state["major_tries"].pop(item["id"], None)

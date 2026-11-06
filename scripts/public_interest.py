@@ -68,7 +68,7 @@ QUAKE_REPORT_RE = re.compile(r"(?:震度\d|を震源とする地震|津波(?:警
 # 選び方の調整値は scripts/public_interest_rules.json（後から重みを変えやすいように、コードに書き込まない）
 RULES_PATH = ROOT / "scripts" / "public_interest_rules.json"
 DEFAULT_RULES = {
-    "daily_cap": 4,
+    "daily_cap": 12,  # 2026-11-06 台帳 A47: 4 → 12（国内の公共性の高いニュースを増やす）
     "priority": {"missile": 0, "disaster": 1, "breach": 2, "scam": 3, "money": 4, "recall": 5},
     "kinds": {"missile": ["gov"], "disaster": ["gov"], "scam": ["gov"], "money": ["gov"],
               "breach": ["gov", "official", "company"], "recall": ["gov", "official", "company"]},
