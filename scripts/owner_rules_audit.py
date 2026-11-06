@@ -479,11 +479,12 @@ def article_page_problems(html: str, record: dict) -> list[str]:
     credit = record.get("imageCredit") or {}
     if isinstance(credit, dict) and credit.get("kind") == "ai" and "AI生成" not in visible:
         out.append("[I4] AI の画像なのに「AI生成」の表示がない")
-    # ノワールの表紙の AI のイメージ（coverImage。scripts/noir_cover.py・台帳 W36）も同じ。表紙に「画像はイメージ（AI生成）」を出す
+    # ノワールの表紙の AI のイメージ（coverImage。scripts/noir_cover.py・台帳 W36）も同じ。表紙に「…イメージ（AI生成）」の札を出す
     cover = record.get("coverCredit") or {}
     if record.get("layout") == "noir" and record.get("coverImage") and isinstance(cover, dict) and cover.get("kind") == "ai" \
-            and "画像はイメージ（AI生成）" not in visible:
-        out.append("[I4] ノワールの表紙の AI のイメージに「画像はイメージ（AI生成）」の札がない")
+            and "イメージ（AI生成）" not in visible:
+        # 札は「画像はイメージ（AI生成）」か、公式の画像が無い新製品の発表なら「公式画像がないためイメージ（AI生成）」
+        out.append("[I4] ノワールの表紙の AI のイメージに「イメージ（AI生成）」の札がない")
     if not re.search(r'rel="[^"]*sponsored', html):
         out.append("[A11] 記事に広告（PR）が1つもない")
     if OWNER_NAME in html:  # 見えない構造化データ（JSON-LD）も含めて見る

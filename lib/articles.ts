@@ -68,6 +68,8 @@ export type ImageCredit = {
   licenseUrl?: string;
   sourceUrl?: string;
   model?: string;
+  /** ノワールの表紙の AI のイメージ: 新製品・サービスの発表で、公式の画像が無いので製品（の種類）を描いた（札は「公式画像がないためイメージ（AI生成）」） */
+  launch?: boolean;
 };
 
 export type ArticleVideoInfo = {

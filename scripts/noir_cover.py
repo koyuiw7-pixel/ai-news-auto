@@ -2,19 +2,25 @@
 """ノワールの記事（layout: "noir"）の表紙の写真を、いつも写真にする（台帳 W36。2026-11-07 オーナー）。
 
 オーナー「黒地にしたいわけではない。背景は写真を差し込みたい。何もないとただ暗い感じ」。
+同じ日に「タイトルや内容となんの関連もない画像。画像はイメージとあるのに何もイメージできない」（誰もいない展示会場の AI 画像）。
+だから表紙のイメージは、記事の話題とのつながりが読者に見えるものだけ。つながりの見えない場面を出すくらいなら、ぼかした公式の画像にする。
+
 表紙の背景の決まり（サイトは lib/noir.ts の noirCover が同じ順で選ぶ）:
   1. 公式発表の、大きな文字の無い本物の写真（heroOk: true）。今までどおり
-  2. AI で作った写真風のイメージ（話題に合う場面。文字・ロゴ・人の顔・製品・画面は描かない）。表紙に「画像はイメージ（AI生成）」と出す
-     - 記事の見出し画像がもともと AI のイメージなら、それをそのまま使う（作り直さない）
-     - それ以外（告知のバナー・図・フリー素材など）は、表紙用に1枚作って coverImage / coverCredit に入れる。
-       製品・機械・ロボット・端末・画面は描かせず（画像判定で確かめ、写ったら作り直す）、場所・光・雰囲気だけにする
-       （thumbnail / imageCredit は変えない。SNS カード・一覧の写真は今までどおり）
-  3. AI で作れなかったとき: 公式の画像（バナーでも）を強くぼかして暗くした背景
+  2. 表紙用の AI のイメージ（coverImage / coverCredit。thumbnail / imageCredit は変えない）。表紙に「画像はイメージ（AI生成）」と出す
+     - 話題の場面を3つの切り口（人の手元・後ろ姿で話題の作業／話題が起きる場所・職場／話題に関わる物）で考え、
+       1枚作るたびに無料の画像判定で ①人の顔・文字が無い ②見出しとのつながりが読者に見える を確かめる。
+       公式の画像が無い新製品の発表は製品（の種類）を描いてよい（札は「公式画像がないためイメージ（AI生成）」）。
+       発表ではない記事（リコールなど）はブランド・型の無い一般の物（タイヤ・電池など）を描いてよい（2026-11-07 オーナー）。
+       だめなら次の切り口で作り直す（作り直しは2回まで）。誰もいない会場・抽象的な光のような、話題と関係の無い場面は使わない
+     - 見出し画像がもともと AI のイメージなら、同じ確かめ（②）を通ったときだけ表紙にも使う（作り直さない）
+  3. 作れなかったとき: 見出し画像（告知のバナーでも）を強くぼかして暗くした背景
   4. 何も無いときだけ、今までの黒い表紙に題名
 作るのは無料の Cloudflare Workers AI（scripts/images.py と同じ AI_MODELS・1日の上限 IMAGE_AI_DAILY_MAX を共有）。有料の画像 API は使わない。
 
-  python3 scripts/noir_cover.py              # 対象と、どの背景になるかを表示（書き込まない）
-  python3 scripts/noir_cover.py --apply      # 足りない記事に表紙のイメージを作って記事 JSON に書く（今あるノワールの記事の後追い）
+  python3 scripts/noir_cover.py                    # 対象と、どの背景になるかを表示（書き込まない）
+  python3 scripts/noir_cover.py --apply            # 足りない記事に表紙のイメージを作って記事 JSON に書く（今あるノワールの記事の後追い）
+  python3 scripts/noir_cover.py --apply --recheck  # 今ある表紙のイメージも、見出しとのつながりを確かめ直す（だめなら作り直す・ぼかしにする）
 新しい記事は scripts/images.py が写真を選んだあとに ensure_cover を呼ぶ。
 """
 
@@ -22,6 +28,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import time
 from datetime import datetime, timezone
@@ -33,6 +40,25 @@ ARTICLES = Path(__file__).resolve().parent.parent / "content" / "articles"
 LAYOUT = "noir"
 # 作れなかった記事を、何度も作り直して1日の枚数を使い切らない
 MAX_TRIES = 3
+# 1つの記事で作る枚数（最初の1枚＋作り直し2回）
+MAX_DRAWS = 3
+
+SCENE_SYSTEM = "You are a photo editor at a Japanese news site. You plan illustration photos that make the news topic recognizable. Return JSON only."
+SCENE_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "topic_en": {"type": "STRING"},
+        "scenes": {"type": "ARRAY", "items": {"type": "STRING"}},
+    },
+    "required": ["topic_en", "scenes"],
+}
+RELEVANCE_PROMPT = (
+    "A news site shows this photo as the illustration for the headline below.\n"
+    "Headline (Japanese): {title}\nIn English: {topic}\n"
+    "Would an ordinary reader immediately see a clear connection between this photo and the topic of the headline? "
+    "A generic empty office, desk, hall, building, corridor or abstract light that could illustrate any news does NOT count. "
+    "Answer with one word: yes or no."
+)
 
 
 def is_noir(article: dict) -> bool:
@@ -46,91 +72,148 @@ def official_hero(article: dict) -> bool:
 
 
 def cover_path(article: dict) -> str:
-    """表紙の背景がどれになるか（lib/noir.ts の noirCover と同じ順）: official / ai / ai-thumbnail / blur / black"""
+    """表紙の背景がどれになるか（lib/noir.ts の noirCover と同じ順）: official / ai / blur / black"""
     if official_hero(article):
         return "official"
+    if article.get("noPhoto"):
+        return "black"
     cover = article.get("coverCredit") or {}
     if article.get("coverImage") and cover.get("kind") == "ai":
         return "ai"
-    credit = article.get("imageCredit") or {}
-    if article.get("thumbnail") and credit.get("kind") == "ai":
-        return "ai-thumbnail"
     if article.get("thumbnail"):
         return "blur"
     return "black"
 
 
 def needs_cover(article: dict) -> bool:
-    """表紙用の AI のイメージを作る記事か（ノワール・公式の写真が出せない・まだ無い・見出し画像が AI ではない）"""
+    """表紙用の AI のイメージを用意する記事か（ノワール・公式の写真が出せない・まだ無い）"""
     if not is_noir(article) or article.get("noPhoto"):
         return False  # noPhoto: 地震・津波の記事（写真・イメージ画像を付けない）
-    if cover_path(article) in ("official", "ai", "ai-thumbnail"):
+    if cover_path(article) in ("official", "ai"):
         return False
     if (article.get("imageCredit") or {}).get("kind") == "official" and "heroOk" not in article:
         return False  # 公式の写真の判定（heroOk）がまだ。判定してから決める（scripts/images.py・noir_hero_backfill.py）
     return int(article.get("coverTries") or 0) < MAX_TRIES
 
 
+def cover_scenes(article: dict) -> tuple[str, list[str]]:
+    """(見出しの英語の要約, 話題が分かる場面3つ)。場面は 人の手元・後ろ姿／場所・職場／関わる物 の3つの切り口"""
+    import images  # noqa: PLC0415
+    import llm  # noqa: PLC0415
+
+    prompt = f"""Article (Japanese):
+title: {article.get('title', '')}
+summary: {article.get('description', '')}
+genre: {article.get('genre', '')}
+
+Return:
+- "topic_en": the headline's topic in one short English sentence.
+- "scenes": exactly 3 English sentences, each describing a different photorealistic editorial photo that makes THIS news topic
+  recognizable at a glance to a reader who reads the headline:
+  1. people's hands, or people seen from behind, doing the real activity or work the news is about
+  2. the real place or workplace where this news matters (e.g. a tax office counter, a farm, a factory floor, a shop, a station)
+  3. concrete everyday objects strongly tied to the topic (e.g. receipts and coins, a hard hat and blueprints, a SIM card tray)
+  Rules for every scene: no text, signs, letters or logos; no brand or model names; no identifiable faces; no screens showing readable text.
+  For a product or service launch you MAY show the kind of product generically (no brand, logo or model). For other news (recalls,
+  outages, prices) you MAY show the generic category (e.g. a car tire, a battery, a smartphone) without brand or model.
+  Never a generic empty office, desk, meeting room, exhibition hall, corridor or abstract light that could illustrate any news."""
+    data, _ = llm.generate_json(SCENE_SYSTEM, prompt, SCENE_SCHEMA, tier=images.llm_tier(), temperature=0.5, max_output_tokens=1024)
+    scenes = [re.sub(r"\s+", " ", str(s)).strip()[:400] for s in data.get("scenes") or [] if str(s).strip()]
+    return str(data.get("topic_en") or "").strip()[:200], scenes[:MAX_DRAWS]
+
+
+def relevant(image, article: dict, topic: str) -> bool:
+    """見出しとのつながりが読者に見えるか（無料の画像判定 Workers AI）。判定できないときは見えない側に倒す"""
+    import images  # noqa: PLC0415
+
+    answer = images.cf_vision(image, RELEVANCE_PROMPT.format(title=article.get("title", ""), topic=topic or article.get("title", "")), max_tokens=4)
+    return (answer or "").strip().lower().startswith("yes")
+
+
 def make_cover(article: dict, *, fast: bool = False, dry_run: bool = False) -> dict | None:
-    """表紙用の写真風の AI のイメージを1枚作って KV に置く。(coverImage, coverCredit) の dict。作れなければ None"""
+    """表紙用の写真風の AI のイメージを作って KV に置く。(coverImage, coverCredit) の dict。
+    話題とのつながりが見える画像が作れなければ None（呼ぶ側はぼかした見出し画像にする）"""
     import images  # noqa: PLC0415  （重い依存は作るときだけ）
 
-    # 表紙は話題の雰囲気だけ。発表の記事かどうかに関係なく、製品・機械・ロボット・画面・アプリの画面は描かない
-    # （2026-11-07 の後追いで、データ分析の記事にノート PC の作り物の画面、ロボットの記事に作り物のロボットが出た）
-    product = images.real_object_article(article)
-    plan = images.visual_plan(article, product=product, service=not product)
-    made = None
-    drew_product = False
-    for attempt in range(3):
-        # images.process と同じ作り直し: 顔・文字が出たら作り直し、3回目は人を描かない場面。製品を描いたら製品の無い場面
-        use = plan if attempt < 2 else {**plan, "scene": images.objects_only_scene(plan, article)}
-        if drew_product:
-            use = {**plan, "scene": images.NO_PRODUCT_SCENE}
-        made = images.generate_ai(use, article, fast=fast)
+    # 2026-11-07 オーナー: 公式の画像が無い新製品の発表は、AI が製品（の種類）を描いてよい。札は「公式画像がないためイメージ（AI生成）」。
+    # リコールなど発表ではない記事は、ブランド・型の無い一般の物（タイヤ・電池など）を描いてよい
+    launch = bool(images.real_object_article(article) or images.announcement_article(article))
+    topic, scenes = cover_scenes(article)
+    if not scenes:
+        return None
+    for scene in scenes[:MAX_DRAWS]:
+        made = images.generate_ai({"scene": scene}, article, fast=fast)
         if made is None:
             return None  # 上限・トークン無し・どのモデルも失敗
-        if images.shows_face(made[0]):
-            images.log("   [cover] AI 画像に人の顔か文字が写ったので作り直す")
-            made = None
+        image, model = made
+        if images.shows_face(image):
+            images.log("   [cover] 人の顔か文字が写ったので、別の切り口で作り直す")
             continue
-        if images.depicts_product(made[0], plan.get("product", "")):
-            images.log("   [cover] AI 画像に製品か似た物が写ったので、製品の無い場面で作り直す")
-            made = None
-            drew_product = True
+        if not relevant(image, article, topic):
+            images.log("   [cover] 見出しとのつながりが見えないので、別の切り口で作り直す")
             continue
-        plan = use
-        break
-    if made is None:
+        slug = article.get("slug") or "article"
+        url, _ = images.store(f"{slug}-cover", image, dry_run)
+        credit = {
+            "kind": "ai",
+            "model": model,
+            "prompt": scene[:300],
+            "provider": "Cloudflare Workers AI",
+            "relevant": True,  # 見出しとのつながりが見えると確かめた
+            "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        }
+        if launch:
+            credit["launch"] = True  # 新製品・サービスの発表（表紙の札は「公式画像がないためイメージ（AI生成）」）
+        return {"coverImage": url, "coverCredit": credit}
+    return None
+
+
+def reuse_thumbnail(article: dict) -> dict | None:
+    """見出し画像がもともと AI のイメージで、見出しとのつながりが見えるなら、それを表紙にも使う（作り直さない）"""
+    import images  # noqa: PLC0415
+
+    credit = article.get("imageCredit") or {}
+    if credit.get("kind") != "ai" or not article.get("thumbnail"):
         return None
-    image, model = made
-    slug = article.get("slug") or "article"
-    url, _ = images.store(f"{slug}-cover", image, dry_run)
-    credit = {
-        "kind": "ai",
-        "model": model,
-        "prompt": (plan.get("scene") or "")[:300],
-        "provider": "Cloudflare Workers AI",
-        "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-    }
-    credit["noProduct"] = True  # 製品・機械・画面を描かない場面で作り、写っていないことを確かめた
-    return {"coverImage": url, "coverCredit": credit}
+    data, _, _ = images.http_get(article["thumbnail"], ua=images.BOT_UA, timeout=30)
+    image = images.open_image(data)
+    topic = ""
+    if images.shows_face(image) or not relevant(image, article, topic):
+        images.log("   [cover] 見出しの AI のイメージは表紙に使わない（顔・文字か、見出しとのつながりが見えない）")
+        return None
+    return {"coverImage": article["thumbnail"], "coverCredit": {**credit, "reused": True, "relevant": True}}
 
 
 def ensure_cover(article: dict, *, fast: bool = False, dry_run: bool = False) -> str:
     """ノワールの記事に表紙の背景を持たせる。戻り値は表紙の背景（cover_path の値）。記事の dict を書き換える（保存は呼ぶ側）"""
     if not needs_cover(article):
         return cover_path(article)
+    made = None
     try:
-        made = make_cover(article, fast=fast, dry_run=dry_run)
-    except Exception as error:  # noqa: BLE001 - 作れなくても記事の公開は止めない（ぼかした公式の画像か黒い表紙）
+        made = reuse_thumbnail(article) or make_cover(article, fast=fast, dry_run=dry_run)
+    except Exception as error:  # noqa: BLE001 - 作れなくても記事の公開は止めない（ぼかした見出し画像か黒い表紙）
         print(f"   [cover] 表紙のイメージを作れない: {str(error)[:160]}", flush=True)
-        made = None
     if made:
         article.update(made)
         article.pop("coverTries", None)
     else:
         article["coverTries"] = int(article.get("coverTries") or 0) + 1
     return cover_path(article)
+
+
+def recheck(article: dict) -> bool:
+    """今ある表紙のイメージが見出しとつながっているかを確かめ直す。だめなら外して True（作り直しの対象にする）"""
+    import images  # noqa: PLC0415
+
+    if cover_path(article) != "ai":
+        return False
+    data, _, _ = images.http_get(article["coverImage"], ua=images.BOT_UA, timeout=30)
+    image = images.open_image(data)
+    if relevant(image, article, ""):
+        return False
+    for key in ("coverImage", "coverCredit", "coverTries"):
+        article.pop(key, None)
+    return True
 
 
 def save(path: Path, article: dict) -> None:
@@ -140,6 +223,7 @@ def save(path: Path, article: dict) -> None:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply", action="store_true", help="作って記事 JSON に書く（無ければ表示だけ）")
+    parser.add_argument("--recheck", action="store_true", help="今ある表紙のイメージも見出しとのつながりを確かめ直す")
     parser.add_argument("--slug", nargs="*", default=[])
     parser.add_argument("--max", type=int, default=20)
     parser.add_argument("--budget", type=float, default=0, help="秒。過ぎたら残りは次の回")
@@ -151,8 +235,13 @@ def main(argv: list[str] | None = None) -> int:
         if not is_noir(article) or (args.slug and article.get("slug") not in args.slug and path.stem not in args.slug):
             continue
         before = cover_path(article)
+        if args.apply and args.recheck and recheck(article):
+            print(f"{path.stem}: 表紙のイメージが見出しとつながらないので作り直す")
+            article["coverTries"] = 0
         if not args.apply or not needs_cover(article) or made >= args.max or (args.budget and time.time() - started > args.budget):
             print(f"{path.stem}: {before}" + ("（表紙のイメージを作る対象）" if needs_cover(article) else ""))
+            if args.apply and cover_path(article) != before:
+                save(path, article)
             continue
         after = ensure_cover(article)
         made += 1

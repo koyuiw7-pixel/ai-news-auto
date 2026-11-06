@@ -35,9 +35,9 @@ export type NoirCover = {
 
 /**
  * 表紙の背景（2026-11-07 オーナー「黒地にしたいわけではない。背景は写真を差し込みたい」。台帳 W36）。いつも写真を敷く。順に:
- * ①公式の、大きな文字の無い本物の写真（noirPhoto） ②表紙用の AI のイメージ（coverImage。scripts/noir_cover.py）
- * ③見出し画像がもともと AI のイメージならそれ ④AI が作れなかったときは、見出し画像（告知のバナーでも）を強くぼかして暗くしたもの
- * どれも無いときだけ null（今までの黒い表紙に題名）
+ * ①公式の、大きな文字の無い本物の写真（noirPhoto） ②表紙用の AI のイメージ（coverImage。scripts/noir_cover.py が見出しとのつながりを確かめたものだけ。
+ * 見出し画像の AI のイメージも、確かめを通れば coverImage に入る） ③無ければ見出し画像（告知のバナーでも）を強くぼかして暗くしたもの
+ * どれも無いときだけ null（今までの黒い表紙に題名）。話題と関係の無い AI の場面は出さない（2026-11-07 オーナー「何もイメージできない」）
  */
 export function noirCover(
   article: Pick<Article, "thumbnail" | "imageCredit" | "heroOk" | "coverImage" | "coverCredit" | "noPhoto">,
@@ -46,13 +46,19 @@ export function noirCover(
   if (photo) return { kind: "official", src: photo };
   if (article.noPhoto) return null;
   if (article.coverImage && article.coverCredit?.kind === "ai") return { kind: "ai", src: article.coverImage };
-  if (article.thumbnail && article.imageCredit?.kind === "ai") return { kind: "ai", src: article.thumbnail };
   if (article.thumbnail) return { kind: "blur", src: article.thumbnail };
   return null;
 }
 
-/** 表紙の AI のイメージに出す札（台帳 I4。scripts/owner_rules_audit.py は「AI生成」の文字で確かめる） */
+/** 表紙の AI のイメージに出す札（台帳 I4。scripts/owner_rules_audit.py は「イメージ（AI生成）」の文字で確かめる） */
 export const NOIR_AI_LABEL = "画像はイメージ（AI生成）";
+/** 公式の画像が無い新製品・サービスの発表で、AI が製品（の種類）を描いた表紙の札（2026-11-07 オーナー） */
+export const NOIR_AI_LAUNCH_LABEL = "公式画像がないためイメージ（AI生成）";
+
+/** 表紙の AI のイメージの札の文（coverCredit.launch なら発表の札） */
+export function noirAiLabel(article: Pick<Article, "coverCredit">): string {
+  return article.coverCredit?.launch ? NOIR_AI_LAUNCH_LABEL : NOIR_AI_LABEL;
+}
 
 /** 「**479万7,100円**」の印で、強調する数字と前後の文に分ける */
 export function splitEmphasis(line: string): { before: string; em: string | null; after: string } {

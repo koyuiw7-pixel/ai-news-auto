@@ -55,8 +55,8 @@ test('[W36] 表紙はいつも写真（公式の写真 → AI のイメージ �
   assert.deepEqual(noir.noirCover({ ...banner, coverImage: '/img/b-cover.jpg', coverCredit: { kind: 'ai' } }), { kind: 'ai', src: '/img/b-cover.jpg' });
   // 公式の写真が出せるなら、表紙のイメージがあっても公式の写真が先
   assert.equal(noir.noirCover({ ...official, coverImage: '/img/c.jpg', coverCredit: { kind: 'ai' } }).kind, 'official');
-  // 見出し画像がもともと AI のイメージなら、それを表紙に
-  assert.deepEqual(noir.noirCover({ thumbnail: '/img/ai.jpg', imageCredit: { kind: 'ai' } }), { kind: 'ai', src: '/img/ai.jpg' });
+  // 見出し画像の AI のイメージは、見出しとのつながりを確かめて coverImage に入ったときだけ。そのままは出さない（ぼかし）
+  assert.deepEqual(noir.noirCover({ thumbnail: '/img/ai.jpg', imageCredit: { kind: 'ai' } }), { kind: 'blur', src: '/img/ai.jpg' });
   // AI のイメージが作れなかったら、告知のバナーでもぼかして背景に
   assert.deepEqual(noir.noirCover(banner), { kind: 'blur', src: '/img/b.jpg' });
   assert.equal(noir.noirCover({ thumbnail: '/img/s.jpg', imageCredit: { kind: 'stock' } }).kind, 'blur');
@@ -64,19 +64,22 @@ test('[W36] 表紙はいつも写真（公式の写真 → AI のイメージ �
   assert.equal(noir.noirCover({ thumbnail: '', imageCredit: { kind: 'official' } }), null);
   assert.equal(noir.noirCover({ thumbnail: '/img/q.jpg', noPhoto: true }), null);
   assert.equal(noir.NOIR_AI_LABEL, '画像はイメージ（AI生成）');
+  // 公式の画像が無い新製品の発表で AI が製品（の種類）を描いたときの札（2026-11-07 オーナー）
+  assert.equal(noir.noirAiLabel({ coverCredit: { kind: 'ai', launch: true } }), '公式画像がないためイメージ（AI生成）');
+  assert.equal(noir.noirAiLabel({ coverCredit: { kind: 'ai' } }), '画像はイメージ（AI生成）');
 
   const page = read('components/noir/NoirArticle.tsx');
   const pageTs = read('components/noir/noirArticlePage.tsx');
   assert.match(pageTs, /cover=\{noirCover\(article\)\}/);
   // AI のイメージには表紙の上に札（台帳 I4）。ぼかしの表紙は .nr-blur
-  assert.match(page, /cover\?\.kind === "ai" && \(\s*<span className="nr-ailabel"[^>]*>\s*\{NOIR_AI_LABEL\}/);
+  assert.match(page, /cover\?\.kind === "ai" && \(\s*<span className="nr-ailabel"[^>]*>\s*\{aiLabel\}/);
   assert.match(page, /cover\?\.kind === "blur" \? " nr-blur" : ""/);
   const css = read('components/noir/noir.css');
   assert.match(css, /\.nr-hero\.nr-blur \.nr-img img \{[^}]*filter: blur\(/);
   // 題名の下は暗いグラデーション（平らな黒い箱ではない）
   assert.match(css, /\.noir \.nr-hero::after \{[^}]*linear-gradient\(/);
   // 点検（scripts/owner_rules_audit.py の I4）も表紙の AI のイメージを見る
-  assert.match(read('scripts/owner_rules_audit.py'), /coverCredit[\s\S]{0,300}画像はイメージ（AI生成）/);
+  assert.match(read('scripts/owner_rules_audit.py'), /coverCredit[\s\S]{0,300}イメージ（AI生成）/);
 });
 
 test('[W36] 公式の写真をそのまま表紙に出すのは、大きな文字の無い本物の写真と判定済みのものだけ（バナー・AI の絵・フリー素材・未判定はそのまま出さない）', () => {

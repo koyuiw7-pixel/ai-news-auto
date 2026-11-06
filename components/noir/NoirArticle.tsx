@@ -6,7 +6,7 @@ import NoirChrome from "@/components/noir/NoirChrome";
 import NoirFonts, { noirFontHref } from "@/components/noir/NoirFonts";
 import { formatDate, type ArticleSummary, type FullArticle } from "@/lib/articles";
 import { officialCreditText } from "@/lib/image-credit";
-import { displayGlyphs, NOIR_AI_LABEL, splitEmphasis, type NoirCover } from "@/lib/noir";
+import { displayGlyphs, NOIR_AI_LABEL, noirAiLabel, splitEmphasis, type NoirCover } from "@/lib/noir";
 import { stripListNumber } from "@/lib/list-number";
 import "./noir.css";
 
@@ -66,7 +66,9 @@ export default function NoirArticle(props: NoirProps) {
   const fontHref = noirFontHref(glyphs);
   const focus = cover?.kind === "official" && article.imageFocus && article.imageFocus.src === article.thumbnail ? article.imageFocus : null;
   // 公式の画像（そのまま・ぼかし）は「画像：〇〇」の1行（lib/image-credit.ts）。AI のイメージは表紙の札と同じ文
-  const credit = cover?.kind === "ai" ? NOIR_AI_LABEL : cover ? officialCreditText(article.imageCredit) : null;
+  // ぼかした見出し画像が AI のイメージのときも、同じ札の文を出す（台帳 I4）
+  const aiLabel = noirAiLabel(article);
+  const credit = cover?.kind === "ai" ? aiLabel : cover && article.imageCredit?.kind === "ai" ? NOIR_AI_LABEL : cover ? officialCreditText(article.imageCredit) : null;
 
   return (
     <div className="noir" data-layout="noir">
@@ -103,7 +105,7 @@ export default function NoirArticle(props: NoirProps) {
         {/* AI のイメージには、表紙の上に必ず札を出す（本物の写真と受け取られないように。台帳 I4） */}
         {cover?.kind === "ai" && (
           <span className="nr-ailabel" data-allow-small="">
-            {NOIR_AI_LABEL}
+            {aiLabel}
           </span>
         )}
         <div className="nr-hl nr-g">
