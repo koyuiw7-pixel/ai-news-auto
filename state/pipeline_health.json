@@ -1,10 +1,17 @@
 {
-  "candidates": 84,
-  "consecutive_zero": 5,
+  "candidates": 81,
+  "consecutive_zero": 6,
   "issue": "62",
-  "last_zero_at": "2026-11-06T13:16:20+00:00",
+  "last_zero_at": "2026-11-06T13:58:16+00:00",
   "reason": "品質ゲート不合格: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
   "recovered_at": "2026-11-06T10:12:45+00:00",
+  "rescue_failed": 1,
   "stalled_since": "2026-11-06T12:19:04+00:00",
-  "status": "stalled"
+  "status": "stalled",
+  "tried": [
+    "最初から Claude（有料の AI）の段で書いた",
+    "候補を 1 件試した（生成 1 回・上限 6 回）",
+    "短い原稿は元記事の事実だけで書き足し（Haiku）→ だめなら書き直し（Sonnet）",
+    "候補を広げた（同じ発信元 4 本・配信 3 本・一般の話題 5 本まで）"
+  ]
 }

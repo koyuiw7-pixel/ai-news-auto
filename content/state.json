@@ -147,6 +147,14 @@
       "tries": 1,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87277?site=nli"
     },
+    "76f6c839f4713002": {
+      "first": "2026-11-06T13:58:15.532249+00:00",
+      "next": "2026-11-06T16:58:15.532249+00:00",
+      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！",
+      "tries": 1,
+      "url": "https://jtta.or.jp/news/38778"
+    },
     "8dc5cad25319e695": {
       "first": "2026-11-06T06:40:13.129552+00:00",
       "next": "2026-11-06T09:40:13.129552+00:00",
@@ -17435,128 +17443,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-05T05:14:18.338415+00:00",
-      "attempt": 1,
-      "id": "477d7aaf59d7fc3c",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 76.7,
-        "avg_sentence": 33.9,
-        "long_share": 0.0,
-        "max_paragraph": 107,
-        "paragraphs": 19,
-        "sentences": 43
-      },
-      "score": 96,
-      "source": "toyota-news",
-      "title": "2027年3月期 第2四半期決算発表（2026年11月5日）",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IFRS）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T05:42:01.113138+00:00",
-      "attempt": 1,
-      "id": "d08af41901f41b31",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 53.4,
-        "avg_sentence": 30.7,
-        "long_share": 0.0,
-        "max_paragraph": 96,
-        "paragraphs": 23,
-        "sentences": 40
-      },
-      "score": 93,
-      "source": "mlit-press",
-      "title": "リコールの届出について（ヨコハマ LT151R 他）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（LT・GUARD・PARADA）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T06:17:04.047862+00:00",
-      "attempt": 1,
-      "id": "be080fcaa0a3f4c9",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "題名・リードに比べる基準（変更前(2026年8月4日の取締役会決議)）が書かれていない。何と比べた増減かをリードの数字のそばに書く"
-      ],
-      "readability": {
-        "avg_paragraph": 73.7,
-        "avg_sentence": 31.6,
-        "long_share": 0.041,
-        "max_paragraph": 133,
-        "paragraphs": 21,
-        "sentences": 49
-      },
-      "score": null,
-      "source": "fast",
-      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T06:17:49.233771+00:00",
-      "attempt": 2,
-      "id": "be080fcaa0a3f4c9",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "題名・リードに比べる基準（変更前(2026年8月4日の取締役会決議)）が書かれていない。何と比べた増減かをリードの数字のそばに書く"
-      ],
-      "readability": {
-        "avg_paragraph": 80.4,
-        "avg_sentence": 37.9,
-        "long_share": 0.083,
-        "max_paragraph": 131,
-        "paragraphs": 17,
-        "sentences": 36
-      },
-      "score": null,
-      "source": "fast",
-      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T06:18:17.118909+00:00",
-      "attempt": 3,
-      "id": "be080fcaa0a3f4c9",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "要点の数字「2,963億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "題名・リードに比べる基準（変更前(2026年8月4日の取締役会決議)）が書かれていない。何と比べた増減かをリードの数字のそばに書く",
-        "要点に予想・見通しの言い方（「見込み」）があるが、公式の資料に無い。資料の事実だけを書く"
-      ],
-      "readability": {
-        "avg_paragraph": 67.2,
-        "avg_sentence": 30.7,
-        "long_share": 0.022,
-        "max_paragraph": 126,
-        "paragraphs": 21,
-        "sentences": 46
-      },
-      "score": null,
-      "source": "fast",
-      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NISA）",
-        "同じ数字が多い（「4社」が5回）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-05T06:20:13.747450+00:00",
       "attempt": 1,
@@ -23228,6 +23114,105 @@
       "score": null,
       "source": "jfa",
       "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に2選手を認定 #jfa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T13:56:28.978310+00:00",
+      "attempt": 1,
+      "id": "76f6c839f4713002",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jtta",
+      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T13:56:52.866032+00:00",
+      "attempt": 1,
+      "id": "76f6c839f4713002",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jtta",
+      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T13:57:09.377220+00:00",
+      "attempt": 1,
+      "id": "76f6c839f4713002",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "かんたん版「結果や試合の予定は、日本卓球協会の大会情報ページで確認できます」→ 元記事は大会情報ページへのリンクを示すだけで、結果や試合予定が載っているとは書いていない（本文で「ページの中身は書かれていない」としている点とも食い違う）。",
+        "本文「一般の観戦者も、同じページで種目や大会の内容を確認できます」→ ページの内容は元記事で確認できず、断定は言い過ぎ。",
+        "リード・仕事欄「日本卓球協会の大会情報ページで日程を確認できます」→ ページ内容が不明なのに日程が確認できると断定している。",
+        "かんたん版「カデットの部は、中学生年代の選手が出る部門です」→ 元記事は13歳以下・14歳以下とし、中学1・2年生を併記しているだけ。中学生全体とは書いておらず、中学3年生は対象外のように読める。"
+      ],
+      "readability": {
+        "avg_paragraph": 84.9,
+        "avg_sentence": 36.7,
+        "long_share": 0.108,
+        "max_paragraph": 177,
+        "paragraphs": 16,
+        "sentences": 37
+      },
+      "score": 80,
+      "source": "jtta",
+      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JOC）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T13:57:34.182463+00:00",
+      "attempt": 2,
+      "id": "76f6c839f4713002",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jtta",
+      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T13:57:59.712681+00:00",
+      "attempt": 2,
+      "id": "76f6c839f4713002",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「カデットは中学生年代の部であることが示されています」→ 元記事に「カデット＝中学生年代」という説明はなく、「中学1年生」「中学2年生」の表記からの推測で、発表に示されているという書き方は言い過ぎ。",
+        "「発表では14歳以下の1つの区分でまとめて行われると書かれています」→ 元記事には「ダブルス（14歳以下）」とあるだけで、「まとめて行われる」という趣旨の記述はない。",
+        "「シングルスは13歳以下と14歳以下で学年ごとに分かれている」「中学1年生と中学2年生以下それぞれの日本一」→ 元記事の「13歳以下」「14歳以下」の記載を超えた解釈で、わずかに言い過ぎ。",
+        "「中学生世代の卓球日本一」「2026年全日本卓球選手権大会の中で、この年代の部として」→ 元記事は大会名に基づく説明のみで、「中学生世代の日本一」という断定は発表自体には書かれていない。",
+        "「国内の中学生年代の大会は、その直後に始まった形です」→ 元記事に無い編集上の解釈で、ユースオリンピックとの関連付けは不要な補足。"
+      ],
+      "readability": {
+        "avg_paragraph": 73.5,
+        "avg_sentence": 36.7,
+        "long_share": 0.133,
+        "max_paragraph": 153,
+        "paragraphs": 15,
+        "sentences": 30
+      },
+      "score": 80,
+      "source": "jtta",
+      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JOC）"
+      ]
     }
   ],
   "short_text_retry": {},
