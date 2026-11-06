@@ -6,64 +6,52 @@
   "companyName": "NVIDIA",
   "category": "ガジェット",
   "overview": {
-    "text": "RTX Sparkは、NVIDIAがMediaTekと共同開発したモバイル向けの次世代PC用統合プロセッサです。最大128GBの統合メモリと1ペタフロップスのAI演算能力を備え、手元でローカルAIエージェントを動かせます。2026年8月に発表されました。",
+    "text": "RTX Sparkは、NVIDIAがMicrosoftやMediaTekと共同開発したパーソナルAI端末向けプラットフォームです。最大128GBの統合メモリと1ペタフロップスのAI演算能力を備え、2026年10月に発表されました。",
     "sources": [
-      "nvidia-rtx-spark-superchip-announcement"
+      "nvidia-gtc-berlin-2026-keynote-highlights",
+      "nvidia-rtx-spark-announcement"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年後半より順次",
+      "value": "提供はこれから",
       "sources": [
         "nvidia-rtx-spark-announcement"
       ]
     },
     {
-      "label": "使える場所",
-      "value": "対応するノートPCや卓上機",
-      "sources": [
-        "nvidia-local-ai-gtc-berlin-spark-station",
-        "nvidia-gtc-berlin-2026-keynote-highlights"
-      ]
-    },
-    {
       "label": "向いている人",
-      "value": "AI開発者や映像制作者",
+      "value": "開発者・クリエイター",
       "sources": [
-        "nvidia-local-ai-gtc-berlin-spark-station",
+        "nvidia-rtx-spark-announcement",
         "adobe-premiere-nvidia-rtx-spark"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "パラメータ数が720億や1220億の大規模なAIモデルをクラウドに頼らずローカル環境だけで実行できます。",
+      "text": "128GBのユニファイドメモリにより、クラウドを使わずに手元で大規模なAIモデルを実行できます。",
       "sources": [
         "intelligent-terminal-local-120b-llm",
         "nvidia-rtx-spark-local-agent-debugging"
       ]
     },
     {
-      "text": "FP4精度において1ペタフロップスのAI演算能力を発揮します。",
+      "text": "FP4精度において1ペタフロップスのAI演算性能を発揮し、AIの学習や推論を加速します。",
       "sources": [
+        "nvidia-rtx-spark-announcement",
         "nvidia-rtx-spark-superchip-announcement"
       ]
     },
     {
-      "text": "Adobe Premiere Proで4K 10-bit 4:2:2 60fpsのマルチカム映像をプロキシなしで同時再生できます。",
+      "text": "Premiere Proでのシーン編集検出やオブジェクトマスクなどのAI処理を高速化します。",
       "sources": [
         "adobe-premiere-nvidia-rtx-spark"
       ]
     },
     {
-      "text": "AIがバグ検知やコード修正、ブラウザを用いた自動テストまでを約1分22秒で完結させます。",
-      "sources": [
-        "nvidia-rtx-spark-local-agent-debugging"
-      ]
-    },
-    {
-      "text": "Blenderでの3Dレンダリングとゲームプレイを同時に並行処理できます。",
+      "text": "3DレンダリングとAI推論、100fpsを超えるゲームプレイを同時に並行処理できます。",
       "sources": [
         "nvidia-rtx-spark-announcement"
       ]
@@ -75,32 +63,27 @@
   "differences": [],
   "faq": [
     {
-      "q": "どんなチップが搭載されている？",
-      "a": "MediaTekと共同開発した20コアのGrace CPUと、Blackwell RTX GPUを統合しています。",
+      "q": "いつ発表されましたか？",
+      "a": "2026年10月のGTC Berlinなどで発表されました。",
       "sources": [
+        "nvidia-gtc-berlin-2026-keynote-highlights",
         "nvidia-rtx-spark-announcement"
       ]
     },
     {
-      "q": "メモリの容量はいくつ？",
-      "a": "最大128GBのLPDDR5Xユニファイドメモリを搭載しています。",
+      "q": "誰に向いていますか？",
+      "a": "開発者や映像制作者などのプロフェッショナルに向いています。",
       "sources": [
+        "adobe-premiere-nvidia-rtx-spark",
         "nvidia-rtx-spark-announcement"
       ]
     },
     {
-      "q": "動画編集ではどんなメリットがある？",
-      "a": "Adobe Premiere Proの処理が高速化され、シーン編集検出やオブジェクトマスクがスムーズに使えます。",
+      "q": "どんなチップが搭載されていますか？",
+      "a": "MediaTekと共同開発した20コアのGrace CPUとBlackwell GPUを統合しています。",
       "sources": [
-        "adobe-premiere-nvidia-rtx-spark"
-      ]
-    },
-    {
-      "q": "オフラインでもAIは使える？",
-      "a": "インターネットに接続せず、端末の中だけで大規模言語モデルを動かすことができます。",
-      "sources": [
-        "intelligent-terminal-local-120b-llm",
-        "nvidia-rtx-spark-local-agent-debugging"
+        "nvidia-rtx-spark-announcement",
+        "nvidia-rtx-spark-superchip-announcement"
       ]
     }
   ],
@@ -108,17 +91,17 @@
     {
       "date": "2026-08-06",
       "slug": "nvidia-rtx-spark-superchip-announcement",
-      "event": "NVIDIAが「RTX Spark」を発表"
+      "event": "モバイル向けRTX Sparkを発表"
     },
     {
       "date": "2026-10-15",
       "slug": "nvidia-rtx-spark-announcement",
-      "event": "BlackwellとGraceを統合した詳細を公開"
+      "event": "RTX Sparkを発表"
     },
     {
       "date": "2026-10-26",
       "slug": "nvidia-gtc-berlin-2026-keynote-highlights",
-      "event": "GTC Berlinで個人向けAI端末として披露"
+      "event": "GTC BerlinでRTX Sparkを披露"
     }
   ],
   "related": [
@@ -146,9 +129,9 @@
     "nvidia-rtx-spark-local-agent-debugging",
     "nvidia-rtx-spark-superchip-announcement"
   ],
-  "signature": "8c75824c09f843b3",
-  "primarySignature": "abb2722a3026010d",
+  "signature": "4e8c25ccb4216349",
+  "primarySignature": "8ecb230e2f734676",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:40+00:00",
-  "updatedAt": "2026-11-04T02:39:30+00:00"
+  "updatedAt": "2026-11-06T19:36:26+00:00"
 }

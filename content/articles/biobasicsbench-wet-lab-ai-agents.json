@@ -1,0 +1,129 @@
+{
+  "slug": "biobasicsbench-wet-lab-ai-agents",
+  "sourceType": "web",
+  "sourceUrl": "https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science",
+  "sourceName": "OpenAI公式ブログ",
+  "title": "研究室の実験データを読むAI、GPT-6 Astraが66.7%で首位　OpenAIの新評価",
+  "seoTitle": "BioBasicsBenchとは？研究室の実験データを読むAIの評価",
+  "threadsPost": "実験データをAIに読ませる研究者に、知っておいてほしい話です。\n\nOpenAIが、湿式実験のデータを読むAIの評価「BioBasicsBench」を公開しました。\n最も高かったGPT-6 Astraは平均66.7%で、前のGPT-5.6 Solは43.8%でした。\n\n研究の資料を、AIに読ませる場面はもうありますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "研究の資料を、AIに読ませる場面はもうありますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "実験データをAIに任せるなら、どこまでなら任せられますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "研究室の実験データを、AIがどこまで正しく読めるかが数字で分かるようになりました。OpenAIの新しい評価「BioBasicsBench」で、GPT-6 Astraは最も高い推論設定で平均66.7%を取り、前のGPT-5.6 Solの43.8%を上回りました。研究の現場ですぐ使えるものではなく、日本での提供や公開の範囲はまだ発表されていません。",
+  "description": "OpenAIが研究室の実験データを読むAIの評価BioBasicsBenchを公開。GPT-6 Astraが平均66.7%で、前のGPT-5.6 Solの43.8%を上回りました。課題は100個、5分野で、写真や機器の出力まで読ませる内容です。",
+  "keywords": [
+    "BioBasicsBench",
+    "GPT-6 Astra",
+    "GPT-5.6 Sol",
+    "AI 実験データ 読解",
+    "湿式実験 AI",
+    "AI 生命科学 評価",
+    "OpenAI 生命科学",
+    "AIエージェント 研究",
+    "ベンチマーク 実験",
+    "ラボ AI"
+  ],
+  "tags": [
+    "生成AI",
+    "GPT-6 Astra",
+    "AIエージェント",
+    "生命科学",
+    "ベンチマーク"
+  ],
+  "highlights": [
+    "OpenAIの新評価BioBasicsBenchで、GPT-6 Astraが平均66.7%を取り、7モデルの中で最高の得点でした。",
+    "評価は100課題、5分野で、ゲルの写真や顕微鏡画像、機器の出力まで読ませる内容です。",
+    "Astraも誤りを残しており、思い込みで4、6、7、8番のレーンを選びました。基準の解答は5、9、10番です。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "研究室で実験する人",
+    "take": "使える製品ではなく評価の発表です。AIに読ませる前に、対照実験の条件を自分で確かめるとよいでしょう。",
+    "judgedAt": "2026-11-06T19:26:05.813153+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の影響は小さいものの、研究室で実験データを扱う人は、AIの読み違いの例を確認しておくと役立ちます。"
+    ]
+  },
+  "body": "BioBasicsBenchは、研究室で日常的に行われる湿式実験（試薬や生物のサンプルを容器の中で扱う実験）のデータを、AIがどこまで正しく読めるかを測る評価です。\n\nOpenAIの公式ブログによると、酵素の設計を手がけるバイオ企業のLigoと一緒に作られました。\n\n研究者が扱う実験データには、失敗した結果や判別しにくい写真、食い違う観察が含まれます。既存の評価は論文向けに選ばれた図や画像が中心で、こうした曖昧さを十分に測れていなかったと同社は説明しています。\n\nたとえば、写真の読み違いや対照実験（比較の基準になる実験）の見落としは、研究者を誤った結論に導きます。その結果、無駄な実験に時間を使うおそれがあります。今回の評価は、AIがそうした誤りを避けられるかを見ています。\n\n## 100課題、写真から機器の出力まで読ませる\n\n課題は100個で、5つの分野に分かれています。分野は次のとおりです。\n\n- タンパク質の手法\n- イメージングとフローサイトメトリー（細胞を1つずつ光で測る装置）\n- 定量とアッセイ（物質の量や反応を測る検査）\n- 核酸の手法\n- 分子クローニング（遺伝子を増やして取り出す作業）\n\n入力には、ゲルの写真、コロニーができたシャーレの写真、顕微鏡画像、配列のデータ、機器の画面、作業の動画などが使われます。1つの課題に複数の種類のデータが含まれることもあります。\n\n課題の難しさには幅があります。ゲルの中のDNAの分子量を読むような簡単なものもあれば、細かい測定データを分析するものもあります。どちらも、普段の研究で確実に終えるべき作業として作られています。\n\n採点は、課題ごとに決められた採点基準（ルーブリック）で行われます。結論、数値、根拠、データ不足を認める判断のどれが合っていたかを、項目ごとに点数化します。結論は合っていても分析が不十分なら、その分だけ点が下がります。\n\n課題は、Ligoの別の科学者による内部確認、博士号を持つ外部の研究者による確認、最後の内部確認を経ています。作った人とは別の目で確かめる仕組みです。\n\n## 前のGPT-5.6 Solより大きく上がった点\n\n全体の成績は、推論（AIが考えてから答える処理）の量を最も高い設定「xhigh」にして比べられています。平均得点は、付けられる点数に対する割合で示されています。主な結果は次のとおりです。\n\n- GPT-6 Astra：66.7%（95%信頼区間 60.3〜73.1%）\n- GPT-6.1 Sol：62.0%\n- GPT-5.6 Sol：43.8%\n- GPT-6 Luna：38.3%\n- GPT-5.5：35.4%\n- GPT-5.4：33.2%\n- GPT-5.2：31.2%\n\n調べたのは7つのモデル、37の設定です。各設定では100課題を5回ずつ解かせました。合計は1万8,500件の結果です。\n\nAstraの信頼区間は、2位のGPT-6.1 Solの62.0%と重なります。編集部の見立てでは、1位と2位の差は大きいとは言い切れません。\n\n一方で、1課題あたりの出力量は次のとおりです。\n\n- Astra：4,704トークン（AIが扱う文字の単位）\n- GPT-5.6 Sol：9,099トークン\n\nAstraは少ない量で高い点数を取りました。OpenAIは、写真や動画など複数の形式をまとめて扱う力（マルチモーダル）が伸びたことが大事だと説明しています。\n\n具体例は3つあります。1つ目は蛍光色素の判定です。前のモデルは、死んだ細胞を染める色素の光の強さだけで細胞が死んだと判断しました。しかし、検出器は別の色素の光も拾う可能性があります。\n\nAstraは、2つの色素の光が525〜540ナノメートルの範囲で重なることに気づきました。そのうえで、対照実験を追加するよう求めました。重なりがどれくらい混ざるかは、まだ測られていないとされています。\n\n2つ目はシャーレの写真です。前のモデルは、陰性対照（結果が出ないはずの比較用のシャーレ）にコロニー（1つの細胞から増えた集落）が見えないことを根拠にしました。\n\nAstraは、シャーレの縁に「LB Kan50」と書かれていることに気づきました。これはカナマイシンという別の抗生物質の表示で、実験に使ったアンピシリンとは違います。そのため、信頼できる対照ではないと判断しました。\n\n3つ目は、顕微鏡の連続画像で細胞が見えたり消えたりする課題です。前のモデルは細胞が消えた理由を生物学的に探しましたが、Astraは深さを変えながら撮った画像の列（z-stack）だと見抜きました。\n\n一方で、Astraも誤りを残しています。ある課題では、PCR（DNAを増やす操作）の結果から、大きい断片が成功の印だと思い込みました。その結果、次のような誤りになりました。\n\n- Astraが選んだレーン：4、6、7、8番\n- 基準の解答：5、9、10番\n\nOpenAIは、高い点数が研究室で信頼できる判断ができることを意味するわけではない、と書いています。\n\n## まだ分からないこと\n\n- BioBasicsBenchを外部の研究者が使えるか、公開の範囲はまだ発表されていません。\n- 日本の研究機関や日本語のデータでの扱いは、まだ発表されていません。\n- GPT-6 Astraが一般に使えるようになる時期はまだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nOpenAIが、研究室の実験データを読むAIの力を測る新しい評価を公開しました。GPT-6 Astraは平均66.7%で、前のGPT-5.6 Solの43.8%を上回りました。\n\n研究室では、実験がうまくいかないこともよくあります。写真がぼやけていたり、結果が食い違ったりすることもあります。AIがそこを読み違えると、研究者は間違った結論を出し、無駄な実験に時間を使うおそれがあります。\n\n今回の評価は100個の課題で測っています。課題は5つの分野に分かれていて、ゲルの写真や顕微鏡の画像、機器の画面などを読ませます。\n\nAstraは、前のモデルが見落とした点に気づいた例があります。たとえば、シャーレの縁に書かれていた抗生物質の表示です。一方で、思い込みで誤った選択をした例もあります。OpenAIは、高い点数が研究室で信頼できる判断を保証するわけではないとしています。\n\n日本での提供や、評価の公開の範囲はまだ発表されていません。",
+  "channel": "OpenAI公式ブログ",
+  "channelId": "",
+  "channelSlug": "openai-news",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Measuring how AI agents handle everyday wet-lab science",
+  "publishedAt": "2026-11-06T00:00:00+00:00",
+  "generatedAt": "2026-11-06T19:26:05.813142+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/biobasicsbench-wet-lab-ai-agents-0a2cd224.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "AIの読み取り結果を使う前に、陰性対照など比較の条件を自分で確かめる",
+    "OpenAIの公式ブログで、BioBasicsBenchの公開の範囲が出ているかを確かめる"
+  ],
+  "qualityScore": 88,
+  "sourcePublishedAt": "2026-11-06T00:00:00+00:00",
+  "detectedAt": "2026-11-06T19:23:54+00:00",
+  "layout": "noir",
+  "summaryLine": "OpenAIの新評価BioBasicsBenchで、GPT-6 Astraが平均**66.7%**を取り、7モデルの中で最高の得点でした。",
+  "keyFigure": {
+    "value": "66.7",
+    "unit": "%",
+    "label": "平均"
+  },
+  "sectionsPolishedAt": "2026-11-06T19:36:50+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/biobasicsbench-wet-lab-ai-agents-fig1-08cbf0dc.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "hero",
+      "credit": "OpenAI",
+      "sourceUrl": "https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science",
+      "original": "https://images.ctfassets.net/kftzwdyauwt9/3lNbSQIg31Dg9aBrUjuQMI/131fea8d534499ca30f7a9f880269d74/biobasicsbench-social.png?w=1600&h=900&fit=fill"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "OpenAI",
+    "provider": "OpenAI公式ブログ",
+    "sourceUrl": "https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science",
+    "original": "https://cdn.openai.com/mdx-assets/16da4f0a-d37c-4056-a78c-4e1db6f08a14/rim-detail.9206ce84.png?w=3840&q=70&fm=webp",
+    "width": 780,
+    "height": 351,
+    "at": "2026-11-06T19:37:08+00:00"
+  },
+  "imageFocus": {
+    "x": 0.409,
+    "y": 0.615,
+    "box": [
+      0.0,
+      0.229,
+      0.819,
+      1.0
+    ],
+    "ar": 2.2222,
+    "src": "https://ai-tech-express.jp/img/biobasicsbench-wet-lab-ai-agents-0a2cd224.jpg"
+  }
+}
