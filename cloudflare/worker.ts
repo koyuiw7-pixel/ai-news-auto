@@ -88,7 +88,7 @@ async function loadArticle(env: Env, slug: string): Promise<void> {
  * 取り下げた記事（content/retired.json。scripts/retire_articles.py が書き、scripts/cf_content.mjs が /_content/retired.json に置く）。
  * 重複の記事は代表の記事へ 301、それ以外は 410 Gone を返す（AdSense「有用性の低いコンテンツ」への対策。2026-11-03）
  */
-type RetiredEntry = { reason: string; redirect?: string };
+type RetiredEntry = { reason: string; redirect?: string; redirectPath?: string };
 type RetiredLists = { articles: Map<string, RetiredEntry>; products: Map<string, RetiredEntry> };
 let retiredLoading: Promise<RetiredLists> | null = null;
 
@@ -189,6 +189,12 @@ async function retiredResponse(request: Request, url: URL, env: Env, ctx: Ctx): 
   }
   const entry = (await loadRetired(env)).get(slug);
   if (!entry) return null;
+  // 記事以外のページ（人物のまとめなど）へ移したもの（台帳 A53）。サイト内の決まった形のパスだけ
+  if (entry.redirectPath && /^\/(?:people|events|guides|products|roundups)\/[a-z0-9-]+$/.test(entry.redirectPath)) {
+    const to = new URL(entry.redirectPath, url);
+    to.search = url.search;
+    return new Response(null, { status: 301, headers: { Location: to.pathname + to.search, "Cache-Control": "public, max-age=3600" } });
+  }
   if (entry.redirect && /^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(entry.redirect)) {
     const to = new URL(`/${match[1]}/${entry.redirect}${match[3] ?? ""}`, url);
     to.search = url.search;

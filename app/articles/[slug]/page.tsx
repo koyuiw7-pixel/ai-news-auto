@@ -1,4 +1,5 @@
 import { articleTitle } from "@/lib/headline";
+import PeopleInArticle from "@/components/PeopleInArticle";
 import TopicListMembership from "@/components/TopicListMembership";
 import { canonicalPathOf, isIndexable } from "@/lib/indexing";
 import type { Metadata } from "next";
@@ -892,6 +893,8 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 値上げ・障害・リコール・サービス終了の一覧に載っている記事（台帳 A52） */}
           <TopicListMembership slug={article.slug} className="mt-12" />
+          {/* 記事に出てくる人物のまとめページ（台帳 A53） */}
+          <PeopleInArticle article={article} className="mt-3" />
 
           {article.tags.length > 0 && (
             <div className="mt-12 flex flex-wrap gap-2">

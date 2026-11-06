@@ -19,6 +19,7 @@ import { getAllBuyingGuides } from "@/lib/buying-guides";
 import { getAllEvents } from "@/lib/events";
 import { getPricing } from "@/lib/pricing";
 import { listedProducts, supersedesGuide } from "@/lib/products";
+import { getAllPeople } from "@/lib/people";
 import { archiveMonths, MIN_INDEX_ENTRIES, monthEntries, recentEntries, TOPIC_LISTS, topicListsUpdatedAt } from "@/lib/topic-lists";
 import { getAllWeeks, weekPublishedAt } from "@/lib/weekly";
 import { isBroadGenre } from "@/lib/sections";
@@ -132,6 +133,9 @@ export function sitemapEntries(): SitemapEntry[] {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    // 人物のまとめ（台帳 A53）
+    { url: `${base}/people`, lastModified, changeFrequency: "weekly" as const, priority: 0.6 },
+    ...getAllPeople().map((p) => ({ url: `${base}/people/${p.slug}`, lastModified: new Date(p.verifiedAt), changeFrequency: "daily" as const, priority: 0.8 })),
     // 値上げ・障害・リコール・サービス終了の一覧（台帳 A52）。載っている発表が少ない一覧は検索に出さないので載せない
     { url: `${base}/roundups`, lastModified: new Date(topicListsUpdatedAt()), changeFrequency: "hourly" as const, priority: 0.8 },
     ...TOPIC_LISTS.filter((m) => recentEntries(m.kind).length >= MIN_INDEX_ENTRIES).map((m) => ({

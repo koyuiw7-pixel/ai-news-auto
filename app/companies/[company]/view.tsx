@@ -10,6 +10,7 @@ import { listingRobots } from "@/lib/indexing";
 import { pageHref, pageSuffix, paginate } from "@/lib/paginate";
 import { productsByCompany } from "@/lib/products";
 import Link from "next/link";
+import { peopleOfCompany } from "@/lib/people";
 
 export const aiArticles = () => getAllArticles().filter((a) => a.genreSlug === COMPANY_PAGE_GENRE);
 
@@ -77,6 +78,18 @@ export default function CompanyView({ slug, page }: { slug: string; page: number
               ))}
             </ul>
           </section>
+        )}
+        {/* この企業の人物のまとめ（台帳 A53）。1ページ目だけ */}
+        {page === 1 && peopleOfCompany(slug).length > 0 && (
+          <p className="mt-6 text-note text-ink-soft">
+            人物：
+            {peopleOfCompany(slug).map((p, i) => (
+              <span key={p.slug}>
+                {i > 0 && "・"}
+                <Link href={`/people/${p.slug}`} className="font-semibold text-accent underline underline-offset-4">{p.nameJa}（{p.jobTitle.replace(/（.*?）/, "")}）の経歴と最新ニュース</Link>
+              </span>
+            ))}
+          </p>
         )}
         <div className="mt-10">
           <Timeline articles={paged.items} filterable />

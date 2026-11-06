@@ -6,7 +6,7 @@ import { getAllArticles, type ArticleSummary } from "@/lib/articles";
  * ページは app/gone/[slug]/page.tsx。cloudflare/worker.ts が /articles/<取り下げた slug> を受けたとき、このページを描いて 410 で返す
  * （サイトのヘッダー・フッター・色のまま。前は素の HTML で、壊れたサイトに見えた）。
  */
-export type RetiredEntry = { title?: string; channel?: string; reason?: string; redirect?: string; retiredAt?: string };
+export type RetiredEntry = { title?: string; channel?: string; reason?: string; redirect?: string; redirectPath?: string; retiredAt?: string };
 
 const RETIRED = ((retiredJson as { articles?: Record<string, RetiredEntry> }).articles ?? {}) as Record<string, RetiredEntry>;
 
