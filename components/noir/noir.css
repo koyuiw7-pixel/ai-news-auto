@@ -1,0 +1,746 @@
+/*
+ * 新しい記事の見た目「ノワール」（2026-11-07 オーナー承認・台帳 W36）。黒い表紙の写真＋白い紙面。
+ * 今までの記事にも同じ CSS が届くので、決まりはすべて .noir の中だけに効かせる（今までの見た目を変えない）。
+ * 色: 白 #ffffff の紙・冷たい灰色・黒 #0a0b0d・差し色は赤だけ（#ff1f3d / #d7001f）。
+ * 黒の上に赤い文字を置かない（黒の上は白い文字。赤は細い線・札の地色だけ）。クリーム・ベージュ・金は使わない。
+ */
+
+/* ノワールの記事では、サイトの紺の帯・ジャンルのタブ・速報の1行の代わりに、写真の上の細い帯（.nr-top）を出す */
+html:has(.noir) .site-header,
+html:has(.noir) .genre-tabs,
+html:has(.noir) .live-line {
+  display: none;
+}
+html:has(.noir) body {
+  overflow-x: clip;
+}
+
+.noir {
+  --nr-ink: #0a0b0d;
+  --nr-line: #25282d;
+  --nr-white: #ffffff;
+  --nr-mute: #8d939b;
+  --nr-dim: #c8ccd2;
+  --nr-red: #ff1f3d;
+  --nr-deep: #d7001f;
+  --nr-sheet: #ffffff;
+  --nr-text: #0e1013;
+  --nr-text2: #3a3f46;
+  --nr-rule: #e5e7ea;
+  --nr-soft: #61676f;
+  --nr-card: #ffffff;
+  --nr-link: var(--nr-deep);
+  --nr-mark: rgb(255 31 61 / 0.16);
+  --nr-place: linear-gradient(135deg, #e3e6ea, #c9ced5);
+  --nr-display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --nr-body: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+  --nr-num: "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  /* 中に置くサイトの部品（広告の枠・判定カード・料金表など）も同じ色にする（紺を黒に、蛍光ペンを薄い赤に） */
+  --paper: var(--nr-sheet);
+  --surface: #f4f5f7;
+  --surface-2: #eceef1;
+  --ink: var(--nr-text);
+  --ink-soft: var(--nr-text2);
+  /* 部品の注記の文字（段落は 7:1 以上。docs/typography.md） */
+  --muted: #4b5058;
+  --line: var(--nr-rule);
+  --line-strong: #c9cdd3;
+  --accent: var(--nr-ink);
+  --accent-ink: #ffffff;
+  --accent-soft: #eceef1;
+  --marker: var(--nr-mark);
+  --marker-h: 34%;
+  --official: var(--nr-text2);
+  --roundup: var(--nr-ink);
+  --signal: var(--nr-deep);
+  --signal-ink: #ffffff;
+  --live: var(--nr-deep);
+  --live-ink: #ffffff;
+  --mast: var(--nr-ink);
+
+  background: var(--nr-sheet);
+  color: var(--nr-text);
+  font-family: var(--nr-body);
+  -webkit-font-smoothing: antialiased;
+}
+:root[data-theme="dark"] .noir {
+  --nr-sheet: #0e1013;
+  --nr-text: #eceef1;
+  --nr-text2: #c3c7cd;
+  --nr-rule: #262a30;
+  --nr-soft: #9aa0a8;
+  --nr-card: #15181c;
+  --nr-link: #ffffff;
+  --nr-mark: rgb(255 31 61 / 0.28);
+  --nr-place: linear-gradient(135deg, #22262b, #30353b);
+  --surface: #15181c;
+  --muted: #b4b9c0;
+  --surface-2: #1d2126;
+  --line-strong: #3a3f46;
+  --accent: #eceef1;
+  --accent-ink: #0e1013;
+  --accent-soft: #1d2126;
+  /* 暗い画面では紙面も黒いので、部品の赤い文字（「続きを読む →」など）は白にする（黒の上に赤い文字を置かない） */
+  --signal: #ffffff;
+  --signal-ink: #0e1013;
+  --live: #ffffff;
+  --live-ink: #0e1013;
+  color-scheme: dark;
+}
+
+.noir .nr-g {
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.noir .nr-col {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* 上の帯：最初は写真の上に透明、表紙の途中からすりガラス、表紙を過ぎると白 */
+.noir .nr-top {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.35s, border-color 0.35s;
+}
+.noir .nr-top.glass {
+  background: rgb(12 12 12 / 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.noir .nr-top.solid {
+  background: rgb(255 255 255 / 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: var(--nr-rule);
+}
+:root[data-theme="dark"] .noir .nr-top.solid {
+  background: rgb(14 16 19 / 0.94);
+}
+.noir .nr-logo {
+  flex-shrink: 0;
+  font: 900 16px/1 var(--nr-display);
+  letter-spacing: 0.14em;
+  color: var(--nr-white);
+  text-decoration: none;
+}
+.noir .nr-top.solid .nr-logo {
+  color: var(--nr-text);
+}
+.noir .nr-top .nr-t {
+  min-width: 0;
+  max-width: 62%;
+  font: 500 13px/1.4 var(--nr-body);
+  color: var(--nr-text2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s, transform 0.35s;
+}
+.noir .nr-top.solid .nr-t {
+  opacity: 1;
+  transform: none;
+}
+.noir .nr-bar {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: var(--nr-red);
+}
+.noir .nr-safe {
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 61;
+  background: var(--nr-ink);
+}
+
+/* 表紙（高さは最初から決まっている。写真の読み込みで下が動かない） */
+.noir .nr-hero {
+  position: relative;
+  height: min(118vw, 640px);
+  overflow: hidden;
+  color: var(--nr-white);
+  background: var(--nr-ink);
+}
+.noir .nr-img {
+  position: absolute;
+  inset: -8% 0 0;
+  will-change: transform;
+}
+.noir .nr-img img {
+  filter: brightness(1.08);
+}
+.noir .nr-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgb(12 12 12 / 0.45) 0, rgb(12 12 12 / 0) 20%, rgb(12 12 12 / 0) 42%, rgb(12 12 12 / 0.88) 100%);
+}
+/* 写真の無い記事は、黒い表紙に題名を大きく（関係の無い写真は使わない） */
+.noir .nr-hero.nr-type {
+  height: auto;
+  min-height: min(96vw, 520px);
+  display: flex;
+  align-items: flex-end;
+}
+.noir .nr-hero.nr-type::after {
+  display: none;
+}
+.noir .nr-hero.nr-type .nr-hl {
+  position: relative;
+  bottom: auto;
+  padding-top: 104px;
+  padding-bottom: 56px;
+  width: 100%;
+}
+.noir .nr-hero.nr-type h1 {
+  font-size: clamp(32px, 9.4vw, 52px);
+}
+.noir .nr-hero.nr-type .nr-rule {
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--nr-red);
+  margin-bottom: 20px;
+}
+.noir .nr-hl {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 44px;
+  z-index: 2;
+}
+.noir .nr-kick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  font: 700 13px/1.5 var(--nr-body);
+  letter-spacing: 0.16em;
+  color: var(--nr-white);
+}
+.noir .nr-kick i {
+  font-style: normal;
+  color: #ffffff;
+  background: var(--nr-deep);
+  padding: 2px 7px;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+}
+.noir .nr-hero h1 {
+  font: 900 clamp(30px, 8.6vw, 44px) / 1.28 var(--nr-display);
+  margin: 12px 0 0;
+  text-wrap: balance;
+  letter-spacing: -0.005em;
+  color: var(--nr-white);
+}
+.noir .nr-meta {
+  font: 500 13px/1.5 var(--nr-body);
+  color: var(--nr-dim);
+  margin-top: 14px;
+  display: flex;
+  gap: 4px 12px;
+  flex-wrap: wrap;
+}
+.noir .nr-hl > * {
+  animation: nr-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.noir .nr-hl h1 {
+  animation-delay: 0.08s;
+}
+.noir .nr-hl .nr-meta {
+  animation-delay: 0.16s;
+}
+@keyframes nr-rise {
+  from {
+    opacity: 0.001;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 白い紙面。上の角を丸くして表紙に重ねる */
+.noir .nr-sheet {
+  position: relative;
+  z-index: 3;
+  margin-top: -24px;
+  background: var(--nr-sheet);
+  border-radius: 18px 18px 0 0;
+  padding-top: 30px;
+  padding-bottom: 72px;
+}
+.noir .nr-pr {
+  margin: 0 0 16px;
+  font: 500 13px/1.6 var(--nr-body);
+  color: var(--nr-soft);
+}
+
+/* 要点：何が起きたかの1文（白・赤い縦の線）と、大きな数字（黒） */
+.noir .nr-sum {
+  margin: 0 0 30px;
+  display: grid;
+  gap: 10px;
+}
+.noir .nr-srow {
+  position: relative;
+  padding: 18px;
+  background: var(--nr-card);
+  border: 1px solid var(--nr-rule);
+  overflow: hidden;
+}
+.noir .nr-s1::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--nr-red);
+}
+.noir .nr-s1 p {
+  margin: 0;
+  font: 700 19px/1.6 var(--nr-display);
+  color: var(--nr-text);
+}
+.noir .nr-s1 em {
+  font-style: normal;
+  font: 800 1.3em/1.3 var(--nr-num);
+  color: var(--nr-text);
+  letter-spacing: -0.02em;
+  background: linear-gradient(transparent 66%, var(--nr-mark) 66%);
+  padding: 0 2px;
+}
+.noir .nr-s2 {
+  background: var(--nr-ink);
+  border-color: var(--nr-ink);
+  color: var(--nr-white);
+}
+:root[data-theme="dark"] .noir .nr-s2 {
+  border-color: var(--nr-line);
+}
+.noir .nr-s2 .nr-big {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  color: var(--nr-white);
+}
+.noir .nr-s2 .nr-big b {
+  font: 800 clamp(40px, 13vw, 54px) / 1 var(--nr-num);
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.noir .nr-s2 .nr-big i {
+  font: 700 18px var(--nr-body);
+  font-style: normal;
+}
+.noir .nr-s2 p {
+  font: 500 14px/1.6 var(--nr-body);
+  color: var(--nr-dim);
+  margin: 8px 0 0;
+}
+.noir .nr-s2 .nr-was {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--nr-line);
+  font: 500 13px var(--nr-body);
+  color: var(--nr-mute);
+}
+.noir .nr-s2 .nr-was s {
+  font: 600 15px var(--nr-num);
+  color: var(--nr-dim);
+}
+.noir .nr-more {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 4px;
+  font: 700 14px var(--nr-body);
+  color: var(--nr-link);
+  text-decoration: none;
+}
+.noir .nr-more span {
+  display: inline-block;
+  animation: nr-nudge 1.8s ease-in-out infinite;
+}
+@keyframes nr-nudge {
+  0%,
+  100% {
+    transform: none;
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+.js-noir .noir .nr-srow {
+  animation: nr-slidein 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.js-noir .noir .nr-s2 {
+  animation-delay: 0.12s;
+}
+@keyframes nr-slidein {
+  from {
+    transform: translateX(-14px);
+    opacity: 0.3;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* 本文 */
+.noir .nr-prose {
+  max-width: none;
+  color: var(--nr-text2);
+}
+.noir .nr-prose h2 {
+  font: 900 22px/1.5 var(--nr-display);
+  color: var(--nr-text);
+  margin: 46px 0 14px;
+  text-wrap: balance;
+  border: 0;
+  padding: 0;
+}
+.noir .nr-prose h2::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--nr-deep);
+  margin-bottom: 14px;
+}
+.noir .nr-prose h3 {
+  font: 700 17px/1.6 var(--nr-display);
+  color: var(--nr-text);
+  margin: 30px 0 10px;
+}
+.noir .nr-prose p,
+.noir .nr-prose li {
+  font: 500 16px/1.95 var(--nr-body);
+  color: var(--nr-text2);
+}
+.noir .nr-prose p {
+  margin: 0 0 18px;
+}
+/* 広い画面の本文は 17px（docs/typography.md） */
+@media (min-width: 768px) {
+  .noir .nr-prose p,
+  .noir .nr-prose li {
+    font-size: 17px;
+  }
+  /* 見出しは本文の 1.35 倍以上 */
+  .noir .nr-prose h2,
+  .noir .nr-h2 {
+    font-size: 23px;
+  }
+}
+.noir .nr-prose strong,
+.noir .nr-prose b {
+  color: var(--nr-text);
+}
+.noir .nr-prose a {
+  color: var(--nr-text);
+  text-decoration-color: var(--nr-deep);
+  text-underline-offset: 3px;
+}
+.noir .nr-prose blockquote {
+  margin: 28px 0;
+  padding: 0 0 0 18px;
+  border: 0;
+  border-left: 2px solid var(--nr-deep);
+  border-radius: 0;
+  background: none;
+  font: 700 19px/1.65 var(--nr-display);
+  color: var(--nr-text);
+  quotes: none;
+}
+.noir .nr-prose blockquote p {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+}
+.noir .nr-prose blockquote p::before,
+.noir .nr-prose blockquote p::after {
+  content: none;
+}
+.noir .nr-prose table {
+  border-radius: 0;
+  border: 0;
+  border-top: 1px solid var(--nr-rule);
+}
+.noir .nr-prose thead {
+  background: none;
+  border-bottom: 2px solid var(--nr-text);
+}
+.noir .nr-prose th {
+  font: 600 13px/1.5 var(--nr-body);
+  color: var(--nr-soft);
+}
+.noir .nr-prose td {
+  font: 500 14px/1.6 var(--nr-body);
+  color: var(--nr-text2);
+  border-top: 1px solid var(--nr-rule);
+}
+/* 2列の表（料金など）は横に収まるので、細い線の表に */
+.noir .nr-prose table.nr-price {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 6px 0 22px;
+  font-variant-numeric: tabular-nums;
+}
+.noir .nr-prose table.nr-price td,
+.noir .nr-prose table.nr-price th {
+  min-width: 0;
+  padding: 13px 0;
+  white-space: normal;
+}
+.noir .nr-prose table.nr-price td:last-child,
+.noir .nr-prose table.nr-price th:last-child {
+  text-align: right;
+  padding-left: 12px;
+}
+.noir .nr-prose table.nr-price td:last-child {
+  font: 700 15px/1.5 var(--nr-num);
+  color: var(--nr-text);
+}
+.noir .nr-prose .nr-scroll {
+  margin: 6px 0 22px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.noir .nr-prose .nr-scroll table {
+  margin: 0;
+}
+
+/* 前 → 今の行（1行に。表にしない） */
+.noir .nr-chg {
+  margin: 4px 0 24px;
+  border-top: 1px solid var(--nr-rule);
+}
+.noir .nr-chg .nr-c {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--nr-rule);
+}
+.noir .nr-chg small {
+  display: block;
+  font: 500 13px/1.5 var(--nr-body);
+  color: var(--nr-soft);
+}
+.noir .nr-chg p {
+  margin: 6px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+}
+.noir .nr-chg s {
+  font: 500 14px/1.4 var(--nr-num);
+  color: var(--nr-soft);
+  white-space: nowrap;
+}
+.noir .nr-chg i {
+  font-style: normal;
+  color: var(--nr-deep);
+  font-weight: 700;
+}
+:root[data-theme="dark"] .noir .nr-chg i {
+  color: var(--nr-soft);
+}
+.noir .nr-chg b {
+  font: 800 20px/1.3 var(--nr-num);
+  color: var(--nr-text);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.noir .nr-chg .nr-cnote {
+  font: 600 13px/1.4 var(--nr-body);
+  color: var(--nr-soft);
+}
+
+/* 最後の章の一覧（グレード・品目ごと） */
+.noir .nr-line {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  border-top: 2px solid var(--nr-text);
+}
+.noir .nr-line li {
+  display: grid;
+  grid-template-columns: minmax(5.5em, 7.5em) 1fr;
+  gap: 12px;
+  margin: 0;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--nr-rule);
+}
+.noir .nr-line li::before,
+.noir .nr-line li::marker {
+  content: none;
+}
+.noir .nr-line b {
+  font: 800 14px/1.6 var(--nr-body);
+  color: var(--nr-text);
+}
+.noir .nr-line span {
+  font: 500 15px/1.7 var(--nr-body);
+  color: var(--nr-text2);
+  min-width: 0;
+}
+
+/* 発表元のページへ（黒い横いっぱいのボタン） */
+.noir .nr-srcbtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 26px 0 8px;
+  padding: 16px 18px;
+  background: var(--nr-ink);
+  color: #ffffff;
+  text-decoration: none;
+  font: 700 15px/1.5 var(--nr-body);
+}
+:root[data-theme="dark"] .noir .nr-srcbtn {
+  background: #ffffff;
+  color: var(--nr-ink);
+}
+.noir .nr-srcbtn span {
+  font: 800 18px var(--nr-num);
+}
+
+/* 本文に溶け込む広告・案内の枠（上下の細い線） */
+.noir .nr-slot {
+  margin: 40px 0;
+}
+/* 右側に置いていた商品枠を1列の中に置くので、長い説明の行は注記の大きさ（14px）にする */
+.noir .nr-rail .text-meta {
+  font-size: 14px;
+}
+
+/* 関連記事（写真の代わりに灰色の四角。写真があれば重ねる） */
+.noir .nr-h2 {
+  font: 900 22px/1.5 var(--nr-display);
+  color: var(--nr-text);
+  margin: 56px 0 10px;
+}
+.noir .nr-h2::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--nr-deep);
+  margin-bottom: 14px;
+}
+.noir .nr-rel a {
+  display: grid;
+  grid-template-columns: 1fr 84px;
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid var(--nr-rule);
+  text-decoration: none;
+  color: var(--nr-text);
+}
+.noir .nr-rel a b {
+  font: 700 15px/1.55 var(--nr-display);
+}
+.noir .nr-rel a small {
+  display: block;
+  font: 500 13px/1.5 var(--nr-body);
+  color: var(--nr-soft);
+  margin-top: 6px;
+}
+.noir .nr-rel .nr-ph {
+  position: relative;
+  display: block;
+  width: 84px;
+  height: 62px;
+  overflow: hidden;
+  background: var(--nr-place);
+}
+.noir .nr-src {
+  font: 500 13px/1.7 var(--nr-body);
+  color: var(--nr-soft);
+  margin-top: 36px;
+  padding-top: 14px;
+  border-top: 1px solid var(--nr-rule);
+}
+.noir .nr-src a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.noir .nr-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font: 500 13px/1.6 var(--nr-body);
+  color: var(--nr-soft);
+  margin-top: 10px;
+}
+.noir .nr-crumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+.noir .nr-crumbs a:hover {
+  color: var(--nr-text);
+}
+
+/* 読み進めると静かに現れる（最初から読める状態。JS が動いた端末だけ、画面の外の物を少し下げて薄くしておく） */
+.noir .rv,
+.noir [data-rv] {
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.8s;
+}
+.js-noir .noir .rv.pre,
+.js-noir .noir [data-rv].pre {
+  transform: translateY(14px);
+  opacity: 0.35;
+}
+.noir a:focus-visible {
+  outline: 2px solid var(--nr-red);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .noir .nr-hl > *,
+  .js-noir .noir .nr-srow,
+  .noir .nr-more span {
+    animation: none;
+  }
+  .noir .rv,
+  .noir [data-rv] {
+    transition: none;
+  }
+  .js-noir .noir .rv.pre,
+  .js-noir .noir [data-rv].pre {
+    transform: none;
+    opacity: 1;
+  }
+  .noir .nr-img {
+    transform: none !important;
+  }
+}

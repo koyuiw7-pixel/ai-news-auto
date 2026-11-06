@@ -1,4 +1,5 @@
 import type { ArticleChart } from "@/lib/charts";
+import type { NoirChange, NoirKeyFigure, NoirWrapItem } from "@/lib/noir";
 import type { BodyImage } from "@/lib/body-images";
 import fs, { hasVirtualFs } from "@/lib/content-fs";
 import path from "node:path";
@@ -112,6 +113,16 @@ export type Article = {
   sectionTitles?: { body?: Record<string, string>; easy?: Record<string, string> };
   /** 数字の図（前と今・推移・料金の段。scripts/article_charts.py が記事の表から作る。lib/charts.ts） */
   charts?: ArticleChart[];
+  /** 記事の見た目。"noir" は 2026-11-07 以降の新しい記事（黒い表紙＋白い紙面。lib/noir.ts・台帳 W36）。無ければ今までの見た目 */
+  layout?: "noir";
+  /** ノワールの要点の1文（大事な数字を **…** で囲む。scripts/noir_layout.py が本文・要点から抜き出す） */
+  summaryLine?: string;
+  /** ノワールの黒いカードの数字（値は記事に書いてある文字のまま） */
+  keyFigure?: NoirKeyFigure;
+  /** ノワールの「前 → 今」の行（本文の「前／今回」の表の行） */
+  changes?: NoirChange[];
+  /** ノワールの最後の章の一覧（本文の「名前｜説明」の表の行） */
+  wrapUp?: NoirWrapItem[];
   /** 本文に置く公式の写真・図（1〜2枚・出典つき。scripts/images.py の body_images。lib/body-images.ts） */
   bodyImages?: BodyImage[];
   /** ニュースの種類（earnings / security / product …。scripts/news_types.py。2026-11-03 以降の記事だけ） */

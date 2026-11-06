@@ -70,11 +70,11 @@ test('[A12] 人の確認について実態と違う約束を書かない（全�
   assert.deepEqual(bad, []);
 });
 
-test('[W8] 嫌いな見た目を使わない: Zen Kaku の書体・AIっぽい「↗」の矢印', () => {
+test('[W8] 嫌いな見た目を使わない: Zen Kaku の書体・AIっぽい「↗」の矢印（Zen Kaku は 2026-11-07 にオーナーが承認したノワールの記事 components/noir/ だけ。W36）', () => {
   const bad = [];
   for (const rel of SITE) {
     const src = read(rel).split('\n').filter((line) => !/^\s*(\/\/|\*|\/\*)/.test(line)).join('\n'); // 説明の行は除く
-    if (/Zen[_ ]Kaku/.test(src)) bad.push(`${rel}: Zen Kaku`);
+    if (/Zen[_ +]Kaku/.test(src) && !rel.startsWith('components/noir/')) bad.push(`${rel}: Zen Kaku`);
     if (/↗/.test(src)) bad.push(`${rel}: ↗`);
   }
   assert.deepEqual(bad, []);

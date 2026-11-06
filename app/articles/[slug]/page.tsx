@@ -84,6 +84,8 @@ import PriceTable from "@/components/PriceTable";
 import { hasPriceBlock, markPriceSlot, pricingForArticle, pricingRelevant, PRICE_SLOT, withPriceSlot } from "@/lib/price-slot";
 import { authorJsonLd, publisherJsonLd } from "@/lib/publisher";
 import { stripListNumber } from "@/lib/list-number";
+import { isNoir } from "@/lib/noir";
+import { noirArticlePage } from "@/components/noir/noirArticlePage";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -404,6 +406,16 @@ export default async function ArticlePage({ params }: Props) {
         ]
       : []),
   ];
+
+  // 2026-11-07 以降の新しい記事（layout: "noir"）だけ、新しい見た目で出す。印の無い今までの記事は下の今までの見た目のまま（台帳 W36）
+  if (isNoir(article) && !isRoundup && web) {
+    return noirArticlePage({
+      article, jsonLd, bodyHtml, easyHtml, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
+      inlineOffer, shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, offer, inlineRead, mainArticle,
+      guideLinks, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
+      howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink,
+    });
+  }
 
   return (
     <div className="mx-auto max-w-[1240px] px-5 py-8 sm:px-8 sm:py-10">

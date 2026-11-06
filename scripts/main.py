@@ -37,6 +37,7 @@ import section_gate  # noqa: E402
 import news_types  # noqa: E402
 import article_style  # noqa: E402
 import public_interest  # noqa: E402  ミサイル・災害の記事の公式の安全情報のリンク（台帳 A39）
+import noir_layout  # noqa: E402  新しい記事の見た目（台帳 W36）
 
 # --------------------------------------------------------------------------- #
 # 設定
@@ -901,6 +902,10 @@ def write_article(record: dict) -> Path:
         log(f"   [safety] {change}")
     ARTICLES_DIR.mkdir(parents=True, exist_ok=True)
     path = ARTICLES_DIR / f"{record['slug']}.json"
+    # 新しい記事だけ、新しい見た目（ノワール）の印と要点の欄を付ける。今ある記事のファイルは書き換えない（2026-11-07 台帳 W36。scripts/noir_layout.py）
+    if not path.exists():
+        for change in noir_layout.attach(record):
+            log(f"   [layout] {change}")
     path.write_text(
         json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
