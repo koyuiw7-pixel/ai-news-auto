@@ -67,14 +67,15 @@ class SlotsAndCapTest(unittest.TestCase):
         slots = tp.free_slots({"posted": {}}, at(5, 15, 0))
         self.assertEqual([s.astimezone(JST).strftime("%H:%M") for s in slots], ["18:45", "20:30"])
 
-    def test_daily_cap_counts_breaking_but_not_disaster(self):
+    def test_daily_cap_counts_neither_breaking_nor_disaster(self):
+        # 2026-11-06 オーナー決定（S41）: 速報は上限に数えない。通常の投稿だけで5本
         posted = {f"b{i}": {"id": f"t{i}", "breaking": True, "dueAt": at(5, 9, i).isoformat()} for i in range(3)}
-        slots = tp.free_slots({"posted": posted}, at(5, 15, 0))
-        self.assertEqual(len(slots), 2)  # 5 - 速報3 = 2
+        base = len(tp.free_slots({"posted": {}}, at(5, 15, 0)))
+        self.assertEqual(len(tp.free_slots({"posted": posted}, at(5, 15, 0))), base)  # 速報3本でも枠は減らない
         posted["quake"] = {"id": "q", "disaster": True, "dueAt": at(5, 10, 0).isoformat()}
-        self.assertEqual(len(tp.free_slots({"posted": posted}, at(5, 15, 0))), 2)  # 災害は数えない
-        posted.update({f"c{i}": {"id": f"c{i}", "dueAt": at(5, 11, i).isoformat()} for i in range(2)})
-        self.assertEqual(tp.free_slots({"posted": posted}, at(5, 15, 0)), [])
+        self.assertEqual(len(tp.free_slots({"posted": posted}, at(5, 15, 0))), base)  # 災害も数えない
+        posted.update({f"c{i}": {"id": f"c{i}", "dueAt": at(5, 11, i).isoformat()} for i in range(5)})
+        self.assertEqual(tp.free_slots({"posted": posted}, at(5, 15, 0)), [])  # 通常5本で満杯
 
     def test_cap_exempt_by_title(self):
         self.assertTrue(sns_plan.cap_exempt({"title": "北朝鮮が弾道ミサイルを発射"}))

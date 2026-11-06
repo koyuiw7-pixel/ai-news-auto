@@ -200,6 +200,12 @@ def cap_exempt(record: dict | None) -> bool:
     return kind in plan()["cap_exempt"]
 
 
+def breaking_exempt(record: dict | None) -> bool:
+    """速報は1日の上限に数えない（2026-11-06 12:4x オーナー決定「速報は本数に関係なく出す」・台帳 S41）。
+    速報かどうかの判定（公式の発表・出てから90分以内など）と、同じ話題を2回出さない・決算の上限（S39）はそのまま"""
+    return bool((record or {}).get("breaking"))
+
+
 def _when(rec: dict) -> datetime | None:
     for key in ("dueAt", "postedAt", "sentAt"):
         raw = rec.get(key)
@@ -221,11 +227,11 @@ def _when(rec: dict) -> datetime | None:
 
 def count_today(posted: dict, day: date, skipped: set[str] | None = None) -> int:
     """その日（日本時間）に出した・予約した自分の投稿の数（Threads の記録。X・Facebook は同じ記事を同じ日に出す）。
-    動画が作れず出さなかったもの（skipped）とミサイル・災害は数えない"""
+    動画が作れず出さなかったもの（skipped）とミサイル・災害・速報は数えない"""
     skipped = skipped or set()
     n = 0
     for slug, rec in (posted or {}).items():
-        if slug in skipped or cap_exempt(rec):
+        if slug in skipped or cap_exempt(rec) or breaking_exempt(rec):
             continue
         if not (rec.get("id") or rec.get("status") == "awaiting_video" or rec.get("style") == "digest"):
             continue

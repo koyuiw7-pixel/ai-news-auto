@@ -127,8 +127,9 @@ def main() -> int:
             log(f"[breaking] {article['slug']}: {why}")
             continue
         today = now.astimezone(tp.JST).date()
-        used = tp.sns_plan.count_today(state["posted"], today, tp.sns_plan.video_skipped()) + sum(1 for a in kept if not tp.sns_plan.cap_exempt(a))
-        if not tp.sns_plan.cap_exempt(article) and used >= tp.sns_plan.daily_cap():
+        # 2026-11-06 オーナー決定（台帳 S41）: 速報は1日の上限に数えず、本数に関係なく出す（決算の上限 S39 は下で見る）
+        used = tp.sns_plan.count_today(state["posted"], today, tp.sns_plan.video_skipped())
+        if not (tp.sns_plan.cap_exempt(article) or tp.sns_plan.breaking_exempt(article)) and used >= tp.sns_plan.daily_cap():
             log(f"[breaking] {article['slug']}: 今日の自分の投稿が上限 {tp.sns_plan.daily_cap()} 本に達しているので SNS には出しません")
             continue
         fin_kept = sum(1 for a in kept if tp.sns_plan.finance_topic(a))
