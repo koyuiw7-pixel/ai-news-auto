@@ -197,10 +197,10 @@
     },
     "a307777d6ded3852": {
       "first": "2026-11-06T08:36:11.612855+00:00",
-      "next": "2026-11-06T11:36:11.612855+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "next": "2026-11-06T14:55:22.075094+00:00",
+      "reason": "同じ資料では、下期の利益について、第3四半期までは預金と貸出のつり合い（預貸バランス）を整える動きに伴う減益傾向が続くものの、第4四半期は増益に転じるという考え方を示しています → 元記事と確認済みの資料のどこにも、下期の四半期ごとの利益見通しや預貸バランスへの言及がなく、創作である。; 会社は、利益が増えた一方で、金融事業の借入金が増加から減少に転じたことなどを理由に挙げています → 営業キャッ",
       "title": "2027年3月期第2四半期決算について",
-      "tries": 1,
+      "tries": 2,
       "url": "https://newsroom.kddi.com/ir-news/detail/kddi_ir-1251_4778.html"
     },
     "a80efade9c9f0d83": {
@@ -9413,6 +9413,13 @@
       "skipped": true,
       "url": "https://www.nttud.co.jp/news/detail/id/n28053.html"
     },
+    "69fabd0e3c004cb8": {
+      "at": "2026-11-06T11:55:51.962579+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "元記事はニッセイ基礎研究所による英国FCAの報告書の紹介（保険商品の市場調査の制度解説）で、読者が仕事・お金に直接使う製品・サービス・制度の発表ではなく、また資料本文は要旨と目次だけで具体的な調査結果や対応策の内容が抜粋に含まれていないため、本文1,600字以上を元記事の事実だけで書けない。日本の読者への直接の影響も確認できない。",
+      "skipped": true,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87277?site=nli"
+    },
     "6a17625077ae1262": {
       "at": "2026-11-06T07:41:26.428429+00:00",
       "reason": "public-interest: 資料が短い 679字",
@@ -13725,6 +13732,13 @@
       "slug": "sanada-naoki-asakusa-live-2026",
       "url": "https://www.atpress.ne.jp/news/644526"
     },
+    "bad3931016c9f498": {
+      "at": "2026-11-06T11:55:48.457369+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "開催案内のページで、有識者ヒアリングの内容や検討状況の報告の中身が本文に書かれていない。議事録は準備中で、配布資料も中身を確認できないため、読者に伝えられる実質的な情報がない。",
+      "skipped": true,
+      "url": "https://www.cao.go.jp/consumer/kabusoshiki/ai_technology/014/shiryou/index.html"
+    },
     "baed61a4dbe0301752e0f27f675ecbde0ae5cb53": {
       "at": "2026-11-02T00:02:48.731978+00:00",
       "kind": "trend",
@@ -15480,6 +15494,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/chousa/shotou/212/1418128_00017.html"
+    },
+    "dc06143347b399e3": {
+      "at": "2026-11-06T11:55:33.144294+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "日本銀行金融研究所が、カナダ銀行・フィラデルフィア連銀と共催したワークショップを開いたという報告にとどまり、議論の内容や研究成果、数字は本文から確認できないため、読者の仕事やお金に関わる情報としては扱えないと判断した。",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/about/release_2026/rel261106b.htm"
     },
     "dc0a7bf6cf1b8f0c": {
       "at": "2026-10-28T22:12:53.464670+00:00",
@@ -17378,55 +17399,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T04:43:50.037679+00:00",
-      "attempt": 3,
-      "id": "d3075633a71e6442",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "判定行の「価格=Copilot契約が前提」→ 本文は「利用条件はリリースノートに書かれていない」としており、ライセンス条件について内部で矛盾している",
-        "判定行の「提供状況=limited」→ 元記事にも確認済みの文脈にもない分類で、根拠が示されていない"
-      ],
-      "readability": {
-        "avg_paragraph": 131.4,
-        "avg_sentence": 44.9,
-        "long_share": 0.195,
-        "max_paragraph": 211,
-        "paragraphs": 14,
-        "sentences": 41
-      },
-      "score": 85,
-      "source": "watch-m365-copilot-release-notes",
-      "title": "Microsoft 365 Copilot: Excel ほか6件",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T04:45:43.645585+00:00",
-      "attempt": 1,
-      "id": "ce9494ab5f4fa6cb",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 101.9,
-        "avg_sentence": 38.2,
-        "long_share": 0.031,
-        "max_paragraph": 179,
-        "paragraphs": 12,
-        "sentences": 32
-      },
-      "score": 92,
-      "source": "docomo-news-release-ai",
-      "title": "17年分のモバイルICTや生成AI利用動向などをまとめた「モバイル社会白書2026-2027」を公開 -モバイル社会研究所の最新調査で女子のスマートフォン所有開",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ICT）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-05T04:47:01.154772+00:00",
@@ -23265,6 +23237,59 @@
       "title": "Samsung Healthの睡眠コーチングがより手軽に 一人ひとりに合わせたアドバイスを毎週提供",
       "warnings": [
         "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T11:53:16.533805+00:00",
+      "attempt": 1,
+      "id": "a307777d6ded3852",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「前年同期の事業別の数字は、2027年3月期から変えた事業の区分に合わせて組み替えられています」→ 元記事・確認資料のどこにも組み替えの記載がなく、「決算詳細資料、11/6確認」と出典を付けているが、元の情報では確認できない。",
+        "見出し「上期で進捗は5割超」→ 5割超は調整後営業利益（52.3%）と当期利益（53.4%）のみで、売上高の進捗は47.6%。見出しが売上も含むように読めるため不正確。",
+        "「売上の伸びより利益の伸びが大きかったことになります」→ 元資料の数字からの読み取りとしては妥当だが、編集部の解釈として明示されていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 85.1,
+        "avg_sentence": 37.8,
+        "long_share": 0.074,
+        "max_paragraph": 146,
+        "paragraphs": 12,
+        "sentences": 27
+      },
+      "score": 70,
+      "source": "kddi-news",
+      "title": "2027年3月期第2四半期決算について",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T11:55:22.075024+00:00",
+      "attempt": 2,
+      "id": "a307777d6ded3852",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "同じ資料では、下期の利益について、第3四半期までは預金と貸出のつり合い（預貸バランス）を整える動きに伴う減益傾向が続くものの、第4四半期は増益に転じるという考え方を示しています → 元記事と確認済みの資料のどこにも、下期の四半期ごとの利益見通しや預貸バランスへの言及がなく、創作である。",
+        "会社は、利益が増えた一方で、金融事業の借入金が増加から減少に転じたことなどを理由に挙げています → 営業キャッシュ・フロー減少の理由として、元資料は税引前中間利益の増加と金融事業の借入金の動きを挙げているが、「利益が増えた一方で」という対比の書き方は資料の説明と微妙にずれている。"
+      ],
+      "readability": {
+        "avg_paragraph": 96.6,
+        "avg_sentence": 38.6,
+        "long_share": 0.1,
+        "max_paragraph": 148,
+        "paragraphs": 16,
+        "sentences": 40
+      },
+      "score": 55,
+      "source": "kddi-news",
+      "title": "2027年3月期第2四半期決算について",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ARPU）"
       ]
     }
   ],
