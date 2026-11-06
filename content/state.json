@@ -243,14 +243,6 @@
       "tries": 1,
       "url": "https://www.aboutamazon.com/news/retail/amazon-shop-direct-merchant-workspace?utm_source=rss"
     },
-    "ed79290dfff2f62b": {
-      "first": "2026-11-06T06:24:46.160482+00:00",
-      "next": "2026-11-06T12:35:08.715732+00:00",
-      "reason": "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルのまま」「日本の売上は1%減」）",
-      "title": "Samsung、KT・SKテレコムと韓国の「AI RAN」プロジェクトを推進",
-      "tries": 2,
-      "url": "https://news.samsung.com/jp/samsung-at-the-forefront-of-koreas-ai-ran-projects-with-kt-and-sk-telecom2611?utm_source=rss&utm_medium=direct"
-    },
     "f1da59955392e79e": {
       "first": "2026-11-04T00:48:40.342630+00:00",
       "next": "2026-11-04T03:48:40.342630+00:00",
@@ -7652,6 +7644,12 @@
       "skipped": true,
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3224"
     },
+    "4ad9f1e77d9d2a75": {
+      "at": "2026-11-06T12:51:10.039650+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/actions/202611/06kaigi_cyber.html"
+    },
     "4adc87ba4ef8878c": {
       "at": "2026-11-06T04:01:18.490352+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
@@ -13500,6 +13498,12 @@
       "skipped": true,
       "url": "https://news.mynavi.jp/article/20261028-5209377/"
     },
+    "b65c6137f01e091a": {
+      "at": "2026-11-06T12:51:10.039670+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/actions/202611/06seichyou.html"
+    },
     "b679e9ea65e0426e": {
       "at": "2026-11-06T01:07:04.267918+00:00",
       "mix": "jp_corp",
@@ -16404,6 +16408,13 @@
       "slug": "openai-lifeval-everyday-tasks",
       "url": "https://openai.com/index/lifeval"
     },
+    "ed79290dfff2f62b": {
+      "at": "2026-11-06T12:54:21.168136+00:00",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://news.samsung.com/jp/samsung-at-the-forefront-of-koreas-ai-ran-projects-with-kt-and-sk-telecom2611?utm_source=rss&utm_medium=direct"
+    },
     "ed7ed4b401931f62": {
       "at": "2026-10-27T19:13:45.311483+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -17411,56 +17422,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T05:07:43.370679+00:00",
-      "attempt": 2,
-      "id": "f5001d451409d444",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "リードの数字「3.6%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「39,000億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「3.6%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点に予想・見通しの言い方（「見込み」）があるが、公式の資料に無い。資料の事実だけを書く"
-      ],
-      "readability": {
-        "avg_paragraph": 80.2,
-        "avg_sentence": 29.9,
-        "long_share": 0.0,
-        "max_paragraph": 149,
-        "paragraphs": 25,
-        "sentences": 67
-      },
-      "score": null,
-      "source": "fast",
-      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T05:08:28.300142+00:00",
-      "attempt": 3,
-      "id": "f5001d451409d444",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "リードの数字「39,000億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
-      ],
-      "readability": {
-        "avg_paragraph": 68.5,
-        "avg_sentence": 32.3,
-        "long_share": 0.02,
-        "max_paragraph": 137,
-        "paragraphs": 24,
-        "sentences": 51
-      },
-      "score": null,
-      "source": "fast",
-      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IFRS）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-05T05:10:13.046016+00:00",
@@ -23256,6 +23217,34 @@
       "score": null,
       "source": "jst",
       "title": "自己回帰生成モデルの熱力学を構築～大規模言語モデルに内在する「世界モデル」の定量的理解に向けて～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T12:52:50.947595+00:00",
+      "attempt": 1,
+      "id": "ed79290dfff2f62b",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "samsung-jp",
+      "title": "Samsung、KT・SKテレコムと韓国の「AI RAN」プロジェクトを推進"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T12:54:21.168057+00:00",
+      "attempt": 2,
+      "id": "ed79290dfff2f62b",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "samsung-jp",
+      "title": "Samsung、KT・SKテレコムと韓国の「AI RAN」プロジェクトを推進"
     }
   ],
   "short_text_retry": {},
