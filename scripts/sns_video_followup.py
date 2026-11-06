@@ -837,6 +837,8 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
         inputs = (rec.get("pending") or {}).get("inputs") or {}
         created = dict(q.get("channels") or {})
         stop = False
+        held = ""
+        threads_due = base
         for service in ("threads", "twitter", "facebook"):
             if service not in inputs or created.get(service):
                 continue
@@ -857,7 +859,17 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
                 # 30日のソフトの上限を超えたら、優先の枠（sns_plan.slot_priority）の投稿だけ作る
                 with buffer_budget.priority(slot_priority(slug, rec, slot)):
                     created[service] = creator(service, inp, article)
+                if service == "threads":
+                    # 前の Threads の投稿から30分あけるため、門番が予約の時刻を遅らせたことがある（台帳 S44）。実際の時刻を残す
+                    threads_due = _parse(str(inp.get("dueAt") or "")) or base
             except Exception as error:  # noqa: BLE001
+                import threads_gate
+
+                if isinstance(error, threads_gate.ThreadsHeld):
+                    # 今夜の止め・11/7 の様子見の結果待ち（台帳 S44）。投稿は落とさず、次の回にもう一度（出さなかった扱いにしない・issue も立てない）
+                    held = str(error)
+                    log(f"[video-followup] {slug}: {held}")
+                    break
                 if _buffer_unavailable(error):
                     q["deferred"] = str(error)[:200]
                     log(f"[video-followup] Buffer の上限のため次の回に {slug}/{service}: {str(error)[:120]}")
@@ -872,13 +884,17 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
         if stop:
             out.append({"slug": slug, **q})
             break
+        if held:
+            q.update({"status": "waiting", "why": held, "checkedAt": now.isoformat(timespec="seconds")})
+            out.append({"slug": slug, **q})
+            continue
         if created.get("threads"):
-            q.update({"status": "created", "id": created["threads"], "dueAt": base.isoformat(timespec="seconds"), "variant": variant, "media": media,
+            q.update({"status": "created", "id": created["threads"], "dueAt": threads_due.isoformat(timespec="seconds"), "variant": variant, "media": media,
                       "linkPosition": sns_plan_pos(),
-                      "delayedMin": max(0, int((base - slot).total_seconds() // 60))})
+                      "delayedMin": max(0, int((threads_due - slot).total_seconds() // 60))})
             if variant:
-                v.update({"status": "attached", "variant": variant, "bufferId": created["threads"], "postedAt": base.isoformat(timespec="seconds")})
-            last_due = base
+                v.update({"status": "attached", "variant": variant, "bufferId": created["threads"], "postedAt": threads_due.isoformat(timespec="seconds")})
+            last_due = threads_due
         else:
             q.update({"status": "skipped", "why": "Buffer に投稿を作れなかった: " + "・".join((q.get("errors") or {}).values())[:200]})
             issue(slug, q["why"])

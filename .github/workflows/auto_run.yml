@@ -453,6 +453,8 @@ jobs:
           # 投稿ごとの反応を取り込んで「勝ちパターン」を学び直してから、次の投稿を選ぶ
           # 反応の取得は1日1回（Buffer の数値も1日1回更新）。前回の取得から20時間たっていなければ Buffer を呼ばずにすぐ終わる
           python scripts/threads_learn.py || echo "::warning::Threads の学習に失敗しました（投稿は続けます）"
+          # 11/7 の様子見の1本の表示を、出てから30分後に確かめる（時刻が来ていない回・結果が出た回は何もしない。台帳 S44）。予定を作る前に読む
+          python scripts/threads_gate.py --check || echo "::warning::Threads の様子見の確かめに失敗しました（次の回にもう一度）"
           python scripts/threads_post.py --max 2
           # SNS の予定に入った記事を Muse の受け渡し（state/muse_queue.json）に足す（2026-11-05 すべての投稿の動画を Muse で。台帳 S30）
           python scripts/muse_queue.py || echo "::warning::Muse の受け渡しを更新できませんでした（投稿は自動動画で続きます）"

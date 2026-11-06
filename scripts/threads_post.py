@@ -40,6 +40,7 @@ import threads_hooks  # noqa: E402
 import question_patterns  # noqa: E402
 import sns_rules  # noqa: E402
 import sns_plan  # noqa: E402
+import threads_gate  # noqa: E402  Threads の投稿の間隔（30分）と表示0からの立て直し（台帳 S44）
 import number_units  # noqa: E402  数字を「万・億」で書く（SNS の文面にも。台帳 A45・S35）
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -1324,11 +1325,16 @@ def free_slots(state: dict, now: datetime | None = None, extra_taken: list[datet
             if not any(k.startswith(f"digest-{d:%Y%m%d}") for k in posted):
                 per_day[d] += 1
     found = []
+    recovery = threads_gate.load_recovery()
     for day in range(2):
         for hour, minute in SLOTS_JST:
-            if DIGEST_ON and (hour, minute) == DIGEST_SLOT_JST:
-                continue
             slot = (base + timedelta(days=day)).replace(hour=hour, minute=minute)
+            # 2026-11-06 オーナー承認（台帳 S44）: 今夜（11/6 22:00〜11/7 7:00）は通常の枠を使わない。11/7 は様子見の1本（その日いちばん早い
+            # 枠＝ふつうは 7:15。朝のまとめの枠でもこの日は様子見に使う）だけ。表示が戻ったら残りの枠はいつもどおり、0 ならその日は使わない
+            if not threads_gate.plan_slot_ok(slot, now, posted, recovery=recovery):
+                continue
+            if DIGEST_ON and (hour, minute) == DIGEST_SLOT_JST and not threads_gate.is_probe_slot(slot, now, posted, recovery=recovery):
+                continue
             if DIGEST_ON and (hour, minute) == POLL_SLOT_JST and slot.weekday() in POLL_WEEKDAYS_JST:
                 continue
             if slot < base + timedelta(minutes=20) or slot > base + timedelta(hours=LOOKAHEAD_HOURS):
@@ -1406,6 +1412,7 @@ def publish(token: dict, text: str, link: str, article: dict | None = None, fetc
     if existing := meta_existing_post(token, article, fetch):
         log(f"  [threads] 同じ記事の投稿がもうあります（{existing}）。二重に出しません")
         return {"id": existing, "permalink": "", "duplicate": True}
+    threads_gate.enforce_direct(article)  # 30分の間隔・今夜の止め・11/7 の様子見（台帳 S44。予約できないので近ければ次の回）
     user_id, access_token = token["user_id"], token["access_token"]
     container = api("POST", f"{user_id}/threads", {
         "media_type": "TEXT",
@@ -2030,9 +2037,11 @@ class DuplicatePost(RuntimeError):
 # 実行の中で読んだ Buffer の投稿（チャンネル → [(id, 本文)]）。作ったものは足していく（同じ実行で二度作らない）
 _BUFFER_RECENT: dict[str, list[tuple[str, str]]] = {}
 _BUFFER_RECENT_AT: dict[str, float] = {}
+# 同じ読みで分かる、各チャンネルの投稿の時刻（チャンネル → [(id, 時刻)]）。Threads の投稿どうしの間隔（threads_gate・台帳 S44）に使う
+_BUFFER_DUE: dict[str, list[tuple[str, datetime | None]]] = {}
 # 読んでからこの秒数を過ぎたら、作る直前に読み直す（同時に動いたほかのワークフローが作った投稿を見落とさない。2026-11-04 一貫性の点検）
 RECENT_POSTS_MAX_AGE_SEC = 90
-RECENT_POSTS_FIELDS = "id status dueAt channelId text metadata { ... on ThreadsPostMetadata { thread { text } } ... on TwitterPostMetadata { thread { text } } }"
+RECENT_POSTS_FIELDS = "id status dueAt sentAt channelId text metadata { ... on ThreadsPostMetadata { thread { text } } ... on TwitterPostMetadata { thread { text } } }"
 
 
 def post_needle(article: dict | None, kind: str) -> str:
@@ -2058,6 +2067,7 @@ def recent_channel_posts(api_key: str, channel_id: str, gql=None) -> list[tuple[
     except Exception:  # noqa: BLE001 - チャンネルの一覧が無ければこのチャンネルだけ
         ids = [channel_id]
     found_by: dict[str, list[tuple[str, str]]] = {cid: [] for cid in ids}
+    due_by: dict[str, list[tuple[str, datetime | None]]] = {cid: [] for cid in ids}
     for org_id in buffer_org_ids(api_key):
         flt = (f"status: [scheduled, sending, sent], channelIds: {json.dumps(ids)}, "
                f"startDate: {json.dumps(utc_z(now - timedelta(hours=48)))}, endDate: {json.dumps(utc_z(now + timedelta(hours=48)))}")
@@ -2067,10 +2077,13 @@ def recent_channel_posts(api_key: str, channel_id: str, gql=None) -> list[tuple[
             thread = ((node.get("metadata") or {}).get("thread")) or []
             text = "\n".join([node.get("text") or ""] + [t.get("text") or "" for t in thread])
             cid = node.get("channelId") or ""
+            when = threads_gate._dt(node.get("sentAt") or node.get("dueAt"))
             for target in ([cid] if cid in found_by else ids):  # チャンネルが分からない投稿は全部に入れる（重複の見落としより安全）
                 found_by[target].append((node.get("id", ""), text))
+                due_by[target].append((node.get("id", ""), when))
     for cid, rows in found_by.items():
         _BUFFER_RECENT[cid] = rows
+        _BUFFER_DUE[cid] = due_by[cid]
         _BUFFER_RECENT_AT[cid] = time.time()
     return found_by[channel_id]
 
@@ -2108,6 +2121,11 @@ def create_post(api_key: str, post_input: dict, *, service: str, article: dict |
         # もうある投稿をこの投稿として扱う（作らない）。呼び出し側はいつもどおり ID を記録する
         log(f"  [{service}] {dup}（{source}）")
         return dup.existing_id
+    threads_due = None
+    if service == "threads" and not post_input.get("saveToDraft"):
+        # 2026-11-06 オーナー承認（台帳 S44）: Threads の投稿どうしは30分あける（速報も。近ければ予約を遅らせる＝落とさない）。
+        # 今夜（11/6 22:00〜11/7 7:00）は通常の投稿を出さない・11/7 は様子見の1本の結果が出るまで通常の投稿を出さない（ThreadsHeld）
+        threads_due = threads_gate.enforce(api_key, post_input, article, kind=kind, source=source)
     data = buffer_graphql(
         api_key,
         """mutation($input: CreatePostInput!) {
@@ -2125,6 +2143,9 @@ def create_post(api_key: str, post_input: dict, *, service: str, article: dict |
     needle = post_needle(article, kind)
     if needle and post_input.get("channelId") in _BUFFER_RECENT:
         _BUFFER_RECENT[post_input["channelId"]].append((result["post"]["id"], needle))
+    if threads_due is not None:
+        # この実行の次の Threads の投稿が、いま作った投稿との間隔を数えられるように（台帳 S44）
+        _BUFFER_DUE.setdefault(str(post_input.get("channelId") or ""), []).append((result["post"]["id"], threads_due))
     return result["post"]["id"]
 
 
