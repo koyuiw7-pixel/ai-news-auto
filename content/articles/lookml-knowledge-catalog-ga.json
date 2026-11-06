@@ -1,0 +1,127 @@
+{
+  "slug": "lookml-knowledge-catalog-ga",
+  "sourceType": "web",
+  "sourceUrl": "https://cloud.google.com/blog/ja/products/business-intelligence/lookml-metadata-indexing-in-knowledge-catalog-is-now-ga/",
+  "sourceName": "Google Cloud 公式ブログ（日本）",
+  "title": "LookMLの指標定義をAIが使える　Looker Coreで一般提供、保存は無料",
+  "seoTitle": "Knowledge CatalogのLookML連携とは？料金と使い方",
+  "threadsPost": "Looker Coreでデータを管理している人に、知っておいてほしい話です。\n\nLookMLで作った指標の計算ルールを、AIエージェントが推測せずに使えるようになりました。\nKnowledge Catalogに自動で取り込まれ、保存は無料です。\n\nAIが出した数字、社内の集計と合わなかったことはありますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "AIが出した数字、社内の集計と合わなかったことはありますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "Looker Coreを使う企業では、LookMLで作った指標の計算ルールを、AIエージェントが推測せずに使えるようになりました。定義はKnowledge Catalogに自動で取り込まれ、保存は無料です。本番環境の変更は、ほぼリアルタイムに反映されます。Looker Coreの利用者は、APIの有効化と閲覧者ロールの付与を確かめておくとよいでしょう。",
+  "description": "Looker CoreのLookML定義がKnowledge Catalogに自動で同期され、一般提供になりました。Gemini Enterpriseから指標の計算式を使え、メタデータ保存は無料です。",
+  "keywords": [
+    "LookML",
+    "Knowledge Catalog",
+    "Looker Core",
+    "Gemini Enterprise",
+    "AIエージェント",
+    "Text-to-SQL",
+    "指標定義",
+    "セマンティックレイヤー",
+    "BI",
+    "Google Cloud"
+  ],
+  "tags": [
+    "Knowledge Catalog",
+    "LookML",
+    "Looker Core",
+    "Gemini Enterprise",
+    "データ分析"
+  ],
+  "highlights": [
+    "LookMLの指標計算式を、Knowledge Catalog経由でAIエージェントが使えるように。",
+    "LookMLの変更は本番環境に反映されると、ほぼリアルタイムでカタログに届きます。",
+    "Knowledge Catalogへの保存は無料で、API呼び出しなどは標準の料金が適用されます。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "保存は無料",
+    "free": null,
+    "audience": "データ担当者",
+    "take": "Looker Coreを使う企業は、APIとロールの設定を確認し、Gemini Enterpriseとの連携を検討するとよいでしょう。",
+    "judgedAt": "2026-11-06T20:03:42.537290+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "データ担当者にとっては、LookMLの指標定義がAIにもそのまま使われるため、定義の管理が一段と重要になります。",
+      "保存料金は無料ですが、API呼び出しには標準料金がかかるため、利用量の多い企業は料金ページで確認するとよいでしょう。"
+    ]
+  },
+  "body": "Looker Coreを使っている企業では、指標の計算ルールをAIエージェントにもそのまま参照させられるようになりました。計算ルールはデータ担当者が作ったものです。\n\n対象はGoogle Cloud上で動くLooker Coreの利用企業です。Looker Coreを使っていない企業には、この発表は直接関係しません。\n\nLookMLは、Lookerでデータの結合の仕方や指標の計算式を書くための言語です。今回の発表は、LookMLの定義をGoogleの「Knowledge Catalog」に自動で取り込む機能についてです。その機能（インデックス登録）が、一般提供（GA。本番で使える正式版）になりました。\n\nKnowledge Catalogは、テーブルや文書の情報を集めて、AIエージェントが参照できるようにする仕組みです。Googleの公式ブログによると、今回の発表は日本語版です。英語版は米国時間10月27日に公開されました。\n\n## 指標の計算式を、AIが推測せずに使う\n\nAIエージェントは、データの置き場所を知っているだけでは正しい数字を出せません。売上や顧客獲得コスト（CAC。新規顧客を1人獲得するためにかかる費用）のような指標は、計算ルールで結果が変わります。\n\n発表によると、AIが自分でSQL（データベースに問い合わせる命令文）を組むと、指標の定義がずれることがあります。たとえば、注文の状態（order_status）が「Complete」のものだけを売上に計上する、という会計ルールがあります。AIはこのルールを見落としてしまうおそれがあります。\n\nテーブル同士の結合でも問題が起きます。請求書と明細、返金データのように1対多の関係があるとします。その結合の仕方を誤った命令文では、同じ行が重複して数えられるおそれがあります。その結果、合計金額が過大になるおそれがあると説明しています。\n\nLookMLでは、こうした結合の条件や指標の計算式を、あらかじめ決めておけます。AIはその定義を参照するだけなので、実行のたびに計算方法を推測しなくて済みます。\n\n今回の一般提供で、LookMLの定義はKnowledge Catalogの中で正式な層として組み込まれました。指標を見つけたエージェントは、その正確な定義を取り出せます。結合の経路や、元のテーブルまでのつながり（リネージ。データがどこから来て、どこで使われたかの流れ）も、同じ場所で取り出せます。\n\n取り込まれるのは、LookMLのモデル、Explore（結合済みのデータを分析する入口）、ビューと指標、ダッシュボードとタイルです。同期は初期設定のままオンになっており、利用者が操作する必要はありません。本番環境のLookMLに変更を反映すると、ほぼリアルタイムでKnowledge Catalogに届きます。\n\nGemini Enterpriseからは、カスタムのAIエージェントを作らなくても使えます。Knowledge Catalogに接続すると、テクニカルなスキーマ、ビジネス用語集、LookMLの定義を1回の検索でまとめて探せます。\n\nAIがデータを見るときは、利用者本人の権限が使われます。Gemini Enterpriseはエンドユーザーの認証情報で接続します。そのため、閲覧権限（例：roles/bigquery.dataViewer）を持つデータだけが検出され、照会されます。\n\n発表では、ある質問を使って3つの方式を比べています。質問は「前会計年度の第4四半期における商品カテゴリ別の総収益と、地域ごとのプロモーションポリシーの制限」です。データベースに直接質問する方式では、1月開始の会計年度を勝手に想定するおそれがあります。未完了の注文まで数えてしまうおそれもあると説明しています。\n\nLookMLの定義を組み合わせた方式では、計算の定義と結合の条件に沿ってSQLを組み立てるとしています。やり直しの回数も減るとしています。\n\nサイソクは11月2日に報じています。Knowledge Catalogが定義の更新を自動で行う自己学習機能が、一部提供になったとのことです（[Googleが「Knowledge Catalog」に自己学習機能　定義の更新を自動化](/articles/google-knowledge-catalog-self-learning-enrichment)）。\n\n## 料金は保存が無料、API呼び出しは標準料金\n\n対象はLooker Coreのテクニカルメタデータ（LookMLやダッシュボードの構成情報）です。保存料金は無料です（Google Cloudの公式ドキュメント、11/7確認）。新しいインスタンスでは、この連携が最初から有効になっています。\n\n一方、API呼び出しと追加のビジネスメタデータ（業務の意味づけの情報）には、標準料金がかかります。この料金はKnowledge Catalogの標準料金です（同ドキュメント、11/7確認）。金額はKnowledge Catalogの料金ページで確認できます。\n\n**管理者がすること**\n\n- プロジェクトで、Cloud Dataplex APIとData Lineage APIを有効にする。\n- 利用者に閲覧者ロール（roles/dataplex.viewer、roles/looker.schemaViewer、roles/datalineage.viewer）を付与する。\n- Gemini Enterpriseでは、Google Cloudコンソールで「構成」から「アシスタント」を開き、「Knowledge Catalogを有効にする」をオンにして「保存して公開」を押す。\n\n連携クエリモードでBigQuery（またはSpanner、Cloud SQL、AlloyDB）のデータストアを、Gemini Enterpriseアプリに接続します。すると、Knowledge Catalogとの連携は自動で有効になります。有効にしてから、Looker Coreのデータが使えるようになるまで最大1日かかります。\n\n## まだ分からないこと\n\n- Gemini Enterpriseの利用料金は、まだ発表されていません。\n- 日本での提供時期と、日本語での対応は、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nLooker Coreで作った指標の計算ルールを、AIエージェントが推測せずに使えるようになりました。定義はGoogleのKnowledge Catalogに自動で取り込まれます。\n\nLookMLは、データの結合の仕方や指標の計算式を書いておく言葉です。AIが自分で計算式を組むと、会計のルールを見落としたり、同じ行を二重に数えたりするおそれがあります。LookMLの定義があれば、AIはそれを参照して答えます。\n\n保存料金は無料です。API呼び出しなどには、Knowledge Catalogの標準料金がかかります。\n\nGemini Enterpriseの利用料金と日本での提供時期は、まだ発表されていません。",
+  "channel": "Google Cloud 公式ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "google-cloud-blog-ja",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "エンタープライズ コンテキストとセマンティクスを統合: Knowledge Catalog における LookML の一般提供を開始",
+  "publishedAt": "2026-11-05T02:00:00+00:00",
+  "generatedAt": "2026-11-06T20:03:42.537280+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/lookml-knowledge-catalog-ga-bf6d7319.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "Looker Coreのデータは、自作のAIエージェントからも使えますか？",
+      "a": "使えます。開発者は、LookupContext API（アプリから文脈の情報を取り出す仕組み）を通じて、同じコンテキストのまとまりにアクセスできます。"
+    }
+  ],
+  "todayActions": [
+    "Looker Coreを使っている場合、プロジェクトでCloud Dataplex APIとData Lineage APIが有効かを確認する。",
+    "Gemini Enterpriseを使っている場合、「構成」の「アシスタント」で「Knowledge Catalogを有効にする」がオンかを確かめる。",
+    "Knowledge Catalogの料金ページを開き、API呼び出しの標準料金を確認する。"
+  ],
+  "relatedSlugs": [
+    "google-knowledge-catalog-self-learning-enrichment"
+  ],
+  "qualityScore": 90,
+  "sourcePublishedAt": "2026-11-05T02:00:00+00:00",
+  "detectedAt": "2026-11-06T20:00:49+00:00",
+  "layout": "noir",
+  "summaryLine": "LookMLの指標計算式を、Knowledge Catalog経由でAIエージェントが使えるように。",
+  "sectionTitles": {
+    "body": {
+      "料金は保存が無料、API呼び出しは標準料金": "保存は無料、API呼び出しは標準料金"
+    }
+  },
+  "sectionsPolishedAt": "2026-11-06T20:04:45+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google Cloud",
+    "provider": "Google Cloud 公式ブログ（日本）",
+    "sourceUrl": "https://cloud.google.com/blog/ja/products/business-intelligence/lookml-metadata-indexing-in-knowledge-catalog-is-now-ga/",
+    "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/Business_Intelligence.max-2500x2500.jpg",
+    "width": 1200,
+    "height": 591,
+    "at": "2026-11-06T20:04:50+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.408,
+    "y": 0.576,
+    "box": [
+      0.0,
+      0.152,
+      0.816,
+      1.0
+    ],
+    "ar": 2.0305,
+    "src": "https://ai-tech-express.jp/img/lookml-knowledge-catalog-ga-bf6d7319.jpg"
+  }
+}

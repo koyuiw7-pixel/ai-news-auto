@@ -8878,6 +8878,17 @@
       "slug": "elevenagents-unity-sdk-npc-voice",
       "url": "https://elevenlabs.io/blog/unity-sdk-release"
     },
+    "5d5b1a298658a8df": {
+      "at": "2026-11-06T20:04:26.412863+00:00",
+      "costUsd": 0.0257,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "lookml-knowledge-catalog-ga",
+      "url": "https://cloud.google.com/blog/ja/products/business-intelligence/lookml-metadata-indexing-in-knowledge-catalog-is-now-ga/"
+    },
     "5d89b13d8af0e9fe": {
       "at": "2026-10-30T08:11:12.307765+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -18140,34 +18151,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-05T13:04:25.626627+00:00",
-      "attempt": 1,
-      "id": "a17282f496fcba49",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "全国財務局管内経済情勢報告概要（令和8年10月）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T13:05:28.908416+00:00",
-      "attempt": 2,
-      "id": "a17282f496fcba49",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "全国財務局管内経済情勢報告概要（令和8年10月）"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-05T13:06:49.779971+00:00",
       "attempt": 1,
       "id": "b6d10506b1ce1e8d",
@@ -23915,6 +23898,56 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（BTP・EC・ABAP）",
         "その他の発表の記事としては長い（3441字 / 目安2000字まで）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T20:03:50.299295+00:00",
+      "attempt": 1,
+      "id": "5d5b1a298658a8df",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 52.6字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 114.0,
+        "avg_sentence": 52.6,
+        "long_share": 0.333,
+        "max_paragraph": 155,
+        "paragraphs": 18,
+        "sentences": 39
+      },
+      "score": 92,
+      "source": "google-cloud-blog-ja",
+      "title": "エンタープライズ コンテキストとセマンティクスを統合: Knowledge Catalog における LookML の一般提供を開始",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GA・CAC）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T20:04:26.398993+00:00",
+      "attempt": 0,
+      "id": "5d5b1a298658a8df",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 112.2,
+        "avg_sentence": 40.2,
+        "long_share": 0.094,
+        "max_paragraph": 160,
+        "paragraphs": 19,
+        "sentences": 53
+      },
+      "score": 90,
+      "source": "google-cloud-blog-ja",
+      "title": "エンタープライズ コンテキストとセマンティクスを統合: Knowledge Catalog における LookML の一般提供を開始",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GA・CAC）"
       ]
     }
   ],

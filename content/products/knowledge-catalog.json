@@ -1,0 +1,179 @@
+{
+  "slug": "knowledge-catalog",
+  "name": "Knowledge Catalog",
+  "aliases": [],
+  "company": "other",
+  "companyName": "IBM",
+  "category": "アプリ・サービス",
+  "overview": {
+    "text": "Knowledge Catalogは、AIエージェントが参照するデータの定義やルールを管理するコンテキストエンジンです。Google Cloudが提供しており、自己学習機能や各種データとの連携が発表されています。",
+    "sources": [
+      "google-knowledge-catalog-self-learning-enrichment",
+      "oracle-ai-database-agentic-update"
+    ]
+  },
+  "facts": [
+    {
+      "label": "料金",
+      "value": "メタデータの保存は無料",
+      "sources": [
+        "lookml-knowledge-catalog-ga"
+      ]
+    },
+    {
+      "label": "提供開始",
+      "value": "プレビュー版や一般提供",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment",
+        "lookml-knowledge-catalog-ga",
+        "oracle-ai-database-agentic-update"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "順次公開予定",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment",
+        "lookml-knowledge-catalog-ga"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "データ担当者やエンジニア",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment",
+        "lookml-knowledge-catalog-ga"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "AIエージェントの精度が約4倍向上します。",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment"
+      ]
+    },
+    {
+      "text": "レイテンシを最大33%短縮し、トークン使用量を最大75%削減します。",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment"
+      ]
+    },
+    {
+      "text": "ユーザーとエージェントのやり取りから自動で学習し、定義の更新を行います。",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment"
+      ]
+    },
+    {
+      "text": "LookMLの指標計算式をKnowledge Catalog経由でAIが使えます。",
+      "sources": [
+        "lookml-knowledge-catalog-ga"
+      ]
+    }
+  ],
+  "pricing": [
+    {
+      "text": "Knowledge Catalogへのメタデータの保存料金は無料です。",
+      "sources": [
+        "lookml-knowledge-catalog-ga"
+      ]
+    },
+    {
+      "text": "API呼び出しと追加のビジネスメタデータには標準料金がかかります。",
+      "sources": [
+        "lookml-knowledge-catalog-ga"
+      ]
+    }
+  ],
+  "japan": [
+    {
+      "text": "今後数週間以内にお客様へ順次公開される予定です。",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment"
+      ]
+    }
+  ],
+  "howto": [
+    {
+      "text": "Google Cloudのプロジェクトで関連APIを有効にして利用します。",
+      "sources": [
+        "lookml-knowledge-catalog-ga"
+      ]
+    },
+    {
+      "text": "Gemini Enterpriseでは設定画面から有効にできます。",
+      "sources": [
+        "lookml-knowledge-catalog-ga"
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "text": "手動で行っていたビジネス定義の更新が、自己学習型エンリッチメントにより自動化されます。",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "無料で使える？",
+      "a": "メタデータの保存は無料ですが、API呼び出しなどは標準料金がかかります。",
+      "sources": [
+        "lookml-knowledge-catalog-ga"
+      ]
+    },
+    {
+      "q": "いつから提供されている？",
+      "a": "自己学習機能やLooker Coreの連携などが順次プレビュー版や一般提供として登場しています。",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment",
+        "lookml-knowledge-catalog-ga"
+      ]
+    },
+    {
+      "q": "どのような効果がある？",
+      "a": "AIエージェントの精度が約4倍向上し、応答遅延の短縮やトークン削減につながります。",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment"
+      ]
+    },
+    {
+      "q": "LookMLのデータはどのように反映される？",
+      "a": "本番環境に変更を反映すると、ほぼリアルタイムでカタログに届きます。",
+      "sources": [
+        "lookml-knowledge-catalog-ga"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-11-02",
+      "slug": "google-knowledge-catalog-self-learning-enrichment",
+      "event": "自己学習型コンテキストエンリッチメントを発表"
+    },
+    {
+      "date": "2026-11-05",
+      "slug": "lookml-knowledge-catalog-ga",
+      "event": "Looker CoreのLookML定義の取り込みが一般提供に"
+    }
+  ],
+  "related": [
+    "gemini"
+  ],
+  "articles": [
+    "oracle-ai-database-agentic-update",
+    "lookml-knowledge-catalog-ga",
+    "google-knowledge-catalog-self-learning-enrichment"
+  ],
+  "linkFrom": [
+    "lookml-knowledge-catalog-ga",
+    "google-knowledge-catalog-self-learning-enrichment"
+  ],
+  "signature": "517e3415e65c7e98",
+  "primarySignature": "a05c2b3ae247b44e",
+  "model": "gemini-3.5-flash-lite",
+  "createdAt": "2026-11-06T20:04:36+00:00",
+  "updatedAt": "2026-11-06T20:04:36+00:00"
+}
