@@ -271,6 +271,7 @@
     "1928f93150be33d5": "2026-11-06T05:20:52.500591+00:00",
     "25a19ff450eef8fe": "2026-11-05T12:02:48.521507+00:00",
     "27c11336cca71266": "2026-11-04T18:30:50.676395+00:00",
+    "27d427150ff600e8": "2026-11-06T06:51:06.565719+00:00",
     "2b348a8b578e32ca": "2026-11-05T10:41:04.124472+00:00",
     "317d9d7015af4163": "2026-11-06T06:32:48.286502+00:00",
     "322de511a9d70b13": "2026-11-04T13:10:52.830493+00:00",
@@ -5718,12 +5719,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（就任）",
       "skipped": true,
       "url": "https://www.jfa.jp/news/00036980/"
-    },
-    "27d427150ff600e8": {
-      "at": "2026-11-06T06:40:13.702832+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.jst.go.jp/pr/announce/20261106-4/index.html"
     },
     "27f8be5bb347e6c8": {
       "at": "2026-10-26T23:21:40.234840+00:00",
@@ -14999,6 +14994,17 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/info/info1883/index.html"
     },
+    "d8b27fed6c7237fa": {
+      "at": "2026-11-06T06:53:11.196484+00:00",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 88,
+      "section": "business",
+      "slug": "smile-e-point-unauthorized-exchange-ecomegane",
+      "url": "https://nttse.com/news/pressrelease/2026/11-06/3292/"
+    },
     "d8fa341b96c36837": {
       "at": "2026-11-05T15:22:56.109583+00:00",
       "mix": "enterprise_dev",
@@ -16994,67 +17000,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-04T20:04:34.026441+00:00",
-      "attempt": 1,
-      "id": "5f6a505c00e638f5",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 74.5,
-        "avg_sentence": 35.4,
-        "long_share": 0.075,
-        "max_paragraph": 145,
-        "paragraphs": 19,
-        "sentences": 40
-      },
-      "score": 92,
-      "source": "fast",
-      "title": "令和8年熊本地震 熊本市災害対策本部会議（第27回）資料",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JR）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-04T20:11:45.942412+00:00",
-      "attempt": 1,
-      "id": "0e072c9f8e9dff5a",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 91.9,
-        "avg_sentence": 43.5,
-        "long_share": 0.158,
-        "max_paragraph": 183,
-        "paragraphs": 18,
-        "sentences": 38
-      },
-      "score": 90,
-      "source": "databricks-blog",
-      "title": "The Enterprise Case for Open-Weight Models on Databricks",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（GLM・CNBC・MCP）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T22:07:34.669175+00:00",
-      "attempt": 1,
-      "id": "4ed107f4ce3d226c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "第60回全国ろうあ者スポーツ大会 サッカー競技開催！ #jfa"
-    },
     {
       "accepted": false,
       "at": "2026-11-04T22:09:03.786395+00:00",
@@ -22998,6 +22943,58 @@
       "score": null,
       "source": "sony-jp",
       "title": "初代ウォークマン付属『MDR-3』のデザインとサウンドを受け継ぐUSB-Cステレオヘッドホン『MDR-3R』発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T06:51:59.095897+00:00",
+      "attempt": 1,
+      "id": "d8b27fed6c7237fa",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "ntt-news",
+      "title": "「エコめがね」への不正アクセス調査状況について（2報）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T06:52:24.874397+00:00",
+      "attempt": 2,
+      "id": "d8b27fed6c7237fa",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "脆弱性・障害・欠陥の記事に必要な「対象のバージョン（版）」が資料にあるのに本文にありません（「〇〇より前の版」など資料どおり）。資料の表記どおりに入れてください"
+      ],
+      "score": null,
+      "source": "ntt-news",
+      "title": "「エコめがね」への不正アクセス調査状況について（2報）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T06:53:11.183355+00:00",
+      "attempt": 3,
+      "id": "d8b27fed6c7237fa",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 104.0,
+        "avg_sentence": 44.1,
+        "long_share": 0.121,
+        "max_paragraph": 169,
+        "paragraphs": 14,
+        "sentences": 33
+      },
+      "score": 88,
+      "source": "ntt-news",
+      "title": "「エコめがね」への不正アクセス調査状況について（2報）",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（OSS）"
+      ]
     }
   ],
   "short_text_retry": {},
