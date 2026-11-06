@@ -296,6 +296,64 @@ BROAD_FEEDS: list[dict] = [
     # 警察庁の新着は詐欺・サイバーの注意喚起だけ（ドローンの飛行禁止の指定・統計の定例は外す）
     {"slug": "npa-new", "name": "警察庁", "url": "https://www.npa.go.jp/newlyarrived/rss20.xml", "section": "public", "kind": "gov", "priority": 2,
      "include_re": "詐欺|サイバー|フィッシング|ランサム|不正アクセス|注意喚起|なりすまし"},  # 週に数件
+    # --- 2026-11-07 追加（オーナー「テーマが狭い。日本で注目のニュースを拾えていない。監視する場所を増やす。Yahooニュースに勝つつもりで」・台帳 A51） ---
+    # 公式の一次情報だけ（報道機関は載せない。W31）。事件・事故・芸能の発信元は足さない（オーナーの判断待ち）。
+    # robots.txt 許可・当日〜直近14日の更新・日付ありを 2026-11-07 に確かめた。RSS の無いものは公式のお知らせ一覧のページ（type "html"）を読む。
+    # 記事にするかはこれまでと同じ足切り・公開前の門（主題・お知らせの転載・本文1500字）・品質ゲートで決める（緩めない）。
+    # 天気・災害
+    {"slug": "jma-press", "name": "気象庁 報道発表", "url": "https://www.jma.go.jp/jma/press_list.js", "type": "jma_press", "section": "public", "kind": "gov", "priority": 1},  # 台風・大雪・噴火・地震の解説
+    {"slug": "env-press", "name": "環境省 報道発表", "url": "https://www.env.go.jp/press/", "type": "html", "date_mode": "carry",
+     "link_re": r"env\.go\.jp/press/[0-9a-z_]+\.html$", "section": "public", "kind": "gov", "priority": 3},
+    {"slug": "mlit-bousai", "name": "国土交通省 災害・防災情報", "url": "https://www.mlit.go.jp/saigai/index.html", "type": "html", "section": "public", "kind": "gov", "priority": 2},
+    # お金と手続き
+    {"slug": "nta-news", "name": "国税庁 お知らせ", "url": "https://www.nta.go.jp/information/news/index.htm", "type": "html", "section": "public", "kind": "gov", "priority": 2},
+    {"slug": "cfa-news", "name": "こども家庭庁", "url": "https://www.cfa.go.jp/news", "type": "html", "section": "public", "kind": "gov", "priority": 2},
+    {"slug": "nenkin", "name": "日本年金機構", "url": "https://www.nenkin.go.jp/", "type": "html", "link_re": r"nenkin\.go\.jp/oshirase/", "section": "public", "kind": "gov", "priority": 2},
+    {"slug": "kokusen", "name": "国民生活センター", "url": "https://www.kokusen.go.jp/news/news.html", "type": "html", "section": "lifestyle", "kind": "gov", "priority": 2},
+    # 値上げ・生活費（電気・ガス・郵便・食品の価格改定）
+    {"slug": "tepco", "name": "東京電力ホールディングス", "url": "https://www.tepco.co.jp/press/release/index-j.html", "type": "html", "section": "lifestyle", "kind": "company", "priority": 2,
+     "include_re": "料金|値上げ|値下げ|停電|燃料費|電気|補助|節電|需給|原子力"},
+    {"slug": "tepco-ep", "name": "東京電力エナジーパートナー", "url": "https://www.tepco.co.jp/ep/notice/pressrelease/index-j.html", "type": "html", "section": "lifestyle", "kind": "company", "priority": 2},
+    {"slug": "tokyo-gas", "name": "東京ガス", "url": "https://www.tokyo-gas.co.jp/news/rss/press.xml", "section": "lifestyle", "kind": "company", "priority": 2},
+    {"slug": "osaka-gas", "name": "大阪ガス", "url": "https://www.osakagas.co.jp/company/press/rss/index.xml", "section": "lifestyle", "kind": "company", "priority": 2},
+    {"slug": "japanpost", "name": "日本郵便", "url": "https://www.post.japanpost.jp/rss/news.xml", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "料金|値上げ|改定|郵便|ゆうパック|ゆうパケット|年賀|サービス終了|配達|遅延|障害|手数料"},
+    {"slug": "nissin", "name": "日清食品グループ", "url": "https://www.nissin.com/jp/company/news/", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3},
+    {"slug": "kewpie", "name": "キユーピー", "url": "https://www.kewpie.com/newsrelease/", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3},
+    {"slug": "house-foods", "name": "ハウス食品グループ", "url": "https://housefoods-group.com/newsrelease/index.html", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3},
+    {"slug": "nipponham", "name": "日本ハム", "url": "https://www.nipponham.co.jp/RSS.rdf", "section": "lifestyle", "kind": "company", "priority": 3},
+    # 障害・インフラ（鉄道・高速道路・通信）
+    {"slug": "rakuten-mobile-info", "name": "楽天モバイル お知らせ", "url": "https://network.mobile.rakuten.co.jp/information/", "type": "html", "section": "tech-gadget", "kind": "company", "priority": 2},
+    {"slug": "jrwest", "name": "JR西日本 ニュースリリース", "url": "https://www.westjr.co.jp/press/", "type": "html", "section": "lifestyle", "kind": "company", "priority": 2,
+     "include_re": "運賃|料金|値上げ|運休|運転見合わせ|障害|ダイヤ|新幹線|きっぷ|ICOCA|割引|終了|ポイント|計画運休"},
+    {"slug": "jrcentral", "name": "JR東海 ニュースリリース", "url": "https://jr-central.co.jp/news/", "type": "html", "section": "lifestyle", "kind": "company", "priority": 2,
+     "include_re": "運賃|料金|値上げ|運休|運転見合わせ|障害|ダイヤ|新幹線|きっぷ|EX|割引|終了|ポイント|計画運休|リニア"},
+    {"slug": "e-nexco", "name": "NEXCO東日本", "url": "https://www.e-nexco.co.jp/pressroom/", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "料金|通行止|渋滞|割引|ETC|値上げ|障害|雪"},
+    # 安全・リコール
+    {"slug": "caa-recall", "name": "消費者庁 リコール情報サイト", "url": "https://www.recall.caa.go.jp/", "type": "html", "section": "lifestyle", "kind": "gov", "priority": 1},
+    {"slug": "pmda-safety", "name": "PMDA（医薬品・医療機器の安全情報）", "url": "https://www.pmda.go.jp/rss_018.xml", "section": "lifestyle", "kind": "gov", "priority": 2,
+     "include_re": "回収|クラスI|安全性|副作用|注意|ニトロソ|出荷停止|供給|使用上の注意"},
+    # 製品と発売（コンビニ・家電・車・テーマパーク）
+    {"slug": "lawson", "name": "ローソン ニュースリリース", "url": "https://www.lawson.co.jp/company/news/", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3},
+    {"slug": "familymart", "name": "ファミリーマート ニュースリリース", "url": "https://www.family.co.jp/company/news_releases.html", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3},
+    {"slug": "sharp", "name": "シャープ ニュースリリース", "url": "https://corporate.jp.sharp/news/", "type": "html", "section": "tech-gadget", "kind": "company", "priority": 3},
+    {"slug": "mazda", "name": "マツダ ニュースルーム", "url": "https://newsroom.mazda.com/ja/", "type": "html", "section": "auto", "fallback": "business", "kind": "company", "priority": 3},
+    {"slug": "subaru", "name": "SUBARU ニュースリリース", "url": "https://www.subaru.co.jp/news/", "type": "html", "link_re": r"subaru\.co\.jp/news/20", "section": "auto", "fallback": "business", "kind": "company", "priority": 3},
+    {"slug": "usj", "name": "ユー・エス・ジェイ ニュースリリース", "url": "https://www.usj.co.jp/company/news/", "type": "html", "section": "entertainment", "kind": "company", "priority": 3},
+    # スポーツ公式（移籍・代表・表彰などリーグの公式発表）
+    {"slug": "jleague", "name": "Jリーグ 公式", "url": "https://www.jleague.jp/news/", "type": "html", "section": "sports", "kind": "company", "priority": 2,
+     "include_re": "移籍|加入|契約|退団|引退|代表|表彰|MVP|ベストイレブン|処分|日程|チケット|開幕|優勝|昇格|降格|アウォーズ"},
+    {"slug": "bleague", "name": "Bリーグ 公式", "url": "https://www.bleague.jp/news/", "type": "html", "section": "sports", "kind": "company", "priority": 2,
+     "include_re": "移籍|加入|契約|退団|引退|代表|表彰|MVP|処分|日程|チケット|開幕|優勝|オールスター"},
+    # 自治体（給付・補助・防災）
+    {"slug": "pref-aichi", "name": "愛知県 新着情報", "url": "https://www.pref.aichi.jp/rss/10/list1.xml", "section": "public", "kind": "gov", "priority": 3,
+     "include_re": "給付|補助|助成|支援金|手当|防災|災害|避難|値上げ|料金|無料|申請|受付開始|物価|ポイント|税|奨学"},
+    # 確かめたが使えなかったもの（2026-11-07）: 関西電力・味の素・カルビー・資源エネ庁の報道発表・JR東日本・JAL・NEXCO西日本・大阪市・福岡県（403）、
+    #   中部電力・セブン‐イレブン・大阪府・愛知県の一部（一覧の URL が無い・404）、キッコーマン・山崎製パン・パナソニック・日立・スクエニ・
+    #   バンダイナムコ・ホンダ・ANA・NPB・神奈川県・au/ソフトバンクの障害情報（一覧がスクリプトで描かれ、日付つきの項目が読めない）、
+    #   ドコモの障害情報（直近14日に更新なし）、NEXCO中日本（一覧の日付が工事の予定日で発表日が読めない）、国交省の自動車リコール（不具合の検索サイトで一覧が無い）、オリエンタルランド（接続が時間切れ）、
+    #   資源エネ庁の石油製品価格（週次の Excel だけで記事にする本文が無い）
     # 確かめたが使えなかったもの（2026-11-04）: 個人情報保護委員会・外務省・国家サイバー統括室（cyber.go.jp）・国民生活センター・
     #   消費者庁リコール情報サイト・国民保護ポータル（RSS なし・404・中身の無い XML）、TDnet 適時開示（robots.txt がすべて禁止）、
     #   消防庁（RSS はあるが本文が PDF だけ・叙勲や訓練が中心）、気象庁の防災情報 XML（警報は機械向けの値で、地震・津波は scripts/quake.py の型で扱う）
@@ -484,8 +542,115 @@ def strip_html(value: str) -> str:
     return re.sub(r"\s+", " ", unescape_text(value)).strip()
 
 
+# ---- RSS の無い公式のお知らせ一覧のページ（2026-11-07 オーナー「監視する場所を増やす。Yahooニュースに勝つつもりで」・台帳 A51） ----
+# feed["type"] == "html" のフィードは、一覧のページの「日付＋リンク」の並びを項目にする（公式の一次情報だけ。報道機関のページは載せない）。
+#   link_re … 項目のリンクの URL がこの正規表現に合うものだけ（ナビ・バナーを外す）。省略時は同じホストのリンク
+#   min_title … 題名の最低文字数（既定 8）
+_HTML_DATE_RE = re.compile(
+    r"(20\d{2})\s*[年./-]\s*(\d{1,2})\s*[月./-]\s*(\d{1,2})\s*日?|令和\s*(\d{1,2}|元)\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日"
+)
+_HTML_ANCHOR_RE = re.compile(r"<a\b[^>]*?href\s*=\s*[\"']([^\"'#][^\"']*)[\"'][^>]*>(.*?)</a>", re.S | re.I)
+_HTML_OPEN_RE = re.compile(r"<(?:li|tr|dt|dl|article)\b", re.I)
+_HTML_CLOSE_RE = re.compile(r"</(?:li|tr|dd|dl|article)>", re.I)
+_JST = timezone(timedelta(hours=9))
+
+
+def _html_date(text: str) -> datetime | None:
+    m = _HTML_DATE_RE.search(text)
+    if not m:
+        return None
+    if m.group(1):
+        y, mo, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    else:
+        y = 2018 + (1 if m.group(4) == "元" else int(m.group(4)))
+        mo, d = int(m.group(5)), int(m.group(6))
+    try:
+        return datetime(y, mo, d, tzinfo=_JST)
+    except ValueError:
+        return None
+
+
+def parse_html_list(feed: dict, data: bytes | None = None) -> list[dict]:
+    """お知らせ一覧の HTML から (題名, URL, 日付) を取り出す。日付が無いリンクは項目にしない（ナビ・バナー）"""
+    if data is None:
+        data, _ = fetch(feed["url"], accept="text/html,application/xhtml+xml,*/*;q=0.8")
+    page = re.sub(r"<(script|style|noscript)\b.*?</\1>", " ", _decode(data), flags=re.S | re.I)
+    host = urllib.parse.urlsplit(feed["url"]).netloc.lower()
+    link_re = re.compile(feed["link_re"]) if feed.get("link_re") else None
+    min_title = int(feed.get("min_title", 8))
+    items: list[dict] = []
+    seen: set[str] = set()
+    # date_mode "carry": 日付が見出し（「2026年11月06日発表」）にあり、その下にリンクが並ぶページ（環境省など）
+    carry = feed.get("date_mode") == "carry"
+    heads = [(d.start(), _html_date(d.group(0))) for d in _HTML_DATE_RE.finditer(page)] if carry else []
+    for m in _HTML_ANCHOR_RE.finditer(page):
+        url = urllib.parse.urljoin(feed["url"], html.unescape(m.group(1).strip()))
+        if not url.startswith("http"):
+            continue
+        if link_re:
+            if not link_re.search(url):
+                continue
+        elif urllib.parse.urlsplit(url).netloc.lower() != host:
+            continue
+        # リンクを含む一覧の1行（li・tr・dt〜dd など）の中の日付
+        start = max((o.start() for o in _HTML_OPEN_RE.finditer(page, max(0, m.start() - 600), m.start())), default=max(0, m.start() - 200))
+        close = _HTML_CLOSE_RE.search(page, m.end(), m.end() + 600)
+        seg = page[start:close.end() if close else m.end() + 200]
+        published = _html_date(strip_html(seg))
+        if published and published > datetime.now(_JST) + timedelta(days=1):
+            continue  # 先の日付（工事・催しの予定日）は発表日ではない
+        if not published and carry:
+            published = next((d for pos, d in reversed(heads) if pos < m.start()), None)
+        if not published:
+            continue
+        title = strip_html(m.group(2))
+        if len(title) < min_title:
+            title = _HTML_DATE_RE.sub("", strip_html(seg)).strip(" 　|：:-")[:120]
+        title = re.sub(r"\s+", " ", title).strip()
+        title = re.sub(rf"^(?:{_HTML_DATE_RE.pattern})\s*|\s*(?:{_HTML_DATE_RE.pattern})$", "", title).strip(" 　|：:-")  # 頭・末尾の日付を外す
+        if len(title) < min_title or url in seen:
+            continue
+        seen.add(url)
+        items.append({
+            "id": item_id(url), "url": url, "title": title[:160], "summary": "", "content": "",
+            "published_at": published, "date_only": True,
+            "source_name": feed["name"], "source_slug": feed["slug"], "lang": feed.get("lang", "ja"), "image": None,
+            "priority": feed.get("priority", 5),
+        })
+    return items[: int(feed.get("max_items", 40))]
+
+
+_JMA_ROW_RE = re.compile(r"\[\s*'(\d)'\s*,\s*'([^']+)'\s*,\s*'(\d+)'\s*,\s*'(\d+)'\s*,\s*'(\d+)'\s*,\s*'([^']+)'\s*\]")
+
+
+def parse_jma_press(feed: dict) -> list[dict]:
+    """気象庁の報道発表・お知らせの一覧（https://www.jma.go.jp/jma/press_list.js。和暦の年・月・日・題名・URL の配列）。
+    報道発表（種類 1）だけを項目にする（台風・大雪・噴火・地震の解説・季節の見通し）"""
+    data, _ = fetch(feed["url"], accept="application/javascript,*/*")
+    items = []
+    for kind, path, year, month, day, title in _JMA_ROW_RE.findall(_decode(data))[: int(feed.get("max_items", 40)) * 2]:
+        if kind != "1":
+            continue
+        try:
+            published = datetime(2018 + int(year), int(month), int(day), tzinfo=_JST)
+        except ValueError:
+            continue
+        url = urllib.parse.urljoin("https://www.jma.go.jp/", path)
+        items.append({
+            "id": item_id(url), "url": url, "title": html.unescape(title).strip(), "summary": "", "content": "",
+            "published_at": published, "date_only": True, "source_name": feed["name"], "source_slug": feed["slug"],
+            "lang": feed.get("lang", "ja"), "image": None, "priority": feed.get("priority", 5),
+        })
+    return items[: int(feed.get("max_items", 40))]
+
+
 def parse_feed(feed: dict) -> list[dict]:
-    """RSS 2.0 / Atom / RSS 1.0(RDF) を共通形式に。content は全文が入っていれば全文（HTML除去済み）。"""
+    """RSS 2.0 / Atom / RSS 1.0(RDF) を共通形式に。content は全文が入っていれば全文（HTML除去済み）。
+    feed["type"] == "html" は RSS の無い公式のお知らせ一覧（parse_html_list）"""
+    if feed.get("type") == "html":
+        return parse_html_list(feed)
+    if feed.get("type") == "jma_press":
+        return parse_jma_press(feed)
     data, _ = fetch(feed["url"], accept="application/rss+xml, application/atom+xml, application/xml;q=0.9, */*;q=0.8")
     data = data.lstrip()  # XML 宣言の前に改行がある WordPress（イオン等）
     try:
