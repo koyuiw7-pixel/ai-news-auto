@@ -32,6 +32,7 @@ export function generateStaticParams() {
 
 /** 「11月18日〜25日」（年は出さない。検索結果の前半で開催日が分かるように） */
 function shortRange(event: TechEvent): string {
+  if (event.dateLabel) return event.dateLabel;
   return localDateRange(event).replace(/^\d+年/, "").replace(/〜\d+年/, "〜");
 }
 
@@ -81,7 +82,8 @@ export default async function EventPage({ params }: Props) {
   const firstKeynote = event.keynotes.find((k) => k.startUtc);
 
   const faq = [
-    { q: `${event.nameJa}はいつ？`, a: `${localDateRange(event)}（現地時間）に、${event.location}で開かれます。` },
+    { q: `${event.nameJa}はいつ？`, a: `${event.dateLabel ? `${event.startDate.slice(0, 4)}年${event.dateLabel}` : localDateRange(event)}（現地時間）に、${event.location}で開かれます。` },
+    ...(event.attend ? [{ q: `${event.nameJa}は誰でも参加できる？`, a: event.attend }] : []),
     {
       q: `${event.nameJa}の基調講演は日本時間で何時？`,
       a: firstKeynote?.startUtc
@@ -258,6 +260,30 @@ export default async function EventPage({ params }: Props) {
           </p>
         )}
       </section>
+
+      {event.attend && (
+        <section aria-labelledby="attend-heading" className="mt-12">
+          <QHeading id="attend-heading">参加できる？</QHeading>
+          <p className="text-desc leading-[1.8] text-ink-soft">{event.attend}</p>
+        </section>
+      )}
+
+      {(event.sessions ?? []).length > 0 && (
+        <section aria-labelledby="sessions-heading" className="mt-12">
+          <QHeading id="sessions-heading">ほかにどんな講演がある？</QHeading>
+          <ul className="divide-y divide-line border-y border-line">
+            {(event.sessions ?? []).map((x) => (
+              <li key={`${x.title}${x.when}`} className="grid gap-1 py-3.5 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-4">
+                <span className="text-[15px] font-bold tabular-nums text-ink">{x.when}</span>
+                <span className="min-w-0 text-desc leading-[1.7] text-ink-soft">
+                  {x.title}
+                  {x.speakers && x.speakers.length > 0 && <span className="block text-meta text-muted">登壇: {x.speakers.join("、")}</span>}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section aria-labelledby="watch-heading" className="mt-12">
         <QHeading id="watch-heading">どこで見られる？</QHeading>

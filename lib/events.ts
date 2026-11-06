@@ -39,6 +39,12 @@ export type TechEvent = {
   endUtc: string;
   recap?: { text: string; slug: string }[];
   recapAt?: string;
+  /** 会期が飛び飛びのときの表示（例「11月18〜20日・24〜25日」）。題名とFAQに使う */
+  dateLabel?: string;
+  /** 「参加できる？」への公式の答え */
+  attend?: string;
+  /** 基調講演以外の主なセッション（公式に載っているものだけ） */
+  sessions?: { title: string; when: string; speakers?: string[] }[];
 };
 
 export type EventStatus = "upcoming" | "live" | "ended";
