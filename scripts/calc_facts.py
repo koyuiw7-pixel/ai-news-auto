@@ -174,11 +174,15 @@ def values(text: str) -> list[float]:
         found += [v * 1e6 for v in plain]
     if UNIT_THOUSANDS_RE.search(text or ""):
         found += [v * 1e3 for v in plain]
+    # 日本の決算の表は「（億円）」単位が多い（KDDI 29,160 → 2兆9,160億円。2026-11-06 の速報が門で落ちた）
+    if UNIT_OKU_RE.search(text or ""):
+        found += [v * 1e8 for v in plain]
     return found
 
 
 MILLION_WORD_RE = re.compile(r"(?<![\d.,])(\d{1,3}(?:,\d{3})+|\d+)(\.\d+)?\s?百万")
 UNIT_MILLIONS_RE = re.compile(r"in millions|\(millions|millions of (?:dollars|U\.S\.)|百万(?:円|ドル|ユーロ)|単位[:：]\s*百万", re.I)
+UNIT_OKU_RE = re.compile(r"[（(]\s*億円\s*[)）]|単位[:：]\s*億")
 UNIT_THOUSANDS_RE = re.compile(r"in thousands|\(thousands|千(?:円|ドル)|単位[:：]\s*千", re.I)
 
 
