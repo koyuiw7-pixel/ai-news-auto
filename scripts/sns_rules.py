@@ -58,6 +58,10 @@
      ハッシュタグは災害・大きな行事だけ1つまで（sns_plan.x_hashtag。X だけ S35 の「災害に付けない」の例外）。決算の数字だけの記事は
      X に出さない（製品の文から始めるときだけ可）。記事のリンクは返信（utm_campaign=xpost）。長さは X の数え方で280（全角140字）まで。
 
+  21. （2026-11-06 オーナー承認・台帳 S43。2026-11-07 から）Facebook だけの文面（kind="fbpost"・scripts/facebook_post.py）: 1行目＝数字の入った事実、
+     2行目＝家計や暮らしにどう響くか（どちらも記事の文・やさしい です・ます）。記事のリンクは本文の最後（utm_campaign=fbpost）＋リンクカード
+     （動画があれば動画を直接。リンクは本文）。問いかけは暮らしの話題（sns_plan.fb_lifestyle）だけ・災害・安全の話題には付けない（S35）。
+
 違反したら: 投稿しない・ログに出す・GitHub の issue（ラベル sns-rule-violation）を立てるか、開いているものにコメントを足す。
 新しく Buffer / Bluesky / Threads の投稿 API を呼ぶ所を作るときは、必ずこの enforce を直前に呼ぶ（tests/test_sns_rules.py が確かめる）。
 
@@ -66,6 +70,7 @@
   kind="disaster" 地震・津波（AI に文章を書かせない型の文面）。問いかけ・要約は無し。リンクの決まりは同じ。
   kind="brief"    Bluesky だけの2行の文面（ルール19）。書き出し・問いかけの決まり（ルール1・6）の代わりに check_brief で見る。
   kind="xpost"    X だけの文面（ルール20）。書き出し・問いかけの決まり（ルール1・6）の代わりに check_xpost で見る。
+  kind="fbpost"   Facebook だけの文面（ルール21）。書き出し・問いかけの決まり（ルール1・6）の代わりに check_fbpost で見る。
 """
 from __future__ import annotations
 
@@ -1157,6 +1162,45 @@ def check_xpost(platform: str, text: str, content: str, article: dict | None) ->
     return out
 
 
+# ルール21（2026-11-06 オーナー承認・台帳 S43）: Facebook だけの文面。1行目＝数字の入った事実・2行目＝暮らしにどう響くか・リンクは本文の最後
+FB_CAMPAIGN = "fbpost"
+
+
+def check_fbpost(platform: str, text: str, content: str, article: dict | None) -> list[str]:
+    """ルール21: Facebook だけの文面（scripts/facebook_post.py）"""
+    out = []
+    article = article or {}
+    if platform != "facebook":
+        out.append("[ルール21] Facebook だけの文面（kind=fbpost）は Facebook だけ")
+    lines = [x.strip() for x in str(content or "").splitlines() if x.strip()]
+    if len(lines) < 2:
+        out.append(f"[ルール21] Facebook の文面は1行目＝事実・2行目＝暮らしにどう響くか（今は{len(lines)}行）")
+    first = lines[0] if lines else ""
+    if first and not re.search(r"[0-9０-９]", first) and not article.get("disaster"):
+        out.append(f"[ルール21] 1行目は数字の入った事実（「{first[:24]}」）")
+    if first and (template_callout(first) or is_callout_line(first)):
+        out.append(f"[ルール21] 1行目は呼びかけでなく事実（「{first[:24]}」）")
+    for pattern, label in BANNED_OPENERS:
+        if m := pattern.search(str(text or "")):
+            out.append(f"[ルール6] {label}（「{m.group(0)[:24]}」）")
+    for line in lines:
+        if SUMMARY_LEAD_RE.match(line) or LEAD_WORD_RE.match(line):
+            out.append(f"[ルール13] 決まった前置きで始めない（「{line[:12]}」）")
+        if m := HARD_WORDS.search(line):
+            out.append(f"[ルール7] 硬い言葉（「{m.group(0)}」）")
+    if EMOJI_RE.search(str(text or "")):
+        out.append("[ルール21] 絵文字を付けない")
+    if any(x.endswith(QUESTION_END) for x in lines) and (safety_topic(article) or not sns_plan.fb_lifestyle(article)):
+        out.append("[ルール21] 問いかけは暮らしの話題だけ（災害・安全の話題には付けない。台帳 S35・S43）")
+    if HASHTAG_RE.search(str(text or "")):
+        out.append("[ルール21] Facebook の文面にハッシュタグを付けない")
+    urls = links_in(text)
+    tail = str(text or "").rstrip().splitlines()[-1].strip() if str(text or "").strip() else ""
+    if not urls or tail not in urls:
+        out.append("[ルール21] 記事のリンクは本文の最後の行に置く")
+    return out
+
+
 def _body_without_link_line(content: str) -> str:
     """リンクの案内の行・動画の説明の行・音声のクレジットを除いた本文"""
     return "\n".join(x for x in str(content or "").splitlines() if x.strip() and not LINK_LINE.match(x.strip()) and not NOTE_LINE.match(x.strip()))
@@ -1299,7 +1343,8 @@ def already_posted(platform: str, article: dict | None, kind: str, state: dict |
         # 2026-11-07〜 X だけの記録 state/x_posted.json（台帳 S42）も見る
         return bool(channels.get("twitter")) or bool((_x_state().get(slug) or {}).get("id"))
     if platform == "facebook":
-        return bool(channels.get("facebook"))
+        # 2026-11-07〜 Facebook だけの記録 state/facebook_posted.json（台帳 S43）も見る
+        return bool(channels.get("facebook")) or bool((_own_state(FB_STATE_PATH).get(slug) or {}).get("id"))
     if platform == "instagram":
         return bool(channels.get("instagram"))
     if extra is None:
@@ -1313,16 +1358,22 @@ def already_posted(platform: str, article: dict | None, kind: str, state: dict |
 
 
 X_STATE_PATH = ROOT / "state" / "x_posted.json"
+FB_STATE_PATH = ROOT / "state" / "facebook_posted.json"
 
 
-def _x_state() -> dict:
+def _own_state(path: Path) -> dict:
+    """SNS だけの記録（state/x_posted.json・state/facebook_posted.json）。壊れていて読めなければ出さない（S20）"""
     try:
-        data = json.loads(X_STATE_PATH.read_text("utf-8"))
+        data = json.loads(path.read_text("utf-8"))
     except FileNotFoundError:
         return {}
     except (OSError, ValueError) as error:
-        raise PostingStateUnknown(f"X の記録 {X_STATE_PATH.name} を読めません: {type(error).__name__}") from error
+        raise PostingStateUnknown(f"記録 {path.name} を読めません: {type(error).__name__}") from error
     return data if isinstance(data, dict) else {}
+
+
+def _x_state() -> dict:
+    return _own_state(X_STATE_PATH)
 
 
 def check_post(
@@ -1399,6 +1450,8 @@ def check_post(
             out += check_brief(platform, text, content, article)  # Bluesky だけの2行の文面（ルール19・台帳 S40）
         elif kind == "xpost":
             out += check_xpost(platform, text, content, article)  # X だけの文面（ルール20・台帳 S42）
+        elif kind == "fbpost":
+            out += check_fbpost(platform, text, content, article)  # Facebook だけの文面（ルール21・台帳 S43）
         elif not hook_form:
             out += check_structure(platform, content, article, plain=kind == "control")
             out += check_opener(platform, text, content, article)
@@ -1583,6 +1636,8 @@ def campaign_kind(platform: str, urls: list[str], default: str = "article") -> s
         campaign = urllib.parse.parse_qs(_url(u).query).get("utm_campaign") or [""]
         if platform == "x" and campaign[0] == X_CAMPAIGN:
             return "xpost"
+        if platform == "facebook" and campaign[0] == FB_CAMPAIGN:
+            return "fbpost"
     return default
 
 

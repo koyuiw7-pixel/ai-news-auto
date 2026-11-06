@@ -842,6 +842,8 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
                 continue
             if service == "twitter" and sns_plan.x_on(slot):
                 continue  # 2026-11-07〜 X は scripts/x_post.py が X だけの枠で出す（台帳 S42。前に作った予定の X の入力も送らない）
+            if service == "facebook" and sns_plan.fb_on(slot):
+                continue  # 2026-11-07〜 Facebook は scripts/facebook_post.py が Facebook だけの枠で出す（台帳 S43）
             offset = 0 if service == "threads" else int(inputs[service].get("_offsetMin") or 0)
             inp = video_input(service, inputs[service], report, variant, urls[variant]) if variant else card_input(inputs[service])
             inp.update({"mode": "customScheduled", "dueAt": _iso(base + timedelta(minutes=offset))})

@@ -1,7 +1,7 @@
 name: Breaking post
 
 # 速報の即時投稿。auto_run.yml が速報記事（breaking: true）を作ってデプロイした回に呼ぶ。
-# 記事ページと図解カード（/card/<slug>）が 200 になるのを最大8分待ち、Buffer で Threads・X・Facebook にすぐ出す（X は 2026-11-07 から x_post.py の X だけの文面。台帳 S42）。
+# 記事ページと図解カード（/card/<slug>）が 200 になるのを最大8分待ち、Buffer で Threads・X・Facebook にすぐ出す（X・Facebook は 2026-11-07 から x_post.py・facebook_post.py の専用の文面。台帳 S42・S43）。
 # 上限・対象の条件は scripts/breaking_post.py を参照（1日 BREAKING_PER_DAY 本まで・深夜は出さず朝 6:00 に出す）。
 # 見張り番の Worker（ops/watchdog）が毎朝 6:00（日本時間）にも起動する（深夜に作った速報を出すため）。
 # 自分の投稿だけを扱う。他人の投稿へのコメント・返信は自動化しない。
@@ -87,12 +87,23 @@ jobs:
           BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}
           GH_TOKEN: ${{ github.token }}  # 門番が止めた投稿の issue を立てる
         run: python scripts/x_post.py --breaking-only
+      # Facebook（2026-11-07〜 Facebook だけの文面。台帳 S43）: 速報・災害の知らせを枠の外ですぐ出す（本数に数えない）。失敗しても止めない
+      - name: Post to Facebook
+        continue-on-error: true
+        env:
+          THREADS_MODE: ${{ vars.THREADS_MODE }}
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_LEDGER: breaking
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}
+          GH_TOKEN: ${{ github.token }}  # 門番が止めた投稿の issue を立てる
+        run: python scripts/facebook_post.py --breaking-only
       # 待っている間に main が進んでいても衝突しないよう、最新の state に投稿記録だけを足して push する
       - name: Commit history
         run: |
           if [ -z "$(git status --porcelain state)" ]; then exit 0; fi
           cp state/threads_posted.json "$RUNNER_TEMP/mine.json"
           cp state/x_posted.json "$RUNNER_TEMP/mine_x.json" 2>/dev/null || echo '{}' > "$RUNNER_TEMP/mine_x.json"
+          cp state/facebook_posted.json "$RUNNER_TEMP/mine_fb.json" 2>/dev/null || echo '{}' > "$RUNNER_TEMP/mine_fb.json"
           cp state/buffer_calls/breaking.json "$RUNNER_TEMP/buffer_ledger.json" 2>/dev/null || true  # Buffer の呼び出し回数（30日の合計に要る。2026-11-05）
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -101,7 +112,8 @@ jobs:
             python scripts/breaking_post.py --merge "$RUNNER_TEMP/mine.json"
             python scripts/bluesky_post.py --merge "$RUNNER_TEMP/mine.json"
             python scripts/x_post.py --merge "$RUNNER_TEMP/mine_x.json"
-            git add state/threads_posted.json state/x_posted.json
+            python scripts/facebook_post.py --merge "$RUNNER_TEMP/mine_fb.json"
+            git add state/threads_posted.json state/x_posted.json state/facebook_posted.json
             if [ -f "$RUNNER_TEMP/buffer_ledger.json" ]; then mkdir -p state/buffer_calls; cp "$RUNNER_TEMP/buffer_ledger.json" state/buffer_calls/breaking.json; git add state/buffer_calls/breaking.json; fi
             if git diff --cached --quiet; then exit 0; fi
             git commit -m "chore(threads): 速報の投稿を記録"

@@ -238,7 +238,7 @@ class DecoupleTest(unittest.TestCase):
         after = tp.publish_extra_channels("", self.chans(), "本文です。", "https://ai-tech-express.jp/articles/pixel", a,
                                           at(7, 15), build_only=True)
         self.assertIn("twitter", before)
-        self.assertEqual(set(after), {"facebook"})
+        self.assertNotIn("twitter", after)  # Facebook も 11/07 から別（台帳 S43・tests/test_facebook_slots_20261106.py）
 
     def test_other_paths_cannot_create_x_posts(self):
         calls = []

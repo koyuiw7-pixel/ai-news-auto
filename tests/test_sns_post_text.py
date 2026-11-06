@@ -353,17 +353,20 @@ class PromptTest(unittest.TestCase):
         self.assertIn(rules, threads_hooks.prompt_block(recent=[]))
 
 
-# Threads の予定から X にも同じ記事を出す経路（2026-11-06 まで）の確かめ。2026-11-07 からは X は scripts/x_post.py だけが出す
-# （台帳 S42・tests/test_x_slots_20261106.py）ので、このファイルの確かめは日付によらず前の経路で動かす
+# Threads の予定から X・Facebook にも同じ記事を出す経路（2026-11-06 まで）の確かめ。2026-11-07 からは X は scripts/x_post.py、
+# Facebook は scripts/facebook_post.py だけが出す（台帳 S42・S43）ので、このファイルの確かめは日付によらず前の経路で動かす
 _X_COPY = patch("sns_plan.x_on", return_value=False)
+_FB_COPY = patch("sns_plan.fb_on", return_value=False)
 
 
 def setUpModule():
     _X_COPY.start()
+    _FB_COPY.start()
 
 
 def tearDownModule():
     _X_COPY.stop()
+    _FB_COPY.stop()
 
 
 if __name__ == "__main__":

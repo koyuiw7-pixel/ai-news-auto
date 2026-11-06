@@ -1935,6 +1935,9 @@ def publish_extra_channels(
     if "twitter" in channels and sns_plan.x_on(due_at):
         # 2026-11-07〜 X は X だけの枠・文面で scripts/x_post.py が出す（台帳 S42）。Threads の予定・速報からは X に出さない
         channels = {k: v for k, v in channels.items() if k != "twitter"}
+    if "facebook" in channels and sns_plan.fb_on(due_at):
+        # 2026-11-07〜 Facebook も Facebook だけの枠・文面で scripts/facebook_post.py が出す（台帳 S43）
+        channels = {k: v for k, v in channels.items() if k != "facebook"}
     card = card_url(article)
     title = article.get("seoTitle") or article["title"]
     ptype = post_type(article, fmt)
@@ -2013,7 +2016,7 @@ def utc_z(when: datetime) -> str:
 
 
 class XOwnSlotsOnly(RuntimeError):
-    """2026-11-07〜 X の投稿は scripts/x_post.py だけが作る（台帳 S42）。ほかの経路からの X の投稿を止める"""
+    """2026-11-07〜 X の投稿は scripts/x_post.py、Facebook の投稿は scripts/facebook_post.py だけが作る（台帳 S42・S43）。ほかの経路からの投稿を止める"""
 
 
 class DuplicatePost(RuntimeError):
@@ -2095,6 +2098,9 @@ def create_post(api_key: str, post_input: dict, *, service: str, article: dict |
     if service == "twitter" and not source.startswith("x_post") and sns_plan.x_on() and not post_input.get("saveToDraft"):
         # 2026-11-07〜 X の投稿は scripts/x_post.py だけ（台帳 S42）。ほかの経路が X に作ろうとしたら止める（Buffer は呼ばない）
         raise XOwnSlotsOnly(f"X の投稿は x_post.py だけが作ります（台帳 S42・{source}）")
+    if service == "facebook" and not source.startswith("facebook_post") and sns_plan.fb_on() and not post_input.get("saveToDraft"):
+        # 2026-11-07〜 Facebook の投稿は scripts/facebook_post.py だけ（台帳 S43）
+        raise XOwnSlotsOnly(f"Facebook の投稿は facebook_post.py だけが作ります（台帳 S43・{source}）")
     sns_rules.enforce_buffer(service, post_input, article, source=source, kind=kind)
     try:
         ensure_not_duplicate(api_key, post_input, service, article, kind, allow=allow)

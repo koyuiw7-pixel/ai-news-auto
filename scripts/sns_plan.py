@@ -11,6 +11,7 @@
   daily_cap() / cap_exempt(article_or_entry)  → 1日の上限と、上限に数えない種類（ミサイル・災害）
   bluesky_daily_cap() / bluesky_slot_window(now) → Bluesky だけの1日3本と枠 7:30・13:00・21:00（Threads と別に数える。S40）
   x_on() / x_daily_cap() / x_slot_window(now) / x_topic / x_earnings_only / x_keyword / x_hashtag → X だけの1日3本と枠 7:30・12:30・21:00・話題・文面（S42）
+  fb_on() / fb_daily_cap() / fb_slot_window(now) / fb_lifestyle → Facebook だけの1日3本と枠 7:30・12:30・20:00・暮らしの話題（S43）
   count_today(posted, day, extra) → その日（日本時間）に出した（予約した）自分の投稿の数
   utm_content(ptype, pos) → "video_body" など
   hook_format_on()  → 2026-11-05 オーナー承認でワークフローの既定は on（変数で 0 にすれば止まる）
@@ -195,16 +196,20 @@ def x_plan() -> dict:
     return plan().get("x") or {}
 
 
-def x_on(when: datetime | None = None) -> bool:
-    """X だけの枠で出す日か（sns_plan.json の x.start の日から）。この日からは X の投稿は scripts/x_post.py だけが出す
-    （Threads の予定・速報・朝のまとめからは X に出さない）"""
-    start = str(x_plan().get("start") or "")
+def _started(block: dict, when: datetime | None) -> bool:
+    start = str(block.get("start") or "")
     if not start:
         return False
     when = when or datetime.now(timezone.utc)
     if when.tzinfo is None:
         when = when.replace(tzinfo=timezone.utc)
     return when.astimezone(JST).date() >= date.fromisoformat(start)
+
+
+def x_on(when: datetime | None = None) -> bool:
+    """X だけの枠で出す日か（sns_plan.json の x.start の日から）。この日からは X の投稿は scripts/x_post.py だけが出す
+    （Threads の予定・速報・朝のまとめからは X に出さない）"""
+    return _started(x_plan(), when)
 
 
 def x_slots_jst() -> list[tuple[int, int]]:
@@ -342,6 +347,43 @@ def x_hashtag(article: dict | None) -> str:
     return ""
 
 
+# ---- Facebook だけの枠・上限・文面（2026-11-06 オーナー承認・台帳 S43。2026-11-07 から。Threads・X とは別に数える） ----
+
+def fb_plan() -> dict:
+    return plan().get("facebook") or {}
+
+
+def fb_on(when: datetime | None = None) -> bool:
+    """Facebook だけの枠で出す日か（sns_plan.json の facebook.start の日から）。この日からは Facebook の投稿は
+    scripts/facebook_post.py だけが出す（Threads の予定・速報からは Facebook に出さない）"""
+    return _started(fb_plan(), when)
+
+
+def fb_slots_jst() -> list[tuple[int, int]]:
+    return sorted(_hm(s) for s in fb_plan().get("slots_jst") or [])
+
+
+def fb_daily_cap() -> int:
+    """Facebook の1日（日本時間）の通常の投稿の上限。変数 FACEBOOK_PER_DAY で減らすことはできるが、計画より増やさない"""
+    cap = int(fb_plan().get("daily_cap") or 0)
+    raw = os.environ.get("FACEBOOK_PER_DAY", "").strip()
+    return max(0, min(int(raw), cap)) if raw.isdigit() else cap
+
+
+def fb_slot_window(now: datetime) -> tuple[int, datetime, datetime] | None:
+    """今の時刻が入る Facebook の枠（番号, 始まり, 終わり）。7:30・12:30・20:00。7時より前・23時より後・最初の枠の前は None"""
+    return _slot_window(fb_plan(), now)
+
+
+def fb_lifestyle(article: dict | None) -> bool:
+    """暮らしの話題か（家計・値上げ・暮らし・制度。12:30 の枠で先に選ぶ・問いかけを付けてよい）。災害・ミサイルの知らせは当たらない"""
+    article = article or {}
+    if _alert(article) or article.get("items"):
+        return False
+    pat = fb_plan().get("lifestyle_re")
+    return bool(pat) and bool(_re(pat).search(f"{_text(article)} {article.get('lede', '')}"))
+
+
 def min_gap() -> timedelta:
     return timedelta(minutes=int(plan()["min_gap_min"]))
 
@@ -385,7 +427,7 @@ def _when(rec: dict) -> datetime | None:
 
 
 def count_today(posted: dict, day: date, skipped: set[str] | None = None) -> int:
-    """その日（日本時間）に出した・予約した自分の投稿の数（Threads の記録。Facebook は同じ記事を同じ日に出す。X は 2026-11-07 から別に数える＝S42）。
+    """その日（日本時間）に出した・予約した自分の投稿の数（Threads の記録。X・Facebook は 2026-11-07 から別に数える＝S42・S43）。
     動画が作れず出さなかったもの（skipped）とミサイル・災害・速報は数えない"""
     skipped = skipped or set()
     n = 0
