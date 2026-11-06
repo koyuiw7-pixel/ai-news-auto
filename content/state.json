@@ -100,6 +100,22 @@
       "tries": 1,
       "url": "http://www.npa.go.jp/newlyarrived/2026/20260331001.html"
     },
+    "38d7cd8d70883115": {
+      "first": "2026-11-06T01:04:12.474189+00:00",
+      "next": "2026-11-06T04:04:12.474189+00:00",
+      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "title": "Google 検索 の AI モードの新機能で、あらゆるタスクをよりスムーズに",
+      "tries": 1,
+      "url": "https://blog.google/intl/ja-jp/products/explore-get-answers/search_aim_restaurant_booking/"
+    },
+    "4a29cf0a9e1bd354": {
+      "first": "2026-11-06T01:09:33.060536+00:00",
+      "next": "2026-11-06T04:09:33.060536+00:00",
+      "reason": "本文「本稿の執筆環境（OpenCode v2.2.0）では、opencode run --standalone --model ... で同じ指示を一度に実行しています。」→ 元記事の検証は実行確認のみで、記事の要約自体は概ね一致。ただし「ファイルが実際にできました」は元記事の流れに沿うので問題なし; 「Claude CodeからOpenCodeを子プロセスとして呼び出す構成も紹介」→ 元記事と一",
+      "title": "Sarashina をコーディングエージェントで使う: OpenCode・Hermes Agent・Crush での利用と、サブエージェントとしての活用",
+      "tries": 1,
+      "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/06/100000"
+    },
     "52567fa092b78f28": {
       "first": "2026-11-04T03:34:46.235755+00:00",
       "next": "2026-11-04T06:34:46.235755+00:00",
@@ -223,6 +239,7 @@
     "82870a11b510856e": "2026-11-04T13:10:52.830493+00:00",
     "82ba3b5f71aacf8f": "2026-11-05T18:40:52.551314+00:00",
     "877948a180f4280d": "2026-11-05T18:40:52.551314+00:00",
+    "884b8cc2f43ba1f5": "2026-11-06T01:01:01.438406+00:00",
     "8a01d45d75d2fb55": "2026-11-05T12:21:12.462815+00:00",
     "8d14de2cca67f1c1": "2026-11-04T13:10:52.830493+00:00",
     "8f321d911be5a10c": "2026-11-05T03:10:54.568103+00:00",
@@ -4558,6 +4575,12 @@
       "skipped": true,
       "url": "https://blog.jetbrains.com/mps/2026/11/mps-2026-1-2-released/"
     },
+    "15cdc78117722add": {
+      "at": "2026-11-06T01:04:13.190814+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
+      "skipped": true,
+      "url": "https://www.nintendo.com/jp/topics/article/b55c5dd2-bff4-4979-a43f-d5578bfb91e2"
+    },
     "15f9cbb9c31a81bf": {
       "at": "2026-11-05T01:45:27.187505+00:00",
       "mix": "other",
@@ -8712,6 +8735,12 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326881.html"
     },
+    "68ae8c1939f0b30e": {
+      "at": "2026-11-06T01:01:24.180699+00:00",
+      "reason": "public-interest: 資料が短い 1071字",
+      "skipped": true,
+      "url": "http://www.mlit.go.jp/report/press/house03_hh_000285.html"
+    },
     "68c01e18210096fb": {
       "at": "2026-10-29T01:21:42.486077+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10295,12 +10324,6 @@
       "slug": "fsa-personal-info-leak-consultation",
       "url": "https://www.fsa.go.jp/receipt/soudansitu/index.html#kojinjouhou"
     },
-    "884b8cc2f43ba1f5": {
-      "at": "2026-11-06T00:41:15.939423+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.riken.jp/press/2026/20261106_1/index.html"
-    },
     "88525dbba76b19c2": {
       "at": "2026-10-27T01:53:03.666504+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10773,6 +10796,12 @@
       "reason": "stale: 発表から279時間（記事ページの日付）",
       "skipped": true,
       "url": "https://www.redhat.com/en/blog/trustworthy-ai-starts-community-governance"
+    },
+    "9192d24f26be4d21": {
+      "at": "2026-11-06T01:04:13.190775+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://www.nintendo.com/jp/topics/article/b1972348-4cb5-4c66-994c-0f78076f1e24"
     },
     "919a93a7bb387b8c": {
       "at": "2026-10-30T04:21:56.177506+00:00",
@@ -11825,6 +11854,12 @@
       "skipped": true,
       "url": "https://www.cao.go.jp/consumer/iinkai/2026/501/shiryou/index.html"
     },
+    "a55b8a7415413318": {
+      "at": "2026-11-06T01:04:13.190873+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメの告知・ゴシップ・キャンペーン。ビジネス・テックの目線ではない）",
+      "skipped": true,
+      "url": "https://www.nintendo.com/jp/topics/article/66b54cd2-6cb3-42fa-8e74-eac83abb50f6"
+    },
     "a59af32d2ab6e4bb": {
       "at": "2026-11-02T21:11:40.002544+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（調達）",
@@ -12544,6 +12579,13 @@
       "slug": "samsung-galaxy-dakar-2026-youth-olympics",
       "url": "https://news.samsung.com/jp/young-olympians-at-dakar-202611?utm_source=rss&utm_medium=direct"
     },
+    "b5bb5878ed1b2cf1": {
+      "at": "2026-11-06T01:10:55.575650+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "quality: title の長さが不適切（68字 / 18〜64字）",
+      "skipped": true,
+      "url": "https://blogs.windows.com/japan/2026/11/06/explore-user-feedback-with-microsoft-365-insights-agent/"
+    },
     "b5bd2734bcbd8d3c": {
       "at": "2026-11-02T04:32:09.569410+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -12591,6 +12633,15 @@
       "reason": "followup quality: 「マイナビニュースは10月28日、…と報じました」→ 元記事には媒体名も「10月28日」という日付も書かれておらず、出典と日付が創作されている。",
       "skipped": true,
       "url": "https://news.mynavi.jp/article/20261028-5209377/"
+    },
+    "b679e9ea65e0426e": {
+      "at": "2026-11-06T01:07:04.267918+00:00",
+      "mix": "jp_corp",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "business",
+      "slug": "ntt-west-forest-j-credit-offset",
+      "url": "http://www.ntt-west.co.jp/news/2611/261105a.html"
     },
     "b69be4baefaaedcb": {
       "at": "2026-10-27T03:05:10.757566+00:00",
@@ -16193,165 +16244,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T11:03:05.271734+00:00",
-      "attempt": 2,
-      "id": "cba8f769dd5b673e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「rceの社内では、社員の83%」、「営業担当の90%」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 114.8,
-        "avg_sentence": 46.8,
-        "long_share": 0.148,
-        "max_paragraph": 207,
-        "paragraphs": 11,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "salesforce-news",
-      "title": "Half of Slack Messages Are No Longer From People. Here’s Slack by the Numbers.",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T11:04:41.329561+00:00",
-      "attempt": 1,
-      "id": "7f3e9ee44aca1677",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "ntt-news",
-      "title": "国内初、SON技術を活用し、混雑状況に応じた通信量の自動調整を実証 -合計280MHzの帯域幅を活用し、大規模イベントの混雑時間帯にも安定した通信を確認-"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-04T11:06:03.814058+00:00",
-      "attempt": 2,
-      "id": "7f3e9ee44aca1677",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 104.6,
-        "avg_sentence": 38.0,
-        "long_share": 0.068,
-        "max_paragraph": 181,
-        "paragraphs": 16,
-        "sentences": 44
-      },
-      "score": 92,
-      "source": "ntt-news",
-      "title": "国内初、SON技術を活用し、混雑状況に応じた通信量の自動調整を実証 -合計280MHzの帯域幅を活用し、大規模イベントの混雑時間帯にも安定した通信を確認-",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SON・TM）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T11:21:53.895911+00:00",
-      "attempt": 1,
-      "id": "626ce1433a1ab2e9",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "title の長さが不適切（67字 / 18〜64字）"
-      ],
-      "readability": {
-        "avg_paragraph": 79.9,
-        "avg_sentence": 38.7,
-        "long_share": 0.152,
-        "max_paragraph": 179,
-        "paragraphs": 16,
-        "sentences": 33
-      },
-      "score": null,
-      "source": "google-cloud-blog-ja",
-      "title": "アップグレード時のダウンタイムをほぼゼロに: Cloud SQL for MySQL 向けの Blue/Green デプロイを発表",
-      "warnings": [
-        "見出しが67字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SQL・IP・CLI）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T11:22:07.606235+00:00",
-      "attempt": 2,
-      "id": "626ce1433a1ab2e9",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "google-cloud-blog-ja",
-      "title": "アップグレード時のダウンタイムをほぼゼロに: Cloud SQL for MySQL 向けの Blue/Green デプロイを発表"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T11:23:35.855928+00:00",
-      "attempt": 1,
-      "id": "2c8a2ca0b2585148",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mlit-press",
-      "title": "リコールの届出について（ロータス エリーゼ SPORT/SPRINT 220 他）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T11:24:41.330927+00:00",
-      "attempt": 2,
-      "id": "2c8a2ca0b2585148",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mlit-press",
-      "title": "リコールの届出について（ロータス エリーゼ SPORT/SPRINT 220 他）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T11:24:56.829283+00:00",
-      "attempt": 1,
-      "id": "2e3f3ef33d8db967",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "hiroshima-u",
-      "title": "【研究成果】脳波の計測からAI解析までを学ぶ動画教材を公開 ― TNI Academy第1弾「EEG × AI」の提供を開始 ―"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T11:25:07.613545+00:00",
-      "attempt": 2,
-      "id": "2e3f3ef33d8db967",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "hiroshima-u",
-      "title": "【研究成果】脳波の計測からAI解析までを学ぶ動画教材を公開 ― TNI Academy第1弾「EEG × AI」の提供を開始 ―"
-    },
     {
       "accepted": false,
       "at": "2026-11-04T11:26:18.685688+00:00",
@@ -22281,12 +22173,215 @@
       "score": 88,
       "source": "fast",
       "title": "毎月勤労統計調査 2026年9月分速報（実質賃金・名目賃金・夏季賞与）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T01:02:56.864935+00:00",
+      "attempt": 1,
+      "id": "38d7cd8d70883115",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "google-japan-blog",
+      "title": "Google 検索 の AI モードの新機能で、あらゆるタスクをよりスムーズに"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T01:04:12.474051+00:00",
+      "attempt": 2,
+      "id": "38d7cd8d70883115",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "google-japan-blog",
+      "title": "Google 検索 の AI モードの新機能で、あらゆるタスクをよりスムーズに"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T01:05:02.090082+00:00",
+      "attempt": 1,
+      "id": "b679e9ea65e0426e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "ntt-news",
+      "title": "株式会社地域創生Coデザイン研究所（NTT西日本グループ）が「J－クレジット・プロバイダー」に登録～森林由来J－クレジットの創出・流通支援、活用にグループ一体で"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T01:06:31.024779+00:00",
+      "attempt": 2,
+      "id": "b679e9ea65e0426e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 55.1字・60字超の文が 39% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 90.7,
+        "avg_sentence": 55.1,
+        "long_share": 0.393,
+        "max_paragraph": 123,
+        "paragraphs": 17,
+        "sentences": 28
+      },
+      "score": 90,
+      "source": "ntt-news",
+      "title": "株式会社地域創生Coデザイン研究所（NTT西日本グループ）が「J－クレジット・プロバイダー」に登録～森林由来J－クレジットの創出・流通支援、活用にグループ一体で",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CO・GX・ESG）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T01:07:04.258831+00:00",
+      "attempt": 0,
+      "id": "b679e9ea65e0426e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.9,
+        "avg_sentence": 38.6,
+        "long_share": 0.0,
+        "max_paragraph": 129,
+        "paragraphs": 18,
+        "sentences": 41
+      },
+      "score": 88,
+      "source": "ntt-news",
+      "title": "株式会社地域創生Coデザイン研究所（NTT西日本グループ）が「J－クレジット・プロバイダー」に登録～森林由来J－クレジットの創出・流通支援、活用にグループ一体で",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CO・GX・ESG）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T01:08:10.080509+00:00",
+      "attempt": 1,
+      "id": "4a29cf0a9e1bd354",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す"
+      ],
+      "readability": {
+        "avg_paragraph": 142.2,
+        "avg_sentence": 50.0,
+        "long_share": 0.243,
+        "max_paragraph": 226,
+        "paragraphs": 13,
+        "sentences": 37
+      },
+      "score": null,
+      "source": "sbintuitions-blog",
+      "title": "Sarashina をコーディングエージェントで使う: OpenCode・Hermes Agent・Crush での利用と、サブエージェントとしての活用",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SB・KEY・TUI）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T01:09:33.060455+00:00",
+      "attempt": 2,
+      "id": "4a29cf0a9e1bd354",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "本文「本稿の執筆環境（OpenCode v2.2.0）では、opencode run --standalone --model ... で同じ指示を一度に実行しています。」→ 元記事の検証は実行確認のみで、記事の要約自体は概ね一致。ただし「ファイルが実際にできました」は元記事の流れに沿うので問題なし",
+        "「Claude CodeからOpenCodeを子プロセスとして呼び出す構成も紹介」→ 元記事と一致",
+        "「Piは、Sarashinaに直接つながらないと同ブログは書いています」→ 元記事と一致",
+        "「試行では、「ことによって」が「と」に、長い一文が分割されていました。」→ 元記事と一致",
+        "「編集部の見方では、メインのモデルを変えずに、Sarashinaの得意な日本語の校正や要約だけを切り出すのが…」→ 編集部の解釈として区別されており許容",
+        "「価格=不明」の記述と「Sarashina APIの料金や利用上限の詳細は、本稿の時点で示されていません」→ 元記事に料金記述が無いため妥当"
+      ],
+      "readability": {
+        "avg_paragraph": 140.3,
+        "avg_sentence": 47.6,
+        "long_share": 0.264,
+        "max_paragraph": 284,
+        "paragraphs": 18,
+        "sentences": 53
+      },
+      "score": 62,
+      "source": "sbintuitions-blog",
+      "title": "Sarashina をコーディングエージェントで使う: OpenCode・Hermes Agent・Crush での利用と、サブエージェントとしての活用",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SB・LLM・KEY）",
+        "その他の発表の記事としては長い（3049字 / 目安2000字まで）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T01:10:40.302458+00:00",
+      "attempt": 1,
+      "id": "b5bb5878ed1b2cf1",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「追加料金はかからず、Copilotライセンスに含まれると公式ページに書かれています」→ 元記事にも確認済みの関連ページにも料金・ライセンスに関する記述がなく、公式ページに書かれているという出典付きの主張は創作。",
+        "「Copilotライセンスに含まれ、Copilot Chat内で使っても追加料金は発生しない」→ 同様に元資料にない料金条件を公式の裏付けつきで断定しており、創作。",
+        "「この設定は、ユーザーがエージェントを評価できるかや、エージェントがアクセスできるデータには影響しません」→ 元記事は共有設定とユーザーの評価送信の関係を別ガイダンスで確認するよう述べるのみで、影響しないとは書かれておらず、出典の裏付けもない断定。",
+        "「対象は、Frontierプレビューを使える組織で、管理者が共有を有効にしたエージェントの所有者に限られます」→ 元記事の条件（資格・共有有効化）に沿うが、限定の言い切りはやや言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 157.3,
+        "avg_sentence": 50.9,
+        "long_share": 0.324,
+        "max_paragraph": 199,
+        "paragraphs": 11,
+        "sentences": 34
+      },
+      "score": 35,
+      "source": "windows-blog-jp",
+      "title": "Microsoft 365 Insights Agent でユーザー フィードバックを探る",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GA）",
+        "英語の画面名（「Settings >」）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T01:10:55.575593+00:00",
+      "attempt": 2,
+      "id": "b5bb5878ed1b2cf1",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "title の長さが不適切（68字 / 18〜64字）"
+      ],
+      "readability": {
+        "avg_paragraph": 76.1,
+        "avg_sentence": 39.2,
+        "long_share": 0.152,
+        "max_paragraph": 166,
+        "paragraphs": 17,
+        "sentences": 33
+      },
+      "score": null,
+      "source": "windows-blog-jp",
+      "title": "Microsoft 365 Insights Agent でユーザー フィードバックを探る",
+      "warnings": [
+        "見出しが68字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "英語の画面名（「Settings >」）"
+      ]
     }
   ],
   "short_text_retry": {
     "262cfa35f4308cc0": "2026-11-03T03:23:13.244152+00:00",
-    "6fd6ad7938fa5bc5": "2026-11-03T03:21:20.051350+00:00",
-    "ff138f709a7e7c37": "2026-11-03T00:51:13.945206+00:00"
+    "6fd6ad7938fa5bc5": "2026-11-03T03:21:20.051350+00:00"
   },
   "undated_first_seen": {
     "google-developers-blog": {
