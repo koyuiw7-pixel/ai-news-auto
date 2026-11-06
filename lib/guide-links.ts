@@ -34,7 +34,10 @@ export function guideLinksForArticle(article: ArticleSummary, howtos: HowtoGuide
   const tool = matched[0]?.tool;
   const sameTool = matched.filter((guide) => guide.tool === tool);
   const links: GuideLink[] = [];
-  const pricing = sameTool.find((guide) => PRICING_INTENT.test(guide.intent));
+  // 料金のガイドが2本以上ある（「料金」と「無料でどこまで」など）ときは、製品の料金の本体（slug が -pricing）を先に出す。
+  // ファイルの並び順で決めない（2026-11-07: 新しい無料プランのガイドが料金ガイドの前に出て、公開前の検査に落ちた）
+  const pricingCandidates = sameTool.filter((guide) => PRICING_INTENT.test(guide.intent));
+  const pricing = pricingCandidates.find((guide) => /-pricing$/.test(guide.slug)) ?? pricingCandidates[0];
   if (pricing) links.push({ href: `/guides/${pricing.slug}`, label: label(pricing), kind: "pricing" });
   const howto =
     sameTool.find((guide) => /使い方|始め方/.test(guide.intent) && guide.slug !== pricing?.slug) ??
