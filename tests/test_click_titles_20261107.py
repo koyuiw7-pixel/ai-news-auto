@@ -34,6 +34,12 @@ class ClickTitleRulesTest(unittest.TestCase):
         self.assertTrue(any("数字" in x for x in hn.click_problems({"title": "漏えいしたときの手順　IPAがまとめ直し", "lede": LEDE})))
         self.assertEqual(hn.click_problems({"title": "ゆうちょの手数料が変わる　対象と時期", "lede": "数字の無いリード"}), [])
 
+    def test_announcement_date_is_not_the_number(self):
+        """発表した日（「11月6日に発表」）は読む人に役立つ数字に数えない。要請・指示も組織が主語の形"""
+        rec = {"title": "Amazonの買い物AIがテキストで依頼可能に　米国で招待制", "lede": "Amazonは11月6日に発表しました。"}
+        self.assertEqual(hn.click_problems(rec), [])
+        self.assertTrue(any("組織が主語" in x for x in hn.click_problems({"title": "総務省、事業者に不正アクセス対策の徹底を要請", "lede": ""})))
+
     def test_template_explain_is_a_title_problem(self):
         for bad in ("ChatGPTとは？使い方と料金を解説", "新NISAの使い方を解説"):
             self.assertTrue(any("決まり文句" in x for x in hn.title_problems(bad)), bad)
