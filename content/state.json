@@ -14319,6 +14319,17 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000325.000050142.html"
     },
+    "c66c42b2a35e9bae": {
+      "at": "2026-11-06T14:07:42.134716+00:00",
+      "costUsd": 0.1504,
+      "foreignAi": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "alexa-for-shopping-text-to-shop",
+      "url": "https://www.aboutamazon.com/news/retail/alexa-for-shopping-text-to-shop?utm_source=rss"
+    },
     "c67ca313b240bcd406c01c3b192862c775d53459": {
       "at": "2026-10-30T06:11:54.409511+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -17442,57 +17453,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T06:20:13.747450+00:00",
-      "attempt": 1,
-      "id": "be080fcaa0a3f4c9",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "題名・リードに比べる基準（変更前）が書かれていない。何と比べた増減かをリードの数字のそばに書く"
-      ],
-      "readability": {
-        "avg_paragraph": 85.2,
-        "avg_sentence": 41.5,
-        "long_share": 0.128,
-        "max_paragraph": 127,
-        "paragraphs": 19,
-        "sentences": 39
-      },
-      "score": null,
-      "source": "fast",
-      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（MS・AD）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T06:20:40.598195+00:00",
-      "attempt": 2,
-      "id": "be080fcaa0a3f4c9",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "題名・リードに比べる基準（変更前）が書かれていない。何と比べた増減かをリードの数字のそばに書く"
-      ],
-      "readability": {
-        "avg_paragraph": 84.9,
-        "avg_sentence": 35.9,
-        "long_share": 0.022,
-        "max_paragraph": 150,
-        "paragraphs": 19,
-        "sentences": 45
-      },
-      "score": null,
-      "source": "fast",
-      "title": "トヨタ自動車 自己株式の取得に係る事項の一部変更、自己株式の取得及び自己株式の公開買付けに関するお知らせ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（MS・AD）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-05T06:21:05.603488+00:00",
@@ -23212,6 +23172,61 @@
       "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！",
       "warnings": [
         "初めて出たところで言い換えていない略語（JOC）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T14:07:18.699386+00:00",
+      "attempt": 1,
+      "id": "c66c42b2a35e9bae",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「Q. 自動購入は…目標価格に達したときに、自動で購入を完了します」→ 確認済み文脈に「auto-buy to complete the purchase automatically when the price hits your target」とあり妥当だが、元記事本文では「when the price is ri",
+        "「Amazonは、文字で始めた依頼を…引き継げるようにする予定です」→ 元記事は「is rolling out」で展開中とも読め、「予定」とする表現は軽微な言い換え",
+        "「商品ページでAlexa for Shoppingのアイコンを押し」→ 確認済み文脈の記述に基づくため問題なし（出典は価格履歴ページ）",
+        "「1通で送ると、3つの依頼を同時に進めます」→ 元記事に沿っており問題なし",
+        "「かんたん版：買う段階になれば、カートに入れて購入まで進めます」→ 元記事の「承認」「自動でカートに入れる」設定の条件が省かれ、やや言い過ぎ",
+        "「判定: 価格=不明」→ 元記事に料金の記載はなく、不明の扱いは妥当"
+      ],
+      "readability": {
+        "avg_paragraph": 84.5,
+        "avg_sentence": 35.4,
+        "long_share": 0.07,
+        "max_paragraph": 165,
+        "paragraphs": 18,
+        "sentences": 43
+      },
+      "score": 80,
+      "source": "about-amazon",
+      "title": "Text, shop, done: Alexa for Shopping is now just a text away",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T14:07:36.847569+00:00",
+      "attempt": 1,
+      "id": "c66c42b2a35e9bae",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.7,
+        "avg_sentence": 35.4,
+        "long_share": 0.07,
+        "max_paragraph": 165,
+        "paragraphs": 18,
+        "sentences": 43
+      },
+      "score": 93,
+      "source": "about-amazon",
+      "title": "Text, shop, done: Alexa for Shopping is now just a text away",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
