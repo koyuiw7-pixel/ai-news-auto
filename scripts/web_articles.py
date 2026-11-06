@@ -2959,7 +2959,8 @@ def main() -> int:
         try:
             health = pipeline_health.record(made, candidates, reason, rescue=rescue_mode, tried=tried)
             if health.get("status") == "stalled":
-                log(f"[health] 止まっています: 救済モードでも 0 本の回が {health.get('rescue_failed')} 回続いた / {health.get('reason')}")
+                log(f"[health] 止まっています: 0本の回 {health.get('consecutive_zero')} 回（うち救済モード {health.get('rescue_failed') or 0} 回）"
+                    f" / {health.get('reason')}")
             elif int(health.get("consecutive_zero") or 0) >= 1:
                 log(f"[health] 0本の回が {health.get('consecutive_zero')} 回。次の回は救済モードで動きます")
         except Exception as error:  # noqa: BLE001 - 見張りの失敗で記事づくりは止めない
