@@ -2034,6 +2034,44 @@ def vision_kind(image) -> str | None:
     return None
 
 
+# ノワールの記事の表紙に写真を全面で出してよいか（2026-11-07・台帳 W36）。
+# 表紙は写真の上に題名を大きく重ねるので、写真そのものに大きな文字（告知のバナー・スライド・画面・ロゴの板）があると題名とぶつかる。
+# 本物の写真（製品・人・場所・乗り物）で大きな文字の無いものだけ True。迷ったら・判定できないときは False（黒い表紙に題名）
+HERO_KINDS = {"photo", "kit"}
+HERO_NAME_HINT = re.compile(r"(?:^|[/_.-])(?:banner|bnr|ogp|og[-_]?image|ogimage|key[-_]?visual|kv|mv|main[-_]?visual|eyecatch|thumbnail|thumb|title|header|slide|screenshot|logo|cover|card)(?:[/_.-]|\d|$)", re.I)
+HERO_PROMPT = (
+    "Is this a photograph of the subject (a real product, person, place or vehicle) without large overlaid text? "
+    "Banners, ads, flyers, slides, screenshots, charts, title cards and logos with text are text-heavy. "
+    "Answer with one word: photo or text-heavy."
+)
+HERO_TEXT_PROMPT = (
+    "Is a large part of this image covered by big overlaid text such as headlines, slogans, prices or dates "
+    "(not small logos, product labels or signs in the scene)? Answer with one word: yes or no."
+)
+
+
+def hero_ok(image, kind: str, url: str = "", vision=None) -> tuple[bool, str]:
+    """ノワールの表紙に写真を出してよいか。(よいか, 理由)。無料の画像判定（Workers AI）と、名前・形の目安で決める"""
+    vision = vision or cf_vision
+    if kind not in HERO_KINDS:
+        return False, f"写真ではない種類（{kind}）"
+    name = urllib.parse.urlparse(url or "").path.rsplit("/", 1)[-1]
+    if name and HERO_NAME_HINT.search(name):
+        return False, f"告知の画像らしい名前（{name[:60]}）"
+    w, h = image.size
+    if h and not 1.2 <= w / h <= 2.1:
+        return False, f"写真らしくない形（{w}×{h}）"
+    answer = (vision(image, HERO_PROMPT, max_tokens=6) or "").strip().lower()
+    if not answer:
+        return False, "画像判定ができない"
+    if "text" in answer or not answer.startswith("photo"):
+        return False, f"文字が主役の画像（{answer[:20]}）"
+    text = (vision(image, HERO_TEXT_PROMPT, max_tokens=4) or "").strip().lower()
+    if not text.startswith("no"):
+        return False, f"大きな文字が重なっている（{text[:10] or '判定できない'}）"
+    return True, "写真"
+
+
 def graphic_problem(image) -> str | None:
     """文字・図が主役の画像なら理由。チラシや図解は色が多く Pillow の指標だけでは見分けられないので、毎回画像判定にかける。
     判定できないときだけ白地・平坦さの目安で決める"""
@@ -2687,6 +2725,11 @@ def use_official(path: Path, article: dict, ctx: dict, best: dict, official: dic
         credit["foundFrom"] = article.get("sourceUrl", "")  # 報道の記事から会社自身の発表をたどった
     article["thumbnail"] = new_url
     article["imageCredit"] = credit
+    if article.get("layout") == "noir":
+        # 表紙に写真を全面で出せるかを1回だけ決める（台帳 W36。迷ったら黒い表紙）
+        ok, why = hero_ok(image, kind, url)
+        article["heroOk"] = ok
+        log(f"   [img] ノワールの表紙: {'写真' if ok else '黒い表紙'}（{why}）")
     ctx["official_by_original"][url] = {"thumbnail": new_url, "credit": credit}
     if not ctx["dry_run"]:
         save(path, article)

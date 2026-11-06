@@ -47,8 +47,11 @@ test('[W36] 今ある記事（2026-11-07 より前に載せた記事）には la
   assert.deepEqual(bad, []);
 });
 
-test('[W36] 表紙の写真は公式発表の写真だけ（AI の絵・フリー素材は使わず、黒い表紙に題名）', () => {
-  assert.equal(noir.noirPhoto({ thumbnail: '/img/a.jpg', imageCredit: { kind: 'official', org: '日産' } }), '/img/a.jpg');
+test('[W36] 表紙の写真は、大きな文字の無い公式の本物の写真と判定済みのものだけ（バナー・AI の絵・フリー素材・未判定は黒い表紙に題名）', () => {
+  assert.equal(noir.noirPhoto({ thumbnail: '/img/a.jpg', imageCredit: { kind: 'official', org: '日産' }, heroOk: true }), '/img/a.jpg');
+  // 告知のバナー・スライドなど（heroOk: false）と、未判定の写真は黒い表紙
+  assert.equal(noir.noirPhoto({ thumbnail: '/img/a.jpg', imageCredit: { kind: 'official', imageKind: 'banner' }, heroOk: false }), null);
+  assert.equal(noir.noirPhoto({ thumbnail: '/img/a.jpg', imageCredit: { kind: 'official', org: '日産' } }), null);
   assert.equal(noir.noirPhoto({ thumbnail: '/img/a.jpg', imageCredit: { kind: 'ai' } }), null);
   assert.equal(noir.noirPhoto({ thumbnail: '/img/a.jpg', imageCredit: { kind: 'stock' } }), null);
   assert.equal(noir.noirPhoto({ thumbnail: '', imageCredit: { kind: 'official' } }), null);

@@ -115,6 +115,8 @@ export type Article = {
   charts?: ArticleChart[];
   /** 記事の見た目。"noir" は 2026-11-07 以降の新しい記事（黒い表紙＋白い紙面。lib/noir.ts・台帳 W36）。無ければ今までの見た目 */
   layout?: "noir";
+  /** ノワールの表紙に写真を全面で出してよいか（大きな文字の無い本物の写真。scripts/images.py の hero_ok が1回だけ決める。無ければ黒い表紙） */
+  heroOk?: boolean;
   /** ノワールの要点の1文（大事な数字を **…** で囲む。scripts/noir_layout.py が本文・要点から抜き出す） */
   summaryLine?: string;
   /** ノワールの黒いカードの数字（値は記事に書いてある文字のまま） */

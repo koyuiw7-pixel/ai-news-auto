@@ -90,6 +90,40 @@ class DeriveTest(unittest.TestCase):
             self.assertNotIn("layout", r)
 
 
+class HeroOkTest(unittest.TestCase):
+    """ノワールの表紙に写真を出すのは、大きな文字の無い本物の写真だけ（迷ったら黒い表紙）"""
+
+    def setUp(self):
+        import images  # noqa: PLC0415
+
+        self.images = images
+        self.photo = images.Image.new("RGB", (1200, 675), (40, 90, 140))
+
+    def fake(self, *answers):
+        replies = list(answers)
+        return lambda image, prompt, max_tokens=0: replies.pop(0) if replies else None
+
+    def test_real_photo_passes(self):
+        ok, _ = self.images.hero_ok(self.photo, "photo", "https://example.com/news/serena.jpg", vision=self.fake("photo", "no"))
+        self.assertTrue(ok)
+
+    def test_banner_slide_and_unknown_fail(self):
+        h = self.images.hero_ok
+        self.assertFalse(h(self.photo, "banner", "https://x/a.jpg", vision=self.fake("photo", "no"))[0])
+        self.assertFalse(h(self.photo, "hero", "https://x/a.jpg", vision=self.fake("photo", "no"))[0])
+        self.assertFalse(h(self.photo, "photo", "https://x/uploads/OGP-scaled.png", vision=self.fake("photo", "no"))[0])
+        self.assertFalse(h(self.photo, "photo", "https://x/a.jpg", vision=self.fake("text-heavy"))[0])
+        self.assertFalse(h(self.photo, "photo", "https://x/a.jpg", vision=self.fake("photo", "yes"))[0])
+        self.assertFalse(h(self.photo, "photo", "https://x/a.jpg", vision=self.fake())[0])  # 判定できない
+        tall = self.images.Image.new("RGB", (800, 1200))
+        self.assertFalse(h(tall, "photo", "https://x/a.jpg", vision=self.fake("photo", "no"))[0])
+
+    def test_images_decides_for_noir_articles(self):
+        src = (Path(__file__).resolve().parent.parent / "scripts" / "images.py").read_text("utf-8")
+        self.assertIn('if article.get("layout") == "noir":', src)
+        self.assertIn('article["heroOk"] = ok', src)
+
+
 class WriteArticleTest(unittest.TestCase):
     def test_only_new_files_get_the_new_look(self):
         with tempfile.TemporaryDirectory() as tmp:

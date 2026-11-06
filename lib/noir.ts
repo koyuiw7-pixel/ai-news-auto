@@ -18,9 +18,12 @@ export function isNoir(article: Pick<Article, "layout">): boolean {
   return article.layout === NOIR_LAYOUT;
 }
 
-/** 表紙に写真を出すか。公式発表の写真（official）だけ。AI の絵・フリー素材・図は出さず、黒い表紙に題名を大きく出す */
-export function noirPhoto(article: Pick<Article, "thumbnail" | "imageCredit">): string | null {
-  if (!article.thumbnail || article.imageCredit?.kind !== "official") return null;
+/**
+ * 表紙に写真を出すか。公式発表の写真（official）で、大きな文字の無い本物の写真と判定済み（heroOk: true）のものだけ。
+ * 告知のバナー・スライド・画面・AI の絵・フリー素材・未判定は出さず、黒い表紙に題名を大きく出す（scripts/images.py の hero_ok）
+ */
+export function noirPhoto(article: Pick<Article, "thumbnail" | "imageCredit" | "heroOk">): string | null {
+  if (!article.thumbnail || article.imageCredit?.kind !== "official" || article.heroOk !== true) return null;
   return article.thumbnail;
 }
 
