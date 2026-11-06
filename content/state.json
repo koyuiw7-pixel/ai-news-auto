@@ -11187,6 +11187,13 @@
       "slug": "atlassian-context-graph-agents-teamwork-graph",
       "url": "https://www.atlassian.com/blog/context/inside-a-context-graph"
     },
+    "956410f66b8c757a": {
+      "at": "2026-11-06T03:35:44.468737+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「Anthropic公式は11月6日、ヘルプセンターの記事で」→ 元記事に公開日・更新日は無く、11月6日という日付は裏付けられない創作; 「ヘルプセンターの記事で…具体的に示しました」→ 元記事は公式ヘルプ記事だが、公開時期を示す情報がなく『続報』として時点を断定する根拠が元記事に無い",
+      "skipped": true,
+      "url": "https://support.claude.com/en/articles/18185620-use-personal-finance-in-claude"
+    },
     "95ace0e08e8db609": {
       "at": "2026-11-04T02:27:37.138362+00:00",
       "reason": "dedupe: 同じ出典URL",
@@ -16507,31 +16514,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T15:09:05.628624+00:00",
-      "attempt": 1,
-      "id": "e92adb95112b5264",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 92.3,
-        "avg_sentence": 44.6,
-        "long_share": 0.103,
-        "max_paragraph": 136,
-        "paragraphs": 14,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "about-amazon",
-      "title": "Amazon’s new Shop Direct Merchant Workspace makes it even easier for stores acro",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SP）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-04T15:10:10.114361+00:00",
@@ -22552,6 +22534,21 @@
       "score": null,
       "source": "sony-jp",
       "title": "初代ウォークマン付属『MDR-3』のデザインとサウンドを受け継ぐUSB-Cステレオヘッドホン『MDR-3R』発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T03:35:44.468688+00:00",
+      "attempt": 1,
+      "id": "956410f66b8c757a",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「Anthropic公式は11月6日、ヘルプセンターの記事で」→ 元記事に公開日・更新日は無く、11月6日という日付は裏付けられない創作",
+        "「ヘルプセンターの記事で…具体的に示しました」→ 元記事は公式ヘルプ記事だが、公開時期を示す情報がなく『続報』として時点を断定する根拠が元記事に無い"
+      ],
+      "score": 72,
+      "source": "radar-official",
+      "title": "Use Personal Finance in Claude | Claude Help Center"
     }
   ],
   "short_text_retry": {},
