@@ -8251,6 +8251,17 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102709"
     },
+    "60b56f576e827b7b": {
+      "at": "2026-11-06T00:21:21.527607+00:00",
+      "breaking": true,
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "business",
+      "slug": "real-wages-september-2026-flash",
+      "url": "https://www.mhlw.go.jp/toukei/itiran/roudou/monthly/r08/2609p/dl/houdou2609p.pdf"
+    },
     "60bbe80376193e6f": {
       "at": "2026-10-27T03:05:10.758851+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
@@ -16178,31 +16189,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-04T11:01:48.962448+00:00",
-      "attempt": 1,
-      "id": "cba8f769dd5b673e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「社員の83%」、「tを毎週使い、営業担当の90%」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 87.7,
-        "avg_sentence": 42.4,
-        "long_share": 0.129,
-        "max_paragraph": 190,
-        "paragraphs": 15,
-        "sentences": 31
-      },
-      "score": null,
-      "source": "salesforce-news",
-      "title": "Half of Slack Messages Are No Longer From People. Here’s Slack by the Numbers.",
-      "warnings": [
-        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-04T11:03:05.271734+00:00",
       "attempt": 2,
       "id": "cba8f769dd5b673e",
@@ -22269,12 +22255,31 @@
       "warnings": [
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T00:21:21.515316+00:00",
+      "attempt": 1,
+      "id": "60b56f576e827b7b",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 60.0,
+        "avg_sentence": 29.3,
+        "long_share": 0.0,
+        "max_paragraph": 126,
+        "paragraphs": 21,
+        "sentences": 43
+      },
+      "score": 88,
+      "source": "fast",
+      "title": "毎月勤労統計調査 2026年9月分速報（実質賃金・名目賃金・夏季賞与）"
     }
   ],
   "short_text_retry": {
     "262cfa35f4308cc0": "2026-11-03T03:23:13.244152+00:00",
     "6fd6ad7938fa5bc5": "2026-11-03T03:21:20.051350+00:00",
-    "de4cf53f9db96311": "2026-11-03T00:11:19.346586+00:00",
     "ff138f709a7e7c37": "2026-11-03T00:51:13.945206+00:00"
   },
   "undated_first_seen": {
