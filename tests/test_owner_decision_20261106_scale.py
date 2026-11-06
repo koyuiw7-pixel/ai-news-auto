@@ -122,7 +122,8 @@ class MixTest(unittest.TestCase):
         self.assertEqual(w.demand_rank(miss, signals), 1)
         self.assertEqual(w.demand_rank(miss, []), 1)
         src = (ROOT / "scripts" / "web_articles.py").read_text("utf-8")
-        self.assertIn("demand_rank(i, pi_signals), news_mix.order_key(i, mix_counts)", src)
+        # 2026-11-07（台帳 A54）: 検索の急上昇（demand_rank）が最初。その次に検索で上位に出やすい話題の並び、その次に1日の配分
+        self.assertIn("demand_rank(i, pi_signals), rank_intent.sort_key(i, intent_counts), news_mix.order_key(i, mix_counts)", src)
 
 
 class BudgetTest(unittest.TestCase):

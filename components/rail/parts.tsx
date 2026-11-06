@@ -82,7 +82,7 @@ export function ProductImage({
     <span className={`relative grid place-items-center overflow-hidden bg-white ${className}`}>
       {item.image ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={item.image} alt="" loading={eager ? "eager" : "lazy"} className={`absolute inset-0 h-full w-full object-contain ${pad}`} />
+        <img src={item.image} alt="" loading={eager ? "eager" : "lazy"} decoding="async" fetchPriority={eager ? undefined : "low"} className={`absolute inset-0 h-full w-full object-contain ${pad}`} />
       ) : compact ? (
         <span aria-hidden="true" className="grid size-full place-items-center bg-[#f3f5f8]">
           <span className="grid size-10 place-items-center rounded-lg bg-[#1d4a8f] text-[18px] font-black text-white">{initialOf(item.name)}</span>

@@ -53,6 +53,7 @@ import article_charts  # noqa: E402
 import dedupe  # noqa: E402
 import facts_bundle  # noqa: E402
 import fast_lane  # noqa: E402
+import rank_intent  # noqa: E402  検索で上位に出やすい話題を先に（台帳 A54）
 import pipeline_health  # noqa: E402
 import feeds  # noqa: E402
 import followup  # noqa: E402
@@ -2082,10 +2083,12 @@ def main() -> int:
     # 1日の配分（scripts/news_mix.py・news_mix.json。2026-11-04 オーナー承認のピボット・台帳 A41）:
     # レーン内は 今日まだ足りない種類 → 公式・官公庁 → 他社の対応告知 → 配信 の順。企業向け・開発者向けの海外の発表は最後で、1日の上限あり
     mix_counts = news_mix.today_counts(state)
+    # 検索で上位に出やすい話題を先に（台帳 A54。並びだけで上限は付けない）: 一番乗りの障害・リコール・値上げ・発売 → 固有名詞＋属性・公式の表 → そのほか → 大きな語だけ
+    intent_counts = rank_intent.today_counts(state)
     for lane in lanes:
         for i in lanes[lane]:
             i["_mix"] = news_mix.classify(i)
-        lanes[lane].sort(key=lambda i: (demand_rank(i, pi_signals), news_mix.order_key(i, mix_counts), rank_bucket(i),
+        lanes[lane].sort(key=lambda i: (demand_rank(i, pi_signals), rank_intent.sort_key(i, intent_counts), news_mix.order_key(i, mix_counts), rank_bucket(i),
                                         0 if lane == "ai" else persona_rank(i)))
     log(f"[mix] 今日の配分（作った/めやす）: {news_mix.summary(mix_counts)}")
     # 海外の AI の発表は1日の上限まで（台帳 A47。大きなニュースは外）
@@ -2175,6 +2178,7 @@ def main() -> int:
                 if len(lines) < max(cap, 3) * 2 or (flag.startswith("対象") and counts["対象"] <= max(cap, 3)) or flag.startswith(("続報", "派生")):
                     lines.append(
                         f"    - [{item['source_slug']}] {item['published_at'].astimezone(JST):%m-%d %H:%M} {item['title'][:60]}  ({flag})"
+                        f"  〈{rank_intent.intent_of(item)}:{'/'.join(rank_intent.signals(item)) or '-'}〉"
                     )
             log(
                 f"\n  ■ {lane}: 候補 {len(items)} 件 → 対象 {counts['対象']} / 続報候補 {counts.get('続報', 0)}"
@@ -2735,7 +2739,7 @@ def main() -> int:
              **({"major": True} if major else {}), **({"breaking": True} if record.get("breaking") else {}),
              **({"publicInterest": item["_public_interest"]} if item.get("_public_interest") else {}),
              **({"foreignAi": True} if is_ai and is_foreign_ai(item) else {}),
-             mix=item.get("_mix") or news_mix.classify(item), costUsd=cost_usd)
+             mix=item.get("_mix") or news_mix.classify(item), costUsd=cost_usd, intent=rank_intent.intent_of(item))
         if is_ai and not major and is_foreign_ai(item):
             foreign_left[0] -= 1
         mix_key = item.get("_mix") or news_mix.classify(item)

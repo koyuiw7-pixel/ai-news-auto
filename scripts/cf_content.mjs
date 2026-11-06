@@ -31,8 +31,18 @@ const addDir = (rel, filter = (name) => name.endsWith(".json")) => {
 for (const dir of ["content/guides", "content/howto", "content/buying-guides", "content/products", "content/digests"]) {
   for (const name of addDir(dir) ?? []) addFile(`${dir}/${name}`);
 }
-for (const rel of ["content/index.json", "content/offers.json", "content/products.json", "content/state.json", "affiliate_links.json", "monetization.json"]) {
+for (const rel of ["content/index.json", "content/offers.json", "content/products.json", "affiliate_links.json", "monetization.json"]) {
   addFile(rel);
+}
+// content/state.json（約1MB の記事づくりの記録）は、サイトでは /api/v1/stats が processed・failed を数えるだけ。
+// 冷えた isolate が毎回まるごと読み込んで遅くならないよう、使う2つの欄だけ載せる（2026-11-07 表示速度の改善）
+if (fs.existsSync("content/state.json")) {
+  try {
+    const state = JSON.parse(fs.readFileSync("content/state.json", "utf8"));
+    files["content/state.json"] = JSON.stringify({ processed: state.processed ?? {}, failed: state.failed ?? {} });
+  } catch {
+    files["content/state.json"] = "{}";
+  }
 }
 dirs["assets/fonts"] = addDir("assets/fonts", (name) => /\.(otf|ttf)$/.test(name));
 for (const name of dirs["assets/fonts"]) fs.copyFileSync(path.join("assets/fonts", name), path.join(OUT, "fonts", name));
