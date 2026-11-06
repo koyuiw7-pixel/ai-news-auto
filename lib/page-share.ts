@@ -21,7 +21,7 @@ export const PAGE_SHARE = {
   "defense-tax": { heading: "防衛特別所得税", lines: ["2027年から始まる新しい税", "自分の場合の税額を年ごとに計算"], footer: "サイソクの計算ツール" },
   "ai-pricing": { heading: "AIの料金早見表", lines: ["ChatGPT・Claude・GeminiのAPIと月額プラン", "日本で使えるか・無料で試せるかも"], footer: "数字はすべて出典の記事で確認" },
   usable: { heading: "今すぐ使えるAI", lines: ["発表されたばかりの新機能・新モデルから", "今日から使えるものだけを毎日更新"], footer: "日本から使えるか・料金・無料かを判定" },
-  guides: { heading: "AIの使い方ガイド", lines: ["始め方・料金・無料でどこまで使えるか", "公式情報をもとに1ページで"], footer: "サイソクのガイド" },
+  guides: { heading: "手続きと使い方のガイド", lines: ["年末調整・確定申告からAIの料金まで", "公式の情報をもとに1ページで"], footer: "サイソクのガイド" },
   products: { heading: "AIサービス図鑑", lines: ["できること・料金・最新ニュース", "主なAIサービスを1か所で"], footer: "サイソクのガイド" },
   compare: { heading: "比較ガイド", lines: ["AI時代の道具を、公式情報で比べる", "料金・できること・向いている人"], footer: "サイソクのガイド" },
   digest: { heading: "朝のAIニュース", lines: ["毎朝7時30分に、昨夜から今朝までの", "AIニュースを3本だけ"], footer: "最速で、要点だけ。" },

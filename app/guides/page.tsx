@@ -10,9 +10,10 @@ import { getAllHowtos, type HowtoGuide } from "@/lib/howto";
 import { supersedesGuide } from "@/lib/products";
 
 export const metadata: Metadata = withPageShare("guides", "/guides", {
-  title: "AIの使い方ガイド：始め方・料金・無料でどこまで使えるか",
+  // 2026-11-07（台帳 A50・A55）: AIツールに加え、お金と手続き（年末調整・確定申告・ふるさと納税・年金・マイナ保険証など）のガイドも並ぶ
+  title: "年末調整・確定申告からAIの料金まで　手続きと使い方のガイド",
   description:
-    "ChatGPT・Gemini・Claude・NotebookLMなどAIツールの使い方と、AIを使う仕事・サイト運営を解説。料金、無料で使える範囲、導入条件を公式情報と確認日付きで整理しています。",
+    "年末調整・確定申告・ふるさと納税・年金・マイナ保険証などのお金と手続き、ChatGPT・Gemini・ClaudeなどAIの料金と使い方を、官公庁や公式のページで確かめて確認日付きでまとめています。",
   alternates: { canonical: "/guides" },
 });
 
@@ -31,9 +32,9 @@ export default function GuidesPage() {
   return (
     <div className="mx-auto max-w-[920px] px-5 py-10 sm:px-8 sm:py-14">
       <p className="eyebrow">GUIDES</p>
-      <h1 className="t-h1 mt-2">AIの使い方ガイド</h1>
+      <h1 className="t-h1 mt-2">手続きと使い方のガイド</h1>
       <p className="t-lead mt-3">
-        AIツールの使い方と、AIを使う仕事・サイト運営をまとめました。公式情報と確認日を示し、提供条件と編集部の判断を分けて整理しています。
+        年末調整・確定申告・年金などのお金と手続きと、AIツールの料金・使い方をまとめました。事実は官公庁や公式のページで確かめ、確認日を示しています。
       </p>
 
       <section aria-labelledby="choose-guides" className="mt-12" data-funnel-pos="guide-list">
