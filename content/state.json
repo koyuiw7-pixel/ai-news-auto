@@ -148,14 +148,6 @@
       "tries": 2,
       "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/houdouhappyou/p20261106.pdf"
     },
-    "a874e3b4a06b5092": {
-      "first": "2026-11-06T02:04:06.481696+00:00",
-      "next": "2026-11-06T05:04:06.481696+00:00",
-      "reason": "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルのまま」「日本の売上は1%減」）",
-      "title": "「どのアプリを開けばいい？」をなくす－中国平安保険、デジタル化10年の伏線回収",
-      "tries": 1,
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87269?site=nli"
-    },
     "a9ba99b8846683ac": {
       "first": "2026-11-04T01:24:17.644580+00:00",
       "next": "2026-11-04T04:24:17.644580+00:00",
@@ -220,6 +212,7 @@
     "144c8a573866809e": "2026-11-06T01:40:54.899345+00:00",
     "1518f82e6c28ebe0": "2026-11-04T13:10:52.830493+00:00",
     "18444c154a1fd1c8": "2026-11-04T13:10:52.830493+00:00",
+    "1928f93150be33d5": "2026-11-06T05:20:52.500591+00:00",
     "25a19ff450eef8fe": "2026-11-05T12:02:48.521507+00:00",
     "27c11336cca71266": "2026-11-04T18:30:50.676395+00:00",
     "2b348a8b578e32ca": "2026-11-05T10:41:04.124472+00:00",
@@ -4856,12 +4849,6 @@
       "slug": "openai-grid-protectors-program",
       "url": "https://openai.com/index/grid-protectors-program"
     },
-    "1928f93150be33d5": {
-      "at": "2026-11-06T05:01:15.381886+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.affrc.maff.go.jp/docs/press/261106.html"
-    },
     "193aa782f2114c53": {
       "at": "2026-11-03T00:51:42.153218+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -7661,6 +7648,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77111.html"
+    },
+    "50154ae2203c3887": {
+      "at": "2026-11-06T05:21:14.214675+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（の開催）",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/about/release_2026/rel261106a.htm"
     },
     "501abd1900e6faea": {
       "at": "2026-11-05T08:44:09.767758+00:00",
@@ -12277,6 +12270,15 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77204.html"
     },
+    "a874e3b4a06b5092": {
+      "at": "2026-11-06T05:23:48.145293+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 95,
+      "section": "business",
+      "slug": "ping-an-quick-service-ai-agent",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87269?site=nli"
+    },
     "a88ae1defb1edfa3": {
       "at": "2026-11-02T08:26:59.568262+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -12650,6 +12652,12 @@
       "section": "public",
       "slug": "fsa-comment-letter-efrag-esrs40a",
       "url": "https://www.fsa.go.jp/inter/etc/20261030-3/20261030-3.html"
+    },
+    "b0e817bd7ec6205b": {
+      "at": "2026-11-06T05:21:28.240945+00:00",
+      "reason": "dedupe: 見出しが類似（0.71）: 金融研究所ディスカッション・ペーパー・シリーズ（E-Series : 英語版）（",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/research/imes/dps/dps26.htm"
     },
     "b1154b5513cf24cc": {
       "at": "2026-10-27T03:05:10.759427+00:00",
@@ -15862,6 +15870,13 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202610/31ireisai.html"
     },
+    "f1634bc812752b21": {
+      "at": "2026-11-06T05:21:28.238967+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "元記事は日本銀行金融研究所のディスカッション・ペーパーの一覧ページで、個々の研究の中身は抜粋に含まれていません。個別論文の要旨だけでは、1,600字以上の本文を水増しせずに書けないため見送ります。",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/research/imes/dps/dps26_e.htm"
+    },
     "f16aefe89a6e3f3b": {
       "at": "2026-10-27T15:58:57.739891+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16637,73 +16652,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T15:45:37.849521+00:00",
-      "attempt": 2,
-      "id": "2e3f3ef33d8db967",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "hiroshima-u",
-      "title": "【研究成果】脳波の計測からAI解析までを学ぶ動画教材を公開 ― TNI Academy第1弾「EEG × AI」の提供を開始 ―"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T15:46:41.403420+00:00",
-      "attempt": 1,
-      "id": "4ed107f4ce3d226c",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "第60回全国ろうあ者スポーツ大会 サッカー競技開催！ #jfa"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T15:47:29.707078+00:00",
-      "attempt": 2,
-      "id": "4ed107f4ce3d226c",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "第60回全国ろうあ者スポーツ大会 サッカー競技開催！ #jfa"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T15:50:23.960837+00:00",
-      "attempt": 1,
-      "id": "ddd64db69903db7d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "「可能性があります」が多い（3か所以上）。根拠のある事実だけを書く"
-      ],
-      "readability": {
-        "avg_paragraph": 288.6,
-        "avg_sentence": 28.3,
-        "long_share": 0.0,
-        "max_paragraph": 877,
-        "paragraphs": 5,
-        "sentences": 51
-      },
-      "score": null,
-      "source": "jfa",
-      "title": "SAMURAI BLUE（日本代表）メンバー・スケジュール MIZUHO BLUE CHALLENGE THE KALLANG FOOTBALL SERIES ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA・GK・DF）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-04T15:51:25.032112+00:00",
@@ -22703,6 +22651,96 @@
       "score": null,
       "source": "tsr",
       "title": "「ハウスメーカー」倒産 前年の1.8倍に急増 価格上昇で購入可能額とのギャップが拡大"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T05:21:47.919352+00:00",
+      "attempt": 1,
+      "id": "a874e3b4a06b5092",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "nli-research",
+      "title": "「どのアプリを開けばいい？」をなくす－中国平安保険、デジタル化10年の伏線回収"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T05:23:02.101909+00:00",
+      "attempt": 2,
+      "id": "a874e3b4a06b5092",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「ニッセイ基礎研究所の調べによると、この変化で直接影響を受けるのは、中国で平安のアプリを使う人です」→ 元記事にこの記述はなく、影響範囲の判断を調査元の見解として帰属させている点が不正確",
+        "「日本の利用者に直接の影響はなく」→ 元記事に無い結論を断定している（日本向け提供が未発表であることの言い換えを超えている）",
+        "「この取り組みの土台には、保険事業の収益性の改善があります」→ 元記事は収益性改善と救援サービスの関係を明示しておらず、記事の解釈が事実のように書かれている",
+        "「記事は見ています」等の『記事』の語は元記事の執筆視点を指すが、本文全体の主語が曖昧で、どこまでが調査元の分析かが読み取りにくい"
+      ],
+      "readability": {
+        "avg_paragraph": 126.2,
+        "avg_sentence": 43.2,
+        "long_share": 0.132,
+        "max_paragraph": 197,
+        "paragraphs": 13,
+        "sentences": 38
+      },
+      "score": 84,
+      "source": "nli-research",
+      "title": "「どのアプリを開けばいい？」をなくす－中国平安保険、デジタル化10年の伏線回収",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SOS・NBV）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T05:23:22.567594+00:00",
+      "attempt": 2,
+      "id": "a874e3b4a06b5092",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "段落が長い（平均 130.8字・最長 188字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 130.8,
+        "avg_sentence": 43.6,
+        "long_share": 0.167,
+        "max_paragraph": 188,
+        "paragraphs": 12,
+        "sentences": 36
+      },
+      "score": 93,
+      "source": "nli-research",
+      "title": "「どのアプリを開けばいい？」をなくす－中国平安保険、デジタル化10年の伏線回収",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SOS・NBV）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T05:23:48.125814+00:00",
+      "attempt": 0,
+      "id": "a874e3b4a06b5092",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.3,
+        "avg_sentence": 40.6,
+        "long_share": 0.081,
+        "max_paragraph": 149,
+        "paragraphs": 17,
+        "sentences": 37
+      },
+      "score": 95,
+      "source": "nli-research",
+      "title": "「どのアプリを開けばいい？」をなくす－中国平安保険、デジタル化10年の伏線回収",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SOS・NBV）"
+      ]
     }
   ],
   "short_text_retry": {},
