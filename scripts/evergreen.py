@@ -50,6 +50,10 @@ JST = timezone(timedelta(hours=9))
 PROMPT_VERSION = 1
 REFRESH_DAYS = 14
 PASS_SCORE = 75
+# 税金・年金・行政の手続き（YMYL）のページは事実確認の合格点を上げる（2026-11-07 年末調整のページの点検で、公式ページに無い用途の説明が82点で通った）
+PROCEDURE_PASS_SCORE = 90
+# 「〜とよいでしょう」「〜しましょう」の連発は幼く、助言のように見える（3回以上は不合格）
+FILLER_RE = re.compile(r"とよいでしょう|しましょう|がおすすめです")
 MIN_PROSE = 1800  # 地の文（結論・手順・料金の説明・FAQ など）の合計
 SOURCE_GEN_CAP = 9000  # 生成に渡す1ページあたりの文字数
 SOURCE_TOTAL_CAP = 26000
@@ -316,6 +320,10 @@ PROCEDURE_NOTE = """
 - japan_body: 対象になる人・ならない人の条件（100〜250字）。
 - tips: 間違えやすい点・期限を過ぎたときの扱い（公式ページにある範囲で）。
 - work_money: 「仕事・お金にどう活かせる？」欄。会社員・副業の人・家族の手続きで、明日やることを短く。投資の勧誘・節税の勧めはしない。
+- 書類・制度は、公式ページに書かれた名前と用途だけを書く。公式ページに無い用途・対象（例: どの控除に使う申告書か）を推測で足さない。
+- free_tier（用意するもの）には、実際に用意する書類・情報だけを書く（ページや動画・資料の案内は入れない）。
+- title・seo_title は、本文で答えている内容だけを約束する（本文に欄ごとの書き方が無いなら「書き方」と書かない）。対象（誰が）・期限・金額のうち公式ページにあるものを入れる。
+- 「〜とよいでしょう」「〜しましょう」は全体で2回まで。公式ページの案内（「国税庁は〜と案内しています」）として言い切る。
 """
 
 
@@ -337,9 +345,16 @@ def all_text(data: dict) -> str:
     )
 
 
-def structural_problems(data: dict, sources: list[dict]) -> list[str]:
+def structural_problems(data: dict, sources: list[dict], procedure: bool = False) -> list[str]:
     problems = []
     title = data.get("title", "")
+    if m := re.search(r"とは[？?]|を(?:わかりやすく|やさしく|公式情報で)?解説(?:$|　)|徹底解説", data.get("seo_title", "")):
+        problems.append(f"seo_title が決まり文句（「{m.group(0)}」。台帳 A50）。読む人が得る答えを書く")
+    fillers = len(FILLER_RE.findall(all_text(data)))
+    if fillers > 2:
+        problems.append(f"「〜とよいでしょう」「〜しましょう」が{fillers}回ある（2回まで）。公式ページの案内として言い切る")
+    if procedure and re.search(r"書き方", title) and not any(re.search(r"欄|記入|書く|書き", s.get("body", "")) for s in data.get("steps", [])):
+        problems.append("題名に「書き方」とあるのに、手順に書き方（どの欄に何を書くか）が無い。題名を本文で答えている内容にする")
     if not 24 <= len(title) <= 56:
         problems.append(f"title の長さが不適切（{len(title)}字 / 32〜48字）")
     if hn_template := re.search(r"とは[？?].{0,40}(?:を)?(?:解説|まとめ)|を(?:わかりやすく|やさしく)?解説(?:$|　)", title):
@@ -381,14 +396,15 @@ def to_record(data: dict) -> dict:
             "workMoney": work_money}
 
 
-def check(data: dict, sources: list[dict]) -> dict:
-    """{ok, problems, fact}"""
-    problems = structural_problems(data, sources)
+def check(data: dict, sources: list[dict], procedure: bool = False) -> dict:
+    """{ok, problems, fact}。手続き・お金のページ（procedure）は事実確認の合格点を上げる"""
+    problems = structural_problems(data, sources, procedure)
+    pass_score = PROCEDURE_PASS_SCORE if procedure else PASS_SCORE
     fact = None
     if not problems:
         cap = max(2500, 12500 // max(1, len(sources)))
         fact = quality.fact_check(to_record(data), source_block(sources, cap))
-        if fact["fatal"] or fact["score"] < PASS_SCORE:
+        if fact["fatal"] or fact["score"] < pass_score:
             problems += [f"事実確認: {p}" for p in fact["problems"]] or [f"事実確認の点数が低い（{fact['score']}）"]
     return {"ok": not problems, "problems": problems, "fact": fact}
 
@@ -414,7 +430,7 @@ def generate(topic: dict, sources: list[dict], attempts: int = 3) -> tuple[dict,
         except Exception as error:  # noqa: BLE001
             log(f"   生成に失敗: {str(error)[:120]}")
             return None
-        verdict = check(data, sources)
+        verdict = check(data, sources, procedure)
         fact = verdict["fact"]
         log(f"   試行{attempt}（{model}）: {'合格' if verdict['ok'] else '不合格'}" + (f" 事実確認 {fact['score']}点" if fact else ""))
         if verdict["ok"]:

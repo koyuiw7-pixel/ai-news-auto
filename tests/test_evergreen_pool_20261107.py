@@ -63,6 +63,18 @@ class PoolTest(unittest.TestCase):
         self.assertIn('japanTitle: "対象になる人は？"', view)
         self.assertIn("{L.pricingTitle}", view)
 
+    def test_ymyl_gates_from_the_first_review(self):
+        """2026-11-07 年末調整のページの点検: 決まり文句の seo_title・「〜とよいでしょう」の連発・82点の事実確認が通っていた"""
+        self.assertEqual(evergreen.PROCEDURE_PASS_SCORE, 90)
+        base = {"title": "年末調整は会社員の多くが対象　提出は勤務先の締め切りまで", "seo_title": "年末調整の書き方と3つの申告書、提出期限を公式情報で解説",
+                "conclusion": ["a"] * 3, "steps": [{"title": "出す", "body": "勤務先に出します。とよいでしょう。とよいでしょう。とよいでしょう。"}] * 3,
+                "faq": [{"q": "q", "a": "a"}] * 4, "work_money": ["x"]}
+        problems = evergreen.structural_problems(base, [], True)
+        self.assertTrue(any("seo_title が決まり文句" in p for p in problems))
+        self.assertTrue(any("とよいでしょう" in p for p in problems))
+        src = (ROOT / "scripts" / "evergreen.py").read_text("utf-8")
+        self.assertIn("公式ページに無い用途・対象（例: どの控除に使う申告書か）を推測で足さない", src)
+
     def test_daily_cap_unchanged(self):
         self.assertEqual(PLAN["dailyCap"], 4)
 
