@@ -75,14 +75,6 @@
   },
   "failed_web": {},
   "gate_retry": {
-    "083cb61269f13ae1": {
-      "first": "2026-11-06T06:30:16.254272+00:00",
-      "next": "2026-11-06T13:05:13.869994+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に2選手を認定 #jfa",
-      "tries": 2,
-      "url": "https://www.jfa.jp/news/00036985/"
-    },
     "0e889c44fa0a25a1": {
       "first": "2026-11-03T18:43:01.853190+00:00",
       "next": "2026-11-04T05:34:06.965439+00:00",
@@ -170,14 +162,6 @@
       "title": "マンション内を“顔だけ”で移動できる暮らしを実現 ルジェンテシリーズ初導入！顔認証セキュリティサービス「FreeiD」を標準装備した「ルジェンテ新宿」が竣工 ～新宿御苑の緑に近接する、全邸角住戸の資産価値～",
       "tries": 1,
       "url": "https://www.tokyu-fudosan-hd.co.jp/news/companies/pdf/c63f39dc2efcf88691dcd42fe07a304905d1074a.pdf"
-    },
-    "99f5b444c3dec997": {
-      "first": "2026-11-06T06:27:26.958448+00:00",
-      "next": "2026-11-06T12:53:24.580873+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "SAMURAI BLUE「Team Cam」未公開特別編集版の制作・上映会開催に向けたクラウドファンディングを実施～激闘の裏側にあった、もう一つの物語。2026年の熱狂を「blue-ing!」で共に分かち合おう～ #jfa #daihyo",
-      "tries": 2,
-      "url": "https://www.jfa.jp/news/00036988/"
     },
     "a307777d6ded3852": {
       "first": "2026-11-06T08:36:11.612855+00:00",
@@ -3900,6 +3884,13 @@
       "reason": "stale: 発表から118時間（記事ページの日付）",
       "skipped": true,
       "url": "https://www.redhat.com/en/blog/future-proofing-enterprise-ai-impact-post-quantum-cryptography-red-hat-ai-enterprise"
+    },
+    "083cb61269f13ae1": {
+      "at": "2026-11-06T13:16:14.835138+00:00",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://www.jfa.jp/news/00036985/"
     },
     "08479a0194d913a5": {
       "at": "2026-11-02T01:45:31.559201+00:00",
@@ -8792,6 +8783,13 @@
       "slug": "nli-employment-stats-sep-2026",
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87224?site=nli"
     },
+    "601474b5d2b543ea": {
+      "at": "2026-11-06T13:16:20.743815+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "学生向けコンテストの決勝大会の日程とチーム紹介だけで、働く人や家計に直接関係する経済の一次情報（統計・制度・料金・企業の動きなど）を扱っていないため。イベントの告知にとどまる。",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/about/nichigin_gp/ngp_release/ngp261106.htm"
+    },
     "602f23208b9190cb": {
       "at": "2026-10-26T23:21:12.552422+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -12002,6 +12000,13 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/singi/yusei/02kiban03_04001194.html"
     },
+    "99f5b444c3dec997": {
+      "at": "2026-11-06T13:13:34.742451+00:00",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "skipped": true,
+      "url": "https://www.jfa.jp/news/00036988/"
+    },
     "9a3067e0f29dee44": {
       "at": "2026-10-26T14:34:23.118751+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -14414,6 +14419,13 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.suntory.co.jp/news/article/2026/15166.html?rss=0000000029"
+    },
+    "c865b1246b5375fb": {
+      "at": "2026-11-06T13:11:27.079250+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "日本銀行金融研究所のワークショップ開催を知らせるニュースレターで、議論の中身は本文に書かれていません。働く人や家計に関係する新しい数字・制度・研究成果が確認できないため、記事化しませんでした。",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/about/release_2026/rel261106b.htm"
     },
     "c88b52d0b21039c7": {
       "at": "2026-11-06T01:23:32.238981+00:00",
@@ -17422,103 +17434,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T05:10:13.046016+00:00",
-      "attempt": 1,
-      "id": "f5001d451409d444",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "リード: 「年間配当の予想は100円で、前期の95円から変わっていません」→ 元記事では年間配当予想100円と前期95円は異なり、5円増の予想である。「変わっていません」は事実と矛盾する。",
-        "「税引前の利益が営業利益より大きく伸びたことが背景にあります」→ 税引前利益が伸びた理由は元記事に記載がなく、因果関係は推測。",
-        "「車の購入を考えている人の契約や価格が、この決算で変わるわけではありません」→ 元記事にない断定。",
-        "「2027年3月期の実績と見通しには含まれません」→ 日野の除外70社は元記事にあるが、2027年3月期の見通しから除かれたとの記述は元記事の脚注が途切れており確認できない。",
-        "北米の「営業利益1,661億円（前年同期比2,340億円の増益）」→ 元記事の数値をそのまま写しているが、1,661億円の営業利益に対して2,340億円の増益は整合せず、注意書きなしで提示されている。"
-      ],
-      "readability": {
-        "avg_paragraph": 65.4,
-        "avg_sentence": 34.0,
-        "long_share": 0.04,
-        "max_paragraph": 128,
-        "paragraphs": 26,
-        "sentences": 50
-      },
-      "score": 60,
-      "source": "fast",
-      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T05:10:41.236829+00:00",
-      "attempt": 2,
-      "id": "f5001d451409d444",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "題名の数字「26.9兆円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「5円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "SNS の投稿文の数字「5円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードに予想・見通しの言い方（「見通し」）があるが、公式の資料に無い。資料の事実だけを書く"
-      ],
-      "readability": {
-        "avg_paragraph": 75.0,
-        "avg_sentence": 37.5,
-        "long_share": 0.059,
-        "max_paragraph": 163,
-        "paragraphs": 17,
-        "sentences": 34
-      },
-      "score": null,
-      "source": "fast",
-      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T05:11:33.114570+00:00",
-      "attempt": 3,
-      "id": "f5001d451409d444",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 68.9,
-        "avg_sentence": 32.5,
-        "long_share": 0.038,
-        "max_paragraph": 161,
-        "paragraphs": 25,
-        "sentences": 53
-      },
-      "score": 86,
-      "source": "fast",
-      "title": "トヨタ自動車 2027年3月期 第2四半期（中間期）決算短信〔IFRS〕（連結)"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T05:14:00.658290+00:00",
-      "attempt": 1,
-      "id": "477d7aaf59d7fc3c",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「ただし一部の車両は、連結子会社が製造するため台数に含まれます」→ 元記事（決算短信の抜粋）に、日野関連の車両が販売台数に含まれるという記載がなく、根拠のない補足である。"
-      ],
-      "readability": {
-        "avg_paragraph": 78.3,
-        "avg_sentence": 33.8,
-        "long_share": 0.0,
-        "max_paragraph": 114,
-        "paragraphs": 19,
-        "sentences": 44
-      },
-      "score": 85,
-      "source": "toyota-news",
-      "title": "2027年3月期 第2四半期決算発表（2026年11月5日）",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IFRS）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-05T05:14:18.338415+00:00",
@@ -23245,6 +23160,74 @@
       "score": null,
       "source": "samsung-jp",
       "title": "Samsung、KT・SKテレコムと韓国の「AI RAN」プロジェクトを推進"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T13:12:14.610656+00:00",
+      "attempt": 1,
+      "id": "99f5b444c3dec997",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「の定員は100人で、合計300人」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
+      ],
+      "readability": {
+        "avg_paragraph": 164.9,
+        "avg_sentence": 66.0,
+        "long_share": 0.72,
+        "max_paragraph": 232,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "jfa",
+      "title": "SAMURAI BLUE「Team Cam」未公開特別編集版の制作・上映会開催に向けたクラウドファンディングを実施～激闘の裏側にあった、もう一つの物語。2026",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（BLUE・JFA・FIFA）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T13:13:34.742397+00:00",
+      "attempt": 2,
+      "id": "99f5b444c3dec997",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jfa",
+      "title": "SAMURAI BLUE「Team Cam」未公開特別編集版の制作・上映会開催に向けたクラウドファンディングを実施～激闘の裏側にあった、もう一つの物語。2026"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T13:14:53.579820+00:00",
+      "attempt": 1,
+      "id": "083cb61269f13ae1",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jfa",
+      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に2選手を認定 #jfa"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T13:16:14.835057+00:00",
+      "attempt": 2,
+      "id": "083cb61269f13ae1",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jfa",
+      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に2選手を認定 #jfa"
     }
   ],
   "short_text_retry": {},
