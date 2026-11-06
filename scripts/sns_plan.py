@@ -124,6 +124,8 @@ def sns_score(article: dict) -> float:
     score = float(lane_of(article)[1])
     if article.get("slug") in muse_slugs():
         score += 2.0
+    if japanese_source(article):
+        score += 0.5  # 同じレーンなら日本の会社・官公庁の発表を先に（2026-11-06。海外の企業向けの料金の話が18:45の1番手になっていた）
     return score
 
 
