@@ -100,6 +100,14 @@ class PageTest(unittest.TestCase):
         self.assertNotIn("I4", ids(audit.article_page_problems(f"<h1>題名</h1><span>AI生成</span>{self.AD}", rec(imageCredit={"kind": "ai"}))))
         self.assertIn("W6", ids(audit.article_page_problems(f"<p>小室</p>{self.AD}", rec())))
 
+    def test_noir_cover_ai_label(self):
+        # ノワールの表紙の AI のイメージ（coverImage）には「画像はイメージ（AI生成）」の札（台帳 I4・W36）
+        cover = {"layout": "noir", "coverImage": "/img/x-cover-1.jpg", "coverCredit": {"kind": "ai"}, "imageCredit": {"kind": "official"}}
+        self.assertIn("I4", ids(audit.article_page_problems(f"<h1>題名</h1>{self.AD}", rec(**cover))))
+        self.assertNotIn("I4", ids(audit.article_page_problems(f"<h1>題名</h1><span>画像はイメージ（AI生成）</span>{self.AD}", rec(**cover))))
+        # 今までの見た目の記事（layout なし）には表紙が無いので見ない
+        self.assertNotIn("I4", ids(audit.article_page_problems(f"<h1>題名</h1>{self.AD}", rec(coverImage="/img/x.jpg", coverCredit={"kind": "ai"}))))
+
     def test_component_headings_counted_on_the_page(self):
         html = f"<h2>自分に関係ある？</h2>{self.AD}"
         self.assertIn("A1", ids(audit.article_page_problems(html, rec())))

@@ -2736,6 +2736,45 @@ def use_official(path: Path, article: dict, ctx: dict, best: dict, official: dic
     return "official"
 
 
+# ノワールの表紙のイメージを1回に作る数（写真選びの時間を食わないよう少なく。残りは次の回）
+NOIR_COVER_MAX = 2
+NOIR_COVER_RECENT = 40
+
+
+def noir_covers(ordered: list, args, started: float, tally: Counter) -> None:
+    """新しいノワールの記事の表紙を、いつも写真にする（台帳 W36・scripts/noir_cover.py）。
+    写真を選び終えたあと、新しい順に見て、公式の写真を表紙に出せない記事へ表紙用の AI のイメージを作る（thumbnail は変えない）。
+    公式の写真の判定（heroOk）がまだの記事は、先に判定する"""
+    import noir_cover  # noqa: PLC0415
+    import noir_hero_backfill  # noqa: PLC0415
+
+    made = 0
+    for path, article in ordered[:NOIR_COVER_RECENT]:
+        if not noir_cover.is_noir(article) or article.get("noPhoto"):
+            continue
+        elapsed = time.time() - started
+        if args.budget and elapsed > args.budget + 20:
+            log("[cover] 時間切れ。表紙のイメージは次の回に回す")
+            return
+        credit = article.get("imageCredit") or {}
+        if credit.get("kind") == "official" and "heroOk" not in article and article.get("thumbnail"):
+            try:
+                ok, why = noir_hero_backfill.decide(article)
+            except Exception as error:  # noqa: BLE001
+                ok, why = False, f"画像を読めない（{str(error)[:80]}）"
+            article["heroOk"] = ok
+            log(f"[cover] {article.get('slug')}: 公式の写真の判定 {'写真' if ok else '表紙に出さない'}（{why}）")
+            save(path, article)
+        if made >= NOIR_COVER_MAX or not noir_cover.needs_cover(article):
+            continue
+        made += 1
+        # 残りの時間が少ないときは速いモデルだけ（flux-2 は最大 150 秒待つので、外側の timeout に切られない）
+        outcome = noir_cover.ensure_cover(article, fast=args.fast or bool(args.budget and elapsed > args.budget - 120))
+        log(f"[cover] {article.get('slug')}: 表紙の背景 {outcome}")
+        tally[f"cover-{outcome}"] += 1
+        save(path, article)
+
+
 def settle_hotlink(path: Path, article: dict, ctx: dict) -> str | None:
     """選び終えても外部サイトの画像を直リンクしたまま（AI の上限・素材なし・失敗など）の記事を残さない。
 
@@ -2984,6 +3023,8 @@ def main() -> int:
             with open(args.report, "a", encoding="utf-8") as fh:
                 row = {"slug": article.get("slug"), "outcome": outcome, "seconds": round(time.time() - began, 1), "thumbnail": article.get("thumbnail"), "imageCredit": article.get("imageCredit")}
                 fh.write(json.dumps(row, ensure_ascii=False) + "\n")
+    if not args.dry_run:
+        noir_covers(ordered, args, started, tally)
     if args.focus_recent and not args.dry_run:
         # 写真を選び直さなかった記事（YouTube のサムネイル・前からある写真）も、新しい分は主役の位置を持たせる
         focused = 0

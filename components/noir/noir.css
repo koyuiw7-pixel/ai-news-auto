@@ -195,7 +195,26 @@ html:has(.noir) body {
   /* 公式の写真には文字の入った告知の画像もあるので、題名の下は十分に暗くする（題名が写真の文字と重なって読めなくならないように） */
   background: linear-gradient(180deg, rgb(12 12 12 / 0.5) 0, rgb(12 12 12 / 0.12) 18%, rgb(12 12 12 / 0.3) 32%, rgb(12 12 12 / 0.8) 52%, rgb(12 12 12 / 0.94) 100%);
 }
-/* 写真の無い記事は、黒い表紙に題名を大きく（関係の無い写真は使わない） */
+/* AI のイメージの札（台帳 I4）。写真の色に左右されないよう、札そのものに暗い地を敷く（白い文字と 4.5:1 以上） */
+.noir .nr-ailabel {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 66px);
+  right: 16px;
+  z-index: 2;
+  font: 700 12px/1.5 var(--nr-body);
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  background: rgb(10 11 13 / 0.72);
+  border: 1px solid rgb(255 255 255 / 0.28);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+/* AI のイメージも作れなかった記事は、見出し画像（告知のバナーなど）を強くぼかして暗くし、背景の色と光だけにする（文字は読めない） */
+.noir .nr-hero.nr-blur .nr-img img {
+  filter: blur(26px) brightness(0.62) saturate(1.1);
+  transform: scale(1.18);
+}
+/* どの写真も無い記事だけ、黒い表紙に題名を大きく（2026-11-07 オーナー「黒地にしたいわけではない」。最後の手段） */
 .noir .nr-hero.nr-type {
   height: auto;
   min-height: min(96vw, 520px);

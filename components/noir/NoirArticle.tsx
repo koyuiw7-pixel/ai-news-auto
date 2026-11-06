@@ -6,13 +6,13 @@ import NoirChrome from "@/components/noir/NoirChrome";
 import NoirFonts, { noirFontHref } from "@/components/noir/NoirFonts";
 import { formatDate, type ArticleSummary, type FullArticle } from "@/lib/articles";
 import { officialCreditText } from "@/lib/image-credit";
-import { displayGlyphs, splitEmphasis } from "@/lib/noir";
+import { displayGlyphs, NOIR_AI_LABEL, splitEmphasis, type NoirCover } from "@/lib/noir";
 import { stripListNumber } from "@/lib/list-number";
 import "./noir.css";
 
 /**
  * 新しい記事の見た目「ノワール」（2026-11-07 オーナー承認・台帳 W36）。layout が "noir" の記事だけ。
- * 黒い表紙（公式の写真を全面に。無ければ題名を大きく）→ 白い紙面（要点の1文・大きな数字・本文・まとめ・発表元のボタン）→ 関連記事。
+ * 写真の表紙（公式の写真 → 無ければ AI のイメージ「画像はイメージ（AI生成）」→ 作れなければぼかした公式の画像。何も無いときだけ黒）→ 白い紙面（要点の1文・大きな数字・本文・まとめ・発表元のボタン）→ 関連記事。
  * 見出し・構造化データ・広告・提携・計測・オーナーのルールの部品は、今までの記事ページ（app/articles/[slug]/page.tsx）で作った物をそのまま受け取って並べる。
  * 「このニュースを3行で」「何が起きた」「KEY NUMBERS」のような決まった型の見出しは付けない（オーナーが AI っぽいと判断）。
  */
@@ -20,7 +20,8 @@ export type NoirProps = {
   article: FullArticle;
   title: string;
   jsonLd: unknown;
-  photo: string | null;
+  /** 表紙の背景（lib/noir.ts の noirCover）。null のときだけ黒い表紙に題名 */
+  cover: NoirCover | null;
   kicker: string;
   breaking: boolean;
   /** 「日産 公式発表」「日経 報道」 */
@@ -56,15 +57,16 @@ export type NoirProps = {
 };
 
 export default function NoirArticle(props: NoirProps) {
-  const { article, title, photo, body, slots } = props;
+  const { article, title, cover, body, slots } = props;
+  const photo = cover?.src ?? null;
   const line = article.summaryLine || stripListNumber(article.highlights[0] ?? "");
   const sum = line ? splitEmphasis(line) : null;
   const fig = article.keyFigure && article.keyFigure.value ? article.keyFigure : null;
   const glyphs = displayGlyphs([title, props.kicker, line, fig ? `${fig.value}${fig.unit}${fig.before ?? ""}` : "", props.headingsHtml, ...props.related.map((r) => r.title), "関連記事"]);
   const fontHref = noirFontHref(glyphs);
-  const focus = article.imageFocus && article.imageFocus.src === article.thumbnail ? article.imageFocus : null;
-  // 写真を出すのは公式発表の写真だけなので、注記も「写真：〇〇」の1行（lib/image-credit.ts）
-  const credit = photo ? officialCreditText(article.imageCredit) : null;
+  const focus = cover?.kind === "official" && article.imageFocus && article.imageFocus.src === article.thumbnail ? article.imageFocus : null;
+  // 公式の画像（そのまま・ぼかし）は「画像：〇〇」の1行（lib/image-credit.ts）。AI のイメージは表紙の札と同じ文
+  const credit = cover?.kind === "ai" ? NOIR_AI_LABEL : cover ? officialCreditText(article.imageCredit) : null;
 
   return (
     <div className="noir" data-layout="noir">
@@ -84,7 +86,7 @@ export default function NoirArticle(props: NoirProps) {
         <i className="nr-bar" id="nr-bar" aria-hidden />
       </div>
 
-      <header className={`nr-hero${photo ? "" : " nr-type"}`} id="nr-hero">
+      <header className={`nr-hero${photo ? "" : " nr-type"}${cover?.kind === "blur" ? " nr-blur" : ""}`} id="nr-hero" data-cover={cover?.kind ?? "none"}>
         {photo && (
           <div className="nr-img" id="nr-img">
             <Thumb
@@ -97,6 +99,12 @@ export default function NoirArticle(props: NoirProps) {
               style={{ objectPosition: focus ? `${Math.round(focus.x * 100)}% ${Math.round(focus.y * 100)}%` : "50% 40%" }}
             />
           </div>
+        )}
+        {/* AI のイメージには、表紙の上に必ず札を出す（本物の写真と受け取られないように。台帳 I4） */}
+        {cover?.kind === "ai" && (
+          <span className="nr-ailabel" data-allow-small="">
+            {NOIR_AI_LABEL}
+          </span>
         )}
         <div className="nr-hl nr-g">
           <div className="nr-col">

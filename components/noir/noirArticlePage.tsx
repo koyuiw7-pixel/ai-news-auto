@@ -30,7 +30,7 @@ import { guideShortName } from "@/lib/buying-guides";
 import { getCta } from "@/lib/monetization";
 import { workMoneyHeading } from "@/lib/work-money";
 import { splitBeforeHeading } from "@/lib/markdown";
-import { headingTexts, noirBodyHtml, noirPhoto } from "@/lib/noir";
+import { headingTexts, noirBodyHtml, noirCover } from "@/lib/noir";
 import { tagHref, type ArticleSummary, type FullArticle } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
 import type { ChooseGuide } from "@/lib/choose-data";
@@ -120,7 +120,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
       article={article}
       title={articleTitle(article)}
       jsonLd={noirJsonLd}
-      photo={noirPhoto(article)}
+      cover={noirCover(article)}
       kicker={[company.slug !== OTHER.slug ? company.name : "", article.genre].filter(Boolean).join(" ・ ")}
       breaking={isFastNews(article)}
       origin={`${org} ${badge}`}

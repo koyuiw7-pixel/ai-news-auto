@@ -2,7 +2,8 @@
 """ノワールの記事（layout: "noir"）のうち、表紙に写真を出してよいか（heroOk）が未判定のものを1回だけ判定する（台帳 W36）。
 
 新しい記事は scripts/images.py が公式の写真を付けるときに決める。これは、その仕組みより前に出たノワールの記事の後追い用。
-判定は images.hero_ok（無料の画像判定 Workers AI と、名前・形の目安）。迷ったら・判定できないときは False（黒い表紙に題名）。
+判定は images.hero_ok（無料の画像判定 Workers AI と、名前・形の目安）。迷ったら・判定できないときは False
+（公式の写真はそのまま出さず、表紙用の AI のイメージにする。scripts/noir_cover.py）。
 
   python3 scripts/noir_hero_backfill.py            # 判定だけ表示（書き込まない）
   python3 scripts/noir_hero_backfill.py --apply    # 記事 JSON に heroOk を書く
@@ -48,7 +49,7 @@ def main(argv: list[str] | None = None) -> int:
         article = json.loads(path.read_text("utf-8"))
         try:
             ok, why = decide(article)
-        except Exception as error:  # noqa: BLE001 - 取れなければ黒い表紙
+        except Exception as error:  # noqa: BLE001 - 取れなければ公式の写真は表紙に出さない
             ok, why = False, f"画像を読めない（{str(error)[:80]}）"
         print(f"{path.stem}: heroOk={ok}（{why}）")
         if args.apply:

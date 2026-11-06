@@ -117,6 +117,10 @@ export type Article = {
   layout?: "noir";
   /** ノワールの表紙に写真を全面で出してよいか（大きな文字の無い本物の写真。scripts/images.py の hero_ok が1回だけ決める。無ければ黒い表紙） */
   heroOk?: boolean;
+  /** ノワールの表紙の背景用の AI のイメージ（公式の写真を表紙に出せない記事だけ。scripts/noir_cover.py。thumbnail は変えない） */
+  coverImage?: string;
+  /** coverImage の出典（kind: "ai"）。表紙に「画像はイメージ（AI生成）」と出す（台帳 I4・W36） */
+  coverCredit?: ImageCredit;
   /** ノワールの要点の1文（大事な数字を **…** で囲む。scripts/noir_layout.py が本文・要点から抜き出す） */
   summaryLine?: string;
   /** ノワールの黒いカードの数字（値は記事に書いてある文字のまま） */

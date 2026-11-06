@@ -19,13 +19,40 @@ export function isNoir(article: Pick<Article, "layout">): boolean {
 }
 
 /**
- * 表紙に写真を出すか。公式発表の写真（official）で、大きな文字の無い本物の写真と判定済み（heroOk: true）のものだけ。
- * 告知のバナー・スライド・画面・AI の絵・フリー素材・未判定は出さず、黒い表紙に題名を大きく出す（scripts/images.py の hero_ok）
+ * 公式の写真をそのまま表紙に出すか。公式発表の写真（official）で、大きな文字の無い本物の写真と判定済み（heroOk: true）のものだけ。
+ * 告知のバナー・スライド・画面・AI の絵・フリー素材・未判定はそのままは出さない（表紙の背景は noirCover が決める。scripts/images.py の hero_ok）
  */
 export function noirPhoto(article: Pick<Article, "thumbnail" | "imageCredit" | "heroOk">): string | null {
   if (!article.thumbnail || article.imageCredit?.kind !== "official" || article.heroOk !== true) return null;
   return article.thumbnail;
 }
+
+export type NoirCover = {
+  /** official: 公式の写真をそのまま／ai: AI のイメージ（「画像はイメージ（AI生成）」を出す）／blur: 公式の画像などを強くぼかして暗くした背景 */
+  kind: "official" | "ai" | "blur";
+  src: string;
+};
+
+/**
+ * 表紙の背景（2026-11-07 オーナー「黒地にしたいわけではない。背景は写真を差し込みたい」。台帳 W36）。いつも写真を敷く。順に:
+ * ①公式の、大きな文字の無い本物の写真（noirPhoto） ②表紙用の AI のイメージ（coverImage。scripts/noir_cover.py）
+ * ③見出し画像がもともと AI のイメージならそれ ④AI が作れなかったときは、見出し画像（告知のバナーでも）を強くぼかして暗くしたもの
+ * どれも無いときだけ null（今までの黒い表紙に題名）
+ */
+export function noirCover(
+  article: Pick<Article, "thumbnail" | "imageCredit" | "heroOk" | "coverImage" | "coverCredit" | "noPhoto">,
+): NoirCover | null {
+  const photo = noirPhoto(article);
+  if (photo) return { kind: "official", src: photo };
+  if (article.noPhoto) return null;
+  if (article.coverImage && article.coverCredit?.kind === "ai") return { kind: "ai", src: article.coverImage };
+  if (article.thumbnail && article.imageCredit?.kind === "ai") return { kind: "ai", src: article.thumbnail };
+  if (article.thumbnail) return { kind: "blur", src: article.thumbnail };
+  return null;
+}
+
+/** 表紙の AI のイメージに出す札（台帳 I4。scripts/owner_rules_audit.py は「AI生成」の文字で確かめる） */
+export const NOIR_AI_LABEL = "画像はイメージ（AI生成）";
 
 /** 「**479万7,100円**」の印で、強調する数字と前後の文に分ける */
 export function splitEmphasis(line: string): { before: string; em: string | null; after: string } {
