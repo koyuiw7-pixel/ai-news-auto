@@ -126,10 +126,10 @@
     },
     "5303ad7c7a4b3680": {
       "first": "2026-11-06T00:12:53.046441+00:00",
-      "next": "2026-11-06T03:12:53.046441+00:00",
+      "next": "2026-11-06T06:32:53.688426+00:00",
       "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "title": "初代ウォークマン付属『MDR-3』のデザインとサウンドを受け継ぐUSB-Cステレオヘッドホン『MDR-3R』発売",
-      "tries": 1,
+      "tries": 2,
       "url": "https://www.sony.jp/CorporateCruise/Press/202611/26-1106/?s_tc=jp_app_msa_headphone_261106_1"
     },
     "60e8d80f76ce81f6": {
@@ -158,10 +158,10 @@
     },
     "a80efade9c9f0d83": {
       "first": "2026-11-06T00:08:54.716870+00:00",
-      "next": "2026-11-06T03:08:54.716870+00:00",
+      "next": "2026-11-06T06:23:38.862998+00:00",
       "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "title": "個人向け国債の発行条件等",
-      "tries": 1,
+      "tries": 2,
       "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/houdouhappyou/p20261106.pdf"
     },
     "a874e3b4a06b5092": {
@@ -211,6 +211,14 @@
       "title": "【イベントレポート】PdMオフレコ会議「キャリアの壁編 〜次のステージに進む人は何を手放したのか〜」に参加してきました【DMM/CA/グッドパッチ合同】",
       "tries": 1,
       "url": "https://developers.cyberagent.co.jp/blog/archives/67267/"
+    },
+    "ff4c4236ea8b3f24": {
+      "first": "2026-11-06T03:24:59.810969+00:00",
+      "next": "2026-11-06T06:24:59.810969+00:00",
+      "reason": "「過去2週間以内に3日分」「従来は1カ月以内に7日分」は元記事と一致するが、表の「4日分削減」は元記事に無い差の計算結果で、計算済みの数字にも無い → 数字自体は正しいが出典のない派生値である。; 「「折りたたみスマホ「Galaxy Z Fold8」を発売」などのスマートフォンとあわせて活用できるヘルスケア機能です」→ 元記事はGalaxy Z Fold8に一切触れておらず、Fold8との組み合わ",
+      "title": "Samsung Healthの睡眠コーチングがより手軽に 一人ひとりに合わせたアドバイスを毎週提供",
+      "tries": 1,
+      "url": "https://news.samsung.com/jp/samsung-health-makes-sleep-coaching2611?utm_source=rss&utm_medium=direct"
     }
   },
   "major_tries": {},
@@ -5019,6 +5027,12 @@
       "skipped": true,
       "url": "https://blogs.windows.com/japan/2026/10/28/introducing-a-team-knowledge-base-curated-by-copilot-and-agents/"
     },
+    "1c387c0741c5b109": {
+      "at": "2026-11-06T03:21:39.922077+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mof.go.jp/about_mof/councils/customs_foreign_exchange/sub-of_customs/proceedings_customs/material/kana20261106.html"
+    },
     "1c9bf932d8f98101": {
       "at": "2026-11-02T21:11:41.918353+00:00",
       "reason": "short text 486",
@@ -6632,6 +6646,13 @@
       "slug": "aws-moengage-agentcore-gateway",
       "url": "https://aws.amazon.com/blogs/machine-learning/how-moengage-turned-over-400-apis-into-agent-tools-with-agentcore-gateway/"
     },
+    "3dd9d9504db2afcc": {
+      "at": "2026-11-06T03:21:47.633027+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "選挙制度（議席配分方式）と政党間の合意を扱う記事で、選挙・政党の話が主題のため対象外です。",
+      "skipped": true,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87270?site=nli"
+    },
     "3df4d68063a5a1b4": {
       "at": "2026-11-05T19:54:24.433529+00:00",
       "mix": "other",
@@ -7277,6 +7298,12 @@
       "reason": "quality: 本文が短い（1401字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（346字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
       "skipped": true,
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3224"
+    },
+    "4adc87ba4ef8878c": {
+      "at": "2026-11-06T03:21:39.920479+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://www.cyberagent.co.jp/news/detail/id=33978"
     },
     "4aeea661ef8cc7e6": {
       "at": "2026-10-29T01:13:19.632858+00:00",
@@ -10372,6 +10399,12 @@
       "reason": "quality: 本文が短い（2272字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000095.000010009.html"
+    },
+    "8738684aa5c90327": {
+      "at": "2026-11-06T03:21:39.922129+00:00",
+      "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
+      "skipped": true,
+      "url": "https://www.tsr-net.co.jp/data/detail/1203407_1527.html"
     },
     "8742a089505460c2": {
       "at": "2026-10-30T10:11:36.991994+00:00",
@@ -13593,6 +13626,12 @@
       "slug": "tokyo-disaster-prevention-app-underpass-warning",
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110203"
     },
+    "c6c5eaf37e872625": {
+      "at": "2026-11-06T03:21:39.920396+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://blog.ja.playstation.com/2026/11/06/20261106-helldivers2-post-launch-update-o/"
+    },
     "c6c8ce61afb7c3a6": {
       "at": "2026-10-28T17:53:13.329915+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16478,131 +16517,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-04T13:54:49.574062+00:00",
-      "attempt": 0,
-      "id": "d1ca532e101a8cf0",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 71.8,
-        "avg_sentence": 37.0,
-        "long_share": 0.061,
-        "max_paragraph": 168,
-        "paragraphs": 17,
-        "sentences": 33
-      },
-      "score": 92,
-      "source": "xbox-wire-jp",
-      "title": "Game Pass に『Escape Academy 2: Back 2 School』『Thronefall』『Warhammer Survivors』などが",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（VOID・TANUKI・PIT）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T14:39:48.980725+00:00",
-      "attempt": 1,
-      "id": "3a06f84c0f51a102",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "openai-news",
-      "title": "OpenAI to acquire Pierre Computer Company, Inc."
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-04T14:40:51.091749+00:00",
-      "attempt": 2,
-      "id": "3a06f84c0f51a102",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.5,
-        "avg_sentence": 40.5,
-        "long_share": 0.105,
-        "max_paragraph": 144,
-        "paragraphs": 17,
-        "sentences": 38
-      },
-      "score": 85,
-      "source": "openai-news",
-      "title": "OpenAI to acquire Pierre Computer Company, Inc.",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T15:03:22.502711+00:00",
-      "attempt": 1,
-      "id": "2c8a2ca0b2585148",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「ホームページの検索画面」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
-      ],
-      "readability": {
-        "avg_paragraph": 66.1,
-        "avg_sentence": 34.1,
-        "long_share": 0.065,
-        "max_paragraph": 159,
-        "paragraphs": 16,
-        "sentences": 31
-      },
-      "score": null,
-      "source": "mlit-press",
-      "title": "リコールの届出について（ロータス エリーゼ SPORT/SPRINT 220 他）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SPORT・SPRINT・EHC）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T15:05:42.452970+00:00",
-      "attempt": 2,
-      "id": "2c8a2ca0b2585148",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mlit-press",
-      "title": "リコールの届出について（ロータス エリーゼ SPORT/SPRINT 220 他）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T15:07:20.437452+00:00",
-      "attempt": 3,
-      "id": "2c8a2ca0b2585148",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「ホームページの検索画面」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
-      ],
-      "readability": {
-        "avg_paragraph": 69.2,
-        "avg_sentence": 32.7,
-        "long_share": 0.056,
-        "max_paragraph": 134,
-        "paragraphs": 17,
-        "sentences": 36
-      },
-      "score": null,
-      "source": "mlit-press",
-      "title": "リコールの届出について（ロータス エリーゼ SPORT/SPRINT 220 他）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SPORT・SPRINT・EHC）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-04T15:09:05.628624+00:00",
@@ -22533,6 +22447,121 @@
       "score": 92,
       "source": "tsr",
       "title": "「人手不足」倒産 10月では過去最多の50件 1-10月累計418件、すでに年間最多を更新"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T03:23:11.326773+00:00",
+      "attempt": 1,
+      "id": "a80efade9c9f0d83",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "mof",
+      "title": "個人向け国債の発行条件等"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T03:23:38.862938+00:00",
+      "attempt": 2,
+      "id": "a80efade9c9f0d83",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "mof",
+      "title": "個人向け国債の発行条件等"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T03:24:21.829446+00:00",
+      "attempt": 1,
+      "id": "ff4c4236ea8b3f24",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「日本でも無料アップデートで利用できます」「追加の利用料金はかかりません」「判定: 価格=無料（アプリ内）」→ 元記事に料金・無料の記述がなく、価格を創作している",
+        "比較表の「2週間短縮」「4日分削減」→ 元記事にない差分の計算結果で、欄外の計算済み数字にも無い。数字を比べる文の近くに条件の説明もない",
+        "「日中の仕事の集中力向上に役立ちます」→ 元記事に無い効果の断定",
+        "「追加の費用をかけずに健康管理の質を高められます」→ 料金の無さを前提にした根拠のない効果の断定",
+        "「診断を始められます」（かんたん版）→ 元記事はコーチングプログラムの開始であり、「診断」は誤った言い換え",
+        "「エナジースコア（心身の回復状態を示す指標）」→ 元記事は定義を示しておらず、補足が元記事の説明を超えている"
+      ],
+      "readability": {
+        "avg_paragraph": 99.4,
+        "avg_sentence": 53.0,
+        "long_share": 0.233,
+        "max_paragraph": 181,
+        "paragraphs": 16,
+        "sentences": 30
+      },
+      "score": 55,
+      "source": "samsung-jp",
+      "title": "Samsung Healthの睡眠コーチングがより手軽に 一人ひとりに合わせたアドバイスを毎週提供",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T03:24:59.810890+00:00",
+      "attempt": 2,
+      "id": "ff4c4236ea8b3f24",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「過去2週間以内に3日分」「従来は1カ月以内に7日分」は元記事と一致するが、表の「4日分削減」は元記事に無い差の計算結果で、計算済みの数字にも無い → 数字自体は正しいが出典のない派生値である。",
+        "「「折りたたみスマホ「Galaxy Z Fold8」を発売」などのスマートフォンとあわせて活用できるヘルスケア機能です」→ 元記事はGalaxy Z Fold8に一切触れておらず、Fold8との組み合わせで使えるという関係は元記事に無い推測である。",
+        "「12分間のランニングテストや過去の走歩行データ」→ 元記事は「過去のランニングデータ」としており、「走歩行」は元記事に無い語で内容を変えている。",
+        "「ワークアウト結果をSNSへ共有するためのデザインテンプレート」→ 元記事の「共有用テンプレート」とほぼ一致するが、一般的な共有機能の記述として軽微である。",
+        "「すでに日本国内向けにも順次提供が始まっています」→ 元記事は日本で既に提供開始と述べ、機能の一部は今後のソフトウェアアップデートで対応する場合があるとしており、「順次」の範囲がやや広い。"
+      ],
+      "readability": {
+        "avg_paragraph": 105.2,
+        "avg_sentence": 59.5,
+        "long_share": 0.391,
+        "max_paragraph": 155,
+        "paragraphs": 13,
+        "sentences": 23
+      },
+      "score": 72,
+      "source": "samsung-jp",
+      "title": "Samsung Healthの睡眠コーチングがより手軽に 一人ひとりに合わせたアドバイスを毎週提供",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T03:28:41.149061+00:00",
+      "attempt": 1,
+      "id": "5303ad7c7a4b3680",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "sony-jp",
+      "title": "初代ウォークマン付属『MDR-3』のデザインとサウンドを受け継ぐUSB-Cステレオヘッドホン『MDR-3R』発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T03:32:53.688397+00:00",
+      "attempt": 2,
+      "id": "5303ad7c7a4b3680",
+      "kind": "broad",
+      "model": "cloudflare:@cf/openai/gpt-oss-120b",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "sony-jp",
+      "title": "初代ウォークマン付属『MDR-3』のデザインとサウンドを受け継ぐUSB-Cステレオヘッドホン『MDR-3R』発売"
     }
   ],
   "short_text_retry": {
