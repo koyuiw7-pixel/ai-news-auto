@@ -5992,6 +5992,19 @@
       "slug": "meta-waddle-world-ai-pet",
       "url": "https://www.engadget.com/2299227/meta-tamagotchi-like-ai-digital-pet-app-waddle-world/"
     },
+    "2b3eb4eb79de73e7": {
+      "at": "2026-11-06T16:07:54.237513+00:00",
+      "breaking": true,
+      "costUsd": 0.1062,
+      "foreignAi": true,
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 80,
+      "section": "ai",
+      "slug": "nvidia-open-source-6g-research-tools",
+      "url": "https://blogs.nvidia.com/blog/telco-open-source-tools-research-6g-networks/"
+    },
     "2b6ca2a2c1a09285": {
       "at": "2026-10-29T18:53:25.908619+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -17483,35 +17496,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-05T06:47:43.382704+00:00",
-      "attempt": 2,
-      "id": "b3a04c021ff2b99e",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "題名の数字「32.8%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「32.8%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「32.8%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「12.00円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "SNS の投稿文の数字「32.8%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
-      ],
-      "readability": {
-        "avg_paragraph": 96.1,
-        "avg_sentence": 36.3,
-        "long_share": 0.133,
-        "max_paragraph": 178,
-        "paragraphs": 17,
-        "sentences": 45
-      },
-      "score": null,
-      "source": "fast",
-      "title": "LINEヤフー 決算短信（2026年11月5日）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JAPAN・LYP・BITMAX）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-05T06:48:36.234944+00:00",
       "attempt": 3,
       "id": "b3a04c021ff2b99e",
@@ -23206,6 +23190,30 @@
         "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（XR・NET）",
         "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T16:07:54.225558+00:00",
+      "attempt": 1,
+      "id": "2b3eb4eb79de73e7",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 89.0,
+        "avg_sentence": 41.5,
+        "long_share": 0.178,
+        "max_paragraph": 155,
+        "paragraphs": 21,
+        "sentences": 45
+      },
+      "score": 80,
+      "source": "nvidia-blog",
+      "title": "How NVIDIA Open Source Tools Are Helping Researchers Build Next-Generation 6G Ne",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（AGX・CUDA・ACAR）"
       ]
     }
   ],
