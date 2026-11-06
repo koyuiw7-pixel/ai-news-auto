@@ -254,7 +254,7 @@
     }
   },
   "major_tries": {
-    "a307777d6ded3852": 1
+    "a307777d6ded3852": 2
   },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
@@ -17014,82 +17014,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-05T01:04:07.991794+00:00",
-      "attempt": 2,
-      "id": "010f1ded905a0578",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "lede に取引のやり方の説明がある（「売買の方法」）。売買の手順は書かず、制度・数字・影響の説明にする",
-        "1つの文を2つに割っている（「課題があります。ひとつは、スタートアップへの成長資金の供給を増やすことです。」）。1文にまとめる"
-      ],
-      "readability": {
-        "avg_paragraph": 127.5,
-        "avg_sentence": 48.4,
-        "long_share": 0.276,
-        "max_paragraph": 172,
-        "paragraphs": 11,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "jpx-news",
-      "title": "[JPX総研]株式会社スマートラウンドへの出資について",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JPX）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T01:06:00.389040+00:00",
-      "attempt": 1,
-      "id": "237bc1e259371f3e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 57.9字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 110.5,
-        "avg_sentence": 57.9,
-        "long_share": 0.429,
-        "max_paragraph": 188,
-        "paragraphs": 11,
-        "sentences": 21
-      },
-      "score": 88,
-      "source": "nissan",
-      "title": "日産、「セレナ」を一部仕様変更",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（LUXION・BIG・EASY）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T01:06:25.798795+00:00",
-      "attempt": 0,
-      "id": "237bc1e259371f3e",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 元に無い数字が増えた（1508, 43, 45, 50, 57.9）"
-      ],
-      "readability": {
-        "avg_paragraph": 110.5,
-        "avg_sentence": 57.9,
-        "long_share": 0.429,
-        "max_paragraph": 188,
-        "paragraphs": 11,
-        "sentences": 21
-      },
-      "score": 88,
-      "source": "nissan",
-      "title": "日産、「セレナ」を一部仕様変更",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（LUXION・BIG・EASY）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-05T01:21:44.752124+00:00",
       "attempt": 1,
@@ -22997,6 +22921,60 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（UQ・PAY・ARPU）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T07:14:48.337732+00:00",
+      "attempt": 1,
+      "id": "a307777d6ded3852",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "答えになっていない見出し（「通期予想は据え置き、料金の変更は示されていない」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない",
+        "確認済みの事実の束（関連ページ：KDDI ニュースリリース「kddi_261106_main_X5IBau.pdf」）の数字を使っているのに、出典が書かれていない。使った文の直後に「（KDDI ニュースリリース「kddi_261106_main_X5IBau.pdf」、確認日）」のように書く"
+      ],
+      "readability": {
+        "avg_paragraph": 89.4,
+        "avg_sentence": 39.3,
+        "long_share": 0.073,
+        "max_paragraph": 155,
+        "paragraphs": 18,
+        "sentences": 41
+      },
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "2027年3月期第2四半期決算について | KDDI ニュースルーム",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（UQ・PAY・IR）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T07:15:15.254113+00:00",
+      "attempt": 2,
+      "id": "a307777d6ded3852",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "2027年3月期第2四半期決算について | KDDI ニュースルーム"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T07:16:01.106549+00:00",
+      "attempt": 3,
+      "id": "a307777d6ded3852",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "2027年3月期第2四半期決算について | KDDI ニュースルーム"
     }
   ],
   "short_text_retry": {},
