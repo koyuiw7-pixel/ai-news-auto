@@ -1,5 +1,5 @@
 {
-  "_doc": "SNS の伸ばし方の計画（2026-11-05 とろいも案 v1・台帳 S27〜S31）。scripts/sns_plan.py だけが読む。数字・語を変えるだけで選び方・枠・待ち時間を変えられる。slots_jst は通常の投稿の時刻（日本時間）。daily_cap は1日（日本時間）の自分の投稿の上限（Threads・X・Facebook・Bluesky それぞれ。速報も数える。cap_exempt の種類＝ミサイル・災害だけは数えない）。min_gap_min は投稿どうしの最短の間隔。lanes は出す話題（点数が高いほど先）。exclude は SNS に出さない話題（海外の企業向け・開発者向け。サイトには載せる）。muse はとろいも（Muse）の動画の受け渡し。utm は記事のリンクに付ける印",
+  "_doc": "SNS の伸ばし方の計画（2026-11-05 とろいも案 v1・台帳 S27〜S31）。scripts/sns_plan.py だけが読む。数字・語を変えるだけで選び方・枠・待ち時間を変えられる。slots_jst は通常の投稿の時刻（日本時間）。daily_cap は1日（日本時間）の自分の投稿の上限（Threads・X・Facebook それぞれ。Bluesky は bluesky の別の上限・枠＝台帳 S40。速報も数える。cap_exempt の種類＝ミサイル・災害だけは数えない）。min_gap_min は投稿どうしの最短の間隔。lanes は出す話題（点数が高いほど先）。exclude は SNS に出さない話題（海外の企業向け・開発者向け。サイトには載せる）。muse はとろいも（Muse）の動画の受け渡し。utm は記事のリンクに付ける印",
   "version": 1,
   "decided": "2026-11-05",
   "slots_jst": ["07:15", "12:15", "18:45", "20:30"],
@@ -44,6 +44,13 @@
     "japan_hosts": ["group.ntt", "global.honda", "global.toyota", "toyota-global.com", "nissan-global.com", "sony.com", "sony.co.jp", "nintendo.com", "rakuten.com", "panasonic.com", "hitachi.com", "global.canon", "fujifilm.com", "mazda.com", "subaru.co.jp", "suzuki.com", "yamaha.com", "fastretailing.com", "aeon.info", "lycorp.co.jp", "mercari.com", "kddi.com", "softbank.jp", "docomo.ne.jp"]
   },
   "cap_exempt": ["missile", "disaster"],
+  "bluesky": {
+    "_doc": "2026-11-06 オーナー承認（台帳 S40・2026-11-07 から）: Bluesky だけの1日の上限と枠。Threads の daily_cap・slots_jst とは別に数え、お互いの本数に数えない。枠は 7:30（朝の要の1本＝朝のまとめ）・13:00（その日いちばんの速報・記事）・21:00（夜の1本）。1つの枠に1本。枠に遅れたら次の枠の前（最後の枠は window_end）までに出してよい。window_start より前・window_end より後は出さない。ミサイル・災害（cap_exempt）は今までどおり枠の外ですぐ出し、本数に数えない",
+    "slots_jst": ["07:30", "13:00", "21:00"],
+    "daily_cap": 3,
+    "window_start": "07:00",
+    "window_end": "23:00"
+  },
   "muse": {
     "_doc": "とろいも（Muse）に頼む動画。2026-11-05 夕方 オーナー決定「返信欄にリンクつけてみない人が多いのだから、動画も同じことになるでしょ。なら動画を作る記事を限定した方がいいかな。かなり人気なジャンルで、ビューを取れるような記事にしたいよね。」: 動画を作るのは、SNS の予定（state/threads_posted.json の動画待ち）に入った記事のうち、ビューを取れる話題（muse_queue.muse_score が 0 より大きい＝レーン safety/money/brand/consumer_ai・立つ数字・公式の出どころ）だけ。枠の日（日本時間）ごとに点数の高い順に max_per_day 本まで state/muse_queue.json に入れる。その投稿だけ wait_hours（最大 max_wait_hours。速報は breaking_wait_hours）まで Muse の動画を待ち、来なければ自前の v3 動画（予備）、それも無ければ記事の写真・カードで出す。ほかの投稿は動画を待たず、枠の時刻に記事の写真・カードで出す（投稿の本数は減らさない）",
     "max_per_day": 2,

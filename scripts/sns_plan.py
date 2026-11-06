@@ -9,6 +9,7 @@
   sns_score(article)      → 並べ順の点数（レーン＋ Muse の動画待ち）
   slots_jst()             → 通常の投稿の時刻 [(時, 分), ...]
   daily_cap() / cap_exempt(article_or_entry)  → 1日の上限と、上限に数えない種類（ミサイル・災害）
+  bluesky_daily_cap() / bluesky_slot_window(now) → Bluesky だけの1日3本と枠 7:30・13:00・21:00（Threads と別に数える。S40）
   count_today(posted, day, extra) → その日（日本時間）に出した（予約した）自分の投稿の数
   utm_content(ptype, pos) → "video_body" など
   hook_format_on()  → 2026-11-05 オーナー承認でワークフローの既定は on（変数で 0 にすれば止まる）
@@ -147,6 +148,39 @@ def daily_cap() -> int:
     raw = os.environ.get("SNS_DAILY_CAP", "").strip()
     cap = int(raw) if raw.isdigit() else int(plan()["daily_cap"])
     return max(0, min(cap, int(plan()["daily_cap"])))  # 変数で減らすことはできるが、計画より増やさない
+
+
+# ---- Bluesky だけの枠と上限（2026-11-06 オーナー承認・台帳 S40。Threads の daily_cap・slots_jst とは別に数える） ----
+
+def bluesky_plan() -> dict:
+    return plan().get("bluesky") or {}
+
+
+def bluesky_slots_jst() -> list[tuple[int, int]]:
+    return sorted(_hm(s) for s in bluesky_plan().get("slots_jst") or [])
+
+
+def bluesky_daily_cap() -> int:
+    """Bluesky の1日（日本時間）の上限。変数 BLUESKY_PER_DAY で減らすことはできるが、計画より増やさない"""
+    cap = int(bluesky_plan().get("daily_cap") or 0)
+    raw = os.environ.get("BLUESKY_PER_DAY", "").strip()
+    return max(0, min(int(raw), cap)) if raw.isdigit() else cap
+
+
+def bluesky_slot_window(now: datetime) -> tuple[int, datetime, datetime] | None:
+    """今の時刻が入る Bluesky の枠（番号, 始まり, 終わり）。枠は次の枠の前まで、最後の枠は window_end まで。
+    朝の最初の枠の前・window_start より前・window_end より後は None（出さない）"""
+    local = now.astimezone(JST)
+    day = local.replace(hour=0, minute=0, second=0, microsecond=0)
+    at = lambda hm: day + timedelta(hours=hm[0], minutes=hm[1])  # noqa: E731
+    first = at(_hm(bluesky_plan().get("window_start") or "07:00"))
+    last = at(_hm(bluesky_plan().get("window_end") or "23:00"))
+    starts = [max(first, at(hm)) for hm in bluesky_slots_jst()]
+    for i, start in enumerate(starts):
+        end = min(starts[i + 1] if i + 1 < len(starts) else last, last)
+        if start <= local < end:
+            return i, start, end
+    return None
 
 
 def min_gap() -> timedelta:

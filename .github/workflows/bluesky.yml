@@ -1,11 +1,14 @@
 name: Bluesky post
 
-# Bluesky への投稿（scripts/bluesky_post.py）。Threads の通常の枠の約20分後・朝のまとめを出す。速報は breaking_post.yml からすぐ出す
-# --fill: Threads 側に出すものがないときは、直近12時間の良い記事を1本（1日24本まで・通常は40分以上あける・深夜1〜5時は出さない）
-# GitHub の schedule は数時間おきにしか動かないことがあるため、記事の自動処理（約20分ごと）が終わるたびにも動かす
+# Bluesky への投稿（scripts/bluesky_post.py）。2026-11-07 から Bluesky だけの枠（日本時間 7:30・13:00・21:00）に1本ずつ・1日3本まで
+# （Threads と別に数える。台帳 S40）。枠に遅れたら次の枠の前（最後は23時）までに出す。ミサイル・災害の知らせは breaking_post.yml からすぐ
+# GitHub の schedule は遅れたり飛んだりするため、10分ごと・枠の少しあと（UTC で書く）・記事の自動処理が終わるたびにも動かす（枠の外では何もしない）
 on:
   schedule:
     - cron: "*/10 * * * *"
+    - cron: "33 22 * * *"  # 7:33 日本時間（朝の枠）
+    - cron: "3 4 * * *"    # 13:03 日本時間（昼の枠）
+    - cron: "3 12 * * *"   # 21:03 日本時間（夜の枠）
   workflow_run:
     workflows: ["Auto Article Pipeline"]
     types: [completed]
@@ -56,7 +59,7 @@ jobs:
             python scripts/bluesky_post.py --delete-approved "${{ github.event.inputs.delete_approved }}"
             exit $?
           fi
-          python scripts/bluesky_post.py --fill ${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}
+          python scripts/bluesky_post.py ${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}
       - name: Commit history
         run: |
           if [ -z "$(git status --porcelain state)" ]; then exit 0; fi

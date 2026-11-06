@@ -49,12 +49,17 @@
      記事の投稿に残さない（autofix がリンクだけの行にする。残っていれば止める）。Buffer に前の晩から予約してある投稿も、出る前に
      今の門番で読み直して直す（sns_video_followup.presend_recheck。毎時の SNS 動画の回で、3時間以内に出る予約だけ）。
 
+  19. （2026-11-06 オーナー承認・台帳 S40。2026-11-07 から）Bluesky だけの文面（kind="brief"）: 問いかけで終えない。
+     1行目＝事実、2行目＝それで読者にとって何が変わるか（どちらも記事の中の文・やさしい です・ます）。そのあと記事のリンク（本文＋リンクカード）。
+     ハッシュタグはちょうど1つ（災害・事故・安全の話題は付けない＝台帳 S35）。リンクの utm_campaign は brief。
+
 違反したら: 投稿しない・ログに出す・GitHub の issue（ラベル sns-rule-violation）を立てるか、開いているものにコメントを足す。
 新しく Buffer / Bluesky / Threads の投稿 API を呼ぶ所を作るときは、必ずこの enforce を直前に呼ぶ（tests/test_sns_rules.py が確かめる）。
 
 例外（オーナー承認済みの形。判定をゆるめる種類）
   kind="digest"   朝のまとめ（記事3本の見出し）。問いかけ・要約は無し。画像は号のシェア画像（1200×630）。リンクの決まりは同じ。
   kind="disaster" 地震・津波（AI に文章を書かせない型の文面）。問いかけ・要約は無し。リンクの決まりは同じ。
+  kind="brief"    Bluesky だけの2行の文面（ルール19）。書き出し・問いかけの決まり（ルール1・6）の代わりに check_brief で見る。
 """
 from __future__ import annotations
 
@@ -1055,6 +1060,57 @@ def check_structure(platform: str, content: str, article: dict | None = None, pl
     return out
 
 
+# ルール19（2026-11-06 オーナー承認・台帳 S40）: Bluesky だけの文面。1行目＝事実・2行目＝読者にとって何が変わるか。問いかけなし・ハッシュタグ1つ
+BRIEF_LINE_MAX = 110
+BRIEF_CAMPAIGN = "brief"
+
+
+def brief_line_problems(line: str) -> list[str]:
+    """Bluesky の2行の文面の1行が使えるか（違反の一覧。空なら OK）"""
+    line = str(line or "").strip()
+    out = []
+    if not line:
+        return ["[ルール19] 空の行"]
+    if line.endswith(QUESTION_END) or "？" in line or "?" in line:
+        out.append(f"[ルール19] 問いかけを入れない（「{line[:24]}」）")
+    if not POLITE_END.search(line):
+        out.append(f"[ルール19] やさしい です・ます の文になっていない（「…{line[-16:]}」）")
+    if m := HARD_WORDS.search(line):
+        out.append(f"[ルール7] 硬い言葉（「{m.group(0)}」）")
+    if len(line) > BRIEF_LINE_MAX:
+        out.append(f"[ルール19] 1行が長すぎる（{len(line)}字 / {BRIEF_LINE_MAX}字まで）")
+    if SUMMARY_LEAD_RE.match(line) or LEAD_WORD_RE.match(line):
+        out.append(f"[ルール13] 決まった前置きで始めない（「{line[:12]}」）")
+    if EMOJI_RE.search(line):
+        out.append("[ルール19] 絵文字を付けない")
+    return out
+
+
+def check_brief(platform: str, text: str, content: str, article: dict | None) -> list[str]:
+    """ルール19: Bluesky だけの2行の文面（1行目＝事実・2行目＝何が変わるか）。問いかけで終えない・ハッシュタグはちょうど1つ"""
+    out = []
+    if platform != "bluesky":
+        out.append("[ルール19] 2行の問いかけなしの文面は Bluesky だけ")
+    lines = [x.strip() for x in str(content or "").splitlines() if x.strip()]
+    if len(lines) != 2:
+        out.append(f"[ルール19] Bluesky の文面は2行（1行目＝事実・2行目＝読者にとって何が変わるか。今は{len(lines)}行）")
+    for line in lines:
+        out += brief_line_problems(line)
+    for pattern, label in BANNED_OPENERS:
+        if m := pattern.search(str(text or "")):
+            out.append(f"[ルール6] {label}（「{m.group(0)[:24]}」）")
+    first = lines[0] if lines else ""
+    if first and (template_callout(first) or is_callout_line(first)):
+        out.append(f"[ルール19] 1行目は呼びかけでなく事実（「{first[:24]}」）")
+    if first.startswith("【速報】") and not sns_breaking_ok(article) and not is_urgent(article):
+        out.append("[ルール6] 速報ではない記事に【速報】を付けている")
+    tags = HASHTAG_RE.findall(str(text or ""))
+    want = 0 if safety_topic(article) else 1
+    if len(tags) != want:
+        out.append(f"[ルール19] ハッシュタグは{'付けない（災害・事故・安全の話題。台帳 S35）' if not want else 'ちょうど1つ'}（今は{len(tags)}個）")
+    return out
+
+
 def _body_without_link_line(content: str) -> str:
     """リンクの案内の行・動画の説明の行・音声のクレジットを除いた本文"""
     return "\n".join(x for x in str(content or "").splitlines() if x.strip() and not LINK_LINE.match(x.strip()) and not NOTE_LINE.match(x.strip()))
@@ -1279,7 +1335,9 @@ def check_post(
         if why := sns_plan.excluded(article):
             out.append(f"[ルール10] {why}")
         hook_form = sns_plan.hook_format_on() and platform != "x" and not hook_problems(_body_without_link_line(content))
-        if not hook_form:
+        if kind == "brief":
+            out += check_brief(platform, text, content, article)  # Bluesky だけの2行の文面（ルール19・台帳 S40）
+        elif not hook_form:
             out += check_structure(platform, content, article, plain=kind == "control")
             out += check_opener(platform, text, content, article)
         else:
@@ -1474,6 +1532,8 @@ def audit_post(post: dict) -> list[str]:
     if platform == "threads" and not urls and _control_text(text):
         return []  # リンク無しの比べの投稿（オーナー承認の spec・state/threads_control.json。台帳 S39）
     kind, article = "article", None
+    if platform == "bluesky" and any(urllib.parse.parse_qs(_url(u).query).get("utm_campaign") == [BRIEF_CAMPAIGN] for u in urls):
+        kind = "brief"  # Bluesky だけの2行の文面（ルール19・台帳 S40。utm_campaign=brief で見分ける）
     if slug:
         path = ARTICLES_DIR / f"{slug}.json"
         try:

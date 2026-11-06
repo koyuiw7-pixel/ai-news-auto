@@ -1,12 +1,12 @@
 """Bluesky（AT Protocol を直接）に記事を出す。Buffer は使わない
 
-出すもの:
+（2026-11-06 まで）出していたもの:
 - 投稿履歴 state/threads_posted.json の各記録（Threads に出したもの）のうち、まだ Bluesky に出していないもの
   - 速報（breaking）と朝のまとめ（digest）は すぐ
   - 通常の予約は Threads の時刻（dueAt）から DELAY_MIN 分後
-- --fill のとき: Threads 側に出すものがなければ、直近 FILL_HOURS 時間の良い記事（検索に出す記事）で
+- --fill のとき: Threads 側に出すものがなければ、直近12時間の良い記事（検索に出す記事）で
   まだ Bluesky に出していない最新の1本（記録は state/bluesky_extra.json）
-1日 PER_DAY 本まで・深夜（1〜5時）は出さない。通常の投稿は1回の実行で1本まで、前の投稿から GAP_MIN 分あける。
+1日6本まで（Threads と同じ上限）・深夜（1〜5時）は出さない。通常の投稿は1回の実行で1本まで、前の投稿から40分あけていた。
 結果は channels.bluesky に URI を記録。失敗しても他の SNS には影響しない
 2026-11-05（オーナー承認）: Bluesky は Threads の投稿を待たずに、SNS の予定（threads_post が枠に入れた「動画待ち」の記録）から
 直接出す。Buffer（Threads・X・Facebook）が止まっていても、枠の時刻＋ DELAY_MIN 分に出す。
@@ -14,6 +14,16 @@
 2026-11-05 夕方（オーナー決定「動画を待たない」「動画を作る記事を限定」・sns_rules ルール8・台帳 S13）: 動画を作る限られた記事
 （sns_plan.video_post）だけ、Muse の動画を待つ期限（枠＋1時間）まで待って動画（app.bsky.embed.video）で出す。ほかの投稿と、
 動画が無い・Bluesky が動画を受け付けないときは、記事の写真のリンクカードで出す（文字だけでは出さない）。朝のまとめは号のシェア画像のまま。
+
+2026-11-06（オーナー承認・台帳 S40。2026-11-07 から）: Bluesky は Threads の写しをやめ、Bluesky だけの上限（1日3本）と枠で出す。
+  7:30 = 朝の要の1本（その日の朝のまとめ。無ければ夜のあいだのいちばんの記事）
+  13:00 = その日いちばんの速報・記事（ここまでに出た記事から）
+  21:00 = 夜の1本（13時からの記事のいちばん。無ければその日の記事）
+1つの枠に1本。枠に遅れたら次の枠の前（最後の枠は 23時）までに出してよい。7時より前・23時より後は出さない。
+Threads の本数（sns_plan.daily_cap）とは別に数え、お互いの本数に数えない。ミサイル・災害の知らせは今までどおり枠の外ですぐ出し、本数に数えない。
+文面は Bluesky だけの2行（1行目＝事実・2行目＝読者にとって何が変わるか。問いかけで終えない）＋ハッシュタグ1つ＋記事のリンク（本文＋リンクカード）。
+どちらの行も記事の文（lede・やさしい版・description／workMoney・verdict.take・highlights）からそのまま選ぶ（LLM は使わない。事実は記事にあるものだけ）。
+記録は state/bluesky_extra.json（kind=brief・slot）。朝のまとめは今までどおり投稿履歴の channels.bluesky
 
   python3 scripts/bluesky_post.py --dry-run [--fill]  # 下書きを表示（投稿しない。ログインできなければ画像なしで表示）
   python3 scripts/bluesky_post.py [--fill]            # 投稿（BLUESKY_HANDLE / BLUESKY_APP_PASSWORD が必要）
@@ -40,13 +50,12 @@ import sns_rules  # noqa: E402
 
 PDS = "https://bsky.social/xrpc"
 DELAY_MIN = 20
-# 1日（日本時間）の自分の投稿の上限。2026-11-05〜 Threads と同じ sns_plan の daily_cap（6本）まで（台帳 S27。変数で減らすのはよい）
-PER_DAY = min(int(os.environ.get("BLUESKY_PER_DAY") or 24), tp.sns_plan.daily_cap())
-GAP_MIN = int(os.environ.get("BLUESKY_GAP_MIN") or 40)  # 通常の投稿どうしの間隔（同じ時刻に2本並ばないように）
+# 1日（日本時間）の自分の投稿の上限。2026-11-07〜 Bluesky だけの上限（sns_plan.json の bluesky.daily_cap＝3本。Threads と別に数える。台帳 S40）
+PER_DAY = tp.sns_plan.bluesky_daily_cap()
 LOOKBACK_H = 6  # 出せる時刻（枠・Muse の待ちの期限の遅い方）からこれより古い記録は出さない（取りこぼしを後から大量に出さない）
-FILL_HOURS = 12  # 埋め合わせに使う記事の新しさ（生成から）
+MORNING_HOURS = 12  # 朝の枠でまとめが無いときに使う記事の新しさ（生成から）
 FILL_MIN_AGE_MIN = 15  # 生成直後はまだ公開（デプロイ）前のことがあるので待つ
-SIMILAR_HOURS = 24  # この時間内に出した投稿と同じ話題の記事は埋め合わせに使わない
+SIMILAR_HOURS = 24  # この時間内に出した投稿と同じ話題の記事は使わない
 EXTRA_PATH = tp.ROOT / "state" / "bluesky_extra.json"
 MAX_GRAPHEMES = 300
 MAX_BLOB = 1_000_000
@@ -203,12 +212,16 @@ def build_record(text: str, link: str, title: str, desc: str, thumb: dict | None
     external = {"uri": link, "title": title[:300], "description": desc[:300]}
     if thumb:
         external["thumb"] = thumb
+    # ハッシュタグも facet にする（付けないと Bluesky で押せず、タグの検索にも出ない）
+    tags = [{"index": {"byteStart": len(text[:m.start()].encode()), "byteEnd": len(text[:m.end()].encode())},
+             "features": [{"$type": "app.bsky.richtext.facet#tag", "tag": m.group(0)[1:]}]}
+            for m in re.finditer(r"(?<!\S)#[^\s#]+", text)]
     return {
         "$type": "app.bsky.feed.post",
         "text": full,
         "createdAt": datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z"),
         "langs": ["ja"],
-        "facets": [{
+        "facets": tags + [{
             "index": {"byteStart": start, "byteEnd": start + len(shown.encode())},
             "features": [{"$type": "app.bsky.richtext.facet#link", "uri": link}],
         }],
@@ -355,15 +368,41 @@ def _parse(raw: str | None) -> datetime | None:
 
 
 def sent(state: dict, extra: dict | None = None) -> list[tuple[str, datetime]]:
-    """Bluesky に出した記録（キー, 時刻）。Threads 側の記録と埋め合わせの記録の両方"""
+    """Bluesky に出した記録（キー, 時刻）。投稿履歴の記録（朝のまとめ・急ぎの知らせ・以前の写し）と state/bluesky_extra.json の両方"""
     out = [(k, t) for k, e in state["posted"].items() if (t := _parse(e.get("blueskyAt")))]
     out += [(k, t) for k, e in (extra or {}).items() if isinstance(e, dict) and (t := _parse(e.get("at")))]
     return out
 
 
+def exempt(key: str, entry: dict | None) -> bool:
+    """1日の上限に数えない投稿（ミサイル・災害の知らせ。sns_plan.cap_exempt と同じ判定。記録に無ければ記事で見る）"""
+    entry = entry or {}
+    if tp.sns_plan.cap_exempt(entry):
+        return True
+    path = tp.ARTICLES_DIR / f"{key}.json"
+    try:
+        return path.exists() and tp.sns_plan.cap_exempt(json.loads(path.read_text("utf-8")))
+    except (OSError, ValueError):
+        return False
+
+
+def counted(state: dict, extra: dict | None, start: datetime, end: datetime) -> int:
+    """start〜end に出した Bluesky の投稿のうち、上限に数えるものの数（ミサイル・災害は数えない）"""
+    n = 0
+    for key, when in sent(state, extra):
+        if start <= when < end and not (key in state["posted"] and key not in (extra or {}) and exempt(key, state["posted"][key])):
+            n += 1
+    return n
+
+
+def _day_start(now: datetime) -> datetime:
+    return now.astimezone(tp.JST).replace(hour=0, minute=0, second=0, microsecond=0)
+
+
 def posted_today(state: dict, now: datetime, extra: dict | None = None) -> int:
-    today = now.astimezone(tp.JST).date()
-    return sum(1 for _, t in sent(state, extra) if t.astimezone(tp.JST).date() == today)
+    """今日（日本時間）の上限に数える Bluesky の投稿の数（Threads の本数とは別。台帳 S40）"""
+    start = _day_start(now)
+    return counted(state, extra, start, start + timedelta(days=1))
 
 
 def last_sent(state: dict, extra: dict | None = None) -> datetime | None:
@@ -470,76 +509,167 @@ def load_articles() -> list[dict]:
     return out
 
 
-def fill_candidate(state: dict, extra: dict, now: datetime, articles: list[dict] | None = None) -> dict | None:
-    """埋め合わせの1本: 直近 FILL_HOURS 時間の検索に出す記事のうち、まだどこにも予定がなく、
-    直近 SIMILAR_HOURS 時間に出した投稿と同じ話題でない最新のもの"""
-    articles = load_articles() if articles is None else articles
-    is_indexable, duplicate_slugs = _indexable_rule()
-    dups = duplicate_slugs(articles)
-    by_slug = {a["slug"]: a for a in articles}
-    taken = set(state.get("posted", {})) | set(state.get("extraPending", {})) | set(extra)
-    recent: list[str] = []
+def _recent_titles(state: dict, extra: dict, now: datetime, by_slug: dict) -> list[str]:
+    """直近 SIMILAR_HOURS 時間に Bluesky に出した投稿の題名（同じ話題を続けないため）"""
+    out = []
     for key, when in sent(state, extra):
         if now - when > timedelta(hours=SIMILAR_HOURS):
             continue
         title = (extra.get(key) or {}).get("title") if key in extra else ""
         title = title or (by_slug.get(key) or {}).get("title") or ""
         if title:
-            recent.append(title)
-    newest = []
-    for article in articles:
-        generated = _parse(article.get("generatedAt"))
-        if not generated or generated.tzinfo is None:
-            continue
-        age = now - generated
-        if not timedelta(minutes=FILL_MIN_AGE_MIN) <= age <= timedelta(hours=FILL_HOURS):
-            continue
-        if article["slug"] in taken or article.get("roundupSlug") in taken:
-            continue
-        if tp.sns_plan.excluded(article):
-            continue  # 海外の企業向け・開発者向けの話題は SNS に出さない（サイトだけ。S28）
-        newest.append((generated, article))
-    newest.sort(key=lambda x: x[0], reverse=True)
-    for _, article in newest:
-        if not is_indexable(article, dups):
-            continue
-        if tp.reserved_for_breaking(article, state, now):  # 速報の即時投稿に任せる（二重投稿を防ぐ）
-            continue
-        if any(similar(article.get("title", ""), title) for title in recent):
-            continue
-        return article
-    return None
-
-
-def choose(state: dict, extra: dict, now: datetime, fill: bool, articles: list[dict] | None = None) -> list[tuple[str, dict, str]]:
-    """この実行で出すもの [(キー, 記録, 種類)]。種類は mirror（Threads の記録）か fill（埋め合わせ）
-    速報・まとめはすぐ（上限内）。通常は1本まで・前の投稿から GAP_MIN 分あける。Threads 側を優先し、なければ埋め合わせ"""
-    room = PER_DAY - posted_today(state, now, extra)
-    if room <= 0:
-        return []
-    todo = pending(state, now, extra)
-    out = [(k, e, "mirror") for k, e in todo if fast(e)][:room]
-    room -= len(out)
-    last = now if out else last_sent(state, extra)
-    if room <= 0 or (last and now - last < timedelta(minutes=GAP_MIN)):
-        return out
-    normal = [(k, e) for k, e in todo if not fast(e) and e.get("style") != "poll"]
-    if normal:
-        return out + [(normal[0][0], normal[0][1], "mirror")]
-    if fill:
-        article = fill_candidate(state, extra, now, articles)
-        if article:
-            return out + [(article["slug"], {"article": article}, "fill")]
+            out.append(title)
     return out
 
 
-def plan_fill(article: dict) -> dict:
+def brief_candidates(state: dict, extra: dict, now: datetime, since: datetime, articles: list[dict] | None = None) -> list[dict]:
+    """枠に出せる記事（いい順）: since 以降に作った検索に出す記事で、まだ Bluesky に出しておらず、SNS に出す話題で、
+    直近に出した投稿と同じ話題でなく、Bluesky の2行の文面を作れるもの。並べ順は 速報 → SNS の点数（レーン）→ 新しさ"""
+    articles = load_articles() if articles is None else articles
+    is_indexable, duplicate_slugs = _indexable_rule()
+    dups = duplicate_slugs(articles)
+    by_slug = {a["slug"]: a for a in articles}
+    recent = _recent_titles(state, extra, now, by_slug)
+    out = []
+    for article in articles:
+        generated = _parse(article.get("generatedAt"))
+        if not generated or generated.tzinfo is None or not since <= generated <= now - timedelta(minutes=FILL_MIN_AGE_MIN):
+            continue
+        slug = article["slug"]
+        entry = state.get("posted", {}).get(slug) or {}
+        if (entry.get("channels") or {}).get("bluesky") or entry.get("blueskyFailed") or entry.get("ownerHold"):
+            continue
+        if slug in extra or article.get("roundupSlug") in extra:
+            continue  # もう出した・前に失敗した記事（同じ記事で失敗し続けない）
+        if tp.sns_plan.excluded(article) or not is_indexable(article, dups):
+            continue
+        if any(similar(article.get("title", ""), title) for title in recent):
+            continue
+        if not brief_lines(article):
+            continue
+        breaking = bool(article.get("breaking") or entry.get("breaking"))
+        out.append(((breaking, tp.sns_plan.sns_score(article), generated), article))
+    out.sort(key=lambda x: x[0], reverse=True)
+    return [a for _, a in out]
+
+
+def digest_today(state: dict, now: datetime) -> tuple[str, dict] | None:
+    """今日（日本時間）の朝のまとめで、まだ Bluesky に出していないもの"""
+    today = now.astimezone(tp.JST).date()
+    for key, entry in sorted(state["posted"].items(), reverse=True):
+        when = due(entry)
+        if entry.get("style") != "digest" or not when or when > now or when.astimezone(tp.JST).date() != today:
+            continue
+        if (entry.get("channels") or {}).get("bluesky") or entry.get("blueskyFailed") or entry.get("ownerHold"):
+            continue
+        return key, entry
+    return None
+
+
+def slot_pick(slot: tuple[int, datetime, datetime], state: dict, extra: dict, now: datetime,
+              articles: list[dict] | None = None) -> tuple[str, dict, str] | None:
+    """この枠に出す1本。朝の枠は朝のまとめ（無ければ夜のあいだの記事）、昼の枠はその日の記事のいちばん、
+    夜の枠は昼の枠からの記事のいちばん（無ければその日の記事）"""
+    index, start, _ = slot
+    if index == 0:
+        if found := digest_today(state, now):
+            return found[0], found[1], "mirror"
+        ranges = [now - timedelta(hours=MORNING_HOURS)]
+    elif index == 1:
+        ranges = [_day_start(now), now - timedelta(hours=MORNING_HOURS)]
+    else:
+        previous = tp.sns_plan.bluesky_slot_window(start - timedelta(minutes=1))
+        ranges = [previous[1] if previous else start, _day_start(now)]
+    articles = load_articles() if articles is None else articles
+    for since in ranges:
+        found = brief_candidates(state, extra, now, since, articles)
+        if found:
+            return found[0]["slug"], {"article": found[0]}, "brief"
+    return None
+
+
+def choose(state: dict, extra: dict, now: datetime, fill: bool = False, articles: list[dict] | None = None) -> list[tuple[str, dict, str]]:
+    """この実行で出すもの [(キー, 記録, 種類)]。種類は mirror（投稿履歴の記録＝朝のまとめ・急ぎの知らせ）か brief（Bluesky だけの文面）。
+    ミサイル・災害の知らせは枠の外ですぐ（本数に数えない）。ほかは Bluesky の枠（7:30・13:00・21:00）に1本ずつ・1日 PER_DAY 本まで。
+    fill は以前の埋め合わせの指定（今は使わない。ワークフローの呼び方のために残す）"""
+    out = [(k, e, "mirror") for k, e in pending(state, now, extra) if exempt(k, e)]
+    slot = tp.sns_plan.bluesky_slot_window(now)
+    if not slot or posted_today(state, now, extra) >= PER_DAY:
+        return out
+    if counted(state, extra, slot[1], slot[2]):
+        return out  # この枠はもう出した（1つの枠に1本）
+    pick = slot_pick(slot, state, extra, now, articles)
+    return out + [pick] if pick else out
+
+
+# ---- Bluesky だけの文面（2026-11-06 オーナー承認・台帳 S40・sns_rules ルール19） ----
+SENTENCE_RE = re.compile(r"[^。！!]+[。！!]")
+# 2行目に向かない文（何も変わらないとだけ言う文）。ほかに無いときだけ使う
+LOW_IMPACT_RE = re.compile(r"影響は(?:小さ|限定|あまりな|ほぼな)")
+EASY_LEAD_RE = re.compile(r"##\s*ひとことで言うと\s*\n+([^\n#]+)")
+GENRE_TAGS = {"tech-gadget": "#ガジェット", "business": "#経済", "investment": "#経済", "public": "#暮らし", "lifestyle": "#暮らし",
+              "real-estate": "#住まい", "sports": "#スポーツ", "entertainment": "#エンタメ", "science": "#科学", "ai": "#テクノロジー"}
+
+
+def _sentences(text: str) -> list[str]:
+    return [m.group(0).strip() for m in SENTENCE_RE.finditer(str(text or "").replace("\n", ""))]
+
+
+def brief_hashtag(article: dict) -> str:
+    """ハッシュタグ1つ。AI の話は #AI、ほかはジャンルに合うもの。災害・事故・安全の話題は付けない（台帳 S35）"""
+    if sns_rules.safety_topic(article):
+        return ""
+    import labels  # noqa: PLC0415
+
+    if labels.ai_topic(str(article.get("title") or ""), article.get("tags") or []):
+        return "#AI"
+    return GENRE_TAGS.get(str(article.get("genreSlug") or ""), "#ニュース")
+
+
+def brief_lines(article: dict, room: int = MAX_GRAPHEMES) -> tuple[str, str] | None:
+    """(1行目＝事実, 2行目＝読者にとって何が変わるか)。どちらも記事の文そのもの。room は本文（2行＋ハッシュタグ）の文字数の上限。
+    作れなければ None"""
+    easy = EASY_LEAD_RE.search(str(article.get("easy") or ""))
+    facts = [x for src in (article.get("lede"), easy.group(1) if easy else "", article.get("description")) for x in _sentences(src)[:1]]
+    facts = [x for x in facts if len(x) >= 20 and not sns_rules.brief_line_problems(x)]
+    impacts, weak = [], []
+    sources = [*((article.get("workMoney") or {}).get("points") or []), (article.get("verdict") or {}).get("take"), *(article.get("highlights") or [])]
+    for src in sources:
+        for x in _sentences(src):
+            if len(x) < 12 or sns_rules.brief_line_problems(x):
+                continue
+            (weak if LOW_IMPACT_RE.search(x) else impacts).append(x)
+    tag = brief_hashtag(article)
+    for fact in facts:
+        for impact in impacts + weak:
+            if sns_rules.near_duplicate(fact, impact):
+                continue
+            if len(fact) + len(impact) + len(tag) + 2 <= room:
+                return fact, impact
+    return None
+
+
+def brief_text(article: dict, room: int = MAX_GRAPHEMES) -> str:
+    lines = brief_lines(article, room)
+    if not lines:
+        return ""
+    tag = brief_hashtag(article)
+    return "\n".join([*lines, tag] if tag else lines)
+
+
+def plan_brief(article: dict) -> dict | None:
+    """Bluesky だけの文面の投稿の中身（リンクは本文＋リンクカード。utm_campaign=brief・utm_content=card_body）"""
     key = article["slug"]
-    text = re.sub(r"\s*👇\s*$", "", sns_rules.autofix(tp.compose(article, [], breaking=False), article, "bluesky")[0])
+    link = tp.utm_link(f"{tp.site_url()}/articles/{key}", "bluesky", sns_rules.BRIEF_CAMPAIGN, ptype="card", pos="body")
+    shown = re.sub(r"^https?://|\?.*$", "", link)
+    text = brief_text(article, MAX_GRAPHEMES - len(shown) - 1)
+    if not text:
+        return None
+    fixed, _ = sns_rules.autofix(text, article, "bluesky")  # 数字の単位・【速報】・話題に合わないタグ（ルール13・14・S35）
     return {
-        "text": text, "link": tp.utm_link(f"{tp.site_url()}/articles/{key}", "bluesky", "fill"),
-        "title": article.get("seoTitle") or article["title"], "desc": article.get("description", ""),
-        "images": [tp.card_url(article)], "gate": article,
+        "text": fixed, "link": link, "title": article.get("seoTitle") or article["title"], "desc": article.get("description", ""),
+        # 写真だけのカード（16:9）だけを使う（ルール2）
+        "images": [tp.card_url(article)], "gate": article, "kind": "brief",
     }
 
 
@@ -599,7 +729,8 @@ def delete_approved(slug: str, session: dict | None = None, call=None) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--fill", action="store_true", help="Threads 側に出すものがなければ最新の良い記事を出す")
+    parser.add_argument("--fill", action="store_true", help="（以前の埋め合わせ。2026-11-07 から使わない。呼び方のために残す）")
+    parser.add_argument("--alerts-only", action="store_true", help="ミサイル・災害の知らせだけ出す（速報のワークフローから。枠の投稿は bluesky.yml）")
     parser.add_argument("--merge", default="")
     parser.add_argument("--merge-extra", default="")
     parser.add_argument("--slug", default="", help="確認用: この記録を対象にする（--dry-run と一緒に）")
@@ -625,13 +756,13 @@ def main() -> int:
         todo = [(args.slug, state["posted"][args.slug], "mirror")]
     else:
         todo = choose(state, extra, now, args.fill)
+        if args.alerts_only:  # 速報のワークフローは Bluesky だけの記録（bluesky_extra）を残さないので、枠の投稿はしない
+            todo = [t for t in todo if t[2] == "mirror" and exempt(t[0], t[1])]
         log(f"[bluesky] 今日 {posted_today(state, now, extra)}/{PER_DAY} 本・前回 {last_sent(state, extra)}")
-        if not todo and not live:  # 下書きは最新の記事を見本にする
-            todo = [(k, e, "mirror") for k, e in state["posted"].items() if not e.get("style")][-1:]
-            if args.fill and (article := fill_candidate(state, extra, now)):
-                todo.append((article["slug"], {"article": article}, "fill"))
+        if not todo and not live:  # 下書きは直近24時間のいちばんの記事を見本にする（枠の外でも文面を確かめられる）
+            todo = [(a["slug"], {"article": a}, "brief") for a in brief_candidates(state, extra, now, now - timedelta(hours=24))[:1]]
     if not todo:
-        log("[bluesky] 出すものはありません（上限・間隔・対象なし）")
+        log("[bluesky] 出すものはありません（上限・枠・対象なし）")
         return 0
     session = None
     try:
@@ -643,14 +774,18 @@ def main() -> int:
             return 0
     for key, entry, kind in todo:
         try:
-            p = plan_fill(entry["article"]) if kind == "fill" else plan(key, entry)
+            p = plan_brief(entry["article"]) if kind == "brief" else plan(key, entry)
             if not p:
-                entry["blueskyFailed"] = "skip"
+                if kind == "brief":
+                    extra[key] = {"failed": "skip", "title": entry["article"].get("title", ""), "kind": "brief"}
+                else:
+                    entry["blueskyFailed"] = "skip"
                 continue
             used: list[str] = []
             media: list[dict] = []
             blob = None
-            vid = video_of(key) if p.get("kind", "article") != "digest" and not sns_rules.is_urgent(p.get("gate")) else {}
+            # Bluesky だけの文面は記事のリンクカードで出す（台帳 S40）。動画は急ぎの知らせ以外の写しの投稿だけ
+            vid = video_of(key) if p.get("kind", "article") not in ("digest", "brief") and not sns_rules.is_urgent(p.get("gate")) else {}
             if vid:
                 media = [{"type": "video", "url": vid["url"], "width": 1920, "height": 1080}]
                 if session and live:
@@ -683,8 +818,10 @@ def main() -> int:
                 raise RuntimeError("動画を Bluesky に上げられませんでした")
             res = create_record(session, record, p, media)
             at = datetime.now(timezone.utc).isoformat(timespec="seconds")
-            if kind == "fill":
-                extra[key] = {"uri": res["uri"], "at": at, "title": entry["article"].get("title", "")}
+            if kind == "brief":
+                slot = tp.sns_plan.bluesky_slot_window(now)
+                extra[key] = {"uri": res["uri"], "at": at, "title": entry["article"].get("title", ""), "kind": "brief",
+                              "slot": slot[1].strftime("%H:%M") if slot else ""}
             else:
                 entry.setdefault("channels", {})["bluesky"] = res["uri"]
                 entry["blueskyAt"] = at
@@ -695,13 +832,13 @@ def main() -> int:
                 import sns_video_followup as fu  # noqa: PLC0415
 
                 fu.missing_issue(key, f"Bluesky に動画で出せませんでした: {error}")
-            if kind == "fill":  # 同じ記事で毎回失敗し続けないよう、記録して次へ（時刻なし＝本数に数えない）
-                extra[key] = {"failed": str(error)[:200], "title": entry["article"].get("title", "")}
+            if kind == "brief":  # 同じ記事で毎回失敗し続けないよう、記録して次へ（時刻なし＝本数に数えない）
+                extra[key] = {"failed": str(error)[:200], "title": entry["article"].get("title", ""), "kind": "brief"}
             else:
                 entry["blueskyFailed"] = str(error)[:200]
     if live:
         tp.save_state(state)
-        if any(kind == "fill" for _, _, kind in todo):
+        if any(kind == "brief" for _, _, kind in todo):
             save_extra(extra)
     return 0
 
