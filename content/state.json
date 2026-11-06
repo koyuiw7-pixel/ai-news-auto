@@ -253,7 +253,9 @@
       "url": "https://news.samsung.com/jp/samsung-health-makes-sleep-coaching2611?utm_source=rss&utm_medium=direct"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "ada1526998a7b4d4": 1
+  },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -17001,48 +17003,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-04T22:09:03.786395+00:00",
-      "attempt": 2,
-      "id": "4ed107f4ce3d226c",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "第60回全国ろうあ者スポーツ大会 サッカー競技開催！ #jfa"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T22:10:07.700386+00:00",
-      "attempt": 1,
-      "id": "ddd64db69903db7d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "SAMURAI BLUE（日本代表）メンバー・スケジュール MIZUHO BLUE CHALLENGE THE KALLANG FOOTBALL SERIES "
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T22:11:14.838826+00:00",
-      "attempt": 2,
-      "id": "ddd64db69903db7d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "SAMURAI BLUE（日本代表）メンバー・スケジュール MIZUHO BLUE CHALLENGE THE KALLANG FOOTBALL SERIES "
-    },
-    {
       "accepted": true,
       "at": "2026-11-04T22:33:32.380055+00:00",
       "attempt": 1,
@@ -22995,6 +22955,56 @@
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（OSS）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T06:55:01.053237+00:00",
+      "attempt": 1,
+      "id": "ada1526998a7b4d4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "newmoとKDDI、自動運転タクシーの社会実装に向け資本業務提携"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T06:55:23.584195+00:00",
+      "attempt": 2,
+      "id": "ada1526998a7b4d4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "newmoとKDDI、自動運転タクシーの社会実装に向け資本業務提携"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T06:55:51.466529+00:00",
+      "attempt": 3,
+      "id": "ada1526998a7b4d4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "答えになっていない見出し（「資本提携と業務提携の二本立て、出資額は未発表」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
+      ],
+      "readability": {
+        "avg_paragraph": 74.8,
+        "avg_sentence": 46.7,
+        "long_share": 0.219,
+        "max_paragraph": 138,
+        "paragraphs": 20,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "newmoとKDDI、自動運転タクシーの社会実装に向け資本業務提携"
     }
   ],
   "short_text_retry": {},
