@@ -331,9 +331,12 @@ BROAD_FEEDS: list[dict] = [
     {"slug": "e-nexco", "name": "NEXCO東日本", "url": "https://www.e-nexco.co.jp/pressroom/", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3,
      "include_re": "料金|通行止|渋滞|割引|ETC|値上げ|障害|雪"},
     # 安全・リコール
-    {"slug": "caa-recall", "name": "消費者庁 リコール情報サイト", "url": "https://www.recall.caa.go.jp/", "type": "html", "section": "lifestyle", "kind": "gov", "priority": 1},
+    # 食品の回収は小さな店・催しの品が大半（多くの人が読むニュースにならない）なので外し、家電・車・日用品・子ども用品・医薬品などの製品だけ
+    {"slug": "caa-recall", "name": "消費者庁 リコール情報サイト", "url": "https://www.recall.caa.go.jp/", "type": "html", "section": "lifestyle", "kind": "gov", "priority": 1,
+     "include_re": "^(?:家電|電気|自動車|乗り物|子供用品|子ども用品|日用品|保健衛生品|家具|スポーツ|玩具|おもちゃ|情報通信|住宅|衣類|医薬品)"},
+    # ↑ 一覧には分類つきと分類なしの同じ項目が並ぶので、分類つき（食料品以外）だけを取る
     {"slug": "pmda-safety", "name": "PMDA（医薬品・医療機器の安全情報）", "url": "https://www.pmda.go.jp/rss_018.xml", "section": "lifestyle", "kind": "gov", "priority": 2,
-     "include_re": "回収|クラスI|安全性|副作用|注意|ニトロソ|出荷停止|供給|使用上の注意"},
+     "include_re": "医薬\\]|\\[医薬", "exclude_re": "イベント|研修|説明会"},  # 医薬品の安全情報だけ（医療機器の専門的な回収は外す）
     # 製品と発売（コンビニ・家電・車・テーマパーク）
     {"slug": "lawson", "name": "ローソン ニュースリリース", "url": "https://www.lawson.co.jp/company/news/", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3},
     {"slug": "familymart", "name": "ファミリーマート ニュースリリース", "url": "https://www.family.co.jp/company/news_releases.html", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3},
