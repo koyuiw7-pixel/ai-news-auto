@@ -6,30 +6,23 @@
   "companyName": "Moonshot AI",
   "category": "AIモデル",
   "overview": {
-    "text": "Kimi K3は、Moonshot AIが開発した総パラメータ数2.8兆のオープン重みMoEモデルです。2026年7月にテクニカルレポートが公開され、コード生成やエージェント能力で最先端の水準に達しています。",
+    "text": "Kimi K3は、Moonshot AIが開発した総パラメータ数2.8兆のオープン重みMoEモデルです。文字や画像をまとめて扱えるマルチモーダル型で、2026年7月に公開されました。",
     "sources": [
-      "kimi-k3-bedrock-india-inference",
-      "kimi-k3-open-frontier-intelligence-technical-report"
+      "kimi-k3-open-frontier-intelligence-technical-report",
+      "kimi-k3-bedrock-india-inference"
     ]
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "GitHub Copilotは追加料金なし",
-      "sources": [
-        "github-copilot-kimi-k3-multi-agent"
-      ]
-    },
-    {
       "label": "提供開始",
-      "value": "2026年7月に公開",
+      "value": "2026年7月",
       "sources": [
         "kimi-k3-open-frontier-intelligence-technical-report"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本から利用できる",
+      "value": "利用できる",
       "sources": [
         "github-copilot-kimi-k3-multi-agent",
         "kimi-k3-open-frontier-intelligence-technical-report"
@@ -37,18 +30,16 @@
     },
     {
       "label": "使える場所",
-      "value": "GitHub CopilotやAmazon Bedrock",
+      "value": "GitHub CopilotやBedrock",
       "sources": [
         "kimi-k3-bedrock-india-inference",
-        "microsoft-ai-ecosystem-kimi-k3-mcp-matome",
         "github-copilot-kimi-k3-multi-agent"
       ]
     },
     {
       "label": "向いている人",
-      "value": "高度なコーディングを行う開発者",
+      "value": "開発者",
       "sources": [
-        "kimi-k3-bedrock-india-inference",
         "github-copilot-kimi-k3-multi-agent",
         "kimi-k3-open-frontier-intelligence-technical-report"
       ]
@@ -56,19 +47,25 @@
   ],
   "capabilities": [
     {
-      "text": "総パラメータ数2.8兆、アクティブ1040億のMoE構造を採用しています。",
+      "text": "100万トークンのコンテキストウィンドウをネイティブにサポートしています。",
       "sources": [
         "kimi-k3-open-frontier-intelligence-technical-report"
       ]
     },
     {
-      "text": "100万トークンの巨大なコンテキストウィンドウをサポートしています。",
+      "text": "思考に費やすトークン数を制御する「Reasoning Effort RL」を搭載しています。",
       "sources": [
         "kimi-k3-open-frontier-intelligence-technical-report"
       ]
     },
     {
-      "text": "OpenAI互換のAPIを通じて文字と画像をまとめて扱えます。",
+      "text": "画像や動画を処理する高度なビジョン能力を備えています。",
+      "sources": [
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    },
+    {
+      "text": "Amazon BedrockのOpenAI互換APIから呼び出せます。",
       "sources": [
         "kimi-k3-bedrock-india-inference"
       ]
@@ -76,7 +73,7 @@
   ],
   "pricing": [
     {
-      "text": "GitHub Copilotの対象プランの契約ユーザーは、追加のモデル利用料なしで利用できます。",
+      "text": "GitHub Copilotでは既存のサブスクリプション料金に含まれており、追加料金は発生しません。",
       "sources": [
         "github-copilot-kimi-k3-multi-agent"
       ]
@@ -90,27 +87,22 @@
   ],
   "japan": [
     {
-      "text": "GitHub Copilotのモデル選択肢から利用可能です。",
+      "text": "GitHub Copilotのモデル選択肢から利用できます。",
       "sources": [
         "github-copilot-kimi-k3-multi-agent"
-      ]
-    },
-    {
-      "text": "Amazon Bedrock経由で呼び出すことができます。",
-      "sources": [
-        "kimi-k3-bedrock-india-inference"
       ]
     }
   ],
   "howto": [
     {
-      "text": "GitHub Copilotのモデルピッカーから直接選択して利用できます。",
+      "text": "Visual StudioやVS CodeなどのGitHub Copilotから選択して利用できます。",
       "sources": [
-        "github-copilot-kimi-k3-multi-agent"
+        "github-copilot-kimi-k3-multi-agent",
+        "microsoft-ai-ecosystem-kimi-k3-mcp-matome"
       ]
     },
     {
-      "text": "Amazon Bedrock RuntimeのOpenAI互換APIから呼び出せます。",
+      "text": "Amazon Bedrockで対応するAPI経由で呼び出すことができます。",
       "sources": [
         "kimi-k3-bedrock-india-inference"
       ]
@@ -119,22 +111,32 @@
   "differences": [],
   "faq": [
     {
-      "q": "どのような開発環境で使えますか？",
-      "a": "Visual Studio Codeなどで利用できます。",
+      "q": "無料で使える？",
+      "a": "Hugging Face上でモデルウェイトが公開されています。また、GitHub Copilotの契約ユーザーは追加料金なしで利用できます。",
       "sources": [
-        "github-copilot-kimi-k3-multi-agent"
-      ]
-    },
-    {
-      "q": "コンテキスト長はどれくらいですか？",
-      "a": "100万トークンのコンテキストウィンドウをネイティブにサポートしています。",
-      "sources": [
+        "github-copilot-kimi-k3-multi-agent",
         "kimi-k3-open-frontier-intelligence-technical-report"
       ]
     },
     {
-      "q": "Amazon Bedrockでの費用を抑える方法はありますか？",
-      "a": "急ぎでない処理にflex層を選ぶと、標準料金から50%割引になります。",
+      "q": "いつから使える？",
+      "a": "2026年7月にオープンウェイトモデルとして公開されました。GitHub Copilotなどでも順次提供されています。",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent",
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    },
+    {
+      "q": "誰に向いている？",
+      "a": "複雑なコーディングや自律エージェントタスクを行う開発者に向いています。",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent",
+        "kimi-k3-open-frontier-intelligence-technical-report"
+      ]
+    },
+    {
+      "q": "対応しているAPIは？",
+      "a": "Amazon BedrockではChat Completionsなどの4つのAPIに対応しています。",
       "sources": [
         "kimi-k3-bedrock-india-inference"
       ]
@@ -154,7 +156,7 @@
     {
       "date": "2026-11-04",
       "slug": "kimi-k3-bedrock-india-inference",
-      "event": "Amazon Bedrockでインド国内推論に対応"
+      "event": "インド国内推論に対応"
     }
   ],
   "related": [
@@ -174,9 +176,9 @@
     "kimi-k3-bedrock-india-inference",
     "kimi-k3-open-frontier-intelligence-technical-report"
   ],
-  "signature": "01fdb0f7eb76e957",
+  "signature": "58a1611992073888",
   "primarySignature": "21b879228dccb29a",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:44:41+00:00",
-  "updatedAt": "2026-11-03T17:19:22+00:00"
+  "updatedAt": "2026-11-06T17:23:34+00:00"
 }

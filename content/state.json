@@ -10053,6 +10053,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000516.000047561.html"
     },
+    "76f6c839f4713002": {
+      "at": "2026-11-06T17:23:22.484385+00:00",
+      "costUsd": 0.1245,
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "reason": "元の発表は、カデットの部の開幕と開催日・会場・種目を伝える短いお知らせです。結果や記録などのニュースはなく、小さなお知らせにあたるため、記事にしても資料にある事実だけでは十分な分量になりません。",
+      "skipped": true,
+      "url": "https://jtta.or.jp/news/38778"
+    },
     "7709dfd32db6bb50": {
       "at": "2026-11-03T18:26:50.577238+00:00",
       "model": "anthropic-api:claude-sonnet-5-5",
@@ -17502,32 +17510,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-05T06:48:36.234944+00:00",
-      "attempt": 3,
-      "id": "b3a04c021ff2b99e",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「ホームページのIRページ」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
-      ],
-      "readability": {
-        "avg_paragraph": 87.8,
-        "avg_sentence": 33.4,
-        "long_share": 0.06,
-        "max_paragraph": 215,
-        "paragraphs": 19,
-        "sentences": 50
-      },
-      "score": null,
-      "source": "fast",
-      "title": "LINEヤフー 決算短信（2026年11月5日）",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JAPAN・BEENOS・MAN）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-05T06:53:17.975035+00:00",
       "attempt": 1,
       "id": "771f7b3c35a2e5cc",
@@ -23221,6 +23203,20 @@
         "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（AGX・CUDA・ACAR）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T17:22:08.685258+00:00",
+      "attempt": 1,
+      "id": "76f6c839f4713002",
+      "kind": "broad",
+      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jtta",
+      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！"
     }
   ],
   "short_text_retry": {},
