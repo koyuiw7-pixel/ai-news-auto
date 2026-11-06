@@ -2738,7 +2738,7 @@ def use_official(path: Path, article: dict, ctx: dict, best: dict, official: dic
 
 # ノワールの表紙のイメージを1回に作る数（写真選びの時間を食わないよう少なく。残りは次の回）
 NOIR_COVER_MAX = 2
-NOIR_COVER_RECENT = 40
+NOIR_COVER_RECENT = 60  # 新しい順のノワールの記事をこの本数まで見る（AI の1日の上限で翌日に回った記事も拾う）
 
 
 def noir_covers(ordered: list, args, started: float, tally: Counter) -> None:
@@ -2749,9 +2749,8 @@ def noir_covers(ordered: list, args, started: float, tally: Counter) -> None:
     import noir_hero_backfill  # noqa: PLC0415
 
     made = 0
-    for path, article in ordered[:NOIR_COVER_RECENT]:
-        if not noir_cover.is_noir(article) or article.get("noPhoto"):
-            continue
+    noir = [(p, a) for p, a in ordered if noir_cover.is_noir(a) and not a.get("noPhoto")]
+    for path, article in noir[:NOIR_COVER_RECENT]:
         elapsed = time.time() - started
         if args.budget and elapsed > args.budget + 20:
             log("[cover] 時間切れ。表紙のイメージは次の回に回す")
