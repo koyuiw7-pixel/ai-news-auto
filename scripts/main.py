@@ -883,7 +883,8 @@ def write_article(record: dict) -> Path:
     for change in headline_normalize.apply(record):
         log(f"   [headline] {change}")
     # 書き方の不合格（説明の押し付け・幼い言い方・倒置）が残った見出しだけ、見出しを1本書き直す（scripts/rewrite_titles.py）
-    if headline_normalize.title_problems(str(record.get("title") or "")):
+    # 2026-11-07（台帳 A50）: 検索でクリックされる見出しの決まり（組織が主語・数字なし）に落ちた見出しも直す。速報は除く
+    if headline_normalize.title_problems(str(record.get("title") or "")) or headline_normalize.click_problems(record):
         import rewrite_titles  # noqa: PLC0415 - 必要なときだけ読む
 
         note = rewrite_titles.fix_one(record)

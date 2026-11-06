@@ -100,6 +100,8 @@ def check_title(record: dict, new: str, reviewed: bool = False) -> list[str]:
     （「Claudeの開発元」「ABEMA運営の」のような、元の見出しの説明だった名前が消えるのは正しいため）"""
     new = hn.normalize_title(new, record)
     problems = list(hn.title_problems(new))
+    # 組織が主語の見出しに戻していないか（台帳 A50 ①）。数字の有無（③）は資料に意味のある数字が無いこともあるので書き直しの合否にしない
+    problems += [p for p in hn.click_problems({**record, "title": new}) if p.startswith("発表した組織")]
     if not 14 <= hn.em_width(new) <= hn.TITLE_HARD_LEN:
         problems.append(f"長さ 全角換算{hn.em_width(new):g}字")
     src = source_text(record)
@@ -301,7 +303,7 @@ def fix_one(record: dict) -> str | None:
     """書き方の不合格が残った見出しを1本だけ書き直す（記事を書き出す前。record をその場で書き換える）。
     直したら説明を返す。直せなければ None（機械でそろえた見出しのまま出す。品質ゲートの警告に残る）"""
     title = str(record.get("title") or "")
-    problems = hn.title_problems(title)
+    problems = hn.title_problems(title) + hn.click_problems(record)  # 台帳 A50（速報は click_problems が空）
     if not title or not problems or not record.get("slug"):
         return None
     try:

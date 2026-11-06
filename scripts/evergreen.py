@@ -238,6 +238,8 @@ PROMPT = """# 書くページ
 
 # 各項目
 - title: 32〜48字。検索キーワードを自然に含め、読者の疑問に答える形。感嘆符なし。年は入れない。
+  最初の15字で読む人が得る答え（料金・無料でどこまで・手順・日本で使えるか）が分かるようにし、資料に数字があれば1つ入れる（例: 月額・回数・手順の数）。
+  「〜とは？〜を解説」「〜の使い方を解説」の決まり文句は使わない。問いの形は、ガイドがその問いに本当に答えるときだけ（2026-11-07 台帳 A50）。
 - seo_title: 28〜40字。title を短くしたもの。
 - description: 90〜120字。結論を含む要約。
 - conclusion: 結論を3〜4個。各40〜70字。最初の1つでキーワードの疑問に直接答える。
@@ -280,6 +282,8 @@ def structural_problems(data: dict, sources: list[dict]) -> list[str]:
     title = data.get("title", "")
     if not 24 <= len(title) <= 56:
         problems.append(f"title の長さが不適切（{len(title)}字 / 32〜48字）")
+    if hn_template := re.search(r"とは[？?].{0,40}(?:を)?(?:解説|まとめ)|を(?:わかりやすく|やさしく)?解説(?:$|　)", title):
+        problems.append(f"title が「〜とは？〜を解説」の決まり文句（「{hn_template.group(0)}」。台帳 A50）")
     if re.search(r"[！!]", f"{title}{data.get('seo_title', '')}"):
         problems.append("title / seo_title に感嘆符がある")
     if not 3 <= len(data.get("conclusion", [])) <= 4:
