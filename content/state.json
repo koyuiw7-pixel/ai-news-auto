@@ -253,9 +253,7 @@
       "url": "https://news.samsung.com/jp/samsung-health-makes-sleep-coaching2611?utm_source=rss&utm_medium=direct"
     }
   },
-  "major_tries": {
-    "ada1526998a7b4d4": 1
-  },
+  "major_tries": {},
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -12733,6 +12731,17 @@
       "slug": "mhlw-designated-drugs-2026-10",
       "url": "https://www.mhlw.go.jp/stf/houdou/0000212707_00057.html"
     },
+    "ada1526998a7b4d4": {
+      "at": "2026-11-06T06:58:18.937344+00:00",
+      "breaking": true,
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "business",
+      "slug": "newmo-kddi-autonomous-taxi-sakai",
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr_s-83_4819.html"
+    },
     "adafdd4764cb9dbb": {
       "at": "2026-11-03T17:11:26.224328+00:00",
       "reason": "dedupe: 固有名詞＋見出しが類似（antigravity / 0.39）: google-antigravity-autonomous-software-d",
@@ -17002,70 +17011,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-04T22:33:32.380055+00:00",
-      "attempt": 1,
-      "id": "a4f4c423c5426033",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 98.2,
-        "avg_sentence": 39.3,
-        "long_share": 0.1,
-        "max_paragraph": 197,
-        "paragraphs": 20,
-        "sentences": 50
-      },
-      "score": 92,
-      "source": "openai-news",
-      "title": "A thousand fewer paths to root"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T22:53:21.941230+00:00",
-      "attempt": 1,
-      "id": "bf25be8f87794d7d",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 48.1字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 99.4,
-        "avg_sentence": 48.1,
-        "long_share": 0.129,
-        "max_paragraph": 142,
-        "paragraphs": 15,
-        "sentences": 31
-      },
-      "score": 88,
-      "source": "openai-news",
-      "title": "DevRev delivers autonomous self-service with GPT-6.1 Sol"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-04T22:53:44.477766+00:00",
-      "attempt": 0,
-      "id": "bf25be8f87794d7d",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（48.1→45.4字）"
-      ],
-      "readability": {
-        "avg_paragraph": 99.4,
-        "avg_sentence": 48.1,
-        "long_share": 0.129,
-        "max_paragraph": 142,
-        "paragraphs": 15,
-        "sentences": 31
-      },
-      "score": 88,
-      "source": "openai-news",
-      "title": "DevRev delivers autonomous self-service with GPT-6.1 Sol"
-    },
     {
       "accepted": true,
       "at": "2026-11-05T00:01:36.955176+00:00",
@@ -23005,6 +22950,57 @@
       "score": null,
       "source": "kddi-news-release",
       "title": "newmoとKDDI、自動運転タクシーの社会実装に向け資本業務提携"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T06:57:25.505957+00:00",
+      "attempt": 1,
+      "id": "ada1526998a7b4d4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "newmoとKDDI、自動運転タクシーの社会実装に向け資本業務提携"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T06:57:45.234025+00:00",
+      "attempt": 2,
+      "id": "ada1526998a7b4d4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "newmoとKDDI、自動運転タクシーの社会実装に向け資本業務提携"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T06:58:18.929471+00:00",
+      "attempt": 3,
+      "id": "ada1526998a7b4d4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 70.8,
+        "avg_sentence": 39.3,
+        "long_share": 0.111,
+        "max_paragraph": 116,
+        "paragraphs": 20,
+        "sentences": 36
+      },
+      "score": 88,
+      "source": "kddi-news-release",
+      "title": "newmoとKDDI、自動運転タクシーの社会実装に向け資本業務提携",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
     }
   ],
   "short_text_retry": {},
