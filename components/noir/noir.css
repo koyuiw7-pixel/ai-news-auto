@@ -192,7 +192,8 @@ html:has(.noir) body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgb(12 12 12 / 0.45) 0, rgb(12 12 12 / 0) 20%, rgb(12 12 12 / 0) 42%, rgb(12 12 12 / 0.88) 100%);
+  /* 公式の写真には文字の入った告知の画像もあるので、題名の下は十分に暗くする（題名が写真の文字と重なって読めなくならないように） */
+  background: linear-gradient(180deg, rgb(12 12 12 / 0.5) 0, rgb(12 12 12 / 0.12) 18%, rgb(12 12 12 / 0.3) 32%, rgb(12 12 12 / 0.8) 52%, rgb(12 12 12 / 0.94) 100%);
 }
 /* 写真の無い記事は、黒い表紙に題名を大きく（関係の無い写真は使わない） */
 .noir .nr-hero.nr-type {
@@ -251,6 +252,7 @@ html:has(.noir) body {
   text-wrap: balance;
   letter-spacing: -0.005em;
   color: var(--nr-white);
+  text-shadow: 0 1px 14px rgb(0 0 0 / 0.5);
 }
 .noir .nr-meta {
   font: 500 13px/1.5 var(--nr-body);
@@ -743,4 +745,9 @@ html:has(.noir) body {
   .noir .nr-img {
     transform: none !important;
   }
+}
+
+/* 読み方の切り替えのすぐ下で本文が詰まらないように */
+.noir #article-flow {
+  padding-top: 20px;
 }
