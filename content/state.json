@@ -253,7 +253,9 @@
       "url": "https://news.samsung.com/jp/samsung-health-makes-sleep-coaching2611?utm_source=rss&utm_medium=direct"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "a307777d6ded3852": 1
+  },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -17012,78 +17014,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-05T00:01:36.955176+00:00",
-      "attempt": 1,
-      "id": "1cd3b0a2786f4ed3",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 73.3,
-        "avg_sentence": 38.6,
-        "long_share": 0.105,
-        "max_paragraph": 127,
-        "paragraphs": 20,
-        "sentences": 38
-      },
-      "score": 90,
-      "source": "pfn-news",
-      "title": "PFN、世界最高水準のAI翻訳がエッジで可能な大規模言語モデル PLaMo 3 Translate をオープンウェイトで公開",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PFN・LLM・MT）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T00:22:52.838047+00:00",
-      "attempt": 1,
-      "id": "0a437d67f2effbc5",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 108.0,
-        "avg_sentence": 42.0,
-        "long_share": 0.194,
-        "max_paragraph": 172,
-        "paragraphs": 14,
-        "sentences": 36
-      },
-      "score": 88,
-      "source": "openai-news",
-      "title": "Introducing Images 2.6",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GIF）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T01:03:04.224533+00:00",
-      "attempt": 1,
-      "id": "010f1ded905a0578",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "body に取引のやり方の説明がある（「売買の方法」）。売買の手順は書かず、制度・数字・影響の説明にする"
-      ],
-      "readability": {
-        "avg_paragraph": 93.8,
-        "avg_sentence": 46.9,
-        "long_share": 0.192,
-        "max_paragraph": 141,
-        "paragraphs": 13,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "jpx-news",
-      "title": "[JPX総研]株式会社スマートラウンドへの出資について",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JPX・IR）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-05T01:04:07.991794+00:00",
       "attempt": 2,
@@ -23000,6 +22930,72 @@
       "title": "newmoとKDDI、自動運転タクシーの社会実装に向け資本業務提携",
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T07:06:08.015609+00:00",
+      "attempt": 1,
+      "id": "a307777d6ded3852",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「528億円で、前年同期の2兆9,160億円」、「- 調整後営業利益:5,557億円」、「標):9,014億円から9,826億円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）",
+        "確認済みの事実の束（関連ページ：KDDI ニュースリリース「kddi_261106_main_X5IBau.pdf」）の数字を使っているのに、出典が書かれていない。使った文の直後に「（KDDI ニュースリリース「kddi_261106_main_X5IBau.pdf」、確認日）」のように書く"
+      ],
+      "readability": {
+        "avg_paragraph": 74.9,
+        "avg_sentence": 42.4,
+        "long_share": 0.1,
+        "max_paragraph": 143,
+        "paragraphs": 17,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "2027年3月期第2四半期決算について | KDDI ニュースルーム",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ARPU・KPI）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T07:07:03.028354+00:00",
+      "attempt": 2,
+      "id": "a307777d6ded3852",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "2027年3月期第2四半期決算について | KDDI ニュースルーム"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T07:07:40.850433+00:00",
+      "attempt": 3,
+      "id": "a307777d6ded3852",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「前の稼ぐ力を示す利益):9,826億円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
+      ],
+      "readability": {
+        "avg_paragraph": 88.9,
+        "avg_sentence": 47.2,
+        "long_share": 0.219,
+        "max_paragraph": 172,
+        "paragraphs": 17,
+        "sentences": 32
+      },
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "2027年3月期第2四半期決算について | KDDI ニュースルーム",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（UQ・PAY・ARPU）"
       ]
     }
   ],
