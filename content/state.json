@@ -15568,6 +15568,15 @@
       "slug": "mhlw-sanitary-administrative-report-2025",
       "url": "https://www.mhlw.go.jp/toukei/saikin/hw/eisei_houkoku/25/"
     },
+    "ee64cc4449547b71": {
+      "at": "2026-11-06T03:03:11.335143+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "business",
+      "slug": "labor-shortage-bankruptcies-2026",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203405_1527.html"
+    },
     "eea52ef7fa0dfe75": {
       "at": "2026-10-26T17:13:11.283572+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16469,59 +16478,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T13:53:50.685035+00:00",
-      "attempt": 1,
-      "id": "d1ca532e101a8cf0",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "title の長さが不適切（69字 / 18〜64字）"
-      ],
-      "readability": {
-        "avg_paragraph": 78.2,
-        "avg_sentence": 41.2,
-        "long_share": 0.167,
-        "max_paragraph": 122,
-        "paragraphs": 19,
-        "sentences": 36
-      },
-      "score": null,
-      "source": "xbox-wire-jp",
-      "title": "Game Pass に『Escape Academy 2: Back 2 School』『Thronefall』『Warhammer Survivors』などが",
-      "warnings": [
-        "見出しが69字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PIT・OF・GOBLIN）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T13:54:21.776833+00:00",
-      "attempt": 2,
-      "id": "d1ca532e101a8cf0",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "文が長い（1文の平均 47.4字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 83.7字・最長 250字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 83.7,
-        "avg_sentence": 47.4,
-        "long_share": 0.167,
-        "max_paragraph": 250,
-        "paragraphs": 17,
-        "sentences": 30
-      },
-      "score": 93,
-      "source": "xbox-wire-jp",
-      "title": "Game Pass に『Escape Academy 2: Back 2 School』『Thronefall』『Warhammer Survivors』などが",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（VOID・TANUKI・PIT）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-04T13:54:49.574062+00:00",
@@ -22543,6 +22499,40 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（ABS）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T03:01:35.815952+00:00",
+      "attempt": 1,
+      "id": "ee64cc4449547b71",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "tsr",
+      "title": "「人手不足」倒産 10月では過去最多の50件 1-10月累計418件、すでに年間最多を更新"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T03:03:11.320556+00:00",
+      "attempt": 2,
+      "id": "ee64cc4449547b71",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.4,
+        "avg_sentence": 29.5,
+        "long_share": 0.024,
+        "max_paragraph": 161,
+        "paragraphs": 13,
+        "sentences": 42
+      },
+      "score": 92,
+      "source": "tsr",
+      "title": "「人手不足」倒産 10月では過去最多の50件 1-10月累計418件、すでに年間最多を更新"
     }
   ],
   "short_text_retry": {
