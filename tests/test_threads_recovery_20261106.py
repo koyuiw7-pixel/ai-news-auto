@@ -203,11 +203,27 @@ class CheckTest(TempState):
         self.assertEqual(len(self.issues), 1)
         self.assertIn("0", g.normal_hold(jst(7, 12, 15), {"slug": "other"}))
 
-    def test_stale_zero_is_not_trusted_until_give_up(self):
+    def test_stale_zero_never_halts_the_day(self):
         node = {"status": "sent", "sentAt": z(jst(7, 7, 15)), "metricsUpdatedAt": None, "metrics": {"views": 0}}
         self.assertNotIn("result", self.run_check(jst(7, 7, 46), node)["probe"])  # 数字がまだ更新されていない 0 では決めない
-        self.assertEqual(self.run_check(jst(7, 10, 16), node)["probe"]["result"], "not_recovered")  # 3時間たっても → 安全な側
-        self.assertEqual(len(self.issues), 1)
+        stale = dict(node, metricsUpdatedAt=z(jst(7, 7, 20)))  # 出てから5分の更新 → 新しい数字ではない
+        self.assertNotIn("result", self.run_check(jst(7, 8, 6), stale)["probe"])
+        data = self.run_check(jst(7, 10, 16), stale)  # 3時間たっても確かめられない → 止めない（締めすぎない）
+        self.assertEqual(data["probe"]["result"], "unconfirmed")
+        self.assertEqual(json.loads(self.rec_path.read_text())["probe"]["result"], "unconfirmed")
+        self.assertEqual(self.issues, [])  # issue は立てない
+        self.assertEqual(g.normal_hold(jst(7, 12, 15), {"slug": "other"}), "")  # いつもの予定に戻る
+        posted = json.loads(self.posted_path.read_text())["posted"]
+        slots = [s.astimezone(JST) for s in tp.free_slots({"posted": posted}, jst(7, 10, 20).astimezone(timezone.utc))]
+        self.assertIn(jst(7, 12, 15), slots)
+
+    def test_unreadable_metrics_never_halt(self):
+        def boom(key, pid):
+            raise RuntimeError("Buffer down")
+
+        data = g.check("k", jst(7, 10, 16), fetch=boom, issue=lambda p, w: self.issues.append(w))
+        self.assertEqual(data["probe"]["result"], "unconfirmed")
+        self.assertEqual(self.issues, [])
 
     def test_issue_is_plain_japanese(self):
         body = g.issue_body({"slug": "acme-tool", "dueAt": jst(7, 7, 15).isoformat()}, "表示 0")

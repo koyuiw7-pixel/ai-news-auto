@@ -11,7 +11,9 @@ Threads に投稿を作る経路はすべて threads_post.create_post（Buffer�
   3. 11/7 の様子見（日付つき）: PROBE_DAY は、まずその日いちばん強い通常の投稿を1本だけ出す（7:15 の枠。朝のまとめはこの日は Threads に出さない）。
      出てから CHECK_AFTER（30分）後に表示数を Buffer から読み、
        表示 > 0 → 立て直せた（その日の残りの枠はいつもどおり）
-       表示 = 0 → その日の通常の投稿は止める＋オーナー向けの issue（やさしい日本語）
+       表示 = 0 → その日の通常の投稿は止める＋オーナー向けの issue（やさしい日本語）。0 と数えるのは、出てから20分以上たって更新された数字だけ
+       数字が確かめられない（更新されないまま CHECK_GIVE_UP を過ぎた）→ 止めない（"unconfirmed"。いつもの予定に戻す。issue なし）
+     （Buffer の数字は1日1回の更新で、その場で取り直す API は無い＝2026-11 の API の説明。だから「確かめられない」がふつうに起こる）
      結果は state/threads_recovery.json に残す（`python scripts/threads_gate.py --check`。記事の自動処理の毎回で動き、時刻が来た回だけ読む）。
   PROBE_DAY を過ぎたら 2・3 は何もしない（ずっと続く止めにはしない）。1 はずっと続く。
 
@@ -44,7 +46,7 @@ PROBE_SLOT_JST = (7, 15)  # 様子見の1本の枠（朝のまとめの枠を使
 PROBE_PLAN_AHEAD = timedelta(minutes=90)  # 様子見の1本はこの時間前から選ぶ（夜のあいだに出た記事も候補に入れる）
 CHECK_AFTER = timedelta(minutes=30)
 FRESH_AFTER = timedelta(minutes=20)  # 出てからこれだけたって更新された数字だけを信じる
-CHECK_GIVE_UP = timedelta(hours=3)  # 数字が取れないままこれだけ過ぎたら「立て直せていない」として扱う（安全な側）
+CHECK_GIVE_UP = timedelta(hours=3)  # 数字が確かめられないままこれだけ過ぎたら、止めずにいつもの予定に戻す（"unconfirmed"。締めすぎない）
 ISSUE_LABEL = "threads-recovery"
 
 
@@ -158,7 +160,7 @@ def probe_slug(posted: dict | None = None, video: dict | None = None) -> str:
 
 
 def result(recovery: dict | None = None) -> str:
-    """様子見の結果: "recovered" / "not_recovered" / ""（まだ）"""
+    """様子見の結果: "recovered" / "not_recovered" / "unconfirmed"（確かめられない＝止めない） / ""（まだ）"""
     rec = (recovery if recovery is not None else load_recovery()).get("probe") or {}
     return str(rec.get("result") or "") if rec.get("day") == PROBE_DAY.isoformat() else ""
 
@@ -171,7 +173,7 @@ def normal_hold(when: datetime, article: dict | None = None, *, posted: dict | N
     if _jst_date(when) != PROBE_DAY:
         return ""
     res = result(recovery)
-    if res == "recovered":
+    if res in ("recovered", "unconfirmed"):
         return ""
     if res == "not_recovered":
         return f"{PROBE_DAY:%m/%d} の様子見の1本の表示が0だったので、この日の Threads の通常の投稿は止めています（台帳 S44）"
@@ -194,7 +196,7 @@ def plan_slot_ok(slot: datetime, now: datetime, posted: dict | None = None, vide
         return True
     res = result(recovery)
     if res:
-        return res == "recovered"
+        return res != "not_recovered"
     if probe_slug(posted, video):
         return False  # 様子見の1本はもう予定にある。結果が出るまでほかの枠は使わない
     import sns_plan
@@ -422,14 +424,17 @@ def check(api_key: str, now: datetime | None = None, *, fetch=None, issue=None, 
         # 数字が出てからしばらくたって更新された 0 だけを「0」と数える（更新前の 0 で決めない）
         decided, why = "not_recovered", f"表示 {int(views)}"
     elif now >= due + CHECK_GIVE_UP:
-        decided, why = "not_recovered", f"{int(CHECK_GIVE_UP.total_seconds() // 3600)}時間たっても表示の数字が取れなかった"
+        # 2026-11-06 オーナーの「締めすぎない」: 確かめられないだけでは止めない。いつもの予定に戻し、記録だけ残す（issue なし）
+        decided, why = "unconfirmed", f"{int(CHECK_GIVE_UP.total_seconds() // 3600)}時間たっても表示の数字が更新されなかった（確かめられないので止めない）"
     if decided:
         rec.update({"result": decided, "decidedAt": now.isoformat(timespec="seconds"), "status": "done"})
-        if decided == "not_recovered":
+        if why:
             rec["why"] = why
-            if not rec.get("issue"):
-                rec["issue"] = issue(probe, why) or ""
-        log(f"[threads-gate] 様子見の1本 {probe['slug']}: 表示 {views} → {'立て直せた（通常の投稿を再開）' if decided == 'recovered' else '立て直せていない（この日は止める）'}")
+        if decided == "not_recovered" and not rec.get("issue"):
+            rec["issue"] = issue(probe, why) or ""
+        label = {"recovered": "立て直せた（通常の投稿を再開）", "unconfirmed": "確かめられない（止めずに通常の投稿を再開）",
+                 "not_recovered": "立て直せていない（この日は止める）"}[decided]
+        log(f"[threads-gate] 様子見の1本 {probe['slug']}: 表示 {views} → {label}")
     else:
         rec["why"] = "表示の数字がまだ更新されていないので、次の回にもう一度確かめます"
     save_recovery(data, path)
