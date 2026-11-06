@@ -245,6 +245,7 @@
     "5cda413903691f04": "2026-11-04T13:10:52.830493+00:00",
     "60c729c2b97122fb": "2026-11-04T13:10:52.830493+00:00",
     "629100d791ff19ec": "2026-11-05T12:02:48.521507+00:00",
+    "63454807800a7d74": "2026-11-06T02:20:53.435941+00:00",
     "653e0d1d9095cc06": "2026-11-05T12:02:48.521507+00:00",
     "65ad18cc9ed6ebc0": "2026-11-05T12:02:48.521507+00:00",
     "6973d1c309d9eb2e": "2026-11-04T13:10:52.830493+00:00",
@@ -6198,6 +6199,12 @@
       "skipped": true,
       "url": "https://github.blog/changelog/2026-10-26-gpt-6-1-terra-in-github-copilot"
     },
+    "34646b6dea05d4fd": {
+      "at": "2026-11-06T02:23:12.964820+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（周年）",
+      "skipped": true,
+      "url": "https://corp.rakuten.co.jp/news/press/2026/1106_01.html"
+    },
     "346d139d9919db9d": {
       "at": "2026-11-05T12:03:41.903908+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -7134,6 +7141,15 @@
       "section": "lifestyle",
       "slug": "suntory-non-aru-sakaba-new-release",
       "url": "https://www.suntory.co.jp/news/article/2026/15160.html?rss=0000000029"
+    },
+    "47fe40d0187dd449": {
+      "at": "2026-11-06T02:26:34.642823+00:00",
+      "mix": "brand",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 95,
+      "section": "business",
+      "slug": "docomo-standard-touch-pen-recycled",
+      "url": "https://www.docomo.ne.jp/binary/pdf/info/news_release/topics_261106_g1.pdf"
     },
     "48064ae4f793b381": {
       "at": "2026-11-03T00:34:53.612508+00:00",
@@ -8562,12 +8578,6 @@
       "reason": "quality: 本文が短い（1286字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（316字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
       "skipped": true,
       "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030b.pdf"
-    },
-    "63454807800a7d74": {
-      "at": "2026-11-06T02:04:06.977345+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.fsa.go.jp/news/r8/sonota/20261106-2/20261106-2.html"
     },
     "63c4b7d8634c79e8": {
       "at": "2026-11-02T10:31:24.723385+00:00",
@@ -12698,6 +12708,15 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110506"
     },
+    "b58fee4edbbb5f7a": {
+      "at": "2026-11-06T02:23:12.321605+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "australian-universities-chatgpt-edu-2027",
+      "url": "https://openai.com/index/australian-universities-ai-native-graduates"
+    },
     "b5933abf7b3004fc": {
       "at": "2026-10-26T10:31:00.945549+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16438,97 +16457,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-04T13:11:52.259691+00:00",
-      "attempt": 1,
-      "id": "d9ab2f31cea858b4",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 76.9,
-        "avg_sentence": 36.1,
-        "long_share": 0.094,
-        "max_paragraph": 129,
-        "paragraphs": 15,
-        "sentences": 32
-      },
-      "score": 96,
-      "source": "digital-agency",
-      "title": "令和8年熊本地震罹災証明書（り災証明書）のオンライン申請について",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T13:52:14.264280+00:00",
-      "attempt": 1,
-      "id": "e0664abf07afbb1d",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "duolingo-blog",
-      "title": "We tried “Claude, fix this bug”—here’s what actually worked"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T13:53:07.879391+00:00",
-      "attempt": 2,
-      "id": "e0664abf07afbb1d",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "「調査を6つの作業に分けた」→ 元記事は6項目を挙げているが「6つの作業に分けた」という数え方・構成は元記事に明示されておらず、言い過ぎ。",
-        "「ログを調べ、報告者の操作を再現します」→ 元記事は報告者の活動を再構築(reconstructing)すると述べており、「再現」は実機での再現と紛らわしい訳。",
-        "「関連ファイル上位3件が、実際の修正で変更された3ファイルと一致した」→ 元記事は1件のfix PRでの一致を述べるのみで、一般的な成果のように読め、言い過ぎ。",
-        "「AIの途中結果をファイルで残す運用を、チームで検討する」「Claude Codeなどに任せて試す」→ 元記事はClaude Agent SDKでの構築であり、Claude Codeへの言及はなく一般的助言の範囲を超える。",
-        "「修正の成功率や、削減した時間の数値は、まだ発表されていません」→ 元記事は「数時間分の手作業を自動化」と述べており、時間削減の数値が全く無いかのような書き方は一部不正確。"
-      ],
-      "readability": {
-        "avg_paragraph": 75.4,
-        "avg_sentence": 30.1,
-        "long_share": 0.0,
-        "max_paragraph": 144,
-        "paragraphs": 16,
-        "sentences": 40
-      },
-      "score": 82,
-      "source": "duolingo-blog",
-      "title": "We tried “Claude, fix this bug”—here’s what actually worked",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（STR・CI）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-04T13:53:27.672374+00:00",
-      "attempt": 2,
-      "id": "e0664abf07afbb1d",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 75.1,
-        "avg_sentence": 30.1,
-        "long_share": 0.0,
-        "max_paragraph": 144,
-        "paragraphs": 16,
-        "sentences": 40
-      },
-      "score": 93,
-      "source": "duolingo-blog",
-      "title": "We tried “Claude, fix this bug”—here’s what actually worked",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（STR・CI）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-04T13:53:50.685035+00:00",
@@ -22518,6 +22446,91 @@
       "score": null,
       "source": "nli-research",
       "title": "「どのアプリを開けばいい？」をなくす－中国平安保険、デジタル化10年の伏線回収"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T02:22:46.650760+00:00",
+      "attempt": 1,
+      "id": "b58fee4edbbb5f7a",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "段落が長い（平均 134.9字・最長 232字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 134.9,
+        "avg_sentence": 40.5,
+        "long_share": 0.1,
+        "max_paragraph": 232,
+        "paragraphs": 12,
+        "sentences": 40
+      },
+      "score": 92,
+      "source": "openai-news",
+      "title": "Australian universities are creating AI-native graduates",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（UNSW）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T02:23:12.304735+00:00",
+      "attempt": 0,
+      "id": "b58fee4edbbb5f7a",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.4,
+        "avg_sentence": 38.3,
+        "long_share": 0.073,
+        "max_paragraph": 150,
+        "paragraphs": 17,
+        "sentences": 41
+      },
+      "score": 92,
+      "source": "openai-news",
+      "title": "Australian universities are creating AI-native graduates",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（UNSW）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T02:24:40.295539+00:00",
+      "attempt": 1,
+      "id": "47fe40d0187dd449",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "ntt-news",
+      "title": "ドコモ、快適な操作性を追求したドコモ純正「スタンダードタッチペン」を発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T02:26:34.635121+00:00",
+      "attempt": 2,
+      "id": "47fe40d0187dd449",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 78.4,
+        "avg_sentence": 38.0,
+        "long_share": 0.061,
+        "max_paragraph": 133,
+        "paragraphs": 16,
+        "sentences": 33
+      },
+      "score": 95,
+      "source": "ntt-news",
+      "title": "ドコモ、快適な操作性を追求したドコモ純正「スタンダードタッチペン」を発売",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ABS）"
+      ]
     }
   ],
   "short_text_retry": {
