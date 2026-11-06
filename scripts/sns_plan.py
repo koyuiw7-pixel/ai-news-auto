@@ -10,6 +10,7 @@
   slots_jst()             → 通常の投稿の時刻 [(時, 分), ...]
   daily_cap() / cap_exempt(article_or_entry)  → 1日の上限と、上限に数えない種類（ミサイル・災害）
   bluesky_daily_cap() / bluesky_slot_window(now) → Bluesky だけの1日3本と枠 7:30・13:00・21:00（Threads と別に数える。S40）
+  x_on() / x_daily_cap() / x_slot_window(now) / x_topic / x_earnings_only / x_keyword / x_hashtag → X だけの1日3本と枠 7:30・12:30・21:00・話題・文面（S42）
   count_today(posted, day, extra) → その日（日本時間）に出した（予約した）自分の投稿の数
   utm_content(ptype, pos) → "video_body" など
   hook_format_on()  → 2026-11-05 オーナー承認でワークフローの既定は on（変数で 0 にすれば止まる）
@@ -170,17 +171,175 @@ def bluesky_daily_cap() -> int:
 def bluesky_slot_window(now: datetime) -> tuple[int, datetime, datetime] | None:
     """今の時刻が入る Bluesky の枠（番号, 始まり, 終わり）。枠は次の枠の前まで、最後の枠は window_end まで。
     朝の最初の枠の前・window_start より前・window_end より後は None（出さない）"""
+    return _slot_window(bluesky_plan(), now)
+
+
+def _slot_window(block: dict, now: datetime) -> tuple[int, datetime, datetime] | None:
+    """SNS ごとの枠（block の slots_jst・window_start・window_end）で、今の時刻が入る枠（番号, 始まり, 終わり）。外なら None"""
     local = now.astimezone(JST)
     day = local.replace(hour=0, minute=0, second=0, microsecond=0)
     at = lambda hm: day + timedelta(hours=hm[0], minutes=hm[1])  # noqa: E731
-    first = at(_hm(bluesky_plan().get("window_start") or "07:00"))
-    last = at(_hm(bluesky_plan().get("window_end") or "23:00"))
-    starts = [max(first, at(hm)) for hm in bluesky_slots_jst()]
+    first = at(_hm(block.get("window_start") or "07:00"))
+    last = at(_hm(block.get("window_end") or "23:00"))
+    starts = [max(first, at(hm)) for hm in sorted(_hm(x) for x in block.get("slots_jst") or [])]
     for i, start in enumerate(starts):
         end = min(starts[i + 1] if i + 1 < len(starts) else last, last)
         if start <= local < end:
             return i, start, end
     return None
+
+
+# ---- X だけの枠・上限・話題（2026-11-06 オーナー承認・台帳 S42。2026-11-07 から。Threads の daily_cap・slots_jst とは別に数える） ----
+
+def x_plan() -> dict:
+    return plan().get("x") or {}
+
+
+def x_on(when: datetime | None = None) -> bool:
+    """X だけの枠で出す日か（sns_plan.json の x.start の日から）。この日からは X の投稿は scripts/x_post.py だけが出す
+    （Threads の予定・速報・朝のまとめからは X に出さない）"""
+    start = str(x_plan().get("start") or "")
+    if not start:
+        return False
+    when = when or datetime.now(timezone.utc)
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=timezone.utc)
+    return when.astimezone(JST).date() >= date.fromisoformat(start)
+
+
+def x_slots_jst() -> list[tuple[int, int]]:
+    return sorted(_hm(s) for s in x_plan().get("slots_jst") or [])
+
+
+def x_daily_cap() -> int:
+    """X の1日（日本時間）の通常の投稿の上限。変数 X_PER_DAY で減らすことはできるが、計画より増やさない"""
+    cap = int(x_plan().get("daily_cap") or 0)
+    raw = os.environ.get("X_PER_DAY", "").strip()
+    return max(0, min(int(raw), cap)) if raw.isdigit() else cap
+
+
+def x_slot_window(now: datetime) -> tuple[int, datetime, datetime] | None:
+    """今の時刻が入る X の枠（番号, 始まり, 終わり）。7:30・12:30・21:00。7時より前・23時より後・最初の枠の前は None"""
+    return _slot_window(x_plan(), now)
+
+
+def _alert(article: dict) -> bool:
+    return bool(article.get("disaster") or article.get("urgent") or article.get("safetyAlert") or cap_exempt(article))
+
+
+def x_topic(article: dict) -> tuple[str, int]:
+    """X の通常の枠での話題（名前, 点数）。公式の地震・気象の知らせ > 障害 > 製品・セール・値段 > 有名ブランド。当たらなければ ("", 0)"""
+    text = _text(article)
+    found = {name for name, _ in lanes(article)}
+    for topic in x_plan().get("topics") or []:
+        if topic.get("flags") and _alert(article):
+            return topic["name"], int(topic["score"])
+        if topic.get("re") and _re(topic["re"]).search(text):
+            return topic["name"], int(topic["score"])
+        if topic.get("lanes") and found & set(topic["lanes"]):
+            return topic["name"], int(topic["score"])
+    return "", 0
+
+
+def x_score(article: dict) -> float:
+    """X の枠で選ぶ順の点数（話題＋レーン）。SNS に出さない話題・決算の数字だけの記事は -100"""
+    if excluded(article) or x_earnings_only(article):
+        return -100.0
+    return float(x_topic(article)[1] + lane_of(article)[1])
+
+
+_SENTENCE = re.compile(r"[^。！!]+[。！!]?")
+
+
+def _sentences(text) -> list[str]:
+    return [m.group(0).strip() for m in _SENTENCE.finditer(str(text or "").replace("\n", "")) if m.group(0).strip()]
+
+
+def article_sentences(article: dict) -> list[str]:
+    """記事の事実の文（lede → やさしい版の書き出し → 要点 → 説明の順）。X・Facebook の文面はここからそのまま選ぶ"""
+    easy = re.search(r"##\s*ひとことで言うと\s*\n+([^\n#]+)", str(article.get("easy") or ""))
+    srcs = [article.get("lede"), easy.group(1) if easy else "", *(article.get("highlights") or []), article.get("description")]
+    out: list[str] = []
+    for src in srcs:
+        for x in _sentences(src):
+            if x not in out:
+                out.append(x)
+    return out
+
+
+def product_sentence(article: dict) -> str:
+    """製品の名前（x.product_re）から始まる記事の文（Switch 2 の販売台数など）。無ければ """""
+    pat = x_plan().get("product_re")
+    if not pat:
+        return ""
+    return next((x for x in article_sentences(article) if _re(f"^(?:{pat})").match(x)), "")
+
+
+def x_earnings_only(article: dict | None) -> bool:
+    """決算の数字だけの記事か（X には出さない。2026-11-06 オーナー承認・台帳 S42）。決算・株の話題（finance.re）で、
+    有名な製品から始まる文（Switch 2 の販売台数など）が無いもの。製品の文があれば、その製品を1行目にして出してよい"""
+    article = article or {}
+    return finance_topic(article) and not product_sentence(article)
+
+
+_LEAD = re.compile(r"^(?:【[^】]{1,12}】)?\s*")
+
+
+def x_keyword(article: dict) -> str:
+    """X の1行目の頭に置く、検索される言葉（地震・震度・製品の名前・ブランドの名前）"""
+    title = str(article.get("title") or article.get("seoTitle") or "").strip()
+    if _alert(article):
+        m = re.match(r"【([^】]{1,12})】", title)
+        if m and m.group(1) != "速報":
+            return m.group(1)
+        for pattern, _tag in x_plan().get("alert_tags") or []:
+            if m := _re(pattern).search(title):
+                return m.group(0)
+    if finance_topic(article) and (sent := product_sentence(article)):
+        return _re(f"^(?:{x_plan()['product_re']})").match(sent).group(0).strip()
+    body = _LEAD.sub("", title)
+    pats = [x_plan().get("product_re") or "", plan()["lanes"]["brand"]["re"], plan()["lanes"]["money"]["re"]]
+    # 「」の中の製品名（「Galaxy Buds On」など）を先に
+    for name in re.findall(r"「([^」]{2,30})」", body):
+        if any(p and _re(p).search(name) for p in pats):
+            return name.strip()
+    best = None
+    for p in pats:
+        for m in _re(p).finditer(body) if p else []:
+            key = (m.start(), -len(m.group(0)))
+            if best is None or key < best[0]:
+                best = (key, m.group(0))
+            break
+    if best:
+        return best[1].strip()
+    # 当たらなければ題名の頭の主語（「横浜ゴムの…」の横浜ゴム）
+    m = re.match(r"^([^、　：:「（(｜|\s]{2,12}?)(?:の|が|は|に|と|で|、|　|：|:)", body)
+    return m.group(1) if m else ""
+
+
+def x_starts_with_keyword(first: str, article: dict) -> bool:
+    """X の1行目が検索される言葉から始まっているか（【】で囲んだ形も可）"""
+    head = re.sub(r"^【([^】]{1,30})】", r"\1", str(first or "").strip())
+    keys = [x_keyword(article), *[str(t) for t in article.get("tags") or [] if len(str(t)) >= 2]]
+    if any(k and head.startswith(k) for k in keys):
+        return True
+    pats = [x_plan().get("product_re") or "", plan()["lanes"]["brand"]["re"], plan()["lanes"]["money"]["re"]]
+    return any(p and _re(f"^(?:{p})").match(head) for p in pats)
+
+
+def x_hashtag(article: dict | None) -> str:
+    """X のハッシュタグ（1つまで）。災害の知らせ（#地震 など）と大きな行事（WBC など）だけ。ほかは付けない"""
+    article = article or {}
+    text = _text(article)
+    if _alert(article):
+        for pattern, tag in x_plan().get("alert_tags") or []:
+            if _re(pattern).search(text):
+                return tag
+        return ""
+    ev = x_plan().get("event_re")
+    if ev and (m := _re(ev).search(str(article.get("title") or ""))):
+        return "#" + m.group(0)
+    return ""
 
 
 def min_gap() -> timedelta:
@@ -226,7 +385,7 @@ def _when(rec: dict) -> datetime | None:
 
 
 def count_today(posted: dict, day: date, skipped: set[str] | None = None) -> int:
-    """その日（日本時間）に出した・予約した自分の投稿の数（Threads の記録。X・Facebook は同じ記事を同じ日に出す）。
+    """その日（日本時間）に出した・予約した自分の投稿の数（Threads の記録。Facebook は同じ記事を同じ日に出す。X は 2026-11-07 から別に数える＝S42）。
     動画が作れず出さなかったもの（skipped）とミサイル・災害・速報は数えない"""
     skipped = skipped or set()
     n = 0

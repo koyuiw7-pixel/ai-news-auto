@@ -1932,6 +1932,9 @@ def publish_extra_channels(
     fmt=hook_thread なら X は「書き出し＋画像」→「詳細＋リンク」のスレッド。Facebook は形式を問わず完結型（fb_text）＋リンク
     """
     results: dict[str, str] = {}
+    if "twitter" in channels and sns_plan.x_on(due_at):
+        # 2026-11-07〜 X は X だけの枠・文面で scripts/x_post.py が出す（台帳 S42）。Threads の予定・速報からは X に出さない
+        channels = {k: v for k, v in channels.items() if k != "twitter"}
     card = card_url(article)
     title = article.get("seoTitle") or article["title"]
     ptype = post_type(article, fmt)
@@ -2007,6 +2010,10 @@ def is_buffer_unavailable(error: BaseException) -> bool:
 
 def utc_z(when: datetime) -> str:
     return when.astimezone(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+
+
+class XOwnSlotsOnly(RuntimeError):
+    """2026-11-07〜 X の投稿は scripts/x_post.py だけが作る（台帳 S42）。ほかの経路からの X の投稿を止める"""
 
 
 class DuplicatePost(RuntimeError):
@@ -2085,6 +2092,9 @@ def create_post(api_key: str, post_input: dict, *, service: str, article: dict |
     """Buffer に投稿を1件作り、投稿IDを返す。作る直前に SNS ルールの門番（sns_rules）を通し、
     同じ記事の投稿がこの SNS にもう無いかを Buffer で確かめる（あれば DuplicatePost。2026-11-04 の二重投稿のあと）"""
     allow = list(post_input.pop("_allowDuplicateOf", None) or [])  # オーナー承認の出し直しだけ（消した前の投稿の Buffer の ID）
+    if service == "twitter" and not source.startswith("x_post") and sns_plan.x_on() and not post_input.get("saveToDraft"):
+        # 2026-11-07〜 X の投稿は scripts/x_post.py だけ（台帳 S42）。ほかの経路が X に作ろうとしたら止める（Buffer は呼ばない）
+        raise XOwnSlotsOnly(f"X の投稿は x_post.py だけが作ります（台帳 S42・{source}）")
     sns_rules.enforce_buffer(service, post_input, article, source=source, kind=kind)
     try:
         ensure_not_duplicate(api_key, post_input, service, article, kind, allow=allow)

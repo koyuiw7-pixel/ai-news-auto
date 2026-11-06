@@ -53,6 +53,11 @@
      1行目＝事実、2行目＝それで読者にとって何が変わるか（どちらも記事の中の文・やさしい です・ます）。そのあと記事のリンク（本文＋リンクカード）。
      ハッシュタグはちょうど1つ（災害・事故・安全の話題は付けない＝台帳 S35）。リンクの utm_campaign は brief。
 
+  20. （2026-11-06 オーナー承認・台帳 S42。2026-11-07 から）X だけの文面（kind="xpost"・scripts/x_post.py）: 1行目は検索される言葉
+     （地震・製品の名前・ブランドの名前。sns_plan.x_keyword）から始めて事実を言う。そのあと記事の事実の文。問いかけは要らない（付けない）。
+     ハッシュタグは災害・大きな行事だけ1つまで（sns_plan.x_hashtag。X だけ S35 の「災害に付けない」の例外）。決算の数字だけの記事は
+     X に出さない（製品の文から始めるときだけ可）。記事のリンクは返信（utm_campaign=xpost）。長さは X の数え方で280（全角140字）まで。
+
 違反したら: 投稿しない・ログに出す・GitHub の issue（ラベル sns-rule-violation）を立てるか、開いているものにコメントを足す。
 新しく Buffer / Bluesky / Threads の投稿 API を呼ぶ所を作るときは、必ずこの enforce を直前に呼ぶ（tests/test_sns_rules.py が確かめる）。
 
@@ -60,6 +65,7 @@
   kind="digest"   朝のまとめ（記事3本の見出し）。問いかけ・要約は無し。画像は号のシェア画像（1200×630）。リンクの決まりは同じ。
   kind="disaster" 地震・津波（AI に文章を書かせない型の文面）。問いかけ・要約は無し。リンクの決まりは同じ。
   kind="brief"    Bluesky だけの2行の文面（ルール19）。書き出し・問いかけの決まり（ルール1・6）の代わりに check_brief で見る。
+  kind="xpost"    X だけの文面（ルール20）。書き出し・問いかけの決まり（ルール1・6）の代わりに check_xpost で見る。
 """
 from __future__ import annotations
 
@@ -785,8 +791,9 @@ def autofix(text: str, article: dict | None = None, platform: str = "") -> tuple
         except Exception:  # noqa: BLE001
             ai = True
         pattern = HASHTAG_RE if safety_topic(article) else (re.compile(r"(?<!\S)#AI(?![\w])") if not ai else None)
+        keep = sns_plan.x_hashtag(article) if str(platform or "").lower() in ("x", "twitter") else ""  # X は災害・行事のタグ1つを残す（台帳 S42）
         if pattern:
-            stripped = re.sub(r"[ \t]+\n", "\n", pattern.sub("", fixed)).rstrip()
+            stripped = re.sub(r"[ \t]+\n", "\n", pattern.sub(lambda m: m.group(0) if keep and m.group(0) == keep else "", fixed)).rstrip()
             stripped = re.sub(r"\n{3,}", "\n\n", stripped)
             if stripped != fixed:
                 fixed = stripped
@@ -1111,6 +1118,45 @@ def check_brief(platform: str, text: str, content: str, article: dict | None) ->
     return out
 
 
+# ルール20（2026-11-06 オーナー承認・台帳 S42）: X だけの文面。1行目は検索される言葉から始まる事実。問いかけなし・タグは災害・行事だけ1つまで
+X_CAMPAIGN = "xpost"
+
+
+def check_xpost(platform: str, text: str, content: str, article: dict | None) -> list[str]:
+    """ルール20: X だけの文面（scripts/x_post.py）"""
+    out = []
+    article = article or {}
+    if platform != "x":
+        out.append("[ルール20] X だけの文面（kind=xpost）は X だけ")
+    lines = [x.strip() for x in str(content or "").splitlines() if x.strip() and HASHTAG_RE.sub("", x).strip()]
+    if len(lines) < 2:
+        out.append(f"[ルール20] X の文面は1行目＋記事の事実の文（今は{len(lines)}行）")
+    first = lines[0] if lines else ""
+    if first and not sns_plan.x_starts_with_keyword(first, article):
+        out.append(f"[ルール20] 1行目は検索される言葉（「{sns_plan.x_keyword(article)}」など）から始める（「{first[:20]}」）")
+    if first and (template_callout(first) or is_callout_line(first)):
+        out.append(f"[ルール20] 1行目は呼びかけでなく事実（「{first[:24]}」）")
+    for pattern, label in BANNED_OPENERS:
+        if m := pattern.search(str(text or "")):
+            out.append(f"[ルール6] {label}（「{m.group(0)[:24]}」）")
+    for line in lines:
+        if SUMMARY_LEAD_RE.match(line) or LEAD_WORD_RE.match(line):
+            out.append(f"[ルール13] 決まった前置きで始めない（「{line[:12]}」）")
+        if m := HARD_WORDS.search(line):
+            out.append(f"[ルール7] 硬い言葉（「{m.group(0)}」）")
+    if EMOJI_RE.search(str(text or "")):
+        out.append("[ルール20] 絵文字を付けない")
+    if sns_plan.x_earnings_only(article):
+        out.append("[ルール20] 決算の数字だけの記事は X に出さない（台帳 S42）")
+    elif sns_plan.finance_topic(article) and first and not first.startswith(sns_plan.x_keyword(article) or "\0"):
+        out.append("[ルール20] 決算の記事は製品の話（製品の名前から始まる1行目）のときだけ X に出す（台帳 S42）")
+    tags = HASHTAG_RE.findall(str(text or ""))
+    allowed = sns_plan.x_hashtag(article)
+    if len(tags) > 1 or (tags and tags[0] != allowed):
+        out.append(f"[ルール20] X のハッシュタグは災害・大きな行事だけ1つまで（今は{' '.join(tags)}）")
+    return out
+
+
 def _body_without_link_line(content: str) -> str:
     """リンクの案内の行・動画の説明の行・音声のクレジットを除いた本文"""
     return "\n".join(x for x in str(content or "").splitlines() if x.strip() and not LINK_LINE.match(x.strip()) and not NOTE_LINE.match(x.strip()))
@@ -1250,7 +1296,8 @@ def already_posted(platform: str, article: dict | None, kind: str, state: dict |
     if platform == "threads":
         return bool(entry.get("id"))
     if platform == "x":
-        return bool(channels.get("twitter"))
+        # 2026-11-07〜 X だけの記録 state/x_posted.json（台帳 S42）も見る
+        return bool(channels.get("twitter")) or bool((_x_state().get(slug) or {}).get("id"))
     if platform == "facebook":
         return bool(channels.get("facebook"))
     if platform == "instagram":
@@ -1263,6 +1310,19 @@ def already_posted(platform: str, article: dict | None, kind: str, state: dict |
         except (OSError, ValueError) as error:
             raise PostingStateUnknown(f"Bluesky の記録 {BLUESKY_EXTRA_PATH.name} を読めません: {type(error).__name__}") from error
     return bool(channels.get("bluesky") or (extra.get(slug) or {}).get("uri"))
+
+
+X_STATE_PATH = ROOT / "state" / "x_posted.json"
+
+
+def _x_state() -> dict:
+    try:
+        data = json.loads(X_STATE_PATH.read_text("utf-8"))
+    except FileNotFoundError:
+        return {}
+    except (OSError, ValueError) as error:
+        raise PostingStateUnknown(f"X の記録 {X_STATE_PATH.name} を読めません: {type(error).__name__}") from error
+    return data if isinstance(data, dict) else {}
 
 
 def check_post(
@@ -1337,6 +1397,8 @@ def check_post(
         hook_form = sns_plan.hook_format_on() and platform != "x" and not hook_problems(_body_without_link_line(content))
         if kind == "brief":
             out += check_brief(platform, text, content, article)  # Bluesky だけの2行の文面（ルール19・台帳 S40）
+        elif kind == "xpost":
+            out += check_xpost(platform, text, content, article)  # X だけの文面（ルール20・台帳 S42）
         elif not hook_form:
             out += check_structure(platform, content, article, plain=kind == "control")
             out += check_opener(platform, text, content, article)
@@ -1514,6 +1576,16 @@ def _control_text(text: str) -> bool:
     return bool(norm) and any(re.sub(r"\s+", "", str(p.get("text") or "")) == norm for p in (data.get("posts") or {}).values())
 
 
+def campaign_kind(platform: str, urls: list[str], default: str = "article") -> str:
+    """リンクの utm_campaign から、SNS だけの文面の種類を見分ける（X の xpost＝ルール20。点検・出る前の読み直しが使う）"""
+    platform = norm_platform(platform)
+    for u in urls:
+        campaign = urllib.parse.parse_qs(_url(u).query).get("utm_campaign") or [""]
+        if platform == "x" and campaign[0] == X_CAMPAIGN:
+            return "xpost"
+    return default
+
+
 def audit_post(post: dict) -> list[str]:
     platform = norm_platform(post.get("platform") or "")
     text = str(post.get("text") or "")
@@ -1534,6 +1606,7 @@ def audit_post(post: dict) -> list[str]:
     kind, article = "article", None
     if platform == "bluesky" and any(urllib.parse.parse_qs(_url(u).query).get("utm_campaign") == [BRIEF_CAMPAIGN] for u in urls):
         kind = "brief"  # Bluesky だけの2行の文面（ルール19・台帳 S40。utm_campaign=brief で見分ける）
+    kind = campaign_kind(platform, urls, kind)
     if slug:
         path = ARTICLES_DIR / f"{slug}.json"
         try:

@@ -840,6 +840,8 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
         for service in ("threads", "twitter", "facebook"):
             if service not in inputs or created.get(service):
                 continue
+            if service == "twitter" and sns_plan.x_on(slot):
+                continue  # 2026-11-07〜 X は scripts/x_post.py が X だけの枠で出す（台帳 S42。前に作った予定の X の入力も送らない）
             offset = 0 if service == "threads" else int(inputs[service].get("_offsetMin") or 0)
             inp = video_input(service, inputs[service], report, variant, urls[variant]) if variant else card_input(inputs[service])
             inp.update({"mode": "customScheduled", "dueAt": _iso(base + timedelta(minutes=offset))})
@@ -925,8 +927,10 @@ def node_problems(node: dict) -> tuple[str, bool, list[str]]:
     # X は返信も合わせて確かめる（門番の enforce_buffer と同じ）。Threads は THREADS_LINK_POS=reply のときだけ返信も（台帳 S39）
     reply = "\n".join(t.get("text") or "" for t in thread[1:]) if service and sns_rules.reply_counted({"twitter": "x"}.get(service, service)) else ""
     links = [] if service != "facebook" else [node.get("externalLink") or ""]
+    # X だけの文面（x_post.py・utm_campaign=xpost。台帳 S42）はその決まり（ルール20）で見る
+    kind = sns_rules.campaign_kind({"twitter": "x"}.get(service, service), sns_rules.links_in("\n".join(texts))) if service else "article"
     problems = sns_rules.check_post({"twitter": "x"}.get(service, service), text, [], article, reply_text=reply, links=[x for x in links if x],
-                                    pending_video=True) if service else ["SNS が分からない"]
+                                    pending_video=True, kind=kind) if service else ["SNS が分からない"]
     if service and article:
         # リンクの位置が今の THREADS_LINK_POS と違う・決まった動画の行が残っている予約も、出る前に直す（台帳 S39。変数を切り替えたら次の回で効く）
         own = [t.get("text") or "" for t in thread] or [node.get("text") or ""]

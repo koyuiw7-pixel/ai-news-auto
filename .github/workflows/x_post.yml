@@ -1,0 +1,75 @@
+name: X post
+
+# X（@saisoku_ai）だけの投稿（scripts/x_post.py・Buffer 経由）。2026-11-07 から X だけの枠（日本時間 7:30・12:30・21:00）に1本ずつ・1日3本まで
+# （Threads と別に数える。台帳 S42）。枠に遅れたら次の枠の前（最後は23時）までに出す。速報・災害の知らせは breaking_post.yml からすぐ
+# （ここでも、出てから30分たっても X に出ていない速報は拾う）。枠の外・出すものが無い回は Buffer を呼ばない。
+# GitHub の schedule は遅れたり飛んだりするため、10分ごと・枠の少しあと（UTC で書く）・記事の自動処理が終わるたびにも動かす
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+    - cron: "33 22 * * *"  # 7:33 日本時間（朝の枠）
+    - cron: "33 3 * * *"   # 12:33 日本時間（昼の枠）
+    - cron: "3 12 * * *"   # 21:03 日本時間（夜の枠）
+  workflow_run:
+    workflows: ["Auto Article Pipeline"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "文面の表示だけ（Buffer を呼ばない）"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  issues: write  # SNS ルールの門番（scripts/sns_rules.py）が止めた投稿の issue（ラベル sns-rule-violation）
+
+concurrency:
+  group: x-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    # workflow_run は同じリポジトリの main の処理が終わったときだけ（外部 PR からは動かさない）
+    if: >-
+      ${{ github.event_name != 'workflow_run' ||
+          (github.event.workflow_run.head_repository.full_name == github.repository &&
+           github.event.workflow_run.head_branch == 'main') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main  # きっかけの時点の古い commit ではなく、最新の記録を読む（二重投稿よけ）
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Post
+        env:
+          THREADS_MODE: ${{ vars.THREADS_MODE }}
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_LEDGER: x
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
+          BUFFER_DAILY_CAP: ${{ vars.BUFFER_DAILY_CAP }}
+          X_PER_DAY: ${{ vars.X_PER_DAY }}  # 減らすときだけ（計画の3本より増やせない）
+          GH_TOKEN: ${{ github.token }}  # 門番が止めた投稿の issue を立てる
+        run: python scripts/x_post.py ${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}
+      - name: Commit history
+        run: |
+          if [ -z "$(git status --porcelain state)" ]; then exit 0; fi
+          cp state/x_posted.json "$RUNNER_TEMP/mine_x.json" 2>/dev/null || echo '{}' > "$RUNNER_TEMP/mine_x.json"
+          cp state/buffer_calls/x.json "$RUNNER_TEMP/buffer_ledger.json" 2>/dev/null || true
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main
+            python scripts/x_post.py --merge "$RUNNER_TEMP/mine_x.json"
+            git add state/x_posted.json
+            if [ -f "$RUNNER_TEMP/buffer_ledger.json" ]; then mkdir -p state/buffer_calls; cp "$RUNNER_TEMP/buffer_ledger.json" state/buffer_calls/x.json; git add state/buffer_calls/x.json; fi
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "chore(x): 投稿を記録"
+            git push origin HEAD:main && exit 0
+            sleep 5
+          done
+          exit 1

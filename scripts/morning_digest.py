@@ -573,6 +573,11 @@ def verify(api_key: str, channels: dict, state: dict, key: str, kind: str, now: 
     return 0 if ok else 1
 
 
+def digest_services(when: datetime) -> list[str]:
+    """朝のまとめ・問いかけを出す SNS。2026-11-07〜 X は X だけの枠（7:30・12:30・21:00）で scripts/x_post.py が出すので外す（台帳 S42）"""
+    return ["threads"] if tp.sns_plan.x_on(when) else ["threads", "twitter"]
+
+
 def deliver(api_key: str, channels: dict, state: dict, post: dict, kind: str, now: datetime) -> int:
     key = post["key"]
     if key != f"{kind}-{now.astimezone(tp.JST):%Y%m%d}" or not post.get("x_text"):
@@ -582,7 +587,7 @@ def deliver(api_key: str, channels: dict, state: dict, post: dict, kind: str, no
     entry = {"style": kind, "format": kind, "hook": kind, "question": kind == "poll", "topic": TOPIC,
              "items": post["items"], "via": "buffer", "channels": {}, "permalink": "",
              "dueAt": (due or now).isoformat(timespec="seconds"), "postedAt": now.isoformat(timespec="seconds"),
-             **current, "postPlan": post, "expectedChannels": ["threads", "twitter"]}
+             **current, "postPlan": post, "expectedChannels": digest_services(due or now)}
     store_entry(state, key, entry)
     # 全対象の照合が完了するまでは、どの媒体にも新規作成しない。
     remote = {service: buffer_posts(api_key, channels[service]["id"], now)

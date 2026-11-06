@@ -376,5 +376,18 @@ class IsolatedTest(unittest.TestCase):
         self.assertIn("ValueError", err)
 
 
+# Threads の予定から X にも同じ記事を出す経路（2026-11-06 まで）の確かめ。2026-11-07 からは X は scripts/x_post.py だけが出す
+# （台帳 S42・tests/test_x_slots_20261106.py）ので、このファイルの確かめは日付によらず前の経路で動かす
+_X_COPY = mock.patch("sns_plan.x_on", return_value=False)
+
+
+def setUpModule():
+    _X_COPY.start()
+
+
+def tearDownModule():
+    _X_COPY.stop()
+
+
 if __name__ == "__main__":
     unittest.main()
