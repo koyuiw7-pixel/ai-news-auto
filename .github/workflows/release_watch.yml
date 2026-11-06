@@ -6,6 +6,11 @@ name: Release watch
 # 読めないときは速報にしない（失敗として終わる＝赤い×。記事は通常の回に任せる）。SNS には何も投稿しない。
 # GitHub の schedule は遅れることがあるので、1つの予定に4回の起動を置く。同時には1つだけ動き、後の回は前の回が
 # 起こした速報レーンの実行を見つけてすぐ終わる（同じ URL を二重に起こさない）。
+# ただしこのリポジトリでは schedule が大きく飛ぶ・遅れる（2026-11-06 毎月勤労統計: 23:02〜23:23 UTC の4回が約4時間遅れの
+# 03:11〜03:28 にまとめて来て、見張りの時間を過ぎていた。*/10 の bluesky.yml も1日に数回しか来ない）。そこで、確かに動く
+# 他の workflow（Cloudflare の watchdog が20分ごとに起こす Auto Article Pipeline・Buffer の見張り・記事を足すたびの
+# デプロイ）が始まるたびにも起動する（workflow_run）。入口の gate は予定表を読むだけ（ネットに出ない・数秒）で、
+# 見張る予定が無い回はそこで終わる。予定があるときだけ watch（PDF の取得・速報レーンの起動）に進む。
 run-name: ${{ github.event_name == 'workflow_dispatch' && format('Release watch（手動 {0}{1}）', inputs.event || 'すべて', inputs.dry_run == 'false' && '・本番' || '・試し') || 'Release watch' }}
 
 on:
@@ -56,6 +61,12 @@ on:
     - cron: "17 23 19 11 *"
     - cron: "23 23 19 11 *"
     # END release_calendar crons
+    # 日付によらない控え（日本時間 6〜17 時台の10分ごと。予定の時間の外は gate で数秒で終わる）
+    - cron: "*/10 21-23,0-8 * * *"
+  workflow_run:
+    workflows: ["Auto Article Pipeline", "Buffer delivery monitor (read only)", "Deploy to Cloudflare Workers"]
+    types: [requested]
+    branches: [main]
   workflow_dispatch:
     inputs:
       event:
@@ -75,19 +86,43 @@ permissions:
   contents: read
   actions: write  # 速報レーン（auto_run.yml）を起こし、その実行の状態を見る
 
-concurrency:
-  group: release-watch
-  cancel-in-progress: false
-
 env:
   # Threads の記事のリンクの位置（2026-11-06 テストの日・オーナー承認・台帳 S31/S39）。reply＝本文はリンク無し＋返信にリンク、body＝本文の最後。
   # 空なら body（11/5 の決まり）。切り替えは Actions の Variables の THREADS_LINK_POS だけ（予約中の投稿も出る前の読み直しで今の位置に直る）
   THREADS_LINK_POS: ${{ vars.THREADS_LINK_POS || 'body' }}
 
 jobs:
+  # 入口の門: いま見張る予定があるか（予定表を読むだけ。ネットにも GitHub の API にも出ない）。手動の回はいつも進む
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      due: ${{ steps.due.outputs.due }}
+    steps:
+      - if: github.event_name != 'workflow_dispatch'
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          sparse-checkout: scripts
+      - id: due
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "due=1" >> "$GITHUB_OUTPUT"
+          else
+            python3 scripts/release_watch.py due
+          fi
+
   watch:
+    needs: gate
+    if: needs.gate.outputs.due == '1'
     runs-on: ubuntu-latest
     timeout-minutes: 360
+    # 同時には1つだけ（gate は並んでよい。待ちは1つだけで、新しい待ちが来たら古い待ちは取り消される）
+    concurrency:
+      group: release-watch
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v7
         with:

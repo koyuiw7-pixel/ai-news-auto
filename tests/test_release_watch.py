@@ -56,11 +56,77 @@ class CalendarTest(unittest.TestCase):
                     self.assertTrue(event.get(key), f"{event['id']}: {key}")
                 self.assertTrue(fast_lane.allowed_url(event.get("dispatch_url") or event["url"]), event["id"])
                 self.assertTrue(event["article"].get("basis") and event["article"].get("figures"), event["id"])
-        # 明日（11/6 08:30）の毎月勤労統計: 08:27〜09:05 を見張り、その前に4回起動する
+        # 11/6 08:30 の毎月勤労統計: 08:27〜10:30 を見張り（既定の見張る時間）、その前に4回起動する
         m = maikin_event()
         self.assertEqual(rw.window(m)[0].strftime("%m-%d %H:%M"), "11-06 08:27")
+        self.assertEqual(rw.window(m)[1].strftime("%m-%d %H:%M"), "11-06 10:30")
         self.assertIn("2 23 5 11 *", rw.crons(cal))
         self.assertTrue(m["url"].endswith("/r08/2609p/dl/houdou2609p.pdf"))
+
+    def test_late_start_still_watches_for_two_hours(self):
+        """起動が遅れても発表から2時間は見張る（2026-11-06 schedule が約4時間遅れた件。既定の終わり 120 分）"""
+        cal = rw.load_calendar()
+        self.assertEqual(rw.DEFAULT_PDF_WINDOW, (-3, 120))
+        for event in cal["events"]:
+            if event["kind"] == "pdf" and "window" not in event:
+                start, end = rw.window(event)
+                self.assertEqual(end - rw._jst(event["at"]), timedelta(minutes=120), event["id"])
+        m = maikin_event()
+        at = rw._jst(m["at"])
+        self.assertEqual(rw.due(cal, at + timedelta(minutes=70)), ["maikin-2026-09"])
+        self.assertEqual(rw.due(cal, at + timedelta(minutes=121)), [])
+        # 70分遅れで始まった回でも、読めれば速報レーンへ（発表の時刻は公式の予定の時刻のまま）
+        clock = {"now": at + timedelta(minutes=70)}
+        sent = []
+        fake = FakePdf(200, MAIKIN)
+        with patch.object(rw, "fetch", fake.fetch), patch.object(rw.pdf_text, "extract", fake.extract):
+            rc = rw.run(cal, only=m["id"], now_fn=lambda: clock["now"], sleep=lambda _: None, log=lambda *_: None,
+                        deliver=lambda meta: sent.append(meta) or True)
+        self.assertEqual((rc, len(sent)), (0, 1))
+        self.assertEqual(sent[0]["publishedAt"], at.astimezone(rw.UTC).isoformat())
+
+    def test_gate_is_offline_and_cheap(self):
+        """入口の門（due）は予定表を読むだけ。予定の外ではネットにも GitHub にも出ない"""
+        cal = rw.load_calendar()
+
+        def boom(*_a, **_k):
+            raise AssertionError("門はネットに出ない")
+        m = maikin_event()
+        with patch.object(rw, "fetch", boom), patch.object(rw, "gh", boom), patch.object(rw.urllib.request, "urlopen", boom):
+            self.assertEqual(rw.due(cal, rw._jst("2026-11-06T12:00")), [])
+            self.assertEqual(rw.due(cal, rw._jst(m["at"]) - timedelta(minutes=20)), ["maikin-2026-09"])
+            self.assertEqual(rw.run(cal, now_fn=lambda: rw._jst("2026-11-06T12:00"), log=lambda *_: None), 0)
+
+    def test_workflow_has_reliable_fallback_triggers(self):
+        """schedule が飛んでも動く: 確かに動く workflow の始まり（workflow_run）と日付によらない控えの cron で起き、
+        gate（ネットに出ない）が予定の無い回を止める。sync-workflow は控えの行を消さない"""
+        import shutil
+        import tempfile
+        text = rw.WORKFLOW_PATH.read_text("utf-8")
+        self.assertIn("workflow_run:", text)
+        self.assertRegex(text, r'workflows: \[[^\]]*"Auto Article Pipeline"')
+        self.assertIn("types: [requested]", text)
+        self.assertIn("python3 scripts/release_watch.py due", text)
+        self.assertIn("needs: gate", text)
+        self.assertIn("if: needs.gate.outputs.due == '1'", text)
+        watch = text.split("\n  watch:\n", 1)[1]
+        self.assertIn("group: release-watch", watch)
+        self.assertIn("cancel-in-progress: false", watch)
+        gate = text.split("\n  gate:\n", 1)[1].split("\n  watch:\n", 1)[0]
+        self.assertNotIn("pip install", gate)
+        self.assertNotIn("GH_TOKEN", gate)
+        fallback = '- cron: "*/10 21-23,0-8 * * *"'
+        self.assertIn(fallback, text.split(rw.CRON_END, 1)[1].split("workflow_run:", 1)[0])
+        with tempfile.TemporaryDirectory() as tmp:
+            copy = Path(tmp) / "release_watch.yml"
+            shutil.copy(rw.WORKFLOW_PATH, copy)
+            cal = rw.load_calendar()
+            cal["events"] = cal["events"][:1]
+            self.assertTrue(rw.sync_workflow(copy, cal))
+            synced = copy.read_text("utf-8")
+            self.assertIn(fallback, synced)
+            self.assertIn("workflow_run:", synced)
+            self.assertEqual(rw.workflow_crons(copy), rw.crons(cal))
 
     def test_disabled_event_is_not_watched(self):
         cal = rw.load_calendar()

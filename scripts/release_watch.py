@@ -15,6 +15,7 @@
   python scripts/release_watch.py run                  # 今の時刻に見張る予定があれば見張る（GitHub Actions の schedule）
   python scripts/release_watch.py run --dry-run        # 見つけても速報レーンを起こさない（何を渡すかだけ出す）
   python scripts/release_watch.py sample --event maikin-2026-09   # 前回の発表で読み取りを試す（何も起こさない）
+  python scripts/release_watch.py due                  # 今見張る予定があるか（ネットに出ない。workflow の入口の門）
   python scripts/release_watch.py crons                # 予定表から作った cron を出す
   python scripts/release_watch.py sync-workflow        # release_watch.yml の cron を予定表に合わせて書き直す
 """
@@ -49,6 +50,10 @@ TEXT_CAP = 12_000  # feeds.TEXT_CAP と同じ（記事の材料に渡す長さ�
 # GitHub の schedule は数分〜十数分遅れることがあるので、見張りの始まりより前に何回か起動を置く（後の回は前の回が済ませていればすぐ終わる）
 CRON_LEADS = (25, 17, 10, 4)
 REDISPATCH_MAX = 3
+# PDF の予定の見張る時間（発表時刻からの分）。予定ごとの "window" が無いときに使う。
+# 終わりを 120 分にするのは、起動が遅れても（2026-11-06 毎月勤労統計: 日付つき cron が4回とも約4時間遅れ）
+# 発表から1〜2時間の記事はまだ検索で読まれるから（オーナーの決まり: 速さと正確さ。読めなければ出さないのは変わらない）
+DEFAULT_PDF_WINDOW = (-3, 120)
 CRON_BEGIN = "# BEGIN release_calendar crons（scripts/release_watch.py sync-workflow が書く。手で直さない）"
 CRON_END = "# END release_calendar crons"
 
@@ -72,7 +77,7 @@ def window(event: dict) -> tuple[datetime, datetime]:
         start, end = event["window_jst"]
         return _jst(f"{event['date']}T{start}"), _jst(f"{event['date']}T{end}")
     at = _jst(event["at"])
-    before, after = event.get("window") or [-3, 30]
+    before, after = event.get("window") or DEFAULT_PDF_WINDOW
     return at + timedelta(minutes=before), at + timedelta(minutes=after)
 
 
@@ -119,6 +124,11 @@ def active_events(calendar: dict, now: datetime, lead_minutes: int = 30, only: s
         if start - timedelta(minutes=lead_minutes) <= now <= end:
             out.append(event)
     return out
+
+
+def due(calendar: dict, now: datetime, only: str = "") -> list[str]:
+    """今起動したら見張る予定の id（無ければ空）。ネットには出ない（workflow の入口の門。予定が無い回はここで終わる）"""
+    return [e["id"] for e in active_events(calendar, now, only=only)]
 
 
 # --------------------------------------------------------------------------- #
@@ -469,7 +479,7 @@ def sample(calendar: dict, event_id: str, log=print) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", choices=["run", "sample", "crons", "sync-workflow"])
+    parser.add_argument("command", choices=["run", "due", "sample", "crons", "sync-workflow"])
     parser.add_argument("--event", default="", help="この予定だけ")
     parser.add_argument("--dry-run", action="store_true", help="速報レーンを起こさない")
     args = parser.parse_args()
@@ -479,6 +489,14 @@ def main() -> int:
         return 0
     if args.command == "sync-workflow":
         print("書き直しました" if sync_workflow(calendar=calendar) else "変更なし")
+        return 0
+    if args.command == "due":
+        ids = due(calendar, datetime.now(JST), only=args.event)
+        print(f"{datetime.now(JST):%m-%d %H:%M} 見張る予定: {', '.join(ids) if ids else 'なし'}")
+        out = os.environ.get("GITHUB_OUTPUT")
+        if out:
+            with open(out, "a", encoding="utf-8") as fh:
+                fh.write(f"due={'1' if ids else '0'}\n")
         return 0
     if args.command == "sample":
         return sample(calendar, args.event)
