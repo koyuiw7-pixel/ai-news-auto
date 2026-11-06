@@ -1,0 +1,121 @@
+{
+  "slug": "toyblocks-robot-learning-world",
+  "sourceType": "web",
+  "sourceUrl": "https://huggingface.co/blog/allenai/toyblocks",
+  "sourceName": "Hugging Face公式ブログ",
+  "title": "米研究所Ai2、ロボット学習の仮想環境「ToyBlocks」を公開　データを自動生成",
+  "seoTitle": "ToyBlocksとは？ロボット学習の仮想環境　使い方と日本の状況",
+  "threadsPost": "米研究所Ai2が、ロボット学習の仮想環境を公開しました。\n\nロボットアームとブロックの仮想空間で、学習データを自動生成する研究環境です。\n1台のGPUで実時間の最大24倍の速さでデータを作れるとしています。\n\nロボットの学習データ、どんな方法で集めていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "ロボットの学習データ、いまは人が操作して集めていますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "ロボットに任せる作業は、どこまでなら任せてよいと考えますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "ロボットの学習データを仮想空間で大量に作り、同じ条件で試験を繰り返せる研究環境が登場しました。米研究所Ai2が公開した「ToyBlocks」は、1台のGPUで実時間の最大24倍の速さでデータを作れるとしています。コードやデータ、学習済みモデルは公開されていますが、日本向けの提供や案内はまだ発表されていません。",
+  "description": "米研究所Ai2が公開した仮想環境ToyBlocksは、ロボットアームとブロックを使い、学習データを自動で作ります。1台のGPUで実時間の最大24倍の速さです。コードやデータも公開されていますが、日本向けの案内はまだ発表されていません。",
+  "keywords": [
+    "ToyBlocks",
+    "ロボット学習",
+    "仮想環境",
+    "シミュレーション",
+    "学習データ 自動生成",
+    "VLA",
+    "Ai2",
+    "ロボット 評価",
+    "ManiFlow",
+    "Molmo 2"
+  ],
+  "tags": [
+    "ToyBlocks",
+    "ロボティクス",
+    "機械学習",
+    "オープンソース"
+  ],
+  "highlights": [
+    "ToyBlocksは、ロボットアームとブロックの仮想空間で、学習データを自動で作る研究環境です。",
+    "1台のGPUで数百の計画を並列実行し、実時間の最大24倍の速さでデータを作る。",
+    "コード・データ・学習済みモデル2つが公開。日本向けの案内はまだ発表されていません。"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の影響は小さいですが、ロボットの学習データを集めている開発チームは、公開コードの条件を確かめるとよいでしょう。"
+    ]
+  },
+  "body": "ToyBlocksは、ロボットアームと積み木を机の上に並べた様子を仮想空間に再現した、研究用の学習環境です。ロボットの研究者が、学習の条件を変えても同じ試験を何度でも繰り返せるように作られています。\n\n一般の人の仕事や暮らしに、すぐに変わることはありません。関係するのは、ロボットやAIを開発している人と研究者です。Hugging Faceの公式ブログによると、この環境は米研究所Ai2が公開したものです。\n\n## 仮想の机の上で、学習データを自動で作る\n\nロボットに新しい作業を覚えさせるには、人が遠くから操作して、作業の記録を集めることが多くあります。これには時間がかかります。ToyBlocksは、この記録（デモ）を仮想空間の中で自動で作ります。\n\n中心になるのは、押す、ひっくり返す、積むといった短い作業を覚えさせる仕組みです。研究チームは、ものをつかまずに動かす技（非把持）を、強化学習（試行錯誤で行動を覚えさせる方法）で学ばせています。学習には、NVIDIAのオープンソースの学習基盤「Isaac Lab」を使っています。\n\nこのとき、ブロックの位置や向きは、カメラ画像から推定せずにシミュレーターから正確な値を直接受け取ります。実際のロボットには得られない情報ですが、これで遠隔操作なしに技を量産できるとしています。\n\n作業の順番と腕の動きを決めるのは、タスクと動作を計画するプランナー（TAMP）です。計画は仮想空間で実行され、どの作業を行ったかのラベル付きの記録になります。ToyBlocksは、この計画を1台のGPU（画像計算用の半導体）で数百本まとめて動かし、実時間の最大24倍の速さでデータを作れるとしています。\n\n研究者は、学習データの量と中身を自分で調整できます。例えば、ひっくり返す作業の練習を増やしたり、積む作業の割合を変えたりできます。ブロックの大きさや机の高さを場面ごとに変えて、動きが変わっても対応できるかを試すこともできます。\n\n評価では、成功率だけを見るわけではありません。動作の速さ、ものにかかった力、作業の進み具合も測れるとしています。どの段階で失敗したかを切り分けやすいのが特徴です。\n\n研究の例として、言葉と画像を受け取ってロボットの動きを出すモデル（VLA）が、新しい配置にどこまで強いかを調べています。試験は、積む、外す、ひっくり返す、回すの4つの作業で行いました。左側の領域だけで学ばせて右側で試すといった、学習時と違う条件で評価します。\n\n結果として、広く使われる動作モデルは、大規模な事前学習をしていても、最初は新しい配置にうまく対応できませんでした。研究チームは改善策を加え、どの工夫がどれだけ効いたかも分析しています。対象にしたのは、ManiFlow、π0.5、MolmoAct 2です。\n\nほかにも、物の動きを予測する「行動条件付きワールドモデル」を、シミュレーターの代わりに使えるかを試しています。4つの作業で、それぞれ900本の動きの記録を作りました。半分は成功、残りの半分は配置をわずかに変えた失敗です。成功と失敗が半々なので、いつも「成功」と答えるだけのモデルの正答率は50%になります。\n\n上の計画を担う、画像と言葉を理解するモデル（VLM）と、下の動作モデルを組み合わせる試験もあります。「Ai2」の文字を積み木で作る課題では、Molmo 2が次の作業と対象のブロックを選び、ManiFlowが腕を動かします。難しさは3段階で、最も難しいのは文字が最初は見えない場合です。\n\n最新の生成AIは、計画や空間の理解、探索では目立つ力を見せます。一方で、ブロックの面や向きを見誤る知覚の誤りを起こしやすいと、公式ブログの続きの部分で報告されています（Hugging Face公式ブログの続きの部分、11/7確認）。\n\nシミュレーションだけで学んだモデルを、実機に直接載せる試験もあります。Franka FR3というアームとRobotiqのグリッパーを使い、30通りの配置で試しました。\n\n## 日本の研究者が使えるものと、公開の中身\n\n公開されるのは、次の5つです。\n\n- シミュレーションの素材（ロボットアームとブロックの仮想空間）\n- 課題と学習データを自動で作る生成ツール\n- 自動で作ったデモデータ\n- 学習コード・評価コードと、検証用のデータ\n- 学習済みモデル2つ（Molmo 2ベースとManiFlowベース）\n\nデータの公開ページでは、学習用データの「easy_train」が約2,760万行とされています（Hugging Faceのデータセットページ、11/7確認）。\n\nWebの画面からClaudeなどの最新AIモデルを接続すると、自然な言葉でロボットに指示を出せます。ロボットの専門知識がなくても試せるとしています。\n\n## まだ分からないこと\n\n- 日本の研究機関や企業向けの案内は、まだ発表されていません。\n- コードとデータの利用条件（ライセンス）の細かい内容は、まだ発表されていません。\n- ToyBlocksに続く「基盤世界」（FoundationWorlds）の追加時期は、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nToyBlocksは、ロボットアームと積み木を仮想空間に再現した研究用の環境です。人が遠くから操作する代わりに、学習データを自動で作ります。\n\nロボットの研究者は、積み木の数や大きさを変えて、同じ条件で試験を何度も繰り返せます。失敗したとき、原因が計画にあったのか動きにあったのかも切り分けやすくなるとしています。\n\nコードとデータ、学習済みモデルは公開されています。日本で使える案内は、まだ発表されていません。",
+  "channel": "Hugging Face公式ブログ",
+  "channelId": "",
+  "channelSlug": "hugging-face-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "ToyBlocks: A controlled world for robot learning and evaluation",
+  "publishedAt": "2026-11-06T14:00:48+00:00",
+  "generatedAt": "2026-11-06T15:13:01.070790+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/toyblocks-robot-learning-world-9356e52a.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "research",
+  "todayActions": [
+    "ロボットのAI開発に関わるなら、公開ページのライセンスと利用条件を先に読む。",
+    "学習データの集め方を見直すなら、自動生成の仕組みを公式ページで確かめる。"
+  ],
+  "qualityScore": 93,
+  "sourcePublishedAt": "2026-11-06T14:00:48+00:00",
+  "detectedAt": "2026-11-06T15:10:57+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/toyblocks-robot-learning-world-fig1-0b94908b.jpg",
+      "width": 1200,
+      "height": 857,
+      "kind": "hero",
+      "credit": "Hugging Face",
+      "sourceUrl": "https://huggingface.co/blog/allenai/toyblocks",
+      "original": "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/OAJMu2jr7i5jVAbmsKdZW.jpeg"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/toyblocks-robot-learning-world-fig2-cf2aa88c.jpg",
+      "width": 1200,
+      "height": 857,
+      "kind": "hero",
+      "credit": "Hugging Face",
+      "sourceUrl": "https://huggingface.co/blog/allenai/toyblocks",
+      "original": "https://www.datocms-assets.com/64837/1793826687-david-thumbnail-download-1.jpg"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Hugging Face",
+    "provider": "Hugging Face公式ブログ",
+    "sourceUrl": "https://huggingface.co/blog/allenai/toyblocks",
+    "original": "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/ov2i4rZoAkJw4z9FBaGfm.jpeg",
+    "width": 1024,
+    "height": 576,
+    "at": "2026-11-06T15:19:23+00:00"
+  },
+  "imageFocus": {
+    "x": 0.506,
+    "y": 0.355,
+    "box": [
+      0.025,
+      0.0,
+      0.988,
+      0.711
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/toyblocks-robot-learning-world-9356e52a.jpg"
+  }
+}
