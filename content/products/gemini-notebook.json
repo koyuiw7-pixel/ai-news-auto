@@ -6,7 +6,7 @@
   "companyName": "Google",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Gemini Notebookは、Googleが提供する学習や資料分析向けのAIノートツールです。2026年7月にNotebookLMから名称が変更されました。",
+    "text": "Gemini Notebookは、自分で選んだ資料を読み込ませて質問に答えたり学習教材を作ったりできるGoogleのAIノートです。Googleが10月30日に発表しました。",
     "sources": [
       "gemini-notebook-free-textbooks"
     ]
@@ -14,61 +14,62 @@
   "facts": [
     {
       "label": "料金",
-      "value": "無料の教科書を追加可能",
+      "value": "無料から利用可能",
       "sources": [
         "gemini-notebook-free-textbooks"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本でも提供されている",
+      "value": "日本で利用できる",
       "sources": [
         "gemini-notebook-free-textbooks"
       ]
     },
     {
-      "label": "使える場所",
-      "value": "ノート内で利用可能",
+      "label": "向いている人",
+      "value": "学生や独学者、研究者",
       "sources": [
-        "gemini-notebook-free-textbooks"
+        "gemini-notebook-free-textbooks",
+        "google-labs-eric-topol-ai-healthcare-prevention"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "OpenStaxなど数百冊の無料教科書をノートに追加してAIに質問できます。",
+      "text": "選んだ資料に基づいた回答の生成と、インライン引用や原典リンクの表示ができます。",
       "sources": [
         "gemini-notebook-free-textbooks"
       ]
     },
     {
-      "text": "追加した教科書の内容だけを根拠に、出典リンク付きで回答が得られます。",
+      "text": "数百冊の教科書を無料で追加し、学習ガイドや練習クイズなどに変換できます。",
       "sources": [
         "gemini-notebook-free-textbooks"
       ]
     },
     {
-      "text": "教科書から要点をまとめた学習ガイドや練習クイズ、フラッシュカードを作れます。",
-      "sources": [
-        "gemini-notebook-free-textbooks"
-      ]
-    },
-    {
-      "text": "論文のPDFや関連メディアを読み込ませて高度なデータ分析に活用できます。",
+      "text": "論文のPDFや関連メディアを読み込ませて、複雑な図表や知見を効率的に抽出できます。",
       "sources": [
         "google-labs-eric-topol-ai-healthcare-prevention"
       ]
     },
     {
-      "text": "稟議データのチェック支援などに活用する事例が公開されています。",
+      "text": "教員が授業計画や図を作ったり、創作文の指導力を伸ばしたりする用途に使えます。",
       "sources": [
-        "kddi-iret-ai-use-cases-113"
+        "google-ai-educator-series-expansion"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "教科書の追加は無料で行えます。",
+      "text": "無料枠では標準で1ユーザー100件のノートブックと、1ノートブック50件のソースを利用できます。",
+      "sources": [
+        "gemini-notebook-free-textbooks"
+      ]
+    },
+    {
+      "text": "Google AI Proプランは月2,900円（月払い）で、無料版の4倍の使用量上限が使えます。",
       "sources": [
         "gemini-notebook-free-textbooks"
       ]
@@ -76,56 +77,48 @@
   ],
   "japan": [
     {
-      "text": "NotebookLM（Gemini Notebook）は日本でも提供されています。",
+      "text": "公式ヘルプの対応国・地域の一覧に日本が含まれており、日本で利用できます。",
       "sources": [
         "gemini-notebook-free-textbooks"
       ]
     }
   ],
-  "howto": [
-    {
-      "text": "ノートの中でAdd sourcesを選び、Textbooksを選ぶことで教科書を追加できます。",
-      "sources": [
-        "gemini-notebook-free-textbooks"
-      ]
-    }
-  ],
-  "differences": [
-    {
-      "text": "Google Play Booksの電子書籍に加え、授業用の教科書も追加できるようになりました。",
-      "sources": [
-        "gemini-notebook-free-textbooks"
-      ]
-    }
-  ],
+  "howto": [],
+  "differences": [],
   "faq": [
     {
-      "q": "以前の名前は何ですか？",
-      "a": "以前はNotebookLMと呼ばれていました。",
+      "q": "無料で使える？",
+      "a": "無料枠が用意されており、料金をかけずに利用できます。",
       "sources": [
         "gemini-notebook-free-textbooks"
       ]
     },
     {
-      "q": "どんな本を追加できますか？",
-      "a": "OpenStaxなどの教科書を数百冊追加できます。",
+      "q": "どのような資料を追加できる？",
+      "a": "数百冊の無料教科書などをソースとして追加できます。",
       "sources": [
         "gemini-notebook-free-textbooks"
       ]
     },
     {
-      "q": "どのような機能が作れますか？",
-      "a": "学習ガイドや練習クイズ、フラッシュカードを作れます。",
+      "q": "教科書を追加するとどうなる？",
+      "a": "回答の根拠が教科書に基づき、出典の引用リンクが付きます。",
       "sources": [
         "gemini-notebook-free-textbooks"
       ]
     },
     {
-      "q": "どのような用途に使われていますか？",
-      "a": "論文の解析や社内の稟議データチェック支援などに使われています。",
+      "q": "医療の現場ではどう活用されている？",
+      "a": "研究者が論文のPDFや関連メディアを読み込ませて、複雑な図表や知見を効率的に抽出するのに使われています。",
       "sources": [
-        "google-labs-eric-topol-ai-healthcare-prevention",
-        "kddi-iret-ai-use-cases-113"
+        "google-labs-eric-topol-ai-healthcare-prevention"
+      ]
+    },
+    {
+      "q": "学校の教育現場ではどう使われている？",
+      "a": "教員が授業計画や図を作ったり、創作文の指導力を伸ばしたりする用途に使われています。",
+      "sources": [
+        "google-ai-educator-series-expansion"
       ]
     }
   ],
@@ -133,7 +126,7 @@
     {
       "date": "2026-10-30",
       "slug": "gemini-notebook-free-textbooks",
-      "event": "Gemini Notebookに無料の教科書が数百冊追加された"
+      "event": "Gemini Notebookに無料教科書を追加"
     }
   ],
   "related": [
@@ -152,9 +145,9 @@
   "linkFrom": [
     "gemini-notebook-free-textbooks"
   ],
-  "signature": "fc57e71797c20365",
+  "signature": "72a96cc1b65d6738",
   "primarySignature": "bfad4428b265da93",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-03T14:09:47+00:00",
-  "updatedAt": "2026-11-03T14:09:47+00:00"
+  "updatedAt": "2026-11-06T14:31:23+00:00"
 }
