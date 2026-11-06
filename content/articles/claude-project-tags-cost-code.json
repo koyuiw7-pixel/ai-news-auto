@@ -1,0 +1,127 @@
+{
+  "slug": "claude-project-tags-cost-code",
+  "sourceType": "web",
+  "sourceUrl": "https://support.claude.com/en/articles/12138966-release-notes#entry-2026-11-06",
+  "sourceName": "Claude リリースノート（アプリ）",
+  "title": "Claude Enterpriseの利用額を経費コード別に集計　プロジェクトタグがベータ版で登場",
+  "seoTitle": "Claudeのプロジェクトタグとは？使い方と対象",
+  "threadsPost": "経理や情報システムでClaudeの費用を管理する人に、押さえておきたい話です。\n\nClaude Enterpriseで、プロジェクトに経費コードなどのタグを付けられるようになりました。\nタグ別に利用額を見られ、CSVにも書き出せます。\n\n社内の費用を部署や案件ごとに分けたいとき、何のコードで分けますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "社内の費用を、部署と案件のどちらで分けていますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "設定が増えても、費用を案件別に追えるほうを選びますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "Claude Enterpriseで、プロジェクトに自社の経費コードや案件番号を付け、利用額をタグ別に集計できるようになりました。ベータ版で、対象はEnterpriseの適格な組織に限られ、プロジェクトの外で使った分にはタグが付きません。個人プランやTeamプランへの影響は、発表では触れられておらず、管理者が設定画面でタグを作るところから始まります。",
+  "description": "Claude Enterpriseのプロジェクトタグ（ベータ版）を解説。経費コードや案件番号をプロジェクトに付け、利用額をタグ別に集計できます。対象外の条件、Claude Codeの設定、見方と注意点をまとめました。",
+  "keywords": [
+    "Claude プロジェクトタグ",
+    "Claude Enterprise",
+    "Claude 利用額 集計",
+    "Claude 経費コード",
+    "Claude Code 設定",
+    "attributionProject",
+    "Claude ベータ版",
+    "Claude 部門別 コスト",
+    "チャージコード",
+    "案件番号 AI 費用"
+  ],
+  "tags": [
+    "Claude",
+    "生成AI",
+    "Anthropic",
+    "Enterprise",
+    "コスト管理"
+  ],
+  "highlights": [
+    "Claude Enterpriseでプロジェクトにコードのタグを付け、利用額をタグ別に確認できるようになった",
+    "1つのプロジェクトに付けられるタグは最大16個で、タグ1つにつき値は1つ",
+    "利用額の反映は約2時間後から。タグを付ける前の分は集計に入らない"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "法人向け",
+    "free": null,
+    "audience": "Enterprise管理",
+    "take": "対象条件に当てはまるか確認し、使うならタグを付けてから作業を始める運用にするとよいでしょう。",
+    "judgedAt": "2026-11-06T18:23:15.062909+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "Enterpriseの管理者は、案件番号や経費コード別にClaudeの利用額を社内で振り分けやすくなります。",
+      "経理の担当者は、設定画面の利用額をCSVに書き出して、社内の按分資料に使えます。",
+      "利用部門には、作業開始前にタグを付ける運用を伝えておくと取りこぼしを防げます。"
+    ]
+  },
+  "body": "Claude Enterpriseを使う組織の管理者と、費用を部署や案件に割り振る経理の担当者に関係する機能です。個人プランやTeamプランへの影響は、発表では触れられていません。\n\nプロジェクトタグは、ClaudeのプロジェクトにWBSコード（作業を分解した番号）、チャージコード（費用の請求先を示す番号）、案件番号などを付ける仕組みです。付けたコードごとに、利用額を確認できます。\n\n## 対象外の条件が多いベータ版\n\nClaudeのヘルプセンターによると、プロジェクトタグはClaude Enterpriseのプランでベータ版として提供されています。設定をオンにする操作はなく、対象の組織では自動で有効になります。\n\n次の組織は対象外です。\n\n- HIPAA（米国の医療情報保護法）の構成を使う組織\n- 顧客管理の暗号鍵（CMEK）を使う組織\n- データを保持しないZDR（Claude Code向けを含む）や、最小限のデータ保持を使う組織\n- データを米国外に保存している組織\n- Claude Desktopを自社のモデル提供元経由にしている組織\n\nタグ名と値は、組織のすべての利用者に見えます。機密情報は入れないようにしてください。\n\n## タグと値の仕組み、誰が何をできるか\n\nタグは報告に使う分類の名前で、たとえば cost_code や client_matter です。値はコードそのもので、たとえば CC-1042 です。1つのタグが持てる値は、1プロジェクトにつき1つです。1つのプロジェクトに付けられるタグは最大16個です。\n\n権限は役割ごとに分かれています。\n\n- タグの作成と値の管理: プライマリオーナー、オーナー、またはオーナー権限のあるカスタムロール\n- プロジェクトへの値の設定: そのプロジェクトの「編集可」の権限を持つ人\n- タグ別の利用額の閲覧: プライマリオーナー、オーナー、または分析の閲覧と請求の閲覧の権限を持つカスタムロール\n- APIキーの作成: プライマリオーナー\n\nタグ名は小文字で空白なしにする決まりで、あとから変更できません。値の入力方式は、用意した一覧から選ぶ方式と、利用者が自由に入力する方式から選べます。新しいプロジェクトへの値の設定を必須にする設定もあります。\n\n## どの作業でタグが付くか\n\nタグが効くのは、プロジェクトの中での作業だけです。プロジェクトの外の作業にはタグが付きません。\n\n- プロジェクト内のチャット: 付く\n- プロジェクト内の統合チャットとCowork: 付く\n- パソコン上のCoworkタスク: Claude Desktop 3.6556.1以降に更新し、タスクごとに1つのプロジェクトを選ぶと付く\n- ターミナルやデスクトップのClaude Code: プロジェクトを設定すれば付く。Claude Code 2.1.305以降、またはClaude Desktop 3.6556.1以降が必要\n\n次の場面では対象外です。\n\n- Web版のClaude Code\n- Claude for Office\n- Claude in Chrome\n- Claude Design\n- SlackとMicrosoft TeamsのClaude\n- アーティファクト\n- 音声モード\n- Claude APIとClaude Console\n- Amazon Bedrock、Google Cloud Vertex AI、ゲートウェイ、APIキー経由のClaude Code\n\n**Claude Codeはファイルでプロジェクトを指定する**\n\nClaude Codeにはプロジェクトを選ぶ画面がありません。利用者が設定ファイルに自分で書く必要があります。未設定でも警告は出ず、利用分にはタグが付かないままです。管理者は、利用者へ事前に伝えておく必要があります。\n\n手順は次のとおりです。\n\n- Claudeでプロジェクトを開き、URLの末尾にあるIDをコピーする（claude.ai/project/ の後ろの部分）\n- リポジトリ内の .claude/settings.json、または全リポジトリに効かせるなら ~/.claude/settings.json を開く\n- { \"attributionProject\": \"PROJECT_ID\" } の行を、自分のIDで追加する\n- リポジトリの設定ファイルを使った場合は、Claude Codeに聞かれたときにフォルダーを信頼する\n\nファイルはJSONとして正しい形を保つ必要があります。余分なカンマが1つあるだけで、そのパソコンのClaude Codeが動かなくなることがあります。\n\n**利用額の見方と数字の読み方**\n\n組織設定の利用状況の画面にある「プロジェクト別の支出」で、「グループ化」のメニューから作ったタグを選びます。期間と製品のメニューで絞り込めます。データは前日の終わり（UTC）までです。「Export CSV」でCSVに書き出せます。\n\n非公開プロジェクトの名前は、この画面とCSVでは「Private project」と表示されます。分析ダッシュボードと分析API、コンプライアンスAPIでは本来の名前が出ます。\n\n数字を読むときは、作業を始める前にタグを付けておく必要があります。タグの設定が効くまでに約2時間かかり、効く前の利用分はタグの集計に入りません。公式ヘルプはこの節で他にも注意点を挙げていますが、取得できた範囲では最初の1点までです。\n\n## まだ分からないこと\n\n- 正式版（一般提供）に移る時期はまだ発表されていません。\n- 日本のEnterprise契約での提供状況はまだ発表されていません。\n- ベータ版の期間中に、対象外の条件が緩和されるかどうかはまだ発表されていません。\n\n**管理者が最初にすること**\n\nオーナーは、組織設定のプロジェクトタグの画面で「Create tag」を選び、名前（例 cost_code）を入力します。値の入力方式を選び、一覧から選ばせる場合は1行に1つずつ値を入れます。CSVで取り込むこともでき、1列で見出しを値にします。\n\n新規プロジェクトに値を必須にしたい場合は、「Required」のスイッチをオンにします。値はあとから追加できます。プロジェクトを編集できる人は、プロジェクトを開いて「Tags」の欄から「Add tag」を選び、タグと値を指定します。",
+  "easy": "## ひとことで言うと\n\nClaude Enterpriseで、プロジェクトごとに経費コードなどのタグを付けられるようになりました。タグ別に利用額を見られるので、社内の費用の割り振りに使えます。\n\n**何ができるのか**\n\n会社が普段使っている経費コードや案件番号を、Claudeのプロジェクトに付けられます。付けたコードごとに、利用額を一覧で確認できます。ベータ版（試験提供）で、対象はEnterpriseの適格な組織です。\n\n**注意しておきたい点**\n\nタグが効くのは、プロジェクトの中で行った作業だけです。プロジェクトの外の作業には付きません。\n\nタグを付けた後、集計に反映されるまで約2時間かかります。付ける前の利用分は集計に入りません。作業を始める前にタグを付けておく必要があります。\n\n**使うには**\n\nタグを作れるのは、オーナーなどの管理者です。プロジェクトを編集できる人は、そのプロジェクトに値を設定できます。\n\n利用額を見られるのは、オーナーか、分析と請求の閲覧権限を持つ役割の人です。Claude Codeで使う場合は、設定ファイルにプロジェクトIDを書く必要があります。",
+  "channel": "Claude リリースノート（アプリ）",
+  "channelId": "",
+  "channelSlug": "watch-claude-apps-release-notes",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Claude: Track spend by cost code with project tags (beta)",
+  "publishedAt": "2026-11-06T18:22:35.973918+00:00",
+  "generatedAt": "2026-11-06T18:23:15.062896+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/claude-project-tags-cost-code-0a0e6346.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "Claude APIやClaude Codeでもプロジェクトタグは使えますか？",
+      "a": "Claude APIとClaude Consoleは対象外です。Claude CodeはBedrock、Vertex AI、ゲートウェイ、APIキー経由だと対象外です。ターミナルやデスクトップ版は設定すると使えます。"
+    },
+    {
+      "q": "Claude Codeでプロジェクトを設定し忘れるとどうなりますか？",
+      "a": "利用分にタグが付かないままで、警告も出ません。管理者が利用者に設定ファイルの手順を伝えておく必要があります。"
+    },
+    {
+      "q": "プロジェクトのタグ名は後から変えられますか？",
+      "a": "タグ名はあとから変更できません。小文字で空白なしの名前にする決まりなので、作成前に命名ルールを決めておくと安心です。"
+    }
+  ],
+  "todayActions": [
+    "自社のEnterprise契約が、HIPAAやZDRなどの対象外の条件に当たらないか確認する",
+    "管理者は、社内で使う経費コードや案件番号の一覧を整理する",
+    "Claude Codeを使う部門に、設定ファイルへのプロジェクトID追記を事前に伝える"
+  ],
+  "relatedSlugs": [
+    "claude-marketplace-new-agents-products"
+  ],
+  "qualityScore": 88,
+  "detectedAt": "2026-11-06T18:22:35+00:00",
+  "imageCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A quiet office meeting room with soft light through the window, a wooden table and empty chairs, with a few stacks of paper documents and folders on the table.",
+    "provider": "Cloudflare Workers AI",
+    "noProduct": true,
+    "at": "2026-11-06T18:27:24+00:00"
+  },
+  "imageFocus": {
+    "x": 0.419,
+    "y": 0.413,
+    "box": [
+      0.016,
+      0.0,
+      0.822,
+      0.827
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/claude-project-tags-cost-code-0a0e6346.jpg"
+  }
+}
