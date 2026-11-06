@@ -7819,6 +7819,17 @@
       "skipped": true,
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3224"
     },
+    "4ad03e5c7229d6d8": {
+      "at": "2026-11-06T20:24:52.339828+00:00",
+      "costUsd": 0.024,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "kddi-buffmee-rag-latency-38-percent",
+      "url": "https://cloud.google.com/blog/ja/topics/customers/how-kddi-optimized-rag-performance-with-agent-development-kit/"
+    },
     "4ad9f1e77d9d2a75": {
       "at": "2026-11-06T12:51:10.039650+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -17230,6 +17241,13 @@
       "slug": "it-services-industry-market-analysis",
       "url": "https://www.tsr-net.co.jp/data/detail/1203376_1527.html"
     },
+    "efd5a4fa858ee3e3": {
+      "at": "2026-11-06T20:22:15.011310+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「プレビュー版を数か月以内に提供予定」→ 元記事にも確認済みの文脈にもプレビュー提供の時期は書かれておらず、「数か月以内」は創作。提供時期の取り違えにあたる; 「従来のVMとコンテナの課題を踏まえ、分離性と起動速度を両立させる設計とした」→ 元記事の趣旨の要約として概ね妥当だが、「両立」という評価語は元記事の直接表現ではなく言い過ぎ寄り; 「コンテナは…root",
+      "skipped": true,
+      "url": "https://cloud.google.com/blog/ja/topics/ai-infrastructure/agent-compute-engine-deep-dive/"
+    },
     "eff0231c4d1087b6": {
       "at": "2026-11-06T01:42:59.353685+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -18149,48 +18167,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T13:06:49.779971+00:00",
-      "attempt": 1,
-      "id": "b6d10506b1ce1e8d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "nli-research",
-      "title": "グローバル株式市場動向(2026年10月)－AI投資への先行き懸念からセクターローテーションへ"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T13:08:14.620735+00:00",
-      "attempt": 2,
-      "id": "b6d10506b1ce1e8d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "nli-research",
-      "title": "グローバル株式市場動向(2026年10月)－AI投資への先行き懸念からセクターローテーションへ"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T13:10:58.216011+00:00",
-      "attempt": 1,
-      "id": "3af0ef7d790a050b",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "softbank-news",
-      "title": "大迫力のダンスバトル！ ハーフタイムショーで推しと最接近！ 史上最多の20チームが参戦する「D.LEAGUE 26-27 SEASON」開幕戦レポート"
-    },
     {
       "accepted": false,
       "at": "2026-11-05T13:12:04.260186+00:00",
@@ -23948,6 +23924,72 @@
       "warnings": [
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（GA・CAC）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T20:22:15.011277+00:00",
+      "attempt": 1,
+      "id": "efd5a4fa858ee3e3",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「プレビュー版を数か月以内に提供予定」→ 元記事にも確認済みの文脈にもプレビュー提供の時期は書かれておらず、「数か月以内」は創作。提供時期の取り違えにあたる",
+        "「従来のVMとコンテナの課題を踏まえ、分離性と起動速度を両立させる設計とした」→ 元記事の趣旨の要約として概ね妥当だが、「両立」という評価語は元記事の直接表現ではなく言い過ぎ寄り",
+        "「コンテナは…root レベルの制御が必要なコーディングエージェントには十分ではないとしています」→ 元記事はコーディング・開発者アシスタントに完全な分離とカーネル/root制御が必要と述べており、要約として概ね一致"
+      ],
+      "score": 72,
+      "source": "google-cloud-blog-ja",
+      "title": "エージェントの時代に向けたコンピュート基盤 Agent Compute Engine 開発の裏側"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T20:24:01.488522+00:00",
+      "attempt": 1,
+      "id": "4ad03e5c7229d6d8",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 50.5字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 92.1,
+        "avg_sentence": 50.5,
+        "long_share": 0.226,
+        "max_paragraph": 162,
+        "paragraphs": 17,
+        "sentences": 31
+      },
+      "score": 85,
+      "source": "google-cloud-blog-ja",
+      "title": "KDDI のコンシューマー向け RAG アプリ「Buffmee」: 高速化と信頼性向上を実現した舞台裏",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "初めて出たところで言い換えていない略語（TTFT・LLM・EPUB）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T20:24:40.951024+00:00",
+      "attempt": 0,
+      "id": "4ad03e5c7229d6d8",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.0,
+        "avg_sentence": 44.0,
+        "long_share": 0.111,
+        "max_paragraph": 160,
+        "paragraphs": 18,
+        "sentences": 36
+      },
+      "score": 92,
+      "source": "google-cloud-blog-ja",
+      "title": "KDDI のコンシューマー向け RAG アプリ「Buffmee」: 高速化と信頼性向上を実現した舞台裏",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "初めて出たところで言い換えていない略語（TTFT・LLM・EPUB）"
       ]
     }
   ],

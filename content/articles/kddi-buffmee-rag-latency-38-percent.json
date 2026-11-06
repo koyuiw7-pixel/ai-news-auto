@@ -1,0 +1,142 @@
+{
+  "slug": "kddi-buffmee-rag-latency-38-percent",
+  "sourceType": "web",
+  "sourceUrl": "https://cloud.google.com/blog/ja/topics/customers/how-kddi-optimized-rag-performance-with-agent-development-kit/",
+  "sourceName": "Google Cloud 公式ブログ（日本）",
+  "title": "AIの応答が38%速く　KDDIの「Buffmee」が自動評価で目標達成",
+  "seoTitle": "Buffmeeの応答を速くした方法とは　KDDIの自動評価",
+  "threadsPost": "AIサービスを開発している人に、知っておいてほしい話です。\n\nKDDIのAIアプリ「Buffmee」は、合計の応答時間を38%減らしました。\n最初の文字が返るまでの時間も、18%近く短くなっています。\n\nAIの回答を待てるのは、何秒くらいまでですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "AIの回答を待てるのは、何秒くらいまでですか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "社内のAIの回答、いまも人が手で確かめていますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "回答の速さと正確さ、どちらを優先しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "KDDIの消費者向けAIアプリ「Buffmee」は、回答までの合計時間が38%減り、目標の応答性能を達成しました。最初の文字が返るまでの時間も18%近く短くなり、回答の根拠を示す点数は25%高まりました。アプリの利用者に今すぐ変わることはありませんが、AIサービスを作る開発者は、人手に頼らない評価の手法を確かめてみるとよいでしょう。",
+  "description": "KDDIの消費者向けAIアプリ「Buffmee」は、自動評価とプロンプトの分割で応答時間を38%減らしました。最初の文字が出るまでの時間も18%近く改善しています。AI開発者が使える手法を、Google Cloudの発表から整理します。",
+  "keywords": [
+    "Buffmee",
+    "KDDI RAG",
+    "RAG 高速化",
+    "AI 応答速度 改善",
+    "AI 自動評価",
+    "LLM-as-a-Judge",
+    "ハルシネーション 対策",
+    "Agent Development Kit",
+    "Google Cloud 事例",
+    "生成AI 評価 自動化",
+    "TTFT 改善"
+  ],
+  "tags": [
+    "生成AI",
+    "RAG",
+    "Google Cloud",
+    "KDDI",
+    "AIエージェント"
+  ],
+  "highlights": [
+    "KDDIのAIアプリ「Buffmee」は、合計の応答時間を38%減らし、目標の性能を達成",
+    "最初の文字が返るまでの時間（TTFT）は18%近く改善し、根拠性スコアは25%高まった",
+    "評価は人の手から自動の仕組みへ。100以上の資料を対象に、数百の自動テストを構築"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "不明",
+    "free": null,
+    "audience": "AIアプリの開発者",
+    "take": "Buffmeeの料金は発表に含まれていないため、KDDIの公式案内で確認するとよいでしょう。",
+    "judgedAt": "2026-11-06T20:23:51.891703+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "自社でAI検索を作る開発者は、評価の自動化とプロンプトの分割を試す候補にできます。",
+      "利用者としては、今すぐ料金や操作が変わるわけではありません。"
+    ]
+  },
+  "body": "AIアプリを使うだけの人は、今回の発表で操作や料金が変わることはありません。一方、自社の資料をもとに答えるAIを作る開発者には、応答を速くしながら答えの正確さを保つ手法が具体的に示されています。\n\nKDDIの「Buffmee」は、書籍・雑誌・ウェブメディアなど100以上のソースをもとに答える消費者向けのアプリです。AIが資料を探してから答える仕組みを、RAG（検索拡張生成）と呼びます。「成長をサポートするAI」という考え方で作られ、回答には情報源を引用します。\n\n開発はKDDIアイレット、Google Cloud Consulting、KDDIの専門AIチームが組んで進めました。Google Cloud公式ブログの発表によると、最初の課題は、書籍や雑誌など形式の違うコンテンツを、AIの根拠（グラウンディング）として使える状態にすることでした。\n\n## 応答は38%速くなり、出だしも18%近く早まった\n\nもう1つの課題は、応答の遅さ（レイテンシ）でした。目標の応答時間に届かず、ハルシネーション（AIがもっともらしい誤りを答えること）を減らす確かな方法も必要でした。\n\nその後、アプリ全体の合計応答時間は38%減り、目標の応答性能を達成しました。最初のトークン（AIが文字を数える単位）が返るまでの時間（TTFT）も、18%近く改善しています。\n\n回答が資料の根拠にどれだけ沿っているかを示す「根拠性スコア」は25%高まりました。（編集部注：根拠性スコアは、回答が資料に基づいているかを測る指標です。）\n\nKDDIの小野田隼也氏は、目指したのは「すぐに RAG システムとして機能するプラットフォーム」だったと話しています。\n\n## 人の目の確認を、自動評価に置き換えた\n\n手動テストは手間がかかり、大量の資料に広げられませんでした。そこでチームは、評価の仕組みを組み直しました。使ったのは、Gemini Enterprise Agent Platform Evaluation Service（生成AIの出力を客観的に測るGoogleのツール）です。\n\nこのツールは、モデルの移行やプロンプトの編集、ファインチューニング（追加学習）の評価にも使えます（Google Cloudの公式ドキュメント、11/7確認）。\n\nLLM-as-a-Judge（別のAIに回答を採点させる方法）などを取り入れました。数百の自動テストと、比べる基準になるベンチマーク用のデータセットも作りました。評価用のAIが回答を採点し、人が実際の回答を見て合格ラインを決めています。\n\n信頼性を保つため、チームは4つの方法を使いました。\n\n- 重要な指標は、1〜5の段階評価をやめました。代わりに合格（1）と不合格（0）の2値にしました。ばらつきが減り、自動化の精度が上がりました。\n- 資料を、ファイル形式（ウェブ記事、EPUB、PDF、構造化データ）と構成（テキスト中心、画像中心、混合）の2軸で分類しました。各区画から代表例を選び、評価の作業を75%減らしました。\n- 自動スコアと、ランダムに選んだ回答を突き合わせ、「リリースしてよい品質」の基準を決めました。\n- 800行を超えるシステムプロンプト（AIへの指示文）を、機能ごとのスキルに分けました。スキルは、ADK（Agent Development Kit、AIエージェントを作る開発キット）のものです。必要な部分だけを読み込む仕組みです。\n\n**応答の出だしが遅くなる原因を、運用ログから探した**\n\n応答を速くするため、チームは実際の運用ログを調べました。使ったのは、BigQuery Agent Analytics（分析ツール）とADKのログ分析エージェントです。スキルの分割やプロンプトの肥大化が、TTFTにどう影響するかを可視化したのです。特に、複数ページにわたる複雑なシステムプロンプトで影響が大きかったといいます。\n\nそこで、スキルをインラインで統合したシステムプロンプトに直しました。サブエージェントの振り分け（ルーティング）も見直しました。回答の精度を保ったまま、処理の詰まり（ボトルネック）を解消できたと発表されています。\n\n自社で同じ手法を試すなら、発表では次の3つが挙げられています。\n\n- Gemini Enterprise Agent Platform Evaluation Serviceで品質を体系的に測る\n- ADKでエージェントを構造化し、段階的な開示を慎重に適用する\n- エージェント検索で回答を資料に結びつけ、検索クエリを検査する\n\nADKはオープンソースで、Python、TypeScript、Go、Javaで使えます（Google Cloudの公式ドキュメント、11/7確認）。\n\nサイソクは11月2日、Google Cloudがエージェント開発の評価で得た4つの教訓を報じていました。（[Google Cloud、AIエージェント開発の評価で得た4つの教訓を公開](/articles/google-agent-eval-engineering-lessons)）\n\n編集部の見方では、人の目による確認を減らし、評価を自動の仕組みに移したことが今回の改善の土台です。ただし、合格ラインを決める段階では人が確かめています。\n\n## まだ分からないこと\n\n- 38%と18%は、どのくらいのデータ量と条件で測った数字か、詳しくは公開されていません。\n- Buffmeeの料金は、この発表には含まれていません。",
+  "easy": "## ひとことで言うと\n\nKDDIのAIアプリ「Buffmee」は、回答までの時間を38%減らしました。AIの回答を人が一つずつ確かめる作業を、自動の仕組みに置き換えたのが工夫です。\n\n## 何をしたのか\n\nBuffmeeは、本やウェブ記事など100以上の情報源をもとに答えるアプリです。AIが先に資料を探してから答える仕組みを、RAG（検索拡張生成）と呼びます。\n\n回答の質を機械で採点する仕組みも作りました。根拠性スコア（回答が資料に沿っているかを示す点数）は25%上がりました。\n\nもう1つは、AIへの指示文（プロンプト）が長くなりすぎて、返事が遅れていた問題です。指示文を機能ごとに分けて、必要な部分だけを読み込むようにしました。その結果、最初の文字が返るまでの時間は18%近く短くなりました。\n\n## 自分のサービスで試すには\n\nADKはオープンソースで、Python、TypeScript、Go、Javaで使えます。Gemini Enterprise Agent Platform Evaluation Serviceで、回答の品質を測ることもできます。",
+  "channel": "Google Cloud 公式ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "google-cloud-blog-ja",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "KDDI のコンシューマー向け RAG アプリ「Buffmee」: 高速化と信頼性向上を実現した舞台裏",
+  "publishedAt": "2026-11-05T01:00:00+00:00",
+  "generatedAt": "2026-11-06T20:23:51.891689+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/kddi-buffmee-rag-latency-38-percent-028a0710.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "general",
+  "todayActions": [
+    "自社でAIの回答を評価しているなら、人が確認する項目を絞れるか見直しておくとよいでしょう。",
+    "Gemini Enterprise Agent Platform Evaluation Serviceの公式ドキュメントで、評価の始め方を確認するとよいでしょう。",
+    "ADKの公式ドキュメントで、対応している言語（Python・TypeScript・Go・Java）を確かめておくとよいでしょう。"
+  ],
+  "relatedSlugs": [
+    "google-agent-eval-engineering-lessons"
+  ],
+  "qualityScore": 92,
+  "sourcePublishedAt": "2026-11-05T01:00:00+00:00",
+  "detectedAt": "2026-11-06T20:21:01+00:00",
+  "originalTitle": "KDDIのAIアプリ「Buffmee」、応答時間38%減　評価の自動化で目標達成",
+  "titleStyle": "2026-11-03",
+  "layout": "noir",
+  "summaryLine": "KDDIのAIアプリ「Buffmee」は、合計の応答時間を**38%**減らし、目標の性能を達成",
+  "keyFigure": {
+    "value": "38",
+    "unit": "%",
+    "label": "応答時間"
+  },
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/kddi-buffmee-rag-latency-38-percent-fig1-573759d9.jpg",
+      "width": 1200,
+      "height": 971,
+      "kind": "dense",
+      "credit": "Google Cloud",
+      "sourceUrl": "https://cloud.google.com/blog/ja/topics/customers/how-kddi-optimized-rag-performance-with-agent-development-kit/",
+      "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/image1_eoNfsTX.max-2000x2000.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google Cloud",
+    "provider": "Google Cloud 公式ブログ（日本）",
+    "sourceUrl": "https://cloud.google.com/blog/ja/topics/customers/how-kddi-optimized-rag-performance-with-agent-development-kit/",
+    "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/Customers.max-2500x2500.jpg",
+    "width": 1200,
+    "height": 748,
+    "at": "2026-11-06T20:25:12+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.482,
+    "y": 0.522,
+    "box": [
+      0.069,
+      0.181,
+      0.894,
+      0.864
+    ],
+    "ar": 1.6043,
+    "src": "https://ai-tech-express.jp/img/kddi-buffmee-rag-latency-38-percent-028a0710.jpg"
+  }
+}
