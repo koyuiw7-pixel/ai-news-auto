@@ -100,14 +100,6 @@
       "tries": 1,
       "url": "http://www.npa.go.jp/newlyarrived/2026/20260331001.html"
     },
-    "38d7cd8d70883115": {
-      "first": "2026-11-06T01:04:12.474189+00:00",
-      "next": "2026-11-06T04:04:12.474189+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "Google 検索 の AI モードの新機能で、あらゆるタスクをよりスムーズに",
-      "tries": 1,
-      "url": "https://blog.google/intl/ja-jp/products/explore-get-answers/search_aim_restaurant_booking/"
-    },
     "4a29cf0a9e1bd354": {
       "first": "2026-11-06T01:09:33.060536+00:00",
       "next": "2026-11-06T04:09:33.060536+00:00",
@@ -308,6 +300,7 @@
     "ef0cc29fc650426a": "2026-11-05T12:02:48.521507+00:00",
     "eff0231c4d1087b6": "2026-11-06T01:40:54.899345+00:00",
     "f064ab766e9f884b": "2026-11-05T00:40:55.498924+00:00",
+    "f1fb885281fc7130": "2026-11-06T04:20:52.146030+00:00",
     "f6fc941e4e764021": "2026-11-04T13:10:52.830493+00:00",
     "f789f34fdfee6cb3": "2026-11-04T13:10:52.830493+00:00",
     "fbea869e681a0029": "2026-11-06T02:00:51.769605+00:00"
@@ -4557,6 +4550,12 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu2/113/siryo/mext_00009.html"
     },
+    "148e0a5434bc8b7c": {
+      "at": "2026-11-06T04:23:19.827265+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（寄贈）",
+      "skipped": true,
+      "url": "https://www.ntt-east.co.jp/release/detail/20261106_01.html"
+    },
     "1495c9a5b49af194": {
       "at": "2026-10-28T17:58:46.461326+00:00",
       "reason": "followup: 新しい事実なし（salesforce-aiforce-claude-slack）",
@@ -5247,6 +5246,13 @@
       "section": "business",
       "slug": "boj-governor-press-conference-oct30",
       "url": "http://www.boj.or.jp/about/release/sousaidouga.htm"
+    },
+    "20fa25a4435a8a74": {
+      "at": "2026-11-06T04:23:30.729240+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "イベントの参加者募集のお知らせで、読者が仕事・お金の判断に使える新しい事実（制度・数字・提供条件の変更など）が中心ではないため。対象も「100億宣言」企業の経営者・幹部に限られる。",
+      "skipped": true,
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010ts3.html"
     },
     "2122a3d533d50001": {
       "at": "2026-11-02T17:44:49.496197+00:00",
@@ -6410,6 +6416,15 @@
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
       "skipped": true,
       "url": "https://www.fsc.go.jp/senmon/idensi/annai/idensi_annai_282.html"
+    },
+    "38d7cd8d70883115": {
+      "at": "2026-11-06T04:22:50.456771+00:00",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "google-ai-mode-restaurant-booking-japan",
+      "url": "https://blog.google/intl/ja-jp/products/explore-get-answers/search_aim_restaurant_booking/"
     },
     "38dfb07257c2059f": {
       "at": "2026-10-30T01:31:55.080332+00:00",
@@ -9545,6 +9560,12 @@
       "slug": "tohoku-atotsugi-connect-sendai-2026",
       "url": "https://j-net21.smrj.go.jp/news/bt5puv00000105io.html"
     },
+    "7681539bf71c6f90": {
+      "at": "2026-11-06T04:23:19.827232+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://j-net21.smrj.go.jp/special/business_support/20261106.html"
+    },
     "76c6d2d9da855dff": {
       "at": "2026-11-02T18:26:17.966540+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -11422,6 +11443,13 @@
       "slug": "kirin-hyoketsu-gobobi-sparkling",
       "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1029_01.html"
     },
+    "99744a505a8f8909": {
+      "at": "2026-11-06T04:23:19.825760+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "四国経済産業局による副業・兼業人材の採用マッチング支援で、企業向けの人材確保サービスにあたるため。採用・求人の情報として扱わない対象です。",
+      "skipped": true,
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010toi.html"
+    },
     "99bb573a7212de85": {
       "at": "2026-11-02T11:31:22.784616+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -12150,6 +12178,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326716.html"
+    },
+    "a7c300d1fdf62482": {
+      "at": "2026-11-06T04:23:30.742408+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
+      "skipped": true,
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010r07.html"
     },
     "a7c69013d5b5f8de": {
       "at": "2026-10-30T01:12:32.030366+00:00",
@@ -15815,7 +15849,7 @@
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102712"
     },
     "f1fb885281fc7130": {
-      "at": "2026-11-06T04:01:18.499222+00:00",
+      "at": "2026-11-06T04:23:30.736662+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://group.ntt/jp/newsrelease/2026/11/06/261106a.html"
@@ -16538,80 +16572,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-04T15:10:10.114361+00:00",
-      "attempt": 2,
-      "id": "e92adb95112b5264",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "訳されていない英文が残っている（「makes it simple for merchants to have th…」）"
-      ],
-      "readability": {
-        "avg_paragraph": 134.7,
-        "avg_sentence": 49.4,
-        "long_share": 0.167,
-        "max_paragraph": 194,
-        "paragraphs": 11,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "about-amazon",
-      "title": "Amazon’s new Shop Direct Merchant Workspace makes it even easier for stores acro",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SP）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-04T15:13:05.535593+00:00",
-      "attempt": 1,
-      "id": "75679f5aa60bfcf8",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 66.3,
-        "avg_sentence": 38.1,
-        "long_share": 0.1,
-        "max_paragraph": 128,
-        "paragraphs": 23,
-        "sentences": 40
-      },
-      "score": 88,
-      "source": "openai-news",
-      "title": "Daybreak Red is now available in AWS GovCloud (US-East)",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-04T15:33:12.529562+00:00",
-      "attempt": 1,
-      "id": "2c8a2ca0b2585148",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.1,
-        "avg_sentence": 33.0,
-        "long_share": 0.029,
-        "max_paragraph": 132,
-        "paragraphs": 14,
-        "sentences": 34
-      },
-      "score": 94,
-      "source": "mlit-press",
-      "title": "リコールの届出について（ロータス エリーゼ SPORT/SPRINT 220 他）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SPORT・SPRINT・VIN）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-04T15:34:28.367152+00:00",
@@ -22573,6 +22533,82 @@
       "score": 72,
       "source": "radar-official",
       "title": "Use Personal Finance in Claude | Claude Help Center"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T04:22:13.515851+00:00",
+      "attempt": 1,
+      "id": "38d7cd8d70883115",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "本文「日本向けの提供も含まれており、普段からGoogle検索で店を探している人が対象です」→ 元記事に「普段からGoogle検索で店を探している人が対象」という記述はなく、対象者の限定は記事の創作です。",
+        "本文「希望の日時に空席がある店だけが並ぶので、「行きたい店が満席だった」というやり直しも減らせるはずです」→ 元記事は「条件に合った」空席の店を挙げると述べるのみで、希望の日時に限るとは書かれていません。また「はず」という推測を、編集部の見方と明示せずに書いています。",
+        "本文「幹事の役割を担う会社員なら、複数のサイトを見比べる時間を減らせる可能性があります」→ 元記事にない効果の予測で、編集部の見方とも明記されていません。",
+        "本文「飲食店の側から見ると、予約サイトに掲載している空席情報が、AIモードの検索結果を通じて見つけられる入口が増えることになります」→ 元記事に無い影響の解釈を、解釈と区別せず断定的に書いています。"
+      ],
+      "readability": {
+        "avg_paragraph": 85.6,
+        "avg_sentence": 38.9,
+        "long_share": 0.152,
+        "max_paragraph": 275,
+        "paragraphs": 15,
+        "sentences": 33
+      },
+      "score": 80,
+      "source": "google-japan-blog",
+      "title": "Google 検索 の AI モードの新機能で、あらゆるタスクをよりスムーズに",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T04:22:30.592653+00:00",
+      "attempt": 1,
+      "id": "38d7cd8d70883115",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "段落が長い（平均 84.8字・最長 275字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 84.8,
+        "avg_sentence": 38.5,
+        "long_share": 0.152,
+        "max_paragraph": 275,
+        "paragraphs": 15,
+        "sentences": 33
+      },
+      "score": 92,
+      "source": "google-japan-blog",
+      "title": "Google 検索 の AI モードの新機能で、あらゆるタスクをよりスムーズに",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T04:22:50.448836+00:00",
+      "attempt": 0,
+      "id": "38d7cd8d70883115",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 80.9,
+        "avg_sentence": 38.1,
+        "long_share": 0.118,
+        "max_paragraph": 156,
+        "paragraphs": 16,
+        "sentences": 34
+      },
+      "score": 92,
+      "source": "google-japan-blog",
+      "title": "Google 検索 の AI モードの新機能で、あらゆるタスクをよりスムーズに",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
     }
   ],
   "short_text_retry": {},
