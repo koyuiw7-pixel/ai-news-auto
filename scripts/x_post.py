@@ -394,7 +394,7 @@ def main() -> int:
         slug = article["slug"]
         text = x_text(article)
         slot = sns_plan.x_slot_window(now) if kind == "slot" else None
-        log(f"--- {slug} ({kind}・話題 {sns_plan.x_topic(article)[0] or '-'}・{sns_rules.x_weight(text)}/{sns_rules.X_LIMIT})\n{text}\n[返信] {reply_link(article)}\n[画像] {tp.card_url(article)}")
+        log(f"--- {slug} ({kind}・話題 {sns_plan.x_topic(article)[0] or '-'}・{sns_rules.x_weight(text)}/{sns_rules.X_LIMIT})\n{text}\n[返信] {reply_link(article)}\n[画像] {tp.card_url(article)}（{tp.card_photo_note(article)}）")
         summary += [f"**{slug}** ({kind})", "", "```", text, "---", reply_link(article), "```", ""]
         if not live:
             for problem in problems(article, text):

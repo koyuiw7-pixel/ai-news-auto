@@ -1797,6 +1797,15 @@ def thread_image(article: dict) -> str:
     return f"{site_url()}/cover/{article['slug']}"
 
 
+def card_photo_note(article: dict) -> str:
+    """下見（dry run）に出す、カードに敷く写真と注記（公式の写真なら出典・AI ならその注記。台帳 S45）"""
+    photo = sns_rules.sns_photo(article)
+    note = sns_rules.card_note(article) or "注記なし"
+    if photo and photo["from"] == "body":
+        return f"本文の公式の写真 {photo['src'].rsplit('/', 1)[-1]}・{note}"
+    return f"{'公式の写真' if photo else '記事の写真'}・{note}"
+
+
 def post_image(article: dict, fmt: str) -> str:
     return thread_image(article) if fmt == "hook_thread" else card_url(article)
 
@@ -2644,7 +2653,7 @@ def main() -> int:
         detail = compose_detail(article) if fmt == "hook_thread" else "（なし。リンクは本文。X だけ返信にリンク）"
         log(
             f"--- {article['slug']} [{fmt}] 問いかけ={'あり' if question else 'なし'} トピック={topic_of(article)} "
-            f"({len(threads_text)}文字)\n{threads_text}\n[返信]\n{detail}\n[画像] {post_image(article, fmt)}\n{link}\n"
+            f"({len(threads_text)}文字)\n{threads_text}\n[返信]\n{detail}\n[画像] {post_image(article, fmt)}（{card_photo_note(article)}）\n{link}\n"
         )
         summary += [f"**{article['slug']}** [{fmt}]", "", "```", threads_text, "---", detail, link, "```", ""]
         if not live:

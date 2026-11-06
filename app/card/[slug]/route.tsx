@@ -11,6 +11,7 @@ import { fetchPhoto } from "@/lib/cover";
 import { renderCardDesign, type CardDesign } from "@/lib/card-designs";
 import { siteConfig } from "@/site.config";
 import { stripListNumber } from "@/lib/list-number";
+import { snsCardArticle } from "@/lib/sns-photo";
 
 /**
  * どのカードを出すか。"tall" は今の縦長（見出し＋要点3つ）。
@@ -148,8 +149,10 @@ async function toJpeg(image: ArrayBuffer): Promise<Uint8Array<ArrayBuffer>> {
 
 export async function GET(_request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const article = getArticle(slug);
-  if (!article) return new Response("Not found", { status: 404 });
+  const found = getArticle(slug);
+  if (!found) return new Response("Not found", { status: 404 });
+  // 公式発表の写真を優先して敷く（記事の写真が AI・告知のバナーでも、本文に公式の写真があればそれ。台帳 S45）
+  const article = snsCardArticle(found);
   try {
     const png = await (CARD_DESIGN === "tall" ? await renderCard(article) : await renderCardDesign(article, CARD_DESIGN)).arrayBuffer();
     const jpeg = await toJpeg(png).catch(() => null);

@@ -87,6 +87,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import persona  # noqa: E402
+import research_firms  # noqa: E402
 import sns_plan  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -1271,10 +1272,81 @@ def uses_article_photo(url: str, article: dict) -> bool:
     return path.rstrip("/") == f"/card/{article.get('slug')}" or (bool(article.get("thumbnail")) and str(url) == str(article.get("thumbnail")))
 
 
+# ---- SNS のカードに敷く公式の写真（2026-11-07 オーナー承認・台帳 S45。サイト側は lib/sns-photo.ts の snsPhoto と同じ判定） ----
+# 記事の写真が公式発表の写真で文字が主役でなければそれ、でなければ本文の公式の写真（photo / kit）。どちらも無ければ今までのカード。
+# 調査会社・情報会社のサイトの画像（台帳 A37）・告知のバナー・図・ロゴ・大きな文字があるとされた写真（heroOk: false）は使わない
+HERO_SNS_KINDS = {"photo", "kit", "video", "youtube", "hero"}
+BODY_SNS_KINDS = {"photo", "kit"}
+OUR_IMAGE_RE = re.compile(r"^https://ai-tech-express\.jp/img/[\w.-]+\.(?:jpg|jpeg|png|webp)$")
+
+
+def _firm_url(url: str) -> bool:
+    return bool(research_firms.host_firm(url or ""))
+
+
+def sns_photo(article: dict | None) -> dict | None:
+    """SNS のカードに敷く公式の写真 {"src", "credit", "from": "thumbnail"|"body"}。無ければ None（今までのカード）"""
+    article = article or {}
+    if research_firms.article_firm(article):
+        return None
+    c = article.get("imageCredit") or {}
+    thumb = str(article.get("thumbnail") or "")
+    if (thumb and c.get("kind") == "official" and (c.get("org") or c.get("via") or c.get("provider"))
+            and article.get("heroOk") is not False and (c.get("imageKind") or "photo") in HERO_SNS_KINDS
+            and not _firm_url(c.get("sourceUrl", "")) and not _firm_url(c.get("original", ""))):
+        return {"src": thumb, "credit": c, "from": "thumbnail"}
+    for im in article.get("bodyImages") or []:
+        if not isinstance(im, dict) or not OUR_IMAGE_RE.match(str(im.get("src") or "")) or not str(im.get("credit") or "").strip():
+            continue
+        if im.get("kind") not in BODY_SNS_KINDS or _firm_url(im.get("sourceUrl", "")) or _firm_url(im.get("original", "")):
+            continue
+        credit = {"kind": "official", "org": str(im["credit"]).strip(), "sourceUrl": im.get("sourceUrl", ""),
+                  "width": im.get("width"), "height": im.get("height")}
+        if im.get("kind") == "kit":
+            credit["imageKind"] = "kit"
+        return {"src": im["src"], "credit": credit, "from": "body"}
+    return None
+
+
+def official_credit_text(credit: dict | None) -> str:
+    """公式の写真の出典の文（lib/image-credit.ts の officialCreditText と同じ）"""
+    credit = credit or {}
+    if credit.get("kind") != "official":
+        return ""
+    org = credit.get("org") or credit.get("via") or credit.get("provider")
+    if not org:
+        return ""
+    if credit.get("imageKind") in ("youtube", "video"):
+        return f"画像：{org}（公式動画より）"
+    via = credit.get("via")
+    if via and org != via:
+        return f"画像：{org}（{via}配信の公式発表より）"
+    if via:
+        return f"画像：{via}配信の公式発表より"
+    return f"画像：{org}（公式発表より）"
+
+
+def card_credit(article: dict | None) -> dict:
+    """SNS のカード（/card/<slug>）に実際に載る写真の出典（本文の公式の写真に差し替えるときはそちら）"""
+    photo = sns_photo(article)
+    if photo:
+        return photo["credit"]
+    return (article or {}).get("imageCredit") or {}
+
+
+def card_note(article: dict | None) -> str:
+    """カードの隅に出る注記（lib/card-designs.tsx の cardCredit と同じ。公式なら出典、AI なら「画像はイメージ（AI生成）」）"""
+    c = card_credit(article)
+    if c.get("kind") == "ai":
+        return "画像はイメージ（AI生成）"
+    if c.get("kind") == "official":
+        return official_credit_text(c)
+    return ""
+
+
 def check_media(platform: str, media: list[dict], article: dict | None, kind: str, measurer=None) -> list[str]:
     out = []
     article = article or {}
-    credit = article.get("imageCredit") or {}
     for item in media or []:
         url = unwrap_transform(str(item.get("url") or ""))  # 決まり（文字の帯・号の画像・記事の写真）は元の画像で見る
         kind_of = "動画" if item.get("type") == "video" else "画像"
@@ -1284,6 +1356,9 @@ def check_media(platform: str, media: list[dict], article: dict | None, kind: st
         if item.get("type") != "video" and DIGEST_SHARE.search(urllib.parse.urlsplit(url).path) and kind != "digest":
             out.append("[ルール2] 朝のまとめ以外で号のシェア画像を使っている")
             continue
+        # カード（/card/<slug>）は本文の公式の写真に差し替えることがあるので、カードに実際に載る写真の出典で見る（台帳 S45）
+        is_card = urllib.parse.urlsplit(url).path.rstrip("/") == f"/card/{article.get('slug')}"
+        credit = card_credit(article) if is_card else (article.get("imageCredit") or {})
         if item.get("type") != "video" and credit.get("kind") == "ai" and uses_article_photo(url, article) and product_launch(article):
             out.append("[ルール2] 発表された製品を AI で描いた画像")
         if item.get("card") and platform == "bluesky":
