@@ -141,14 +141,6 @@
       "tries": 1,
       "url": "https://jtta.or.jp/news/38778"
     },
-    "8b68aefd38003561": {
-      "first": "2026-11-06T18:56:56.131085+00:00",
-      "next": "2026-11-06T21:56:56.131085+00:00",
-      "reason": "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く",
-      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
-      "tries": 1,
-      "url": "https://developers.cyberagent.co.jp/blog/archives/67259/"
-    },
     "8dc5cad25319e695": {
       "first": "2026-11-06T06:40:13.129552+00:00",
       "next": "2026-11-06T09:40:13.129552+00:00",
@@ -6880,6 +6872,12 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/a_menu/shinkou/nankyoku/detail/1422006_00071.htm"
     },
+    "39cf968ded6c1c30": {
+      "at": "2026-11-06T22:01:56.721787+00:00",
+      "reason": "dedupe: 固有名詞＋見出しが類似（infrastructure / 0.30）: openai-national-community-compact",
+      "skipped": true,
+      "url": "https://elevenlabs.io/blog/voice-ai-infrastructure-guide"
+    },
     "3a06f84c0f51a102": {
       "at": "2026-11-04T14:40:51.098992+00:00",
       "breaking": true,
@@ -7144,6 +7142,17 @@
       "reason": "quality: 本文が短い（1423字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（389字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
       "skipped": true,
       "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030a.pdf"
+    },
+    "3f27e591df0c9a72": {
+      "at": "2026-11-06T22:08:28.928388+00:00",
+      "costUsd": 0.1616,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5+anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "business",
+      "slug": "successor-shortage-bankruptcy-october-2026",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203408_1527.html"
     },
     "3f2d74271c15d2c9": {
       "at": "2026-10-28T22:31:25.191260+00:00",
@@ -11319,6 +11328,17 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000095.000010009.html"
     },
+    "870e70d2929a456b": {
+      "at": "2026-11-06T22:05:15.531120+00:00",
+      "costUsd": 0.0123,
+      "intent": "breaking",
+      "mix": "alert",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 93,
+      "section": "business",
+      "slug": "waterproofing-bankruptcies-record-2026",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203399_1527.html"
+    },
     "8738684aa5c90327": {
       "at": "2026-11-06T03:21:39.922129+00:00",
       "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
@@ -11559,6 +11579,17 @@
       "reason": "trend sources 0",
       "skipped": true,
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFAzWUlTeWtHbDVjR1R1Z3JYc2NJLTdZamlzZlRPYUp1R1FBVXA3UE5Ba1dLdk9RWGVjUS1VRUV5bUhiNWYwZjA2NnptTEpaMERsSllYOTIyYlR3UWs?oc=5"
+    },
+    "8b68aefd38003561": {
+      "at": "2026-11-06T22:04:04.556602+00:00",
+      "costUsd": 0.022,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "knowledge-catalog-agent-knowledge-base",
+      "url": "https://developers.cyberagent.co.jp/blog/archives/67259/"
     },
     "8b79606d9c8c64ee": {
       "at": "2026-11-02T14:31:47.317550+00:00",
@@ -18169,104 +18200,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-05T13:12:04.260186+00:00",
-      "attempt": 2,
-      "id": "3af0ef7d790a050b",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "softbank-news",
-      "title": "大迫力のダンスバトル！ ハーフタイムショーで推しと最接近！ 史上最多の20チームが参戦する「D.LEAGUE 26-27 SEASON」開幕戦レポート"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T13:12:17.532944+00:00",
-      "attempt": 1,
-      "id": "b60329f5b0d8e811",
-      "kind": "update",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "続報の長さが不適切（258字 / 400〜900字）"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "フットサルモロッコ代表 来日メンバー 国際親善試合 フットサル日本代表 対 フットサルモロッコ代表【11.6(金)・8(日)大分／クラサス武道スポーツセンター】"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T13:13:28.606770+00:00",
-      "attempt": 1,
-      "id": "4f67ee389287d817",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "ipa",
-      "title": "応用情報技術者試験・高度試験・情報処理安全確保支援士試験における答案の開示請求について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T13:15:06.996752+00:00",
-      "attempt": 2,
-      "id": "4f67ee389287d817",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "ipa",
-      "title": "応用情報技術者試験・高度試験・情報処理安全確保支援士試験における答案の開示請求について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T13:16:50.754025+00:00",
-      "attempt": 1,
-      "id": "84d6e3eaec4fdab1",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "ipa",
-      "title": "CBT方式で実施するITパスポート試験、情報セキュリティマネジメント試験及び基本情報技術者試験における2027年1月以降の実施予定について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T13:19:38.818706+00:00",
-      "attempt": 2,
-      "id": "84d6e3eaec4fdab1",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "ipa",
-      "title": "CBT方式で実施するITパスポート試験、情報セキュリティマネジメント試験及び基本情報技術者試験における2027年1月以降の実施予定について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T13:25:18.876857+00:00",
-      "attempt": 1,
-      "id": "8ec46f72407133f6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "nli-research",
-      "title": "政府債務の指標と公的年金"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-05T13:27:07.777050+00:00",
       "attempt": 2,
       "id": "8ec46f72407133f6",
@@ -23991,6 +23924,138 @@
         "見出しの書き方: 記号: かっこの直後に「、」",
         "初めて出たところで言い換えていない略語（TTFT・LLM・EPUB）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T22:03:29.409640+00:00",
+      "attempt": 1,
+      "id": "8b68aefd38003561",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "段落が長い（平均 124.3字・最長 237字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 124.3,
+        "avg_sentence": 40.9,
+        "long_share": 0.114,
+        "max_paragraph": 237,
+        "paragraphs": 23,
+        "sentences": 70
+      },
+      "score": 88,
+      "source": "cyberagent-developers",
+      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（OKF・OSS・MIT）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T22:03:57.193368+00:00",
+      "attempt": 0,
+      "id": "8b68aefd38003561",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "段落が長い（平均 96.5字・最長 237字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 96.5,
+        "avg_sentence": 40.2,
+        "long_share": 0.1,
+        "max_paragraph": 237,
+        "paragraphs": 25,
+        "sentences": 60
+      },
+      "score": 90,
+      "source": "cyberagent-developers",
+      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（OKF・OSS・MIT）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T22:05:15.519753+00:00",
+      "attempt": 1,
+      "id": "870e70d2929a456b",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 113.3,
+        "avg_sentence": 37.8,
+        "long_share": 0.037,
+        "max_paragraph": 162,
+        "paragraphs": 9,
+        "sentences": 27
+      },
+      "score": 93,
+      "source": "tsr",
+      "title": "防水工事業の倒産が高水準 ～ 相次ぐ大雨被害、復旧に支障も ～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T22:06:43.432866+00:00",
+      "attempt": 1,
+      "id": "3f27e591df0c9a72",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "tsr",
+      "title": "「後継者難」倒産が54件、10月では過去最多 1-10月累計444件、年間最多の更新が確実"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T22:07:09.051387+00:00",
+      "attempt": 1,
+      "id": "3f27e591df0c9a72",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "tsr",
+      "title": "「後継者難」倒産が54件、10月では過去最多 1-10月累計444件、年間最多の更新が確実"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T22:07:47.230606+00:00",
+      "attempt": 2,
+      "id": "3f27e591df0c9a72",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "tsr",
+      "title": "「後継者難」倒産が54件、10月では過去最多 1-10月累計444件、年間最多の更新が確実"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T22:08:28.911488+00:00",
+      "attempt": 2,
+      "id": "3f27e591df0c9a72",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.8,
+        "avg_sentence": 37.5,
+        "long_share": 0.049,
+        "max_paragraph": 202,
+        "paragraphs": 20,
+        "sentences": 41
+      },
+      "score": 88,
+      "source": "tsr",
+      "title": "「後継者難」倒産が54件、10月では過去最多 1-10月累計444件、年間最多の更新が確実"
     }
   ],
   "short_text_retry": {},

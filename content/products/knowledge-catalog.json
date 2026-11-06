@@ -6,75 +6,57 @@
   "companyName": "IBM",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Knowledge Catalogは、AIエージェントが参照するデータの定義やルールを管理するコンテキストエンジンです。Google Cloudが提供しており、自己学習機能や各種データとの連携が発表されています。",
+    "text": "Knowledge Catalogは、AIエージェントが参照するデータや業務定義を管理するコンテキストエンジンです。Googleが提供しており、2026年4月にDataplex Universal Catalogから改名されました。",
     "sources": [
-      "google-knowledge-catalog-self-learning-enrichment",
-      "oracle-ai-database-agentic-update"
+      "knowledge-catalog-agent-knowledge-base",
+      "google-knowledge-catalog-self-learning-enrichment"
     ]
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "メタデータの保存は無料",
-      "sources": [
-        "lookml-knowledge-catalog-ga"
-      ]
-    },
-    {
       "label": "提供開始",
-      "value": "プレビュー版や一般提供",
+      "value": "2026年4月（改名）",
       "sources": [
-        "google-knowledge-catalog-self-learning-enrichment",
-        "lookml-knowledge-catalog-ga",
-        "oracle-ai-database-agentic-update"
+        "knowledge-catalog-agent-knowledge-base"
       ]
     },
     {
-      "label": "日本での提供",
-      "value": "順次公開予定",
+      "label": "使える場所",
+      "value": "Google Cloud",
       "sources": [
-        "google-knowledge-catalog-self-learning-enrichment",
-        "lookml-knowledge-catalog-ga"
-      ]
-    },
-    {
-      "label": "向いている人",
-      "value": "データ担当者やエンジニア",
-      "sources": [
-        "google-knowledge-catalog-self-learning-enrichment",
-        "lookml-knowledge-catalog-ga"
+        "knowledge-catalog-agent-knowledge-base"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "AIエージェントの精度が約4倍向上します。",
+      "text": "社内の知識をMarkdownファイルとして保存し、AIエージェントに渡すことができます。",
       "sources": [
-        "google-knowledge-catalog-self-learning-enrichment"
+        "knowledge-catalog-agent-knowledge-base"
       ]
     },
     {
-      "text": "レイテンシを最大33%短縮し、トークン使用量を最大75%削減します。",
-      "sources": [
-        "google-knowledge-catalog-self-learning-enrichment"
-      ]
-    },
-    {
-      "text": "ユーザーとエージェントのやり取りから自動で学習し、定義の更新を行います。",
-      "sources": [
-        "google-knowledge-catalog-self-learning-enrichment"
-      ]
-    },
-    {
-      "text": "LookMLの指標計算式をKnowledge Catalog経由でAIが使えます。",
+      "text": "Looker CoreのLookML定義を自動で取り込み、指標の計算式をAIが使えます。",
       "sources": [
         "lookml-knowledge-catalog-ga"
+      ]
+    },
+    {
+      "text": "自己学習機能により、エージェントのやり取りから定義の修正案を自動で抽出します。",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment"
+      ]
+    },
+    {
+      "text": "Knowledge Studioでクロスクラウドのデータ資産をビジュアルマップで俯瞰できます。",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "Knowledge Catalogへのメタデータの保存料金は無料です。",
+      "text": "Looker Coreのテクニカルメタデータの保存料金は無料です。",
       "sources": [
         "lookml-knowledge-catalog-ga"
       ]
@@ -88,7 +70,7 @@
   ],
   "japan": [
     {
-      "text": "今後数週間以内にお客様へ順次公開される予定です。",
+      "text": "自己学習機能は順次公開予定で、日本からも利用できます。",
       "sources": [
         "google-knowledge-catalog-self-learning-enrichment"
       ]
@@ -96,13 +78,13 @@
   ],
   "howto": [
     {
-      "text": "Google Cloudのプロジェクトで関連APIを有効にして利用します。",
+      "text": "カスタムエントリの作成はAPIかCLIで行う必要があります。",
       "sources": [
-        "lookml-knowledge-catalog-ga"
+        "knowledge-catalog-agent-knowledge-base"
       ]
     },
     {
-      "text": "Gemini Enterpriseでは設定画面から有効にできます。",
+      "text": "Looker Coreとの連携にはCloud Dataplex APIを有効にします。",
       "sources": [
         "lookml-knowledge-catalog-ga"
       ]
@@ -110,7 +92,7 @@
   ],
   "differences": [
     {
-      "text": "手動で行っていたビジネス定義の更新が、自己学習型エンリッチメントにより自動化されます。",
+      "text": "エージェントとユーザーのやり取りを分析し、定義の更新を自動化する機能が加わりました。",
       "sources": [
         "google-knowledge-catalog-self-learning-enrichment"
       ]
@@ -119,31 +101,31 @@
   "faq": [
     {
       "q": "無料で使える？",
-      "a": "メタデータの保存は無料ですが、API呼び出しなどは標準料金がかかります。",
+      "a": "Looker Coreのテクニカルメタデータの保存は無料です。しかしAPI呼び出しには標準料金がかかります。",
       "sources": [
         "lookml-knowledge-catalog-ga"
       ]
     },
     {
-      "q": "いつから提供されている？",
-      "a": "自己学習機能やLooker Coreの連携などが順次プレビュー版や一般提供として登場しています。",
-      "sources": [
-        "google-knowledge-catalog-self-learning-enrichment",
-        "lookml-knowledge-catalog-ga"
-      ]
-    },
-    {
-      "q": "どのような効果がある？",
-      "a": "AIエージェントの精度が約4倍向上し、応答遅延の短縮やトークン削減につながります。",
+      "q": "いつから使える？",
+      "a": "自己学習機能などは2026年11月時点で順次公開されています。",
       "sources": [
         "google-knowledge-catalog-self-learning-enrichment"
       ]
     },
     {
-      "q": "LookMLのデータはどのように反映される？",
-      "a": "本番環境に変更を反映すると、ほぼリアルタイムでカタログに届きます。",
+      "q": "誰に向いている？",
+      "a": "AIエージェントに社内の知識やデータを正しく参照させたいデータエンジニアに向いています。",
       "sources": [
-        "lookml-knowledge-catalog-ga"
+        "knowledge-catalog-agent-knowledge-base",
+        "google-knowledge-catalog-self-learning-enrichment"
+      ]
+    },
+    {
+      "q": "安全性の管理は？",
+      "a": "信頼スコアを設定し、影響が大きい更新はスチュワードの承認を通す仕組みがあります。",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment"
       ]
     }
   ],
@@ -156,7 +138,12 @@
     {
       "date": "2026-11-05",
       "slug": "lookml-knowledge-catalog-ga",
-      "event": "Looker CoreのLookML定義の取り込みが一般提供に"
+      "event": "LookMLの指標定義の連携機能を一般提供"
+    },
+    {
+      "date": "2026-11-06",
+      "slug": "knowledge-catalog-agent-knowledge-base",
+      "event": "社内知識をAIに渡す基盤の構築事例を報告"
     }
   ],
   "related": [
@@ -164,16 +151,18 @@
   ],
   "articles": [
     "oracle-ai-database-agentic-update",
+    "knowledge-catalog-agent-knowledge-base",
     "lookml-knowledge-catalog-ga",
     "google-knowledge-catalog-self-learning-enrichment"
   ],
   "linkFrom": [
+    "knowledge-catalog-agent-knowledge-base",
     "lookml-knowledge-catalog-ga",
     "google-knowledge-catalog-self-learning-enrichment"
   ],
-  "signature": "517e3415e65c7e98",
-  "primarySignature": "a05c2b3ae247b44e",
+  "signature": "db49f5796f934b1b",
+  "primarySignature": "ca5176e347648bf8",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-06T20:04:36+00:00",
-  "updatedAt": "2026-11-06T20:04:36+00:00"
+  "updatedAt": "2026-11-06T22:08:37+00:00"
 }
