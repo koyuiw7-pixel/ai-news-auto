@@ -95,6 +95,66 @@ def must_keep(title: str) -> set[str]:
     return names
 
 
+# 見出しの書き直しで、資料に無くても使ってよい一般の語（見出しの言い回し）。名前・制度の語・機関の語（事業者など）はここに入れない
+GENERIC_TITLE_WORDS = {
+    "提供", "開始", "公開", "発表", "対応", "導入", "可能", "利用", "予定", "発売", "終了", "変更", "追加", "新機能", "機能", "無料", "有料",
+    "料金", "月額", "年額", "対象", "期限", "日本", "国内", "全国", "世界", "全世界", "米国", "手順", "方法", "確認", "理由", "影響", "今後",
+    "最大", "最新", "以上", "以下", "拡大", "強化", "刷新", "連携", "必要", "時点", "順次", "新", "前", "後", "全額", "一部", "自社",
+    "負担", "使", "使用", "活用", "向", "向け", "従来", "半分", "初", "版", "新版", "最初", "今", "今日", "明日", "年内", "月内",
+}
+_JA_WORD_RE = re.compile(r"[一-龯々〆ヵヶ]{2,}|[ァ-ヴー]{2,}")
+_UNIT_ONLY_RE = re.compile(r"^[万億兆件円年月日時分秒人回本社台倍割度歳%]+$")
+
+
+def grounding_text(record: dict) -> str:
+    """見出しの言葉を確かめる範囲（品質ゲートを通った本文・リード・要点・元の見出し）"""
+    return source_text(record) + " " + str(record.get("body", ""))
+
+
+def word_grounding_problems(record: dict, new: str) -> list[str]:
+    """書き直した見出しの漢字・カタカナの語が、記事（資料に基づく本文・リード・元の見出し）にそのままあるか（2026-11-07 台帳 A50）。
+    固有名詞・制度や機関の語（事業者・事業所など）は資料の表記のまま写す。一般の言い回し（GENERIC_TITLE_WORDS）は除く"""
+    src = grounding_text(record)
+    missing = []
+    for word in _JA_WORD_RE.findall(hn.normalize_title(new, record)):
+        if word in GENERIC_TITLE_WORDS or _UNIT_ONLY_RE.match(word) or word in src:
+            continue
+        missing.append(word)
+    return [f"記事に無い言葉 {missing}（固有名詞・制度や機関の語は資料の表記のまま）"] if missing else []
+
+
+GROUND_SYSTEM = "あなたはニュースサイトの校閲記者です。見出しが記事の事実だけでできているかを確かめます。出力は指定の JSON だけ。"
+GROUND_PROMPT = """次の見出しの中の主張（だれが・何を・いつ・いくら・どうなる）が、すべて下の記事に書かれているかを確かめてください。
+記事に無いこと（例: 記事に無い被害・目的・対象・言い換えで意味が変わった語〔事業者→事業所〕）が1つでもあれば grounded=false にし、
+unsupported にその語句を書く。言い回しの違いだけ（「提供開始」と「始まる」）は grounded=true でよい。
+
+# 見出し
+{title}
+
+# 記事
+<<<
+{source}
+>>>"""
+GROUND_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {"grounded": {"type": "BOOLEAN"}, "unsupported": {"type": "ARRAY", "items": {"type": "STRING"}}},
+    "required": ["grounded", "unsupported"],
+}
+
+
+def llm_grounding_problems(record: dict, new: str) -> list[str]:
+    """安いモデル（Claude API の確認の段＝Haiku。だめなら無料モデル）で、見出しの主張が記事にあるかを確かめる。
+    確かめられなかったときも不合格（根拠の分からない見出しは出さない）"""
+    try:
+        data, _model = llm.generate_json(GROUND_SYSTEM, GROUND_PROMPT.format(title=new, source=grounding_text(record)[:6000]), GROUND_SCHEMA,
+                                         temperature=0.0, max_output_tokens=1024, tier="bulk", purpose="check")
+    except Exception as error:  # noqa: BLE001
+        return [f"見出しの事実確認ができなかった（{str(error)[:60]}）"]
+    if data.get("grounded") is True and not [u for u in data.get("unsupported") or [] if str(u).strip()]:
+        return []
+    return [f"記事に無い主張 {[str(u) for u in data.get('unsupported') or []][:4]}"]
+
+
 def check_title(record: dict, new: str, reviewed: bool = False) -> list[str]:
     """書き直した見出しの不合格の理由（空なら合格）。reviewed=True（人が案を確かめた）は「名前が消えた」を見ない
     （「Claudeの開発元」「ABEMA運営の」のような、元の見出しの説明だった名前が消えるのは正しいため）"""
@@ -116,6 +176,7 @@ def check_title(record: dict, new: str, reviewed: bool = False) -> list[str]:
     lost = [] if reviewed else [n for n in must_keep(record.get("title", "")) if n.lower() not in new_low]
     if lost:
         problems.append(f"名前が消えた {lost}")
+    problems += word_grounding_problems(record, new)  # 日本語の言葉も記事のまま（台帳 A50）
     return problems
 
 
@@ -312,8 +373,11 @@ def fix_one(record: dict) -> str | None:
         return f"見出しの書き直しに失敗（{str(error)[:80]}）。そのまま出す"
     prop = got.get(record["slug"]) or {}
     new = hn.normalize_title(prop.get("title", ""), record)
-    if not new or check_title(record, new):
-        return f"見出しの書き直し案が不合格（{new}）。そのまま出す"
+    if not new or (bad := check_title(record, new)):
+        return f"見出しの書き直し案が不合格（{new} / {'; '.join(bad) if new else '空'}）。元の見出しのまま出す"
+    # 記事に無い主張を足していないかを安いモデルでも確かめる（2026-11-07 台帳 A50。確かめられなければ元の見出しのまま）
+    if ungrounded := llm_grounding_problems(record, new):
+        return f"見出しの書き直し案に根拠が無い（{new} / {'; '.join(ungrounded)}）。元の見出しのまま出す"
     record.setdefault("originalTitle", title)
     record["title"] = new
     record[STYLE_KEY] = STYLE_VERSION

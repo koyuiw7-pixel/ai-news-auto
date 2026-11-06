@@ -47,16 +47,55 @@ class ClickTitleRulesTest(unittest.TestCase):
 
     def test_write_article_sends_click_failures_to_fix_one(self):
         rec = {"slug": "ipa-x", "title": "IPAが個人情報の漏えい対策を公開", "lede": LEDE, "highlights": [], "body": LEDE}
-        with patch.object(rewrite_titles, "_ask", return_value={"ipa-x": {"title": "個人情報が漏れたら72時間以内にすること　IPAが手順", "seo_title": ""}}):
+        with patch.object(rewrite_titles, "_ask", return_value={"ipa-x": {"title": "個人情報が漏えいしたら最初の72時間で行う手順　IPAがまとめ", "seo_title": ""}}), \
+                patch.object(rewrite_titles, "llm_grounding_problems", return_value=[]):
             note = rewrite_titles.fix_one(rec)
         self.assertIn("見出しを書き直した", note)
-        self.assertTrue(rec["title"].startswith("個人情報が漏れたら"))
+        self.assertTrue(rec["title"].startswith("個人情報が漏えいしたら"))
         # 組織が主語に戻した案は採らない
         rec2 = {"slug": "ipa-y", "title": "IPAが個人情報の漏えい対策を公開", "lede": LEDE, "highlights": [], "body": LEDE}
-        with patch.object(rewrite_titles, "_ask", return_value={"ipa-y": {"title": "IPAが72時間の漏えい対応の手順を公開", "seo_title": ""}}):
+        with patch.object(rewrite_titles, "_ask", return_value={"ipa-y": {"title": "IPAが72時間の漏えい対応の手順を公開", "seo_title": ""}}), \
+                patch.object(rewrite_titles, "llm_grounding_problems", return_value=[]):
             self.assertIn("不合格", rewrite_titles.fix_one(rec2))
         main_src = (ROOT / "scripts" / "main.py").read_text("utf-8")
         self.assertIn("headline_normalize.click_problems(record)", main_src)
+
+    # ---- 書き直した見出しの根拠（2026-11-07 コーディネーター指摘: 例1が「個人情報が狙われる」を作り、事業者を事業所に変えた）
+    SOUMU = {"slug": "soumu-x", "title": "総務省、事業者に不正アクセス対策の徹底を要請　AI悪用の侵入も指摘",
+             "lede": "総務省は11月6日、事業者に不正アクセス対策の徹底を求める注意喚起を出しました。", "highlights": [],
+             "body": "AIを悪用した侵入の手口も指摘しています。"}
+
+    def test_sample1_invented_words_are_rejected(self):
+        bad = "個人情報が狙われる不正アクセス対策を徹底　総務省が11月6日に事業所へ要請"
+        problems = rewrite_titles.check_title(dict(self.SOUMU), bad)
+        self.assertTrue(any("個人情報" in p and "事業所" in p for p in problems), problems)
+        self.assertEqual(rewrite_titles.check_title(dict(self.SOUMU), "不正アクセス対策の徹底を事業者に要請　AI悪用の侵入も（総務省）"), [])
+
+    def test_ungrounded_rewrite_keeps_original_title(self):
+        rec = dict(self.SOUMU)
+        original = rec["title"]
+        with patch.object(rewrite_titles, "_ask", return_value={"soumu-x": {"title": "個人情報が狙われる不正アクセス対策を徹底　総務省が11月6日に事業所へ要請", "seo_title": ""}}):
+            note = rewrite_titles.fix_one(rec)
+        self.assertIn("元の見出しのまま", note)
+        self.assertEqual(rec["title"], original)
+
+    def test_llm_grounding_gate(self):
+        rec = dict(self.SOUMU)
+        original = rec["title"]
+        good = "不正アクセス対策の徹底を事業者に要請　AI悪用の侵入も（総務省）"
+        with patch.object(rewrite_titles, "_ask", return_value={"soumu-x": {"title": good, "seo_title": ""}}), \
+                patch.object(rewrite_titles.llm, "generate_json", return_value=({"grounded": False, "unsupported": ["侵入も"]}, "m")):
+            self.assertIn("根拠が無い", rewrite_titles.fix_one(rec))
+        self.assertEqual(rec["title"], original)
+        # 確かめられなかったときも元の見出しのまま
+        with patch.object(rewrite_titles, "_ask", return_value={"soumu-x": {"title": good, "seo_title": ""}}), \
+                patch.object(rewrite_titles.llm, "generate_json", side_effect=RuntimeError("down")):
+            self.assertIn("元の見出しのまま", rewrite_titles.fix_one(rec))
+        self.assertEqual(rec["title"], original)
+        with patch.object(rewrite_titles, "_ask", return_value={"soumu-x": {"title": good, "seo_title": ""}}), \
+                patch.object(rewrite_titles.llm, "generate_json", return_value=({"grounded": True, "unsupported": []}, "m")):
+            self.assertIn("見出しを書き直した", rewrite_titles.fix_one(rec))
+        self.assertEqual(rec["title"], good)
 
     def test_evergreen_title_rules(self):
         src = (ROOT / "scripts" / "evergreen.py").read_text("utf-8")
