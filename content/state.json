@@ -8629,6 +8629,17 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000077.000104020.html"
     },
+    "5d4f7dc67c8873a8": {
+      "at": "2026-11-06T15:54:18.607174+00:00",
+      "costUsd": 0.1358,
+      "foreignAi": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "elevenagents-unity-sdk-npc-voice",
+      "url": "https://elevenlabs.io/blog/unity-sdk-release"
+    },
     "5d89b13d8af0e9fe": {
       "at": "2026-10-30T08:11:12.307765+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -17472,150 +17483,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-05T06:41:47.457954+00:00",
-      "attempt": 3,
-      "id": "771f7b3c35a2e5cc",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「えました 中間配当は1株17円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）",
-        "題名の数字「42.9%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "題名の数字「9.4%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「10,988億2,800万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「42.9%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「62,672億1,700万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
-      ],
-      "readability": {
-        "avg_paragraph": 66.2,
-        "avg_sentence": 35.3,
-        "long_share": 0.067,
-        "max_paragraph": 130,
-        "paragraphs": 24,
-        "sentences": 45
-      },
-      "score": null,
-      "source": "fast",
-      "title": "ソニーグループ 決算短信（2026年11月5日）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SFGI）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T06:43:53.937898+00:00",
-      "attempt": 1,
-      "id": "5179ed8e3f9e5114",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "リードの数字「8.5%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「9.6%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「370円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「242億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
-      ],
-      "readability": {
-        "avg_paragraph": 62.1,
-        "avg_sentence": 31.0,
-        "long_share": 0.043,
-        "max_paragraph": 179,
-        "paragraphs": 23,
-        "sentences": 46
-      },
-      "score": null,
-      "source": "fast",
-      "title": "ダイキン工業 決算短信（2026年11月5日）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IR）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T06:44:36.421961+00:00",
-      "attempt": 2,
-      "id": "5179ed8e3f9e5114",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "題名の数字「2兆9,107億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「9,107億6,600万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「2,707億9,300万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「5兆1,500億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「4,360億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「9,107億6,600万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
-      ],
-      "readability": {
-        "avg_paragraph": 85.6,
-        "avg_sentence": 38.3,
-        "long_share": 0.085,
-        "max_paragraph": 162,
-        "paragraphs": 21,
-        "sentences": 47
-      },
-      "score": null,
-      "source": "fast",
-      "title": "ダイキン工業 決算短信（2026年11月5日）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（VRV）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T06:45:20.508881+00:00",
-      "attempt": 3,
-      "id": "5179ed8e3f9e5114",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "リードの数字「9,107億6,600万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「2,707億9,300万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「242億1,400万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「185円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「165円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
-      ],
-      "readability": {
-        "avg_paragraph": 69.8,
-        "avg_sentence": 37.6,
-        "long_share": 0.051,
-        "max_paragraph": 116,
-        "paragraphs": 21,
-        "sentences": 39
-      },
-      "score": null,
-      "source": "fast",
-      "title": "ダイキン工業 決算短信（2026年11月5日）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T06:46:58.947693+00:00",
-      "attempt": 1,
-      "id": "b3a04c021ff2b99e",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "題名の数字「7.3%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「7.3%」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「2兆2,400億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "リードの数字「12円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「5,850億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「12円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
-      ],
-      "readability": {
-        "avg_paragraph": 80.6,
-        "avg_sentence": 36.5,
-        "long_share": 0.095,
-        "max_paragraph": 153,
-        "paragraphs": 19,
-        "sentences": 42
-      },
-      "score": null,
-      "source": "fast",
-      "title": "LINEヤフー 決算短信（2026年11月5日）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（BITMAX・EBITDA・BEENOS）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-05T06:47:43.382704+00:00",
       "attempt": 2,
       "id": "b3a04c021ff2b99e",
@@ -23207,6 +23074,138 @@
       "title": "片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要(令和8年11月6日(金曜日))",
       "warnings": [
         "初めて出たところで言い換えていない略語（JT・JTI）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T15:52:05.543668+00:00",
+      "attempt": 1,
+      "id": "5d4f7dc67c8873a8",
+      "kind": "ai",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "題名で「日本で使えるか」を約束しているのに、本文に日本での提供・使い方の説明が無い。答えるか、題名から外す"
+      ],
+      "readability": {
+        "avg_paragraph": 123.9,
+        "avg_sentence": 72.2,
+        "long_share": 0.667,
+        "max_paragraph": 210,
+        "paragraphs": 14,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "elevenlabs-blog",
+      "title": "Give your Unity NPCs a voice with ElevenAgents",
+      "warnings": [
+        "見出しが64字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NET・XR・UI）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T15:52:42.058518+00:00",
+      "attempt": 1,
+      "id": "5d4f7dc67c8873a8",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "中身のない章「日本での利用について」（答えになっていない）。章ごと消し、大事な未定事項は「## まだ分からないこと」に1行で書く"
+      ],
+      "readability": {
+        "avg_paragraph": 183.4,
+        "avg_sentence": 55.0,
+        "long_share": 0.28,
+        "max_paragraph": 310,
+        "paragraphs": 15,
+        "sentences": 50
+      },
+      "score": null,
+      "source": "elevenlabs-blog",
+      "title": "Give your Unity NPCs a voice with ElevenAgents",
+      "warnings": [
+        "見出しが64字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "材料の無い章がある（日本での利用について）。表示では隠す",
+        "初めて出たところで言い換えていない略語（NET・XR・UI）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T15:53:25.250988+00:00",
+      "attempt": 2,
+      "id": "5d4f7dc67c8873a8",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「判定: 提供状況=available 価格=不明」→ 記事末尾に校閲用の内部メモが残っており、「提供状況=available」は元記事にも確認済みの文脈にもない日本での提供状況のように読めて、本文の「日本での提供範囲はまだ発表されていません」と食い違う",
+        "「導入は公式ドキュメントの手順で試せます」「価格と日本での提供範囲はまだ発表されておらず」→ 元記事に価格・日本での提供の記述はないが、「発表されていない」という書き方なので問題なし（参考）",
+        "「ApiCompatibilityLevelは .NET Standard 2.1にします」→ 元資料では既定値の説明であり、設定を指示する文ではないため、やや言い過ぎ"
+      ],
+      "readability": {
+        "avg_paragraph": 103.8,
+        "avg_sentence": 41.5,
+        "long_share": 0.154,
+        "max_paragraph": 225,
+        "paragraphs": 26,
+        "sentences": 65
+      },
+      "score": 88,
+      "source": "elevenlabs-blog",
+      "title": "Give your Unity NPCs a voice with ElevenAgents",
+      "warnings": [
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（XR・NET）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T15:53:44.760553+00:00",
+      "attempt": 2,
+      "id": "5d4f7dc67c8873a8",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "段落が長い（平均 103.8字・最長 225字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 103.8,
+        "avg_sentence": 41.5,
+        "long_share": 0.154,
+        "max_paragraph": 225,
+        "paragraphs": 26,
+        "sentences": 65
+      },
+      "score": 95,
+      "source": "elevenlabs-blog",
+      "title": "Give your Unity NPCs a voice with ElevenAgents",
+      "warnings": [
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（XR・NET）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T15:54:17.663026+00:00",
+      "attempt": 0,
+      "id": "5d4f7dc67c8873a8",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.0,
+        "avg_sentence": 39.8,
+        "long_share": 0.118,
+        "max_paragraph": 142,
+        "paragraphs": 33,
+        "sentences": 68
+      },
+      "score": 88,
+      "source": "elevenlabs-blog",
+      "title": "Give your Unity NPCs a voice with ElevenAgents",
+      "warnings": [
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（XR・NET）",
+        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
       ]
     }
   ],
