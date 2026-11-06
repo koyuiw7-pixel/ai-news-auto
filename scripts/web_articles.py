@@ -98,6 +98,17 @@ LATE_NOTE = (
 QUALITY_LOG_KEEP = 300
 # 1本あたりの目安（生成＋事実確認）。残り時間がこれを切ったら新しい記事に手を付けない
 EST_SEC_PER_ARTICLE = 150
+# 2026-11-06 オーナー「止まらない仕組みを作って」＋「お金はなるべく使わない」（台帳 A48）:
+# 本文（中心・その他の段）はまず無料モデルで書き、門に落ちたら Claude で救済する（Haiku の書き足し → Sonnet の作り直し）。
+# ARTICLE_FREE_FIRST=0 で、前の決まり（予算の配分どおり最初から Claude）に戻せる
+FREE_FIRST = os.environ.get("ARTICLE_FREE_FIRST", "1") != "0"
+FREE_FIRST_PURPOSES = {"core", "rest"}
+# 救済モード: 前の回が0本（state/pipeline_health.json の consecutive_zero が1以上）なら、次の回は自動で
+#   (a) 最初から Claude の段で書く (b) 1本できるまで候補を続けて試す（Claude の費用を抑えるため最大 RESCUE_MAX_ATTEMPTS 回）
+#   (c) 候補を広げる（同じフィード・配信・読者像から外れた一般の話題の1回の上限を増やす）
+#   (d) それでも0本なら使い方ガイド（evergreen.yml）を1本作るよう依頼する。記事が1本できたら自動で通常に戻る
+RESCUE_ON = os.environ.get("PIPELINE_RESCUE", "1") != "0"
+RESCUE_MAX_ATTEMPTS = int(os.environ.get("RESCUE_MAX_ATTEMPTS", "6"))
 JST = timezone(timedelta(hours=9))
 # 幅広い話題に投資・マネー／不動産を足したレーン（genres.WEB_GENRES。2026-11-03 オーナー決定）
 BROAD_SLUGS = [g.slug for g in WEB_GENRES]
@@ -1857,6 +1868,19 @@ def main() -> int:
         args.tier = "quality"
         args.trends = args.max = args.max_broad = 0
 
+    health_before = pipeline_health.load()
+    rescue_mode = RESCUE_ON and not fast_mode and not args.only and not args.source and not args.dry_run \
+        and int(health_before.get("consecutive_zero") or 0) >= 1
+    off_cap = OFF_PERSONA_DAILY_CAP
+    if rescue_mode:
+        args.per_feed *= 2
+        args.max_wire += 1
+        off_cap += 2
+        log(f"[rescue] 救済モード: 前の回まで 0 本が {health_before.get('consecutive_zero')} 回続いています"
+            f"（理由: {str(health_before.get('reason') or '不明')[:120]}）。この回は 最初から Claude の段で書く・"
+            f"1本できるまで最大 {RESCUE_MAX_ATTEMPTS} 回試す・候補を広げる（同じフィード {args.per_feed} 本・配信 {args.max_wire} 本・"
+            f"一般の話題 {off_cap} 本）・それでも0本なら使い方ガイドを依頼します")
+
     done_today = generated_today(state)
     # 上限は公開中の記事だけで数え、夜中に使い切らないよう時刻ごとの配分も見る（scripts/pacing.py。速報・大きなニュースは外）
     remaining, by_cap, by_pace = pacing.run_allowance(args.daily_cap, done_today)
@@ -1866,6 +1890,10 @@ def main() -> int:
         log(f"[pace] 上限 {args.daily_cap} / 公開中 {done_today} 本 / この時刻までの配分 {pacing.allowed_by(args.daily_cap)} 本"
             f" → この回 {max(0, remaining)} 本まで")
     why = "1日の上限" if by_cap <= 0 else "この時刻までの配分（夜中に使い切らず昼に回す）"
+    if cap_reached and rescue_mode and by_cap > 0:
+        # 救済モードでは、時刻ごとの配分（夜中に使い切らない）より止めないことを優先して1本は作る（1日の上限は守る）
+        remaining, cap_reached = 1, False
+        log("[rescue] 時刻ごとの配分には達していますが、救済モードなので1本は作ります（1日の上限は守る）")
     if cap_reached and args.max_major <= 0 and not fast_mode:
         log(f"[info] 今日の公開中 {done_today} 本で{why}に達しています（上限 {args.daily_cap}）")
         return 0
@@ -2172,6 +2200,17 @@ def main() -> int:
     def total_created() -> int:
         return sum(created.values())
 
+    attempt_counter = [0]  # 生成（gated）に回した回数
+    taken_counter = [0]    # 見送らずに手を付けた候補の数（本文の取得から）
+    rescue_stats = {"saved": 0}
+
+    def rescue_exhausted() -> bool:
+        """救済モードで、記事ができないまま試行の上限に達したか（Claude の費用を抑える）"""
+        if rescue_mode and total_created() == 0 and attempt_counter[0] >= RESCUE_MAX_ATTEMPTS:
+            log(f"[rescue] {RESCUE_MAX_ATTEMPTS} 回試しても記事ができませんでした。ここで止め、使い方ガイドを依頼します")
+            return True
+        return False
+
     # 読者像から外れた一般の話題の本数（total_created・1日の上限には数えない。OFF_PERSONA_DAILY_CAP まで）
     created_off = [0]
     off_done_today = off_persona_today(state)
@@ -2220,19 +2259,99 @@ def main() -> int:
     def gate_verdict(blocked: str) -> dict:
         return {"ok": False, "score": None, "problems": [f"公開前の門: {indexnow.PUBLISH_FEEDBACK[blocked]}"]}
 
+    def regate(item: dict, kind: str, record: dict, source_text: str, context: str, attempt: int, model_name: str):
+        """書き足し・手直しした原稿を、最初の原稿と同じ門（公開前の門 → 品質ゲートの事実確認）にもう一度通す（門は緩めない）"""
+        pre_gate(record, source_text, context)
+        blocked = publish_blocked(record)
+        if blocked and blocked not in indexnow.PUBLISH_RETRYABLE:
+            return None, {"ok": False, "score": None, "problems": [f"公開前の門: {indexnow.PUBLISH_FEEDBACK[blocked]}"]}, blocked
+        verdict = gate_verdict(blocked) if blocked else quality.evaluate(record, source_text, kind, context, check_facts=not args.no_gate)
+        log(f"   [gate] {'合格' if verdict['ok'] else ('読みやすさのみ基準外' if verdict.get('soft') else '不合格')}（救済後）"
+            f" score={verdict.get('score')} {('/ ' + ' | '.join(verdict['problems'][:3])[:300]) if verdict['problems'] else ''}")
+        log_quality(state, item, kind, verdict, attempt, verdict["ok"], model_name or "")
+        return record, verdict, blocked
+
+    def finish(item: dict, kind: str, record: dict, verdict: dict, source_text: str, context: str):
+        """合格（または読みやすさだけ基準外）の原稿を仕上げる。公開前の門をもう一度通し、("ok", record, verdict) / ("skip", 理由) / None（不合格）"""
+        if verdict.get("soft"):
+            record, verdict = polish_or_keep(item, kind, record, verdict, source_text, context)
+        if not (verdict["ok"] or verdict.get("soft")):
+            return None, verdict
+        blocked = publish_blocked(record)
+        if blocked:
+            if blocked not in indexnow.PUBLISH_RETRYABLE:
+                return ("skip", f"公開前の門: {indexnow.PUBLISH_FEEDBACK[blocked]}"), verdict
+            log(f"   [gate] 公開前の門で不合格（{blocked}）")
+            return None, gate_verdict(blocked)
+        record["qualityScore"] = verdict.get("score")
+        return ("ok", record), verdict
+
+    def rescue_draft(item: dict, kind: str, record: dict, verdict: dict, source_text: str, context: str, attempt: int,
+                     draft_model: str):
+        """門に落ちた原稿の救済（台帳 A48）: 元記事の事実だけで書き足し・手直し → 同じ門をもう一度。
+        費用を抑えるため Haiku（repair）から。Sonnet の原稿でも Haiku で直せなければ Sonnet（rescue）でもう1回。
+        戻り値: ("ok", record, model, verdict) / ("skip", ...) / None（救えず）"""
+        problems = verdict.get("problems") or []
+        fact = verdict.get("fact") or {}
+        if fact and fact.get("useful") is False:
+            log("   [rescue] 記事にする価値が無いと判定された原稿なので書き足しで救わない")
+            return None
+        target = public_interest.SHORT_BODY if public_interest.short_ok(record) else indexnow.THIN_BODY
+        steps = ["repair"] + (["rescue"] if "sonnet" in str(draft_model) or rescue_mode else [])
+        for purpose in steps:
+            if time_left() < EST_SEC_PER_ARTICLE / 2:
+                log("   [rescue] 時間が足りないため救済を打ち切ります")
+                return None
+            why = llm.api_block_reason(purpose)
+            if why:
+                log(f"   [rescue] Claude の{llm.API_TIERS[purpose][4]}が使えない（{why}）。無料モデルで試します")
+            try:
+                fixed, info = quality.expand_repair(record, source_text, problems, context, purpose=purpose, target=target)
+            except Exception as error:  # noqa: BLE001
+                log(f"   [rescue] 書き足し・手直しに失敗（{str(error)[:120]}）")
+                continue
+            if fixed is None:
+                log(f"   [rescue] {llm.API_TIERS[purpose][4]}: 使えない手直し（{info}）")
+                continue
+            log(f"   [rescue] {llm.API_TIERS[purpose][4]}で書き足し・手直し（{len(record.get('body') or '')}→{len(fixed['body'])}字 / {info}）")
+            fixed, new_verdict, blocked = regate(item, kind, fixed, source_text, context, attempt, info)
+            if fixed is None:
+                return ("skip", None, info, new_verdict["problems"][0])
+            done, new_verdict = finish(item, kind, fixed, new_verdict, source_text, context)
+            if done and done[0] == "ok":
+                rescue_stats["saved"] += 1
+                return ("ok", done[1], f"{draft_model}+{info}", new_verdict)
+            if done and done[0] == "skip":
+                return ("skip", None, info, done[1])
+            record, problems = fixed, new_verdict.get("problems") or problems
+        return None
+
     def gated(item: dict, kind: str, system: str, prompt: str, schema: dict, source_text: str, build, context: str = "",
               tier: str | None = None, attempts: int = 2, purpose: str | None = None):
-        """生成 → 品質ゲート →（不合格なら問題点を添えて作り直し。通常は計2回、大きなニュースは計3回）。
+        """生成 → 品質ゲート →（不合格なら救済: 書き足し・手直し → 問題点を添えて作り直し。通常は計2回、大きなニュースは計3回）。
+        2026-11-06 オーナー「止まらない仕組み」＋「お金はなるべく使わない」（台帳 A48）:
+        本文（中心・その他の段）はまず無料モデルで書き、門に落ちたら Haiku で書き足し・手直し、それでもだめなら Sonnet で作り直す。
+        門の基準は変えない。救済の段は1日の配分では下げず、月の予算に届いたときだけ止まる。
         戻り値: ("ok", record, model, verdict) / ("skip", None, model, reason) / ("reject", ...) / ("fail", None, None, None)"""
         tier = tier or args.tier
         verdict: dict = {}
         model_name = None
+        free_first = purpose in FREE_FIRST_PURPOSES and not quality.MAJOR and not rescue_mode and FREE_FIRST
+        draft_purpose = "" if free_first else purpose
+        attempt_counter[0] += 1
         for attempt in range(1, attempts + 1):
-            data, model_name = generate(system, prompt, schema, item["id"], tier, purpose)
+            if draft_purpose == "":
+                log("   [llm] 原稿はまず無料モデルで書きます（門に落ちたら Claude で救済）")
+            data, model_name = generate(system, prompt, schema, item["id"], tier, draft_purpose)
+            if data is None and draft_purpose == "" and purpose:
+                log(f"   [llm] 無料モデルで書けなかったので Claude の段（{purpose}）で書きます")
+                draft_purpose = purpose
+                data, model_name = generate(system, prompt, schema, item["id"], tier, draft_purpose)
             if data is None:
                 return "fail", None, None, None
             if not data.get("is_relevant", True):
                 return "skip", None, model_name, str(data.get("skip_reason") or "記事化の価値なしと判定")
+            record = None
             try:
                 record = build(data, model_name)
             except (KeyError, TypeError, ValueError) as error:
@@ -2281,22 +2400,24 @@ def main() -> int:
                             f"{' / 残りの細かい指摘は受理: ' + ' | '.join(minor[:2])[:200] if minor else ''}")
                         record, verdict = fixed, info
                         log_quality(state, item, kind, verdict, attempt, True, str(info.get("fixed_by") or ""))
-                if verdict.get("soft"):
-                    record, verdict = polish_or_keep(item, kind, record, verdict, source_text, context)
-                if verdict["ok"] or verdict.get("soft"):
-                    # 書き直し（読みやすさ・指摘の箇所の修正）で短くなっていないか、公開前の門をもう一度通す
-                    blocked = publish_blocked(record)
-                    if blocked:
-                        if blocked not in indexnow.PUBLISH_RETRYABLE:
-                            return "skip", None, model_name, f"公開前の門: {indexnow.PUBLISH_FEEDBACK[blocked]}"
-                        verdict = gate_verdict(blocked)
-                        log(f"   [gate] 公開前の門で不合格（{blocked}）")
-                    else:
-                        record["qualityScore"] = verdict.get("score")
-                        return "ok", record, model_name, verdict
+                done, verdict = finish(item, kind, record, verdict, source_text, context)
+                if done and done[0] == "ok":
+                    return "ok", done[1], model_name, verdict
+                if done and done[0] == "skip":
+                    return "skip", None, model_name, done[1]
+                # 救済（台帳 A48）: 落ちた原稿を元記事の事実だけで書き足し・手直しして、同じ門にもう一度通す
+                if not verdict.get("unavailable") and time_left() > EST_SEC_PER_ARTICLE / 2:
+                    saved = rescue_draft(item, kind, record, verdict, source_text, context, attempt, model_name or "")
+                    if saved:
+                        return saved
             if attempt < attempts and not verdict.get("unavailable") and time_left() > EST_SEC_PER_ARTICLE:
                 prompt = prompt + quality.feedback_block(verdict.get("problems") or [])
-                log(f"   [gate] 問題点を伝えて作り直します（{tier}）")
+                if "sonnet" not in str(model_name) and purpose and llm.api_block_reason("rescue") is None:
+                    # 無料モデル・Haiku の原稿が救えなかった: 作り直しは Sonnet で（月の予算の範囲。1日の配分では下げない）
+                    draft_purpose = "rescue"
+                    log("   [gate] 問題点を伝えて、Claude（Sonnet・救済の段）で作り直します")
+                else:
+                    log(f"   [gate] 問題点を伝えて作り直します（{tier}）")
                 continue
             break
         reason = "; ".join(verdict.get("problems") or [])[:200]
@@ -2363,23 +2484,36 @@ def main() -> int:
         log(f"   [UPDATE] {path.relative_to(m.ROOT)} に続報を追加（{quality._plain_len(str(data['update_markdown']))}字 / {model_name}）")
         return "updated"
 
+    skip_counts: dict[str, int] = {}  # 見送りの理由ごとの件数（最後にまとめて出す。2026-11-06 「止まらない仕組み」台帳 A48）
+
     def pick(cand: dict, is_ai: bool, major: bool = False):
-        """候補を採るか決める。("take", target|None) / ("next", None)=今回は見送り（mark しない）/ ("drop", None)=mark 済み"""
+        """候補を採るか決める。("take", target|None) / ("next", 理由)=今回は見送り（mark しない）/ ("drop", 理由)=mark 済み。
+        見送りは必ず1行ずつログに出し、理由ごとに数える（何も試さずに終わる回を見えるようにする）"""
+        action, found = _pick(cand, is_ai, major)
+        if action != "take":
+            why = str(found or "理由不明")
+            key = why.split("（")[0].split(":")[0].strip()
+            skip_counts[key] = skip_counts.get(key, 0) + 1
+            log(f"   [{'next' if action == 'next' else 'drop'}] {cand.get('title', '')[:60]} → {why[:120]}")
+            return action, None
+        return action, found
+
+    def _pick(cand: dict, is_ai: bool, major: bool = False):
         if not major:
             reason = prefilter(cand) if is_ai else broad_prefilter(cand)
             if reason:
                 mark(state, cand, skipped=True, reason=f"prefilter: {reason}")
-                return "drop", None
+                return "drop", f"prefilter: {reason}"
             if not is_ai and per_feed.get(cand["source_slug"], 0) >= args.per_feed:
-                return "next", None  # 次の実行に回す
+                return "next", f"同じフィードの1回の上限（{args.per_feed}本）"  # 次の実行に回す
             if news_mix.over_cap(cand, mix_counts):
-                return "next", None  # 企業向け・開発者向けの海外の発表は今日の上限まで（見送りの印は付けない。台帳 A41）
+                return "next", f"今日の種類別の上限（{cand.get('_mix') or news_mix.classify(cand)}）"  # 企業向け・開発者向けの海外の発表は今日の上限まで（見送りの印は付けない。台帳 A41）
             if is_ai and is_foreign_ai(cand) and foreign_left[0] <= 0:
-                return "next", None  # 海外の AI の発表は今日の上限まで（見送りの印は付けない。台帳 A47）
+                return "next", f"海外の AI の発表の今日の上限（{FOREIGN_AI_DAILY_CAP}本）"  # 海外の AI の発表は今日の上限まで（見送りの印は付けない。台帳 A47）
             if not is_ai and cand.get("section") == "sports" and sports_today(state) >= persona.SPORTS_DAILY_CAP:
-                return "next", None  # スポーツは1日の上限まで（集客の入口。大きなものだけ）
+                return "next", "スポーツの今日の上限"  # スポーツは1日の上限まで（集客の入口。大きなものだけ）
             if is_wire(cand) and wire_attempts[0] >= args.max_wire:
-                return "next", None  # 配信は1回の上限まで。次の実行に回す
+                return "next", f"配信の1回の上限（{args.max_wire}本）"  # 配信は1回の上限まで。次の実行に回す
         if cand.get("release") and cand.get("fast"):
             # 発表時刻が決まった速報（統計・決算。台帳 W35）は毎月・毎期の新しい発表。前の月の記事の続報・重複にしない。
             # 毎月同じ URL に上書きされる資料（家計調査・消費者物価）は ?period= で月を分けている（出典 URL の比べ方はクエリを落とすので使わない）。
@@ -2387,12 +2521,12 @@ def main() -> int:
             return "take", None
         if recent.has_url(cand["url"]):
             mark(state, cand, skipped=True, reason="dedupe: 同じ出典URL")
-            return "drop", None
+            return "drop", "重複: 同じ出典URL"
         if is_stale(cand) and not cand.get("fast"):
             if not major:
                 hours = int(source_age(cand).total_seconds() // 3600)
                 mark(state, cand, skipped=True, reason=f"stale: 発表から{hours}時間（{STALE_HOURS}時間を超えた発表は通常の記事にしない）")
-                return "drop", None
+                return "drop", f"古い発表（{STALE_HOURS}時間超）"
             cand["late"] = True  # 大きなニュースで記事がまだ無いものだけ、速報ではない形で作る
         # 同じ実行で先に扱った同じ話題: 本家の記事ができていれば続報へ、本家が再試行待ちなら次回へ
         act = in_run_action(cand)
@@ -2400,26 +2534,26 @@ def main() -> int:
             return "take", act
         if act and act[0] == "defer":
             log(f"   [defer] {cand['title'][:60]}（{act[1][:80]}）")
-            return "next", None
+            return "next", "同じ実行の同じ話題の本家が再試行待ち"
         if act and act[0] == "dup":
             mark(state, cand, skipped=True, reason=f"dedupe: {act[1]}"[:200])
-            return "drop", None
+            return "drop", "重複: この実行で扱った話題"
         # 直近14日の記事の続報なら、新しい記事ではなく既存記事に足す
         target = followup_target(cand["title"], cand["url"])
         if target and target[0] == "defer":
-            return "next", None  # 続報の上限。次の実行に回す
+            return "next", "続報の上限（次回）"  # 続報の上限。次の実行に回す
         if not target:
             hit = recent.match(cand["title"], cand["url"])
             if hit and major:
                 # 大きなニュースは見出しの似ただけで落とさない。既存記事があれば同じ話題か LLM で確かめる（違えば新しい記事）
                 target = followup_for(hit[1], hit[0]) if hit[1] else None
                 if target and target[0] == "defer":
-                    return "next", None
+                    return "next", "続報の上限（次回）"
                 if target or not hit[1]:
                     return "take", target
             if hit:
                 mark(state, cand, skipped=True, reason=f"dedupe: {hit[0]}"[:200])
-                return "drop", None
+                return "drop", f"重複: 最近の記事（{hit[0][:40]}）"
         if not target:
             # 同じ発表の記事（出典URL・会社＋製品名・珍しい固有名詞。scripts/story.py。サイトの重複判定と同じ基準）
             same = story_recent.match(cand["title"], cand["url"], published=cand.get("published_at"))
@@ -2427,11 +2561,11 @@ def main() -> int:
                 if major:
                     target = followup_for(same[0], same[1])
                     if target and target[0] == "defer":
-                        return "next", None
+                        return "next", "続報の上限（次回）"
                     if target:
                         return "take", target
                 mark(state, cand, skipped=True, reason=f"dedupe: 同じ発表の記事あり（{same[1]}）: {same[0]}"[:200])
-                return "drop", None
+                return "drop", f"重複: 同じ発表の記事（{same[1]}）"
         return "take", target
 
     def major_retry(item: dict, why: str) -> None:
@@ -2450,6 +2584,7 @@ def main() -> int:
         """公式フィード・配信の1件: 本文取得 → 生成前チェック → 続報 or 新しい記事"""
         nonlocal rejected
         is_ai = lane == "ai"
+        taken_counter[0] += 1
         seen_add(item)  # 同じ実行の中の似た候補も外す（または続報へ）
         if not major:
             per_feed[item["source_slug"]] = per_feed.get(item["source_slug"], 0) + 1
@@ -2535,6 +2670,7 @@ def main() -> int:
             return rec
 
         started = time.time()
+        cost_mark = llm.run_cost_mark()  # この記事の Claude API の費用（台帳 A48: 1本ごとに費用と理由をログに出す）
         if major:
             log(f"   [major] tier={major_tier()} / 最大{MAJOR_ATTEMPTS}回試行（これまでの失敗 {state['major_tries'].get(item['id'], 0)} 回）")
         # 事実確認には発信元・公開日時も渡す（記事に書いた「〇〇によると」「10月26日に発表」を創作と誤判定させない）。
@@ -2549,6 +2685,8 @@ def main() -> int:
             )
         finally:
             quality.MAJOR = False
+        cost_usd, cost_detail = llm.cost_since(cost_mark)
+        log(f"   [cost] ${cost_usd:.3f}（{cost_detail}）")
         if status != "ok":
             if status in ("skip", "reject"):
                 log(f"   [{status}] {info}（{model_name}）")
@@ -2567,7 +2705,8 @@ def main() -> int:
                     return
                 log(f"   [retry] 再挑戦 {GATE_RETRY_MAX} 回でも品質ゲートを通らなかったので見送りで確定: {str(info or '')[:160]}")
             if status in ("skip", "reject"):
-                mark(state, item, skipped=True, reason=f"{'quality: ' if status == 'reject' else ''}{info}"[:200], model=model_name)
+                mark(state, item, skipped=True, reason=f"{'quality: ' if status == 'reject' else ''}{info}"[:200], model=model_name,
+                     **({"costUsd": cost_usd} if cost_usd else {}))
             return
         # 速報（scripts/breaking_post.py がデプロイ直後に SNS へ出す）。
         # 速報レーンの記事は Worker が主要企業の公式発表と判定したものなので、必ず速報にする（公開したらすぐ SNS へ）
@@ -2596,7 +2735,7 @@ def main() -> int:
              **({"major": True} if major else {}), **({"breaking": True} if record.get("breaking") else {}),
              **({"publicInterest": item["_public_interest"]} if item.get("_public_interest") else {}),
              **({"foreignAi": True} if is_ai and is_foreign_ai(item) else {}),
-             mix=item.get("_mix") or news_mix.classify(item))
+             mix=item.get("_mix") or news_mix.classify(item), costUsd=cost_usd)
         if is_ai and not major and is_foreign_ai(item):
             foreign_left[0] -= 1
         mix_key = item.get("_mix") or news_mix.classify(item)
@@ -2610,7 +2749,7 @@ def main() -> int:
         per_section[record["genreSlug"]] = per_section.get(record["genreSlug"], 0) + 1
         log(
             f"   [OK{' major' if major else ''}] {path.relative_to(m.ROOT)} ({record['genreSlug']} / {len(record['body'])}字 / "
-            f"score {record.get('qualityScore')} / {model_name} / {time.time() - started:.0f}s"
+            f"score {record.get('qualityScore')} / {model_name} / ${cost_usd:.3f} / {time.time() - started:.0f}s"
             f"{' / 過去記事 ' + str(len(record['relatedSlugs'])) + '本' if record.get('relatedSlugs') else ''})"
         )
         if item.get("fast"):
@@ -2736,13 +2875,13 @@ def main() -> int:
                     return cand, found
             return None, None
         while active:
-            if total_created() >= remaining or time_up():
+            if total_created() >= remaining or time_up() or rescue_exhausted():
                 break
             if llm.all_exhausted(args.tier):
                 log("[info] すべてのモデルが無料枠の上限に達したため終了します")
                 break
             for lane in list(active):
-                if total_created() >= remaining or time_up() or llm.all_exhausted(args.tier):
+                if total_created() >= remaining or time_up() or llm.all_exhausted(args.tier) or rescue_exhausted():
                     break
                 is_ai = lane == "ai"
                 if (is_ai and created["ai"] >= ai_limit) or (not is_ai and created["broad"] >= broad_limit):
@@ -2766,9 +2905,9 @@ def main() -> int:
                     process_web(extra, lane, target)
         # 読者像から外れた一般の話題は、読者像の候補を回し終えてから、1日 OFF_PERSONA_DAILY_CAP 本まで（上限・本数には数えない）
         for lane, cand in deferred_off:
-            if off_done_today + created_off[0] >= OFF_PERSONA_DAILY_CAP or time_up() or llm.all_exhausted(args.tier):
+            if off_done_today + created_off[0] >= off_cap or time_up() or llm.all_exhausted(args.tier) or rescue_exhausted():
                 if deferred_off:
-                    log(f"[persona] 読者像から外れた一般の話題 {len(deferred_off)} 件は見送り（今日 {off_done_today + created_off[0]} 本 / 上限 {OFF_PERSONA_DAILY_CAP}）")
+                    log(f"[persona] 読者像から外れた一般の話題 {len(deferred_off)} 件は見送り（今日 {off_done_today + created_off[0]} 本 / 上限 {off_cap}）")
                 break
             action, target = pick(cand, False)
             if action == "take":
@@ -2788,21 +2927,50 @@ def main() -> int:
         m.save_state(state)
         trends.remove_from_queue(used_queue_ids)
 
+    if skip_counts:
+        log(f"[skip] 見送りの内訳（この回）: {' / '.join(f'{k} {v}件' for k, v in sorted(skip_counts.items(), key=lambda kv: -kv[1]))}")
+    log(f"[try] 手を付けた候補 {taken_counter[0]} 件 / 生成に回した {attempt_counter[0]} 回 / 救済で合格 {rescue_stats['saved']} 本"
+        f"{' / 救済モード' if rescue_mode else ''}")
+    run_usd, run_detail = llm.cost_since((0.0, 0))
+    log(f"[cost] この回の Claude API の費用 ${run_usd:.3f}（{run_detail}）")
     if not fast_mode and not args.only and not args.source:
-        # 見張り: 候補があるのに 0 本の回が2回続いたら state/pipeline_health.json に「止まっている」と書く（issue は workflow が立てる）
+        # 見張り: 候補があるのに 0 本の回を state/pipeline_health.json に数える（1回で次の回が救済モード、救済モードで2回続けて0本なら issue）
         candidates = len(majors) + (len(queue) if trend_limit > 0 else 0) + (len(ai_items) if ai_limit > 0 else 0) \
             + (len(broad_items) if broad_limit > 0 else 0)
         reason = last_problem[0]
         if llm.all_exhausted(args.tier):
             reason = "無料モデルも Claude API も使えない（無料枠切れ・API 停止） " + reason
+        made = total_created() + updated_count[0]
+        if candidates and not made and taken_counter[0] == 0 and not reason:
+            # 候補があるのに1件も試さずに終わった回は「おかしい」の合図（2026-11-06 13:38 の回: AI の候補 79 件がすべて種類別の上限で見送り）
+            inner = " / ".join(f"{k} {v}件" for k, v in sorted(skip_counts.items(), key=lambda kv: -kv[1])[:4]) or "内訳なし"
+            reason = f"候補 {candidates} 件があったのに1件も試していない（見送りの内訳: {inner}）"
+            log(f"[health] {reason}")
         if not reason:
-            candidates = 0  # 失敗が無く 0 本（見送り・本文が短いなど）は「止まっている」に数えない
+            candidates = 0  # 試したうえで見送りだけ（記事にする価値なし・本文が短いなど）の回は「止まっている」に数えない
+        tried = []
+        if rescue_mode:
+            tried = [
+                "最初から Claude（有料の AI）の段で書いた",
+                f"候補を {taken_counter[0]} 件試した（生成 {attempt_counter[0]} 回・上限 {RESCUE_MAX_ATTEMPTS} 回）",
+                "短い原稿は元記事の事実だけで書き足し（Haiku）→ だめなら書き直し（Sonnet）",
+                f"候補を広げた（同じ発信元 {args.per_feed} 本・配信 {args.max_wire} 本・一般の話題 {off_cap} 本まで）",
+            ]
         try:
-            health = pipeline_health.record(total_created() + updated_count[0], candidates, reason)
+            health = pipeline_health.record(made, candidates, reason, rescue=rescue_mode, tried=tried)
             if health.get("status") == "stalled":
-                log(f"[health] 止まっています: 0本の回が {health.get('consecutive_zero')} 回続いた / {health.get('reason')}")
+                log(f"[health] 止まっています: 救済モードでも 0 本の回が {health.get('rescue_failed')} 回続いた / {health.get('reason')}")
+            elif int(health.get("consecutive_zero") or 0) >= 1:
+                log(f"[health] 0本の回が {health.get('consecutive_zero')} 回。次の回は救済モードで動きます")
         except Exception as error:  # noqa: BLE001 - 見張りの失敗で記事づくりは止めない
             log(f"[health] 記録に失敗: {str(error)[:100]}")
+        if rescue_mode and total_created() == 0:
+            # 最後の手: 使い方ガイド（公式ページが出典。evergreen.yml）を1本作るよう workflow に伝える（auto_run.yml が依頼する）
+            log("[rescue] ニュースの記事ができなかったので、使い方ガイドを1本作るよう依頼します（evergreen.yml）")
+            out = os.environ.get("GITHUB_OUTPUT")
+            if out:
+                with open(out, "a", encoding="utf-8") as fh:
+                    fh.write("rescue_evergreen=1\n")
     elif total_created() + updated_count[0] > 0:
         # 速報レーン・記事を指定した回でも、記事ができたら「止まっている」の印は外す（0本の回は数えない）
         try:

@@ -847,7 +847,14 @@ API_TIERS = {
     "sns": (2, 1, 2, False, "SNS"),          # SNS に出しそうな記事
     "core": (2, 1, 2, False, "中心"),         # 読者像の中心の話題（AI・仕事とお金・ビジネス・投資・税金・補助金・起業）
     "rest": (1, 0, 2, False, "その他"),       # ほかの記事（スポーツ・暮らし・エンタメ・科学など）
+    # 2026-11-06 オーナー「止まらない仕組み」（台帳 A48）: 無料モデルの原稿が品質の門に落ちたときの救済だけに使う段。
+    # 1日の配分（api_plan の目安額）では下げない。止まるのは月の予算に届いたときだけ（守る段ではないので予備は使わない）。
+    # 費用を抑えるため、まず Haiku で書き足し・手直し（repair）→ それでもだめなら Sonnet で書き直し（rescue）
+    "repair": (1, 1, 1, False, "救済の手直し"),
+    "rescue": (2, 2, 2, False, "救済の書き直し"),
 }
+# 救済の段（1日の配分では下げない。月の予算に届いたら使わない）
+RESCUE_PURPOSES = {"repair", "rescue"}
 # Claude CLI（サブスクリプション）も使ってよい段（2026-11-03 オーナー決定: 速報・SNS・動画だけ）
 API_CLI_PURPOSES = {"breaking", "sns", "video", "video_review"}
 # 動画の台本・画像の確認は Claude だけで書く（2026-11-04 決定。無料のモデル（Gemini など）には回さない）。
@@ -878,15 +885,18 @@ def claude_unavailable_message(purpose: str, last_error: Exception | None = None
 API_STEPS = [("rest", 0, 1), ("sns", 1, 2), ("core", 1, 2)]
 API_UPGRADE_STEPS = [("check", 1, 2), ("rest", 1, 2)]  # Opus への格上げはしない（2026-11-04 オーナー決定）
 # 1日の呼び出し回数の見込み（実績が2日分たまるまでの仮の値。作り直しも1回と数える）
-API_DEMAND_DEFAULT = {"breaking": 7, "video": 5, "video_review": 5, "check": 90, "helper": 80, "sns": 13, "core": 27, "rest": 21}
+API_DEMAND_DEFAULT = {"breaking": 7, "video": 5, "video_review": 5, "check": 90, "helper": 80, "sns": 13, "core": 27, "rest": 21,
+                      "repair": 20, "rescue": 6}
 # 1回あたりの料金の見込み（Sonnet で書いたとき。実績が3回分たまったらその平均を使う）。ほかのモデルは料金の比で換算
 # 2026-11-03 の実績: 速報 Opus 平均 $0.25/回・SNS Sonnet $0.09/回・動画 Opus $0.11/回（入力 約1.5万・出力 約0.5〜0.9万トークン）
 # Opus は Sonnet の2倍の料金なので、2026-11-04 からの Sonnet では 速報 約 $0.125/回・動画 約 $0.055/回の見込み
-API_COST_MID_DEFAULT = {"breaking": 0.125, "video": 0.055, "video_review": 0.02, "check": 0.045, "helper": 0.04, "sns": 0.09, "core": 0.09, "rest": 0.09}
+API_COST_MID_DEFAULT = {"breaking": 0.125, "video": 0.055, "video_review": 0.02, "check": 0.045, "helper": 0.04, "sns": 0.09, "core": 0.09, "rest": 0.09,
+                         "repair": 0.09, "rescue": 0.10}
 API_LEVEL_COST_RATIO = {1: 0.05, 2: 1.0, 3: 2.0}
 # 1日の回数の安全上限（暴走よけ。環境変数 CLAUDE_API_DAILY_CALLS_<段> で変更）
 # video_review: 台本のレビュー＋動画の目視の確認（2026-11-04 QA。1記事1回・画像つき）で 20 → 40
-API_DAILY_CALLS = {"breaking": 40, "video": 20, "video_review": 40, "check": 600, "helper": 600, "sns": 30, "core": 120, "rest": 160}
+API_DAILY_CALLS = {"breaking": 40, "video": 20, "video_review": 40, "check": 600, "helper": 600, "sns": 30, "core": 120, "rest": 160,
+                   "repair": 300, "rescue": 150}  # 救済の段は暴走よけだけ（台帳 A48）
 # 2026-11-06 オーナー承認: breaking を 20→40 回（KDDI の決算の速報が上限で作れなかった。月の予算 $95 は変えない）
 # 2026-11-06 オーナー決定（台帳 A47）: 記事を1日100本へ。1日40本の上限のときの回数を本数に合わせて広げる
 #   check・helper 300→600（事実確認と指摘の手直しは全部の記事に通す。Haiku で1回 約 $0.002）、
@@ -1098,7 +1108,8 @@ def api_plan(now: datetime | None = None, summary: dict | None = None) -> dict:
     left = max(1 / 24, 1 - (local.hour * 60 + local.minute) / 1440)  # 今日の残り時間の割合
     levels = {tier: float(spec[1]) for tier, spec in API_TIERS.items()}
     room = s["daily_limit"] - s["spent_today"]
-    room -= sum(s["demand"].get(t, 0) * api_call_cost(t, int(levels[t]), s) for t in API_TIERS) * left
+    # 救済の段（RESCUE_PURPOSES）は1日の目安額の外（月の予算から借りる）。ほかの段の配分を削らない（台帳 A48）
+    room -= sum(s["demand"].get(t, 0) * api_call_cost(t, int(levels[t]), s) for t in API_TIERS if t not in RESCUE_PURPOSES) * left
     steps = API_STEPS + ([] if os.environ.get("CLAUDE_API_UPGRADES") == "0" else API_UPGRADE_STEPS)
     if s["spent"] >= s["budget"]:
         steps = []
@@ -1228,9 +1239,33 @@ def _model_level(model: str) -> int:
     return {"claude-haiku-5-5": 1, "claude-sonnet-5-5": 2}.get(model, 3)
 
 
+# この実行で Claude API に使った額（記事ごとの費用をログに出すため。web_articles.py が前後の差を見る。台帳 A48）
+RUN_COST: dict = {"usd": 0.0, "calls": []}
+
+
+def run_cost_mark() -> tuple[float, int]:
+    """いまの累計（米ドル, 呼び出し数）。cost_since() に渡して、その間の費用を出す"""
+    return RUN_COST["usd"], len(RUN_COST["calls"])
+
+
+def cost_since(mark: tuple[float, int]) -> tuple[float, str]:
+    """mark からの Claude API の費用（米ドル）と内訳の1行（例: 「救済の手直し Haiku×1 $0.004」）"""
+    usd = RUN_COST["usd"] - mark[0]
+    parts: dict[str, list] = {}
+    for purpose, model, cost in RUN_COST["calls"][mark[1]:]:
+        label = f"{API_TIERS.get(purpose, (0, 0, 0, False, purpose))[4]} {'Haiku' if 'haiku' in model else ('Sonnet' if 'sonnet' in model else model)}"
+        acc = parts.setdefault(label, [0, 0.0])
+        acc[0] += 1
+        acc[1] += cost
+    detail = " / ".join(f"{k}×{n} ${c:.3f}" for k, (n, c) in parts.items())
+    return round(usd, 4), detail or "Claude API なし（無料モデルだけ）"
+
+
 def record_api_usage(purpose: str, model: str, usage, now: datetime | None = None) -> float:
     """1回の呼び出しの使用量を自分の実行の欄に足す（合計・段ごと・段×モデルごと）。戻り値はその回の米ドル"""
     usd = api_cost(model, usage)
+    RUN_COST["usd"] += usd
+    RUN_COST["calls"].append((purpose, model, usd))
     data = _read_json(_ledger_path())
     entry = _ledger_entry(data, now)
     entry["usd"] = round(float(entry.get("usd") or 0) + usd, 6)

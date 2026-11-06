@@ -197,10 +197,12 @@ class QuotaShareTests(Base):
 class HealthTests(Base):
     def test_two_zero_runs_with_candidates_mark_stalled_then_recover(self):
         self.assertEqual(pipeline_health.record(0, 0, "候補なし"), {})  # 候補が無い回は数えない
+        # 2026-11-06（台帳 A48）: 0本の回が1回で次は救済モード。救済モードでも0本が2回続いたら「止まっている」
         first = pipeline_health.record(0, 5, "品質ゲート不合格: 事実確認を実行できなかった")
-        self.assertEqual((first["consecutive_zero"], first.get("status")), (1, None))
-        second = pipeline_health.record(0, 4, "無料モデルも Claude API も使えない")
-        self.assertEqual((second["consecutive_zero"], second["status"]), (2, "stalled"))
+        self.assertEqual((first["consecutive_zero"], first.get("status")), (1, "rescue"))
+        pipeline_health.record(0, 4, "x", rescue=True)
+        second = pipeline_health.record(0, 4, "無料モデルも Claude API も使えない", rescue=True)
+        self.assertEqual((second["consecutive_zero"], second["status"], second["rescue_failed"]), (3, "stalled", 2))
         saved = json.loads(pipeline_health.HEALTH_PATH.read_text())
         self.assertEqual(saved["reason"], "無料モデルも Claude API も使えない")
         ok = pipeline_health.record(3, 4)
@@ -215,7 +217,8 @@ class HealthTests(Base):
 
     def test_alert_opens_issue_once_and_closes_after_recovery(self):
         pipeline_health.record(0, 5, "x")
-        pipeline_health.record(0, 5, "y")
+        pipeline_health.record(0, 5, "y", rescue=True)
+        pipeline_health.record(0, 5, "z", rescue=True)
         calls = []
 
         def run(cmd, **kwargs):

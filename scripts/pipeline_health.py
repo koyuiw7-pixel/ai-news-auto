@@ -13,6 +13,7 @@ web_articles.py が通常の回の終わりに record() を呼ぶ。候補があ
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -21,7 +22,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 HEALTH_PATH = ROOT / "state" / "pipeline_health.json"
 ARTICLES_DIR = ROOT / "content" / "articles"
-STALL_RUNS = 2  # この回数続けて 0 本なら「止まっている」
+STALL_RUNS = 2  # 救済モードを止めている（PIPELINE_RESCUE=0）ときだけ: この回数続けて 0 本なら「止まっている」
+# 2026-11-06 オーナー「止まらない仕組み」（台帳 A48）: 0本の回が1回あれば次の回は救済モード（web_articles.py）。
+# 救済モードでも0本の回がこの回数続いたときだけ issue でオーナーに知らせる
+RESCUE_FAIL_ALERT = 2
 LABEL = "pipeline-stalled"
 
 
@@ -38,23 +42,32 @@ def save(data: dict) -> None:
     HEALTH_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + "\n", "utf-8")
 
 
-def record(created: int, candidates: int, reason: str = "", now: datetime | None = None) -> dict:
-    """通常の回の結果を記録する。created = 新しい記事＋続報の本数、candidates = 作る対象だった候補の数"""
+def record(created: int, candidates: int, reason: str = "", now: datetime | None = None, rescue: bool = False,
+           tried: list[str] | None = None) -> dict:
+    """通常の回の結果を記録する。created = 新しい記事＋続報の本数、candidates = 作る対象だった候補の数。
+    rescue = この回が救済モードだったか、tried = 救済モードで試したこと（issue にそのまま書く）"""
     now = now or datetime.now(timezone.utc)
     old = load()
     data = dict(old)
     if created > 0:
-        data.update(status="ok", consecutive_zero=0, reason="")
+        data.update(status="ok", consecutive_zero=0, reason="", rescue_failed=0)
         data.pop("recovered_by", None)
+        data.pop("tried", None)
         if old.get("status") != "ok" or old.get("consecutive_zero"):
             data["recovered_at"] = now.isoformat(timespec="seconds")
     elif candidates > 0:
         zero = int(old.get("consecutive_zero") or 0) + 1
         data.update(consecutive_zero=zero, reason=reason[:300], last_zero_at=now.isoformat(timespec="seconds"),
                     candidates=candidates)
-        if zero >= STALL_RUNS:
+        if rescue:
+            data["rescue_failed"] = int(old.get("rescue_failed") or 0) + 1
+            data["tried"] = list(tried or [])[:8]
+        no_rescue = os.environ.get("PIPELINE_RESCUE") == "0"
+        if int(data.get("rescue_failed") or 0) >= RESCUE_FAIL_ALERT or (no_rescue and zero >= STALL_RUNS):
             data["status"] = "stalled"
             data.setdefault("stalled_since", now.isoformat(timespec="seconds"))
+        elif data.get("status") != "stalled":
+            data["status"] = "rescue"  # 次の回は救済モード（まだオーナーには知らせない）
     else:
         return old  # 候補が無い回（作るものが無い）は数えない
     if data.get("status") == "ok":
@@ -95,17 +108,42 @@ def newest_article_after(since: str, articles_dir: Path | None = None) -> tuple[
 def recover_from_articles(articles_dir: Path | None = None) -> dict:
     """止まっている印のあとに記事ができていれば、直ったことにする（issue は alert() が閉じる）"""
     data = load()
-    if data.get("status") != "stalled":
+    if data.get("status") not in ("stalled", "rescue"):
         return data
     found = newest_article_after(data.get("last_zero_at") or data.get("stalled_since") or "", articles_dir)
     if not found:
         return data
     slug, made = found
-    data.update(status="ok", consecutive_zero=0, reason="", recovered_at=made, recovered_by=slug)
+    data.update(status="ok", consecutive_zero=0, reason="", recovered_at=made, recovered_by=slug, rescue_failed=0)
+    data.pop("tried", None)
     data.pop("stalled_since", None)
     save(data)
     print(f"[health] 止まった印のあとに記事ができていました（{slug} {made}）。直ったことにします")
     return data
+
+
+def issue_body(data: dict) -> str:
+    """オーナー（専門家ではない）が読む issue の本文。むずかしい言葉を使わず、何が起きて何を試したかを書く"""
+    tried = data.get("tried") or []
+    lines = [
+        "記事が自動で作れない状態が続いています。",
+        "",
+        f"- 0本の回: {data.get('consecutive_zero')} 回続いています（そのうち自動の立て直し〔救済モード〕でも0本: {data.get('rescue_failed', 0)} 回）",
+        f"- 最後の回の理由: {data.get('reason') or '不明'}",
+        f"- 記事にできそうな候補の数: {data.get('candidates')}",
+        f"- 止まり始め: {data.get('stalled_since')}",
+        "",
+        "自動で試したこと:",
+    ]
+    lines += [f"- {t}" for t in tried] or ["- （記録なし）"]
+    lines += [
+        "- ニュースの記事ができなかった回は、使い方ガイドを1本作るよう自動で依頼しました",
+        "",
+        "品質の基準（本文1500字以上・元の発表にある事実だけ・事実の確認）は下げていません。",
+        "記事が1本でもできたら、この知らせは自動で閉じます。",
+        "（くわしい記録: state/pipeline_health.json と Auto Article Pipeline の実行ログ）",
+    ]
+    return "\n".join(lines)
 
 
 def _gh(*args: str) -> str:
@@ -115,17 +153,11 @@ def _gh(*args: str) -> str:
 def alert() -> int:
     data = recover_from_articles()
     if data.get("status") == "stalled" and not data.get("issue"):
-        body = (
-            f"候補があるのに、通常の記事づくりの回が {data.get('consecutive_zero')} 回続けて 0 本でした。\n\n"
-            f"- 理由（最後の回）: {data.get('reason') or '不明'}\n"
-            f"- 候補の数: {data.get('candidates')}\n"
-            f"- 止まり始め: {data.get('stalled_since')}\n\n"
-            "記事が1本でもできたら、この issue は自動で閉じます。詳しくは state/pipeline_health.json と auto_run.yml のログ。"
-        )
+        body = issue_body(data)
         try:
             subprocess.run(["gh", "label", "create", LABEL, "--color", "B60205", "--description", "記事づくりが止まっている", "--force"],
                            check=False, capture_output=True, text=True)
-            url = _gh("issue", "create", "--title", "記事づくりが止まっています（2回続けて0本）", "--label", LABEL, "--body", body)
+            url = _gh("issue", "create", "--title", "記事づくりが止まっています（自動の立て直しでも0本）", "--label", LABEL, "--body", body)
         except Exception as error:  # noqa: BLE001
             print(f"[health] issue を立てられませんでした: {error}")
             return 0

@@ -119,6 +119,7 @@ jobs:
       # 速報レーンの回（fast_url あり）は、その記事だけを quality で作る（scripts/web_articles.py の --fast-url）。
       # 通常の回は、速報レーンの実行が待っていると今の記事を作り終えたところで早めに終えて譲る
       - name: Generate web articles
+        id: web
         continue-on-error: true
         env:
           LLM_WORKFLOW: ${{ (inputs.fast_url || '') != '' && 'breaking' || 'articles' }}  # 無料枠の取り分を数えるジョブ名（scripts/llm.py）
@@ -156,6 +157,15 @@ jobs:
             --trends "${{ vars.TREND_MAX_PER_RUN || '1' }}" \
             --daily-cap "${{ steps.ramp.outputs.web_daily_cap }}" \
             --days 3 --tier bulk
+
+      # 救済モードの最後の手（2026-11-06 オーナー「止まらない仕組み」・台帳 A48）: 前の回から0本が続き、この回もニュースの記事が
+      # できなかったら、使い方ガイド（公式ページが出典・同じ品質の門）を1本作るよう evergreen.yml に依頼する（同じガイドの二重作成は evergreen の concurrency で防ぐ）
+      - name: Rescue with an evergreen guide
+        if: ${{ steps.web.outputs.rescue_evergreen == '1' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run evergreen.yml --ref main -f max=1 && echo "使い方ガイドを1本作るよう依頼しました"
 
       # 同じ話題の記事が3本以上たまったら、横断まとめ記事に統合する。
       # 動画を再解析せず既存記事のテキストだけを使うのでAPI消費は1回分。

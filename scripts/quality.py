@@ -1416,6 +1416,84 @@ def surgical_fix(record: dict, source_text: str, kind: str, problems: list[str],
     return None, "直したあとの確認に不合格: " + "; ".join(verdict.get("problems", [])[:2])
 
 
+EXPAND_SYSTEM = """あなたはニュースサイトのデスクです。品質の門に落ちた原稿を、元記事にある事実だけで書き足し・手直しして、門を通る原稿にします。
+元記事に無い事実・数字・日付・固有名詞・発言は1つも足しません。出力は指定の JSON だけ。"""
+
+EXPAND_PROMPT = """次の記事は品質の門に落ちました。指摘をすべて直した完成稿を返してください。
+
+# 門の指摘（全部直す）
+{problems}
+
+# 直し方
+- 本文は{target}字以上（目安 {aim}字）にする。いまは{length}字。
+  足すのは元記事にある事実の説明だけ: 対象（だれ・どの機種/契約/地域）、条件、日付・期限、金額、手順、前との違い、
+  元記事に書かれた背景や理由、まだ分からないこと（元記事で触れていない点を「発表では触れていない」と書く）。
+- 推測・一般論・水増しの言い回し（「〜と言えるでしょう」「注目が集まります」など）で埋めない。同じ内容をくり返さない。
+- 元記事に無い数値・日付・価格・発言は削る。元記事の文をそのまま書き写さない（自分の言葉で説明する）。
+- 見出し（## と ###）は今の順番を保ち、必要なら中身の言葉の見出しを足してよい。
+- タイトル・リード・要点・かんたん版・「仕事・お金にどう活かせる」も、指摘があれば直し、なければそのまま返す（元に無ければ空配列）。
+
+# 元記事
+<<<
+{source}
+>>>
+
+# いまの記事
+タイトル: {title}
+リード: {lede}
+要点: {highlights}
+仕事・お金にどう活かせる: {work_money}
+
+本文:
+<<<
+{body}
+>>>
+
+かんたん版:
+<<<
+{easy}
+>>>"""
+
+
+def expand_repair(record: dict, source_text: str, problems: list[str], context: str = "", purpose: str = "repair",
+                  target: int = 1500) -> tuple[dict | None, str]:
+    """品質の門に落ちた原稿の救済（2026-11-06 オーナー「止まらない仕組み」・台帳 A48）。
+    元記事の事実だけで書き足し・手直しした新しい記録を返す（門・事実確認は呼び出し側でもう一度通す。門は緩めない）。
+    purpose="repair" は Haiku（安い）、"rescue" は Sonnet。月の予算に届いていれば無料モデルで試す（llm.generate_json）。
+    (record, 使ったモデル) か (None, 理由)"""
+    body = record.get("body") or ""
+    length = len(body)
+    prompt = EXPAND_PROMPT.format(
+        problems="\n".join(f"- {p}" for p in problems[:10]) or "- 本文が短い",
+        target=target, aim=target + 400, length=length,
+        source=(source_text or "")[:SOURCE_CAP] + (f"\n\n# 確認済みの文脈（ここにある事実・計算済みの数字も使ってよい）\n{context[:CONTEXT_CAP]}" if context.strip() else ""),
+        title=record.get("title", ""), lede=record.get("lede", ""), highlights=" / ".join(record.get("highlights") or []),
+        work_money=" / ".join((record.get("workMoney") or {}).get("points") or []) or "（なし）",
+        body=body, easy=record.get("easy", ""),
+    )
+    data, model = llm.generate_json(EXPAND_SYSTEM, prompt, SURGICAL_SCHEMA, temperature=0.3, max_output_tokens=16384, tier="write",
+                                    purpose=purpose)
+    new_body = re.sub(r"^(#{1,6}) +(?:#{1,6} +)+", r"\1 ", str(data.get("body_markdown") or "").strip(), flags=re.M)
+    if len(new_body) < length * 0.9:
+        return None, f"本文が縮んだ（{length}→{len(new_body)}字）"
+    added = {n for n in _numbers(new_body) - _numbers(body) - _numbers(source_text) - _numbers(context) if len(n) > 1}
+    if added:
+        return None, f"元に無い数字が増えた（{', '.join(sorted(added)[:5])}）"
+    fixed = {**record, "body": new_body}
+    for key, field in (("title", "title"), ("lede", "lede"), ("easy_markdown", "easy")):
+        value = str(data.get(key) or "").strip()
+        if value:
+            fixed[field] = value
+    highlights = [str(h).strip() for h in data.get("highlights") or [] if str(h).strip()]
+    if highlights:
+        fixed["highlights"] = highlights[:3]
+    if record.get("workMoney"):
+        points = [str(p).strip() for p in data.get("work_money_points") or [] if str(p).strip()]
+        if points:
+            fixed["workMoney"] = persona.clean_work_money({**record["workMoney"], "points": points})
+    return fixed, model
+
+
 def feedback_block(problems: list[str]) -> str:
     """作り直しのときにプロンプト末尾へ足す指示"""
     lines = "\n".join(f"- {p}" for p in problems[:10])
