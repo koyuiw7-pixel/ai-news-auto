@@ -13,7 +13,6 @@
     "63pcV4z0DwI": 2,
     "7cJlIJpKBW4": 1,
     "8K08Ywgduno": 1,
-    "9ZxCOHkfn_8": 1,
     "AIH_9dOpAmU": 1,
     "DDjr6gXqtN8": 2,
     "Er0AYcDuZeA": 1,
@@ -253,7 +252,9 @@
       "url": "https://news.samsung.com/jp/samsung-health-makes-sleep-coaching2611?utm_source=rss&utm_medium=direct"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "a307777d6ded3852": 1
+  },
   "pi_reopened": {
     "015d389a8563486d": "2026-11-04T13:10:52.830493+00:00",
     "02812387c422b17e": "2026-11-04T13:10:52.830493+00:00",
@@ -412,6 +413,11 @@
     "0Kkk5NxiZ_c": {
       "at": "2026-08-11T18:47:21.636574+00:00",
       "slug": "tech-off-balance-debt-ai-bubble"
+    },
+    "0LDs5rvx1EI": {
+      "at": "2026-11-06T08:12:48.020556+00:00",
+      "reason": "publish-gate: thin",
+      "skipped": true
     },
     "0XPk_MAwCW4": {
       "at": "2026-08-14T07:07:52.737171+00:00",
@@ -580,6 +586,11 @@
       "at": "2026-10-28T22:29:24.869463+00:00",
       "slug": "google-gemini-4-carbon-announcement"
     },
+    "44GBqQGc-v0": {
+      "at": "2026-11-06T08:14:28.456132+00:00",
+      "reason": "publish-gate: thin",
+      "skipped": true
+    },
     "44RXU8Cxoas": {
       "at": "2026-10-12T13:45:09.956937+00:00",
       "slug": "hugging-face-business-dashboard-ai-agent"
@@ -698,6 +709,11 @@
     "6GzlnTM1pOY": {
       "at": "2026-08-30T02:07:11.225684+00:00",
       "slug": "libe-city-gakucho-live-housing-investment-qa"
+    },
+    "6IttBmI4P9M": {
+      "at": "2026-11-06T08:12:23.227585+00:00",
+      "reason": "サッカー選手のリオネル・メッシ氏が出演するChatGPTの15秒プロモーション動画であり、技術的な新発表や詳細な機能解説が含まれていないため。",
+      "skipped": true
     },
     "6Qx099Wptf0": {
       "at": "2026-08-10T21:36:37.092714+00:00",
@@ -847,6 +863,10 @@
     "9XFYvqVAMsE": {
       "at": "2026-08-03T22:05:33.012521+00:00",
       "slug": "tokyo-apartment-insulation-subsidy"
+    },
+    "9ZxCOHkfn_8": {
+      "at": "2026-11-06T08:11:40.796095+00:00",
+      "slug": "openai-gpt-image-2-6-api-release"
     },
     "9_fKMduZTic": {
       "at": "2026-08-01T08:06:25.114059+00:00",
@@ -1117,6 +1137,11 @@
     "Fi6FaIF6FdI": {
       "at": "2026-09-04T10:05:37.656253+00:00",
       "slug": "yen-rate-surge-sasaki-analysis-202609"
+    },
+    "FtpOReqx5ts": {
+      "at": "2026-11-06T08:11:13.094369+00:00",
+      "reason": "style-gate: リードの1文目が「〇〇を発表しました」で終わり、何が新しいか（中身・数字）を言っていない。1文目で新しい事実を言い切る",
+      "skipped": true
     },
     "G8ToBjdoynY": {
       "at": "2026-08-03T19:21:52.390919+00:00",
@@ -2940,6 +2965,11 @@
     "pQ_Dnr9Q4k8": {
       "at": "2026-10-28T18:26:02.332096+00:00",
       "slug": "google-gemini-4-argon-surf-clock-hardware"
+    },
+    "pXRZyOxbDL4": {
+      "at": "2026-11-06T08:09:23.820350+00:00",
+      "reason": "dedupe: 製品名が一致（gpt6cyber）: gpt-6-cyber-aligned-security-agents",
+      "skipped": true
     },
     "p_slDAvPjv0": {
       "at": "2026-08-07T02:15:41.606582+00:00",
@@ -17036,85 +17066,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-05T01:24:30.278398+00:00",
-      "attempt": 1,
-      "id": "7fadfa1e7a1a6173",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「特にBrotliの圧縮展開処理における欠陥…組み込み製品を含め注意が必要です」→ 元記事は影響を受けるアプリケーション等としており、「組み込み製品」への言及は元記事に無い範囲の追加です。",
-        "「開発・ライブラリ・データ圧縮：Ruby、Adobe製品、Brotli」→ Adobe製品を開発・ライブラリ系に分類しており、元記事の製品分類と合っていません。",
-        "「GitLabサーバーに対して攻撃を試みる動きが観測されました」→ 元記事では攻撃を報告したのはAlpine Linuxで、その発信元が省かれています。",
-        "「特別な契約変更などは不要ですが」→ 元記事に無い記述ですが、一般的な助言の範囲内の軽微な補足です。",
-        "「個人ユーザーも日常的に使うブラウザやOSを最新版に」→ 元記事の対象製品にOSは挙げられておらず、Apple製品の扱いが曖昧です。"
-      ],
-      "readability": {
-        "avg_paragraph": 114.3,
-        "avg_sentence": 63.5,
-        "long_share": 0.556,
-        "max_paragraph": 227,
-        "paragraphs": 10,
-        "sentences": 18
-      },
-      "score": 82,
-      "source": "jpcert",
-      "title": "Weekly Report: Microsoft Edgeに複数の脆弱性",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JPCERT・CVE・CISA）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T01:24:50.036766+00:00",
-      "attempt": 1,
-      "id": "7fadfa1e7a1a6173",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 64.1字・60字超の文が 61% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 115.4,
-        "avg_sentence": 64.1,
-        "long_share": 0.611,
-        "max_paragraph": 211,
-        "paragraphs": 10,
-        "sentences": 18
-      },
-      "score": 90,
-      "source": "jpcert",
-      "title": "Weekly Report: Microsoft Edgeに複数の脆弱性",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JPCERT・CVE・CISA）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T01:25:21.154347+00:00",
-      "attempt": 0,
-      "id": "7fadfa1e7a1a6173",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「Webサイト構築ツールとして普及しているWordPressやRubyも対象です」→ Rubyは元記事で「プログラミング言語」とされており、Webサイト構築ツールではない。種類の取り違え。; 「ブラウザの再起動を行わないと適用されない場合があります」→ 元記事に"
-      ],
-      "readability": {
-        "avg_paragraph": 115.4,
-        "avg_sentence": 64.1,
-        "long_share": 0.611,
-        "max_paragraph": 211,
-        "paragraphs": 10,
-        "sentences": 18
-      },
-      "score": 90,
-      "source": "jpcert",
-      "title": "Weekly Report: Microsoft Edgeに複数の脆弱性",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JPCERT・CVE・CISA）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-05T01:42:36.845917+00:00",
       "attempt": 1,
       "id": "6a2be6e66b96ae87",
@@ -23031,6 +22982,59 @@
         "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（EVP・HR・CAPE）",
         "新製品・新サービス・機能の記事としては長い（4942字 / 目安2200字まで）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T08:15:08.757654+00:00",
+      "attempt": 1,
+      "id": "a307777d6ded3852",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "2027年3月期第2四半期決算について | KDDI ニュースルーム"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T08:15:35.781677+00:00",
+      "attempt": 2,
+      "id": "a307777d6ded3852",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "2027年3月期第2四半期決算について | KDDI ニュースルーム"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T08:16:00.998059+00:00",
+      "attempt": 3,
+      "id": "a307777d6ded3852",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "確認済みの事実の束（関連ページ：KDDI ニュースリリース「kddi_261106_main_X5IBau.pdf」）の数字を使っているのに、出典が書かれていない。使った文の直後に「（KDDI ニュースリリース「kddi_261106_main_X5IBau.pdf」、確認日）」のように書く"
+      ],
+      "readability": {
+        "avg_paragraph": 58.7,
+        "avg_sentence": 33.8,
+        "long_share": 0.025,
+        "max_paragraph": 112,
+        "paragraphs": 23,
+        "sentences": 40
+      },
+      "score": null,
+      "source": "kddi-news-release",
+      "title": "2027年3月期第2四半期決算について | KDDI ニュースルーム",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（UQ・PAY）"
       ]
     }
   ],
