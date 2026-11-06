@@ -13,6 +13,8 @@ import { politeDeep } from "@/lib/polite-text";
  */
 export type HowtoGuide = {
   slug: string;
+  /** "procedure" は税金・年金・行政の手続きのページ（見出しを読み替える。2026-11-07 台帳 A55）。無ければ AI ツールのページ */
+  kind?: "ai-tool" | "procedure";
   tool: string;
   toolName: string;
   company: string;

@@ -14,6 +14,16 @@ import WorkMoneyCard from "@/components/WorkMoneyCard";
 import { workMoneyOf } from "@/lib/work-money";
 import { Phrases } from "@/lib/highlight";
 
+/** 手続き・お金のページ（kind: procedure）の見出し。AI ツールのページの「料金・無料・日本で使える？」を読み替える（台帳 A55） */
+const LABELS = {
+  "ai-tool": { pricingNav: "料金・無料でどこまで", pricingTitle: "料金・無料でどこまで使える？", plan: "プラン", price: "料金", note: "主な違い",
+    freeTier: "無料でできること・制限", japanNav: "日本で使える？", japanTitle: "日本で使える？",
+    checkedNote: "料金や上限は変わることがあるため、申し込む前に公式サイトで最新の情報を確認してください。" },
+  procedure: { pricingNav: "期限と金額", pricingTitle: "期限と金額", plan: "項目", price: "期限・金額", note: "補足",
+    freeTier: "用意するもの", japanNav: "対象になる人", japanTitle: "対象になる人は？",
+    checkedNote: "期限や金額は制度の改正で変わることがあるため、手続きの前に公式ページで最新の情報を確認してください。" },
+} as const;
+
 /** 使い方ガイド（/guides/<slug>）。結論 → 手順 → 料金・無料の範囲 → 日本で使える？ → よくある質問 */
 export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
   const company = getCompany(guide.company) ?? OTHER;
@@ -23,6 +33,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
   const decisionGuide = guide.decisionGuideSlug ? getChooseGuide(guide.decisionGuideSlug) : undefined;
   const url = `${siteConfig.url}/guides/${guide.slug}`;
   const checked = formatDate(guide.checkedAt);
+  const L = LABELS[guide.kind === "procedure" ? "procedure" : "ai-tool"];
   const hasCreditEstimator = guide.slug === "dify-free-api-cost";
   const workMoney = workMoneyOf(guide.workMoney);
 
@@ -122,8 +133,8 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
       <nav aria-label="目次" className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-note font-bold text-ink-soft">
         {hasCreditEstimator && <a href="#credit-estimator" className="underline decoration-line-strong underline-offset-4 hover:text-accent">回数の目安を計算</a>}
         <a href="#steps" className="underline decoration-line-strong underline-offset-4 hover:text-accent">手順</a>
-        <a href="#pricing" className="underline decoration-line-strong underline-offset-4 hover:text-accent">料金・無料でどこまで</a>
-        <a href="#japan" className="underline decoration-line-strong underline-offset-4 hover:text-accent">日本で使える？</a>
+        <a href="#pricing" className="underline decoration-line-strong underline-offset-4 hover:text-accent">{L.pricingNav}</a>
+        <a href="#japan" className="underline decoration-line-strong underline-offset-4 hover:text-accent">{L.japanNav}</a>
         <a href="#faq" className="underline decoration-line-strong underline-offset-4 hover:text-accent">よくある質問</a>
       </nav>
 
@@ -150,15 +161,15 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
         </ol>
       </Section>
 
-      <Section id="pricing" title="料金・無料でどこまで使える？">
+      <Section id="pricing" title={L.pricingTitle}>
         {guide.pricing.length > 0 && (
           <div className="overflow-x-auto rounded-2xl border border-line">
             <table className="w-full text-left text-note">
               <thead>
                 <tr className="border-b border-line bg-surface">
-                  <th scope="col" className="px-4 py-3 font-bold text-ink">プラン</th>
-                  <th scope="col" className="px-4 py-3 font-bold text-ink">料金</th>
-                  <th scope="col" className="px-4 py-3 font-bold text-ink">主な違い</th>
+                  <th scope="col" className="px-4 py-3 font-bold text-ink">{L.plan}</th>
+                  <th scope="col" className="px-4 py-3 font-bold text-ink">{L.price}</th>
+                  <th scope="col" className="px-4 py-3 font-bold text-ink">{L.note}</th>
                 </tr>
               </thead>
               <tbody>
@@ -175,7 +186,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
         )}
         {guide.freeTier.length > 0 && (
           <>
-            <h3 className="t-card mt-8">無料でできること・制限</h3>
+            <h3 className="t-card mt-8">{L.freeTier}</h3>
             <ul className="mt-3 grid gap-2.5">
               {guide.freeTier.map((item, index) => (
                 <li key={index} className="grid grid-cols-[1rem_1fr] gap-2 text-desc leading-[1.85] text-ink-soft">
@@ -187,7 +198,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
           </>
         )}
         <p className="mt-4 text-note leading-relaxed text-muted">
-          {checked}時点で公式ページの表記を確認した内容です。料金や上限は変わることがあるため、申し込む前に公式サイトで最新の情報を確認してください。
+          {checked}時点で公式ページの表記を確認した内容です。{L.checkedNote}
         </p>
         {guide.officialAction && (
           // 公式サイトへの普通のリンク（広告ではない）。提携リンクの URL のときだけ広告の印（sponsored）を付ける
@@ -200,7 +211,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
         )}
       </Section>
 
-      <Section id="japan" title="日本で使える？">
+      <Section id="japan" title={L.japanTitle}>
         <p className="text-[17px] font-bold leading-[1.7] text-ink">{guide.japan.answer}</p>
         <p className="mt-2 text-desc leading-[1.9] text-ink-soft">{guide.japan.body}</p>
       </Section>

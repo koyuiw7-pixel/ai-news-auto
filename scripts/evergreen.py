@@ -28,7 +28,7 @@ import os
 import re
 import sys
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -90,6 +90,47 @@ def load_json(path: Path, default):
 
 def load_plan() -> list[dict]:
     return load_json(PLAN, {}).get("topics", [])
+
+
+# --------------------------------------------------------------------------- #
+# 作る順番（2026-11-07 台帳 A55）: 季節の近さ × 勝ちやすさ × 需要。上限は変えない（並びだけ）
+# --------------------------------------------------------------------------- #
+
+
+def _next_date(mmdd: str, today: date) -> date:
+    m, d = (int(x) for x in mmdd.split("-"))
+    this = date(today.year, m, d)
+    return this if this >= today else date(today.year + 1, m, d)
+
+
+def season_urgency(topic: dict, today: date) -> float:
+    """季節の近さ（大きいほど急ぐ）。season が無い話題は 1.5（いつでも検索される）。
+    from（公開しておきたい日）〜 until（過ぎたら急がない日）の間は 3（いま検索されている）、from まで45日以内も 3、90日以内は 2、
+    それより先は 1。until を過ぎて来年の from まで遠いものも 1"""
+    season = topic.get("season") or {}
+    if not season.get("from") or not season.get("until"):
+        return 1.5
+    start = _next_date(season["from"], today)
+    end = _next_date(season["until"], today)
+    if end < start:  # いま季節の最中（from は来年、until は今年）
+        return 3.0
+    days = (start - today).days
+    if days <= 45:
+        return 3.0
+    if days <= 90:
+        return 2.0
+    return 1.0
+
+
+def queue_score(topic: dict, today: date) -> float:
+    """季節の近さ × 勝ちやすさ（accuracy: 公式の一次情報で答えられる度合い 1〜5 と demand: 需要 1〜5 の平均）"""
+    return season_urgency(topic, today) * (float(topic.get("accuracy") or 3) + float(topic.get("demand") or 3)) / 2
+
+
+def order_plan(plan: list[dict], today: date | None = None) -> list[dict]:
+    """作る順番。点数の高い順（同点は予定表の順）"""
+    today = today or datetime.now(JST).date()
+    return sorted(plan, key=lambda t: (-queue_score(t, today), t.get("rank", 999)))
 
 
 def existing() -> dict[str, dict]:
@@ -259,6 +300,25 @@ PROMPT = """# 書くページ
 {feedback}"""
 
 
+SYSTEM_PROCEDURE = """あなたは暮らしとお金の解説サイトの編集者です。税金・年金・保険・行政の手続きを、官公庁などの公式ページだけを根拠に、
+正確でやさしく説明します。読者はスマホで検索してきた人です。結論を先に書き、1文は短く、専門用語には短い説明を添えます。出力は指定の JSON だけ。
+
+""" + persona.PLAIN_STYLE
+
+# 手続き・お金のページ（kind: procedure）で、AIツール向けの項目の意味を読み替える（ページの見出しも components/HowtoGuideView.tsx で読み替える）
+PROCEDURE_NOTE = """
+# このページは「手続き・お金」のページです（AIツールのページではありません）。各項目は次の意味で書く
+- 事実（金額・期限・対象・必要な書類・窓口・手順の名前）は上の公式ページに書かれていることだけ。書かれていないことは書かない。税額の計算例・節税額は自分で計算しない。
+- steps: 手続きの手順（「〜を用意する」「〜に出す」）。窓口・オンラインの両方があれば両方。
+- pricing: 「期限と金額」の表。plan に項目（例「提出の期限」「控除の上限」「対象になる年収」）、price に公式ページの表記どおりの期限・金額、note に補足。
+- free_tier: 「用意するもの」を3〜6個（書類・番号・カードなど。公式ページにある範囲で）。
+- japan_answer: 「対象になる人は？」への一言の答え（20字以内。例「会社員の多く（年収2,000万円以下）」）。
+- japan_body: 対象になる人・ならない人の条件（100〜250字）。
+- tips: 間違えやすい点・期限を過ぎたときの扱い（公式ページにある範囲で）。
+- work_money: 「仕事・お金にどう活かせる？」欄。会社員・副業の人・家族の手続きで、明日やることを短く。投資の勧誘・節税の勧めはしない。
+"""
+
+
 def prose_of(data: dict) -> str:
     """読みやすさ・文字数の確認用に、地の文を Markdown の段落にする"""
     parts = [data.get("intro", "")]
@@ -337,6 +397,7 @@ def generate(topic: dict, sources: list[dict], attempts: int = 3) -> tuple[dict,
     cap = max(3000, min(SOURCE_GEN_CAP, SOURCE_TOTAL_CAP // max(1, len(sources))))
     feedback = ""
     for attempt in range(1, attempts + 1):
+        procedure = topic.get("kind") == "procedure"
         prompt = PROMPT.format(
             keyword=topic["keyword"],
             queries="、".join(topic.get("queries", [])[1:]),
@@ -347,9 +408,9 @@ def generate(topic: dict, sources: list[dict], attempts: int = 3) -> tuple[dict,
             work_money_heading=persona.WORK_MONEY_HEADING,
             sources=source_block(sources, cap),
             feedback=feedback,
-        )
+        ) + (PROCEDURE_NOTE if procedure else "")
         try:
-            data, model = llm.generate_json(SYSTEM, prompt, SCHEMA, temperature=0.4, max_output_tokens=12000, tier=os.environ.get("EVERGREEN_TIER", "quality"))
+            data, model = llm.generate_json(SYSTEM_PROCEDURE if procedure else SYSTEM, prompt, SCHEMA, temperature=0.4, max_output_tokens=12000, tier=os.environ.get("EVERGREEN_TIER", "quality"))
         except Exception as error:  # noqa: BLE001
             log(f"   生成に失敗: {str(error)[:120]}")
             return None
@@ -371,6 +432,7 @@ def assemble(topic: dict, data: dict, fact: dict, sources: list[dict], previous:
     cited = [s for i, s in enumerate(sources, 1) if not used or i in used] or sources
     return {
         "slug": topic["slug"],
+        "kind": topic.get("kind", "ai-tool"),
         "tool": topic["tool"],
         "toolName": topic.get("toolName", topic["tool"]),
         "company": topic.get("company", "other"),
@@ -512,15 +574,16 @@ def main() -> int:
 
     started = time.time()
     over = lambda: args.budget and time.time() - started > args.budget  # noqa: E731
-    plan = load_plan()
+    plan = order_plan(load_plan())
     by_slug = {t["slug"]: t for t in plan}
     guides = existing()
 
     if args.list:
+        today = datetime.now(JST).date()
         for t in plan:
             g = guides.get(t["slug"])
             mark = f"済 確認 {g.get('checkedAt', '')[:10]}" if g else "未"
-            log(f"{t['rank']:>3} {t['priority']:>2} {mark:<16} {t['slug']:<34} {t['keyword']}")
+            log(f"{queue_score(t, today):5.1f} {t.get('kind', 'ai-tool'):<9} {mark:<16} {t['slug']:<34} {t['keyword']}")
         return 0
 
     only = [s.strip() for s in args.only.split(",") if s.strip()]

@@ -1,5 +1,5 @@
 {
-  "about": "常に検索される「使い方・料金・無料でどこまで・日本で使える？」の解説ページ（/guides/<slug>）の予定表。scripts/evergreen.py が上から順に作る。",
+  "about": "常に検索される「使い方・料金・無料でどこまで・日本で使える？」の解説ページ（AIツール）と、毎年決まった時期に検索されるお金・手続きの解説ページ（kind: procedure。年末調整・確定申告・ふるさと納税・年金・マイナンバーなど）の予定表（/guides/<slug>）。scripts/evergreen.py が、季節（season: from=公開しておきたい日・peak=検索が多い日・until=過ぎたら急がない日）の近さ × 勝ちやすさ（accuracy: 公式の一次情報で答えられる度合い）× 需要（demand）の順に並べ直して作る（2026-11-07 台帳 A55）",
   "createdAt": "2026-10-30",
   "dailyCap": 4,
   "refreshDays": 14,
@@ -36,7 +36,8 @@
         "https://openai.com/ja-JP/chatgpt/overview/"
       ],
       "rank": 1,
-      "day": 0
+      "day": 0,
+      "kind": "ai-tool"
     },
     {
       "slug": "chatgpt-free-plan",
@@ -73,7 +74,8 @@
         "https://help.openai.com/en/articles/8357869-how-to-change-your-language-setting-in-chatgpt"
       ],
       "rank": 2,
-      "day": 0
+      "day": 0,
+      "kind": "ai-tool"
     },
     {
       "slug": "gemini-free-plan",
@@ -106,7 +108,8 @@
         "https://gemini.google/jp/overview/?hl=ja"
       ],
       "rank": 3,
-      "day": 0
+      "day": 0,
+      "kind": "ai-tool"
     },
     {
       "slug": "notebooklm-how-to-use",
@@ -136,7 +139,8 @@
         "https://support.google.com/gemininotebook/answer/16213268?hl=ja"
       ],
       "rank": 4,
-      "day": 0
+      "day": 0,
+      "kind": "ai-tool"
     },
     {
       "slug": "chatgpt-pricing",
@@ -169,7 +173,8 @@
         "https://openai.com/ja-JP/chatgpt/overview/"
       ],
       "rank": 5,
-      "day": 1
+      "day": 1,
+      "kind": "ai-tool"
     },
     {
       "slug": "gemini-how-to-use",
@@ -202,7 +207,8 @@
         "https://gemini.google/jp/overview/?hl=ja"
       ],
       "rank": 6,
-      "day": 1
+      "day": 1,
+      "kind": "ai-tool"
     },
     {
       "slug": "claude-code-how-to-use",
@@ -233,7 +239,8 @@
         "https://claude.com/pricing"
       ],
       "rank": 7,
-      "day": 1
+      "day": 1,
+      "kind": "ai-tool"
     },
     {
       "slug": "chatgpt-image-generation",
@@ -266,7 +273,8 @@
         "https://openai.com/ja-JP/chatgpt/overview/"
       ],
       "rank": 8,
-      "day": 1
+      "day": 1,
+      "kind": "ai-tool"
     },
     {
       "slug": "claude-pricing",
@@ -297,7 +305,8 @@
         "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
       ],
       "rank": 9,
-      "day": 2
+      "day": 2,
+      "kind": "ai-tool"
     },
     {
       "slug": "claude-how-to-use",
@@ -328,7 +337,8 @@
         "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
       ],
       "rank": 10,
-      "day": 2
+      "day": 2,
+      "kind": "ai-tool"
     },
     {
       "slug": "chatgpt-privacy",
@@ -361,7 +371,8 @@
         "https://openai.com/ja-JP/chatgpt/overview/"
       ],
       "rank": 11,
-      "day": 2
+      "day": 2,
+      "kind": "ai-tool"
     },
     {
       "slug": "chatgpt-smartphone",
@@ -394,7 +405,8 @@
         "https://openai.com/ja-JP/chatgpt/overview/"
       ],
       "rank": 12,
-      "day": 2
+      "day": 2,
+      "kind": "ai-tool"
     },
     {
       "slug": "claude-code-pricing",
@@ -425,7 +437,8 @@
         "https://claude.com/pricing"
       ],
       "rank": 13,
-      "day": 3
+      "day": 3,
+      "kind": "ai-tool"
     },
     {
       "slug": "gemini-privacy",
@@ -458,7 +471,8 @@
         "https://gemini.google/jp/overview/?hl=ja"
       ],
       "rank": 14,
-      "day": 3
+      "day": 3,
+      "kind": "ai-tool"
     },
     {
       "slug": "gemini-pricing",
@@ -491,7 +505,8 @@
         "https://gemini.google/jp/overview/?hl=ja"
       ],
       "rank": 15,
-      "day": 3
+      "day": 3,
+      "kind": "ai-tool"
     },
     {
       "slug": "deepl-how-to-use",
@@ -519,7 +534,8 @@
         "https://support.deepl.com/hc/ja"
       ],
       "rank": 16,
-      "day": 3
+      "day": 3,
+      "kind": "ai-tool"
     },
     {
       "slug": "cursor-pricing",
@@ -547,7 +563,8 @@
         "https://cursor.com/ja/docs/get-started/quickstart"
       ],
       "rank": 17,
-      "day": 4
+      "day": 4,
+      "kind": "ai-tool"
     },
     {
       "slug": "chatgpt-desktop-app",
@@ -580,7 +597,8 @@
         "https://openai.com/ja-JP/chatgpt/overview/"
       ],
       "rank": 18,
-      "day": 4
+      "day": 4,
+      "kind": "ai-tool"
     },
     {
       "slug": "gemini-smartphone",
@@ -613,7 +631,8 @@
         "https://gemini.google/jp/overview/?hl=ja"
       ],
       "rank": 19,
-      "day": 4
+      "day": 4,
+      "kind": "ai-tool"
     },
     {
       "slug": "copilot-how-to-use",
@@ -642,7 +661,8 @@
         "https://support.microsoft.com/ja-jp/copilot"
       ],
       "rank": 20,
-      "day": 4
+      "day": 4,
+      "kind": "ai-tool"
     },
     {
       "slug": "perplexity-how-to-use",
@@ -670,7 +690,8 @@
         "https://www.perplexity.ai/ja/hub/faq/what-is-perplexity"
       ],
       "rank": 21,
-      "day": 5
+      "day": 5,
+      "kind": "ai-tool"
     },
     {
       "slug": "grok-how-to-use",
@@ -698,7 +719,8 @@
         "https://grok.com/plans"
       ],
       "rank": 22,
-      "day": 5
+      "day": 5,
+      "kind": "ai-tool"
     },
     {
       "slug": "cursor-how-to-use",
@@ -726,7 +748,8 @@
         "https://cursor.com/ja/docs/get-started/quickstart"
       ],
       "rank": 23,
-      "day": 5
+      "day": 5,
+      "kind": "ai-tool"
     },
     {
       "slug": "canva-ai-how-to-use",
@@ -754,7 +777,8 @@
         "https://www.canva.com/ja_jp/pricing/"
       ],
       "rank": 24,
-      "day": 5
+      "day": 5,
+      "kind": "ai-tool"
     },
     {
       "slug": "notion-ai-how-to-use",
@@ -783,7 +807,8 @@
         "https://www.notion.com/ja/help/notion-ai-faqs"
       ],
       "rank": 25,
-      "day": 6
+      "day": 6,
+      "kind": "ai-tool"
     },
     {
       "slug": "midjourney-how-to-use",
@@ -811,7 +836,8 @@
         "https://docs.midjourney.com/hc/en-us/articles/33329261836941-Getting-Started-Guide"
       ],
       "rank": 26,
-      "day": 6
+      "day": 6,
+      "kind": "ai-tool"
     },
     {
       "slug": "codex-how-to-use",
@@ -843,7 +869,8 @@
         "https://chatgpt.com/ja-JP/pricing/"
       ],
       "rank": 27,
-      "day": 6
+      "day": 6,
+      "kind": "ai-tool"
     },
     {
       "slug": "veo-how-to-use",
@@ -872,7 +899,8 @@
         "https://deepmind.google/models/veo/"
       ],
       "rank": 28,
-      "day": 6
+      "day": 6,
+      "kind": "ai-tool"
     },
     {
       "slug": "notebooklm-slides",
@@ -904,7 +932,8 @@
         "https://support.google.com/gemininotebook/answer/17670842?hl=ja"
       ],
       "rank": 29,
-      "day": 7
+      "day": 7,
+      "kind": "ai-tool"
     },
     {
       "slug": "copilot-free-vs-paid",
@@ -933,7 +962,8 @@
         "https://support.microsoft.com/ja-jp/copilot"
       ],
       "rank": 30,
-      "day": 7
+      "day": 7,
+      "kind": "ai-tool"
     },
     {
       "slug": "perplexity-pro",
@@ -961,7 +991,8 @@
         "https://www.perplexity.ai/ja/hub/faq/what-is-perplexity"
       ],
       "rank": 31,
-      "day": 7
+      "day": 7,
+      "kind": "ai-tool"
     },
     {
       "slug": "canva-ai-pricing",
@@ -989,7 +1020,8 @@
         "https://www.canva.com/ja_jp/pricing/"
       ],
       "rank": 32,
-      "day": 7
+      "day": 7,
+      "kind": "ai-tool"
     },
     {
       "slug": "notion-ai-pricing",
@@ -1018,7 +1050,8 @@
         "https://www.notion.com/ja/help/notion-ai-faqs"
       ],
       "rank": 33,
-      "day": 8
+      "day": 8,
+      "kind": "ai-tool"
     },
     {
       "slug": "gemini-image-generation",
@@ -1051,7 +1084,8 @@
         "https://gemini.google/jp/overview/?hl=ja"
       ],
       "rank": 34,
-      "day": 8
+      "day": 8,
+      "kind": "ai-tool"
     },
     {
       "slug": "claude-free-plan",
@@ -1082,7 +1116,8 @@
         "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
       ],
       "rank": 35,
-      "day": 8
+      "day": 8,
+      "kind": "ai-tool"
     },
     {
       "slug": "chatgpt-login",
@@ -1115,7 +1150,8 @@
         "https://openai.com/ja-JP/chatgpt/overview/"
       ],
       "rank": 36,
-      "day": 8
+      "day": 8,
+      "kind": "ai-tool"
     },
     {
       "slug": "ai-privacy-settings",
@@ -1159,7 +1195,8 @@
         "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
       ],
       "rank": 37,
-      "day": 9
+      "day": 9,
+      "kind": "ai-tool"
     },
     {
       "slug": "image-ai-free",
@@ -1201,7 +1238,8 @@
         "https://www.microsoft.com/ja-jp/microsoft-365/copilot/pricing"
       ],
       "rank": 38,
-      "day": 9
+      "day": 9,
+      "kind": "ai-tool"
     },
     {
       "slug": "ai-minutes-free",
@@ -1230,7 +1268,8 @@
         "https://www.microsoft.com/ja-jp/microsoft-teams/premium"
       ],
       "rank": 39,
-      "day": 9
+      "day": 9,
+      "kind": "ai-tool"
     },
     {
       "slug": "ai-transcription-free",
@@ -1261,7 +1300,8 @@
         "https://support.google.com/meet/answer/14754931?hl=ja"
       ],
       "rank": 40,
-      "day": 9
+      "day": 9,
+      "kind": "ai-tool"
     },
     {
       "slug": "video-ai-free",
@@ -1292,7 +1332,8 @@
         "https://grok.com/plans"
       ],
       "rank": 41,
-      "day": 10
+      "day": 10,
+      "kind": "ai-tool"
     },
     {
       "slug": "github-copilot-free",
@@ -1322,7 +1363,8 @@
         "https://docs.github.com/ja/copilot/get-started/quickstart"
       ],
       "rank": 42,
-      "day": 10
+      "day": 10,
+      "kind": "ai-tool"
     },
     {
       "slug": "deepl-free-vs-pro",
@@ -1350,7 +1392,8 @@
         "https://support.deepl.com/hc/ja"
       ],
       "rank": 43,
-      "day": 10
+      "day": 10,
+      "kind": "ai-tool"
     },
     {
       "slug": "midjourney-pricing",
@@ -1378,7 +1421,8 @@
         "https://docs.midjourney.com/hc/en-us/articles/33329261836941-Getting-Started-Guide"
       ],
       "rank": 44,
-      "day": 10
+      "day": 10,
+      "kind": "ai-tool"
     },
     {
       "slug": "chatgpt-vs-gemini",
@@ -1416,7 +1460,8 @@
         "https://support.google.com/gemini/answer/13275745?hl=ja"
       ],
       "rank": 45,
-      "day": 11
+      "day": 11,
+      "kind": "ai-tool"
     },
     {
       "slug": "chatgpt-vs-claude",
@@ -1453,7 +1498,8 @@
         "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
       ],
       "rank": 46,
-      "day": 11
+      "day": 11,
+      "kind": "ai-tool"
     },
     {
       "slug": "grok-image-video",
@@ -1481,7 +1527,8 @@
         "https://grok.com/plans"
       ],
       "rank": 47,
-      "day": 11
+      "day": 11,
+      "kind": "ai-tool"
     },
     {
       "slug": "notebooklm-vs-gemini",
@@ -1517,7 +1564,8 @@
         "https://support.google.com/gemini/answer/13275745?hl=ja"
       ],
       "rank": 48,
-      "day": 11
+      "day": 11,
+      "kind": "ai-tool"
     },
     {
       "slug": "gemini-students",
@@ -1550,7 +1598,8 @@
         "https://gemini.google/jp/overview/?hl=ja"
       ],
       "rank": 49,
-      "day": 12
+      "day": 12,
+      "kind": "ai-tool"
     },
     {
       "slug": "chatgpt-deep-research",
@@ -1583,7 +1632,8 @@
         "https://openai.com/ja-JP/chatgpt/overview/"
       ],
       "rank": 50,
-      "day": 12
+      "day": 12,
+      "kind": "ai-tool"
     },
     {
       "slug": "firefly-free",
@@ -1611,7 +1661,8 @@
         "https://www.adobe.com/jp/products/firefly.html"
       ],
       "rank": 51,
-      "day": 12
+      "day": 12,
+      "kind": "ai-tool"
     },
     {
       "slug": "copilot-microsoft365",
@@ -1640,7 +1691,8 @@
         "https://support.microsoft.com/ja-jp/copilot"
       ],
       "rank": 52,
-      "day": 12
+      "day": 12,
+      "kind": "ai-tool"
     },
     {
       "slug": "whisper-how-to-use",
@@ -1668,7 +1720,8 @@
         "https://github.com/openai/whisper"
       ],
       "rank": 53,
-      "day": 13
+      "day": 13,
+      "kind": "ai-tool"
     },
     {
       "slug": "gemini-deep-research",
@@ -1701,7 +1754,8 @@
         "https://gemini.google/jp/overview/?hl=ja"
       ],
       "rank": 54,
-      "day": 13
+      "day": 13,
+      "kind": "ai-tool"
     },
     {
       "slug": "generative-ai-free",
@@ -1745,7 +1799,8 @@
         "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
       ],
       "rank": 55,
-      "day": 13
+      "day": 13,
+      "kind": "ai-tool"
     },
     {
       "slug": "claude-japan",
@@ -1776,7 +1831,8 @@
         "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B"
       ],
       "rank": 56,
-      "day": 13
+      "day": 13,
+      "kind": "ai-tool"
     },
     {
       "slug": "claude-code-vs-codex-vs-cursor",
@@ -1813,7 +1869,8 @@
         "https://cursor.com/ja/docs/get-started/quickstart"
       ],
       "rank": 57,
-      "day": 14
+      "day": 14,
+      "kind": "ai-tool"
     },
     {
       "slug": "copilot-agent",
@@ -1842,7 +1899,8 @@
         "https://support.microsoft.com/ja-jp/copilot"
       ],
       "rank": 58,
-      "day": 14
+      "day": 14,
+      "kind": "ai-tool"
     },
     {
       "slug": "perplexity-softbank",
@@ -1870,7 +1928,8 @@
         "https://www.perplexity.ai/ja/hub/faq/what-is-perplexity"
       ],
       "rank": 59,
-      "day": 14
+      "day": 14,
+      "kind": "ai-tool"
     },
     {
       "slug": "sora-status",
@@ -1897,7 +1956,2753 @@
         "https://openai.com/ja-JP/index/sora-2/"
       ],
       "rank": 60,
-      "day": 14
+      "day": 14,
+      "kind": "ai-tool"
+    },
+    {
+      "slug": "nencho-how-to",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "年末調整",
+      "company": "other",
+      "intent": "手続き",
+      "title": "年末調整のやり方　会社員が書く3つの申告書と期限",
+      "keyword": "年末調整 やり方",
+      "queries": [
+        "年末調整 やり方",
+        "年末調整 書き方",
+        "年末調整 いつまで"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "年末調整",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/users/gensen/nencho/index.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2662.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2665.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 61
+    },
+    {
+      "slug": "nencho-target",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "年末調整",
+      "company": "other",
+      "intent": "対象",
+      "title": "年末調整の対象になる人・ならない人　年収2,000万円超は確定申告",
+      "keyword": "年末調整 対象",
+      "queries": [
+        "年末調整 対象",
+        "年末調整 対象外",
+        "年末調整 しない人"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "年末調整",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2665.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2668.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 62
+    },
+    {
+      "slug": "nencho-spouse",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "年末調整",
+      "company": "other",
+      "intent": "書き方",
+      "title": "年末調整の配偶者控除　対象になる年収と申告書の書き方",
+      "keyword": "年末調整 配偶者控除",
+      "queries": [
+        "年末調整 配偶者控除",
+        "配偶者控除 年収",
+        "配偶者特別控除 いくら"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "配偶者控除|配偶者特別控除",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2672.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 63
+    },
+    {
+      "slug": "nencho-mid-career",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "年末調整",
+      "company": "other",
+      "intent": "手続き",
+      "title": "転職した年の年末調整　前の会社の源泉徴収票が必要",
+      "keyword": "年末調整 中途入社",
+      "queries": [
+        "年末調整 中途入社",
+        "年末調整 転職 源泉徴収票",
+        "中途退職 年末調整"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "年末調整",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2674.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1910.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 64
+    },
+    {
+      "slug": "life-insurance-deduction",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "生命保険料控除",
+      "company": "other",
+      "intent": "いくら",
+      "title": "生命保険料控除はいくら戻る　新旧の制度と上限額",
+      "keyword": "生命保険料控除 いくら",
+      "queries": [
+        "生命保険料控除 いくら",
+        "生命保険料控除 上限",
+        "生命保険料控除 書き方"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "生命保険料控除",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 65
+    },
+    {
+      "slug": "earthquake-insurance-deduction",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "地震保険料控除",
+      "company": "other",
+      "intent": "いくら",
+      "title": "地震保険料控除の上限額　年末調整での書き方",
+      "keyword": "地震保険料控除",
+      "queries": [
+        "地震保険料控除",
+        "地震保険料控除 上限",
+        "地震保険料控除 書き方"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "地震保険料控除",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 66
+    },
+    {
+      "slug": "ideco-nencho",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "iDeCo",
+      "company": "other",
+      "intent": "手続き",
+      "title": "iDeCoの掛金は年末調整で全額控除　証明書の出し方",
+      "keyword": "ideco 年末調整",
+      "queries": [
+        "ideco 年末調整",
+        "小規模企業共済等掛金控除",
+        "ideco 控除証明書"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "iDeCo|イデコ|小規模企業共済",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 67
+    },
+    {
+      "slug": "social-insurance-deduction",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "社会保険料控除",
+      "company": "other",
+      "intent": "対象",
+      "title": "社会保険料控除の対象　家族の国民年金も控除できる",
+      "keyword": "社会保険料控除",
+      "queries": [
+        "社会保険料控除",
+        "国民年金 年末調整",
+        "社会保険料控除 家族"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "社会保険料控除",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 68
+    },
+    {
+      "slug": "fuyo-kojo",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "扶養控除",
+      "company": "other",
+      "intent": "対象",
+      "title": "扶養控除の対象と金額　16歳以上の子・親が対象",
+      "keyword": "扶養控除 対象",
+      "queries": [
+        "扶養控除 対象",
+        "扶養控除 年齢",
+        "扶養控除 いくら"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "扶養控除",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 69
+    },
+    {
+      "slug": "kiso-kojo",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "基礎控除",
+      "company": "other",
+      "intent": "いくら",
+      "title": "基礎控除はいくら　所得ごとの金額の表",
+      "keyword": "基礎控除 いくら",
+      "queries": [
+        "基礎控除 いくら",
+        "基礎控除 改正",
+        "基礎控除 所得制限"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "基礎控除",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 70
+    },
+    {
+      "slug": "two-jobs-nencho",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "年末調整",
+      "company": "other",
+      "intent": "手続き",
+      "title": "給与を2か所からもらう人の年末調整と確定申告",
+      "keyword": "2か所から給与 年末調整",
+      "queries": [
+        "2か所から給与 年末調整",
+        "掛け持ち 年末調整",
+        "副業 年末調整"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "年末調整",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2520.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 71
+    },
+    {
+      "slug": "widow-single-parent",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "寡婦控除",
+      "company": "other",
+      "intent": "対象",
+      "title": "寡婦控除・ひとり親控除の対象と金額",
+      "keyword": "寡婦控除",
+      "queries": [
+        "寡婦控除",
+        "ひとり親控除",
+        "寡婦控除 条件"
+      ],
+      "demand": 3,
+      "accuracy": 5,
+      "priority": 15,
+      "match": "寡婦控除|ひとり親控除",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 72
+    },
+    {
+      "slug": "kinro-gakusei",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "勤労学生控除",
+      "company": "other",
+      "intent": "対象",
+      "title": "勤労学生控除の条件　アルバイトの学生が受けられる",
+      "keyword": "勤労学生控除",
+      "queries": [
+        "勤労学生控除",
+        "勤労学生控除 条件",
+        "学生 年末調整"
+      ],
+      "demand": 3,
+      "accuracy": 5,
+      "priority": 15,
+      "match": "勤労学生控除",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 73
+    },
+    {
+      "slug": "shogaisha-kojo",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "障害者控除",
+      "company": "other",
+      "intent": "いくら",
+      "title": "障害者控除はいくら　家族が対象の場合も",
+      "keyword": "障害者控除",
+      "queries": [
+        "障害者控除",
+        "障害者控除 いくら",
+        "障害者控除 家族"
+      ],
+      "demand": 3,
+      "accuracy": 5,
+      "priority": 15,
+      "match": "障害者控除",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 74
+    },
+    {
+      "slug": "kyuyo-shotoku-kojo",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "給与所得控除",
+      "company": "other",
+      "intent": "計算",
+      "title": "給与所得控除の計算　年収ごとの控除額の表",
+      "keyword": "給与所得控除",
+      "queries": [
+        "給与所得控除",
+        "給与所得控除 計算",
+        "給与所得控除 改正"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "給与所得控除",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 75
+    },
+    {
+      "slug": "nenshu-kabe",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "年収の壁",
+      "company": "other",
+      "intent": "対象",
+      "title": "年収の壁（106万円・130万円）　手取りと扶養の目安",
+      "keyword": "年収の壁",
+      "queries": [
+        "年収の壁",
+        "106万円の壁",
+        "130万円の壁"
+      ],
+      "demand": 5,
+      "accuracy": 4,
+      "priority": 20,
+      "match": "年収の壁|扶養",
+      "products": [],
+      "sources": [
+        "https://www.mhlw.go.jp/stf/taiou_001_00002.html",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm"
+      ],
+      "season": {
+        "from": "10-15",
+        "peak": "11-30",
+        "until": "12-31"
+      },
+      "rank": 76
+    },
+    {
+      "slug": "furusato-limit",
+      "kind": "procedure",
+      "tool": "furusato",
+      "tools": [
+        "furusato"
+      ],
+      "toolName": "ふるさと納税",
+      "company": "other",
+      "intent": "いくら",
+      "title": "ふるさと納税の上限額の目安　控除される仕組み",
+      "keyword": "ふるさと納税 上限",
+      "queries": [
+        "ふるさと納税 上限",
+        "ふるさと納税 上限 計算",
+        "ふるさと納税 控除"
+      ],
+      "demand": 5,
+      "accuracy": 4,
+      "priority": 20,
+      "match": "ふるさと納税",
+      "products": [],
+      "sources": [
+        "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm"
+      ],
+      "season": {
+        "from": "11-01",
+        "peak": "12-15",
+        "until": "12-31"
+      },
+      "rank": 77
+    },
+    {
+      "slug": "furusato-onestop",
+      "kind": "procedure",
+      "tool": "furusato",
+      "tools": [
+        "furusato"
+      ],
+      "toolName": "ふるさと納税",
+      "company": "other",
+      "intent": "期限",
+      "title": "ワンストップ特例の期限は1月10日　申請書の書き方",
+      "keyword": "ワンストップ特例 期限",
+      "queries": [
+        "ワンストップ特例 期限",
+        "ワンストップ特例 書き方",
+        "ワンストップ特例 オンライン"
+      ],
+      "demand": 5,
+      "accuracy": 4,
+      "priority": 20,
+      "match": "ワンストップ",
+      "products": [],
+      "sources": [
+        "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
+        "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/about.html"
+      ],
+      "season": {
+        "from": "11-15",
+        "peak": "01-05",
+        "until": "01-10"
+      },
+      "rank": 78
+    },
+    {
+      "slug": "furusato-kakutei",
+      "kind": "procedure",
+      "tool": "furusato",
+      "tools": [
+        "furusato"
+      ],
+      "toolName": "ふるさと納税",
+      "company": "other",
+      "intent": "手続き",
+      "title": "ふるさと納税の確定申告　寄附金受領証明書の使い方",
+      "keyword": "ふるさと納税 確定申告",
+      "queries": [
+        "ふるさと納税 確定申告",
+        "ふるさと納税 確定申告 やり方",
+        "寄附金控除 確定申告"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "ふるさと納税",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2020.htm"
+      ],
+      "season": {
+        "from": "01-05",
+        "peak": "02-20",
+        "until": "03-15"
+      },
+      "rank": 79
+    },
+    {
+      "slug": "furusato-how",
+      "kind": "procedure",
+      "tool": "furusato",
+      "tools": [
+        "furusato"
+      ],
+      "toolName": "ふるさと納税",
+      "company": "other",
+      "intent": "始め方",
+      "title": "ふるさと納税のやり方　初めての人の手順と注意",
+      "keyword": "ふるさと納税 やり方",
+      "queries": [
+        "ふるさと納税 やり方",
+        "ふるさと納税 初めて",
+        "ふるさと納税 仕組み"
+      ],
+      "demand": 5,
+      "accuracy": 4,
+      "priority": 20,
+      "match": "ふるさと納税",
+      "products": [],
+      "sources": [
+        "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/about.html",
+        "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/080430_2_kojin.html"
+      ],
+      "season": {
+        "from": "11-01",
+        "peak": "12-15",
+        "until": "12-31"
+      },
+      "rank": 80
+    },
+    {
+      "slug": "kifukin-kojo",
+      "kind": "procedure",
+      "tool": "furusato",
+      "tools": [
+        "furusato"
+      ],
+      "toolName": "寄附金控除",
+      "company": "other",
+      "intent": "対象",
+      "title": "寄附金控除の対象と計算　ふるさと納税以外の寄附も",
+      "keyword": "寄附金控除",
+      "queries": [
+        "寄附金控除",
+        "寄附金控除 計算",
+        "寄附金控除 対象"
+      ],
+      "demand": 3,
+      "accuracy": 5,
+      "priority": 15,
+      "match": "寄附金控除",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm"
+      ],
+      "season": {
+        "from": "01-05",
+        "peak": "02-25",
+        "until": "03-15"
+      },
+      "rank": 81
+    },
+    {
+      "slug": "kakutei-who",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "確定申告",
+      "company": "other",
+      "intent": "対象",
+      "title": "確定申告が必要な会社員　副業20万円・医療費・2か所給与",
+      "keyword": "確定申告 必要な人",
+      "queries": [
+        "確定申告 必要な人",
+        "確定申告 会社員",
+        "確定申告 しなくていい人"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "確定申告",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2020.htm"
+      ],
+      "season": {
+        "from": "01-05",
+        "peak": "02-25",
+        "until": "03-15"
+      },
+      "rank": 82
+    },
+    {
+      "slug": "kakutei-etax-smartphone",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "確定申告",
+      "company": "other",
+      "intent": "やり方",
+      "title": "確定申告はスマホとマイナンバーカードで　e-Taxの手順",
+      "keyword": "確定申告 スマホ",
+      "queries": [
+        "確定申告 スマホ",
+        "e-tax やり方",
+        "確定申告 マイナンバーカード"
+      ],
+      "demand": 5,
+      "accuracy": 4,
+      "priority": 20,
+      "match": "e-Tax|確定申告",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/shinkoku/tokushu/index.htm",
+        "https://www.e-tax.nta.go.jp/"
+      ],
+      "season": {
+        "from": "01-05",
+        "peak": "02-25",
+        "until": "03-15"
+      },
+      "rank": 83
+    },
+    {
+      "slug": "kanpu-shinkoku",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "還付申告",
+      "company": "other",
+      "intent": "期限",
+      "title": "還付申告は1月から5年以内　対象になる人と手順",
+      "keyword": "還付申告 いつから",
+      "queries": [
+        "還付申告 いつから",
+        "還付申告 期限",
+        "還付申告 やり方"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "還付申告",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+      ],
+      "season": {
+        "from": "12-20",
+        "peak": "01-25",
+        "until": "03-15"
+      },
+      "rank": 84
+    },
+    {
+      "slug": "iryohi-kojo",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "医療費控除",
+      "company": "other",
+      "intent": "いくら",
+      "title": "医療費控除は10万円が目安　対象になる医療費と申告",
+      "keyword": "医療費控除 いくらから",
+      "queries": [
+        "医療費控除 いくらから",
+        "医療費控除 対象",
+        "医療費控除 やり方"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "医療費控除",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm"
+      ],
+      "season": {
+        "from": "12-20",
+        "peak": "01-25",
+        "until": "03-15"
+      },
+      "rank": 85
+    },
+    {
+      "slug": "self-medication",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "セルフメディケーション税制",
+      "company": "other",
+      "intent": "対象",
+      "title": "セルフメディケーション税制は1万2千円超から　医療費控除との違い",
+      "keyword": "セルフメディケーション税制",
+      "queries": [
+        "セルフメディケーション税制",
+        "セルフメディケーション税制 対象",
+        "医療費控除 違い"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "セルフメディケーション",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm"
+      ],
+      "season": {
+        "from": "12-20",
+        "peak": "01-25",
+        "until": "03-15"
+      },
+      "rank": 86
+    },
+    {
+      "slug": "fukugyo-20man",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "副業の確定申告",
+      "company": "other",
+      "intent": "対象",
+      "title": "副業の所得20万円以下なら確定申告は不要？条件と住民税",
+      "keyword": "副業 確定申告 20万",
+      "queries": [
+        "副業 確定申告 20万",
+        "副業 確定申告 必要",
+        "雑所得 20万"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "副業|確定申告",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1500.htm"
+      ],
+      "season": {
+        "from": "01-05",
+        "peak": "02-25",
+        "until": "03-15"
+      },
+      "rank": 87
+    },
+    {
+      "slug": "zatsu-shotoku",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "雑所得",
+      "company": "other",
+      "intent": "計算",
+      "title": "雑所得の計算方法　副業や年金以外の収入の扱い",
+      "keyword": "雑所得",
+      "queries": [
+        "雑所得",
+        "雑所得 計算",
+        "雑所得 副業"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "雑所得",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1500.htm"
+      ],
+      "season": {
+        "from": "01-05",
+        "peak": "02-25",
+        "until": "03-15"
+      },
+      "rank": 88
+    },
+    {
+      "slug": "kabu-kakutei",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "株の確定申告",
+      "company": "other",
+      "intent": "手続き",
+      "title": "株の売却益の確定申告　特定口座なら不要な場合も",
+      "keyword": "株 確定申告",
+      "queries": [
+        "株 確定申告",
+        "株 確定申告 必要",
+        "申告分離課税"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "株|譲渡所得",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm"
+      ],
+      "season": {
+        "from": "01-05",
+        "peak": "02-25",
+        "until": "03-15"
+      },
+      "rank": 89
+    },
+    {
+      "slug": "nenkin-kakutei",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "年金の確定申告",
+      "company": "other",
+      "intent": "対象",
+      "title": "年金の確定申告が不要な人　400万円以下の条件",
+      "keyword": "年金 確定申告 不要",
+      "queries": [
+        "年金 確定申告 不要",
+        "年金 確定申告",
+        "公的年金 税金"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "年金",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1600.htm"
+      ],
+      "season": {
+        "from": "01-05",
+        "peak": "02-25",
+        "until": "03-15"
+      },
+      "rank": 90
+    },
+    {
+      "slug": "jigyo-shotoku",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "事業所得",
+      "company": "other",
+      "intent": "計算",
+      "title": "事業所得の計算と確定申告　個人事業の始め方",
+      "keyword": "事業所得",
+      "queries": [
+        "事業所得",
+        "個人事業主 確定申告",
+        "事業所得 計算"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "事業所得|個人事業",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1350.htm"
+      ],
+      "season": {
+        "from": "01-05",
+        "peak": "02-25",
+        "until": "03-15"
+      },
+      "rank": 91
+    },
+    {
+      "slug": "sozoku-zei",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "相続税",
+      "company": "other",
+      "intent": "いくら",
+      "title": "相続税がかかる人　基礎控除は3,000万円＋600万円×人数",
+      "keyword": "相続税 いくらから",
+      "queries": [
+        "相続税 いくらから",
+        "相続税 基礎控除",
+        "相続税 計算"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "相続税",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4102.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4152.htm"
+      ],
+      "rank": 92
+    },
+    {
+      "slug": "zoyo-zei",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "贈与税",
+      "company": "other",
+      "intent": "いくら",
+      "title": "贈与税は年110万円まで非課税　申告と税率の表",
+      "keyword": "贈与税 110万",
+      "queries": [
+        "贈与税 110万",
+        "贈与税 申告",
+        "贈与税 税率"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "贈与税",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4402.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4408.htm"
+      ],
+      "season": {
+        "from": "01-10",
+        "peak": "02-20",
+        "until": "03-15"
+      },
+      "rank": 93
+    },
+    {
+      "slug": "food-tax-cut",
+      "kind": "procedure",
+      "tool": "tax",
+      "tools": [
+        "tax"
+      ],
+      "toolName": "消費税率の引下げ",
+      "company": "other",
+      "intent": "いつから",
+      "title": "食品の消費税率が1%に下がる時期と対象　事業者の手続き",
+      "keyword": "食品 消費税 1% いつから",
+      "queries": [
+        "食品 消費税 1% いつから",
+        "消費税 引き下げ 食品",
+        "消費税率引下げ 事業者"
+      ],
+      "demand": 5,
+      "accuracy": 4,
+      "priority": 20,
+      "match": "消費税",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/zeiritsuhikisage.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6101.htm"
+      ],
+      "rank": 94
+    },
+    {
+      "slug": "menzei-jigyosha",
+      "kind": "procedure",
+      "tool": "tax",
+      "tools": [
+        "tax"
+      ],
+      "toolName": "消費税の免税事業者",
+      "company": "other",
+      "intent": "対象",
+      "title": "消費税の免税事業者になる条件　売上1,000万円の基準",
+      "keyword": "免税事業者 条件",
+      "queries": [
+        "免税事業者 条件",
+        "消費税 免税事業者",
+        "納税義務の免除"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "免税事業者|消費税",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6501.htm"
+      ],
+      "rank": 95
+    },
+    {
+      "slug": "nisa-start",
+      "kind": "procedure",
+      "tool": "nisa",
+      "tools": [
+        "nisa"
+      ],
+      "toolName": "NISA",
+      "company": "other",
+      "intent": "始め方",
+      "title": "NISAの始め方　口座の開き方と年間360万円の枠",
+      "keyword": "nisa 始め方",
+      "queries": [
+        "nisa 始め方",
+        "新nisa 始め方",
+        "nisa 口座開設"
+      ],
+      "demand": 5,
+      "accuracy": 3,
+      "priority": 15,
+      "match": "NISA",
+      "products": [],
+      "sources": [
+        "https://www.fsa.go.jp/policy/nisa2/",
+        "https://www.fsa.go.jp/policy/nisa2/about/index.html"
+      ],
+      "season": {
+        "from": "12-01",
+        "peak": "01-15",
+        "until": "02-28"
+      },
+      "rank": 96
+    },
+    {
+      "slug": "nisa-limit",
+      "kind": "procedure",
+      "tool": "nisa",
+      "tools": [
+        "nisa"
+      ],
+      "toolName": "NISA",
+      "company": "other",
+      "intent": "上限",
+      "title": "NISAの非課税枠　年360万円・生涯1,800万円の使い方",
+      "keyword": "nisa 上限",
+      "queries": [
+        "nisa 上限",
+        "nisa 枠",
+        "nisa 生涯投資枠"
+      ],
+      "demand": 4,
+      "accuracy": 3,
+      "priority": 12,
+      "match": "NISA",
+      "products": [],
+      "sources": [
+        "https://www.fsa.go.jp/policy/nisa2/about/index.html"
+      ],
+      "season": {
+        "from": "12-01",
+        "peak": "01-15",
+        "until": "02-28"
+      },
+      "rank": 97
+    },
+    {
+      "slug": "myna-renew",
+      "kind": "procedure",
+      "tool": "myna",
+      "tools": [
+        "myna"
+      ],
+      "toolName": "マイナンバーカード",
+      "company": "other",
+      "intent": "期限",
+      "title": "マイナンバーカードの更新　電子証明書は5年ごと",
+      "keyword": "マイナンバーカード 更新",
+      "queries": [
+        "マイナンバーカード 更新",
+        "マイナンバーカード 電子証明書 更新",
+        "マイナンバーカード 期限"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "マイナンバーカード",
+      "products": [],
+      "sources": [
+        "https://www.kojinbango-card.go.jp/renew/",
+        "https://www.soumu.go.jp/kojinbango_card/"
+      ],
+      "rank": 98
+    },
+    {
+      "slug": "myna-hokensho",
+      "kind": "procedure",
+      "tool": "myna",
+      "tools": [
+        "myna"
+      ],
+      "toolName": "マイナ保険証",
+      "company": "other",
+      "intent": "使い方",
+      "title": "マイナ保険証の使い方　病院での受付と登録の確認",
+      "keyword": "マイナ保険証 使い方",
+      "queries": [
+        "マイナ保険証 使い方",
+        "マイナ保険証 登録",
+        "マイナンバーカード 保険証"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "マイナ保険証|健康保険証",
+      "products": [],
+      "sources": [
+        "https://www.digital.go.jp/policies/mynumber/insurance-card",
+        "https://www.mhlw.go.jp/stf/newpage_08277.html"
+      ],
+      "rank": 99
+    },
+    {
+      "slug": "shikaku-kakuninsho",
+      "kind": "procedure",
+      "tool": "myna",
+      "tools": [
+        "myna"
+      ],
+      "toolName": "資格確認書",
+      "company": "other",
+      "intent": "対象",
+      "title": "資格確認書が届く人と使い方　マイナ保険証が無いとき",
+      "keyword": "資格確認書",
+      "queries": [
+        "資格確認書",
+        "資格確認書 届かない",
+        "資格確認書 とは"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "資格確認書",
+      "products": [],
+      "sources": [
+        "https://www.mhlw.go.jp/stf/newpage_08277.html",
+        "https://www.digital.go.jp/policies/mynumber/faq-insurance-card"
+      ],
+      "rank": 100
+    },
+    {
+      "slug": "myna-portal",
+      "kind": "procedure",
+      "tool": "myna",
+      "tools": [
+        "myna"
+      ],
+      "toolName": "マイナポータル",
+      "company": "other",
+      "intent": "使い方",
+      "title": "マイナポータルでできること　ログインと主な手続き",
+      "keyword": "マイナポータル できること",
+      "queries": [
+        "マイナポータル できること",
+        "マイナポータル ログイン",
+        "マイナポータル 使い方"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "マイナポータル",
+      "products": [],
+      "sources": [
+        "https://www.digital.go.jp/policies/mynumber",
+        "https://www.soumu.go.jp/kojinbango_card/"
+      ],
+      "rank": 101
+    },
+    {
+      "slug": "hikkoshi-online",
+      "kind": "procedure",
+      "tool": "myna",
+      "tools": [
+        "myna"
+      ],
+      "toolName": "引越しの手続き",
+      "company": "other",
+      "intent": "手続き",
+      "title": "引越しの手続きをオンラインで　転出届はマイナポータル",
+      "keyword": "引越し 手続き オンライン",
+      "queries": [
+        "引越し 手続き オンライン",
+        "転出届 オンライン",
+        "引越しワンストップ"
+      ],
+      "demand": 5,
+      "accuracy": 4,
+      "priority": 20,
+      "match": "引越し|転出",
+      "products": [],
+      "sources": [
+        "https://www.digital.go.jp/policies/moving_onestop_service"
+      ],
+      "season": {
+        "from": "02-01",
+        "peak": "03-20",
+        "until": "04-15"
+      },
+      "rank": 102
+    },
+    {
+      "slug": "myna-menkyo",
+      "kind": "procedure",
+      "tool": "license",
+      "tools": [
+        "license"
+      ],
+      "toolName": "マイナ免許証",
+      "company": "other",
+      "intent": "手続き",
+      "title": "マイナ免許証の手続きと使い方　免許証との違い",
+      "keyword": "マイナ免許証",
+      "queries": [
+        "マイナ免許証",
+        "マイナ免許証 手続き",
+        "マイナ免許証 メリット"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "マイナ免許証|運転免許",
+      "products": [],
+      "sources": [
+        "https://www.npa.go.jp/bureau/traffic/mynumber/mynumber_menkyo.html",
+        "https://www.npa.go.jp/policies/application/license_renewal/index.html"
+      ],
+      "rank": 103
+    },
+    {
+      "slug": "menkyo-koshin",
+      "kind": "procedure",
+      "tool": "license",
+      "tools": [
+        "license"
+      ],
+      "toolName": "運転免許の更新",
+      "company": "other",
+      "intent": "手続き",
+      "title": "運転免許の更新に必要なもの　期間と講習の区分",
+      "keyword": "運転免許 更新 必要なもの",
+      "queries": [
+        "運転免許 更新 必要なもの",
+        "運転免許 更新 期間",
+        "免許更新 講習"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "運転免許",
+      "products": [],
+      "sources": [
+        "https://www.npa.go.jp/policies/application/license_renewal/index.html"
+      ],
+      "rank": 104
+    },
+    {
+      "slug": "passport",
+      "kind": "procedure",
+      "tool": "passport",
+      "tools": [
+        "passport"
+      ],
+      "toolName": "パスポート",
+      "company": "other",
+      "intent": "手続き",
+      "title": "パスポートのオンライン申請　必要なものと受け取り",
+      "keyword": "パスポート 申請",
+      "queries": [
+        "パスポート 申請",
+        "パスポート オンライン申請",
+        "パスポート 更新"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "パスポート",
+      "products": [],
+      "sources": [
+        "https://www.mofa.go.jp/mofaj/toko/passport/index.html",
+        "https://www.mofa.go.jp/mofaj/toko/passport/pass_6.html"
+      ],
+      "season": {
+        "from": "01-15",
+        "peak": "03-01",
+        "until": "08-31"
+      },
+      "rank": 105
+    },
+    {
+      "slug": "sozoku-toki",
+      "kind": "procedure",
+      "tool": "souzoku",
+      "tools": [
+        "souzoku"
+      ],
+      "toolName": "相続登記",
+      "company": "other",
+      "intent": "期限",
+      "title": "相続登記は3年以内が義務　過料と手続きの流れ",
+      "keyword": "相続登記 義務化",
+      "queries": [
+        "相続登記 義務化",
+        "相続登記 期限",
+        "相続登記 手続き"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "相続登記",
+      "products": [],
+      "sources": [
+        "https://www.moj.go.jp/MINJI/minji05_00435.html"
+      ],
+      "rank": 106
+    },
+    {
+      "slug": "nenkin-teikibin",
+      "kind": "procedure",
+      "tool": "nenkin",
+      "tools": [
+        "nenkin"
+      ],
+      "toolName": "ねんきん定期便",
+      "company": "other",
+      "intent": "見方",
+      "title": "ねんきん定期便の見方　年金見込額の確かめ方",
+      "keyword": "ねんきん定期便 見方",
+      "queries": [
+        "ねんきん定期便 見方",
+        "ねんきん定期便 届かない",
+        "年金見込額"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "ねんきん定期便",
+      "products": [],
+      "sources": [
+        "https://www.nenkin.go.jp/service/nenkinkiroku/torikumi/teikibin/teikibin.html"
+      ],
+      "rank": 107
+    },
+    {
+      "slug": "nenkin-net",
+      "kind": "procedure",
+      "tool": "nenkin",
+      "tools": [
+        "nenkin"
+      ],
+      "toolName": "ねんきんネット",
+      "company": "other",
+      "intent": "始め方",
+      "title": "ねんきんネットの登録　マイナポータルからの使い方",
+      "keyword": "ねんきんネット 登録",
+      "queries": [
+        "ねんきんネット 登録",
+        "ねんきんネット ログイン",
+        "ねんきんネット マイナポータル"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "ねんきんネット",
+      "products": [],
+      "sources": [
+        "https://www.nenkin.go.jp/n_net/"
+      ],
+      "rank": 108
+    },
+    {
+      "slug": "kokunen-menjo",
+      "kind": "procedure",
+      "tool": "nenkin",
+      "tools": [
+        "nenkin"
+      ],
+      "toolName": "国民年金の免除",
+      "company": "other",
+      "intent": "手続き",
+      "title": "国民年金の免除・納付猶予　申請の条件と手続き",
+      "keyword": "国民年金 免除",
+      "queries": [
+        "国民年金 免除",
+        "国民年金 免除 申請",
+        "納付猶予"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "国民年金",
+      "products": [],
+      "sources": [
+        "https://www.nenkin.go.jp/service/kokunen/menjo/20150428.html"
+      ],
+      "rank": 109
+    },
+    {
+      "slug": "kokunen-hokenryo",
+      "kind": "procedure",
+      "tool": "nenkin",
+      "tools": [
+        "nenkin"
+      ],
+      "toolName": "国民年金保険料",
+      "company": "other",
+      "intent": "いくら",
+      "title": "国民年金保険料はいくら　月額と前納の割引",
+      "keyword": "国民年金 保険料 いくら",
+      "queries": [
+        "国民年金 保険料 いくら",
+        "国民年金 前納",
+        "国民年金 月額"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "国民年金",
+      "products": [],
+      "sources": [
+        "https://www.nenkin.go.jp/service/kokunen/hokenryo/hokenryo.html"
+      ],
+      "season": {
+        "from": "03-01",
+        "peak": "04-15",
+        "until": "05-31"
+      },
+      "rank": 110
+    },
+    {
+      "slug": "gakusei-tokurei",
+      "kind": "procedure",
+      "tool": "nenkin",
+      "tools": [
+        "nenkin"
+      ],
+      "toolName": "学生納付特例",
+      "company": "other",
+      "intent": "手続き",
+      "title": "学生納付特例の申請　20歳になった学生の国民年金",
+      "keyword": "学生納付特例",
+      "queries": [
+        "学生納付特例",
+        "学生納付特例 申請",
+        "20歳 国民年金 学生"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "学生納付特例|国民年金",
+      "products": [],
+      "sources": [
+        "https://www.nenkin.go.jp/service/kokunen/menjo/20150514.html"
+      ],
+      "season": {
+        "from": "03-15",
+        "peak": "04-20",
+        "until": "05-31"
+      },
+      "rank": 111
+    },
+    {
+      "slug": "nenkin-kurisage",
+      "kind": "procedure",
+      "tool": "nenkin",
+      "tools": [
+        "nenkin"
+      ],
+      "toolName": "年金の繰下げ受給",
+      "company": "other",
+      "intent": "いくら",
+      "title": "年金の繰下げ受給　1か月で0.7%増える仕組み",
+      "keyword": "年金 繰下げ",
+      "queries": [
+        "年金 繰下げ",
+        "繰下げ受給 増額率",
+        "繰下げ受給 手続き"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "繰下げ",
+      "products": [],
+      "sources": [
+        "https://www.nenkin.go.jp/service/jukyu/roureinenkin/kuriage-kurisage/20140421-02.html"
+      ],
+      "rank": 112
+    },
+    {
+      "slug": "jidou-teate",
+      "kind": "procedure",
+      "tool": "kosodate",
+      "tools": [
+        "kosodate"
+      ],
+      "toolName": "児童手当",
+      "company": "other",
+      "intent": "いくら",
+      "title": "児童手当はいくら・いつ振り込み　高校生まで月1万円",
+      "keyword": "児童手当 いくら",
+      "queries": [
+        "児童手当 いくら",
+        "児童手当 振込日",
+        "児童手当 高校生"
+      ],
+      "demand": 5,
+      "accuracy": 4,
+      "priority": 20,
+      "match": "児童手当",
+      "products": [],
+      "sources": [
+        "https://www.cfa.go.jp/policies/kokoseido/jidouteate/"
+      ],
+      "rank": 113
+    },
+    {
+      "slug": "shussan-ichijikin",
+      "kind": "procedure",
+      "tool": "kosodate",
+      "tools": [
+        "kosodate"
+      ],
+      "toolName": "出産育児一時金",
+      "company": "other",
+      "intent": "いくら",
+      "title": "出産育児一時金は50万円　直接支払制度と申請",
+      "keyword": "出産育児一時金",
+      "queries": [
+        "出産育児一時金",
+        "出産育児一時金 申請",
+        "出産 費用 補助"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "出産育児一時金",
+      "products": [],
+      "sources": [
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html"
+      ],
+      "rank": 114
+    },
+    {
+      "slug": "ikukyu-kyufu",
+      "kind": "procedure",
+      "tool": "kosodate",
+      "tools": [
+        "kosodate"
+      ],
+      "toolName": "育児休業給付金",
+      "company": "other",
+      "intent": "いくら",
+      "title": "育児休業給付金はいくら　支給率と申請の流れ",
+      "keyword": "育児休業給付金",
+      "queries": [
+        "育児休業給付金",
+        "育休 給付金 いくら",
+        "育児休業給付金 申請"
+      ],
+      "demand": 5,
+      "accuracy": 4,
+      "priority": 20,
+      "match": "育児休業給付",
+      "products": [],
+      "sources": [
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html"
+      ],
+      "rank": 115
+    },
+    {
+      "slug": "kogaku-ryoyohi",
+      "kind": "procedure",
+      "tool": "iryo",
+      "tools": [
+        "iryo"
+      ],
+      "toolName": "高額療養費",
+      "company": "other",
+      "intent": "いくら",
+      "title": "高額療養費の上限額と申請　限度額適用認定証は不要に",
+      "keyword": "高額療養費 申請",
+      "queries": [
+        "高額療養費 申請",
+        "高額療養費 上限",
+        "高額療養費 マイナ保険証"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "高額療養費",
+      "products": [],
+      "sources": [
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html"
+      ],
+      "rank": 116
+    },
+    {
+      "slug": "kaigo-hoken",
+      "kind": "procedure",
+      "tool": "kaigo",
+      "tools": [
+        "kaigo"
+      ],
+      "toolName": "介護保険",
+      "company": "other",
+      "intent": "対象",
+      "title": "介護保険は40歳から　保険料とサービスの使い方",
+      "keyword": "介護保険 何歳から",
+      "queries": [
+        "介護保険 何歳から",
+        "介護保険料 いくら",
+        "介護保険 申請"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "介護保険",
+      "products": [],
+      "sources": [
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/hoken/index.html"
+      ],
+      "rank": 117
+    },
+    {
+      "slug": "shitsugyo-kyufu",
+      "kind": "procedure",
+      "tool": "koyo",
+      "tools": [
+        "koyo"
+      ],
+      "toolName": "失業保険（基本手当）",
+      "company": "other",
+      "intent": "手続き",
+      "title": "失業保険のもらい方　受給の条件と給付日数",
+      "keyword": "失業保険 もらい方",
+      "queries": [
+        "失業保険 もらい方",
+        "失業保険 条件",
+        "失業保険 いつから"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "失業保険|基本手当|雇用保険",
+      "products": [],
+      "sources": [
+        "https://www.hellowork.mhlw.go.jp/insurance/insurance_basicbenefit.html"
+      ],
+      "season": {
+        "from": "02-15",
+        "peak": "04-01",
+        "until": "05-31"
+      },
+      "rank": 118
+    },
+    {
+      "slug": "koyo-keizoku",
+      "kind": "procedure",
+      "tool": "koyo",
+      "tools": [
+        "koyo"
+      ],
+      "toolName": "高年齢雇用継続給付",
+      "company": "other",
+      "intent": "対象",
+      "title": "高年齢雇用継続給付の条件　60歳以降の賃金低下",
+      "keyword": "高年齢雇用継続給付",
+      "queries": [
+        "高年齢雇用継続給付",
+        "高年齢雇用継続給付 条件",
+        "60歳 給付金"
+      ],
+      "demand": 3,
+      "accuracy": 5,
+      "priority": 15,
+      "match": "雇用継続給付",
+      "products": [],
+      "sources": [
+        "https://www.hellowork.mhlw.go.jp/insurance/insurance_continue.html"
+      ],
+      "rank": 119
+    },
+    {
+      "slug": "saitei-chingin",
+      "kind": "procedure",
+      "tool": "koyo",
+      "tools": [
+        "koyo"
+      ],
+      "toolName": "最低賃金",
+      "company": "other",
+      "intent": "いくら",
+      "title": "都道府県別の最低賃金　いつから上がるか",
+      "keyword": "最低賃金 2026",
+      "queries": [
+        "最低賃金 2026",
+        "最低賃金 都道府県",
+        "最低賃金 いつから"
+      ],
+      "demand": 5,
+      "accuracy": 4,
+      "priority": 20,
+      "match": "最低賃金",
+      "products": [],
+      "sources": [
+        "https://www.mhlw.go.jp/seisakunitsuite/bunya/koyou_roudou/roudoukijun/minimumichiran/"
+      ],
+      "season": {
+        "from": "09-01",
+        "peak": "10-01",
+        "until": "11-30"
+      },
+      "rank": 120
+    },
+    {
+      "slug": "gyomu-kaizen-joseikin",
+      "kind": "procedure",
+      "tool": "koyo",
+      "tools": [
+        "koyo"
+      ],
+      "toolName": "業務改善助成金",
+      "company": "other",
+      "intent": "対象",
+      "title": "業務改善助成金の対象と申請　賃金を上げる中小企業向け",
+      "keyword": "業務改善助成金",
+      "queries": [
+        "業務改善助成金",
+        "業務改善助成金 申請",
+        "業務改善助成金 対象"
+      ],
+      "demand": 3,
+      "accuracy": 4,
+      "priority": 12,
+      "match": "業務改善助成金",
+      "products": [],
+      "sources": [
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/zigyonushi/shienjigyou/03.html"
+      ],
+      "rank": 121
+    },
+    {
+      "slug": "shokibo-kyosai",
+      "kind": "procedure",
+      "tool": "koyo",
+      "tools": [
+        "koyo"
+      ],
+      "toolName": "小規模企業共済",
+      "company": "other",
+      "intent": "始め方",
+      "title": "小規模企業共済の始め方　掛金は全額控除",
+      "keyword": "小規模企業共済",
+      "queries": [
+        "小規模企業共済",
+        "小規模企業共済 メリット",
+        "小規模企業共済 掛金"
+      ],
+      "demand": 3,
+      "accuracy": 4,
+      "priority": 12,
+      "match": "小規模企業共済",
+      "products": [],
+      "sources": [
+        "https://www.smrj.go.jp/kyosai/skyosai/index.html",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 122
+    },
+    {
+      "slug": "denki-norikae",
+      "kind": "procedure",
+      "tool": "kakei",
+      "tools": [
+        "kakei"
+      ],
+      "toolName": "電力会社の切り替え",
+      "company": "other",
+      "intent": "手順",
+      "title": "電力会社の切り替え方法　料金プランの見直しの手順",
+      "keyword": "電力会社 切り替え 方法",
+      "queries": [
+        "電力会社 切り替え 方法",
+        "電気 プラン 見直し",
+        "電力自由化 切り替え"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "電気料金|電力",
+      "products": [],
+      "sources": [
+        "https://www.enecho.meti.go.jp/category/electricity_and_gas/electric/electricity_liberalization/",
+        "https://www.enecho.meti.go.jp/category/electricity_and_gas/electric/electricity_liberalization/what/"
+      ],
+      "season": {
+        "from": "11-01",
+        "peak": "12-15",
+        "until": "02-28"
+      },
+      "rank": 123
+    },
+    {
+      "slug": "gas-norikae",
+      "kind": "procedure",
+      "tool": "kakei",
+      "tools": [
+        "kakei"
+      ],
+      "toolName": "ガス会社の切り替え",
+      "company": "other",
+      "intent": "手順",
+      "title": "都市ガスの会社の切り替え方法と注意",
+      "keyword": "ガス 切り替え",
+      "queries": [
+        "ガス 切り替え",
+        "都市ガス 自由化",
+        "ガス会社 変更"
+      ],
+      "demand": 3,
+      "accuracy": 4,
+      "priority": 12,
+      "match": "ガス料金",
+      "products": [],
+      "sources": [
+        "https://www.enecho.meti.go.jp/category/electricity_and_gas/gas/liberalization/"
+      ],
+      "season": {
+        "from": "11-01",
+        "peak": "12-15",
+        "until": "02-28"
+      },
+      "rank": 124
+    },
+    {
+      "slug": "denki-gas-shien",
+      "kind": "procedure",
+      "tool": "kakei",
+      "tools": [
+        "kakei"
+      ],
+      "toolName": "電気・ガス料金支援",
+      "company": "other",
+      "intent": "いつまで",
+      "title": "電気・ガス料金の補助はいつまで　値引きの額",
+      "keyword": "電気代 補助 いつまで",
+      "queries": [
+        "電気代 補助 いつまで",
+        "ガス代 補助",
+        "電気・ガス料金支援"
+      ],
+      "demand": 5,
+      "accuracy": 4,
+      "priority": 20,
+      "match": "電気・ガス料金支援|電気代",
+      "products": [],
+      "sources": [
+        "https://denkigas-gekihenkanwa.go.jp/"
+      ],
+      "rank": 125
+    },
+    {
+      "slug": "sumaho-norikae",
+      "kind": "procedure",
+      "tool": "kakei",
+      "tools": [
+        "kakei"
+      ],
+      "toolName": "スマホの乗り換え",
+      "company": "other",
+      "intent": "手順",
+      "title": "スマホの乗り換え手順　MNPの流れと注意点",
+      "keyword": "スマホ 乗り換え 手順",
+      "queries": [
+        "スマホ 乗り換え 手順",
+        "mnp ワンストップ",
+        "携帯 乗り換え 注意"
+      ],
+      "demand": 5,
+      "accuracy": 3,
+      "priority": 15,
+      "match": "乗り換え|MNP",
+      "products": [],
+      "sources": [
+        "https://www.soumu.go.jp/menu_seisaku/ictseisaku/keitai_charge/"
+      ],
+      "season": {
+        "from": "02-01",
+        "peak": "03-20",
+        "until": "04-15"
+      },
+      "rank": 126
+    },
+    {
+      "slug": "kosodate-ecohome",
+      "kind": "procedure",
+      "tool": "sumai",
+      "tools": [
+        "sumai"
+      ],
+      "toolName": "子育てエコホーム支援事業",
+      "company": "other",
+      "intent": "対象",
+      "title": "子育てエコホーム支援事業の対象と補助額",
+      "keyword": "子育てエコホーム",
+      "queries": [
+        "子育てエコホーム",
+        "子育てエコホーム 対象",
+        "住宅 補助金 2026"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "エコホーム|住宅",
+      "products": [],
+      "sources": [
+        "https://kosodate-ecohome.mlit.go.jp/"
+      ],
+      "rank": 127
+    },
+    {
+      "slug": "green-jutaku",
+      "kind": "procedure",
+      "tool": "sumai",
+      "tools": [
+        "sumai"
+      ],
+      "toolName": "子育てグリーン住宅支援事業",
+      "company": "other",
+      "intent": "対象",
+      "title": "子育てグリーン住宅支援事業の対象と補助額",
+      "keyword": "子育てグリーン住宅支援事業",
+      "queries": [
+        "子育てグリーン住宅支援事業",
+        "グリーン住宅 補助金",
+        "子育てグリーン住宅 対象"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "グリーン住宅",
+      "products": [],
+      "sources": [
+        "https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_fr4_000110.html"
+      ],
+      "rank": 128
+    },
+    {
+      "slug": "nenmatsu-money-calendar",
+      "kind": "procedure",
+      "tool": "calendar",
+      "tools": [
+        "calendar"
+      ],
+      "toolName": "年末のお金の期限",
+      "company": "other",
+      "intent": "期限",
+      "title": "年末までのお金の手続き　年末調整・ふるさと納税・NISAの期限",
+      "keyword": "年末 お金 手続き 期限",
+      "queries": [
+        "年末 お金 手続き 期限",
+        "年末 やること お金",
+        "12月 期限 手続き"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "年末調整|ふるさと納税|NISA",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/users/gensen/nencho/index.htm",
+        "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
+        "https://www.fsa.go.jp/policy/nisa2/about/index.html"
+      ],
+      "season": {
+        "from": "11-05",
+        "peak": "12-10",
+        "until": "12-31"
+      },
+      "rank": 129
+    },
+    {
+      "slug": "nenshi-money-calendar",
+      "kind": "procedure",
+      "tool": "calendar",
+      "tools": [
+        "calendar"
+      ],
+      "toolName": "年明けのお金の期限",
+      "company": "other",
+      "intent": "期限",
+      "title": "年明けのお金の手続き　ワンストップ特例・還付申告・確定申告の期限",
+      "keyword": "確定申告 期限 2027",
+      "queries": [
+        "確定申告 期限 2027",
+        "ワンストップ特例 期限",
+        "還付申告 いつから"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "確定申告|ワンストップ",
+      "products": [],
+      "sources": [
+        "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/shinkoku/tokushu/index.htm"
+      ],
+      "season": {
+        "from": "12-15",
+        "peak": "01-15",
+        "until": "03-15"
+      },
+      "rank": 130
+    },
+    {
+      "slug": "fudosan-joto",
+      "kind": "procedure",
+      "tool": "kakutei",
+      "tools": [
+        "kakutei"
+      ],
+      "toolName": "不動産の譲渡所得",
+      "company": "other",
+      "intent": "計算",
+      "title": "家や土地を売ったときの税金　譲渡所得の計算と申告",
+      "keyword": "家 売却 税金",
+      "queries": [
+        "家 売却 税金",
+        "譲渡所得 計算",
+        "不動産 売却 確定申告"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "譲渡所得",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm"
+      ],
+      "season": {
+        "from": "01-05",
+        "peak": "02-25",
+        "until": "03-15"
+      },
+      "rank": 131
+    },
+    {
+      "slug": "kaigai-kinmu-tax",
+      "kind": "procedure",
+      "tool": "nencho",
+      "tools": [
+        "nencho"
+      ],
+      "toolName": "海外勤務の税金",
+      "company": "other",
+      "intent": "手続き",
+      "title": "海外赴任する人の年末調整と税金の精算",
+      "keyword": "海外赴任 年末調整",
+      "queries": [
+        "海外赴任 年末調整",
+        "海外勤務 所得税",
+        "出国 年末調整"
+      ],
+      "demand": 2,
+      "accuracy": 5,
+      "priority": 10,
+      "match": "海外勤務",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1920.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2875.htm"
+      ],
+      "season": {
+        "from": "10-20",
+        "peak": "11-20",
+        "until": "12-25"
+      },
+      "rank": 132
+    },
+    {
+      "slug": "hikyojusha",
+      "kind": "procedure",
+      "tool": "tax",
+      "tools": [
+        "tax"
+      ],
+      "toolName": "居住者・非居住者",
+      "company": "other",
+      "intent": "対象",
+      "title": "居住者と非居住者の区分　1年以上の海外勤務は非居住者",
+      "keyword": "非居住者 判定",
+      "queries": [
+        "非居住者 判定",
+        "居住者 非居住者 違い",
+        "非居住者 税金"
+      ],
+      "demand": 2,
+      "accuracy": 5,
+      "priority": 10,
+      "match": "非居住者",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2875.htm"
+      ],
+      "rank": 133
+    },
+    {
+      "slug": "angel-tax",
+      "kind": "procedure",
+      "tool": "tax",
+      "tools": [
+        "tax"
+      ],
+      "toolName": "エンジェル税制",
+      "company": "other",
+      "intent": "対象",
+      "title": "エンジェル税制の対象と控除　スタートアップへの投資",
+      "keyword": "エンジェル税制",
+      "queries": [
+        "エンジェル税制",
+        "エンジェル税制 対象",
+        "エンジェル税制 控除"
+      ],
+      "demand": 2,
+      "accuracy": 5,
+      "priority": 10,
+      "match": "エンジェル税制",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1530.htm"
+      ],
+      "season": {
+        "from": "01-05",
+        "peak": "02-25",
+        "until": "03-15"
+      },
+      "rank": 134
+    },
+    {
+      "slug": "myna-card-apply",
+      "kind": "procedure",
+      "tool": "myna",
+      "tools": [
+        "myna"
+      ],
+      "toolName": "マイナンバーカードの申請",
+      "company": "other",
+      "intent": "手続き",
+      "title": "マイナンバーカードの申請方法　スマホ・郵送と受け取り",
+      "keyword": "マイナンバーカード 申請 方法",
+      "queries": [
+        "マイナンバーカード 申請 方法",
+        "マイナンバーカード 作り方",
+        "マイナンバーカード 受け取り"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "マイナンバーカード",
+      "products": [],
+      "sources": [
+        "https://www.kojinbango-card.go.jp/",
+        "https://www.soumu.go.jp/kojinbango_card/"
+      ],
+      "rank": 135
+    },
+    {
+      "slug": "nenkin-zeikin",
+      "kind": "procedure",
+      "tool": "nenkin",
+      "tools": [
+        "nenkin"
+      ],
+      "toolName": "年金の税金",
+      "company": "other",
+      "intent": "いくら",
+      "title": "年金にかかる税金　源泉徴収と公的年金等控除",
+      "keyword": "年金 税金 いくら",
+      "queries": [
+        "年金 税金 いくら",
+        "年金 源泉徴収",
+        "公的年金等控除"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "年金",
+      "products": [],
+      "sources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1600.htm"
+      ],
+      "season": {
+        "from": "01-05",
+        "peak": "02-25",
+        "until": "03-15"
+      },
+      "rank": 136
+    },
+    {
+      "slug": "apple-intelligence-japanese",
+      "kind": "ai-tool",
+      "tool": "apple-intelligence",
+      "tools": [
+        "apple-intelligence"
+      ],
+      "toolName": "Apple Intelligence",
+      "company": "apple",
+      "intent": "使い方",
+      "title": "Apple Intelligenceを日本語で使う　対応機種と設定",
+      "keyword": "apple intelligence 日本語",
+      "queries": [
+        "apple intelligence 日本語",
+        "apple intelligence 使い方",
+        "apple intelligence 対応機種"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "Apple Intelligence|Siri",
+      "products": [],
+      "sources": [
+        "https://support.apple.com/ja-jp/121115",
+        "https://www.apple.com/jp/apple-intelligence/"
+      ],
+      "rank": 137
+    },
+    {
+      "slug": "google-ai-mode",
+      "kind": "ai-tool",
+      "tool": "google-ai-mode",
+      "tools": [
+        "google-ai-mode"
+      ],
+      "toolName": "Google AIモード",
+      "company": "google",
+      "intent": "使い方",
+      "title": "GoogleのAIモードの使い方　検索で質問を続ける方法",
+      "keyword": "google ai モード 使い方",
+      "queries": [
+        "google ai モード 使い方",
+        "ai モード google",
+        "aiモード 日本語"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "AIモード|AI Mode",
+      "products": [],
+      "sources": [
+        "https://support.google.com/websearch/answer/16011537?hl=ja"
+      ],
+      "rank": 138
+    },
+    {
+      "slug": "gemini-in-gmail",
+      "kind": "ai-tool",
+      "tool": "gemini",
+      "tools": [
+        "gemini"
+      ],
+      "toolName": "Gemini in Gmail",
+      "company": "google",
+      "intent": "使い方",
+      "title": "GmailでGeminiを使う　メールの要約と返信の下書き",
+      "keyword": "gmail gemini 使い方",
+      "queries": [
+        "gmail gemini 使い方",
+        "gemini gmail 要約",
+        "gmail ai 返信"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "Gmail",
+      "products": [],
+      "sources": [
+        "https://support.google.com/mail/answer/14199860?hl=ja"
+      ],
+      "rank": 139
+    },
+    {
+      "slug": "gemini-live",
+      "kind": "ai-tool",
+      "tool": "gemini",
+      "tools": [
+        "gemini"
+      ],
+      "toolName": "Gemini Live",
+      "company": "google",
+      "intent": "使い方",
+      "title": "Gemini Liveの使い方　声でAIと会話する方法",
+      "keyword": "gemini live 使い方",
+      "queries": [
+        "gemini live 使い方",
+        "gemini live 日本語",
+        "gemini 音声会話"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "Gemini Live",
+      "products": [],
+      "sources": [
+        "https://support.google.com/gemini/answer/15274899?hl=ja"
+      ],
+      "rank": 140
+    },
+    {
+      "slug": "gemini-app-how-to",
+      "kind": "ai-tool",
+      "tool": "gemini",
+      "tools": [
+        "gemini"
+      ],
+      "toolName": "Geminiアプリ",
+      "company": "google",
+      "intent": "スマホで使う",
+      "title": "Geminiアプリでできること　スマホでの始め方",
+      "keyword": "gemini アプリ",
+      "queries": [
+        "gemini アプリ",
+        "gemini アプリ 使い方",
+        "gemini アプリ できること"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "Gemini",
+      "products": [],
+      "sources": [
+        "https://support.google.com/gemini/answer/13275745?hl=ja",
+        "https://gemini.google/jp/overview/"
+      ],
+      "rank": 141
+    },
+    {
+      "slug": "chatgpt-voice-mode",
+      "kind": "ai-tool",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt"
+      ],
+      "toolName": "ChatGPT 音声モード",
+      "company": "openai",
+      "intent": "使い方",
+      "title": "ChatGPTの音声モードの使い方　声で会話する方法",
+      "keyword": "chatgpt 音声 会話",
+      "queries": [
+        "chatgpt 音声 会話",
+        "chatgpt 音声モード",
+        "chatgpt voice 使い方"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "ChatGPT Voice|音声モード",
+      "products": [],
+      "sources": [
+        "https://help.openai.com/ja-jp/articles/8400625-voice-mode-faq"
+      ],
+      "rank": 142
+    },
+    {
+      "slug": "chatgpt-memory",
+      "kind": "ai-tool",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt"
+      ],
+      "toolName": "ChatGPT メモリ",
+      "company": "openai",
+      "intent": "安全性・個人情報",
+      "title": "ChatGPTのメモリ機能　覚えた内容の確認と消し方",
+      "keyword": "chatgpt メモリ",
+      "queries": [
+        "chatgpt メモリ",
+        "chatgpt メモリ 削除",
+        "chatgpt 記憶 オフ"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "メモリ",
+      "products": [],
+      "sources": [
+        "https://help.openai.com/ja-jp/articles/8590148-memory-faq"
+      ],
+      "rank": 143
+    },
+    {
+      "slug": "chatgpt-gpts",
+      "kind": "ai-tool",
+      "tool": "chatgpt",
+      "tools": [
+        "chatgpt"
+      ],
+      "toolName": "GPTs",
+      "company": "openai",
+      "intent": "使い方",
+      "title": "ChatGPTのGPTsとは　使い方と作り方",
+      "keyword": "gpts 使い方",
+      "queries": [
+        "gpts 使い方",
+        "gpts 作り方",
+        "gpts 無料"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "GPTs",
+      "products": [],
+      "sources": [
+        "https://help.openai.com/ja-jp/articles/8554407-gpts-faq"
+      ],
+      "rank": 144
+    },
+    {
+      "slug": "galaxy-ai",
+      "kind": "ai-tool",
+      "tool": "galaxy-ai",
+      "tools": [
+        "galaxy-ai"
+      ],
+      "toolName": "Galaxy AI",
+      "company": "samsung",
+      "intent": "使い方",
+      "title": "Galaxy AIでできること　対応機種と主な機能",
+      "keyword": "galaxy ai",
+      "queries": [
+        "galaxy ai",
+        "galaxy ai 使い方",
+        "galaxy ai 対応機種"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Galaxy AI",
+      "products": [],
+      "sources": [
+        "https://www.samsung.com/jp/galaxy-ai/"
+      ],
+      "rank": 145
+    },
+    {
+      "slug": "copilot-windows",
+      "kind": "ai-tool",
+      "tool": "copilot",
+      "tools": [
+        "copilot"
+      ],
+      "toolName": "Copilot（Windows）",
+      "company": "microsoft",
+      "intent": "使い方",
+      "title": "WindowsでCopilotを使う　起動の方法とできること",
+      "keyword": "copilot windows 使い方",
+      "queries": [
+        "copilot windows 使い方",
+        "windows copilot",
+        "copilot キー"
+      ],
+      "demand": 4,
+      "accuracy": 5,
+      "priority": 20,
+      "match": "Copilot",
+      "products": [],
+      "sources": [
+        "https://support.microsoft.com/ja-jp/windows/welcome-to-copilot-on-windows-675708af-8c16-4675-afeb-85a5a476ccb0",
+        "https://www.microsoft.com/ja-jp/microsoft-copilot/for-individuals"
+      ],
+      "rank": 146
+    },
+    {
+      "slug": "claude-projects",
+      "kind": "ai-tool",
+      "tool": "claude",
+      "tools": [
+        "claude"
+      ],
+      "toolName": "Claude プロジェクト",
+      "company": "anthropic",
+      "intent": "使い方",
+      "title": "Claudeのプロジェクト機能　資料をまとめて使う方法",
+      "keyword": "claude プロジェクト",
+      "queries": [
+        "claude プロジェクト",
+        "claude projects 使い方",
+        "claude 資料 読み込み"
+      ],
+      "demand": 3,
+      "accuracy": 5,
+      "priority": 15,
+      "match": "Claude",
+      "products": [],
+      "sources": [
+        "https://support.claude.com/ja/articles/9517075-what-are-projects"
+      ],
+      "rank": 147
+    },
+    {
+      "slug": "gemini-plans-japan",
+      "kind": "ai-tool",
+      "tool": "gemini",
+      "tools": [
+        "gemini"
+      ],
+      "toolName": "Gemini の有料プラン",
+      "company": "google",
+      "intent": "料金・無料でどこまで",
+      "title": "Geminiの有料プランの料金　日本の月額と無料との違い",
+      "keyword": "gemini 有料 プラン",
+      "queries": [
+        "gemini 有料 プラン",
+        "google ai pro 料金",
+        "gemini 月額"
+      ],
+      "demand": 5,
+      "accuracy": 5,
+      "priority": 25,
+      "match": "Gemini",
+      "products": [],
+      "sources": [
+        "https://gemini.google/jp/subscriptions/"
+      ],
+      "rank": 148
+    },
+    {
+      "slug": "canva-image-ai-free",
+      "kind": "ai-tool",
+      "tool": "canva",
+      "tools": [
+        "canva"
+      ],
+      "toolName": "Canva 画像生成",
+      "company": "other",
+      "intent": "料金・無料でどこまで",
+      "title": "Canvaの画像生成AIは無料でどこまで　回数と使い方",
+      "keyword": "canva 画像生成 無料",
+      "queries": [
+        "canva 画像生成 無料",
+        "canva ai 画像",
+        "canva 画像生成 回数"
+      ],
+      "demand": 4,
+      "accuracy": 4,
+      "priority": 16,
+      "match": "Canva",
+      "products": [],
+      "sources": [
+        "https://www.canva.com/ja_jp/ai-image-generator/"
+      ],
+      "rank": 149
+    },
+    {
+      "slug": "manus-how-to-use",
+      "kind": "ai-tool",
+      "tool": "manus",
+      "tools": [
+        "manus"
+      ],
+      "toolName": "Manus",
+      "company": "other",
+      "intent": "使い方",
+      "title": "AIエージェント「Manus」の使い方と料金",
+      "keyword": "manus 使い方",
+      "queries": [
+        "manus 使い方",
+        "manus 料金",
+        "manus ai"
+      ],
+      "demand": 3,
+      "accuracy": 3,
+      "priority": 9,
+      "match": "Manus",
+      "products": [],
+      "sources": [
+        "https://manus.im/"
+      ],
+      "rank": 150
+    },
+    {
+      "slug": "genspark-how-to-use",
+      "kind": "ai-tool",
+      "tool": "genspark",
+      "tools": [
+        "genspark"
+      ],
+      "toolName": "Genspark",
+      "company": "other",
+      "intent": "使い方",
+      "title": "Gensparkの使い方と無料でできること",
+      "keyword": "genspark 使い方",
+      "queries": [
+        "genspark 使い方",
+        "genspark 無料",
+        "genspark ai"
+      ],
+      "demand": 3,
+      "accuracy": 3,
+      "priority": 9,
+      "match": "Genspark",
+      "products": [],
+      "sources": [
+        "https://www.genspark.ai/"
+      ],
+      "rank": 151
     }
   ]
 }
