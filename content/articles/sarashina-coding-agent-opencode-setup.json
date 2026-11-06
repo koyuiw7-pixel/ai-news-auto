@@ -1,0 +1,112 @@
+{
+  "slug": "sarashina-coding-agent-opencode-setup",
+  "sourceType": "web",
+  "sourceUrl": "https://www.sbintuitions.co.jp/blog/entry/2026/11/06/100000",
+  "sourceName": "SB Intuitions テックブログ",
+  "title": "Sarashinaをコーディングエージェントで使う　OpenCodeは設定だけで直接接続可能",
+  "seoTitle": "Sarashina OpenCode接続とは？設定方法と使い方",
+  "threadsPost": "コーディングエージェントを使っている開発者に、知っておいてほしい話です。\n\nSB Intuitionsの「Sarashina」は、OpenCodeに設定ファイルを書くだけで直接つながるようになりました。\nHermes AgentやCrushからも、OpenAI互換の設定で利用できます。\n\nふだん使っているエージェントで、日本語の校正を任せてみますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "tradeoff",
+      "question": "AIにファイルを書き換えさせるとき、確認を挟みますか、それとも任せきりにしますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "普段使っているコーディングエージェントは、どのツールを選んでいますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "SB Intuitionsの大規模言語モデル「Sarashina」は、コーディングエージェントの「OpenCode」に設定ファイルを書くだけで直接つなげるようになりました。以前は変換用のプロキシが必要でしたが、API側の更新で不要になっています。今すぐ試すなら、Sarashinaの公式サイトでAPIキーを取得し、環境変数「SARASHINA_API_KEY」に設定してください。",
+  "description": "SB InstuitionsのSarashinaを、コーディングエージェントのOpenCode・Hermes Agent・Crushから使う設定方法を解説します。プロキシ不要の直接接続や、サブエージェントとしての使い方も紹介します。",
+  "keywords": [
+    "Sarashina",
+    "OpenCode 設定",
+    "コーディングエージェント",
+    "Sarashina API",
+    "Hermes Agent",
+    "Crush",
+    "サブエージェント",
+    "Claude Code 連携",
+    "LLM API 接続"
+  ],
+  "tags": [
+    "生成AI",
+    "LLM",
+    "コーディングエージェント",
+    "Sarashina"
+  ],
+  "highlights": [
+    "OpenCodeは、設定ファイルで接続先を指定するだけでSarashinaに直接つながります。",
+    "以前必要だったLiteLLMなどのプロキシは、API側の更新で不要になりました。",
+    "Claude CodeとCodexは、Sarashinaが対応していない形式のため直接つながりません。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "開発者",
+    "take": "OpenCodeを使っているなら、設定ファイルを書けばすぐ試せます。モデルを使う前に、permissionの設定で危険な操作を制限してください。",
+    "judgedAt": "2026-11-06T04:41:29.220532+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "OpenCodeを使っている開発者は、設定ファイルへの記述だけで試せます。",
+      "日本語の校正や要約など、得意な処理だけをSarashinaに任せる使い方もできます。"
+    ]
+  },
+  "body": "SB Intuitionsの大規模言語モデル「Sarashina」を、コーディングエージェントから使う方法が公開されました。対象は、AIにファイルの読み取りやコマンド実行を任せるツールです。OpenCodeを使っている開発者は、設定ファイルに接続先を書くだけで試せます。\n\nコーディングエージェントは、AIとツールの往復を繰り返しながら作業を進めます。この仕組みは「ハーネス」と呼ばれます。Sarashinaの対話用APIは、OpenAIのChat Completions（AIに会話で指示を送る形式）と部分的に互換性のある形式で提供されています。そのため、この形式で通信するツールは接続できます。\n\n## OpenCodeは直接つながる\n\n発表によると、OpenCodeは要求する形式がSarashinaと一致するため、設定ファイルで接続先を指定するだけで直接利用できます。以前は、OpenCodeが送る一部の項目をSarashinaが受け付けず、LiteLLMのようなプロキシでリクエストを補正する必要がありました。現在はAPI側の更新で、これらの項目も受け付けられるようになっています。\n\n設定では、OpenAI互換のカスタムプロバイダとして登録します。接続先は「https://api.sarashina.ai/v1」で、環境変数「SARASHINA_API_KEY」の値が認証情報として送られます。出力トークン数の既定値はSarashinaの上限である8,000を超えるため、モデルごとに8,000と設定します。\n\n## Hermes AgentとCrushでも使える\n\nOpenAI互換のエンドポイントを設定できるツールなら、OpenCode以外からも使えます。元の発表では、ターミナル型のエージェントであるHermes AgentとCrushで設定例が示されています。Hermes Agentは対話形式の設定か、設定ファイルへの記述で登録します。Crushは設定ファイルに、プロバイダとモデルを登録します。どちらも、APIキーは環境変数で参照できます。\n\n一方で、Claude CodeはAnthropic Messages API、CodexはOpenAI Responses APIを使うため、Sarashinaとは直接つながりません。これらから使うには、API形式を変換するプロキシを立てる方法があります。\n\n**サブエージェントとして一部の作業だけ任せる**\n\nもう1つの使い方は、メインのモデルは普段のものを使い続け、特定の作業だけSarashinaに任せる方法です。発表では、日本語の文章校正や要約が得意な処理として挙げられています。\n\nOpenCodeでは、Markdownファイルでサブエージェントを定義します。frontmatterの「model」に「sarashina/sarashina3.2-mini-thinking」を指定すると、そのサブエージェントだけがSarashinaで動きます。発表の例では、回りくどい日本語の短文が、より簡潔な文に書き換えられたことが確認されています。\n\n**Claude CodeからOpenCode経由で使う**\n\nClaude Codeは直接つながらないため、発表では別の経路が紹介されています。Claude Codeから子プロセスとしてOpenCodeの「opencode run」を呼び出し、その中でSarashinaに処理させる方法です。委譲用のスキルを定義すると、Claude Codeは日本語の校正などを自動でこの経路に回せます。\n\nこの方法では、Claude Codeの会話の内容はOpenCodeに共有されません。指示の中に、対象のファイルや条件を具体的に書く必要があります。\n\n**安全に使うための注意**\n\n発表は、コーディングエージェントでは、モデルが想定外の操作をすることがあると注意しています。permissionの設定などで、危険な操作をできないようにしておくことを強く推奨しています。\n\n## まだ分からないこと\n\n- Sarashinaの料金は、今回の発表では示されていません\n- 日本国内での提供条件や、一般向けの提供範囲は、今回の発表では示されていません\n\n**企業・開発チーム向けの確認**\n\n社内でSarashinaを使う場合は、APIキーの管理と、利用するツールの権限設定を先に決めておくとよいでしょう。",
+  "easy": "## ひとことで言うと\n\nSarashinaは、コーディングエージェントのOpenCodeに設定を書けば直接使えるようになりました。日本語の校正など、得意な作業だけを任せる使い方もできます。\n\n## 直接つながるツールと、つながらないツール\n\nOpenCodeはOpenAI互換の形式なので、接続先を指定すれば使えます。Claude CodeやCodexは形式が違うため、直接は接続できません。\n\n## 試すときの手順\n\nSarashinaのAPIキーを環境変数に設定し、OpenCodeの設定ファイルに接続先を書きます。設定の書き方は本文で紹介しています。",
+  "channel": "SB Intuitions テックブログ",
+  "channelId": "",
+  "channelSlug": "sbintuitions-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Sarashina をコーディングエージェントで使う: OpenCode・Hermes Agent・Crush での利用と、サブエージェントとしての活用",
+  "publishedAt": "2026-11-06T01:00:00+00:00",
+  "generatedAt": "2026-11-06T04:41:29.220520+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/sarashina-coding-agent-opencode-setup-ea2aef89.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "general",
+  "todayActions": [
+    "OpenCodeを使っているなら、Sarashinaの公式サイトでAPIキーを取得し、環境変数に設定する",
+    "設定ファイルを書く前に、OpenCodeのpermission設定で危険な操作を制限する"
+  ],
+  "qualityScore": 92,
+  "sourcePublishedAt": "2026-11-06T01:00:00+00:00",
+  "detectedAt": "2026-11-06T04:40:53+00:00",
+  "imageCredit": {
+    "kind": "stock",
+    "title": "Coding workstation (Unsplash)",
+    "creator": "Farzad Nazifi euwars",
+    "creatorUrl": "",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "provider": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coding_workstation_(Unsplash).jpg",
+    "query": "coding workspace",
+    "original": "https://ogimage.blog.st-hatena.com/6801883189074249850/14729835035330877433/1793926802",
+    "at": "2026-11-06T04:44:37+00:00"
+  },
+  "imageFocus": {
+    "x": 0.477,
+    "y": 0.5,
+    "box": [
+      0.025,
+      0.0,
+      0.928,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/sarashina-coding-agent-opencode-setup-ea2aef89.jpg"
+  }
+}

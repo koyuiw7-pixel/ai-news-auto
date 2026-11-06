@@ -100,14 +100,6 @@
       "tries": 1,
       "url": "http://www.npa.go.jp/newlyarrived/2026/20260331001.html"
     },
-    "4a29cf0a9e1bd354": {
-      "first": "2026-11-06T01:09:33.060536+00:00",
-      "next": "2026-11-06T04:09:33.060536+00:00",
-      "reason": "本文「本稿の執筆環境（OpenCode v2.2.0）では、opencode run --standalone --model ... で同じ指示を一度に実行しています。」→ 元記事の検証は実行確認のみで、記事の要約自体は概ね一致。ただし「ファイルが実際にできました」は元記事の流れに沿うので問題なし; 「Claude CodeからOpenCodeを子プロセスとして呼び出す構成も紹介」→ 元記事と一",
-      "title": "Sarashina をコーディングエージェントで使う: OpenCode・Hermes Agent・Crush での利用と、サブエージェントとしての活用",
-      "tries": 1,
-      "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/06/100000"
-    },
     "52567fa092b78f28": {
       "first": "2026-11-04T03:34:46.235755+00:00",
       "next": "2026-11-04T06:34:46.235755+00:00",
@@ -142,10 +134,10 @@
     },
     "9c3feb4cdbadc8d9": {
       "first": "2026-11-06T01:26:30.723770+00:00",
-      "next": "2026-11-06T04:26:30.723770+00:00",
-      "reason": "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「ると、1,000万円以上5,000万円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）",
+      "next": "2026-11-06T07:43:25.430900+00:00",
+      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "title": "「ハウスメーカー」倒産 前年の1.8倍に急増 価格上昇で購入可能額とのギャップが拡大",
-      "tries": 1,
+      "tries": 2,
       "url": "https://www.tsr-net.co.jp/data/detail/1203404_1527.html"
     },
     "a80efade9c9f0d83": {
@@ -5334,6 +5326,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000115.000061059.html"
     },
+    "22b87dba88c182cb": {
+      "at": "2026-11-06T04:42:08.766858+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "元記事は、タンドラの一部改良を米国で発表したことと、日本では今冬に全国のトヨタ車両販売店で発売する予定だということだけを伝えています。価格、主な仕様、日本の発売日、現行モデルとの違いが資料にないため、読者が判断できる本文を1,600字以上で書けません。資料が揃ったら作り直してください。",
+      "skipped": true,
+      "url": "https://global.toyota/jp/newsroom/toyota/44960600.html"
+    },
     "2304fbe0fd69d295": {
       "at": "2026-10-28T19:51:48.974255+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7302,6 +7301,15 @@
       "slug": "nvidia-ai-c-brain-dementia-research",
       "url": "https://blogs.nvidia.com/blog/open-source-ai-tools-cbrain-dementia/"
     },
+    "4a29cf0a9e1bd354": {
+      "at": "2026-11-06T04:41:58.327169+00:00",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "sarashina-coding-agent-opencode-setup",
+      "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/06/100000"
+    },
     "4a56adcbf564bd61": {
       "at": "2026-10-31T06:00:55.626831+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（入札）",
@@ -7384,6 +7392,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01kiban07_02000134.html"
+    },
+    "4be4160850983eb6": {
+      "at": "2026-11-06T04:43:25.836377+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/kaiken/01koho01_02001590.html"
     },
     "4bf8b53fa4880823": {
       "at": "2026-10-30T07:31:11.449773+00:00",
@@ -9611,6 +9625,13 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026103011"
     },
+    "7832aa50d028f7df": {
+      "at": "2026-11-06T04:43:34.560214+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "イベント告知のみの資料です。開催概要と登壇者の一覧はありますが、新しい数字や分析結果がなく、読者の仕事・お金に直結する情報を確認できないため。",
+      "skipped": true,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87268?site=nli"
+    },
     "789c453645489fd6ae703c90047a57f873b53ab9": {
       "at": "2026-10-27T20:11:37.414403+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10802,6 +10823,12 @@
       "skipped": true,
       "url": "https://www.fsc.go.jp/senmon/doubutu/annai/doubutu_annai_292.html"
     },
+    "8df8635d000c365e": {
+      "at": "2026-11-06T04:43:25.836307+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（部会）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77243.html"
+    },
     "8e292e711633c8da": {
       "at": "2026-11-03T00:51:42.152950+00:00",
       "model": "gemini-3.5-flash",
@@ -11577,6 +11604,13 @@
       "slug": "morinaga-cocoa-bowel-movement-study",
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3229"
     },
+    "9c8cef8c2ef449cb": {
+      "at": "2026-11-06T04:43:42.299094+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "中国経済産業局が11月24日に広島市で開く「地域共創カンファレンス」の参加者募集が中心のお知らせで、読者が今すぐ使う・買う制度や新しい事実の発表が少ないため。申込期限は11月13日午後5時。",
+      "skipped": true,
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010tks.html"
+    },
     "9c9e5f41bc5712d7": {
       "at": "2026-11-05T21:13:17.735241+00:00",
       "mix": "other",
@@ -11663,6 +11697,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（出演）",
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366043"
+    },
+    "9e174f33bd4dd7f2": {
+      "at": "2026-11-06T04:43:25.856713+00:00",
+      "reason": "dedupe: 固有名詞が一致（daihyo・jfa）: afc-asian-cup-2027-schedule-change",
+      "skipped": true,
+      "url": "https://www.jfa.jp/news/00036989/"
     },
     "9e7cacb0e36c3375": {
       "at": "2026-11-05T11:25:48.614706+00:00",
@@ -16572,68 +16612,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-04T15:34:28.367152+00:00",
-      "attempt": 1,
-      "id": "91e6a98d22c84046",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.8,
-        "avg_sentence": 39.1,
-        "long_share": 0.032,
-        "max_paragraph": 142,
-        "paragraphs": 15,
-        "sentences": 31
-      },
-      "score": 88,
-      "source": "google-blog-all",
-      "title": "We're sharing our framework for building safer and more helpful AI for health."
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T15:38:46.196879+00:00",
-      "attempt": 1,
-      "id": "37fb9f66e62c8caf",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "npa-new",
-      "title": "令和８年９月末の特殊詐欺の認知・検挙状況等について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T15:40:05.734194+00:00",
-      "attempt": 2,
-      "id": "37fb9f66e62c8caf",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "npa-new",
-      "title": "令和８年９月末の特殊詐欺の認知・検挙状況等について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-04T15:44:07.043435+00:00",
-      "attempt": 1,
-      "id": "2e3f3ef33d8db967",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "hiroshima-u",
-      "title": "【研究成果】脳波の計測からAI解析までを学ぶ動画教材を公開 ― TNI Academy第1弾「EEG × AI」の提供を開始 ―"
-    },
     {
       "accepted": false,
       "at": "2026-11-04T15:45:37.849521+00:00",
@@ -22609,6 +22587,97 @@
       "warnings": [
         "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T04:41:35.731220+00:00",
+      "attempt": 1,
+      "id": "4a29cf0a9e1bd354",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 44.9字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 103.9,
+        "avg_sentence": 44.9,
+        "long_share": 0.216,
+        "max_paragraph": 190,
+        "paragraphs": 16,
+        "sentences": 37
+      },
+      "score": 92,
+      "source": "sbintuitions-blog",
+      "title": "Sarashina をコーディングエージェントで使う: OpenCode・Hermes Agent・Crush での利用と、サブエージェントとしての活用",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SB・KEY）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-06T04:41:58.310536+00:00",
+      "attempt": 0,
+      "id": "4a29cf0a9e1bd354",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 判定: 提供状況=available → 元記事は提供状況を「API機能を公開・APIキー取得可」とは述べるが、日本国内での提供条件や一般向けの提供範囲は示されていないと記事自身が書いており、「available」と断定する根拠がない; 今日やること・本文の手順"
+      ],
+      "readability": {
+        "avg_paragraph": 103.9,
+        "avg_sentence": 44.9,
+        "long_share": 0.216,
+        "max_paragraph": 190,
+        "paragraphs": 16,
+        "sentences": 37
+      },
+      "score": 92,
+      "source": "sbintuitions-blog",
+      "title": "Sarashina をコーディングエージェントで使う: OpenCode・Hermes Agent・Crush での利用と、サブエージェントとしての活用",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SB・KEY）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T04:43:13.847850+00:00",
+      "attempt": 1,
+      "id": "9c3feb4cdbadc8d9",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「では、1,000万円以上5,000万円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
+      ],
+      "readability": {
+        "avg_paragraph": 117.3,
+        "avg_sentence": 38.1,
+        "long_share": 0.081,
+        "max_paragraph": 184,
+        "paragraphs": 12,
+        "sentences": 37
+      },
+      "score": null,
+      "source": "tsr",
+      "title": "「ハウスメーカー」倒産 前年の1.8倍に急増 価格上昇で購入可能額とのギャップが拡大",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-06T04:43:25.430846+00:00",
+      "attempt": 2,
+      "id": "9c3feb4cdbadc8d9",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "tsr",
+      "title": "「ハウスメーカー」倒産 前年の1.8倍に急増 価格上昇で購入可能額とのギャップが拡大"
     }
   ],
   "short_text_retry": {},
