@@ -43,6 +43,10 @@
 記事をすべて取り下げる（検索に出していなくても読める状態で残さない。SNS に出した記事も残さない。410）。
   python3 scripts/retire_articles.py --creator --apply
   python3 scripts/retire_articles.py --notice --apply --append out.md
+
+検索から人が来ている記事は取り下げない（2026-11-06 オーナー決定・台帳 A46）: content/search_protected.json の記事は、
+どの区分（--noindex・--notice・--creator・通常）でも取り下げの対象から外し、「残す」の一覧に出す。apply() も最後の守りとして拒む。
+守る記事が掃除の対象に当たったら、取り下げずに書き直す（scripts/search_protected.py に一覧の更新のしかた）。
 """
 
 from __future__ import annotations
@@ -57,6 +61,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import indexnow  # noqa: E402
 import notice_gate  # noqa: E402
+import search_protected  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "content" / "articles"
@@ -96,6 +101,7 @@ REPRESENTATIVES = {
     "rakuten-sec-cross-trade-margin-category": "gyakuhibu-cross-trade-complete-guide-matome",
 }
 SNS_KEEP_DAYS = 7
+PROTECTED_WHY = "検索から人が来ている（content/search_protected.json。取り下げずに書き直す。台帳 A46）"
 # 参照を書き換えるデータ（記事以外）。状態の記録（content/state.json・llm_usage など）は画面に出ないので触らない
 DATA_FILES = [
     "content/events.json",
@@ -184,7 +190,12 @@ def plan(articles: list[dict], now: datetime) -> tuple[dict[str, dict], list[dic
     picked: dict[str, dict] = {}
     kept: list[dict] = []
 
+    protected = search_protected.protected_slugs()
+
     def take(a: dict, reason: str, redirect: str = "") -> None:
+        if a["slug"] in protected:
+            kept.append({"slug": a["slug"], "title": a.get("title", ""), "reason": reason, "why": PROTECTED_WHY})
+            return
         if a["slug"] in sns:
             kept.append({"slug": a["slug"], "title": a.get("title", ""), "reason": reason})
             return
@@ -258,11 +269,15 @@ def plan_noindex(articles: list[dict], now: datetime) -> tuple[dict[str, dict], 
     dups = indexnow.duplicate_slugs(articles)
     sns = recent_sns(now, everywhere=True)
     reasons = {a["slug"]: indexnow.noindex_reason(a, dups) for a in articles}
+    protected = search_protected.protected_slugs()
     picked: dict[str, dict] = {}
     kept: list[dict] = []
     for a in articles:
         reason = reasons[a["slug"]]
         if not reason or reason == "manual":
+            continue
+        if a["slug"] in protected:
+            kept.append({"slug": a["slug"], "title": a.get("title", ""), "reason": reason, "why": PROTECTED_WHY})
             continue
         if a.get("disaster"):
             kept.append({"slug": a["slug"], "title": a.get("title", ""), "reason": reason, "why": "地震・津波の速報（短いのは設計どおり）"})
@@ -292,7 +307,7 @@ def plan_noindex(articles: list[dict], now: datetime) -> tuple[dict[str, dict], 
             continue
         targets = {s if s not in picked else picked[s].get("redirect", "") for s in sources}
         alive = targets - {"", a["slug"]}
-        if len(alive) < 2 and a["slug"] not in targets and a["slug"] not in sns:
+        if len(alive) < 2 and a["slug"] not in targets and a["slug"] not in sns and a["slug"] not in protected:
             picked[a["slug"]] = {"reason": "roundup-of-retired", "title": a.get("title", ""), "channel": a.get("channelSlug", "")}
     return picked, kept
 
@@ -302,6 +317,7 @@ def plan_notice(articles: list[dict], now: datetime) -> tuple[dict[str, dict], l
     SNS に出してから7日（出していなければ公開から7日）を過ぎたものだけ取り下げる（2026-11-04 オーナー決定 D5。
     毎週 .github/workflows/notice_retire.yml が --notice --apply で動かす）"""
     posts = sns_posts(everywhere=True)
+    protected = search_protected.protected_slugs()
     picked: dict[str, dict] = {}
     kept: list[dict] = []
     for a in articles:
@@ -311,6 +327,9 @@ def plan_notice(articles: list[dict], now: datetime) -> tuple[dict[str, dict], l
         if not kind:
             continue
         reason = f"notice-{kind}"
+        if a["slug"] in protected:
+            kept.append({"slug": a["slug"], "title": a.get("title", ""), "reason": reason, "why": PROTECTED_WHY})
+            continue
         if not notice_due(a, posts, now):
             why = f"SNS に出してから{SNS_KEEP_DAYS}日たっていない" if a["slug"] in posts else f"公開から{SNS_KEEP_DAYS}日たっていない（SNS には未投稿）"
             anchor = notice_anchor(a, posts)
@@ -330,8 +349,9 @@ def plan_creator(articles: list[dict]) -> dict[str, dict]:
     発信元が個人・他媒体の YouTube（indexnow.CREATOR_CHANNELS）の記事。検索に出していなくても読める状態で残さない。
     オーナーがこの種類の削除を承認したので、直近に SNS に出した記事も残さない（転送先は無いので 410）"""
     picked: dict[str, dict] = {}
+    protected = search_protected.protected_slugs()
     for a in articles:
-        if a.get("channelSlug") not in indexnow.CREATOR_CHANNELS:
+        if a.get("channelSlug") not in indexnow.CREATOR_CHANNELS or a.get("slug") in protected:
             continue
         entry = {"reason": "creator-video", "title": a.get("title", ""), "channel": a.get("channelSlug", "")}
         for key in ("sourceUrl", "videoUrl"):
@@ -533,6 +553,11 @@ def forget_products(slugs) -> list[str]:
 
 
 def apply(retired: dict[str, dict], now: datetime) -> dict:
+    # 最後の守り: 検索から人が来ている記事（content/search_protected.json）は、計画に入っていても取り下げない（台帳 A46）
+    _, refused = search_protected.split(list(retired))
+    if refused:
+        print(f"[retire] 検索から人が来ている記事なので取り下げない（書き直す）: {', '.join(refused)}")
+        retired = {slug: entry for slug, entry in retired.items() if slug not in refused}
     stamp = now.astimezone(JST).isoformat(timespec="seconds")
     store = {"version": 1, "articles": {}}
     if RETIRED.exists():

@@ -90,7 +90,10 @@ def lane_of(article: dict) -> tuple[str, int]:
 
 def excluded(article: dict | None) -> str:
     """SNS に出さない理由（海外の企業向け・開発者向けの話題）。出してよければ ""。
-    災害・ミサイル・急ぎの安全の知らせ（disaster / urgent / safetyAlert）は外さない"""
+    災害・ミサイル・急ぎの安全の知らせ（disaster / urgent / safetyAlert）は外さない。
+    掃除で取り下げたあと書き直して同じ URL に戻した記事（restoredAt。2026-11-06 台帳 A46）は新着ではないので出さない"""
+    if article and article.get("restoredAt"):
+        return "取り下げたあと書き直して戻した記事（新着ではない。台帳 A46）は SNS に出さない（サイトだけ）"
     if not article or article.get("disaster") or article.get("urgent") or article.get("safetyAlert"):
         return ""
     if article.get("kind") == "digest" or article.get("items"):

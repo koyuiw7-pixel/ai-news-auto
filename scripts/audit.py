@@ -18,6 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from genres import GENRES_BY_SLUG  # noqa: E402
 from topics import classify, is_off_topic  # noqa: E402
+import search_protected  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -77,7 +78,12 @@ def main() -> int:
         log(f"   {before} → {after} | {title[:46]}")
 
     if not args.dry_run:
+        # 検索から人が来ている記事（content/search_protected.json）は消さない（2026-11-06 オーナー決定・台帳 A46）
+        protected = search_protected.protected_slugs()
         for path, _ in rejected:
+            if path.stem in protected:
+                log(f"   ・検索から人が来ているので消さない: {path.stem}")
+                continue
             path.unlink()
         if rejected:
             log("\n（削除した動画は state.json に処理済みとして残るため、再生成されません）")

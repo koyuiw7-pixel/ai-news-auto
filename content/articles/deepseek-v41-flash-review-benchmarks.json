@@ -1,0 +1,89 @@
+{
+  "slug": "deepseek-v41-flash-review-benchmarks",
+  "title": "DeepSeekのV4.1-Flash、入力時は8Bだけ動かす552Bモデル　V4-Proも置き換え",
+  "seoTitle": "DeepSeek V4.1 Flashとは？仕組み・性能・APIでの使い方",
+  "threadsPost": "AIでアプリを作りたい開発者なら、要チェックです。\n\n中国のDeepSeekが最新モデル『V4.1 Flash』を公開しました。\n\nわずか26セントの低コストで、Excelや3Dアプリを丸ごと作成できます。\n\n1秒間に1000トークンを超える処理速度と、高精度な画像認識も備えています。",
+  "threadsHook": "callout",
+  "threadsStyle": 2,
+  "writingVoice": "qa",
+  "lede": "DeepSeekのAPIでモデル名「deepseek-flash」を指定すると、新モデル「V4.1-Flash」が使われるようになりました。全体は552Bパラメータですが、入力の処理では8B、出力では16Bだけを動かす設計で、画像も直接扱えます。上位モデルV4-Proへの要求は9月14日からV4.1-Flashに回り、V4.1-Flashの料金で処理されます。",
+  "description": "DeepSeekの新モデルV4.1-Flashの仕組み（552BのMoE、入力8B・出力16B）、KVキャッシュの削減、V4-Proとの性能比較、APIでのモデル名と旧モデルの扱いを公式資料からまとめました。",
+  "keywords": [
+    "DeepSeek V4.1 Flash",
+    "DeepSeek",
+    "deepseek-flash",
+    "V4-Pro",
+    "MoE",
+    "KVキャッシュ",
+    "オープンウェイト",
+    "API"
+  ],
+  "tags": [
+    "DeepSeek",
+    "生成AI",
+    "LLM",
+    "プログラミング",
+    "オープンソース"
+  ],
+  "highlights": [
+    "DeepSeekのV4.1-Flashは552BのMoEモデルで、入力時8B・出力時16Bのパラメータだけを動かす",
+    "前世代と比べKVキャッシュはHBMで4分の1、SSDで8分の1になり、キャッシュ料金の削減につながる",
+    "旧名のdeepseek-v4-flashも受け付け、V4-Proへの要求は9月14日からV4.1-Flashに回る"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "従量課金（混雑していない時間は半額）",
+    "free": false,
+    "audience": "DeepSeekのAPIを使う開発者",
+    "take": "旧モデル名でも動きますが、V4-Pro指定の要求は出力の品質を確かめ直すとよいでしょう。"
+  },
+  "body": "関係するのは、DeepSeekのAPIを使っている開発者です。DeepSeekのモデルを、コーディング支援ツールの裏側で使っている人にも関係します。\n\n旧モデル名のdeepseek-v4-flashやdeepseek-v4-flash-vision-expで呼んでいても、要求は自動でV4.1-Flashに回ります。V4-Proを指定している場合も同じです。9月14日（協定世界時4時）からV4.1-Flashが応え、料金もV4.1-Flashの単価になります。\n\nV4.1-Flashは、DeepSeekの新しい設計のモデル群で最も小さいモデルです。文字と画像をそのまま入力できます。重みはHugging Faceで公開され、技術報告書も出ています。\n\n## 入力と出力で動かす量を変える仕組み\n\nV4.1-Flashは、MoE（Mixture of Experts）型のモデルです。多数の専門家ネットワークのうち、一部だけを動かします。全体のパラメータは552Bです。\n\n新しい「因果エンコーダー・デコーダー」構造を採りました。40層を、前半20層のエンコーダーと後半20層のデコーダーに分けています。入力を読み込む段階では1トークンあたり8B、出力の段階では16Bだけを動かします。\n\n入力が長いエージェント用途で、費用を抑える狙いです。扱える文脈は最大100万トークンです。推論の深さ（reasoning effort）は、1〜100の整数で細かく調整できます。\n\nKVキャッシュ（会話の途中経過を保存する領域）も小さくなりました。DeepSeekによると、必要な容量は前世代と比べてGPUのメモリ（HBM）で4分の1、SSDで8分の1です。\n\nエージェントの費用では、キャッシュ利用の料金が大きな割合を占めます。DeepSeekは、ここを圧縮することで費用を大きく下げられるとしています。新しい料金は9月10日（協定世界時4時）から適用されました。混雑していない時間帯の料金は、混雑時の半額です。\n\n**V4-Pro・V4-Flashとの性能の比べ方**\n\nHugging Faceのモデルカードには、追加学習前の基盤モデルどうしの比較が載っています。\n\n| 指標 | V4-Flash-Base | V4-Pro-Base | V4.1-Flash-Base |\n| --- | --- | --- | --- |\n| 全体のパラメータ | 284B | 1.6T | 552B |\n| MMLU-Pro（知識） | 68.3 | 73.5 | 74.1 |\n| HumanEval（プログラミング） | 69.5 | 76.8 | 79.4 |\n| SimpleQA-Verified（事実の知識） | 30.1 | 55.2 | 42.3 |\n\nプログラミングや一部の知識の試験では、V4-Proを上回りました。一方、事実の知識を問う試験では、V4-Proに届いていません。\n\nDeepSeekは、複数の第三者の試験で、性能、費用、速度、全体の実行時間のいずれもV4-Proを上回ったと説明しています。そのうえで、V4-Proの提供を段階的に終えるとしています。\n\n## APIでの使い方と旧モデル名の扱い\n\nモデル名は「deepseek-flash」を指定します。APIの案内によると、今は「DeepSeek-V4.1-Flash-1017」がこの名前で応えます。呼び出し方は変わりません。\n\nAPIは、OpenAIとAnthropicの形式に対応しています。接続先は次のとおりです。\n\n- OpenAI形式：https://api.deepseek.com\n- Anthropic形式：https://api.deepseek.com/anthropic\n\n公式のパートナーでは、WorkBuddy（CodeBuddyを含む）とOpenCodeがV4.1-Flashに対応しています。\n\n## まだ分からないこと\n\n- 上位モデルのV4.1-Proをいつ出すかは、まだ発表されていません。\n- 日本からの利用に関する特別な条件や、日本語の性能の数字は示されていません。",
+  "easy": "## ひとことで言うと\n\n中国のAI企業DeepSeekが、新しいAIモデル「V4.1-Flash」をAPIで使えるようにしました。画像も読めます。\n\n## 何が新しいのか\n\nモデル全体は大きいものの、文章を読むときと書くときで動かす部分を小さくして、費用を抑える作りです。途中経過を保存する容量も前の世代より大幅に小さくなりました。\n\n## 今使っている人への影響\n\n前のモデル名で呼んでいても、自動で新しいモデルが答えます。上位モデルのV4-Proを指定した要求も、新しいモデルに回されます。",
+  "channel": "DeepSeek公式（APIドキュメント）",
+  "channelId": "",
+  "channelSlug": "radar-official",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "DeepSeek-V4.1-Flash: Smarter, Faster, More Efficient",
+  "publishedAt": "2026-10-28T03:47:38+00:00",
+  "generatedAt": "2026-10-31T05:21:35.166865+00:00",
+  "thumbnail": "",
+  "model": "claude-code:claude-opus-5-5",
+  "affiliates": [],
+  "sourceType": "web",
+  "sourceUrl": "https://api-docs.deepseek.com/news/news260910",
+  "sourceName": "DeepSeek公式（APIドキュメント）",
+  "sourcePublishedAt": "2026-09-10T04:00:00+00:00",
+  "faq": [
+    {
+      "q": "V4.1-Flashはどんなデータで学習した？",
+      "a": "モデルカードによると、文字と画像を合わせた45兆トークンのデータで一から学習しています。学習後は通常の追加学習・強化学習・蒸留の手順を使ったとしています。"
+    },
+    {
+      "q": "大規模に自社で動かしたい場合の窓口はある？",
+      "a": "DeepSeekは、GPU2,000基と保存装置の規模での導入を検討している企業に相談を呼びかけています。オープンソースの推論ソフトでの対応も進めるとしています。"
+    }
+  ],
+  "todayActions": [
+    "自分のアプリで指定しているモデル名がdeepseek-flashか旧名かを確認する",
+    "V4-Proを指定している場合は、9月14日以降の出力の品質と料金の変化を見直す",
+    "混雑していない時間帯に回せる処理があれば、半額の時間帯に寄せる"
+  ],
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "DeepSeekのAPIを業務で使う人は、V4-Pro指定の要求がV4.1-Flashの単価で処理される点を確認できます。",
+      "入力が長いエージェント処理は、入力時8Bだけを動かす設計で費用を抑えやすくなります。"
+    ]
+  },
+  "newsType": "product",
+  "imageCredit": null,
+  "typesRewrittenAt": "2026-11-06T05:52:12+00:00",
+  "sectionsPolishedAt": "2026-11-06T05:52:12+00:00",
+  "restoredAt": "2026-11-06T05:52:12+00:00"
+}
