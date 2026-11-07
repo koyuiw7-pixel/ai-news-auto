@@ -11113,6 +11113,18 @@
       "slug": "mistral-large-4-preview",
       "url": "https://mistral.ai/news/mistral-large-4/"
     },
+    "82196d4ece0a644e": {
+      "at": "2026-11-07T07:33:03.110252+00:00",
+      "costUsd": 0.0122,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "asr-leaderboard-egypt-nigeria-english",
+      "url": "https://huggingface.co/blog/open-asr-leaderboard-liva"
+    },
     "82870a11b510856e": {
       "at": "2026-11-04T15:34:28.833211+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
@@ -18376,30 +18388,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-05T18:00:11.203254+00:00",
-      "attempt": 1,
-      "id": "00183b004892f2d6",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.5,
-        "avg_sentence": 36.2,
-        "long_share": 0.06,
-        "max_paragraph": 141,
-        "paragraphs": 20,
-        "sentences": 50
-      },
-      "score": 93,
-      "source": "claude-blog",
-      "title": "Introducing Personal Finance in Claude",
-      "warnings": [
-        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（APR・GA）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-05T18:22:59.280457+00:00",
       "attempt": 1,
@@ -24383,6 +24371,29 @@
       "title": "Agent Distraction",
       "warnings": [
         "初めて出たところで言い換えていない略語（TODO）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T07:33:03.100626+00:00",
+      "attempt": 1,
+      "id": "82196d4ece0a644e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 100.9,
+        "avg_sentence": 40.4,
+        "long_share": 0.143,
+        "max_paragraph": 141,
+        "paragraphs": 14,
+        "sentences": 35
+      },
+      "score": 93,
+      "source": "hugging-face-blog",
+      "title": "Egyptian and Nigerian English join the Open ASR Leaderboard",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ASR）"
       ]
     }
   ],

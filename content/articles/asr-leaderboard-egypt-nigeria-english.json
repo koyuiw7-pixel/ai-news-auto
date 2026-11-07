@@ -1,0 +1,134 @@
+{
+  "slug": "asr-leaderboard-egypt-nigeria-english",
+  "sourceType": "web",
+  "sourceUrl": "https://huggingface.co/blog/open-asr-leaderboard-liva",
+  "sourceName": "Hugging Face公式ブログ",
+  "title": "音声認識の順位表に2アクセント追加　エジプトとナイジェリアの英語",
+  "seoTitle": "Open ASR Leaderboardとは？エジプト・ナイジェリア英語を追加",
+  "threadsPost": "音声認識の性能を比べる開発者の人に、知っておいてほしい話です。\n\nエジプト英語とナイジェリア英語の非公開データが、Open ASR Leaderboardに加わりました。\n提供したのは、データ会社のLiva AIです。\n\n音声入力、ふだん使っていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "音声入力は、ふだん使っていますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "英語の音声を文字にする仕事をしている人は、どの区分の点数を一番見ますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "音声認識の性能を比べる「Open ASR Leaderboard」に、エジプト英語とナイジェリア英語の非公開データが加わりました。いちばん大事な数字は、エジプト英語が1.34時間、ナイジェリア英語が1.55時間の会話音声であることです。音声AIを選ぶときは、この順位表でアクセントごとの区分を確かめるとよいでしょう。",
+  "description": "音声認識の性能を比べる「Open ASR Leaderboard」に、エジプト英語（1.34時間）とナイジェリア英語（1.55時間）の非公開データが加わりました。Liva AIの提供で、アクセントの分け方も細かくなります。",
+  "keywords": [
+    "Open ASR Leaderboard",
+    "音声認識 ランキング",
+    "音声認識 性能比較",
+    "エジプト英語 音声認識",
+    "ナイジェリア英語 音声認識",
+    "Liva AI",
+    "ASR 評価データ",
+    "音声AI アクセント",
+    "非公開データ 音声認識",
+    "Hugging Face 音声認識"
+  ],
+  "tags": [
+    "音声認識",
+    "AI",
+    "ベンチマーク",
+    "Hugging Face",
+    "Open ASR Leaderboard"
+  ],
+  "highlights": [
+    "音声認識の順位表で、エジプトとナイジェリアの英語を測る非公開の評価データが新たに使われるようになった。",
+    "データはLiva AIが提供し、エジプト英語は1.34時間、ナイジェリア英語は1.55時間。どちらも自然な会話の音声です。",
+    "アクセントの分け方は、米国と米国以外、内側の円と外側・拡張の円の2軸になります。Hume AIの考え方を取り入れたものです。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "音声AIの開発者",
+    "take": "英語のアクセント別の性能は、Open ASR Leaderboardの順位表で確認できます。音声AIを選ぶ前に見ておくとよいでしょう。",
+    "judgedAt": "2026-11-07T07:32:54.772159+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の影響は小さいです。音声認識を事業や業務に組み込む開発者や担当者が、比較の材料として確かめるとよいでしょう。"
+    ]
+  },
+  "body": "音声認識の性能を比べる「Open ASR Leaderboard」に、英語の新しいアクセントのデータが加わりました。Hugging Face公式ブログが2026年11月6日に発表したもので、追加されたのはエジプト英語とナイジェリア英語です。\n\n音声認識は、話した言葉を文字に変える技術です（編集部注：スマホの音声入力や会議の自動文字起こしで使われている仕組みです）。順位表は、同じ音声を各社のAIに聞き取らせ、その精度を並べて見せるものです。\n\n読者に関係するのは、音声AIを仕事で使う人や、音声認識のサービスを選ぶ人です。音声認識を普段使わない人には、直接の変化はありません。\n\n今回は、Liva AIというデータ提供会社との新しい協力によるものです。同社の非公開データで、英語のアクセントが2つ増えました。アクセントとは、同じ英語でも国や地域によって違う発音のくせのことです。\n\n## エジプト英語とナイジェリア英語の音声が加わった\n\n追加されたデータは2種類です。エジプト英語（Egyptian）が1.34時間、ナイジェリア英語（Nigerian）が1.55時間で、どちらも自然な会話の音声を集めています。\n\n文字起こしの決まりも、以前のデータと同じです。句読点をつけ、大文字と小文字を区別し、「えー」「あの」のような言いよどみも残します。きれいに整えた文章ではなく、実際に話された通りに近い形で採点する仕組みです。\n\n以前の追加分は、Appen と DataOceanAI が提供した11の評価データでした。話し言葉と会話の音声で、5つのアクセントを扱っています。その後、インド英語を対象にした非公開データも1つ、Voice Arena から加わりました。今回の2つは、それに続くものです。\n\n非公開データを増やしている理由は2つです。1つは、アクセントや言語の幅を広げ、評価の対象を実際の話し手に近づけるためです。もう1つは、テストの点数だけを上げる調整（ベンチマークマキシング）を減らし、評価の信頼性を高めるためです。そのため、データを提供する会社も増やしています。\n\nLiva AIは、消費者が実際に使う製品を通じて、対話の音声などを集める会社です。製品の収集の場と配布の仕組みの両方を持っているため、普段の使い方の中で自然に出てくる話し方を集められると、同社は説明しています。テストのために作らせた話し方とは違うというのが、同社の考え方です。\n\n## 順位表はアクセントを2つの軸で分ける\n\n順位表の非公開データの画面（Privateタブ）では、アクセントの分け方が細かくなります。分け方の基準は、言語学者カチルの「三つの円」という考え方です（編集部注：英語が世界でどう広がり使われてきたかを、母語の国、公用語として使う国、外国語として学ぶ国の3つの円で整理したものです）。\n\n元の発表によると、Hume AIの順位表にあった考え方を取り入れたとのことです。新しい分け方は、次の2つの軸で見られます。\n\n- 米国と米国以外（英国、オーストラリア、カナダ、インド、ナイジェリア、エジプト）\n- 内側の円（米国、英国、オーストラリア、カナダ）と、外側・拡張の円（インド、ナイジェリア、エジプト）\n\n前者は英語を母語とする国と、それ以外の国を比べる見方です。後者は、英語が広く使われる国の結果を、母語の国の結果と分けて見る見方です。今後アクセントが増えたら、外側と拡張の円をさらに分ける方針です。\n\n編集部の見方では、音声AIを選ぶときは、自分の顧客や社内で使われる話し方に近い区分を見ると判断しやすくなります。総合点だけでは、どの地域の話し方に強いかが分かりにくいからです。\n\n音声認識のサービスを選ぶときは、総合点に加えて、自分が使う話し方の区分の点数を確かめるとよいでしょう。\n\n## まだ分からないこと\n\n- 次に追加されるアクセントや言語は、まだ発表されていません。\n- 各モデルが、エジプト英語とナイジェリア英語でどの程度の点数になるかは、まだ発表されていません。\n- 外側・拡張の円を分ける時期は、まだ決まっていません。",
+  "easy": "## ひとことで言うと\n\n音声認識の順位表に、エジプト英語とナイジェリア英語の評価データが加わりました。アクセントごとの区分で、音声AIの性能を比べられるようになります。\n\n音声認識（話した言葉を文字にする技術）は、スマホの音声入力や会議の文字起こしで使われています。今回の追加で、英語の話し方の違いを順位表でより細かく分けて見られるようになりました。音声AIを選ぶ人は、自分の使う話し方に近い区分を確かめるとよいでしょう。",
+  "channel": "Hugging Face公式ブログ",
+  "channelId": "",
+  "channelSlug": "hugging-face-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Egyptian and Nigerian English join the Open ASR Leaderboard",
+  "publishedAt": "2026-11-06T00:00:00+00:00",
+  "generatedAt": "2026-11-07T07:32:54.772147+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/asr-leaderboard-egypt-nigeria-english-5bd9f90b.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [
+    {
+      "name": "PLAUD",
+      "label": "PLAUD NOTE（AIボイスレコーダー）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BELTP+BKRG8I+5J4W+5YZ76",
+      "note": "会議や取材の録音を、AIで文字起こし・要約できるカード型レコーダー",
+      "pixel": "https://www13.a8.net/0.gif?a8mat=4BELTP+BKRG8I+5J4W+5YZ76"
+    }
+  ],
+  "newsType": "product",
+  "todayActions": [
+    "音声AIを選ぶ前に、Open ASR Leaderboardの順位表で自分の使う話し方に近い区分を見る",
+    "順位表の総合点だけで決めず、Privateタブで区分ごとの点数も確かめる"
+  ],
+  "qualityScore": 93,
+  "sourcePublishedAt": "2026-11-06T00:00:00+00:00",
+  "detectedAt": "2026-11-07T07:30:59+00:00",
+  "layout": "noir",
+  "summaryLine": "音声認識の順位表で、エジプトとナイジェリアの英語を測る非公開の評価データが新たに使われるようになった。",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/asr-leaderboard-egypt-nigeria-english-fig1-6ff32237.jpg",
+      "width": 1200,
+      "height": 635,
+      "kind": "dense",
+      "credit": "Hugging Face",
+      "sourceUrl": "https://huggingface.co/blog/open-asr-leaderboard-liva",
+      "original": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/open_asr_leaderboard/private_data_accent_breakdown.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Hugging Face",
+    "provider": "Hugging Face公式ブログ",
+    "sourceUrl": "https://huggingface.co/blog/open-asr-leaderboard-liva",
+    "original": "https://huggingface.co/blog/assets/open-asr-leaderboard-liva/thumbnail.png",
+    "width": 1200,
+    "height": 600,
+    "at": "2026-11-07T07:33:12+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.511,
+    "y": 0.525,
+    "box": [
+      0.078,
+      0.075,
+      0.944,
+      0.975
+    ],
+    "ar": 2.0,
+    "src": "https://ai-tech-express.jp/img/asr-leaderboard-egypt-nigeria-english-5bd9f90b.jpg"
+  },
+  "coverTries": 1
+}
