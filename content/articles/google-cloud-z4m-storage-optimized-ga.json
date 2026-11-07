@@ -1,0 +1,122 @@
+{
+  "slug": "google-cloud-z4m-storage-optimized-ga",
+  "sourceType": "web",
+  "sourceUrl": "https://cloud.google.com/blog/products/compute/storage-optimized-z4m-machine-series-are-ga/",
+  "sourceName": "Google Cloud公式ブログ",
+  "title": "AI向けストレージ特化のZ4M、一般提供を開始　読み出しは前世代比で最大110%増",
+  "seoTitle": "Google Cloud Z4Mとは？料金と日本での提供・使い方",
+  "threadsPost": "AIのデータ処理が遅いと感じる企業のインフラ担当の皆さん、知っておいてほしい話です。\n\nGoogle Cloudの新しいストレージ向けマシン「Z4M」が一般提供になりました。ローカルSSDは最大168,000GiBです。\n\nAIの学習データの読み込み、待ち時間はどれくらいありますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "AIの学習データの読み込み、待ち時間はどれくらいありますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "速いストレージに投資するか、今の構成のまま待つか、どちらを選びますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "AIの学習や推論で大量のデータを扱う企業にとって、ストレージの速さは処理時間を左右します。Google Cloudの新しいマシン「Z4M」が一般提供となり、ローカルSSDは最大168,000GiB、読み出しは前世代のZ3より最大110%速くなりました。料金は未発表で、日本の地域での提供もまだ発表されていないため、対応地域は営業担当への問い合わせで確かめるとよいでしょう。",
+  "description": "Google Cloudのストレージ向けマシン「Z4M」が一般提供に。ローカルSSDは最大168,000GiB、読み出しは前世代比で最大110%増。料金は未発表で、日本の地域での提供もまだ発表されていません。",
+  "keywords": [
+    "Z4M",
+    "Google Cloud Z4M",
+    "Compute Engine ストレージ最適化",
+    "ローカルSSD",
+    "RDMA",
+    "ベアメタル",
+    "GPUDirect Storage",
+    "Hyperdisk",
+    "AI ストレージ",
+    "一般提供"
+  ],
+  "tags": [
+    "Z4M",
+    "Google Cloud",
+    "Compute Engine",
+    "AIインフラ",
+    "ストレージ",
+    "クラウド"
+  ],
+  "highlights": [
+    "Google Cloudのストレージ向けマシン「Z4M」が一般提供開始。読み出しは前世代比で最大110%増",
+    "ローカルSSDは最大168,000GiB。vCPU1つあたり875GiBで、通信は400Gbps、RDMAで遅延は最大60%減",
+    "料金は未発表で、日本の地域での提供もまだ発表されていません。対応地域の確認は営業担当へ"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "AI基盤の担当者",
+    "take": "AIの処理でストレージが遅いなら、対応リージョンと料金を営業担当に確認するとよいでしょう。",
+    "judgedAt": "2026-11-07T05:33:06.060449+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AI学習やデータ分析のインフラを担当する人は、処理の時間や費用が変わるかを社内で試算する対象になります。",
+      "価格は未発表のため、費用が今より上がるか下がるかは営業担当への問い合わせで確かめる必要があります。"
+    ]
+  },
+  "body": "AIの学習や推論では、データを読み書きする速さが処理の時間を大きく左右します。Z4Mは、こうした用途に合わせて作られたストレージ最適化型のマシンシリーズで、仮想マシン（VM）とベアメタルの2つの形で使えます。データ待ちでGPUやTPUが止まると、高価な計算資源が遊んでしまいます。\n\nGoogle Cloudの公式ブログによると、一般提供は11月6日（米国時間）に始まりました。世界の一部の地域で使えます。\n\n想定される用途は、AIの学習データやチェックポイント（学習の途中経過の保存）です。そのほか、複数のサーバーで同じファイルを扱う並列ファイルシステムも想定されています。\n\n## 最大168,000GiBのローカルSSDと400Gbpsの通信\n\nZ4Mは、マシンに直接つなぐSSD（ローカルSSD）を最大168,000GiBまで積めます。1つのvCPU（処理を担う単位）あたり875GiBで、データを置く場所を大量に確保できます。\n\nCPUは第5世代のIntel Xeon Scalableです。最大構成は次のとおりです。\n\n- 192 vCPU\n- メモリは最大1,536GiB\n\nストレージの処理は専用のTitanium SSDが受け持ち、CPUの負担を減らす設計です。\n\n性能は次のとおりです。\n\n- ランダム読み出しは最大1,560万IOPS（1秒あたりの読み出し回数）\n- 連続読み出しは最大75,600MiB/s（1秒あたりに読み出せるデータ量）\n\n前世代のZ3と比べると、IOPSが最大70%、スループットが最大110%向上しています。Z3の上限は次のとおりでした（Google Cloudの公式ドキュメント、11/7確認）。\n\n- VM: 36,000GiB\n- ベアメタル: 72,000GiB\n\n通信は400GbpsのRDMA（CPUを通さずに、別のサーバーのメモリとデータをやり取りする方式）です。TCPと比べると、データへのアクセス遅延を最大60%減らせるとしています。\n\nGPUやTPUが待たされないよう、NVIDIA GPUDirect StorageとTPUDirect Storageにも対応します。LSSDと通信の速さの比は1.4対1です。データを処理しながら、通信の上限いっぱいで送れるとしています。\n\n導入企業の評価も出ています。Silkは同社の検証で、RDMAはTCPと比べて遅延が最大3.7倍低く、CPU使用量は最大6倍低かったと説明しました。WEKAは自社の検証で、Z3世代と比べて読み出しのスループットがほぼ2倍、IOPSが最大79%増と述べています。\n\n## 仮想マシンとベアメタル、どちらを選ぶか\n\n仮想マシンは、1台の物理サーバーを仮想的に分けて使う形です。ベアメタルは、仮想化の層を挟まず、ハードウェアを直接使えます。独自のハイパーバイザー（仮想マシンを動かす基盤のソフト）や、ライセンスの条件でベアメタルが必要なシステムに向くとされています。\n\nAIエージェント（自分で手順を進めるAI）を大量に動かす用途にも向きます。隔離された実行環境（サンドボックス）を大規模に作れるためです。サイソクは11月2日に、エージェント専用の実行基盤を報じています（[Googleが「Agent Compute Engine」を発表](/articles/google-agent-compute-engine-governance)）。\n\nディスクは、Hyperdiskに対応しています。1インスタンスあたり最大512TiBまで使えます。性能は次のとおりです。\n\n- 一般的な用途のHyperdisk Balanced: 最大320K IOPS\n- データベース向けのHyperdisk Extreme: 最大500K IOPSと12,500MiB/s\n\n保守の扱いも、容量で変わります。LSSDが42,000GiB以下のVMは、保守の最中にインスタンスを別のホストへ移せます（ライブマイグレーション）。\n\n84,000GiB以上のVMとベアメタルは、データを保ったまま停止と再起動が必要です。保守の数日前に、システムから通知されます。\n\n大規模なクラスタは、Google Cloudの「Cluster Director」で構築と管理ができます。性能を優先するならまとめて配置し、可用性を優先するなら可用性ドメイン（障害の影響範囲を分けた区画）に分散させます。GPUやTPUのクラスタと同じ場所に置いて、大量のデータをリアルタイムに処理する構成もとれます。\n\n作り方は、Google Cloudコンソールで新しいVMかGKEのノードプールを作るときです。マシンファミリーの「Storage-Optimized」からZ4Mを選びます。\n\n## まだ分からないこと\n\n- 料金は未発表です。\n- 日本の地域（リージョン）でZ4Mが使えるかは、まだ発表されていません。\n- 対応地域は「一部の地域」とだけ書かれ、一覧は示されていません。",
+  "easy": "## ひとことで言うと\n\nGoogle Cloudのストレージ向けマシン「Z4M」が一般提供になりました。AIの学習など、データの読み書きを速くしたい企業向けです。料金と日本の地域での提供は、まだ発表されていません。\nZ4Mは、マシンに直結するSSD（ローカルSSD）を最大168,000GiBまで積めます。前世代のZ3と比べて、読み出しの速さは最大110%向上しています。\n仮想マシンのほかに、仮想化を挟まないベアメタルも使えます。AIエージェントを大量に動かす用途にも向くとされています。",
+  "channel": "Google Cloud公式ブログ",
+  "channelId": "",
+  "channelSlug": "google-cloud-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Introducing Z4M: storage-optimized compute for AI/ML and parallel file systems",
+  "publishedAt": "2026-11-06T17:00:00+00:00",
+  "generatedAt": "2026-11-07T05:33:06.060439+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/google-cloud-z4m-storage-optimized-ga-c7e8dcc3.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "Google Cloudコンソールで「Storage-Optimized」を開き、Z4Mが選べるかを確かめる",
+    "AIの処理でデータ待ちが出ているなら、今のマシンの読み出し速度と容量を記録しておく",
+    "Z4Mの対応地域と料金を、Google Cloudの営業担当に問い合わせる"
+  ],
+  "relatedSlugs": [
+    "google-agent-compute-engine-governance"
+  ],
+  "qualityScore": 94,
+  "sourcePublishedAt": "2026-11-06T17:00:00+00:00",
+  "detectedAt": "2026-11-07T05:30:50+00:00",
+  "layout": "noir",
+  "summaryLine": "Google Cloudのストレージ向けマシン「Z4M」が一般提供開始。読み出しは前世代比で最大**110%**増",
+  "sectionsPolishedAt": "2026-11-07T05:33:51+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google Cloud",
+    "provider": "Google Cloud公式ブログ",
+    "sourceUrl": "https://cloud.google.com/blog/products/compute/storage-optimized-z4m-machine-series-are-ga/",
+    "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/Compute_zkXaY5X.max-2500x2500.jpg",
+    "width": 1200,
+    "height": 591,
+    "at": "2026-11-07T05:33:55+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.629,
+    "y": 0.456,
+    "box": [
+      0.259,
+      0.0,
+      1.0,
+      0.911
+    ],
+    "ar": 2.0305,
+    "src": "https://ai-tech-express.jp/img/google-cloud-z4m-storage-optimized-ga-c7e8dcc3.jpg"
+  },
+  "coverTries": 1
+}
