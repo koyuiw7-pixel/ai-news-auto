@@ -11,7 +11,7 @@ import { fetchPhoto } from "@/lib/cover";
 import { renderCardDesign, type CardDesign } from "@/lib/card-designs";
 import { siteConfig } from "@/site.config";
 import { stripListNumber } from "@/lib/list-number";
-import { snsCardArticle } from "@/lib/sns-photo";
+import { shareImageArticle, snsCardArticle } from "@/lib/sns-photo";
 
 /**
  * どのカードを出すか。"tall" は今の縦長（見出し＋要点3つ）。
@@ -152,7 +152,12 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
   const found = getArticle(slug);
   if (!found) return new Response("Not found", { status: 404 });
   // 公式発表の写真を優先して敷く（記事の写真が AI・告知のバナーでも、本文に公式の写真があればそれ。台帳 S45）
-  const article = snsCardArticle(found);
+  // 公式の写真が無ければ表紙用の AI のイメージ（coverImage。札「画像はイメージ（AI生成）」つき）を敷き、文字だけのカードにしない
+  // （2026-11-07 オーナー指摘：不二家の記事で X の画像が青い地に「不二家」だけだった。lib/sns-photo.ts の shareImageArticle）
+  let article = shareImageArticle(snsCardArticle(found));
+  if (article.thumbnail && article.thumbnail !== found.coverImage && !(await imageReachable(article.thumbnail))) {
+    article = shareImageArticle(article, true);
+  }
   try {
     const png = await (CARD_DESIGN === "tall" ? await renderCard(article) : await renderCardDesign(article, CARD_DESIGN)).arrayBuffer();
     const jpeg = await toJpeg(png).catch(() => null);
@@ -169,6 +174,19 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
       status: 302,
       headers: { Location: new URL(coverPath(article), siteConfig.url).toString(), "Cache-Control": "public, max-age=300, s-maxage=300" },
     });
+  }
+}
+
+/** 画像として取得できるか（記事の写真が消えていたら表紙用のイメージに回すため。取得できるか分からないときは true） */
+async function imageReachable(url: string): Promise<boolean> {
+  if (!/^https?:\/\//.test(url)) return false;
+  try {
+    const res = await fetch(url, { method: "HEAD", signal: AbortSignal.timeout(5000), headers: { "User-Agent": "Mozilla/5.0 (compatible; SaisokuCoverBot/1.0)" } });
+    if (res.status === 404 || res.status === 410) return false;
+    const type = res.headers.get("content-type") ?? "";
+    return !(res.ok && type && !type.startsWith("image/"));
+  } catch {
+    return true;
   }
 }
 

@@ -1690,7 +1690,22 @@ def card_url(article: dict) -> str:
     """投稿に添える図解カード（1080×1350。見出し＋要点3つ。app/card/[slug]/route.tsx）"""
     # 画像・題名を直したら URL を変える（/card は7日キャッシュ。2026-11-07 オーナー指摘：古い画像のカードが出た）
     key = "|".join(str(article.get(k) or "") for k in ("title", "thumbnail", "coverImage"))
-    return f"{site_url()}/card/{article['slug']}?v={zlib.crc32(key.encode()):x}"
+    return f"{site_url()}/card/{article['slug']}?v={CARD_VERSION}-{zlib.crc32(key.encode()):x}"
+
+
+# カード・カバーの描き方を変えたら上げる（/card・/cover は7日キャッシュ。同じ URL だと古い画像が出る）
+# 2: 記事の写真が無いとき、表紙用の AI のイメージ（coverImage）を「画像はイメージ（AI生成）」つきで敷く（2026-11-07 不二家の記事）
+CARD_VERSION = 2
+
+
+def cover_url(article: dict) -> str:
+    """報道テロップ型のカバー（1200×630。app/cover/[slug]/route.tsx）。画像・題名を直したら URL を変える（7日キャッシュ）"""
+    key = "|".join(str(article.get(k) or "") for k in ("title", "thumbnail", "coverImage"))
+    return f"{site_url()}/cover/{article['slug']}?v={CARD_VERSION}-{zlib.crc32(key.encode()):x}"
+
+
+def is_cover_url(url: str, article: dict) -> bool:
+    return str(url or "").split("?")[0] == f"{site_url()}/cover/{article['slug']}"
 
 
 # ---- 投稿の形式（A/B） ----
@@ -1797,7 +1812,7 @@ def thread_image(article: dict) -> str:
     thumb = str(article.get("thumbnail") or "")
     if credit.get("kind") == "source" and thumb.startswith("https://") and IMAGE_EXT_RE.search(thumb):
         return thumb
-    return f"{site_url()}/cover/{article['slug']}"
+    return cover_url(article)
 
 
 def card_photo_note(article: dict) -> str:
@@ -2178,7 +2193,7 @@ def publish_via_buffer(
     classic: 本文（問いかけの後に記事のリンク。with_link）＋カード画像。返信は作らない（2026-11-03 オーナー決定）
     hook_thread: 本文は短い書き出し＋写真（またはカバー）、返信に要約・要点・結論（＋リンクカード）
     """
-    cover = f"{site_url()}/cover/{article['slug']}"
+    cover = cover_url(article)
     title = article.get("seoTitle") or article["title"]
     reply = compose_detail(article) if fmt == "hook_thread" else link_reply_text(article)
     thread = [{"text": text, "assets": [{"image": {"url": post_image(article, fmt)}}]}]
@@ -2700,7 +2715,7 @@ def main() -> int:
             "genre": article.get("genreSlug") or "",
             "score": score(article),
             "style": "standalone",
-            "image": "card" if fmt == "classic" else "photo" if post_image(article, fmt) != f"{site_url()}/cover/{article['slug']}" else "cover",
+            "image": "card" if fmt == "classic" else "cover" if is_cover_url(post_image(article, fmt), article) else "photo",
             "format": fmt,
             **({"hookTextVersion": HOOK_TEXT_VERSION} if fmt == "hook_thread" else {}),
             **({"hookFormat": "muse3"} if article.get("_hookFormat") else {}),

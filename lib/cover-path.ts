@@ -5,8 +5,9 @@
  * /cover/<slug> はブラウザ・CDN で7日（immutable）使い回されるので、URL に ?v= を付けて新しい画像を取りに行かせる。
  * 2: 「速報」は速報の記事だけ、ほかは「ニュース」（2026-11-03 の画面の点検 B）
  * 3: 画像の題名を検索向けの seoTitle から記事の題名（lib/headline.ts の articleTitle）に替えた（2026-11-03 の点検 10）
+ * 4: 記事の写真が無いとき、表紙用の AI のイメージ（coverImage）を「画像はイメージ（AI生成）」つきで敷く（2026-11-07 不二家の記事で暗い画像が出た）
  */
-export const COVER_VERSION = 3;
+export const COVER_VERSION = 4;
 
 /** 題名の短いハッシュ（題名を直したら URL が変わり、ブラウザ・SNS・エッジに残った古い画像を使わせない） */
 export function titleHash(title: string): string {

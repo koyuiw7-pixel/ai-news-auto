@@ -1326,12 +1326,29 @@ def official_credit_text(credit: dict | None) -> str:
     return f"画像：{org}（公式発表より）"
 
 
+def share_image_article(article: dict | None, force: bool = False) -> dict:
+    """共有の画像（/cover・/card）に敷く写真を決めた記事（lib/sns-photo.ts の shareImageArticle と同じ）。
+    使える記事の写真が無ければ、表紙用の AI のイメージ（coverImage）を出典 coverCredit（「画像はイメージ（AI生成）」）で敷く。
+    2026-11-07 オーナー指摘：不二家の記事で thumbnail が空のため、X とリンクカードに暗い・青い文字だけの画像が出た"""
+    article = article or {}
+    if article.get("noPhoto"):
+        return article
+    cover_credit = article.get("coverCredit") or {}
+    cover = str(article.get("coverImage") or "") if cover_credit.get("kind") == "ai" else ""
+    thumb = str(article.get("thumbnail") or "")
+    if not cover or cover == thumb:
+        return article
+    if not force and thumb and (article.get("imageCredit") or {}).get("kind") not in ("ai", "card"):
+        return article
+    return {**article, "thumbnail": cover, "imageCredit": cover_credit, "heroOk": None, "imageFocus": None}
+
+
 def card_credit(article: dict | None) -> dict:
-    """SNS のカード（/card/<slug>）に実際に載る写真の出典（本文の公式の写真に差し替えるときはそちら）"""
+    """SNS のカード（/card/<slug>）に実際に載る写真の出典（本文の公式の写真・表紙用の AI のイメージに差し替えるときはそちら）"""
     photo = sns_photo(article)
     if photo:
         return photo["credit"]
-    return (article or {}).get("imageCredit") or {}
+    return share_image_article(article).get("imageCredit") or {}
 
 
 def card_note(article: dict | None) -> str:
@@ -1359,7 +1376,9 @@ def check_media(platform: str, media: list[dict], article: dict | None, kind: st
             continue
         # カード（/card/<slug>）は本文の公式の写真に差し替えることがあるので、カードに実際に載る写真の出典で見る（台帳 S45）
         is_card = urllib.parse.urlsplit(url).path.rstrip("/") == f"/card/{article.get('slug')}"
-        credit = card_credit(article) if is_card else (article.get("imageCredit") or {})
+        is_cover = urllib.parse.urlsplit(url).path.rstrip("/") == f"/cover/{article.get('slug')}"
+        credit = card_credit(article) if is_card else (share_image_article(article).get("imageCredit") or {}) if is_cover \
+            else (article.get("imageCredit") or {})
         # 発表の製品を AI で描いてよいのは「公式画像がないためイメージ（AI生成）」の札（launch）があるときだけ
         # （製品を描かないと確かめた前の画像 noProduct も可。2026-11-07 オーナー。台帳 I2）
         if item.get("type") != "video" and credit.get("kind") == "ai" and not (credit.get("launch") or credit.get("noProduct")) \

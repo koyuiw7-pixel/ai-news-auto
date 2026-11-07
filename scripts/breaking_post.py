@@ -209,7 +209,7 @@ def main() -> int:
             "breaking": True,
             "score": tp.score(article),
             "style": "standalone",
-            "image": "card" if fmt == "classic" else "photo" if image != f"{tp.site_url()}/cover/{article['slug']}" else "cover",
+            "image": "card" if fmt == "classic" else "cover" if tp.is_cover_url(image, article) else "photo",
             "format": fmt,
             **({"hookTextVersion": tp.HOOK_TEXT_VERSION} if fmt == "hook_thread" else {}),
             "topic": tp.topic_of(article),

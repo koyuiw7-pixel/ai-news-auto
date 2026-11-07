@@ -9,6 +9,7 @@ import { isFastNews } from "@/lib/cover-path";
 import { articleTitle, splitHeadline } from "@/lib/headline";
 import { aiCreditText, officialCreditText } from "@/lib/image-credit";
 import { siteConfig } from "@/site.config";
+import { shareImageArticle } from "@/lib/sns-photo";
 import {
   basePhoto,
   COVER_HEIGHT as HEIGHT,
@@ -208,7 +209,9 @@ function coverCredit(article: FullArticle): string {
   return c.license?.startsWith("CC BY") ? `写真はイメージ　Photo: ${who} / ${c.license}` : "写真はイメージ";
 }
 
-async function renderCover(article: FullArticle): Promise<ImageResponse> {
+async function renderCover(found: FullArticle): Promise<ImageResponse> {
+  // 写真は ①使える記事の写真 ②表紙用の AI のイメージ（coverImage。札「画像はイメージ（AI生成）」つき） ③文字だけ（lib/sns-photo.ts の shareImageArticle）
+  let article = shareImageArticle(found);
   const company = companyOf(article);
   const isOther = company.slug === "other";
   // 公式ブログ・プレスリリース記事で企業が判別できないときは、発信元名を出す
@@ -222,7 +225,19 @@ async function renderCover(article: FullArticle): Promise<ImageResponse> {
   const parts = splitTitle(title);
 
   const baseColor = isOther ? "#1d1d22" : company.color;
-  const [bg, fontData] = await Promise.all([coverBackground(article.thumbnail, baseColor), loadFonts()]);
+  const [firstBg, fontData] = await Promise.all([coverBackground(article.thumbnail, baseColor), loadFonts()]);
+  let bg = firstBg;
+  if (!bg.photo) {
+    // 記事の写真が取得できなかったときも、表紙用の AI のイメージがあればそれを敷く（暗い文字だけの画像にしない）
+    const alt = shareImageArticle(found, true);
+    if (alt !== article) {
+      const altBg = await coverBackground(alt.thumbnail, baseColor);
+      if (altBg.photo) {
+        article = alt;
+        bg = altBg;
+      }
+    }
+  }
   const photo = bg.photo;
   const credit = coverCredit(article);
 

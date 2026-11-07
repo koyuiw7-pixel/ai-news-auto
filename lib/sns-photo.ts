@@ -101,3 +101,27 @@ export function snsCardArticle<T extends Photoable>(article: T): T {
     imageFocus: ar ? { x: 0.5, y: 0.5, box: [0, 0, 1, 1], ar, src: photo.src } : undefined,
   } as T;
 }
+
+type Coverable = Photoable & { coverImage?: string; coverCredit?: ImageCredit; noPhoto?: boolean };
+
+/** 記事の写真（thumbnail）を共有の画像にそのまま使ってよいか（空・AI の絵・写真なしの印 card は使わない） */
+function thumbnailUsable(article: Coverable): boolean {
+  const kind = article.imageCredit?.kind;
+  return Boolean(article.thumbnail) && kind !== "ai" && kind !== "card";
+}
+
+/**
+ * 共有の画像（og:image の /cover/<slug> と SNS の /card/<slug>）に敷く写真を決めた記事（2026-11-07 オーナー指摘）。
+ * 不二家の値上げの記事で、記事の写真が無い（thumbnail ""）のに表紙用の AI のイメージ（coverImage）があったのに、
+ * カバーもカードも thumbnail だけを見ていたので、暗い・青い文字だけの画像が X とリンクカードに出た。
+ * 順: ①使える記事の写真（今までどおり） ②表紙用の AI のイメージ（coverImage。scripts/noir_cover.py が話題とのつながりを確かめたもの。
+ * 出典を coverCredit に差し替えるので「画像はイメージ（AI生成）」の札が付く） ③どちらも無ければ今までの文字のカード。
+ * 地震・津波の記事（noPhoto）は写真を付けない。force: 記事の写真が取得できなかったときに②へ回す
+ */
+export function shareImageArticle<T extends Coverable>(article: T, force = false): T {
+  if (article.noPhoto) return article;
+  const cover = article.coverImage && article.coverCredit?.kind === "ai" ? article.coverImage : "";
+  if (!cover || cover === article.thumbnail) return article;
+  if (!force && thumbnailUsable(article)) return article;
+  return { ...article, thumbnail: cover, imageCredit: article.coverCredit, heroOk: undefined, imageFocus: undefined } as T;
+}
