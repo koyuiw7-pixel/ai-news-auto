@@ -6,43 +6,42 @@
   "companyName": "Figma",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Figmaは、デザインの作成や共有ができるデザインツールです。提供元のFigmaから提供されており、AIによる画像・動画の制作基盤である「Figma Weave」などの機能が発表されています。",
+    "text": "Figmaは、デザインやプロダクト開発の試作を行えるツールです。共同創業者でCEOのディラン・フィールド氏らが提供しています。",
     "sources": [
-      "figma-weave-creative-workflow",
-      "openai-gpt-6-astra-first-impressions-n-dqdvmwoas"
+      "figma-code-layers-open-beta-design",
+      "openai-gpt6-astra-figma-integration"
     ]
   },
   "facts": [
     {
       "label": "向いている人",
-      "value": "制作チームやデザイナー",
+      "value": "デザイナーやプロダクト担当",
       "sources": [
-        "figma-weave-creative-workflow",
-        "openai-gpt-6-astra-first-impressions-n-dqdvmwoas"
+        "figma-code-layers-open-beta-design"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "Figma Weaveのノードをつないだ画面で、制作の手順が見え、前の段階に戻って直せます。",
+      "text": "キャンバス上でコードに基づく試作を作れるコードレイヤー機能がある。",
+      "sources": [
+        "figma-code-layers-open-beta-design"
+      ]
+    },
+    {
+      "text": "Figma Weaveで画像や動画の制作手順を再利用できる。",
       "sources": [
         "figma-weave-creative-workflow"
       ]
     },
     {
-      "text": "同じ指示を複数のAIモデルで走らせ、結果を並べて比べることができます。",
-      "sources": [
-        "figma-weave-creative-workflow"
-      ]
-    },
-    {
-      "text": "Figma MCP Serverを介してデザインシステムと直接連携し、一貫性のあるコンポーネントを適用できます。",
+      "text": "Figma MCP Serverを介してデザインシステムと直接連携できる。",
       "sources": [
         "openai-gpt6-astra-figma-integration"
       ]
     },
     {
-      "text": "静止した鳥のポーズと移動するスリットを用いて、鳥が羽ばたいて飛んでいるようなベクターアニメーションを設計できます。",
+      "text": "ベクターアニメーションの自動生成と構造の可視化ができる。",
       "sources": [
         "openai-gpt-6-astra-first-impressions-n-dqdvmwoas"
       ]
@@ -54,32 +53,24 @@
   "differences": [],
   "faq": [
     {
-      "q": "誰に向いている？",
-      "a": "制作チームやデザイナーに向いています。",
+      "q": "コードレイヤーを使うとどうなる？",
+      "a": "デザイン画面の中でコードに基づく試作を作ることができます。",
       "sources": [
-        "figma-weave-creative-workflow",
-        "openai-gpt-6-astra-first-impressions-n-dqdvmwoas"
+        "figma-code-layers-open-beta-design"
       ]
     },
     {
       "q": "Figma Weaveとは？",
-      "a": "画像や動画をAIで作り、編集する作業を部品でつないでチームで繰り返し使えるようにするサービスです。",
+      "a": "画像や動画を作る作業を部品でつなぎ、チームで繰り返し使えるようにするサービスです。",
       "sources": [
         "figma-weave-creative-workflow"
       ]
     },
     {
-      "q": "Config Indiaとは？",
-      "a": "インドのベンガルールで初めて開かれた、製品開発者約5,000人が参加したイベントです。",
+      "q": "コードレイヤーの料金は？",
+      "a": "発表では示されていません。",
       "sources": [
-        "figma-config-india-insights-ai"
-      ]
-    },
-    {
-      "q": "Figma WeaveでAIモデルは比較できる？",
-      "a": "同じ指示を異なるAIモデルに通し、結果を並べて比べることができます。",
-      "sources": [
-        "figma-weave-creative-workflow"
+        "figma-code-layers-open-beta-design"
       ]
     }
   ],
@@ -87,7 +78,7 @@
     {
       "date": "2026-09-10",
       "slug": "openai-gpt-6-astra-first-impressions-n-dqdvmwoas",
-      "event": "GPT-6 Astraの企業導入事例を公開"
+      "event": "OpenAIがGPT-6 Astraの企業導入事例を公開"
     },
     {
       "date": "2026-09-22",
@@ -95,14 +86,14 @@
       "event": "GPT-6 AstraとFigmaの連携デモを公開"
     },
     {
-      "date": "2026-10-30",
-      "slug": "figma-config-india-insights-ai",
-      "event": "インド初のConfig Indiaを開催"
-    },
-    {
       "date": "2026-10-31",
       "slug": "figma-weave-creative-workflow",
-      "event": "Figma Weaveの使い所を公開"
+      "event": "Figma Weaveの使い方を公開"
+    },
+    {
+      "date": "2026-11-07",
+      "slug": "figma-code-layers-open-beta-design",
+      "event": "コードレイヤーが公開ベータに"
     }
   ],
   "related": [
@@ -112,6 +103,7 @@
     "github-copilot"
   ],
   "articles": [
+    "figma-code-layers-open-beta-design",
     "figma-weave-creative-workflow",
     "figma-config-india-insights-ai",
     "kddi-iret-ai-use-cases-113",
@@ -120,12 +112,13 @@
     "openai-gpt-6-astra-first-impressions-n-dqdvmwoas"
   ],
   "linkFrom": [
+    "figma-code-layers-open-beta-design",
     "figma-weave-creative-workflow",
     "figma-config-india-insights-ai"
   ],
-  "signature": "d5342b1f4b5f5afb",
-  "primarySignature": "cab31abdfe325e80",
+  "signature": "4e4bfdcddc657aca",
+  "primarySignature": "5d4a64d52452a787",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-04T03:15:23+00:00",
-  "updatedAt": "2026-11-04T03:15:23+00:00"
+  "updatedAt": "2026-11-07T10:53:38+00:00"
 }
