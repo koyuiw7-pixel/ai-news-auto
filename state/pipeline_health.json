@@ -1,9 +1,15 @@
 {
   "candidates": 93,
-  "consecutive_zero": 1,
-  "last_zero_at": "2026-11-07T04:11:50+00:00",
-  "reason": "候補 93 件があったのに1件も試していない（見送りの内訳: 今日の種類別の上限 93件）",
+  "consecutive_zero": 2,
+  "last_zero_at": "2026-11-07T04:31:52+00:00",
+  "reason": "候補 93 件があったのに1件も試していない（見送りの内訳: 今日の種類別の上限 92件 / prefilter 1件）",
   "recovered_at": "2026-11-07T03:56:11+00:00",
-  "rescue_failed": 0,
-  "status": "rescue"
+  "rescue_failed": 1,
+  "status": "rescue",
+  "tried": [
+    "最初から Claude（有料の AI）の段で書いた",
+    "候補を 0 件試した（生成 0 回・上限 6 回）",
+    "短い原稿は元記事の事実だけで書き足し（Haiku）→ だめなら書き直し（Sonnet）",
+    "候補を広げた（同じ発信元 4 本・配信 3 本・一般の話題 5 本まで）"
+  ]
 }
