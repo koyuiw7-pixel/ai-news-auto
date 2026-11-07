@@ -214,13 +214,15 @@ class ProductLaunchTest(unittest.TestCase):
         for article in no:
             self.assertFalse(images.real_object_article(article), article["title"])
 
-    def test_ai_prompt_forbids_product(self):
-        plan = {"scene": "An empty forest trail at dawn.", "productLaunch": True}
-        prompt = images.ai_prompt(plan, {})
-        self.assertIn("Do not depict the announced product or any similar device", prompt)
-        self.assertNotIn("Do not depict", images.ai_prompt({"scene": "A rice paddy."}, {}))
+    def test_ai_prompt_generic_product_for_launch(self):
+        """2026-11-07 オーナー（台帳 I2 を改める）: 公式の画像が無い発表は製品の種類を描いてよい。ロゴ・ブランド・特定の機種のまねは描かない"""
+        prompt = images.ai_prompt({"scene": "A generic electric mountain bike on a forest trail.", "productLaunch": True}, {})
+        self.assertIn("generic design of its kind", prompt)
+        self.assertIn("does not imitate the distinctive design of any specific real model", prompt)
+        self.assertNotIn("generic design of its kind", images.ai_prompt({"scene": "A rice paddy."}, {}))
 
 
+@unittest.skipIf(images.Image is None, "Pillow が無い")
 class BodyImagesTest(unittest.TestCase):
     """本文に置く公式の写真・図（2026-11-03 オーナー決定。台帳 I6）: ロゴ・小さい画像・見出し画像に使ったものは置かない。出典を必ず残す"""
 
@@ -246,6 +248,7 @@ class BodyImagesTest(unittest.TestCase):
         self.assertTrue(all(f["src"].startswith("https://ai-tech-express.jp/img/apple-q4-fig") for f in figs))
 
 
+@unittest.skipIf(images.Image is None, "Pillow が無い")
 class BodyImagesBackfillTest(unittest.TestCase):
     """書き直した記事に本文の公式の画像を足す（見出し画像は変えない・見出し画像と同じ写真は置かない）"""
 

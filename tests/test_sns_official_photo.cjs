@@ -89,7 +89,8 @@ test("公式の写真が無ければ今までのカード（AI の出典のま�
 
 test("カードの注記は lib/card-designs.tsx の cardCredit が出典から作る（AI なら AI生成・公式なら officialCreditText）", () => {
   const src = fs.readFileSync(path.join(root, "lib/card-designs.tsx"), "utf8");
-  assert.match(src, /c\?\.kind === "ai"\) return "画像はイメージ（AI生成）"/);
+  // AI の札は lib/image-credit.ts の aiCreditText（公式の画像が無い発表は「公式画像がないためイメージ（AI生成）」。2026-11-07 台帳 I2）
+  assert.match(src, /c\?\.kind === "ai"\) return aiCreditText\(c\)/);
   assert.match(src, /c\?\.kind === "official" \|\| c\?\.kind === "figure"\) return officialCreditText\(c\)/);
   const route = fs.readFileSync(path.join(root, "app/card/[slug]/route.tsx"), "utf8");
   assert.match(route, /snsCardArticle\(found\)/);

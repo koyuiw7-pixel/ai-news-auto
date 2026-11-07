@@ -8,7 +8,7 @@
   1. 投稿は必ず実在の記事について。書き出し → 短い事実2文 → 答えやすい問いかけ → 記事のリンクを本文に
      （X だけはリンクを返信に）。リンクには SNS ごとの utm を付ける。
      （2026-11-05 オーナー判断「毎回要約するとで始まるのは嫌だ」）事実の文は「要約すると、」で始めない（ルール13）。
-  2. 画像は 16:9 の横長・写真だけのカード（文字の帯なし）。発表された製品を AI で描いた画像は使わない。動画も 16:9。
+  2. 画像は 16:9 の横長・写真だけのカード（文字の帯なし）。発表された製品を AI で描いた画像は「公式画像がないためイメージ（AI生成）」の札があるときだけ（2026-11-07 台帳 I2）。動画も 16:9。
   3. 決まった型の投稿・中身のない投稿はしない（記事のない問いかけ、「気軽にコメントください」、「番号でコメント」など）。
   4. 自然な日本語。「ざっくり」・硬い言い回しを使わない。英語の文を残さない。スポーツは日本のスポーツだけ（五輪・世界陸上・W杯・WBC は例外）。
   5. 1つの記事につき投稿は1つ（動画は記事の投稿に添える。別の投稿にしない）。
@@ -1338,7 +1338,8 @@ def card_note(article: dict | None) -> str:
     """カードの隅に出る注記（lib/card-designs.tsx の cardCredit と同じ。公式なら出典、AI なら「画像はイメージ（AI生成）」）"""
     c = card_credit(article)
     if c.get("kind") == "ai":
-        return "画像はイメージ（AI生成）"
+        # 公式の画像が無い新製品・サービスの発表で、AI が製品の種類を描いたもの（2026-11-07 オーナー。台帳 I2）
+        return "公式画像がないためイメージ（AI生成）" if c.get("launch") else "画像はイメージ（AI生成）"
     if c.get("kind") == "official":
         return official_credit_text(c)
     return ""
@@ -1359,8 +1360,11 @@ def check_media(platform: str, media: list[dict], article: dict | None, kind: st
         # カード（/card/<slug>）は本文の公式の写真に差し替えることがあるので、カードに実際に載る写真の出典で見る（台帳 S45）
         is_card = urllib.parse.urlsplit(url).path.rstrip("/") == f"/card/{article.get('slug')}"
         credit = card_credit(article) if is_card else (article.get("imageCredit") or {})
-        if item.get("type") != "video" and credit.get("kind") == "ai" and uses_article_photo(url, article) and product_launch(article):
-            out.append("[ルール2] 発表された製品を AI で描いた画像")
+        # 発表の製品を AI で描いてよいのは「公式画像がないためイメージ（AI生成）」の札（launch）があるときだけ
+        # （製品を描かないと確かめた前の画像 noProduct も可。2026-11-07 オーナー。台帳 I2）
+        if item.get("type") != "video" and credit.get("kind") == "ai" and not (credit.get("launch") or credit.get("noProduct")) \
+                and uses_article_photo(url, article) and product_launch(article):
+            out.append("[ルール2] 発表された製品を AI で描いた画像に「公式画像がないためイメージ（AI生成）」の札がない")
         if item.get("card") and platform == "bluesky":
             continue  # Bluesky のリンクカードの小さな画像は Bluesky が切り抜く（元の画像は上で確かめる）
         size = media_size(item, measurer)

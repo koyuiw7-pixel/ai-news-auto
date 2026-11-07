@@ -1,5 +1,5 @@
 import type { ImageCredit as Credit } from "@/lib/articles";
-import { figureCreditText, officialCreditText } from "@/lib/image-credit";
+import { AI_LAUNCH_LABEL, figureCreditText, officialCreditText } from "@/lib/image-credit";
 
 /**
  * 写真の下に出す注記。フリー素材は作者・出典・ライセンスへのリンク（CC BY の表示義務）、
@@ -7,7 +7,7 @@ import { figureCreditText, officialCreditText } from "@/lib/image-credit";
  * 元記事の写真への直リンク（source。旧方式）は出典欄があるので何も出さない
  */
 export default function ImageCredit({ credit, className = "" }: { credit?: Credit; className?: string }) {
-  if (!credit || credit.kind === "source") return null;
+  if (!credit || credit.kind === "source" || credit.kind === "card") return null;
   const base = `text-note leading-relaxed text-ink-soft ${className}`;
   if (credit.kind === "official") {
     const text = officialCreditText(credit);
@@ -22,7 +22,12 @@ export default function ImageCredit({ credit, className = "" }: { credit?: Credi
     return (
       <p className={`${base} flex items-start gap-2`}>
         <span className="mt-px shrink-0 rounded-sm border border-current px-1.5 text-badge font-bold leading-5">AI生成</span>
-        <span>画像はイメージです。記事で紹介している製品・人物・場所を写したものではありません。</span>
+        {credit.launch ? (
+          // 2026-11-07 オーナー: 公式の画像が無い新製品・サービスの発表は、AI が製品の種類を描く。本物と取り違えないよう札を変える
+          <span>{AI_LAUNCH_LABEL}。実際の製品・画面とは異なります。</span>
+        ) : (
+          <span>画像はイメージです。記事で紹介している製品・人物・場所を写したものではありません。</span>
+        )}
       </p>
     );
   }

@@ -4,6 +4,7 @@ import { COMPANIES, companyOf, type Company } from "@/lib/companies";
 import { DIGEST_IMAGE_REV } from "@/lib/digest-design";
 import { easyGist } from "@/lib/general";
 import { gateHeadline, stripKnownDescriptors } from "@/lib/headline";
+import { aiCreditText } from "@/lib/image-credit";
 
 /**
  * 朝のまとめ「今朝のAIニュース3本」の号（edition）。
@@ -104,7 +105,7 @@ function companyFor(headline: string, article: ArticleSummary): Company {
 
 function creditOf(article: ArticleSummary): string {
   const c = article.imageCredit;
-  if (c?.kind === "ai") return "画像はイメージ（AI生成）";
+  if (c?.kind === "ai") return aiCreditText(c) ?? "";
   if (c?.kind === "stock") return "写真はイメージ";
   if (c?.kind === "official") return `画像：${c.org || c.via || c.provider || "公式発表"}`;
   if (c?.kind === "figure") return "図：サイソクニュース作成";

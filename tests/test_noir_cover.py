@@ -109,10 +109,10 @@ class MakeCoverTest(unittest.TestCase):
         made, mocks = self.run_make(relevant=(False, False, False))
         self.assertIsNone(made)
         for call in mocks[3].call_args_list:
-            self.assertNotEqual(call.args[0]["scene"], images.NO_PRODUCT_SCENE)
             # 製品を描かない決まり（productLaunch / serviceLaunch）は足さない（2026-11-07 オーナー: 発表の製品は描いてよい）
             self.assertEqual(set(call.args[0]), {"scene"})
         self.assertNotIn("NO_PRODUCT_SCENE", Path(noir_cover.__file__).read_text("utf-8"))
+        self.assertFalse(hasattr(images, "NO_PRODUCT_SCENE"))
 
     def test_launch_marked_for_label(self):
         # 新製品・サービスの発表は coverCredit.launch（サイトの札は「公式画像がないためイメージ（AI生成）」）
@@ -154,9 +154,14 @@ class EnsureCoverTest(unittest.TestCase):
             self.assertIsNone(noir_cover.reuse_thumbnail(article))
 
     def test_relevance_prompt_uses_headline(self):
-        with mock.patch.object(images, "cf_vision", return_value="Yes") as vision:
+        with mock.patch.object(images, "cf_vision", side_effect=["Yes", "No"]) as vision:
             self.assertTrue(noir_cover.relevant(object(), {"title": "防水工事業の倒産"}, "waterproofing bankruptcies"))
-        self.assertIn("防水工事業の倒産", vision.call_args.args[1])
+        self.assertIn("防水工事業の倒産", vision.call_args_list[0].args[1])
+        # 小さい写真（一覧・SNS の大きさ）で判定する（2026-11-07 オーナー・Muse）
+        self.assertEqual(vision.call_args_list[0].kwargs["size"], images.CHECK_SIZE)
+        # つながりは見えても、作り物のブランド・大げさな被害は誤解を招くので使わない
+        with mock.patch.object(images, "cf_vision", side_effect=["Yes", "Yes"]):
+            self.assertFalse(noir_cover.relevant(object(), {"title": "t"}, ""))
         with mock.patch.object(images, "cf_vision", return_value=None):
             self.assertFalse(noir_cover.relevant(object(), {"title": "t"}, ""))
 

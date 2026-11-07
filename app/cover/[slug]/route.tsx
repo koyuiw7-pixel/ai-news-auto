@@ -7,7 +7,7 @@ import { coverPath, getAllArticles, getArticle, PRERENDER_LIMIT, type FullArticl
 import { companyOf } from "@/lib/companies";
 import { isFastNews } from "@/lib/cover-path";
 import { articleTitle, splitHeadline } from "@/lib/headline";
-import { officialCreditText } from "@/lib/image-credit";
+import { aiCreditText, officialCreditText } from "@/lib/image-credit";
 import { siteConfig } from "@/site.config";
 import {
   basePhoto,
@@ -201,7 +201,7 @@ async function reachablePhoto(url: string): Promise<string | null> {
 /** カバー左上の注記（フリー素材・AI 生成・公式発表の写真のとき。CC BY は作者とライセンスの表示が条件） */
 function coverCredit(article: FullArticle): string {
   const c = article.imageCredit;
-  if (c?.kind === "ai") return "画像はイメージ（AI生成）";
+  if (c?.kind === "ai") return aiCreditText(c) ?? "";
   if (c?.kind === "official" || c?.kind === "figure") return officialCreditText(c) ?? "";
   if (c?.kind !== "stock") return "";
   const who = (c.creator || "").slice(0, 28);

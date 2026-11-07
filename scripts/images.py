@@ -7,15 +7,17 @@
      ダウンロードして幅 1200px まで縮小（切り抜かない）し、自前の KV から配信する。記事には「画像：◯◯（公式発表より）」と出す。
      ほかの報道機関・通信社（ロイター・AP・Getty・日経・ITmedia など）の写真、他人の SNS の画像、関連記事のカード・メニュー・
      古い宣伝画像は使わない。ほかのニュースサイト・ブログ・不明な発信元の記事では元記事の画像を使わない。
-     ただし製品・サービスの発表なら、報道の記事から会社自身の発表（自社のニュースルーム・PR TIMES）をたどって
-     その画像を使う（find_official_release。2026-11-03）
-  2. AI 生成: Cloudflare Workers AI（flux-2-klein-4b → flux-1-schnell）。前からの写真風のプロンプト。話題を問わない。
-     文字・ロゴ・実在の人物なし。1日 IMAGE_AI_DAILY_MAX 枚まで。
-     製品の発表の記事（product_launch。2026-11-03）は製品そのもの・見間違える物を描かない（使う場面・会場の雰囲気・抽象）。
-     アプリ・クラウド・機能の発表（announcement_article）も、製品・画面・端末を描かない。
-     描いてしまったら作り直し、だめなら AI 画像は使わない。前に付けた公式の写真は、選び直しで AI・素材に替えない
+     報道・官公庁が出典の記事（発表に限らずリコール・決算・障害も。2026-11-07）は、会社自身の発表（自社のニュースルーム・
+     PR TIMES）をたどってその画像を使う（find_official_release。会社へのリンクが無ければ Wikidata の公式サイトから）
+  2. AI 生成: Cloudflare Workers AI（flux-2-klein-4b → flux-1-schnell）。写真風で、話題が一目で分かる場面を主役を大きく描く
+     （種類ごとの場面: リコール＝その物の点検・交換、障害＝圏外のスマホなど。SCENE_GUIDE）。文字・ロゴ・実在の人物なし。
+     1日 IMAGE_AI_DAILY_MAX 枚まで。1枚ごとに無料の画像判定で、見出しとのつながりが小さい写真でも見えるか・誤解を招かないかを
+     確かめ、だめなら別の切り口で作り直す（2回まで）。誰もいない会場・抽象的な光のような関係の無い場面には逃げない（2026-11-07 オーナー）。
+     公式の画像が無い新製品・サービスの発表は製品の種類（ブランド・ロゴなし）を描いてよく、札は「公式画像がないためイメージ（AI生成）」
+     （imageCredit.launch。台帳 I2）。決算・値上げ・制度で題名に数字がある記事は、数字・見出しのカード（写真なし）を先にする（card_first）。
+     前に付けた公式の写真は、選び直しで AI・素材に替えない
   3. フリー素材: Wikimedia Commons と Openverse（CC0・パブリックドメイン・CC BY だけ）。AI が使えないとき。関係の確認は厳しめ
-  4. 公式のロゴ・文字の多い図・バナー（どれも無ければ今までどおり写真なしのカバー）
+  4. 公式のロゴ・文字の多い図・バナー。見出しとつながる AI 画像が作れなかったときは数字・見出しのカード（imageCredit.kind = "card"）
 
 2・3 の画像は 1200×630 の JPEG（約100KB）、1 は縦横比そのままの幅 1200px までの JPEG にし、どれも幅 400 / 640（.sm）/ 800 / 1200 の
 WebP を添えて Workers KV（saisoku-images）へ置き、サイトの /img/<名前> で配信する（cloudflare/worker.ts。srcset は lib/thumb-url.ts）。
@@ -1246,10 +1248,79 @@ def parse_page_cached(page_url: str) -> tuple[_PageCollector, str] | None:
 
 
 def _release_link(url: str) -> bool:
-    path = urllib.parse.urlparse(url).path or "/"
+    parts = urllib.parse.urlparse(url)
+    path = parts.path or "/"
     if WIRE_RELEASE.match(url):
         return True
+    # 一覧と同じ場所に番号で並ぶ発表（y-yokohama.com/release/?id=4909 など）
+    if RELEASE_LIST.match(path) and re.search(r"(?:^|&)(?:id|no|nid|news_?id|article_?id|p)=\d+", parts.query or "", re.I):
+        return True
     return bool(RELEASE_PATH.search(path)) and not RELEASE_LIST.match(path) and len([p for p in path.split("/") if p]) >= 2
+
+
+# 記事に出てくる会社の公式サイト（2026-11-07 オーナー: 官公庁・報道の記事でも、会社自身の発表の写真を探す）。
+# 元記事に会社のサイトへのリンクが無いとき（国土交通省のリコールの発表など）は、Wikidata（無料・誰でも使える公開データ）の
+# 「公式ウェブサイト」から会社のサイトを知る。会社・メーカーだと説明に書かれた項目だけを使う
+WIKIDATA_API = "https://www.wikidata.org/w/api.php"
+COMPANY_DESC = re.compile(r"(企業|会社|メーカー|製造|コングロマリット|持株会社|ホールディングス|銀行|証券|保険|鉄道|航空|通信|電力|ガス|商社|小売|チェーン|ブランド|"
+                          r"company|manufacturer|corporation|conglomerate|retailer|brand|carrier|airline|bank)", re.I)
+NAME_STOP = {"リコール", "自動車", "タイヤ", "物流", "決算", "値上げ", "障害", "通信障害", "生成AI", "AI", "スマートフォン", "家電", "新製品",
+             "食品", "飲料", "業績", "制度", "補助金", "セキュリティ", "不正アクセス", "個人情報", "鉄道", "航空", "金融", "株価", "投資"}
+_WIKIDATA_CACHE: dict[str, str] = {}
+
+
+def company_names(article: dict) -> list[str]:
+    """記事の主役の会社名の候補（題名の先頭の「◯◯の／◯◯が／◯◯、」と、題名にも出てくる札）"""
+    title = re.sub(r"^[【\[][^】\]]*[】\]]\s*", "", str(article.get("title") or ""))
+    out: list[str] = []
+    if m := re.match(r"^([^\s、。「」『』（）()の が は を]{2,16}?)(?:の|が|は|、|　| )", title):
+        out.append(m.group(1))
+    for tag in article.get("tags") or []:
+        tag = str(tag).strip()
+        if 2 <= len(tag) <= 16 and tag not in NAME_STOP and tag in title and tag not in out:
+            out.append(tag)
+    return [n for n in out if n not in NAME_STOP][:3]
+
+
+def wikidata_home(name: str) -> str:
+    """会社名から公式サイトのトップ（https://host/）。分からなければ空"""
+    if name in _WIKIDATA_CACHE:
+        return _WIKIDATA_CACHE[name]
+    home = ""
+    try:
+        query = urllib.parse.urlencode({"action": "wbsearchentities", "search": name, "language": "ja", "uselang": "ja", "limit": 3, "format": "json"})
+        hits = http_json(f"{WIKIDATA_API}?{query}", timeout=15).get("search") or []
+        for hit in hits:
+            label = str(hit.get("label") or "")
+            aliases = [str(a) for a in (hit.get("aliases") or [])] + [str((hit.get("match") or {}).get("text") or "")]
+            if name not in (label, *aliases) or not COMPANY_DESC.search(str(hit.get("description") or "")):
+                continue
+            claims = http_json(f"{WIKIDATA_API}?" + urllib.parse.urlencode({"action": "wbgetclaims", "entity": hit["id"], "property": "P856", "format": "json"}), timeout=15)
+            rows = (claims.get("claims") or {}).get("P856") or []
+            # 優先の印（preferred）→ 日本のサイト（.jp・/ja/）→ 登録の順（海外の子会社のサイトは後ろに並ぶことが多い）
+            rows = sorted(enumerate(rows), key=lambda ic: (ic[1].get("rank") != "preferred",
+                                                          not re.search(r"\.jp(?:/|$)|/ja(?:/|$)|/jp(?:/|$)", str(((ic[1].get("mainsnak") or {}).get("datavalue") or {}).get("value") or "")),
+                                                          ic[0]))
+            sites = [str(((c.get("mainsnak") or {}).get("datavalue") or {}).get("value") or "") for _, c in rows]
+            sites = [u for u in sites if u.startswith("http")]
+            if sites:
+                host = urllib.parse.urlparse(sites[0]).netloc.lower()
+                if host and not (_host_in(host, MEDIA_HOSTS) or OFFSITE_SKIP.search(sites[0])):
+                    home = f"https://{host}/"
+            break
+    except Exception as error:  # noqa: BLE001 - 分からなければ今までどおり
+        log(f"   [img] 会社のサイトを調べられない（{name}）: {str(error)[:80]}")
+    _WIKIDATA_CACHE[name] = home
+    return home
+
+
+PUBLIC_BODY = re.compile(r"(?:^|\.)(?:go\.jp|lg\.jp)$")
+
+
+def public_body_source(article: dict) -> bool:
+    """出典が官公庁・自治体の発表か（リコールの届出・行政処分など。写真は会社自身の発表を探す）"""
+    host = urllib.parse.urlparse(str(article.get("sourceUrl") or "")).netloc.lower().split(":")[0]
+    return bool(PUBLIC_BODY.search(host))
 
 
 def find_official_release(article: dict, max_pages: int = 6) -> dict | None:
@@ -1298,6 +1369,14 @@ def find_official_release(article: dict, max_pages: int = 6) -> dict | None:
             score = release_score(f"{fact.get('name', '')} {url}", article)
             if score:
                 scored[url] = max(scored.get(url, 0), score)
+    looked_up = False  # 会社のサイトを Wikidata で知った（報道・官公庁のページに会社へのリンクが無い）
+    if not scored:
+        for name in company_names(article):
+            home = wikidata_home(name)
+            if home and home not in homes and offsite(home):
+                log(f"   [img] 記事の会社の公式サイト（Wikidata）: {name} → {home}")
+                homes.insert(0, home)
+                looked_up = True
     pages = 1
     # 会社のサイトのトップ（無ければニュース一覧も1つ）に並ぶ発表から探す。トップのお知らせ欄は news-list などの
     # 「本文ではない場所」の名前が付くことが多いので、ここでは場所を問わない（同じ会社のサイトの発表のページだけ）
@@ -1338,7 +1417,9 @@ def find_official_release(article: dict, max_pages: int = 6) -> dict | None:
         _, rel_final = sub
         meta = PAGE_META.get(url) or {}
         heading = f"{meta.get('ogTitle', '')} {meta.get('title', '')}"
-        if not release_score(f"{heading} {url}", article):
+        # リンクをたどらずに会社のサイトから探したときは、題名の言葉だけで合うことを確かめる（キーワードの製品名だけで
+        # 別の発表を拾わない。2026-11-07 横浜ゴムのリコールの記事が冬のキャンペーンの発表に合ってしまった）
+        if not release_score(f"{heading} {url}", {**article, "keywords": []} if looked_up else article):
             log(f"   [img] 発表の候補の題名が記事と合わない: {url[:90]}（{heading[:60]}）")
             continue
         host = urllib.parse.urlparse(rel_final or url).netloc.lower()
@@ -1602,6 +1683,8 @@ QUERY_SCHEMA = {
         "queries": {"type": "ARRAY", "items": {"type": "STRING"}},
         "query_ja": {"type": "STRING"},
         "scene": {"type": "STRING"},
+        "scenes": {"type": "ARRAY", "items": {"type": "STRING"}},
+        "category": {"type": "STRING"},
     },
     "required": ["queries", "scene"],
 }
@@ -1627,22 +1710,45 @@ QUERY_SYSTEM = (
 )
 
 
-PRODUCT_PLAN_RULE = """
-IMPORTANT: this article announces a specific product (a device, vehicle, gadget or machine).
-Readers must never mistake an illustration for the real product. So:
-- "product": the generic English name of the product category (1-3 words, e.g. "electric mountain bike", "smartphone", "electric car").
-- "scene" and "queries" must NOT depict the announced product or any similar device, vehicle, machine or gadget
-  (no bikes for a bike, no phones for a phone, no cars for a car, not even partly or in the distance).
-  Show instead the usage context without the product (e.g. an empty forest trail at dawn), the mood of the event venue
-  (e.g. an exhibition hall with blurred stage lights and no exhibits), or the category in the abstract (light, motion, texture)."""
+# 記事の種類（visual_plan の category）。種類ごとに、読者が一目で話題とつなげられる場面の決め方がある（2026-11-07 オーナー・Muse と決めた）
+SCENE_CATEGORIES = ("recall", "earnings", "price", "ai_service", "outage", "policy", "launch", "other")
+# 決算・値上げ・制度は、数字・見出しのカード（写真なしの記事のカバー。/cover/<slug> と一覧の見出しの札）を第一の候補にする
+CARD_FIRST = {"earnings", "price", "policy"}
+CARD_NUMBER = re.compile(r"[0-9０-９]|[一二三四五六七八九十百千万億兆]+(?:円|割|倍|%|％|人|社|件|本|台)")
 
-# アプリ・クラウド・機能などの発表（形の無い製品）。画面・端末を描くと「その製品の画面」と受け取られる（2026-11-03）
+# 種類ごとの場面の決め方（2026-11-07 オーナー決定。主役を大きく、一覧の小さい写真でも話題が分かるように）
+SCENE_GUIDE = """
+Scene guidance by category (pick the category that fits best and follow its guidance):
+- recall: the recalled kind of item itself (generic, no brand) being inspected or replaced by hands,
+  e.g. a mechanic's hands removing a car tire, hands checking the label on a battery, a technician opening a washing machine.
+- earnings: the real work site of the company's industry (a car assembly line, a semiconductor clean room, a supermarket aisle).
+- price: store shelves, price tags or a receipt with the kind of goods whose price changes (generic goods, no brands).
+- ai_service: a user's hands holding a smartphone or typing on a laptop; the screen content is abstract soft color blocks, no readable UI or text.
+- outage: a person seen from behind looking at a phone with no signal, a station information board with abstract unreadable text,
+  a queue at an ATM.
+- policy: a municipal office counter, an envelope being opened, documents and a calendar marking a deadline; any text unreadable.
+- launch: the kind of product announced (generic design, see the launch rule).
+- other: the concrete object, place or activity the news is about.
+Every scene: ONE clear main subject, close-up or medium shot, filling at least half of the frame, recognizable at small thumbnail size.
+Never an empty office, empty desk, quiet meeting room, empty hall or venue, corridor, skyline, or abstract light and bokeh
+that could illustrate any news. Generic items of the topic's category (a car tire, a battery, a smartphone, a washing machine)
+may be shown without any brand name, logo or model name."""
+
+# 2026-11-07 オーナー決定（台帳 I2 を改める）: 公式の画像が無い新製品の発表は、AI が製品の種類を描いてよい
+# （ロゴ・文字・ブランドは描かない。実在の特定の機種の特徴的なデザインもまねない）。札は「公式画像がないためイメージ（AI生成）」
+PRODUCT_PLAN_RULE = """
+Launch rule: this article announces a specific product (a device, vehicle, gadget or machine) and no official photo is available.
+- "product": the generic English name of the product category (1-3 words, e.g. "electric mountain bike", "smartphone", "electric car").
+- "scene" and "scenes" MAY show this kind of product as the large main subject, as a generic design:
+  no brand name, no logo, no text, and do not imitate the distinctive design of any specific real model.
+  The image will be labeled "no official image, illustration (AI generated)"."""
+
+# アプリ・クラウド・機能などの発表（形の無い製品）。使う人の手元と端末を描く。画面の中身は読めない抽象的な色だけ（2026-11-07 オーナー）
 SERVICE_PLAN_RULE = """
-IMPORTANT: this article announces a specific product or service (an app, software, cloud service or feature).
-Readers must never mistake an illustration for the real product. So "scene" and "queries" must NOT depict the product,
-its screens or user interface, its logo, or any computer, laptop, phone, tablet, monitor or app window (not even partly or in the background).
-Show instead a calm abstract or atmospheric scene related to the topic without the product (e.g. soft light through office windows
-onto an empty desk with paper documents, neatly stacked folders, a quiet meeting room, abstract light and texture)."""
+Launch rule: this article announces an app, software, cloud service or feature and no official image is available.
+"scene" and "scenes" show a user's hands using a smartphone, tablet or laptop in a real setting that fits the service
+(e.g. hands holding a phone at a restaurant table for a reservation feature). The screen shows only abstract soft color blocks:
+no readable user interface, no text, no logo, no fake app screens. The image will be labeled "no official image, illustration (AI generated)"."""
 
 
 def visual_plan(article: dict, product: bool = False, service: bool = False) -> dict:
@@ -1654,15 +1760,18 @@ tags: {', '.join(article.get('tags', [])[:8])}
 source: {article.get('sourceName') or article.get('channel', '')}
 
 Return:
+- "category": one of {', '.join(SCENE_CATEGORIES)}.
 - "queries": 3 short English search queries (1-3 words each) for a free photo library such as Wikimedia Commons.
   Concrete, photographable nouns that a viewer would connect with the topic: places, objects, scenes, activities
-  (e.g. "rice paddy", "evacuation shelter", "beverage cans", "server room", "tokyo skyline", "hospital corridor").
+  (e.g. "rice paddy", "evacuation shelter", "beverage cans", "server room", "car tire", "hospital corridor").
   Order from most specific to most generic. Add "japan" only when the place matters.
   NEVER use company names, brand or product names, logos, names of real people, or abstract words (innovation, policy, strategy, future).
 - "query_ja": one Japanese search phrase (1-2 words) of the same kind.
-- "scene": one English sentence describing a neutral, photorealistic editorial news photo for this article
-  (subject, setting, light). No text, no signs, no logos, no brand names, no identifiable real people
-  (people only from behind, as hands, or out of focus)."""
+- "scenes": 3 English sentences, each a different photorealistic editorial news photo for this article that makes the headline's topic
+  recognizable at a glance (1. hands or people from behind doing the real activity, 2. the real place where it matters,
+  3. the concrete object of the topic). Subject, setting, light. No text, no signs, no logos, no brand names, no identifiable real people
+  (people only from behind, as hands, or out of focus).
+- "scene": the best of the 3 scenes.""" + SCENE_GUIDE
     if product:
         prompt += PRODUCT_PLAN_RULE
     elif service:
@@ -1675,15 +1784,27 @@ Return:
         q = re.sub(r"\s+", " ", q)
         if q and len(q) <= 40 and q.lower() not in queries:
             queries.append(q.lower())
+    scene = str(data.get("scene") or "").strip()[:400]
+    scenes = [re.sub(r"\s+", " ", str(x)).strip()[:400] for x in data.get("scenes") or [] if str(x).strip()]
+    if scene and scene not in scenes:
+        scenes.insert(0, scene)
+    category = str(data.get("category") or "").strip().lower()
     return {
         "queries": queries[:3],
         "query_ja": str(data.get("query_ja") or "").strip()[:20],
-        "scene": str(data.get("scene") or "").strip()[:400],
+        "scene": scene or (scenes[0] if scenes else ""),
+        "scenes": scenes[:AI_MAX_DRAWS],
+        "category": "launch" if (product or service) else (category if category in SCENE_CATEGORIES else "other"),
         "model": model,
         "product": re.sub(r"[^\w\s-]", " ", str(data.get("product") or "")).strip()[:40] if product else ("computer, phone or app screen" if service else ""),
         "productLaunch": product,
         "serviceLaunch": bool(service and not product),
     }
+
+
+def card_first(plan: dict, article: dict) -> bool:
+    """決算・値上げ・制度の記事で、題名に数字があれば、写真より数字・見出しのカードを先にする（2026-11-07 オーナー）"""
+    return plan.get("category") in CARD_FIRST and bool(CARD_NUMBER.search(str(article.get("title") or "")))
 
 
 # --------------------------------------------------------------------------- #
@@ -1975,13 +2096,13 @@ def doc_stats(image) -> dict:
 VISION_MODELS = ["@cf/meta/llama-4-scout-17b-16e-instruct", "@cf/mistralai/mistral-small-3.1-24b-instruct"]
 
 
-def cf_vision(image, prompt: str, max_tokens: int = 60) -> str | None:
+def cf_vision(image, prompt: str, max_tokens: int = 60, size: int = 512) -> str | None:
     """Workers AI の画像を読めるモデルに聞く（記事づくりの Gemini の枠を使わない）。答えの文字列か None"""
     token = cf_token("ai")
     if not token:
         return None
     small = image.copy()
-    small.thumbnail((512, 512))
+    small.thumbnail((size, size))
     buf = io.BytesIO()
     small.save(buf, "JPEG", quality=80)
     uri = "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
@@ -2212,29 +2333,69 @@ def ai_used_today() -> int:
     return sum(n for model, n in llm.usage_today().items() if model.startswith("cf-image:"))
 
 
-# 製品の発表の記事で AI に必ず足す決まり（製品の名前・種類は書かない。書くと描かれやすい）
-NO_PRODUCT_RULE = (
-    "Do not depict the announced product or any similar device, vehicle, machine or gadget, not even partly or in the background; "
-    "show only the setting, light and atmosphere."
+# 1つの記事で作る AI 画像の枚数（最初の1枚＋作り直し2回。2026-11-07 オーナー・Muse と決めた）
+AI_MAX_DRAWS = 3
+# 公式の画像が無い新製品・サービスの発表で、AI が製品の種類を描くときの決まり（2026-11-07 オーナー。台帳 I2）
+LAUNCH_RULE = (
+    "If a product is shown, it is a generic design of its kind: no brand name, no logo, no text, "
+    "and it does not imitate the distinctive design of any specific real model."
 )
-# アプリ・クラウド・機能などの発表で AI に必ず足す決まり（画面・端末も描かない。製品の画面と受け取られる）
-NO_SERVICE_RULE = (
-    "Do not depict the announced product, app or service, its user interface or logo, or any computer, laptop, phone, tablet, "
-    "monitor or screen, not even partly or in the background; show only the setting, light and atmosphere."
-)
-# 製品を描いてしまったときの、製品の無い場面（会場の雰囲気）
-NO_PRODUCT_SCENE = "A softly lit, empty exhibition hall with blurred stage lights and warm bokeh, polished floor, no exhibits, no products and no people in view."
+# 発表ではない話題（リコール・不具合・値上げ・業績など）。製品の種類は描いてよいが、札は普通の「画像はイメージ（AI生成）」
+NOT_LAUNCH = re.compile(r"(リコール|回収|不具合|障害|故障|事故|値上げ|値下げ|価格改定|決算|業績|赤字|黒字|販売台数|調査|ランキング)")
+
+
+def launch_article(article: dict) -> bool:
+    """新製品・サービス（端末・乗り物・アプリ・機能）の発表の記事か。公式の画像が無いときの AI の札は
+    「公式画像がないためイメージ（AI生成）」（2026-11-07 オーナー）。リコール・レースなど発表ではない実物の話題は含めない"""
+    if product_launch(article):
+        return True
+    title = str(article.get("title") or "")
+    if NOT_LAUNCH.search(title) or MOTORSPORT.search(title):
+        return False
+    return announcement_article(article)
 
 
 def ai_prompt(plan: dict, article: dict) -> str:
     scene = plan.get("scene") or ", ".join(plan.get("queries") or []) or article.get("genre", "")
-    rule = f" {NO_PRODUCT_RULE}" if plan.get("productLaunch") else f" {NO_SERVICE_RULE}" if plan.get("serviceLaunch") else ""
+    rule = f" {LAUNCH_RULE}" if plan.get("productLaunch") or plan.get("serviceLaunch") else ""
+    # 主役を大きく（2026-11-07 オーナー「何もイメージできない」。広い空白は一覧の小さい写真で話題と無関係に見える）
     return (
         f"Photorealistic editorial news photograph. {scene} "
-        "Natural muted colors, soft natural light, documentary style, shot on a full-frame camera with a 35mm lens, "
-        "wide landscape composition with empty space in the lower third. "
+        "Natural muted colors, soft natural light, documentary style, shot on a full-frame camera with a 50mm lens, "
+        "close-up or medium shot: the main subject is large, sharp and fills at least half of the frame, with a simple uncluttered background. "
         f"No text, no letters, no numbers, no signs, no logos, no watermark, no brand names, no identifiable faces.{rule}"
     )
+
+
+# 生成した画像が見出しとつながって見えるか（無料の Workers AI の画像判定。scripts/noir_cover.py も使う）。
+# 一覧・SNS の小さい写真で判定する（大きい画像なら分かる細部は、読者には見えない）
+HEADLINE_PROMPT = (
+    "A news site shows this photo as a small thumbnail next to the headline below.\n"
+    "Headline (Japanese): {title}\nIn English: {topic}\n"
+    "Would an ordinary reader immediately see a clear connection between this photo and the topic of the headline? "
+    "A generic empty office, desk, hall, building, corridor or abstract light that could illustrate any news does NOT count. "
+    "Answer with one word: yes or no."
+)
+MISLEADING_PROMPT = (
+    "Headline (Japanese): {title}\n"
+    "Is this illustration misleading for that headline: does it show a readable brand name or company logo, "
+    "or dramatic damage (fire, smoke, explosion, crash, destruction, injury) that the headline does not report? "
+    "Answer with one word: yes or no."
+)
+CHECK_SIZE = 320
+
+
+def headline_check(image, article: dict, topic: str = "", vision=None) -> str | None:
+    """見出しとのつながりが読者に見えない・誤解を招く（作り物のブランド・大げさな被害）なら理由。判定できないときは見えない側に倒す"""
+    vision = vision or cf_vision
+    title = str(article.get("title") or "")
+    answer = (vision(image, HEADLINE_PROMPT.format(title=title, topic=topic or title), max_tokens=4, size=CHECK_SIZE) or "").strip().lower()
+    if not answer.startswith("yes"):
+        return "見出しとのつながりが見えない" if answer else "見出しとのつながりを判定できない"
+    misleading = (vision(image, MISLEADING_PROMPT.format(title=title), max_tokens=4, size=CHECK_SIZE) or "").strip().lower()
+    if misleading.startswith("yes"):
+        return "誤解を招く（ブランド・大げさな被害）"
+    return None
 
 
 def depicts_product(image, product: str) -> bool:
@@ -2485,11 +2646,12 @@ def process(path: Path, article: dict, ctx: dict) -> str:
     previous = article.get("imageCredit") or ctx.get("previous_credit", {}).get(slug) or {}
     product = real_object_article(article)
     if product:
-        log("   [img] 実物（製品・車・商品）が主役の記事: 公式の写真を最優先。AI・素材は製品を描かない場面だけ")
-    # 製品・サービス（アプリ・クラウド・機能を含む）の発表: 公式の画像を先に探し、AI・素材は製品・画面を描かない場面だけ
+        log("   [img] 実物（製品・車・商品）が主役の記事: 公式の写真を最優先")
+    # 製品・サービス（アプリ・クラウド・機能を含む）の発表: 公式の画像を先に探す。無ければ AI が製品の種類・使う人の手元を描き、
+    # 札は「公式画像がないためイメージ（AI生成）」（2026-11-07 オーナー。台帳 I2）
     announce = product or announcement_article(article)
     if announce and not product:
-        log("   [img] 製品・サービスの発表: 公式の画像を最優先。AI・素材は製品・画面を描かない場面だけ")
+        log("   [img] 製品・サービスの発表: 公式の画像を最優先")
     # 自前の画像（まとめ記事・別の切り口の記事が元記事の画像を引き継いだ）なら出典も引き継ぐ
     if is_ours(thumb) and not ctx.get("retry_ai") and not ctx.get("repick"):
         credit = ctx["credit_by_thumb"].get(thumb)
@@ -2506,7 +2668,8 @@ def process(path: Path, article: dict, ctx: dict) -> str:
     release = None
     # 報道（二次の記事）が出典の製品・サービスの発表は、その会社自身の発表（自社のニュースルーム・PR TIMES）を探して
     # その画像を使う（2026-11-03 マイナビニュースの記事だけを見て、kubell の発表の画像を使わず AI にしていた）
-    if not ctx.get("retry_ai") and official is None and announce and secondary_source(article):
+    # 2026-11-07 オーナー: 発表に限らず（リコール・決算・障害など）、報道が出典の記事は会社自身の発表の写真を探す
+    if not ctx.get("retry_ai") and official is None and secondary_source(article):
         try:
             release = find_official_release(article)
         except Exception as error:  # noqa: BLE001 - 探せなくても今までどおり続ける
@@ -2535,6 +2698,20 @@ def process(path: Path, article: dict, ctx: dict) -> str:
             log(f"   [img] 公式の画像: {best['kind']}（{best['where']}）{best['url'][:90]}")
         else:
             log(f"   [img] 公式の画像は使わない: {' / '.join(result['reasons'])[:200]}")
+        # 官公庁の発表（リコールの届出など）に写真が無ければ、記事の会社自身の発表の写真を探す（2026-11-07 オーナー）
+        if release is None and public_body_source(article) and not (best and best["rank"] <= OFFICIAL_RANK["banner" if announce else "hero"]):
+            try:
+                release = find_official_release(article)
+            except Exception as error:  # noqa: BLE001
+                log(f"   [img] 会社自身の発表を探せない: {str(error)[:120]}")
+                release = None
+            if release:
+                found = pick_official(release["article"], ctx["repeats"], fast=ctx.get("fast", False))
+                if found["best"] and (not best or found["best"]["rank"] < best["rank"]):
+                    best, official = found["best"], release["official"]
+                    log(f"   [img] 会社自身の発表の画像: {best['kind']}（{best['where']}）{best['url'][:90]}")
+                else:
+                    release = None
         # 製品・サービスの発表は、製品が写った公式のバナー（発表のキービジュアル）も AI の作り物より良い
         if best and best["rank"] <= OFFICIAL_RANK["banner" if announce else "hero"]:
             return use_official(path, article, ctx, best, official, release)
@@ -2557,8 +2734,10 @@ def process(path: Path, article: dict, ctx: dict) -> str:
         return "kept-official"
 
     # ここから先は、公式の写真・見出し画像が無い記事
+    launch = launch_article(article)
     try:
-        plan = visual_plan(article, product=product, service=announce and not product)
+        # 新製品の発表は製品の種類を、アプリ・機能の発表は使う人の手元を描く。リコールなど発表ではない実物の話題は一般の物（種類別の場面）
+        plan = visual_plan(article, product=launch and product, service=launch and not product)
     except Exception as error:  # noqa: BLE001
         log(f"   [img] 検索語を作れない: {str(error)[:100]}")
         if best:
@@ -2570,41 +2749,48 @@ def process(path: Path, article: dict, ctx: dict) -> str:
 
     credit: dict = {}
     image = None
-    # 2. AI 生成（前からの写真風のプロンプト。話題を問わない。実在の人物は描かない。1日 IMAGE_AI_DAILY_MAX 枚まで）
+    rejected = False  # AI 画像を作ったが、顔・文字か見出しとのつながりで使わなかった
+    # 決算・値上げ・制度で題名に数字がある記事は、数字・見出しのカード（写真なしのカバー）を第一の候補にする（2026-11-07 オーナー）
+    if not ctx.get("retry_ai") and not ctx.get("scene") and card_first(plan, article):
+        log(f"   [img] {plan.get('category')} の記事なので、数字・見出しのカードにする（写真なし）")
+        return use_card(path, article, ctx, plan.get("category", ""))
+    # 2. AI 生成（写真風。話題が一目で分かる場面を、主役を大きく。実在の人物は描かない。1日 IMAGE_AI_DAILY_MAX 枚まで）
+    #    1枚ごとに ①人の顔・文字が無い ②見出しとのつながりが読者に見え、誤解を招かない を無料の画像判定で確かめ、
+    #    だめなら別の切り口の場面で作り直す（2回まで）。誰もいない会場・抽象的な光のような、話題と関係の無い場面には逃げない
     if not ctx.get("retry_ai"):
+        scenes = [ctx["scene"]] if ctx.get("scene") else (plan.get("scenes") or [plan.get("scene", "")])
         made = None
-        drew_product = False
-        for attempt in range(3):
-            # 2回とも顔・文字が出たら、最後は「人を描かない・物だけ」の場面で1回だけ作る
-            use = plan if attempt < 2 else {**plan, "scene": objects_only_scene(plan, article)}
-            if drew_product:
-                use = {**plan, "scene": NO_PRODUCT_SCENE}  # 製品を描いてしまったら、製品の無い会場の雰囲気にする
-            if attempt == 2:
-                log("   [img] 人を描かない場面で作り直す")
+        faced = False
+        for attempt in range(AI_MAX_DRAWS):
+            scene = scenes[min(attempt, len(scenes) - 1)]
+            use = {**plan, "scene": scene}
+            if faced:
+                use["scene"] = objects_only_scene(use, article)  # 顔・文字が出たら「人を描かない・物だけ」で作り直す
             made = generate_ai(use, article, fast=ctx.get("fast", False))
-            # 人の顔・文字の写った画像は使わない（実在の人物と誤解される・作り物の人物や崩れた文字を載せない）。1回だけ作り直す
-            if made and shows_face(made[0]):
+            if made is None:
+                break  # 上限・トークン無し・どのモデルも失敗
+            # 人の顔・文字の写った画像は使わない（実在の人物と誤解される・作り物の人物や崩れた文字を載せない）
+            if shows_face(made[0]):
                 log("   [img] AI 画像に人の顔か文字が写ったので作り直す")
-                made = None
+                made, faced, rejected = None, True, True
                 continue
-            # 製品の発表で、製品や見間違える物を描いた画像は使わない（作り物を本物の製品と受け取られる）
-            if made and announce and depicts_product(made[0], plan.get("product", "")):
-                log("   [img] AI 画像に製品か似た物が写ったので、製品の無い場面で作り直す")
-                made = None
-                drew_product = True
+            problem = headline_check(made[0], article)
+            if problem:
+                log(f"   [img] AI 画像を使わない（{problem}）ので、別の切り口で作り直す")
+                made, rejected = None, True
                 continue
-            if made and announce:
-                plan = use
+            plan = use
             break
         if made:
             image, model = made
-            credit = {"kind": "ai", "model": model, "prompt": plan.get("scene", "")[:300], "provider": "Cloudflare Workers AI"}
-            if announce:
-                credit["noProduct"] = True  # 製品・サービスの発表: 製品・画面を描かない場面で作り、写っていないことを確かめた
-            log(f"   [img] AI 生成: {model}")
+            credit = {"kind": "ai", "model": model, "prompt": plan.get("scene", "")[:300], "provider": "Cloudflare Workers AI", "relevant": True}
+            if launch:
+                credit["launch"] = True  # 公式の画像が無い新製品・サービスの発表（札は「公式画像がないためイメージ（AI生成）」）
+            log(f"   [img] AI 生成: {model}" + ("（発表: 公式画像がないためイメージ）" if launch else ""))
     # 3. フリー素材（AI が使えないとき。記事と関係がはっきりしたものだけ）
     if image is None and not ctx.get("ai_only"):
         pick, image = find_stock(article, plan, ctx["used_stock"])
+        # 発表の記事で、別の会社の本物の製品が写った素材は使わない（本物の写真なので、その製品と受け取られる）
         if pick and image is not None and announce and depicts_product(image, plan.get("product", "")):
             log(f"   [img] 素材に製品か似た物が写っているので使わない: {pick['title'][:60]}")
             pick, image = None, None
@@ -2626,9 +2812,12 @@ def process(path: Path, article: dict, ctx: dict) -> str:
         log("   [img] 素材が見つからないので今の画像のまま")
         return "kept"
     if image is None:
-        # 4. 公式のロゴ・文字の多い図・バナー（AI も素材も無いとき）。それも無ければ今までどおり（写真なしのカバー）
+        # 4. 公式のロゴ・文字の多い図・バナー（AI も素材も無いとき）
         if best:
             return use_official(path, article, ctx, best, official, release)
+        # 5. 見出しとつながる画像が作れなかった: 関係の無い写真は出さず、数字・見出しのカード（写真なしのカバー）にする
+        if rejected:
+            return use_card(path, article, ctx, plan.get("category", ""))
         return "none"
 
     try:
@@ -2684,6 +2873,24 @@ def backfill_body_images(articles: dict, ctx: dict, slugs: list[str], limit: int
             log(f"   [img] 本文の画像を足せない: {article.get('slug')}（{str(error)[:100]}）")
             tally["error"] += 1
     return tally
+
+
+def use_card(path: Path, article: dict, ctx: dict, category: str = "") -> str:
+    """写真を付けず、数字・見出しのカード（記事のカバー /cover/<slug> と一覧の見出しの札）にする（2026-11-07 オーナー）。
+    決算・値上げ・制度の記事の第一の候補で、見出しとつながる AI 画像が作れなかったときの最後の手段（関係の無い写真は出さない）"""
+    previous = ctx.get("previous_credit", {}).get(article.get("slug") or path.stem) or {}
+    thumb = article.get("thumbnail") or ""
+    credit = {"kind": "card", "category": category or "other", "at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+    if previous.get("original"):
+        credit["original"] = previous["original"]
+    elif thumb and not is_ours(thumb) and not is_youtube(thumb):
+        credit["original"] = thumb
+    article["thumbnail"] = ""
+    article["imageCredit"] = credit
+    article.pop("imageFocus", None)
+    if not ctx["dry_run"]:
+        save(path, article)
+    return "card"
 
 
 def use_official(path: Path, article: dict, ctx: dict, best: dict, official: dict, release: dict | None = None) -> str:

@@ -294,8 +294,9 @@ def image_record_problems(record: dict) -> list[str]:
     try:
         import images  # noqa: PLC0415
 
-        if images.product_launch(record):
-            return ["[I2] 発表された製品・車・端末を AI で描いた画像"]
+        # 2026-11-07 オーナー: 公式の画像が無い発表は AI が製品の種類を描いてよいが、札は「公式画像がないためイメージ（AI生成）」（launch）
+        if images.product_launch(record) and not (credit.get("launch") or credit.get("noProduct")):
+            return ["[I2] 発表された製品を AI で描いた画像に「公式画像がないためイメージ（AI生成）」の札がない"]
     except Exception as error:  # noqa: BLE001
         return cannot_check("I2", "images", error)
     return []

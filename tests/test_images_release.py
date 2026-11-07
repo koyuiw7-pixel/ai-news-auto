@@ -237,54 +237,90 @@ class ProcessReleaseTest(ReleaseTestBase):
         self.assertEqual(outcome, "kept")
         self.assertEqual(article["thumbnail"], ARTICLE["thumbnail"])
 
-    def test_non_announcement_does_not_search(self):
+    def test_non_announcement_also_searches(self):
+        """2026-11-07 オーナー: 発表に限らず（調査・リコール・決算など）、報道が出典なら会社自身の発表の写真を探す"""
         article = {**ARTICLE, "title": "生成AIの利用実態を調査、6割が業務で利用", "keywords": [], "tags": []}
         article.pop("imageCredit")
-        with mock.patch.object(images, "find_official_release", side_effect=AssertionError("探さない")), \
+        with mock.patch.object(images, "find_official_release", return_value=None) as found, \
                 mock.patch.object(images, "visual_plan", side_effect=RuntimeError("stop")):
             self.assertEqual(images.process(Path("/nonexistent/x.json"), article, self.ctx()), "error")
+        self.assertEqual(found.call_count, 1)
 
 
-class NoProductAiTest(unittest.TestCase):
-    def test_service_prompt_forbids_product_and_screens(self):
-        prompt = images.ai_prompt({"scene": "Soft light on an empty desk with paper folders.", "serviceLaunch": True}, {})
-        self.assertIn("Do not depict the announced product, app or service", prompt)
-        self.assertIn("laptop, phone, tablet", prompt)
-        self.assertNotIn("Do not depict", images.ai_prompt({"scene": "A rice paddy."}, {}))
+class LaunchAiTest(unittest.TestCase):
+    """2026-11-07 オーナー決定（台帳 I2 を改める）: 公式の画像が無い発表は、AI が製品の種類・使う人の手元を描いてよい。
+    札は「公式画像がないためイメージ（AI生成）」（imageCredit.launch）。見出しとのつながりが見えない画像は作り直し、
+    だめなら関係の無い写真ではなく数字・見出しのカード"""
+
+    PLAN = {"queries": ["laptop"], "query_ja": "", "scene": "s1", "scenes": ["s1", "s2", "s3"], "category": "launch", "model": "m",
+            "product": "computer, phone or app screen", "productLaunch": False, "serviceLaunch": True}
+
+    def test_launch_prompt_allows_generic_product(self):
+        prompt = images.ai_prompt({"scene": "Hands holding a smartphone.", "serviceLaunch": True}, {})
+        self.assertIn("generic design of its kind", prompt)
+        self.assertIn("no logo", prompt)
+        self.assertNotIn("Do not depict", prompt)
+        self.assertIn("fills at least half of the frame", images.ai_prompt({"scene": "A rice paddy."}, {}))
+        self.assertNotIn("generic design of its kind", images.ai_prompt({"scene": "A rice paddy."}, {}))
 
     def test_service_plan_rule_is_added(self):
         captured = {}
 
         def fake_generate(system, prompt, schema, **_):
             captured["prompt"] = prompt
-            return {"queries": ["office desk"], "scene": "An empty desk."}, "test-model"
+            return {"queries": ["smartphone"], "scene": "Hands holding a phone.", "scenes": ["Hands holding a phone.", "b", "c"], "category": "other"}, "test-model"
 
         with mock.patch.object(images.llm, "generate_json", side_effect=fake_generate), mock.patch.object(images, "llm_tier", return_value="images"):
             plan = images.visual_plan(ARTICLE, service=True)
-        self.assertIn("must NOT depict the product", captured["prompt"])
+        self.assertIn("abstract soft color blocks", captured["prompt"])
+        self.assertIn("Never an empty office", captured["prompt"])
         self.assertTrue(plan["serviceLaunch"])
-        self.assertFalse(plan["productLaunch"])
-        self.assertTrue(plan["product"])  # depicts_product に渡す（画面・端末が写っていないか確かめる）
+        self.assertEqual(plan["category"], "launch")
+        self.assertEqual(plan["scenes"], ["Hands holding a phone.", "b", "c"])
 
-    def test_ai_for_announcement_is_checked_for_product(self):
-        """AI 画像に製品・画面が写ったら作り直し、写っていないことを確かめたら noProduct を付ける"""
+    def run_process(self, checks, made=None):
         article = {**ARTICLE}
         article.pop("imageCredit")
-        plan = {"queries": ["office desk"], "query_ja": "", "scene": "An empty desk.", "model": "m", "product": "computer, phone or app screen", "productLaunch": False, "serviceLaunch": True}
-        made = [("img1", "flux"), ("img2", "flux")]
-        checks = iter([True, False])  # 1回目は画面が写った → 作り直し
-        ctx = ProcessReleaseTest.ctx(self)
+        made = list(made or [("img1", "flux"), ("img2", "flux"), ("img3", "flux")])
+        generate = mock.Mock(side_effect=lambda *a, **k: made.pop(0))
         with mock.patch.object(images, "find_official_release", return_value=None), \
-                mock.patch.object(images, "visual_plan", return_value=plan), \
-                mock.patch.object(images, "generate_ai", side_effect=lambda *a, **k: made.pop(0)), \
+                mock.patch.object(images, "visual_plan", return_value=dict(self.PLAN)), \
+                mock.patch.object(images, "generate_ai", generate), \
                 mock.patch.object(images, "shows_face", return_value=False), \
-                mock.patch.object(images, "depicts_product", side_effect=lambda *a: next(checks)), \
+                mock.patch.object(images, "headline_check", side_effect=list(checks)), \
+                mock.patch.object(images, "find_stock", return_value=(None, None)), \
                 mock.patch.object(images, "store", return_value=("https://ai-tech-express.jp/img/x-2.jpg", (1200, 630))), \
                 mock.patch.object(images, "log", lambda *_: None):
-            outcome = images.process(Path("/nonexistent/x.json"), article, ctx)
+            outcome = images.process(Path("/nonexistent/x.json"), article, ProcessReleaseTest.ctx(self))
+        return outcome, article, generate
+
+    def test_unrelated_image_redrawn_with_next_scene_and_labeled_launch(self):
+        outcome, article, generate = self.run_process([("見出しとのつながりが見えない"), None])
         self.assertEqual(outcome, "ai")
-        self.assertTrue(article["imageCredit"]["noProduct"])
-        self.assertEqual(article["imageCredit"]["prompt"], images.NO_PRODUCT_SCENE)
+        self.assertEqual(generate.call_args_list[1].args[0]["scene"], "s2")
+        self.assertTrue(article["imageCredit"]["launch"])
+        self.assertTrue(article["imageCredit"]["relevant"])
+        self.assertNotIn("noProduct", article["imageCredit"])
+        self.assertEqual(article["imageCredit"]["prompt"], "s2")
+        self.assertFalse(hasattr(images, "NO_PRODUCT_SCENE"))  # 誰もいない会場の場面には逃げない
+
+    def test_gives_up_to_headline_card(self):
+        outcome, article, generate = self.run_process(["x", "x", "x"])
+        self.assertEqual(generate.call_count, images.AI_MAX_DRAWS)
+        self.assertEqual(outcome, "card")
+        self.assertEqual(article["thumbnail"], "")
+        self.assertEqual(article["imageCredit"]["kind"], "card")
+
+    def test_launch_article(self):
+        self.assertTrue(images.launch_article({"title": "Googleが新型スマホ「Pixel 11」を発表", "genreSlug": "tech-gadget", "tags": []}))
+        self.assertTrue(images.launch_article(ARTICLE))
+        self.assertFalse(images.launch_article({"title": "横浜ゴムの小型トラック・バン用タイヤ7,029本をリコール", "genreSlug": "business", "tags": ["タイヤ"]}))
+
+    def test_card_first_for_earnings_with_numbers(self):
+        self.assertTrue(images.card_first({"category": "earnings"}, {"title": "ソニーの中間期、営業利益が42.9%増"}))
+        self.assertTrue(images.card_first({"category": "price"}, {"title": "サントリーが「響」など値上げへ　2027年4月から"}))
+        self.assertFalse(images.card_first({"category": "earnings"}, {"title": "ソニー、決算を発表"}))
+        self.assertFalse(images.card_first({"category": "recall"}, {"title": "タイヤ7,029本をリコール"}))
 
 
 if __name__ == "__main__":

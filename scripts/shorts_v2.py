@@ -427,7 +427,7 @@ def image_credit_text(credit: dict | None) -> str:
             return f"画像：{org}（{via}配信の公式発表より）"
         return f"画像：{via}配信の公式発表より" if via else f"画像：{org}（公式発表より）"
     if kind == "ai":
-        return "画像はイメージ（AI生成）"
+        return "公式画像がないためイメージ（AI生成）" if credit.get("launch") else "画像はイメージ（AI生成）"
     if kind == "stock":
         lic = credit.get("license", "")
         trim = "・トリミング" if lic.startswith("CC BY") else ""

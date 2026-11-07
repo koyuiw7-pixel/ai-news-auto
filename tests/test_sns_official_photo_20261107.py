@@ -96,7 +96,11 @@ class OfficialPhotoTest(unittest.TestCase):
         try:
             self.assertEqual(sns_rules.check_media("threads", card, AI_WITH_BODY, "article"), [])
             ai_card = [{"type": "image", "url": tp.card_url(AI_ONLY), "width": 1200, "height": 675}]
-            self.assertIn("[ルール2] 発表された製品を AI で描いた画像", sns_rules.check_media("threads", ai_card, AI_ONLY, "article"))
+            self.assertIn("[ルール2] 発表された製品を AI で描いた画像に「公式画像がないためイメージ（AI生成）」の札がない", sns_rules.check_media("threads", ai_card, AI_ONLY, "article"))
+            # 2026-11-07 オーナー（台帳 I2）: 札（launch）があれば、公式の画像が無い発表の AI のイメージを使ってよい
+            labeled = {**AI_ONLY, "imageCredit": {**AI_ONLY["imageCredit"], "launch": True}}
+            self.assertEqual(sns_rules.check_media("threads", [{"type": "image", "url": tp.card_url(labeled), "width": 1200, "height": 675}], labeled, "article"), [])
+            self.assertEqual(sns_rules.card_note(labeled), "公式画像がないためイメージ（AI生成）")
         finally:
             sns_rules.product_launch = orig
 

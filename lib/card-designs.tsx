@@ -8,7 +8,7 @@ import { companyOf } from "@/lib/companies";
 import { fetchPhoto } from "@/lib/cover";
 import { isFastNews } from "@/lib/cover-path";
 import { articleTitle, headOf } from "@/lib/headline";
-import { officialCreditText } from "@/lib/image-credit";
+import { aiCreditText, officialCreditText } from "@/lib/image-credit";
 import { containRect, coverFit, cornerRect, DEFAULT_AR, focusOf, freeCorner as freeCornerOf, NOTE, NOTE_SMALL, overlap, photoOnlyLayout, TAG, TAG_SMALL, type Box, type Corner, type Rect } from "@/lib/card-geometry";
 
 /**
@@ -478,7 +478,7 @@ function freeCorner(subject: Rect, w: number, h: number): Corner {
 /** 写真の注記（カバー画像と同じ。AI 生成・素材写真・公式写真のときだけ。CC BY は作者とライセンスの表示が条件） */
 export function cardCredit(article: FullArticle): string {
   const c = article.imageCredit;
-  if (c?.kind === "ai") return "画像はイメージ（AI生成）";
+  if (c?.kind === "ai") return aiCreditText(c) ?? "";
   if (c?.kind === "official" || c?.kind === "figure") return officialCreditText(c) ?? "";
   if (c?.kind !== "stock") return "";
   const who = (c.creator || "").slice(0, 28);

@@ -52,15 +52,6 @@ SCENE_SCHEMA = {
     },
     "required": ["topic_en", "scenes"],
 }
-RELEVANCE_PROMPT = (
-    "A news site shows this photo as the illustration for the headline below.\n"
-    "Headline (Japanese): {title}\nIn English: {topic}\n"
-    "Would an ordinary reader immediately see a clear connection between this photo and the topic of the headline? "
-    "A generic empty office, desk, hall, building, corridor or abstract light that could illustrate any news does NOT count. "
-    "Answer with one word: yes or no."
-)
-
-
 def is_noir(article: dict) -> bool:
     return article.get("layout") == LAYOUT
 
@@ -123,11 +114,11 @@ Return:
 
 
 def relevant(image, article: dict, topic: str) -> bool:
-    """見出しとのつながりが読者に見えるか（無料の画像判定 Workers AI）。判定できないときは見えない側に倒す"""
+    """見出しとのつながりが読者に見え、誤解を招かないか（無料の画像判定 Workers AI。scripts/images.py の headline_check と同じ。
+    見出し画像の AI 画像も同じ確かめを通す）。判定できないときは見えない側に倒す"""
     import images  # noqa: PLC0415
 
-    answer = images.cf_vision(image, RELEVANCE_PROMPT.format(title=article.get("title", ""), topic=topic or article.get("title", "")), max_tokens=4)
-    return (answer or "").strip().lower().startswith("yes")
+    return images.headline_check(image, article, topic) is None
 
 
 def make_cover(article: dict, *, fast: bool = False, dry_run: bool = False) -> dict | None:
@@ -137,7 +128,7 @@ def make_cover(article: dict, *, fast: bool = False, dry_run: bool = False) -> d
 
     # 2026-11-07 オーナー: 公式の画像が無い新製品の発表は、AI が製品（の種類）を描いてよい。札は「公式画像がないためイメージ（AI生成）」。
     # リコールなど発表ではない記事は、ブランド・型の無い一般の物（タイヤ・電池など）を描いてよい
-    launch = bool(images.real_object_article(article) or images.announcement_article(article))
+    launch = images.launch_article(article)
     topic, scenes = cover_scenes(article)
     if not scenes:
         return None

@@ -47,7 +47,8 @@ export type ArticleUpdate = {
  */
 export type ImageCredit = {
   /** official: 公式発表（自社サイト・プレスリリース配信）の写真を縮小して自前で配信。source: 元記事の写真への直リンク（旧方式） */
-  kind: "source" | "official" | "stock" | "ai" | "figure";
+  /** card: 写真を付けず、数字・見出しのカード（/cover/<slug>）にした（2026-11-07 オーナー。scripts/images.py の use_card） */
+  kind: "source" | "official" | "stock" | "ai" | "figure" | "card";
   /** official: 写真以外のとき video（自社の動画ファイルのコマ）/ youtube（公式 YouTube 動画の画像）/ generic（サイト共通の写真）/ kit（プレスキット）/ hero・banner（見出し画像）/ dense（図）/ logo */
   imageKind?: string;
   /** figure: 図に載せた数字と説明 */
@@ -68,7 +69,7 @@ export type ImageCredit = {
   licenseUrl?: string;
   sourceUrl?: string;
   model?: string;
-  /** ノワールの表紙の AI のイメージ: 新製品・サービスの発表で、公式の画像が無いので製品（の種類）を描いた（札は「公式画像がないためイメージ（AI生成）」） */
+  /** AI のイメージ（見出し画像・ノワールの表紙）: 新製品・サービスの発表で、公式の画像が無いので製品（の種類）を描いた（札は「公式画像がないためイメージ（AI生成）」。2026-11-07 オーナー） */
   launch?: boolean;
 };
 
