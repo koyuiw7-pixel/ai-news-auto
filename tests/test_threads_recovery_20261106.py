@@ -311,6 +311,18 @@ class AllPathsTest(TempState):
         for words in ("30分", "速報", "遅らせ", "11/7", "scripts/threads_gate.py"):
             self.assertIn(words, row)
 
+def setUpModule():
+    __import__("sys").path.insert(0, __import__("os").path.dirname(__file__))
+    import legacy_threads  # 以前の書き方の仕組みのテスト（台帳 S46 の新しい書き方・承認待ちの止めは外す）
+
+    legacy_threads.start()
+
+
+def tearDownModule():
+    import legacy_threads
+
+    legacy_threads.stop()
+
 
 if __name__ == "__main__":
     unittest.main()

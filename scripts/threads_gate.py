@@ -15,6 +15,10 @@ Threads に投稿を作る経路はすべて threads_post.create_post（Buffer�
        数字が確かめられない（更新されないまま CHECK_GIVE_UP を過ぎた）→ 止めない（"unconfirmed"。いつもの予定に戻す。issue なし）
      （Buffer の数字は1日1回の更新で、その場で取り直す API は無い＝2026-11 の API の説明。だから「確かめられない」がふつうに起こる）
      結果は state/threads_recovery.json に残す（`python scripts/threads_gate.py --check`。記事の自動処理の毎回で動き、時刻が来た回だけ読む）。
+  4. 新しい書き方の承認待ち（2026-11-07 夜 オーナー・台帳 S46）: state/threads_hold.json の held が true の間は、Threads の自動投稿を
+     出さない（通常の投稿・速報・朝のまとめのすべて。ミサイル・地震・津波などの急ぎの安全の知らせだけは出す）。
+     オーナーが最初の3本の下書き（scripts/threads_reader.py）を承認したら held を false にする。それだけで再開する。
+     朝のまとめは新しい書き方の外なので、held を false にしても digest が true になるまで出さない。
   PROBE_DAY を過ぎたら 2・3 は何もしない（ずっと続く止めにはしない）。1 はずっと続く。
 
   python scripts/threads_gate.py --status   # 今の状態を表示するだけ
@@ -36,6 +40,7 @@ ROOT = Path(__file__).resolve().parent.parent
 POSTED_PATH = ROOT / "state" / "threads_posted.json"
 VIDEO_PATH = ROOT / "state" / "sns_video.json"
 RECOVERY_PATH = ROOT / "state" / "threads_recovery.json"
+HOLD_PATH = ROOT / "state" / "threads_hold.json"
 JST = timezone(timedelta(hours=9))
 
 MIN_GAP = timedelta(minutes=30)
@@ -119,6 +124,23 @@ def record_of(article: dict | None, posted: dict | None = None) -> dict | None:
         return None
     posted = posted if posted is not None else (_load(POSTED_PATH).get("posted") or {})
     return posted.get(slug)
+
+
+# ---- 新しい書き方の承認待ち（台帳 S46） ----
+
+def style_hold(article: dict | None, kind: str = "article", hold: dict | None = None) -> str:
+    """いま Threads に出してはいけない理由（新しい書き方の承認待ち・朝のまとめ）。出してよければ ""。
+    ファイルが読めないときは止める（承認の前に古い書き方が出ないように）"""
+    import sns_rules
+
+    if kind == "article" and article and sns_rules.is_urgent(article):
+        return ""  # 急ぎの安全の知らせは止めない（遅れると読者に害がある）
+    data = hold if hold is not None else _load(HOLD_PATH)
+    if not data or data.get("held", True):
+        return "Threads の自動投稿は、新しい書き方の最初の3本をオーナーが承認するまで止めています（state/threads_hold.json・台帳 S46）"
+    if kind == "digest" and not data.get("digest"):
+        return "朝のまとめは新しい書き方の外なので、Threads には出しません（state/threads_hold.json の digest・台帳 S46）"
+    return ""
 
 
 # ---- 11/7 の様子見 ----
@@ -251,6 +273,8 @@ def enforce(api_key: str, post_input: dict, article: dict | None, *, kind: str =
     now = now or datetime.now(timezone.utc)
     when = intended_time(post_input, now)
     posted = _load(POSTED_PATH).get("posted") or {}
+    if why := style_hold(article, kind):
+        raise ThreadsHeld(why)
     record = record_of(article, posted) if kind == "article" else None
     priority = kind == "article" and is_priority(article, record)
     if not priority:
@@ -281,6 +305,8 @@ def enforce_direct(article: dict | None, now: datetime | None = None) -> None:
     """公式 API の予備の経路（threads_post.publish）。予約できないので、近すぎる・止めている間は ThreadsHeld（次の回にもう一度）"""
     now = now or datetime.now(timezone.utc)
     posted = _load(POSTED_PATH).get("posted") or {}
+    if why := style_hold(article):
+        raise ThreadsHeld(why)
     if not is_priority(article, record_of(article, posted)):
         why = normal_hold(now, article, posted=posted)
         if why:

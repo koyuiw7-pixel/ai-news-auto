@@ -1408,19 +1408,27 @@ def meta_existing_post(token: dict, article: dict | None, fetch=None) -> str:
 
 def publish(token: dict, text: str, link: str, article: dict | None = None, fetch=None) -> dict:
     """Threads 公式 API で出す（Buffer が無いときの予備）。出す直前にルールの門番を通し、同じ記事の投稿がもう無いかを確かめる"""
-    text, _ = sns_rules.autofix(text, article, "threads")  # 止めずに直す（ルール13・14・S35）
-    sns_rules.enforce("threads", text, [], article, source="threads_post.publish")
     if existing := meta_existing_post(token, article, fetch):
         log(f"  [threads] 同じ記事の投稿がもうあります（{existing}）。二重に出しません")
         return {"id": existing, "permalink": "", "duplicate": True}
-    threads_gate.enforce_direct(article)  # 30分の間隔・今夜の止め・11/7 の様子見（台帳 S44。予約できないので近ければ次の回）
+    threads_gate.enforce_direct(article)  # 新しい書き方の承認待ち（台帳 S46）・間隔（S44）。止めている間は LLM も呼ばない
+    reply = ""
+    if sns_rules.reader_kind("threads", "article", article) == "reader":
+        # 新しい書き方（台帳 S46）: 本文はリンク無し、返信に「続き（◯◯）→ URL」
+        import threads_reader  # noqa: PLC0415
+
+        pair = threads_reader.pair_for(article)
+        text, reply, link = pair["main"], pair["reply"], ""
+        sns_rules.enforce("threads", text, [], article, source="threads_post.publish",
+                          kind="reader", reply_text=reply)
+    else:
+        text, _ = sns_rules.autofix(text, article, "threads")  # 止めずに直す（ルール13・14・S35）
+        sns_rules.enforce("threads", text, [], article, source="threads_post.publish")
     user_id, access_token = token["user_id"], token["access_token"]
-    container = api("POST", f"{user_id}/threads", {
-        "media_type": "TEXT",
-        "text": text,
-        "link_attachment": link,
-        "access_token": access_token,
-    })
+    params = {"media_type": "TEXT", "text": text, "access_token": access_token}
+    if link:
+        params["link_attachment"] = link
+    container = api("POST", f"{user_id}/threads", params)
     time.sleep(PUBLISH_WAIT_SEC)
 
     # 処理が終わっていないと公開に失敗することがあるので、少し待って再試行する
@@ -1437,6 +1445,17 @@ def publish(token: dict, text: str, link: str, article: dict | None = None, fetc
             log(f"  [retry {attempt}/3] {error}")
             time.sleep(20)
 
+    if reply:
+        # 返信（リンクの行）。失敗しても本文は出ている（ログに残す）
+        try:
+            child = api("POST", f"{user_id}/threads", {"media_type": "TEXT", "text": reply, "reply_to_id": result["id"], "access_token": access_token})
+            time.sleep(PUBLISH_WAIT_SEC)
+            api("POST", f"{user_id}/threads_publish", {"creation_id": child["id"], "access_token": access_token})
+        except RuntimeError as error:
+            log(f"  [threads] 返信（リンク）を出せませんでした: {error}")
+        import threads_reader  # noqa: PLC0415
+
+        threads_reader.mark_posted(str((article or {}).get("slug") or ""))
     detail = api("GET", result["id"], {"fields": "permalink", "access_token": access_token})
     return {"id": result["id"], "permalink": detail.get("permalink", "")}
 
@@ -2141,6 +2160,16 @@ def create_post(api_key: str, post_input: dict, *, service: str, article: dict |
     if service == "facebook" and not source.startswith("facebook_post") and sns_plan.fb_on() and not post_input.get("saveToDraft"):
         # 2026-11-07〜 Facebook の投稿は scripts/facebook_post.py だけ（台帳 S43）
         raise XOwnSlotsOnly(f"Facebook の投稿は facebook_post.py だけが作ります（台帳 S43・{source}）")
+    reader = service == "threads" and sns_rules.reader_kind("threads", kind, article) == "reader"
+    if service == "threads" and not post_input.get("saveToDraft"):
+        # 2026-11-07 夜 オーナー承認（台帳 S46）: 新しい書き方の最初の3本が承認されるまで Threads の自動投稿は出さない（ThreadsHeld）
+        if why := threads_gate.style_hold(article, kind):
+            raise threads_gate.ThreadsHeld(why)
+    if reader:
+        # どの経路から来ても、Threads の記事の投稿は新しい書き方（本文＋返信「続き（◯◯）→ URL」）にする。作れなければ次の回（ThreadsHeld）
+        import threads_reader  # noqa: PLC0415
+
+        threads_reader.apply_input(post_input, article)
     sns_rules.enforce_buffer(service, post_input, article, source=source, kind=kind)
     try:
         ensure_not_duplicate(api_key, post_input, service, article, kind, allow=allow)
@@ -2170,6 +2199,10 @@ def create_post(api_key: str, post_input: dict, *, service: str, article: dict |
     needle = post_needle(article, kind)
     if needle and post_input.get("channelId") in _BUFFER_RECENT:
         _BUFFER_RECENT[post_input["channelId"]].append((result["post"]["id"], needle))
+    if reader and not post_input.get("saveToDraft"):
+        import threads_reader  # noqa: PLC0415
+
+        threads_reader.mark_posted(str((article or {}).get("slug") or ""))  # 次の投稿は別の1行目の言い方・別の最後の文にする
     if threads_due is not None:
         # この実行の次の Threads の投稿が、いま作った投稿との間隔を数えられるように（台帳 S44）
         _BUFFER_DUE.setdefault(str(post_input.get("channelId") or ""), []).append((result["post"]["id"], threads_due))

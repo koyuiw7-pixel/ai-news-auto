@@ -62,6 +62,12 @@
      2行目＝家計や暮らしにどう響くか（どちらも記事の文・やさしい です・ます）。記事のリンクは本文の最後（utm_campaign=fbpost）＋リンクカード
      （動画があれば動画を直接。リンクは本文）。問いかけは暮らしの話題（sns_plan.fb_lifestyle）だけ・災害・安全の話題には付けない（S35）。
 
+  22. （2026-11-07 夜 オーナー承認・台帳 S46）Threads の記事の自動投稿は新しい書き方だけ（scripts/threads_reader.py・check_threads_reader）:
+     1行目で誰の話かを言う（言い方は前の投稿と続けない）・大事な数字はちょうど1つ・判定のすべて／手順／細かい期限は書かず、
+     最後の文で記事にしかないものを言う（直近と同じ言い回しは使わない）。リンクは返信だけで「続き（◯◯）→ URL」の文
+     （URL だけにしない）。URL は utm_campaign=<記事の slug>&utm_content=reader_reply。「｜」は使わない。
+     地震・津波の型（disaster）・リンク無しの比べ（control）はこの決まりの外。朝のまとめは state/threads_hold.json の digest で別に止める。
+
 違反したら: 投稿しない・ログに出す・GitHub の issue（ラベル sns-rule-violation）を立てるか、開いているものにコメントを足す。
 新しく Buffer / Bluesky / Threads の投稿 API を呼ぶ所を作るときは、必ずこの enforce を直前に呼ぶ（tests/test_sns_rules.py が確かめる）。
 
@@ -1125,6 +1131,129 @@ def check_brief(platform: str, text: str, content: str, article: dict | None) ->
 
 
 # ルール20（2026-11-06 オーナー承認・台帳 S42）: X だけの文面。1行目は検索される言葉から始まる事実。問いかけなし・タグは災害・行事だけ1つまで
+# ルール22（2026-11-07 夜 オーナー承認・台帳 S46）: Threads の記事の自動投稿の新しい書き方（scripts/threads_reader.py）
+READER_UTM_CONTENT = "reader_reply"
+READER_WHO_RE = re.compile(r"(?:人|方|皆さん|担当者|利用者|契約者|会員|事業主|ユーザー|家庭|世帯|オーナー)(?:へ|、|は、|に(?:関わる|向けた|関係する))")
+# 大事な数字（件数・金額・割合など）。日付・時刻・年は数えない
+READER_NUMBER_RE = re.compile(r"[0-9０-９][0-9０-９,，.．]*(?:万[0-9０-９,，.．]*|億[0-9０-９,，.．]*|兆|千)?")
+READER_DATE_AFTER = ("月", "日", "時", "分", "秒", "曜", "号", "回目", "次", "時点")
+READER_DEADLINE_RE = re.compile(r"[0-9０-９]+月[0-9０-９]+日(?:（[^）]{1,3}）)?(?:まで|までに|が期限|が締め切り|締め切り|〆切)|期限は[0-9０-９]|締め切りは[0-9０-９]")
+READER_STEPS_RE = re.compile(r"(?m)^[ \t]*(?:[①-⑳]|[0-9０-９]+[.．)）]|STEP|ステップ|まず、|次に、|最後に、|手順[0-9０-９])")
+READER_ARTICLE_ONLY_RE = re.compile(r"記事")
+READER_THING_RE = re.compile(r"表|一覧|手順|判定|条件|早見|チェック|窓口|問い合わせ|流れ|比較|日程|見分け|対処|方法|まとめ|やり方|対象|期限|経緯|内訳|目安|リスト")
+READER_STOCK_RE = re.compile(r"詳しくはこちら|続きはこちら|記事はこちら|リンクから|👇")
+READER_MAIN_MAX = 320
+READER_MAIN_MIN = 60
+
+
+def reader_numbers(text: str) -> list[str]:
+    """大事な数字（件数・金額・割合・年数など）。日付・時刻・西暦（4けた＋年）・号は数えない"""
+    out = []
+    for m in READER_NUMBER_RE.finditer(str(text or "")):
+        tail = str(text)[m.end():m.end() + 2]
+        digits = re.sub(r"[^0-9０-９]", "", m.group(0))
+        if tail.startswith(READER_DATE_AFTER) or (tail.startswith("年") and len(digits) == 4 and "万" not in m.group(0)):
+            continue
+        if str(text)[max(0, m.start() - 2):m.start()] in ("令和", "平成"):
+            continue
+        out.append(m.group(0))
+    return out
+
+
+def _reader_norm(line: str) -> str:
+    return re.sub(r"[\s、。「」]", "", str(line or ""))
+
+
+def check_threads_reader(platform: str, text: str, reply_text: str, article: dict | None, *,
+                         recent_endings: list[str] | None = None, recent_forms: list[str] | None = None) -> list[str]:
+    """ルール22: Threads の記事の自動投稿の新しい書き方。本文 text（リンク無し）と返信 reply_text（「続き（◯◯）→ URL」）"""
+    out: list[str] = []
+    article = article or {}
+    if norm_platform(platform) != "threads":
+        return ["[ルール22] 新しい書き方は Threads だけ"]
+    body = str(text or "").strip()
+    lines = [x.strip() for x in body.splitlines() if x.strip()]
+    first = lines[0] if lines else ""
+    if links_in(body):
+        out.append("[ルール22] 本文にリンクを書かない（リンクは返信だけ。11/3 に本文のリンクで表示が落ちた）")
+    if not (READER_MAIN_MIN <= len(body) <= READER_MAIN_MAX):
+        out.append(f"[ルール22] 本文の長さ（{len(body)}字。{READER_MAIN_MIN}〜{READER_MAIN_MAX}字）")
+    if len(lines) < 3:
+        out.append(f"[ルール22] 本文は 1行目（誰の話か）・事実・記事にしかないもの の形（今は{len(lines)}行）")
+    if not READER_WHO_RE.search(first) or len(first) > 48:
+        out.append(f"[ルール22] 1行目で誰の話かを言う（「〜な人へ。」「〜している人、」など。「{first[:24]}」）")
+    rest = _reader_norm("".join(lines[1:]))
+    head = _reader_norm(first)
+    if any(head[i:i + 6] in rest for i in range(max(0, len(head) - 5))):
+        out.append("[ルール16] 1行目と同じことを2行目以降で繰り返している（次の新しい事実にする）")
+    if first and template_callout(first):
+        out.append(f"[ルール14] 決まった呼びかけ（「{first[:24]}」）。記事に出てくる立場・状況で名指しする")
+    if recent_forms is not None:
+        import threads_reader  # noqa: PLC0415
+
+        form = threads_reader.form_of(first)
+        if form and recent_forms and form == recent_forms[0]:
+            out.append(f"[ルール22] 1行目の言い方が前の投稿と同じ形（{form}）。別の言い方にする")
+    nums = reader_numbers(body)
+    if len(nums) != 1:
+        out.append(f"[ルール22] 大事な数字はちょうど1つ（今は{len(nums)}つ: {' '.join(nums[:4])}。日付・時刻は数えない）")
+    src = ""
+    if article:
+        import threads_reader  # noqa: PLC0415
+
+        src = re.sub(r"[,，\s]", "", threads_reader.source_text(article))
+    for n in nums:
+        if src and re.sub(r"[,，\s]", "", n).rstrip(".．") not in src:
+            out.append(f"[ルール22] 記事に無い数字（{n}）")
+    if m := READER_DEADLINE_RE.search(body):
+        out.append(f"[ルール22] 細かい期限は記事に残す（「{m.group(0)}」）")
+    if READER_STEPS_RE.search(body):
+        out.append("[ルール22] 手順を本文に並べない（記事に残す）")
+    last = lines[-1] if lines else ""
+    if not (READER_ARTICLE_ONLY_RE.search(last) and READER_THING_RE.search(last)):
+        out.append(f"[ルール22] 最後の文で記事にしかないものを言う（「{last[:24]}」）")
+    if last and any(_reader_norm(last) == _reader_norm(e) for e in recent_endings or []):
+        out.append(f"[ルール22] 最後の文が直近の投稿と同じ（「{last[:24]}」）。言い回しを変える")
+    if m := READER_STOCK_RE.search(f"{body}\n{reply_text}"):
+        out.append(f"[ルール22] 決まった案内（「{m.group(0)}」）を使わない")
+    if "｜" in f"{body}\n{reply_text}" or "|" in body:
+        out.append("[ルール22] 「｜」を使わない（AI っぽく見える。2026-11-07 オーナー）")
+    if EMOJI_RE.search(body) or HASHTAG_RE.search(body):
+        out.append("[ルール22] 本文に絵文字・ハッシュタグを付けない")
+    for pattern, label in BANNED_OPENERS:
+        if m := pattern.search(body):
+            out.append(f"[ルール6] {label}（「{m.group(0)[:24]}」）")
+    for line in lines:
+        if SUMMARY_LEAD_RE.match(line) or LEAD_WORD_RE.match(line):
+            out.append(f"[ルール13] 決まった前置きで始めない（「{line[:12]}」）")
+        if m := HARD_WORDS.search(line):
+            out.append(f"[ルール7] 硬い言葉（「{m.group(0)}」）")
+    if re.search(r"[！!]", body):
+        out.append("[ルール22] 「！」で煽らない")
+    if m := re.search(r"しましょう|しておきましょう|チェックしよう|要チェック|必見|見逃せない", body):
+        out.append(f"[ルール22] 押しつけ・煽りの言い方（「{m.group(0)}」）")
+    # 返信
+    reply = str(reply_text or "").strip()
+    urls = links_in(reply)
+    lead = strip_links(reply).strip()
+    if not urls:
+        out.append("[ルール22] 返信に記事のリンクがない")
+    elif len(lead) < 4:
+        out.append("[ルール22] 返信を URL だけにしない（「続き（対象の早見表）→ URL」の形）")
+    elif not re.match(r"^続き（[^）]{2,20}）→$", lead):
+        out.append(f"[ルール22] 返信は「続き（◯◯）→ URL」の形（「{lead[:20]}」）")
+    slug = str(article.get("slug") or "")
+    for u in urls[:1]:
+        q = urllib.parse.parse_qs(_url(u).query)
+        want = {"utm_source": "threads", "utm_medium": "social", "utm_campaign": slug, "utm_content": READER_UTM_CONTENT}
+        if slug and f"/articles/{slug}" not in _url(u).path:
+            out.append("[ルール22] 返信のリンクがこの記事を指していない")
+        bad = [k for k, v in want.items() if (q.get(k) or [""])[0] != v]
+        if bad:
+            out.append(f"[ルール22] 返信のリンクの UTM（{', '.join(bad)}）。utm_campaign は記事の slug・utm_content は {READER_UTM_CONTENT}")
+    return out
+
+
 X_CAMPAIGN = "xpost"
 
 
@@ -1538,13 +1667,15 @@ def check_post(
         if links_in(f"{text}\n{reply_text}") or links:
             out.append("[ルール1] リンク無しの比べの投稿にリンクが入っている")
     else:
-        out += check_link(platform, text, reply_text, links or [], article_paths(article, kind), threads_pos=threads_pos)
+        out += check_link(platform, text, reply_text, links or [], article_paths(article, kind), threads_pos="reply" if kind == "reader" else threads_pos)
     content = strip_links(text)
     if kind not in ("digest", "disaster"):
         if why := sns_plan.excluded(article):
             out.append(f"[ルール10] {why}")
         hook_form = sns_plan.hook_format_on() and platform != "x" and not hook_problems(_body_without_link_line(content))
-        if kind == "brief":
+        if kind == "reader":
+            out += check_threads_reader(platform, text, reply_text, article)  # Threads の新しい書き方（ルール22・台帳 S46）
+        elif kind == "brief":
             out += check_brief(platform, text, content, article)  # Bluesky だけの2行の文面（ルール19・台帳 S40）
         elif kind == "xpost":
             out += check_xpost(platform, text, content, article)  # X だけの文面（ルール20・台帳 S42）
@@ -1697,6 +1828,14 @@ def buffer_parts(service: str, post_input: dict) -> tuple[str, str, list[dict], 
     return text, "\n".join(replies), media, links
 
 
+def reader_kind(platform: str, kind: str, article: dict | None) -> str:
+    """（ルール22・台帳 S46）Threads の記事の投稿は、どの経路でも新しい書き方（kind="reader"）で確かめる。
+    地震・津波の型・急ぎの安全の知らせ・リンク無しの比べ・朝のまとめは別の決まりのまま"""
+    if norm_platform(platform) == "threads" and kind == "article" and not (article or {}).get("disaster") and not is_urgent(article):
+        return "reader"
+    return kind
+
+
 def enforce_buffer(service: str, post_input: dict, article: dict | None, *, source: str, kind: str = "article", history: bool = True, measurer=None,
                    pending_video: bool = False, pausing: bool = False) -> None:
     """Buffer の createPost / editPost の直前に呼ぶ（threads_post.create_post・sns_video_followup.edit_post が呼ぶ）。
@@ -1706,10 +1845,16 @@ def enforce_buffer(service: str, post_input: dict, article: dict | None, *, sour
         if post_input.get("saveToDraft") is not True or post_input.get("mode") or post_input.get("dueAt"):
             raise SnsRuleViolation(["[ルール8] 下書きに戻す編集に、公開・予約の指定が入っている"], norm_platform(service), source)
         return
-    if kind not in ("digest",):
+    platform = norm_platform(service)
+    kind = reader_kind(platform, kind, article)
+    if kind not in ("digest", "reader"):
         autofix_buffer_input(service, post_input, article)  # 止めずに直す（ルール13・14・台帳 S35）。送る入力そのものを直す
     text, reply, media, _links = buffer_parts(service, post_input)
-    platform = norm_platform(service)
+    if kind == "reader":
+        reply = reply.split("\n")[0] if reply else ""
+        enforce(platform, text, media, article, source=source, kind=kind, reply_text=reply, history=history,
+                draft=bool(post_input.get("saveToDraft")), measurer=measurer, pending_video=pending_video)
+        return
     # X 以外は返信を作らない（リンクは本文）。返信やリンクカードにだけリンクがある形は、本文のリンク無しとして止める
     enforce(platform, text, media, article, source=source, kind=kind, reply_text=reply if reply_counted(platform) else "",
             history=history, draft=bool(post_input.get("saveToDraft")), measurer=measurer, pending_video=pending_video)
@@ -1736,6 +1881,8 @@ def campaign_kind(platform: str, urls: list[str], default: str = "article") -> s
             return "xpost"
         if platform == "facebook" and campaign[0] == FB_CAMPAIGN:
             return "fbpost"
+        if platform == "threads" and (urllib.parse.parse_qs(_url(u).query).get("utm_content") or [""])[0] == READER_UTM_CONTENT:
+            return "reader"
     return default
 
 

@@ -212,6 +212,7 @@ PROSE_WRITERS = {
 }
 # 文章を作らない（決まった欄だけ直す・記録だけ足す・読むだけで別のファイルに書く）もの。理由つき
 NON_PROSE = {
+    "threads_reader.py": "記事を読むだけ（Threads の投稿の文面を state/threads_reader.json に書く。記事は書かない。台帳 S46）",
     "noir_hero_backfill.py": "ノワールの表紙に写真を出すかの欄（heroOk）だけ（台帳 W36）",
     "noir_cover.py": "ノワールの表紙の背景の画像の欄（coverImage・coverCredit）だけ。文章は書かない（台帳 W36）",
     "topic_lists.py": "記事を読むだけ（値上げ・障害などの一覧 content/topic_lists.json を書く。台帳 A52）",

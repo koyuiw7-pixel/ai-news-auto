@@ -484,7 +484,7 @@ def utm_content(ptype: str, pos: str) -> str:
     return f"{ptype}_{pos}"
 
 
-UTM_CONTENT_RE = re.compile(r"^(?:video|hook|card|digest)_(?:body|reply)$")
+UTM_CONTENT_RE = re.compile(r"^(?:video|hook|card|digest|reader)_(?:body|reply)$")
 
 
 # ---- 文面の形・リンクの位置（2026-11-05 オーナー承認。ワークフローの既定は 1。環境変数が無い手元・テストでは off） ----

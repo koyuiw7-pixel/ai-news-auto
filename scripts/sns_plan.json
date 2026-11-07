@@ -103,8 +103,8 @@
     "decided": "body"
   },
   "utm": {
-    "_doc": "utm_content=<投稿の種類>_<リンクの位置>。種類は video（動画つきの記事の投稿）・hook（Muse の型の文面。SNS_HOOK_FORMAT=1 のときだけ）・card（災害など写真のカードで急いで出すもの）・digest（朝のまとめ）。位置は body（本文）・reply（返信）",
-    "types": ["video", "hook", "card", "digest"],
+    "_doc": "utm_content=<投稿の種類>_<リンクの位置>。種類は video（動画つきの記事の投稿）・hook（Muse の型の文面。SNS_HOOK_FORMAT=1 のときだけ）・card（災害など写真のカードで急いで出すもの）・digest（朝のまとめ）・reader（Threads の新しい書き方。utm_campaign は記事の slug。台帳 S46）。位置は body（本文）・reply（返信）",
+    "types": ["video", "hook", "card", "digest", "reader"],
     "positions": ["body", "reply"]
   }
 }

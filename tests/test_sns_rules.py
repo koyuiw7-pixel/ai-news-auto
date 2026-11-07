@@ -291,6 +291,18 @@ class CalloutRuleTest(unittest.TestCase):
         text = with_link("【地震】千葉県北東部で最大震度5弱", "threads")
         self.assertEqual(self.rule6(self.check("threads", text, article=quake)), [])
 
+def setUpModule():
+    __import__("sys").path.insert(0, __import__("os").path.dirname(__file__))
+    import legacy_threads  # 以前の書き方の仕組みのテスト（台帳 S46 の新しい書き方・承認待ちの止めは外す）
+
+    legacy_threads.start()
+
+
+def tearDownModule():
+    import legacy_threads
+
+    legacy_threads.stop()
+
 
 if __name__ == "__main__":
     unittest.main()
