@@ -140,6 +140,7 @@ class DiscoverPickTest(unittest.TestCase):
         self.assertIsNotNone(discover_pick.problem(self._a("e", "値上げは3割", coverImage="", thumbnail="")))  # 大きな画像なし
         self.assertIsNotNone(discover_pick.problem(self._a("f", "値上げは3割", late=True)))
         self.assertIsNotNone(discover_pick.problem(self._a("noindex", "値上げは3割")))  # 検索に出さない記事
+        self.assertIsNotNone(discover_pick.problem(self._a("g", "pandasの1行でAI予測　BigQueryの新機能", channelSlug="google-cloud-blog")))  # 海外の開発者向け
 
     def test_daily_limit(self):
         now = datetime(2026, 11, 7, 20, tzinfo=JST)

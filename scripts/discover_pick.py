@@ -6,6 +6,7 @@
   ・自前の大きな画像（/img/ の幅 1200px の写真・表紙。scripts/images.py が作る）がある。ロゴだけの画像は外す
   ・題名に数字が1つ以上ある（いつから・いくら・何件）
   ・あおりの言い方（！・？・衝撃・まさか・必見・知らないと損 など）と「｜」が無い
+  ・海外の企業向け・開発者向けの発表ではない（一般の読者向け）
   ・検索に出す記事（取り下げ・重複・noindex でない）。「速報ではない」形（late）の記事は外す
 並び: 暮らし・お金の種類（scripts/news_mix.py の life_group）→ 品質の点数の高い順。
 LLM を使わない・通信しない。
@@ -69,6 +70,13 @@ def problem(article: dict) -> str | None:
         return "題名に数字が無い"
     if m := CLICKBAIT_RE.search(title):
         return f"あおりの言い方（{m.group(0)}）"
+    try:
+        import news_mix  # noqa: PLC0415
+
+        if news_mix.classify({"title": article.get("title"), "channelSlug": article.get("channelSlug")}) == "enterprise_dev":
+            return "海外の企業向け・開発者向けの発表（一般の読者向けではない）"
+    except Exception:  # noqa: BLE001
+        pass
     try:
         import indexnow  # noqa: PLC0415 - 検索に出さない記事は外す
 
