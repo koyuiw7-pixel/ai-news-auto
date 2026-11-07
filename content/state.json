@@ -8811,6 +8811,14 @@
       "slug": "salesforce-acquires-cresta-voice-ai",
       "url": "https://www.salesforce.com/news/stories/salesforce-signs-definitive-agreement-to-acquire-cresta/"
     },
+    "5a27a1b736890f98": {
+      "at": "2026-11-07T14:32:08.800096+00:00",
+      "costUsd": 0.0045,
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "Zoom公式ブログの、ポッドキャスト「Zoom in on CX」の紹介記事で、Lloyds Banking Groupの幹部の発言を要約したものです。新製品や新機能の発表はなく、AIの仕組みや性能の技術解説も含まれていないため、テクノロジーの発表・解説を扱う対象外と判断しました。",
+      "skipped": true,
+      "url": "https://www.zoom.com/en/blog/zoom-in-on-cx-episode-3/"
+    },
     "5a409b50e27c8093": {
       "at": "2026-11-06T18:16:30.400567+00:00",
       "costUsd": 0.0046,
@@ -10244,6 +10252,18 @@
       "section": "ai",
       "slug": "google-distributed-cloud-ai-innovations-2026",
       "url": "https://cloud.google.com/blog/ja/topics/hybrid-cloud/new-innovations-in-google-distributed-cloud/"
+    },
+    "71aaa2946db119b3": {
+      "at": "2026-11-07T14:33:37.075447+00:00",
+      "costUsd": 0.0147,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "goland-profiler-ai-agents-claude-code",
+      "url": "https://blog.jetbrains.com/go/2026/11/06/we-gave-ai-agents-goland-s-profiler-they-found-the-same-bottlenecks-with-half-the-tokens/"
     },
     "71b8566a1f06ece6": {
       "at": "2026-10-26T20:21:25.132784+00:00",
@@ -18548,20 +18568,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-05T23:10:52.469407+00:00",
-      "attempt": 1,
-      "id": "582d1c8b48613264",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "softbank-group-press",
-      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-05T23:11:12.042886+00:00",
       "attempt": 2,
       "id": "582d1c8b48613264",
@@ -24642,6 +24648,30 @@
       "score": 88,
       "source": "databricks-blog",
       "title": "How public sector organizations can govern AI at scale"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T14:33:37.057742+00:00",
+      "attempt": 1,
+      "id": "71aaa2946db119b3",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 113.4,
+        "avg_sentence": 39.0,
+        "long_share": 0.094,
+        "max_paragraph": 163,
+        "paragraphs": 11,
+        "sentences": 32
+      },
+      "score": 88,
+      "source": "jetbrains-blog",
+      "title": "GoLand’s Profiler Now Works With AI Agents",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（POST・MCP・IDE）"
+      ]
     }
   ],
   "short_text_retry": {},

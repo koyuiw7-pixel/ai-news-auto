@@ -1,0 +1,129 @@
+{
+  "slug": "goland-profiler-ai-agents-claude-code",
+  "sourceType": "web",
+  "sourceUrl": "https://blog.jetbrains.com/go/2026/11/06/we-gave-ai-agents-goland-s-profiler-they-found-the-same-bottlenecks-with-half-the-tokens/",
+  "sourceName": "JetBrains公式ブログ",
+  "title": "AIが遅いアプリの原因を計測　GoLand 2026.3で「Claude Code」から依頼",
+  "seoTitle": "GoLandのプロファイラーとは？AIで使う方法と日本での利用",
+  "threadsPost": "Goのアプリが遅いと感じる人に知っておいてほしい話です。\n\nGoLand 2026.3で、AIエージェントが処理速度を計測できるようになりました。\n「この処理が遅い」とAIに頼むと、計測から原因の箇所まで案内します。\n\n遅い処理に気づいたとき、まず何を見て原因を探しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "いま、遅い処理の原因探しは手作業ですか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "Goのアプリを作っている人は、遅い処理をどこから調べ始めますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "計測の結果をAIにまとめてもらうなら、どこまで任せてよいと考えますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "GoLand 2026.3から、AIエージェントがGo言語のアプリの処理速度を調べるプロファイラーを使えるようになりました。Claude Code、Codex、Junieから「この処理が遅い」と頼むと、計測から原因の箇所までを案内します。Claude Codeは無料では使えず、個人なら月払い20ドルのPro以上が基本です（当サイトのガイド、11/2確認）。",
+  "description": "GoLand 2026.3で、AIエージェントがGo言語のアプリの処理速度を計測できるようになりました。Claude Codeは日本で使え、個人なら月20ドルのPro以上が基本です。計測の種類もAIが選びます。",
+  "keywords": [
+    "GoLand 2026.3",
+    "GoLand プロファイラー",
+    "AIエージェント 性能計測",
+    "Go 処理速度 遅い 原因",
+    "Claude Code GoLand",
+    "Go pprof AI",
+    "プロファイラー とは",
+    "JetBrains AIエージェント",
+    "Claude Code 料金",
+    "Junie Codex GoLand"
+  ],
+  "tags": [
+    "GoLand",
+    "AIエージェント",
+    "開発ツール",
+    "Go言語",
+    "プロファイラー"
+  ],
+  "highlights": [
+    "GoLand 2026.3で、AIエージェントがプロファイラーを使い、遅い処理の原因まで調べられるようになりました。",
+    "対応するのはClaude Code、Codex、Junieで、JetBrainsはこの3つで動作を確かめたとしています。",
+    "プロファイルはGoLandが起動したアプリに限られ、一瞬で終わるCLIツールでは計測できません。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "partial",
+    "price": "Claude Pro月$20〜",
+    "free": false,
+    "audience": "Goの開発者",
+    "take": "遅いGoのアプリを調べたい開発者は、GoLandを2026.3に更新して、Claude Codeの料金を確かめてから試すとよいでしょう。",
+    "judgedAt": "2026-11-07T14:33:19.986245+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "Go言語でサーバーや業務システムを作っていて、処理の遅さに悩んでいる開発者に関係します。",
+      "Claude Codeを使うなら、個人では月払い20ドルのPro以上が基本の入口です。"
+    ]
+  },
+  "body": "GoLandでGo言語のアプリを作る人向けに、JetBrainsがAIエージェントの計測機能を発表しました。AIエージェントとは、指示を受けて自分で手順を進めるAIのことです。今回の機能では、アプリの処理がどこで時間を使っているかを調べる作業を、AIに任せられます。\n\nGoには、処理の遅さを調べるための標準の計測ツール「pprof」があります（編集部注）。ただ、どの計測を取るか、どうコマンドを打つか、出てきた細かいデータをどう読むかは、慣れていないと難しいものです。JetBrainsは公式ブログで、Goの開発者の中にはできればpprofを避けたいという人も少なくないと説明しています。\n\n今回からは、「POST /reindexによる再インデックスが想定より遅い。プロファイルを取って原因を調べて」のように、症状を文章で頼めます。AIが計測の種類を選び、結果を読み、原因のコードを示します。計測の種類やpprofのオプションを覚えている必要はありません。\n\n## Claude Code、Codex、Junieから使う流れ\n\nこの機能は、付属のgoland-profilerというスキル（AIに使い方を教える指示書）と、MCPツール（AIがGoLandの機能を呼び出すための仕組み）で動きます。対応するのはClaude Code、Codex、Junieの3つです。JetBrainsは、この3つで流れを確かめたとしています。\n\nAIが進める流れは次のとおりです。\n\n- **起動**: GoLandの「Run with Profiler」ボタンと同じように、計測つきでアプリを起動します。ソースコードには手を加えません。\n- **計測の選択**: CPUの負荷なら、負荷をかけながら記録します。待ち時間ならブロックプロファイル、ロックの取り合いならミューテックスプロファイルを取ります。メモリが増え続けるなら、ヒープを2回取って比べます。\n- **結果の読み取り**: 計測ごとに、負荷の高い関数を最大5つまとめた要約が返ります。足りないときだけ、さらに細かく見ます。\n- **報告**: 主なボトルネック、そこへ至る呼び出し経路、重い行、対策案を伝えます。計測でわかったことと、AIの仮説は分けて書くよう指示されています。\n\n分担の仕方も3通り選べます。すべてAIに任せる方法、自分で計測してAIに読ませる方法、自分で状態を整えてからAIに計測を頼む方法です。計測結果はGoLandのRecent profilesに残るので、AIの結論を自分のフレームグラフで確かめることもできます。\n\n前の版との違いは次のとおりです。GoLand 2026.1.2では、計測を始める作業がIDEの中で簡単になっていました。今回の2026.3では、その計測をAIエージェントも使えるようになった点が違います。計測の操作から結果の読み取りまでを、AIが一続きで進められます。\n\n**料金と日本での利用**\n\nAIエージェントの料金は、使うサービスによって変わります。Claude Codeは無料では使えません。公式の料金表でFreeプランは「いいえ」になっており、個人ならPro（月払い$20）以上が基本の入口です。API（アプリから呼び出す仕組み）の前払いクレジットでも使えます（当サイトのClaude Codeガイド、11/2確認）。\n\nClaude Codeは日本でも使えます。Anthropicの対応国・地域の一覧に日本があり、ヘルプも日本語で読めます（当サイトの確認：11/3）。\n\n制限もあります。プロファイラーは動いている処理を計測するため、一瞬で終わるCLIツール（コマンドで動く小さな道具）では、役に立つ結果を取れません。サーバーやワーカーのように長く動くサービスに向いています。GoLandが起動したアプリに限られ、すでに動いているプロセスにあとから接続することはできません。\n\n## まだ分からないこと\n\n- この計測機能の料金は、まだ発表されていません。\n- ほかのAIエージェントでの動作は、JetBrainsがまだ確かめていません。",
+  "easy": "## ひとことで言うと\n\nGoLand 2026.3では、AIエージェントが遅いアプリの原因を自分で調べられるようになりました。「この処理が遅い」と頼むと、AIがアプリを計測用に起動し、結果を読んで、原因のコードを示します。\n\n計測の方法を覚えておく必要はありません。ふつうのコードは書き換えず、計測のための特別なコードも足しません。\n\n対応しているのはClaude Code、Codex、Junieです。Claude Codeは無料では使えず、個人なら月20ドル（Pro）以上が基本です。日本でも使えます。",
+  "channel": "JetBrains公式ブログ",
+  "channelId": "",
+  "channelSlug": "jetbrains-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "GoLand’s Profiler Now Works With AI Agents",
+  "publishedAt": "2026-11-06T11:32:04+00:00",
+  "generatedAt": "2026-11-07T14:33:19.986232+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/goland-profiler-ai-agents-claude-code-4b77ab93.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "Goのアプリを計測する前に、GoLandを2026.3に更新する。",
+    "Settings | AI | Skills で goland-profiler が有効かどうかを確かめる。",
+    "遅い操作を「どの操作が、どれくらい遅いか」の一文にまとめてAIに頼む。"
+  ],
+  "qualityScore": 88,
+  "factSources": [
+    {
+      "label": "使い方ガイド",
+      "name": "当サイトのClaude Codeガイド",
+      "url": "/guides/claude-code-pricing",
+      "checkedAt": "2026-11-02"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-06T11:32:04+00:00",
+  "detectedAt": "2026-11-07T14:31:10+00:00",
+  "layout": "noir",
+  "summaryLine": "GoLand 2026.3で、AIエージェントがプロファイラーを使い、遅い処理の原因まで調べられるようになりました。",
+  "imageCredit": {
+    "kind": "official",
+    "org": "JetBrains",
+    "provider": "JetBrains公式ブログ",
+    "sourceUrl": "https://blog.jetbrains.com/go/2026/11/06/we-gave-ai-agents-goland-s-profiler-they-found-the-same-bottlenecks-with-half-the-tokens/",
+    "original": "https://blog.jetbrains.com/wp-content/uploads/2026/09/GO-social-BlogSocialShare-1280x720-1-2.png",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-07T14:33:49+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.517,
+    "y": 0.436,
+    "box": [
+      0.034,
+      0.05,
+      1.0,
+      0.822
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/goland-profiler-ai-agents-claude-code-4b77ab93.jpg"
+  },
+  "coverTries": 1
+}
