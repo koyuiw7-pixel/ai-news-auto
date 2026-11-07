@@ -1,0 +1,133 @@
+{
+  "slug": "salesforce-koa-decisions-model",
+  "sourceType": "web",
+  "sourceUrl": "https://www.salesforce.com/news/stories/koa-decisions-salesforce-decision-models/",
+  "sourceName": "Salesforceニュース",
+  "title": "Salesforceの判断専用モデル「Koa Decisions」　約26ミリ秒で振り分け",
+  "seoTitle": "Koa Decisionsとは？判断専用AIの特徴と日本での提供",
+  "threadsPost": "問い合わせ対応をAIで組む人に知ってほしい話です。\n\nSalesforceの新しい判断専用モデル「Koa Decisions」が登場しました。\n振り分けは約26ミリ秒。一般的なLLMの約1.4秒より速いとしています。\n\n問い合わせの振り分け、今は手作業で決めていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "問い合わせの振り分け、今は手作業で決めていますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "AIに問い合わせの振り分けをどこまで任せてよいと考えますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "AIに判断を任せて速くする代わりに、確認を人がどこまで担いますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "問い合わせの振り分けなどを、大きなAIを使わずに数ミリ秒で決める新モデル「Koa Decisions」が登場しました。Salesforceの計測では、Agentforceでの振り分けに約26ミリ秒で済み、一般的なLLM（文章を生成する大規模言語モデル）の約1.4秒より速かったとしています。料金と日本での提供時期はまだ発表されておらず、無料のTrailheadアカウントでデモを試せます。",
+  "description": "Salesforceの判断専用モデル「Koa Decisions」を解説。HyperClassifierの次の版で、Googleの「Gemma」を土台に画像と音声にも対応しました。振り分けは約26ミリ秒、料金と日本での提供時期は未発表です。",
+  "keywords": [
+    "Koa Decisions",
+    "Salesforce 判断モデル",
+    "HyperClassifier",
+    "Agentforce 振り分け",
+    "判断専用AI",
+    "Decisions API",
+    "Salesforce 生成AI",
+    "AI 振り分け 速度",
+    "Salesforce Gemma",
+    "Trailhead デモ",
+    "LLM 比較",
+    "AI 分類 再学習不要"
+  ],
+  "tags": [
+    "AI",
+    "Salesforce",
+    "Agentforce",
+    "判断モデル",
+    "生成AI"
+  ],
+  "highlights": [
+    "Salesforceの判断専用モデル「Koa Decisions」は、問い合わせの振り分けを1回の判断で決めます",
+    "Agentforceでの振り分けは約26ミリ秒で、一般的なLLMの約1.4秒より速いと計測されています"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "未発表（デモは無料）",
+    "free": true,
+    "audience": "社内AIの担当者",
+    "take": "料金と日本での提供は未発表です。まずは無料のデモで、振り分けの仕組みを確かめるとよいでしょう。",
+    "judgedAt": "2026-11-07T12:16:36.332376+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "問い合わせ対応をSalesforceで組んでいる担当者は、単純な振り分けを判断専用のモデルに任せるかを検討できます。",
+      "料金は未発表で、提供地域は地域ごとに異なる可能性があるとされています。"
+    ]
+  },
+  "body": "問い合わせの窓口で、AIにまず決めてほしいのは「どの担当に回すか」のような選択です。Salesforceが公開した「Koa Decisions」は、こうした判断に特化したAIモデルです。決まった選択肢から1つを選ぶ、はい／いいえで答える、点数をつける。そうした判断を、大きなAIを使わずに素早く行うことを目指しています。\n\n顧客が「Where's my package?（荷物はどこ？）」と送ったとします。Salesforceの発表によると、同社のAIエージェントの仕組み「Agentforce」では、HyperClassifierという判断モデルがこの文を配送の担当部分へ回しています。Koa Decisionsは、このHyperClassifierの次の版です。\n\n## HyperClassifierの次の版、画像と音声にも対応\n\nKoa Decisionsは、利用者が決めた分類の一覧と依頼文を読み、1回の処理で答えを返します。発表では、その判断にかかる時間を「ミリ秒」単位としています。\n\nSalesforceのデータサイエンスチームは、Googleのオープンウェイトモデル「Gemma」に新しい学習手法を加えて、このモデルを作ったとしています。オープンウェイトとは、AIの中身にあたる重みを公開したモデルのことです。今回の版では、画像と音声にも対応しました。文字・画像・音声をまとめて扱える仕組みを「マルチモーダル」と呼びます。\n\n今後は、業務の流れを自動化する「フロー」、Salesforceの開発の仕組み「Apex」、AIへの指示文の雛形「プロンプトテンプレート」にも広げる計画です。開発者向けのAPI（アプリから呼び出す仕組み）も用意するとしています。Koaシリーズには、NVIDIAと作った推論モデル（考えてから答えるAI）もあります。\n\n## 約26ミリ秒と1.4秒、速さの差はどこから\n\nSalesforceは、Agentforceの中で依頼を振り分ける処理を計測し、判断モデルが約26ミリ秒、一般的なLLM（文章を生成する大規模言語モデル）が約1.4秒だったとしています。LLMは答えを「トークン」（AIが文字を数える単位。ほぼ1語）ごとに書きます。判断モデルは依頼文を一度に読み、一度の処理で答えを出します。\n\n「アカウントにログインできません」という問い合わせを、エンジニア、アカウント、営業のどこに回すか。判断モデルは数ミリ秒で「accounts」を選び、答えと信頼度（確からしさを示す点数）を返すとしています。\n\n従来、依頼の分類には専用の機械学習モデルを作る必要がありました。目的を決め、データを集めて印を付け、学習させ、精度を確かめる。そのため、導入まで数か月かかる企業も多かったといいます。Koa Decisionsでは、選択肢に項目を1つ加えるだけで判断に使えます。発表例では、「Returns」を追加した直後に、再学習なしで返品の依頼が選ばれました。同社は、項目を足して数時間で本番に入ることもあるとしています。\n\nOpenAIも10月に「Decisions API」を発表しています。サイソクは10月7日、このAPIが「GPT-6 Luna」を使い、応答を100ミリ秒未満で返すと伝えました（[OpenAIが「Decisions API」を発表　「GPT-6 Luna」で応答は100ミリ秒未満](/articles/openai-announces-decisions-api-gpt6-luna)）。発表は、9月中旬にTypeSafe AIが「Jev」を公開したことにも触れています。編集部の見方では、両社の数字は測定の条件を確かめないと比べられないため、並べて優劣を決めるのは早いと考えます。\n\nSalesforceは同じ時期、AIエージェントの品質と費用を管理する「Agent Fabric」に、評価機能と費用の上限設定を加えたとしています（Salesforceニュース、11/7確認）。API Evals（APIの評価機能）はベータ版が2026年11月、一般提供が2027年1月の予定です。\n\n**無料デモの試し方**\n\nTrailheadの無料アカウントを作ると、Koa Decisionsのデモを使えます。発表では、次の手順が示されています。\n\n1. 「Route a support request」をクリックし、灰色の矢印を押します。\n2. 公式ヘルプの手順を確認してください（[Salesforceニュースの案内](https://www.salesforce.com/news/stories/koa-decisions-salesforce-decision-models/)）。\n4. 同じ依頼文と選択肢をLLM型のチャットに入れ、答えの長さと形式を比べます。\n\n## まだ分からないこと\n\n- 料金はまだ発表されていません。発表では、価格は変わることがあるとしています。\n- 日本での提供時期と日本語での対応は、まだ発表されていません。提供は地域によって異なる可能性があるとしています。\n- 一般に使えるようになる日付と、開発者向けAPIの提供時期は、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nSalesforceの新しい判断専用AI「Koa Decisions」は、問い合わせの振り分けなどを、大きなAIを使わずに一瞬で決めるモデルです。Agentforceでの計測では約26ミリ秒で、一般的なLLM（文章を生成するAI）の約1.4秒より速かったとしています。\n\n料金と日本での提供時期はまだ発表されていません。Trailheadの無料アカウントを作れば、デモで試せます。",
+  "channel": "Salesforceニュース",
+  "channelId": "",
+  "channelSlug": "salesforce-news",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Less Reasoning. More Doing. Meet Koa Decisions.",
+  "publishedAt": "2026-11-06T16:00:00+00:00",
+  "generatedAt": "2026-11-07T12:16:36.332366+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/salesforce-koa-decisions-model-03069601.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "Trailheadの無料アカウントを作り、Koa Decisionsのデモで選択肢を足して試す",
+    "今の問い合わせ振り分けで、どの判断に大きなAIを使っているかを書き出す",
+    "料金と日本での提供時期は、Salesforceの公式発表で確かめる"
+  ],
+  "relatedSlugs": [
+    "openai-announces-decisions-api-gpt6-luna"
+  ],
+  "qualityScore": 82,
+  "sourcePublishedAt": "2026-11-06T16:00:00+00:00",
+  "detectedAt": "2026-11-07T12:13:44+00:00",
+  "layout": "noir",
+  "summaryLine": "Salesforceの判断専用モデル「Koa Decisions」は、問い合わせの振り分けを1回の判断で決めます",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Salesforce",
+    "provider": "Salesforceニュース",
+    "sourceUrl": "https://www.salesforce.com/news/stories/koa-decisions-salesforce-decision-models/",
+    "original": "https://www.salesforce.com/news/wp-content/uploads/sites/3/2026/11/789_1026_T16_Decision-Models-Explained-Why-Not-Every-Model-Is-an-LLM_d_v2_102826.jpg",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-07T12:19:25+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.495,
+    "y": 0.467,
+    "box": [
+      0.019,
+      0.028,
+      0.972,
+      0.906
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/salesforce-koa-decisions-model-03069601.jpg"
+  },
+  "coverImage": "https://ai-tech-express.jp/img/salesforce-koa-decisions-model-cover-deed778b.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "An over-the-shoulder view of a professional's hands typing rapidly on a laptop keyboard, with an abstract, fast-moving data visualization on the screen showing colorful dots moving between categories.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "at": "2026-11-07T12:19:55+00:00"
+  }
+}

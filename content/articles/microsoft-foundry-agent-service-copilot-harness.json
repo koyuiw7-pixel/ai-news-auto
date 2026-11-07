@@ -1,0 +1,116 @@
+{
+  "slug": "microsoft-foundry-agent-service-copilot-harness",
+  "title": "「Foundry Agent Service」にAIエージェント実行基盤を追加　Microsoftが開発者向け最新情報を公開",
+  "seoTitle": "Microsoft Foundry Agent Serviceとは：Copilot Harness解説",
+  "threadsPost": "AzureでAIアプリを開発している人に、知っておいてほしい話です。\n\nMicrosoftが「Foundry Agent Service」でAIエージェントの実行基盤のプレビューを始めました。\n複雑な自動化処理の制御基盤を自前で作らず、クラウド上で安全に動かせます。\n\nAIに任せたい複雑な作業、あなたの仕事にありますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "AIに任せたい複雑な作業、あなたの仕事にありますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "AIに複雑な作業を任せるとき、自社で制御する安心感とクラウドにおまかせする楽さのどちらを取りますか？"
+    },
+    {
+      "pattern": "future",
+      "question": "社内システムの自動化、AIエージェントに任せる範囲はこれから増えると感じますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "Microsoftはクラウド基盤「Azure」の開発者向けツール群で、AIエージェントを安全に自動実行できる「Microsoft Copilot harness」のパブリックプレビューを始めました。開発者は自前で実行制御ループを作ることなく、ツールの呼び出しやファイルの操作を伴う複雑なAI処理をクラウド上で動かせます。利用料金や本格提供の開始時期は今後の発表を待つ形です。",
+  "description": "Microsoftは「Foundry Agent Service」内でAIエージェントを制御・実行する「Microsoft Copilot harness」のパブリックプレビューを開始しました。DirectXのGPUクラッシュ解析ツールやAzure SDKの認証強化など、最新の開発者アップデートを解説します。",
+  "keywords": [
+    "Microsoft",
+    "Azure",
+    "Copilot harness",
+    "Foundry Agent Service",
+    "DirectX",
+    "GPUクラッシュ",
+    "Azure SDK",
+    "Rust",
+    "Cosmos DB"
+  ],
+  "tags": [
+    "Microsoft",
+    "Copilot",
+    "Azure",
+    "生成AI",
+    "開発ツール",
+    "DirectX"
+  ],
+  "highlights": [
+    "「Foundry Agent Service」でAIエージェントの自動実行を支援する機能のパブリックプレビューが始まりました。",
+    "WindowsゲームのGPUクラッシュ原因を詳細に解析できる「DirectX Dump Files」が一般提供されました。",
+    "Rust向け「Azure Cosmos DB」ライブラリの初安定版リリースなどAzure SDKの認証機能が強化されました。"
+  ],
+  "timetable": [
+    {
+      "time": "0:00",
+      "label": "導入と今週のハイライトの紹介"
+    },
+    {
+      "time": "0:20",
+      "label": "DirectX Dump FilesによるゲームのGPUクラッシュ解析"
+    },
+    {
+      "time": "1:11",
+      "label": "Azure SDKの最新リリースとRust向けCosmos DBライブラリ"
+    },
+    {
+      "time": "2:01",
+      "label": "Foundry Agent ServiceでのCopilot harnessパブリックプレビュー"
+    },
+    {
+      "time": "2:40",
+      "label": ".NET Conf 2026の開催告知とまとめ"
+    }
+  ],
+  "verdict": {
+    "status": "limited",
+    "japan": "ok",
+    "price": "未発表",
+    "free": null,
+    "audience": "開発者",
+    "take": "AzureでAIエージェントを構築している開発者はプレビュー環境で試すとよいでしょう。",
+    "judgedAt": "2026-11-07T12:13:39.584837+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AzureやWindows向けのアプリ開発者は、AIエージェントやGPU障害解析の最新ツールを使って開発効率を高められます。",
+      "自社システムでAIエージェントの自動化基盤をゼロから構築するコストを削減できる可能性があります。"
+    ]
+  },
+  "body": "Microsoftは、クラウドサービス「Azure」やWindows開発者向けツールの最新アップデート情報を公開しました。\n\n今回の発表は、AIエージェントを開発しているエンジニアや、Windows向けゲームおよびクラウドアプリケーションを構築している企業に関係します。既存のAzure契約やWindows開発環境が自動で切り替わることはなく、必要な機能を選んで導入する形式です。\n\n## エージェント開発を効率化する実行基盤「Copilot harness」\n\nMicrosoftが提供する「Foundry Agent Service」において、「Microsoft Copilot harness」のパブリックプレビューが始まりました。\n\nAIエージェントに複数の手順や外部ツールの呼び出し、ファイルの操作を伴う長時間の処理を行わせる場合、これまではエージェントの実行状態を管理する制御プログラムを開発者が個別に構築する必要がありました。\n\nCopilot harnessを導入すると、Microsoft側が管理する実行環境（サンドボックス）とループ制御の仕組みを利用できます。開発者はエージェントの役割や利用できるスキルを宣言的に定義するだけで、安全な環境下で複雑な自動化タスクを実行させることが可能です。また、標準的な接続規格であるMCP（Model Context Protocol）を使ったツール連携や、他のサブエージェントへの処理の委任にも対応しています。\n\n## ゲームのGPU障害を事後解析できる「DirectX Dump Files」\n\nWindowsゲームの開発者向けには、GPUがクラッシュした際の状態を収集できる「DirectX Dump Files」が利用可能になりました。Agility SDK 1.620およびPIX 2610.28から対応しています。\n\n従来、市販されているゲームがユーザーのPCで強制終了した場合、原因となったグラフィックス処理やドライバーの状態を特定することは困難でした。新機能では、WindowsがGPUをリセットする直前の描画状態やアプリデータを「.dxdmp」ファイルとして保存します。\n\n開発チームは回収したダンプファイルを解析ツール「PIX」に取り込むことで、障害が発生したPCとは別の環境であっても、どのシェーダーやリソースで問題が起きたかを調べられます。普段のプレイに影響を与えない「No Overhead」モードのほか、詳細な情報を取得する追跡モードも用意されています。\n\n**Rust向けCosmos DBが初安定化、Azure SDKの認証強化**\n\nクラウド接続用の開発キット「Azure SDK」の2026年10月リリースでは、認証とセキュリティに関する更新が行われました。\n\nプログラミング言語のRust向けには、「Azure Cosmos DB」を操作するためのクライアントライブラリが初めて安定版（バージョン1.0.0）として公開されました。\n\nまた、.NET向けライブラリ（Azure.Core 1.63.0）では相互TLS（mTLS）認証やマネージドIDの連携フローが追加されたほか、PythonやJava向けライブラリでもAzure Arc対応サーバー上でのユーザー割り当てマネージドIDがサポートされました。プロダクション環境における認証トラブルを減らし、安全なセキュリティ運用の実現を目指しています。\n\n## まだ分からないこと\n\n- Microsoft Copilot harnessの正式提供（GA）の時期および利用料金は発表されていません。\n- 各GPUベンダー向けの一部アドイン拡張機能の提供時期は順次更新される予定です。\n\n**クラウドサービスやゲームを開発している企業へ**\n\n今回の更新機能は、すでにAzureやDirectXを使ってアプリやゲームを開発しているチームに向けたものです。AIエージェントの基盤構築を自前で行うか、Foundryが提供する管理基盤に任せるかを選択できるようになったため、設計方針に合わせてプレビュー版の評価を進めることが推奨されます。",
+  "easy": "## ひとことで言うと\n\nMicrosoftが、AIエージェントを安全かつ自動で動かすための制御基盤「Microsoft Copilot harness」のパブリックプレビューを開始しました。あわせてゲームのクラッシュ原因を調べる新機能や、クラウド接続用ツールの更新も発表されています。\n\n## AIエージェントの複雑な処理をクラウドにおまかせ\n\nAIエージェントに複雑な仕事を頼むとき、これまでは手順の管理やツールの呼び出し方を開発者が自分でプログラミングする必要がありました。今回発表された「Microsoft Copilot harness」を使えば、安全な実験環境（サンドボックス）の中でAIが自動でファイルやツールを扱いながら作業を進めてくれます。開発者は自前の実行仕組みを作らなくて済むため、本質的な機能の開発に集中できます。\n\n## ゲームの強制終了やクラウド接続のトラブル対策も強化\n\nあわせて、Windows向けゲームが強制終了したときの状態を保存する「DirectX Dump Files」が利用できるようになりました。また、プログラミング言語のRustからクラウドデータベース「Azure Cosmos DB」を安定して呼び出せるライブラリなど、開発を助ける機能が多数更新されています。",
+  "channel": "Microsoft Developer",
+  "channelId": "UCsMica-v34Irf9KVTh6xx-g",
+  "channelSlug": "microsoft-developer",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "L1AKSCAE--8",
+  "videoUrl": "https://www.youtube.com/watch?v=L1AKSCAE--8",
+  "videoTitle": "Copilot Harness, DirectX, and Azure Auth",
+  "publishedAt": "2026-11-06T18:30:39+00:00",
+  "generatedAt": "2026-11-07T12:13:39.584894+00:00",
+  "thumbnail": "https://i.ytimg.com/vi/L1AKSCAE--8/maxresdefault.jpg",
+  "model": "gemini-3.5-flash",
+  "affiliates": [],
+  "newsType": "product",
+  "imageFocus": {
+    "x": 0.592,
+    "y": 0.491,
+    "box": [
+      0.278,
+      0.0,
+      0.906,
+      0.983
+    ],
+    "ar": 1.7778,
+    "src": "https://i.ytimg.com/vi/L1AKSCAE--8/maxresdefault.jpg"
+  }
+}

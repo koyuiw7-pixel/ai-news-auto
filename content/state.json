@@ -26,7 +26,6 @@
     "JR7xBi2kJjY": 1,
     "KH5fQCLhXrg": 1,
     "KyX-aQ-pw4I": 2,
-    "L1AKSCAE--8": 1,
     "MCB3zM5dEVI": 1,
     "MFwdoEtxbwA": 2,
     "MxwXGl-lpe0": 1,
@@ -706,6 +705,10 @@
     "6yysYeHiPDQ": {
       "at": "2026-08-21T06:26:21.195965+00:00",
       "slug": "google-pixel-watch-5-offline-gemini-health"
+    },
+    "784YQBiZArk": {
+      "at": "2026-11-07T12:11:37.051418+00:00",
+      "slug": "siemens-nvidia-ai-factory-operations-cosmos"
     },
     "7ClLfvFRIC8": {
       "at": "2026-08-05T08:23:47.593547+00:00",
@@ -1390,6 +1393,10 @@
       "at": "2026-10-26T12:03:16.729750+00:00",
       "reason": "本動画は35秒のYouTubeショート動画であり、Kimi K3.1のルービックキューブテスト成功デモを短時間で紹介する簡易コンテンツのため、詳細な技術的解説や新発表としての情報量が不足しています。",
       "skipped": true
+    },
+    "L1AKSCAE--8": {
+      "at": "2026-11-07T12:13:39.584894+00:00",
+      "slug": "microsoft-foundry-agent-service-copilot-harness"
     },
     "L1b4AI_CPeA": {
       "at": "2026-10-31T12:01:39.436659+00:00",
@@ -2549,6 +2556,11 @@
     "hG1O0EvcpW4": {
       "at": "2026-07-31T15:32:37.754159+00:00",
       "slug": "japan-fx-intervention-july-2026-analysis"
+    },
+    "hJOwOkLHRN0": {
+      "at": "2026-11-07T12:12:32.759465+00:00",
+      "reason": "style-gate: リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+      "skipped": true
     },
     "hR4mCW2Ej0M": {
       "at": "2026-08-11T12:38:32.423411+00:00",
@@ -4918,6 +4930,14 @@
       "reason": "prefilter: 告知・お知らせ系",
       "skipped": true,
       "url": "https://blog.google/company-news/outreach-and-initiatives/sustainability/colorado-impact-hackathon/"
+    },
+    "17520a229397ef58": {
+      "at": "2026-11-07T12:14:50.700005+00:00",
+      "costUsd": 0.0041,
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "Zoom公式ブログの自社製品（ZoomMate）の紹介記事で、汎用的な投稿運用の助言が中心です。公式発表としての新機能の提供状況・料金・日本での提供などの新しい事実が元記事から確認できず、読者に実質的な情報価値のある発表・技術解説とは判断できません。",
+      "skipped": true,
+      "url": "https://www.zoom.com/en/blog/ai-for-social-media-content/"
     },
     "1758535ac6be3e6b": {
       "at": "2026-10-27T01:23:39.311985+00:00",
@@ -9961,6 +9981,14 @@
       "reason": "stale: 発表から59時間（48時間を超えた発表は通常の記事にしない）",
       "skipped": true,
       "url": "https://developer.nvidia.com/blog/nvidia-cuda-13-5-brings-nvidia-vera-rubin-ga-support/"
+    },
+    "6d7526357c232246": {
+      "at": "2026-11-07T12:15:02.572186+00:00",
+      "costUsd": 0.0047,
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "複数の製品告知、イベント案内、チュートリアル告知をまとめた一覧ページで、個別の発表の仕様・料金・提供条件が本文から確認できないため、単独の記事にできる情報量がありません。",
+      "skipped": true,
+      "url": "https://cloud.google.com/blog/topics/inside-google-cloud/whats-new-google-cloud/"
     },
     "6dab8475c22f2c23": {
       "at": "2026-10-27T01:51:53.857296+00:00",
@@ -16084,6 +16112,18 @@
       "skipped": true,
       "url": "https://www.fsc.go.jp/senmon/sonota/annai/wg_amr_annai_65.html"
     },
+    "d6be14be84f599b5": {
+      "at": "2026-11-07T12:17:22.264583+00:00",
+      "costUsd": 0.0213,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 82,
+      "section": "ai",
+      "slug": "salesforce-koa-decisions-model",
+      "url": "https://www.salesforce.com/news/stories/koa-decisions-salesforce-decision-models/"
+    },
     "d6e05e74a05025db": {
       "at": "2026-10-28T22:30:58.505944+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -18465,34 +18505,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T20:52:34.740810+00:00",
-      "attempt": 1,
-      "id": "570227a5d2aea513",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "google-gemini-blog",
-      "title": "Transform a quick drawing into a live app with Gemini."
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T20:53:43.319169+00:00",
-      "attempt": 2,
-      "id": "570227a5d2aea513",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "google-gemini-blog",
-      "title": "Transform a quick drawing into a live app with Gemini."
-    },
     {
       "accepted": false,
       "at": "2026-11-05T21:12:46.518026+00:00",
@@ -24507,6 +24519,56 @@
       "warnings": [
         "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（NCCL・DGX・RL）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T12:16:44.245657+00:00",
+      "attempt": 1,
+      "id": "d6be14be84f599b5",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "段落が長い（平均 137.2字・最長 232字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 137.2,
+        "avg_sentence": 43.3,
+        "long_share": 0.158,
+        "max_paragraph": 232,
+        "paragraphs": 12,
+        "sentences": 38
+      },
+      "score": 82,
+      "source": "salesforce-news",
+      "title": "Less Reasoning. More Doing. Meet Koa Decisions.",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T12:17:22.252703+00:00",
+      "attempt": 0,
+      "id": "d6be14be84f599b5",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「2. 公式ヘルプの手順を確認してください（Salesforceニュースの案内）」→ 元記事の手順2は「Choicesに『Returns』などの選択肢を追加する」であり、「公式ヘルプ」という案内は元記事に無い創作の出典。; 手順番号が1の次に2、そして4と飛んで"
+      ],
+      "readability": {
+        "avg_paragraph": 137.2,
+        "avg_sentence": 43.3,
+        "long_share": 0.158,
+        "max_paragraph": 232,
+        "paragraphs": 12,
+        "sentences": 38
+      },
+      "score": 82,
+      "source": "salesforce-news",
+      "title": "Less Reasoning. More Doing. Meet Koa Decisions.",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
