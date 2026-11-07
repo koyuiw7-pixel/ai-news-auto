@@ -1,0 +1,128 @@
+{
+  "slug": "microsoft-foundry-video-models-fal",
+  "sourceType": "web",
+  "sourceUrl": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/building-the-next-generation-of-multimodal-ai-experiences-with-fal-in-microsoft-/4570032",
+  "sourceName": "Microsoft Azure公式ブログ",
+  "title": "Microsoft Foundryで動画生成AI5種が公開プレビュー　1秒0.025ドルから",
+  "seoTitle": "Microsoft Foundryの動画生成AIとは？料金と日本の状況",
+  "threadsPost": "動画を作るAIを、仕事で使う人に知っておいてほしい話です。\n\nMicrosoft FoundryにKling・LTX・MiniMaxの動画生成AI5モデルが公開プレビューで加わりました。\n1秒あたり0.025ドルからで、モデルごとに料金が違います。\n\n動画の素材づくりに、毎月どのくらい時間をかけていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "動画の素材づくりに、毎月どのくらい時間をかけていますか？"
+    },
+    {
+      "pattern": "price",
+      "question": "仕事で使う動画生成AIに、自分のお金で毎月いくらまで出せますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "社内の資料に載せる動画を、AIで作ってよい範囲はどこまでだと思いますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "Microsoft Foundryで、動画生成AIのKling・LTX・MiniMaxの5モデルが公開プレビューとして順次提供されています。1秒あたりの料金は0.025ドルからで、初期のモデル群は米国内でホストされます。日本での提供時期はまだ発表されておらず、料金は数週間以内にAzureの料金ページに載る予定です。",
+  "description": "Microsoft Foundryに動画生成AIのKling v3 Pro、LTX-2.5、MiniMax H3 Maxが公開プレビューで加わりました。1秒あたり0.025ドルからで、文章と画像から動画を作れます。日本での提供時期は未発表です。",
+  "keywords": [
+    "Microsoft Foundry 動画生成",
+    "Kling v3 Pro",
+    "LTX-2.5",
+    "MiniMax H3 Max",
+    "動画生成AI 料金",
+    "fal 動画モデル",
+    "Azure 動画生成",
+    "テキストから動画",
+    "画像から動画 AI",
+    "動画生成AI 日本"
+  ],
+  "tags": [
+    "生成AI",
+    "動画生成",
+    "Microsoft Foundry",
+    "Azure",
+    "fal"
+  ],
+  "highlights": [
+    "Microsoft Foundryに動画生成AI5モデルが公開プレビューで加わり、文章と画像から動画を作れます",
+    "MiniMax H3 Max Turboの480pは1秒あたり0.025ドルで、5モデルの中で最も安い",
+    "Kling v3Proは米国データゾーンで、音声オンなら1秒0.1848ドル。料金は数週間以内に掲載予定"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "秒課金（USD）",
+    "free": false,
+    "audience": "動画制作の開発者",
+    "take": "日本での提供は未定のため、Azureの公式情報で料金と提供状況を確かめてから試すとよいでしょう。",
+    "judgedAt": "2026-11-07T12:53:18.397691+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "試作を何本も作る人は、速さ重視のLTX-2.5 Fastから試すと比べやすいでしょう。",
+      "料金は1秒単位です。編集部の見立てでは、試作は低い解像度、仕上げだけ高い解像度にすると費用を抑えやすくなります。"
+    ]
+  },
+  "body": "動画を作るAIの選択肢が、Microsoftのアプリ開発基盤「Microsoft Foundry」の中で増えました。Microsoftの公式ブログによると、動画生成AIの5モデルが公開プレビュー（正式版の前に試せる段階）として順次提供されます。対象は、文章から動画を作る「テキストから動画」と、画像から動画を作る「画像から動画」の2つです。\n\n動画は、素材によって求められるものが変わります。企画書の文章から案を何本も試す仕事と、承認済みの商品画像を数秒の動きにする仕事では、重視する点が違います。Microsoftは、1つのモデルにすべてを任せず、用途ごとに選べるようにすると説明しています。\n\n動画をアプリに組み込む場合は、モデルの選び方だけでなく、評価や運用の仕組みも必要になります。今回の追加は、動画生成を、ほかのAI機能と同じ場所で管理できるようにする点に意味があります。\n\n## 速さか仕上がりか、モデルで使い分ける\n\nLTX-2.5 Fastは、速さを優先したモデルです。試作を何本も作る段階に向いています。\n\nLTX-2.5 Proは、仕上がりの品質を優先したモデルです。最終的な素材を作るときに選ぶ想定です。どちらも文章と画像からの動画に対応し、音声を同期して生成できます。\n\nKling v3 Proは、静止画を動きのあるシーンに変えるのが得意とされています。発表では「映像の見た目と動き」の両方が特徴として挙げられています。\n\n参照をもとにした動画生成を、開発者が細かく制御できると説明されています。音声の生成にも対応します。\n\nMiniMax H3 MaxとH3 Max Turboは、H3に追加学習（ポストトレーニング）を加えた版です。指示文（プロンプト）への忠実さ、見た目、推論（AIが答えを出す処理）の速さを改善したとされています。\n\n5モデルは、画像や動画などの生成AIを扱う「fal」が配信します。falは、アプリから機能を呼び出す仕組みであるAPIを通じて、1,500を超えるモデルを扱っています。fal共同創業者のBurkay Gur氏は、生成メディアを使うAIについて「複数のモデルを使う形になる」と述べています（英語の原文を訳しています）。\n\n## 料金は1秒あたりで、解像度が上がるほど高くなる\n\n料金は1秒あたりの単価で決まります。Microsoftの公式ブログは本文の中で「1分あたり」と書いていますが、料金表の見出しは「1秒あたり（USD）」です。料金表の数字は次のとおりです。\n\n- MiniMax H3 Max：480p 0.05ドル、768p 0.08ドル、1080p 0.16ドル\n- MiniMax H3 Max Turbo：480p 0.025ドル、768p 0.04ドル、1080p 0.08ドル\n- LTX-2.5 Fast：720p 0.09ドル、1080p 0.13ドル、1440p 0.19ドル、4K 0.30ドル\n- LTX-2.5 Pro：720p 0.12ドル、1080p 0.17ドル\n- Kling v3 Pro（米国データゾーン）：音声オフ 0.1232ドル、音声オン 0.1848ドル、音声と声の制御つき 0.2156ドル\n\nLTXとMiniMaxはグローバル標準の提供形態で、Kling v3 Proは米国データゾーンの料金です。解像度（画面の細かさ）が上がるほど単価も上がります。編集部の見立てでは、試作は低い解像度で行い、仕上げだけ高い解像度にすると費用を抑えやすくなります。\n\n料金は今後数週間以内にAzureの料金ページに掲載される予定です。\n\n初期のモデル群は米国でホストされます。Microsoftは、Foundryが米国でホストされるKling 3のエンドポイント（アプリがAIを呼び出す接続先）を初めて提供する事業者だとしています。\n\n社内の画像や顧客の情報を扱うなら、データの保存場所が条件になることがあります。Microsoftは、モデルごとに公開されているデータ処理と保存の条件を確認するよう案内しています。\n\nMicrosoftは、年次カンファレンスのIgniteでセッション「BRK256: Video AI at Scale with fal on Microsoft Foundry」を開くと案内しています。日時は11月19日（木）11時から11時45分（米国中部時間）です。（編集部注: Igniteは、Microsoftが毎年開く開発者・IT向けの大型カンファレンスです）\n\n## まだ分からないこと\n\n- 日本での提供時期は、まだ発表されていません。\n- 料金の掲載日は、「数週間以内」とだけ案内されています。\n- 公開プレビューから正式提供（一般提供）に移る時期は、まだ発表されていません。\n- 今後追加されるモデルの名前と時期は、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nMicrosoftの開発基盤「Microsoft Foundry」で、動画を作るAIが5つ使えるようになりました。まだ正式版ではなく、公開プレビューという試用段階です。\n\nAIで動画を作る方法には、文章から作る方法と、画像から作る方法があります。今回の5つは、どちらにも対応しています。\n\n速さを優先するモデルと、仕上がりを優先するモデルがあります。試作には速いもの、最終の素材には品質の高いものを選ぶ使い方が考えられます。\n\n料金は1秒ごとにかかり、画面の細かさ（解像度）で変わります。一番安いのは、MiniMax H3 Max Turboの480pで、1秒あたり0.025ドルです。\n\n今回の5モデルは、初期提供が米国でホストされます。社内の大事な画像や顧客の情報を扱うなら、保存場所の条件をモデルごとに確認しておくとよいでしょう。\n\n日本で使えるかは、まだ発表されていません。料金も、今後数週間以内にAzureの料金ページに載る予定です。",
+  "channel": "Microsoft Azure公式ブログ",
+  "channelId": "",
+  "channelSlug": "azure-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Building the next generation of multimodal AI experiences with fal in Microsoft Foundry",
+  "publishedAt": "2026-11-06T19:08:44+00:00",
+  "generatedAt": "2026-11-07T12:53:18.397680+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/microsoft-foundry-video-models-fal-4f125348.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "explainer",
+  "todayActions": [
+    "Microsoft Foundryで5モデルの料金と対応する形式を確かめる",
+    "使いたい画面の細かさを決めて、料金表で単価を比べる",
+    "料金が料金ページに載るまで、予算を決めるのは待つ"
+  ],
+  "qualityScore": 90,
+  "sourcePublishedAt": "2026-11-06T19:08:44+00:00",
+  "detectedAt": "2026-11-07T12:50:55+00:00",
+  "layout": "noir",
+  "summaryLine": "Microsoft Foundryに動画生成AI5モデルが公開プレビューで加わり、文章と画像から動画を作れます",
+  "imageCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A wide‑angle view of a modern data‑center aisle with rows of blinking servers under cool white lighting, conveying cloud‑based AI processing.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://techcommunity.microsoft.com/t5/s/gxcuf89792/images/bS00NTcwMDMyLTFaS2szbQ?revision=13",
+    "at": "2026-11-07T12:57:34+00:00"
+  },
+  "imageFocus": {
+    "x": 0.287,
+    "y": 0.5,
+    "box": [
+      0.0,
+      0.0,
+      0.575,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/microsoft-foundry-video-models-fal-4f125348.jpg"
+  },
+  "coverImage": "https://ai-tech-express.jp/img/microsoft-foundry-video-models-fal-4f125348.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A wide‑angle view of a modern data‑center aisle with rows of blinking servers under cool white lighting, conveying cloud‑based AI processing.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://techcommunity.microsoft.com/t5/s/gxcuf89792/images/bS00NTcwMDMyLTFaS2szbQ?revision=13",
+    "at": "2026-11-07T12:57:34+00:00",
+    "reused": true
+  }
+}
