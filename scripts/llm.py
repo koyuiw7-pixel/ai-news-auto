@@ -6,8 +6,9 @@
 
 - tier="quality": main.py と同じ Gemini Flash 系（無料）
 - tier="write"  : 通常記事の本文を書く段（2026-11-03）。いちばん強い無料モデルから: Gemini Flash 系（各1日20回の無料枠。
-                  速報用に少し残す）→ Cloudflare / Groq の gpt-oss-120b → OpenRouter の無料モデル → 最後に軽量モデル（flash-lite → Gemma）。
-                  軽量モデルは事実確認・文の手直しなど小さな作業（bulk）に回す
+                  速報用に少し残す）→ 軽量の Gemini（flash-lite → Gemma）→ Cloudflare の gpt-oss-120b → OpenRouter → Groq。
+                  2026-11-07 に順番を変えた（台帳 O15）: 品質ゲートの記録で gpt-oss-120b の原稿は 171本中5本（3%）しか合格せず、
+                  flash-lite（26%）より悪いのに、Workers AI の無料枠（1日1万ニューロン）を超えて有料になっていた
 - tier="bulk"   : 無料枠の大きい軽量モデル（flash-lite → Gemma）→ quality → 外部無料API（キーがあれば）→ Codex（ローカルのみ）
 - Claude API（クレジット）は月の予算いっぱいまで、段（purpose）ごとにモデルを分けて使う（2026-11-03 オーナー決定）:
     data, model = generate_json(system, prompt, schema, tier="write", purpose="core")
@@ -179,7 +180,7 @@ def _workflow_usage_path(workflow: str) -> Path:
     return LLM_STATE_DIR / f"llm_usage_{workflow}.json"
 
 
-def _record_workflow_usage(model: str) -> None:
+def _record_workflow_usage(model: str, amount: int = 1) -> None:
     workflow = current_workflow()
     path = _workflow_usage_path(workflow)
     try:
@@ -187,7 +188,7 @@ def _record_workflow_usage(model: str) -> None:
     except Exception:  # noqa: BLE001
         data = {}
     day = data.setdefault(_today(), {}).setdefault(workflow, {})
-    day[model] = day.get(model, 0) + 1
+    day[model] = day.get(model, 0) + amount
     data = {d: data[d] for d in sorted(data)[-3:]}
     try:
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -344,8 +345,66 @@ def _groq_models() -> list[str]:
     return [f"groq:{m}" for m in wanted]
 
 
-# Cloudflare Workers AI（無料枠: 1日1万ニューロン）。OpenAI 互換の窓口を使う
+# Cloudflare Workers AI（無料枠: 1日1万ニューロン。0:00 UTC に戻る。超えた分は 1000 ニューロンあたり $0.011）。OpenAI 互換の窓口を使う
 CLOUDFLARE_MODELS = ["@cf/openai/gpt-oss-120b", "@cf/meta/llama-3.3-70b-instruct-fp8-fast"]
+# 2026-11-07 台帳 O15（お金はなるべく使わない）: 文章のモデルが1日（UTC）に使ってよいニューロンの目安。
+# 画像の生成・画像の判定（scripts/images.py の flux・llama-4-scout。1日 約5,000〜10,000）と無料枠を分けるので、文章は小さく取る。
+# 目安を超えたら Cloudflare の文章モデルは候補のいちばん最後に回す（ほかの無料モデルがすべて失敗したときだけ使う＝止めない）。
+# LLM_CF_DAILY_NEURONS で変更（0 = 目安なし）。1日の量はジョブごとの記録（llm_usage_wf.json など）に「workers-ai-neurons@<UTCの日付>」で足す
+CF_DAILY_NEURONS_DEFAULT = 3000
+CF_NEURON_KEY = "workers-ai-neurons@"
+# 100万トークンあたりのニューロン（Cloudflare の料金表: gpt-oss-120b は入力 $0.35・出力 $0.75 / 100万トークン、$0.011 = 1000 ニューロン）。
+# 2026-11-06 の実績（入力 2,035,928・出力 519,345 トークン → 100,189 ニューロン）と合う
+CF_NEURONS_PER_MTOK = {
+    "@cf/openai/gpt-oss-120b": (31818, 68182),
+    "@cf/meta/llama-3.3-70b-instruct-fp8-fast": (26668, 204805),
+}
+CF_NEURONS_PER_MTOK_DEFAULT = (31818, 68182)
+
+
+def _utc_day(now: datetime | None = None) -> str:
+    return (now or datetime.now(timezone.utc)).astimezone(timezone.utc).strftime("%Y-%m-%d")
+
+
+def cf_daily_budget() -> int:
+    return max(0, _env_int("LLM_CF_DAILY_NEURONS", CF_DAILY_NEURONS_DEFAULT))
+
+
+def cf_neurons(name: str, usage: dict | None) -> int:
+    """Workers AI の応答の usage（prompt_tokens・completion_tokens）→ ニューロン（切り上げ）"""
+    usage = usage or {}
+    rate_in, rate_out = CF_NEURONS_PER_MTOK.get(name, CF_NEURONS_PER_MTOK_DEFAULT)
+    value = (int(usage.get("prompt_tokens") or 0) * rate_in + int(usage.get("completion_tokens") or 0) * rate_out) / 1_000_000
+    return int(value) + (1 if value % 1 else 0)
+
+
+def cf_neurons_today(now: datetime | None = None) -> int:
+    """今日（UTC）の Cloudflare の文章モデルのニューロン（全部のジョブの記録の合計）"""
+    key = CF_NEURON_KEY + _utc_day(now)
+    total = 0
+    paths = list(dict.fromkeys([USAGE_PATH.with_name("llm_usage_wf.json")] + sorted(LLM_STATE_DIR.glob("llm_usage_*.json"))))
+    for path in paths:
+        try:
+            data = json.loads(path.read_text("utf-8"))
+        except Exception:  # noqa: BLE001
+            continue
+        for jobs in data.values():
+            for models in (jobs or {}).values() if isinstance(jobs, dict) else []:
+                if isinstance(models, dict):
+                    total += int(models.get(key) or 0)
+    return total
+
+
+def cf_over_budget(now: datetime | None = None) -> bool:
+    budget = cf_daily_budget()
+    return budget > 0 and cf_neurons_today(now) >= budget
+
+
+def _record_cf_neurons(name: str, usage: dict | None, now: datetime | None = None) -> int:
+    neurons = cf_neurons(name, usage)
+    if neurons > 0:
+        _record_workflow_usage(CF_NEURON_KEY + _utc_day(now), neurons)
+    return neurons
 
 
 def _cloudflare_models() -> list[str]:
@@ -493,8 +552,11 @@ def models_for(tier: str) -> list[str]:
         cloudflare, openrouter, groq = _cloudflare_models(), _openrouter_models(), _groq_models()
         others = cloudflare + openrouter + groq
         if tier in ("quality", "write"):
-            # 強い Gemini（Flash）→ ほかの会社のいちばん強いモデル → 軽量の Gemini（flash-lite・Gemma）→ ほかの会社の残り
-            chosen = list(dict.fromkeys(quality + cloudflare[:1] + openrouter + groq[:1] + bulk + cloudflare[1:] + groq[1:])) + _codex_models()
+            # 強い Gemini（Flash）→ 軽量の Gemini（flash-lite・Gemma）→ ほかの会社（Cloudflare → OpenRouter → Groq）。
+            # 2026-11-07（台帳 O15）: 前は Flash の次が Cloudflare の gpt-oss-120b だったが、品質ゲートの記録（10/30〜11/7）で
+            # 原稿の合格は gpt-oss 171本中5本（3%）・OpenRouter 30本中0本に対し flash-lite 512本中133本（26%）。
+            # gpt-oss は長い原稿で1回 約800ニューロンを使い、Workers AI の無料枠を超えて1日 約10万ニューロン（約 $1.1）が有料だった
+            chosen = list(dict.fromkeys(quality + bulk + others)) + _codex_models()
         else:
             chosen = list(dict.fromkeys(bulk + quality)) + others + _codex_models()
         _tiers[tier] = chosen
@@ -636,6 +698,11 @@ def _call_openai_compatible(model: str, system_instruction: str, prompt: str, sc
     except urllib.error.HTTPError as error:
         body = error.read().decode("utf-8", "ignore")[:300]
         raise RuntimeError(f"{error.code} {body}") from error
+    if provider == "cloudflare":
+        try:
+            _record_cf_neurons(name, data.get("usage"))
+        except Exception:  # noqa: BLE001 - 記録に失敗しても文章は使う
+            pass
     return str(data["choices"][0]["message"]["content"] or "")
 
 
@@ -1558,6 +1625,13 @@ def generate_json(
         candidates = _claude_models()  # 動画は Claude だけ（無料のモデルには回さない）
     else:
         candidates = (_claude_models() if cli else []) + [m for m in models_for(tier) if not m.startswith("claude:")]
+    if any(m.startswith("cloudflare:") for m in candidates) and cf_over_budget():
+        # Workers AI の文章の目安（cf_daily_budget）を今日（UTC）使った: Cloudflare はほかの候補がすべて失敗したときだけ（台帳 O15）
+        if ("cloudflare", "budget") not in _limit_logged:
+            _limit_logged.add(("cloudflare", "budget"))
+            log(f"   [llm] Workers AI の文章の目安 {cf_daily_budget()} ニューロン（今日 {cf_neurons_today()}）を使ったので、"
+                "Cloudflare はほかのモデルがすべて失敗したときだけ使う（有料を避ける）")
+        candidates = [m for m in candidates if not m.startswith("cloudflare:")] + [m for m in candidates if m.startswith("cloudflare:")]
     last_error: Exception | None = None
     used = usage_today()
     for model in candidates:

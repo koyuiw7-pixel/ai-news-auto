@@ -289,10 +289,12 @@ class WriteTier(unittest.TestCase):
                 patch.object(llm, "_codex_models", return_value=[]):
             chosen = llm.models_for("write")
         self.assertEqual(chosen[: len(llm.QUALITY_MODELS)], llm.QUALITY_MODELS)
+        # 2026-11-07 台帳 O15: 軽量の Gemini（flash-lite・Gemma）を、ほかの会社のモデルより先に。
+        # 品質ゲートの合格は flash-lite 26%・gpt-oss-120b 3%・OpenRouter 0%（10/30〜11/7）で、gpt-oss は有料の枠を使っていた
         lite = chosen.index("gemini-3.5-flash-lite")
-        for strong in ("cloudflare:@cf/openai/gpt-oss-120b", "groq:openai/gpt-oss-120b", "openrouter:x:free"):
-            self.assertLess(chosen.index(strong), lite)
-        self.assertGreater(chosen.index("cloudflare:llama"), lite)
+        for other in ("cloudflare:@cf/openai/gpt-oss-120b", "cloudflare:llama", "groq:openai/gpt-oss-120b", "openrouter:x:free"):
+            self.assertGreater(chosen.index(other), lite)
+            self.assertGreater(chosen.index(other), chosen.index("gemma-4-26b-a4b-it"))
         self.assertNotIn("claude:sonnet", chosen)
         self.assertEqual(w.write_tier("bulk"), "write")
         self.assertEqual(w.write_tier("quality"), "quality")
