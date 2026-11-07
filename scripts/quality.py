@@ -1266,6 +1266,29 @@ _HEADING_RE = re.compile(r"^#{2,3} .+$", re.M)
 _PROTECTED_HEADING_RE = re.compile(r"^## (概要|ひとことで言うと|自分に関係ある？|まとめ|これまでの流れ|続報)")
 
 
+# 指示文の章名（polish / surgical の「# 今の原稿の数値」など）が本文に紛れ込んだら受け取らない。
+# 2026-11-07 elevenagents-unity-sdk-npc-voice の本文が「# 今の原稿の数値」で始まったまま公開された。
+_PROMPT_ECHO_RE = re.compile(r"^#{1,3}[ \u3000]*(今の原稿の数値|直し方|変えてはいけないもの|原稿|校閲の指摘|元記事|記事)[ \u3000]*$", re.M)
+_H1_RE = re.compile(r"^# +\S.*$", re.M)
+
+
+def prompt_echo_problem(new_body: str, old_body: str = "") -> str:
+    """LLM が指示文の章名や囲み（<<< >>>）を本文にこぼしていたら理由を返す。問題なければ空文字。
+    本文の見出しは ## と ### だけなので、元の本文に無い「# 」の見出しも指示文の写しとみなす"""
+    text = new_body or ""
+    old_echo = {m.group(0).strip() for m in _PROMPT_ECHO_RE.finditer(old_body or "")}
+    for m in _PROMPT_ECHO_RE.finditer(text):
+        if m.group(0).strip() not in old_echo:
+            return f"指示文の見出しが本文に混ざった（{m.group(0).strip()}）"
+    old_h1 = {h.strip() for h in _H1_RE.findall(old_body or "")}
+    for h in _H1_RE.findall(text):
+        if h.strip() not in old_h1:
+            return f"本文に「# 」の見出しが入った（{h.strip()[:30]}）"
+    if re.search(r"^\s*(<<<|>>>)\s*$", text, re.M):
+        return "指示文の囲み（<<< >>>）が本文に混ざった"
+    return ""
+
+
 def _numbers(text: str) -> set[str]:
     """本文中の数字（リンク先と番号付きリストの番号は除く）"""
     text = re.sub(r"\]\([^)]*\)", "]", text or "")
@@ -1284,6 +1307,9 @@ def polish(record: dict, source_text: str, kind: str, context: str = "", check_f
                                     purpose="helper")
     new_body = re.sub(r"^(#{1,6}) +(?:#{1,6} +)+", r"\1 ", str(data.get("body_markdown") or "").strip(), flags=re.M)
     # 見出しは数と階層を保つ。言い回しの手直し（誇張語を外す等）は許すが、決まった章名は変えさせない
+    echo = prompt_echo_problem(new_body, body)
+    if echo:
+        return None, echo
     heads_old, heads_new = _HEADING_RE.findall(body), _HEADING_RE.findall(new_body)
     if [h.split(" ")[0] for h in heads_old] != [h.split(" ")[0] for h in heads_new]:
         return None, f"見出しの数・階層が変わった（{len(heads_old)}→{len(heads_new)}個）"
@@ -1386,6 +1412,9 @@ def surgical_fix(record: dict, source_text: str, kind: str, problems: list[str],
     data, model = llm.generate_json(SURGICAL_SYSTEM, prompt, SURGICAL_SCHEMA, temperature=0.2, max_output_tokens=16384, tier=CHECK_TIER,
                                     purpose="helper")
     new_body = re.sub(r"^(#{1,6}) +(?:#{1,6} +)+", r"\1 ", str(data.get("body_markdown") or "").strip(), flags=re.M)
+    echo = prompt_echo_problem(new_body, body)
+    if echo:
+        return None, echo
     heads_old, heads_new = _HEADING_RE.findall(body), _HEADING_RE.findall(new_body)
     if [_norm(h) for h in heads_old] != [_norm(h) for h in heads_new]:
         return None, f"見出しが変わった（{len(heads_old)}→{len(heads_new)}個）"
