@@ -10,15 +10,16 @@
   "companyName": "Microsoft",
   "category": "開発ツール",
   "overview": {
-    "text": "GitHub Copilotは、プログラムの補完や作業の代行をするAIの開発支援サービスです。GitHubにより提供されています。",
+    "text": "GitHub Copilotは、プログラムの補完や作業の代行をするAIの開発支援サービスです。MicrosoftおよびGitHubが提供しています。WindowsやMac向けの専用アプリの一般提供が発表されています。",
     "sources": [
+      "github-copilot-native-app-released",
       "github-copilot-weekly-releases-nov-2"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "Windows/Mac向けアプリが2026年9月一般提供",
+      "value": "2026年9月 (アプリGA)",
       "sources": [
         "github-copilot-native-app-released"
       ]
@@ -28,58 +29,65 @@
       "value": "日本で利用できる",
       "sources": [
         "github-copilot-code-review-api-settings",
-        "copilot-impact-dashboard-chat-vscode-agent",
-        "github-copilot-jetbrains-air",
-        "github-copilot-security-extension",
-        "github-copilot-native-app-released",
-        "github-copilot-kimi-k3-multi-agent"
-      ]
-    }
-  ],
-  "capabilities": [
-    {
-      "text": "コードレビューの設定をAPIから組織やリポジトリ単位で変更できます。",
-      "sources": [
-        "github-copilot-code-review-api-settings"
+        "github-copilot-native-app-released"
       ]
     },
     {
-      "text": "JetBrains AirでCopilotを使って複数のエージェント作業を追跡できます。",
+      "label": "使える場所",
+      "value": "VS Code、JetBrains等",
       "sources": [
         "github-copilot-weekly-releases-nov-2",
         "github-copilot-jetbrains-air"
       ]
     },
     {
-      "text": "Slackの会話やデザインモックを文脈として追加し、複数リポジトリの作業を行えます。",
+      "label": "向いている人",
+      "value": "開発者や企業の管理者",
       "sources": [
-        "github-copilot-app-projects-computer-use"
+        "github-copilot-code-review-api-settings",
+        "github-copilot-native-app-released"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "独立したワークツリーを使って、コードの競合を避けてIssueやPRを自動処理できます。",
+      "sources": [
+        "github-copilot-native-app-released"
       ]
     },
     {
-      "text": "アプリやコマンドラインなどAPIのないアプリも自動操作できます。",
+      "text": "コードレビューの設定をREST APIとGraphQL APIから変更できます。",
       "sources": [
-        "github-copilot-app-projects-computer-use"
+        "github-copilot-code-review-api-settings"
       ]
     },
     {
-      "text": "セキュリティのコードスキャンアラートの確認や修正依頼を1つのアプリで行えます。",
+      "text": "Xcode 27.3 betaの標準コーディングアシスタントで公開プレビューとして利用できます。",
       "sources": [
-        "github-copilot-security-extension"
+        "github-copilot-weekly-releases-nov-2"
+      ]
+    },
+    {
+      "text": "JetBrains Airで、手元のIDEやクラウド環境から作業を任せられます。",
+      "sources": [
+        "github-copilot-weekly-releases-nov-2",
+        "github-copilot-jetbrains-air"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "個人向けプランとしてFree、Pro（月10ドル）、Pro+（月39ドル）、Max（月100ドル）があります。",
+      "text": "Pro、Pro+、Max、Business、Enterpriseの各プランで利用できます。",
       "sources": [
-        "github-copilot-security-extension"
+        "github-copilot-code-review-api-settings",
+        "github-copilot-kimi-k3-multi-agent"
       ]
     },
     {
-      "text": "コードレビューの設定APIなどはPro、Pro+、Max、Business、Enterpriseの各プランが対象です。",
+      "text": "個人向けプランはFreeが0ドル、Proが月10ドル、Pro+が月39ドル、Maxが月100ドルです。",
       "sources": [
-        "github-copilot-code-review-api-settings"
+        "github-copilot-security-extension"
       ]
     }
   ],
@@ -88,46 +96,33 @@
       "text": "GitHub Copilot自体は日本で使えます。",
       "sources": [
         "github-copilot-code-review-api-settings",
-        "copilot-impact-dashboard-chat-vscode-agent",
-        "github-copilot-weekly-releases-nov-2",
-        "github-copilot-jetbrains-air",
-        "github-copilot-app-projects-computer-use",
-        "github-copilot-security-extension",
         "github-copilot-native-app-released"
-      ]
-    },
-    {
-      "text": "公式ドキュメントは日本語で公開されています。",
-      "sources": [
-        "copilot-impact-dashboard-chat-vscode-agent",
-        "github-copilot-weekly-releases-nov-2",
-        "github-copilot-app-projects-computer-use"
       ]
     }
   ],
   "howto": [
     {
-      "text": "WindowsやMac向けのスタンドアロンアプリをダウンロードして利用できます。",
+      "text": "WindowsやMac向けの専用アプリを公式サイトからダウンロードして使えます。",
       "sources": [
         "github-copilot-native-app-released"
       ]
     },
     {
-      "text": "JetBrainsのIDEにAirを入れ、GitHub Copilotを選んでアカウントを接続します。",
+      "text": "対応するサブスクリプションが紐づいているGitHubアカウントでログインします。",
       "sources": [
-        "github-copilot-jetbrains-air"
+        "github-copilot-native-app-released"
       ]
     }
   ],
   "differences": [
     {
-      "text": "従来のIDE拡張機能だけでなく、OSネイティブのスタンドアロンアプリとして独立動作するようになりました。",
+      "text": "従来のIDEのプラグイン形式に加え、OS上で直接動作するスタンドアロン型アプリが提供されています。",
       "sources": [
         "github-copilot-native-app-released"
       ]
     },
     {
-      "text": "単一のAIモデルだけでなく、Kimi K3などのフロンティア級モデルを動的に切り替えて選択できるようになりました。",
+      "text": "モデル選択肢にフロンティア級LLMのKimi K3が追加されています。",
       "sources": [
         "github-copilot-kimi-k3-multi-agent"
       ]
@@ -135,30 +130,25 @@
   ],
   "faq": [
     {
-      "q": "無料で使えるプランはありますか？",
-      "a": "Freeプランが用意されていますが、チャットやエージェント機能に利用制限があります。",
+      "q": "無料で使える？",
+      "a": "Freeプランが用意されていますが、機能に利用制限があります。",
       "sources": [
         "github-copilot-security-extension"
       ]
     },
     {
-      "q": "コードレビューの設定はどこから変更できますか？",
-      "a": "REST APIとGraphQL APIから企業、組織、リポジトリ単位で変更できるようになりました。",
+      "q": "いつから使える？",
+      "a": "デスクトップアプリの一般提供が開始されているほか、各機能が順次利用可能です。",
       "sources": [
-        "github-copilot-code-review-api-settings"
+        "github-copilot-code-review-api-settings",
+        "github-copilot-native-app-released"
       ]
     },
     {
-      "q": "アプリでのコンピューター利用にはどのような安全対策がありますか？",
-      "a": "アプリを操作する前にCopilotが利用者の承認を求め、組織は管理設定で無効にできます。",
+      "q": "誰に向いている？",
+      "a": "開発者や企業の管理者に向いています。",
       "sources": [
-        "github-copilot-app-projects-computer-use"
-      ]
-    },
-    {
-      "q": "法務部門などの非開発者でも利用できますか？",
-      "a": "GitHub社の法務チームで100%導入されるなど、非開発者にとっても業務効率化ツールとして機能します。",
-      "sources": [
+        "github-copilot-code-review-api-settings",
         "github-copilot-native-app-released"
       ]
     }
@@ -167,17 +157,17 @@
     {
       "date": "2026-08-15",
       "slug": "github-copilot-kimi-k3-multi-agent",
-      "event": "GitHub Copilotに「Kimi K3」を追加"
+      "event": "GitHub CopilotにKimi K3を追加"
     },
     {
       "date": "2026-09-12",
       "slug": "github-copilot-native-app-released",
-      "event": "Windows・Mac向けCopilotアプリを一般提供"
+      "event": "Windows・Mac向けアプリを一般提供"
     },
     {
       "date": "2026-10-29",
       "slug": "github-copilot-app-projects-computer-use",
-      "event": "Copilotアプリにプロジェクト機能とPC操作を追加"
+      "event": "Copilotアプリにプロジェクト機能を追加"
     },
     {
       "date": "2026-10-29",
@@ -188,6 +178,11 @@
       "date": "2026-11-07",
       "slug": "github-copilot-code-review-api-settings",
       "event": "コードレビューの設定をAPIで変更可能に"
+    },
+    {
+      "date": "2026-11-07",
+      "slug": "github-copilot-weekly-releases-nov-2",
+      "event": "XcodeやJetBrains Airで利用可能に"
     }
   ],
   "related": [
@@ -202,6 +197,7 @@
     "github-copilot-weekly-releases-nov-2",
     "github-copilot-slack-teams-ga",
     "copilot-usage-metrics-code-review-addressed-rate",
+    "copilot-usage-metrics-api-telemetry-gaps",
     "github-copilot-jetbrains-air",
     "microsoft-foundry-agent-framework-customization",
     "microsoft-copilot-harness-foundry-agent-builder",
@@ -230,6 +226,7 @@
   "linkFrom": [
     "github-copilot-code-review-api-settings",
     "github-copilot-weekly-releases-nov-2",
+    "copilot-usage-metrics-api-telemetry-gaps",
     "github-copilot-jetbrains-air",
     "github-copilot-app-projects-computer-use",
     "github-copilot-security-extension",
@@ -239,9 +236,9 @@
     "github-copilot-reusable-agent-skills-guide",
     "github-copilot-kimi-k3-multi-agent"
   ],
-  "signature": "e9687b97aff7ac7c",
-  "primarySignature": "d6b297b9f860598e",
+  "signature": "ad88a3478fa8730c",
+  "primarySignature": "fed5d8d3960be4e9",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:48+00:00",
-  "updatedAt": "2026-11-07T21:13:35+00:00"
+  "updatedAt": "2026-11-07T23:33:25+00:00"
 }

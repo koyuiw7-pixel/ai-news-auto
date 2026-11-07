@@ -6,9 +6,8 @@
   "companyName": "Microsoft",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Work IQは、メールや会議などの業務データの文脈をAIエージェントに渡す仕組みです。Microsoftが提供し、2026年6月16日に一般提供されました。",
+    "text": "Work IQは、Microsoft 365のメールや会議、文書から業務の文脈をまとめ、AIエージェントに渡す仕組みです。Microsoftが提供し、2026年6月16日に一般提供が開始されました。",
     "sources": [
-      "microsoft-copilot-work-iq-dev-tools",
       "microsoft-work-iq-agent-context-m365"
     ]
   },
@@ -28,34 +27,49 @@
       ]
     },
     {
-      "label": "向いている人",
-      "value": "開発者",
-      "sources": [
-        "microsoft-copilot-work-iq-dev-tools"
-      ]
-    }
-  ],
-  "capabilities": [
-    {
-      "text": "Microsoft 365のメールや会議の記録から業務の流れをまとめます。",
+      "label": "使える場所",
+      "value": "CLI、MCP、REST API",
       "sources": [
         "microsoft-work-iq-agent-context-m365"
       ]
     },
     {
-      "text": "自然言語の指示からCopilot拡張機能の設計仕様を自動構築できます。",
+      "label": "向いている人",
+      "value": "開発者",
+      "sources": [
+        "microsoft-copilot-work-iq-dev-tools",
+        "microsoft-work-iq-agent-context-m365"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "メール、チャット、会議の記録などから仕事の流れをまとめます。",
+      "sources": [
+        "microsoft-work-iq-agent-context-m365"
+      ]
+    },
+    {
+      "text": "Work IQ Developer Tools（WIQD）でCopilot拡張機能を一括生成できます。",
       "sources": [
         "microsoft-copilot-work-iq-dev-tools"
       ]
     },
     {
-      "text": "プラグインと宣言型エージェントを一括ビルドします。",
+      "text": "Model Context Protocol（MCP）と連携して外部ツールを利用できます。",
       "sources": [
-        "microsoft-copilot-work-iq-dev-tools"
+        "microsoft-copilot-work-iq-dev-tools",
+        "microsoft-work-iq-agent-context-m365"
       ]
     },
     {
-      "text": "OneLakeなどのデータ基盤と連携してデータからインテリジェンスを引き出します。",
+      "text": "REST APIやA2A、MCPの3つの方法で外部エージェントと接続できます。",
+      "sources": [
+        "microsoft-work-iq-agent-context-m365"
+      ]
+    },
+    {
+      "text": "Microsoft FabricのOneLakeやTeamsのデータからインテリジェンスを引き出します。",
       "sources": [
         "microsoft-fabric-onelake-ai-stack"
       ]
@@ -63,7 +77,7 @@
   ],
   "pricing": [
     {
-      "text": "Copilot Studioなどと共通のCopilot Creditsで請求されます。",
+      "text": "Copilot Creditsの従量課金制で請求されます。",
       "sources": [
         "microsoft-work-iq-agent-context-m365"
       ]
@@ -78,13 +92,19 @@
   "japan": [],
   "howto": [
     {
-      "text": "CLIやMCPを使い、GitHub CopilotなどのAIアシスタントから質問できます。",
+      "text": "組織の管理者にMicrosoft Entraのテナントでアプリへの同意を出してもらいます。",
       "sources": [
         "microsoft-work-iq-agent-context-m365"
       ]
     },
     {
-      "text": "利用には組織の管理者の同意と、Copilot Studioの従量課金プランの設定が必要です。",
+      "text": "Copilot Studioで従量課金のプランを作り、利用者を割り当てます。",
+      "sources": [
+        "microsoft-work-iq-agent-context-m365"
+      ]
+    },
+    {
+      "text": "Node.jsを入れたパソコンでnpm install -g @microsoft/workiqを実行します。",
       "sources": [
         "microsoft-work-iq-agent-context-m365"
       ]
@@ -93,31 +113,31 @@
   "differences": [],
   "faq": [
     {
-      "q": "いつから使えるようになりますか？",
-      "a": "2026年6月16日に一般提供されました。",
+      "q": "どのような仕組みでデータを取得しますか？",
+      "a": "Microsoft 365のメールや会議、文書から仕事の流れをまとめ、AIエージェントが使える形で渡します。",
       "sources": [
         "microsoft-work-iq-agent-context-m365"
       ]
     },
     {
-      "q": "どのような仕組みでデータを渡しますか？",
-      "a": "メールや会議、文書から業務の文脈をまとめ、AIエージェントが判断に使える形で渡します。",
+      "q": "いつから使えますか？",
+      "a": "Work IQ APIやCLIは2026年6月16日に一般提供が開始されました。",
       "sources": [
         "microsoft-work-iq-agent-context-m365"
       ]
     },
     {
-      "q": "外部のエージェントとはどのように接続できますか？",
-      "a": "REST API、A2A、MCPの3つの方法でつなぐことができます。",
+      "q": "どのようなデータにアクセスできますか？",
+      "a": "メール、会議、文書、Teamsのメッセージ、人の情報、業務アプリのデータを扱えます。",
       "sources": [
         "microsoft-work-iq-agent-context-m365"
       ]
     },
     {
-      "q": "開発ではどのようなツールが使えますか？",
-      "a": "自然言語から仕様を自動構築できる統合CLIツールパッケージのWIQDなどが使えます。",
+      "q": "安全面はどうなっていますか？",
+      "a": "本人が見られるデータにしか触れず、Microsoft 365のデータを保存しないとされています。",
       "sources": [
-        "microsoft-copilot-work-iq-dev-tools"
+        "microsoft-work-iq-agent-context-m365"
       ]
     }
   ],
@@ -125,12 +145,7 @@
     {
       "date": "2026-10-01",
       "slug": "microsoft-copilot-work-iq-dev-tools",
-      "event": "Work IQ Developer Toolsを披露"
-    },
-    {
-      "date": "2026-10-01",
-      "slug": "microsoft-work-iq-agent-context-m365",
-      "event": "Work IQ APIが一般提供開始"
+      "event": "Work IQ Developer Tools（WIQD）を披露"
     }
   ],
   "related": [
@@ -150,9 +165,9 @@
     "microsoft-copilot-work-iq-dev-tools",
     "microsoft-work-iq-agent-context-m365"
   ],
-  "signature": "8385772f728b1eef",
-  "primarySignature": "dff2ef6d891679a3",
+  "signature": "fab551d1e741020b",
+  "primarySignature": "8a1971cb13f99c27",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-02T21:56:25+00:00",
-  "updatedAt": "2026-11-06T19:46:20+00:00"
+  "updatedAt": "2026-11-07T23:33:32+00:00"
 }

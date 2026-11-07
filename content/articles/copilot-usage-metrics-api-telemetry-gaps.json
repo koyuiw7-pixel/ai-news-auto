@@ -1,0 +1,110 @@
+{
+  "slug": "copilot-usage-metrics-api-telemetry-gaps",
+  "sourceType": "web",
+  "sourceUrl": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps",
+  "sourceName": "GitHub Changelog（Copilot）",
+  "title": "Copilotの利用データが届かない人、1日ごとの件数で管理者が確認　古い版も",
+  "seoTitle": "GitHub Copilot使用状況API　テレメトリ欠けを確認",
+  "threadsPost": "Copilotを企業で管理している人に、知っておいてほしい話です。\n\n利用データが届いていない人を、APIで1日ごとに確認できるようになりました。\n古いエディターや拡張機能の人も、件数で分かります。\n\n社内でCopilotを使っている人、何人くらいか把握できていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "社内でCopilotを使っている人、何人くらいか把握できていますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "社員のエディター更新を、管理者はどこまで追いかけるべきだと思いますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "GitHub Copilotの利用状況を集計するAPIで、エディターから利用データが届いていない人と、古いIDEや拡張機能を使っている人が分かるようになりました。対象は企業と組織の管理者で、件数は1日ごとに確認できます。使うには、Copilot usage metricsのポリシーを有効にしておく必要があります。",
+  "description": "GitHub Copilotの利用状況APIに、テレメトリが届いていない人と古いバージョンの人を示す項目が加わりました。企業の管理者が件数で確認できます。対象のレポートと権限、ポリシー設定の条件も整理します。",
+  "keywords": [
+    "GitHub Copilot",
+    "使用状況メトリクス API",
+    "テレメトリ",
+    "Copilot 管理者",
+    "IDE バージョン",
+    "利用状況レポート",
+    "Copilot 企業向け",
+    "GitHub Copilot 日本",
+    "拡張機能 バージョン",
+    "Copilot 使用状況 API"
+  ],
+  "tags": [
+    "GitHub Copilot",
+    "開発ツール",
+    "API",
+    "企業向け"
+  ],
+  "highlights": [
+    "Copilotの利用データが届いていない人を、管理者がAPIで1日単位で確認できるようになった",
+    "古いIDEや拡張機能を使い、最低対応バージョンを下回る人も、ユーザー数の項目で分かる",
+    "利用には、usage metricsポリシーの有効化と「View Copilot Metrics」権限が必要です"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "Copilotを契約する企業の管理者は、テレメトリが届いていない社員を件数で確認できます。",
+      "サポートに問い合わせる前に、社員ごとの対応を進められます。"
+    ]
+  },
+  "body": "GitHub Copilotの利用状況を集計するAPIに、新しい項目が加わりました。対象は、企業や組織でCopilotの利用を管理している人です。利用者本人の使い方や料金が変わるという発表ではありません。\n\nCopilotは、エディター（コードを書くソフト）の中で動くAIの支援機能です。利用状況メトリックAPIは、その利用の数字を企業の管理者が外部に取り出すための窓口（API）です。今回の変更で、データが欠けている人まで分かるようになりました。\n\n## 届いていない人と、古い版の人が分かるようになった\n\n追加されたのは、ユーザーごとの項目が2つ、日ごとの件数が2つです。\n\n- client_telemetry_present：その日、そのユーザーのテレメトリ（エディターから届く利用データ）が届いたかどうか。falseは、Copilotでの活動は確認できたのに、エディターから利用イベントが届かなかったことを意味します。\n- usage_metrics_requirements：利用指標の最低対応バージョンに対して、各IDEと各Copilot拡張機能が「満たす」「満たさない」「不明」のどれかで示されます。IDEは、コードを書くための開発環境のことです。\n- missing_client_telemetry_user_count：その日、client_telemetry_presentがfalseのユーザー数です。\n- below_usage_metrics_minimum_user_count：その日、IDEか拡張機能のどれか1つでも最低バージョンを下回るユーザー数です。\n\nテレメトリが届かない主な原因は、古いエディターや拡張機能、IDE側でテレメトリをオフにしていること、そして通信を中継する装置（プロキシー）や通信を制限する仕組み（ファイアウォール）が利用データを止めていることだと、発表は挙げています。テレメトリが届いていなくても、その人は利用者として数えられます。ただ、コード行数や機能別、モデル別の内訳は報告に出ません。\n\n編集部の見方では、内訳が欠けたまま数字を読むと実態を見誤るおそれがあります。利用の報告を読む前に、この項目で記録の欠けを確かめる順番が大事になりそうです。\n\n数字の読み方には注意が必要です。2つの件数は重なることがあるため、足し算はできません。日をまたいで足すと延べ人数になり、ユニークな人数にはなりません。\n\n2つの項目は、互いに独立した情報です。最低バージョンを満たしていても、プロキシーの影響でテレメトリが届かない人はいます。\n\n値が空欄かnullなら、データがないことを意味し、ゼロやfalseではありません。今回の項目が追加される前の日には、値がありません。\n\n同じAPIには、11月5日にもコードレビューに関する項目が加わっています（GitHub Changelogの一覧より）。なお、この利用状況データにはライセンスやシートの割り当て情報は含まれません。座席の割り当てを確かめる場合は、Copilotユーザー管理APIを使うとドキュメントに書かれています（GitHubドキュメント、11/8確認）。\n\n## 日本の企業が使うには、ポリシーの有効化と権限が要る\n\n日本の企業でもCopilot自体は使えます。当サイトの確認では、Free、Pro、Business、Enterpriseなどのプランが日本で使え、公式ドキュメントも日本語で公開されています（当サイトの確認：11/3）。\n\nただし、今回の項目を見るには条件が2つあります。1つ目は、Copilot usage metricsのポリシーが有効になっていることです。2つ目は、企業オーナー、企業の請求管理者、組織オーナーのほか、「View Copilot Metrics」権限を含むカスタムロールを持つ人であることです。\n\n対象のレポートは、企業と組織の1日レポートと28日レポートです。ユーザー項目はユーザー別の1日版と28日版に出ます。件数は企業と組織の1日レポートと、28日レポートの各日の合計（day_totals）に出ます。\n\n管理者は、まず1日レポートで client_telemetry_present が false の人を探すと、対応の順番が決まります。そのうえで、古い版の人やテレメトリ設定をオフにしている人に連絡を取れます。発表は、サポートへの問い合わせを開かずに欠けを埋められると説明しています。\n\n**まだ分からないこと**\n\n- IDEや拡張機能ごとの最低対応バージョンの具体的な版番号は、まだ発表されていません。\n- 日本のチームだけを切り出して集計する方法は、まだ発表されていません。\n- データが後から届いた場合に、件数がどう変わるかはまだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nGitHub Copilotの利用状況を集計するAPIに、利用データが届いていない人と、古い版を使っている人を示す項目が加わりました。企業や組織の管理者が、件数で確認できます。\n\n## 管理者が見るときの注意\n\n利用データが届かない人も、利用者としては数えられます。ただし、コード行数や機能別の内訳は報告に出ません。\n\n2つの件数は重なることがあるため、足し算はできません。日をまたいで足すと延べ人数になり、ユニークな人数にはなりません。",
+  "channel": "GitHub Changelog（Copilot）",
+  "channelId": "",
+  "channelSlug": "github-changelog-copilot",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Usage metrics API flags telemetry and version gaps",
+  "publishedAt": "2026-11-06T00:08:31+00:00",
+  "generatedAt": "2026-11-07T23:32:59.805040+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/copilot-usage-metrics-api-telemetry-gaps-3a0b6ac4.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "research",
+  "todayActions": [
+    "企業でCopilotを管理しているなら、usage metricsのポリシーが有効かどうかを確かめる",
+    "1日レポートで client_telemetry_present が false のユーザーを確認する",
+    "IDEと拡張機能の版を社員に確かめ、最低バージョンは公式ドキュメントで確認する"
+  ],
+  "qualityScore": 93,
+  "sourcePublishedAt": "2026-11-06T00:08:31+00:00",
+  "detectedAt": "2026-11-07T23:30:53+00:00",
+  "originalTitle": "Copilotの利用データが届かない人を管理者が特定　古い版の人も件数で分かる",
+  "titleStyle": "2026-11-03",
+  "layout": "noir",
+  "summaryLine": "Copilotの利用データが届いていない人を、管理者がAPIで1日単位で確認できるようになった",
+  "imageCredit": {
+    "kind": "official",
+    "org": "GitHub",
+    "provider": "GitHub Changelog（Copilot）",
+    "sourceUrl": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps",
+    "original": "https://github.blog/wp-content/uploads/2026/11/696868472-6c036efb-44d8-4ca7-babf-92362eeca4f2.jpeg",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-07T23:33:37+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.489,
+    "y": 0.375,
+    "box": [
+      0.128,
+      0.0,
+      0.85,
+      0.75
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/copilot-usage-metrics-api-telemetry-gaps-3a0b6ac4.jpg"
+  },
+  "coverTries": 1
+}

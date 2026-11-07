@@ -14632,6 +14632,18 @@
       "skipped": true,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87264?site=nli"
     },
+    "b6de41f0f45eb74b": {
+      "at": "2026-11-07T23:33:13.946277+00:00",
+      "costUsd": 0.0134,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "copilot-usage-metrics-api-telemetry-gaps",
+      "url": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps"
+    },
     "b6e0032fd36baad6": {
       "at": "2026-11-06T08:30:41.128039+00:00",
       "reason": "dedupe: 固有名詞が一致（daihyo・jfa）: afc-asian-cup-2027-schedule-change",
@@ -18997,36 +19009,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T03:24:21.829446+00:00",
-      "attempt": 1,
-      "id": "ff4c4236ea8b3f24",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「日本でも無料アップデートで利用できます」「追加の利用料金はかかりません」「判定: 価格=無料（アプリ内）」→ 元記事に料金・無料の記述がなく、価格を創作している",
-        "比較表の「2週間短縮」「4日分削減」→ 元記事にない差分の計算結果で、欄外の計算済み数字にも無い。数字を比べる文の近くに条件の説明もない",
-        "「日中の仕事の集中力向上に役立ちます」→ 元記事に無い効果の断定",
-        "「追加の費用をかけずに健康管理の質を高められます」→ 料金の無さを前提にした根拠のない効果の断定",
-        "「診断を始められます」（かんたん版）→ 元記事はコーチングプログラムの開始であり、「診断」は誤った言い換え",
-        "「エナジースコア（心身の回復状態を示す指標）」→ 元記事は定義を示しておらず、補足が元記事の説明を超えている"
-      ],
-      "readability": {
-        "avg_paragraph": 99.4,
-        "avg_sentence": 53.0,
-        "long_share": 0.233,
-        "max_paragraph": 181,
-        "paragraphs": 16,
-        "sentences": 30
-      },
-      "score": 55,
-      "source": "samsung-jp",
-      "title": "Samsung Healthの睡眠コーチングがより手軽に 一人ひとりに合わせたアドバイスを毎週提供",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-06T03:24:59.810890+00:00",
@@ -25234,6 +25216,29 @@
       "title": "Usage metrics API adds code review details and addressed rate",
       "warnings": [
         "初めて出たところで言い換えていない略語（MCP・REST）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T23:33:06.266751+00:00",
+      "attempt": 1,
+      "id": "b6de41f0f45eb74b",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 98.6,
+        "avg_sentence": 40.6,
+        "long_share": 0.147,
+        "max_paragraph": 178,
+        "paragraphs": 14,
+        "sentences": 34
+      },
+      "score": 93,
+      "source": "github-changelog-copilot",
+      "title": "Usage metrics API flags telemetry and version gaps",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IDE）"
       ]
     }
   ],
