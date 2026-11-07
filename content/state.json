@@ -77,14 +77,6 @@
   },
   "failed_web": {},
   "gate_retry": {
-    "17a357c5e54aa313": {
-      "first": "2026-11-04T03:38:04.535003+00:00",
-      "next": "2026-11-04T06:38:04.535003+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "トヨタ、2027年シーズン WRC参戦体制発表 -2チーム、2車種で参戦-",
-      "tries": 1,
-      "url": "https://toyotagazooracing.com/jp/pressrelease/2026/1103-01/"
-    },
     "1b2c2dd52b0b36dc": {
       "first": "2026-11-06T08:23:32.478656+00:00",
       "next": "2026-11-06T11:23:32.478656+00:00",
@@ -108,14 +100,6 @@
       "title": "令和８年９月末の特殊詐欺の認知・検挙状況等について",
       "tries": 1,
       "url": "http://www.npa.go.jp/newlyarrived/2026/20260331001.html"
-    },
-    "52567fa092b78f28": {
-      "first": "2026-11-04T03:34:46.235755+00:00",
-      "next": "2026-11-04T06:34:46.235755+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "AI半導体株に翻弄された日本株～2026年10月の日本株式の振り返りと今後のポイント",
-      "tries": 1,
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87260?site=nli"
     },
     "69fabd0e3c004cb8": {
       "first": "2026-11-06T08:44:56.108789+00:00",
@@ -141,14 +125,6 @@
       "tries": 1,
       "url": "https://www.caa.go.jp/notice/entry/047990/"
     },
-    "9881ca53537ef472": {
-      "first": "2026-11-07T00:34:18.180289+00:00",
-      "next": "2026-11-07T03:34:18.180289+00:00",
-      "reason": "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルのまま」「日本の売上は1%減」）",
-      "title": "ニュースリリース 飲料商品の価格改定のお知らせ [PDF:653.8KB]",
-      "tries": 1,
-      "url": "https://www.fujiya-peko.co.jp/assets/pdf/press20261106_1.pdf"
-    },
     "a80efade9c9f0d83": {
       "first": "2026-11-06T00:08:54.716870+00:00",
       "next": "2026-11-06T06:23:38.862998+00:00",
@@ -172,14 +148,6 @@
       "title": "第14回人工知能（AI）技術の利用と消費者問題に関する専門調査会【11月5日開催】",
       "tries": 1,
       "url": "https://www.cao.go.jp/consumer/kabusoshiki/ai_technology/014/shiryou/index.html"
-    },
-    "d0d3f3321324b1c5": {
-      "first": "2026-11-07T00:39:32.308159+00:00",
-      "next": "2026-11-07T03:39:32.308159+00:00",
-      "reason": "title / seo_title に感嘆符がある; 感嘆符（！）が多い。感嘆符は使わない",
-      "title": "商品 『アサヒ ザ・ビタリスト』 と「くっきー！」がコラボレーション 「くっきー！描きおろし限定デザイン缶」を11月10日から数量限定発売",
-      "tries": 1,
-      "url": "https://www.asahibeer.co.jp/news/2026/1106_1.html"
     },
     "dc06143347b399e3": {
       "first": "2026-11-06T08:27:16.596740+00:00",
@@ -12453,6 +12421,17 @@
       "slug": "food-bank-gov-online-overview",
       "url": "https://www.gov-online.go.jp/article/202610/entry-11733.html"
     },
+    "9881ca53537ef472": {
+      "at": "2026-11-07T03:53:14.859792+00:00",
+      "costUsd": 0.045,
+      "intent": "query",
+      "mix": "money",
+      "model": "anthropic-api:claude-haiku-5-5+anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "lifestyle",
+      "slug": "fujiya-beverage-price-increase-2027",
+      "url": "https://www.fujiya-peko.co.jp/assets/pdf/press20261106_1.pdf"
+    },
     "98aa4f3fa33120c5": {
       "at": "2026-10-30T13:21:56.481654+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15573,6 +15552,17 @@
       "slug": "samsung-micro-rgb-tv-announcement",
       "url": "https://news.samsung.com/global/video-inside-the-tech-samsung-micro-rgb-tv"
     },
+    "d0d3f3321324b1c5": {
+      "at": "2026-11-07T03:56:11.016958+00:00",
+      "costUsd": 0.0561,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash+anthropic-api:claude-sonnet-5-5",
+      "score": 95,
+      "section": "lifestyle",
+      "slug": "asahi-the-bitterist-cookie-limited-can",
+      "url": "https://www.asahibeer.co.jp/news/2026/1106_1.html"
+    },
     "d112edf000570969": {
       "at": "2026-11-05T02:24:51.780292+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -18267,136 +18257,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T15:28:14.320905+00:00",
-      "attempt": 2,
-      "id": "06a6a6db73347aad",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "blue-ing!で楽しむ飲み放題付きパーティープランを販売開始 懇親会や歓送迎会にも最適、JFA公式施設ならではのパーティー体験を提供 #jfa"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T15:42:41.152227+00:00",
-      "attempt": 1,
-      "id": "f2bcdc221bfeb662",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 97.8,
-        "avg_sentence": 37.3,
-        "long_share": 0.048,
-        "max_paragraph": 186,
-        "paragraphs": 16,
-        "sentences": 42
-      },
-      "score": 95,
-      "source": "nli-research",
-      "title": "インドネシアGDP（26年7-9月期）～成長率は5.47％に加速、製造業とサービス業が牽引",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（BPS・BI・MSCI）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T16:12:56.645702+00:00",
-      "attempt": 1,
-      "id": "1184d3a025fd9d05",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 45.8字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 133.7字・最長 192字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 133.7,
-        "avg_sentence": 45.8,
-        "long_share": 0.229,
-        "max_paragraph": 192,
-        "paragraphs": 12,
-        "sentences": 35
-      },
-      "score": 92,
-      "source": "mistral-news",
-      "title": "Le Chonk brings the brains. Studio puts it to work.",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（MCP・ABANCA・BNP）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T16:13:17.333287+00:00",
-      "attempt": 0,
-      "id": "1184d3a025fd9d05",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 45.8字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 94.4,
-        "avg_sentence": 45.8,
-        "long_share": 0.229,
-        "max_paragraph": 160,
-        "paragraphs": 17,
-        "sentences": 35
-      },
-      "score": 94,
-      "source": "mistral-news",
-      "title": "Le Chonk brings the brains. Studio puts it to work.",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（MCP・ABANCA・BNP）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T16:15:02.038568+00:00",
-      "attempt": 1,
-      "id": "a17282f496fcba49",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "全国財務局管内経済情勢報告概要（令和8年10月）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T16:15:12.830620+00:00",
-      "attempt": 2,
-      "id": "a17282f496fcba49",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "全国財務局管内経済情勢報告概要（令和8年10月）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T16:33:23.084578+00:00",
-      "attempt": 1,
-      "id": "3af0ef7d790a050b",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "softbank-news",
-      "title": "大迫力のダンスバトル！ ハーフタイムショーで推しと最接近！ 史上最多の20チームが参戦する「D.LEAGUE 26-27 SEASON」開幕戦レポート"
-    },
     {
       "accepted": false,
       "at": "2026-11-05T16:34:20.814798+00:00",
@@ -24160,6 +24020,160 @@
       "score": 85,
       "source": "jfa",
       "title": "【Match Report】フットサル日本代表、粘り強く戦うもモロッコに0-1で惜敗 #jfa #daihyo"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T03:52:35.001650+00:00",
+      "attempt": 1,
+      "id": "9881ca53537ef472",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "fujiya",
+      "title": "ニュースリリース 飲料商品の価格改定のお知らせ [PDF:653.8KB]"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T03:52:57.118948+00:00",
+      "attempt": 1,
+      "id": "9881ca53537ef472",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "fujiya",
+      "title": "ニュースリリース 飲料商品の価格改定のお知らせ [PDF:653.8KB]"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T03:53:14.853376+00:00",
+      "attempt": 1,
+      "id": "9881ca53537ef472",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 62.7,
+        "avg_sentence": 31.4,
+        "long_share": 0.065,
+        "max_paragraph": 147,
+        "paragraphs": 23,
+        "sentences": 46
+      },
+      "score": 92,
+      "source": "fujiya",
+      "title": "ニュースリリース 飲料商品の価格改定のお知らせ [PDF:653.8KB]",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IR）",
+        "同じ数字が多い（「14%」が6回）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T03:54:35.670123+00:00",
+      "attempt": 1,
+      "id": "d0d3f3321324b1c5",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "お酒の記事は本文に注意書き「お酒は20歳になってから。飲酒運転は法律で禁止されています。」を入れる",
+        "感嘆符（！）が多い。感嘆符は使わない"
+      ],
+      "readability": {
+        "avg_paragraph": 60.8,
+        "avg_sentence": 43.4,
+        "long_share": 0.214,
+        "max_paragraph": 173,
+        "paragraphs": 20,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "asahi",
+      "title": "商品 『アサヒ ザ・ビタリスト』 と「くっきー！」がコラボレーション 「くっきー！描きおろし限定デザイン缶」を11月10日から数量限定発売",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（WEBCM・QUO・POP）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T03:55:19.899150+00:00",
+      "attempt": 1,
+      "id": "d0d3f3321324b1c5",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "本文「2025年11月10日から発売される予定です」→ 元記事は「2025年に発売」としか書いておらず、日付と「発売される予定」という時制が創作・取り違えである。",
+        "判定行「価格=オープン価格」→ 元記事に価格や価格方式の記載はなく、根拠のない提供条件の記述である。"
+      ],
+      "readability": {
+        "avg_paragraph": 98.2,
+        "avg_sentence": 47.8,
+        "long_share": 0.297,
+        "max_paragraph": 238,
+        "paragraphs": 18,
+        "sentences": 37
+      },
+      "score": 45,
+      "source": "asahi",
+      "title": "商品 『アサヒ ザ・ビタリスト』 と「くっきー！」がコラボレーション 「くっきー！描きおろし限定デザイン缶」を11月10日から数量限定発売",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（WEBCM・RRAI・QUO）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T03:55:44.906503+00:00",
+      "attempt": 1,
+      "id": "d0d3f3321324b1c5",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "文が長い（1文の平均 45.1字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 95.1,
+        "avg_sentence": 45.1,
+        "long_share": 0.275,
+        "max_paragraph": 175,
+        "paragraphs": 19,
+        "sentences": 40
+      },
+      "score": 95,
+      "source": "asahi",
+      "title": "商品 『アサヒ ザ・ビタリスト』 と「くっきー！」がコラボレーション 「くっきー！描きおろし限定デザイン缶」を11月10日から数量限定発売",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（WEBCM・RRAI・QUO）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T03:56:11.003981+00:00",
+      "attempt": 0,
+      "id": "d0d3f3321324b1c5",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 判定: 提供状況=soon 価格=オープン価格 → 元記事に価格の記載はなく、発表では価格に触れていないと記事本文自身が述べている。「オープン価格」は元記事に無い価格情報の創作で、本文と矛盾する。; 判定: 提供状況=soon → 元記事に無い提供状況の区分を付"
+      ],
+      "readability": {
+        "avg_paragraph": 95.1,
+        "avg_sentence": 45.1,
+        "long_share": 0.275,
+        "max_paragraph": 175,
+        "paragraphs": 19,
+        "sentences": 40
+      },
+      "score": 95,
+      "source": "asahi",
+      "title": "商品 『アサヒ ザ・ビタリスト』 と「くっきー！」がコラボレーション 「くっきー！描きおろし限定デザイン缶」を11月10日から数量限定発売",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（WEBCM・RRAI・QUO）"
+      ]
     }
   ],
   "short_text_retry": {},
