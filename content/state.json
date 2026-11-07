@@ -11489,6 +11489,18 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000095.000010009.html"
     },
+    "8701fa3f5588adb9": {
+      "at": "2026-11-07T13:14:13.044297+00:00",
+      "costUsd": 0.0242,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "mito-ai-video-world-cup-tv-spot",
+      "url": "https://cloud.google.com/blog/products/media-entertainment/how-mito-orchestrated-5000-plus-ai-assets-for-a-world-cup-tv-spot/"
+    },
     "870e70d2929a456b": {
       "at": "2026-11-06T22:05:15.531120+00:00",
       "costUsd": 0.0123,
@@ -18524,71 +18536,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-05T22:39:48.366874+00:00",
-      "attempt": 1,
-      "id": "a3699682c56116b2",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "リード「日本の電気料金に変わりはなく」→ 元記事は日本に触れておらず、日本の電気料金への影響を断定する記述は元記事に無い推測です",
-        "本文「日本の電気料金やChatGPTの利用条件が、これで変わるわけではありません」→ 日本への影響について元記事に根拠が無く、断定的に書かれています",
-        "リード「各地の具体的な料金設計はこれから詰める段階」→ 元記事はウィスコンシン州の料金体系を「提案された」と述べるのみで、全拠点で今後詰めるという記述は元記事に無いです",
-        "本文「テキサス、ニューメキシコ、ウィスコンシン、ミシガンの各州でも、複数の拠点を構築中」→ 元記事は「構築されています」であり、構築中という表現は元記事と異なります"
-      ],
-      "readability": {
-        "avg_paragraph": 101.3,
-        "avg_sentence": 43.8,
-        "long_share": 0.081,
-        "max_paragraph": 189,
-        "paragraphs": 16,
-        "sentences": 37
-      },
-      "score": 78,
-      "source": "openai-news",
-      "title": "OpenAI、データセンター立地地域への約束と政策提言を発表 電力費の全額負担や公職者とのNDA不使用など",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GW・WEC・DTE）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T22:40:08.211690+00:00",
-      "attempt": 1,
-      "id": "a3699682c56116b2",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 99.1,
-        "avg_sentence": 44.1,
-        "long_share": 0.083,
-        "max_paragraph": 189,
-        "paragraphs": 16,
-        "sentences": 36
-      },
-      "score": 90,
-      "source": "openai-news",
-      "title": "OpenAI、データセンター立地地域への約束と政策提言を発表 電力費の全額負担や公職者とのNDA不使用など",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GW・WEC・DTE）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T23:07:24.996007+00:00",
-      "attempt": 1,
-      "id": "582d1c8b48613264",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "softbank-group-press",
-      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-05T23:07:48.495284+00:00",
       "attempt": 2,
       "id": "582d1c8b48613264",
@@ -24589,6 +24536,85 @@
       "warnings": [
         "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（LTX・USD・BRK）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T13:13:22.667952+00:00",
+      "attempt": 1,
+      "id": "8701fa3f5588adb9",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "リード「この仕組みは一般向けの製品ではなく」→ 元記事は個人のソロアーティストから大企業までを対象にAI動画制作を民主化すると述べており、一般向けでないと断定する根拠がない。",
+        "かんたん版「一般の人が今すぐ使える製品の発表ではありません」→ 元記事に製品の提供範囲の記述はなく、一般向けでないという断定は元記事から確認できない。",
+        "判定欄「提供状況=demo」→ 元記事にない用語で、提供状況の判定根拠が示されていない。",
+        "「Sonnet（編集部注：Anthropicの言語モデル）」→ 編集部注による一般的な補足で問題は小さいが、元記事は Sonnet としか書いていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 129.5,
+        "avg_sentence": 44.2,
+        "long_share": 0.136,
+        "max_paragraph": 180,
+        "paragraphs": 15,
+        "sentences": 44
+      },
+      "score": 80,
+      "source": "google-cloud-blog",
+      "title": "The Blueprint: Orchestrating 5,000+ AI assets for a World Cup TV spot",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CM）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T13:13:45.121191+00:00",
+      "attempt": 1,
+      "id": "8701fa3f5588adb9",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "段落が長い（平均 128.1字・最長 180字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 128.1,
+        "avg_sentence": 43.7,
+        "long_share": 0.114,
+        "max_paragraph": 180,
+        "paragraphs": 15,
+        "sentences": 44
+      },
+      "score": 95,
+      "source": "google-cloud-blog",
+      "title": "The Blueprint: Orchestrating 5,000+ AI assets for a World Cup TV spot",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CM）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T13:14:13.028981+00:00",
+      "attempt": 0,
+      "id": "8701fa3f5588adb9",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 99.5,
+        "avg_sentence": 42.0,
+        "long_share": 0.089,
+        "max_paragraph": 178,
+        "paragraphs": 19,
+        "sentences": 45
+      },
+      "score": 92,
+      "source": "google-cloud-blog",
+      "title": "The Blueprint: Orchestrating 5,000+ AI assets for a World Cup TV spot",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CM）"
       ]
     }
   ],
