@@ -39,6 +39,7 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import math
 import os
 import re
 import urllib.parse
@@ -96,6 +97,25 @@ LATE_NOTE = (
     "この発表は{date}（日本時間）に公開されたもので、今日の速報ではありません。本文の冒頭近くで「{date}に発表された」と日付を書き、"
     "「本日」「たった今」「速報」など新しい発表のように見せる言い方をしないでください。題名にも【速報】などを付けないでください。"
 )
+# 2026-11-07 夜 オーナー承認（台帳 A57）: 暮らし・お金の公式の発表（料金改定・給付・手続き・交通・リコールなど、
+# いつから・いくら・対象者を答える話題）は、48時間を過ぎても LIFE_LATE_HOURS までは「速報ではない」形（late）で記事にしてよい。
+# 週末・夜は国内の新しい発表が少なく、AI の海外の発表ばかりになっていた。障害・情報流出など「いま起きている」話題は今までどおり48時間まで
+LIFE_LATE_HOURS = int(os.environ.get("LIFE_LATE_HOURS", "168"))
+LIFE_LATE_MIX = {"money", "life"}
+
+
+def life_late_ok(item: dict) -> bool:
+    """48時間を過ぎた候補でも late の形で記事にしてよい暮らし・お金の公式の発表か（日本語の発信元・種類が money / life・LIFE_LATE_HOURS 以内）。
+    リコール（公共性の recall）も、対象の製品と直し方を調べる人がいるので含める"""
+    if not news_mix.is_japanese_item(item) or item.get("secondary"):
+        return False
+    age = source_age(item)
+    if not age or age > timedelta(hours=LIFE_LATE_HOURS):
+        return False
+    mix = item.get("_mix") or news_mix.classify(item)
+    return mix in LIFE_LATE_MIX or public_interest.record_category({"title": item.get("title") or ""}) == "recall"
+
+
 QUALITY_LOG_KEEP = 300
 # 1本あたりの目安（生成＋事実確認）。残り時間がこれを切ったら新しい記事に手を付けない
 EST_SEC_PER_ARTICLE = 150
@@ -1519,9 +1539,11 @@ def build_lanes(ai_items: list[dict], broad_items: list[dict], section_filter: s
     return lanes
 
 
-def lane_order(lanes: dict[str, list[dict]], now: datetime | None = None) -> list[str]:
+def lane_order(lanes: dict[str, list[dict]], now: datetime | None = None, ai_last: bool = False) -> list[str]:
     """ai を先頭に、読者像（scripts/persona.py）で優先するレーン（ビジネス・お金／制度）を次に、
-    残りは時刻で開始位置をずらして毎回同じセクションが先にならないようにする。スポーツは最後（1日の上限つき）"""
+    残りは時刻で開始位置をずらして毎回同じセクションが先にならないようにする。スポーツは最後（1日の上限つき）。
+    ai_last=True（今日の暮らし・お金の記事が6割に届いていない日。2026-11-07 夜 オーナー承認・台帳 A57）は、
+    AI のレーン（海外の発表が多い）を幅広い話題のレーンの後ろ（スポーツの前）に回す。本数は変えず、順番だけ"""
     # 今日まだ最低本数に届いていない 投資・マネー／不動産／エンタメ を先に（候補があるときだけ。scripts/genre_focus.py）
     boost = genre_focus.boost_lanes(lanes, now=now)
     first = boost + [s for s in persona.PRIORITY_LANES if s in lanes and s not in boost]
@@ -1530,7 +1552,10 @@ def lane_order(lanes: dict[str, list[dict]], now: datetime | None = None) -> lis
         shift = (now or datetime.now(JST)).hour % len(rest)
         rest = rest[shift:] + rest[:shift]
     last = ["sports"] if "sports" in lanes else []
-    return (["ai"] if "ai" in lanes else []) + first + rest + last
+    ai = ["ai"] if "ai" in lanes else []
+    if ai_last:
+        return first + rest + ai + last
+    return ai + first + rest + last
 
 
 def lane_turns(lane: str) -> int:
@@ -2051,7 +2076,12 @@ def main() -> int:
     if not fast_mode and (broad_limit > 0 or (args.max_major > 0 and args.section in ("broad", "all"))):
         selected = [f for f in feeds.BROAD_FEEDS if not args.source or f["slug"] in args.source]
         report = {}
-        broad_items = tag_sections(usable(feeds.collect(args.days, state, selected, report=report))) if selected else []
+        # 暮らし・お金の公式の発表は LIFE_LATE_HOURS まで遡って拾う（台帳 A57）。それ以外は今までどおり --days まで
+        broad_days = max(args.days, math.ceil(LIFE_LATE_HOURS / 24))
+        since = datetime.now(timezone.utc) - timedelta(days=args.days)
+        broad_raw = feeds.collect(broad_days, state, selected, report=report) if selected else []
+        broad_raw = [i for i in broad_raw if i["published_at"] >= since or life_late_ok(i)]
+        broad_items = tag_sections(usable(broad_raw))
         log(f"[feed-health] broad {json.dumps(feeds.report_totals(report), ensure_ascii=False, sort_keys=True)}")
     if args.only:
         only_re = re.compile(args.only)
@@ -2107,6 +2137,9 @@ def main() -> int:
         lanes[lane].sort(key=lambda i: (demand_rank(i, pi_signals), rank_intent.sort_key(i, intent_counts), news_mix.order_key(i, mix_counts), rank_bucket(i),
                                         0 if lane == "ai" else persona_rank(i)))
     log(f"[mix] 今日の配分（作った/めやす）: {news_mix.summary(mix_counts)}")
+    if news_mix.life_behind(mix_counts):
+        # 2026-11-07 夜 オーナー承認（台帳 A57）: 暮らし・お金の記事が今日6割に届くまで、その種類を先に・AI のレーンを後ろに（本数は変えない）
+        log("[mix] 暮らし・お金の記事が今日のめやす（6割）に届いていないので、その種類の候補を先に、AI のレーンを幅広い話題の後ろに回します")
     # 海外の AI の発表は1日の上限まで（台帳 A47。大きなニュースは外）
     foreign_left = [max(FOREIGN_AI_DAILY_CAP - foreign_ai_today(state), 0)]
     log(f"[mix] 海外の AI の発表: 今日の残り {foreign_left[0]} 本（上限 {FOREIGN_AI_DAILY_CAP}。増やす分は検索される話題と国内のニュース）")
@@ -2158,7 +2191,7 @@ def main() -> int:
                 f"  {trend_source_name(fetched) if fetched else ''}"
             )
         wire_seen = 0
-        for lane in lane_order(lanes):
+        for lane in lane_order(lanes, ai_last=news_mix.life_behind(mix_counts)):
             items = lanes[lane]
             cap = ai_limit if lane == "ai" else broad_limit
             counts = {"対象": 0, "除外": 0, "重複": 0}
@@ -2546,7 +2579,9 @@ def main() -> int:
             mark(state, cand, skipped=True, reason="dedupe: 同じ出典URL")
             return "drop", "重複: 同じ出典URL"
         if is_stale(cand) and not cand.get("fast"):
-            if not major:
+            if not major and life_late_ok(cand):
+                cand["late"] = True  # 暮らし・お金の公式の発表は LIFE_LATE_HOURS まで「速報ではない」形で作る（台帳 A57）
+            elif not major:
                 hours = int(source_age(cand).total_seconds() // 3600)
                 mark(state, cand, skipped=True, reason=f"stale: 発表から{hours}時間（{STALE_HOURS}時間を超えた発表は通常の記事にしない）")
                 return "drop", f"古い発表（{STALE_HOURS}時間超）"
@@ -2879,7 +2914,7 @@ def main() -> int:
             log(f"   [OK] {path.relative_to(m.ROOT)} ({len(record['body'])}字 / {model_name} / {time.time() - started:.0f}s)")
 
         # 公式フィード（AI）と幅広い話題を、レーンごとに1本ずつ交互に処理する
-        order = lane_order(lanes)
+        order = lane_order(lanes, ai_last=news_mix.life_behind(mix_counts))
         pointers = {lane: 0 for lane in order}
         active = list(order)
         deferred_off: list[tuple[str, dict]] = []

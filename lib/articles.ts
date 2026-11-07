@@ -126,6 +126,8 @@ export type Article = {
   coverCredit?: ImageCredit;
   /** ノワールの要点の1文（大事な数字を **…** で囲む。scripts/noir_layout.py が本文・要点から抜き出す） */
   summaryLine?: string;
+  /** Google Discover に向く記事の印（1日5本まで。scripts/discover_pick.py・台帳 A57。表示には使わない） */
+  discoverCandidate?: boolean;
   /** ノワールの黒いカードの数字（値は記事に書いてある文字のまま） */
   keyFigure?: NoirKeyFigure;
   /** ノワールの「前 → 今」の行（本文の「前／今回」の表の行） */

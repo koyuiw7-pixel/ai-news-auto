@@ -6,6 +6,10 @@
   障害・情報流出・サポート終了・注意喚起 15% / 料金・制度・お金の変更 20% / 有名ブランドの新製品・日本の発売 25% /
   一般向けの大きな AI の動き 20% / 日本の大手企業の決算・提携 10% / 目を引く技術・研究 5% /
   企業向け・開発者向けの海外の発表 5%まで（上限。大きなニュースは上限の外）
+2026-11-07 夜 オーナー承認（台帳 A57）: 1日の6割以上を日本の暮らし・お金の話題（life_group = 注意喚起・お金・暮らしの手続き）に。
+  注意喚起 20% / お金 25% / 暮らしの手続き・交通・天気 15%（計60%）/ ブランド 15% / 一般向け AI 12% / 日本の大手 8% / 研究 3% /
+  企業向け・開発者向けの海外の発表 2%（1日2本まで）。本数は減らさない（並びと発信元で寄せる。上限は増やさない）
+  life_behind(counts)       … 今日の暮らし・お金の割合がめやす（life_min_share）に届いていないか
 
 調整値（割合・判定の語・発信元）は scripts/news_mix.json。ここには値を書き込まない。
 使い方（scripts/web_articles.py）:
@@ -78,15 +82,23 @@ def is_japanese_item(item: dict) -> bool:
     return lang == "ja"
 
 
+# 広げた暮らしの話題（public_interest.wide_category・台帳 A56）をこの配分の種類に読み替える（2026-11-07 夜・台帳 A57）
+WIDE_TO_MIX = {"outage": "alert", "service-end": "alert", "price": "money", "benefit": "money",
+               "transport": "life", "weather": "life", "health": "life"}
+# 注意喚起の語に当たっても、製品・対策の話（「詐欺対策の新機能」「漏えいを防ぐサービス」）は注意喚起にしない
+NOT_ALERT_RE = re.compile(r"対策(?:の|を|に|機能|サービス|製品|ソフト|強化)|を防ぐ|防止(?:機能|サービス)|新機能|ソリューション|提供開始|導入|と提携|協業")
+
+
 def classify(item: dict) -> str:
-    """候補（フィードの項目）か記事の種類。判定の順: 注意喚起 → 企業向け（発信元・語）→ 一般向け AI → お金 → ブランド → 日本の大手 → 研究 → そのほか"""
+    """候補（フィードの項目）か記事の種類。判定の順: 注意喚起 → 企業向け（発信元・語）→ 一般向け AI → お金 → 暮らし → ブランド → 日本の大手 → 研究 → そのほか"""
     import public_interest  # noqa: PLC0415 - 公共性の判定と同じ語を使う
 
     title = unicodedata.normalize("NFKC", str(item.get("title") or ""))
     source = str(item.get("source_slug") or item.get("channelSlug") or "")
     # 公共性の種類は、事件・注意喚起の形の題名だけ（「詐欺対策の新機能」「脆弱性の発見」のような製品の話は注意喚起にしない）
     pi_cat = item.get("_public_interest") or item.get("publicInterest") or public_interest.record_category({"title": title})
-    if pi_cat in ("breach", "missile", "disaster", "recall", "scam") or _hit("alert", title):
+    wide = WIDE_TO_MIX.get(public_interest.wide_category(title, source) or "")
+    if pi_cat in ("breach", "missile", "disaster", "recall", "scam") or wide == "alert" or (_hit("alert", title) and not NOT_ALERT_RE.search(title)):
         return "alert"
     consumer_ai = _hit("ai_consumer", title)
     # 企業向け・開発者向けの発信元の記事と、企業向けの語のある題名は、AI の名前があっても企業向け（大きなニュースは上限の外）
@@ -96,8 +108,10 @@ def classify(item: dict) -> str:
         return "enterprise_dev"
     if consumer_ai and source not in SOURCES.get("brand", set()):
         return "ai_consumer"  # 一般向けの AI の新機能・無料の範囲の変更（料金の語があっても AI の動きとして数える）
-    if pi_cat == "money" or _hit("money", title):
+    if pi_cat == "money" or wide == "money" or _hit("money", title):
         return "money"
+    if wide == "life" or _hit("life", title):
+        return "life"  # 暮らしの手続き・交通・天気・感染症・自治体のお知らせ（2026-11-07 夜・台帳 A57）
     if (source in SOURCES.get("brand", set()) or _hit("brand", title)) and (_hit("brand_event", title) or source in SOURCES.get("brand", set())):
         if not consumer_ai or source in SOURCES.get("brand", set()):
             return "brand"
@@ -142,20 +156,42 @@ def today_counts(state: dict, now: datetime | None = None) -> dict[str, int]:
     return counts
 
 
+def life_group() -> set[str]:
+    """暮らし・お金の種類（2026-11-07 夜・台帳 A57）。1日の割合のめやすは life_min_share（既定 0.6）"""
+    return set(CONFIG.get("life_group") or ("alert", "money", "life"))
+
+
+def life_share(counts: dict[str, int]) -> float | None:
+    """今日作った記事のうち暮らし・お金の種類の割合（まだ0本なら None）"""
+    total = sum(counts.values())
+    if not total:
+        return None
+    return sum(n for name, n in counts.items() if name in life_group()) / total
+
+
+def life_behind(counts: dict[str, int]) -> bool:
+    """今日の暮らし・お金の割合がめやすに届いていないか（0本の朝も「届いていない」）"""
+    share = life_share(counts)
+    return share is None or share < float(CONFIG.get("life_min_share") or 0.6)
+
+
 def deficit(name: str, counts: dict[str, int]) -> float:
     """今日のめやすまでの残り（多いほど先に作る）"""
     return targets().get(name, 0.0) - counts.get(name, 0)
 
 
 def order_key(item: dict, counts: dict[str, int]) -> tuple:
-    """レーンの中の並び。上限のある種類（企業向け・開発者向け）は最後、残りは今日まだ足りない種類から"""
+    """レーンの中の並び。上限のある種類（企業向け・開発者向け）は最後、残りは今日まだ足りない種類から。
+    暮らし・お金の割合がめやす（6割）に届いていない日は、暮らし・お金の種類をいちばん先に（2026-11-07 夜・台帳 A57）"""
     if not CONFIG.get("order_by_mix", True):
         return (0, 0.0)
     name = item.get("_mix") or classify(item)
     if cap_of(name) is not None:
-        return (2, 0.0)
+        return (3, 0.0)
     gap = deficit(name, counts)
-    return (0 if gap > 0 else 1, -gap)
+    if name in life_group() and life_behind(counts):
+        return (0, -gap)
+    return (1 if gap > 0 else 2, -gap)
 
 
 def over_cap(item: dict, counts: dict[str, int]) -> bool:
@@ -165,7 +201,8 @@ def over_cap(item: dict, counts: dict[str, int]) -> bool:
 
 
 def summary(counts: dict[str, int]) -> str:
-    parts = []
+    share = life_share(counts)
+    parts = [f"暮らし・お金 {0 if share is None else round(share * 100)}%（めやす {round(float(CONFIG.get('life_min_share') or 0.6) * 100)}%以上）"]
     for name, target in targets().items():
         if target or counts.get(name):
             cap = cap_of(name)

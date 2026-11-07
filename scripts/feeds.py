@@ -379,6 +379,27 @@ BROAD_FEEDS: list[dict] = [
      "include_re": "鳥インフルエンザ|豚熱", "exclude_re": "北米|米国|アメリカ|欧州|ヨーロッパ|韓国|台湾|アジア|中国|海外|世界|諸外国"},
     {"slug": "jihs", "name": "国立健康危機管理研究機構 感染症情報", "url": "https://id-info.jihs.go.jp/", "type": "html", "section": "public", "kind": "gov", "priority": 2,
      "include_re": "流行|警報|注意報|注意喚起|集団発生|インフルエンザ様疾患", "exclude_re": "IASR|ダウンロード|view more"},
+    # --- 2026-11-07 夜 追加（オーナー承認・台帳 A57: 1日の6割以上を暮らし・お金・手続き・障害・詐欺/情報流出の話題に） ---
+    # 公式の一次情報だけ。robots.txt 許可・直近14日の更新・日付ありを 2026-11-07 に確かめた。量の多い一覧は include_re で暮らしに関わる題名だけ
+    {"slug": "meti-press", "name": "経済産業省 報道発表", "url": "https://www.meti.go.jp/press/index.html", "type": "html",
+     "link_re": r"meti\.go\.jp/press/20\d\d/\d\d/\d+\.html", "section": "public", "kind": "gov", "priority": 2,
+     "include_re": "補助|支援|料金|値上げ|値下げ|価格|ガソリン|灯油|電気|ガス|燃料|物価|リコール|製品事故|回収|消費者|詐欺|悪質|業務停止|取引停止|"
+                   "業務改善命令|特定商取引|中小企業|小規模事業者|申請|公募|受付|開始|終了|注意喚起|防災",
+     "exclude_re": "会談|出張|訪問|表彰|受賞|叙勲|褒章|会合|懇談|意見交換|人事|指名停止|検定試験|開催します|開催しました"},
+    {"slug": "docomo-notice", "name": "NTTドコモ 重要なお知らせ", "url": "https://www.docomo.ne.jp/info/rss/notice.rdf", "section": "tech-gadget", "kind": "company", "priority": 2,
+     "include_re": "お詫び|おわび|障害|つながりにくい|流出|漏え?い|不正アクセス|注意喚起|偽|詐欺|なりすまし|料金|改定|終了|停止|メンテナンス|値上げ|値下げ"},
+    {"slug": "aeon", "name": "イオン ニュースリリース", "url": "https://www.aeon.info/news/", "type": "html",
+     "link_re": r"aeon\.info/news/release_\d+", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "値下げ|値上げ|価格|新商品|発売|回収|ポイント|WAON|サービス終了|提供開始|キャッシュレス|トップバリュ|物価"},
+    {"slug": "chuden", "name": "中部電力 プレスリリース", "url": "https://www.chuden.co.jp/publicity/press/", "type": "html",
+     "link_re": r"chuden\.co\.jp/publicity/press/\d+_\d+\.html", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "料金|値上げ|値下げ|燃料費|停電|障害|節電|需給|補助|流出|漏え?い|不正アクセス"},
+    {"slug": "rakuten-card", "name": "楽天カード お知らせ", "url": "https://www.rakuten-card.co.jp/info/news/", "type": "html",
+     "link_re": r"rakuten-card\.co\.jp/info/news/20\d{6}", "section": "investment", "kind": "company", "priority": 3,
+     "include_re": "不正アクセス|流出|漏え?い|詐欺|フィッシング|偽|なりすまし|手数料|改定|終了|停止|障害|廃止|3Dセキュア|本人認証"},
+    # 確かめたが使えなかったもの（2026-11-07 夜 A57 の追加分）: 中小企業庁・経産省の Atom（直近14日の項目が無い）、ソフトバンク・au の障害/お知らせ・
+    #   三井住友カード・セブン銀行・PayPay銀行（一覧から日付つきの項目が読めない）、楽天銀行・三菱UFJ の RSS・埼玉県・千葉県・神戸市・川崎市・さいたま市・
+    #   九州電力・東北電力（404）、資源エネ庁・関西電力・消費者庁の注意喚起の RSS（403）、個人情報保護委員会（一覧が1件しか読めない）
     # 確かめたが使えなかったもの（2026-11-07 A56 の追加分）: JR北海道・東京メトロ・小田急・京王・みずほ銀行・NEXCO西日本・大阪市・カルビー（403）、
     #   東急・九州電力・東北電力・北海道電力・マクドナルド・吉野家・札幌市・福岡市（一覧の URL が 404）、東京都交通局・セブン‐イレブン・ゼンショー・ANA・
     #   三菱UFJ銀行・名古屋市（一覧から日付つきの項目が読めない・直近14日に更新なし）、スターバックス（503）、東邦ガス（自己株式の開示ばかり）、

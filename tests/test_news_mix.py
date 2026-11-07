@@ -19,13 +19,15 @@ class ConfigTest(unittest.TestCase):
     def test_owner_approved_shares_are_in_the_config(self):
         cats = json.loads((ROOT / "scripts" / "news_mix.json").read_text("utf-8"))["categories"]
         shares = {k: v["share"] for k, v in cats.items()}
-        self.assertEqual(shares["alert"], 0.15)
-        self.assertEqual(shares["money"], 0.20)
-        self.assertEqual(shares["brand"], 0.25)
-        self.assertEqual(shares["ai_consumer"], 0.20)
-        self.assertEqual(shares["jp_corp"], 0.10)
-        self.assertEqual(shares["quirky"], 0.05)
-        self.assertEqual(shares["enterprise_dev"], 0.05)
+        # 2026-11-07 夜 オーナー承認（台帳 A57）: 暮らし・お金（注意喚起・お金・暮らしの手続き）で6割以上
+        self.assertEqual(shares["alert"], 0.20)
+        self.assertEqual(shares["money"], 0.25)
+        self.assertEqual(shares["life"], 0.15)
+        self.assertEqual(shares["brand"], 0.15)
+        self.assertEqual(shares["ai_consumer"], 0.12)
+        self.assertEqual(shares["jp_corp"], 0.08)
+        self.assertEqual(shares["quirky"], 0.03)
+        self.assertEqual(shares["enterprise_dev"], 0.02)
         self.assertTrue(cats["enterprise_dev"].get("cap"), "企業向け・開発者向けは上限")
         self.assertAlmostEqual(sum(shares.values()), 1.0)
 

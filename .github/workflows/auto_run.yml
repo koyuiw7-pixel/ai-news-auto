@@ -281,6 +281,12 @@ jobs:
             python scripts/story.py mark --days 7 | tail -20
           fi
 
+      # Google Discover に向く記事に印（discoverCandidate）を付ける（1日5本まで・大きな画像・題名に数字・あおりなし。台帳 A57。LLM なし）
+      - name: Discover candidates
+        if: ${{ !startsWith(inputs.fast_url || '', 'https://www.data.jma.go.jp/') }}
+        continue-on-error: true
+        run: python scripts/discover_pick.py
+
       # 値上げ・障害・リコール・サービス終了の一覧（/roundups/<kind>。台帳 A52）。公開中の記事から規則で作り直す（LLM なし）。
       # 一覧が変わったときだけ content/topic_lists.json を書き直す（このあとのコミット・デプロイに入る）
       - name: Topic lists
