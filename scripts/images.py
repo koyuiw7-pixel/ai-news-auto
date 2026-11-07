@@ -2094,6 +2094,29 @@ def doc_stats(image) -> dict:
 
 
 VISION_MODELS = ["@cf/meta/llama-4-scout-17b-16e-instruct", "@cf/mistralai/mistral-small-3.1-24b-instruct"]
+# 2026-11-07（台帳 O16・お金はなるべく使わない）: 画像の判定のニューロン（Cloudflare の料金表から: 100万トークンあたり 入力・出力）。
+# 応答の usage から数えて、ジョブごとの記録（llm_usage_wf.json など）に「workers-ai-vision-neurons@<UTCの日付>」で足す（見える化だけ。
+# 文章の目安 LLM_CF_DAILY_NEURONS の数え方〔workers-ai-neurons@〕には入れない＝本文のモデルの順番は変えない）
+VISION_NEURONS_PER_MTOK = {
+    "@cf/meta/llama-4-scout-17b-16e-instruct": (24545, 77273),     # $0.27 / $0.85
+    "@cf/mistralai/mistral-small-3.1-24b-instruct": (31876, 50488),  # $0.351 / $0.555
+}
+VISION_NEURON_KEY = "workers-ai-vision-neurons@"
+# 同じ実行の中で、同じ画像（縮めたあとのバイト列が同じ）に同じ質問をしたら、Workers AI を呼ばずに前の答えを使う
+# （temperature=0 なので答えは同じ。判定の基準・回数の決まりは変えない）
+_VISION_CACHE: dict[str, str] = {}
+
+
+def _record_vision_neurons(model: str, usage: dict | None) -> None:
+    usage = usage or {}
+    rate_in, rate_out = VISION_NEURONS_PER_MTOK.get(model, VISION_NEURONS_PER_MTOK[VISION_MODELS[0]])
+    value = (int(usage.get("prompt_tokens") or 0) * rate_in + int(usage.get("completion_tokens") or 0) * rate_out) / 1_000_000
+    neurons = int(value) + (1 if value % 1 else 0)
+    if neurons > 0:
+        try:
+            llm._record_workflow_usage(VISION_NEURON_KEY + llm._utc_day(), neurons)
+        except Exception:  # noqa: BLE001 - 記録の失敗で判定を止めない
+            pass
 
 
 def cf_vision(image, prompt: str, max_tokens: int = 60, size: int = 512) -> str | None:
@@ -2105,7 +2128,11 @@ def cf_vision(image, prompt: str, max_tokens: int = 60, size: int = 512) -> str 
     small.thumbnail((size, size))
     buf = io.BytesIO()
     small.save(buf, "JPEG", quality=80)
-    uri = "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
+    jpeg = buf.getvalue()
+    cache_key = hashlib.sha1(jpeg + b"\0" + prompt.encode("utf-8") + b"\0" + str(max_tokens).encode()).hexdigest()
+    if cache_key in _VISION_CACHE:
+        return _VISION_CACHE[cache_key]
+    uri = "data:image/jpeg;base64," + base64.b64encode(jpeg).decode()
     for model in VISION_MODELS:
         body = {
             "model": model,
@@ -2121,8 +2148,10 @@ def cf_vision(image, prompt: str, max_tokens: int = 60, size: int = 512) -> str 
         try:
             with urllib.request.urlopen(req, timeout=60) as res:
                 data = json.loads(res.read())
+            _record_vision_neurons(model, data.get("usage"))
             text = str(((data.get("choices") or [{}])[0].get("message") or {}).get("content") or "").strip()
             if text:
+                _VISION_CACHE[cache_key] = text
                 return text
         except Exception as error:  # noqa: BLE001
             log(f"   [img] 画像判定 {model.rsplit('/', 1)[-1]}: {str(error)[:80]}")

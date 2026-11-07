@@ -1303,10 +1303,18 @@ def _record_request(purpose: str, now: datetime | None = None) -> None:
 
 
 def _model_level(model: str) -> int:
+    """台帳の「段|モデルの段」のモデルの段。モデルの名前（Haiku/Sonnet/Opus）で決める（料金の実績を正しいモデルに数える）。
+    2026-11-07（台帳 O16）: 前は環境変数 CLAUDE_API_MODEL_* の対応で決めていたので、書き直しのジョブ（scripts/rewrite_types.py の
+    _write_with。全部の段を Sonnet にする）の Sonnet が「core|1（Haiku）」と記録され、Haiku の中心の1回が約 $0.04（本当は約 $0.008）と
+    見積もられて、1日の配分（api_plan）が余裕を少なく見ていた。知らない名前だけ、今までどおり環境変数の対応で決める"""
+    name = str(model or "").lower()
+    for word, level in (("haiku", 1), ("sonnet", 2), ("opus", 3)):
+        if word in name:
+            return level
     for level in (1, 2, 3):
         if api_level_model(level) == model:
             return level
-    return {"claude-haiku-5-5": 1, "claude-sonnet-5-5": 2}.get(model, 3)
+    return 3
 
 
 # この実行で Claude API に使った額（記事ごとの費用をログに出すため。web_articles.py が前後の差を見る。台帳 A48）
