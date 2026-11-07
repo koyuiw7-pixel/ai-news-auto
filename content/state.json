@@ -13667,6 +13667,18 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76887.html"
     },
+    "abbce93eef91017a": {
+      "at": "2026-11-07T11:32:50.313610+00:00",
+      "costUsd": 0.0122,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "nvidia-reshard-rl-weight-refit",
+      "url": "https://developer.nvidia.com/blog/accelerating-reinforcement-learning-weight-refit-with-the-reshard-collective/"
+    },
     "abd408bcecb52891": {
       "at": "2026-11-06T05:51:04.527927+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（部会）",
@@ -18453,31 +18465,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-05T20:33:20.234790+00:00",
-      "attempt": 0,
-      "id": "7eab5dddcfa7727d",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 96.2,
-        "avg_sentence": 39.2,
-        "long_share": 0.111,
-        "max_paragraph": 146,
-        "paragraphs": 11,
-        "sentences": 27
-      },
-      "score": 85,
-      "source": "nvidia-blog",
-      "title": "Vera Delivers the Best of Both Worlds: Highest Throughput and Fastest Agents",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（TPC・SF・GTC）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-05T20:52:34.740810+00:00",
@@ -24496,6 +24483,30 @@
       "warnings": [
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "材料の無い章がある（料金と日本での使い方は、まだ発表されていません）。表示では隠す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T11:32:50.299740+00:00",
+      "attempt": 1,
+      "id": "abbce93eef91017a",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 101.3,
+        "avg_sentence": 41.2,
+        "long_share": 0.125,
+        "max_paragraph": 168,
+        "paragraphs": 13,
+        "sentences": 32
+      },
+      "score": 88,
+      "source": "nvidia-developer-blog",
+      "title": "Accelerating Reinforcement Learning Weight Refit with the Reshard Collective",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NCCL・DGX・RL）"
       ]
     }
   ],

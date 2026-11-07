@@ -1,0 +1,146 @@
+{
+  "slug": "nvidia-reshard-rl-weight-refit",
+  "sourceType": "web",
+  "sourceUrl": "https://developer.nvidia.com/blog/accelerating-reinforcement-learning-weight-refit-with-the-reshard-collective/",
+  "sourceName": "NVIDIA Developer Blog",
+  "title": "AI学習の重み送り直し、2.7〜5.7倍速く　NVIDIAの新通信方式「Reshard」",
+  "seoTitle": "NVIDIAのReshardとは？AI学習の重み転送を高速化",
+  "threadsPost": "AIを強化学習で育てている人に、知っておいてほしい話です。\n\nNVIDIAのReshardは、学習用GPUから必要な部分だけを直接送る通信方式です。\nNeMo RLの試験で、従来の送り直しより2.7倍から5.7倍速くなりました。\n\n学習のたびに待つ時間、いまどのくらい感じていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "学習のたびに待つ時間、いまどのくらい感じていますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "通信を速くする代わりに設定の手間が増えるとしたら、それでも導入しますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "GPUの学習環境を自分で組んでいる人は、どの通信方式を選んでいますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "AIを強化学習で育てる開発者にとって、学習のたびに必要になる重みの送り直しが速くなる話です。NVIDIAの発表によると、NeMo RLでの試験では、Qwen 3 235BやDeepSeek v3 671Bを含むモデルで、従来方式より2.7倍から5.7倍速くなりました。Reshardは実験的な機能で、日本での提供時期はまだ発表されていません。",
+  "description": "NVIDIAの新しい通信方式「Reshard」は、AI学習で重みを送り直す作業を2.7倍から5.7倍速くします。必要な部分だけを送る仕組みで、NeMo RLでの測定値です。日本での提供時期は未定です。",
+  "keywords": [
+    "NVIDIA Reshard",
+    "強化学習 重み転送",
+    "リフィット",
+    "NCCL M2N Reshard",
+    "NeMo RL",
+    "DTensor",
+    "AI学習 高速化",
+    "分散学習",
+    "NVLink",
+    "大規模言語モデル 学習"
+  ],
+  "tags": [
+    "生成AI",
+    "強化学習",
+    "GPU",
+    "NVIDIA",
+    "分散学習"
+  ],
+  "highlights": [
+    "NVIDIAの新しい通信方式Reshardは、AI学習の重み送り直しを2.7倍から5.7倍速くします。",
+    "従来は全体を集めて全員に配るため、Kimi K3では約11.2TBの通信が試算されています。",
+    "NeMo RLでは、通信量の大半を占める重みだけをReshardで送り、残りは従来方式のままです。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "無料（オープンソース）",
+    "free": true,
+    "audience": "AI開発者",
+    "take": "強化学習で大規模モデルを学習させる人は、NeMo RLの公式ガイドで対応条件を確かめるとよいでしょう。",
+    "judgedAt": "2026-11-07T11:32:43.880976+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の影響は小さく、AIを自社で学習させる開発者やGPU管理者に関係する話です。"
+    ]
+  },
+  "body": "強化学習でAIを仕上げる開発者とGPUの管理者に関係する話です。一般の人が使うチャットアプリの料金や機能が変わるわけではありません。\n\nここで扱うのは、学習用のGPUで更新した重みを、回答を作るGPUへ送り直す作業です。この送り直しを「リフィット（refit）」と呼びます。強化学習（AIが結果を見ながら試行錯誤して学ぶ方法）では、学習用と回答用のGPUを分けて並行して動かすのが一般的です。\n\n## 10TB規模の送り直しを必要な分だけに減らす\n\nNVIDIA Developer Blogの発表によると、今の大規模な公開モデルでは、1回のリフィットで約10TBの通信が必要になります。学習のたびに行うため、モデルが大きくなるほど負担が積み重なります。\n\n例えば、Kimi K3は2.8兆パラメーター（AIの規模を表す数）で、重みのサイズは約5.6TBです。従来の方法では、学習用GPUがまず断片を集めて全体を作り、それを全員に配ります。この「集める」と「配る」の2段階で、通信量は約11.2TBに試算されています。\n\n受け取る側は、必要な一部だけで足りても全体を受け取ります。そのため無駄が生じます。\n\nそこで登場したのが「Reshard」です。送り先ごとに必要な部分だけを、送り元から直接送る通信の仕組みです。土台にしたのは、PyTorchのDTensor（データを複数のGPUに分けて置いた配置を表す仕組み）です。\n\n例えば、8×8の重み行列を、学習用の2台のGPUが行ごとに、推論用の4台が列ごとに持つとします。推論用の1台が必要とするのは、学習用GPUそれぞれから届く4×2の範囲だけです。発表は、理論上の最小限のデータだけを送ると説明しています。\n\nこの考え方を形にしたのが、NCCL M2N Reshard（GPU同士の通信を担うNCCLの上で動く実装）です。GitHubのNVIDIA/nccl-extensionsで公開されています。同じ部分を複数の受け手に別々に送ると通信が重なるため、受け取ったデータはNVLink（GPU同士を直結する高速な接続）を通じて受け手同士で交換します。\n\nNVIDIAのDGX H100とDGX GB200で行われたNeMo RLのベンチマークでは、Qwen 3 235BやDeepSeek v3 671Bを含むモデルで、従来方式より2.7倍から5.7倍速くなりました。編集部の見立てでは、この数字は比較対象と測定条件とセットで読むべきです。\n\nまた、NeMo RLでは通信量の大半を占めるフィードフォワード層の重みだけをReshardで送ります。小さい重みは従来の方法のままにして、対応範囲を保ちます。\n\n## 日本の開発者が使う前の確認点\n\n日本での提供時期は、まだ発表されていません。\n\nReshardは実験的な機能です（NVIDIA公式ドキュメント、11/7確認）。NeMo RLで使うには、refit_transportにnccl_reshardを明示して指定する必要があります（同、11/7確認）。設定が条件を満たさないと、事前のチェックでエラーになります。\n\n次に読むものは、NeMo RLのリフィットガイドです。対応するバックエンド、レイアウト、精度の種類が書かれています。自社の学習環境で動かす前に、公式の設定要件を読むのが確実です。\n\n## まだ分からないこと\n\n- 本番の大規模な学習で、どの規模まで安定して動くかは、まだ発表されていません。\n- NeMo RL以外の学習フレームワークや、クラウドでの対応は、まだ発表されていません。\n- 日本国内での採用例は、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nNVIDIAの新しい通信方式「Reshard」は、AIの学習で重みを送り直す作業を速くします。NeMo RLの試験では、従来方式より2.7倍から5.7倍速くなりました。\n\nAIを育てるときは、学習用のGPUで更新した重みを、回答を作るGPUに送り直す必要があります。従来は全体を集めてから全員に配っていたため、通信量が多くなっていました。Reshardは、受け取る側に必要な分だけを送ります。\n\n日本での提供時期はまだ発表されていません。Reshardは実験的な機能なので、対応する設定条件は公式ガイドで確認できます。",
+  "channel": "NVIDIA Developer Blog",
+  "channelId": "",
+  "channelSlug": "nvidia-developer-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Accelerating Reinforcement Learning Weight Refit with the Reshard Collective",
+  "publishedAt": "2026-11-06T18:03:26+00:00",
+  "generatedAt": "2026-11-07T11:32:43.880965+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/nvidia-reshard-rl-weight-refit-e9647a38.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "explainer",
+  "todayActions": [
+    "NeMo RLを使っている人は、リフィットガイドで対応するバックエンドとレイアウトを確かめる",
+    "NCCL Reshardの設定条件を公式ドキュメントで読んでおく"
+  ],
+  "qualityScore": 88,
+  "sourcePublishedAt": "2026-11-06T18:03:26+00:00",
+  "detectedAt": "2026-11-07T11:30:50+00:00",
+  "layout": "noir",
+  "summaryLine": "NVIDIAの新しい通信方式Reshardは、AI学習の重み送り直しを**2.7倍**から5.7倍速くします。",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/nvidia-reshard-rl-weight-refit-fig1-6f936a9d.jpg",
+      "width": 1200,
+      "height": 660,
+      "kind": "dense",
+      "credit": "NVIDIA",
+      "sourceUrl": "https://developer.nvidia.com/blog/accelerating-reinforcement-learning-weight-refit-with-the-reshard-collective/",
+      "original": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/direct-shard-to-shard-transfer-dtensor.webp"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/nvidia-reshard-rl-weight-refit-fig2-ec62e684.jpg",
+      "width": 1200,
+      "height": 591,
+      "kind": "dense",
+      "credit": "NVIDIA",
+      "sourceUrl": "https://developer.nvidia.com/blog/accelerating-reinforcement-learning-weight-refit-with-the-reshard-collective/",
+      "original": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/reshard-operation-example.webp"
+    }
+  ],
+  "imageCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A pair of hands from behind connect a high‑density network cable to the back of a server rack in a dimly lit data center, the glow of indicator LEDs reflecting on the cables.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/green-cube.webp",
+    "at": "2026-11-07T11:33:23+00:00"
+  },
+  "imageFocus": {
+    "x": 0.481,
+    "y": 0.488,
+    "box": [
+      0.0,
+      0.0,
+      0.963,
+      0.976
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/nvidia-reshard-rl-weight-refit-e9647a38.jpg"
+  },
+  "coverImage": "https://ai-tech-express.jp/img/nvidia-reshard-rl-weight-refit-e9647a38.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A pair of hands from behind connect a high‑density network cable to the back of a server rack in a dimly lit data center, the glow of indicator LEDs reflecting on the cables.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/green-cube.webp",
+    "at": "2026-11-07T11:33:23+00:00",
+    "reused": true
+  }
+}
