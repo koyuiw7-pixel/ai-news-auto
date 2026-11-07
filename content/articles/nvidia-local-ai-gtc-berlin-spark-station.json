@@ -7,9 +7,9 @@
   "seoTitle": "NVIDIAのローカルAI発表　RTX SparkとDGX Sparkの全貌",
   "threadsPost": "ついに来た。手元のPCやサーバーで高度なAIエージェントを動かすためのハードウェアとソフトウェアが、欧州GTCで一挙に拡充されました。\nノートPCから巨大クラスターまで、ローカルAIの選択肢がさらに広がっています。\n\n✅ 最大128GBメモリのRTX Sparkでパーソナルエージェントが動作\n✅ 新開発のコーディングモデル「Recursive Flint」を公開初日からサポート\n\n編集部としてはここからの実機検証が楽しみです。\n記事で👇",
   "threadsHook": "finally",
-  "writingVoice": "honest",
-  "lede": "NVIDIA日本版ブログによると、GTC BerlinにてローカルAIハードウェアのフルラインアップが発表されました。パーソナルエージェント向けの「RTX Spark」や開発者向けの「DGX Spark」などが紹介され、オープンウェイトの新しいコーディングモデルや最適化された推論エンジンも公開されています。",
-  "description": "NVIDIAがGTC Berlinで発表したローカルAIハードウェアとソフトウェアの最新動向を解説。RTX Spark、DGX Spark、DGX Stationの新展開やコーディングモデルRecursive Flintの詳細をお届けします。",
+  "writingVoice": "explainer",
+  "lede": "ローカルでAIを動かす開発者向けの「DGX Spark 64GB」が、10月23日からパートナー各社より順次発売されます。DGX Sparkは手動構成で最大8台のクラスターに対応し、合計1TBの統合メモリを使えるようになりました。価格と日本での販売はまだ発表されていません。",
+  "description": "NVIDIAがGTC Berlinで、DGX Spark 64GBの10月23日発売と最大8台クラスター対応を発表。DGX Stationの管理統合やWindows版、新コーディングモデルまで、ローカルAIの動きを整理します。",
   "keywords": [
     "NVIDIA",
     "GTC Berlin",
@@ -28,22 +28,22 @@
     "ロボティクス"
   ],
   "highlights": [
-    "RTX Sparkは最大128GBの統合メモリと1ペタフロップスのAI演算能力を搭載し、パーソナルエージェントを実行する。",
-    "DGX Spark 64GBが10月23日に発売され、NVIDIA Syncにより最大8台のクラスター構築が可能になる。",
-    "新モデル「Recursive Flint」は400億パラメータを持つMixture of Expertsモデルでコーディングに特化。"
+    "DGX Spark 64GBが10月23日から順次発売。手動構成で最大8台のクラスターに対応",
+    "8台構成は1TBの統合メモリを備え、GLM 5.3のような大型モデルも動かせる",
+    "DGX Station for Windowsは12月に登場予定。新コーディングモデルFlintも公開"
   ],
   "timetable": [],
   "verdict": {
-    "status": "available",
+    "status": "limited",
     "japan": "partial",
-    "price": "ハードウェアによる",
-    "free": true,
-    "audience": "AI開発者・企業IT担当",
-    "take": "パートナー各社から順次発売される専用ハードウェアとオープンウェイトモデルの組み合わせを確認するとよいでしょう。",
-    "judgedAt": "2026-10-26T10:31:00.364122+00:00"
+    "price": "不明",
+    "free": null,
+    "audience": "開発者・企業チーム",
+    "take": "手元でAIを動かす環境を検討中なら、購入先パートナーの価格と日本での取り扱いの発表を待つとよいでしょう。",
+    "judgedAt": "2026-11-07T23:06:05.242543+00:00"
   },
-  "body": "## ひとことで言うと\nNVIDIAがドイツのベルリンで開催されたイベントで、手元のパソコンや専用マシンだけで本格的なAIエージェントを動かすためのハードウェアとソフトウェアの最新ラインアップを公開しました。クラウドに頼らずプライベートな環境で高速にAIを動かせるのが特徴です。\n\n## 何が発表されたのか\nNVIDIA日本版ブログによると、GTC BerlinにおいてローカルAI向けのフルラインアップが紹介されました。パーソナルエージェント向けの「RTX Spark」や、開発者向けの「DGX Spark」、そして企業のチームに対応する「DGX Station」など、ハードウェアの展開がさらに加速しています。今回はハードウェアの発売に加え、専用のエージェントアプリ、新しいコーディングモデル、推論の高速化といったソフトウェア側のアップデートも同時に発表されました。\n\n## 発表された機能・アップデートの全容\n\n### RTX Sparkによるパーソナルエージェントの強化\nRTX SparkはWindows PC向けの新しいプラットフォームで、最大128GBの統合メモリと1ペタフロップスのAI演算能力を備えています。完全にローカルで動作するプライベートなAI向けのエージェントアプリ「Underdog」の提供が開始されており、専用の推論エンジン「Husky」によってユーザーのデータを外部に送信せずにエージェント作業を進められます。\n\n### DGX Spark 64GBの発売と複数台のクラスター連携\n開発者向けの「DGX Spark 64GB」システムが10月23日に発売されました。内蔵のネットワーク機能と「NVIDIA Sync Cluster Assistant」を利用することで、手動構成による最大8台のDGX Sparkを接続し、1TBの統合メモリを持つクラスターを構築できます。これにより、より大きなモデルや複数のエージェントの同時実行が可能になります。\n\n### DGX Stationの企業向け管理機能とWindows版の予告\n大規模なチーム向けのDGX Stationには、新しいセキュリティ統合が追加され、ITチームによる管理性が向上しています。また、12月にはWindows版の「DGX Station for Windows」が登場し、製造業向けの様々なプロフェッショナルアプリケーションやエージェントハーネスをサポートする予定です。\n\n### コーディング特化モデル「Recursive Flint」の提供\nフロンティアAI研究所のRecursive Superintelligenceが開発した、高速かつ正確なコーディング向けローカルLLM「Recursive Flint」が提供開始されました。総パラメータ数400億、アクティブパラメータ数2.5億のMixture of Expertsモデルであり、専用カーネルによってRTX Spark上での生成速度が向上しています。\n\n### 公開初日からの新しいAIモデルのサポートと推論の高速化\nNVIDIAは、Nemotron Bolt E4BやBlack Forest LabsのFLUX 3 Image Kleinなど、新しいモデルの公開初日からのサポートを追加しました。さらに、llama.cppやvLLMといったオープンソース推論エンジンの最適化を進め、エージェント型タスクの処理速度を最大1.4倍に引き上げています。\n\n## 性能・ベンチマーク\n元記事では、特定のベンチマークスコアの具体的な数値一覧表などは掲載されていませんが、コーディングモデル「Recursive Flint」がSWE-Bench Pro v2やTerminal-Bench 2.1などのエージェント型コーディングベンチマークで優れた性能を発揮することが言及されています。また、最適化された環境下での生成速度の向上（RTX Spark上で最大55%向上など）が示されています。\n\n## 競合サービスとの比較\n（編集部注：OpenAIやAnthropicなどのクラウド型AIサービスと比較した場合）クラウド型AIがインターネット上の大規模サーバーで処理を行うのに対し、NVIDIAのローカルAI環境はユーザーの手元のハードウェア上で直接モデルを実行します。データが外部に出ないセキュリティの高さや、ネットワーク遅延のない応答速度において優位性がありますが、実行できるモデルの規模は手元のハードウェアのメモリ容量に依存するという制約があります。\n\n## 料金・提供プラン\n元記事では具体的な製品価格やAPIの従量課金についての言及はありません。ハードウェアはパートナー企業各社からの販売となり、オープンウェイトモデルについてはHugging Face等からダウンロードして利用する形式となっています。\n\n## 日本から使う方法\n- ASUS、Dell Technologies、HP、Lenovo、MSIなどのパートナー企業から、RTX SparkやDGX Spark、DGX Stationの各システムを購入する。\n- Hugging Faceなどのプラットフォームから、公開されているオープンウェイトモデルやチェックポイントをダウンロードする。\n- NeMo AutoModelや各種推論エンジン（llama.cpp、vLLM）を活用してローカル環境にセットアップする。\n- 日本語対応やリージョン制限についての特段の記載は元記事にありませんが、オープンモデルの利用やハードウェアの国内調達状況に準じます。\n\n## 誰にどう効くのか\nエンジニアにとっては、手元のマシンやクラスター環境で大規模なオープンモデルやエージェントを自由にカスタマイズして検証できる点が大きなメリットです。企業の情報システム部門や経営層にとっては、社外にデータを漏らすことなくセキュアなAI環境をオンプレミスで構築・管理できる体制が整います。\n\n## まとめ\nNVIDIAによる今回の発表は、ローカル環境でのAIエージェント運用をハードウェアとソフトウェアの両面から強力に後押しするものです。読者は、自社の開発規模や用途に合わせて最新のハードウェアやオープンモデルの導入検討を進めるとよいでしょう。\n\n関連：[Mac用ローカルAIアプリ「Llama」（llama app）の入れ方](/articles/llama-app-mac-local-ai-hugging-face)・[GTC Washington DC 2026の日程と基調講演の日本時間](/events/nvidia-gtc-dc-2026)\n",
-  "easy": "## ひとことで言うと\nNVIDIAが、インターネットにつながず手元のパソコンや専用の機械だけで賢いAIを動かすための新しい仕組みをたくさん発表しました。\n\n## 何がすごいの？\nこれまでは大きなクラウドサーバーを使わないと動かなかった賢いAIが、自分の手元のパソコンや、専用のコンパクトな機械（DGX Sparkなど）で動かせるようになります。ネット上にデータを送らないため、プライバシーを守りながら安全にAIエージェント（自分の代わりに作業をしてくれるプログラム）を使えるのが大きな特徴です。また、プログラミングが得意な新しいAIモデルもすぐに使えるようになっています。\n\n## 自分に関係ある？\n会社で機密データを扱うエンジニアや、AIを使ったアプリを自分で作ってみたい開発者にとっては、手元で自由に実験や開発ができる環境が整うため非常に便利になります。一方で、一般のパソコンユーザーにとっては、今後対応するノートパソコンを選ぶ際の新しい選択肢が増えることになります。\n\n## 使ってみるには\n対応するノートパソコンや専用デバイスは、各パートナー企業から順次販売されています。また、公開されたオープンウェイトモデルはHugging Faceなどのプラットフォームからダウンロードして利用できます。",
+  "body": "対象は、AIアプリを手元の機器で作り、動かしたい開発者と企業のチームです。クラウドのAIを使うだけの人には、今のところ何も変わりません。\n\nDGX Sparkは、AIモデルを手元で動かすための小型の開発機です。NVIDIA日本版ブログによると、10月26日のGTC Berlinで、ローカルAI向けの製品群が一挙に紹介されました。\n\n## DGX Spark 64GBは10月23日から順次発売\n\n新しい「DGX Spark 64GB」は、10月23日（金）からパートナー各社より順次発売されます。購入先はAcer、ASUS、Dell Technologies、GIGABYTE、HP、Lenovo、MSI、NVIDIAです。\n\n64GB版で動かせるモデルとして、Nemotron 3.5 Bolt 74B 24GB、Qwen3.8 27B、Gemma 4 26B-A4Bが挙げられています。価格と日本での販売はまだ発表されていません。\n\nさらに大きな容量が要るときは、複数台を接続できます。内蔵のNVIDIA ConnectX-7ネットワークと、NVIDIA Sync Cluster Assistantを使います。\n\nクラスター（複数台をつないで1台のように使う構成）は、手動構成で最大8台まで対応しました。1TBの統合メモリがあり、GLM 5.3のような大型モデルを動かせる容量です。\n\n1つのクラスターをバックエンドとして共有し、各開発者が同じモデルに同時にセッションを開く使い方もできます。NVIDIAは小規模なチームに向くとしています。\n\n**今月後半に追加される管理ツールとアップデート**\n\nNVIDIA Syncには、今月後半に「Model Launcher」が加わる予定です。数回のクリックで、構成に合うモデルとコンテナをダウンロードし、OpenCodeに接続します。\n\n10月のソフトウェア更新では「Wi-Fi Assistant」が追加されます。アプライアンスモード（専用機として動かす状態）のとき、ネットワークを切り替えられます。DGX Spark Skillsも更新され、トラブル対応の案内をNVIDIA Syncに直接出します。\n\n## 上位機DGX Stationは管理ツールと連携、Windows版は12月\n\nDGX Stationは大きなチーム向けの機器です。748GBのコヒーレントメモリと最大20ペタフロップスのAI性能を備えます。\n\nNVIDIAによると、GLM 5.3などを動かし、30人を超えるユーザーにクラウドモデル並みの速度で提供できます。\n\n企業のIT管理者向けに、7つの統合が加わりました。\n\n- Absolute Security\n- Splunk by Cisco\n- Fleet Device Management\n- Microsoft Intune\n- Perforce Puppet\n- Progress Software Chef\n- Tanium\n\nWindows版の「DGX Station for Windows」は、システムメーカー各社から12月に登場する予定です。出荷は年内に、ASUS、Dell Technologies、GIGABYTE、HP、MSI、Supermicroから始まります。\n\n対応する製造業向けアプリには、Dassault Systèmes、MathWorks、Siemens、Synopsysなどがあります。Hermes Agent、Perplexity、Aibleのエージェントも、オンプレミス（自社設備内）で動かせます。\n\nロボット開発向けには、3つのオープンソースのリファレンス実装が公開されました。強化学習でGR00T 1.7モデルを改良する用途などです。\n\n## 日本で使えるのはまだ分からない、新モデルと高速化\n\nRTX Sparkは、10月16日に発売されたWindows PC向けの機器です。最大128GBの統合メモリと1ペタフロップスのAI演算能力を備えます。ASUS、Dell Technologies、HP、Lenovo、Microsoft、MSIのノートPCが販売中です。RTX Sparkの発表内容は、過去記事（[NVIDIA、GTC Berlinで「Vera Rubin NVL72」とAI端末「RTX Spark」を発表](/articles/nvidia-gtc-berlin-2026-keynote-highlights)）でも整理しています。\n\n新しいコーディングモデル「Recursive Flint」は、総パラメータ数400億、アクティブ25億のMixture of Experts（一部だけ動かす方式）です。Apache 2.0ライセンスで、Hugging Faceからオープンウェイトを取得できます。専用カーネルにより、RTX Spark上の生成速度が55%向上しました。\n\n推論の高速化は次のとおりです。\n\n- llama.cpp：RTX PRO 6000 Blackwell上で、エージェント型タスクが最大1.4倍\n- vLLM：DGX Spark上のQwen3.8 27Bで、最大1.3倍\n- vLLM：DGX Station上のGLM 5.3 Flashで、処理量が最大1.2倍\n\n## まだ分からないこと\n\n- DGX Spark 64GBの価格はまだ発表されていません。\n- 日本での発売時期と販売先はまだ発表されていません。\n- DGX Station for Windowsの価格はまだ発表されていません。\n- NVIDIA Cloud Functionsの早期アクセスの開始時期はまだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nNVIDIAが、手元のコンピューターでAIを動かすための機器を拡充しました。小型機「DGX Spark」の64GB版が10月23日から順次発売されます。\n\n## 手元で動かすAIが大きくなる\n\nDGX Sparkは、開発者がAIアプリを作るための小型の機器です。複数台をつなぐと、より大きなAIモデルを動かせます。\n\n今回は手動の設定で最大8台までつなげるようになりました。合計で1TBのメモリを使えます。\n\n## 上位機と新モデル\n\n上位機の「DGX Station」には、社内の端末管理ツールとの連携が加わりました。Windows版は12月に登場する予定です。\n\nコーディング向けの新しいAIモデル「Recursive Flint」も公開されました。無料で配布されるオープンウェイト（重みを公開した形式）です。\n\n価格と日本での販売は、まだ発表されていません。",
   "channel": "NVIDIA日本版ブログ",
   "channelId": "",
   "channelSlug": "nvidia-japan-blog",
@@ -56,7 +56,7 @@
   "publishedAt": "2026-10-26T00:32:27+00:00",
   "generatedAt": "2026-10-26T10:31:00.364159+00:00",
   "thumbnail": "https://ai-tech-express.jp/img/nvidia-local-ai-gtc-berlin-spark-station-54c5311e.jpg",
-  "model": "gemini-3.5-flash-lite",
+  "model": "anthropic-api:claude-sonnet-5-5",
   "affiliates": [
     {
       "name": "OZ GAMING",
@@ -79,5 +79,45 @@
   },
   "originalTitle": "NVIDIAが欧州GTCでローカルAIの全貌を公開、RTX SparkやDGX Sparkの展開を加速",
   "titleStyle": "2026-11-03",
-  "updatedAt": "2026-11-07T04:12:34+09:00"
+  "updatedAt": "2026-11-07T04:12:34+09:00",
+  "faq": [
+    {
+      "q": "DGX Spark Skillsは何を案内してくれますか？",
+      "a": "トラブル対応やデバイスの保守について、作業の流れに沿った案内を、OpenCodeを通じてNVIDIA Syncに直接出します。10月のソフトウェア更新で内容が更新されます。"
+    },
+    {
+      "q": "Recursive Flintはどこで入手できますか？",
+      "a": "Hugging FaceからApache 2.0ライセンスのオープンウェイトで取得できます。RTX SparkやDGX Spark、GeForce RTX GPU、RTX PRO GPUで動かせます。"
+    }
+  ],
+  "todayActions": [
+    "DGX Spark 64GBの購入先は、Acer・ASUS・Dell・HPなど各社の案内で価格と在庫を確認する",
+    "手元で動かしたいモデルの必要メモリ（64GBか128GBか）を、用途から見積もっておく",
+    "Recursive FlintはHugging Faceで公開されているので、手持ちのRTX GPUで動くか確かめる"
+  ],
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AIエージェントを自社データの外に出さず動かしたい開発チームが対象です。",
+      "8台クラスターは1つのバックエンドを小規模チームで共有する使い方を想定しています。",
+      "価格は未発表のため、購入先パートナーの案内で費用を確認するとよいでしょう。"
+    ]
+  },
+  "newsType": "product",
+  "relatedSlugs": [
+    "nvidia-gtc-berlin-2026-keynote-highlights"
+  ],
+  "sectionsPolishedAt": "2026-11-07T23:06:16+00:00",
+  "typesRewrittenAt": "2026-11-07T23:06:16+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/nvidia-local-ai-gtc-berlin-spark-station-fig1-80672b90.jpg",
+      "width": 1200,
+      "height": 638,
+      "kind": "photo",
+      "credit": "NVIDIA",
+      "sourceUrl": "https://blogs.nvidia.co.jp/blog/local-ai-gtc-rtx-dgx-spark-station-sync/",
+      "original": "https://blogs.nvidia.co.jp/wp-content/uploads/sites/11/2026/10/nv-blog-1280x680-2.jpg"
+    }
+  ]
 }
