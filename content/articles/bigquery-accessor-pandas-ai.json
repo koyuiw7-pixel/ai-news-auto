@@ -1,0 +1,139 @@
+{
+  "slug": "bigquery-accessor-pandas-ai",
+  "sourceType": "web",
+  "sourceUrl": "https://cloud.google.com/blog/products/data-analytics/bigquery-ai-functions-in-pandas/",
+  "sourceName": "Google Cloud公式ブログ",
+  "title": "pandasの1行でAI予測・時系列予測　BigQueryの新機能「.bigquery」アクセサー",
+  "seoTitle": "BigQuery DataFrames「.bigquery」とは？使い方",
+  "threadsPost": "Pythonでデータ分析をしている人に、知っておいてほしい話です。\n\nGoogle Cloudが、pandasのデータをそのままAI関数で処理できる仕組みを公開しました。\n予測や時系列予測が、手元のコード1行で呼び出せます。\n\n分析の作業、手元のPCとクラウドのどちらで回すことが多いですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "分析の作業、手元のPCとクラウドのどちらで回すことが多いですか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "手元で細かく調整するのと、学習済みモデルに任せるのと、どちらを選びますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "pandasで予測するとき、どのライブラリをよく使いますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "pandasのデータ表を使う人は、BigQueryのAI関数を手元のコードから直接呼び出せるようになりました。BigQuery DataFrames（BigFrames）の「.bigquery」アクセサーが対象で、回帰の予測も1回の関数呼び出しで済みます。料金や日本での提供はまだ発表されておらず、利用にはGoogle Cloudのプロジェクトが必要です。",
+  "description": "BigQuery DataFramesの新しい「.bigquery」アクセサーで、pandasのデータからAI関数を直接実行できます。予測のTabFM、時系列のTimesFM 3.0、分類や埋め込みまで、使い方と必要な権限を整理します。",
+  "keywords": [
+    "BigQuery DataFrames",
+    "bigquery accessor",
+    "pandas AI関数",
+    "TabFM",
+    "TimesFM 3.0",
+    "ai.predict",
+    "ai.forecast",
+    "BigQuery AI関数",
+    "ゼロショット予測",
+    "Python データ分析",
+    "埋め込み生成"
+  ],
+  "tags": [
+    "BigQuery",
+    "生成AI",
+    "pandas",
+    "データ分析",
+    "Google Cloud"
+  ],
+  "highlights": [
+    "pandasの表に「.bigquery.ai」を付けるだけで、BigQueryのAI関数を手元のコードから呼び出せるようになりました",
+    "ai.predict()は回帰を1回の関数呼び出しで実行し、従来のscikit-learnによる学習作業を省けます",
+    "時系列予測のai.forecast()は、プレビュー提供の「TimesFM 3.0」をmodel引数で選べます"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "データ分析者",
+    "take": "pandasで分析している人は、公式ノートブックのコード例で小さなデータから試し、必要な権限を確かめるとよいでしょう。",
+    "judgedAt": "2026-11-07T15:34:15.870503+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "pandasで分析する担当者は、学習用のコードを書かずに予測や分類を試せます。",
+      "売上の時系列予測を、商品ごとのグループ指定で実行できます。",
+      "料金は発表されておらず、BigQueryの利用料が別に必要かは公式ドキュメントで確かめる必要があります。"
+    ]
+  },
+  "body": "pandas（Pythonで表データを扱う定番ライブラリ）を使っている人は、BigQueryのAI関数を手元のコードから呼び出せるようになります。必要なのはGoogle Cloudのプロジェクトです。pandasを使っていない人には何も変わりません。\n\nGoogle Cloud公式ブログによると、今回の機能は「BigQuery DataFrames（BigFrames）」の「.bigquery」アクセサーです。\n\nBigQuery DataFramesは、pandasと似た書き方でBigQuery上のデータを扱うためのライブラリです。アクセサーとは、既存のpandasの表や列に新しい機能を足す仕組みです。\n\n## 回帰が1回の関数呼び出しで済む\n\n公式ブログは、線形回帰を例に違いを示しています。従来は、CSVを読み込み、説明に使う列と目的の列を分けていました。scikit-learnで標準化と学習のパイプラインを作り、新しいデータで予測していました。\n\n新方式では、学習用の表に対して「train_df.bigquery.ai.predict(new_data_df, label_col='target_metric')」を呼ぶだけです。予測にはTabFMというモデルが使われます。\n\nTabFMは、表データの回帰と分類のために、Google Researchが開発した学習済みの基盤モデルです。9月1日の公式ブログによると、BigQueryではプレビュー提供です（Google Cloud公式ブログ、11/8確認）。学習や調整の手順を省いて予測できる点が特徴です。\n\n## 手元では計算せず、SQLに変換して実行\n\n仕組みはこうです。「.ai.predict()」のようなメソッドを呼ぶと、BigFramesがpandasの操作をGoogle標準SQLに変換します。そしてBigQueryの基盤上でモデルを実行し、結果をふつうのpandasの表として返します。\n\n結果はpandasのSeriesやDataFrameなので、絞り込みや並べ替えにそのまま使えます。\n\n**使える関数は14種類**\n\n公式ブログが挙げる関数は、列（Series）向けと表（DataFrame）向けに分かれます。\n\n- Series向け: embed()、generate_embedding()、generate_table()、generate_text()、similarity()\n- DataFrame向け: classify()、forecast()、generate()、generate_bool()、generate_double()、generate_int()、if_()、predict()、score()\n\nembed()は、「text-embedding-005」を指定して文字列をベクトル（意味を表す数値の並び）に変えます。similarity()は、要素と目標の文字列との類似度（コサイン類似度）を返します。例では、「dog」と「fish」を「shrimp」と比べ、0.629751と0.768028が出ています。\n\n## 時系列予測は商品ごとに3日先まで\n\nforecast()は、日付、商品ID、売上の列を持つ表で使います。例では、列を指定し、予測期間（horizon）を3日にしています。結果には、予測値のほか、予測の幅の下限と上限が付きます。\n\n裏側ではTimesFMが動きます。Google Researchが公開する時系列予測の基盤モデルで、多くのデータセットで事前に学習済みです。独自モデルを作らずに予測できます（BigQueryのTimesFMモデルの公式ドキュメント、11/8確認）。\n\nmodel引数で「TimesFM 3.0」を指定すると、最新版を使えます。BigQueryではプレビュー提供です。公式ブログは、GIFT-Eval、FEV-Bench、TIMEの各ベンチマーク（性能テスト）で1位としています。\n\nif_()は、自然言語の条件で行を絞る関数です。標準では「minimize_cost」で動きます。手元の軽量モデルが大半の行を処理し、残りだけをGeminiに送ります。全行をLLMに送るには「maximize_quality」を指定します。\n\n**使い始める前の準備**\n\n例を試すには、Google Cloudのプロジェクトに次の2つの役割が必要です。クエリを実行するのは「BigQuery ジョブユーザー（roles/bigquery.jobUser）」です。基盤モデルを使うには「Agent Platform User（roles/aiplatform.user）」が必要です。\n\nそのうえで、JupyterにpandasとBigFramesをインストールします。コードでは、bigframes.pandasを読み込み、プロジェクトIDを設定します。\n\n公式ドキュメントによると、ほとんどの場合はエンドユーザーの認証情報を使います。その場合、CONNECTION引数は空のままでかまいません。クエリが48時間以上かかる見込みなら、BigQuery接続を指定する必要があります（Google Cloudの公式ドキュメント、11/8確認）。\n\n公式ブログは、全コード例をまとめたノートブックも案内しています。\n\n## まだ分からないこと\n\n- 「.bigquery」アクセサー自体の提供段階（プレビューか一般提供か）はまだ発表されていません\n- 利用料金はまだ発表されていません\n- この機能の日本での提供はまだ発表されていません",
+  "easy": "## ひとことで言うと\n\npandasの表から、BigQueryのAI機能を直接呼び出せるようになりました。予測や分類を少ないコードで試せます。\n\nこれまでpandasで回帰分析をするには、データを手元に読み込み、使う項目を選び、scikit-learnというライブラリで学習させる必要がありました。新しい「.bigquery」アクセサー（pandasの表に機能を足す仕組み）を使えば、この手順は不要です。学習済みのモデルを使うためです。\n\n**予測、時系列、分類までできます**\n\n表データの予測には「ai.predict()」を使います。売上のような時系列の予測は「ai.forecast()」で、3日先のように期間を指定できます。文章を数値の並びに変える埋め込みや、条件で行を絞り込む機能もあります。\n\n処理は手元ではなく、Google Cloud上で行われます。結果はふつうのpandasの表として返ります。\n\n使うには、Google Cloudのプロジェクトと、BigQuery ジョブユーザーなどの権限が必要です。料金と日本での提供は、まだ発表されていません。",
+  "channel": "Google Cloud公式ブログ",
+  "channelId": "",
+  "channelSlug": "google-cloud-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Zero-shot predictions in Pandas using the new BigQuery Accessor",
+  "publishedAt": "2026-11-06T08:00:00+00:00",
+  "generatedAt": "2026-11-07T15:34:15.870490+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/google-knowledge-catalog-self-learning-enrichment-f8223d7d.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "BigQueryのai.forecast()は、独自モデルの学習が必要ですか？",
+      "a": "必要ありません。組み込みのTimesFMを使うため、独自モデルを作って学習せずに予測できます。細かい調整が必要なときはARIMA_PLUSモデルを使う方法もあります（公式ドキュメント、11/8確認）。"
+    },
+    {
+      "q": "BigQuery AI関数で48時間以上かかるクエリはどう設定する？",
+      "a": "クエリが48時間以上かかる見込みなら、BigQuery接続を作り、CONNECTION引数に指定します。通常はエンドユーザーの認証情報を使い、引数は空のままで構いません（公式ドキュメント、11/8確認）。"
+    },
+    {
+      "q": "TabFMは表データのどんな予測に向いていますか？",
+      "a": "回帰と分類に使う、表データ向けの学習済みモデルです。SQLの1つの文で予測でき、学習や展開の手順を省けます。数百万行規模の予測表も扱えます（Google Cloud公式ブログ、11/8確認）。"
+    }
+  ],
+  "todayActions": [
+    "公式ブログのノートブックで、ai.embed()など小さな例から動かす",
+    "自分のGoogle Cloudプロジェクトに必要な権限が付いているか確認する",
+    "BigQuery AI関数の料金を、公式の料金ページで確認する"
+  ],
+  "qualityScore": 92,
+  "sourcePublishedAt": "2026-11-06T08:00:00+00:00",
+  "detectedAt": "2026-11-07T15:31:07+00:00",
+  "layout": "noir",
+  "summaryLine": "pandasの表に「.bigquery.ai」を付けるだけで、BigQueryのAI関数を手元のコードから呼び出せるようになりました",
+  "sectionsPolishedAt": "2026-11-07T15:35:04+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google Cloud",
+    "provider": "Google Cloud公式ブログ",
+    "sourceUrl": "https://cloud.google.com/blog/products/data-analytics/bigquery-ai-functions-in-pandas/",
+    "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/Data_Analytics_JooYPJr.max-2500x2500.jpg",
+    "width": 1200,
+    "height": 591,
+    "at": "2026-11-07T15:37:28+00:00",
+    "imageKind": "generic"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.562,
+    "y": 0.674,
+    "box": [
+      0.125,
+      0.348,
+      1.0,
+      1.0
+    ],
+    "ar": 2.0305,
+    "src": "https://ai-tech-express.jp/img/google-knowledge-catalog-self-learning-enrichment-f8223d7d.jpg"
+  },
+  "coverTries": 1,
+  "discoverCandidate": true
+}
