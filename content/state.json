@@ -13615,6 +13615,13 @@
       "skipped": true,
       "url": "https://blogs.windows.com/japan/2026/10/30/sharepoint-showcase-5-ways-organizations-improve-business-processes-with-copilot/"
     },
+    "a7ca79e5d15eb493": {
+      "at": "2026-11-07T16:26:30.462259+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「前回の記事で『まだ分からないこと』に挙げた、枠が新設か既存の表記の変更かという点」→ 確認済みの文脈には前回記事の未解決点として「使い切った後の扱いや繰り越しの可否」しか無く、新設か表記変更かという論点は裏付けられない。",
+      "skipped": true,
+      "url": "https://openai.com/chatgpt/pricing/#entry-2026-11-08-3ca870"
+    },
     "a7fcfcf24af1c1ba": {
       "at": "2026-10-27T16:12:08.091583+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -18671,20 +18678,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T00:08:54.716813+00:00",
-      "attempt": 2,
-      "id": "a80efade9c9f0d83",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "個人向け国債の発行条件等"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T00:10:56.733103+00:00",
@@ -24854,6 +24847,20 @@
         "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（CSV・SQL・GIFT）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T16:26:30.462231+00:00",
+      "attempt": 1,
+      "id": "a7ca79e5d15eb493",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「前回の記事で『まだ分からないこと』に挙げた、枠が新設か既存の表記の変更かという点」→ 確認済みの文脈には前回記事の未解決点として「使い切った後の扱いや繰り越しの可否」しか無く、新設か表記変更かという論点は裏付けられない。"
+      ],
+      "score": 85,
+      "source": "watch-chatgpt-pricing",
+      "title": "ChatGPTの料金・プランのページが更新（料金の記載が変更）"
     }
   ],
   "short_text_retry": {},
