@@ -36,6 +36,13 @@ WIDE = [
     ("寒くなる季節に濃厚な味わいを ラーメンにチーズ、おにぎりにバターなど 15品発売", "lifestyle", "lawson", "launch"),
     ("ファミリーマート限定で新商品を発売", "lifestyle", "", "launch"),
     ("ドラム式洗濯機の新製品を発売", "lifestyle", "", "launch"),
+    # 2026-11-07 オーナー承認の追加: 食品メーカーの単品の新商品・新フレーバー、感染症の流行・鳥インフルエンザ
+    ("湖池屋 「湖池屋くじ」(11月28日発売開始)", "lifestyle", "nissin", "launch"),
+    ("「ピノ ぜんぶアーモンド」 11月9日（月）より全国にて数量限定発売", "lifestyle", "morinaga-milk", "launch"),
+    ("ハイチュウ歯みがき粉に新フレーバー登場", "lifestyle", "morinaga", "launch"),
+    ("インフルエンザの発生状況を更新しました", "public", "mhlw", "health"),
+    ("感染性胃腸炎にご注意ください！ノロウイルス等による集団感染が多く発生する時期です", "public", "tokyo-metro", "health"),
+    ("秋田県における野鳥の高病原性鳥インフルエンザウイルスの検出事例について", "lifestyle", "maff", "health"),
 ]
 # 広げても扱わない（事件・事故・芸能・不祥事）。交通・天気・障害の語があっても入れない
 EXCLUDED = [
@@ -48,13 +55,15 @@ EXCLUDED = [
     ("人気俳優が結婚を発表 新商品のCMにも出演", "lifestyle", "familymart"),
     ("アイドルの活動休止に伴うコラボ商品の販売終了", "lifestyle", "lawson"),
     ("社内のパワハラに関する懲戒処分について", "public", ""),
+    ("インフルエンザによる死亡者数について", "public", ""),
+    ("この食品でインフルエンザが治る？", "lifestyle", ""),
 ]
 # 前から主題外のまま（広げた話題でもない）
 STILL_OFF = [
     ("令和8年11月6日(金)午後-内閣官房長官記者会見", "public", "gov-online"),
     ("超伝導を特徴づける2つの長さを計算可能に", "science", "riken"),
     ("日本郵便と北海道テレビ放送による防災に関する連携協定の締結", "lifestyle", "japanpost"),
-    ("ちょいたしおでんの具 コーン肉団子", "lifestyle", "nipponham"),
+    ("ちょいたしおでんの具 コーン肉団子", "lifestyle", "nipponham"),  # 発売の語が無い商品名だけの題名は入れない
     ("障害福祉分野における人材確保に関する検討会", "public", "mhlw"),
     ("障害対応を自動化するツールを公開", "lifestyle", ""),
 ]
@@ -91,10 +100,20 @@ class WideTopicsTest(unittest.TestCase):
         item = {"title": "列車事故で負傷者 運転見合わせ続く", "summary": "", "section": "lifestyle", "source_slug": "jrwest"}
         self.assertIn("扱わない話題", web_articles.broad_prefilter(item) or "")
 
-    def test_launch_needs_a_store_or_device_context(self):
-        # 食品メーカーの単品の発売は広げた話題に入れない（オーナーの承認はコンビニ・外食・家電・スマホ）
-        self.assertIsNone(public_interest.wide_category("湖池屋 「湖池屋くじ」(11月28日発売開始)", "nissin"))
+    def test_launch_needs_a_store_device_or_food_maker(self):
+        # 発売の語だけでは入れない（コンビニ・外食・家電・スマホ・食品の語か、その会社の公式の発表に限る）
+        self.assertIsNone(public_interest.wide_category("新フレーバー登場", ""))
+        self.assertIsNone(public_interest.wide_category("新作フィギュアを発売", "cyberagent"))
+        self.assertEqual(public_interest.wide_category("新フレーバー登場", "nipponham"), "launch")
         self.assertEqual(public_interest.wide_category("ローソン限定 無印良品「ボディフレグランスミスト」を発売", ""), "launch")
+
+    def test_election_only_in_summary_does_not_drop(self):
+        item = {"title": "ガソリン補助金が縮小開始へ～価格上昇はどこまで？", "summary": "選挙を前に補助の扱いが議論になった。",
+                "section": "business", "source_slug": "nli-research"}
+        self.assertNotIn("扱わない話題", web_articles.broad_prefilter(item) or "")
+        for title in ("衆議院議員選挙の候補者が決定", "政党の公約に電気代の補助"):
+            dropped = web_articles.broad_prefilter({**item, "title": title, "summary": ""})
+            self.assertIn("扱わない話題", dropped or "", title)
 
     def test_outage_notice_is_not_low_value(self):
         base = {"summary": "", "section": "tech-gadget", "source_slug": "rakuten-mobile-info"}
@@ -120,11 +139,12 @@ class WideTopicsTest(unittest.TestCase):
 
     def test_new_sources_registered(self):
         by_slug = {f["slug"]: f for f in feeds.BROAD_FEEDS}
-        for slug in ("jrkyushu", "energia", "yonden", "rikuden", "smbc", "yamazaki", "city-yokohama"):
+        for slug in ("jrkyushu", "energia", "yonden", "rikuden", "smbc", "yamazaki", "city-yokohama",
+                     "asahi", "morinaga-milk", "megmilk", "fujiya", "maff-tori", "jihs"):
             with self.subTest(slug=slug):
                 f = by_slug[slug]
                 self.assertIn(f["kind"], ("gov", "company"))
-                re.compile(f["include_re"])
+                re.compile(f.get("include_re") or "")
                 self.assertFalse(public_interest.is_press_url(f["url"]))
 
     def test_ledger_row(self):

@@ -32,7 +32,8 @@ class PublishGate(unittest.TestCase):
         self.assertIsNone(indexnow.publish_block_reason(article("ok")))
 
     def test_off_topic_article_is_blocked_without_retry(self):
-        a = article("beer", title="キリンビール、冬限定の缶チューハイを新発売", genreSlug="lifestyle", channelSlug="kirin")
+        # 食品メーカーの新発売は 2026-11-07 から主題（台帳 A56）。主題外のままの例に替えた
+        a = article("jersey", title="サンゴリアス 新ジャージーデザイン決定のお知らせ", genreSlug="lifestyle", channelSlug="suntory")
         self.assertEqual(indexnow.publish_block_reason(a), "off-focus")
         self.assertNotIn("off-focus", indexnow.PUBLISH_RETRYABLE)
 
@@ -109,7 +110,7 @@ class RetireNoindexPlan(unittest.TestCase):
         return retire_articles.plan_noindex(articles, NOW)
 
     def test_off_topic_is_retired_with_410_and_sns_posts_are_kept(self):
-        off = dict(title="サントリーの新しいラテが発売", genreSlug="lifestyle", channelSlug="suntory")
+        off = dict(title="日本郵便と北海道テレビ放送による防災に関する連携協定の締結", genreSlug="lifestyle", channelSlug="japanpost")
         articles = [
             article("ok"),
             article("off", **off),
@@ -146,7 +147,7 @@ class RetireNoindexPlan(unittest.TestCase):
             article("gyakuhibu-cross-trade-complete-guide-matome", type="roundup", sources=[
                 {"slug": "rakuten-sec-cross-trade-genwatashi"}, {"slug": "understanding-gyakuhibu-margin-trading-risks"},
                 {"slug": "rakuten-sec-cross-trade-margin-category"}]),
-            article("other-src", title="サントリーの新しいラテが発売", genreSlug="lifestyle", channelSlug="suntory"),
+            article("other-src", title="日本郵便と北海道テレビ放送による防災に関する連携協定の締結", genreSlug="lifestyle", channelSlug="japanpost"),
             article("orphan-matome", type="roundup", sources=[{"slug": "other-src"}, {"slug": "ok"}]),
             article("ok"),
         ]

@@ -366,12 +366,23 @@ BROAD_FEEDS: list[dict] = [
     {"slug": "smbc", "name": "三井住友銀行 ニュースリリース", "url": "https://www.smbc.co.jp/news/", "type": "html", "link_re": r"smbc\.co\.jp/news/", "section": "business", "kind": "company", "priority": 2,
      "include_re": "障害|不正アクセス|漏え?い|漏洩|流出|詐欺|なりすまし|手数料|改定|値上げ|終了|停止|サービス開始|提供開始|取扱い"},
     {"slug": "yamazaki", "name": "山崎製パン ニュースリリース", "url": "https://www.yamazakipan.co.jp/company/news/", "type": "html", "link_re": r"yamazakipan\.co\.jp/company/news/pdf/20\d{6}", "section": "lifestyle", "kind": "company", "priority": 3,
-     "include_re": "価格|改定|値上げ|値下げ|自主回収|回収"},
+     "include_re": "価格|改定|値上げ|値下げ|自主回収|回収|発売|新商品"},
     {"slug": "city-yokohama", "name": "横浜市 記者発表", "url": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/", "type": "html", "section": "public", "kind": "gov", "priority": 3,
      "include_re": "給付|補助|助成|支援金|手当|商品券|無償|減免|申請|受付開始|防災|避難|災害|料金|値上げ|無料|ポイント|運休|通行止"},
+    # 食品メーカーの新商品・新フレーバー（2026-11-07 オーナー承認の追加・A56）。キャンペーン・プレゼントは「価値の薄いお知らせ」で落ちる
+    {"slug": "asahi", "name": "アサヒビール ニュースリリース", "url": "https://www.asahibeer.co.jp/news/", "type": "html", "link_re": r"asahibeer\.co\.jp/news/20", "section": "lifestyle", "kind": "company", "priority": 3},
+    {"slug": "morinaga-milk", "name": "森永乳業 ニュースリリース", "url": "https://www.morinagamilk.co.jp/release/", "type": "html", "link_re": r"morinagamilk\.co\.jp/release/newsentry", "section": "lifestyle", "kind": "company", "priority": 3},
+    {"slug": "megmilk", "name": "雪印メグミルク ニュース", "url": "https://www.meg-snow.com/news/", "type": "html", "link_re": r"meg-snow\.com/news/detail/", "section": "lifestyle", "kind": "company", "priority": 3},
+    {"slug": "fujiya", "name": "不二家 ニュースリリース", "url": "https://www.fujiya-peko.co.jp/company/news/", "type": "html", "link_re": r"fujiya-peko\.co\.jp/assets/pdf/press", "section": "lifestyle", "kind": "company", "priority": 3},
+    # 感染症の流行・鳥インフルエンザ（2026-11-07 オーナー承認の追加・A56）。国内の発生の発表だけ（海外の発生状況の表・定例の週報の更新は取らない）
+    {"slug": "maff-tori", "name": "農林水産省 鳥インフルエンザ", "url": "https://www.maff.go.jp/j/syouan/douei/tori/", "type": "html", "section": "lifestyle", "kind": "gov", "priority": 2,
+     "include_re": "鳥インフルエンザ|豚熱", "exclude_re": "北米|米国|アメリカ|欧州|ヨーロッパ|韓国|台湾|アジア|中国|海外|世界|諸外国"},
+    {"slug": "jihs", "name": "国立健康危機管理研究機構 感染症情報", "url": "https://id-info.jihs.go.jp/", "type": "html", "section": "public", "kind": "gov", "priority": 2,
+     "include_re": "流行|警報|注意報|注意喚起|集団発生|インフルエンザ様疾患", "exclude_re": "IASR|ダウンロード|view more"},
     # 確かめたが使えなかったもの（2026-11-07 A56 の追加分）: JR北海道・東京メトロ・小田急・京王・みずほ銀行・NEXCO西日本・大阪市・カルビー（403）、
     #   東急・九州電力・東北電力・北海道電力・マクドナルド・吉野家・札幌市・福岡市（一覧の URL が 404）、東京都交通局・セブン‐イレブン・ゼンショー・ANA・
-    #   三菱UFJ銀行・名古屋市（一覧から日付つきの項目が読めない・直近14日に更新なし）、スターバックス（503）、東邦ガス（自己株式の開示ばかり）
+    #   三菱UFJ銀行・名古屋市（一覧から日付つきの項目が読めない・直近14日に更新なし）、スターバックス（503）、東邦ガス（自己株式の開示ばかり）、
+    #   江崎グリコ・伊藤ハム（404）、カゴメ・湖池屋（一覧の題名・文字コードが正しく読めない）、ロッテ・サッポロ（日付つきの項目が読めない）、東京都感染症情報センター（日付の無いトピックス）
     # 確かめたが使えなかったもの（2026-11-07）: 関西電力・味の素・カルビー・資源エネ庁の報道発表・JR東日本・JAL・NEXCO西日本・大阪市・福岡県（403）、
     #   中部電力・セブン‐イレブン・大阪府・愛知県の一部（一覧の URL が無い・404）、キッコーマン・山崎製パン・パナソニック・日立・スクエニ・
     #   バンダイナムコ・ホンダ・ANA・NPB・神奈川県・au/ソフトバンクの障害情報（一覧がスクリプトで描かれ、日付つきの項目が読めない）、
