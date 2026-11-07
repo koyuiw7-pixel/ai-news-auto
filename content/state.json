@@ -12528,6 +12528,18 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000035.000121195.html"
     },
+    "971de4c0be5cc066": {
+      "at": "2026-11-07T13:53:28.292416+00:00",
+      "costUsd": 0.0186,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "unity-gateway-public-sector-ai",
+      "url": "https://www.databricks.com/blog/how-public-sector-organizations-can-govern-ai-scale"
+    },
     "9768eaa6b9472805": {
       "at": "2026-11-06T08:58:44.243909+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -18534,34 +18546,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T23:07:48.495284+00:00",
-      "attempt": 2,
-      "id": "582d1c8b48613264",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "softbank-group-press",
-      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T23:08:07.681601+00:00",
-      "attempt": 3,
-      "id": "582d1c8b48613264",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "softbank-group-press",
-      "title": "IR情報 2026年11月6日 ABB Ltdのロボティクス事業の買収に関する経過のお知らせ"
-    },
     {
       "accepted": false,
       "at": "2026-11-05T23:10:52.469407+00:00",
@@ -24616,6 +24600,48 @@
         "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（CM）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T13:53:07.089620+00:00",
+      "attempt": 1,
+      "id": "971de4c0be5cc066",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "段落が長い（平均 106.9字・最長 247字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 106.9,
+        "avg_sentence": 43.4,
+        "long_share": 0.108,
+        "max_paragraph": 247,
+        "paragraphs": 15,
+        "sentences": 37
+      },
+      "score": 90,
+      "source": "databricks-blog",
+      "title": "How public sector organizations can govern AI at scale"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T13:53:28.285372+00:00",
+      "attempt": 0,
+      "id": "971de4c0be5cc066",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.1,
+        "avg_sentence": 41.2,
+        "long_share": 0.079,
+        "max_paragraph": 134,
+        "paragraphs": 18,
+        "sentences": 38
+      },
+      "score": 88,
+      "source": "databricks-blog",
+      "title": "How public sector organizations can govern AI at scale"
     }
   ],
   "short_text_retry": {},

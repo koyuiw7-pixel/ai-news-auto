@@ -1,0 +1,128 @@
+{
+  "slug": "unity-gateway-public-sector-ai",
+  "sourceType": "web",
+  "sourceUrl": "https://www.databricks.com/blog/how-public-sector-organizations-can-govern-ai-scale",
+  "sourceName": "Databricks公式ブログ",
+  "title": "公共機関のAI利用を一元管理　利用者と支出の上限を設定可能に",
+  "seoTitle": "Unity Gatewayとは？公共機関のAI利用を一元管理",
+  "threadsPost": "官公庁でAI導入を担当する人に、知っておいてほしい話です。\n\nDatabricksが、公共機関のAI利用を一か所で管理する「Unity Gateway」を紹介しました。\n利用者ごとに使えるAIモデルと支出の上限を決め、すべての利用を記録できます。\n\n職場でAIを使うとき、利用ルールはどこまで決めておくべきだと感じますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "職場でAIを使うとき、利用ルールはどこまで決めておくべきだと感じますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "AIの利用を細かく制限すると、現場の動きは遅くなると思いますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "官公庁や自治体がAIを使うとき、どのAIを誰が使えるか、いくらまで使えるかを、組織として一か所で決められる仕組みを、Databricksが紹介しています。利用者、チーム、用途ごとに支出の上限を設定でき、すべてのAIリクエストが記録されます。日本での提供条件は、まだ発表されていません。",
+  "description": "官公庁や自治体がAIを安全に使うための仕組み「Unity Gateway」を、Databricksが紹介しました。AIモデルごとの利用許可、利用者ごとの支出上限、データの処理地域の指定を一か所で管理できます。",
+  "keywords": [
+    "公共機関 AI 管理",
+    "Unity Gateway",
+    "Databricks",
+    "AIガバナンス",
+    "AI 支出管理",
+    "AI データ 処理地域",
+    "行政 AI 導入",
+    "AI 利用制限",
+    "Smart Routing",
+    "生成AI 統制"
+  ],
+  "tags": [
+    "生成AI",
+    "AIガバナンス",
+    "Databricks",
+    "Unity Gateway",
+    "公共部門"
+  ],
+  "highlights": [
+    "官公庁のAI利用を、モデルごとの許可と利用者別の支出上限で一元管理する仕組みを紹介",
+    "AIリクエストを処理する地域を、アカウント管理者がワークスペースの地域内に限定できます"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "官公庁・企業のAI管理者",
+    "take": "導入の前に、Databricksの公式ページで提供地域と料金を確かめるとよいでしょう。",
+    "judgedAt": "2026-11-07T13:52:59.896115+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の影響は小さいです。官公庁や自治体でAIの導入を担当する人は、利用上限と処理地域の設定を確認するとよいでしょう。"
+    ]
+  },
+  "body": "公共機関でAIの導入が止まる原因は、性能ではありません。「誰が」「どこで」「いくらで」使うのかに、組織として答えられないことだと、Databricksの公式ブログは説明しています。同社は、この問いに一か所で答える仕組みとして「Unity Gateway」を紹介しました。\n\nこの記事で対象になるのは、官公庁や自治体でAIの導入や予算管理を担当する人です。一般の会社員の仕事や料金が、今すぐ変わるわけではありません。\n\n資料には、こんな例が書かれています。ある行政のデジタルチームが、CodexやClaude Codeといった外部のコーディングエージェントを使い始めたとします。コーディングエージェントとは、プログラムを書く作業をAIが自分で進める仕組みです。\n\n開発者は喜びますが、「誰がどのモデルを使えるのか」「AIの支出がなぜ急に増えたのか」と聞かれます。\n\nコンプライアンス部門は、データがどこへ送られているのかを問います。資料によると、そのプラットフォームのリクエストは、別の国のインフラに送られていました。予算部門は費用を把握できず、応答も遅く、不要なトークン（AIが文字を数える単位）まで使われていたといいます。\n\nその結果、承認が出せず、AIプロジェクトは止まります。資料は、問題はAIを必要としていないことではなく、基本的な統制の問いに答えられないことだと指摘しています。\n\n## 利用者ごとに、使えるモデルと支出の上限を決める\n\nUnity Gatewayは、Databricksに組み込まれたAI利用の管理機能です。組織として使えるAIモデル、コーディングエージェント、AIツールを決め、誰が使えるかを管理者が設定します。\n\n新しいモデルは、発表の当日から使える状態になります。ただし、管理者が有効にしたモデルを、許可された人だけが使います。新しいモデルが、自動ですべての利用者に開放されるわけではありません。\n\n支出の上限は、利用者、チーム、用途ごとに設定できます。すべてのリクエストは記録され、誰がどれだけ使ったかを追えます。\n\nたとえば、ある歳入機関では、調査部門が納税者の記録にAIを使えます。ただし、利用は、その事件を担当する調査官に限られます。\n\n作業ごとに最適なモデルを選ぶ機能として、「Smart Routing」もあります。コーディングの作業を複雑さに応じて、適したモデルに振り分けるものです。\n\nDatabricksの別の公式ブログ（「Smart Routing in Unity Gateway」、11/7確認）によると、社内のコーディング作業では次の結果だったとされています。\n\n- 作業1件あたりのコストは、Opus 5のような主力モデルを単独で使う場合の65%で済んだ\n- どの単独モデルよりも成果が良かった\n\nSmart Routingは、まだベータ版（試験的な提供）です。\n\nデータの処理場所も、管理の対象です。Databricksは、同社が提供するホスト型の基盤モデル（大規模なAIの土台となるモデル）について、処理される地域を管理しています。アカウント管理者は、AIリクエストをワークスペースの地域内で処理するよう求められます。\n\nその地域にモデルがない場合は、ほかの地域での処理を許可するかどうかも選べます。資料は、国の医療サービスが患者の記録にAIを使う場合を例に挙げています。データの行き先を規制当局に示す必要があるからです。\n\n資料は、市民向けの窓口AI、不正の調査、古い文書の読み取り、古いシステムの改修で、必要なモデルが違うと説明します。ひとつのモデルで全部をまかなうと、定型の問い合わせには高くつき、難しい業務には力が足りなくなると指摘しています。\n\nほかにも、複数の会社のモデル、オープンソースモデル（無料で公開されたモデル）、外部のAIサービスへの接続先に対応します。ひとつの会社に縛られず、業務ごとに選べるとしています。\n\n## 日本で使うときは、公式情報で確かめる\n\n日本の公共機関が導入を考えるなら、Databricksの公式ページで提供地域と契約条件を確かめるとよいでしょう。\n\n## まだ分からないこと\n\n- Unity Gatewayの料金は、まだ発表されていません\n- 日本での提供地域と、国内の機関向けの契約条件は、まだ発表されていません\n- Smart Routingの一般提供の時期は、まだ発表されていません",
+  "easy": "## ひとことで言うと\n\n官公庁や自治体がAIを使うとき、どのAIを誰が使えるか、いくらまで使えるかを一か所で決める仕組みを、Databricksが紹介しています。\n\nAIを使う人、AIの種類、支出の上限を、組織の管理者が決められます。新しいモデルは発表の当日から使えますが、管理者が許可した人だけが使います。\n\n支出は、利用者、チーム、用途ごとに上限を決められます。すべての利用は記録されるので、誰がどれだけ使ったかを追えます。\n\nデータがどの地域で処理されるかも、管理者が決められます。国の医療サービスのように、データの行き先を説明しなければならない組織に向けた機能です。\n\n日本での提供地域と料金は、まだ発表されていません。導入を考えるなら、公式ページで条件を確かめるとよいでしょう。",
+  "channel": "Databricks公式ブログ",
+  "channelId": "",
+  "channelSlug": "databricks-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "How public sector organizations can govern AI at scale",
+  "publishedAt": "2026-11-06T15:14:29+00:00",
+  "generatedAt": "2026-11-07T13:52:59.896107+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/unity-gateway-public-sector-ai-156ee976.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "explainer",
+  "faq": [
+    {
+      "q": "Unity Gatewayは、別のシステムを新たに入れる必要がありますか？",
+      "a": "必要ありません。Unity GatewayはDatabricksに組み込まれており、別のAIゲートウェイやAIガバナンスの仕組みを導入せずに、AIアクセス、セキュリティ、支出を一元管理できます。"
+    }
+  ],
+  "todayActions": [
+    "自分の組織がAIの利用上限をどう決めているか、管理者に確かめておく",
+    "Databricksの公式ページで、日本での提供地域と料金を確認する"
+  ],
+  "qualityScore": 88,
+  "factSources": [
+    {
+      "label": "関連ページ",
+      "name": "Databricks公式ブログ「Smart Routing in Unity Gateway: Match frontier quality with 30%+ lower cost per 」",
+      "url": "https://www.databricks.com/blog/smart-routing-unity-ai-gateway-match-frontier-quality-30-lower-cost-task",
+      "checkedAt": "2026-11-07"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-06T15:14:29+00:00",
+  "detectedAt": "2026-11-07T13:50:48+00:00",
+  "layout": "noir",
+  "summaryLine": "官公庁のAI利用を、モデルごとの許可と利用者別の支出上限で一元管理する仕組みを紹介",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Databricks",
+    "provider": "Databricks公式ブログ",
+    "sourceUrl": "https://www.databricks.com/blog/how-public-sector-organizations-can-govern-ai-scale",
+    "original": "https://www.databricks.com/sites/default/files/2026-11/image1.png",
+    "width": 1200,
+    "height": 631,
+    "at": "2026-11-07T13:53:33+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.43,
+    "y": 0.556,
+    "box": [
+      0.022,
+      0.113,
+      0.838,
+      1.0
+    ],
+    "ar": 1.9017,
+    "src": "https://ai-tech-express.jp/img/unity-gateway-public-sector-ai-156ee976.jpg"
+  },
+  "coverTries": 1
+}
