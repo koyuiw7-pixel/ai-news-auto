@@ -2527,6 +2527,58 @@
       "variant": "short",
       "bufferId": "6aec29a875052a1eb82659e1",
       "postedAt": "2026-11-05T16:30:00+09:00"
+    },
+    "smbc-arara-message-email-leak-2026": {
+      "at": "2026-11-07T09:53:13+00:00",
+      "status": "gate_failed",
+      "tries": 1,
+      "textAt": "2026-11-07T09:45:00+00:00",
+      "textId": "",
+      "breaking": false,
+      "scheduled": false,
+      "versions": {
+        "full": {
+          "ok": false,
+          "seconds": null,
+          "reasons": [
+            "記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（0場面）"
+          ],
+          "qa": {
+            "geometry": false,
+            "vision": false,
+            "version": 1
+          },
+          "template": "",
+          "level": null,
+          "base_layout": ""
+        },
+        "short": {
+          "ok": false,
+          "seconds": null,
+          "reasons": [
+            "記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（0場面）"
+          ],
+          "qa": {
+            "geometry": false,
+            "vision": false,
+            "version": 1
+          },
+          "template": "",
+          "level": null,
+          "base_layout": ""
+        }
+      },
+      "timings": {
+        "full": {
+          "ladder_total": 223.6
+        },
+        "short": {
+          "ladder_total": 223.6
+        }
+      },
+      "ok": false,
+      "reason": "full: 記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（0場面） / short: 記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（0場面）",
+      "pages": []
     }
   },
   "queued": {
