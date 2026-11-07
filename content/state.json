@@ -4775,6 +4775,19 @@
       "slug": "tokyo-electricity-gas-subsidy-7th",
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110210"
     },
+    "155055bcd7588e50": {
+      "at": "2026-11-07T00:14:55.723410+00:00",
+      "costUsd": 0.0523,
+      "intent": "query",
+      "major": true,
+      "mix": "alert",
+      "model": "anthropic-api:claude-haiku-5-5+anthropic-api:claude-sonnet-5-5",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "business",
+      "slug": "smbc-arara-message-email-leak-2026",
+      "url": "https://www.smbc.co.jp/news/pdf/j20261105_02.pdf"
+    },
     "156ada2f068c3822": {
       "at": "2026-11-06T09:17:17.326067+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（議事）",
@@ -6519,6 +6532,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（採用）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000062.000061700.html"
+    },
+    "32b39dd10ffe8d06": {
+      "at": "2026-11-07T00:14:56.157942+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（割引）",
+      "skipped": true,
+      "url": "http://www.energia.co.jp/press/2026/16759.html"
     },
     "32d7ac33c2f272cb": {
       "at": "2026-11-05T11:22:23.938089+00:00",
@@ -10282,6 +10301,14 @@
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366545"
     },
+    "7505013630af597a": {
+      "at": "2026-11-07T00:13:03.044294+00:00",
+      "costUsd": 0.0125,
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "公開前の門: サイトの主題（AI・テック／お金・投資・不動産・起業／制度のお金の話／暮らしの交通・天気・値上げ・障害・給付・発売／日本のスポーツ）から外れた話題は公開しません",
+      "skipped": true,
+      "url": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/05/261105_info_ex-service_data_breach_2.pdf"
+    },
     "75062b922de11e98": {
       "at": "2026-11-04T15:41:53.379305+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -12502,6 +12529,12 @@
       "reason": "quality: 「今回の発表対象は、シティホテル、ビジネスホテル、国内長距離交通、教育サービス、生命保険、損害保険（自動車／住宅・火災）の7業種に、特別調査として有料特急を加えたもの」→元記事では有料特急を含めて7業種と記載されており、7業種に加えたという表現は矛盾する。; 「編集部の見立てでは、航空業界内の競争激化の中で、顧客がスカイマークのサービス品質や価格設定に対して高い満足感を示している",
       "skipped": true,
       "url": "https://kyodonewsprwire.jp/release/202610228532"
+    },
+    "9a65ac2076b2daf2": {
+      "at": "2026-11-07T00:14:56.152610+00:00",
+      "reason": "stale: 発表から57時間（48時間を超えた発表は通常の記事にしない）",
+      "skipped": true,
+      "url": "https://www.smbc.co.jp/news/pdf/j20261105_01.pdf"
     },
     "9a892e935752466d": {
       "at": "2026-11-06T06:03:10.185625+00:00",
@@ -18198,84 +18231,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T13:27:07.777050+00:00",
-      "attempt": 2,
-      "id": "8ec46f72407133f6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "nli-research",
-      "title": "政府債務の指標と公的年金"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T13:48:31.459514+00:00",
-      "attempt": 1,
-      "id": "dd699d29ee35f836",
-      "kind": "broad",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T14:03:26.490603+00:00",
-      "attempt": 2,
-      "id": "dd699d29ee35f836",
-      "kind": "broad",
-      "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T14:11:27.445017+00:00",
-      "attempt": 1,
-      "id": "588776d5fd509bfe",
-      "kind": "update",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "score": 84,
-      "source": "nvidia-blog",
-      "title": "‘Hogwarts Legacy’ Gets a Magical NVIDIA DLSS 5 Upgrade on GeForce NOW"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T14:40:46.758468+00:00",
-      "attempt": 1,
-      "id": "141794b8fcef0d3b",
-      "kind": "broad",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "problems": [
-        "body に投資助言・売買のすすめの言い回しがある（「目標株価」）。一般的な情報と判断材料の提示に直す",
-        "1つの文を2つに割っている（「メリットがあります。１つ目は、細かなルールや監視に頼らなくても組織が動くことです」）。1文にまとめる",
-        "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める"
-      ],
-      "readability": {
-        "avg_paragraph": 129.1,
-        "avg_sentence": 44.2,
-        "long_share": 0.237,
-        "max_paragraph": 223,
-        "paragraphs": 13,
-        "sentences": 38
-      },
-      "score": null,
-      "source": "nli-research",
-      "title": "企業文化の分析と企業評価"
-    },
     {
       "accepted": false,
       "at": "2026-11-05T14:55:39.806499+00:00",
@@ -24056,6 +24011,91 @@
       "score": 88,
       "source": "tsr",
       "title": "「後継者難」倒産が54件、10月では過去最多 1-10月累計444件、年間最多の更新が確実"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T00:12:30.373761+00:00",
+      "attempt": 1,
+      "id": "7505013630af597a",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jrkyushu",
+      "title": "お詫び ユミルリンク株式会社で発生した不正アクセスに伴うメールアドレス等の漏えいについて（第２報）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T00:13:42.388246+00:00",
+      "attempt": 1,
+      "id": "155055bcd7588e50",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "smbc",
+      "title": "メール配信委託先への不正アクセスによる情報漏えいについて(135KB)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T00:14:06.774348+00:00",
+      "attempt": 1,
+      "id": "155055bcd7588e50",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "smbc",
+      "title": "メール配信委託先への不正アクセスによる情報漏えいについて(135KB)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T00:14:27.484498+00:00",
+      "attempt": 1,
+      "id": "155055bcd7588e50",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "文が長い（1文の平均 47.8字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 116.6字・最長 258字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 116.6,
+        "avg_sentence": 47.8,
+        "long_share": 0.282,
+        "max_paragraph": 258,
+        "paragraphs": 16,
+        "sentences": 39
+      },
+      "score": 94,
+      "source": "smbc",
+      "title": "メール配信委託先への不正アクセスによる情報漏えいについて(135KB)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T00:14:55.708298+00:00",
+      "attempt": 0,
+      "id": "155055bcd7588e50",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 85.8,
+        "avg_sentence": 42.9,
+        "long_share": 0.167,
+        "max_paragraph": 162,
+        "paragraphs": 21,
+        "sentences": 42
+      },
+      "score": 92,
+      "source": "smbc",
+      "title": "メール配信委託先への不正アクセスによる情報漏えいについて(135KB)"
     }
   ],
   "short_text_retry": {},
