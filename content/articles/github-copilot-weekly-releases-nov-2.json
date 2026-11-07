@@ -1,0 +1,135 @@
+{
+  "slug": "github-copilot-weekly-releases-nov-2",
+  "sourceType": "web",
+  "sourceUrl": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2",
+  "sourceName": "GitHub Changelog（Copilot）",
+  "title": "Copilot、JetBrains AirとXcodeで利用可能に　XcodeはXcode 27.3 betaで公開プレビュー",
+  "seoTitle": "GitHub Copilotの週次更新　XcodeとAirで使える？",
+  "threadsPost": "Xcodeで開発している人に、知っておいてほしい話です。\n\nGitHub CopilotがXcodeの標準コーディングアシスタントで使えます。\nXcode 27.3 betaからの公開プレビューで、JetBrains Airにも対応しました。\n\n普段使っている開発ツール、Copilotとどう組み合わせていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "expert",
+      "question": "Xcodeで開発する人は、AIの補助をどこで使っていますか？"
+    },
+    {
+      "pattern": "count",
+      "question": "AIに作業を任せる時間は、1日にどれくらいですか？"
+    },
+    {
+      "pattern": "line",
+      "question": "AIに任せる作業の承認は、どこまで自動にしてよいと考えますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "GitHub Copilotが、Xcodeの標準コーディングアシスタントとJetBrains Airで使えるようになりました。Xcode側はXcode 27.3 betaからの公開プレビューで、全てのCopilotプランが対象です。すでにCopilotを契約している人は、追加の契約なしで試せます。",
+  "description": "GitHub Copilotの11月2日週の更新を整理。Xcode 27.3 betaの標準アシスタントとJetBrains Airに対応し、CopilotアプリのAgent MergeやCLIの/settings、VS Code 1.145の新機能も追加されました。",
+  "keywords": [
+    "GitHub Copilot",
+    "Copilot Xcode",
+    "JetBrains Air",
+    "Copilot CLI",
+    "VS Code 1.145",
+    "Agent Merge",
+    "Xcode 27.3 beta",
+    "AIコーディング",
+    "コーディングアシスタント",
+    "Copilot アップデート"
+  ],
+  "tags": [
+    "GitHub Copilot",
+    "生成AI",
+    "開発ツール",
+    "Xcode",
+    "JetBrains"
+  ],
+  "highlights": [
+    "GitHub CopilotがXcode 27.3 betaの標準コーディングアシスタントで公開プレビューに",
+    "JetBrains AirでCopilotが利用可能に。クラウド実行も既存のCopilot契約で動く",
+    "CopilotアプリのAgent Merge設定やCLIの統合設定画面、VS Code 1.145の新機能も追加"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "Copilot契約内",
+    "free": null,
+    "audience": "開発者",
+    "take": "Xcodeは公開プレビューなので、まず手元のベータ版環境で試し、既存の拡張との使い分けを確かめるとよいでしょう。",
+    "judgedAt": "2026-11-07T21:12:11.235162+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "Xcodeで開発するiOS・Mac向けの開発者は、Copilotを標準アシスタント内で使えます。",
+      "JetBrains Airのクラウド実行はCopilotのプランで動き、JetBrains AI creditsは使いません。"
+    ]
+  },
+  "body": "Xcodeで開発する人や、JetBrains製品を使う人は、すでに契約しているGitHub Copilotを新しい環境でも試せます。XcodeはXcode 27.3 betaからの公開プレビューで、正式版ではありません。Copilotを使っていない人や、これらのツールを使わない人には、直接の変更はありません。\n\nGitHub Copilotは、プログラムの補完や作業の代行をするAIの開発支援サービスです。GitHub Changelogの11月6日付のまとめによると、この週はXcode、JetBrains Air、Copilotアプリ、CLI、VS Codeの5つで更新がありました。\n\n## Xcodeの標準アシスタントで使える、公開プレビュー\n\nXcodeの内蔵のコーディングアシスタントで、Copilotを直接使えるようになりました。GitHubの案内（11/8確認）によると、Xcode 27.3 betaが必要で、Apple Developer Downloadsから入手します。Macは、macOS Tahoe 26.6以降が必要です。\n\n設定はXcodeの「Settings」にある「Intelligence」の画面で行います。全てのCopilotプランに対応しています。（GitHub Changelog、11/8確認）\n\nこれまでの「GitHub Copilot for Xcode」拡張は、別の選択肢として残ります。標準のアシスタントと拡張のどちらを使うかは、利用者が選べます。意見は、GitHubのリポジトリかAppleのフィードバックアシスタントで送れます。\n\n## JetBrains Airでは、クラウド実行も既存の契約で\n\nJetBrains Airでは、複数のエージェントのセッションを追跡できます。ここでCopilotを使えるようになりました。複数のエージェントの作業を追いながら、手元のJetBrains IDEで実行することも、Air Teams経由でクラウドで実行することもできます。\n\nサイソクは11月4日に[JetBrains AirへのCopilot提供](/articles/github-copilot-jetbrains-air)を報じています。クラウドの作業はCopilotのプランで動き、JetBrains AI creditsは使いません。（GitHub Changelog、11/8確認）\n\nクラウド実行には、Air Teamsが有効な法人組織のJetBrainsアカウント、Copilotの契約、Air管理者によるCopilotの有効化が必要です。作業は新しい仮想マシン上のDockerコンテナで動き、作業ごとに状態は引き継がれません。契約や利用枠が使えないときは、作業が失敗してセッションにエラーが出ます。\n\n## CopilotアプリとCLIの更新\n\nCopilotアプリでは、プルリクエストから直接「Agent Merge」を設定できます。準備ができた時点でCopilotがマージします。必須のチェックやルールの結果を待つ間も、設定は有効なままです。レビュアーの状況の確認や、追加のレビューの依頼もできます。\n\nそのほかの変更は次のとおりです。\n\n- 会話が上限に達したとき、エラーの画面から会話を圧縮するか、使用量の内訳を確認できる\n- サイドバーの「New」にファイルを落とすと作業を始められ、CSVとTSVは表として開く\n- マージ済みか閉じたプルリクエストに紐づく固定セッションをまとめてアーカイブできる\n- 「My Work」の保存ビューが10を超えて使える\n- ツールの許可を、個人の指示でCopilotに任せる設定（オプトイン、ローカルのセッション向け）\n\nCLIでは、/settingsでプラグインやMCPサーバーなどを1つの画面にまとめて管理できます。設定の横断検索にも対応しました。\n\n**VS Code 1.145で加わった機能**\n\nVS Codeの1.145では、チャット表示のモードが実験的に追加されました。推論やツール呼び出しを折りたたんだり開いたりでき、新しい会話を始める必要はありません。\n\nローカルの自動化は、cron式（実行の時刻を指定する書式）とワークスペースのカスタムエージェントに対応しました。Agentsウィンドウでは、別のマシン上のアプリや、インタラクティブなキャンバスをプレビューできます。リモートブラウザーは設定で有効にします。\n\n「Add Context」の「Files」から、スクリーンショットなどをワークスペースに移さずチャットに渡せます。クラウドのセッションでは画像だけが対象です。長いチャットでは、過去のターミナル出力を開くときに順に描画するため、戻りやすくなっています。\n\n**日本で使えるか**\n\nGitHub Copilot自体は日本で使えます。公式ドキュメントは日本語で公開されています（当サイトの確認：11/3）。ただし、今回の各機能の日本での提供は、まだ発表されていません。\n\n## まだ分からないこと\n\n- Xcodeの標準アシスタントでの対応が、正式提供になる時期はまだ発表されていません。\n- VS Codeの実験的な機能が、標準機能になる時期もまだ決まっていません。",
+  "easy": "## ひとことで言うと\n\nGitHub Copilotが、Xcodeの標準コーディングアシスタントとJetBrains Airで使えるようになりました。あわせてCopilotアプリ、CLI、VS Codeにも改善が入っています。\n\n## Xcodeでの使い方\n\nXcodeでの対応は公開プレビューです。Xcode 27.3 betaから使えます。Xcodeの「Settings」にある「Intelligence」の画面で設定します。全てのCopilotプランが対象です。\n\nこれまでのGitHub Copilot for Xcode拡張も、別の選択肢として残ります。\n\n## JetBrains Airでの使い方\n\nJetBrains AirでCopilotを選ぶと、今のCopilotの契約で作業を任せられます。手元のIDEでも、クラウドでも動かせます。クラウド実行にはJetBrainsのアカウントが必要です。\n\n## そのほかの更新\n\nCopilotアプリでは、プルリクエスト（変更の提案）から自動マージを設定できるようになりました。CLIでは、/settingsで設定を1つの画面にまとめて確認できます。VS Codeは1.145で、予定した時刻に作業を動かす機能などが加わりました。",
+  "channel": "GitHub Changelog（Copilot）",
+  "channelId": "",
+  "channelSlug": "github-changelog-copilot",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "GitHub Copilot weekly releases — November 2",
+  "publishedAt": "2026-11-06T21:00:26+00:00",
+  "generatedAt": "2026-11-07T21:12:11.235149+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/github-copilot-weekly-releases-nov-2-00b2133f.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "Copilotの無料プランでもXcodeの標準アシスタントは使えますか？",
+      "a": "GitHubの案内では、Xcodeの標準コーディングアシスタントでは全てのCopilotプランが対象です。ただし無料プランの利用枠には制限があります。"
+    },
+    {
+      "q": "JetBrains AirのCopilotクラウド実行で、契約が使えないとどうなりますか？",
+      "a": "クラウド環境の起動時に契約や利用枠を確認し、使えない場合は作業が失敗します。セッションにはエラーが表示されます。"
+    }
+  ],
+  "todayActions": [
+    "Xcodeで開発している人は、Xcode 27.3 betaを検証用のMacで入れて試す",
+    "JetBrains Airを使う人は、手元のIDEで実行するかクラウドで実行するかを決める",
+    "Copilot管理者は、Air Teamsでの有効化が必要かを社内で確認する"
+  ],
+  "relatedSlugs": [
+    "github-copilot-jetbrains-air"
+  ],
+  "qualityScore": 88,
+  "sourcePublishedAt": "2026-11-06T21:00:26+00:00",
+  "detectedAt": "2026-11-07T21:10:52+00:00",
+  "layout": "noir",
+  "summaryLine": "GitHub CopilotがXcode 27.3 betaの標準コーディングアシスタントで公開プレビューに",
+  "sectionsPolishedAt": "2026-11-07T21:13:48+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "GitHub",
+    "provider": "GitHub Changelog（Copilot）",
+    "sourceUrl": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2",
+    "original": "https://github.blog/wp-content/uploads/2026/11/649772462-cd2b8dcf-4eac-422d-81a2-5e9ef2709240.jpg",
+    "width": 1200,
+    "height": 493,
+    "at": "2026-11-07T21:13:58+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.484,
+    "y": 0.447,
+    "box": [
+      0.153,
+      0.031,
+      0.816,
+      0.863
+    ],
+    "ar": 2.4341,
+    "src": "https://ai-tech-express.jp/img/github-copilot-weekly-releases-nov-2-00b2133f.jpg"
+  },
+  "coverTries": 1
+}

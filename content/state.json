@@ -8487,6 +8487,18 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/kouseiroudoushou/saiyou/ninkituki/ninki-igyoukeieisenmonkanorsyusa_00001.html"
     },
+    "5175c20e07f32dcb": {
+      "at": "2026-11-07T21:12:43.991599+00:00",
+      "costUsd": 0.1163,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "github-copilot-weekly-releases-nov-2",
+      "url": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2"
+    },
     "5179ed8e3f9e5114": {
       "at": "2026-11-05T07:17:11.290106+00:00",
       "reason": "major gave up x3: reject: 要点の数字「242億1,400万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）; 要点の数字「2,443億6,400万円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
@@ -18951,45 +18963,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-06T02:04:06.481640+00:00",
-      "attempt": 2,
-      "id": "a874e3b4a06b5092",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "nli-research",
-      "title": "「どのアプリを開けばいい？」をなくす－中国平安保険、デジタル化10年の伏線回収"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T02:22:46.650760+00:00",
-      "attempt": 1,
-      "id": "b58fee4edbbb5f7a",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "段落が長い（平均 134.9字・最長 232字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 134.9,
-        "avg_sentence": 40.5,
-        "long_share": 0.1,
-        "max_paragraph": 232,
-        "paragraphs": 12,
-        "sentences": 40
-      },
-      "score": 92,
-      "source": "openai-news",
-      "title": "Australian universities are creating AI-native graduates",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（UNSW）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-06T02:23:12.304735+00:00",
       "attempt": 0,
@@ -25167,6 +25140,61 @@
       "title": "Copilot impact dashboard adds chat and VS Code agent usage",
       "warnings": [
         "初めて出たところで言い換えていない略語（VS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T21:12:21.344496+00:00",
+      "attempt": 1,
+      "id": "5175c20e07f32dcb",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「Macはユニバーサルではなく、macOS Tahoe 26.6以降が条件です」→ 元記事にもリンク先にもMacの種類（ユニバーサルかどうか）についての記述がなく、創作された条件です。",
+        "「判定: 提供状況=limited 価格=Copilot契約内 ひとこと=…」→ 記事本文に編集用の内部判定メモが混入しており、読者向けの文章として不適切です。",
+        "「JetBrains Airは、複数のAIエージェントの作業を管理する開発環境です」→ 元記事は「Track multiple agent sessions」とのみ書いており、JetBrains Airの性格づけは言い過ぎです。",
+        "「Q. Copilotの無料プランでもXcodeの標準アシスタントは使えますか？」→ 元記事は「全てのCopilotプランが対象」とだけ書いており、無料プランに利用枠の制限があるという補足は確認済み文脈からの推測を含みます。"
+      ],
+      "readability": {
+        "avg_paragraph": 102.0,
+        "avg_sentence": 39.4,
+        "long_share": 0.114,
+        "max_paragraph": 158,
+        "paragraphs": 17,
+        "sentences": 44
+      },
+      "score": 84,
+      "source": "github-changelog-copilot",
+      "title": "GitHub Copilot weekly releases — November 2",
+      "warnings": [
+        "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CLI・VS・IDE）",
+        "英語の画面名（「「Settings」」）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T21:12:43.972260+00:00",
+      "attempt": 1,
+      "id": "5175c20e07f32dcb",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 101.3,
+        "avg_sentence": 39.1,
+        "long_share": 0.114,
+        "max_paragraph": 158,
+        "paragraphs": 17,
+        "sentences": 44
+      },
+      "score": 88,
+      "source": "github-changelog-copilot",
+      "title": "GitHub Copilot weekly releases — November 2",
+      "warnings": [
+        "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CLI・VS・IDE）",
+        "英語の画面名（「「Settings」」）"
       ]
     }
   ],
