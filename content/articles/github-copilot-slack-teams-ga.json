@@ -1,0 +1,148 @@
+{
+  "slug": "github-copilot-slack-teams-ga",
+  "sourceType": "web",
+  "sourceUrl": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+  "sourceName": "GitHub Changelog（Copilot）",
+  "title": "SlackとTeamsの@GitHubが一般提供に　会話からバグ調査やPR作成まで",
+  "seoTitle": "@GitHub in Slackとは？Teamsでの使い方と提供状況",
+  "threadsPost": "SlackやTeamsで開発の相談をする人に、押さえておきたい話です。\n\n@GitHubが一般提供になり、会話の中でバグ調査やIssue作成ができます。\nTeamsではCanvasで実装計画やコード変更を一緒に確認できます。\n\n開発の相談は、チャットとコードのどちらで進めたいですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "expert",
+      "question": "開発の相談は、チャットとコードのどちらで進めたいですか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "チャットからコードを直せるなら、レビューの手間は減ると感じますか？"
+    },
+    {
+      "pattern": "count",
+      "question": "開発の相談で、1日に何回ツールを行き来しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "SlackとMicrosoft Teamsで使える「@GitHub」が一般提供になり、会話を離れずにバグ調査やIssue作成、プルリクエストの作成まで進められます。Teamsでは新たに、実装計画やコード変更を会話の横で確認できる「Canvas」も加わりました。料金や対象プランはまだ発表されていないため、利用条件は公式の案内で確かめる必要があります。",
+  "description": "SlackとTeamsの@GitHubが一般提供に。会話からバグ調査・Issue作成・PR作成ができ、TeamsではCanvasで実装計画を共同確認。リポジトリ自動特定など改善点も整理します。",
+  "keywords": [
+    "@GitHub Slack",
+    "GitHub Teams 連携",
+    "GitHub Copilot Slack",
+    "Copilot Teams Canvas",
+    "一般提供",
+    "プルリクエスト 自動作成",
+    "Issue 作成 チャット",
+    "AIコーディングエージェント",
+    "GitHub Copilot 使い方",
+    "GitHub Copilot 日本"
+  ],
+  "tags": [
+    "GitHub Copilot",
+    "生成AI",
+    "Slack",
+    "Microsoft Teams",
+    "開発ツール"
+  ],
+  "highlights": [
+    "SlackとTeamsの@GitHubが一般提供に。チャット上でバグ調査から実装、PR作成まで進められる",
+    "TeamsではCanvasで実装計画やコード変更、プレビューを会話の横で確認し、仲間と直せる",
+    "メッセージからリポジトリを自動で特定し、作成したIssueやPRには作成元の会話が明記される"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "開発チーム",
+    "take": "SlackかTeamsで開発相談をするチームは、対象プランと料金を公式で確認したうえで試すとよいでしょう。",
+    "judgedAt": "2026-11-07T21:44:48.346272+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "SlackやTeamsで開発の相談をするチームは、画面を行き来せずにIssueやPRまで進められます。",
+      "Teamsではレビューや修正の相談をCanvasで完結でき、会議後の確認作業を減らせる可能性があります。",
+      "料金や対象プランは未発表のため、導入前に公式ドキュメントで契約条件を確かめてください。"
+    ]
+  },
+  "body": "SlackかMicrosoft Teamsで開発の相談をしているチームなら、@GitHubの一般提供で、チャットの中で作業を進める場面が増えます。すでに試している人は、今回の更新で始めやすさと返信の安定性が上がります。一方、使っていない人の環境が自動で変わることはありません。\n\n@GitHubは、チャットで頼んだ内容をGitHub Copilotが受け取り、コードの調査や変更を進める機能です。GitHub Changelogによると、バグの調査、Issue（作業の課題票）の作成、変更の実装、プルリクエスト（変更の取り込み依頼）の作成を、会話を離れずに行えます。\n\nGitHub Copilot自体は日本で使えます。公式ドキュメントは日本語で公開されていて、国による制限の記載はありません（当サイトの確認：11/3）。ただし、今回のSlackとTeams向けの@GitHubが日本で使えるかは、まだ発表されていません。\n\n## TeamsのCanvasで、実装計画を会話の横で見直す\n\n今回の新機能は、Teams向けの「Canvas」です。実装計画、コードの変更、プレビューを、会話と並べて確認できます。\n\n公式ブログによると、Canvasの狙いは、チームの議論を動くコードにつなげることです。仲間とやり取りを続け、フィードバックを共有しながら、実装を一緒に磨けます。Teamsを離れる必要はありません。\n\nたとえば、機能の追加を相談しているとき、計画の確認、コードの差分の確認、修正の指示を、同じ画面で続けられます。レビューのたびにGitHubの画面へ移る手間が減ります。\n\n## 開始の手順が減り、返信の不具合も直った\n\n今回の更新では、使い始めの手順も短くなりました。@GitHubが、メッセージの内容からリポジトリ（コードの保管場所）を判断し、選び直しを求めずにセッションを始めます。\n\nさらに、次のような場面でも始めやすくなったとされています。\n\n- サインインしていないとき\n- 標準のリポジトリを決めていないとき\n- 別のリポジトリに切り替えたいとき\n- アプリへのアクセス許可が必要なとき\n\nあわせて、追加のメッセージへ返答できなくなる不具合が修正されました。作業が途中で止まる場面が減ります。\n\n**作成元の会話が説明欄に残る**\n\n@GitHubが作ったIssueとプルリクエストには、説明欄に「Created from a Slack/Teams conversation with @username」と入ります。\n\nこれにより、後から見た人が、どの会話の誰の依頼から生まれたかを追えます。チームで作業の経緯を共有するときに使える情報です。\n\n**同じ週にXcodeとJetBrains Airにも対応**\n\nGitHubは同じ週に、Copilotの提供先を広げました。Xcode 27.3 betaの標準アシスタントでは公開プレビューになり、JetBrains AirでもCopilotが使えます（[Copilot、JetBrains AirとXcodeで利用可能に](/articles/github-copilot-weekly-releases-nov-2)）。JetBrains Airのクラウド実行は、既存のCopilot契約で動きます（[GitHubがJetBrainsの「Air」にCopilotを提供](/articles/github-copilot-jetbrains-air)）。\n\nチャットの中で、手元のIDEで、クラウドでと、Copilotを使う入り口が増えています。\n\n## まだ分からないこと\n\n- 料金や利用できるプランは、まだ発表されていません。\n- 日本のSlackやTeamsでの提供状況は、まだ発表されていません。\n- CanvasがSlackにも来るかは、まだ発表されていません。\n- 管理者が@GitHubを有効にする手順は、公式ドキュメントでの確認が必要です。\n\n**試すときは公式ページから**\n\n公式ブログは、SlackまたはTeamsで@GitHubを試すよう案内しています。GitHub Communityでは、使った感想や質問を共有できます。",
+  "easy": "## ひとことで言うと\n\nSlackとTeamsで使える「@GitHub」が、一般提供になりました。チャットでの会話から、バグの調査やIssueの作成、コードの変更、プルリクエスト（変更の提案）の作成まで進められます。\n\nプルリクエストとは、書き換えたコードを取り込んでよいか、仲間に確認してもらうための依頼のことです。\n\n## Teamsでは画面を見ながら相談できる\n\nTeamsには「Canvas」という機能が加わりました。実装計画やコードの変更、プレビューを、会話のすぐ横で見られます。\n\nそのため、チームで意見を出し合いながら、直すところを決めていけます。Teamsの外に出る必要はありません。\n\n## 使い始めやすくなった点\n\n@GitHubは、メッセージの内容から対象のリポジトリ（コードの保管場所）を判断するため、同じ選択を何度も求められません。サインインしていない場合や、標準のリポジトリを決めていない場合も始めやすくなりました。追加の質問への返事が返らない不具合も直っています。@GitHubが作ったIssueとプルリクエストの説明欄には、どの会話から作ったかが書かれます。料金や対象のプランは、まだ発表されていません。",
+  "channel": "GitHub Changelog（Copilot）",
+  "channelId": "",
+  "channelSlug": "github-changelog-copilot",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "@GitHub in Slack and Teams is generally available and more",
+  "publishedAt": "2026-11-06T20:31:08+00:00",
+  "generatedAt": "2026-11-07T21:44:48.346261+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/github-copilot-slack-teams-ga-4fed7e7f.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "@GitHubが作ったIssueやPRはどう見分ける？",
+      "a": "説明欄に「Created from a Slack/Teams conversation with @username」と入ります。どの会話の誰の依頼から作られたかを、あとから追えます。"
+    },
+    {
+      "q": "@GitHubは最初にリポジトリを選ぶ必要がある？",
+      "a": "メッセージの内容から対象のリポジトリを判断し、選び直しを求めずに始めます。標準のリポジトリがない場合や、切り替えたい場合も始めやすくなっています。"
+    }
+  ],
+  "todayActions": [
+    "SlackかTeamsで@GitHubを試し、小さなバグ調査を頼んでみる",
+    "自社のCopilotの契約プランが対象かを、公式ドキュメントで確認する",
+    "チームで使うなら、Issueの説明欄に作成元の会話が入る点を共有する"
+  ],
+  "relatedSlugs": [
+    "github-copilot-jetbrains-air",
+    "github-copilot-weekly-releases-nov-2"
+  ],
+  "qualityScore": 85,
+  "sourcePublishedAt": "2026-11-06T20:31:08+00:00",
+  "detectedAt": "2026-11-07T21:43:33+00:00",
+  "layout": "noir",
+  "summaryLine": "SlackとTeamsの@GitHubが一般提供に。チャット上でバグ調査から実装、PR作成まで進められる",
+  "sectionsPolishedAt": "2026-11-07T21:46:11+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/github-copilot-slack-teams-ga-fig1-4fed7e7f.jpg",
+      "width": 1200,
+      "height": 630,
+      "kind": "dense",
+      "credit": "GitHub",
+      "sourceUrl": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+      "original": "https://github.blog/wp-content/uploads/2026/11/f5117dd56aefe8316aa8272c4ebdd472ae00acf53c2dc2020b5bfa815070450e-2400x1260-1.jpeg"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "GitHub",
+    "provider": "GitHub Changelog（Copilot）",
+    "sourceUrl": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+    "original": "https://github.blog/wp-content/uploads/2026/11/f5117dd56aefe8316aa8272c4ebdd472ae00acf53c2dc2020b5bfa815070450e-2400x1260-1.jpeg",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-07T21:46:47+00:00",
+    "imageKind": "dense"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.375,
+    "y": 0.5,
+    "box": [
+      0.0,
+      0.0,
+      0.75,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/github-copilot-slack-teams-ga-4fed7e7f.jpg"
+  },
+  "coverTries": 1
+}

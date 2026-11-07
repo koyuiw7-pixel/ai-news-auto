@@ -5719,6 +5719,18 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110206"
     },
+    "23359978bbf7fef8": {
+      "at": "2026-11-07T21:44:56.422837+00:00",
+      "costUsd": 0.1065,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 85,
+      "section": "ai",
+      "slug": "github-copilot-slack-teams-ga",
+      "url": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available"
+    },
     "233c7482da85b268": {
       "at": "2026-11-02T23:52:55.867154+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
@@ -18963,29 +18975,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-06T02:23:12.304735+00:00",
-      "attempt": 0,
-      "id": "b58fee4edbbb5f7a",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.4,
-        "avg_sentence": 38.3,
-        "long_share": 0.073,
-        "max_paragraph": 150,
-        "paragraphs": 17,
-        "sentences": 41
-      },
-      "score": 92,
-      "source": "openai-news",
-      "title": "Australian universities are creating AI-native graduates",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（UNSW）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-06T02:24:40.295539+00:00",
       "attempt": 1,
@@ -25195,6 +25184,30 @@
         "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（CLI・VS・IDE）",
         "英語の画面名（「「Settings」」）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T21:44:56.410371+00:00",
+      "attempt": 1,
+      "id": "23359978bbf7fef8",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.9,
+        "avg_sentence": 41.4,
+        "long_share": 0.156,
+        "max_paragraph": 200,
+        "paragraphs": 17,
+        "sentences": 32
+      },
+      "score": 85,
+      "source": "github-changelog-copilot",
+      "title": "@GitHub in Slack and Teams is generally available and more",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IDE）"
       ]
     }
   ],
