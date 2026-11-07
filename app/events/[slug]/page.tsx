@@ -38,8 +38,11 @@ function shortRange(event: TechEvent): string {
 
 // 題名の決まり（2026-11-07 オーナー承認・台帳 S45）: 開催日を題名の前半に入れる。「はいつ？」は日付を見せれば要らない
 function titleOf(event: TechEvent): string {
+  if (eventStatus(event) === "upcoming" && event.titleUpcoming) return event.titleUpcoming;
+  // 日本で開かれるイベントは「日本時間」と書かない（会場・参加方法のほうが探されている。2026-11-07）
+  const upcomingTail = event.timezone === "Asia/Tokyo" ? "会場・参加方法・講演の日程" : "日本時間の日程と発表内容";
   return eventStatus(event) === "upcoming"
-    ? `${event.nameJa}【${shortRange(event)}開催】日本時間の日程と発表内容`
+    ? `${event.nameJa}【${shortRange(event)}開催】${upcomingTail}`
     : `${event.nameJa}の発表内容まとめ（${shortRange(event)}開催）`;
 }
 
@@ -48,8 +51,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const event = getEvent(slug);
   if (!event) return {};
   const keynote = event.keynotes.find((k) => k.startUtc);
-  const description = event.slug === "adobe-max-2026"
-    ? "Adobe MAX 2026は米国マイアミで11月10〜12日開催。日本からは無料でオンライン視聴でき、基調講演は日本時間11月10日23時から。Adobe MAX Japan 2026の日程は未発表（11月7日確認）。"
+  const description = event.seoDescription && eventStatus(event) !== "ended"
+    ? event.seoDescription
     : `${event.nameJa}は${localDateRange(event)}（現地時間）に${event.location.split(",")[0]}で開催。${
     keynote?.startUtc ? `基調講演は日本時間${formatJst(keynote.startUtc)}から。` : ""
   }公式に決まっていることと、発表内容をまとめます。`;
@@ -244,7 +247,7 @@ export default async function EventPage({ params }: Props) {
       )}
 
       <section aria-labelledby="keynote-heading" className="mt-12">
-        <QHeading id="keynote-heading">基調講演は日本時間で何時？</QHeading>
+        <QHeading id="keynote-heading">{event.timezone === "Asia/Tokyo" ? "基調講演はいつ？" : "基調講演は日本時間で何時？"}</QHeading>
         {event.keynotes.length > 0 ? (
           <ul className="divide-y divide-line border-y border-line">
             {event.keynotes.map((k) => (

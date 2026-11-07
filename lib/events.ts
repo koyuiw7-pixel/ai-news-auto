@@ -47,6 +47,10 @@ export type TechEvent = {
   sessions?: { title: string; when: string; speakers?: string[] }[];
   /** 検索で探されている問いへの答え（公式ページで確かめた事実だけ。ページの冒頭に出し、FAQ の構造化データにも入れる。2026-11-07） */
   answers?: { q: string; a: string; sources?: { title: string; url: string }[] }[];
+  /** 開催前の題名（検索で探されている言い方に合わせるとき。開催日を前半に入れる決まりは同じ。終わったあとは使わない） */
+  titleUpcoming?: string;
+  /** 検索結果の説明文（開催前。公式で確かめた事実だけ） */
+  seoDescription?: string;
 };
 
 export type EventStatus = "upcoming" | "live" | "ended";
