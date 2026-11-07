@@ -7800,6 +7800,13 @@
       "slug": "sarashina-coding-agent-opencode-setup",
       "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/06/100000"
     },
+    "4a377ea256e27efd": {
+      "at": "2026-11-07T06:52:13.356158+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「AWS Machine Learning Blogは11月7日に…公開しました」→ 元記事に公開日の記載がなく、11月7日という日付は根拠が確認できない。; 「AWSの公式ブログが11月7日に」（かんたん版）→ 同じく公開日が元記事で裏付けられていない。; 見出し「Okta連携の権限は約1秒で止まり」→ 元記事では、管理者がユーザーの割り当てを外した場合の拒否",
+      "skipped": true,
+      "url": "https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-1/"
+    },
     "4a3cbe7fb6fd252a": {
       "at": "2026-11-06T09:03:26.955028+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -15288,6 +15295,18 @@
       "skipped": true,
       "url": "https://www.tsr-net.co.jp/data/detail/1203363_1527.html"
     },
+    "ca044c8f8cfa1a6e": {
+      "at": "2026-11-07T06:55:29.616654+00:00",
+      "costUsd": 0.1706,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "agent-distraction-stale-todo",
+      "url": "https://developers.googleblog.com/agent-distraction/"
+    },
     "ca468eb35b284a7e": {
       "at": "2026-10-26T13:54:15.329766+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -18356,88 +18375,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T17:18:02.940120+00:00",
-      "attempt": 2,
-      "id": "dd699d29ee35f836",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T17:31:50.627742+00:00",
-      "attempt": 1,
-      "id": "003a6dd08e360129",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 92,
-      "source": "google-deepmind-blog",
-      "title": "Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T17:33:28.494944+00:00",
-      "attempt": 1,
-      "id": "570227a5d2aea513",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "google-gemini-blog",
-      "title": "Transform a quick drawing into a live app with Gemini."
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T17:34:30.509055+00:00",
-      "attempt": 2,
-      "id": "570227a5d2aea513",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "google-gemini-blog",
-      "title": "Transform a quick drawing into a live app with Gemini."
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T17:59:50.008367+00:00",
-      "attempt": 1,
-      "id": "00183b004892f2d6",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "本文の「{{PRICING_TABLE}}」が未置換のテンプレート残骸のまま残っている → 読者に見える状態で出力されており、記事の体裁として不適切。",
-        "料金表の「Enterprise」行の備考欄に「。、シート料金 + APIレートでの使用量」のような崩れた文字列が残っている → 元資料の欄の書式が整理されず、意味の通らない文になっている。",
-        "「Claude自体は日本でも使えます（当サイトの確認：11/3）」と「料金表の出典確認日：2026-11-05」の確認日が混在している → 確認時期の表記が統一されておらず読者が混乱しうる。"
-      ],
-      "readability": {
-        "avg_paragraph": 86.8,
-        "avg_sentence": 35.7,
-        "long_share": 0.059,
-        "max_paragraph": 141,
-        "paragraphs": 21,
-        "sentences": 51
-      },
-      "score": 84,
-      "source": "claude-blog",
-      "title": "Introducing Personal Finance in Claude",
-      "warnings": [
-        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（APR・TABLE・GA）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-05T18:00:11.203254+00:00",
@@ -24329,6 +24266,123 @@
       "title": "Govern AI agent access with Okta Cross App Access and Amazon Bedrock AgentCore –",
       "warnings": [
         "初めて出たところで言い換えていない略語（JAG・ACTIVE・MCP）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T06:52:13.356126+00:00",
+      "attempt": 1,
+      "id": "4a377ea256e27efd",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「AWS Machine Learning Blogは11月7日に…公開しました」→ 元記事に公開日の記載がなく、11月7日という日付は根拠が確認できない。",
+        "「AWSの公式ブログが11月7日に」（かんたん版）→ 同じく公開日が元記事で裏付けられていない。",
+        "見出し「Okta連携の権限は約1秒で止まり」→ 元記事では、管理者がユーザーの割り当てを外した場合の拒否が約1秒と測定されたとする限定的な話で、Okta連携の権限全般が1秒で止まるかのように一般化している。",
+        "「既存記事で扱ったGatewayとCedarの話は、後編のPart 2で扱うと書かれています」→ 元記事はPart 2でGatewayとCedarを扱うと述べるが、既存記事がそれを扱ったという記述は元記事にも確認済みの文脈にもなく、言い過ぎ。"
+      ],
+      "score": 78,
+      "source": "aws-ml-blog",
+      "title": "Govern AI agent access with Okta Cross App Access and Amazon Bedrock AgentCore –"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T06:54:07.137344+00:00",
+      "attempt": 1,
+      "id": "ca044c8f8cfa1a6e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「判定: 提供状況=available」→ 元記事は掃除用エージェントや自動チェックツールの社外提供を発表しておらず、「まだ分からないこと」の記述とも矛盾する",
+        "「ほかに関係の薄い人には、今すぐ変わることはありません」→ 元記事に無い判断で、記事本文の他の説明と整合しない形で示されている"
+      ],
+      "readability": {
+        "avg_paragraph": 89.4,
+        "avg_sentence": 40.0,
+        "long_share": 0.105,
+        "max_paragraph": 144,
+        "paragraphs": 17,
+        "sentences": 38
+      },
+      "score": 72,
+      "source": "google-developers-blog",
+      "title": "Agent Distraction",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（XXX）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T06:54:26.643296+00:00",
+      "attempt": 1,
+      "id": "ca044c8f8cfa1a6e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "判定行の「提供状況=available」→ 元記事は社外での提供可否を明言しておらず、本文の「まだ分からないこと」と矛盾する提供状況の断定になっている",
+        "「ほかに関係の薄い人には、今すぐ変わることはありません」→ 元記事に無い利用・影響範囲の判断を含み、提供状況の記述と合わせて読むと誤解を招く"
+      ],
+      "readability": {
+        "avg_paragraph": 88.0,
+        "avg_sentence": 40.6,
+        "long_share": 0.128,
+        "max_paragraph": 144,
+        "paragraphs": 18,
+        "sentences": 39
+      },
+      "score": 70,
+      "source": "google-developers-blog",
+      "title": "Agent Distraction",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（XXX）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T06:54:54.548819+00:00",
+      "attempt": 1,
+      "id": "ca044c8f8cfa1a6e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "末尾の「判定: 提供状況=available」→ 本文は掃除用ツールや自動チェックツールが社外の開発者に提供されるかは発表されていないと書いており、「available」は本文と矛盾する。"
+      ],
+      "readability": {
+        "avg_paragraph": 110.9,
+        "avg_sentence": 42.9,
+        "long_share": 0.136,
+        "max_paragraph": 198,
+        "paragraphs": 17,
+        "sentences": 44
+      },
+      "score": 80,
+      "source": "google-developers-blog",
+      "title": "Agent Distraction",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（XXX）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T06:55:29.601141+00:00",
+      "attempt": 2,
+      "id": "ca044c8f8cfa1a6e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.0,
+        "avg_sentence": 37.4,
+        "long_share": 0.07,
+        "max_paragraph": 142,
+        "paragraphs": 22,
+        "sentences": 43
+      },
+      "score": 90,
+      "source": "google-developers-blog",
+      "title": "Agent Distraction",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TODO）"
       ]
     }
   ],

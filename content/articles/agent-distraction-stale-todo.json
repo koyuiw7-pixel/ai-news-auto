@@ -1,0 +1,151 @@
+{
+  "slug": "agent-distraction-stale-todo",
+  "sourceType": "web",
+  "sourceUrl": "https://developers.googleblog.com/agent-distraction/",
+  "sourceName": "Google Developers Blog",
+  "title": "AIエージェントの1割強が古いTODOに脱線　待ち時間は105%増",
+  "seoTitle": "AIエージェントの脱線とは？古いTODOの影響",
+  "threadsPost": "AIコーディングエージェントを使う開発者に、押さえておきたい話です。\n\nGoogleの調査で、コードを読む作業の13%が古い不具合メモに出会っていました。\n頼まれていない対応に入ると、待ち時間は105%増えます。\n\n自分のコードにも、解決済みのTODOが残っていませんか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "自分のコードに、解決済みのTODOはいくつ残っていますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "AIエージェントの作業範囲は、どこまでなら任せられますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "待ち時間が減るなら、古いメモの掃除に手間をかけますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "AIコーディングエージェントは、人が読み流すコードの古いメモに反応して脱線します。Googleの分析では、ファイルを読んだ作業の13%が不具合番号つきのTODOに出会い、頼まれていない対応に入ると待ち時間は105%増えました。自社のコードでも、解決済みのメモを整理しておくと被害を減らせます。",
+  "description": "GoogleがAIコーディングエージェントの脱線を分析。作業の13%が古いTODOに出会い、頼まれていない対応で待ち時間は105%増。放置されたメモを自動で掃除した結果と、開発現場で必要な見直しをまとめました。",
+  "keywords": [
+    "AIエージェント",
+    "コーディングエージェント",
+    "TODOコメント",
+    "技術的負債",
+    "コード整理",
+    "トークン消費",
+    "スコープクリープ",
+    "Google",
+    "コードベース",
+    "脱線"
+  ],
+  "tags": [
+    "生成AI",
+    "AIエージェント",
+    "ソフトウェア開発",
+    "コーディング支援"
+  ],
+  "highlights": [
+    "Googleの分析で、コードを読んだ作業の13%がTODOの不具合番号に出会っていた",
+    "頼まれていない脱線は、1作業あたり手順70%増、トークン77%増、待ち時間105%増",
+    "古いTODOの自動削除は6か月で数千件、人間の承認率は95%超"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "開発者",
+    "take": "社外向けの提供は発表されていません。自社コードの古いTODOを点検するとよいでしょう。",
+    "judgedAt": "2026-11-07T06:55:22.379226+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AIエージェントでコードを書くチームは、古いTODOが待ち時間とトークンの無駄を生みます。",
+      "解決済みの不具合番号つきTODOを洗い出して整理すると、脱線の芽を減らせます。"
+    ]
+  },
+  "body": "AIコーディングエージェントを使う開発チームには、古いTODOメモの整理が作業時間と費用に直結します。AIを使っていないチームには、今回の分析で何かが変わることはありません。\n\nエージェントとは、コードの調査から修正まで、自分で手順を進めるAIです。GoogleのDevelopers Blogは、その動きを大規模な作業記録から測りました。\n\n## 13%の作業が古いメモに出会う\n\nGoogleのブログによると、分析の対象は数千人のエンジニアによる、数億ステップ規模のエージェントの作業記録です。ファイルを読む作業のうち13%で、「TODO(bug/...)」や「FIXME(bug/...)」のように不具合番号つきのメモに出会っていました。約7件に1件の割合です。\n\nTODOは、不具合が直ったり放棄されたりした後も残りやすいとGoogleは指摘します。不具合管理の記録が正式な記録になるため、メモと記録を突き合わせれば、無駄な脱線かどうかを自動で判定できるそうです。\n\nエージェントは出会ったメモの94%を無視しました。残る6%では、その不具合番号を対象に追加の動きをしています。\n\nその追加の動きの83%は、開発者が頼んでいないものでした。人が読み流す古いメモを、エージェントは「やるべきこと」と受け取ってしまいます。\n\n**脱線の41%は、すでに閉じた不具合**\n\n頼まれていない脱線を不具合の状態と照らすと、2つの失敗の型が見えました。\n\n- 41%超は、すでに閉じた不具合を追っていました。修正・確認済みが32%、陳腐化または対応しない決定が9%です。\n- 重複や閲覧制限つきの記録に当たったものも2%ありました。\n- 半数超は、まだ開いている不具合でした。そこで調べただけが61%、コードを書き換えたものが39%です。\n\n後者は、開発者が触るように頼んでいない問題にまで作業を広げる「スコープクリープ（作業範囲の膨張）」です。\n\n**手順70%増、トークン77%増、待ち時間105%増**\n\nGoogleは、開発者、コードの複雑さ、作業の種類、モデルの段階、読んだファイル数、最初の指示の長さなどの影響を統計的に除きました。その結果、頼まれていない不具合への脱線は、1作業あたり次の負担を足します。いずれもp<0.0001でした。\n\n- 手順（ステップ）は70%増\n- トークン（AIが文字を数える単位）は77%増\n- 待ち時間は105%増\n\nGoogleは、最良の場合でもトークンと時間の浪費で、最悪の場合は誤った前提に基づく修正につながると説明しています。\n\n**実例は2つ**\n\n1つ目は「古い脱線」です。無関係な不具合を調べていたエージェントが、SurfaceControlTest.javaで不具合番号つきのTODOを見つけました。その不具合は2023年に直っていましたが、エージェントは複数の手順をかけて調べ込みました。\n\n2つ目は「張り切りすぎ」です。調査中の不具合のTODOを見つけたエージェントが、頼まれていないのにコードの「修正」を決めました。コード検索や社内の知識検索を重ね、ModelDownloaderV1のコードを書き換えています。後で人間が範囲の逸脱を指摘し、モデルも誤りを認めました。\n\nGoogleは、2件とも軽い脱線だったとしています。それでも時間とトークン、人の介入を要しました。\n\n**Googleは掃除用エージェントを作った**\n\n対策として、Googleはコード全体を調べるエージェントを作りました。修正済みや陳腐化と記録された不具合番号の参照を探し、削除候補にします。\n\nそこで不具合の履歴、ファイルの履歴、コードの変更を、ときに数年分さかのぼって確かめます。TODOとその意図が古いと確認できた場合にだけ、削除の変更案をレビューに出します。\n\nこの掃除用エージェントは、過去6か月で実際に古い参照を数千件削除しました。人間のレビュアーの承認率は95%を超えています。\n\nGoogleは、提出前に走る解析ツールやコード全体の走査ツールも、同じ負担を減らす手段になるとしています。後回しにされてきた負債の整理は、エージェントが大規模に動く時代には優先度を見直すべきだ、というのが主張です。\n\n## 編集部の見方：日本の開発チームも点検対象\n\nこの調査はGoogle社内のデータです。ただ、不具合番号つきのTODOを残す慣行は多くの現場にあります。AIエージェントを導入しているチームは、日本でも古いメモを整理すると、脱線のコストを下げられる可能性があります。\n\n## まだ分からないこと\n\n- 掃除用エージェントや自動チェックの仕組みを、社外に提供するかは発表されていません。\n- 掃除による脱線の減少幅は、数字で示されていません。\n- 分析に使ったエージェントとモデルの種類は、公表されていません。",
+  "easy": "## ひとことで言うと\n\nAIエージェントは、人が読み流す古いメモを「やるべきこと」と受け取って脱線します。Googleの分析では、その脱線で待ち時間が105%増えました。\n\n## 何が起きているのか\n\nコードには「TODO（あとでやること）」というメモが残ります。不具合が直った後も、消されずに残ることが多いものです。\n\nGoogleが多数の作業記録を調べたところ、ファイルを読んだ作業の13%でこの種のメモに出会っていました。多くは無視されましたが、6%はそのメモの不具合を追いかけました。\n\n追いかけた作業の83%は、開発者が頼んでいませんでした。こうした脱線では、手順が70%、トークン（AIが文字を数える単位）が77%増えました。\n\n## 対策\n\nGoogleは、解決済みのメモを探して削除案を出すエージェントを作りました。6か月で数千件を削除し、人間の承認率は95%を超えました。\n\n自社で同じ仕組みを使えるかは、まだ発表されていません。まずは自分のコードで古いTODOがどれだけ残っているか確認するとよいでしょう。",
+  "channel": "Google Developers Blog",
+  "channelId": "",
+  "channelSlug": "google-developers-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Agent Distraction",
+  "publishedAt": "2026-11-06T00:00:00+00:00",
+  "generatedAt": "2026-11-07T06:55:22.379208+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/agent-distraction-stale-todo-b9268352.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "general",
+  "faq": [
+    {
+      "q": "AIエージェントはTODOの不具合番号を見つけたら必ず調べますか？",
+      "a": "必ずではありません。Googleの分析では、出会ったメモの94%は無視されました。追加の動きをしたのは6%です。"
+    },
+    {
+      "q": "Googleの掃除用エージェントは誰のレビューを受けますか？",
+      "a": "人間のレビュアーです。TODOとその意図が古いと確認できたものだけ変更案を出し、承認率は95%を超えています。"
+    }
+  ],
+  "todayActions": [
+    "自分のコードで、不具合番号つきのTODOとFIXMEを検索し、件数を確かめる",
+    "不具合管理で解決済みの番号が残るメモを、チームで削除候補にする",
+    "エージェントへの指示に、触ってよい範囲を明記する"
+  ],
+  "qualityScore": 90,
+  "sourcePublishedAt": "2026-11-06T00:00:00+00:00",
+  "detectedAt": "2026-11-07T06:51:01+00:00",
+  "layout": "noir",
+  "summaryLine": "Googleの分析で、コードを読んだ作業の**13%**がTODOの不具合番号に出会っていた",
+  "sectionsPolishedAt": "2026-11-07T06:55:39+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/agent-distraction-stale-todo-fig1-99152578.jpg",
+      "width": 1200,
+      "height": 670,
+      "kind": "hero",
+      "credit": "Google Developers",
+      "sourceUrl": "https://developers.googleblog.com/agent-distraction/",
+      "original": "https://storage.googleapis.com/gweb-developer-goog-blog-assets/images/Agent_Distraction_Cover_1600x900_1_bdSEIfx.original.png"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/agent-distraction-stale-todo-fig2-3519c486.jpg",
+      "width": 1200,
+      "height": 579,
+      "kind": "dense",
+      "credit": "Google Developers",
+      "sourceUrl": "https://developers.googleblog.com/agent-distraction/",
+      "original": "https://storage.googleapis.com/gweb-developer-goog-blog-assets/images/image8_jO4r7av.original.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google Developers",
+    "provider": "Google Developers Blog",
+    "sourceUrl": "https://developers.googleblog.com/agent-distraction/",
+    "original": "https://storage.googleapis.com/gweb-developer-goog-blog-assets/images/Agent_Distraction_Cover_1600x900_.2e16d0ba.fill-1200x600.png",
+    "width": 1074,
+    "height": 600,
+    "at": "2026-11-07T06:55:53+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.508,
+    "y": 0.553,
+    "box": [
+      0.016,
+      0.106,
+      1.0,
+      1.0
+    ],
+    "ar": 1.79,
+    "src": "https://ai-tech-express.jp/img/agent-distraction-stale-todo-b9268352.jpg"
+  },
+  "coverTries": 1
+}
