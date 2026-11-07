@@ -10,178 +10,151 @@
   "companyName": "Microsoft",
   "category": "開発ツール",
   "overview": {
-    "text": "GitHub Copilotは、コードの記述やタスクの自動化をAIで支援する開発ツールです。提供元はMicrosoftおよびGitHubです。",
+    "text": "GitHub Copilotは、AIがコードの修正やレビュー、自動化を行う開発ツールです。GitHubが提供しており、WindowsやMac向けの専用アプリ版の一般提供が2026年9月に開始されました。",
     "sources": [
       "github-copilot-native-app-released",
-      "github-copilot-security-extension"
+      "github-copilot-code-review-api-settings"
     ]
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "既存のCopilot契約内",
-      "sources": [
-        "github-copilot-jetbrains-air",
-        "github-copilot-security-extension"
-      ]
-    },
-    {
       "label": "提供開始",
-      "value": "2026年9月（アプリ一般提供）",
+      "value": "2026年9月12日",
       "sources": [
         "github-copilot-native-app-released"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "利用できる",
+      "value": "日本から利用できる",
       "sources": [
-        "github-copilot-jetbrains-air",
-        "github-copilot-security-extension"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "Windows、Mac、IDE、クラウド",
-      "sources": [
-        "github-copilot-jetbrains-air",
+        "github-copilot-code-review-api-settings",
         "github-copilot-native-app-released"
       ]
     },
     {
-      "label": "向いている人",
-      "value": "開発者や法務などの担当者",
+      "label": "使える場所",
+      "value": "Windows、macOS、VS Codeなど",
       "sources": [
-        "github-copilot-native-app-released",
-        "github-copilot-security-extension"
+        "github-copilot-app-projects-computer-use",
+        "github-copilot-native-app-released"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "チャット画面や専用画面からコードのセキュリティ脆弱性を確認し、修正を依頼できます。",
+      "text": "コードレビューの設定をREST APIやGraphQL APIから変更できます。",
       "sources": [
-        "github-copilot-security-extension"
+        "github-copilot-code-review-api-settings"
       ]
     },
     {
-      "text": "独立したワークツリーを使い、開発中のコードと衝突させずにAIがIssuesやPRを自動処理します。",
+      "text": "独立したワークツリーを使い、開発中のコードと衝突させずにAIが処理を行います。",
       "sources": [
         "github-copilot-native-app-released"
       ]
     },
     {
-      "text": "フロンティア級LLMの「Kimi K3」など、タスクに応じて複数のモデルを動的に選択できます。",
+      "text": "Slackの会話やFigmaのデザインモックをプロジェクトの文脈として追加できます。",
       "sources": [
-        "github-copilot-kimi-k3-multi-agent"
+        "github-copilot-app-projects-computer-use"
       ]
     },
     {
-      "text": "JetBrainsのIDE上やクラウド上の隔離環境で、Copilotに作業を任せられます。",
-      "sources": [
-        "github-copilot-jetbrains-air"
-      ]
-    }
-  ],
-  "pricing": [
-    {
-      "text": "セキュリティ拡張機能自体の利用に追加料金はかかりません。任意のCopilotプランで利用できます。",
+      "text": "code scanningアラートの確認や説明、修正依頼まで1つのアプリで完結できます。",
       "sources": [
         "github-copilot-security-extension"
       ]
     }
   ],
+  "pricing": [],
   "japan": [
     {
-      "text": "日本のユーザーも今日から利用可能です。",
+      "text": "GitHub Copilot自体は日本国内から利用できます。",
       "sources": [
+        "github-copilot-code-review-api-settings",
         "github-copilot-security-extension"
-      ]
-    },
-    {
-      "text": "Copilot自体は日本でも使え、日本語の公式ドキュメントもあります。",
-      "sources": [
-        "github-copilot-jetbrains-air"
       ]
     }
   ],
   "howto": [
     {
-      "text": "WindowsやMac向けのスタンドアロンアプリをダウンロードし、有効なアカウントでログインします。",
+      "text": "公式サイトからWindowsまたはmacOSに対応するインストーラーをダウンロードします。",
       "sources": [
         "github-copilot-native-app-released"
       ]
     },
     {
-      "text": "セキュリティ拡張機能は、ターミナルでインストールコマンドを実行するか、アプリの画面から追加できます。",
+      "text": "有効なサブスクリプションが紐づいているGitHubアカウントでログインして始めます。",
       "sources": [
-        "github-copilot-security-extension"
+        "github-copilot-native-app-released"
       ]
     }
   ],
   "differences": [
     {
-      "text": "従来のIDEプラグインの枠組みを超え、OS上で直接動作するスタンドアロンアプリとして利用できるようになりました。",
+      "text": "従来のIDEのプラグイン形式に加え、OS上で直接動作するスタンドアロン型のネイティブアプリ版が提供されています。",
       "sources": [
         "github-copilot-native-app-released"
+      ]
+    },
+    {
+      "text": "1つのリポジトリに収まらない仕事を文脈や成果物ごと扱う「プロジェクト」機能が追加されました。",
+      "sources": [
+        "github-copilot-app-projects-computer-use"
       ]
     }
   ],
   "faq": [
     {
-      "q": "どのようなプランが必要？",
-      "a": "有効な有料のCopilot契約が必要です。",
+      "q": "いつから使えますか？",
+      "a": "WindowsやMac向けのGitHub Copilotアプリは、2026年9月12日に一般提供が開始されました。",
       "sources": [
         "github-copilot-native-app-released"
       ]
     },
     {
-      "q": "追加のモデルは使える？",
-      "a": "Kimi K3などのフロンティア級LLMがモデル選択肢に追加されています。",
+      "q": "どのプランが対象ですか？",
+      "a": "コードレビューのAPI設定などはPro、Pro+、Max、Business、Enterpriseの各プランが対象です。",
       "sources": [
-        "github-copilot-kimi-k3-multi-agent"
+        "github-copilot-code-review-api-settings"
       ]
     },
     {
-      "q": "対応しているOSは何？",
-      "a": "WindowsおよびmacOSに対応しています。",
+      "q": "コードとの衝突は防げますか？",
+      "a": "独立したワークツリーを作成して処理を実行するため、開発中のコードとの衝突を避けることができます。",
       "sources": [
         "github-copilot-native-app-released"
       ]
     },
     {
-      "q": "コード以外の業務にも使える？",
-      "a": "GitHub社の法務チームでも日常業務に利用されています。",
+      "q": "セキュリティ機能は使えますか？",
+      "a": "code scanningアラートの確認や説明、修正依頼までアプリ内で完結する拡張機能が使えます。",
       "sources": [
-        "github-copilot-native-app-released"
+        "github-copilot-security-extension"
       ]
     }
   ],
   "timeline": [
     {
-      "date": "2026-08-15",
-      "slug": "github-copilot-kimi-k3-multi-agent",
-      "event": "モデル選択肢にKimi K3を追加"
-    },
-    {
       "date": "2026-09-12",
       "slug": "github-copilot-native-app-released",
-      "event": "Windows・Mac向けアプリの一般提供を開始"
-    },
-    {
-      "date": "2026-10-29",
-      "slug": "github-copilot-security-extension",
-      "event": "セキュリティ拡張機能を発表"
+      "event": "Windows・Mac向けCopilotアプリを一般提供"
     },
     {
       "date": "2026-10-29",
       "slug": "github-copilot-app-projects-computer-use",
-      "event": "プロジェクト機能とコンピューター利用を公開"
+      "event": "Copilotアプリにプロジェクト機能を追加"
     },
     {
-      "date": "2026-11-04",
-      "slug": "github-copilot-jetbrains-air",
-      "event": "JetBrainsのAirにCopilotを提供"
+      "date": "2026-10-29",
+      "slug": "github-copilot-security-extension",
+      "event": "Copilotアプリにセキュリティ拡張を追加"
+    },
+    {
+      "date": "2026-11-07",
+      "slug": "github-copilot-code-review-api-settings",
+      "event": "コードレビューの設定をAPIで変更可能に"
     }
   ],
   "related": [
@@ -191,6 +164,7 @@
     "work-iq"
   ],
   "articles": [
+    "github-copilot-code-review-api-settings",
     "github-copilot-jetbrains-air",
     "microsoft-foundry-agent-framework-customization",
     "microsoft-copilot-harness-foundry-agent-builder",
@@ -217,6 +191,7 @@
     "microsoft-qdk-tutorial-vscode-github-copilot"
   ],
   "linkFrom": [
+    "github-copilot-code-review-api-settings",
     "github-copilot-jetbrains-air",
     "github-copilot-app-projects-computer-use",
     "github-copilot-security-extension",
@@ -226,9 +201,9 @@
     "github-copilot-reusable-agent-skills-guide",
     "github-copilot-kimi-k3-multi-agent"
   ],
-  "signature": "eced7038c105bf54",
-  "primarySignature": "449774fa0e080019",
+  "signature": "94789ebf471c8018",
+  "primarySignature": "07933a4a19222107",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:48+00:00",
-  "updatedAt": "2026-11-06T16:31:26+00:00"
+  "updatedAt": "2026-11-07T19:53:53+00:00"
 }
