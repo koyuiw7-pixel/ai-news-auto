@@ -8,6 +8,7 @@
 """
 import json
 import os
+import re
 import sys
 import tempfile
 import unittest
@@ -159,7 +160,9 @@ class BuildTest(unittest.TestCase):
             item = ig.build("acme-tool", {"style": "standalone"})
         self.assertNotIn("skip", item)
         self.assertEqual(item["media"][0]["type"], "image")
-        self.assertEqual(item["params"], {"image_url": ig.jpeg_url("https://ai-tech-express.jp/card/acme-tool")})
+        # カードの URL には画像の版（?v=）が付く（2026-11-07 画像を差し替えたら URL を変える）
+        self.assertEqual(list(item["params"]), ["image_url"])
+        self.assertRegex(item["params"]["image_url"], r"^" + re.escape(ig.jpeg_url("https://ai-tech-express.jp/card/acme-tool")) + r"(\?v=[0-9a-f]+)?$")
 
     def test_digest_uses_the_issue_image_as_jpeg(self):
         page = "https://ai-tech-express.jp/digest/20261105"
