@@ -252,6 +252,7 @@
     "a52feb664fcf3b5f": "2026-11-06T19:23:54.886871+00:00",
     "a55b8a7415413318": "2026-11-06T01:20:53.228732+00:00",
     "a840592d4a4f2b6d": "2026-11-05T12:02:48.521507+00:00",
+    "a9f8fc0979118b50": "2026-11-07T19:10:55.244910+00:00",
     "aad9d7bdcca6307e": "2026-11-06T19:41:01.362264+00:00",
     "ac845688cab42468": "2026-11-06T19:41:01.362264+00:00",
     "acefadff72bf4c8c": "2026-11-05T14:30:55.960654+00:00",
@@ -8040,6 +8041,18 @@
       "slug": "futsal-japan-morocco-oita-2026",
       "url": "https://www.jfa.jp/news/00036963/"
     },
+    "4c00daffcb3d6bea": {
+      "at": "2026-11-07T19:15:33.109205+00:00",
+      "costUsd": 0.0783,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5+anthropic-api:claude-sonnet-5-5",
+      "score": 95,
+      "section": "ai",
+      "slug": "atlassian-q1-fy27-shareholder-letter",
+      "url": "https://www.atlassian.com/blog/company-news/shareholder-letter-q1fy27"
+    },
     "4c3f60ee2f3441d9": {
       "at": "2026-11-03T01:26:55.382918+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（表彰）",
@@ -13780,7 +13793,7 @@
       "url": "https://www.redhat.com/en/blog/sovereignty-ai-era-choice-control-and-autonomy"
     },
     "a9f8fc0979118b50": {
-      "at": "2026-11-07T18:51:40.573825+00:00",
+      "at": "2026-11-07T19:12:12.188901+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.mlit.go.jp/saigai/saigai_261108.html"
@@ -15004,6 +15017,20 @@
       "reason": "dedupe: 固有名詞が一致（app・samurai・samuraiapp）: SamuraiAX、業務AIエージェントOS「Samurai App」で、会議の",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000200.000085052.html"
+    },
+    "bfaf55726f703b66": {
+      "at": "2026-11-07T19:12:12.172449+00:00",
+      "breaking": true,
+      "costUsd": 0.0891,
+      "intent": "neutral",
+      "major": true,
+      "mix": "alert",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "publicInterest": "disaster",
+      "score": 92,
+      "section": "public",
+      "slug": "chita-landslide-warning-threshold-lowered",
+      "url": "https://www.jma.go.jp/jma/press/2611/08b/20261108_zantei.html"
     },
     "c052ad0d3462eff5": {
       "at": "2026-11-05T13:19:39.665419+00:00",
@@ -16684,6 +16711,12 @@
       "reason": "quality: 本文が短い（2424字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://huggingface.co/blog/LiquidAI/lfm3"
+    },
+    "dbb09eb09bdf73eb": {
+      "at": "2026-11-07T19:12:12.208100+00:00",
+      "reason": "dedupe: 固有名詞が一致（agentic・analytics）: marutto-dives-agentic-analytics",
+      "skipped": true,
+      "url": "https://cloud.google.com/blog/products/data-analytics/query-enterprise-data-in-gemini-with-data-cloud-connectors/"
     },
     "dc03dbd9925f457e": {
       "at": "2026-10-28T22:30:58.505970+00:00",
@@ -18754,145 +18787,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T01:09:33.060455+00:00",
-      "attempt": 2,
-      "id": "4a29cf0a9e1bd354",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "本文「本稿の執筆環境（OpenCode v2.2.0）では、opencode run --standalone --model ... で同じ指示を一度に実行しています。」→ 元記事の検証は実行確認のみで、記事の要約自体は概ね一致。ただし「ファイルが実際にできました」は元記事の流れに沿うので問題なし",
-        "「Claude CodeからOpenCodeを子プロセスとして呼び出す構成も紹介」→ 元記事と一致",
-        "「Piは、Sarashinaに直接つながらないと同ブログは書いています」→ 元記事と一致",
-        "「試行では、「ことによって」が「と」に、長い一文が分割されていました。」→ 元記事と一致",
-        "「編集部の見方では、メインのモデルを変えずに、Sarashinaの得意な日本語の校正や要約だけを切り出すのが…」→ 編集部の解釈として区別されており許容",
-        "「価格=不明」の記述と「Sarashina APIの料金や利用上限の詳細は、本稿の時点で示されていません」→ 元記事に料金記述が無いため妥当"
-      ],
-      "readability": {
-        "avg_paragraph": 140.3,
-        "avg_sentence": 47.6,
-        "long_share": 0.264,
-        "max_paragraph": 284,
-        "paragraphs": 18,
-        "sentences": 53
-      },
-      "score": 62,
-      "source": "sbintuitions-blog",
-      "title": "Sarashina をコーディングエージェントで使う: OpenCode・Hermes Agent・Crush での利用と、サブエージェントとしての活用",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SB・LLM・KEY）",
-        "その他の発表の記事としては長い（3049字 / 目安2000字まで）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T01:10:40.302458+00:00",
-      "attempt": 1,
-      "id": "b5bb5878ed1b2cf1",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「追加料金はかからず、Copilotライセンスに含まれると公式ページに書かれています」→ 元記事にも確認済みの関連ページにも料金・ライセンスに関する記述がなく、公式ページに書かれているという出典付きの主張は創作。",
-        "「Copilotライセンスに含まれ、Copilot Chat内で使っても追加料金は発生しない」→ 同様に元資料にない料金条件を公式の裏付けつきで断定しており、創作。",
-        "「この設定は、ユーザーがエージェントを評価できるかや、エージェントがアクセスできるデータには影響しません」→ 元記事は共有設定とユーザーの評価送信の関係を別ガイダンスで確認するよう述べるのみで、影響しないとは書かれておらず、出典の裏付けもない断定。",
-        "「対象は、Frontierプレビューを使える組織で、管理者が共有を有効にしたエージェントの所有者に限られます」→ 元記事の条件（資格・共有有効化）に沿うが、限定の言い切りはやや言い過ぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 157.3,
-        "avg_sentence": 50.9,
-        "long_share": 0.324,
-        "max_paragraph": 199,
-        "paragraphs": 11,
-        "sentences": 34
-      },
-      "score": 35,
-      "source": "windows-blog-jp",
-      "title": "Microsoft 365 Insights Agent でユーザー フィードバックを探る",
-      "warnings": [
-        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（GA）",
-        "英語の画面名（「Settings >」）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T01:10:55.575593+00:00",
-      "attempt": 2,
-      "id": "b5bb5878ed1b2cf1",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "title の長さが不適切（68字 / 18〜64字）"
-      ],
-      "readability": {
-        "avg_paragraph": 76.1,
-        "avg_sentence": 39.2,
-        "long_share": 0.152,
-        "max_paragraph": 166,
-        "paragraphs": 17,
-        "sentences": 33
-      },
-      "score": null,
-      "source": "windows-blog-jp",
-      "title": "Microsoft 365 Insights Agent でユーザー フィードバックを探る",
-      "warnings": [
-        "見出しが68字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "英語の画面名（「Settings >」）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T01:23:08.387675+00:00",
-      "attempt": 1,
-      "id": "c88b52d0b21039c7",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "リード『日本の会員の料金や契約は変わりません』→ 元記事や確認済みの文脈に、日本の会員への影響に関する記述が無く、根拠のない断定である",
-        "『新しい会員の45%以上が、ジムに通うのが初めての人です』→ 元記事は『members』（会員全体）の45%以上としており、『新しい会員』は意味の取り違えである",
-        "『AIは、障害の原因を調べて直し方の案まで作るようになりました』→ 元記事の『in many cases（多くの場合）』が落ち、常に行うかのように言い過ぎている",
-        "『20と50%の数字には、原文で注が付いています。何を数えたかの条件は、原文の注を確かめるとよいでしょう。』→ 数字を比べる文の近くで条件を1〜2文で説明する指示に反し、読者に原文確認を丸投げしている",
-        "『AIトレーナーは、声で話しながら運動を教える形になりました』と『最新版は…掛け声を出したり…』→ 大筋は正しいが、最新版が元記事で『designed around』と記された設計段階の表現を、実装済みの前提で書いている可能性がある"
-      ],
-      "readability": {
-        "avg_paragraph": 105.8,
-        "avg_sentence": 40.3,
-        "long_share": 0.024,
-        "max_paragraph": 170,
-        "paragraphs": 16,
-        "sentences": 42
-      },
-      "score": 82,
-      "source": "openai-news",
-      "title": "Cult.fit builds operational muscle with Codex",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T01:23:32.225833+00:00",
-      "attempt": 1,
-      "id": "c88b52d0b21039c7",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 108.7,
-        "avg_sentence": 41.4,
-        "long_share": 0.024,
-        "max_paragraph": 170,
-        "paragraphs": 16,
-        "sentences": 42
-      },
-      "score": 92,
-      "source": "openai-news",
-      "title": "Cult.fit builds operational muscle with Codex",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-06T01:24:57.492800+00:00",
@@ -24983,6 +24877,117 @@
         "見出しの書き方: 記号: かっこの直後に「、」",
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（CLI・BYOK）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T19:12:12.163188+00:00",
+      "attempt": 1,
+      "id": "bfaf55726f703b66",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 52.2,
+        "avg_sentence": 29.9,
+        "long_share": 0.048,
+        "max_paragraph": 100,
+        "paragraphs": 12,
+        "sentences": 21
+      },
+      "score": 92,
+      "source": "jma-press",
+      "title": "令和８年11月８日01時04分頃の静岡県西部の地震に伴う土砂災害に関する警報等の暫定的な運用について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T19:14:18.088633+00:00",
+      "attempt": 1,
+      "id": "4c00daffcb3d6bea",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "答えになっていない見出し（「AIとの共同作業は急拡大、日本での使い方は未定」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない",
+        "要点の1つ目（「クラウド売上は前年同期比30.5%増。今期第1四…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（定期収入・22.5）を、リードとは違う言い方で1つ目に書く"
+      ],
+      "readability": {
+        "avg_paragraph": 129.8,
+        "avg_sentence": 46.9,
+        "long_share": 0.25,
+        "max_paragraph": 225,
+        "paragraphs": 13,
+        "sentences": 36
+      },
+      "score": null,
+      "source": "atlassian-blog",
+      "title": "Our Q1 FY27 letter to shareholders",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（RPO・MCP・CQS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T19:14:33.867480+00:00",
+      "attempt": 1,
+      "id": "4c00daffcb3d6bea",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "atlassian-blog",
+      "title": "Our Q1 FY27 letter to shareholders"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T19:15:00.685519+00:00",
+      "attempt": 1,
+      "id": "4c00daffcb3d6bea",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "文が長い（1文の平均 46.0字・60字超の文が 19% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 149.6字・最長 266字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 149.6,
+        "avg_sentence": 46.0,
+        "long_share": 0.192,
+        "max_paragraph": 266,
+        "paragraphs": 16,
+        "sentences": 52
+      },
+      "score": 94,
+      "source": "atlassian-blog",
+      "title": "Our Q1 FY27 letter to shareholders",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（RPO・MCP・CQS）",
+        "同じ数字が多い（「2倍」が5回）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T19:15:33.093940+00:00",
+      "attempt": 0,
+      "id": "4c00daffcb3d6bea",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 106.2,
+        "avg_sentence": 43.3,
+        "long_share": 0.167,
+        "max_paragraph": 212,
+        "paragraphs": 22,
+        "sentences": 54
+      },
+      "score": 95,
+      "source": "atlassian-blog",
+      "title": "Our Q1 FY27 letter to shareholders",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（RPO・MCP・CQS）",
+        "同じ数字が多い（「2倍」が5回）"
       ]
     }
   ],
