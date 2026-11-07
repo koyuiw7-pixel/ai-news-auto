@@ -27,13 +27,14 @@
 
 | URL | 用途 | 中身 |
 |---|---|---|
-| https://ai-tech-express.jp/feeds/smartnews.xml | スマートニュース（SmartFormat） | 全文・`media:thumbnail`（1200×630 JPEG）・`snf:logo`・`dc:creator`。直近14日・最大50本・1MB以内 |
+| https://ai-tech-express.jp/feeds/smartnews.xml | スマートニュース（SmartFormat） | 2026-11-07 に申請前チェックリストに合わせて作り直し（lib/smartnews-feed.ts）。検索対象の記事だけ（まとめ・重複は除く）・全文（記事の写真と本文の公式の写真つき。AI のイメージには「画像はイメージ（AI生成）」）・本文のリンクは外部の出典だけ（自サイトへの誘導・広告は外す）・`media:thumbnail`（共有カードと同じ写真の順）・`media:status`・`snf:logo`／`snf:darkModeLogo`（透明 PNG 410×100）。直近14日・最大50本・1MB以内 |
 | https://ai-tech-express.jp/feeds/gunosy.xml | グノシー（GunosyFeed 3.2） | 全文。表は段落に展開、本文中のリンクは外して出典リンクだけ残す。`guid` は URL でない値。直近10日・最大50本 |
 | https://ai-tech-express.jp/feeds/news.xml | 汎用（NewsPicks・LINE NEWS など仕様非公開の配信先） | 全文・`enclosure`・`media:content`。直近14日・最大50本 |
 | https://ai-tech-express.jp/feed.xml | 読者・RSS リーダー向け（従来どおり） | 要約のみ・全記事50本 |
 | https://ai-tech-express.jp/news-sitemap.xml | Google ニュース | 直近48時間・媒体名「サイソクニュース」・言語 ja |
 
 ロゴ画像:
+- スマートニュース用（透明 410×100）: https://ai-tech-express.jp/feeds/smartnews-logo.png（ダークモード用 https://ai-tech-express.jp/feeds/smartnews-logo-dark.png）
 - 横長 600×100: https://ai-tech-express.jp/feeds/logo-wide.png
 - 横長 300×44: https://ai-tech-express.jp/feeds/logo-44.png
 - 正方形 512×512: https://ai-tech-express.jp/icon
