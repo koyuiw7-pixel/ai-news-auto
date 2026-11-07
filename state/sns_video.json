@@ -2529,9 +2529,9 @@
       "postedAt": "2026-11-05T16:30:00+09:00"
     },
     "smbc-arara-message-email-leak-2026": {
-      "at": "2026-11-07T11:13:26+00:00",
+      "at": "2026-11-07T11:34:40+00:00",
       "status": "gate_failed",
-      "tries": 5,
+      "tries": 6,
       "textAt": "2026-11-07T09:45:00+00:00",
       "textId": "",
       "breaking": false,
@@ -2570,14 +2570,66 @@
       },
       "timings": {
         "full": {
-          "ladder_total": 221.2
+          "ladder_total": 250.0
         },
         "short": {
-          "ladder_total": 221.2
+          "ladder_total": 250.0
         }
       },
       "ok": false,
       "reason": "full: 記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（0場面） / short: 記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（0場面）",
+      "pages": []
+    },
+    "smile-e-point-unauthorized-exchange-ecomegane": {
+      "at": "2026-11-07T11:34:40+00:00",
+      "status": "gate_failed",
+      "tries": 1,
+      "textAt": "2026-11-07T11:30:00+00:00",
+      "textId": "",
+      "breaking": false,
+      "scheduled": false,
+      "versions": {
+        "full": {
+          "ok": false,
+          "seconds": null,
+          "reasons": [
+            "記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い"
+          ],
+          "qa": {
+            "geometry": false,
+            "vision": false,
+            "version": 1
+          },
+          "template": "",
+          "level": null,
+          "base_layout": ""
+        },
+        "short": {
+          "ok": false,
+          "seconds": null,
+          "reasons": [
+            "記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い"
+          ],
+          "qa": {
+            "geometry": false,
+            "vision": false,
+            "version": 1
+          },
+          "template": "",
+          "level": null,
+          "base_layout": ""
+        }
+      },
+      "timings": {
+        "full": {
+          "ladder_total": 401.7
+        },
+        "short": {
+          "ladder_total": 401.7
+        }
+      },
+      "ok": false,
+      "reason": "full: 記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い / short: 記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い",
       "pages": []
     }
   },
