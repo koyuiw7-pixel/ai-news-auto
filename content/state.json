@@ -8895,6 +8895,18 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327089.html"
     },
+    "5c5c439c3a5adbf4": {
+      "at": "2026-11-07T08:53:36.548826+00:00",
+      "costUsd": 0.0181,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 85,
+      "section": "ai",
+      "slug": "pdd-kit-verify-ai-code-login",
+      "url": "https://www.microsoft.com/en-us/research/blog/formally-verifying-agent-written-full-stack-web-apps-with-pdd-kit/"
+    },
     "5c632984dfd76a2f": {
       "at": "2026-11-05T09:43:05.496053+00:00",
       "reason": "dedupe: 同じ出典URL",
@@ -18401,48 +18413,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-05T18:23:09.958998+00:00",
-      "attempt": 2,
-      "id": "e6c9c7fda0339b68",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "toyota",
-      "title": "[トヨタイムズ記事] 【2027年3月期第2四半期決算】3年ぶり増益 事業構造改革へ加速"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T18:43:51.763413+00:00",
-      "attempt": 1,
-      "id": "06a6a6db73347aad",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "title / seo_title に感嘆符がある",
-        "読めなかった開示資料（https://www.jfa.jp/social_action_programme/SDGs_report.pdf）があるのに「発表されていません」と書いている。資料を確かめられていないことは「未発表」と言い切らない（その文を消すか、「発表の本文では触れていません」のように確かめた範囲を書く）（"
-      ],
-      "readability": {
-        "avg_paragraph": 163.2,
-        "avg_sentence": 25.8,
-        "long_share": 0.0,
-        "max_paragraph": 417,
-        "paragraphs": 9,
-        "sentences": 57
-      },
-      "score": null,
-      "source": "jfa",
-      "title": "blue-ing!で楽しむ飲み放題付きパーティープランを販売開始 懇親会や歓送迎会にも最適、JFA公式施設ならではのパーティー体験を提供 #jfa",
-      "warnings": [
-        "見出しの書き方: 幼い・話し言葉の言い方（!）",
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JFA）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-05T18:49:38.509416+00:00",
       "attempt": 2,
       "id": "06a6a6db73347aad",
@@ -24415,6 +24385,58 @@
       "title": "Detecting signs of hypertension using wearable sensors",
       "warnings": [
         "初めて出たところで言い換えていない略語（PPG・ACC・BCG）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T08:53:05.083482+00:00",
+      "attempt": 1,
+      "id": "5c5c439c3a5adbf4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "段落が長い（平均 121.8字・最長 180字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 121.8,
+        "avg_sentence": 38.8,
+        "long_share": 0.091,
+        "max_paragraph": 180,
+        "paragraphs": 14,
+        "sentences": 44
+      },
+      "score": 85,
+      "source": "microsoft-research-blog",
+      "title": "Formally verifying agent-written full-stack web apps with PDD Kit",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（PDD・MIT）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T08:53:28.930995+00:00",
+      "attempt": 0,
+      "id": "5c5c439c3a5adbf4",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「判定: 提供状況=demo」→ 元記事に「demo」という提供状況の記述はなく、確認済みの文脈にも無い。元記事は研究の成果としての発表で、提供形態を示していない。"
+      ],
+      "readability": {
+        "avg_paragraph": 121.8,
+        "avg_sentence": 38.8,
+        "long_share": 0.091,
+        "max_paragraph": 180,
+        "paragraphs": 14,
+        "sentences": 44
+      },
+      "score": 85,
+      "source": "microsoft-research-blog",
+      "title": "Formally verifying agent-written full-stack web apps with PDD Kit",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（PDD・MIT）"
       ]
     }
   ],

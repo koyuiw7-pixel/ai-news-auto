@@ -1,0 +1,147 @@
+{
+  "slug": "pdd-kit-verify-ai-code-login",
+  "sourceType": "web",
+  "sourceUrl": "https://www.microsoft.com/en-us/research/blog/formally-verifying-agent-written-full-stack-web-apps-with-pdd-kit/",
+  "sourceName": "Microsoft Research Blog",
+  "title": "AIが書いたログイン処理を数学で証明　約5,000行の通販サイトで試す",
+  "seoTitle": "PDD Kitとは？AI生成コードを数学で検証する方法",
+  "threadsPost": "開発でAIを使っている人に、知っておいてほしい話です。\n\nMicrosoft Researchが、AIが書いたログイン処理を数学の証明で確かめました。\nパスワードが正しいときだけ許可証が出る条件を、すべての入力で証明したとしています。\n\nAIに書かせたコード、どこまで自分で読んでから使いますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "AIに書かせたコード、どこまで自分で読んでから使いますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "AIに書かせたコードは、どこまで確かめれば安心できますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "Microsoft Researchが発表した「PDD Kit」は、AIが書いたプログラムが仕様どおりかを数学の証明で確かめる仕組みです。ログイン処理の検証では、パスワードが正しいときだけ許可証が出る条件を、すべての入力について証明できたとしています。証明できない部分はテストで確かめるため、一般に使える時期や料金は、まだ発表されていません。",
+  "description": "Microsoft ResearchのPDD Kitは、AIが書いたログイン処理を数学の証明で検証しました。パスワードが正しいときだけ許可証が出る条件を、すべての入力で確かめた例です。証明できない部分はテストで確かめ、提供時期や料金はまだ発表されていません。",
+  "keywords": [
+    "PDD Kit",
+    "AI生成コード 検証",
+    "形式検証",
+    "Verus",
+    "Rust",
+    "AIエージェント",
+    "開発 証明",
+    "Microsoft Research",
+    "ログイン 検証",
+    "Pet Store"
+  ],
+  "tags": [
+    "PDD Kit",
+    "形式検証",
+    "AIエージェント",
+    "Rust",
+    "生成AI",
+    "ソフトウェア開発"
+  ],
+  "highlights": [
+    "Microsoft Researchの「PDD Kit」は、AIが書いたコードを数学の証明で確かめる仕組みです。",
+    "Rust製の通販サイト「Pet Store」（約5,000行）のログイン処理を証明しました。",
+    "証明が届かない部分はテストで確かめ、一般の提供時期や料金はまだ発表されていません。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "AIで開発するエンジニア",
+    "take": "一般提供の時期はまだなので、今は仕組みを理解し、AIに書かせる前の仕様づくりを見直すとよいでしょう。",
+    "judgedAt": "2026-11-07T08:52:57.415430+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AIにコードを書かせる開発者にとって、仕様の書き方を見直すきっかけになる発表です。",
+      "一般に使える時期と料金はまだ発表されていないため、今すぐ業務に入れる段階ではありません。"
+    ]
+  },
+  "body": "AIにアプリのコードを丸ごと書かせる開発が増えています。1回の作業で数万行から数十万行のコードができることもあり、人がすべての行を読んで確かめるのは、現実的ではなくなりつつあります。今回の発表は、AIが書いたコードを「仕様どおりか」を証明で確かめる方法についてです。開発の現場に関係しない人には、今すぐ変わることはありません。\n\nMicrosoft Researchのブログによると、PDD Kit（ピーディーディー・キット）は、人の意図を「仕様」に書き直し、AIのコードがその仕様をすべての入力で満たすことを証明する道具です。ここでいう仕様とは、「このプログラムは何をすべきか」を厳密に書いた約束事のことです。証明が届かない部分は、テストで確かめるとしています。\n\nPDD Kitは、GitHubのSpec Kit（仕様づくりを支える公開ツール）と似た位置づけと説明されています。Spec KitはMITライセンスで公開されたオープンソースです（GitHubのSpec Kitのページ、11/7確認）。\n\n証明に使うのは、Verus（ヴェラス）という証明言語です。Rustというプログラミング言語のための言語で、Microsoft Researchを含む複数の大学や研究機関が共同で開発しています。PDD Kitは、今のところこのVerusで証明を組み立てます。\n\n## ログイン処理の証明で、既存のバグも見つかった\n\n検証の対象は、Rustで作られた通販サイト「Pet Store」のログイン処理です。バックエンドはAxumとSQLite、画面はLeptosで書かれ、WebAssemblyにコンパイルされています。全体で約5,000行で、在庫、割引、注文、決済も扱います。ただ、今回はログインに絞って検証しました。\n\n開発者がAIに渡した依頼は、2文だけでした。「正しいパスワードのときだけトークンを発行すること」と、「管理者のアカウントにだけ管理者用のトークンを発行すること」です。トークンは、ログイン後の本人確認に使われる許可証のようなものです。\n\n結果として、Verusはコードを堅くしただけでなく、既存のバグも見つけました。そのうえで、仕様に照らしてログインの不具合がないことを証明できたとしています。開発者は意図を確かめただけで、生成されたコードを1行ずつ読むことはなかったそうです。\n\n仕様の書き方にも、注意すべき点がありました。「正しいパスワードのときだけトークンが出る」という条件だけでは、誰も通さないログイン処理でも満たしてしまいます。そこで開発者は、「正しいパスワードなら必ずトークンが出る」も求めました。両方を求めて、初めて両方向に成り立つ条件になります。AIだけに任せると、どちらか一方を黙って選んでしまうおそれがあるとされています。\n\nPDD Kitは、こうした食い違いを計画の段階で質問として出します。開発者は、ソースを開かなくても、答えを選べるようになっています。\n\n## 証明が届かない部分は、テストで確かめる\n\n証明にも限界があります。PDD Kitが挙げているのは、次のような部分です。\n\n- bcryptによるパスワードの暗号化（ハッシュ化）、sqlxによるデータベース操作、jsonwebtokenによるトークンの署名は、証明の外にあるライブラリの中の処理です。\n- データベースの今の中身や現在の時刻は、プログラムの外から入ってくる情報で、証明できません。\n- 処理が終わるか、どのくらい速いかは、仕様に含まれていません。\n- エラーメッセージが分かりやすいかなど、人が判断する部分です。\n\n証明の外にある部分は、テストで確かめます。ユニットテスト（部品ごとの試験）や、画面を端から端まで動かすテストが使われます。ブラウザを操作するAIや、パソコンの画面を操作するAIも使えるとしています。ただし、テストが通ったことは「試した入力では動いた」という証拠にとどまります。そのため、PDD Kitは証明とは分けて扱っています。\n\n証明とテストの境目は、TCB（信頼の基盤）と呼ばれます。証明が前提として信じるコードのことです。PDD Kitは、この境目をはっきりさせて、一つひとつを人が承認するよう求めます。\n\n編集部の見方では、この仕組みが効くのは、仕様をどこまで言葉にできるかにかかっています。ログインのように「何が正しいか」を一文にしやすい機能ほど、向いているように見えます。一方で、画面の使いやすさや処理の速さは、今回の証明の対象ではありません。\n\n## まだ分からないこと\n\n- PDD Kitを一般の開発者がいつから使えるのか、まだ発表されていません。\n- 料金や利用に必要な環境は、まだ発表されていません。\n- Rust以外の言語への対応は、まだ発表されていません。\n- 日本での提供や日本語での案内も、まだ発表されていません。\n\n開発の現場では、AIに頼む前に「何が正しいか」を一文ずつ書き出しておくことが、今すぐできる準備になりそうです。仕様があいまいなままだと、証明もテストも、あいまいな約束を確かめることになるためです。",
+  "easy": "## ひとことで言うと\n\nAIが書いたプログラムが、仕様どおりに動くかを数学の証明で確かめる仕組みです。ログイン処理では、正しいパスワードのときだけ許可証が出る条件を、すべての入力について証明できたとしています。\n\n## 証明とテストは、どう分けるか\n\n証明で確かめられない部分は、テストで確かめます。エラーメッセージの分かりやすさのような、人が判断する部分も残ります。一般に使える時期や料金は、まだ発表されていません。",
+  "channel": "Microsoft Research Blog",
+  "channelId": "",
+  "channelSlug": "microsoft-research-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Formally verifying agent-written full-stack web apps with PDD Kit",
+  "publishedAt": "2026-11-05T16:00:00+00:00",
+  "generatedAt": "2026-11-07T08:52:57.415420+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/pdd-kit-verify-ai-code-login-57aac04e.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "AIに頼むコードの一部について、「何が正しいか」を一文ずつ書き出してみる。",
+    "PDD Kitの提供時期の発表を、Microsoft Researchのブログで待つ。",
+    "AIが書いたコードを使う前に、どのテストで確かめるかを決めておく。"
+  ],
+  "qualityScore": 85,
+  "sourcePublishedAt": "2026-11-05T16:00:00+00:00",
+  "detectedAt": "2026-11-07T08:50:50+00:00",
+  "originalTitle": "AIが書いたログイン処理を数学の証明で検証　Microsoft Researchの「PDD Kit」",
+  "titleStyle": "2026-11-03",
+  "layout": "noir",
+  "summaryLine": "Microsoft Researchの「PDD Kit」は、AIが書いたコードを数学の証明で確かめる仕組みです。",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/pdd-kit-verify-ai-code-login-fig1-90343a88.jpg",
+      "width": 1200,
+      "height": 627,
+      "kind": "dense",
+      "credit": "Microsoft Research",
+      "sourceUrl": "https://www.microsoft.com/en-us/research/blog/formally-verifying-agent-written-full-stack-web-apps-with-pdd-kit/",
+      "original": "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/10/PDDKitRecap-TWLIFB-1200x627-1.jpg"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/pdd-kit-verify-ai-code-login-fig2-1f7ea9c4.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "dense",
+      "credit": "Microsoft Research",
+      "sourceUrl": "https://www.microsoft.com/en-us/research/blog/formally-verifying-agent-written-full-stack-web-apps-with-pdd-kit/",
+      "original": "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/10/PDDKitRecap-BlogHeroFeature-1400x788-1.jpg"
+    }
+  ],
+  "imageCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A close‑up of a pair of hands typing on a laptop keyboard in a dimly lit office, the laptop screen displaying abstract pastel blocks.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/10/PDDKitRecap-TWLIFB-1200x627-1.jpg",
+    "at": "2026-11-07T08:54:40+00:00"
+  },
+  "imageFocus": {
+    "x": 0.311,
+    "y": 0.494,
+    "box": [
+      0.0,
+      0.0,
+      0.622,
+      0.988
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/pdd-kit-verify-ai-code-login-57aac04e.jpg"
+  },
+  "coverImage": "https://ai-tech-express.jp/img/pdd-kit-verify-ai-code-login-57aac04e.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A close‑up of a pair of hands typing on a laptop keyboard in a dimly lit office, the laptop screen displaying abstract pastel blocks.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/10/PDDKitRecap-TWLIFB-1200x627-1.jpg",
+    "at": "2026-11-07T08:54:40+00:00",
+    "reused": true
+  }
+}
