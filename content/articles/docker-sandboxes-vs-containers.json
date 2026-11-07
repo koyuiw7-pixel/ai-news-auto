@@ -1,0 +1,120 @@
+{
+  "slug": "docker-sandboxes-vs-containers",
+  "sourceType": "web",
+  "sourceUrl": "https://www.docker.com/blog/docker-sandboxes-vs-containers/",
+  "sourceName": "Docker公式ブログ",
+  "title": "AIエージェントはコンテナかSandboxesか　隔離の違いと使い分け",
+  "seoTitle": "Docker Sandboxesとは？コンテナとの違いと使い方",
+  "threadsPost": "AIエージェントを動かす人に、知っておいてほしい話です。\n\nDockerのコンテナは、ホストのカーネルを共有します。\nDocker Sandboxesは、専用のカーネルを持つ仮想マシンの中でエージェントを動かし、作業を途中から再開できます。\n\nAIエージェントは、どこで動かしていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "AIエージェントは、どこで動かしていますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "AIに自分のPCの権限を広く渡すなら、便利さと安全性どちらを優先しますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "AIに任せたコードを、どこまで自分で確かめますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "AIのコーディングエージェントを手元の開発環境で動かす人は、Dockerの仕組みを「コンテナ」と「Docker Sandboxes」のどちらで隔離するかを選ぶ必要があります。コンテナはホストのカーネルを共有しますが、Docker Sandboxesは専用のカーネルを持つmicroVM（小さな仮想マシン）の中でエージェントを動かします。日本での提供と料金はまだ発表されていないため、まずは公式ブログで仕組みの違いを確かめてください。",
+  "description": "Dockerの公式ブログが、AIコーディングエージェントの隔離で「コンテナ」と「Docker Sandboxes」の違いを解説。コンテナはホストのカーネルを共有し、Sandboxesは専用のカーネルを持つ仮想マシンで動きます。",
+  "keywords": [
+    "Docker Sandboxes",
+    "コンテナ 違い",
+    "AIエージェント 隔離",
+    "コーディングエージェント",
+    "microVM",
+    "Docker Engine",
+    "sbx",
+    "AIエージェント 安全性",
+    "Docker 仮想マシン",
+    "サンドボックス AI"
+  ],
+  "tags": [
+    "Docker",
+    "AIエージェント",
+    "コンテナ",
+    "セキュリティ",
+    "開発ツール"
+  ],
+  "highlights": [
+    "Dockerは、AIエージェント用の環境はコンテナと別物だと公式ブログで整理しました。",
+    "Sandboxes内では専用のDocker Engineが使え、sbx rmまで作業内容が残ります。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "AIエージェントを開発す",
+    "take": "まず公式ブログで隔離の違いを確かめ、日本での提供は公式の発表を待つとよいでしょう。",
+    "judgedAt": "2026-11-07T17:13:39.097169+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AIエージェントに社内のコードを触らせる開発者は、コンテナかSandboxesかで、事故の影響範囲が変わります。",
+      "料金や日本での提供条件は発表されていないため、導入前に公式の情報を確認してください。"
+    ]
+  },
+  "body": "Dockerの公式ブログは、AIエージェントの環境として「コンテナ」と「Docker Sandboxes」は別の技術だと整理しました。Docker Sandboxesは「コンテナの中にAIエージェントを入れたもの」ではない、というのがブログの主張です。\n\nコーディングエージェントは、AIがプログラムを書き、実行し、直すところまで自分で進める仕組みです。Dockerの社長Mark Cavageは基調講演で、コンテナは設計どおりに働いているが、いまはコンテナに別の仕事を頼んでいるのだと説明したとされています。\n\n## コンテナは同じカーネルを共有、Sandboxesは専用のカーネル\n\nコンテナは、同じ機械の中のほかのプロセスとホストのカーネル（OSの中心部分）を共有します。このため起動が速く、たくさん並べても軽く動きます。\n\nDocker Sandboxesは、microVM（小さな仮想マシン）の中でエージェントを動かします。microVMには専用のLinuxカーネル、ファイルシステム、ネットワーク、Docker Engine（コンテナを動かす本体）が入っています。エージェントは、この中でsudo（管理者権限）も使えます。ブログは、Sandboxesのカーネルは各サンドボックスごとに分かれ、VMの中のプロセスはホストや他のサンドボックスからは見えない、と関連ページで説明しています。\n\nコンテナの壁を越えるには、カーネルの穴を突くか、横から情報を盗む攻撃が必要です。ただ、越えられた先にはホストのカーネル全体と、そこに置かれた認証情報が見えてしまいます。ブログは、macOSやWindowsのDocker Desktopでは共有されるのがホストのカーネルではなくDocker DesktopのVMのカーネルなので、突破した先はそのVMになる、と注記しています。\n\nDockerのソケット（/var/run/docker.sock）をコンテナに渡す設定も問題です。ソケットを通じてホストのDockerを操作できるため、ホストのパスを読めたり、特権コンテナを起動できたりします。ブログによると、Mark Cavageの基調講演のデモでは、エージェントが脆弱性を使わずに、この穴を通ってホストのシークレットファイルに届きました。\n\nエージェントは、環境を探るのが仕事の一部です。だからこそ、設定の隙間を見つけやすいと、ブログは指摘しています。\n\nブログは、自律型のエージェントに必要な条件を4つ挙げています。隔離（Containment）、見て止められること（Control）、エージェントやモデルを替える自由（Choice）、他の開発者が同じ環境を再現できること（Capacity）です。\n\n管理の面では、通信はホスト側のプロキシを通り、初期設定では拒否する方針です。エージェントが設定を変えたり回避したりできない場所で管理されます。認証情報は、ホスト側のプロキシが認証ヘッダーを差し込む仕組みで、関連ページによると対応するHTTPサービスで使われます。SSHのエージェント用ソケットは、ホストでSSH_AUTH_SOCKが設定されているときだけ転送され、秘密鍵はホストに残ります。\n\n一方で、共有スキルの保存先は、オプトアウトしない限り読み書きできる状態でマウントされ、同じ保存先を使う他のサンドボックスからも変更が見えることがあると、関連ページでは書かれています。隔離されていても、見せると選んだものは見える、という点は押さえておく必要があります。\n\n**作業の途中経過を残せるか**\n\nコーディングエージェントの作業は、リポジトリの取得、パッケージの導入、PostgreSQLの起動、マイグレーション、イメージのビルドを、数時間かけて繰り返します。一つひとつの手順が、前の手順の結果に依存します。\n\nコンテナは、イメージと決まったボリュームから作り直す前提の仕組みです。ボリューム以外に作ったパッケージやデータベース、ビルドの結果は、コンテナを作り直すと消えます。\n\nDocker Sandboxesは、sbx rmで削除するまで、パッケージやイメージ、エージェントの履歴を保持します。止めて再開することもできます。\n\n**隔離の仕組みはSandboxes、アプリの配布や実行はコンテナ向きです。**\n\n| 比べること | 通常のコンテナ | Docker Sandboxes | 有利なのは |\n|---|---|---|---|\n| カーネル | ホストと共有 | 専用のカーネル | **Sandboxes** |\n| Docker | ホストのソケットか入れ子のデーモン | 内部に専用のDocker Engine | **Sandboxes** |\n| 状態の保持 | イメージとボリュームから再構築 | sbx rmまで保持 | **Sandboxes** |\n| CI・Kubernetesとの連携 | 広く対応 | sbxの仕組みと試験的な環境ファイル | **コンテナ** |\n\nブログは、用途ごとに使い分ける考え方を示しています。パッケージ化されたアプリ、CIのジョブ、短時間で終わる実行にはコンテナが向くとしています。一方、エージェントが長く続く状態を保ち、専用のDocker Engineを必要とする場合にはSandboxesが向くと整理しています。既存の運用ツールとの広い互換性では、コンテナが勝ります。\n\n## 使い方は「エージェントはSandboxes、アプリはコンテナ」\n\nブログは、2つを組み合わせる使い方も示しています。エージェントはDocker Sandboxesで動かし、エージェントが作業するアプリはコンテナにする、という考え方です。\n\n入口は1つのコマンドです。Docker Sandboxesの専用CLI（コマンドラインツール）であるsbxで、sbx run claudeと入力すると、サンドボックスが作られ、エージェントが起動します。止めたあとは、エージェントが入れたものを残したまま再開できます。\n\nサンドボックスの中でも、Dockerのイメージを作ったり、Testcontainersを動かしたり、Docker Composeで複数のコンテナを立ち上げたりできます。ホストのDockerデーモンとそのソケットは、microVMの外に残ります。\n\n## まだ分からないこと\n\n- 日本での提供状況は、まだ発表されていません。\n- 料金と提供プランは、まだ発表されていません。\n- 発表では、Sandboxesを導入した組織の事例には触れていません。",
+  "easy": "## ひとことで言うと\n\nDockerの公式ブログは、AIエージェントを動かす環境として「コンテナ」と「Docker Sandboxes」は別の技術だと説明しています。Docker Sandboxesは、コンテナの中にAIエージェントを入れたものではありません。\n\nコンテナは、ホストのOSの中心部分（カーネル）を同じ機械の他のプロセスと共有します。Docker Sandboxesは、専用のカーネルを持つ小さな仮想マシンの中でエージェントを動かします。\n\nブログは、用途によって使い分けると整理しています。パッケージ化したアプリやCIのジョブ、短時間の実行にはコンテナが向き、エージェントが環境を長く使って作業する場合にはSandboxesが向くとしています。\n\n## 使い方は「エージェントはSandboxes、アプリはコンテナ」\n\nブログは、2つを組み合わせる使い方も示しています。エージェントはSandboxesで動かし、エージェントが作業するアプリはコンテナにする、という考え方です。\n\n入口は1つのコマンドです。sbx run claudeと入力すると、サンドボックスが作られ、エージェントが起動します。",
+  "channel": "Docker公式ブログ",
+  "channelId": "",
+  "channelSlug": "docker-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Docker Sandboxes vs. Containers: Choosing the Right Isolation for AI Agents",
+  "publishedAt": "2026-11-06T03:17:04+00:00",
+  "generatedAt": "2026-11-07T17:13:39.097158+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/docker-sandboxes-vs-containers-ad797a42.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "general",
+  "todayActions": [
+    "AIエージェントを手元で動かしているなら、Dockerのソケットをコンテナに渡していないか設定を確かめる。",
+    "エージェントの作業環境を、ホストのパスや認証情報から切り離せているか確かめる。",
+    "公式ブログの比較表を見て、いまの環境がコンテナか仮想マシンかを確かめる。"
+  ],
+  "qualityScore": 90,
+  "sourcePublishedAt": "2026-11-06T03:17:04+00:00",
+  "detectedAt": "2026-11-07T17:11:01+00:00",
+  "layout": "noir",
+  "summaryLine": "Dockerは、AIエージェント用の環境はコンテナと別物だと公式ブログで整理しました。",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Docker",
+    "provider": "Docker公式ブログ",
+    "sourceUrl": "https://www.docker.com/blog/docker-sandboxes-vs-containers/",
+    "original": "https://www.docker.com/app/uploads/2025/03/image.png",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-07T17:18:03+00:00",
+    "imageKind": "logo"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.484,
+    "y": 0.482,
+    "box": [
+      0.334,
+      0.244,
+      0.634,
+      0.72
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/docker-sandboxes-vs-containers-ad797a42.jpg"
+  },
+  "coverTries": 1
+}

@@ -4124,6 +4124,13 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000357.000032053.html"
     },
+    "0c1cf97223ad220b": {
+      "at": "2026-11-07T17:12:39.075551+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「Vercel Changelogは11月7日」→ 元記事に発表日の記載がなく、11月7日という日付は根拠がない; 「1秒間に1000を超える文字のかたまり」→ 元記事は1秒あたり1,000トークン以上としており、トークンを文字に言い換えているため不正確; 「文脈は100万トークンで、既存記事で紹介した仕様と同じ」→ 既存記事の文脈に文脈長（100万トークン）の",
+      "skipped": true,
+      "url": "https://vercel.com/changelog/deepseek-v4-1-flash-1017-ultrafast-now-available-on-ai-gateway"
+    },
     "0c40826dc2c0af5c": {
       "at": "2026-11-05T02:21:26.967900+00:00",
       "model": "gemini-3.5-flash",
@@ -4243,6 +4250,13 @@
       "reason": "quality: 本文が短い（1809字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://openai.com/index/the-future-of-the-firm"
+    },
+    "0dcf0bba49c1fe06": {
+      "at": "2026-11-07T17:12:15.058524+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「前回記事では更新日を11月2日（協定世界時）と書きました」→ 11月2日という前回記事の記述は、元記事にも確認済みの文脈にも無く、確認できない日付の主張である; リード要点「前回記事の11月2日は誤り」→ 同じく前回記事の11月2日を誤りとする訂正の根拠が提示されておらず、検証できない; 「変更前は、比較表のAPIクレジットの行に…」→ 差分の削除行と整合する",
+      "skipped": true,
+      "url": "https://openai.com/chatgpt/pricing/#entry-2026-11-08-2cf63d"
     },
     "0de465538c9fc2f4": {
       "at": "2026-10-30T04:42:40.853885+00:00",
@@ -7355,6 +7369,18 @@
       "section": "tech-gadget",
       "slug": "it-passport-study-survey-ipa",
       "url": "https://www.ipa.go.jp/shiken/kubun/ip/ip_goukaku_anq_all.html"
+    },
+    "4246d58cd50eee4f": {
+      "at": "2026-11-07T17:15:19.787007+00:00",
+      "costUsd": 0.0303,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5+anthropic-api:claude-haiku-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "docker-sandboxes-vs-containers",
+      "url": "https://www.docker.com/blog/docker-sandboxes-vs-containers/"
     },
     "426417b54af838bd": {
       "at": "2026-11-02T02:30:59.157114+00:00",
@@ -18680,105 +18706,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-06T00:10:56.733103+00:00",
-      "attempt": 1,
-      "id": "5303ad7c7a4b3680",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "sony-jp",
-      "title": "初代ウォークマン付属『MDR-3』のデザインとサウンドを受け継ぐUSB-Cステレオヘッドホン『MDR-3R』発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T00:12:53.046390+00:00",
-      "attempt": 2,
-      "id": "5303ad7c7a4b3680",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "sony-jp",
-      "title": "初代ウォークマン付属『MDR-3』のデザインとサウンドを受け継ぐUSB-Cステレオヘッドホン『MDR-3R』発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T00:14:19.456454+00:00",
-      "attempt": 1,
-      "id": "1f9981de57006417",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「予算を増やさず目標だけを変えた点」→ 元記事では目標と入札方法が同時に変わっており（footnote: Objectives and bidding changed together）、「目標だけ」は元記事と矛盾する",
-        "「広告の目標を変えたことで、登録1件あたりの費用が下がり、登録数が増えました」→ 目標と入札の変更が同時であるため、目標変更だけを原因とする断定は元記事の条件を超える",
-        "「判定: 提供状況=available」→ 記事本文の「日本の企業がChatGPT広告を出せるかはまだ発表されていない」と紛らわしく、内部判定ラベルが読者向け記事に残っている",
-        "「ホスピタリティ（宿泊・飲食などの業界、編集部注）」→ 編集部注として明記されており一般的な説明のため問題は軽微だが、業界の定義は元記事に無い"
-      ],
-      "readability": {
-        "avg_paragraph": 90.9,
-        "avg_sentence": 42.2,
-        "long_share": 0.143,
-        "max_paragraph": 202,
-        "paragraphs": 13,
-        "sentences": 28
-      },
-      "score": 80,
-      "source": "openai-news",
-      "title": "Flipsnack grows product signups with conversion optimization",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T00:14:40.187181+00:00",
-      "attempt": 1,
-      "id": "1f9981de57006417",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 91.9,
-        "avg_sentence": 42.7,
-        "long_share": 0.143,
-        "max_paragraph": 198,
-        "paragraphs": 13,
-        "sentences": 28
-      },
-      "score": 94,
-      "source": "openai-news",
-      "title": "Flipsnack grows product signups with conversion optimization",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T00:21:21.515316+00:00",
-      "attempt": 1,
-      "id": "60b56f576e827b7b",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 60.0,
-        "avg_sentence": 29.3,
-        "long_share": 0.0,
-        "max_paragraph": 126,
-        "paragraphs": 21,
-        "sentences": 43
-      },
-      "score": 88,
-      "source": "fast",
-      "title": "毎月勤労統計調査 2026年9月分速報（実質賃金・名目賃金・夏季賞与）"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-06T01:02:56.864935+00:00",
       "attempt": 1,
       "id": "38d7cd8d70883115",
@@ -24861,6 +24788,114 @@
       "score": 85,
       "source": "watch-chatgpt-pricing",
       "title": "ChatGPTの料金・プランのページが更新（料金の記載が変更）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T17:12:15.058496+00:00",
+      "attempt": 1,
+      "id": "0dcf0bba49c1fe06",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「前回記事では更新日を11月2日（協定世界時）と書きました」→ 11月2日という前回記事の記述は、元記事にも確認済みの文脈にも無く、確認できない日付の主張である",
+        "リード要点「前回記事の11月2日は誤り」→ 同じく前回記事の11月2日を誤りとする訂正の根拠が提示されておらず、検証できない",
+        "「変更前は、比較表のAPIクレジットの行に…」→ 差分の削除行と整合するが、「比較表」という呼び方は元記事の表示名に基づく言い換えとして妥当"
+      ],
+      "score": 72,
+      "source": "watch-chatgpt-pricing",
+      "title": "ChatGPTの料金・プランのページが更新（料金の記載が変更）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T17:12:39.075522+00:00",
+      "attempt": 1,
+      "id": "0c1cf97223ad220b",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「Vercel Changelogは11月7日」→ 元記事に発表日の記載がなく、11月7日という日付は根拠がない",
+        "「1秒間に1000を超える文字のかたまり」→ 元記事は1秒あたり1,000トークン以上としており、トークンを文字に言い換えているため不正確",
+        "「文脈は100万トークンで、既存記事で紹介した仕様と同じ」→ 既存記事の文脈に文脈長（100万トークン）の記載はなく、同じ仕様とする根拠がない",
+        "「モデル名を指定すれば、すぐ呼び出せます」→ 元記事の例はコードでの指定であり、「すぐ」は言い過ぎ"
+      ],
+      "score": 62,
+      "source": "vercel-changelog",
+      "title": "DeepSeek V4.1 Flash 1017 Ultrafast now available on AI Gateway"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T17:13:48.655832+00:00",
+      "attempt": 1,
+      "id": "4246d58cd50eee4f",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "記事末尾の「判定: 提供状況=available 価格=不明」→ 本文の「日本での提供状況は、まだ発表されていません」と矛盾し、提供済みと読める記述になっている",
+        "かんたん版の「コンテナは、ホストのOSの中心部分（カーネル）を他の動作と共有します」→ 元記事は「他のプロセス（other processes）」と書いており、「動作」は誤訳",
+        "「エージェントを安全に動かすなら、仮想マシンで隔離するSandboxesが向いています」→ 元記事は用途ごとの使い分けを示しており、安全性の優劣を単純に断定する言い過ぎ"
+      ],
+      "readability": {
+        "avg_paragraph": 84.3,
+        "avg_sentence": 44.5,
+        "long_share": 0.222,
+        "max_paragraph": 178,
+        "paragraphs": 19,
+        "sentences": 36
+      },
+      "score": 80,
+      "source": "docker-blog",
+      "title": "Docker Sandboxes vs. Containers: Choosing the Right Isolation for AI Agents"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T17:14:48.125559+00:00",
+      "attempt": 1,
+      "id": "4246d58cd50eee4f",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 49.4字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 117.1字・最長 230字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 117.1,
+        "avg_sentence": 49.4,
+        "long_share": 0.289,
+        "max_paragraph": 230,
+        "paragraphs": 19,
+        "sentences": 45
+      },
+      "score": 90,
+      "source": "docker-blog",
+      "title": "Docker Sandboxes vs. Containers: Choosing the Right Isolation for AI Agents",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HTTP・SSH・AUTH）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T17:15:19.774032+00:00",
+      "attempt": 0,
+      "id": "4246d58cd50eee4f",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 本文末尾の「判定: 提供状況=available 価格=不明」は元記事に根拠がなく、本文の「日本での提供状況はまだ発表されていません」とも食い違うため、提供状況の断定として問題になる; 記事末尾に編集部の判定メモが本文として混入しており、読者向け記事の体裁として"
+      ],
+      "readability": {
+        "avg_paragraph": 117.1,
+        "avg_sentence": 49.4,
+        "long_share": 0.289,
+        "max_paragraph": 230,
+        "paragraphs": 19,
+        "sentences": 45
+      },
+      "score": 90,
+      "source": "docker-blog",
+      "title": "Docker Sandboxes vs. Containers: Choosing the Right Isolation for AI Agents",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HTTP・SSH・AUTH）"
+      ]
     }
   ],
   "short_text_retry": {},
