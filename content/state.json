@@ -16526,6 +16526,17 @@
       "slug": "kitsuki-station-survey-subsidy",
       "url": "http://www.mlit.go.jp/report/press/kokudoseisaku09_hh_000195.html"
     },
+    "d6fa7442b9055fd5": {
+      "at": "2026-11-07T22:14:42.352533+00:00",
+      "costUsd": 0.1146,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5+anthropic-api:claude-haiku-5-5",
+      "score": 90,
+      "section": "business",
+      "slug": "online-ori-pa-lawsuit-five-operators",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203401_1527.html"
+    },
     "d70bd31e10c047cb": {
       "at": "2026-11-03T18:39:26.638663+00:00",
       "model": "anthropic-api:claude-sonnet-5-5",
@@ -18974,77 +18985,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T02:24:40.295539+00:00",
-      "attempt": 1,
-      "id": "47fe40d0187dd449",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "ntt-news",
-      "title": "ドコモ、快適な操作性を追求したドコモ純正「スタンダードタッチペン」を発売"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T02:26:34.635121+00:00",
-      "attempt": 2,
-      "id": "47fe40d0187dd449",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 78.4,
-        "avg_sentence": 38.0,
-        "long_share": 0.061,
-        "max_paragraph": 133,
-        "paragraphs": 16,
-        "sentences": 33
-      },
-      "score": 95,
-      "source": "ntt-news",
-      "title": "ドコモ、快適な操作性を追求したドコモ純正「スタンダードタッチペン」を発売",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ABS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T03:01:35.815952+00:00",
-      "attempt": 1,
-      "id": "ee64cc4449547b71",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "tsr",
-      "title": "「人手不足」倒産 10月では過去最多の50件 1-10月累計418件、すでに年間最多を更新"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T03:03:11.320556+00:00",
-      "attempt": 2,
-      "id": "ee64cc4449547b71",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.4,
-        "avg_sentence": 29.5,
-        "long_share": 0.024,
-        "max_paragraph": 161,
-        "paragraphs": 13,
-        "sentences": 42
-      },
-      "score": 92,
-      "source": "tsr",
-      "title": "「人手不足」倒産 10月では過去最多の50件 1-10月累計418件、すでに年間最多を更新"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T03:23:11.326773+00:00",
@@ -25208,6 +25148,71 @@
       "warnings": [
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（IDE）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T22:13:16.618272+00:00",
+      "attempt": 1,
+      "id": "d6fa7442b9055fd5",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "tsr",
+      "title": "オンラインオリパ運営を提訴、ギャンブル性の課金構造が問題 ～ 弁護士法人・響 西川研一弁護士インタビュー ～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T22:13:43.963556+00:00",
+      "attempt": 1,
+      "id": "d6fa7442b9055fd5",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "tsr",
+      "title": "オンラインオリパ運営を提訴、ギャンブル性の課金構造が問題 ～ 弁護士法人・響 西川研一弁護士インタビュー ～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T22:14:09.540608+00:00",
+      "attempt": 2,
+      "id": "d6fa7442b9055fd5",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "tsr",
+      "title": "オンラインオリパ運営を提訴、ギャンブル性の課金構造が問題 ～ 弁護士法人・響 西川研一弁護士インタビュー ～"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T22:14:42.346063+00:00",
+      "attempt": 2,
+      "id": "d6fa7442b9055fd5",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.5,
+        "avg_sentence": 43.8,
+        "long_share": 0.17,
+        "max_paragraph": 181,
+        "paragraphs": 22,
+        "sentences": 47
+      },
+      "score": 90,
+      "source": "tsr",
+      "title": "オンラインオリパ運営を提訴、ギャンブル性の課金構造が問題 ～ 弁護士法人・響 西川研一弁護士インタビュー ～",
+      "warnings": [
+        "同じ数字が多い（「5社」が7回）"
       ]
     }
   ],
