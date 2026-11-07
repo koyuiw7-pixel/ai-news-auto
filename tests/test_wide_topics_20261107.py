@@ -107,6 +107,41 @@ class WideTopicsTest(unittest.TestCase):
         self.assertEqual(public_interest.wide_category("新フレーバー登場", "nipponham"), "launch")
         self.assertEqual(public_interest.wide_category("ローソン限定 無印良品「ボディフレグランスミスト」を発売", ""), "launch")
 
+    def test_cosmetics_and_health_foods_are_not_launches(self):
+        # 化粧品・健康食品・サプリは発売の話題に入れない（2026-11-07 11:30 オーナー決定。薬機法・AdSense の心配）
+        for title, src in (("エイジングスキンケアブランド「F.A.G.E.（エファージュ）」2アイテム新発売", "suntory"),
+                           ("サントリーの薬膳ブランド「薬膳好日」から新商品を発売", "suntory"),
+                           ("「ビヒダス Wのビフィズス菌 腸からRe：Body」新発売", "morinaga-milk"),
+                           ("機能性表示食品の新しいサプリメントを発売", "kirin"),
+                           ("ファミリーマート限定のコスメを発売", "familymart")):
+            with self.subTest(title=title):
+                self.assertIsNone(public_interest.wide_category(title, src))
+        self.assertEqual(public_interest.wide_category("「ピノ ぜんぶアーモンド」数量限定発売", "morinaga-milk"), "launch")
+
+    def test_alcohol_launch_needs_the_note(self):
+        rec = {"title": "『アサヒスーパードライ ドライクリスタル 生ジョッキ缶』 11月10日数量限定発売", "tags": [],
+               "body": "## 発売日と価格\n11月10日から全国で数量限定で発売する。"}
+        self.assertEqual(public_interest.wide_category(rec["title"], "asahi"), "launch")
+        self.assertTrue(public_interest.is_alcohol(rec))
+        self.assertTrue(any("注意書き" in p for p in public_interest.sensitive_problems(rec)))
+        notes = public_interest.autofix(rec)
+        self.assertTrue(notes)
+        self.assertIn(public_interest.ALCOHOL_NOTE, rec["body"])
+        self.assertEqual(public_interest.sensitive_problems(rec), [])
+        self.assertEqual(public_interest.autofix(rec), [])  # 2回目は何もしない
+        # 飲むことをすすめる言い方は不合格
+        pushy = {**rec, "body": rec["body"] + "\nたくさん飲もう。"}
+        self.assertTrue(any("すすめない" in p for p in public_interest.sensitive_problems(pushy)))
+        # 作るときの指示にも入る
+        self.assertIn(public_interest.ALCOHOL_NOTE, public_interest.alcohol_prompt_note(rec["title"]))
+
+    def test_non_alcohol_and_other_products_need_no_note(self):
+        for title in ("「のんある酒場 グレフルサワー ノンアルコール」新発売", "キリン 氷ゼロ スパークリング（ノンアルコール）新発売",
+                      "新しいエンジンを搭載した車を発売", "サワークリームオニオン味のポテトチップスを発売", "ローソン 15品発売"):
+            with self.subTest(title=title):
+                self.assertFalse(public_interest.is_alcohol({"title": title}))
+                self.assertEqual(public_interest.alcohol_problems({"title": title, "body": "本文"}), [])
+
     def test_election_only_in_summary_does_not_drop(self):
         item = {"title": "ガソリン補助金が縮小開始へ～価格上昇はどこまで？", "summary": "選挙を前に補助の扱いが議論になった。",
                 "section": "business", "source_slug": "nli-research"}

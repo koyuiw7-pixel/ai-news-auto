@@ -494,6 +494,7 @@ def build_broad_prompt(item: dict, text: str, genre, context: str = "", outline:
         genre_choices="\n".join(f"  - {g.slug}: {g.name}" for g in ALL_GENRES),
     )
     return (prompt + context + extra_fields_block(genre.slug) + "\n\n" + persona.WORK_MONEY_FIELD
+            + public_interest.alcohol_prompt_note(item["title"])  # お酒の新商品の書き方（A56）
             + "\n\n" + m.threads_hooks.prompt_block())
 
 

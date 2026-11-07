@@ -367,7 +367,7 @@ def sensitive_problems(record: dict) -> list[str]:
     当てはまらない記事（ふつうの製品の発表など）は、私人の実名と政治の意見だけを見る"""
     text = _nfkc(_prose(record))
     body = _nfkc(str(record.get("body") or ""))
-    problems: list[str] = []
+    problems: list[str] = alcohol_problems(record)  # お酒の記事の注意書き（A56。公共性の話題でなくても見る）
     cat = record_category(record)
     if m := PRIVATE_NAME_RE.search(text):
         problems.append(f"私人の実名を書かない（「{m.group(0)[:20]}」）。事件・事故は会社・官公庁の発表の範囲で、個人を特定しない")
@@ -395,15 +395,17 @@ def safety_block(cat: str) -> str:
 
 
 def autofix(record: dict) -> list[str]:
-    """ミサイル・災害の記事の本文の頭に、公式の安全情報のリンクを入れる（すでにあれば何もしない）。行ったことの説明を返す"""
+    """ミサイル・災害の記事の本文の頭に、公式の安全情報のリンクを入れる（すでにあれば何もしない）。行ったことの説明を返す。
+    お酒の記事には本文の終わりに決まった注意書きを入れる（A56）"""
+    done = alcohol_autofix(record)
     cat = record_category(record)
     if cat not in SAFETY_LINKS:
-        return []
+        return done
     body = str(record.get("body") or "")
     if SAFETY_MARK in body:
-        return []
+        return done
     record["body"] = f"{safety_block(cat)}\n\n{body}" if body else safety_block(cat)
-    return [f"公式の安全情報のリンクを本文の頭に入れた（{cat}）"]
+    return done + [f"公式の安全情報のリンクを本文の頭に入れた（{cat}）"]
 
 
 # --------------------------------------------------------------------------- #
@@ -529,6 +531,12 @@ WIDE_EXCLUDE_RE = re.compile(
     # 鳥インフルエンザの検査で陰性だった報告（読者に影響が無い）
     r"陰性確定"
 )
+# 化粧品・健康食品・サプリは発売の話題に入れない（効能の主張が薬機法・AdSense の心配になる。2026-11-07 11:30 オーナー決定・A56）
+LAUNCH_EXCLUDE_RE = re.compile(
+    r"化粧品|コスメ|スキンケア|化粧水|美容液|乳液|美容|美肌|エイジング|ファンデーション|日焼け止め|"
+    r"サプリ|サプリメント|機能性表示食品|特定保健用食品|トクホ|健康食品|栄養機能食品|薬膳|"
+    r"ビフィズス菌|乳酸菌|腸活|睡眠の質|免疫|血圧|血糖|体脂肪|内臓脂肪|プロテイン"
+)
 # 障害の語を含むが障害のお知らせではないもの（障害対応の製品・研究・訓練）
 WIDE_NOT_OUTAGE_RE = re.compile(r"障害対応|自動復旧|復旧ツール|障害を(?:自動|予測|検知)|デモ|脆弱性|ツール|エージェント|研究|調査|訓練|演習")
 
@@ -544,9 +552,71 @@ def wide_category(title: str, source_slug: str = "") -> str | None:
             if name == "outage" and WIDE_NOT_OUTAGE_RE.search(text):
                 continue
             return name
-    if LAUNCH_RE.search(text) and (LAUNCH_CONTEXT_RE.search(text) or source_slug in LAUNCH_SOURCES):
+    if LAUNCH_RE.search(text) and not LAUNCH_EXCLUDE_RE.search(text) and (LAUNCH_CONTEXT_RE.search(text) or source_slug in LAUNCH_SOURCES):
         return "launch"
     return None
+
+
+# --------------------------------------------------------------------------- #
+# 9. お酒の新商品の記事（2026-11-07 11:30 オーナー決定・A56）
+# --------------------------------------------------------------------------- #
+# お酒の新商品は製品のニュースとして書いてよい。飲むことをすすめない。どの記事にも決まった注意書きを入れる（autofix が入れ、sensitive_problems が確かめる）
+ALCOHOL_RE = re.compile(
+    r"ビール|発泡酒|チューハイ|酎ハイ|ハイボール|ウイスキー|ウィスキー|ワイン|日本酒|焼酎|サワー(?!クリーム)|梅酒|シードル|テキーラ|リキュール|"
+    r"(?<![ァ-ヶー])ジン(?![ァ-ヶー])|ラム酒|ウォッカ|スピリッツ|清酒|地酒|蒸留酒|醸造酒|缶酎|酒類|お酒|アルコール度数|"
+    # 題名にお酒の語が無いことの多い主なブランド
+    r"スーパードライ|一番搾り|プレミアム・?モルツ|プレモル|黒ラベル|ヱビス|エビスビール|氷結|[-－]196|ストロングゼロ|ほろよい|角ハイ|贅沢搾り|梅星屋|ザ・ビタリスト|翠ジン"
+)
+# ノンアルコールだけの商品はお酒ではない（「のんある酒場」「ノンアルコールビール」など）
+NON_ALCOHOL_RE = re.compile(r"ノンアルコール|ノンアル|のんある|アルコール\s*0|アルコールゼロ|0\.00\s*%")
+ALCOHOL_NOTE = "お酒は20歳になってから。飲酒運転は法律で禁止されています。"
+ALCOHOL_NOTE_RE = re.compile(r"20歳.{0,12}(?:から|未満)[\s\S]{0,60}飲酒運転|飲酒運転[\s\S]{0,60}20歳")
+# 飲むことをすすめる言い方
+ALCOHOL_PUSH_RE = re.compile(r"一気飲み|飲み過ぎても|飲みすぎても|どんどん飲|たくさん飲(?:もう|んで|みたい)|飲まなきゃ損|飲むべき|ぐいぐい|浴びるほど|酔っ払お")
+
+
+def is_alcohol(record: dict) -> bool:
+    """お酒の記事か（題名・SEO 題名・リード・タグで見る。ノンアルコールだけの商品は除く）"""
+    head = _nfkc(f"{record.get('title', '')} {record.get('seoTitle', '')} {record.get('lede', '')} {' '.join(record.get('tags') or [])}")
+    if not ALCOHOL_RE.search(head):
+        return False
+    return not NON_ALCOHOL_RE.search(head)  # ノンアルコールの商品の題名は、お酒の語（ビール・サワー）を含んでもお酒ではない
+
+
+def alcohol_problems(record: dict) -> list[str]:
+    """お酒の記事の門: 決まった注意書き（20歳から・飲酒運転の禁止）があるか、飲むことをすすめていないか"""
+    if not is_alcohol(record):
+        return []
+    problems = []
+    body = _nfkc(str(record.get("body") or ""))
+    if body and not ALCOHOL_NOTE_RE.search(body):
+        problems.append(f"お酒の記事は本文に注意書き「{ALCOHOL_NOTE}」を入れる")
+    if m := ALCOHOL_PUSH_RE.search(_nfkc(_prose(record))):
+        problems.append(f"お酒を飲むことをすすめない（「{m.group(0)}」）。製品のニュースとして書く")
+    return problems
+
+
+def alcohol_autofix(record: dict) -> list[str]:
+    """お酒の記事の本文の終わりに決まった注意書きを入れる（すでにあれば何もしない）"""
+    if not is_alcohol(record):
+        return []
+    body = str(record.get("body") or "")
+    if ALCOHOL_NOTE_RE.search(_nfkc(body)):
+        return []
+    record["body"] = f"{body.rstrip()}\n\n> {ALCOHOL_NOTE}" if body else f"> {ALCOHOL_NOTE}"
+    return ["お酒の記事の注意書きを本文の終わりに入れた"]
+
+
+ALCOHOL_PROMPT_NOTE = (
+    "\n\n## お酒の新商品の書き方（必ず守る）\n"
+    "- 製品のニュースとして、発売日・価格・容量・アルコール度数・販売地域など発表にある事実だけを書く。\n"
+    "- 飲むことをすすめない（「たくさん飲もう」「飲まなきゃ損」などを書かない）。飲酒の効果・健康によいとは書かない。\n"
+    f"- 本文の終わりに「{ALCOHOL_NOTE}」を1行で入れる。"
+)
+
+
+def alcohol_prompt_note(title: str) -> str:
+    return ALCOHOL_PROMPT_NOTE if is_alcohol({"title": title}) else ""
 
 
 WIDE_TOPIC_RE = re.compile("|".join(f"(?:{p.pattern})" for p in WIDE_TOPIC_RES.values()))
