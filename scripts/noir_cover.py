@@ -3,7 +3,7 @@
 
 オーナー「黒地にしたいわけではない。背景は写真を差し込みたい。何もないとただ暗い感じ」。
 同じ日に「タイトルや内容となんの関連もない画像。画像はイメージとあるのに何もイメージできない」（誰もいない展示会場の AI 画像）。
-だから表紙のイメージは、記事の話題とのつながりが読者に見えるものだけ。つながりの見えない場面を出すくらいなら、ぼかした公式の画像にする。
+だから表紙のイメージは、記事の話題とのつながりが読者に見えるものだけ。つながりの見えない場面を出すくらいなら、公式の画像をそのまま見せる。
 
 表紙の背景の決まり（サイトは lib/noir.ts の noirCover が同じ順で選ぶ）:
   1. 公式発表の、大きな文字の無い本物の写真（heroOk: true）。今までどおり
@@ -14,8 +14,9 @@
        発表ではない記事（リコールなど）はブランド・型の無い一般の物（タイヤ・電池など）を描いてよい（2026-11-07 オーナー）。
        だめなら次の切り口で作り直す（作り直しは2回まで）。誰もいない会場・抽象的な光のような、話題と関係の無い場面は使わない
      - 見出し画像がもともと AI のイメージなら、同じ確かめ（②）を通ったときだけ表紙にも使う（作り直さない）
-  3. 作れなかったとき: 見出し画像（告知のバナーでも）を強くぼかして暗くした背景
-  4. 何も無いときだけ、今までの黒い表紙に題名
+  3. 作れなかったとき: 公式・素材の見出し画像（告知のバナーでも）を、ぼかさず・暗くせずにそのまま見せ、題名は画像の下の帯（panel）
+     （2026-11-07 午後オーナー「画像反映されていない」「何もないとただ暗い感じ」。強くぼかして暗くした表紙はやめた）
+  4. 何も無いとき・見出しの AI の絵が確かめを通らないときだけ、明るい紙に題名（type）
 作るのは無料の Cloudflare Workers AI（scripts/images.py と同じ AI_MODELS・1日の上限 IMAGE_AI_DAILY_MAX を共有）。有料の画像 API は使わない。
 
   python3 scripts/noir_cover.py                    # 対象と、どの背景になるかを表示（書き込まない）
@@ -63,17 +64,19 @@ def official_hero(article: dict) -> bool:
 
 
 def cover_path(article: dict) -> str:
-    """表紙の背景がどれになるか（lib/noir.ts の noirCover と同じ順）: official / ai / blur / black"""
+    """表紙の背景がどれになるか（lib/noir.ts の noirCover と同じ順）: official / ai / panel / type
+    panel: 公式・素材の見出し画像を、ぼかさず・暗くせずそのまま見せて題名は下の帯（2026-11-07 午後オーナー「画像反映されていない」。
+    強くぼかして暗くした表紙はやめた）。type: 写真が何も無い・見出しの AI の絵が確かめを通らないとき、明るい紙に題名"""
     if official_hero(article):
         return "official"
     if article.get("noPhoto"):
-        return "black"
+        return "type"
     cover = article.get("coverCredit") or {}
     if article.get("coverImage") and cover.get("kind") == "ai":
         return "ai"
-    if article.get("thumbnail"):
-        return "blur"
-    return "black"
+    if article.get("thumbnail") and (article.get("imageCredit") or {}).get("kind") != "ai":
+        return "panel"
+    return "type"
 
 
 def needs_cover(article: dict) -> bool:
@@ -107,7 +110,12 @@ Return:
   Rules for every scene: no text, signs, letters or logos; no brand or model names; no identifiable faces; no screens showing readable text.
   For a product or service launch you MAY show the kind of product generically (no brand, logo or model). For other news (recalls,
   outages, prices) you MAY show the generic category (e.g. a car tire, a battery, a smartphone) without brand or model.
-  Never a generic empty office, desk, meeting room, exhibition hall, corridor or abstract light that could illustrate any news."""
+  Never a generic empty office, desk, meeting room, exhibition hall, corridor or abstract light that could illustrate any news.
+  Good examples for software news (screens show only abstract shapes, never readable text):
+  - an AI app answering faster: over-the-shoulder view of an office worker's hands holding a smartphone, using a chat assistant app
+  - a data analytics or BI service: an analyst at a desk with printed bar and line charts beside a laptop showing an abstract dashboard
+  - a database or cloud service: an engineer seen from behind in a bright data center between server racks, holding a laptop
+  - company knowledge for AI: hands sorting thick binders of company manuals next to a laptop with an AI chat window"""
     data, _ = llm.generate_json(SCENE_SYSTEM, prompt, SCENE_SCHEMA, tier=images.llm_tier(), temperature=0.5, max_output_tokens=1024)
     scenes = [re.sub(r"\s+", " ", str(s)).strip()[:400] for s in data.get("scenes") or [] if str(s).strip()]
     return str(data.get("topic_en") or "").strip()[:200], scenes[:MAX_DRAWS]
@@ -123,7 +131,7 @@ def relevant(image, article: dict, topic: str) -> bool:
 
 def make_cover(article: dict, *, fast: bool = False, dry_run: bool = False) -> dict | None:
     """表紙用の写真風の AI のイメージを作って KV に置く。(coverImage, coverCredit) の dict。
-    話題とのつながりが見える画像が作れなければ None（呼ぶ側はぼかした見出し画像にする）"""
+    話題とのつながりが見える画像が作れなければ None（呼ぶ側は公式の画像をそのまま見せる表紙にする）"""
     import images  # noqa: PLC0415  （重い依存は作るときだけ）
 
     # 2026-11-07 オーナー: 公式の画像が無い新製品の発表は、AI が製品（の種類）を描いてよい。札は「公式画像がないためイメージ（AI生成）」。
@@ -182,7 +190,7 @@ def ensure_cover(article: dict, *, fast: bool = False, dry_run: bool = False) ->
     made = None
     try:
         made = reuse_thumbnail(article) or make_cover(article, fast=fast, dry_run=dry_run)
-    except Exception as error:  # noqa: BLE001 - 作れなくても記事の公開は止めない（ぼかした見出し画像か黒い表紙）
+    except Exception as error:  # noqa: BLE001 - 作れなくても記事の公開は止めない（公式の画像をそのまま見せる表紙か、明るい紙に題名）
         print(f"   [cover] 表紙のイメージを作れない: {str(error)[:160]}", flush=True)
     if made:
         article.update(made)

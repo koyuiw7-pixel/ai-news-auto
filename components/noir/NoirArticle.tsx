@@ -6,13 +6,13 @@ import NoirChrome from "@/components/noir/NoirChrome";
 import NoirFonts, { noirFontHref } from "@/components/noir/NoirFonts";
 import { formatDate, type ArticleSummary, type FullArticle } from "@/lib/articles";
 import { officialCreditText } from "@/lib/image-credit";
-import { displayGlyphs, NOIR_AI_LABEL, noirAiLabel, splitEmphasis, type NoirCover } from "@/lib/noir";
+import { displayGlyphs, NOIR_AI_LABEL, noirAiLabel, noirKeyFigure, splitEmphasis, type NoirCover } from "@/lib/noir";
 import { stripListNumber } from "@/lib/list-number";
 import "./noir.css";
 
 /**
  * 新しい記事の見た目「ノワール」（2026-11-07 オーナー承認・台帳 W36）。layout が "noir" の記事だけ。
- * 写真の表紙（公式の写真 → 無ければ AI のイメージ「画像はイメージ（AI生成）」→ 作れなければぼかした公式の画像。何も無いときだけ黒）→ 白い紙面（要点の1文・大きな数字・本文・まとめ・発表元のボタン）→ 関連記事。
+ * 写真の表紙（公式の写真 → 無ければ AI のイメージ「画像はイメージ（AI生成）」→ 作れなければ公式の画像をそのまま見せ、題名は下の帯。何も無いときだけ明るい紙に題名）→ 白い紙面（要点の1文・大きな数字・本文・まとめ・発表元のボタン）→ 関連記事。
  * 見出し・構造化データ・広告・提携・計測・オーナーのルールの部品は、今までの記事ページ（app/articles/[slug]/page.tsx）で作った物をそのまま受け取って並べる。
  * 「このニュースを3行で」「何が起きた」「KEY NUMBERS」のような決まった型の見出しは付けない（オーナーが AI っぽいと判断）。
  */
@@ -20,7 +20,7 @@ export type NoirProps = {
   article: FullArticle;
   title: string;
   jsonLd: unknown;
-  /** 表紙の背景（lib/noir.ts の noirCover）。null のときだけ黒い表紙に題名 */
+  /** 表紙の背景（lib/noir.ts の noirCover）。null のときだけ明るい紙に題名 */
   cover: NoirCover | null;
   kicker: string;
   breaking: boolean;
@@ -59,9 +59,11 @@ export type NoirProps = {
 export default function NoirArticle(props: NoirProps) {
   const { article, title, cover, body, slots } = props;
   const photo = cover?.src ?? null;
+  const panel = cover?.kind === "panel";
   const line = article.summaryLine || stripListNumber(article.highlights[0] ?? "");
   const sum = line ? splitEmphasis(line) : null;
-  const fig = article.keyFigure && article.keyFigure.value ? article.keyFigure : null;
+  // 箱は、意味が伝わり上の1文に無い数字のときだけ（lib/noir.ts の noirKeyFigure。2026-11-07 オーナー）
+  const fig = noirKeyFigure(article, line);
   const glyphs = displayGlyphs([title, props.kicker, line, fig ? `${fig.value}${fig.unit}${fig.before ?? ""}` : "", props.headingsHtml, ...props.related.map((r) => r.title), "関連記事"]);
   const fontHref = noirFontHref(glyphs);
   const focus = cover?.kind === "official" && article.imageFocus && article.imageFocus.src === article.thumbnail ? article.imageFocus : null;
@@ -78,7 +80,7 @@ export default function NoirArticle(props: NoirProps) {
       <span className="nr-safe" aria-hidden />
       {/* 上の帯は表紙（黒・写真）の上に重なる。文字の見やすさの点検は親の背景（白い紙）で測ってしまうので対象外の印を付ける。
           実際の見え方: 表紙の上は白い文字、表紙を過ぎると白い帯に黒い文字（どちらも 4.5:1 以上） */}
-      <div className="nr-top nr-g" id="nr-top" data-decorative="">
+      <div className={`nr-top nr-g${cover ? "" : " nr-onlight"}`} id="nr-top" data-decorative="">
         <Link href="/" className="nr-logo" aria-label="サイソクニュース トップへ">
           サイソク
         </Link>
@@ -88,8 +90,14 @@ export default function NoirArticle(props: NoirProps) {
         <i className="nr-bar" id="nr-bar" aria-hidden />
       </div>
 
-      <header className={`nr-hero${photo ? "" : " nr-type"}${cover?.kind === "blur" ? " nr-blur" : ""}`} id="nr-hero" data-cover={cover?.kind ?? "none"}>
-        {photo && (
+      {/* 表紙: official・ai は写真を全面に敷いて題名を重ねる。panel は公式の画像（告知のバナーなど）をぼかさず・暗くせずに見せ、
+          題名はその下の帯に出す（画像の文字と題名を重ねない）。写真が何も無いときだけ明るい紙に題名（nr-type） */}
+      <header
+        className={`nr-hero${photo ? "" : " nr-type"}${panel ? " nr-panel" : ""}`}
+        id="nr-hero"
+        data-cover={cover?.kind ?? "none"}
+      >
+        {photo && !panel && (
           <div className="nr-img" id="nr-img">
             <Thumb
               src={photo}
@@ -102,6 +110,17 @@ export default function NoirArticle(props: NoirProps) {
             />
           </div>
         )}
+        {photo && panel && (
+          <div className="nr-pimg">
+            {/* 後ろは同じ画像を少しぼかして広げた色（暗くしない）。前に画像そのものを切らずに置く */}
+            <span className="nr-pbg" aria-hidden>
+              <Thumb src={photo} alt="" fill sizes="100vw" className="object-cover" />
+            </span>
+            <span className="nr-pfg">
+              <Thumb src={photo} alt="" fill priority sizes="(min-width: 960px) 960px, 100vw" className="object-contain" />
+            </span>
+          </div>
+        )}
         {/* AI のイメージには、表紙の上に必ず札を出す（本物の写真と受け取られないように。台帳 I4） */}
         {cover?.kind === "ai" && (
           <span className="nr-ailabel" data-allow-small="">
@@ -110,7 +129,7 @@ export default function NoirArticle(props: NoirProps) {
         )}
         <div className="nr-hl nr-g">
           <div className="nr-col">
-            {!photo && <span className="nr-rule" aria-hidden />}
+            {(!photo || panel) && <span className="nr-rule" aria-hidden />}
             <div className="nr-kick">
               {props.breaking && <i data-allow-small="">速報</i>}
               <span>{props.kicker}</span>

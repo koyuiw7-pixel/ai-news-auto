@@ -11,6 +11,8 @@
 作る欄（すべて任意。作れなければ付けない。サイトは欄が無ければその部品を出さない）:
   summaryLine  何が起きたかの1文（要点の1つ目）。大事な数字を **…** で囲む
   keyFigure    {value, unit, label, before?} 黒いカードの大きな数字（前と今の表の1行目、または要点の「売上高3兆528億円」）
+               読者に意味が伝わり、上の1文に無い情報を足すときだけ（figure_adds_info。2026-11-07 オーナー
+               「38% 応答時間」だけの箱は「これだけでは不自然」。入れなきゃダメというルールは無い）
   changes      [{label, before, after, note?}] 本文の「前／今回」の表の行（サイトはその表の場所に「前 → 今」の行で出す）
   wrapUp       [{name, text}] 本文の最後の章の、名前と説明の2列の表（サイトはその表の場所に一覧で出す）
 """
@@ -100,6 +102,60 @@ def key_figure(changes: list[dict], highlights: list[str]) -> dict | None:
     return None
 
 
+# 数字の名前が「何の量か」を言っている（売上高・価格・件数・応答時間…）。会社名・地名・「平均」「合計」だけの名前は不可
+MEASURE_LABEL = re.compile(r"(数|額|高|費|料|価格|値段|代|金|率|量|時間|期間|規模|売上|利益|収益|予算|賃金|給与|税率|上限|下限|容量|距離|速度|人数|件数|台数)$")
+# 割合・倍は「何が何%か」「前はいくつか」が無いと意味が伝わらない
+RELATIVE_UNIT = re.compile(r"^(%|％|ポイント|倍)$")
+
+
+def _plain_number(text: str) -> str:
+    return re.sub(r"\*\*|\s", "", str(text or ""))
+
+
+def figure_adds_info(fig: dict | None, summary: str | None) -> bool:
+    """大きな数字の箱を出してよいか（2026-11-07 オーナー「これだけでは不自然じゃない？」。lib/noir.ts の noirKeyFigure と同じ決まり）。
+    ①前の値（before）があって今と違う、または名前が「何の量か」を言っている（割合・倍は前の値が要る）
+    ②すぐ上の1文（summaryLine）に同じ数字がもう無い（同じ数字を2回見せない）"""
+    if not fig or not str(fig.get("value") or "").strip():
+        return False
+    value, unit = _plain_number(fig.get("value")), _plain_number(fig.get("unit"))
+    label = str(fig.get("label") or "").strip()
+    before = _plain_number(fig.get("before"))
+    has_before = bool(before) and before != value + unit and before != value
+    if not has_before:
+        if RELATIVE_UNIT.match(unit) or not label or LABEL_STOP.match(label) or not MEASURE_LABEL.search(label):
+            return False
+    plain = _plain_number(summary)
+    if plain and (value + unit) in plain:
+        return False
+    return True
+
+
+def useful_changes(changes: list[dict]) -> list[dict]:
+    """「前 → 今」の行は、前と今が違い、名前のある行だけ（同じ値の行は情報を足さない）"""
+    out = []
+    for c in changes or []:
+        if not isinstance(c, dict):
+            continue
+        label, before, after = (str(c.get(k) or "").strip() for k in ("label", "before", "after"))
+        if label and before and after and _plain_number(before) != _plain_number(after):
+            out.append(c)
+    return out
+
+
+def useful_wrap(items: list[dict]) -> list[dict]:
+    """まとめの一覧は、説明が名前の言い直しでない行だけ（行の数は wrap_up が 2〜5 行に決める）"""
+    out = []
+    for w in items or []:
+        if not isinstance(w, dict):
+            continue
+        name, text = str(w.get("name") or "").strip(), str(w.get("text") or "").strip()
+        # 説明から名前を除いて4文字以上残る（「LUXION｜LUXION」のような言い直しは足さない）
+        if name and len(_plain_number(text).replace(_plain_number(name), "")) >= 4:
+            out.append(w)
+    return out
+
+
 def summary_line(highlights: list[str], fig: dict | None) -> str | None:
     """何が起きたかの1文（要点の1つ目）。大事な数字（黒いカードの数字、無ければ文の最初の数字）を **…** で囲む"""
     text = re.sub(r"^\s*(?:\d+[.)．、]|[・•\-*])\s*", "", (highlights or [""])[0] or "").strip()
@@ -166,13 +222,16 @@ def derive(record: dict) -> dict:
     changes, _ = changes_from_body(body)
     fig = key_figure(changes, highlights)
     fields: dict = {}
-    if line := summary_line(highlights, fig):
+    line = summary_line(highlights, fig)
+    if line:
         fields["summaryLine"] = line
-    if fig:
+    if figure_adds_info(fig, line):
         fields["keyFigure"] = fig
+    changes = useful_changes(changes)
     if changes:
         fields["changes"] = changes
     wrap, _ = wrap_up(body)
+    wrap = useful_wrap(wrap)
     if wrap:
         fields["wrapUp"] = wrap
     # 記事に書いていない数字が混ざった欄は出さない

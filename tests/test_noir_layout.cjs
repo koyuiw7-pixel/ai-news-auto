@@ -47,7 +47,7 @@ test('[W36] 今ある記事（2026-11-07 より前に載せた記事）には la
   assert.deepEqual(bad, []);
 });
 
-test('[W36] 表紙はいつも写真（公式の写真 → AI のイメージ → ぼかした公式の画像。何も無いときだけ黒）。2026-11-07 オーナー「黒地にしたいわけではない」', () => {
+test('[W36] 表紙はいつも写真（公式の写真 → AI のイメージ → 公式の画像をそのまま見せる。何も無いときだけ明るい紙に題名）。2026-11-07 オーナー「何もないとただ暗い感じ」「画像反映されていない」', () => {
   const official = { thumbnail: '/img/a.jpg', imageCredit: { kind: 'official', org: '日産' }, heroOk: true };
   assert.deepEqual(noir.noirCover(official), { kind: 'official', src: '/img/a.jpg' });
   // 公式の写真を出せない記事は、表紙用の AI のイメージ（thumbnail とは別の coverImage）
@@ -55,12 +55,12 @@ test('[W36] 表紙はいつも写真（公式の写真 → AI のイメージ �
   assert.deepEqual(noir.noirCover({ ...banner, coverImage: '/img/b-cover.jpg', coverCredit: { kind: 'ai' } }), { kind: 'ai', src: '/img/b-cover.jpg' });
   // 公式の写真が出せるなら、表紙のイメージがあっても公式の写真が先
   assert.equal(noir.noirCover({ ...official, coverImage: '/img/c.jpg', coverCredit: { kind: 'ai' } }).kind, 'official');
-  // 見出し画像の AI のイメージは、見出しとのつながりを確かめて coverImage に入ったときだけ。そのままは出さない（ぼかし）
-  assert.deepEqual(noir.noirCover({ thumbnail: '/img/ai.jpg', imageCredit: { kind: 'ai' } }), { kind: 'blur', src: '/img/ai.jpg' });
-  // AI のイメージが作れなかったら、告知のバナーでもぼかして背景に
-  assert.deepEqual(noir.noirCover(banner), { kind: 'blur', src: '/img/b.jpg' });
-  assert.equal(noir.noirCover({ thumbnail: '/img/s.jpg', imageCredit: { kind: 'stock' } }).kind, 'blur');
-  // 何も無い・地震の記事（noPhoto）だけ黒い表紙
+  // 見出し画像の AI のイメージは、見出しとのつながりを確かめて coverImage に入ったときだけ。確かめを通らなかった AI の絵は出さない（明るい紙に題名）
+  assert.equal(noir.noirCover({ thumbnail: '/img/ai.jpg', imageCredit: { kind: 'ai' } }), null);
+  // AI のイメージが作れなかったら、告知のバナーでも、ぼかさず・暗くせずにそのまま見せる（題名は下の帯）
+  assert.deepEqual(noir.noirCover(banner), { kind: 'panel', src: '/img/b.jpg' });
+  assert.equal(noir.noirCover({ thumbnail: '/img/s.jpg', imageCredit: { kind: 'stock' } }).kind, 'panel');
+  // 何も無い・地震の記事（noPhoto）だけ明るい紙に題名
   assert.equal(noir.noirCover({ thumbnail: '', imageCredit: { kind: 'official' } }), null);
   assert.equal(noir.noirCover({ thumbnail: '/img/q.jpg', noPhoto: true }), null);
   assert.equal(noir.NOIR_AI_LABEL, '画像はイメージ（AI生成）');
@@ -71,11 +71,17 @@ test('[W36] 表紙はいつも写真（公式の写真 → AI のイメージ �
   const page = read('components/noir/NoirArticle.tsx');
   const pageTs = read('components/noir/noirArticlePage.tsx');
   assert.match(pageTs, /cover=\{noirCover\(article\)\}/);
-  // AI のイメージには表紙の上に札（台帳 I4）。ぼかしの表紙は .nr-blur
+  // AI のイメージには表紙の上に札（台帳 I4）。公式の画像をそのまま見せる表紙は .nr-panel（強いぼかし・暗くする表紙はもう無い）
   assert.match(page, /cover\?\.kind === "ai" && \(\s*<span className="nr-ailabel"[^>]*>\s*\{aiLabel\}/);
-  assert.match(page, /cover\?\.kind === "blur" \? " nr-blur" : ""/);
+  assert.match(page, /panel \? " nr-panel" : ""/);
+  assert.doesNotMatch(page, /nr-blur/);
   const css = read('components/noir/noir.css');
-  assert.match(css, /\.nr-hero\.nr-blur \.nr-img img \{[^}]*filter: blur\(/);
+  assert.doesNotMatch(css, /nr-blur|brightness\(0\.[0-7]/);
+  // 画像は切らずに置く（object-contain）。後ろの色は暗くしない
+  assert.match(page, /nr-pfg[\s\S]{0,200}object-contain/);
+  assert.match(css, /\.noir \.nr-pbg img \{[^}]*blur\(22px\)/);
+  // 写真が何も無い表紙は明るい紙（黒くしない）
+  assert.match(css, /\.noir \.nr-hero\.nr-type \{[^}]*background: linear-gradient\(160deg, #f4f5f7/);
   // 題名の下は暗いグラデーション（平らな黒い箱ではない）
   assert.match(css, /\.noir \.nr-hero::after \{[^}]*linear-gradient\(/);
   // 点検（scripts/owner_rules_audit.py の I4）も表紙の AI のイメージを見る
@@ -90,6 +96,39 @@ test('[W36] 公式の写真をそのまま表紙に出すのは、大きな文�
   assert.equal(noir.noirPhoto({ thumbnail: '/img/a.jpg', imageCredit: { kind: 'ai' } }), null);
   assert.equal(noir.noirPhoto({ thumbnail: '/img/a.jpg', imageCredit: { kind: 'stock' } }), null);
   assert.equal(noir.noirPhoto({ thumbnail: '', imageCredit: { kind: 'official' } }), null);
+});
+
+test('[W36] 大きな数字の箱は、意味が伝わり上の1文に無い数字のときだけ（2026-11-07 オーナー「38% 応答時間 だけでは不自然」）', () => {
+  // KDDI Buffmee: 「38 %」「応答時間」だけ。上の1文にも 38% がある → 箱を出さない
+  assert.equal(noir.noirKeyFigure({ keyFigure: { value: '38', unit: '%', label: '応答時間' }, summaryLine: '合計の応答時間を**38%**減らし' }), null);
+  // 割合は前の値が無いと意味が伝わらない（1文に無くても出さない）
+  assert.equal(noir.noirKeyFigure({ keyFigure: { value: '38', unit: '%', label: '応答時間' }, summaryLine: 'KDDIが発表' }), null);
+  // 名前が会社名・「平均」だけ → 出さない
+  assert.equal(noir.noirKeyFigure({ keyFigure: { value: '60', unit: '台', label: 'トヨタ北米' }, summaryLine: '基盤を内製' }), null);
+  assert.equal(noir.noirKeyFigure({ keyFigure: { value: '66.7', unit: '%', label: '平均' }, summaryLine: '新評価' }), null);
+  // 前 → 今があり、1文に無い数字 → 出す
+  const nissan = { value: '479万7,100', unit: '円', label: 'LUXION 2WD e-POWER', before: '499万8,400円' };
+  assert.deepEqual(noir.noirKeyFigure({ keyFigure: nissan, summaryLine: 'LUXIONが**20万1,300円**値下げ' }), nissan);
+  // 前 → 今があっても、1文と同じ数字なら出さない
+  assert.equal(noir.noirKeyFigure({ keyFigure: nissan, summaryLine: '**479万7,100円**に' }), null);
+  // 「何の量か」が分かる名前（売上高）で、1文に無い数字 → 出す
+  const sales = { value: '3兆528億', unit: '円', label: '売上高' };
+  assert.deepEqual(noir.noirKeyFigure({ keyFigure: sales, summaryLine: '上期は増収増益' }), sales);
+  // 前と今が同じ行・言い直しだけのまとめは出さない
+  assert.deepEqual(noir.noirChanges([{ label: '価格', before: '100円', after: '100円' }]), []);
+  assert.equal(noir.noirWrapUp([{ name: 'LUXION', text: 'LUXION車' }]).length, 0);
+  assert.equal(noir.noirWrapUp([{ name: 'LUXION', text: '寒さ対策の装備が標準に' }]).length, 1);
+  const page = read('components/noir/NoirArticle.tsx');
+  assert.match(page, /const fig = noirKeyFigure\(article, line\)/);
+  // 今の記事に、出してはいけない箱が残っていない（後追いで外した）
+  const dir = path.join(root, 'content/articles');
+  const bad = [];
+  for (const name of fs.readdirSync(dir)) {
+    if (!name.endsWith('.json')) continue;
+    const a = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
+    if (a.layout === 'noir' && a.keyFigure && !noir.noirKeyFigure(a)) bad.push(name);
+  }
+  assert.deepEqual(bad, []);
 });
 
 test('[W36] 要点の1文は **…** の数字だけを強調する', () => {

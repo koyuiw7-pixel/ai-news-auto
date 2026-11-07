@@ -32,9 +32,10 @@ class CoverPathTest(unittest.TestCase):
         self.assertEqual(noir_cover.cover_path(noir(heroOk=True, imageCredit={"kind": "official"})), "official")
         self.assertEqual(noir_cover.cover_path(noir(coverImage="/img/x-cover.jpg", coverCredit={"kind": "ai"})), "ai")
         # 見出し画像の AI のイメージは、確かめて coverImage に入るまでは表紙にそのまま出さない
-        self.assertEqual(noir_cover.cover_path(noir(imageCredit={"kind": "ai"})), "blur")
-        self.assertEqual(noir_cover.cover_path(noir()), "blur")
-        self.assertEqual(noir_cover.cover_path(noir(thumbnail="")), "black")
+        # 確かめを通らない見出しの AI の絵は表紙に出さない（明るい紙に題名）。公式の画像はぼかさずそのまま（panel）
+        self.assertEqual(noir_cover.cover_path(noir(imageCredit={"kind": "ai"})), "type")
+        self.assertEqual(noir_cover.cover_path(noir()), "panel")
+        self.assertEqual(noir_cover.cover_path(noir(thumbnail="")), "type")
 
     def test_needs_cover(self):
         self.assertTrue(noir_cover.needs_cover(noir()))
@@ -135,10 +136,10 @@ class EnsureCoverTest(unittest.TestCase):
         self.assertEqual(article["thumbnail"], "https://ai-tech-express.jp/img/x-1.jpg")
         self.assertEqual(article["imageCredit"], {"kind": "official", "imageKind": "banner"})
 
-    def test_failure_falls_back_to_blur_and_counts(self):
+    def test_failure_falls_back_to_panel_and_counts(self):
         article = noir()
         with mock.patch.object(noir_cover, "reuse_thumbnail", return_value=None), mock.patch.object(noir_cover, "make_cover", side_effect=RuntimeError("boom")):
-            self.assertEqual(noir_cover.ensure_cover(article), "blur")
+            self.assertEqual(noir_cover.ensure_cover(article), "panel")
         self.assertEqual(article["coverTries"], 1)
         self.assertNotIn("coverImage", article)
 

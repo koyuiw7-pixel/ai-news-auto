@@ -28,16 +28,20 @@ export function noirPhoto(article: Pick<Article, "thumbnail" | "imageCredit" | "
 }
 
 export type NoirCover = {
-  /** official: 公式の写真をそのまま／ai: AI のイメージ（「画像はイメージ（AI生成）」を出す）／blur: 公式の画像などを強くぼかして暗くした背景 */
-  kind: "official" | "ai" | "blur";
+  /**
+   * official: 公式の写真をそのまま全面に／ai: AI のイメージ（「画像はイメージ（AI生成）」を出す）
+   * panel: 公式の画像（告知のバナーなど）を、ぼかさず・暗くせずにそのまま見せ、題名はその下の帯に出す
+   */
+  kind: "official" | "ai" | "panel";
   src: string;
 };
 
 /**
- * 表紙の背景（2026-11-07 オーナー「黒地にしたいわけではない。背景は写真を差し込みたい」。台帳 W36）。いつも写真を敷く。順に:
+ * 表紙の背景（2026-11-07 オーナー「背景は写真を差し込みたい。何もないとただ暗い感じ」「画像反映されていない」。台帳 W36）。順に:
  * ①公式の、大きな文字の無い本物の写真（noirPhoto） ②表紙用の AI のイメージ（coverImage。scripts/noir_cover.py が見出しとのつながりを確かめたものだけ。
- * 見出し画像の AI のイメージも、確かめを通れば coverImage に入る） ③無ければ見出し画像（告知のバナーでも）を強くぼかして暗くしたもの
- * どれも無いときだけ null（今までの黒い表紙に題名）。話題と関係の無い AI の場面は出さない（2026-11-07 オーナー「何もイメージできない」）
+ * 見出し画像の AI のイメージも、確かめを通れば coverImage に入る） ③公式・素材の見出し画像（告知のバナーでも）を、くっきりそのまま見せる（panel。
+ * 強くぼかして暗くした背景は「画像が無い」ように見えるのでやめた。2026-11-07 午後）
+ * どれも無いとき・見出し画像が確かめを通らなかった AI のイメージのときだけ null（明るい紙に題名を大きく）。話題と関係の無い AI の場面は出さない
  */
 export function noirCover(
   article: Pick<Article, "thumbnail" | "imageCredit" | "heroOk" | "coverImage" | "coverCredit" | "noPhoto">,
@@ -46,7 +50,7 @@ export function noirCover(
   if (photo) return { kind: "official", src: photo };
   if (article.noPhoto) return null;
   if (article.coverImage && article.coverCredit?.kind === "ai") return { kind: "ai", src: article.coverImage };
-  if (article.thumbnail) return { kind: "blur", src: article.thumbnail };
+  if (article.thumbnail && article.imageCredit?.kind !== "ai") return { kind: "panel", src: article.thumbnail };
   return null;
 }
 
@@ -58,6 +62,42 @@ export const NOIR_AI_LAUNCH_LABEL = "公式画像がないためイメージ（A
 /** 表紙の AI のイメージの札の文（coverCredit.launch なら発表の札） */
 export function noirAiLabel(article: Pick<Article, "coverCredit">): string {
   return article.coverCredit?.launch ? NOIR_AI_LAUNCH_LABEL : NOIR_AI_LABEL;
+}
+
+// 数字の名前が「何の量か」を言っている（scripts/noir_layout.py の MEASURE_LABEL と同じ）
+const MEASURE_LABEL = /(数|額|高|費|料|価格|値段|代|金|率|量|時間|期間|規模|売上|利益|収益|予算|賃金|給与|税率|上限|下限|容量|距離|速度|人数|件数|台数)$/;
+const LABEL_STOP = /^(約|総額|合計|およそ|前年|今回|昨年|累計で|税込|税抜|税別|米国|日本|国内|海外|世界|全国|計|同|最大|最低|最大で|上限|月額|年額)$/;
+const RELATIVE_UNIT = /^(%|％|ポイント|倍)$/;
+const flat = (text: string | undefined | null) => String(text ?? "").replace(/\*\*|\s/g, "");
+
+/**
+ * 大きな数字の箱を出すか（2026-11-07 オーナー「38% 応答時間 だけでは不自然じゃない？入れなきゃダメみたいなルールないのに」。台帳 W36）。
+ * ①前の値（before）があって今と違う、または名前が「何の量か」を言っている（割合・倍は前の値が要る）
+ * ②すぐ上の1文（summaryLine）に同じ数字がもう無い。どちらかを満たさなければ箱ごと出さない（今ある記事にも効く。scripts/noir_layout.py の figure_adds_info と同じ）
+ */
+export function noirKeyFigure(article: Pick<Article, "keyFigure" | "summaryLine">, line?: string | null): NoirKeyFigure | null {
+  const fig = article.keyFigure;
+  if (!fig || !String(fig.value ?? "").trim()) return null;
+  const value = flat(fig.value);
+  const unit = flat(fig.unit);
+  const label = String(fig.label ?? "").trim();
+  const before = flat(fig.before);
+  const hasBefore = !!before && before !== value + unit && before !== value;
+  if (!hasBefore && (RELATIVE_UNIT.test(unit) || !label || LABEL_STOP.test(label) || !MEASURE_LABEL.test(label))) return null;
+  const summary = flat(line ?? article.summaryLine);
+  if (summary && summary.includes(value + unit)) return null;
+  return fig;
+}
+
+/** 「前 → 今」の行は、前と今が違い、名前のある行だけ */
+export function noirChanges(changes: NoirChange[] | undefined): NoirChange[] {
+  return (changes ?? []).filter((c) => c && c.label && c.before && c.after && flat(c.before) !== flat(c.after));
+}
+
+/** まとめの一覧は、説明が名前の言い直しでない行だけ（行の数は作るときに 2〜5 行に決めている） */
+export function noirWrapUp(items: NoirWrapItem[] | undefined): NoirWrapItem[] {
+  const out = (items ?? []).filter((w) => w && w.name && w.text && flat(w.text).replace(flat(w.name), "").length >= 4);
+  return out;
 }
 
 /** 「**479万7,100円**」の印で、強調する数字と前後の文に分ける */
@@ -130,8 +170,8 @@ export function noirBodyHtml(html: string, fields: Pick<Article, "changes" | "wr
   let out = dropSections(html, UNKNOWN_SECTION)
     .replace(/<(h2|h3|blockquote)(?=[\s>])/gi, '<$1 data-rv=""')
     .replace(/<p>/gi, '<p data-rv="">');
-  const changes = (fields.changes ?? []).filter((c) => c && c.label && c.before && c.after);
-  const wrap = (fields.wrapUp ?? []).filter((w) => w && w.name && w.text);
+  const changes = noirChanges(fields.changes);
+  const wrap = noirWrapUp(fields.wrapUp);
   let changesDone = changes.length === 0;
   let wrapDone = wrap.length === 0;
   out = out.replace(TABLE_RE, (table) => {

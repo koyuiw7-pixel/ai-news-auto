@@ -209,17 +209,65 @@ html:has(.noir) body {
   padding: 3px 8px;
   border-radius: 3px;
 }
-/* AI のイメージも作れなかった記事は、見出し画像（告知のバナーなど）を強くぼかして暗くし、背景の色と光だけにする（文字は読めない） */
-.noir .nr-hero.nr-blur .nr-img img {
-  filter: blur(26px) brightness(0.62) saturate(1.1);
-  transform: scale(1.18);
+/* AI のイメージも作れなかった記事は、公式の画像（告知のバナーなど）を、ぼかさず・暗くせずにそのまま見せる（panel）。
+   2026-11-07 オーナー: 強くぼかして暗くした背景は「画像反映されていない」「何もないとただ暗い感じ」に見えた。
+   画像は切らずに置き（object-fit: contain）、左右の余りは同じ画像を少しぼかして広げた色で埋める（暗くしない）。題名は画像の下の帯 */
+.noir .nr-hero.nr-panel {
+  height: auto;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 56px);
 }
-/* どの写真も無い記事だけ、黒い表紙に題名を大きく（2026-11-07 オーナー「黒地にしたいわけではない」。最後の手段） */
+.noir .nr-hero.nr-panel::after {
+  display: none;
+}
+.noir .nr-pimg {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1200 / 630;
+  max-height: 540px;
+  overflow: hidden;
+  background: #eef0f2;
+}
+.noir .nr-pbg,
+.noir .nr-pfg {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+.noir .nr-pbg img {
+  filter: blur(22px) saturate(1.1);
+  transform: scale(1.2);
+  opacity: 0.85;
+}
+.noir .nr-pfg {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.noir .nr-hero.nr-panel .nr-hl {
+  position: relative;
+  bottom: auto;
+  padding-top: 26px;
+  padding-bottom: 40px;
+}
+.noir .nr-hero.nr-panel .nr-rule {
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--nr-red);
+  margin-bottom: 18px;
+}
+.noir .nr-hero.nr-panel h1 {
+  text-shadow: none;
+}
+/* どの写真も無い記事だけ、明るい紙に題名を大きく（2026-11-07 オーナー「何もないとただ暗い感じ」。最後の手段） */
 .noir .nr-hero.nr-type {
   height: auto;
-  min-height: min(96vw, 520px);
+  min-height: min(80vw, 440px);
   display: flex;
   align-items: flex-end;
+  color: var(--nr-text);
+  background: linear-gradient(160deg, #f4f5f7 0%, #e6e9ed 100%);
+  border-bottom: 1px solid var(--nr-rule);
 }
 .noir .nr-hero.nr-type::after {
   display: none;
@@ -233,6 +281,12 @@ html:has(.noir) body {
 }
 .noir .nr-hero.nr-type h1 {
   font-size: clamp(32px, 9.4vw, 52px);
+  color: var(--nr-text);
+  text-shadow: none;
+}
+.noir .nr-hero.nr-type .nr-kick,
+.noir .nr-hero.nr-type .nr-meta {
+  color: var(--nr-text2);
 }
 .noir .nr-hero.nr-type .nr-rule {
   display: block;
@@ -240,6 +294,16 @@ html:has(.noir) body {
   height: 3px;
   background: var(--nr-red);
   margin-bottom: 20px;
+}
+/* 明るい表紙の上では、上の帯の「サイソク」を黒い文字に */
+.noir .nr-top.nr-onlight:not(.glass) .nr-logo {
+  color: var(--nr-text);
+}
+:root[data-theme="dark"] .noir .nr-hero.nr-type {
+  background: linear-gradient(160deg, #1d2126 0%, #15181c 100%);
+}
+:root[data-theme="dark"] .noir .nr-top.nr-onlight:not(.glass):not(.solid) .nr-logo {
+  color: var(--nr-white);
 }
 .noir .nr-hl {
   position: absolute;
