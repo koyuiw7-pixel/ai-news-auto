@@ -11842,6 +11842,18 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000307.000002500.html"
     },
+    "8d6a841a4915bd8c": {
+      "at": "2026-11-07T10:06:40.537593+00:00",
+      "costUsd": 0.0221,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "vercel-ai-gateway-deepseek-search-fetch",
+      "url": "https://vercel.com/changelog/ai-gateway-adds-deepseek-search-and-fetch-tools"
+    },
     "8d794d20b88a24bb": {
       "at": "2026-10-27T01:31:25.544350+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -18431,54 +18443,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-05T19:35:59.271076+00:00",
-      "attempt": 1,
-      "id": "0881a19b3d3071bd",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 75.8,
-        "avg_sentence": 34.8,
-        "long_share": 0.054,
-        "max_paragraph": 139,
-        "paragraphs": 17,
-        "sentences": 37
-      },
-      "score": 92,
-      "source": "meta-newsroom",
-      "title": "Give Your Muse a Voice",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T19:53:57.653364+00:00",
-      "attempt": 1,
-      "id": "3df4d68063a5a1b4",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "段落が長い（平均 154.5字・最長 311字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 154.5,
-        "avg_sentence": 42.5,
-        "long_share": 0.2,
-        "max_paragraph": 311,
-        "paragraphs": 11,
-        "sentences": 40
-      },
-      "score": 90,
-      "source": "nvidia-blog",
-      "title": "More Performance From Every Byte: How Full-Stack Codesign Solves AI’s Memory Cha",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（KV・NVFP・FLUX）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-05T19:54:24.418888+00:00",
       "attempt": 0,
       "id": "3df4d68063a5a1b4",
@@ -24466,6 +24430,57 @@
       "warnings": [
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（UTC・UI・JSON）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T10:06:10.709335+00:00",
+      "attempt": 1,
+      "id": "8d6a841a4915bd8c",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 50.1字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 170.4字・最長 239字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 170.4,
+        "avg_sentence": 50.1,
+        "long_share": 0.294,
+        "max_paragraph": 239,
+        "paragraphs": 10,
+        "sentences": 34
+      },
+      "score": 93,
+      "source": "vercel-changelog",
+      "title": "AI Gateway adds DeepSeek Search and Fetch tools",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（KEY・GLM）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T10:06:40.523916+00:00",
+      "attempt": 0,
+      "id": "8d6a841a4915bd8c",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 46.6字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 116.4,
+        "avg_sentence": 46.6,
+        "long_share": 0.229,
+        "max_paragraph": 184,
+        "paragraphs": 14,
+        "sentences": 35
+      },
+      "score": 92,
+      "source": "vercel-changelog",
+      "title": "AI Gateway adds DeepSeek Search and Fetch tools",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（KEY・GLM）"
       ]
     }
   ],

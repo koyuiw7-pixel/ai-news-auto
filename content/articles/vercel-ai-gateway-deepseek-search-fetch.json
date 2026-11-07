@@ -1,0 +1,145 @@
+{
+  "slug": "vercel-ai-gateway-deepseek-search-fetch",
+  "sourceType": "web",
+  "sourceUrl": "https://vercel.com/changelog/ai-gateway-adds-deepseek-search-and-fetch-tools",
+  "sourceName": "Vercel Changelog",
+  "title": "AI Gatewayに検索・ページ取得ツール　1,000回あたり0.75ドル",
+  "seoTitle": "AI Gatewayの検索・ページ取得ツールとは？料金と使い方",
+  "threadsPost": "AI開発をしている人に、知っておいてほしい話です。\n\nAI GatewayでDeepSeekの検索とページ取得のツールが使えるようになりました。\n料金は1,000回あたり0.75ドルで、失敗やタイムアウトには課金されません。\n\nAIの検索やデータ取得に、毎月いくらまでなら使えますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "price",
+      "question": "AIの検索やデータ取得に、毎月いくらまでなら使えますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "契約先を1つにまとめる便利さと、選べる先が減ること、どちらを重く見ますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "AIに調べものを任せるなら、どこまで任せてよいと考えますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "Vercelの「AI Gateway」で、AIに最新のWebページを検索させ、その本文を読ませる2つのツールが使えるようになりました。料金は、検索とページ取得がそれぞれ1,000回あたり0.75ドルで、失敗した分は課金されません。今すぐ試すなら、AI SDKを最新版に上げてAPIキーを設定するところから始められます。",
+  "description": "Vercel AI Gatewayで、DeepSeekの検索とページ取得ツールが使えるようになりました。料金は1,000回0.75ドルで、失敗やタイムアウトには課金されません。APIキー1つで、ツール対応の他社モデルと組み合わせられます。",
+  "keywords": [
+    "AI Gateway",
+    "DeepSeek Search",
+    "DeepSeek Fetch",
+    "AI SDK 検索ツール",
+    "Vercel AI Gateway 料金",
+    "AIエージェント 検索",
+    "ツール呼び出し",
+    "Web検索 API 料金",
+    "DeepSeek 検索 料金"
+  ],
+  "tags": [
+    "生成AI",
+    "API",
+    "Vercel",
+    "AIエージェント",
+    "DeepSeek"
+  ],
+  "highlights": [
+    "AI Gatewayに、DeepSeekの検索（Search）とページ取得（Fetch）のツールが追加されました。",
+    "料金は検索・取得それぞれ1,000回あたり0.75ドル。失敗・タイムアウト・空の結果は課金されません。",
+    "APIキーは1つで済み、別のDeepSeekアカウントは要りません。AI SDKはv6が6.0.321以降、v7が7.0.160以降です。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "1,000回$0.75",
+    "free": false,
+    "audience": "API開発者",
+    "take": "AI SDKを最新版にして、公式の例を1回動かしてみるとよいでしょう。",
+    "judgedAt": "2026-11-07T10:06:02.730417+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AI機能を自社のサービスに組み込む開発者は、検索を別のDeepSeekアカウントなしで、APIキー1つで試せます。",
+      "料金は1,000回あたり0.75ドルで、失敗やタイムアウトには課金されません。"
+    ]
+  },
+  "body": "AIに最新のWebページを探させたいときは、検索とページ読み取りの仕組みを用意する必要がありました。今回、Vercelの「AI Gateway」で、DeepSeekの検索ツール「DeepSeek Search」とページ取得ツール「DeepSeek Fetch」が使えるようになりました。アプリや業務用のエージェントを開発している人は、この2つを同じAPIキーで呼び出せます。\n\nAI Gatewayは、AIモデルを呼び出す窓口（API）を1つにまとめるサービスです。利用量と料金の確認、ルーティング、再試行、障害時の切り替え（フェイルオーバー）を受け持ちます。\n\n今回のツールは、そこに「調べて、読む」の部品を足すものです。AI Gatewayでは、このところ他社のモデルの追加も続いています。たとえばMeituanのLongCat 2.5は、サイソクが11月3日に報じています（[Vercelが「AI Gateway」でMeituanの「LongCat 2.5」を提供開始](/articles/vercel-longcat-2-5-ai-gateway)）。\n\nDeepSeek Searchは、関連するページをタイトル、URL、要約つきで一覧にします。DeepSeek Fetchは、指定したページの本文を、見出しや箇条書きの記号を使うMarkdown（軽い書式の文章形式）にして返します。公式の例は、最新の発表を探して、ページを取得し、要約するという流れです。\n\nどちらのツールも、ツール呼び出し（AIが外部の機能を呼び出す仕組み）に対応したモデルであれば使えます。モデルを別の会社のものに切り替えても、同じツールをそのまま使い続けられます。別のDeepSeekアカウントは要りません。\n\n## 料金は1,000回あたり0.75ドル、失敗やタイムアウトは課金されない\n\n検索とページ取得は、それぞれ1,000回あたり0.75ドルかかります。失敗した要求、タイムアウト、結果が空だった場合は、ツールの料金はかかりません。ただし、モデルのトークン（AIが文章を区切る単位）の料金は別に請求されます。\n\n料金ページに載っている他の検索ツールは、次のとおりです。\n\n- 1,000回あたり5ドルから7ドル（Vercel Changelog「DeepSeek Search API, Pricing & Playground」、11/7確認）\n\n料金だけを並べると差は大きく見えます。ただ、検索結果の精度を他社と比べたデータは、今回の発表にはまだありません。そのため、優劣はまだ判断できないというのが編集部の見方です。\n\n## 使い方　AI SDKを更新して、検索ツールを足すだけ\n\n使うには、AI SDK（AIアプリを作るための開発用ライブラリ）を最新版にします。v6は6.0.321以降、v7は7.0.160以降が必要です。pnpm add ai@latest で更新し、環境変数AI_GATEWAY_API_KEYにキーを設定します。\n\n公式の例では、streamTextという関数のツールに、gateway.tools.deepseekSearchとdeepseekFetchを並べて渡します。検索結果は3件に絞る設定（count: 3）です。例で使われているモデルは、DeepSeekのdeepseek-v4.1-flash-1017です。\n\nその仕組みは、サイソクが10月31日に詳しく書いています（[DeepSeekのV4.1-Flash、入力時は8Bだけ動かす552Bモデル](/articles/deepseek-v41-flash-review-benchmarks)）。\n\n検索が失敗したときに備え、別の検索ツールを加える例もあります。Exa（exa_search）とParallel（parallel_search）を加え、Z.aiのGLM 5.3 Flashで動かす例です。\n\nただし、どの順番で試すか、何回まで再試行するかは、モデルに任される「ベストエフォート」だと説明されています。DeepSeek Fetchは、どの検索ツールで見つけたURLにも使えます。\n\nDeepSeek Searchは、DeepSeekの利用規約とプライバシーポリシーに従って使います（同じ料金ページ、11/7確認）。新しいAPIキーは既定で作成した個人に費用が紐づきます（Vercel Changelog「AI Gateway API Keys」、11/7確認）。チームの予算で払うには、オーナーかAI Gatewayの予算管理者が設定を変える必要があります。\n\n## まだ分からないこと\n\n- 利用できる国や地域の条件は、まだ発表されていません。\n- 取得できるページの範囲や、1回あたりの量の上限は、まだ発表されていません。\n- 検索結果の正確さを他社と比べたデータは、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nAIに最新のWebページを探させて、その内容を読ませる2つの道具が、Vercelの「AI Gateway」で使えるようになりました。料金は1,000回あたり0.75ドルで、失敗した分は課金されません。\n\nAI Gatewayは、AIモデルを呼び出す窓口（API）を1つにまとめるサービスです。今回追加されたのは、DeepSeekの検索ツール「DeepSeek Search」と、ページの中身を取り出す「DeepSeek Fetch」です。\n\n検索ツールは、関連するページをタイトル、URL、要約つきで一覧にします。取得ツールは、指定したページの本文を、見出しや箇条書きの記号つきの文章（Markdown）にして返します。AIはそれを読んで、要約などの答えを作ります。\n\n使えるのは、AIのツール呼び出し（AIが外部の機能を呼び出す仕組み）に対応したモデルです。APIキーは1つで済み、DeepSeekのアカウントを別に作る必要はありません。\n\n## 始め方\n\nAI SDKを最新版に上げます。v6なら6.0.321以降、v7なら7.0.160以降が必要です。pnpm add ai@latest で更新し、環境変数AI_GATEWAY_API_KEYにキーを設定します。\n\n公式の例では、検索結果を3件にする設定で、検索と取得の2つを同時に渡しています。検索が失敗したときに備えて、別の検索ツールを加える例もあります。",
+  "channel": "Vercel Changelog",
+  "channelId": "",
+  "channelSlug": "vercel-changelog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "AI Gateway adds DeepSeek Search and Fetch tools",
+  "publishedAt": "2026-11-06T21:00:00+00:00",
+  "generatedAt": "2026-11-07T10:06:02.730407+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/vercel-ai-gateway-deepseek-search-fetch-7896086b.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "AI SDKのバージョンを確かめ、v6なら6.0.321以降、v7なら7.0.160以降に上げる",
+    "AI GatewayのAPIキーの画面で、キーの費用がどの個人やチームに紐づくかを確かめる",
+    "使う前に、DeepSeekの利用規約とプライバシーポリシーを読んでおく"
+  ],
+  "relatedSlugs": [
+    "vercel-longcat-2-5-ai-gateway",
+    "deepseek-v41-flash-review-benchmarks"
+  ],
+  "qualityScore": 92,
+  "factSources": [
+    {
+      "label": "関連ページ",
+      "name": "Vercel Changelog「AI Gateway Web Search」",
+      "url": "https://vercel.com/docs/ai-gateway/models-and-providers/web-search",
+      "checkedAt": "2026-11-07"
+    },
+    {
+      "label": "関連ページ",
+      "name": "Vercel Changelog「AI Gateway API Keys」",
+      "url": "https://vercel.com/docs/ai-gateway/authentication-and-byok/api-keys",
+      "checkedAt": "2026-11-07"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-06T21:00:00+00:00",
+  "detectedAt": "2026-11-07T10:03:35+00:00",
+  "layout": "noir",
+  "summaryLine": "AI Gatewayに、DeepSeekの検索（Search）とページ取得（Fetch）のツールが追加されました。",
+  "imageCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A close‑up of a pair of hands typing on a laptop keyboard, the screen filled with abstract pastel color blocks under soft office lighting.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/XjRrN5hZhlEhKtaKK82HX/21cb9a2fc8061a972c50e795f492248a/Vercel_x_DeepSeek.png",
+    "at": "2026-11-07T10:07:26+00:00"
+  },
+  "imageFocus": {
+    "x": 0.518,
+    "y": 0.553,
+    "box": [
+      0.037,
+      0.107,
+      1.0,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/vercel-ai-gateway-deepseek-search-fetch-7896086b.jpg"
+  },
+  "coverImage": "https://ai-tech-express.jp/img/vercel-ai-gateway-deepseek-search-fetch-7896086b.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A close‑up of a pair of hands typing on a laptop keyboard, the screen filled with abstract pastel color blocks under soft office lighting.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/XjRrN5hZhlEhKtaKK82HX/21cb9a2fc8061a972c50e795f492248a/Vercel_x_DeepSeek.png",
+    "at": "2026-11-07T10:07:26+00:00",
+    "reused": true
+  }
+}
