@@ -8566,6 +8566,18 @@
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047966/"
     },
+    "56a03da12c0bbf17": {
+      "at": "2026-11-07T08:13:24.282819+00:00",
+      "costUsd": 0.0149,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 85,
+      "section": "ai",
+      "slug": "smartwatch-hypertension-detection-ai",
+      "url": "https://research.google/blog/detecting-signs-of-hypertension-using-wearable-sensors/"
+    },
     "56abb930daea0460": {
       "at": "2026-10-27T21:22:00.215462+00:00",
       "reason": "followup: 新しい事実なし（ntt-docomo-kumamoto-earthquake-volunteer）",
@@ -18389,20 +18401,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-05T18:22:59.280457+00:00",
-      "attempt": 1,
-      "id": "e6c9c7fda0339b68",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "toyota",
-      "title": "[トヨタイムズ記事] 【2027年3月期第2四半期決算】3年ぶり増益 事業構造改革へ加速"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-05T18:23:09.958998+00:00",
       "attempt": 2,
       "id": "e6c9c7fda0339b68",
@@ -24394,6 +24392,29 @@
       "title": "Egyptian and Nigerian English join the Open ASR Leaderboard",
       "warnings": [
         "初めて出たところで言い換えていない略語（ASR）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T08:13:14.406212+00:00",
+      "attempt": 1,
+      "id": "56a03da12c0bbf17",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 99.9,
+        "avg_sentence": 36.8,
+        "long_share": 0.079,
+        "max_paragraph": 154,
+        "paragraphs": 14,
+        "sentences": 38
+      },
+      "score": 85,
+      "source": "google-research-blog",
+      "title": "Detecting signs of hypertension using wearable sensors",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（PPG・ACC・BCG）"
       ]
     }
   ],
