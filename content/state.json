@@ -272,6 +272,7 @@
     "c81a1e9aca96c53d": "2026-11-04T13:10:52.830493+00:00",
     "c8cabbdd5caa174b": "2026-11-06T06:20:57.963971+00:00",
     "ca6e643ea2a04065": "2026-11-05T12:02:48.521507+00:00",
+    "ca7a6e8f8515fc6d": "2026-11-07T18:30:54.073661+00:00",
     "cce3230603824604": "2026-11-05T12:02:48.521507+00:00",
     "d0a6cf45971cc4dd": "2026-11-06T06:00:54.354301+00:00",
     "d12138e172a3a7f9": "2026-11-04T13:10:52.830493+00:00",
@@ -3685,6 +3686,12 @@
       "skipped": true,
       "url": "http://www.npa.go.jp/newlyarrived/2026/20261106001.html"
     },
+    "02667be02cad0dd5": {
+      "at": "2026-11-07T18:31:38.197103+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.jma.go.jp/jma/press/2611/08a/202611080305.html"
+    },
     "02812387c422b17e": {
       "at": "2026-11-04T15:47:30.497574+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -3990,6 +3997,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
       "skipped": true,
       "url": "https://www.fsa.go.jp/inter/etc/20261106/20261106.html"
+    },
+    "095f00e1dc31e686": {
+      "at": "2026-11-07T18:31:38.426488+00:00",
+      "reason": "stale: 発表から71時間（記事ページの日付）",
+      "skipped": true,
+      "url": "https://www.redhat.com/en/blog/friday-five-november-6-2026-red-hat"
     },
     "096b63af66cdaf4c": {
       "at": "2026-10-29T18:13:41.962735+00:00",
@@ -15037,6 +15050,18 @@
       "skipped": true,
       "url": "https://www.digital.go.jp/policies/administrative_procedures_online"
     },
+    "c1198ca2bc5da2f1": {
+      "at": "2026-11-07T18:33:52.408719+00:00",
+      "costUsd": 0.023,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "ampersand-on-ai-gateway-free-trial",
+      "url": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway"
+    },
     "c163e5401c88db95": {
       "at": "2026-10-30T18:31:28.344172+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -15603,7 +15628,7 @@
       "url": "https://prtimes.jp/main/html/rd/p/000000020.000149931.html"
     },
     "ca7a6e8f8515fc6d": {
-      "at": "2026-11-07T18:11:42.598372+00:00",
+      "at": "2026-11-07T18:31:38.196966+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327182.html"
@@ -18722,81 +18747,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T01:06:31.024779+00:00",
-      "attempt": 2,
-      "id": "b679e9ea65e0426e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 55.1字・60字超の文が 39% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 90.7,
-        "avg_sentence": 55.1,
-        "long_share": 0.393,
-        "max_paragraph": 123,
-        "paragraphs": 17,
-        "sentences": 28
-      },
-      "score": 90,
-      "source": "ntt-news",
-      "title": "株式会社地域創生Coデザイン研究所（NTT西日本グループ）が「J－クレジット・プロバイダー」に登録～森林由来J－クレジットの創出・流通支援、活用にグループ一体で",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CO・GX・ESG）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T01:07:04.258831+00:00",
-      "attempt": 0,
-      "id": "b679e9ea65e0426e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 87.9,
-        "avg_sentence": 38.6,
-        "long_share": 0.0,
-        "max_paragraph": 129,
-        "paragraphs": 18,
-        "sentences": 41
-      },
-      "score": 88,
-      "source": "ntt-news",
-      "title": "株式会社地域創生Coデザイン研究所（NTT西日本グループ）が「J－クレジット・プロバイダー」に登録～森林由来J－クレジットの創出・流通支援、活用にグループ一体で",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CO・GX・ESG）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T01:08:10.080509+00:00",
-      "attempt": 1,
-      "id": "4a29cf0a9e1bd354",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す"
-      ],
-      "readability": {
-        "avg_paragraph": 142.2,
-        "avg_sentence": 50.0,
-        "long_share": 0.243,
-        "max_paragraph": 226,
-        "paragraphs": 13,
-        "sentences": 37
-      },
-      "score": null,
-      "source": "sbintuitions-blog",
-      "title": "Sarashina をコーディングエージェントで使う: OpenCode・Hermes Agent・Crush での利用と、サブエージェントとしての活用",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SB・KEY・TUI）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-06T01:09:33.060455+00:00",
@@ -24946,6 +24896,86 @@
       "title": "Token Pass credit now applies automatically across AI Gateway",
       "warnings": [
         "初めて出たところで言い換えていない略語（OIDC・CLI）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T18:33:07.665431+00:00",
+      "attempt": 1,
+      "id": "c1198ca2bc5da2f1",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「このモデルは、普段のチャットアプリに組み込まれて使うものではありません」→ 元記事は、開発者が自分のチャットアプリでハンドラを呼び出す設計を示しており、普段のチャットアプリに組み込めないとは書かれていない。元記事に無い断定で、元記事と食い違う。",
+        "「一般提供（GA）になる時期は、まだ発表されていません」→ 元記事に一般提供の話は無く、「まだ発表されていません」という書き方は許容範囲だが、GAという概念を持ち出している点は元記事に無い補足。"
+      ],
+      "readability": {
+        "avg_paragraph": 91.0,
+        "avg_sentence": 45.5,
+        "long_share": 0.2,
+        "max_paragraph": 149,
+        "paragraphs": 15,
+        "sentences": 30
+      },
+      "score": 88,
+      "source": "vercel-changelog",
+      "title": "Ampersand from Humans& now available on AI Gateway",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CLI・BYOK・GA）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T18:33:25.072800+00:00",
+      "attempt": 1,
+      "id": "c1198ca2bc5da2f1",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 47.0字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 90.9,
+        "avg_sentence": 47.0,
+        "long_share": 0.241,
+        "max_paragraph": 149,
+        "paragraphs": 15,
+        "sentences": 29
+      },
+      "score": 94,
+      "source": "vercel-changelog",
+      "title": "Ampersand from Humans& now available on AI Gateway",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CLI・BYOK）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T18:33:46.367110+00:00",
+      "attempt": 0,
+      "id": "c1198ca2bc5da2f1",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.8,
+        "avg_sentence": 40.9,
+        "long_share": 0.147,
+        "max_paragraph": 157,
+        "paragraphs": 15,
+        "sentences": 34
+      },
+      "score": 92,
+      "source": "vercel-changelog",
+      "title": "Ampersand from Humans& now available on AI Gateway",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CLI・BYOK）"
       ]
     }
   ],

@@ -1,0 +1,128 @@
+{
+  "slug": "ampersand-on-ai-gateway-free-trial",
+  "sourceType": "web",
+  "sourceUrl": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway",
+  "sourceName": "Vercel Changelog",
+  "title": "会話に加わるAI「Ampersand」、AI Gatewayで11月13日まで無料",
+  "seoTitle": "Ampersandとは？AI Gatewayの使い方と料金　11月13日まで無料",
+  "threadsPost": "チャットにAIを組み込みたい開発者に、知っておいてほしい話です。\n\nHumans&のAIモデル「Ampersand」が、AI Gatewayで使えるようになりました。\n無料で使えるのは11月13日までで、発言するか黙るかを自分で判断します。\n\n会議のチャットで、AIに発言のタイミングまで任せるなら、どこまでなら許せますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "会議のチャットで、AIに発言のタイミングまで任せるなら、どこまでなら許せますか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "普段のチャットで、AIに入ってきてほしいと思うのはどんな場面ですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "開発者は、Vercelの「AI Gateway」経由で、チャットのような複数人の会話に加わるAIモデル「Ampersand」を呼び出せるようになりました。無料で使えるのは2026年11月13日までで、その後の料金はまだ発表されていません。試すなら、モデル名「humansand/ampersand-v0.1」を指定します。",
+  "description": "Humans&のAIモデル「Ampersand」がVercelのAI Gatewayで使えるようになりました。2026年11月13日まで無料で、AI SDKやChat Completions API互換の方法から呼び出せます。11月14日以降の料金は、まだ発表されていません。",
+  "keywords": [
+    "Ampersand",
+    "Humans&",
+    "AI Gateway",
+    "Vercel AI Gateway",
+    "会話に加わるAI",
+    "グループチャット AI",
+    "AIモデル 無料",
+    "Ampersand 使い方",
+    "Ampersand 料金",
+    "コーディングエージェント AI Gateway"
+  ],
+  "tags": [
+    "生成AI",
+    "LLM",
+    "AI Gateway",
+    "Vercel",
+    "開発ツール"
+  ],
+  "highlights": [
+    "Humans&のAIモデル「Ampersand」が、Vercelの「AI Gateway」で使えるようになりました。",
+    "呼び出しは、AI SDKかChat Completions API互換の方法、コーディングエージェントの3通りです。",
+    "アプリは「send_message」（発言）と「pass」（黙る）の2つの道具で、発言と沈黙を切り替えます。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "11/13まで無料",
+    "free": true,
+    "audience": "AIを組み込む開発者",
+    "take": "会話に組み込むAIを試すなら、11月13日までの無料期間に動きを確かめておくとよいでしょう。",
+    "judgedAt": "2026-11-07T18:32:57.630006+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "社内チャットや問い合わせ窓口のボットを作る開発者は、無料期間中に試作で動きを確かめられます。",
+      "料金は11月14日以降まだ発表されていないため、本番に組み込む前に公式の情報で確認するとよいでしょう。"
+    ]
+  },
+  "body": "会話の流れを見て、毎回「発言する」か「黙っている」かを自分で決めます。\n元の発表では、必要なときだけ質問したり、文脈を補ったり、相手の返事を待ったりする設計だと説明しています。\n\n元の発表では、開発者が自分のチャットアプリで新しい人間のメッセージが届くたびに、このモデルを呼び出す設計として示されています。\n\n## 無料で使えるのは11月13日まで、呼び出し方は3つ\n\nVercelの公式changelogによると、Ampersandは2026年11月13日まで、AI Gatewayで無料で使えます。\nAI Gatewayは、複数のAIモデルを1つの窓口から呼び出せるサービスです。\n\n呼び出し方は3つあります。AI SDKを使う方法と、OpenAIのChat Completions APIと同じ形で呼ぶ方法です。後者は接続先のURLを変えるだけで使えます。3つ目は、Claude CodeやCodex、Cursorなどのコーディングエージェントから使う方法です。\n\nモデル名は「humansand/ampersand-v0.1」を指定します。コーディングエージェントで使うときは、最新のVercel CLIを入れ、「npx vercel ai-gateway setup」を実行します。そのうえで、エージェントでこのモデルを選びます。モデルの試し画面（playground）でも試せます。\n\nAI Gatewayは、提供元の料金に上乗せせず、推論（AIが答えを作る処理）への手数料も取らないと説明しています。自分のAPIキーを持ち込む方式（BYOK）でも同じです。\n\n編集部の見立てでは、まずは無料期間中に、社内チャットなどの試作で発言と沈黙の判断を確かめるのが現実的です。\n\n## 発言と沈黙は、2つの道具の選び方で決まる\n\nAmpersandを使うアプリは、2つの道具（ツール）を用意します。send_messageは会話に発言を送る道具で、passは次に人間のメッセージが来るまで黙っている道具です。\n\n道具を選ぶのはAIです。実際に発言を投稿したり記録したりするのは、アプリ側の処理です。サンプルコードでは、1回の応答で道具を1つだけ選ぶ形にしています。\n\nサンプルでは、MayaとLeoの意見が分かれる場面を使っています。最初のメッセージでは、Ampersandに「明確化のための質問を1つ」投げさせます。2つ目のメッセージでは、「Leoの返事を先に聞き、それまでは黙っている」ように指示します。\n\npassを選んだときは、発言の投稿もなく、AIの次の応答も始まりません。アプリは待機の記録を残すだけです。\n\n道具の指定（tool choice）は、autoとnoneを受け付けます。requiredと特定の道具の指定は受け付けない、と案内されています。\n\n本番のチャットアプリに組み込むなら、応答、会話の履歴、投稿の受付番号（receipt）を、消えない保存先に残す必要があります。投稿が成功したか分からないときは、同じ番号で再送します。会話ごとに順番に処理し、投稿する前に会話へのアクセス権を確かめる、とも案内されています。\n\nモデルの仕様では、出力は最大32,768トークンまでです。トークンはAIが文字を数える単位で、推論に使うトークンも上限に数えられます。\n\nAI Gatewayでは、サイソクが11月7日に報じたように、DeepSeekの検索ツールも使えるようになっています（[AI Gatewayに検索・ページ取得ツール　1,000回あたり0.75ドル](/articles/vercel-ai-gateway-deepseek-search-fetch)）。\n\n## まだ分からないこと\n\n- 無料期間が終わる11月14日以降の料金は、まだ発表されていません。\n- 日本からの利用や、日本語での対応は、まだ発表されていません。\n- 正式な提供の時期は、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nAmpersandは、チャットのような複数人の会話に加わり、発言するか黙るかを毎回決めるAIモデルです。AI Gateway（複数のAIを1つの窓口から呼び出せるサービス）で、2026年11月13日まで無料で試せます。\n\n## 無料で試す方法\n\nモデル名は「humansand/ampersand-v0.1」です。呼び出しはAI SDKか、OpenAIのChat Completions APIと同じ形式で行えます。コーディングエージェントで使うなら、最新のVercel CLIを入れて「npx vercel ai-gateway setup」を実行します。アプリに組み込む場合は、発言を送る「send_message」と、黙る「pass」の2つの道具を用意します。AIがどちらかを選び、投稿などの処理はアプリ側が行います。11月14日以降の料金はまだ発表されていません。",
+  "channel": "Vercel Changelog",
+  "channelId": "",
+  "channelSlug": "vercel-changelog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Ampersand from Humans& now available on AI Gateway",
+  "publishedAt": "2026-11-06T00:00:00+00:00",
+  "generatedAt": "2026-11-07T18:32:57.629995+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/ampersand-on-ai-gateway-free-trial-4f795374.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "開発中のアプリがあるなら、モデル名「humansand/ampersand-v0.1」を指定して、11月13日までに試し呼び出しをしてみる。",
+    "コーディングエージェントを使うなら、最新のVercel CLIを入れて「npx vercel ai-gateway setup」を実行する。"
+  ],
+  "relatedSlugs": [
+    "vercel-ai-gateway-deepseek-search-fetch"
+  ],
+  "qualityScore": 92,
+  "factSources": [
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-08"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-06T00:00:00+00:00",
+  "detectedAt": "2026-11-07T18:30:54+00:00",
+  "layout": "noir",
+  "summaryLine": "Humans&のAIモデル「Ampersand」が、Vercelの「AI Gateway」で使えるようになりました。",
+  "sectionsPolishedAt": "2026-11-07T18:34:00+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Vercel",
+    "provider": "Vercel Changelog",
+    "sourceUrl": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway",
+    "original": "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/18CgCYFxjOjnQJt7A7QCml/ac681af1f15dbf06deef9a3596150a6b/image.png",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-07T18:35:58+00:00",
+    "imageKind": "logo"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.486,
+    "y": 0.503,
+    "box": [
+      0.322,
+      0.262,
+      0.65,
+      0.744
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/ampersand-on-ai-gateway-free-trial-4f795374.jpg"
+  },
+  "coverTries": 1
+}
