@@ -1,0 +1,137 @@
+{
+  "slug": "github-agentic-engineering-guide",
+  "sourceType": "web",
+  "sourceUrl": "https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/",
+  "sourceName": "GitHub公式ブログ",
+  "title": "AI導入が進むとレビュー時間が441%長く　GitHubが開発の進め方を公開",
+  "seoTitle": "GitHub Copilotの開発手順とは？計画から運用までの使い方",
+  "threadsPost": "開発チームでAIを使っている人、コードを書いたあとの作業に時間を取られていませんか？\n\nGitHubは、AIエージェントを計画から運用後まで使う開発の進め方を公式ブログで公開しました。\nAI導入が進んだチームでは、プルリクエストのレビュー時間が441%長くなったという調査も紹介されています。\n\nチームのレビュー待ちは、今どのくらいの日数がかかっていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "チームのレビュー待ちは、今どのくらいの日数がかかっていますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "AIにコードを書かせたあと、確認と修正をどこまで任せてよいと考えますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "GitHubは、コードを書く作業をAIに任せた後の、レビューや確認、本番後の調査まで、AIエージェント（自分で手順を進めるAI）で回す方法を公式ブログで紹介しました。AI導入が進んだチームでは、プルリクエストのレビュー時間が441%長くなったという調査が、その背景として挙げられています。新しい料金や提供開始日は示されていないため、まずは自分のチームでどの段階に時間がかかっているかを確かめるとよいでしょう。",
+  "description": "GitHubが、AIエージェントを計画・実装・確認・運用後の4段階で使う開発の進め方を公式ブログで公開。Copilotの使いどころ、レビューの手間を減らす機能、まだ示されていない料金や提供時期を整理します。",
+  "keywords": [
+    "GitHub Copilot 使い方",
+    "エージェント型開発",
+    "AIエージェント 開発",
+    "GitHub Agentic Workflows",
+    "Copilot cloud agent",
+    "プルリクエスト レビュー 時間",
+    "AIコーディング ツール",
+    "コードレビュー 自動化",
+    "GitHub Copilot 計画",
+    "Copilot Dreaming"
+  ],
+  "tags": [
+    "生成AI",
+    "GitHub Copilot",
+    "AIエージェント",
+    "開発ツール",
+    "ソフトウェア開発"
+  ],
+  "highlights": [
+    "GitHubは、AIエージェントを計画から運用後まで使う開発の流れを公式ブログで紹介",
+    "Copilot code reviewは変更の複雑さに応じて分析の深さを変えられ、Agentic Autofixが修正案を出す"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "有料プラン",
+    "free": null,
+    "audience": "開発チーム",
+    "take": "まず自分のチームのレビュー待ちの長さを確かめ、計画と確認の段階から試すとよいでしょう。",
+    "judgedAt": "2026-11-07T23:55:04.003386+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "開発のリーダーや担当者は、計画をIssueに分けて、簡単な作業をCopilotに割り当てる使い方から試せます。",
+      "レビューに回す前の確認を減らす機能は、プルリクエストを小さく分けるやり方と組み合わせると効きやすいと説明されています。"
+    ]
+  },
+  "body": "開発の仕事は、コードを書く作業だけでは終わりません。要件を整理し、変更を確かめ、本番に出した後も不具合を追います。GitHubの公式ブログは、AIエージェント（自分で手順を進めるAI）をこの流れ全体で使うための考え方を紹介しています。\n\nGitHubでは10月の1週間に12億件を超えるコミット（コードの変更の記録）があり、1年前より400%超多かったとしています。ただ、コードを書く速さが上がった分、ほかの作業が詰まりやすくなっています。\n\n公式ブログは、AI導入が低い段階から高い段階に進んだチームの調査も引いています。その調査では、プルリクエスト（変更の取り込み依頼）のレビュー時間が441%長くなりました。\n\nこの発表は手順の紹介で、新しい料金や提供開始日は示されていません。ここでは、公式ブログが挙げた4段階（Plan、Build、Verify、Observe）に沿って、何が使えるかを整理します。\n\n## 計画と実装で、Copilotに任せる範囲の決め方\n\n計画の段階では、設計の資料、Slackでの相談、過去のプルリクエストに散らばった情報を1か所にまとめる使い方が紹介されています。SlackやTeamsでCopilotを使えば、プロダクト担当者やデザイナーも同じ場で要件を確かめられるとしています。\n\n作業の分け方もあります。Copilotに、受け入れ条件（完成を判断する基準）を付けたGitHub Issues（作業の管理票）を作らせ、作業を分けます。GitHub Agentic Workflows（AIで繰り返しの作業を自動化する仕組み）は、Issueへのラベル付けや作業の難しさの見積もりに使えます。\n\n難易度の低い作業はCopilotに直接割り当て、人は判断の難しい作業に時間を使う流れです。\n\n複雑な作業では、Plan Modeで複数のやり方を比べ、実装計画を詰めます。人が計画を承認してから、Copilotに実装を渡す流れです。\n\nCopilotのクラウドエージェントに、変更の前に計画を提案させる手順は、GitHubのドキュメントにも載っています（GitHubドキュメント、11/8確認）。\n\nGitHub Agentic Workflowsの一般提供は、サイソクが別記事で報じています（[「Agentic Workflows」を一般提供　自然言語の指示でAIが開発作業を自動化](/articles/github-agentic-workflows-generally-available)）。\n\n実装では、クラウドの隔離された実行環境（サンドボックス）でタスクが動くため、ノートPCを閉じても作業が続きます。セッションは別の端末から同じものを再開できます。Copilotアプリでは、タスクごとにリポジトリのコピーを分けられるので、実装と文書更新の変更が混ざりにくくなります。\n\nモデルの選び方も変わります。Copilot Fusion（作業ごとにモデルと推論の深さを選べる機能）では、必要なときに別のモデルに解決策をレビューさせられます。Copilot Dreaming（セッションやプルリクエストの指摘を見て、記憶と指示文を更新する機能）の提案は、次の作業に使えるとしています。\n\n## 確認と運用、レビューの手間を減らす使い方\n\n確認の段階では、プルリクエストを小さく分けることが重要だとしています。依存関係のある作業を、1件ずつレビューできるスタック型のプルリクエストに分ける方法です。\n\nGitHub Code Quality（コーディングの決まりとの照合）は、人が見る前に問題を見つけます。Copilot code review（自動のコードレビュー）は、単純な変更は軽く、複雑な変更は深く分析します。その深さを自分で選ぶことも、Copilotに任せることもできます。\n\nセキュリティでは、AI Scanが、CodeQLの対象外の言語やファイルの脆弱性（攻撃に使われうる弱点）を探します。AI secret detection（秘密情報の検出）は、パスワードのように形の決まらない情報も見つけられるとしています。\n\n依存関係のライセンスの確認もあります。GitHub package firewall（危険なパッケージのダウンロードを止める仕組み）もあります。このfirewallはnpmで公開プレビュー中です。\n\nAgentic Autofix（AIによる修正案の提示）は、セキュリティ問題の修正案を出します。Agent Mergeは、失敗したチェック、レビューコメント、マージの衝突を自動で処理します。設定すると、検証が通った後にCopilotがマージまで行えます。\n\n本番に出した後は、監視ツールや業務データのコネクタ（つなぐ仕組み。Fabricの例あり）を使い、影響を受けた利用者の範囲を調べられます。見つけた内容は、証拠と受け入れ条件を付けたIssueとして起こせます。\n\n編集部の見方では、公式ブログが挙げた441%増のレビュー時間は、コードを速く書くだけでは仕事が楽にならない理由をよく示しています。だからこそ、確認の段階を先に減らす工夫は、現場で効きやすいと考えられます。\n\n## まだ分からないこと\n\n- Copilot Dreamingの提供範囲と提供時期は、今回の発表では示されていません。\n- Copilot Fusionの料金と、使えるモデルの一覧は示されていません。\n- 日本語での提供状況と、日本からの利用条件は示されていません。",
+  "easy": "## ひとことで言うと\n\nGitHubは、AIエージェント（自分で手順を進めるAI）を、計画から本番後の確認まで使う進め方を公式ブログで紹介しました。新しい料金や提供開始日は示されていません。\n\nコードを書く速さが上がると、レビューの待ち時間が増えやすくなります。公式ブログは、AI導入が進んだチームでレビュー時間が441%長くなったという調査を挙げています。\n\n計画の段階では、SlackやTeamsでCopilotを使い、関係者と要件を詰める使い方が紹介されています。確認の段階では、プルリクエストを小さく分けて、自動チェックに任せる部分を増やす考え方が示されています。\n\n運用後は、業務データと監視ツールをつないで、影響を受けた利用者を調べる例もあります。",
+  "channel": "GitHub公式ブログ",
+  "channelId": "",
+  "channelSlug": "github-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Beyond code generation: A developer’s guide to agentic engineering",
+  "publishedAt": "2026-11-06T22:15:59+00:00",
+  "generatedAt": "2026-11-07T23:55:04.003374+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/github-agentic-engineering-guide-b5d40f23.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "general",
+  "faq": [
+    {
+      "q": "Copilotのクラウドエージェントは、どの料金プランで使えますか？",
+      "a": "Copilot in the cloudは、すべての有料Copilotプランで既定で有効になっています（GitHubドキュメント、11/8確認）。"
+    }
+  ],
+  "todayActions": [
+    "自分のチームで、レビュー待ちのプルリクエストが今いくつあるかを数える。",
+    "公式ブログの4段階のうち、いちばん時間がかかっている段階を一つ選び、その段階で使える機能を確かめる。"
+  ],
+  "relatedSlugs": [
+    "github-agentic-workflows-generally-available"
+  ],
+  "qualityScore": 88,
+  "sourcePublishedAt": "2026-11-06T22:15:59+00:00",
+  "detectedAt": "2026-11-07T23:53:07+00:00",
+  "originalTitle": "コードを書いた後の作業もAIへ　GitHubが計画から運用までの進め方を公開",
+  "titleStyle": "2026-11-03",
+  "layout": "noir",
+  "summaryLine": "GitHubは、AIエージェントを計画から運用後まで使う開発の流れを公式ブログで紹介",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/github-agentic-engineering-guide-fig1-0d159a0b.jpg",
+      "width": 1200,
+      "height": 636,
+      "kind": "hero",
+      "credit": "GitHub",
+      "sourceUrl": "https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/",
+      "original": "https://github.blog/wp-content/uploads/2026/10/Screenshot-2026-10-15-at-3.11.02-PM.png?zoom=3&resize=400%2C212"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "GitHub",
+    "provider": "GitHub公式ブログ",
+    "sourceUrl": "https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/",
+    "original": "https://www.youtube.com/watch?v=dNCGfpDho0U",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-07T23:56:07+00:00",
+    "imageKind": "youtube"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.361,
+    "y": 0.5,
+    "box": [
+      0.0,
+      0.0,
+      0.722,
+      1.0
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/github-agentic-engineering-guide-b5d40f23.jpg"
+  },
+  "coverTries": 1
+}

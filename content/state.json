@@ -9172,6 +9172,18 @@
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/04/20261104-wtsf-launch-reminder-o/"
     },
+    "5cecc12e376b047e": {
+      "at": "2026-11-07T23:55:46.039993+00:00",
+      "costUsd": 0.0185,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "github-agentic-engineering-guide",
+      "url": "https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/"
+    },
     "5cf7c4a2445b103e": {
       "at": "2026-10-27T01:52:24.904759+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -19011,49 +19023,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-06T03:24:59.810890+00:00",
-      "attempt": 2,
-      "id": "ff4c4236ea8b3f24",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「過去2週間以内に3日分」「従来は1カ月以内に7日分」は元記事と一致するが、表の「4日分削減」は元記事に無い差の計算結果で、計算済みの数字にも無い → 数字自体は正しいが出典のない派生値である。",
-        "「「折りたたみスマホ「Galaxy Z Fold8」を発売」などのスマートフォンとあわせて活用できるヘルスケア機能です」→ 元記事はGalaxy Z Fold8に一切触れておらず、Fold8との組み合わせで使えるという関係は元記事に無い推測である。",
-        "「12分間のランニングテストや過去の走歩行データ」→ 元記事は「過去のランニングデータ」としており、「走歩行」は元記事に無い語で内容を変えている。",
-        "「ワークアウト結果をSNSへ共有するためのデザインテンプレート」→ 元記事の「共有用テンプレート」とほぼ一致するが、一般的な共有機能の記述として軽微である。",
-        "「すでに日本国内向けにも順次提供が始まっています」→ 元記事は日本で既に提供開始と述べ、機能の一部は今後のソフトウェアアップデートで対応する場合があるとしており、「順次」の範囲がやや広い。"
-      ],
-      "readability": {
-        "avg_paragraph": 105.2,
-        "avg_sentence": 59.5,
-        "long_share": 0.391,
-        "max_paragraph": 155,
-        "paragraphs": 13,
-        "sentences": 23
-      },
-      "score": 72,
-      "source": "samsung-jp",
-      "title": "Samsung Healthの睡眠コーチングがより手軽に 一人ひとりに合わせたアドバイスを毎週提供",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T03:28:41.149061+00:00",
-      "attempt": 1,
-      "id": "5303ad7c7a4b3680",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "sony-jp",
-      "title": "初代ウォークマン付属『MDR-3』のデザインとサウンドを受け継ぐUSB-Cステレオヘッドホン『MDR-3R』発売"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-06T03:32:53.688397+00:00",
       "attempt": 2,
       "id": "5303ad7c7a4b3680",
@@ -25240,6 +25209,51 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（IDE）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T23:55:11.728466+00:00",
+      "attempt": 1,
+      "id": "5cecc12e376b047e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 48.5字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 142.1字・最長 236字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 142.1,
+        "avg_sentence": 48.5,
+        "long_share": 0.293,
+        "max_paragraph": 236,
+        "paragraphs": 14,
+        "sentences": 41
+      },
+      "score": 90,
+      "source": "github-blog",
+      "title": "Beyond code generation: A developer’s guide to agentic engineering"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T23:55:38.467241+00:00",
+      "attempt": 0,
+      "id": "5cecc12e376b047e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 46.5字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 105.2,
+        "avg_sentence": 46.5,
+        "long_share": 0.233,
+        "max_paragraph": 150,
+        "paragraphs": 19,
+        "sentences": 43
+      },
+      "score": 88,
+      "source": "github-blog",
+      "title": "Beyond code generation: A developer’s guide to agentic engineering"
     }
   ],
   "short_text_retry": {},
