@@ -21,9 +21,11 @@ export function titleHash(title: string): string {
 /**
  * 独自カバー画像（/cover/[slug]）のパス（版＋題名のハッシュつき）。全記事で作る。
  */
-export function coverPath(article: { slug: string; title?: string | null }): string {
+export function coverPath(article: { slug: string; title?: string | null; thumbnail?: string | null; coverImage?: string | null }): string {
   const title = (article.title ?? "").trim();
-  return `/cover/${article.slug}?v=${COVER_VERSION}${title ? `-${titleHash(title)}` : ""}`;
+  // 画像を差し替えたときも URL を変える（2026-11-07 オーナー指摘：画像を直したのに SNS のカードが古い画像のままだった）
+  const key = [title, article.thumbnail ?? "", article.coverImage ?? ""].join("|");
+  return `/cover/${article.slug}?v=${COVER_VERSION}${key !== "||" ? `-${titleHash(key)}` : ""}`;
 }
 
 /**

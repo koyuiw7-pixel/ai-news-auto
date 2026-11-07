@@ -48,6 +48,14 @@ test("OG 画像の URL は題名を直すと変わる（ブラウザ・SNS・エ
   assert.match(coverPath({ slug: "x" }), /^\/cover\/x\?v=\d+$/);
 });
 
+test("OG 画像の URL は画像を差し替えても変わる（2026-11-07 古い画像のカードが SNS に出た）", () => {
+  const a = coverPath({ slug: "x", title: "題名", thumbnail: "https://ai-tech-express.jp/img/x-old.jpg" });
+  const b = coverPath({ slug: "x", title: "題名", thumbnail: "https://ai-tech-express.jp/img/x-new.jpg" });
+  const c = coverPath({ slug: "x", title: "題名", thumbnail: "https://ai-tech-express.jp/img/x-new.jpg", coverImage: "https://ai-tech-express.jp/img/x-cover.jpg" });
+  assert.notEqual(a, b);
+  assert.notEqual(b, c);
+});
+
 test("記事ページ・画像・サイトマップ・RSS は articleTitle を通す（seoTitle を題名に出さない）", () => {
   const page = read("app/articles/[slug]/page.tsx");
   const meta = page.slice(page.indexOf("export async function generateMetadata"), page.indexOf("export default async function"));

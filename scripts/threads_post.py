@@ -19,6 +19,7 @@ Actions ではジョブサマリーに投稿文を書き出すだけで、何も
 
 from __future__ import annotations
 
+import zlib
 import argparse
 import difflib
 import json
@@ -1687,7 +1688,9 @@ def compose_x(article: dict, root_text: str) -> str:
 
 def card_url(article: dict) -> str:
     """投稿に添える図解カード（1080×1350。見出し＋要点3つ。app/card/[slug]/route.tsx）"""
-    return f"{site_url()}/card/{article['slug']}"
+    # 画像・題名を直したら URL を変える（/card は7日キャッシュ。2026-11-07 オーナー指摘：古い画像のカードが出た）
+    key = "|".join(str(article.get(k) or "") for k in ("title", "thumbnail", "coverImage"))
+    return f"{site_url()}/card/{article['slug']}?v={zlib.crc32(key.encode()):x}"
 
 
 # ---- 投稿の形式（A/B） ----
