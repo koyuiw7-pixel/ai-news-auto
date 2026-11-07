@@ -4907,6 +4907,12 @@
       "skipped": true,
       "url": "https://www.mof.go.jp/about_mof/councils/study_on_chain/on_chain_giji1.html"
     },
+    "16f9590165b2db33": {
+      "at": "2026-11-07T06:11:35.880480+00:00",
+      "reason": "stale: 発表から61時間（48時間を超えた発表は通常の記事にしない）",
+      "skipped": true,
+      "url": "https://vercel.com/changelog/kimi-k3-1-pro-now-has-more-zdr-providers-on-ai-gateway"
+    },
     "173efb6f209b5e2c": {
       "at": "2026-10-29T23:11:22.615962+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -9913,6 +9919,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000033.000118478.html"
     },
+    "6d4f974c87b6ee49": {
+      "at": "2026-11-07T06:11:35.880458+00:00",
+      "reason": "stale: 発表から59時間（48時間を超えた発表は通常の記事にしない）",
+      "skipped": true,
+      "url": "https://developer.nvidia.com/blog/nvidia-cuda-13-5-brings-nvidia-vera-rubin-ga-support/"
+    },
     "6dab8475c22f2c23": {
       "at": "2026-10-27T01:51:53.857296+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -10049,6 +10061,12 @@
       "section": "ai",
       "slug": "openai-bigger-bug-bounties",
       "url": "https://openai.com/index/rewarding-defenders-with-bigger-bug-bounties"
+    },
+    "6fd883e8b0a2557f": {
+      "at": "2026-11-07T06:11:35.880392+00:00",
+      "reason": "stale: 発表から54時間（48時間を超えた発表は通常の記事にしない）",
+      "skipped": true,
+      "url": "https://vercel.com/changelog/gemini-omni-1-2-flash-now-available-on-ai-gateway"
     },
     "6fdbbedf41de3057": {
       "at": "2026-11-05T12:43:58.647173+00:00",
@@ -11946,6 +11964,18 @@
       "reason": "short text 497",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202611/video-326953.html"
+    },
+    "903f3d6e677960b5": {
+      "at": "2026-11-07T06:14:08.977496+00:00",
+      "costUsd": 0.0226,
+      "foreignAi": true,
+      "intent": "query",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "agentcore-gateway-okta-xaa-part2",
+      "url": "https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-2/"
     },
     "908eb6a8acdf25b7": {
       "at": "2026-11-04T08:03:10.192228+00:00",
@@ -14592,6 +14622,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000455.000015757.html"
+    },
+    "bd5d29a32a5f70b7": {
+      "at": "2026-11-07T06:12:04.485857+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup style: 見出しが多すぎる（8個 / 本文3007字なら4個まで）。章をまとめて見出しを減らす",
+      "skipped": true,
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-omni-1-2-flash-generally-available/"
     },
     "bd77db82486b50a500f6bc90bee4f34482b22617": {
       "at": "2026-11-04T01:49:11.275801+00:00",
@@ -17574,6 +17611,12 @@
       "skipped": true,
       "url": "https://www.ntt.com/about-us/press-releases/news/article/2026/1027_3.html"
     },
+    "f30582815c21ca92": {
+      "at": "2026-11-07T06:12:04.512754+00:00",
+      "reason": "dedupe: 同じ発表の記事あり（製品名が一致（gemini4argon））: google-ai-news-october-2026",
+      "skipped": true,
+      "url": "https://cloud.google.com/blog/topics/developers-practitioners/how-to-build-an-agent-skill-optimizer-with-alphaevolve-and-harbor/"
+    },
     "f3538b6fb36f4f58": {
       "at": "2026-10-29T15:32:38.206729+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -18313,72 +18356,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T16:43:55.189902+00:00",
-      "attempt": 1,
-      "id": "84d6e3eaec4fdab1",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "ipa",
-      "title": "CBT方式で実施するITパスポート試験、情報セキュリティマネジメント試験及び基本情報技術者試験における2027年1月以降の実施予定について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T16:46:40.467295+00:00",
-      "attempt": 2,
-      "id": "84d6e3eaec4fdab1",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "ipa",
-      "title": "CBT方式で実施するITパスポート試験、情報セキュリティマネジメント試験及び基本情報技術者試験における2027年1月以降の実施予定について"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-05T17:13:10.476104+00:00",
-      "attempt": 1,
-      "id": "d7e9e3e89ee778d6",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 102.1,
-        "avg_sentence": 38.3,
-        "long_share": 0.075,
-        "max_paragraph": 138,
-        "paragraphs": 15,
-        "sentences": 40
-      },
-      "score": 88,
-      "source": "google-ai-blog",
-      "title": "Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（FPV）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T17:16:52.414878+00:00",
-      "attempt": 1,
-      "id": "dd699d29ee35f836",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "多摩・島しょ地域の観光における課題解決に向け資金面も含め伴走型で支援します"
-    },
     {
       "accepted": false,
       "at": "2026-11-05T17:18:02.940120+00:00",
@@ -24265,6 +24242,93 @@
       "warnings": [
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（VM・TPU・SSD）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T06:12:04.472638+00:00",
+      "attempt": 1,
+      "id": "bd5d29a32a5f70b7",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "score": 93,
+      "source": "google-cloud-blog",
+      "title": "Gemini Omni 1.2 Flash: Fast, cost-effective, and reliable video generation and e"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T06:13:15.238175+00:00",
+      "attempt": 1,
+      "id": "903f3d6e677960b5",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「判定: 提供状況=demo」→ 元記事にもの確認済みの文脈にも「demo」という提供状況の記載はなく、根拠のないラベルである",
+        "見出し「OktaとAgentCoreの設定手順」→ 元記事は概念と構成の説明が中心で、具体的な設定手順は示されていない（サンプルコードも非本番向けの概念的なパターン）",
+        "「各判断には、どのエージェントが、どのツールを、どんな理由で許可または拒否したかが残ります」→ 元記事では authz.check が理由を記録し、Policy 側は判定を出す、と分けて書かれており、一つの記録に集約されるとは言い切れない"
+      ],
+      "readability": {
+        "avg_paragraph": 144.4,
+        "avg_sentence": 44.1,
+        "long_share": 0.167,
+        "max_paragraph": 197,
+        "paragraphs": 11,
+        "sentences": 36
+      },
+      "score": 82,
+      "source": "aws-ml-blog",
+      "title": "Govern AI agent access with Okta Cross App Access and Amazon Bedrock AgentCore –",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JAG・ACTIVE・MCP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T06:13:35.267846+00:00",
+      "attempt": 1,
+      "id": "903f3d6e677960b5",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "段落が長い（平均 146.9字・最長 225字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 146.9,
+        "avg_sentence": 43.7,
+        "long_share": 0.162,
+        "max_paragraph": 225,
+        "paragraphs": 11,
+        "sentences": 37
+      },
+      "score": 90,
+      "source": "aws-ml-blog",
+      "title": "Govern AI agent access with Okta Cross App Access and Amazon Bedrock AgentCore –",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JAG・ACTIVE・MCP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T06:14:02.796692+00:00",
+      "attempt": 0,
+      "id": "903f3d6e677960b5",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 85.0,
+        "avg_sentence": 39.7,
+        "long_share": 0.044,
+        "max_paragraph": 136,
+        "paragraphs": 21,
+        "sentences": 45
+      },
+      "score": 88,
+      "source": "aws-ml-blog",
+      "title": "Govern AI agent access with Okta Cross App Access and Amazon Bedrock AgentCore –",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JAG・ACTIVE・MCP）"
       ]
     }
   ],

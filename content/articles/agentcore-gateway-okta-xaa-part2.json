@@ -1,0 +1,144 @@
+{
+  "slug": "agentcore-gateway-okta-xaa-part2",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-2/",
+  "sourceName": "AWS Machine Learning Blog",
+  "title": "AIエージェントのツール権限を入り口で一括管理　追加の作業は約90分",
+  "seoTitle": "AgentCore Gatewayの使い方　Okta連携と料金の目安",
+  "threadsPost": "社内でAIエージェントを動かす人に、知っておいてほしい話です。\n\nOkta連携の認可を入り口で確かめ、ツールごとの許可はCedarのルールで決めます。\nエージェントごとではなく、Gatewayでまとめて管理する方法です。\n\n社内のAIに任せる作業は、どこまでなら許せますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "社内のAIエージェントに任せる作業は、どこまでなら許せますか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "社内のAIに社内システムを触らせるとき、権限を決めるのは誰がよいと思いますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "AIの作業を速くするなら、権限の確認は多少減らしてもよいと思いますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "社内のAIエージェントがツールを使うときの権限を、Amazon Bedrock AgentCoreの入り口（Gateway）でまとめて管理できます。Okta（ID管理サービス）の認可を入り口で確かめ、ツールごとの許可はCedarのルールで決める仕組みです。追加の作業は約90分の見込みで、社内でエージェントを動かす人は、まずGatewayの設定を確かめてください。",
+  "description": "AIエージェントがツールを使う権限を、Amazon Bedrock AgentCore Gatewayで一括管理する方法を解説。Okta連携、Cedarルール、Amazon EKSの料金目安まで整理しました。",
+  "keywords": [
+    "AgentCore Gateway",
+    "Amazon Bedrock AgentCore",
+    "Okta 連携",
+    "AIエージェント 権限管理",
+    "Cedar ポリシー",
+    "Cross App Access",
+    "MCP サーバー",
+    "Amazon EKS エージェント",
+    "AIエージェント 認可",
+    "Okta XAA"
+  ],
+  "tags": [
+    "生成AI",
+    "AIエージェント",
+    "AWS",
+    "セキュリティ",
+    "認証",
+    "Okta"
+  ],
+  "highlights": [
+    "AIエージェントのツール権限を、AgentCoreの入り口（Gateway）でまとめて管理する方法です。",
+    "許可ルールは初期設定で全部拒否。権限名は完全一致で判定され、「xaa:write-admin」は「xaa:write」に一致しません。",
+    "追加の作業は約90分。EKSのコントロールプレーンは1時間あたり0.10ドルで、ノードなどは別料金です。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "従量課金",
+    "free": null,
+    "audience": "AIエージェントを開発す",
+    "take": "本番前に、公式のサンプルコードを試し、セキュリティ担当と確認するとよいでしょう。",
+    "judgedAt": "2026-11-07T06:13:06.564278+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "社内でAIエージェントを作る開発者は、ツールごとに書いていた権限ルールを、Gatewayのポリシーにまとめる方法を検討できます。",
+      "判断の記録がCloudWatchにまとまるため、ログを確認する場所を一つにできます。"
+    ]
+  },
+  "body": "この記事は、社内でAIエージェントを動かす開発者とセキュリティ担当者に関係する内容です。\n\nエージェントがツールを使うときの権限を扱います。ツールごとのコードではなく、入り口（Gateway）で一括管理する方法です。AIアプリを普通に使うだけの人には、変わることはありません。\n\nAIエージェントは、AIが自分で手順を決めて、メールや予定、社内のシステムなどのツールを呼び出す仕組みです。Amazon Bedrock AgentCoreは、そのエージェントを作って動かすためのAWSのサービスです。\n\nAWSの公式ブログによると、今回の記事は前回作ったエージェントが土台です。そのエージェントには、Okta（ID管理サービス）の認可の仕組みが備わっています。\n\n## Gatewayを入り口にして、料金と初期設定を押さえる\n\n前回の構成では、エージェントが各ツールの場所を直接呼び出していました。エージェントの数とツールの数を掛けた分だけ、つなぎ方を用意する必要があります。\n\nツールが増えるたびに、そのツールを使うすべてのエージェントを直すことにもなります。今回は、エージェントは1つのGatewayにだけ話しかけ、Gatewayが宛先を決めます。\n\nGatewayは、Okta側が発行した認可の許可証（ID-JAG：ログインユーザーの代わりに動くことを示す許可証）を受け取ります。許可証は、Oktaに登録された決まったエージェントからのものだけを通します。そのうえで、Gatewayが各ツール用の権限を取りに行きます。\n\nツールを使えるかどうかは、Cedar（許可のルールを書くための言語）で書いたポリシーで決まります。判定はツールを呼び出す前に行われ、初期設定は「全部拒否」です。ルールに書いていない操作は、そもそも通りません。\n\n資料では、読み取り用のツールに「xaa:read」、書き込み用のツールに「xaa:write」の権限を求めています。ルールの書き方にも注意点があります。権限は空白で区切られた1語として完全一致で判定されます。\n\nそのため「xaa:write-admin」は「xaa:write」には一致しません。資料では、ポリシーを作ったら有効（ACTIVE）になったかを確かめるよう勧めています。失敗したままだと、Gatewayがすべての呼び出しを拒否します。\n\nエージェントの処理の流れは、資料によると次のとおりです。\n\n- ユーザーがログインし、認可の許可証が発行される\n- エージェントがその許可証をAgentCore runtimeで受け取る\n- エージェントが許可証をGatewayに渡す\n- Cedarのポリシーで、ツールの一覧と呼び出しの両方を判定する\n- 許可された呼び出しだけ、Gatewayが各ツールの権限を取得する\n- ツール側で、ユーザーのグループと権限を確かめ、判断を記録する\n\nもう1つのエージェントは、Amazon EKS（Kubernetesという実行環境）の上で動かします。Gatewayの仕組みは、エージェントがどこで動いていても同じように使えることを示すためのものです。このエージェントには読み取り権限（xaa:read）だけを与えています。\n\n判断の記録は、AgentCore Observability（動作の記録を集める仕組み）とCloudWatch（AWSのログ監視サービス）に集められます。ツール側のauthz.checkは、ユーザーのグループ、エージェント、判定、理由を記録します。\n\nCedarのポリシーは、ツールごとの判定を出します。Oktaの監査ログ（System Log）は、AWSでは出力できません。そのため、Okta Log StreamingでCloudWatchへ流す設定を別に行います。\n\n料金は2つに分けて見てください。Amazon EKSは、クラスターを管理する部分（コントロールプレーン）が1時間あたり0.10ドルです。ノードや管理手数料は別です（AWS公式の料金ページ、11/7確認）。\n\nAgentCoreの機能は、使った分だけ払う従量課金です（AWS公式の料金ページ、11/7確認）。追加の作業は約90分の見込みと書かれています。\n\n前回の構成で作った設定は、Okta、認証情報のプロバイダー、MCPサーバーともにそのまま使えます。エージェントの実行ロールからは、トークン交換と秘密情報の権限を外します。\n\n権限を持つのはGatewayの側になるため、エージェント側に残る権限は減ります。\n\n## まだ分からないこと\n\n本番で使う構成は、この記事のコードだけでは完成しません。資料では、サンプルコードは非本番向けとされています。\n\n本番に入れる前に、セキュリティや法務の要件を社内で確かめる必要があると、資料は述べています。\n\n資料では、XAAを受け付けないアプリ向けに、ユーザーごとのOAuth同意（許可画面）との比較も扱っています。",
+  "easy": "## ひとことで言うと\n\nAIエージェントがツールを使うときの権限を、AWSの入り口（Gateway）で一か所にまとめる方法です。Okta（ID管理サービス）の認可とCedar（許可のルールを書く言語）で、許可されたツールだけを呼び出せます。\n\n## 社内のAIエージェントの権限を、入り口で管理する\n\nAIエージェントは、メールや社内システムなどのツールを自分で呼び出します。今回の方法では、エージェントは1つの入り口にだけ話しかけます。\n\n入り口がOktaの許可証を確かめ、Cedarのルールに合うツールだけを通します。ルールに書いていない操作は、初期設定で止められます。\n\n追加の作業は約90分の見込みです。AWSの料金は、使った分だけ払う仕組みです。",
+  "channel": "AWS Machine Learning Blog",
+  "channelId": "",
+  "channelSlug": "aws-ml-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Govern AI agent access with Okta Cross App Access and Amazon Bedrock AgentCore – Part 2",
+  "publishedAt": "2026-11-06T17:09:23+00:00",
+  "generatedAt": "2026-11-07T06:13:06.564266+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/agentcore-gateway-okta-xaa-part2-37607431.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "explainer",
+  "todayActions": [
+    "社内でAIエージェントを動かしているなら、ツールごとの権限チェックがどこにあるかを確かめる。",
+    "Oktaのログを残す設定（Log Streaming）が必要かを、セキュリティ担当と話し合う。",
+    "AWSの料金ページで、自分の利用量から料金を見積もる。"
+  ],
+  "qualityScore": 88,
+  "sourcePublishedAt": "2026-11-06T17:09:23+00:00",
+  "detectedAt": "2026-11-07T06:10:51+00:00",
+  "originalTitle": "AIエージェントの権限を入り口で一括管理　OktaとAgentCoreの構成",
+  "titleStyle": "2026-11-03",
+  "layout": "noir",
+  "summaryLine": "AIエージェントのツール権限を、AgentCoreの入り口（Gateway）でまとめて管理する方法です。",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/agentcore-gateway-okta-xaa-part2-fig1-c8c45102.jpg",
+      "width": 1200,
+      "height": 1164,
+      "kind": "dense",
+      "credit": "AWS",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-2/",
+      "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/29/ML-21547-p2-1.png"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/agentcore-gateway-okta-xaa-part2-fig2-8af9af8e.jpg",
+      "width": 1200,
+      "height": 664,
+      "kind": "dense",
+      "credit": "AWS",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-2/",
+      "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/29/ML-21547-p2-4.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "AWS",
+    "provider": "AWS Machine Learning Blog",
+    "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-2/",
+    "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/29/ML-21547-p2-featured-image.png",
+    "width": 1152,
+    "height": 576,
+    "at": "2026-11-07T06:16:18+00:00",
+    "imageKind": "banner"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.515,
+    "y": 0.45,
+    "box": [
+      0.034,
+      0.0,
+      0.997,
+      0.9
+    ],
+    "ar": 2.0,
+    "src": "https://ai-tech-express.jp/img/agentcore-gateway-okta-xaa-part2-37607431.jpg"
+  },
+  "coverTries": 1
+}
