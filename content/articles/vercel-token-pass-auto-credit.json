@@ -1,0 +1,140 @@
+{
+  "slug": "vercel-token-pass-auto-credit",
+  "sourceType": "web",
+  "sourceUrl": "https://vercel.com/changelog/token-pass-credit-now-applies-automatically-across-ai-gateway",
+  "sourceName": "Vercel Changelog",
+  "title": "Token Pass契約者は専用キー不要に　AI Gatewayで毎月80ドル分を自動適用",
+  "seoTitle": "Vercel Token Pass とは？AI Gatewayでの使い方と料金",
+  "threadsPost": "Token Passを契約しているチームに知っておいてほしい話です。\n\nAI Gatewayで、Token Passの枠が専用キーなしで使われるようになりました。\n枠切れ後は、通常のキーのリクエストがチームのクレジットで続きます。\n\n開発で使うAIの月額、いくらまでなら自分で払えますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "price",
+      "question": "開発で使うAIの月額、いくらまでなら自分で払えますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "枠を使い切ったとき、止まるのと支払いが続くのと、どちらを選びますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "Proチームで Token Pass を契約していれば、AI Gatewayで専用のAPIキーを作らなくても、月額の枠が今から自動で使われるようになりました。枠は1チーム月30ドルで、注目モデルに毎月80ドル分の利用ができます。枠を使い切ったあとは、標準のAPIキーのリクエストがチームのクレジットで続き、Token Passのキーは次の請求期間まで止まります。",
+  "description": "Vercel AI GatewayでToken Passの枠が専用キーなしで自動的に使われるようになりました。対象はProチームのToken Pass契約者です。枠を使い切ったあとは、標準のAPIキーのリクエストがチームのクレジットで続きます。",
+  "keywords": [
+    "Token Pass",
+    "Vercel Token Pass",
+    "AI Gateway",
+    "Vercel AI Gateway",
+    "AI Gateway 料金",
+    "Token Pass 料金",
+    "Token Pass 使い方",
+    "Vercel 生成AI 料金",
+    "ZDR データ保持",
+    "APIキー 自動適用"
+  ],
+  "tags": [
+    "生成AI",
+    "Vercel",
+    "AI Gateway",
+    "開発ツール"
+  ],
+  "highlights": [
+    "Token Pass契約者は、AI Gatewayで専用のAPIキーを作らなくても毎月の枠が自動で使えます。",
+    "Token Passは1チーム月30ドルで、注目モデル向けに毎月80ドル分のクレジットが付きます。",
+    "Token Pass経由のリクエストはZDRのまま、枠切れ後の通常キーの分はチームの設定に従います。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "月30ドル",
+    "free": false,
+    "audience": "Proチームの開発者",
+    "take": "Token Passを契約しているなら、枠切れ後も続けたい処理は通常のAPIキーで動かすとよいでしょう。",
+    "judgedAt": "2026-11-07T17:53:30.458536+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AI機能を開発しているチームは、月額の枠を使い切ったあとの支払い方を決めておくとよいでしょう。",
+      "止まってよい処理と止めたくない処理を分けておくと、月の途中で慌てずに済みます。"
+    ]
+  },
+  "body": "AI Gatewayは、複数のAIモデルを1つの窓口から呼び出せるVercelの仕組みです。\nToken Passは、注目モデルを毎月の利用枠の範囲で使える月額サービスです。\n対象はProチームの契約者です。契約していない人には、この変更による変化はありません。\n\n今回の変更で、Token Passの枠は認証方法を問わず使われるようになりました。対象は、APIキー、OIDCトークン（認証に使う仕組みの一つ）、fx loginで認証したリクエストです。専用のToken Passキーは必須ではなくなりました。ダッシュボードやCLIで作ることもできますが、その場合は注目モデルと提供元に限ったキーになります。\n\nToken Passの料金は、注目モデルを使ったときに提供元の通常のAPI単価で差し引かれます（Vercel ChangelogのToken Passの説明、11/8確認）。\n\n## 枠を使い切ったあとの扱い\n\n枠を使い切ったあと、標準のAPIキーやOIDCトークンで送られたリクエストは、チームのAI Gatewayクレジットで続けられます。一方、Token Passのキーは、次の請求期間が始まるまで止まります。\n\n止まると困る処理には、標準のAPIキーを使うのが安全です。Token Passの説明ページにも、本番で止めたくない処理には通常のAI Gatewayキーを使うとあります。\n\n（編集部注）Token Passの説明ページには、デプロイのOIDCトークンでは枠を使えないという記述があります。今回の発表の内容とは食い違っています。どちらが現在の仕様かは、この記事では確認できていません。実際の動きは公式ドキュメントで確かめてください。\n\nデータの扱いも変わりません。Token Pass経由のリクエストは、ZDR（入力や出力を保存しない設定）のままです。\n\nフォールバックで回したリクエストは、チームの設定に従います。チーム全体でZDRを有効にしていると、ZDRに対応した提供元だけに振り分けられます。\n\nチーム全体でZDRを有効にすると、1,000リクエストあたり0.10ドルの料金が、Token Passのリクエストにもかかります（同じ説明ページ、11/8確認）。\n\n解約は、AI Gatewayの Token Pass の画面で Billing Settings から行えます。今の請求期間の終わりまで枠は残りますが、当期分の返金はありません（同じ説明ページ、11/8確認）。\n\nその後、AI Gatewayでは検索・ページ取得ツールの料金も伝えています（[AI Gatewayに検索・ページ取得ツール](/articles/vercel-ai-gateway-deepseek-search-fetch)）。\n\n編集部の見方では、AI機能を社内の開発に組み込んでいるチームほど、枠が切れたときの扱いを先に決めておく価値があります。止まってよい処理と止めたくない処理を分けておくと、月の途中で慌てずに済みます。\n\n## Proチームの管理者が確かめること\n\nToken Passを契約しているProチームの管理者は、次の3つを確かめてください。\n\n- 開発で使っているキーが、標準のAPIキーかOIDCトークンかを確かめる\n- 初期設定でToken Passのキーを作っていたら、標準のAPIキーかOIDCトークンに切り替える\n- チーム全体のZDR設定が、社内のデータ方針に合っているか確かめる\n\n## まだ分からないこと\n\n- 日本で契約する場合の扱いや、日本語の案内は、まだ発表されていません。\n- 枠の対象になる注目モデルの最新の一覧は、公式ドキュメントで確かめてください。",
+  "easy": "## ひとことで言うと\n\nProチームでVercelの月額サービス「Token Pass」を契約していれば、AI Gatewayで専用のキーを作らなくても、毎月の枠が自動で使えるようになりました。枠を使い切ったあとは、通常のキーで送った分がチームのクレジットで続きます。\n\nToken Passのキーは、次の請求期間まで止まります。止まると困る処理は、通常のキーで動かすのが安全です。\n\n## 何が変わるのか\n\nAPIキー（サービスを使うための合い言葉）、OIDCトークン（認証の仕組みの一つ）、fx loginのどれで認証しても、枠が使われるようになりました。専用のキーは要らなくなりましたが、作ることもできます。",
+  "channel": "Vercel Changelog",
+  "channelId": "",
+  "channelSlug": "vercel-changelog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Token Pass credit now applies automatically across AI Gateway",
+  "publishedAt": "2026-11-06T01:00:00+00:00",
+  "generatedAt": "2026-11-07T17:53:30.458524+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/vercel-token-pass-auto-credit-8d7fad33.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "Token Passを契約しているなら、開発で使っているキーが標準のAPIキーかOIDCトークンかを確かめる",
+    "初期設定でToken Passのキーを作っていたら、通常のキーへの切り替えを検討する",
+    "チーム全体のZDR設定が社内のデータ方針に合っているか確かめる"
+  ],
+  "relatedSlugs": [
+    "vercel-ai-gateway-deepseek-search-fetch"
+  ],
+  "qualityScore": 88,
+  "factSources": [
+    {
+      "label": "関連ページ",
+      "name": "Vercel Changelog「Token Pass」",
+      "url": "https://vercel.com/docs/ai-gateway/token-pass",
+      "checkedAt": "2026-11-08"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-06T01:00:00+00:00",
+  "detectedAt": "2026-11-07T17:50:54+00:00",
+  "originalTitle": "Token Pass契約者は専用キー不要に　AI Gatewayで枠が自動適用",
+  "titleStyle": "2026-11-03",
+  "layout": "noir",
+  "summaryLine": "Token Pass契約者は、AI Gatewayで専用のAPIキーを作らなくても毎月の枠が自動で使えます。",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/vercel-token-pass-auto-credit-fig1-8d7fad33.jpg",
+      "width": 1200,
+      "height": 630,
+      "kind": "dense",
+      "credit": "Vercel",
+      "sourceUrl": "https://vercel.com/changelog/token-pass-credit-now-applies-automatically-across-ai-gateway",
+      "original": "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/3AZR3NtzCWP6v0OwTd1gAI/5c65b1f32d3aa739b0503ae4a739696e/image.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Vercel",
+    "provider": "Vercel Changelog",
+    "sourceUrl": "https://vercel.com/changelog/token-pass-credit-now-applies-automatically-across-ai-gateway",
+    "original": "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/3AZR3NtzCWP6v0OwTd1gAI/5c65b1f32d3aa739b0503ae4a739696e/image.png",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-07T17:57:32+00:00",
+    "imageKind": "dense"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.495,
+    "y": 0.526,
+    "box": [
+      0.1,
+      0.226,
+      0.891,
+      0.827
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/vercel-token-pass-auto-credit-8d7fad33.jpg"
+  },
+  "coverTries": 1
+}

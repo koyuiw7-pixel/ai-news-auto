@@ -4792,6 +4792,18 @@
       "slug": "smbc-arara-message-email-leak-2026",
       "url": "https://www.smbc.co.jp/news/pdf/j20261105_02.pdf"
     },
+    "1564a9d4f10d70c6": {
+      "at": "2026-11-07T17:54:21.837993+00:00",
+      "costUsd": 0.0212,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "vercel-token-pass-auto-credit",
+      "url": "https://vercel.com/changelog/token-pass-credit-now-applies-automatically-across-ai-gateway"
+    },
     "156ada2f068c3822": {
       "at": "2026-11-06T09:17:17.326067+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（議事）",
@@ -18706,48 +18718,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-06T01:02:56.864935+00:00",
-      "attempt": 1,
-      "id": "38d7cd8d70883115",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "google-japan-blog",
-      "title": "Google 検索 の AI モードの新機能で、あらゆるタスクをよりスムーズに"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T01:04:12.474051+00:00",
-      "attempt": 2,
-      "id": "38d7cd8d70883115",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "google-japan-blog",
-      "title": "Google 検索 の AI モードの新機能で、あらゆるタスクをよりスムーズに"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T01:05:02.090082+00:00",
-      "attempt": 1,
-      "id": "b679e9ea65e0426e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "ntt-news",
-      "title": "株式会社地域創生Coデザイン研究所（NTT西日本グループ）が「J－クレジット・プロバイダー」に登録～森林由来J－クレジットの創出・流通支援、活用にグループ一体で"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-06T01:06:31.024779+00:00",
       "attempt": 2,
       "id": "b679e9ea65e0426e",
@@ -24895,6 +24865,81 @@
       "title": "Docker Sandboxes vs. Containers: Choosing the Right Isolation for AI Agents",
       "warnings": [
         "初めて出たところで言い換えていない略語（HTTP・SSH・AUTH）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T17:53:39.087693+00:00",
+      "attempt": 1,
+      "id": "1564a9d4f10d70c6",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「AI Gatewayでは、検索・ページ取得ツールの料金も先に伝えています」→ 関連記事は2026-11-07付けで、本記事の元発表（2026-11-06）より後のため「先に」は時系列の誤り",
+        "「デプロイのOIDCトークンでは枠を使えないという記述もあり、今回の発表とは食い違っています」→ 食い違いの指摘自体は元資料に沿うが、どちらが正しいかは示せていないため読者が判断しにくい",
+        "「仕事・お金にどう活かせる？」の助言「止まってよい処理と止めたくない処理を分けておく」は一般的な助言の範囲内だが、具体的な金額や節約効果の記述は無く問題なし"
+      ],
+      "readability": {
+        "avg_paragraph": 95.4,
+        "avg_sentence": 47.7,
+        "long_share": 0.208,
+        "max_paragraph": 152,
+        "paragraphs": 12,
+        "sentences": 24
+      },
+      "score": 85,
+      "source": "vercel-changelog",
+      "title": "Token Pass credit now applies automatically across AI Gateway",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（OIDC・CLI）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T17:53:56.251531+00:00",
+      "attempt": 1,
+      "id": "1564a9d4f10d70c6",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 47.1字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 98.1,
+        "avg_sentence": 47.1,
+        "long_share": 0.2,
+        "max_paragraph": 152,
+        "paragraphs": 12,
+        "sentences": 25
+      },
+      "score": 88,
+      "source": "vercel-changelog",
+      "title": "Token Pass credit now applies automatically across AI Gateway",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（OIDC・CLI）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T17:54:16.144182+00:00",
+      "attempt": 0,
+      "id": "1564a9d4f10d70c6",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.0,
+        "avg_sentence": 42.7,
+        "long_share": 0.107,
+        "max_paragraph": 168,
+        "paragraphs": 13,
+        "sentences": 28
+      },
+      "score": 88,
+      "source": "vercel-changelog",
+      "title": "Token Pass credit now applies automatically across AI Gateway",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（OIDC・CLI）"
       ]
     }
   ],
