@@ -6,7 +6,7 @@
   "companyName": "Amazon",
   "category": "開発ツール",
   "overview": {
-    "text": "Amazon Bedrockは、複数の会社のAIモデルをAPI経由でまとめて使えるAWSのサービスです。アマゾン ウェブ サービス ジャパン合同会社が提供しています。",
+    "text": "Amazon Bedrockは、複数の会社のAIモデルをAPI経由でまとめて使えるAWSのサービスです。2026年10月と11月に、新モデルの対応やコスト管理手法が発表されています。",
     "sources": [
       "kimi-k3-bedrock-india-inference",
       "openai-gpt-61-terra-amazon-bedrock"
@@ -14,8 +14,8 @@
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "API従量課金",
+      "label": "提供開始",
+      "value": "提供中",
       "sources": [
         "kimi-k3-bedrock-india-inference",
         "openai-gpt-61-terra-amazon-bedrock"
@@ -23,42 +23,43 @@
     },
     {
       "label": "日本での提供",
-      "value": "日本から利用可能",
+      "value": "対応するAWSリージョンで利用可能",
       "sources": [
-        "aws-sentinel-ai-audio-provenance",
-        "aws-bedrock-evaluation-bias-property-finder"
+        "aws-bedrock-evaluation-bias-property-finder",
+        "aws-inter-bee-2026-preview"
       ]
     },
     {
       "label": "向いている人",
-      "value": "AWS開発者・企業",
+      "value": "AIモデルをAPIで組み込みたい開発者や企業",
       "sources": [
-        "kimi-k3-bedrock-india-inference",
-        "openai-gpt-61-terra-amazon-bedrock"
+        "openai-gpt-61-terra-amazon-bedrock",
+        "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "Kimi K3でインド国内のムンバイとハイデラバードに処理を限定する推論に対応しました。",
+      "text": "複数の会社のAIモデルをAPI経由でまとめて使えます。",
       "sources": [
-        "kimi-k3-bedrock-india-inference"
+        "kimi-k3-bedrock-india-inference",
+        "openai-gpt-61-terra-amazon-bedrock"
       ]
     },
     {
-      "text": "GPT-6.1 Terraが一般提供され、一度に最大100万トークンの入力に対応しています。",
+      "text": "GPT-6.1 Terraモデルを利用し、最大100万トークンを入力できます。",
       "sources": [
         "openai-gpt-61-terra-amazon-bedrock"
       ]
     },
     {
-      "text": "ClaudeモデルでStructured Outputsが一般提供されました。",
+      "text": "Kimi K3モデルで、インド国内に推論処理を限定する設定が可能です。",
       "sources": [
-        "aws-weekly-20261019-updates"
+        "kimi-k3-bedrock-india-inference"
       ]
     },
     {
-      "text": "マネージド知識ベースを活用した検索システムをAWS CDKで構築できます。",
+      "text": "マネージド知識ベースを使い、エージェント型検索システムを構築できます。",
       "sources": [
         "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
       ]
@@ -66,42 +67,41 @@
   ],
   "pricing": [
     {
-      "text": "使った量に応じて支払う従量課金方式です。",
+      "text": "従量課金制を採用し、GPT-6.1 Terraは前モデルより50%以上安いです。",
       "sources": [
         "openai-gpt-61-terra-amazon-bedrock"
       ]
     },
     {
-      "text": "Kimi K3のflex層は標準料金から50%割引で利用できます。",
+      "text": "Kimi K3のflex層を選ぶと、標準料金から50%割引になります。",
       "sources": [
         "kimi-k3-bedrock-india-inference"
-      ]
-    },
-    {
-      "text": "GPT-6.1 Terraは前モデルより50%以上低く設定されています。",
-      "sources": [
-        "openai-gpt-61-terra-amazon-bedrock"
       ]
     }
   ],
   "japan": [
     {
-      "text": "日本国内のAWS環境から利用可能です。",
-      "sources": [
-        "aws-sentinel-ai-audio-provenance",
-        "aws-bedrock-agentcore-alarm-management"
-      ]
-    }
-  ],
-  "howto": [
-    {
-      "text": "AWSのマネジメントコンソールや各種APIから利用するモデルの有効化を行います。",
+      "text": "Amazon Bedrockが提供されているAWSリージョンで利用できます。",
       "sources": [
         "aws-bedrock-evaluation-bias-property-finder"
       ]
     },
     {
-      "text": "AWS CDKを用いることで、マネージド知識ベースなどの環境をまとめて構築できます。",
+      "text": "幕張メッセで開催されるInter BEE 2026のAWSブースでデモを確認できます。",
+      "sources": [
+        "aws-inter-bee-2026-preview"
+      ]
+    }
+  ],
+  "howto": [
+    {
+      "text": "AWSのマネジメントコンソールから対応モデルの利用有効化を行います。",
+      "sources": [
+        "aws-bedrock-evaluation-bias-property-finder"
+      ]
+    },
+    {
+      "text": "AWS CDKを用いて、マネージド知識ベースの環境をまとめて構築できます。",
       "sources": [
         "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
       ]
@@ -109,45 +109,77 @@
   ],
   "differences": [
     {
-      "text": "GPT-6.1 Terraは前のモデルと比べて価格が50%以上安くなりました。",
+      "text": "マネージド知識ベースでは、ベクトルストアの保守が不要になり、エージェント型検索に対応しました。",
       "sources": [
-        "openai-gpt-61-terra-amazon-bedrock"
+        "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
       ]
     }
   ],
   "faq": [
     {
-      "q": "どのリージョンから利用できますか？",
-      "a": "対応するモデルが提供されているAWSリージョンから利用できます。",
-      "sources": [
-        "aws-bedrock-evaluation-bias-property-finder"
-      ]
-    },
-    {
-      "q": "Kimi K3の処理先はどこに限定できますか？",
-      "a": "インド国内のムンバイとハイデラバードに限定する設定を選べます。",
+      "q": "Kimi K3の処理リージョンは指定できますか？",
+      "a": "インド国内のムンバイとハイデラバードに処理を限定するプロファイルが用意されています。",
       "sources": [
         "kimi-k3-bedrock-india-inference"
       ]
     },
     {
-      "q": "構造化出力に対応していますか？",
-      "a": "ClaudeモデルでStructured Outputsが一般提供されています。",
+      "q": "利用費用の管理はどのように行えますか？",
+      "a": "推論費用を呼び出したIAMの利用者に自動で割り当て、CUR 2.0などで追跡できます。",
       "sources": [
-        "aws-weekly-20261019-updates"
+        "amazon-bedrock-cost-management-playbook"
+      ]
+    },
+    {
+      "q": "プロンプトキャッシュを使うとどうなりますか？",
+      "a": "繰り返し使う部分を再利用することで、入力コストを約6割削減できます。",
+      "sources": [
+        "amazon-bedrock-openai-prompt-caching"
+      ]
+    },
+    {
+      "q": "一度に読み込めるトークンの上限は何トークンですか？",
+      "a": "GPT-6.1 Terraでは最大100万トークンまで読み込めます。",
+      "sources": [
+        "openai-gpt-61-terra-amazon-bedrock"
       ]
     }
   ],
   "timeline": [
     {
+      "date": "2026-10-27",
+      "slug": "amazon-bedrock-openai-prompt-caching",
+      "event": "OpenAIモデルでプロンプトキャッシュの活用法を公開"
+    },
+    {
+      "date": "2026-10-27",
+      "slug": "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
+      "event": "Bedrock知識ベースのエージェント型検索をCDKで構築する手法を公開"
+    },
+    {
+      "date": "2026-10-28",
+      "slug": "aws-bedrock-evaluation-bias-property-finder",
+      "event": "モデル評価の偏りを正す手法を公開"
+    },
+    {
+      "date": "2026-10-28",
+      "slug": "aws-bedrock-agentcore-alarm-management",
+      "event": "電力・公益事業向けアラーム管理基盤を公開"
+    },
+    {
+      "date": "2026-10-31",
+      "slug": "amazon-bedrock-cost-management-playbook",
+      "event": "生成AI利用費をチーム別に管理する運用手法を公開"
+    },
+    {
       "date": "2026-11-02",
       "slug": "openai-gpt-61-terra-amazon-bedrock",
-      "event": "GPT-6.1 Terraの提供開始"
+      "event": "Amazon Bedrockで「GPT-6.1 Terra」の提供開始"
     },
     {
       "date": "2026-11-04",
       "slug": "kimi-k3-bedrock-india-inference",
-      "event": "Kimi K3でインド国内推論に対応"
+      "event": "Bedrockの「Kimi K3」でインド国内推論に対応"
     }
   ],
   "related": [
@@ -178,9 +210,9 @@
     "amazon-bedrock-openai-prompt-caching",
     "amazon-bedrock-managed-kb-agentic-retrieval-cdk"
   ],
-  "signature": "919cdd2d8cc0c9c7",
+  "signature": "f788ebdaeb90dcc4",
   "primarySignature": "7d3d0c30ebe18d87",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:46:34+00:00",
-  "updatedAt": "2026-11-04T02:00:35+00:00"
+  "updatedAt": "2026-11-07T02:11:56+00:00"
 }
