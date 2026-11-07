@@ -39,6 +39,7 @@ function shortRange(event: TechEvent): string {
 // 題名の決まり（2026-11-07 オーナー承認・台帳 S45）: 開催日を題名の前半に入れる。「はいつ？」は日付を見せれば要らない
 function titleOf(event: TechEvent): string {
   if (eventStatus(event) === "upcoming" && event.titleUpcoming) return event.titleUpcoming;
+  if (eventStatus(event) === "ended" && event.titleEnded) return event.titleEnded;
   // 日本で開かれるイベントは「日本時間」と書かない（会場・参加方法のほうが探されている。2026-11-07）
   const upcomingTail = event.timezone === "Asia/Tokyo" ? "会場・参加方法・講演の日程" : "日本時間の日程と発表内容";
   return eventStatus(event) === "upcoming"
@@ -51,7 +52,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const event = getEvent(slug);
   if (!event) return {};
   const keynote = event.keynotes.find((k) => k.startUtc);
-  const description = event.seoDescription && eventStatus(event) !== "ended"
+  const description = event.seoDescriptionEnded && eventStatus(event) === "ended"
+    ? event.seoDescriptionEnded
+    : event.seoDescription && eventStatus(event) !== "ended"
     ? event.seoDescription
     : `${event.nameJa}は${localDateRange(event)}（現地時間）に${event.location.split(",")[0]}で開催。${
     keynote?.startUtc ? `基調講演は日本時間${formatJst(keynote.startUtc)}から。` : ""

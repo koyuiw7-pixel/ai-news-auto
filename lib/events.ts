@@ -51,6 +51,9 @@ export type TechEvent = {
   titleUpcoming?: string;
   /** 検索結果の説明文（開催前。公式で確かめた事実だけ） */
   seoDescription?: string;
+  /** 終了後の題名と説明文（終わったあとも日程・会場・講演内容で探されるとき。公式で確かめた事実だけ。2026-11-08） */
+  titleEnded?: string;
+  seoDescriptionEnded?: string;
 };
 
 export type EventStatus = "upcoming" | "live" | "ended";
