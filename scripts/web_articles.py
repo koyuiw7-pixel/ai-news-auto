@@ -2526,9 +2526,12 @@ def main() -> int:
                 return "drop", f"prefilter: {reason}"
             if not is_ai and per_feed.get(cand["source_slug"], 0) >= args.per_feed:
                 return "next", f"同じフィードの1回の上限（{args.per_feed}本）"  # 次の実行に回す
-            if news_mix.over_cap(cand, mix_counts):
+            # 救済モード（0本が続いている回）では、種類別・海外 AI の1日の上限で全部を見送らない（2026-11-07 朝、候補93件が
+            # 全部「種類別の上限」で見送られ、昼まで新しい記事が0本だった。止まらない仕組み・台帳 A48）。
+            # 救済モードは1本できたら抜けるので、上限を超えるのは止まりかけたときの数本だけ
+            if news_mix.over_cap(cand, mix_counts) and not rescue_mode:
                 return "next", f"今日の種類別の上限（{cand.get('_mix') or news_mix.classify(cand)}）"  # 企業向け・開発者向けの海外の発表は今日の上限まで（見送りの印は付けない。台帳 A41）
-            if is_ai and is_foreign_ai(cand) and foreign_left[0] <= 0:
+            if is_ai and is_foreign_ai(cand) and foreign_left[0] <= 0 and not rescue_mode:
                 return "next", f"海外の AI の発表の今日の上限（{FOREIGN_AI_DAILY_CAP}本）"  # 海外の AI の発表は今日の上限まで（見送りの印は付けない。台帳 A47）
             if not is_ai and cand.get("section") == "sports" and sports_today(state) >= persona.SPORTS_DAILY_CAP:
                 return "next", "スポーツの今日の上限"  # スポーツは1日の上限まで（集客の入口。大きなものだけ）
