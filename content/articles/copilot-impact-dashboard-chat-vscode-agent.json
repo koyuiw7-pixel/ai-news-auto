@@ -1,0 +1,140 @@
+{
+  "slug": "copilot-impact-dashboard-chat-vscode-agent",
+  "sourceType": "web",
+  "sourceUrl": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage",
+  "sourceName": "GitHub Changelog（Copilot）",
+  "title": "Copilotの利用状況ダッシュボードに「チャット」追加　対象は9機能に",
+  "seoTitle": "Copilot影響ダッシュボードとは？チャット追加の変更点",
+  "threadsPost": "Copilotの管理を任されている人に、押さえておきたい話です。\n\nCopilot影響ダッシュボードの採用グラフに、チャットとVS Codeのエージェント画面が加わりました。\n「受け身のユーザー」という区分は、名前が「チャット中心のユーザー」に変わりました。\n\nチームでは、チャットとエージェント機能のどちらを多く使っていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "expert",
+      "question": "Copilotは、チャットとエージェント機能のどちらを多く使いますか？"
+    },
+    {
+      "pattern": "count",
+      "question": "Copilotのチャットは、1週間で何日くらい使いますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "GitHub Copilotの影響ダッシュボードで、採用状況のグラフに「Copilot Chat」とVS Codeの「Agents window」が加わり、対象は9機能になりました。あわせて「Passive users」という区分の名前が「Chat-first users」に変わりましたが、採用フェーズの判定や区分の人数は変わりません。今回の変更は管理者向けの画面とレポートの話で、個人の使い方や料金には影響しません。",
+  "description": "GitHub Copilotの影響ダッシュボードの採用グラフに、Copilot ChatとVS CodeのAgents windowが追加され、9機能を確認できます。区分名の変更点、条件、閲覧できる人を整理しました。",
+  "keywords": [
+    "GitHub Copilot",
+    "Copilot影響ダッシュボード",
+    "Copilot Chat",
+    "VS Code Agents window",
+    "Copilot使用状況メトリクス",
+    "Chat-first users",
+    "採用コーホート",
+    "28日間レポート",
+    "Copilot管理者",
+    "利用状況API"
+  ],
+  "tags": [
+    "GitHub Copilot",
+    "生成AI",
+    "開発ツール",
+    "VS Code",
+    "AIエージェント"
+  ],
+  "highlights": [
+    "Copilot影響ダッシュボードの採用グラフに、チャットとVS Codeのエージェント画面が加わり、9機能を確認できる",
+    "「Passive users」は「Chat-first users」に改称。APIの値は従来どおり「No Cohort」のまま",
+    "利用とみなす条件は28日間のうち2日以上。チャットはエージェントモードの利用も含む"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "追加料金の記載なし",
+    "free": null,
+    "audience": "Copilot管理者",
+    "take": "自社のチャット中心の利用者の実態を、ダッシュボードで見直すとよいでしょう。",
+    "judgedAt": "2026-11-07T20:28:31.772226+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "Copilotの導入を担当する管理者は、チャットの利用状況を数字で社内に説明しやすくなります。",
+      "「受け身」と見られていた利用者が、チャット中心の使い方として見えるようになります。"
+    ]
+  },
+  "body": "GitHub Copilotを使う個々の開発者の操作や料金は、今回の変更で変わりません。影響があるのは、導入状況を確認する管理者や、利用状況の数字を社内に報告する立場の人です。\n\nCopilot影響ダッシュボードは、組織がCopilotをどれだけ深く使っているかを示す管理者向けの画面です。単なるアクティブユーザー数ではなく、使い方の深さで利用者を区分し、プルリクエスト（コードの変更提案）の処理量と結びつけて見せます（GitHubドキュメント、11/8確認）。\n\n## 採用グラフは7機能から9機能へ\n\nGitHub Changelogの11月6日付の発表によると、ダッシュボードの採用グラフ（Agent adoption chart）に、Copilot ChatとVS CodeのAgents windowが加わりました。対象は合計9機能になります。\n\nこれまでの7機能にはチャットが含まれていませんでした。チャットはCopilotの中心的な使い方の1つですが、画面に出ていなかったため、チャットを主に使う人が十分に捉えられていませんでした。\n\n企業向けと組織向けの28日間利用状況レポートにも、同じ2機能が入ります。APIのcopilot_feature_engagement.totals_by_featureには、chatとvscode_agentという項目が追加されました。関連する更新として「Usage metrics API」の別の更新にも触れられています。\n\n**「Passive users」は「Chat-first users」に**\n\nもう1つの変更は、利用者の区分の名前です。「Passive users」（受け身のユーザー）という区分は、「Chat-first users」（チャット中心のユーザー）に改称されました。GitHubは、この区分に入る人の実態により合う名前にしたと説明しています。\n\nこの区分に入るのは、Copilotでは活動しているものの、対象の機能を28日間のうち2日以上使っていない人です。そのため、採用フェーズ（段階）の判定には入りません。\n\nAPIでは、この区分は従来どおり「No Cohort」という値で返されます。区分ごとの人数も変わりません。変わるのは表示上の名前と、チャットの利用が見える点です。\n\n**数え方のルールと注意点**\n\n利用とみなす条件は、他の機能と同じです。28日間のうち2日以上その機能を使った人を、その機能の利用者と数えます。1人が複数の機能で数えられることもあります。\n\nチャットには、使用状況メトリクスで捉えられるCopilot Chatの利用が含まれ、エージェントモードも入ります。そのため、エージェントによるコード編集をした人は、チャットの利用者としても数えられます。\n\n採用フェーズは変わっていません。ChatとVS CodeのAgents windowは、機能の利用状況として報告されますが、採用フェーズの判定には使われません。\n\n報告の範囲にも制限があります。他の7機能と同じく、この2機能も企業・組織の28日間レポートだけに出ます。今回の変更より前の期間のレポートには、従来の7機能しか含まれません。\n\n## 日本で使えるか、見られる人は\n\nGitHub Copilot自体は日本で使えます。公式ドキュメントは日本語で公開されており、国による制限の記載はありません（当サイトの確認：11/3）。\n\n閲覧できるのは次の人です。\n\n- 企業の所有者、課金マネージャー\n- 組織の所有者\n- 「Copilotメトリクスの表示」権限を持つカスタムロールのユーザー\n\nいずれの場合も、Copilot使用状況メトリクスのポリシーを有効にしておく必要があります。ダッシュボードには、左側のサイドバーの「Copilot」の「影響」から入ります（GitHubドキュメント、11/8確認）。\n\n## まだ分からないこと\n\n- 今回の2機能を追加した画面の、日本語表示の時期はまだ発表されていません。\n- 追加された機能が採用フェーズの判定に含まれるようになるかどうかは、まだ発表されていません。\n\n**Copilotの導入を担当する管理者が確認すること**\n\nまず、自社のCopilot使用状況メトリクスのポリシーが有効かを確かめます。無効だと、ダッシュボードにもレポートにもデータが出ません。\n\n次に、これまで「Passive users」に分類されていた人の中に、チャットを日常的に使っている人がいないかを見ます。今回の変更で、この人たちの利用が機能別の数字として見えるようになります。\n\nAPIでレポートを集計している場合は、totals_by_featureにchatとvscode_agentが加わった点を取り込みます。変更より前の期間のレポートには、従来の7機能しか含まれないため、期間をまたいで比べるときは注意が必要です。",
+  "easy": "## ひとことで言うと\n\nGitHub Copilotの利用状況を見る管理者向けの画面に、チャットとVS Codeのエージェント画面が加わりました。これで9つの機能の利用状況を確認できます。\n\n「Passive users」という区分は、実態に合わせて「Chat-first users」に名前が変わりました。\n\n## 何が変わり、何が変わらないか\n\nこれまでの画面では、チャットが主な使い方の人が「受け身」のように見えていました。今回の変更で、チャットの利用が数字として表示されます。\n\n一方、採用の段階を決める判定は変わりません。区分ごとの人数も同じです。チャットとVS Codeのエージェント画面は、利用状況として表示されるだけで、段階の判定には使われません。\n\n## 利用とみなす条件と見られる人\n\n28日間のうち2日以上使うと、その機能を使ったと数えます。1人が複数の機能で数えられることがあります。\n\n見られるのは、企業の所有者や課金の管理者、組織の所有者などです。Copilot使用状況メトリクスのポリシーを有効にする必要があります。",
+  "channel": "GitHub Changelog（Copilot）",
+  "channelId": "",
+  "channelSlug": "github-changelog-copilot",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Copilot impact dashboard adds chat and VS Code agent usage",
+  "publishedAt": "2026-11-06T22:17:28+00:00",
+  "generatedAt": "2026-11-07T20:28:31.772214+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/copilot-impact-dashboard-chat-vscode-agent-23351b58.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "エージェントモードで編集した人は、チャットの利用者に数えられますか？",
+      "a": "数えられます。チャットの集計には、使用状況メトリクスで捉えられるエージェントモードの利用も含まれるため、エージェント編集をした人もチャットの利用者になります。"
+    }
+  ],
+  "todayActions": [
+    "自社のCopilot使用状況メトリクスのポリシーが有効かを、設定画面で確認する",
+    "「Chat-first users」に入った人数と、チャットの利用状況を見比べる",
+    "APIで集計している場合は、chatとvscode_agentの項目を取り込めているか確かめる"
+  ],
+  "qualityScore": 88,
+  "sourcePublishedAt": "2026-11-06T22:17:28+00:00",
+  "detectedAt": "2026-11-07T20:27:13+00:00",
+  "layout": "noir",
+  "summaryLine": "Copilot影響ダッシュボードの採用グラフに、チャットとVS Codeのエージェント画面が加わり、9機能を確認できる",
+  "sectionTitles": {
+    "body": {
+      "日本で使えるか、見られる人は": "日本から利用可能、閲覧は管理権限者のみ"
+    }
+  },
+  "sectionsPolishedAt": "2026-11-07T20:29:07+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/copilot-impact-dashboard-chat-vscode-agent-fig1-23351b58.jpg",
+      "width": 1200,
+      "height": 630,
+      "kind": "dense",
+      "credit": "GitHub",
+      "sourceUrl": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage",
+      "original": "https://github.blog/wp-content/uploads/2026/11/696879380-eb0b2c93-698d-46a2-a934-02bbf6d7fa36.jpg"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "GitHub",
+    "provider": "GitHub Changelog（Copilot）",
+    "sourceUrl": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage",
+    "original": "https://github.blog/wp-content/uploads/2026/11/696879380-eb0b2c93-698d-46a2-a934-02bbf6d7fa36.jpg",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-07T20:30:55+00:00",
+    "imageKind": "dense"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.49,
+    "y": 0.402,
+    "box": [
+      0.125,
+      0.0,
+      0.856,
+      0.804
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/copilot-impact-dashboard-chat-vscode-agent-23351b58.jpg"
+  },
+  "coverTries": 1
+}

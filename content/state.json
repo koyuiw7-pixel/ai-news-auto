@@ -17023,6 +17023,18 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202611/video-327169.html"
     },
+    "df141a94aef9dbc1": {
+      "at": "2026-11-07T20:28:56.520499+00:00",
+      "costUsd": 0.1127,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "copilot-impact-dashboard-chat-vscode-agent",
+      "url": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage"
+    },
     "df1dc05658990430": {
       "at": "2026-11-06T05:41:32.151421+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -18938,40 +18950,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-06T01:42:51.403001+00:00",
-      "attempt": 1,
-      "id": "c0d7b0808284d182",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.7,
-        "avg_sentence": 37.6,
-        "long_share": 0.061,
-        "max_paragraph": 121,
-        "paragraphs": 15,
-        "sentences": 33
-      },
-      "score": 85,
-      "source": "openai-news",
-      "title": "Franklin Templeton uses OpenAI to support investment research"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T02:02:53.757653+00:00",
-      "attempt": 1,
-      "id": "a874e3b4a06b5092",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "nli-research",
-      "title": "「どのアプリを開けばいい？」をなくす－中国平安保険、デジタル化10年の伏線回収"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T02:04:06.481640+00:00",
@@ -25139,6 +25117,56 @@
       "warnings": [
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（MCP）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T20:28:38.117354+00:00",
+      "attempt": 1,
+      "id": "df141a94aef9dbc1",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「ダッシュボードの日本語版ドキュメントも公開されています」→ 元記事にも確認済みの文脈にも無い情報で、根拠なしに追加された記述である。",
+        "「前回の「Usage metrics API」の更新とあわせて」→ 元記事は関連ページとして別の更新に触れているだけで、「前回」という時系列や管理者が機能ごとの利用を追いやすくなるという評価は元記事の記述から離れている。",
+        "「判定: 提供状況=available 価格=追加料金の記載なし」→ 記事本文の裏付けを補う注記として読めるが、読者向けの判定欄として分かりにくく、元記事の提供条件の記述と照らすと言い過ぎになりうる。"
+      ],
+      "readability": {
+        "avg_paragraph": 86.6,
+        "avg_sentence": 41.3,
+        "long_share": 0.182,
+        "max_paragraph": 171,
+        "paragraphs": 21,
+        "sentences": 44
+      },
+      "score": 82,
+      "source": "github-changelog-copilot",
+      "title": "Copilot impact dashboard adds chat and VS Code agent usage",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（VS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T20:28:56.503036+00:00",
+      "attempt": 1,
+      "id": "df141a94aef9dbc1",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.8,
+        "avg_sentence": 41.4,
+        "long_share": 0.186,
+        "max_paragraph": 160,
+        "paragraphs": 21,
+        "sentences": 43
+      },
+      "score": 88,
+      "source": "github-changelog-copilot",
+      "title": "Copilot impact dashboard adds chat and VS Code agent usage",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（VS）"
       ]
     }
   ],
