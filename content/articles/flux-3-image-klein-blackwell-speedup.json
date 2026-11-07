@@ -1,0 +1,146 @@
+{
+  "slug": "flux-3-image-klein-blackwell-speedup",
+  "sourceType": "web",
+  "sourceUrl": "https://developer.nvidia.com/blog/speed-up-image-generation-with-flux-3-image-klein-on-nvidia-blackwell-gpus/",
+  "sourceName": "NVIDIA Developer Blog",
+  "title": "画像生成AI「FLUX 3 Image Klein」がNVIDIA B200で最大3.46倍速く",
+  "seoTitle": "FLUX 3 Image Kleinの高速化とは？使い方と注意点",
+  "threadsPost": "画像生成を自社で動かしている人に、知っておいてほしい話です。\n\nNVIDIAが、FLUX 3 Image Kleinの高速化手順を公開しました。\nB200 1台で、テキストからの画像生成は最大3.46倍速くなります。\n\n画質が少し落ちても、画像生成は速さを優先しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "tradeoff",
+      "question": "画質が少し落ちても、画像生成は速さを優先しますか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "画像生成AIは、いま仕事のどんな場面で使っていますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "画像生成AI「FLUX 3 Image Klein」を、NVIDIAのGPUで速く動かす方法が示されました。B200 1台で2048×2048の画像を作ると、最適化なしの設定と比べて、テキストからの生成は最大3.46倍、画像からの生成は最大4.45倍速くなります。対象は、画像生成を自社のサービスや制作ツールに組み込む開発者です。日本での提供時期は、まだ発表されていません。",
+  "description": "NVIDIAが画像生成AI「FLUX 3 Image Klein」の高速化手順を公開。B200 1台で、テキストからの画像生成が最大3.46倍、画像からの生成が最大4.45倍速くなりました。開発者向けの設定で、日本での提供時期は未定です。",
+  "keywords": [
+    "FLUX 3 Image Klein",
+    "画像生成AI 高速化",
+    "NVIDIA Blackwell",
+    "TensorRT LLM",
+    "NVFP4",
+    "B200 画像生成",
+    "Cache-DiT",
+    "生成AI 推論 高速化",
+    "Black Forest Labs",
+    "VisualGen"
+  ],
+  "tags": [
+    "生成AI",
+    "画像生成",
+    "NVIDIA",
+    "推論高速化",
+    "GPU"
+  ],
+  "highlights": [
+    "B200 1台で、最適化なしの設定と比べ、テキストからの生成が最大3.46倍、画像からの生成が最大4.45倍速くなりました。",
+    "8枚のB200で分担すると、Base版のテキストからの生成は14.90秒から3.00秒に縮みました。",
+    "VC-Attention FP8はBaseで1.18倍速く、LPIPSは0.086で、画質の変化を数値で示しています。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "画像生成の開発者",
+    "take": "GPUを持つ開発チームは、公開された手順と設定を確かめるとよいでしょう。",
+    "judgedAt": "2026-11-07T04:54:09.692513+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の影響は小さく、画像生成を自社で組み込む開発者が主な対象です。"
+    ]
+  },
+  "body": "画像生成AIを自社のサービスや制作ツールに組み込んでいる開発者にとって、画像1枚ができるまでの待ち時間が短くなる話です。\n\n一般の会社員や個人が、今すぐ変わる話ではありません。\n\nFLUX 3 Image Kleinは、Black Forest Labs（BFL）が開発した、画像の生成と編集ができるAIモデルです。\n\nNVIDIAの開発者向けブログによると、このモデルを速く動かす方法が示されました。速く動かす先は、NVIDIAのGPU（画像の計算を担う半導体）です。使うのは、NVIDIAの実行環境「TensorRT LLM VisualGen」です。\n\nテキストから画像を作るとき、処理のほとんどはデノイズ（画像のもとになるノイズを段階的に取り除く処理）に使われます。\n\nB200 1台で2048×2048の画像を作ると、Base版（50ステップ）のテキストからの生成は次のとおりでした。\n\n- 合計: 14.70秒\n- うちデノイズ: 14.24秒\n\nまず、数値を4ビットで表すNVFP4という形式を使うと、BF16（16ビットの計算形式）と比べて速くなります。テキストからの生成は最大1.62倍、画像からの生成は最大1.58倍速くなりました。\n\nさらに工夫を重ねると、最適化なしのBF16と比べて速くなります。\n\n- テキストからの生成: 最大3.46倍\n- 画像からの生成: 最大4.45倍\n\nどちらもB200 1台で2048×2048の画像を作った場合の数字です。\n\n## 最適化の効果を数字で見る\n\n速さを上げる工夫は、主に次の4つです。数字はBase版のものです。画質の変化は、LPIPS（画像の見た目の違いを示す指標。0に近いほど元の画像に近い）で示されています。\n\n- 量子化アテンション（cuDNN FP8）: 1.08倍、LPIPSは0.072\n- VC-Attention FP8（誤差を補正する方式）: 1.18倍、LPIPSは0.086\n- Sol-Attention（計算を間引く方式）: 1.30倍。最初の12ステップは通常の計算を使います\n- Cache-DiT（途中の計算結果を使い回す方式）: 2048×2048で1.94倍、LPIPSは0.033\n\nここで効くのは、アテンション（画像の各部分どうしの関係を計算する部分）です。\n\nVANILLA BF16（最適化なしの標準的な計算）では、この計算が大きな割合を占めていました。具体的には、DiT（拡散トランスフォーマー。画像を作るモデルの中心部分）のGPUの処理時間の約60%です。\n\n8枚のB200で分担させると、テキストからの生成の中央値は次のとおり縮みました。\n\n- Base版: 14.90秒から3.00秒へ\n- 蒸留版（少ない手順で答えを出せるよう軽くした版）: 2.73秒から1.08秒へ\n\nデノイズだけなら、Base版は6.01倍、蒸留版は4.44倍速くなります。ただ蒸留版は、全体時間の約半分がデノイズ以外に残るため、全体の短縮は小さくなります。\n\n編集部の見方では、速さの数字と並べて画質の変化を数値で示している点が、この発表の読みどころです。\n\nSol-Attentionでは、τ（タウ。間引きの強さを決める値）を上げると、画質が下がります。それなのに、速さの伸びは小さいとされています。\n\n同じNVIDIAの「TensorRT Edge-LLM」は、手元の機器で動くAI（エッジAI）の開発向けです。サイソクは11月2日に報じています（[エッジAI開発を数コマンドで始められる「TensorRT Edge-LLM」](/articles/nvidia-tensorrt-edge-llm-edge-ai)）。\n\n## 設定の使い方（開発者向け）\n\n設定はYAML（設定を書くテキスト形式）で書きます。NVFP4を使うには、pipeline_configのvariantにnvfp4を指定します。モデルは、BFLが用意したNVFP4版の学習済みデータを読み込みます。\n\n量子化アテンションは、attention_configで選びます。設定は次のとおりです。\n\n- cuDNN FP8: backendをCUDNNにし、qk_dtypeとv_dtypeをfp8にします\n- VC-Attention FP8: backendをTRTLLMにし、vc_attentionをtrueにして、vc_repair_budgetに0.005を入れます\n- Sol-Attention: sparse_attention_configでalgorithmをsol_attn、tauを1.0にします\n- Cache-DiT: cache_configのcache_backendをcache_ditにし、residual_diff_thresholdを0.24にします\n\nCache-DiTは途中の計算結果を使い回す仕組みで、モデルの重みは変えず、再学習も要りません。\n\n8枚のGPUで分担するBase版は、parallel_configでcfg_size: 2、ulysses_size: 4と設定します。\n\ncfg_sizeは条件つきと条件なしの計算を別のGPUの組に分け、ulysses_sizeは1組の中で画像の計算を分担するGPUの数です。\n\n蒸留版はcfg_size: 1、ulysses_size: 8で、チェックポイントはflux-3-image-kleinを指定します。公式ブログには、これらを使った実行例も載っています。\n\n## まだ分からないこと\n\n- 日本での提供時期と、日本から使うための条件はまだ発表されていません。\n- B200以外のGPUで、今回と同じ速さが出るかはまだ示されていません。\n- 利用料金はまだ発表されていません。",
+  "easy": "## ひとことで言うと\n\n画像生成AI「FLUX 3 Image Klein」を、NVIDIAのGPUで速く動かす方法が公開されました。最適化を組み合わせると、B200 1台で最大3.46倍（テキストから）、4.45倍（画像から）速くなります。自社で画像生成を動かす開発者向けです。\n\n速くなった理由は、計算の精度を下げることと、計算の一部を使い回したり間引いたりすることです。画質の変化も数値で示されています。日本での提供時期は、まだ発表されていません。",
+  "channel": "NVIDIA Developer Blog",
+  "channelId": "",
+  "channelSlug": "nvidia-developer-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Speed Up Image Generation with FLUX 3 Image Klein on NVIDIA Blackwell GPUs",
+  "publishedAt": "2026-11-06T22:20:20+00:00",
+  "generatedAt": "2026-11-07T04:54:09.692501+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/flux-3-image-klein-blackwell-speedup-0892c478.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [
+    {
+      "name": "ConoHa AI Canvas",
+      "label": "ConoHa AI Canvas（ブラウザで使える画像生成AI）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BELTP+C1FL6A+50+7RU5R6",
+      "note": "環境構築なしで、ブラウザだけで本格的な画像生成AIを使えるGMOインターネットのサービス",
+      "pixel": "https://www18.a8.net/0.gif?a8mat=4BELTP+C1FL6A+50+7RU5R6"
+    }
+  ],
+  "newsType": "general",
+  "todayActions": [
+    "NVIDIAの開発者向けブログで、FLUX 3 Image Kleinの実行例とYAML設定を確かめる。",
+    "自社で画像生成を動かしているなら、使っているGPUがB200かどうかを確認する。",
+    "TensorRT LLMのGitHubで、開発チームへの報告や情報共有の場を確かめておく。"
+  ],
+  "relatedSlugs": [
+    "nvidia-tensorrt-edge-llm-edge-ai"
+  ],
+  "qualityScore": 93,
+  "sourcePublishedAt": "2026-11-06T22:20:20+00:00",
+  "detectedAt": "2026-11-07T04:50:58+00:00",
+  "layout": "noir",
+  "summaryLine": "B200 **1台**で、最適化なしの設定と比べ、テキストからの生成が最大3.46倍、画像からの生成が最大4.45倍速くなりました。",
+  "sectionsPolishedAt": "2026-11-07T04:55:38+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/flux-3-image-klein-blackwell-speedup-fig1-d5cdc3a7.jpg",
+      "width": 1200,
+      "height": 1200,
+      "kind": "photo",
+      "credit": "NVIDIA",
+      "sourceUrl": "https://developer.nvidia.com/blog/speed-up-image-generation-with-flux-3-image-klein-on-nvidia-blackwell-gpus/",
+      "original": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/techblog-5893-figure-1-image-1.png"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/flux-3-image-klein-blackwell-speedup-fig2-025f30ae.jpg",
+      "width": 1200,
+      "height": 1200,
+      "kind": "photo",
+      "credit": "NVIDIA",
+      "sourceUrl": "https://developer.nvidia.com/blog/speed-up-image-generation-with-flux-3-image-klein-on-nvidia-blackwell-gpus/",
+      "original": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/techblog-5893-figure-1-image-2.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA Developer Blog",
+    "sourceUrl": "https://developer.nvidia.com/blog/speed-up-image-generation-with-flux-3-image-klein-on-nvidia-blackwell-gpus/",
+    "original": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/techblog-5893-article-kix-ulkeecvizi09.webp",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-07T04:55:49+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.45,
+    "y": 0.395,
+    "box": [
+      0.0,
+      0.033,
+      0.9,
+      0.756
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/flux-3-image-klein-blackwell-speedup-0892c478.jpg"
+  }
+}

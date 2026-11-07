@@ -224,6 +224,7 @@
     "65716c697cbe2575": "2026-11-06T19:23:54.886871+00:00",
     "65a2876b6174c083": "2026-11-06T19:23:54.886871+00:00",
     "65ad18cc9ed6ebc0": "2026-11-05T12:02:48.521507+00:00",
+    "660bf673c08d0f27": "2026-11-07T04:50:58.842979+00:00",
     "67badbb93a9a5466": "2026-11-06T06:00:54.354301+00:00",
     "68f4b82abee1aa5b": "2026-11-06T18:22:08.318950+00:00",
     "6973d1c309d9eb2e": "2026-11-04T13:10:52.830493+00:00",
@@ -8497,6 +8498,12 @@
       "skipped": true,
       "url": "https://www.uniqlo.com/jp/ja/contents/corp/press-release/2026/11/uniqlo_and_cecilie_bahnsen_202.html"
     },
+    "55a6c6aa2846faa5": {
+      "at": "2026-11-07T04:51:50.078598+00:00",
+      "reason": "stale: 発表から62時間（48時間を超えた発表は通常の記事にしない）",
+      "skipped": true,
+      "url": "https://www.salesforce.com/news/stories/agentforce-coworker-surpasses-185k-users/"
+    },
     "55b0a1eff479f872": {
       "at": "2026-11-06T19:26:40.311920+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -9470,7 +9477,7 @@
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110502"
     },
     "660bf673c08d0f27": {
-      "at": "2026-11-07T04:31:52.421358+00:00",
+      "at": "2026-11-07T04:52:25.436940+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202611/07kunren.html"
@@ -9854,6 +9861,18 @@
       "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327011.html"
+    },
+    "6ce9fe52db65d87a": {
+      "at": "2026-11-07T04:54:47.751835+00:00",
+      "costUsd": 0.024,
+      "foreignAi": true,
+      "intent": "query",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "flux-3-image-klein-blackwell-speedup",
+      "url": "https://developer.nvidia.com/blog/speed-up-image-generation-with-flux-3-image-klein-on-nvidia-blackwell-gpus/"
     },
     "6cf6502bdfb52e40": {
       "at": "2026-10-29T17:28:16.642695+00:00",
@@ -14240,6 +14259,12 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026103007"
     },
+    "b860dcb6054f0104": {
+      "at": "2026-11-07T04:51:50.078856+00:00",
+      "reason": "stale: 発表から60時間（48時間を超えた発表は通常の記事にしない）",
+      "skipped": true,
+      "url": "https://aws.amazon.com/blogs/machine-learning/how-indegene-is-modernizing-and-scaling-enterprise-data-quality-in-life-sciences/"
+    },
     "b87dee658e56a539": {
       "at": "2026-10-30T06:12:30.053088+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（講演）",
@@ -16626,6 +16651,12 @@
       "skipped": true,
       "url": "https://www.softbank.jp/sbnews/entry/20261104_01"
     },
+    "e28316334a915ca2": {
+      "at": "2026-11-07T04:51:50.078725+00:00",
+      "reason": "stale: 発表から64時間（48時間を超えた発表は通常の記事にしない）",
+      "skipped": true,
+      "url": "https://elevenlabs.io/blog/elevenagents-contact-center-integrations"
+    },
     "e2c8a0e90064bbd6": {
       "at": "2026-10-28T04:22:33.307854+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -16934,6 +16965,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047893/"
+    },
+    "e8690f74b67f5698": {
+      "at": "2026-11-07T04:52:25.431154+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: リード『Cosmos NIMの高速化とGPUメモリの目安を整理します』→ 元記事の本文に NIM の高速化やGPUメモリの数値は無く、要点の『BF16で58GiB、FP8で44GiB』も元記事本文には見当たらない。リードの内容が本文と対応していない。; 『当初の記事では公開済みのチェックポイントを使う手順を紹介しました』→ 元記事は公開の発表ではなく、過去記事の",
+      "skipped": true,
+      "url": "https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation"
     },
     "e887449fa547326c": {
       "at": "2026-11-02T14:11:49.973834+00:00",
@@ -18263,61 +18301,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T16:34:20.814798+00:00",
-      "attempt": 2,
-      "id": "3af0ef7d790a050b",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "softbank-news",
-      "title": "大迫力のダンスバトル！ ハーフタイムショーで推しと最接近！ 史上最多の20チームが参戦する「D.LEAGUE 26-27 SEASON」開幕戦レポート"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T16:35:35.979874+00:00",
-      "attempt": 1,
-      "id": "3df4d68063a5a1b4",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "見出し「処理量は最大30倍」→ 元記事は「ドル当たり」の処理量（agentic throughput per dollar）の向上であり、見出しは指標の限定を落としている",
-        "判定行「提供状況=demo 価格=法人向け」→ 本記事の対象（データセンター向け発表）に対する根拠が元記事・確認済みの文脈に無く、読者に誤解を与えうる内部ラベルが残っている",
-        "「今日やること」の料金プランと利用上限の確認→ 一般的な行動として許容されるが、利用上限という具体的な確認対象は元記事に無い"
-      ],
-      "readability": {
-        "avg_paragraph": 93.9,
-        "avg_sentence": 39.4,
-        "long_share": 0.129,
-        "max_paragraph": 157,
-        "paragraphs": 13,
-        "sentences": 31
-      },
-      "score": 72,
-      "source": "nvidia-blog",
-      "title": "More Performance From Every Byte: How Full-Stack Codesign Solves AI’s Memory Cha",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HBM・KV・NVFP）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-05T16:35:57.775123+00:00",
-      "attempt": 2,
-      "id": "3df4d68063a5a1b4",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "nvidia-blog",
-      "title": "More Performance From Every Byte: How Full-Stack Codesign Solves AI’s Memory Cha"
-    },
     {
       "accepted": false,
       "at": "2026-11-05T16:38:46.124261+00:00",
@@ -24179,6 +24162,74 @@
       "title": "商品 『アサヒ ザ・ビタリスト』 と「くっきー！」がコラボレーション 「くっきー！描きおろし限定デザイン缶」を11月10日から数量限定発売",
       "warnings": [
         "初めて出たところで言い換えていない略語（WEBCM・RRAI・QUO）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T04:52:25.431130+00:00",
+      "attempt": 1,
+      "id": "e8690f74b67f5698",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "リード『Cosmos NIMの高速化とGPUメモリの目安を整理します』→ 元記事の本文に NIM の高速化やGPUメモリの数値は無く、要点の『BF16で58GiB、FP8で44GiB』も元記事本文には見当たらない。リードの内容が本文と対応していない。",
+        "『当初の記事では公開済みのチェックポイントを使う手順を紹介しました』→ 元記事は公開の発表ではなく、過去記事の内容の確認は文脈にあるものの、元記事本文とは対応しない説明。言い過ぎ程度。",
+        "『今回は各モデルを手元で使えるようになった点が新しい事実です』→ 元記事は各チェックポイントのダウンロード提供を示すが、『手元で使える』という位置づけの強調は言い換えとして弱い。",
+        "『閉ループで使うには…地図の描画ツールが別途必要』→ 元記事は『WSM renderer』としており、地図の描画ツールという訳語は意味がやや広いが概ね妥当。"
+      ],
+      "score": 78,
+      "source": "hugging-face-blog",
+      "title": "New NVIDIA Cosmos 3 Open Models for Interactive World Simulation"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T04:54:17.639227+00:00",
+      "attempt": 1,
+      "id": "6ce9fe52db65d87a",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 50.9字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 157.1字・最長 369字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 157.1,
+        "avg_sentence": 50.9,
+        "long_share": 0.324,
+        "max_paragraph": 369,
+        "paragraphs": 12,
+        "sentences": 37
+      },
+      "score": 95,
+      "source": "nvidia-developer-blog",
+      "title": "Speed Up Image Generation with FLUX 3 Image Klein on NVIDIA Blackwell GPUs",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（FLUX・BFL・LLM）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T04:54:47.722018+00:00",
+      "attempt": 0,
+      "id": "6ce9fe52db65d87a",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 66.9,
+        "avg_sentence": 39.5,
+        "long_share": 0.103,
+        "max_paragraph": 116,
+        "paragraphs": 23,
+        "sentences": 39
+      },
+      "score": 93,
+      "source": "nvidia-developer-blog",
+      "title": "Speed Up Image Generation with FLUX 3 Image Klein on NVIDIA Blackwell GPUs",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（FLUX・BFL・LLM）"
       ]
     }
   ],
