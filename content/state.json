@@ -17979,6 +17979,13 @@
       "skipped": true,
       "url": "https://kabutan.jp/news/marketnews/?b=n202611020205"
     },
+    "fa92b101598f325b": {
+      "at": "2026-11-07T02:32:02.721158+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「今回の試合で過去のモロッコ戦は3試合となり、日本の通算成績は1勝2敗」→ 確認済みの文脈にあるのは過去の対戦成績1勝1敗のみで、今回の敗戦を足した3試合・1勝2敗は記事が自分で計算した数字であり、計算済みの数字欄にも元記事にもない",
+      "skipped": true,
+      "url": "https://www.jfa.jp/news/00036992/"
+    },
     "fae0cc209d8923b6": {
       "at": "2026-10-27T01:51:14.886009+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -18268,20 +18275,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-05T15:25:39.080536+00:00",
-      "attempt": 1,
-      "id": "06a6a6db73347aad",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "blue-ing!で楽しむ飲み放題付きパーティープランを販売開始 懇親会や歓送迎会にも最適、JFA公式施設ならではのパーティー体験を提供 #jfa"
-    },
     {
       "accepted": false,
       "at": "2026-11-05T15:28:14.320905+00:00",
@@ -24161,6 +24154,20 @@
         "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
         "初めて出たところで言い換えていない略語（WEBCM・QUO・POP）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T02:32:02.721136+00:00",
+      "attempt": 1,
+      "id": "fa92b101598f325b",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「今回の試合で過去のモロッコ戦は3試合となり、日本の通算成績は1勝2敗」→ 確認済みの文脈にあるのは過去の対戦成績1勝1敗のみで、今回の敗戦を足した3試合・1勝2敗は記事が自分で計算した数字であり、計算済みの数字欄にも元記事にもない"
+      ],
+      "score": 85,
+      "source": "jfa",
+      "title": "【Match Report】フットサル日本代表、粘り強く戦うもモロッコに0-1で惜敗 #jfa #daihyo"
     }
   ],
   "short_text_retry": {},
