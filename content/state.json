@@ -16980,6 +16980,18 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/"
     },
+    "dcf7efe8bcfb40e1": {
+      "at": "2026-11-07T22:52:45.832163+00:00",
+      "costUsd": 0.114,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5+anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "copilot-usage-metrics-code-review-addressed-rate",
+      "url": "https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate"
+    },
     "dd699d29ee35f836": {
       "at": "2026-11-05T17:18:02.940207+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -18985,34 +18997,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T03:23:11.326773+00:00",
-      "attempt": 1,
-      "id": "a80efade9c9f0d83",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "個人向け国債の発行条件等"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T03:23:38.862938+00:00",
-      "attempt": 2,
-      "id": "a80efade9c9f0d83",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "個人向け国債の発行条件等"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T03:24:21.829446+00:00",
@@ -25213,6 +25197,43 @@
       "title": "オンラインオリパ運営を提訴、ギャンブル性の課金構造が問題 ～ 弁護士法人・響 西川研一弁護士インタビュー ～",
       "warnings": [
         "同じ数字が多い（「5社」が7回）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-07T22:52:09.691837+00:00",
+      "attempt": 1,
+      "id": "dcf7efe8bcfb40e1",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "新製品・新サービス・機能の記事に必要な「発売日・提供開始日」が資料にあるのに本文にありません（日付と、段階的な提供ならその順番）。資料の表記どおりに入れてください"
+      ],
+      "score": null,
+      "source": "github-changelog-copilot",
+      "title": "Usage metrics API adds code review details and addressed rate"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-07T22:52:36.043691+00:00",
+      "attempt": 1,
+      "id": "dcf7efe8bcfb40e1",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.2,
+        "avg_sentence": 40.8,
+        "long_share": 0.143,
+        "max_paragraph": 179,
+        "paragraphs": 18,
+        "sentences": 42
+      },
+      "score": 88,
+      "source": "github-changelog-copilot",
+      "title": "Usage metrics API adds code review details and addressed rate",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MCP・REST）"
       ]
     }
   ],
