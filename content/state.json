@@ -124,6 +124,14 @@
       "tries": 1,
       "url": "https://www.mof.go.jp/jgbs/topics/gov_guaranteed_bonds/hu2033.htm"
     },
+    "a3acde162bc9d6a8": {
+      "first": "2026-11-08T02:17:48.217874+00:00",
+      "next": "2026-11-08T05:17:48.217874+00:00",
+      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "title": "高病原性鳥インフルエンザの発生・感染報告状況（2026年11月2日現在）(PDF : 524KB)",
+      "tries": 1,
+      "url": "https://www.maff.go.jp/j/syouan/douei/tori/attach/pdf/index-1276.pdf"
+    },
     "a80efade9c9f0d83": {
       "first": "2026-11-06T00:08:54.716870+00:00",
       "next": "2026-11-06T06:23:38.862998+00:00",
@@ -3720,6 +3728,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（メンテナンス）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000027.000136721.html"
+    },
+    "029ca35f62010ae3": {
+      "at": "2026-11-08T02:19:33.787820+00:00",
+      "costUsd": 0.1068,
+      "intent": "query",
+      "mix": "life",
+      "model": "anthropic-api:claude-sonnet-5-5+anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "lifestyle",
+      "slug": "jr-kyushu-hakata-late-night-extra-trains",
+      "url": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf"
     },
     "031a673e562848d1": {
       "at": "2026-11-05T13:12:04.999278+00:00",
@@ -7611,6 +7630,13 @@
       "reason": "quality: 本文が短い（1488字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（383字 / 基準 400字以上）; title / seo_title に感嘆符がある",
       "skipped": true,
       "url": "https://www.nintendo.com/jp/topics/article/c8c6ed2b-cff7-4ff5-8953-32bd770e2537"
+    },
+    "44c91604a1f79ce1": {
+      "at": "2026-11-08T02:12:21.514266+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「前の記事では国の問い合わせ先を掲載しました」→ 確認済みの文脈にあるサイソクの過去記事の要約に問い合わせ先の記載がなく、前の記事の内容を裏付けられない。; 「愛知県 新着情報は2026年11月8日」→ 元記事に「新着情報」という表示はなく、掲載日・更新日の記載のみ。枠組みの書き方に根拠がない。",
+      "skipped": true,
+      "url": "https://www.pref.aichi.jp/soshiki/sabo/20261108jishin.html"
     },
     "452bb60d93f5cdbd": {
       "at": "2026-10-27T03:01:29.612297+00:00",
@@ -18747,6 +18773,17 @@
       "skipped": true,
       "url": "https://www.cyberagent.co.jp/news/detail/id=33962"
     },
+    "fb3f861253bd4eb5": {
+      "at": "2026-11-08T02:16:07.984992+00:00",
+      "costUsd": 0.0109,
+      "intent": "query",
+      "mix": "money",
+      "model": "gemini-3.5-flash-lite+anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "lifestyle",
+      "slug": "famima-karaage-kushi-release",
+      "url": "https://www.family.co.jp/company/news_releases/2026/20261102_01.html"
+    },
     "fb646e5cb17f12fb": {
       "at": "2026-11-03T00:51:42.153196+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -19028,186 +19065,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:02:09.959110+00:00",
-      "attempt": 1,
-      "id": "2c002245da202074",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "soumu",
-      "title": "個人情報の漏えい等につながる不正アクセスへの対策について（事業者向け注意喚起）"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T06:02:38.553402+00:00",
-      "attempt": 2,
-      "id": "2c002245da202074",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 68.3,
-        "avg_sentence": 39.8,
-        "long_share": 0.083,
-        "max_paragraph": 106,
-        "paragraphs": 14,
-        "sentences": 24
-      },
-      "score": 90,
-      "source": "soumu",
-      "title": "個人情報の漏えい等につながる不正アクセスへの対策について（事業者向け注意喚起）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IPA）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:04:56.379125+00:00",
-      "attempt": 1,
-      "id": "e07514077fe0fe08",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "soumu",
-      "title": "弾道ミサイルを想定した住民避難訓練の実施"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:05:38.703825+00:00",
-      "attempt": 2,
-      "id": "e07514077fe0fe08",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "soumu",
-      "title": "弾道ミサイルを想定した住民避難訓練の実施"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:06:33.304622+00:00",
-      "attempt": 1,
-      "id": "8b7d4be52a6123fc",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mlit-press",
-      "title": "「砂防堰堤を活用した水力発電の取組事例集」を作成しました～既設砂防堰堤活用による再生可能エネルギーの創出～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:08:20.285088+00:00",
-      "attempt": 2,
-      "id": "8b7d4be52a6123fc",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mlit-press",
-      "title": "「砂防堰堤を活用した水力発電の取組事例集」を作成しました～既設砂防堰堤活用による再生可能エネルギーの創出～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:23:05.553701+00:00",
-      "attempt": 1,
-      "id": "ed79290dfff2f62b",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "samsung-jp",
-      "title": "Samsung、KT・SKテレコムと韓国の「AI RAN」プロジェクトを推進"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:24:46.160444+00:00",
-      "attempt": 2,
-      "id": "ed79290dfff2f62b",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "samsung-jp",
-      "title": "Samsung、KT・SKテレコムと韓国の「AI RAN」プロジェクトを推進"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:25:43.711658+00:00",
-      "attempt": 1,
-      "id": "99f5b444c3dec997",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "SAMURAI BLUE「Team Cam」未公開特別編集版の制作・上映会開催に向けたクラウドファンディングを実施～激闘の裏側にあった、もう一つの物語。2026"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:27:26.958348+00:00",
-      "attempt": 2,
-      "id": "99f5b444c3dec997",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "「抽選または先着で入場権を確保してください」→ 元記事に抽選・先着の記述は無く、入場方法を創作している",
-        "「アクセスは東京ドームシティ内の駅から徒歩数分です」→ 元記事に無いアクセス情報の創作",
-        "「会場はバリアフリー設計で、車椅子利用者にも配慮されています」→ 元記事に無い設備情報の創作",
-        "「JFAの既存会員やサポーターの契約は自動的に変更されません」→ 元記事に無い契約の話を創作し、無関係な影響の説明をしている",
-        "「上映会は各回とも約2時間のプログラム」「終了後にはサイン入りグッズの販売や…ネットワーキング」→ 元記事に無い時間・販売・交流の内容を創作",
-        "「支援額が高い順に先着で確保されるケース」「支援後はメールで確認と参加方法の案内が届きます」「ページ上部の「リターン」欄」→ 元記事に無い手続き・画面の創作"
-      ],
-      "readability": {
-        "avg_paragraph": 133.3,
-        "avg_sentence": 44.4,
-        "long_share": 0.167,
-        "max_paragraph": 164,
-        "paragraphs": 12,
-        "sentences": 36
-      },
-      "score": 25,
-      "source": "jfa",
-      "title": "SAMURAI BLUE「Team Cam」未公開特別編集版の制作・上映会開催に向けたクラウドファンディングを実施～激闘の裏側にあった、もう一つの物語。2026",
-      "warnings": [
-        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（FIFA・JFA・HOME）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:28:30.904968+00:00",
-      "attempt": 1,
-      "id": "083cb61269f13ae1",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に2選手を認定 #jfa"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T06:30:16.254212+00:00",
@@ -25258,6 +25115,196 @@
       "warnings": [
         "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（BCP）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:12:21.514240+00:00",
+      "attempt": 1,
+      "id": "44c91604a1f79ce1",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「前の記事では国の問い合わせ先を掲載しました」→ 確認済みの文脈にあるサイソクの過去記事の要約に問い合わせ先の記載がなく、前の記事の内容を裏付けられない。",
+        "「愛知県 新着情報は2026年11月8日」→ 元記事に「新着情報」という表示はなく、掲載日・更新日の記載のみ。枠組みの書き方に根拠がない。"
+      ],
+      "score": 85,
+      "source": "pref-aichi",
+      "title": "令和8年11月8日01時04分頃の静岡県西部の地震に伴う土砂災害に関する警報等の発表基準の暫定的な運用について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:15:07.787496+00:00",
+      "attempt": 1,
+      "id": "fb3f861253bd4eb5",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "familymart",
+      "title": "商品 チキンならファミマ！片手で手軽に手ごろな価格で大満足！ 独自技術の薄衣で、外はザクザク、中はジューシー！ 食べたらわかる“とびっきりの肉食感”「からアゲ串"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:15:43.911322+00:00",
+      "attempt": 1,
+      "id": "fb3f861253bd4eb5",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 43.3字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 81.6字・最長 225字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 81.6,
+        "avg_sentence": 43.3,
+        "long_share": 0.219,
+        "max_paragraph": 225,
+        "paragraphs": 17,
+        "sentences": 32
+      },
+      "score": 93,
+      "source": "familymart",
+      "title": "商品 チキンならファミマ！片手で手軽に手ごろな価格で大満足！ 独自技術の薄衣で、外はザクザク、中はジューシー！ 食べたらわかる“とびっきりの肉食感”「からアゲ串"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T02:16:07.971606+00:00",
+      "attempt": 0,
+      "id": "fb3f861253bd4eb5",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 51.5,
+        "avg_sentence": 34.3,
+        "long_share": 0.026,
+        "max_paragraph": 99,
+        "paragraphs": 26,
+        "sentences": 39
+      },
+      "score": 88,
+      "source": "familymart",
+      "title": "商品 チキンならファミマ！片手で手軽に手ごろな価格で大満足！ 独自技術の薄衣で、外はザクザク、中はジューシー！ 食べたらわかる“とびっきりの肉食感”「からアゲ串"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:16:17.894902+00:00",
+      "attempt": 1,
+      "id": "a3acde162bc9d6a8",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "maff-tori",
+      "title": "高病原性鳥インフルエンザの発生・感染報告状況（2026年11月2日現在）(PDF : 524KB)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:17:11.897752+00:00",
+      "attempt": 2,
+      "id": "a3acde162bc9d6a8",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "maff-tori",
+      "title": "高病原性鳥インフルエンザの発生・感染報告状況（2026年11月2日現在）(PDF : 524KB)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:17:48.217789+00:00",
+      "attempt": 2,
+      "id": "a3acde162bc9d6a8",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ],
+      "readability": {
+        "avg_paragraph": 96.4,
+        "avg_sentence": 40.2,
+        "long_share": 0.083,
+        "max_paragraph": 205,
+        "paragraphs": 15,
+        "sentences": 36
+      },
+      "score": null,
+      "source": "maff-tori",
+      "title": "高病原性鳥インフルエンザの発生・感染報告状況（2026年11月2日現在）(PDF : 524KB)",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（WAHIS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:17:54.769730+00:00",
+      "attempt": 1,
+      "id": "029ca35f62010ae3",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jrkyushu",
+      "title": "運輸サービス 忘年会シーズン到来！博多発23時台に臨時列車運行、特急列車も増発！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:18:37.794976+00:00",
+      "attempt": 1,
+      "id": "029ca35f62010ae3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "jrkyushu",
+      "title": "運輸サービス 忘年会シーズン到来！博多発23時台に臨時列車運行、特急列車も増発！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:19:01.073124+00:00",
+      "attempt": 2,
+      "id": "029ca35f62010ae3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
+      ],
+      "score": null,
+      "source": "jrkyushu",
+      "title": "運輸サービス 忘年会シーズン到来！博多発23時台に臨時列車運行、特急列車も増発！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T02:19:33.773393+00:00",
+      "attempt": 2,
+      "id": "029ca35f62010ae3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 57.3,
+        "avg_sentence": 30.5,
+        "long_share": 0.0,
+        "max_paragraph": 125,
+        "paragraphs": 25,
+        "sentences": 47
+      },
+      "score": 88,
+      "source": "jrkyushu",
+      "title": "運輸サービス 忘年会シーズン到来！博多発23時台に臨時列車運行、特急列車も増発！",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JR）"
       ]
     }
   ],
