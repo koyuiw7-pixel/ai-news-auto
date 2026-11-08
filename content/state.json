@@ -76,14 +76,6 @@
   },
   "failed_web": {},
   "gate_retry": {
-    "13c3f7609d9b5ea9": {
-      "first": "2026-11-08T03:38:50.286580+00:00",
-      "next": "2026-11-08T06:38:50.286580+00:00",
-      "reason": "「近くのスーパーやコンビニエンスストアの店頭で順次購入できます」→ 元記事に販売チャネルや「順次」の展開は書かれていない。; 「全国のスーパーやコンビニエンスストアなどで手に入ります」→ 小売チャネルは元記事に無く、創作に当たる。; 「パーティーアソート袋」→「職場での配り用」は元記事に無く、大袋全体の用途（シェア・まとめ買い・お土産）から広げた記述。; 「箱タイプ」→「1人用」「個人向け」と言い",
-      "title": "冬期限定チョコレート「メルティーキッス」 「コク深キャラメル」を新たに人気のラインアップに加えた5商品を発売 10月20日 新発売／全国 | 2026年 | プレスリリース・お知らせ | 株式会社 明治 - Meiji Co., Ltd.",
-      "tries": 1,
-      "url": "https://www.meiji.co.jp/corporate/pressrelease/2026/10_09/index.html?link=rss"
-    },
     "1b2c2dd52b0b36dc": {
       "first": "2026-11-06T08:23:32.478656+00:00",
       "next": "2026-11-06T11:23:32.478656+00:00",
@@ -91,14 +83,6 @@
       "title": "日蘭税関当局は、連携強化に関する協力文書を取り交わしました",
       "tries": 1,
       "url": "https://www.mof.go.jp/policy/customs_tariff/trade/international/conference/ka20261106.html"
-    },
-    "5e225945ad61e8c3": {
-      "first": "2026-11-08T03:40:49.140549+00:00",
-      "next": "2026-11-08T06:40:49.140549+00:00",
-      "reason": "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「7円増となり、年間では約4,400円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）",
-      "title": "託送料金見直しを反映した新たな電気料金単価を設定します－2026年11月１日から新単価を適用－",
-      "tries": 1,
-      "url": "https://www.kyuden.co.jp/press/2026/h260928-1.html"
     },
     "69fabd0e3c004cb8": {
       "first": "2026-11-06T08:44:56.108789+00:00",
@@ -4748,6 +4732,17 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000031.000045667.html"
     },
+    "13c3f7609d9b5ea9": {
+      "at": "2026-11-08T06:45:40.277614+00:00",
+      "costUsd": 0.0012,
+      "intent": "query",
+      "mix": "brand",
+      "model": "gemini-3.6-flash",
+      "score": 92,
+      "section": "lifestyle",
+      "slug": "meiji-meltykiss-caramel-2026-release",
+      "url": "https://www.meiji.co.jp/corporate/pressrelease/2026/10_09/index.html?link=rss"
+    },
     "13cfed5bd682c6ac": {
       "at": "2026-11-06T04:01:18.492465+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（の開催）",
@@ -9347,6 +9342,17 @@
       "reason": "followup quality: 「既存記事では「Update All」ボタンでSalesforceのレコードへ直接反映できると紹介しました」→ 元記事にも確認済みの文脈にも「Update All」ボタンの記述はなく、既存記事の機能を具体的なボタン名つきで述べるのは創作。; 「2026年11月5日」→ 元記事には記事の公開日が示されておらず、確認済みの文脈にもないため、公開日の具体的な日付は裏付",
       "skipped": true,
       "url": "https://www.salesforce.com/jp/news/stories/video/aiforce-customer-briefing/"
+    },
+    "5e225945ad61e8c3": {
+      "at": "2026-11-08T06:48:43.457227+00:00",
+      "costUsd": 0.0165,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "gemini-flash-latest",
+      "score": 92,
+      "section": "lifestyle",
+      "slug": "kyushu-electric-power-rate-revision-2026",
+      "url": "https://www.kyuden.co.jp/press/2026/h260928-1.html"
     },
     "5e237e9407d50660": {
       "at": "2026-11-04T01:24:18.066068+00:00",
@@ -17962,6 +17968,13 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77068.html"
     },
+    "ebb1c52e70ff5c7f": {
+      "at": "2026-11-08T06:45:10.796404+00:00",
+      "model": "gemini-3.6-flash",
+      "reason": "個別のホテル開業・店舗オープンに関する発表であり、対象範囲（不動産の政策・公的資料・住宅ローン金利・税制・不動産テック・REIT等のニュース）に含まれず、個別物件・店舗のオープン告知に該当するため記事化対象外と判断しました。",
+      "skipped": true,
+      "url": "https://www.nomura-re-hd.co.jp/news/005005.html"
+    },
     "ebee271797294dcb": {
       "at": "2026-10-29T04:31:23.344370+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -19263,75 +19276,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:23:05.739916+00:00",
-      "attempt": 1,
-      "id": "1b2c2dd52b0b36dc",
-      "kind": "broad",
-      "model": "gemini-3.6-flash",
-      "problems": [
-        "本文「X線などの先進的な検査装置」→ 元記事は「先進的な検査装置の活用」とだけ書き、X線には触れていない（創作）",
-        "本文「不正薬物や金地金などの社会悪物品」→ 元記事は社会悪物品と書くのみで、薬物や金地金は言及していない（創作）",
-        "本文「小型の国際郵便物や国際宅配便の取扱量が急増」→ 元記事・確認済みの文脈に無い事実",
-        "本文「検査画像データなどをAIで解析」「AIを活用した判定技術」→ 元記事に無い具体的な技術内容",
-        "よくある質問「関税率自体が変わるわけではありません」→ 元記事に関税率への言及はなく、断定の根拠が無い",
-        "本文「具体的な共同運用の開始時期などは順次協議される予定」（リード）→ 元記事に無い予定の記述"
-      ],
-      "readability": {
-        "avg_paragraph": 54.0,
-        "avg_sentence": 52.0,
-        "long_share": 0.259,
-        "max_paragraph": 90,
-        "paragraphs": 26,
-        "sentences": 27
-      },
-      "score": 55,
-      "source": "mof",
-      "title": "日蘭税関当局は、連携強化に関する協力文書を取り交わしました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:23:32.478606+00:00",
-      "attempt": 2,
-      "id": "1b2c2dd52b0b36dc",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "日蘭税関当局は、連携強化に関する協力文書を取り交わしました"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:25:24.702471+00:00",
-      "attempt": 1,
-      "id": "dc06143347b399e3",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "boj",
-      "title": "（金研ニュースレター）2026年カナダ銀行・フィラデルフィア連銀・日本銀行共催ワークショップ"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:27:16.596708+00:00",
-      "attempt": 2,
-      "id": "dc06143347b399e3",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "boj",
-      "title": "（金研ニュースレター）2026年カナダ銀行・フィラデルフィア連銀・日本銀行共催ワークショップ"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T08:32:15.943768+00:00",
@@ -25638,6 +25582,101 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（JR）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T06:45:40.268534+00:00",
+      "attempt": 1,
+      "id": "13c3f7609d9b5ea9",
+      "kind": "broad",
+      "model": "gemini-3.6-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 57.5,
+        "avg_sentence": 35.9,
+        "long_share": 0.062,
+        "max_paragraph": 121,
+        "paragraphs": 10,
+        "sentences": 16
+      },
+      "score": 92,
+      "source": "meiji",
+      "title": "冬期限定チョコレート「メルティーキッス」 「コク深キャラメル」を新たに人気のラインアップに加えた5商品を発売 10月20日 新発売／全国 | 2026年 | プ",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T06:47:43.011176+00:00",
+      "attempt": 1,
+      "id": "5e225945ad61e8c3",
+      "kind": "broad",
+      "model": "gemini-flash-latest",
+      "problems": [
+        "本文「契約者が自ら申し込む手続きは不要で」（リード）→ 元記事に手続きの要否についての記述はなく、この断定は元記事に裏付けがない。本文・Q&A・今日やることでも繰り返されている。",
+        "本文「九州電力と契約している家庭や事業所では…電気代の負担が増えます」→ 元記事が示すのは従量電灯Bの標準家庭の試算のみで、全契約者・事業所が一律に増えるとは書かれていない。自由料金の改定内容も不明。",
+        "本文「九州電力以外の電力会社と契約している人には、今回の改定による直接の影響はありません」→ 元記事にない記述で、根拠が示されていない。",
+        "本文「11月の検針分から自動的に新しい単価で日割計算されます」（かんたん版）→ 元記事は日割計算を述べているが、「自動的に」という適用方法は元記事にない表現。",
+        "Q&A「契約者自身による手続きは不要です」→ 元記事に無い手続きの有無についての断定。"
+      ],
+      "readability": {
+        "avg_paragraph": 74.0,
+        "avg_sentence": 49.3,
+        "long_share": 0.133,
+        "max_paragraph": 127,
+        "paragraphs": 10,
+        "sentences": 15
+      },
+      "score": 62,
+      "source": "kyuden",
+      "title": "託送料金見直しを反映した新たな電気料金単価を設定します－2026年11月１日から新単価を適用－",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 49.3字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T06:48:24.330892+00:00",
+      "attempt": 1,
+      "id": "5e225945ad61e8c3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 74.9,
+        "avg_sentence": 51.8,
+        "long_share": 0.231,
+        "max_paragraph": 122,
+        "paragraphs": 9,
+        "sentences": 13
+      },
+      "score": 88,
+      "source": "kyuden",
+      "title": "託送料金見直しを反映した新たな電気料金単価を設定します－2026年11月１日から新単価を適用－",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 51.8字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T06:48:43.440062+00:00",
+      "attempt": 0,
+      "id": "5e225945ad61e8c3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 66.6,
+        "avg_sentence": 37.4,
+        "long_share": 0.062,
+        "max_paragraph": 122,
+        "paragraphs": 9,
+        "sentences": 16
+      },
+      "score": 92,
+      "source": "kyuden",
+      "title": "託送料金見直しを反映した新たな電気料金単価を設定します－2026年11月１日から新単価を適用－"
     }
   ],
   "short_text_retry": {},
