@@ -1,0 +1,144 @@
+{
+  "slug": "aws-amazon-quick-agentic-primitives-taxonomy",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+  "sourceName": "AWS Machine Learning Blog",
+  "title": "AWSが「Amazon Quick」のAI設計概念を整理　4つの要素で分類",
+  "seoTitle": "Amazon QuickのAIエージェント分類法とは？AWSが4要素を解説",
+  "threadsPost": "AIで社内タスクを自動化したい人に、押さえておきたい話です。\n\nAWSが「Amazon Quick」の開発で得たAIエージェントの分類法を公表しました。\n作業を起動条件や能力などの要素に分け、無駄なシステム作成を防ぎます。\n\n毎日の仕事で、定期的に繰り返している作業はいくつありますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "毎日の仕事で、定期的に繰り返している作業はいくつありますか？"
+    },
+    {
+      "pattern": "ab",
+      "question": "AIに作業を頼むなら、毎回細かく指示したいですか、大まかに任せたいですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "AWSは、業務自動化AI「Amazon Quick」の内部で使われているAIエージェントの構成要素を整理した分類法を公式ブログで公開しました。AIの作業を「いつ・何を・誰が・どのように」という4つの問いで整理しています。具体的な運用システムの詳細などは今後のブログシリーズで順次公開される予定です。",
+  "description": "AWSが「Amazon Quick」のエージェント構成要素を整理した分類法を発表。トリガーやエージェント、スキルやワークフローといった役割を4つの問いで明確化し、AIシステム開発の重複を防ぎます。",
+  "keywords": [
+    "AWS",
+    "Amazon Quick",
+    "AIエージェント",
+    "生成AI",
+    "ワークフロー",
+    "スキル",
+    "エージェント指向",
+    "システム設計"
+  ],
+  "tags": [
+    "AWS",
+    "Amazon Quick",
+    "生成AI",
+    "AIエージェント",
+    "システム設計"
+  ],
+  "highlights": [
+    "AWSがAIエージェントの構成要素を「いつ・何を・誰が・どのように」の4要素に整理した分類法を公開。",
+    "AIの能力をツール・スキル・ワークフローなどに分け、判断の自由度と確実性を使い分ける設計を提示。",
+    "継続的な利用によって記憶が蓄積され、同じ指示でも処理精度が向上するエージェントの持続構造を定義。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "AWS料金体系",
+    "free": null,
+    "audience": "AI開発者",
+    "take": "AIエージェントの構成要素を整理した技術分類です。社内のAIシステム設計に役立ちます。",
+    "judgedAt": "2026-11-08T15:02:19.159292+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AIエージェントを自社開発する際に、構成要素を共通の言葉で整理する考え方として参考になります。",
+      "業務の確実性に応じてスキルとワークフローを使い分ける設計が示されています。"
+    ]
+  },
+  "body": "AWSのAIアシスタント「Amazon Quick」の開発チームが、分類法を公開しました（Amazon Quick公式ブログ、2026年11月7日発表）。\n\nこの分類法は、AIエージェント（自動で作業を進めるAI）を構築するための基本要素を整理したものです。社内でAIを使った自動化システムを開発・設計するエンジニアに関係する情報です。\n\nAmazon Quickは、ユーザーの代わりに会議の予定作成やレポート作成などの作業を行うサービスです。\n\nAWSはこれまでAmazon Quickの実践的な活用事例を広めてきました（[AWS「Amazon Quick」の英国ユーザー会が年間まとめを公開](/articles/uk-amazon-quick-user-group-2026-roundup)）。今回はその裏側で使われているAIエージェントの設計思想が公表されました。\n\n## 「いつ・何を・誰が・どのように」の4要素で整理\n\nAIエージェントによる作業が増えると、単なる定期処理なのか、新しいAIを作成したのかが分からなくなりがちです。AWSは作業を4つの視点に整理しました。\n\n- いつ（When）・何を（What）：起動のきっかけと指示（トリガー）\n- 誰が（Who）：指示を実行する主体（エージェント）\n- どのように（How）：実際に作業を行う機能（能力）\n\nトリガーには、人がチャットで直接頼む操作があります。ほかに、毎週決まった時間に動くスケジュール実行や、Slackの通知といった外部イベントもあります。\n\n指示を受けるエージェントは、AIモデルそのものではありません。役割・能力・過去の記憶を保持する行動主体として定義されます。同じAIモデルを使っていても、蓄積された記憶や指示の違いによって出力内容が変わります。\n\n## AIエージェントの分類法と具体的な使い方\n\nエージェントが持つ能力（How）は、以下のように判断自由度の違いで整理されます（このほかサブエージェントもあります）。\n\n- ツール（Tools）：メール送信やデータベース検索など、明確に定義された単一の操作\n- スキル（Skills）：テンプレートや手順を含み、AIが状況に応じて判断する柔軟なガイドライン\n- ワークフロー（Workflows）：承認手順など、プログラムコードで厳密に制御された確定的な処理手順\n\nAIモデルの性能が上がっても、組織内の知見を共有するにはスキルが必要です。処理の追跡可能性や確実な連携には、ワークフローが必要です。\n\n運用のなかで、よく理解されたスキルがワークフローに固まる場合もあります。逆に、ワークフローがエッジケースに多く当たると、スキルに戻る場合もあります。\n\n「Slackを監視して毎朝要約を送ってほしい」という要望に対しては、新しいAIを作る必要はありません。既存のエージェントに「定期実行トリガー」を追加すれば実現できます。\n\n## まだ分からないこと\n\n- エージェント用オペレーティングシステムの具体的な構造は、今後のブログ記事で順次公開される予定です。\n- バックグラウンドでAIが自律学習する詳細な仕組みや料金への影響はまだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nAWSが、仕事代行AI「Amazon Quick」の中で使っているAIの組み立て方を整理し、4つの基本要素として公表しました。\n\n## AIの働きを4つの質問で整理\n\nAIに仕事を頼むとき、新しいAIを作るべきか、単に定期実行させるだけかで迷いやすくなります。AWSはこれを「いつ」「何を」「誰が」「どのように」の4つの問いに分解して整理しました。\n\nAIが使う機能には、確実に決まった処理をする「ツール」、AIが自分で判断する「スキル」、手順が固定された「ワークフロー」のほか、サブエージェントなどもあります。",
+  "channel": "AWS Machine Learning Blog",
+  "channelId": "",
+  "channelSlug": "aws-ml-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Taxonomy of agentic primitives in Amazon Quick",
+  "publishedAt": "2026-11-06T17:34:45+00:00",
+  "generatedAt": "2026-11-08T15:02:19.159280+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/aws-amazon-quick-agentic-primitives-taxonomy-1f5b6e93.jpg",
+  "model": "gemini-3.6-flash",
+  "affiliates": [],
+  "newsType": "general",
+  "faq": [
+    {
+      "q": "Amazon Quickの新しいAIエージェント分類法は誰に影響しますか？",
+      "a": "主にAmazon Quickの内部構造を理解したり、同様のAIエージェントシステムを自社で開発・構築したりするエンジニアに役立ちます。"
+    }
+  ],
+  "relatedSlugs": [
+    "uk-amazon-quick-user-group-2026-roundup"
+  ],
+  "todayActions": [
+    "繰り返しの依頼は、新しいAIを作る前に既存のエージェントへ定期実行を加えられないか確認する",
+    "業務の自動化を設計するときは、決まった手順をツールかワークフロー、判断を伴う作業をスキルに分けて考える",
+    "AWSの公式ブログで後続の記事や料金の発表を確認し、業務に取り入れる前に条件を公式発表で確かめる"
+  ],
+  "qualityScore": 88,
+  "sourcePublishedAt": "2026-11-06T17:34:45+00:00",
+  "detectedAt": "2026-11-08T15:01:01+00:00",
+  "layout": "noir",
+  "summaryLine": "AWSがAIエージェントの構成要素を「いつ・何を・誰が・どのように」の4要素に整理した分類法を公開。",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/aws-amazon-quick-agentic-primitives-taxonomy-fig1-14d0213b.jpg",
+      "width": 1200,
+      "height": 856,
+      "kind": "dense",
+      "credit": "AWS",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+      "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/03/ML-21505-1.png"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/aws-amazon-quick-agentic-primitives-taxonomy-fig2-cacf2b3f.jpg",
+      "width": 1200,
+      "height": 581,
+      "kind": "dense",
+      "credit": "AWS",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+      "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/03/ML-21505-2.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "AWS",
+    "provider": "AWS Machine Learning Blog",
+    "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+    "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/03/ML-21505-featured-image.png",
+    "width": 1152,
+    "height": 576,
+    "at": "2026-11-08T15:07:42+00:00",
+    "imageKind": "banner"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.52,
+    "y": 0.521,
+    "box": [
+      0.041,
+      0.062,
+      1.0,
+      0.981
+    ],
+    "ar": 2.0,
+    "src": "https://ai-tech-express.jp/img/aws-amazon-quick-agentic-primitives-taxonomy-1f5b6e93.jpg"
+  },
+  "coverTries": 1
+}

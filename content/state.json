@@ -3591,6 +3591,18 @@
       "slug": "mof-tax-stamp-revenue-sep-2026",
       "url": "https://www.mof.go.jp/tax_policy/reference/taxes_and_stamp_revenues/202609.pdf"
     },
+    "01ae94b0daa02eba": {
+      "at": "2026-11-08T15:03:20.788927+00:00",
+      "costUsd": 0.0115,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "gemini-3.6-flash",
+      "score": 88,
+      "section": "ai",
+      "slug": "aws-amazon-quick-agentic-primitives-taxonomy",
+      "url": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/"
+    },
     "01b6483928a89cb1": {
       "at": "2026-11-02T02:31:06.744547+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（協賛）",
@@ -19291,48 +19303,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-06T08:44:56.108726+00:00",
-      "attempt": 1,
-      "id": "69fabd0e3c004cb8",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "nli-research",
-      "title": "英国における保障性保険商品の市場調査を受けた対応策－FCAの報告書の紹介"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:56:04.829652+00:00",
-      "attempt": 1,
-      "id": "5977b7df855ef250",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要(令和8年11月6日(金曜日))"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:57:09.360204+00:00",
-      "attempt": 2,
-      "id": "5977b7df855ef250",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要(令和8年11月6日(金曜日))"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-06T08:57:49.219687+00:00",
       "attempt": 1,
       "id": "2e9f83e45747a59d",
@@ -25733,6 +25703,77 @@
         "初めて出たところで言い換えていない略語（JSC）",
         "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T15:02:34.269169+00:00",
+      "attempt": 1,
+      "id": "01ae94b0daa02eba",
+      "kind": "ai",
+      "model": "gemini-3.6-flash",
+      "problems": [
+        "「仕事・お金にどう活かせる？」の「重複開発のコストを削減できます」→ 元記事に削減効果の根拠は無く、効果を断定している。",
+        "「運用トラブルを防ぎやすくなります」→ 元記事は確実性の違いを説明しているが、トラブル防止の効果は示していない。",
+        "「頻繁に使われるスキルがワークフローへと固まる場合もあれば」→ 元記事の crystallization は「よく理解されたスキルがワークフローに固まる」ことで、「頻繁に使われる」という条件は元記事に無い。",
+        "「AIの能力をツール・スキル・ワークフローの3種類に分け」→ 元記事は能力としてサブエージェントも挙げているため、3種類に限ったような記述は不正確。"
+      ],
+      "readability": {
+        "avg_paragraph": 100.9,
+        "avg_sentence": 57.6,
+        "long_share": 0.429,
+        "max_paragraph": 203,
+        "paragraphs": 8,
+        "sentences": 14
+      },
+      "score": 80,
+      "source": "aws-ml-blog",
+      "title": "Taxonomy of agentic primitives in Amazon Quick",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 57.6字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T15:02:58.832131+00:00",
+      "attempt": 1,
+      "id": "01ae94b0daa02eba",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 104.1,
+        "avg_sentence": 59.5,
+        "long_share": 0.429,
+        "max_paragraph": 203,
+        "paragraphs": 8,
+        "sentences": 14
+      },
+      "score": 88,
+      "source": "aws-ml-blog",
+      "title": "Taxonomy of agentic primitives in Amazon Quick",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 59.5字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T15:03:20.776500+00:00",
+      "attempt": 0,
+      "id": "01ae94b0daa02eba",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 78.2,
+        "avg_sentence": 43.0,
+        "long_share": 0.1,
+        "max_paragraph": 108,
+        "paragraphs": 11,
+        "sentences": 20
+      },
+      "score": 88,
+      "source": "aws-ml-blog",
+      "title": "Taxonomy of agentic primitives in Amazon Quick"
     }
   ],
   "short_text_retry": {},
