@@ -110,13 +110,62 @@ def life_late_ok(item: dict) -> bool:
     if not news_mix.is_japanese_item(item) or item.get("secondary"):
         return False
     age = source_age(item)
-    if not age or age > timedelta(hours=LIFE_LATE_HOURS):
+    if not age:
         return False
+    if age > timedelta(hours=LIFE_LATE_HOURS):
+        # 2026-11-08 オーナー承認（台帳 A62）: 7日を過ぎても、手続き・お金・給付・税・値段の変更・期限・リコールの公式の知らせで、
+        # 期限や始まる日がこれから（または過ぎて30日以内）のものはまだ読者の役に立つので拾う（RELEVANT_LATE_DAYS まで）
+        return age <= timedelta(days=RELEVANT_LATE_DAYS) and still_relevant(item)
     mix = item.get("_mix") or news_mix.classify(item)
     if mix in LIFE_LATE_MIX or public_interest.record_category({"title": item.get("title") or ""}) == "recall":
         return True
     # 2026-11-08 台帳 A58: 国内の企業の発表で、これから始まる日（発売日・開始日）が題名にあるものも「いつから」を調べる人がいるので含める
     return mix not in UPCOMING_LATE_SKIP_MIX and upcoming_date_in_title(item.get("title") or "")
+
+
+# 2026-11-08 オーナー承認（台帳 A62）: 古くてもまだ役に立つ公式の知らせ（手続き・お金・給付・税・値段の変更・期限・リコール）
+RELEVANT_LATE_DAYS = int(os.environ.get("RELEVANT_LATE_DAYS", "60"))  # 遡って拾う発表の古さの上限（日）
+RELEVANT_PAST_DAYS = 30  # 期限・始まる日が過ぎてからも拾う日数
+RELEVANT_TOPIC_RE = re.compile(
+    r"手続き|申請|申込|届出|届け出|確定申告|年末調整|マイナンバー|マイナ保険証|"
+    r"給付|補助金?|助成|支援金|手当|還付|減税|控除|非課税|無償化|税|年金|保険料|"
+    r"料金|運賃|手数料|値上げ|値下げ|価格(?:の)?改定|改定|引き上げ|引き下げ|"
+    r"期限|締切|締め切り|受付|延長|廃止|終了|"
+    r"リコール|自主回収|回収|使用中止"
+)
+RELEVANT_DATE_RE = re.compile(r"(?:(20\d{2})年)?(\d{1,2})月(\d{1,2})日")
+
+
+def still_relevant(item: dict) -> bool:
+    """古い公式の知らせがまだ読者の役に立つか。話題が手続き・お金・期限・リコールで、
+    題名・要約にある日付（発表の日より後＝期限・始まる日）が今日より先か、過ぎて RELEVANT_PAST_DAYS 日以内。
+    リコールは日付が無くても RELEVANT_PAST_DAYS 日以内の発表なら拾う（対象の製品と直し方を調べる人がいる）"""
+    if not news_mix.is_japanese_item(item) or item.get("secondary"):
+        return False
+    title = item.get("title") or ""
+    text = f"{title} {(item.get('summary') or '')[:400]}"
+    if not RELEVANT_TOPIC_RE.search(text):
+        return False
+    today = datetime.now(JST).date()
+    published = item.get("published_at")
+    pub_day = published.astimezone(JST).date() if isinstance(published, datetime) else None
+    if public_interest.record_category({"title": title}) == "recall" and pub_day and (today - pub_day).days <= RELEVANT_PAST_DAYS:
+        return True
+    for m_date in RELEVANT_DATE_RE.finditer(text):
+        month, day = int(m_date.group(2)), int(m_date.group(3))
+        if not (1 <= month <= 12 and 1 <= day <= 31):
+            continue
+        base_year = pub_day.year if pub_day else today.year
+        year = int(m_date.group(1)) if m_date.group(1) else base_year + (1 if pub_day and month < pub_day.month - 6 else 0)
+        try:
+            when = datetime(year, month, day).date()
+        except ValueError:
+            continue
+        if pub_day and when <= pub_day:
+            continue  # 発表の日そのもの・それより前の日付は期限ではない
+        if when >= today - timedelta(days=RELEVANT_PAST_DAYS):
+            return True
+    return False
 
 
 UPCOMING_LATE_SKIP_MIX = {"enterprise_dev", "quirky"}
@@ -2120,7 +2169,7 @@ def main() -> int:
         selected = [f for f in feeds.BROAD_FEEDS if not args.source or f["slug"] in args.source]
         report = {}
         # 暮らし・お金の公式の発表は LIFE_LATE_HOURS まで遡って拾う（台帳 A57）。それ以外は今までどおり --days まで
-        broad_days = max(args.days, math.ceil(LIFE_LATE_HOURS / 24))
+        broad_days = max(args.days, math.ceil(LIFE_LATE_HOURS / 24), RELEVANT_LATE_DAYS)  # 古くても役に立つ知らせ（台帳 A62）
         since = datetime.now(timezone.utc) - timedelta(days=args.days)
         broad_raw = feeds.collect(broad_days, state, selected, report=report) if selected else []
         broad_raw = [i for i in broad_raw if i["published_at"] >= since or life_late_ok(i)]

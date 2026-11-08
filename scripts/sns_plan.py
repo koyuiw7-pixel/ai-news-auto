@@ -9,9 +9,9 @@
   sns_score(article)      → 並べ順の点数（レーン＋ Muse の動画待ち）
   slots_jst()             → 通常の投稿の時刻 [(時, 分), ...]
   daily_cap() / cap_exempt(article_or_entry)  → 1日の上限と、上限に数えない種類（ミサイル・災害）
-  bluesky_daily_cap() / bluesky_slot_window(now) → Bluesky だけの1日3本と枠 7:30・13:00・21:00（Threads と別に数える。S40）
-  x_on() / x_daily_cap() / x_slot_window(now) / x_topic / x_earnings_only / x_keyword / x_hashtag → X だけの1日3本と枠 7:30・12:30・21:00・話題・文面（S42）
-  fb_on() / fb_daily_cap() / fb_slot_window(now) / fb_lifestyle → Facebook だけの1日3本と枠 7:30・12:30・20:00・暮らしの話題（S43）
+  bluesky_daily_cap() / bluesky_slot_window(now) → Bluesky だけの1日の本数と枠（2026-11-08〜 15本・S47）（Threads と別に数える。S40）
+  x_on() / x_daily_cap() / x_slot_window(now) / x_topic / x_earnings_only / x_keyword / x_hashtag → X だけの1日の本数と枠（2026-11-08〜 15本・S47）・話題・文面（S42）
+  fb_on() / fb_daily_cap() / fb_slot_window(now) / fb_lifestyle → Facebook だけの1日の本数と枠（2026-11-08〜 15本・S47）・暮らしの話題（S43）
   count_today(posted, day, extra) → その日（日本時間）に出した（予約した）自分の投稿の数
   utm_content(ptype, pos) → "video_body" など
   hook_format_on()  → 2026-11-05 オーナー承認でワークフローの既定は on（変数で 0 にすれば止まる）
@@ -143,8 +143,29 @@ def _hm(value: str) -> tuple[int, int]:
     return int(h), int(m)
 
 
+def per_day() -> int:
+    """1日の通常の投稿の本数（Threads・X・Facebook・Bluesky のそれぞれ。2026-11-08 オーナー承認・台帳 S47）。
+    リポジトリの変数 SNS_PER_DAY（ワークフローが渡す）。無ければ・数でなければ per_day_max。per_day_max より増やさない"""
+    top = int(plan().get("per_day_max") or plan()["daily_cap"])
+    raw = os.environ.get("SNS_PER_DAY", "").strip()
+    return max(0, min(int(raw), top)) if raw.isdigit() else top
+
+
+def spread(slots: list[tuple[int, int]], n: int) -> list[tuple[int, int]]:
+    """枠を n 個に間引く（1日の中でならす。最初の枠＝朝の枠は必ず残す）。n が枠の数以上ならそのまま"""
+    slots = sorted(slots)
+    if n >= len(slots):
+        return slots
+    if n <= 0:
+        return []
+    if n == 1:
+        return slots[:1]
+    step = (len(slots) - 1) / (n - 1)
+    return [slots[int(i * step + 0.5)] for i in range(n)]
+
+
 def slots_jst() -> list[tuple[int, int]]:
-    return sorted(_hm(s) for s in plan()["slots_jst"])
+    return spread([_hm(s) for s in plan()["slots_jst"]], daily_cap())
 
 
 def digest_slot_jst() -> tuple[int, int]:
@@ -153,8 +174,9 @@ def digest_slot_jst() -> tuple[int, int]:
 
 def daily_cap() -> int:
     raw = os.environ.get("SNS_DAILY_CAP", "").strip()
-    cap = int(raw) if raw.isdigit() else int(plan()["daily_cap"])
-    return max(0, min(cap, int(plan()["daily_cap"])))  # 変数で減らすことはできるが、計画より増やさない
+    top = min(int(plan()["daily_cap"]), per_day())  # 2026-11-08〜 SNS_PER_DAY（台帳 S47）
+    cap = int(raw) if raw.isdigit() else top
+    return max(0, min(cap, top))  # 変数で減らすことはできるが、計画より増やさない
 
 
 # ---- Bluesky だけの枠と上限（2026-11-06 オーナー承認・台帳 S40。Threads の daily_cap・slots_jst とは別に数える） ----
@@ -164,12 +186,12 @@ def bluesky_plan() -> dict:
 
 
 def bluesky_slots_jst() -> list[tuple[int, int]]:
-    return sorted(_hm(s) for s in bluesky_plan().get("slots_jst") or [])
+    return spread([_hm(s) for s in bluesky_plan().get("slots_jst") or []], bluesky_daily_cap())
 
 
 def bluesky_daily_cap() -> int:
     """Bluesky の1日（日本時間）の上限。変数 BLUESKY_PER_DAY で減らすことはできるが、計画より増やさない"""
-    cap = int(bluesky_plan().get("daily_cap") or 0)
+    cap = min(int(bluesky_plan().get("daily_cap") or 0), per_day())  # 2026-11-08〜 SNS_PER_DAY（台帳 S47）
     raw = os.environ.get("BLUESKY_PER_DAY", "").strip()
     return max(0, min(int(raw), cap)) if raw.isdigit() else cap
 
@@ -177,7 +199,7 @@ def bluesky_daily_cap() -> int:
 def bluesky_slot_window(now: datetime) -> tuple[int, datetime, datetime] | None:
     """今の時刻が入る Bluesky の枠（番号, 始まり, 終わり）。枠は次の枠の前まで、最後の枠は window_end まで。
     朝の最初の枠の前・window_start より前・window_end より後は None（出さない）"""
-    return _slot_window(bluesky_plan(), now)
+    return _slot_window({**bluesky_plan(), "slots_jst": [f"{h:02d}:{m:02d}" for h, m in bluesky_slots_jst()]}, now)
 
 
 def _slot_window(block: dict, now: datetime) -> tuple[int, datetime, datetime] | None:
@@ -218,19 +240,19 @@ def x_on(when: datetime | None = None) -> bool:
 
 
 def x_slots_jst() -> list[tuple[int, int]]:
-    return sorted(_hm(s) for s in x_plan().get("slots_jst") or [])
+    return spread([_hm(s) for s in x_plan().get("slots_jst") or []], x_daily_cap())
 
 
 def x_daily_cap() -> int:
     """X の1日（日本時間）の通常の投稿の上限。変数 X_PER_DAY で減らすことはできるが、計画より増やさない"""
-    cap = int(x_plan().get("daily_cap") or 0)
+    cap = min(int(x_plan().get("daily_cap") or 0), per_day())  # 2026-11-08〜 SNS_PER_DAY（台帳 S47）
     raw = os.environ.get("X_PER_DAY", "").strip()
     return max(0, min(int(raw), cap)) if raw.isdigit() else cap
 
 
 def x_slot_window(now: datetime) -> tuple[int, datetime, datetime] | None:
     """今の時刻が入る X の枠（番号, 始まり, 終わり）。7:30・12:30・21:00。7時より前・23時より後・最初の枠の前は None"""
-    return _slot_window(x_plan(), now)
+    return _slot_window({**x_plan(), "slots_jst": [f"{h:02d}:{m:02d}" for h, m in x_slots_jst()]}, now)
 
 
 def _alert(article: dict) -> bool:
@@ -365,19 +387,19 @@ def fb_on(when: datetime | None = None) -> bool:
 
 
 def fb_slots_jst() -> list[tuple[int, int]]:
-    return sorted(_hm(s) for s in fb_plan().get("slots_jst") or [])
+    return spread([_hm(s) for s in fb_plan().get("slots_jst") or []], fb_daily_cap())
 
 
 def fb_daily_cap() -> int:
     """Facebook の1日（日本時間）の通常の投稿の上限。変数 FACEBOOK_PER_DAY で減らすことはできるが、計画より増やさない"""
-    cap = int(fb_plan().get("daily_cap") or 0)
+    cap = min(int(fb_plan().get("daily_cap") or 0), per_day())  # 2026-11-08〜 SNS_PER_DAY（台帳 S47）
     raw = os.environ.get("FACEBOOK_PER_DAY", "").strip()
     return max(0, min(int(raw), cap)) if raw.isdigit() else cap
 
 
 def fb_slot_window(now: datetime) -> tuple[int, datetime, datetime] | None:
     """今の時刻が入る Facebook の枠（番号, 始まり, 終わり）。7:30・12:30・20:00。7時より前・23時より後・最初の枠の前は None"""
-    return _slot_window(fb_plan(), now)
+    return _slot_window({**fb_plan(), "slots_jst": [f"{h:02d}:{m:02d}" for h, m in fb_slots_jst()]}, now)
 
 
 def fb_lifestyle(article: dict | None) -> bool:

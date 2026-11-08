@@ -598,6 +598,7 @@ def probe_buffer() -> dict:
     return threads_post.buffer_probe(key)
 
 
+CARD_RETRIES = 3  # 写真のカードで出し直す回数（2026-11-08 台帳 S47。それでも作れないときだけ見送って issue に残す）
 QUEUE_LEAD_MIN = 3  # 枠が過ぎた（または今すぐの）投稿は、送ってからこれだけ先に予約する（shareNow は使わない＝時刻を記録できる）
 MISSING_LABEL = "sns-video-missing"
 
@@ -660,8 +661,8 @@ def missing_issue(slug: str, why: str) -> None:
     """動画が作れず投稿を出さなかったことを issue に残す（ラベル sns-video-missing）。Actions の中だけ"""
     if os.environ.get("GITHUB_ACTIONS") != "true":
         return
-    body = (f"記事 `{slug}` の SNS の投稿は、動画を作れなかったため出していません（写真のカードでは出さない決まり。docs/owner_rules.md S13）。\n\n"
-            f"理由: {why}\n\n動画の仕組みを直したら、この記事は手で出し直すか、そのまま見送ってください。")
+    body = (f"記事 `{slug}` の SNS の投稿を Buffer に作れませんでした（動画つきでも写真のカードでも通らなかった。docs/owner_rules.md S47）。\n\n"
+            f"理由: {why}\n\n原因を直したら、この記事は手で出し直すか、そのまま見送ってください。")
     try:
         subprocess.run(["gh", "label", "create", MISSING_LABEL, "--color", "D93F0B", "--description", "動画が作れず SNS に出さなかった", "--force"],
                        check=False, capture_output=True, text=True, timeout=60)
@@ -782,7 +783,8 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
         # （sns_plan.video_post＝Muse に頼んだ記事）だけで、枠から video_wait_hours（1時間）まで。ほかの投稿と、待っても動画が
         # できなかった投稿は、記事の写真・カード（予定の入力にもとから付いている）で出す。動画が無いことでは投稿を落とさない
         variant = ""
-        if urls and v.get("status") not in ("started", "upload_failed"):
+        # 2026-11-08 オーナー承認（台帳 S47）: 動画つきで Buffer に作れなかった記事は、次の回から写真のカード（/card）で出す
+        if urls and v.get("status") not in ("started", "upload_failed") and not q.get("forceCard"):
             variant = (rec.get("pending") or {}).get("forceVariant") or pick_variant(state, now, f["ab_until"], f["after_ab"])
             versions = v.get("versions") or {}
             usable = lambda k: (versions.get(k) or {}).get("ok") and k in urls and qa_ok(versions.get(k))  # noqa: E731
@@ -847,24 +849,43 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
             if service == "facebook" and sns_plan.fb_on(slot):
                 continue  # 2026-11-07〜 Facebook は scripts/facebook_post.py が Facebook だけの枠で出す（台帳 S43）
             offset = 0 if service == "threads" else int(inputs[service].get("_offsetMin") or 0)
-            inp = video_input(service, inputs[service], report, variant, urls[variant]) if variant else card_input(inputs[service])
-            inp.update({"mode": "customScheduled", "dueAt": _iso(base + timedelta(minutes=offset))})
-            inp.pop("saveToDraft", None)
             allow = ((rec.get("pending") or {}).get("allowDuplicateOf") or {}).get(service)
-            if allow:
-                inp["_allowDuplicateOf"] = list(allow)  # オーナー承認の出し直し（消した前の投稿だけ重複と数えない）
-            try:
-                import buffer_budget
+            failed = None
+            # 2026-11-08 オーナー承認（台帳 S47）: 動画つきの投稿が通らなければ、同じ回に写真のカード（/card）で出し直す。動画の失敗では投稿を落とさない
+            for use_video in ((True, False) if variant else (False,)):
+                inp = video_input(service, inputs[service], report, variant, urls[variant]) if use_video else card_input(inputs[service])
+                inp.update({"mode": "customScheduled", "dueAt": _iso(base + timedelta(minutes=offset))})
+                inp.pop("saveToDraft", None)
+                if allow:
+                    inp["_allowDuplicateOf"] = list(allow)  # オーナー承認の出し直し（消した前の投稿だけ重複と数えない）
+                try:
+                    import buffer_budget
 
-                # 30日のソフトの上限を超えたら、優先の枠（sns_plan.slot_priority）の投稿だけ作る
-                with buffer_budget.priority(slot_priority(slug, rec, slot)):
-                    created[service] = creator(service, inp, article)
-                if service == "threads":
-                    # 前の Threads の投稿から30分あけるため、門番が予約の時刻を遅らせたことがある（台帳 S44）。実際の時刻を残す
-                    threads_due = _parse(str(inp.get("dueAt") or "")) or base
-            except Exception as error:  # noqa: BLE001
+                    # 30日のソフトの上限を超えたら、優先の枠（sns_plan.slot_priority）の投稿だけ作る
+                    with buffer_budget.priority(slot_priority(slug, rec, slot)):
+                        created[service] = creator(service, inp, article if use_video or not variant else art_now)
+                    if service == "threads":
+                        # 前の Threads の投稿から30分あけるため、門番が予約の時刻を遅らせたことがある（台帳 S44）。実際の時刻を残す
+                        threads_due = _parse(str(inp.get("dueAt") or "")) or base
+                    failed = None
+                    if variant and not use_video:
+                        log(f"[video-followup] {slug}/{service}: 動画つきが通らなかったので写真のカードで出しました")
+                        if service == "threads":
+                            variant, media = "", "card"  # 同じ記事の X・Facebook もカードでそろえる
+                    break
+                except Exception as error:  # noqa: BLE001
+                    import threads_gate
+
+                    if isinstance(error, threads_gate.ThreadsHeld) or _buffer_unavailable(error):
+                        failed = error
+                        break
+                    failed = error
+                    if use_video:
+                        log(f"[video-followup] {slug}/{service}: 動画つきを送れなかったので写真のカードで出し直します: {str(error)[:120]}")
+            if failed is not None:
                 import threads_gate
 
+                error = failed
                 if isinstance(error, threads_gate.ThreadsHeld):
                     # 今夜の止め・11/7 の様子見の結果待ち（台帳 S44）。投稿は落とさず、次の回にもう一度（出さなかった扱いにしない・issue も立てない）
                     held = str(error)
@@ -895,8 +916,14 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
             if variant:
                 v.update({"status": "attached", "variant": variant, "bufferId": created["threads"], "postedAt": threads_due.isoformat(timespec="seconds")})
             last_due = threads_due
+        elif int(q.get("cardRetries") or 0) < CARD_RETRIES:
+            # 2026-11-08 オーナー承認（台帳 S47）: 作れなかった投稿は見送らず、次の回に写真のカードでもう一度（時刻の過ぎた予約などはやり直せば通る）
+            q.update({"status": "waiting", "forceCard": True, "cardRetries": int(q.get("cardRetries") or 0) + 1,
+                      "why": "Buffer に作れなかったので次の回に写真のカードでもう一度: " + "・".join((q.get("errors") or {}).values())[:160],
+                      "checkedAt": now.isoformat(timespec="seconds")})
+            q.pop("errors", None)
         else:
-            q.update({"status": "skipped", "why": "Buffer に投稿を作れなかった: " + "・".join((q.get("errors") or {}).values())[:200]})
+            q.update({"status": "skipped", "why": "Buffer に投稿を作れなかった（写真のカードでも通らなかった）: " + "・".join((q.get("errors") or {}).values())[:200]})
             issue(slug, q["why"])
         label = f"動画つき（{variant}）" if variant else "記事の写真・カードで"
         log(f"[video-followup] {label}予約 {slug}（{base.astimezone(JST):%H:%M}）: {q.get('status')} {created}")

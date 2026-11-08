@@ -91,11 +91,11 @@ class ShortArticleFloorTest(unittest.TestCase):
     def test_other_articles_keep_1500(self):
         r = self.rec()
         self.assertFalse(public_interest.short_ok(r))
-        self.assertEqual(indexnow.noindex_reason(r), "thin")
+        self.assertEqual(indexnow.focus_reason(r), "thin")  # 2026-11-08（台帳 A61）から検索に出すかは noindex_reason が別に決める
         self.assertEqual(indexnow.THIN_BODY, 1500)
         self.assertFalse(public_interest.short_ok(self.rec(genreSlug="public", title="障害者手帳のアプリ")))
         tiny = self.rec(breaking=True, body="短い。" * 100)
-        self.assertEqual(indexnow.noindex_reason(tiny), "thin")
+        self.assertEqual(indexnow.focus_reason(tiny), "thin")
 
     def test_prompt_length_matches_the_gate(self):
         self.assertEqual(news_types.get("breaking").length[0], 800)

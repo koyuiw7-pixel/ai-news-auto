@@ -17,6 +17,7 @@ import json
 import os
 import re
 import sys
+import unicodedata
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -207,7 +208,67 @@ def is_focus(article: dict) -> bool:
     return False
 
 
+# 2026-11-08 オーナー承認（台帳 A61「全て承認する」）: 検索に出さないのは、本当の重複（duplicateOf・同じ題名/出典の代表以外）と
+# 本文が無い記事だけ。主題外（off-focus）・「日本の読者向けの章」が無い（no-japan-value）・短い公式のお知らせ（thin）・
+# 配信サービス（wire）・動画の要約（creator-video）でも、公開している記事は検索に出す（幅広い話題の方針。台帳 A56）。
+# 公開前の門（publish_block_reason）はこれまでどおり focus_reason で見る（作るかどうかの基準は変えない）
+NO_BODY = 200  # これより短い本文は「本文が無い」として検索に出さない（字数。公式の短いお知らせは 800字ほどあるので当たらない）
+
+# 2026-11-08 オーナー決定（台帳 A61）: サイトの軸は「暮らしとお金の『自分ごと』ニュース」（あなたのお金と暮らしに、何が変わる？）。
+# 検索に出す・取り下げた記事を戻すの基準は「お金か暮らしにつながる話題か」を題名で見る（エンタメ・ゲーム・スポーツも、値段・料金・
+# 発売日・チケット・サブスク・サービスの話なら出す）。出さないのは、お金にも暮らしにもつながらない話題（ゴシップだけ・ゲームの物語や
+# キャラクターだけ・海外のリーグの試合結果など）だけ。1) お金の語が題名にあればつながる 2) 無ければ、つながらない話題の語で外す
+# 3) それも無ければ、暮らし・サービス・仕事の語でつながる 4) どれも無ければつながらない
+LIFE_MONEY_RE = re.compile(
+    r"料金|価格|値上げ|値下げ|値段|\d[\d,.]*(?:万|億)?円|円から|ドル|無料|有料|課金|サブスク|月額|年額|定額|手数料|税|給付|補助|助成|"
+    r"年金|保険|ローン|金利|株価|株主|株式市場|株式分割|投資|NISA|iDeCo|決算|売上|業績|赤字|黒字|ポイント|還元|セール|割引|キャンペーン|発売|販売|予約|"
+    r"チケット|入場|観戦|放送|配信(?:開始|予定|日)|見放題|視聴|加入|契約|解約|プラン|手続き|申請|届出|期限|締切|リコール|回収|"
+    r"障害|不具合|停止|終了|廃止|改定|賃金|給料|ボーナス|家賃|住宅|不動産|マンション|電気|ガス|水道|運賃|運休|台風|大雨|地震|津波|"
+    r"災害|詐欺|流出|漏え?い|漏洩|不正アクセス|個人情報|協賛金|費用|予算|原産地|表示違反|偽装|"
+    r"お金|資産|資本|金融|日銀|日本銀行|国債|GDP|物価|景気|経済|退職金|預金|貯金|貯め|財務省|金融庁|消費者庁|重大事故|事故|広告|"
+    r"経営|ビットコイン|暗号資産|仮想通貨|相続|登記|療養費|医療費|負担|賃貸|購入|買取|在庫|出荷|消費|物流|診療|薬物|限定メニュー|新メニュー|"
+    r"新登場|リニューアル|期間限定|賃料|空室|条例|施行|義務化|避難|ミサイル|銘柄|株安|株高|株急落|支援事業"
+)
+NO_LIFE_LINK_RE = re.compile(
+    r"熱愛|交際|結婚|離婚|破局|不倫|ゴシップ|スキャンダル|炎上|ストーリー|物語|キャラクター|新キャラ|声優|主題歌|キービジュアル|"
+    r"PV|トレーラー|(?:試合|対戦)結果|勝利|敗戦|敗れ|ゴール|得点|ホームラン|優勝|移籍|プレミアリーグ|NBA|MLB|NFL|ラ・リーガ|セリエA|ブンデスリーガ"
+)
+LIFE_GENERAL_RE = re.compile(
+    r"サービス|アプリ|機能|使え|使い方|始め方|対応|搭載|提供|開始|スタート|導入|新製品|新型|新モデル|スマホ|iPhone|iPad|Android|"
+    r"パソコン|PC|Mac|Windows|AI|ChatGPT|Gemini|Claude|Copilot|仕事|業務|働き方|就職|転職|副業|採用|教育|学校|病院|医療|健康|"
+    r"食品|食|商品|グッズ|買い物|楽天|Amazon|コンビニ|外食|スーパー|通販|旅行|ホテル|空港|鉄道|交通|道路|車|EV|自動車|天気|気象|防災|"
+    r"暮らし|生活|家計|子育て|介護|マイナ|資格|試験|学習|省エネ|脱炭素|イベント|花火|祭り|トレンド|ツール|予防|大気|ライトアップ|開催|コラボ|メニュー|面接|育児|オンライン|登場|団地|建て替え|DX"
+)
+
+
+def life_link(title: str) -> bool:
+    """題名がお金か暮らしにつながる話題か（台帳 A61。lib/indexing.ts の lifeLink と同じ）"""
+    text = unicodedata.normalize("NFKC", title or "")
+    if LIFE_MONEY_RE.search(text):
+        return True
+    if NO_LIFE_LINK_RE.search(text):
+        return False
+    return bool(LIFE_GENERAL_RE.search(text))
+
+
 def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> str | None:
+    """検索に出さない理由（出すなら None）。サイトの lib/indexing.ts の noindexReason と同じ"""
+    if isinstance(article.get("indexable"), bool):
+        return None if article["indexable"] else "manual"
+    if article.get("type") == "roundup":
+        return None
+    if len(str(article.get("body", "")).strip()) < NO_BODY:
+        return "no-body"
+    if article.get("slug") in dups or (article.get("duplicateOf") and article.get("duplicateOf") != article.get("slug")):
+        return "duplicate"
+    # 今まで検索に出していた主題（is_focus）はそのまま出す（ゆるめるだけで、出していた記事を外さない）
+    if not (article.get("disaster") or life_link(article.get("title") or "") or is_focus(article)):
+        return "no-life-link"
+    return None
+
+
+def focus_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> str | None:
+    """2026-11-08 までの検索の基準（主題・日本の読者向け・本文の長さ）。今は公開前の門（publish_block_reason）だけが使う"""
     if isinstance(article.get("indexable"), bool):
         return None if article["indexable"] else "manual"
     if article.get("type") == "roundup":
@@ -254,7 +315,7 @@ PUBLISH_FEEDBACK = {
 
 
 def publish_block_reason(article: dict) -> str | None:
-    """公開しない理由（公開してよいなら None）。判定は noindex_reason と同じ（サイトの noindex と食い違わない）"""
+    """公開しない理由（公開してよいなら None）。判定は focus_reason（2026-11-08 までの検索の基準。検索に出すかは noindex_reason）"""
     if article.get("disaster") or article.get("type") == "roundup" or isinstance(article.get("indexable"), bool):
         return None
     # お知らせ・告知・統計の転載（2026-11-03 オーナー決定・台帳 A26）。検索の基準（noindex_reason）とは別に、作らない
@@ -263,7 +324,7 @@ def publish_block_reason(article: dict) -> str | None:
     # 報道機関・ニュースブログが出典の記事（2026-11-04 W31 をすべての経路に。scripts/public_interest.py）。作り直さず見送り
     if public_interest.press_source_problems(article):
         return "press"
-    reason = noindex_reason(article)
+    reason = focus_reason(article)
     return reason if reason in PUBLISH_BLOCK else None
 
 
@@ -300,6 +361,10 @@ def index_rules() -> dict:
     return {
         "_note": "scripts/indexnow.py --export-rules で生成。手で直さない（正本は scripts/indexnow.py・scripts/persona.py・scripts/genre_focus.py）",
         "thinBody": THIN_BODY,
+        "noBody": NO_BODY,
+        "lifeMoney": _js_regex(LIFE_MONEY_RE),
+        "noLifeLink": _js_regex(NO_LIFE_LINK_RE),
+        "lifeGeneral": _js_regex(LIFE_GENERAL_RE),
         "creatorChannels": sorted(CREATOR_CHANNELS),
         "focusGenres": sorted(FOCUS_GENRES),
         "aiTopic": _js_regex(AI_TOPIC),

@@ -111,6 +111,7 @@ class IndexNowGuideSelectionTest(unittest.TestCase):
         ]
         for article in cases:
             (self.articles / (article["slug"] + ".json")).write_text(json.dumps(article))
+        # 2026-11-08（台帳 A61）: ai-short は題名の無い ai-long と同じ題名の重複として外れる。主題外でお金・暮らしにつながらない話題・配信の題名の無いものも外れる
         self.assertEqual(self.selected(), [BASE, BASE + "/articles", BASE + "/genres/ai",
                                            BASE + "/articles/ai-long"])
 
@@ -140,9 +141,10 @@ class IndexNowGuideSelectionTest(unittest.TestCase):
             ({"body": jp, "genreSlug": "ai", "indexable": False}, "manual"),
             ({"type": "roundup", "body": "a"}, None),
         ]
+        # 2026-11-08 までの基準（focus_reason。今は公開前の門が使う）。検索に出す基準は tests/test_index_relax_20261108.py（台帳 A61）
         for article, reason in cases:
             with self.subTest(article=article):
-                self.assertEqual(indexnow.noindex_reason(article), reason)
+                self.assertEqual(indexnow.focus_reason(article), reason)
 
     def test_duplicates_keep_longest(self):
         arts = [{"slug": "a", "title": "同じ 題名", "body": "x" * 10},

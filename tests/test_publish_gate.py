@@ -41,14 +41,16 @@ class PublishGate(unittest.TestCase):
         """2026-11-08 オーナー決定（台帳 A60）: 章の決まりで公開を止めない（検索に出すかは noindex_reason が別に決める）"""
         a = article("invest", title="楽天証券のつなぎ売りの解説", genreSlug="investment", channelSlug="rakuten-sec", body="## 概要\n" + "い" * 1600)
         self.assertIsNone(indexnow.publish_block_reason(a))
-        self.assertEqual(indexnow.noindex_reason(a), "no-japan-value")
+        self.assertEqual(indexnow.focus_reason(a), "no-japan-value")
+        self.assertIsNone(indexnow.noindex_reason(a))  # 2026-11-08 台帳 A61: お金の話なので検索にも出す
         self.assertEqual(indexnow.PUBLISH_RETRYABLE, ())
 
     def test_short_article_is_published(self):
         """2026-11-08 オーナー決定（台帳 A60）: 短い公式のお知らせは短い記事でよい（字数で落とさない・書き足さない）"""
         a = article("short", body="## 概要\n短い")
         self.assertIsNone(indexnow.publish_block_reason(a))
-        self.assertEqual(indexnow.noindex_reason(a), "thin")
+        self.assertEqual(indexnow.focus_reason(a), "thin")
+        self.assertEqual(indexnow.noindex_reason(a), "no-body")  # 本文が無いほど短いものだけ検索に出さない（台帳 A61）
 
     def test_disaster_roundup_and_manual_are_not_blocked(self):
         self.assertIsNone(indexnow.publish_block_reason(article("quake", body="短い", disaster=True, genreSlug="public")))
@@ -59,11 +61,11 @@ class PublishGate(unittest.TestCase):
         self.assertIsNone(indexnow.publish_block_reason(article("dup", duplicateOf="other")))
 
     def test_gate_matches_site_noindex(self):
-        """公開前の門で止める理由は、サイトが noindex にする理由と同じ判定から出る"""
+        """公開前の門で止める理由は、2026-11-08 までの検索の基準（focus_reason）から出る（検索に出すかは noindex_reason。台帳 A61）"""
         for a in (
             article("g1", title="任天堂、新作ゲームの体験版を配信", genreSlug="entertainment", channelSlug="nintendo-topics"),
         ):
-            self.assertEqual(indexnow.publish_block_reason(a), indexnow.noindex_reason(a))
+            self.assertEqual(indexnow.publish_block_reason(a), indexnow.focus_reason(a))
 
 
 class CandidateOffFocus(unittest.TestCase):
@@ -102,6 +104,10 @@ class RetireNoindexPlan(unittest.TestCase):
                                                        "posted-long-ago": {"postedAt": "2026-10-01T00:00:00+00:00"}}}))
         self.bluesky.write_text(json.dumps({"posted-bluesky": {"at": "2026-11-02T00:00:00+00:00"}}))
         self.video.write_text(json.dumps({"videos": {"posted-video": {"status": "posted", "postedAt": "2026-11-02T00:00:00+00:00"}}}))
+        # 取り下げの道具の仕組みのテスト。2026-11-08（台帳 A61）から検索に出す基準はゆるいので、前の基準（focus_reason）で数える
+        p = patch.object(retire_articles.indexnow, "noindex_reason", retire_articles.indexnow.focus_reason)
+        p.start()
+        self.addCleanup(p.stop)
         for name, path in (("THREADS", self.threads), ("BLUESKY", self.bluesky), ("SNS_VIDEO", self.video)):
             p = patch.object(retire_articles, name, path)
             p.start()

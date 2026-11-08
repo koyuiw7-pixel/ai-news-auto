@@ -214,5 +214,16 @@ class GateTest(unittest.TestCase):
         self.assertFalse(any("問いかけ" in v for v in got), got)
 
 
+import legacy_sns_plan  # noqa: E402  2026-11-08 より前の枠の数で動かす（台帳 S47。今の数は tests/test_sns_volume_20261108.py）
+
+
+def setUpModule():
+    legacy_sns_plan.start()
+
+
+def tearDownModule():
+    legacy_sns_plan.stop()
+
+
 if __name__ == "__main__":
     unittest.main()

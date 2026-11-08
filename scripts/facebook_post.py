@@ -225,7 +225,7 @@ def candidates(fs: dict, posted: dict, now: datetime, since: datetime, articles:
 def slot_pick(slot: tuple[int, datetime, datetime], fs: dict, posted: dict, now: datetime, articles: list[dict]) -> dict | None:
     """この枠に出す1本。7:30＝夜のあいだのいちばん、12:30＝その日の暮らしの話題（無ければその日のいちばん）、20:00＝その日いちばん強い記事"""
     index, _start, _ = slot
-    lifestyle = index == int(sns_plan.fb_plan().get("lifestyle_slot", 1))
+    lifestyle = f"{_start.astimezone(sns_plan.JST):%H:%M}" == str(sns_plan.fb_plan().get("lifestyle_slot_jst") or "12:30")
     if index == 0:
         ranges = [now - timedelta(hours=MORNING_HOURS)]
     else:

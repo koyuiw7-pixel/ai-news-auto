@@ -82,6 +82,10 @@ ACCOUNT_ID = os.environ.get("CLOUDFLARE_ACCOUNT_ID") or "51e37d82e15d397b9666dc3
 KV_NAMESPACE = os.environ.get("IMAGES_KV_ID") or "358e46161fdb4857865dec69dd72285b"
 IMAGE_BASE = (os.environ.get("IMAGE_BASE_URL") or "https://ai-tech-express.jp/img/").rstrip("/") + "/"
 AI_DAILY_MAX = int(os.environ.get("IMAGE_AI_DAILY_MAX") or "40")
+# 2026-11-08 オーナー承認（台帳 I7）: 上限で AI の画像を作れずカードにした記事は aiCapped の印を付け、次の日（UTC で上限が戻ってから）に
+# 自動で作り直す（RETRY_CAPPED_HOURS 以内の記事）。この実行で上限に当たったか
+AI_CAPPED = False
+RETRY_CAPPED_HOURS = 72
 PREVIEW_DIR: Path | None = None  # --preview で指定すると、出来上がった JPEG をここにも書く（確認用）
 PAGES_BY_IMAGE: dict[str, set[str]] = {}  # 画像 URL → それを使っている記事の元記事ページ（main で作る）
 
@@ -2501,6 +2505,8 @@ def shows_face(image) -> bool:
 
 def generate_ai(plan: dict, article: dict, fast: bool = False) -> tuple[object, str] | None:
     if ai_used_today() >= AI_DAILY_MAX:
+        global AI_CAPPED
+        AI_CAPPED = True
         log(f"   [img] AI 生成は今日の上限（{AI_DAILY_MAX}枚）に達した")
         return None
     if not cf_token("ai"):
@@ -2652,6 +2658,12 @@ def needs_check(article: dict) -> bool:
     if is_youtube(thumb):
         return False
     return True
+
+
+def capped_retry(article: dict, today_utc: str) -> bool:
+    """AI の上限のせいでカードにした記事で、上限が戻った（印を付けた日より後の UTC の日）か（台帳 I7）"""
+    credit = article.get("imageCredit") or {}
+    return credit.get("kind") == "card" and bool(credit.get("aiCapped")) and str(credit.get("at") or "")[:10] < today_utc
 
 
 def age_hours(article: dict) -> float:
@@ -2910,6 +2922,8 @@ def use_card(path: Path, article: dict, ctx: dict, category: str = "") -> str:
     previous = ctx.get("previous_credit", {}).get(article.get("slug") or path.stem) or {}
     thumb = article.get("thumbnail") or ""
     credit = {"kind": "card", "category": category or "other", "at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+    if AI_CAPPED:
+        credit["aiCapped"] = True  # 上限のせいのカード。次の日に作り直す（台帳 I7）
     if previous.get("original"):
         credit["original"] = previous["original"]
     elif thumb and not is_ours(thumb) and not is_youtube(thumb):
@@ -3198,9 +3212,15 @@ def main() -> int:
         changed = changed_paths() if args.changed else set()
         first = [(p, a) for p, a in ordered if p.resolve() in changed]
         rest = ordered if args.all else ordered[: args.recent]
+        # 2026-11-08（台帳 I7）: 上限で画像を作れなかった記事（印 aiCapped のカード・画像の無いまま）を、上限が戻った次の日に作り直す
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        capped = [(p, a) for p, a in ordered if age_hours(a) <= RETRY_CAPPED_HOURS and capped_retry(a, today)]
+        for _, a in capped:
+            a.pop("imageCredit", None)
+        missed = [(p, a) for p, a in ordered if age_hours(a) <= RETRY_CAPPED_HOURS and needs_check(a)]
         seen: set[Path] = set()
         targets = []
-        for p, a in first + rest:
+        for p, a in first + rest + capped + missed:
             if p not in seen and needs_check(a):
                 seen.add(p)
                 targets.append((p, a))

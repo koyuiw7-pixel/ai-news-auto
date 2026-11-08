@@ -300,11 +300,16 @@ def setUpModule():
     import legacy_threads  # 以前の書き方の仕組みのテスト（台帳 S46 の新しい書き方・承認待ちの止めは外す）
 
     legacy_threads.start()
+    import legacy_sns_plan  # 2026-11-08 より前の枠の数（台帳 S47。今の数は tests/test_sns_volume_20261108.py）
+
+    legacy_sns_plan.start()
 
 
 def tearDownModule():
+    import legacy_sns_plan
     import legacy_threads
 
+    legacy_sns_plan.stop()
     legacy_threads.stop()
 
 

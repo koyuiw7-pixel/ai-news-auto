@@ -302,7 +302,8 @@ class TuningTest(unittest.TestCase):
         body = "## 発射の概要\n\n" + "あ" * 900
         missile = {"title": "北朝鮮が弾道ミサイルを発射", "genreSlug": "public", "body": body, "verdict": {"x": 1}}
         breach = {"title": "不正アクセスによる情報流出の可能性", "genreSlug": "public", "body": body, "verdict": {"x": 1}}
-        self.assertNotEqual(indexnow.noindex_reason(missile), "thin")
-        self.assertEqual(indexnow.noindex_reason(breach), "thin")
+        self.assertNotEqual(indexnow.focus_reason(missile), "thin")
+        self.assertEqual(indexnow.focus_reason(breach), "thin")  # 前の基準。2026-11-08（台帳 A61）から短い知らせも検索に出す
+        self.assertIsNone(indexnow.noindex_reason(breach))
         rules = json.loads((ROOT / "lib" / "index-rules.json").read_text("utf-8"))
         self.assertEqual(rules["thinBodyPublicInterest"], pi.SHORT_BODY)

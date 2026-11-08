@@ -380,5 +380,6 @@ def test_scheduled_release_needs_no_japan_value_section():
     import indexnow
     body = "## 中間期の業績\n" + "トヨタの営業収益は26兆9,624億円で前年同期比9.5%増えました。" * 120
     base = {"title": "トヨタ、中間期は増収増益", "genreSlug": "ai", "tags": ["決算"], "body": body, "slug": "toyota-x"}
-    assert indexnow.noindex_reason({**base, "scheduledRelease": {"id": "tdnet"}}) != "no-japan-value"
-    assert indexnow.noindex_reason(base) == "no-japan-value"
+    assert indexnow.focus_reason({**base, "scheduledRelease": {"id": "tdnet"}}) != "no-japan-value"
+    assert indexnow.focus_reason(base) == "no-japan-value"
+    assert indexnow.noindex_reason(base) is None  # 2026-11-08（台帳 A61）: 決算はお金の話なので検索に出す

@@ -20,7 +20,8 @@ JST = timezone(timedelta(hours=9))
 OWNER_DAILY_TARGET = 100
 WEB_RAMP = [("2026-10-27", 45), ("2026-11-03", 95), ("2026-11-06", OWNER_DAILY_TARGET)]
 # (この日から, SNS の1日の投稿本数)
-SNS_RAMP = [("2026-10-27", 7), ("2026-11-03", 8), ("2026-11-10", 9), ("2026-11-17", 10)]
+# 2026-11-08 オーナー承認（台帳 S47）: 15本/日（Threads・X・Facebook・Bluesky のそれぞれ。変数 SNS_PER_DAY も15）
+SNS_RAMP = [("2026-10-27", 7), ("2026-11-03", 8), ("2026-11-08", 15)]
 
 
 def pick(table: list[tuple[str, int]], today: str) -> int:

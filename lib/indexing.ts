@@ -136,8 +136,43 @@ export function isFocus(article: ArticleSummary): boolean {
   return false;
 }
 
-/** 検索に出さない理由（出すなら null）。判定の説明・集計に使う */
+/** 本文が無いとみなす字数（scripts/indexnow.py の NO_BODY） */
+export const NO_BODY: number = rules.noBody;
+
+/**
+ * 検索に出さない理由（出すなら null）。scripts/indexnow.py の noindex_reason と同じ。
+ * 2026-11-08 オーナー承認（台帳 A61）: 出さないのは本当の重複（duplicateOf）・本文が無い記事・お金にも暮らしにもつながらない話題だけ。
+ * 主題外・日本の読者向けの章が無い・短い公式のお知らせ・配信・動画の要約でも、お金か暮らしにつながれば検索に出す。
+ */
 export function noindexReason(article: ArticleSummary): string | null {
+  if (typeof article.indexable === "boolean") return article.indexable ? null : "manual";
+  if (article.type === "roundup") return null;
+  if ((article.bodyLength ?? 0) < NO_BODY) return "no-body";
+  // 重複の印は記事 JSON の duplicateOf と、索引を作るときの予備の判定（lib/article-index.mjs の markDuplicates）
+  if (article.duplicate || (article.duplicateOf && article.duplicateOf !== article.slug)) return "duplicate";
+  // 今まで検索に出していた主題（isFocus）はそのまま出す（ゆるめるだけで、出していた記事を外さない）
+  // 地震・災害の記事は題名に「地震」などがあるのでつながる（scripts/indexnow.py は disaster も見る）
+  if (!lifeLink(article.title ?? "") && !isFocus(article)) return "no-life-link";
+  return null;
+}
+
+const LIFE_MONEY = new RegExp(rules.lifeMoney.source, rules.lifeMoney.flags);
+const NO_LIFE_LINK = new RegExp(rules.noLifeLink.source, rules.noLifeLink.flags);
+const LIFE_GENERAL = new RegExp(rules.lifeGeneral.source, rules.lifeGeneral.flags);
+
+/**
+ * 題名がお金か暮らしにつながる話題か（scripts/indexnow.py の life_link と同じ。台帳 A61「暮らしとお金の自分ごとニュース」）。
+ * お金の語 → つながる。無ければ、ゴシップ・物語/キャラクター・海外の試合結果の語 → つながらない。無ければ暮らし・サービス・仕事の語 → つながる
+ */
+export function lifeLink(title: string): boolean {
+  const text = (title ?? "").normalize("NFKC");
+  if (LIFE_MONEY.test(text)) return true;
+  if (NO_LIFE_LINK.test(text)) return false;
+  return LIFE_GENERAL.test(text);
+}
+
+/** 2026-11-08 までの検索の基準（主題・日本の読者向け・本文の長さ）。scripts/indexnow.py の focus_reason と同じ（説明・集計用） */
+export function focusReason(article: ArticleSummary): string | null {
   if (typeof article.indexable === "boolean") return article.indexable ? null : "manual";
   if (article.type === "roundup") return null;
   if (WIRE_SOURCES.has(article.channelSlug)) return "wire";
