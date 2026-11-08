@@ -206,7 +206,7 @@ class WideTopicsTest(unittest.TestCase):
         rules = (ROOT / "docs" / "owner_rules.md").read_text("utf-8")
         row = next((line for line in rules.splitlines() if line.startswith("| A56 |")), "")
         self.assertIn("拾うテーマを広げる", row)
-        self.assertIn("事件・事故・芸能・不祥事は対象外のまま", row)
+        self.assertIn("事件（犯罪）・不祥事・芸能のゴシップは対象外のまま", row)
 
 
 if __name__ == "__main__":

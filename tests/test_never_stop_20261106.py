@@ -189,7 +189,7 @@ class WebArticlesWiringTest(unittest.TestCase):
 
     def test_owner_rule_row(self):
         rules = (ROOT / "docs" / "owner_rules.md").read_text("utf-8")
-        row = next((line for line in rules.splitlines() if line.startswith("| A48 |")), "")
+        row = next((line for line in rules.splitlines() if line.startswith("| A58 |")), "")
         self.assertIn("止ま", row)
         self.assertIn("品質の門", row)
 

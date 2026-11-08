@@ -106,8 +106,8 @@ class OfficialPhotoTest(unittest.TestCase):
 
     def test_ledger_row(self):
         ledger = (ROOT / "docs" / "owner_rules.md").read_text("utf-8")
-        row = next(line for line in ledger.splitlines() if line.startswith("| S45 "))
-        for words in ("2026-11-07", "オーナー承認・SNSの投稿の質を上げる", "lib/sns-photo.ts", "scripts/sns_rules.py", "A37", "AI生成"):
+        row = next(line for line in ledger.splitlines() if line.startswith("| I1 "))
+        for words in ("2026-11-07", "旧 S45", "lib/sns-photo.ts", "scripts/sns_rules.py", "A37", "AI生成"):  # 2026-11-08 に S45 を I1 にまとめた
             self.assertIn(words, row)
 
 

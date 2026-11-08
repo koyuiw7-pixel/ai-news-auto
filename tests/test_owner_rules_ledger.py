@@ -80,7 +80,20 @@ class LedgerTest(unittest.TestCase):
         import owner_rules_audit
 
         marked = {rid for rid, cells in rows() if "●" in cells[4]}
-        self.assertEqual(marked, set(owner_rules_audit.AUDIT_RULES))
+        self.assertEqual(marked, {owner_rules_audit.ledger_id(r) for r in owner_rules_audit.AUDIT_RULES})
+
+    def test_superseded_ids_point_to_live_rows(self):
+        """2026-11-08 の見直しでまとめた・外した番号は、「まとめた・外した番号」に1行で残し、表の行には戻さない"""
+        import owner_rules_audit
+
+        text = LEDGER.read_text("utf-8")
+        live = {rid for rid, _ in rows()}
+        gone = set(re.findall(r"^- `([SIAWO]\d+)` → ", text, re.M))
+        self.assertGreaterEqual(len(gone), 60)
+        self.assertFalse(gone & live, "まとめた番号が表に残っている")
+        for src, tgt in owner_rules_audit.MERGED_INTO.items():
+            self.assertIn(src, gone)
+            self.assertIn(tgt, live)
 
     def test_agents_md_points_here(self):
         agents = (ROOT / "AGENTS.md").read_text("utf-8")

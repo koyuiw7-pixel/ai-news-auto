@@ -329,7 +329,7 @@ class EveryPathTest(unittest.TestCase):
     def test_owner_rule_codes_exist_in_ledger(self):
         ledger = (ROOT / "docs" / "owner_rules.md").read_text("utf-8")
         for code in {c for c, _ in st.coded_problems(dict(OLD))}:
-            self.assertRegex(ledger, rf"\| {code} \|")
+            self.assertRegex(ledger, rf"(?m)\| {code} \||^- `{code}` → ")  # まとめた番号は「まとめた・外した番号」に残る
 
 
 if __name__ == "__main__":
