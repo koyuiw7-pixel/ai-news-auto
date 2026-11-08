@@ -4439,6 +4439,18 @@
       "skipped": true,
       "url": "https://www.hiroshima-u.ac.jp/news/100929"
     },
+    "1007c961b5d3e491": {
+      "at": "2026-11-08T00:33:57.166257+00:00",
+      "costUsd": 0.0224,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "sagemaker-gpu-partitioning-mig",
+      "url": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/"
+    },
     "101256db11d36682": {
       "at": "2026-10-30T10:52:05.025855+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -19029,35 +19041,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-06T03:32:53.688397+00:00",
-      "attempt": 2,
-      "id": "5303ad7c7a4b3680",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "sony-jp",
-      "title": "初代ウォークマン付属『MDR-3』のデザインとサウンドを受け継ぐUSB-Cステレオヘッドホン『MDR-3R』発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T03:35:44.468688+00:00",
-      "attempt": 1,
-      "id": "956410f66b8c757a",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「Anthropic公式は11月6日、ヘルプセンターの記事で」→ 元記事に公開日・更新日は無く、11月6日という日付は裏付けられない創作",
-        "「ヘルプセンターの記事で…具体的に示しました」→ 元記事は公式ヘルプ記事だが、公開時期を示す情報がなく『続報』として時点を断定する根拠が元記事に無い"
-      ],
-      "score": 72,
-      "source": "radar-official",
-      "title": "Use Personal Finance in Claude | Claude Help Center"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-06T04:22:13.515851+00:00",
       "attempt": 1,
       "id": "38d7cd8d70883115",
@@ -25260,6 +25243,57 @@
       "score": 88,
       "source": "github-blog",
       "title": "Beyond code generation: A developer’s guide to agentic engineering"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T00:33:24.525042+00:00",
+      "attempt": 1,
+      "id": "1007c961b5d3e491",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 45.2字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "段落が長い（平均 135.6字・最長 230字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 135.6,
+        "avg_sentence": 45.2,
+        "long_share": 0.231,
+        "max_paragraph": 230,
+        "paragraphs": 13,
+        "sentences": 39
+      },
+      "score": 92,
+      "source": "aws-ml-blog",
+      "title": "SageMaker Inference now supports Multi-Instance GPU to maximize GPU utilization ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MIG・GKE・RTX）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T00:33:57.143380+00:00",
+      "attempt": 0,
+      "id": "1007c961b5d3e491",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 43.5字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 84.8,
+        "avg_sentence": 43.5,
+        "long_share": 0.205,
+        "max_paragraph": 192,
+        "paragraphs": 20,
+        "sentences": 39
+      },
+      "score": 90,
+      "source": "aws-ml-blog",
+      "title": "SageMaker Inference now supports Multi-Instance GPU to maximize GPU utilization ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MIG・GKE・RTX）"
+      ]
     }
   ],
   "short_text_retry": {},

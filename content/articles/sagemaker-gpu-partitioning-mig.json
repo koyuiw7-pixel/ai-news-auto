@@ -1,0 +1,127 @@
+{
+  "slug": "sagemaker-gpu-partitioning-mig",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/",
+  "sourceName": "AWS Machine Learning Blog",
+  "title": "GPUを最大7つに分割　SageMakerで1台に複数モデルを載せる機能",
+  "seoTitle": "SageMaker GPU分割とは？使い方と日本での提供状況",
+  "threadsPost": "SageMakerで複数のAIモデルを動かしている人に、知っておいてほしい話です。\n\n1枚のGPUを、最大7つの独立した区画に分けられるようになりました。\n区画どうしは、ハードウェアの仕組みで隔てられます。\n\n1台のGPUを複数のモデルで分け合うなら、どんな構成で使いますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "1台のGPUを複数のモデルで分け合うなら、どんな構成で使いますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "GPUを区画で分けるなら、費用の安さと応答の安定、どちらを優先しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "SageMaker AIで、1枚のGPUを最大7つの独立した区画に分け、モデルごとに別々に割り当てられるようになりました。区画どうしはハードウェアで隔てられるため、1つのモデルの負荷が、ほかのモデルの応答に響きにくくなります。使うには推論コンポーネント（モデルを載せる単位）を使うエンドポイントが必要で、料金はまだ発表されていません。",
+  "description": "SageMaker AIが、NVIDIAのMIGを使ったGPU分割に対応しました。1枚のGPUを最大7つの区画に分けて、モデルごとに隔離して動かせます。推論コンポーネントを使うエンドポイントが対象で、料金はまだ発表されていません。",
+  "keywords": [
+    "SageMaker AI GPU分割",
+    "SageMaker 推論コンポーネント",
+    "NVIDIA MIG",
+    "GPU 分割",
+    "GPU 共有",
+    "AWS 推論 GPU",
+    "マルチモデル エンドポイント",
+    "A100 MIG",
+    "SageMaker 使い方"
+  ],
+  "tags": [
+    "AWS",
+    "SageMaker AI",
+    "GPU",
+    "AI推論",
+    "NVIDIA",
+    "クラウド"
+  ],
+  "highlights": [
+    "SageMaker AIで、1枚のGPUをNVIDIAのMIGを使って最大7つの区画に分けられます。",
+    "A100搭載のml.p4d.24xlarge（8枚）なら、3種類の区画を組み合わせて合計24区画を作れます。",
+    "分割の設定は既存のAPI項目に2つ足すだけで、新しいAPIやIAMの権限は増えません。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "AI運用の担当者",
+    "take": "複数モデルを1台で動かすなら、GPUの機種と区画の組み合わせを公式の対応表で確かめるとよいでしょう。",
+    "judgedAt": "2026-11-08T00:33:14.277580+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "モデルごとにGPUを1台ずつ割り当てている場合、同じ台数で複数のモデルを動かせる構成を検討できます。",
+      "料金は、まだ発表されていません。インスタンスの利用料は、公式の料金ページで確かめるとよいでしょう。"
+    ]
+  },
+  "body": "SageMaker AIのエンドポイントで複数のモデルを動かしている人は、GPUを1枚ずつ割り当てなくても済むようになります。使わなければ今までどおり動くため、既存の設定を変える必要はありません。\n\nこれまでは、モデルが増えるとGPUを丸ごと1枚ずつ使うか、ほかの方法を選ぶかになりがちでした。\n\nAWSは、3つの方法を挙げています。\n\n- 大きなエンドポイントにまとめて処理を詰め込む方法\n- 必要なときだけモデルを読み込むマルチモデルエンドポイント\n- Kubernetesを自分で運用してMIGを使う方法\n\nマルチモデルはモデル同士の隔離がなく、1つの重い処理がほかに響きます。Kubernetesは、ドライバーや区画の設定、スケジューリングを自分で管理する手間がかかります。\n\n今回の機能は、NVIDIAのMIGをSageMaker AIで使えるようにしたものです。MIG（Multi-Instance GPU）は、1枚のGPUをハードウェアで独立した区画に分ける仕組みです。各区画には、計算能力の決まった割合と専用のメモリが割り当てられます。\n\n同じ推論の効率化では、10月末にGoogleも新機能を出していました（[Googleが「GKE Inference Gateway」を発表](/articles/google-gke-inference-gateway-4x-speed)）。AWSの発表では、次の点が挙げられています。\n\n- 応答時間が安定する: 1つのモデルの負荷が増えても、ほかのモデルの応答時間（p99。遅いほうから1%の応答時間）に響きにくい\n- 障害が広がらない: 1つの区画でクラッシュやメモリエラーが起きても、同じGPUのほかのモデルは巻き込まれにくい\n- 読み込み待ちがない: 各モデルは自分の区画に載ったままになり、呼び出しのたびに読み込み直す必要がない\n\n## 機種ごとに分けられる単位\n\n分け方は、GPUの種類で決まります。AWSの対応表では、次のとおりです。\n\n- P4d（NVIDIA A100・40GB）: 最大7区画。mig-1g.5gbからmig-7g.40gbまで\n- P5（NVIDIA H100・80GB）: 最大7区画。mig-1g.10gbからmig-7g.80gbまで\n- G7（NVIDIA RTX PRO 4500 Blackwell・32GB）: 最大2区画\n- G7e（NVIDIA RTX PRO 6000 Blackwell Server Edition・96GB）: 最大4区画\n\n名前の見方は、mig-3g.40gbなら計算単位3つと40GBです。3gの区画は計算単位を3つ、メモリを8分の4使うため、2つ作るとGPUが埋まります。P4dのmig-3g.20gbも同じ考え方です。\n\n機種が違うと名前が同じでも構成が変わるため、ほかの機種の構成をそのまま持ち込まないよう注意が必要です。\n\n例として、ml.p4d.24xlargeを挙げます。これはA100を8枚搭載したインスタンスです。mig-4g.20gb、mig-2g.10gb、mig-1g.5gbを組み合わせると、1枚のA100に3つの区画ができます。\n\n8枚で合計24区画になり、内訳は次のとおりです。\n\n- mig-4g.20gb: 8区画\n- mig-2g.10gb: 8区画\n- mig-1g.5gb: 8区画\n\n## 設定は2か所だけ\n\n設定は2か所です。1つ目は、エンドポイント設定（CreateEndpointConfig）のプロダクションバリアントに、AcceleratorPartitionLayouts（区画の分け方）を書きます。\n\n2つ目は、各モデルを載せる推論コンポーネントに、AcceleratorPartitionType（使う区画の種類）を書きます。新しいAPIの操作や、IAM（アクセス権限）の追加は要りません。\n\n推論コンポーネントに mig-4g.20gb を指定すると、その種類の区画を1つ使います。CopyCount（コピーの数）を増やすと、空いている区画に同じモデルのコピーが置かれます。小さなモデルに同時アクセスが多いときに向くとされています。\n\n区画を作る作業は、エンドポイントの準備中に行われます。AWSのテストでは、区画の作成で準備時間が約17秒増えたとしています。\n\nP4dで mig-1g.10gb を使うには、R525以降のNVIDIAドライバーが必要です。既定のP4dイメージは470.256.02のため、そのまま指定すると、区画の指定が原因だと分からないまま作成に失敗します。InferenceAmiVersion に al2023-ami-sagemaker-inference-gpu-4-1 を指定すると、580系のドライバーのイメージになります。\n\n選ぶときの目安は、AWSの説明では次のとおりです。計算単位は、長い入力や同時に届く多くのプロンプトで、最初の応答が返るまでの速さに関わります。\n\nメモリ単位は、文字を1つずつ生成する処理と、会話の途中経過（KVキャッシュ）を保存する量に関わります。\n\nサーバーの利用率の数字は、分割したエンドポイントでは公開されません（AWS公式ドキュメント、11/8確認）。\n\n## まだ分からないこと\n\n- 料金（追加料金の有無を含む）は、まだ発表されていません\n- 日本のリージョンでの提供状況は、AWSの公式ドキュメントの対応リージョン一覧で確かめるとよいでしょう\n- Salesforceは、本番に近いワークロードでの検証を準備中としています。その結果はまだ出ていません\n\nSalesforceのRichard Chang氏（Software Engineering Architect）は、MIGでワークロードを安全に統合できるようになると話しています（英語の原文は「consolidate workloads safely」）。Salesforceは、要件の定義と初期の実装の検証に関わったとしています。",
+  "easy": "## ひとことで言うと\n\n1枚のGPUを、最大7つの区画に分けて、モデルごとに別々に動かせるようになりました。区画どうしは隔てられていて、ほかのモデルの負荷に影響されにくくなっています。\n\n使うには、モデルを載せる単位（推論コンポーネント）を使うエンドポイントが必要です。料金はまだ発表されていません。\n\nGPUを丸ごと1枚ずつ使う必要がなくなるため、モデルが多い運用の無駄を減らせる可能性があります。ただし、対象の機種と区画の組み合わせは限られています。",
+  "channel": "AWS Machine Learning Blog",
+  "channelId": "",
+  "channelSlug": "aws-ml-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "SageMaker Inference now supports Multi-Instance GPU to maximize GPU utilization for model endpoints",
+  "publishedAt": "2026-11-06T18:01:00+00:00",
+  "generatedAt": "2026-11-08T00:33:14.277567+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/sagemaker-gpu-partitioning-mig-3e214612.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "単一モデルのエンドポイントでも区画を使えますか？",
+      "a": "使えません。AWSの発表では、単一モデルのエンドポイント、サーバーレスエンドポイント、機種が混在するインスタンスのプールは対象外です。"
+    }
+  ],
+  "todayActions": [
+    "使っているSageMakerのエンドポイントが推論コンポーネントを使う構成か、確かめる。",
+    "P4dでmig-1g.10gbを使う場合は、既定のイメージではなく580系ドライバーのAMIを指定する。",
+    "使うGPUの機種の分割単位を、公式の対応表で確かめる。"
+  ],
+  "relatedSlugs": [
+    "google-gke-inference-gateway-4x-speed"
+  ],
+  "qualityScore": 90,
+  "sourcePublishedAt": "2026-11-06T18:01:00+00:00",
+  "detectedAt": "2026-11-08T00:30:55+00:00",
+  "layout": "noir",
+  "summaryLine": "SageMaker AIで、1枚のGPUをNVIDIAのMIGを使って最大7つの区画に分けられます。",
+  "imageCredit": {
+    "kind": "stock",
+    "title": "GPU blade with glycol cooling (54685994424)",
+    "creator": "Steve Jurvetson",
+    "creatorUrl": "",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "provider": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:GPU_blade_with_glycol_cooling_(54685994424).jpg",
+    "query": "GPU",
+    "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/05/ML-22216-featured-image.png",
+    "at": "2026-11-08T00:34:32+00:00"
+  },
+  "imageFocus": {
+    "x": 0.484,
+    "y": 0.514,
+    "box": [
+      0.094,
+      0.065,
+      0.875,
+      0.964
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/sagemaker-gpu-partitioning-mig-3e214612.jpg"
+  },
+  "coverTries": 1
+}
