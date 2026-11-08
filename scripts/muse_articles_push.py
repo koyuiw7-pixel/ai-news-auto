@@ -127,6 +127,9 @@ def pick_new(mf, items: dict) -> list[tuple[Path, str]]:
     for path in sorted(FOLDER.glob("*.md")):
         if path.name in SKIP_NAMES or path.name.startswith("."):
             continue
+        # 記事は「YYYYMMDD-….md」だけ。共有の記録（discrepancies.md・usage.md など）は記事として扱わない（2026-11-08）
+        if not re.match(r"^\d{8}-", unicodedata.normalize("NFC", path.name)):
+            continue
         if now - path.stat().st_mtime < SETTLE_SEC:
             log(f"書き込み中かもしれないので次の回に回します: {path.name}")
             continue
