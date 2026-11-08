@@ -6704,6 +6704,17 @@
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/house05_hh_001164.html"
     },
+    "33051619ffb5b352": {
+      "at": "2026-11-08T02:33:33.759909+00:00",
+      "costUsd": 0.1216,
+      "intent": "query",
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5+anthropic-api:claude-haiku-5-5",
+      "score": 95,
+      "section": "lifestyle",
+      "slug": "ippei-chan-stamina-kimchi-yakisoba",
+      "url": "https://www.nissin.com/jp/news/13980/"
+    },
     "3322e009de895582": {
       "at": "2026-10-28T03:52:51.787253+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -17532,6 +17543,17 @@
       "skipped": true,
       "url": "https://finance.yahoo.co.jp/news/detail/78ba3698b7b696fa28b4b36508bad08462e5ac0c"
     },
+    "e5b75fb5559cea9b": {
+      "at": "2026-11-08T02:34:51.372149+00:00",
+      "costUsd": 0.0098,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite+anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "lifestyle",
+      "slug": "fujiya-calpis-butter-sweets-2026",
+      "url": "https://www.fujiya-peko.co.jp/assets/pdf/press20261104_1.pdf"
+    },
     "e5e4c3ae2b7984fd": {
       "at": "2026-10-26T17:52:08.272357+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -19065,105 +19087,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:30:16.254212+00:00",
-      "attempt": 2,
-      "id": "083cb61269f13ae1",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に2選手を認定 #jfa"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:35:16.662643+00:00",
-      "attempt": 1,
-      "id": "ff4c4236ea8b3f24",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "samsung-jp",
-      "title": "Samsung Healthの睡眠コーチングがより手軽に 一人ひとりに合わせたアドバイスを毎週提供"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:36:35.806433+00:00",
-      "attempt": 2,
-      "id": "ff4c4236ea8b3f24",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "「本機能は無料で提供され、追加料金は発生しません」→ 元記事にも確認済みの文脈にも料金の記載がなく、無料であることは創作。よくある質問の答えも同じ創作。",
-        "「Google Playストアから無料で更新できます」→ 元記事にストア名や更新方法の記載はなく、創作。",
-        "「データ要件が約半分に削減」→ 7日から3日への変更を記事が自分で割合化したもので、計算済みの数字にも無い。",
-        "「設定画面からすぐに利用できます」「設定画面で睡眠コーチングを有効にしてください」→ 元記事に無い画面の場所・操作を作っている。",
-        "「睡眠の質が向上すれば、日中の集中力が上がり仕事の効率が改善される可能性があります」→ 元記事に無い効果の推測。ただし『可能性』と書かれており、一般的な助言の範囲で軽微。"
-      ],
-      "readability": {
-        "avg_paragraph": 189.9,
-        "avg_sentence": 63.3,
-        "long_share": 0.571,
-        "max_paragraph": 333,
-        "paragraphs": 7,
-        "sentences": 21
-      },
-      "score": 45,
-      "source": "samsung-jp",
-      "title": "Samsung Healthの睡眠コーチングがより手軽に 一人ひとりに合わせたアドバイスを毎週提供",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:38:49.092194+00:00",
-      "attempt": 1,
-      "id": "8dc5cad25319e695",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "caa",
-      "title": "H.I.S.Mobile株式会社に対する景品表示法に基づく措置命令について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:40:13.129489+00:00",
-      "attempt": 2,
-      "id": "8dc5cad25319e695",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "caa",
-      "title": "H.I.S.Mobile株式会社に対する景品表示法に基づく措置命令について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:41:54.990112+00:00",
-      "attempt": 1,
-      "id": "5303ad7c7a4b3680",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "sony-jp",
-      "title": "初代ウォークマン付属『MDR-3』のデザインとサウンドを受け継ぐUSB-Cステレオヘッドホン『MDR-3R』発売"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T06:43:45.545681+00:00",
@@ -25305,6 +25228,121 @@
       "title": "運輸サービス 忘年会シーズン到来！博多発23時台に臨時列車運行、特急列車も増発！",
       "warnings": [
         "初めて出たところで言い換えていない略語（JR）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:32:07.066365+00:00",
+      "attempt": 1,
+      "id": "33051619ffb5b352",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "nissin",
+      "title": "明星食品 「明星 一平ちゃん夜店の焼そば スタミナキムチ味」(11月16日発売)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:33:03.741765+00:00",
+      "attempt": 2,
+      "id": "33051619ffb5b352",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "nissin",
+      "title": "明星食品 「明星 一平ちゃん夜店の焼そば スタミナキムチ味」(11月16日発売)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T02:33:33.730650+00:00",
+      "attempt": 2,
+      "id": "33051619ffb5b352",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 71.7,
+        "avg_sentence": 32.2,
+        "long_share": 0.025,
+        "max_paragraph": 145,
+        "paragraphs": 18,
+        "sentences": 40
+      },
+      "score": 95,
+      "source": "nissin",
+      "title": "明星食品 「明星 一平ちゃん夜店の焼そば スタミナキムチ味」(11月16日発売)",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JAN）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:33:51.593873+00:00",
+      "attempt": 1,
+      "id": "e5b75fb5559cea9b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "fujiya",
+      "title": "ニュースリリース カルピス（株）特撰バターを使用した期間限定商品が初登場！「カントリーマアム（特撰バター）」「プレミアムルック（特撰バター）」2026年11月1"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:34:17.890898+00:00",
+      "attempt": 1,
+      "id": "e5b75fb5559cea9b",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "文が長い（1文の平均 45.7字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ],
+      "readability": {
+        "avg_paragraph": 104.4,
+        "avg_sentence": 45.7,
+        "long_share": 0.281,
+        "max_paragraph": 211,
+        "paragraphs": 14,
+        "sentences": 32
+      },
+      "score": 92,
+      "source": "fujiya",
+      "title": "ニュースリリース カルピス（株）特撰バターを使用した期間限定商品が初登場！「カントリーマアム（特撰バター）」「プレミアムルック（特撰バター）」2026年11月1",
+      "warnings": [
+        "見出しが62字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JAN・IR）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T02:34:45.170270+00:00",
+      "attempt": 0,
+      "id": "e5b75fb5559cea9b",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 69.2,
+        "avg_sentence": 36.3,
+        "long_share": 0.048,
+        "max_paragraph": 147,
+        "paragraphs": 22,
+        "sentences": 42
+      },
+      "score": 92,
+      "source": "fujiya",
+      "title": "ニュースリリース カルピス（株）特撰バターを使用した期間限定商品が初登場！「カントリーマアム（特撰バター）」「プレミアムルック（特撰バター）」2026年11月1",
+      "warnings": [
+        "見出しが62字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JAN・IR）"
       ]
     }
   ],
