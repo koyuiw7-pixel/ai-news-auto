@@ -45,6 +45,19 @@ class SearchAnswersTest(unittest.TestCase):
         self.assertIn("発売日、販売する国は書かれていません", article("honda-rn0-emtb-eicma-2026")["body"])
         self.assertIn("料金、パラメータ数、対応する言語", article("sakana-ai-symposium-2026-sawara")["body"])
 
+    def test_types_rewrite_keeps_verified_answer(self):
+        """種類の型での書き直し（scripts/rewrite_types.py）が、公式で確かめた答えの章を消さない（2026-11-08 に Sakana の章が消えた）"""
+        import rewrite_types  # noqa: PLC0415
+
+        old = "前文。\n\n## 概要\n\n古い概要。\n\n## Xはいつ使える？\n\n答え。\n\n出典：[公式](https://example.com/)（2026年11月7日に確認）\n\n## 料金は？\n\n未発表。"
+        new = "新しい前文。\n\n## 何が変わる\n\n新しい本文。\n\n## まだ分からないこと\n\n- 料金"
+        body = rewrite_types.keep_sections(old, new)
+        heads = [line for line in body.splitlines() if line.startswith("## ")]
+        self.assertEqual(heads[0], "## Xはいつ使える？")
+        self.assertIn("（2026年11月7日に確認）", body)
+        self.assertNotIn("古い概要", body)
+        self.assertTrue(body.startswith("新しい前文。"))
+
     def test_event_answers(self):
         events = {e["slug"]: e for e in json.loads((ROOT / "content" / "events.json").read_text("utf-8"))["events"]}
         adobe = events["adobe-max-2026"]

@@ -473,28 +473,52 @@ def hook_parts(article: dict, pages: list) -> dict | None:
                 texts.append(cand)
     named = [t for t in texts if any(x.lower() in t.lower() for x in terms)]
     texts = named + [t for t in texts if t not in named]
+    # 題の両方に数字がある記事（暮らしとお金の記事に多い: 「〜で17,370円割引」「期限は12月31日」）は、本文の最初の章の見出しから
+    # 数字の無いものを使う（記事の言葉のまま）。2026-11-08: 暮らしとお金の記事が増え、つかみの見出しが取れない記事が増えた
+    for h2, h3, _para in body_sections(article.get("body", ""))[:6]:
+        h = clean_sentence((h2 or "").lstrip("# ").strip())
+        if (h and 10 <= len(h) <= 40 and h not in texts and not re.search(r"\d", gate.norm(h)) and not stiff(h) and not gate.bare_phrase(h)
+                and not re.search(r"概要|まだ分からない|自分には|まとめ|出典|よくある質問", h)):
+            texts.append(h)
     if not texts and terms:
-        texts = [f"{terms[-1] if len(terms[-1]) <= 20 else terms[0]}の新しい発表"]
-    pick = next(((t, sp) for t in texts for sp in speeches if not terms or any(x.lower() in f"{t} {sp}".lower() for x in terms)), None)
-    if not pick:
-        return None
-    text, speech = pick
-    # つかみの左の言葉（見出しが消えたあと、次の場面まで出す。読み上げにそのままある言い回し。数字だけ・名詞1つだけにしない）
-    payoff = keyword_for(speech, speech, "", set())
-    if not payoff or gate.number_only(payoff) or gate.bare_phrase(payoff):
-        return None
+        name = next((x for x in (terms[-1], terms[0]) if len(x) <= 20 and not re.search(r"\d", gate.norm(x))), "")
+        texts = [f"{name}の新しい発表"] if name else []
+    # 証拠＝画面のいちばん大きな見出し（自分の記事ページは後回し）
+    hero = None
     ordered = [p for p in pages if not p.own] + [p for p in pages if p.own]
     for p in ordered:
-        hero = v3.hero_block(p)
-        if not hero:
+        block = v3.hero_block(p)
+        if not block:
             continue
-        sent = (block_sentences(hero.text) or [hero.text])[0].strip()
-        if not (6 <= len(sent) <= 200):
-            continue
-        if v3.is_english(sent):
-            return {"text": text, "payoff": payoff, "speech": speech, "block": hero.id, "target": sent, "ja": text if not _digits(text) - _digits(sent) else ""}
-        return {"text": text, "payoff": payoff, "speech": speech, "block": hero.id, "target": sent.rstrip("。"), "ja": ""}
-    return None
+        sent = (block_sentences(block.text) or [block.text])[0].strip()
+        if 6 <= len(sent) <= 200:
+            hero = (block, sent)
+            break
+    if not hero:
+        return None
+    block, sent = hero
+    have = {float(x) for x in _digits(block.text)}
+    # 見出しと読み上げの組を順に試し、つかみの左の言葉（見出しが消えたあと、次の場面まで出す。読み上げにそのままある言い回し。
+    # 数字だけ・名詞1つだけにしない。数字は証拠の見出しにあるものだけ）が取れる最初の組を使う。2026-11-08: 本文の1文目が
+    # 「〜の人に、知っておいてほしい話です」「〜は変わりません」のような読者向けの入りになり、最初の組だけ見ていたので
+    # 左の言葉が取れず、台本を作れない記事が増えた
+    pick = None
+    for t in texts:
+        for sp in speeches:
+            if terms and not any(x.lower() in f"{t} {sp}".lower() for x in terms):
+                continue
+            kw = keyword_for(sp, sp, "", set())
+            if kw and not gate.number_only(kw) and not gate.bare_phrase(kw) and all(float(d) in have for d in _digits(kw)):
+                pick = (t, sp, kw)
+                break
+        if pick:
+            break
+    if not pick:
+        return None
+    text, speech, payoff = pick
+    if v3.is_english(sent):
+        return {"text": text, "payoff": payoff, "speech": speech, "block": block.id, "target": sent, "ja": text if not _digits(text) - _digits(sent) else ""}
+    return {"text": text, "payoff": payoff, "speech": speech, "block": block.id, "target": sent.rstrip("。"), "ja": ""}
 
 
 def fact_candidates(article: dict) -> list[tuple[str, str, str]]:

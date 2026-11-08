@@ -84,6 +84,9 @@ def save_tries(data: dict) -> None:
     TRIES_PATH.parent.mkdir(parents=True, exist_ok=True)
     TRIES_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=1, sort_keys=True) + "\n", "utf-8")
 UPDATE_HEADING_RE = re.compile(r"^##\s+続報")
+# 公式ページで確かめた答えの章（「出典：…（2026年11月7日に確認）」。docs/search_answers_20261107.md）。検索で探されている問いの答えなので、
+# 書き直しで消さず、冒頭（最初の見出し）に戻す（2026-11-08: Sakana Sawara の記事で「いつ公開？使える？」の章が消えた）
+VERIFIED_RE = re.compile(r"^出典：.*日に確認）\s*$", re.M)
 # 編集部の訂正の注記（「**編集部訂正（2026年10月31日）**：…」）。訂正した記事は人が確かめた記事なので、書き直しの対象にしない
 CORRECTION_RE = re.compile(r"編集部訂正|【訂正】|訂正（\d{4}年")
 CORRECTIONS_PATH = ROOT / "content" / "corrections.json"
@@ -198,12 +201,17 @@ def _sections(body: str) -> list[tuple[str, str]]:
 
 
 def keep_sections(old_body: str, new_body: str) -> str:
-    """今の本文の「続報」の章（先頭側）と、他社との比較表の章（rivals。公式ページの数字で作ったもの）を新しい本文に戻す"""
+    """今の本文の「続報」の章（先頭側）と、公式ページで確かめた答えの章（冒頭）と、他社との比較表の章（rivals。公式ページの数字で作ったもの）を新しい本文に戻す"""
     updates = [f"{h}\n{t.strip()}" for h, t in _sections(old_body) if UPDATE_HEADING_RE.match(h)]
     # 訂正の注記の段落は、一字も変えずに先頭へ（2026-11-03: Muse の記事で消えて、訂正の表示と公開前のテストが壊れた）
     notes = [p.strip() for p in re.split(r"\n\s*\n", old_body or "") if CORRECTION_RE.search(p) and not p.lstrip().startswith("#")]
     rival = [f"{h}\n{t.strip()}" for h, t in _sections(old_body) if h.strip() == f"## {rivals.HEADING}"]
     body = new_body.strip()
+    answers = [f"{h}\n\n{t.strip()}" for h, t in _sections(old_body)
+               if h and not UPDATE_HEADING_RE.match(h) and VERIFIED_RE.search(t) and h not in body]
+    if answers:
+        lead, sep, rest = body.partition("\n## ")
+        body = lead.rstrip() + "\n\n" + "\n\n".join(answers) + ("\n\n## " + rest if sep else "")
     if updates:
         body = "\n\n".join(updates) + "\n\n" + body
     if rival and f"## {rivals.HEADING}" not in body:

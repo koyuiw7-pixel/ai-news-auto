@@ -214,6 +214,7 @@ class GateTest(unittest.TestCase):
         self.assertFalse(any("問いかけ" in v for v in got), got)
 
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -m unittest tests.X でも同じフォルダの補助を読めるように
 import legacy_sns_plan  # noqa: E402  2026-11-08 より前の枠の数で動かす（台帳 S47。今の数は tests/test_sns_volume_20261108.py）
 
 

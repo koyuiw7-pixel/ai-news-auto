@@ -179,6 +179,7 @@ class DecoupleTest(unittest.TestCase):
         self.assertIn("facebook_post.py --breaking-only", (ROOT / ".github" / "workflows" / "breaking_post.yml").read_text("utf-8"))
 
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -m unittest tests.X でも同じフォルダの補助を読めるように
 import legacy_sns_plan  # noqa: E402  2026-11-08 より前の枠の数で動かす（台帳 S47。今の数は tests/test_sns_volume_20261108.py）
 
 
