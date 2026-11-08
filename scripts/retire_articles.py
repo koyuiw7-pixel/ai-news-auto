@@ -177,6 +177,9 @@ def is_thin(article: dict) -> bool:
     body = article.get("body", "")
     if len(body) >= indexnow.THIN_BODY or article.get("type") == "roundup" or article.get("disaster"):
         return False
+    # 2026-11-08 オーナー決定（台帳 A60）: 短い記事でも公開する。これ以降の記事は短いという理由だけで取り下げない
+    if str(article.get("generatedAt") or "") >= "2026-11-08":
+        return False
     # 速報・お知らせ・注意喚起・ミサイル・災害は800字から（台帳 A10。公開の門 indexnow.noindex_reason と同じ）
     if indexnow.public_interest.short_ok(article) and len(body) >= indexnow.public_interest.SHORT_BODY:
         return False

@@ -300,7 +300,7 @@ PROMPT = """# 書くページ
   「稼げる」「儲かる」など儲け話にしない。有料プランを勧めない。
 - faq: よくある質問を4〜6個。検索されやすい形の質問（「〇〇は無料で使える？」など）にし、a は60〜180字で結論から。
 - used_sources: 実際に根拠にした公式ページの番号（S1 なら 1）。
-- 分量: intro・steps・japan_body・tips・faq の地の文の合計を2200字以上にする（足りないときは手順と FAQ を公式ページの事実で具体的に。推測で水増ししない）。
+- 分量: intro・steps・japan_body・tips・faq の地の文の合計は2200字が目安（公式ページの事実で具体的に。推測で水増ししない。資料が少なければ短くてよい）。
 {feedback}"""
 
 
@@ -348,35 +348,41 @@ def all_text(data: dict) -> str:
     )
 
 
-def structural_problems(data: dict, sources: list[dict], procedure: bool = False) -> list[str]:
-    problems = []
+def style_notes(data: dict, procedure: bool = False) -> list[str]:
+    """（2026-11-08 オーナー決定・台帳 A60）以前は不合格にしていた形・長さ・読みやすさの指摘。いまは落とさず、記録だけ"""
+    notes = []
     title = data.get("title", "")
     if m := re.search(r"とは[？?]|を(?:わかりやすく|やさしく|公式情報で)?解説(?:$|　)|徹底解説", data.get("seo_title", "")):
-        problems.append(f"seo_title が決まり文句（「{m.group(0)}」。台帳 A50）。読む人が得る答えを書く")
+        notes.append(f"seo_title が決まり文句（「{m.group(0)}」。台帳 A50）")
     fillers = len(FILLER_RE.findall(all_text(data)))
     if fillers > 2:
-        problems.append(f"「〜とよいでしょう」「〜しましょう」が{fillers}回ある（2回まで）。公式ページの案内として言い切る")
+        notes.append(f"「〜とよいでしょう」「〜しましょう」が{fillers}回")
     if procedure and re.search(r"書き方", title) and not any(re.search(r"欄|記入|書く|書き", s.get("body", "")) for s in data.get("steps", [])):
-        problems.append("題名に「書き方」とあるのに、手順に書き方（どの欄に何を書くか）が無い。題名を本文で答えている内容にする")
+        notes.append("題名に「書き方」とあるのに、手順に書き方が無い")
     if not 24 <= len(title) <= 56:
-        problems.append(f"title の長さが不適切（{len(title)}字 / 32〜48字）")
+        notes.append(f"title の長さ（{len(title)}字 / 目安 32〜48字）")
     if hn_template := re.search(r"とは[？?].{0,40}(?:を)?(?:解説|まとめ)|を(?:わかりやすく|やさしく)?解説(?:$|　)", title):
-        problems.append(f"title が「〜とは？〜を解説」の決まり文句（「{hn_template.group(0)}」。台帳 A50）")
-    if re.search(r"[！!]", f"{title}{data.get('seo_title', '')}"):
-        problems.append("title / seo_title に感嘆符がある")
-    if not 3 <= len(data.get("conclusion", [])) <= 4:
-        problems.append("conclusion は3〜4個")
-    if not 3 <= len(data.get("steps", [])) <= 7:
-        problems.append("steps は3〜7個")
-    if not 4 <= len(data.get("faq", [])) <= 6:
-        problems.append("faq は4〜6個")
-    if not 1 <= len(data.get("work_money", [])) <= 3:
-        problems.append("work_money は1〜3個")
-    problems += persona.work_money_problems(persona.clean_work_money({"relevance": "high", "points": data.get("work_money", [])}))
+        notes.append(f"title が「〜とは？〜を解説」の決まり文句（「{hn_template.group(0)}」。台帳 A50）")
+    for key, lo, hi in (("conclusion", 3, 4), ("steps", 3, 7), ("faq", 4, 6), ("work_money", 1, 3)):
+        if not lo <= len(data.get(key, [])) <= hi:
+            notes.append(f"{key} の数（{len(data.get(key, []))}個 / 目安 {lo}〜{hi}個）")
     length = len(re.sub(r"\s|#", "", prose_of(data)))
     if length < MIN_PROSE:
-        problems.append(f"本文が短い（{length}字 / 基準 {MIN_PROSE}字以上）。公式ページの事実を使って手順・FAQ を具体的に書き足す")
-    problems += quality.readability_problems(prose_of(data))
+        notes.append(f"本文が短め（{length}字 / 目安 {MIN_PROSE}字）")
+    notes += quality.readability_problems(prose_of(data))
+    return notes
+
+
+def structural_problems(data: dict, sources: list[dict], procedure: bool = False) -> list[str]:
+    """不合格にする問題（2026-11-08 台帳 A60: うそ・試したような書き方・誇大な言葉・訳し残し・空のページだけ）。形・長さは style_notes"""
+    problems = []
+    for key in ("title", "seo_title"):
+        if isinstance(data.get(key), str):
+            data[key] = re.sub(r"[！!]+", "", data[key]).replace("｜", "　").strip()  # 感嘆符・「｜」は落とさず直す
+    for key in ("conclusion", "steps", "faq"):
+        if not data.get(key):
+            problems.append(f"{key} が空")
+    problems += persona.work_money_problems(persona.clean_work_money({"relevance": "high", "points": data.get("work_money", [])}))
     text = all_text(data)
     if m := BANNED_RE.search(text):
         problems.append(f"使ってはいけない表現がある（「{m.group(0)}」）")
@@ -410,10 +416,10 @@ def check(data: dict, sources: list[dict], procedure: bool = False) -> dict:
         fact = quality.fact_check(to_record(data, procedure), source_block(sources, cap))
         if fact["fatal"] or fact["score"] < pass_score:
             problems += [f"事実確認: {p}" for p in fact["problems"]] or [f"事実確認の点数が低い（{fact['score']}）"]
-    return {"ok": not problems, "problems": problems, "fact": fact}
+    return {"ok": not problems, "problems": problems, "fact": fact, "warnings": style_notes(data, procedure)}
 
 
-def generate(topic: dict, sources: list[dict], attempts: int = 3) -> tuple[dict, dict] | None:
+def generate(topic: dict, sources: list[dict], attempts: int = 2) -> tuple[dict, dict] | None:
     cap = max(3000, min(SOURCE_GEN_CAP, SOURCE_TOTAL_CAP // max(1, len(sources))))
     feedback = ""
     for attempt in range(1, attempts + 1):

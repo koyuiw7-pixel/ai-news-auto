@@ -110,6 +110,7 @@ def promise_problems(record: dict) -> list[str]:
 def every_path_problems(record: dict) -> list[str]:
     """（2026-11-04 一貫性の点検）記事を書き出すすべての段（通常・動画・まとめ・続報・見出しの書き直し）で同じ合格の基準。
     文体の門（A1〜A6・A17〜A21・A24・A33・A36・A38）＋投資助言・取引のやり方（A22。どの記事でも）＋自分で試した書き方（A14）。
+    2026-11-08（台帳 A60）から、文体は article_style.is_hard のものだけ（ほかは style_notes で記録だけ）。
     1つでもあれば書き出さない（作り直すか見送る）。tests/test_rule_consistency.py が、記事を書くすべての段がこれを通るかを確かめる"""
     return (article_style.problems(record) + genre_focus.advice_problems(record) + first_person_problems(record)
             + public_interest.sensitive_problems(record) + public_interest.press_source_problems(record)
@@ -931,6 +932,8 @@ FACT_PROMPT = """# 元記事（一次情報。自動抽出なのでメニュー�
 - 「[元記事の情報]」の発信元・公開日時に基づく記述（「〇〇の公式ブログによると」「10月26日に発表」など）は元記事に書かれた事実として扱う。
   米国時間と日本時間の時差による1日の日付のずれも問題にしない。
 - 広く知られた一般常識・定訳は創作として扱わない（例: SEC＝米証券取引委員会、IPO（上場）前の会社は株式を公開していない、Nasdaq は米国の株式市場）。
+- 見出し（タイトル）は強い言い方・驚き・問いかけでよい。ただし、本文と元記事に無い事実・数字、事実より大きく言うこと（本当でないのに「全員対象」「必ず得する」「最大」「過去最多」）、
+  記事が答えていない問い・約束は必ず問題にする（2026-11-08 台帳 A60）。
 - 次は必ず問題にする: 元記事に無い具体的な数値・日付・価格・機能・発言の創作、元記事との矛盾、
   予定や研究段階のものを提供開始済み・実用化済みのように書くこと、効能・効果の断定、特定個人への憶測。
 - 「よくある質問」の答えと「今日やること」も記事の一部として同じ基準で確かめる。答えに元記事・確認済みの文脈に無い数字・条件・提供状況があれば必ず問題にする。
@@ -1071,22 +1074,12 @@ def structural_problems(record: dict, kind: str, source_text: str = "", context:
         problems.append("本文が空です")
     if not re.sub(r"(?m)^\s*#{1,6}.*$|\s", "", easy):
         problems.append("easy_markdown に本文がありません")
-    if not easy.startswith(("## ひとことで言うと", "## 概要")):
-        problems.append("easy_markdown が「## ひとことで言うと」から始まっていない")
-    if not TITLE_RANGE[0] <= len(title) <= TITLE_RANGE[1]:
-        problems.append(f"title の長さが不適切（{len(title)}字 / {TITLE_RANGE[0]}〜{TITLE_RANGE[1]}字）")
-    if re.search(r"[！!]", f"{title}{record.get('seoTitle') or ''}"):
-        problems.append("title / seo_title に感嘆符がある")
     text = f"{body}\n{easy}"
     if m := BOILERPLATE_RE.search(text):
         problems.append(f"Webページの英語の残骸が残っている（「{m.group(0)}」）")
     if m := ENGLISH_RUN_RE.search(re.sub(r"`[^`]*`|\[[^\]]*\]\([^)]*\)", " ", text)):
         problems.append(f"訳されていない英文が残っている（「{m.group(0)[:40]}…」）")
-    if record.get("sourceType") == "web" and (m := VIDEO_LEFTOVER_RE.search(text)):
-        problems.append(f"文章が元なのに動画前提の表現がある（「{m.group(0)}」）。「〇〇の発表」と書く")
-    if record.get("sourceType") == "web" and kind != "update" and not record.get("workMoney"):
-        problems.append(f"work_money（「{persona.WORK_MONEY_HEADING}」欄）がありません")
-    problems += persona.work_money_problems(record.get("workMoney"))
+    problems += persona.work_money_problems(record.get("workMoney"))  # 「確実に稼げる」などの言い過ぎ・助言（うそ・法令。残す）
     # 個別の投資助言・売買のすすめ・取引のやり方の説明と、投資・マネーの免責文の抜け（scripts/genre_focus.py。台帳 A22）
     problems += genre_focus.advice_problems(record)
     # 事件・災害・政治の書き方（煽り・推測・私人の実名・分かっていないことの区別・公式の安全情報のリンク。台帳 A39）
@@ -1105,22 +1098,51 @@ def structural_problems(record: dict, kind: str, source_text: str = "", context:
         problems += verdict_problems(record)
     if record.get("sourceType") == "web" and kind != "update":
         problems += first_person_problems(record)
-        problems += promise_problems(record)
-        problems += faq_problems(record)
-        if m := persona.OLD_VIEWPOINT_RE.search(body):
-            # 台帳 A24: 立場の小見出しは新旧どちらも作らない（前は「3つの立場にする」と直させていて、A24 と食い違っていた）
-            problems.append(f"古い立場の小見出し（「{m.group(0).lstrip('# ')}」）がある。立場の小見出しは作らず、事実がある影響だけを地の文で書く")
+        problems += promise_problems(record)  # 見出しが約束したことに本文が答えていない（台帳 A60。うそと同じ扱いで残す。surgical_fix が直す）
         problems += number_problems(record, source_text, context)
         # 発表時刻が決まった速報（統計・決算）: 題名・リード・要点の数字・単位・増減の向き・比べる基準・速報値・予想の言い方（台帳 W35）
         problems += release_quality.release_problems(record, source_text)
         problems += rival_problems(record)
-        problems += money_outline_problems(record)
         problems += ui_step_problems(record, source_text, context)
     if source_text:
         copied = copied_sentences(body, source_text)
         if len(copied) >= 2:
             problems.append(f"元記事の文をそのまま書き写している（{len(copied)}文。例「{copied[0]}」）。自分の言葉で要約する")
     return problems
+
+
+def style_notes(record: dict, kind: str) -> list[str]:
+    """（2026-11-08 オーナー決定・台帳 A60）以前は不合格にしていた形・文体の指摘。いまは落とさず、注意として記録するだけ。
+    目標は「読みたくなり、最後まで読まれる記事」（読者に何が変わるかを言うリード・拾い読みできる見出し・役立つ表・大人の自然な日本語）"""
+    notes: list[str] = []
+    body = record.get("body") or ""
+    title = record.get("title") or ""
+    if not TITLE_RANGE[0] <= len(title) <= TITLE_RANGE[1]:
+        notes.append(f"title の長さ（{len(title)}字 / 目安 {TITLE_RANGE[0]}〜{TITLE_RANGE[1]}字）")
+    if record.get("sourceType") == "web" and kind != "update" and not record.get("workMoney"):
+        notes.append(f"work_money（「{persona.WORK_MONEY_HEADING}」欄）が無い")
+    if kind != "update":
+        notes += article_style.style_notes(record)
+    if record.get("sourceType") == "web" and kind != "update":
+        notes += faq_problems(record) + money_outline_problems(record)
+        if m := persona.OLD_VIEWPOINT_RE.search(body):
+            notes.append(f"古い立場の小見出し（「{m.group(0).lstrip('# ')}」）")
+    return notes
+
+
+def style_autofix(record: dict) -> list[str]:
+    """落とさずに直せる形（感嘆符・かんたん版の最初の見出し・動画前提の言い方）。直した内容の一覧"""
+    changes = []
+    for key in ("title", "seoTitle"):
+        value = record.get(key)
+        if isinstance(value, str) and re.search(r"[！!]", value):
+            record[key] = re.sub(r"[！!]+", "", value).strip()
+            changes.append(f"{key}の感嘆符を外した")
+    easy = (record.get("easy") or "").strip()
+    if easy and not easy.startswith(("## ひとことで言うと", "## 概要")):
+        record["easy"] = "## ひとことで言うと\n\n" + easy
+        changes.append("かんたん版の頭に「## ひとことで言うと」を付けた")
+    return changes
 
 
 def _article_for_check(record: dict) -> str:
@@ -1201,6 +1223,7 @@ def evaluate(record: dict, source_text: str, kind: str, context: str = "", check
     soft=True は「形と事実は合格、読みやすさだけが基準外」。polish() で文を分け、だめでも受理してよい。
     形・事実の不合格のときの problems には読みやすさを混ぜない（作り直しで本文が縮み、長さで落ちるのを防ぐ）"""
     fix_video_leftover(record)
+    style_autofix(record)
     # 文体の決まりのうちプログラムで直せるもの（「元記事」の言い換え・種類に合わない判定カード。scripts/article_style.py）
     article_style.autofix(record)
     # 中身のない章・事実を含まないつなぎの文・中の人の注記は、プログラムで先に消す（scripts/section_gate.py。表示の段と同じ規則）
@@ -1208,24 +1231,26 @@ def evaluate(record: dict, source_text: str, kind: str, context: str = "", check
     read = readability(record.get("body") or "")
     read_problems = readability_problems("", read)
     base = {"structural": [], "fact": None, "readability": read, "readability_problems": read_problems,
-            "warnings": title_warnings(record) + section_gate.style_warnings(record) + article_style.warnings(record)}
+            "warnings": title_warnings(record) + section_gate.style_warnings(record) + article_style.warnings(record)
+            + style_notes(record, kind) + [f"読みやすさ: {p}" for p in read_problems]}
     structural = structural_problems(record, kind, source_text, context)
     if record.get("sourceType") == "web" and not (source_text or "").strip():
         structural.append("一次資料が空のため記事の内容を確認できません")
     if structural:
         return {**base, "ok": False, "soft": False, "score": None, "problems": structural, "structural": structural}
+    # 2026-11-08（台帳 A60）: 読みやすさ・長さ・文体では落とさない。読みやすさが目安の外なら soft=True（polish で文を分ける。だめでもそのまま受理）
     if not check_facts:
-        return {**base, "ok": not read_problems, "soft": bool(read_problems), "score": None, "problems": read_problems}
+        return {**base, "ok": True, "soft": bool(read_problems), "score": None, "problems": []}
     try:
         fact = fact_check(record, source_text, context, require_usefulness=True) if record.get("sourceType") == "web" else fact_check(record, source_text, context)
     except Exception as error:  # noqa: BLE001 - 確認できない記事は出さない
         problem = f"事実確認を実行できなかった（{str(error)[:80]}）"
         return {**base, "ok": False, "soft": False, "score": None, "problems": [problem], "unavailable": True}
     fact_ok = fact["grounded"] and fact["score"] >= PASS_SCORE and fact.get("useful", True)
-    problems = fact["problems"] if not fact_ok else read_problems
+    problems = fact["problems"] if not fact_ok else []
     if not fact_ok and not problems:
         problems = ["記事の有用性を確認できなかった"] if fact.get("useful") is False else [f"元記事との整合性が低い（score {fact['score']}）"]
-    return {**base, "ok": fact_ok and not read_problems, "soft": fact_ok and bool(read_problems), "score": fact["score"],
+    return {**base, "ok": fact_ok, "soft": fact_ok and bool(read_problems), "score": fact["score"],
             "problems": problems, "fact": fact}
 
 
@@ -1363,7 +1388,8 @@ SURGICAL_PROMPT = """校閲記者が次の記事に指摘をしました。指�
 
 # 直し方
 - 指摘された文（または文の一部）だけを直す。元記事に無い事実・言い過ぎは削るか、元記事どおりの弱い言い方に直す。
-  訳語の指摘は正しい訳語に直す。直せないときはその文を削る。
+  数字・日付・曜日・対象（だれが使える／使えない）の誤りは、元記事の表記どおりに直す。訳語の指摘は正しい訳語に直す。
+  元記事で裏づけられない文は削る（書き足して埋めない。短い記事になってよい）。
 - 指摘されていない文・見出し（## と ###）・表・リンク・数字は一字も変えない。
 - 新しい事実・数字・日付・固有名詞を足さない。
 - タイトル・リード・要点（highlights）・かんたん版・「仕事・お金にどう活かせる」（work_money_points）も、指摘があればそこだけ直し、
@@ -1389,6 +1415,21 @@ SURGICAL_PROMPT = """校閲記者が次の記事に指摘をしました。指�
 <<<
 {easy}
 >>>"""
+
+
+UNREPAIRABLE_RE = re.compile(r"一次資料が空|事実確認を実行できなかった|本文が空|easy_markdown に本文がありません|報道機関|W31")
+
+
+def repairable(verdict: dict) -> bool:
+    """（2026-11-08 オーナー決定・台帳 A60）作り直さず、その場で直す（surgical_fix）に回せる不合格か。
+    事実の誤り（資料に無い数字・曜日・対象の取り違え）も、形の不合格（書き写し・投資助言の言い方など）も、まず資料で直す。
+    直せないのは: 記事にする価値が無いと判定されたもの・確認できなかったもの・本文が空・資料が空・報道が出典のもの"""
+    if verdict.get("ok") or verdict.get("unavailable"):
+        return False
+    fact = verdict.get("fact") or {}
+    if fact and fact.get("useful") is False:
+        return False
+    return not any(UNREPAIRABLE_RE.search(str(p)) for p in verdict.get("problems") or [])
 
 
 def surgical_ok(verdict: dict) -> bool:
@@ -1418,7 +1459,8 @@ def surgical_fix(record: dict, source_text: str, kind: str, problems: list[str],
     heads_old, heads_new = _HEADING_RE.findall(body), _HEADING_RE.findall(new_body)
     if [_norm(h) for h in heads_old] != [_norm(h) for h in heads_new]:
         return None, f"見出しが変わった（{len(heads_old)}→{len(heads_new)}個）"
-    if _plain_len(new_body) < _plain_len(body) * 0.85:
+    # 資料で裏づけられない文は削ってよい（2026-11-08 台帳 A60）。ただし半分より短くなるほど削ったら、中心の主張が崩れたとみなす
+    if _plain_len(new_body) < _plain_len(body) * 0.6:
         return None, f"本文を削りすぎた（{_plain_len(body)}→{_plain_len(new_body)}字）"
     added = {n for n in _numbers(new_body) - _numbers(body) - _numbers(source_text) - _numbers(context) if len(n) > 1}
     if added:

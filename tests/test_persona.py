@@ -111,7 +111,7 @@ class WorkMoneyTest(unittest.TestCase):
         self.assertEqual(wm, {"relevance": "medium", "points": ["a", "b", "c"]})
 
     def test_gate_requires_work_money_on_new_web_articles(self):
-        problems = quality.structural_problems(web_record(), "ai")
+        problems = quality.style_notes(web_record(), "ai")  # 2026-11-08 A60: 記録だけ
         self.assertTrue(any("work_money" in p for p in problems))
         ok = web_record(workMoney={"relevance": "high", "points": ["個人事業主は月額980円で帳簿づけを試せます。"]})
         self.assertEqual(quality.structural_problems(ok, "ai"), [])

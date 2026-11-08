@@ -58,7 +58,7 @@ class GateTest(unittest.TestCase):
     def test_old_style_is_rejected_with_every_benchmark_pattern(self):
         rec = dict(OLD)
         codes = {code for code, _ in st.coded_problems(rec)}
-        text = "\n".join(st.problems(rec))
+        text = "\n".join(m for _, m in st.coded_problems(rec))
         for word in ("決まった型の見出し", "見出しが多すぎる", "中身のない章", "指示文の言葉", "1つの文を2つに割っている", "一問一答の口調",
                      "幼い言い方", "説明つきの社名", "つなぎ", "リードのくり返し", "かんたん版に決まった型の見出し",
                      "「〇〇を発表しました」で終わり", "要点"):
@@ -73,10 +73,10 @@ class GateTest(unittest.TestCase):
     def test_heading_density(self):
         body = "## 1つ目\n" + "あ" * 400 + "\n## 2つ目\n" + "い" * 400 + "\n## 3つ目\n" + "う" * 300
         self.assertEqual(st.max_headings(body), 2)
-        self.assertTrue(any("見出しが多すぎる" in p for p in st.problems({"body": body})))
+        self.assertTrue(any("見出しが多すぎる" in p for p in st.style_notes({"body": body})))
         # 「まだ分からないこと」は数えない
         ok = "## 1つ目\n" + "あ" * 1200 + "\n## まだ分からないこと\n- 価格はまだ発表されていません。"
-        self.assertFalse(any("見出しが多すぎる" in p for p in st.problems({"body": ok})))
+        self.assertFalse(any("見出しが多すぎる" in p for p in st.style_notes({"body": ok})))
 
     def test_quoted_words_are_not_style_problems(self):
         rec = {"body": "CEOは「すごい製品です」と話しました。同社は「業界初」としています。" + "事実の文です。" * 30}
@@ -84,16 +84,16 @@ class GateTest(unittest.TestCase):
 
     def test_promo_words_need_attribution(self):
         rec = {"body": "初代以来最も変革的な「iPhone Duo」が出ました。" + "事実の文です。" * 30}
-        self.assertTrue(any("宣伝の言葉" in p for p in st.problems(rec)))
+        self.assertTrue(any("宣伝の言葉" in p for p in st.style_notes(rec)))
 
     def test_persona_subheads_and_nonanswer_titles(self):
         # 台帳 A24（2026-11-03）: 3つの立場の小見出しと、「〜は不明」「〜は示されていない」の見出しは出さない
         body = "事実の文です。" * 40 + "\n\n### 会社員として\n経理の仕事が速くなります。\n\n## 価格は不明\n価格は発表されていません。"
-        text = " ".join(st.problems({"body": body}))
+        text = " ".join(st.style_notes({"body": body}))
         self.assertIn("立場の小見出し", text)
         self.assertIn("答えになっていない見出し", text)
         ok = "事実の文です。" * 40 + "\n\n## まだ分からないこと\n- 価格はまだ発表されていません。"
-        self.assertEqual(st.problems({"body": ok}), [])
+        self.assertEqual(st.style_notes({"body": ok}), [])
 
     def test_persona_instructions_removed_at_source(self):
         import persona  # noqa: PLC0415
@@ -111,8 +111,8 @@ class GateTest(unittest.TestCase):
 
     def test_short_hollow_lede(self):
         # 2026-11-03 書き直しの見直しで見つけた形:「GoogleはGemini 4 Carbonを発表しました。」だけの1文目
-        self.assertTrue(any("〇〇を発表しました" in p for p in st.problems({"lede": "GoogleはGemini 4 Carbonを発表しました。料金は2ドルです。"})))
-        self.assertFalse(any("〇〇を発表しました" in p for p in st.problems(
+        self.assertTrue(any("〇〇を発表しました" in p for p in st.style_notes({"lede": "GoogleはGemini 4 Carbonを発表しました。料金は2ドルです。"})))
+        self.assertFalse(any("〇〇を発表しました" in p for p in st.style_notes(
             {"lede": "Googleは、脆弱性の発見と修正が得意な新しいAIモデル「Gemini 4 Carbon」を、一部の防御担当者向けに公開しました。"})))
 
     def test_minor_change_is_not_new_model(self):
@@ -121,7 +121,7 @@ class GateTest(unittest.TestCase):
     def test_same_number_repeated(self):
         body = "発売は2027年1月上旬です。" + "価格は500万円です。" * 8  # 8回以上は作り直し（ランクルFJの記事は8回）
         self.assertTrue(any("英語の画面名" in w for w in st.warnings({"body": "Settings → Usage で確かめます。"})))
-        self.assertTrue(any("同じ数字のくり返し" in p for p in st.problems({"body": body})))
+        self.assertTrue(any("同じ数字のくり返し" in p for p in st.style_notes({"body": body})))
         self.assertTrue(any("同じ数字が多い" in w for w in st.warnings({"body": "価格は500万円です。" * 5})))
 
 
@@ -316,7 +316,7 @@ class EveryPathTest(unittest.TestCase):
 
         rec = {"sourceType": "web", "title": "x" * 30, "body": "## 料金は？\n月20ドルです。", "easy": "## ひとことで言うと\nx",
                "workMoney": {"relevance": "low", "points": ["直接の影響は小さいです。"]}}
-        self.assertTrue(any("決まった型の見出し" in p for p in quality.structural_problems(rec, "ai")))
+        self.assertTrue(any("決まった型の見出し" in p for p in quality.style_notes(rec, "ai")))
         src = {name: (ROOT / "scripts" / name).read_text("utf-8") for name in ("main.py", "roundup.py", "web_articles.py", "angle_articles.py")}
         # 動画の記事・まとめ: 作り直し1回・だめなら出さない。文体の門を含む共通の基準（quality.every_path_problems。2026-11-04 一貫性の点検）
         self.assertIn("quality.every_path_problems(record)", src["main.py"])

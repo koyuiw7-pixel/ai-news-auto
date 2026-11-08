@@ -69,7 +69,7 @@ class PoolTest(unittest.TestCase):
         base = {"title": "年末調整は会社員の多くが対象　提出は勤務先の締め切りまで", "seo_title": "年末調整の書き方と3つの申告書、提出期限を公式情報で解説",
                 "conclusion": ["a"] * 3, "steps": [{"title": "出す", "body": "勤務先に出します。とよいでしょう。とよいでしょう。とよいでしょう。"}] * 3,
                 "faq": [{"q": "q", "a": "a"}] * 4, "work_money": ["x"]}
-        problems = evergreen.structural_problems(base, [], True)
+        problems = evergreen.style_notes(base, True)
         self.assertTrue(any("seo_title が決まり文句" in p for p in problems))
         self.assertTrue(any("とよいでしょう" in p for p in problems))
         src = (ROOT / "scripts" / "evergreen.py").read_text("utf-8")

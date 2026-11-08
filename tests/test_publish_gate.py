@@ -37,16 +37,18 @@ class PublishGate(unittest.TestCase):
         self.assertEqual(indexnow.publish_block_reason(a), "off-focus")
         self.assertNotIn("off-focus", indexnow.PUBLISH_RETRYABLE)
 
-    def test_no_japan_value_is_blocked_and_retryable(self):
+    def test_no_japan_value_is_published_but_noindexed(self):
+        """2026-11-08 オーナー決定（台帳 A60）: 章の決まりで公開を止めない（検索に出すかは noindex_reason が別に決める）"""
         a = article("invest", title="楽天証券のつなぎ売りの解説", genreSlug="investment", channelSlug="rakuten-sec", body="## 概要\n" + "い" * 1600)
-        self.assertEqual(indexnow.publish_block_reason(a), "no-japan-value")
-        self.assertIn("no-japan-value", indexnow.PUBLISH_RETRYABLE)
-        self.assertIn("日本", indexnow.PUBLISH_FEEDBACK["no-japan-value"])
+        self.assertIsNone(indexnow.publish_block_reason(a))
+        self.assertEqual(indexnow.noindex_reason(a), "no-japan-value")
+        self.assertEqual(indexnow.PUBLISH_RETRYABLE, ())
 
-    def test_thin_is_blocked_and_retryable(self):
+    def test_short_article_is_published(self):
+        """2026-11-08 オーナー決定（台帳 A60）: 短い公式のお知らせは短い記事でよい（字数で落とさない・書き足さない）"""
         a = article("short", body="## 概要\n短い")
-        self.assertEqual(indexnow.publish_block_reason(a), "thin")
-        self.assertIn("thin", indexnow.PUBLISH_RETRYABLE)
+        self.assertIsNone(indexnow.publish_block_reason(a))
+        self.assertEqual(indexnow.noindex_reason(a), "thin")
 
     def test_disaster_roundup_and_manual_are_not_blocked(self):
         self.assertIsNone(indexnow.publish_block_reason(article("quake", body="短い", disaster=True, genreSlug="public")))
@@ -60,7 +62,6 @@ class PublishGate(unittest.TestCase):
         """公開前の門で止める理由は、サイトが noindex にする理由と同じ判定から出る"""
         for a in (
             article("g1", title="任天堂、新作ゲームの体験版を配信", genreSlug="entertainment", channelSlug="nintendo-topics"),
-            article("g2", body="短い"),
         ):
             self.assertEqual(indexnow.publish_block_reason(a), indexnow.noindex_reason(a))
 
@@ -88,7 +89,7 @@ class CandidateOffFocus(unittest.TestCase):
         self.assertIn("主題外", web_articles.broad_prefilter(item) or "")
         with patch.dict("os.environ", {"PUBLISH_GATE": "0"}):
             self.assertIsNone(web_articles.publish_blocked(article("x", body="短い")))
-        self.assertEqual(web_articles.publish_blocked(article("x", body="短い")), "thin")
+        self.assertIsNone(web_articles.publish_blocked(article("x", body="短い")))  # 2026-11-08 A60: 短いだけでは止めない
 
 
 class RetireNoindexPlan(unittest.TestCase):

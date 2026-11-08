@@ -140,7 +140,7 @@ class PersonaViewpointTests(unittest.TestCase):
     def test_gate_rejects_old_viewpoints(self):
         rec = web_record(body=CLAUDE_BODY.replace("## まとめ", "## 自分にはどう関係する？\n### エンジニアなら\n使えます。\n\n## まとめ"),
                          seoTitle="Claude Ultraとは？料金")
-        self.assertTrue(any("古い立場" in p for p in quality.structural_problems(rec, "ai")))
+        self.assertTrue(any("古い立場" in p for p in quality.style_notes(rec, "ai")))  # 2026-11-08 A60: 記録だけ
 
 
 class FirstPersonTests(unittest.TestCase):

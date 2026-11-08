@@ -505,7 +505,7 @@ def reader_order_problems(record: dict) -> list[str]:
     for key, text in fields.items():
         if bad := number_units.unnatural_units(text):
             out.append(f"{key}に読者に分かりにくい数字の単位（「{bad[0]}」）。「約7,700万件」のように万・億で書く")
-    for key in ("題名", "リード", "本文", "要点"):
+    for key in ("リード", "本文", "要点"):  # 題名は強い言い方でよい（2026-11-08 台帳 A60）
         if m := SENSATIONAL_RE.search(_no_quotes(fields[key])):
             out.append(f"{key}に煽りの言葉（「{m.group(0)}」）。落ち着いた言葉で事実を書く")
     if len(EXCLAIM_RE.findall(_no_quotes(f"{fields['リード']}\n{fields['本文']}\n{fields['題名']}"))) >= 2:
@@ -614,6 +614,25 @@ def autofix(record: dict) -> list[str]:
         changes.append(f"判定カードを外した（{news_types.get(key).label}の記事には出さない）")
     # 読者順の型（2026-11-05 台帳 A45）: 数字の単位・要点の番号・用語の2回目の説明・本文のくり返しの FAQ
     changes += reader_order_autofix(record)
+    # 「｜」は題名にも本文にも使わない（台帳 2026-11-07「｜」禁止）。落とさず、ここで置き換える
+    changes += strip_vertical_bars(record)
+    return changes
+
+
+VERTICAL_BAR_RE = re.compile(r"[ \u3000]*｜[ \u3000]*")
+
+
+def strip_vertical_bars(record: dict) -> list[str]:
+    """全角の「｜」を消す（題名は全角の空白、本文は「・」に置き換え）。表の半角「|」はそのまま"""
+    changes = []
+    for key in ("title", "seoTitle", "videoTitle", "description", "lede", "body", "easy", "threadsPost"):
+        value = record.get(key)
+        if isinstance(value, str) and "｜" in value:
+            record[key] = VERTICAL_BAR_RE.sub("　" if key in ("title", "seoTitle", "videoTitle") else "・", value)
+            changes.append(f"{key}の「｜」を置き換えた")
+    if isinstance(record.get("highlights"), list) and any("｜" in str(h) for h in record["highlights"]):
+        record["highlights"] = [VERTICAL_BAR_RE.sub("・", str(h)) for h in record["highlights"]]
+        changes.append("要点の「｜」を置き換えた")
     return changes
 
 
@@ -771,9 +790,21 @@ def coded_problems(record: dict) -> list[tuple[str, str]]:
     return out
 
 
+def is_hard(code: str, message: str) -> bool:
+    """（2026-11-08 オーナー決定・台帳 A60）文体の指摘のうち、まだ不合格にするもの。
+    中の人の注記・指示文の漏れ（壊れた出力）と、一部改良なのに「新型」と書く（事実と違う）だけ。
+    ほかの文体の指摘（見出しの型・数・リードの形・つなぎ・くり返しなど）は落とさず、記録だけ（style_notes）"""
+    return (code == "A3" and ("指示文" in message or "中の人の注記" in message)) or (code == "A5" and "新型" in message)
+
+
 def problems(record: dict) -> list[str]:
-    """公開前の門。1つでもあれば作り直し（指摘はそのまま作り直しのプロンプトに入る）"""
-    return [msg for _, msg in coded_problems(record)]
+    """公開前の門。2026-11-08 から、不合格にするのは is_hard のものだけ（文体で作り直さない。台帳 A60）"""
+    return [msg for code, msg in coded_problems(record) if is_hard(code, msg)]
+
+
+def style_notes(record: dict) -> list[str]:
+    """文体の指摘のうち、不合格にしないもの（読みやすさの目標。記録と注意だけ。台帳 A60）"""
+    return [msg for code, msg in coded_problems(record) if not is_hard(code, msg)]
 
 
 # 誰でも知っている略語（言い換えなくてよい）
@@ -876,7 +907,7 @@ def repair_items(record: dict) -> list[dict]:
             f"{issue}。題名「{record.get('title') or ''}」・リードの1文目「{first}」の中心の事実を40〜60字で言い換えた1文にする",
             index=0, allow=nums)
         next(x for x in out if x["field"] == "highlights")["check"] = lambda new, _r=record: bool(lead_point_problem({**_r, "highlights": [new, *list(_r.get("highlights") or [])[1:]]}))
-    if first and any("〇〇を発表しました" in p for p in problems({"lede": lede})):
+    if first and any("〇〇を発表しました" in p for _, p in coded_problems({"lede": lede})):
         nums = set(re.findall(r"\d+(?:[.,]\d+)*", lede))
         add("lede", first, "リードの1文目が「〇〇を発表しました」で終わっている。リードの中の事実（数字・中身）を使い、何が新しいかを言い切る1文にする",
             allow=nums)

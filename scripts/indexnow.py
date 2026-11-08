@@ -233,9 +233,11 @@ def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> s
 # ---- 公開前の門（2026-11-03 オーナー承認。AdSense「有用性の低いコンテンツ」への対策） -------------------
 # 検索に出せない記事（主題外・日本の読者に役立つ情報がない・薄い・配信の言い換え・他人の動画の要約）は、作っても取り下げるだけなので公開しない。
 # 重複（duplicate）は公開後に scripts/story.py が付けて代表へ canonical を向けるので、ここでは止めない。地震・津波の速報（disaster）は短くても出す。
-PUBLISH_BLOCK = ("wire", "creator-video", "off-focus", "no-japan-value", "thin")
-# 作り直せば直る見込みのあるもの（品質ゲートと同じく、問題点を伝えて作り直す）。それ以外は見送りで確定する
-PUBLISH_RETRYABLE = ("thin", "no-japan-value")
+# 2026-11-08 オーナー決定（台帳 A60）: 短い（thin）・「日本の読者向けの章」が無い（no-japan-value）では公開を止めない・作り直さない。
+# 公式の短いお知らせは短い記事でよい。検索に出すか（noindex_reason・サイトの lib/indexing.ts）はこれまでどおり別に決める。
+PUBLISH_BLOCK = ("wire", "creator-video", "off-focus")
+# 作り直せば直る見込みのあるもの。2026-11-08 から作り直しはしないので空
+PUBLISH_RETRYABLE: tuple[str, ...] = ()
 PUBLISH_FEEDBACK = {
     "wire": "プレスリリース配信の言い換えは公開しません",
     "creator-video": "個人・他媒体の動画の要約は公開しません",

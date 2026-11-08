@@ -101,9 +101,9 @@ class ShortArticleFloorTest(unittest.TestCase):
         self.assertEqual(news_types.get("breaking").length[0], 800)
         self.assertEqual(news_types.SHORT_FLOOR, public_interest.SHORT_BODY)
         self.assertEqual(news_types.LONG_FLOOR, indexnow.THIN_BODY)
-        self.assertIn("必ず800字以上", news_types.prompt_block("breaking"))
-        self.assertIn("必ず1,600字以上", news_types.prompt_block("product"))
-        self.assertIn("1,500字に届かない", news_types.prompt_block("product"))
+        # 2026-11-08（台帳 A60）: 字数は目安。届かなくても公開する（作り直さない）
+        self.assertIn("800〜", news_types.prompt_block("breaking"))
+        self.assertIn("短い記事でよい", news_types.prompt_block("product"))
 
 
 TDNET_HTML = """

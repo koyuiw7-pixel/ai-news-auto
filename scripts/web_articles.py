@@ -1472,7 +1472,7 @@ def reopen_short_text(state: dict, now: datetime) -> None:
 
 # 品質ゲートに2回落ちた有力な候補（公式・官公庁・企業の一次情報で、読者像の話題）は捨てずに、
 # 時間をおいて資料（元記事のリンク先）を増やし、前回の問題点を伝えて作り直す（2026-11-03）。回数に上限あり。品質ゲートは緩めない
-GATE_RETRY_MAX = int(os.environ.get("GATE_RETRY_MAX", "2"))
+GATE_RETRY_MAX = int(os.environ.get("GATE_RETRY_MAX", "1"))  # 2026-11-08（台帳 A60）: 再挑戦は1回まで
 GATE_RETRY_WAIT_HOURS = float(os.environ.get("GATE_RETRY_WAIT_HOURS", "3"))
 GATE_RETRY_LINKS = 4  # 再挑戦のときに追いかける元記事のリンクの数（通常は2）
 
@@ -2463,13 +2463,10 @@ def main() -> int:
                 missing = news_types.missing_facts(record.get("newsType") or "", record.get("body") or "", source_text) \
                     if record.get("newsType") and not blocked else []
                 if missing:
-                    log(f"   [type] 資料にあるのに本文に無い事実: {'・'.join(x.label for x in missing)}"
-                        f"{'（最後の試行なので記録だけ）' if attempt >= attempts else ''}")
+                    # 2026-11-08（台帳 A60）: 足りない事実で作り直さない（記録だけ）
+                    log(f"   [type] 資料にあるのに本文に無い事実（記録だけ）: {'・'.join(x.label for x in missing)}")
                 if blocked:
-                    # 薄い・日本の読者向けの情報がない: 事実確認の前に、問題点を伝えて作り直す（LLM の確認を無駄に使わない）
                     verdict = gate_verdict(blocked)
-                elif missing and attempt < attempts and time_left() > EST_SEC_PER_ARTICLE:
-                    verdict = {"ok": False, "score": None, "problems": news_types.missing_feedback(record["newsType"], missing)}
                 else:
                     verdict = quality.evaluate(record, source_text, kind, context, check_facts=not args.no_gate)
                 tag = "合格" if verdict["ok"] else ("読みやすさのみ基準外" if verdict.get("soft") else "不合格")
@@ -2479,10 +2476,9 @@ def main() -> int:
                     f" {('/ ' + ' | '.join(verdict['problems'][:3])[:300]) if verdict['problems'] else ''}"
                     f"{(' / 注意: ' + ' | '.join(verdict['warnings'])) if verdict.get('warnings') else ''}")
                 log_quality(state, item, kind, verdict, attempt, verdict["ok"], model_name or "")
-                if not verdict["ok"] and not verdict.get("soft") and not blocked and verdict.get("fact") is not None \
-                        and (quality.MAJOR or record.get("newsType")) and quality.surgical_ok(verdict):
-                    # 大きなニュースと、種類の型で書いた記事（newsType。2026-11-03〜）: 致命的でない細かい指摘（言い過ぎ・訳語・補足の程度）は、
-                    # 作り直さず指摘された文だけ直す（安い段）。直したあとも事実確認を通す。残った指摘を受理するのは大きなニュースだけ（quality.surgical_fix）
+                if not verdict["ok"] and not blocked and quality.repairable(verdict):
+                    # 2026-11-08 オーナー決定（台帳 A60）: 不合格は作り直さず、確認した段がその場で直す（指摘された文だけ・資料どおりに。
+                    # 資料で裏づけられない文は削る）。直したあとも同じ事実確認を通す。残った細かい指摘を受理するのは大きなニュースだけ（quality.surgical_fix）
                     try:
                         fixed, info = quality.surgical_fix(record, source_text, kind, verdict.get("problems") or [], context,
                                                            check_facts=not args.no_gate)
@@ -2501,11 +2497,9 @@ def main() -> int:
                     return "ok", done[1], model_name, verdict
                 if done and done[0] == "skip":
                     return "skip", None, model_name, done[1]
-                # 救済（台帳 A48）: 落ちた原稿を元記事の事実だけで書き足し・手直しして、同じ門にもう一度通す
-                if not verdict.get("unavailable") and time_left() > EST_SEC_PER_ARTICLE / 2:
-                    saved = rescue_draft(item, kind, record, verdict, source_text, context, attempt, model_name or "")
-                    if saved:
-                        return saved
+                # 2026-11-08（台帳 A60）: 書き足しの救済（rescue_draft）と、問題点を添えた作り直しはしない。
+                # 書き足しは資料に無い数字を生み、作り直しは費用がかかるだけだった。その場で直せなかったら見送る
+                break
             if attempt < attempts and not verdict.get("unavailable") and time_left() > EST_SEC_PER_ARTICLE:
                 prompt = prompt + quality.feedback_block(verdict.get("problems") or [])
                 if "sonnet" not in str(model_name) and purpose and llm.api_block_reason("rescue") is None:

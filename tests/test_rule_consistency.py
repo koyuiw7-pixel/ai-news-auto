@@ -389,13 +389,62 @@ class OwnerDecisionTest(unittest.TestCase):
                         bad.append(f"{path.relative_to(ROOT)}:{i}")
         self.assertEqual(bad, [])
 
-    def test_big_news_may_regenerate_three_times_and_last_try_skips_missing_fact_rewrite(self):
+    def test_no_regenerate_loop_and_missing_facts_only_logged(self):
         import web_articles
 
         self.assertEqual(web_articles.MAJOR_ATTEMPTS, 3)
         src = self.read("scripts/web_articles.py")
         self.assertIn("attempts=MAJOR_ATTEMPTS if major else 2", src)
-        self.assertIn("elif missing and attempt < attempts", src)  # 最後の試行では作り直さず、無い事実を書かないまま進む（A20）
+        # 2026-11-08（台帳 A60）: 無い事実では作り直さない（記録だけ）。不合格はその場で直し、作り直し・書き足しの救済はしない
+        self.assertNotIn("elif missing and attempt < attempts", src)
+        self.assertIn("quality.repairable(verdict)", src)
+        self.assertNotIn("saved = rescue_draft(", src)
+
+
+class GateSimplify20261108Test(unittest.TestCase):
+    """2026-11-08 オーナー決定（台帳 A60）: 落とすのは「うそ」（資料に無い事実）と、書き写し・「｜」・画像の決まりだけ。
+    文体・長さ・読みやすさ・リードの形では落とさず作り直さない（記録だけ）。不合格はその場で直す"""
+
+    def setUp(self):
+        import article_style
+        import indexnow
+        import quality
+        self.st, self.ix, self.q = article_style, indexnow, quality
+
+    def test_style_is_recorded_not_rejected(self):
+        rec = {"title": "t", "lede": "GoogleはGemini 4 Carbonを発表しました。料金は2ドルです。", "body": "## 何が起きたか\n衝撃の発表です。\n", "highlights": []}
+        self.assertEqual(self.st.problems(rec), [])
+        self.assertTrue(self.st.style_notes(rec))
+        self.assertEqual(self.q.every_path_problems(rec), [])
+
+    def test_false_new_model_is_still_rejected(self):
+        self.assertTrue(any("新型" in p for p in self.st.problems({"title": "トヨタの新型SUV、一部改良", "body": "一部改良です。"})))
+
+    def test_vertical_bar_is_fixed_in_place(self):
+        rec = {"title": "新料金｜ChatGPT", "body": "A｜Bです。\n\n| 表 | 値 |\n|---|---|\n| a | 1 |", "highlights": ["x｜y"]}
+        self.st.strip_vertical_bars(rec)
+        self.assertNotIn("｜", rec["title"] + rec["body"] + rec["highlights"][0])
+        self.assertIn("| 表 | 値 |", rec["body"])
+
+    def test_readability_and_length_do_not_fail(self):
+        body = "## 料金\n" + "長い文が続きます" * 20 + "。\n"
+        rec = {"title": "ChatGPTの料金が月20ドルから月25ドルに上がる見込み", "lede": "l", "body": body,
+               "easy": "## ひとことで言うと\n短いです。", "highlights": []}
+        verdict = self.q.evaluate(rec, "", "ai", check_facts=False)
+        self.assertTrue(verdict["ok"], verdict["problems"])
+        self.assertIsNone(self.ix.publish_block_reason({"body": "短い", "genreSlug": "ai", "title": "AIの話"}))
+
+    def test_bold_true_titles_are_allowed_but_lies_are_checked(self):
+        import headline_normalize as hn
+        self.assertEqual([p for p in hn.title_problems("あなたは対象？　年末調整の新しい控除、最大30万件の申請") if "あおり" in p or "答えを隠す" in p], [])
+        self.assertIn("うそは絶対に書かない", hn.TITLE_STYLE_PROMPT)
+        self.assertIn("全員対象", self.q.FACT_PROMPT)
+
+    def test_fact_failures_go_to_in_place_repair(self):
+        fact = {"grounded": False, "score": 40, "fatal": True, "problems": ["11/25 は水曜日"], "useful": True}
+        self.assertTrue(self.q.repairable({"ok": False, "fact": fact, "problems": fact["problems"]}))
+        self.assertFalse(self.q.repairable({"ok": False, "fact": {**fact, "useful": False}, "problems": []}))
+        self.assertFalse(self.q.repairable({"ok": False, "problems": ["一次資料が空のため記事の内容を確認できません"]}))
 
 
 if __name__ == "__main__":

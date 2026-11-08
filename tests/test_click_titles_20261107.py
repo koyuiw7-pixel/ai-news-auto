@@ -102,7 +102,7 @@ class ClickTitleRulesTest(unittest.TestCase):
         self.assertIn("台帳 A50", src)
         import evergreen  # noqa: PLC0415
         data = {"title": "Midjourneyとは？使い方と料金をわかりやすく解説します", "seo_title": "x"}
-        self.assertTrue(any("決まり文句" in p for p in evergreen.structural_problems(data, [])))
+        self.assertTrue(any("決まり文句" in p for p in evergreen.style_notes(data)))
 
 
 if __name__ == "__main__":

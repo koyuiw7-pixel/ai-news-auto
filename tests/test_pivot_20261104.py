@@ -49,10 +49,11 @@ class PressTitleTest(unittest.TestCase):
                 problems = hn.title_problems(hn.normalize_title(title))
                 self.assertTrue(any("発表文の題名の言い直し" in p for p in problems), problems)
 
-    def test_hidden_answer_and_bait_titles_are_rejected(self):
+    def test_true_bold_titles_are_not_rewritten(self):
+        """2026-11-08 オーナー決定（台帳 A60）: 問い・「要注意」・「〇選」などの強い見出しは、本当なら直させない（うそは事実確認が見る）"""
         for title in self.HIDDEN:
             with self.subTest(title=title):
-                self.assertTrue(hn.title_problems(hn.normalize_title(title)))
+                self.assertFalse([p for p in hn.title_problems(hn.normalize_title(title)) if "あおり" in p or "答えを隠す" in p])
 
     def test_reader_impact_titles_pass(self):
         for title in self.GOOD:
@@ -71,7 +72,7 @@ class PressTitleTest(unittest.TestCase):
     def test_title_prompt_teaches_reader_impact_patterns(self):
         prompt = hn.TITLE_STYLE_PROMPT
         for needle in ("読者にとって何が変わるか", "発表文の題名の言い直しを基本の形にしない", "だれに影響＋何が変わる", "金額・数字を先に",
-                       "いつから・期限", "対象の範囲", "日本で使えるか・無料か", "前との違い", "「〜とは」「〜とは？」で終わる問いの見出し"):
+                       "いつから・期限", "対象の範囲", "日本で使えるか・無料か", "前との違い", "うそは絶対に書かない", "記事が答えていない問いや約束"):
             self.assertIn(needle, prompt)
         self.assertNotIn("{", prompt)  # テンプレートに埋め込む（.format で壊れない）
 
@@ -99,8 +100,8 @@ class PivotLedeTest(unittest.TestCase):
                 record = {"title": "t", "lede": lede, "body": "本文です。", "highlights": []}
                 self.assertTrue(st.press_lede_problem(record))
                 self.assertIn("A19", [code for code, _ in st.coded_problems(record)])
-                # すべての段が使う共通の門（quality.every_path_problems）にも出る
-                self.assertTrue(any("発表の言い直し" in p for p in quality.every_path_problems(record)))
+                # 2026-11-08（台帳 A60）: 記録だけ（作り直さない）
+                self.assertTrue(any("発表の言い直し" in p for p in st.style_notes(record)))
 
     def test_reader_impact_leads_pass(self):
         for lede in self.GOOD:

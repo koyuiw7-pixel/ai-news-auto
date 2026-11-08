@@ -87,7 +87,7 @@ class NumberUnitsTest(unittest.TestCase):
         self.assertIn("約7,700万件", rec["lede"])
 
     def test_gate_rejects_unnatural_units_left_in_text(self):
-        problems = st.problems(record(body="持ち出されたメールアドレスは約77百万件です。"))
+        problems = st.style_notes(record(body="持ち出されたメールアドレスは約77百万件です。"))
         self.assertTrue(any("分かりにくい数字の単位" in p for p in problems), problems)
         self.assertTrue(any("分かりにくい数字の単位" in p for p in hn.title_problems("約77百万件の流出の恐れ")))
 
@@ -105,7 +105,7 @@ class FaqTest(unittest.TestCase):
             {"q": "自分のアドレスが含まれるか分かる？", "a": "アララは、対象かどうかを契約企業ごとに個別に連絡するとしています。個人向けの窓口は設けられていません。"},
         ])
         self.assertEqual(len(st.faq_repeat_rows(rec)), 3)
-        self.assertTrue(any("よくある質問が本文のくり返し" in p for p in st.problems(rec)))
+        self.assertTrue(any("よくある質問が本文のくり返し" in p for p in st.style_notes(rec)))
         st.autofix(rec)
         self.assertEqual([r["q"] for r in rec["faq"]], ["自分のアドレスが含まれるか分かる？"])
         self.assertFalse(any("よくある質問" in p for p in st.problems(rec)))
@@ -150,19 +150,19 @@ class StructureAndToneTest(unittest.TestCase):
         for heading in ("あなたへの影響", "何が起きたか", "まだ分からないこと・続報", "契約企業の方へ"):
             with self.subTest(heading=heading):
                 body = f"最初の段落です。\n\n## {heading}\n\n" + "本文の中身の文です。" * 30
-                self.assertTrue(any("決まった型の見出し" in p for p in st.problems(record(body=body))))
+                self.assertTrue(any("決まった型の見出し" in p for p in st.style_notes(record(body=body))))
         ok = "最初の段落です。\n\n## アララメッセージを契約している企業へ\n\n" + "本文の中身の文です。" * 30
         self.assertFalse(any("決まった型の見出し" in p for p in st.problems(record(body=ok))))
 
     def test_sensational_words_and_exclamations(self):
-        self.assertTrue(any("煽りの言葉" in p for p in st.problems(record(body="衝撃の発表がありました。"))))
-        self.assertTrue(any("感嘆符" in p for p in st.problems(record(body="値下げです！ 今日からです！"))))
+        self.assertTrue(any("煽りの言葉" in p for p in st.style_notes(record(body="衝撃の発表がありました。"))))
+        self.assertTrue(any("感嘆符" in p for p in st.style_notes(record(body="値下げです！ 今日からです！"))))
         self.assertFalse(any("感嘆符" in p for p in st.problems(record(body="Yahoo!ニュースとYahoo!ショッピングで配信します。"))))
         self.assertFalse(any("煽りの言葉" in p for p in st.problems(record(body="同社は「衝撃的な結果」と説明しています。"))))  # 引用は除く
 
     def test_jargon_is_explained_only_once(self):
         body = "Webサーバーの脆弱性（ソフトの弱点）が悪用されました。\n\n別の脆弱性（ソフトの弱点）も見つかりました。"
-        self.assertTrue(any("同じ用語の説明が2回" in p for p in st.problems(record(body=body))))
+        self.assertTrue(any("同じ用語の説明が2回" in p for p in st.style_notes(record(body=body))))
         rec = record(body=body)
         st.autofix(rec)
         self.assertIn("別の脆弱性も見つかりました", rec["body"])
@@ -223,9 +223,9 @@ class PromptTest(unittest.TestCase):
                 self.assertIn(hn.TITLE_STYLE_PROMPT, template)
         self.assertIn(w.FAQ_TODAY_FIELD, w.extra_fields_block("ai"))
 
-    def test_shared_gate_runs_the_new_checks(self):
+        """2026-11-08（台帳 A60）: A45 の検査は動くが、不合格ではなく記録だけ（style_notes）"""
         """every_path_problems（すべての段の共通の門）に A45 の検査が入っている"""
-        problems = quality.every_path_problems(record(body="持ち出されたメールアドレスは約77百万件です。衝撃です。"))
+        problems = st.style_notes(record(body="持ち出されたメールアドレスは約77百万件です。衝撃です。"))
         self.assertTrue(any("分かりにくい数字の単位" in p for p in problems))
         self.assertTrue(any("煽りの言葉" in p for p in problems))
 

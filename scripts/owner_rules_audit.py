@@ -266,6 +266,7 @@ def label_problems(record: dict) -> list[str]:
 TYPES_CUTOVER = "2026-11-03T13:45:00+00:00"
 # 読者順の型（台帳 A45）の門ができたあとに作った記事だけ見る（2026-11-05 12:00 日本時間）
 READER_ORDER_CUTOVER = "2026-11-05T03:00:00+00:00"
+STYLE_GOAL_CUTOVER = "2026-11-08"
 
 
 def type_problems(record: dict) -> list[str]:
@@ -273,6 +274,9 @@ def type_problems(record: dict) -> list[str]:
     if record.get("sourceType") != "web" or record.get("type") == "roundup":
         return []
     if str(record.get("generatedAt") or "") < TYPES_CUTOVER:
+        return []
+    # 2026-11-08 オーナー決定（台帳 A60）: 型・リードの形・くり返しは不合格の決まりではなくなった（読みやすさの目標）。違反に数えない
+    if str(record.get("generatedAt") or "") >= STYLE_GOAL_CUTOVER:
         return []
     try:
         import article_style  # noqa: PLC0415
