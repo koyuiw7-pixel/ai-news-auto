@@ -34,7 +34,7 @@ class SnsVolumeTest(unittest.TestCase):
                 minutes = [h * 60 + m for h, m in got]
                 self.assertTrue(all(b - a >= sns_plan.min_gap().total_seconds() / 60 for a, b in zip(minutes, minutes[1:])))
                 self.assertGreaterEqual(minutes[0], 7 * 60)
-                self.assertLess(minutes[-1], 23 * 60)
+                self.assertLess(minutes[-1], 24 * 60)  # 2026-11-08 夜: Threads の枠を23時台まで（オーナー承認）
 
     def test_variable_lowers_and_spreads_but_never_raises(self):
         with patch.dict(os.environ, {"SNS_PER_DAY": "5"}):

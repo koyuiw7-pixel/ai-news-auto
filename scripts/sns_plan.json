@@ -2,7 +2,23 @@
   "_doc": "SNS の伸ばし方の計画（台帳 S47・S28・S6。2026-11-08 の台帳の見直しで古い枠の数字・リンクの比べ・テストの日の決まりを外した）。scripts/sns_plan.py だけが読む。数字・語を変えるだけで選び方・枠・待ち時間を変えられる。slots_jst は通常の投稿の時刻（日本時間）。daily_cap は1日（日本時間）の自分の投稿の上限（Threads の分。Bluesky は bluesky の別の上限・枠＝台帳 S40、X は 2026-11-07 から x の別の上限・枠＝台帳 S42、Facebook は 2026-11-07 から facebook の別の上限・枠＝台帳 S43。速報も数える。cap_exempt の種類＝ミサイル・災害だけは数えない）。min_gap_min は投稿どうしの最短の間隔。lanes は出す話題（点数が高いほど先）。exclude は SNS に出さない話題（海外の企業向け・開発者向け。サイトには載せる）。muse はとろいも（Muse）の動画の受け渡し。utm は記事のリンクに付ける印",
   "version": 1,
   "decided": "2026-11-05",
-  "slots_jst": ["07:15", "08:15", "09:15", "10:15", "11:15", "12:15", "13:15", "14:15", "15:30", "16:30", "17:30", "18:45", "19:45", "20:30", "21:45"],
+  "slots_jst": [
+    "07:15",
+    "08:30",
+    "10:00",
+    "11:30",
+    "12:15",
+    "13:45",
+    "15:30",
+    "17:00",
+    "18:00",
+    "18:45",
+    "19:45",
+    "20:45",
+    "21:45",
+    "22:45",
+    "23:45"
+  ],
   "daily_cap": 15,
   "_doc_per_day": "2026-11-08 オーナー承認（台帳 S47「全て承認する」）: 通常の投稿は Threads・X・Facebook・Bluesky のそれぞれで1日15本まで（リポジトリの変数 SNS_PER_DAY。変数を下げれば、枠を1日の中でならして間引く。per_day_max の15より増やさない）。枠は7時〜22時台におよそ1時間おき（投稿どうしは45分以上あける）。速報（breaking）とミサイル・災害の知らせはこの本数に数えない別枠のまま",
   "per_day_max": 15,
@@ -10,8 +26,14 @@
   "digest_slot_jst": "07:15",
   "priority": {
     "_doc": "Buffer の30日の呼び出しがソフトの上限（scripts/buffer_budget.py の BUFFER_30D_CAP）を超えたときに、まだ作ってよい投稿（2026-11-05 オーナー承認）。速報・lanes の safety と money の記事・slots_jst の中の slots の枠だけ",
-    "lanes": ["safety", "money"],
-    "slots_jst": ["12:15", "20:30"]
+    "lanes": [
+      "safety",
+      "money"
+    ],
+    "slots_jst": [
+      "12:15",
+      "20:30"
+    ]
   },
   "fill_without_lane": true,
   "lanes": {
@@ -43,12 +65,56 @@
     "soft_re": "(?<![A-Za-z])API(?![A-Za-z])|データベース|法人向け|企業向け|エンタープライズ",
     "audience_re": "開発|エンジニア|IT部門|IT管理|管理者|基盤|研究者|データ担当|データ分析|データエンジニア|AI推進|導入する担当|設計技術者|セキュリティ担当|防御担当|開発チーム|インフラ",
     "japan_host_re": "\\.jp$",
-    "japan_hosts": ["group.ntt", "global.honda", "global.toyota", "toyota-global.com", "nissan-global.com", "sony.com", "sony.co.jp", "nintendo.com", "rakuten.com", "panasonic.com", "hitachi.com", "global.canon", "fujifilm.com", "mazda.com", "subaru.co.jp", "suzuki.com", "yamaha.com", "fastretailing.com", "aeon.info", "lycorp.co.jp", "mercari.com", "kddi.com", "softbank.jp", "docomo.ne.jp"]
+    "japan_hosts": [
+      "group.ntt",
+      "global.honda",
+      "global.toyota",
+      "toyota-global.com",
+      "nissan-global.com",
+      "sony.com",
+      "sony.co.jp",
+      "nintendo.com",
+      "rakuten.com",
+      "panasonic.com",
+      "hitachi.com",
+      "global.canon",
+      "fujifilm.com",
+      "mazda.com",
+      "subaru.co.jp",
+      "suzuki.com",
+      "yamaha.com",
+      "fastretailing.com",
+      "aeon.info",
+      "lycorp.co.jp",
+      "mercari.com",
+      "kddi.com",
+      "softbank.jp",
+      "docomo.ne.jp"
+    ]
   },
-  "cap_exempt": ["missile", "disaster"],
+  "cap_exempt": [
+    "missile",
+    "disaster"
+  ],
   "bluesky": {
     "_doc": "2026-11-06 オーナー承認（台帳 S40・2026-11-07 から）: Bluesky だけの1日の上限と枠。Threads の daily_cap・slots_jst とは別に数え、お互いの本数に数えない。枠は 7:30（朝の要の1本＝朝のまとめ）・13:00（その日いちばんの速報・記事）・21:00（夜の1本）。1つの枠に1本。枠に遅れたら次の枠の前（最後の枠は window_end）までに出してよい。window_start より前・window_end より後は出さない。ミサイル・災害（cap_exempt）は今までどおり枠の外ですぐ出し、本数に数えない",
-    "slots_jst": ["07:30", "08:30", "09:30", "10:30", "11:30", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"],
+    "slots_jst": [
+      "07:30",
+      "08:30",
+      "09:30",
+      "10:30",
+      "11:30",
+      "13:00",
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:00",
+      "18:00",
+      "19:00",
+      "20:00",
+      "21:00",
+      "22:00"
+    ],
     "daily_cap": 15,
     "window_start": "07:00",
     "window_end": "23:00"
@@ -56,24 +122,108 @@
   "x": {
     "_doc": "2026-11-06 オーナー承認（台帳 S42・start の日から）: X だけの1日の上限と枠と話題。Threads の daily_cap・slots_jst とは別に数え、お互いの本数に数えない（X の投稿は scripts/x_post.py だけが出す。Threads の予定からは X に出さない）。枠は 7:30・12:30・21:00 に1本ずつ。枠に遅れたら次の枠の前（最後の枠は window_end）までに出してよい。window_start より前・window_end より後は出さない。速報とミサイル・災害（cap_exempt）は枠の外ですぐ出し、本数に数えない（台帳 S41）。話題は topics の点数の高い順（公式の地震・気象の知らせ → 通信・サービスの障害 → 製品・セール・値段 → 有名ブランド）。決算の数字だけの記事（finance.re に当たり、product_re の製品から始まる文が無いもの）は X に出さない。ハッシュタグは災害（alert_tags）と大きな行事（event_re）だけ・1つまで",
     "start": "2026-11-07",
-    "slots_jst": ["07:30", "08:30", "09:30", "10:30", "11:30", "12:30", "13:30", "14:30", "15:30", "16:30", "17:30", "18:30", "19:30", "21:00", "22:00"],
+    "slots_jst": [
+      "07:30",
+      "08:30",
+      "09:30",
+      "10:30",
+      "11:30",
+      "12:30",
+      "13:30",
+      "14:30",
+      "15:30",
+      "16:30",
+      "17:30",
+      "18:30",
+      "19:30",
+      "21:00",
+      "22:00"
+    ],
     "daily_cap": 15,
     "window_start": "07:00",
     "window_end": "23:00",
     "topics": [
-      {"name": "alert", "score": 50, "label": "公式の地震・気象の知らせ（記事の disaster・urgent・safetyAlert とミサイル・災害）", "flags": true},
-      {"name": "outage", "score": 40, "label": "通信・サービスの障害", "re": "通信障害|システム障害|(?<!障)障害(?!者)|つながりにくい|つながらない|不具合|サービス停止|ログインできない|接続しにくい"},
-      {"name": "consumer", "score": 30, "label": "製品・セール・値段", "re": "値上げ|値下げ|価格改定|価格|料金|セール|特価|割引|発売|予約開始|販売開始|取り扱い|キャンペーン|還元|新製品|新型|リコール|自主回収"},
-      {"name": "brand", "score": 20, "label": "有名ブランド", "lanes": ["brand", "money"]}
+      {
+        "name": "alert",
+        "score": 50,
+        "label": "公式の地震・気象の知らせ（記事の disaster・urgent・safetyAlert とミサイル・災害）",
+        "flags": true
+      },
+      {
+        "name": "outage",
+        "score": 40,
+        "label": "通信・サービスの障害",
+        "re": "通信障害|システム障害|(?<!障)障害(?!者)|つながりにくい|つながらない|不具合|サービス停止|ログインできない|接続しにくい"
+      },
+      {
+        "name": "consumer",
+        "score": 30,
+        "label": "製品・セール・値段",
+        "re": "値上げ|値下げ|価格改定|価格|料金|セール|特価|割引|発売|予約開始|販売開始|取り扱い|キャンペーン|還元|新製品|新型|リコール|自主回収"
+      },
+      {
+        "name": "brand",
+        "score": 20,
+        "label": "有名ブランド",
+        "lanes": [
+          "brand",
+          "money"
+        ]
+      }
     ],
     "product_re": "Nintendo Switch ?2|Switch ?2|Nintendo Switch|PS5|PlayStation ?5?|iPhone(?: ?\\d+(?: Pro| Air)?)?|iPad(?: mini| Air| Pro)?|MacBook(?: Air| Pro)?|AirPods(?: Pro)?|Apple Watch|Galaxy(?: [A-Za-z0-9]+){0,3}|Pixel(?: ?\\d+a?)?|Xperia|AQUOS|プリウス|カローラ|クラウン|ランドクルーザー|N-BOX|Xbox",
-    "alert_tags": [["地震|震度", "#地震"], ["津波", "#津波"], ["台風", "#台風"], ["大雨|線状降水帯|洪水", "#大雨"], ["大雪", "#大雪"], ["噴火", "#噴火"], ["ミサイル|Jアラート", "#Jアラート"]],
+    "alert_tags": [
+      [
+        "地震|震度",
+        "#地震"
+      ],
+      [
+        "津波",
+        "#津波"
+      ],
+      [
+        "台風",
+        "#台風"
+      ],
+      [
+        "大雨|線状降水帯|洪水",
+        "#大雨"
+      ],
+      [
+        "大雪",
+        "#大雪"
+      ],
+      [
+        "噴火",
+        "#噴火"
+      ],
+      [
+        "ミサイル|Jアラート",
+        "#Jアラート"
+      ]
+    ],
     "event_re": "WBC|オリンピック|パラリンピック|五輪|W杯|ワールドカップ|紅白|日本シリーズ|箱根駅伝|ジャパンモビリティショー|東京ゲームショウ|ブラックフライデー|プライムデー|WWDC|CES"
   },
   "facebook": {
     "_doc": "2026-11-06 オーナー承認（台帳 S43・start の日から）: Facebook ページ「サイソクニュース」だけの1日の上限と枠と文面。Threads・X の本数とは別に数え、お互いの本数に数えない（Facebook の投稿は scripts/facebook_post.py だけが出す。Threads の予定からは Facebook に出さない）。枠は 7:30（朝の要の1本）・12:30（暮らしの話題＝lifestyle_re：家計・値上げ・暮らし・制度）・20:00（その日いちばん強い記事）に1本ずつ。枠に遅れたら次の枠の前（最後の枠は window_end）までに出してよい。window_start より前・window_end より後は出さない。速報とミサイル・災害（cap_exempt）は枠の外ですぐ出し、本数に数えない（台帳 S41）。文面は1行目＝数字の入った事実、2行目＝家計や暮らしにどう響くか、記事のリンクは本文の最後（リンクカード。動画があれば動画を直接）。問いかけは暮らしの話題だけ（災害・安全の話題には付けない＝S35）。Facebook からの訪問は日本からの訪問と UTM だけで数える（米国・スウェーデン・アイルランドからの facebook の参照は Meta のリンクの読み取りで、人ではない。11/6 に判明）",
     "start": "2026-11-07",
-    "slots_jst": ["07:30", "08:30", "09:30", "10:30", "11:30", "12:30", "13:30", "14:30", "15:30", "16:30", "17:30", "18:30", "20:00", "21:00", "22:00"],
+    "slots_jst": [
+      "07:30",
+      "08:30",
+      "09:30",
+      "10:30",
+      "11:30",
+      "12:30",
+      "13:30",
+      "14:30",
+      "15:30",
+      "16:30",
+      "17:30",
+      "18:30",
+      "20:00",
+      "21:00",
+      "22:00"
+    ],
     "daily_cap": 15,
     "window_start": "07:00",
     "window_end": "23:00",
@@ -90,7 +240,16 @@
     "lookback_hours": 30,
     "min_seconds": 30,
     "max_seconds": 120,
-    "sizes": [[1920, 1080], [1080, 1920]]
+    "sizes": [
+      [
+        1920,
+        1080
+      ],
+      [
+        1080,
+        1920
+      ]
+    ]
   },
   "finance": {
     "_doc": "決算・株・業績・配当・自社株買い・TOB の話題（題名・タグに re が当たる記事）。X は決算の数字だけの記事を出さない（台帳 S42）。1日の上限（旧 S39 の cap 2本）は 2026-11-08 の台帳の見直しで外した",
@@ -98,7 +257,19 @@
   },
   "utm": {
     "_doc": "utm_content=<投稿の種類>_<リンクの位置>。種類は video（動画つきの記事の投稿）・hook（Muse の型の文面。SNS_HOOK_FORMAT=1 のときだけ）・card（災害など写真のカードで急いで出すもの）・digest（朝のまとめ）・reader（Threads の新しい書き方。utm_campaign は記事の slug。台帳 S46）。位置は body（本文）・reply（返信）",
-    "types": ["video", "hook", "card", "digest", "reader"],
-    "positions": ["body", "reply"]
-  }
+    "types": [
+      "video",
+      "hook",
+      "card",
+      "digest",
+      "reader"
+    ],
+    "positions": [
+      "body",
+      "reply"
+    ]
+  },
+  "window_start": "07:00",
+  "window_end": "23:59",
+  "_doc_slots_20261108": "2026-11-08 夜 オーナー承認（「夜中の1時までいいよ」）: Threads の枠を夜に寄せ、22:45・23:45 を足した（本数は1日15本のまま。夜21〜24時がよく見られる）。0時台は日付をまたぐ数え方の作り直しが要るので入れていない"
 }
