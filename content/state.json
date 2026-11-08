@@ -9742,6 +9742,17 @@
       "skipped": true,
       "url": "https://www.nissin.com/jp/news/13977/"
     },
+    "63aa449b9c963b76": {
+      "at": "2026-11-08T22:24:24.719632+00:00",
+      "costUsd": 0.0021,
+      "intent": "neutral",
+      "mix": "alert",
+      "model": "gemini-flash-latest",
+      "score": 88,
+      "section": "business",
+      "slug": "corporate-data-breach-record-2026",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203409_1527.html"
+    },
     "63c4b7d8634c79e8": {
       "at": "2026-11-02T10:31:24.723385+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -19334,31 +19345,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-06T09:03:26.362151+00:00",
-      "attempt": 2,
-      "id": "d87e2c21f3a743e6",
-      "kind": "broad",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "problems": [
-        "元記事の文をそのまま書き写している（2文。例「活性の高い変異体を予測するとともに、熱安定性が大きく低下する変異体が選ばれにくくなるように設計しまし」）。自分の言葉で要約する"
-      ],
-      "readability": {
-        "avg_paragraph": 142.8,
-        "avg_sentence": 54.9,
-        "long_share": 0.346,
-        "max_paragraph": 261,
-        "paragraphs": 10,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "riken",
-      "title": "機械学習で酵素の強さと能力の高さを両立化",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（YADH・LWFMY・FWYGY）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-06T09:04:48.281541+00:00",
       "attempt": 1,
       "id": "d61c94ec35918b23",
@@ -25839,6 +25825,30 @@
         "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（LLM・NASC・MCP）",
         "読みやすさ: 文が長い（1文の平均 52.3字・60字超の文が 26% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T22:24:24.704982+00:00",
+      "attempt": 1,
+      "id": "63aa449b9c963b76",
+      "kind": "broad",
+      "model": "gemini-flash-latest",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 85.1,
+        "avg_sentence": 44.2,
+        "long_share": 0.12,
+        "max_paragraph": 122,
+        "paragraphs": 13,
+        "sentences": 25
+      },
+      "score": 88,
+      "source": "tsr",
+      "title": "上場企業「個人情報漏えい」、過去最悪を更新 ～ 1-10月速報値、約3億5,000件分が漏えい ～",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SG）"
       ]
     }
   ],
