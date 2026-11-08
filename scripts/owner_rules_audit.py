@@ -57,7 +57,7 @@ OWNER_NAME_PAGES = ("/about", "/editorial-policy")
 AUDIT_RULES = (
     "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11", "S13", "S14", "S20", "S19",
     "I2", "I4", "I5",
-    "A1", "A2", "A3", "A4", "A5", "A6", "A10", "A11", "A12", "A17", "A18", "A19", "A22", "A23", "A24", "A25", "A26", "A28", "A29", "A30", "A32", "A37", "A38", "A45",
+    "A1", "A2", "A3", "A4", "A5", "A6", "A10", "A11", "A12", "A17", "A18", "A19", "A22", "A23", "A24", "A25", "A28", "A29", "A30", "A32", "A37", "A38", "A45",
     "W3", "W5", "W6", "W10", "W11", "W12", "W13", "W17", "W18", "W19", "W20", "W21", "W22", "W23",
 )
 
@@ -320,37 +320,10 @@ def low_value_problems(record: dict) -> list[str]:
         return ["[A10] プレスリリース配信の言い換えの記事（新しく作らない種類）"]
     if retire_articles.is_thin(record):
         return ["[A10] 独自の情報が少ない短い記事"]
-    return notice_problems(record)
+    return []
 
 
-# A26・D5: お知らせ型の記事は毎週の自動の取り下げ（.github/workflows/notice_retire.yml）で外す。
-# 取り下げの時期（SNS か公開から7日）を、週1回の間隔＋1日より過ぎても残っていたら、自動の取り下げが動いていない
-NOTICE_GRACE_DAYS = 8
-
-
-def notice_problems(record: dict, sns: set[str] | dict | None = None) -> list[str]:
-    """A26: お知らせ・告知・統計の転載の記事（認可・受章者・議事要旨・決算発表日の予告・啓発月間・出荷量など）。
-    最後に SNS に出してから7日（出していなければ公開から7日）は残し、毎週の自動の取り下げ（notice_retire.yml）で外す（2026-11-04 D5）。
-    sns は {slug: 最後に出した時刻}（retire_articles.sns_posts）。slug の集合なら、その記事は直近に出したものとして残す"""
-    try:
-        import notice_gate  # noqa: PLC0415
-        import retire_articles  # noqa: PLC0415
-    except Exception as error:  # noqa: BLE001
-        return cannot_check("A26", "notice_gate・retire_articles", error)
-    kind = notice_gate.notice_reason(record)
-    if not kind:
-        return []
-    if sns is None:
-        sns = retire_articles.sns_posts(everywhere=True)
-    if isinstance(sns, (set, frozenset)):
-        if record.get("slug") in sns:
-            return []
-        sns = {}
-    now = datetime.now(timezone.utc)
-    if not retire_articles.notice_due(record, sns, now, days=retire_articles.SNS_KEEP_DAYS + NOTICE_GRACE_DAYS):
-        return []
-    return [f"[A26] お知らせ・統計の転載の記事（{notice_gate.LABELS[kind]}）が、SNS か公開から{retire_articles.SNS_KEEP_DAYS}日を過ぎても残っている。"
-            "毎週の自動の取り下げ（notice_retire.yml）を確かめる。手で外すなら python3 scripts/retire_articles.py --notice --apply"]
+# A26: お知らせ型の記事の毎週の自動の取り下げは 2026-11-08 オーナー決定で止めた。残っていても違反にしない（点検しない）
 
 
 def creator_video_problems(record: dict) -> list[str]:
@@ -984,17 +957,9 @@ def run(latest: int, sns_days: float, network: bool, base: str = BASE) -> dict[s
                 v += article_page_problems(html, a)
         if v:
             found[path] = list(dict.fromkeys(v))
-    # A26: 全部の記事のうち、お知らせ・統計の転載（新しい記事だけでなく、前から残っているものも）
-    try:
-        import retire_articles  # noqa: PLC0415
-
-        sns = retire_articles.sns_posts(everywhere=True)
-    except Exception as error:  # noqa: BLE001
-        cannot_check("A26", "retire_articles.sns_posts", error)
-        sns = {}
     for a in load_articles():
         # A37: 調査会社・情報会社の記事の「公式発表」の表示。A10: 他人の動画の要約（前から残っているものも。全部の記事）
-        v = research_firm_problems(a) + creator_video_problems(a) + notice_problems(a, sns)
+        v = research_firm_problems(a) + creator_video_problems(a)
         if v:
             found.setdefault(f"/articles/{a['slug']}", []).extend(x for x in v if x not in found.get(f"/articles/{a['slug']}", []))
     if not network:
@@ -1124,32 +1089,7 @@ def run(latest: int, sns_days: float, network: bool, base: str = BASE) -> dict[s
     return {k: v for k, v in found.items() if v}
 
 
-def legacy_backlog(articles: list[dict]) -> dict:
-    """参考: 公開中の記事のうち、今の公開前の門（scripts/article_style.py）に落ちるものの数（2026-11-04 の点検で 462 本中 421 本）。
-    門ができる前に作った古い型の記事で、表示の段（lib/article-sections.ts）が一部を隠し、書き直し（types_rewrite.yml）が少しずつ直す。
-    違反の件数には数えない（毎日 issue が開いたままになるため）。減っているかを毎日見るための数字"""
-    import copy  # noqa: PLC0415
-
-    try:
-        import article_style  # noqa: PLC0415
-    except Exception as error:  # noqa: BLE001
-        return {"error": f"article_style を使えない: {type(error).__name__}"}
-    failing = 0
-    codes: dict[str, int] = {}
-    for record in articles:
-        if record.get("type") == "roundup" or record.get("disaster"):
-            continue
-        rec = copy.deepcopy(record)
-        article_style.autofix(rec)
-        found = {code for code, _ in article_style.coded_problems(rec)}
-        if found:
-            failing += 1
-            for code in found:
-                codes[code] = codes.get(code, 0) + 1
-    return {"failing": failing, "total": len(articles), "codes": dict(sorted(codes.items(), key=lambda x: -x[1]))}
-
-
-def render(found: dict[str, list[str]], latest: int, backlog: dict | None = None) -> str:
+def render(found: dict[str, list[str]], latest: int) -> str:
     total = sum(len(v) for v in found.values())
     by_rule: dict[str, int] = {}
     for v in found.values():
@@ -1172,15 +1112,7 @@ def render(found: dict[str, list[str]], latest: int, backlog: dict | None = None
         if len(v) > 15:
             lines.append(f"- …ほか {len(v) - 15} 件")
         lines.append("")
-    if backlog and backlog.get("error"):
-        lines += [f"参考の数（O9: 古い型のまま公開中の記事の数）を出せませんでした（{backlog['error']}）。", ""]
-    if backlog and backlog.get("total"):
-        top = "・".join(f"{k} {v}本" for k, v in list(backlog["codes"].items())[:5])
-        lines += [
-            f"参考（違反の件数には数えない）: 公開中の記事 {backlog['total']} 本のうち **{backlog['failing']} 本**が、今の公開前の門に落ちる古い型のままです"
-            f"（{top}）。表示の段で一部を隠し、書き直し（types_rewrite.yml）で順に直します。",
-            "",
-        ]
+    # 旧 O9（古い型のまま公開中の記事の数）は 2026-11-08 の台帳の見直しで外した（文体は落とす理由でなくなった＝A60）
     lines.append("見張り: scripts/owner_rules_audit.py（.github/workflows/owner_rules_audit.yml）。読むだけで、投稿・変更はしません。違反が無くなると自動で閉じます。")
     return "\n".join(lines)
 
@@ -1229,7 +1161,7 @@ def main() -> int:
         print("\n".join(bad) or "ok: コメントはすべて 10:20〜22:59・言い方の点検（O14）も問題なし")
         return 0
     found = run(args.latest, args.sns_days, not args.no_network, args.base)
-    body = render(found, args.latest, legacy_backlog(load_articles()))
+    body = render(found, args.latest)
     print(body)
     if args.out:
         Path(args.out).parent.mkdir(parents=True, exist_ok=True)

@@ -1,12 +1,11 @@
-name: Notice Retire (weekly)
+name: Notice Retire (manual only)
 
 # notice_retire.yml — お知らせ型の記事（決算発表日の予告・認可・受章者・議事要旨・啓発月間・統計の転載など）の週1回の自動の取り下げ
 # （2026-11-04 オーナー決定 D5・台帳 A26）。最後に SNS に出してから7日、出していなければ公開から7日を過ぎた記事を
 # scripts/retire_articles.py --notice --apply で取り下げる（content/retired.json に足して 410）。LLM は使わない・SNS には投稿しない。
 # 取り下げたらコミットして、Cloudflare へデプロイする（GITHUB_TOKEN の push では他のワークフローが起動しないため明示的に呼ぶ）。
+# 2026-11-08 オーナー決定（台帳 A26）: 毎週月曜の自動の取り下げは止めた（検索の表示を失うため。A46 の反省と同じ）。手で動かすときだけ
 on:
-  schedule:
-    - cron: "23 20 * * 0" # 毎週月曜 5:23（日本時間）
   workflow_dispatch:
 
 permissions:

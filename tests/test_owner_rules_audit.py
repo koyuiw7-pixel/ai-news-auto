@@ -82,7 +82,8 @@ class RecordTest(unittest.TestCase):
         self.assertIn("A18", found)  # newsType が無い
         many = "\n\n".join(f"## 見出し{i}\n\n" + "事実の文です。" * 20 for i in range(6))
         found = ids(audit.record_problems(rec(newsType="product", body=many, lede="トヨタは新しい安全機能の概要を発表しました。", **new)))
-        self.assertTrue({"A18", "A19"} <= found, found)
+        self.assertIn("A19", found)
+        self.assertNotIn("A18", found)  # 見出しの数の上限は 2026-11-08 に外した
         good = "安全機能は2027年モデルの全車に付きます。" * 40 + "\n\n## 日本の販売店で選べる\n\n" + "価格は据え置きです。" * 40
         self.assertFalse({"A18", "A19"} & ids(audit.record_problems(rec(newsType="product", body=good, lede="トヨタの2027年モデルに新しい安全機能が付きます。価格は据え置きです。", **new))))
         # 切り替えより前の記事は見ない
@@ -286,14 +287,13 @@ class RelatedAndAdBoxTest(unittest.TestCase):
 
 
 class NoticeTest(unittest.TestCase):
-    """A26（2026-11-03 オーナー決定 1）: お知らせ・告知・統計の転載の記事を残さない（直近7日に SNS に出したものは除く）"""
+    """A26（2026-11-08 オーナー決定）: お知らせ型の記事の毎週の自動の取り下げは止めた。毎日の点検でも違反にしない"""
 
-    def test_notice_flagged_unless_recent_sns(self):
-        record = {"slug": "tobacco", "title": "財務省、製造たばこの小売定価の認可情報を随時公開"}
-        self.assertEqual({"A26"}, ids(audit.notice_problems(record, set())))
-        self.assertEqual([], audit.notice_problems(record, {"tobacco"}))
-        self.assertEqual([], audit.notice_problems({"slug": "a", "title": "Apple、7〜9月期の売上高が12％増"}, set()))
-
+    def test_notice_is_no_longer_a_violation(self):
+        self.assertFalse(hasattr(audit, "notice_problems"))
+        self.assertNotIn("A26", audit.AUDIT_RULES)
+        wf = (Path(__file__).resolve().parent.parent / ".github" / "workflows" / "notice_retire.yml").read_text("utf-8")
+        self.assertNotIn("schedule:", wf)
 
 
 class RetireOwnerDecisionTest(unittest.TestCase):
@@ -326,13 +326,11 @@ class RetireOwnerDecisionTest(unittest.TestCase):
         picked, kept = self.r.plan_notice(arts, now)
         self.assertEqual(set(picked), {"posted-8d", "old"})
         self.assertEqual({k["slug"] for k in kept}, {"posted-3d", "fresh"})
-        # 毎日の点検は、週1回の自動の取り下げが動かずに過ぎたもの（7日＋8日）だけを違反にする
-        self.assertEqual([], audit.notice_problems({"slug": "x", "title": self.TOBACCO, "publishedAt": (datetime.now(timezone.utc) - timedelta(days=9)).isoformat()}, {}))
-        self.assertEqual({"A26"}, ids(audit.notice_problems({"slug": "x", "title": self.TOBACCO, "publishedAt": (datetime.now(timezone.utc) - timedelta(days=16)).isoformat()}, {})))
 
-    def test_weekly_workflow_retires_and_deploys(self):
+    def test_manual_workflow_retires_and_deploys(self):
+        # 2026-11-08 オーナー決定（台帳 A26）: 毎週の自動は止めた。手で動かしたときの手順だけ残す
         wf = (Path(__file__).resolve().parent.parent / ".github" / "workflows" / "notice_retire.yml").read_text("utf-8")
-        self.assertRegex(wf, r'cron: "\d+ \d+ \* \* \d"')
+        self.assertNotIn("cron:", wf)
         self.assertIn("scripts/retire_articles.py --notice --apply", wf)
         self.assertIn("scripts/git_safe_push.py", wf)
         self.assertIn("gh workflow run deploy_cloudflare.yml", wf)
@@ -401,13 +399,10 @@ class FoundationReviewTest(unittest.TestCase):
         self.assertTrue(audit.PERSONA_HEADING_HTML.search("<p><strong>副業・独立を考えている人</strong>：参考になります。</p>"))
         self.assertFalse(audit.PERSONA_HEADING_HTML.search("<p>会社員としての働き方が変わります。</p>"))
 
-    def test_legacy_backlog_counts_old_articles(self):
-        old = {"title": "t", "lede": "x", "body": "## 料金は？\n\n元記事には料金が書かれていません。\n", "easy": ""}
-        new = {"title": "t", "lede": "A社の売上高は前年同期比12%増の1,145億ドルでした。", "body": "iPhoneは17%増えました。", "easy": ""}
-        backlog = audit.legacy_backlog([old, new])
-        self.assertEqual(backlog["total"], 2)
-        self.assertEqual(backlog["failing"], 1)
-        self.assertIn("参考（違反の件数には数えない）", audit.render({}, 20, backlog))
+    def test_legacy_backlog_is_gone(self):
+        # 旧 O9 は 2026-11-08 の台帳の見直しで外した（文体は落とす理由でなくなった＝A60）
+        self.assertFalse(hasattr(audit, "legacy_backlog"))
+        self.assertNotIn("参考（違反の件数には数えない）", audit.render({}, 20))
 
 
 if __name__ == "__main__":
