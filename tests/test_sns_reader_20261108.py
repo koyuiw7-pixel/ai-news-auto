@@ -154,8 +154,12 @@ class ScheduleTest(unittest.TestCase):
             mins = [int(t[:2]) * 60 + int(t[3:]) for t in block["slots_jst"]]
             self.assertEqual(len(mins), 15, key)
             self.assertTrue(all(b - a >= 45 for a, b in zip(mins, mins[1:])), key)
-            self.assertIn("23:00", block["slots_jst"])
+        self.assertIn("23:00", plan["x"]["slots_jst"])
         self.assertIn("12:30", plan["facebook"]["slots_jst"])  # 暮らしの話題の枠
+        # Bluesky は Threads と同じ枠（2026-11-08 夜 オーナー「Threadsレベルまで本数を引き上げよう」）
+        self.assertEqual(plan["bluesky"]["slots_jst"], plan["slots_jst"])
+        self.assertIn("23:45", plan["bluesky"]["slots_jst"])
+        self.assertEqual(plan["bluesky"]["daily_cap"], 15)
 
     def test_late_slot_window_until_2359(self):
         with patch.dict("os.environ", {"SNS_PER_DAY": ""}):
