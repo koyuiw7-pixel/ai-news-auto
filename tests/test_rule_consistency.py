@@ -210,6 +210,7 @@ PROSE_WRITERS = {
     "rewrite_types.py": ["quality.evaluate("],            # 型での書き直し
     "section_polish.py": ["added_problems"],             # 章の見出し・文の書き直し（公開中の記事）
     "muse_articles.py": ["quality.evaluate(", "publish_blocked("],  # Muse の入稿（台帳 A59）。ふつうの記事と同じ門
+    "gpt_review.py": ["added_problems"],                 # ChatGPT での公開中の記事の見直し（台帳 A65）
 }
 # 文章を作らない（決まった欄だけ直す・記録だけ足す・読むだけで別のファイルに書く）もの。理由つき
 NON_PROSE = {
