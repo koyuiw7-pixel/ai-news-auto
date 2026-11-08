@@ -92,14 +92,6 @@
       "tries": 1,
       "url": "https://www.mof.go.jp/policy/customs_tariff/trade/international/conference/ka20261106.html"
     },
-    "2e9f83e45747a59d": {
-      "first": "2026-11-06T08:58:43.969740+00:00",
-      "next": "2026-11-08T04:47:47.209966+00:00",
-      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "title": "個人向け国債の応募額（令和8年10月）",
-      "tries": 2,
-      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/houdouhappyou/p20261106.htm"
-    },
     "5e225945ad61e8c3": {
       "first": "2026-11-08T03:40:49.140549+00:00",
       "next": "2026-11-08T06:40:49.140549+00:00",
@@ -6477,6 +6469,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（出展）",
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366510"
+    },
+    "2e9f83e45747a59d": {
+      "at": "2026-11-08T05:03:08.758768+00:00",
+      "costUsd": 0.0136,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 95,
+      "section": "business",
+      "slug": "individual-jgb-october-2026",
+      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/houdouhappyou/p20261106.htm"
     },
     "2ed4c294adb1febd": {
       "at": "2026-10-27T01:32:18.480967+00:00",
@@ -13127,6 +13130,14 @@
       "skipped": true,
       "url": "https://www.smbc.co.jp/news/pdf/j20261105_01.pdf"
     },
+    "9a892e935752466d": {
+      "at": "2026-11-08T05:03:33.113816+00:00",
+      "costUsd": 0.0038,
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "定例の政府保証の付与通知で、読者が使う・買う・申し込む制度ではありません。新しく分かるのは発行額・利率・日付などの発行条件だけで、働く人の仕事やお金にすぐ影響する内容とは言えないため、対象外としました。",
+      "skipped": true,
+      "url": "https://www.mof.go.jp/jgbs/topics/gov_guaranteed_bonds/hu2033.htm"
+    },
     "9ab77893703db959": {
       "at": "2026-11-03T14:07:36.929604+00:00",
       "model": "anthropic-api:claude-opus-5-5",
@@ -19174,30 +19185,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-06T07:19:39.483597+00:00",
-      "attempt": 1,
-      "id": "629587542f71fe41",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 89.4,
-        "avg_sentence": 40.9,
-        "long_share": 0.114,
-        "max_paragraph": 143,
-        "paragraphs": 16,
-        "sentences": 35
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "GeForce 8800 GTX: 20 Years of a Legend",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（RTX・NOW・GTX）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-06T07:53:29.131860+00:00",
@@ -25536,6 +25523,26 @@
         "初めて出たところで言い換えていない略語（TOPPAN・BOX・LB）",
         "読みやすさ: 文が長い（1文の平均 56.6字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T05:03:08.748708+00:00",
+      "attempt": 1,
+      "id": "2e9f83e45747a59d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.4,
+        "avg_sentence": 36.2,
+        "long_share": 0.071,
+        "max_paragraph": 120,
+        "paragraphs": 12,
+        "sentences": 28
+      },
+      "score": 95,
+      "source": "mof",
+      "title": "個人向け国債の応募額（令和8年10月）"
     }
   ],
   "short_text_retry": {},
