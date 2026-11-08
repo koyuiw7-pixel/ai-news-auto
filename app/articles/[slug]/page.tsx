@@ -894,10 +894,18 @@ export default async function ArticlePage({ params }: Props) {
           <NewsletterSignup variant="article" />
           <PushOptIn />
 
-          {/* 本文が短く途中に置けなかった記事と、「すぐにできること」のそばに PR を出した記事は、記事末に出す */}
-          {((!bodyTail && inlineOffer) || bottomOffer) && (
+          {/* 本文が短く途中に置けなかった記事だけ、記事末に出す */}
+          {!bodyTail && inlineOffer && (
             <div className="mt-12 max-w-[46em]">
-              <RailRanking offer={(inlineOffer ?? bottomOffer)!} wide id="offer-inline" title={(inlineOffer ?? bottomOffer)!.headline} />
+              <RailRanking offer={inlineOffer} wide id="offer-inline" title={inlineOffer.headline} />
+              {shopLink && <ShopLinks link={shopLink} className="mt-3" />}
+              {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex lg:hidden" />}
+            </div>
+          )}
+          {/* 「すぐにできること」のそばに PR を出した記事は、4〜6位の商品枠を記事末に回す（inlineOffer とは同時に出ない） */}
+          {bottomOffer && (
+            <div className="mt-12 max-w-[46em]">
+              <RailRanking offer={bottomOffer} wide id="offer-inline" title={bottomOffer.headline} />
               {shopLink && <ShopLinks link={shopLink} className="mt-3" />}
               {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex lg:hidden" />}
             </div>
