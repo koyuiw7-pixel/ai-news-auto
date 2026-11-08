@@ -2685,9 +2685,9 @@
       "pages": []
     },
     "kyushu-electric-power-rate-revision-2026": {
-      "at": "2026-11-08T09:14:52+00:00",
+      "at": "2026-11-08T09:33:29+00:00",
       "status": "gate_failed",
-      "tries": 3,
+      "tries": 4,
       "textAt": "2026-11-08T08:30:00+00:00",
       "textId": "",
       "breaking": false,
@@ -2695,46 +2695,60 @@
       "versions": {
         "full": {
           "ok": false,
-          "seconds": null,
-          "reasons": [
-            "台本を作れない: 台本を作れませんでした（LLM 9回・143秒）: 始まり: つかみの見出し「九州電力が11月使用分から電気料金を値上げ」に数字がある（数字は意味の分かる場面で、説明と一緒に出す）; 始まり: つかみに主役の名前（九州電力の電気料金）が無い（見出しか、読み上げの2文目までに）; speech で数字 367 をかなや漢数字にしました。数字はアラビア数字のまま。"
-          ],
+          "seconds": 61.824,
+          "reasons": [],
           "qa": {
-            "geometry": false,
-            "vision": false,
-            "version": 1
+            "geometry": true,
+            "vision": true,
+            "version": 1,
+            "v3": false
           },
           "template": "",
           "level": null,
-          "base_layout": ""
+          "base_layout": "screen-left-headline"
         },
         "short": {
           "ok": false,
-          "seconds": null,
-          "reasons": [
-            "台本を作れない: 台本を作れませんでした（LLM 9回・143秒）: 始まり: つかみの見出し「九州電力が11月使用分から電気料金を値上げ」に数字がある（数字は意味の分かる場面で、説明と一緒に出す）; 始まり: つかみに主役の名前（九州電力の電気料金）が無い（見出しか、読み上げの2文目までに）; speech で数字 367 をかなや漢数字にしました。数字はアラビア数字のまま。"
-          ],
+          "seconds": 41.425,
+          "reasons": [],
           "qa": {
-            "geometry": false,
-            "vision": false,
-            "version": 1
+            "geometry": true,
+            "vision": true,
+            "version": 1,
+            "v3": false
           },
           "template": "",
           "level": null,
-          "base_layout": ""
+          "base_layout": "screen-left-headline"
         }
       },
       "timings": {
         "full": {
-          "ladder_total": 163.6
+          "script": 0.0,
+          "tts": 22.25,
+          "plan_audio": 4.43,
+          "render": 55.24,
+          "gate": 6.0,
+          "sheet": 2.32,
+          "total": 90.3,
+          "ladder_total": 283.8
         },
         "short": {
-          "ladder_total": 163.6
+          "script": 0.0,
+          "tts": 27.96,
+          "plan_audio": 2.93,
+          "render": 35.05,
+          "gate": 4.35,
+          "sheet": 1.61,
+          "total": 71.9,
+          "ladder_total": 283.8
         }
       },
       "ok": false,
-      "reason": "full: 台本を作れない: 台本を作れませんでした（LLM 9回・143秒）: 始まり: つかみの見出し「九州電力が11月使用分から電気料金を値上げ」に数字がある（数字は意味の分かる場面で、説明と一緒に出す）; 始まり: つかみに主役の名前（九州電力の電気料金）が無い（見出しか、読み上げの2文目までに）; speech で数字  / short: 台本を作れない: 台本を作れませんでした（LLM 9回・143秒）: 始まり: つかみの見出し「九州電力が11月使用分から電気料金を値上げ」に数字がある（数字は意味の分かる場面で、説明と一緒に出す）; 始まり: つかみに主役の名前（九州電力の電気料金）が無い（見出しか、読み上げの2文目までに）; speech で数字 ",
-      "pages": []
+      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない / short: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない",
+      "pages": [
+        "ai-tech-express.jp"
+      ]
     }
   },
   "queued": {
@@ -3126,9 +3140,18 @@
       "delayedMin": 6
     },
     "kyushu-electric-power-rate-revision-2026": {
-      "status": "waiting",
+      "status": "created",
       "why": "Muse の動画を 18:30 まで待っている",
-      "checkedAt": "2026-11-08T09:17:36+00:00"
+      "checkedAt": "2026-11-08T09:17:36+00:00",
+      "channels": {
+        "threads": "6af041ea51492b796e2bb21f"
+      },
+      "id": "6af041ea51492b796e2bb21f",
+      "dueAt": "2026-11-08T10:30:00+00:00",
+      "variant": "",
+      "media": "card",
+      "linkPosition": "reply",
+      "delayedMin": 120
     },
     "national-pension-two-year-prepayment": {
       "status": "created",
@@ -3147,17 +3170,26 @@
     "nencho-2026-changes": {
       "status": "waiting",
       "why": "枠（20:30）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T09:17:36+00:00"
+      "checkedAt": "2026-11-08T09:38:17+00:00"
     },
     "izoku-nenkin-seikyu-tetsuzuki": {
       "status": "waiting",
       "why": "枠（21:45）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T09:17:36+00:00"
+      "checkedAt": "2026-11-08T09:38:17+00:00"
     },
     "furusato-nozei-deadline-2026": {
-      "status": "waiting",
+      "status": "created",
       "why": "枠（19:45）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T09:17:36+00:00"
+      "checkedAt": "2026-11-08T09:17:36+00:00",
+      "channels": {
+        "threads": "6af041ed562f2e6de9ac0f73"
+      },
+      "id": "6af041ed562f2e6de9ac0f73",
+      "dueAt": "2026-11-08T11:15:00+00:00",
+      "variant": "",
+      "media": "card",
+      "linkPosition": "reply",
+      "delayedMin": 30
     }
   },
   "converted": {
