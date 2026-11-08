@@ -3,8 +3,8 @@
   "sourceType": "web",
   "sourceUrl": "https://developer.nvidia.com/blog/speed-up-image-generation-with-flux-3-image-klein-on-nvidia-blackwell-gpus/",
   "sourceName": "NVIDIA Developer Blog",
-  "title": "画像生成AI「FLUX 3 Image Klein」がNVIDIA B200で最大3.46倍速く",
-  "seoTitle": "FLUX 3 Image Kleinの高速化とは？使い方と注意点",
+  "title": "画像生成AI「FLUX 3」B200で最大3.46倍速く　開発者向け手順公開",
+  "seoTitle": "FLUX 3 Image KleinをB200で高速化する方法",
   "threadsPost": "画像生成を自社で動かしている人に、知っておいてほしい話です。\n\nNVIDIAが、FLUX 3 Image Kleinの高速化手順を公開しました。\nB200 1台で、テキストからの画像生成は最大3.46倍速くなります。\n\n画質が少し落ちても、画像生成は速さを優先しますか？",
   "threadsHook": "callout",
   "threadsQuestions": [
@@ -19,8 +19,8 @@
   ],
   "threadsStyle": 3,
   "writingVoice": "honest",
-  "lede": "画像生成AI「FLUX 3 Image Klein」を、NVIDIAのGPUで速く動かす方法が示されました。B200 1台で2048×2048の画像を作ると、最適化なしの設定と比べて、テキストからの生成は最大3.46倍、画像からの生成は最大4.45倍速くなります。対象は、画像生成を自社のサービスや制作ツールに組み込む開発者です。日本での提供時期は、まだ発表されていません。",
-  "description": "NVIDIAが画像生成AI「FLUX 3 Image Klein」の高速化手順を公開。B200 1台で、テキストからの画像生成が最大3.46倍、画像からの生成が最大4.45倍速くなりました。開発者向けの設定で、日本での提供時期は未定です。",
+  "lede": "画像生成AIをサービスや制作ツールに組み込む開発者向けに、NVIDIAがGPU「B200」で画像生成を高速化する設定を公開しました。2048×2048の画像を生成したテストでは、Base版のテキストからの生成が最大3.46倍、画像からの生成が最大4.45倍速くなりました。比較対象は、コンパイルしていないBF16の設定です。",
+  "description": "NVIDIAが画像生成AI「FLUX 3 Image Klein」の開発者向け高速化手順を公開。B200 1台で2048×2048の画像を生成したテストでは、Base版のテキストからの生成が最大3.46倍、画像からの生成が最大4.45倍になりました。設定と画質の変化を紹介します。",
   "keywords": [
     "FLUX 3 Image Klein",
     "画像生成AI 高速化",
@@ -61,7 +61,7 @@
       "直接の影響は小さく、画像生成を自社で組み込む開発者が主な対象です。"
     ]
   },
-  "body": "画像生成AIを自社のサービスや制作ツールに組み込んでいる開発者にとって、画像1枚ができるまでの待ち時間が短くなる話です。\n\n一般の会社員や個人が、今すぐ変わる話ではありません。\n\nFLUX 3 Image Kleinは、Black Forest Labs（BFL）が開発した、画像の生成と編集ができるAIモデルです。\n\nNVIDIAの開発者向けブログによると、このモデルを速く動かす方法が示されました。速く動かす先は、NVIDIAのGPU（画像の計算を担う半導体）です。使うのは、NVIDIAの実行環境「TensorRT LLM VisualGen」です。\n\nテキストから画像を作るとき、処理のほとんどはデノイズ（画像のもとになるノイズを段階的に取り除く処理）に使われます。\n\nB200 1台で2048×2048の画像を作ると、Base版（50ステップ）のテキストからの生成は次のとおりでした。\n\n- 合計: 14.70秒\n- うちデノイズ: 14.24秒\n\nまず、数値を4ビットで表すNVFP4という形式を使うと、BF16（16ビットの計算形式）と比べて速くなります。テキストからの生成は最大1.62倍、画像からの生成は最大1.58倍速くなりました。\n\nさらに工夫を重ねると、最適化なしのBF16と比べて速くなります。\n\n- テキストからの生成: 最大3.46倍\n- 画像からの生成: 最大4.45倍\n\nどちらもB200 1台で2048×2048の画像を作った場合の数字です。\n\n## 最適化の効果を数字で見る\n\n速さを上げる工夫は、主に次の4つです。数字はBase版のものです。画質の変化は、LPIPS（画像の見た目の違いを示す指標。0に近いほど元の画像に近い）で示されています。\n\n- 量子化アテンション（cuDNN FP8）: 1.08倍、LPIPSは0.072\n- VC-Attention FP8（誤差を補正する方式）: 1.18倍、LPIPSは0.086\n- Sol-Attention（計算を間引く方式）: 1.30倍。最初の12ステップは通常の計算を使います\n- Cache-DiT（途中の計算結果を使い回す方式）: 2048×2048で1.94倍、LPIPSは0.033\n\nここで効くのは、アテンション（画像の各部分どうしの関係を計算する部分）です。\n\nVANILLA BF16（最適化なしの標準的な計算）では、この計算が大きな割合を占めていました。具体的には、DiT（拡散トランスフォーマー。画像を作るモデルの中心部分）のGPUの処理時間の約60%です。\n\n8枚のB200で分担させると、テキストからの生成の中央値は次のとおり縮みました。\n\n- Base版: 14.90秒から3.00秒へ\n- 蒸留版（少ない手順で答えを出せるよう軽くした版）: 2.73秒から1.08秒へ\n\nデノイズだけなら、Base版は6.01倍、蒸留版は4.44倍速くなります。ただ蒸留版は、全体時間の約半分がデノイズ以外に残るため、全体の短縮は小さくなります。\n\n編集部の見方では、速さの数字と並べて画質の変化を数値で示している点が、この発表の読みどころです。\n\nSol-Attentionでは、τ（タウ。間引きの強さを決める値）を上げると、画質が下がります。それなのに、速さの伸びは小さいとされています。\n\n同じNVIDIAの「TensorRT Edge-LLM」は、手元の機器で動くAI（エッジAI）の開発向けです。サイソクは11月2日に報じています（[エッジAI開発を数コマンドで始められる「TensorRT Edge-LLM」](/articles/nvidia-tensorrt-edge-llm-edge-ai)）。\n\n## 設定の使い方（開発者向け）\n\n設定はYAML（設定を書くテキスト形式）で書きます。NVFP4を使うには、pipeline_configのvariantにnvfp4を指定します。モデルは、BFLが用意したNVFP4版の学習済みデータを読み込みます。\n\n量子化アテンションは、attention_configで選びます。設定は次のとおりです。\n\n- cuDNN FP8: backendをCUDNNにし、qk_dtypeとv_dtypeをfp8にします\n- VC-Attention FP8: backendをTRTLLMにし、vc_attentionをtrueにして、vc_repair_budgetに0.005を入れます\n- Sol-Attention: sparse_attention_configでalgorithmをsol_attn、tauを1.0にします\n- Cache-DiT: cache_configのcache_backendをcache_ditにし、residual_diff_thresholdを0.24にします\n\nCache-DiTは途中の計算結果を使い回す仕組みで、モデルの重みは変えず、再学習も要りません。\n\n8枚のGPUで分担するBase版は、parallel_configでcfg_size: 2、ulysses_size: 4と設定します。\n\ncfg_sizeは条件つきと条件なしの計算を別のGPUの組に分け、ulysses_sizeは1組の中で画像の計算を分担するGPUの数です。\n\n蒸留版はcfg_size: 1、ulysses_size: 8で、チェックポイントはflux-3-image-kleinを指定します。公式ブログには、これらを使った実行例も載っています。\n\n## まだ分からないこと\n\n- 日本での提供時期と、日本から使うための条件はまだ発表されていません。\n- B200以外のGPUで、今回と同じ速さが出るかはまだ示されていません。\n- 利用料金はまだ発表されていません。",
+  "body": "画像生成AIを自社のサービスや制作ツールに組み込む開発者向けに、画像1枚ができるまでの待ち時間を短くする方法が示されました。\n\nFLUX 3 Image Kleinは、Black Forest Labs（BFL）が開発した、画像の生成と編集ができるAIモデルです。\n\nNVIDIAの開発者向けブログは、NVIDIAのGPU（画像の計算を担う半導体）でこのモデルを速く動かす手順を紹介しています。実行環境には「TensorRT LLM VisualGen」を使います。\n\nテキストから画像を作るとき、処理時間の大半はデノイズ（画像のもとになるノイズを段階的に取り除く処理）に使われます。\n\nB200 1台で2048×2048の画像を作ったテストでは、Base版（50ステップ）のテキストからの生成にかかった時間は次のとおりでした。NVFP4、VANILLAアテンション、torch.compileを使った設定です。\n\n- 合計: 14.70秒\n- うちデノイズ: 14.24秒\n\n数値を4ビットで表すNVFP4という形式を使うと、BF16（16ビットの計算形式）と比べて、テキストからの生成は最大1.62倍、画像からの生成は最大1.58倍速くなりました。\n\nさらにコンパイルや計算の省略、キャッシュなどの最適化を重ねると、コンパイルしていないBF16のVANILLA設定と比べて、Base版の生成は次のように速くなりました。\n\n- テキストからの生成: 3.46倍\n- 画像からの生成: 4.45倍\n\nどちらもB200 1台で2048×2048の画像を作った場合の数字です。\n\n## 計算の省略やキャッシュでどれだけ速くなるか\n\n速さを上げる主な工夫は次の4つです。数字はBase版のものです。画質の変化は、LPIPS（画像の見た目の違いを示す指標。0に近いほど比較対象の画像に近い）で示されています。\n\n- 量子化アテンション（cuDNN FP8）: 1.08倍、LPIPSは0.072\n- VC-Attention FP8（誤差を補正する方式）: 1.18倍、LPIPSは0.086\n- Sol-Attention（計算を間引く方式）: デノイズとデコードが1.30倍。最初の12ステップは通常の計算を使います\n- Cache-DiT（途中の計算結果を使い回す方式）: 2048×2048で1.94倍、LPIPSは0.033\n\nこれらのうち、アテンションは画像の各部分どうしの関係を計算する部分です。\n\nB200での2048×2048のテストでは、VANILLA BF16アテンションが、DiT（拡散トランスフォーマー。画像を作るモデルの中心部分）のGPUカーネル処理時間の約60%を占めていました。\n\n8枚のB200で処理を分担すると、テキストからの生成にかかる時間の中央値は次のとおり縮みました。\n\n- Base版: 14.90秒から3.00秒へ\n- 蒸留版（少ない手順で答えを出せるよう軽くした版）: 2.73秒から1.08秒へ\n\nデノイズだけなら、Base版は6.01倍、蒸留版は4.44倍速くなりました。ただし蒸留版は、8枚使用時の全体時間の約半分がデノイズ以外に残るため、全体の短縮は小さくなっています。\n\n編集部の見方では、速さの数字と並べて画質の変化を数値で示している点が、この発表の読みどころです。\n\nSol-Attentionでは、τ（タウ。間引きの強さを決める値）を上げると、画質が下がります。一方、速さの伸びは小さいとされています。\n\n同じNVIDIAの「TensorRT Edge-LLM」は、手元の機器で動くAI（エッジAI）の開発向けです。サイソクは11月2日に報じています（[エッジAI開発を数コマンドで始められる「TensorRT Edge-LLM」](/articles/nvidia-tensorrt-edge-llm-edge-ai)）。\n\n## 開発者が指定する主な設定\n\n設定はYAML（設定を書くテキスト形式）で書きます。NVFP4を使うには、pipeline_configのvariantにnvfp4を指定します。BFLが用意したNVFP4版のチェックポイントを使います。\n\n主な設定は次のとおりです。\n\n- cuDNN FP8: attention_configのbackendをCUDNNにし、quant_attention_configのqk_dtypeとv_dtypeをfp8にします\n- VC-Attention FP8: backendをTRTLLMにし、quant_attention_configのqk_dtypeとv_dtypeをfp8、vc_attentionをtrue、vc_repair_budgetを0.005にします\n- Sol-Attention: backendをTRTLLMにし、sparse_attention_configのalgorithmをsol_attn、tauを1.0、disabled_until_timestepを0.96にします\n- Cache-DiT: cache_configのcache_backendをcache_ditにし、residual_diff_thresholdを0.24にします。公式ブログには、ほかの設定値も載っています\n\nCache-DiTは途中の計算結果を使い回す仕組みで、モデルの重みは変えず、再学習も要りません。\n\n8枚のGPUで分担するBase版は、parallel_configでcfg_size: 2、ulysses_size: 4と設定します。\n\ncfg_sizeは条件つきと条件なしの計算を別のGPUの組に分け、ulysses_sizeは1組の中で画像の計算を分担するGPUの数です。\n\n蒸留版はcfg_size: 1、ulysses_size: 8で、チェックポイントはflux-3-image-kleinを指定します。公式ブログには、これらを使った実行例も載っています。\n\n## 別のGPUや画質について確認したいこと\n\n- NVIDIA RTX PRO 6000 Blackwell Server Editionでも、設定を組み合わせて1.73〜3.25倍の高速化が報告されています。\n- 高速化の方法によって生成画像は変化するため、用途に合う画質か確認が必要です。\n- NVIDIAのブログでは、今回の最適化の対象として、Blackwellのデータセンター向けGPUとRTX PRO 6000 Blackwell Server Editionを挙げています。",
   "easy": "## ひとことで言うと\n\n画像生成AI「FLUX 3 Image Klein」を、NVIDIAのGPUで速く動かす方法が公開されました。最適化を組み合わせると、B200 1台で最大3.46倍（テキストから）、4.45倍（画像から）速くなります。自社で画像生成を動かす開発者向けです。\n\n速くなった理由は、計算の精度を下げることと、計算の一部を使い回したり間引いたりすることです。画質の変化も数値で示されています。日本での提供時期は、まだ発表されていません。",
   "channel": "NVIDIA Developer Blog",
   "channelId": "",
@@ -142,5 +142,48 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/flux-3-image-klein-blackwell-speedup-0892c478.jpg"
+  },
+  "gptReview": {
+    "reviewedBy": "gpt-6.1-terra",
+    "reviewedAt": "2026-11-08T17:46:03+00:00",
+    "changed": [
+      "body",
+      "description",
+      "lede",
+      "seoTitle",
+      "title"
+    ],
+    "before": {
+      "title": "画像生成AI「FLUX 3 Image Klein」がNVIDIA B200で最大3.46倍速く",
+      "lede": "画像生成AI「FLUX 3 Image Klein」を、NVIDIAのGPUで速く動かす方法が示されました。B200 1台で2048×2048の画像を作ると、最適化なしの設定と比べて、テキストからの生成は最大3.46倍、画像からの生成は最大4.45倍速くなります。対象は、画像生成を自社のサービスや制作ツールに組み込む開発者です。日本での提供時期は、まだ発表されていません。"
+    },
+    "fixes": [
+      {
+        "before": "テキストからの生成は最大3.46倍、画像からの生成は最大4.45倍速くなります。",
+        "after": "Base版のテキストからの生成が最大3.46倍、画像からの生成が最大4.45倍速くなりました。比較対象は、コンパイルしていないBF16の設定です。",
+        "evidence": "「FLUX 3 Image Klein Base compared with uncompiled BF16 inference」"
+      },
+      {
+        "before": "日本での提供時期は、まだ発表されていません。",
+        "after": "削除",
+        "evidence": "資料1は高速化の手順を説明しており、日本での提供時期については記載がない"
+      },
+      {
+        "before": "Sol-Attention（計算を間引く方式）: 1.30倍",
+        "after": "Sol-Attention（計算を間引く方式）: デノイズとデコードが1.30倍",
+        "evidence": "「1.30x faster denoising plus autoencoder decoding」"
+      },
+      {
+        "before": "B200以外のGPUで、今回と同じ速さが出るかはまだ示されていません。",
+        "after": "NVIDIA RTX PRO 6000 Blackwell Server Editionでも、設定を組み合わせて1.73〜3.25倍の高速化が報告されています。",
+        "evidence": "「RTX PRO 6000 Blackwell Server Edition GPU」「1.73-3.25x generation speedups」"
+      },
+      {
+        "before": "VC-Attention FP8: backendをTRTLLMにし、vc_attentionをtrueにして、vc_repair_budgetに0.005を入れます",
+        "after": "backendをTRTLLMにし、quant_attention_configのqk_dtypeとv_dtypeをfp8、vc_attentionをtrue、vc_repair_budgetを0.005にします",
+        "evidence": "「qk_dtype: fp8」「v_dtype: fp8」「vc_attention: true」「vc_repair_budget: 0.005」"
+      }
+    ],
+    "notes": "高速化の対象モデルと比較条件を明確にし、設定例の不足を補いました。資料で確認できない日本での提供時期などを削除し、別のGPUでの結果を追記しました。"
   }
 }
