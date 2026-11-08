@@ -2631,6 +2631,58 @@
       "ok": false,
       "reason": "full: 記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い / short: 記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い",
       "pages": []
+    },
+    "docomo-my-docomo-data-breach": {
+      "at": "2026-11-08T03:46:22+00:00",
+      "status": "gate_failed",
+      "tries": 1,
+      "textAt": "2026-11-08T03:15:00+00:00",
+      "textId": "",
+      "breaking": false,
+      "scheduled": false,
+      "versions": {
+        "full": {
+          "ok": false,
+          "seconds": null,
+          "reasons": [
+            "記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（1場面）"
+          ],
+          "qa": {
+            "geometry": false,
+            "vision": false,
+            "version": 1
+          },
+          "template": "",
+          "level": null,
+          "base_layout": ""
+        },
+        "short": {
+          "ok": false,
+          "seconds": null,
+          "reasons": [
+            "記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（1場面）"
+          ],
+          "qa": {
+            "geometry": false,
+            "vision": false,
+            "version": 1
+          },
+          "template": "",
+          "level": null,
+          "base_layout": ""
+        }
+      },
+      "timings": {
+        "full": {
+          "ladder_total": 479.8
+        },
+        "short": {
+          "ladder_total": 479.8
+        }
+      },
+      "ok": false,
+      "reason": "full: 記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（1場面） / short: 記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（1場面）",
+      "pages": []
     }
   },
   "queued": {
@@ -2998,7 +3050,7 @@
     "docomo-my-docomo-data-breach": {
       "status": "waiting",
       "why": "Muse の動画を 13:15 まで待っている",
-      "checkedAt": "2026-11-08T03:13:27+00:00"
+      "checkedAt": "2026-11-08T03:54:27+00:00"
     },
     "chita-landslide-warning-threshold-lowered": {
       "status": "created",
