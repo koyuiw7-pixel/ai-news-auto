@@ -127,10 +127,13 @@ NEW_TOPICS = [
     {"key": "server", "match": "Dify|n8n|セルフホスト|VPS|レンタルサーバー|WordPress|デプロイ|ホスティング|Docker", "eyebrow": "この記事の技術を試すなら", "headline": "AIアプリを自分で動かすなら、サーバーから", "lead": "自分で運用する場合の選択肢です。無料で使える公式サービスと、必要な管理・料金を比較しましょう。", "partners": ["xserver-vps", "conoha-vps", "xserver"], "search": ["サーバー 構築 入門", "Docker 入門"], "require": "サーバ|Docker|Linux|クラウド|インフラ", "fill": ["coding", "agent"]},
     {"key": "video", "match": "動画生成|動画編集|Sora|Veo|Runway|Kling|動画AI|ショート動画|YouTube|字幕", "eyebrow": "この記事の技術を試すなら", "headline": "AIで動画を作るなら、編集まで一気に", "lead": "生成した動画は、字幕やカットを足すと一気に使えるものになります。", "partners": ["video-editor", "movie-school", "bandicut"], "search": ["動画編集 入門", "動画生成AI"], "require": "動画|映像|YouTube", "fill": ["image", "business"]},
     {"key": "english", "match": "翻訳|英語|英会話|通訳|DeepL|多言語|リアルタイム翻訳|語学", "eyebrow": "AIで英語を伸ばすなら", "headline": "AI翻訳の次は、自分で話せるように", "lead": "AIで訳せる時代でも、自分で話せると仕事の幅が広がります。", "partners": ["idiy", "sparta", "studysapuri-en", "lancul"], "search": ["英語 学習 AI", "英会話 独学"], "require": "英語|英会話|翻訳", "fill": ["chatgpt", "business"]},
-    {"key": "security", "match": "セキュリティ|詐欺|フィッシング|マルウェア|ディープフェイク|脆弱性|プライバシー|不正アクセス|ランサム|なりすまし", "eyebrow": "AI時代の自衛策", "headline": "AIを悪用した詐欺から、PCとスマホを守る", "lead": "必要な対策は脅威や端末によって異なります。各サービスの対応範囲と条件を確認しましょう。", "partners": ["virusbuster", "norton", "eset", "surfshark"], "search": ["サイバーセキュリティ 入門", "情報セキュリティ"], "require": "セキュリティ|サイバー|ハッカー|情報漏", "fill": ["business"]},
+    {"key": "security", "match": "セキュリティ|詐欺|フィッシング|マルウェア|ディープフェイク|脆弱性|プライバシー|不正アクセス|ランサム|なりすまし", "eyebrow": "AI時代の自衛策", "headline": "詐欺や不正アクセスから、PCとスマホを守る", "lead": "必要な対策は脅威や端末によって異なります。各サービスの対応範囲と条件を確認しましょう。", "partners": ["virusbuster", "norton", "eset", "surfshark"], "search": ["サイバーセキュリティ 入門", "情報セキュリティ"], "require": "セキュリティ|サイバー|ハッカー|情報漏", "fill": ["business"], "alsoMatch": "サイバー攻撃|攻撃者|侵入|ハッキング|情報漏え?い|サイバー(?!エージェント)|情報流出|漏洩|件流出|流出の恐れ|情報が流出|データが流出|個人情報|不正ログイン|不正利用|乗っ取り|不審メール|偽SMS|迷惑メール|偽サイト"},
     {"key": "telecom", "match": "光回線|ネット回線|インターネット回線|固定回線|回線速度|通信速度|通信障害|WiMAX|ポケットWi-?Fi|モバイルWi-?Fi|ホームルーター|置くだけWi-?Fi|Wi-?Fiルーター|Wi-?Fi ?7|格安SIM|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|携帯キャリア|携帯料金|スマホ料金|通信料金|プロバイダ|テザリング|Starlink|スターリンク|10ギガ", "eyebrow": "ネット環境を見直すなら", "headline": "AIを快適に使うなら、まず回線から", "lead": "動画やクラウドのAIを毎日使うなら、速くて安定した回線がいちばん効きます。工事不要のWi-Fiという選び方もあります。", "partners": ["gmo-hikari", "biglobe-hikari", "gmo-home-wifi", "gmo-wimax", "biglobe-wimax"], "search": ["ネットワーク 入門", "通信 5G"], "require": "ネットワーク|通信|5G|回線|インターネット", "fill": ["gadget", "business"]},
     {"key": "telecom-gadget", "genre": "tech-gadget", "match": "光回線|ネット回線|インターネット回線|固定回線|回線速度|通信速度|通信障害|WiMAX|ポケットWi-?Fi|モバイルWi-?Fi|ホームルーター|置くだけWi-?Fi|Wi-?Fiルーター|Wi-?Fi ?7|格安SIM|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|携帯キャリア|携帯料金|スマホ料金|通信料金|プロバイダ|テザリング|Starlink|スターリンク|10ギガ|5G回線|5G通信|モバイル通信", "eyebrow": "ネット環境を見直すなら", "headline": "スマホもPCも、つなぐ回線で快適さが変わる", "lead": "家の光回線か、工事不要のWi-Fiか。使い方に合う回線を選ぶと、毎日のストレスが減ります。", "partners": ["gmo-hikari", "biglobe-hikari", "gmo-home-wifi", "gmo-wimax", "biglobe-wimax"], "search": ["ネットワーク 入門", "通信 5G"], "require": "ネットワーク|通信|5G|回線|インターネット", "fill": ["gadget", "business"]},
     {"key": "gadget", "match": "スマートリング|ウェアラブル|イヤホン|スマートグラス|睡眠", "eyebrow": "AIガジェットを選ぶなら", "headline": "身につけるAIは、軽さと電池持ちで選ぶ", "lead": "毎日使うものほど、着けているのを忘れるくらいの軽さが大事です。", "partners": ["ringconn", "e-earphone", "plaud-notepin-s"], "search": ["ガジェット AI", "スマートウォッチ"], "require": "ガジェット|スマート|デバイス|AI", "fill": ["voice", "business"]},
+    # 携帯会社の名前と、流出・障害・値上げ・料金・乗り換えの語が同じ欄（見出し・タグ・要約）に並ぶ記事だけ。契約先を見直す人向け。
+    # 会社名だけの記事（新端末・社会貢献・法人向けの協業）や、決算・出資・AIの事業の記事には出さない
+    {"key": "mobile-switch", "genres": ["business", "public", "lifestyle", "tech-gadget"], "min": 5, "match": "格安SIM|携帯料金|スマホ料金|通信料金|(?:NTTドコモ|ドコモ|docomo|ソフトバンク(?!グループ|G|・ビジョン)|楽天モバイル|ahamo|povo|LINEMO|UQ ?mobile|ワイモバイル|KDDI|携帯会社|携帯大手|携帯キャリア)(?=[\\s\\S]*?(?:情報流出|流出|漏えい|漏洩|不正アクセス|不正ログイン|通信障害|障害|不具合|つながりにくい|値上げ|料金|新プラン|乗り換え|MNP|解約))|(?:情報流出|流出|漏えい|漏洩|不正アクセス|不正ログイン|通信障害|障害|不具合|つながりにくい|値上げ|料金|新プラン|乗り換え|MNP|解約)(?=[\\s\\S]*?(?:NTTドコモ|ドコモ|docomo|ソフトバンク(?!グループ|G|・ビジョン)|楽天モバイル|ahamo|povo|LINEMO|UQ ?mobile|ワイモバイル|KDDI|携帯会社|携帯大手|携帯キャリア))", "articleExclude": "決算|業績|株価|出資|買収|上場|(?<![A-Za-z])AI(?![A-Za-z])|生成AI|半導体|ロボット|データセンター|基地局", "eyebrow": "スマホの契約を見直すなら", "headline": "スマホの回線は、乗り換えで料金と条件を比べられる", "lead": "流出や障害、値上げをきっかけに契約先を比べる人もいます。料金・条件・手続きは各公式サイトで確認しましょう。", "partners": ["bb-excite", "biglobe-hikari-plus"], "search": ["スマホ 料金 節約"], "require": "スマホ|携帯|通信|格安SIM", "name": "スマホ回線の見直し"},
     {"key": "kids", "match": "子ども|子供|小学生|中学生|高校生|学校|教師|先生|教育現場|宿題", "eyebrow": "子どもとAIの付き合い方", "headline": "AIを「使われる側」でなく「作る側」に", "lead": "ゲーム感覚でプログラミングに触れると、AIへの理解も自然に深まります。", "partners": ["digitane", "litalico"], "search": ["子ども プログラミング", "AI 教育"], "require": "子ども|こども|プログラミング|教育|AI", "fill": ["coding"]},
 ]
 
@@ -165,18 +168,79 @@ ADD_TO_TOPIC = {
 # 見出しにも match の語があること（タグや要約だけで当てない）。まとめ記事と、見出しが exclude に当たる記事には出さない。genres があればそのジャンルの記事だけ（AI の業界ニュースに家計の広告を出さない）。
 # 出すのは提携リンクのある商品だけ、最大 max 件。名前と1行の説明は PARTNERS（公式の名前と中立な説明）のまま
 ACTION_ADS = [
-    {"key": "leak", "title": "端末とアカウントの安全対策", "match": "情報流出|情報漏え?い|漏え?い|漏洩|件流出|流出の恐れ|が流出|不審メール|個人情報|不正アクセス|不正ログイン|不正利用|詐欺|フィッシング|なりすまし|ランサム|マルウェア|サイバー攻撃|乗っ取り", "partners": ["norton", "virusbuster", "eset"], "max": 2, "exclude": "ガードレール|AIガバナンス|脱獄|LLM"},
-    {"key": "fire-insurance", "title": "火災保険を見直す", "match": "火災保険|地震保険|水災補償|損害保険料", "partners": ["bang-kasai"], "max": 1, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "water", "title": "飲み水の備え", "match": "断水|備蓄水|飲料水|給水|水道料金|水道代", "partners": ["oken-water", "frecious"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "disaster", "title": "停電・災害への備え", "match": "地震|津波|台風|大雨|豪雨|土砂災害|洪水|氾濫|噴火|停電|防災|避難|警報|大雪|線状降水帯|緊急地震速報|災害|備蓄", "partners": ["jackery", "bluetti", "akamaru-bousai", "alpha-foods", "stoole", "bang-kasai"], "max": 2},
-    {"key": "furusato", "title": "ふるさと納税の寄附先を探す", "match": "ふるさと納税|返礼品|ワンストップ特例", "partners": ["furusato-honpo", "aupay-furusato"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "tax", "title": "確定申告・年末調整の準備", "match": "年末調整|確定申告|青色申告|白色申告|e-Tax|インボイス|源泉徴収|医療費控除|扶養控除|所得税", "partners": ["freee", "mf-kakutei", "yayoi-kakutei"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "energy", "title": "電気の契約を見直す", "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|新電力|電力会社|燃料費調整|再エネ賦課金|節電", "partners": ["elpio", "enepi", "tainavi"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "moving", "title": "引越しの準備", "match": "引っ越し|引越し|引越|転居|住所変更|転入届|転出届", "partners": ["hikkoshi-samurai", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "mobile", "title": "スマホの回線を見直す", "match": "携帯料金|スマホ料金|通信障害|通信の障害|つながりにくい|格安SIM|携帯キャリア|乗り換え|MNP|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|料金プラン|光回線|ネット回線|固定回線", "partners": ["bb-excite", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "travel", "title": "旅行の宿を探す", "match": "旅行|連休|ホテル|旅館|宿泊|観光|旅行支援", "partners": ["jalan", "ikyu"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|訪日客数"},
-    {"key": "payment", "title": "支払い方法を見直す", "match": "キャッシュレス|クレジットカード|ポイント還元|ポイ活|QRコード決済|PayPay|楽天ペイ|d払い|au PAY|電子マネー|タッチ決済", "partners": ["epos"], "max": 1, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "leak", "title": "端末とアカウントの安全対策", "reason": "流出した情報を使った偽メール・偽SMSや、不正ログインへの備えに", "match": "情報流出|情報漏え?い|漏え?い|漏洩|件流出|流出の恐れ|が流出|不審メール|個人情報|不正アクセス|不正ログイン|不正利用|詐欺|フィッシング|なりすまし|ランサム|マルウェア|サイバー攻撃|乗っ取り", "partners": ["norton", "virusbuster", "eset"], "max": 2, "exclude": "ガードレール|AIガバナンス|脱獄|LLM"},
+    {"key": "fire-insurance", "title": "火災保険を見直す", "reason": "保険料や補償の変更をきっかけに、今の契約と比べるために", "match": "火災保険|地震保険|水災補償|損害保険料", "partners": ["bang-kasai"], "max": 1, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "water", "title": "飲み水の備え", "reason": "断水や災害で水道が止まったときの飲み水の備えに", "match": "断水|備蓄水|飲料水|給水|水道料金|水道代", "partners": ["oken-water", "frecious"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "disaster", "title": "停電・災害への備え", "reason": "停電・断水が続いたときの電源や食料の備えに", "match": "地震|津波|台風|大雨|豪雨|土砂災害|洪水|氾濫|噴火|停電|防災|避難|警報|大雪|線状降水帯|緊急地震速報|災害|備蓄", "partners": ["jackery", "bluetti", "akamaru-bousai", "alpha-foods", "stoole", "bang-kasai"], "max": 2},
+    {"key": "furusato", "title": "ふるさと納税の寄附先を探す", "reason": "寄附先の返礼品と、控除の上限額を確かめるために", "match": "ふるさと納税|返礼品|ワンストップ特例", "partners": ["furusato-honpo", "aupay-furusato"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "tax", "title": "確定申告・年末調整の準備", "reason": "申告や年末調整の書類づくりを早めに進めるために", "match": "年末調整|確定申告|青色申告|白色申告|e-Tax|インボイス|源泉徴収|医療費控除|扶養控除|所得税", "partners": ["freee", "mf-kakutei", "yayoi-kakutei"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "energy", "title": "電気の契約を見直す", "reason": "電気・ガス代が上がるときに、契約先を比べるために", "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|新電力|電力会社|燃料費調整|再エネ賦課金|節電", "partners": ["elpio", "enepi", "tainavi"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "moving", "title": "引越しの準備", "reason": "引越しの見積もりと、新居のネット回線の手配に", "match": "引っ越し|引越し|引越|転居|住所変更|転入届|転出届", "partners": ["hikkoshi-samurai", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "mobile", "title": "スマホの回線を見直す", "reason": "障害や料金の変更をきっかけに、回線の契約を比べるために", "match": "携帯料金|スマホ料金|通信障害|通信の障害|つながりにくい|格安SIM|携帯キャリア|乗り換え|MNP|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|料金プラン|光回線|ネット回線|固定回線", "partners": ["bb-excite", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "travel", "title": "旅行の宿を探す", "reason": "連休や旅行の予定に合わせて、宿の空きと料金を比べるために", "match": "旅行|連休|ホテル|旅館|宿泊|観光|旅行支援", "partners": ["jalan", "ikyu"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|訪日客数"},
+    {"key": "household", "title": "家計の固定費を見直す", "reason": "値上げが続くときに、スマホ代や電気代の契約を比べるために", "match": "値上げ|値上がり|物価高|節約|固定費|生活費|家計の負担|家計を圧迫|家計防衛", "partners": ["bb-excite", "elpio", "enepi"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|上場|時価総額|(?<![A-Za-z])AI(?![A-Za-z])|半導体|GPU|API|ユーロ|欧州|米国|中国|英国|景気|業況|GDP|統計|貯蓄率|消費支出"},
+    {"key": "payment", "title": "支払い方法を見直す", "reason": "支払い方法やポイントの条件が変わるときに、カードを比べるために", "match": "キャッシュレス|クレジットカード|ポイント還元|ポイ活|QRコード決済|PayPay|楽天ペイ|d払い|au PAY|電子マネー|タッチ決済", "partners": ["epos"], "max": 1, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
 ]
+
+
+# 「すぐにできること」の話題（ACTION_ADS）を、右側・本文中・記事末の商品枠でも使う話題にする（キーは life-<key>）。
+# 暮らしの記事（地震・電気代・引越しなど）で、商品枠がジャンルの既定の広告（会計ソフトなど）にならないようにする。
+# 見出しだけの1語では当てない（基準点 5: 見出し＋タグ、またはタグ＋要約の複数語）
+LIFE_GENRES = ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment", "science"]
+# 枠の見出しを作る短い名前。既存の話題と同じ商品を扱うものは同じ名前にして、「ふるさと納税とふるさと納税の…」のように重ねない
+LIFE_NAMES = {"leak": "セキュリティ対策", "furusato": "ふるさと納税", "tax": "確定申告・節税", "mobile": "スマホ回線の見直し"}
+
+
+def life_topics() -> list[dict]:
+    topics = []
+    for rule in ACTION_ADS:
+        topic = {
+            "key": f"life-{rule['key']}",
+            "genres": rule.get("genres", LIFE_GENRES),
+            "min": 5,
+            "match": rule["match"],
+            "eyebrow": "この記事のあとにできること",
+            "headline": rule["title"],
+            "lead": f"{rule['reason']}。料金・条件は各公式サイトで確認してください。",
+            "partners": rule["partners"],
+            "name": LIFE_NAMES.get(rule["key"], rule["title"]),
+        }
+        if rule.get("exclude"):
+            topic["articleExclude"] = rule["exclude"]
+        topics.append(topic)
+    return topics
+
+
+def apply_life_topics(offers: dict) -> None:
+    derived = life_topics()
+    keys = {t["key"] for t in derived}
+    offers["topics"] = [t for t in offers["topics"] if t["key"] not in keys] + derived
+
+
+def apply_topics(offers: dict) -> None:
+    """話題（NEW_TOPICS・ADD_TO_TOPIC）・行動欄そばの PR（ACTION_ADS）・暮らしの話題（life-*）を offers に反映する"""
+    keys = {t["key"] for t in offers["topics"]}
+    for topic in NEW_TOPICS:
+        if topic["key"] not in keys:
+            offers["topics"].append(topic)
+        else:
+            for t in offers["topics"]:
+                if t["key"] == topic["key"]:
+                    t.update(topic)
+    # 上から順に照合するので、通信回線の話題は「スマホ」で当たるガジェットより前に置く
+    order = [t["key"] for t in offers["topics"]]
+    for key in ("telecom", "telecom-gadget"):
+        if key in order and "gadget" in order and order.index(key) > order.index("gadget"):
+            t = offers["topics"].pop(order.index(key))
+            offers["topics"].insert([x["key"] for x in offers["topics"]].index("gadget"), t)
+            order = [x["key"] for x in offers["topics"]]
+    for key, extra in ADD_TO_TOPIC.items():
+        for t in offers["topics"]:
+            if t["key"] == key:
+                t["partners"] = list(dict.fromkeys(t.get("partners", []) + extra))
+
+    offers["actionAds"] = ACTION_ADS
+    apply_life_topics(offers)
 
 
 def main() -> int:
@@ -230,27 +294,7 @@ def main() -> int:
         }
         added += 1
 
-    keys = {t["key"] for t in offers["topics"]}
-    for topic in NEW_TOPICS:
-        if topic["key"] not in keys:
-            offers["topics"].append(topic)
-        else:
-            for t in offers["topics"]:
-                if t["key"] == topic["key"]:
-                    t.update(topic)
-    # 上から順に照合するので、通信回線の話題は「スマホ」で当たるガジェットより前に置く
-    order = [t["key"] for t in offers["topics"]]
-    for key in ("telecom", "telecom-gadget"):
-        if key in order and "gadget" in order and order.index(key) > order.index("gadget"):
-            t = offers["topics"].pop(order.index(key))
-            offers["topics"].insert([x["key"] for x in offers["topics"]].index("gadget"), t)
-            order = [x["key"] for x in offers["topics"]]
-    for key, extra in ADD_TO_TOPIC.items():
-        for t in offers["topics"]:
-            if t["key"] == key:
-                t["partners"] = list(dict.fromkeys(t.get("partners", []) + extra))
-
-    offers["actionAds"] = ACTION_ADS
+    apply_topics(offers)
     LINKS.write_text(json.dumps(links, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     OFFERS.write_text(json.dumps(offers, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"[a8] {added}件の提携商品を反映、話題 {len(offers['topics'])}件")

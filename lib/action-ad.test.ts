@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import type { ArticleSummary } from "./articles";
 import { actionAdForArticle, actionAdRuleFor } from "./action-ad";
+import { offerPlanForArticle } from "./offers";
 
 let passed = 0;
 function test(name: string, fn: () => void) { fn(); passed++; console.log(`ok action-ad ${name}`); }
@@ -52,6 +53,50 @@ test("実際の3記事（ドコモ・知多市・ふるさと納税）", () => {
   assert.equal(actionAdRuleFor(fromFile("docomo-online-shop-data-leak"))?.key, "leak");
   assert.equal(actionAdRuleFor(fromFile("chita-landslide-warning-threshold-lowered"))?.key, "disaster");
   assert.equal(actionAdRuleFor(fromFile("furusato-nozei-deadline-2026"))?.key, "furusato");
+});
+
+// 2026-11-09: ドコモの情報流出の記事に、行動欄そばの文字だけの PR と、関係の薄い右側の枠（ココナラなど）しか出ていなかった
+const planOf = (a: ArticleSummary) => {
+  const ad = actionAdForArticle(a);
+  return { ad, plan: offerPlanForArticle(a, (ad?.items ?? []).map((x) => x.item.key)) };
+};
+const keysOf = (items?: { key: string }[]) => (items ?? []).map((i) => i.key);
+
+test("ドコモの情報流出：行動欄・本文中・記事末の3か所に、流出に合う商品を重ねずに出す", () => {
+  const { ad, plan } = planOf(fromFile("docomo-online-shop-data-leak"));
+  assert.equal(ad?.key, "leak");
+  assert.ok(ad?.reason);
+  assert.ok(ad!.items.every(({ item }) => item.image), "バナーの素材がある");
+  assert.ok(plan.inline && plan.rail, "本文中と記事末の枠がある");
+  const shown = [...keysOf(ad!.items.map((x) => x.item)), ...keysOf(plan.inline!.items.slice(0, 3)), ...keysOf(plan.rail!.items.slice(0, 3))];
+  assert.equal(new Set(shown).size, shown.length, `同じ商品を2回出さない: ${shown}`);
+  const allowed = /^(norton|virusbuster|eset|surfshark|bb-excite|biglobe-hikari-plus)$/;
+  for (const key of shown) assert.match(key, allowed);
+  assert.ok(shown.includes("bb-excite") || shown.includes("biglobe-hikari-plus"), "回線の見直しも出す");
+  // 行動欄に出した商品の計測は行動欄で数える（右側・本文中の枠のピクセルに入れない）
+  for (const { pixel } of ad!.items) if (pixel) assert.ok(!plan.rail!.pixels.includes(pixel));
+});
+
+test("地震・防災の記事：防災の商品が本文中と記事末にも出る（ジャンルの既定の会計ソフトにしない）", () => {
+  const { ad, plan } = planOf(fromFile("chita-landslide-warning-threshold-lowered"));
+  assert.equal(ad?.key, "disaster");
+  for (const box of [plan.inline, plan.rail]) {
+    assert.ok(box);
+    for (const key of keysOf(box!.items)) assert.match(key, /^(jackery|bluetti|akamaru-bousai|alpha-foods|stoole|bang-kasai)$/);
+  }
+});
+
+test("値上げの記事：家計の固定費の見直し（暮らしの記事だけ。海外の物価統計には出さない）", () => {
+  assert.equal(actionAdRuleFor(article("t-price", "不二家の飲料7品、2027年1月出荷分から約7〜14%値上げ", ["値上げ"]))?.key, "household");
+  assert.equal(actionAdRuleFor(article("t-euro", "ユーロ圏の物価上昇率4.0%に　エネルギーは20%超", ["物価"])), undefined);
+});
+
+test("候補を全部行動欄に出した記事でも、ほかの枠は既定の広告で埋める", () => {
+  const a = { ...article("t-fire2", "火災保険料、来年度から平均で値上げ", ["火災保険"]), genreSlug: "lifestyle" } as ArticleSummary;
+  const { ad, plan } = planOf(a);
+  assert.equal(ad?.key, "fire-insurance");
+  assert.ok(plan.rail, "右側・記事末の枠が空にならない");
+  assert.ok(!keysOf(plan.rail!.items).includes("bang-kasai"));
 });
 
 console.log(`action-ad: ${passed} passed`);

@@ -7,7 +7,7 @@ import { actionAdRules, isRoundupArticle, MIN_SCORE, partnerItem, relevanceScore
  * 行動と同じ話題の提携商品だけを出す（話題の対応は scripts/a8_import.py の ACTION_ADS → content/offers.json の actionAds）。
  * 見出しに話題の語があり、見出し・タグ・要約の点数（relevanceScore）が基準点（MIN_SCORE）を超えた最初の話題を使う。どれにも当たらなければ出さない。
  */
-export type ActionAd = { key: string; title: string; items: { item: OfferItem; pixel?: string }[] };
+export type ActionAd = { key: string; title: string; reason?: string; items: { item: OfferItem; pixel?: string }[] };
 
 function hashOf(text: string): number {
   let h = 0;
@@ -52,5 +52,5 @@ export function actionAdForArticle(
   const rotated = [...available.slice(start), ...available.slice(0, start)];
   const skip = new Set(avoid);
   const ordered = [...rotated.filter((x) => !skip.has(x.item.key)), ...rotated.filter((x) => skip.has(x.item.key))];
-  return { key: rule.key, title: rule.title, items: ordered.slice(0, rule.max ?? 2) };
+  return { key: rule.key, title: rule.title, reason: rule.reason, items: ordered.slice(0, rule.max ?? 2) };
 }

@@ -164,7 +164,7 @@
       "key": "security",
       "match": "セキュリティ|詐欺|フィッシング|マルウェア|ディープフェイク|脆弱性|プライバシー|不正アクセス|ランサム|なりすまし",
       "eyebrow": "AI時代の自衛策",
-      "headline": "AIを悪用した詐欺から、PCとスマホを守る",
+      "headline": "詐欺や不正アクセスから、PCとスマホを守る",
       "lead": "必要な対策は脅威や端末によって異なります。各サービスの対応範囲と条件を確認しましょう。",
       "partners": [
         "virusbuster",
@@ -189,7 +189,7 @@
         "investment"
       ],
       "articleExclude": "ガードレール|AIガバナンス|サステナビリティ",
-      "alsoMatch": "サイバー攻撃|攻撃者|侵入|ハッキング|情報漏え?い|サイバー(?!エージェント)",
+      "alsoMatch": "サイバー攻撃|攻撃者|侵入|ハッキング|情報漏え?い|サイバー(?!エージェント)|情報流出|漏洩|件流出|流出の恐れ|情報が流出|データが流出|個人情報|不正ログイン|不正利用|乗っ取り|不審メール|偽SMS|迷惑メール|偽サイト",
       "name": "セキュリティ対策"
     },
     {
@@ -893,6 +893,293 @@
       ],
       "require": "起業|開業|会社設立|法人|独立|フリーランス|個人事業",
       "name": "開業・会社設立"
+    },
+    {
+      "key": "mobile-switch",
+      "genres": [
+        "business",
+        "public",
+        "lifestyle",
+        "tech-gadget"
+      ],
+      "min": 5,
+      "match": "格安SIM|携帯料金|スマホ料金|通信料金|(?:NTTドコモ|ドコモ|docomo|ソフトバンク(?!グループ|G|・ビジョン)|楽天モバイル|ahamo|povo|LINEMO|UQ ?mobile|ワイモバイル|KDDI|携帯会社|携帯大手|携帯キャリア)(?=[\\s\\S]*?(?:情報流出|流出|漏えい|漏洩|不正アクセス|不正ログイン|通信障害|障害|不具合|つながりにくい|値上げ|料金|新プラン|乗り換え|MNP|解約))|(?:情報流出|流出|漏えい|漏洩|不正アクセス|不正ログイン|通信障害|障害|不具合|つながりにくい|値上げ|料金|新プラン|乗り換え|MNP|解約)(?=[\\s\\S]*?(?:NTTドコモ|ドコモ|docomo|ソフトバンク(?!グループ|G|・ビジョン)|楽天モバイル|ahamo|povo|LINEMO|UQ ?mobile|ワイモバイル|KDDI|携帯会社|携帯大手|携帯キャリア))",
+      "articleExclude": "決算|業績|株価|出資|買収|上場|(?<![A-Za-z])AI(?![A-Za-z])|生成AI|半導体|ロボット|データセンター|基地局",
+      "eyebrow": "スマホの契約を見直すなら",
+      "headline": "スマホの回線は、乗り換えで料金と条件を比べられる",
+      "lead": "流出や障害、値上げをきっかけに契約先を比べる人もいます。料金・条件・手続きは各公式サイトで確認しましょう。",
+      "partners": [
+        "bb-excite",
+        "biglobe-hikari-plus"
+      ],
+      "search": [
+        "スマホ 料金 節約"
+      ],
+      "require": "スマホ|携帯|通信|格安SIM",
+      "name": "スマホ回線の見直し"
+    },
+    {
+      "key": "life-leak",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment",
+        "science"
+      ],
+      "min": 5,
+      "match": "情報流出|情報漏え?い|漏え?い|漏洩|件流出|流出の恐れ|が流出|不審メール|個人情報|不正アクセス|不正ログイン|不正利用|詐欺|フィッシング|なりすまし|ランサム|マルウェア|サイバー攻撃|乗っ取り",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "端末とアカウントの安全対策",
+      "lead": "流出した情報を使った偽メール・偽SMSや、不正ログインへの備えに。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "norton",
+        "virusbuster",
+        "eset"
+      ],
+      "name": "セキュリティ対策",
+      "articleExclude": "ガードレール|AIガバナンス|脱獄|LLM"
+    },
+    {
+      "key": "life-fire-insurance",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "火災保険|地震保険|水災補償|損害保険料",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "火災保険を見直す",
+      "lead": "保険料や補償の変更をきっかけに、今の契約と比べるために。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "bang-kasai"
+      ],
+      "name": "火災保険を見直す"
+    },
+    {
+      "key": "life-water",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "断水|備蓄水|飲料水|給水|水道料金|水道代",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "飲み水の備え",
+      "lead": "断水や災害で水道が止まったときの飲み水の備えに。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "oken-water",
+        "frecious"
+      ],
+      "name": "飲み水の備え"
+    },
+    {
+      "key": "life-disaster",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment",
+        "science"
+      ],
+      "min": 5,
+      "match": "地震|津波|台風|大雨|豪雨|土砂災害|洪水|氾濫|噴火|停電|防災|避難|警報|大雪|線状降水帯|緊急地震速報|災害|備蓄",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "停電・災害への備え",
+      "lead": "停電・断水が続いたときの電源や食料の備えに。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "jackery",
+        "bluetti",
+        "akamaru-bousai",
+        "alpha-foods",
+        "stoole",
+        "bang-kasai"
+      ],
+      "name": "停電・災害への備え"
+    },
+    {
+      "key": "life-furusato",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "ふるさと納税|返礼品|ワンストップ特例",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "ふるさと納税の寄附先を探す",
+      "lead": "寄附先の返礼品と、控除の上限額を確かめるために。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "furusato-honpo",
+        "aupay-furusato"
+      ],
+      "name": "ふるさと納税"
+    },
+    {
+      "key": "life-tax",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "年末調整|確定申告|青色申告|白色申告|e-Tax|インボイス|源泉徴収|医療費控除|扶養控除|所得税",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "確定申告・年末調整の準備",
+      "lead": "申告や年末調整の書類づくりを早めに進めるために。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "freee",
+        "mf-kakutei",
+        "yayoi-kakutei"
+      ],
+      "name": "確定申告・節税"
+    },
+    {
+      "key": "life-energy",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|新電力|電力会社|燃料費調整|再エネ賦課金|節電",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "電気の契約を見直す",
+      "lead": "電気・ガス代が上がるときに、契約先を比べるために。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "elpio",
+        "enepi",
+        "tainavi"
+      ],
+      "name": "電気の契約を見直す"
+    },
+    {
+      "key": "life-moving",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "引っ越し|引越し|引越|転居|住所変更|転入届|転出届",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "引越しの準備",
+      "lead": "引越しの見積もりと、新居のネット回線の手配に。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "hikkoshi-samurai",
+        "biglobe-hikari-plus"
+      ],
+      "name": "引越しの準備"
+    },
+    {
+      "key": "life-mobile",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "携帯料金|スマホ料金|通信障害|通信の障害|つながりにくい|格安SIM|携帯キャリア|乗り換え|MNP|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|料金プラン|光回線|ネット回線|固定回線",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "スマホの回線を見直す",
+      "lead": "障害や料金の変更をきっかけに、回線の契約を比べるために。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "bb-excite",
+        "biglobe-hikari-plus"
+      ],
+      "name": "スマホ回線の見直し"
+    },
+    {
+      "key": "life-travel",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "旅行|連休|ホテル|旅館|宿泊|観光|旅行支援",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "旅行の宿を探す",
+      "lead": "連休や旅行の予定に合わせて、宿の空きと料金を比べるために。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "jalan",
+        "ikyu"
+      ],
+      "name": "旅行の宿を探す",
+      "articleExclude": "株価|決算|業績|訪日客数"
+    },
+    {
+      "key": "life-household",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "値上げ|値上がり|物価高|節約|固定費|生活費|家計の負担|家計を圧迫|家計防衛",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "家計の固定費を見直す",
+      "lead": "値上げが続くときに、スマホ代や電気代の契約を比べるために。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "bb-excite",
+        "elpio",
+        "enepi"
+      ],
+      "name": "家計の固定費を見直す",
+      "articleExclude": "株価|決算|業績|上場|時価総額|(?<![A-Za-z])AI(?![A-Za-z])|半導体|GPU|API|ユーロ|欧州|米国|中国|英国|景気|業況|GDP|統計|貯蓄率|消費支出"
+    },
+    {
+      "key": "life-payment",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "キャッシュレス|クレジットカード|ポイント還元|ポイ活|QRコード決済|PayPay|楽天ペイ|d払い|au PAY|電子マネー|タッチ決済",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "支払い方法を見直す",
+      "lead": "支払い方法やポイントの条件が変わるときに、カードを比べるために。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "epos"
+      ],
+      "name": "支払い方法を見直す"
     }
   ],
   "audience": {
@@ -1957,6 +2244,7 @@
     {
       "key": "leak",
       "title": "端末とアカウントの安全対策",
+      "reason": "流出した情報を使った偽メール・偽SMSや、不正ログインへの備えに",
       "match": "情報流出|情報漏え?い|漏え?い|漏洩|件流出|流出の恐れ|が流出|不審メール|個人情報|不正アクセス|不正ログイン|不正利用|詐欺|フィッシング|なりすまし|ランサム|マルウェア|サイバー攻撃|乗っ取り",
       "partners": [
         "norton",
@@ -1969,6 +2257,7 @@
     {
       "key": "fire-insurance",
       "title": "火災保険を見直す",
+      "reason": "保険料や補償の変更をきっかけに、今の契約と比べるために",
       "match": "火災保険|地震保険|水災補償|損害保険料",
       "partners": [
         "bang-kasai"
@@ -1986,6 +2275,7 @@
     {
       "key": "water",
       "title": "飲み水の備え",
+      "reason": "断水や災害で水道が止まったときの飲み水の備えに",
       "match": "断水|備蓄水|飲料水|給水|水道料金|水道代",
       "partners": [
         "oken-water",
@@ -2004,6 +2294,7 @@
     {
       "key": "disaster",
       "title": "停電・災害への備え",
+      "reason": "停電・断水が続いたときの電源や食料の備えに",
       "match": "地震|津波|台風|大雨|豪雨|土砂災害|洪水|氾濫|噴火|停電|防災|避難|警報|大雪|線状降水帯|緊急地震速報|災害|備蓄",
       "partners": [
         "jackery",
@@ -2018,6 +2309,7 @@
     {
       "key": "furusato",
       "title": "ふるさと納税の寄附先を探す",
+      "reason": "寄附先の返礼品と、控除の上限額を確かめるために",
       "match": "ふるさと納税|返礼品|ワンストップ特例",
       "partners": [
         "furusato-honpo",
@@ -2036,6 +2328,7 @@
     {
       "key": "tax",
       "title": "確定申告・年末調整の準備",
+      "reason": "申告や年末調整の書類づくりを早めに進めるために",
       "match": "年末調整|確定申告|青色申告|白色申告|e-Tax|インボイス|源泉徴収|医療費控除|扶養控除|所得税",
       "partners": [
         "freee",
@@ -2055,6 +2348,7 @@
     {
       "key": "energy",
       "title": "電気の契約を見直す",
+      "reason": "電気・ガス代が上がるときに、契約先を比べるために",
       "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|新電力|電力会社|燃料費調整|再エネ賦課金|節電",
       "partners": [
         "elpio",
@@ -2074,6 +2368,7 @@
     {
       "key": "moving",
       "title": "引越しの準備",
+      "reason": "引越しの見積もりと、新居のネット回線の手配に",
       "match": "引っ越し|引越し|引越|転居|住所変更|転入届|転出届",
       "partners": [
         "hikkoshi-samurai",
@@ -2092,6 +2387,7 @@
     {
       "key": "mobile",
       "title": "スマホの回線を見直す",
+      "reason": "障害や料金の変更をきっかけに、回線の契約を比べるために",
       "match": "携帯料金|スマホ料金|通信障害|通信の障害|つながりにくい|格安SIM|携帯キャリア|乗り換え|MNP|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|料金プラン|光回線|ネット回線|固定回線",
       "partners": [
         "bb-excite",
@@ -2110,6 +2406,7 @@
     {
       "key": "travel",
       "title": "旅行の宿を探す",
+      "reason": "連休や旅行の予定に合わせて、宿の空きと料金を比べるために",
       "match": "旅行|連休|ホテル|旅館|宿泊|観光|旅行支援",
       "partners": [
         "jalan",
@@ -2127,8 +2424,30 @@
       "exclude": "株価|決算|業績|訪日客数"
     },
     {
+      "key": "household",
+      "title": "家計の固定費を見直す",
+      "reason": "値上げが続くときに、スマホ代や電気代の契約を比べるために",
+      "match": "値上げ|値上がり|物価高|節約|固定費|生活費|家計の負担|家計を圧迫|家計防衛",
+      "partners": [
+        "bb-excite",
+        "elpio",
+        "enepi"
+      ],
+      "max": 2,
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "exclude": "株価|決算|業績|上場|時価総額|(?<![A-Za-z])AI(?![A-Za-z])|半導体|GPU|API|ユーロ|欧州|米国|中国|英国|景気|業況|GDP|統計|貯蓄率|消費支出"
+    },
+    {
       "key": "payment",
       "title": "支払い方法を見直す",
+      "reason": "支払い方法やポイントの条件が変わるときに、カードを比べるために",
       "match": "キャッシュレス|クレジットカード|ポイント還元|ポイ活|QRコード決済|PayPay|楽天ペイ|d払い|au PAY|電子マネー|タッチ決済",
       "partners": [
         "epos"

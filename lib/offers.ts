@@ -139,7 +139,7 @@ type OffersFile = {
   actionAds?: ActionAdRule[];
 };
 
-export type ActionAdRule = { key: string; title: string; match: string; partners: string[]; max?: number; genres?: string[]; exclude?: string };
+export type ActionAdRule = { key: string; title: string; match: string; partners: string[]; max?: number; genres?: string[]; exclude?: string; /** この記事の読者に関係する理由（1行。枠に出す） */ reason?: string };
 
 /** 「すぐにできること」のそばの PR の話題（上から順に照合する） */
 export function actionAdRules(): ActionAdRule[] {
@@ -590,16 +590,37 @@ export function keywordProductOffer(article: ArticleSummary): Offer | undefined 
  * 記事ページの広告枠の割り当て。右側と本文中で同じ商品を出さない。
  * 1. 記事に合う話題の広告（関連の高い順） 2. 製品・趣味の記事ならそのカテゴリの商品検索 3. ジャンルの既定の広告
  */
-export function offerPlanForArticle(article: ArticleSummary): OfferPlan {
+export function offerPlanForArticle(article: ArticleSummary, exclude: Iterable<string> = []): OfferPlan {
   const scored = articleScored(article);
-  const full = (scored.length > 0 ? buildArticleOffer(article, scored, 12) : undefined) ?? keywordProductOffer(article) ?? fallbackOfferForArticle(article, 12);
+  // 「すぐにできること」の下の PR（lib/action-ad.ts）に出した商品は、ほかの枠に重ねて出さない（表示の計測もその枠で数える）。
+  // 除いた結果が空なら、次の候補（製品カテゴリの検索 → ジャンルの既定の広告）に回る
+  const skip = new Set(exclude);
+  const skipPixels = new Set([...skip].map((key) => partnerItem(key)?.pixel).filter((p): p is string => Boolean(p)));
+  const sources: [boolean, () => Offer | undefined][] = [
+    [true, () => (scored.length > 0 ? buildArticleOffer(article, scored, 12) : undefined)],
+    [false, () => keywordProductOffer(article)],
+    [false, () => fallbackOfferForArticle(article, 12)],
+  ];
+  let full: Offer | undefined;
+  let fromScored = false;
+  for (const [scoredSource, make] of sources) {
+    const built = make();
+    if (!built) continue;
+    const kept = built.items.filter((item) => !skip.has(item.key));
+    if (kept.length === 0) continue;
+    full = skip.size ? { ...built, items: kept, pixels: built.pixels.filter((p) => !skipPixels.has(p)) } : built;
+    fromScored = scoredSource;
+    break;
+  }
   if (!full) return {};
-  const base = scored[0]?.topic ?? topicOfFallback(full);
+  const base = (fromScored ? scored[0]?.topic : undefined) ?? topicOfFallback(full);
   const pool = full.items;
   // 右側（1〜3位＋予備3つ）は、いちばん関連の高い商品の話題を中心に。本文中（4〜6位＋予備）は残りから同じ選び方で（右側と重ならない）。
   // 各枠の見出しは、その枠に並ぶ商品の話題から作る（headingFor）
   // まず見える3つずつ（右側→本文中）を決め、残りを同じ話題の予備として各枠に3つまで足す
-  const railShown = pickBox(pool, MAX_ITEMS, MAX_ITEMS);
+  // 候補が4〜5つのときは右側（記事末）を2〜3つにして、本文中の枠にも2つ残す（候補が少ない暮らしの話題でも、本文中と記事末の両方に出す）
+  const railCount = pool.length >= MAX_ITEMS * 2 ? MAX_ITEMS : pool.length >= 4 ? pool.length - 2 : MAX_ITEMS;
+  const railShown = pickBox(pool, railCount, railCount);
   const inlineShown = pickBox(pool.filter((item) => !railShown.includes(item)), MAX_ITEMS, MAX_ITEMS);
   const spare = (shown: OfferItem[], taken: OfferItem[]) => {
     const topics = new Set(shown.map((item) => item.topic));

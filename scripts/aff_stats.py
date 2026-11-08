@@ -60,6 +60,7 @@ POSITION_LABELS = {
     "action-ad": "すぐにできることの下（本文中のPR）",
     "ranking-inline": "本文中の商品枠",
     "ranking-rail": "右側の商品枠",
+    "ranking-end": "記事末の商品枠（スマホ）",
     "mobile-bar": "スマホ画面下の帯",
     "shop-line": "Amazon・楽天の1行",
     "cta-inline": "本文中の導線",

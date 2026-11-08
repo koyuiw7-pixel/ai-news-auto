@@ -127,6 +127,79 @@ class ComponentWiringTest(unittest.TestCase):
                 self.assertLess(today, src.index("<ActionAd ad={actionAd}"))
                 self.assertLess(src.index("<ActionAd ad={actionAd}") - today, 300)
 
+class AdPlacementUpgradeTest(unittest.TestCase):
+    """2026-11-09: ドコモの情報流出の記事（いちばん読まれた記事）に、ほとんど広告が出ていなかった件の再発防止"""
+
+    def setUp(self):
+        self.offers = json.loads((ROOT / "content/offers.json").read_text(encoding="utf-8"))
+        self.topics = {t["key"]: t for t in self.offers["topics"]}
+
+    def test_every_action_rule_has_a_short_reason(self):
+        for rule in a8_import.ACTION_ADS:
+            with self.subTest(rule=rule["key"]):
+                self.assertTrue(rule.get("reason"))
+                self.assertLessEqual(len(rule["reason"]), 40)
+                self.assertNotRegex(rule["reason"], HYPE)
+
+    def test_life_topics_mirror_action_rules(self):
+        for topic in a8_import.life_topics():
+            with self.subTest(topic=topic["key"]):
+                self.assertEqual(self.topics[topic["key"]], topic)
+                # genres が無いと AI の記事にしか出ない（話題の既定は ai）
+                self.assertTrue(topic["genres"])
+                self.assertGreaterEqual(topic["min"], 5)
+
+    def test_security_topic_matches_data_leak_headlines(self):
+        security = self.topics["security"]
+        pattern = re.compile(f"{security['match']}|{security['alsoMatch']}")
+        self.assertIn("business", security["genres"])
+        for title in ("ドコモ情報流出、最大約30万件", "顧客の個人情報が流出の恐れ", "不正ログインで乗っ取り被害"):
+            self.assertRegex(title, pattern)
+
+    def test_mobile_switch_needs_a_carrier_and_a_reason_to_switch(self):
+        pattern = re.compile(self.topics["mobile-switch"]["match"])
+        self.assertRegex("ドコモ情報流出、最大約30万件", pattern)
+        self.assertRegex("楽天モバイルのMNP手続きの不具合", pattern)
+        self.assertNotRegex("ドコモ、新型iPad miniを予約開始", pattern)
+        self.assertNotRegex("NTTドコモグループ、被災地で社員ボランティア", pattern)
+        self.assertRegex("ソフトバンクが料金プランを改定", pattern)
+        self.assertNotRegex("ソフトバンクグループの決算", pattern)
+
+    def test_programs_in_new_topics_exist_in_importer(self):
+        keys = {meta["key"] for meta in a8_import.PARTNERS.values()}
+        for key in ("mobile-switch", *[t["key"] for t in a8_import.life_topics()]):
+            for partner in self.topics[key]["partners"]:
+                with self.subTest(topic=key, partner=partner):
+                    self.assertIn(partner, keys)
+                    self.assertFalse(self.offers["partners"][partner].get("hidden"))
+
+    def test_apply_topics_is_idempotent(self):
+        once = json.loads(json.dumps(self.offers))
+        a8_import.apply_topics(once)
+        self.assertEqual(once["topics"], self.offers["topics"])
+        self.assertEqual(once["actionAds"], self.offers["actionAds"])
+
+    def test_action_ad_shows_banner_without_layout_shift(self):
+        src = (ROOT / "components/ActionAd.tsx").read_text(encoding="utf-8")
+        self.assertIn("width={300}", src)
+        self.assertIn("height={250}", src)
+        self.assertIn("aspect-[6/5]", src)
+        self.assertIn("ad.reason", src)
+        self.assertIn("<Pixels", src)
+
+    def test_pages_keep_inline_offer_next_to_action_ad(self):
+        # 行動欄そばの PR がある記事でも、本文の途中の商品枠を出す（以前は記事末に回して、多くの記事で消えていた）
+        for path in ("app/articles/[slug]/page.tsx", "components/noir/noirArticlePage.tsx"):
+            src = (ROOT / path).read_text(encoding="utf-8")
+            with self.subTest(path=path):
+                self.assertNotIn("bottomOffer", src)
+                self.assertNotIn("actionAd ? undefined : plannedInlineOffer", src)
+        page = (ROOT / "app/articles/[slug]/page.tsx").read_text(encoding="utf-8")
+        self.assertIn("offerPlanForArticle(article, (actionAd?.items ?? []).map((x) => x.item.key))", page)
+        # スマホは記事の終わり（関連記事の前）に1〜3位の枠。PC は右側
+        self.assertLess(page.index('pos="ranking-end"'), page.index('aria-labelledby="related-heading"'))
+        self.assertIn('"ranking-end"', (ROOT / "scripts/aff_stats.py").read_text(encoding="utf-8"))
+
 
 if __name__ == "__main__":
     unittest.main()

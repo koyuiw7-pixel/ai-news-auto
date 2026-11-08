@@ -197,20 +197,14 @@ export default async function ArticlePage({ params }: Props) {
   const pricingLink = guideLinks.find((link) => link.kind === "pricing");
   const articleFaq = (article.faq ?? []).map((row) => ({ ...row, a: cleanTake(row.a ?? "") })).filter((row) => row.q && row.a);
   const todayActions = article.todayActions ?? [];
-  // 広告枠は記事との関連の点数が基準を超えた商品だけを、関連の高い順に出す（lib/offers.ts）。
-  // 右側（1〜3位）と本文中（4〜6位）で同じ商品は出さない。
+  // 広告の置き場所は本文の列に最大3つ（2026-11-09 オーナー指示「邪魔になりすぎるのは良くないけど慈善事業じゃない」）:
+  //  (a) 「すぐにできること」のすぐ下の PR（情報流出→セキュリティ、地震→防災の備え など。lib/action-ad.ts）
+  //  (b) 本文の途中の商品枠（4〜6位）  (c) 記事の終わり・関連記事の前の商品枠（1〜3位。PC は右側に付いてくる）
+  // 商品は記事との関連の点数が基準を超えたものだけを、関連の高い順に出す（lib/offers.ts）。
+  // (a) に出した商品は (b)(c) に重ねない。右側（1〜3位）と本文中（4〜6位）でも同じ商品は出さない。
   // 各枠は候補の中から、この端末でまだ見ていない商品を先に3つ出す（RankingBody）
-  const { offer: offerAll, rail: offer, inline: plannedInlineOffer } = offerPlanForArticle(article);
-  // 「すぐにできること」のすぐ下の PR（情報流出→セキュリティ、地震→防災の備え など。lib/action-ad.ts）。
-  // これを出す記事では、本文中の PR はこれ1つにし、4〜6位の商品枠は記事末（下の枠）に回す（本文中の PR は1か所だけ）
-  const railKeys = (offer?.items ?? []).map((item) => item.key);
-  const actionAdRaw = actionAdForArticle(article, railKeys);
-  const shownPixels = new Set([...(offer?.pixels ?? []), ...(plannedInlineOffer?.pixels ?? [])]);
-  const actionAd = actionAdRaw
-    ? { ...actionAdRaw, items: actionAdRaw.items.map((x) => (x.pixel && shownPixels.has(x.pixel) ? { ...x, pixel: undefined } : x)) }
-    : undefined;
-  const inlineOffer = actionAd ? undefined : plannedInlineOffer;
-  const bottomOffer = actionAd ? plannedInlineOffer : undefined;
+  const actionAd = actionAdForArticle(article);
+  const { offer: offerAll, rail: offer, inline: inlineOffer } = offerPlanForArticle(article, (actionAd?.items ?? []).map((x) => x.item.key));
   // 商品枠の話題に比較ガイドがあれば、商品枠のすぐ下に1行だけ案内する
   const buyingGuide = buyingGuideForTopic(offerAll?.topic);
   // 製品を扱う記事だけ、本文中の商品枠のそばに「Amazon / 楽天で見る」を1行（右側には出さない）
@@ -427,7 +421,7 @@ export default async function ArticlePage({ params }: Props) {
       article, jsonLd, bodyHtml, easyHtml, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
       inlineOffer, shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, offer, inlineRead, mainArticle,
       guideLinks, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
-      howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd, bottomOffer,
+      howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
     });
   }
 
@@ -799,7 +793,7 @@ export default async function ArticlePage({ params }: Props) {
           {bodyTail && chooseGuide && <ChooseGuideNote guide={chooseGuide} className="my-10" />}
           </div>
 
-          {/* 本文中の PR（4〜6位の商品枠。Amazon / 楽天の1行は同じ囲みの中）と「あわせて読みたい」。ページに1つだけ */}
+          {/* (b) 本文の途中の PR（4〜6位の商品枠。Amazon / 楽天の1行は同じ囲みの中）と「あわせて読みたい」 */}
           {bodyTail && inlineOffer && (
             <div className="my-10 max-w-[46em]">
               <RailRanking offer={inlineOffer} wide id="offer-inline" title={inlineOffer.headline} />
@@ -809,7 +803,7 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           )}
           {bodyTail && readNextInline && <ReadNextBox link={readNextInline} className={`my-10 ${readNextInlineClass}`} />}
-          {bodyTail && !actionAd && !inlineOffer && shopLink && <ShopLinks link={shopLink} className="my-10" />}
+          {bodyTail && !inlineOffer && shopLink && <ShopLinks link={shopLink} className="my-10" />}
 
           {bodyTail && (
             <div className="read-expert">
@@ -902,16 +896,8 @@ export default async function ArticlePage({ params }: Props) {
               {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex lg:hidden" />}
             </div>
           )}
-          {/* 「すぐにできること」のそばに PR を出した記事は、4〜6位の商品枠を記事末に回す（inlineOffer とは同時に出ない） */}
-          {bottomOffer && (
-            <div className="mt-12 max-w-[46em]">
-              <RailRanking offer={bottomOffer} wide id="offer-inline" title={bottomOffer.headline} />
-              {shopLink && <ShopLinks link={shopLink} className="mt-3" />}
-              {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex lg:hidden" />}
-            </div>
-          )}
           {!bodyTail && readNextInline && <ReadNextBox link={readNextInline} className={`mt-12 ${readNextInlineClass}`} />}
-          {!bodyTail && !inlineOffer && !bottomOffer && shopLink && <ShopLinks link={shopLink} className="mt-12" />}
+          {!bodyTail && !inlineOffer && shopLink && <ShopLinks link={shopLink} className="mt-12" />}
 
           {/* 値上げ・障害・リコール・サービス終了の一覧に載っている記事（台帳 A52） */}
           <TopicListMembership slug={article.slug} className="mt-12" />
@@ -961,6 +947,14 @@ export default async function ArticlePage({ params }: Props) {
             </span>
           </p>
 
+          {/* (c) スマホ：記事の終わり・関連記事の前に1〜3位の商品枠（PC は右側に付いてくるので出さない）。
+              以前は右側の枠がスマホでは関連記事より下（ページのいちばん下）に回り、ほとんど見られていなかった */}
+          {offer && (
+            <div className="mt-12 lg:hidden">
+              <RailRanking offer={offer} pos="ranking-end" />
+            </div>
+          )}
+
           {related.length > 0 && (
             <section aria-labelledby="related-heading" className="mt-16">
               <h2 id="related-heading" className="t-h2 mb-5 border-b border-line-strong pb-3">
@@ -980,7 +974,8 @@ export default async function ArticlePage({ params }: Props) {
           {offer ? (
             // 商品枠だけを右側に置き、読み進めても常に見える位置に付いてくる。
             // 以前は最新記事やタグも並べていて背が高く、最後までスクロールしないと追従しなかった
-            <div className="lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:[scrollbar-width:thin]">
+            // スマホでは記事の終わり（関連記事の前）に同じ枠を出すので、ここは PC だけ
+            <div className="hidden lg:sticky lg:top-20 lg:block lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:[scrollbar-width:thin]">
               <RailRanking offer={offer} />
               {/* PC は右側の商品枠の下、スマホは本文中の商品枠の下（1画面に1つだけ） */}
               {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="hidden lg:flex" />}

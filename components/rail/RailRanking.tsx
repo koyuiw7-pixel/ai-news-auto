@@ -13,6 +13,7 @@ export default function RailRanking({
   id,
   title,
   countImpression = true,
+  pos,
 }: {
   offer: Offer;
   wide?: boolean;
@@ -21,13 +22,15 @@ export default function RailRanking({
   title?: string;
   /** 同じ枠をページ内に2回出すとき、表示の計測を二重にしないよう片方は false にする */
   countImpression?: boolean;
+  /** クリックの置き場所の名前（data-aff-pos）。既定は本文中なら ranking-inline、右側なら ranking-rail。記事末のスマホ用は ranking-end */
+  pos?: string;
 }) {
   // 掲載順は閲覧履歴で変わるため、順位や実機評価に基づく「イチオシ」とは言わない。
   const badge = "紹介";
   const hasBook = offer.items.some((i) => i.kind === "book");
 
   return (
-    <aside id={id} data-aff-pos={wide ? "ranking-inline" : "ranking-rail"} aria-label="PR：広告・紹介" className="relative overflow-hidden rounded-2xl border border-ink bg-paper">
+    <aside id={id} data-aff-pos={pos ?? (wide ? "ranking-inline" : "ranking-rail")} aria-label="PR：広告・紹介" className="relative overflow-hidden rounded-2xl border border-ink bg-paper">
       <Header offer={offer} wide={wide} title={title ?? offer.headline} />
 
       <RankingBody items={offer.items} visible={3} wide={wide} badge={badge} />

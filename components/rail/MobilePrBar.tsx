@@ -43,7 +43,7 @@ export default function MobilePrBar({ item, watchId }: { item: OfferItem; watchI
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    const targets = [document.getElementById(watchId), document.querySelector('[data-aff-pos="ranking-rail"]')]
+    const targets = [document.getElementById(watchId), document.querySelector('[data-aff-pos="ranking-rail"]'), document.querySelector('[data-aff-pos="ranking-end"]')]
       .filter((element): element is Element => element !== null);
     const intersecting = new Set<Element>();
     const observer = targets.length
