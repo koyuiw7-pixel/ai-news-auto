@@ -70,9 +70,8 @@
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "食品と日用品の出費を、去年の同じ月の家計簿や明細と比べてみる",
-    "総務省統計局の公式ページで、品目ごとの詳しい結果表を確かめる",
-    "次回の公表日は、統計局の公表予定ページで確認する"
+    "統計局のCPI結果ページから、品目別の詳細結果表を開いて確かめる",
+    "家計簿や明細で、去年の同じ月の緑茶やトイレットペーパーの支出と比べてみる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -125,5 +124,118 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-08T09:13:53+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "ガソリンの暫定税率廃止などの政策効果は、エネルギーの寄与度で-0.82と試算されています（試算値）。当月分は-1.26、前年剥落分は+0.44です。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf"
+    },
+    {
+      "text": "「都市階級・地方・都道府県庁所在市別指数」などの最新月のエクセル形式の統計表は、「最新の詳細結果表」リンクからご覧いただけます。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html"
+    },
+    {
+      "text": "前月比は季節調整値で示され、その季節調整値は毎年12月の結果公表時に、過去に遡って改定されます。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "消費者物価指数（CPI）結果 全国（最新の月次結果の概要）",
+      "url": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html",
+      "howTo": [
+        "ホーム",
+        "統計データ",
+        "消費者物価指数（CPI）",
+        "消費者物価指数（CPI）結果"
+      ],
+      "note": "「最新の詳細結果表（月報掲載表へ）」から、エクセル形式の詳細な統計表を見られます。"
+    },
+    {
+      "name": "消費者物価指数 公表予定",
+      "url": "https://www.e-stat.go.jp/release-calendar/statistics/00200573",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html",
+      "howTo": [
+        "消費者物価指数（CPI）結果",
+        "公表予定"
+      ],
+      "note": "次回の公表日は、公表予定をご覧くださいと案内されています。"
+    },
+    {
+      "name": "統計局 お問合せ先（代表電話）",
+      "url": "https://www.stat.go.jp/info/guide/7.html",
+      "source": "https://www.stat.go.jp/info/guide/7.html",
+      "phone": "03-5273-2020",
+      "note": "間違い電話が多くなっているため、電話番号をよく確かめてからおかけくださいと案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "統計局のCPI結果ページから、品目別の詳細結果表を開いて確かめる",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html",
+      "steps": [
+        "統計局のCPI結果ページを開く",
+        "「最新の詳細結果表（月報掲載表へ）」を押す",
+        "e-Statの表で食品・日用品の品目を探す"
+      ],
+      "url": "https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&lid=000001491870"
+    },
+    {
+      "action": "家計簿や明細で、去年の同じ月の緑茶やトイレットペーパーの支出と比べてみる",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf",
+      "steps": [
+        "家計簿か明細で去年9月の支出を探す",
+        "緑茶とトイレットペーパーの金額を書き出す",
+        "今年9月の金額と見比べる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "統計局は、ガソリンの暫定税率廃止などの政策による効果も試算しています。試算では、総合の前年同月比を0.82ポイント押し下げたとされています（試算値）。一方、食料の伸びも大きく、全体を押し上げています。",
+    "status": "background",
+    "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf"
+  },
+  "worries": [
+    {
+      "q": "物価が上がっていると、家計はどのくらい苦しくなる？",
+      "a": "公式ページは、家計ごとの負担額は示していません。全国の総合指数は2025年を100として102.2、前年同月比は2.1％の上昇でした。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf",
+      "action": "家計簿や明細で、食品と日用品の去年同月との差額を計算してみる。"
+    },
+    {
+      "q": "緑茶やトイレットペーパーは、どのくらい上がった？",
+      "a": "緑茶は33.8％、トイレットペーパーは17.8％の上昇でした（前年同月比）。一方、うるち米（コシヒカリを除く）は21.1％下がっています。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf",
+      "action": "よく買う品目が詳細結果表に載っているか、e-Statの表で確かめてみる。",
+      "actionSource": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html"
+    },
+    {
+      "q": "電気代やガソリン、灯油の値段はどう動いている？",
+      "a": "電気代は2.4％、ガソリンは2.6％の下落でした。一方、灯油は15.3％、プロパンガスは6.3％上がっています。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf",
+      "action": "電気代・ガソリン・灯油の値動きも、統計局の詳細結果表で月ごとに確かめられます。",
+      "actionSource": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html"
+    },
+    {
+      "q": "次の物価の数字はいつ分かる？",
+      "a": "次回の公表日は、統計局の公表予定ページで確認できると案内されています。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html",
+      "action": "統計局の公表予定ページで次回の公表日を確認し、予定に入れておく。"
+    },
+    {
+      "q": "今後も物価は上がり続ける？",
+      "a": "今後の見通しは、この公表資料では発表されていません。公表されているのは9月分までの指数と前年同月比、前月比です。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf",
+      "action": "今後の判断材料として、毎月の公表結果を同じ品目で比べて見る。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ガソリンの政策効果は0.82ポイントと試算",
+    "cause": "いま物価を押し上げているのは何か",
+    "steps": "今日、家計で確かめる二つのこと",
+    "desk": "数字を自分で確かめる窓口",
+    "worries": "家計への影響や、よく買う品目は？"
+  },
+  "depthAt": "2026-11-08T16:26:49+00:00"
 }
