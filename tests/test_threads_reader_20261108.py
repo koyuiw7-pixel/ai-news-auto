@@ -127,6 +127,22 @@ class AllPathsTest(unittest.TestCase):
             with patch.object(sns_rules, "report"), patch.object(sns_rules, "check_media", return_value=[]):
                 sns_rules.enforce_buffer("threads", inp, ARTICLE, source="test", history=False)  # 通る
 
+    def test_queue_for_video_uses_reader_text(self):
+        # 11/8: 予定に入れる経路（queue_for_video）が古い文面のまま門番に通し、ルール22 で全部止まっていた
+        import threads_post as tp
+
+        with tempfile.TemporaryDirectory() as tmp, patch.object(tr, "STATE_PATH", Path(tmp) / "r.json"):
+            tr.remember(ARTICLE, {"main": MAIN, "reply": REPLY, "label": "対象の見分け方", "form": "he", "ending": tr.ending_of(MAIN)})
+            old = {"channelId": "c", "text": "流出がありました。どう思いますか？", "metadata": {"threads": {"topic": "t", "thread": [
+                {"text": "流出がありました。どう思いますか？", "assets": [{"image": {"url": "https://ai-tech-express.jp/img/x.jpg"}}]}]}}}
+            with patch.object(tp, "publish_via_buffer", return_value={"input": old}), patch.object(tp, "publish_extra_channels", return_value={}), \
+                    patch.object(sns_rules, "report"), patch.object(sns_rules, "check_media", return_value=[]):
+                result = tp.queue_for_video("", {"threads": {"id": "c"}}, "古い文面", "古い文面", "https://ai-tech-express.jp/articles/x", ARTICLE, None)
+            thread = result["pending"]["inputs"]["threads"]["metadata"]["threads"]["thread"]
+            self.assertEqual([t["text"] for t in thread], [MAIN, REPLY])
+            with patch.object(sns_rules, "report"), patch.object(sns_rules, "check_media", return_value=[]):
+                sns_rules.enforce_buffer("threads", result["pending"]["inputs"]["threads"], ARTICLE, source="test", history=False)  # 通る
+
     def test_compose_retries_then_gives_up_without_posting(self):
         bad = {"who_line": "ニュースです。", "facts": ["流出がありました。"], "closing": "以上です。", "label": "続き"}
         with self.assertRaises(tr.ReaderNotReady):
@@ -160,9 +176,10 @@ class HoldTest(unittest.TestCase):
     def test_missing_file_holds(self):
         self.assertTrue(g.style_hold(ARTICLE, "article", {}))
 
-    def test_repo_state_is_held_until_owner_approves(self):
+    def test_repo_state_has_hold_switch(self):
+        # 11/8 09:45 オーナーが最初の3本を承認して held=false。切り替えはこのファイルの held だけ
         data = json.loads((ROOT / "state" / "threads_hold.json").read_text("utf-8"))
-        self.assertTrue(data["held"])
+        self.assertIn("held", data)
 
 
 if __name__ == "__main__":

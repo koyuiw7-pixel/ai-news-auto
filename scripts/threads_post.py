@@ -2287,12 +2287,21 @@ def queue_for_video(api_key: str, channels: dict[str, dict], threads_text: str, 
     「動画を待たない」「動画を作る記事を限定」（台帳 S13）で、ふつうの投稿はこの入力のまま（写真・カード）、動画を作る限られた記事
     （sns_plan.video_post）は枠から1時間まで動画を待ち、できていれば写真を動画に替えて送る"""
     threads_input = publish_via_buffer(api_key, channels["threads"]["id"], threads_text, link, article, due_at, fmt=fmt, build_only=True)["input"]
+    reader = sns_rules.reader_kind("threads", "article", article) == "reader"
+    if reader:
+        # 2026-11-08: Threads の記事の投稿は新しい書き方（台帳 S46・ルール22）で予定に入れる。以前の文面のまま門番に通すと
+        # ルール22 で必ず止まり、記事が ruleBlocked に入って二度と選ばれなかった（11/8 は約100本が止まり、Threads が3本だけになった）。
+        # 作れなければ ReaderNotReady（RuntimeError）で、この記事は次の回にもう一度
+        import threads_reader  # noqa: PLC0415
+
+        threads_reader.apply_input(threads_input, article)
     extra = {k: v for k, v in channels.items() if k in ("twitter", "facebook")}
     inputs = {"threads": threads_input, **publish_extra_channels(api_key, extra, text, link, article, due_at, fmt=fmt, fb_text=fb_text, offsets=offsets, build_only=True)}
     for service, post_input in inputs.items():
         # 止めずに直せる崩れ（「要約すると、」・数字の単位・災害の話題の呼びかけ/問いかけ/絵文字・本当の速報でない【速報】）は、
         # 記録する入力そのものを直す（2026-11-05 オーナー判断。台帳 S4・S34・S35）
-        sns_rules.autofix_buffer_input(service, post_input, article)
+        if not (reader and service == "threads"):
+            sns_rules.autofix_buffer_input(service, post_input, article)
         clean = {k: v for k, v in post_input.items() if not k.startswith("_")}
         sns_rules.enforce_buffer(service, clean, article, source="threads_post.queue_for_video", pending_video=True)
     return {
