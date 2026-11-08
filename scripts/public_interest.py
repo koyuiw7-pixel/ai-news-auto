@@ -261,19 +261,98 @@ SIGNALS_PATH = ROOT / "state" / "trend_signals.json"
 
 def load_signals(path: Path | None = None) -> list[dict]:
     try:
-        return list(json.loads((path or SIGNALS_PATH).read_text("utf-8")).get("items") or [])
+        items = list(json.loads((path or SIGNALS_PATH).read_text("utf-8")).get("items") or [])
     except (OSError, ValueError):
         return []
+    # 芸能のうわさ・事件（犯罪）の話題は、公式の候補の順番を上げる合図に使わない（台帳 A63）
+    return [s for s in items if isinstance(s, dict) and not s.get("gossip")]
 
 
-def trend_hit(title: str, signals: list[dict]) -> dict | None:
-    """公式の候補の題名が、いま検索で急上昇している話題（キーワード）を含むか。含めばその合図"""
-    text = _nfkc(title)
+# 2026-11-08（台帳 A63）: 検索の言葉は「ドコモ 情報流出 確認方法」のように複数の語で来る。語ごとに当てる
+# （前は語句まるごとが題名に含まれるときだけ当たり、複数の語の検索はほぼ当たらなかった）
+# 検索の言葉の中で、公式の題名に出てこない「調べ方」の語（当てるときは外す）
+QUERY_FILLER = {
+    "確認方法", "確認", "方法", "やり方", "いつ", "いつから", "いつまで", "なぜ", "理由", "原因", "対象", "対象者", "対象か",
+    "最新", "最新情報", "速報", "今日", "今", "現在", "まとめ", "情報", "どこ", "何", "なに", "とは", "どうなる", "影響",
+    "公式", "一覧", "状況", "見方", "調べ方", "わかる", "知る", "今後", "続報", "news", "ニュース",
+}
+# 同じものを指す言い方（どれか1つが題名か発信元にあれば当たり）
+QUERY_ALIASES: dict[str, tuple[str, ...]] = {
+    "ドコモ": ("ドコモ", "docomo", "NTTドコモ"),
+    "docomo": ("ドコモ", "docomo"),
+    "流出": ("流出", "漏えい", "漏洩", "漏れ"),
+    "情報流出": ("流出", "漏えい", "漏洩"),
+    "情報漏洩": ("流出", "漏えい", "漏洩"),
+    "情報漏えい": ("流出", "漏えい", "漏洩"),
+    "漏洩": ("流出", "漏えい", "漏洩"),
+    "個人情報": ("個人情報", "お客さま情報", "お客様情報", "顧客情報", "会員情報"),
+    "jma": ("気象庁",),
+    "気象庁": ("気象庁",),
+    "停電": ("停電",),
+    "運休": ("運休", "運転見合わせ", "運転を見合わせ", "計画運休"),
+    "遅延": ("遅延", "遅れ", "運転見合わせ"),
+    "リコール": ("リコール", "回収"),
+    "回収": ("リコール", "回収"),
+    "値上げ": ("値上げ", "価格改定", "改定", "引き上げ"),
+    "給付金": ("給付金", "給付"),
+    "障害": ("障害", "つながりにくい", "繋がりにくい", "利用できない"),
+    "通信障害": ("障害", "つながりにくい", "繋がりにくい"),
+    "地震": ("地震", "震度"),
+    "警報": ("警報", "警戒情報", "注意報"),
+}
+
+
+def query_terms(query: str) -> list[str]:
+    """検索の言葉を、題名に当てる語に分ける（調べ方の語・1文字の語・年の数字は外す）"""
+    words = [w for w in re.split(r"[\s　、,・/]+", _nfkc(query).strip()) if w]
+    out = []
+    for word in words:
+        if word.lower() in QUERY_FILLER or word in QUERY_FILLER or re.fullmatch(r"(?:19|20)\d\d年?", word):
+            continue
+        if len(word) < 2:
+            continue
+        out.append(word)
+    return out
+
+
+def _term_in(term: str, text: str) -> bool:
+    low = text.lower()
+    for alt in QUERY_ALIASES.get(term.lower(), QUERY_ALIASES.get(term, (term,))):
+        if _nfkc(alt).lower() in low:
+            return True
+    return False
+
+
+def trend_hit(title: str, signals: list[dict], source_name: str = "") -> dict | None:
+    """公式の候補（題名と発信元の名前）が、いま検索で急上昇している話題に当たるか。当たればその合図。
+    語が1つなら、その語（言い換えを含む）が題名か発信元にあること。2つ以上なら、全部の語が当たること
+    （3つ以上なら1つ外れてもよい）。発信元の名前だけで当たる（題名に語が1つも無い）ものは数えない"""
+    text = _nfkc(f"{title} {source_name}")
+    head = _nfkc(title)
     for sig in signals:
         word = _nfkc(str(sig.get("title") or "")).strip()
-        if len(word) >= 2 and word in text:
+        if len(word) >= 2 and word in head:
+            return sig  # 語句まるごと（前からの当て方）
+        terms = query_terms(word)
+        if not terms:
+            continue
+        hits = [t for t in terms if _term_in(t, text)]
+        need = len(terms) if len(terms) <= 2 else len(terms) - 1
+        if len(hits) >= need and any(_term_in(t, head) for t in hits):
             return sig
     return None
+
+
+def search_title_note(query: str) -> str:
+    """検索で急上昇している言葉に当たった候補の題名の書き方（台帳 A63。A60 の見出しの決まりの中で）"""
+    return (
+        "\n\n## 検索されている言葉（題名に使う）\n"
+        f"- いま Google で「{query}」が急上昇しています。読者はこの言葉で調べてこの記事に来ます。\n"
+        "- 題名に、この言葉の中心の語（会社名・地名・制度の名前など）を自然な日本語で入れる。"
+        "例: 「ドコモ 情報流出 確認方法」→「ドコモの情報流出、自分が対象か確かめる方法は」。\n"
+        "- 本文の最初の章で「自分は対象か・何をすればいいか」に資料の範囲で答える。資料で答えられない問いを題名にしない。\n"
+        "- 強く目を引く題名にしてよいが、資料に無い事実・数字は書かない（うそをつかない）。「｜」は使わない。"
+    )
 
 
 PROMPT_NOTES = {

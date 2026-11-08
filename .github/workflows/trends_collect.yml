@@ -5,7 +5,9 @@ name: Collect trends
 # state/ だけの変更は vercel.json の ignoreCommand により再ビルドされない。
 on:
   schedule:
-    - cron: "17 * * * *"
+    # 予約は GitHub の都合で間引かれる（2026-11-01〜08 は1日に約4回）。30分おきに予約し、
+    # 記事づくりの回（auto_run.yml、約20分おき）でも集める（台帳 A63）
+    - cron: "17,47 * * * *"
   workflow_dispatch:
 
 permissions:

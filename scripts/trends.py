@@ -102,12 +102,13 @@ EXCLUDE_RULES: dict[str, list[str]] = {
         r"競馬", r"競輪", r"マラソン", r"駅伝", r"日本シリーズ", r"本塁打", r"ホームラン",
         r"投手", r"打者", r"連敗", r"連勝", r"移籍", r"球団", r"コーチ", r"代表戦",
     ],
-    "事件・事故・災害": [
+    # 2026-11-08（台帳 A63）: 地震・津波・大雨・台風・噴火・避難は「暮らしと安全」の話題として拾う（除外から外した）。
+    # 事件（犯罪）・訃報・個人の不祥事は今までどおり除外する
+    "事件・事故・訃報": [
         r"逮捕", r"容疑", r"送検", r"起訴", r"判決", r"裁判", r"事件", r"殺人", r"殺害",
         r"刺され", r"暴行", r"強盗", r"窃盗", r"詐欺", r"横領", r"事故", r"死亡", r"死去",
-        r"訃報", r"追悼", r"悼む", r"亡くな", r"遺体", r"行方不明", r"火災", r"火事", r"地震",
-        r"津波", r"台風", r"大雨", r"洪水", r"土砂", r"噴火", r"被害者", r"被災", r"避難",
-        r"重体", r"重傷", r"自殺", r"虐待", r"いじめ", r"わいせつ", r"盗撮", r"性的",
+        r"訃報", r"追悼", r"悼む", r"亡くな", r"遺体", r"行方不明", r"火災", r"火事",
+        r"被害者", r"重体", r"重傷", r"自殺", r"虐待", r"いじめ", r"わいせつ", r"盗撮", r"性的",
         r"ハラスメント", r"謝罪", r"炎上", r"不祥事",
     ],
     "政治・選挙・国際紛争": [
@@ -212,8 +213,43 @@ AXIS_RULES: dict[str, dict[str, list]] = {
         ],
     },
 }
+# 2026-11-08（台帳 A63）: サイトの軸「暮らしとお金の『自分ごと』ニュース」（A61）に合わせて、暮らしと安全・暮らしのお金の話題も拾う
+_TRANSPORT_CTX = r"運転見合わせ|見合わせ|運休|遅れ|遅延|再開|振替|運行|ダイヤ|欠航|通行止め"
+_PRICE_CTX = r"値上げ|値下げ|価格|発売|新商品|新作|販売|セール|円|改定|終了|開始|予約|限定"
+AXIS_RULES["public"] = {  # 暮らしと安全（災害・気象・交通・停電・障害・情報流出・リコール）
+    "strong": [
+        r"地震", r"震度", r"震源", r"津波", r"緊急地震速報", r"南海トラフ", r"台風", r"大雨", r"豪雨",
+        r"線状降水帯", r"大雪", r"暴風", r"警報", r"注意報", r"警戒情報", r"特別警報", r"避難指示",
+        r"避難情報", r"土砂災害", r"噴火", r"気象庁", _w("JMA"), r"meteorological", r"Jアラート",
+        r"全国瞬時警報", r"停電", r"断水", r"運休", r"計画運休", r"運転見合わせ", r"欠航", r"通行止め",
+        r"リコール", r"自主回収", r"情報流出", r"個人情報", r"漏え?い", r"漏洩", r"流出", r"不正アクセス",
+        r"通信障害", r"システム障害", r"大規模障害", r"つながらない", r"繋がらない", r"ログインできない",
+        r"罹災証明", r"り災証明", r"ハザードマップ",
+    ],
+    "contextual": [
+        (r"線$|線\s|鉄道|JR|メトロ|電車|新幹線|地下鉄|バス|空港|フライト", _TRANSPORT_CTX),
+        (r"障害|不具合", r"アプリ|通信|ログイン|利用でき|サービス|システム|復旧"),
+        (r"回収", r"製品|商品|自主|返金|リコール"),
+    ],
+}
+AXIS_RULES["lifestyle"] = {  # 暮らしのお金（値段の変更・給付・手続き・新商品の値段）
+    "strong": [
+        r"値上げ", r"値下げ", r"価格改定", r"料金改定", r"給付金", r"補助金", r"助成金", r"手当",
+        r"年末調整", r"保険料", r"マイナポイント", r"マイナンバー", r"マイナ保険証", r"申請", r"締め切り",
+        r"宝くじ", r"ジャンボ", r"ロト\d?", r"最低賃金", r"ガソリン", r"電気代", r"ガス代", r"電気料金",
+        r"米価格", r"お米", r"備蓄米", r"コメ(?:の)?価格", r"プレミアム商品券", r"キャンペーン", r"還元",
+    ],
+    "contextual": [
+        (r"コストコ|ユニクロ|無印|ダイソー|ニトリ|マクドナルド|マック|スタバ|スターバックス|セブン|ローソン|ファミマ|"
+         r"ミスド|ケンタッキー|吉野家|すき家|松屋|サイゼ|イオン|ドンキ|業務スーパー|カルディ|しまむら|GU", _PRICE_CTX),
+        (r"新商品|新作|限定|福袋", r"円|価格|発売|予約|販売"),
+    ],
+}
 ACCEPT_SCORE = 2
-GENRE_PRIORITY = ["real-estate", "investment", "ai"]  # 同点時はより具体的な軸を優先
+GENRE_PRIORITY = ["real-estate", "investment", "public", "lifestyle", "ai"]  # 同点時はより具体的な軸を優先
+# 暮らしと安全の語がキーワードにある話題は、関連報道の見出しで「事件・事故」（被害の報道に出る「死亡」「事故」など）を理由に落とさない。
+# 落とすのは犯罪そのもの（逮捕・殺人など）の見出しが半数以上のときだけ
+CRIME_CORE = [r"逮捕", r"容疑", r"送検", r"起訴", r"殺人", r"殺害", r"刺され", r"暴行", r"強盗", r"わいせつ", r"盗撮", r"性的"]
 
 # ---------------------------------------------------------------------------
 # HTTP / パース
@@ -369,8 +405,11 @@ def exclusion_reason(keyword: str, context_titles: list[str], yahoo_genre: str =
     if hit:
         return f"{hit[0]}（キーワードに「{hit[1]}」）"
     titles = [unicodedata.normalize("NFKC", t) for t in context_titles if t]
+    rules = EXCLUDE_RULES
+    if titles and _axis_hits(AXIS_RULES["public"], kw, " ".join([kw, *titles])):
+        rules = {"芸能・エンタメ": EXCLUDE_RULES["芸能・エンタメ"], "事件（犯罪）": CRIME_CORE}
     if titles:
-        hits = [(t, _first_hit(EXCLUDE_RULES, t)) for t in titles]
+        hits = [(t, _first_hit(rules, t)) for t in titles]
         bad = [(t, h) for t, h in hits if h]
         if len(bad) >= max(1, math.ceil(len(titles) / 2)):
             reasons = sorted({h[0] for _, h in bad})
@@ -668,11 +707,16 @@ def save_signals(trends: list[dict], path: Path | None = None) -> int:
         if not title:
             continue
         prev = merged.get(title)
+        genre, why = classify_explain(t)
         merged[title] = {
             "title": title,
             "traffic": max(int(t.get("traffic") or 0), int((prev or {}).get("traffic") or 0)),
             "news": [n.get("title", "") for n in (t.get("news") or [])][:3],
             "seen_at": (prev or {}).get("seen_at") or now.isoformat(),
+            # サイトの軸（ai / investment / real-estate / public / lifestyle）。軸外は null。
+            # gossip=true は芸能・事件（犯罪）で、公式の候補の順番を上げる合図に使わない（台帳 A63）
+            "axis": genre,
+            "gossip": why.startswith(("除外: 芸能", "除外: 事件")),
         }
     items = sorted(merged.values(), key=lambda x: x["traffic"], reverse=True)[:SIGNALS_CAP]
     if [i["title"] for i in items] == [i.get("title") for i in old] and len(items) == len(old):

@@ -373,7 +373,7 @@ def public_interest_pick(item: dict, left: int, signals: list[dict] | None = Non
         return None
     if notice_reason(item) or prefilter(item):
         return None  # お知らせ・統計の転載（A26）・告知
-    if signals and (hit := public_interest.trend_hit(item.get("title") or "", signals)):
+    if signals and (hit := public_interest.trend_hit(item.get("title") or "", signals, item.get("source_name") or "")):
         item["_trend_hit"] = hit.get("title")
     return public_interest.category(item.get("title") or "", item.get("summary") or "")
 
@@ -1710,7 +1710,7 @@ def demand_rank(item: dict, signals: list[dict]) -> int:
     当たる候補を先に（0）、ほかは 1。検索される話題から先に記事にするため"""
     if item.get("_trend_hit"):
         return 0
-    if signals and (hit := public_interest.trend_hit(item.get("title") or "", signals)):
+    if signals and (hit := public_interest.trend_hit(item.get("title") or "", signals, item.get("source_name") or "")):
         item["_trend_hit"] = hit.get("title")
         return 0
     return 1
@@ -2115,7 +2115,10 @@ def main() -> int:
     all_queue = trends.load_queue()
     trend_index = dedupe.Index()
     for q in all_queue:
-        trend_index.add(q["title"])
+        # 暮らしと安全・暮らしのお金の話題（台帳 A63 で足した軸）は「大きなニュース」（1日の上限の外）にはしない。
+        # レーンの中で先に回すだけ（demand_rank。今日の段の本数 WEB_STAGE_TARGET の内側）
+        if q.get("genre") in (None, "ai", "investment", "real-estate"):
+            trend_index.add(q["title"])
     queue = []
     if trend_limit > 0 and not TREND_FROM_PRESS:
         # 話題の記事は関連報道を出典にして書く作りなので、W31（事実は公式の一次情報だけ）に合わせて止める（2026-11-04）。
@@ -2802,6 +2805,8 @@ def main() -> int:
             prompt += quality.feedback_block([str(retry_rec["reason"])])
         if item.get("_public_interest"):
             prompt += public_interest.prompt_note(item["_public_interest"])  # 事件・災害・政治の書き方（台帳 A39）
+        if item.get("_trend_hit"):
+            prompt += public_interest.search_title_note(item["_trend_hit"])  # 検索されている言葉を題名に（台帳 A63）
         if item.get("release"):
             prompt += release_quality.prompt_note(item["release"])  # 発表時刻が決まった速報（統計・決算）の書き方（台帳 W35）
 
@@ -2813,6 +2818,8 @@ def main() -> int:
                 rec["scheduledRelease"] = item["release"]  # 公開前の門（release_quality.release_problems）とお知らせの門の例外に使う
             if item.get("_public_interest"):
                 rec["publicInterest"] = item["_public_interest"]  # 公共性の枠の印（1日の本数・門・安全情報のリンク。scripts/public_interest.py）
+            if item.get("_trend_hit"):
+                rec["searchTrend"] = item["_trend_hit"]  # いま検索で急上昇している言葉（台帳 A63。すぐ公開して Google ニュースのサイトマップに載せる目印）
             return rec
 
         started = time.time()

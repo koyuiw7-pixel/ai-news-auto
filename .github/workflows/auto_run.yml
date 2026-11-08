@@ -139,6 +139,14 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: timeout 840 python scripts/muse_articles.py --daily-cap "${{ steps.ramp.outputs.web_daily_cap }}" --max 3 --budget 700
 
+      # いま検索で急上昇している話題を、記事を作る直前に取り直す（2026-11-08 台帳 A63）。
+      # trends_collect.yml の毎時の予約は GitHub の都合で1日4回ほどしか動かなかったため、約20分おきに動くこの回でも集める。
+      # Googleトレンドの RSS を1回読むだけ（無料・API なし）。失敗しても記事づくりは止めない
+      - name: Refresh search trends
+        if: ${{ (inputs.fast_url || '') == '' }}
+        continue-on-error: true
+        run: timeout 120 python scripts/trends.py --enqueue
+
       # 速報レーンの回（fast_url あり）は、その記事だけを quality で作る（scripts/web_articles.py の --fast-url）。
       # 通常の回は、速報レーンの実行が待っていると今の記事を作り終えたところで早めに終えて譲る
       - name: Generate web articles
@@ -386,6 +394,9 @@ jobs:
           # Claude API の使用量（月の予算の管理。scripts/llm.py）。記事が増えなかった回も残す（残さないと使った分を数え漏らす）
           APIUSE=0
           if [ -n "$(git status --porcelain state/claude_api_usage.json state/pipeline_health.json state/muse_articles.json state/muse_images.json)" ]; then APIUSE=1; fi
+          # いま検索で急上昇している話題（scripts/trends.py。台帳 A63）
+          TRENDS=0
+          if [ -n "$(git status --porcelain state/trend_signals.json state/trend_queue.json)" ]; then TRENDS=1; fi
           if [ -n "$(git status --porcelain content)" ]; then
             # 直近の記事の索引（見張り番のレーダーが「同じ話題の記事がもうあるか」を見る）。記事が変わった回だけ書き直す
             python scripts/radar.py coverage || echo "::warning::記事の索引（state/coverage.json）を更新できませんでした"
@@ -400,6 +411,14 @@ jobs:
             SAFETY=$(git diff --cached --name-only --diff-filter=M -- 'content/articles/quake-*.json' \
               | xargs -r jq -r 'select(.safetyAlert == true) | .slug' | tr '\n' ' ')
             BREAKING="${BREAKING}${SAFETY}"
+            # いま検索で急上昇している言葉に当たった記事（searchTrend。台帳 A63）は待たずにデプロイして、
+            # Google ニュースのサイトマップと IndexNow にすぐ載せる（SNS の速報投稿にはしない）
+            TRENDING=$(git diff --cached --name-only --diff-filter=A -- 'content/articles/*.json' \
+              | xargs -r jq -r 'select((.searchTrend // "") != "") | .slug' | tr '\n' ' ')
+            if [ -n "$TRENDING" ]; then
+              echo "検索で急上昇している話題の記事: ${TRENDING}→ すぐデプロイします"
+              DUE=1
+            fi
             if [ -n "$BREAKING" ]; then
               echo "速報の記事: ${BREAKING}→ すぐデプロイして即時投稿します"
               DUE=1
@@ -426,6 +445,8 @@ jobs:
             MSG="chore(watch): 料金・リリースノートの見張りの記録を更新"
           elif [ "$APIUSE" = "1" ]; then
             MSG="chore(llm): Claude API の使用量・記事づくりの見張りを記録"
+          elif [ "$TRENDS" = "1" ]; then
+            MSG="chore(trends): 話題のキーワードを更新"
           else
             echo "変更なし。コミットをスキップします。"
             exit 0
@@ -438,6 +459,8 @@ jobs:
           if [ -f state/rivals_checked.json ]; then git add state/rivals_checked.json; fi
           if [ -f state/muse_articles.json ]; then git add state/muse_articles.json; fi
           if [ -f state/muse_images.json ]; then git add state/muse_images.json; fi
+          if [ -f state/trend_signals.json ]; then git add state/trend_signals.json; fi
+          if [ -f state/trend_queue.json ]; then git add state/trend_queue.json; fi
           git commit -m "$MSG"
           # 実行中に main が進んでいても、この回の記事を落とさずに載せ直して push する（scripts/git_safe_push.py）。
           # 別のジョブが同じ記事 JSON を直していたら項目ごとにマージする（この回が変えた項目だけこの回の値）。新しい記事は必ず残す
