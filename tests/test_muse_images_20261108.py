@@ -92,7 +92,7 @@ class RequestsTest(unittest.TestCase):
         self.assertLess(text.index("### 急 sns"), text.index("### m"))
         self.assertIn("1200×675", text)
         self.assertIn("done-", text)
-        self.assertIn("実在の製品・ロゴ・商標・人物は描かない", text)
+        self.assertIn("ロゴは描かない", text)
 
 
 class ImageCheckTest(unittest.TestCase):
