@@ -16,7 +16,7 @@ def test_followup_detected():
 
 def test_many_sources_trimmed_not_rejected():
     data = {"title": "ドコモ流出の続報で分かった対象の確かめ方", "genre": muse_format.GENRES[0], "notes": "", "body": "本文",
-            "sources": [{"url": f"https://www.docomo.ne.jp/info/{i}", "name": "ドコモ", "facts": "f"} for i in range(9)]}
+            "sources": [{"url": f"https://www.docomo.ne.jp/info/{i}", "name": "ドコモ", "facts": "f"} for i in range(12)]}
     problems = muse_format.problems(data, "20261109-お金-ドコモ続報.md")
     if problems is not None:
         assert not any("件まで" in p for p in problems)
