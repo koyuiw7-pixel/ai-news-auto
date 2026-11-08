@@ -87,9 +87,9 @@
     "uk-amazon-quick-user-group-2026-roundup"
   ],
   "todayActions": [
-    "繰り返しの依頼は、新しいAIを作る前に既存のエージェントへ定期実行を加えられないか確認する",
-    "業務の自動化を設計するときは、決まった手順をツールかワークフロー、判断を伴う作業をスキルに分けて考える",
-    "AWSの公式ブログで後続の記事や料金の発表を確認し、業務に取り入れる前に条件を公式発表で確かめる"
+    "繰り返しの依頼は、新しいエージェントを作る前に既存のエージェントへの定期的な指示として追加できないか確認する",
+    "自動化を設計するときは、単一の操作をツール、判断を伴う手順をスキル、順序を固定する手順をワークフローに分ける",
+    "AWS公式ブログでシリーズの後続記事を確認し、業務に取り入れる前に条件を公式発表で確かめる"
   ],
   "qualityScore": 88,
   "sourcePublishedAt": "2026-11-06T17:34:45+00:00",
@@ -178,5 +178,85 @@
       }
     ],
     "notes": "発表日と料金への影響について、資料で確認できない記述を削除しました。Slackの要約は複数の設計方法があることを補い、見出しとリードを具体的にしました。"
-  }
+  },
+  "insight": [
+    {
+      "text": "定期実行の指示は、判断に迷うと何もしない保守的な動きになり得ると書かれています。人が直接頼んだ場合は、止まるのではなく尋ねる形で動くと説明されています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/"
+    },
+    {
+      "text": "外部の出来事を合図にする起動には、新しいメール、Slackのメンション、ファイルの変更、webhookが挙げられています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "AWS公式ブログ（Machine Learning）",
+      "url": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+      "source": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+      "note": "この記事はシリーズの第1回で、後続の記事では運用基盤やバックグラウンド学習などを扱うと書かれています。"
+    },
+    {
+      "name": "Amazon Quick getting-started guide",
+      "url": "https://aws.amazon.com/quick/",
+      "source": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+      "note": "Amazon Quickの始め方を案内するページとして、読んだ記事のリンクに載っています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "繰り返しの依頼は、新しいエージェントを作る前に既存のエージェントへの定期的な指示として追加できないか確認する",
+      "source": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+      "steps": [
+        "同じ依頼を既存のエージェントへの指示として考える",
+        "時間で起動する定期実行のトリガーとして設定できるか確かめる",
+        "書式が必要ならスキル、順序を固定したいならワークフローを組み合わせる"
+      ]
+    },
+    {
+      "action": "自動化を設計するときは、単一の操作をツール、判断を伴う手順をスキル、順序を固定する手順をワークフローに分ける",
+      "source": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+      "steps": [
+        "メール送信など明確な単一の操作はツールに分ける",
+        "判断の余地がある手順はテンプレートや手順を含むスキルにする",
+        "承認の順番など処理の順序を固定する手順はワークフローにする"
+      ]
+    },
+    {
+      "action": "AWS公式ブログでシリーズの後続記事を確認し、業務に取り入れる前に条件を公式発表で確かめる",
+      "source": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+      "steps": [
+        "AWS公式ブログで後続記事が出ていないか確認する",
+        "運用基盤やバックグラウンド学習の記事が出たら内容を読む",
+        "業務に使う前に公式発表の条件を確かめる"
+      ],
+      "url": "https://aws.amazon.com/blogs/machine-learning/"
+    }
+  ],
+  "cause": {
+    "text": "Amazon Quickの開発で、エージェントの構成要素に共通の定義がなく、同じ仕組みが別の名前で作り直されていました。その重複が製品設計や利用者にも影響したため、共通の言葉として分類法を整理したと説明されています。",
+    "status": "background",
+    "source": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/"
+  },
+  "worries": [
+    {
+      "q": "毎朝の要約を頼むのに、新しいAIを作る必要はある？",
+      "a": "ページでは、この種の依頼は通常、新しいエージェントを作るのではなく既存のエージェントへの定期的な指示として扱えると説明されています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+      "action": "新しいエージェントを作る前に、既存のエージェントに定期実行の指示を追加できないか確認する。"
+    },
+    {
+      "q": "同じ依頼でも、仕組みによって結果は変わる？",
+      "a": "ページでは、同じ入力でも指示・能力・蓄積された記憶が違えば結果が変わることがあると説明されています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+      "action": "結果がぶれて困るときは、指示の内容と使える機能を見直し、必要ならスキルやワークフローを足す。"
+    },
+    {
+      "q": "AIが迷ったとき、勝手に動いて失敗しない？",
+      "a": "ページでは、定期実行は不確かなときは何もしない保守的な動きになり得て、人が頼んだ場合は止まるのではなく尋ねる形で動くと書かれています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+      "action": "定期実行を任せる前に、迷ったときの動きを一度確かめてから本番の依頼にする。"
+    }
+  ],
+  "depthAt": "2026-11-08T16:02:44+00:00"
 }

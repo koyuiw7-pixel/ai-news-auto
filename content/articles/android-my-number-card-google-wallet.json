@@ -96,8 +96,7 @@
   ],
   "todayActions": [
     "デジタル庁のウェブサイトで、自分のAndroidスマホが対応機種か確認する",
-    "使いたい銀行や決済アプリなどが、スマホのマイナンバーカードに対応しているか各社の案内を見る",
-    "スマホに暗証番号や生体認証のロックを設定しているか、あらためて確認する"
+    "使いたい銀行や決済アプリが、スマホのマイナンバーカードに対応しているか確認する"
   ],
   "qualityScore": 90,
   "late": true,
@@ -149,5 +148,81 @@
     "relevant": true,
     "at": "2026-11-08T08:05:30+00:00",
     "launch": true
-  }
+  },
+  "insight": [
+    {
+      "text": "使える場面の一覧は、ページ内のリンク先「デジタル庁のウェブサイト」で案内されています。事業者向けの活用方法も、同じデジタル庁のサイトで確認するよう書かれています。",
+      "source": "https://blog.google/intl/ja-jp/products/android-chrome-play/mynumbercard-on-android-launch/"
+    },
+    {
+      "text": "技術の詳しい説明は、リンクの「Google のセキュリティブログ」で確認できます。国際標準規格 ISO 18013-5 などに準拠したオープンな技術が基になっています。",
+      "source": "https://blog.google/intl/ja-jp/products/android-chrome-play/mynumbercard-on-android-launch/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "デジタル庁ウェブサイト（Android のマイナンバーカード）",
+      "url": "https://services.digital.go.jp/mynumbercard-android/",
+      "source": "https://blog.google/intl/ja-jp/products/android-chrome-play/mynumbercard-on-android-launch/",
+      "note": "ご利用の詳細と対応 Android スマートフォンは、このサイトで案内されています。"
+    },
+    {
+      "name": "デジタル庁ウェブサイト（スマホのマイナンバーカードの利用場面）",
+      "url": "https://www.digital.go.jp/policies/mynumber/mynumbercard-mdoc/private-usecase-list",
+      "source": "https://blog.google/intl/ja-jp/products/android-chrome-play/mynumbercard-on-android-launch/",
+      "note": "使える場面の一覧は、ページ内のリンク先で案内されています。事業者向けの活用方法もデジタル庁のウェブサイトで確認するよう書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "デジタル庁のウェブサイトで、自分のAndroidスマホが対応機種か確認する",
+      "source": "https://blog.google/intl/ja-jp/products/android-chrome-play/mynumbercard-on-android-launch/",
+      "steps": [
+        "対応 Android スマートフォンの詳細を確認する",
+        "自分の機種が対象になっているか見る"
+      ],
+      "url": "https://services.digital.go.jp/mynumbercard-android/"
+    },
+    {
+      "action": "使いたい銀行や決済アプリが、スマホのマイナンバーカードに対応しているか確認する",
+      "source": "https://blog.google/intl/ja-jp/products/android-chrome-play/mynumbercard-on-android-launch/",
+      "steps": [
+        "使いたいサービスの名前で対応状況を調べる",
+        "事業者の案内ページで対応を確かめる"
+      ],
+      "url": "https://www.digital.go.jp/policies/mynumber/mynumbercard-mdoc/private-usecase-list"
+    }
+  ],
+  "cause": {
+    "text": "実物のカードを出さずにスマホで本人確認などができるようにするため、属性証明機能を導入したとされています。名前・住所・年齢など必要な情報だけを選んで相手に共有できる仕組みです。",
+    "status": "background",
+    "source": "https://blog.google/intl/ja-jp/products/android-chrome-play/mynumbercard-on-android-launch/"
+  },
+  "worries": [
+    {
+      "q": "年齢確認で住所まで見せることになりませんか？",
+      "a": "名前・住所・年齢などから、その場に必要な情報だけを自分で選んで相手に共有できると案内されています。相手に見せる項目は、自分で選択できます。",
+      "source": "https://blog.google/intl/ja-jp/products/android-chrome-play/mynumbercard-on-android-launch/",
+      "action": "提示する前に、相手に共有する項目が必要なものだけか確かめ、不要な項目は選ばない。"
+    },
+    {
+      "q": "スマホをなくしたら、マイナンバーカードを悪用されない？",
+      "a": "ページでは、万一紛失した場合でも第三者による悪用を防ぐ安全対策を標準で備えていると説明されています。不正な情報盗取に対抗するデータ消去機能と、なりすましを防ぐ暗証番号・生体認証のロック機能です。",
+      "source": "https://blog.google/intl/ja-jp/products/android-chrome-play/mynumbercard-on-android-launch/",
+      "action": "なくしたときに備えて、スマホに暗証番号や生体認証のロックが設定されているか、今すぐ確かめておく。"
+    },
+    {
+      "q": "税や年金の情報も、スマホに入ってしまうのでしょうか？",
+      "a": "税や年金などプライバシー性の高い情報は、スマートフォン内には記録しないと説明されています。端末内に保存するのは、必要最小限の情報だけです。",
+      "source": "https://blog.google/intl/ja-jp/products/android-chrome-play/mynumbercard-on-android-launch/",
+      "action": "年金や医療費の情報は、マイナポータルで確認できると案内されています。必要なときに、そちらで確かめる。"
+    },
+    {
+      "q": "今日から、どの店やサービスでも使える？",
+      "a": "すべての店やサービスで使えるとはまだ案内されていません。機能は「順次」使えるようになるとされ、具体的な店舗・サービス名と時期はまだ発表されていません。",
+      "source": "https://blog.google/intl/ja-jp/products/android-chrome-play/mynumbercard-on-android-launch/",
+      "action": "使いたいサービスが対応しているか、事業者の案内で確認する。事業者向けは、デジタル庁のウェブサイトで案内されています。"
+    }
+  ],
+  "depthAt": "2026-11-08T16:03:17+00:00"
 }

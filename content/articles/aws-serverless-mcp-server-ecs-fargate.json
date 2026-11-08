@@ -83,8 +83,8 @@
     }
   ],
   "todayActions": [
-    "AWSの公式機械学習ブログにアクセスし、サーバーレスMCPサーバーの全体アーキテクチャと設定例を確認する。",
-    "自社のAIエージェント開発において、データレイク連携の共通化にModel Context Protocolを活用できるか検討する。"
+    "AWSの機械学習ブログで、サーバーレスMCPサーバーの全体構成と設定例を確認する",
+    "新しいデータセットを足す前に、テーブルの説明とカラムごとの説明・サンプル値をまとめたJSONを作る"
   ],
   "qualityScore": 85,
   "sourcePublishedAt": "2026-11-06T17:13:13+00:00",
@@ -126,7 +126,75 @@
     "ar": 2.0,
     "src": "https://ai-tech-express.jp/img/aws-serverless-mcp-server-ecs-fargate-6106526b.jpg"
   },
-  "coverTries": 2,
+  "coverTries": 3,
+  "insight": [
+    {
+      "text": "新しいデータセットは、メタデータJSONファイルを置くだけで、サーバーが次のパイプライン同期で自動的に見つけると書かれています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/"
+    },
+    {
+      "text": "テストでは、対象テーブルを絞る設定により、やり取り全体の待ち時間が15〜20秒の範囲に保たれたとされています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/"
+    },
+    {
+      "text": "新しい業務領域を追加するには、context mappingに項目を1つ足すだけでよいと説明されています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "AWSの機械学習ブログで、サーバーレスMCPサーバーの全体構成と設定例を確認する",
+      "source": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/",
+      "steps": [
+        "AWS機械学習ブログの記事を開く",
+        "Architecture walkthroughの説明を読む",
+        "Figure 1のリクエストの流れを見る",
+        "context mapping configurationの例を読む"
+      ],
+      "url": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/"
+    },
+    {
+      "action": "新しいデータセットを足す前に、テーブルの説明とカラムごとの説明・サンプル値をまとめたJSONを作る",
+      "source": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/",
+      "steps": [
+        "テーブル名と所属するデータベースを書く",
+        "テーブルの業務上の説明を書く",
+        "カラムごとの説明とサンプル値を書く"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "原因の話ではなく、AIエージェントが企業データレイクに接続する設計の公開です。データセットやエージェントが増えると権限管理が煩雑になり、新しいデータの追加に数日の工数がかかっていた課題を解決するためとされています。",
+    "status": "background",
+    "source": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/"
+  },
+  "worries": [
+    {
+      "q": "エージェントごとに権限がずれて、データが見えてはいけない人に見えない？",
+      "a": "公式ページでは、アクセス制御はMCPサーバー層で一元的に行うと説明されています。個々のエージェントに権限を任せると、権限の適用がずれていくことが課題として挙げられています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/",
+      "action": "自社の設計で、データへのアクセス制御をエージェントごとではなく一か所にまとめられるか確認する"
+    },
+    {
+      "q": "新しいデータを追加すると、コードの修正や再デプロイが必要になる？",
+      "a": "公式ページでは、新しいデータセットの追加にはメタデータJSONファイルだけで足り、コードの変更は不要と説明されています。サーバーは次のパイプライン同期で自動的にファイルを見つけるとしています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/",
+      "action": "新しいデータセットを足す前に、テーブルの説明とカラムごとの説明・サンプル値をまとめたJSONを作る"
+    },
+    {
+      "q": "会話の途中でサーバーが止まったら、やり取りの履歴は消える？",
+      "a": "公式ページでは、Fargateのタスクはステートレスで、会話の状態はDynamoDBに保存されると説明されています。そのためタスクを入れ替えたりスケールしたりしてもデータは失われないとされています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/",
+      "action": "会話履歴を保存する場所を決め、タスクを入れ替えても消えない設計になっているか確認する"
+    },
+    {
+      "q": "AIが有害な内容を返したり、悪意ある指示に乗っ取られたりしない？",
+      "a": "公式ページでは、Amazon Bedrock Guardrailsがすべてのモデルとのやり取りに適用され、有害なコンテンツのフィルタリングとプロンプトインジェクションのブロックを行うと説明されています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/",
+      "action": "AIにつなぐ前に、入力と出力をフィルターする仕組み（Bedrock Guardrailsなど）を必ず入れる"
+    }
+  ],
+  "depthAt": "2026-11-08T16:02:15+00:00",
   "gptReview": {
     "reviewedBy": "gpt-6.1-terra",
     "reviewedAt": "2026-11-08T15:57:07+00:00",

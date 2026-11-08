@@ -73,8 +73,8 @@
     }
   ],
   "todayActions": [
-    "対象となる横浜市内のイオン店舗を確認する",
-    "自宅にある対象の明治ブルガリアヨーグルトのカップを洗浄して持参の準備をする"
+    "回収を行う横浜市内の対象13店舗を、店舗一覧で住所から確認する",
+    "対象4種のカップを各家庭で洗浄し、店頭の専用回収BOXに持参する"
   ],
   "qualityScore": 88,
   "late": true,
@@ -104,5 +104,70 @@
     ],
     "ar": 1.5824,
     "src": "https://ai-tech-express.jp/img/meiji-yogurt-cup-recycling-yokohama-1395b725.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "対象は「明治ブルガリアヨーグルトLB81（400g）」シリーズ4種で、ページには「プレーン」「プレーン脂肪0」「カルシウムと鉄分」「プレーンHOME MADE STORY」の4商品名が一覧されています。",
+      "source": "https://www.meiji.co.jp/corporate/pressrelease/2026/09_18/index.html?link=rss"
+    },
+    {
+      "text": "回収作業および配送は株式会社兼子が実施し、回収時間は「店舗の営業時間に準じます」と書かれています。",
+      "source": "https://www.meiji.co.jp/corporate/pressrelease/2026/09_18/index.html?link=rss"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "イオン・イオンスタイル（総合スーパー）の神奈川県の店舗一覧",
+      "url": "https://www.aeon.com/store/list/%E7%B7%8F%E5%90%88%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC/%E3%82%A4%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A4%E3%82%AA%E3%83%B3%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB/%E9%96%A2%E6%9D%B1%E5%9C%B0%E6%96%B9/%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C/?q=aeoncom&_gl=1*ip73ca*_ga*MTMzMTgzNjMwMS4xNzgyNjI1ODM3*_ga_NKWMN91MD3*czE3ODk1NTE4NTIkbzYkZzEkdDE3ODk1NTE4NTQkajU4JGwwJGgw",
+      "source": "https://www.meiji.co.jp/corporate/pressrelease/2026/09_18/index.html?link=rss",
+      "note": "回収時間は各店舗の営業時間に準じると書かれています。店舗の営業時間は店舗一覧のページで確認できる形です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "回収を行う横浜市内の対象13店舗を、店舗一覧で住所から確認する",
+      "source": "https://www.meiji.co.jp/corporate/pressrelease/2026/09_18/index.html?link=rss",
+      "steps": [
+        "店舗の一覧で住所を確認",
+        "イオン・イオンスタイル（総合スーパー）の神奈川県の店舗一覧を開く",
+        "対象の店舗を選ぶ"
+      ],
+      "url": "https://www.aeon.com/store/list/%E7%B7%8F%E5%90%88%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC/%E3%82%A4%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A4%E3%82%AA%E3%83%B3%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB/%E9%96%A2%E6%9D%B1%E5%9C%B0%E6%96%B9/%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C/?q=aeoncom&_gl=1*ip73ca*_ga*MTMzMTgzNjMwMS4xNzgyNjI1ODM3*_ga_NKWMN91MD3*czE3ODk1NTE4NTIkbzYkZzEkdDE3ODk1NTE4NTQkajU4JGwwJGgw"
+    },
+    {
+      "action": "対象4種のカップを各家庭で洗浄し、店頭の専用回収BOXに持参する",
+      "source": "https://www.meiji.co.jp/corporate/pressrelease/2026/09_18/index.html?link=rss",
+      "steps": [
+        "対象商品の4種か確認する",
+        "各家庭で洗浄済みにする",
+        "店頭の専用回収BOXに入れる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "ヨーグルトなどの紙カップは牛乳パックと異なる防水加工があり、内容物が付着することもあるため、古紙回収が難しくリサイクルが進んでいませんでした。",
+    "status": "background",
+    "source": "https://www.meiji.co.jp/corporate/pressrelease/2026/09_18/index.html?link=rss"
+  },
+  "worries": [
+    {
+      "q": "手元のヨーグルトのカップは回収の対象になる？",
+      "a": "回収対象は「明治ブルガリアヨーグルトLB81（400g）」シリーズの4種で、ページには4つの商品名が挙げられています。それ以外の商品は対象として書かれていません。",
+      "source": "https://www.meiji.co.jp/corporate/pressrelease/2026/09_18/index.html?link=rss",
+      "action": "カップの商品名が4種のどれかを確かめ、対象なら洗って店頭に持参する。"
+    },
+    {
+      "q": "横浜市以外に住んでいても出せる？",
+      "a": "回収場所は横浜市内のイオンリテール・イオンフードスタイル計13店舗と書かれています。ページには、横浜市以外での回収は示されていません。",
+      "source": "https://www.meiji.co.jp/corporate/pressrelease/2026/09_18/index.html?link=rss",
+      "action": "横浜市内の対象13店舗の住所を確認し、近い店舗の回収BOXを使う。"
+    },
+    {
+      "q": "対象商品を別の店で買ったカップでも持ち込める？",
+      "a": "実施対象は「対象商品を購入いただいているお客さま」とだけ書かれています。どの店で買ったかは、ページには書かれていません。",
+      "source": "https://www.meiji.co.jp/corporate/pressrelease/2026/09_18/index.html?link=rss",
+      "action": "対象商品を使い切ったら、洗ったカップを対象店舗の回収BOXに持参する。"
+    }
+  ],
+  "depthAt": "2026-11-08T16:03:40+00:00"
 }
