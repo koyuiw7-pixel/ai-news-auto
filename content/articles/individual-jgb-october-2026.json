@@ -71,9 +71,8 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "個人向け国債を検討するなら、11月分の利率を財務省の金利情報のページで確かめる",
-    "取扱金融機関に口座があるか確かめ、開設に必要な本人確認書類を用意しておく",
-    "中途換金の条件（発行後1年・1万円単位）を、買う前に理解しておく"
+    "財務省の個人向け国債のページで、11月分の利率を確かめる",
+    "取扱金融機関で国債の口座があるか確かめ、本人確認書類を用意する"
   ],
   "qualityScore": 95,
   "factSources": [
@@ -114,5 +113,119 @@
       }
     ],
     "notes": "発行予定日をリードの冒頭に置き、見出しを具体的にしました。中途換金の特例を補い、口座開設や募集期間の確認に必要な情報を加えました。"
-  }
+  },
+  "insight": [
+    {
+      "text": "発行後1年を経過すれば中途換金できますが、災害救助法の適用対象となった被害や保有者本人が亡くなった場合は、1年より前でも特例で中途換金できます。特例では被害や相続人の地位を証明する書類が必要です。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/index.html"
+    },
+    {
+      "text": "金利の決まり方は3種類で違います。変動10年は「基準金利×0.66」、固定5年は「基準金利-0.05%」、固定3年は「基準金利-0.03%」で、どの種類も金利の下限は0.05%（年率）です。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/index.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "財務省理財局国債業務課 個人国債係",
+      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/houdouhappyou/p20261106.htm",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/houdouhappyou/p20261106.htm",
+      "howTo": [
+        "トップページ",
+        "国債",
+        "個人投資家のみなさまへ",
+        "個人向け国債",
+        "報道発表"
+      ],
+      "phone": "03-3581-4111(内線5929)",
+      "note": "制度についての問い合わせ先です。受付時間はこのページに書かれていません。"
+    },
+    {
+      "name": "個人向け国債 ご購入方法・取扱金融機関一覧",
+      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/how_to_buy_financial_institution/",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/index.html",
+      "howTo": [
+        "個人向け国債",
+        "ご購入方法・取扱金融機関一覧はこちら"
+      ],
+      "note": "取扱金融機関の一覧です。口座開設には金融機関によって数日かかる場合があり、手数料が必要なこともあります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "財務省の個人向け国債のページで、11月分の利率を確かめる",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/index.html",
+      "steps": [
+        "財務省の個人向け国債のページを開く",
+        "「今月の国債はこちら」を押す",
+        "11月分の利率を確認する"
+      ],
+      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html"
+    },
+    {
+      "action": "取扱金融機関で国債の口座があるか確かめ、本人確認書類を用意する",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/index.html",
+      "steps": [
+        "「ご購入方法・取扱金融機関一覧はこちら」を開く",
+        "取扱金融機関を確認する",
+        "運転免許証など本人確認書類、マイナンバー、印鑑を用意する"
+      ],
+      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/how_to_buy_financial_institution/"
+    }
+  ],
+  "cause": {
+    "text": "財務省は、取扱機関からの報告をもとに、令和8年10月に申し込まれた額を種類ごとにまとめて発表しています。報告の訂正等により計数に異同を生じることがあります。",
+    "status": "background",
+    "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/houdouhappyou/p20261106.htm"
+  },
+  "worries": [
+    {
+      "q": "途中で換金すると、損をしないか心配",
+      "a": "発行後1年を経過すれば、額面1万円単位で中途換金できます。その際、直前2回分の各利子（税引前）相当額×0.79685が差し引かれます。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/index.html",
+      "action": "買う前に、中途換金の条件と差し引かれる額の計算方法を確認する。"
+    },
+    {
+      "q": "利子に税金はかかる？",
+      "a": "利子は受取時に20.315%分の税金が差し引かれます。障害者などの非課税貯蓄制度（マル優、特別マル優）の適用を受ければ非課税にできますが、詳細は税務署などに問い合わせるよう案内されています。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/index.html",
+      "action": "マル優の対象になるか、税務署などに問い合わせて確認する。"
+    },
+    {
+      "q": "口座のある金融機関が破綻したら、お金は戻らない？",
+      "a": "元本や利子の支払いは国が責任を持って行うとされています。口座のある金融機関が破綻した場合でも、その権利は保護され、支払いを受けられなくなることはないとされています。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/index.html",
+      "action": "口座を開く金融機関の開設条件や手数料を、事前に確かめておく。"
+    },
+    {
+      "q": "買った後に、家族へ譲ったり相続させたりできる？",
+      "a": "1万円から1万円単位で譲渡や相続ができます。個人間であればいつでも譲渡でき、相続人の口座へ移管することも可能です。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/index.html",
+      "action": "譲渡や相続の手続きは、お取引のある金融機関に問い合わせる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "途中で現金が必要になったら換金する？",
+      "situation": "発行後1年を過ぎ、お金が必要になった",
+      "recommend": "換金の条件と差し引かれる額を確かめてから判断",
+      "reason": "中途換金すると現金は受け取れるが、直前2回分の各利子（税引前）相当額×0.79685が差し引かれる。利子の一部は受け取れなくなる。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/index.html"
+    },
+    {
+      "question": "固定と変動、どちらを選ぶ？",
+      "situation": "利率の先行きを考えて選びたい",
+      "recommend": "利率の決まり方を比べてから検討する",
+      "reason": "固定5年・3年は発行時の利率が満期まで変わらず、変動10年は半年ごとに適用利率が変わる。実勢金利が上がれば受取利子が増えることもある。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/index.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "1年より前に換金できる特例がある",
+    "cause": "発表の数字はどう集計されたか",
+    "steps": "今日、利率と口座を確かめる順番",
+    "desk": "迷ったときに問い合わせる窓口",
+    "worries": "中途換金や税金、破綻したときは？",
+    "guide": "今すぐ買うか、待つか迷ったら"
+  },
+  "depthAt": "2026-11-08T16:33:33+00:00"
 }

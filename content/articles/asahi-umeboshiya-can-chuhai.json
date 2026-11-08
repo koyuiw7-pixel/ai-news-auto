@@ -88,8 +88,7 @@
     }
   ],
   "todayActions": [
-    "アサヒ空想開発局のサイトで、11月24日の販売開始時刻や購入条件を確認する",
-    "購入を考える場合は、6本セット2,640円（送料込み）という価格を家計と照らして決める",
+    "アサヒ空想開発局のサイトで、11月24日の販売開始と販売価格を確認する",
     "今後の発売情報は、アサヒ空想開発局の公式Xで確認する"
   ],
   "relatedSlugs": [
@@ -134,5 +133,108 @@
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/asahi-the-bitterist-cookie-limited-can-809a57c2.jpg"
   },
-  "coverTries": 3
+  "coverTries": 3,
+  "insight": [
+    {
+      "text": "販売サイトのURLは「https://fantasy.asahibeer.co.jp/」と商品概要に明記されている。今後の情報は公式X「https://x.com/asahi_fantasy」で確認できる。",
+      "source": "https://www.asahibeer.co.jp/news/2026/1102_1.html"
+    },
+    {
+      "text": "商品概要では、純アルコール量は1本あたり13.6g、アルコール分は5%と記載されている。購入前に飲む量の目安を確かめられる。",
+      "source": "https://www.asahibeer.co.jp/news/2026/1102_1.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "アサヒ空想開発局",
+      "url": "https://fantasy.asahibeer.co.jp/",
+      "source": "https://www.asahibeer.co.jp/news/2026/1102_1.html",
+      "howTo": [
+        "商品概要",
+        "販売サイト"
+      ],
+      "note": "数量限定の販売です。販売数量は発表されていません。"
+    },
+    {
+      "name": "アサヒ空想開発局 公式X",
+      "url": "https://x.com/asahi_fantasy",
+      "source": "https://www.asahibeer.co.jp/news/2026/1102_1.html",
+      "howTo": [
+        "商品概要",
+        "アサヒ空想開発局公式X"
+      ],
+      "note": "今後の発売情報の確認先として記載されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "アサヒ空想開発局のサイトで、11月24日の販売開始と販売価格を確認する",
+      "source": "https://www.asahibeer.co.jp/news/2026/1102_1.html",
+      "steps": [
+        "販売サイトのURLを開く",
+        "発売日「11月24日」を確認する",
+        "販売価格「2,640円（税込・送料込み）」を確認する"
+      ],
+      "url": "https://fantasy.asahibeer.co.jp/"
+    },
+    {
+      "action": "今後の発売情報は、アサヒ空想開発局の公式Xで確認する",
+      "source": "https://www.asahibeer.co.jp/news/2026/1102_1.html",
+      "steps": [
+        "公式X「https://x.com/asahi_fantasy」を開く",
+        "投稿で販売情報を確かめる"
+      ],
+      "url": "https://x.com/asahi_fantasy"
+    }
+  ],
+  "worries": [
+    {
+      "q": "店頭やほかのネット通販でも買えますか？",
+      "a": "公式ページでは、新商品テスト販売サイト「アサヒ空想開発局」で数量限定で販売すると書かれています。店頭での販売については触れていません。",
+      "source": "https://www.asahibeer.co.jp/news/2026/1102_1.html",
+      "action": "店頭で探す前に、販売サイト「アサヒ空想開発局」で販売情報を確認する。"
+    },
+    {
+      "q": "1本から買えますか、それとも6本セットだけ？",
+      "a": "販売価格は「缶340ml×6本セット」で2,640円（税込・送料込み）と書かれています。単品での販売は発表されていません。",
+      "source": "https://www.asahibeer.co.jp/news/2026/1102_1.html",
+      "action": "6本セットの価格2,640円（税込・送料込み）を、家計の予算と照らして決める。"
+    },
+    {
+      "q": "どれくらいの数が売られるの？売り切れは早い？",
+      "a": "販売数量は発表されていません。数量限定で販売するとだけ書かれています。",
+      "source": "https://www.asahibeer.co.jp/news/2026/1102_1.html",
+      "action": "販売開始の11月24日に、販売サイトの表示を見て購入を決める。"
+    },
+    {
+      "q": "梅干しはいつ、どうやって入れるの？",
+      "a": "缶の上部にある個包装の梅干しを、開栓後に入れる仕組みです。個包装の上から手で押してつぶせ、マドラーなどは使いません。",
+      "source": "https://www.asahibeer.co.jp/news/2026/1102_1.html",
+      "action": "開栓したあと、個包装の上から手で押して好みの程度につぶして入れる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "今すぐ買う？販売開始を待つ？",
+      "situation": "お酒が好きで、この商品が気になる",
+      "recommend": "急がなくてよい",
+      "reason": "11月24日から販売サイトで数量限定で買えます。販売数量は発表されていないため、売り切れの時期は分かりません。6本セット2,640円（税込・送料込み）と表示されています。",
+      "source": "https://www.asahibeer.co.jp/news/2026/1102_1.html"
+    },
+    {
+      "question": "今すぐ買う？販売開始を待つ？",
+      "situation": "予算を決めてから買いたい",
+      "recommend": "価格を家計と照らして決める",
+      "reason": "価格は6本セット2,640円（税込・送料込み）と表示されています。単品の価格や販売数量は発表されていないため、6本で予算に合うかを先に決めると判断しやすくなります。",
+      "source": "https://www.asahibeer.co.jp/news/2026/1102_1.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "缶の数字と、確かめるサイトの場所",
+    "steps": "今日、販売サイトで確かめること",
+    "desk": "買う前に見る公式の場所",
+    "worries": "店頭や単品は？梅干しの入れ方は？",
+    "guide": "今すぐ買うか、待つか"
+  },
+  "depthAt": "2026-11-08T16:34:27+00:00"
 }

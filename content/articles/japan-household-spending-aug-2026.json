@@ -71,9 +71,8 @@
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "家計簿や通帳の費目を、この表の費目と並べて、自分の支出の増減を確かめる",
-    "総務省統計局の家計調査報告（PDF）で、表1の費目別の数字を直接確かめる",
-    "ご自身の光熱費の明細を見て、電気代が前年同月より増えたか減ったかを比べる"
+    "家計簿や通帳の費目を、PDFの表1の費目と並べて増減を確かめる",
+    "ご自身の電気代の明細で、前年同月より増えたか減ったかを比べる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -96,5 +95,83 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-08T09:35:04+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "勤労者世帯の実収入は、持家の帰属家賃を除く総合で実質化すると0.9%減、総合で実質化すると0.6%減です。物価の決め方で減り方が変わります。",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf"
+    },
+    {
+      "text": "季節調整値は、例年1月分を公表する時に過去に遡って改定されます。前月との比べ方は、後の公表で数字が変わることがあります。",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "総務省統計局 家計調査報告（2026年8月分）",
+      "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf",
+      "note": "費目別の金額と寄与度は、PDFの表1（2ページ目）にあります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "家計簿や通帳の費目を、PDFの表1の費目と並べて増減を確かめる",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf",
+      "steps": [
+        "PDFの表1で費目名を見る",
+        "「名目」の列の前年同月比を確かめる",
+        "家計簿の同じ費目と並べて比べる"
+      ],
+      "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf"
+    },
+    {
+      "action": "ご自身の電気代の明細で、前年同月より増えたか減ったかを比べる",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf",
+      "steps": [
+        "電力会社の明細や検針票を開く",
+        "8月分の電気代を見る",
+        "前年8月の金額と比べる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "統計局は、実質の減少を押し下げた主な項目として、私立大学の授業料等（寄与度-0.44）、教養娯楽サービス（-0.38）、国内パック旅行費（-0.31）、電気代（-0.31）を挙げています。",
+    "status": "background",
+    "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf"
+  },
+  "worries": [
+    {
+      "q": "実質と名目、家計はどちらの数字で比べればいい？",
+      "a": "表1には名目と実質の両方が載っています。実質は消費者物価指数（持家の帰属家賃を除く総合）で物価の変動を除いた数字です。",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf",
+      "action": "家計簿の金額は名目なので、表1の「名目」の列と並べて比べてみましょう。"
+    },
+    {
+      "q": "二人以上の世帯の数字は、一人暮らしにも当てはまる？",
+      "a": "この数字は二人以上の世帯の平均で、8月の世帯人員は2.86人です。一人暮らしの支出は、この表の対象ではありません。",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf",
+      "action": "自分の世帯の人数を確かめ、この表が二人以上の世帯の数字だと意識して見る。"
+    },
+    {
+      "q": "収入も同じように減っているの？",
+      "a": "勤労者世帯の8月の実収入は616,704円で、名目では1.3%増えました。実質では0.9%減り、手取りにあたる可処分所得は実質0.8%減です。",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf",
+      "action": "給与明細で手取り（差し引き後の額）を見て、前年同月と比べてみましょう。"
+    },
+    {
+      "q": "8月は前の月より増えたの？",
+      "a": "季節の影響を除いた季節調整値で、8月は前月より実質0.1%増えました。ただ、3か月後方移動平均では実質3.3%減です。",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf",
+      "action": "1か月の増減だけでなく、前年同月比と3か月の平均を並べて見る。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "実質の数字は、どの物価で割ったかで変わる",
+    "cause": "減った理由は、どの費目が効いたか",
+    "steps": "今日、自分の家計と比べる2つの確認",
+    "desk": "数字を直接確かめられる公式の表",
+    "worries": "実質と名目、家計はどちらで比べる？"
+  },
+  "depthAt": "2026-11-08T16:32:04+00:00"
 }
