@@ -295,6 +295,20 @@ jobs:
             timeout 500 python scripts/images.py --changed --recent 40 --max 15 --budget 420
           fi
 
+      # Muse（Meta の AI アプリ）が描いた表紙の写真を付け、今日の写真の無い記事を優先の順に Muse に頼む（2026-11-08 オーナー承認・台帳 I8）。
+      # 写真の順: 使える公式の写真 → Muse の写真（1日 MUSE_IMAGE_DAILY 枚・未設定なら20）→ Workers AI の表紙（無料の40枚の中）→ 文字だけ。
+      # 写真は content/muse_images/（オーナーの Mac の scripts/muse_images_push.py が入れる）。状態は state/muse_images.json
+      - name: Muse images
+        if: ${{ (inputs.fast_url || '') == '' }}
+        continue-on-error: true
+        timeout-minutes: 5
+        env:
+          MUSE_IMAGE_DAILY: ${{ vars.MUSE_IMAGE_DAILY || '20' }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_KV_TOKEN: ${{ secrets.CF_DEPLOY_TOKEN }}
+        run: timeout 240 python scripts/muse_images.py
+
       # 同じ発表の重複記事に印（duplicateOf）を付ける（scripts/story.py。サイトは noindex・canonical を代表へ・サイトマップから外す）。
       # 生成前にも同じ判定で外しているが、別の回・別のレーンで作られたものをここで拾う。直近7日に載せた記事だけ見直す（LLM なし）
       - name: Mark duplicate stories
@@ -371,7 +385,7 @@ jobs:
           if [ -n "$(git status --porcelain state/page_watch.json)" ]; then WATCH=1; fi
           # Claude API の使用量（月の予算の管理。scripts/llm.py）。記事が増えなかった回も残す（残さないと使った分を数え漏らす）
           APIUSE=0
-          if [ -n "$(git status --porcelain state/claude_api_usage.json state/pipeline_health.json state/muse_articles.json)" ]; then APIUSE=1; fi
+          if [ -n "$(git status --porcelain state/claude_api_usage.json state/pipeline_health.json state/muse_articles.json state/muse_images.json)" ]; then APIUSE=1; fi
           if [ -n "$(git status --porcelain content)" ]; then
             # 直近の記事の索引（見張り番のレーダーが「同じ話題の記事がもうあるか」を見る）。記事が変わった回だけ書き直す
             python scripts/radar.py coverage || echo "::warning::記事の索引（state/coverage.json）を更新できませんでした"
@@ -423,6 +437,7 @@ jobs:
           if [ -f state/pipeline_health.json ]; then git add state/pipeline_health.json; fi
           if [ -f state/rivals_checked.json ]; then git add state/rivals_checked.json; fi
           if [ -f state/muse_articles.json ]; then git add state/muse_articles.json; fi
+          if [ -f state/muse_images.json ]; then git add state/muse_images.json; fi
           git commit -m "$MSG"
           # 実行中に main が進んでいても、この回の記事を落とさずに載せ直して push する（scripts/git_safe_push.py）。
           # 別のジョブが同じ記事 JSON を直していたら項目ごとにマージする（この回が変えた項目だけこの回の値）。新しい記事は必ず残す

@@ -225,6 +225,8 @@ NON_PROSE = {
     "bluesky_post.py": "投稿の記録",
     "muse_ingest.py": "記事は読むだけ（Muse の動画の記録 state/sns_video.json・state/muse_queue.json を書く）",
     "muse_queue.py": "記事は読むだけ（Muse に頼む候補の記録 state/muse_queue.json を書く）",
+    "muse_images.py": "表紙の写真の欄（coverImage・coverCredit）だけ（Muse の写真を付ける。台帳 I8）",
+    "muse_images_push.py": "記事は読むだけ（オーナーの Mac で Muse の写真を content/muse_images/ に入れ、requests.md・ledger.md を書く。台帳 I8）",
     "muse_articles_push.py": "記事は読むだけ（オーナーの Mac で入稿を受け箱 content/muse_inbox/ に入れ、ledger.md に題名と URL を書く。台帳 A59）",
     "buying_guides.py": "比較ガイド（/compare。記事ではない）",
     "check_images.py": "壊れた画像の差し替え",

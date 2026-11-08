@@ -204,8 +204,8 @@ def recheck(article: dict) -> bool:
     """今ある表紙のイメージが見出しとつながっているかを確かめ直す。だめなら外して True（作り直しの対象にする）"""
     import images  # noqa: PLC0415
 
-    if cover_path(article) != "ai":
-        return False
+    if cover_path(article) != "ai" or (article.get("coverCredit") or {}).get("model") == "muse":
+        return False  # Muse の写真は Muse が記事に合うかを確かめて描いたもの（台帳 I8）。Workers AI の判定で外さない
     data, _, _ = images.http_get(article["coverImage"], ua=images.BOT_UA, timeout=30)
     image = images.open_image(data)
     if relevant(image, article, ""):

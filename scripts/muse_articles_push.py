@@ -37,7 +37,7 @@ LABEL = "com.komuro.saisoku-muse-articles"
 PLIST = HOME / "Library" / "LaunchAgents" / f"{LABEL}.plist"
 INTERVAL_SEC = 25 * 60
 JST = timezone(timedelta(hours=9))
-SPARSE = ["content/articles", "content/muse_inbox", "scripts", "state"]
+SPARSE = ["content/articles", "content/muse_inbox", "content/muse_images", "scripts", "state"]
 SKIP_NAMES = {"FORMAT.md", "ledger.md", "README.md"}
 SETTLE_SEC = 90  # 書き込み中のファイルを持っていかない（最後の変更からこの秒数たったものだけ）
 LEDGER_DAYS = 7
@@ -60,6 +60,8 @@ def ensure_clone() -> None:
     if (CLONE / ".git").exists():
         git("fetch", "--quiet", "origin", "main")
         git("reset", "--quiet", "--hard", "origin/main")  # 専用の写し（オーナーの作業用の checkout ではない）
+        if set(git("sparse-checkout", "list").stdout.split()) != set(SPARSE):
+            git("sparse-checkout", "set", *SPARSE)  # 足した置き場（Muse の画像 content/muse_images・台帳 I8）
         return
     BASE.mkdir(parents=True, exist_ok=True)
     subprocess.run(["git", "clone", "--quiet", "--filter=blob:none", "--sparse", REMOTE, str(CLONE)], check=True, env=GIT_ENV, timeout=600)
@@ -182,7 +184,7 @@ def article_rows(days: int = LEDGER_DAYS) -> list[dict]:
     return sorted(rows, key=lambda r: r["when"], reverse=True)
 
 
-def write_ledger(items: dict, pending: list[str]) -> None:
+def write_ledger(items: dict, pending: list[str], extra: list[str] | None = None) -> None:
     now = datetime.now(JST)
     lines = [
         "# サイソク 記事の台帳（Muse さんが書く前に読む）",
@@ -213,7 +215,20 @@ def write_ledger(items: dict, pending: list[str]) -> None:
     lines += [f"- {r['when']:%H:%M} {r['title']}{'（Muse）' if r['muse'] else ''} {SITE}/articles/{r['slug']}" for r in today] or ["- まだありません"]
     lines += ["", f"## この{LEDGER_DAYS}日の記事（今日を除く・新しい順・{len(rows) - len(today)}本）", ""]
     lines += [f"- {r['when']:%m/%d} {r['title']}{'（Muse）' if r['muse'] else ''} {SITE}/articles/{r['slug']}" for r in rows if r not in today]
+    lines += extra or []  # Muse さんの画像の結果（scripts/muse_images_push.py・台帳 I8）
     (FOLDER / "ledger.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def images(no_push: bool) -> list[str]:
+    """Muse の表紙の写真（~/Downloads/saisoku-images/）を送る（scripts/muse_images_push.py・台帳 I8）。ledger.md に足す行"""
+    try:
+        sys.path.insert(0, str(CLONE / "scripts"))
+        import muse_images_push  # noqa: PLC0415
+
+        return muse_images_push.run(CLONE, git=git, push=push, no_push=no_push)
+    except Exception as error:  # noqa: BLE001 - 画像で失敗しても記事の入稿は止めない
+        log(f"Muse の画像でエラー: {str(error)[:200]}")
+        return []
 
 
 def run(no_push: bool = False) -> int:
@@ -243,7 +258,7 @@ def run(no_push: bool = False) -> int:
             if not push(message):
                 log("push できなかったので、ファイルはフォルダに残して次の回にもう一度送ります")
                 git("reset", "--quiet", "--hard", "origin/main", check=False)
-                write_ledger(items, pending)
+                write_ledger(items, pending, images(no_push))
                 return 1
             for src, name in new:
                 dest = move(src, FOLDER / "sent")
@@ -251,7 +266,7 @@ def run(no_push: bool = False) -> int:
                     dest.rename(dest.with_name(name))
                 pending.append(name)
             log(f"入稿を送りました: {', '.join(n for _, n in new)}")
-    write_ledger(items, pending)
+    write_ledger(items, pending, images(no_push))
     return 0
 
 
