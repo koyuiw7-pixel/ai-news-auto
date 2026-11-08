@@ -334,14 +334,12 @@ def apply_one(path: Path, article: dict, row: dict | None, *, dry_run: bool = Fa
     tier = int((row or {}).get("priority") or TIER_CORE)
     if got == "official":
         return "skipped", "公式の写真が付いたので使いませんでした"
-    if got == "muse":
-        return "skipped", "Muse の写真がもう付いています"
     if got == "ai" and tier not in HIGH_TIERS:
         return "skipped", "先に Workers AI の表紙が付いた記事で、優先が高くないので替えませんでした"
     url, _ = images.store(f"{article.get('slug')}-muse", fit_size(image), dry_run)
     before = article.get("coverImage") or ""
     article["coverImage"] = url
-    article["coverCredit"] = muse_credit()
+    article["coverCredit"] = muse_credit()  # 同じ記事に Muse が描き直して置いたときは新しい方に替える（URL が変わるのでキャッシュも替わる）
     article.pop("coverTries", None)
     return "applied", url + (f"（Workers AI の表紙 {before} から替えた）" if before and got == "ai" else "")
 

@@ -150,6 +150,12 @@ class ApplyTest(unittest.TestCase):
         self.assertEqual(status, "skipped")
         store.assert_not_called()
 
+    def test_muse_redraw_replaces_own_image(self):
+        article = art("a", coverImage="https://ai-tech-express.jp/img/a-muse-old.jpg", coverCredit={"kind": "ai", "model": "muse"})
+        (status, _), _ = self.run_apply(article, {"priority": 3})
+        self.assertEqual(status, "applied")
+        self.assertEqual(article["coverImage"], "https://ai-tech-express.jp/img/x-muse-abc.jpg")
+
     def test_dark_image_rejected(self):
         from PIL import Image
 
