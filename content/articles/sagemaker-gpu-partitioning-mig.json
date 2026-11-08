@@ -86,9 +86,9 @@
     }
   ],
   "todayActions": [
-    "使っているSageMakerのエンドポイントが推論コンポーネントを使う構成か、確かめる。",
-    "P4dでmig-1g.10gbを使う場合は、既定のイメージではなく580系ドライバーのAMIを指定する。",
-    "使うGPUの機種の分割単位を、公式の対応表で確かめる。"
+    "使っているエンドポイントが推論コンポーネントを使う構成か、確かめる。",
+    "P4dでmig-1g.10gbを使うなら、InferenceAmiVersionに580系のAMIを指定する。",
+    "使うGPUの機種の分割単位を、AWSの対応表で確かめる。"
   ],
   "relatedSlugs": [
     "google-gke-inference-gateway-4x-speed"
@@ -155,5 +155,122 @@
       }
     ],
     "notes": "料金の未発表は資料から確認できないため、資料に記載がないことを示しました。対象外のエンドポイントとGPU以外の共有資源を補い、見出しと説明を具体的にしました。"
-  }
+  },
+  "insight": [
+    {
+      "text": "1つのモデルが複数のGPUを必要とする場合は、区画には分けられず、GPUを丸ごと割り当てる必要があると書かれています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/"
+    },
+    {
+      "text": "MIGでは区画の構成を、区画が空いているときにしか変えられません。そのためSageMaker AIでは、構成をエンドポイントの作成時に選ぶ形になっています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/"
+    },
+    {
+      "text": "区画ごとに専用のメモリと計算能力が割り当てられるため、GPUの費用をモデル・チーム・テナント単位で割り振りやすいとされています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "GPU partitioning（SageMaker AI のドキュメント）",
+      "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/inference-components-accelerator-partitioning.html",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/",
+      "note": "ブログ本文のリンク「GPU partitioning」の先で、区画の設定について説明しているページです。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "使っているエンドポイントが推論コンポーネントを使う構成か、確かめる。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/",
+      "steps": [
+        "エンドポイントの設定を開く",
+        "推論コンポーネントを使っているか確かめる",
+        "単一モデルやサーバーレスなら分割はできない"
+      ],
+      "url": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/"
+    },
+    {
+      "action": "P4dでmig-1g.10gbを使うなら、InferenceAmiVersionに580系のAMIを指定する。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/",
+      "steps": [
+        "プロダクションバリアントのInferenceAmiVersionを指定する",
+        "値にal2023-ami-sagemaker-inference-gpu-4-1を入れる",
+        "既定のP4dイメージ（470.256.02）のままにしない"
+      ],
+      "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/inference-components-accelerator-partitioning.html"
+    },
+    {
+      "action": "使うGPUの機種の分割単位を、AWSの対応表で確かめる。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/",
+      "steps": [
+        "GPU partitioningのページを開く",
+        "使う機種（P4d・P5・G7・G7e）の区画数を見る",
+        "機種によって区画の種類が違う点に注意する"
+      ],
+      "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/inference-components-accelerator-partitioning.html"
+    }
+  ],
+  "cause": {
+    "text": "複数のモデルを1枚のGPUで動かす方法には課題がありました。マルチモデルエンドポイントはモデル同士が隔離されず、Kubernetesは自分で運用する必要がありました。今回、NVIDIAのMIGをSageMaker AIで使えるようにしました。",
+    "status": "background",
+    "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/"
+  },
+  "worries": [
+    {
+      "q": "今使っているエンドポイントでも使えますか？",
+      "a": "推論コンポーネントを使うエンドポイントだけが対象です。単一モデル、サーバーレス、異なるインスタンスを混在させたプールは分割できません。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/",
+      "action": "まず、エンドポイントが推論コンポーネントを使っているかを確かめる。"
+    },
+    {
+      "q": "同じGPUの他のモデルに影響は出ませんか？",
+      "a": "区画はハードウェアで分けられ、1つの区画の負荷がほかのモデルのp99応答時間に響きにくいとされています。クラッシュも同じGPUのほかの区画には広がらないとされています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/",
+      "action": "モデルごとに区画を分け、負荷テストでほかのモデルの応答時間を確かめる。"
+    },
+    {
+      "q": "モデルが増えると、呼び出しの待ち時間は増えますか？",
+      "a": "区画に載ったモデルは、呼び出しのたびに読み込み直す必要がなく、読み込みの待ちがないとされています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/",
+      "action": "よく呼ばれるモデルは、推論コンポーネントのCopyCountを増やして同時アクセスに備える。"
+    },
+    {
+      "q": "区画の構成は後から変えられますか？",
+      "a": "MIGでは、区画が空いているときにだけ構成を変えられます。SageMaker AIでは、構成をエンドポイントの作成時に選ぶ形になっています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/",
+      "action": "区画の構成は作成時に決まるので、使うモデルと区画の大きさを先に決めておく。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "区画を使うために、エンドポイントを作り直す？",
+      "situation": "単一モデルのエンドポイントを使っている",
+      "recommend": "区画は使えないので、構成の見直しを検討する",
+      "reason": "単一モデルやサーバーレスのエンドポイントでは区画を使えません。区画の構成はエンドポイントの作成時に選ぶため、構成を変えるなら作り直しが必要になります。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/"
+    },
+    {
+      "question": "区画を使うために、エンドポイントを作り直す？",
+      "situation": "推論コンポーネントを使っている",
+      "recommend": "モデルの大きさに合う区画を選ぶ価値がある",
+      "reason": "小さめのモデルは、GPU丸ごとより区画の大きさが合う場合があるとされています。区画の数は機種で決まり、7を超えません。構成はエンドポイントの作成時に決めます。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/"
+    },
+    {
+      "question": "1モデルに複数のGPUが要るとき、区画を使える？",
+      "situation": "1モデルが複数GPUを使う",
+      "recommend": "区画ではなくGPU丸ごとで検討する",
+      "reason": "複数GPUを要するモデルは区画に分けられず、GPUを丸ごと使う必要があるとページにあります。区画による節約は、このモデルには当てはまりません。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "区画に分けられないモデルと、作成時に決める構成",
+    "cause": "なぜ、GPUを分けて複数モデルを載せるのか",
+    "steps": "今日やる3つの確認",
+    "desk": "分割の設定を確かめる先",
+    "worries": "区画で応答は安定する？読み込みは？",
+    "guide": "区画を使うか、エンドポイントを見直すか"
+  },
+  "depthAt": "2026-11-08T17:32:30+00:00"
 }

@@ -100,7 +100,7 @@
   ],
   "todayActions": [
     "自社のCopilot使用状況メトリクスのポリシーが有効か、管理者に確認する",
-    "閲覧権限（View Copilot Metrics）があるか、自分のロールを確認する",
+    "自分に「View Copilot Metrics」の権限があるか、ロールを確認する",
     "公式のAPIドキュメントで、リポジトリ別レポートの取得方法を確認する"
   ],
   "qualityScore": 88,
@@ -132,5 +132,96 @@
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/copilot-usage-metrics-code-review-addressed-rate-33587c74.jpg"
   },
-  "coverTries": 3
+  "coverTries": 3,
+  "officialDesk": [
+    {
+      "name": "Copilot usage metrics API documentation",
+      "url": "https://docs.github.com/rest/copilot/copilot-usage-metrics",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate",
+      "note": "Visit the Copilot usage metrics API documentation to get started. APIの取得方法は、この文書で確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自社のCopilot使用状況メトリクスのポリシーが有効か、管理者に確認する",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate",
+      "steps": [
+        "管理者に、Copilot使用状況メトリクスのポリシーが有効か尋ねる",
+        "無効なら、有効にできるかを管理者と相談する"
+      ],
+      "url": "https://docs.github.com/rest/copilot/copilot-usage-metrics"
+    },
+    {
+      "action": "自分に「View Copilot Metrics」の権限があるか、ロールを確認する",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate",
+      "steps": [
+        "企業の所有者、請求管理者、組織の所有者に当たるか確かめる",
+        "カスタムロールに「View Copilot Metrics」が含まれるか見る"
+      ]
+    },
+    {
+      "action": "公式のAPIドキュメントで、リポジトリ別レポートの取得方法を確認する",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate",
+      "steps": [
+        "ドキュメントで Copilot usage metrics API を開く",
+        "repos-1-day のレポートの取得方法を読む"
+      ],
+      "url": "https://docs.github.com/rest/copilot/copilot-usage-metrics"
+    }
+  ],
+  "cause": {
+    "text": "既存の項目は、Copilotのコードレビューが動いた回数と、提案を適用するボタンが押された回数しか示していませんでした。開発者は多くの指摘をボタン以外の方法で直しているため、新しい項目で対応の全体を捉えられるようにしました。",
+    "status": "background",
+    "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate"
+  },
+  "worries": [
+    {
+      "q": "ボタンを押さずに直した指摘も数えられる？",
+      "a": "数えられます。対応には、提案をそのまま適用した場合のほか、Copilotに修正を頼んだ場合、自分でコードを書き換えた場合、別のプルリクエストで直すと返信した場合も含まれます。",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate",
+      "action": "リポジトリ別レポートの total_comments_addressed を開き、ボタン以外の対応も含む対応済みの数を確認する"
+    },
+    {
+      "q": "数字は、いつの分として数えられる？",
+      "a": "指摘は、そのプルリクエストがマージされたときに評価されるため、Copilotが指摘を投稿した日ではなく、マージされた日の数字に入ります。",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate",
+      "action": "レポートを読むとき、指摘を投稿した日ではなく、プルリクエストをマージした日の行で数字を確かめる"
+    },
+    {
+      "q": "既存の「適用」ボタンの数字と何が違う？",
+      "a": "既存のtotal_copilot_applied_suggestionsは、そのまま適用できる提案のうち人が適用した分だけを数えます。新しい項目は評価した指摘をすべて数え、対応の方法を問いません。両者は同じ数字ではありません。",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate",
+      "action": "既存の適用数と新しい対応数を並べて見比べ、同じ数字だと思い込まないようにする"
+    },
+    {
+      "q": "Copilotのクラウドエージェントが作ったPRも数えられる？",
+      "a": "ボットが作ったプルリクエストは、通常は指摘の評価が行われません。ただし、人が修正を求めずにマージされた件数には、これらのプルリクエストも含まれます。",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate",
+      "action": "ボットが作ったプルリクエストは、対応率ではなく、修正依頼なしのマージ件数で見る"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "レポートを見る権限がないとき、どうする？",
+      "situation": "View Copilot Metrics の権限がない",
+      "recommend": "権限のある人に、レポートを見てもらう形を相談する",
+      "reason": "閲覧できるのは、企業の所有者、企業の請求管理者、組織の所有者、または View Copilot Metrics 権限を持つカスタムロールの保持者です。権限がなければ、このレポートは見られません。",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate"
+    },
+    {
+      "question": "使用状況メトリクスのポリシーが無効のとき、どうする？",
+      "situation": "ポリシーがオフのまま",
+      "recommend": "急がず、有効にするかを管理者と話し合う",
+      "reason": "このレポートは、Copilot使用状況メトリクスのポリシーが有効でないと見られません。有効にするかどうかは、社内の運用方針で判断することになります。",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-adds-code-review-details-and-addressed-rate"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ新しい数字を足したのか",
+    "steps": "レポートを見るまでに確かめること",
+    "desk": "公式のAPIドキュメントの場所",
+    "worries": "ボタン以外の対応や、数え方はどうなる？",
+    "guide": "権限やポリシーがないときの決め方"
+  },
+  "depthAt": "2026-11-08T17:33:49+00:00"
 }

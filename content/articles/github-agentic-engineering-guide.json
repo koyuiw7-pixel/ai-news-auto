@@ -134,5 +134,44 @@
     "src": "https://ai-tech-express.jp/img/github-agentic-engineering-guide-b5d40f23.jpg"
   },
   "coverTries": 3,
-  "sectionsPolishedAt": "2026-11-08T06:13:44+00:00"
+  "sectionsPolishedAt": "2026-11-08T06:13:44+00:00",
+  "insight": [
+    {
+      "text": "GitHub Copilotアプリのエージェントの作業は、会話・コードの変更・作業の文脈を失わずにVS Codeへ移せると、公式ページで紹介されています。",
+      "source": "https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Session continuity（Copilotエージェントのセッションの管理と追跡）",
+      "url": "https://docs.github.com/copilot/how-tos/copilot-on-github/use-copilot-agents/manage-and-track-agents",
+      "source": "https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/"
+    }
+  ],
+  "worries": [
+    {
+      "q": "AIにレビューを任せると、人が見なくなって危ない？",
+      "a": "このページでは、自動レビューで人の確認をどこまで減らせるかは書かれていません。発表されていません。",
+      "source": "https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/",
+      "action": "自動レビューの指摘は、人が読んでから採用するかを決める。"
+    },
+    {
+      "q": "セッションを途中で別の端末に移すと、作業が消える？",
+      "a": "VS Codeへの移行では、会話、コードの変更、作業の文脈を失わずに続けられると紹介されています。",
+      "source": "https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/",
+      "action": "移したいセッションの続け方を、公式ドキュメントのSession continuityで確かめる。"
+    },
+    {
+      "q": "AIで秘密情報の検出を使うと、何が良くなる？",
+      "a": "文脈を見る分類器で検出の質を高め、中央値のスキャン実行時間を86%短くしたと書かれています。どれだけ精度が上がったかは、ページの範囲で確認できます。",
+      "source": "https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/",
+      "action": "AI secret detectionの設定ページで、自分のリポジトリで有効にできるか確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "VS Codeへ、会話を残したままエージェントを移せる",
+    "desk": "セッションの続け方は公式ページで確認",
+    "worries": "レビューやセキュリティ、AIに任せても大丈夫？"
+  },
+  "depthAt": "2026-11-08T17:32:53+00:00"
 }

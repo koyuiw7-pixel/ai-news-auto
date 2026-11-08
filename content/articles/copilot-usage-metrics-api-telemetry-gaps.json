@@ -71,9 +71,9 @@
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "企業でCopilotを管理しているなら、usage metricsのポリシーが有効かどうかを確かめる",
+    "企業のCopilot設定で、Copilot usage metricsのポリシーが有効かどうかを確かめる",
     "1日レポートで client_telemetry_present が false のユーザーを確認する",
-    "IDEと拡張機能の版を社員に確かめ、最低バージョンは公式ドキュメントで確認する"
+    "IDEと拡張機能の版を社員に確かめ、最低対応バージョンを公式ドキュメントで確認する"
   ],
   "qualityScore": 93,
   "sourcePublishedAt": "2026-11-06T00:08:31+00:00",
@@ -140,5 +140,89 @@
     ],
     "notes": "リードと見出しを、管理者が確認できる内容と必要な条件が伝わる形に整理しました。資料で確認できない「まだ発表されていない」という記述は削除しました。"
   },
-  "sectionsPolishedAt": "2026-11-08T14:21:46+00:00"
+  "sectionsPolishedAt": "2026-11-08T14:21:46+00:00",
+  "insight": [
+    {
+      "text": "この項目を見るには、「Copilot usage metrics」のポリシーが有効になっている必要があります。閲覧できるのは企業オーナーや組織オーナーなどで、カスタムロールの場合は「View Copilot Metrics」権限が要ります。",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Copilot usage metrics API documentation",
+      "url": "https://docs.github.com/rest/copilot/copilot-usage-metrics",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps",
+      "note": "利用を始めるには、このAPIのドキュメントを見るよう案内されています。"
+    },
+    {
+      "name": "minimum supported versions",
+      "url": "https://docs.github.com/copilot/concepts/billing-and-usage/copilot-usage-metrics/copilot-metrics",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps",
+      "note": "IDEと拡張機能ごとの最低対応バージョンは、このページへのリンクで案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "企業のCopilot設定で、Copilot usage metricsのポリシーが有効かどうかを確かめる",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps",
+      "steps": [
+        "管理者権限で企業の設定を開く",
+        "Copilot usage metricsのポリシーの状態を見る",
+        "有効になっていなければ、有効にする"
+      ],
+      "url": "https://docs.github.com/rest/copilot/copilot-usage-metrics"
+    },
+    {
+      "action": "1日レポートで client_telemetry_present が false のユーザーを確認する",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps",
+      "steps": [
+        "企業または組織のユーザー別1日レポートを開く",
+        "client_telemetry_presentの値を見る",
+        "値がfalseの人を控える"
+      ],
+      "url": "https://docs.github.com/rest/copilot/copilot-usage-metrics"
+    },
+    {
+      "action": "IDEと拡張機能の版を社員に確かめ、最低対応バージョンを公式ドキュメントで確認する",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps",
+      "steps": [
+        "usage_metrics_requirementsで満たさない項目を見る",
+        "社員にIDEと拡張機能の版を確認してもらう",
+        "最低対応バージョンは公式ドキュメントで確認する"
+      ],
+      "url": "https://docs.github.com/copilot/concepts/billing-and-usage/copilot-usage-metrics/copilot-metrics"
+    }
+  ],
+  "cause": {
+    "text": "この項目は、エディターから利用データが届かない原因を管理者が見つけやすくするために追加されました。よくある原因は、古いエディターや拡張機能、IDE側でテレメトリをオフにしていること、プロキシーやファイアウォールがイベントを止めていることです。",
+    "status": "background",
+    "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps"
+  },
+  "worries": [
+    {
+      "q": "テレメトリが届かない人は、利用していないことになる？",
+      "a": "いいえ。テレメトリが届かない人もアクティブユーザーとして数えられます。ただし、コード行数や機能別、モデル別の内訳はレポートに出ません。",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps",
+      "action": "1日レポートで client_telemetry_present が false の人を見つけ、そのユーザーのエディターの版やテレメトリ設定を確かめる"
+    },
+    {
+      "q": "件数は足したり、日をまたいで合計してもいい？",
+      "a": "足さないでください。ページには、同じ人が2つの件数の両方に入ることがあるため足し合わせないとあります。日をまたいで足しても、重複のない人数は分かりません。",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps",
+      "action": "2つの件数は別々に読み、足した数字を重複のない人数として報告資料に書かないようにする"
+    },
+    {
+      "q": "数字が空欄や「0」に見えるのは、データが無いから？",
+      "a": "nullや項目が省略されている場合は、データを利用できないことを意味します。ゼロやfalseではありません。この項目が追加される前の日には、値がありません。",
+      "source": "https://github.blog/changelog/2026-11-05-usage-metrics-api-flags-telemetry-and-version-gaps",
+      "action": "空欄の日を0と読まず、データがない日として扱い、対象の日付を控えておく"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "データが届かない主な原因",
+    "steps": "管理者が今日確かめること",
+    "desk": "確認に使うドキュメント",
+    "worries": "データが欠けたとき、よくある疑問"
+  },
+  "depthAt": "2026-11-08T17:33:18+00:00"
 }
