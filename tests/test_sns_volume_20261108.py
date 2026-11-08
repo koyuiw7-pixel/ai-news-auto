@@ -39,7 +39,7 @@ class SnsVolumeTest(unittest.TestCase):
     def test_variable_lowers_and_spreads_but_never_raises(self):
         with patch.dict(os.environ, {"SNS_PER_DAY": "5"}):
             self.assertEqual(sns_plan.x_daily_cap(), 5)
-            self.assertEqual(sns_plan.x_slots_jst(), [(7, 30), (11, 30), (14, 30), (18, 30), (22, 0)])
+            self.assertEqual(sns_plan.x_slots_jst(), [(7, 30), (12, 30), (16, 15), (20, 30), (23, 0)])  # 2026-11-08 夜: 夜に寄せた枠
             self.assertEqual(sns_plan.slots_jst()[0], (7, 15))  # 朝のまとめの枠は残る
         with patch.dict(os.environ, {"SNS_PER_DAY": "40"}):
             self.assertEqual(sns_plan.daily_cap(), 15)

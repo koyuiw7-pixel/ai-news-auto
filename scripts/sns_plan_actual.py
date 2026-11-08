@@ -86,6 +86,13 @@ def build(now: datetime | None = None) -> dict:
         when = _jst((rec or {}).get("blueskyAt") or (rec or {}).get("postedAt") or "") if isinstance(rec, dict) else None
         if uri and _today(when, day):
             b_act.append({"time": when.strftime("%H:%M"), "slug": slug, "url": str(uri)})
+    # 2026-11-07〜 Bluesky だけの枠の投稿は state/bluesky_extra.json に残る（ここを読んでいなかったので、11/8 は12本出ていたのに「2本」と出ていた）
+    seen = {r["slug"] for r in b_act}
+    for slug, rec in _load("bluesky_extra.json").items():
+        when = _jst((rec or {}).get("at") or "") if isinstance(rec, dict) else None
+        if isinstance(rec, dict) and rec.get("uri") and _today(when, day) and slug not in seen:
+            b_act.append({"time": when.strftime("%H:%M"), "slot": rec.get("slot") or "", "slug": slug, "url": str(rec["uri"]),
+                          "style": rec.get("style") or ""})
     out["sns"]["bluesky"] = {"slots": _slots(sns_plan.bluesky_slots_jst), "actual": sorted(b_act, key=lambda r: r["time"])}
 
     # X・Facebook: それぞれの記録（slot は予定の枠）
@@ -94,7 +101,8 @@ def build(now: datetime | None = None) -> dict:
         for slug, rec in _load(name).items():
             when = _jst((rec or {}).get("at") or "") if isinstance(rec, dict) else None
             if _today(when, day) and rec.get("id"):
-                act.append({"time": when.strftime("%H:%M"), "slot": rec.get("slot") or "", "slug": slug, "bufferId": rec.get("id")})
+                act.append({"time": when.strftime("%H:%M"), "slot": rec.get("slot") or "", "slug": slug, "bufferId": rec.get("id"),
+                            "style": rec.get("style") or ""})
         out["sns"][key] = {"slots": _slots(fn), "actual": sorted(act, key=lambda r: r["time"])}
 
     for v in out["sns"].values():

@@ -68,6 +68,12 @@
      （URL だけにしない）。URL は utm_campaign=<記事の slug>&utm_content=reader_reply。「｜」は使わない。
      地震・津波の型（disaster）・リンク無しの比べ（control）はこの決まりの外。朝のまとめは state/threads_hold.json の digest で別に止める。
 
+  23. （2026-11-08 夜 オーナー承認）X・Bluesky・Facebook も Threads と同じ読者向けの書き方（kind="reader"・scripts/sns_reader.py・
+     check_reader_post）。文面は Threads の文面（state/threads_reader.json）を SNS ごとに合わせて使い回す。誰の話か・数字1つ・
+     決め手は記事に残し、最後の文で記事にしかないものを言う。リンクは「続き（◯◯）→ URL」の文（X は返信・Bluesky と Facebook は本文の最後）。
+     URL は utm_source=<SNS>&utm_campaign=<記事の slug>&utm_content=reader_reply（X）／reader_body（Bluesky・Facebook）。
+     X は全角140字まで・タグは災害・行事だけ1つまで。Bluesky は300字まで・タグは1つまで（災害・安全は付けない）。Facebook はタグなし。
+
 違反したら: 投稿しない・ログに出す・GitHub の issue（ラベル sns-rule-violation）を立てるか、開いているものにコメントを足す。
 新しく Buffer / Bluesky / Threads の投稿 API を呼ぶ所を作るときは、必ずこの enforce を直前に呼ぶ（tests/test_sns_rules.py が確かめる）。
 
@@ -1164,13 +1170,14 @@ def _reader_norm(line: str) -> str:
     return re.sub(r"[\s、。「」]", "", str(line or ""))
 
 
-def check_threads_reader(platform: str, text: str, reply_text: str, article: dict | None, *,
-                         recent_endings: list[str] | None = None, recent_forms: list[str] | None = None) -> list[str]:
-    """ルール22: Threads の記事の自動投稿の新しい書き方。本文 text（リンク無し）と返信 reply_text（「続き（◯◯）→ URL」）"""
+def _reader_core(platform: str, text: str, reply_text: str, article: dict | None, *, urls: list[str] | None = None,
+                 utm_content: str = READER_UTM_CONTENT, recent_endings: list[str] | None = None,
+                 recent_forms: list[str] | None = None) -> list[str]:
+    """ルール22・23 の中身。text は本文（リンク・ハッシュタグの行を除いたもの）、reply_text は「続き（◯◯）→ URL」の行。
+    urls はリンクの行の URL（無ければ reply_text から読む）"""
     out: list[str] = []
     article = article or {}
-    if norm_platform(platform) != "threads":
-        return ["[ルール22] 新しい書き方は Threads だけ"]
+    platform = norm_platform(platform)
     body = str(text or "").strip()
     lines = [x.strip() for x in body.splitlines() if x.strip()]
     first = lines[0] if lines else ""
@@ -1234,7 +1241,7 @@ def check_threads_reader(platform: str, text: str, reply_text: str, article: dic
         out.append(f"[ルール22] 押しつけ・煽りの言い方（「{m.group(0)}」）")
     # 返信
     reply = str(reply_text or "").strip()
-    urls = links_in(reply)
+    urls = list(urls) if urls else links_in(reply)
     lead = strip_links(reply).strip()
     if not urls:
         out.append("[ルール22] 返信に記事のリンクがない")
@@ -1245,12 +1252,79 @@ def check_threads_reader(platform: str, text: str, reply_text: str, article: dic
     slug = str(article.get("slug") or "")
     for u in urls[:1]:
         q = urllib.parse.parse_qs(_url(u).query)
-        want = {"utm_source": "threads", "utm_medium": "social", "utm_campaign": slug, "utm_content": READER_UTM_CONTENT}
+        want = {"utm_source": UTM_SOURCE.get(platform, platform), "utm_medium": "social", "utm_campaign": slug, "utm_content": utm_content}
         if slug and f"/articles/{slug}" not in _url(u).path:
             out.append("[ルール22] 返信のリンクがこの記事を指していない")
         bad = [k for k, v in want.items() if (q.get(k) or [""])[0] != v]
         if bad:
-            out.append(f"[ルール22] 返信のリンクの UTM（{', '.join(bad)}）。utm_campaign は記事の slug・utm_content は {READER_UTM_CONTENT}")
+            out.append(f"[ルール22] 返信のリンクの UTM（{', '.join(bad)}）。utm_campaign は記事の slug・utm_content は {utm_content}")
+    return out
+
+
+
+
+def check_threads_reader(platform: str, text: str, reply_text: str, article: dict | None, *,
+                         recent_endings: list[str] | None = None, recent_forms: list[str] | None = None) -> list[str]:
+    """ルール22: Threads の記事の自動投稿の新しい書き方。本文 text（リンク無し）と返信 reply_text（「続き（◯◯）→ URL」）"""
+    if norm_platform(platform) != "threads":
+        return ["[ルール22] 新しい書き方は Threads だけ"]
+    return _reader_core("threads", text, reply_text, article, recent_endings=recent_endings, recent_forms=recent_forms)
+
+
+# ルール23（2026-11-08 夜 オーナー承認）: X・Bluesky・Facebook も Threads と同じ読者向けの書き方（scripts/sns_reader.py）。
+#   X: 本文（全角140字まで・リンク無し）＋返信「続き（◯◯）→ URL」（utm_source=x・utm_content=reader_reply）。タグは災害・行事だけ1つまで
+#   Bluesky: 本文＋最後に「続き（◯◯）→ URL」の行（リンクカードつき・utm_content=reader_body）。タグは1つまで（災害・安全は付けない）
+#   Facebook: Threads の本文＋最後に「続き（◯◯）→ URL」の行（リンクカードか動画・utm_content=reader_body）。タグは付けない
+READER_BODY_UTM_CONTENT = "reader_body"
+READER_LINK_LINE_RE = re.compile(r"^続き（[^）]{2,20}）→")
+
+
+def reader_parts(platform: str, text: str, reply_text: str = "", links: list[str] | None = None) -> tuple[str, str, list[str], list[str]]:
+    """(本文, リンクの行, URL, ハッシュタグ)。X はリンクの行が返信。Bluesky・Facebook は本文の「続き（◯◯）→」の行"""
+    platform = norm_platform(platform)
+    lines = str(text or "").strip().splitlines()
+    tags = HASHTAG_RE.findall(str(text or ""))
+    if platform == "x":
+        body = "\n".join(x for x in lines if not (x.strip() and not HASHTAG_RE.sub("", x).strip()))
+        reply = str(reply_text or "").strip().split("\n")[0]
+        return body.strip(), reply, links_in(reply), tags
+    idx = next((i for i in range(len(lines) - 1, -1, -1) if READER_LINK_LINE_RE.match(lines[i].strip())), -1)
+    if idx < 0:
+        return "\n".join(lines).strip(), "", list(links or []), tags
+    link_line = HASHTAG_RE.sub("", lines[idx]).strip()
+    after = [x for x in lines[idx + 1:] if x.strip() and HASHTAG_RE.sub("", x).strip()]
+    body = "\n".join(lines[:idx] + after).strip()
+    urls = [u for u in (list(links or []) + links_in(link_line)) if "://" in u] or links_in(link_line)
+    return body, link_line, urls, tags
+
+
+def check_reader_post(platform: str, text: str, reply_text: str, article: dict | None, links: list[str] | None = None) -> list[str]:
+    """ルール23: X・Bluesky・Facebook の読者向けの書き方（Threads の書き方＝ルール22 を SNS ごとに合わせたもの）"""
+    platform = norm_platform(platform)
+    if platform not in ("x", "bluesky", "facebook"):
+        return [f"[ルール23] 読者向けの書き方の確かめは X・Bluesky・Facebook だけ（{platform}）"]
+    body, link_line, urls, tags = reader_parts(platform, text, reply_text, links)
+    out = []
+    if not link_line:
+        out.append("[ルール23] 「続き（◯◯）→ URL」の行がない" + ("（X は返信）" if platform == "x" else "（本文の最後）"))
+    if platform in ("bluesky", "facebook"):
+        lines = [x.strip() for x in str(text or "").strip().splitlines() if x.strip() and HASHTAG_RE.sub("", x).strip()]
+        if lines and not READER_LINK_LINE_RE.match(lines[-1]):
+            out.append("[ルール23] 「続き（◯◯）→ URL」は本文の最後の行に置く（ハッシュタグの行は後ろに置いてよい）")
+    content = READER_UTM_CONTENT if platform == "x" else READER_BODY_UTM_CONTENT
+    for problem in _reader_core(platform, body, link_line, article, urls=urls, utm_content=content):
+        out.append(problem.replace("[ルール22] 本文にリンクを書かない（リンクは返信だけ。11/3 に本文のリンクで表示が落ちた）",
+                                   "[ルール23] 本文の中にリンクを書かない（リンクは「続き（◯◯）→」の行だけ）")
+                   .replace("[ルール22] 返信", "[ルール23] リンクの行" if platform != "x" else "[ルール23] 返信"))
+    if platform == "x":
+        allowed = sns_plan.x_hashtag(article)
+        if len(tags) > 1 or (tags and tags[0] != allowed):
+            out.append(f"[ルール23] X のハッシュタグは災害・大きな行事だけ1つまで（今は{' '.join(tags)}）")
+    elif platform == "bluesky":
+        if len(tags) > 1 or (tags and safety_topic(article)):
+            out.append(f"[ルール23] Bluesky のハッシュタグは1つまで・災害・安全の話題には付けない（今は{' '.join(tags)}）")
+    elif tags:
+        out.append("[ルール23] Facebook の文面にハッシュタグを付けない")
     return out
 
 
@@ -1673,8 +1747,10 @@ def check_post(
         if why := sns_plan.excluded(article):
             out.append(f"[ルール10] {why}")
         hook_form = sns_plan.hook_format_on() and platform != "x" and not hook_problems(_body_without_link_line(content))
-        if kind == "reader":
+        if kind == "reader" and platform == "threads":
             out += check_threads_reader(platform, text, reply_text, article)  # Threads の新しい書き方（ルール22・台帳 S46）
+        elif kind == "reader":
+            out += check_reader_post(platform, text, reply_text, article, links)  # X・Bluesky・Facebook の読者向けの書き方（ルール23）
         elif kind == "brief":
             out += check_brief(platform, text, content, article)  # Bluesky だけの2行の文面（ルール19・台帳 S40）
         elif kind == "xpost":
@@ -1695,7 +1771,9 @@ def check_post(
                 out.append(f"[ルール14] 決まった呼びかけ・災害の話題の呼びかけ（「{first[:24]}」）")
     if kind != "digest":
         # 地震・津波の型（disaster）は気象庁のデータを入れた決まった文面なので、重なりの検査はしない（急ぎの知らせを止めない）
-        for first, second in (duplicate_lines(content)[:2] if kind != "disaster" else []):
+        # 読者向けの書き方の「続き（◯◯）→ URL」の行は、最後の文で言ったものの短い名前なので重なりに数えない（ルール22・23）
+        dup_content = "\n".join(x for x in content.splitlines() if not READER_LINK_LINE_RE.match(x.strip())) if kind == "reader" else content
+        for first, second in (duplicate_lines(dup_content)[:2] if kind != "disaster" else []):
             out.append(f"[ルール16] 同じことを2回書いている（「{first[:20]}…」と「{second[:20]}…」）。後ろの行は次の新しい事実にする（台帳 S37）")
         if m := OLD_FOOTER_LEFT_RE.search(f"{text}\n{reply_text}"):
             out.append(f"[ルール17] 以前の決まった案内（「{m.group(0).strip()}」）が残っている。リンクだけの行にする（台帳 S38）")
@@ -1881,8 +1959,8 @@ def campaign_kind(platform: str, urls: list[str], default: str = "article") -> s
             return "xpost"
         if platform == "facebook" and campaign[0] == FB_CAMPAIGN:
             return "fbpost"
-        if platform == "threads" and (urllib.parse.parse_qs(_url(u).query).get("utm_content") or [""])[0] == READER_UTM_CONTENT:
-            return "reader"
+        if (urllib.parse.parse_qs(_url(u).query).get("utm_content") or [""])[0] in (READER_UTM_CONTENT, READER_BODY_UTM_CONTENT):
+            return "reader"  # Threads（ルール22）と X・Bluesky・Facebook（ルール23）の読者向けの書き方
     return default
 
 

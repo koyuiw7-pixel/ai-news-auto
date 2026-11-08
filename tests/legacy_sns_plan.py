@@ -12,9 +12,9 @@ import sns_plan  # noqa: E402
 _REAL = sns_plan.plan
 LEGACY = {
     "slots_jst": ["07:15", "12:15", "18:45", "20:30"], "daily_cap": 5, "per_day_max": 5,
-    "bluesky": {"slots_jst": ["07:30", "13:00", "21:00"], "daily_cap": 3},
-    "x": {"slots_jst": ["07:30", "12:30", "21:00"], "daily_cap": 3},
-    "facebook": {"slots_jst": ["07:30", "12:30", "20:00"], "daily_cap": 3},
+    "bluesky": {"slots_jst": ["07:30", "13:00", "21:00"], "daily_cap": 3, "window_end": "23:00"},
+    "x": {"slots_jst": ["07:30", "12:30", "21:00"], "daily_cap": 3, "window_end": "23:00"},
+    "facebook": {"slots_jst": ["07:30", "12:30", "20:00"], "daily_cap": 3, "window_end": "23:00"},
 }
 
 

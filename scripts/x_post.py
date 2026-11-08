@@ -32,6 +32,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import bluesky_post as bp  # noqa: E402  記事の読み込み・同じ話題の判定・検索に出す記事の基準を同じものにする
 import sns_plan  # noqa: E402
+import sns_reader  # noqa: E402  2026-11-08 夜: Threads と同じ読者向けの書き方（ルール23）
 import sns_rules  # noqa: E402
 import threads_post as tp  # noqa: E402
 
@@ -192,18 +193,29 @@ def gate_kind(article: dict) -> str:
     return "disaster" if article.get("disaster") else "xpost"
 
 
-def build_input(article: dict, channel_id: str, text: str | None = None) -> dict:
+def compose_post(article: dict) -> dict:
+    """X に出す文面 {"text", "reply", "kind", "style"}。2026-11-08 夜（ルール23）から、Threads の読者向けの文面（誰の話か・数字1つ・
+    決め手は記事に）があればそれを X の長さに合わせて使い、返信は「続き（◯◯）→ URL」。無ければ今までの X の書き方（ルール20）。
+    地震・津波の型は今までどおり"""
+    if not article.get("disaster") and not alert(article):
+        if got := sns_reader.x_post(article):
+            return {"text": got["text"], "reply": got["reply"], "kind": "reader", "style": "reader"}
+    return {"text": x_text(article), "reply": reply_link(article), "kind": gate_kind(article), "style": "classic"}
+
+
+def build_input(article: dict, channel_id: str, text: str | None = None, post: dict | None = None) -> dict:
     """Buffer の createPost の入力（本文＋記事のカード、返信に記事のリンク）。いますぐ出す"""
-    text = text if text is not None else x_text(article)
-    thread = [{"text": text, "assets": [{"image": {"url": tp.card_url(article)}}]}, {"text": reply_link(article), "assets": []}]
-    return {"channelId": channel_id, "schedulingType": "automatic", "text": text, "assets": [],
+    post = post or ({"text": text, "reply": reply_link(article)} if text is not None else compose_post(article))
+    thread = [{"text": post["text"], "assets": [{"image": {"url": tp.card_url(article)}}]}, {"text": post["reply"], "assets": []}]
+    return {"channelId": channel_id, "schedulingType": "automatic", "text": post["text"], "assets": [],
             "metadata": {"twitter": {"thread": thread}}, "mode": "shareNow"}
 
 
-def problems(article: dict, text: str) -> list[str]:
+def problems(article: dict, text: str, post: dict | None = None) -> list[str]:
     """送る前の門番と同じ見方（Buffer・画像の大きさは見ない）"""
-    return sns_rules.check_post("x", text, [{"type": "image", "url": tp.card_url(article), "width": 1600, "height": 900}], article,
-                                kind=gate_kind(article), reply_text=reply_link(article))
+    post = post or {"text": text, "reply": reply_link(article), "kind": gate_kind(article)}
+    return sns_rules.check_post("x", post["text"], [{"type": "image", "url": tp.card_url(article), "width": 1600, "height": 900}], article,
+                                kind=post["kind"], reply_text=post["reply"])
 
 
 # ---- 選び方 ----
@@ -233,8 +245,8 @@ def ok_for_x(article: dict, xs: dict, posted: dict, recent: list[str]) -> bool:
         return False  # 海外の企業向け・開発者向け（S28）・決算の数字だけ（S42）
     if any(bp.similar(article.get("title", ""), t) for t in recent):
         return False
-    text = x_text(article)
-    return bool(text) and not problems(article, text)
+    post = compose_post(article)
+    return bool(post["text"]) and not problems(article, post["text"], post)
 
 
 def breaking_targets(xs: dict, posted: dict, now: datetime, articles: list[dict], min_age_min: int = 0) -> list[dict]:
@@ -273,7 +285,8 @@ def candidates(xs: dict, posted: dict, now: datetime, since: datetime, articles:
             continue
         if sns_plan.x_score(article) < 0 or not ok_for_x(article, xs, posted, recent):
             continue
-        out.append(((sns_plan.x_score(article), made), article))
+        # 2026-11-08 夜 オーナー: 軸は暮らしの安全・お金・手続き（レーン＋手続きの言葉）。読者向けの文面がある記事を先に。同じなら X の話題の点数
+        out.append(((sns_reader.rank_key(article, "x", made)[0], sns_plan.x_score(article), made), article))
     out.sort(key=lambda x: x[0], reverse=True)
     return [a for _, a in out]
 
@@ -317,14 +330,15 @@ def page_live(article: dict) -> bool:
     return breaking_post.is_ok(f"{tp.site_url()}/articles/{article['slug']}", image=False) and breaking_post.is_ok(tp.card_url(article), image=True)
 
 
-def send(api_key: str, channel_id: str, article: dict, slot_at: datetime | None, breaking: bool) -> str:
+def send(api_key: str, channel_id: str, article: dict, slot_at: datetime | None, breaking: bool, post: dict | None = None) -> str:
     """Buffer に1件作る（tp.create_post が門番・同じ記事の確かめを通す）。いますぐが通らなければ1分後の予約"""
     import buffer_budget  # noqa: PLC0415
 
-    post_input = build_input(article, channel_id)
+    post = post or compose_post(article)
+    post_input = build_input(article, channel_id, post=post)
     with buffer_budget.priority(sns_plan.slot_priority(slot_at, article, breaking=breaking)):
         try:
-            return tp.create_post(api_key, dict(post_input), service="twitter", article=article, source="x_post", kind=gate_kind(article))
+            return tp.create_post(api_key, dict(post_input), service="twitter", article=article, source="x_post", kind=post["kind"])
         except sns_rules.SnsRuleViolation:
             raise
         except RuntimeError as error:
@@ -332,7 +346,7 @@ def send(api_key: str, channel_id: str, article: dict, slot_at: datetime | None,
                 raise
             log(f"  [x] いますぐの投稿が通らないため、1分後の予約にします: {error}")
             post_input.update({"mode": "customScheduled", "dueAt": tp.utc_z(datetime.now(timezone.utc) + timedelta(minutes=1))})
-            return tp.create_post(api_key, post_input, service="twitter", article=article, source="x_post", kind=gate_kind(article))
+            return tp.create_post(api_key, post_input, service="twitter", article=article, source="x_post", kind=post["kind"])
 
 
 def merge(mine_path: str) -> int:
@@ -392,19 +406,20 @@ def main() -> int:
     summary = [f"### X の投稿 {'（投稿）' if live else '（下書き・未投稿）'}", ""]
     for article, kind in todo:
         slug = article["slug"]
-        text = x_text(article)
+        post = compose_post(article)
+        text = post["text"]
         slot = sns_plan.x_slot_window(now) if kind == "slot" else None
-        log(f"--- {slug} ({kind}・話題 {sns_plan.x_topic(article)[0] or '-'}・{sns_rules.x_weight(text)}/{sns_rules.X_LIMIT})\n{text}\n[返信] {reply_link(article)}\n[画像] {tp.card_url(article)}（{tp.card_photo_note(article)}）")
-        summary += [f"**{slug}** ({kind})", "", "```", text, "---", reply_link(article), "```", ""]
+        log(f"--- {slug} ({kind}・{post['style']}・話題 {sns_plan.x_topic(article)[0] or '-'}・{sns_rules.x_weight(text)}/{sns_rules.X_LIMIT})\n{text}\n[返信] {post['reply']}\n[画像] {tp.card_url(article)}（{tp.card_photo_note(article)}）")
+        summary += [f"**{slug}** ({kind}・{post['style']})", "", "```", text, "---", post["reply"], "```", ""]
         if not live:
-            for problem in problems(article, text):
+            for problem in problems(article, text, post):
                 log(f"  [check] {problem}")
             continue
         if kind in ("breaking", "alert") and not page_live(article):
             log(f"  [x] {slug}: 記事かカードがまだ開けません。次の回にもう一度")
             continue
         try:
-            post_id = send(key, channel_id, article, slot[1] if slot else None, breaking=kind != "slot")
+            post_id = send(key, channel_id, article, slot[1] if slot else None, breaking=kind != "slot", post=post)
         except sns_rules.SnsRuleViolation as error:
             xs[slug] = {"failed": "rule", "violations": list(error.violations)[:5], "title": article.get("title", ""), "kind": kind}
             continue
@@ -417,7 +432,7 @@ def main() -> int:
             continue
         xs[slug] = {"id": post_id, "at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "kind": kind,
                     "slot": slot[1].strftime("%H:%M") if slot else "", "title": article.get("title", ""),
-                    "topic": sns_plan.x_topic(article)[0]}
+                    "topic": sns_plan.x_topic(article)[0], "style": post["style"]}
         log(f"  [x] {slug} ({kind}): {post_id}")
     tp.write_summary(summary)
     if live:

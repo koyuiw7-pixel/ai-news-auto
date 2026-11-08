@@ -31,6 +31,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import bluesky_post as bp  # noqa: E402
 import sns_plan  # noqa: E402
+import sns_reader  # noqa: E402  2026-11-08 夜: Threads と同じ読者向けの書き方（ルール23）
 import sns_rules  # noqa: E402
 import threads_post as tp  # noqa: E402
 import x_post as xp  # noqa: E402  記録の数え方・速報の判定は X と同じもの
@@ -126,11 +127,26 @@ def gate_kind(article: dict) -> str:
     return "disaster" if article.get("disaster") else "fbpost"
 
 
+def reader_post(article: dict) -> dict | None:
+    """2026-11-08 夜（ルール23）: Threads の読者向けの文面＋最後の行に「続き（◯◯）→ URL」（utm_source=facebook・reader_body）。無ければ None"""
+    if article.get("disaster") or xp.alert(article):
+        return None
+    return sns_reader.facebook_post(article)
+
+
+def post_kind(article: dict) -> str:
+    return "reader" if reader_post(article) else gate_kind(article)
+
+
 def build_input(article: dict, channel_id: str, video: dict | None = None) -> dict:
-    """Buffer の createPost の入力。本文の最後に記事のリンク。動画があれば動画を直接（assets）、無ければリンクカード（記事のカード）"""
+    """Buffer の createPost の入力。本文の最後に記事のリンク。動画があれば動画を直接（assets）、無ければリンクカード（記事のカード）。
+    読者向けの文面があれば、それ（最後の行が「続き（◯◯）→ URL」）を使う"""
     video = video or {}
-    link = article_link(article, bool(video))
-    text = f"{fb_text(article)}\n\n{link}"
+    if reader := reader_post(article):
+        link, text = reader["link"], reader["text"]
+    else:
+        link = article_link(article, bool(video))
+        text = f"{fb_text(article)}\n\n{link}"
     meta: dict = {"facebook": {"type": "post"}}
     assets: list[dict] = []
     if video.get("url"):
@@ -147,7 +163,7 @@ def problems(article: dict, video: dict | None = None) -> list[str]:
     inp = build_input(article, "check", video)
     text, _reply, media, links = sns_rules.buffer_parts("facebook", inp)
     media = [{**m, "width": 1920, "height": 1080} for m in media] or [{"type": "video", "url": (video or {}).get("url", ""), "width": 1920, "height": 1080}]
-    return sns_rules.check_post("facebook", text, media, article, kind=gate_kind(article), links=links)
+    return sns_rules.check_post("facebook", text, media, article, kind=post_kind(article), links=links)
 
 
 # ---- 選び方 ----
@@ -167,7 +183,7 @@ def ok_for_fb(article: dict, fs: dict, posted: dict, recent: list[str]) -> bool:
         return False
     if any(bp.similar(article.get("title", ""), t) for t in recent):
         return False
-    return bool(fb_lines(article)) and not problems(article)
+    return bool(reader_post(article) or fb_lines(article)) and not problems(article)
 
 
 def breaking_targets(fs: dict, posted: dict, now: datetime, articles: list[dict], min_age_min: int = 0) -> list[dict]:
@@ -204,7 +220,8 @@ def candidates(fs: dict, posted: dict, now: datetime, since: datetime, articles:
             continue
         if not ok_for_fb(article, fs, posted, recent):
             continue
-        score = sns_plan.sns_score(article) + (LIFESTYLE_BONUS if lifestyle and sns_plan.fb_lifestyle(article) else 0.0)
+        # 2026-11-08 夜 オーナー: 軸は暮らしの安全・お金・手続き（レーン＋手続きの言葉）。読者向けの文面がある記事を先に
+        score = sns_reader.rank_key(article, "facebook", made)[0] + (LIFESTYLE_BONUS if lifestyle and sns_plan.fb_lifestyle(article) else 0.0)
         out.append(((score, made), article))
     out.sort(key=lambda x: x[0], reverse=True)
     return [a for _, a in out]
@@ -248,7 +265,7 @@ def send(api_key: str, channel_id: str, article: dict, video: dict, slot_at: dat
     post_input = build_input(article, channel_id, video)
     with buffer_budget.priority(sns_plan.slot_priority(slot_at, article, breaking=breaking)):
         try:
-            return tp.create_post(api_key, dict(post_input), service="facebook", article=article, source="facebook_post", kind=gate_kind(article))
+            return tp.create_post(api_key, dict(post_input), service="facebook", article=article, source="facebook_post", kind=post_kind(article))
         except sns_rules.SnsRuleViolation:
             raise
         except RuntimeError as error:
@@ -256,7 +273,7 @@ def send(api_key: str, channel_id: str, article: dict, video: dict, slot_at: dat
                 raise
             log(f"  [facebook] いますぐの投稿が通らないため、1分後の予約にします: {error}")
             post_input.update({"mode": "customScheduled", "dueAt": tp.utc_z(datetime.now(timezone.utc) + timedelta(minutes=1))})
-            return tp.create_post(api_key, post_input, service="facebook", article=article, source="facebook_post", kind=gate_kind(article))
+            return tp.create_post(api_key, post_input, service="facebook", article=article, source="facebook_post", kind=post_kind(article))
 
 
 def merge(mine_path: str) -> int:
@@ -317,7 +334,7 @@ def main() -> int:
         slug = article["slug"]
         video = video_for(article)
         inp = build_input(article, channel_id or "check", video)
-        media = f"動画（{video.get('variant')}）" if video else "リンクカード"
+        media = (f"動画（{video.get('variant')}）" if video else "リンクカード") + ("・読者向け" if reader_post(article) else "・今までの書き方")
         log(f"--- {slug} ({kind}・{media}・{len(inp['text'])}字)\n{inp['text']}")
         summary += [f"**{slug}** ({kind}・{media})", "", "```", inp["text"], "```", ""]
         if not live:
@@ -342,7 +359,7 @@ def main() -> int:
             continue
         fs[slug] = {"id": post_id, "at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "kind": kind,
                     "slot": slot[1].strftime("%H:%M") if slot else "", "title": article.get("title", ""),
-                    "media": "video" if video else "card", **({"variant": video.get("variant")} if video else {})}
+                    "media": "video" if video else "card", "style": "reader" if reader_post(article) else "classic", **({"variant": video.get("variant")} if video else {})}
         log(f"  [facebook] {slug} ({kind}): {post_id}")
     tp.write_summary(summary)
     if live:

@@ -538,6 +538,9 @@ jobs:
           # 反応の取得は1日1回（Buffer の数値も1日1回更新）。前回の取得から20時間たっていなければ Buffer を呼ばずにすぐ終わる
           python scripts/threads_learn.py || echo "::warning::Threads の学習に失敗しました（投稿は続けます）"
           python scripts/threads_post.py --max 2
+          # X・Bluesky・Facebook も Threads と同じ読者向けの書き方（2026-11-08 夜 オーナー承認・sns_rules ルール23）。
+          # 3つの SNS の投稿の処理は LLM を使わないので、これから出しそうな記事の文面をここで先に作る（state/threads_reader.json に下書き）
+          python scripts/sns_reader.py --prepare --max 3 || echo "::warning::読者向けの文面を作れませんでした（X・Bluesky・Facebook は今までの書き方で出ます）"
           # SNS の予定に入った記事を Muse の受け渡し（state/muse_queue.json）に足す（2026-11-05 すべての投稿の動画を Muse で。台帳 S30）
           python scripts/muse_queue.py || echo "::warning::Muse の受け渡しを更新できませんでした（投稿は自動動画で続きます）"
           # SNS の予定と実績（今日の枠・記事と、実際に出た投稿）を state/sns_plan_actual.json に残す（夜の報告が読む。2026-11-08）

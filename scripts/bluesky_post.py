@@ -47,6 +47,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import threads_post as tp  # noqa: E402
 import sns_rules  # noqa: E402
+import sns_reader  # noqa: E402  2026-11-08 夜: Threads と同じ読者向けの書き方（ルール23）
 
 PDS = "https://bsky.social/xrpc"
 DELAY_MIN = 20
@@ -54,7 +55,8 @@ DELAY_MIN = 20
 PER_DAY = tp.sns_plan.bluesky_daily_cap()
 LOOKBACK_H = 6  # 出せる時刻（枠・Muse の待ちの期限の遅い方）からこれより古い記録は出さない（取りこぼしを後から大量に出さない）
 MORNING_HOURS = 12  # 朝の枠でまとめが無いときに使う記事の新しさ（生成から）
-FILL_MIN_AGE_MIN = 15  # 生成直後はまだ公開（デプロイ）前のことがあるので待つ
+FILL_MIN_AGE_MIN = 25  # 生成直後はまだ公開（デプロイ）前のことがあるので待つ（11/8: 15分ではカードがまだ 404 のことがあった）
+FAILED_RETRY_H = 3  # 失敗した記事は、この時間たてば枠の候補に戻す（一時的な失敗でずっと外さない。11/8 九州電力の記事）
 SIMILAR_HOURS = 24  # この時間内に出した投稿と同じ話題の記事は使わない
 EXTRA_PATH = tp.ROOT / "state" / "bluesky_extra.json"
 MAX_GRAPHEMES = 300
@@ -200,15 +202,21 @@ def upload_video(session: dict, url: str) -> dict:
     raise RuntimeError("Bluesky の動画の処理が5分で終わりませんでした")
 
 
-def build_record(text: str, link: str, title: str, desc: str, thumb: dict | None, video: dict | None = None) -> dict:
-    """本文＋改行＋リンク。リンクは facet（UTF-8 のバイト位置）とリンクカードの両方で付ける"""
+def build_record(text: str, link: str, title: str, desc: str, thumb: dict | None, video: dict | None = None, full_text: str = "") -> dict:
+    """本文＋改行＋リンク。リンクは facet（UTF-8 のバイト位置）とリンクカードの両方で付ける。
+    full_text（読者向けの書き方・ルール23）は、リンクの表示（短い形）を中に含んだ投稿の本文そのもの"""
     shown = re.sub(r"^https?://|\?.*$", "", link)  # 表示は短く（リンク先は UTM 付き）
-    room = MAX_GRAPHEMES - len(shown) - 1
-    text = text.strip()
-    if len(text) > room:
-        text = text[: room - 1].rstrip() + "…"
-    full = f"{text}\n{shown}"
-    start = len(f"{text}\n".encode())
+    if full_text and shown in full_text:
+        full = full_text.strip()
+        text = full
+        start = len(full[: full.index(shown)].encode())
+    else:
+        room = MAX_GRAPHEMES - len(shown) - 1
+        text = text.strip()
+        if len(text) > room:
+            text = text[: room - 1].rstrip() + "…"
+        full = f"{text}\n{shown}"
+        start = len(f"{text}\n".encode())
     external = {"uri": link, "title": title[:300], "description": desc[:300]}
     if thumb:
         external["thumb"] = thumb
@@ -522,6 +530,18 @@ def _recent_titles(state: dict, extra: dict, now: datetime, by_slug: dict) -> li
     return out
 
 
+def blocked(rec: dict | None, now: datetime) -> bool:
+    """この記事を枠の候補から外すか（もう出した＝uri がある・FAILED_RETRY_H 時間以内に失敗した）"""
+    if not isinstance(rec, dict) or not rec:
+        return False
+    if rec.get("uri") or rec.get("at"):
+        return True
+    when = _parse(rec.get("failedAt"))
+    if not when:
+        return True  # 以前の失敗の記録（時刻なし）は今までどおり外したまま（直すときは記録を消す）
+    return now - when < timedelta(hours=FAILED_RETRY_H)
+
+
 def brief_candidates(state: dict, extra: dict, now: datetime, since: datetime, articles: list[dict] | None = None) -> list[dict]:
     """枠に出せる記事（いい順）: since 以降に作った検索に出す記事で、まだ Bluesky に出しておらず、SNS に出す話題で、
     直近に出した投稿と同じ話題でなく、Bluesky の2行の文面を作れるもの。並べ順は 速報 → SNS の点数（レーン）→ 新しさ"""
@@ -539,16 +559,17 @@ def brief_candidates(state: dict, extra: dict, now: datetime, since: datetime, a
         entry = state.get("posted", {}).get(slug) or {}
         if (entry.get("channels") or {}).get("bluesky") or entry.get("blueskyFailed") or entry.get("ownerHold"):
             continue
-        if slug in extra or article.get("roundupSlug") in extra:
-            continue  # もう出した・前に失敗した記事（同じ記事で失敗し続けない）
+        if blocked(extra.get(slug), now) or blocked(extra.get(article.get("roundupSlug") or "\0"), now):
+            continue  # もう出した・少し前に失敗した記事（同じ記事で失敗し続けない。時間がたてば戻す）
         if tp.sns_plan.excluded(article) or not is_indexable(article, dups):
             continue
         if any(similar(article.get("title", ""), title) for title in recent):
             continue
-        if not brief_lines(article):
+        if not (sns_reader.bluesky_post(article) or brief_lines(article)):
             continue
         breaking = bool(article.get("breaking") or entry.get("breaking"))
-        out.append(((breaking, tp.sns_plan.sns_score(article), generated), article))
+        # 2026-11-08 夜 オーナー: 軸は暮らしの安全・お金・手続き（レーン＋手続きの言葉）。読者向けの文面がある記事を先に
+        out.append(((breaking, sns_reader.rank_key(article, "bluesky", generated)[0], generated), article))
     out.sort(key=lambda x: x[0], reverse=True)
     return [a for _, a in out]
 
@@ -657,8 +678,23 @@ def brief_text(article: dict, room: int = MAX_GRAPHEMES) -> str:
     return "\n".join([*lines, tag] if tag else lines)
 
 
+def plan_reader(article: dict) -> dict | None:
+    """2026-11-08 夜（ルール23）: Threads の読者向けの文面を Bluesky に合わせたもの（最後に「続き（◯◯）→ URL」・リンクカード・
+    utm_source=bluesky・utm_content=reader_body）。無ければ None"""
+    if article.get("disaster") or sns_rules.is_urgent(article):
+        return None
+    got = sns_reader.bluesky_post(article)
+    if not got:
+        return None
+    return {"text": got["text"], "full_text": got["text"], "link": got["link"], "title": article.get("seoTitle") or article["title"],
+            "desc": article.get("description", ""), "images": [tp.card_url(article)], "gate": article, "kind": "reader"}
+
+
 def plan_brief(article: dict) -> dict | None:
-    """Bluesky だけの文面の投稿の中身（リンクは本文＋リンクカード。utm_campaign=brief・utm_content=card_body）"""
+    """Bluesky だけの文面の投稿の中身（リンクは本文＋リンクカード。utm_campaign=brief・utm_content=card_body）。
+    読者向けの文面（plan_reader）があればそちらを使う"""
+    if reader := plan_reader(article):
+        return reader
     key = article["slug"]
     link = tp.utm_link(f"{tp.site_url()}/articles/{key}", "bluesky", sns_rules.BRIEF_CAMPAIGN, ptype="card", pos="body")
     shown = re.sub(r"^https?://|\?.*$", "", link)
@@ -785,7 +821,7 @@ def main() -> int:
             media: list[dict] = []
             blob = None
             # Bluesky だけの文面は記事のリンクカードで出す（台帳 S40）。動画は急ぎの知らせ以外の写しの投稿だけ
-            vid = video_of(key) if p.get("kind", "article") not in ("digest", "brief") and not sns_rules.is_urgent(p.get("gate")) else {}
+            vid = video_of(key) if p.get("kind", "article") not in ("digest", "brief", "reader") and not sns_rules.is_urgent(p.get("gate")) else {}
             if vid:
                 media = [{"type": "video", "url": vid["url"], "width": 1920, "height": 1080}]
                 if session and live:
@@ -807,7 +843,11 @@ def main() -> int:
                 # 動画を作らない投稿・動画がまだ無い投稿・朝のまとめは、記事の写真（号のシェア画像）のリンクカード（ルール8・台帳 S13）
                 thumb = upload_thumb(session, p["images"], used) if session and (live or args.slug) else None
                 media = [{"type": "image", "url": u} for u in (used or ([] if live else p["images"][:1]))]  # 下書きは上げずに写真の URL で確かめる
-            record = build_record(p["text"], p["link"], p["title"], p["desc"], thumb, video=blob)
+            if live and kind == "brief" and not thumb and not blob:
+                # 記事のカードがまだ開けない（公開の直後）。失敗として外さず、次の回にもう一度（11/8 九州電力の記事がこれで外れていた）
+                log(f"  [bluesky] {key}: 記事のカードがまだ開けません。次の回にもう一度")
+                continue
+            record = build_record(p["text"], p["link"], p["title"], p["desc"], thumb, video=blob, full_text=p.get("full_text", ""))
             if not live:
                 log(f"--- {key} ({kind})\n{json.dumps(record, ensure_ascii=False, indent=1)}")
                 for v in sns_rules.check_post("bluesky", record["text"], media, p.get("gate"),
@@ -821,7 +861,7 @@ def main() -> int:
             if kind == "brief":
                 slot = tp.sns_plan.bluesky_slot_window(now)
                 extra[key] = {"uri": res["uri"], "at": at, "title": entry["article"].get("title", ""), "kind": "brief",
-                              "slot": slot[1].strftime("%H:%M") if slot else ""}
+                              "slot": slot[1].strftime("%H:%M") if slot else "", "style": "reader" if p.get("kind") == "reader" else "classic"}
             else:
                 entry.setdefault("channels", {})["bluesky"] = res["uri"]
                 entry["blueskyAt"] = at
@@ -832,8 +872,9 @@ def main() -> int:
                 import sns_video_followup as fu  # noqa: PLC0415
 
                 fu.missing_issue(key, f"Bluesky に動画で出せませんでした: {error}")
-            if kind == "brief":  # 同じ記事で毎回失敗し続けないよう、記録して次へ（時刻なし＝本数に数えない）
-                extra[key] = {"failed": str(error)[:200], "title": entry["article"].get("title", ""), "kind": "brief"}
+            if kind == "brief":  # 同じ記事で毎回失敗し続けないよう、記録して次へ（時刻なし＝本数に数えない。FAILED_RETRY_H 時間で候補に戻す）
+                extra[key] = {"failed": str(error)[:200], "failedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                              "title": entry["article"].get("title", ""), "kind": "brief"}
             else:
                 entry["blueskyFailed"] = str(error)[:200]
     if live:
