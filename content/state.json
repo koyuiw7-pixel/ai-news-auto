@@ -6921,6 +6921,17 @@
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/sabo01_hh_000221.html"
     },
+    "37bacc2502a9bb94": {
+      "at": "2026-11-08T02:42:49.809515+00:00",
+      "costUsd": 0.133,
+      "intent": "query",
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5+anthropic-api:claude-sonnet-5-5",
+      "score": 95,
+      "section": "lifestyle",
+      "slug": "glengoyne-mizunara-oak-16",
+      "url": "https://www.asahibeer.co.jp/news/2026/1102_3.html"
+    },
     "37d9e27da3a5b9ea": {
       "at": "2026-11-06T19:42:20.591960+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -10164,6 +10175,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102704"
+    },
+    "6be50951d265dfaf": {
+      "at": "2026-11-08T02:44:47.324734+00:00",
+      "costUsd": 0.0826,
+      "intent": "query",
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5+anthropic-api:claude-haiku-5-5",
+      "score": 90,
+      "section": "lifestyle",
+      "slug": "asahi-umeboshiya-can-chuhai",
+      "url": "https://www.asahibeer.co.jp/news/2026/1102_1.html"
     },
     "6bfa5ce60c97f733": {
       "at": "2026-10-27T01:31:25.544504+00:00",
@@ -19084,139 +19106,17 @@
       "reason": "quality: easy_markdown が短い（343字 / 基準 400字以上）; body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001290.html"
+    },
+    "muse-7b39ef6a89": {
+      "at": "2026-11-08T02:39:16.743647+00:00",
+      "mix": "money",
+      "score": 95,
+      "slug": "nta-average-salary-2025-record",
+      "url": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:43:45.545681+00:00",
-      "attempt": 2,
-      "id": "5303ad7c7a4b3680",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "sony-jp",
-      "title": "初代ウォークマン付属『MDR-3』のデザインとサウンドを受け継ぐUSB-Cステレオヘッドホン『MDR-3R』発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:51:59.095897+00:00",
-      "attempt": 1,
-      "id": "d8b27fed6c7237fa",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "ntt-news",
-      "title": "「エコめがね」への不正アクセス調査状況について（2報）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:52:24.874397+00:00",
-      "attempt": 2,
-      "id": "d8b27fed6c7237fa",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "脆弱性・障害・欠陥の記事に必要な「対象のバージョン（版）」が資料にあるのに本文にありません（「〇〇より前の版」など資料どおり）。資料の表記どおりに入れてください"
-      ],
-      "score": null,
-      "source": "ntt-news",
-      "title": "「エコめがね」への不正アクセス調査状況について（2報）"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T06:53:11.183355+00:00",
-      "attempt": 3,
-      "id": "d8b27fed6c7237fa",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 104.0,
-        "avg_sentence": 44.1,
-        "long_share": 0.121,
-        "max_paragraph": 169,
-        "paragraphs": 14,
-        "sentences": 33
-      },
-      "score": 88,
-      "source": "ntt-news",
-      "title": "「エコめがね」への不正アクセス調査状況について（2報）",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（OSS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:55:01.053237+00:00",
-      "attempt": 1,
-      "id": "ada1526998a7b4d4",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "kddi-news-release",
-      "title": "newmoとKDDI、自動運転タクシーの社会実装に向け資本業務提携"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:55:23.584195+00:00",
-      "attempt": 2,
-      "id": "ada1526998a7b4d4",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "kddi-news-release",
-      "title": "newmoとKDDI、自動運転タクシーの社会実装に向け資本業務提携"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:55:51.466529+00:00",
-      "attempt": 3,
-      "id": "ada1526998a7b4d4",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "答えになっていない見出し（「資本提携と業務提携の二本立て、出資額は未発表」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
-      ],
-      "readability": {
-        "avg_paragraph": 74.8,
-        "avg_sentence": 46.7,
-        "long_share": 0.219,
-        "max_paragraph": 138,
-        "paragraphs": 20,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "kddi-news-release",
-      "title": "newmoとKDDI、自動運転タクシーの社会実装に向け資本業務提携"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T06:57:25.505957+00:00",
-      "attempt": 1,
-      "id": "ada1526998a7b4d4",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "kddi-news-release",
-      "title": "newmoとKDDI、自動運転タクシーの社会実装に向け資本業務提携"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T06:57:45.234025+00:00",
@@ -25344,6 +25244,178 @@
         "見出しが62字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（JAN・IR）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:41:13.546324+00:00",
+      "attempt": 1,
+      "id": "37bacc2502a9bb94",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「ミズナラ樽は…世界中のコレクターから高い評価を受けています」→ 元記事にない評価・主張の創作",
+        "「アルコール分が53.4%と高めに設定されているため、香りと味わいの要素が薄まることなく…長く豊かな余韻」→ 元記事は余韻の長さを述べるのみで、度数との因果関係は根拠がない",
+        "「発売前から品質が証明されている格別の1本です」→ 受賞事実を超えた誇大な断定",
+        "「スコットランドの蒸溜所の中でも特に時間をかけて」→ 元記事は蒸留に時間をかけるとだけ書いており、比較級の『特に』は言い過ぎ",
+        "「グレンゴイン10年」はフレッシュ、「21年」は重厚な深みがあるという味の特徴づけ→ 元記事に無い",
+        "「雑味を抑えたなめらかな口当たり」「グレンゴインが持つフルーティーで澄んだ原酒」→ 元記事の蒸留・原酒の記述を超えた補足"
+      ],
+      "readability": {
+        "avg_paragraph": 151.4,
+        "avg_sentence": 56.1,
+        "long_share": 0.444,
+        "max_paragraph": 244,
+        "paragraphs": 10,
+        "sentences": 27
+      },
+      "score": 62,
+      "source": "asahi",
+      "title": "商品 『グレンゴイン シングルモルト ミズナラオーク16年』 11月25日から数量限定発売",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ISC）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:42:01.020568+00:00",
+      "attempt": 2,
+      "id": "37bacc2502a9bb94",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "asahi",
+      "title": "商品 『グレンゴイン シングルモルト ミズナラオーク16年』 11月25日から数量限定発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:42:29.785464+00:00",
+      "attempt": 2,
+      "id": "37bacc2502a9bb94",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "要点「ミズナラ樽で16年熟成させた限定品」→ 元記事はシェリー樽10年の後にミズナラ樽6年で、全期間をミズナラ樽で熟成したわけではないため、熟成工程の記述が元記事と食い違う。",
+        "「飲み比べなら店で試す方法もあります」（判定欄）→ 元記事に飲み比べの提供やその方法への言及はなく、根拠のない提案になっている。"
+      ],
+      "readability": {
+        "avg_paragraph": 66.3,
+        "avg_sentence": 35.1,
+        "long_share": 0.029,
+        "max_paragraph": 126,
+        "paragraphs": 18,
+        "sentences": 34
+      },
+      "score": 85,
+      "source": "asahi",
+      "title": "商品 『グレンゴイン シングルモルト ミズナラオーク16年』 11月25日から数量限定発売",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T02:42:45.106127+00:00",
+      "attempt": 2,
+      "id": "37bacc2502a9bb94",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 69.8,
+        "avg_sentence": 35.9,
+        "long_share": 0.057,
+        "max_paragraph": 126,
+        "paragraphs": 18,
+        "sentences": 35
+      },
+      "score": 95,
+      "source": "asahi",
+      "title": "商品 『グレンゴイン シングルモルト ミズナラオーク16年』 11月25日から数量限定発売",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:43:29.409474+00:00",
+      "attempt": 1,
+      "id": "6be50951d265dfaf",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "asahi",
+      "title": "商品 本物の梅干しを付属した缶チューハイ『アサヒ梅星屋』 「アサヒ空想開発局」で11月24日から数量限定発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:43:55.536824+00:00",
+      "attempt": 1,
+      "id": "6be50951d265dfaf",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "Webページの英語の残骸が残っている（「cookie」）"
+      ],
+      "readability": {
+        "avg_paragraph": 72.8,
+        "avg_sentence": 41.2,
+        "long_share": 0.167,
+        "max_paragraph": 181,
+        "paragraphs": 17,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "asahi",
+      "title": "商品 本物の梅干しを付属した缶チューハイ『アサヒ梅星屋』 「アサヒ空想開発局」で11月24日から数量限定発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:44:19.372058+00:00",
+      "attempt": 2,
+      "id": "6be50951d265dfaf",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "Webページの英語の残骸が残っている（「cookie」）"
+      ],
+      "readability": {
+        "avg_paragraph": 53.9,
+        "avg_sentence": 29.6,
+        "long_share": 0.025,
+        "max_paragraph": 110,
+        "paragraphs": 22,
+        "sentences": 40
+      },
+      "score": null,
+      "source": "asahi",
+      "title": "商品 本物の梅干しを付属した缶チューハイ『アサヒ梅星屋』 「アサヒ空想開発局」で11月24日から数量限定発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T02:44:47.318359+00:00",
+      "attempt": 2,
+      "id": "6be50951d265dfaf",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 62.7,
+        "avg_sentence": 29.9,
+        "long_share": 0.023,
+        "max_paragraph": 140,
+        "paragraphs": 21,
+        "sentences": 44
+      },
+      "score": 90,
+      "source": "asahi",
+      "title": "商品 本物の梅干しを付属した缶チューハイ『アサヒ梅星屋』 「アサヒ空想開発局」で11月24日から数量限定発売"
     }
   ],
   "short_text_retry": {},
