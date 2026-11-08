@@ -54,6 +54,17 @@ def _unquote(value: str) -> str:
 
 
 def parse(text: str) -> dict:
+    return _fix_bars(_parse(text))
+
+
+def _fix_bars(d: dict) -> dict:
+    for k in ("title", "body"):
+        if isinstance(d.get(k), str):
+            d[k] = re.sub(r"\s*[｜|]\s*", "　", d[k]) if k == "title" else d[k].replace("｜", "　")
+    return d
+
+
+def _parse(text: str) -> dict:
     """ファイルの中身 → {title, genre, sources:[{url,name,facts}], notes, body}。形が読めなければ FormatError"""
     text = nfc(text).replace("\r\n", "\n").lstrip("﻿")
     m = re.match(r"\s*---\n(.*?)\n---[ \t]*\n(.*)\Z", text, re.S)
@@ -118,8 +129,7 @@ def problems(data: dict, filename: str = "") -> list[str]:
         out.append("title がありません")
     elif not TITLE_MIN <= len(title) <= TITLE_MAX:
         out.append(f"title の長さは{TITLE_MIN}〜{TITLE_MAX}字にしてください（いま{len(title)}字）")
-    if re.search(r"[｜|]", title):
-        out.append("title に「｜」を使わないでください（区切りは全角の空白1つ）")
+    # 「｜」は落とさず自動で全角の空白に直す（parse の段。2026-11-08 オーナー）
     if re.search(r"[！!]", title):
         out.append("title に感嘆符を使わないでください")
     if data.get("genre") and data["genre"] not in GENRES:
@@ -140,17 +150,9 @@ def problems(data: dict, filename: str = "") -> list[str]:
         if not (s.get("facts") or "").strip():
             out.append(f"出典ごとに facts（どの数字がそのページのどこに書かれているか）を書いてください（{url[:60]}）")
     body = data.get("body") or ""
-    if re.search(r"(?m)^# ", body):
-        out.append("本文に # の大見出しを使わないでください（見出しは ## と ###）")
-    if len(re.findall(r"(?m)^## ", body)) < 2:
-        out.append("本文に ## の見出しを2つ以上入れてください")
-    n = plain_len(body)
-    if n < BODY_MIN:
-        out.append(f"本文が短すぎます（地の文 {n}字。{BODY_MIN}字以上）")
-    if n > BODY_MAX:
-        out.append(f"本文が長すぎます（地の文 {n}字。{BODY_MAX}字まで）")
-    if "｜" in body:
-        out.append("本文に「｜」を使わないでください")
+    # 2026-11-08 オーナー: 落とす理由は「嘘」だけ。字数・見出しの数・記号は落とさない（「｜」は公開の段で自動で直す）
+    if not body.strip():
+        out.append("本文がありません")
     return out
 
 
@@ -177,19 +179,14 @@ FORMAT_MD = """# サイソク 記事の入稿の書式（Muse さん向け）
 
 | 項目 | 書くこと |
 |---|---|
-| title | 記事の題名。18〜45字。自然な日本語の報道の見出し（組織名か話題の名前を先に）。「｜」と感嘆符は使わない。区切りは全角の空白1つ |
+| title | 記事の題名。目に留まって読みたくなる強い題名でよい（いちばん驚く本当の数字を先頭に・問いかけも可）。本文にない事実や言い過ぎはだめ。「｜」は使わない |
 | genre | 手続き・お金・値上げ・早見表・速報解説・暮らし・AI・テック・ビジネス のどれか1つ |
 | sources | 公式の出典。1〜6件。1件目が一番の出典。各件に url（https://）・name（発信元の名前）・facts（どの数字がそのページのどこにあるか） |
 | notes | ひと言メモ。題材を選んだ理由と、確かめられなかった点（サイトには出ません） |
 
 本文（--- のあと）:
-- `##` の見出しを2つ以上。見出しは中身の言葉にする（「概要」「まとめ」「いかがでしたか」のような型の見出しは使わない）。`#` の大見出しは使わない。
-- 地の文で1,800〜6,000字くらい。1文は60字くらいまで。1段落は1〜3文。
-- 数字・金額・日付には、その場で出典が分かるように書く（例「平均給与は487万円でした（国税庁の調査結果）」）。
-- 計算した数字（差・割合・月あたり）は、計算したと分かるように書く（例「月あたり約40万円（12で割った編集部の計算）」）。
-- 自分で試した・使ったようには書かない。宣伝の言葉（最強・必見・今すぐ）や、幼い言い方（〜しましょう の連発）は使わない。
-- 個別の投資・売買のすすめは書かない。医療の効果も書かない。
-- 表は比べるときと早見表だけ。
+- 決まりは「嘘をつかない」だけです。数字・金額・日付・対象は、出典の公式ページにあるものだけを書いてください（計算した数字は計算したと分かるように）。
+- それ以外の書き方（長さ・見出し・構成）はお任せします。読みたくなって、最後まで読まれる記事にしてください。短いお知らせは短い記事で大丈夫です。
 
 ## 見本（このまま真似してください）
 

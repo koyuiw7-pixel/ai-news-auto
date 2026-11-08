@@ -46,9 +46,10 @@ class FormatTest(unittest.TestCase):
         data = muse_format.parse(submission(title="平均給与は487万円｜国税庁の民間給与実態統計調査の結果", url="https://news.yahoo.co.jp/x",
                                             body="## a\n\n短い\n\n## b\n\n短い"))
         text = " ".join(muse_format.problems(data, "bad-name.md"))
-        self.assertIn("「｜」", text)
+        self.assertNotIn("「｜」", text)  # 2026-11-08: 「｜」は自動で直す
+        self.assertNotIn("｜", data["title"])
         self.assertIn("出典にできません", text)
-        self.assertIn("本文が短すぎます", text)
+        self.assertNotIn("本文が短すぎます", text)  # 2026-11-08: 字数では落とさない
         self.assertIn("ファイル名", text)
 
     def test_missing_front_matter_is_a_format_error(self):
