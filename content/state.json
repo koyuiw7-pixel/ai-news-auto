@@ -100,14 +100,6 @@
       "tries": 1,
       "url": "https://jtta.or.jp/news/38778"
     },
-    "8a13bd26669509b7": {
-      "first": "2026-11-08T03:42:45.621141+00:00",
-      "next": "2026-11-08T06:42:45.621141+00:00",
-      "reason": "「利用は無料」（要点）→ 元記事に料金・無料との記載はなく、無料であることは元記事から確認できない。; 「外ブタや中フタは店頭回収の対象に含まれていない」（よくある質問）→ 元記事は回収対象を4商品の紙カップと定めるのみで、フタの扱いには言及がない。元記事にない条件の創作。; 「古紙回収事業を手がける株式会社兼子」→ 元記事は兼子が回収作業と配送を実施すると記すのみで、古紙回収事業者という説明は元",
-      "title": "明治、TOPPAN、「明治ブルガリアヨーグルト」紙カップの回収を実施 横浜市内のイオン・イオンスタイル・イオンフードスタイルの計13店舗にて回収 2026年10月1日（木）から11月30日（月）まで実施 | 2026年 | プレスリリース・",
-      "tries": 1,
-      "url": "https://www.meiji.co.jp/corporate/pressrelease/2026/09_18/index.html?link=rss"
-    },
     "8dc5cad25319e695": {
       "first": "2026-11-06T06:40:13.129552+00:00",
       "next": "2026-11-06T09:40:13.129552+00:00",
@@ -12084,6 +12076,17 @@
       "skipped": true,
       "url": "https://www.dreamnews.jp/press/0000366439"
     },
+    "8a13bd26669509b7": {
+      "at": "2026-11-08T07:16:16.894859+00:00",
+      "costUsd": 0.0074,
+      "intent": "neutral",
+      "mix": "brand",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "lifestyle",
+      "slug": "meiji-yogurt-cup-recycling-yokohama",
+      "url": "https://www.meiji.co.jp/corporate/pressrelease/2026/09_18/index.html?link=rss"
+    },
     "8a1a091499344fbd": {
       "at": "2026-10-30T02:42:20.058730+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（公募）",
@@ -19194,6 +19197,14 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001290.html"
     },
+    "muse-0dda2b54ce": {
+      "at": "2026-11-08T07:14:33.399300+00:00",
+      "mix": "alert",
+      "score": 88,
+      "slug": "docomo-online-shop-data-leak",
+      "url": "https://www.ntt.com/about-us/information/emginfo_20261105_002.html",
+      "writer": "muse"
+    },
     "muse-1c3d41b31b": {
       "at": "2026-11-08T05:55:15.361852+00:00",
       "mix": "other",
@@ -19276,34 +19287,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:32:15.943768+00:00",
-      "attempt": 1,
-      "id": "a307777d6ded3852",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "kddi-news",
-      "title": "2027年3月期第2四半期決算について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:36:11.612795+00:00",
-      "attempt": 2,
-      "id": "a307777d6ded3852",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "kddi-news",
-      "title": "2027年3月期第2四半期決算について"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T08:38:59.491429+00:00",
@@ -25677,6 +25660,54 @@
       "score": 92,
       "source": "kyuden",
       "title": "託送料金見直しを反映した新たな電気料金単価を設定します－2026年11月１日から新単価を適用－"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T07:15:51.369709+00:00",
+      "attempt": 1,
+      "id": "8a13bd26669509b7",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 167.0,
+        "avg_sentence": 66.8,
+        "long_share": 0.5,
+        "max_paragraph": 210,
+        "paragraphs": 4,
+        "sentences": 10
+      },
+      "score": 90,
+      "source": "meiji",
+      "title": "明治、TOPPAN、「明治ブルガリアヨーグルト」紙カップの回収を実施 横浜市内のイオン・イオンスタイル・イオンフードスタイルの計13店舗にて回収 2026年10",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（BOX・TOPPAN・LB）",
+        "読みやすさ: 文が長い（1文の平均 66.8字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 167.0字・最長 210字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T07:16:16.878223+00:00",
+      "attempt": 0,
+      "id": "8a13bd26669509b7",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.1,
+        "avg_sentence": 40.1,
+        "long_share": 0.154,
+        "max_paragraph": 154,
+        "paragraphs": 8,
+        "sentences": 13
+      },
+      "score": 88,
+      "source": "meiji",
+      "title": "明治、TOPPAN、「明治ブルガリアヨーグルト」紙カップの回収を実施 横浜市内のイオン・イオンスタイル・イオンフードスタイルの計13店舗にて回収 2026年10",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（BOX・TOPPAN・LB）"
+      ]
     }
   ],
   "short_text_retry": {},
