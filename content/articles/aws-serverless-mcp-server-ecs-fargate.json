@@ -1,0 +1,130 @@
+{
+  "slug": "aws-serverless-mcp-server-ecs-fargate",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/",
+  "sourceName": "AWS Machine Learning Blog",
+  "title": "AIエージェントからデータレイクへ安全に接続　AWSがECS Fargate対応のサーバーレスMCPサーバー公開",
+  "seoTitle": "ECS Fargate対応のサーバーレスMCPサーバー　AWSが公開したAIデータ連携基盤",
+  "threadsPost": "社内のデータレイクとAIエージェントを安全につなぐ仕組みに悩んでいませんか。\n\nAWSが、Amazon ECS Fargateで動くサーバーレスなMCPサーバーのアーキテクチャを公開しました。\nJSONのメタデータファイルを置くだけで新しいデータセットを追加でき、個別のインテグレーション開発が不要になります。\n\n仕事で使うAIツールやデータ連携の仕組み、日々の業務でどこまで自動化が進んでいますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "仕事で使うAIツールやデータ連携の仕組み、日々の業務でどこまで自動化が進んでいますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "AWSは、Amazon ECS Fargateを活用したサーバーレスなModel Context Protocolサーバーの構築手法を公開しました。AIエージェントが企業データレイクへアクセスする際の複雑な統合処理を、JSONのメタデータファイルだけで管理できるようにします。個別のデータソースごとに専用の統合コードを書く必要がなくなり、マルチテナント環境における開発負荷を大幅に軽減します。",
+  "description": "AWSがAmazon ECS Fargateを活用したサーバーレスなMCPサーバーの構築手法を公開。JSONメタデータ駆動による効率的なデータレイク連携アーキテクチャを解説します。",
+  "keywords": [
+    "MCP",
+    "Model Context Protocol",
+    "Amazon ECS Fargate",
+    "AWS",
+    "AIエージェント",
+    "データレイク",
+    "Amazon Bedrock",
+    "サーバーレス"
+  ],
+  "tags": [
+    "生成AI",
+    "AWS",
+    "クラウド",
+    "データ基盤"
+  ],
+  "highlights": [
+    "AWSがAmazon ECS Fargateで動くサーバーレスなMCPサーバーの構築アーキテクチャを公開しました。",
+    "JSON形式のメタデータファイルを追加するだけで、新しいデータセットをAIエージェントから自動で発見・検索できるようになります。",
+    "Amazon Bedrock Guardrailsや参照専用の権限設定を組み合わせることで、企業データへのアクセス管理を一元化します。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "AWSの従量課金",
+    "free": false,
+    "audience": "クラウドエンジニア・AI",
+    "take": "AWS環境でAIエージェントとデータレイクを接続する基盤設計の参考として、公式ブログの構成を確認するとよいでしょう。",
+    "judgedAt": "2026-11-08T15:21:59.618528+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AIエージェントを活用したデータ分析基盤の開発や運用に携わるエンジニアやアーキテクトに影響を与えます。",
+      "データセット追加時のカスタムコード作成を不要にし、管理コストを抑えながら複数エージェントを統合できます。"
+    ]
+  },
+  "body": "AI（人工知能）を活用したアプリケーション開発において、大規模言語モデル（LLM）のエージェントに企業のデータレイクを接続する作業は複雑な課題となっています。多くのチームは、モデルとデータベースを直接配線する方法から始めます。\n\nデータセットやエージェントが増えるにつれて、アクセス権限の管理が煩雑になっていました。新しいデータソースを追加するたびに、数日におよぶエンジニアリングの工数が発生していました。\n\nAWSの機械学習ブログによると、Amazonの北米ソートセンター（NASC）ネットワークの計画チームが直面していたこの課題を解決するため、サーバーレスなModel Context Protocol（MCP）サーバーのアーキテクチャが公開されました。このサーバーは、Amazon ECS Fargate上で動作します。このサーバーは、AIエージェントと企業データレイクの間を仲介する、エージェント非依存の集約型ゲートウェイとして機能します。\n\n## 4つの層に分離されたサーバーレス構成\n\nアーキテクチャは、クライアント、MCPサーバー、ツール、知識ベース更新の4つの独立して拡張可能な層に分かれています。クライアント層では、まずAmazon Route 53を介してDNS解決が行われます。\n\nその後、HTTPSとAWS WAFを設定したApplication Load Balancerを経由して、トラフィックが流入します。Amazon CognitoによるJWT認証が行われ、セッション状態はAmazon DynamoDBに保存されます。\n\nMCPサーバー層は、プライベートサブネット内の独自のAmazon ECS Fargateクラスターで実行され、クライアント層から完全に分離されています。FastMCP（MCPサーバー構築用のPythonフレームワーク）を利用したJSON-RPCインターフェースを通じて、Amazon Bedrockを活用したエージェントが動きます。このエージェントが、クエリ分析、ツール選択、実行、応答生成をオーケストレーションします。\n\nAmazon Bedrock Guardrailsが、すべてのモデルインタラクションに適用されます。有害なコンテンツのフィルタリングやプロンプトインジェクションのブロックを行います。\n\n## JSONメタデータファイルによるデータセットの追加\n\nツール層およびメタデータ駆動のデータアクセスにおいて、新しいデータセットの追加にはコードの変更が不要です。テーブルのスキーマやビジネス文脈を記述したメタデータJSONファイルを用意するだけです。\n\nパイプラインがメタデータを読み込み、Amazon Titan Text Embeddingsでベクトル埋め込みを生成します。生成した埋め込みは、Amazon Bedrock Knowledge Basesにインデックス化されます。\n\nメタデータの記述例として、以下のような構造が示されています。\n\nメタデータには、テーブル名や所属するデータベース、テーブルの業務上の説明を記述します。加えて、カラムごとの説明とサンプル値も記述します。\n\n例えば注文IDのカラムには、チェックアウト時に付与される一意の識別子であるという説明が登録されます。実際の値の例も登録されます。\n\nこれにより、エージェントはクエリ時にカタログから直接、スキーマやカラムのセマンティクスを理解できます。そのうえで、Amazon AthenaやAmazon Redshiftに対して正確なSQLクエリを生成・実行できるようになります。",
+  "easy": "## ひとことで言うと\n\nAWSは、AIエージェントが企業のデータレイクに安全かつスムーズにアクセスするための、サーバーレスな共通ゲートウェイの仕組みを公開しました。\n\n## メタデータ駆動で開発を効率化\n\nAIアシスタントやエージェントごとに独自のSQL生成ロジックや接続設定を実装すると、データ構造が変わるたびにすべてのエージェントを修正する手間が生じます。\n今回公開された構成では、JSON形式のメタデータファイルを用意するだけで、サーバーが自動的にデータセットを認識して検索できるようになります。\n基盤のレイヤーで認証やアクセス制御（SELECT文のみの許可など）を一元管理するため、セキュリティを保ったまま新しいデータを迅速に追加できます。",
+  "channel": "AWS Machine Learning Blog",
+  "channelId": "",
+  "channelSlug": "aws-ml-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Serverless MCP server for AI agent data lake access on Amazon ECS Fargate",
+  "publishedAt": "2026-11-06T17:13:13+00:00",
+  "generatedAt": "2026-11-08T15:21:59.618516+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/aws-serverless-mcp-server-ecs-fargate-6106526b.jpg",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "新しいデータセットを追加するとき、コードの修正は必要ですか？",
+      "a": "コードの修正は不要です。テーブルの構造やビジネス文脈を記述したメタデータJSONファイルを配置するだけで、システムが自動的に認識します。"
+    },
+    {
+      "q": "MCPサーバーでのデータアクセスにおけるセキュリティはどのように担保されますか？",
+      "a": "Amazon Bedrock Guardrailsによるコンテンツ安全性チェックのほか、AthenaクエリツールではSELECT文のみを許可し、データレイクへの書き込み操作をブロックする制御を行っています。"
+    }
+  ],
+  "todayActions": [
+    "AWSの公式機械学習ブログにアクセスし、サーバーレスMCPサーバーの全体アーキテクチャと設定例を確認する。",
+    "自社のAIエージェント開発において、データレイク連携の共通化にModel Context Protocolを活用できるか検討する。"
+  ],
+  "qualityScore": 85,
+  "sourcePublishedAt": "2026-11-06T17:13:13+00:00",
+  "detectedAt": "2026-11-08T15:20:55+00:00",
+  "layout": "noir",
+  "summaryLine": "AWSがAmazon ECS Fargateで動くサーバーレスなMCPサーバーの構築アーキテクチャを公開しました。",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/aws-serverless-mcp-server-ecs-fargate-fig1-2210f3e7.jpg",
+      "width": 1200,
+      "height": 540,
+      "kind": "dense",
+      "credit": "AWS",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/",
+      "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/04/ML-20343-1.jpeg"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "AWS",
+    "provider": "AWS Machine Learning Blog",
+    "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/",
+    "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/04/ML-20343-featured-image.png",
+    "width": 1152,
+    "height": 576,
+    "at": "2026-11-08T15:23:00+00:00",
+    "imageKind": "banner"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.518,
+    "y": 0.456,
+    "box": [
+      0.037,
+      0.0,
+      1.0,
+      0.912
+    ],
+    "ar": 2.0,
+    "src": "https://ai-tech-express.jp/img/aws-serverless-mcp-server-ecs-fargate-6106526b.jpg"
+  },
+  "coverTries": 1
+}

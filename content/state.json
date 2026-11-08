@@ -4342,6 +4342,18 @@
       "slug": "reiwa-8-culture-merit-recipients",
       "url": "https://www.mext.go.jp/b_menu/houdou/2026/1422024_00002.htm"
     },
+    "0f0cb95e5bb05a5c": {
+      "at": "2026-11-08T15:22:50.384187+00:00",
+      "costUsd": 0.0097,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "gemini-3.5-flash-lite",
+      "score": 85,
+      "section": "ai",
+      "slug": "aws-serverless-mcp-server-ecs-fargate",
+      "url": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/"
+    },
     "0f281cabd4f69d19": {
       "at": "2026-11-04T10:23:03.225973+00:00",
       "model": "claude:sonnet",
@@ -19303,48 +19315,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-06T08:57:49.219687+00:00",
-      "attempt": 1,
-      "id": "2e9f83e45747a59d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "個人向け国債の応募額（令和8年10月）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:58:43.969695+00:00",
-      "attempt": 2,
-      "id": "2e9f83e45747a59d",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "個人向け国債の応募額（令和8年10月）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:59:51.090962+00:00",
-      "attempt": 1,
-      "id": "d87e2c21f3a743e6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "riken",
-      "title": "機械学習で酵素の強さと能力の高さを両立化"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-06T09:03:26.362151+00:00",
       "attempt": 2,
       "id": "d87e2c21f3a743e6",
@@ -25774,6 +25744,83 @@
       "score": 88,
       "source": "aws-ml-blog",
       "title": "Taxonomy of agentic primitives in Amazon Quick"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T15:21:59.868597+00:00",
+      "attempt": 1,
+      "id": "0f0cb95e5bb05a5c",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "元記事の文をそのまま書き写している（2文。例「\"description\": \"Unique order identifier assigned a」）。自分の言葉で要約する"
+      ],
+      "readability": {
+        "avg_paragraph": 173.6,
+        "avg_sentence": 86.8,
+        "long_share": 0.714,
+        "max_paragraph": 281,
+        "paragraphs": 7,
+        "sentences": 14
+      },
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "Serverless MCP server for AI agent data lake access on Amazon ECS Fargate",
+      "warnings": [
+        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（LLM・NASC・ECS）",
+        "読みやすさ: 文が長い（1文の平均 86.8字・60字超の文が 71% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T15:22:21.654252+00:00",
+      "attempt": 1,
+      "id": "0f0cb95e5bb05a5c",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 166.9,
+        "avg_sentence": 83.4,
+        "long_share": 0.688,
+        "max_paragraph": 281,
+        "paragraphs": 8,
+        "sentences": 16
+      },
+      "score": 85,
+      "source": "aws-ml-blog",
+      "title": "Serverless MCP server for AI agent data lake access on Amazon ECS Fargate",
+      "warnings": [
+        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（LLM・NASC・ECS）",
+        "読みやすさ: 文が長い（1文の平均 83.4字・60字超の文が 69% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T15:22:50.368008+00:00",
+      "attempt": 0,
+      "id": "0f0cb95e5bb05a5c",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 108.6,
+        "avg_sentence": 52.3,
+        "long_share": 0.259,
+        "max_paragraph": 215,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": 85,
+      "source": "aws-ml-blog",
+      "title": "Serverless MCP server for AI agent data lake access on Amazon ECS Fargate",
+      "warnings": [
+        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（LLM・NASC・MCP）",
+        "読みやすさ: 文が長い（1文の平均 52.3字・60字超の文が 26% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
     }
   ],
   "short_text_retry": {},
