@@ -178,12 +178,28 @@ def check_file(path: Path) -> tuple[dict | None, list[str]]:
     return data, problems
 
 
-def duplicate_of(data: dict) -> str | None:
+FOLLOWUP_RE = re.compile(r"続報|翌日|その後|2日目|二日目|第[0-9０-９一二三四五六七八九十]+報")
+
+
+def is_followup(data: dict, name: str = "") -> bool:
+    """続報・翌朝の解説（2026-11-09 オーナー: 当たった話題の「その後どうするか」を朝に出す）"""
+    text = " ".join([name, data.get("title") or "", data.get("notes") or ""])
+    return bool(FOLLOWUP_RE.search(text))
+
+
+def duplicate_of(data: dict, name: str = "") -> str | None:
     import dedupe  # noqa: PLC0415
     import story  # noqa: PLC0415
 
     url = data["sources"][0]["url"]
     recent = dedupe.load_recent(DEDUPE_DAYS)
+    if is_followup(data, name):
+        # 続報は同じ出典・同じ固有名詞が当たり前。見出しがほぼ同じ（同じ記事の出し直し）のときだけ重複にする
+        grams = dedupe.bigrams(data["title"])
+        for entry in recent.entries:
+            if dedupe.jaccard(grams, entry["bigrams"]) >= dedupe.JACCARD_DUP:
+                return f"見出しがほぼ同じ: {entry['label'][:40]}"
+        return None
     if hit := recent.find(data["title"], url):
         return hit
     try:
@@ -321,7 +337,7 @@ def process(args) -> int:
             finish("rejected", "書式: " + " / ".join(problems))
             rejected += 1
             continue
-        if dup := duplicate_of(data):
+        if dup := duplicate_of(data, name):
             finish("rejected", f"重複: この7日の記事「{dup}」と同じ話題です。ledger.md を見て別の話題にしてください")
             rejected += 1
             continue

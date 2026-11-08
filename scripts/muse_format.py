@@ -139,8 +139,9 @@ def problems(data: dict, filename: str = "") -> list[str]:
     sources = data.get("sources") or []
     if not sources:
         out.append("sources（公式の出典 URL）がありません")
+    # 2026-11-09 オーナー: 落とす理由は「嘘」だけ。出典が多いときは落とさず、先頭の MAX_SOURCES 件を使う
     if len(sources) > MAX_SOURCES:
-        out.append(f"sources は{MAX_SOURCES}件までにしてください")
+        data["sources"] = sources = sources[:MAX_SOURCES]
     for s in sources:
         url = s.get("url") or ""
         if not url.startswith("https://"):
@@ -181,7 +182,7 @@ FORMAT_MD = """# サイソク 記事の入稿の書式（Muse さん向け）
 |---|---|
 | title | 記事の題名。目に留まって読みたくなる強い題名でよい（いちばん驚く本当の数字を先頭に・問いかけも可）。本文にない事実や言い過ぎはだめ。「｜」は使わない |
 | genre | 手続き・お金・値上げ・早見表・速報解説・暮らし・AI・テック・ビジネス のどれか1つ |
-| sources | 公式の出典。1〜6件。1件目が一番の出典。各件に url（https://）・name（発信元の名前）・facts（どの数字がそのページのどこにあるか） |
+| sources | 公式の出典。1〜6件（7件目以降は使いません）。1件目が一番の出典。各件に url（https://）・name（発信元の名前）・facts（どの数字がそのページのどこにあるか） |
 | notes | ひと言メモ。題材を選んだ理由と、確かめられなかった点（サイトには出ません） |
 
 本文（--- のあと）:
