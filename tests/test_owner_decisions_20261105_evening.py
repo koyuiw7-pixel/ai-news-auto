@@ -41,10 +41,8 @@ class LinkInBodyTest(unittest.TestCase):
     def test_flag_is_ignored_and_position_is_always_body(self):
         for flag in ("1", "on", "0"):
             with patch.dict(os.environ, {"THREADS_LINK_AB": flag}):
-                self.assertFalse(sns_plan.link_ab_on())
                 self.assertEqual(sns_plan.threads_link_position({"a": {"linkPosition": "body"}}), "body")
-                self.assertEqual(sns_plan.link_ab_reminder(datetime(2026, 11, 20, tzinfo=timezone.utc)), "")
-        self.assertEqual(sns_plan.link_ab_window()["decided"], "body")
+        self.assertFalse(hasattr(sns_plan, "link_ab_on"))  # 比べは終わった（2026-11-08 に仕組みごと外した）
         for path in (ROOT / ".github" / "workflows").glob("*.yml"):
             self.assertNotIn("THREADS_LINK_AB", path.read_text("utf-8"), path.name)
 

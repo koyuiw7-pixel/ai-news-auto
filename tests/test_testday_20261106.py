@@ -258,16 +258,13 @@ class FinanceCapTest(unittest.TestCase):
         self.assertTrue(sns_plan.finance_topic({"title": "A社がB社にTOB"}))
         self.assertFalse(sns_plan.finance_topic({"title": "株式会社ACMEが新しいAIを公開"}))
         self.assertFalse(sns_plan.finance_topic({"title": "毎月勤労統計 9月の実質賃金"}))
-        self.assertEqual(sns_plan.finance_cap(), 2)
 
-    def test_third_finance_post_of_the_day_is_skipped(self):
-        day = datetime(2026, 11, 6, tzinfo=JST).date()
-        posted = {f"f{i}": {"id": f"f{i}", "title": f"会社{i}の決算", "dueAt": datetime(2026, 11, 6, 9 + i, tzinfo=JST).isoformat()} for i in range(2)}
-        art = {"slug": "f3", "title": "会社3の決算、営業利益が増加"}
-        self.assertTrue(sns_plan.finance_full(art, posted, day))
-        self.assertFalse(sns_plan.finance_full({"slug": "n", "title": "新しいスマホ"}, posted, day))
-        self.assertFalse(sns_plan.finance_full(art, {"f0": posted["f0"]}, day))
-        self.assertFalse(sns_plan.finance_full(art, posted, day.replace(day=7)))  # 次の日はまた出せる
+    def test_finance_daily_cap_is_gone(self):
+        """2026-11-08 の台帳の見直し（オーナー承認）: 決算・株の話題の1日2本の上限（旧 S39⑤）は外した。15本の枠に入れてよい"""
+        self.assertFalse(hasattr(sns_plan, "finance_full"))
+        self.assertNotIn("cap", sns_plan.plan().get("finance") or {})
+        for name in ("threads_post.py", "facebook_post.py", "breaking_post.py"):
+            self.assertNotIn("finance_cap", (ROOT / "scripts" / name).read_text("utf-8"))
 
 
 class ControlPostTest(unittest.TestCase):

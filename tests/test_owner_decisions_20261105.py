@@ -304,11 +304,8 @@ class FlagsTest(unittest.TestCase):
 
     def test_link_ab_week_and_reminder(self):
         # 2026-11-05 夕方 オーナー決定「すべて本文にリンクにしよう今後は」で比べは終了（decided=body。変数が 1 でも本文）
-        w = sns_plan.link_ab_window()
-        self.assertEqual((w["decided"], w["ended"]), ("body", "2026-11-05"))
+        self.assertNotIn("link_ab", sns_plan.plan())  # 2026-11-08 に比べの記録ごと外した
         with patch.dict(os.environ, {"THREADS_LINK_AB": "1"}):
-            self.assertFalse(sns_plan.link_ab_on())
-            self.assertEqual(sns_plan.link_ab_reminder(datetime(2026, 11, 13, 1, tzinfo=timezone.utc)), "")
             self.assertEqual(sns_plan.threads_link_position({"a": {"linkPosition": "body"}}), "body")
         self.assertEqual(sns_plan.utm_content("video", "reply"), "video_reply")  # 2つの組を utm_content で分ける
         self.assertEqual(sns_plan.utm_content("video", "body"), "video_body")

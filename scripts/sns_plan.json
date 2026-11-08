@@ -1,12 +1,11 @@
 {
-  "_doc": "SNS の伸ばし方の計画（2026-11-05 とろいも案 v1・台帳 S27〜S31）。scripts/sns_plan.py だけが読む。数字・語を変えるだけで選び方・枠・待ち時間を変えられる。slots_jst は通常の投稿の時刻（日本時間）。daily_cap は1日（日本時間）の自分の投稿の上限（Threads の分。Bluesky は bluesky の別の上限・枠＝台帳 S40、X は 2026-11-07 から x の別の上限・枠＝台帳 S42、Facebook は 2026-11-07 から facebook の別の上限・枠＝台帳 S43。速報も数える。cap_exempt の種類＝ミサイル・災害だけは数えない）。min_gap_min は投稿どうしの最短の間隔。lanes は出す話題（点数が高いほど先）。exclude は SNS に出さない話題（海外の企業向け・開発者向け。サイトには載せる）。muse はとろいも（Muse）の動画の受け渡し。utm は記事のリンクに付ける印",
+  "_doc": "SNS の伸ばし方の計画（台帳 S47・S28・S6。2026-11-08 の台帳の見直しで古い枠の数字・リンクの比べ・テストの日の決まりを外した）。scripts/sns_plan.py だけが読む。数字・語を変えるだけで選び方・枠・待ち時間を変えられる。slots_jst は通常の投稿の時刻（日本時間）。daily_cap は1日（日本時間）の自分の投稿の上限（Threads の分。Bluesky は bluesky の別の上限・枠＝台帳 S40、X は 2026-11-07 から x の別の上限・枠＝台帳 S42、Facebook は 2026-11-07 から facebook の別の上限・枠＝台帳 S43。速報も数える。cap_exempt の種類＝ミサイル・災害だけは数えない）。min_gap_min は投稿どうしの最短の間隔。lanes は出す話題（点数が高いほど先）。exclude は SNS に出さない話題（海外の企業向け・開発者向け。サイトには載せる）。muse はとろいも（Muse）の動画の受け渡し。utm は記事のリンクに付ける印",
   "version": 1,
   "decided": "2026-11-05",
   "slots_jst": ["07:15", "08:15", "09:15", "10:15", "11:15", "12:15", "13:15", "14:15", "15:30", "16:30", "17:30", "18:45", "19:45", "20:30", "21:45"],
   "daily_cap": 15,
   "_doc_per_day": "2026-11-08 オーナー承認（台帳 S47「全て承認する」）: 通常の投稿は Threads・X・Facebook・Bluesky のそれぞれで1日15本まで（リポジトリの変数 SNS_PER_DAY。変数を下げれば、枠を1日の中でならして間引く。per_day_max の15より増やさない）。枠は7時〜22時台におよそ1時間おき（投稿どうしは45分以上あける）。速報（breaking）とミサイル・災害の知らせはこの本数に数えない別枠のまま",
   "per_day_max": 15,
-  "_doc_testday": "2026-11-06 テストの日（台帳 S39・オーナー承認「明日はそういったテストをして分析をする日にするんだね。それならとにかく法則を見つけるため奔走して」）: 通常の枠を 07:15（朝のまとめ）・12:15・18:45・20:30 の4つ、1日の上限を5本（08:30 の毎月勤労統計などの速報も数える＝速報1本分の空き）。Muse の動画は1日2本。決算・株の話題は Threads で1日 finance_cap 本まで",
   "min_gap_min": 45,
   "digest_slot_jst": "07:15",
   "priority": {
@@ -39,9 +38,10 @@
     }
   },
   "exclude": {
-    "_doc": "海外の企業向け・開発者向けの話題は SNS に出さない（サイトだけ）。audience_re（記事の想定読者が開発者・IT 担当など）に当たれば外す。text_re（題名・タグ）だけに当たるときは、出どころが日本の会社・官公庁のサイト（.jp か japan_hosts）でなく、safety レーンでもなければ外す（海外の会社の日本語のページ /jp/ は海外として扱う）",
-    "text_re": "Google Cloud|Vertex AI|BigQuery|(?<![A-Za-z])AWS(?![A-Za-z])|Amazon Bedrock|Bedrock|SageMaker|(?<![A-Za-z])Azure(?![A-Za-z])|Microsoft Foundry|Foundry|Databricks|Snowflake|Atlassian|Jira|Confluence|Salesforce|Agentforce|ServiceNow|Workday|Oracle|(?<![A-Za-z])OCI(?![A-Za-z])|(?<![A-Za-z])IBM(?![A-Za-z])|Red Hat|Kubernetes|(?<![A-Za-z])Docker(?![A-Za-z])|Terraform|DevOps|GitHub Actions|JetBrains|Vercel|Supabase|Cloudflare Workers|MLflow|OpenTelemetry|Hugging Face|PyTorch|(?<![A-Za-z])TPU(?![A-Za-z])|(?<![A-Za-z])SDK(?![A-Za-z])|(?<![A-Za-z])API(?![A-Za-z])|(?<![A-Za-z])MCP(?![A-Za-z])|(?<![A-Za-z])CLI(?![A-Za-z])|(?<![A-Za-z])IDE(?![A-Za-z])|TypeScript|Python|\\.NET|データベース|開発者向け|開発ツール|法人向け|企業向け|エンタープライズ|ベンチマーク|評価(?:の)?枠組み|オープンソース|研究者|論文|ロボット用",
-    "audience_re": "開発|エンジニア|IT部門|IT管理|管理者|基盤|研究者|データ担当|データ分析|データエンジニア|AI推進|導入する担当|設計技術者|セキュリティ担当|防御担当|金融機関|半導体企業|開発チーム|インフラ",
+    "_doc": "海外の企業向け・開発者向けの話題は SNS に出さない（サイトだけ）。audience_re（記事の想定読者が開発者・IT 担当など）に当たれば外す。text_re（題名・タグ）だけに当たるときは、出どころが日本の会社・官公庁のサイト（.jp か japan_hosts）でなく、safety レーンでもなければ外す（海外の会社の日本語のページ /jp/ は海外として扱う）。2026-11-08 の台帳の見直し（オーナー承認・S28 を狭めた）: 外すのは開発者向けの話題だけ。「API」「データベース」「法人向け」「企業向け」「エンタープライズ」（soft_re）は、一般の人に関係する話題（SNS のレーン safety・money・brand・consumer_ai に当たる記事）なら外さない。どのレーンにも当たらないときだけ外す。audience_re から開発者でない「金融機関」「半導体企業」を外した",
+    "text_re": "Google Cloud|Vertex AI|BigQuery|(?<![A-Za-z])AWS(?![A-Za-z])|Amazon Bedrock|Bedrock|SageMaker|(?<![A-Za-z])Azure(?![A-Za-z])|Microsoft Foundry|Foundry|Databricks|Snowflake|Atlassian|Jira|Confluence|Salesforce|Agentforce|ServiceNow|Workday|Oracle|(?<![A-Za-z])OCI(?![A-Za-z])|(?<![A-Za-z])IBM(?![A-Za-z])|Red Hat|Kubernetes|(?<![A-Za-z])Docker(?![A-Za-z])|Terraform|DevOps|GitHub Actions|JetBrains|Vercel|Supabase|Cloudflare Workers|MLflow|OpenTelemetry|Hugging Face|PyTorch|(?<![A-Za-z])TPU(?![A-Za-z])|(?<![A-Za-z])SDK(?![A-Za-z])|(?<![A-Za-z])MCP(?![A-Za-z])|(?<![A-Za-z])CLI(?![A-Za-z])|(?<![A-Za-z])IDE(?![A-Za-z])|TypeScript|Python|\\.NET|開発者向け|開発ツール|ベンチマーク|評価(?:の)?枠組み|オープンソース|研究者|論文|ロボット用",
+    "soft_re": "(?<![A-Za-z])API(?![A-Za-z])|データベース|法人向け|企業向け|エンタープライズ",
+    "audience_re": "開発|エンジニア|IT部門|IT管理|管理者|基盤|研究者|データ担当|データ分析|データエンジニア|AI推進|導入する担当|設計技術者|セキュリティ担当|防御担当|開発チーム|インフラ",
     "japan_host_re": "\\.jp$",
     "japan_hosts": ["group.ntt", "global.honda", "global.toyota", "toyota-global.com", "nissan-global.com", "sony.com", "sony.co.jp", "nintendo.com", "rakuten.com", "panasonic.com", "hitachi.com", "global.canon", "fujifilm.com", "mazda.com", "subaru.co.jp", "suzuki.com", "yamaha.com", "fastretailing.com", "aeon.info", "lycorp.co.jp", "mercari.com", "kddi.com", "softbank.jp", "docomo.ne.jp"]
   },
@@ -93,16 +93,8 @@
     "sizes": [[1920, 1080], [1080, 1920]]
   },
   "finance": {
-    "_doc": "決算・株・業績・配当・自社株買い・TOB の話題（題名・タグに re が当たる記事）は、Threads に1日（日本時間）cap 本まで（2026-11-06 テストの日から・台帳 S39）。超えた分はサイトには載せ、Threads・X・Facebook の投稿は作らない（同じ予定から出るので3つとも同じ）。速報も数える。ミサイル・災害は当たらない",
-    "cap": 2,
+    "_doc": "決算・株・業績・配当・自社株買い・TOB の話題（題名・タグに re が当たる記事）。X は決算の数字だけの記事を出さない（台帳 S42）。1日の上限（旧 S39 の cap 2本）は 2026-11-08 の台帳の見直しで外した",
     "re": "決算|株価|株主|株高|株安|株式市場|株式分割|日経平均|業績|上方修正|下方修正|増益|減益|増収|減収|最終利益|純利益|営業利益|配当|増配|減配|自社株買い|自己株式の取得|(?<![A-Za-z])TOB(?![A-Za-z])|公開買い?付け?"
-  },
-  "link_ab": {
-    "_doc": "Threads のリンクの位置の比べ（S31）。2026-11-05 夕方 オーナー決定「すべて本文にリンクにしよう今後は」で交互の比べは終了（decided=body。link_ab_on は常に False）。2026-11-06 テストの日から、位置はリポジトリの変数 THREADS_LINK_POS（reply / body。空なら body）で切り替える（sns_plan.threads_link_position・台帳 S39）",
-    "start": "2026-11-05",
-    "end": "2026-11-05",
-    "ended": "2026-11-05",
-    "decided": "body"
   },
   "utm": {
     "_doc": "utm_content=<投稿の種類>_<リンクの位置>。種類は video（動画つきの記事の投稿）・hook（Muse の型の文面。SNS_HOOK_FORMAT=1 のときだけ）・card（災害など写真のカードで急いで出すもの）・digest（朝のまとめ）・reader（Threads の新しい書き方。utm_campaign は記事の slug。台帳 S46）。位置は body（本文）・reply（返信）",

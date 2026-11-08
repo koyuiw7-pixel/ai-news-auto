@@ -15,9 +15,8 @@
   count_today(posted, day, extra) → その日（日本時間）に出した（予約した）自分の投稿の数
   utm_content(ptype, pos) → "video_body" など
   hook_format_on()  → 2026-11-05 オーナー承認でワークフローの既定は on（変数で 0 にすれば止まる）
-  link_ab_on()      → 2026-11-05 夕方に終了（常に False。交互の比べはしない。S31）
-  threads_link_position() → 変数 THREADS_LINK_POS（reply / body。空なら body）。2026-11-06 テストの日から（S39）
-  finance_topic(article)  → 決算・株・業績・配当・自社株買い・TOB の話題か（Threads は1日 finance_cap 本まで。S39）
+  threads_link_position() → 変数 THREADS_LINK_POS（reply / body。空なら body）。台帳 S6（リンクの置き場所）
+  finance_topic(article)  → 決算・株・業績・配当・自社株買い・TOB の話題か（X の決算の数字だけの投稿を外すのに使う。S42）
   slot_priority(slot, article)  → Buffer の30日の上限が近いときにまだ作る投稿か
 """
 from __future__ import annotations
@@ -89,7 +88,7 @@ def lane_of(article: dict) -> tuple[str, int]:
 
 
 def excluded(article: dict | None) -> str:
-    """SNS に出さない理由（海外の企業向け・開発者向けの話題）。出してよければ ""。
+    """SNS に出さない理由（海外の開発者向けの話題。台帳 S28・2026-11-08 に狭めた）。出してよければ ""。
     災害・ミサイル・急ぎの安全の知らせ（disaster / urgent / safetyAlert）は外さない。
     掃除で取り下げたあと書き直して同じ URL に戻した記事（restoredAt。2026-11-06 台帳 A46）は新着ではないので出さない"""
     if article and article.get("restoredAt"):
@@ -103,6 +102,10 @@ def excluded(article: dict | None) -> str:
     audience = str((article.get("verdict") or {}).get("audience") or "")
     hit = _re(ex["text_re"]).search(text)
     aud = _re(ex["audience_re"]).search(audience) if audience else None
+    if not (hit or aud) and ex.get("soft_re") and (soft := _re(ex["soft_re"]).search(text)):
+        # 2026-11-08 の台帳の見直し（オーナー承認・S28 を狭めた）: 「API」「法人向け」などは、一般の人に関係する話題（どれかのレーン）なら外さない
+        if not lane_of(article)[0]:
+            hit = soft
     if not (hit or aud):
         return ""
     if not aud and japanese_source(article):
@@ -520,22 +523,6 @@ def hook_format_on() -> bool:
     return _flag("SNS_HOOK_FORMAT")
 
 
-def link_ab_on() -> bool:
-    """Threads のリンクの位置の比べ（S31）。**2026-11-05 夕方 オーナー決定「すべて本文にリンクにしよう今後は」で終了**。
-    変数 THREADS_LINK_AB が何であっても常に False（リンクは本文だけ。返信には置かない）"""
-    return False
-
-
-def link_ab_window() -> dict:
-    """リンクの位置の比べの記録（2026-11-05 に終了。decided=body）"""
-    return dict(plan().get("link_ab") or {})
-
-
-def link_ab_reminder(now: datetime | None = None) -> str:
-    """比べは終わった（decided=body）。いつも "" """
-    return ""
-
-
 THREADS_LINK_POSITIONS = ("reply", "body")
 
 
@@ -602,7 +589,7 @@ def muse_wait_until(slug: str, slot: datetime, breaking: bool = False, data: dic
     return max(slot, queued) + timedelta(hours=hours)
 
 
-# ---- 決算・株の話題の1日の上限（2026-11-06 テストの日から・台帳 S39） ----
+# ---- 決算・株の話題か（X の「決算の数字だけは出さない」S42 が使う。1日の上限は 2026-11-08 に外した） ----
 
 def finance_topic(record: dict | None) -> bool:
     """決算・株・業績・配当・自社株買い・TOB の話題か（記事でも投稿の記録でもよい。題名・SEO の題名・タグを見る）"""
@@ -611,31 +598,6 @@ def finance_topic(record: dict | None) -> bool:
         return False
     f = plan().get("finance") or {}
     return bool(f.get("re")) and bool(_re(f["re"]).search(_text(record)))
-
-
-def finance_cap() -> int:
-    return int((plan().get("finance") or {}).get("cap", 2))
-
-
-def finance_count(posted: dict, day: date, skipped: set[str] | None = None, articles: dict | None = None) -> int:
-    """その日（日本時間）に出した・予約した決算・株の話題の投稿の数。記録に題名が無ければ articles（slug → 記事）か記事のファイルを見る"""
-    skipped = skipped or set()
-    n = 0
-    for slug, rec in (posted or {}).items():
-        if slug in skipped or not (rec.get("id") or rec.get("status") == "awaiting_video"):
-            continue
-        when = _when(rec)
-        if not when or when.astimezone(JST).date() != day:
-            continue
-        art = rec if rec.get("title") else (articles or {}).get(slug) or _article(slug)
-        if finance_topic(art):
-            n += 1
-    return n
-
-
-def finance_full(article: dict, posted: dict, day: date, extra: int = 0, skipped: set[str] | None = None) -> bool:
-    """この記事を出すと、その日の決算・株の話題が上限を超えるか（超えるなら Threads には出さない。サイトには載せる）"""
-    return finance_topic(article) and finance_count(posted, day, skipped) + extra >= finance_cap()
 
 
 def _article(slug: str) -> dict:

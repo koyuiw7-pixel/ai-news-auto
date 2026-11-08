@@ -94,6 +94,13 @@ class LaneAndExcludeTest(unittest.TestCase):
         self.assertEqual(sns_plan.lane_of({"title": "無印良品のカード番号が流出した可能性"})[0], "safety")
         self.assertEqual(sns_plan.lane_of({"title": "Audio の新しい技術"})[0], "")  # 「au」の誤検知なし
 
+    def test_api_and_business_words_pass_when_ordinary_people_care(self):
+        """2026-11-08 オーナー決定（台帳 S28 を狭めた）: 外すのは開発者向けだけ。「API」「法人向け」は一般の人に関係する話題なら外さない"""
+        self.assertEqual(sns_plan.excluded({"title": "OpenAI、ChatGPTのAPI料金を値下げ", "sourceUrl": "https://openai.com/x"}), "")
+        self.assertEqual(sns_plan.excluded({"title": "法人向けChatGPTの料金を改定", "sourceUrl": "https://openai.com/x"}), "")
+        self.assertTrue(sns_plan.excluded({"title": "新しいAPIを開発者向けに公開", "sourceUrl": "https://example.com/x"}))
+        self.assertTrue(sns_plan.excluded({"title": "企業向けのデータ連携の仕組み", "sourceUrl": "https://example.com/x"}))
+
     def test_foreign_enterprise_is_excluded_everywhere(self):
         self.assertTrue(sns_plan.excluded(AWS))
         self.assertEqual(sns_plan.excluded(YUCHO), "")

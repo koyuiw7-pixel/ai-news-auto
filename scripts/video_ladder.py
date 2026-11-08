@@ -42,7 +42,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
-LEVELS = ("L1", "L2", "L3A")
+LEVELS = ("L1", "L2", "L3A")  # 手で試すときの段（--levels）。本番の SNS 動画は PRODUCTION_LEVELS だけ
+# 2026-11-08 の台帳の見直し（オーナー承認・旧 S18 を外した）: 本番は段を下がらない。今の型（L1。shorts_v3 の中で QA に落ちたら1回だけ作り直す）
+# だけを試し、通らなければその投稿は写真のカードで出す（S13・S47）。L3/L4 の割合の知らせ（fallback_alert）も本番では呼ばない
+PRODUCTION_LEVELS = ("L1",)
 APPROVED_LEVELS = ("L1", "L2", "L3A")  # どれも承認の形（BASE_LAYOUT）で作る段
 BASE_LAYOUT = "screen-left-headline"  # shorts_v3.BASE_LAYOUT と同じ
 VARIANTS = ("full", "short")

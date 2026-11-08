@@ -409,11 +409,13 @@ def run(now: datetime | None = None, env: dict | None = None, plan_only: bool = 
     else:
         early = []
     if make_versions is None:
-        # 2026-11-04 オーナー「動画がダメなら投稿しない、で投稿が止まってはいけない」: L1（今の型）→ L2（作り直し）→
-        # L3（公式の画像＋字幕）→ L4（記事の文だけ）の順に試し、検査に通った最初の段を使う（scripts/video_ladder.py）
+        # 2026-11-08 の台帳の見直し（オーナー承認・旧 S18 を外した）: 動画の段（L1→L2→L3A）は回さない。今の型（L1）だけを試し、
+        # 通らなければその投稿は写真のカードで出す（S13・S47）。合格の基準（S23）は同じ
+        import functools
+
         import video_ladder
 
-        make_versions = video_ladder.make_versions
+        make_versions = functools.partial(video_ladder.make_versions, levels=video_ladder.PRODUCTION_LEVELS)
     results = []
     for slug in picks:
         prev_tries = int((state["videos"].get(slug) or {}).get("tries", 0) or 0)
@@ -473,12 +475,6 @@ def run(now: datetime | None = None, env: dict | None = None, plan_only: bool = 
         results.append({"slug": slug, **rec})
     results += attach_ready(state, posted, now, f, editor or edit_scheduled)
     save_state(state)
-    try:
-        import video_ladder
-
-        video_ladder.fallback_alert(state)  # L3/L4 が直近20本の3割を超えたら issue（sns-video-fallback）
-    except Exception as error:  # noqa: BLE001
-        log(f"[video-followup] 段の見張りをとばしました: {type(error).__name__}")
     apply_converted(state, posted)
     later = now if fixed_now else datetime.now(timezone.utc)  # 動画づくりのあとの今の時刻で予約する
     results += early + publish_queued(state, posted, later, f, creator=creator)
@@ -865,7 +861,7 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
                     with buffer_budget.priority(slot_priority(slug, rec, slot)):
                         created[service] = creator(service, inp, article if use_video or not variant else art_now)
                     if service == "threads":
-                        # 前の Threads の投稿から30分あけるため、門番が予約の時刻を遅らせたことがある（台帳 S44）。実際の時刻を残す
+                        # 前の Threads の投稿から45分あける（S47）ため、門番が予約の時刻を遅らせたことがある。実際の時刻を残す
                         threads_due = _parse(str(inp.get("dueAt") or "")) or base
                     failed = None
                     if variant and not use_video:
@@ -887,7 +883,7 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
 
                 error = failed
                 if isinstance(error, threads_gate.ThreadsHeld):
-                    # 今夜の止め・11/7 の様子見の結果待ち（台帳 S44）。投稿は落とさず、次の回にもう一度（出さなかった扱いにしない・issue も立てない）
+                    # 新しい書き方の承認待ち（台帳 S46）・公式 API の予備の経路の間隔。投稿は落とさず、次の回にもう一度（出さなかった扱いにしない・issue も立てない）
                     held = str(error)
                     log(f"[video-followup] {slug}: {held}")
                     break

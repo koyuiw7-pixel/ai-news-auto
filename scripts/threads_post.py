@@ -41,7 +41,7 @@ import threads_hooks  # noqa: E402
 import question_patterns  # noqa: E402
 import sns_rules  # noqa: E402
 import sns_plan  # noqa: E402
-import threads_gate  # noqa: E402  Threads の投稿の間隔（30分）と表示0からの立て直し（台帳 S44）
+import threads_gate  # noqa: E402  Threads の投稿の間隔（45分・台帳 S47）と新しい書き方の承認待ち（S46）
 import number_units  # noqa: E402  数字を「万・億」で書く（SNS の文面にも。台帳 A45・S35）
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -1326,15 +1326,10 @@ def free_slots(state: dict, now: datetime | None = None, extra_taken: list[datet
             if not any(k.startswith(f"digest-{d:%Y%m%d}") for k in posted):
                 per_day[d] += 1
     found = []
-    recovery = threads_gate.load_recovery()
     for day in range(2):
         for hour, minute in SLOTS_JST:
             slot = (base + timedelta(days=day)).replace(hour=hour, minute=minute)
-            # 2026-11-06 オーナー承認（台帳 S44）: 今夜（11/6 22:00〜11/7 7:00）は通常の枠を使わない。11/7 は様子見の1本（その日いちばん早い
-            # 枠＝ふつうは 7:15。朝のまとめの枠でもこの日は様子見に使う）だけ。表示が戻ったら残りの枠はいつもどおり、0 ならその日は使わない
-            if not threads_gate.plan_slot_ok(slot, now, posted, recovery=recovery):
-                continue
-            if DIGEST_ON and (hour, minute) == DIGEST_SLOT_JST and not threads_gate.is_probe_slot(slot, now, posted, recovery=recovery):
+            if DIGEST_ON and (hour, minute) == DIGEST_SLOT_JST:
                 continue
             if DIGEST_ON and (hour, minute) == POLL_SLOT_JST and slot.weekday() in POLL_WEEKDAYS_JST:
                 continue
@@ -1411,7 +1406,7 @@ def publish(token: dict, text: str, link: str, article: dict | None = None, fetc
     if existing := meta_existing_post(token, article, fetch):
         log(f"  [threads] 同じ記事の投稿がもうあります（{existing}）。二重に出しません")
         return {"id": existing, "permalink": "", "duplicate": True}
-    threads_gate.enforce_direct(article)  # 新しい書き方の承認待ち（台帳 S46）・間隔（S44）。止めている間は LLM も呼ばない
+    threads_gate.enforce_direct(article)  # 新しい書き方の承認待ち（台帳 S46）・間隔（S47）。止めている間は LLM も呼ばない
     reply = ""
     if sns_rules.reader_kind("threads", "article", article) == "reader":
         # 新しい書き方（台帳 S46）: 本文はリンク無し、返信に「続き（◯◯）→ URL」
@@ -2083,7 +2078,7 @@ class DuplicatePost(RuntimeError):
 # 実行の中で読んだ Buffer の投稿（チャンネル → [(id, 本文)]）。作ったものは足していく（同じ実行で二度作らない）
 _BUFFER_RECENT: dict[str, list[tuple[str, str]]] = {}
 _BUFFER_RECENT_AT: dict[str, float] = {}
-# 同じ読みで分かる、各チャンネルの投稿の時刻（チャンネル → [(id, 時刻)]）。Threads の投稿どうしの間隔（threads_gate・台帳 S44）に使う
+# 同じ読みで分かる、各チャンネルの投稿の時刻（チャンネル → [(id, 時刻)]）。Threads の投稿どうしの間隔（threads_gate・台帳 S47）に使う
 _BUFFER_DUE: dict[str, list[tuple[str, datetime | None]]] = {}
 # 読んでからこの秒数を過ぎたら、作る直前に読み直す（同時に動いたほかのワークフローが作った投稿を見落とさない。2026-11-04 一貫性の点検）
 RECENT_POSTS_MAX_AGE_SEC = 90
@@ -2179,7 +2174,7 @@ def create_post(api_key: str, post_input: dict, *, service: str, article: dict |
         return dup.existing_id
     threads_due = None
     if service == "threads" and not post_input.get("saveToDraft"):
-        # 2026-11-06 オーナー承認（台帳 S44）: Threads の投稿どうしは30分あける（速報も。近ければ予約を遅らせる＝落とさない）。
+        # 台帳 S47: Threads の投稿どうしは45分あける（速報も。近ければ予約を遅らせる＝落とさない）。
         # 今夜（11/6 22:00〜11/7 7:00）は通常の投稿を出さない・11/7 は様子見の1本の結果が出るまで通常の投稿を出さない（ThreadsHeld）
         threads_due = threads_gate.enforce(api_key, post_input, article, kind=kind, source=source)
     data = buffer_graphql(
@@ -2204,7 +2199,7 @@ def create_post(api_key: str, post_input: dict, *, service: str, article: dict |
 
         threads_reader.mark_posted(str((article or {}).get("slug") or ""))  # 次の投稿は別の1行目の言い方・別の最後の文にする
     if threads_due is not None:
-        # この実行の次の Threads の投稿が、いま作った投稿との間隔を数えられるように（台帳 S44）
+        # この実行の次の Threads の投稿が、いま作った投稿との間隔を数えられるように（台帳 S47）
         _BUFFER_DUE.setdefault(str(post_input.get("channelId") or ""), []).append((result["post"]["id"], threads_due))
     return result["post"]["id"]
 
@@ -2615,26 +2610,15 @@ def main() -> int:
     plan: list[tuple[dict, datetime | None]] = []
     slot_test: dict[str, str] = {}
     for slot in slots:
-        test = ""
-        if False and non_ai_slot(slot) and other_pool:  # noqa: SIM223 - 置き換え済みのテスト枠（S27）
-            pick, test = other_pool.pop(0), "non_ai"
-        else:
-            if not pool:
-                break
-            # 同じ書き出しの型が続かないようにするのは、同じ話題の点数（レーン）の中だけ（話題の順番を崩さない。S27）
-            # 決算・株の話題は Threads に1日 finance_cap 本まで（2026-11-06〜・台帳 S39）。超える記事は候補から外す（サイトには載っている）
-            day = slot.astimezone(JST).date() if slot else datetime.now(JST).date()
-            fin_used = sum(1 for a, t in plan if sns_plan.finance_topic(a) and (t.astimezone(JST).date() if t else datetime.now(JST).date()) == day)
-            for a in [a for a in pool if sns_plan.finance_full(a, state["posted"], day, extra=fin_used, skipped=sns_plan.video_skipped())]:
-                log(f"[finance] {a['slug']}: 決算・株の話題が今日の上限 {sns_plan.finance_cap()} 本に達しているので Threads には出しません（S39）")
-                pool.remove(a)
-            if not pool:
-                break
-            top = sns_plan.sns_score(pool[0])
-            pick = next((a for a in pool if a.get("threadsHook") not in recent_hooks and sns_plan.sns_score(a) >= top), pool[0])
-            pool.remove(pick)
-            lane = sns_plan.lane_of(pick)[0]
-            test = f"lane_{lane}" if lane else "lane_none"  # どのレーンで選んだか（inflow_report・growth_indicators で比べる）
+        if not pool:
+            break
+        # 同じ書き出しの型が続かないようにするのは、同じ話題の点数（レーン）の中だけ（話題の順番を崩さない。S47）
+        # 決算・株の話題の1日の上限（旧 S39）は 2026-11-08 の台帳の見直しで外した（15本の枠に入れてよい）
+        top = sns_plan.sns_score(pool[0])
+        pick = next((a for a in pool if a.get("threadsHook") not in recent_hooks and sns_plan.sns_score(a) >= top), pool[0])
+        pool.remove(pick)
+        lane = sns_plan.lane_of(pick)[0]
+        test = f"lane_{lane}" if lane else "lane_none"  # どのレーンで選んだか（inflow_report・growth_indicators で比べる）
         if pick.get("threadsHook"):
             recent_hooks = [pick["threadsHook"], *recent_hooks][:3]
         if test:

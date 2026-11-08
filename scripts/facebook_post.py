@@ -7,7 +7,7 @@ Facebook は Threads の写しをやめ、Facebook だけの上限・枠・文�
       1日3本まで（sns_plan.json の facebook.daily_cap）。枠に遅れたら次の枠の前（最後は23時）まで出してよい。7時より前・23時より後は出さない。
       Threads・X の本数とは別に数え、お互いの本数に数えない。
   速報・ミサイル・災害の知らせ: 枠の外ですぐ出し、本数に数えない（台帳 S41）。速報のワークフローから --breaking-only で呼ぶ。
-  話題: SNS のレーン（sns_plan.sns_score）。海外の企業向け・開発者向け（S28）は出さない。決算・株の話題は1日 finance.cap 本まで（S39）。
+  話題: SNS のレーン（sns_plan.sns_score）。海外の企業向け・開発者向け（S28）は出さない。
   文面: 1行目＝数字の入った事実、2行目＝家計や暮らしにどう響くか（どちらも記事の文そのもの＝lede・やさしい版・要点／workMoney・verdict.take）。
       入れば3行目にもう1つの事実。問いかけは付けない（門番は暮らしの話題だけ許す。災害・安全には付けない＝S35）。
       記事のリンクは本文の最後（utm_campaign=fbpost）。写真のときはリンクカード（記事のカード）、承認された SNS 動画（qa_ok）があれば動画を
@@ -71,12 +71,6 @@ def on_fb(slug: str, fs: dict, posted: dict) -> bool:
 def posted_today(fs: dict, now: datetime) -> int:
     """今日（日本時間）の上限に数える Facebook の投稿の数（Threads・X の本数とは別。台帳 S43）"""
     return xp.posted_today(fs, now)
-
-
-def finance_today(fs: dict, now: datetime, by_slug: dict) -> int:
-    start = xp._day_start(now)
-    return sum(1 for slug, rec in fs.items() if isinstance(rec, dict) and rec.get("id") and (when := xp._parse(rec.get("at")))
-               and start <= when < start + timedelta(days=1) and sns_plan.finance_topic(by_slug.get(slug) or {"title": rec.get("title", "")}))
 
 
 # ---- 文面（sns_rules ルール21） ----
@@ -177,25 +171,20 @@ def ok_for_fb(article: dict, fs: dict, posted: dict, recent: list[str]) -> bool:
 
 
 def breaking_targets(fs: dict, posted: dict, now: datetime, articles: list[dict], min_age_min: int = 0) -> list[dict]:
-    """枠の外ですぐ出す速報・災害の知らせ（新しい順）。深夜1〜5時は災害の知らせだけ。決算・株の話題は1日 finance.cap 本まで（S39）"""
+    """枠の外ですぐ出す速報・災害の知らせ（新しい順）。深夜1〜5時は災害の知らせだけ"""
     if xp.breaking_today(fs, now) >= tp.BREAKING_PER_DAY:
         return []
     quiet = now.astimezone(tp.JST).hour in tp.BREAKING_QUIET_HOURS_JST
     by_slug = {a["slug"]: a for a in articles if a.get("slug")}
     recent = _recent_titles(fs, now, by_slug)
-    fin = finance_today(fs, now, by_slug)
     out = []
     for article in sorted(articles, key=lambda a: a.get("generatedAt") or "", reverse=True):
         if not xp.breaking_fresh(article, now) or (quiet and not xp.alert(article)):
             continue
         if now - xp._parse(article.get("generatedAt")) < timedelta(minutes=min_age_min):
             continue
-        if sns_plan.finance_topic(article):
-            if fin >= sns_plan.finance_cap():
-                continue
         if ok_for_fb(article, fs, posted, recent):
             out.append(article)
-            fin += sns_plan.finance_topic(article)
     return out[:MAX_BREAKING_PER_RUN]
 
 
@@ -206,7 +195,6 @@ def candidates(fs: dict, posted: dict, now: datetime, since: datetime, articles:
     dups = duplicate_slugs(articles)
     by_slug = {a["slug"]: a for a in articles if a.get("slug")}
     recent = _recent_titles(fs, now, by_slug)
-    finance_full = finance_today(fs, now, by_slug) >= sns_plan.finance_cap()
     out = []
     for article in articles:
         made = xp._parse(article.get("generatedAt"))
@@ -214,7 +202,7 @@ def candidates(fs: dict, posted: dict, now: datetime, since: datetime, articles:
             continue
         if not is_indexable(article, dups) and not xp.alert(article):
             continue
-        if (finance_full and sns_plan.finance_topic(article)) or not ok_for_fb(article, fs, posted, recent):
+        if not ok_for_fb(article, fs, posted, recent):
             continue
         score = sns_plan.sns_score(article) + (LIFESTYLE_BONUS if lifestyle and sns_plan.fb_lifestyle(article) else 0.0)
         out.append(((score, made), article))

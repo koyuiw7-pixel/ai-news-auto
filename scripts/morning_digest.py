@@ -627,12 +627,6 @@ def deliver(api_key: str, channels: dict, state: dict, post: dict, kind: str, no
             log(f"[{service}] 前回の受理結果を確定できません。重複防止のため再作成しません")
             failed = True
             continue
-        if service == "threads" and (held := tp.threads_gate.normal_hold(due or now)):
-            # 2026-11-06 オーナー承認（台帳 S44）: 今夜の止め・11/7 の様子見の結果待ちの間は、朝のまとめを Threads に出さない（ほかの SNS はそのまま）
-            entry.setdefault("delivery", {})[service] = {"status": "held", "updatedAt": now.isoformat(timespec="seconds"), "reason": held[:200]}
-            store_entry(state, key, entry)
-            log(f"[{service}] {held}")
-            continue
         media_due = due + timedelta(minutes=2) if due and service == "twitter" else due
         when = {"mode": "customScheduled", "dueAt": tp.utc_z(media_due)} if media_due else {"mode": "shareNow"}
         payload = threads_input(channels[service]["id"], post, when) if service == "threads" else x_input(channels[service]["id"], post, when)
