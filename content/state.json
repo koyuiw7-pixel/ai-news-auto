@@ -9098,6 +9098,17 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102812"
     },
+    "5ab80ff19e3f2e94": {
+      "at": "2026-11-08T23:22:56.420934+00:00",
+      "costUsd": 0.0026,
+      "intent": "neutral",
+      "mix": "ai_consumer",
+      "model": "claude:sonnet",
+      "score": 90,
+      "section": "ai",
+      "slug": "sompo-japan-gemini-enterprise-adoption",
+      "url": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/"
+    },
     "5ac8226e346a2ea6": {
       "at": "2026-10-26T12:51:45.036729+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（世界市場）",
@@ -19351,20 +19362,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-06T09:04:48.281541+00:00",
-      "attempt": 1,
-      "id": "d61c94ec35918b23",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "子供や子育て家庭の不安や悩みに寄り添う相談チャット 子供・子育てメンター“ギュッとチャット”「ギュッとチャット×シナモロール」コラボ動画を配信！"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-06T09:07:38.799191+00:00",
       "attempt": 2,
       "id": "d61c94ec35918b23",
@@ -25855,6 +25852,30 @@
       "warnings": [
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（SG）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T23:22:56.393948+00:00",
+      "attempt": 1,
+      "id": "5ab80ff19e3f2e94",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 86.5,
+        "avg_sentence": 44.6,
+        "long_share": 0.129,
+        "max_paragraph": 150,
+        "paragraphs": 16,
+        "sentences": 31
+      },
+      "score": 90,
+      "source": "google-cloud-blog-ja",
+      "title": "損害保険ジャパン:「正しく使われる」ための運用設計で、約 2 万ユーザーの Gemini Enterprise 活用を推進",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DAU）"
       ]
     }
   ],

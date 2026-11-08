@@ -1,0 +1,279 @@
+{
+  "slug": "sompo-japan-gemini-enterprise-adoption",
+  "sourceType": "web",
+  "sourceUrl": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/",
+  "sourceName": "Google Cloud 公式ブログ（日本）",
+  "title": "社員2万人のGemini Enterprise、週次利用率は約80%に　損保ジャパンの運用設計",
+  "seoTitle": "損保ジャパンのGemini Enterprise活用　WAU約80%",
+  "threadsPost": "AIエージェントを社内に広めたい担当者の人に、押さえておきたい話です。\n\n損保ジャパンは全社員約2万人にGemini Enterpriseを導入しました。\n半年で週次アクティブ率は約80%、日次でも50%超です。\n\n社内でAIを配るとき、まず何を測りますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "社内でAIを配るとき、まず何を測りますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "社員が作ったAIの公開は、どこまで自由にしてよいと思いますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "損保ジャパンの全社員約2万人が使うGemini Enterpriseで、週次アクティブユーザー率が約80%に達しました。2026年1月にPoC（試験導入）として始めてから半年で、日次でも50%超です。Google Cloudの公式ブログによると、カギは「落とさない」運用から「正しく使われる」運用へ考え方を変えたことでした。",
+  "description": "損保ジャパンは全社員約2万人にGemini Enterpriseを導入し、半年で週次利用率約80%を達成。BigQueryでの可視化と市民開発のルール監視など、定着させた運用設計をまとめました。",
+  "keywords": [
+    "Gemini Enterprise",
+    "損保ジャパン",
+    "AIエージェント",
+    "生成AI 社内活用",
+    "市民開発",
+    "AIガバナンス",
+    "BigQuery",
+    "利用定着",
+    "Gemini Notebook",
+    "週次アクティブユーザー"
+  ],
+  "tags": [
+    "Gemini Enterprise",
+    "生成AI",
+    "AIエージェント",
+    "Google Cloud",
+    "導入事例"
+  ],
+  "highlights": [
+    "損保ジャパンが全社員約2万人にGemini Enterpriseを導入し、半年で週次利用率約80%を記録",
+    "日次利用率は50%超。2026年5月にカスタムエージェントの作成・共有を現場に開放した",
+    "目標は「活用拡大」「安全な利用・ガバナンス」「利用の定着」の3つ。利用データはBigQueryに集約"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "ok",
+    "price": "法人向け",
+    "free": null,
+    "audience": "AI導入担当",
+    "take": "社内導入を進める担当者は、利用率の測り方とルール監視の設計を参考にするとよいでしょう。",
+    "judgedAt": "2026-11-08T23:22:47.343753+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "社内にAIを導入する担当者は、利用者数だけでなくDAU・WAUや部署別の利用率を見る設計の参考になります。",
+      "現場がカスタムエージェントを作れる環境では、ルール逸脱を自動で見つけて案内する仕組みが要点です。",
+      "Gemini EnterpriseのBusinessエディションは1人月21ドルからで、規模に応じてプランを選べます（Google公式、11/8確認）。"
+    ]
+  },
+  "body": "対象は損害保険ジャパン（損保ジャパン）の全社員約2万人です。今回の内容は同社の社内導入の事例で、一般の利用者が使い方や料金を変える話ではありません。\n\nGemini Enterpriseは、企業が社内の文書やデータを使ってAIエージェント（自分で手順を進めるAI）を動かすための法人向けサービスです。Google Cloud公式ブログ（日本）の顧客事例として、2026年11月9日に公開されました。\n\n## 「落とさない」から「正しく使われる」へ\n\n損保ジャパンは2025年から約1年、社員向けにチャットボット型のAIを自社で開発して提供していました。その後、Gemini Enterpriseへの移行を決めました。\n\nDX推進部チーフエンジニアの城市由佳理氏によると、最初に目を付けたのは「Gemini Notebook」です。社内文書をアップロードするだけで、専門知識の検索や要約ができる点が求めていた機能でした。そのノートブックと連携できるエージェント基盤として、Gemini Enterpriseを選んだといいます。\n\n城市氏は「従来のシステム運用では、落とさず安定稼働させることが最大の命題でした」と話します。AIエージェントでは、より多くの人に、正しく使ってもらうことに比重を置くと決めました。\n\n目標は次の3つです。\n\n- 活用拡大\n- 安全な利用・ガバナンス（統制の仕組み）\n- 利用の定着\n\n## 利用データを集めて、次の手を打つ\n\n定着に向けて、Discovery Engine API（検索基盤の呼び出し口）の監査ログをBigQuery（Googleのデータ分析基盤）に集めました。見る切り口は3つです。\n\n- 全体のDAU・WAU（日次・週次の利用者率）と継続率\n- 公式ノートブックやカスタムエージェントの利用数\n- 部署ごとの利用率\n\n活用が進む部署の取り組みは事例として社内に展開しました。勉強会などの効果もデータで検証しています。\n\n障害への備えとして、Cloud Monitoringで3種類のアラートを設定しています。\n\n- 致命的エラーの即時通知\n- 内部エラー多発の閾値検知\n- APIクォータ（利用枠）逼迫の予兆検知\n\n利用者のやる気をそぐ障害を、先回りして防ぐ狙いです。\n\n## 現場に開放したカスタムエージェントは、監視と是正で守る\n\n2026年5月には、カスタムエージェントの作成・共有機能を現場に開放しました。エージェント一覧のデータをBigQueryに集め、ルールからの逸脱を自動で監視します。該当するユーザーには、是正の案内を送る仕組みを独自に開発しました。\n\n利用を一律に制限せず、監視と是正で「自由な市民開発」とガバナンスを両立させる考え方です。市民開発とは、IT部門でなく現場の社員が自分でツールを作ることを指します。\n\n城市氏は「自分たちで作って公開するものは、その部署の人たちが本当に使いたいもの」と語ります。結果として、DAUは50%超、WAUは約80%まで上がりました。社員同士で使い方を教え合う文化も生まれ、勉強会や部門巡回、新しいエージェントの開発も増えているといいます。\n\n## 自社で導入するときの料金と使えるプラン\n\nGemini Enterpriseのエディションは、Businessが1人あたり月21ドルから（最大300人）、Standard・Plusが月30ドルからです（Google公式の料金ページ、11/8確認）。\n\nアプリ版は、シート（利用者）単位で月ごとに課金されるサブスクリプション型です。技術チーム向けの開発基盤「Gemini Enterprise Agent Platform」は、従量課金で別のサービスとされています（Google Cloud公式のよくある質問、11/9確認）。\n\n事例で使われたBigQueryやCloud Monitoringは、利用状況の可視化とアラートに使われています。ライセンス数や利用者数だけでは価値を測れない、というのが公式ブログの見方です。\n\n## まだ分からないこと\n\n- 損保ジャパンの導入費用や、ライセンスの契約規模はまだ発表されていません。\n- 業務時間の削減効果など、成果を金額や時間で示した数字はまだ発表されていません。\n- PoCから本番契約へ移った時期は、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\n損保ジャパンは、全社員約2万人にAIサービス「Gemini Enterprise」を配りました。半年で、毎週使う社員が約80%になりました。\n\n## 使われるための仕組み\n\n同社は、システムが止まらないことより、多くの人に正しく使われることを重視しました。\n\n利用の状況はデータでまとめ、部署ごとの使われ方を確認しました。障害の予兆があれば、すぐ通知が届くようにしています。\n\n## 現場が自分で作れるようにした\n\n2026年5月からは、各部署が自分たちのAIアシスタントを作って共有できるようになりました。\n\n決まりから外れた使い方は自動で見つけ、本人に直し方を案内します。使うことを一律に禁止せず、自由と安全を両立させる考え方です。",
+  "channel": "Google Cloud 公式ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "google-cloud-blog-ja",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "損害保険ジャパン:「正しく使われる」ための運用設計で、約 2 万ユーザーの Gemini Enterprise 活用を推進",
+  "publishedAt": "2026-11-09T01:00:00+00:00",
+  "generatedAt": "2026-11-08T23:22:47.343740+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/sompo-japan-gemini-enterprise-adoption-56f2aab1.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "Gemini EnterpriseとGeminiアプリは何が違いますか？",
+      "a": "Geminiアプリは個人やチーム向けのAIアシスタントです。Enterpriseは、Workspace以外の幅広い社内データや、カスタム・外部製のエージェントを使いたいチーム向けとされています（Google Cloud公式、11/9確認）。"
+    },
+    {
+      "q": "Gemini Enterpriseの料金はいくらですか？",
+      "a": "Businessエディションは1人月21ドルから（最大300人）、Standard・Plusは月30ドルからです。円の目安は約3,660円と約5,220円です（Google公式、11/8確認）。"
+    }
+  ],
+  "todayActions": [
+    "自社のAI利用状況を、DAU・WAU・部署別利用率で集計できるか確認する",
+    "現場に開放するAIエージェントの、ルール逸脱を検知する方法を決める",
+    "Businessエディションが規模に合うか、公式の料金表示を確認する"
+  ],
+  "qualityScore": 90,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "Google公式の料金ページ",
+      "url": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "checkedAt": "2026-11-08"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-09T01:00:00+00:00",
+  "detectedAt": "2026-11-08T23:21:04+00:00",
+  "layout": "noir",
+  "summaryLine": "損保ジャパンが全社員約**2万人**にGemini Enterpriseを導入し、半年で週次利用率約80%を記録",
+  "insight": [
+    {
+      "text": "現場にカスタムエージェントの作成・共有を開放したうえで、エージェント一覧データをBigQueryに集約し、ルール逸脱を自動モニタリングして、該当ユーザーに是正案内を送る仕組みを独自開発しています。",
+      "source": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/"
+    },
+    {
+      "text": "Businessエディションは「小規模の企業やチームに最適。IT 部門による設定は不要です。」とあり、最小構成価格は「$21 （1 ライセンスあたり月額）」です。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja"
+    },
+    {
+      "text": "Cloud Monitoringのアラートは3種類で、「致命的エラーの即時通知」「内部エラー多発の閾値検知」「APIクォータ逼迫の予兆検知」を設定しています。",
+      "source": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Gemini Enterprise 営業担当への問い合わせ",
+      "url": "https://cloud.google.com/contact/gemini-enterprise",
+      "source": "https://cloud.google.com/contact/gemini-enterprise",
+      "howTo": [
+        "Gemini Enterprise",
+        "Business エディション",
+        "お問い合わせ"
+      ],
+      "note": "問い合わせフォームに会社名や従業員数などを入力し、ビジネスニーズと課題を説明する形です。"
+    },
+    {
+      "name": "Gemini Enterprise Business のトライアル",
+      "url": "https://business.gemini.google/",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "howTo": [
+        "Gemini Enterprise",
+        "Business エディション",
+        "トライアルを開始"
+      ],
+      "note": "料金は1ライセンスあたり月額$21からの最小構成価格と表示されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自社のAI利用状況を、DAU・WAU・部署別利用率で集計できるか確認する",
+      "source": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/",
+      "steps": [
+        "監査ログをBigQueryに集約できるか確認する",
+        "DAU・WAU・継続率を見る",
+        "部署ごとの利用率を出す"
+      ]
+    },
+    {
+      "action": "現場に開放するAIエージェントの、ルール逸脱を検知する方法を決める",
+      "source": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/",
+      "steps": [
+        "エージェント一覧のデータをBigQueryに集める",
+        "ルールからの逸脱を自動で監視する",
+        "該当ユーザーに是正の案内を送る"
+      ]
+    },
+    {
+      "action": "Businessエディションが規模に合うか、公式の料金表示を確認する",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "steps": [
+        "Gemini Enterprise の Business エディションを開く",
+        "最小構成価格（1ライセンスあたり月額）を見る",
+        "トライアルを開始するか、お問い合わせを選ぶ"
+      ],
+      "url": "https://gemini.google/jp/subscriptions/?hl=ja"
+    }
+  ],
+  "cause": {
+    "text": "従来は「落とさず安定稼働」が最大の命題でした。AIエージェントでは、より多くの人に使ってもらい、正しく使われることに比重を置く考え方に変えました。",
+    "status": "background",
+    "source": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/"
+  },
+  "worries": [
+    {
+      "q": "社員が勝手にAIエージェントを作って、情報が漏れない？",
+      "a": "公式ページでは、カスタムエージェントの作成・共有を現場に開放したうえで、エージェント一覧のデータを集め、ルールからの逸脱を自動で監視していると書かれています。該当ユーザーには是正の案内が届きます。",
+      "source": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/",
+      "action": "自社で公開してよいエージェントのルールを決め、逸脱をどう監視するかを先に決める"
+    },
+    {
+      "q": "小さな会社でも使える？費用はどのくらい？",
+      "a": "公式ページではBusinessエディションを「小規模の企業やチームに最適」としています。IT部門による設定は不要と書かれ、最小構成価格は1ライセンスあたり月額$21です。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "action": "料金の表示を公式ページで確かめ、使う人数分のライセンス費用を計算する"
+    },
+    {
+      "q": "成果は本当に出ているの？数字で分かる？",
+      "a": "公式ページで示されているのは利用率で、DAUは50%超、WAUは約80%です。業務時間の削減など、成果を金額や時間で示した数字は書かれていません。",
+      "source": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/",
+      "action": "自社で利用率に加え、どの業務の時間が減ったかを測る指標を先に決めておく"
+    },
+    {
+      "q": "AIの障害で社員の仕事が止まったらどうする？",
+      "a": "公式ページでは、Cloud Monitoringで3種類のアラートを設定していると書かれています。致命的エラーの即時通知、内部エラー多発の閾値検知、APIクォータ逼迫の予兆検知です。",
+      "source": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/",
+      "action": "社内で、障害の通知を誰が受け取り、現場へどう知らせるかを導入前に決めておく"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "Gemini Enterpriseを自社で導入する？",
+      "situation": "数人から数十人の小さなチームで試したい",
+      "recommend": "料金表示を確かめてから、トライアルを検討する価値がある",
+      "reason": "Businessは小規模向けで、IT部門の設定は不要と書かれています。最小構成価格は1ライセンスあたり月額$21で、表示時点の金額です。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja"
+    },
+    {
+      "question": "Gemini Enterpriseを自社で導入する？",
+      "situation": "全社員など大人数に入れることを考えている",
+      "recommend": "営業担当に問い合わせて相談する価値がある",
+      "reason": "大人数の導入では条件が個別になる可能性があり、ページでは営業担当への問い合わせ窓口が案内されています。料金は読んだページでは確定していません。",
+      "source": "https://cloud.google.com/contact/gemini-enterprise"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "社内の使われ方は、数字で見える",
+    "cause": "なぜ「使われる」運用に変えたか",
+    "steps": "今日、自社で確かめられること",
+    "desk": "問い合わせ先と料金の確認場所",
+    "worries": "勝手な作成や、成果は大丈夫？",
+    "guide": "小さく試すか、全社で入れるか"
+  },
+  "depthAt": "2026-11-08T23:23:58+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/sompo-japan-gemini-enterprise-adoption-fig1-ffa1006c.jpg",
+      "width": 1200,
+      "height": 800,
+      "kind": "photo",
+      "credit": "Google Cloud",
+      "sourceUrl": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/",
+      "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/_53A9856-1_small.max-1200x1200.jpg"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/sompo-japan-gemini-enterprise-adoption-fig2-e4acc9f4.jpg",
+      "width": 1200,
+      "height": 627,
+      "kind": "dense",
+      "credit": "Google Cloud",
+      "sourceUrl": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/",
+      "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/QuanTiakiTu_SOMPO.max-1700x1700.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google Cloud",
+    "provider": "Google Cloud 公式ブログ（日本）",
+    "sourceUrl": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/",
+    "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/hero_image_sompo_horizontal_1.max-2500x2500.jpg",
+    "width": 1200,
+    "height": 591,
+    "at": "2026-11-08T23:24:09+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.487,
+    "y": 0.51,
+    "box": [
+      0.091,
+      0.095,
+      0.884,
+      0.924
+    ],
+    "ar": 2.0305,
+    "src": "https://ai-tech-express.jp/img/sompo-japan-gemini-enterprise-adoption-56f2aab1.jpg"
+  },
+  "discoverCandidate": true
+}

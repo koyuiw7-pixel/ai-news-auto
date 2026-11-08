@@ -1,0 +1,119 @@
+{
+  "slug": "bigquery",
+  "name": "BigQuery",
+  "aliases": [],
+  "company": "google",
+  "companyName": "Google",
+  "category": "半導体・インフラ",
+  "overview": {
+    "text": "BigQueryは、Googleが提供するデータ分析基盤です。業務データを集約してAIモデルの実行などに活用できます。",
+    "sources": [
+      "sompo-japan-gemini-enterprise-adoption",
+      "bigquery-accessor-pandas-ai",
+      "oracle-ai-database-agentic-update"
+    ]
+  },
+  "facts": [
+    {
+      "label": "使える場所",
+      "value": "Google Cloud",
+      "sources": [
+        "oracle-ai-database-agentic-update"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "データ分析者",
+      "sources": [
+        "bigquery-accessor-pandas-ai"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "Discovery Engine APIの監査ログなどの利用データを集約できます。",
+      "sources": [
+        "sompo-japan-gemini-enterprise-adoption"
+      ]
+    },
+    {
+      "text": "pandasの表にアクセサーを付けるだけで、AI関数を手元のコードから呼び出せます。",
+      "sources": [
+        "bigquery-accessor-pandas-ai"
+      ]
+    },
+    {
+      "text": "Oracleの業務データと双方向のIcebergテーブル連携ができます。",
+      "sources": [
+        "oracle-ai-database-agentic-update"
+      ]
+    },
+    {
+      "text": "テーブル情報と同じ場所に知識を置くことができます。",
+      "sources": [
+        "knowledge-catalog-agent-knowledge-base"
+      ]
+    }
+  ],
+  "pricing": [],
+  "japan": [],
+  "howto": [
+    {
+      "text": "JupyterにpandasとBigFramesをインストールして使います。",
+      "sources": [
+        "bigquery-accessor-pandas-ai"
+      ]
+    }
+  ],
+  "differences": [],
+  "faq": [
+    {
+      "q": "誰に向いている？",
+      "a": "データ分析者に向いています。",
+      "sources": [
+        "bigquery-accessor-pandas-ai"
+      ]
+    },
+    {
+      "q": "どのようなデータを集約できる？",
+      "a": "Discovery Engine APIの監査ログなどを集約できます。",
+      "sources": [
+        "sompo-japan-gemini-enterprise-adoption"
+      ]
+    },
+    {
+      "q": "Oracleデータと連携できる？",
+      "a": "双方向のIcebergテーブル連携ができます。",
+      "sources": [
+        "oracle-ai-database-agentic-update"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-11-06",
+      "slug": "bigquery-accessor-pandas-ai",
+      "event": "新機能「.bigquery」アクセサーを発表"
+    }
+  ],
+  "related": [
+    "knowledge-catalog",
+    "gemini",
+    "gemini-notebook",
+    "project-suncatcher"
+  ],
+  "articles": [
+    "sompo-japan-gemini-enterprise-adoption",
+    "bigquery-accessor-pandas-ai",
+    "oracle-ai-database-agentic-update",
+    "knowledge-catalog-agent-knowledge-base"
+  ],
+  "linkFrom": [
+    "bigquery-accessor-pandas-ai"
+  ],
+  "signature": "d85f39ca6d078c9e",
+  "primarySignature": "fc0e3af77a881f57",
+  "model": "gemini-3.5-flash-lite",
+  "createdAt": "2026-11-08T23:23:05+00:00",
+  "updatedAt": "2026-11-08T23:23:05+00:00"
+}
