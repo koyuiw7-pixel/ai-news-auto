@@ -59,24 +59,25 @@ class GateTest(unittest.TestCase):
         rec = dict(OLD)
         codes = {code for code, _ in st.coded_problems(rec)}
         text = "\n".join(m for _, m in st.coded_problems(rec))
-        for word in ("決まった型の見出し", "見出しが多すぎる", "中身のない章", "指示文の言葉", "1つの文を2つに割っている", "一問一答の口調",
+        for word in ("決まった型の見出し", "中身のない章", "指示文の言葉", "1つの文を2つに割っている", "一問一答の口調",
                      "幼い言い方", "説明つきの社名", "つなぎ", "リードのくり返し", "かんたん版に決まった型の見出し",
                      "「〇〇を発表しました」で終わり", "要点"):
             self.assertIn(word, text, word)
-        self.assertTrue({"A1", "A2", "A3", "A4", "A5", "A18", "A19"} <= codes, codes)
+        self.assertTrue({"A1", "A2", "A3", "A4", "A5", "A19"} <= codes, codes)
 
     def test_new_style_passes(self):
         rec = dict(NEW)
         st.autofix(rec)
         self.assertEqual(st.problems(rec), [])
 
-    def test_heading_density(self):
+    def test_no_heading_count_limit(self):
+        # 2026-11-08 の台帳の見直し（オーナー承認）: 見出しの数の上限（旧 A18 の1,000字に1つ）は外した。直しもしない・注意も出さない
         body = "## 1つ目\n" + "あ" * 400 + "\n## 2つ目\n" + "い" * 400 + "\n## 3つ目\n" + "う" * 300
-        self.assertEqual(st.max_headings(body), 2)
-        self.assertTrue(any("見出しが多すぎる" in p for p in st.style_notes({"body": body})))
-        # 「まだ分からないこと」は数えない
-        ok = "## 1つ目\n" + "あ" * 1200 + "\n## まだ分からないこと\n- 価格はまだ発表されていません。"
-        self.assertFalse(any("見出しが多すぎる" in p for p in st.style_notes({"body": ok})))
+        self.assertFalse(hasattr(st, "max_headings"))
+        self.assertFalse(any("見出しが多すぎる" in p for p in st.style_notes({"body": body})))
+        rec = {"body": body}
+        st.autofix(rec)
+        self.assertEqual(rec["body"].count("## "), 3)
 
     def test_quoted_words_are_not_style_problems(self):
         rec = {"body": "CEOは「すごい製品です」と話しました。同社は「業界初」としています。" + "事実の文です。" * 30}

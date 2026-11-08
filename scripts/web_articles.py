@@ -226,9 +226,10 @@ LOW_VALUE_RE = re.compile(
     # 海外の調査会社の「市場レポート販売」告知（中身が薄く数字の出所も不明）
     r"市場(調査|分析)?レポート|調査資料|世界市場|年平均成長率|CAGR|百万米ドル|億米ドル",
 )
-# 幅広い話題: 扱わない話題（タイトル＋概要で判定）。死傷を伴う事件事故・ゴシップ・選挙・医療効果・噂
+# 幅広い話題: 扱わない話題（タイトル＋概要で判定）。事件（犯罪）・ゴシップ・選挙・医療効果・噂。
+# 2026-11-08 オーナー決定（台帳 A23）: 事故・災害は暮らしの安全として扱う（死傷の語では落とさない。書き方は A39）
 HARD_EXCLUDE_RE = re.compile(
-    r"逮捕|容疑|送検|起訴|判決|事件|殺人|殺害|死亡事故|死傷|死者|負傷者|重傷|重体|遺体|行方不明|"
+    r"逮捕|容疑|送検|起訴|判決|事件|殺人|殺害|遺体|"
     r"訃報|逝去|死去|追悼|不倫|熱愛|交際を|離婚|炎上|スキャンダル|"
     r"噂|うわさ|リーク|治る|治療効果|完治|特効|がんが消|効く|痩せる|やせる|ダイエット効果|"
     # 不祥事（2026-11-07 台帳 A56: 話題を広げてもオーナーの判断待ち。料金・値上げの語があっても通さない）
@@ -518,8 +519,10 @@ BROAD_SOURCE_NOTE = """## 幅広い話題の編集ルール（必ず守る）
 - 資料はプレスリリース・官公庁・企業・研究機関の公式発表。発表者の宣伝文句（「業界初」「最高」等）は事実として断定せず、
   「〇〇によると」「〇〇は…としています」と発信元に帰属させる。
 - 読者に関係する条件（使える・買える・申し込めるか、対象者、期限）は、資料にあるときだけ本文に書く（無い項目の章は作らない）。
-- 事件・事故の死傷者、特定個人のゴシップ、選挙・政党の話、病気が治る・効くといった医療効果、出典不明の噂は書かない。
-  元記事がそれらを主題にしているなら is_relevant を false にする。"""
+- 事件（犯罪）、特定個人のゴシップ、選挙・政党の話、病気が治る・効くといった医療効果、出典不明の噂は書かない。
+  元記事がそれらを主題にしているなら is_relevant を false にする。
+- 事故・災害は、官公庁・会社の発表の範囲で、読者の安全と暮らし（交通・製品・手続き・避難）に役立つことを中心に書く
+  （死傷者の数は発表どおりだけ。私人の名前・推測・煽りは書かない。台帳 A39・A23）。"""
 
 BROAD_PROMPT_TEMPLATE = """以下の一次情報（公式発表の文章）を読み解き、日本語のSEO記事を作成してください。
 
@@ -630,7 +633,7 @@ def broad_prefilter(item: dict) -> str | None:
     """幅広い話題の安い足切り。除外理由（文字列）か None"""
     title = item["title"]
     if HARD_EXCLUDE_RE.search(f"{title} {item.get('summary', '')[:200]}") or ELECTION_RE.search(title):
-        return "扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）"
+        return "扱わない話題（事件・ゴシップ・選挙・医療効果・噂）"
     if len(title) < 10:
         return "タイトルが短すぎる（一覧リンク等）"
     if (m_low := LOW_VALUE_RE.search(title)) and not outage_notice(title, m_low.group(0)) \
@@ -983,7 +986,9 @@ TREND_PROMPT_TEMPLATE = """日本でいま話題になっているキーワー�
   japan ok/partial/no/unknown、price 14字以内、free true/false/null、audience 2〜8字、take 25〜55字）。
   当てはまらない話題（相場の動き・業界ニュースなど）では **null** にする。
 - is_relevant: サイトの軸（テクノロジー・お金・住まい）について読者に実質的な情報があれば true。
-  事件・事故・災害・政治・芸能・スポーツが中心の話題、報道が薄く事実が確認できない話題は false。
+  事件（犯罪）・政治・ゴシップが中心の話題、報道が薄く事実が確認できない話題は false。事故・災害は読者の安全と暮らしに
+  役立つなら true。芸能・エンタメ・スポーツはお金や暮らし（値段・チケット・発売・配信・サービス）に関係するなら true（台帳 A23）。
+  海外のリーグで活躍する日本人選手（大谷翔平など）の話題も true（台帳 A13）。
 - skip_reason: is_relevant が false のときだけ。
 - genre: 次から1つ（想定ジャンルが合っていればそれを使う）。
 {genre_choices}
@@ -2139,7 +2144,7 @@ def main() -> int:
     # --- 公式フィード（AI）と幅広い話題 ---
     major_ids: set[str] = set()
     # 公共性の高い話題（情報漏えい・ミサイル・災害・リコール・詐欺・暮らしのお金の変更）の1日の残り（scripts/public_interest.py。台帳 A40）
-    pi_left = [max(public_interest.DAILY_CAP - public_interest.done_today(state), 0)]
+    pi_left = [public_interest.left_today(state)]  # 2026-11-08 から上限なし（旧 A40 の12本を外した）
     pi_signals = public_interest.load_signals()
 
     def usable(items):
@@ -2194,7 +2199,8 @@ def main() -> int:
     )
     pi_majors = [i for i in majors if i.get("_public_interest")]
     if pi_majors:
-        log(f"[public-interest] 公共性の高い候補 {len(pi_majors)} 件（今日の残り {pi_left[0]} 本）: "
+        left_label = "上限なし" if pi_left[0] >= public_interest.UNLIMITED else f"今日の残り {pi_left[0]} 本"
+        log(f"[public-interest] 公共性の高い候補 {len(pi_majors)} 件（{left_label}）: "
             + " / ".join(f"{i['_public_interest']}{'（検索で急上昇）' if i.get('_trend_hit') else ''}:{i['title'][:40]}"
                          for i in pi_majors[:6]))
     if len(pi_majors) > pi_left[0]:

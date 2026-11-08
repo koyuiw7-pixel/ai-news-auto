@@ -70,10 +70,14 @@ class PublishGate(unittest.TestCase):
 
 class CandidateOffFocus(unittest.TestCase):
     def test_off_topic_lanes_are_skipped_before_generation(self):
-        self.assertTrue(indexnow.candidate_off_focus("entertainment", "PS5の新作ゲームが発売"))
         self.assertTrue(indexnow.candidate_off_focus("science", "理研が細胞のらせん構造の仕組みを解明"))
-        self.assertTrue(indexnow.candidate_off_focus("lifestyle", "サントリーの新しいラテが発売"))
-        self.assertTrue(indexnow.candidate_off_focus("public", "東京都が糖尿病予防のライトアップを実施"))
+        self.assertTrue(indexnow.candidate_off_focus("entertainment", "人気俳優の熱愛が発覚"))
+
+    def test_on_axis_candidates_pass_before_generation(self):
+        # 2026-11-08 の台帳の見直し（オーナー承認・A61 の最後の一文を外した）: お金か暮らしにつながる題名（life_link）は主題外にしない
+        self.assertFalse(indexnow.candidate_off_focus("entertainment", "PS5の新作ゲームが発売"))
+        self.assertFalse(indexnow.candidate_off_focus("lifestyle", "サントリーの新しいラテが発売"))
+        self.assertFalse(indexnow.candidate_off_focus("public", "東京都が糖尿病予防のライトアップを実施"))
 
     def test_ai_money_and_focus_lanes_pass(self):
         self.assertFalse(indexnow.candidate_off_focus("science", "理研が生成AIで新素材を探索"))

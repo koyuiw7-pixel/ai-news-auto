@@ -8,9 +8,9 @@
 このファイルが持つもの（ほかのファイルに文面を複製しない）:
   - STYLE_PROMPT: すべての生成の段（通常・速報・幅広い話題・話題のキーワード・動画・まとめ・別の切り口・かんたん版）に渡す文体の決まり
   - autofix(record): プログラムで直せるもの（「元記事」の言い換え・種類に合わない判定カード）
-  - problems(record): 公開前の門。1つでもあれば作り直し（quality.structural_problems から呼ぶ。通らなければ公開しない）
+  - problems(record): 公開前の門。2026-11-08 から is_hard のもの（うそ・法令に近いもの）だけ（台帳 A60。作り直しはしない）
   - warnings(record): 記録だけ（作り直しにはしない）
-  報告の自動ゲート17項目と、台帳 docs/owner_rules.md の A1〜A6・A18〜A21 をここで守らせる。
+  報告の自動ゲート17項目と、台帳 docs/owner_rules.md の A60（文体は記録と注意だけ・落とすのは is_hard だけ）をここで守らせる。
   表示の段の章の掃除（中身のない章を出さない）は scripts/section_gate.py / lib/article-sections.ts が受け持つ。
 
   python3 scripts/article_style.py --slug apple-reports-q4-2026-results   # 今ある記事を門にかけて表示
@@ -262,11 +262,6 @@ def _no_quotes(text: str) -> str:
 
 def news_type_of(record: dict) -> str:
     return record.get("newsType") or ""
-
-
-def max_headings(body: str) -> int:
-    """本文の長さで決まる見出しの上限（1,000字につき1つ。報告の自動ゲート3）"""
-    return _plain_len(body) // 1000 + 1
 
 
 # --------------------------------------------------------------------------- #
@@ -586,28 +581,7 @@ def autofix(record: dict) -> list[str]:
         if 2 <= len(kept) < len(highlights):
             record["highlights"] = kept
             changes.append(f"リードとほぼ同じ要点を{len(highlights) - len(kept)}つ外した")
-    # 見出しが多すぎるとき、小見出し（###）を太字の行にし、まだ多ければ後ろの見出しから太字の行にする（中身は残す。報告の自動ゲート3）。
-    # 日本の読者に関係する見出し（公開前の門 indexnow の no-japan-value が見る言葉）と「まだ分からないこと」は残す
-    body = record.get("body") or ""
-    heads = [h for h in headings(body) if not h.startswith(UNKNOWN_HEADING)]
-    if len(heads) > max_headings(body) and re.search(r"(?m)^###\s", body):
-        body = re.sub(r"(?m)^###\s+(.+?)\s*$", r"**\1**\n", body)
-        record["body"] = body
-        changes.append("見出しが多いので、小見出し（###）を太字の行にした")
-    heads = [h for h in headings(body) if not h.startswith(UNKNOWN_HEADING)]
-    limit = max_headings(body)
-    if len(heads) > limit:
-        keep_japan = next((h for h in heads if JAPAN_HEADING_RE.search(h)), None)
-        keep = set(heads[: limit - (1 if keep_japan and keep_japan not in heads[:limit] else 0)])
-        if keep_japan:
-            keep.add(keep_japan)
-
-        def demote(m: re.Match) -> str:
-            text = m.group(1).strip()
-            return m.group(0) if text in keep or text.startswith(UNKNOWN_HEADING) else f"**{text}**\n"
-
-        record["body"] = re.sub(r"(?m)^##\s+(.+?)\s*$", demote, body)
-        changes.append(f"見出しが多いので、{len(heads) - len(keep)}個を太字の行にした（本文{_plain_len(body)}字で{limit}個まで）")
+    # 見出しの数の上限（旧 A18・1,000字に1つ）は 2026-11-08 の台帳の見直しで外した（拾い読みできる見出しは A60 の目標）
     key = news_type_of(record)
     if key and record.get("verdict") and not news_types.allows_verdict(key) and key not in ("general", "explainer"):
         record["verdict"] = None
@@ -668,10 +642,6 @@ def coded_problems(record: dict) -> list[tuple[str, str]]:
     bad = [h for h in heads if TEMPLATE_HEADING_RE.match(h)]
     if bad:
         add("A1", f"決まった型の見出し（{'・'.join('「' + h + '」' for h in bad[:4])}）。その記事でしか使えない中身の言葉にするか、見出しを消す")
-    # 3. 見出しが多すぎる
-    count = len([h for h in heads if not h.startswith(UNKNOWN_HEADING)])
-    if count > max_headings(body):
-        add("A18", f"見出しが多すぎる（{count}個 / 本文{_plain_len(body)}字なら{max_headings(body)}個まで）。章をまとめて見出しを減らす")
     # 4. 「元記事」の言葉（autofix の後に残ったもの）
     if len(re.findall(r"元記事", body)) >= 2:
         add("A2", "本文に「元記事」が残っている。「〇〇の発表によると」と書くか消す")
@@ -854,12 +824,7 @@ def warnings(record: dict) -> list[str]:
     if any(h.strip() == "まとめ" for h in headings(body)):
         out.append("「## まとめ」の見出し（次に起きること・読者がやることを書いているか）")
     out += reader_order_warnings(record)
-    key = news_type_of(record)
-    if key:
-        lo, hi = news_types.get(key).length
-        n = _plain_len(body)
-        if n > hi * 1.4:
-            out.append(f"{news_types.get(key).label}の記事としては長い（{n}字 / 目安{hi}字まで）")
+    # 長さの上限の注意（旧 A42）は 2026-11-08 の台帳の見直しで外した
     return out
 
 

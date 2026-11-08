@@ -75,7 +75,7 @@ const LAUNCH_TOPIC = new RegExp(rules.launchTopic.source, rules.launchTopic.flag
 const LAUNCH_CONTEXT = new RegExp(rules.launchContext.source, rules.launchContext.flags);
 const LAUNCH_SOURCES = new Set<string>(rules.launchSources);
 
-/** public_interest.wide_category と同じ（題名だけで見る。事件・事故・芸能・不祥事は null） */
+/** public_interest.wide_category と同じ（題名だけで見る。事件〔犯罪〕・不祥事・ゴシップは null。2026-11-08 台帳 A23） */
 export function wideCategory(title: string, sourceSlug = ""): string | null {
   const text = (title ?? "").normalize("NFKC");
   if (!text || WIDE_EXCLUDE.test(text)) return null;

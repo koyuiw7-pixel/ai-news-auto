@@ -279,12 +279,12 @@ def rewrite(slug: str, attempts: int = 2) -> tuple[dict | None, dict]:
             return None, {**report, "why": f"記事にする価値なしと判定（{str(data.get('skip_reason'))[:80]}）"}
         record = w.attach_related(w.build_web_record(item, data, page, model, voice_key, bundle), data, related)
         w.pre_gate(record, source_text, context)
-        missing = news_types.missing_facts(record.get("newsType") or "", record.get("body") or "", source_text)
+        # 2026-11-08 の台帳の見直し（旧 A20 を外した・A60）: 足りない事実で作り直さない（記録だけ）
+        if missing := news_types.missing_facts(record.get("newsType") or "", record.get("body") or "", source_text):
+            log(f"   [type] 資料にあるのに本文に無い事実（記録だけ）: {'・'.join(x.label for x in missing)}")
         blocked = w.publish_blocked(record)
         if blocked:
             verdict = {"ok": False, "problems": [f"公開前の門: {indexnow.PUBLISH_FEEDBACK[blocked]}"]}
-        elif missing and attempt < attempts:
-            verdict = {"ok": False, "problems": news_types.missing_feedback(record["newsType"], missing)}
         else:
             verdict = quality.evaluate(record, source_text, kind, context)
             if not verdict.get("ok") and not verdict.get("soft") and verdict.get("fact") is not None and quality.surgical_ok(verdict):

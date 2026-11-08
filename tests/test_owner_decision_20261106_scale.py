@@ -109,10 +109,12 @@ class MixTest(unittest.TestCase):
         self.assertEqual(news_mix.cap_of("enterprise_dev", basis=300), 2)
         self.assertIsNone(news_mix.cap_of("money"))
 
-    def test_domestic_public_interest_news_has_more_room(self):
-        self.assertEqual(json.loads((ROOT / "scripts" / "public_interest_rules.json").read_text("utf-8"))["daily_cap"], 12)
+    def test_domestic_public_interest_news_has_no_daily_cap(self):
+        """2026-11-08 の台帳の見直し（オーナー承認）: 公共性の高いニュースの1日12本の上限（旧 A40）は外した（0＝上限なし）"""
+        self.assertEqual(json.loads((ROOT / "scripts" / "public_interest_rules.json").read_text("utf-8"))["daily_cap"], 0)
         if not os.environ.get("PUBLIC_INTEREST_DAILY_CAP"):
-            self.assertEqual(public_interest.DAILY_CAP, 12)
+            self.assertEqual(public_interest.DAILY_CAP, 0)
+            self.assertEqual(public_interest.left_today({}), public_interest.UNLIMITED)
 
     def test_search_demand_candidates_go_first(self):
         signals = [{"title": "遺族年金", "traffic": 5000}]

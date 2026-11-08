@@ -101,8 +101,9 @@ class ShortArticleFloorTest(unittest.TestCase):
         self.assertEqual(news_types.get("breaking").length[0], 800)
         self.assertEqual(news_types.SHORT_FLOOR, public_interest.SHORT_BODY)
         self.assertEqual(news_types.LONG_FLOOR, indexnow.THIN_BODY)
-        # 2026-11-08（台帳 A60）: 字数は目安。届かなくても公開する（作り直さない）
-        self.assertIn("800〜", news_types.prompt_block("breaking"))
+        # 2026-11-08 の台帳の見直し（旧 A42 を外した）: 生成の指示に字数の上限・下限を書かない。短い記事でよい
+        self.assertNotIn("800〜", news_types.prompt_block("breaking"))
+        self.assertIn("上限も下限も無い", news_types.prompt_block("product"))
         self.assertIn("短い記事でよい", news_types.prompt_block("product"))
 
 

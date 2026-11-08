@@ -144,7 +144,9 @@ class CandidateTest(unittest.TestCase):
         ent = {"title": "カプコン、中間決算は前年同期比で増収増益", "summary": "", "section": "entertainment", "source_slug": "capcom-ir"}
         self.assertIsNone(web_articles.broad_prefilter(ent))
         self.assertFalse(indexnow.candidate_off_focus("entertainment", ent["title"]))
-        self.assertTrue(indexnow.candidate_off_focus("entertainment", "『ピクミン4』の体験版が配信開始"))
+        # 2026-11-08 オーナー決定（台帳 A23）: エンタメも発売・配信・チケット・値段の話なら扱う（軸の上＝A61 の life_link）
+        self.assertFalse(indexnow.candidate_off_focus("entertainment", "『ピクミン4』の体験版が配信開始"))
+        self.assertTrue(indexnow.candidate_off_focus("entertainment", "人気俳優の熱愛が発覚"))
 
     def test_tag_sections_routes(self):
         import web_articles
@@ -169,11 +171,19 @@ class FocusTest(unittest.TestCase):
                 self.assertIsNone(indexnow.publish_block_reason(a))
 
     def test_entertainment_listing_and_gossip_stay_off_focus(self):
-        for title in ("映画の予告編を公開　キャストも発表", "人気アニメのコラボグッズを発売、価格は1500円", "PS5版の新作に無料コスチューム"):
+        for title in ("映画の予告編を公開　キャストも発表", "人気俳優の熱愛が発覚"):
             with self.subTest(title=title):
                 a = self.article(genreSlug="entertainment", title=title)
                 self.assertFalse(indexnow.is_focus(a))
                 self.assertEqual(indexnow.publish_block_reason(a), "off-focus")
+
+    def test_entertainment_money_and_life_is_published(self):
+        # 2026-11-08 オーナー決定（台帳 A23・A61 の最後の一文を外した）: 値段・発売・無料などお金と暮らしにつながる話は公開する
+        for title in ("人気アニメのコラボグッズを発売、価格は1500円", "PS5版の新作に無料コスチューム"):
+            with self.subTest(title=title):
+                a = self.article(genreSlug="entertainment", title=title)
+                self.assertFalse(indexnow.is_focus(a))
+                self.assertIsNone(indexnow.publish_block_reason(a))
 
     def test_money_genres_are_in_focus(self):
         self.assertTrue(indexnow.is_focus(self.article(genreSlug="investment", title="金融庁がNISAの手続きを簡素化")))

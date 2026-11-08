@@ -70,7 +70,7 @@ QUAKE_REPORT_RE = re.compile(r"(?:震度\d|を震源とする地震|津波(?:警
 # 選び方の調整値は scripts/public_interest_rules.json（後から重みを変えやすいように、コードに書き込まない）
 RULES_PATH = ROOT / "scripts" / "public_interest_rules.json"
 DEFAULT_RULES = {
-    "daily_cap": 12,  # 2026-11-06 台帳 A47: 4 → 12（国内の公共性の高いニュースを増やす）
+    "daily_cap": 0,  # 0＝上限なし（2026-11-08 の台帳の見直し・オーナー承認で 12本の上限〔旧 A40〕を外した）
     "priority": {"missile": 0, "disaster": 1, "breach": 2, "scam": 3, "money": 4, "recall": 5},
     "kinds": {"missile": ["gov"], "disaster": ["gov"], "scam": ["gov"], "money": ["gov"],
               "breach": ["gov", "official", "company"], "recall": ["gov", "official", "company"]},
@@ -95,8 +95,16 @@ RULES = load_rules()
 PRIORITY: dict[str, int] = {str(k): int(v) for k, v in RULES["priority"].items()}
 # 速報（すぐ SNS へ）にしてよい種類（S2・S15。災害・ミサイルは遅れると読者が困る）
 BREAKING_CATEGORIES = tuple(RULES["breaking"])
-# 1日に公共性の枠で作る本数（Claude API の月の上限は変えず、この本数で抑える）
-DAILY_CAP = int(os.environ.get("PUBLIC_INTEREST_DAILY_CAP") or RULES["daily_cap"])
+# 1日に公共性の枠で作る本数の上限。0＝上限なし（2026-11-08 から。1日の記事の段 A58 の上限の中で作る）
+DAILY_CAP = int(os.environ.get("PUBLIC_INTEREST_DAILY_CAP") or RULES["daily_cap"] or 0)
+UNLIMITED = 10**9
+
+
+def left_today(state: dict, now: datetime | None = None) -> int:
+    """今日まだ公共性の枠で作れる本数（上限なしなら UNLIMITED）"""
+    if DAILY_CAP <= 0:
+        return UNLIMITED
+    return max(DAILY_CAP - done_today(state, now), 0)
 TREND_FIRST = bool(RULES["trend_first"])
 # 流出・リコール・詐欺・お金の候補は、資料（公式の発表の本文）がこの字数より短ければ書かない（本文の下限に届かず、作り直しで費用だけ使うため。
 # ミサイル・災害は本文の下限が短いので対象外）
@@ -130,8 +138,8 @@ POLITICS_RE = re.compile(
     r"自民党|自由民主党|立憲民主党|日本維新の会|維新の会|公明党|国民民主党|共産党|れいわ新選組|参政党|社民党|日本保守党|"
     r"申入れ|申し入れ|緊急提言|提言を受け|選挙|候補者|立候補|政党|議員連盟"
 )
-# 個人の事件・事故（私人の名前・推測を避ける。会社の発表・官公庁の注意喚起だけを扱う）
-PERSONAL_CRIME_RE = re.compile(r"逮捕|容疑者|被告|送検|起訴|判決|殺人|殺害|死亡事故|遺体|行方不明|書類送検|指名手配")
+# 個人の事件（犯罪。私人の名前・推測を避ける）。2026-11-08 オーナー決定（台帳 A23）: 事故・災害は暮らしの安全として扱うので外さない（A39 の書き方）
+PERSONAL_CRIME_RE = re.compile(r"逮捕|容疑者|被告|送検|起訴|判決|殺人|殺害|遺体|書類送検|指名手配")
 # 採用・会議・訓練・叙勲など、公共の話題の語を含んでも読者の役に立たない告知
 NOT_NEWS_RE = re.compile(
     r"採用|募集|職員|任期付|会議|審議会|検討会|委員会|部会|議事|訓練|演習|叙勲|褒章|表彰|講演|セミナー|説明会|研修|"
@@ -200,7 +208,7 @@ def candidate_problem(title: str, summary: str = "", url: str = "") -> str | Non
     if POLITICS_RE.search(text):
         return "政治（政党・申し入れ・選挙）は扱わない"
     if PERSONAL_CRIME_RE.search(text):
-        return "個人の事件・事故は扱わない"
+        return "個人の事件（犯罪）は扱わない"
     if NOT_NEWS_RE.search(head):
         return "告知（採用・会議・訓練・表彰など）"
     if QUAKE_REPORT_RE.search(head) and not re.search(r"罹災|り災|支援|申請|特例|被災者", head):
@@ -539,7 +547,8 @@ def focus_topic(article: dict) -> bool:
 # 日本で多くの人が気にする暮らしの話題を、主題外として捨てずに拾う（生成前の足切り indexnow.candidate_off_focus と
 # 検索に出す主題 focus_topic の両方。lib/index-rules.json で lib/indexing.ts にも同じ値を渡す）。
 # 公共性の枠（CATEGORY_RES・1日の本数・速報）には入れない。品質の門（本文の下限・事実確認・お知らせの転載）は変えない。
-# 事件・事故・芸能・不祥事はオーナーが決めていないので対象外のまま（WIDE_EXCLUDE_RE）。題名だけで判定する（概要の一言で当たらないように）
+# 2026-11-08 オーナー決定（台帳 A23）: 事故・災害は暮らしの安全として扱う。芸能はお金・暮らし（値段・チケット・発売・配信・サービス）に
+# 関係するときだけ（ゴシップの語は外す）。事件（犯罪）・不祥事は対象外のまま（WIDE_EXCLUDE_RE）。題名だけで判定する（概要の一言で当たらないように）
 WIDE_TOPIC_RES: dict[str, re.Pattern] = {
     # 交通（鉄道の運休・遅延・運賃・ダイヤ改正、航空の欠航、道路の通行止め・規制・高速料金）
     "transport": re.compile(
@@ -600,11 +609,11 @@ LAUNCH_SOURCES = (
     "nissin", "kewpie", "house-foods", "nipponham", "kirin", "suntory", "meiji", "morinaga", "yamazaki",
     "asahi", "morinaga-milk", "megmilk", "fujiya",
 )
-# 広げた話題でも扱わないもの（事件・事故・芸能・不祥事。オーナーの判断待ち）
+# 広げた話題でも扱わないもの（事件〔犯罪〕・不祥事・芸能のゴシップ。2026-11-08 オーナー決定・台帳 A23 で事故・災害と芸能のお金・暮らしの話は外した）
 WIDE_EXCLUDE_RE = re.compile(
-    r"事件|事故|人身|逮捕|容疑|送検|起訴|判決|死亡|死者|死傷|負傷|けが人|重体|火災|転落|衝突|"
+    r"事件|逮捕|容疑|送検|起訴|判決|"
     r"不祥事|不適切(?:な|事案)|改ざん|隠蔽|隠ぺい|横領|着服|懲戒|ハラスメント|パワハラ|セクハラ|謝罪会見|"
-    r"芸能|タレント|俳優|女優|アイドル|熱愛|交際|結婚|離婚|不倫|妊娠|出産|活動休止|"
+    r"熱愛|交際|結婚|離婚|不倫|妊娠|出産|活動休止|"
     # 医療効果の主張（感染症の話題を足しても扱わない）
     r"治る|治療効果|完治|特効|効く|予防効果|"
     # 鳥インフルエンザの検査で陰性だった報告（読者に影響が無い）
@@ -622,7 +631,7 @@ WIDE_NOT_OUTAGE_RE = re.compile(r"障害対応|自動復旧|復旧ツール|障�
 
 def wide_category(title: str, source_slug: str = "") -> str | None:
     """題名が広げた暮らしの話題のどれに当たるか（transport / weather / price / service-end / outage / benefit / launch）。
-    当たらない・扱わない話題（事件・事故・芸能・不祥事）なら None。lib/indexing.ts の wideCategory と同じ"""
+    当たらない・扱わない話題（事件〔犯罪〕・不祥事・ゴシップ）なら None。lib/indexing.ts の wideCategory と同じ"""
     text = _nfkc(title)
     if not text or WIDE_EXCLUDE_RE.search(text):
         return None

@@ -87,7 +87,7 @@ class PromptTest(unittest.TestCase):
                 self.assertIn("3文目＝今やること、またはまだ決まっていないこと", block)
                 self.assertIn("本文の最初の段落（見出しを付けない）＝読者個人への影響", block)  # 台帳 A42・A45（2026-11-05 読者順の型）
                 self.assertIn("材料の無い章は作らない", block)
-                self.assertIn("1,000字につき1つまで", block)
+                self.assertNotIn("1,000字につき1つまで", block)  # 見出しの数の上限は 2026-11-08 に外した
                 self.assertIn("「## 概要」「## これまでの流れ」の章は作らない", block)
                 self.assertIn("まだ分からないこと", block)
                 # 2026-11-08（台帳 A60）: 字数は目安だけ。短い資料なら短い記事でよい（字数で落とさない・書き足さない）

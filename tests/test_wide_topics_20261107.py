@@ -1,5 +1,5 @@
 """2026-11-07 オーナー承認「広めていいよ」（台帳 A56）。拾うテーマを広げる（交通・天気・暮らし・障害・自治体）。
-事件・事故・芸能・不祥事は対象外のまま。生成前の足切り（indexnow.candidate_off_focus）と検索に出す主題（indexnow.is_focus・
+事件〔犯罪〕・不祥事・芸能のゴシップは対象外のまま（2026-11-08 A23 で事故・災害は扱うことにした）。生成前の足切り（indexnow.candidate_off_focus）と検索に出す主題（indexnow.is_focus・
 lib/indexing.ts）の両方で同じ判定になることを確かめる。外部への通信なし。"""
 
 import json
@@ -44,28 +44,32 @@ WIDE = [
     ("感染性胃腸炎にご注意ください！ノロウイルス等による集団感染が多く発生する時期です", "public", "tokyo-metro", "health"),
     ("秋田県における野鳥の高病原性鳥インフルエンザウイルスの検出事例について", "lifestyle", "maff", "health"),
 ]
-# 広げても扱わない（事件・事故・芸能・不祥事）。交通・天気・障害の語があっても入れない
+# 広げても扱わない（事件〔犯罪〕・不祥事・芸能のゴシップ・医療効果）。交通・天気・障害の語があっても入れない
 EXCLUDED = [
-    ("人身事故による運転見合わせについて", "lifestyle", "jrwest"),
-    ("踏切事故の影響で一部列車が運休", "lifestyle", "jrkyushu"),
     ("社員の逮捕に伴う運休のお詫び", "lifestyle", ""),
-    ("工事現場での火災の発生について（停電）", "lifestyle", "rikuden"),
     ("当社社員による不祥事と料金の返金について", "lifestyle", ""),
     ("元社員の横領と料金の返還について", "lifestyle", ""),
     ("人気俳優が結婚を発表 新商品のCMにも出演", "lifestyle", "familymart"),
-    ("アイドルの活動休止に伴うコラボ商品の販売終了", "lifestyle", "lawson"),
     ("社内のパワハラに関する懲戒処分について", "public", ""),
-    ("インフルエンザによる死亡者数について", "public", ""),
     ("この食品でインフルエンザが治る？", "lifestyle", ""),
 ]
-# 前から主題外のまま（広げた話題でもない）
+# 2026-11-08 オーナー決定（台帳 A23）: 事故・災害は暮らしの安全として扱う（交通・停電・感染症の知らせ）
+ACCIDENTS = [
+    ("人身事故による運転見合わせについて", "lifestyle", "jrwest", "transport"),
+    ("踏切事故の影響で一部列車が運休", "lifestyle", "jrkyushu", "transport"),
+    ("工事現場での火災の発生について（停電）", "lifestyle", "rikuden", "outage"),
+    ("インフルエンザによる死亡者数について", "public", "", "health"),
+]
+# 前から主題外のまま（広げた話題でもなく、お金にも暮らしにもつながらない）
 STILL_OFF = [
     ("令和8年11月6日(金)午後-内閣官房長官記者会見", "public", "gov-online"),
     ("超伝導を特徴づける2つの長さを計算可能に", "science", "riken"),
-    ("日本郵便と北海道テレビ放送による防災に関する連携協定の締結", "lifestyle", "japanpost"),
     ("ちょいたしおでんの具 コーン肉団子", "lifestyle", "nipponham"),  # 発売の語が無い商品名だけの題名は入れない
+]
+# 広げた話題ではないが、題名がお金か暮らしにつながる（life_link）ので主題外にしない（2026-11-08 の台帳の見直し・A61 の最後の一文を外した）
+ON_AXIS = [
+    ("日本郵便と北海道テレビ放送による防災に関する連携協定の締結", "lifestyle", "japanpost"),
     ("障害福祉分野における人材確保に関する検討会", "public", "mhlw"),
-    ("障害対応を自動化するツールを公開", "lifestyle", ""),
 ]
 
 
@@ -89,6 +93,18 @@ class WideTopicsTest(unittest.TestCase):
                 dropped = web_articles.broad_prefilter({"title": title, "summary": "", "section": lane, "source_slug": src})
                 self.assertIsNotNone(dropped, title)
 
+    def test_accidents_are_covered(self):
+        for title, lane, src, cat in ACCIDENTS:
+            with self.subTest(title=title):
+                self.assertEqual(public_interest.wide_category(title, src), cat)
+                self.assertIsNone(web_articles.broad_prefilter({"title": title, "summary": "", "section": lane, "source_slug": src}))
+
+    def test_life_linked_titles_are_on_axis(self):
+        for title, lane, src in ON_AXIS:
+            with self.subTest(title=title):
+                self.assertFalse(indexnow.candidate_off_focus(lane, title, "", src))
+                self.assertIsNone(indexnow.publish_block_reason({**article(title, lane, src), "body": "あ" * 900}))
+
     def test_unrelated_topics_still_off_focus(self):
         for title, lane, src in STILL_OFF:
             with self.subTest(title=title):
@@ -97,8 +113,12 @@ class WideTopicsTest(unittest.TestCase):
                 self.assertFalse(indexnow.is_focus(article(title, lane, src)))
 
     def test_hard_exclude_still_drops_before_topic_check(self):
-        item = {"title": "列車事故で負傷者 運転見合わせ続く", "summary": "", "section": "lifestyle", "source_slug": "jrwest"}
+        # 2026-11-08 オーナー決定（台帳 A23）: 事件（犯罪）は今までどおり扱わない。事故・災害は暮らしの安全として扱う
+        item = {"title": "駅で強盗事件 男を逮捕", "summary": "", "section": "lifestyle", "source_slug": "jrwest"}
         self.assertIn("扱わない話題", web_articles.broad_prefilter(item) or "")
+        accident = {"title": "列車事故で負傷者 運転見合わせ続く", "summary": "", "section": "lifestyle", "source_slug": "jrwest"}
+        self.assertNotIn("扱わない話題", web_articles.broad_prefilter(accident) or "")
+        self.assertEqual(public_interest.wide_category(accident["title"], "jrwest"), "transport")
 
     def test_launch_needs_a_store_device_or_food_maker(self):
         # 発売の語だけでは入れない（コンビニ・外食・家電・スマホ・食品の語か、その会社の公式の発表に限る）

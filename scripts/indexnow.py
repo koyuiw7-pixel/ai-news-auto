@@ -188,9 +188,9 @@ def is_focus(article: dict) -> bool:
     1. AI・テック（ジャンル ai / tech-gadget、または題名・タグにAI関連語）
     2. 読者像の話題（persona.is_persona_topic: ビジネス・投資・不動産のジャンル、制度・暮らし・テックのジャンルでお金・税・補助金・起業の話題）
     3. エンタメのビジネス・テックの目線（genre_focus.entertainment_focus: 料金・決算・販売本数・市場規模・AI・規約。告知・ゴシップは外す）
-    4. 日本のスポーツ（persona.sports_scope。海外のリーグ・選手だけの話題は外す。世界的な大会は海外選手も可）
+    4. 日本のスポーツ（persona.sports_scope。海外のリーグで活躍する日本人選手〔大谷翔平など〕も入る＝台帳 A13。海外の選手・リーグだけの話題は外す。世界的な大会は海外選手も可）
     5. 公共性の高い話題と、広げた暮らしの話題（public_interest.focus_topic。交通・天気・値上げ・サービス終了・障害・給付・
-       コンビニ/外食/家電/スマホの発売。2026-11-07 台帳 A56。事件・事故・芸能・不祥事は外す）
+       コンビニ/外食/家電/スマホの発売・事故と災害。2026-11-07 台帳 A56・2026-11-08 A23。事件〔犯罪〕・不祥事・ゴシップは外す）
     それ以外（作品の告知だけのエンタメ・ゲーム、お金に関係しない新商品や研究成果など）は主題外。"""
     text = article.get("title", "") + " " + " ".join(article.get("tags") or [])
     if article.get("genreSlug") in FOCUS_GENRES or AI_TOPIC.search(text):
@@ -211,7 +211,7 @@ def is_focus(article: dict) -> bool:
 # 2026-11-08 オーナー承認（台帳 A61「全て承認する」）: 検索に出さないのは、本当の重複（duplicateOf・同じ題名/出典の代表以外）と
 # 本文が無い記事だけ。主題外（off-focus）・「日本の読者向けの章」が無い（no-japan-value）・短い公式のお知らせ（thin）・
 # 配信サービス（wire）・動画の要約（creator-video）でも、公開している記事は検索に出す（幅広い話題の方針。台帳 A56）。
-# 公開前の門（publish_block_reason）はこれまでどおり focus_reason で見る（作るかどうかの基準は変えない）
+# 公開前の門（publish_block_reason）の「主題外」も 2026-11-08 の台帳の見直しから同じ軸（on_axis）で見る
 NO_BODY = 200  # これより短い本文は「本文が無い」として検索に出さない（字数。公式の短いお知らせは 800字ほどあるので当たらない）
 
 # 2026-11-08 オーナー決定（台帳 A61）: サイトの軸は「暮らしとお金の『自分ごと』ニュース」（あなたのお金と暮らしに、何が変わる？）。
@@ -302,7 +302,7 @@ PUBLISH_RETRYABLE: tuple[str, ...] = ()
 PUBLISH_FEEDBACK = {
     "wire": "プレスリリース配信の言い換えは公開しません",
     "creator-video": "個人・他媒体の動画の要約は公開しません",
-    "off-focus": "サイトの主題（AI・テック／お金・投資・不動産・起業／制度のお金の話／暮らしの交通・天気・値上げ・障害・給付・発売／日本のスポーツ）から外れた話題は公開しません",
+    "off-focus": "サイトの軸（暮らしとお金の「自分ごと」ニュース）から外れた話題（お金にも暮らしにもつながらないゴシップ・物語やキャラクターだけ・海外の試合結果だけ）は公開しません",
     "no-japan-value": (
         "日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。"
         "見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める"
@@ -314,8 +314,16 @@ PUBLISH_FEEDBACK = {
 }
 
 
+def on_axis(article: dict) -> bool:
+    """サイトの軸（暮らしとお金の「自分ごと」ニュース・台帳 A61）の上の記事か。検索に出す基準（noindex_reason）と同じ見方:
+    地震・津波の速報・お金か暮らしにつながる題名（life_link）・今まで出していた主題（is_focus）"""
+    return bool(article.get("disaster") or life_link(article.get("title") or "") or is_focus(article))
+
+
 def publish_block_reason(article: dict) -> str | None:
-    """公開しない理由（公開してよいなら None）。判定は focus_reason（2026-11-08 までの検索の基準。検索に出すかは noindex_reason）"""
+    """公開しない理由（公開してよいなら None）。配信の言い換え・動画の要約は focus_reason で見る。
+    主題外（off-focus）は 2026-11-08 の台帳の見直し（オーナー承認・A61 の最後の一文を外した）から、検索に出す基準と同じ軸（on_axis）で見る:
+    軸の上（お金か暮らしにつながる・今までの主題）なら公開する。軸から外れたもの（ゴシップだけ・物語やキャラクターだけ・海外の試合結果だけ）だけ止める"""
     if article.get("disaster") or article.get("type") == "roundup" or isinstance(article.get("indexable"), bool):
         return None
     # お知らせ・告知・統計の転載（2026-11-03 オーナー決定・台帳 A26）。検索の基準（noindex_reason）とは別に、作らない
@@ -325,6 +333,8 @@ def publish_block_reason(article: dict) -> str | None:
     if public_interest.press_source_problems(article):
         return "press"
     reason = focus_reason(article)
+    if reason == "off-focus" and on_axis(article):
+        return None
     return reason if reason in PUBLISH_BLOCK else None
 
 
@@ -335,6 +345,10 @@ def candidate_off_focus(lane: str, title: str, summary: str = "", source_slug: s
         return False
     text = f"{title} {summary[:300]}"
     if AI_TOPIC.search(text):
+        return False
+    # 題名がお金か暮らしにつながる候補は通す（公開前の門・検索に出す基準と同じ軸。台帳 A61・2026-11-08 の見直し。
+    # エンタメも値段・チケット・発売・配信・サービスの話なら扱う＝A23）
+    if life_link(title):
         return False
     if lane in ENTERTAINMENT_GENRES:
         return genre_focus.candidate_problem(lane, title, summary, source_slug) is not None

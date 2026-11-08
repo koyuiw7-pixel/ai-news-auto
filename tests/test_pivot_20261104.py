@@ -153,15 +153,12 @@ class EveryPathUsesSharedRulesTest(unittest.TestCase):
         self.assertIn("import web_articles as w", text["rewrite_types.py"])
         self.assertIn("hn.TITLE_STYLE_PROMPT", text["rewrite_titles.py"])
 
-    def test_length_targets_follow_answer_then_stop(self):
-        """長さの目安: 速報・料金は短め、決算・制度は長め（上限を下げる。下限は 1,600 字のまま。速報の種類だけ 800 字から＝2026-11-04 オーナー承認・A10）"""
-        self.assertLessEqual(nt.get("breaking").length[1], 2000)
-        self.assertLessEqual(nt.get("pricing").length[1], 2000)
-        self.assertLessEqual(nt.get("product").length[1], 2200)
-        self.assertEqual(nt.get("breaking").length, (800, 1200))
+    def test_no_length_limit_in_the_prompt(self):
+        """2026-11-08 の台帳の見直し（オーナー承認・旧 A42 の長さの上限・下限を外した）: 生成の指示に字数の上限・下限を書かない"""
         for key in nt.TYPES:
-            self.assertGreaterEqual(nt.get(key).length[0], 800 if key == "breaking" else 1600)
-            self.assertLessEqual(nt.get(key).length[1], 2600)
+            block = nt.prompt_block(key)
+            self.assertIn("上限も下限も無い", block)
+            self.assertNotRegex(block, r"本文 [\d,]+〜[\d,]+字")
 
     def test_body_starting_with_heading_is_recorded(self):
         self.assertTrue(any("見出しで始まっている" in w for w in st.warnings({"body": "## 中身\n本文です。"})))
