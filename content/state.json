@@ -14645,6 +14645,17 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110506"
     },
+    "b579082b3d6b6787": {
+      "at": "2026-11-08T14:42:35.855981+00:00",
+      "costUsd": 0.0048,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 93,
+      "section": "sports",
+      "slug": "all-japan-table-tennis-cadet-2026",
+      "url": "https://jtta.or.jp/news/38838"
+    },
     "b58fee4edbbb5f7a": {
       "at": "2026-11-06T02:23:12.321605+00:00",
       "mix": "other",
@@ -19278,34 +19289,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:42:27.281838+00:00",
-      "attempt": 1,
-      "id": "bad3931016c9f498",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "cao",
-      "title": "第14回人工知能（AI）技術の利用と消費者問題に関する専門調査会【11月5日開催】"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:43:32.058635+00:00",
-      "attempt": 2,
-      "id": "bad3931016c9f498",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "cao",
-      "title": "第14回人工知能（AI）技術の利用と消費者問題に関する専門調査会【11月5日開催】"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T08:44:56.108726+00:00",
@@ -25701,6 +25684,55 @@
       "score": 85,
       "source": "jfa",
       "title": "U-21日本代表 選手変更 海外遠征（11.8-18 スペイン／アルメンドラレホ エジプト／カイロ） #jfa #daihyo"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T14:42:20.362302+00:00",
+      "attempt": 1,
+      "id": "b579082b3d6b6787",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 61.7,
+        "avg_sentence": 54.0,
+        "long_share": 0.375,
+        "max_paragraph": 117,
+        "paragraphs": 7,
+        "sentences": 8
+      },
+      "score": 88,
+      "source": "jtta",
+      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 閉幕！",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JSC）",
+        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
+        "読みやすさ: 文が長い（1文の平均 54.0字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T14:42:35.849392+00:00",
+      "attempt": 0,
+      "id": "b579082b3d6b6787",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 63.6,
+        "avg_sentence": 40.5,
+        "long_share": 0.0,
+        "max_paragraph": 121,
+        "paragraphs": 7,
+        "sentences": 11
+      },
+      "score": 93,
+      "source": "jtta",
+      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 閉幕！",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JSC）",
+        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
+      ]
     }
   ],
   "short_text_retry": {},
