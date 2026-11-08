@@ -18985,6 +18985,19 @@
       "slug": "aichi-skills-olympics-entry-subsidy",
       "url": "https://www.pref.aichi.jp/press-release/gorin-sankahi-2026.html"
     },
+    "fcd7792e5b346cce": {
+      "at": "2026-11-08T07:58:20.210282+00:00",
+      "costUsd": 0.11,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "money",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "android-my-number-card-google-wallet",
+      "url": "https://blog.google/intl/ja-jp/products/android-chrome-play/mynumbercard-on-android-launch/"
+    },
     "fcef20cfe9a085695b48ac38e18921b0c08df987": {
       "at": "2026-11-04T02:24:31.069257+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -19287,28 +19300,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:38:59.491429+00:00",
-      "attempt": 1,
-      "id": "9c3feb4cdbadc8d9",
-      "kind": "broad",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「別では、1000万円以上5000万円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 133.5,
-        "avg_sentence": 46.0,
-        "long_share": 0.207,
-        "max_paragraph": 227,
-        "paragraphs": 10,
-        "sentences": 29
-      },
-      "score": null,
-      "source": "tsr",
-      "title": "「ハウスメーカー」倒産 前年の1.8倍に急増 価格上昇で購入可能額とのギャップが拡大"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T08:40:51.913318+00:00",
@@ -25707,6 +25698,30 @@
       "title": "明治、TOPPAN、「明治ブルガリアヨーグルト」紙カップの回収を実施 横浜市内のイオン・イオンスタイル・イオンフードスタイルの計13店舗にて回収 2026年10",
       "warnings": [
         "初めて出たところで言い換えていない略語（BOX・TOPPAN・LB）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T07:58:20.188766+00:00",
+      "attempt": 1,
+      "id": "fcd7792e5b346cce",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 75.1,
+        "avg_sentence": 45.0,
+        "long_share": 0.2,
+        "max_paragraph": 146,
+        "paragraphs": 15,
+        "sentences": 25
+      },
+      "score": 90,
+      "source": "google-ai-blog",
+      "title": "Android のマイナンバーカード、本日より提供開始。日常生活での本人確認をよりスマートに",
+      "warnings": [
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（EC・ISO）"
       ]
     }
   ],

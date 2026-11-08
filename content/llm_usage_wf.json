@@ -1,33 +1,4 @@
 {
-  "2026-11-05": {
-    "articles": {
-      "anthropic-api:claude-haiku-5-5": 255,
-      "claude:sonnet": 16,
-      "cloudflare:@cf/openai/gpt-oss-120b": 50,
-      "gemini-3.1-flash-lite": 1,
-      "gemini-3.5-flash": 5,
-      "gemini-3.5-flash-lite": 2,
-      "gemini-3.7-flash": 1,
-      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 6,
-      "openrouter:nvidia/nemotron-3.5-lightning:free": 6,
-      "openrouter:nvidia/nemotron-3.5-super-vl:free": 10
-    },
-    "breaking": {
-      "anthropic-api:claude-haiku-5-5": 19,
-      "anthropic-api:claude-sonnet-5-5": 20,
-      "claude:sonnet": 7
-    },
-    "images": {
-      "cf-image:flux-1-schnell": 6,
-      "cf-image:flux-2-klein-4b": 26,
-      "cloudflare:@cf/openai/gpt-oss-120b": 26
-    },
-    "products": {
-      "anthropic-api:claude-haiku-5-5": 9,
-      "gemini-3.1-flash-lite": 5,
-      "gemini-3.5-flash-lite": 17
-    }
-  },
   "2026-11-06": {
     "articles": {
       "anthropic-api:claude-haiku-5-5": 245,
@@ -80,6 +51,10 @@
       "gemini-3.8-flash": 1,
       "gemini-flash-latest": 7
     },
+    "breaking": {
+      "anthropic-api:claude-haiku-5-5": 1,
+      "anthropic-api:claude-sonnet-5-5": 1
+    },
     "images": {
       "cf-image:flux-2-klein-4b": 40,
       "cloudflare:@cf/meta/llama-3.3-70b-instruct-fp8-fast": 1,
@@ -98,6 +73,14 @@
     "products": {
       "anthropic-api:claude-haiku-5-5": 11,
       "gemini-3.5-flash-lite": 25
+    }
+  },
+  "2026-11-08": {
+    "images": {
+      "cf-image:flux-1-schnell": 1,
+      "gemma-4-26b-a4b-it": 1,
+      "gemma-4-31b-it": 1,
+      "workers-ai-vision-neurons@2026-11-08": 85
     }
   }
 }
