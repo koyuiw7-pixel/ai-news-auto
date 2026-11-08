@@ -113,7 +113,31 @@ def life_late_ok(item: dict) -> bool:
     if not age or age > timedelta(hours=LIFE_LATE_HOURS):
         return False
     mix = item.get("_mix") or news_mix.classify(item)
-    return mix in LIFE_LATE_MIX or public_interest.record_category({"title": item.get("title") or ""}) == "recall"
+    if mix in LIFE_LATE_MIX or public_interest.record_category({"title": item.get("title") or ""}) == "recall":
+        return True
+    # 2026-11-08 台帳 A58: 国内の企業の発表で、これから始まる日（発売日・開始日）が題名にあるものも「いつから」を調べる人がいるので含める
+    return mix not in UPCOMING_LATE_SKIP_MIX and upcoming_date_in_title(item.get("title") or "")
+
+
+UPCOMING_LATE_SKIP_MIX = {"enterprise_dev", "quirky"}
+UPCOMING_DATE_RE = re.compile(r"(\d{1,2})月(\d{1,2})日[^。]{0,12}?(?:発売|開始|から|スタート|提供|販売|登場|導入|改定|実施)")
+
+
+def upcoming_date_in_title(title: str) -> bool:
+    """題名の「N月N日発売・開始」が今日（日本時間）以降か。年をまたぐ場合（1月の日付を12月に見る）も今日以降として扱う"""
+    today = datetime.now(JST).date()
+    for m_date in UPCOMING_DATE_RE.finditer(title):
+        month, day = int(m_date.group(1)), int(m_date.group(2))
+        if not (1 <= month <= 12 and 1 <= day <= 31):
+            continue
+        year = today.year + (1 if month < today.month - 6 else 0)
+        try:
+            when = datetime(year, month, day).date()
+        except ValueError:
+            continue
+        if when >= today:
+            return True
+    return False
 
 
 QUALITY_LOG_KEEP = 300
@@ -130,6 +154,8 @@ FREE_FIRST_PURPOSES = {"core", "rest"}
 #   (d) それでも0本なら使い方ガイド（evergreen.yml）を1本作るよう依頼する。記事が1本できたら自動で通常に戻る
 RESCUE_ON = os.environ.get("PIPELINE_RESCUE", "1") != "0"
 RESCUE_MAX_ATTEMPTS = int(os.environ.get("RESCUE_MAX_ATTEMPTS", "6"))
+# 「新しい候補が尽きただけ」と見なす見送りの理由（台帳 A58）。これだけの回は止まっているに数えず、ガイドで枠を埋める
+CAP_ONLY_SKIPS = {"今日の種類別の上限", "海外の AI の発表の今日の上限", "prefilter", "重複", "古い発表", "スポーツの今日の上限"}
 JST = timezone(timedelta(hours=9))
 # 幅広い話題に投資・マネー／不動産を足したレーン（genres.WEB_GENRES。2026-11-03 オーナー決定）
 BROAD_SLUGS = [g.slug for g in WEB_GENRES]
@@ -535,6 +561,22 @@ def outage_notice(title: str, low_word: str) -> bool:
     return low_word in OUTAGE_LOW_VALUE_WORDS and public_interest.wide_category(title) == "outage"
 
 
+# 2026-11-08 オーナー「本数を増やす」・台帳 A58: 読者のお金・手続き・安全が変わる知らせは「価値の薄いお知らせ」に数えない。
+# 対象は、ふつうは告知だけの語（募集・公募・割引・掲載）が付いていても中身が給付・料金の改定・回収・期限などのものだけ。
+# 会議・人事・販促・開催の告知・メンテナンスなど、ほかの語は今までどおり見送る（この先の公開前の門・品質の門もそのまま）
+READER_IMPACT_SOFT_WORDS = ("募集", "公募", "割引", "を掲載しました", "ポイント還元", "ポイント付与")
+READER_IMPACT_RE = re.compile(
+    r"給付|補助金|助成|支援金|手当|還付|減税|控除|非課税|無償化|"
+    r"料金|運賃|手数料|値上げ|値下げ|価格(?:の)?改定|改定|見直し|引き上げ|引き下げ|"
+    r"リコール|自主回収|回収|注意喚起|使用中止|"
+    r"申請|受付(?:を)?開始|期限|締切|延長|廃止|終了|変更"
+)
+
+
+def reader_impact_notice(title: str, low_word: str) -> bool:
+    return low_word in READER_IMPACT_SOFT_WORDS and bool(READER_IMPACT_RE.search(title))
+
+
 def broad_prefilter(item: dict) -> str | None:
     """幅広い話題の安い足切り。除外理由（文字列）か None"""
     title = item["title"]
@@ -542,7 +584,8 @@ def broad_prefilter(item: dict) -> str | None:
         return "扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）"
     if len(title) < 10:
         return "タイトルが短すぎる（一覧リンク等）"
-    if (m_low := LOW_VALUE_RE.search(title)) and not outage_notice(title, m_low.group(0)):
+    if (m_low := LOW_VALUE_RE.search(title)) and not outage_notice(title, m_low.group(0)) \
+            and not reader_impact_notice(title, m_low.group(0)):
         return f"価値の薄いお知らせ（{m_low.group(0)}）"
     # お知らせ・告知・統計の転載（台帳 A26）。公開前の門で落ちるものは、書く前に見送る（LLM の費用を使わない）
     if notice_reason(item):
@@ -2559,12 +2602,12 @@ def main() -> int:
                 return "drop", f"prefilter: {reason}"
             if not is_ai and per_feed.get(cand["source_slug"], 0) >= args.per_feed:
                 return "next", f"同じフィードの1回の上限（{args.per_feed}本）"  # 次の実行に回す
-            # 救済モード（0本が続いている回）では、種類別・海外 AI の1日の上限で全部を見送らない（2026-11-07 朝、候補93件が
-            # 全部「種類別の上限」で見送られ、昼まで新しい記事が0本だった。止まらない仕組み・台帳 A48）。
-            # 救済モードは1本できたら抜けるので、上限を超えるのは止まりかけたときの数本だけ
-            if news_mix.over_cap(cand, mix_counts) and not rescue_mode:
+            # 種類別・海外 AI の1日の上限は救済モードでも守る（2026-11-08 オーナー「本数を増やす」・台帳 A58: 救済モードで上限を外していたため、
+            # 夜・週末に海外の開発者向けの発表〔GitHub Copilot・AWS など〕が1日13本まで出ていた。A57 の「開発者向けは1日2本まで」を守る）。
+            # 上限で見送るだけの回は「止まっている」に数えず、空いた枠は使い方・手続きのガイド（evergreen.yml）で埋める
+            if news_mix.over_cap(cand, mix_counts):
                 return "next", f"今日の種類別の上限（{cand.get('_mix') or news_mix.classify(cand)}）"  # 企業向け・開発者向けの海外の発表は今日の上限まで（見送りの印は付けない。台帳 A41）
-            if is_ai and is_foreign_ai(cand) and foreign_left[0] <= 0 and not rescue_mode:
+            if is_ai and is_foreign_ai(cand) and foreign_left[0] <= 0:
                 return "next", f"海外の AI の発表の今日の上限（{FOREIGN_AI_DAILY_CAP}本）"  # 海外の AI の発表は今日の上限まで（見送りの印は付けない。台帳 A47）
             if not is_ai and cand.get("section") == "sports" and sports_today(state) >= persona.SPORTS_DAILY_CAP:
                 return "next", "スポーツの今日の上限"  # スポーツは1日の上限まで（集客の入口。大きなものだけ）
@@ -3004,6 +3047,11 @@ def main() -> int:
             inner = " / ".join(f"{k} {v}件" for k, v in sorted(skip_counts.items(), key=lambda kv: -kv[1])[:4]) or "内訳なし"
             reason = f"候補 {candidates} 件があったのに1件も試していない（見送りの内訳: {inner}）"
             log(f"[health] {reason}")
+        if reason.startswith("候補 ") and skip_counts and all(k in CAP_ONLY_SKIPS for k in skip_counts):
+            # 1日の上限（種類別・海外 AI）と確定の見送り（足切り・重複・古い発表）だけの回は、新しい候補が尽きただけで止まってはいない（台帳 A58）。
+            # 救済モードにせず、空いた枠は使い方・手続きのガイドで埋める（下の evergreen の依頼）
+            log("[health] 新しく書ける候補が尽きた回です（上限・見送りだけ）。止まっているには数えず、使い方ガイドで枠を埋めます")
+            reason = ""
         if not reason:
             candidates = 0  # 試したうえで見送りだけ（記事にする価値なし・本文が短いなど）の回は「止まっている」に数えない
         tried = []
@@ -3023,8 +3071,10 @@ def main() -> int:
                 log(f"[health] 0本の回が {health.get('consecutive_zero')} 回。次の回は救済モードで動きます")
         except Exception as error:  # noqa: BLE001 - 見張りの失敗で記事づくりは止めない
             log(f"[health] 記録に失敗: {str(error)[:100]}")
-        if rescue_mode and total_created() == 0:
-            # 最後の手: 使い方ガイド（公式ページが出典。evergreen.yml）を1本作るよう workflow に伝える（auto_run.yml が依頼する）
+        if total_created() == 0:
+            # 使い方・手続きのガイド（公式ページが出典。evergreen.yml・同じ品質の門）を1本作るよう workflow に伝える（auto_run.yml が依頼する）。
+            # 2026-11-08 台帳 A58: 救済モードの回だけでなく、ニュースの記事が0本の回はいつも（夜・週末の空いた枠を海外の開発者向けの発表ではなくガイドで埋める）。
+            # 1日の本数は evergreen 側の上限（EVERGREEN_DAILY_CAP）で止まり、二重作成は evergreen.yml の concurrency で防ぐ
             log("[rescue] ニュースの記事ができなかったので、使い方ガイドを1本作るよう依頼します（evergreen.yml）")
             out = os.environ.get("GITHUB_OUTPUT")
             if out:

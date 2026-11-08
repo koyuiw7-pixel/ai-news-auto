@@ -39,7 +39,8 @@ class DailyTargetTest(unittest.TestCase):
     def test_main_writes_100_without_the_old_variable(self):
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "github_output"
-            env = {"GITHUB_OUTPUT": str(out), "WEB_DAILY_CAP": "80"}
+            # 2026-11-08 台帳 A58: 100本は段（WEB_STAGE_TARGET）を100まで上げたとき。既定の段は60（tests/test_volume_stage_20261108.py）
+            env = {"GITHUB_OUTPUT": str(out), "WEB_DAILY_CAP": "80", "WEB_STAGE_TARGET": "100"}
             with mock.patch.dict(os.environ, env, clear=False):
                 os.environ.pop("WEB_DAILY_CAP_OVERRIDE", None)
                 os.environ.pop("BROAD_MAX_PER_RUN_OVERRIDE", None)
@@ -60,7 +61,7 @@ class DailyTargetTest(unittest.TestCase):
 class SearchIntentGuidesTest(unittest.TestCase):
     def test_evergreen_runs_more_often_with_a_higher_cap(self):
         self.assertIn('cron: "41 */2 * * *"', EVERGREEN)
-        self.assertIn("EVERGREEN_DAILY_CAP: ${{ vars.EVERGREEN_DAILY_CAP_BRAKE || '16' }}", EVERGREEN)
+        self.assertIn("EVERGREEN_DAILY_CAP: ${{ vars.EVERGREEN_DAILY_CAP_BRAKE || '20' }}", EVERGREEN)  # A58 で 16→20
         self.assertNotIn("vars.EVERGREEN_DAILY_CAP ||", EVERGREEN)
         self.assertIn("--max \"${{ inputs.max || '2' }}\"", EVERGREEN)
 

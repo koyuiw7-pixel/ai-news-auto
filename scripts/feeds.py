@@ -394,6 +394,9 @@ BROAD_FEEDS: list[dict] = [
     {"slug": "chuden", "name": "中部電力 プレスリリース", "url": "https://www.chuden.co.jp/publicity/press/", "type": "html",
      "link_re": r"chuden\.co\.jp/publicity/press/\d+_\d+\.html", "section": "lifestyle", "kind": "company", "priority": 3,
      "include_re": "料金|値上げ|値下げ|燃料費|停電|障害|節電|需給|補助|流出|漏え?い|不正アクセス"},
+    # 九州電力のプレスリリース（RSS。2026-11-08 取得を確認・台帳 A58）。暮らしに関わる料金・停電・流出などだけ
+    {"slug": "kyuden", "name": "九州電力 プレスリリース", "url": "https://www.kyuden.co.jp/rss/press.xml", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "料金|値上げ|値下げ|燃料費|停電|障害|節電|需給|補助|流出|漏え?い|不正アクセス"},
     {"slug": "rakuten-card", "name": "楽天カード お知らせ", "url": "https://www.rakuten-card.co.jp/info/news/", "type": "html",
      "link_re": r"rakuten-card\.co\.jp/info/news/20\d{6}", "section": "investment", "kind": "company", "priority": 3,
      "include_re": "不正アクセス|流出|漏え?い|詐欺|フィッシング|偽|なりすまし|手数料|改定|終了|停止|障害|廃止|3Dセキュア|本人認証"},

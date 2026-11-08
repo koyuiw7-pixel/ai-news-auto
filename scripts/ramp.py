@@ -47,14 +47,32 @@ def broad_per_run(web: int) -> int:
     国内のレーンで作るので1回3本（作れる本数は pacing の配分と1日の上限で止まる）"""
     if web <= 45:
         return 1
-    if web < OWNER_DAILY_TARGET:
+    if web < 80:
         return 2
     return 3
 
 
+# 2026-11-08 オーナー決定（台帳 A58）: 100本へは段階を踏んで上げる。40 → 60（3〜4日）→ 80（1週間）→ 100。
+# 次の段に上げるのは (a) 門の合格率が安定し0本の回が無い (b) 新しい記事の7日のインデックス率がおよそ60%以上
+# (c)「クロール済み・インデックス未登録」がインデックス済みより速く増えていない、がそろったときだけ（確かめるのはメインのセッション）。
+# 悪ければ上げるのを止める（本数は減らさない）。段は GitHub の変数 WEB_STAGE_TARGET で上げる（未設定なら 60）。
+# ニュースの記事の上限で、使い方・手続きのガイド（evergreen.yml・EVERGREEN_DAILY_CAP）は別に数える
+STAGES = (40, 60, 80, 100)
+DEFAULT_STAGE = 60
+
+
+def stage_target() -> int:
+    try:
+        value = int(os.environ.get("WEB_STAGE_TARGET") or DEFAULT_STAGE)
+    except ValueError:
+        value = DEFAULT_STAGE
+    return max(1, min(value, OWNER_DAILY_TARGET))
+
+
 def main() -> None:
     today = datetime.now(JST).strftime("%Y-%m-%d")
-    web = str(review_cap(int(os.environ.get("WEB_DAILY_CAP_OVERRIDE") or pick(WEB_RAMP, today)), today))
+    planned = min(pick(WEB_RAMP, today), stage_target())
+    web = str(review_cap(int(os.environ.get("WEB_DAILY_CAP_OVERRIDE") or planned), today))
     sns = os.environ.get("SNS_PER_DAY_OVERRIDE") or str(pick(SNS_RAMP, today))
     out = os.environ.get("GITHUB_OUTPUT")
     # 20分ごと（1日72回）に出すので、上限が大きい日は1回あたりの本数も増やす
