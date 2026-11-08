@@ -77,8 +77,9 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "出産予定の病院に、直接支払制度を使えるかを問い合わせる。",
-    "加入している保険者（協会けんぽ、健康保険組合、市区町村の国民健康保険）に、必要な書類を確認する。"
+    "「出産なび」で、出産予定の施設の出産費用とサービス内容を確かめる",
+    "協会けんぽの人は、差額を受け取るときの「健康保険出産育児一時金内払金支払依頼書」を確かめておく",
+    "出産前後に退職する予定なら、どの保険者に申請するかを決めておく"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -108,5 +109,141 @@
     "at": "2026-11-08T05:39:08+00:00",
     "original": "https://www.mhlw.go.jp/common/img/img_ogp.jpg"
   },
-  "coverTries": 3
+  "coverTries": 3,
+  "insight": [
+    {
+      "text": "健康保険の被保険者が退職などで資格を失った後に、被扶養者だった家族が出産した場合、家族出産育児一時金は支給されません。出産した時点で加入している保険者に申請することになります。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html"
+    },
+    {
+      "text": "帝王切開などの保険が適用される分娩は、医療費（保険診療分）が高額になれば高額療養費の対象です。出産育児一時金とは別の制度なので、あわせて確かめておくと負担を抑えられます。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html"
+    },
+    {
+      "text": "厚生労働省の「出産なび」で、全国の出産施設ごとのサービス内容と出産費用を調べられます。直接支払制度の専用請求書の件数が21件以上の施設は、直接支払を使う場合にここで費用を公表することになっています。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "協会けんぽ 都道府県支部",
+      "url": "https://www.kyoukaikenpo.or.jp/about/about_kenpo/location/branches/",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html",
+      "note": "協会けんぽの加入者は、申請書をご加入の協会けんぽ支部に提出します。"
+    },
+    {
+      "name": "厚生労働省 出産なび",
+      "url": "https://www.mhlw.go.jp/stf/birth-navi/index.html",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html",
+      "note": "全国の出産施設ごとのサービス内容と出産費用の情報を調べられます。"
+    },
+    {
+      "name": "厚生労働省 出産育児一時金等について",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html",
+      "howTo": [
+        "政策について",
+        "分野別の政策一覧",
+        "健康・医療",
+        "医療保険",
+        "出産育児一時金等について"
+      ],
+      "note": "申請に必要な書類は保険者で異なります。健康保険組合などの加入者は保険者へ、国民健康保険の加入者はお住まいの市区町村の国民健康保険窓口へ問い合わせます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "「出産なび」で、出産予定の施設の出産費用とサービス内容を確かめる",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html",
+      "steps": [
+        "厚生労働省の「出産なび」を開く",
+        "出産予定の施設を探す",
+        "出産費用が50万円を超えそうか見ておく"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/birth-navi/index.html"
+    },
+    {
+      "action": "協会けんぽの人は、差額を受け取るときの「健康保険出産育児一時金内払金支払依頼書」を確かめておく",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html",
+      "steps": [
+        "出産後おおむね3か月後に届く申請書を待つ",
+        "届かない場合は申請書の様式を協会けんぽのページで見る",
+        "ご加入の協会けんぽ支部に出す"
+      ],
+      "url": "https://www.kyoukaikenpo.or.jp/application_form/benefit/011"
+    },
+    {
+      "action": "出産前後に退職する予定なら、どの保険者に申請するかを決めておく",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html",
+      "steps": [
+        "出産した時点で加入している保険者を確かめる",
+        "退職前の加入期間が継続して1年以上あるか確かめる",
+        "退職後6か月以内の出産かを確かめる"
+      ],
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html"
+    }
+  ],
+  "cause": {
+    "text": "出産育児一時金の支給額は、令和5年4月から、それまでの原則42万円から原則50万円に13年ぶりに引き上げられました。直接支払制度は、一時金を出産費用に充てられるよう医療機関等に直接支払い、まとめて払う負担を軽くするための仕組みです。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html"
+  },
+  "worries": [
+    {
+      "q": "帝王切開になって費用が高くなったらどうなる？",
+      "a": "帝王切開等による分娩は健康保険が適用されるため、医療費（保険診療分）が高額となる場合は高額療養費の対象となります。出産育児一時金とは別に申請します。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html",
+      "action": "保険が適用される分娩になったら、高額療養費の申請書を確かめる。"
+    },
+    {
+      "q": "海外で出産しても受け取れますか？",
+      "a": "出産した時点で有効な加入資格を持っていれば、加入している保険者に申請できます。詳細は加入している保険者（協会けんぽ、健康保険組合等）に確かめるよう案内されています。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html",
+      "action": "海外で出産する予定なら、必要な書類を加入している保険者に事前に問い合わせる。"
+    },
+    {
+      "q": "退職後の出産。前の保険と今の保険の両方からもらえる？",
+      "a": "同じ出産に対して支給は1回のみです。資格喪失後6か月以内の出産では支給を受けられる保険者が複数になる場合もありますが、重複して受け取ることはできません。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html",
+      "action": "どちらの保険者に申請するかを決め、片方だけに申請する。"
+    },
+    {
+      "q": "産休中、給料が出ない間の生活費が心配です",
+      "a": "協会けんぽには、産休中のお給料の代わりとなる「出産手当金」があります。支給金額は給与の約2/3相当で、申請により支給されます。",
+      "source": "https://www.kyoukaikenpo.or.jp/about/business/public_relations/009/003/index.html",
+      "action": "勤務先の健康保険で出産手当金を申請できるか、加入している保険者に確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "直接支払・受取代理・償還払い、どれを使う？",
+      "situation": "施設が直接支払制度に対応している",
+      "recommend": "直接支払制度を使う方法がある",
+      "reason": "保険者から施設へ直接支払われるので、窓口で払うのは費用の総額から一時金を引いた残りです。退院までに合意文書の内容に同意する必要があります。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html"
+    },
+    {
+      "question": "直接支払・受取代理・償還払い、どれを使う？",
+      "situation": "施設が直接支払に対応していない",
+      "recommend": "受取代理制度を使えるか施設に確かめる",
+      "reason": "受取代理制度を使えるのは、厚生労働省へ届出をした一部の医療機関等に限られます。協会けんぽでは、申請できるのは出産予定日まで2か月以内の方です。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html"
+    },
+    {
+      "question": "直接支払・受取代理・償還払い、どれを使う？",
+      "situation": "費用を全額払い、自分で受け取りたい",
+      "recommend": "償還払いで自分で請求してもよい",
+      "reason": "直接支払制度を使わず、自分で保険者に請求することもできます。その場合は出産費用を退院までに医療機関等へ全額払う必要があります。申請期限は出産日の翌日から2年以内です。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "出産費用は「出産なび」で施設ごとに比べられる",
+    "cause": "一時金が42万円から50万円に上がった経緯",
+    "steps": "出産前に費用と差額の受け取り方を確かめる",
+    "desk": "申請や差額の相談は加入している保険者へ",
+    "worries": "帝王切開や退職後の出産でも受け取れる？",
+    "guide": "直接支払か受取代理か、選び方の目安"
+  },
+  "depthAt": "2026-11-08T16:16:30+00:00"
 }

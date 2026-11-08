@@ -70,9 +70,9 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "勤務先のある都道府県を、雇用契約書か労働条件通知書で確かめる",
-    "厚生労働省の地域別最低賃金全国一覧で、自分の県の金額と発効日を確認する",
-    "発効日以降の給与明細で、時給が新しい金額になっているか確かめる"
+    "給与明細から対象外の手当を除き、時給に直して最低賃金と比べる",
+    "派遣で働く人は、派遣先の事業場がある都道府県の金額と発効日を一覧で確かめる",
+    "自分の業種に「特定（産業別）最低賃金」があるか一覧で確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -116,5 +116,110 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-08T10:02:52+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "最低賃金と比べるのは毎月支払われる基本的な賃金です。残業代や賞与のほか、精皆勤手当、通勤手当及び家族手当も除いて計算するので、手当込みの総額で上回っていても下回る場合があります。",
+      "source": "https://saiteichingin.mhlw.go.jp/point/page_point_targetwages.html"
+    },
+    {
+      "text": "派遣で働く人には、派遣会社の所在地ではなく、派遣先の事業場がある都道府県の最低賃金が適用されます。住んでいる県や派遣会社の県の金額で比べると、判断を誤ります。",
+      "source": "https://saiteichingin.mhlw.go.jp/point/page_point_haken.html"
+    },
+    {
+      "text": "特定の産業には、地域別より高い「特定（産業別）最低賃金」があり、全国で223件あります（令和8年4月1日現在）。両方が適用される人には、高い方の金額以上を払う必要があります。",
+      "source": "https://saiteichingin.mhlw.go.jp/point/page_point_class.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "都道府県労働局 労働基準部 賃金課室",
+      "url": "http://www.mhlw.go.jp/bunya/roudoukijun/pref.html",
+      "source": "https://saiteichingin.mhlw.go.jp/point/page_point_check.html",
+      "note": "各都道府県の決定金額や計算方法は、都道府県労働局賃金課・室に問い合わせるよう案内されています。"
+    },
+    {
+      "name": "労働基準監督署",
+      "url": "http://www.mhlw.go.jp/bunya/roudoukijun/location.html",
+      "source": "https://saiteichingin.mhlw.go.jp/point/page_point_check.html",
+      "note": "最低賃金に関するお問い合わせは、各都道府県労働局、または最寄りの労働基準監督署へと案内されています。"
+    },
+    {
+      "name": "厚生労働省 地域別最低賃金全国一覧",
+      "url": "https://saiteichingin.mhlw.go.jp/table/page_list_nationallist.html",
+      "source": "https://saiteichingin.mhlw.go.jp/table/page_list_nationallist.html",
+      "note": "（ ）内に、発効日の前まで適用される額や、発効日からの額が並んで表示されます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "給与明細から対象外の手当を除き、時給に直して最低賃金と比べる",
+      "source": "https://saiteichingin.mhlw.go.jp/point/page_point_check.html",
+      "steps": [
+        "時間外手当、通勤手当、家族手当などを除く",
+        "月給は1箇月平均所定労働時間で割る",
+        "日給は1日の所定労働時間で割る",
+        "勤務先の県の最低賃金額と比べる"
+      ],
+      "url": "https://saiteichingin.mhlw.go.jp/point/page_point_check.html"
+    },
+    {
+      "action": "派遣で働く人は、派遣先の事業場がある都道府県の金額と発効日を一覧で確かめる",
+      "source": "https://saiteichingin.mhlw.go.jp/point/page_point_haken.html",
+      "steps": [
+        "派遣先の事業場の所在地を確かめる",
+        "地域別最低賃金全国一覧でその都道府県を見る"
+      ],
+      "url": "https://saiteichingin.mhlw.go.jp/table/page_list_nationallist.html"
+    },
+    {
+      "action": "自分の業種に「特定（産業別）最低賃金」があるか一覧で確かめる",
+      "source": "https://saiteichingin.mhlw.go.jp/point/page_point_class.html",
+      "steps": [
+        "特定（産業別）最低賃金全国一覧を開く",
+        "勤務先の都道府県と産業を探す",
+        "地域別と比べて高い方を基準にする"
+      ],
+      "url": "https://saiteichingin.mhlw.go.jp/table/page_indlist_nationallist.html"
+    }
+  ],
+  "cause": {
+    "text": "最低賃金は、厚生労働大臣の諮問機関である中央最低賃金審議会が令和8年7月28日に示した改定の目安などを参考に、各都道府県の地方最低賃金審議会が調査・審議して答申します。そのため金額も発効日も都道府県ごとに異なります。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/stf/newpage_75950.html"
+  },
+  "worries": [
+    {
+      "q": "パートやアルバイトでも最低賃金は守られますか？",
+      "a": "地域別最低賃金は、パートタイマー、アルバイト、臨時、嘱託など雇用形態や呼称に関係なく、各都道府県内の事業場で働くすべての労働者に適用されます。",
+      "source": "https://saiteichingin.mhlw.go.jp/point/page_point_target.html",
+      "action": "雇用形態にかかわらず、勤務先の県の新しい金額と自分の時給を比べる。"
+    },
+    {
+      "q": "月給制だと、最低賃金を上回っているか分かりにくい",
+      "a": "月給から通勤手当や時間外手当など対象外の賃金を除き、月給÷1箇月平均所定労働時間で時間額にして比べます。厚生労働省の例では、手当込み220,000円の月給を180,000円に直して計算しています。",
+      "source": "https://saiteichingin.mhlw.go.jp/point/page_point_check.html",
+      "action": "給与明細の基本給と職務手当などを足し、会社の所定労働時間で時給に直してみる。"
+    },
+    {
+      "q": "試用期間中なら、最低賃金より低くてもいいの？",
+      "a": "試の使用期間中の方などは、使用者が都道府県労働局長の許可を受けることを条件に、個別に減額の特例が認められています。許可がなければ、原則として最低賃金額以上の賃金を支払う必要があります。",
+      "source": "https://saiteichingin.mhlw.go.jp/point/page_point_target.html",
+      "action": "試用期間で時給が低い場合は、減額の許可を受けているか勤務先に確かめる。"
+    },
+    {
+      "q": "計算しても下回っていたら、どこに相談すればいい？",
+      "a": "最低賃金に関するお問い合わせは、各都道府県労働局、または最寄りの労働基準監督署へと案内されています。計算方法を詳しく知りたい場合も、同じ窓口でたずねられます。",
+      "source": "https://saiteichingin.mhlw.go.jp/point/page_point_check.html",
+      "action": "勤務先の都道府県の労働局賃金課室か、最寄りの労働基準監督署に問い合わせる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "派遣の人は派遣先の県の最低賃金が基準",
+    "cause": "今年の引き上げ額が決まるまでの流れ",
+    "steps": "給与明細で最低賃金を下回っていないか確かめる",
+    "desk": "下回っていそうなら労働局か労基署へ",
+    "worries": "パートや月給制でも守られている？"
+  },
+  "depthAt": "2026-11-08T16:16:30+00:00"
 }

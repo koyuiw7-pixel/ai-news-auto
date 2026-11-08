@@ -5,9 +5,11 @@
  *   CauseBox       「なぜ起きた？」: 公式ページが書く原因・背景。未発表なら「調査中」とはっきり書く
  *   WorriesBlock   「こんな不安ありませんか」: 読者の不安への答えと行動（一般の注意のページが出典のものは札を付ける）
  *   ActionSteps    「すぐにできること」の手順つき版（todayActions の代わりに出す）
+ *   DecisionGuide  「判断ガイド」: 乗り換える？番号を変える？などの迷いに、状況→おすすめ→理由→出どころ（中立に。後押しはしない）
  *   OfficialDesk   「公式窓口」: 正式名・電話・受付時間・押せる URL と、そのページへの辿り方の図（画面の写真は使わない。自前の図）
  */
-import type { Cause, DeskEntry, InsightItem, StepItem, WorryItem } from "@/lib/depth";
+import type React from "react";
+import type { Cause, DeskEntry, GuideRow, InsightItem, StepItem, WorryItem } from "@/lib/depth";
 import { sourceLabel } from "@/lib/depth";
 
 function SourceLink({ url, general }: { url: string; general?: boolean }) {
@@ -24,15 +26,25 @@ function SourceLink({ url, general }: { url: string; general?: boolean }) {
   );
 }
 
-export function InsightBox({ items }: { items: InsightItem[] }) {
+/** 欄の見出し: 小さな札（欄の種類）＋記事ごとの見出し（depthHeadings。無い古い記事は札の言葉をそのまま見出しに） */
+function BoxHeading({ id, kicker, heading, fallback, size = "t-h2", extra }: {
+  id: string; kicker: string; heading?: string; fallback: string; size?: string; extra?: React.ReactNode;
+}) {
+  return (
+    <>
+      {heading && <p className="text-badge font-bold tracking-wide text-accent">{kicker}</p>}
+      <h2 id={id} className={`${heading ? "mt-1 " : ""}flex flex-wrap items-center gap-2 ${size}`}>
+        {heading || fallback}
+        {extra}
+      </h2>
+    </>
+  );
+}
+
+export function InsightBox({ items, heading }: { items: InsightItem[]; heading?: string }) {
   return (
     <section aria-labelledby="insight-heading" className="mb-8 max-w-[40em] rounded-2xl border-2 border-accent bg-accent-soft p-5 sm:p-6">
-      <h2 id="insight-heading" className="flex items-center gap-2 text-desc font-bold text-ink">
-        <span aria-hidden className="grid size-6 shrink-0 place-items-center rounded-full bg-accent text-meta font-bold text-accent-ink">
-          !
-        </span>
-        なるほどポイント
-      </h2>
+      <BoxHeading id="insight-heading" kicker="なるほど" heading={heading} fallback="なるほどポイント" size="t-h3" />
       <p className="mt-1 text-meta text-ink-soft">公式ページで確かめた、知っておくと役立つこと</p>
       <ul className="mt-3.5 grid gap-3.5">
         {items.map((item, index) => (
@@ -47,27 +59,31 @@ export function InsightBox({ items }: { items: InsightItem[] }) {
   );
 }
 
-export function CauseBox({ cause }: { cause: Cause }) {
+export function CauseBox({ cause, heading }: { cause: Cause; heading?: string }) {
   return (
     <section aria-labelledby="cause-heading" className="mt-12 max-w-[40em] rounded-2xl bg-surface p-5 sm:p-6">
-      <h2 id="cause-heading" className="flex flex-wrap items-center gap-2 t-h3">
-        {cause.status === "background" ? "なぜ変わる？" : "なぜ起きた？"}
-        {cause.status === "investigating" && (
-          <span className="rounded-sm border border-line-strong px-2 py-[1px] text-badge font-bold text-ink-soft">原因は調査中</span>
-        )}
-      </h2>
+      <BoxHeading
+        id="cause-heading"
+        kicker={cause.status === "background" ? "背景" : "なぜ起きた？"}
+        heading={heading}
+        fallback={cause.status === "background" ? "なぜ変わる？" : "なぜ起きた？"}
+        size="t-h3"
+        extra={
+          cause.status === "investigating" && (
+            <span className="rounded-sm border border-line-strong px-2 py-[1px] text-badge font-bold text-ink-soft">原因は調査中</span>
+          )
+        }
+      />
       <p className="mt-3 text-desc leading-[1.85] text-ink">{cause.text}</p>
       <SourceLink url={cause.source} />
     </section>
   );
 }
 
-export function WorriesBlock({ items }: { items: WorryItem[] }) {
+export function WorriesBlock({ items, heading }: { items: WorryItem[]; heading?: string }) {
   return (
     <section aria-labelledby="worries-heading" className="mt-12 max-w-[40em]">
-      <h2 id="worries-heading" className="t-h2">
-        こんな不安ありませんか
-      </h2>
+      <BoxHeading id="worries-heading" kicker="不安Q&A" heading={heading} fallback="こんな不安ありませんか" />
       <div className="mt-4 grid gap-3">
         {items.map((item, index) => (
           <details key={index} className="group rounded-2xl border border-line px-5 py-4 open:border-line-strong" open={index < 2}>
@@ -104,12 +120,10 @@ export function WorriesBlock({ items }: { items: WorryItem[] }) {
   );
 }
 
-export function ActionSteps({ items }: { items: StepItem[] }) {
+export function ActionSteps({ items, heading }: { items: StepItem[]; heading?: string }) {
   return (
     <section aria-labelledby="today-actions-heading" className="mt-12 max-w-[40em] rounded-2xl border border-line-strong p-5 sm:p-6">
-      <h2 id="today-actions-heading" className="t-h3">
-        すぐにできること
-      </h2>
+      <BoxHeading id="today-actions-heading" kicker="すぐにできること" heading={heading} fallback="すぐにできること" size="t-h3" />
       <ol className="mt-3.5 grid gap-4">
         {items.map((item, index) => (
           <li key={index} className="grid grid-cols-[24px_1fr] gap-3">
@@ -174,12 +188,10 @@ function RouteFigure({ steps, label }: { steps: string[]; label: string }) {
   );
 }
 
-export function OfficialDesk({ items }: { items: DeskEntry[] }) {
+export function OfficialDesk({ items, heading }: { items: DeskEntry[]; heading?: string }) {
   return (
     <section aria-labelledby="official-desk-heading" className="mt-12 max-w-[40em]">
-      <h2 id="official-desk-heading" className="t-h2">
-        公式窓口
-      </h2>
+      <BoxHeading id="official-desk-heading" kicker="公式窓口" heading={heading} fallback="公式窓口" />
       <p className="mt-1.5 text-note text-muted">SMSやメールに書かれた連絡先ではなく、ここにある公式の窓口を使ってください。</p>
       <div className="mt-4 grid gap-3">
         {items.map((desk, index) => (
@@ -216,6 +228,39 @@ export function OfficialDesk({ items }: { items: DeskEntry[] }) {
               <span className="min-w-0 truncate">公式ページを開く（{sourceLabel(desk.url)}）</span>
               <span aria-hidden>→</span>
             </a>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/** 判断ガイド（問いごとに、状況 → おすすめ → 理由 → 出どころ。スマホでは1行を縦に積んだカード） */
+export function DecisionGuide({ groups, heading }: { groups: { question: string; rows: GuideRow[] }[]; heading?: string }) {
+  return (
+    <section aria-labelledby="decision-guide-heading" className="mt-12 max-w-[40em]">
+      <BoxHeading id="decision-guide-heading" kicker="判断ガイド" heading={heading} fallback="迷ったときの判断ガイド" />
+      <p className="mt-1.5 text-note text-muted">状況ごとのおすすめと理由です。どれを選ぶかは、ご自身の状況で決めてください。</p>
+      <div className="mt-4 grid gap-5">
+        {groups.map((group, gi) => (
+          <div key={gi}>
+            <h3 className="text-desc font-bold text-ink">{group.question}</h3>
+            <div className="mt-2 grid gap-2.5">
+              {group.rows.map((row, ri) => (
+                <dl key={ri} className="grid gap-x-3 gap-y-1.5 rounded-2xl border border-line p-4 text-note sm:grid-cols-[5.5em_1fr]">
+                  <dt className="font-bold text-muted">状況</dt>
+                  <dd className="text-ink">{row.situation}</dd>
+                  <dt className="font-bold text-muted">おすすめ</dt>
+                  <dd className="font-bold text-ink">{row.recommend}</dd>
+                  <dt className="font-bold text-muted">理由</dt>
+                  <dd className="leading-[1.75] text-ink-soft">{row.reason}</dd>
+                  <dt className="font-bold text-muted">出どころ</dt>
+                  <dd>
+                    <SourceLink url={row.source} general={row.general} />
+                  </dd>
+                </dl>
+              ))}
+            </div>
           </div>
         ))}
       </div>

@@ -71,9 +71,9 @@
     }
   ],
   "todayActions": [
-    "知多市にいる人は、気象庁の警報・注意報の発表状況を雨の予報が出る前に確認する",
-    "自宅や職場の周辺で、地震後に斜面や地面に変化がないかを日中に見ておく",
-    "自治体の避難情報の入手方法を、家族や同僚と共有しておく"
+    "知多市の自宅や職場が土砂災害警戒区域等に当たるか、ハザードマップで確かめる",
+    "雨の日は、注意報が出た時点で土砂キキクルを開き、色を確かめる",
+    "キキクルの通知サービスに登録し、危険度の高まりを知らせてもらう"
   ],
   "publicInterest": "disaster",
   "qualityScore": 92,
@@ -88,5 +88,119 @@
     "category": "policy",
     "at": "2026-11-07T19:21:42+00:00"
   },
-  "coverTries": 3
+  "coverTries": 3,
+  "insight": [
+    {
+      "text": "レベル３土砂災害警報がレベル４と同じ基準値なのは、予測の先の長さが違うためです。レベル４は２時間先、レベル３は３時間先の予測値が基準に届くと出るので、高齢者等の避難のため１時間程度早く出ます。",
+      "source": "https://www.jma.go.jp/jma/kishou/know/bosai/doshakeikai.html"
+    },
+    {
+      "text": "警報が出たら「土砂キキクル」で、どこが危ないかを1km四方ごとに確かめられます。10分毎に更新され、高齢者等は遅くとも「警戒」（赤）、一般の方は遅くとも「危険」（紫）で避難を始めることが重要とされています。",
+      "source": "https://www.jma.go.jp/jma/kishou/know/bosai/doshakeikai.html"
+    },
+    {
+      "text": "斜面がいつもと違う様子（「土砂災害の前兆現象」）に気づいたら、避難情報が出ていなくても、すぐ周りの人と安全な場所に避難し、市町村役場等に連絡するよう気象庁は呼びかけています。",
+      "source": "https://www.jma.go.jp/jma/kishou/know/bosai/doshakeikai.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "気象庁「土砂キキクル」（土砂災害の危険度分布）",
+      "url": "https://www.jma.go.jp/bosai/risk/",
+      "source": "https://www.jma.go.jp/jma/kishou/know/bosai/doshakeikai.html",
+      "howTo": [
+        "土砂キキクルとは",
+        "土砂キキクルへ"
+      ],
+      "note": "危険度の高まりを通知するサービスもあると案内されています。"
+    },
+    {
+      "name": "ハザードマップポータルサイト（国土交通省）",
+      "url": "https://disaportal.gsi.go.jp/",
+      "source": "https://www.jma.go.jp/jma/kishou/know/bosai/doshakeikai.html",
+      "note": "自宅や職場が土砂災害警戒区域等に当たるかを、あらかじめ確かめておくよう気象庁が案内しています。"
+    },
+    {
+      "name": "「キキクル」の通知サービス",
+      "url": "https://www.jma.go.jp/jma/kishou/know/bosai/ame_push.html",
+      "source": "https://www.jma.go.jp/jma/kishou/know/bosai/doshakeikai.html"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "知多市の自宅や職場が土砂災害警戒区域等に当たるか、ハザードマップで確かめる",
+      "source": "https://www.jma.go.jp/jma/kishou/know/bosai/doshakeikai.html",
+      "steps": [
+        "ハザードマップのページを開く",
+        "自宅と職場の場所を表示する",
+        "区域に当たるなら区域の外の避難先を決める"
+      ],
+      "url": "https://disaportal.gsi.go.jp/"
+    },
+    {
+      "action": "雨の日は、注意報が出た時点で土砂キキクルを開き、色を確かめる",
+      "source": "https://www.jma.go.jp/jma/kishou/know/bosai/doshakeikai.html",
+      "steps": [
+        "レベル２土砂災害注意報が出たら開く",
+        "自宅付近のメッシュの色を見る",
+        "高齢者等は「警戒」（赤）で避難を始める"
+      ],
+      "url": "https://www.jma.go.jp/bosai/risk/"
+    },
+    {
+      "action": "キキクルの通知サービスに登録し、危険度の高まりを知らせてもらう",
+      "source": "https://www.jma.go.jp/jma/kishou/know/bosai/doshakeikai.html",
+      "steps": [
+        "通知サービスのページを開く",
+        "知らせてほしい地域を登録する"
+      ],
+      "url": "https://www.jma.go.jp/jma/kishou/know/bosai/ame_push.html"
+    }
+  ],
+  "cause": {
+    "text": "11月8日の静岡県西部の地震で、愛知県では最大震度５強を観測しました。揺れの大きかった地域では地盤が脆弱になっている可能性が高く、雨による土砂災害の危険性が通常より高まっていると考えられるため、基準を引き下げています。",
+    "status": "stated",
+    "source": "https://www.jma.go.jp/jma/press/2611/08b/20261108_zantei.html"
+  },
+  "worries": [
+    {
+      "q": "警報が出るたびに、すぐ避難しないといけないの？",
+      "a": "土砂災害警戒区域等に住む人は早めの避難が重要です。レベル３土砂災害警報は警戒レベル３相当で、区域にいる高齢者等は遅くともこの段階で避難の判断をするよう求められています。自治体から避難指示等が出たら、キキクルに関わらず速やかに避難します。",
+      "source": "https://www.jma.go.jp/jma/kishou/know/bosai/doshakeikai.html",
+      "action": "自宅が区域の内か外かを先に確かめ、区域内なら警報の段階で動けるよう避難先と経路を決めておく。"
+    },
+    {
+      "q": "夜の大雨で外に出るのがかえって危ないときは？",
+      "a": "道路冠水や暴風で避難場所への移動がかえって危ない場合は、その場所より相対的に安全な場所へ移る次善の行動をとるよう気象庁は案内しています。例として、崖から少しでも離れた部屋への待避や、近くの堅牢な建物への移動を挙げています。",
+      "source": "https://www.jma.go.jp/jma/kishou/know/bosai/doshakeikai.html",
+      "action": "家の中で崖や斜面から一番離れた部屋を、雨が降る前に家族で決めておく。"
+    },
+    {
+      "q": "この基準はいつまで続くの？",
+      "a": "期間は「当分の間」で、終わる時期は発表されていません。気象庁などは地震後の降雨と土砂災害の関係を調べ、必要に応じて暫定基準を変更するとしています。",
+      "source": "https://www.jma.go.jp/jma/press/2611/08b/20261108_zantei.html",
+      "action": "問い合わせは、気象庁大気海洋部気象リスク対策課（直通 03-3434-9051）で受け付けています。"
+    },
+    {
+      "q": "雨が降る前でも、気をつけることはある？",
+      "a": "首相官邸の防災の手引きは、山やがけ付近にいるときは落石やがけ崩れに注意し、できるだけその場から離れるよう呼びかけています。",
+      "source": "https://www.kantei.go.jp/jp/headline/bousai/jishin.html",
+      "action": "散歩や通勤で通るがけや斜面の近くは、しばらく避けられる道を選ぶ。",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "レベル3の警報が1時間ほど早く出るわけ",
+    "cause": "地震のあと、なぜ雨の基準を下げたのか",
+    "steps": "雨が降る前に知多市の人ができる備え",
+    "desk": "危険度は土砂キキクルで1km四方ごとに見られる",
+    "worries": "警報のたびに避難すべき？夜の大雨は？"
+  },
+  "depthAt": "2026-11-08T16:16:30+00:00",
+  "sectionTitles": {
+    "body": {
+      "日本の暮らしでは、雨が降る前の備えが大切になる": "基準が下がると、警報は出やすくなる",
+      "まだ分からないこと": "いつまで続くか、ほかの市町村は対象か"
+    }
+  }
 }

@@ -89,9 +89,9 @@
     }
   ],
   "todayActions": [
-    "国税庁の特設サイトで、約2分30秒の概要版の説明動画を見る",
-    "飲食料品を売る免税事業者は、免税事業者向け版の動画で届出の条件を確認する",
-    "簡易課税の事業者は、Q＆Aで2年縛りの特例を確認する"
+    "簡易課税の事業者は、特例の計算で今の申告を続けた場合の納税額を試算する",
+    "免税事業者は、仕入れの税が売上げの税を上回りそうかを帳簿で確かめる",
+    "値札の貼り替えが間に合わない店は、総額表示の特例の条件を確かめる"
   ],
   "qualityScore": 93,
   "factSources": [
@@ -136,5 +136,152 @@
     "relevant": true,
     "at": "2026-11-06T23:36:38+00:00"
   },
-  "updatedAt": "2026-11-07T11:20:00+09:00"
+  "updatedAt": "2026-11-07T11:20:00+09:00",
+  "insight": [
+    {
+      "text": "簡易課税のまま申告する場合、業種区分にかかわらず、飲食料品の販売（1%対象）の売上税額と同じ額を仕入税額として差し引きます。飲食料品の分は、差し引きで納める税がほぼ残らない計算になります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf"
+    },
+    {
+      "text": "仕入れに払った消費税（標準税率）が売上げの消費税（1%）より大きくなる場合、課税事業者として一般課税（本則課税）で申告すれば、消費税の還付を受けられます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf"
+    },
+    {
+      "text": "還付を早く受けたい事業者は、「課税期間特例選択届出書」で課税期間を「3月ごと」か「1月ごと」に短くできます。ただし、一度選ぶと2年間はやめられません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_pamphlet.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "消費税軽減税率・インボイスコールセンター（専用ダイヤル）",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/zeiritsuhikisage.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf",
+      "howTo": [
+        "国税庁ホーム",
+        "税目別情報",
+        "消費税",
+        "消費税率引下げ特設サイト"
+      ],
+      "phone": "0120-205-553",
+      "hours": "9:00~17:00(土日祝除く。)",
+      "note": "消費税率引下げに関する一般的な問い合わせを受け付けています。"
+    },
+    {
+      "name": "税理士をお探しの方（国税庁）",
+      "url": "https://www.nta.go.jp/taxes/zeirishi/search/search.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/zeiritsuhikisage.htm",
+      "howTo": [
+        "国税庁ホーム",
+        "税理士に関する情報",
+        "税理士をお探しの方"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "簡易課税の事業者は、特例の計算で今の申告を続けた場合の納税額を試算する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf",
+      "steps": [
+        "飲食料品（1%）とそれ以外の売上げを分ける",
+        "飲食料品の売上税額と同額を仕入税額にする",
+        "その他の売上税額にみなし仕入率をかけて足す"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf"
+    },
+    {
+      "action": "免税事業者は、仕入れの税が売上げの税を上回りそうかを帳簿で確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf",
+      "steps": [
+        "1年分の仕入れにかかった消費税を集計する",
+        "飲食料品の売上げに1%をかけた額と比べる",
+        "上回るなら還付と2年間の申告義務を比べて検討する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf"
+    },
+    {
+      "action": "値札の貼り替えが間に合わない店は、総額表示の特例の条件を確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf",
+      "steps": [
+        "特例の期間は令和9年2月1日から5月31日まで",
+        "実際の支払額と誤認させない掲示をする",
+        "終了時の令和11年2月1日から5月31日も同様"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf"
+    }
+  ],
+  "cause": {
+    "text": "「飲食料品消費税率の臨時的な引下げ及び就業者負担軽減支援金の導入に関する大綱」（令和８年９月15日閣議決定）で示された改正案です。大綱で、関係府省庁が制度の詳細をできる限り早く公表し、丁寧に周知することとされたため、国税庁と財務省が特設サイトを開きました。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/zeiritsuhikisage.htm"
+  },
+  "worries": [
+    {
+      "q": "外食やテイクアウトも1%になるの？",
+      "a": "テイクアウトと出前・宅配は税率1%の対象です。店の飲食設備で食べる外食と、ケータリング等は税率10%のままです。ただし有料老人ホーム等での飲食料品の提供や学校給食など一定のものは1%です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_pamphlet.pdf",
+      "action": "店内飲食と持ち帰りの両方を扱う店は、レジで税率1%と10%を分けて設定できるか確かめる。"
+    },
+    {
+      "q": "免税事業者のままだと損をするの？",
+      "a": "売上げの税より仕入れの税が大きくなる場合、課税事業者として一般課税で申告すれば還付を受けられます。免税事業者のままでは申告をしないため、還付は受けられません。課税事業者になると、令和9年と令和10年の2年間は課税事業者となります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf",
+      "action": "還付の見込み額と、2年間の申告の手間や税理士費用を比べて、令和9年末までに届出を出すか決める。"
+    },
+    {
+      "q": "法案が成立しなかったら、準備はむだになる？",
+      "a": "特設サイトの内容は、法案が国会で審議を経て可決・成立した場合のものです。成立しなかった場合の扱いは、読んだページには書かれていません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/zeiritsuhikisage.htm",
+      "action": "届出書の提出やレジの設定変更は、法案の成立を確かめてから行えるよう、手順だけ先に整理しておく。"
+    },
+    {
+      "q": "インボイスの書き方を大きく変える必要はある？",
+      "a": "大きな変更はありません。インボイスには適用税率1%とその消費税額等を書きますが、それ以外のインボイスや帳簿の記載事項は変わりません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_pamphlet.pdf",
+      "action": "請求書ソフトやレジで、税率1%の区分を追加できるかを販売元に確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "免税事業者だけど、課税事業者になる？",
+      "situation": "仕入れの税が売上げの税を上回りそう",
+      "recommend": "課税事業者になることを検討する価値がある",
+      "reason": "一般課税で申告すれば、仕入れの税との差額の還付を受けられます。届出は令和9年4月1日の属する課税期間中（個人事業者なら令和9年末まで）に出せます。ただし令和9年と令和10年の2年間は課税事業者となり、毎年の申告が必要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf"
+    },
+    {
+      "question": "免税事業者だけど、課税事業者になる？",
+      "situation": "仕入れが少なく、還付がほとんど見込めない",
+      "recommend": "急いで届出を出さなくてよい",
+      "reason": "課税事業者になると2年間は申告が必要になり、手間や費用がかかります。還付が小さいなら、免税事業者のままでいる選択もあります。届出の期限は個人事業者なら令和9年末までなので、成立後に決めても間に合います。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf"
+    },
+    {
+      "question": "簡易課税を続ける？一般課税に切り替える？",
+      "situation": "飲食料品の販売が中心で、仕入れが多い",
+      "recommend": "一般課税への切り替えを比べてみる価値がある",
+      "reason": "一般課税なら、仕入れの税が売上げの税を上回る分の還付を受けられます。令和9年4月1日の属する課税期間中に「簡易課税制度選択不適用届出書」を出せば、その課税期間から一般課税で申告でき、この期間は2年縛りもかかりません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf"
+    },
+    {
+      "question": "簡易課税を続ける？一般課税に切り替える？",
+      "situation": "雑貨など飲食料品以外の売上げも多い",
+      "recommend": "簡易課税のままの特例で十分か試算する",
+      "reason": "簡易課税の特例では、飲食料品の売上税額と同額を仕入税額として差し引き、その他の売上げはみなし仕入率で計算します。帳簿の手間は今のままです。一般課税にすると還付の可能性はありますが、仕入れの税額を集計する手間が増えます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_leaflet.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "簡易課税の店でも、仕入れの計算に特例がある",
+    "cause": "なぜ食料品の消費税を1%に下げるのか",
+    "steps": "お店や事業者が今から試算しておくこと",
+    "desk": "税率引き下げの疑問はコールセンターで聞ける",
+    "worries": "外食やテイクアウトも1%になる？",
+    "guide": "課税事業者になる？簡易課税を続ける？"
+  },
+  "depthAt": "2026-11-08T16:16:30+00:00",
+  "sectionTitles": {
+    "body": {
+      "まだ分からないこと": "法案の成立時期と正式な様式はこれから"
+    }
+  }
 }

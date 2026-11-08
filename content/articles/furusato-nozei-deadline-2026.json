@@ -66,9 +66,9 @@
     }
   ],
   "todayActions": [
-    "今年の寄附先・金額・寄附日を一覧にし、6団体以上になっていないか数える",
-    "ワンストップ特例を使う寄附先に申請書を出したか確かめる",
-    "申請後に引っ越した人は、寄附先へ変更届出書を出す"
+    "受領書と払込票控を寄附先ごとにそろえ、届いていないものは寄附先の自治体に問い合わせる",
+    "確定申告をする人は、マイナポータル連携の事前準備を済ませておく",
+    "ワンストップ特例を使う人は、各寄附先から届いた申請書に記入して返送する"
   ],
   "factSources": [
     {
@@ -156,5 +156,148 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-07T11:52:43+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "自己負担の2,000円は、寄附1回ごとにかかるものではありません。1年間（1月〜12月）の寄附金の総額に対して1回分です。何回かに分けて寄附しても、負担が増えるわけではありません。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/faq/"
+    },
+    {
+      "text": "ふるさと納税専用の振込用紙や自治体の納付書で寄附した場合は、払込票控（振込用紙の半券）が確定申告で寄附を証明する書類になる場合があります。受領書が届くまで捨てずに保管しておくと安心です。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "text": "確定申告では、マイナポータル連携を使うと、寄附金受領証明書等のデータをマイナポータル経由で取得し、申告書の該当項目に自動入力できます。寄附先が多い人ほど入力の手間が減ります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/tokushu/keisubetsu/furusato.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税局 電話相談センター（国税相談専用ダイヤル）",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "税について調べる",
+        "税についての上手な調べ方",
+        "税についての相談窓口"
+      ],
+      "phone": "0570-00-5901",
+      "hours": "8時30分〜17時00分（土日祝日及び12月29日〜1月3日を除きます。）",
+      "note": "音声ガイダンスで「１」所得税を選びます。住民税の控除額の計算は、お住まいの市区町村に問い合わせます。"
+    },
+    {
+      "name": "国税庁 ふるさと納税をされた方へ（確定申告特集）",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/tokushu/keisubetsu/furusato.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/tokushu/keisubetsu/furusato.htm",
+      "note": "マイナポータル連携を使う場合は、事前準備が必要です。"
+    },
+    {
+      "name": "総務省 ふるさと納税ポータルサイト",
+      "url": "http://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/080430_2_kojin.html",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/faq/",
+      "note": "申込方法や受領書の届く時期、ワンストップ特例の申請書は自治体ごとに異なるため、寄附先の自治体に問い合わせるよう案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "受領書と払込票控を寄附先ごとにそろえ、届いていないものは寄附先の自治体に問い合わせる",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/faq/",
+      "steps": [
+        "寄附先と金額を一覧にする",
+        "受領書か払込票控があるか照らし合わせる",
+        "届いていない分は寄附先の自治体に聞く"
+      ],
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/faq/"
+    },
+    {
+      "action": "確定申告をする人は、マイナポータル連携の事前準備を済ませておく",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/tokushu/keisubetsu/furusato.htm",
+      "steps": [
+        "マイナンバーカードを用意する",
+        "マイナポータル連携の事前準備のページを確かめる",
+        "確定申告書等作成コーナーで寄附金控除を入力する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/mynumberinfo/mnp_junbi/kakutei.htm"
+    },
+    {
+      "action": "ワンストップ特例を使う人は、各寄附先から届いた申請書に記入して返送する",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/faq/",
+      "steps": [
+        "払込票の「申請書の送付を希望」の印だけで終わっていないか確かめる",
+        "寄附先ごとの申請書に必要事項を書く",
+        "オンライン申請ができるか寄附先に確かめる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "ワンストップ特例は、平成27年度税制改正で「地方創生」を進めるために設けられ、平成27年4月1日以後の寄附から使えるようになりました。同じ改正で、自己負担2,000円を除いて全額が控除される「ふるさと納税枠」が約2倍に広がっています。",
+    "status": "background",
+    "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html"
+  },
+  "worries": [
+    {
+      "q": "何回にも分けて寄附すると、2,000円が毎回かかる？",
+      "a": "かかりません。自己負担の2,000円は1回ごとの寄附ではなく、1年間（1月〜12月）の寄附金総額に対して必要となるものです。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/faq/",
+      "action": "1年間の寄附の合計が控除の上限内に収まっているかを確かめる。"
+    },
+    {
+      "q": "住んでいる市区町村に聞けば、上限額を教えてもらえる？",
+      "a": "総務省は具体的な計算をお住まいの市区町村に問い合わせるよう案内しています。ただし、自治体によっては控除の対象となる寄附額の上限をお答えできない場合があるとしています。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
+      "action": "市区町村の住民税の担当に、上限を計算してもらえるかから確かめる。"
+    },
+    {
+      "q": "確定申告をすれば、所得税は必ず戻ってくる？",
+      "a": "源泉徴収などで既に納めている所得税がある場合に還付されることがあります。還付される金額は、収入やほかの控除などの状況によります。住民税分は翌年度の住民税の減額という形になります。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "action": "源泉徴収票で、すでに納めた所得税の額を確かめておく。"
+    },
+    {
+      "q": "受領書がまだ届かないけれど、大丈夫？",
+      "a": "受領書が届く時期は自治体によって異なるため、寄附先の自治体に問い合わせるよう案内されています。専用の振込用紙で寄附した場合は、払込票控が寄附を証明する書類になる場合があります。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/faq/",
+      "action": "届いていない寄附先には、受領書の発送時期を問い合わせる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ワンストップ特例と確定申告、どちらにする？",
+      "situation": "会社員で、寄附先は5団体以内",
+      "recommend": "ワンストップ特例で足りることが多い",
+      "reason": "確定申告の不要な給与所得者等で、寄附先が5団体以内なら使えます。所得税からは引かれず、全額が翌年度の住民税から控除されます。寄附先ごとに申請書を出す必要があります。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "question": "ワンストップ特例と確定申告、どちらにする？",
+      "situation": "寄附先が6団体以上になった",
+      "recommend": "確定申告で寄附金控除を受ける",
+      "reason": "6団体以上にふるさと納税を行った場合は、確定申告が必要です。翌年の3月15日までに所轄の税務署へ申告し、受領書を添付します。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "question": "医療費控除もある。ワンストップは使える？",
+      "situation": "医療費控除などで確定申告をする",
+      "recommend": "ふるさと納税もすべて確定申告に含める",
+      "reason": "確定申告をするとワンストップ特例の申請は無効になります。特例を申請した分も含めて寄附金控除を計算し、第二表の住民税の欄にも記入します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm"
+    },
+    {
+      "question": "医療費控除もある。ワンストップは使える？",
+      "situation": "確定申告の予定はない",
+      "recommend": "ワンストップ特例の申請で控除を受けられる",
+      "reason": "確定申告の不要な給与所得者等なら、5団体以内の各自治体に申請することで確定申告が不要になります。申請後に引っ越したら、翌年の1月10日までに変更届出書を出します。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "自己負担の2,000円は寄附1回ごとではない",
+    "cause": "ワンストップ特例ができたいきさつ",
+    "steps": "年末までにそろえておきたい書類",
+    "desk": "確定申告の相談は国税の電話相談センターへ",
+    "worries": "何回かに分けて寄附すると損をする？",
+    "guide": "ワンストップ特例か確定申告か、決め方"
+  },
+  "depthAt": "2026-11-08T16:16:30+00:00"
 }

@@ -67,9 +67,9 @@
     }
   ],
   "todayActions": [
-    "家族ごとに2026年の所得の見込みを出し、62万円以下かを確かめる",
-    "23歳未満の扶養親族がいる人は、保険料控除申告書の新しい欄を確認する",
-    "勤務先から届いた年末調整の書類の締め切りを確かめる"
+    "勤務先の書類の中に、令和8年分の基礎控除申告書が入っているか確かめて記入する",
+    "スマートフォンで書くなら、国税庁の年調ソフトで申告書を作る",
+    "給与と年金の両方がある人は、所得金額調整控除のために確定申告が要るか確かめる"
   ],
   "factSources": [
     {
@@ -145,5 +145,156 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-07T11:54:01+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "基礎控除は自動では引かれません。年末調整で最大104万円の基礎控除を受けるには、勤務先に基礎控除申告書を出す必要があり、提出漏れがあると控除を受けられないと国税庁が注意しています。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    },
+    {
+      "text": "給与と公的年金の両方がある人の所得金額調整控除（最大10万円）は、年末調整では受けられません。受けるには確定申告が必要です。給与の収入が850万円を超える人の控除（最大15万円）は年末調整で受けられます。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    },
+    {
+      "text": "扶養控除等申告書は、扶養する家族がいない人も出す必要があります。出していないと、給与の源泉徴収に税額表の「乙」欄が使われます。共働きの夫婦が、お互いに配偶者特別控除を受けることもできません。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税局 電話相談センター（国税相談専用ダイヤル）",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "税について調べる",
+        "税についての上手な調べ方",
+        "税についての相談窓口"
+      ],
+      "phone": "0570-00-5901",
+      "hours": "8時30分〜17時00分（土日祝日及び12月29日〜1月3日を除きます。）",
+      "note": "音声ガイダンスで「２」源泉徴収、年末調整、支払調書を選びます。"
+    },
+    {
+      "name": "年末調整手続の電子化及び年調ソフトヘルプデスク",
+      "url": "https://www.nta.go.jp/users/gensen/nenmatsu/nencho.htm",
+      "source": "https://www.nta.go.jp/users/gensen/nenmatsu/nencho.htm",
+      "phone": "0570-02-4563",
+      "hours": "9時00分～17時00分（10月1日～12月28日（毎日））",
+      "note": "1月4日～1月29日は月曜～金曜（祝日等を除きます）に受け付けています。"
+    },
+    {
+      "name": "国税庁 各種申告書・記載例（扶養控除等申告書など）",
+      "url": "https://www.nta.go.jp/users/gensen/nencho/shinkokusyo/index.htm",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/shinkokusyo/index.htm",
+      "howTo": [
+        "源泉徴収義務者の方",
+        "年末調整がよくわかるページ（令和８年分）",
+        "各種様式・記載例"
+      ],
+      "note": "入力用PDFはブラウザでは使えないため、保存してからAdobeReaderで開きます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "勤務先の書類の中に、令和8年分の基礎控除申告書が入っているか確かめて記入する",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "steps": [
+        "基礎控除申告書兼配偶者控除等申告書…の用紙を探す",
+        "記載例で区分と基礎控除の額の書き方を見る",
+        "勤務先の締め切りまでに出す"
+      ],
+      "url": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/306.pdf"
+    },
+    {
+      "action": "スマートフォンで書くなら、国税庁の年調ソフトで申告書を作る",
+      "source": "https://www.nta.go.jp/users/gensen/nenmatsu/nencho.htm",
+      "steps": [
+        "各Storeで「年末調整 国税庁」と検索する",
+        "給与の収入金額や配偶者の情報を入力する",
+        "作った申告書を勤務先の指示どおりに出す"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nenmatsu/nencho.htm"
+    },
+    {
+      "action": "給与と年金の両方がある人は、所得金額調整控除のために確定申告が要るか確かめる",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "steps": [
+        "給与所得控除後の給与等の金額を出す",
+        "公的年金等に係る雑所得の金額を出す",
+        "合計が10万円を超えるなら確定申告を検討する"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    }
+  ],
+  "cause": {
+    "text": "合計所得金額655万円以下の人の基礎控除額は、所得税法で定める基礎控除額62万円に、租税特別措置法による加算額を足した額です。表に示された額は令和8年分と令和9年分のものとされています。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+  },
+  "worries": [
+    {
+      "q": "家族の所得は、いつの時点の金額で判断するの？",
+      "a": "合計所得金額は、年末調整を行う日の現況で見積もった、本年1月1日から12月31日までの金額で判定します。年齢は本年12月31日の現況で判定します。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "action": "家族の12月までの収入の見込みを、年末調整の前に本人に確かめておく。"
+    },
+    {
+      "q": "給料が多いと、年末調整してもらえないことがある？",
+      "a": "年末調整の対象は、原則として勤務先に扶養控除等申告書を出している人です。ただし、給与の収入金額が2,000万円を超える人など、一定の人は年末調整の対象になりません。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "action": "給与の収入が2,000万円を超えそうなら、確定申告の準備を始める。"
+    },
+    {
+      "q": "年調ソフトで印刷した申告書、見た目が違うけど大丈夫？",
+      "a": "年調ソフトで出力される書面印刷用の控除申告書は、国税庁ホームページの様式と見た目が異なりますが、法令上問題はないとされています。",
+      "source": "https://www.nta.go.jp/users/gensen/nenmatsu/nencho.htm",
+      "action": "操作で迷ったら、年調ソフトの操作マニュアルかヘルプデスクで確かめる。"
+    },
+    {
+      "q": "大学生の子のアルバイト代、いくらまでなら控除がある？",
+      "a": "19歳以上23歳未満の子は、合計所得金額が62万円以下なら扶養控除の対象です。62万円超123万円以下なら特定親族として、特定親族特別控除（1人につき63万円が限度）の対象になります。123万円を超えると受けられません。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "action": "子の給与収入を、改正後の給与所得控除で所得に直して区分を確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "年末調整だけで済む？確定申告も要る？",
+      "situation": "給与だけで、申告書を全部出した",
+      "recommend": "年末調整で納税が終わることが多い",
+      "reason": "大部分の給与所得者は、年末調整によってその年の所得税の納税が完了するとされています。基礎控除申告書や保険料控除申告書の提出漏れがないかは確かめておきます。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    },
+    {
+      "question": "年末調整だけで済む？確定申告も要る？",
+      "situation": "給与のほかに公的年金も受け取っている",
+      "recommend": "確定申告をすると控除が増える場合がある",
+      "reason": "給与と公的年金等の所得の合計が10万円を超える場合の所得金額調整控除（最大10万円）は、年末調整では適用されません。受けるには確定申告が必要です。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    },
+    {
+      "question": "配偶者の控除はどちらで受ける？",
+      "situation": "配偶者の合計所得が62万円以下",
+      "recommend": "配偶者控除の対象になる",
+      "reason": "本人の合計所得金額が1,000万円以下で、生計を一にする配偶者の合計所得金額が62万円以下なら、38万円を限度に配偶者控除を受けられます。配偶者特別控除との併用はできません。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    },
+    {
+      "question": "配偶者の控除はどちらで受ける？",
+      "situation": "配偶者の合計所得が62万円超133万円以下",
+      "recommend": "配偶者特別控除の対象になる",
+      "reason": "本人の合計所得金額が1,000万円以下なら、配偶者特別控除を受けられます。夫婦の双方がお互いに配偶者特別控除を受けることはできません。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "最大104万円の基礎控除は、申告しないと引かれない",
+    "cause": "基礎控除が人によって違う額になる理由",
+    "steps": "勤務先に出す書類で見落としやすいところ",
+    "desk": "書き方に迷ったら電話相談センターへ",
+    "worries": "家族の所得はいつの金額で判断する？",
+    "guide": "年末調整だけで済むか、確定申告も要るか"
+  },
+  "depthAt": "2026-11-08T16:16:30+00:00"
 }

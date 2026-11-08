@@ -8,7 +8,13 @@ export type StepItem = { action: string; steps?: string[]; url?: string; source?
 export type Cause = { text: string; status?: "stated" | "investigating" | "background"; source: string };
 export type WorryItem = { q: string; a: string; action?: string; source: string; general?: boolean; actionSource?: string; actionGeneral?: boolean };
 
+export type GuideRow = { question: string; situation: string; recommend: string; reason: string; source: string; general?: boolean };
+
+export type DepthHeadings = Partial<Record<"insight" | "cause" | "steps" | "desk" | "worries" | "guide", string>>;
+
 export type DepthFields = {
+  depthHeadings?: DepthHeadings;
+  decisionGuide?: GuideRow[];
   insight?: InsightItem[];
   officialDesk?: DeskEntry[];
   todaySteps?: StepItem[];
@@ -35,7 +41,21 @@ export function depthOf(a: DepthFields) {
     .filter((w) => str(w?.q) && str(w?.a) && okUrl(w?.source))
     .map((w) => ({ ...w, actionSource: okUrl(w.actionSource) ? w.actionSource : undefined }))
     .slice(0, 5);
+  // 判断ガイド: 問いごとにまとめる（同じ問いの状況違いの行を並べる）
+  const guide: { question: string; rows: GuideRow[] }[] = [];
+  for (const r of (a.decisionGuide ?? []).filter((x) => str(x?.question) && str(x?.situation) && str(x?.recommend) && str(x?.reason) && okUrl(x?.source)).slice(0, 6)) {
+    const group = guide.find((g) => g.question === r.question);
+    if (group) group.rows.push(r);
+    else guide.push({ question: r.question, rows: [r] });
+  }
+  const headings: DepthHeadings = {};
+  for (const [k, v] of Object.entries(a.depthHeadings ?? {})) {
+    // 28字まで・「｜」なし（scripts/depth_fields.py と同じ決まり。2026-11-09 オーナー）
+    if (str(v) && v.length <= 28 && !/[｜|]/.test(v)) headings[k as keyof DepthHeadings] = v;
+  }
   return {
+    headings,
+    guide,
     insight,
     officialDesk,
     todaySteps: steps.length >= 2 ? steps : [],

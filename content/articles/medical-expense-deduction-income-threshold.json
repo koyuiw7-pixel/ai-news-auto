@@ -71,9 +71,9 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "その年の1月1日から12月31日に払った医療費の領収書を1か所にまとめる",
-    "保険金や給付金の支払額が分かる書類を用意する",
-    "医療保険者から届いた医療費通知があるか確認する"
+    "健康保険組合の「医療費のお知らせ」が、添付できる医療費通知に当たるか確かめる",
+    "領収書が多い人は、医療費集計フォームに入力して作成コーナーで読み込む",
+    "医療費通知に載らない支払いの領収書を、別にまとめて5年間保存する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -106,5 +106,136 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-08T08:52:19+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "共働き夫婦でも、生計を一にしていれば、医療費を実際に支払った人の医療費控除の対象になります。配偶者などの親族の範囲には所得金額の要件が付いていません。",
+      "source": "https://www.nta.go.jp/law/shitsugi/shotoku/05/25.htm"
+    },
+    {
+      "text": "セルフメディケーション税制か通常の医療費控除かは、一度選んで確定申告書を出すと、後から更正の請求や修正申告で切り替えられません。申告前に両方の金額を比べておく必要があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1131.htm"
+    },
+    {
+      "text": "ジェネリックがあるのに先発医薬品を希望して払う「特別の料金」は控除の対象です。ただしマイナポータル連携の「医療費通知情報」には含まれないため、領収証を保存して明細書を作る必要があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122_qa.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税局 電話相談センター（国税相談専用ダイヤル）",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "税について調べる",
+        "税についての上手な調べ方",
+        "税についての相談窓口"
+      ],
+      "phone": "0570-00-5901",
+      "hours": "8時30分〜17時00分（土日祝日及び12月29日〜1月3日を除きます。）",
+      "note": "音声ガイダンスで「１」所得税を選びます。050から始まるIP電話の場合は、所轄の税務署の代表電話番号から「1」を選びます。"
+    },
+    {
+      "name": "国税庁 確定申告書等作成コーナー",
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "note": "金額を入力すると、医療費控除の明細書などの付表も自動的に作成されます。"
+    },
+    {
+      "name": "国税庁 医療費集計フォーム",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/tokushu/keisubetsu/iryou-shuukei.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "note": "セルフメディケーション税制の適用を受ける方は利用できません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "健康保険組合の「医療費のお知らせ」が、添付できる医療費通知に当たるか確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120_qa.htm",
+      "steps": [
+        "被保険者等の氏名と療養を受けた年月を確かめる",
+        "療養を受けた者の氏名と病院などの名称を確かめる",
+        "支払った医療費の額と保険者等の名称を確かめる",
+        "欠けていれば補完記入か、領収書で明細書を作る"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120_qa.htm"
+    },
+    {
+      "action": "領収書が多い人は、医療費集計フォームに入力して作成コーナーで読み込む",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "steps": [
+        "医療費集計フォームを表計算ソフトで開く",
+        "支払った医療費の内容を入力・保存する",
+        "確定申告書等作成コーナーの医療費控除の入力画面で読み込む"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/tokushu/keisubetsu/iryou-shuukei.htm"
+    },
+    {
+      "action": "医療費通知に載らない支払いの領収書を、別にまとめて5年間保存する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122_qa.htm",
+      "steps": [
+        "先発医薬品の「特別の料金」の領収証を分ける",
+        "医師の指示で作った治療用眼鏡の処方箋の写しを分ける",
+        "確定申告期限等から5年間保存する"
+      ]
+    }
+  ],
+  "worries": [
+    {
+      "q": "保険金の額がまだ決まっていない。申告はどうする？",
+      "a": "確定申告書を出す時までに補てんされる保険金等の額が決まっていない場合は、見込額で計算します。後で確定額が見込額と違ったら、修正申告か更正の請求で訂正します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120_qa.htm",
+      "action": "保険会社に見込額を確かめ、確定したら申告した額と比べる。"
+    },
+    {
+      "q": "人間ドックや健康診断の費用は入れられますか？",
+      "a": "健康診断等の費用は、原則として対象外です。ただし、その結果で重大な疾病が見つかり、引き続き治療した場合は、治療に先立つ診察と同じに考えられ、対象になります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122_qa.htm",
+      "action": "健診のあとに治療を受けた人は、健診費用の領収書も一緒に保管しておく。"
+    },
+    {
+      "q": "旅行先の海外で払った治療代も対象になりますか？",
+      "a": "外国の医師に支払った医療費も対象です。外国通貨で払った場合は、支払った日の電信売相場と電信買相場の仲値（ＴＴＭ）で円に換算した額で計算します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122_qa.htm",
+      "action": "海外の領収書は支払った日付が分かる形で残し、その日の仲値で円に直す。"
+    },
+    {
+      "q": "「医療費のお知らせ」があれば領収書は捨てていい？",
+      "a": "医療費通知に当たるものを添付すれば、明細書の記載を簡略化できます。ただし記載事項に欠けがあって医療費通知に当たらない場合は、領収書で明細書を作り、領収書を確定申告期限等から5年間保存する必要があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120_qa.htm",
+      "action": "お知らせに載っていない月や支払いがないかを照らし合わせ、領収書は残しておく。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "通常の医療費控除とセルフメディケーション、どっち？",
+      "situation": "通院や入院の医療費が基準額を大きく超えた",
+      "recommend": "通常の医療費控除の金額をまず計算するとよい",
+      "reason": "通常の医療費控除は最高で200万円です。セルフメディケーション税制は対象の市販薬の購入費のうち12,000円を超える部分で、88,000円が限度です（令和8年4月1日現在法令等）。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+    },
+    {
+      "question": "通常の医療費控除とセルフメディケーション、どっち？",
+      "situation": "通院は少なく、対象の市販薬を多く買った",
+      "recommend": "セルフメディケーション税制も比べる価値がある",
+      "reason": "一定の健康診断や予防接種などの取組をしている人が対象です。選ぶと、ほかの医療費が基準額を超えていても通常の医療費控除は併せて受けられず、申告後に切り替えることもできません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1131.htm"
+    },
+    {
+      "question": "医療費が10万円に届かないけど申告できる？",
+      "situation": "総所得金額等が200万円未満",
+      "recommend": "総所得金額等の5パーセントと比べてみるとよい",
+      "reason": "基準額は10万円ですが、総所得金額等が200万円未満の人は総所得金額等の5パーセントの金額になります。医療費から保険金などの補てん額を引いた残りが、これを超える部分が控除額です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "共働きでも、払った人の医療費控除にできる",
+    "steps": "確定申告の前にそろえたい医療費の書類",
+    "desk": "迷ったら国税の電話相談センターへ",
+    "worries": "人間ドックや保険金の扱いはどうなる？",
+    "guide": "10万円未満でも申告するか、どちらの控除か"
+  },
+  "depthAt": "2026-11-08T16:16:30+00:00"
 }

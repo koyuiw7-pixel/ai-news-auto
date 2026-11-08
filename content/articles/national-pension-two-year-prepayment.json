@@ -88,9 +88,9 @@
     }
   ],
   "todayActions": [
-    "口座振替で納めているなら、振替日の前に口座の残高を確認する。",
-    "前納を考えるなら、日本年金機構の前納のページで令和8年度の納付額を確認する。",
-    "4月から2年前納（口座振替）を始めたいなら、2月末必着で申出書を出す。"
+    "2年前納を書面で申し込むなら、新しい様式の申出書と基礎年金番号を用意する",
+    "オンラインで申し込むなら、マイナポータルから「ねんきんネット」で口座振替を申し込む",
+    "毎年4月中旬～下旬に届く「国民年金保険料口座振替額通知書」で、引き落とされる金額を確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -136,5 +136,147 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-08T09:42:16+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "1枚の納付書の保険料額が30万円を超えるものは、コンビニエンスストアでは納付できません。納付書で2年前納（418,510円）をするなら、金融機関、郵便局か電子納付（Pay-easy）で払うことになります。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/nofusho.html"
+    },
+    {
+      "text": "口座振替はマイナポータル経由の「ねんきんネット」から申し込むと、口座の確認に時間がかからず、すみやかに前納を始められます。印鑑レス口座やサインレス口座は、オンラインでしか申し込めません。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/kozafurikae.html"
+    },
+    {
+      "text": "申出書は令和7年1月から様式が変わりました。振替方法欄に「2年前納（4月開始）」の選択肢がない旧様式は、2年前納の申し込みには使えません。",
+      "source": "https://www.nenkin.go.jp/shinsei/kokunen/nofu/kozafurikae.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ねんきん加入者ダイヤル（国民年金加入者向け）",
+      "url": "https://www.nenkin.go.jp/section/tel/toiawase_kanyusha.html",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_kanyusha.html",
+      "howTo": [
+        "電話での年金相談窓口",
+        "ねんきん加入者ダイヤル"
+      ],
+      "phone": "0570-003-004",
+      "hours": "月曜日から金曜日午前8時30分から午後7時、第2土曜日午前9時30分から午後4時",
+      "note": "週の初日は混雑が予想されます。050で始まる電話からは(東京)03-6630-2525にかけます。"
+    },
+    {
+      "name": "年金事務所（全国の相談・手続き窓口）",
+      "url": "https://www.nenkin.go.jp/section/soudan/index.html",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/kozafurikae.html",
+      "note": "口座振替の申出書は年金事務所に郵送でも出せます。街角の年金相談センターではお手続きできません。"
+    },
+    {
+      "name": "日本年金機構 ケース7（口座振替の申出書）",
+      "url": "https://www.nenkin.go.jp/shinsei/kokunen/nofu/kozafurikae.html",
+      "source": "https://www.nenkin.go.jp/shinsei/kokunen/nofu/kozafurikae.html",
+      "note": "振替口座は変えずに振替方法だけ変える人は、（振替方法変更用）の申出書を使います。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "2年前納を書面で申し込むなら、新しい様式の申出書と基礎年金番号を用意する",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/ninenzenno.html",
+      "steps": [
+        "ケース7のページから申出書をダウンロードする",
+        "振替方法で「2年前納（4月開始）」を選ぶ",
+        "基礎年金番号を書き、金融機関届出印を押す",
+        "金融機関の窓口か年金事務所に出す"
+      ],
+      "url": "https://www.nenkin.go.jp/shinsei/kokunen/nofu/kozafurikae.html"
+    },
+    {
+      "action": "オンラインで申し込むなら、マイナポータルから「ねんきんネット」で口座振替を申し込む",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/kozafurikae.html",
+      "steps": [
+        "マイナポータルから「ねんきんネット」にログインする",
+        "口座振替納付の電子申請を選ぶ",
+        "振替方法と振替口座を入力する"
+      ],
+      "url": "https://www.nenkin.go.jp/denshibenri_kojin/shinseisho/kozafurikae/kozafurikaedenshi.html"
+    },
+    {
+      "action": "毎年4月中旬～下旬に届く「国民年金保険料口座振替額通知書」で、引き落とされる金額を確かめる",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/kozafurikae.html",
+      "steps": [
+        "通知書の振替額を確かめる",
+        "4月末日の振替日までに口座へ入金しておく"
+      ],
+      "url": "https://www.nenkin.go.jp/service/kokunen/hokenryo/kozafurikae.html"
+    }
+  ],
+  "cause": {
+    "text": "前納したときの納付額は、国民年金法施行令の規定に基づき、厚生労働大臣が告示で定めています。令和8年4月に2年分を口座振替で前納する場合の前納額は417,150円とされています。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/web/t_doc?dataId=85ab1125&dataType=0&pageNo=5"
+  },
+  "worries": [
+    {
+      "q": "現金で2年前納したら、次の2年分も自動で届きますか？",
+      "a": "届きません。現金による2年前納は毎回の申し出が必要です。毎年2月1日から事前に受け付けていて、申出書は3月末までに年金事務所に出します。口座振替とクレジットカードは、辞退しない限り次回も自動で続きます。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/ninenzenno.html",
+      "action": "現金で前納している人は、2年ごとに2月以降、年金事務所に申し出る予定を入れておく。"
+    },
+    {
+      "q": "保険料が戻るとき、どこに振り込まれますか？",
+      "a": "口座振替の申出書を出すと、還付金が発生した場合に振替口座へ振り込むことに同意したことになります。希望しない場合は「還付金振込方法」欄で「希望しない」に○を付けます。その場合は還付請求書の提出が必要で、2～3カ月程度かかります。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/kozafurikae.html",
+      "action": "申出書の「還付金振込方法」欄を、記入前に確かめる。"
+    },
+    {
+      "q": "ネット銀行の口座でも口座振替できますか？",
+      "a": "一部のインターネット専業銀行では口座振替を利用できません。金融機関届出印や口座名義人氏名などに誤りがあると、手続きが間に合わない場合があります。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/kozafurikae.html",
+      "action": "申し込む前に「口座振替可能金融機関一覧表」で自分の銀行を確かめる。"
+    },
+    {
+      "q": "前納用の納付書をなくしたらどうすればいい？",
+      "a": "納付書で前納するには前納用の納付書が必要です。手元にない場合や使用期限が過ぎた場合は、年度内で前納できる期間があれば新しい納付書を発行できるので、お近くの年金事務所に問い合わせます。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/nofusho.html",
+      "action": "前納用の納付書がなければ、お近くの年金事務所に発行を頼む。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "2年前納と1年前納、どちらにする？",
+      "situation": "417,150円を4月に一度に用意できる",
+      "recommend": "口座振替の2年前納を検討する価値がある",
+      "reason": "令和8年度の口座振替の割引額は、2年前納が17,370円、1年前納が4,510円です。ただし2年分をまとめて払うので、その間の手元資金は減ります。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/kozafurikae.html"
+    },
+    {
+      "question": "2年前納と1年前納、どちらにする？",
+      "situation": "1年分の210,530円なら用意できる",
+      "recommend": "1年前納や6カ月前納でもよい",
+      "reason": "口座振替の1年前納は210,530円で割引4,510円、6カ月前納は106,300円で割引1,220円です（令和8年度）。振替日は1年前納が4月末日、6カ月前納が4月末日および10月末日です。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/kozafurikae.html"
+    },
+    {
+      "question": "まとめて払えないときはどうする？",
+      "situation": "毎月払いを続けたい",
+      "recommend": "口座振替の当月末振替（早割）も選べる",
+      "reason": "早割は納付期限より1カ月早く振り替える方法で、月17,860円、割引は60円です（令和8年度）。申込後の最初の振替は、前月分と当月分の2カ月分になります。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/zenno.html"
+    },
+    {
+      "question": "まとめて払えないときはどうする？",
+      "situation": "一部免除を受けている",
+      "recommend": "翌月末振替で納めることになる",
+      "reason": "国民年金保険料が一部免除された人は、口座振替では翌月末振替のみ利用できます。前納や早割の割引は口座振替では使えません。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/kozafurikae.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "30万円を超える納付書はコンビニで払えない",
+    "cause": "前納の割引額はどう決まっているのか",
+    "steps": "2年前納を申し込むときに用意するもの",
+    "desk": "手続きの相談はねんきん加入者ダイヤルへ",
+    "worries": "次の2年分も自動で届く？払い過ぎは？",
+    "guide": "2年前納と1年前納、どちらを選ぶか"
+  },
+  "depthAt": "2026-11-08T16:16:30+00:00"
 }

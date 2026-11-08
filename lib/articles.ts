@@ -118,6 +118,8 @@ export type Article = {
   todaySteps?: import("./depth").StepItem[];
   cause?: import("./depth").Cause | null;
   worries?: import("./depth").WorryItem[];
+  decisionGuide?: import("./depth").GuideRow[];
+  depthHeadings?: import("./depth").DepthHeadings;
   /** 章の見出しの記事ごとの言い換え（本文 JSON の章名 → 表示する見出し。scripts/section_polish.py。lib/article-sections.ts） */
   sectionTitles?: { body?: Record<string, string>; easy?: Record<string, string> };
   /** 数字の図（前と今・推移・料金の段。scripts/article_charts.py が記事の表から作る。lib/charts.ts） */

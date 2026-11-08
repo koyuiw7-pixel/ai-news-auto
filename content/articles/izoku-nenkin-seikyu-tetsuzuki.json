@@ -66,9 +66,9 @@
     }
   ],
   "todayActions": [
-    "亡くなった人の基礎年金番号と、加入していた年金の種類を確かめる",
-    "請求先（市区町村役場か年金事務所）に必要な書類を問い合わせる",
-    "戸籍謄本・住民票・死亡診断書のコピーを用意する"
+    "亡くなった人が年金を受けていたら、死亡届と未支給年金の請求書を早めに年金事務所へ郵送する",
+    "遺族厚生年金を請求するなら、様式第105号と記入例をダウンロードして下書きする",
+    "窓口で相談するなら、予約受付専用電話で翌日以降の来訪相談を予約する"
   ],
   "factSources": [
     {
@@ -150,5 +150,153 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-07T12:33:14+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "遺族年金の時効は5年ですが、死亡一時金は2年（死亡日の翌日から）です。亡くなったときに受けられる給付でも期限が短いものがあるので、5年あると思って後回しにしないことが大切です。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/kyotsu/shikyu/20140421-01.html"
+    },
+    {
+      "text": "子のいない40歳以上65歳未満の妻などが受ける遺族厚生年金には、65歳になるまで年額635,500円の中高齢寡婦加算が付きます。在職中に亡くなった場合、加入期間が300月未満でも300月とみなして計算されます。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/izokunenkin/jukyu-yoken/20150424.html"
+    },
+    {
+      "text": "原則として、66歳に到達した日以前に遺族年金を受ける権利ができると、自分の老齢年金を繰り下げて受け取れなくなります。繰下げを考えていた人は、請求の前に年金事務所で確かめておくと安心です。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/izokunenkin/jukyu-yoken/20150424.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ねんきんダイヤル",
+      "url": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "howTo": [
+        "電話での年金相談窓口",
+        "ねんきんダイヤル"
+      ],
+      "phone": "0570-05-1165",
+      "hours": "月曜日午前8時30分から午後7時、火曜日から金曜日午前8時30分から午後5時15分、第2土曜日午前9時30分から午後4時",
+      "note": "夕方（午後4時以降）、週の後半、月の後半（20日以降）および第2土曜日はつながりやすくなっています。050の電話からは(東京)03-6700-1165です。"
+    },
+    {
+      "name": "予約受付専用電話（年金事務所の窓口相談の予約）",
+      "url": "https://www.nenkin.go.jp/section/tel/yoyaku.html",
+      "source": "https://www.nenkin.go.jp/section/tel/yoyaku.html",
+      "howTo": [
+        "電話での年金相談窓口",
+        "予約受付専用電話"
+      ],
+      "phone": "0570-05-4890",
+      "hours": "月曜日から金曜日午前8時30分から午後5時15分",
+      "note": "予約は翌日以降の分です。当日の相談を希望する場合は、直接お近くの年金事務所に相談します。"
+    },
+    {
+      "name": "全国の相談・手続き窓口（年金事務所・街角の年金相談センター）",
+      "url": "https://www.nenkin.go.jp/section/soudan/index.html",
+      "source": "https://www.nenkin.go.jp/section/soudan/index.html",
+      "note": "個人の相談は、原則、全国どこの年金事務所でも受け付けています。代理人に頼むときは、本人が作成した委任状が必要です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "亡くなった人が年金を受けていたら、死亡届と未支給年金の請求書を早めに年金事務所へ郵送する",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/kyotsu/jukyu/20140731-01.html",
+      "steps": [
+        "「年金受給権者死亡届（報告書）兼 未支給年金・未支払給付金請求書」を用意する",
+        "亡くなった方の年金証書を添える",
+        "年金事務所に郵送する"
+      ],
+      "url": "https://www.nenkin.go.jp/shinsei/jukyu/kyotsu/20140731-02.html"
+    },
+    {
+      "action": "遺族厚生年金を請求するなら、様式第105号と記入例をダウンロードして下書きする",
+      "source": "https://www.nenkin.go.jp/shinsei/jukyu/izoku/izoku-kosei.html",
+      "steps": [
+        "様式第105号と記入例のPDFを開く",
+        "子が3人以上なら様式第106号の別紙も用意する",
+        "予約のうえ年金事務所などに出す"
+      ],
+      "url": "https://www.nenkin.go.jp/shinsei/jukyu/izoku/izoku-kosei.html"
+    },
+    {
+      "action": "窓口で相談するなら、予約受付専用電話で翌日以降の来訪相談を予約する",
+      "source": "https://www.nenkin.go.jp/section/tel/yoyaku.html",
+      "steps": [
+        "亡くなった方と請求者の基礎年金番号がわかるものを手元に置く",
+        "0570-05-4890に電話する",
+        "夕方（午後4時以降）や月の後半を選ぶ"
+      ],
+      "url": "https://www.nenkin.go.jp/section/tel/yoyaku.html"
+    }
+  ],
+  "cause": {
+    "text": "年金の時効は、期間が過ぎれば自然に成立するのではなく、国が時効の成立を主張する「時効の援用」をして成立します。そのため、やむを得ない事情で時効の前に請求できなかった場合は、理由を書面で申し立てれば、受ける権利を時効で消さない取り扱いがあります。",
+    "status": "background",
+    "source": "https://www.nenkin.go.jp/service/jukyu/seido/kyotsu/shikyu/20140421-01.html"
+  },
+  "worries": [
+    {
+      "q": "亡くなった後も年金が振り込まれた。どうなる？",
+      "a": "亡くなった月分までは未支給年金として遺族が受け取れます。死亡の届出が遅れると年金を多く受け取りすぎることになり、後で返す場合があります。亡くなった方の口座を解約していないと、入金される場合もあります。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/kyotsu/jukyu/20140731-01.html",
+      "action": "死亡の届出をすみやかに出し、亡くなった方の口座の扱いを金融機関に相談する。"
+    },
+    {
+      "q": "受け取った未支給年金に税金はかかる？",
+      "a": "未支給年金は、受け取った人の一時所得に当たり、確定申告が必要になる場合があります。その年の一時所得の合計額が50万円以下であれば、確定申告は不要です。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/kyotsu/jukyu/20140731-01.html",
+      "action": "その年に保険金などほかの一時所得がないかを合わせて確かめる。"
+    },
+    {
+      "q": "公金受取口座を変えたら、年金の口座も変わる？",
+      "a": "変わりません。公金受取口座の登録口座を変更しても、年金の受取口座は変更されません。年金の受取口座を変えたいときは「年金受給権者 受取機関変更届」を出す必要があります。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/izoku/seikyu/20140617-02.html",
+      "action": "年金の受取口座を変えたいときは、受取機関変更届を出す。"
+    },
+    {
+      "q": "戸籍謄本や住民票の原本は返してもらえる？",
+      "a": "年金請求のために用意した住民票などを、年金の請求以外にも使う場合は、原本を返してもらえます。相続の手続きなどで同じ書類を使うときに役立ちます。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/izoku/seikyu/20140617-02.html",
+      "action": "ほかの手続きにも使う書類は、提出するときに原本の返却を希望すると伝える。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "手続きは急ぐべき？少し落ち着いてからでいい？",
+      "situation": "亡くなった人が年金を受けていた",
+      "recommend": "死亡の届出は早めに出す",
+      "reason": "提出が遅れると年金を受け取りすぎ、後で返すことになる場合があります。未支給年金の時効は5年ですが、届出そのものはすみやかに出すよう案内されています。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/kyotsu/jukyu/20140731-01.html"
+    },
+    {
+      "question": "手続きは急ぐべき？少し落ち着いてからでいい？",
+      "situation": "亡くなった人はまだ年金を受けていなかった",
+      "recommend": "遺族年金は5年以内、死亡一時金は2年以内に請求する",
+      "reason": "遺族年金の時効は支給事由が生じた日の翌日から5年ですが、死亡一時金は死亡日の翌日から2年です。どの給付が受けられるかを先に確かめると、期限切れを防げます。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/kyotsu/shikyu/20140421-01.html"
+    },
+    {
+      "question": "電話で聞く？窓口に行く？",
+      "situation": "必要な書類を知りたいだけ",
+      "recommend": "ねんきんダイヤルで確かめてもよい",
+      "reason": "年金相談に関する一般的な問い合わせは、ねんきんダイヤルで受け付けています。相談する人や請求する人の「基礎年金番号」または「照会番号」がわかるものを用意します。",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html"
+    },
+    {
+      "question": "電話で聞く？窓口に行く？",
+      "situation": "請求書を出しながら相談したい",
+      "recommend": "予約のうえ年金事務所に行く",
+      "reason": "請求や受け取りに関する窓口相談は予約受付専用電話かインターネットで予約できます。予約は翌日以降の分で、当日の相談は直接お近くの年金事務所に相談します。",
+      "source": "https://www.nenkin.go.jp/section/tel/yoyaku.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "死亡一時金の時効は5年ではなく2年",
+    "cause": "年金の時効が5年とされる仕組み",
+    "steps": "亡くなった後、早めに済ませたい手続き",
+    "desk": "電話で聞くか、予約して年金事務所へ",
+    "worries": "亡くなった後に振り込まれた年金はどうなる？",
+    "guide": "急ぐ手続きと、落ち着いてからでよい手続き"
+  },
+  "depthAt": "2026-11-08T16:16:30+00:00"
 }

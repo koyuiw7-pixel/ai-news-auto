@@ -37,7 +37,7 @@ import { STATUS_LABEL, freeLabel, isUnknownValue, japanLabel, verdictKind, verdi
 import { guideLinksForArticle, insertAfterPricingSection } from "@/lib/guide-links";
 import ArticleFaq from "@/components/ArticleFaq";
 import TodayActions from "@/components/TodayActions";
-import { ActionSteps, CauseBox, InsightBox, OfficialDesk, WorriesBlock } from "@/components/DepthBoxes";
+import { ActionSteps, CauseBox, DecisionGuide, InsightBox, OfficialDesk, WorriesBlock } from "@/components/DepthBoxes";
 import { depthOf } from "@/lib/depth";
 import ActionAd from "@/components/ActionAd";
 import { actionAdForArticle } from "@/lib/action-ad";
@@ -603,7 +603,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {depth.insight.length > 0 && (
             <div className="mt-6">
-              <InsightBox items={depth.insight} />
+              <InsightBox items={depth.insight} heading={depth.headings.insight} />
             </div>
           )}
 
@@ -827,12 +827,13 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 今日やること（2〜3個）と、よくある質問（3〜5問）。合うジャンルの新しい記事だけ */}
           {/* 一歩深くする欄（scripts/depth_fields.py。公式ページで確かめた原因・手順・窓口・不安への答え。台帳 A66） */}
-          {depth.cause && <CauseBox cause={depth.cause} />}
-          {depth.todaySteps.length >= 2 ? <ActionSteps items={depth.todaySteps} /> : todayActions.length >= 2 && <TodayActions actions={todayActions} />}
+          {depth.cause && <CauseBox cause={depth.cause} heading={depth.headings.cause} />}
+          {depth.todaySteps.length >= 2 ? <ActionSteps items={depth.todaySteps} heading={depth.headings.steps} /> : todayActions.length >= 2 && <TodayActions actions={todayActions} />}
           {/* 「すぐにできること」のすぐ下に、行動と同じ話題の PR を1つ（無い記事は本文の終わり） */}
           {actionAd && <ActionAd ad={actionAd} className={todayActions.length >= 2 ? "mt-4" : "mt-12"} />}
-          {depth.officialDesk.length > 0 && <OfficialDesk items={depth.officialDesk} />}
-          {depth.worries.length >= 2 && <WorriesBlock items={depth.worries} />}
+          {depth.officialDesk.length > 0 && <OfficialDesk items={depth.officialDesk} heading={depth.headings.desk} />}
+          {depth.worries.length >= 2 && <WorriesBlock items={depth.worries} heading={depth.headings.worries} />}
+          {depth.guide.length > 0 && <DecisionGuide groups={depth.guide} heading={depth.headings.guide} />}
           {articleFaq.length >= 1 && <ArticleFaq items={articleFaq} />}
 
           {/* 読み終えたところでもう一度シェア */}

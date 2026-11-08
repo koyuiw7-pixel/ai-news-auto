@@ -13,6 +13,10 @@
   worries:      [{q, a, action, source, general}]      こんな不安ありませんか（3〜5個。記事から自然に出る読者の不安に、出典のある答えと具体的な行動）
                                                         公式発表が答えていない不安は、警察庁・消費者庁・首相官邸などの一般の注意のページ（GENERAL_PAGES）を
                                                         出典にした「一般的な注意」（general: true）として答える
+  depthHeadings: {insight, cause, steps, desk, worries, guide}  各欄の見出し（記事ごとの言葉。28字以内。決まり文句の見出しにしない。2026-11-09 オーナー）
+                                                        画面は小さな札（なるほど・公式窓口 など）の下に、この見出しを出す
+  decisionGuide: [{question, situation, recommend, reason, source, general}]  判断ガイド（読者が選ぶ場面がある記事だけ。
+                                                        「乗り換える？」「番号を変える？」などの問いごとに 状況→おすすめ→理由→出どころ の表）
 
 決まり（サイトの唯一の門は「嘘をつかない」）:
   - 各項目は、取りに行った公式ページ（source）の URL を1つ持つ。source は読んだページの URL だけ
@@ -111,6 +115,21 @@ PROMPT = """# 頼みたいこと
   general を true にする（source はその一般のページ）。公式ページで答えたものは general を false。
 - source は答えの根拠のページの URL。
 
+## decision_guide（判断ガイド）0〜6行
+- 読者が「どうするか選ぶ」場面がある記事だけ（例: 情報流出なら「今すぐ他社に乗り換える？」「電話番号を変える？」「パスワードや2段階認証は？」、
+  制度なら「今年申請する？来年にする？」「ワンストップ特例か確定申告か」）。選ぶ場面が無ければ空配列 []。
+- 1行 = 1つの状況。question は読者の迷い（20〜30字の疑問文）。同じ question に状況違いの行を2つまで（例「不審な電話が何度も来る」「まだ来ていない」）。
+- situation は読者の状況（30字以内）。recommend は おすすめ（40字以内。「急がなくてよい」「検討する価値がある」など中立に。宣伝・乗り換えの後押しはしない）。
+- reason は理由（60〜140字）。それをすると何が解決し、何は解決しないか。手数料・期限・手続きは読んだページにある数字だけ（いつ時点の金額かも書く）。
+- source は理由の根拠のページの URL。一般的な注意のページを根拠にした行は general を true。
+
+## headings（各欄の見出し）
+- 画面では各欄に小さな札（「なるほど」「なぜ起きた？」「不安Q&A」「公式窓口」「判断ガイド」）が付く。見出しは札のくり返しにせず、記事ごとの言葉で書く。
+- insight / cause / steps / desk / worries / guide の6つ。中身のある欄だけ書き、空の欄は ""。
+- 各28字以内。具体的で話し言葉に近く、読者の心配か一番の事実を入れる。中身と合わない誇張・釣りは不可。「｜」「！」は使わない。数字は中身にあるものだけ。
+  例（情報流出）: insight「本物のドコモのSMSは、送信元の名前で見分けられる」 cause「なぜ漏れたのか、いま分かっていること」
+  worries「カードや口座、家族のスマホは大丈夫？」 guide「乗り換えるか番号を変えるか、迷ったときの決め方」
+
 # 記事
 タイトル: {title}
 リード: {lede}
@@ -154,14 +173,32 @@ SCHEMA = {
             },
         },
     },
-    "required": ["insight", "official_desk", "today_steps", "cause", "worries"],
-    "propertyOrdering": ["insight", "official_desk", "today_steps", "cause", "worries"],
+    "required": ["insight", "official_desk", "today_steps", "cause", "worries", "decision_guide"],
+    "propertyOrdering": ["insight", "official_desk", "today_steps", "cause", "worries", "decision_guide"],
 }
 SCHEMA["properties"]["cause"] = {
     "type": "OBJECT",
     "properties": {"text": {"type": "STRING"}, "status": {"type": "STRING", "enum": ["stated", "investigating", "background"]},
                    "source": {"type": "STRING"}},
     "required": ["text", "status", "source"], "propertyOrdering": ["text", "status", "source"],
+}
+SCHEMA["properties"]["headings"] = {
+    "type": "OBJECT",
+    "properties": {k: {"type": "STRING"} for k in ("insight", "cause", "steps", "desk", "worries", "guide")},
+    "required": ["insight", "cause", "steps", "desk", "worries", "guide"],
+    "propertyOrdering": ["insight", "cause", "steps", "desk", "worries", "guide"],
+}
+SCHEMA["required"].append("headings")
+SCHEMA["propertyOrdering"].append("headings")
+SCHEMA["properties"]["decision_guide"] = {
+    "type": "ARRAY",
+    "items": {
+        "type": "OBJECT",
+        "properties": {"question": {"type": "STRING"}, "situation": {"type": "STRING"}, "recommend": {"type": "STRING"},
+                       "reason": {"type": "STRING"}, "source": {"type": "STRING"}, "general": {"type": "BOOLEAN"}},
+        "required": ["question", "situation", "recommend", "reason", "source", "general"],
+        "propertyOrdering": ["question", "situation", "recommend", "reason", "source", "general"],
+    },
 }
 SCHEMA["properties"]["worries"] = {
     "type": "ARRAY",
@@ -173,6 +210,13 @@ SCHEMA["properties"]["worries"] = {
         "propertyOrdering": ["q", "a", "action", "source", "general", "action_source"],
     },
 }
+
+HEADING_MAX = 28
+# 見出しに使わない決まり文句（札と同じ言葉・どの記事にも付く言葉）
+TEMPLATE_HEADING_RE = re.compile(
+    r"^(?:なるほど(?:ポイント)?|なぜ起きた[？?]?|こんな不安ありませんか[？?]?|公式窓口|(?:迷ったときの)?判断ガイド|すぐにできること|"
+    r"概要|ポイント|まとめ|注意点|よくある質問|不安Q&A|問い合わせ先|原因)$"
+)
 
 # 誰でも知っている一般論（なるほどポイントには入れない）
 GENERIC_RE = re.compile(
@@ -501,7 +545,47 @@ def validate(data: dict, pages: list[dict], record: dict | None = None) -> tuple
         if general:
             entry["general"] = True
         worries.append(entry)
+    guide = []
+    for row in data.get("decision_guide") or []:
+        if not isinstance(row, dict):
+            continue
+        q, sit, rec, why, source = (_clean(row.get("question"), 50), _clean(row.get("situation"), 50), _clean(row.get("recommend"), 70),
+                                    _clean(row.get("reason"), 240), src(row.get("source")))
+        if not (q and sit and rec and len(why) >= 15):
+            continue
+        if not source:
+            dropped.append(f"guide: 出典が読んだページに無い（{q[:30]}）")
+            continue
+        if bad := unsupported(f"{sit} {rec} {why}", corpus):
+            dropped.append(f"guide: ページに無い {'・'.join(bad[:3])}（{q[:30]}）")
+            continue
+        entry = {"question": q, "situation": sit, "recommend": rec, "reason": why, "source": source}
+        if by_url[canon_url(source)].get("general"):
+            entry["general"] = True
+        guide.append(entry)
     out: dict = {}
+    # 各欄の見出し（記事ごとの言葉。中身のある欄だけ・28字以内・「｜」なし・決まり文句は外す）
+    present = {"insight": bool(insight), "cause": bool(cause), "steps": len(steps) >= 2, "desk": bool(desks),
+               "worries": len(worries) >= 2, "guide": bool(guide)}
+    heads = {}
+    raw_heads = data.get("headings") if isinstance(data.get("headings"), dict) else {}
+    for key, ok in present.items():
+        h = _clean(raw_heads.get(key), 40).replace("｜", "　").replace("|", " ")
+        h = re.sub(r"[！!]+", "", h).strip()
+        if not ok or not h:
+            continue
+        if len(h) > HEADING_MAX:
+            dropped.append(f"heading: 長すぎる（{key}: {h}）")
+        elif TEMPLATE_HEADING_RE.match(h):
+            dropped.append(f"heading: 決まり文句（{key}: {h}）")
+        elif bad := unsupported(h, corpus):
+            dropped.append(f"heading: ページに無い {'・'.join(bad[:3])}（{h}）")
+        else:
+            heads[key] = h
+    if heads:
+        out["depthHeadings"] = heads
+    if guide:
+        out["decisionGuide"] = guide[:6]
     if cause:
         out["cause"] = cause
     if len(worries) >= 2:
@@ -554,7 +638,7 @@ def build(record: dict, purpose: str | None = "helper", pages: list[dict] | None
 
 def apply_fields(record: dict, fields: dict) -> dict:
     """欄を記事に入れる。todaySteps があれば todayActions（ほかの段・SNS・動画が使う短い文）もそろえる"""
-    for key in ("insight", "officialDesk", "todaySteps", "cause", "worries"):
+    for key in ("insight", "officialDesk", "todaySteps", "cause", "worries", "decisionGuide", "depthHeadings"):
         if fields.get(key):
             record[key] = fields[key]
     if fields.get("todaySteps"):
@@ -599,6 +683,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--redo", action="store_true")
     ap.add_argument("--dump", help="（手作業の下書き用）読んだページとプロンプトをこのフォルダに書き出すだけ")
+    ap.add_argument("--extra", help="（--dump と）材料に足す公式ページの URL（カンマ区切り。手数料・設定のページなど）")
     ap.add_argument("--answer", help="（手作業の下書き用）--dump のフォルダ。<slug>.answer.json を同じ照合に通して書き込む")
     ap.add_argument("--purpose", default="helper", help="Claude API の段（helper = Haiku・core = Sonnet）。'' で無料モデルだけ")
     args = ap.parse_args(argv)
@@ -623,6 +708,10 @@ def main(argv: list[str] | None = None) -> int:
             out = Path(args.dump)
             out.mkdir(parents=True, exist_ok=True)
             pages = read_pages(record)
+            if args.extra:
+                seen = {canon_url(p["url"]) for p in pages}
+                pages += [p for p in fetch_pages([u for u in args.extra.split(",") if u.strip()], follow=False)
+                          if canon_url(p["url"]) not in seen]
             (out / f"{path.stem}.pages.json").write_text(json.dumps(pages, ensure_ascii=False, indent=1), "utf-8")
             (out / f"{path.stem}.prompt.txt").write_text(prompt_for(record, pages), "utf-8")
             log(f"[dump] {path.stem}: ページ{len(pages)}本 → {out}")
@@ -640,7 +729,7 @@ def main(argv: list[str] | None = None) -> int:
             continue
         log(f"[ok] {path.stem}: なるほど{len(fields.get('insight') or [])} 窓口{len(fields.get('officialDesk') or [])} "
             f"手順{len(fields.get('todaySteps') or [])} 原因{'有' if fields.get('cause') else '無'} 不安{len(fields.get('worries') or [])}"
-            f" 外した{len(dropped)}（{model}）")
+            f" 判断{len(fields.get('decisionGuide') or [])} 外した{len(dropped)}（{model}）")
         for d in dropped[:6]:
             log(f"     外した: {d}")
         if not args.apply:

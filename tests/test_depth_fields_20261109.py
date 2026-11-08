@@ -78,6 +78,27 @@ class ValidateTest(unittest.TestCase):
         self.assertEqual(rec["todayActions"], ["新しい1", "新しい2"])
         self.assertIn("depthAt", rec)
 
+    def test_headings_are_per_article_short_and_true(self):
+        data = {"insight": [{"text": "本物のSMSの送信元は「NTT DOCOMO」「DoCoMo SMS」などの決まった名前です。", "source": CONFIRM}],
+                "official_desk": [], "today_steps": [], "worries": [], "decision_guide": [],
+                "cause": {"text": "原因は「外部からの不正アクセス」とされています。", "status": "investigating", "source": NOTICE},
+                "headings": {"insight": "本物のドコモのSMSは、送信元の名前で見分けられる｜", "cause": "なぜ起きた？",
+                             "steps": "手順", "desk": "", "worries": "", "guide": ""}}
+        out, dropped = d.validate(data, PAGES, {})
+        self.assertEqual(out["depthHeadings"], {"insight": "本物のドコモのSMSは、送信元の名前で見分けられる"})  # 「｜」は外す・決まり文句は落とす・中身の無い欄は付けない
+        self.assertTrue(any("決まり文句" in x for x in dropped))
+
+    def test_decision_guide_marks_general_rows(self):
+        data = {"insight": [], "official_desk": [], "today_steps": [], "worries": [], "cause": {"text": "", "status": "stated", "source": ""},
+                "decision_guide": [
+                    {"question": "電話番号を変える？", "situation": "まだ不審な電話は来ていない", "recommend": "番号はそのままでよい",
+                     "reason": "警察庁は「犯人と話をしない」ことが大切だとしています。", "source": NPA, "general": False},
+                    {"question": "電話番号を変える？", "situation": "何度も来る", "recommend": "検討する",
+                     "reason": "店頭の手数料は9,999円かかります（作った数字）。", "source": NOTICE, "general": False}]}
+        out, dropped = d.validate(data, PAGES, {})
+        self.assertEqual(len(out["decisionGuide"]), 1)
+        self.assertTrue(out["decisionGuide"][0]["general"])
+
     def test_clean_url_strips_tracking(self):
         self.assertEqual(d.clean_url("https://a.jp/x/?icid=CRP_1"), "https://a.jp/x/")
         self.assertEqual(d.clean_url("https://a.jp/faq/detail?faqId=27&icid=CRP"), "https://a.jp/faq/detail?faqId=27")
