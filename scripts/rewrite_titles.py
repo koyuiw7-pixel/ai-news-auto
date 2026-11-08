@@ -227,7 +227,8 @@ def load_live() -> list[tuple[Path, dict]]:
 
 
 def propose(out: Path, limit: int = 0, slugs: set[str] | None = None, purpose: str = "core") -> int:
-    rows = [(p, a) for p, a in load_live() if not slugs or a["slug"] in slugs]
+    # Muse の記事（writer: "muse"・refreshMode: "editorial"）は門を通した題名のまま。まとめての書き直しの対象外（台帳 A59）
+    rows = [(p, a) for p, a in load_live() if (not slugs or a["slug"] in slugs) and a.get("refreshMode") != "editorial"]
     rows.sort(key=lambda r: str(r[1].get("publishedAt") or ""), reverse=True)
     if limit:
         rows = rows[:limit]

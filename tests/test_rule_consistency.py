@@ -209,6 +209,7 @@ PROSE_WRITERS = {
     "angle_articles.py": ["quality.evaluate("],           # 別の切り口
     "rewrite_types.py": ["quality.evaluate("],            # 型での書き直し
     "section_polish.py": ["added_problems"],             # 章の見出し・文の書き直し（公開中の記事）
+    "muse_articles.py": ["quality.evaluate(", "publish_blocked("],  # Muse の入稿（台帳 A59）。ふつうの記事と同じ門
 }
 # 文章を作らない（決まった欄だけ直す・記録だけ足す・読むだけで別のファイルに書く）もの。理由つき
 NON_PROSE = {
@@ -224,6 +225,7 @@ NON_PROSE = {
     "bluesky_post.py": "投稿の記録",
     "muse_ingest.py": "記事は読むだけ（Muse の動画の記録 state/sns_video.json・state/muse_queue.json を書く）",
     "muse_queue.py": "記事は読むだけ（Muse に頼む候補の記録 state/muse_queue.json を書く）",
+    "muse_articles_push.py": "記事は読むだけ（オーナーの Mac で入稿を受け箱 content/muse_inbox/ に入れ、ledger.md に題名と URL を書く。台帳 A59）",
     "buying_guides.py": "比較ガイド（/compare。記事ではない）",
     "check_images.py": "壊れた画像の差し替え",
     "digest_page.py": "朝のまとめの号",

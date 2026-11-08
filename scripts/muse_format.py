@@ -1,0 +1,225 @@
+#!/usr/bin/env python3
+"""Muse（Meta の AI の書き手）が書く記事のファイルの読み方と、安い形の確かめ（2026-11-08 オーナー承認・台帳 A59）。
+
+標準ライブラリだけで動く（オーナーの Mac の scripts/muse_articles_push.py と、GitHub Actions の scripts/muse_articles.py の両方が使う）。
+書式は ~/Downloads/saisoku-articles/FORMAT.md（正本はこのファイルの FORMAT_MD）。
+
+ファイル: 「YYYYMMDD-ジャンル-短い題名.md」。先頭に --- で囲んだ項目（title / genre / sources / notes）、そのあとに本文（Markdown）。
+  ---
+  title: 会社員の平均給与は487万円　国税庁の2025年分の調査
+  genre: お金
+  sources:
+    - url: https://www.nta.go.jp/....pdf
+      name: 国税庁
+      facts: 平均給与487万円・前年比1.9%増（1ページ「２ 調査結果の概要」）
+  notes: |
+    題材を選んだ理由。未確認の点。
+  ---
+  本文（## の見出し付き）
+"""
+from __future__ import annotations
+
+import re
+import unicodedata
+
+# Muse が書いてよいジャンル（ファイル名と genre の欄）。サイトのジャンルへの対応は scripts/muse_articles.py の LANE_BY_GENRE
+GENRES = ("手続き", "お金", "値上げ", "早見表", "速報解説", "暮らし", "AI・テック", "ビジネス")
+TITLE_MIN, TITLE_MAX = 18, 45  # 品質の門（quality.TITLE_RANGE 18〜64）より短く。一覧で切れない長さ（40字の目安）
+BODY_MIN = 1800  # 地の文の字数（見出し・記号を除く）。公開前の門の「薄い」（indexnow.THIN_BODY 1500字）に落ちないよう余裕を持つ
+BODY_MAX = 9000
+MAX_SOURCES = 6
+NAME_RE = re.compile(r"^(\d{8})-([^-]+)-(.+)\.md$")
+# 出典にしない URL（報道・まとめ・SNS・検索。事実は公式の一次情報だけ・台帳 W31）。正確な判定は Actions 側で public_interest.is_press_url も使う
+NOT_OFFICIAL_RE = re.compile(
+    r"(news\.yahoo|yahoo\.co\.jp/news|nikkei\.com|asahi\.com|mainichi\.jp|yomiuri\.co\.jp|sankei\.com|nhk\.or\.jp|jiji\.com|kyodonews|"
+    r"itmedia\.co\.jp|impress\.co\.jp|wikipedia\.org|twitter\.com|x\.com/|facebook\.com|instagram\.com|threads\.(net|com)|"
+    r"youtube\.com|youtu\.be|note\.com|ameblo|hatena|google\.com/search|bing\.com|prtimes\.jp|atpress|newscast|value-press)",
+    re.I,
+)
+
+
+class FormatError(ValueError):
+    """書式の誤り（Muse に返す理由の文）"""
+
+
+def nfc(text: str) -> str:
+    return unicodedata.normalize("NFC", text or "")
+
+
+def _unquote(value: str) -> str:
+    value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'「":
+        return value[1:-1].strip()
+    return value
+
+
+def parse(text: str) -> dict:
+    """ファイルの中身 → {title, genre, sources:[{url,name,facts}], notes, body}。形が読めなければ FormatError"""
+    text = nfc(text).replace("\r\n", "\n").lstrip("﻿")
+    m = re.match(r"\s*---\n(.*?)\n---[ \t]*\n(.*)\Z", text, re.S)
+    if not m:
+        raise FormatError("先頭の項目（--- で囲んだ title / genre / sources / notes）が読めません。FORMAT.md の見本の形にしてください")
+    head, body = m.group(1), m.group(2)
+    data: dict = {"title": "", "genre": "", "sources": [], "notes": "", "body": body.strip()}
+    lines = head.split("\n")
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        i += 1
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        top = re.match(r"^([A-Za-z_]+):\s*(.*)$", line)
+        if not top:
+            raise FormatError(f"先頭の項目の行が読めません（「{line.strip()[:40]}」）")
+        key, value = top.group(1).lower(), top.group(2).strip()
+        if value in ("|", ">", "|-", ">-"):
+            block = []
+            while i < len(lines) and (lines[i].startswith((" ", "\t")) or not lines[i].strip()):
+                block.append(lines[i].strip())
+                i += 1
+            value = "\n".join(block).strip()
+        if key == "sources":
+            items: list[dict] = []
+            while i < len(lines) and (lines[i].startswith((" ", "\t", "-")) or not lines[i].strip()):
+                row = lines[i].strip()
+                i += 1
+                if not row:
+                    continue
+                if row.startswith("- "):
+                    row = row[2:].strip()
+                    items.append({})
+                    if not re.match(r"^[a-z_]+:", row):  # 「- https://...」だけの書き方も受ける
+                        items[-1]["url"] = _unquote(row)
+                        continue
+                if not items:
+                    raise FormatError("sources は「- url: …」の箇条書きにしてください")
+                kv = re.match(r"^([a-z_]+):\s*(.*)$", row)
+                if kv:
+                    items[-1][kv.group(1)] = _unquote(kv.group(2))
+            data["sources"] = [{"url": s.get("url", ""), "name": s.get("name", ""), "facts": s.get("facts", "")} for s in items]
+        elif key in ("title", "genre", "notes"):
+            data[key] = _unquote(value)
+    return data
+
+
+def plain_len(body: str) -> int:
+    text = re.sub(r"(?m)^\s*#{1,6}.*$", "", body or "")
+    text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)
+    return len(re.sub(r"[\s|*`>#\-]", "", text))
+
+
+def problems(data: dict, filename: str = "") -> list[str]:
+    """LLM を使わない形の確かめ。Muse に返す理由の文のリスト（空なら合格）"""
+    out: list[str] = []
+    if filename and not NAME_RE.match(nfc(filename)):
+        out.append("ファイル名は「YYYYMMDD-ジャンル-短い題名.md」にしてください（例 20261108-お金-平均給与487万円.md）")
+    title = data.get("title") or ""
+    if not title:
+        out.append("title がありません")
+    elif not TITLE_MIN <= len(title) <= TITLE_MAX:
+        out.append(f"title の長さは{TITLE_MIN}〜{TITLE_MAX}字にしてください（いま{len(title)}字）")
+    if re.search(r"[｜|]", title):
+        out.append("title に「｜」を使わないでください（区切りは全角の空白1つ）")
+    if re.search(r"[！!]", title):
+        out.append("title に感嘆符を使わないでください")
+    if data.get("genre") and data["genre"] not in GENRES:
+        out.append(f"genre は次のどれかにしてください: {'・'.join(GENRES)}（いま「{data['genre']}」）")
+    if not data.get("genre"):
+        out.append("genre がありません")
+    sources = data.get("sources") or []
+    if not sources:
+        out.append("sources（公式の出典 URL）がありません")
+    if len(sources) > MAX_SOURCES:
+        out.append(f"sources は{MAX_SOURCES}件までにしてください")
+    for s in sources:
+        url = s.get("url") or ""
+        if not url.startswith("https://"):
+            out.append(f"出典の URL は https:// で始まる公式のページにしてください（「{url[:60]}」）")
+        elif NOT_OFFICIAL_RE.search(url):
+            out.append(f"報道・まとめ・SNS・プレスリリース配信のページは出典にできません。官公庁・会社自身の公式ページにしてください（{url[:80]}）")
+        if not (s.get("facts") or "").strip():
+            out.append(f"出典ごとに facts（どの数字がそのページのどこに書かれているか）を書いてください（{url[:60]}）")
+    body = data.get("body") or ""
+    if re.search(r"(?m)^# ", body):
+        out.append("本文に # の大見出しを使わないでください（見出しは ## と ###）")
+    if len(re.findall(r"(?m)^## ", body)) < 2:
+        out.append("本文に ## の見出しを2つ以上入れてください")
+    n = plain_len(body)
+    if n < BODY_MIN:
+        out.append(f"本文が短すぎます（地の文 {n}字。{BODY_MIN}字以上）")
+    if n > BODY_MAX:
+        out.append(f"本文が長すぎます（地の文 {n}字。{BODY_MAX}字まで）")
+    if "｜" in body:
+        out.append("本文に「｜」を使わないでください")
+    return out
+
+
+FORMAT_MD = """# サイソク 記事の入稿の書式（Muse さん向け）
+
+このフォルダ（ダウンロード/saisoku-articles）に、記事1本につき1つの Markdown ファイルを置いてください。
+20〜30分ごとにサイソクの仕組みが取りに来て、事実確認（公式ページとの照合）・重複の確認・画像づけをして、合格したものを公開します。
+**公開の作業・ログイン・パスワードはいりません。ファイルを置くだけです。**
+
+## 書く前に
+
+1. 同じフォルダの **ledger.md** を読んでください。この7日にサイトに出た記事と、Muse さんが出した記事の結果が載っています。
+   同じ話題（同じ発表・同じ数字）の記事は書かないでください。重複は自動で見送られます。
+2. 事実は **官公庁・自治体・会社自身の公式ページ（一次情報）だけ** から書きます。報道・まとめサイト・SNS・プレスリリース配信サイト・Wikipedia は出典にできません。
+3. 公式ページを自分で開いて、数字・日付・金額・条件をその場で確かめてから書いてください。ページに無いことは書きません。
+
+## ファイル名
+
+`YYYYMMDD-ジャンル-短い題名.md`　例: `20261108-お金-平均給与487万円.md`
+
+## ファイルの中身
+
+先頭に `---` で囲んだ項目、そのあとに本文です。
+
+| 項目 | 書くこと |
+|---|---|
+| title | 記事の題名。18〜45字。自然な日本語の報道の見出し（組織名か話題の名前を先に）。「｜」と感嘆符は使わない。区切りは全角の空白1つ |
+| genre | 手続き・お金・値上げ・早見表・速報解説・暮らし・AI・テック・ビジネス のどれか1つ |
+| sources | 公式の出典。1〜6件。1件目が一番の出典。各件に url（https://）・name（発信元の名前）・facts（どの数字がそのページのどこにあるか） |
+| notes | ひと言メモ。題材を選んだ理由と、確かめられなかった点（サイトには出ません） |
+
+本文（--- のあと）:
+- `##` の見出しを2つ以上。見出しは中身の言葉にする（「概要」「まとめ」「いかがでしたか」のような型の見出しは使わない）。`#` の大見出しは使わない。
+- 地の文で1,800〜6,000字くらい。1文は60字くらいまで。1段落は1〜3文。
+- 数字・金額・日付には、その場で出典が分かるように書く（例「平均給与は487万円でした（国税庁の調査結果）」）。
+- 計算した数字（差・割合・月あたり）は、計算したと分かるように書く（例「月あたり約40万円（12で割った編集部の計算）」）。
+- 自分で試した・使ったようには書かない。宣伝の言葉（最強・必見・今すぐ）や、幼い言い方（〜しましょう の連発）は使わない。
+- 個別の投資・売買のすすめは書かない。医療の効果も書かない。
+- 表は比べるときと早見表だけ。
+
+## 見本（このまま真似してください）
+
+```
+---
+title: 会社員の平均給与は487万円で過去最高　国税庁の2025年分の調査
+genre: お金
+sources:
+  - url: https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf
+    name: 国税庁
+    facts: 平均給与487万円・前年比1.9%増・5年連続の増加（1ページ「２ 調査結果の概要」「３ 調査結果のポイント」）、男性597万円・女性342万円（同）、業種別の平均給与（参考の表）
+notes: |
+  年末に「平均年収」の検索が増えるので選んだ。PDF の2ページ目の表で業種別を確かめた。
+  年代別の数字はこの PDF には無いので書いていない。
+---
+国税庁は2026年9月、「令和7年分民間給与実態統計調査」の結果を公表しました。……
+
+## 平均給与は487万円、5年続けて増えた
+
+1年を通じて勤めた人の平均給与は487万円で、前の年より1.9%増えました（国税庁の調査結果）。……
+
+## 男女・正社員かどうかで見た差
+
+……
+```
+
+## 結果の見方
+
+- 公開されたら、ファイルは `done/` に移ります。ledger.md に題名と URL が載ります。
+- 見送られたら、ファイルは `rejected/` に移り、同じ名前の `.reason.txt` に理由が書かれます。理由を直して、新しいファイルとして置き直してください。
+- 審査中のファイルは `sent/` にあります（ふつうは1時間以内に結果が出ます）。
+- その日の記事の本数がいっぱいのときは、次の日の朝に回ります（ledger.md に「順番待ち」と出ます）。
+"""

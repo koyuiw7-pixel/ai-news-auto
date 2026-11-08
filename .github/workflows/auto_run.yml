@@ -118,6 +118,27 @@ jobs:
         continue-on-error: true
         run: npm i -g @anthropic-ai/claude-code
 
+      # Muse（Meta の AI の書き手）の入稿（content/muse_inbox/。オーナーの Mac の scripts/muse_articles_push.py が入れる）を、
+      # ふつうの記事と同じ門（公開前の門・品質の門の事実確認・重複）に通して公開する（2026-11-08 オーナー承認・台帳 A59）。
+      # ニュースの記事より先に動かし、公開した分は今日の本数（段の上限）に数える（＝この回のニュースの記事はその分少なく作る）
+      - name: Muse articles
+        if: ${{ (inputs.fast_url || '') == '' && hashFiles('content/muse_inbox/*.md') != '' }}
+        continue-on-error: true
+        timeout-minutes: 15
+        env:
+          LLM_WORKFLOW: articles
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          CLAUDE_DAILY_MAX: ${{ vars.CLAUDE_DAILY_MAX || '40' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: timeout 840 python scripts/muse_articles.py --daily-cap "${{ steps.ramp.outputs.web_daily_cap }}" --max 3 --budget 700
+
       # 速報レーンの回（fast_url あり）は、その記事だけを quality で作る（scripts/web_articles.py の --fast-url）。
       # 通常の回は、速報レーンの実行が待っていると今の記事を作り終えたところで早めに終えて譲る
       - name: Generate web articles
@@ -350,7 +371,7 @@ jobs:
           if [ -n "$(git status --porcelain state/page_watch.json)" ]; then WATCH=1; fi
           # Claude API の使用量（月の予算の管理。scripts/llm.py）。記事が増えなかった回も残す（残さないと使った分を数え漏らす）
           APIUSE=0
-          if [ -n "$(git status --porcelain state/claude_api_usage.json state/pipeline_health.json)" ]; then APIUSE=1; fi
+          if [ -n "$(git status --porcelain state/claude_api_usage.json state/pipeline_health.json state/muse_articles.json)" ]; then APIUSE=1; fi
           if [ -n "$(git status --porcelain content)" ]; then
             # 直近の記事の索引（見張り番のレーダーが「同じ話題の記事がもうあるか」を見る）。記事が変わった回だけ書き直す
             python scripts/radar.py coverage || echo "::warning::記事の索引（state/coverage.json）を更新できませんでした"
@@ -401,6 +422,7 @@ jobs:
           if [ -f state/claude_api_usage.json ]; then git add state/claude_api_usage.json; fi
           if [ -f state/pipeline_health.json ]; then git add state/pipeline_health.json; fi
           if [ -f state/rivals_checked.json ]; then git add state/rivals_checked.json; fi
+          if [ -f state/muse_articles.json ]; then git add state/muse_articles.json; fi
           git commit -m "$MSG"
           # 実行中に main が進んでいても、この回の記事を落とさずに載せ直して push する（scripts/git_safe_push.py）。
           # 別のジョブが同じ記事 JSON を直していたら項目ごとにマージする（この回が変えた項目だけこの回の値）。新しい記事は必ず残す
