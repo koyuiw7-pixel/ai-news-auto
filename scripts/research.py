@@ -73,7 +73,7 @@ PUBLIC_NAMES = {
     "caa.go.jp": "消費者庁", "mlit.go.jp": "国土交通省", "jma.go.jp": "気象庁", "nenkin.go.jp": "日本年金機構", "cfa.go.jp": "こども家庭庁",
     "mext.go.jp": "文部科学省", "ppc.go.jp": "個人情報保護委員会", "npa.go.jp": "警察庁", "fdma.go.jp": "消防庁", "maff.go.jp": "農林水産省",
     "env.go.jp": "環境省", "moj.go.jp": "法務省", "mofa.go.jp": "外務省", "e-gov.go.jp": "e-Gov", "jftc.go.jp": "公正取引委員会",
-    "kokusen.go.jp": "国民生活センター", "jpx.co.jp": "日本取引所グループ", "ideco-koushiki.jp": "iDeCo公式サイト",
+    "kokusen.go.jp": "国民生活センター", "kojinbango-card.go.jp": "マイナンバーカード総合サイト", "myna.go.jp": "マイナポータル", "jpx.co.jp": "日本取引所グループ", "ideco-koushiki.jp": "iDeCo公式サイト",
 }
 # 起きたことの確認・対象の判定が知りたい話題（リコール・流出・障害）は「対象 確認方法」で探す
 CHECK_TOPIC_RE = re.compile(r"リコール|回収|流出|漏えい|漏洩|不正アクセス|障害|不具合|詐欺|なりすまし|改修")
@@ -176,7 +176,14 @@ def search_links(query: str, timeout: int = FETCH_TIMEOUT) -> list[str]:
     return out
 
 
-def site_label(url: str, item: dict, source_url: str) -> str:
+def title_site(page_title: str) -> str:
+    """ページの題名の最後の区切り（｜ | - –）のあとにあるサイト名（「よくある質問｜マイナンバーカード総合サイト」→ マイナンバーカード総合サイト）"""
+    parts = re.split(r"\s*[｜|–—]\s*|\s+-\s+", page_title or "")
+    last = parts[-1].strip() if len(parts) >= 2 else ""
+    return last if 3 <= len(last) <= 24 else ""
+
+
+def site_label(url: str, item: dict, source_url: str, page_title: str = "") -> str:
     """出典の表示名。名前の分かるドメインはその名前（国税庁・Google公式ヘルプ…）、元記事と同じ会社は元記事の発信元、ほかは「公式サイト（ドメイン）」"""
     h = source_links.host(url)
     for key in (h, source_links.base_domain(h)):
@@ -186,6 +193,8 @@ def site_label(url: str, item: dict, source_url: str) -> str:
             return PUBLIC_NAMES[key]
     if source_url and source_links.base_domain(h) in source_links.official_domains(source_url) and item.get("source_name"):
         return f"{item['source_name']}公式"
+    if site := title_site(page_title):
+        return site
     return f"公式サイト（{source_links.base_domain(h)}）"
 
 
@@ -235,7 +244,7 @@ def research(item: dict, text: str = "", page: dict | None = None, *, news_type:
                 continue  # 話題と関係の薄いページは入れない
             out.append({
                 "url": got.get("final_url") or url,
-                "name": site_label(url, item, source_url),
+                "name": site_label(url, item, source_url, got.get("title") or ""),
                 "title": (got.get("title") or "").strip()[:80],
                 "excerpt": body,
                 "checkedAt": today,

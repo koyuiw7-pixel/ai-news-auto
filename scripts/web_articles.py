@@ -1118,8 +1118,8 @@ def compose_with_facts(item: dict, text: str, lane: str, related: list[dict], vo
                                         max_links=(2 if deep else 1) if fast
                                         else (GATE_RETRY_LINKS if item.get("gate_retry") else (3 if deep else 2)),
                                         news_type=pre_type,
-                                        # 下調べ（台帳 A64）: 速報は1本・ふつうは3本。Muse は自分の出典（extra_sources）を使うので探さない
-                                        research_pages=0 if item.get("muse") else (1 if fast else 3),
+                                        # 下調べ（台帳 A64）: 速報は2本・ふつうは3本。Muse は自分の出典（extra_sources）を使うので探さない
+                                        research_pages=0 if item.get("muse") else (2 if fast else 3),
                                         extra_sources=extra_sources)
         except Exception as error:  # noqa: BLE001 - 束が作れなくても記事は今までどおり作る
             log(f"   [facts] 確かな事実の束を作れませんでした（{str(error)[:80]}）")

@@ -82,6 +82,10 @@ class ResearchTest(unittest.TestCase):
         got = self._run([url], {url: text}, text=text)
         self.assertEqual(got, [])
 
+    def test_site_name_from_page_title(self):
+        self.assertEqual(research.title_site("よくある質問：電子証明書｜マイナンバーカード総合サイト"), "マイナンバーカード総合サイト")
+        self.assertEqual(research.site_label("https://www.example.co.jp/faq/", {}, "", "料金 | 例の会社"), "例の会社")
+
     def test_help_pages_rank_first(self):
         urls = ["https://www.docomo.ne.jp/news/2026/a.html", "https://www.docomo.ne.jp/support/faq/b.html"]
         self.assertEqual(research.rank(urls)[0], urls[1])
