@@ -86,10 +86,10 @@
     },
     "2e9f83e45747a59d": {
       "first": "2026-11-06T08:58:43.969740+00:00",
-      "next": "2026-11-06T11:58:43.969740+00:00",
+      "next": "2026-11-08T04:47:47.209966+00:00",
       "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "title": "個人向け国債の応募額（令和8年10月）",
-      "tries": 1,
+      "tries": 2,
       "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/houdouhappyou/p20261106.htm"
     },
     "69fabd0e3c004cb8": {
@@ -115,6 +115,14 @@
       "title": "H.I.S.Mobile株式会社に対する景品表示法に基づく措置命令について",
       "tries": 1,
       "url": "https://www.caa.go.jp/notice/entry/047990/"
+    },
+    "9a892e935752466d": {
+      "first": "2026-11-08T01:49:51.805951+00:00",
+      "next": "2026-11-08T04:49:51.805951+00:00",
+      "reason": "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
+      "title": "第553回日本高速道路保有・債務返済機構債券（ソーシャルボンド）に対する政府保証の付与",
+      "tries": 1,
+      "url": "https://www.mof.go.jp/jgbs/topics/gov_guaranteed_bonds/hu2033.htm"
     },
     "a80efade9c9f0d83": {
       "first": "2026-11-06T00:08:54.716870+00:00",
@@ -10857,6 +10865,12 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/kinkyu/151106.html"
     },
+    "795e28e95614c988": {
+      "at": "2026-11-08T01:45:54.051501+00:00",
+      "reason": "stale: 発表から65時間（48時間を超えた発表は通常の記事にしない）",
+      "skipped": true,
+      "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_fiscal_system/proceedings/material/20261105zaiseia.html"
+    },
     "79e6fb6d7787c932": {
       "at": "2026-10-27T01:53:44.181577+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -12186,6 +12200,17 @@
       "reason": "公開前の門: サイトの主題（AI・テック／お金・投資・不動産・起業／制度のお金の話／日本のスポーツ）から外れた話題は公開しません",
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047990/"
+    },
+    "8dd275d1b7d012de": {
+      "at": "2026-11-08T02:01:01.491740+00:00",
+      "costUsd": 0.1177,
+      "intent": "neutral",
+      "mix": "life",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "public",
+      "slug": "meti-disaster-prevention-checklist-bcp",
+      "url": "https://www.meti.go.jp/press/2026/11/20261106003.html"
     },
     "8dd9672770349535": {
       "at": "2026-11-05T11:22:23.937820+00:00",
@@ -18778,6 +18803,17 @@
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv00000105b8.html"
     },
+    "fcc4518b2dc415cf": {
+      "at": "2026-11-08T01:55:02.190041+00:00",
+      "costUsd": 0.1161,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 90,
+      "section": "public",
+      "slug": "aichi-skills-olympics-entry-subsidy",
+      "url": "https://www.pref.aichi.jp/press-release/gorin-sankahi-2026.html"
+    },
     "fcef20cfe9a085695b48ac38e18921b0c08df987": {
       "at": "2026-11-04T02:24:31.069257+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -18992,336 +19028,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T04:22:13.515851+00:00",
-      "attempt": 1,
-      "id": "38d7cd8d70883115",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "本文「日本向けの提供も含まれており、普段からGoogle検索で店を探している人が対象です」→ 元記事に「普段からGoogle検索で店を探している人が対象」という記述はなく、対象者の限定は記事の創作です。",
-        "本文「希望の日時に空席がある店だけが並ぶので、「行きたい店が満席だった」というやり直しも減らせるはずです」→ 元記事は「条件に合った」空席の店を挙げると述べるのみで、希望の日時に限るとは書かれていません。また「はず」という推測を、編集部の見方と明示せずに書いています。",
-        "本文「幹事の役割を担う会社員なら、複数のサイトを見比べる時間を減らせる可能性があります」→ 元記事にない効果の予測で、編集部の見方とも明記されていません。",
-        "本文「飲食店の側から見ると、予約サイトに掲載している空席情報が、AIモードの検索結果を通じて見つけられる入口が増えることになります」→ 元記事に無い影響の解釈を、解釈と区別せず断定的に書いています。"
-      ],
-      "readability": {
-        "avg_paragraph": 85.6,
-        "avg_sentence": 38.9,
-        "long_share": 0.152,
-        "max_paragraph": 275,
-        "paragraphs": 15,
-        "sentences": 33
-      },
-      "score": 80,
-      "source": "google-japan-blog",
-      "title": "Google 検索 の AI モードの新機能で、あらゆるタスクをよりスムーズに",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T04:22:30.592653+00:00",
-      "attempt": 1,
-      "id": "38d7cd8d70883115",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "段落が長い（平均 84.8字・最長 275字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 84.8,
-        "avg_sentence": 38.5,
-        "long_share": 0.152,
-        "max_paragraph": 275,
-        "paragraphs": 15,
-        "sentences": 33
-      },
-      "score": 92,
-      "source": "google-japan-blog",
-      "title": "Google 検索 の AI モードの新機能で、あらゆるタスクをよりスムーズに",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T04:22:50.448836+00:00",
-      "attempt": 0,
-      "id": "38d7cd8d70883115",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.9,
-        "avg_sentence": 38.1,
-        "long_share": 0.118,
-        "max_paragraph": 156,
-        "paragraphs": 16,
-        "sentences": 34
-      },
-      "score": 92,
-      "source": "google-japan-blog",
-      "title": "Google 検索 の AI モードの新機能で、あらゆるタスクをよりスムーズに",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T04:41:35.731220+00:00",
-      "attempt": 1,
-      "id": "4a29cf0a9e1bd354",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 44.9字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 103.9,
-        "avg_sentence": 44.9,
-        "long_share": 0.216,
-        "max_paragraph": 190,
-        "paragraphs": 16,
-        "sentences": 37
-      },
-      "score": 92,
-      "source": "sbintuitions-blog",
-      "title": "Sarashina をコーディングエージェントで使う: OpenCode・Hermes Agent・Crush での利用と、サブエージェントとしての活用",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SB・KEY）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T04:41:58.310536+00:00",
-      "attempt": 0,
-      "id": "4a29cf0a9e1bd354",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 判定: 提供状況=available → 元記事は提供状況を「API機能を公開・APIキー取得可」とは述べるが、日本国内での提供条件や一般向けの提供範囲は示されていないと記事自身が書いており、「available」と断定する根拠がない; 今日やること・本文の手順"
-      ],
-      "readability": {
-        "avg_paragraph": 103.9,
-        "avg_sentence": 44.9,
-        "long_share": 0.216,
-        "max_paragraph": 190,
-        "paragraphs": 16,
-        "sentences": 37
-      },
-      "score": 92,
-      "source": "sbintuitions-blog",
-      "title": "Sarashina をコーディングエージェントで使う: OpenCode・Hermes Agent・Crush での利用と、サブエージェントとしての活用",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SB・KEY）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T04:43:13.847850+00:00",
-      "attempt": 1,
-      "id": "9c3feb4cdbadc8d9",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「では、1,000万円以上5,000万円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 117.3,
-        "avg_sentence": 38.1,
-        "long_share": 0.081,
-        "max_paragraph": 184,
-        "paragraphs": 12,
-        "sentences": 37
-      },
-      "score": null,
-      "source": "tsr",
-      "title": "「ハウスメーカー」倒産 前年の1.8倍に急増 価格上昇で購入可能額とのギャップが拡大",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T04:43:25.430846+00:00",
-      "attempt": 2,
-      "id": "9c3feb4cdbadc8d9",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "tsr",
-      "title": "「ハウスメーカー」倒産 前年の1.8倍に急増 価格上昇で購入可能額とのギャップが拡大"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T05:21:47.919352+00:00",
-      "attempt": 1,
-      "id": "a874e3b4a06b5092",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "nli-research",
-      "title": "「どのアプリを開けばいい？」をなくす－中国平安保険、デジタル化10年の伏線回収"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T05:23:02.101909+00:00",
-      "attempt": 2,
-      "id": "a874e3b4a06b5092",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「ニッセイ基礎研究所の調べによると、この変化で直接影響を受けるのは、中国で平安のアプリを使う人です」→ 元記事にこの記述はなく、影響範囲の判断を調査元の見解として帰属させている点が不正確",
-        "「日本の利用者に直接の影響はなく」→ 元記事に無い結論を断定している（日本向け提供が未発表であることの言い換えを超えている）",
-        "「この取り組みの土台には、保険事業の収益性の改善があります」→ 元記事は収益性改善と救援サービスの関係を明示しておらず、記事の解釈が事実のように書かれている",
-        "「記事は見ています」等の『記事』の語は元記事の執筆視点を指すが、本文全体の主語が曖昧で、どこまでが調査元の分析かが読み取りにくい"
-      ],
-      "readability": {
-        "avg_paragraph": 126.2,
-        "avg_sentence": 43.2,
-        "long_share": 0.132,
-        "max_paragraph": 197,
-        "paragraphs": 13,
-        "sentences": 38
-      },
-      "score": 84,
-      "source": "nli-research",
-      "title": "「どのアプリを開けばいい？」をなくす－中国平安保険、デジタル化10年の伏線回収",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SOS・NBV）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T05:23:22.567594+00:00",
-      "attempt": 2,
-      "id": "a874e3b4a06b5092",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "段落が長い（平均 130.8字・最長 188字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 130.8,
-        "avg_sentence": 43.6,
-        "long_share": 0.167,
-        "max_paragraph": 188,
-        "paragraphs": 12,
-        "sentences": 36
-      },
-      "score": 93,
-      "source": "nli-research",
-      "title": "「どのアプリを開けばいい？」をなくす－中国平安保険、デジタル化10年の伏線回収",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SOS・NBV）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T05:23:48.125814+00:00",
-      "attempt": 0,
-      "id": "a874e3b4a06b5092",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 88.3,
-        "avg_sentence": 40.6,
-        "long_share": 0.081,
-        "max_paragraph": 149,
-        "paragraphs": 17,
-        "sentences": 37
-      },
-      "score": 95,
-      "source": "nli-research",
-      "title": "「どのアプリを開けばいい？」をなくす－中国平安保険、デジタル化10年の伏線回収",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SOS・NBV）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T05:49:45.076991+00:00",
-      "attempt": 1,
-      "id": "d87e2c21f3a743e6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "riken",
-      "title": "機械学習で酵素の強さと能力の高さを両立化"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T05:51:03.910738+00:00",
-      "attempt": 2,
-      "id": "d87e2c21f3a743e6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "リード「実用化されました」→ 元記事は基礎研究の成果発表で、実用化の記述はない（研究段階を実用化済みのように書いている）",
-        "リード・本文「技術導入を検討できる段階です」→ 元記事に無い提供・導入状況の記述",
-        "「変異体FYWGYとYWYGY」→ 元記事の変異体名は FWYGY と YWYGY（名称の取り違え）",
-        "「ドッキングシミュレーションでは、酵素のポケットサイズと電荷分布を解析しました」→ 電荷分布の解析は元記事に無い",
-        "「体臭管理や医療診断に応用」「センサーの寿命と信頼性を向上」「他の長鎖化合物の合成にも応用可能」→ 元記事に無い用途・効果の創作",
-        "「高速酵素活性アッセイ」「スクリーニングに要した時間は従来の手法の数分の一」→ 元記事に無い手法と時間比較の創作"
-      ],
-      "readability": {
-        "avg_paragraph": 124.8,
-        "avg_sentence": 42.7,
-        "long_share": 0.105,
-        "max_paragraph": 157,
-        "paragraphs": 13,
-        "sentences": 38
-      },
-      "score": 15,
-      "source": "riken",
-      "title": "機械学習で酵素の強さと能力の高さを両立化",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "初めて出たところで言い換えていない略語（YADH・LWFMY・FYWGY）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T05:52:27.682216+00:00",
-      "attempt": 1,
-      "id": "5125d565684864f6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jst",
-      "title": "自己回帰生成モデルの熱力学を構築～大規模言語モデルに内在する「世界モデル」の定量的理解に向けて～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T05:53:43.153384+00:00",
-      "attempt": 2,
-      "id": "5125d565684864f6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jst",
-      "title": "自己回帰生成モデルの熱力学を構築～大規模言語モデルに内在する「世界モデル」の定量的理解に向けて～"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T06:02:09.959110+00:00",
@@ -25246,6 +24952,312 @@
       "title": "SageMaker Inference now supports Multi-Instance GPU to maximize GPU utilization ",
       "warnings": [
         "初めて出たところで言い換えていない略語（MIG・GKE・RTX）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T01:46:30.855528+00:00",
+      "attempt": 1,
+      "id": "2e9f83e45747a59d",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "mof",
+      "title": "個人向け国債の応募額（令和8年10月）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T01:47:17.488340+00:00",
+      "attempt": 2,
+      "id": "2e9f83e45747a59d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "mof",
+      "title": "個人向け国債の応募額（令和8年10月）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T01:47:35.563228+00:00",
+      "attempt": 2,
+      "id": "2e9f83e45747a59d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「51億円、変動10年の約3.6倍」、「年と固定3年は、どちらも3,000億円」、「3,000億円台で、差は100億円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
+      ],
+      "readability": {
+        "avg_paragraph": 69.0,
+        "avg_sentence": 30.4,
+        "long_share": 0.0,
+        "max_paragraph": 143,
+        "paragraphs": 22,
+        "sentences": 50
+      },
+      "score": null,
+      "source": "mof",
+      "title": "個人向け国債の応募額（令和8年10月）",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T01:47:47.209835+00:00",
+      "attempt": 2,
+      "id": "2e9f83e45747a59d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「年と固定3年は、どちらも3,000億円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
+      ],
+      "readability": {
+        "avg_paragraph": 68.5,
+        "avg_sentence": 30.1,
+        "long_share": 0.0,
+        "max_paragraph": 143,
+        "paragraphs": 22,
+        "sentences": 50
+      },
+      "score": null,
+      "source": "mof",
+      "title": "個人向け国債の応募額（令和8年10月）",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T01:48:25.947333+00:00",
+      "attempt": 1,
+      "id": "9a892e935752466d",
+      "kind": "broad",
+      "model": "gemini-flash-latest",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "mof",
+      "title": "第553回日本高速道路保有・債務返済機構債券（ソーシャルボンド）に対する政府保証の付与"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T01:48:51.527953+00:00",
+      "attempt": 1,
+      "id": "9a892e935752466d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "mof",
+      "title": "第553回日本高速道路保有・債務返済機構債券（ソーシャルボンド）に対する政府保証の付与"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T01:49:11.989474+00:00",
+      "attempt": 2,
+      "id": "9a892e935752466d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "mof",
+      "title": "第553回日本高速道路保有・債務返済機構債券（ソーシャルボンド）に対する政府保証の付与"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T01:49:31.736949+00:00",
+      "attempt": 2,
+      "id": "9a892e935752466d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
+      ],
+      "score": null,
+      "source": "mof",
+      "title": "第553回日本高速道路保有・債務返済機構債券（ソーシャルボンド）に対する政府保証の付与"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T01:49:51.805775+00:00",
+      "attempt": 2,
+      "id": "9a892e935752466d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "本文「発行日と償還日は日付が10日ずれているため、ちょうど10年ではなく、10年と10日ほどの期間です」→ 元記事にない期間の計算結果で、計算済みの数字にも含まれていない。日付自体は正しく、計算も正しいが、出典や式が示されていない。",
+        "本文「令和18年（2036年）」→ 西暦への換算は元記事に無いが、令和8年＝2026年から導ける正しい換算で、重大な問題ではない。"
+      ],
+      "readability": {
+        "avg_paragraph": 93.8,
+        "avg_sentence": 34.7,
+        "long_share": 0.022,
+        "max_paragraph": 226,
+        "paragraphs": 17,
+        "sentences": 46
+      },
+      "score": 88,
+      "source": "mof",
+      "title": "第553回日本高速道路保有・債務返済機構債券（ソーシャルボンド）に対する政府保証の付与",
+      "warnings": [
+        "同じ数字が多い（「2.987%」が5回）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T01:53:47.867675+00:00",
+      "attempt": 1,
+      "id": "fcc4518b2dc415cf",
+      "kind": "broad",
+      "model": "gemini-3.7-flash",
+      "problems": [
+        "本文の日程表「2026年11月25日（月）：交付決定通知」→ 元記事では11月25日は水曜日（月曜は11月16日・12月7日）。曜日の取り違え。",
+        "本文「競技職種によって異なる道具や材料の負担金も含めて全額が対象」→ 元記事は「大会参加費及び職種別負担金の全額」とのみ記載。道具・材料への言及は創作。",
+        "本文「学校教育法で定められた私立の学校、専修学校、各種学校（愛知県立を除く）」→ 元記事は学校等（愛知県立を除く）で、私立に限定していない。対象範囲の誤り。",
+        "要点・かんたん版「民間の職業訓練施設」「私立学校」→ 元記事に民間・私立の限定はなく、対象の範囲を狭めて書いている。",
+        "本文「大会出場に必要な一定の公的費用が全額補助」→ 元記事に無い「公的費用」の限定表現。",
+        "かんたん版「選手の自己負担や所属先の負担を実質ゼロにできます」→ 対象は要件を満たす者に限られ、実質ゼロとまでは元記事で言えない言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 81.5,
+        "avg_sentence": 49.5,
+        "long_share": 0.25,
+        "max_paragraph": 139,
+        "paragraphs": 17,
+        "sentences": 28
+      },
+      "score": 55,
+      "source": "pref-aichi",
+      "title": "2026年度技能五輪全国大会に出場する愛知県選手の出場費用を助成します！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T01:54:29.184377+00:00",
+      "attempt": 1,
+      "id": "fcc4518b2dc415cf",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "かんたん版の「県立の学校等や施設に所属する選手は対象外です」→ 元記事の（1）イでは愛知県立の学校等又は職業訓練施設に所属する本県選手は対象であり、本文の記述とも矛盾する",
+        "「判定: 提供状況=available 価格=全額助成 ひとこと=…」→ 内部の判定メモが記事本文に混入しており、読者向けの文章になっていない",
+        "仕事・お金の欄「全額負担を避けられます」→ 助成は要件充足と予算内での受付が前提（予算上限で受付終了あり）であり、確実に全額負担を避けられるように読める言い過ぎ",
+        "今日やること「先着順で予算上限に達する前に、メールまたは郵送で申請書を提出する」→ 元記事は持参も提出方法として挙げており、手段の限定は軽微な不正確さ"
+      ],
+      "readability": {
+        "avg_paragraph": 76.0,
+        "avg_sentence": 38.9,
+        "long_share": 0.133,
+        "max_paragraph": 209,
+        "paragraphs": 23,
+        "sentences": 45
+      },
+      "score": 55,
+      "source": "pref-aichi",
+      "title": "2026年度技能五輪全国大会に出場する愛知県選手の出場費用を助成します！"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T01:55:02.170568+00:00",
+      "attempt": 2,
+      "id": "fcc4518b2dc415cf",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 71.9,
+        "avg_sentence": 37.2,
+        "long_share": 0.138,
+        "max_paragraph": 134,
+        "paragraphs": 15,
+        "sentences": 29
+      },
+      "score": 90,
+      "source": "pref-aichi",
+      "title": "2026年度技能五輪全国大会に出場する愛知県選手の出場費用を助成します！"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T01:59:56.368064+00:00",
+      "attempt": 1,
+      "id": "8dd275d1b7d012de",
+      "kind": "broad",
+      "model": "gemini-3.8-flash",
+      "problems": [
+        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「公式ホームページの報道発表ページ」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 98.0,
+        "avg_sentence": 49.0,
+        "long_share": 0.231,
+        "max_paragraph": 206,
+        "paragraphs": 13,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "meti-press",
+      "title": "中小企業・小規模事業者における事前防災の取組を推進します",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（BCP）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-08T02:00:26.426787+00:00",
+      "attempt": 1,
+      "id": "8dd275d1b7d012de",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「公式ホームページの報道発表ページ」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 119.1,
+        "avg_sentence": 52.6,
+        "long_share": 0.324,
+        "max_paragraph": 189,
+        "paragraphs": 15,
+        "sentences": 34
+      },
+      "score": null,
+      "source": "meti-press",
+      "title": "中小企業・小規模事業者における事前防災の取組を推進します",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（BCP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T02:01:01.473064+00:00",
+      "attempt": 2,
+      "id": "8dd275d1b7d012de",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.2,
+        "avg_sentence": 36.5,
+        "long_share": 0.067,
+        "max_paragraph": 141,
+        "paragraphs": 20,
+        "sentences": 45
+      },
+      "score": 93,
+      "source": "meti-press",
+      "title": "中小企業・小規模事業者における事前防災の取組を推進します",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（BCP）"
       ]
     }
   ],
