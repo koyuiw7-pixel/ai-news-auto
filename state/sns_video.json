@@ -2685,70 +2685,56 @@
       "pages": []
     },
     "kyushu-electric-power-rate-revision-2026": {
-      "at": "2026-11-08T09:33:29+00:00",
+      "at": "2026-11-08T09:39:13+00:00",
       "status": "gate_failed",
-      "tries": 4,
-      "textAt": "2026-11-08T08:30:00+00:00",
-      "textId": "",
+      "tries": 5,
+      "textAt": "2026-11-08T10:30:00+00:00",
+      "textId": "6af041ea51492b796e2bb21f",
       "breaking": false,
-      "scheduled": false,
+      "scheduled": true,
       "versions": {
         "full": {
           "ok": false,
-          "seconds": 61.824,
-          "reasons": [],
+          "seconds": null,
+          "reasons": [
+            "台本を作れない: 台本を作れませんでした（LLM 9回・153秒）: 始まり: つかみに主役の名前（九州電力の電気料金）が無い（見出しか、読み上げの2文目までに）; 数字カード「標準家庭は月367円増」が記事の表記どおりではない; speech で数字 367 をかなや漢数字にしました。数字はアラビア数字のまま。"
+          ],
           "qa": {
-            "geometry": true,
-            "vision": true,
-            "version": 1,
-            "v3": false
+            "geometry": false,
+            "vision": false,
+            "version": 1
           },
           "template": "",
           "level": null,
-          "base_layout": "screen-left-headline"
+          "base_layout": ""
         },
         "short": {
           "ok": false,
-          "seconds": 41.425,
-          "reasons": [],
+          "seconds": null,
+          "reasons": [
+            "台本を作れない: 台本を作れませんでした（LLM 9回・153秒）: 始まり: つかみに主役の名前（九州電力の電気料金）が無い（見出しか、読み上げの2文目までに）; 数字カード「標準家庭は月367円増」が記事の表記どおりではない; speech で数字 367 をかなや漢数字にしました。数字はアラビア数字のまま。"
+          ],
           "qa": {
-            "geometry": true,
-            "vision": true,
-            "version": 1,
-            "v3": false
+            "geometry": false,
+            "vision": false,
+            "version": 1
           },
           "template": "",
           "level": null,
-          "base_layout": "screen-left-headline"
+          "base_layout": ""
         }
       },
       "timings": {
         "full": {
-          "script": 0.0,
-          "tts": 22.25,
-          "plan_audio": 4.43,
-          "render": 55.24,
-          "gate": 6.0,
-          "sheet": 2.32,
-          "total": 90.3,
-          "ladder_total": 283.8
+          "ladder_total": 448.2
         },
         "short": {
-          "script": 0.0,
-          "tts": 27.96,
-          "plan_audio": 2.93,
-          "render": 35.05,
-          "gate": 4.35,
-          "sheet": 1.61,
-          "total": 71.9,
-          "ladder_total": 283.8
+          "ladder_total": 448.2
         }
       },
       "ok": false,
-      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない / short: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない",
-      "pages": [
-        "ai-tech-express.jp"
-      ]
+      "reason": "full: 台本を作れない: 台本を作れませんでした（LLM 9回・153秒）: 始まり: つかみに主役の名前（九州電力の電気料金）が無い（見出しか、読み上げの2文目までに）; 数字カード「標準家庭は月367円増」が記事の表記どおりではない; speech で数字 367 をかなや漢数字にしました。数字はアラビア数字のまま。 / short: 台本を作れない: 台本を作れませんでした（LLM 9回・153秒）: 始まり: つかみに主役の名前（九州電力の電気料金）が無い（見出しか、読み上げの2文目までに）; 数字カード「標準家庭は月367円増」が記事の表記どおりではない; speech で数字 367 をかなや漢数字にしました。数字はアラビア数字のまま。",
+      "pages": []
     }
   },
   "queued": {
@@ -3170,12 +3156,12 @@
     "nencho-2026-changes": {
       "status": "waiting",
       "why": "枠（20:30）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T09:38:17+00:00"
+      "checkedAt": "2026-11-08T09:46:42+00:00"
     },
     "izoku-nenkin-seikyu-tetsuzuki": {
       "status": "waiting",
       "why": "枠（21:45）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T09:38:17+00:00"
+      "checkedAt": "2026-11-08T09:46:42+00:00"
     },
     "furusato-nozei-deadline-2026": {
       "status": "created",
@@ -4972,21 +4958,6 @@
     }
   },
   "presend": {
-    "6aed93c4dbada656be03bbcc": {
-      "rules": "76cffa5f062f-reply",
-      "at": "2026-11-06T09:08:40+00:00",
-      "ok": true
-    },
-    "6aed93c47b7e47e8f41b5449": {
-      "rules": "76cffa5f062f-reply",
-      "at": "2026-11-06T09:08:40+00:00",
-      "ok": true
-    },
-    "6aed93c3c1e74b84e5d9d712": {
-      "rules": "76cffa5f062f-reply",
-      "at": "2026-11-06T09:08:40+00:00",
-      "ok": true
-    },
     "6aedafd575db0573c8d1f8b5": {
       "rules": "76cffa5f062f-reply",
       "at": "2026-11-06T10:52:19+00:00",
@@ -5014,7 +4985,17 @@
     },
     "6af03444229bf05daf9d21e0": {
       "rules": "3c0bcfda844a-reply",
-      "at": "2026-11-08T08:55:03+00:00",
+      "at": "2026-11-08T09:39:13+00:00",
+      "ok": true
+    },
+    "6af041ed562f2e6de9ac0f73": {
+      "rules": "3c0bcfda844a-reply",
+      "at": "2026-11-08T09:39:13+00:00",
+      "ok": true
+    },
+    "6af041ea51492b796e2bb21f": {
+      "rules": "3c0bcfda844a-reply",
+      "at": "2026-11-08T09:39:13+00:00",
       "ok": true
     }
   }
