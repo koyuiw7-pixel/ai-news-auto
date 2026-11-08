@@ -1390,6 +1390,7 @@ SURGICAL_PROMPT = """校閲記者が次の記事に指摘をしました。指�
 - 指摘された文（または文の一部）だけを直す。元記事に無い事実・言い過ぎは削るか、元記事どおりの弱い言い方に直す。
   数字・日付・曜日・対象（だれが使える／使えない）の誤りは、元記事の表記どおりに直す。訳語の指摘は正しい訳語に直す。
   元記事で裏づけられない文は削る（書き足して埋めない。短い記事になってよい）。
+  指摘された文と同じ種類の、元記事に無い断定（販売店・売り場、無料かどうか、「〜には影響ありません」、計算した金額 など）がほかの箇所にもあれば、それも削る。
 - 指摘されていない文・見出し（## と ###）・表・リンク・数字は一字も変えない。
 - 新しい事実・数字・日付・固有名詞を足さない。
 - タイトル・リード・要点（highlights）・かんたん版・「仕事・お金にどう活かせる」（work_money_points）も、指摘があればそこだけ直し、
@@ -1438,7 +1439,35 @@ def surgical_ok(verdict: dict) -> bool:
     return bool(fact) and not verdict.get("structural") and not fact.get("fatal") and fact.get("useful", True) and fact.get("score", 0) >= SURGICAL_MIN_SCORE
 
 
+OPTIONAL_FIELDS = (("faq", "よくある質問"), ("todayActions", "今日やること"))
+
+
 def surgical_fix(record: dict, source_text: str, kind: str, problems: list[str], context: str = "", check_facts: bool = True):
+    """（2026-11-08 台帳 A60）その場の手直しを最大2回（安い段）。1回目のあとの確認で別の文が指摘されたら、その指摘で2回目を直す。
+    よくある質問・今日やることが指摘されたら、その欄を外す（資料で裏づけられない文を消すのと同じ）。(record, verdict) か (None, 理由)"""
+    current, todo, why = record, problems, ""
+    for round_no in (1, 2):
+        dropped = [label for key, label in OPTIONAL_FIELDS if current.get(key) and any(label in str(p) for p in todo)]
+        if dropped:
+            current = {k: v for k, v in current.items() if k not in {key for key, label in OPTIONAL_FIELDS if label in dropped}}
+            todo = [p for p in todo if not any(label in str(p) for label in dropped)]
+            if not todo:
+                verdict = evaluate(current, source_text, kind, context, check_facts=check_facts)
+                if verdict["ok"] or verdict.get("soft"):
+                    return current, {**verdict, "fixed_by": "drop:" + "・".join(dropped)}
+                todo = verdict.get("problems") or []
+        fixed, info = _surgical_once(current, source_text, kind, todo, context, check_facts)
+        if fixed is not None:
+            return fixed, info
+        why = info if isinstance(info, str) else why
+        latest = getattr(_surgical_once, "last_verdict", None)
+        if round_no == 2 or not latest or not repairable(latest):
+            break
+        current, todo = latest["_record"], latest.get("problems") or []
+    return None, why
+
+
+def _surgical_once(record: dict, source_text: str, kind: str, problems: list[str], context: str = "", check_facts: bool = True):
     """大きなニュースの細かい指摘（言い過ぎ・訳語・補足の程度）を、指摘された文だけ直して受理する。
     (record, verdict) か (None, 理由)。直したあとも致命的でなく SURGICAL_MIN_SCORE 点以上なら、残った細かい指摘は受理する"""
     body = record.get("body") or ""
@@ -1450,6 +1479,7 @@ def surgical_fix(record: dict, source_text: str, kind: str, problems: list[str],
         body=body, easy=record.get("easy", ""),
     )
     # 事実確認の指摘の手直しは小さいが質が大事な段: Claude API の Haiku（予算の範囲。だめなら無料モデル）
+    _surgical_once.last_verdict = None
     data, model = llm.generate_json(SURGICAL_SYSTEM, prompt, SURGICAL_SCHEMA, temperature=0.2, max_output_tokens=16384, tier=CHECK_TIER,
                                     purpose="helper")
     new_body = re.sub(r"^(#{1,6}) +(?:#{1,6} +)+", r"\1 ", str(data.get("body_markdown") or "").strip(), flags=re.M)
@@ -1484,6 +1514,7 @@ def surgical_fix(record: dict, source_text: str, kind: str, problems: list[str],
     if MAJOR and surgical_ok(verdict):
         # 残りは細かい指摘だけ（致命的な誤りなし・点数も基準以上）。大きなニュースは落とさない
         return fixed, {**verdict, "ok": True, "accepted_minor": verdict.get("problems") or []}
+    _surgical_once.last_verdict = {**verdict, "_record": fixed}
     return None, "直したあとの確認に不合格: " + "; ".join(verdict.get("problems", [])[:2])
 
 

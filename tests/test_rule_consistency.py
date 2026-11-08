@@ -440,6 +440,13 @@ class GateSimplify20261108Test(unittest.TestCase):
         self.assertIn("うそは絶対に書かない", hn.TITLE_STYLE_PROMPT)
         self.assertIn("全員対象", self.q.FACT_PROMPT)
 
+    def test_unsupported_today_actions_are_dropped_in_place(self):
+        rec = {"title": "ChatGPTの料金が月20ドルから月25ドルに上がる見込み", "lede": "l", "body": "## 料金\n月25ドルです。",
+               "easy": "## ひとことで言うと\n短いです。", "highlights": [], "todayActions": ["近くのコンビニで探す"]}
+        fixed, info = self.q.surgical_fix(rec, "", "ai", ["今日やること「近くのコンビニで探す」→ 元記事に無い"], check_facts=False)
+        self.assertIsNotNone(fixed, info)
+        self.assertNotIn("todayActions", fixed)
+
     def test_fact_failures_go_to_in_place_repair(self):
         fact = {"grounded": False, "score": 40, "fatal": True, "problems": ["11/25 は水曜日"], "useful": True}
         self.assertTrue(self.q.repairable({"ok": False, "fact": fact, "problems": fact["problems"]}))
