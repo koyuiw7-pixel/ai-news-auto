@@ -108,14 +108,6 @@
       "tries": 1,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87277?site=nli"
     },
-    "6bc2f8234b7530f9": {
-      "first": "2026-11-08T02:57:28.145724+00:00",
-      "next": "2026-11-08T05:57:28.145724+00:00",
-      "reason": "「実施までには約1年4カ月の期間があります」→ 2026年11月2日から2027年3月1日までは約4か月弱であり、「1年4カ月」は誤り。元記事に無い期間の数字を誤って作っている。; 「2027年2月末日までに来館する場合は、これまでの料金のまま利用できます」→ 元記事に無い経過措置の内容を創作している。; 「日本最大級の鉄道博物館」「蒸気機関車から新幹線まで幅広い車両が展示」→ 元記事に無い施設の",
-      "title": "（月）より入館料金等改定のおしらせ （京都鉄道博物館）",
-      "tries": 1,
-      "url": "https://www.westjr.co.jp/press/article/2026/11/02/page_31179.html"
-    },
     "76f6c839f4713002": {
       "first": "2026-11-06T13:58:15.532249+00:00",
       "next": "2026-11-06T16:58:15.532249+00:00",
@@ -10228,6 +10220,17 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102704"
     },
+    "6bc2f8234b7530f9": {
+      "at": "2026-11-08T06:23:48.709713+00:00",
+      "costUsd": 0.0037,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "gemini-3.6-flash",
+      "score": 92,
+      "section": "lifestyle",
+      "slug": "kyoto-railway-museum-admission-fee-change",
+      "url": "https://www.westjr.co.jp/press/article/2026/11/02/page_31179.html"
+    },
     "6be50951d265dfaf": {
       "at": "2026-11-08T02:44:47.324734+00:00",
       "costUsd": 0.0826,
@@ -19194,6 +19197,14 @@
       "url": "https://www.nenkin.go.jp/service/kokunen/hokenryo/hokenryo.html",
       "writer": "muse"
     },
+    "muse-4273207ffa": {
+      "at": "2026-11-08T06:22:11.372909+00:00",
+      "mix": "money",
+      "score": 96,
+      "slug": "minimum-wage-november-tax-free-refund",
+      "url": "https://www.mhlw.go.jp/content/11200000/001753404.pdf",
+      "writer": "muse"
+    },
     "muse-5dd7f56355": {
       "at": "2026-11-08T05:51:29.216808+00:00",
       "mix": "money",
@@ -19226,6 +19237,14 @@
       "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/shussan/index.html",
       "writer": "muse"
     },
+    "muse-99d67ba95b": {
+      "at": "2026-11-08T06:13:08.900996+00:00",
+      "mix": "other",
+      "score": 94,
+      "slug": "japan-job-openings-ratio-sep-2026",
+      "url": "https://www.mhlw.go.jp/stf/newpage_76960.html",
+      "writer": "muse"
+    },
     "muse-c77101bd90": {
       "at": "2026-11-08T05:54:01.174714+00:00",
       "mix": "other",
@@ -19233,48 +19252,17 @@
       "slug": "japan-household-spending-aug-2026",
       "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf",
       "writer": "muse"
+    },
+    "muse-f73567e036": {
+      "at": "2026-11-08T06:18:15.953607+00:00",
+      "mix": "money",
+      "score": 95,
+      "slug": "medical-expense-deduction-income-threshold",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:15:35.781677+00:00",
-      "attempt": 2,
-      "id": "a307777d6ded3852",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "kddi-news-release",
-      "title": "2027年3月期第2四半期決算について | KDDI ニュースルーム"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T08:16:00.998059+00:00",
-      "attempt": 3,
-      "id": "a307777d6ded3852",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "確認済みの事実の束（関連ページ：KDDI ニュースリリース「kddi_261106_main_X5IBau.pdf」）の数字を使っているのに、出典が書かれていない。使った文の直後に「（KDDI ニュースリリース「kddi_261106_main_X5IBau.pdf」、確認日）」のように書く"
-      ],
-      "readability": {
-        "avg_paragraph": 58.7,
-        "avg_sentence": 33.8,
-        "long_share": 0.025,
-        "max_paragraph": 112,
-        "paragraphs": 23,
-        "sentences": 40
-      },
-      "score": null,
-      "source": "kddi-news-release",
-      "title": "2027年3月期第2四半期決算について | KDDI ニュースルーム",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（UQ・PAY）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-06T08:23:05.739916+00:00",
@@ -25602,6 +25590,53 @@
       "warnings": [
         "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T06:23:38.641920+00:00",
+      "attempt": 1,
+      "id": "6bc2f8234b7530f9",
+      "kind": "broad",
+      "model": "gemini-3.6-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 54.0,
+        "avg_sentence": 40.5,
+        "long_share": 0.25,
+        "max_paragraph": 97,
+        "paragraphs": 3,
+        "sentences": 4
+      },
+      "score": 88,
+      "source": "jrwest",
+      "title": "（月）より入館料金等改定のおしらせ （京都鉄道博物館）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JR）",
+        "読みやすさ: 文が長い（1文の平均 40.5字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-08T06:23:48.705485+00:00",
+      "attempt": 0,
+      "id": "6bc2f8234b7530f9",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 57.0,
+        "avg_sentence": 34.2,
+        "long_share": 0.0,
+        "max_paragraph": 106,
+        "paragraphs": 3,
+        "sentences": 5
+      },
+      "score": 92,
+      "source": "jrwest",
+      "title": "（月）より入館料金等改定のおしらせ （京都鉄道博物館）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JR）"
       ]
     }
   ],
