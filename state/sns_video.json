@@ -2683,6 +2683,58 @@
       "ok": false,
       "reason": "full: 記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（1場面） / short: 記事の文だけの台本を作れない: 画面の証拠と合う記事の文が足りない（1場面）",
       "pages": []
+    },
+    "kyushu-electric-power-rate-revision-2026": {
+      "at": "2026-11-08T08:35:15+00:00",
+      "status": "gate_failed",
+      "tries": 1,
+      "textAt": "2026-11-08T08:30:00+00:00",
+      "textId": "",
+      "breaking": false,
+      "scheduled": false,
+      "versions": {
+        "full": {
+          "ok": false,
+          "seconds": null,
+          "reasons": [
+            "記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い"
+          ],
+          "qa": {
+            "geometry": false,
+            "vision": false,
+            "version": 1
+          },
+          "template": "",
+          "level": null,
+          "base_layout": ""
+        },
+        "short": {
+          "ok": false,
+          "seconds": null,
+          "reasons": [
+            "記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い"
+          ],
+          "qa": {
+            "geometry": false,
+            "vision": false,
+            "version": 1
+          },
+          "template": "",
+          "level": null,
+          "base_layout": ""
+        }
+      },
+      "timings": {
+        "full": {
+          "ladder_total": 580.9
+        },
+        "short": {
+          "ladder_total": 580.9
+        }
+      },
+      "ok": false,
+      "reason": "full: 記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い / short: 記事の文だけの台本を作れない: つかみ（何が起きたか・なぜ大事か）の文か、画面の見出しが無い",
+      "pages": []
     }
   },
   "queued": {
@@ -3076,22 +3128,36 @@
     "kyushu-electric-power-rate-revision-2026": {
       "status": "waiting",
       "why": "Muse の動画を 18:30 まで待っている",
-      "checkedAt": "2026-11-08T08:15:36+00:00"
+      "checkedAt": "2026-11-08T08:45:00+00:00"
     },
     "national-pension-two-year-prepayment": {
-      "status": "waiting",
+      "status": "created",
       "why": "枠（18:45）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T08:15:36+00:00"
+      "checkedAt": "2026-11-08T08:15:36+00:00",
+      "channels": {
+        "threads": "6af03444229bf05daf9d21e0"
+      },
+      "id": "6af03444229bf05daf9d21e0",
+      "dueAt": "2026-11-08T09:45:00+00:00",
+      "variant": "",
+      "media": "card",
+      "linkPosition": "reply",
+      "delayedMin": 0
     },
     "nencho-2026-changes": {
       "status": "waiting",
       "why": "枠（20:30）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T08:15:36+00:00"
+      "checkedAt": "2026-11-08T08:45:00+00:00"
     },
     "izoku-nenkin-seikyu-tetsuzuki": {
       "status": "waiting",
       "why": "枠（21:45）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T08:15:36+00:00"
+      "checkedAt": "2026-11-08T08:45:00+00:00"
+    },
+    "furusato-nozei-deadline-2026": {
+      "status": "waiting",
+      "why": "枠（19:45）の75分前になったら写真・カードで予約する",
+      "checkedAt": "2026-11-08T08:45:00+00:00"
     }
   },
   "converted": {
