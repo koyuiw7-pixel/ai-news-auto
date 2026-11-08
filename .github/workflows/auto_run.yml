@@ -542,6 +542,8 @@ jobs:
           python scripts/threads_post.py --max 2
           # SNS の予定に入った記事を Muse の受け渡し（state/muse_queue.json）に足す（2026-11-05 すべての投稿の動画を Muse で。台帳 S30）
           python scripts/muse_queue.py || echo "::warning::Muse の受け渡しを更新できませんでした（投稿は自動動画で続きます）"
+          # SNS の予定と実績（今日の枠・記事と、実際に出た投稿）を state/sns_plan_actual.json に残す（夜の報告が読む。2026-11-08）
+          python scripts/sns_plan_actual.py || echo "::warning::SNS の予定と実績を記録できませんでした"
           if [ -z "$(git status --porcelain state)" ]; then
             exit 0
           fi
