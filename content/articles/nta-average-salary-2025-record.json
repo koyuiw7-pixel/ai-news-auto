@@ -72,8 +72,8 @@
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "業種別の平均給与と自分の年収を比べて、今の位置を確かめてみる",
-    "給料と賞与を分けて見て、ボーナスの差が大きい点も踏まえておく"
+    "国税庁の結果資料で、自分の業種の平均給与と自分の年収を比べる",
+    "給料・手当と賞与を分けて、男女や雇用形態ごとの数字を見る"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -96,5 +96,84 @@
     "relevant": true,
     "at": "2026-11-08T06:30:22+00:00"
   },
-  "discoverCandidate": true
+  "discoverCandidate": true,
+  "insight": [
+    {
+      "text": "平均賞与は男性96万円、女性47万円で、前の年より男性は0.4%増、女性は0.6%増でした。",
+      "source": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf"
+    },
+    {
+      "text": "乙欄適用者を除いた給与所得者の平均給与は496万円で、前の年より2.0%増えました。全体の487万円とは別の区分の数字です。",
+      "source": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 令和7年分民間給与実態統計調査結果（報道発表資料）",
+      "url": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf",
+      "source": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf",
+      "note": "業種別の平均給与・平均賞与の表や、男女・雇用形態別の数字は、この資料の表で確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "国税庁の結果資料で、自分の業種の平均給与と自分の年収を比べる",
+      "source": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf",
+      "steps": [
+        "資料の「業種別の平均給与・平均賞与」の表を開く",
+        "自分の業種の行の平均給与を見る",
+        "自分の年収との差を比べる"
+      ],
+      "url": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf"
+    },
+    {
+      "action": "給料・手当と賞与を分けて、男女や雇用形態ごとの数字を見る",
+      "source": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf",
+      "steps": [
+        "資料の「平均給料・手当」の行を見る",
+        "次に「平均賞与」の行を見る",
+        "男女・正社員の区分ごとに比べる"
+      ],
+      "url": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf"
+    }
+  ],
+  "cause": {
+    "text": "この調査は統計法に基づく基幹統計で、租税収入の見積りや租税負担の検討、税務行政運営の基本資料とすることが目的です。民間の事業所の給与をサンプルで調べ、標本値に抽出率などの逆数を掛けて全体を推計しています。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf"
+  },
+  "worries": [
+    {
+      "q": "自分の年収は平均より高い？低い？",
+      "a": "平均給与は487万円で、男性597万円、女性342万円、正社員559万円、正社員以外210万円です。業種別では電気・ガス・熱供給・水道業が854万4千円、宿泊業・飲食サービス業が275万8千円でした。",
+      "source": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf",
+      "action": "国税庁の表で自分の業種・性別・雇用形態の行を探し、自分の年収と並べて位置を確かめる"
+    },
+    {
+      "q": "男女の差は縮まっている？",
+      "a": "男性の平均給与は597万円で1.7%増、女性は342万円で2.6%増でした。女性の伸び率のほうが大きい一方で、金額の差は残っています。賞与は男性96万円、女性47万円です。",
+      "source": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf",
+      "action": "給料・手当と賞与を分けて見て、自分の年収はどちらで平均との差が出ているかを確かめる"
+    },
+    {
+      "q": "ボーナスの差はどれくらい？",
+      "a": "賞与の平均は75万円で、正社員は102万円、正社員以外は12万円でした。男性96万円、女性47万円で、雇用形態による差はさらに大きくなります。",
+      "source": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf",
+      "action": "年収を比べるときは、給料と賞与を分けて、同じ雇用形態の賞与の平均と並べて見る"
+    },
+    {
+      "q": "非正社員だと平均とどれくらい違う？",
+      "a": "正社員以外の平均給与は210万円で、正社員の559万円と大きく離れています。正社員以外の人数は1,305万人で、前の年より49万人増えました。",
+      "source": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf",
+      "action": "自分の雇用形態が正社員か正社員以外かを確かめ、同じ区分の平均と比べて位置を見る"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "賞与の男女差と、乙欄を除いた平均",
+    "cause": "この統計は何のために取っている？",
+    "steps": "今日は業種と雇用形態で自分の位置を確かめる",
+    "desk": "数字を確かめるなら国税庁の資料で",
+    "worries": "自分の年収は平均と比べてどう？"
+  },
+  "depthAt": "2026-11-08T16:52:39+00:00"
 }

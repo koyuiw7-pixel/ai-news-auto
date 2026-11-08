@@ -88,9 +88,9 @@
     }
   ],
   "todayActions": [
-    "12月の忘年会の日程が決まっていれば、JR九州の運転日と照らし合わせる",
-    "11月6日以降に「駅別時刻表」を開き、博多発の帰りの列車を確認する",
-    "幹事の人は、会の終了時刻を臨時列車の時間帯に合わせて検討する"
+    "12月の忘年会の日程と、博多発の臨時列車の運転日を照らし合わせる",
+    "11月6日以降に「駅別時刻表」を開き、博多発の帰りの列車の時刻を確認する",
+    "幹事は、会の終了時刻を臨時列車の時間帯に合わせて決める"
   ],
   "qualityScore": 88,
   "late": true,
@@ -128,5 +128,95 @@
       "料金は発表では触れていない": "臨時列車と特急の料金は発表に含まれていない"
     }
   },
-  "sectionsPolishedAt": "2026-11-08T06:13:28+00:00"
+  "sectionsPolishedAt": "2026-11-08T06:13:28+00:00",
+  "insight": [
+    {
+      "text": "博多〜門司港間の特急では、3号車および4号車が指定席から自由席へ変更されます。実施日は12月4(金)、5(土)、11(金)、12(土)、18(金)、19(土)、24(木)～29(火)です。",
+      "source": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "12月の忘年会の日程と、博多発の臨時列車の運転日を照らし合わせる",
+      "source": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf",
+      "steps": [
+        "忘年会の日付を決める",
+        "12月4(金)～29(火)の運転日と照らす",
+        "特急は運転日が普通列車と異なるので別に確認"
+      ]
+    },
+    {
+      "action": "11月6日以降に「駅別時刻表」を開き、博多発の帰りの列車の時刻を確認する",
+      "source": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf",
+      "steps": [
+        "JR九州ホームページを開く",
+        "「駅別時刻表」を選ぶ",
+        "博多発の23時台の列車を見る"
+      ]
+    },
+    {
+      "action": "幹事は、会の終了時刻を臨時列車の時間帯に合わせて決める",
+      "source": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf",
+      "steps": [
+        "会の終了時刻の候補を決める",
+        "23時台の臨時列車の時刻を確認する",
+        "時刻が未反映なら11月6日以降に確認"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "忘年会シーズンに合わせて、12月の金・土曜日や年末時期を中心に臨時列車を運転すると発表されています。需要の高い21時台の特急も増発されます。",
+    "status": "background",
+    "source": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf"
+  },
+  "worries": [
+    {
+      "q": "特急は座って帰れるようになりますか？",
+      "a": "博多〜門司港間では3号車と4号車が自由席になります。リレーかもめ66号（博多23:44発）は自由席が2両（111席）増えると書かれています。この111席は1本の列車についての数です。",
+      "source": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf",
+      "action": "門司港方面へ12月の運転日に特急で帰るなら、3号車と4号車が自由席になる日かを確認する。"
+    },
+    {
+      "q": "臨時列車はいつ使えますか？",
+      "a": "臨時の普通列車は12月4日、5日、11日、12日、18日、19日と24日から29日に運転されます。11月中の運転日は発表の資料に含まれていません。",
+      "source": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf",
+      "action": "忘年会の日程が12月の金・土曜日や年末の日に当たるか、先に確認する。"
+    },
+    {
+      "q": "正確な発車時刻はいつ分かりますか？",
+      "a": "臨時列車の時刻は11月6日(金)にJR九州ホームページ「駅別時刻表」へ反映予定と書かれています。それまでの細かな発車時刻は示されていません。",
+      "source": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf",
+      "action": "11月6日以降に「駅別時刻表」を開き、博多発の帰りの列車を確認する。"
+    },
+    {
+      "q": "臨時列車の料金はいくらになりますか？",
+      "a": "発表の資料には、臨時列車と臨時特急の料金は書かれていません。料金については発表で触れていないため、分かりません。",
+      "source": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf",
+      "action": "乗車前に、運転日の列車の料金を公式の案内で確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "帰りに特急と普通列車のどちらを選ぶ？",
+      "situation": "博多から遅く帰る予定がある",
+      "recommend": "特急も選択肢に入れて時刻を比べる",
+      "reason": "特急は21時台後半に増発され、博多〜門司港間では3号車と4号車が自由席になります。ただし特急の運転日は12月の土曜日を含みません。",
+      "source": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf"
+    },
+    {
+      "question": "12月の土曜日に帰るなら、どの列車にする？",
+      "situation": "土曜日に博多駅から帰る",
+      "recommend": "臨時の普通列車の時刻を比べて決める",
+      "reason": "土曜日は臨時の普通列車の運転日で、特急の臨時運転日には含まれません。時刻は11月6日に駅別時刻表へ反映される予定です。",
+      "source": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "特急の自由席が広がる区間と車両",
+    "cause": "なぜ臨時列車が増えるのか",
+    "steps": "今日やること、まず何を確かめる？",
+    "worries": "座れるか、料金はいくらか、時刻はいつ分かる？",
+    "guide": "特急と普通列車、どちらで帰るか"
+  },
+  "depthAt": "2026-11-08T16:54:01+00:00"
 }
