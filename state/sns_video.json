@@ -2735,6 +2735,78 @@
       "ok": false,
       "reason": "full: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI / short: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI",
       "pages": []
+    },
+    "child-allowance-third-child-monthly-30000": {
+      "at": "2026-11-08T23:46:15+00:00",
+      "status": "gate_failed",
+      "tries": 1,
+      "textAt": "2026-11-08T23:30:00+00:00",
+      "textId": "",
+      "breaking": false,
+      "scheduled": false,
+      "versions": {
+        "full": {
+          "ok": false,
+          "seconds": 63.581,
+          "reasons": [
+            "v3: QA(目視): 場面3（選択の青）: 選択の青が「数えに入る子には…」の途中の「数」から始まっており、前の文の終わりの「数」が文頭の一部として切れて見える。青が文の頭からぴったり付いていない。",
+            "v3: QA(目視): 場面4（選択の青）: 選択の青が文頭の「2月・4月・」から始まっておらず、行頭の「児童手当は…」の後から付く形で、行末の「支払われます。」まで続いているが、文の途中の「数」「支」で切",
+            "v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 最初の「子どもが3人いる家庭は…」は問いかけに近く、次の見出し「児童手当の拡充で所得制限がなくなった」も硬い。何が起きたか、なぜ自分に関係するか（例：第3子は月3万円など具体的な金額）が冒頭で分からな"
+          ],
+          "qa": {
+            "geometry": true,
+            "vision": false,
+            "version": 1,
+            "v3": false
+          },
+          "template": "",
+          "level": null,
+          "base_layout": "screen-left-headline"
+        },
+        "short": {
+          "ok": false,
+          "seconds": 41.774,
+          "reasons": [
+            "v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 全部の版と同じ冒頭で、「所得制限がなくなった」という硬い言い回しと要約の読み聞かせ調。具体的な金額や自分に関係する理由が最初の8秒で見えず、画面も似た構図が続くため、続けて見たくなる引きが弱い。冒頭に"
+          ],
+          "qa": {
+            "geometry": true,
+            "vision": false,
+            "version": 1,
+            "v3": false
+          },
+          "template": "",
+          "level": null,
+          "base_layout": "screen-left-headline"
+        }
+      },
+      "timings": {
+        "full": {
+          "script": 0.0,
+          "tts": 21.27,
+          "plan_audio": 4.27,
+          "render": 37.71,
+          "gate": 4.86,
+          "sheet": 2.13,
+          "total": 70.3,
+          "ladder_total": 380.7
+        },
+        "short": {
+          "script": 0.0,
+          "tts": 13.97,
+          "plan_audio": 2.74,
+          "render": 26.76,
+          "gate": 3.53,
+          "sheet": 1.48,
+          "total": 48.5,
+          "ladder_total": 380.7
+        }
+      },
+      "ok": false,
+      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 場面3（選択の青）: 選択の青が「数えに入る子には…」の途中の「数」から始まっており、前の文の終わりの「数」が文頭の一部として切れて見える。青が文の頭からぴったり付いていない。 / short: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 場面3（選択の青）: 選択の青が「数えに入る子には…」の途中の「数」から始まっており、前の文の終わりの「数」が文頭の一部として切れて見える。青が文の頭からぴったり付いていない。",
+      "pages": [
+        "ai-tech-express.jp"
+      ]
     }
   },
   "queued": {
@@ -3226,32 +3298,32 @@
     "docomo-data-leak-what-to-do": {
       "status": "waiting",
       "why": "Muse の動画を 11:00 まで待っている",
-      "checkedAt": "2026-11-08T23:26:52+00:00"
+      "checkedAt": "2026-11-08T23:52:38+00:00"
     },
     "child-allowance-third-child-monthly-30000": {
       "status": "waiting",
       "why": "Muse の動画を 09:30 まで待っている",
-      "checkedAt": "2026-11-08T23:26:52+00:00"
+      "checkedAt": "2026-11-08T23:52:38+00:00"
     },
     "respirator-mask-ring-recall-2026": {
       "status": "waiting",
       "why": "枠（12:15）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T23:26:52+00:00"
+      "checkedAt": "2026-11-08T23:52:38+00:00"
     },
     "caa-recall-accident-report-202610": {
       "status": "waiting",
       "why": "枠（13:45）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T23:26:52+00:00"
+      "checkedAt": "2026-11-08T23:52:38+00:00"
     },
     "corporate-data-breach-record-2026": {
       "status": "waiting",
       "why": "枠（11:30）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T23:26:52+00:00"
+      "checkedAt": "2026-11-08T23:52:38+00:00"
     },
     "famima-karaage-kushi-release": {
       "status": "waiting",
       "why": "枠（15:30）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T23:26:52+00:00"
+      "checkedAt": "2026-11-08T23:52:38+00:00"
     }
   },
   "converted": {
