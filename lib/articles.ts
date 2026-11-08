@@ -112,6 +112,12 @@ export type Article = {
   faq?: { q: string; a: string }[];
   /** 今日やること（2〜3個） */
   todayActions?: string[];
+  /** 一歩深くする欄（なるほど・公式窓口・手順・なぜ起きた・不安の Q&A。scripts/depth_fields.py・lib/depth.ts。台帳 A66） */
+  insight?: import("./depth").InsightItem[];
+  officialDesk?: import("./depth").DeskEntry[];
+  todaySteps?: import("./depth").StepItem[];
+  cause?: import("./depth").Cause | null;
+  worries?: import("./depth").WorryItem[];
   /** 章の見出しの記事ごとの言い換え（本文 JSON の章名 → 表示する見出し。scripts/section_polish.py。lib/article-sections.ts） */
   sectionTitles?: { body?: Record<string, string>; easy?: Record<string, string> };
   /** 数字の図（前と今・推移・料金の段。scripts/article_charts.py が記事の表から作る。lib/charts.ts） */

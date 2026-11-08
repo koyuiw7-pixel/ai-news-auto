@@ -246,6 +246,9 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
             # 自動の書き直し（見出し・章の手直し・種類の型）の対象から外す（scripts/rewrite_types.py の refreshMode・section_polish の sectionsPolishedAt）
             "sectionsPolishedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         })
+        if (data.get("depth") or "").strip():
+            # 一歩深くする欄の材料（scripts/depth_fields.py が公式ページで確かめてから使い、使ったら記事から外す。台帳 A66）
+            record["museDepthNotes"] = data["depth"].strip()[:3000]
         if len(fetched) > 1:
             record["museSources"] = [{"url": s["url"], "name": s.get("name") or s.get("title") or ""} for s in fetched]
         w.pre_gate(record, source_text, context)

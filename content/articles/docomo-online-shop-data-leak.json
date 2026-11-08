@@ -71,9 +71,9 @@
     }
   ],
   "todayActions": [
-    "ドコモを名乗るメール・SMS・電話は、本文のURLを開かず、公式アプリか公式サイトから確かめる",
-    "IDやパスワードを入力してしまった覚えがあれば、すぐに変更する",
-    "対象かどうか分からない場合は、特設ダイヤル 0120-451-360（午前9時〜午後8時）に問い合わせる"
+    "ドコモを名乗るSMSが来たら、送信元とURLを公式の一覧と見比べる",
+    "IDやパスワードを入れてしまった覚えがあれば、変更して利用履歴を確かめる",
+    "対象か分からないときは、特設ダイヤル 0120-451-360 に電話する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -125,5 +125,121 @@
     ],
     "ar": 1.3333,
     "src": "https://ai-tech-express.jp/img/docomo-online-shop-data-leak-8f2288e1.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "ドコモの本物のSMSは、送信元が「NTT DOCOMO」「DoCoMo SMS」などの決まった英字の名前か、公開している番号です。リンク先のドメインも一覧で公開されていて、一覧に無いURLは「docomo」の文字が入っていても公式ではありません。",
+      "source": "https://www.docomo.ne.jp/info/anti-phishing/confirmation/"
+    },
+    {
+      "text": "ドコモの「メッセージR」「メッセージS」は、回線契約者にドコモ独自の仕組みで送るもので、なりすましはないとしています。通常のメールでは「ドコモメール公式アカウント」の印が付いたものが、ドコモからのメールと保証されています。",
+      "source": "https://www.docomo.ne.jp/info/anti-phishing/confirmation/"
+    },
+    {
+      "text": "問い合わせ先は第三報（11月6日）で変わりました。第二報ではドコモ インフォメーションセンター（0120-800-000）でしたが、今は流出専用の特設ダイヤル 0120-451-360（午前9時～午後8時）です。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "NTTドコモ 特設ダイヤル（今回の情報流出の問い合わせ）",
+      "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "howTo": [
+        "ドコモからのお知らせ",
+        "第三報",
+        "３．お問い合わせ"
+      ],
+      "phone": "0120-451-360",
+      "hours": "午前9時～午後8時",
+      "note": "第三報で「項番３．お問い合わせ」が更新され、この特設ダイヤルが案内されています。"
+    },
+    {
+      "name": "ドコモ お問い合わせ・ご相談窓口（不正利用・被害のとき）",
+      "url": "https://www.docomo.ne.jp/info/anti-phishing/inquiry/",
+      "source": "https://www.docomo.ne.jp/info/anti-phishing/inquiry/",
+      "howTo": [
+        "万が一被害に遭ったら",
+        "お問い合わせ・ご相談窓口"
+      ],
+      "note": "dカード・d払い・ドコモオンラインショップの不正利用の窓口と、消費者ホットライン「188」がまとまっています。"
+    },
+    {
+      "name": "本物のドコモからの連絡か確認する（送信元とURLの一覧）",
+      "url": "https://www.docomo.ne.jp/info/anti-phishing/confirmation/",
+      "source": "https://www.docomo.ne.jp/info/anti-phishing/confirmation/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ドコモを名乗るSMSが来たら、送信元とURLを公式の一覧と見比べる",
+      "source": "https://www.docomo.ne.jp/info/anti-phishing/confirmation/",
+      "steps": [
+        "SMSの送信元の表示名か番号を見る",
+        "「本物のドコモからの連絡か確認する」の一覧と照らす",
+        "一覧に無いドメインのURLは開かない"
+      ],
+      "url": "https://www.docomo.ne.jp/info/anti-phishing/confirmation/"
+    },
+    {
+      "action": "IDやパスワードを入れてしまった覚えがあれば、変更して利用履歴を確かめる",
+      "source": "https://www.docomo.ne.jp/info/anti-phishing/measure/",
+      "steps": [
+        "dアカウントID／パスワードを変更する",
+        "「dアカウント利用履歴」で覚えのないログインを見る",
+        "「連絡先メールアドレスの確認・変更」で書き換えが無いか見る"
+      ],
+      "url": "https://id.smt.docomo.ne.jp/cgi7/id/histview"
+    },
+    {
+      "action": "対象か分からないときは、特設ダイヤル 0120-451-360 に電話する",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "steps": [
+        "受付は午前9時～午後8時",
+        "SMSやメールに書かれた番号ではなく、公式お知らせの番号にかける"
+      ],
+      "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html"
+    }
+  ],
+  "cause": {
+    "text": "第三報では、原因を「外部からの不正アクセス」としています。どこから入られたか（侵入経路）や、流出した範囲・件数は、引き続き詳しく調べていると発表されています。第二報の時点では、原因は「調査中」でした。",
+    "status": "investigating",
+    "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの番号も漏れたの？",
+      "a": "第三報の流出した項目の一覧に、クレジットカード情報は入っていません。ただ、流出していないとも書かれていません。ドコモは、不審な連絡にクレジットカード情報などを入力・回答しないよう呼びかけています。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "action": "カードの利用明細を見て、身に覚えのない請求があればカード会社に連絡する。dカードは「dカードご利用明細」で確かめられます。",
+      "actionSource": "https://www.docomo.ne.jp/info/anti-phishing/measure/"
+    },
+    {
+      "q": "銀行口座の情報は大丈夫？",
+      "a": "一部のお客さまは「金融機関名、支店名、口座番号、口座名義等」が流出した項目に入っています。自分が該当するかを調べる方法は、公式お知らせにまだ出ていません。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "action": "口座番号や暗証番号を不審なサイトに入力してしまった場合は、すぐに金融機関に連絡する（ドコモの「万が一被害に遭ったら」の案内）。",
+      "actionSource": "https://www.docomo.ne.jp/info/anti-phishing/measure/"
+    },
+    {
+      "q": "家族に詐欺の電話がかかってくる？",
+      "a": "ドコモは、流出した情報を悪用し、ドコモや関係者などを装った不審なメール、SMS、電話が届く可能性があるとしています。警察庁は、親族や警察官、銀行協会職員を装ってキャッシュカードなどをだまし取る手口を紹介しています。",
+      "source": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "action": "特殊詐欺は「犯人と話をしない」ことが大切です。固定電話は番号表示・非通知拒否サービスを使い、知らない番号には出ないよう家族で決める。",
+      "general": true
+    },
+    {
+      "q": "親や子どもの回線の分はどうなる？",
+      "a": "一部のお客さまは「法定代理人・手続代理人の氏名、連絡先」や「子育て応援プログラムに関する情報」も流出した項目に入っています。家族ごとに対象か分かる方法は、まだ発表されていません。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "action": "ドコモを名乗るSMSやメールのURLは開かず、公式アプリか公式サイトから確かめるよう、今日のうちに家族に伝える。"
+    },
+    {
+      "q": "スマホやアカウントの乗っ取りは本当に起きる？",
+      "a": "ドコモは、自分が操作していないのにセキュリティコードや認証コードが届いたら、第三者が不正ログインを試みている可能性があるとしています。",
+      "source": "https://www.docomo.ne.jp/info/anti-phishing/measure/",
+      "action": "身に覚えのないコードが届いたら「dアカウント利用履歴」でログイン履歴を見て、ID／パスワードを変更する。"
+    }
+  ],
+  "depthAt": "2026-11-08T15:49:17+00:00"
 }

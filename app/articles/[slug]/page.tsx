@@ -37,6 +37,8 @@ import { STATUS_LABEL, freeLabel, isUnknownValue, japanLabel, verdictKind, verdi
 import { guideLinksForArticle, insertAfterPricingSection } from "@/lib/guide-links";
 import ArticleFaq from "@/components/ArticleFaq";
 import TodayActions from "@/components/TodayActions";
+import { ActionSteps, CauseBox, InsightBox, OfficialDesk, WorriesBlock } from "@/components/DepthBoxes";
+import { depthOf } from "@/lib/depth";
 import ActionAd from "@/components/ActionAd";
 import { actionAdForArticle } from "@/lib/action-ad";
 import ShareButtons from "@/components/ShareButtons";
@@ -197,6 +199,7 @@ export default async function ArticlePage({ params }: Props) {
   const pricingLink = guideLinks.find((link) => link.kind === "pricing");
   const articleFaq = (article.faq ?? []).map((row) => ({ ...row, a: cleanTake(row.a ?? "") })).filter((row) => row.q && row.a);
   const todayActions = article.todayActions ?? [];
+  const depth = depthOf(article);
   // 広告の置き場所は本文の列に最大3つ（2026-11-09 オーナー指示「邪魔になりすぎるのは良くないけど慈善事業じゃない」）:
   //  (a) 「すぐにできること」のすぐ下の PR（情報流出→セキュリティ、地震→防災の備え など。lib/action-ad.ts）
   //  (b) 本文の途中の商品枠（4〜6位）  (c) 記事の終わり・関連記事の前の商品枠（1〜3位。PC は右側に付いてくる）
@@ -598,6 +601,12 @@ export default async function ArticlePage({ params }: Props) {
             </p>
           )}
 
+          {depth.insight.length > 0 && (
+            <div className="mt-6">
+              <InsightBox items={depth.insight} />
+            </div>
+          )}
+
           {mainArticle && (
             <p className="mt-4 rounded-sm border border-line bg-surface px-4 py-3 text-note text-ink-soft">
               同じ話題をまとめた記事があります：
@@ -817,9 +826,13 @@ export default async function ArticlePage({ params }: Props) {
           {calc && !calcInline && <CalculatorBox calc={calc} className="mt-12" />}
 
           {/* 今日やること（2〜3個）と、よくある質問（3〜5問）。合うジャンルの新しい記事だけ */}
-          {todayActions.length >= 2 && <TodayActions actions={todayActions} />}
+          {/* 一歩深くする欄（scripts/depth_fields.py。公式ページで確かめた原因・手順・窓口・不安への答え。台帳 A66） */}
+          {depth.cause && <CauseBox cause={depth.cause} />}
+          {depth.todaySteps.length >= 2 ? <ActionSteps items={depth.todaySteps} /> : todayActions.length >= 2 && <TodayActions actions={todayActions} />}
           {/* 「すぐにできること」のすぐ下に、行動と同じ話題の PR を1つ（無い記事は本文の終わり） */}
           {actionAd && <ActionAd ad={actionAd} className={todayActions.length >= 2 ? "mt-4" : "mt-12"} />}
+          {depth.officialDesk.length > 0 && <OfficialDesk items={depth.officialDesk} />}
+          {depth.worries.length >= 2 && <WorriesBlock items={depth.worries} />}
           {articleFaq.length >= 1 && <ArticleFaq items={articleFaq} />}
 
           {/* 読み終えたところでもう一度シェア */}

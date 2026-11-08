@@ -15,6 +15,8 @@ import AssetLinks from "@/components/assets/AssetLinks";
 import SourceRecord from "@/components/SourceRecord";
 import ArticleFaq from "@/components/ArticleFaq";
 import TodayActions from "@/components/TodayActions";
+import { ActionSteps, CauseBox, InsightBox, OfficialDesk, WorriesBlock } from "@/components/DepthBoxes";
+import { depthOf } from "@/lib/depth";
 import ActionAd from "@/components/ActionAd";
 import type { ActionAd as ActionAdData } from "@/lib/action-ad";
 import ShareButtons from "@/components/ShareButtons";
@@ -96,6 +98,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
     howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
   } = ctx;
   const noirHtml = noirBodyHtml(bodyHtml, article);
+  const depth = depthOf(article);
   const [noirTop, noirAfterAd] = splitBeforeHeading(noirHtml, 3);
   const [noirMid, noirTail] = splitBeforeHeading(noirAfterAd, 4);
   const noirInlineCta = noirTail && !actionAd && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
@@ -141,6 +144,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
       slots={{
         afterSummary: (
           <>
+            {depth.insight.length > 0 && <InsightBox items={depth.insight} />}
             {mainArticle && (
               <p className="mb-6 border-l-2 border-line-strong pl-3 text-note text-ink-soft">
                 同じ話題をまとめた記事があります：
@@ -202,9 +206,13 @@ export function noirArticlePage(ctx: NoirPageContext) {
               <VerdictCard verdict={verdict} cardKind={cardKind} judgedAt={verdict.judgedAt || article.generatedAt || article.publishedAt} />
             )}
             <AssetLinks article={article} />
-            {todayActions.length >= 2 && <TodayActions actions={todayActions} />}
+            {/* 一歩深くする欄（scripts/depth_fields.py。公式ページで確かめた原因・手順・窓口・不安への答え。台帳 A66） */}
+            {depth.cause && <CauseBox cause={depth.cause} />}
+            {depth.todaySteps.length >= 2 ? <ActionSteps items={depth.todaySteps} /> : todayActions.length >= 2 && <TodayActions actions={todayActions} />}
             {/* 「すぐにできること」のすぐ下に、行動と同じ話題の PR を1つ（無い記事は本文の終わり） */}
             {actionAd && <ActionAd ad={actionAd} className={todayActions.length >= 2 ? "mt-4" : "mt-12"} />}
+            {depth.officialDesk.length > 0 && <OfficialDesk items={depth.officialDesk} />}
+            {depth.worries.length >= 2 && <WorriesBlock items={depth.worries} />}
             {articleFaq.length >= 1 && <ArticleFaq items={articleFaq} />}
           </>
         ),
