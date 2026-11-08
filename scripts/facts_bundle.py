@@ -38,6 +38,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import archive  # noqa: E402
 import calc_facts  # noqa: E402
 import japan_availability  # noqa: E402
+import research  # noqa: E402
 import source_links  # noqa: E402
 
 try:  # 料金データ（content/pricing/*.json）。別の担当が作る。無い環境では料金ガイドで代わりにする
@@ -53,8 +54,19 @@ PAST_DAYS = 60
 MAX_PAST = 4
 PROMPT_CAP = 5000  # 生成に渡す束の長さの上限（無料枠のモデルに収める）
 # 欄ごとの長さの上限（プロンプトに出す分）
-GROUP_CAP = {"元の資料の続き": 4000, "料金": 1800, "他社との比較": 1400, "使い方ガイド": 700, "関連ページ": 800, "公的資料": 1000, "過去記事": 600, "元記事の注記": 600, "為替": 200}
-CHECK_CAP = 6000
+GROUP_CAP = {"調べた公式情報": research.RESEARCH_EXCERPT_CAP, "Museの出典": 2500, "元の資料の続き": 4000, "料金": 1800, "他社との比較": 1400, "使い方ガイド": 700, "関連ページ": 800, "公的資料": 1000, "過去記事": 600, "元記事の注記": 600, "為替": 200}
+CHECK_CAP = 12000  # 2026-11-08: 下調べのページ（台帳 A64）が入るので 6000 → 12000
+# 下調べ（scripts/research.py）・Muse の出典は、1欄ごとに生成の上限を広げる（数字が削られて門で落ちないように）
+RESEARCH_LABELS = ("調べた公式情報", "Museの出典")
+RESEARCH_PROMPT = (
+    "# 調べて足す価値（2026-11-08 オーナー決定・台帳 A64）\n"
+    "- 発表の写し書きにしない。上の「調べた公式情報」「Museの出典」「関連ページ」「公的資料」の欄から、読者が次に知りたいことを足す: "
+    "使い方・申し込みや手続きの手順、対象になるかの判定（条件ごとの表）、前の制度・他社・前のモデルとの比較、注意点とよくある間違い。\n"
+    "- 足す事実・数字は、必ずその欄にあるものだけ。使った文の直後に（ ）で出典を書く（例「（国税庁のページ、11/8確認）」）。欄に無い手順・画面の名前・数字は書かない。\n"
+    "- 欄の数字どうしの簡単な計算（例: 1人50万円×2人＝100万円、月額×12か月）は書いてよい。式を書き、「（サイソク編集部の計算）」と添える。\n"
+    "- 数字の無い一般的な注意（「不審なSMSのリンクは開かない」など）は、言い切りすぎなければ書いてよい。\n"
+    "- 見出しは中身の言葉にする（「使い方」「注意点」だけの決まった型にしない）。表は判定・比較に使う（2〜5行）。"
+)
 ECB_URL = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
 
 PRICE_TOPIC_RE = re.compile(r"料金|価格|値段|プラン|月額|年額|値上げ|値下げ|サブスク|pricing|price|plans?\b|subscription|tier|\$\s?\d|ドル", re.I)
@@ -114,7 +126,11 @@ class Bundle:
 
     def prompt_cap(self) -> int:
         extra = source_links.IR_EXCERPT_CAP if any(g.key.startswith("ir:") for g in self.groups) else 0
+        extra += sum(GROUP_CAP[g.label] for g in self.groups if g.label in RESEARCH_LABELS)
         return PROMPT_CAP + (4000 if self.news_type in source_links.TYPE_EXCERPT_CAP else 0) + extra
+
+    def researched(self) -> bool:
+        return any(g.label in RESEARCH_LABELS or g.label in ("関連ページ", "公的資料") for g in self.groups)
 
     def empty(self) -> bool:
         return not self.groups and not self.computed and not self.unread_docs
@@ -135,6 +151,8 @@ class Bundle:
             )
             for i, g in enumerate(self.groups, 1):
                 parts.append(f"## [F{i}] {g.label}：{g.cite}\n{g.body[:self.cap(g.label, g.key)]}")
+            if self.researched():
+                parts.append(RESEARCH_PROMPT)
         if self.computed:
             parts.append(
                 "# 計算済みの数字（プログラムが計算した。あなたは計算しない）\n"
@@ -181,7 +199,7 @@ class Bundle:
             return ""
         lines = ["当サイトで確認済みの事実の束（記事に出典つきで書いてよい）:"]
         for g in self.groups:
-            lines.append(f"[{g.label}：{g.cite}]\n{g.body}")
+            lines.append(f"[{g.label}：{g.cite}]\n{g.body[:max(self.cap(g.label, g.key), 2500)]}")
         if self.computed:
             lines.append("計算済みの数字（サイソク編集部の計算。式つき。記事に写してよい）:\n" + calc_facts.block(self.computed))
         return "\n".join(lines)[:CHECK_CAP]
@@ -509,10 +527,25 @@ def continuation_group(item: dict, page: dict | None, news_type: str, now: datet
 def link_groups(links: list[dict]) -> list[Group]:
     out = []
     for i, got in enumerate(links, 1):
-        label = "公的資料" if got.get("public") else "関連ページ"
+        label = "調べた公式情報" if got.get("research") else "公的資料" if got.get("public") else "関連ページ"
         title = f"「{got['title']}」" if got.get("title") else ""
         out.append(Group(f"{'ir' if got.get('ir') else 'link'}:{i}", label, f"{got['name']}{title}", got["url"], got.get("checkedAt", ""), got["excerpt"],
                          marks=[got["name"], source_links.host(got["url"])]))
+    return out
+
+
+def muse_groups(sources: list[dict], title: str, now: datetime) -> list[Group]:
+    """Muse が自分で挙げた出典（front-matter の sources[]。1件目は元記事なので2件目から）を束に入れる（台帳 A64）。
+    Muse が調べて足した使い方・比較・数字が、出典のページにあるものなら削られないようにする"""
+    out = []
+    today = now.astimezone(JST).strftime("%Y-%m-%d")
+    for i, s in enumerate(sources, 1):
+        body = source_links.excerpt(s.get("text") or "", f"{title} {s.get('facts') or ''}", cap=GROUP_CAP["Museの出典"])
+        if len(body) < 80 or not s.get("url"):
+            continue
+        name = s.get("name") or source_links.site_name(s["url"])
+        out.append(Group(f"muse:{i}", "Museの出典", name, s["url"], today, body,
+                         marks=[name, source_links.host(s["url"]), source_links.base_domain(source_links.host(s["url"]))]))
     return out
 
 
@@ -531,8 +564,10 @@ def fx_group(fx: dict | None, needed: bool) -> Group | None:
 
 def build(item: dict, text: str, related: list[dict] | None = None, lane: str = "ai", page: dict | None = None, *,
           follow_links: bool = True, now: datetime | None = None, log=None, fetcher=None, max_links: int = 2,
-          news_type: str = "", list_fetcher=None) -> Bundle:
-    """1本の記事の「確かな事実の束」。ネットワークに出るのはリンク先（最大2本）と為替（料金データが無いとき）だけ"""
+          news_type: str = "", list_fetcher=None, research_pages: int = research.MAX_PAGES, searcher=None,
+          extra_sources: list[dict] | None = None) -> Bundle:
+    """1本の記事の「確かな事実の束」。ネットワークに出るのはリンク先（最大2本）・下調べ（検索2回＋最大3本。台帳 A64）と為替だけ。
+    extra_sources: 書き手（Muse）が自分で挙げた出典 [{url, name, title, text}]。読めた本文を「Museの出典」の欄に入れる"""
     now = now or datetime.now(timezone.utc)
     title = item.get("title") or ""
     money = is_money_topic(lane, title, text)
@@ -553,7 +588,19 @@ def build(item: dict, text: str, related: list[dict] | None = None, lane: str = 
                                     keywords=keywords, fetcher=fetcher, now=now, log=log, max_fetches=max_links, news_type=news_type,
                                     unread=unread, published=statement_date(item, text, page), source_text=text or "",
                                     list_fetcher=list_fetcher)
+    if fetcher is not None and searcher is None:
+        searcher = lambda q: []  # noqa: E731 - 試しの取得（テスト）では検索に出ない
+    if follow_links and page is not None and research_pages > 0:
+        # 下調べ（2026-11-08 オーナー決定・台帳 A64）: 話題から公式・確かなページを探して読む。リンク先と合わせて最大5本
+        try:
+            links += research.research(item, text, page, news_type=news_type, money=money,
+                                       max_pages=min(research_pages, 5 - len(links)), skip={l["url"] for l in links},
+                                       searcher=searcher, fetcher=fetcher, log=log, now=now)
+        except Exception as error:  # noqa: BLE001 - 下調べができなくても記事は作る
+            if log:
+                log(f"   [research] 下調べに失敗（{str(error)[:80]}）")
     groups += link_groups(links)
+    groups += muse_groups(extra_sources or [], title, now)
     past = past_rows(title, text, related or [], now)
     if g := past_group(past):
         groups.append(g)

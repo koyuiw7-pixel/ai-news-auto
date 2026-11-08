@@ -1103,7 +1103,7 @@ def compose(item: dict, text: str, lane: str, related: list[dict], voice_text: s
 
 
 def compose_with_facts(item: dict, text: str, lane: str, related: list[dict], voice_text: str, page: dict | None = None,
-                       bundle: facts_bundle.Bundle | None = None):
+                       bundle: facts_bundle.Bundle | None = None, extra_sources: list[dict] | None = None):
     """compose と同じものに、確かな事実の束（facts_bundle.Bundle）を足して返す。
     page（元記事の取得結果）を渡すと、元記事の中のリンクを最大2本追いかけて束に入れる。
     戻り値: (genre, system, prompt, schema, kind, check_context, bundle)"""
@@ -1117,7 +1117,10 @@ def compose_with_facts(item: dict, text: str, lane: str, related: list[dict], vo
             bundle = facts_bundle.build(item, text, related, lane, page, follow_links=page is not None, log=log,
                                         max_links=(2 if deep else 1) if fast
                                         else (GATE_RETRY_LINKS if item.get("gate_retry") else (3 if deep else 2)),
-                                        news_type=pre_type)
+                                        news_type=pre_type,
+                                        # 下調べ（台帳 A64）: 速報は1本・ふつうは3本。Muse は自分の出典（extra_sources）を使うので探さない
+                                        research_pages=0 if item.get("muse") else (1 if fast else 3),
+                                        extra_sources=extra_sources)
         except Exception as error:  # noqa: BLE001 - 束が作れなくても記事は今までどおり作る
             log(f"   [facts] 確かな事実の束を作れませんでした（{str(error)[:80]}）")
             bundle = facts_bundle.Bundle()
@@ -1354,7 +1357,7 @@ def fix_ui_steps(record: dict, item: dict, page: dict | None, bundle: facts_bund
     if not source.strip():
         return
     allowed = ui_claims.Allowed(source)
-    link = next((g for g in groups if g.label in ("関連ページ", "公的資料") and HELP_URL_RE.search(g.url)), None)
+    link = next((g for g in groups if g.label in ("関連ページ", "公的資料", "調べた公式情報", "Museの出典") and HELP_URL_RE.search(g.url)), None)
     if link:
         url, name = link.url, link.name.split("「")[0]
     else:

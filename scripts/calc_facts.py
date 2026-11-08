@@ -795,6 +795,82 @@ def block(computed: list[Computed]) -> str:
     return "\n".join(f"- [C{i}] {c.text}" for i, c in enumerate(computed, 1))
 
 
+# --------------------------------------------------------------------------- #
+# 記事が自分で書いた簡単な計算（2026-11-08 オーナー決定・台帳 A64）
+#   「1人50万円×2人＝100万円（サイソク編集部の計算）」のように、確かめた数字どうしの簡単な計算で、
+#   「計算」「試算」と分かる書き方をしたものは、結果が合っていれば使ってよい数字とみなす。合わない式は門で直させる。
+# --------------------------------------------------------------------------- #
+
+CALC_LABEL_RE = re.compile(r"計算|試算")
+_OP_NUM = r"\d[\d,]*(?:\.\d+)?[兆億万千]?(?:\d[\d,]*[億万千]?)*"
+_OP_UNIT = r"(?:円|ドル|人|か月|ヶ月|カ月|か所|カ所|月|年|回|件|本|枚|台|日|時間|分|%|倍|口|社|個|世帯|歳)?"
+EXPR_RE = re.compile(
+    rf"(?P<left>(?:{_OP_NUM}){_OP_UNIT}(?:\s*[×x*÷/+\-−]\s*(?:{_OP_NUM}){_OP_UNIT})+)\s*=\s*(?:約)?(?P<right>{_OP_NUM}){_OP_UNIT}"
+)
+SMALL_COUNT_MAX = 1000  # 「2人」「12か月」のような数（お金・割合でないもの）は、文にあれば計算の材料にしてよい
+
+
+def _expr_value(left: str) -> float | None:
+    tokens = re.findall(rf"({_OP_NUM}){_OP_UNIT}|([×x*÷/+\-−])", left)
+    expr = []
+    for num, op in tokens:
+        if num:
+            expr.append(repr(parse_jp(num)))
+        elif op:
+            expr.append({"×": "*", "x": "*", "÷": "/", "−": "-"}.get(op, op))
+    try:
+        return float(eval("".join(expr), {"__builtins__": {}}, {}))  # noqa: S307 - 数字と + - * / だけ
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def bad_expressions(text: str) -> list[str]:
+    """「A×B＝C」のように書いた式で、計算が合わないもの（式の文字列）"""
+    out = []
+    for m in EXPR_RE.finditer(nfkc(text or "")):
+        got = _expr_value(m.group("left"))
+        want = parse_jp(m.group("right"))
+        if got is None or want == 0:
+            continue
+        if abs(got - want) > 0.011 * max(abs(want), 1e-9):
+            out.append(m.group(0))
+    return out
+
+
+def derived(q: "Qty", verified: list[float], text: str = "") -> bool:
+    """記事の数字 q が、「計算」「試算」と分かる書き方の文で、確かめた数字（verified）どうし（か、文にある小さな数）の
+    1回の足し算・引き算・かけ算・割り算、または同じ単位の数字の合計で出せるか"""
+    if not CALC_LABEL_RE.search(q.sentence or ""):
+        return False
+    # 同じ文と、その直前（2文くらい）の数字を材料にする
+    window = q.sentence
+    if text:
+        t = nfkc(text)
+        window = t[max(0, q.start - 160):q.end + 40]
+    ops, verified_ops = [], []
+    for x in extract(window):
+        if abs(x.value - q.value) < 1e-9 and x.unit == q.unit:
+            continue
+        if supported(x, verified):
+            ops.append(x.value)
+            verified_ops.append(x.value)
+        elif not x.is_money and x.unit != "%" and 0 < x.value <= SMALL_COUNT_MAX:
+            ops.append(x.value)
+    if not verified_ops:
+        return False
+    ops = list(dict.fromkeys(ops))[:30]
+    results = []
+    for a in verified_ops:
+        for b in ops:
+            results += [a * b, a + b, abs(a - b)]
+            if b:
+                results.append(a / b)
+            if a:
+                results.append(b / a)
+    results.append(sum(dict.fromkeys(verified_ops)))
+    return supported(q, [r for r in results if r])
+
+
 def main() -> int:
     text = " ".join(sys.argv[1:]) or sys.stdin.read()
     for c in compute(text):

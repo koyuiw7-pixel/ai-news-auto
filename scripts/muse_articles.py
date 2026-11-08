@@ -222,7 +222,8 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
     source_text = source_text_of(fetched)
     lane = LANE_BY_GENRE.get(data["genre"], "lifestyle")
     voice_key, voice_text = m.pick_voice()
-    genre, system, prompt, schema, kind, context, bundle = w.compose_with_facts(item, source_text, lane, [], voice_text, page)
+    genre, system, prompt, schema, kind, context, bundle = w.compose_with_facts(item, source_text, lane, [], voice_text, page,
+                                                                                    extra_sources=fetched[1:])
     prompt += MUSE_DRAFT_NOTE.format(title=data["title"], notes=data.get("notes") or "（なし）", body=data["body"])
     need = pass_score(data["genre"])
     problems: list[str] = []

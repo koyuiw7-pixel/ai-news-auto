@@ -48,7 +48,7 @@ SURGICAL_MIN_SCORE = 75
 SOURCE_CAP = 13000
 ARTICLE_CAP = 9000
 # 事実確認に渡す「確認済みの文脈」（過去記事・日本での提供・確かな事実の束・計算済みの数字）の長さ
-CONTEXT_CAP = 7000
+CONTEXT_CAP = 12000  # 2026-11-08: 下調べのページ（台帳 A64）が入るので 7000 → 12000
 
 BOILERPLATE_RE = re.compile(
     r"\b(Read more|Learn more|Subscribe|Sign up|Sign in|Cookie|Privacy Policy|Terms of (Use|Service)|"
@@ -268,14 +268,17 @@ def number_problems(record: dict, source_text: str, context: str = "") -> list[s
     problems = []
     missing, seen = [], set()
     for q in found:
-        if not calc_facts.supported(q, allowed) and q.text not in seen:
+        # 確かめた数字どうしの簡単な計算で「計算」と分かる書き方なら、合っていれば使ってよい（2026-11-08 台帳 A64）
+        if not calc_facts.supported(q, allowed) and not calc_facts.derived(q, allowed, text) and q.text not in seen:
             seen.add(q.text)
             missing.append(f"「{q.before[-12:]}{q.text}」")
     if missing:
         problems.append(
             f"元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（{'、'.join(missing[:5])}）。"
-            "元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
+            "元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
         )
+    if bad := calc_facts.bad_expressions(text):
+        problems.append(f"計算の式が合っていない（{'、'.join('「' + b + '」' for b in bad[:3])}）。式の答えを正しく直すか、その文を削る")
     # 束の数字を出典なしで使っていないか
     source_vals = calc_facts.values(f"{source_text}\n{context}")
     plain = [q for q in found if calc_facts.supported(q, allowed) and not calc_facts.supported(q, source_vals)]
@@ -926,7 +929,9 @@ FACT_PROMPT = """# 元記事（一次情報。自動抽出なのでメニュー�
 - 記事にある数値・日付・価格・固有名詞・発言・対象者・提供状況が、元記事に書かれているか、元記事と矛盾しないかを確かめる。
 - 「確認済みの文脈」に書かれた事実（サイソクの過去記事・当サイトで確認済みの日本での提供状況・確かな事実の束〔公式の料金表・当サイトのガイド・元記事のリンク先の公式ページ・公的資料・為替〕）は、元記事と同じく正しい事実として扱う。
   記事がその事実を使うときは「（Anthropic公式の料金ページ、11/3確認）」のように出典が添えてあればよい。出典が無いだけなら言い過ぎと同じ軽い問題（fatal にしない）。
-- 「計算済みの数字」（サイソク編集部の計算。式つき）にある数字は、表記どおり（「約」を含む）なら正しい。欄に無い計算結果（記事が自分で計算した割合・差・増減率・ペース・円換算）は創作として問題にする。
+- 「計算済みの数字」（サイソク編集部の計算。式つき）にある数字は、表記どおり（「約」を含む）なら正しい。
+  記事が「（サイソク編集部の計算）」「〜の計算」と明記し、元記事・確認済みの文脈の数字どうしを正しく計算した結果（例: 1人50万円×2人＝100万円、月額×12か月）は正しい事実として扱う（2026-11-08 台帳 A64）。
+  計算が間違っているもの、計算と書かずに出した数字、元記事・確認済みの文脈に無い数字を材料にした計算は創作として問題にする。
 - 次は問題にしない: 元記事の内容の言い換え・要約、「確認済みの文脈」に書かれた事実（過去の経緯・日付・価格など）、「（編集部注）」と明記した一般的な背景説明（具体的な数値を含まないもの）、
   「元記事では言及なし」「発表されていない」といった記述、読者への一般的な助言（公式情報を確認しよう等）。
 - 「[元記事の情報]」の発信元・公開日時に基づく記述（「〇〇の公式ブログによると」「10月26日に発表」など）は元記事に書かれた事実として扱う。
