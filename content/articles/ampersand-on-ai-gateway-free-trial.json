@@ -80,8 +80,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "開発中のアプリがあるなら、モデル名「humansand/ampersand-v0.1」を指定して、11月13日までに試し呼び出しをしてみる。",
-    "コーディングエージェントを使うなら、最新のVercel CLIを入れて「npx vercel ai-gateway setup」を実行する。"
+    "開発中のアプリで、モデル名 humansand/ampersand-v0.1 を指定して試し呼び出しをする。",
+    "コーディングエージェントで使うなら、最新の Vercel CLI を入れて setup を実行する。"
   ],
   "relatedSlugs": [
     "vercel-ai-gateway-deepseek-search-fetch"
@@ -141,5 +141,84 @@
     },
     "fixes": [],
     "notes": "リードで無料期間と対象読者を先に示し、見出しと呼び出し方の説明を整理しました。資料だけでは確認できない無料期間後の料金などに関する記述と、接続先URLの変更だけで使えるという記述を削りました。"
-  }
+  },
+  "insight": [
+    {
+      "text": "send_message の入力は content（文字列）だけで、前後の空白を除いて1文字以上が必要です。サンプルでは z.string().trim().min(1) と書かれています。",
+      "source": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway"
+    },
+    {
+      "text": "Ampersandは Z.ai のオープンウェイトモデル「GLM 5.3」をもとに作られ、模擬の複数人会話で強化学習されています。",
+      "source": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Ampersand from Humans& モデル詳細（AI Gateway）",
+      "url": "https://vercel.com/ai-gateway/models/ampersand-v0.1",
+      "source": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway",
+      "note": "モデルの詳細は、本文中の「View model details」のリンクから開けると書かれています。"
+    },
+    {
+      "name": "AI Gateway コーディングエージェントのガイド",
+      "url": "https://vercel.com/docs/ai-gateway/coding-agents",
+      "source": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway",
+      "note": "Claude Code、Codex、Cursor などで使う設定の詳しい説明は、このガイドにあると案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "開発中のアプリで、モデル名 humansand/ampersand-v0.1 を指定して試し呼び出しをする。",
+      "source": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway",
+      "steps": [
+        "AI SDK か Chat Completions API を使う",
+        "model に humansand/ampersand-v0.1 を指定する",
+        "tools に send_message と pass を定義して呼び出す"
+      ],
+      "url": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway"
+    },
+    {
+      "action": "コーディングエージェントで使うなら、最新の Vercel CLI を入れて setup を実行する。",
+      "source": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway",
+      "steps": [
+        "最新の Vercel CLI をインストールする",
+        "npx vercel ai-gateway setup を実行する",
+        "エージェントで humansand/ampersand-v0.1 を選ぶ"
+      ],
+      "url": "https://vercel.com/docs/ai-gateway/coding-agents"
+    }
+  ],
+  "cause": {
+    "text": "多くのチャットAIは一人の質問に答える作りですが、Ampersandは複数人の会話に加わるよう学習されています。各発言のあとに、返答するか黙っているかを決めます。Z.ai のオープンウェイトモデル GLM 5.3 をもとに、模擬の複数人会話で強化学習されています。",
+    "status": "background",
+    "source": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway"
+  },
+  "worries": [
+    {
+      "q": "料金の上乗せや手数料はかかる？",
+      "a": "AI Gatewayは提供元の料金に上乗せせず、推論への手数料も取らないと書かれています。自分のAPIキーを持ち込む方式（BYOK）でも同じと案内されています。",
+      "source": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway",
+      "action": "BYOKで使うなら、利用量の管理には APIキーごとの予算（budgets）の機能があると確かめておく。"
+    },
+    {
+      "q": "アプリの中で何が実行されるの？",
+      "a": "send_message と pass の2つの道具はアプリ側が定義し、実行して結果を記録すると書かれています。",
+      "source": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway",
+      "action": "アプリ側で、send_message の投稿と pass の待機の結果を記録する処理を用意する。"
+    },
+    {
+      "q": "宛先でない発言にも反応してしまう？",
+      "a": "すべてのメッセージを読み、宛先でないものにも、返すか黙っているかを毎回判断すると書かれています。",
+      "source": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway",
+      "action": "試すときは、会話の中で黙るケースも含めて、返答と沈黙の両方を確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "送信元とツールの決まりを先に知る",
+    "cause": "Ampersandが作られた背景",
+    "steps": "期限までに試す手順",
+    "desk": "公式の確認先とモデル詳細",
+    "worries": "無料期限や料金、動きは大丈夫？"
+  },
+  "depthAt": "2026-11-08T18:13:36+00:00"
 }
