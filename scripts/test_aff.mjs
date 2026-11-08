@@ -27,6 +27,9 @@ try {
   const attributionOutfile = join(dir, "attribution-test.mjs");
   await build({ entryPoints: ["lib/a8-attribution.test.ts"], outfile: attributionOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning" });
   await import(pathToFileURL(attributionOutfile).href);
+  const actionAdOutfile = join(dir, "action-ad-test.mjs");
+  await build({ entryPoints: ["lib/action-ad.test.ts"], outfile: actionAdOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning" });
+  await import(pathToFileURL(actionAdOutfile).href);
   const footerOutfile = join(dir, "footer-link-test.mjs");
   await build({ entryPoints: ["components/DifyDecisionLink.test.tsx"], outfile: footerOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning", plugins: [{
     name: "next-pathname-for-footer-link-test",

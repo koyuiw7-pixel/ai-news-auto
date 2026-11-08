@@ -37,6 +37,8 @@ import { STATUS_LABEL, freeLabel, isUnknownValue, japanLabel, verdictKind, verdi
 import { guideLinksForArticle, insertAfterPricingSection } from "@/lib/guide-links";
 import ArticleFaq from "@/components/ArticleFaq";
 import TodayActions from "@/components/TodayActions";
+import ActionAd from "@/components/ActionAd";
+import { actionAdForArticle } from "@/lib/action-ad";
 import ShareButtons from "@/components/ShareButtons";
 import ThreadsFollow from "@/components/ThreadsFollow";
 import { offerPlanForArticle } from "@/lib/offers";
@@ -198,7 +200,17 @@ export default async function ArticlePage({ params }: Props) {
   // 広告枠は記事との関連の点数が基準を超えた商品だけを、関連の高い順に出す（lib/offers.ts）。
   // 右側（1〜3位）と本文中（4〜6位）で同じ商品は出さない。
   // 各枠は候補の中から、この端末でまだ見ていない商品を先に3つ出す（RankingBody）
-  const { offer: offerAll, rail: offer, inline: inlineOffer } = offerPlanForArticle(article);
+  const { offer: offerAll, rail: offer, inline: plannedInlineOffer } = offerPlanForArticle(article);
+  // 「すぐにできること」のすぐ下の PR（情報流出→セキュリティ、地震→防災の備え など。lib/action-ad.ts）。
+  // これを出す記事では、本文中の PR はこれ1つにし、4〜6位の商品枠は記事末（下の枠）に回す（本文中の PR は1か所だけ）
+  const railKeys = (offer?.items ?? []).map((item) => item.key);
+  const actionAdRaw = actionAdForArticle(article, railKeys);
+  const shownPixels = new Set([...(offer?.pixels ?? []), ...(plannedInlineOffer?.pixels ?? [])]);
+  const actionAd = actionAdRaw
+    ? { ...actionAdRaw, items: actionAdRaw.items.map((x) => (x.pixel && shownPixels.has(x.pixel) ? { ...x, pixel: undefined } : x)) }
+    : undefined;
+  const inlineOffer = actionAd ? undefined : plannedInlineOffer;
+  const bottomOffer = actionAd ? plannedInlineOffer : undefined;
   // 商品枠の話題に比較ガイドがあれば、商品枠のすぐ下に1行だけ案内する
   const buyingGuide = buyingGuideForTopic(offerAll?.topic);
   // 製品を扱う記事だけ、本文中の商品枠のそばに「Amazon / 楽天で見る」を1行（右側には出さない）
@@ -286,9 +298,9 @@ export default async function ArticlePage({ params }: Props) {
   // 本文中の PR は1か所だけ（PC は右側の1〜3位＋本文中1つ、スマホは本文中1つ＋ページ下の1〜3位の最大2つ）。
   // 同じページに PR の囲みが3つ以上並ぶと広告だらけに見えるため（2026-11-03 監査）。優先順:
   // 本文中の4〜6位（Amazon/楽天の1行は同じ囲みの中）→ Amazon/楽天の1行だけ → 収益導線（monetization.json）の中盤 → 記事末
-  const inlineCta = bodyTail && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
-  const primaryCta = !inlineOffer && !shopLink && !inlineCta && getCta(article.genreSlug, "primary") ? "primary" : undefined;
-  const hasInlinePr = Boolean(inlineOffer || shopLink || inlineCta || primaryCta);
+  const inlineCta = bodyTail && !actionAd && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
+  const primaryCta = !actionAd && !inlineOffer && !shopLink && !inlineCta && getCta(article.genreSlug, "primary") ? "primary" : undefined;
+  const hasInlinePr = Boolean(actionAd || inlineOffer || shopLink || inlineCta || primaryCta);
   const headings = tocOf(body, article.sectionTitles);
   // 読み終えた人に「次の1本」を大きく見せる。本文の途中にも1本だけ差し込む
   const nextReads = getNextReads(article, (a) => companyOf(a).slug);
@@ -415,7 +427,7 @@ export default async function ArticlePage({ params }: Props) {
       article, jsonLd, bodyHtml, easyHtml, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
       inlineOffer, shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, offer, inlineRead, mainArticle,
       guideLinks, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
-      howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink,
+      howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd, bottomOffer,
     });
   }
 
@@ -797,7 +809,7 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           )}
           {bodyTail && readNextInline && <ReadNextBox link={readNextInline} className={`my-10 ${readNextInlineClass}`} />}
-          {bodyTail && !inlineOffer && shopLink && <ShopLinks link={shopLink} className="my-10" />}
+          {bodyTail && !actionAd && !inlineOffer && shopLink && <ShopLinks link={shopLink} className="my-10" />}
 
           {bodyTail && (
             <div className="read-expert">
@@ -812,6 +824,8 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 今日やること（2〜3個）と、よくある質問（3〜5問）。合うジャンルの新しい記事だけ */}
           {todayActions.length >= 2 && <TodayActions actions={todayActions} />}
+          {/* 「すぐにできること」のすぐ下に、行動と同じ話題の PR を1つ（無い記事は本文の終わり） */}
+          {actionAd && <ActionAd ad={actionAd} className={todayActions.length >= 2 ? "mt-4" : "mt-12"} />}
           {articleFaq.length >= 1 && <ArticleFaq items={articleFaq} />}
 
           {/* 読み終えたところでもう一度シェア */}
@@ -880,16 +894,16 @@ export default async function ArticlePage({ params }: Props) {
           <NewsletterSignup variant="article" />
           <PushOptIn />
 
-          {/* 本文が短く途中に置けなかった記事だけ、記事末に出す */}
-          {!bodyTail && inlineOffer && (
+          {/* 本文が短く途中に置けなかった記事と、「すぐにできること」のそばに PR を出した記事は、記事末に出す */}
+          {((!bodyTail && inlineOffer) || bottomOffer) && (
             <div className="mt-12 max-w-[46em]">
-              <RailRanking offer={inlineOffer} wide id="offer-inline" title={inlineOffer.headline} />
+              <RailRanking offer={(inlineOffer ?? bottomOffer)!} wide id="offer-inline" title={(inlineOffer ?? bottomOffer)!.headline} />
               {shopLink && <ShopLinks link={shopLink} className="mt-3" />}
               {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex lg:hidden" />}
             </div>
           )}
           {!bodyTail && readNextInline && <ReadNextBox link={readNextInline} className={`mt-12 ${readNextInlineClass}`} />}
-          {!bodyTail && !inlineOffer && shopLink && <ShopLinks link={shopLink} className="mt-12" />}
+          {!bodyTail && !inlineOffer && !bottomOffer && shopLink && <ShopLinks link={shopLink} className="mt-12" />}
 
           {/* 値上げ・障害・リコール・サービス終了の一覧に載っている記事（台帳 A52） */}
           <TopicListMembership slug={article.slug} className="mt-12" />

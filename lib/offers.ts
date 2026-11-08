@@ -135,7 +135,16 @@ type OffersFile = {
   fallbackByGenre?: Record<string, string>;
   partners: Record<string, Partner>;
   b2b?: B2BConfig;
+  /** 記事の「すぐにできること」のそばに出す PR の話題（scripts/a8_import.py の ACTION_ADS。lib/action-ad.ts） */
+  actionAds?: ActionAdRule[];
 };
+
+export type ActionAdRule = { key: string; title: string; match: string; partners: string[]; max?: number; genres?: string[]; exclude?: string };
+
+/** 「すぐにできること」のそばの PR の話題（上から順に照合する） */
+export function actionAdRules(): ActionAdRule[] {
+  return load().offers.actionAds ?? [];
+}
 
 type ProductsFile = {
   fetchedAt: string;

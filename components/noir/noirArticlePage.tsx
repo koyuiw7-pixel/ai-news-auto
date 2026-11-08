@@ -15,6 +15,8 @@ import AssetLinks from "@/components/assets/AssetLinks";
 import SourceRecord from "@/components/SourceRecord";
 import ArticleFaq from "@/components/ArticleFaq";
 import TodayActions from "@/components/TodayActions";
+import ActionAd from "@/components/ActionAd";
+import type { ActionAd as ActionAdData } from "@/lib/action-ad";
 import ShareButtons from "@/components/ShareButtons";
 import ThreadsFollow from "@/components/ThreadsFollow";
 import ReadNextBox from "@/components/ReadNextBox";
@@ -55,6 +57,10 @@ export type NoirPageContext = {
   sourceName: string;
   showAds: boolean;
   inlineOffer: Any;
+  /** 「すぐにできること」のすぐ下の PR（lib/action-ad.ts）。これがある記事は本文中の PR をこれ1つにする */
+  actionAd?: ActionAdData;
+  /** actionAd を出した記事で、4〜6位の商品枠を記事末に回したもの */
+  bottomOffer?: Any;
   shopLink: Any;
   buyingGuide: Any;
   chooseGuide: ChooseGuide | undefined | null;
@@ -89,14 +95,14 @@ export function noirArticlePage(ctx: NoirPageContext) {
     article, jsonLd, bodyHtml, easyHtml, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
     inlineOffer, shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, offer, inlineRead, mainArticle,
     guideLinks, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
-    howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink,
+    howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd, bottomOffer,
   } = ctx;
   const noirHtml = noirBodyHtml(bodyHtml, article);
   const [noirTop, noirAfterAd] = splitBeforeHeading(noirHtml, 3);
   const [noirMid, noirTail] = splitBeforeHeading(noirAfterAd, 4);
-  const noirInlineCta = noirTail && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
-  const noirPrimaryCta = !inlineOffer && !shopLink && !noirInlineCta && getCta(article.genreSlug, "primary") ? "primary" : undefined;
-  const noirHasInlinePr = Boolean(inlineOffer || shopLink || noirInlineCta || noirPrimaryCta);
+  const noirInlineCta = noirTail && !actionAd && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
+  const noirPrimaryCta = !actionAd && !inlineOffer && !shopLink && !noirInlineCta && getCta(article.genreSlug, "primary") ? "primary" : undefined;
+  const noirHasInlinePr = Boolean(actionAd || inlineOffer || shopLink || noirInlineCta || noirPrimaryCta);
   const badge = sourceBadge(article);
   // 発表元の名前（写真の注記の団体名 → 企業名 → 発信元の名前）
   const org =
@@ -111,6 +117,13 @@ export function noirArticlePage(ctx: NoirPageContext) {
   const inlinePrBlock = inlineOffer ? (
     <div className="nr-slot">
       <RailRanking offer={inlineOffer} wide id="offer-inline" title={inlineOffer.headline} />
+      {shopLink && <ShopLinks link={shopLink} className="mt-3" />}
+      {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex" />}
+    </div>
+  ) : null;
+  const bottomPrBlock = bottomOffer ? (
+    <div className="mt-12">
+      <RailRanking offer={bottomOffer} wide id="offer-inline" title={bottomOffer.headline} />
       {shopLink && <ShopLinks link={shopLink} className="mt-3" />}
       {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex" />}
     </div>
@@ -180,7 +193,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
           <>
             {inlinePrBlock}
             {readNextInline && <ReadNextBox link={readNextInline} className="my-10" />}
-            {!inlineOffer && shopLink && <ShopLinks link={shopLink} className="my-10" />}
+            {!actionAd && !inlineOffer && shopLink && <ShopLinks link={shopLink} className="my-10" />}
           </>
         ),
         tailCta: noirInlineCta ? <CtaBanner genreSlug={article.genreSlug} slot="inline" className="my-10" /> : null,
@@ -199,6 +212,8 @@ export function noirArticlePage(ctx: NoirPageContext) {
             )}
             <AssetLinks article={article} />
             {todayActions.length >= 2 && <TodayActions actions={todayActions} />}
+            {/* 「すぐにできること」のすぐ下に、行動と同じ話題の PR を1つ（無い記事は本文の終わり） */}
+            {actionAd && <ActionAd ad={actionAd} className={todayActions.length >= 2 ? "mt-4" : "mt-12"} />}
             {articleFaq.length >= 1 && <ArticleFaq items={articleFaq} />}
           </>
         ),
@@ -234,7 +249,8 @@ export function noirArticlePage(ctx: NoirPageContext) {
             <PushOptIn />
             {!noirTail && inlinePrBlock}
             {!noirTail && readNextInline && <ReadNextBox link={readNextInline} className="mt-12" />}
-            {!noirTail && !inlineOffer && shopLink && <ShopLinks link={shopLink} className="mt-12" />}
+            {bottomPrBlock}
+            {!noirTail && !inlineOffer && !bottomOffer && shopLink && <ShopLinks link={shopLink} className="mt-12" />}
             {article.tags.length > 0 && (
               <div className="mt-12 flex flex-wrap gap-2">
                 {article.tags.map((tag) => (

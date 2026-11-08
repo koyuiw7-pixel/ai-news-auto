@@ -72,6 +72,53 @@ PARTNERS: dict[str, dict] = {
     "s00000000018021": {"key": "gmo-wimax", "name": "GMOとくとくBB WiMAX", "label": "持ち歩けるWi-Fi", "note": "工事なしで使えるWiMAX +5G。家でも外出先でも、ノートPCやタブレットをすぐネットにつなげる", "shop": "GMOとくとくBB"},
     "s00000000040014": {"key": "biglobe-wimax", "name": "BIGLOBE WiMAX +5G", "label": "端末つきで始める", "note": "データ端末つきで申し込めるWiMAX +5G。工事不要で、届いたその日から使える", "shop": "BIGLOBE"},
     "s00000000018046": {"key": "gmo-home-wifi", "name": "GMOとくとくBB ホームWi-Fi", "label": "工事不要の家Wi-Fi", "note": "コンセントに挿すだけで使える置き型Wi-Fi。光回線の工事ができない部屋や、引っ越し直後に", "shop": "GMOとくとくBB"},
+    # 2026-11-08 追加：暮らしの手続き・備え（記事の「すぐにできること」のそばに出す。下の ACTION_ADS）。
+    # TSV に無いものは A8 の「広告リンク作成」で取った素材を a8 に持つ（テキストのa8mat, ピクセルのサーバー番号, アンカー文, バナーサイズ, バナーのサーバー番号, バナー）
+    "s00000025743001": {"key": "furusato-honpo", "name": "ふるさと本舗", "label": "ふるさと納税サイト", "note": "全国の特産品を返礼品として選べるふるさと納税サイト。", "shop": "ふるさと本舗公式",
+                        "a8": ["4BGGBL+BZNACY+5IMU+5YRHE", "19", "ふるさと本舗", "300×250", "21", "261108129725,001,01,s00000025743001012000,1"]},
+    "s00000023934001": {"key": "aupay-furusato", "name": "au PAY ふるさと納税", "label": "ふるさと納税", "note": "返礼品を探して寄付できるふるさと納税サイト。", "shop": "au PAY ふるさと納税公式",
+                        "a8": ["4BGCEZ+3DGG6Q+54OC+5ZMCH", "13", "au PAY ふるさと納税", "300×250", "26", "261103067204,001,01,s00000023934001006000,1"]},
+    "s00000020080001": {"key": "elpio", "name": "エルピオでんき", "label": "電気の契約先を見直す", "note": "家庭向けの電気の契約先を切り替えられる電力会社。料金プランと対象エリアは公式サイトで確認できます。", "shop": "エルピオでんき公式",
+                        "a8": ["4BGGBL+C9RNN6+4AXS+5Z6WY", "19", "エルピオでんき", "300×250", "26", "261108129742,001,01,s00000020080001010000,1"]},
+    "s00000025626001": {"key": "akamaru-bousai", "name": "あかまる防災 防災グッズ44点セット", "label": "防災グッズのセット", "note": "防災士が監修した44点入りの防災セット。中身と価格は公式サイトで確認できます。", "shop": "あかまる防災公式",
+                        "a8": ["4BGGBL+CI3Q42+5HQC+5YJRM", "16", "防災士監修の防災グッズ44点セット", "300×250", "21", "261108129756,001,01,s00000025626001003000,1"]},
+    "s00000027418001": {"key": "stoole", "name": "スツーレ", "label": "防災の備え", "note": "防災士が監修した備えの用品。内容とサイズは公式サイトで確認できます。", "shop": "スツーレ公式",
+                        "a8": ["4BGGBL+B2B0HE+5VK4+5YRHE", "18", "スツーレ", "300×250", "23", "261108129669,001,01,s00000027418001003000,1"]},
+    "s00000023371001": {"key": "alpha-foods", "name": "安心米（アルファー食品）", "label": "非常食・保存食", "note": "水やお湯を注いで食べられるご飯などの保存食。保存期間は商品ごとに確認できます。", "shop": "アルファー食品公式",
+                        "a8": ["4BGGBL+CHIAIA+50BY+5YRHE", "18", "アルファー食品", "300×250", "22", "261108129755,001,01,s00000023371001022000,1"]},
+    "s00000022499001": {"key": "bluetti", "name": "BLUETTI ポータブル電源", "label": "停電に備える電源", "note": "コンセントが使える大容量のポータブル電源。容量と出力は製品ごとに確認できます。", "shop": "BLUETTI JAPAN公式",
+                        "a8": ["4BGGBL+CGBFAQ+4TLQ+5YRHE", "18", "BLUETTI JAPAN", "300×250", "29", "261108129753,001,01,s00000022499001082000,1"]},
+    "s00000021712001": {"key": "jackery", "name": "Jackery ポータブル電源", "label": "停電に備える電源", "note": "アウトドアや防災に使える、コンセント付きのポータブル電源。容量は製品ごとに確認できます。", "shop": "Jackery Japan公式"},
+    "s00000000979014": {"key": "bb-excite", "name": "BB.exciteモバイル", "label": "格安SIMを検討", "note": "スマホの料金を見直すときの格安SIM。料金プランと対応端末は公式サイトで確認できます。", "shop": "BB.excite公式",
+                        "a8": ["4BGGBL+CO225U+7JY+2BD44I", "19", "格安SIMのBB.exciteモバイル", "300×250", "23", "261108129766,001,01,s00000000979014019000,1"]},
+    "s00000017718057": {"key": "freee", "name": "freee会計", "label": "確定申告・会計", "note": "帳簿づけから確定申告の書類づくりまでできるクラウド会計ソフト。料金プランは公式サイトで確認できます。", "shop": "freee公式",
+                        "a8": ["4BGGBL+CQFSKY+3SPO+9FDAJ6", "18", "freee会計", "300×250", "24", "261108129770,001,01,s00000017718057011000,1"]},
+    "s00000021185002": {"key": "mf-kakutei", "name": "マネーフォワード クラウド確定申告", "label": "確定申告をラクに", "note": "銀行やカードの明細を取り込んで、帳簿づけから確定申告書の作成までできるクラウドソフト。副業・個人事業の申告に。", "shop": "マネーフォワード公式",
+                        "a8": ["4BGCEY+GBMUUQ+4JGQ+BXYE9", "14", "マネーフォワード クラウド確定申告", "300×250", "26", "261103066987,001,01,s00000021185002006000,1"]},
+    "s00000014765001": {"key": "yayoi-kakutei", "program": "弥生シリーズ", "name": "弥生のクラウド確定申告ソフト", "label": "個人事業主の確定申告", "note": "個人事業主・副業の人向けのクラウド確定申告ソフト（青色申告・白色申告）。", "shop": "弥生公式",
+                        "a8": ["4BGCEZ+2QTZ76+35XE+6DZBM", "18", "弥生シリーズ", "", "", ""]},
+    "s00000015110002": {"key": "epos", "name": "エポスカード", "label": "クレジットカード", "note": "丸井グループのクレジットカード。年会費やポイントの条件は公式サイトで確認できます。", "shop": "エポスカード公式",
+                        "a8": ["4BGGBL+D2XWAA+38L8+BY641", "17", "エポスカード", "", "", ""]},
+    "s00000004657003": {"key": "hikkoshi-samurai", "name": "引越し侍", "label": "引越しの見積もり", "note": "複数の引越し業者にまとめて見積もりを依頼できる比較サービス。", "shop": "引越し侍公式",
+                        "a8": ["4BGGBL+D7PD4I+ZXM+HYNBM", "19", "引越し侍", "300×250", "20", "261108129799,001,01,s00000004657003059000,1"]},
+    "s00000019543001": {"key": "sourcenext", "name": "ソースネクスト", "label": "パソコン用ソフト", "note": "PDF編集やセキュリティなどのパソコン用ソフトを扱う販売サイト。対応OSと価格は公式サイトで確認できます。", "shop": "ソースネクスト公式"},
+    # 2026-11-08 夜の追加（すぐ提携できたもの）
+    "s00000013511010": {"key": "enepi", "name": "エネピ", "label": "電気料金を比べる", "note": "住所や使用量をもとに、電力会社の料金プランを比べられる比較サービス。", "shop": "エネピ（じげん）",
+                        "a8": ["4BGGBM+BWOVM+2W92+1NJK7M", "18", "エネピ", "300×250", "21", "261108130020,001,01,s00000013511010003000,1"]},
+    "s00000010685001": {"key": "tainavi", "name": "タイナビ", "label": "太陽光・蓄電池の見積もり", "note": "太陽光発電や蓄電池の設置について、複数の業者に見積もりを依頼できるサービス。", "shop": "タイナビ公式",
+                        "a8": ["4BGGBM+TRP0Y+2AG2+63H8I", "17", "【タイナビ】太陽光発電一括見積りナビゲーション", "300×250", "23", "261108130050,001,01,s00000010685001036000,1"]},
+    "s00000000489041": {"key": "bang-kasai", "name": "保険スクエアbang！ 火災保険", "label": "火災保険を見直す", "note": "条件を入れて、複数の保険会社の火災保険の見積もりを比べられるサービス。", "shop": "保険スクエアbang！",
+                        "a8": ["4BGGBM+M125U+3RU+6S3XQQ", "16", "火災保険の無料診断サービス", "300×250", "27", "261108130037,001,01,s00000000489041014000,1"]},
+    "s00000007476001": {"key": "oken-water", "name": "オーケンウォーター", "label": "宅配の天然水", "note": "天然水を宅配で届けるウォーターサーバー。料金と配送エリアは公式サイトで確認できます。", "shop": "オーケンウォーター公式",
+                        "a8": ["4BGGBL+GC8AGI+1LOO+5ZU2A", "13", "宅配天然水ならオーケンウォーター", "300×250", "25", "261108129988,001,01,s00000007476001106000,1"]},
+    "s00000010789007": {"key": "frecious", "name": "every frecious（エブリィフレシャス）", "label": "浄水型ウォーターサーバー", "note": "水道水を入れて使う浄水型のウォーターサーバー。料金と設置条件は公式サイトで確認できます。", "shop": "FRECIOUS公式",
+                        "a8": ["4BGGBM+EVUWI+2B8Y+15OK2A", "12", "every frecious", "300×250", "21", "261108130025,001,01,s00000010789007046000,1"]},
+    "s00000000040018": {"key": "biglobe-hikari-plus", "name": "BIGLOBE光プラス by auひかりプラス", "label": "光回線を検討", "note": "BIGLOBEの光回線サービス。提供エリアと料金は公式サイトで確認できます。", "shop": "BIGLOBE",
+                        "a8": ["4BGGBL+GFSW36+B4+2Z68LU", "12", "BIGLOBE光プラス by auひかりプラス", "300×250", "29", "261108129994,001,01,s00000000040018011000,1"]},
+    "s00000005230001": {"key": "jalan", "name": "じゃらんnet", "label": "宿を探す", "note": "国内の宿泊施設を探して予約できる旅行サイト。", "shop": "じゃらんnet",
+                        "a8": ["4BGGBM+HV0XE+14CS+64JTE", "18", "じゃらんnet", "300×250", "23", "261108130030,001,01,s00000005230001054000,1"]},
+    "s00000000218001": {"key": "ikyu", "name": "一休.com", "label": "ホテル・旅館を予約", "note": "ホテルや旅館を探して予約できる宿泊予約サイト。", "shop": "一休.com",
+                        "a8": ["4BGGBM+T69F6+1OK+5YRHE", "11", "一休.com", "300×250", "28", "261108130049,001,01,s00000000218001185000,1"]},
     "s00000023754001": {"key": "ohya", "name": "Oh!Ya（オーヤ）", "label": "面談をまとめて予約", "note": "不動産投資の会社との面談を、まとめて比較・予約できるサービス", "shop": "セレス"},
 }
 
@@ -109,12 +156,32 @@ ADD_TO_TOPIC = {
     "invest-nisa": ["matsui", "dmm-kabu"],
     "invest": ["matsui", "dmm-kabu"],
     "re-invest": ["ohya"],
+    "furusato": ["furusato-honpo"],
+    "tax-filing": ["freee"],
 }
+
+# 記事の「すぐにできること」（読者がこのあと取る行動）のすぐ下に出す、PR の囲み1つ（components/ActionAd.tsx）。
+# 上から順に、見出し・タグ・要約で match が基準点を超えた最初の行を使う（lib/offers.ts の relevanceScore と同じ点数）。
+# 見出しにも match の語があること（タグや要約だけで当てない）。まとめ記事と、見出しが exclude に当たる記事には出さない。genres があればそのジャンルの記事だけ（AI の業界ニュースに家計の広告を出さない）。
+# 出すのは提携リンクのある商品だけ、最大 max 件。名前と1行の説明は PARTNERS（公式の名前と中立な説明）のまま
+ACTION_ADS = [
+    {"key": "leak", "title": "端末とアカウントの安全対策", "match": "情報流出|情報漏え?い|漏え?い|漏洩|件流出|流出の恐れ|が流出|不審メール|個人情報|不正アクセス|不正ログイン|不正利用|詐欺|フィッシング|なりすまし|ランサム|マルウェア|サイバー攻撃|乗っ取り", "partners": ["norton", "virusbuster", "eset"], "max": 2, "exclude": "ガードレール|AIガバナンス|脱獄|LLM"},
+    {"key": "fire-insurance", "title": "火災保険を見直す", "match": "火災保険|地震保険|水災補償|損害保険料", "partners": ["bang-kasai"], "max": 1, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "water", "title": "飲み水の備え", "match": "断水|備蓄水|飲料水|給水|水道料金|水道代", "partners": ["oken-water", "frecious"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "disaster", "title": "停電・災害への備え", "match": "地震|津波|台風|大雨|豪雨|土砂災害|洪水|氾濫|噴火|停電|防災|避難|警報|大雪|線状降水帯|緊急地震速報|災害|備蓄", "partners": ["jackery", "bluetti", "akamaru-bousai", "alpha-foods", "stoole", "bang-kasai"], "max": 2},
+    {"key": "furusato", "title": "ふるさと納税の寄附先を探す", "match": "ふるさと納税|返礼品|ワンストップ特例", "partners": ["furusato-honpo", "aupay-furusato"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "tax", "title": "確定申告・年末調整の準備", "match": "年末調整|確定申告|青色申告|白色申告|e-Tax|インボイス|源泉徴収|医療費控除|扶養控除|所得税", "partners": ["freee", "mf-kakutei", "yayoi-kakutei"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "energy", "title": "電気の契約を見直す", "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|新電力|電力会社|燃料費調整|再エネ賦課金|節電", "partners": ["elpio", "enepi", "tainavi"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "moving", "title": "引越しの準備", "match": "引っ越し|引越し|引越|転居|住所変更|転入届|転出届", "partners": ["hikkoshi-samurai", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "mobile", "title": "スマホの回線を見直す", "match": "携帯料金|スマホ料金|通信障害|通信の障害|つながりにくい|格安SIM|携帯キャリア|乗り換え|MNP|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|料金プラン|光回線|ネット回線|固定回線", "partners": ["bb-excite", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "travel", "title": "旅行の宿を探す", "match": "旅行|連休|ホテル|旅館|宿泊|観光|旅行支援", "partners": ["jalan", "ikyu"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|訪日客数"},
+    {"key": "payment", "title": "支払い方法を見直す", "match": "キャッシュレス|クレジットカード|ポイント還元|ポイ活|QRコード決済|PayPay|楽天ペイ|d払い|au PAY|電子マネー|タッチ決済", "partners": ["epos"], "max": 1, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+]
 
 
 def main() -> int:
     rows = {}
-    for line in TSV.read_text("utf-8").splitlines():
+    for line in (TSV.read_text("utf-8").splitlines() if TSV.exists() else []):
         f = line.split("\t")
         if len(f) < 10:
             continue
@@ -127,12 +194,15 @@ def main() -> int:
     added = 0
     for pid, meta in PARTNERS.items():
         f = rows.get(pid)
+        if not f and meta.get("a8"):
+            # TSV に無い提携は、A8 の「広告リンク作成」で取った素材（a8）から同じ形の行を作る
+            f = [pid, meta["name"], "", "", *meta["a8"]]
         if not f:
             print(f"[skip] {pid} {meta['name']}: TSVに無い")
             continue
         code, px, bpx, bgt = f[4], f[5] or "13", f[8], f[9]
         url = f"https://px.a8.net/svt/ejp?a8mat={code}"
-        program = meta["name"]
+        program = meta.get("program", meta["name"])
         if url not in existing_codes:
             links[program] = {
                 "url": url,
@@ -180,6 +250,7 @@ def main() -> int:
             if t["key"] == key:
                 t["partners"] = list(dict.fromkeys(t.get("partners", []) + extra))
 
+    offers["actionAds"] = ACTION_ADS
     LINKS.write_text(json.dumps(links, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     OFFERS.write_text(json.dumps(offers, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"[a8] {added}件の提携商品を反映、話題 {len(offers['topics'])}件")

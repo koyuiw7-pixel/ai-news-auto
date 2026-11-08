@@ -55,6 +55,35 @@ def load_token() -> str:
     return ""
 
 
+# 置き場所（components の data-aff-pos）→ 報告での呼び名。末尾の「-1」「-2」は枠の中の順番
+POSITION_LABELS = {
+    "action-ad": "すぐにできることの下（本文中のPR）",
+    "ranking-inline": "本文中の商品枠",
+    "ranking-rail": "右側の商品枠",
+    "mobile-bar": "スマホ画面下の帯",
+    "shop-line": "Amazon・楽天の1行",
+    "cta-inline": "本文中の導線",
+    "cta-primary": "記事末の導線",
+    "cta-secondary": "記事末の導線（小）",
+    "box": "関連ツールの囲み",
+    "compare": "比較ページ",
+}
+
+
+def position_group(pos: str) -> str:
+    """「action-ad-2」→「action-ad」。枠の中の順番を外して置き場所ごとにまとめる"""
+    return re.sub(r"-\d+$", "", pos or "other")
+
+
+def positions_summary(rows: list[dict]) -> list[tuple[str, int]]:
+    """置き場所ごとのクリック数（多い順）。呼び名のある置き場所は呼び名で出す"""
+    totals: dict[str, int] = {}
+    for row in rows:
+        group = position_group(str(row.get("pos", "other")))
+        totals[group] = totals.get(group, 0) + int(row.get("clicks", 0))
+    return sorted(((POSITION_LABELS.get(k, k), v) for k, v in totals.items()), key=lambda kv: -kv[1])
+
+
 def program_names() -> dict[str, str]:
     """a8mat → 提携先の名前（affiliate_links.json・content/offers.json・content/products.json から）"""
     # A8 以外はドメインで数えている（components/AffClickTracker.tsx の programOf）
@@ -122,7 +151,8 @@ def show(data: dict, names: dict[str, str]) -> None:
     print("  ページ別（上位10）:")
     for row in data["byPage"][:10]:
         print(f"    {row['path']}  {row['clicks']}回")
-    print("  置き場所別: " + "、".join(f"{row['pos']} {row['clicks']}" for row in data["byPosition"]))
+    print("  置き場所別: " + "、".join(f"{label} {clicks}" for label, clicks in positions_summary(data["byPosition"])))
+    print("  置き場所別（枠の中の順番まで）: " + "、".join(f"{row['pos']} {row['clicks']}" for row in data["byPosition"]))
 
 
 def main() -> int:
