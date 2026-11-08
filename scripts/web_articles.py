@@ -2702,7 +2702,9 @@ def main() -> int:
             log(f"   [date] 記事ページの公開日時で発表の時刻を直しました: {item['published_at'].astimezone(JST):%m-%d %H:%M}")
         if is_stale(item):
             hours = int(source_age(item).total_seconds() // 3600)
-            if not major:
+            # 暮らし・お金・これから始まる日の発表（A57 ③・A58 ④）は、記事ページの日付で直したあとも7日までなら late の形で作る。
+            # 2026-11-08 まではここで48時間の決まりを当て直していたため、候補の段で通した late の候補が全部ここで落ちていた
+            if not major and not (item.get("late") and life_late_ok(item)):
                 log(f"   [skip] 発表から{hours}時間たっている（{STALE_HOURS}時間を超えた発表は通常の記事にしない）")
                 mark(state, item, skipped=True, reason=f"stale: 発表から{hours}時間（記事ページの日付）")
                 run_status[item["id"]] = ("failed", feeds.source_rank(item))

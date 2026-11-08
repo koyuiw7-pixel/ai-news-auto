@@ -58,5 +58,11 @@ class UpcomingDateTest(unittest.TestCase):
         self.assertFalse(w.upcoming_date_in_title(f"新しいカップ麺（{past.month}月{past.day}日発売）"))
 
 
+class LateKeptAfterPageDateTest(unittest.TestCase):
+    def test_generation_step_keeps_late_life_items(self):
+        src = (ROOT / "scripts" / "web_articles.py").read_text("utf-8")
+        self.assertIn('if not major and not (item.get("late") and life_late_ok(item)):', src)
+
+
 if __name__ == "__main__":
     unittest.main()
