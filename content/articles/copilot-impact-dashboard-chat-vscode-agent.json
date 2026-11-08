@@ -86,9 +86,9 @@
     }
   ],
   "todayActions": [
-    "自社のCopilot使用状況メトリクスのポリシーが有効かを、設定画面で確認する",
-    "「Chat-first users」に入った人数と、チャットの利用状況を見比べる",
-    "APIで集計している場合は、chatとvscode_agentの項目を取り込めているか確かめる"
+    "自社のCopilot使用状況メトリクスのポリシーが有効かを確認する",
+    "ダッシュボードでChat-first usersの人数と、チャットの利用状況を見比べる",
+    "APIで集計している場合、chatとvscode_agentの項目を取り込めているか確かめる"
   ],
   "qualityScore": 88,
   "sourcePublishedAt": "2026-11-06T22:17:28+00:00",
@@ -136,5 +136,99 @@
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/copilot-impact-dashboard-chat-vscode-agent-23351b58.jpg"
   },
-  "coverTries": 3
+  "coverTries": 3,
+  "insight": [
+    {
+      "text": "チャットやVS Code Agents windowは利用状況として報告されるが、採用フェーズの判定には使われない。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage"
+    },
+    {
+      "text": "変更より前の期間のレポートには従来の7機能しか含まれない。期間をまたいで比べるときは注意が必要。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage"
+    },
+    {
+      "text": "利用者とは28日間のうち2日以上その機能を使った人で、エージェントによる編集をした人はチャットの利用者にも数えられる。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Copilot impact dashboard documentation",
+      "url": "https://docs.github.com/copilot/how-tos/administer-copilot/view-impact-dashboard",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage"
+    },
+    {
+      "name": "Copilot usage metrics API documentation",
+      "url": "https://docs.github.com/rest/copilot/copilot-usage-metrics",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自社のCopilot使用状況メトリクスのポリシーが有効かを確認する",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage",
+      "steps": [
+        "Copilot usage metrics ポリシーの状態を確認する",
+        "有効になっているかを確かめる"
+      ]
+    },
+    {
+      "action": "ダッシュボードでChat-first usersの人数と、チャットの利用状況を見比べる",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage",
+      "steps": [
+        "Copilot impact dashboardを開く",
+        "Agent adoption chartを表示する",
+        "Chat-first usersの人数とchatの項目を比べる"
+      ],
+      "url": "https://docs.github.com/copilot/how-tos/administer-copilot/view-impact-dashboard"
+    },
+    {
+      "action": "APIで集計している場合、chatとvscode_agentの項目を取り込めているか確かめる",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage",
+      "steps": [
+        "copilot_feature_engagement.totals_by_featureを確認する",
+        "chatとvscode_agentの項目があるか見る"
+      ],
+      "url": "https://docs.github.com/rest/copilot/copilot-usage-metrics"
+    }
+  ],
+  "cause": {
+    "text": "ダッシュボードではチャットが表示されていなかったため、チャットを主に使う人が「Passive users」と呼ばれていました。機能を画面に加え、区分名もその実態に合う名前に変えたと説明されています。",
+    "status": "background",
+    "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage"
+  },
+  "worries": [
+    {
+      "q": "「Passive users」と呼ばれていた人は、今どう表示される？",
+      "a": "区分名は「Chat-first users」に変わりました。この区分は、Copilotは使っているが対象機能を28日のうち2日以上使っていない人で、区分の人数は変わりません。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage",
+      "action": "ダッシュボードでChat-first usersの人数を確かめ、チャットの利用が見えるようになったかを見る"
+    },
+    {
+      "q": "過去のレポートと比べると、数字がずれて見える？",
+      "a": "今回の変更より前の期間のレポートには、従来の7機能しか含まれません。期間をまたいで比べるときは、機能の範囲が違う点に注意が必要です。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage",
+      "action": "期間をまたいで比べるときは、チャットとVS Code Agents windowが含まれない期間があると考えて集計する"
+    },
+    {
+      "q": "チャットを少し使っただけでも利用者に数えられる？",
+      "a": "利用とみなすのは、28日間のうち2日以上その機能を使った人です。1人が複数の機能で数えられることもあり、エージェントによる編集をした人はチャットの利用者にも数えられます。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage",
+      "action": "1日だけ使った人は対象に入らないので、利用者数は2日以上使った人として読み取る"
+    },
+    {
+      "q": "採用フェーズの判定も変わる？",
+      "a": "チャットとVS Code Agents windowは機能の利用状況として報告されますが、採用フェーズの判定には使われません。採用フェーズの判定は変わっていません。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-impact-dashboard-adds-chat-and-vs-code-agent-usage",
+      "action": "採用フェーズを見るときは、チャットの数字を判定の材料に含めず、機能の利用状況として別に読む"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "数え方と、古い期間との比べ方の注意",
+    "cause": "なぜ変わった？チャットが画面に出なかった理由",
+    "steps": "管理者が今日見直すこと",
+    "desk": "公式の確認先と辿り方",
+    "worries": "数字の見方で迷いやすいところ"
+  },
+  "depthAt": "2026-11-08T17:53:19+00:00"
 }

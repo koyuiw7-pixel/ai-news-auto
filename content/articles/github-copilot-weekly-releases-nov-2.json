@@ -94,9 +94,8 @@
     }
   ],
   "todayActions": [
-    "Xcodeで開発している人は、Xcode 27.3 betaを検証用のMacで入れて試す",
-    "JetBrains Airを使う人は、手元のIDEで実行するかクラウドで実行するかを決める",
-    "Copilot管理者は、Air Teamsでの有効化が必要かを社内で確認する"
+    "検証用のMacでXcode 27.3 betaを入れ、内蔵のコーディングアシスタントから試す",
+    "JetBrains Airで、作業を手元のIDEで動かすかクラウドで動かすかを決める"
   ],
   "relatedSlugs": [
     "github-copilot-jetbrains-air"
@@ -131,5 +130,118 @@
     "ar": 2.4341,
     "src": "https://ai-tech-express.jp/img/github-copilot-weekly-releases-nov-2-00b2133f.jpg"
   },
-  "coverTries": 3
+  "coverTries": 3,
+  "insight": [
+    {
+      "text": "「Agent Merge」は、必須のチェックやルールの結果を待つ間も設定が有効なままになった",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2"
+    },
+    {
+      "text": "ツールの許可を任せる個人の指示はopt-inの設定で、ローカルのセッションにだけ適用される",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2"
+    },
+    {
+      "text": "会話が上限に達したら、エラーの画面から会話を圧縮するか、使っている量を確認できる。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "GitHub Copilot in Xcode（GitHub Changelog）",
+      "url": "https://github.blog/changelog/2026-11-04-github-copilot-is-now-available-in-xcodes-coding-assistant",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2",
+      "note": "公開プレビューで、Xcode 27.3 beta から使えると書かれています。"
+    },
+    {
+      "name": "GitHub Copilot in JetBrains Air（GitHub Changelog）",
+      "url": "https://github.blog/changelog/2026-11-03-github-copilot-is-now-available-in-jetbrains-air",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2",
+      "note": "手元のJetBrains IDEかAir Teams経由のクラウドで実行でき、既存のCopilotの契約を使うと書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "検証用のMacでXcode 27.3 betaを入れ、内蔵のコーディングアシスタントから試す",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2",
+      "steps": [
+        "Xcode 27.3 betaを用意する",
+        "Xcodeの内蔵のコーディングアシスタントを開く",
+        "Get started with Copilot in Xcode.の案内を開く"
+      ],
+      "url": "https://github.blog/changelog/2026-11-04-github-copilot-is-now-available-in-xcodes-coding-assistant"
+    },
+    {
+      "action": "JetBrains Airで、作業を手元のIDEで動かすかクラウドで動かすかを決める",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2",
+      "steps": [
+        "Get started with Copilot in JetBrains Airを開く",
+        "作業ごとに手元のIDEかクラウドかを選ぶ",
+        "クラウドで動かす場合はAir Teamsを通す"
+      ],
+      "url": "https://github.blog/changelog/2026-11-03-github-copilot-is-now-available-in-jetbrains-air"
+    }
+  ],
+  "cause": {
+    "text": "今週、CopilotがJetBrains AirとXcodeの標準のコーディングアシスタントに加わりました。CopilotアプリやCLI、VS Codeの更新と合わせた週次のまとめの一部です。",
+    "status": "background",
+    "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2"
+  },
+  "worries": [
+    {
+      "q": "Xcodeの標準アシスタントは正式版で使える？",
+      "a": "Xcodeでの対応は公開プレビューで、Xcode 27.3 betaから使えると書かれています。正式提供の時期は、このページでは示されていません。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2",
+      "action": "公開プレビューの機能なので、本番の開発環境ではなく、まずは検証用のMacで試してください"
+    },
+    {
+      "q": "いま持っているCopilotの契約のままで使える？",
+      "a": "JetBrains Airでは既存のCopilotの契約で使えると書かれています。Xcodeの料金や対象のプランは、このページには書かれていません。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2",
+      "action": "JetBrains Airを使う前に、いまのCopilotの契約がそのまま使えるか確認する"
+    },
+    {
+      "q": "ツールの許可が勝手に進んでしまうことはある？",
+      "a": "個人の指示でツールの許可を任せる設定は、オプトインなので利用者が有効にしたときだけ使われます。対象はローカルのセッションです。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2",
+      "action": "ツールの許可を任せる設定は必要なときだけ有効にし、まずはローカルのセッションで試す"
+    },
+    {
+      "q": "プルリクエストのマージを任せても大丈夫？",
+      "a": "準備ができたらCopilotがマージする機能で、必須のチェックやルールの結果を待つ間も設定は有効なままになります。マージ後に何が起きるかは、このページには書かれていません。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2",
+      "action": "Agent Mergeを設定する前に、そのプルリクエストの必須チェックとルールを確認する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "JetBrains Airの作業は手元とクラウドどちらで動かす？",
+      "situation": "まず手元のIDEで試したい人",
+      "recommend": "急がなくてよい",
+      "reason": "手元のJetBrains IDEで実行できます。クラウドで実行する場合はAir Teamsを通します。どちらも既存のCopilotの契約を使うと書かれています。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2"
+    },
+    {
+      "question": "JetBrains Airの作業は手元とクラウドどちらで動かす？",
+      "situation": "クラウドで動かす必要がある人",
+      "recommend": "Air Teamsの条件を先に確認する",
+      "reason": "Air Teamsを通してクラウドで実行できると書かれています。組織の設定や有効化が必要かは、このページには詳しく書かれていません。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2"
+    },
+    {
+      "question": "Xcodeの内蔵アシスタントを、いま試す？",
+      "situation": "本番の開発を担当している人",
+      "recommend": "急がなくてよい",
+      "reason": "公開プレビューで、Xcode 27.3 betaから使えます。正式提供の時期は発表されていません。検証用のMacで試してから判断できます。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-weekly-releases-november-2"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "自動で進む設定と、会話が上限に届いたときの対処",
+    "cause": "今回なぜ新しく加わったのか",
+    "steps": "まず検証用のMacか手元のIDEで試す",
+    "desk": "確認するなら公式の案内はどこ？",
+    "worries": "正式版か、契約は必要か、自動で進むか",
+    "guide": "試すか待つか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-08T17:52:57+00:00"
 }

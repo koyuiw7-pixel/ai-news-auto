@@ -86,9 +86,9 @@
   "newsType": "product",
   "pricingProduct": "copilot",
   "todayActions": [
-    "組織のCopilot設定が、企業の方針で固定されていないかを確かめる。",
-    "APIで設定を変える前に、トークンの種類と権限（Administration）を確認する。",
-    "公式ドキュメント「Configuring Copilot code review with the API」で手順を確かめる。"
+    "組織のCopilot設定で、企業側で管理されている項目がないかを確かめる",
+    "APIで設定を変える前に、トークンの種類と Administration の権限を確かめる",
+    "レビュー概要の👎に理由を付けて、指摘の質について意見を返す"
   ],
   "qualityScore": 88,
   "factSources": [
@@ -154,5 +154,112 @@
     "ar": 1.5056,
     "src": "https://ai-tech-express.jp/img/github-copilot-code-review-api-settings-2740f72c.jpg"
   },
-  "coverTries": 3
+  "coverTries": 3,
+  "insight": [
+    {
+      "text": "組織がフィードバック収集をオプトアウトしている場合、レビューのアンケートは表示されなくなりました。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Configuring Copilot code review with the API",
+      "url": "https://docs.github.com/copilot/how-tos/copilot-on-github/set-up-copilot/configure-code-review",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "組織のCopilot設定で、企業側で管理されている項目がないかを確かめる",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates",
+      "steps": [
+        "組織の設定で、Copilotのコードレビューを開く",
+        "企業で管理されている設定がないか確かめる",
+        "企業で管理される設定は組織側では上書きできない"
+      ],
+      "url": "https://docs.github.com/copilot/how-tos/copilot-on-github/set-up-copilot/configure-code-review"
+    },
+    {
+      "action": "APIで設定を変える前に、トークンの種類と Administration の権限を確かめる",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates",
+      "steps": [
+        "組織・企業用APIはGitHub Appsと細粒度トークンに非対応",
+        "リポジトリ用APIは読むに Administration: read",
+        "変更には Administration: write が必要",
+        "Classicトークンはリポジトリ管理者権限が必要"
+      ],
+      "url": "https://docs.github.com/copilot/how-tos/copilot-on-github/set-up-copilot/configure-code-review"
+    },
+    {
+      "action": "レビュー概要の👎に理由を付けて、指摘の質について意見を返す",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates",
+      "steps": [
+        "レビュー概要の👎を押す",
+        "Add a reason を選ぶ",
+        "該当する理由を一つ選ぶ"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "企業の方針から組織、個々のリポジトリまでの設定を、REST APIとGraphQL APIで管理できるようにした更新です。レビュー概要の見直しと不具合の修正もあわせて行われました。",
+    "status": "background",
+    "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates"
+  },
+  "worries": [
+    {
+      "q": "企業の方針で決まっている設定は、組織から変えられる？",
+      "a": "企業側で管理されている設定は、組織側では上書きできません。企業が有効・無効を決めるか、組織の管理者に任せるかを選べます。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates",
+      "action": "組織のCopilot設定で、企業側で管理されている項目がないかを確かめる。"
+    },
+    {
+      "q": "APIで設定を変えるには、どのトークンを使えばいい？",
+      "a": "組織・企業用の設定APIは、GitHub Appsと細粒度の個人用トークンに対応していません。リポジトリ用は両方に対応し、読むには Administration: read、変えるには Administration: write が必要です。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates",
+      "action": "APIで変える前に、トークンの種類と Administration の権限を確かめる。"
+    },
+    {
+      "q": "レビューがどの作業量やモデルで動いたか分かる？",
+      "a": "APIで、使われたレビュー作業量を見られます（メタデータがある場合）。Balancedの3つのレビュー用モデルの名前は発表されていません。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates",
+      "action": "レビュー結果に、使われた作業量の情報があるかをAPIで確かめる。"
+    },
+    {
+      "q": "自動レビューを一部の人に届けないようにできる？",
+      "a": "自動レビューのルールにバイパスリストを使えるようになりました。リストに入れた人には、Copilotの自動レビューが届きません。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates",
+      "action": "自動レビューから外したい人を、ルールのバイパスリストに入れる。"
+    },
+    {
+      "q": "レビューにかかる利用量（AI credits）は見える？",
+      "a": "レビューのセッションに、1回で消費したAI creditsが表示されるようになりました。1回あたりの金額の目安は発表されていません。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates",
+      "action": "レビューの作業画面で、消費したAI creditsの表示を確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "企業で一律に決めるか、組織に任せるか？",
+      "situation": "複数の組織を持つ企業の管理者",
+      "recommend": "方針を決めてから組織の設定を見る",
+      "reason": "企業で有効か無効かを決めると、組織側では上書きできません。組織に任せると、既定の作業量やランナーは各組織の管理者が決めます。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates"
+    },
+    {
+      "question": "APIで設定をまとめて変えるか、画面で変えるか？",
+      "situation": "多くの組織やリポジトリを管理している",
+      "recommend": "API化を検討する価値がある",
+      "reason": "リポジトリ用の設定APIは、GitHub Appsと細粒度トークンにも対応します。組織や企業の設定APIは対応していないため、その範囲は画面で変えることになります。",
+      "source": "https://github.blog/changelog/2026-11-06-copilot-code-review-api-management-and-review-overview-updates"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "組織がアンケートを止めていれば表示されない",
+    "cause": "なぜ変わった？発表されている理由",
+    "steps": "今日、組織と権限を確かめる",
+    "desk": "APIの手順はどこにある？",
+    "worries": "トークンや権限で詰まらないか",
+    "guide": "企業で決めるか、組織に任せるか"
+  },
+  "depthAt": "2026-11-08T17:54:07+00:00"
 }

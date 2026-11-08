@@ -144,5 +144,105 @@
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/github-copilot-slack-teams-ga-4fed7e7f.jpg"
   },
-  "coverTries": 3
+  "coverTries": 3,
+  "officialDesk": [
+    {
+      "name": "GitHub Community",
+      "url": "https://github.com/orgs/community/discussions/212301",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+      "howTo": [
+        "Get started",
+        "Join the discussion in the Git"
+      ],
+      "note": "使った感想や質問を共有できる場所として、ページに案内されています。"
+    },
+    {
+      "name": "@GitHub in Slack",
+      "url": "https://slack.github.com",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+      "howTo": [
+        "Get started",
+        "Try @GitHub in Slack or Teams"
+      ]
+    },
+    {
+      "name": "@GitHub in Teams",
+      "url": "https://teams.github.com",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+      "howTo": [
+        "Get started",
+        "Try @GitHub in Slack or Teams"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "SlackかTeamsで@GitHubを試し、小さなバグ調査を頼んでみる",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+      "steps": [
+        "Slack か Teams で @GitHub を呼び出す",
+        "小さなバグの調査を依頼する",
+        "返信を見て、次の指示を同じ会話で送る"
+      ],
+      "url": "https://slack.github.com"
+    },
+    {
+      "action": "自社のCopilotの契約プランが対象かを、公式ドキュメントで確認する",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+      "steps": [
+        "ページには料金や対象プランの記載がないと確認する",
+        "公式ドキュメントで契約プランを確かめる"
+      ]
+    },
+    {
+      "action": "チームで使うなら、Issueの説明欄に作成元の会話が入る点を共有する",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+      "steps": [
+        "説明欄に「Created from a Slack/Teams conversation with @username」",
+        "作成元の会話が残ることをチームに伝える"
+      ]
+    }
+  ],
+  "worries": [
+    {
+      "q": "@GitHubを使うと料金はかかる？対象プランは？",
+      "a": "料金や利用できるプランは、このページでは発表されていません。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+      "action": "自社のCopilotの契約プランが対象かを、公式ドキュメントで確認する。"
+    },
+    {
+      "q": "会話の内容はIssueやPRに残る？",
+      "a": "@GitHubが作るIssueとプルリクエストの説明欄には「Created from a Slack/Teams conversation with @username」と入ると書かれています。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+      "action": "Issueの説明欄に作成元の会話が入ることを、チームに事前に伝えておく。"
+    },
+    {
+      "q": "日本のSlackやTeamsでも使える？",
+      "a": "日本のSlackやTeamsでの提供状況は、このページでは発表されていません。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+      "action": "自分の会社のSlackやTeamsで@GitHubが使えるか、公式の案内で確かめる。"
+    },
+    {
+      "q": "途中で返信が止まったら作業は消える？",
+      "a": "追加のメッセージへ返答できなくなる不具合が修正されたと書かれています。作業が消えるかどうかは、ページには書かれていません。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available",
+      "action": "返信が止まったときは、同じ会話で追加の指示を送って様子を見る。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "チャットで@GitHubを本格的に使い始めてよい？",
+      "situation": "チームでSlackかTeamsを使い、開発の相談をしている",
+      "recommend": "まずは小さなバグ調査から試すとよい",
+      "reason": "Slack・Teamsで会話から調査やPR作成まで進められるが、料金や対象プランはページに発表されていない。契約プランの対象を公式ドキュメントで確かめてから本格利用を決めると安心。",
+      "source": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available"
+    }
+  ],
+  "depthHeadings": {
+    "steps": "今日試す小さな一歩",
+    "desk": "公式の入口はどこ？",
+    "worries": "料金や会話の残り方、気になる点",
+    "guide": "本格的に使うか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-08T17:52:24+00:00"
 }
