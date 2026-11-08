@@ -2685,9 +2685,9 @@
       "pages": []
     },
     "kyushu-electric-power-rate-revision-2026": {
-      "at": "2026-11-08T09:47:34+00:00",
+      "at": "2026-11-08T10:04:39+00:00",
       "status": "gate_failed",
-      "tries": 6,
+      "tries": 7,
       "textAt": "2026-11-08T10:30:00+00:00",
       "textId": "6af041ea51492b796e2bb21f",
       "breaking": false,
@@ -2695,64 +2695,46 @@
       "versions": {
         "full": {
           "ok": false,
-          "seconds": 67.89,
+          "seconds": null,
           "reasons": [
-            "v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 「11月から毎月の電気代が増えます」は身近だが、いくら増えるのか（月367円）が最初の8秒で出てこない。同じ文が続く画面で、5秒を過ぎると単調。冒頭で「九州電力、11月から月367円の値上げ」と金額を"
+            "台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60"
           ],
           "qa": {
-            "geometry": true,
+            "geometry": false,
             "vision": false,
-            "version": 1,
-            "v3": false
+            "version": 1
           },
           "template": "",
           "level": null,
-          "base_layout": "screen-left-headline"
+          "base_layout": ""
         },
         "short": {
           "ok": false,
-          "seconds": 41.499,
+          "seconds": null,
           "reasons": [
-            "v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 「11月から毎月の電気代が増えます」は身近だが、いくら増えるのか（月367円）が最初の8秒で出てこない。同じ文が続く画面で、5秒を過ぎると単調。冒頭で「九州電力、11月から月367円の値上げ」と金額を"
+            "台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60"
           ],
           "qa": {
-            "geometry": true,
+            "geometry": false,
             "vision": false,
-            "version": 1,
-            "v3": false
+            "version": 1
           },
           "template": "",
           "level": null,
-          "base_layout": "screen-left-headline"
+          "base_layout": ""
         }
       },
       "timings": {
         "full": {
-          "script": 0.0,
-          "tts": 23.03,
-          "plan_audio": 4.52,
-          "render": 40.46,
-          "gate": 5.14,
-          "sheet": 2.27,
-          "total": 75.5,
-          "ladder_total": 575.2
+          "ladder_total": 42.0
         },
         "short": {
-          "script": 0.0,
-          "tts": 14.01,
-          "plan_audio": 2.78,
-          "render": 25.75,
-          "gate": 3.5,
-          "sheet": 1.47,
-          "total": 47.5,
-          "ladder_total": 575.2
+          "ladder_total": 42.0
         }
       },
       "ok": false,
-      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 「11月から毎月の電気代が増えます」は身近だが、いくら増えるのか（月367円）が最初の8秒で出てこない。同じ文が続く画面で、5秒を過ぎると単調。冒頭で「九州電力、11月から月367円の / short: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 「11月から毎月の電気代が増えます」は身近だが、いくら増えるのか（月367円）が最初の8秒で出てこない。同じ文が続く画面で、5秒を過ぎると単調。冒頭で「九州電力、11月から月367円の",
-      "pages": [
-        "ai-tech-express.jp"
-      ]
+      "reason": "full: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI / short: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI",
+      "pages": []
     }
   },
   "queued": {
@@ -3174,12 +3156,12 @@
     "nencho-2026-changes": {
       "status": "waiting",
       "why": "枠（20:30）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T09:57:10+00:00"
+      "checkedAt": "2026-11-08T10:05:23+00:00"
     },
     "izoku-nenkin-seikyu-tetsuzuki": {
       "status": "waiting",
       "why": "枠（21:45）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-08T09:57:10+00:00"
+      "checkedAt": "2026-11-08T10:05:23+00:00"
     },
     "furusato-nozei-deadline-2026": {
       "status": "created",
