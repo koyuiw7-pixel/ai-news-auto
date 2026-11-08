@@ -101,9 +101,8 @@
     }
   ],
   "todayActions": [
-    "経済産業省の発表ページから防災診断シートを入手し、8つのリスクを自社で点検する",
-    "「いいえ」になった項目を書き出し、棚の固定やデータのバックアップなど、できる対策から決める",
-    "簡易版BCPの申請を考えているなら、中小企業庁HPで見直しの詳細が出ていないか確かめる"
+    "経済産業省の発表ページから防災診断シートを開き、8つのリスクを自社で点検する",
+    "簡易版BCPの申請を考えるなら、電子申請に必要なGビズIDプライムを先に取得する"
   ],
   "qualityScore": 93,
   "late": true,
@@ -125,5 +124,111 @@
     "at": "2026-11-08T02:01:23+00:00"
   },
   "coverTries": 3,
-  "sectionsPolishedAt": "2026-11-08T06:13:32+00:00"
+  "sectionsPolishedAt": "2026-11-08T06:13:32+00:00",
+  "insight": [
+    {
+      "text": "中小企業防災・減災投資促進税制の特別償却は16%です。2027年3月31日までに認定を受け、認定日から1年を経過する日までに計画記載の設備を取得して事業に使う必要があります。",
+      "source": "https://www.chusho.meti.go.jp/keiei/antei/bousai/keizokuryoku.html"
+    },
+    {
+      "text": "電子申請にはGビズIDアカウント（gBizIDプライム）が必要で、取得には約2週間かかります。申請から認定までの標準処理期間は約45日となっています。",
+      "source": "https://www.chusho.meti.go.jp/keiei/antei/bousai/application.html"
+    },
+    {
+      "text": "単独型の申請は電子申請システムに直接入力します。申請補助ツールとして、下書き用のWord形式フォーマットが中小機構のサイトに掲載されています。",
+      "source": "https://www.chusho.meti.go.jp/keiei/antei/bousai/application.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "経済産業省 防災診断シート（発表ページ・中小企業庁 経営安定対策室）",
+      "url": "https://www.meti.go.jp/press/2026/11/20261106003.html",
+      "source": "https://www.meti.go.jp/press/2026/11/20261106003.html",
+      "howTo": [
+        "2026年度 11月一覧",
+        "中小企業・小規模事業者における事前防災の取組を推進します",
+        "（参考資料1）防災診断シート"
+      ],
+      "phone": "03-3501-1511（内線 5251～3）",
+      "note": "問い合わせ時は、担当が中小企業庁 経営安定対策室であることを伝えるとよい。メールは発表ページに記載あり（★を@に置き換え）。"
+    },
+    {
+      "name": "事業継続力強化計画 電子申請システム",
+      "url": "https://www.keizokuryoku.go.jp/",
+      "source": "https://www.chusho.meti.go.jp/keiei/antei/bousai/application.html",
+      "note": "電子申請にはGビズIDアカウント（gBizIDプライム）が必要で、取得に約2週間かかります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "経済産業省の発表ページから防災診断シートを開き、8つのリスクを自社で点検する",
+      "source": "https://www.meti.go.jp/press/2026/11/20261106003.html",
+      "steps": [
+        "発表ページの「（参考資料1）防災診断シート」を開く",
+        "地震から サイバー攻撃まで8つのリスクを確認"
+      ],
+      "url": "https://www.meti.go.jp/files/000007094.pdf"
+    },
+    {
+      "action": "簡易版BCPの申請を考えるなら、電子申請に必要なGビズIDプライムを先に取得する",
+      "source": "https://www.chusho.meti.go.jp/keiei/antei/bousai/application.html",
+      "steps": [
+        "デジタル庁のHPでGビズIDの取得を確認",
+        "取得には約2週間かかるので早めに始める",
+        "申請は「電子申請システム」から行う"
+      ],
+      "url": "https://www.chusho.meti.go.jp/keiei/antei/bousai/application.html"
+    }
+  ],
+  "cause": {
+    "text": "細野防災大臣が11月2日に各府省へ出した「事前防災徹底のための緊急要請」を受けた取り組みです。中小企業が自社の災害リスクや基本的な防災対策を確かめ、実効性の高い計画につなげることがねらいとされています。",
+    "status": "background",
+    "source": "https://www.meti.go.jp/press/2026/11/20261106003.html"
+  },
+  "worries": [
+    {
+      "q": "すでに認定を受けている場合、何か変わりますか？",
+      "a": "読んだ公式ページには、既に認定を受けた事業者への影響は書かれていません。チェックリストは2027年2月の申請から申請時の必須項目になる予定で、詳細は中小企業庁HPで今後案内されるとされています。",
+      "source": "https://www.chusho.meti.go.jp/keiei/antei/bousai/keizokuryoku.html",
+      "action": "計画の実施期間が満了する前であれば、変更申請で期間を延長できるか確かめます。",
+      "actionSource": "https://www.chusho.meti.go.jp/keiei/antei/bousai/application.html"
+    },
+    {
+      "q": "税金の優遇は、どんな条件で受けられますか？",
+      "a": "特別償却率は16%です。対象は2027年3月31日までに認定を受け、認定日から1年を経過する日までに計画記載の設備を取得して事業に使った事業者とされています。",
+      "source": "https://www.chusho.meti.go.jp/keiei/antei/bousai/keizokuryoku.html",
+      "action": "設備を買う前に、計画に記載されているか、認定日から1年以内の取得になるかを確かめます。"
+    },
+    {
+      "q": "申請してから認定まで、どのくらいかかりますか？",
+      "a": "申請から認定までの標準処理期間は約45日となっています。電子申請には、GビズIDアカウントの取得に約2週間程度かかるとされています。",
+      "source": "https://www.chusho.meti.go.jp/keiei/antei/bousai/application.html",
+      "action": "申請を考えるなら、まずGビズIDプライムの取得を始めます。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "設備投資に税制を使うなら、いつ認定を受ける？",
+      "situation": "計画に防災設備を載せて買う予定がある",
+      "recommend": "取得時期と認定日を先に照らし合わせる",
+      "reason": "認定を受けた日から1年以内に、計画に記載された設備を取得して事業に使う必要があります。2027年3月31日までに認定を受けることも条件です。購入時期を先に確かめると判断しやすくなります。",
+      "source": "https://www.chusho.meti.go.jp/keiei/antei/bousai/keizokuryoku.html"
+    },
+    {
+      "question": "2027年2月の申請に間に合わせる？",
+      "situation": "簡易版BCPの申請を考えている",
+      "recommend": "見直し詳細の発表を待って決める",
+      "reason": "2027年2月の申請からチェックリストが申請時の必須項目になる予定です。詳細は中小企業庁HPで今後お知らせするとされており、チェックリストの項目や提出方法はまだ発表されていません。",
+      "source": "https://www.meti.go.jp/press/2026/11/20261106003.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "GビズIDと税制の期限、先に押さえたい事実",
+    "cause": "なぜ申請の手続きが変わるのか",
+    "steps": "今日、自社の弱点を確かめる手順",
+    "desk": "どこに聞けば早いか",
+    "worries": "申請や税金、今の認定はどうなる？",
+    "guide": "申請するか、設備を買うか迷ったとき"
+  },
+  "depthAt": "2026-11-08T17:19:12+00:00"
 }
