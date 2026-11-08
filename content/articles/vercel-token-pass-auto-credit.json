@@ -4,7 +4,7 @@
   "sourceUrl": "https://vercel.com/changelog/token-pass-credit-now-applies-automatically-across-ai-gateway",
   "sourceName": "Vercel Changelog",
   "title": "Token Pass契約者は専用キー不要に　AI Gatewayで毎月80ドル分を自動適用",
-  "seoTitle": "Vercel Token Pass とは？AI Gatewayでの使い方と料金",
+  "seoTitle": "Vercel Token Passの料金と専用キー不要の使い方",
   "threadsPost": "Token Passを契約しているチームに知っておいてほしい話です。\n\nAI Gatewayで、Token Passの枠が専用キーなしで使われるようになりました。\n枠切れ後は、通常のキーのリクエストがチームのクレジットで続きます。\n\n開発で使うAIの月額、いくらまでなら自分で払えますか？",
   "threadsHook": "callout",
   "threadsQuestions": [
@@ -19,8 +19,8 @@
   ],
   "threadsStyle": 3,
   "writingVoice": "honest",
-  "lede": "Proチームで Token Pass を契約していれば、AI Gatewayで専用のAPIキーを作らなくても、月額の枠が今から自動で使われるようになりました。枠は1チーム月30ドルで、注目モデルに毎月80ドル分の利用ができます。枠を使い切ったあとは、標準のAPIキーのリクエストがチームのクレジットで続き、Token Passのキーは次の請求期間まで止まります。",
-  "description": "Vercel AI GatewayでToken Passの枠が専用キーなしで自動的に使われるようになりました。対象はProチームのToken Pass契約者です。枠を使い切ったあとは、標準のAPIキーのリクエストがチームのクレジットで続きます。",
+  "lede": "VercelのProチームでToken Passを契約している人は、AI Gatewayの対象モデルを専用APIキーなしで使っても、利用枠が自動適用されるようになりました。料金は1チーム月30ドルで、請求期間ごとに80ドル分の枠が付きます。枠を使い切ると、標準APIキーやOIDCトークンのリクエストはチームのAI Gatewayクレジットに切り替わります。",
+  "description": "VercelのProチーム向けToken Passは、月30ドルで請求期間ごとに80ドル分の利用枠が付くサービスです。対象モデルへの利用枠が専用キーなしでも自動適用され、枠を使い切った後は認証方法によって扱いが変わります。",
   "keywords": [
     "Token Pass",
     "Vercel Token Pass",
@@ -61,7 +61,7 @@
       "止まってよい処理と止めたくない処理を分けておくと、月の途中で慌てずに済みます。"
     ]
   },
-  "body": "AI Gatewayは、複数のAIモデルを1つの窓口から呼び出せるVercelの仕組みです。\nToken Passは、注目モデルを毎月の利用枠の範囲で使える月額サービスです。\n対象はProチームの契約者です。契約していない人には、この変更による変化はありません。\n\n今回の変更で、Token Passの枠は認証方法を問わず使われるようになりました。対象は、APIキー、OIDCトークン（認証に使う仕組みの一つ）、fx loginで認証したリクエストです。専用のToken Passキーは必須ではなくなりました。ダッシュボードやCLIで作ることもできますが、その場合は注目モデルと提供元に限ったキーになります。\n\nToken Passの料金は、注目モデルを使ったときに提供元の通常のAPI単価で差し引かれます（Vercel ChangelogのToken Passの説明、11/8確認）。\n\n## 枠を使い切ったあとの扱い\n\n枠を使い切ったあと、標準のAPIキーまたはOIDCトークンで送られたリクエストは、チームのAI Gatewayクレジットで続けられます。Token Passのキーは、次の請求期間が始まるまで止まります。\n\n止まると困る処理には、標準のAPIキーを使うのが安全です。Token Passの説明ページにも、本番で止めたくない処理には通常のAI Gatewayキーを使うとあります。\n\n（編集部注）Token Passの説明ページには、デプロイのOIDCトークンでは枠を使えないという記述があります。今回の発表とは食い違っています。どちらが現在の仕様かは、この記事では確認できていません。実際の動きは公式ドキュメントで確かめてください。\n\nデータの扱いも変わりません。Token Pass経由のリクエストは、ZDR（入力や出力を保存しない設定）のままです。\n\nフォールバックで回したリクエストは、チームの設定に従います。チーム全体でZDRを有効にしていると、ZDRに対応した提供元だけに振り分けられます。\n\nチーム全体でZDRを有効にすると、1,000リクエストあたり0.10ドルの料金が、Token Passのリクエストにもかかります（同じ説明ページ、11/8確認）。\n\n解約は、AI Gatewayの Token Pass の画面で Billing Settings から行えます。今の請求期間の終わりまで枠は残りますが、当期分の返金はありません（同じ説明ページ、11/8確認）。\n\n## Proチームの管理者が確かめること\n\nToken Passを契約しているProチームの管理者は、次の3つを確かめてください。\n\n- 開発で使っているキーが、標準のAPIキーかOIDCトークンかを確かめる\n- 初期設定でToken Passのキーを作っていたら、標準のAPIキーかOIDCトークンに切り替える\n- チーム全体のZDR設定が、社内のデータ方針に合っているか確かめる\n\n## まだ分からないこと\n\n- 日本で契約する場合の扱いや、日本語の案内は、まだ発表されていません。\n- 枠の対象になる注目モデルの最新の一覧は、公式ドキュメントで確かめてください。",
+  "body": "AI Gatewayは、複数のAIモデルを1つの窓口から呼び出せるVercelの仕組みです。\nToken Passは、対象モデルを利用枠の範囲で使える月額サービスです。\n対象はProチームの契約者です。契約していない人には、この変更による変化はありません。\n\n今回の変更で、Token Passの利用枠は、APIキー、OIDCトークン（認証に使う仕組みの一つ）、fx loginで認証したリクエストに自動適用されるようになりました。対象は、Token Passの提供元を通じて使う対象モデルです。専用のToken Passキーは必須ではなくなりました。ダッシュボードやCLIで作ることもでき、そのキーは対象モデルと提供元に限定されます。\n\n料金は1チーム月30ドルで、請求期間ごとに80ドル分の利用枠が付きます。対象モデルの利用額は、モデル提供元の通常のAPI単価で枠から差し引かれます。使い残した枠は翌請求期間に繰り越せません。\n\n## 利用枠を使い切った後はキーによって扱いが変わる\n\n枠を使い切った後、標準のAPIキーまたはOIDCトークンで送られたリクエストは、チームのAI Gatewayクレジットに切り替わります。Token Passキーでのリクエストは、次の請求期間が始まるまで失敗します。\n\n止めたくない本番処理には、通常のAI Gatewayキーを使うよう、Token Passの説明ページでも案内しています。継続して利用するには、AI Gatewayクレジットの残高も必要です。\n\n（編集部注）Token Passの説明ページには、デプロイのOIDCトークンでは枠を使えないという記述があります。今回の発表とは食い違っています。どちらが現在の仕様かは、この記事では確認できていません。実際の動きは公式ドキュメントで確かめてください。\n\nToken Passの提供元を通じたリクエストは、引き続きZDR（入力や出力を保存しない設定）の対象です。\n\n枠を使い切った後に切り替わるリクエストは、チームの設定に従います。チーム全体でZDRを有効にしていると、ZDRに対応した提供元だけに振り分けられます。\n\nチーム全体でZDRを有効にすると、1,000リクエストあたり0.10ドルの料金が、Token Passのリクエストにもかかります。\n\n解約は、AI GatewayのToken Pass画面にあるBilling Settingsから行えます。今の請求期間の終わりまで枠は残りますが、当期分の返金はありません。\n\n## Proチームの契約者が確かめること\n\nToken Passを契約しているProチームでは、次の点を確かめてください。\n\n- 開発で使っているキーが、標準のAPIキーかToken Passキーか、またはOIDCトークンを使っているかを確かめる\n- 初期設定でToken Passキーを作った場合、枠を使い切った後も継続したいなら、標準のAPIキーかOIDCトークンに切り替える\n- チーム全体のZDR設定が、社内のデータ方針に合っているか確かめる\n\n## 対象モデルと提供元は変更される場合がある\n\nToken PassはEarly Accessとして提供されています。対象モデルや提供元は変更される場合があるため、最新の一覧は公式ドキュメントで確かめてください。",
   "easy": "## ひとことで言うと\n\nProチームでVercelの月額サービス「Token Pass」を契約していれば、AI Gatewayで専用のキーを作らなくても、毎月の枠が自動で使えるようになりました。枠を使い切ったあとは、通常のキーで送った分がチームのクレジットで続きます。\n\nToken Passのキーは、次の請求期間まで止まります。止まると困る処理は、通常のキーで動かすのが安全です。\n\n## 何が変わるのか\n\nAPIキー（サービスを使うための合い言葉）、OIDCトークン（認証の仕組みの一つ）、fx loginのどれで認証しても、枠が使われるようになりました。専用のキーは要らなくなりましたが、作ることもできます。",
   "channel": "Vercel Changelog",
   "channelId": "",
@@ -137,5 +137,41 @@
     "src": "https://ai-tech-express.jp/img/vercel-token-pass-auto-credit-8d7fad33.jpg"
   },
   "coverTries": 3,
-  "sectionsPolishedAt": "2026-11-07T21:56:44+00:00"
+  "sectionsPolishedAt": "2026-11-07T21:56:44+00:00",
+  "gptReview": {
+    "reviewedBy": "gpt-6.1-terra",
+    "reviewedAt": "2026-11-08T14:45:38+00:00",
+    "changed": [
+      "body",
+      "description",
+      "lede",
+      "seoTitle"
+    ],
+    "before": {
+      "lede": "Proチームで Token Pass を契約していれば、AI Gatewayで専用のAPIキーを作らなくても、月額の枠が今から自動で使われるようになりました。枠は1チーム月30ドルで、注目モデルに毎月80ドル分の利用ができます。枠を使い切ったあとは、標準のAPIキーのリクエストがチームのクレジットで続き、Token Passのキーは次の請求期間まで止まります。"
+    },
+    "fixes": [
+      {
+        "before": "Token Passの料金は、注目モデルを使ったときに提供元の通常のAPI単価で差し引かれます",
+        "after": "対象モデルの利用額は、モデル提供元の通常のAPI単価で枠から差し引かれます",
+        "evidence": "資料2「deducts each Token Pass request from your credit at the model's list price」"
+      },
+      {
+        "before": "Token Passの枠は認証方法を問わず使われるようになりました",
+        "after": "APIキー、OIDCトークン、fx loginで認証した対象リクエストに自動適用されるようになりました",
+        "evidence": "資料1「whether a request authenticates with an API key, OIDC token, or fx login」"
+      },
+      {
+        "before": "初期設定でToken Passのキーを作っていたら、標準のAPIキーかOIDCトークンに切り替える",
+        "after": "初期設定でToken Passキーを作った場合、枠を使い切った後も継続したいなら、標準のAPIキーかOIDCトークンに切り替える",
+        "evidence": "資料1「switch to a standard API key or OIDC token to get fallback」"
+      },
+      {
+        "before": "日本で契約する場合の扱いや、日本語の案内は、まだ発表されていません。",
+        "after": "削除",
+        "evidence": "提示された資料では、発表の有無を確認できない"
+      }
+    ],
+    "notes": "利用枠が適用される対象と、枠を使い切った後の扱いを明確にしました。公式発表と説明ページのOIDCに関する食い違いは残し、資料で確認できない日本向け案内の記述は削除しました。"
+  }
 }
