@@ -211,6 +211,8 @@ async function stats(request: Request, url: URL, env: AffEnv): Promise<Response>
   const programs = new Map<string, Row>();
   const pages = new Map<string, Row>();
   const positions = new Map<string, Row>();
+  // 置き場所（枠の中の順番を外す）× 提携先。「停電の記事の行動欄でJackeryが何回押されたか」を日ごとに見る（2026-11-09）
+  const placements = new Map<string, Row>();
   const hours = new Map<string, Row>();
   const visitors = new Set<string>();
   let total = 0;
@@ -226,6 +228,7 @@ async function stats(request: Request, url: URL, env: AffEnv): Promise<Response>
       bump(programs, program, visitor);
       bump(pages, meta.path ?? "?", visitor);
       bump(positions, meta.pos ?? "other", visitor);
+      bump(placements, `${(meta.pos ?? "other").replace(/-\d+$/, "")}|${program}`, visitor);
       bump(hours, rest.slice(0, 2) || "??", visitor);
     }
     cursor = page.list_complete ? undefined : page.cursor;
@@ -239,6 +242,10 @@ async function stats(request: Request, url: URL, env: AffEnv): Promise<Response>
     byProgram: sorted(programs, "program"),
     byPage: sorted(pages, "path"),
     byPosition: sorted(positions, "pos"),
+    byPlacement: sorted(placements, "key").map(({ key, clicks, visitors }) => {
+      const [pos, program] = String(key).split("|");
+      return { pos, program, clicks, visitors };
+    }),
     byHour: sorted(hours, "hour").sort((a, b) => String(a.hour).localeCompare(String(b.hour))),
     funnel: await funnelStats(date, env.AFF_KV),
   });

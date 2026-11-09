@@ -104,6 +104,46 @@ class PositionStatsTest(unittest.TestCase):
         self.assertEqual(aff_stats.position_group("action-ad"), "action-ad")
         self.assertEqual(aff_stats.position_group("other"), "other")
 
+    def test_clicks_per_placement_and_partner(self):
+        rows = [{"pos": "action-ad", "program": "X", "clicks": 1}, {"pos": "ranking-end", "program": "Y", "clicks": 3}]
+        got = aff_stats.placement_summary(rows, {"Y": "Jackery"})
+        self.assertEqual(got[0], ("記事末の商品枠（スマホ）", "Jackery", 3))
+        self.assertEqual(got[1], ("すぐにできることの下（本文中のPR）", "X", 1))
+
+
+class PitchTest(unittest.TestCase):
+    """2026-11-09: 停電の記事の先頭が防災セット・「中身と価格は公式サイトで確認できます」だけだった件"""
+
+    def test_pitch_is_short_neutral_and_has_no_numbers_beyond_the_note(self):
+        offers = json.loads((ROOT / "content/offers.json").read_text(encoding="utf-8"))["partners"]
+        for key, pitch in a8_import.PITCH.items():
+            with self.subTest(key=key):
+                self.assertIn(key, offers)
+                self.assertEqual(offers[key]["pitch"], pitch)
+                for field in ("fit", "point", "cta"):
+                    self.assertTrue(pitch[field])
+                    self.assertNotRegex(pitch[field], HYPE)
+                self.assertNotEqual(pitch["cta"], "公式サイトで見る")
+                self.assertLessEqual(len(pitch["fit"]), 24)
+                # 数字は note（公式の情報）にあるものだけ（例: 44点・1ギガ・10ギガ）
+                for number in re.findall(r"\d+", pitch["point"] + pitch["fit"]):
+                    self.assertIn(number, offers[key]["note"])
+
+    def test_every_action_rule_has_a_lead_and_valid_intents(self):
+        for rule in a8_import.ACTION_ADS:
+            with self.subTest(rule=rule["key"]):
+                self.assertTrue(rule.get("lead"))
+                self.assertNotRegex(rule["lead"], HYPE)
+                for intent in rule.get("intents", []):
+                    re.compile(intent["match"])
+                    self.assertTrue(set(intent["partners"]) <= set(rule["partners"]))
+
+    def test_outage_puts_portable_power_first(self):
+        disaster = next(r for r in a8_import.ACTION_ADS if r["key"] == "disaster")
+        outage = next(i for i in disaster["intents"] if re.search(i["match"], "停電したらまずブレーカーを確認"))
+        self.assertEqual(outage["key"], "outage")
+        self.assertIn(outage["partners"][0], ("jackery", "bluetti"))
+
 
 class ComponentWiringTest(unittest.TestCase):
     def test_action_ad_block_is_labelled_and_tracked(self):

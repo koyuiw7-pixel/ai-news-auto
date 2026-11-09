@@ -1,5 +1,5 @@
 import type { ArticleSummary } from "@/lib/articles";
-import { actionAdRules, isRoundupArticle, MIN_SCORE, partnerItem, relevanceScore, type ActionAdRule, type OfferItem } from "@/lib/offers";
+import { actionAdRules, intentFor, isRoundupArticle, MIN_SCORE, orderByIntent, partnerItem, relevanceScore, type ActionAdRule, type OfferItem } from "@/lib/offers";
 
 /**
  * 記事の「すぐにできること」（読者がこのあと取る行動）のすぐ下に出す、PR の囲み1つ。
@@ -7,7 +7,16 @@ import { actionAdRules, isRoundupArticle, MIN_SCORE, partnerItem, relevanceScore
  * 行動と同じ話題の提携商品だけを出す（話題の対応は scripts/a8_import.py の ACTION_ADS → content/offers.json の actionAds）。
  * 見出しに話題の語があり、見出し・タグ・要約の点数（relevanceScore）が基準点（MIN_SCORE）を超えた最初の話題を使う。どれにも当たらなければ出さない。
  */
-export type ActionAd = { key: string; title: string; reason?: string; items: { item: OfferItem; pixel?: string }[] };
+export type ActionAd = {
+  key: string;
+  title: string;
+  reason?: string;
+  /** 記事から商品へつなぐ編集部の一文（場面の lead → 話題の lead） */
+  lead?: string;
+  /** 当たった場面（停電・地震など）。無ければ undefined */
+  intent?: string;
+  items: { item: OfferItem; pixel?: string }[];
+};
 
 function hashOf(text: string): number {
   let h = 0;
@@ -49,11 +58,14 @@ export function actionAdForArticle(
 ): ActionAd | undefined {
   const rule = actionAdRuleFor(article, rules);
   if (!rule) return undefined;
-  const available = rule.partners.map((key) => pick(key)).filter((x): x is { item: OfferItem; pixel?: string } => Boolean(x));
+  // 記事の場面（停電・地震など）に当たれば、その場面の商品を先頭に固定する（記事ごとにずらさない）。
+  // 当たらなければ今までどおり記事ごとにずらし、表示が1社に偏らないようにする
+  const intent = intentFor(rule.intents, article);
+  const available = orderByIntent(rule.partners, intent).map((key) => pick(key)).filter((x): x is { item: OfferItem; pixel?: string } => Boolean(x));
   if (available.length === 0) return undefined;
-  const start = hashOf(article.slug) % available.length;
+  const start = intent ? 0 : hashOf(article.slug) % available.length;
   const rotated = [...available.slice(start), ...available.slice(0, start)];
   const skip = new Set(avoid);
   const ordered = [...rotated.filter((x) => !skip.has(x.item.key)), ...rotated.filter((x) => skip.has(x.item.key))];
-  return { key: rule.key, title: rule.title, reason: rule.reason, items: ordered.slice(0, rule.max ?? 2) };
+  return { key: rule.key, title: rule.title, reason: rule.reason, lead: intent?.lead ?? rule.lead, intent: intent?.key, items: ordered.slice(0, rule.max ?? 2) };
 }

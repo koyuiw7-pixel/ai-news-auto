@@ -38,7 +38,32 @@ type Topic = {
   alsoMatch?: string;
   /** 話題の短い名前（例: Gemini・セキュリティ対策）。枠の商品が複数の話題にまたがるとき、見出しをこの名前から作る */
   name?: string;
+  /** 記事の場面ごとの商品の順番（scripts/a8_import.py の ACTION_INTENTS。停電の記事はポータブル電源を先に） */
+  intents?: Intent[];
 };
+
+/**
+ * 記事の場面（見出しの語）ごとに、先に出す商品と、記事から商品へつなぐ一文（lead）。
+ * 2026-11-09 オーナー「これ売れるのかな？」: 停電の記事の先頭が44点の防災セットだった（読者が困っているのは灯りと充電）
+ */
+export type Intent = { key: string; match: string; partners: string[]; lead?: string };
+
+/** 商品の売り方の材料（scripts/a8_import.py の PITCH）。向く人・特徴（公式の情報の範囲）・ボタンの言葉 */
+export type Pitch = { fit?: string; point?: string; cta?: string };
+
+/** 見出しに当たる最初の場面（無ければ undefined） */
+export function intentFor(intents: Intent[] | undefined, article: Pick<ArticleSummary, "title" | "seoTitle">): Intent | undefined {
+  if (!intents?.length) return undefined;
+  const title = `${article.title} ${article.seoTitle ?? ""}`;
+  return intents.find((intent) => regex(intent.match)?.test(title));
+}
+
+/** 場面の商品を先頭に、残りは元の順のまま */
+export function orderByIntent(partners: string[], intent: Intent | undefined): string[] {
+  if (!intent) return partners;
+  const first = intent.partners.filter((key) => partners.includes(key));
+  return [...first, ...partners.filter((key) => !first.includes(key))];
+}
 
 type Partner = {
   program: string;
@@ -68,6 +93,7 @@ type Partner = {
   fit?: string;
   imageNote?: string;
   cta?: string;
+  pitch?: Pitch;
 };
 
 type Book = {
@@ -141,7 +167,20 @@ type OffersFile = {
   actionAds?: ActionAdRule[];
 };
 
-export type ActionAdRule = { key: string; title: string; match: string; partners: string[]; max?: number; genres?: string[]; exclude?: string; /** この記事の読者に関係する理由（1行。枠に出す） */ reason?: string };
+export type ActionAdRule = {
+  key: string;
+  title: string;
+  match: string;
+  partners: string[];
+  max?: number;
+  genres?: string[];
+  exclude?: string;
+  /** この記事の読者に関係する理由（1行。枠に出す） */
+  reason?: string;
+  /** 記事から商品へつなぐ編集部の一文（場面に当たらないとき） */
+  lead?: string;
+  intents?: Intent[];
+};
 
 /** 「すぐにできること」のそばの PR の話題（上から順に照合する） */
 export function actionAdRules(): ActionAdRule[] {
@@ -188,6 +227,8 @@ export type OfferItem = {
   relevance?: number;
   /** この商品を選んだ話題（offers.json の topics の key。既定の広告は fallback-<セット名>）。枠の見出しを商品に合わせるのに使う */
   topic?: string;
+  /** 向く人・特徴・ボタンの言葉（提携商品だけ） */
+  pitch?: Pitch;
 };
 
 export type Offer = {
@@ -703,6 +744,7 @@ export function partnerItem(key: string): { item: OfferItem; pixel?: string } | 
       url,
       shop: partner.shop,
       cta: partner.cta ?? "公式サイトで見る",
+      pitch: partner.pitch,
     },
     pixel: validPixel(partner.pixel ?? program.pixel),
   };
@@ -757,6 +799,7 @@ function partnerOffer(key: string): Built | undefined {
       url,
       shop: partner.shop,
       cta: partner.cta ?? "公式サイトで見る",
+      pitch: partner.pitch,
     },
     pixel: validPixel(partner.pixel ?? program.pixel),
   };
@@ -831,7 +874,8 @@ function buildArticleOffer(article: ArticleSummary, scored: TopicScore[], maxIte
   };
   for (const { topic, score } of scored) {
     if (!topic.booksOnly) {
-      topic.partners.forEach((key, index) => {
+      // 記事の場面に合う商品を先に（停電の記事はポータブル電源、地震・備蓄の記事は防災セット）
+      orderByIntent(topic.partners, intentFor(topic.intents, article)).forEach((key, index) => {
         const partner = offers.partners[key];
         const named = partner && [partner.program, partner.name].some((name) => name && regex(escapeRegex(name))?.test(text.title));
         if (hosting.has(key) && !named) return;

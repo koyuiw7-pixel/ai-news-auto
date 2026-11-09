@@ -87,6 +87,15 @@ def positions_summary(rows: list[dict]) -> list[tuple[str, int]]:
     return sorted(((POSITION_LABELS.get(k, k), v) for k, v in totals.items()), key=lambda kv: -kv[1])
 
 
+def placement_summary(rows: list[dict], names: dict[str, str]) -> list[tuple[str, str, int]]:
+    """置き場所×提携先のクリック数（多い順）。cloudflare/aff.ts の byPlacement"""
+    out = [
+        (POSITION_LABELS.get(str(row.get("pos")), str(row.get("pos"))), names.get(str(row.get("program")), str(row.get("program"))), int(row.get("clicks", 0)))
+        for row in rows
+    ]
+    return sorted(out, key=lambda r: -r[2])
+
+
 def program_names() -> dict[str, str]:
     """a8mat → 提携先の名前（affiliate_links.json・content/offers.json・content/products.json から）"""
     # A8 以外はドメインで数えている（components/AffClickTracker.tsx の programOf）
@@ -155,6 +164,11 @@ def show(data: dict, names: dict[str, str]) -> None:
     for row in data["byPage"][:10]:
         print(f"    {row['path']}  {row['clicks']}回")
     print("  置き場所別: " + "、".join(f"{label} {clicks}" for label, clicks in positions_summary(data["byPosition"])))
+    placements = placement_summary(data.get("byPlacement", []), names)
+    if placements:
+        print("  置き場所×提携先（多い順）:")
+        for label, name, clicks in placements[:20]:
+            print(f"    {label} ／ {name}  {clicks}回")
     print("  置き場所別（枠の中の順番まで）: " + "、".join(f"{row['pos']} {row['clicks']}" for row in data["byPosition"]))
 
 

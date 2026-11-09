@@ -65,7 +65,7 @@ await test("free and sponsored choices counted separately", async () => {
 await test("legacy affiliate counts, positions and A8 plus codes unchanged", async () => {
   await call("/api/aff/click", { p: "A+B+C", path: GUIDE_PATH, pos: "choose-table" });
   await call("/api/aff/click", { p: "A+B+C", path: GUIDE_PATH, pos: "choose-table" });
-  const result = await stats(); assert.equal(result.clicks, 1); assert.equal(result.byProgram[0].program, "A+B+C"); assert.equal(result.byPosition[0].pos, "choose-table");
+  const result = await stats(); assert.equal(result.clicks, 1); assert.equal(result.byProgram[0].program, "A+B+C"); assert.equal(result.byPosition[0].pos, "choose-table"); assert.deepEqual(result.byPlacement[0], { pos: "choose-table", program: "A+B+C", clicks: 1, visitors: 1 });
   assert.equal(result.funnel.stages.find((r: { stage: string }) => r.stage === "guide_view").events, 1);
 });
 await test("new events cannot exhaust old click burst allowance", async () => {

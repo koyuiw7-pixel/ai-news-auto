@@ -99,4 +99,39 @@ test("候補を全部行動欄に出した記事でも、ほかの枠は既定�
   assert.ok(!keysOf(plan.rail!.items).includes("bang-kasai"));
 });
 
+// 2026-11-09 オーナー「これ売れるのかな？」: 停電の記事の先頭が44点の防災セットだった。記事の場面に合う商品を先に出す
+test("停電の記事はポータブル電源が先、地震・備蓄の記事は防災セットが先（記事ごとにずらさない）", () => {
+  for (const slug of ["t-out1", "t-out2", "t-out3", "t-out4"]) {
+    const ad = actionAdForArticle(article(slug, "停電したらまずブレーカーを確認　復旧までにやること", ["停電", "防災"]))!;
+    assert.equal(ad.intent, "outage");
+    assert.match(ad.items[0].item.key, /^(jackery|bluetti)$/);
+    assert.match(ad.lead ?? "", /充電/);
+  }
+  const quake = actionAdForArticle(article("t-q1", "地震に備える備蓄、家族3日分の目安", ["地震", "備蓄"]))!;
+  assert.equal(quake.intent, "quake");
+  assert.equal(quake.items[0].item.key, "akamaru-bousai");
+  const outage = fromFile("power-outage-breaker-check-guide");
+  const real = actionAdForArticle(outage)!;
+  assert.match(real.items[0].item.key, /^(jackery|bluetti)$/);
+  // 本文中・記事末の枠でも、停電の記事は電源を先に（行動欄に出た分は除く）
+  const plan = offerPlanForArticle(outage, []);
+  assert.match(plan.rail!.items[0].key, /^(jackery|bluetti)$/);
+});
+
+test("電気代の記事は、まず比べるサービス（エネピ）を先に", () => {
+  const ad = actionAdForArticle(article("t-bill", "電気代、12月使用分から補助終了で値上がり", ["電気料金"]))!;
+  assert.equal(ad.items[0].item.key, "enepi");
+});
+
+test("行動欄の商品には向く人・特徴・ボタンの言葉がある（数字は書かない）", () => {
+  for (const [title, tags] of [["ドコモ情報流出、最大約30万件", ["情報流出"]], ["停電したらまずブレーカーを確認", ["停電"]], ["電気代が値上がり", ["電気料金"]]] as const) {
+    const ad = actionAdForArticle(article(`t-p-${title.length}`, title, [...tags]))!;
+    assert.ok(ad.lead, `${title}: つなぎの一文が無い`);
+    for (const { item } of ad.items) {
+      assert.ok(item.pitch?.fit && item.pitch?.point && item.pitch?.cta, `${item.key}: pitch が無い`);
+      assert.notEqual(item.pitch!.cta, "公式サイトで見る");
+    }
+  }
+});
+
 console.log(`action-ad: ${passed} passed`);

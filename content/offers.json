@@ -1007,7 +1007,39 @@
         "stoole",
         "bang-kasai"
       ],
-      "name": "停電・災害への備え"
+      "name": "停電・災害への備え",
+      "intents": [
+        {
+          "key": "outage",
+          "match": "停電|ブレーカー|電源|充電|節電要請|電力不足|電力需給|計画停電",
+          "lead": "停電の夜に困るのは、灯りとスマホの充電です。コンセントが使える電源が1台あると、復旧を待つあいだも連絡や情報収集を続けられます。",
+          "partners": [
+            "jackery",
+            "bluetti",
+            "akamaru-bousai"
+          ]
+        },
+        {
+          "key": "storm",
+          "match": "台風|大雨|豪雨|洪水|氾濫|線状降水帯|大雪|土砂",
+          "lead": "台風や大雨では、停電と買い出しのしにくさが重なります。電源と数日分の食料を、荒れる前に用意しておくと安心です。",
+          "partners": [
+            "jackery",
+            "alpha-foods",
+            "akamaru-bousai"
+          ]
+        },
+        {
+          "key": "quake",
+          "match": "地震|津波|噴火|避難|備蓄|防災グッズ|非常食|防災",
+          "lead": "地震への備えは、水・食料・明かりを数日分そろえるのが基本です。何をそろえるか迷ったら、セットから始める方法もあります。",
+          "partners": [
+            "akamaru-bousai",
+            "alpha-foods",
+            "jackery"
+          ]
+        }
+      ]
     },
     {
       "key": "life-furusato",
@@ -1072,7 +1104,18 @@
         "enepi",
         "tainavi"
       ],
-      "name": "電気の契約を見直す"
+      "name": "電気の契約を見直す",
+      "intents": [
+        {
+          "key": "bill",
+          "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|燃料費調整|再エネ賦課金|新電力|電力会社",
+          "partners": [
+            "enepi",
+            "elpio",
+            "tainavi"
+          ]
+        }
+      ]
     },
     {
       "key": "life-moving",
@@ -1565,7 +1608,12 @@
       "image": "https://www21.a8.net/svt/bgt?aid=261026994328&wid=001&eno=01&mid=s00000016371001023000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+5FA776+3IBI+60WN6",
       "shop": "ノートン公式",
-      "programId": "s00000016371001"
+      "programId": "s00000016371001",
+      "pitch": {
+        "fit": "PCとスマホをまとめて守りたい人",
+        "point": "PCやスマホ向けのセキュリティ製品。対象の端末をプランで選べます",
+        "cta": "対象端末と料金を見る"
+      }
     },
     "virusbuster": {
       "program": "ウイルスバスター クラウド",
@@ -1575,7 +1623,12 @@
       "image": "https://www24.a8.net/svt/bgt?aid=261026994315&wid=001&eno=01&mid=s00000015315001020000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+57JKC2+3A66+5YRHE",
       "shop": "トレンドマイクロ公式",
-      "programId": "s00000015315001"
+      "programId": "s00000015315001",
+      "pitch": {
+        "fit": "パソコンとスマホの対策をひとつにまとめたい人",
+        "point": "トレンドマイクロの、パソコンやスマホ向けセキュリティ対策",
+        "cta": "対応端末と料金を見る"
+      }
     },
     "eset": {
       "program": "ESET HOME セキュリティ",
@@ -1585,7 +1638,12 @@
       "image": "https://www28.a8.net/svt/bgt?aid=261026994314&wid=001&eno=01&mid=s00000005993007013000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+56Y4QA+1A8Q+15P77M",
       "shop": "ESET公式",
-      "programId": "s00000005993007"
+      "programId": "s00000005993007",
+      "pitch": {
+        "fit": "プランを比べて端末の対策を選びたい人",
+        "point": "端末向けのセキュリティ製品。対応端末とプランを選べます",
+        "cta": "プランと料金を見る"
+      }
     },
     "surfshark": {
       "program": "Surfshark",
@@ -1595,7 +1653,12 @@
       "image": "https://www23.a8.net/svt/bgt?aid=261026994319&wid=001&eno=01&mid=s00000021488002004000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+59XAR6+4LSW+BX3J6",
       "shop": "Surfshark公式",
-      "programId": "s00000021488002"
+      "programId": "s00000021488002",
+      "pitch": {
+        "fit": "外出先のWi-Fiをよく使う人",
+        "point": "VPNなどを提供するサービス。機能は契約プランで変わります",
+        "cta": "プランと料金を見る"
+      }
     },
     "ringconn": {
       "program": "RingConn スマートリング",
@@ -1625,7 +1688,12 @@
       "image": "https://www22.a8.net/svt/bgt?aid=261026994274&wid=001&eno=01&mid=s00000018613001024000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4J4SJ6+3ZMA+5YJRM",
       "shop": "デジタネ公式",
-      "programId": "s00000018613001"
+      "programId": "s00000018613001",
+      "pitch": {
+        "fit": "ゲームを入り口に学ばせたい家庭",
+        "point": "ゲームなどを題材にプログラミングを学ぶ教材",
+        "cta": "対象年齢と内容を見る"
+      }
     },
     "litalico": {
       "program": "LITALICOワンダー",
@@ -1635,7 +1703,12 @@
       "image": "https://www22.a8.net/svt/bgt?aid=261026994279&wid=001&eno=01&mid=s00000019385001032000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+4M3YK2+45KQ+5YJRM",
       "shop": "LITALICOワンダー",
-      "programId": "s00000019385001"
+      "programId": "s00000019385001",
+      "pitch": {
+        "fit": "教室でものづくりを体験させたい家庭",
+        "point": "ロボットやプログラミングのITものづくり教室",
+        "cta": "教室と内容を見る"
+      }
     },
     "gomcam": {
       "program": "GOM Cam",
@@ -1715,7 +1788,12 @@
       "image": "https://www24.a8.net/svt/bgt?aid=261029018871&wid=001&eno=01&mid=s00000000018040038000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BERA2+EEKKOI+50+6M9W0I",
       "shop": "GMOとくとくBB",
-      "programId": "s00000000018040"
+      "programId": "s00000000018040",
+      "pitch": {
+        "fit": "契約期間の縛りなく光回線を使いたい人",
+        "point": "縛りなしの光回線。転用・事業者変更もWebで完結します",
+        "cta": "料金と条件を見る"
+      }
     },
     "biglobe-hikari": {
       "program": "BIGLOBE光",
@@ -1725,7 +1803,12 @@
       "image": "https://www29.a8.net/svt/bgt?aid=261029018876&wid=001&eno=01&mid=s00000000040016006000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BERA2+EHJQPE+B4+2NBPO2",
       "shop": "BIGLOBE",
-      "programId": "s00000000040016"
+      "programId": "s00000000040016",
+      "pitch": {
+        "fit": "auやUQ mobileのスマホを使っている人",
+        "point": "1ギガと10ギガから選べる光回線。スマホとまとめると割引あり",
+        "cta": "料金と割引を見る"
+      }
     },
     "gmo-wimax": {
       "program": "GMOとくとくBB WiMAX",
@@ -1735,7 +1818,12 @@
       "image": "https://www26.a8.net/svt/bgt?aid=261029018872&wid=001&eno=01&mid=s00000000018021192000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BERA2+EF60AA+50+3I06GY",
       "shop": "GMOとくとくBB",
-      "programId": "s00000000018021"
+      "programId": "s00000000018021",
+      "pitch": {
+        "fit": "工事なしで、外でもネットを使いたい人",
+        "point": "工事なしで使えるWiMAX +5G",
+        "cta": "料金と条件を見る"
+      }
     },
     "biglobe-wimax": {
       "program": "BIGLOBE WiMAX +5G",
@@ -1745,7 +1833,12 @@
       "image": "https://www27.a8.net/svt/bgt?aid=261029018855&wid=001&eno=01&mid=s00000000040014074000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BERA2+E51N02+B4+2BKM6Q",
       "shop": "BIGLOBE",
-      "programId": "s00000000040014"
+      "programId": "s00000000040014",
+      "pitch": {
+        "fit": "端末込みで、すぐ使い始めたい人",
+        "point": "データ端末つき。工事不要で、届いた日から使えます",
+        "cta": "料金と端末を見る"
+      }
     },
     "gmo-home-wifi": {
       "program": "GMOとくとくBB ホームWi-Fi",
@@ -1755,7 +1848,12 @@
       "image": "https://www27.a8.net/svt/bgt?aid=261029018877&wid=001&eno=01&mid=s00000000018046013000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BERA2+EI56B6+50+7LVLZM",
       "shop": "GMOとくとくBB",
-      "programId": "s00000000018046"
+      "programId": "s00000000018046",
+      "pitch": {
+        "fit": "光回線の工事ができない部屋に住む人",
+        "point": "コンセントに挿すだけで使える置き型Wi-Fi",
+        "cta": "料金と条件を見る"
+      }
     },
     "mf-kakutei": {
       "programId": "s00000021185002",
@@ -1769,7 +1867,12 @@
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGCEY+GBMUUQ+4JGQ+BXYE9",
       "pixel": "https://www14.a8.net/0.gif?a8mat=4BGCEY+GBMUUQ+4JGQ+BXYE9",
       "shop": "マネーフォワード公式",
-      "caution": "料金プランと無料で使える範囲は公式サイトで確認してください。"
+      "caution": "料金プランと無料で使える範囲は公式サイトで確認してください。",
+      "pitch": {
+        "fit": "銀行やカードの明細を取り込みたい人",
+        "point": "明細を取り込んで、帳簿づけから申告書の作成まで進められます",
+        "cta": "料金プランを見る"
+      }
     },
     "yayoi-kakutei": {
       "programId": "s00000014765001",
@@ -1784,7 +1887,12 @@
       "pixel": "https://www18.a8.net/0.gif?a8mat=4BGCEZ+2QTZ76+35XE+6DZBM",
       "shop": "弥生公式",
       "caution": "料金・無料期間は公式サイトで確認してください。",
-      "badge": "TAX SOFTWARE"
+      "badge": "TAX SOFTWARE",
+      "pitch": {
+        "fit": "個人事業主・副業で申告する人",
+        "point": "青色申告・白色申告に対応するクラウド確定申告ソフト",
+        "cta": "料金と無料期間を見る"
+      }
     },
     "aupay-furusato": {
       "programId": "s00000023934001",
@@ -1798,7 +1906,12 @@
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGCEZ+3DGG6Q+54OC+5ZMCH",
       "pixel": "https://www13.a8.net/0.gif?a8mat=4BGCEZ+3DGG6Q+54OC+5ZMCH",
       "shop": "au PAY ふるさと納税公式",
-      "caution": "控除の上限額や手続き（ワンストップ特例・確定申告）は公式サイトや自治体の案内で確認してください。"
+      "caution": "控除の上限額や手続き（ワンストップ特例・確定申告）は公式サイトや自治体の案内で確認してください。",
+      "pitch": {
+        "fit": "返礼品を探して、そのまま寄附したい人",
+        "point": "返礼品を探して寄附できるふるさと納税サイト",
+        "cta": "返礼品を探す"
+      }
     },
     "mf-setsuritsu": {
       "programId": "s00000021185003",
@@ -1867,7 +1980,12 @@
       "note": "全国の特産品を返礼品として選べるふるさと納税サイト。",
       "image": "https://www21.a8.net/svt/bgt?aid=261108129725&wid=001&eno=01&mid=s00000025743001012000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBL+BZNACY+5IMU+5YRHE",
-      "shop": "ふるさと本舗公式"
+      "shop": "ふるさと本舗公式",
+      "pitch": {
+        "fit": "返礼品を全国から選びたい人",
+        "point": "全国の特産品を返礼品として選べるふるさと納税サイト",
+        "cta": "返礼品を探す"
+      }
     },
     "elpio": {
       "programId": "s00000020080001",
@@ -1877,7 +1995,12 @@
       "note": "家庭向けの電気の契約先を切り替えられる電力会社。料金プランと対象エリアは公式サイトで確認できます。",
       "image": "https://www26.a8.net/svt/bgt?aid=261108129742&wid=001&eno=01&mid=s00000020080001010000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBL+C9RNN6+4AXS+5Z6WY",
-      "shop": "エルピオでんき公式"
+      "shop": "エルピオでんき公式",
+      "pitch": {
+        "fit": "今の電力会社から切り替えを考えている人",
+        "point": "家庭向けの電気の契約先を切り替えられる電力会社",
+        "cta": "料金プランを見る"
+      }
     },
     "akamaru-bousai": {
       "programId": "s00000025626001",
@@ -1887,7 +2010,12 @@
       "note": "防災士が監修した44点入りの防災セット。中身と価格は公式サイトで確認できます。",
       "image": "https://www21.a8.net/svt/bgt?aid=261108129756&wid=001&eno=01&mid=s00000025626001003000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBL+CI3Q42+5HQC+5YJRM",
-      "shop": "あかまる防災公式"
+      "shop": "あかまる防災公式",
+      "pitch": {
+        "fit": "何をそろえればいいか迷っている人",
+        "point": "防災士が監修した44点入りの防災セット",
+        "cta": "セットの中身を見る"
+      }
     },
     "stoole": {
       "programId": "s00000027418001",
@@ -1897,7 +2025,12 @@
       "note": "防災士が監修した備えの用品。内容とサイズは公式サイトで確認できます。",
       "image": "https://www23.a8.net/svt/bgt?aid=261108129669&wid=001&eno=01&mid=s00000027418001003000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBL+B2B0HE+5VK4+5YRHE",
-      "shop": "スツーレ公式"
+      "shop": "スツーレ公式",
+      "pitch": {
+        "fit": "家の備えを少しずつ足したい人",
+        "point": "防災士が監修した備えの用品",
+        "cta": "内容とサイズを見る"
+      }
     },
     "alpha-foods": {
       "programId": "s00000023371001",
@@ -1907,7 +2040,12 @@
       "note": "水やお湯を注いで食べられるご飯などの保存食。保存期間は商品ごとに確認できます。",
       "image": "https://www22.a8.net/svt/bgt?aid=261108129755&wid=001&eno=01&mid=s00000023371001022000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBL+CHIAIA+50BY+5YRHE",
-      "shop": "アルファー食品公式"
+      "shop": "アルファー食品公式",
+      "pitch": {
+        "fit": "数日分の食料を家に置いておきたい人",
+        "point": "水やお湯を注いで食べられるご飯などの保存食",
+        "cta": "種類と保存期間を見る"
+      }
     },
     "bluetti": {
       "programId": "s00000022499001",
@@ -1917,7 +2055,12 @@
       "note": "コンセントが使える大容量のポータブル電源。容量と出力は製品ごとに確認できます。",
       "image": "https://www29.a8.net/svt/bgt?aid=261108129753&wid=001&eno=01&mid=s00000022499001082000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBL+CGBFAQ+4TLQ+5YRHE",
-      "shop": "BLUETTI JAPAN公式"
+      "shop": "BLUETTI JAPAN公式",
+      "pitch": {
+        "fit": "大きめの容量で、停電に長く備えたい人",
+        "point": "コンセントが使える大容量のポータブル電源",
+        "cta": "容量と出力を見る"
+      }
     },
     "jackery": {
       "programId": "s00000021712001",
@@ -1927,7 +2070,12 @@
       "note": "アウトドアや防災に使える、コンセント付きのポータブル電源。容量は製品ごとに確認できます。",
       "image": "https://www28.a8.net/svt/bgt?aid=261026994333&wid=001&eno=01&mid=s00000021712001044000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+5I9D82+4NJ4+5ZMCI",
-      "shop": "Jackery Japan公式"
+      "shop": "Jackery Japan公式",
+      "pitch": {
+        "fit": "停電中もスマホの充電や灯りを確保したい人",
+        "point": "コンセント付きのポータブル電源。アウトドアでも使えます",
+        "cta": "容量と価格を見る"
+      }
     },
     "bb-excite": {
       "programId": "s00000000979014",
@@ -1937,7 +2085,12 @@
       "note": "スマホの料金を見直すときの格安SIM。料金プランと対応端末は公式サイトで確認できます。",
       "image": "https://www23.a8.net/svt/bgt?aid=261108129766&wid=001&eno=01&mid=s00000000979014019000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBL+CO225U+7JY+2BD44I",
-      "shop": "BB.excite公式"
+      "shop": "BB.excite公式",
+      "pitch": {
+        "fit": "毎月のスマホ代を下げたい人",
+        "point": "スマホの料金を見直すときの格安SIM",
+        "cta": "料金プランを見る"
+      }
     },
     "freee": {
       "programId": "s00000017718057",
@@ -1947,7 +2100,12 @@
       "note": "帳簿づけから確定申告の書類づくりまでできるクラウド会計ソフト。料金プランは公式サイトで確認できます。",
       "image": "https://www24.a8.net/svt/bgt?aid=261108129770&wid=001&eno=01&mid=s00000017718057011000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBL+CQFSKY+3SPO+9FDAJ6",
-      "shop": "freee公式"
+      "shop": "freee公式",
+      "pitch": {
+        "fit": "帳簿づけから申告書までひとつで済ませたい人",
+        "point": "帳簿づけから確定申告の書類づくりまでできるクラウド会計ソフト",
+        "cta": "料金プランを見る"
+      }
     },
     "epos": {
       "programId": "s00000015110002",
@@ -1957,7 +2115,12 @@
       "note": "丸井グループのクレジットカード。年会費やポイントの条件は公式サイトで確認できます。",
       "image": null,
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBL+D2XWAA+38L8+BY641",
-      "shop": "エポスカード公式"
+      "shop": "エポスカード公式",
+      "pitch": {
+        "fit": "丸井グループのカードを検討している人",
+        "point": "丸井グループのクレジットカード",
+        "cta": "年会費とポイント条件を見る"
+      }
     },
     "hikkoshi-samurai": {
       "programId": "s00000004657003",
@@ -1967,7 +2130,12 @@
       "note": "複数の引越し業者にまとめて見積もりを依頼できる比較サービス。",
       "image": "https://www20.a8.net/svt/bgt?aid=261108129799&wid=001&eno=01&mid=s00000004657003059000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBL+D7PD4I+ZXM+HYNBM",
-      "shop": "引越し侍公式"
+      "shop": "引越し侍公式",
+      "pitch": {
+        "fit": "引越し代を複数社で比べたい人",
+        "point": "複数の引越し業者に、まとめて見積もりを依頼できます",
+        "cta": "見積もりを依頼する"
+      }
     },
     "sourcenext": {
       "programId": "s00000019543001",
@@ -1987,7 +2155,12 @@
       "note": "住所や使用量をもとに、電力会社の料金プランを比べられる比較サービス。",
       "image": "https://www21.a8.net/svt/bgt?aid=261108130020&wid=001&eno=01&mid=s00000013511010003000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBM+BWOVM+2W92+1NJK7M",
-      "shop": "エネピ（じげん）"
+      "shop": "エネピ（じげん）",
+      "pitch": {
+        "fit": "どの電力会社が合うか、まず比べたい人",
+        "point": "住所や使用量をもとに、電力会社の料金プランを比べられます",
+        "cta": "電気料金を比べる"
+      }
     },
     "tainavi": {
       "programId": "s00000010685001",
@@ -1997,7 +2170,12 @@
       "note": "太陽光発電や蓄電池の設置について、複数の業者に見積もりを依頼できるサービス。",
       "image": "https://www23.a8.net/svt/bgt?aid=261108130050&wid=001&eno=01&mid=s00000010685001036000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBM+TRP0Y+2AG2+63H8I",
-      "shop": "タイナビ公式"
+      "shop": "タイナビ公式",
+      "pitch": {
+        "fit": "太陽光や蓄電池で電気代を考えたい人",
+        "point": "太陽光・蓄電池の設置を、複数の業者に見積もり依頼できます",
+        "cta": "見積もりを依頼する"
+      }
     },
     "bang-kasai": {
       "programId": "s00000000489041",
@@ -2007,7 +2185,12 @@
       "note": "条件を入れて、複数の保険会社の火災保険の見積もりを比べられるサービス。",
       "image": "https://www27.a8.net/svt/bgt?aid=261108130037&wid=001&eno=01&mid=s00000000489041014000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBM+M125U+3RU+6S3XQQ",
-      "shop": "保険スクエアbang！"
+      "shop": "保険スクエアbang！",
+      "pitch": {
+        "fit": "地震や水害の補償を確かめたい人",
+        "point": "条件を入れて、複数社の火災保険の見積もりを比べられます",
+        "cta": "見積もりを比べる"
+      }
     },
     "oken-water": {
       "programId": "s00000007476001",
@@ -2017,7 +2200,12 @@
       "note": "天然水を宅配で届けるウォーターサーバー。料金と配送エリアは公式サイトで確認できます。",
       "image": "https://www25.a8.net/svt/bgt?aid=261108129988&wid=001&eno=01&mid=s00000007476001106000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBL+GC8AGI+1LOO+5ZU2A",
-      "shop": "オーケンウォーター公式"
+      "shop": "オーケンウォーター公式",
+      "pitch": {
+        "fit": "飲み水を家に届けてもらいたい人",
+        "point": "天然水を宅配で届けるウォーターサーバー",
+        "cta": "料金と配送エリアを見る"
+      }
     },
     "frecious": {
       "programId": "s00000010789007",
@@ -2027,7 +2215,12 @@
       "note": "水道水を入れて使う浄水型のウォーターサーバー。料金と設置条件は公式サイトで確認できます。",
       "image": "https://www21.a8.net/svt/bgt?aid=261108130025&wid=001&eno=01&mid=s00000010789007046000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBM+EVUWI+2B8Y+15OK2A",
-      "shop": "FRECIOUS公式"
+      "shop": "FRECIOUS公式",
+      "pitch": {
+        "fit": "ボトルの受け取りや保管を減らしたい人",
+        "point": "水道水を入れて使う浄水型のウォーターサーバー",
+        "cta": "料金と設置条件を見る"
+      }
     },
     "biglobe-hikari-plus": {
       "programId": "s00000000040018",
@@ -2037,7 +2230,12 @@
       "note": "BIGLOBEの光回線サービス。提供エリアと料金は公式サイトで確認できます。",
       "image": "https://www29.a8.net/svt/bgt?aid=261108129994&wid=001&eno=01&mid=s00000000040018011000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBL+GFSW36+B4+2Z68LU",
-      "shop": "BIGLOBE"
+      "shop": "BIGLOBE",
+      "pitch": {
+        "fit": "新居のネット回線を決めたい人",
+        "point": "BIGLOBEの光回線サービス",
+        "cta": "提供エリアと料金を見る"
+      }
     },
     "jalan": {
       "programId": "s00000005230001",
@@ -2047,7 +2245,12 @@
       "note": "国内の宿泊施設を探して予約できる旅行サイト。",
       "image": "https://www23.a8.net/svt/bgt?aid=261108130030&wid=001&eno=01&mid=s00000005230001054000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBM+HV0XE+14CS+64JTE",
-      "shop": "じゃらんnet"
+      "shop": "じゃらんnet",
+      "pitch": {
+        "fit": "国内の宿を空室から探したい人",
+        "point": "国内の宿泊施設を探して予約できる旅行サイト",
+        "cta": "空室と料金を見る"
+      }
     },
     "ikyu": {
       "programId": "s00000000218001",
@@ -2057,7 +2260,12 @@
       "note": "ホテルや旅館を探して予約できる宿泊予約サイト。",
       "image": "https://www28.a8.net/svt/bgt?aid=261108130049&wid=001&eno=01&mid=s00000000218001185000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBM+T69F6+1OK+5YRHE",
-      "shop": "一休.com"
+      "shop": "一休.com",
+      "pitch": {
+        "fit": "ホテルや旅館を選んで予約したい人",
+        "point": "ホテルや旅館を探して予約できる宿泊予約サイト",
+        "cta": "空室と料金を見る"
+      }
     }
   },
   "fallbackByGenre": {
@@ -2274,7 +2482,8 @@
         "eset"
       ],
       "max": 2,
-      "exclude": "ガードレール|AIガバナンス|脱獄|LLM"
+      "exclude": "ガードレール|AIガバナンス|脱獄|LLM",
+      "lead": "流出した情報は、本物そっくりの偽メールや偽SMSに使われることがあります。パスワードの変更とあわせて、端末側の対策も見直しておくと安心です。"
     },
     {
       "key": "fire-insurance",
@@ -2292,7 +2501,8 @@
         "tech-gadget",
         "real-estate",
         "investment"
-      ]
+      ],
+      "lead": "保険料や補償が変わる時期は、今の契約の中身を見直すきっかけです。同じ条件で複数社を比べると、今の保険料が妥当か分かります。"
     },
     {
       "key": "water",
@@ -2311,7 +2521,8 @@
         "tech-gadget",
         "real-estate",
         "investment"
-      ]
+      ],
+      "lead": "断水のとき最初に困るのは飲み水です。家に届く水を用意しておくと、給水所や買い出しに並ばずに済みます。"
     },
     {
       "key": "disaster",
@@ -2326,7 +2537,40 @@
         "stoole",
         "bang-kasai"
       ],
-      "max": 2
+      "max": 2,
+      "lead": "災害の備えは、電気・水・食料を数日分そろえるのが基本です。足りないものから先に用意しておきましょう。",
+      "intents": [
+        {
+          "key": "outage",
+          "match": "停電|ブレーカー|電源|充電|節電要請|電力不足|電力需給|計画停電",
+          "lead": "停電の夜に困るのは、灯りとスマホの充電です。コンセントが使える電源が1台あると、復旧を待つあいだも連絡や情報収集を続けられます。",
+          "partners": [
+            "jackery",
+            "bluetti",
+            "akamaru-bousai"
+          ]
+        },
+        {
+          "key": "storm",
+          "match": "台風|大雨|豪雨|洪水|氾濫|線状降水帯|大雪|土砂",
+          "lead": "台風や大雨では、停電と買い出しのしにくさが重なります。電源と数日分の食料を、荒れる前に用意しておくと安心です。",
+          "partners": [
+            "jackery",
+            "alpha-foods",
+            "akamaru-bousai"
+          ]
+        },
+        {
+          "key": "quake",
+          "match": "地震|津波|噴火|避難|備蓄|防災グッズ|非常食|防災",
+          "lead": "地震への備えは、水・食料・明かりを数日分そろえるのが基本です。何をそろえるか迷ったら、セットから始める方法もあります。",
+          "partners": [
+            "akamaru-bousai",
+            "alpha-foods",
+            "jackery"
+          ]
+        }
+      ]
     },
     {
       "key": "furusato",
@@ -2345,7 +2589,8 @@
         "tech-gadget",
         "real-estate",
         "investment"
-      ]
+      ],
+      "lead": "ふるさと納税は、控除の上限額の中で寄附先を選ぶのが基本です。上限を確かめたら、返礼品を探してみましょう。"
     },
     {
       "key": "tax",
@@ -2365,7 +2610,8 @@
         "tech-gadget",
         "real-estate",
         "investment"
-      ]
+      ],
+      "lead": "申告の準備で時間がかかるのは、明細の整理と書類づくりです。会計ソフトを使うと、明細の取り込みから書類の作成まで進められます。"
     },
     {
       "key": "energy",
@@ -2385,6 +2631,18 @@
         "tech-gadget",
         "real-estate",
         "investment"
+      ],
+      "lead": "電気代は、使い方を変えなくても契約先の見直しで変わることがあります。まず今の使用量で比べてみると、切り替えるべきかが分かります。",
+      "intents": [
+        {
+          "key": "bill",
+          "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|燃料費調整|再エネ賦課金|新電力|電力会社",
+          "partners": [
+            "enepi",
+            "elpio",
+            "tainavi"
+          ]
+        }
       ]
     },
     {
@@ -2404,7 +2662,8 @@
         "tech-gadget",
         "real-estate",
         "investment"
-      ]
+      ],
+      "lead": "引越しは、業者の見積もりと新居のネット回線の手配を早めに済ませると、直前に慌てずに済みます。"
     },
     {
       "key": "mobile",
@@ -2423,7 +2682,8 @@
         "tech-gadget",
         "real-estate",
         "investment"
-      ]
+      ],
+      "lead": "障害や料金の変更は、スマホ回線を見直すきっかけです。今の使い方に合った料金かを、他社と比べてみましょう。"
     },
     {
       "key": "travel",
@@ -2443,7 +2703,8 @@
         "real-estate",
         "investment"
       ],
-      "exclude": "株価|決算|業績|訪日客数"
+      "exclude": "株価|決算|業績|訪日客数",
+      "lead": "連休や旅行シーズンの宿は早く埋まります。空室と料金を先に確かめておくと、予定を立てやすくなります。"
     },
     {
       "key": "household",
@@ -2464,7 +2725,8 @@
         "real-estate",
         "investment"
       ],
-      "exclude": "株価|決算|業績|上場|時価総額|(?<![A-Za-z])AI(?![A-Za-z])|半導体|GPU|API|ユーロ|欧州|米国|中国|英国|景気|業況|GDP|統計|貯蓄率|消費支出"
+      "exclude": "株価|決算|業績|上場|時価総額|(?<![A-Za-z])AI(?![A-Za-z])|半導体|GPU|API|ユーロ|欧州|米国|中国|英国|景気|業況|GDP|統計|貯蓄率|消費支出",
+      "lead": "値上げが続くときは、毎月かかる固定費から見直すと効果が続きます。スマホ代と電気代は、比べやすい項目です。"
     },
     {
       "key": "kids",
@@ -2484,7 +2746,8 @@
         "tech-gadget",
         "real-estate",
         "investment"
-      ]
+      ],
+      "lead": "子どもの学びは、本人が楽しめる入り口を選べるかどうかで続き方が変わります。内容と対象年齢を確かめて選びましょう。"
     },
     {
       "key": "payment",
@@ -2502,7 +2765,8 @@
         "tech-gadget",
         "real-estate",
         "investment"
-      ]
+      ],
+      "lead": "支払い方法の条件が変わるときは、年会費とポイントの条件を比べ直すきっかけです。"
     }
   ]
 }
