@@ -37,7 +37,7 @@ LABEL = "com.komuro.saisoku-muse-articles"
 PLIST = HOME / "Library" / "LaunchAgents" / f"{LABEL}.plist"
 INTERVAL_SEC = 25 * 60
 JST = timezone(timedelta(hours=9))
-SPARSE = ["content/articles", "content/muse_inbox", "content/muse_images", "scripts", "state"]
+SPARSE = ["content/articles", "content/muse_inbox", "content/muse_images", "public/fig", "scripts", "state"]  # public/fig: Muse の説明の図（2026-11-09。無いと git add public/fig が失敗していた）
 SKIP_NAMES = {"FORMAT.md", "ledger.md", "README.md"}
 SETTLE_SEC = 90  # 書き込み中のファイルを持っていかない（最後の変更からこの秒数たったものだけ）
 LEDGER_DAYS = 7
