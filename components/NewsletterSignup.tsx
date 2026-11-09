@@ -87,11 +87,11 @@ export default function NewsletterSignup({ variant = "article" }: { variant?: Va
           id={`nl-${variant}`}
           className={`mt-1.5 leading-snug ${compact ? "t-card" : "t-h3"}`}
         >
-          毎朝7時、昨日のAIニュースの<span className="whitespace-nowrap">要点を5本</span>
+          毎朝7時、暮らしとお金のニュースの<span className="whitespace-nowrap">要点を5本</span>
         </h2>
         {!compact && (
           <p className="mt-2 text-desc leading-[1.8] text-ink-soft">
-            前日に出た記事から大きな発表を選び、1本2行でまとめてメールで届けます。無料・いつでも解除できます。
+            前日に出た記事から、給付・税・料金・値上げなど暮らしとお金に関わる話を中心に選び、1本2行でまとめてメールで届けます。無料・いつでも解除できます。
           </p>
         )}
         </>

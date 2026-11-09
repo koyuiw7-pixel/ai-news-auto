@@ -68,10 +68,17 @@ def score(article: dict) -> float:
     return s
 
 
+# 暮らしとお金の分野（サイトの軸。台帳 A61。lib/home-lead.ts の LIFE_MONEY_GENRES と同じ）
+LIFE_MONEY_GENRES = {"public", "lifestyle", "investment", "business", "real-estate"}
+# 毎朝のメール（scripts/newsletter.py）で暮らしとお金の記事に足す点。score() の AI の +30 より大きくし、暮らしとお金を中心に選ぶ（2026-11-10）
+LIFE_MONEY_BOOST = 45.0
+
+
 def pick_top(hours: int = 24, n: int = 5, now: datetime | None = None, ai_only: bool = False,
-             persona_topics: bool = False) -> list[dict]:
+             persona_topics: bool = False, life_money: bool = False) -> list[dict]:
     """persona_topics=True: 読者像の話題（scripts/persona.py の is_persona_topic。スポーツなし）から、お金・不動産・起業の話題も
-    AI と同じ重みで選ぶ（はてなブログの下書き用）"""
+    AI と同じ重みで選ぶ（はてなブログの下書き用）。
+    life_money=True: 暮らしとお金の分野（LIFE_MONEY_GENRES）を中心に選ぶ（毎朝のメール。2026-11-10 サイトの軸に合わせた）"""
     now = now or datetime.now(timezone.utc)
     since = now - timedelta(hours=hours)
     picked = []
@@ -85,7 +92,12 @@ def pick_top(hours: int = 24, n: int = 5, now: datetime | None = None, ai_only: 
         if persona_topics and not persona.is_persona_topic(article):
             continue
         picked.append(article)
-    boost = persona.topic_boost if persona_topics else (lambda a: 0.0)
+    if persona_topics:
+        boost = persona.topic_boost
+    elif life_money:
+        boost = lambda a: LIFE_MONEY_BOOST if a.get("genreSlug") in LIFE_MONEY_GENRES else 0.0  # noqa: E731
+    else:
+        boost = lambda a: 0.0  # noqa: E731
     picked.sort(key=lambda a: (score(a) + boost(a), a.get("generatedAt", "")), reverse=True)
     result = []
     for article in picked:

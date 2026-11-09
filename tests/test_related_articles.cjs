@@ -113,3 +113,15 @@ test("記事ページは lib/related.ts の選び方を使う（同じジャン�
   assert.match(src, /nextReads\(article, getAllArticles\(\)/);
   assert.ok(!/genreSlug === article\.genreSlug \? 5/.test(src));
 });
+
+test("情報流出の記事の関連は、名前（ドコモ）だけ重なる記事より、同じ困りごと（情報流出）の記事を先に（2026-11-10）", () => {
+  const leak = art({ slug: "docomo-leak", title: "ドコモ情報流出、最大30万件　今日やるのは明細の確認", tags: ["情報流出", "ドコモ", "セキュリティ"], keywords: ["ドコモ 情報流出"] });
+  const other = art({ slug: "other-leak", title: "アララのメール配信で7,700万件流出の恐れ", tags: ["情報流出", "メール"], keywords: ["不審メール"] });
+  const pass = art({ slug: "d-pass", title: "ドコモ「dバリューパス」にUberとLUUPの特典", tags: ["ドコモ", "ポイント"], keywords: ["dバリューパス"] });
+  const pen = art({ slug: "d-pen", title: "ドコモ、再生材のタッチペンを発売", tags: ["ドコモ", "環境"], keywords: ["タッチペン"] });
+  const pool = [leak, other, pass, pen, ...filler];
+  const got = slugs(relatedArticles(leak, pool, company, 4, now));
+  assert.equal(got[0], "other-leak");
+  // 名前だけ重なる記事は、全部で2本に満たないときだけ（関係の薄い記事で埋めない）
+  assert.ok(got.length <= 2, got.join(","));
+});

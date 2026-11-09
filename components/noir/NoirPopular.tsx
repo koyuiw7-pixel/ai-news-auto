@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Thumb from "@/components/Thumb";
+import RelThumb from "@/components/noir/RelThumb";
 import popular from "@/content/popular.json";
 import { getAllArticles, getArticleSummary, type ArticleSummary } from "@/lib/articles";
 
@@ -31,9 +31,7 @@ export default function NoirPopular({ current, limit = 5 }: { current: string; l
               {isRanked && <b aria-hidden>{i + 1}</b>}
               <span>{a.title}</span>
               <i className="nr-ph" aria-hidden>
-                {a.thumbnail && a.imageCredit?.kind !== "ai" && a.imageCredit?.kind !== "card" && (
-                  <Thumb src={a.thumbnail} alt="" fill sizes="72px" className="object-cover" />
-                )}
+                <RelThumb article={a} sizes="72px" />
               </i>
             </Link>
           </li>

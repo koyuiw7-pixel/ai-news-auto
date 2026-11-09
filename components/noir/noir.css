@@ -648,6 +648,8 @@ html:has(.noir) body {
   overflow: hidden;
   border-radius: 4px;
   background: var(--nr-place);
+  /* 写真の札（AI生成・ジャンル名）を斜体にしない（<i> の中に置くため） */
+  font-style: normal;
 }
 
 /* 本文 */
@@ -1005,6 +1007,8 @@ html:has(.noir) body {
   overflow: hidden;
   border-radius: 4px;
   background: var(--nr-place);
+  /* 写真の札（AI生成・ジャンル名）を斜体にしない（<i> の中に置くため） */
+  font-style: normal;
 }
 .noir .nr-src {
   font: 500 13px/1.7 var(--nr-body);

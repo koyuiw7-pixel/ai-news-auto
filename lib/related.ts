@@ -24,6 +24,8 @@ const GENERIC = new Set(
     "投資・マネー", "金融", "IT", "DX", "アプリ", "通信", "セキュリティ", "提携", "業務提携", "連携", "協定", "地域", "イベント",
     "キャンペーン", "セール", "新製品", "新サービス", "デザイン", "トレンド", "環境", "政策", "教育", "日本", "国内", "海外", "企業",
     "サービス", "公式", "発表会", "2026年", "2027年", "令和8年",
+    // 業種・製品の大きな分類（2026-11-10: 暖房の電気代の記事に「家電」だけ重なるスマホ・ディスプレイの記事が並んだ）
+    "家電", "小売", "飲食", "食品", "流通", "製造業", "家計",
   ].map(norm),
 );
 
@@ -118,12 +120,15 @@ function isSameStory(a: ArticleSummary, b: ArticleSummary): boolean {
   return Boolean(ua) && ua === urlKey(b.sourceUrl);
 }
 
-export type Similarity = { score: number; shared: string[]; sameCompany: boolean; sameName: boolean; strong: boolean };
+export type Similarity = { score: number; shared: string[]; sameCompany: boolean; sameName: boolean; strong: boolean; need: boolean };
 
 /**
  * 2つの記事の話題の重なり。shared は重なった具体的な語、score は語の珍しさ（IDF）の合計。
  * strong（同じ話題と言える）: 具体的な語が2つ以上重なる、または両方の名前（見出しの固有名詞・英字のタグ）に同じ名前が出る、
- * または同じ企業（companies.ts）で語が1つ以上重なる。分野の語1つ（「売上高」「PDF」「ネット」）だけでは同じ話題としない
+ * または同じ企業（companies.ts）で語が1つ以上重なる。分野の語1つ（「売上高」「PDF」「ネット」）だけでは同じ話題としない。
+ * need（同じ困りごと）: どちらかの記事のタグにある珍しい語（「情報流出」「年金」など。多くの記事に付く語・企業や製品の名前は除く）が両方に出る。
+ * 2026-11-10: ドコモの情報流出の記事の関連に、名前（ドコモ）だけ重なる dバリューパス・iPad mini が並び、
+ * ほかの情報流出の記事（確かめ方・今やること）が出ていなかった。タグの話題が同じ記事も同じ話題として扱う
  */
 export function similarity(a: ArticleSummary, b: ArticleSummary, candidates: ArticleSummary[], companySlugOf?: CompanyOf): Similarity {
   const ctx = contextOf(candidates);
@@ -146,8 +151,15 @@ export function similarity(a: ArticleSummary, b: ArticleSummary, candidates: Art
   }
   const ca = companySlugOf?.(a);
   const sameCompany = Boolean(ca && ca !== "other" && ca === companySlugOf?.(b));
-  const strong = shared.length >= 2 || sameName || (shared.length >= 1 && sameCompany);
-  return { score, shared, sameCompany, sameName, strong };
+  const tagsA = new Set((a.tags ?? []).map(norm));
+  const tagsB = new Set((b.tags ?? []).map(norm));
+  // 名前（ドコモ・Apple など）は「同じ困りごと」ではない（名前だけの重なりは sameName で扱い、関連では後ろに回す）
+  // 語が1つだけのときは同じ分野（ジャンル）の記事に限る（分野をまたぐと、同じ語でも別の話のことが多い）
+  const need =
+    (shared.length >= 2 || a.genreSlug === b.genreSlug) &&
+    shared.some((w) => (tagsA.has(w) || tagsB.has(w)) && !na.has(w) && !nb.has(w) && !/^[a-z0-9 .+\-]+$/.test(w));
+  const strong = shared.length >= 2 || sameName || (shared.length >= 1 && sameCompany) || need;
+  return { score, shared, sameCompany, sameName, strong, need };
 }
 
 function candidateOk(article: ArticleSummary, item: ArticleSummary): boolean {
@@ -166,9 +178,13 @@ function freshness(item: ArticleSummary, now: number): number {
   return 0.7 + 0.3 / (1 + days / 30);
 }
 
+/** 名前（企業・製品の名前）だけが重なる記事を関連に入れてよい本数の上限（2026-11-10。同じ話題・同じ困りごとの記事を先に） */
+const NAME_ONLY_FILL = 2;
+
 /**
  * 関連記事（記事末の一覧）。話題の重なりが基準に届く記事だけを、重なりの大きい順・新しい順に最大 limit 本。
  * 記事を作るときに文脈として使った過去記事（relatedSlugs）も、同じ基準を満たすときだけ先に出す。
+ * 並びは ①同じ話題（語が2つ以上重なる） ②同じ困りごと（タグの話題が同じ） ③名前だけが重なる記事（全部で NAME_ONLY_FILL 本に満たないときだけ）
  */
 export function relatedArticles(
   article: ArticleSummary,
@@ -186,17 +202,20 @@ export function relatedArticles(
     picked.push(item);
     if (picked.length >= limit) return picked;
   }
+  const tierOf = (sim: Similarity) => (sim.shared.length >= 2 ? 0 : sim.need ? 1 : 2);
   const scored = candidates
     .filter((item) => !picked.includes(item) && candidateOk(article, item))
     .map((item) => ({ item, sim: similarity(article, item, candidates, companySlugOf) }))
     .filter((x) => x.sim.strong)
     .map((x) => ({
       item: x.item,
+      tier: tierOf(x.sim),
       rank: (x.sim.score + (x.sim.sameCompany || x.sim.sameName ? 1.5 : 0) + (x.item.genreSlug === article.genreSlug ? 0.5 : 0)) * freshness(x.item, now),
     }))
-    .sort((a, b) => b.rank - a.rank || Date.parse(b.item.publishedAt) - Date.parse(a.item.publishedAt));
-  for (const { item } of scored) {
+    .sort((a, b) => a.tier - b.tier || b.rank - a.rank || Date.parse(b.item.publishedAt) - Date.parse(a.item.publishedAt));
+  for (const { item, tier } of scored) {
     if (picked.length >= limit) break;
+    if (tier === 2 && picked.length >= NAME_ONLY_FILL) break;
     picked.push(item);
   }
   return picked;

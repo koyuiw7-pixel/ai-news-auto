@@ -10,10 +10,11 @@ import { PUSH_RULES } from "@/lib/push-config";
 import { getAllArticles } from "@/lib/articles";
 import { isDistributionEligible } from "@/lib/indexing";
 import { siteConfig } from "@/site.config";
+import { LIFE_MONEY_GENRES } from "@/lib/home-lead";
 
 export const metadata: Metadata = withPageShare("newsletter", "/newsletter", {
-  title: "メール配信（毎朝7時のAIニュース要点）",
-  description: `${siteConfig.siteName}のメール配信。毎朝7時に、前日のAIニュースから大きな発表を5本選び、1本2行の要点とリンクでお届けします。無料・いつでも解除できます。`,
+  title: "メール配信（毎朝7時の暮らしとお金のニュース要点）",
+  description: `${siteConfig.siteName}のメール配信。毎朝7時に、前日の記事から暮らしとお金に関わる話を中心に5本選び、1本2行の要点とリンクでお届けします。無料・いつでも解除できます。`,
   alternates: { canonical: "/newsletter" },
 });
 
@@ -22,7 +23,7 @@ const FONT = "var(--font-sans)";
 
 const POINTS = [
   { head: "毎朝7時に1通", body: "前日（24時間）に公開した記事から選びます。通勤前に読み終わる分量です。" },
-  { head: "大きな発表から5本", body: "主要企業の新モデル・新機能の公式発表を優先し、話題の記事で埋めます。" },
+  { head: "暮らしとお金を中心に5本", body: "給付・税・料金・値上げ・手続きなど、自分に関わる公式発表を優先し、AI などの大きな発表で埋めます。" },
   { head: "1本2行の要点", body: "見出しと2行の要点、記事へのリンクだけ。広告を挟んだ長いメールにはしません。" },
   { head: "いつでも解除", body: "すべてのメールの末尾に解除リンクがあります。押すだけで、翌日から届きません。" },
 ];
@@ -30,14 +31,14 @@ const POINTS = [
 export default function NewsletterPage() {
   // 配信の見本（実際の配信は scripts/newsletter.py が前日分から選ぶ）
   const sample = getAllArticles()
-    .filter((a) => a.genreSlug === "ai" && isDistributionEligible(a) && a.highlights.length > 0)
+    .filter((a) => LIFE_MONEY_GENRES.has(a.genreSlug) && isDistributionEligible(a) && a.highlights.length > 0)
     .slice(0, 3);
 
   return (
     <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8" style={{ fontFamily: FONT }}>
       <p className="eyebrow">NEWSLETTER</p>
       <h1 className="t-h1 mt-2">
-        毎朝7時、昨日のAIニュースの<span className="whitespace-nowrap">要点を5本</span>
+        毎朝7時、暮らしとお金のニュースの<span className="whitespace-nowrap">要点を5本</span>
       </h1>
       <p className="mt-4 text-desc leading-[1.9] text-ink-soft">
         {siteConfig.siteName}のメール配信です。サイトを毎日のぞかなくても、前日に出た大事な発表だけを朝のうちに押さえられます。

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""毎朝のメール配信（前日24時間の主要記事5本）。GitHub Actions の newsletter.yml が 07:00 JST に実行する。
+"""毎朝のメール配信（前日24時間の記事から、暮らしとお金の話を中心に5本）。GitHub Actions の newsletter.yml が 07:00 JST に実行する。
 
 送信の鍵が無いときは何もしない（成功で終わる）。優先順:
   1. Cloudflare Email Service（REST）: CF_EMAIL_TOKEN + CLOUDFLARE_ACCOUNT_ID
@@ -175,7 +175,7 @@ def build_digest(articles: list[dict], date_label: str, campaign: str) -> dict:
 
 
 def render(digest: dict, unsubscribe_url: str) -> tuple[str, str]:
-    text_parts = [f"サイソクニュース 朝刊（{digest['date']}）", "昨日のAIニュースから、押さえておきたい5本です。", ""]
+    text_parts = [f"サイソクニュース 朝刊（{digest['date']}）", "昨日のニュースから、暮らしとお金を中心に押さえておきたい5本です。", ""]
     for i, item in enumerate(digest["items"], 1):
         text_parts += [f"{i}. {item['title']}", *[f"   ・{line}" for line in item["lines"]], f"   {item['url']}", ""]
     text_parts += [
@@ -203,7 +203,7 @@ def render(digest: dict, unsubscribe_url: str) -> tuple[str, str]:
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#fff;border-top:3px solid #111;font-family:'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',Meiryo,sans-serif;color:#111">
 <tr><td style="padding:24px 24px 6px">
 <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.08em;color:#465268">サイソクニュース 朝刊 ・ {esc(digest['date'])}</p>
-<p style="margin:8px 0 0;font-size:15px;line-height:1.8;color:#2b3954">昨日のAIニュースから、押さえておきたい5本です。</p>
+<p style="margin:8px 0 0;font-size:15px;line-height:1.8;color:#2b3954">昨日のニュースから、暮らしとお金を中心に押さえておきたい5本です。</p>
 </td></tr>
 <tr><td style="padding:0 24px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">{rows}</table></td></tr>
 <tr><td style="padding:18px 24px 26px;border-top:1px solid #dce2eb">
@@ -246,7 +246,7 @@ def main() -> int:
     date_label = f"{jst.month}/{jst.day}"
     campaign = f"daily-{jst:%Y%m%d}"
 
-    articles = pick_top(args.hours, args.n, now)
+    articles = pick_top(args.hours, args.n, now, life_money=True)
     if not articles:
         log("[skip] 直近の対象記事がありません")
         return 0

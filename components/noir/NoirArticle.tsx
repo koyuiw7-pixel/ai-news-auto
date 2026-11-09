@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import Thumb from "@/components/Thumb";
+import RelThumb from "@/components/noir/RelThumb";
 import ArticleProse from "@/components/ArticleProse";
 import ImageCredit from "@/components/ImageCredit";
 import NoirChrome from "@/components/noir/NoirChrome";
@@ -245,9 +246,7 @@ export default function NoirArticle(props: NoirProps) {
                       </small>
                     </span>
                     <i className="nr-ph" aria-hidden>
-                      {item.thumbnail && item.imageCredit?.kind !== "ai" && (
-                        <Thumb src={item.thumbnail} alt="" fill sizes="96px" className="object-cover" />
-                      )}
+                      <RelThumb article={item} sizes="96px" />
                     </i>
                   </Link>
                 ))}
