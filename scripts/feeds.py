@@ -1276,6 +1276,47 @@ def fetch_article_text(url: str) -> dict:
     raise RuntimeError(f"本文を取得できません（{' / '.join(reasons)}）: {url}")
 
 
+# PDF のお知らせ・報道発表資料の冒頭で、題名ではない行（宛名・日付・社名・肩書・問い合わせ先など。空白を除いて照らす）
+_PDF_NOT_TITLE = re.compile(
+    r"^[(（【]?(?:.{0,20}各位|報道関係者|報道発表資料?|ニュースリリース|プレスリリース|newsrelease|pressrelease|お知らせ$|"
+    r"(?:令和|平成)?\d{1,4}年\d{1,2}月\d{1,2}日|\d{4}[./-]\d{1,2}[./-]\d{1,2}|"
+    r"(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\d{1,2},\d{4}|"
+    r"(?:会社名|代表者名?|所在地|上場会社名|本社所在地|担当|問合せ先|問い合わせ先|お問い合わせ|コード番号|証券コード|tel|電話|url)|"
+    r".{0,30}(?:株式会社|ホールディングス|有限会社|合同会社|co\.,?ltd\.?|inc\.?|corporation)$|株式会社|"
+    r".{0,40}(?:代表取締役|代表執行役|取締役社長|理事長|大臣|長官|知事|市長|区長)|.*(?:東証|プライム|スタンダード|グロース)市場|"
+    r"[(（]?(?:\d+/\d+|-\d+-|\d+)[)）]?$)",
+    re.I,
+)
+# 本文の書き出し（ここから先は題名ではない）
+_PDF_BODY_START = re.compile(r"^(?:平素|拝啓|謹啓|このたび|この度|本日|当社(?:は|では|が|グループは)|弊社(?:は|では)|記$|[A-Z]{3,}[A-Z,.]*[—–])")
+
+
+def pdf_title(text: str) -> str:
+    """PDF のお知らせ・報道発表資料の文字から題名を取り出す（無ければ ""）。宛名・日付・社名などの行を飛ばし、
+    最初の10字以上のまとまり（2〜3行に折り返した題名はつなぐ）を使う。2026-11-09 ニトリHDの PDF が「見出しが取れない」で止まった"""
+    block: list[str] = []
+
+    def done() -> str:
+        joined = "".join(block) if all(re.search(r"[ぁ-んァ-ヶ一-龠]", p) for p in block) else " ".join(block)
+        return joined.strip("「」〜~ -－")
+
+    for raw in (text or "").splitlines()[:40]:
+        line = re.sub(r"\s+", " ", raw).strip()
+        compact = re.sub(r"\s+", "", line)
+        if _PDF_BODY_START.match(compact):
+            break
+        if not line or _PDF_NOT_TITLE.search(compact):
+            if len(done()) >= 10:
+                break
+            block = []
+            continue
+        block.append(line)
+        if len(block) >= 3 or len(done()) >= 80:
+            break
+    title = done()
+    return title[:150] if len(title) >= 10 else ""
+
+
 SLOW_TIMEOUT = 45
 _slow_hosts: set[str] = set()  # この実行で一度待ち時間を延ばしたホスト（2回目からは延ばさない）
 
@@ -1300,7 +1341,7 @@ def _fetch_direct(url: str, timeout: int = 25) -> dict:
             raise ValueError(f"PDF の文字を取り出せない（{error}。読み取りサービスで読む）") from error
         return {
             "text": pdf[:TEXT_CAP], "full_text": pdf[:400_000] if len(pdf) > TEXT_CAP else "", "image": None,
-            "title": "", "description": "", "final_url": final_url, "published": "", "links": [],
+            "title": pdf_title(pdf), "description": "", "final_url": final_url, "published": "", "links": [],
         }
     parser = _Extractor()
     try:

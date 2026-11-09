@@ -1821,6 +1821,9 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
     """速報レーンの候補（feeds.parse_feed と同じ形）と、作る前に決まった結果 {id: result}"""
     fast_lane.register_sources(feeds)
     metas = fast_lane.parse_meta(meta_raw)
+    # fast_meta が空＝オーナーが Actions で URL だけを入れて手動で起動した回（Worker・release_watch は必ず fast_meta を付ける）。
+    # 手動のときだけ、登録外の公式の一次情報（会社・官公庁の日本のドメイン、会社の .com/.jp と PDF）も受け付ける
+    manual = not (meta_raw or "").strip()
     by_url = {feeds.item_id(meta["url"]): meta for meta in metas}
     ordered = list(dict.fromkeys([*urls, *(meta["url"] for meta in metas)]))[:3]
     acks = fast_lane.load_acks()
@@ -1833,7 +1836,7 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
         key = str(meta.get("id") or iid)
         detected = fast_lane.parse_time(meta.get("detectedAt")) or now
         base = {"url": url, "title": str(meta.get("title") or "")[:200], "source": meta.get("source", ""), "detectedAt": _iso(detected)}
-        if not fast_lane.allowed_url(url):
+        if not fast_lane.allowed_url(url, manual=manual):
             log(f"[fast] 対象外の URL のため処理しません: {url}")
             results[key] = {**base, "outcome": "skipped", "reason": "対象外のURL"}
             continue

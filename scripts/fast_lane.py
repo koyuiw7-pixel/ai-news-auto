@@ -149,8 +149,59 @@ def _host_in(host: str, base: str) -> bool:
     return host == base or host.endswith("." + base)
 
 
-def allowed_url(url: str) -> bool:
-    """速報レーンで受け付ける URL か（https で、対象の発信元・レーダーの一次情報（公式・SEC）・信頼できる報道機関のサイト。配信サービスは除く）"""
+# 手動の速報（オーナーが Actions で fast_url だけを入れて起動した回。Worker・release_watch は必ず fast_meta を付ける）で
+# 受け付ける公式の一次情報のドメイン（2026-11-09 ニトリHDの不正アクセスのお知らせの PDF が「対象外の URL」で止まった）。
+# 会社・官公庁・自治体・団体の日本のドメインと、会社自身の .com / .jp。報道・配信・SNS・ブログは除く
+MANUAL_OFFICIAL_SUFFIXES = (".co.jp", ".go.jp", ".lg.jp", ".or.jp", ".ac.jp", ".jp", ".com")
+MANUAL_NOT_OFFICIAL = (
+    # SNS・動画
+    "x.com", "twitter.com", "facebook.com", "fb.com", "instagram.com", "threads.net", "threads.com", "youtube.com", "youtu.be",
+    "tiktok.com", "linkedin.com", "bsky.app", "line.me", "reddit.com", "pinterest.com", "discord.com", "t.co",
+    # ブログ・投稿サイト・まとめ
+    "note.com", "note.jp", "ameblo.jp", "hatenablog.com", "hatena.ne.jp", "hatenablog.jp", "fc2.com", "livedoor.jp", "livedoor.com",
+    "medium.com", "substack.com", "wordpress.com", "blogspot.com", "blogger.com", "tumblr.com", "qiita.com", "zenn.dev",
+    "togetter.com", "matome.naver.jp", "naver.jp", "goo.ne.jp", "excite.co.jp", "biglobe.ne.jp", "msn.com",
+    # 検索・ポータル・百科
+    "google.com", "yahoo.co.jp", "yahoo.com", "bing.com", "wikipedia.org", "nifty.com", "infoseek.co.jp",
+    # 報道・ニュースサイト（public_interest の OUTLET_HOSTS で拾えないもの）
+    "nikkei.com", "asahi.com", "yomiuri.co.jp", "mainichi.jp", "sankei.com", "jiji.com", "kyodonews.jp", "nhk.or.jp",
+    "toyokeizai.net", "diamond.jp", "president.jp", "bunshun.jp", "newspicks.com", "livedoor.com", "sponichi.co.jp",
+    "nikkansports.com", "sanspo.com", "hochi.news", "oricon.co.jp", "natalie.mu", "cnn.com", "bbc.com", "nytimes.com",
+    "forbesjapan.com", "forbes.com", "businessinsider.jp", "businessinsider.com", "huffingtonpost.jp", "j-cast.com",
+    "news.livedoor.com", "smartflash.jp", "gendai.media", "dailyshincho.jp", "zakzak.co.jp", "tokyo-np.co.jp", "47news.jp",
+)
+
+
+def manual_official_url(url: str) -> bool:
+    """手動の速報で受け付ける公式の一次情報の URL か（https・公式らしい日本の組織のドメインか会社の .com/.jp。
+    報道機関・配信サービス・SNS・ブログ・blocked_hosts は受け付けない。PDF の資料もそのまま受け付ける）"""
+    try:
+        parts = urllib.parse.urlsplit(url.strip())
+    except ValueError:
+        return False
+    if parts.scheme != "https" or not parts.netloc:
+        return False
+    host = parts.netloc.lower().split(":")[0].rstrip(".")
+    if "@" in parts.netloc or not re.fullmatch(r"[a-z0-9.-]+", host) or "." not in host:
+        return False
+    radar = rules().get("radar") or {}
+    blocked = list(radar.get("blocked_hosts") or []) + [o["host"] for o in radar.get("outlets") or []] + list(MANUAL_NOT_OFFICIAL)
+    if any(_host_in(host, b) for b in blocked):
+        return False
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import public_interest  # noqa: PLC0415  報道機関・ニュースブログの判定（W31）は1か所だけ
+
+    if public_interest.is_press_url(url):
+        return False
+    return host.endswith(MANUAL_OFFICIAL_SUFFIXES)
+
+
+def allowed_url(url: str, manual: bool = False) -> bool:
+    """速報レーンで受け付ける URL か（https で、対象の発信元・レーダーの一次情報（公式・SEC）・信頼できる報道機関のサイト。配信サービスは除く）。
+    manual=True（オーナーの手動の起動）のときは、それに加えて公式の一次情報のドメイン（manual_official_url）も受け付ける。
+    Worker の自動の起動（manual=False）は今までどおり"""
+    if manual and manual_official_url(url):
+        return True
     try:
         parts = urllib.parse.urlsplit(url.strip())
     except ValueError:
