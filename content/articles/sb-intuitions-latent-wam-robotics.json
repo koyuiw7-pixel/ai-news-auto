@@ -1,0 +1,183 @@
+{
+  "slug": "sb-intuitions-latent-wam-robotics",
+  "sourceType": "web",
+  "sourceUrl": "https://www.sbintuitions.co.jp/blog/entry/2026/11/09/170000",
+  "sourceName": "SB Intuitions テックブログ",
+  "title": "動画生成を使わないロボットAI手法、LIBERO比較で最高94.7%の作業成功率　SB Intuitionsが公表",
+  "seoTitle": "Latent-WAMとは？SB IntuitionsのロボットAI手法を解説",
+  "threadsPost": "ロボットAIの開発や自動化技術に関心がある人に、知っておいてほしい話です。\n\nSB Intuitionsが動画を直接生成しない新しいロボットAI手法「Latent-WAM」の成果を発表しました。\n潜在空間で未来の視覚特徴を予測し、計算負担を抑えながら作業成功率94.7%を達成しています。\n\n工場や家庭で動くロボット、数年後に身近になると思いますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "future",
+      "question": "工場や家庭で動くロボット、数年後に身近になると思いますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "AIの精度向上と計算コストの低減、重視するのはどちらですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "SB Intuitionsは、動画を直接生成せずにロボットの動きを学習させるAI技術「Latent-WAM」の研究成果を公表しました。未来の動画フレームではなく潜在特徴を予測する仕組みを用い、シミュレーションベンチマーク「LIBERO」の比較実験で最高94.7%の作業成功率を記録しました。ただし94.7%は双方向（Bidirectional）構成の数値で、同社が採用したAction→Visual構成は89.3%です。実機での成功率ではありません。本技術の実製品やサービスへの具体的な組み込み時期は、まだ発表されていません。",
+  "description": "SB Intuitionsがロボット学習の新手法「Latent-WAM」の検証結果を公表しました。未来の映像を直接生成せず潜在空間で特徴を予測することで、処理コストを抑えながら作業成功率94.7%を達成。過去の視覚メモリと学習補正の併用で課題も克服しています。",
+  "keywords": [
+    "SB Intuitions",
+    "Latent-WAM",
+    "ロボット学習",
+    "視覚予測",
+    "V-JEPA 2",
+    "ワールドモデル",
+    "ロボティクス",
+    "VLAモデル"
+  ],
+  "tags": [
+    "生成AI",
+    "ロボティクス",
+    "機械学習",
+    "ワールドモデル"
+  ],
+  "highlights": [
+    "LIBEROベンチマークの比較実験で最高94.7%の作業成功率（双方向構成）を記録したロボットAI手法「Latent-WAM」の研究成果が公表されました。",
+    "映像の再構成を避け潜在空間で未来の特徴を予測し、推論時の計算負荷を抑える設計を採用しています。",
+    "過去の視覚メモリと学習手法を組み合わせ、見えなくなった指示を記憶するタスクの成功率を86台に高めました。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "ok",
+    "price": "研究発表",
+    "free": null,
+    "audience": "AI開発者",
+    "take": "推論負担を抑えた効率的なロボット制御手法として、今後の実務応用が期待される研究成果です。",
+    "judgedAt": "2026-11-09T08:30:32.336004+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "ロボット開発や工場自動化に携わるエンジニアは、動画生成を挟まない軽量な予測モデルの設計思想を参考にできます。"
+    ]
+  },
+  "body": "ロボット制御の現場や自動化に取り組む技術者にとって、今回の研究成果はAIモデルの計算コスト削減と作業精度の両立を示す実績となります。Latent-WAM（レイテント・ワム）は、学習フレームワーク（仕組みの土台）です。AIがカメラ画像から未来の状況を予測し、ロボットに適切な行動を取らせます。\n\n## 日本のSB Intuitionsが検証した Latent-WAMの仕組みと性能\n\nSB Intuitionsが発表した技術ブログによると、一部の動画生成型モデルでは、行動を学ぶ際に未来の動画フレーム全体を生成していました。動画を直接作り出す処理は計算負担が大きく、ロボットを動かす際の速度を低下させる要因になっていました。\n\nそこでLatent-WAMでは、視覚特徴抽出モデル「V-JEPA 2」（視覚情報の意味や動きを捉えるエンコーダー）を採用しました。画面上のピクセルを再構築するのではありません。未来の視覚表現（潜在空間の特徴量）だけを予測する構成に切り替えています。\n\n事前学習には、AgiBot AlphaやRDT-ALOHAなどの公開ロボットデータセットを統合して使用しました。合計は約2,716.5時間です。ロボットごとの関節数や制御周波数の違いを吸収するため、16次元の共通行動表現に変換して学習させています。\n\n検証実験では、モデル内部の情報交換（アテンション構造）の構成による成功率の違いを比較しました。\n\n**双方向のアテンション構成が最も高い作業成功率を記録**\n\n| アテンション構成 | LIBERO平均成功率 | 特徴 | 変化 |\n| --- | --- | --- | --- |\n| Bidirectional | **94.7%** | 視覚予測と行動生成が相互に情報交換 | **最も高い成功率** |\n| Video → Action | **92.3%** | 行動生成が視覚予測の情報を参照 | **約2.4ポイント減（94.7%との差から算出）** |\n| Independent | **92.0%** | 各ブランチが独立して処理 | **約2.7ポイント減（94.7%との差から算出）** |\n| Action → Video | **89.3%** | 視覚予測が行動生成を参照 | **約5.4ポイント減（94.7%との差から算出）** |\n\n実験では「Bidirectional（双方向）」がLIBEROベンチマークで平均94.7%の成功率を収めました。同社は、実際にロボットを動かす推論時の速度を優先しました。そのため、未来の視覚予測が行動トークンを参照する一方で、行動生成は未来予測に依存しない構成を採用しています。\n\n推論時に未来予測の計算手順をスキップできるように配慮したためです。\n\n## 視覚メモリと学習補正による作業成功率の改善\n\n現在のカメラに映っていない過去の情報を記憶する必要がある「RememberColor3」タスクの検証も行われました。このタスクでは、最初に見せられた色の指示をロボットが記憶し、後から正しく対象物を選ぶ必要があります。\n\n過去の観測結果を保持する視覚メモリ（Full-historyおよびCompact memory）を導入しました。その結果、ロボットは過去の指示を保持できるようになりました。ただし、情報を記憶していても正しい行動を選択できない課題が判明しました。\n\nこの課題に対し、2つの手法を組み合わせて追加学習を行いました。1つ目は、専門家の正しい動きを収集して学び直す「DAgger」です。2つ目は、試行錯誤のフィードバックを活用する「DiffusionNFT」です。\n\nその結果、RememberColor3における作業成功率は68.5%から、発表で途中まで確認できる86台に向上しました。\n\n## まだ分からないこと\n\n- Latent-WAMを搭載した具体的な製品や商用サービスの提供開始時期は、まだ発表されていません。\n- 学習コードやモデルの重み（オープンウェイト）の一般公開予定については、まだ公表されていません。",
+  "easy": "## ひとことで言うと\n\n日本のAI企業であるSB Intuitionsが、ロボットに効率よく作業を覚えさせる新しいAI手法「Latent-WAM」を発表しました。\n\n動画を丸ごと作るのではなく、画像の特徴だけを予測することで、計算の手間を減らしながら正確な動きを実現しています。\n\n## なにが新しくなった？\n\n一部の従来AIは、未来の映像を作りながらロボットの動きを計算しようとするものがあり、動かすのに大きな計算負担がかかっていました。\n\n今回の手法では、画像の意味や動きの情報（潜在特徴）だけを予測するように改良しました。重い映像生成をスキップできるため、すばやく動作の指示を出せます。\n\nテストでは、シミュレーションの比較実験で94.7%の作業成功率（双方向構成の最高値）を記録し、過去に見かけた指示を覚えて行動する難しい作業でも高い成績を出しています。",
+  "channel": "SB Intuitions テックブログ",
+  "channelId": "",
+  "channelSlug": "sbintuitions-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Learning to Act with Visual Priors",
+  "publishedAt": "2026-11-09T08:00:00+00:00",
+  "generatedAt": "2026-11-09T08:30:32.335993+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/sb-intuitions-latent-wam-robotics-842a08fa.jpg",
+  "model": "gemini-3.5-flash",
+  "affiliates": [],
+  "newsType": "general",
+  "faq": [
+    {
+      "q": "Latent-WAMの技術は一般の開発者向けに公開されていますか？",
+      "a": "SB Intuitionsの技術ブログで実験構成や手法の詳細は公表されましたが、ソースコードやモデルデータの公開範囲についてはまだ公表されていません。"
+    }
+  ],
+  "todayActions": [
+    "公式テックブログで、Latent-WAMの構成図（Figure 2）を確認する",
+    "V-JEPA 2の論文で、視覚表現モデルの仕様を確認する"
+  ],
+  "qualityScore": 80,
+  "sourcePublishedAt": "2026-11-09T08:00:00+00:00",
+  "detectedAt": "2026-11-09T08:18:53+00:00",
+  "speedMinutes": 36,
+  "layout": "noir",
+  "summaryLine": "LIBEROベンチマークの比較実験で最高**94.7%**の作業成功率（双方向構成）を記録したロボットAI手法「Latent-WAM」の研究成果が公表されました。",
+  "insight": [
+    {
+      "text": "約2,716.5時間の内訳は、AgiBotWorld-BetaにAlphaが含まれるため、Alphaを二重に数えず一度だけ合計した数字です。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/09/170000"
+    },
+    {
+      "text": "未来の映像は学習時の目印として使われ、12・24・36・48フレーム先の視覚表現を予測します。推論時に未来予測を参照するかどうかは、アテンションの構成で変わります。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/09/170000"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "公式テックブログで、Latent-WAMの構成図（Figure 2）を確認する",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/09/170000",
+      "steps": [
+        "SB Intuitionsのテックブログを開く",
+        "Figure 2の構成図を見る"
+      ],
+      "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/09/170000"
+    },
+    {
+      "action": "V-JEPA 2の論文で、視覚表現モデルの仕様を確認する",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/09/170000",
+      "steps": [
+        "ブログのリンク一覧からV-JEPA 2の論文を選ぶ",
+        "論文のページで仕様を確認する"
+      ],
+      "url": "https://arxiv.org/abs/2506.09985"
+    }
+  ],
+  "cause": {
+    "text": "動画を直接生成する処理は計算負担が大きく、ロボットを動かす際の速度を下げる要因になっていた、とブログは説明しています。そこで未来の視覚表現だけを予測する構成に切り替えました。",
+    "status": "background",
+    "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/09/170000"
+  },
+  "worries": [
+    {
+      "q": "94.7%の数字は実機でも同じ？",
+      "a": "ページで示されているのはシミュレーションベンチマークLIBEROの結果で、94.7%は双方向構成の数値です。実機での成功率は示されていません。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/09/170000",
+      "action": "数字を引用するときは、LIBEROでの双方向構成の結果だと明記し、実機の値と混同しないようにする。"
+    },
+    {
+      "q": "製品やサービスとして使えるのはいつ？",
+      "a": "公式ブログでは、Latent-WAMを使った製品や商用サービスの提供開始時期は示されていません。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/09/170000",
+      "action": "実用化の情報を追うなら、SB Intuitionsの公式テックブログの新しい記事を定期的に確認しておくとよい。"
+    },
+    {
+      "q": "動画生成より本当に速く動く？",
+      "a": "ブログは、未来の映像を作らない構成で計算負担を減らし、推論時の速度を優先したと説明しています。速さの具体的な数値は示されていません。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/09/170000",
+      "action": "速さをうたう記事を読むときは、何と比べた数値かをページで確認し、比べた条件を見てから判断する。"
+    },
+    {
+      "q": "学習に使われたデータは何？",
+      "a": "AgiBot Alpha、RDT-ALOHA、RoboMIND agilexなどの公開ロボットデータセットを統合し、合計は約2,716.5時間です。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/09/170000",
+      "action": "データの出典を確かめたいときは、ページのデータ表にある各データセット名を検索してみる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "2,716.5時間は、重なるデータを数えずに足した数字",
+    "cause": "なぜ動画を作らない方式にしたのか",
+    "steps": "公式ページで構成図と論文を確かめる",
+    "worries": "94.7%は実機でも出るの？いつ使える？"
+  },
+  "depthAt": "2026-11-09T08:32:45+00:00",
+  "imageCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A close-up of a white industrial robotic arm performing a precise movement on a table, bright studio lighting, neutral background.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://cdn.image.st-hatena.com/image/scale/75a28270ea3af96afd449c291a0bda6437c6dbcc/backend=imagemagick;version=1;width=1300/https%3A%2F%2Fcdn-ak.f.st-hatena.com%2Fimages%2Ffotolife%2Fs%2Fshiqi_yang_sbint%2F20261103%2F20261103113915.gif",
+    "at": "2026-11-09T08:37:05+00:00"
+  },
+  "imageFocus": {
+    "x": 0.506,
+    "y": 0.568,
+    "box": [
+      0.138,
+      0.196,
+      0.875,
+      0.94
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/sb-intuitions-latent-wam-robotics-842a08fa.jpg"
+  }
+}
