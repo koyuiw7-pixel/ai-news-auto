@@ -13613,6 +13613,20 @@
       "slug": "famima-saku-saku-triangle-cheesecake",
       "url": "https://www.family.co.jp/company/news_releases/2026/20261109_02.html"
     },
+    "9c331579e229757a": {
+      "at": "2026-11-09T19:17:47.219504+00:00",
+      "breaking": true,
+      "costUsd": 0.1134,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "chatgpt-enterprise-aws-marketplace",
+      "url": "https://openai.com/index/chatgpt-enterprise-aws-marketplace"
+    },
     "9c3feb4cdbadc8d9": {
       "at": "2026-11-06T08:40:51.913373+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -20233,60 +20247,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-07T15:34:50.696740+00:00",
-      "attempt": 0,
-      "id": "f1280b003fab5afa",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.1,
-        "avg_sentence": 41.3,
-        "long_share": 0.109,
-        "max_paragraph": 156,
-        "paragraphs": 20,
-        "sentences": 46
-      },
-      "score": 92,
-      "source": "google-cloud-blog",
-      "title": "Zero-shot predictions in Pandas using the new BigQuery Accessor",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CSV・SQL・GIFT）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T16:26:30.462231+00:00",
-      "attempt": 1,
-      "id": "a7ca79e5d15eb493",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「前回の記事で『まだ分からないこと』に挙げた、枠が新設か既存の表記の変更かという点」→ 確認済みの文脈には前回記事の未解決点として「使い切った後の扱いや繰り越しの可否」しか無く、新設か表記変更かという論点は裏付けられない。"
-      ],
-      "score": 85,
-      "source": "watch-chatgpt-pricing",
-      "title": "ChatGPTの料金・プランのページが更新（料金の記載が変更）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T17:12:15.058496+00:00",
-      "attempt": 1,
-      "id": "0dcf0bba49c1fe06",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「前回記事では更新日を11月2日（協定世界時）と書きました」→ 11月2日という前回記事の記述は、元記事にも確認済みの文脈にも無く、確認できない日付の主張である",
-        "リード要点「前回記事の11月2日は誤り」→ 同じく前回記事の11月2日を誤りとする訂正の根拠が提示されておらず、検証できない",
-        "「変更前は、比較表のAPIクレジットの行に…」→ 差分の削除行と整合するが、「比較表」という呼び方は元記事の表示名に基づく言い換えとして妥当"
-      ],
-      "score": 72,
-      "source": "watch-chatgpt-pricing",
-      "title": "ChatGPTの料金・プランのページが更新（料金の記載が変更）"
-    },
     {
       "accepted": false,
       "at": "2026-11-07T17:12:39.075522+00:00",
@@ -27431,6 +27391,86 @@
       "score": 72,
       "source": "anthropic-news",
       "title": "Introducing Claude Fable 5.2 and Claude Mythos 5.2"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T19:17:07.600647+00:00",
+      "attempt": 1,
+      "id": "9c331579e229757a",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "リード「個人の契約は変わらず」→ 元記事はChatGPT Enterpriseの法人向け提供のみを述べ、個人向け契約への影響には触れていない。元記事にない主張。",
+        "本文「個人向けのChatGPTの契約は、今回の発表では変わりません」→ 同じく元記事に根拠がない。「今回の発表では」と限定しても、元記事に書かれていない事実として扱われる。",
+        "「直販と同じモデル・機能・使い勝手」→ 元記事は「same models, features, and functionality」と述べており、「使い勝手」は元記事にない言葉。",
+        "出典リンクの表記「公式サイト（amazon.com）」→ リンク先URLはaws.amazon.comで、表記と一致しない。"
+      ],
+      "readability": {
+        "avg_paragraph": 124.9,
+        "avg_sentence": 52.8,
+        "long_share": 0.308,
+        "max_paragraph": 196,
+        "paragraphs": 11,
+        "sentences": 26
+      },
+      "score": 80,
+      "source": "openai-news",
+      "title": "ChatGPT Enterprise now available in AWS Marketplace",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（VP）",
+        "読みやすさ: 文が長い（1文の平均 52.8字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T19:17:26.362940+00:00",
+      "attempt": 1,
+      "id": "9c331579e229757a",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 122.0,
+        "avg_sentence": 53.7,
+        "long_share": 0.32,
+        "max_paragraph": 196,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": 88,
+      "source": "openai-news",
+      "title": "ChatGPT Enterprise now available in AWS Marketplace",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（VP）",
+        "読みやすさ: 文が長い（1文の平均 53.7字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T19:17:47.196929+00:00",
+      "attempt": 0,
+      "id": "9c331579e229757a",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 104.5,
+        "avg_sentence": 45.3,
+        "long_share": 0.2,
+        "max_paragraph": 150,
+        "paragraphs": 13,
+        "sentences": 30
+      },
+      "score": 88,
+      "source": "openai-news",
+      "title": "ChatGPT Enterprise now available in AWS Marketplace",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（VP）",
+        "読みやすさ: 文が長い（1文の平均 45.3字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
     }
   ],
   "short_text_retry": {},
