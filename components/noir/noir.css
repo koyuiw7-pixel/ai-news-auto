@@ -243,6 +243,10 @@ html:has(.noir) body {
 .noir .nr-cover {
   margin: 20px 0 0;
 }
+/* 要点の後ろに置いた表紙（AI のイメージ・素材・バナー。2026-11-10） */
+.noir .nr-cover.nr-cover-low {
+  margin: 0 0 28px;
+}
 .noir .nr-cover-img {
   position: relative;
   aspect-ratio: 16 / 9;
@@ -1076,4 +1080,9 @@ html:has(.noir) body {
   html:has(.noir) .ft-ai {
     display: none;
   }
+}
+
+/* 2026-11-10 オーナー承認: ノワールの記事では、サイト共通の速報の1行（AI の新着）を隠し、同じ高さの「同じジャンルの新着」（GenreLine）を出す */
+html:has(.noir) .live-line {
+  display: none;
 }

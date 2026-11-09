@@ -17,6 +17,7 @@ import ArticleFaq from "@/components/ArticleFaq";
 import { ActionSteps, CauseBox, DecisionGuide, Fold, InsightBox, OfficialDesk, WorriesBlock } from "@/components/DepthBoxes";
 import StoryLinks from "@/components/noir/StoryLinks";
 import FoldOpener from "@/components/noir/FoldOpener";
+import GenreLine from "@/components/noir/GenreLine";
 import { depthOf } from "@/lib/depth";
 import ActionAd from "@/components/ActionAd";
 import type { ActionAd as ActionAdData } from "@/lib/action-ad";
@@ -38,7 +39,7 @@ import { getCta } from "@/lib/monetization";
 import { workMoneyHeading } from "@/lib/work-money";
 import { splitBeforeHeading } from "@/lib/markdown";
 import { headingTexts, noirBodyHtml, noirCover } from "@/lib/noir";
-import { tagHref, type ArticleSummary, type FullArticle } from "@/lib/articles";
+import { getAllArticles, tagHref, type ArticleSummary, type FullArticle } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
 import type { ChooseGuide } from "@/lib/choose-data";
 
@@ -124,6 +125,12 @@ function QuickActions({ actions, detailed }: { actions: string[]; detailed: bool
   );
 }
 
+/** 発表元の名前を短くする（「」や（）の前まで。短くなりすぎるときはそのまま） */
+export function shortOrg(org: string): string {
+  const head = org.split(/[「『（(]/)[0].trim();
+  return head.length >= 2 ? head : org;
+}
+
 export function noirArticlePage(ctx: NoirPageContext) {
   const {
     article, jsonLd, bodyHtml, easyHtml, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
@@ -154,6 +161,10 @@ export function noirArticlePage(ctx: NoirPageContext) {
     // 「KDDI ニュースリリース」「NVIDIA公式ブログ」の発信元の名前から、ページの種類の言葉を外して団体の名前にする
     sourceName.replace(/\s*(?:公式)?(?:ニュースリリース|プレスリリース|ニュースルーム|お知らせ|ブログ|Newsroom|News|Blog)\s*$/i, "").trim() ||
     sourceName;
+  // 題名の下の発表元は短く（「日本年金機構「老齢…の概要」（2026年10月1日更新）」→「日本年金機構」。2026-11-10 オーナー承認: 最初の画面を答えに使う）
+  const orgShort = shortOrg(org);
+  // 上の1行: 同じジャンルの新着（自分は除く）
+  const genreLatest = getAllArticles().find((a) => a.genreSlug === article.genreSlug && a.slug !== article.slug);
   const noirJsonLd = jsonLd.map((entry, i) =>
     i === 0 ? { ...entry, speakable: { "@type": "SpeakableSpecification", cssSelector: [".nr-sum"] } } : entry,
   );
@@ -199,10 +210,10 @@ export function noirArticlePage(ctx: NoirPageContext) {
       genre={article.genre}
       kicker={company.slug !== OTHER.slug ? company.name : ""}
       breaking={isFastNews(article)}
-      origin={`${org} ${badge}`}
+      origin={`${orgShort} ${badge}`}
       readMinutes={readMinutes}
       // 報道機関の記事は「公式発表」と呼ばない（台帳 W17）
-      sourceCta={sourceUrl ? (badge === "報道" ? `${sourceName}の記事を読む` : `${org}の発表を読む`) : null}
+      sourceCta={sourceUrl ? (badge === "報道" ? `${sourceName}の記事を読む` : `${orgShort}の発表を読む`) : null}
       sourceUrl={sourceUrl}
       body={{ top: noirTop, mid: noirMid, tail: noirTail }}
       compareSlot={compareInline}
@@ -212,6 +223,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
       crumbs={crumbs}
       related={relatedRest}
       slots={{
+        genreLine: <GenreLine genre={article.genre} item={genreLatest} />,
         quick:
           quickList.length > 0 || (funnelMid && depth.guide.length === 0) ? (
             <>

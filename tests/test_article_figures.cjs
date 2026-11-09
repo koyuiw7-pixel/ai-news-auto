@@ -32,9 +32,10 @@ test('図は見出しの章の終わり（次の見出しの手前）に置く�
   assert.match(figures.insertArticleFigures(html, [{ src: '/fig/x-fig3.webp', after_heading: '支給月' }], '題'), /<p>b<\/p><figure/);
 });
 
-test('ノワール: 題名 → 写真 → 要点 → すぐにできること → 1つ目の PR → なるほど → 本文。PC は右の列（追従）', () => {
+test('ノワール: 題名 → 公式の写真 → 要点 → すぐにできること → この話の続き → イメージ写真 → なるほど → 本文 → 次に読む記事。PC は右の列（追従）', () => {
   const page = read('components/noir/NoirArticle.tsx');
-  const order = ['<h1>{title}</h1>', 'nr-cover', 'className="nr-sum"', '{slots.quick}', '{slots.adEarly', '{slots.afterSummary}', 'id="nr-body"', '{slots.adMidPr', '{slots.midBoxes}', '{slots.adEnd', 'related-heading', 'nr-aside'];
+  // 2026-11-10 オーナー承認: 公式の写真だけ題名の下。AI のイメージ・素材は答えの後ろ。次に読む記事は本文の直後
+  const order = ['<h1>{title}</h1>', '{coverOnTop && <CoverFigure', 'className="nr-sum"', '{slots.quick}', '{slots.story}', '{!coverOnTop && <CoverFigure', '{slots.afterSummary}', 'id="nr-body"', '{slots.midBoxes}', '{slots.next}', '{slots.afterBody}', '{slots.adEnd', 'related-heading', '{slots.end}', 'nr-aside'];
   let at = -1;
   for (const part of order) {
     const i = page.indexOf(part);

@@ -46,6 +46,8 @@ export type NoirProps = {
   slots: {
     /** 要点のすぐ下の「すぐにできること」の短い一覧 */
     quick?: ReactNode;
+    /** 上の帯（サイトの速報の1行の代わり）: 同じジャンルの新着1本 */
+    genreLine?: ReactNode;
     /** 要点の下の「この話の続き」（同じ話題の記事2本。components/noir/StoryLinks.tsx） */
     story?: ReactNode;
     /** 本文の直後の「次に読む記事」（2026-11-10 オーナー承認。以前は記事の終わりの出典の後ろ） */
@@ -99,18 +101,22 @@ export default function NoirArticle(props: NoirProps) {
   // 写真の下の注記: 表紙用の AI のイメージは coverCredit、ほかは記事の写真の出典（公式・素材・AI）
   const creditOf = cover?.kind === "ai" ? article.coverCredit : article.imageCredit;
   const aiShown = cover?.kind === "ai" || (cover && article.imageCredit?.kind === "ai");
+  const coverOnTop = cover?.kind === "official";
+  const coverProps = { article, title, cover, photo, panel, focus, creditOf, aiShown: Boolean(aiShown), priority: coverOnTop };
 
   return (
     <div className="noir" data-layout="noir">
       <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd) }} />
       <NoirFonts href={fontHref} />
       <NoirChrome fontHref={fontHref} />
+      {slots.genreLine}
 
       <div className="nr-wrap">
         <div className="nr-main">
+          {/* 上のパンくずはジャンルまで（発信元の長い名前で2行になり、答えを押し下げていた。全部は下のパンくずに。2026-11-10） */}
           <nav aria-label="パンくず" className="nr-crumbs nr-crumbs-top">
             <Link href="/">ホーム</Link>
-            {props.crumbs.map((c) => (
+            {props.crumbs.slice(0, 1).map((c) => (
               <span key={c.href} className="contents">
                 <span aria-hidden>›</span>
                 <Link href={c.href}>{c.label}</Link>
@@ -134,36 +140,10 @@ export default function NoirArticle(props: NoirProps) {
             </div>
           </header>
 
-          {/* 表紙の写真（16:9・高さを先に確保して読み込みでずれない）。本物の写真が無い記事は出さない */}
-          {photo && (
-            <figure className={`nr-cover${panel ? " nr-cover-panel" : ""}`}>
-              <div className="nr-cover-img">
-                {panel && (
-                  <span className="nr-pbg" aria-hidden>
-                    <Thumb src={photo} alt="" fill sizes="(min-width: 1024px) 760px, 100vw" className="object-cover" />
-                  </span>
-                )}
-                <Thumb
-                  src={photo}
-                  alt={title}
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 760px, 100vw"
-                  className={panel ? "object-contain" : "object-cover"}
-                  style={panel ? undefined : { objectPosition: focus ? `${Math.round(focus.x * 100)}% ${Math.round(focus.y * 100)}%` : "50% 40%" }}
-                />
-                {/* AI のイメージには、写真の上に必ず札を出す（本物の写真と受け取られないように。台帳 I4） */}
-                {aiShown && (
-                  <span className="nr-ailabel" data-allow-small="">
-                    {cover?.kind === "ai" ? noirAiLabel(article) : "画像はイメージ（AI生成）"}
-                  </span>
-                )}
-              </div>
-              <figcaption>
-                <ImageCredit credit={creditOf} />
-              </figcaption>
-            </figure>
-          )}
+          {/* 表紙の写真（16:9・高さを先に確保して読み込みでずれない）。本物の写真が無い記事は出さない。
+              公式の写真だけ題名の下。AI のイメージ・素材・バナーは、答え（要点）・すぐにできること・この話の続きの後ろに置く
+              （2026-11-10 オーナー承認: Threads から来た人の最初の画面が、関係の薄い写真で埋まり答えが2画面目だった） */}
+          {coverOnTop && <CoverFigure {...coverProps} />}
 
           {/* ステマ規制（景品表示法）に沿い、広告を含みうる全記事の冒頭で明示する */}
           <p className="nr-pr">本ページはプロモーションを含みます</p>
@@ -206,6 +186,7 @@ export default function NoirArticle(props: NoirProps) {
 
           {slots.quick}
           {slots.story}
+          {!coverOnTop && <CoverFigure {...coverProps} />}
           {slots.adEarly && <div className="nr-ad nr-ad-early">{slots.adEarly}</div>}
           {slots.afterSummary}
           {slots.adTop}
@@ -282,5 +263,55 @@ export default function NoirArticle(props: NoirProps) {
       </div>
       {slots.mobileBar}
     </div>
+  );
+}
+
+type CoverProps = {
+  article: FullArticle;
+  title: string;
+  cover: NoirCover | null;
+  photo: string | null;
+  panel: boolean;
+  focus: { x: number; y: number } | null | undefined;
+  creditOf: FullArticle["imageCredit"];
+  aiShown: boolean;
+  priority: boolean;
+};
+
+/** 表紙の写真（題名の下か、要点の後ろ）。AI のイメージには写真の上に必ず札を出す */
+function CoverFigure({ article, title, cover, photo, panel, focus, creditOf, aiShown, priority }: CoverProps) {
+  return (
+    <>
+          {photo && (
+            <figure className={`nr-cover${panel ? " nr-cover-panel" : ""}${priority ? "" : " nr-cover-low"}`}>
+              <div className="nr-cover-img">
+                {panel && (
+                  <span className="nr-pbg" aria-hidden>
+                    <Thumb src={photo} alt="" fill sizes="(min-width: 1024px) 760px, 100vw" className="object-cover" />
+                  </span>
+                )}
+                <Thumb
+                  src={photo}
+                  alt={title}
+                  fill
+                  priority={priority}
+                  sizes="(min-width: 1024px) 760px, 100vw"
+                  className={panel ? "object-contain" : "object-cover"}
+                  style={panel ? undefined : { objectPosition: focus ? `${Math.round(focus.x * 100)}% ${Math.round(focus.y * 100)}%` : "50% 40%" }}
+                />
+                {/* AI のイメージには、写真の上に必ず札を出す（本物の写真と受け取られないように。台帳 I4） */}
+                {aiShown && (
+                  <span className="nr-ailabel" data-allow-small="">
+                    {cover?.kind === "ai" ? noirAiLabel(article) : "画像はイメージ（AI生成）"}
+                  </span>
+                )}
+              </div>
+              <figcaption>
+                <ImageCredit credit={creditOf} />
+              </figcaption>
+            </figure>
+          )}
+
+    </>
   );
 }
