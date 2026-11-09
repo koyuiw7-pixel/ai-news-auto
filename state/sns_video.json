@@ -2841,9 +2841,9 @@
       "pages": []
     },
     "nitori-member-data-leak-2026": {
-      "at": "2026-11-09T17:33:30+00:00",
+      "at": "2026-11-09T17:52:06+00:00",
       "status": "gate_failed",
-      "tries": 6,
+      "tries": 7,
       "textAt": "2026-11-09T23:30:00+00:00",
       "textId": "",
       "breaking": false,
@@ -2851,7 +2851,7 @@
       "versions": {
         "full": {
           "ok": false,
-          "seconds": 60.98,
+          "seconds": 65.595,
           "reasons": [],
           "qa": {
             "geometry": true,
@@ -2865,7 +2865,7 @@
         },
         "short": {
           "ok": false,
-          "seconds": 34.096,
+          "seconds": 38.297,
           "reasons": [],
           "qa": {
             "geometry": true,
@@ -2881,23 +2881,23 @@
       "timings": {
         "full": {
           "script": 0.0,
-          "tts": 24.76,
-          "plan_audio": 4.22,
-          "render": 45.19,
-          "gate": 5.53,
-          "sheet": 2.33,
-          "total": 82.1,
-          "ladder_total": 409.5
+          "tts": 20.32,
+          "plan_audio": 3.06,
+          "render": 44.67,
+          "gate": 4.51,
+          "sheet": 2.06,
+          "total": 74.7,
+          "ladder_total": 207.8
         },
         "short": {
           "script": 0.0,
-          "tts": 13.67,
-          "plan_audio": 1.98,
-          "render": 25.69,
-          "gate": 3.49,
-          "sheet": 1.38,
-          "total": 46.2,
-          "ladder_total": 409.5
+          "tts": 11.5,
+          "plan_audio": 1.82,
+          "render": 26.54,
+          "gate": 2.93,
+          "sheet": 1.24,
+          "total": 44.1,
+          "ladder_total": 207.8
         }
       },
       "ok": false,
@@ -2907,9 +2907,9 @@
       ]
     },
     "docomo-data-leak-family-lines": {
-      "at": "2026-11-09T17:33:30+00:00",
+      "at": "2026-11-09T17:52:06+00:00",
       "status": "gate_failed",
-      "tries": 2,
+      "tries": 3,
       "textAt": "2026-11-10T01:00:00+00:00",
       "textId": "",
       "breaking": false,
@@ -2917,11 +2917,13 @@
       "versions": {
         "full": {
           "ok": false,
-          "seconds": 65.947,
-          "reasons": [],
+          "seconds": 62.526,
+          "reasons": [
+            "v3: QA(目視): 場面3（話の食い違い）: 選択文は「名義ごとに分けて考える必要があります」で左の見出しとは合うが、読み上げの「親名義なら親の契約、成人した子どもは自分名義」と選択文の内容は同じ話で問題な"
+          ],
           "qa": {
             "geometry": true,
-            "vision": true,
+            "vision": false,
             "version": 1,
             "v3": false
           },
@@ -2931,7 +2933,7 @@
         },
         "short": {
           "ok": false,
-          "seconds": 41.594,
+          "seconds": 39.139,
           "reasons": [],
           "qa": {
             "geometry": true,
@@ -2947,27 +2949,27 @@
       "timings": {
         "full": {
           "script": 0.0,
-          "tts": 26.82,
-          "plan_audio": 4.18,
-          "render": 47.92,
-          "gate": 6.04,
-          "sheet": 2.65,
-          "total": 87.7,
-          "ladder_total": 461.2
+          "tts": 18.18,
+          "plan_audio": 3.81,
+          "render": 39.85,
+          "gate": 4.43,
+          "sheet": 1.96,
+          "total": 68.3,
+          "ladder_total": 429.7
         },
         "short": {
           "script": 0.0,
-          "tts": 34.31,
-          "plan_audio": 3.39,
-          "render": 32.03,
-          "gate": 4.26,
-          "sheet": 1.81,
-          "total": 75.8,
-          "ladder_total": 461.2
+          "tts": 11.32,
+          "plan_audio": 2.44,
+          "render": 24.31,
+          "gate": 3.22,
+          "sheet": 1.39,
+          "total": 42.7,
+          "ladder_total": 429.7
         }
       },
       "ok": false,
-      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない / short: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない",
+      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 場面3（話の食い違い）: 選択文は「名義ごとに分けて考える必要があります」で左の見出しとは合うが、読み上げの「親名義なら親の契約、成人した子どもは自分名義」と選択文の内容は同じ話で問題な / short: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 場面3（話の食い違い）: 選択文は「名義ごとに分けて考える必要があります」で左の見出しとは合うが、読み上げの「親名義なら親の契約、成人した子どもは自分名義」と選択文の内容は同じ話で問題な",
       "pages": [
         "ai-tech-express.jp"
       ]
@@ -3644,12 +3646,12 @@
     "nitori-member-data-leak-2026": {
       "status": "waiting",
       "why": "動画を作る記事なので 08:30 まで動画を待つ（来なければ写真・カードで出す）",
-      "checkedAt": "2026-11-09T17:48:02+00:00"
+      "checkedAt": "2026-11-09T18:02:44+00:00"
     },
     "docomo-data-leak-family-lines": {
       "status": "waiting",
       "why": "動画を作る記事なので 10:00 まで動画を待つ（来なければ写真・カードで出す）",
-      "checkedAt": "2026-11-09T17:48:02+00:00"
+      "checkedAt": "2026-11-09T18:02:44+00:00"
     }
   },
   "converted": {
