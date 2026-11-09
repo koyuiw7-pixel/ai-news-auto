@@ -9492,6 +9492,20 @@
       "slug": "mlit-autumn-2026-medals-of-honor",
       "url": "http://www.mlit.go.jp/report/press/kanbo03_hh_000427.html"
     },
+    "5e5a52dee6efa022": {
+      "at": "2026-11-09T05:18:16.898399+00:00",
+      "breaking": true,
+      "costUsd": 0.1112,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "rebellions-sk-telecom-nvlink-fusion",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion"
+    },
     "5e7dc0505488f405": {
       "at": "2026-11-04T08:03:10.192583+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
@@ -19820,45 +19834,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-06T18:16:09.246162+00:00",
-      "attempt": 1,
-      "id": "dee9547078e3646a",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "gov-online",
-      "title": "城内大臣記者会見(令和8年11月6日)"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T18:18:44.086186+00:00",
-      "attempt": 1,
-      "id": "a3c204cd288d4b65",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "段落が長い（平均 132.7字・最長 264字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 132.7,
-        "avg_sentence": 43.3,
-        "long_share": 0.163,
-        "max_paragraph": 264,
-        "paragraphs": 16,
-        "sentences": 49
-      },
-      "score": 90,
-      "source": "google-cloud-blog-ja",
-      "title": "Google Cloud と NASA: 深宇宙ミッション用のロボット システムをテスト",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CMO・DA・CDSS）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-06T18:19:22.828213+00:00",
       "attempt": 0,
@@ -26690,6 +26665,55 @@
       "title": "Salesforce、「CFO Priorities Report」を発表",
       "warnings": [
         "初めて出たところで言い換えていない略語（ROI）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T05:17:54.231400+00:00",
+      "attempt": 1,
+      "id": "5e5a52dee6efa022",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 108.6,
+        "avg_sentence": 47.8,
+        "long_share": 0.2,
+        "max_paragraph": 172,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": 92,
+      "source": "nvidia-newsroom",
+      "title": "NVIDIA, Rebellions and SK Telecom Announce Collaboration to Advance Sovereign AI",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SK・MGX・XPU）",
+        "読みやすさ: 文が長い（1文の平均 47.8字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T05:18:16.879080+00:00",
+      "attempt": 0,
+      "id": "5e5a52dee6efa022",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.2,
+        "avg_sentence": 44.9,
+        "long_share": 0.111,
+        "max_paragraph": 159,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": 88,
+      "source": "nvidia-newsroom",
+      "title": "NVIDIA, Rebellions and SK Telecom Announce Collaboration to Advance Sovereign AI",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SK・MGX・XPU）"
       ]
     }
   ],

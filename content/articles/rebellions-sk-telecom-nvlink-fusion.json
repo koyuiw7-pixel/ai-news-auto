@@ -1,0 +1,141 @@
+{
+  "slug": "rebellions-sk-telecom-nvlink-fusion",
+  "sourceType": "web",
+  "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion",
+  "sourceName": "NVIDIAニュースルーム",
+  "title": "韓国製AIチップ「R200」をNVIDIAの基盤に接続　SKテレコムが2028年に導入へ",
+  "seoTitle": "Rebellions R200とは？NVLink Fusion連携と提供時期",
+  "threadsPost": "AIデータセンターの動きを追っている人に、押さえておきたい話です。\n\n韓国のRebellionsが、次世代チップ「R200」をNVIDIAのNVLink Fusionでつなぎます。\nSKテレコムが自社のAIデータセンターに導入する計画で、準備が整うのは2028年の見込みです。\n\nAIチップ選びで、自社設計と既製品のどちらを重視しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "ab",
+      "question": "AIチップ選びで、自社設計と既製品のどちらを重視しますか？"
+    },
+    {
+      "pattern": "japan",
+      "question": "自国製のAIインフラが日本にもあれば、使いたいと感じますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "韓国のAI半導体企業Rebellionsの次世代チップ「R200」が、NVIDIAの高速接続技術「NVLink Fusion」を使い、NVIDIAの基盤につながります。R200を搭載したシステムが導入できる状態になるのは2028年の見込みです。導入するSKテレコムの価格や台数、日本での提供はまだ発表されていません。",
+  "description": "NVIDIA、Rebellions、SKテレコムが韓国のソブリンAI基盤で協業。R200をNVLink Fusionで接続し、システムは2028年に導入可能となる見込みです。推論の分担方式や未定の点も整理しました。",
+  "keywords": [
+    "Rebellions R200",
+    "NVLink Fusion",
+    "SKテレコム",
+    "ソブリンAI",
+    "NVIDIA MGX",
+    "NPU",
+    "AI推論",
+    "韓国 AI半導体",
+    "プレフィル デコード",
+    "AI for All"
+  ],
+  "tags": [
+    "NVIDIA",
+    "NVLink Fusion",
+    "AI半導体",
+    "ソブリンAI",
+    "データセンター"
+  ],
+  "highlights": [
+    "Rebellionsの次世代NPU「R200」をNVLink Fusionで接続し、NVIDIAのラック基盤で動かします",
+    "SKテレコムが自社のAIデータセンターに導入する計画で、R200システムは2028年に導入可能となる見込みです",
+    "推論の前半をNVIDIA GPU、後半をR200が担う分担方式も、3社が開発する計画に入っています"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "soon",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "データセンター担当",
+    "take": "すぐ使える製品ではないため、2028年の提供に向けた続報で価格と提供先を確かめるとよいでしょう。",
+    "judgedAt": "2026-11-09T05:17:44.439075+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の影響は小さい話題です。AIインフラの調達や設計に関わる人は、NPUとGPUを混在させる構成の動きとして押さえておくとよいでしょう。"
+    ]
+  },
+  "body": "今すぐ個人や一般企業が使える製品ではなく、日本での提供もまだ発表されていません。\n\nRebellionsは、AIの推論（学習済みのAIが答えを出す処理）に特化したチップを作る韓国の新興企業です。NVIDIAのニュースルームの発表によると、NVIDIA、Rebellions、SKテレコムの3社が協業します。協業先は、韓国のソブリンAI（自国の言語や産業に合わせ、国内で持ち運用するAI）基盤づくりです。\n\n## R200をNVLink Fusionでつなぐ仕組み\n\nR200は、AIの計算に特化したNPU（ニューラル処理装置）です。Rebellionsは、兆単位のパラメーターを持つ「専門家混合」型の大規模モデルでも、応答の速さと電力効率を高めることを狙っています。\n\nRebellionsは、NVLink Fusionを使ってR200をNVIDIAの基盤に接続します。NVLink Fusionは、NVIDIAの高速接続技術を、他社が設計した独自チップにも広げる仕組みです。ラック（サーバーを収める棚）の中で、R200同士をNVIDIAのNVLinkでつなぎます。\n\nシステムの開発には、NVIDIAのラック設計「MGX」を使います。MGXにはサプライチェーン（部品や製造の取引網）が整っており、Rebellionsはそこを活用できます。NVLink Fusionはこれまでにも発表されています（[NVIDIA、独自設計のXPUを自社基盤につなぐ「NVLink Fusion」を発表](/articles/nvidia-nvlink-fusion-custom-silicon)）。\n\n## SKテレコムが導入、推論は前半と後半で分担\n\nSKテレコムは、自社のAIデータセンターにこれらのシステムを導入する計画です。データセンターの運用経験に加え、自社の基盤モデル「A.X K2」や、政府の「AI for All」プロジェクトの公共向けサービスとつなげる構想です。\n\nMGXの共通設計により、GPUとNPUのシステムが、ラックの寸法、電力供給、冷却といった設計を共有できます。\n\n3社は「分離型推論」の方式も開発する計画です。AIの応答づくりを、得意な処理に合わせて別のチップに割り当てます。\n\n前半の「プレフィル」（入力を読み込む段階）には、NVIDIAのGPUを使う予定です。後半の「デコード」（文字を順に生成する段階）には、RebellionsのNPUを使います。狙いは処理量と電力効率の向上です。\n\n編集部の見方では、GPUを主役とするNVIDIAの基盤に他社製チップを混在させる動きです。R200が実際にどの程度の性能を出すかは、数字がまだ示されていません。\n\n## 韓国政府の支援と2028年の見通し\n\n韓国科学技術情報通信部が、この協業を支援します。NVIDIAと韓国のNPU企業の協力を、Rebellionsとの取り組みから始めて広げる方針です。\n\n同部の裴慶勲副首相兼長官は「韓国で開発したNPUが、NVIDIAとともに計算基盤の市場に入れる」と述べています。物理AIやGPUの供給確保といった分野でも、NVIDIAとの協力を進めるとしています。\n\nR200のシステムが導入できる状態になるのは2028年の見込みです。\n\n## まだ分からないこと\n\n- R200の価格や、SKテレコムが導入する台数・規模はまだ発表されていません\n- R200の具体的な性能数値はまだ発表されていません\n- 日本での提供や、日本の事業者が使えるかどうかはまだ発表されていません",
+  "easy": "## ひとことで言うと\n\n韓国のAIチップ企業Rebellionsが、次世代チップ「R200」をNVIDIAの基盤につなぐ計画です。SKテレコムが自社のデータセンターに導入する予定で、準備が整うのは2028年の見込みです。\n\n## どんな取り組みか\n\nAIは大量の計算を必要とします。その計算を担う専用チップを、国内で設計し、国内の事業者が運用する体制をつくる狙いです。これを「ソブリンAI」（自国で持ち、管理できるAI）と呼んでいます。\n\nR200は「NPU」（AIの計算に特化したチップ）です。NVIDIAの技術「NVLink Fusion」を使い、NVIDIAの基盤とつなぎます。\n\n## 役割分担の考え方\n\nAIが答えを出す処理は、前半と後半に分けられます。3社は、前半にNVIDIAのGPU、後半にRebellionsのNPUを使う方式を開発する計画です。処理量と電力効率を高めるのが目的です。",
+  "channel": "NVIDIAニュースルーム",
+  "channelId": "",
+  "channelSlug": "nvidia-newsroom",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "NVIDIA, Rebellions and SK Telecom Announce Collaboration to Advance Sovereign AI Infrastructure With NVIDIA NVLink Fusion",
+  "publishedAt": "2026-11-09T05:00:00+00:00",
+  "generatedAt": "2026-11-09T05:17:44.439064+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/rebellions-sk-telecom-nvlink-fusion-0fcece87.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "NVIDIA MGXは今回のR200専用の設計なのですか？",
+      "a": "専用ではありません。MGXは標準化されたラック設計で、GPUとNPUのシステムがラックの寸法・電力供給・冷却といった設計を共有できる仕組みです。"
+    },
+    {
+      "q": "SKテレコムは今回の基盤で何のAIモデルを使う予定ですか？",
+      "a": "自社の基盤モデルのA.X K2や、政府のAI for Allプロジェクトで開発した公共向けAIサービスと、この基盤をつなぐ計画です。"
+    }
+  ],
+  "todayActions": [
+    "NVIDIAニュースルームの発表で、R200システムの導入時期が2028年とされている点を確かめる",
+    "自社でGPU以外のチップを検討するなら、NVLink Fusionの対応チップ一覧が今後出るか公式発表を追う",
+    "MGXラックの共通設計（寸法・電力・冷却）が自社の設備計画に合うかを確認する"
+  ],
+  "relatedSlugs": [
+    "nvidia-nvlink-fusion-custom-silicon"
+  ],
+  "qualityScore": 88,
+  "breaking": true,
+  "sourcePublishedAt": "2026-11-09T05:00:00+00:00",
+  "detectedAt": "2026-11-09T05:06:20+00:00",
+  "fastLane": true,
+  "speedMinutes": 22,
+  "layout": "noir",
+  "summaryLine": "Rebellionsの次世代NPU「R200」をNVLink Fusionで接続し、NVIDIAのラック基盤で動かします",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/rebellions-sk-telecom-nvlink-fusion-fig1-2cc40fdd.jpg",
+      "width": 700,
+      "height": 393,
+      "kind": "photo",
+      "credit": "NVIDIA",
+      "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion",
+      "original": "https://iprsoftwaremedia.com/219/files/202611/db6ec7f33525f73ff5724d32dbd1b7fb/6aee80fa3d6332c8b445318c_nvidia-nvlink-fusion/nvidia-nvlink-fusion_mid.jpg?v=767ed6e5-2d59-4bb5-90cd-99e054407433"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIAニュースルーム",
+    "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion",
+    "original": "https://iprsoftwaremedia.com/219/files/202611/db6ec7f33525f73ff5724d32dbd1b7fb/6aee80fa3d6332c8b445318c_nvidia-nvlink-fusion/nvidia-nvlink-fusion_767ed6e5-2d59-4bb5-90cd-99e054407433-prv.jpg?v=767ed6e5-2d59-4bb5-90cd-99e054407433",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-09T05:18:22+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.696,
+    "y": 0.497,
+    "box": [
+      0.472,
+      0.0,
+      0.919,
+      0.994
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/rebellions-sk-telecom-nvlink-fusion-0fcece87.jpg"
+  }
+}
