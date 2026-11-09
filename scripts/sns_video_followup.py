@@ -1287,6 +1287,7 @@ def give_slot(posted: dict, due: datetime, now: datetime) -> tuple[str, datetime
     return None
 
 
+PHOTO_RESUME_LEAD_MIN = 15  # 予約に戻すのは今からこれだけ先（デプロイが済んでからカードが読まれるように）
 PHOTO_PAUSE_GIVEUP_H = 12  # 画像を待って下書きにした投稿は、この時間を過ぎたら予約に戻さない（issue で知らせる）
 
 
@@ -1323,7 +1324,8 @@ def resume_photo_paused(state: dict, now: datetime, api_key: str | None = None, 
             continue
         node = {**node, "service": node.get("service") or entry.get("service", "")}
         inp = share_assets_refresh(node, article) or node_edit_input(node, node_texts(node))
-        when = max(due, now + timedelta(minutes=QUEUE_LEAD_MIN))
+        # 画像は記事の公開（デプロイ。3〜5分）のあとにカードへ載る。その前に出ないよう、少しあとに予約する
+        when = max(due, now + timedelta(minutes=PHOTO_RESUME_LEAD_MIN))
         inp.update({"mode": "customScheduled", "dueAt": _iso(when), "saveToDraft": False})
         try:
             editor(key, inp, article, node["service"])
