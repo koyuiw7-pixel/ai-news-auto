@@ -92,14 +92,6 @@
       "tries": 1,
       "url": "https://www.westjr.co.jp/press/article/2026/11/09/page_31190.html"
     },
-    "557a49ea5a78c865": {
-      "first": "2026-11-09T06:52:21.683073+00:00",
-      "next": "2026-11-09T09:52:21.683073+00:00",
-      "reason": "リード「現在の在庫や購入方法が自動で切り替わることはありません」→ 元記事・確認済みの文脈のどこにも書かれていない主張で、根拠のない断定である; 対象製品の新しい価格一覧で、同じ「公式ヘルプの手順を確認してください」という文が6回繰り返されており、価格表の中身がない（元記事の表の内容が反映されていない）; 「今日やること」の「棚札で確かめる」は一般的な行動として妥当だが、価格変更は2027年2月以",
-      "title": "ハウスウェルネスフーズ C1000瓶飲料 価格改定のお知らせ",
-      "tries": 1,
-      "url": "https://housefoods-group.com/newsrelease/pdf/newsrelease_20261109_02.pdf"
-    },
     "76f6c839f4713002": {
       "first": "2026-11-06T13:58:15.532249+00:00",
       "next": "2026-11-06T16:58:15.532249+00:00",
@@ -123,14 +115,6 @@
       "title": "第553回日本高速道路保有・債務返済機構債券（ソーシャルボンド）に対する政府保証の付与",
       "tries": 1,
       "url": "https://www.mof.go.jp/jgbs/topics/gov_guaranteed_bonds/hu2033.htm"
-    },
-    "9b960847a32cc3d2": {
-      "first": "2026-11-09T06:56:13.544559+00:00",
-      "next": "2026-11-09T09:56:13.544559+00:00",
-      "reason": "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
-      "title": "Salesforce、「IDC MarketScape: Worldwide Agentic AI Platforms 2026」でリーダーカテゴリーに",
-      "tries": 1,
-      "url": "https://www.salesforce.com/jp/news/press-releases/2026/11/09/idc-marketscape-agentic-ai-platforms/"
     },
     "d083b2d2afa7377a": {
       "first": "2026-11-09T02:15:34.985262+00:00",
@@ -197,6 +181,7 @@
     "4aeb050a32861a4a": "2026-11-06T08:51:04.778179+00:00",
     "4bc6cfdfe01d0f0c": "2026-11-06T19:23:54.886871+00:00",
     "4be4160850983eb6": "2026-11-06T05:00:53.564873+00:00",
+    "4d38b34b1ce40925": "2026-11-09T10:02:58.007406+00:00",
     "55b0a1eff479f872": "2026-11-06T19:23:54.886871+00:00",
     "5964dfc41cde291a": "2026-11-05T12:02:48.521507+00:00",
     "5b02c5068fa4ee80": "2026-11-06T19:41:01.362264+00:00",
@@ -258,6 +243,7 @@
     "bd1cfd5963166b03": "2026-11-06T08:51:04.778179+00:00",
     "beb2859ed2047b09": "2026-11-06T08:51:04.778179+00:00",
     "c0aaac229fee24e1": "2026-11-06T18:22:08.318950+00:00",
+    "c63d1aa22d52b881": "2026-11-09T10:02:58.007406+00:00",
     "c658e8765203d16e": "2026-11-07T15:31:07.844885+00:00",
     "c6c5eaf37e872625": "2026-11-06T03:34:09.182177+00:00",
     "c8cabbdd5caa174b": "2026-11-06T06:20:57.963971+00:00",
@@ -8642,7 +8628,7 @@
       "url": "https://elevenlabs.io/blog/sfx-v3-for-developers"
     },
     "4d38b34b1ce40925": {
-      "at": "2026-11-09T09:40:36.413499+00:00",
+      "at": "2026-11-09T10:03:43.230832+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77290.html"
@@ -9252,6 +9238,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77183.html"
+    },
+    "557a49ea5a78c865": {
+      "at": "2026-11-09T10:06:42.319904+00:00",
+      "costUsd": 0.0017,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: リード「店舗の在庫や販売価格が自動で切り替わることはありませんが」→ 元記事・確認済みの文脈に無い店頭運用についての断定である; 本文の製品別価格表が「公式ヘルプの手順を確認してください」という同じ文の繰り返しに置き換わっており、元記事にない「公式ヘルプ」という案内で、実際の価格情報が本文に出ていない; 「かんたん版」にも同じ誤った placeholder 文が6回繰り返され、製",
+      "skipped": true,
+      "url": "https://housefoods-group.com/newsrelease/pdf/newsrelease_20261109_02.pdf"
     },
     "55a6c6aa2846faa5": {
       "at": "2026-11-07T04:51:50.078598+00:00",
@@ -14031,6 +14025,17 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005948.000054842.html"
     },
+    "9b960847a32cc3d2": {
+      "at": "2026-11-09T10:08:12.477768+00:00",
+      "costUsd": 0.014,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 93,
+      "section": "ai",
+      "slug": "salesforce-agentforce-idc-marketscape-leader",
+      "url": "https://www.salesforce.com/jp/news/press-releases/2026/11/09/idc-marketscape-agentic-ai-platforms/"
+    },
     "9bc65f24ba4d545f": {
       "at": "2026-10-28T01:32:02.608465+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -16786,7 +16791,7 @@
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110519"
     },
     "c63d1aa22d52b881": {
-      "at": "2026-11-09T09:40:36.407009+00:00",
+      "at": "2026-11-09T10:03:43.223585+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "https://www.cyberagent.co.jp/news/detail/id=33997"
@@ -20608,14 +20613,6 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001290.html"
     },
-    "muse-03683f05ad": {
-      "at": "2026-11-09T10:02:52.195370+00:00",
-      "mix": "alert",
-      "score": 88,
-      "slug": "power-outage-breaker-check-guide",
-      "url": "https://www.tepco.co.jp/disaster/teiden.html",
-      "writer": "muse"
-    },
     "muse-04ffeeeaa7": {
       "at": "2026-11-09T07:14:32.592627+00:00",
       "mix": "money",
@@ -20694,14 +20691,6 @@
       "score": 92,
       "slug": "minimum-wage-2026-prefectures",
       "url": "https://www.mhlw.go.jp/stf/newpage_75950.html",
-      "writer": "muse"
-    },
-    "muse-65954a90ea": {
-      "at": "2026-11-09T10:04:48.542471+00:00",
-      "mix": "money",
-      "score": 85,
-      "slug": "heater-power-cost-per-hour",
-      "url": "https://www.eftc.or.jp/qa/",
       "writer": "muse"
     },
     "muse-67c0cca254": {
@@ -20799,109 +20788,25 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
+    },
+    "muse-03683f05ad": {
+      "at": "2026-11-09T10:02:52.195370+00:00",
+      "mix": "alert",
+      "score": 88,
+      "slug": "power-outage-breaker-check-guide",
+      "url": "https://www.tepco.co.jp/disaster/teiden.html",
+      "writer": "muse"
+    },
+    "muse-65954a90ea": {
+      "at": "2026-11-09T10:04:48.542471+00:00",
+      "mix": "money",
+      "score": 85,
+      "slug": "heater-power-cost-per-hour",
+      "url": "https://www.eftc.or.jp/qa/",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-07T06:54:07.137344+00:00",
-      "attempt": 1,
-      "id": "ca044c8f8cfa1a6e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「判定: 提供状況=available」→ 元記事は掃除用エージェントや自動チェックツールの社外提供を発表しておらず、「まだ分からないこと」の記述とも矛盾する",
-        "「ほかに関係の薄い人には、今すぐ変わることはありません」→ 元記事に無い判断で、記事本文の他の説明と整合しない形で示されている"
-      ],
-      "readability": {
-        "avg_paragraph": 89.4,
-        "avg_sentence": 40.0,
-        "long_share": 0.105,
-        "max_paragraph": 144,
-        "paragraphs": 17,
-        "sentences": 38
-      },
-      "score": 72,
-      "source": "google-developers-blog",
-      "title": "Agent Distraction",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（XXX）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T06:54:26.643296+00:00",
-      "attempt": 1,
-      "id": "ca044c8f8cfa1a6e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "判定行の「提供状況=available」→ 元記事は社外での提供可否を明言しておらず、本文の「まだ分からないこと」と矛盾する提供状況の断定になっている",
-        "「ほかに関係の薄い人には、今すぐ変わることはありません」→ 元記事に無い利用・影響範囲の判断を含み、提供状況の記述と合わせて読むと誤解を招く"
-      ],
-      "readability": {
-        "avg_paragraph": 88.0,
-        "avg_sentence": 40.6,
-        "long_share": 0.128,
-        "max_paragraph": 144,
-        "paragraphs": 18,
-        "sentences": 39
-      },
-      "score": 70,
-      "source": "google-developers-blog",
-      "title": "Agent Distraction",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（XXX）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T06:54:54.548819+00:00",
-      "attempt": 1,
-      "id": "ca044c8f8cfa1a6e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "末尾の「判定: 提供状況=available」→ 本文は掃除用ツールや自動チェックツールが社外の開発者に提供されるかは発表されていないと書いており、「available」は本文と矛盾する。"
-      ],
-      "readability": {
-        "avg_paragraph": 110.9,
-        "avg_sentence": 42.9,
-        "long_share": 0.136,
-        "max_paragraph": 198,
-        "paragraphs": 17,
-        "sentences": 44
-      },
-      "score": 80,
-      "source": "google-developers-blog",
-      "title": "Agent Distraction",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（XXX）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T06:55:29.601141+00:00",
-      "attempt": 2,
-      "id": "ca044c8f8cfa1a6e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 73.0,
-        "avg_sentence": 37.4,
-        "long_share": 0.07,
-        "max_paragraph": 142,
-        "paragraphs": 22,
-        "sentences": 43
-      },
-      "score": 90,
-      "source": "google-developers-blog",
-      "title": "Agent Distraction",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TODO）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-07T07:33:03.100626+00:00",
@@ -27980,6 +27885,117 @@
         "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（JFA）",
         "work_money（「仕事・お金にどう活かせる？」欄）が無い"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T10:06:42.319811+00:00",
+      "attempt": 1,
+      "id": "557a49ea5a78c865",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「店舗の在庫や販売価格が自動で切り替わることはありませんが」→ 元記事・確認済みの文脈に無い店頭運用についての断定である",
+        "本文の製品別価格表が「公式ヘルプの手順を確認してください」という同じ文の繰り返しに置き換わっており、元記事にない「公式ヘルプ」という案内で、実際の価格情報が本文に出ていない",
+        "「かんたん版」にも同じ誤った placeholder 文が6回繰り返され、製品ごとの新価格が読者に示されていない",
+        "「現行価格の維持が極めて厳しい」→ 元記事は「大変厳しい」であり、強調が元記事より大きい",
+        "末尾の「判定: 提供状況=soon 価格=148円〜168円（税別） ひとこと=…」は内部の注記が記事本文に漏れている",
+        "リンク先は元記事のPDFであるのに「公式ヘルプの手順」「ハウス食品グループの案内」と説明されており、案内内容と一致しない"
+      ],
+      "readability": {
+        "avg_paragraph": 129.4,
+        "avg_sentence": 43.1,
+        "long_share": 0.2,
+        "max_paragraph": 192,
+        "paragraphs": 5,
+        "sentences": 15
+      },
+      "score": 70,
+      "source": "house-foods",
+      "title": "ハウスウェルネスフーズ C1000瓶飲料 価格改定のお知らせ",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 段落が長い（平均 129.4字・最長 192字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T10:07:03.886785+00:00",
+      "attempt": 1,
+      "id": "9b960847a32cc3d2",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「判定: 提供状況=available 価格=法人向け」→ 元記事には提供状況・価格（法人向けの料金体系）についての記載がなく、創作された情報である。",
+        "「Crocsは…『Rivet』などを85を超える国と地域で運用」→ 元記事では85を超える国・地域で運用しているのはAgentforce Commerceであり、Rivetの運用範囲とは書かれていないため、対象の取り違えがある。",
+        "「Southwest Airlinesでは…ホスピタリティを提供し」→ 元記事は10を超える業務システムの統合を述べるが、記事はその具体的な内容を省いており、読者に伝わる事実が不足している。",
+        "「そして実際のビジネス成果を生み出す力備えて」→ 助詞「を」が欠落しており、引用文として誤植がある。"
+      ],
+      "readability": {
+        "avg_paragraph": 99.3,
+        "avg_sentence": 57.9,
+        "long_share": 0.583,
+        "max_paragraph": 231,
+        "paragraphs": 7,
+        "sentences": 12
+      },
+      "score": 72,
+      "source": "salesforce-jp",
+      "title": "Salesforce、「IDC MarketScape: Worldwide Agentic AI Platforms 2026」でリーダーカテゴリーに",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IDC・AVA）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T10:07:44.026370+00:00",
+      "attempt": 1,
+      "id": "9b960847a32cc3d2",
+      "kind": "ai",
+      "model": "strike:本文 1 文・リード・よくある質問・判定カード",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.7,
+        "avg_sentence": 51.5,
+        "long_share": 0.462,
+        "max_paragraph": 294,
+        "paragraphs": 7,
+        "sentences": 13
+      },
+      "score": 93,
+      "source": "salesforce-jp",
+      "title": "Salesforce、「IDC MarketScape: Worldwide Agentic AI Platforms 2026」でリーダーカテゴリーに",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IDC・AVA）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T10:08:02.750696+00:00",
+      "attempt": 0,
+      "id": "9b960847a32cc3d2",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 59.9,
+        "avg_sentence": 37.4,
+        "long_share": 0.062,
+        "max_paragraph": 109,
+        "paragraphs": 10,
+        "sentences": 16
+      },
+      "score": 93,
+      "source": "salesforce-jp",
+      "title": "Salesforce、「IDC MarketScape: Worldwide Agentic AI Platforms 2026」でリーダーカテゴリーに",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IDC・AVA）"
       ]
     }
   ],

@@ -67,9 +67,9 @@
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "特設ダイヤル0120-451-360（受付時間 午前9時〜午後8時）に、自分の契約が対象かを問い合わせる",
-    "子どもが使う回線の契約者が親かどうかを、契約書や明細で確かめておく",
-    "ドコモを名乗るメールやSMSのURLは開かず、連絡が本物か不安なときは公式の特設ダイヤルへ自分からかけ直す"
+    "特設ダイヤル0120-451-360に、自分の契約が対象かを問い合わせる",
+    "子どもが使う回線の契約者が親かどうか、契約書や明細で確かめる",
+    "ドコモを名乗る連絡は、URLを開かず自分から特設ダイヤルにかけ直す"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -130,5 +130,158 @@
     "src": "https://ai-tech-express.jp/img/docomo-data-leak-family-lines-e2505e12.jpg"
   },
   "duplicateOf": "docomo-my-docomo-data-breach",
-  "duplicateReason": "同じ出典URL"
+  "duplicateReason": "同じ出典URL",
+  "insight": [
+    {
+      "text": "「通信の秘密」にかかわる料金明細サービスなどは、代理人（法定代理人を除く）では申し込めず、契約者本人からの申込みが必要です。",
+      "source": "https://www.docomo.ne.jp/support/consent_form/"
+    },
+    {
+      "text": "ご利用者情報の登録は、契約者とご利用者が異なる場合は郵送でのお手続きです。電話で申し込むなら、発信者番号非通知ではお受けできません。",
+      "source": "https://www.docomo.ne.jp/support/user_registration/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "特設ダイヤル",
+      "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "howTo": [
+        "ドコモからのお知らせ",
+        "第三報",
+        "３．お問い合わせ"
+      ],
+      "phone": "0120-451-360",
+      "hours": "午前9時～午後8時"
+    },
+    {
+      "name": "My docomo「ご契約内容確認・変更」",
+      "url": "https://www.docomo.ne.jp/mydocomo/procedures/contract/",
+      "source": "https://www.docomo.ne.jp/mydocomo/procedures/contract/",
+      "howTo": [
+        "My docomo",
+        "ご契約内容",
+        "ご契約内容確認・変更"
+      ],
+      "note": "契約中の料金プランや契約内容を確認でき、変更・解約の手続きもできるページです。"
+    },
+    {
+      "name": "ご利用者情報の登録",
+      "url": "https://www.docomo.ne.jp/support/user_registration/",
+      "source": "https://www.docomo.ne.jp/support/user_registration/",
+      "phone": "151",
+      "hours": "午前9時～午後8時",
+      "note": "ドコモの携帯電話から局番なしの151（無料）。発信者番号非通知設定では受けられません。契約者とご利用者が異なる場合は郵送です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "特設ダイヤル0120-451-360に、自分の契約が対象かを問い合わせる",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "steps": [
+        "受付時間は午前9時～午後8時",
+        "0120-451-360にかける",
+        "家族分もまとめて確認できるか聞く"
+      ],
+      "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html"
+    },
+    {
+      "action": "子どもが使う回線の契約者が親かどうか、契約書や明細で確かめる",
+      "source": "https://www.docomo.ne.jp/support/user_registration/",
+      "steps": [
+        "ご契約者とご利用者が異なるかを確かめる",
+        "異なる場合は郵送で申込み書を請求する"
+      ],
+      "url": "https://www.docomo.ne.jp/support/user_registration/"
+    },
+    {
+      "action": "ドコモを名乗る連絡は、URLを開かず自分から特設ダイヤルにかけ直す",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "steps": [
+        "届いたメールやSMSのURLは開かない",
+        "添付ファイルを開かない",
+        "0120-451-360へ自分からかける"
+      ],
+      "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html"
+    }
+  ],
+  "cause": {
+    "text": "ドコモオンラインショップとMy docomoに、外部から不正なアクセスがあったことが原因と発表されています。侵入経路や流出の範囲は、詳細な調査を進めています。",
+    "status": "stated",
+    "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html"
+  },
+  "worries": [
+    {
+      "q": "子どもの回線も、流出の対象に入りますか？",
+      "a": "回線ごとの対象範囲は発表されていません。ただ、一部のお客さま分には「法定代理人・手続代理人の氏名、連絡先」と「子育て応援プログラムに関する情報」が含まれています。親が契約者の回線では、親自身の情報が関係する可能性があります。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "action": "親名義の回線なら、契約者である親本人が特設ダイヤル0120-451-360に問い合わせる。"
+    },
+    {
+      "q": "カードや口座の情報も漏れていますか？",
+      "a": "第三報の流出項目の一覧に、クレジットカード番号は挙がっていません。一部のお客さま分には「金融機関名、支店名、口座番号、口座名義等」が挙がっています。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "action": "身に覚えのない支払いや送金があれば、被害に遭ったサービスを提供している会社に相談してください。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "ドコモを名乗る電話やSMSが来たら、どうすればいい？",
+      "a": "流出した情報を悪用し、ドコモや関係者を装った不審なメール、SMS、電話が届く可能性があると発表されています。URLにアクセスせず、個人情報やパスワードを入力・回答しないよう呼びかけています。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
+      "action": "届いた連絡のURLは開かず、特設ダイヤル0120-451-360へ自分からかけ直す。"
+    },
+    {
+      "q": "My docomoで、自分が対象か調べられますか？",
+      "a": "My docomoの「ご契約内容確認・変更」では、契約中の料金プランや契約内容を確認できます。対象かどうかを照会する方法は、発表されていません。",
+      "source": "https://www.docomo.ne.jp/mydocomo/procedures/contract/",
+      "action": "My docomoの「ご契約内容確認・変更」で、今の料金プランや契約内容を確かめる。"
+    },
+    {
+      "q": "ほかのサービスとパスワードを使い回していたら？",
+      "a": "ドコモの発表には、パスワードの個別の対応は書かれていません。一般には、同じIDやパスワードを複数のサイトで使うと、一つ盗まれて全てのサービスが乗っ取られる被害に遭うおそれがあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "同じパスワードを使い回しているサービスは、サイトごとに違うパスワードに変える。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "家族の回線の確認は、誰が問い合わせればいい？",
+      "situation": "親名義の回線を子どもが使っている",
+      "recommend": "契約者である親本人が、まず問い合わせる",
+      "reason": "代理の申込みには委任状が要ります。対象の確認を代理でできるかは発表されていないため、まず契約者本人が特設ダイヤルで確かめる形になります。",
+      "source": "https://www.docomo.ne.jp/support/consent_form/"
+    },
+    {
+      "question": "代理人に店頭で手続きを頼みたいときは？",
+      "situation": "家族の代わりに店頭へ行く",
+      "recommend": "委任状と双方の本人確認書類を用意してから行く",
+      "reason": "委任状は契約者本人の自署か記名捺印が必要で、作成日の3か月後の月末まで有効です。「通信の秘密」にかかわるサービスは代理人（法定代理人を除く）では申し込めません。",
+      "source": "https://www.docomo.ne.jp/support/consent_form/"
+    },
+    {
+      "question": "ドコモを名乗る連絡が届いたら、どうする？",
+      "situation": "不審なメールやSMSが届いた",
+      "recommend": "URLは開かず、特設ダイヤルへ自分からかけ直す",
+      "reason": "流出した情報を悪用した偽の連絡が届く可能性があると案内されています。URLを開かず、添付ファイルを開かず、個人情報やパスワードを入力しないよう呼びかけています。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html"
+    },
+    {
+      "question": "ドコモを名乗る連絡が届いたら、どうする？",
+      "situation": "まだ連絡は来ていない",
+      "recommend": "急がなくてよい。届いたら上の対応をする",
+      "reason": "第二報では、詳細が判明次第、対象のお客さまに速やかにお知らせすると案内されています。第三報では、その実施や方法には触れられていません。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261105_03_m.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "家族の申込みは委任状と契約者本人の確認が要る",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日まずやる、3つの確認",
+    "desk": "どこに聞けばいいか、公式の窓口",
+    "worries": "カードや口座、家族のスマホは大丈夫？",
+    "guide": "家族の回線、誰が確かめるかの決め方"
+  },
+  "depthAt": "2026-11-09T10:09:53+00:00"
 }
