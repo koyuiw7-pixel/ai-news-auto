@@ -86,9 +86,8 @@
     }
   ],
   "todayActions": [
-    "年金証書か支給額変更通知書を手元に用意し、納付済期間と免除期間を確かめる",
-    "請求書（はがき型）が届いていれば、見込額（月額）の欄を確かめる",
-    "分からない点は給付金専用ダイヤル 0570-05-4092で確かめる（月曜は19時まで、火〜金は17時15分まで）"
+    "年金証書か支給額変更通知書を手元に出し、納付済期間と免除期間を確かめる。",
+    "納付済期間と免除期間の月数から、自分の給付額の目安を計算する。"
   ],
   "angleOf": "pension-support-benefit-old-age-eligibility",
   "deepDive": "check",
@@ -98,5 +97,83 @@
   "qualityScore": 88,
   "detectedAt": "2026-11-09T17:08:21+00:00",
   "layout": "noir",
-  "summaryLine": "前年の年金などの合計が**926,500円**以下なら対象に。昭和31年4月2日以後生まれの基準"
+  "summaryLine": "前年の年金などの合計が**926,500円**以下なら対象に。昭和31年4月2日以後生まれの基準",
+  "insight": [
+    {
+      "text": "生まれた日で基準が違います。昭和31年4月1日以前生まれは「924,100円」以下、4月2日以後生まれは「926,500円」以下が上限です。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    },
+    {
+      "text": "「障害年金・遺族年金等の非課税収入は含まれません」と書かれています。前年の年金収入の合計には、これらの額が入りません。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    },
+    {
+      "text": "請求書は「65歳になる誕生日の前日以降」に提出するとされています。65歳より前に請求しても対象にはならない点に注意します。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "年金生活者支援給付金に関する手続き",
+      "url": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/index.html",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "howTo": [
+        "関連情報",
+        "年金生活者支援給付金に関する手続き"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "年金証書か支給額変更通知書を手元に出し、納付済期間と免除期間を確かめる。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "steps": [
+        "年金証書か支給額変更通知書を用意する",
+        "納付済期間の月数を見る",
+        "免除期間の月数を見る"
+      ]
+    },
+    {
+      "action": "納付済期間と免除期間の月数から、自分の給付額の目安を計算する。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "steps": [
+        "納付済期間は5,620円×月数÷480で計算",
+        "免除期間は11,768円×月数÷480（4月2日以後生まれ）",
+        "2つを足すと月額の目安になる"
+      ]
+    }
+  ],
+  "worries": [
+    {
+      "q": "自分が対象かどうか、何で決まるの？",
+      "a": "65歳以上で老齢基礎年金を受けていて、世帯全員の市町村民税が非課税で、前年の年金などの合計が基準以下であることです。基準は生まれた日で分かれています。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "生まれた日と前年の年金収入の合計を確かめ、基準と比べてみる。"
+    },
+    {
+      "q": "障害年金や遺族年金を受けていても対象になる？",
+      "a": "障害年金・遺族年金等の非課税の収入は、前年の年金収入の合計に含まれません。障害年金や遺族年金を受けている人の条件は、別のページで案内されています。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "障害年金や遺族年金を受けている人は、障害年金生活者支援給付金の概要で条件を確かめる。"
+    },
+    {
+      "q": "納付済期間や免除期間はどこで確かめられる？",
+      "a": "お手持ちの年金証書や支給額変更通知書などで確認できます。この2つの期間が、給付額を計算するもとになります。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "手元の年金証書か支給額変更通知書を出し、納付済期間と免除期間の月数を見る。"
+    },
+    {
+      "q": "月額はいくらぐらいもらえる？",
+      "a": "納付済期間分は5,620円×月数÷480、免除期間分は11,768円×月数÷480で、2つの合計です。納付済240カ月、全額免除60カ月の例では月額4,281円です。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "納付済と免除の月数を当てはめて、月額を自分で計算してみる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "生まれた日で基準が違う、見落としやすい点",
+    "steps": "まず手元の書類で、自分の金額を確かめる",
+    "desk": "分からないときの手続きの案内ページ",
+    "worries": "対象か、いくらもらえるかの不安"
+  },
+  "depthAt": "2026-11-09T17:22:15+00:00"
 }

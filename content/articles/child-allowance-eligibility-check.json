@@ -82,9 +82,8 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "お住まいの市区町村の窓口で、児童手当を受けているかを確かめる。",
-    "会社員の方は、健康保険証利用登録されたマイナンバーカードと健康保険の資格証明書を手元に用意する。",
-    "所得上限超過で手当を受けていなかった人は、増額の申請が必要かを市区町村に問い合わせる。"
+    "お住まいの市区町村で、年齢・生計・住所の3つから対象かを確かめる",
+    "偶数月に振込があるかを確かめ、前月までの2か月分が入っているか見る"
   ],
   "angleOf": "child-allowance-third-child-monthly-30000",
   "deepDive": "check",
@@ -94,5 +93,72 @@
   "qualityScore": 88,
   "detectedAt": "2026-11-09T17:06:31+00:00",
   "layout": "noir",
-  "summaryLine": "児童手当は2024年10月分から所得制限がなくなり、高校生年代までの子が対象になった。"
+  "summaryLine": "児童手当は2024年10月分から所得制限がなくなり、高校生年代までの子が対象になった。",
+  "insight": [
+    {
+      "text": "令和6年12月が拡充後の初回支給です。支払いは偶数月に、前月までの2か月分がまとめて払われる仕組みです。",
+      "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf"
+    },
+    {
+      "text": "第3子以降のカウントは、18歳年度末の翌日から22歳年度末までの間にある子で、親等に経済的負担がある場合に数えるよう見直されています。",
+      "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "お住まいの市区町村で、年齢・生計・住所の3つから対象かを確かめる",
+      "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
+      "steps": [
+        "支給対象は高校生年代までの国内に住所を有する児童か確かめる",
+        "受給資格者は監護生計要件を満たす父母等か確かめる",
+        "所得制限はないので、所得は条件にならないと確かめる"
+      ]
+    },
+    {
+      "action": "偶数月に振込があるかを確かめ、前月までの2か月分が入っているか見る",
+      "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
+      "steps": [
+        "偶数月に入金があるかを通帳やアプリで見る",
+        "前月までの2か月分がまとめて入っているか確かめる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "こども未来戦略（令和5年12月22日閣議決定）に基づき、時代を担う全ての子どもの育ちを支える基礎的な経済支援としての位置付けを明確化するため、令和6年10月より児童手当の抜本的拡充を実施することとしています。",
+    "status": "background",
+    "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf"
+  },
+  "worries": [
+    {
+      "q": "所得が多いと、手当はもらえなくなりますか？",
+      "a": "令和6年10月分以降は所得制限がなく、「所得制限なし」とされています。支給対象は高校生年代までの国内に住所を有する児童で、受給資格者は監護生計要件を満たす父母等です。",
+      "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
+      "action": "所得では判断されないため、収入を理由にあきらめず、お住まいの市区町村で対象かを確かめる。"
+    },
+    {
+      "q": "上の子が18歳を過ぎたら、第3子として数えられなくなる？",
+      "a": "18歳年度末の翌日から22歳年度末までの間にある子は、親などに経済的負担がある場合にはカウントするよう見直されています。",
+      "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
+      "action": "上の子が18歳を過ぎているなら、22歳年度末前で親などに経済的負担があるかを確かめる。"
+    },
+    {
+      "q": "何歳まで、どのくらいの額を受け取れますか？",
+      "a": "支給対象は高校生年代までの国内に住所を有する児童で、18歳に到達後の最初の年度末までとされています。月額は、3歳未満が第1子・第2子15,000円、3歳以上は10,000円、第3子以降は30,000円です。",
+      "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
+      "action": "子の年齢が18歳到達後の最初の年度末を過ぎていないか、市区町村で確かめる。"
+    },
+    {
+      "q": "いつ、どのくらいの周期で振り込まれますか？",
+      "a": "支払いは偶数月で、各前月までの2か月分が支払われます。拡充後の初回支給は令和6年12月とされています。支払日の細かい決まりは、このページには書かれていません。",
+      "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
+      "action": "偶数月の振込日を確かめ、前月までの2か月分が入っているかを見る。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "令和6年12月が初回、以後は偶数月に2か月分",
+    "cause": "なぜ所得制限をなくしたのか、その理由",
+    "steps": "今日、確かめることは年齢・生計・住所の3点",
+    "worries": "上の子が18歳を過ぎても数えるの？"
+  },
+  "depthAt": "2026-11-09T17:22:41+00:00"
 }
