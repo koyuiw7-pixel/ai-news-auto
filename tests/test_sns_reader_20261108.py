@@ -72,7 +72,8 @@ class ComposeTest(unittest.TestCase):
             got = sr.x_post(ARTICLE)
         self.assertIsNotNone(got)
         self.assertIn("22万7,216件", got["text"])
-        self.assertTrue(got["text"].endswith("記事にまとめています。"))
+        body = "\n".join(x for x in got["text"].splitlines() if not x.startswith("#"))  # 話題のタグ（台帳 S52）は最後の行に付いてよい
+        self.assertTrue(body.endswith("記事にまとめています。"))
 
     def test_bluesky_link_line_last_and_card(self):
         with with_state():

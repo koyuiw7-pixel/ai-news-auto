@@ -54,7 +54,11 @@ class CheckPostTest(unittest.TestCase):
     def test_link_placement_and_utm(self):
         self.assertTrue(any("本文に記事のリンクがない" in v for v in self.check("threads", GOOD)))
         x_body = with_link(GOOD, "x")
-        self.assertTrue(any("X は記事のリンクを本文ではなく返信" in v for v in self.check("x", x_body)))
+        # 2026-11-10（台帳 S52）: X は本文か返信のどちらか1か所。両方・どちらにも無いのは止める
+        self.assertFalse(any("ルール1" in v for v in self.check("x", x_body)))
+        reply = f"{LINK}?utm_source=x&utm_medium=social&utm_campaign=classic&utm_content=video_reply"
+        self.assertTrue(any("どちらか1か所" in v for v in self.check("x", x_body, reply_text=reply)))
+        self.assertTrue(any("本文にも返信にも" in v for v in self.check("x", GOOD)))
         self.assertTrue(any("utm_source=threads" in v for v in self.check("threads", f"{GOOD}\n\n{LINK}")))
         # 返信（リンクカード）にだけリンクがある Threads の形（hook_thread）は止める
         self.assertTrue(any("本文に記事のリンクがない" in v for v in self.check("threads", GOOD, reply_text="")))

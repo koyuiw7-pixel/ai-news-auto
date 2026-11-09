@@ -18,6 +18,11 @@ X は Threads の写しをやめ、X だけの上限・枠・話題・文面で�
       飛ばして次の記事を選び、出せる記事が無ければその枠は出さない。②本文にリンクを置かず、すぐ後の自分への返信に「続き（◯◯）→ URL」
       （utm_source=x）。③ハッシュタグは、いまのトレンドの言葉（state/trend_signals.json）に当たる記事だけ1つ（sns_plan.x_trend_tag）。
       1日15本の枠はそのまま（1週間後に1本あたりの表示で見直す）。
+  2026-11-10 オーナー決定（台帳 S52。「Xの本文に記事のリンクを入れる形に変えてよい。これが最適ならいいよ」）: ②を比べる。
+      おおよそ半分は本文の最後に「続き（◯◯）→ URL」（＋画像・返信なし・utm_content=reader_body／card_body）、半分は今までどおり
+      返信にリンク（utm_content=reader_reply／card_reply）。直近7日に少ない方を出す（sns_plan.x_link_variant・変数 X_LINK_MODE＝ab／body／reply）。
+      記録の link（body／reply）と utm_content で夜の報告がクリックを比べる。ハッシュタグはトレンド・災害・行事に加えて記事の話題の名前を2つまで
+      （sns_plan.x_hashtags）。
   記録: state/x_posted.json（{slug: {id, at, kind=slot|breaking|alert, slot, title}}）。
 
   python3 scripts/x_post.py --dry-run [--breaking-only] [--slug SLUG]  # 文面を表示（Buffer を呼ばない）
@@ -177,7 +182,7 @@ def x_text(article: dict) -> str:
     first = first_line(article)
     if not first or sns_rules.x_weight(first) > sns_rules.X_LIMIT - 20:
         return ""
-    tag = sns_plan.x_hashtag(article)
+    tag = " ".join(sns_plan.x_hashtags(article))  # 1〜2つ（台帳 S52）
     lines = [first]
     for fact in fact_candidates(article):
         if len(lines) > FACT_LINES:
@@ -193,9 +198,9 @@ def x_text(article: dict) -> str:
     return "\n".join([*lines, tag] if tag else lines)
 
 
-def reply_link(article: dict) -> str:
-    """返信の文（2026-11-09 台帳 S50: URL だけにせず「続き → URL」）"""
-    url = tp.utm_link(f"{tp.site_url()}/articles/{article['slug']}", "x", CAMPAIGN, ptype="card", pos="reply")
+def reply_link(article: dict, pos: str = "reply") -> str:
+    """返信の文（2026-11-09 台帳 S50: URL だけにせず「続き → URL」）。pos="body" は本文の最後に置く行（utm_content=card_body・台帳 S52）"""
+    url = tp.utm_link(f"{tp.site_url()}/articles/{article['slug']}", "x", CAMPAIGN, ptype="card", pos=pos)
     return f"続き → {url}"
 
 
@@ -241,21 +246,36 @@ def gate_kind(article: dict) -> str:
     return "disaster" if article.get("disaster") else "xpost"
 
 
-def compose_post(article: dict) -> dict:
-    """X に出す文面 {"text", "reply", "kind", "style"}。2026-11-08 夜（ルール23）から、Threads の読者向けの文面（誰の話か・数字1つ・
-    決め手は記事に）があればそれを X の長さに合わせて使い、返信は「続き（◯◯）→ URL」。無ければ今までの X の書き方（ルール20）。
-    地震・津波の型は今までどおり"""
+def compose_post(article: dict, link_at: str = "reply") -> dict:
+    """X に出す文面 {"text", "reply", "kind", "style", "link"}。2026-11-08 夜（ルール23）から、Threads の読者向けの文面（誰の話か・数字1つ・
+    決め手は記事に）があればそれを X の長さに合わせて使う。無ければ今までの X の書き方（ルール20）。地震・津波の型は今までどおり。
+    link_at（2026-11-10 オーナー決定・台帳 S52）: "reply"＝記事のリンクは自分への返信（S50）、"body"＝本文の最後に置き返信なし（＋画像）"""
     if not article.get("disaster") and not alert(article):
-        if got := sns_reader.x_post(article):
-            return {"text": got["text"], "reply": got["reply"], "kind": "reader", "style": "reader"}
-    return {"text": x_text(article), "reply": reply_link(article), "kind": gate_kind(article), "style": "classic"}
+        if got := sns_reader.x_post(article, link_at=link_at):
+            return {"text": got["text"], "reply": got["reply"], "kind": "reader", "style": "reader", "link": link_at}
+    text = x_text(article)
+    if link_at == "body" and text:
+        line = reply_link(article, pos="body")
+        lines = text.splitlines()
+        tags = [x for x in lines if x.strip() and not sns_rules.HASHTAG_RE.sub("", x).strip()]
+        body = [x for x in lines if x not in tags]
+        while body and sns_rules.x_weight("\n".join([*body, line, *tags])) > sns_rules.X_LIMIT and len(body) > 2:
+            body.pop()  # 入らなければ後ろの事実の文を1つ減らす
+        if sns_rules.x_weight("\n".join([*body, line, *tags])) > sns_rules.X_LIMIT:
+            tags = []
+        joined = "\n".join([*body, line, *tags])
+        if sns_rules.x_weight(joined) <= sns_rules.X_LIMIT:
+            return {"text": joined, "reply": "", "kind": gate_kind(article), "style": "classic", "link": "body"}
+    return {"text": text, "reply": reply_link(article), "kind": gate_kind(article), "style": "classic", "link": "reply"}
 
 
 def build_input(article: dict, channel_id: str, text: str | None = None, post: dict | None = None) -> dict:
     """Buffer の createPost の入力（本文＋記事のカード、返信に記事のリンク）。いますぐ出す"""
     post = post or ({"text": text, "reply": reply_link(article)} if text is not None else compose_post(article))
     image = x_image(article) or {"url": tp.card_url(article)}  # 画像の無い記事は ok_for_x で外す（門番のルール24も止める）
-    thread = [{"text": post["text"], "assets": [{"image": {"url": image["url"]}}]}, {"text": post["reply"], "assets": []}]
+    thread = [{"text": post["text"], "assets": [{"image": {"url": image["url"]}}]}]
+    if post.get("reply"):  # 本文にリンクの形（台帳 S52）は返信なし
+        thread.append({"text": post["reply"], "assets": []})
     return {"channelId": channel_id, "schedulingType": "automatic", "text": post["text"], "assets": [],
             "metadata": {"twitter": {"thread": thread}}, "mode": "shareNow"}
 
@@ -268,8 +288,8 @@ def problems(article: dict, text: str, post: dict | None = None) -> list[str]:
         return ["[ルール24] X に付ける記事に合う本物の画像が無い（Muse の図も、写真の載るカードも無い。台帳 S50）"]
     out = sns_rules.check_post("x", post["text"], [{"type": "image", "url": image["url"], "width": image["width"], "height": image["height"]}],
                                article, kind=post["kind"], reply_text=post["reply"])
-    if sns_rules.links_in(post["text"]):
-        out.append("[ルール1] X は本文にリンクを置かない（返信だけ。台帳 S50）")
+    if sns_rules.links_in(post["text"]) and post.get("reply"):
+        out.append("[ルール1] X の記事のリンクは本文か返信のどちらか1か所（台帳 S52）")
     return out
 
 
@@ -466,11 +486,12 @@ def main() -> int:
     summary = [f"### X の投稿 {'（投稿）' if live else '（下書き・未投稿）'}", ""]
     for article, kind in todo:
         slug = article["slug"]
-        post = compose_post(article)
+        variant = sns_plan.x_link_variant(slug, xs, now)  # 本文にリンク／返信にリンク を半分ずつ（台帳 S52）
+        post = compose_post(article, link_at=variant)
         text = post["text"]
         slot = sns_plan.x_slot_window(now) if kind == "slot" else None
         image = x_image(article) or {"url": "（無し）", "note": "画像が無いので出さない"}
-        log(f"--- {slug} ({kind}・{post['style']}・話題 {sns_plan.x_topic(article)[0] or '-'}・{sns_rules.x_weight(text)}/{sns_rules.X_LIMIT})\n{text}\n[返信] {post['reply']}\n[画像] {image['url']}（{image['note']}）")
+        log(f"--- {slug} ({kind}・{post['style']}・リンク {post.get('link', 'reply')}・話題 {sns_plan.x_topic(article)[0] or '-'}・{sns_rules.x_weight(text)}/{sns_rules.X_LIMIT})\n{text}\n[返信] {post['reply']}\n[画像] {image['url']}（{image['note']}）")
         summary += [f"**{slug}** ({kind}・{post['style']})", "", "```", text, "---", post["reply"], "```", f"画像: {image['url']}", ""]
         if not live:
             for problem in problems(article, text, post):
@@ -493,7 +514,7 @@ def main() -> int:
             continue
         xs[slug] = {"id": post_id, "at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "kind": kind,
                     "slot": slot[1].strftime("%H:%M") if slot else "", "title": article.get("title", ""),
-                    "topic": sns_plan.x_topic(article)[0], "style": post["style"]}
+                    "topic": sns_plan.x_topic(article)[0], "style": post["style"], "link": post.get("link", "reply")}
         log(f"  [x] {slug} ({kind}): {post_id}")
     tp.write_summary(summary)
     if live:

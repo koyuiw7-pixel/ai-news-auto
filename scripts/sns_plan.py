@@ -391,6 +391,57 @@ def x_hashtag(article: dict | None) -> str:
     return x_trend_tag(article)
 
 
+def x_hashtags(article: dict | None) -> list[str]:
+    """X のハッシュタグ（2026-11-10 オーナー決定・台帳 S52: 話題のタグを1〜2つまで）。x_hashtag（災害・行事・トレンド）と、
+    記事の話題の名前のタグ（bluesky_post.brief_hashtag と同じ一覧。#ドコモ・#年金 など）。地震・津波・急ぎの知らせは x_hashtag だけ"""
+    article = article or {}
+    out = [t for t in [x_hashtag(article)] if t]
+    if not _alert(article):
+        try:
+            import bluesky_post  # noqa: PLC0415
+
+            topic = bluesky_post.brief_hashtag(article)
+        except Exception:  # noqa: BLE001
+            topic = ""
+        if topic and topic not in out:
+            out.append(topic)
+    return out[:2]
+
+
+# ---- X の記事のリンクの場所（2026-11-10 オーナー決定・台帳 S52） ----
+# 「Xの本文に記事のリンクを入れる形に変えてよい。これが最適ならいいよ」→ 本文にリンク（＋画像）と、自分への返信にリンク（S50）を
+# おおよそ半分ずつ出して比べる。リポジトリの変数 X_LINK_MODE（ab＝既定・body＝全部本文・reply＝全部返信）
+X_LINK_VARIANTS = ("body", "reply")
+
+
+def x_link_mode() -> str:
+    mode = os.environ.get("X_LINK_MODE", "").strip().lower()
+    return mode if mode in ("ab", "body", "reply") else "ab"
+
+
+def x_link_variant(slug: str, history: dict | None = None, now: datetime | None = None, days: int = 7) -> str:
+    """この記事の X の投稿のリンクの場所（"body" か "reply"）。ab のときは直近 days 日に少ない方（同じなら slug で決める）"""
+    mode = x_link_mode()
+    if mode != "ab":
+        return mode
+    now = now or datetime.now(timezone.utc)
+    counts = {v: 0 for v in X_LINK_VARIANTS}
+    for rec in (history or {}).values():
+        if not isinstance(rec, dict) or rec.get("link") not in counts:
+            continue
+        try:
+            at = datetime.fromisoformat(str(rec.get("at") or "").replace("Z", "+00:00"))
+        except ValueError:
+            continue
+        if now - at <= timedelta(days=days):
+            counts[rec["link"]] += 1
+    if counts["body"] != counts["reply"]:
+        return "body" if counts["body"] < counts["reply"] else "reply"
+    import hashlib  # noqa: PLC0415
+
+    return X_LINK_VARIANTS[int(hashlib.sha1(str(slug).encode()).hexdigest(), 16) % 2]
+
+
 # ---- X のトレンドのタグ（2026-11-09 オーナー承認・台帳 S50） ----
 # いま日本で検索・投稿が急上昇している言葉（scripts/trends.py が state/trend_signals.json に書く Googleトレンド・Yahoo!リアルタイム検索）
 # に記事の題名が当たるときだけ、その言葉のタグを1つ付けてよい。当たらなければ付けない。

@@ -102,19 +102,31 @@ def variants(main: str) -> list[str]:
     return [v for v in out if v]
 
 
-def x_post(article: dict, state: dict | None = None) -> dict | None:
-    """X の文面 {"text", "reply", "label"}（本文にリンク無し・返信に「続き（◯◯）→ URL」）。使えなければ None"""
+def x_post(article: dict, state: dict | None = None, link_at: str = "reply") -> dict | None:
+    """X の文面 {"text", "reply", "label", "link"}。link_at="reply"（S50）は本文にリンク無し・返信に「続き（◯◯）→ URL」。
+    link_at="body"（2026-11-10 台帳 S52）は本文の最後に「続き（◯◯）→ URL」（utm_content=reader_body）・返信なし。使えなければ None"""
     rec = pair(article, state)
     if not rec:
         return None
+    tags = " ".join(sns_plan.x_hashtags(article))
+    if link_at == "body":
+        url = link(article["slug"], "x").replace(f"utm_content={UTM_CONTENT['x']}", f"utm_content={sns_rules.READER_BODY_UTM_CONTENT}")
+        line = link_line(rec, url)
+        for main in variants(rec["main"]):
+            for t in ([tags, tags.split(" ")[0], ""] if tags else [""]):
+                text = f"{main}\n\n{line}" + (f"\n{t}" if t else "")
+                if sns_rules.x_weight(text) > sns_rules.X_LIMIT:
+                    continue
+                if not sns_rules.check_reader_post("x", text, "", article):
+                    return {"text": text, "reply": "", "label": label_of(rec), "link": "body"}
+        return None
     reply = link_line(rec, link(article["slug"], "x"))
-    tag = sns_plan.x_hashtag(article)
     for main in variants(rec["main"]):
-        for text in ([f"{main}\n{tag}", main] if tag else [main]):
+        for text in ([f"{main}\n{tags}", f"{main}\n{tags.split(' ')[0]}", main] if tags else [main]):
             if sns_rules.x_weight(text) > sns_rules.X_LIMIT:
                 continue
             if not sns_rules.check_reader_post("x", text, reply, article):
-                return {"text": text, "reply": reply, "label": label_of(rec)}
+                return {"text": text, "reply": reply, "label": label_of(rec), "link": "reply"}
     return None
 
 

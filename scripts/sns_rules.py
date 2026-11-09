@@ -568,11 +568,12 @@ def check_link(platform: str, text: str, reply_text: str, links: list[str], path
     reply_links = [u for u in links_in(reply_text) if points_to(u, paths)]
     extra = [u for u in links if u and points_to(u, paths)]
     if platform == "x":
-        if body_links:
-            out.append("[ルール1] X は記事のリンクを本文ではなく返信に置く")
-        if not reply_links:
-            out.append("[ルール1] X の返信に記事のリンクがない")
-        tagged = reply_links
+        # 2026-11-10 オーナー決定（台帳 S52）: 記事のリンクは本文か自分への返信のどちらか1か所（半分ずつ出して比べる）
+        if body_links and reply_links:
+            out.append("[ルール1] X の記事のリンクは本文か返信のどちらか1か所にする（台帳 S52）")
+        if not (body_links or reply_links):
+            out.append("[ルール1] X の本文にも返信にも記事のリンクがない")
+        tagged = reply_links + body_links
     elif platform == "threads" and (threads_pos or sns_plan.threads_link_position()) == "reply":
         # （2026-11-06 テストの日・台帳 S39）THREADS_LINK_POS=reply: 記事のリンクは返信に置く。出る前の読み直し・autofix が
         # 形をそろえるので、ここでは本文・返信のどちらかにあれば通す（投稿を止めない）
@@ -817,7 +818,7 @@ def autofix(text: str, article: dict | None = None, platform: str = "") -> tuple
         except Exception:  # noqa: BLE001
             ai = True
         pattern = HASHTAG_RE if safety_topic(article) else (re.compile(r"(?<!\S)#AI(?![\w])") if not ai else None)
-        keep = sns_plan.x_hashtag(article) if str(platform or "").lower() in ("x", "twitter") else ""  # X は災害・行事のタグ1つを残す（台帳 S42）
+        keep = sns_plan.x_hashtags(article) if str(platform or "").lower() in ("x", "twitter") else ""  # X は災害・行事・話題のタグを残す（台帳 S42・S52）
         if str(platform or "").lower() == "bluesky" and not article.get("disaster") and not is_urgent(article):
             try:  # Bluesky は話題のタグ（会社・サービス・制度の名前）1つを残す（台帳 S51）
                 import bluesky_post  # noqa: PLC0415
@@ -827,7 +828,8 @@ def autofix(text: str, article: dict | None = None, platform: str = "") -> tuple
                 keep = ""
             pattern = HASHTAG_RE
         if pattern:
-            stripped = re.sub(r"[ \t]+\n", "\n", pattern.sub(lambda m: m.group(0) if keep and m.group(0) == keep else "", fixed)).rstrip()
+            kept = set(keep) if isinstance(keep, list) else {keep}
+            stripped = re.sub(r"[ \t]+\n", "\n", pattern.sub(lambda m: m.group(0) if m.group(0) in kept - {""} else "", fixed)).rstrip()
             stripped = re.sub(r"\n{3,}", "\n\n", stripped)
             if stripped != fixed:
                 fixed = stripped
@@ -1326,10 +1328,11 @@ def reader_parts(platform: str, text: str, reply_text: str = "", links: list[str
     platform = norm_platform(platform)
     lines = str(text or "").strip().splitlines()
     tags = HASHTAG_RE.findall(str(text or ""))
-    if platform == "x":
+    if platform == "x" and (str(reply_text or "").strip() or not any(READER_LINK_LINE_RE.match(x.strip()) for x in lines)):
         body = "\n".join(x for x in lines if not (x.strip() and not HASHTAG_RE.sub("", x).strip()))
         reply = str(reply_text or "").strip().split("\n")[0]
         return body.strip(), reply, links_in(reply), tags
+    # X の本文にリンク（2026-11-10 台帳 S52）は Bluesky・Facebook と同じ「本文の最後に 続き（◯◯）→ URL」
     idx = next((i for i in range(len(lines) - 1, -1, -1) if READER_LINK_LINE_RE.match(lines[i].strip())), -1)
     if idx < 0:
         return "\n".join(lines).strip(), "", list(links or []), tags
@@ -1347,21 +1350,22 @@ def check_reader_post(platform: str, text: str, reply_text: str, article: dict |
         return [f"[ルール23] 読者向けの書き方の確かめは X・Bluesky・Facebook だけ（{platform}）"]
     body, link_line, urls, tags = reader_parts(platform, text, reply_text, links)
     out = []
+    x_body = platform == "x" and not str(reply_text or "").strip()  # X の本文にリンクの形（台帳 S52）
     if not link_line:
         out.append("[ルール23] 「続き（◯◯）→ URL」の行がない" + ("（X は返信）" if platform == "x" else "（本文の最後）"))
-    if platform in ("bluesky", "facebook"):
+    if platform in ("bluesky", "facebook") or x_body:
         lines = [x.strip() for x in str(text or "").strip().splitlines() if x.strip() and HASHTAG_RE.sub("", x).strip()]
         if lines and not READER_LINK_LINE_RE.match(lines[-1]):
             out.append("[ルール23] 「続き（◯◯）→ URL」は本文の最後の行に置く（ハッシュタグの行は後ろに置いてよい）")
-    content = READER_UTM_CONTENT if platform == "x" else READER_BODY_UTM_CONTENT
+    content = READER_UTM_CONTENT if platform == "x" and not x_body else READER_BODY_UTM_CONTENT
     for problem in _reader_core(platform, body, link_line, article, urls=urls, utm_content=content):
         out.append(problem.replace("[ルール22] 本文にリンクを書かない（リンクは返信だけ。11/3 に本文のリンクで表示が落ちた）",
                                    "[ルール23] 本文の中にリンクを書かない（リンクは「続き（◯◯）→」の行だけ）")
-                   .replace("[ルール22] 返信", "[ルール23] リンクの行" if platform != "x" else "[ルール23] 返信"))
+                   .replace("[ルール22] 返信", "[ルール23] リンクの行" if platform != "x" or x_body else "[ルール23] 返信"))
     if platform == "x":
-        allowed = sns_plan.x_hashtag(article)
-        if len(tags) > 1 or (tags and tags[0] != allowed):
-            out.append(f"[ルール23] X のハッシュタグは災害・大きな行事・いまのトレンドの言葉に当たる記事（台帳 S50）だけ1つまで（今は{' '.join(tags)}）")
+        allowed = sns_plan.x_hashtags(article)
+        if len(tags) > 2 or any(t not in allowed for t in tags):
+            out.append(f"[ルール23] X のハッシュタグは災害・行事・トレンド・記事の話題の名前のタグだけ2つまで（今は{' '.join(tags)}。台帳 S52）")
     elif platform == "bluesky":
         out += [v.replace("[ルール19]", "[ルール23]") for v in bluesky_tag_problems(" ".join(tags), article)]
     elif tags:
@@ -1401,9 +1405,9 @@ def check_xpost(platform: str, text: str, content: str, article: dict | None) ->
     elif sns_plan.finance_topic(article) and first and not first.startswith(sns_plan.x_keyword(article) or "\0"):
         out.append("[ルール20] 決算の記事は製品の話（製品の名前から始まる1行目）のときだけ X に出す（台帳 S42）")
     tags = HASHTAG_RE.findall(str(text or ""))
-    allowed = sns_plan.x_hashtag(article)
-    if len(tags) > 1 or (tags and tags[0] != allowed):
-        out.append(f"[ルール20] X のハッシュタグは災害・大きな行事だけ1つまで（今は{' '.join(tags)}）")
+    allowed = sns_plan.x_hashtags(article)
+    if len(tags) > 2 or any(t not in allowed for t in tags):
+        out.append(f"[ルール20] X のハッシュタグは災害・行事・トレンド・記事の話題の名前のタグだけ2つまで（今は{' '.join(tags)}。台帳 S52）")
     return out
 
 

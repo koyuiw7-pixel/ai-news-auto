@@ -82,7 +82,7 @@ class OrderTest(unittest.TestCase):
         now = at(12, 40)
         arts = [phone("classic", made=at(11)), phone("reader", made=at(10))]
 
-        def fake(a, state=None):
+        def fake(a, state=None, link_at="reply"):
             if a["slug"] != "reader":
                 return None
             return {"text": "x", "reply": "続き（確認手順）→ https://ai-tech-express.jp/articles/reader?utm_source=x", "label": "確認手順"}
