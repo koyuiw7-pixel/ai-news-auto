@@ -47,6 +47,8 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
+      - name: 準備（1MB を超える Muse の図を Bluesky に上げられる大きさにする Pillow。台帳 S51）
+        run: pip install -q pillow
       - name: Post
         env:
           THREADS_MODE: ${{ vars.THREADS_MODE }}

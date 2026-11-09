@@ -59,8 +59,9 @@ def pair(article: dict, state: dict | None = None) -> dict | None:
     """state/threads_reader.json に残した、この記事の読者向けの文面（無ければ None。LLM は使わない）"""
     state = state if state is not None else threads_reader.load_state()
     rec = (state.get("posts") or {}).get(str(article.get("slug") or ""))
-    if rec and rec.get("main") and rec.get("label") and rec.get("version") == threads_reader.VERSION:
-        return rec
+    if rec and rec.get("main") and rec.get("label") and rec.get("version") == threads_reader.VERSION \
+            and not sns_rules.reader_field_leak(rec["main"]):
+        return rec  # 部品の名前（closing など）が混ざった下書きは使わない（11/9）
     return None
 
 

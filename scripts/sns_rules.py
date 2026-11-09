@@ -1178,6 +1178,15 @@ def _reader_norm(line: str) -> str:
     return re.sub(r"[\s、。「」]", "", str(line or ""))
 
 
+READER_FIELD_RE = re.compile(r"^\s*(who_line|key_number|facts?|closing|label|ending|main|reply)\s*[:：]?\s*$", re.I | re.M)
+
+
+def reader_field_leak(text: str) -> str:
+    """読者向けの文面に、LLM の部品の名前（closing・label など）だけの行が混ざっていれば、その名前（無ければ ""）"""
+    m = READER_FIELD_RE.search(str(text or ""))
+    return m.group(1) if m else ""
+
+
 def _reader_core(platform: str, text: str, reply_text: str, article: dict | None, *, urls: list[str] | None = None,
                  utm_content: str = READER_UTM_CONTENT, recent_endings: list[str] | None = None,
                  recent_forms: list[str] | None = None) -> list[str]:
@@ -1191,6 +1200,8 @@ def _reader_core(platform: str, text: str, reply_text: str, article: dict | None
     first = lines[0] if lines else ""
     if links_in(body):
         out.append("[ルール22] 本文にリンクを書かない（リンクは返信だけ。11/3 に本文のリンクで表示が落ちた）")
+    if leak := reader_field_leak(body):
+        out.append(f"[ルール22] 文面を作るときの部品の名前（{leak}）が本文に混ざっている（11/9 財務省の備蓄食品の下書き）")
     if not (READER_MAIN_MIN <= len(body) <= READER_MAIN_MAX):
         out.append(f"[ルール22] 本文の長さ（{len(body)}字。{READER_MAIN_MIN}〜{READER_MAIN_MAX}字）")
     if len(lines) < 3:

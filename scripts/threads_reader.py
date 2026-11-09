@@ -149,10 +149,29 @@ def prompt_for(article: dict, form: str, avoid_endings: list[str], avoid_first: 
     )
 
 
+def _leaky(rec: dict) -> bool:
+    import sns_rules  # noqa: PLC0415
+
+    return bool(sns_rules.reader_field_leak(str(rec.get("main") or "")))
+
+
 def assemble(data: dict) -> str:
     facts = data.get("facts") or []
     if isinstance(facts, str):
         facts = [facts]
+    # 11/9: LLM が facts の中に「closing」「label」と次の部品まで書いたことがある。部品の名前の行から後ろは facts に入れない
+    import sns_rules  # noqa: PLC0415
+
+    kept = []
+    for f in facts:
+        cut = sns_rules.READER_FIELD_RE.search(str(f))
+        if cut:
+            head = str(f)[:cut.start()].strip()
+            if head:
+                kept.append(head)
+            break
+        kept.append(f)
+    facts = kept
     parts = [str(data.get("who_line") or "").strip(), "\n".join(str(f).strip() for f in facts if str(f).strip()), str(data.get("closing") or "").strip()]
     return "\n\n".join(p for p in parts if p)
 
@@ -206,8 +225,8 @@ def pair_for(article: dict, *, generate=None) -> dict:
     """この記事の文面（作ってあればそれを使う＝オーナーが見た下書きと同じ。無ければ作って残す）"""
     state = load_state()
     rec = (state.get("posts") or {}).get(article["slug"])
-    if rec and rec.get("main") and rec.get("reply") and rec.get("version") == VERSION:
-        return rec
+    if rec and rec.get("main") and rec.get("reply") and rec.get("version") == VERSION and not _leaky(rec):
+        return rec  # 部品の名前が混ざった古い下書き（11/9）は作り直す
     pair = compose(article, state=state, generate=generate)
     remember(article, pair, state=state)
     return pair

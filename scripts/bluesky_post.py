@@ -25,6 +25,12 @@ Threads の本数（sns_plan.daily_cap）とは別に数え、お互いの本数
 どちらの行も記事の文（lede・やさしい版・description／workMoney・verdict.take・highlights）からそのまま選ぶ（LLM は使わない。事実は記事にあるものだけ）。
 記録は state/bluesky_extra.json（kind=brief・slot）。朝のまとめは今までどおり投稿履歴の channels.bluesky
 
+2026-11-09（オーナー承認・台帳 S51）: Bluesky も Threads で人が来ている形にそろえる。ふつうの記事の投稿は
+  ①Threads と同じ読者向けの文面（1行目＝誰の話か・数字1つ・決め手は記事に）がある記事を、速報の次に必ず先に選ぶ
+  ②暗いリンクカードをやめ、記事の画像（Muse の説明の図 public/fig/<slug>-fig*.png → 記事の本物の写真が載るカード。X と同じ選び方・
+    ルール24）を app.bsky.embed.images で大きく付ける。記事のリンク（utm_source=bluesky）は本文の「続き（◯◯）→」の facet
+  動画・朝のまとめ・急ぎの知らせ（写しの投稿）は今までどおり
+
   python3 scripts/bluesky_post.py --dry-run [--fill]  # 下書きを表示（投稿しない。ログインできなければ画像なしで表示）
   python3 scripts/bluesky_post.py [--fill]            # 投稿（BLUESKY_HANDLE / BLUESKY_APP_PASSWORD が必要）
   python3 scripts/bluesky_post.py --merge FILE [--merge-extra FILE2]  # 手元の記録を最新の state に足す
@@ -202,9 +208,12 @@ def upload_video(session: dict, url: str) -> dict:
     raise RuntimeError("Bluesky の動画の処理が5分で終わりませんでした")
 
 
-def build_record(text: str, link: str, title: str, desc: str, thumb: dict | None, video: dict | None = None, full_text: str = "") -> dict:
+def build_record(text: str, link: str, title: str, desc: str, thumb: dict | None, video: dict | None = None, full_text: str = "",
+                 image: dict | None = None) -> dict:
     """本文＋改行＋リンク。リンクは facet（UTF-8 のバイト位置）とリンクカードの両方で付ける。
-    full_text（読者向けの書き方・ルール23）は、リンクの表示（短い形）を中に含んだ投稿の本文そのもの"""
+    full_text（読者向けの書き方・ルール23）は、リンクの表示（短い形）を中に含んだ投稿の本文そのもの。
+    image（{"blob", "width", "height", "alt"}。2026-11-09 オーナー承認・台帳 S51）があれば、リンクカードではなく
+    記事の画像そのもの（app.bsky.embed.images）を大きく見せ、リンクは本文の facet だけにする"""
     shown = re.sub(r"^https?://|\?.*$", "", link)  # 表示は短く（リンク先は UTM 付き）
     if full_text and shown in full_text:
         full = full_text.strip()
@@ -233,10 +242,35 @@ def build_record(text: str, link: str, title: str, desc: str, thumb: dict | None
             "index": {"byteStart": start, "byteEnd": start + len(shown.encode())},
             "features": [{"$type": "app.bsky.richtext.facet#link", "uri": link}],
         }],
-        # 記事の投稿は動画（リンクは本文の facet）。朝のまとめだけリンクカード（号のシェア画像）
+        # 記事の投稿は動画（リンクは本文の facet）。ふつうの記事の投稿は記事の画像（S51）。朝のまとめ・急ぎの知らせはリンクカード
         "embed": ({"$type": "app.bsky.embed.video", "video": video, "aspectRatio": {"width": 1920, "height": 1080}, "alt": title[:300]}
-                  if video else {"$type": "app.bsky.embed.external", "external": external}),
+                  if video else image_embed(image, title) if image and image.get("blob")
+                  else {"$type": "app.bsky.embed.external", "external": external}),
     }
+
+
+def image_embed(image: dict, title: str) -> dict:
+    """記事の画像1枚の埋め込み（縦横を付けるとタイムラインで切れずに出る）"""
+    item = {"image": image["blob"], "alt": str(image.get("alt") or title)[:1000]}
+    if image.get("width") and image.get("height"):
+        item["aspectRatio"] = {"width": int(image["width"]), "height": int(image["height"])}
+    return {"$type": "app.bsky.embed.images", "images": [item]}
+
+
+def post_images(article: dict) -> list[dict]:
+    """ふつうの記事の投稿に付ける画像の候補 [{"url", "width", "height", "from", "alt"}]（よい順）。2026-11-09 オーナー承認（台帳 S51）:
+    Threads で人が来ている形にそろえ、Muse の説明の図（public/fig/<slug>-fig*.png・16:9）を先に、無ければ記事の本物の写真が載るカード。
+    X と同じ選び方（x_post.figure_image・ルール24）。文字だけのカード・ロゴ・ほかの記事の画像は使わない（無ければ []）"""
+    import x_post  # noqa: PLC0415  （x_post が bluesky_post を読み込むので、ここで読む）
+
+    out = []
+    if fig := x_post.figure_image(article):
+        alt = next((str(f.get("alt") or "") for f in article.get("figures") or [] if isinstance(f, dict)
+                    and str(f.get("src") or "").rsplit("/", 1)[-1] == fig[0].rsplit("/", 1)[-1]), "")
+        out.append({"url": fig[0], "width": fig[1][0], "height": fig[1][1], "from": "figure", "alt": alt})
+    if not sns_rules.photo_problem(article):
+        out.append({"url": tp.card_url(article), "width": x_post.CARD_SIZE[0], "height": x_post.CARD_SIZE[1], "from": "card", "alt": ""})
+    return out
 
 
 PUBLIC_API = "https://public.api.bsky.app/xrpc"
@@ -563,15 +597,17 @@ def brief_candidates(state: dict, extra: dict, now: datetime, since: datetime, a
             continue  # もう出した・少し前に失敗した記事（同じ記事で失敗し続けない。時間がたてば戻す）
         if tp.sns_plan.excluded(article) or not is_indexable(article, dups):
             continue
-        if tp.sns_rules.photo_problem(article):
-            continue  # 記事に合う本物の画像がまだ無い（台帳 S49）。画像が付けば次の回に出す
+        if not post_images(article):
+            continue  # 記事に合う本物の画像（Muse の図・写真のカード）がまだ無い（台帳 S49・S51）。画像が付けば次の回に出す
         if any(similar(article.get("title", ""), title) for title in recent):
             continue
         if not (sns_reader.bluesky_post(article) or brief_lines(article)):
             continue
         breaking = bool(article.get("breaking") or entry.get("breaking"))
         # 2026-11-08 夜 オーナー: 軸は暮らしの安全・お金・手続き（レーン＋手続きの言葉）。読者向けの文面がある記事を先に
-        out.append(((breaking, sns_reader.rank_key(article, "bluesky", generated)[0], generated), article))
+        # 2026-11-09 オーナー承認（台帳 S51）: Threads で人が来ている書き方（読者向けの文面）がある記事を、速報の次に必ず先にする
+        ready = bool(sns_reader.bluesky_post(article))
+        out.append(((breaking, ready, sns_reader.rank_key(article, "bluesky", generated)[0], generated), article))
     out.sort(key=lambda x: x[0], reverse=True)
     return [a for _, a in out]
 
@@ -688,8 +724,10 @@ def plan_reader(article: dict) -> dict | None:
     got = sns_reader.bluesky_post(article)
     if not got:
         return None
+    pics = post_images(article)
     return {"text": got["text"], "full_text": got["text"], "link": got["link"], "title": article.get("seoTitle") or article["title"],
-            "desc": article.get("description", ""), "images": [tp.card_url(article)], "gate": article, "kind": "reader"}
+            "desc": article.get("description", ""), "images": [x["url"] for x in pics] or [tp.card_url(article)], "pictures": pics,
+            "gate": article, "kind": "reader"}
 
 
 def plan_brief(article: dict) -> dict | None:
@@ -704,10 +742,11 @@ def plan_brief(article: dict) -> dict | None:
     if not text:
         return None
     fixed, _ = sns_rules.autofix(text, article, "bluesky")  # 数字の単位・【速報】・話題に合わないタグ（ルール13・14・S35）
+    pics = post_images(article)
     return {
         "text": fixed, "link": link, "title": article.get("seoTitle") or article["title"], "desc": article.get("description", ""),
-        # 写真だけのカード（16:9）だけを使う（ルール2）
-        "images": [tp.card_url(article)], "gate": article, "kind": "brief",
+        # Muse の図か写真だけのカード（16:9）を記事の画像として付ける（ルール2・S51）
+        "images": [x["url"] for x in pics] or [tp.card_url(article)], "pictures": pics, "gate": article, "kind": "brief",
     }
 
 
@@ -822,6 +861,7 @@ def main() -> int:
             used: list[str] = []
             media: list[dict] = []
             blob = None
+            image = None
             # Bluesky だけの文面は記事のリンクカードで出す（台帳 S40）。動画は急ぎの知らせ以外の写しの投稿だけ
             vid = video_of(key) if p.get("kind", "article") not in ("digest", "brief", "reader") and not sns_rules.is_urgent(p.get("gate")) else {}
             if vid:
@@ -841,6 +881,16 @@ def main() -> int:
                 if p.get("videoUnsupported"):
                     thumb = upload_thumb(session, p["images"], used)
                     media = [{"type": "image", "url": u} for u in used]
+            elif p.get("pictures"):
+                # 2026-11-09 オーナー承認（台帳 S51）: ふつうの記事の投稿は、暗いリンクカードではなく記事の画像（Muse の図 → 写真のカード）を
+                # 大きく付け、記事のリンクは本文の「続き（◯◯）→」の facet。上げられた画像の縦横で門番に通す
+                by_url = {x["url"]: x for x in p["pictures"]}
+                thumb = upload_thumb(session, list(by_url), used) if session and (live or args.slug) else None
+                pick = by_url.get(used[0]) if used else (None if live else p["pictures"][0])
+                if pick:
+                    media = [{"type": "image", "url": pick["url"], "width": pick["width"], "height": pick["height"]}]
+                    if thumb:
+                        image = {"blob": thumb, "width": pick["width"], "height": pick["height"], "alt": pick.get("alt") or p["title"]}
             else:
                 # 動画を作らない投稿・動画がまだ無い投稿・朝のまとめは、記事の写真（号のシェア画像）のリンクカード（ルール8・台帳 S13）
                 thumb = upload_thumb(session, p["images"], used) if session and (live or args.slug) else None
@@ -849,7 +899,8 @@ def main() -> int:
                 # 記事のカードがまだ開けない（公開の直後）。失敗として外さず、次の回にもう一度（11/8 九州電力の記事がこれで外れていた）
                 log(f"  [bluesky] {key}: 記事のカードがまだ開けません。次の回にもう一度")
                 continue
-            record = build_record(p["text"], p["link"], p["title"], p["desc"], thumb, video=blob, full_text=p.get("full_text", ""))
+            record = build_record(p["text"], p["link"], p["title"], p["desc"], None if image else thumb, video=blob,
+                                  full_text=p.get("full_text", ""), image=image)
             if not live:
                 log(f"--- {key} ({kind})\n{json.dumps(record, ensure_ascii=False, indent=1)}")
                 for v in sns_rules.check_post("bluesky", record["text"], media, p.get("gate"),
