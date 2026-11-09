@@ -78,6 +78,10 @@
      載るときだけ（check_photo・photo_problem）。文字だけのカード・公式のロゴ／サイト共通の画像・ほかの記事のために保存した画像では出さない。
      枠の時刻に画像が無ければ、その枠は画像のある次の予定の投稿に譲る（sns_video_followup.publish_queued）。地震・津波（noPhoto）と急ぎの安全の知らせは除く。
 
+  25. （2026-11-09 オーナー承認・台帳 S50）X の投稿（scripts/x_post.py）は全部、記事に合う本物の画像を付ける（Muse の説明の図 /fig/<slug>-fig* →
+     写真の載るカード。ルール24）。本文にリンクを置かず、すぐ後の自分への返信に「続き（◯◯）→ URL」か「続き → URL」（utm_source=x）。
+     ハッシュタグは災害・大きな行事のほか、いまのトレンドの言葉（state/trend_signals.json）に題名が当たる記事だけ1つ（sns_plan.x_trend_tag）。
+
 違反したら: 投稿しない・ログに出す・GitHub の issue（ラベル sns-rule-violation）を立てるか、開いているものにコメントを足す。
 新しく Buffer / Bluesky / Threads の投稿 API を呼ぶ所を作るときは、必ずこの enforce を直前に呼ぶ（tests/test_sns_rules.py が確かめる）。
 
@@ -1323,7 +1327,7 @@ def check_reader_post(platform: str, text: str, reply_text: str, article: dict |
     if platform == "x":
         allowed = sns_plan.x_hashtag(article)
         if len(tags) > 1 or (tags and tags[0] != allowed):
-            out.append(f"[ルール23] X のハッシュタグは災害・大きな行事だけ1つまで（今は{' '.join(tags)}）")
+            out.append(f"[ルール23] X のハッシュタグは災害・大きな行事・いまのトレンドの言葉に当たる記事（台帳 S50）だけ1つまで（今は{' '.join(tags)}）")
     elif platform == "bluesky":
         if len(tags) > 1 or (tags and safety_topic(article)):
             out.append(f"[ルール23] Bluesky のハッシュタグは1つまで・災害・安全の話題には付けない（今は{' '.join(tags)}）")

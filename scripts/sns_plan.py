@@ -363,7 +363,7 @@ def x_starts_with_keyword(first: str, article: dict) -> bool:
 
 
 def x_hashtag(article: dict | None) -> str:
-    """X のハッシュタグ（1つまで）。災害の知らせ（#地震 など）と大きな行事（WBC など）だけ。ほかは付けない"""
+    """X のハッシュタグ（1つまで）。災害の知らせ（#地震 など）と大きな行事（WBC など）、いまのトレンドの言葉に当たる記事（台帳 S50）だけ。ほかは付けない"""
     article = article or {}
     text = _text(article)
     if _alert(article):
@@ -374,6 +374,76 @@ def x_hashtag(article: dict | None) -> str:
     ev = x_plan().get("event_re")
     if ev and (m := _re(ev).search(str(article.get("title") or ""))):
         return "#" + m.group(0)
+    return x_trend_tag(article)
+
+
+# ---- X のトレンドのタグ（2026-11-09 オーナー承認・台帳 S50） ----
+# いま日本で検索・投稿が急上昇している言葉（scripts/trends.py が state/trend_signals.json に書く Googleトレンド・Yahoo!リアルタイム検索）
+# に記事の題名が当たるときだけ、その言葉のタグを1つ付けてよい。当たらなければ付けない。
+# X の投稿の処理（scripts/x_post.py の main）が use_x_trends() で読み込んだときだけ働く（試験・ほかの SNS の処理では付けない＝結果がぶれない）
+TREND_SIGNALS_PATH = ROOT / "state" / "trend_signals.json"
+TREND_HOURS = 24
+TREND_FILLER = {"確認方法", "確認", "方法", "いつ", "いつから", "いつまで", "なぜ", "理由", "原因", "対象", "最新", "速報", "今日", "現在",
+                "まとめ", "情報", "どこ", "とは", "どうなる", "影響", "公式", "一覧", "状況", "今後", "ニュース", "news", "ヤフー", "リアルタイム"}
+TREND_TAG_RE = re.compile(r"^[0-9A-Za-z\u3040-\u30ff\u4e00-\u9fff\uff10-\uff19\uff21-\uff3a\uff41-\uff5a]{2,15}$")
+_X_TRENDS: list[dict] | None = None
+
+
+def use_x_trends(path: Path | None = None, now: datetime | None = None) -> int:
+    """X のトレンドの言葉を読み込む（芸能のうわさ・事件の話題と、TREND_HOURS より古いものは外す）。読めた数"""
+    global _X_TRENDS
+    now = now or datetime.now(timezone.utc)
+    try:
+        items = list(json.loads((path or TREND_SIGNALS_PATH).read_text("utf-8")).get("items") or [])
+    except (OSError, ValueError, AttributeError):
+        items = []
+    out = []
+    for item in items:
+        if not isinstance(item, dict) or item.get("gossip") or not str(item.get("title") or "").strip():
+            continue
+        try:
+            seen = datetime.fromisoformat(str(item.get("seen_at") or ""))
+        except ValueError:
+            continue
+        seen = seen if seen.tzinfo else seen.replace(tzinfo=JST)
+        if now - seen <= timedelta(hours=TREND_HOURS):
+            out.append(item)
+    out.sort(key=lambda x: -int(x.get("traffic") or 0))
+    _X_TRENDS = out
+    return len(out)
+
+
+def clear_x_trends() -> None:
+    global _X_TRENDS
+    _X_TRENDS = None
+
+
+def _trend_norm(text: str) -> str:
+    import unicodedata  # noqa: PLC0415
+
+    return unicodedata.normalize("NFKC", str(text or "")).lower()
+
+
+def x_trend_tag(article: dict | None, trends: list[dict] | None = None) -> str:
+    """記事の題名がいまのトレンドの言葉に当たれば、そのタグ（1つ）。言葉が複数（「三菱重工 株価」）なら全部の語が題名にあるときだけ、
+    最初の語をタグにする。トレンドを読み込んでいなければ \"\""""
+    trends = _X_TRENDS if trends is None else trends
+    article = article or {}
+    if not trends or _alert(article):
+        return ""
+    title = _trend_norm(article.get("title") or article.get("seoTitle") or "")
+    if not title:
+        return ""
+    for item in trends:
+        words = [w for w in re.split(r"[\s\u3000、,・/]+", _trend_norm(item.get("title"))) if w and w not in TREND_FILLER]
+        if not words or len(words) > 3 or not TREND_TAG_RE.match(words[0]) or words[0].isdigit():
+            continue
+        if all(w in title for w in words):
+            raw = str(article.get("title") or "")
+            # タグは題名に出てくる書き方のまま（全角・大文字小文字をそろえる）
+            m = re.search(re.escape(words[0]), _trend_norm(raw))
+            tag = raw[m.start():m.end()] if m and len(_trend_norm(raw)) == len(raw) else words[0]
+            return "#" + tag
     return ""
 
 

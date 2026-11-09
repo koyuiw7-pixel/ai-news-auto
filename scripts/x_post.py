@@ -13,6 +13,11 @@ X は Threads の写しをやめ、X だけの上限・枠・話題・文面で�
   文面: 1行目は検索される言葉（地震・製品の名前・ブランドの名前）から始めて事実を言う。そのあと記事の事実の文を1〜2つ。
       問いかけは付けない。ハッシュタグは災害・大きな行事だけ1つまで。全角140字まで（X の数え方で280）。
       画像は記事のカード（今までどおり）。記事のリンクは返信に置く（utm_campaign=xpost・utm_content=card_reply）。
+  2026-11-09 オーナー承認（台帳 S50）: X の投稿は全部、①画像を必ず付ける（Muse の説明の図 public/fig/<slug>-fig*.png・記事の figures が
+      あればそれ、無ければ記事の本物の画像が載るカード。文字だけのカード・ロゴ・ほかの記事の画像は使わない＝ルール24）。画像の無い記事は
+      飛ばして次の記事を選び、出せる記事が無ければその枠は出さない。②本文にリンクを置かず、すぐ後の自分への返信に「続き（◯◯）→ URL」
+      （utm_source=x）。③ハッシュタグは、いまのトレンドの言葉（state/trend_signals.json）に当たる記事だけ1つ（sns_plan.x_trend_tag）。
+      1日15本の枠はそのまま（1週間後に1本あたりの表示で見直す）。
   記録: state/x_posted.json（{slug: {id, at, kind=slot|breaking|alert, slot, title}}）。
 
   python3 scripts/x_post.py --dry-run [--breaking-only] [--slug SLUG]  # 文面を表示（Buffer を呼ばない）
@@ -44,6 +49,9 @@ CATCHUP_MIN_AGE_MIN = 30  # ふつうの回で拾う速報は、速報のワー�
 SIMILAR_HOURS = 24  # この時間内に X に出した投稿と同じ話題の記事は使わない
 MAX_BREAKING_PER_RUN = 2
 FACT_LINES = 2  # 1行目のあとに置く事実の文の数（入る分だけ）
+FIG_DIR = tp.ROOT / "public" / "fig"
+FIG_NAME_RE = re.compile(r"-fig\d{1,2}\.(?:png|jpe?g|webp)$")
+CARD_SIZE = (1600, 900)  # 門番に渡すカードの縦横（今までどおり）
 
 
 def log(message: str) -> None:
@@ -186,7 +194,48 @@ def x_text(article: dict) -> str:
 
 
 def reply_link(article: dict) -> str:
-    return tp.utm_link(f"{tp.site_url()}/articles/{article['slug']}", "x", CAMPAIGN, ptype="card", pos="reply")
+    """返信の文（2026-11-09 台帳 S50: URL だけにせず「続き → URL」）"""
+    url = tp.utm_link(f"{tp.site_url()}/articles/{article['slug']}", "x", CAMPAIGN, ptype="card", pos="reply")
+    return f"続き → {url}"
+
+
+# ---- 画像（2026-11-09 オーナー承認・台帳 S50。ルール24） ----
+
+def _local_size(path: Path) -> tuple[int, int] | None:
+    try:
+        from PIL import Image  # noqa: PLC0415
+
+        with Image.open(path) as im:
+            return im.size
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def figure_image(article: dict) -> tuple[str, tuple[int, int]] | None:
+    """Muse の説明の図（記事の figures・public/fig/<slug>-fig*.png）のうち、この記事の名前で 16:9 のもの。(URL, 縦横) か None"""
+    slug = str(article.get("slug") or "")
+    if not slug:
+        return None
+    srcs = [str((f or {}).get("src") or "") for f in article.get("figures") or [] if isinstance(f, dict)]
+    if FIG_DIR.is_dir():
+        srcs += sorted(f"/fig/{p.name}" for p in FIG_DIR.glob(f"{slug}-fig*"))
+    for src in dict.fromkeys(srcs):
+        name = src.rsplit("/", 1)[-1]
+        if not src.startswith("/fig/") or not name.startswith(f"{slug}-fig") or not FIG_NAME_RE.search(name):
+            continue  # ほかの記事の図は使わない
+        size = _local_size(FIG_DIR / name)
+        if size and abs(size[0] / max(size[1], 1) - sns_rules.ASPECT) / sns_rules.ASPECT <= sns_rules.ASPECT_TOL:
+            return f"{tp.site_url()}{src}", size
+    return None
+
+
+def x_image(article: dict) -> dict | None:
+    """X の投稿に付ける画像 {"url", "width", "height", "note"}。Muse の図 → 記事の本物の画像が載るカード。どちらも無ければ None"""
+    if fig := figure_image(article):
+        return {"url": fig[0], "width": fig[1][0], "height": fig[1][1], "note": "Muse の説明の図", "from": "figure"}
+    if sns_rules.photo_problem(article):
+        return None  # 文字だけのカード・ロゴ・ほかの記事の画像しか無い（ルール24）
+    return {"url": tp.card_url(article), "width": CARD_SIZE[0], "height": CARD_SIZE[1], "note": tp.card_photo_note(article), "from": "card"}
 
 
 def gate_kind(article: dict) -> str:
@@ -206,7 +255,8 @@ def compose_post(article: dict) -> dict:
 def build_input(article: dict, channel_id: str, text: str | None = None, post: dict | None = None) -> dict:
     """Buffer の createPost の入力（本文＋記事のカード、返信に記事のリンク）。いますぐ出す"""
     post = post or ({"text": text, "reply": reply_link(article)} if text is not None else compose_post(article))
-    thread = [{"text": post["text"], "assets": [{"image": {"url": tp.card_url(article)}}]}, {"text": post["reply"], "assets": []}]
+    image = x_image(article) or {"url": tp.card_url(article)}  # 画像の無い記事は ok_for_x で外す（門番のルール24も止める）
+    thread = [{"text": post["text"], "assets": [{"image": {"url": image["url"]}}]}, {"text": post["reply"], "assets": []}]
     return {"channelId": channel_id, "schedulingType": "automatic", "text": post["text"], "assets": [],
             "metadata": {"twitter": {"thread": thread}}, "mode": "shareNow"}
 
@@ -214,8 +264,14 @@ def build_input(article: dict, channel_id: str, text: str | None = None, post: d
 def problems(article: dict, text: str, post: dict | None = None) -> list[str]:
     """送る前の門番と同じ見方（Buffer・画像の大きさは見ない）"""
     post = post or {"text": text, "reply": reply_link(article), "kind": gate_kind(article)}
-    return sns_rules.check_post("x", post["text"], [{"type": "image", "url": tp.card_url(article), "width": 1600, "height": 900}], article,
-                                kind=post["kind"], reply_text=post["reply"])
+    image = x_image(article)
+    if not image:
+        return ["[ルール24] X に付ける記事に合う本物の画像が無い（Muse の図も、写真の載るカードも無い。台帳 S50）"]
+    out = sns_rules.check_post("x", post["text"], [{"type": "image", "url": image["url"], "width": image["width"], "height": image["height"]}],
+                               article, kind=post["kind"], reply_text=post["reply"])
+    if sns_rules.links_in(post["text"]):
+        out.append("[ルール1] X は本文にリンクを置かない（返信だけ。台帳 S50）")
+    return out
 
 
 # ---- 選び方 ----
@@ -243,6 +299,8 @@ def ok_for_x(article: dict, xs: dict, posted: dict, recent: list[str]) -> bool:
         return False
     if sns_plan.excluded(article) or sns_plan.x_earnings_only(article):
         return False  # 海外の企業向け・開発者向け（S28）・決算の数字だけ（S42）
+    if not x_image(article):
+        return False  # 画像の無い記事は飛ばして次の記事（台帳 S50。枠に出せる記事が無ければその枠は出さない）
     if any(bp.similar(article.get("title", ""), t) for t in recent):
         return False
     post = compose_post(article)
@@ -378,6 +436,7 @@ def main() -> int:
     if live and not sns_plan.x_on(now):
         log(f"[x] X だけの枠は {sns_plan.x_plan().get('start')} から（それまでは今までどおり Threads の予定から出る）")
         return 0
+    sns_plan.use_x_trends()  # トレンドの言葉に当たる記事だけタグを1つ（台帳 S50）
     xs = load()
     posted = tp.load_state()
     flat = dict(posted.get("posted") or {})
@@ -409,8 +468,9 @@ def main() -> int:
         post = compose_post(article)
         text = post["text"]
         slot = sns_plan.x_slot_window(now) if kind == "slot" else None
-        log(f"--- {slug} ({kind}・{post['style']}・話題 {sns_plan.x_topic(article)[0] or '-'}・{sns_rules.x_weight(text)}/{sns_rules.X_LIMIT})\n{text}\n[返信] {post['reply']}\n[画像] {tp.card_url(article)}（{tp.card_photo_note(article)}）")
-        summary += [f"**{slug}** ({kind}・{post['style']})", "", "```", text, "---", post["reply"], "```", ""]
+        image = x_image(article) or {"url": "（無し）", "note": "画像が無いので出さない"}
+        log(f"--- {slug} ({kind}・{post['style']}・話題 {sns_plan.x_topic(article)[0] or '-'}・{sns_rules.x_weight(text)}/{sns_rules.X_LIMIT})\n{text}\n[返信] {post['reply']}\n[画像] {image['url']}（{image['note']}）")
+        summary += [f"**{slug}** ({kind}・{post['style']})", "", "```", text, "---", post["reply"], "```", f"画像: {image['url']}", ""]
         if not live:
             for problem in problems(article, text, post):
                 log(f"  [check] {problem}")
