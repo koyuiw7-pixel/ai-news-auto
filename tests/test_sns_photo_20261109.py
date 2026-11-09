@@ -49,6 +49,11 @@ class PhotoProblemTest(unittest.TestCase):
         borrowed = art("respirator-recall", thumbnail=f"{IMG}nenkin-no-hi-2026-mhlw-01b9fc55.jpg", imageCredit={"kind": "official", "org": "厚労省"})
         self.assertIn("ほかの記事", r.photo_problem(borrowed))
 
+    def test_empty_hall_filler_is_not_a_real_photo(self):
+        hall = art("caa-recall", imageCredit={"kind": "ai", "prompt": "A softly lit, empty exhibition hall with blurred stage lights, no exhibits"})
+        self.assertIn("誰もいない会場", r.photo_problem(hall))
+        self.assertEqual(muse_images.photo_state(hall), "none")
+
     def test_own_photo_or_cover_is_fine(self):
         self.assertEqual(r.photo_problem(art("a")), "")
         # 記事の写真がカードでも、Muse の絵（coverImage）があれば、それがカードに敷かれる

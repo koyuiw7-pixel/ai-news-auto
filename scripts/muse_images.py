@@ -108,7 +108,8 @@ def photo_state(article: dict) -> str:
     # ロゴ・サイト共通の画像・ほかの記事の画像は「写真が無い」と同じに扱う（Muse に頼む。2026-11-09 台帳 S49）
     credit = article.get("imageCredit") or {}
     thumb = str(article.get("thumbnail") or "")
-    if (credit.get("kind") == "official" and credit.get("imageKind") in ("logo", "generic")) or borrowed(thumb, str(article.get("slug") or "")):
+    filler = credit.get("kind") == "ai" and re.search(r"empty exhibition hall|no exhibits", str(credit.get("prompt") or ""), re.I)
+    if (credit.get("kind") == "official" and credit.get("imageKind") in ("logo", "generic")) or borrowed(thumb, str(article.get("slug") or "")) or filler:
         if is_muse_cover(article):
             return "muse"
         return "ai" if article.get("coverImage") else "none"

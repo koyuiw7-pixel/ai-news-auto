@@ -1546,7 +1546,8 @@ def share_image_article(article: dict | None, force: bool = False) -> dict:
     if not cover or cover == thumb:
         return article
     credit = article.get("imageCredit") or {}
-    weak = (credit.get("kind") == "official" and credit.get("imageKind") in LOGO_KINDS) or borrowed_image(thumb, str(article.get("slug") or ""))
+    weak = (credit.get("kind") == "official" and credit.get("imageKind") in LOGO_KINDS) or borrowed_image(thumb, str(article.get("slug") or "")) \
+        or (credit.get("kind") == "ai" and bool(FILLER_PROMPT_RE.search(str(credit.get("prompt") or ""))))
     if not force and thumb and credit.get("kind") not in ("ai", "card") and not weak:
         return article
     return {**article, "thumbnail": cover, "imageCredit": cover_credit, "heroOk": None, "imageFocus": None}
@@ -1565,6 +1566,8 @@ def card_credit(article: dict | None) -> dict:
 # 厚生労働省のサイト共通のロゴの画像を使い回していた。SNS の投稿（Threads・X・Facebook・Bluesky）は、記事に合った本物の画像
 # （公式の写真・Muse の絵・AI のイメージ）が載るときだけ作る。文字だけのカード・ロゴ・ほかの記事の画像では作らない
 LOGO_KINDS = {"logo", "generic"}
+# 以前の AI の逃げの場面（誰もいない展示会場。台帳 I2 で禁止）。どの記事にも使える絵なので、記事に合う画像と数えない
+FILLER_PROMPT_RE = re.compile(r"empty exhibition hall|no exhibits", re.I)
 _IMG_NAME_RE = re.compile(r"/img/([^/?#]+)$")
 
 
@@ -1596,6 +1599,8 @@ def photo_problem(article: dict | None) -> str:
         return "写真が無い（文字だけのカードになる）"
     if credit.get("kind") == "official" and credit.get("imageKind") in LOGO_KINDS:
         return "公式のロゴ・サイト共通の画像しか無い"
+    if credit.get("kind") == "ai" and FILLER_PROMPT_RE.search(str(credit.get("prompt") or "")):
+        return "関係の無い場面のAI画像（誰もいない会場）"
     if borrowed_image(url, str(article.get("slug"))):
         return f"ほかの記事の画像（{url.rsplit('/', 1)[-1][:60]}）"
     return ""
