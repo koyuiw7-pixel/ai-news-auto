@@ -8700,6 +8700,13 @@
       "skipped": true,
       "url": "https://www.tsr-net.co.jp/data/detail/1203386_1527.html"
     },
+    "51fd6bae6a94af5c": {
+      "at": "2026-11-09T20:15:50.837174+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「AWS Machine Learning Blogは11月10日、」→ 元記事に公開日の記載がなく、確認済みの文脈にも日付はない。11月10日という発表日は創作にあたる。; 「既存記事で紹介したEKS系の提供に加わる」→ 確認済みの文脈にEKS対応の記述はあるが、元記事は既存記事への言及を含まないため、この前提は元記事では確認できない。",
+      "skipped": true,
+      "url": "https://aws.amazon.com/blogs/machine-learning/nvidia-nemotron-3-5-super-vl-is-now-available-in-amazon-sagemaker-jumpstart/"
+    },
     "52056732d51a05e6": {
       "at": "2026-11-03T00:17:50.324223+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -20223,33 +20230,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-07T17:53:39.087693+00:00",
-      "attempt": 1,
-      "id": "1564a9d4f10d70c6",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「AI Gatewayでは、検索・ページ取得ツールの料金も先に伝えています」→ 関連記事は2026-11-07付けで、本記事の元発表（2026-11-06）より後のため「先に」は時系列の誤り",
-        "「デプロイのOIDCトークンでは枠を使えないという記述もあり、今回の発表とは食い違っています」→ 食い違いの指摘自体は元資料に沿うが、どちらが正しいかは示せていないため読者が判断しにくい",
-        "「仕事・お金にどう活かせる？」の助言「止まってよい処理と止めたくない処理を分けておく」は一般的な助言の範囲内だが、具体的な金額や節約効果の記述は無く問題なし"
-      ],
-      "readability": {
-        "avg_paragraph": 95.4,
-        "avg_sentence": 47.7,
-        "long_share": 0.208,
-        "max_paragraph": 152,
-        "paragraphs": 12,
-        "sentences": 24
-      },
-      "score": 85,
-      "source": "vercel-changelog",
-      "title": "Token Pass credit now applies automatically across AI Gateway",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（OIDC・CLI）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-07T17:53:56.251531+00:00",
       "attempt": 1,
@@ -27450,6 +27430,21 @@
         "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
         "読みやすさ: 文が長い（1文の平均 45.0字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T20:15:50.837139+00:00",
+      "attempt": 1,
+      "id": "51fd6bae6a94af5c",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「AWS Machine Learning Blogは11月10日、」→ 元記事に公開日の記載がなく、確認済みの文脈にも日付はない。11月10日という発表日は創作にあたる。",
+        "「既存記事で紹介したEKS系の提供に加わる」→ 確認済みの文脈にEKS対応の記述はあるが、元記事は既存記事への言及を含まないため、この前提は元記事では確認できない。"
+      ],
+      "score": 72,
+      "source": "aws-ml-blog",
+      "title": "NVIDIA Nemotron 3.5 Super VL is now available in Amazon SageMaker JumpStart"
     }
   ],
   "short_text_retry": {},
