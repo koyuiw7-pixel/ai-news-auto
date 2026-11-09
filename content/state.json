@@ -132,14 +132,6 @@
       "title": "全室新宿御苑ビューが望めるライフスタイルホテル「ノーガ新宿御苑」 2027年7月15日開業決定。2026年10月15日より宿泊予約受付開始（野村不動産・野村不動産ホテルズ）",
       "tries": 1,
       "url": "https://www.nomura-re-hd.co.jp/news/005005.html"
-    },
-    "f23fe86a6ade51a9": {
-      "first": "2026-11-09T08:21:29.378538+00:00",
-      "next": "2026-11-09T11:21:29.378538+00:00",
-      "reason": "リード・本文「ニッセイ基礎研究所の調べ」「ニッセイ基礎研究所が発表したレポート」→元記事は研究所の調査ではなく、外部研究者（神戸大学）の寄稿で「筆者個人の見解」と明記されている。出典の主体を誤認している。; Q「利益を増やす手軽な方法として人件費の抑制が選ばれ」→元記事に「手軽な方法」という記述はなく、人件費抑制は「結果として」起きたもので「企図したものではない」とされている。元記事にない因果の説",
-      "title": "賃金抑制とコーポレート・ガバナンス（CG）改革－リフレ政策を検討する（２）－",
-      "tries": 1,
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87287?site=nli"
     }
   },
   "major_tries": {},
@@ -165,6 +157,7 @@
     "3268d748c777ced6": "2026-11-06T08:51:04.778179+00:00",
     "32fd34fb53eda2f1": "2026-11-09T09:38:56.467516+00:00",
     "37d9e27da3a5b9ea": "2026-11-06T19:41:01.362264+00:00",
+    "381ffd878144b6ba": "2026-11-09T11:22:55.089710+00:00",
     "38b1c09617f8b1ab": "2026-11-06T18:22:08.318950+00:00",
     "39430fca08334293": "2026-11-06T06:00:54.354301+00:00",
     "3c6baf8f6042b6a7": "2026-11-06T01:40:54.899345+00:00",
@@ -3523,6 +3516,12 @@
       "reason": "followup quality: 続報の長さが不適切（190字 / 400〜900字）",
       "skipped": true,
       "url": "https://www.jfa.jp/news/00036966/"
+    },
+    "00b6f156d1c37f59": {
+      "at": "2026-11-09T11:25:21.957359+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "https://www.esri.cao.go.jp/jp/stat/di/di.html"
     },
     "00c85acf9d22d94f": {
       "at": "2026-10-28T20:51:33.894877+00:00",
@@ -7243,7 +7242,7 @@
       "url": "https://forbesjapan.com/articles/detail/106874"
     },
     "381ffd878144b6ba": {
-      "at": "2026-11-09T11:07:39.554415+00:00",
+      "at": "2026-11-09T11:25:21.964091+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/yusyutu_kokusai/chiiki/261109.html"
@@ -19259,6 +19258,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005969.000054842.html"
     },
+    "ecb400e869e68e14": {
+      "at": "2026-11-09T11:25:21.963926+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
+      "skipped": true,
+      "url": "https://www.caa.go.jp/notice/entry/048033/"
+    },
     "eccf6024c399098d": {
       "at": "2026-10-30T18:52:07.852979+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -19617,6 +19622,17 @@
       "reason": "採用選考における政府要請や評価のあり方を議論するオンラインシンポジウムの告知であり、AI・テクノロジーの技術発表や製品デモを実質的に扱うものではないため。",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000019.000149769.html"
+    },
+    "f23fe86a6ade51a9": {
+      "at": "2026-11-09T11:25:21.569708+00:00",
+      "costUsd": 0.014,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash",
+      "score": 74,
+      "section": "business",
+      "slug": "japan-cg-reform-wage-suppression",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87287?site=nli"
     },
     "f294aec5da51bc23": {
       "at": "2026-11-05T03:50:05.249357+00:00",
@@ -20822,84 +20838,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-07T08:53:28.930995+00:00",
-      "attempt": 0,
-      "id": "5c5c439c3a5adbf4",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「判定: 提供状況=demo」→ 元記事に「demo」という提供状況の記述はなく、確認済みの文脈にも無い。元記事は研究の成果としての発表で、提供形態を示していない。"
-      ],
-      "readability": {
-        "avg_paragraph": 121.8,
-        "avg_sentence": 38.8,
-        "long_share": 0.091,
-        "max_paragraph": 180,
-        "paragraphs": 14,
-        "sentences": 44
-      },
-      "score": 85,
-      "source": "microsoft-research-blog",
-      "title": "Formally verifying agent-written full-stack web apps with PDD Kit",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PDD・MIT）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T09:32:45.605399+00:00",
-      "attempt": 1,
-      "id": "ca6f08fa829e8403",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "元記事の文をそのまま書き写している（3文。例「import { defineCatalog } from \"@json-render/core\";」）。自分の言葉で要約する"
-      ],
-      "readability": {
-        "avg_paragraph": 101.1,
-        "avg_sentence": 37.9,
-        "long_share": 0.031,
-        "max_paragraph": 184,
-        "paragraphs": 12,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "vercel-changelog",
-      "title": "Chat SDK agents can now stream generative UI with json-render",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（UI・JSON）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T09:33:09.211968+00:00",
-      "attempt": 1,
-      "id": "ca6f08fa829e8403",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "言葉の問題がある文が1か所（「サンプルではモデルとしてanthropic/claude-h」→英単語（system）が訳されずに残っている）。中国語・訳し残しの英単語を自然な日本語にし、用語集どおりに訳す"
-      ],
-      "readability": {
-        "avg_paragraph": 123.3,
-        "avg_sentence": 41.1,
-        "long_share": 0.139,
-        "max_paragraph": 368,
-        "paragraphs": 12,
-        "sentences": 36
-      },
-      "score": null,
-      "source": "vercel-changelog",
-      "title": "Chat SDK agents can now stream generative UI with json-render",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（UI・JSON）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-07T09:33:23.775446+00:00",
@@ -28018,6 +27956,82 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（BSP）",
         "読みやすさ: 文が長い（1文の平均 54.9字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T11:24:16.409119+00:00",
+      "attempt": 1,
+      "id": "f23fe86a6ade51a9",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く"
+      ],
+      "readability": {
+        "avg_paragraph": 111.3,
+        "avg_sentence": 61.2,
+        "long_share": 0.55,
+        "max_paragraph": 159,
+        "paragraphs": 11,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "賃金抑制とコーポレート・ガバナンス（CG）改革－リフレ政策を検討する（２）－",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ROE・KPI）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 61.2字・60字超の文が 55% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T11:24:44.541801+00:00",
+      "attempt": 1,
+      "id": "f23fe86a6ade51a9",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 109.8,
+        "avg_sentence": 60.4,
+        "long_share": 0.55,
+        "max_paragraph": 159,
+        "paragraphs": 11,
+        "sentences": 20
+      },
+      "score": 76,
+      "source": "nli-research",
+      "title": "賃金抑制とコーポレート・ガバナンス（CG）改革－リフレ政策を検討する（２）－",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ROE・KPI）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 60.4字・60字超の文が 55% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T11:25:14.494501+00:00",
+      "attempt": 0,
+      "id": "f23fe86a6ade51a9",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.8,
+        "avg_sentence": 40.2,
+        "long_share": 0.129,
+        "max_paragraph": 128,
+        "paragraphs": 13,
+        "sentences": 31
+      },
+      "score": 74,
+      "source": "nli-research",
+      "title": "賃金抑制とコーポレート・ガバナンス（CG）改革－リフレ政策を検討する（２）－",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ROE・KPI）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
     }
   ],

@@ -70,7 +70,7 @@
   "todayActions": [
     "前月の給与明細で、社会保険料等を差し引いた後の金額を確かめる",
     "勤務先の都道府県の健康保険料率を、協会けんぽの令和8年度の表で確かめる",
-    "会社の給与担当に、賞与明細の控除の内訳を聞く"
+    "算出率の表で、扶養親族等の数と前月の給与が交わる行の率を探す"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -113,5 +113,103 @@
   ],
   "detectedAt": "2026-11-09T10:36:55+00:00",
   "layout": "noir",
-  "summaryLine": "冬のボーナス**50万円**の手取りは、東京都・39歳以下・扶養0人の場合で約40万円が目安"
+  "summaryLine": "冬のボーナス**50万円**の手取りは、東京都・39歳以下・扶養0人の場合で約40万円が目安",
+  "insight": [
+    {
+      "text": "賞与が前月の給与（社会保険料等控除後）の10倍を超える場合は、率の表ではなく月額表で税額を計算します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2523.htm"
+    },
+    {
+      "text": "年4回以上支給される賞与は、標準賞与額の対象とはされず、標準報酬月額の対象となる報酬に含まれます。",
+      "source": "https://www.nenkin.go.jp/service/kounen/hokenryo/hoshu/20150515-01.html"
+    },
+    {
+      "text": "令和9年分以後は、賞与から源泉徴収する税は「所得税、防衛特別所得税および復興特別所得税」になります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2523.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "賞与に対する源泉徴収税額の算出率の表（令和8年分）",
+      "url": "https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/15-16.pdf",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/15-16.pdf",
+      "note": "令和8年分の表です。令和9年分以後は表が改正されています。"
+    },
+    {
+      "name": "協会けんぽ 令和8年度都道府県単位保険料率",
+      "url": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/",
+      "source": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/",
+      "note": "令和8年度の健康保険料率は3月分（4月納付分）から適用されます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "前月の給与明細で、社会保険料等を差し引いた後の金額を確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2523.htm",
+      "steps": [
+        "前月の給与明細を開く",
+        "「前月の給与の金額（社会保険料等を差し引いた金額）」にあたる額を探す"
+      ]
+    },
+    {
+      "action": "勤務先の都道府県の健康保険料率を、協会けんぽの令和8年度の表で確かめる",
+      "source": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/",
+      "steps": [
+        "令和8年度都道府県単位保険料率の表を開く",
+        "勤務先の都道府県の行で令和8年度の料率を見る"
+      ],
+      "url": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/"
+    },
+    {
+      "action": "算出率の表で、扶養親族等の数と前月の給与が交わる行の率を探す",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/15-16.pdf",
+      "steps": [
+        "算出率の表の甲欄を開く",
+        "扶養親族等の数の列を選ぶ",
+        "前月の社会保険料等控除後の給与の行を読む"
+      ],
+      "url": "https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/15-16.pdf"
+    }
+  ],
+  "cause": {
+    "text": "賞与の所得税は、賞与の額ではなく前月の給与と扶養親族等の数で決まる率をかけて計算します。社会保険料は、1,000円未満を切り捨てた標準賞与額に保険料率をかけて求められます。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2523.htm"
+  },
+  "worries": [
+    {
+      "q": "ボーナスの手取りは、どこで決まるの？",
+      "a": "社会保険料は、1,000円未満を切り捨てた標準賞与額に保険料率をかけて計算されます。所得税は、前月の給与と扶養親族等の数で決まる率を賞与から社会保険料等を引いた額にかけて計算します。",
+      "source": "https://www.nenkin.go.jp/section/faq/kounen/hokenryo/shoyokeisan.html",
+      "action": "給与明細で前月の社会保険料等控除後の金額を確かめ、算出率の表で所得税を見積もる",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2523.htm"
+    },
+    {
+      "q": "ボーナスを年に何回ももらうと、保険料は増える？",
+      "a": "年4回以上支給される賞与は、標準賞与額の対象とはされず、標準報酬月額の対象となる報酬に含まれるとされています。同じ月に2回以上支給されたときは合算した額で上限が適用されます。",
+      "source": "https://www.nenkin.go.jp/service/kounen/hokenryo/hoshu/20150515-01.html",
+      "action": "賞与の支給回数と支給月を、勤務先の給与担当に確かめる"
+    },
+    {
+      "q": "扶養が増えると、所得税はどう変わる？",
+      "a": "扶養親族等の数に応じて率の行が変わり、扶養の人数が増えると、同じ給与でも率は下がります。扶養控除等申告書を出していれば甲欄、出していなければ乙欄の表を使います。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/15-16.pdf",
+      "action": "扶養控除等申告書を会社に出しているか、給与担当に確かめる",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2523.htm"
+    },
+    {
+      "q": "4月から保険料や税率は変わる？",
+      "a": "令和8年度の協会けんぽの健康保険料率は、3月分（4月納付分）から適用されます。令和8年4月分（5月納付分）からは、全国一律の子ども・子育て支援金（0.23％）が加わります。",
+      "source": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/",
+      "action": "給与明細で、健康保険料と子ども・子育て支援金の欄の金額の変化を見る"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "10倍を超える賞与は計算が変わる",
+    "cause": "税率はなぜ賞与の額で決まらないのか",
+    "steps": "今日、明細で確かめる3つのこと",
+    "desk": "数字を確かめる公式の場所",
+    "worries": "手取りや保険料はいつ、どう変わる？"
+  },
+  "depthAt": "2026-11-09T11:26:26+00:00"
 }
