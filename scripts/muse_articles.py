@@ -3,7 +3,7 @@
 
 流れ（Muse には鍵を渡さない。Muse はオーナーの Mac のフォルダにファイルを置くだけ）:
   1. Mac: ~/Downloads/saisoku-articles/*.md → scripts/muse_articles_push.py が content/muse_inbox/ に入れて main に push（launchd で25分ごと）
-  2. Actions（auto_run.yml の「Muse articles」の段・ニュースの記事を作る前）: このスクリプトが content/muse_inbox/ を読む
+  2. Actions（muse_inbox.yml。入稿の push ですぐ・30分ごとの予約でも。記事づくりの回とは別の列）: このスクリプトが content/muse_inbox/ を読む
      - 形の確かめ（scripts/muse_format.py）→ 重複（直近7日の記事・同じ発表）→ 今日の本数（段の上限 WEB_STAGE_TARGET の中に数える）
      - 公式の出典ページを取りに行き（報道は出典にしない W31）、Muse の原稿を土台に、ふつうの記事と同じ型（リード・要点・かんたん版・
        FAQ・判定カード）に整える（本文は Muse の構成・文をできるだけ残し、資料と食い違う所・決まりに合わない所だけ直す）
@@ -15,7 +15,7 @@
      - 不合格: 理由を state/muse_articles.json に書く（Mac のスクリプトが rejected/<名前>.reason.txt に写す）
   3. 結果: state/muse_articles.json の items[ファイル名] = {status: published|rejected|waiting, reason, slug, url, title, at}
 
-  python3 scripts/muse_articles.py --daily-cap 60          # auto_run.yml から
+  python3 scripts/muse_articles.py --daily-cap 60          # muse_inbox.yml から
   python3 scripts/muse_articles.py --check <file.md>        # 形の確かめだけ（LLM・ネットを使わない）
 """
 from __future__ import annotations

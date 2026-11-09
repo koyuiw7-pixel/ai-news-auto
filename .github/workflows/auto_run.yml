@@ -7,9 +7,12 @@ on:
     # 6時間ごと（UTC基準）。量産と見なされるリスクとAPI消費を抑えるため
     # 3時間ごと3本(最大24本/日)から絞っている
     - cron: "7 */6 * * *"
-    # 公式ブログ・プレスリリース・話題のニュースは20分ごとに少しずつ出す（まとめて出すより自然で、速報性も上がる）
-    # 記事が増えた回だけコミットし、Vercel へのデプロイは1時間に1回にまとめる（Commit & push を参照）
-    - cron: "15,35,55 * * * *"
+    # 公式ブログ・プレスリリース・話題のニュースは少しずつ出す（まとめて出すより自然で、速報性も上がる）
+    # 2026-11-09 オーナー「100本/日は必須」: 日本時間 6:00〜24:00 は15分ごと（UTC 21〜23時・0〜14時）、深夜は20分ごと。
+    # 前の回が走っている間の予約は1つだけ待ち（concurrency）、終わりしだい続けて動く。見張り番の Worker（ops/watchdog）も同じ間隔で起こす
+    # 記事が増えた回だけコミットし、デプロイは1時間に1回にまとめる（Commit & push を参照）
+    - cron: "4,19,34,49 21-23,0-14 * * *"
+    - cron: "15,35,55 15-20 * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -120,26 +123,9 @@ jobs:
         continue-on-error: true
         run: npm i -g @anthropic-ai/claude-code
 
-      # Muse（Meta の AI の書き手）の入稿（content/muse_inbox/。オーナーの Mac の scripts/muse_articles_push.py が入れる）を、
-      # ふつうの記事と同じ門（公開前の門・品質の門の事実確認・重複）に通して公開する（2026-11-08 オーナー承認・台帳 A59）。
-      # ニュースの記事より先に動かし、公開した分は今日の本数（段の上限）に数える（＝この回のニュースの記事はその分少なく作る）
-      - name: Muse articles
-        if: ${{ (inputs.fast_url || '') == '' && hashFiles('content/muse_inbox/*.md') != '' }}
-        continue-on-error: true
-        timeout-minutes: 15
-        env:
-          LLM_WORKFLOW: articles
-          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
-          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          CLAUDE_DAILY_MAX: ${{ vars.CLAUDE_DAILY_MAX || '40' }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: timeout 840 python scripts/muse_articles.py --daily-cap "${{ steps.ramp.outputs.web_daily_cap }}" --max 3 --budget 700
+      # Muse（Meta の AI の書き手）の入稿（content/muse_inbox/）は 2026-11-09 から muse_inbox.yml（別の concurrency）で審査・公開する。
+      # ここで動かすと1回およそ14分のびて記事づくりの回数が減っていたため（オーナー「100本/日は必須」）。
+      # 公開した分は同じく content/state.json の processed_web に入り、この回の web_articles の今日の本数（段の上限）に数えられる
 
       # いま検索で急上昇している話題を、記事を作る直前に取り直す（2026-11-08 台帳 A63）。
       # trends_collect.yml の毎時の予約は GitHub の都合で1日4回ほどしか動かなかったため、約20分おきに動くこの回でも集める。

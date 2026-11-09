@@ -104,11 +104,21 @@ class PipelineTest(unittest.TestCase):
                                                  "refreshMode": "editorial", "writer": "muse"}, set()))
         self.assertIn('a.get("refreshMode") != "editorial"', (ROOT / "scripts" / "rewrite_titles.py").read_text("utf-8"))
 
-    def test_auto_run_processes_inbox_before_news_and_commits_results(self):
-        flow = (ROOT / ".github" / "workflows" / "auto_run.yml").read_text("utf-8")
-        self.assertLess(flow.index("scripts/muse_articles.py"), flow.index("python scripts/web_articles.py \\"))
-        self.assertIn("steps.ramp.outputs.web_daily_cap", flow[flow.index("name: Muse articles"):flow.index("name: Generate web articles")])
-        self.assertIn("git add state/muse_articles.json", flow)
+    def test_inbox_runs_in_its_own_workflow_and_commits_results(self):
+        # 2026-11-09: 記事づくりの回（auto_run.yml）から外し、muse_inbox.yml（別の concurrency）で動かす（100本/日のため）
+        auto = (ROOT / ".github" / "workflows" / "auto_run.yml").read_text("utf-8")
+        flow = (ROOT / ".github" / "workflows" / "muse_inbox.yml").read_text("utf-8")
+        self.assertNotIn("python scripts/muse_articles.py", auto)
+        self.assertIn("content/muse_inbox/**", flow)
+        self.assertIn("group: muse-inbox", flow)
+        self.assertNotIn("group: auto-article-pipeline", flow)
+        # 今日の本数は記事づくりの回と同じ段の上限で数える
+        self.assertIn("python scripts/ramp.py", flow)
+        self.assertIn('--daily-cap "${{ steps.ramp.outputs.web_daily_cap }}"', flow)
+        self.assertIn("state/muse_articles.json", flow)
+        self.assertIn("git add -A content", flow)  # 記事・content/state.json・消した入稿
+        self.assertIn("scripts/git_safe_push.py", flow)
+        self.assertLess(flow.index("scripts/muse_articles.py"), flow.index("scripts/images.py"))
 
 
 class PushTest(unittest.TestCase):

@@ -5,7 +5,7 @@ Muse には鍵を渡さない（オーナー決定）。Muse は ~/Downloads/sai
   1. 専用の作業用の写し（~/.saisoku-muse/repo。ASCII のパス＝launchd が非ASCIIのパスを扱えないため）を origin/main にそろえる
   2. 前に送ったファイル（sent/）の結果を state/muse_articles.json で見て、公開 → done/、見送り → rejected/ と <名前>.reason.txt
   3. 新しい .md を形だけ確かめ（scripts/muse_format.py）、だめなら rejected/ に理由つきで戻す。よければ content/muse_inbox/ に入れて
-     コミットし main に push（Mac の git の認証。[no-deploy]。記事にするのは次の Auto Article Pipeline の回）。元のファイルは sent/ へ
+     コミットし main に push（Mac の git の認証。[no-deploy]。push で Muse Inbox（muse_inbox.yml）がすぐ審査する）。元のファイルは sent/ へ
   4. FORMAT.md（書式）と ledger.md（この7日の記事の題名と URL・Muse の入稿の結果）を書き直す。Muse は書く前に ledger.md を読む
 launchd（~/Library/LaunchAgents/com.komuro.saisoku-muse-articles.plist）で25分ごと。ログは ~/.saisoku-muse/push.log。
 
@@ -203,7 +203,7 @@ def write_ledger(items: dict, pending: list[str], extra: list[str] | None = None
     ]
     status_ja = {"published": "公開", "rejected": "見送り", "waiting": "順番待ち"}
     for name in pending:
-        lines.append(f"| {now:%m/%d %H:%M} | {name} | 審査中 | | 次の記事づくりの回（20分ごと）で審査します |")
+        lines.append(f"| {now:%m/%d %H:%M} | {name} | 審査中 | | 届きしだい Muse の審査の回（muse_inbox.yml）で審査します |")
     for name, row in sorted(items.items(), key=lambda kv: str(kv[1].get("at") or ""), reverse=True)[:60]:
         try:
             at = datetime.fromisoformat(str(row.get("at"))).astimezone(JST).strftime("%m/%d %H:%M")

@@ -7,8 +7,10 @@
  * R. レーダー（別の Cron・4分ごと）: まとめサイトで大きなニュースを見つけ、一次情報を探して速報レーンに回す（src/radar.js）
  * M. 毎朝 6:00（日本時間）: 深夜（1〜5時）に作った速報を SNS に出す breaking_post.yml を起動する
  *
+ * 1. GitHub Actions の記事作り（auto_run.yml）が startGapMin() 分以上始まっていなければ、自分で起動する
+ *    - 日本時間 6:00〜24:00 は2分ごとに見て DAY_START_GAP_MIN 分（15分おき・2026-11-09 オーナー「100本/日は必須」）、
+ *      深夜は10分ごとに見て START_GAP_MIN 分
  * 以下は10分ごと（UTC の分が10の倍数の回）:
- * 1. GitHub Actions の記事作り（auto_run.yml）が START_GAP_MIN 分以上始まっていなければ、自分で起動する
  *    - 6時間ごとの枠（UTC 0/6/12/18時台の最初）に当たらなければ mode=web（軽い回）
  * 2. 成功した回が ALERT_GAP_MIN 分以上無ければ、GitHub に Issue を立ててオーナーにメールで知らせる
  *    （すでに開いている知らせがあれば重ねて立てない。回復したら自動で閉じる）
@@ -21,6 +23,7 @@ import { quakeLane } from "./quake.js";
 import { snsExtra } from "./sns-extra.js";
 import { bufferMonitorWatchdog } from "./buffer-monitor.js";
 import { checkActivity } from "./activity-monitor.js";
+import { isDaytimeJst, startGapMin } from "./start-gap.js";
 // Python 側（scripts/fast_lane.py）と同じルールを使う。変えたら npx wrangler deploy し直す
 import baseRules from "../../../scripts/fast_lane_rules.json";
 // 追加の発信元（tier A/B/C）。fast_lane_rules.json の sources に足して使う
@@ -59,7 +62,7 @@ async function check(env, now = new Date(), opts = {}) {
   const log = { latestStart: Math.round(latestStart), active, sinceSuccess: Math.round(sinceSuccess) };
 
   // 1. 起動
-  if (!active && !opts.skipDispatch && latestStart >= Number(env.START_GAP_MIN)) {
+  if (!active && !opts.skipDispatch && latestStart >= startGapMin(env, now)) {
     // 6時間ごとの重い回は、UTC 0/6/12/18時台の最初の30分だけ
     const full = now.getUTCHours() % 6 === 0 && now.getUTCMinutes() < 30;
     await gh(env, `/actions/workflows/${env.WORKFLOW}/dispatches`, {
@@ -68,6 +71,8 @@ async function check(env, now = new Date(), opts = {}) {
     });
     log.dispatched = full ? "full" : "web";
   }
+
+  if (opts.dispatchOnly) return log;
 
   // 2. 知らせる／回復したら閉じる
   const open = (await gh(env, `/issues?state=open&labels=watchdog&per_page=5`)) || [];
@@ -118,7 +123,18 @@ async function tick(env, now) {
   } catch (e) {
     console.error(`fast: ${String(e)}`);
   }
-  if (now.getUTCMinutes() % 10 !== 0) return;
+  if (now.getUTCMinutes() % 10 !== 0) {
+    // 昼は10分の回の合間（2分ごと）にも、記事作りが止まっていれば起こす（知らせ・ほかの見回りは10分ごとのまま）
+    if (isDaytimeJst(now) && Number(env.DAY_START_GAP_MIN) > 0) {
+      try {
+        const l = await check(env, now, { skipDispatch: Boolean(fast?.dispatched) || quaked, dispatchOnly: true });
+        if (l.dispatched) console.log(JSON.stringify({ watchdog: l }));
+      } catch (e) {
+        console.error(`watchdog: ${String(e)}`);
+      }
+    }
+    return;
+  }
   try {
     console.log(JSON.stringify({ activityMonitor: await checkActivity(env, now, makeGh(env)) }));
   } catch (e) {

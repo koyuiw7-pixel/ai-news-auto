@@ -1,0 +1,183 @@
+name: Muse Inbox
+
+# Muse（Meta の AI の書き手）の入稿（content/muse_inbox/。オーナーの Mac の scripts/muse_articles_push.py が launchd で入れる）を、
+# ふつうの記事と同じ門（公開前の門・品質の門の事実確認・重複）に通して公開する（2026-11-08 オーナー承認・台帳 A59）。
+# 2026-11-09 オーナー「100本/日は必須」: これまで auto_run.yml の記事づくりの回の中で動いていた（1回およそ14分）ため、
+# 記事づくりの回が長くなり1時間あたりの回数が減っていた。別のワークフロー（別の concurrency）に分けて、記事づくりの回と並んで動かす。
+#   - 起動: Mac が content/muse_inbox/ に push したとき（すぐ）＋ 予約（30分ごと・取りこぼしの拾い）＋ 手動
+#   - 今日の本数: content/state.json の processed_web に入れる（scripts/pacing.py の live_today。段の上限 WEB_STAGE_TARGET の中に数える）
+#   - push: scripts/git_safe_push.py（記事づくりの回と同じ。state の JSON は項目ごとに3方向マージ・新しい記事は必ず残す）
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/muse_inbox/**"
+  schedule:
+    - cron: "12,42 * * * *"
+  workflow_dispatch:
+    inputs:
+      max:
+        description: "この回に公開する最大本数"
+        required: false
+        default: "6"
+
+permissions:
+  contents: write
+  actions: write  # 公開の回に deploy_cloudflare.yml を呼ぶ
+
+# Muse の回どうしは重ねない（同じ入稿を二重に記事にしないため）。記事づくりの回（auto-article-pipeline）とは別の列
+concurrency:
+  group: muse-inbox
+  cancel-in-progress: false
+
+jobs:
+  muse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - name: Check inbox
+        id: inbox
+        run: |
+          N=$(ls content/muse_inbox/*.md 2>/dev/null | wc -l | tr -d ' ')
+          echo "count=${N}" >> "$GITHUB_OUTPUT"
+          echo "Muse の入稿: ${N} 本"
+
+      - name: Setup Python
+        if: ${{ steps.inbox.outputs.count != '0' }}
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        if: ${{ steps.inbox.outputs.count != '0' }}
+        run: pip install -r requirements.txt imageio-ffmpeg
+
+      # 今日の上限（auto_run.yml の「Decide today's limits」と同じ決め方。同じ変数を読む）
+      - name: Decide today's limits
+        if: ${{ steps.inbox.outputs.count != '0' }}
+        id: ramp
+        env:
+          WEB_DAILY_CAP_OVERRIDE: ${{ vars.WEB_DAILY_CAP_BRAKE }}
+          WEB_STAGE_TARGET: ${{ vars.WEB_STAGE_TARGET }}
+          SNS_PER_DAY_OVERRIDE: ${{ vars.SNS_PER_DAY }}
+          BROAD_MAX_PER_RUN_OVERRIDE: ${{ vars.BROAD_MAX_PER_RUN }}
+          AI_MAX_PER_RUN_OVERRIDE: ${{ vars.WEB_MAX_PER_RUN }}
+        run: python scripts/ramp.py
+
+      - name: Install Claude Code CLI
+        if: ${{ steps.inbox.outputs.count != '0' }}
+        continue-on-error: true
+        run: npm i -g @anthropic-ai/claude-code
+
+      - name: Muse articles
+        if: ${{ steps.inbox.outputs.count != '0' }}
+        continue-on-error: true
+        timeout-minutes: 32
+        env:
+          LLM_WORKFLOW: articles
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          CLAUDE_DAILY_MAX: ${{ vars.CLAUDE_DAILY_MAX || '40' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: timeout 1800 python scripts/muse_articles.py --daily-cap "${{ steps.ramp.outputs.web_daily_cap }}" --max "${{ inputs.max || '6' }}" --budget 1500
+
+      # 公開した Muse の記事の写真（auto_run.yml の「Article images」と同じ。公式の写真 → だめなら話題に合う AI のイメージ・札つき）。
+      # 記事づくりの回の --recent 40 でも拾うが、出す前に付けておく
+      - name: Article images
+        if: ${{ steps.inbox.outputs.count != '0' }}
+        continue-on-error: true
+        timeout-minutes: 6
+        env:
+          LLM_WORKFLOW: images
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_KV_TOKEN: ${{ secrets.CF_DEPLOY_TOKEN }}
+        run: |
+          if [ -n "$(git status --porcelain content/articles)" ]; then
+            timeout 300 python scripts/images.py --changed --max 6 --budget 260
+          fi
+
+      # 記事づくりの回と同じ重複の印（別のレーンで同時に同じ発表の記事ができたとき、ここでも拾う。LLM なし）
+      - name: Mark duplicate stories
+        if: ${{ steps.inbox.outputs.count != '0' }}
+        continue-on-error: true
+        run: |
+          if [ -n "$(git status --porcelain content/articles)" ]; then
+            python scripts/story.py mark --days 7 | tail -20
+          fi
+
+      # デプロイの決め方は auto_run.yml の「Commit & push」と同じ（前回から55分以上ならいま出す。まだなら保留にして、記事づくりの回が出す）
+      - name: Commit & push
+        if: ${{ steps.inbox.outputs.count != '0' }}
+        id: commit
+        run: |
+          echo "count=0" >> "$GITHUB_OUTPUT"
+          echo "deploy=0" >> "$GITHUB_OUTPUT"
+          if [ -z "$(git status --porcelain content state)" ]; then
+            echo "変更なし。コミットをスキップします。"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p state
+          NOW=$(date -u +%s)
+          LAST=$(cat state/last_deploy 2>/dev/null | tr -cd '0-9')
+          LAST=${LAST:-0}
+          python scripts/radar.py coverage || echo "::warning::記事の索引（state/coverage.json）を更新できませんでした"
+          # 入稿の .md を消した分（公開・見送り）も、記事・今日の本数（content/state.json）・使用量も入れる
+          git add -A content
+          for f in state/coverage.json state/muse_articles.json state/claude_api_usage*.json state/llm_usage*.json; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
+          COUNT=$(git diff --cached --name-only --diff-filter=A -- 'content/articles/*.json' | wc -l | tr -d ' ')
+          echo "count=${COUNT}" >> "$GITHUB_OUTPUT"
+          if [ "$COUNT" != "0" ]; then
+            MSG="chore(muse): Muse の記事を公開 (+${COUNT}本)"
+            if [ $((NOW - LAST)) -ge 3300 ]; then
+              echo "$NOW" > state/last_deploy
+              echo 0 > state/deploy_pending
+              echo "deploy=1" >> "$GITHUB_OUTPUT"
+            else
+              echo 1 > state/deploy_pending
+              MSG="${MSG} [no-deploy]"
+            fi
+            git add state/last_deploy state/deploy_pending
+          else
+            MSG="chore(muse): Muse の入稿の審査結果を記録 [no-deploy]"
+          fi
+          git commit -m "$MSG"
+          if python3 scripts/git_safe_push.py --regen "python scripts/radar.py coverage"; then exit 0; fi
+          echo "::error::push できませんでした"
+          exit 1
+
+      - name: Deploy to Cloudflare
+        if: ${{ steps.commit.outputs.deploy == '1' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy_cloudflare.yml --ref main
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## Muse の入稿"
+            echo "- 入稿: ${{ steps.inbox.outputs.count }} 本 / 公開: ${{ steps.commit.outputs.count || '0' }} 本 / デプロイ: ${{ steps.commit.outputs.deploy || '0' }}"
+          } >> "$GITHUB_STEP_SUMMARY"
