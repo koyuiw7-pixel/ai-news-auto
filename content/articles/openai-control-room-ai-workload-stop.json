@@ -80,8 +80,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "OpenAIの公式ブログで、関連するミスアライメント検知の記事（10月29日付）も読み比べる",
-    "自社でAIを動かす担当者は、停止機能を推論の層に置くという設計の考え方を、社内のAI運用ルールと照らして確認する"
+    "Control Roomの仕組みを、公式ページのjob_idの流れで読み直す",
+    "自社のAI運用ルールに、エージェント型の作業ごとのセーフティケースの紐づけがあるか確かめる"
   ],
   "qualityScore": 92,
   "breaking": true,
@@ -114,5 +114,68 @@
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/openai-control-room-ai-workload-stop-c972a824.jpg"
   },
-  "discoverCandidate": true
+  "discoverCandidate": true,
+  "insight": [
+    {
+      "text": "停止されたジョブのjob_idを付けた次のリクエストは、どのエンジン上のどのモデルに対しても拒否され、出力が止まります。",
+      "source": "https://openai.com/index/introducing-control-room"
+    },
+    {
+      "text": "研究作業のうち、エージェント型の推論を行うものは、すべて承認済みのセーフティケースに紐づけることが求められています。",
+      "source": "https://openai.com/index/introducing-control-room"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Control Roomの仕組みを、公式ページのjob_idの流れで読み直す",
+      "source": "https://openai.com/index/introducing-control-room",
+      "steps": [
+        "公式ブログのIntroducing Control Roomを開く",
+        "How it worksの見出しを探す",
+        "job_idを付けた3つの流れを順に確認する"
+      ],
+      "url": "https://openai.com/index/introducing-control-room"
+    },
+    {
+      "action": "自社のAI運用ルールに、エージェント型の作業ごとのセーフティケースの紐づけがあるか確かめる",
+      "source": "https://openai.com/index/introducing-control-room",
+      "steps": [
+        "社内のAI運用ルールを開く",
+        "エージェント型の推論を行う作業を探す",
+        "承認済みのセーフティケースが紐づくか確認する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "モデルの性能が高まるほど、安全面とセキュリティ面のリスクが大きくなるため、問題を早く見つけて素早く止められる体制が必要になるとOpenAIは説明しています。",
+    "status": "background",
+    "source": "https://openai.com/index/introducing-control-room"
+  },
+  "worries": [
+    {
+      "q": "AIが問題を起こしたら、本当にすぐ止められるの？",
+      "a": "停止を決めてから、モデルの出力が止まるまでの最大時間は35秒と説明されています。35秒をゼロにする時期は、まだ発表されていません。",
+      "source": "https://openai.com/index/introducing-control-room",
+      "action": "自社でAIを動かすなら、停止を決めてから出力が止まるまでの時間を、社内の運用ルールと照らして確認する。"
+    },
+    {
+      "q": "止める仕組みが壊れても、AIは動き続けないの？",
+      "a": "停止の仕組みは、研究者の作業コードが壊れていても機能するよう推論の層に置かれています。Control Roomが止まった場合は、すべての推論リクエストが拒否されます。",
+      "source": "https://openai.com/index/introducing-control-room",
+      "action": "自社のAI運用では、停止の仕組みを作業コードではなく、モデルへの推論を受ける層に置けるか見直す。"
+    },
+    {
+      "q": "止めたジョブが、別のモデルで動き続けない？",
+      "a": "停止されたジョブのjob_idを付けたリクエストは、どのエンジンのどのモデルからでも拒否され、出力が止まると説明されています。",
+      "source": "https://openai.com/index/introducing-control-room",
+      "action": "自社の作業にも作業ごとの識別番号を付け、停止の指示が全てのリクエストに届く設計かを確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "AIを止める仕組みの、見落としやすい決まり",
+    "cause": "なぜこの仕組みが必要なのか",
+    "steps": "自社のAI運用で、今日確かめること",
+    "worries": "AIは本当にすぐ止まるのか、不安な点"
+  },
+  "depthAt": "2026-11-09T22:08:56+00:00"
 }
