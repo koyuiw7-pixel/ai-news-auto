@@ -6,7 +6,7 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "Daybreakは、OpenAIが提供するサイバーセキュリティ特化型のAIモデルです。セキュリティ専門家や防御側を支援し、脆弱性調査や脅威への対応時間を大幅に短縮する仕組みとして発表されました。",
+    "text": "Daybreakは、OpenAIが開発したサイバーセキュリティ向けのAIモデルおよび支援プラットフォームです。脆弱性の調査や脅威への対応を自動化し、企業の防御担当者を支援します。ソフォスやCheck Pointなどの事例を通じて発表されました。",
     "sources": [
       "openai-daybreak-check-point-vulnerability",
       "sophos-openai-daybreak-security-agent"
@@ -15,48 +15,49 @@
   "facts": [
     {
       "label": "提供開始",
-      "value": "一部のパートナー企業向けに提供中",
+      "value": "2026年10月までに発表・展開",
+      "sources": [
+        "openai-daybreak-check-point-vulnerability",
+        "sophos-openai-daybreak-security-agent"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "ソフォスのMDR等で利用可能",
       "sources": [
         "sophos-openai-daybreak-security-agent"
       ]
     },
     {
-      "label": "使える場所",
-      "value": "AWS GovCloudなどで対応",
-      "sources": [
-        "gpt-56-cyber-aws-govcloud"
-      ]
-    },
-    {
       "label": "向いている人",
-      "value": "認証を受けた防御側の組織や研究者",
+      "value": "政府系の防御担当やセキュリティ管理者",
       "sources": [
-        "gpt-6-cyber-aligned-security-agents",
+        "gpt-56-cyber-aws-govcloud",
         "openai-daybreak-check-point-vulnerability"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "コードや設定のセキュリティ上の弱点を分析し、攻撃の道筋を推論する。",
+      "text": "数時間かかっていた脆弱性調査を数分に短縮します。",
       "sources": [
         "openai-daybreak-check-point-vulnerability"
       ]
     },
     {
-      "text": "数時間かかっていた脆弱性の調査を数分に短縮する。",
-      "sources": [
-        "openai-daybreak-check-point-vulnerability"
-      ]
-    },
-    {
-      "text": "脅威への平均対応時間を38分から89秒へ削減する。",
+      "text": "脅威への平均対応時間を38分から89秒へ約96%削減します。",
       "sources": [
         "sophos-openai-daybreak-security-agent"
       ]
     },
     {
-      "text": "計画、実行、観察のループでセキュリティ調査を自律的に自動化する。",
+      "text": "AIがコードや設定の不備を分析し、攻撃の道筋を推論します。",
+      "sources": [
+        "openai-daybreak-check-point-vulnerability"
+      ]
+    },
+    {
+      "text": "セキュリティ業務向けにガードレールが調整され、マルウェア解析を行います。",
       "sources": [
         "sophos-openai-daybreak-security-agent"
       ]
@@ -65,7 +66,7 @@
   "pricing": [],
   "japan": [
     {
-      "text": "ソフォスのMDRサービスなどを通じて、国内で恩恵を受けることができます。",
+      "text": "ソフォスの日本法人や国内の正規代理店を通じて、MDRサービスを契約することで恩恵を受けられます。",
       "sources": [
         "sophos-openai-daybreak-security-agent"
       ]
@@ -73,14 +74,15 @@
   ],
   "howto": [
     {
-      "text": "OpenAIのDaybreakプログラムの承認や、AWSなどの対応環境での設定が必要です。",
+      "text": "ソフォスのMDRサービスを導入することでバックエンドで利用できます。",
       "sources": [
-        "gpt-56-cyber-aws-govcloud"
+        "sophos-openai-daybreak-security-agent"
       ]
     },
     {
-      "text": "ソフォスのMDRサービスを契約することで、バックエンドのシステムを利用できます。",
+      "text": "OpenAIのエンタープライズ窓口やAWSの担当チームに問い合わせます。",
       "sources": [
+        "gpt-56-cyber-aws-govcloud",
         "sophos-openai-daybreak-security-agent"
       ]
     }
@@ -88,24 +90,32 @@
   "differences": [],
   "faq": [
     {
-      "q": "誰でもすぐに使えますか？",
-      "a": "一般向けのモデルではなく、承認を受けた防御側や特定のパートナー企業向けに提供されています。",
+      "q": "誰に向いている？",
+      "a": "企業のセキュリティ管理者や政府系の防御担当者に向いています。",
       "sources": [
-        "gpt-6-cyber-aligned-security-agents",
-        "sophos-openai-daybreak-security-agent"
+        "gpt-56-cyber-aws-govcloud",
+        "openai-daybreak-check-point-vulnerability"
       ]
     },
     {
-      "q": "どのような組織が導入していますか？",
-      "a": "ソフォスやCheck Pointなどのセキュリティ企業が導入しています。",
+      "q": "どのような効果がある？",
+      "a": "脆弱性調査や脅威対応の時間を大幅に短縮できます。",
       "sources": [
         "openai-daybreak-check-point-vulnerability",
         "sophos-openai-daybreak-security-agent"
       ]
     },
     {
-      "q": "データの扱いは安全ですか？",
-      "a": "Amazon Bedrock上では、推論データはモデルの学習に使われません。",
+      "q": "安全性の対策は？",
+      "a": "本人確認やアクセス管理の強化、人間の承認を組み合わせた設計になっています。",
+      "sources": [
+        "gpt-56-cyber-aws-govcloud",
+        "openai-daybreak-check-point-vulnerability"
+      ]
+    },
+    {
+      "q": "データの扱いはどうなる？",
+      "a": "Amazon Bedrock上のDaybreak Redでは推論データの学習利用はありません。",
       "sources": [
         "gpt-56-cyber-aws-govcloud"
       ]
@@ -115,12 +125,12 @@
     {
       "date": "2026-10-09",
       "slug": "sophos-openai-daybreak-security-agent",
-      "event": "ソフォスがOpenAI Daybreakを採用"
+      "event": "ソフォスがDaybreakで脅威対応時間を削減"
     },
     {
       "date": "2026-10-27",
       "slug": "openai-daybreak-check-point-vulnerability",
-      "event": "Check PointがDaybreakの活用事例を発表"
+      "event": "Check Pointの調査時間を短縮した事例を公開"
     }
   ],
   "related": [
@@ -142,9 +152,9 @@
     "openai-daybreak-check-point-vulnerability",
     "sophos-openai-daybreak-security-agent"
   ],
-  "signature": "4646b879ceb39800",
+  "signature": "d4a06e6f40eba99d",
   "primarySignature": "ad95c291e319b817",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-03T05:32:40+00:00",
-  "updatedAt": "2026-11-06T05:53:58+00:00"
+  "updatedAt": "2026-11-09T06:33:17+00:00"
 }

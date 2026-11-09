@@ -1,0 +1,211 @@
+{
+  "slug": "korea-physical-ai-nvidia-samsung-lg-kakao",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/",
+  "sourceName": "NVIDIA公式ブログ",
+  "title": "サムスンの半導体シミュレーション、18時間が41秒に　NVIDIAと韓国3社",
+  "seoTitle": "NVIDIAの韓国フィジカルAI：サムスン・LG・カカオ",
+  "threadsPost": "半導体や自動運転の開発現場に関わる人に、知っておいてほしい話です。\n\nサムスンは、チップの熱解析を約18時間から41秒に縮めました。\nLGはCLOiDロボットを工場で動かし、カカオモビリティはレベル4を目指します。\n\n開発の待ち時間が、今の仕事でいちばん長い作業は何ですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "開発や解析の待ち時間が、今の仕事で最も長い作業は何ですか？"
+    },
+    {
+      "pattern": "japan",
+      "question": "運転手のいないタクシーが身近に来たら、ためらわずに乗れますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "サムスンのチップ熱・応力解析は、AIとGPUの組み合わせで約18時間から41秒に縮まりました。NVIDIAの公式ブログによると、約1,600倍の高速化です。LG電子とカカオモビリティも同社の技術で開発を進めていますが、日本の利用者に今すぐ変わることはありません。",
+  "description": "NVIDIAが韓国の産業でのフィジカルAI活用を紹介。サムスンは解析を約18時間から41秒に短縮、LGはCLOiDロボットを工場で実証、カカオモビリティはレベル4を目指します。",
+  "keywords": [
+    "フィジカルAI",
+    "NVIDIA",
+    "サムスン",
+    "半導体シミュレーション",
+    "PhysicsNeMo",
+    "LG電子",
+    "CLOiD",
+    "カカオモビリティ",
+    "レベル4自動運転",
+    "Isaac GR00T",
+    "cuDSS",
+    "DRIVE AGX Thor"
+  ],
+  "tags": [
+    "フィジカルAI",
+    "ロボティクス",
+    "自動運転",
+    "半導体",
+    "NVIDIA"
+  ],
+  "highlights": [
+    "サムスンがPhysicsNeMoなどで、チップ解析を約18時間から41秒に短縮した",
+    "LG電子はCLOiDロボットでGR00Tによる作業を実際の工場で実演した",
+    "カカオモビリティはHyperionとHalosで、レベル4の開発を進める計画だ"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "開発者",
+    "take": "韓国3社の事例紹介です。自社の解析や開発に当てはまるか、公式資料で確認するとよいでしょう。",
+    "judgedAt": "2026-11-09T06:30:30.723922+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "半導体や製造業の設計・解析担当者は、シミュレーション時間の短縮例として参考になります。",
+      "ロボットや自動運転の開発に関わる人は、LGやカカオモビリティの開発の流れを確認できます。"
+    ]
+  },
+  "body": "日本の利用者の料金や使えるサービスは、今回の発表で変わりません。対象は、韓国の企業が進める開発の取り組みです。\n\nNVIDIAの公式ブログによると、韓国では製造業や工学の強みを生かし、「フィジカルAI」を開発から実際の生産へ移す動きが進んでいます。フィジカルAIとは、工場のロボットや自動運転車のように、現実の機械を動かすAIのことです。\n\n## サムスンの解析は約18時間から41秒に\n\nサムスン電子は、材料研究から工程開発、素子の設計まで、NVIDIAの技術を幅広く使っています。\n\n半導体の設計支援（TCAD）では、NVIDIAのcuISSとcuDSSを使っています。連立方程式の一種である「疎な線形方程式」の計算を速くするためです。工程や光学のシミュレーションにも、GPU（画像処理用の半導体）による高速化を広げています。\n\n材料研究のプラットフォーム「sMOL」では、一部の量子化学計算がNVIDIAのcuESTで最大5倍、全体として速くなりました。原子レベルのAIモデルの計算には、cuEquivarianceの利用を検討しています。\n\nチップ全体の熱・力学解析ではPhysicsNeMoを使っています。ある事例では、AIが予測した材料特性、粗い格子、GPUを組み合わせました。結果は次のとおりです。\n\n- 従来: 32コアCPUで細かい格子を解いて約18時間\n- 今回: GPUで粗い格子を解いて41秒\n- 高速化: 約1,600倍\n\nNVIDIA Agent Toolkitがこれらのツールとモデルをつなげば、将来の設計用エージェント（自分で手順を進めるAI）が解析や設計案の比較を進められる、とNVIDIAは説明しています。\n\n編集部の見方では、設計案を試せる回数が増える点に価値があります。cuDSSは「設計の反復を増やす」ことを目的に掲げるライブラリです（NVIDIA公式ページ、11/9確認）。\n\n半導体工場のAI活用は、サイソクも11月に報じています（[NVIDIA、半導体工場のAI活用事例を紹介](/articles/nvidia-ai-semiconductor-fab-cases)）。\n\n## カカオモビリティはレベル4をめざす\n\nカカオモビリティは、レベル4の自動運転システムの開発で、NVIDIAの車載コンピューティングと安全技術を使う計画です。レベル4は、特定の条件下で運転手が不要になる水準です。\n\n同社独自の運転ソフトと、ソウル江南地区での運行経験を、NVIDIAの車載プラットフォームと組み合わせます。使う予定の技術は2つです。\n\n- NVIDIA Hyperion: 車のセンサーと計算機の参照設計。DRIVE AGX Thorが搭載されている\n- NVIDIA Halos: 開発と検証の安全を支える技術\n\n最初の開発は、起亜の専用設計車両が対象です。将来の韓国でのレベル4サービスを支えるのが狙いです。Halosの安全評価は[別の記事](/articles/nvidia-halos-safe-autonomous-vehicle-safety)でも紹介しています。\n\n## LGのCLOiDは実際の工場で実演\n\nNVIDIAとLG電子は、LGのロボット「CLOiD」で、Isaac GR00Tを使った物体操作と製造作業を実際の工場で実演しました。\n\n両社は「データフライホイール」を作りました。実世界のデータ収集、Cosmosによるデータ拡張、GR00Tの学習、Jetson AGX Thorでの動作、シミュレーションでの評価を回す仕組みです。ロボットの開発と検証を続けるための、再利用できる手順になっています。\n\n## まだ分からないこと\n\n- サムスンやLGの技術が、量産や販売の現場でいつ使われるかはまだ発表されていません。\n- カカオモビリティのレベル4サービスの開始時期は、まだ発表されていません。\n- 日本企業や日本の利用者への提供は、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nNVIDIAが、韓国のサムスン、LG電子、カカオモビリティとの取り組みを紹介しました。サムスンは、チップの解析時間を約18時間から41秒に縮めました。\n\n## 3社が取り組んでいること\n\nサムスンは、AIとGPU（画像処理用の半導体）を使って、チップの熱や力のかかり方を調べる作業を速くしました。約1,600倍の高速化です。\n\nLG電子は、ロボット「CLOiD」を実際の工場で動かしました。ロボットを繰り返し改良するための手順も整えています。\n\nカカオモビリティは、ソウルの江南地区での運行経験を生かします。起亜の専用車両を使い、運転手のいないレベル4の自動運転サービスをめざします。\n\n日本の利用者に、今すぐ変わることはありません。",
+  "channel": "NVIDIA公式ブログ",
+  "channelId": "",
+  "channelSlug": "nvidia-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Korea Advances Physical AI Across Industries With NVIDIA",
+  "publishedAt": "2026-11-09T05:00:40+00:00",
+  "generatedAt": "2026-11-09T06:30:30.723908+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/korea-physical-ai-nvidia-samsung-lg-kakao-61e192d8.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "general",
+  "faq": [
+    {
+      "q": "cuDSSは、どんな計算に使うNVIDIAのライブラリですか？",
+      "a": "GPUで疎な線形方程式を直接解くライブラリです。構造解析、回路シミュレーション、流体解析、電磁界解析などに使えます（NVIDIA公式ページ、11/9確認）。"
+    }
+  ],
+  "todayActions": [
+    "自社の解析で時間がかかる工程を洗い出し、cuDSSが対象とする疎な線形計算に当たるか確認する",
+    "サムスンの事例を参考に、AI予測と粗い格子を使った解析の短縮が自社でも成り立つか検討する",
+    "ロボットや自動運転の開発担当者は、NVIDIA Halosの公式ページで対応範囲と安全評価の考え方を確認する"
+  ],
+  "relatedSlugs": [
+    "nvidia-halos-safe-autonomous-vehicle-safety",
+    "nvidia-ai-semiconductor-fab-cases"
+  ],
+  "qualityScore": 90,
+  "sourcePublishedAt": "2026-11-09T05:00:40+00:00",
+  "detectedAt": "2026-11-09T06:20:57+00:00",
+  "layout": "noir",
+  "summaryLine": "サムスンがPhysicsNeMoなどで、チップ解析を約18時間から41秒に短縮した",
+  "insight": [
+    {
+      "text": "18時間から41秒への短縮は、32コアCPUで細かい格子を解いた計算と、GPUで粗い格子を解いた計算を比べた数字です。",
+      "source": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "NVIDIA cuDSS",
+      "url": "https://developer.nvidia.com/cudss",
+      "source": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自社の解析で時間がかかる工程を洗い出し、cuDSSが対象とする疎な線形計算に当たるか確認する",
+      "source": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/",
+      "steps": [
+        "自社の解析で時間のかかる工程を書き出す",
+        "その計算が疎な線形方程式にあたるか確認する",
+        "NVIDIA cuDSSのページで対象を見る"
+      ],
+      "url": "https://developer.nvidia.com/cudss"
+    },
+    {
+      "action": "サムスンの事例を参考に、AI予測と粗い格子を使った解析の短縮が自社でも成り立つか検討する",
+      "source": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/",
+      "steps": [
+        "AIで材料特性を予測できるか確認する",
+        "粗い格子で必要な精度が足りるか検討する",
+        "NVIDIA PhysicsNeMoのページで対応範囲を見る"
+      ],
+      "url": "https://developer.nvidia.com/physicsnemo"
+    },
+    {
+      "action": "ロボットや自動運転の開発担当者は、NVIDIA Halosの公式ページで対応範囲と安全評価の考え方を確認する",
+      "source": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/",
+      "steps": [
+        "NVIDIA Halosのページを開く",
+        "開発と検証の安全を支える技術の範囲を見る",
+        "自社の開発工程と照らし合わせる"
+      ],
+      "url": "https://www.nvidia.com/en-us/ai-trust-center/halos/autonomous-vehicles/"
+    }
+  ],
+  "cause": {
+    "text": "背景には、韓国が製造業や工学の強みを生かし、フィジカルAIを開発から実際の生産へ移す動きを進めていることがあります。NVIDIAの公式ブログは、これらの取り組みを紹介しています。",
+    "status": "background",
+    "source": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/"
+  },
+  "worries": [
+    {
+      "q": "日本の料金やサービスは変わりますか？",
+      "a": "公式ブログには、日本の利用者向けの提供や料金の記載はありません。紹介されているのは、韓国の企業との共同開発の取り組みです。",
+      "source": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/",
+      "action": "今すぐ何かする必要はなく、利用中のサービスの公式発表があるかを確認すれば十分です。"
+    },
+    {
+      "q": "サムスンのシミュレーションは、どれくらい速くなったのですか？",
+      "a": "公式ブログでは、32コアCPUで細かい格子を解いた約18時間が、GPUで粗い格子を解いた41秒になったと書かれています。約1,600倍の高速化です。",
+      "source": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/",
+      "action": "自社の解析で比べるときは、格子の細かさと使う計算機を揃えてから、かかる時間を測るのが確実です。"
+    },
+    {
+      "q": "ロボットや自動運転の開発に関係するなら、何を見ればいい？",
+      "a": "公式ブログには、Isaac GR00TやNVIDIA Halosなどの技術が紹介されています。Halosは開発と検証の安全を支える技術と説明されています。",
+      "source": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/",
+      "action": "NVIDIA Halosの公式ページを開き、自社の開発と検証に当たる安全評価の範囲を確認する。"
+    },
+    {
+      "q": "カカオモビリティやLGの取り組みは、いつ実用になりますか？",
+      "a": "レベル4サービスの開始時期や、量産・販売の時期は発表されていません。カカオモビリティは起亜の専用設計車両を対象に開発を進める計画です。",
+      "source": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/",
+      "action": "時期は未発表のため、判断は急がず、NVIDIAや各社の公式発表で続報が出るのを待つのが確実です。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "1,600倍の数字は、比べた条件を見てから",
+    "cause": "なぜ広がっているか、その背景",
+    "steps": "今日、自社で試せること",
+    "desk": "開発者が見る公式の窓口",
+    "worries": "日本での料金や、いつ使えるかの不安"
+  },
+  "depthAt": "2026-11-09T06:34:23+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA公式ブログ",
+    "sourceUrl": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/",
+    "original": "https://blogs.nvidia.com/wp-content/uploads/2026/11/omniverse-overall-ai-day-seoul-1920x1080-1.jpeg",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-09T06:35:47+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.71,
+    "y": 0.547,
+    "box": [
+      0.419,
+      0.094,
+      1.0,
+      1.0
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/korea-physical-ai-nvidia-samsung-lg-kakao-61e192d8.jpg"
+  }
+}

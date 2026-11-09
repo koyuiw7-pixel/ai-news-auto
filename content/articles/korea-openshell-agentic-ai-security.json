@@ -1,0 +1,240 @@
+{
+  "slug": "korea-openshell-agentic-ai-security",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/",
+  "sourceName": "NVIDIA公式ブログ",
+  "title": "現代自動車グループ、AIエージェントの安全実行基盤「OpenShell」を検討　LGは700万人分の韓国人ペルソナを活用",
+  "seoTitle": "OpenShellとは？韓国企業のAIエージェント安全対策",
+  "threadsPost": "AIエージェントを社内で使う企業の担当者に、押さえておきたい話です。\n\n現代自動車グループが、AIエージェントの安全実行基盤「OpenShell」の採用を検討しています。\n韓国のAIセキュリティ企業AIM Intelligenceも、自社基盤との連携を進めます。\n\n社内の業務にAIを任せるなら、安全面で何を重視しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "tradeoff",
+      "question": "社内の業務にAIを任せるなら、安全面で何を重視しますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "AIエージェントに任せる作業は、どこまでなら許せますか？"
+    },
+    {
+      "pattern": "japan",
+      "question": "日本の職場にAIエージェントが入ったら、まず何を任せたいですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "韓国で、AIエージェント（自分で手順を進めるAI）を社内で安全に動かす取り組みが広がっています。現代自動車グループはNVIDIAの「NemoClaw」の設計図と実行環境「OpenShell」を検討しており、LG AI Researchは「K-EXAONE-2.5」のAPI提供を開く方針です。一般の利用者がすぐ使えるものではなく、日本での提供や料金はまだ発表されていません。",
+  "description": "現代自動車グループがNVIDIAのNemoClawとOpenShellを検討し、AIM IntelligenceはStarfortを連携。LGはK-EXAONE-2.5のAPIを開く。700万人の合成ペルソナも解説。",
+  "keywords": [
+    "OpenShell",
+    "NemoClaw",
+    "NVIDIA Nemotron",
+    "AIエージェント セキュリティ",
+    "現代自動車グループ",
+    "AIM Intelligence",
+    "Starfort",
+    "K-EXAONE-2.5",
+    "LG AI Research",
+    "Nemotron-Personas-Korea",
+    "合成ペルソナ"
+  ],
+  "tags": [
+    "AIエージェント",
+    "NVIDIA",
+    "OpenShell",
+    "Nemotron",
+    "AIセキュリティ",
+    "オープンモデル"
+  ],
+  "highlights": [
+    "現代自動車グループがNemoClawの設計図とOpenShell実行環境を検討中",
+    "AIM IntelligenceがStarfortをOpenShellと連携し、悪意ある指示や情報漏えいを検知",
+    "Nemotron-Personas-Koreaは韓国の統計に基づく700万人分の合成ペルソナ"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "企業・開発者",
+    "take": "社内でAIエージェントを検討する担当者は、OpenShellの権限管理の考え方を公式ページで確認するとよいでしょう。",
+    "judgedAt": "2026-11-09T06:31:25.684698+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "社内でAIエージェントを導入する担当者は、実行環境の隔離と権限管理が論点になると分かります。",
+      "開発者は、OpenShellとNemotronの公式ページで対応範囲を確認できます。"
+    ]
+  },
+  "body": "日本の一般の利用者に、今すぐ変わることはありません。今回の話は、AIエージェントを社内業務に導入しようとする企業や開発者に関係します。日本での提供や料金は、まだ発表されていません。\n\nAIエージェントは、人の指示を受けて自分で手順を進めるAIです。社内の資料やツールに触れるため、実行環境の安全が課題になります。NVIDIA公式ブログは、韓国でその安全対策と国産モデルの整備が進んでいると紹介しました。\n\n## 現代自動車グループはNemoClawとOpenShellを検討\n\nNVIDIAの公式ブログによると、現代自動車グループは「NemoClaw」の設計図（ブループリント）と、実行環境「OpenShell」を検討しています。目的は、従業員の生産性や企業の業務に使う安全なAIエージェントです。\n\nOpenShellは「NVIDIA Open Agent Safety Platform」の中核部品です。外部から隔離した環境（サンドボックス）でAIを動かし、ポリシー（ルール）に基づいて制御します。守る対象は、機密データ、企業ツールへのアクセス、エージェントの自律的な行動です。\n\nNemoClawについては、サイソクの過去記事で解説しています（[NemoClawの発表](/articles/nvidia-nemoclaw-agent-platform)）。OpenShellはGTC Berlinでも取り上げられました（[GTC Berlinの発表](/articles/nvidia-gtc-berlin-2026-vera-rubin-openshell)）。\n\n## AIM IntelligenceがStarfortをOpenShellに連携\n\n韓国のAIセキュリティ企業AIM Intelligenceは、エージェント制御基盤「Starfort」をOpenShellに統合します。OpenShellの実行時のアクセス制御に、Starfortの検知機能を組み合わせる狙いです。\n\n検知するのは、悪意ある指示と、データの漏えいです。同社は公共エネルギー分野での予備的な概念実証（PoC）も検討しています。企業、産業、ロボットの現場への応用も視野に入れています。\n\nOpenShellは、NVIDIAのページで「デフォルトで拒否し、意図に基づいて許可する」仕組みと説明されています。ポリシーはエージェントの外側で適用され、AIの判断や協力に左右されないとされています（NVIDIA公式ブログ「OpenShell」、11/9確認）。\n\n## LGのK-EXAONE-2.5はAPIを開放、700万人のペルソナで学習\n\nモデル側では、LG AI Researchが「K-EXAONE-2.5」のAPIアクセスを開きます。NVIDIAのNemotronデータセットを使って開発されました。\n\nその1つがNemotron-Personas-Koreaです。韓国の公式統計に基づく、700万人分の完全な合成（架空の）ペルソナのオープンデータセットです。モデル開発者が、学習データや評価を韓国の文脈に合わせるために使います。\n\nNemotronは、特化型で効率的なAIエージェントを作るためのオープンなモデル、データ、技術群です。\n\n## まだ分からないこと\n\n- 現代自動車グループの導入の有無と時期は、まだ発表されていません。\n- K-EXAONE-2.5のAPIの料金や開放時期は、まだ発表されていません。\n- 日本の企業が使える条件は、まだ発表されていません。\n\n## 開発者・企業の担当者が確かめること\n\nOpenShellとNemotronは、NVIDIAの公式ページで案内されています。エージェントの導入を検討する企業は、実行環境の隔離とアクセス制御を、選定の比較項目に入れるとよいでしょう。",
+  "easy": "## ひとことで言うと\n\nAIに仕事を任せる企業が増えるなかで、韓国では「安全に動かす仕組み」と「韓国の事情に合った学習データ」の両方を整える動きが出ています。NVIDIAが公式ブログで紹介しました。\n\n## 安全に動かす仕組み\n\nAIエージェントは、自分で手順を進めるAIです。社内の情報やツールに触れるため、意図しない操作を防ぐ仕組みが要ります。\n\nNVIDIAの「OpenShell」は、AIを隔離した環境で動かし、ルールに沿って権限を管理します。現代自動車グループは、これを検討しています。\n\n## 韓国向けのデータとモデル\n\nLG AI Researchは、「K-EXAONE-2.5」のAPI（アプリから呼び出す仕組み）を開く方針です。\n\n開発には、韓国の公式統計に基づく700万人分の架空の人物データ「Nemotron-Personas-Korea」などが使われました。\n\n日本での提供や料金は、まだ発表されていません。",
+  "channel": "NVIDIA公式ブログ",
+  "channelId": "",
+  "channelSlug": "nvidia-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Korea’s AI Ecosystem Advances and Secures Agentic AI With NVIDIA",
+  "publishedAt": "2026-11-09T05:00:39+00:00",
+  "generatedAt": "2026-11-09T06:31:25.684688+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/korea-openshell-agentic-ai-security-37c8d869.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "general",
+  "faq": [
+    {
+      "q": "OpenShellは、AIの判断に頼らずに制限をかけられますか？",
+      "a": "NVIDIAのページによると、OpenShellはポリシーをエージェントの処理の外側で適用します。AIの判断や協力に左右されない設計とされています。"
+    },
+    {
+      "q": "Nemotronは音声や画像にも対応していますか？",
+      "a": "NVIDIAのページでは、Nemotron 3.5 Super VLが文字と視覚の理解を組み合わせ、Nemotron Speechが音声認識と音声合成などを扱うと紹介されています。"
+    }
+  ],
+  "todayActions": [
+    "社内でAIエージェントを検討しているなら、OpenShellの公式ページで実行環境の隔離とアクセス制御を確かめる",
+    "韓国語や韓国市場向けのAIを作る開発者は、Nemotron-Personas-Koreaのデータセットで内容を確かめる"
+  ],
+  "relatedSlugs": [
+    "nvidia-nemoclaw-agent-platform",
+    "nvidia-gtc-berlin-2026-vera-rubin-openshell"
+  ],
+  "qualityScore": 82,
+  "factSources": [
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-02"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-09T05:00:39+00:00",
+  "detectedAt": "2026-11-09T06:20:57+00:00",
+  "layout": "noir",
+  "summaryLine": "現代自動車グループがNemoClawの設計図とOpenShell実行環境を検討中",
+  "insight": [
+    {
+      "text": "OpenShellは、機密データ、企業ツールへのアクセス、エージェントの自律的な行動の3つを守る対象としています。",
+      "source": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "NVIDIA OpenShell 公式ページ",
+      "url": "https://www.nvidia.com/en-us/ai/openshell/",
+      "source": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/",
+      "note": "ブログ末尾に、OpenShellで安全なエージェントを作り始めることへの案内があります。"
+    },
+    {
+      "name": "Nemotron-Personas-Korea（データセット）",
+      "url": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Korea",
+      "source": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "社内でAIエージェントを検討しているなら、OpenShellの公式ページで実行環境の隔離とアクセス制御を確かめる",
+      "source": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/",
+      "steps": [
+        "ブログ本文の「NVIDIA OpenShell」リンクを開く",
+        "sandboxed execution（サンドボックス）の説明を読む",
+        "policy-based controlsの説明で、アクセス制御を確かめる"
+      ],
+      "url": "https://www.nvidia.com/en-us/ai/openshell/"
+    },
+    {
+      "action": "韓国語や韓国市場向けのAIを作る開発者は、Nemotron-Personas-Koreaのデータセットで内容を確かめる",
+      "source": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/",
+      "steps": [
+        "ブログ本文の「Nemotron-Personas-Korea」リンクを開く",
+        "完全な合成（架空）のペルソナという説明を読む",
+        "学習データや評価を韓国の文脈に合わせる用途を確かめる"
+      ],
+      "url": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Korea"
+    }
+  ],
+  "cause": {
+    "text": "AIエージェントが担う仕事は増えており、ブログは、それに合わせて有能なオープンモデルと安全性が並んで進む必要があると述べています。OpenShellは、サンドボックスで隔離した実行とポリシーに基づく制御で、機密データや企業ツールへのアクセスを守る役割です。",
+    "status": "background",
+    "source": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/"
+  },
+  "worries": [
+    {
+      "q": "一般の利用者の生活にも影響はある？",
+      "a": "ブログは、社内でAIエージェントを安全に動かす基盤の話として紹介しています。一般の利用者向けの提供や料金は、このページには書かれていません。",
+      "source": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/",
+      "action": "一般向けの提供が始まるまでは、公式発表を確認して待つのが確実です。"
+    },
+    {
+      "q": "社内でAIを使うと、機密データは守られる？",
+      "a": "OpenShellは、外部から隔離したサンドボックスでAIを動かし、ポリシーに基づいて機密データや企業ツールへのアクセスを制御すると説明されています。",
+      "source": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/",
+      "action": "導入を検討するなら、実行環境の隔離（サンドボックス）とアクセス制御の有無を比較項目に入れる。"
+    },
+    {
+      "q": "悪意ある指示やデータ漏えいは止められる？",
+      "a": "AIM IntelligenceのStarfortは、OpenShellの実行時アクセス制御と組み合わせ、悪意ある指示とデータ漏えいを検知する狙いです。防御の効果を示す数値は発表されていません。",
+      "source": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/",
+      "action": "導入候補のAI基盤に、悪意ある指示やデータ漏えいを検知する機能があるか、提供元に確かめる。"
+    },
+    {
+      "q": "K-EXAONE-2.5は、いつ、いくらで使える？",
+      "a": "LG AI Researchが、K-EXAONE-2.5のAPIアクセスを開く方針と書かれています。料金や開放時期は発表されていません。",
+      "source": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/",
+      "action": "料金と開放時期が発表されるまで、業務の計画には入れず、公式発表を確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "社内でAIエージェントを導入すべき？",
+      "situation": "社内でAIエージェントを検討している",
+      "recommend": "急ぐ必要はなく、比べる項目を決めてから進める",
+      "reason": "OpenShellは、サンドボックスとポリシー制御で機密データや企業ツールへのアクセスを守る仕組みと説明されています。ただし、現代自動車グループの導入の有無や時期は発表されていません。",
+      "source": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/"
+    },
+    {
+      "question": "K-EXAONE-2.5のAPIを業務で使う？",
+      "situation": "日本で業務に使いたい",
+      "recommend": "料金と日本での提供条件が出るまで待つ",
+      "reason": "LG AI ResearchがK-EXAONE-2.5のAPIアクセスを開くと書かれています。ただし、料金や日本での提供は、ブログ時点では発表されていません。",
+      "source": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "AIに守らせるものは3つある",
+    "cause": "なぜ今この動きがあるのか",
+    "steps": "今日やるなら、まず確かめる2つ",
+    "desk": "公式の確認先はどこか",
+    "worries": "社内利用の安全性と、日本での提供は？",
+    "guide": "社内で使うか、待つか決める目安"
+  },
+  "depthAt": "2026-11-09T06:33:56+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA公式ブログ",
+    "sourceUrl": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/",
+    "original": "https://blogs.nvidia.com/wp-content/uploads/2026/11/korea-agentic-ai-1920x1080-1.jpg",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-09T06:35:44+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.472,
+    "y": 0.533,
+    "box": [
+      0.044,
+      0.178,
+      0.9,
+      0.889
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/korea-openshell-agentic-ai-security-37c8d869.jpg"
+  }
+}

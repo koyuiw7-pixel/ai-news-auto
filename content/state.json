@@ -4087,6 +4087,12 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu2/118/1422482_00026.html"
     },
+    "0acb592b66ef13d3": {
+      "at": "2026-11-09T06:31:39.953038+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（campaign）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001294.html"
+    },
     "0ad26ba6b13d4d29": {
       "at": "2026-10-29T18:10:45.707932+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4849,6 +4855,12 @@
       "reason": "followup: 新しい事実なし（salesforce-aiforce-claude-slack）",
       "skipped": true,
       "url": "https://www.salesforce.com/jp/news/stories/japan-claudeforce-and-slackforce-demo/"
+    },
+    "14a41cb4200d3186": {
+      "at": "2026-11-09T06:22:21.556552+00:00",
+      "reason": "prefilter: 不動産の話題ではない",
+      "skipped": true,
+      "url": "https://lifull.com/news/50923/"
     },
     "14edc9d04c13d866": {
       "at": "2026-10-27T03:06:51.678936+00:00",
@@ -5632,6 +5644,17 @@
       "skipped": true,
       "url": "https://www.mof.go.jp/policy/international_policy/reference/itn_transactions_in_securities/week.pdf"
     },
+    "20272b0c9851f415": {
+      "at": "2026-11-09T06:23:56.280817+00:00",
+      "costUsd": 0.0112,
+      "intent": "query",
+      "mix": "money",
+      "model": "gemini-3.5-flash",
+      "score": 88,
+      "section": "investment",
+      "slug": "rakuten-card-revo-fee-calc-postponed",
+      "url": "https://www.rakuten-card.co.jp/info/news/20261106/"
+    },
     "204064d4bd48e1b5": {
       "at": "2026-10-28T19:13:04.598761+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5934,6 +5957,17 @@
       "reason": "prefilter: お知らせ・統計の転載（statistics）",
       "skipped": true,
       "url": "http://www.boj.or.jp/statistics/boj/other/mbt/mbt2610.pdf"
+    },
+    "24e1b90daad25d3e": {
+      "at": "2026-11-09T06:28:26.978433+00:00",
+      "costUsd": 0.0059,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "gemini-3.5-flash-lite",
+      "score": 90,
+      "section": "business",
+      "slug": "mlit-gaiko-kaiun-kentoukai-3",
+      "url": "http://www.mlit.go.jp/report/press/kaiji02_hh_000298.html"
     },
     "2504bf7e57b1f9b6": {
       "at": "2026-10-26T18:32:34.996029+00:00",
@@ -7096,6 +7130,18 @@
       "reason": "prefilter: 価値の薄いお知らせ（採用）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_syokai/saiyou/117566.html"
+    },
+    "38995d3fca35a803": {
+      "at": "2026-11-09T06:30:38.024126+00:00",
+      "costUsd": 0.0017,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 90,
+      "section": "ai",
+      "slug": "korea-physical-ai-nvidia-samsung-lg-kakao",
+      "url": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/"
     },
     "38ad10ff8a82e2cd": {
       "at": "2026-10-29T18:13:41.962809+00:00",
@@ -8736,6 +8782,18 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000005965.000054842.html"
     },
+    "51bc8200bfc724aa": {
+      "at": "2026-11-09T06:31:39.379307+00:00",
+      "costUsd": 0.0017,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 82,
+      "section": "ai",
+      "slug": "korea-openshell-agentic-ai-security",
+      "url": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/"
+    },
     "51f1b28efd92ae71": {
       "at": "2026-10-29T15:23:59.080945+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8884,6 +8942,17 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/c268b87edb0093f3a33980a1ef1e24c8e749b816"
     },
+    "53fd9de1b8351176": {
+      "at": "2026-11-09T06:27:43.368252+00:00",
+      "costUsd": 0.0099,
+      "intent": "query",
+      "mix": "money",
+      "model": "gemini-3.5-flash-lite",
+      "score": 90,
+      "section": "business",
+      "slug": "keisei-fare-revision-2026",
+      "url": "http://www.mlit.go.jp/report/press/tetsudo02_hh_000223.html"
+    },
     "54257e88cbc0c8a4": {
       "at": "2026-11-07T00:31:58.910688+00:00",
       "model": "gemini-3.5-flash",
@@ -8942,6 +9011,12 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.uniqlo.com/jp/ja/contents/corp/press-release/2026/11/uniqlo_and_cecilie_bahnsen_202.html"
+    },
+    "55328b65857ec447": {
+      "at": "2026-11-09T06:28:27.069136+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77183.html"
     },
     "55a6c6aa2846faa5": {
       "at": "2026-11-07T04:51:50.078598+00:00",
@@ -9171,6 +9246,12 @@
       "section": "ai",
       "slug": "microsoft-foundry-video-models-fal",
       "url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/building-the-next-generation-of-multimodal-ai-experiences-with-fal-in-microsoft-/4570032"
+    },
+    "592630e2bf29ada5": {
+      "at": "2026-11-09T06:28:27.069378+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（議事）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/councils/digital-talent-development-policy/773e7837-8bf8-4599-bbba-c31e813c4ad7"
     },
     "5964dfc41cde291a": {
       "at": "2026-11-05T12:03:46.685984+00:00",
@@ -10647,6 +10728,12 @@
       "section": "ai",
       "slug": "google-ai-learning-era-guided-learning",
       "url": "https://blog.google/products-and-platforms/products/education/ai-learning-era-2026/"
+    },
+    "6ec483194dbe57fb": {
+      "at": "2026-11-09T06:28:27.069328+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu28/001/kaisai/mext_00023.html"
     },
     "6f129da4644f27ae": {
       "at": "2026-10-27T03:04:42.977123+00:00",
@@ -12419,6 +12506,19 @@
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_syokai/saiyou/detail/02gyosei01_04000556.html"
+    },
+    "8b5360eb03d3652c": {
+      "at": "2026-11-09T06:22:21.530712+00:00",
+      "costUsd": 0.0017,
+      "intent": "neutral",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "tech-gadget",
+      "slug": "sumitomo-life-vitality-data-leak",
+      "url": "https://www.nttdata.com/global/ja/news/release/2026/110900"
     },
     "8b5f34b85bf1bd76": {
       "at": "2026-11-02T05:31:19.966498+00:00",
@@ -14445,6 +14545,12 @@
       "reason": "quality: easy_markdown が「## ひとことで言うと」から始まっていない",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/lend-and-borrow-resources-across-teams-with-aws-batchs-quota-management-for-sagemaker-training-jobs/"
+    },
+    "aa9599aa55e9bb71": {
+      "at": "2026-11-09T06:28:27.069191+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/about/member"
     },
     "aad9d7bdcca6307e": {
       "at": "2026-11-06T19:42:20.591184+00:00",
@@ -19175,6 +19281,12 @@
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/kanbo/tiho/261030.html"
     },
+    "f7cba3a07e21d73a": {
+      "at": "2026-11-09T06:28:27.069229+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（調達）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/procurement/invitation-answer"
+    },
     "f7e9e3d6fd2caec9": {
       "at": "2026-10-27T03:06:38.812818+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（公募）",
@@ -19461,6 +19573,12 @@
       "skipped": true,
       "url": "https://www.morinagamilk.co.jp/release/newsentry-4756.html"
     },
+    "fc4f7f1f1fbddc61": {
+      "at": "2026-11-09T06:28:27.069285+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/policies/genai/0ef07948-2f5d-4b45-8ebe-ea974c20a3ac"
+    },
     "fc595589053fff86": {
       "at": "2026-10-28T21:51:39.239838+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -19706,6 +19824,17 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102908"
     },
+    "ffa019fe845f5dde": {
+      "at": "2026-11-09T06:29:42.844737+00:00",
+      "costUsd": 0.0152,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "public",
+      "slug": "soumu-ict-economics-r8-01",
+      "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/keizaiken/R8_01.html"
+    },
     "ffaa4a29c645a46c": {
       "at": "2026-10-27T18:54:52.268605+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -19749,14 +19878,6 @@
       "score": 80,
       "slug": "furusato-nozei-points-ban-2025",
       "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/about.html",
-      "writer": "muse"
-    },
-    "muse-35a2aab4ea": {
-      "at": "2026-11-09T06:28:30.034941+00:00",
-      "mix": "life",
-      "score": 90,
-      "slug": "japan-influenza-week44-2026",
-      "url": "https://www.mhlw.go.jp/content/001766066.pdf",
       "writer": "muse"
     },
     "muse-38a132d9ab": {
@@ -19805,14 +19926,6 @@
       "score": 88,
       "slug": "child-allowance-third-child-monthly-30000",
       "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
-      "writer": "muse"
-    },
-    "muse-6a3122c94a": {
-      "at": "2026-11-09T06:26:38.975368+00:00",
-      "mix": "money",
-      "score": 82,
-      "slug": "tokyo-electricity-4-plans-compare",
-      "url": "https://www.tepco.co.jp/ep/private/plan/old01.html",
       "writer": "muse"
     },
     "muse-7b39ef6a89": {
@@ -19878,336 +19991,25 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
+    },
+    "muse-35a2aab4ea": {
+      "at": "2026-11-09T06:28:30.034941+00:00",
+      "mix": "life",
+      "score": 90,
+      "slug": "japan-influenza-week44-2026",
+      "url": "https://www.mhlw.go.jp/content/001766066.pdf",
+      "writer": "muse"
+    },
+    "muse-6a3122c94a": {
+      "at": "2026-11-09T06:26:38.975368+00:00",
+      "mix": "money",
+      "score": 82,
+      "slug": "tokyo-electricity-4-plans-compare",
+      "url": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T18:25:12.950819+00:00",
-      "attempt": 1,
-      "id": "bc8f9eac19663ff6",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "答えになっていない見出し（「外部サービスとの連携を調べる　日本の利用者への変更は発表なし」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
-      ],
-      "readability": {
-        "avg_paragraph": 96.2,
-        "avg_sentence": 46.3,
-        "long_share": 0.185,
-        "max_paragraph": 178,
-        "paragraphs": 13,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "Partnering with Hacktron to find vulnerabilities in OpenAI’s systems"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T18:25:36.755698+00:00",
-      "attempt": 1,
-      "id": "bc8f9eac19663ff6",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "openai-news",
-      "title": "Partnering with Hacktron to find vulnerabilities in OpenAI’s systems"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T18:26:07.518310+00:00",
-      "attempt": 2,
-      "id": "bc8f9eac19663ff6",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "文が長い（1文の平均 45.6字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 94.5,
-        "avg_sentence": 45.6,
-        "long_share": 0.138,
-        "max_paragraph": 137,
-        "paragraphs": 14,
-        "sentences": 29
-      },
-      "score": 88,
-      "source": "openai-news",
-      "title": "Partnering with Hacktron to find vulnerabilities in OpenAI’s systems",
-      "warnings": [
-        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T18:26:27.495763+00:00",
-      "attempt": 0,
-      "id": "bc8f9eac19663ff6",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.4,
-        "avg_sentence": 44.5,
-        "long_share": 0.133,
-        "max_paragraph": 137,
-        "paragraphs": 14,
-        "sentences": 30
-      },
-      "score": 88,
-      "source": "openai-news",
-      "title": "Partnering with Hacktron to find vulnerabilities in OpenAI’s systems",
-      "warnings": [
-        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T18:54:11.329811+00:00",
-      "attempt": 1,
-      "id": "8b68aefd38003561",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "cyberagent-developers",
-      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T18:54:54.649660+00:00",
-      "attempt": 1,
-      "id": "8b68aefd38003561",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 50.3字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 126.9字・最長 313字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 126.9,
-        "avg_sentence": 50.3,
-        "long_share": 0.321,
-        "max_paragraph": 313,
-        "paragraphs": 21,
-        "sentences": 53
-      },
-      "score": 92,
-      "source": "cyberagent-developers",
-      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（POS・SQL・OKF）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T18:55:28.407680+00:00",
-      "attempt": 0,
-      "id": "8b68aefd38003561",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 83.1,
-        "avg_sentence": 40.3,
-        "long_share": 0.091,
-        "max_paragraph": 191,
-        "paragraphs": 32,
-        "sentences": 66
-      },
-      "score": 93,
-      "source": "cyberagent-developers",
-      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（POS・SQL・OKF）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T18:56:00.114225+00:00",
-      "attempt": 2,
-      "id": "8b68aefd38003561",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く"
-      ],
-      "readability": {
-        "avg_paragraph": 99.4,
-        "avg_sentence": 42.9,
-        "long_share": 0.196,
-        "max_paragraph": 194,
-        "paragraphs": 22,
-        "sentences": 51
-      },
-      "score": null,
-      "source": "cyberagent-developers",
-      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（POS・SQL・OKF）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T18:56:29.622974+00:00",
-      "attempt": 2,
-      "id": "8b68aefd38003561",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く",
-        "題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す"
-      ],
-      "readability": {
-        "avg_paragraph": 129.4,
-        "avg_sentence": 49.9,
-        "long_share": 0.316,
-        "max_paragraph": 258,
-        "paragraphs": 22,
-        "sentences": 57
-      },
-      "score": null,
-      "source": "cyberagent-developers",
-      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（POS・SQL・OKF）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T18:56:56.130931+00:00",
-      "attempt": 2,
-      "id": "8b68aefd38003561",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す"
-      ],
-      "readability": {
-        "avg_paragraph": 155.1,
-        "avg_sentence": 52.4,
-        "long_share": 0.39,
-        "max_paragraph": 331,
-        "paragraphs": 26,
-        "sentences": 77
-      },
-      "score": null,
-      "source": "cyberagent-developers",
-      "title": "Knowledge Catalog で AI エージェントに社内の知識を渡す基盤づくり – ミッション型インターン体験記",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（POS・LLM・SQL）",
-        "調査・統計・研究の記事としては長い（4242字 / 目安2200字まで）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T18:58:25.315365+00:00",
-      "attempt": 1,
-      "id": "9e6e62a6a89b5717",
-      "kind": "ai",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "brainpad-news",
-      "title": "アクティブコア、Agentic Analytics「maruttoDives（マルットダイブス）」の公式サイトを公開"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T18:58:57.959019+00:00",
-      "attempt": 1,
-      "id": "9e6e62a6a89b5717",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "work_money の1項目が長い（92字 / 70字以内）。「マーケティング担当者は、ファイルを投入す…」",
-        "work_money の1項目が長い（104字 / 70字以内）。「ソロプランは月額50,000円（税別・年…」",
-        "見出しが多すぎる（3個 / 本文1986字なら2個まで）。章をまとめて見出しを減らす",
-        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す"
-      ],
-      "readability": {
-        "avg_paragraph": 89.1,
-        "avg_sentence": 44.6,
-        "long_share": 0.25,
-        "max_paragraph": 325,
-        "paragraphs": 22,
-        "sentences": 44
-      },
-      "score": null,
-      "source": "brainpad-news",
-      "title": "アクティブコア、Agentic Analytics「maruttoDives（マルットダイブス）」の公式サイトを公開",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SQL・BI・BPO）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T18:59:31.460202+00:00",
-      "attempt": 2,
-      "id": "9e6e62a6a89b5717",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「すでに分析基盤を使っている会社も、30日間の無料トライアルで試せます」→ 元記事に、既存の分析基盤の有無による無料トライアルの対象条件は書かれておらず、誰に提供されるかについての創作にあたる。",
-        "「ほかの業種向けの提供はまだ決まっていません」→ 元記事は第一弾が流通・小売・サービス業だと述べるのみで、他業種の提供が未定とは書いていない。推測の言い切りである。",
-        "「30日間の無料トライアルで、自社の注文データを使って確かめられます」→ 元記事は「貴社のデータに触れていただければ幸いです」とのみ述べており、注文データを使えるという具体的な条件は書かれていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 88.2,
-        "avg_sentence": 40.5,
-        "long_share": 0.081,
-        "max_paragraph": 167,
-        "paragraphs": 17,
-        "sentences": 37
-      },
-      "score": 80,
-      "source": "brainpad-news",
-      "title": "アクティブコア、Agentic Analytics「maruttoDives（マルットダイブス）」の公式サイトを公開",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SQL・BI・RFM）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T19:00:11.878289+00:00",
-      "attempt": 2,
-      "id": "9e6e62a6a89b5717",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "本文「「分析して終わり？ これから何をするのか、ここで説明しよう。」」→ 元記事のトップページの問いは「分析して終わり？ これから何するの？」で、引用文の文言が変えられている（創作された引用）。",
-        "かんたん版の「判定: 提供状況=available」→ 元記事に「available」という表記はなく、販売開始日（2026年11月2日）から読み取った判定を未説明のまま記載している。"
-      ],
-      "readability": {
-        "avg_paragraph": 106.3,
-        "avg_sentence": 44.9,
-        "long_share": 0.178,
-        "max_paragraph": 253,
-        "paragraphs": 19,
-        "sentences": 45
-      },
-      "score": 88,
-      "source": "brainpad-news",
-      "title": "アクティブコア、Agentic Analytics「maruttoDives（マルットダイブス）」の公式サイトを公開",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SQL・BI・RFM）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-06T19:00:33.418943+00:00",
@@ -26765,6 +26567,350 @@
       "title": "楽天と米AST 、日本における衛星ダイレクト通信構築に向けた新会社「Rakuten AST」を設立",
       "warnings": [
         "初めて出たところで言い換えていない略語（AST・LEO・CIAJ）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:22:21.515753+00:00",
+      "attempt": 1,
+      "id": "8b5360eb03d3652c",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 80.0,
+        "avg_sentence": 38.1,
+        "long_share": 0.095,
+        "max_paragraph": 164,
+        "paragraphs": 10,
+        "sentences": 21
+      },
+      "score": 92,
+      "source": "ntt-news",
+      "title": "当社受託システムにおける個人情報漏えいについて",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T06:22:59.257824+00:00",
+      "attempt": 1,
+      "id": "20272b0c9851f415",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「楽天e-NAVI」（今日やること）→ 元記事にない会員ページ名を追加しており、創作にあたる。",
+        "「システム対応などに万全を期すため」（リード）→ 元記事は「改定にともなう対応に万全を期すため」とあり、「システム」は元記事にない補足。",
+        "「リボ払いを使っていない人や1回払いのみを利用している人には影響ありません」（本文）→ 元記事にない推論を事実のように書いている。",
+        "「手数料率自体（実質年率17.64％など）に変更はありません」（要点・Q&A・本文）→ 元記事は計算方法の改定のみを述べ、率の不変を明言していない。計算例は17.64％を用いているため推論として読める。",
+        "「リボ払いを利用していない会員は特に手続きや対応を行う必要はありません」（Q&A）→ 元記事に明記のない推論。"
+      ],
+      "readability": {
+        "avg_paragraph": 93.5,
+        "avg_sentence": 46.8,
+        "long_share": 0.083,
+        "max_paragraph": 123,
+        "paragraphs": 6,
+        "sentences": 12
+      },
+      "score": 76,
+      "source": "rakuten-card",
+      "title": "お知らせ 【改定日延期】ショッピングリボ払いの包括信用購入あっせんの手数料計算方法改定に関するお知らせ",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 46.8字・60字超の文が 8% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:23:39.821132+00:00",
+      "attempt": 1,
+      "id": "20272b0c9851f415",
+      "kind": "broad",
+      "model": "strike:よくある質問",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.6,
+        "avg_sentence": 48.7,
+        "long_share": 0.111,
+        "max_paragraph": 123,
+        "paragraphs": 5,
+        "sentences": 9
+      },
+      "score": 92,
+      "source": "rakuten-card",
+      "title": "お知らせ 【改定日延期】ショッピングリボ払いの包括信用購入あっせんの手数料計算方法改定に関するお知らせ",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 48.7字・60字超の文が 11% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:23:51.480061+00:00",
+      "attempt": 0,
+      "id": "20272b0c9851f415",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 49.4,
+        "avg_sentence": 44.5,
+        "long_share": 0.1,
+        "max_paragraph": 66,
+        "paragraphs": 9,
+        "sentences": 10
+      },
+      "score": 88,
+      "source": "rakuten-card",
+      "title": "お知らせ 【改定日延期】ショッピングリボ払いの包括信用購入あっせんの手数料計算方法改定に関するお知らせ",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T06:27:01.942529+00:00",
+      "attempt": 1,
+      "id": "53fd9de1b8351176",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「仕事・お金にどう活かせる？」の「通勤や通学をする人…に直接の負担増となります」→ 元記事では通学定期は△11.5%（引き下げ）で、本文・同欄の記述とも矛盾する。",
+        "本文「今回の申請は今後の安全安定輸送に必要な費用や設備の維持を反映したもの」→ この根拠は2023年の新京成電鉄の意見募集資料にある内容で、京成電鉄の今回申請の説明ではない。元記事に無い根拠を京成の申請に当てている。",
+        "リード「正式に認可される見込みです」→ 元記事は運輸審議会へ諮問する予定としか述べておらず、認可の見通しは元記事・確認済みの文脈のどこにも無い。",
+        "リード「普通運賃は14.3%、定期運賃は13.7%引き上げられます」→ 申請段階の改定率であり、確定した引き上げのように読める。",
+        "リード・要点の14.1%は現行の鉄道駅バリアフリー料金加算後との比較だが、リードでは条件（比べる相手・バリアフリー料金の扱い）が示されていない。",
+        "「国土交通省の意見募集を通じて利用者の意見が反映される」→ 元記事は意見を運輸審議会の審議時に報告すると述べるのみで、反映の保証は書かれていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 86.3,
+        "avg_sentence": 50.3,
+        "long_share": 0.25,
+        "max_paragraph": 113,
+        "paragraphs": 7,
+        "sentences": 12
+      },
+      "score": 45,
+      "source": "mlit-press",
+      "title": "京成電鉄株式会社の旅客運賃の上限変更に関するパブリックコメントを実施します",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 50.3字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:27:29.151801+00:00",
+      "attempt": 1,
+      "id": "53fd9de1b8351176",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.2,
+        "avg_sentence": 48.1,
+        "long_share": 0.182,
+        "max_paragraph": 113,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 92,
+      "source": "mlit-press",
+      "title": "京成電鉄株式会社の旅客運賃の上限変更に関するパブリックコメントを実施します",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 48.1字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:27:43.358197+00:00",
+      "attempt": 0,
+      "id": "53fd9de1b8351176",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 66.9,
+        "avg_sentence": 42.5,
+        "long_share": 0.0,
+        "max_paragraph": 104,
+        "paragraphs": 7,
+        "sentences": 11
+      },
+      "score": 90,
+      "source": "mlit-press",
+      "title": "京成電鉄株式会社の旅客運賃の上限変更に関するパブリックコメントを実施します"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:28:05.446636+00:00",
+      "attempt": 1,
+      "id": "24e1b90daad25d3e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 119.5,
+        "avg_sentence": 68.3,
+        "long_share": 0.714,
+        "max_paragraph": 162,
+        "paragraphs": 4,
+        "sentences": 7
+      },
+      "score": 92,
+      "source": "mlit-press",
+      "title": "外航海運に関係する制度・税制の今後のあり方について議論します～「第３回外航海運に関する制度及び税制の見直しに係る有識者検討会」の開催～",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 68.3字・60字超の文が 71% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:28:26.964908+00:00",
+      "attempt": 0,
+      "id": "24e1b90daad25d3e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.2,
+        "avg_sentence": 39.6,
+        "long_share": 0.2,
+        "max_paragraph": 106,
+        "paragraphs": 5,
+        "sentences": 10
+      },
+      "score": 90,
+      "source": "mlit-press",
+      "title": "外航海運に関係する制度・税制の今後のあり方について議論します～「第３回外航海運に関する制度及び税制の見直しに係る有識者検討会」の開催～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T06:28:44.719171+00:00",
+      "attempt": 1,
+      "id": "ffa019fe845f5dde",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文「持続可能な社会を維持するための情報通信の役割について検討が行われました」→ 元記事は議題名しか示しておらず、情報通信の役割を検討したという議論内容は裏付けがない。",
+        "リード「縮む日本における情報通信政策のあり方と経済波及効果の調査方針が示されました」→ 「情報通信政策のあり方」が議論されたとは元記事に書かれていない。",
+        "仕事・お金の欄「物流・製造業で使われるRFID関連の動向に影響を与えます」→ 物流・製造業への言及は元記事になく、「影響を与えます」は根拠のない断定。",
+        "よくある質問「物流や管理などの分野での活用や経済波及効果について今回の研究会で調査方針が議論されました」→ 物流での活用への言及は元記事にない。",
+        "本文「地方都市の持続可能性やRFID技術の経済波及効果に関する議論を行いました」→ 元記事は議題の列挙のみで、議論が行われた内容は確認できない。",
+        "開催日（令和8年10月26日）が本文・見出しのどちらにも書かれていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 131.0,
+        "avg_sentence": 65.5,
+        "long_share": 0.625,
+        "max_paragraph": 174,
+        "paragraphs": 4,
+        "sentences": 8
+      },
+      "score": 55,
+      "source": "soumu",
+      "title": "情報通信経済研究会（令和8年度第1回）",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（RFID）",
+        "読みやすさ: 文が長い（1文の平均 65.5字・60字超の文が 62% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:29:23.931656+00:00",
+      "attempt": 1,
+      "id": "ffa019fe845f5dde",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 123.8,
+        "avg_sentence": 70.7,
+        "long_share": 0.714,
+        "max_paragraph": 174,
+        "paragraphs": 4,
+        "sentences": 7
+      },
+      "score": 88,
+      "source": "soumu",
+      "title": "情報通信経済研究会（令和8年度第1回）",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（RFID）",
+        "読みやすさ: 文が長い（1文の平均 70.7字・60字超の文が 71% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:29:42.825329+00:00",
+      "attempt": 0,
+      "id": "ffa019fe845f5dde",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 104.8,
+        "avg_sentence": 43.7,
+        "long_share": 0.167,
+        "max_paragraph": 147,
+        "paragraphs": 5,
+        "sentences": 12
+      },
+      "score": 92,
+      "source": "soumu",
+      "title": "情報通信経済研究会（令和8年度第1回）",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（RFID）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:30:38.012969+00:00",
+      "attempt": 1,
+      "id": "38995d3fca35a803",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 83.9,
+        "avg_sentence": 41.9,
+        "long_share": 0.179,
+        "max_paragraph": 129,
+        "paragraphs": 14,
+        "sentences": 28
+      },
+      "score": 90,
+      "source": "nvidia-blog",
+      "title": "Korea Advances Physical AI Across Industries With NVIDIA",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TCAD・DRIVE・AGX）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:31:33.951899+00:00",
+      "attempt": 1,
+      "id": "51bc8200bfc724aa",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 100.8,
+        "avg_sentence": 43.2,
+        "long_share": 0.107,
+        "max_paragraph": 136,
+        "paragraphs": 12,
+        "sentences": 28
+      },
+      "score": 82,
+      "source": "nvidia-blog",
+      "title": "Korea’s AI Ecosystem Advances and Secures Agentic AI With NVIDIA",
+      "warnings": [
+        "見出しが60字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GTC・AIM・LG）"
       ]
     }
   ],
