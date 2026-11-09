@@ -54,7 +54,7 @@ export default function CompareOffers({
               data-aff-rank={index + 1}
               className="inline-flex w-full items-center justify-center rounded-lg bg-accent px-4 py-2.5 text-note font-bold text-accent-ink hover:opacity-90 sm:w-auto"
             >
-              公式サイトで見る →
+              公式サイトで見る
             </a>
           </li>
         ))}

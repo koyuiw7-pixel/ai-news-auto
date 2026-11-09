@@ -116,6 +116,12 @@ test("停電の記事はポータブル電源が先、地震・備蓄の記事�
   // 本文中・記事末の枠でも、停電の記事は電源を先に（行動欄に出た分は除く）
   const plan = offerPlanForArticle(outage, []);
   assert.match(plan.rail!.items[0].key, /^(jackery|bluetti)$/);
+  // 実際のページと同じ渡し方（行動欄の商品は除き、場面の一番手だけ右側・記事末の先頭に置く）でも、右側の先頭は電源
+  const page = offerPlanForArticle(outage, real.items.map((x) => x.item.key), [real.items[0].item.key]);
+  assert.equal(page.rail!.items[0].key, real.items[0].item.key);
+  assert.ok(!page.inline || !page.inline.items.some((i) => i.key === real.items[0].item.key), "本文中の枠には重ねない");
+  for (const { pixel } of real.items) if (pixel) assert.ok(!page.rail!.pixels.includes(pixel), "表示の計測は行動欄で数える");
+  assert.ok(real.lead && real.lead.length <= 36, "つなぎの一文はスマホで2行まで");
 });
 
 test("電気代の記事は、まず比べるサービス（エネピ）を先に", () => {

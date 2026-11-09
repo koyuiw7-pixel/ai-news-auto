@@ -30,7 +30,7 @@ export default function RailRanking({
   const hasBook = offer.items.some((i) => i.kind === "book");
 
   return (
-    <aside id={id} data-aff-pos={pos ?? (wide ? "ranking-inline" : "ranking-rail")} aria-label="PR：広告・紹介" className="relative overflow-hidden rounded-2xl border border-ink bg-paper">
+    <aside id={id} data-aff-pos={pos ?? (wide ? "ranking-inline" : "ranking-rail")} aria-label="PR：広告・紹介" className="relative overflow-hidden rounded-2xl border border-line bg-paper">
       <Header offer={offer} wide={wide} title={title ?? offer.headline} />
 
       <RankingBody items={offer.items} visible={3} wide={wide} badge={badge} />
@@ -44,17 +44,15 @@ export default function RailRanking({
 }
 
 function Header({ offer, wide, title }: { offer: Offer; wide: boolean; title: string }) {
+  // 2026-11-09 オーナー「PRってこんな大きく書いてる？みんな」: 黒い帯に大きな「PR 広告・紹介」をやめ、白地の見出し＋右上の小さな「PR」の札にする。
+  // 広告であることは札・aria-label・枠の下の注記で示す（ステマ規制の表示は残す）
   return (
-    <div className={`bg-ink text-paper ${wide ? "px-5 py-4 sm:px-6" : "px-4 py-3.5"}`}>
-      <p className="flex items-center gap-2 text-meta font-bold opacity-75">
-        <span className="rounded border border-current px-1.5 text-meta tracking-wider">PR</span>
-        広告・紹介
-      </p>
-      <p className={`mt-1.5 font-black leading-snug ${wide ? "text-[22px]" : "text-[19px]"}`}>
-        {title}
-      </p>
-      {title !== offer.headline && <p className="mt-1 text-meta leading-snug opacity-85">{offer.headline}</p>}
+    <div className={`flex items-start justify-between gap-3 border-b border-line ${wide ? "px-5 pt-4 pb-3.5 sm:px-6" : "px-4 pt-3.5 pb-3"}`}>
+      <div className="min-w-0">
+        <p className={`font-bold leading-snug text-ink ${wide ? "text-[18px]" : "text-[16px]"}`}>{title}</p>
+        {title !== offer.headline && <p className="mt-0.5 text-meta leading-snug text-ink-soft">{offer.headline}</p>}
+      </div>
+      <span className="mt-0.5 shrink-0 rounded-sm border border-line-strong px-1.5 text-[11px] leading-[18px] font-semibold tracking-wider text-muted">PR</span>
     </div>
   );
 }
-

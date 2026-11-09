@@ -635,12 +635,16 @@ export function keywordProductOffer(article: ArticleSummary): Offer | undefined 
  * 記事ページの広告枠の割り当て。右側と本文中で同じ商品を出さない。
  * 1. 記事に合う話題の広告（関連の高い順） 2. 製品・趣味の記事ならそのカテゴリの商品検索 3. ジャンルの既定の広告
  */
-export function offerPlanForArticle(article: ArticleSummary, exclude: Iterable<string> = []): OfferPlan {
+export function offerPlanForArticle(article: ArticleSummary, exclude: Iterable<string> = [], railLead: Iterable<string> = []): OfferPlan {
   const scored = articleScored(article);
   // 「すぐにできること」の下の PR（lib/action-ad.ts）に出した商品は、ほかの枠に重ねて出さない（表示の計測もその枠で数える）。
   // 除いた結果が空なら、次の候補（製品カテゴリの検索 → ジャンルの既定の広告）に回る
   const skip = new Set(exclude);
   const skipPixels = new Set([...skip].map((key) => partnerItem(key)?.pixel).filter((p): p is string => Boolean(p)));
+  // railLead: 記事の場面（停電など）の一番手。行動欄の PR にも出ているが、右側（PC）・記事末（スマホ）の枠の先頭にも置く
+  // （2026-11-09 オーナー: 停電の記事の右側の先頭が防災セットのままだった）。表示の計測ピクセルは行動欄で数えるので、ここでは足さない
+  const leadKeys = [...railLead];
+  let leadItems: OfferItem[] = [];
   const sources: [boolean, () => Offer | undefined][] = [
     [true, () => (scored.length > 0 ? buildArticleOffer(article, scored, 12) : undefined)],
     [false, () => keywordProductOffer(article)],
@@ -652,6 +656,7 @@ export function offerPlanForArticle(article: ArticleSummary, exclude: Iterable<s
     const built = make();
     if (!built) continue;
     const kept = built.items.filter((item) => !skip.has(item.key));
+    if (scoredSource) leadItems = leadKeys.map((key) => built.items.find((item) => item.key === key)).filter((item): item is OfferItem => Boolean(item));
     if (kept.length === 0) continue;
     full = skip.size ? { ...built, items: kept, pixels: built.pixels.filter((p) => !skipPixels.has(p)) } : built;
     fromScored = scoredSource;
@@ -671,7 +676,7 @@ export function offerPlanForArticle(article: ArticleSummary, exclude: Iterable<s
     const topics = new Set(shown.map((item) => item.topic));
     return pool.filter((item) => !taken.includes(item) && topics.has(item.topic)).slice(0, MAX_ITEMS);
   };
-  const railItems = [...railShown, ...spare(railShown, [...railShown, ...inlineShown])];
+  const railItems = [...leadItems, ...railShown, ...spare(railShown, [...railShown, ...inlineShown])];
   const inlineItems = [...inlineShown, ...spare(inlineShown, [...railItems, ...inlineShown])];
   const offer = boxOffer(full, pool, base);
   const rail = boxOffer(full, railItems, base);

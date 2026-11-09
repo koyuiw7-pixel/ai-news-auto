@@ -125,28 +125,27 @@ export default function RankingBody({
 }
 
 function First({ item, wide, badge, onClick, now }: { item: OfferItem; wide: boolean; badge: string; onClick: (item: OfferItem) => void; now: number | null }) {
-  const reason = reasonOf(item);
+  const reason = item.pitch?.point ?? reasonOf(item);
+  const cta = item.pitch?.cta ?? (item.cta === "公式サイトで見る" ? "料金と条件を見る" : item.cta);
+  const price = catalogPriceText(item, now);
   return (
     <a
       href={item.url}
       target="_blank"
       rel="sponsored nofollow noopener noreferrer"
       data-aff-rank={1}
+      aria-label={`${badge}：${item.name}`}
       onClick={() => onClick(item)}
       className={`group block ${wide ? "p-5 sm:p-6" : "border-b border-line p-4"}`}
     >
-      <span className="flex items-center gap-2">
-        {/* 赤は速報だけの色（2026-11-03 の点検: 「紹介」の札が速報と同じ赤だった）。広告の札は紺と黒にする */}
-        <span className="font-display text-[34px] leading-none text-accent">1</span>
-        <span className="rounded-sm bg-ink px-2.5 py-1 text-badge font-bold text-paper">{badge}</span>
-        {item.label && <span className="text-meta font-bold text-accent">{item.label}</span>}
-      </span>
+      {/* 2026-11-09: 「1」の大きな数字と黒い「紹介」の札をやめ、商品の種類（label）だけを小さく出す。並びは閲覧履歴で変わるので順位とは言わない */}
+      {item.label && <span className="block text-[12px] font-bold text-accent">{item.label}</span>}
 
-      <span className={wide ? "mt-3 grid gap-5 sm:grid-cols-[200px_minmax(0,1fr)]" : "block"}>
+      <span className={wide ? "mt-2 grid gap-5 sm:grid-cols-[180px_minmax(0,1fr)]" : "block"}>
         <span className="block">
         <ProductImage
           item={item}
-          className={`rounded-xl border border-line ${wide ? "aspect-square" : "mt-2.5 aspect-[4/3]"}`}
+          className={`rounded-xl border border-line ${wide ? "aspect-square" : "mt-2 aspect-[16/10]"}`}
           pad={item.kind === "book" ? "p-5" : "p-3"}
           // 先読みすると本文の LCP と取り合う（スマホでは右枠はページの最下部）ので遅延読み込みのまま
         />
@@ -154,29 +153,33 @@ function First({ item, wide, badge, onClick, now }: { item: OfferItem; wide: boo
         </span>
         <span className={`flex min-w-0 flex-col ${wide ? "" : "mt-2.5"}`}>
           <span className="line-clamp-2 text-[15px] font-bold leading-[1.5] text-ink group-hover:underline">{item.name}</span>
-          {reason && (
-            <span className="mt-1.5 rounded-lg bg-surface px-2.5 py-2 text-note leading-[1.6] text-ink-soft">
-              <span className="font-bold text-ink">注目する理由：</span>
-              {reason}
+          {item.pitch?.fit && (
+            <span className="mt-1.5 block text-note leading-[1.6] text-ink-soft">
+              <span className="mr-1.5 rounded-sm bg-surface px-1.5 py-0.5 text-[11px] font-bold text-ink">向く人</span>
+              {item.pitch.fit}
             </span>
           )}
+          {reason && <span className="mt-1.5 block text-note leading-[1.6] text-ink-soft">{reason}</span>}
           {item.facts && item.facts.length > 0 && (
             <span className="mt-2 flex flex-wrap gap-1.5" aria-label="主な仕様">
               {item.facts.map((fact) => <span key={fact} className="rounded-md border border-line bg-paper px-2 py-1 text-meta font-semibold leading-snug text-ink-soft">{fact}</span>)}
             </span>
           )}
-          {item.caution && <span className="mt-2 block text-note leading-[1.65] text-ink-soft">{item.caution}</span>}
+          {item.caution && <span className="mt-2 block text-meta leading-[1.6] text-muted">{item.caution}</span>}
           {item.activeUntil && <span className="mt-2 block text-meta font-bold text-ink-soft">販売終了予定：{new Intl.DateTimeFormat("ja-JP", { timeZone: "Asia/Tokyo", month: "numeric", day: "numeric", hour: "numeric", minute: "2-digit", hourCycle: "h23" }).format(new Date(item.activeUntil))}（変更の場合あり）</span>}
           <span className="mt-1.5">
             <Rating item={item} />
           </span>
-          <span className="mt-1.5 flex items-baseline justify-between gap-2">
-            <span className="text-[23px] font-bold tabular-nums tracking-normal text-ink">{catalogPriceText(item, now)}</span>
-            <span className="text-meta text-muted">{item.shop}</span>
+          {price && (
+            <span className="mt-1.5 flex items-baseline justify-between gap-2">
+              <span className="text-[20px] font-bold tabular-nums tracking-normal text-ink">{price}</span>
+              <span className="text-meta text-muted">{item.shop}</span>
+            </span>
+          )}
+          <span className="mt-2.5 flex h-11 items-center justify-center gap-1 rounded-lg bg-accent text-note font-bold text-accent-ink transition-opacity group-hover:opacity-90 motion-reduce:transition-none">
+            {cta}
           </span>
-          <span className="mt-2.5 flex h-12 items-center justify-center gap-1.5 rounded-md bg-accent text-note font-bold text-accent-ink shadow-card transition-transform group-hover:-translate-y-px motion-reduce:transition-none">
-            {item.cta}
-          </span>
+          {!price && <span className="mt-1.5 block text-center text-meta text-muted">{item.shop}</span>}
         </span>
       </span>
     </a>
@@ -184,6 +187,7 @@ function First({ item, wide, badge, onClick, now }: { item: OfferItem; wide: boo
 }
 
 function Row({ item, rank, onClick, now }: { item: OfferItem; rank: number; onClick: (item: OfferItem) => void; now: number | null }) {
+  const price = catalogPriceText(item, now);
   return (
     <li className="border-b border-line last:border-b-0">
       <a
@@ -192,23 +196,20 @@ function Row({ item, rank, onClick, now }: { item: OfferItem; rank: number; onCl
         rel="sponsored nofollow noopener noreferrer"
         data-aff-rank={rank}
         onClick={() => onClick(item)}
-        className="group grid grid-cols-[22px_72px_minmax(0,1fr)] items-center gap-3 px-4 py-3.5 hover:bg-surface"
+        className="group grid grid-cols-[64px_minmax(0,1fr)] items-center gap-3 px-4 py-3 hover:bg-surface"
       >
-        <span className="font-display text-[22px] leading-none text-ink">{rank}</span>
-        <ProductImage item={item} className="size-[72px] rounded-lg border border-line" pad="p-1.5" compact />
+        <ProductImage item={item} className="size-16 rounded-lg border border-line" pad="p-1.5" compact />
         <span className="min-w-0">
-          {item.label && <span className="block text-meta font-bold text-accent">{item.label}</span>}
+          {item.label && <span className="block text-[12px] font-bold text-accent">{item.label}</span>}
           <span className="line-clamp-2 text-meta font-bold leading-snug text-ink group-hover:underline">{item.name}</span>
-          {item.caution && <span className="mt-1 block text-meta leading-snug text-ink-soft">{item.caution}</span>}
+          {item.pitch?.fit && <span className="mt-0.5 block text-[12px] leading-snug text-ink-soft">向く人：{item.pitch.fit}</span>}
+          {item.caution && <span className="mt-1 block text-[12px] leading-snug text-muted">{item.caution}</span>}
           <span className="mt-0.5 block">
             <Rating item={item} size={11} />
           </span>
-          <span className="mt-1 flex items-center justify-between gap-2">
-            <span className="text-note font-bold tabular-nums tracking-normal text-ink">{catalogPriceText(item, now)}</span>
-            <span className="shrink-0 rounded-sm bg-ink px-2.5 py-1 text-badge font-bold text-paper group-hover:opacity-85">
-              見る
-            </span>
-          </span>
+          {price && <span className="mt-1 block text-note font-bold tabular-nums tracking-normal text-ink">{price}</span>}
+          {/* 矢印の印は付けない（2026-11-09 オーナー）。押した先で分かることを文字で */}
+          <span className="mt-1 block text-[12px] font-bold text-accent underline underline-offset-2">{item.pitch?.cta ?? (item.cta === "公式サイトで見る" ? "料金と条件を見る" : item.cta)}</span>
         </span>
       </a>
     </li>

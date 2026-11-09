@@ -217,6 +217,7 @@ export default async function ArticlePage({ params }: Props) {
   const { offer: offerAll, rail: offer, inline: inlineOffer } = offerPlanForArticle(
     article,
     [...(actionAd?.items ?? []), ...(compareOffers?.items ?? [])].map((x) => x.item.key),
+    actionAd?.intent ? actionAd.items.slice(0, 1).map((x) => x.item.key) : [],
   );
   // ニュース記事 → 同じ話題の比較記事への「次に読む」のカード（自分たちの記事への案内。広告の枠には数えない）
   const funnel = funnelForArticle(article, getAllArticles());

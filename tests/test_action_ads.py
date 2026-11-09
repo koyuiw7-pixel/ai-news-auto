@@ -133,6 +133,10 @@ class PitchTest(unittest.TestCase):
         for rule in a8_import.ACTION_ADS:
             with self.subTest(rule=rule["key"]):
                 self.assertTrue(rule.get("lead"))
+                # スマホの囲みで2行まで（2026-11-09 オーナー承認時の条件）。「〜しましょう」は使わない（A17）
+                for lead in [rule["lead"], *[i["lead"] for i in rule.get("intents", []) if i.get("lead")]]:
+                    self.assertLessEqual(len(lead), 36)
+                    self.assertNotIn("しましょう", lead)
                 self.assertNotRegex(rule["lead"], HYPE)
                 for intent in rule.get("intents", []):
                     re.compile(intent["match"])
@@ -231,6 +235,14 @@ class AdPlacementUpgradeTest(unittest.TestCase):
         self.assertIn("aspect-[6/5]", src)
         self.assertIn("ad.reason", src)
         self.assertIn("<Pixels", src)
+
+    def test_ad_cards_have_no_arrow_marks(self):
+        # 2026-11-09 オーナー「→みたいな印はいらない」
+        for path in ("components/ActionAd.tsx", "components/rail/RankingBody.tsx", "components/rail/RailRanking.tsx", "components/CompareOffers.tsx"):
+            src = (ROOT / path).read_text(encoding="utf-8")
+            code = "\n".join(line for line in src.splitlines() if not line.strip().startswith(("*", "//", "{/*", "/**")))
+            with self.subTest(path=path):
+                self.assertNotRegex(code, "[→›]")
 
     def test_pages_keep_inline_offer_next_to_action_ad(self):
         # 行動欄そばの PR がある記事でも、本文の途中の商品枠を出す（以前は記事末に回して、多くの記事で消えていた）
