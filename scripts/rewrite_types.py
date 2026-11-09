@@ -254,8 +254,8 @@ def _write_with(model: str):
     return _Ctx()
 
 
-def rewrite(slug: str, attempts: int = 2) -> tuple[dict | None, dict]:
-    """(新しい記事 or None, 報告)"""
+def rewrite(slug: str, attempts: int = 2, focus: str = "") -> tuple[dict | None, dict]:
+    """(新しい記事 or None, 報告)。focus は書き直しで特に守らせる指示（scripts/search_refresh.py の「検索の答えを先に」。台帳 A68）"""
     path = ARTICLES_DIR / f"{slug}.json"
     old = json.loads(path.read_text("utf-8"))
     if slug in corrected_slugs() or CORRECTION_RE.search(old.get("body") or "") or old.get("refreshMode") == "editorial":
@@ -275,6 +275,8 @@ def rewrite(slug: str, attempts: int = 2) -> tuple[dict | None, dict]:
     voice_key, voice_text = m.pick_voice()
     genre, system, prompt, schema, kind, context, bundle = w.compose_with_facts(item, text, lane, related, voice_text, page)
     source_text = f"{w.source_header(item)}\n\n{text}"
+    if focus:
+        prompt = prompt + "\n\n" + focus
     report["newsType"] = item.get("newsType")
     record, verdict = None, {}
     for attempt in range(1, attempts + 1):

@@ -351,6 +351,14 @@ jobs:
             python scripts/story.py mark --days 7 | tail -20
           fi
 
+      # 新しい名前の「〜とは」の記事を名前ごとに1本にし、ほかの記事の本文の最初の1か所から結ぶ（scripts/canonical_names.py。台帳 A68。LLM なし）
+      - name: Link names to their canonical explainer
+        continue-on-error: true
+        run: |
+          if [ -n "$(git status --porcelain content/articles)" ]; then
+            python scripts/canonical_names.py link --days 7 | tail -10
+          fi
+
       # Google Discover に向く記事に印（discoverCandidate）を付ける（1日5本まで・大きな画像・題名に数字・あおりなし。台帳 A57。LLM なし）
       - name: Discover candidates
         if: ${{ !startsWith(inputs.fast_url || '', 'https://www.data.jma.go.jp/') }}

@@ -22,7 +22,7 @@ export default function PeopleIndex() {
           <li key={p.slug}>
             <Link href={`/people/${p.slug}`} className="block rounded-xl border border-line p-4 hover:border-ink sm:p-5">
               <span className="block text-[17px] font-bold text-ink">{p.nameJa}（{p.name}）</span>
-              <span className="mt-1 block text-meta text-muted">{p.organization} {p.jobTitle} ・ 記事 {personArticles(p).length}本</span>
+              <span className="mt-1 block text-meta text-muted">{p.organization} {p.jobTitle}{personArticles(p).length > 0 ? ` ・ 記事 ${personArticles(p).length}本` : ""}</span>
             </Link>
           </li>
         ))}

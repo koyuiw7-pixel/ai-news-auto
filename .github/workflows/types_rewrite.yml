@@ -56,6 +56,18 @@ jobs:
           SLUGS: ${{ inputs.slugs }}
         run: |
           timeout 4800 python -u scripts/rewrite_types.py --apply --max "$MAX" --slug "$SLUGS" --budget-sec 4200 --report rewrite_report.json
+      # Google で4〜10位・表示10回以上の記事を、毎週月曜に「検索の答えを先に」書き直す（scripts/search_refresh.py。台帳 A68）。
+      # 同じ部品・同じ品質ゲート（うそだけを落とす）・同じ予算。合格したときだけ保存し、更新日時（dateModified）を進める
+      - name: Search refresh (Mondays)
+        continue-on-error: true
+        env:
+          LLM_WORKFLOW: products
+          CLAUDE_API_LEDGER: types
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
+        run: timeout 1500 python -u scripts/search_refresh.py --apply --weekly --max 5
       # 書き直した記事に、本文に置く公式の写真・図を足す（新しい記事と同じ決まり。見出し画像は変えない。scripts/images.py --body-images）
       - name: Body images
         continue-on-error: true
@@ -89,6 +101,7 @@ jobs:
           git add content/articles
           if [ -f state/claude_api_usage_types.json ]; then git add state/claude_api_usage_types.json; fi
           if [ -f state/types_rewrite.json ]; then git add state/types_rewrite.json; fi
+          if [ -f state/search_refresh.json ]; then git add state/search_refresh.json; fi
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           N=$(git diff --cached --name-only -- 'content/articles/*.json' | wc -l | tr -d ' ')
           git config user.name "github-actions[bot]"

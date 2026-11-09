@@ -34,7 +34,19 @@ export function getPerson(slug: string): Person | undefined {
 }
 
 function haystack(a: ArticleSummary): string {
-  return [a.title, a.lede, a.description, ...(a.highlights ?? []), ...(a.tags ?? [])].join(" ").normalize("NFKC");
+  return [a.title, a.seoTitle, a.lede, a.description, ...(a.highlights ?? []), ...(a.tags ?? []), ...(a.keywords ?? [])]
+    .join(" ")
+    .normalize("NFKC");
+}
+
+/**
+ * 人物のページに並べる中身（2026-11-09 台帳 A68。/people/sam-altman が「最新ニュース（0本）」のまま検索に出ていた不具合の修正）。
+ * 人物の記事が0本のときは「0本」の見出しを出さず、所属組織の最新の記事を主役にする。人物の記事も組織の記事も無いときだけ検索に出さない
+ */
+export function personPage(person: Person, articles: ArticleSummary[] = getAllArticles()) {
+  const own = personArticles(person, articles);
+  const org = organizationArticles(person, own.length >= 5 ? 5 : 10, articles).filter((a) => !own.some((b) => b.slug === a.slug));
+  return { own, org, indexable: own.length + org.length > 0 };
 }
 
 /** この人物が出てくる記事（新しい順。まとめ記事・重複の印の記事は外す） */

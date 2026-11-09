@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import AssetShell, { Crumbs, QHeading } from "@/components/assets/AssetShell";
 import Timeline from "@/components/Timeline";
-import { getAllPeople, getPerson, organizationArticles, personArticles } from "@/lib/people";
+import { getAllPeople, getPerson, personPage } from "@/lib/people";
 import { siteConfig } from "@/site.config";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -23,12 +23,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const person = getPerson(slug);
   if (!person) return {};
-  const n = personArticles(person).length;
+  const { own, indexable } = personPage(person);
+  const n = own.length;
   const title = titleOf(person.nameJa, person.organization, person.jobTitle, n);
-  const description = `${person.nameJa}（${person.name}）は${person.organization}の${person.jobTitle}。公式の発表で確かめた経歴と、サイソクの${person.nameJa}に関する記事${n}本を新しい順にまとめています。`;
+  const description =
+    n > 0
+      ? `${person.nameJa}（${person.name}）は${person.organization}の${person.jobTitle}。公式の発表で確かめた経歴と、サイソクの${person.nameJa}に関する記事${n}本を新しい順にまとめています。`
+      : `${person.nameJa}（${person.name}）は${person.organization}の${person.jobTitle}。公式の発表で確かめた経歴と、${person.organization}の最新ニュースをまとめています。`;
   return {
     title,
     description,
+    ...(indexable ? {} : { robots: { index: false, follow: true } }),
     alternates: { canonical: `/people/${person.slug}` },
     openGraph: { siteName: siteConfig.siteName, locale: siteConfig.locale, type: "profile", url: `/people/${person.slug}`, title, description },
   };
@@ -39,8 +44,7 @@ export default async function PersonPage({ params }: Props) {
   const { slug } = await params;
   const person = getPerson(slug);
   if (!person) notFound();
-  const articles = personArticles(person);
-  const orgArticles = organizationArticles(person, articles.length >= 5 ? 5 : 10).filter((a) => !articles.some((b) => b.slug === a.slug));
+  const { own: articles, org: orgArticles } = personPage(person);
   const url = `${siteConfig.url}/people/${person.slug}`;
   const jsonLd = [
     {
@@ -103,18 +107,18 @@ export default async function PersonPage({ params }: Props) {
         </ul>
       </section>
 
-      <section aria-labelledby="news-heading" className="mt-12">
-        <QHeading id="news-heading">{person.nameJa}の最新ニュース（{articles.length}本）</QHeading>
-        {articles.length > 0 ? (
+      {articles.length > 0 && (
+        <section aria-labelledby="news-heading" className="mt-12">
+          <QHeading id="news-heading">{person.nameJa}の最新ニュース（{articles.length}本）</QHeading>
           <Timeline articles={articles} />
-        ) : (
-          <p className="text-note text-muted">{person.nameJa}が出てくる記事は、いまはありません。記事ができると、ここに自動で並びます。</p>
-        )}
-      </section>
+        </section>
+      )}
 
       {orgArticles.length > 0 && (
         <section aria-labelledby="org-heading" className="mt-12">
-          <QHeading id="org-heading">{person.organization}の最新ニュース</QHeading>
+          <QHeading id="org-heading">
+            {articles.length > 0 ? `${person.organization}の最新ニュース` : `${person.nameJa}が所属する${person.organization}の最新ニュース`}
+          </QHeading>
           <Timeline articles={orgArticles} />
           <p className="mt-4 text-note">
             <Link href={`/companies/${person.companySlug}`} className="underline underline-offset-2 hover:text-ink">{person.organization}の記事をすべて見る</Link>

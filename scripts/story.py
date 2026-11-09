@@ -24,6 +24,10 @@ duplicateOf を読むだけにする（判定を TypeScript と Python で二重
 同じ話題でも重複にしないもの（意図して角度を変えた解説）:
   - angleOf が付いた記事（scripts/angle_articles.py が付ける）
   - 後の記事が先の記事にリンク（relatedSlugs と本文の /articles/<slug>）し、題名が解説の形（使い方・比較・違い・誰が使える 等）
+同じ話題でも重複にしないもの（2026-11-09 オーナー承認・台帳 A68「同じ発表の重複」ではなく「同じ疑問の重複」でまとめる）:
+  - 記事の役割（page_role: とは・料金/プラン・比較・使い方・ニュース）が違う記事。同じ発表でも「〜とは」「料金・プラン」「〜と比較」
+    「使い方」は別の疑問で、それぞれ検索で1位を取れていた（11/3 に Terra・Sol・Astra の比較とプラン別の記事を発表の記事へまとめ、
+    1位の検索語を失った）。役割ごとに1本だけ残し（同じ役割どうしは今までどおり重複）、mark が互いに関連記事（relatedSlugs）で結ぶ。
 代表（canonical）: 同じ話題のうち、ほかの理由で検索から外れない記事の中で最初に載せたもの（無ければ最初の記事）。
   手動で indexable: true にした記事は代表にし、印を付けない。まとめ記事（roundup）・地震の記事は対象外。
 一度付けた duplicateOf は、--recompute を付けない限り外さない（代表が入れ替わって検索のページが揺れないように）。
@@ -65,6 +69,14 @@ SAME_PUBLISHER_SOURCE_SIM = 0.45
 EXPLAINER_RE = re.compile(r"使い方|比較|違い|選び方|誰が使える|使える？|とは[？?]|始め方|できること|料金.*(整理|まとめ)|プラン別|解説|徹底|まとめ|FAQ|Q&A")
 LOCALE_SEG = re.compile(r"^(?:[a-z]{2}(?:[-_][a-z]{2,4})?|intl)$", re.I)
 KNOWN_LOCALES = {"ja", "jp", "ja-jp", "ja_jp", "en", "en-us", "en_us", "en-gb", "us", "intl", "global"}
+# 記事の役割（答える疑問の種類）。題名だけで見る（本文の言い回しでは決めない）。上から順に当てる
+ROLE_PATTERNS = (
+    ("about", re.compile(r"^.{0,40}?とは(?:[？?\s　、]|$)")),
+    ("compare", re.compile(r"比較|違い|どっち|どれを選ぶ|選び方|(?<![A-Za-z])vs\.?(?![A-Za-z])|と比べ", re.I)),
+    ("pricing", re.compile(r"料金(?:プラン|体系|表|一覧|と使い方|・プラン)|プラン別|どのプラン|誰が使える|使えるのは誰|いくらかかる|料金.{0,8}(?:整理|まとめ)")),
+    ("howto", re.compile(r"使い方|始め方|使うには|設定方法|導入手順|手順を解説|やり方|申し込み方|申請方法")),
+)
+ROLE_LABELS = {"about": "とは", "compare": "比較", "pricing": "料金・プラン", "howto": "使い方", "news": "ニュース"}
 YOUTUBE_RE = re.compile(r"(?:youtube\.com/(?:watch\?(?:.*&)?v=|shorts/|live/|embed/)|youtu\.be/)([A-Za-z0-9_-]{11})")
 
 
@@ -217,11 +229,31 @@ def is_angle(later: Story, earlier: Story) -> bool:
     return False
 
 
-def same_story(a: Story, b: Story, df: dict[str, int], window: timedelta = WINDOW, candidate: bool = False) -> str | None:
+def page_role(title: str) -> str:
+    """記事の役割（about とは / compare 比較 / pricing 料金・プラン / howto 使い方 / news ニュース）。台帳 A68"""
+    t = unicodedata.normalize("NFKC", str(title or "")).strip()
+    for role, pattern in ROLE_PATTERNS:
+        if pattern.search(t):
+            return role
+    return "news"
+
+
+def split_drop(a: Story, b: Story) -> bool:
+    """同じ発信元が6時間以内に、別の出典（別の動画・別のページ）として出したもの（1つの事例を何本にも分けた公開）。
+    役割の違う題名を付けていても同じ話題として見る（2026-11-03 の Legora の事例の分割。同じ出典から役割を変えて書いた記事とは違う）"""
+    return bool(a.data.get("channelSlug") and a.data.get("channelSlug") == b.data.get("channelSlug") and a.src and b.src
+                and abs(a.src - b.src) <= timedelta(hours=6) and not (a.keys & b.keys))
+
+
+def same_story(a: Story, b: Story, df: dict[str, int], window: timedelta = WINDOW, candidate: bool = False,
+               ignore_role: bool = False) -> str | None:
     """同じ話題なら理由、違えば None。
     candidate=True は生成前の候補（英語の元の題名だけで keywords が無い）。製品名と会社が一致すれば同じ話題とみなす
-    （大きなニュースは web_articles.py が続報の判定（LLM）に回すので、別の発表なら新しい記事になる）"""
+    （大きなニュースは web_articles.py が続報の判定（LLM）に回すので、別の発表なら新しい記事になる）。
+    役割（page_role）が違う記事は、同じ発表でも別の疑問に答えるので同じ話題にしない（ignore_role=True は互いに結ぶ相手を探すとき）"""
     if gap(a, b) > window:
+        return None
+    if not ignore_role and page_role(a.title) != page_role(b.title) and not split_drop(a, b):
         return None
     if a.keys & b.keys:
         return "同じ出典URL"
@@ -401,8 +433,48 @@ def mark(dry_run: bool = False, days: int = 0, recompute: bool = False) -> dict[
                     data.pop("duplicateOf", None)
                     data.pop("duplicateReason", None)
                     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"[story] 重複 {len(result)} 本（今回の変更 {changed} 本{'・dry-run' if dry_run else ''}）")
+    linked = link_siblings(stories, df, since, dry_run, by_slug, result)
+    print(f"[story] 重複 {len(result)} 本（今回の変更 {changed} 本・役割違いの記事を結んだ {linked} 本{'・dry-run' if dry_run else ''}）")
     return result
+
+
+SIBLING_MAX = 6
+
+
+def siblings(stories: list[Story], df: dict[str, int], since: datetime | None = None,
+             duplicates: dict | None = None) -> dict[str, list[str]]:
+    """同じ発表で役割（とは・料金・比較・使い方・ニュース）が違う記事どうし {slug: [相手の slug]}（台帳 A68）。
+    since があれば、それより後に載せた記事を含む組だけ"""
+    duplicates = duplicates or {}
+    live = [s for s in stories if s.slug and s.slug not in duplicates and not s.data.get("duplicateOf")]
+    out: dict[str, list[str]] = {}
+    for i, a in enumerate(live):
+        for b in live[i + 1:]:
+            if since and not ((a.gen and a.gen >= since) or (b.gen and b.gen >= since)):
+                continue
+            if page_role(a.title) == page_role(b.title) or not same_story(a, b, df, ignore_role=True):
+                continue
+            out.setdefault(a.slug, []).append(b.slug)
+            out.setdefault(b.slug, []).append(a.slug)
+    return out
+
+
+def link_siblings(stories: list[Story], df: dict[str, int], since: datetime | None, dry_run: bool,
+                  by_slug: dict, duplicates: dict) -> int:
+    """役割違いの記事を relatedSlugs の先頭に入れて互いに結ぶ（すでに入っていれば何もしない）"""
+    changed = 0
+    for slug, others in siblings(stories, df, since, duplicates).items():
+        path, data = by_slug[slug]
+        related = [str(x) for x in (data.get("relatedSlugs") or [])]
+        add = [o for o in others if o not in related][:SIBLING_MAX]
+        if not add:
+            continue
+        changed += 1
+        print(f"[link] {slug}（{ROLE_LABELS[page_role(data.get('title', ''))]}）→ {', '.join(add)}")
+        if not dry_run:
+            data["relatedSlugs"] = add + related
+            path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return changed
 
 
 # --------------------------------------------------------------------------- #

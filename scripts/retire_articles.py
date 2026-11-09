@@ -94,7 +94,7 @@ REPRESENTATIVES = {
     # JPCERT/CC の週報が PHP の脆弱性の注意喚起を含む
     "php-vulnerabilities-jpcert-alert-2026": "jpcert-weekly-report-20261028-vulnerabilities",
     # 同じ「dバリューパス」の特典追加の記事
-    "docomo-d-valuepass-kusuriya": "docomo-d-value-pass-uber-luup-2026",
+    # "docomo-d-valuepass-kusuriya" は 2026-11-09 に外した（転送先に「薬屋のひとりごと」が無い。台帳 A68）
     # 楽天証券のつなぎ売りの解説3本 → その3本を1本にまとめた記事
     "rakuten-sec-cross-trade-genwatashi": "gyakuhibu-cross-trade-complete-guide-matome",
     "understanding-gyakuhibu-margin-trading-risks": "gyakuhibu-cross-trade-complete-guide-matome",
@@ -578,6 +578,25 @@ def apply(retired: dict[str, dict], now: datetime) -> dict:
         if target and target not in all_retired and (ARTICLES / f"{target}.json").exists():
             entry["redirect"] = target
         else:
+            entry.pop("redirect", None)
+    # 転送先は、元の記事の主な名前（英字の固有名詞・「」の名前・検索語）がすべて入っている記事だけ（台帳 A68）。
+    # 入っていなければ転送しない（410）。関係の無い記事への 301 は、Google には「無いページ」と同じで、読者も迷う
+    for slug, entry in all_retired.items():
+        target = entry.get("redirect", "")
+        if not target:
+            continue
+        try:
+            target_data = json.loads((ARTICLES / f"{target}.json").read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            target_data = {}
+        # 転送先が重複の印の記事（検索に出さない）なら、その代表へ（代表が残っていれば）
+        canonical = str(target_data.get("duplicateOf") or "")
+        if canonical and canonical != target and canonical not in all_retired and (ARTICLES / f"{canonical}.json").exists():
+            target = entry["redirect"] = canonical
+            target_data = json.loads((ARTICLES / f"{target}.json").read_text(encoding="utf-8"))
+        ok, missing = search_protected.redirect_ok(entry.get("title", ""), target_data, search_protected.query_of(slug))
+        if not ok:
+            print(f"[retire] 転送先に名前が無いので転送しない（410）: {slug} → {target}（足りない名前: {'・'.join(missing)}）")
             entry.pop("redirect", None)
     rw = Rewriter(all_retired)
     stats = {"deleted": 0, "articles_rewritten": 0, "data_rewritten": 0, "products_removed": []}
