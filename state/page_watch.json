@@ -1,6 +1,7 @@
 {
  "pages": {
   "chatgpt-pricing": {
+   "error": "HTTPError: HTTP Error 401: Unauthorized",
    "hash": "892dd5fd92438858",
    "lines": [
     "About",
@@ -429,11 +430,12 @@
    "since": "2026-11-07T17:11:44+00:00"
   },
   "chatgpt-release-notes": {
+   "error": "HTTPError: HTTP Error 401: Unauthorized",
    "last_date": "2026-11-04",
    "ok": "2026-11-10"
   },
   "claude-api-release-notes": {
-   "last_date": "2026-11-05",
+   "last_date": "2026-11-09",
    "minor": [
     {
      "date": "2026-11-02",
@@ -451,7 +453,7 @@
    "ok": "2026-11-10"
   },
   "claude-model-deprecations": {
-   "hash": "b3cc25c096e9a1e0",
+   "hash": "70a4dd88fe5e562d",
    "lines": [
     "title: Model deprecations",
     "url: https://platform.claude.com/docs/en/about-claude/model-deprecations",
@@ -493,6 +495,8 @@
     "Model status",
     "Current and recently retired models are listed in the following table with their status:",
     "| API model name | Current state | Deprecated | Tentative retirement date |",
+    "| claude-fable-5-2 | Active | N/A | Not sooner than November 9, 2027 |",
+    "| claude-mythos-5-2 | Active | N/A | Not sooner than November 9, 2027 |",
     "| claude-fable-5-1 | Active | N/A | Not sooner than September 1, 2027 |",
     "| claude-mythos-5-1 | Active | N/A | Not sooner than September 1, 2027 |",
     "| claude-fable-5 | Active | N/A | Not sooner than June 9, 2027 |",
@@ -1208,5 +1212,20 @@
    "ok": "2026-11-10"
   }
  },
- "pending": []
+ "pending": [
+  {
+   "content": "【Claude Platform リリースノート（API）の 2026-11-09 の項目】（https://platform.claude.com/docs/en/release-notes/overview.md）\nWe’ve launched Claude Fable 5.2 (claude-fable-5-2), built for demanding reasoning and long-horizon agentic work. Claude Mythos 5.2 (claude-mythos-5-2) offers the same capabilities only to organizations verified through Anthropic’s verification programs, such as the Cyber Verification Program. Both models have a 1M token context window, 128k max output tokens, and always-on adaptive thinking. They cost $8 USD per MTok of input and $40 USD per MTok of output (Claude Fable 5.1 and Claude Mythos 5.1 cost $10 USD per MTok of input and $50 USD per MTok of output). Claude Fable 5.2 is available on the Claude API, Claude Platform on AWS, and Claude Models on Google Cloud (Anthropic managed). It’s also available on Claude Models on Google Cloud (Google managed). See What’s new in Claude Fable 5.2 for API changes and migration guidance. For model-specific prompting patterns, see Prompting Claude Fable 5.2.\n Claude Fable 5.2 and Claude Mythos 5.2 enforce the prefix check for every account, whatever its age. Claude Fable 5.1 returns the error by default on accounts created on or after August 31, 2026 (see When prefixmismatchbehavior is unset). If your code edits the system prompt, tools, or an earlier message and then sends back a Claude Fable 5.2 or Claude Mythos 5.2 thinking block from a later turn, the request returns a 400 error. Before you switch, check whether your code edits the prefix.\n On the Claude API and Claude Models on Google Cloud (Google managed), a conversation that moves onto Claude Fable 5.2 or Claude Mythos 5.2 keeps the reasoning from other models, including Claude Opus 5.5, Claude Sonnet 5.5, and Claude Haiku 5.5. When the conversation moves the other way, to any other model, including Claude Opus 5.5 and Claude Fable 5.1, the API drops the thinking blocks that Claude Fable 5.2 or Claude Mythos 5.2 produced, and the request still succeeds. See Switching models mid-conversation.\n Claude Fable 5.2 and Claude Mythos 5.2 support computer use through the computertoolset20260801 toolset. A request that declares the earlier computer20251124 tool returns a 400 error. See Migrate from computer20251124.\n With the advisor tool, which is in beta, a Claude Fable 5.2 or Claude Mythos 5.2 executor accepts only Claude Fable 5.2 or Claude Mythos 5.2 as its advisor. Any other advisor returns a 400 error, so set the advisor’s model to one of these two models when you move an executor to them. Every executor model accepts Claude Fable 5.2 as its advisor. See Model compatibility.\n Both models require 30-day data retention, like Claude Fable 5.1 and Claude Mythos 5.1. They aren’t available under zero data retention unless expressly authorized by Anthropic. See Model-specific data retention requirements.\n Thinking blocks that Claude Fable 5.2 and Claude Mythos 5.2 produce work only in the account that produced them, or in an account linked to it. See Preserved thinking.\n We’ve launched fast mode for Claude Fable 5.2 in Messages API requests on the Claude API. Fast mode delivers up to 2.5x higher output tokens per second, at $16 USD per MTok of input and $80 USD per MTok of output. Set speed: \"fast\" on your request, with no beta header.",
+   "detectedAt": "2026-11-09T19:01:47+00:00",
+   "entity": "anthropic",
+   "id": "77f1a0c0d214f586",
+   "lang": "en",
+   "published_at": "2026-11-09T19:01:47.522993+00:00",
+   "published_guessed": true,
+   "source_name": "Claude Platform リリースノート（API）",
+   "source_slug": "watch-claude-api-release-notes",
+   "summary": "【Claude Platform リリースノート（API）の 2026-11-09 の項目】（https://platform.claude.com/docs/en/release-notes/overview.md）\nWe’ve launched Claude Fable 5.2 (claude-fable-5-2), built for demanding reasoning and long-horizon agentic work. Claude Mythos 5.2 (claude-mythos-5-2) offers the same capabilities only to organizations verified through Anthropic’s verification programs, such as the Cyber Verification Program. Both models have a 1M token context window, 128k max output tokens, and always-on adaptive thinking. They cost $8 USD per MTok of input and $40 USD per MTok of output (Claude Fable 5.1 and Claude ",
+   "title": "Claude API: We’ve launched Claude Fable 5.2 (claude-fable-5-2), built for demanding reasoning and long-horizon agentic work.",
+   "url": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09"
+  }
+ ]
 }

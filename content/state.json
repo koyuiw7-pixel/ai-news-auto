@@ -134,6 +134,7 @@
     "38b1c09617f8b1ab": "2026-11-06T18:22:08.318950+00:00",
     "39430fca08334293": "2026-11-06T06:00:54.354301+00:00",
     "3c6baf8f6042b6a7": "2026-11-06T01:40:54.899345+00:00",
+    "3c8aedb547f4a5b7": "2026-11-09T19:01:05.896647+00:00",
     "43bc22446881077a": "2026-11-09T09:38:56.467516+00:00",
     "4484bcd0ed3dc07a": "2026-11-06T19:41:01.362264+00:00",
     "463860e1f36f43db": "2026-11-06T10:10:56.113845+00:00",
@@ -187,6 +188,7 @@
     "ba2157cbb6272410": "2026-11-06T00:01:50.996430+00:00",
     "bc1a673743a9a573": "2026-11-06T08:51:04.778179+00:00",
     "bd1cfd5963166b03": "2026-11-06T08:51:04.778179+00:00",
+    "bda4433a4e4cd6e4": "2026-11-09T19:01:05.896647+00:00",
     "beb2859ed2047b09": "2026-11-06T08:51:04.778179+00:00",
     "c0aaac229fee24e1": "2026-11-06T18:22:08.318950+00:00",
     "c63d1aa22d52b881": "2026-11-09T10:02:58.007406+00:00",
@@ -7321,7 +7323,7 @@
       "url": "https://www.mhlw.go.jp/toukei/list/71-r07.html"
     },
     "3c8aedb547f4a5b7": {
-      "at": "2026-11-09T18:41:42.195439+00:00",
+      "at": "2026-11-09T19:02:53.679121+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202611/video-327212.html"
@@ -11241,6 +11243,19 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026103011"
     },
+    "77f1a0c0d214f586": {
+      "at": "2026-11-09T19:02:53.177520+00:00",
+      "costUsd": 0.1225,
+      "foreignAi": true,
+      "intent": "query",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "claude-fable-5-2-api-price",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09"
+    },
     "7829dd05ce695068": {
       "at": "2026-11-09T07:52:19.526816+00:00",
       "costUsd": 0.0061,
@@ -12175,13 +12190,6 @@
       "section": "lifestyle",
       "slug": "house-foods-price-revision-2027",
       "url": "https://housefoods-group.com/newsrelease/pdf/newsrelease_20261109_01.pdf"
-    },
-    "86febba264904442": {
-      "at": "2026-10-26T19:02:07.027603+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2272字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000095.000010009.html"
     },
     "8701fa3f5588adb9": {
       "at": "2026-11-07T13:14:13.044297+00:00",
@@ -15100,14 +15108,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102917"
     },
-    "b44a2cf25c279e1e": {
-      "at": "2026-10-26T19:01:52.271485+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "sports",
-      "slug": "nadeshiko-brazil-ticket-additional-sale",
-      "url": "https://www.jfa.jp/news/00036955/"
-    },
     "b459574059fadb91": {
       "at": "2026-10-28T02:11:02.231729+00:00",
       "breaking": true,
@@ -15773,7 +15773,7 @@
       "url": "https://www.databricks.com/blog/wealth-management-client-onboarding-needs-more-ai"
     },
     "bda4433a4e4cd6e4": {
-      "at": "2026-11-09T18:41:42.195547+00:00",
+      "at": "2026-11-09T19:02:53.679218+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202611/video-327190.html"
@@ -20226,60 +20226,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-07T15:33:32.256476+00:00",
-      "attempt": 1,
-      "id": "f1280b003fab5afa",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す",
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「予測値のほかに、信頼度(95%」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 117.7,
-        "avg_sentence": 49.1,
-        "long_share": 0.306,
-        "max_paragraph": 188,
-        "paragraphs": 15,
-        "sentences": 36
-      },
-      "score": null,
-      "source": "google-cloud-blog",
-      "title": "Zero-shot predictions in Pandas using the new BigQuery Accessor",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CSV・ML・GIFT）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T15:33:46.003934+00:00",
-      "attempt": 1,
-      "id": "f1280b003fab5afa",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 116.1,
-        "avg_sentence": 48.4,
-        "long_share": 0.278,
-        "max_paragraph": 188,
-        "paragraphs": 15,
-        "sentences": 36
-      },
-      "score": null,
-      "source": "google-cloud-blog",
-      "title": "Zero-shot predictions in Pandas using the new BigQuery Accessor",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CSV・ML・GIFT）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-07T15:34:25.323370+00:00",
@@ -27441,6 +27387,53 @@
       "title": "みんなで支えよう。体罰などによらない子育て",
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 53.0字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T19:02:27.883009+00:00",
+      "attempt": 1,
+      "id": "77f1a0c0d214f586",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 86.7,
+        "avg_sentence": 43.4,
+        "long_share": 0.206,
+        "max_paragraph": 163,
+        "paragraphs": 17,
+        "sentences": 34
+      },
+      "score": 92,
+      "source": "watch-claude-api-release-notes",
+      "title": "Claude API: We’ve launched Claude Fable 5.2 (claude-fable-5-2), built for demand",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 43.4字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T19:02:53.154280+00:00",
+      "attempt": 0,
+      "id": "77f1a0c0d214f586",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.6,
+        "avg_sentence": 38.2,
+        "long_share": 0.128,
+        "max_paragraph": 170,
+        "paragraphs": 17,
+        "sentences": 39
+      },
+      "score": 92,
+      "source": "watch-claude-api-release-notes",
+      "title": "Claude API: We’ve launched Claude Fable 5.2 (claude-fable-5-2), built for demand",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],

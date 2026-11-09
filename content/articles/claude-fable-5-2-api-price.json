@@ -1,0 +1,261 @@
+{
+  "slug": "claude-fable-5-2-api-price",
+  "sourceType": "web",
+  "sourceUrl": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09",
+  "sourceName": "Claude Platform リリースノート（API）",
+  "title": "Claude Fable 5.2、API料金は入力$8・出力$40に　5.1より2割安い",
+  "seoTitle": "Claude Fable 5.2とは？料金と5.1との違い",
+  "threadsPost": "Claude APIを仕事で使っている開発者の人に、押さえておきたい話です。\n\nClaude Fable 5.2のAPI料金は、100万トークンあたり入力8ドル、出力40ドルです。\n前の5.1は入力10ドル、出力50ドルでした。\n\nAIの利用料、毎月いくらまでなら出せますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "price",
+      "question": "AIの利用料、毎月いくらまでなら出せますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "出力の速さと料金、どちらを優先しますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "開発でAIを使う人は、どのモデルを選びますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "Claude APIの最上位モデル「Claude Fable 5.2」が、前の版より安い料金で使えるようになりました。100万トークンあたり入力8ドル、出力40ドルで、5.1の入力10ドル、出力50ドルから下がっています。日本の開発者もAPIで使えますが、移行前にコードがエラーにならないか確認する必要があります。",
+  "description": "Claude Fable 5.2がAPIに登場。入力$8・出力$40と5.1より安く、1Mトークンの文脈に対応。高速モードや移行時の400エラーなど、開発者が確認すべき点をまとめました。",
+  "keywords": [
+    "Claude Fable 5.2",
+    "Claude API 料金",
+    "Fable 5.2 とは",
+    "Claude Mythos 5.2",
+    "Anthropic 新モデル",
+    "高速モード",
+    "1Mトークン",
+    "Claude 移行 400エラー",
+    "アドバイザーツール",
+    "computer use"
+  ],
+  "tags": [
+    "生成AI",
+    "LLM",
+    "Claude",
+    "Anthropic",
+    "API"
+  ],
+  "highlights": [
+    "Claude Fable 5.2はAPI料金が入力$8・出力$40で、5.1の入力$10・出力$50より安くなりました",
+    "1Mトークンの文脈、最大出力12万8千トークン、常時オンの適応型思考に対応しています",
+    "高速モードは出力速度が最大2.5倍で、料金は入力$16・出力$80です"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "入力$8/出力$40",
+    "free": false,
+    "audience": "開発者",
+    "take": "移行前にプレフィックス編集とcomputer useの設定を確認し、安い単価で長い作業を試すとよいでしょう。",
+    "judgedAt": "2026-11-09T19:02:18.846386+00:00",
+    "japanSource": {
+      "name": "Claude",
+      "url": "https://www.anthropic.com/supported-countries",
+      "checkedAt": "2026-11-03"
+    }
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "Claude APIで開発している人は、入力$8・出力$40の新単価で費用を見直せます。",
+      "5.1から移すときは、プロンプト編集やcomputer useの設定で400エラーが出ないか確認します。",
+      "高速モードは単価が2倍になるため、速さが必要な処理に絞って使うと費用を抑えられます。"
+    ]
+  },
+  "body": "Claude APIを使っていない人には、今回の更新で何も変わりません。使っている開発者は、新しい単価で動かせます。移行の前に確認したい条件もあります。日本でもClaudeは利用できます（当サイトの確認：11/3、Anthropicの対応国・地域の一覧）。\n\nClaude Fable 5.2は、高度な推論や、長い手順を自分で進めるエージェント型の作業向けのモデルです。同じ能力の「Claude Mythos 5.2」は、サイバー検証プログラムなど、Anthropicの確認を受けた組織だけが使えます。\n\n## 料金は5.1より2割安い、入力$8・出力$40\n\nClaude Platformのリリースノートによると、両モデルの料金は100万トークン（AIが文字を数える単位）あたりです。入力は8ドル、出力は40ドルです。前の版のFable 5.1とMythos 5.1は、入力10ドル、出力50ドルでした。\n\n円に直すと、入力は約1,270円、出力は約6,330円です（サイソク編集部の計算。1ドル=158.33円、税別の目安）。\n\n**5.2は、入力も出力も5.1より安くなりました。**\n\n| 比べること | Fable 5.1 | Fable 5.2 | 変化 |\n|---|---|---|---|\n| 入力（100万トークン） | $10 | $8 | **$2安い** |\n| 出力（100万トークン） | $50 | $40 | **$10安い** |\n\nなお、公式の料金ページによると、Opus 5.5は入力$4、出力$20です（Anthropic公式の料金ページ、11/9確認）。公式のモデル紹介は、ふつうの用途ではOpus 5.5から始めるよう案内しています。その性能で足りないときにFable 5.2を使うとしています（Anthropic公式「Models overview」、11/10確認）。\n\n### Claude APIのプランと料金（公式の料金と円の目安）\n\n| モデル | 入力（100万トークン） | 出力（100万トークン） | 円の目安（入力／出力・税別） |\n|---|---|---|---|\n| Claude Opus 5.5 | $4 | $20 | 約630円／約3,170円 |\n| Claude Sonnet 5.5 | $2 | $10 | 約320円／約1,580円 |\n| Claude Haiku 5.5（入力10万トークンまで） | $0.10 | $0.50 | 約16円／約79円 |\n| Claude Haiku 5.5（入力10万トークン超） | $0.50 | $2.50 | 約79円／約400円 |\n\n出典：Claude APIの公式ページ（https://platform.claude.com/docs/en/about-claude/pricing）／確認日：2026-11-09\n円は1ドル=158.33円（2026-11-06、ECB参照レート（ユーロ経由で計算））で計算した目安です。API の料金は税別です。実際の請求額は為替とカード会社の手数料で変わります。\n\n## 主な仕様と提供先\n\n両モデルとも、コンテキストウィンドウ（一度に読める量）は100万トークンです。最大出力は12万8千トークンで、考えてから答える適応型思考が常に有効です。\n\nFable 5.2は、Claude API、AWS上のClaude Platform、Google CloudのClaudeモデル（Anthropic管理版とGoogle管理版）で使えます。\n\n## 高速モードは出力が最大2.5倍、単価は2倍\n\nMessages APIでは、Fable 5.2向けに高速モードが始まりました。出力トークンの速度が最大2.5倍になります。料金は入力16ドル、出力80ドルです。\n\n使うには、リクエストに speed: \"fast\" を指定します。ベータ用のヘッダーは不要です。\n\n## 移行前に確認したい、400エラーの条件\n\n5.2では、リクエストの先頭部分が前回と一致しているかの確認（プレフィックスチェック）が強制されます。アカウントの作成時期は問いません。システムプロンプト、ツール、過去のメッセージを書き換えます。そのうえで後のターンの思考ブロックを送り返すと、400エラーになります。\n\n他にも、次の条件があります。\n\n- computer useは新しいツール群 computer_use_toolset_20260801 に対応します。従来の computer_use_20251124 を指定すると400エラーです。\n- ベータ版のアドバイザーツールでは、5.2を実行役にすると、助言役にも5.2のモデルしか指定できません。他のモデルを指定すると400エラーです。どの実行役でも、助言役にFable 5.2は使えます。\n- 5.2が出す思考ブロックは、生成したアカウントか、それに連携したアカウントでしか使えません。\n\n会話の途中でモデルを切り替えるときの扱いも決まっています。Claude APIとGoogle管理版では、Opus 5.5などから5.2へ移ると、それまでの推論が引き継がれます。逆に他のモデルへ移ると、5.2の思考ブロックは削除されますが、リクエストは成功します。\n\n## まだ分からないこと\n\n- Claude Mythos 5.2の対象組織の範囲は、公式の検証プログラムごとの条件でしか示されていません。\n- 日本での高速モードの提供状況はまだ発表されていません。\n\n## 契約と保管期間で、企業が確認すること\n\n両モデルは、5.1と同じく30日間のデータ保管が必須です。Anthropicが明示的に認めた場合を除き、ゼロデータ保持では使えません。\n\n移行の手順やAPIの変更点は、公式の「What's new in Claude Fable 5.2」に案内があります。プロンプトの書き方は「Prompting Claude Fable 5.2」を参照します。\n\nFable 5.1については、過去記事で料金などを紹介しています（[Claude Fable 5.1](/articles/anthropic-releases-claude-fable-5-1)）。",
+  "easy": "## ひとことで言うと\n\nClaude APIの最上位モデル「Claude Fable 5.2」が登場しました。前の5.1より安く、100万トークンあたり入力8ドル、出力40ドルです。\n\n## 使う前に確認したいこと\n\n5.1から切り替えるときは、過去のやりとりを書き換えて送り直すコードがないか確認します。あると、エラーになる場合があります。\n\n高速モードを使うと出力が最大2.5倍速くなります。そのぶん料金は入力16ドル、出力80ドルと2倍です。\n\nClaudeは日本でも使えます（当サイトの確認：11/3）。",
+  "channel": "Claude Platform リリースノート（API）",
+  "channelId": "",
+  "channelSlug": "watch-claude-api-release-notes",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Claude API: We’ve launched Claude Fable 5.2 (claude-fable-5-2), built for demanding reasoning and long-horizon agentic work.",
+  "publishedAt": "2026-11-09T19:01:47.522993+00:00",
+  "generatedAt": "2026-11-09T19:02:18.846376+00:00",
+  "thumbnail": "",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "pricingProduct": "claude-api",
+  "faq": [
+    {
+      "q": "Claude Fable 5.2はゼロデータ保持で使えますか？",
+      "a": "原則として使えません。5.1と同じく30日間のデータ保管が必須で、Anthropicが明示的に認めた場合だけ例外になります。"
+    },
+    {
+      "q": "Claude Mythos 5.2は誰でも使えますか？",
+      "a": "使えません。Cyber Verification Programなど、Anthropicの確認プログラムを通った組織だけが対象です。"
+    },
+    {
+      "q": "Fable 5.2の思考ブロックは別のアカウントで使えますか？",
+      "a": "使えません。生成したアカウントか、それに連携したアカウントの中でだけ使えます。"
+    }
+  ],
+  "todayActions": [
+    "コードで、システムプロンプトや過去メッセージを書き換えてから思考ブロックを送り返していないか確認する",
+    "アドバイザーツールを使うなら、助言役のモデルを5.2系（Fable 5.2かMythos 5.2）に設定する",
+    "computer useを使っているなら、computer_20251124 から computer_toolset_20260801 へ移す準備をする"
+  ],
+  "relatedSlugs": [
+    "anthropic-releases-claude-fable-5-1"
+  ],
+  "qualityScore": 92,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "Anthropic公式の料金ページ",
+      "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "checkedAt": "2026-11-09"
+    },
+    {
+      "label": "調べた公式情報",
+      "name": "Anthropic公式「Models overview」",
+      "url": "https://platform.claude.com/docs/en/models/overview",
+      "checkedAt": "2026-11-10"
+    },
+    {
+      "label": "為替",
+      "name": "ECB参照レート（ユーロ経由で計算）",
+      "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+      "checkedAt": "2026-11-06"
+    },
+    {
+      "label": "日本での提供",
+      "name": "Claudeの公式ページ",
+      "url": "https://www.anthropic.com/supported-countries",
+      "checkedAt": "2026-11-03"
+    },
+    {
+      "label": "計算",
+      "name": "サイソク編集部の計算（元記事と上の資料の数字から）",
+      "url": "",
+      "checkedAt": ""
+    }
+  ],
+  "detectedAt": "2026-11-09T19:01:47+00:00",
+  "layout": "noir",
+  "summaryLine": "Claude Fable 5.2はAPI料金が入力$8・出力$40で、5.1の入力$10・出力$50より安くなりました",
+  "insight": [
+    {
+      "text": "リクエストの先頭が前回と一致するかの確認（プレフィックスチェック）が全アカウントで強制され、system・tools・過去のメッセージを書き換えてから後のターンの思考ブロックを送り返すと400エラーになります。",
+      "source": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09"
+    },
+    {
+      "text": "アドバイザーツールで5.2を実行役にすると、助言役に指定できるのは5.2系のモデルだけです。他のモデルを指定すると400エラーになります。",
+      "source": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09"
+    },
+    {
+      "text": "会話の途中で他のモデルへ移すと、5.2が作った思考ブロックは削除されますが、リクエストは成功します。これはClaude APIとGoogle管理版での扱いです。",
+      "source": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "コードで、システムプロンプトや過去メッセージを書き換えてから思考ブロックを送り返していないか確認する",
+      "source": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09",
+      "steps": [
+        "送信しているリクエストで、system・tools・過去のメッセージを編集していないか見る",
+        "編集している場合は、移行ガイドの prefix の項目を確認する",
+        "5.2に切り替える前に修正の要否を決める"
+      ]
+    },
+    {
+      "action": "アドバイザーツールを使うなら、助言役のモデルを5.2系（Fable 5.2かMythos 5.2）に設定する",
+      "source": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09",
+      "steps": [
+        "実行役を5.2にしたら、助言役の model を5.2系に合わせる",
+        "他のモデルを指定すると400エラーになる",
+        "どの実行役でも、助言役にFable 5.2は使える"
+      ]
+    },
+    {
+      "action": "computer useを使っているなら、computer_20251124 から computer_toolset_20260801 へ移す準備をする",
+      "source": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09",
+      "steps": [
+        "古い computer_20251124 を宣言していると400エラーになる"
+      ]
+    }
+  ],
+  "worries": [
+    {
+      "q": "今使っているAPIのコードは、そのまま動きますか？",
+      "a": "ページには、system・tools・前のメッセージを書き換えたうえで、後のターンの思考ブロックを送り返すと400エラーになると書かれています。それ以外の場合の動作は、このページには書かれていません。",
+      "source": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09",
+      "action": "送信しているコードで、systemやtools、過去のメッセージを書き換えていないか確認する。"
+    },
+    {
+      "q": "5.1から5.2に変えると、料金はいくら下がりますか？",
+      "a": "100万トークンあたり、入力は10ドルから8ドル、出力は50ドルから40ドルになります。高速モードは別の料金で、入力16ドル、出力80ドルです。",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "action": "料金ページで最新の単価を確かめ、いま使っている量で月額を見積もる。"
+    },
+    {
+      "q": "データは保存されますか？社内の情報を送っても大丈夫？",
+      "a": "両モデルは、5.1と同じく30日間のデータ保管が必須です。Anthropicが明示的に認めた場合を除き、ゼロデータ保持では使えないと書かれています。",
+      "source": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09",
+      "action": "企業で使う前に、30日間のデータ保管が社内の規程に合うか確認する。"
+    },
+    {
+      "q": "日本から使っても大丈夫？",
+      "a": "サポートしている国・地域の一覧に日本が含まれています。一覧にない国・地域にいる人や、そこに本拠がある組織の利用は対象外と書かれています。",
+      "source": "https://www.anthropic.com/supported-countries",
+      "action": "利用者や所属組織が、一覧に載る国・地域で使っているか確認する。"
+    },
+    {
+      "q": "Mythos 5.2は誰でも使えますか？",
+      "a": "Anthropicの検証プログラムなどで確認を受けた組織だけが使えると書かれています。対象範囲の詳細は、検証プログラムごとの条件でしか示されていません。",
+      "source": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09",
+      "action": "Mythos 5.2を使いたい場合は、公式の検証プログラムの条件を確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "API利用中、今すぐ5.2に移す？",
+      "situation": "コードで書き換えて思考ブロックを送り返している",
+      "recommend": "修正を済ませてから切り替える",
+      "reason": "書き換えて送り返すと400エラーになるため、先に確認が必要です。修正後なら、料金は5.1の入力10ドル、出力50ドルから、入力8ドル、出力40ドルに下がります（100万トークンあたり）。",
+      "source": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09"
+    },
+    {
+      "question": "Opus 5.5から5.2に上げるべき？",
+      "situation": "一般的な用途で、Opus 5.5で足りている",
+      "recommend": "急がなくてよい（Opus 5.5のままでよい）",
+      "reason": "公式のモデル紹介は、ふつうの用途ではOpus 5.5から始めるよう案内しています。Opus 5.5の料金は入力4ドル、出力20ドル（100万トークンあたり）です。",
+      "source": "https://platform.claude.com/docs/en/models/overview"
+    },
+    {
+      "question": "Opus 5.5から5.2に上げるべき？",
+      "situation": "長い手順の作業で、Opus 5.5では評価が足りない",
+      "recommend": "Fable 5.2を検討する価値がある",
+      "reason": "公式は、Opus 5.5を高い設定で使っても評価が足りないときにFable 5.2を使うよう案内しています。料金は入力8ドル、出力40ドル（100万トークンあたり）で、Opus 5.5より高くなります。",
+      "source": "https://platform.claude.com/docs/en/models/overview"
+    },
+    {
+      "question": "高速モードを使う？",
+      "situation": "応答の速さが必要で、単価が2倍になっても使いたい",
+      "recommend": "必要な場面だけ試す",
+      "reason": "出力速度は最大2.5倍になりますが、料金は入力16ドル、出力80ドル（100万トークンあたり）です。リクエストに speed: \"fast\" を指定すれば使え、ベータ用ヘッダーは不要です。",
+      "source": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "5.2で変わる400エラーの条件と切り替えの注意",
+    "steps": "移行前に、コードで確認したい3点",
+    "worries": "料金は下がる？データは保存される？",
+    "guide": "5.2に移すか今は待つか迷ったときの決め方"
+  },
+  "depthAt": "2026-11-09T19:03:41+00:00"
+}
