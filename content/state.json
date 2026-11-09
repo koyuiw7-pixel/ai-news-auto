@@ -13600,12 +13600,6 @@
       "skipped": true,
       "url": "https://cloud.google.com/blog/ja/products/ai-machine-learning/claude-opus-55-and-claude-sonnet-55-available-in-antigravity/"
     },
-    "9d53136362bbdd72": {
-      "at": "2026-10-26T22:21:00.450003+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（市場分析レポート）",
-      "skipped": true,
-      "url": "https://www.dreamnews.jp/press/0000366524"
-    },
     "9d60b113aa82dd7b": {
       "at": "2026-11-05T11:22:23.937446+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -14673,6 +14667,14 @@
       "section": "ai",
       "slug": "nvidia-ai-cluster-runtime-dynamo",
       "url": "https://developer.nvidia.com/blog/build-a-validated-kubernetes-runtime-for-nvidia-dynamo/"
+    },
+    "aebdd1c57eb688c2": {
+      "at": "2026-11-09T22:24:04.956588+00:00",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "updated": "gemini-plans-daily-brief-added",
+      "url": "https://gemini.google/us/subscriptions/?hl=en#entry-2026-11-10-8f3836"
     },
     "aed3abb70e617f48": {
       "at": "2026-11-09T06:49:48.681482+00:00",
@@ -15917,12 +15919,6 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/topics/medias/month/26/06.html"
     },
-    "c3136a75dafafae6": {
-      "at": "2026-10-26T22:21:00.450044+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（市場分析レポート）",
-      "skipped": true,
-      "url": "https://www.dreamnews.jp/press/0000366523"
-    },
     "c350724d4712c977": {
       "at": "2026-10-30T17:17:22.949552+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -17007,14 +17003,6 @@
       "section": "lifestyle",
       "slug": "shizuoka-kodomo-nomihodai-kippu-2026",
       "url": "https://jr-central.co.jp/news/release/nws000001_00642.html"
-    },
-    "d5ea72d53ddd0e11": {
-      "at": "2026-10-26T22:21:10.633174+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "propally-real-estate-investment-survey",
-      "url": "https://prtimes.jp/main/html/rd/p/000000047.000074383.html"
     },
     "d5eed8b6a4c8614b": {
       "at": "2026-10-27T01:54:29.609084+00:00",
@@ -18898,6 +18886,13 @@
       "skipped": true,
       "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1"
     },
+    "f37b680abcf7adcb": {
+      "at": "2026-11-09T22:24:35.724234+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 本文「OpenAI公式ブログは11月9日、…」→ 元記事・確認済みの文脈に公開日の記載がなく、11月9日は創作された日付である; タイトル「停止に加え一時停止も対象に」→ 「対象に」は後から追加されたという変更の主張だが、元記事にはそうした変更の記述がない（一時停止を含むことは元記事にある）; 本文「既存の記事と比べると…新たに示されています」→ 確認済みの文脈",
+      "skipped": true,
+      "url": "https://openai.com/index/control-room"
+    },
     "f38d31ba51354487": {
       "at": "2026-10-30T05:36:50.166011+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -20094,52 +20089,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-07T19:12:12.163188+00:00",
-      "attempt": 1,
-      "id": "bfaf55726f703b66",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 52.2,
-        "avg_sentence": 29.9,
-        "long_share": 0.048,
-        "max_paragraph": 100,
-        "paragraphs": 12,
-        "sentences": 21
-      },
-      "score": 92,
-      "source": "jma-press",
-      "title": "令和８年11月８日01時04分頃の静岡県西部の地震に伴う土砂災害に関する警報等の暫定的な運用について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T19:14:18.088633+00:00",
-      "attempt": 1,
-      "id": "4c00daffcb3d6bea",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "答えになっていない見出し（「AIとの共同作業は急拡大、日本での使い方は未定」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない",
-        "要点の1つ目（「クラウド売上は前年同期比30.5%増。今期第1四…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（定期収入・22.5）を、リードとは違う言い方で1つ目に書く"
-      ],
-      "readability": {
-        "avg_paragraph": 129.8,
-        "avg_sentence": 46.9,
-        "long_share": 0.25,
-        "max_paragraph": 225,
-        "paragraphs": 13,
-        "sentences": 36
-      },
-      "score": null,
-      "source": "atlassian-blog",
-      "title": "Our Q1 FY27 letter to shareholders",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（RPO・MCP・CQS）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-07T19:14:33.867480+00:00",
@@ -27315,6 +27264,36 @@
         "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（DNS）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T22:24:04.937048+00:00",
+      "attempt": 1,
+      "id": "aebdd1c57eb688c2",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "score": 92,
+      "source": "watch-gemini-subscriptions",
+      "title": "Geminiの料金・プランのページが更新（プランの記載が変更）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T22:24:35.724205+00:00",
+      "attempt": 1,
+      "id": "f37b680abcf7adcb",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "本文「OpenAI公式ブログは11月9日、…」→ 元記事・確認済みの文脈に公開日の記載がなく、11月9日は創作された日付である",
+        "タイトル「停止に加え一時停止も対象に」→ 「対象に」は後から追加されたという変更の主張だが、元記事にはそうした変更の記述がない（一時停止を含むことは元記事にある）",
+        "本文「既存の記事と比べると…新たに示されています」→ 確認済みの文脈の要点は停止のみを挙げており、一時停止が新情報だとする比較の根拠が元記事にない",
+        "本文「停止の対象は一時停止も含む」の見出し→ 元記事は停止と一時停止を並べて記述しているだけで、一時停止が新たに対象になったとは書かれていない",
+        "リード「フロンティアモデルの研究作業にはすでに展開」→ 元記事の展開状況（全フロンティアモデル研究ワークロードに展開済み）と一致し問題なし"
+      ],
+      "score": 72,
+      "source": "openai-news",
+      "title": "Control Room: A central system to track and stop model workloads across our rese"
     }
   ],
   "short_text_retry": {},
