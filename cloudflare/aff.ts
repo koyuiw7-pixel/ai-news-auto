@@ -5,6 +5,7 @@
  *   POST /api/aff/click                   1クリックを記録（画面 components/AffClickTracker.tsx から。同じオリジンだけ）
  *   GET  /api/aff/stats?date=YYYY-MM-DD   その日（日本時間）の集計（Bearer AFF_STATS_TOKEN。scripts/aff_stats.py が読む）
  *   POST /api/aff/view・GET /api/aff/inflow   記事に外から来た人の数（cloudflare/inflow.ts。scripts/inflow_report.py が読む）
+ *   POST /api/aff/read・GET /api/aff/reading  記事をどこまで読んだか・次にどこを押したか（cloudflare/reading.ts。scripts/reading_report.py が読む）
  *
  * 保存先は Workers KV の AFF_KV（saisoku-aff）:
  *   c:<日付>:<提携先ID>:<時分秒><乱数>   1クリック = 1キー（同時に押されても数がずれない）。値は空で metadata にパス・置き場所・訪問者の短いハッシュ。400日で消える
@@ -15,6 +16,7 @@
  */
 import { json, readJson, safeEqual, sameOrigin, sha256Hex, type KvNamespace } from "./push";
 import { handleInflow, isInternal } from "./inflow";
+import { handleReading } from "./reading";
 import { ARTICLE_MEASUREMENT_VERSION, ARTICLE_PATHS, BOT_UA, FUNNEL, SOURCES, STAGES, isMeasuredArticle, validFunnelEvent } from "../lib/revenue-funnel";
 
 export type AffEnv = {
@@ -262,5 +264,7 @@ export async function handleAff(request: Request, url: URL, env: AffEnv, ctx: Ct
   if (url.pathname === "/api/aff/stats") return stats(request, url, env);
   // 記事に外から来た人の数（流入元 × 記事 × utm）。cloudflare/inflow.ts
   if (url.pathname === "/api/aff/view" || url.pathname === "/api/aff/inflow") return handleInflow(request, url, env, ctx);
+  // 記事をどこまで読んだか・どれだけ見ていたか・次にどこを押したか。cloudflare/reading.ts
+  if (url.pathname === "/api/aff/read" || url.pathname === "/api/aff/reading") return handleReading(request, url, env, ctx);
   return json({ error: "not found" }, 404);
 }

@@ -12,6 +12,18 @@ try {
   const inflowOutfile = join(dir, "inflow-test.mjs");
   await build({ entryPoints: ["cloudflare/inflow.test.ts"], outfile: inflowOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning" });
   await import(pathToFileURL(inflowOutfile).href);
+  const readingOutfile = join(dir, "reading-test.mjs");
+  await build({ entryPoints: ["cloudflare/reading.test.ts"], outfile: readingOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning" });
+  await import(pathToFileURL(readingOutfile).href);
+  const readingClientOutfile = join(dir, "reading-client-test.mjs");
+  await build({ entryPoints: ["components/ReadingBeacon.test.ts"], outfile: readingClientOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning", plugins: [{
+    name: "unused-react-hooks-for-reading-client-unit-test",
+    setup(build) {
+      build.onResolve({ filter: /^(react|next\/navigation)$/ }, args => ({ path: args.path, namespace: "test-hooks" }));
+      build.onLoad({ filter: /.*/, namespace: "test-hooks" }, () => ({ contents: "export const useEffect=()=>{}; export const usePathname=()=>null;", loader: "js" }));
+    },
+  }] });
+  await import(pathToFileURL(readingClientOutfile).href);
   const reviewOutfile = join(dir, "review-test.mjs");
   await build({ entryPoints: ["cloudflare/review.test.ts"], outfile: reviewOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning" });
   await import(pathToFileURL(reviewOutfile).href);

@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import RevenueFunnelTracker from "@/components/RevenueFunnelTracker";
 import AffClickTracker from "@/components/AffClickTracker";
 import InflowBeacon from "@/components/InflowBeacon";
+import ReadingBeacon from "@/components/ReadingBeacon";
 import { siteConfig } from "@/site.config";
 import { publisherJsonLd } from "@/lib/publisher";
 import { dela, martian } from "./fonts";
@@ -144,6 +145,8 @@ export default function RootLayout({
         <AffClickTracker />
         <RevenueFunnelTracker />
         <InflowBeacon />
+        {/* 記事をどこまで読んだか・次にどこを押したか（見た目は変えない。cloudflare/reading.ts） */}
+        <ReadingBeacon />
         {/* Vercelダッシュボードで Web Analytics を有効にした時点で計測が始まる。
             無効のうちは何も送信されないので、先に仕込んでおいて問題ない。
             Cloudflare では NEXT_PUBLIC_VERCEL_ANALYTICS=off で外す */}
