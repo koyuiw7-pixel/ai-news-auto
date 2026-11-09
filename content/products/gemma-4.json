@@ -8,7 +8,7 @@
   "companyName": "Google",
   "category": "AIモデル",
   "overview": {
-    "text": "Gemma 4は、Google DeepMindが公開したマルチモーダルオープンモデルファミリーです。スマートフォンからクラウド環境までカバーする5つのモデルサイズを展開しています。",
+    "text": "Gemma 4は、Google DeepMindが公開したオープンなマルチモーダル大規模言語モデルです。スマートフォンからクラウド環境までカバーする5つのモデルサイズで構成され、2026年9月に発表されました。",
     "sources": [
       "google-deepmind-gemma-4-family-explained"
     ]
@@ -16,30 +16,16 @@
   "facts": [
     {
       "label": "料金",
-      "value": "オープンモデル",
+      "value": "無料（オープンウェイト）",
       "sources": [
-        "google-deepmind-gemma-4-family-explained"
-      ]
-    },
-    {
-      "label": "提供開始",
-      "value": "すでに提供が開始されています",
-      "sources": [
-        "google-deepmind-gemma-4-family-explained"
+        "gemma-4-ple-architecture-explained-matome"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本からも利用できます",
+      "value": "利用できる",
       "sources": [
-        "google-deepmind-gemma-4-family-explained"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "Hugging Faceなど",
-      "sources": [
-        "google-deepmind-gemma-4-family-explained"
+        "gemma-4-ple-architecture-explained-matome"
       ]
     },
     {
@@ -52,25 +38,25 @@
   ],
   "capabilities": [
     {
-      "text": "テキストや音声、画像をネイティブに処理するマルチモーダル性能を備えています。",
+      "text": "テキストだけでなく、音声や画像をネイティブに処理するマルチモーダル性能を備えています。",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
-      "text": "12Bモデルでは専用エンコーダーを排除し、入力を直接LLMへとマッピングします。",
+      "text": "12Bモデルでは専用エンコーダーを排除し、音声や画像をLLMへ直接投影する新手法を採用しています。",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
-      "text": "260億パラメータのうち40億のみを動的に活性化して高速処理を行います。",
+      "text": "26B A4BモデルではMoEを導入し、総パラメータ260億のうち40億のみを動的に活性化して高速処理します。",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
-      "text": "試作衛星を使った宇宙空間でのオープンモデルによる詩の生成実証に活用されました。",
+      "text": "宇宙の試作衛星に搭載され、軌道上で俳句やリメリックの生成、機器状態の報告を処理しました。",
       "sources": [
         "google-project-suncatcher-satellite-response"
       ]
@@ -78,21 +64,19 @@
   ],
   "pricing": [
     {
-      "text": "オープンモデルとして提供されています。",
+      "text": "商用利用もできるApache 2.0ライセンスで公開されており、重みは無料でダウンロードできます。",
       "sources": [
-        "google-deepmind-gemma-4-family-explained"
+        "gemma-4-ple-architecture-explained-matome"
+      ]
+    },
+    {
+      "text": "モデルの利用自体は無料ですが、動かすためのパソコンやクラウドの費用がかかります。",
+      "sources": [
+        "gemma-4-ple-architecture-explained-matome"
       ]
     }
   ],
   "japan": [
-    {
-      "text": "外部プラットフォームを通じて利用できます。",
-      "sources": [
-        "google-deepmind-gemma-4-family-explained"
-      ]
-    }
-  ],
-  "howto": [
     {
       "text": "Hugging Faceなどの外部プラットフォームを通じて利用できます。",
       "sources": [
@@ -100,9 +84,29 @@
       ]
     }
   ],
+  "howto": [
+    {
+      "text": "Hugging Faceなどの外部プラットフォームからオープンモデルとして利用できます。",
+      "sources": [
+        "google-deepmind-gemma-4-family-explained"
+      ]
+    }
+  ],
   "differences": [
     {
-      "text": "テキストだけでなく音声や複数のモダリティをネイティブに処理できるようになりました。",
+      "text": "前世代からテキストだけでなく音声や画像をネイティブに処理できるようになりました。",
+      "sources": [
+        "google-deepmind-gemma-4-family-explained"
+      ]
+    },
+    {
+      "text": "E2BとE4Bでは、各デコーダー層に小さな埋め込みを持たせるPLE技術を採用しています。",
+      "sources": [
+        "google-deepmind-gemma-4-family-explained"
+      ]
+    },
+    {
+      "text": "12Bモデルでは専用エンコーダーを完全に排除した設計になっています。",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
@@ -111,38 +115,43 @@
   "faq": [
     {
       "q": "無料で使える？",
-      "a": "オープンモデルとして提供されています。",
+      "a": "商用利用可能なApache 2.0ライセンスで公開されており、重みは無料でダウンロードできます。",
+      "sources": [
+        "gemma-4-ple-architecture-explained-matome"
+      ]
+    },
+    {
+      "q": "いつから使える？",
+      "a": "開発者が即座に利用可能な実用フェーズの技術としてすでに提供が開始されています。",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
-      "q": "どこで入手できる？",
-      "a": "Hugging Faceなどの外部プラットフォームで公開されています。",
+      "q": "どんなモデルサイズがある？",
+      "a": "オンデバイス向けのE2BやE4Bから、12B、26B A4B、最高峰の31Bまで5つのサイズがあります。",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
-      "q": "モデルサイズには何がある？",
-      "a": "E2B、E4B、12B、26B A4B、31Bの5つのサイズがあります。",
+      "q": "誰に向いている？",
+      "a": "スマートフォンやパソコンでAIを動かしたい開発者に向いています。",
       "sources": [
-        "google-deepmind-gemma-4-family-explained"
-      ]
-    },
-    {
-      "q": "音声や画像は処理できる？",
-      "a": "テキストだけでなく、音声や画像をネイティブに処理できます。",
-      "sources": [
-        "google-deepmind-gemma-4-family-explained"
+        "gemma-4-ple-architecture-explained-matome"
       ]
     }
   ],
   "timeline": [
     {
+      "date": "2026-09-22",
+      "slug": "google-deepmind-gemma-4-family-explained",
+      "event": "Gemma 4ファミリーを公開"
+    },
+    {
       "date": "2026-10-31",
       "slug": "google-project-suncatcher-satellite-response",
-      "event": "試作衛星からの最初のAI応答を受信"
+      "event": "宇宙の試作衛星でGemma 4がAI応答に成功"
     }
   ],
   "related": [
@@ -153,15 +162,17 @@
   ],
   "articles": [
     "google-project-suncatcher-satellite-response",
+    "gemma-4-ple-architecture-explained-matome",
     "google-deepmind-gemma-4-family-explained"
   ],
   "linkFrom": [
     "google-project-suncatcher-satellite-response",
+    "gemma-4-ple-architecture-explained-matome",
     "google-deepmind-gemma-4-family-explained"
   ],
-  "signature": "b0ab4f5ad419c5d3",
-  "primarySignature": "b0ab4f5ad419c5d3",
+  "signature": "d1635fca9b2a101f",
+  "primarySignature": "d1635fca9b2a101f",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:44:10+00:00",
-  "updatedAt": "2026-11-03T13:03:13+00:00"
+  "updatedAt": "2026-11-09T13:35:58+00:00"
 }
