@@ -5777,13 +5777,6 @@
       "skipped": true,
       "url": "https://www.softbank.jp/sbnews/entry/20261029_02"
     },
-    "236c687371b6fbfc": {
-      "at": "2026-10-26T20:01:27.448108+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1769字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://www.digital.go.jp/policies/local_governments/specification"
-    },
     "237bc1e259371f3e": {
       "at": "2026-11-05T01:06:31.124449+00:00",
       "mix": "brand",
@@ -7349,14 +7342,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（求人）",
       "skipped": true,
       "url": "https://www.atpress.ne.jp/news/643635"
-    },
-    "3d1e98822dd3b16e": {
-      "at": "2026-10-26T20:01:54.511109+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "oh-my-teeth-interview-impression-survey",
-      "url": "https://prtimes.jp/main/html/rd/p/000000150.000048884.html"
     },
     "3d331712a11b0aa4": {
       "at": "2026-11-09T09:25:21.292064+00:00",
@@ -9817,12 +9802,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77213.html"
-    },
-    "62a23b09751441ec": {
-      "at": "2026-10-26T20:01:09.893173+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（採用）",
-      "skipped": true,
-      "url": "https://www.fsa.go.jp/common/recruit/r8/kikaku-03/kikaku-03.html"
     },
     "62a7bc28eafafe7a": {
       "at": "2026-10-27T17:52:39.538368+00:00",
@@ -14393,12 +14372,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110901"
     },
-    "a7a4eed88b7f564f": {
-      "at": "2026-10-26T20:01:09.893187+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
-      "skipped": true,
-      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326716.html"
-    },
     "a7c300d1fdf62482": {
       "at": "2026-11-06T04:23:30.742408+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
@@ -14451,6 +14424,19 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77204.html"
+    },
+    "a8466d0868c9e939": {
+      "at": "2026-11-09T20:03:25.816532+00:00",
+      "costUsd": 0.1409,
+      "foreignAi": true,
+      "intent": "query",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "claude-fast-mode-fable-5-2",
+      "url": "https://claude.com/pricing#entry-2026-11-10-dc84d6"
     },
     "a874e3b4a06b5092": {
       "at": "2026-11-06T05:23:48.145293+00:00",
@@ -16768,13 +16754,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/housou_seisaku/02ryutsu07_04000601.html"
-    },
-    "cfca159d4cf57a59": {
-      "at": "2026-10-26T20:01:09.893138+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "大学の人事・教育プログラムの紹介およびイベント・交流会の案内であり、科学研究の成果、宇宙ミッション、観測・実験の発表ではないため対象外。",
-      "skipped": true,
-      "url": "https://kyodonewsprwire.jp/release/202610268689"
     },
     "cfd4354afa14004f": {
       "at": "2026-11-06T19:26:39.756390+00:00",
@@ -20243,81 +20222,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-07T17:13:48.655832+00:00",
-      "attempt": 1,
-      "id": "4246d58cd50eee4f",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "記事末尾の「判定: 提供状況=available 価格=不明」→ 本文の「日本での提供状況は、まだ発表されていません」と矛盾し、提供済みと読める記述になっている",
-        "かんたん版の「コンテナは、ホストのOSの中心部分（カーネル）を他の動作と共有します」→ 元記事は「他のプロセス（other processes）」と書いており、「動作」は誤訳",
-        "「エージェントを安全に動かすなら、仮想マシンで隔離するSandboxesが向いています」→ 元記事は用途ごとの使い分けを示しており、安全性の優劣を単純に断定する言い過ぎ"
-      ],
-      "readability": {
-        "avg_paragraph": 84.3,
-        "avg_sentence": 44.5,
-        "long_share": 0.222,
-        "max_paragraph": 178,
-        "paragraphs": 19,
-        "sentences": 36
-      },
-      "score": 80,
-      "source": "docker-blog",
-      "title": "Docker Sandboxes vs. Containers: Choosing the Right Isolation for AI Agents"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T17:14:48.125559+00:00",
-      "attempt": 1,
-      "id": "4246d58cd50eee4f",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 49.4字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 117.1字・最長 230字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 117.1,
-        "avg_sentence": 49.4,
-        "long_share": 0.289,
-        "max_paragraph": 230,
-        "paragraphs": 19,
-        "sentences": 45
-      },
-      "score": 90,
-      "source": "docker-blog",
-      "title": "Docker Sandboxes vs. Containers: Choosing the Right Isolation for AI Agents",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HTTP・SSH・AUTH）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T17:15:19.774032+00:00",
-      "attempt": 0,
-      "id": "4246d58cd50eee4f",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 本文末尾の「判定: 提供状況=available 価格=不明」は元記事に根拠がなく、本文の「日本での提供状況はまだ発表されていません」とも食い違うため、提供状況の断定として問題になる; 記事末尾に編集部の判定メモが本文として混入しており、読者向け記事の体裁として"
-      ],
-      "readability": {
-        "avg_paragraph": 117.1,
-        "avg_sentence": 49.4,
-        "long_share": 0.289,
-        "max_paragraph": 230,
-        "paragraphs": 19,
-        "sentences": 45
-      },
-      "score": 90,
-      "source": "docker-blog",
-      "title": "Docker Sandboxes vs. Containers: Choosing the Right Isolation for AI Agents",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HTTP・SSH・AUTH）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-07T17:53:39.087693+00:00",
@@ -27470,6 +27374,82 @@
       "score": 88,
       "source": "openai-news",
       "title": "Kuken Industries searches 70 years of drawings in minutes"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T20:02:13.426883+00:00",
+      "attempt": 1,
+      "id": "a8466d0868c9e939",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「料金ページの高速モードの項目」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 102.3,
+        "avg_sentence": 43.4,
+        "long_share": 0.242,
+        "max_paragraph": 180,
+        "paragraphs": 14,
+        "sentences": 33
+      },
+      "score": null,
+      "source": "watch-claude-pricing",
+      "title": "Claudeの料金・プランのページが更新（料金の記載が変更）",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 43.4字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T20:02:51.776447+00:00",
+      "attempt": 1,
+      "id": "a8466d0868c9e939",
+      "kind": "ai",
+      "model": "strike:今日やること",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 102.9,
+        "avg_sentence": 45.0,
+        "long_share": 0.281,
+        "max_paragraph": 180,
+        "paragraphs": 14,
+        "sentences": 32
+      },
+      "score": 92,
+      "source": "watch-claude-pricing",
+      "title": "Claudeの料金・プランのページが更新（料金の記載が変更）",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 45.0字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T20:03:25.778505+00:00",
+      "attempt": 0,
+      "id": "a8466d0868c9e939",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「Claudeのプランと料金」表のTeam（スタンダードシート）$20/人・月（年払い）の円の目安が約4,350円になっているが、$20×158.33×1.1は約3,480円で、4,350円は$25に当たる。ドル額と円の目安が食い違っている。; 同表のTeam（"
+      ],
+      "readability": {
+        "avg_paragraph": 102.9,
+        "avg_sentence": 45.0,
+        "long_share": 0.281,
+        "max_paragraph": 180,
+        "paragraphs": 14,
+        "sentences": 32
+      },
+      "score": 92,
+      "source": "watch-claude-pricing",
+      "title": "Claudeの料金・プランのページが更新（料金の記載が変更）",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 45.0字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
     }
   ],
   "short_text_retry": {},

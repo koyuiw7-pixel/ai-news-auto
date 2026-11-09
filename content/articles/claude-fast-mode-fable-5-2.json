@@ -1,0 +1,279 @@
+{
+  "slug": "claude-fast-mode-fable-5-2",
+  "sourceType": "web",
+  "sourceUrl": "https://claude.com/pricing#entry-2026-11-10-dc84d6",
+  "sourceName": "Claude 料金ページ",
+  "title": "Claude Fable 5.2とOpus 5.5の高速モード、標準料金の2倍で最大2.5倍速に",
+  "seoTitle": "Claudeの料金ページ更新　Fable 5.2も高速モード対応",
+  "threadsPost": "Claudeを開発で使っている人に、知っておいてほしい話です。\n\nOpus 5.5に加え、Fable 5.2も高速モードの対象になりました。\n料金は標準の2倍で、速さは最大2.5倍です。\n\n仕事のAIに、速さのために料金を上乗せするのはありですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "price",
+      "question": "仕事で使うAIの速さに、料金が2倍までなら出せますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "待ち時間を減らすために、料金の上乗せを受け入れますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "Claudeで開発する人は、速さと費用のどちらを優先しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "Claudeの料金ページで、高速モードの対象にFable 5.2が加わりました。Opus 5.5と同じく、標準料金の2倍で最大2.5倍の高速化になります。個人向けのProやMaxなどの月額は今回変わっておらず、API（アプリから呼び出す仕組み）を使う開発者に関わる更新です。",
+  "description": "Claudeの料金ページが更新され、高速モードの対象がOpus 5.5に加えFable 5.2にも拡大しました。標準料金の2倍で最大2.5倍の高速化です。Fable 5.2の価格と個人向けプランも整理します。",
+  "keywords": [
+    "Claude 料金",
+    "Claude 高速モード",
+    "Fable 5.2 料金",
+    "Opus 5.5 ファストモード",
+    "Claude API 料金",
+    "Claude Pro 料金",
+    "Claude Ultra",
+    "Claude Max 料金",
+    "Anthropic 料金改定",
+    "MTok 料金"
+  ],
+  "tags": [
+    "生成AI",
+    "Claude",
+    "Anthropic",
+    "API料金",
+    "LLM"
+  ],
+  "highlights": [
+    "Claudeの高速モードがOpus 5.5に加えFable 5.2にも対応し、標準料金の2倍で最大2.5倍速",
+    "Fable 5.2のAPI料金は入力$8・出力$40で、料金ページにも反映された",
+    "Pro・Max・Ultraの月額は$20・$100・$200のまま、個人向けに値上げはない"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "API従量課金",
+    "free": false,
+    "audience": "開発者",
+    "take": "速さが収益や作業効率に直結するなら、高速モードの2倍料金を試算してから使うかを決めるとよいでしょう。",
+    "judgedAt": "2026-11-09T20:02:13.041022+00:00",
+    "japanSource": {
+      "name": "Claude",
+      "url": "https://www.anthropic.com/supported-countries",
+      "checkedAt": "2026-11-03"
+    }
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "Claude APIで開発する人は、高速モードが標準料金の2倍になる点を原価に入れて比べるとよいでしょう。",
+      "Pro・Max・Ultraの個人向け月額は今回変わっておらず、既存の契約への影響はありません。"
+    ]
+  },
+  "body": "個人向けのPro・Max・Ultraを契約している人は、今回の更新で月額や上限が変わることはありません。影響を受けるのは、API（アプリから呼び出す仕組み）でClaudeを組み込んで使う開発者です。\n\nClaudeはAnthropicが提供する対話AIです。高速モードは、通常より速く答えを返す代わりに、追加の料金がかかる使い方です。\n\n## 高速モードの対象が2モデルに\n\nAnthropicの料金ページの差分によると、これまでの記載は「Opus 5.5のファストモードで最大2.5倍の高速化」でした。今回は「Opus 5.5とFable 5.2のファストモード」に書き換わっています。料金は変わらず、標準料金の2倍です（Claude公式の料金ページ、11/9確認）。\n\nAnthropicの公式「料金」の説明では、高速モードの対応モデルとして、Fable 5.2、Opus 5.5、Opus 5、Opus 4.8の4つが挙げられています。Opus 5とOpus 4.8の高速モードはリサーチプレビュー（研究段階の公開）とされています（Anthropic公式「料金」、11/10確認）。\n\n高速モードの料金は、200k入力トークンを超えるリクエストを含め、コンテキストウィンドウ（一度に読める量）全体に適用されます。使えるのはClaude API（ファーストパーティ）です。Opus 5.5は、Google CloudのClaude ModelsやMicrosoft FoundryのClaudeでも使えます（Anthropic公式「料金」、11/10確認）。\n\n## Fable 5.2の価格は入力$8・出力$40\n\n今回の差分には「$8 / MTok」「$40 / MTok」の追加もあります。これはFable 5.2の入力と出力の料金です。MTokは100万トークンを指します。\n\nサイソクの過去記事によると、Fable 5.2は入力$8・出力$40で、5.1の入力$10・出力$50より安くなっています（[Claude Fable 5.2、API料金は入力$8・出力$40に](/articles/claude-fable-5-2-api-price)、11/10）。\n\n円の目安では、入力の$8が約1,270円、出力の$40が約6,330円です（サイソク編集部の計算、税別。1ドル=158.33円）。\n\n高速モードの2倍は、この標準料金を基準にした値です。高速モードでの具体的な金額は、確認済みの資料には載っていません。\n\n### Claudeのプランと料金（公式の料金と円の目安）\n\n| プラン | 料金（公式） | 円の目安 | 主な上限・違い |\n| --- | --- | --- | --- |\n| Free | $0/月 |  | 制限された使用量（5 時間ごと・毎週） |\n| Pro | $17/月（年払い・一括$200） / $20/月（月払い） | 約3,480円（税込みの目安） | Free より多い使用量（5 時間ごと・毎週） |\n| Max | $100/月（月払い） | 約17,420円（税込みの目安） | Pro の 5 倍の使用量（5 時間ごと・毎週）、Claude Platform での開発に利用できる月額 $100 分の API クレジット |\n| Ultra | $200/月（月払い） | 約34,830円（税込みの目安） | 5 時間制限なし、Pro の 10 倍の使用量（毎週）、月額 $200 分の API クレジット（Max の $100 からアップグレード） |\n| Team（スタンダードシート） | $20/人・月（年払い） / $25/人・月（月払い） | 約4,350円（税込みの目安） | すべてのClaude 機能、さらにProより多い使用量 |\n| Team（プレミアムシート） | $100/人・月（年払い） / $125/人・月（月払い） | 約21,770円（税込みの目安） | スタンダードシートの5倍の使用量 |\n| Enterprise | $20/人・月（年払い） | 約3,480円（税込みの目安） | US$20/シート/月（年払い、最低20シート）。使用コストはモデルとタスクに応じて変動します。、シート料金 + APIレートでの使用量 |\n\n出典：Claudeの公式ページ（https://claude.com/pricing）／確認日：2026-11-09\n円は1ドル=158.33円（2026-11-06、ECB参照レート（ユーロ経由で計算））で計算した目安です。ドルのプランは消費税10%を足しています。実際の請求額は為替とカード会社の手数料で変わります。\n\n## 個人向けの月額は据え置き\n\nProは月$20、Maxは$100、Ultraは$200です。Ultraは5時間制限がなく、利用量はProの10倍です（[Ultraへの改称](/articles/claude-ultra-plan-price-limits)、11/2）。\n\nProを1倍とすると、Max（5倍）とUltra（10倍）はどちらも、1倍分あたり$20で同じです（サイソク編集部の計算）。上のプランは割引ではなく、同じ単価で使える量を増やすものです。\n\n料金の目安は、税込みでProが約3,480円、Maxが約17,420円、Ultraが約34,830円です（サイソク編集部の計算）。\n\n## 米国限定推論は1.1倍\n\n同じ料金ページには、米国内での実行が必要な場合の米国限定推論も載っています。入出力トークンの1.1倍の料金です。Claude 4.6以降のモデルでは、inference_geoというパラメーターで指定します。それ以前のモデルでこのパラメーターを含めて送ると、400エラーが返ります（Anthropic公式「料金」、11/10確認）。\n\n## まだ分からないこと\n\n- Fable 5.2の高速モードでの具体的な入力・出力の金額は、確認済みの資料には載っていません。\n- Fable 5.2の高速モードが一般提供なのかプレビューなのかは、はっきり示されていません。",
+  "easy": "## ひとことで言うと\n\nClaudeの料金ページが更新され、高速モードの対象にFable 5.2が加わりました。標準料金の2倍で、最大2.5倍の速さで答えが返ります。\n\n## 何が変わったのか\n\nこれまでは、Opus 5.5だけが高速モードの対象でした。今回の更新で、より上位のモデルであるFable 5.2も同じ条件で使えると料金ページに書かれました。\n\nFable 5.2の通常のAPI料金は、入力$8・出力$40です。MTok（100万トークン。AIが文字を数える単位）あたりの値段です。\n\n## 個人向けプランは変わりません\n\nProは月額$20、Maxは$100、Ultraは$200のままです。今回の更新は、主にAPIを使う開発者に関わるものです。",
+  "channel": "Claude 料金ページ",
+  "channelId": "",
+  "channelSlug": "watch-claude-pricing",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Claudeの料金・プランのページが更新（料金の記載が変更）",
+  "publishedAt": "2026-11-09T20:01:38.283874+00:00",
+  "generatedAt": "2026-11-09T20:02:13.041010+00:00",
+  "thumbnail": "",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "pricing",
+  "pricingProduct": "claude",
+  "pricingCompare": "plan:standard",
+  "faq": [
+    {
+      "q": "Claudeの米国限定推論を使うと、料金はどう変わりますか？",
+      "a": "入出力トークンの1.1倍の料金です。Claude 4.6以降のモデルが対象で、それ以前のモデルでパラメーターを指定すると400エラーになります。"
+    },
+    {
+      "q": "ClaudeのFable 5.2は、個人向けプランでも使えますか？",
+      "a": "Proでは使用クレジット払い、MaxとUltraでは週間上限の半分までFableを使えると料金ページに書かれています。Freeでは使えません。"
+    }
+  ],
+  "relatedSlugs": [
+    "claude-fable-5-2-api-price",
+    "claude-ultra-plan-price-limits"
+  ],
+  "qualityScore": 92,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "Anthropic公式の料金ページ",
+      "url": "https://claude.com/pricing",
+      "checkedAt": "2026-11-09"
+    },
+    {
+      "label": "調べた公式情報",
+      "name": "Anthropic公式「料金」",
+      "url": "https://platform.claude.com/docs/ja/about-claude/pricing",
+      "checkedAt": "2026-11-10"
+    },
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-10"
+    },
+    {
+      "label": "為替",
+      "name": "ECB参照レート（ユーロ経由で計算）",
+      "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+      "checkedAt": "2026-11-06"
+    },
+    {
+      "label": "日本での提供",
+      "name": "Claudeの公式ページ",
+      "url": "https://www.anthropic.com/supported-countries",
+      "checkedAt": "2026-11-03"
+    },
+    {
+      "label": "計算",
+      "name": "サイソク編集部の計算（元記事と上の資料の数字から）",
+      "url": "",
+      "checkedAt": ""
+    }
+  ],
+  "charts": [
+    {
+      "kind": "ladder",
+      "product": "claude",
+      "afterHeading": "Fable 5.2の価格は入力$8・出力$40"
+    }
+  ],
+  "detectedAt": "2026-11-09T20:01:38+00:00",
+  "layout": "noir",
+  "summaryLine": "Claudeの高速モードがOpus 5.5に加えFable 5.2にも対応し、標準料金の**2倍**で最大2.5倍速",
+  "insight": [
+    {
+      "text": "Fable 5.2の高速モードは、Google Cloudの「Claude Models on Google Cloud」でも利用でき、Google managed版の価格はGoogle Cloudが設定します。",
+      "source": "https://platform.claude.com/docs/ja/about-claude/pricing"
+    },
+    {
+      "text": "プランによって Fable の扱いが違い、Proでは「Fable（使用クレジット払い）」、Maxでは「Fable 付き（週間上限の半分まで）」と書かれています。",
+      "source": "https://claude.com/pricing#entry-2026-11-10-dc84d6"
+    },
+    {
+      "text": "Fable 5.2のプロンプトキャッシュの読み取りは、標準入力価格の2.5%で、100万トークンあたり$0.20と書かれています。",
+      "source": "https://platform.claude.com/docs/ja/about-claude/pricing"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Claude Platform 料金ページ（高速モードの料金）",
+      "url": "https://platform.claude.com/docs/ja/about-claude/pricing",
+      "source": "https://platform.claude.com/docs/ja/about-claude/pricing",
+      "howTo": [
+        "料金",
+        "高速モードの料金"
+      ],
+      "note": "料金は米ドル建てで、最新の料金情報は claude.com/pricing をご覧ください、と書かれています。"
+    },
+    {
+      "name": "Claude 料金ページ（個人向けプラン）",
+      "url": "https://claude.com/pricing#entry-2026-11-10-dc84d6",
+      "source": "https://claude.com/pricing#entry-2026-11-10-dc84d6",
+      "note": "5時間ごと・毎週の上限への到達速度は、使うモデル・会話の長さ・ファイルのサイズで変わると書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "料金ページの「高速モードの料金」を開き、自分が使うモデルと提供先が対象か確かめる",
+      "source": "https://platform.claude.com/docs/ja/about-claude/pricing",
+      "steps": [
+        "料金ページの「高速モードの料金」の段落を開く",
+        "対象モデルに Fable 5.2 や Opus 5.5 があるか見る",
+        "使いたいクラウドが対象に入っているか確かめる"
+      ],
+      "url": "https://platform.claude.com/docs/ja/about-claude/pricing"
+    },
+    {
+      "action": "個人プランなら、料金ページの比較表で Fable の使える条件と上限を確かめる",
+      "source": "https://claude.com/pricing#entry-2026-11-10-dc84d6",
+      "steps": [
+        "料金ページの「プラン間の機能を比較」を開く",
+        "「モデルと使用状況」の Fable の行を見る",
+        "Pro は使用クレジット払い、Max は週間上限の半分まで"
+      ],
+      "url": "https://claude.com/pricing#entry-2026-11-10-dc84d6"
+    }
+  ],
+  "cause": {
+    "text": "ページは変更の理由を書いていません。高速モードは、大幅に高速な出力をプレミアム料金で提供する仕組みだと説明されています。",
+    "status": "background",
+    "source": "https://platform.claude.com/docs/ja/about-claude/pricing"
+  },
+  "worries": [
+    {
+      "q": "個人のProやMaxの月額は変わる？",
+      "a": "料金ページには、Proは年払いで月$17（一括$200）、月払いで$20。Maxは月$100、Ultraは月$200と書かれています。",
+      "source": "https://claude.com/pricing#entry-2026-11-10-dc84d6",
+      "action": "契約中のプランの月額と使用上限を料金ページの比較表で確かめ、次の支払いの前に金額を見直す。"
+    },
+    {
+      "q": "Fable 5.2 は個人のプランで使える？",
+      "a": "Proでは「Fable（使用クレジット払い）」、Maxでは「Fable 付き（週間上限の半分まで）」と書かれています。Free では対象外です。",
+      "source": "https://claude.com/pricing#entry-2026-11-10-dc84d6",
+      "action": "Fable を使いたいなら、料金ページの表で自分のプランの Fable の扱いを見てから決める。"
+    },
+    {
+      "q": "米国内だけで処理したい場合、料金は変わる？",
+      "a": "米国限定推論では入出力トークンの1.1倍の料金になります。Claude 4.6以降のモデルでは inference_geo で指定し、それ以前のモデルでこのパラメーターを送ると400エラーが返ります。",
+      "source": "https://platform.claude.com/docs/ja/about-claude/pricing",
+      "action": "米国内での実行が必要な処理だけ inference_geo を指定し、使うモデルが対象かを確かめる。"
+    },
+    {
+      "q": "Fable 5.2 の高速モードの具体的な金額は？",
+      "a": "標準料金の2倍と書かれていますが、Fable 5.2 の高速モードでの入力・出力の具体的な金額は、確認したページには載っていません。",
+      "source": "https://claude.com/pricing#entry-2026-11-10-dc84d6",
+      "action": "金額を見積もるなら、請求ページで自分の利用量とモデル別の料金を確認してから計算する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "高速モードを有効にするべき？",
+      "situation": "応答の速さが業務のボトルネックになっている",
+      "recommend": "料金と速度を比べて検討する価値がある",
+      "reason": "高速モードは標準料金の2倍で、最大2.5倍の高速化とされています。Fable 5.2の具体的な金額は資料にないため、試す前に自分の利用量で見積もるのが安全です。",
+      "source": "https://claude.com/pricing#entry-2026-11-10-dc84d6"
+    },
+    {
+      "question": "高速モードを有効にするべき？",
+      "situation": "急ぎではなく、標準料金で足りている",
+      "recommend": "急がなくてよい",
+      "reason": "高速モードは標準料金の2倍の料金がかかります。速さが必要ない処理では、料金を上げる理由は今のところ見当たりません。",
+      "source": "https://claude.com/pricing#entry-2026-11-10-dc84d6"
+    },
+    {
+      "question": "個人プランで Fable を使いたい？",
+      "situation": "Pro を契約している",
+      "recommend": "使用クレジットの扱いを先に確かめる",
+      "reason": "Proの Fable は「使用クレジット払い」と書かれています。Maxでは週間上限の半分までとされ、どちらも料金ページの表の記載です。",
+      "source": "https://claude.com/pricing#entry-2026-11-10-dc84d6"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "高速モードは使える場所で違いがある",
+    "cause": "料金が変わった理由は書かれていない",
+    "steps": "今日、料金ページで確かめる場所",
+    "desk": "料金と上限を確かめられる公式ページ",
+    "worries": "個人プランやAPIへの影響は？",
+    "guide": "高速モードを使うか迷ったときの決め方"
+  },
+  "todayActions": [
+    "料金ページの「高速モードの料金」を開き、自分が使うモデルと提供先が対象か確かめる",
+    "個人プランなら、料金ページの比較表で Fable の使える条件と上限を確かめる"
+  ],
+  "depthAt": "2026-11-09T20:04:19+00:00",
+  "duplicateOf": "claude-fable-5-2-api-price",
+  "duplicateReason": "製品名が一致（fable5.2）"
+}
