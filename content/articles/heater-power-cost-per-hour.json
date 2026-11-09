@@ -72,9 +72,9 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "使っている暖房の仕様表で、消費電力（W）の欄を確かめる",
-    "電気代は、検針票の1kWhあたりの単価に置き換えて計算し直す",
-    "こたつは温度調節を「強」から「中」に下げて使ってみる"
+    "こたつは商品詳細の「標準消費電力量」で、強と弱の数字を確かめる",
+    "エアコンのカタログで期間消費電力量を見て、年間の電気代の目安を計算する",
+    "セラミックファンヒーターは、仕様表で50Hzと60Hzの消費電力の違いを確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -129,5 +129,123 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/heater-power-cost-per-hour-9b71e201.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "こたつの仕様は消費電力510Wですが、電気代の目安は強5.3円・弱2.5円です。山善は「標準消費電力量」として、強で約170Wh、弱で約80Whも載せています。",
+      "source": "https://book.yamazen.co.jp/product/detail/I00008257"
+    },
+    {
+      "text": "エアコンの年間の目安は、カタログの「期間消費電力量」に単価を掛けて出します。RAS-X22Mは555kWhで、31円/kWhなら年間17,205円と示されています。",
+      "source": "https://kadenfan.hitachi.co.jp/ra/contents/ra_qa/contents08.html"
+    },
+    {
+      "text": "パナソニックの1時間の電気代は室温15℃の条件のものです。約35.7円は50Hz時の金額で、60Hzでは強1,100W・弱615Wと表示されています。",
+      "source": "https://panasonic.jp/danbo/products/DS-FAN1200/spec.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "山善 商品に関するお問い合わせ（暖房器具）",
+      "url": "https://book.yamazen.co.jp/support/inquiry/?c=heatingunit",
+      "source": "https://book.yamazen.co.jp/support/inquiry/?c=heatingunit",
+      "note": "受付番号を控える。土・日・祝日・年末年始・夏期休暇の問い合わせは翌営業日以降の対応。"
+    },
+    {
+      "name": "日立の家電品 お客様相談センター",
+      "url": "https://kadenfan.hitachi.co.jp/support/inquiry/howtouse/home.html",
+      "source": "https://kadenfan.hitachi.co.jp/ra/contents/ra_qa/contents08.html",
+      "note": "確認したい機種がカタログに掲載されていない場合の相談先。"
+    },
+    {
+      "name": "パナソニック 電気カーペット（ホットカーペット）・暖房器具 サポート",
+      "url": "https://panasonic.jp/danbo/support.html",
+      "source": "https://panasonic.jp/support/contact.html",
+      "howTo": [
+        "お問い合わせ",
+        "商品について",
+        "空調家電・季節家電",
+        "電気カーペット（ホットカーペット）・暖房器具"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "こたつは商品詳細の「標準消費電力量」で、強と弱の数字を確かめる",
+      "source": "https://book.yamazen.co.jp/product/detail/I00008257",
+      "steps": [
+        "商品情報サイトの家具調こたつを開く",
+        "「商品説明」の標準消費電力量を見る",
+        "強は約170Wh、弱は約80Whを確認する"
+      ],
+      "url": "https://book.yamazen.co.jp/product/detail/I00008257"
+    },
+    {
+      "action": "エアコンのカタログで期間消費電力量を見て、年間の電気代の目安を計算する",
+      "source": "https://kadenfan.hitachi.co.jp/ra/contents/ra_qa/contents08.html",
+      "steps": [
+        "カタログの仕様表で「期間消費電力量」を探す",
+        "ご契約の電力会社のWebページで単価を調べる",
+        "期間消費電力量（kWh）×電気代単価（円）で計算"
+      ],
+      "url": "https://kadenfan.hitachi.co.jp/ra/contents/ra_qa/contents08.html"
+    },
+    {
+      "action": "セラミックファンヒーターは、仕様表で50Hzと60Hzの消費電力の違いを確かめる",
+      "source": "https://panasonic.jp/danbo/products/DS-FAN1200/spec.html",
+      "steps": [
+        "仕様・スペックの「消費電力(50/60Hz)」を見る",
+        "強は50Hzで1150W、60Hzで1100Wと確認する",
+        "弱は50Hzで640W、60Hzで615Wと確認する"
+      ],
+      "url": "https://panasonic.jp/danbo/products/DS-FAN1200/spec.html"
+    }
+  ],
+  "cause": {
+    "text": "電気料金は契約する小売電気事業者により異なるため、協議会は全小売電気事業者の販売電力量・販売額の集計などをもとに目安単価を算出しています。目安単価31円/kWh（税込）は、令和4年7月22日に改定された値です。",
+    "status": "background",
+    "source": "https://www.eftc.or.jp/qa/"
+  },
+  "worries": [
+    {
+      "q": "こたつの510Wなのに、電気代は5.3円なのはなぜ？",
+      "a": "山善の商品ページには、消費電力510Wと標準消費電力量（強約170Wh、弱約80Wh）が並んで載っています。ヒーターの動きとの関係までは、ページには書かれていません。",
+      "source": "https://book.yamazen.co.jp/product/detail/I00008257",
+      "action": "こたつを比べるときは、仕様の消費電力と標準消費電力量の両方を見る。"
+    },
+    {
+      "q": "エアコンは1時間の電気代がどれくらい変わる？",
+      "a": "日立の公式ページでは、RAS-X22Mの暖房時の消費電力は110Wから1,490Wで、1時間の電気代は約3円から約46円と示されています。運転の状態で大きく変わります。",
+      "source": "https://kadenfan.hitachi.co.jp/ra/contents/ra_qa/contents08.html",
+      "action": "エアコンの電気代は、運転の状態で幅があると考えて見積もる。"
+    },
+    {
+      "q": "年間の電気代は、どうやって計算する？",
+      "a": "日立のページでは、RAS-X22Mの期間消費電力量は555kWhで、31円/kWhで計算すると年間17,205円が目安と示されています。",
+      "source": "https://kadenfan.hitachi.co.jp/ra/contents/ra_qa/contents08.html",
+      "action": "自分の機種のカタログで期間消費電力量を見て、単価を掛けて年間の目安を出す。"
+    },
+    {
+      "q": "電気ストーブの電気代は、いくらか分からない？",
+      "a": "山善のカーボンヒーターEDCT-BK081のページには、消費電力（強800W、弱400W）は載っていますが、1時間の電気代は載っていません。",
+      "source": "https://yamazenbizcom.jp/item/S4H71.html",
+      "action": "消費電力とご契約の電力会社の単価から、自分で電気代を計算する。",
+      "actionSource": "https://kadenfan.hitachi.co.jp/ra/contents/ra_qa/contents08.html"
+    },
+    {
+      "q": "31円という単価は、自分の家にも当てはまる？",
+      "a": "協議会の31円/kWh（税込）は目安単価です。電力料金は契約する小売電気事業者により異なると、ページに書かれています。",
+      "source": "https://www.eftc.or.jp/qa/",
+      "action": "ご契約の電力会社のWebページで単価を確認し、計算し直す。",
+      "actionSource": "https://kadenfan.hitachi.co.jp/ra/contents/ra_qa/contents08.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "消費電力と、実際の電気代の違い",
+    "cause": "電気代の単価は、どう決まっている？",
+    "steps": "自宅の数字で今すぐ確かめる",
+    "desk": "電話や問い合わせ先はどこ？",
+    "worries": "こたつや電気ストーブの電気代、どう見る？"
+  },
+  "depthAt": "2026-11-09T10:25:05+00:00"
 }

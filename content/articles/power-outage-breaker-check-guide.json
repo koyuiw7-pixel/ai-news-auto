@@ -67,7 +67,7 @@
   "videoTitle": "停電したら最初に見るのはここ。停電情報ページとブレーカーの確かめ方",
   "publishedAt": "2026-11-09T10:00:58.437803+00:00",
   "generatedAt": "2026-11-09T10:02:23.222599+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/power-outage-breaker-check-guide-4fccb29b.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "general",
@@ -78,9 +78,9 @@
     }
   ],
   "todayActions": [
-    "分電盤を開け、アンペアブレーカーと漏電ブレーカーの位置を家族と確かめておく",
-    "東京電力パワーグリッドの管内なら、teideninfo.tepco.co.jpで住所から停電情報を検索しておく",
-    "連絡用に、住所・おなまえ・電話番号と家の目印を、すぐ見られる場所に書いておく"
+    "東京電力パワーグリッド管内なら、停電情報で「住所から検索」を開き、自宅を調べておく",
+    "分電盤で、漏電ブレーカーを一度「切」にしてから「入」にする手順を確かめる",
+    "連絡用に、住所・おなまえ・電話番号と目印を見える場所に書いておく"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -133,5 +133,142 @@
   "originalTitle": "停電したら、まず停電情報ページとブレーカーを確認　送配電会社の公式案内より",
   "titleStyle": "2026-11-03",
   "layout": "noir",
-  "summaryLine": "電気が消えたら、ブレーカーと停電情報ページの順に見ると、家の中か地域かを切り分けられます"
+  "summaryLine": "電気が消えたら、ブレーカーと停電情報ページの順に見ると、家の中か地域かを切り分けられます",
+  "insight": [
+    {
+      "text": "漏電ブレーカーのつまみは、切れていないと思っても中央位置で止まっていることがあります。一度「切」にしてから「入」にしてみましょう。",
+      "source": "https://www.yonden.co.jp/nw/safety/teiden/home.html"
+    },
+    {
+      "text": "停電情報には、電柱から建物への電線（引込線）の損傷や、建物内の安全ブレーカーなどの故障による停電は表示されない場合があります。",
+      "source": "https://teideninfo.tepco.co.jp/"
+    },
+    {
+      "text": "関西電力送配電の電話受付は平日9時から17時で、平日9時から10時は込み合います。停電など緊急の用件は受付時間外も承ると案内されています。",
+      "source": "https://www.kansai-td.co.jp/faq/contact/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "東京電力「電気がつかないときは？」",
+      "url": "https://www.tepco.co.jp/disaster/teiden.html",
+      "source": "https://www.tepco.co.jp/disaster/teiden.html",
+      "howTo": [
+        "災害にそなえて",
+        "電気がつかないときは？"
+      ],
+      "note": "停電の連絡の際は、おところ・おなまえ・電話番号とわかりやすい目印をお知らせください。"
+    },
+    {
+      "name": "お問い合わせ窓口 関西電力送配電",
+      "url": "https://www.kansai-td.co.jp/faq/contact/",
+      "source": "https://www.kansai-td.co.jp/faq/contact/",
+      "howTo": [
+        "TOP",
+        "よくあるご質問・お問い合わせ",
+        "お問い合わせ窓口"
+      ],
+      "phone": "0800-777-3081",
+      "hours": "9時から17時（土日祝・年末年始を除く）",
+      "note": "平日9：00～10：00は電話が込み合います。家の電気が消えた場合は、チャットでのお問い合わせも案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "東京電力パワーグリッド管内なら、停電情報で「住所から検索」を開き、自宅を調べておく",
+      "source": "https://teideninfo.tepco.co.jp/",
+      "steps": [
+        "停電情報のページを開く",
+        "「住所から検索」を選ぶ"
+      ],
+      "url": "https://teideninfo.tepco.co.jp/html/00000000000.html"
+    },
+    {
+      "action": "分電盤で、漏電ブレーカーを一度「切」にしてから「入」にする手順を確かめる",
+      "source": "https://www.yonden.co.jp/nw/safety/teiden/home.html",
+      "steps": [
+        "安全ブレーカーのつまみを全部「切」にする",
+        "漏電ブレーカーのつまみを「切」にしてから「入」にする",
+        "安全ブレーカーを1つずつ「入」にする"
+      ],
+      "url": "https://www.yonden.co.jp/nw/safety/teiden/home.html"
+    },
+    {
+      "action": "連絡用に、住所・おなまえ・電話番号と目印を見える場所に書いておく",
+      "source": "https://www.tepco.co.jp/disaster/teiden.html",
+      "steps": [
+        "住所、おなまえ、電話番号を書く",
+        "わかりやすい目印も書いておく"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "停電は、台風や落雷、事故などによって当社の設備が故障して起きることがあります。ご近所一帯が停電したときは、東京電力パワーグリッドへ連絡するよう案内されています。",
+    "status": "background",
+    "source": "https://www.tepco.co.jp/disaster/teiden.html"
+  },
+  "worries": [
+    {
+      "q": "ブレーカーを戻しても電気がつかないときは、どうすればいい？",
+      "a": "東京電力パワーグリッドの案内では、ブレーカーが切れていないのに電気がつかないときは、お近くの東京電力パワーグリッドへ連絡するとされています。連絡の際は住所や目印を伝えます。",
+      "source": "https://www.tepco.co.jp/disaster/teiden.html",
+      "action": "ブレーカーを確かめたら、住所・おなまえ・電話番号と目印を伝えて送配電会社へ連絡する。"
+    },
+    {
+      "q": "停電中に暖房や調理で火を使っても大丈夫？",
+      "a": "室内で練炭や炭、七輪を使うのは極力避けるよう案内されています。やむを得ず使うときは、一酸化炭素中毒防止のため定期的に換気します。石油ストーブなどの燃焼器具も、定期的な換気が必要とされています。",
+      "source": "https://www.tepco.co.jp/disaster/teiden.html",
+      "action": "停電中は室内での炭や七輪を避け、使うときは定期的に窓を開けて換気する。"
+    },
+    {
+      "q": "電気が戻ったとき、家電に何か起きる？",
+      "a": "停電解消時の火災防止のため、アイロンやドライヤーなどの電熱器具はプラグを抜くよう案内されています。炊飯器や予約録画などのタイマーは、時刻がずれたり予約が消えたりする場合があります。",
+      "source": "https://www.tepco.co.jp/disaster/teiden.html",
+      "action": "停電が解消したら、ブレーカーを入れてから機器のプラグを差し込み、タイマー設定も確認する。"
+    },
+    {
+      "q": "停電中、信号や電話はどうなる？",
+      "a": "信号機が突然消灯することがあると案内されています。固定電話・IP電話は、加入電話の一部を除き基本的に利用できなくなります。携帯電話等の代替手段を準備するよう書かれています。",
+      "source": "https://www.tepco.co.jp/disaster/teiden.html",
+      "action": "停電中は携帯電話などの代替手段を用意し、交差点では信号が消えていることを前提に進む。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ブレーカーを上げても直らないとき、連絡する？",
+      "situation": "ブレーカーを上げても電気がつかない",
+      "recommend": "停電情報に載っていなくても連絡する",
+      "reason": "ブレーカーが切れていないのに電気がつかないときは、お近くの東京電力パワーグリッドへ連絡するよう案内されています。停電情報に載らない停電もあるため、確認の連絡が必要になります。",
+      "source": "https://teideninfo.tepco.co.jp/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "漏電ブレーカーは中央で止まることがある",
+    "cause": "停電はどうして起きる？",
+    "steps": "停電の前に、今日やっておく準備",
+    "desk": "停電の連絡先、どこに電話する？",
+    "worries": "ブレーカーを戻しても電気がつかないとき",
+    "guide": "停電情報に載らないとき、連絡するか迷ったら"
+  },
+  "depthAt": "2026-11-09T10:26:02+00:00",
+  "imageCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A close-up of a person's hand flipping a circuit breaker switch in a distribution board, indoor lighting, medium shot.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "at": "2026-11-09T10:31:04+00:00"
+  },
+  "imageFocus": {
+    "x": 0.566,
+    "y": 0.607,
+    "box": [
+      0.131,
+      0.214,
+      1.0,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/power-outage-breaker-check-guide-4fccb29b.jpg"
+  }
 }
