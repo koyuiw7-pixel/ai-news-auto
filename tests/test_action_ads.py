@@ -168,13 +168,12 @@ class ComponentWiringTest(unittest.TestCase):
         today = src.index("<TodayActions actions={todayActions} />}")
         self.assertLess(today, src.index("<ActionAd ad={actionAd}"))
         self.assertLess(src.index("<ActionAd ad={actionAd}") - today, 300)
-        # ノワール: 2026-11-09 は要点の下の「すぐにできること」の直後だったが、2026-11-10 オーナー承認で
-        # 本文の最初の章の後ろ（読んで必要を感じたところ）へ移した。本文の列の上のほうであることは変わらない
+        # ノワール（2026-11-09 オーナー「広告が一番下だけ」・2026-11-10 オーナー「合う広告は上のほうに」）:
+        # 要点 → すぐにできること → この話の続き のすぐ下が1つ目の PR（本文より前。画面2〜3枚目）
         noir = (ROOT / "components/noir/NoirArticle.tsx").read_text(encoding="utf-8")
-        self.assertLess(noir.index("{slots.quick}"), noir.index('id="nr-body"'))
-        self.assertLess(noir.index('id="nr-body"'), noir.index("{slots.adEarly"))
-        self.assertLess(noir.index("html={body.top}"), noir.index("{slots.adEarly"))
-        self.assertLess(noir.index("{slots.adEarly"), noir.index("html={body.mid}"))
+        self.assertLess(noir.index("{slots.quick}"), noir.index("{slots.story}"))
+        self.assertLess(noir.index("{slots.story}"), noir.index("{slots.adEarly"))
+        self.assertLess(noir.index("{slots.adEarly"), noir.index('id="nr-body"'))
         page = (ROOT / "components/noir/noirArticlePage.tsx").read_text(encoding="utf-8")
         self.assertIn("if (actionAd) adBlocks.push(<ActionAd", page)
         self.assertIn("const [adEarly, adMidPr, adEnd] = adBlocks.slice(0, 3);", page)

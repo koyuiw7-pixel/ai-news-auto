@@ -188,6 +188,8 @@ export default function NoirArticle(props: NoirProps) {
 
           {slots.quick}
           {slots.story}
+          {/* 1つ目の PR（記事に合うものだけ）は「この話の続き」のすぐ下（2026-11-10 オーナー: 合う広告は上のほうに見える場所へ。画面7〜8枚目は遠すぎた） */}
+          {slots.adEarly && <div className="nr-ad nr-ad-early">{slots.adEarly}</div>}
           {!coverOnTop && <CoverFigure {...coverProps} />}
           {slots.afterSummary}
           {slots.adTop}
@@ -198,8 +200,6 @@ export default function NoirArticle(props: NoirProps) {
             <div className="read-expert" id="nr-body">
               <ArticleProse className="prose nr-prose" html={body.top} slot={props.calcSlot} priceSlot={props.priceSlot} compareSlot={props.compareSlot} />
               {slots.check}
-              {/* 1つ目の PR は本文の最初の章の後ろ（話を読んで必要を感じたところ）。以前は本文より前（2026-11-10 オーナー承認） */}
-              {slots.adEarly && <div className="nr-ad nr-ad-early">{slots.adEarly}</div>}
               {body.mid && slots.inlineRead}
               {body.mid && slots.adMid}
               {body.mid && <ArticleProse className="prose nr-prose" html={body.mid} slot={props.calcSlot} priceSlot={props.priceSlot} compareSlot={props.compareSlot} />}
