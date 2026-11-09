@@ -4037,6 +4037,12 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001302.html"
     },
+    "0abcc6e9463d2335": {
+      "at": "2026-11-09T01:12:40.548125+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu2/118/1422482_00026.html"
+    },
     "0ad26ba6b13d4d29": {
       "at": "2026-10-29T18:10:45.707932+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -5082,6 +5088,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
       "skipped": true,
       "url": "https://www.meg-snow.com/news/detail/36150"
+    },
+    "181928833fb4b967": {
+      "at": "2026-11-09T01:13:50.069688+00:00",
+      "costUsd": 0.012,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "tech-gadget",
+      "slug": "toyooka-kinosaki-autonomous-bus-roii",
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1231_4811.html"
     },
     "18319346c05da9cf": {
       "at": "2026-10-27T01:52:38.060592+00:00",
@@ -12045,6 +12062,14 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/announce/20261029-3/index.html"
     },
+    "885a7805b10acd56": {
+      "at": "2026-11-09T01:14:56.987290+00:00",
+      "costUsd": 0.0143,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: リード「9月時点の全社使用率は82.4%」「かんたん版：全社で使用率が8割を超えています」→ 元記事の82.4%は情報システム部門を除いた集計で、全社使用率ではない。; かんたん版「数千件ある図面を数秒で探す仕組み」→ 元記事は約2万7,000点の図面で、本文の「約2万7,000点」とも矛盾する。; 判定「価格=法人向け」→ 元記事に料金プランや法人向けの価格区分の記述はなく、根",
+      "skipped": true,
+      "url": "https://aws.amazon.com/jp/blogs/news/tokyo-steel-kiro-case-study/"
+    },
     "8881538ea8074540": {
       "at": "2026-10-26T12:31:25.707767+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（就任）",
@@ -18591,6 +18616,12 @@
       "slug": "agata-rag-ai-chatbot-new-services",
       "url": "https://prtimes.jp/main/html/rd/p/000000021.000125274.html"
     },
+    "f423424e36ede3ad": {
+      "at": "2026-11-09T01:11:41.975073+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://blog.ja.playstation.com/2026/11/09/20261109-playstation-portal-announcement-o/"
+    },
     "f43e4e245bb43bd0": {
       "at": "2026-10-28T21:55:53.955614+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -18898,6 +18929,14 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000115.000077693.html"
     },
+    "f8fc11745a2b01e8": {
+      "at": "2026-11-09T01:16:31.652380+00:00",
+      "costUsd": 0.0136,
+      "model": "claude:sonnet",
+      "reason": "quality: 判定行の「提供状況=available」→ 本文は「一般提供か、プレビュー版かの区分は発表されていません」「日本での提供状況は発表されていません」と書いており、提供状況が確定しているように読める点が元記事と食い違う。",
+      "skipped": true,
+      "url": "https://cloud.google.com/blog/ja/products/identity-security/scale-agents-securely-with-iam-helper-agent-skills-and-mcp-tools/"
+    },
     "f906c63ac8a581e2": {
       "at": "2026-10-30T04:01:58.076702+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -19197,6 +19236,17 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326944.html"
     },
+    "fd8f32a4ff83951f": {
+      "at": "2026-11-09T01:12:40.047228+00:00",
+      "costUsd": 0.0094,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "business",
+      "slug": "mof-disaster-food-bank-donation",
+      "url": "https://www.mof.go.jp/application-contact/procurement/20211005180654.html"
+    },
     "fdba22f8a8926616": {
       "at": "2026-10-26T12:31:25.707776+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（市場調査レポート）",
@@ -19442,143 +19492,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T09:32:04.477237+00:00",
-      "attempt": 1,
-      "id": "ed79290dfff2f62b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「AIコア、AIアプリケーションを1台にまとめた」→ 元記事は vRAN・AIコア・AIアプリを統合した「統合型エッジAIプラットフォーム」とするのみで、1台にまとめたとは書いていない",
-        "「通信データ転送速度の向上」→ 元記事は「実効データ転送速度の向上」であり、指標の名称が変わっている",
-        "「2026年10月から両プロジェクトが本格的に始動しました」→ 元記事は10月に「始動」するとだけ書き、「本格的」とは書いていない",
-        "「日本の国内通信事業者（NTTドコモ、KDDI、ソフトバンク、楽天モバイルなど）」→ 元記事に無い社名を挙げている（具体的な発表が無いという点は元記事と矛盾しない）",
-        "「ローカル5G」→ 元記事は5G SA方式のプライベートネットワークと書いており、ローカル5Gという用語は元記事に無い",
-        "「過酷な産業現場」「遠隔でリアルタイムに」→ 元記事に無い形容・表現を加えている（実質的な矛盾ではない）"
-      ],
-      "readability": {
-        "avg_paragraph": 161.6,
-        "avg_sentence": 70.3,
-        "long_share": 0.609,
-        "max_paragraph": 206,
-        "paragraphs": 10,
-        "sentences": 23
-      },
-      "score": 82,
-      "source": "samsung-jp",
-      "title": "Samsung、KT・SKテレコムと韓国の「AI RAN」プロジェクトを推進",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（MSIT・KT・SK）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T09:35:08.715683+00:00",
-      "attempt": 2,
-      "id": "ed79290dfff2f62b",
-      "kind": "broad",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "samsung-jp",
-      "title": "Samsung、KT・SKテレコムと韓国の「AI RAN」プロジェクトを推進"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T09:43:52.327054+00:00",
-      "attempt": 1,
-      "id": "99f5b444c3dec997",
-      "kind": "broad",
-      "model": "openrouter:nvidia/nemotron-3.5-lightning:free",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "SAMURAI BLUE「Team Cam」未公開特別編集版の制作・上映会開催に向けたクラウドファンディングを実施～激闘の裏側にあった、もう一つの物語。2026"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T09:53:24.580830+00:00",
-      "attempt": 2,
-      "id": "99f5b444c3dec997",
-      "kind": "broad",
-      "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "SAMURAI BLUE「Team Cam」未公開特別編集版の制作・上映会開催に向けたクラウドファンディングを実施～激闘の裏側にあった、もう一つの物語。2026"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T10:05:13.869955+00:00",
-      "attempt": 1,
-      "id": "083cb61269f13ae1",
-      "kind": "broad",
-      "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に2選手を認定 #jfa"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T10:12:13.556302+00:00",
-      "attempt": 1,
-      "id": "ff4c4236ea8b3f24",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "文が長い（1文の平均 56.6字・60字超の文が 39% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 158.6字・最長 238字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 158.6,
-        "avg_sentence": 56.6,
-        "long_share": 0.393,
-        "max_paragraph": 238,
-        "paragraphs": 10,
-        "sentences": 28
-      },
-      "score": 88,
-      "source": "samsung-jp",
-      "title": "Samsung Healthの睡眠コーチングがより手軽に 一人ひとりに合わせたアドバイスを毎週提供",
-      "warnings": [
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T10:12:43.449344+00:00",
-      "attempt": 0,
-      "id": "ff4c4236ea8b3f24",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「Stravaとの連携機能は、韓国など一部地域を除く世界各地で利用可能です」→ 元記事の注4はStravaサービスの提供地域であり、連携機能の地域制限とは書かれていない。条件を混同している。; 「自己記録や走行ルートの成果を、画像として共有できます」→ 元記事は"
-      ],
-      "readability": {
-        "avg_paragraph": 158.6,
-        "avg_sentence": 56.6,
-        "long_share": 0.393,
-        "max_paragraph": 238,
-        "paragraphs": 10,
-        "sentences": 28
-      },
-      "score": 88,
-      "source": "samsung-jp",
-      "title": "Samsung Healthの睡眠コーチングがより手軽に 一人ひとりに合わせたアドバイスを毎週提供",
-      "warnings": [
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-06T11:53:16.533805+00:00",
@@ -26004,6 +25917,195 @@
       "warnings": [
         "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
         "初めて出たところで言い換えていない略語（FOMC）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T01:12:07.195474+00:00",
+      "attempt": 1,
+      "id": "fd8f32a4ff83951f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード・本文の「無償で提供」→ 元記事は「提供」とのみ書いており、無償とは明記されていない。",
+        "本文「審査や選考を経て提供先として決まった組織」→ 元記事は先着順で、審査や選考があるとは書かれておらず、先着順と矛盾する。",
+        "本文「通常の入れ替え作業によって役割を終えた備蓄食品を廃棄せず」→ 元記事に廃棄しないとの記述はなく、推測が混ざっている。",
+        "よくある質問「各地域の財務局でも同様の取り組み」→ 確認できたのは東海財務局の例のみで、「各地域の財務局」全般は言い過ぎ。",
+        "申込期限の日付が記事に無く、読者が期限を把握できない点は不足。"
+      ],
+      "readability": {
+        "avg_paragraph": 120.8,
+        "avg_sentence": 54.9,
+        "long_share": 0.273,
+        "max_paragraph": 163,
+        "paragraphs": 5,
+        "sentences": 11
+      },
+      "score": 65,
+      "source": "mof",
+      "title": "国の災害用備蓄食品の有効活用の取組みについて",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 54.9字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 120.8字・最長 163字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T01:12:22.844999+00:00",
+      "attempt": 1,
+      "id": "fd8f32a4ff83951f",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 111.2,
+        "avg_sentence": 50.5,
+        "long_share": 0.273,
+        "max_paragraph": 147,
+        "paragraphs": 5,
+        "sentences": 11
+      },
+      "score": 92,
+      "source": "mof",
+      "title": "国の災害用備蓄食品の有効活用の取組みについて",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 50.5字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T01:12:40.038170+00:00",
+      "attempt": 0,
+      "id": "fd8f32a4ff83951f",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 81.0,
+        "avg_sentence": 37.8,
+        "long_share": 0.0,
+        "max_paragraph": 139,
+        "paragraphs": 7,
+        "sentences": 15
+      },
+      "score": 88,
+      "source": "mof",
+      "title": "国の災害用備蓄食品の有効活用の取組みについて",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T01:13:01.042470+00:00",
+      "attempt": 1,
+      "id": "181928833fb4b967",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「事前予約は不要で、乗車方法は先着順となっています」→ 元記事は乗車方法が先着順とだけ書いており、事前予約が不要かどうかは書かれていない。条件を補っている。",
+        "「実証運行の実施期間が11月9日から12月4日までの平日であることに留意する」→ 元記事は「土日祝除く」としており、平日とは言い切れない。祝日を除いた日という正確な表現にすべき。",
+        "「大きく開くスライドドアを備えています。浴衣姿で温泉街を歩く観光客や高齢者でもスムーズに乗降できるよう」→ 元記事は乗降のしやすさを本実証で「確認します」としており、スムーズに乗降できると既に言える内容ではない。",
+        "「誰でも無料で乗車できます」（判定欄）→ 1日3便・定員11名・先着順という条件があり、誰でも乗れるとの言い過ぎ。",
+        "「KDDIとKDDIスマートモビリティがモバイル通信基盤の提供や…遠隔監視環境の構築を担当します」→ 元記事では遠隔監視環境の構築・運用はKDDIスマートモビリティ、通信基盤はKDDIとされており、役割の書き分けが曖昧。"
+      ],
+      "readability": {
+        "avg_paragraph": 92.8,
+        "avg_sentence": 50.6,
+        "long_share": 0.182,
+        "max_paragraph": 133,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 76,
+      "source": "kddi-topics",
+      "title": "兼松、全但バス、損保ジャパン、KDDIが連携し、豊岡市・城崎温泉で自動運転バスの実証運行を開始",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JR）",
+        "読みやすさ: 文が長い（1文の平均 50.6字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T01:13:50.059166+00:00",
+      "attempt": 1,
+      "id": "181928833fb4b967",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.2,
+        "avg_sentence": 43.9,
+        "long_share": 0.077,
+        "max_paragraph": 191,
+        "paragraphs": 6,
+        "sentences": 13
+      },
+      "score": 88,
+      "source": "kddi-topics",
+      "title": "兼松、全但バス、損保ジャパン、KDDIが連携し、豊岡市・城崎温泉で自動運転バスの実証運行を開始",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JR）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T01:14:16.596520+00:00",
+      "attempt": 1,
+      "id": "885a7805b10acd56",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「9月時点の全社使用率は82.4%」「かんたん版：全社で使用率が8割を超えています」→ 元記事の82.4%は情報システム部門を除いた集計で、全社使用率ではない。",
+        "かんたん版「数千件ある図面を数秒で探す仕組み」→ 元記事は約2万7,000点の図面で、本文の「約2万7,000点」とも矛盾する。",
+        "判定「価格=法人向け」→ 元記事に料金プランや法人向けの価格区分の記述はなく、根拠のない断定。",
+        "本文「現在の契約や既存のシステムは自動では切り替わらないため、各企業の運用方針に合わせた導入が必要」→ 元記事にない一般論を事実のように書いている。"
+      ],
+      "readability": {
+        "avg_paragraph": 118.3,
+        "avg_sentence": 64.5,
+        "long_share": 0.545,
+        "max_paragraph": 154,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 62,
+      "source": "aws-japan-blog",
+      "title": "東京製鐵株式会社が挑む、一人ひとりの生産性向上への道 ― AI コーディングツール Kiro の全社導入で、スタッフが自ら業務システムを内製する文化へ",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 64.5字・60字超の文が 55% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T01:15:46.919401+00:00",
+      "attempt": 1,
+      "id": "f8fc11745a2b01e8",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "判定行の「提供状況=available」→ 本文は「一般提供か、プレビュー版かの区分は発表されていません」「日本での提供状況は発表されていません」と書いており、提供状況が確定しているように読める点が元記事と食い違う。"
+      ],
+      "readability": {
+        "avg_paragraph": 101.4,
+        "avg_sentence": 49.3,
+        "long_share": 0.286,
+        "max_paragraph": 150,
+        "paragraphs": 17,
+        "sentences": 35
+      },
+      "score": 85,
+      "source": "google-cloud-blog-ja",
+      "title": "IAM Helper エージェント スキルと MCP ツールでエージェントを安全にスケール",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IAM・CI・CD）",
+        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す"
       ]
     }
   ],
