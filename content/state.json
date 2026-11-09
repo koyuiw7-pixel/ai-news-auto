@@ -77,14 +77,6 @@
   },
   "failed_web": {},
   "gate_retry": {
-    "0b034b16a6e12052": {
-      "first": "2026-11-09T08:28:04.222757+00:00",
-      "next": "2026-11-09T11:28:04.222757+00:00",
-      "reason": "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
-      "title": "【ビジネスブログ】法人向けインターネット回線を比較！選定時に確認したい5つのポイント",
-      "tries": 1,
-      "url": "https://www.softbank.jp/sbnews/entry/2026/11/09/000000"
-    },
     "38370dfe15bc10d5": {
       "first": "2026-11-09T09:24:24.508813+00:00",
       "next": "2026-11-09T12:24:24.508813+00:00",
@@ -3547,14 +3539,6 @@
       "skipped": true,
       "url": "https://www.morinagamilk.co.jp/release/newsentry-4759.html"
     },
-    "010276ea668bdd08": {
-      "at": "2026-10-26T11:31:53.187669+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "public",
-      "slug": "digital-agency-national-qualifications-online",
-      "url": "https://www.digital.go.jp/policies/government-certification"
-    },
     "010f1ded905a0578": {
       "at": "2026-11-05T04:24:42.099509+00:00",
       "mix": "other",
@@ -3809,13 +3793,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu2/115/gijiroku/1414021_00007.htm"
-    },
-    "057a86be6882ac7b": {
-      "at": "2026-10-26T11:33:12.751805+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 「アフリカやアジアでの実際の導入成果」→元記事で具体的な国名として挙げられているのは南アフリカ、シエラレオネ、コートジボワール（アフリカ）およびインドネシア（アジア）であり「アフリカやアジア」は間違いではないが、本文中の導入国数に関して一部「6カ国」とある部分で南アフリカ、シエラレオネ、コートジボワールと今後の拡張予定としてDRC、ザンビア、カメルーンが挙げられており、アジアの国",
-      "skipped": true,
-      "url": "https://research.google/blog/bringing-foundational-models-to-the-front-lines-of-tb-screening/"
     },
     "05a87e963785dcee": {
       "at": "2026-10-28T21:12:02.308340+00:00",
@@ -4101,6 +4078,17 @@
       "reason": "quality: 本文が短い（1519字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001278.html"
+    },
+    "0b034b16a6e12052": {
+      "at": "2026-11-09T11:40:42.659249+00:00",
+      "costUsd": 0.0045,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "tech-gadget",
+      "slug": "softbank-business-internet-line-selection",
+      "url": "https://www.softbank.jp/sbnews/entry/2026/11/09/000000"
     },
     "0b04c8892989c151": {
       "at": "2026-10-29T16:03:49.934294+00:00",
@@ -7228,12 +7216,6 @@
       "skipped": true,
       "url": "http://www.npa.go.jp/newlyarrived/2026/20260331001.html"
     },
-    "380d50a732965278": {
-      "at": "2026-10-26T11:31:36.988600+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（採用）",
-      "skipped": true,
-      "url": "https://www.fsa.go.jp/common/recruit/r8/kokusai-02/kokusai-02.html"
-    },
     "3812e52740a44b1dbcdd52914c2abc976c2d3445": {
       "at": "2026-10-27T15:12:33.746366+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8507,13 +8489,6 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/press_05824.html"
     },
-    "4bca925a5c53b276": {
-      "at": "2026-10-26T11:34:17.113362+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1742字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 文章が元なのに動画前提の表現がある（「動画内」）。「元記事」と書く",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000429.000073671.html"
-    },
     "4be00bfda7da38d9": {
       "at": "2026-10-29T18:14:23.809770+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -8567,13 +8542,6 @@
       "section": "lifestyle",
       "slug": "suntory-nope-dragon-quest-collaboration",
       "url": "https://www.suntory.co.jp/softdrink/news/pr/article/2026/SBF1742.html?rss=0000000029"
-    },
-    "4c8c617ae651ea88": {
-      "at": "2026-10-26T11:31:36.988573+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2421字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 元記事の文をそのまま書き写している（2文。例「NVIDIAとAmkorは、韓国で先進パッケージングの生産能力を拡大し、2028年末までにインターポ」）。自分の言葉で要約する",
-      "skipped": true,
-      "url": "https://blogs.nvidia.co.jp/blog/nvidia-and-supply-chain-partners-expand-capacity-to-accelerate-ai-infrastructure-buildout/"
     },
     "4cc14492629d9cff": {
       "at": "2026-11-05T11:23:17.620320+00:00",
@@ -10168,12 +10136,6 @@
       "slug": "attosecond-xray-laser-riken-2026",
       "url": "https://www.riken.jp/press/2026/20261027_2/index.html"
     },
-    "62c869d7dbe25166": {
-      "at": "2026-10-26T11:31:53.187943+00:00",
-      "reason": "dedupe: 固有名詞が一致（copilot・github）: azure-cosmos-db-ai-assisted-development",
-      "skipped": true,
-      "url": "https://github.blog/changelog/2026-10-23-turn-notifications-into-code-with-github-copilot-in-teams"
-    },
     "62d0d261a6bdec4e": {
       "at": "2026-11-06T02:04:06.983664+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（説明会）",
@@ -10989,14 +10951,6 @@
       "reason": "quality: 本文が短い（1599字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（367字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/article/202610/tv-6660.html"
-    },
-    "6e40bd74cb28725d": {
-      "at": "2026-10-26T11:34:34.687395+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "nvidia-rfd4-proteina-healthcare-ai",
-      "url": "https://blogs.nvidia.co.jp/blog/healthcare-and-life-sciences-leaders-build-on-nvidia-to-advance-drug-discovery-and-expand-patient-care/"
     },
     "6e4e98b5cd984462": {
       "at": "2026-10-27T01:31:25.544472+00:00",
@@ -13564,13 +13518,6 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202611/02hyoukei.html"
     },
-    "95364ce770790d21": {
-      "at": "2026-10-26T11:33:38.547453+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2467字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://aws.amazon.com/blogs/machine-learning/multi-turn-reinforcement-learning-on-amazon-sagemaker-ai-a-hands-on-guide/"
-    },
     "954ac10d46d53a6b": {
       "at": "2026-11-02T01:41:34.403589+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15269,13 +15216,6 @@
       "reason": "prefilter: お知らせ・統計の転載（statistics）",
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/048063/"
-    },
-    "aefb3df85eab9497": {
-      "at": "2026-10-26T11:32:24.733113+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1949字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（367字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://aws.amazon.com/jp/blogs/news/weekly-genai-20261019/"
     },
     "af154bc2e2d24f8f": {
       "at": "2026-10-28T23:12:20.999530+00:00",
@@ -17745,13 +17685,6 @@
       "section": "lifestyle",
       "slug": "shizuoka-kodomo-nomihodai-kippu-2026",
       "url": "https://jr-central.co.jp/news/release/nws000001_00642.html"
-    },
-    "d5dfb55b012918e7": {
-      "at": "2026-10-26T11:34:03.294314+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2032字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://huggingface.co/blog/allenai/litpivot"
     },
     "d5ea72d53ddd0e11": {
       "at": "2026-10-26T22:21:10.633174+00:00",
@@ -20838,56 +20771,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-07T09:33:23.775446+00:00",
-      "attempt": 1,
-      "id": "ca6f08fa829e8403",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "段落が長い（平均 126.5字・最長 406字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 126.5,
-        "avg_sentence": 41.0,
-        "long_share": 0.162,
-        "max_paragraph": 406,
-        "paragraphs": 12,
-        "sentences": 37
-      },
-      "score": 95,
-      "source": "vercel-changelog",
-      "title": "Chat SDK agents can now stream generative UI with json-render",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（UI・JSON）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T09:33:43.491703+00:00",
-      "attempt": 0,
-      "id": "ca6f08fa829e8403",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 70.9,
-        "avg_sentence": 36.3,
-        "long_share": 0.073,
-        "max_paragraph": 166,
-        "paragraphs": 21,
-        "sentences": 41
-      },
-      "score": 92,
-      "source": "vercel-changelog",
-      "title": "Chat SDK agents can now stream generative UI with json-render",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（UTC・UI・JSON）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-07T10:06:10.709335+00:00",
@@ -28032,6 +27915,54 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（ROE・KPI）",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T11:40:27.206083+00:00",
+      "attempt": 1,
+      "id": "0b034b16a6e12052",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 112.0,
+        "avg_sentence": 56.0,
+        "long_share": 0.375,
+        "max_paragraph": 208,
+        "paragraphs": 4,
+        "sentences": 8
+      },
+      "score": 85,
+      "source": "softbank-news",
+      "title": "【ビジネスブログ】法人向けインターネット回線を比較！選定時に確認したい5つのポイント",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SLA・IP・VPN）",
+        "読みやすさ: 文が長い（1文の平均 56.0字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T11:40:42.650143+00:00",
+      "attempt": 0,
+      "id": "0b034b16a6e12052",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 54.5,
+        "avg_sentence": 48.4,
+        "long_share": 0.222,
+        "max_paragraph": 78,
+        "paragraphs": 8,
+        "sentences": 9
+      },
+      "score": 88,
+      "source": "softbank-news",
+      "title": "【ビジネスブログ】法人向けインターネット回線を比較！選定時に確認したい5つのポイント",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SLA・IP・VPN）",
+        "読みやすさ: 文が長い（1文の平均 48.4字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
