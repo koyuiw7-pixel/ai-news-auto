@@ -202,5 +202,40 @@ class ImagePickTest(unittest.TestCase):
         self.assertFalse(any("真っ暗" in p for p in muse_images.image_problems(moody)))
 
 
+class PhotoPauseResumeTest(unittest.TestCase):
+    """Buffer に予約中で画像の無い投稿: 下書きに戻して枠を後ろの画像のある投稿に譲り、画像が届いたら同じ投稿を予約に戻す"""
+
+    def node(self, slug, due):
+        return {"id": "p1", "service": "threads", "dueAt": due.isoformat(), "text": "本文",
+                "metadata": {"thread": [{"text": "本文", "assets": [{"mimeType": "image/png", "source": f"https://ai-tech-express.jp/card/{slug}?v=2-old"}]}]}}
+
+    def test_pause_gives_slot_and_resume_after_photo(self):
+        due, later = NOW + timedelta(minutes=30), NOW + timedelta(hours=3)
+        posted = {"posted": {"famima": queued("famima", later)}}
+        state: dict = {}
+        with tempfile.TemporaryDirectory() as tmp:
+            Path(tmp, "child-allowance.json").write_text(json.dumps(CARD_ONLY, ensure_ascii=False), "utf-8")
+            Path(tmp, "famima.json").write_text(json.dumps(art("famima"), ensure_ascii=False), "utf-8")
+            with patch.object(fu, "ARTICLES", Path(tmp)), patch.object(fu, "POSTED", Path(tmp, "posted.json")):
+                row = fu.photo_requeue("k", self.node("child-allowance", due), "child-allowance", state, posted, NOW,
+                                       pauser=lambda k, n: {"status": "draft"})
+                self.assertEqual(row["action"], "photo_paused")
+                self.assertEqual(posted["posted"]["famima"]["pending"]["slot"], due.isoformat(timespec="seconds"))  # 枠を譲った
+                self.assertEqual(state["photoPaused"]["p1"]["dueAt"], later.isoformat(timespec="seconds"))
+                edits = []
+                reader = lambda k, pid, raise_unavailable=False: {**self.node("child-allowance", due), "status": "draft"}  # noqa: E731
+                # まだ画像が無い → 戻さない
+                out = fu.resume_photo_paused(state, NOW, api_key="k", editor=lambda *a: edits.append(a) or {}, reader=reader, issue=lambda *a: None)
+                self.assertEqual((out[0]["action"], edits), ("photo_waiting", []))
+                muse = {**CARD_ONLY, "coverImage": f"{IMG}child-allowance-muse-bb96b63d.jpg", "coverCredit": {"kind": "ai", "model": "muse"}}
+                Path(tmp, "child-allowance.json").write_text(json.dumps(muse, ensure_ascii=False), "utf-8")
+                out = fu.resume_photo_paused(state, NOW, api_key="k", editor=lambda *a: edits.append(a) or {}, reader=reader, issue=lambda *a: None)
+        self.assertEqual(out[0]["action"], "resumed")
+        inp = edits[0][1]
+        self.assertEqual((inp["mode"], inp["saveToDraft"], inp["dueAt"]), ("customScheduled", False, fu._iso(later)))
+        self.assertEqual(inp["metadata"]["threads"]["thread"][0]["assets"][0]["image"]["url"], tp.card_url(muse))
+        self.assertEqual(state["photoPaused"], {})
+
+
 if __name__ == "__main__":
     unittest.main()

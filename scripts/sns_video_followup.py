@@ -401,6 +401,11 @@ def run(now: datetime | None = None, env: dict | None = None, plan_only: bool = 
                 log(f"[presend] {json.dumps(row, ensure_ascii=False)[:400]}")
         except Exception as error:  # noqa: BLE001 - 読み直しに失敗しても動画づくり・予約は止めない（次の回でもう一度）
             log(f"[presend] 読み直しをとばしました: {type(error).__name__}: {str(error)[:200]}")
+        try:
+            for row in resume_photo_paused(state, now):
+                log(f"[photo-resume] {json.dumps(row, ensure_ascii=False)[:300]}")
+        except Exception as error:  # noqa: BLE001
+            log(f"[photo-resume] とばしました: {type(error).__name__}: {str(error)[:200]}")
         save_state(state)
         # 2026-11-05 夕方 オーナー「動画を待たない」: 動画づくり（1本 最大12分）の前に、枠の近い投稿を写真・カード（または用意できた動画）で
         # 予約しておく（動画づくりのあいだに枠の時刻を過ぎないように）。動画づくりのあとにもう一度呼ぶ（同じ投稿は二度作らない）
@@ -1236,9 +1241,9 @@ def rebuilt_texts(node: dict, slug: str, article: dict, state: dict, posted: dic
 
 
 def photo_requeue(key: str, node: dict, slug: str, state: dict, posted: dict, now: datetime, pauser=None) -> dict:
-    """画像の無い予約を下書きに戻し（消さない）、同じ枠の「動画待ち」の予定に戻す（publish_queued が枠を譲って出す）"""
-    import threads_post as tp
-
+    """画像の無い予約を下書きに戻し（消さない）、state の photoPaused に残す。画像が届いたら resume_photo_paused が同じ投稿を
+    予約に戻す（文面はそのまま・カードの URL は今の版に）。空いた枠は、後ろの予定のうち画像のある投稿に譲り、
+    戻すときはその投稿の枠を使う（台帳 S49。枠を空けない・遅らせない）"""
     pauser = pauser or pause_post
     service = node.get("service", "")
     try:
@@ -1247,19 +1252,91 @@ def photo_requeue(key: str, node: dict, slug: str, state: dict, posted: dict, no
         return {"action": "photo_pause_failed", "error": str(error)[:200]}
     if (after.get("status") or "") != "draft":
         return {"action": "photo_pause_failed", "status": after.get("status")}
-    slot = _parse(node.get("dueAt") or "") or now
-    paused = {service: {"id": node["id"], "ok": True, "dueAt": node.get("dueAt"), "status": "draft"}}
-    try:
-        pending = requeue_inputs(key, tp.buffer_channels(key), slug, [service], slot)
-    except Exception as error:  # noqa: BLE001 - 文面を作れなくても、下書きに戻した記録は残す（次の回に作り直す）
-        log(f"[presend] {slug}/{service}: 予定に戻す文面を作れませんでした: {str(error)[:160]}")
-        return {"action": "photo_paused", "requeued": False}
-    state.setdefault("converted", {})[slug] = {"at": now.isoformat(timespec="seconds"), "paused": paused, "pending": pending,
-                                               "threadsSent": service != "threads", "why": "photo"}
-    apply_converted(state, posted)
-    POSTED.write_text(json.dumps(posted, ensure_ascii=False, indent=2) + "\n", "utf-8")
-    log(f"[presend] {slug}/{service}: 記事に合う画像が無いので下書きに戻し、予定に戻しました（枠は画像のある次の投稿に譲る）")
-    return {"action": "photo_requeued", "requeued": True}
+    due = _parse(node.get("dueAt") or "") or now
+    entry = {"slug": slug, "service": service, "dueAt": due.isoformat(timespec="seconds"), "at": now.isoformat(timespec="seconds")}
+    if service == "threads":
+        swap = give_slot(posted, due, now)
+        if swap:
+            entry.update({"dueAt": swap[1].isoformat(timespec="seconds"), "gaveTo": swap[0]})
+    state.setdefault("photoPaused", {})[node["id"]] = entry
+    log(f"[presend] {slug}/{service}: 記事に合う画像が無いので下書きに戻しました（画像が届いたら {entry['dueAt']} の枠で予約に戻す"
+        + (f"。この枠は {entry['gaveTo']} に譲る" if entry.get("gaveTo") else "") + "）")
+    return {"action": "photo_paused", "resumeAt": entry["dueAt"], "gaveTo": entry.get("gaveTo", "")}
+
+
+def give_slot(posted: dict, due: datetime, now: datetime) -> tuple[str, datetime] | None:
+    """due の枠を、後ろの予定（動画待ち）のうち画像のある最初の投稿に譲る。(譲った記事, その記事の元の枠) を返す"""
+    rows = []
+    for slug, rec in (posted.get("posted") or {}).items():
+        if not awaiting(rec) or rec.get("ownerHold") or not rec.get("pending"):
+            continue
+        slot = _parse((rec.get("pending") or {}).get("slot") or rec.get("dueAt") or "")
+        if slot and slot > due:
+            rows.append((slot, slug, rec))
+    for slot, slug, rec in sorted(rows, key=lambda r: r[0]):
+        try:
+            article = json.loads((ARTICLES / f"{slug}.json").read_text("utf-8"))
+        except (OSError, ValueError):
+            continue
+        if photo_problem_of(article):
+            continue
+        rec["pending"]["slot"] = due.isoformat(timespec="seconds")
+        rec["dueAt"] = due.isoformat(timespec="seconds")
+        POSTED.write_text(json.dumps(posted, ensure_ascii=False, indent=2) + "\n", "utf-8")
+        return slug, slot
+    return None
+
+
+PHOTO_PAUSE_GIVEUP_H = 12  # 画像を待って下書きにした投稿は、この時間を過ぎたら予約に戻さない（issue で知らせる）
+
+
+def resume_photo_paused(state: dict, now: datetime, api_key: str | None = None, editor=None, reader=None, issue=None) -> list[dict]:
+    """画像を待って下書きに戻した予約（photoPaused）のうち、記事に画像が付いたものを、同じ投稿のまま予約に戻す
+    （文面はそのまま。カードの URL は今の版。時刻は決めた枠か、過ぎていれば少しあと）。台帳 S49"""
+    key = api_key if api_key is not None else os.environ.get("BUFFER_API_KEY", "")
+    editor, reader, issue = editor or edit_post, reader or read_post, issue or missing_issue
+    out = []
+    paused = state.get("photoPaused") or {}
+    for pid, entry in list(paused.items()):
+        slug = entry.get("slug") or ""
+        try:
+            article = json.loads((ARTICLES / f"{slug}.json").read_text("utf-8"))
+        except (OSError, ValueError):
+            article = None
+        due = _parse(entry.get("dueAt") or "") or now
+        if article is None or photo_problem_of(article):
+            if now - due > timedelta(hours=PHOTO_PAUSE_GIVEUP_H):
+                paused.pop(pid, None)
+                issue(slug, f"画像が付かないまま {PHOTO_PAUSE_GIVEUP_H} 時間たったので、下書きの投稿（{pid}）を予約に戻しませんでした")
+                out.append({"id": pid, "slug": slug, "action": "photo_gave_up"})
+            else:
+                out.append({"id": pid, "slug": slug, "action": "photo_waiting", "why": photo_problem_of(article) if article else "記事なし"})
+            continue
+        try:
+            node = reader(key, pid, raise_unavailable=True)
+        except Exception as error:  # noqa: BLE001 - 上限: 次の回に
+            out.append({"id": pid, "slug": slug, "action": "deferred", "why": str(error)[:200]})
+            continue
+        if not node or node.get("status") != "draft":
+            paused.pop(pid, None)  # 手で消した・出した → 触らない
+            out.append({"id": pid, "slug": slug, "action": f"skip（{(node or {}).get('status')}）"})
+            continue
+        node = {**node, "service": node.get("service") or entry.get("service", "")}
+        inp = share_assets_refresh(node, article) or node_edit_input(node, node_texts(node))
+        when = max(due, now + timedelta(minutes=QUEUE_LEAD_MIN))
+        inp.update({"mode": "customScheduled", "dueAt": _iso(when), "saveToDraft": False})
+        try:
+            editor(key, inp, article, node["service"])
+        except Exception as error:  # noqa: BLE001
+            out.append({"id": pid, "slug": slug, "action": "resume_failed", "error": str(error)[:200]})
+            if not _buffer_unavailable(error):
+                issue(slug, f"画像が付いたので下書きの投稿（{pid}）を予約に戻そうとしましたが、できませんでした: {str(error)[:200]}")
+                paused.pop(pid, None)
+            continue
+        paused.pop(pid, None)
+        log(f"[photo-resume] {slug}/{node['service']}: 画像が付いたので {when.astimezone(JST):%H:%M} に予約に戻しました")
+        out.append({"id": pid, "slug": slug, "action": "resumed", "dueAt": _iso(when)})
+    return out
 
 
 def presend_recheck(apply: bool = True, now: datetime | None = None, api_key: str | None = None, hours: float = PRESEND_HOURS,
