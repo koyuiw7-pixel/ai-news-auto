@@ -136,6 +136,8 @@ export default function Footer() {
               ))}
             </ul>
 
+            {/* AI の会社・発信元・話題の一覧。暮らしとお金の記事をスマホで読む人には長いだけなので、ノワールの記事ではスマホで隠す（components/noir/noir.css。2026-11-10 オーナー承認） */}
+            <div className="ft-ai">
             <p className="eyebrow">COMPANIES</p>
             <ul className="mt-4 space-y-2.5">
               {companies.map(({ company, count }) => (
@@ -169,10 +171,11 @@ export default function Footer() {
                 </ul>
               </>
             )}
+            </div>
           </div>
 
           {tags.length > 0 && (
-            <div>
+            <div className="ft-ai">
               <p className="eyebrow">TOPICS</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {tags.map((tag) => (

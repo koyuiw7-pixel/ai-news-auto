@@ -446,6 +446,8 @@ export default async function ArticlePage({ params }: Props) {
       guideLinks, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
       howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
       funnel, compareInline, compareEnd,
+      // 同じ話題の記事を多めに（上の2本は「この話の続き」、残りは本文直後の「次に読む記事」。2026-11-10）
+      storyReads: getNextReads(article, (a) => companyOf(a).slug, 5),
     });
   }
 

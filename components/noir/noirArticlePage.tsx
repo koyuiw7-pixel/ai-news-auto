@@ -14,7 +14,9 @@ import WorkMoneyCard from "@/components/WorkMoneyCard";
 import AssetLinks from "@/components/assets/AssetLinks";
 import SourceRecord from "@/components/SourceRecord";
 import ArticleFaq from "@/components/ArticleFaq";
-import { ActionSteps, CauseBox, DecisionGuide, InsightBox, OfficialDesk, WorriesBlock } from "@/components/DepthBoxes";
+import { ActionSteps, CauseBox, DecisionGuide, Fold, InsightBox, OfficialDesk, WorriesBlock } from "@/components/DepthBoxes";
+import StoryLinks from "@/components/noir/StoryLinks";
+import FoldOpener from "@/components/noir/FoldOpener";
 import { depthOf } from "@/lib/depth";
 import ActionAd from "@/components/ActionAd";
 import type { ActionAd as ActionAdData } from "@/lib/action-ad";
@@ -91,6 +93,8 @@ export type NoirPageContext = {
   guide: Any;
   product: Any;
   nextReads: Any;
+  /** 同じ話題の記事（多め。上の2本を「この話の続き」、残りを本文直後の「次に読む記事」に。2026-11-10） */
+  storyReads?: { article: ArticleSummary; reason: string }[];
   related: ArticleSummary[];
   crumbs: { href: string; label: string }[];
   reviewedLabel: string | null | undefined;
@@ -126,9 +130,17 @@ export function noirArticlePage(ctx: NoirPageContext) {
     inlineOffer, shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, offer, inlineRead, mainArticle,
     guideLinks, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
     howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
-    funnel, compareInline, compareEnd,
+    funnel, compareInline, compareEnd, storyReads = [],
   } = ctx;
   const noirHtml = noirBodyHtml(bodyHtml, article);
+  // この話の続き（2026-11-10 オーナー承認）: 同じ話題の記事を、要点の下に文字だけで2本、本文の直後に大きく3本。
+  // 下は上と同じ記事から始めてよい（上を押さずに読み進めた人に、いちばん近い話題をもう一度見せる。同じ企業だけの記事より先に同じ話題の記事）
+  const reads: { article: ArticleSummary; reason: string }[] = storyReads.length > 0 ? storyReads : nextReads;
+  const storyTop = reads.slice(0, 2);
+  const storyEnd = reads.slice(0, 3);
+  const storySlugs = new Set([...storyTop, ...storyEnd].map((r) => r.article.slug));
+  const relatedRest = related.filter((a) => !storySlugs.has(a.slug));
+  const inlineReadShown = inlineRead && !storySlugs.has(inlineRead.slug) ? inlineRead : undefined;
   const depth = depthOf(article);
   const [noirTop, noirAfterAd] = splitBeforeHeading(noirHtml, 3);
   const [noirMid, noirTail] = splitBeforeHeading(noirAfterAd, 4);
@@ -198,7 +210,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
       calcSlot={calcInline ? calcBox : undefined}
       priceSlot={priceBox}
       crumbs={crumbs}
-      related={related}
+      related={relatedRest}
       slots={{
         quick:
           quickList.length > 0 || (funnelMid && depth.guide.length === 0) ? (
@@ -207,6 +219,12 @@ export function noirArticlePage(ctx: NoirPageContext) {
               {depth.guide.length === 0 && funnelMid}
             </>
           ) : null,
+        story: (
+          <>
+            <StoryLinks items={storyTop} />
+            <FoldOpener />
+          </>
+        ),
         adEarly,
         afterSummary: (
           <>
@@ -243,15 +261,21 @@ export function noirArticlePage(ctx: NoirPageContext) {
             <article className="prose nr-prose mt-5" dangerouslySetInnerHTML={{ __html: noirBodyHtml(easyHtml, {}) }} />
           </div>
         ) : null,
-        inlineRead: inlineRead ? <InlineRead item={{ article: inlineRead, reason: "同じ話題の記事" }} /> : null,
+        inlineRead: inlineReadShown ? <InlineRead item={{ article: inlineReadShown, reason: "同じ話題の記事" }} /> : null,
         adMid: showAds ? <AdSlot position="article-middle" className="my-10" /> : null,
         adMidPr,
         // 本文の途中: 読者の迷い・不安に答える欄（判断ガイド・不安Q&A）
         midBoxes: (
           <>
-            {depth.guide.length > 0 && <DecisionGuide groups={depth.guide} heading={depth.headings.guide} />}
+            {/* 判断ガイドは見出しだけ出し、押すと開く（2026-11-10 オーナー承認。画面1〜2枚分あった） */}
+            {depth.guide.length > 0 && (
+              <Fold kicker="判断ガイド" title={depth.headings.guide || "迷ったときの判断ガイド"} note={`${depth.guide.length}つの迷いに、状況ごとのおすすめと理由`}>
+                <DecisionGuide groups={depth.guide} heading={depth.headings.guide} />
+              </Fold>
+            )}
             {depth.guide.length > 0 && funnelMid}
-            {depth.worries.length >= 2 && <WorriesBlock items={depth.worries} heading={depth.headings.worries} />}
+            {/* 不安Q&A と「よくある質問」は1つの欄にまとめる（同じ問いが2回出ていた） */}
+            {depth.worries.length >= 2 && <WorriesBlock items={depth.worries} heading={depth.headings.worries} extra={articleFaq} openCount={1} />}
           </>
         ),
         beforeTail: chooseGuide ? <ChooseGuideNote guide={chooseGuide} className="my-10" /> : null,
@@ -260,10 +284,24 @@ export function noirArticlePage(ctx: NoirPageContext) {
           <>
             {calc && !calcInline && <CalculatorBox calc={calc} className="mt-12" />}
             {/* 一歩深くする欄（scripts/depth_fields.py。公式ページで確かめた原因・手順・窓口・不安への答え。台帳 A66） */}
-            {depth.cause && <CauseBox cause={depth.cause} heading={depth.headings.cause} />}
-            {/* 手順つきの「すぐにできること」と公式窓口を並べる（要点の下の一覧から飛んでくる） */}
-            {stepItems.length > 0 && <ActionSteps items={stepItems} heading={depth.headings.steps} />}
-            {depth.officialDesk.length > 0 && <OfficialDesk items={depth.officialDesk} heading={depth.headings.desk} />}
+            {depth.cause && (
+              <Fold kicker="なぜ起きた？" title={depth.headings.cause || "原因と背景"} note="公式ページが書く原因・背景">
+                <CauseBox cause={depth.cause} heading={depth.headings.cause} />
+              </Fold>
+            )}
+            {/* 手順つきの「すぐにできること」と公式窓口は、見出しだけ出して押すと開く（2026-11-10 オーナー承認）。
+                要点の下の短い一覧と同じ項目が2回並んで見えていたため。一覧の「手順と公式の窓口を見る ↓」で飛ぶと開く（FoldOpener） */}
+            {(stepItems.length > 0 || depth.officialDesk.length > 0) && (
+              <Fold
+                id="steps-fold"
+                kicker={stepItems.length > 0 ? "手順と公式窓口" : "公式窓口"}
+                title={stepItems.length > 0 ? "上の「すぐにできること」の手順と、困ったときの連絡先" : depth.headings.desk || "困ったときに連絡する先"}
+                note={depth.officialDesk.length > 0 ? "SMSやメールの連絡先ではなく、公式の窓口を使ってください" : undefined}
+              >
+                {stepItems.length > 0 && <ActionSteps items={stepItems} heading={depth.headings.steps} />}
+                {depth.officialDesk.length > 0 && <OfficialDesk items={depth.officialDesk} heading={depth.headings.desk} />}
+              </Fold>
+            )}
             {workMoney && (
               <WorkMoneyCard
                 workMoney={workMoney}
@@ -275,18 +313,15 @@ export function noirArticlePage(ctx: NoirPageContext) {
               <VerdictCard verdict={verdict} cardKind={cardKind} judgedAt={verdict.judgedAt || article.generatedAt || article.publishedAt} />
             )}
             <AssetLinks article={article} />
-            {articleFaq.length >= 1 && <ArticleFaq items={articleFaq} />}
+            {articleFaq.length >= 1 && depth.worries.length < 2 && <ArticleFaq items={articleFaq} />}
             {compareEnd}
           </>
         ),
         adEnd,
+        // 本文の直後（出典のボタンの下）に「次に読む記事」（2026-11-10 オーナー承認。以前は画面16〜24枚目）
+        next: <NextRead items={storyEnd} />,
         afterSource: (
           <>
-            <div className="mt-12 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-y border-line py-4">
-              <p className="text-note font-bold text-ink">この記事をシェアする</p>
-              <ShareButtons url={`${siteConfig.url}/articles/${article.slug}`} title={articleTitle(article)} />
-            </div>
-            <ThreadsFollow />
             <SourceRecord
               article={article}
               sourceUrl={sourceUrl}
@@ -301,8 +336,13 @@ export function noirArticlePage(ctx: NoirPageContext) {
                       : undefined
               }
             />
-            {funnel && <FunnelCard card={funnel} pos="end" className="mt-12" />}
-            <NextRead items={nextReads} />
+            {/* 比較記事への案内は1回だけ（本文の途中に出したら、記事の終わりには出さない） */}
+            {funnel && !funnelMid && <FunnelCard card={funnel} pos="end" className="mt-12" />}
+            <div className="mt-12 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-y border-line py-4">
+              <p className="text-note font-bold text-ink">この記事をシェアする</p>
+              <ShareButtons url={`${siteConfig.url}/articles/${article.slug}`} title={articleTitle(article)} />
+            </div>
+            <ThreadsFollow />
           </>
         ),
         end: (

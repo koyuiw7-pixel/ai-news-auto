@@ -19,8 +19,8 @@ export type ReadingSource = InflowSource | "internal";
 export const TIME_BUCKETS = [0, 5, 10, 20, 30, 60, 120, 180, 300, 600] as const;
 export const MAX_DEPTH = 100;
 
-/** サイト内リンクを押した場所。header（上のメニュー・速報の帯）/ nextread（次に読む記事）/ aside（横の欄・よく読まれている記事）/ footer / body（本文とその前後） */
-export const EXIT_ZONES = ["", "header", "body", "nextread", "aside", "footer"] as const;
+/** サイト内リンクを押した場所。header（上のメニュー・速報の帯）/ story（要点の下の「この話の続き」）/ nextread（次に読む記事）/ aside（横の欄・よく読まれている記事）/ footer / body（本文とその前後） */
+export const EXIT_ZONES = ["", "header", "story", "body", "nextread", "aside", "footer"] as const;
 export type ExitZone = typeof EXIT_ZONES[number];
 
 const AD_POS = /^[a-z][a-z0-9-]{0,31}$/;

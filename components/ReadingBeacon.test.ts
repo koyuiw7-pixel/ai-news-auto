@@ -76,6 +76,8 @@ test("サイト内リンクを押した場所を記録して、その場で送�
   assert.equal(sent.at(-1)!.t, 10);
   doc.emit("click", linkClick("/", "header"));
   assert.equal(sent.at(-1)!.x, "header");
+  doc.emit("click", linkClick("/articles/d", 'data-read-zone="story"'));
+  assert.equal(sent.at(-1)!.x, "story");
   const before = sent.length;
   // 提携リンク・外部リンク・同じページ内の移動・機械のクリックは数えない
   doc.emit("click", linkClick("/articles/c", "aside", { rel: "sponsored noopener" }));

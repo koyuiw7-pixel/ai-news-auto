@@ -85,6 +85,7 @@ export function installReading(slug: string, source: ReadingSource, send = (body
     const link = (event.target as Element | null)?.closest?.("a") as HTMLAnchorElement | null;
     if (!link || link.origin !== location.origin || /\bsponsored\b/.test(link.rel) || link.pathname === location.pathname) return;
     exit = link.closest("header") ? "header"
+      : link.closest('[data-read-zone="story"]') ? "story"
       : link.closest('section[aria-labelledby="next-read-heading"]') ? "nextread"
       : link.closest("footer") ? "footer"
       : link.closest("aside") ? "aside"

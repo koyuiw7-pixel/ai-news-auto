@@ -46,6 +46,10 @@ export type NoirProps = {
   slots: {
     /** 要点のすぐ下の「すぐにできること」の短い一覧 */
     quick?: ReactNode;
+    /** 要点の下の「この話の続き」（同じ話題の記事2本。components/noir/StoryLinks.tsx） */
+    story?: ReactNode;
+    /** 本文の直後の「次に読む記事」（2026-11-10 オーナー承認。以前は記事の終わりの出典の後ろ） */
+    next?: ReactNode;
     /** 1つ目の PR（要点・すぐにできることの直後） */
     adEarly?: ReactNode;
     afterSummary?: ReactNode;
@@ -201,6 +205,7 @@ export default function NoirArticle(props: NoirProps) {
           )}
 
           {slots.quick}
+          {slots.story}
           {slots.adEarly && <div className="nr-ad nr-ad-early">{slots.adEarly}</div>}
           {slots.afterSummary}
           {slots.adTop}
@@ -233,10 +238,10 @@ export default function NoirArticle(props: NoirProps) {
             </a>
           )}
 
+          {slots.next}
           {slots.afterBody}
           {slots.adEnd && <div className="nr-ad nr-ad-end">{slots.adEnd}</div>}
           {slots.afterSource}
-          {slots.end}
 
           {props.related.length > 0 && (
             <section aria-labelledby="related-heading">
@@ -262,6 +267,9 @@ export default function NoirArticle(props: NoirProps) {
               </div>
             </section>
           )}
+
+          {/* メルマガ・通知・タグ・AI の説明は、次に読む記事と関連記事の後ろ（2026-11-10 オーナー承認） */}
+          {slots.end}
 
           <div className="nr-src">{props.byline}</div>
         </div>

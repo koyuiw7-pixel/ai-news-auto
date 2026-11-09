@@ -1070,3 +1070,10 @@ html:has(.noir) body {
   overflow: hidden;
   max-width: 100%;
 }
+
+/* 2026-11-10 オーナー承認: ノワールの記事をスマホで読むときは、フッターの AI の会社・発信元・話題の一覧を出さない（ページの長さを半分に。components/Footer.tsx の .ft-ai） */
+@media (max-width: 1023px) {
+  html:has(.noir) .ft-ai {
+    display: none;
+  }
+}

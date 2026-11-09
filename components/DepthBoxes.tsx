@@ -80,13 +80,22 @@ export function CauseBox({ cause, heading }: { cause: Cause; heading?: string })
   );
 }
 
-export function WorriesBlock({ items, heading }: { items: WorryItem[]; heading?: string }) {
+/**
+ * 不安Q&A。extra に記事の「よくある質問」（components/ArticleFaq.tsx と同じ問いと答え）を渡すと、同じ欄の後ろに足す
+ * （2026-11-10 オーナー承認: 「不安Q&A」と「よくある質問」がほぼ同じ中身で2回出てページが長かった。ノワールの記事は1つにまとめる）。
+ * openCount: はじめから開いておく問いの数
+ */
+export function WorriesBlock({ items, heading, extra = [], openCount = 2 }: {
+  items: WorryItem[]; heading?: string; extra?: { q: string; a: string }[]; openCount?: number;
+}) {
+  const seen = new Set(items.map((item) => item.q.replace(/[\s？?。]/g, "")));
+  const more = extra.filter((row) => !seen.has(row.q.replace(/[\s？?。]/g, "")));
   return (
     <section aria-labelledby="worries-heading" id="worries" className="dbx dbx-worries mt-12 max-w-[40em]">
       <BoxHeading id="worries-heading" kicker="不安Q&A" heading={heading} fallback="こんな不安ありませんか" />
       <div className="mt-4 grid gap-3">
         {items.map((item, index) => (
-          <details key={index} className="group rounded-2xl border border-line px-5 py-4 open:border-line-strong" open={index < 2}>
+          <details key={index} className="group rounded-2xl border border-line px-5 py-4 open:border-line-strong" open={index < openCount}>
             <summary className="flex cursor-pointer list-none items-start gap-3 text-desc font-bold leading-snug text-ink">
               <span aria-hidden className="shrink-0 text-accent">Q</span>
               <span className="flex-1">{item.q}</span>
@@ -115,8 +124,42 @@ export function WorriesBlock({ items, heading }: { items: WorryItem[]; heading?:
             </div>
           </details>
         ))}
+        {more.map((row, index) => (
+          <details key={`faq-${index}`} className="group rounded-2xl border border-line px-5 py-4 open:border-line-strong">
+            <summary className="flex cursor-pointer list-none items-start gap-3 text-desc font-bold leading-snug text-ink">
+              <span aria-hidden className="shrink-0 text-accent">Q</span>
+              <span className="flex-1">{row.q}</span>
+              <span aria-hidden className="shrink-0 text-muted transition-transform group-open:rotate-180">▾</span>
+            </summary>
+            <p className="mt-2.5 pl-6 text-desc leading-[1.8] text-ink-soft">{row.a}</p>
+          </details>
+        ))}
       </div>
     </section>
+  );
+}
+
+/**
+ * 開け閉めできる欄（2026-11-10 オーナー承認: 公式窓口・判断ガイド・手順は見出しだけ出し、押すと中身が出る。ページの長さを半分に）。
+ * 閉じた状態がはじめの形なので、読み込みで画面がずれない。JS が無くても開く（details）。
+ * 「#steps」などへのリンクで飛んだときは components/noir/FoldOpener.tsx が開く。
+ */
+export function Fold({ id, kicker, title, note, children }: { id?: string; kicker: string; title: string; note?: string; children: React.ReactNode }) {
+  return (
+    <details id={id} className="dbx-fold group mt-10 max-w-[40em] rounded-2xl border border-line-strong">
+      <summary className="flex min-h-14 cursor-pointer list-none items-center gap-3 px-5 py-3.5">
+        <span className="min-w-0 flex-1">
+          <span className="block text-badge font-bold tracking-wide text-accent">{kicker}</span>
+          <span className="mt-0.5 block text-desc font-bold leading-snug text-ink">{title}</span>
+          {note && <span className="mt-0.5 block text-meta text-muted">{note}</span>}
+        </span>
+        <span className="shrink-0 rounded-full border border-line-strong px-3 py-1 text-meta font-bold text-ink">
+          <span className="group-open:hidden">開く</span>
+          <span className="hidden group-open:inline">閉じる</span>
+        </span>
+      </summary>
+      <div className="border-t border-line px-5 pb-5 [&>section:first-child]:mt-4">{children}</div>
+    </details>
   );
 }
 
