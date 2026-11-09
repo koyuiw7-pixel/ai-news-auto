@@ -46,6 +46,9 @@ SURGICAL_MIN_SCORE = 75
 # 事実確認に渡す元記事の長さ。生成に渡す長さ（feeds.TEXT_CAP = 12000）＋元記事の情報の見出しより短いと、
 # 元記事の後半にある事実（2026-10-28 の Mithril の買収は 9400 字目）を「創作」と誤判定するので、それより長くする
 SOURCE_CAP = 13000
+# 出典が何本もある記事（Muse の比較・選び方の記事。製品ごとに公式ページを挙げる）は、全部の出典が事実確認に入るよう長めにする。
+# 2026-11-09: 13000 字で切っていたので、7本目の ESET の公式ページが確認に届かず「創作」と判定された（台帳 A60「嘘だけ落とす」）
+MULTI_SOURCE_CAP = 26000
 ARTICLE_CAP = 9000
 # 事実確認に渡す「確認済みの文脈」（過去記事・日本での提供・確かな事実の束・計算済みの数字）の長さ
 CONTEXT_CAP = 12000  # 2026-11-08: 下調べのページ（台帳 A64）が入るので 7000 → 12000
@@ -1175,10 +1178,15 @@ def _article_for_check(record: dict) -> str:
     return "\n\n".join(parts)[:ARTICLE_CAP]
 
 
+def source_cap(record: dict | None) -> int:
+    """事実確認・手直しに渡す出典の長さ。出典が2本以上ある Muse の記事（record["museSources"]）は長め"""
+    return MULTI_SOURCE_CAP if len((record or {}).get("museSources") or []) > 1 else SOURCE_CAP
+
+
 def fact_check(record: dict, source_text: str, context: str = "", require_usefulness: bool = False) -> dict:
     """{grounded, score, problems, model}。context は確認済みの事実（過去記事など）。LLM が使えないときは例外"""
     prompt = FACT_PROMPT.format(
-        source=source_text[:SOURCE_CAP],
+        source=source_text[:source_cap(record)],
         context=CONTEXT_BLOCK.format(context=context[:CONTEXT_CAP]) if context.strip() else "",
         article=_article_for_check(record),
     )
@@ -1478,7 +1486,7 @@ def _surgical_once(record: dict, source_text: str, kind: str, problems: list[str
     body = record.get("body") or ""
     prompt = SURGICAL_PROMPT.format(
         problems="\n".join(f"- {p}" for p in problems[:8]),
-        source=(source_text or "")[:SOURCE_CAP] + (f"\n\n# 確認済みの文脈（ここにある事実・計算済みの数字も使ってよい）\n{context[:CONTEXT_CAP]}" if context.strip() else ""),
+        source=(source_text or "")[:source_cap(record)] + (f"\n\n# 確認済みの文脈（ここにある事実・計算済みの数字も使ってよい）\n{context[:CONTEXT_CAP]}" if context.strip() else ""),
         title=record.get("title", ""), lede=record.get("lede", ""), highlights=" / ".join(record.get("highlights") or []),
         work_money=" / ".join((record.get("workMoney") or {}).get("points") or []) or "（なし）",
         body=body, easy=record.get("easy", ""),
@@ -1573,7 +1581,7 @@ def expand_repair(record: dict, source_text: str, problems: list[str], context: 
     prompt = EXPAND_PROMPT.format(
         problems="\n".join(f"- {p}" for p in problems[:10]) or "- 本文が短い",
         target=target, aim=target + 400, length=length,
-        source=(source_text or "")[:SOURCE_CAP] + (f"\n\n# 確認済みの文脈（ここにある事実・計算済みの数字も使ってよい）\n{context[:CONTEXT_CAP]}" if context.strip() else ""),
+        source=(source_text or "")[:source_cap(record)] + (f"\n\n# 確認済みの文脈（ここにある事実・計算済みの数字も使ってよい）\n{context[:CONTEXT_CAP]}" if context.strip() else ""),
         title=record.get("title", ""), lede=record.get("lede", ""), highlights=" / ".join(record.get("highlights") or []),
         work_money=" / ".join((record.get("workMoney") or {}).get("points") or []) or "（なし）",
         body=body, easy=record.get("easy", ""),

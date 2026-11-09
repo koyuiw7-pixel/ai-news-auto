@@ -176,8 +176,16 @@ def register_today(state: dict, fid: str, record: dict) -> None:
     state.setdefault("processed_web", {})[fid] = entry
 
 
-def fetch_sources(sources: list[dict]) -> list[dict]:
-    """[{url, name, title, text, image, published}]。1件目（一番の出典）が読めなければ空"""
+MULTI_SOURCE_CAP = 26000  # quality.MULTI_SOURCE_CAP と同じ（出典が何本もある記事の事実確認に渡す長さ）
+MIN_PER_SOURCE = 1800  # 1本あたりの最低の長さ（料金・プランの行が残るように）
+NOTE_CAP = 300  # 書き手のメモ（sources[].facts）を出典の見出しに添える長さ
+
+
+def fetch_sources(sources: list[dict], skip_unreadable_first: bool = False, unread: list[str] | None = None) -> list[dict]:
+    """[{url, name, title, text, full_text, image, published, page}]。1件目（一番の出典）が読めなければ空。
+    skip_unreadable_first（比較・選び方の記事）: 製品ごとに公式ページを挙げるので、1件目が読めなくても次に読めた出典を一番にする
+    （2026-11-09: スマホと光回線の記事が、1件目の ahamo のページを読めなかっただけで落ちた）。
+    unread に読めなかった出典の URL を入れる（落としたときの理由に書く）"""
     import feeds  # noqa: PLC0415
 
     out = []
@@ -186,22 +194,43 @@ def fetch_sources(sources: list[dict]) -> list[dict]:
             page = feeds.fetch_article_text(s["url"])
         except Exception as error:  # noqa: BLE001
             log(f"   [muse] 出典を読めません {s['url'][:80]}: {str(error)[:80]}")
-            if i == 0:
-                return []
-            continue
-        text = (page.get("text") or "").strip()
-        if len(text) < 300:
+            page = None
+        text = ((page or {}).get("text") or "").strip()
+        if page is not None and len(text) < 300:
             log(f"   [muse] 出典の本文が短すぎます {s['url'][:80]}（{len(text)}字）")
-            if i == 0:
+        if page is None or len(text) < 300:
+            if unread is not None:
+                unread.append(s["url"])
+            if i == 0 and not skip_unreadable_first:
                 return []
             continue
-        out.append({**s, "title": (page.get("title") or "").strip(), "text": text, "image": page.get("image") or "",
-                    "published": page.get("published"), "page": page})
+        out.append({**s, "title": (page.get("title") or "").strip(), "text": text, "full_text": (page.get("full_text") or "").strip(),
+                    "image": page.get("image") or "", "published": page.get("published"), "page": page})
+    if out and out[0]["url"] != sources[0]["url"]:
+        log(f"   [muse] 1件目の出典を読めないので、読めた出典 {out[0]['url'][:80]} を一番の出典にします")
     return out
 
 
-def source_text_of(fetched: list[dict]) -> str:
-    return "\n\n".join(f"【{s.get('name') or s.get('title') or '公式'}】{s['url']}\n{s['text']}" for s in fetched)
+def source_text_of(fetched: list[dict], title: str = "", cap: int = MULTI_SOURCE_CAP) -> str:
+    """生成・事実確認に渡す出典の本文。出典が2本以上なら、全部の出典が事実確認（quality.source_cap）に入るよう1本ごとに長さを割り当て、
+    長いページは記事の題名・書き手のメモ（sources[].facts）の言葉と数字・料金の行を優先して抜き出す（source_links.excerpt）。
+    書き手のメモは「確かめる手がかり」として添えるだけで、根拠は下のページの本文（メモにしかない事実は創作扱いのまま）"""
+    if len(fetched) <= 1:
+        return "\n\n".join(f"【{s.get('name') or s.get('title') or '公式'}】{s['url']}\n{s['text']}" for s in fetched)
+    import source_links  # noqa: PLC0415
+
+    per = max(MIN_PER_SOURCE, cap // len(fetched) - 200)
+    parts = []
+    for s in fetched:
+        body = s.get("full_text") or s["text"]
+        note = re.sub(r"\s+", " ", str(s.get("facts") or "")).strip()
+        if len(body) > per:
+            body = source_links.excerpt(body, f"{title} {s.get('name') or ''} {note}", cap=per)
+        head = f"【{s.get('name') or s.get('title') or '公式'}】{s['url']}"
+        if note:
+            head += f"\n（書き手のメモ。根拠ではない。下のページの本文にあるかで確かめる: {note[:NOTE_CAP]}）"
+        parts.append(f"{head}\n{body}")
+    return "\n\n".join(parts)
 
 
 def check_file(path: Path) -> tuple[dict | None, list[str]]:
@@ -277,7 +306,7 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
         "source_slug": host_slug(first["url"]), "published_at": published, "image": first.get("image") or "",
         "muse": True, "published_guessed": guessed,
     }
-    source_text = source_text_of(fetched)
+    source_text = source_text_of(fetched, data["title"])
     lane = LANE_BY_GENRE.get(data["genre"], "lifestyle")
     voice_key, voice_text = m.pick_voice()
     genre, system, prompt, schema, kind, context, bundle = w.compose_with_facts(item, source_text, lane, [], voice_text, page,
@@ -364,7 +393,7 @@ def process(args) -> int:
         data, problems = check_file(path)
 
         def finish(status: str, reason: str = "", record: dict | None = None) -> None:
-            row = {"status": status, "reason": reason[:800], "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            row = {"status": status, "reason": reason[:1200], "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                    "title": (record or {}).get("title") or (data or {}).get("title") or ""}
             if record:
                 row.update({"slug": record["slug"], "url": f"{SITE}/articles/{record['slug']}"})
@@ -387,12 +416,16 @@ def process(args) -> int:
         if args.daily_cap and pacing.live_today(state) >= args.daily_cap:
             finish("waiting", f"今日の記事の本数（{args.daily_cap}本）がいっぱいなので、次の日に回します")
             continue
-        fetched = fetch_sources(data["sources"])
+        unread: list[str] = []
+        fetched = fetch_sources(data["sources"], skip_unreadable_first=data["genre"] == COMPARISON_GENRE, unread=unread)
         if not fetched:
-            finish("rejected", "1件目の出典（公式ページ）を読めませんでした。URL が正しいか、ログインなしで開けるページかを確かめてください")
+            finish("rejected", "1件目の出典（公式ページ）を読めませんでした。URL が正しいか、ログインなしで開けるページかを確かめてください"
+                   if data["genre"] != COMPARISON_GENRE else "出典（公式ページ）を1本も読めませんでした。URL が正しいか、ログインなしで開けるページかを確かめてください")
             rejected += 1
             continue
         status, out = build_article(path, data, fetched)
+        if status == "reject" and unread:
+            out = f"{out}\n読めなかった出典（ここにだけ書かれた事実は確かめられません。読める公式ページに替えるか、その記述を外してください）: " + " / ".join(unread[:5])
         if status == "error":
             log(f"   [muse] {out}（入稿はそのまま残します）")
             results["items"][name] = {"status": "waiting", "reason": str(out), "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
