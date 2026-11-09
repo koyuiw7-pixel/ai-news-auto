@@ -223,7 +223,10 @@ class PhotoPauseResumeTest(unittest.TestCase):
                 self.assertEqual(posted["posted"]["famima"]["pending"]["slot"], due.isoformat(timespec="seconds"))  # 枠を譲った
                 self.assertEqual(state["photoPaused"]["p1"]["dueAt"], later.isoformat(timespec="seconds"))
                 edits = []
-                reader = lambda k, pid, raise_unavailable=False: {**self.node("child-allowance", due), "status": "draft"}  # noqa: E731
+                # 下書きに戻すと Buffer は画像を外している（pause_input）
+                drafted = {**self.node("child-allowance", due), "status": "draft"}
+                drafted["metadata"] = {"thread": [{"text": "本文", "assets": []}]}
+                reader = lambda k, pid, raise_unavailable=False: drafted  # noqa: E731
                 # まだ画像が無い → 戻さない
                 out = fu.resume_photo_paused(state, NOW, api_key="k", editor=lambda *a: edits.append(a) or {}, reader=reader, issue=lambda *a: None)
                 self.assertEqual((out[0]["action"], edits), ("photo_waiting", []))
@@ -233,6 +236,8 @@ class PhotoPauseResumeTest(unittest.TestCase):
         self.assertEqual(out[0]["action"], "resumed")
         inp = edits[0][1]
         self.assertEqual((inp["mode"], inp["saveToDraft"], inp["dueAt"]), ("customScheduled", False, fu._iso(later)))
+        self.assertTrue(r.buffer_parts("threads", inp)[2])  # カードが付いている（ルール8）
+        self.assertEqual(r.check_photo(r.buffer_parts("threads", inp)[2], muse, "article"), [])
         self.assertEqual(inp["metadata"]["threads"]["thread"][0]["assets"][0]["image"]["url"], tp.card_url(muse))
         self.assertEqual(state["photoPaused"], {})
 

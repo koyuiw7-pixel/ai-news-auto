@@ -1287,6 +1287,21 @@ def give_slot(posted: dict, due: datetime, now: datetime) -> tuple[str, datetime
     return None
 
 
+def add_card_if_missing(inp: dict, article: dict) -> None:
+    """editPost の入力の1件目に画像・動画が無ければ、記事のカード（/card/<slug>）を付ける"""
+    import threads_post as tp
+
+    meta = inp.get("metadata") or {}
+    if "facebook" in meta:
+        if not inp.get("assets"):
+            inp["assets"] = [{"image": {"url": tp.card_url(article)}}]
+        return
+    for key in ("threads", "twitter"):
+        thread = (meta.get(key) or {}).get("thread") or []
+        if thread and not thread[0].get("assets"):
+            thread[0]["assets"] = [{"image": {"url": tp.card_url(article)}}]
+
+
 PHOTO_RESUME_LEAD_MIN = 15  # 予約に戻すのは今からこれだけ先（デプロイが済んでからカードが読まれるように）
 PHOTO_PAUSE_GIVEUP_H = 12  # 画像を待って下書きにした投稿は、この時間を過ぎたら予約に戻さない（issue で知らせる）
 
@@ -1324,6 +1339,7 @@ def resume_photo_paused(state: dict, now: datetime, api_key: str | None = None, 
             continue
         node = {**node, "service": node.get("service") or entry.get("service", "")}
         inp = share_assets_refresh(node, article) or node_edit_input(node, node_texts(node))
+        add_card_if_missing(inp, article)  # 下書きに戻すと Buffer は画像を外す（pause_input）。記事のカードを付け直す
         # 画像は記事の公開（デプロイ。3〜5分）のあとにカードへ載る。その前に出ないよう、少しあとに予約する
         when = max(due, now + timedelta(minutes=PHOTO_RESUME_LEAD_MIN))
         inp.update({"mode": "customScheduled", "dueAt": _iso(when), "saveToDraft": False})
@@ -1331,9 +1347,9 @@ def resume_photo_paused(state: dict, now: datetime, api_key: str | None = None, 
             editor(key, inp, article, node["service"])
         except Exception as error:  # noqa: BLE001
             out.append({"id": pid, "slug": slug, "action": "resume_failed", "error": str(error)[:200]})
-            if not _buffer_unavailable(error):
-                issue(slug, f"画像が付いたので下書きの投稿（{pid}）を予約に戻そうとしましたが、できませんでした: {str(error)[:200]}")
-                paused.pop(pid, None)
+            if not _buffer_unavailable(error) and not entry.get("failed"):
+                issue(slug, f"画像が付いたので下書きの投稿（{pid}）を予約に戻そうとしましたが、できませんでした（次の回にもう一度）: {str(error)[:200]}")
+            entry["failed"] = int(entry.get("failed") or 0) + 1  # 消さずに次の回にもう一度（PHOTO_PAUSE_GIVEUP_H まで）
             continue
         paused.pop(pid, None)
         log(f"[photo-resume] {slug}/{node['service']}: 画像が付いたので {when.astimezone(JST):%H:%M} に予約に戻しました")
