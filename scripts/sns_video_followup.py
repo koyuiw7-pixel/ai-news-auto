@@ -553,7 +553,12 @@ def video_wait_h(rec: dict | None) -> float:
     """動画を作る記事の投稿が動画を待つ時間（枠から。速報は待たない）。2026-11-05 夕方 オーナー「動画を待たない」で1時間"""
     import sns_plan
 
-    return 0.0 if (rec or {}).get("breaking") else sns_plan.video_wait_hours()
+    if (rec or {}).get("breaking"):
+        return 0.0
+    slot = _parse(((rec or {}).get("pending") or {}).get("slot") or (rec or {}).get("dueAt") or "")
+    if sns_plan.peak_no_wait(slot):
+        return 0.0  # 2026-11-09 オーナー承認: 人の多い時間帯の枠は動画を待たない
+    return sns_plan.video_wait_hours()
 
 
 def card_input(post_input: dict) -> dict:

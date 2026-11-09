@@ -574,8 +574,20 @@ def video_post(slug: str, data: dict | None = None) -> bool:
     return item.get("status") == "queued" and float(item.get("score") or 0) > 0
 
 
+def peak_no_wait(slot: datetime | None) -> bool:
+    """人の多い時間帯の枠か（動画を待たずに枠の時刻で出す。2026-11-09 オーナー承認・muse.no_wait_peak_jst）"""
+    if not isinstance(slot, datetime):
+        return False
+    t = (slot if slot.tzinfo else slot.replace(tzinfo=timezone.utc)).astimezone(JST)
+    hour = t.hour + t.minute / 60
+    return any(float(a) <= hour < float(b) for a, b in (plan()["muse"].get("no_wait_peak_jst") or []))
+
+
 def muse_wait_until(slug: str, slot: datetime, breaking: bool = False, data: dict | None = None) -> datetime | None:
-    """この記事の投稿が Muse の動画を待つ期限（頼んでいなければ None）。速報は breaking_wait_hours（既定0＝待たない）"""
+    """この記事の投稿が Muse の動画を待つ期限（頼んでいなければ None）。速報は breaking_wait_hours（既定0＝待たない）。
+    人の多い時間帯の枠は待たない（peak_no_wait）"""
+    if peak_no_wait(slot):
+        return None
     item = muse_item(slug, data)
     if item.get("status") != "queued" or not video_post(slug, data if data is not None else {"items": [item]}):
         return None
