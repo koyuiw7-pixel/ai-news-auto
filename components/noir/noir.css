@@ -1,16 +1,11 @@
 /*
- * 新しい記事の見た目「ノワール」（2026-11-07 オーナー承認・台帳 W36）。黒い表紙の写真＋白い紙面。
+ * 新しい記事の見た目「ノワール」（2026-11-07 オーナー承認・台帳 W36。2026-11-09 オーナーの指摘で組み直し）。
  * 今までの記事にも同じ CSS が届くので、決まりはすべて .noir の中だけに効かせる（今までの見た目を変えない）。
- * 色: 白 #ffffff の紙・冷たい灰色・黒 #0a0b0d・差し色は赤だけ（#ff1f3d / #d7001f）。
- * 黒の上に赤い文字を置かない（黒の上は白い文字。赤は細い線・札の地色だけ）。クリーム・ベージュ・金は使わない。
+ * 色: 白い紙・冷たい灰色・黒 #0a0b0d・ブランドの赤（#d7001f。「速」のロゴの赤）が軸。
+ * 2026-11-09 オーナー「色がくすんでいる」: 情報の欄だけ、種類ごとの色を足す（なるほど＝青・公式窓口＝青緑・判断ガイド＝緑・不安Q&A＝赤）。
+ * どれも薄い地に濃い文字（4.5:1 以上）。黒の上に赤い文字を置かない。クリーム・ベージュ・金は使わない。
  */
 
-/* ノワールの記事では、サイトの紺の帯・ジャンルのタブ・速報の1行の代わりに、写真の上の細い帯（.nr-top）を出す */
-html:has(.noir) .site-header,
-html:has(.noir) .genre-tabs,
-html:has(.noir) .live-line {
-  display: none;
-}
 html:has(.noir) body {
   overflow-x: clip;
 }
@@ -25,13 +20,25 @@ html:has(.noir) body {
   --nr-deep: #d7001f;
   --nr-sheet: #ffffff;
   --nr-text: #0e1013;
-  --nr-text2: #3a3f46;
+  --nr-text2: #2f343b;
   --nr-rule: #e5e7ea;
-  --nr-soft: #61676f;
+  --nr-soft: #5b6169;
   --nr-card: #ffffff;
   --nr-link: var(--nr-deep);
   --nr-mark: rgb(255 31 61 / 0.16);
+  --nr-redsoft: #fff1f3;
+  --nr-redline: #f6c3cb;
   --nr-place: linear-gradient(135deg, #e3e6ea, #c9ced5);
+  /* 情報の欄の色（2026-11-09 オーナー）。地・線・札の文字 */
+  --nr-blue-bg: #eef4ff;
+  --nr-blue-line: #bcd2f7;
+  --nr-blue: #1d4fa8;
+  --nr-teal-bg: #e9f6f5;
+  --nr-teal-line: #b3dedb;
+  --nr-teal: #0b6b64;
+  --nr-green-bg: #ecf7f0;
+  --nr-green-line: #b8e0c6;
+  --nr-green: #0b6e3f;
   --nr-display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
   --nr-body: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
   --nr-num: "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -73,7 +80,18 @@ html:has(.noir) body {
   --nr-card: #15181c;
   --nr-link: #ffffff;
   --nr-mark: rgb(255 31 61 / 0.28);
+  --nr-redsoft: #24161a;
+  --nr-redline: #5a2630;
   --nr-place: linear-gradient(135deg, #22262b, #30353b);
+  --nr-blue-bg: #121c2e;
+  --nr-blue-line: #2b3f63;
+  --nr-blue: #9cc0ff;
+  --nr-teal-bg: #0f2221;
+  --nr-teal-line: #234845;
+  --nr-teal: #7fd6cf;
+  --nr-green-bg: #0f2218;
+  --nr-green-line: #24472f;
+  --nr-green: #7fd6a2;
   --surface: #15181c;
   --muted: #b4b9c0;
   --surface-2: #1d2126;
@@ -89,147 +107,167 @@ html:has(.noir) body {
   color-scheme: dark;
 }
 
-.noir .nr-g {
-  padding-left: max(20px, env(safe-area-inset-left, 0px));
-  padding-right: max(20px, env(safe-area-inset-right, 0px));
-}
-.noir .nr-col {
-  max-width: 640px;
+/* 2列（PC 1024px 以上）: 本文の列 + 右の列（300〜336px）。全体は最大 1160px で中央に。スマホは1列 */
+.noir .nr-wrap {
+  max-width: 1160px;
   margin: 0 auto;
+  padding: 0 max(16px, env(safe-area-inset-left, 0px)) 72px max(16px, env(safe-area-inset-right, 0px));
+}
+.noir .nr-main {
+  min-width: 0;
+  max-width: 760px;
+}
+@media (min-width: 640px) {
+  .noir .nr-wrap {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+  .noir .nr-main {
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1024px) {
+  .noir .nr-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 48px;
+    align-items: start;
+  }
+  .noir .nr-main {
+    margin: 0;
+  }
+}
+@media (min-width: 1200px) {
+  .noir .nr-wrap {
+    grid-template-columns: minmax(0, 760px) 336px;
+    justify-content: space-between;
+  }
+}
+.noir .nr-aside {
+  min-width: 0;
+  margin-top: 48px;
+}
+@media (min-width: 1024px) {
+  .noir .nr-aside {
+    margin-top: 28px;
+    align-self: stretch;
+  }
+  /* サイトの帯（高さ 56px）の下に付いてくる。背が高いときは列の中だけ動かせる */
+  .noir .nr-sticky {
+    position: sticky;
+    top: 72px;
+    max-height: calc(100vh - 88px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    display: grid;
+    gap: 24px;
+  }
 }
 
-/* 上の帯：最初は写真の上に透明、表紙の途中からすりガラス、表紙を過ぎると白 */
-.noir .nr-top {
-  position: fixed;
-  top: env(safe-area-inset-top, 0px);
-  left: 0;
-  right: 0;
-  z-index: 60;
-  height: 56px;
+/* パンくず・題名 */
+.noir .nr-crumbs {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  border-bottom: 1px solid transparent;
-  transition: background-color 0.35s, border-color 0.35s;
+  flex-wrap: wrap;
+  gap: 6px;
+  font: 500 13px/1.6 var(--nr-body);
+  color: var(--nr-soft);
+  margin-top: 10px;
 }
-.noir .nr-top.glass {
-  background: rgb(12 12 12 / 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-.noir .nr-top.solid {
-  background: rgb(255 255 255 / 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-color: var(--nr-rule);
-}
-:root[data-theme="dark"] .noir .nr-top.solid {
-  background: rgb(14 16 19 / 0.94);
-}
-.noir .nr-logo {
-  flex-shrink: 0;
-  font: 900 16px/1 var(--nr-display);
-  letter-spacing: 0.14em;
-  color: var(--nr-white);
+.noir .nr-crumbs a {
+  color: inherit;
   text-decoration: none;
 }
-.noir .nr-top.solid .nr-logo {
+.noir .nr-crumbs a:hover {
+  color: var(--nr-text);
+  text-decoration: underline;
+}
+.noir .nr-crumbs-top {
+  margin: 0;
+  padding-top: 18px;
+}
+.noir .nr-head {
+  padding: 14px 0 0;
+}
+.noir .nr-kick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font: 700 13px/1.5 var(--nr-body);
+  letter-spacing: 0.06em;
+  color: var(--nr-text2);
+}
+.noir .nr-kick i {
+  font-style: normal;
+  color: #ffffff;
+  background: var(--nr-deep);
+  padding: 2px 8px;
+  border-radius: 2px;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+}
+.noir .nr-kick b {
+  color: #ffffff;
+  background: var(--nr-ink);
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size: 12px;
+}
+:root[data-theme="dark"] .noir .nr-kick b {
+  color: var(--nr-ink);
+  background: #ffffff;
+}
+.noir .nr-head h1 {
+  font: 900 clamp(25px, 6.6vw, 36px) / 1.4 var(--nr-display);
+  margin: 12px 0 0;
+  text-wrap: pretty;
+  letter-spacing: 0;
   color: var(--nr-text);
 }
-.noir .nr-top .nr-t {
-  min-width: 0;
-  max-width: 62%;
-  font: 500 13px/1.4 var(--nr-body);
-  color: var(--nr-text2);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.35s, transform 0.35s;
+.noir .nr-meta {
+  font: 500 13px/1.6 var(--nr-body);
+  color: var(--nr-soft);
+  margin-top: 12px;
+  display: flex;
+  gap: 2px 14px;
+  flex-wrap: wrap;
+  padding-bottom: 16px;
+  border-bottom: 3px solid var(--nr-text);
 }
-.noir .nr-top.solid .nr-t {
-  opacity: 1;
-  transform: none;
-}
-.noir .nr-bar {
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  height: 2px;
-  width: 100%;
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-  background: var(--nr-red);
-}
-.noir .nr-safe {
-  position: fixed;
-  inset: 0 0 auto;
-  height: env(safe-area-inset-top, 0px);
-  z-index: 61;
-  background: var(--nr-ink);
+.noir .nr-meta .nr-origin {
+  font-weight: 700;
+  color: var(--nr-text);
 }
 
-/* 表紙（高さは最初から決まっている。写真の読み込みで下が動かない） */
-.noir .nr-hero {
+/* 表紙の写真（16:9。場所を先に取るので読み込みでずれない）。スマホは画面の端まで */
+.noir .nr-cover {
+  margin: 20px 0 0;
+}
+.noir .nr-cover-img {
   position: relative;
-  height: min(118vw, 640px);
-  overflow: hidden;
-  color: var(--nr-white);
-  background: var(--nr-ink);
-}
-.noir .nr-img {
-  position: absolute;
-  inset: -8% 0 0;
-  will-change: transform;
-}
-.noir .nr-img img {
-  filter: brightness(1.08);
-}
-.noir .nr-hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  /* 公式の写真には文字の入った告知の画像もあるので、題名の下は十分に暗くする（題名が写真の文字と重なって読めなくならないように） */
-  background: linear-gradient(180deg, rgb(12 12 12 / 0.5) 0, rgb(12 12 12 / 0.12) 18%, rgb(12 12 12 / 0.3) 32%, rgb(12 12 12 / 0.8) 52%, rgb(12 12 12 / 0.94) 100%);
-}
-/* AI のイメージの札（台帳 I4）。写真の色に左右されないよう、札そのものに暗い地を敷く（白い文字と 4.5:1 以上） */
-.noir .nr-ailabel {
-  position: absolute;
-  top: calc(env(safe-area-inset-top, 0px) + 66px);
-  right: 16px;
-  z-index: 2;
-  font: 700 12px/1.5 var(--nr-body);
-  letter-spacing: 0.04em;
-  color: #ffffff;
-  background: rgb(10 11 13 / 0.72);
-  border: 1px solid rgb(255 255 255 / 0.28);
-  padding: 3px 8px;
-  border-radius: 3px;
-}
-/* AI のイメージも作れなかった記事は、公式の画像（告知のバナーなど）を、ぼかさず・暗くせずにそのまま見せる（panel）。
-   2026-11-07 オーナー: 強くぼかして暗くした背景は「画像反映されていない」「何もないとただ暗い感じ」に見えた。
-   画像は切らずに置き（object-fit: contain）、左右の余りは同じ画像を少しぼかして広げた色で埋める（暗くしない）。題名は画像の下の帯 */
-.noir .nr-hero.nr-panel {
-  height: auto;
-  padding-top: calc(env(safe-area-inset-top, 0px) + 56px);
-}
-.noir .nr-hero.nr-panel::after {
-  display: none;
-}
-.noir .nr-pimg {
-  position: relative;
-  display: block;
-  width: 100%;
-  aspect-ratio: 1200 / 630;
-  max-height: 540px;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #eef0f2;
 }
-.noir .nr-pbg,
-.noir .nr-pfg {
+@media (max-width: 639px) {
+  .noir .nr-cover {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+  .noir .nr-cover figcaption {
+    padding: 0 16px;
+  }
+}
+@media (min-width: 640px) {
+  .noir .nr-cover-img {
+    border-radius: 6px;
+  }
+}
+:root[data-theme="dark"] .noir .nr-cover-img {
+  background: #1d2126;
+}
+/* 告知の画像（文字の入ったバナーなど）は切らずに置き、左右の余りは同じ画像を少しぼかして広げた色で埋める（暗くしない） */
+.noir .nr-pbg {
   position: absolute;
   inset: 0;
   display: block;
@@ -239,182 +277,92 @@ html:has(.noir) body {
   transform: scale(1.2);
   opacity: 0.85;
 }
-.noir .nr-pfg {
-  max-width: 1000px;
-  margin: 0 auto;
+.noir .nr-cover figcaption {
+  margin-top: 6px;
 }
-.noir .nr-hero.nr-panel .nr-hl {
-  position: relative;
-  bottom: auto;
-  padding-top: 26px;
-  padding-bottom: 40px;
+.noir .nr-cover figcaption p {
+  font-size: 13px;
 }
-.noir .nr-hero.nr-panel .nr-rule {
-  display: block;
-  width: 40px;
-  height: 3px;
-  background: var(--nr-red);
-  margin-bottom: 18px;
-}
-.noir .nr-hero.nr-panel h1 {
-  text-shadow: none;
-}
-/* どの写真も無い記事だけ、明るい紙に題名を大きく（2026-11-07 オーナー「何もないとただ暗い感じ」。最後の手段） */
-.noir .nr-hero.nr-type {
-  height: auto;
-  min-height: min(80vw, 440px);
-  display: flex;
-  align-items: flex-end;
-  color: var(--nr-text);
-  background: linear-gradient(160deg, #f4f5f7 0%, #e6e9ed 100%);
-  border-bottom: 1px solid var(--nr-rule);
-}
-.noir .nr-hero.nr-type::after {
-  display: none;
-}
-.noir .nr-hero.nr-type .nr-hl {
-  position: relative;
-  bottom: auto;
-  padding-top: 104px;
-  padding-bottom: 56px;
-  width: 100%;
-}
-.noir .nr-hero.nr-type h1 {
-  font-size: clamp(32px, 9.4vw, 52px);
-  color: var(--nr-text);
-  text-shadow: none;
-}
-.noir .nr-hero.nr-type .nr-kick,
-.noir .nr-hero.nr-type .nr-meta {
-  color: var(--nr-text2);
-}
-.noir .nr-hero.nr-type .nr-rule {
-  display: block;
-  width: 40px;
-  height: 3px;
-  background: var(--nr-red);
-  margin-bottom: 20px;
-}
-/* 明るい表紙の上では、上の帯の「サイソク」を黒い文字に */
-.noir .nr-top.nr-onlight:not(.glass) .nr-logo {
-  color: var(--nr-text);
-}
-:root[data-theme="dark"] .noir .nr-hero.nr-type {
-  background: linear-gradient(160deg, #1d2126 0%, #15181c 100%);
-}
-:root[data-theme="dark"] .noir .nr-top.nr-onlight:not(.glass):not(.solid) .nr-logo {
-  color: var(--nr-white);
-}
-.noir .nr-hl {
+/* AI のイメージの札（台帳 I4）。写真の色に左右されないよう、札そのものに暗い地を敷く（白い文字と 4.5:1 以上） */
+.noir .nr-ailabel {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 44px;
+  top: 10px;
+  right: 10px;
   z-index: 2;
-}
-.noir .nr-kick {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-  font: 700 13px/1.5 var(--nr-body);
-  letter-spacing: 0.16em;
-  color: var(--nr-white);
-}
-.noir .nr-kick i {
-  font-style: normal;
+  font: 700 12px/1.5 var(--nr-body);
+  letter-spacing: 0.04em;
   color: #ffffff;
-  background: var(--nr-deep);
-  padding: 2px 7px;
-  letter-spacing: 0.08em;
-  font-size: 12px;
-}
-.noir .nr-hero h1 {
-  font: 900 clamp(30px, 8.6vw, 44px) / 1.28 var(--nr-display);
-  margin: 12px 0 0;
-  text-wrap: balance;
-  letter-spacing: -0.005em;
-  color: var(--nr-white);
-  text-shadow: 0 1px 14px rgb(0 0 0 / 0.5);
-}
-.noir .nr-meta {
-  font: 500 13px/1.5 var(--nr-body);
-  color: var(--nr-dim);
-  margin-top: 14px;
-  display: flex;
-  gap: 4px 12px;
-  flex-wrap: wrap;
-}
-.noir .nr-hl > * {
-  animation: nr-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-.noir .nr-hl h1 {
-  animation-delay: 0.08s;
-}
-.noir .nr-hl .nr-meta {
-  animation-delay: 0.16s;
-}
-@keyframes nr-rise {
-  from {
-    opacity: 0.001;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  background: rgb(10 11 13 / 0.72);
+  border: 1px solid rgb(255 255 255 / 0.28);
+  padding: 3px 8px;
+  border-radius: 3px;
 }
 
-/* 白い紙面。上の角を丸くして表紙に重ねる */
-.noir .nr-sheet {
-  position: relative;
-  z-index: 3;
-  margin-top: -24px;
-  background: var(--nr-sheet);
-  border-radius: 18px 18px 0 0;
-  padding-top: 30px;
-  padding-bottom: 72px;
-}
 .noir .nr-pr {
-  margin: 0 0 16px;
-  font: 500 13px/1.6 var(--nr-body);
+  margin: 18px 0 12px;
+  font: 500 12px/1.6 var(--nr-body);
   color: var(--nr-soft);
 }
 
-/* 要点：何が起きたかの1文（白・赤い縦の線）と、大きな数字（黒） */
+/* 要点: 上に赤い太線の白い箱。大事な数字は赤い印。残りの要点は赤い点の一覧 */
 .noir .nr-sum {
-  margin: 0 0 30px;
+  margin: 0 0 22px;
   display: grid;
   gap: 10px;
 }
 .noir .nr-srow {
   position: relative;
-  padding: 18px;
+  padding: 18px 18px 16px;
   background: var(--nr-card);
   border: 1px solid var(--nr-rule);
-  overflow: hidden;
-}
-.noir .nr-s1::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--nr-red);
+  border-top: 4px solid var(--nr-deep);
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 6px 18px -12px rgb(10 11 13 / 0.35);
 }
 .noir .nr-s1 p {
   margin: 0;
-  font: 700 19px/1.6 var(--nr-display);
+  font: 700 18px/1.65 var(--nr-display);
   color: var(--nr-text);
+}
+@media (min-width: 768px) {
+  .noir .nr-s1 p {
+    font-size: 20px;
+  }
 }
 .noir .nr-s1 em {
   font-style: normal;
   font: 800 1.3em/1.3 var(--nr-num);
-  color: var(--nr-text);
+  color: var(--nr-deep);
   letter-spacing: -0.02em;
   background: linear-gradient(transparent 66%, var(--nr-mark) 66%);
   padding: 0 2px;
+}
+:root[data-theme="dark"] .noir .nr-s1 em {
+  color: #ffffff;
+}
+.noir .nr-points {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 12px 0 0;
+  border-top: 1px dashed var(--nr-rule);
+  display: grid;
+  gap: 6px;
+}
+.noir .nr-points li {
+  position: relative;
+  padding-left: 18px;
+  font: 500 15px/1.7 var(--nr-body);
+  color: var(--nr-text2);
+}
+.noir .nr-points li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 0.72em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--nr-deep);
 }
 .noir .nr-s2 {
   background: var(--nr-ink);
@@ -460,43 +408,242 @@ html:has(.noir) body {
   font: 600 15px var(--nr-num);
   color: var(--nr-dim);
 }
-.noir .nr-more {
+
+/* すぐにできること（要点の下の短い一覧）: 薄い赤の地に番号 */
+.noir .nr-quick {
+  margin: 0 0 22px;
+  padding: 16px 18px;
+  background: var(--nr-redsoft);
+  border: 1px solid var(--nr-redline);
+  border-radius: 6px;
+}
+.noir .nr-quick h2 {
+  margin: 0 0 10px;
+  font: 800 16px/1.5 var(--nr-display);
+  color: var(--nr-text);
+}
+.noir .nr-quick ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.noir .nr-quick li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 10px;
+  font: 600 15px/1.65 var(--nr-body);
+  color: var(--nr-text);
+}
+.noir .nr-quick li b {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--nr-deep);
+  color: #ffffff;
+  font: 700 13px/1 var(--nr-num);
+}
+.noir .nr-quick-more {
   display: inline-flex;
   gap: 6px;
-  align-items: center;
-  margin-top: 4px;
+  margin-top: 10px;
   font: 700 14px var(--nr-body);
   color: var(--nr-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 本文の列の PR（上下に余白。枠そのものの見た目と「PR」の表示は部品のまま） */
+.noir .nr-ad {
+  margin: 0 0 32px;
+}
+.noir .nr-ad-mid,
+.noir .nr-ad-end {
+  margin: 36px 0;
+}
+.noir .nr-note {
+  margin: 0 0 20px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--nr-deep);
+  background: var(--surface);
+  font: 500 14px/1.7 var(--nr-body);
+  color: var(--nr-text2);
+}
+.noir .nr-note a {
+  margin-left: 4px;
+  font-weight: 700;
+  color: var(--nr-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.noir .nr-tag {
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  padding: 4px 12px;
+  font: 600 13px/1.6 var(--nr-body);
+  color: var(--nr-text2);
   text-decoration: none;
 }
-.noir .nr-more span {
+.noir .nr-tag:hover {
+  border-color: var(--nr-deep);
+  color: var(--nr-text);
+}
+
+/* 情報の欄（components/DepthBoxes.tsx の .dbx）。種類ごとに色の付いた地と、左の太い線 */
+.noir .dbx {
+  max-width: none;
+  border-radius: 8px;
+}
+.noir .dbx .dbx-kick {
   display: inline-block;
-  animation: nr-nudge 1.8s ease-in-out infinite;
+  padding: 1px 8px;
+  border-radius: 2px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
 }
-@keyframes nr-nudge {
-  0%,
-  100% {
-    transform: none;
-  }
-  50% {
-    transform: translateY(3px);
-  }
+.noir .dbx-insight {
+  border: 1px solid var(--nr-blue-line);
+  border-left: 5px solid var(--nr-blue);
+  background: var(--nr-blue-bg);
+  margin: 0 0 28px;
 }
-.js-noir .noir .nr-srow {
-  animation: nr-slidein 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+.noir .dbx-insight .dbx-kick {
+  color: #ffffff;
+  background: var(--nr-blue);
 }
-.js-noir .noir .nr-s2 {
-  animation-delay: 0.12s;
+:root[data-theme="dark"] .noir .dbx-insight .dbx-kick,
+:root[data-theme="dark"] .noir .dbx-desk .dbx-kick,
+:root[data-theme="dark"] .noir .dbx-guide .dbx-kick {
+  color: var(--nr-ink);
 }
-@keyframes nr-slidein {
-  from {
-    transform: translateX(-14px);
-    opacity: 0.3;
-  }
-  to {
-    transform: none;
-    opacity: 1;
-  }
+.noir .dbx-desk {
+  padding: 20px;
+  border: 1px solid var(--nr-teal-line);
+  border-left: 5px solid var(--nr-teal);
+  background: var(--nr-teal-bg);
+}
+.noir .dbx-desk .dbx-kick {
+  color: #ffffff;
+  background: var(--nr-teal);
+}
+.noir .dbx-desk > div > div {
+  background: var(--nr-card);
+}
+.noir .dbx-guide {
+  padding: 20px;
+  border: 1px solid var(--nr-green-line);
+  border-left: 5px solid var(--nr-green);
+  background: var(--nr-green-bg);
+}
+.noir .dbx-guide .dbx-kick {
+  color: #ffffff;
+  background: var(--nr-green);
+}
+.noir .dbx-guide dl {
+  background: var(--nr-card);
+}
+.noir .dbx-guide dd.font-bold {
+  color: var(--nr-green);
+}
+.noir .dbx-worries {
+  padding: 20px;
+  border: 1px solid var(--nr-redline);
+  border-left: 5px solid var(--nr-deep);
+  background: var(--nr-redsoft);
+}
+.noir .dbx-worries .dbx-kick {
+  color: #ffffff;
+  background: var(--nr-deep);
+}
+.noir .dbx-worries details {
+  background: var(--nr-card);
+}
+.noir .dbx-worries summary > span:first-child {
+  color: var(--nr-deep);
+  font-family: var(--nr-num);
+  font-weight: 800;
+}
+:root[data-theme="dark"] .noir .dbx-worries summary > span:first-child {
+  color: #ffffff;
+}
+.noir .dbx-steps {
+  border: 1px solid var(--nr-rule);
+  border-top: 4px solid var(--nr-deep);
+  border-radius: 0 0 8px 8px;
+  scroll-margin-top: 72px;
+}
+.noir .dbx-steps .dbx-kick {
+  color: #ffffff;
+  background: var(--nr-deep);
+}
+.noir .dbx-steps > ol > li > span:first-child {
+  background: var(--nr-deep);
+  color: #ffffff;
+}
+.noir .dbx-cause {
+  border-left: 5px solid var(--nr-soft);
+}
+.noir .dbx-cause .dbx-kick {
+  color: #ffffff;
+  background: var(--nr-text2);
+}
+:root[data-theme="dark"] .noir .dbx-cause .dbx-kick,
+:root[data-theme="dark"] .noir .dbx-worries .dbx-kick,
+:root[data-theme="dark"] .noir .dbx-steps .dbx-kick {
+  color: #ffffff;
+}
+
+/* 右の列（PC）: よく読まれている記事 */
+.noir .nr-pop {
+  border-top: 3px solid var(--nr-text);
+}
+.noir .nr-pop h2 {
+  margin: 0;
+  padding: 12px 0 6px;
+  font: 800 16px/1.5 var(--nr-display);
+  color: var(--nr-text);
+}
+.noir .nr-pop ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.noir .nr-pop a {
+  display: grid;
+  grid-template-columns: auto 1fr 72px;
+  gap: 10px;
+  align-items: start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--nr-rule);
+  text-decoration: none;
+  color: var(--nr-text);
+}
+.noir .nr-pop a > b {
+  font: 800 20px/1.1 var(--nr-num);
+  color: var(--nr-deep);
+  min-width: 1.1em;
+}
+:root[data-theme="dark"] .noir .nr-pop a > b {
+  color: #ffffff;
+}
+.noir .nr-pop a > span {
+  font: 700 14px/1.55 var(--nr-body);
+}
+.noir .nr-pop a:hover > span {
+  text-decoration: underline;
+}
+.noir .nr-pop .nr-ph {
+  position: relative;
+  display: block;
+  width: 72px;
+  height: 54px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--nr-place);
 }
 
 /* 本文 */
@@ -504,26 +651,33 @@ html:has(.noir) body {
   max-width: none;
   color: var(--nr-text2);
 }
+/* 章の見出し: 左に赤い太い線、下に細い線（本文を章ごとに区切る） */
 .noir .nr-prose h2 {
-  font: 900 22px/1.5 var(--nr-display);
+  position: relative;
+  font: 900 21px/1.5 var(--nr-display);
   color: var(--nr-text);
-  margin: 46px 0 14px;
-  text-wrap: balance;
+  margin: 48px 0 16px;
+  text-wrap: pretty;
   border: 0;
-  padding: 0;
+  border-bottom: 1px solid var(--nr-rule);
+  padding: 2px 0 10px 16px;
 }
 .noir .nr-prose h2::before {
   content: "";
-  display: block;
-  width: 28px;
-  height: 2px;
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 12px;
+  width: 5px;
+  border-radius: 2px;
   background: var(--nr-deep);
-  margin-bottom: 14px;
 }
 .noir .nr-prose h3 {
-  font: 700 17px/1.6 var(--nr-display);
+  font: 800 17px/1.6 var(--nr-display);
   color: var(--nr-text);
   margin: 30px 0 10px;
+  padding-left: 10px;
+  border-left: 3px solid var(--nr-redline);
 }
 .noir .nr-prose p,
 .noir .nr-prose li {
@@ -548,20 +702,87 @@ html:has(.noir) body {
 .noir .nr-prose strong,
 .noir .nr-prose b {
   color: var(--nr-text);
+  font-weight: 800;
+}
+/* 数字の入った強調（円・%・人など）は赤い印で目立たせる（lib/noir.ts の noirBodyHtml が nr-num を付ける） */
+.noir .nr-prose strong.nr-num {
+  background: linear-gradient(transparent 62%, var(--nr-mark) 62%);
+  padding: 0 1px;
 }
 .noir .nr-prose a {
   color: var(--nr-text);
   text-decoration-color: var(--nr-deep);
   text-underline-offset: 3px;
 }
+/* 一覧はカードに（文字の壁にしない） */
+.noir .nr-prose > ul:not(.nr-line) {
+  list-style: none;
+  margin: 6px 0 22px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border-radius: 6px;
+}
+.noir .nr-prose > ul:not(.nr-line) > li {
+  position: relative;
+  margin: 0;
+  padding: 4px 0 4px 18px;
+}
+.noir .nr-prose > ul:not(.nr-line) > li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 1.05em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--nr-deep);
+}
+.noir .nr-prose > ul:not(.nr-line) > li::marker {
+  content: none;
+}
+.noir .nr-prose > ol {
+  list-style: none;
+  counter-reset: nr-step;
+  margin: 6px 0 22px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.noir .nr-prose > ol > li {
+  counter-increment: nr-step;
+  position: relative;
+  margin: 0;
+  padding: 12px 14px 12px 50px;
+  border: 1px solid var(--nr-rule);
+  border-radius: 6px;
+  background: var(--nr-card);
+}
+.noir .nr-prose > ol > li::before {
+  content: counter(nr-step);
+  position: absolute;
+  left: 14px;
+  top: 13px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--nr-deep);
+  color: #ffffff;
+  font: 700 13px/1 var(--nr-num);
+}
+.noir .nr-prose > ol > li::marker {
+  content: none;
+}
+/* 引用・大事な1行（大きな文字と赤い線） */
 .noir .nr-prose blockquote {
-  margin: 28px 0;
-  padding: 0 0 0 18px;
+  margin: 30px 0;
+  padding: 16px 18px 16px 22px;
   border: 0;
-  border-left: 2px solid var(--nr-deep);
-  border-radius: 0;
-  background: none;
-  font: 700 19px/1.65 var(--nr-display);
+  border-left: 5px solid var(--nr-deep);
+  border-radius: 0 6px 6px 0;
+  background: var(--nr-redsoft);
+  font: 800 19px/1.65 var(--nr-display);
   color: var(--nr-text);
   quotes: none;
 }
@@ -580,17 +801,25 @@ html:has(.noir) body {
   border-top: 1px solid var(--nr-rule);
 }
 .noir .nr-prose thead {
-  background: none;
-  border-bottom: 2px solid var(--nr-text);
+  background: var(--nr-ink);
+  border-bottom: 0;
 }
 .noir .nr-prose th {
-  font: 600 13px/1.5 var(--nr-body);
-  color: var(--nr-soft);
+  font: 700 13px/1.5 var(--nr-body);
+  color: #ffffff;
+  padding: 10px 12px;
+}
+:root[data-theme="dark"] .noir .nr-prose thead {
+  background: #2a2f36;
 }
 .noir .nr-prose td {
   font: 500 14px/1.6 var(--nr-body);
   color: var(--nr-text2);
   border-top: 1px solid var(--nr-rule);
+  padding: 11px 12px;
+}
+.noir .nr-prose tbody tr:nth-child(even) td {
+  background: var(--surface);
 }
 /* 2列の表（料金など）は横に収まるので、細い線の表に */
 .noir .nr-prose table.nr-price {
@@ -603,7 +832,7 @@ html:has(.noir) body {
 .noir .nr-prose table.nr-price td,
 .noir .nr-prose table.nr-price th {
   min-width: 0;
-  padding: 13px 0;
+  padding: 12px;
   white-space: normal;
 }
 .noir .nr-prose table.nr-price td:last-child,
@@ -622,6 +851,18 @@ html:has(.noir) body {
 }
 .noir .nr-prose .nr-scroll table {
   margin: 0;
+}
+.noir .nr-prose .nr-scroll td:not(:first-child) {
+  font-family: var(--nr-num);
+  font-weight: 700;
+  color: var(--nr-text);
+}
+/* 本文の図・写真 */
+.noir .nr-prose .body-figure {
+  margin: 28px 0;
+}
+.noir .nr-prose .body-figure img {
+  border-radius: 6px;
 }
 
 /* 前 → 今の行（1行に。表にしない） */
@@ -659,10 +900,13 @@ html:has(.noir) body {
   color: var(--nr-soft);
 }
 .noir .nr-chg b {
-  font: 800 20px/1.3 var(--nr-num);
-  color: var(--nr-text);
+  font: 800 22px/1.3 var(--nr-num);
+  color: var(--nr-deep);
   letter-spacing: -0.01em;
   white-space: nowrap;
+}
+:root[data-theme="dark"] .noir .nr-chg b {
+  color: #ffffff;
 }
 .noir .nr-chg .nr-cnote {
   font: 600 13px/1.4 var(--nr-body);
@@ -708,6 +952,7 @@ html:has(.noir) body {
   padding: 16px 18px;
   background: var(--nr-ink);
   color: #ffffff;
+  border-radius: 6px;
   text-decoration: none;
   font: 700 15px/1.5 var(--nr-body);
 }
@@ -719,32 +964,17 @@ html:has(.noir) body {
   font: 800 18px var(--nr-num);
 }
 
-/* 本文に溶け込む広告・案内の枠（上下の細い線） */
-.noir .nr-slot {
-  margin: 40px 0;
-}
-/* 右側に置いていた商品枠を1列の中に置くので、長い説明の行は注記の大きさ（14px）にする */
-.noir .nr-rail .text-meta {
-  font-size: 14px;
-}
-
-/* 関連記事（写真の代わりに灰色の四角。写真があれば重ねる） */
+/* 関連記事 */
 .noir .nr-h2 {
   font: 900 22px/1.5 var(--nr-display);
   color: var(--nr-text);
   margin: 56px 0 10px;
-}
-.noir .nr-h2::before {
-  content: "";
-  display: block;
-  width: 28px;
-  height: 2px;
-  background: var(--nr-deep);
-  margin-bottom: 14px;
+  padding-left: 16px;
+  border-left: 5px solid var(--nr-deep);
 }
 .noir .nr-rel a {
   display: grid;
-  grid-template-columns: 1fr 84px;
+  grid-template-columns: 1fr 96px;
   gap: 14px;
   padding: 16px 0;
   border-top: 1px solid var(--nr-rule);
@@ -753,6 +983,9 @@ html:has(.noir) body {
 }
 .noir .nr-rel a b {
   font: 700 15px/1.55 var(--nr-display);
+}
+.noir .nr-rel a:hover b {
+  text-decoration: underline;
 }
 .noir .nr-rel a small {
   display: block;
@@ -763,9 +996,10 @@ html:has(.noir) body {
 .noir .nr-rel .nr-ph {
   position: relative;
   display: block;
-  width: 84px;
-  height: 62px;
+  width: 96px;
+  height: 54px;
   overflow: hidden;
+  border-radius: 4px;
   background: var(--nr-place);
 }
 .noir .nr-src {
@@ -780,42 +1014,17 @@ html:has(.noir) body {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.noir .nr-crumbs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  font: 500 13px/1.6 var(--nr-body);
-  color: var(--nr-soft);
-  margin-top: 10px;
-}
-.noir .nr-crumbs a {
-  color: inherit;
-  text-decoration: none;
-}
-.noir .nr-crumbs a:hover {
-  color: var(--nr-text);
-}
 
 /* 読み進めると静かに現れる（最初から読める状態。JS が動いた端末だけ、画面の外の物を少し下げて薄くしておく） */
 .noir .rv,
 .noir [data-rv] {
   transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.8s;
 }
-.js-noir .noir .rv.pre,
-.js-noir .noir [data-rv].pre {
-  transform: translateY(14px);
-  opacity: 0.35;
-}
 .noir a:focus-visible {
   outline: 2px solid var(--nr-red);
   outline-offset: 3px;
 }
 @media (prefers-reduced-motion: reduce) {
-  .noir .nr-hl > *,
-  .js-noir .noir .nr-srow,
-  .noir .nr-more span {
-    animation: none;
-  }
   .noir .rv,
   .noir [data-rv] {
     transition: none;
@@ -825,12 +1034,39 @@ html:has(.noir) body {
     transform: none;
     opacity: 1;
   }
-  .noir .nr-img {
-    transform: none !important;
-  }
 }
 
 /* 読み方の切り替えのすぐ下で本文が詰まらないように */
 .noir #article-flow {
-  padding-top: 20px;
+  padding-top: 8px;
+}
+
+/* 色の付いた欄の中のカードが、長い URL・名前で欄の外にはみ出さないように（スマホの横スクロールを出さない） */
+.noir .dbx .grid > * {
+  min-width: 0;
+}
+@media (max-width: 639px) {
+  .noir .dbx-desk,
+  .noir .dbx-guide,
+  .noir .dbx-worries {
+    padding: 16px 14px;
+  }
+  .noir .dbx-desk > div > div {
+    padding: 16px 14px;
+  }
+}
+
+/* 発信元の名前が長い記事（資料の題名そのままなど）で、パンくず・発表元が何行にもならないように */
+.noir .nr-crumbs-top a {
+  max-width: 24em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.noir .nr-meta .nr-origin {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  max-width: 100%;
 }

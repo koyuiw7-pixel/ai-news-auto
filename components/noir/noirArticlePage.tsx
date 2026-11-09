@@ -14,7 +14,6 @@ import WorkMoneyCard from "@/components/WorkMoneyCard";
 import AssetLinks from "@/components/assets/AssetLinks";
 import SourceRecord from "@/components/SourceRecord";
 import ArticleFaq from "@/components/ArticleFaq";
-import TodayActions from "@/components/TodayActions";
 import { ActionSteps, CauseBox, DecisionGuide, InsightBox, OfficialDesk, WorriesBlock } from "@/components/DepthBoxes";
 import { depthOf } from "@/lib/depth";
 import ActionAd from "@/components/ActionAd";
@@ -23,9 +22,9 @@ import ShareButtons from "@/components/ShareButtons";
 import ThreadsFollow from "@/components/ThreadsFollow";
 import ReadNextBox from "@/components/ReadNextBox";
 import ShopLinks from "@/components/ShopLinks";
-import Sidebar from "@/components/Sidebar";
 import CalculatorBox from "@/components/calc/CalculatorBox";
 import NoirArticle from "@/components/noir/NoirArticle";
+import NoirPopular from "@/components/noir/NoirPopular";
 import { articleTitle } from "@/lib/headline";
 import { isFastNews } from "@/lib/cover-path";
 import { OTHER, sourceBadge, type Company } from "@/lib/companies";
@@ -45,7 +44,9 @@ type Any = any;
 /**
  * ノワールの記事ページ（2026-11-07 以降の新しい記事。台帳 W36）。
  * 中身（広告の枠・提携の枠・判定・FAQ・出典・次の1本・構造化データ）は今までの記事ページが作った値をそのまま使い、並べ方と見た目だけを変える。
- * 同じ枠はページに1つだけ（台帳 W10）。PC も1列なので、右側の商品枠・サイドバーは記事の終わりに置く（スマホの今までの並びと同じ）。
+ * 同じ枠はページに1つだけ（台帳 W10）。
+ * 2026-11-09 オーナー「広告が一番下にしか無い」: 本文の列の PR は最大3つ（fa0bfacd の決まり）を、①要点・すぐにできることの直後 ②本文の途中 ③記事の終わりに置く。
+ * PC は右の列に商品の枠（追従）と、よく読まれている記事。スマホは右の列の商品枠の写し（ranking-end。表示の計測は右の列の1回だけ）を本文の列に置く。
  */
 export type NoirPageContext = {
   article: FullArticle;
@@ -90,6 +91,28 @@ export type NoirPageContext = {
   CompareLink: ComponentType<{ slug: string; name: string; className?: string }>;
 };
 
+/** 要点のすぐ下の「すぐにできること」の短い一覧。手順つきの欄（ActionSteps）が下にあれば、そこへ飛べる */
+function QuickActions({ actions, detailed }: { actions: string[]; detailed: boolean }) {
+  return (
+    <section className="nr-quick" aria-labelledby="nr-quick-heading">
+      <h2 id="nr-quick-heading">すぐにできること</h2>
+      <ol>
+        {actions.map((action, i) => (
+          <li key={i}>
+            <b aria-hidden>{i + 1}</b>
+            <span>{action}</span>
+          </li>
+        ))}
+      </ol>
+      {detailed && (
+        <a href="#steps" className="nr-quick-more">
+          手順と公式の窓口を見る <span aria-hidden>↓</span>
+        </a>
+      )}
+    </section>
+  );
+}
+
 export function noirArticlePage(ctx: NoirPageContext) {
   const {
     article, jsonLd, bodyHtml, easyHtml, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
@@ -101,9 +124,8 @@ export function noirArticlePage(ctx: NoirPageContext) {
   const depth = depthOf(article);
   const [noirTop, noirAfterAd] = splitBeforeHeading(noirHtml, 3);
   const [noirMid, noirTail] = splitBeforeHeading(noirAfterAd, 4);
-  const noirInlineCta = noirTail && !actionAd && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
+  const noirInlineCta = !actionAd && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
   const noirPrimaryCta = !actionAd && !inlineOffer && !shopLink && !noirInlineCta && getCta(article.genreSlug, "primary") ? "primary" : undefined;
-  const noirHasInlinePr = Boolean(actionAd || inlineOffer || shopLink || noirInlineCta || noirPrimaryCta);
   const badge = sourceBadge(article);
   // 発表元の名前（写真の注記の団体名 → 企業名 → 発信元の名前）
   const org =
@@ -116,19 +138,41 @@ export function noirArticlePage(ctx: NoirPageContext) {
     i === 0 ? { ...entry, speakable: { "@type": "SpeakableSpecification", cssSelector: [".nr-sum"] } } : entry,
   );
   const inlinePrBlock = inlineOffer ? (
-    <div className="nr-slot">
+    <>
       <RailRanking offer={inlineOffer} wide id="offer-inline" title={inlineOffer.headline} />
       {shopLink && <ShopLinks link={shopLink} className="mt-3" />}
       {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex" />}
-    </div>
+    </>
   ) : null;
+
+  // すぐにできること: 要点の下に短い一覧。手順つき（depth.todaySteps）があれば、手順は本文の後ろ（公式窓口のそば）に置き、一覧から飛べるようにする
+  const stepItems = depth.todaySteps.length >= 2 ? depth.todaySteps : [];
+  const quickList = stepItems.length > 0 ? stepItems.map((s) => s.action) : todayActions.length >= 2 ? todayActions : [];
+
+  // 本文の列の PR（最大3つ。fa0bfacd の決まり）。上から順に ①要点・すぐにできることの直後 ②本文の途中 ③記事の終わり
+  const adBlocks: ReactNode[] = [];
+  if (actionAd) adBlocks.push(<ActionAd key="action" ad={actionAd} className="mt-0" />);
+  if (inlinePrBlock) adBlocks.push(<div key="inline">{inlinePrBlock}</div>);
+  else if (shopLink) adBlocks.push(<ShopLinks key="shop" link={shopLink} />);
+  if (noirInlineCta) adBlocks.push(<CtaBanner key="cta" genreSlug={article.genreSlug} slot="inline" />);
+  else if (noirPrimaryCta) adBlocks.push(<CtaBanner key="cta" genreSlug={article.genreSlug} slot="primary" />);
+  // スマホ: 右の列の商品枠の写し（PC は右の列に付いてくるので出さない）。表示の計測は右の列の1回だけ（二重に数えない）
+  if (offer)
+    adBlocks.push(
+      <div key="end" className="lg:hidden">
+        <RailRanking offer={offer} pos="ranking-end" countImpression={false} />
+      </div>,
+    );
+  const [adEarly, adMidPr, adEnd] = adBlocks.slice(0, 3);
+
   return (
     <NoirArticle
       article={article}
       title={articleTitle(article)}
       jsonLd={noirJsonLd}
       cover={noirCover(article)}
-      kicker={[company.slug !== OTHER.slug ? company.name : "", article.genre].filter(Boolean).join(" ・ ")}
+      genre={article.genre}
+      kicker={company.slug !== OTHER.slug ? company.name : ""}
       breaking={isFastNews(article)}
       origin={`${org} ${badge}`}
       readMinutes={readMinutes}
@@ -142,23 +186,21 @@ export function noirArticlePage(ctx: NoirPageContext) {
       crumbs={crumbs}
       related={related}
       slots={{
+        quick: quickList.length > 0 ? <QuickActions actions={quickList} detailed={stepItems.length > 0} /> : null,
+        adEarly,
         afterSummary: (
           <>
             {depth.insight.length > 0 && <InsightBox items={depth.insight} heading={depth.headings.insight} />}
             {mainArticle && (
-              <p className="mb-6 border-l-2 border-line-strong pl-3 text-note text-ink-soft">
+              <p className="nr-note">
                 同じ話題をまとめた記事があります：
-                <Link href={`/articles/${mainArticle.slug}`} className="ml-1 font-bold text-ink underline underline-offset-4">
-                  {mainArticle.title}
-                </Link>
+                <Link href={`/articles/${mainArticle.slug}`}>{mainArticle.title}</Link>
               </p>
             )}
             {article.roundupSlug && (
-              <p className="mb-6 text-note text-ink-soft">
+              <p className="nr-note">
                 この話題の全体像：
-                <Link href={`/articles/${article.roundupSlug}`} className="ml-1 font-bold text-ink underline underline-offset-4">
-                  {article.roundupTitle}
-                </Link>
+                <Link href={`/articles/${article.roundupSlug}`}>{article.roundupTitle}</Link>
               </p>
             )}
             {guideLinks.length > 0 && (
@@ -183,18 +225,24 @@ export function noirArticlePage(ctx: NoirPageContext) {
         ) : null,
         inlineRead: inlineRead ? <InlineRead item={{ article: inlineRead, reason: "同じ話題の記事" }} /> : null,
         adMid: showAds ? <AdSlot position="article-middle" className="my-10" /> : null,
-        beforeTail: chooseGuide ? <ChooseGuideNote guide={chooseGuide} className="my-10" /> : null,
-        betweenTail: (
+        adMidPr,
+        // 本文の途中: 読者の迷い・不安に答える欄（判断ガイド・不安Q&A）
+        midBoxes: (
           <>
-            {inlinePrBlock}
-            {readNextInline && <ReadNextBox link={readNextInline} className="my-10" />}
-            {!inlineOffer && shopLink && <ShopLinks link={shopLink} className="my-10" />}
+            {depth.guide.length > 0 && <DecisionGuide groups={depth.guide} heading={depth.headings.guide} />}
+            {depth.worries.length >= 2 && <WorriesBlock items={depth.worries} heading={depth.headings.worries} />}
           </>
         ),
-        tailCta: noirInlineCta ? <CtaBanner genreSlug={article.genreSlug} slot="inline" className="my-10" /> : null,
+        beforeTail: chooseGuide ? <ChooseGuideNote guide={chooseGuide} className="my-10" /> : null,
+        betweenTail: readNextInline ? <ReadNextBox link={readNextInline} className="my-10" /> : null,
         afterBody: (
           <>
             {calc && !calcInline && <CalculatorBox calc={calc} className="mt-12" />}
+            {/* 一歩深くする欄（scripts/depth_fields.py。公式ページで確かめた原因・手順・窓口・不安への答え。台帳 A66） */}
+            {depth.cause && <CauseBox cause={depth.cause} heading={depth.headings.cause} />}
+            {/* 手順つきの「すぐにできること」と公式窓口を並べる（要点の下の一覧から飛んでくる） */}
+            {stepItems.length > 0 && <ActionSteps items={stepItems} heading={depth.headings.steps} />}
+            {depth.officialDesk.length > 0 && <OfficialDesk items={depth.officialDesk} heading={depth.headings.desk} />}
             {workMoney && (
               <WorkMoneyCard
                 workMoney={workMoney}
@@ -206,17 +254,10 @@ export function noirArticlePage(ctx: NoirPageContext) {
               <VerdictCard verdict={verdict} cardKind={cardKind} judgedAt={verdict.judgedAt || article.generatedAt || article.publishedAt} />
             )}
             <AssetLinks article={article} />
-            {/* 一歩深くする欄（scripts/depth_fields.py。公式ページで確かめた原因・手順・窓口・不安への答え。台帳 A66） */}
-            {depth.cause && <CauseBox cause={depth.cause} heading={depth.headings.cause} />}
-            {depth.todaySteps.length >= 2 ? <ActionSteps items={depth.todaySteps} heading={depth.headings.steps} /> : todayActions.length >= 2 && <TodayActions actions={todayActions} />}
-            {/* 「すぐにできること」のすぐ下に、行動と同じ話題の PR を1つ（無い記事は本文の終わり） */}
-            {actionAd && <ActionAd ad={actionAd} className={todayActions.length >= 2 ? "mt-4" : "mt-12"} />}
-            {depth.officialDesk.length > 0 && <OfficialDesk items={depth.officialDesk} heading={depth.headings.desk} />}
-            {depth.worries.length >= 2 && <WorriesBlock items={depth.worries} heading={depth.headings.worries} />}
-            {depth.guide.length > 0 && <DecisionGuide groups={depth.guide} heading={depth.headings.guide} />}
             {articleFaq.length >= 1 && <ArticleFaq items={articleFaq} />}
           </>
         ),
+        adEnd,
         afterSource: (
           <>
             <div className="mt-12 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-y border-line py-4">
@@ -244,16 +285,13 @@ export function noirArticlePage(ctx: NoirPageContext) {
         end: (
           <>
             {!noirTail && chooseGuide && <ChooseGuideNote guide={chooseGuide} className="mt-12" />}
-            {noirPrimaryCta && <CtaBanner genreSlug={article.genreSlug} slot="primary" className="mt-12" />}
             <NewsletterSignup variant="article" />
             <PushOptIn />
-            {!noirTail && inlinePrBlock}
             {!noirTail && readNextInline && <ReadNextBox link={readNextInline} className="mt-12" />}
-            {!noirTail && !inlineOffer && shopLink && <ShopLinks link={shopLink} className="mt-12" />}
             {article.tags.length > 0 && (
               <div className="mt-12 flex flex-wrap gap-2">
                 {article.tags.map((tag) => (
-                  <Link key={tag} href={tagHref(tag)} className="rounded-md bg-surface px-3.5 py-1.5 text-meta font-medium text-ink-soft hover:bg-surface-2 hover:text-ink">
+                  <Link key={tag} href={tagHref(tag)} className="nr-tag">
                     #{tag}
                   </Link>
                 ))}
@@ -281,28 +319,44 @@ export function noirArticlePage(ctx: NoirPageContext) {
             </p>
           </>
         ),
-        // PC でも1列なので、右側に置いていた物は記事の終わりに置く（スマホの今までの並びと同じ）
-        rail: offer ? (
+        // PC の右の列（追従）: 商品の枠（無ければ次に読む案内・広告枠）と、よく読まれている記事。スマホでは記事の後ろに一覧だけ
+        rail: (
           <>
-            <RailRanking offer={offer} />
-            {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex" />}
-          </>
-        ) : (
-          <>
-            {readNextRail && !readNextInline && <ReadNextBox link={readNextRail} className="mb-8" />}
-            <Sidebar current={article} showAds={showAds} />
+            {offer ? (
+              <div className="hidden lg:block">
+                <RailRanking offer={offer} />
+                {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex" />}
+              </div>
+            ) : (
+              <div className="hidden lg:block">
+                {readNextRail && !readNextInline && <ReadNextBox link={readNextRail} className="mb-6" />}
+                {showAds && <AdSlot position="sidebar" />}
+              </div>
+            )}
+            <NoirPopular current={article.slug} />
           </>
         ),
-        mobileBar: offer && !noirHasInlinePr ? <MobilePrBar item={offer.items[0]} watchId="offer-inline" /> : null,
+        mobileBar: offer && adBlocks.length === 0 ? <MobilePrBar item={offer.items[0]} watchId="offer-inline" /> : null,
       }}
       byline={
-        <p className="flex flex-wrap gap-x-5 gap-y-1">
-          <span>
-            制作：<Link href="/about" rel="author">{siteConfig.author}</Link>
-          </span>
-          <Link href="/editorial-policy">編集方針・AI利用と事実確認</Link>
-          {reviewedLabel && <span>✓ 編集部が確認済み（{reviewedLabel}）</span>}
-        </p>
+        <>
+          <p className="flex flex-wrap gap-x-5 gap-y-1">
+            <span>
+              制作：<Link href="/about" rel="author">{siteConfig.author}</Link>
+            </span>
+            <Link href="/editorial-policy">編集方針・AI利用と事実確認</Link>
+            {reviewedLabel && <span>✓ 編集部が確認済み（{reviewedLabel}）</span>}
+          </p>
+          <nav aria-label="パンくず（下）" className="nr-crumbs">
+            <Link href="/">ホーム</Link>
+            {crumbs.map((c) => (
+              <span key={c.href} className="contents">
+                <span aria-hidden>/</span>
+                <Link href={c.href}>{c.label}</Link>
+              </span>
+            ))}
+          </nav>
+        </>
       }
     />
   );

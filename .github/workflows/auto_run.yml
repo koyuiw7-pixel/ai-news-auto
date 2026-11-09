@@ -336,6 +336,24 @@ jobs:
           CF_KV_TOKEN: ${{ secrets.CF_DEPLOY_TOKEN }}
         run: timeout 240 python scripts/muse_images.py
 
+      # 本文の図（public/fig/<slug>-fig1.png など）を記事の figures 欄に付ける（scripts/map_figures.py。図が無ければ何もしない）
+      - name: Article figures
+        continue-on-error: true
+        run: python scripts/map_figures.py | tail -5
+
+      # 記事ページの右の列の「よく読まれている記事」（自前の計測。scripts/popular_articles.py → content/popular.json）。
+      # 記事が増えた回（どのみちデプロイする回）だけ書き直す（一覧のためだけにデプロイしない）
+      - name: Popular articles
+        if: ${{ (inputs.fast_url || '') == '' }}
+        continue-on-error: true
+        timeout-minutes: 2
+        env:
+          AFF_STATS_TOKEN: ${{ secrets.AFF_STATS_TOKEN }}
+        run: |
+          if [ -n "$(git status --porcelain content/articles)" ]; then
+            python scripts/popular_articles.py | tail -3
+          fi
+
       # 同じ発表の重複記事に印（duplicateOf）を付ける（scripts/story.py。サイトは noindex・canonical を代表へ・サイトマップから外す）。
       # 生成前にも同じ判定で外しているが、別の回・別のレーンで作られたものをここで拾う。直近7日に載せた記事だけ見直す（LLM なし）
       - name: Mark duplicate stories

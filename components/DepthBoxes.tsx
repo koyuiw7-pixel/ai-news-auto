@@ -32,7 +32,7 @@ function BoxHeading({ id, kicker, heading, fallback, size = "t-h2", extra }: {
 }) {
   return (
     <>
-      {heading && <p className="text-badge font-bold tracking-wide text-accent">{kicker}</p>}
+      {heading && <p className="dbx-kick text-badge font-bold tracking-wide text-accent">{kicker}</p>}
       <h2 id={id} className={`${heading ? "mt-1 " : ""}flex flex-wrap items-center gap-2 ${size}`}>
         {heading || fallback}
         {extra}
@@ -43,7 +43,7 @@ function BoxHeading({ id, kicker, heading, fallback, size = "t-h2", extra }: {
 
 export function InsightBox({ items, heading }: { items: InsightItem[]; heading?: string }) {
   return (
-    <section aria-labelledby="insight-heading" className="mb-8 max-w-[40em] rounded-2xl border-2 border-accent bg-accent-soft p-5 sm:p-6">
+    <section aria-labelledby="insight-heading" id="insight" className="dbx dbx-insight mb-8 max-w-[40em] rounded-2xl border-2 border-accent bg-accent-soft p-5 sm:p-6">
       <BoxHeading id="insight-heading" kicker="なるほど" heading={heading} fallback="なるほどポイント" size="t-h3" />
       <p className="mt-1 text-meta text-ink-soft">公式ページで確かめた、知っておくと役立つこと</p>
       <ul className="mt-3.5 grid gap-3.5">
@@ -61,7 +61,7 @@ export function InsightBox({ items, heading }: { items: InsightItem[]; heading?:
 
 export function CauseBox({ cause, heading }: { cause: Cause; heading?: string }) {
   return (
-    <section aria-labelledby="cause-heading" className="mt-12 max-w-[40em] rounded-2xl bg-surface p-5 sm:p-6">
+    <section aria-labelledby="cause-heading" id="cause" className="dbx dbx-cause mt-12 max-w-[40em] rounded-2xl bg-surface p-5 sm:p-6">
       <BoxHeading
         id="cause-heading"
         kicker={cause.status === "background" ? "背景" : "なぜ起きた？"}
@@ -82,7 +82,7 @@ export function CauseBox({ cause, heading }: { cause: Cause; heading?: string })
 
 export function WorriesBlock({ items, heading }: { items: WorryItem[]; heading?: string }) {
   return (
-    <section aria-labelledby="worries-heading" className="mt-12 max-w-[40em]">
+    <section aria-labelledby="worries-heading" id="worries" className="dbx dbx-worries mt-12 max-w-[40em]">
       <BoxHeading id="worries-heading" kicker="不安Q&A" heading={heading} fallback="こんな不安ありませんか" />
       <div className="mt-4 grid gap-3">
         {items.map((item, index) => (
@@ -122,7 +122,7 @@ export function WorriesBlock({ items, heading }: { items: WorryItem[]; heading?:
 
 export function ActionSteps({ items, heading }: { items: StepItem[]; heading?: string }) {
   return (
-    <section aria-labelledby="today-actions-heading" className="mt-12 max-w-[40em] rounded-2xl border border-line-strong p-5 sm:p-6">
+    <section aria-labelledby="today-actions-heading" id="steps" className="dbx dbx-steps mt-12 max-w-[40em] rounded-2xl border border-line-strong p-5 sm:p-6">
       <BoxHeading id="today-actions-heading" kicker="すぐにできること" heading={heading} fallback="すぐにできること" size="t-h3" />
       <ol className="mt-3.5 grid gap-4">
         {items.map((item, index) => (
@@ -190,7 +190,7 @@ function RouteFigure({ steps, label }: { steps: string[]; label: string }) {
 
 export function OfficialDesk({ items, heading }: { items: DeskEntry[]; heading?: string }) {
   return (
-    <section aria-labelledby="official-desk-heading" className="mt-12 max-w-[40em]">
+    <section aria-labelledby="official-desk-heading" id="official-desk" className="dbx dbx-desk mt-12 max-w-[40em]">
       <BoxHeading id="official-desk-heading" kicker="公式窓口" heading={heading} fallback="公式窓口" />
       <p className="mt-1.5 text-note text-muted">SMSやメールに書かれた連絡先ではなく、ここにある公式の窓口を使ってください。</p>
       <div className="mt-4 grid gap-3">
@@ -238,7 +238,7 @@ export function OfficialDesk({ items, heading }: { items: DeskEntry[]; heading?:
 /** 判断ガイド（問いごとに、状況 → おすすめ → 理由 → 出どころ。スマホでは1行を縦に積んだカード） */
 export function DecisionGuide({ groups, heading }: { groups: { question: string; rows: GuideRow[] }[]; heading?: string }) {
   return (
-    <section aria-labelledby="decision-guide-heading" className="mt-12 max-w-[40em]">
+    <section aria-labelledby="decision-guide-heading" id="decision-guide" className="dbx dbx-guide mt-12 max-w-[40em]">
       <BoxHeading id="decision-guide-heading" kicker="判断ガイド" heading={heading} fallback="迷ったときの判断ガイド" />
       <p className="mt-1.5 text-note text-muted">状況ごとのおすすめと理由です。どれを選ぶかは、ご自身の状況で決めてください。</p>
       <div className="mt-4 grid gap-5">

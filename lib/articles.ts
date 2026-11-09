@@ -144,6 +144,8 @@ export type Article = {
   wrapUp?: NoirWrapItem[];
   /** 本文に置く公式の写真・図（1〜2枚・出典つき。scripts/images.py の body_images。lib/body-images.ts） */
   bodyImages?: BodyImage[];
+  /** 本文の図（見出しの章の終わりに置く。scripts/map_figures.py・lib/figures.ts） */
+  figures?: import("./figures").ArticleFigure[];
   /** ニュースの種類（earnings / security / product …。scripts/news_types.py。2026-11-03 以降の記事だけ） */
   newsType?: string;
   affiliates: AffiliateLink[];

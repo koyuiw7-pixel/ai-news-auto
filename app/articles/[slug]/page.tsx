@@ -84,6 +84,7 @@ import ArticleProse from "@/components/ArticleProse";
 import CalculatorBox from "@/components/calc/CalculatorBox";
 import { CALC_SLOT, insertFigures, markCalculatorSlot, renderChart, type ChartFigure } from "@/lib/charts";
 import { insertBodyImages } from "@/lib/body-images";
+import { insertArticleFigures } from "@/lib/figures";
 import { calculatorForArticle } from "@/lib/calculators";
 import { getFx, getPlanProduct } from "@/lib/plan-prices";
 import PriceTable from "@/components/PriceTable";
@@ -283,7 +284,10 @@ export default async function ArticlePage({ params }: Props) {
   // 見出しの言い換えは、章名で位置を探す差し込み（図・計算機）が終わってから
   // 本文に置く公式の写真・図（出典つき・1〜2枚。lib/body-images.ts）
   const bodyHtml = retitleHtml(
-    markCalculatorSlot(insertBodyImages(insertFigures(html, figures), article.bodyImages ?? [], article.title), calc?.heading ?? null),
+    markCalculatorSlot(
+      insertArticleFigures(insertBodyImages(insertFigures(html, figures), article.bodyImages ?? [], article.title), article.figures, article.title),
+      calc?.heading ?? null,
+    ),
     "body",
     article.sectionTitles,
   );

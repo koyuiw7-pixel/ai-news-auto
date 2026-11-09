@@ -2,17 +2,22 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import Thumb from "@/components/Thumb";
 import ArticleProse from "@/components/ArticleProse";
+import ImageCredit from "@/components/ImageCredit";
 import NoirChrome from "@/components/noir/NoirChrome";
 import NoirFonts, { noirFontHref } from "@/components/noir/NoirFonts";
 import { formatDate, type ArticleSummary, type FullArticle } from "@/lib/articles";
-import { officialCreditText } from "@/lib/image-credit";
-import { displayGlyphs, NOIR_AI_LABEL, noirAiLabel, noirKeyFigure, splitEmphasis, type NoirCover } from "@/lib/noir";
+import { displayGlyphs, noirAiLabel, noirKeyFigure, splitEmphasis, type NoirCover } from "@/lib/noir";
 import { stripListNumber } from "@/lib/list-number";
 import "./noir.css";
 
 /**
  * 新しい記事の見た目「ノワール」（2026-11-07 オーナー承認・台帳 W36）。layout が "noir" の記事だけ。
- * 写真の表紙（公式の写真 → 無ければ AI のイメージ「画像はイメージ（AI生成）」→ 作れなければ公式の画像をそのまま見せ、題名は下の帯。何も無いときだけ明るい紙に題名）→ 白い紙面（要点の1文・大きな数字・本文・まとめ・発表元のボタン）→ 関連記事。
+ *
+ * 2026-11-09 オーナー（PC で見て「広告が一番下だけ」「色がくすんでいる」「写真が無く文字だけ」「左右の余白が広すぎる」「続きが文字の壁」）を受けて組み直した:
+ *  - サイトの帯（ロゴ・ジャンル）をそのまま出し、PC（1024px 以上）は本文 + 右の列（商品の枠・よく読まれている記事。追従）の2列。幅は最大 1160px
+ *  - 題名の下に表紙の写真（16:9）と出典・AI の札。本物の写真が無い記事は写真の場所を作らない（文字だけの偽の表紙は出さない）
+ *  - 要点 → すぐにできること（短い一覧）→ 1つ目の PR → なるほど → 本文。本文の途中に2つ目、記事の終わりに3つ目（本文の列は最大3つ）
+ *  - 本文は章ごとに見出しの赤い線・数字の印・一覧のカード・色の付いた欄（なるほど＝黄・公式窓口＝青・判断ガイド＝緑・不安Q&A＝赤）で区切る
  * 見出し・構造化データ・広告・提携・計測・オーナーのルールの部品は、今までの記事ページ（app/articles/[slug]/page.tsx）で作った物をそのまま受け取って並べる。
  * 「このニュースを3行で」「何が起きた」「KEY NUMBERS」のような決まった型の見出しは付けない（オーナーが AI っぽいと判断）。
  */
@@ -20,9 +25,10 @@ export type NoirProps = {
   article: FullArticle;
   title: string;
   jsonLd: unknown;
-  /** 表紙の背景（lib/noir.ts の noirCover）。null のときだけ明るい紙に題名 */
+  /** 表紙の写真（lib/noir.ts の noirCover）。null なら写真の場所を作らない */
   cover: NoirCover | null;
   kicker: string;
+  genre: string;
   breaking: boolean;
   /** 「日産 公式発表」「日経 報道」 */
   origin: string;
@@ -36,18 +42,29 @@ export type NoirProps = {
   calcSlot?: ReactNode;
   priceSlot?: ReactNode;
   slots: {
+    /** 要点のすぐ下の「すぐにできること」の短い一覧 */
+    quick?: ReactNode;
+    /** 1つ目の PR（要点・すぐにできることの直後） */
+    adEarly?: ReactNode;
     afterSummary?: ReactNode;
     adTop?: ReactNode;
     readingMode?: ReactNode;
     easy?: ReactNode;
     inlineRead?: ReactNode;
     adMid?: ReactNode;
+    /** 2つ目の PR（本文の途中） */
+    adMidPr?: ReactNode;
+    /** 本文の途中に挟む欄（不安Q&A・判断ガイド） */
+    midBoxes?: ReactNode;
     beforeTail?: ReactNode;
     betweenTail?: ReactNode;
     tailCta?: ReactNode;
     afterBody?: ReactNode;
     afterSource?: ReactNode;
     end?: ReactNode;
+    /** 3つ目の PR（記事の終わり・関連記事の前） */
+    adEnd?: ReactNode;
+    /** PC の右の列（追従） */
     rail?: ReactNode;
     mobileBar?: ReactNode;
   };
@@ -58,96 +75,90 @@ export type NoirProps = {
 
 export default function NoirArticle(props: NoirProps) {
   const { article, title, cover, body, slots } = props;
-  const photo = cover?.src ?? null;
-  const panel = cover?.kind === "panel";
   const line = article.summaryLine || stripListNumber(article.highlights[0] ?? "");
   const sum = line ? splitEmphasis(line) : null;
+  // 要点の1文の下に、残りの要点（同じ内容の言い直しは外す）
+  const flat = (t: string) => t.replace(/\*\*|\s|。$/g, "");
+  const points = (article.highlights ?? [])
+    .map((h) => stripListNumber(h).replace(/\*\*/g, ""))
+    .filter((h) => h && (!line || (flat(h) !== flat(line) && !flat(line).includes(flat(h)) && !flat(h).includes(flat(line)))))
+    .slice(0, 3);
   // 箱は、意味が伝わり上の1文に無い数字のときだけ（lib/noir.ts の noirKeyFigure。2026-11-07 オーナー）
   const fig = noirKeyFigure(article, line);
-  const glyphs = displayGlyphs([title, props.kicker, line, fig ? `${fig.value}${fig.unit}${fig.before ?? ""}` : "", props.headingsHtml, ...props.related.map((r) => r.title), "関連記事"]);
+  const glyphs = displayGlyphs([title, props.kicker, line, fig ? `${fig.value}${fig.unit}${fig.before ?? ""}` : "", props.headingsHtml, "関連記事よく読まれている記事すぐにできること"]);
   const fontHref = noirFontHref(glyphs);
+  const photo = cover?.src ?? null;
+  const panel = cover?.kind === "panel";
   const focus = cover?.kind === "official" && article.imageFocus && article.imageFocus.src === article.thumbnail ? article.imageFocus : null;
-  // 公式の画像（そのまま・ぼかし）は「画像：〇〇」の1行（lib/image-credit.ts）。AI のイメージは表紙の札と同じ文
-  // ぼかした見出し画像が AI のイメージのときも、同じ札の文を出す（台帳 I4）
-  const aiLabel = noirAiLabel(article);
-  const credit = cover?.kind === "ai" ? aiLabel : cover && article.imageCredit?.kind === "ai" ? NOIR_AI_LABEL : cover ? officialCreditText(article.imageCredit) : null;
+  // 写真の下の注記: 表紙用の AI のイメージは coverCredit、ほかは記事の写真の出典（公式・素材・AI）
+  const creditOf = cover?.kind === "ai" ? article.coverCredit : article.imageCredit;
+  const aiShown = cover?.kind === "ai" || (cover && article.imageCredit?.kind === "ai");
 
   return (
     <div className="noir" data-layout="noir">
       <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd) }} />
       <NoirFonts href={fontHref} />
       <NoirChrome fontHref={fontHref} />
-      <span className="nr-safe" aria-hidden />
-      {/* 上の帯は表紙（黒・写真）の上に重なる。文字の見やすさの点検は親の背景（白い紙）で測ってしまうので対象外の印を付ける。
-          実際の見え方: 表紙の上は白い文字、表紙を過ぎると白い帯に黒い文字（どちらも 4.5:1 以上） */}
-      <div className={`nr-top nr-g${cover ? "" : " nr-onlight"}`} id="nr-top" data-decorative="">
-        <Link href="/" className="nr-logo" aria-label="サイソクニュース トップへ">
-          サイソク
-        </Link>
-        <span className="nr-t" aria-hidden>
-          {title}
-        </span>
-        <i className="nr-bar" id="nr-bar" aria-hidden />
-      </div>
 
-      {/* 表紙: official・ai は写真を全面に敷いて題名を重ねる。panel は公式の画像（告知のバナーなど）をぼかさず・暗くせずに見せ、
-          題名はその下の帯に出す（画像の文字と題名を重ねない）。写真が何も無いときだけ明るい紙に題名（nr-type） */}
-      <header
-        className={`nr-hero${photo ? "" : " nr-type"}${panel ? " nr-panel" : ""}`}
-        id="nr-hero"
-        data-cover={cover?.kind ?? "none"}
-      >
-        {photo && !panel && (
-          <div className="nr-img" id="nr-img">
-            <Thumb
-              src={photo}
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-              style={{ objectPosition: focus ? `${Math.round(focus.x * 100)}% ${Math.round(focus.y * 100)}%` : "50% 40%" }}
-            />
-          </div>
-        )}
-        {photo && panel && (
-          <div className="nr-pimg">
-            {/* 後ろは同じ画像を少しぼかして広げた色（暗くしない）。前に画像そのものを切らずに置く */}
-            <span className="nr-pbg" aria-hidden>
-              <Thumb src={photo} alt="" fill sizes="100vw" className="object-cover" />
-            </span>
-            <span className="nr-pfg">
-              <Thumb src={photo} alt="" fill priority sizes="(min-width: 960px) 960px, 100vw" className="object-contain" />
-            </span>
-          </div>
-        )}
-        {/* AI のイメージには、表紙の上に必ず札を出す（本物の写真と受け取られないように。台帳 I4） */}
-        {cover?.kind === "ai" && (
-          <span className="nr-ailabel" data-allow-small="">
-            {aiLabel}
-          </span>
-        )}
-        <div className="nr-hl nr-g">
-          <div className="nr-col">
-            {(!photo || panel) && <span className="nr-rule" aria-hidden />}
+      <div className="nr-wrap">
+        <div className="nr-main">
+          <nav aria-label="パンくず" className="nr-crumbs nr-crumbs-top">
+            <Link href="/">ホーム</Link>
+            {props.crumbs.map((c) => (
+              <span key={c.href} className="contents">
+                <span aria-hidden>›</span>
+                <Link href={c.href}>{c.label}</Link>
+              </span>
+            ))}
+          </nav>
+
+          <header className="nr-head" id="nr-hero" data-cover={cover?.kind ?? "none"}>
             <div className="nr-kick">
               {props.breaking && <i data-allow-small="">速報</i>}
-              <span>{props.kicker}</span>
+              {props.genre && <b>{props.genre}</b>}
+              {props.kicker && <span>{props.kicker}</span>}
             </div>
             <h1>{title}</h1>
             <div className="nr-meta">
-              <span>{props.origin}</span>
-              <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
+              <span className="nr-origin">{props.origin}</span>
+              <time dateTime={article.publishedAt}>発表 {formatDate(article.publishedAt)}</time>
               {article.generatedAt && <span>掲載 {formatDate(article.generatedAt)}</span>}
-              <span>読了 {props.readMinutes}分</span>
               {article.updatedAt && <span>更新 {formatDate(article.updatedAt)}</span>}
+              <span>読了 {props.readMinutes}分</span>
             </div>
-          </div>
-        </div>
-      </header>
+          </header>
 
-      <div className="nr-sheet nr-g">
-        <div className="nr-col">
+          {/* 表紙の写真（16:9・高さを先に確保して読み込みでずれない）。本物の写真が無い記事は出さない */}
+          {photo && (
+            <figure className={`nr-cover${panel ? " nr-cover-panel" : ""}`}>
+              <div className="nr-cover-img">
+                {panel && (
+                  <span className="nr-pbg" aria-hidden>
+                    <Thumb src={photo} alt="" fill sizes="(min-width: 1024px) 760px, 100vw" className="object-cover" />
+                  </span>
+                )}
+                <Thumb
+                  src={photo}
+                  alt={title}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 760px, 100vw"
+                  className={panel ? "object-contain" : "object-cover"}
+                  style={panel ? undefined : { objectPosition: focus ? `${Math.round(focus.x * 100)}% ${Math.round(focus.y * 100)}%` : "50% 40%" }}
+                />
+                {/* AI のイメージには、写真の上に必ず札を出す（本物の写真と受け取られないように。台帳 I4） */}
+                {aiShown && (
+                  <span className="nr-ailabel" data-allow-small="">
+                    {cover?.kind === "ai" ? noirAiLabel(article) : "画像はイメージ（AI生成）"}
+                  </span>
+                )}
+              </div>
+              <figcaption>
+                <ImageCredit credit={creditOf} />
+              </figcaption>
+            </figure>
+          )}
+
           {/* ステマ規制（景品表示法）に沿い、広告を含みうる全記事の冒頭で明示する */}
           <p className="nr-pr">本ページはプロモーションを含みます</p>
 
@@ -160,6 +171,13 @@ export default function NoirArticle(props: NoirProps) {
                     {sum.em && <em>{sum.em}</em>}
                     {sum.after}
                   </p>
+                  {points.length > 0 && (
+                    <ul className="nr-points">
+                      {points.map((p) => (
+                        <li key={p}>{p}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               )}
               {fig && (
@@ -177,12 +195,11 @@ export default function NoirArticle(props: NoirProps) {
                   )}
                 </div>
               )}
-              <a className="nr-more" href="#nr-body">
-                続きを読む <span aria-hidden>↓</span>
-              </a>
             </section>
           )}
 
+          {slots.quick}
+          {slots.adEarly && <div className="nr-ad nr-ad-early">{slots.adEarly}</div>}
           {slots.afterSummary}
           {slots.adTop}
           {slots.readingMode}
@@ -191,9 +208,11 @@ export default function NoirArticle(props: NoirProps) {
             {slots.easy}
             <div className="read-expert" id="nr-body">
               <ArticleProse className="prose nr-prose" html={body.top} slot={props.calcSlot} priceSlot={props.priceSlot} />
+              {slots.adMidPr && <div className="nr-ad nr-ad-mid">{slots.adMidPr}</div>}
               {body.mid && slots.inlineRead}
               {body.mid && slots.adMid}
               {body.mid && <ArticleProse className="prose nr-prose" html={body.mid} slot={props.calcSlot} priceSlot={props.priceSlot} />}
+              {slots.midBoxes}
               {body.tail && slots.beforeTail}
             </div>
             {body.tail && slots.betweenTail}
@@ -206,27 +225,23 @@ export default function NoirArticle(props: NoirProps) {
           </div>
 
           {props.sourceCta && props.sourceUrl && (
-            <a className="nr-srcbtn rv" href={props.sourceUrl} target="_blank" rel="noopener">
+            <a className="nr-srcbtn" href={props.sourceUrl} target="_blank" rel="noopener">
               {props.sourceCta}
               <span aria-hidden>→</span>
             </a>
           )}
 
           {slots.afterBody}
+          {slots.adEnd && <div className="nr-ad nr-ad-end">{slots.adEnd}</div>}
           {slots.afterSource}
           {slots.end}
-          {slots.rail && (
-            <div className="nr-slot nr-rail" data-dense="">
-              {slots.rail}
-            </div>
-          )}
 
           {props.related.length > 0 && (
             <section aria-labelledby="related-heading">
-              <h2 id="related-heading" className="nr-h2 rv">
+              <h2 id="related-heading" className="nr-h2">
                 関連記事
               </h2>
-              <div className="nr-rel rv">
+              <div className="nr-rel">
                 {props.related.map((item) => (
                   <Link key={item.slug} href={`/articles/${item.slug}`}>
                     <span>
@@ -237,7 +252,7 @@ export default function NoirArticle(props: NoirProps) {
                     </span>
                     <i className="nr-ph" aria-hidden>
                       {item.thumbnail && item.imageCredit?.kind !== "ai" && (
-                        <Thumb src={item.thumbnail} alt="" fill sizes="84px" className="object-cover" />
+                        <Thumb src={item.thumbnail} alt="" fill sizes="96px" className="object-cover" />
                       )}
                     </i>
                   </Link>
@@ -246,20 +261,14 @@ export default function NoirArticle(props: NoirProps) {
             </section>
           )}
 
-          <div className="nr-src">
-            {props.byline}
-            {credit && <p>{credit}</p>}
-            <nav aria-label="パンくず" className="nr-crumbs">
-              <Link href="/">ホーム</Link>
-              {props.crumbs.map((c) => (
-                <span key={c.href} className="contents">
-                  <span aria-hidden>/</span>
-                  <Link href={c.href}>{c.label}</Link>
-                </span>
-              ))}
-            </nav>
-          </div>
+          <div className="nr-src">{props.byline}</div>
         </div>
+
+        {slots.rail && (
+          <aside className="nr-aside" aria-label="おすすめと人気の記事">
+            <div className="nr-sticky">{slots.rail}</div>
+          </aside>
+        )}
       </div>
       {slots.mobileBar}
     </div>

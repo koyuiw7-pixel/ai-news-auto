@@ -120,12 +120,17 @@ class ComponentWiringTest(unittest.TestCase):
         self.assertRegex("action-ad-2", pos)
 
     def test_both_article_layouts_render_it_after_today_actions(self):
-        for path in ("app/articles/[slug]/page.tsx", "components/noir/noirArticlePage.tsx"):
-            src = (ROOT / path).read_text(encoding="utf-8")
-            with self.subTest(path=path):
-                today = src.index("<TodayActions actions={todayActions} />}")
-                self.assertLess(today, src.index("<ActionAd ad={actionAd}"))
-                self.assertLess(src.index("<ActionAd ad={actionAd}") - today, 300)
+        src = (ROOT / "app/articles/[slug]/page.tsx").read_text(encoding="utf-8")
+        today = src.index("<TodayActions actions={todayActions} />}")
+        self.assertLess(today, src.index("<ActionAd ad={actionAd}"))
+        self.assertLess(src.index("<ActionAd ad={actionAd}") - today, 300)
+        # ノワール（2026-11-09 オーナー「広告が一番下だけ」）: 要点の下の「すぐにできること」の一覧のすぐ後が1つ目の PR（行動欄そばの PR が先頭）
+        noir = (ROOT / "components/noir/NoirArticle.tsx").read_text(encoding="utf-8")
+        self.assertLess(noir.index("{slots.quick}"), noir.index("{slots.adEarly"))
+        self.assertLess(noir.index("{slots.adEarly"), noir.index('id="nr-body"'))
+        page = (ROOT / "components/noir/noirArticlePage.tsx").read_text(encoding="utf-8")
+        self.assertIn("if (actionAd) adBlocks.push(<ActionAd", page)
+        self.assertIn("const [adEarly, adMidPr, adEnd] = adBlocks.slice(0, 3);", page)
 
 class AdPlacementUpgradeTest(unittest.TestCase):
     """2026-11-09: ドコモの情報流出の記事（いちばん読まれた記事）に、ほとんど広告が出ていなかった件の再発防止"""

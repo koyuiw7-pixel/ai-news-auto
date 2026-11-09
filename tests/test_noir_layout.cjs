@@ -68,22 +68,25 @@ test('[W36] 表紙はいつも写真（公式の写真 → AI のイメージ �
   assert.equal(noir.noirAiLabel({ coverCredit: { kind: 'ai', launch: true } }), '公式画像がないためイメージ（AI生成）');
   assert.equal(noir.noirAiLabel({ coverCredit: { kind: 'ai' } }), '画像はイメージ（AI生成）');
 
+  // 文字だけの見出しカード（card）は写真ではないので表紙に出さない（2026-11-09 オーナー）
+  assert.equal(noir.noirCover({ thumbnail: '/img/card.jpg', imageCredit: { kind: 'card' } }), null);
+
+  // 2026-11-09 オーナー「写真が無く文字だけ」: 表紙の写真は題名の下に 16:9 で（題名を写真に重ねない）。写真が無い記事は写真の場所を作らない
   const page = read('components/noir/NoirArticle.tsx');
   const pageTs = read('components/noir/noirArticlePage.tsx');
   assert.match(pageTs, /cover=\{noirCover\(article\)\}/);
-  // AI のイメージには表紙の上に札（台帳 I4）。公式の画像をそのまま見せる表紙は .nr-panel（強いぼかし・暗くする表紙はもう無い）
-  assert.match(page, /cover\?\.kind === "ai" && \(\s*<span className="nr-ailabel"[^>]*>\s*\{aiLabel\}/);
-  assert.match(page, /panel \? " nr-panel" : ""/);
+  assert.ok(page.indexOf('<h1>{title}</h1>') < page.indexOf('className={`nr-cover'), '写真は題名の下');
+  assert.match(page, /\{photo && \(\s*<figure className=\{`nr-cover/);
+  // AI のイメージには写真の上に札（台帳 I4）。出典・AI の注記は写真の下（ImageCredit）
+  assert.match(page, /\{aiShown && \(\s*<span className="nr-ailabel"[^>]*>\s*\{cover\?\.kind === "ai" \? noirAiLabel\(article\)/);
+  assert.match(page, /<ImageCredit credit=\{creditOf\} \/>/);
   assert.doesNotMatch(page, /nr-blur/);
   const css = read('components/noir/noir.css');
   assert.doesNotMatch(css, /nr-blur|brightness\(0\.[0-7]/);
-  // 画像は切らずに置く（object-contain）。後ろの色は暗くしない
-  assert.match(page, /nr-pfg[\s\S]{0,200}object-contain/);
+  // 告知の画像（panel）は切らずに置く（object-contain）。後ろの色は暗くしない
+  assert.match(page, /panel \? "object-contain" : "object-cover"/);
   assert.match(css, /\.noir \.nr-pbg img \{[^}]*blur\(22px\)/);
-  // 写真が何も無い表紙は明るい紙（黒くしない）
-  assert.match(css, /\.noir \.nr-hero\.nr-type \{[^}]*background: linear-gradient\(160deg, #f4f5f7/);
-  // 題名の下は暗いグラデーション（平らな黒い箱ではない）
-  assert.match(css, /\.noir \.nr-hero::after \{[^}]*linear-gradient\(/);
+  assert.match(css, /\.noir \.nr-cover-img \{[^}]*aspect-ratio: 16 \/ 9/);
   // 点検（scripts/owner_rules_audit.py の I4）も表紙の AI のイメージを見る
   assert.match(read('scripts/owner_rules_audit.py'), /coverCredit[\s\S]{0,300}イメージ（AI生成）/);
 });
@@ -174,9 +177,17 @@ test('[W36] ノワールに決まった型の見出し（「このニュース�
 test('[W36] 色は白・冷たい灰色・黒と、差し色の赤だけ（クリーム・ベージュ・金を使わない）', () => {
   const css = read('components/noir/noir.css');
   const allowedRed = new Set(['#ff1f3d', '#d7001f']);
+  // 2026-11-09 オーナー「色がくすんでいる」: 情報の欄だけ種類ごとの色（なるほど＝青・公式窓口＝青緑・判断ガイド＝緑・不安Q&A＝薄い赤）。
+  // 決めた色だけを使う（ここに無い色は足さない）。クリーム・ベージュ・金はこれまでどおり使わない
+  const boxPalette = new Set([
+    '#fff1f3', '#f6c3cb', '#24161a', '#5a2630',
+    '#eef4ff', '#bcd2f7', '#1d4fa8', '#121c2e', '#2b3f63', '#9cc0ff',
+    '#e9f6f5', '#b3dedb', '#0b6b64', '#0f2221', '#234845', '#7fd6cf',
+    '#ecf7f0', '#b8e0c6', '#0b6e3f', '#0f2218', '#24472f', '#7fd6a2',
+  ]);
   for (const hex of css.match(/#[0-9a-fA-F]{6}\b/g) ?? []) {
     const h = hex.toLowerCase();
-    if (allowedRed.has(h)) continue;
+    if (allowedRed.has(h) || boxPalette.has(h)) continue;
     const [r, g, b] = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
     // 灰色: 赤みが青みを上回らない（暖かい色・クリームにしない）・色の差が小さい
     assert.ok(r <= b + 2 && Math.max(r, g, b) - Math.min(r, g, b) <= 16, `${hex} は灰色でも差し色の赤でもない`);

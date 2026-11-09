@@ -50,7 +50,8 @@ export function noirCover(
   if (photo) return { kind: "official", src: photo };
   if (article.noPhoto) return null;
   if (article.coverImage && article.coverCredit?.kind === "ai") return { kind: "ai", src: article.coverImage };
-  if (article.thumbnail && article.imageCredit?.kind !== "ai") return { kind: "panel", src: article.thumbnail };
+  // 文字だけの見出しカード（card）は写真ではないので表紙に出さない（2026-11-09 オーナー「偽の文字のカードは出さない」）
+  if (article.thumbnail && article.imageCredit?.kind !== "ai" && article.imageCredit?.kind !== "card") return { kind: "panel", src: article.thumbnail };
   return null;
 }
 
@@ -169,7 +170,9 @@ function wrapHtml(items: NoirWrapItem[]): string {
 export function noirBodyHtml(html: string, fields: Pick<Article, "changes" | "wrapUp">): string {
   let out = dropSections(html, UNKNOWN_SECTION)
     .replace(/<(h2|h3|blockquote)(?=[\s>])/gi, '<$1 data-rv=""')
-    .replace(/<p>/gi, '<p data-rv="">');
+    .replace(/<p>/gi, '<p data-rv="">')
+    // 数字の入った強調（「月**30,000円**」など）に印を付け、赤い蛍光ペンで目立たせる（2026-11-09 オーナー「大事な数字を目立たせる」）
+    .replace(/<strong>(?=[^<]*\d)/gi, '<strong class="nr-num">');
   const changes = noirChanges(fields.changes);
   const wrap = noirWrapUp(fields.wrapUp);
   let changesDone = changes.length === 0;
