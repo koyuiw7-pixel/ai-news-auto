@@ -1,0 +1,231 @@
+{
+  "slug": "nvidia-groot-2-corl-simulation",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/",
+  "sourceName": "NVIDIA公式ブログ",
+  "title": "ロボットの手先作業AI「GR00T 2」、1回の実演で71%成功　NVIDIAがCoRLで公開",
+  "seoTitle": "GR00T 2とは？ロボット学習の新モデルと機能",
+  "threadsPost": "ロボット開発に関わる人に、押さえておきたい話です。\n\nNVIDIAが、ロボット向けの新モデル「GR00T 2」を公開しました。\nお手本が1回だけでも、50作業で平均71%成功したとしています。\n\nロボットの練習をシミュレーションで済ませられるなら、何を重視して選びますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "tradeoff",
+      "question": "ロボットの練習をシミュレーションで済ませるなら、何を重視しますか？"
+    },
+    {
+      "pattern": "future",
+      "question": "工場の組み立て作業は、これから減ると感じますか、形が変わると感じますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "ロボットに細かい組み立て作業を覚えさせる新しいAIモデル「GR00T 2」が、NVIDIAのCoRLでの発表で公開されました。お手本が1作業につき1回だけでも50作業で平均71%成功し、5回なら95%になったとされています。一般向けの製品ではなく研究者向けの技術で、価格や提供の時期はまだ発表されていません。",
+  "description": "NVIDIAがロボット学習会議CoRLで、世界行動モデル「GR00T 2」とIsaac Lab 3.0を発表。1回の実演で平均71%成功、学習速度は最大2.5倍。仕様と未定の点を整理します。",
+  "keywords": [
+    "GR00T 2",
+    "NVIDIA",
+    "ロボット学習",
+    "Isaac Lab 3.0",
+    "Newton",
+    "世界行動モデル",
+    "CoRL 2026",
+    "シミュレーション",
+    "フィジカルAI",
+    "エージェント型ロボティクス"
+  ],
+  "tags": [
+    "ロボティクス",
+    "NVIDIA",
+    "フィジカルAI",
+    "シミュレーション",
+    "オープンソース"
+  ],
+  "highlights": [
+    "「GR00T 2」は実演1回で50作業の平均71%に成功し、5回に増やすと95%に上がる",
+    "Isaac Lab 3.0とNewtonの組み合わせで、学習処理量が旧版の最大2.5倍になった",
+    "AlphaNISTは20の精密作業を1つの方針で学び、GPU時間は約39分の1に"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "ロボット開発者",
+    "take": "一般向けではなく研究者向けの技術です。開発に関わる人は公式ブログで公開範囲を確認するとよいでしょう。",
+    "judgedAt": "2026-11-09T14:24:21.773861+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "工場やロボット開発に関わる人は、Foxconnの工場自動化への適用やSiemensの評価など、産業用途の動きを把握できます。",
+      "Isaac Labはオープンソースです。開発者は公式ブログで3.0の機能と対応範囲を確認するとよいでしょう。"
+    ]
+  },
+  "body": "今回の発表は、ロボットを開発する研究者やメーカー向けの技術です。個人がすぐ買える製品ではなく、日本での提供条件や価格はまだ発表されていません。ロボットに関わらない人の仕事や契約は、何も変わりません。\n\n「GR00T 2」は、周りの状況を見て、自分の動きで環境がどう変わるかを予測しながら作業するAIです。NVIDIAはこの種のモデルを「世界行動モデル」と呼んでいます。ロボット学習の国際会議CoRL（米テキサス州オースティン）に合わせ、NVIDIAの公式ブログが発表しました。\n\n## GR00T 2は実演1回で平均71%成功\n\nGR00T 2は、NVIDIAの世界モデル「Cosmos」を土台にしたオープンなモデルです。ロボットのデータに加え、NVIDIAが公開している人間の一人称視点の映像10万時間などで学習しました。\n\n公式ブログが挙げた性能は次のとおりです。\n\n- 作業別の実演なしで、評価した50作業のうち40作業を少なくとも1回は成功\n- 作業ごとに実演1回で平均71%、5回で95%の成功率（50作業）\n- 人間の実演から学び、ロボットの機種が違っても、ロボット側の実演なしで技能を移せる\n\nAIエージェント（自分で手順を進めるAI）は、GR00T 2のAPI（アプリから呼び出す仕組み）で技能を順番に実行させ、失敗から立て直せます。RoboCasa365、RoboLab、RoboDojo、MolmoSpacesの4つのベンチマーク（性能テスト）では、全カテゴリで上位3位以内とされています。\n\n導入の動きもあります。\n\n- Nexuni: ロボットによる洗濯物の取り扱いを試験中\n- Foxconn: サーバー製造の工場自動化に適用\n- Siemens: 産業用途での評価を進めている\n- MicroAGI: GR00T 2を強化学習で追加学習し、YAMロボットアームでLANケーブルの付け替えを実施\n\n## Isaac Lab 3.0、学習の処理量は最大2.5倍\n\nロボットの練習は、実機の前に仮想空間（シミュレーション）で行います。その土台が、オープンソースの学習フレームワーク「Isaac Lab」です。最新の3.0では、エージェントで学習環境を素早く組めるほか、物理エンジンをNVIDIA PhysXとNewtonで切り替えられます。GR00Tのような基盤モデルへの追加学習用ライブラリも加わりました。\n\nNewtonとの統合で、ケーブルや布などの変形する物体や、関節の多いロボットハンドも扱えるようになりました。視覚ベースの器用な操作のベンチマークでは、Isaac Lab 3.0とNewtonの組み合わせが、Isaac Lab 2.3とPhysXに比べて学習処理量が最大2.5倍でした。\n\nSkild AIは、Newton上に作った剛体用の物理ソルバー（計算部分）「STEEL」を発表しました。FlexionやFieldAIなど複数の企業も、NewtonとIsaac Labを使って学習や検証を進めています。\n\n## 精密作業の学習、GPU時間は約39分の1\n\n「AlphaNIST」は、Isaac Labで作った実験です。NIST組立タスクボードの20作業（ミリ単位の部品）を、1つの方針で学びました。使った信号は成功か失敗かだけです。\n\n訓練成功率は98%超で、作業ごとに別の方針を作った場合の81%を上回りました。GPU時間は約39分の1です。\n\n背景には、ワシントン大学とNVIDIAの手法「Success-Guided Sampling」があります。成功率が約5割の作業に練習を集中させ、まだ学習途中の技能を伸ばします。100万を超える並列環境まで拡張できるとされています。\n\n## 評価の新ベンチマークとエージェント型の開発\n\nNVIDIAは、方針を数千通りの条件で並列評価する「Isaac Lab-Arena」の開発者向けプレビュー版0.4を、CoRLで公開します。失敗の原因となる条件も分析できます。\n\n新しいベンチマークは2つです。\n\n- DexBench（RLWRLDとNVIDIA）: 小売・物流・製造・接客の4場面で15作業。評価基盤Manifoldで設定なしに実行でき、無料クレジットも付く\n- VABAR（UC BerkeleyとNVIDIA）: 産業向け6作業。変動条件、難易度、成功指標を標準化\n\nUC Berkeleyの「Graph-as-Policy（GaP）」は、エージェントが個々の技能をつないでロボットのプログラムにします。シミュレーションで試して修正する仕組みで、人が確認しやすい形で残ります。Ambi Robotics、Bosch Research、Siemensが活用を検討中です。\n\n同大のKen Goldberg教授は、エージェント型ロボティクスを「1995年のインターネット以来、最もわくわくする技術の進展」と述べています。\n\nNVIDIAは関連して、人間の動画をロボットの実演データに変えるワークフロー「Video to Data」も公開しました。課題は、4D再構築、ロボットへの対応づけ、一人称動画から方針を作る3つです。\n\n過去に報じたFOXでも、Siemensが製造向けAIの検証に関わっていました（[NVIDIAの「FOX」記事](/articles/nvidia-fox-factory-agents-europe)）。\n\n## まだ分からないこと\n\n- GR00T 2の価格、ライセンス、提供開始日はまだ発表されていません。\n- 日本での提供や日本語対応は、まだ発表されていません。\n- 成功率の数字はNVIDIAの発表によるもので、第三者による検証結果はまだありません。\n\n## 開発者がまず確かめること\n\nIsaac Labはオープンソースで、NVIDIAの公式ページでは、Newton、PhysX、Warp、MuJoCoなど複数の物理エンジンに対応するとされています（NVIDIA公式ブログ、11/9確認）。Isaac Lab-Arena 0.4は開発者プレビューです。公式ブログで入手方法を確認するとよいでしょう。",
+  "easy": "## ひとことで言うと\n\nNVIDIAが、ロボットに細かい手作業を教えるAIモデル「GR00T 2」を公開しました。お手本が1回だけでも、50の作業で平均71%成功したとしています。\n\n## 練習はコンピューターの中で\n\nロボットの練習は、実機の前にコンピューターの仮想空間（シミュレーション）で行います。ケーブルをつなぐ、歯車を合わせるといった細かい作業が対象です。\n\nNVIDIAは練習用のソフトも更新しました。「Isaac Lab 3.0」は、旧版の2.3より学習の処理量が最大2.5倍になりました。ケーブルや布のような柔らかいものも扱えます。",
+  "channel": "NVIDIA公式ブログ",
+  "channelId": "",
+  "channelSlug": "nvidia-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Practice Makes Precise: At CoRL, NVIDIA and Partners Reveal How Robots Rehearse Delicate Work in Simulation",
+  "publishedAt": "2026-11-09T14:00:01+00:00",
+  "generatedAt": "2026-11-09T14:24:21.773849+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/nvidia-groot-2-corl-simulation-e3da100b.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "Isaac Lab-Arenaの最新版0.4はもう使えますか？",
+      "a": "開発者プレビュー版として、CoRLに合わせて公開されます。正式版ではないため、公式ブログで入手方法と対応範囲を確認する必要があります。"
+    }
+  ],
+  "todayActions": [
+    "ロボット開発者は、Isaac Lab-Arenaの開発者向けページで入手方法を確かめる",
+    "研究者は、Video to Dataの課題ページで参加できる課題を確かめる"
+  ],
+  "relatedSlugs": [
+    "nvidia-fox-factory-agents-europe"
+  ],
+  "qualityScore": 88,
+  "sourcePublishedAt": "2026-11-09T14:00:01+00:00",
+  "detectedAt": "2026-11-09T14:22:58+00:00",
+  "speedMinutes": 28,
+  "layout": "noir",
+  "summaryLine": "「GR00T 2」は実演1回で50作業の平均**71%**に成功し、5回に増やすと95%に上がる",
+  "insight": [
+    {
+      "text": "学習に使われた人間の一人称視点の映像は、NVIDIAのオープンデータとしてHugging Faceで中身を調べられます。",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
+    },
+    {
+      "text": "人間の動画からロボット練習用データを作る「Video to Data」には、研究者向けの課題（challenge）があり、課題ページが案内されています。",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
+    },
+    {
+      "text": "人の手の3D動きを推定するオープンモデル「EgoHand」は、公開から2週間で4万回超がHugging Faceでダウンロードされています。",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "NVIDIA Isaac Lab-Arena",
+      "url": "https://developer.nvidia.com/isaac/lab-arena",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
+    },
+    {
+      "name": "Isaac Lab 3.0 リリースページ",
+      "url": "https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
+    },
+    {
+      "name": "Video to Data 課題ページ",
+      "url": "https://nvidia-isaac.github.io/video_to_data/v2d_challenge/",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ロボット開発者は、Isaac Lab-Arenaの開発者向けページで入手方法を確かめる",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/",
+      "steps": [
+        "NVIDIA Isaac Lab-Arenaのページを開く",
+        "開発者プレビュー版0.4の入手方法を読む"
+      ],
+      "url": "https://developer.nvidia.com/isaac/lab-arena"
+    },
+    {
+      "action": "研究者は、Video to Dataの課題ページで参加できる課題を確かめる",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/",
+      "steps": [
+        "Video to Dataの課題ページを開く",
+        "対象の作業と参加の条件を読む"
+      ],
+      "url": "https://nvidia-isaac.github.io/video_to_data/v2d_challenge/"
+    }
+  ],
+  "cause": {
+    "text": "NVIDIAは、ロボットの作業が歩くや転がるといった動きから、ねじ合わせやケーブル接続などの細かい作業へ移っていることを背景に挙げています。",
+    "status": "background",
+    "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
+  },
+  "worries": [
+    {
+      "q": "個人がすぐ買って使える製品なのか知りたい",
+      "a": "このページは研究者やパートナー企業向けの技術の紹介で、個人が買える製品としての案内や価格は書かれていません。",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/",
+      "action": "GR00T 2の公式ページで、価格やライセンス、提供開始日の発表が出ているか確かめる"
+    },
+    {
+      "q": "日本でも使えるようになるのか知りたい",
+      "a": "日本での提供や日本語対応については、このページには書かれていません。現時点では発表されていないため、いつ使えるかは分かりません。",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/",
+      "action": "GR00T 2の公式ページで、日本での提供や日本語対応について発表が出ていないか確かめる"
+    },
+    {
+      "q": "工場の仕事がすぐに変わってしまうのか心配",
+      "a": "ページには、Foxconnがサーバー製造の工場自動化に適用、Siemensが産業用途で評価を進めていると書かれています。導入時期や影響の範囲は発表されていません。",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/",
+      "action": "NVIDIAのブログで導入例の対象作業や時期が書かれているかを、読み直して確かめる"
+    },
+    {
+      "q": "成功率の71%や95%は、どこまで信用できる？",
+      "a": "このページでは、50作業で実演1回なら平均71%、5回なら95%の成功率と書かれています。第三者による検証結果は、このページには示されていません。",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/",
+      "action": "数字を見るときは、評価した作業の数と実演の回数という条件も一緒に確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "製造業で導入を今すぐ決めるべきか迷っている",
+      "situation": "製造業の担当者で、価格や時期が未定",
+      "recommend": "急がなくてよく、続報を待つ選択もある",
+      "reason": "このページには価格、ライセンス、提供開始日が書かれていません。判断に必要な費用や時期が分からないため、続報を確かめてから決める形になります。",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
+    },
+    {
+      "question": "Isaac Lab 3.0を自分の開発で試すか迷っている",
+      "situation": "ロボット開発者で、学習環境を組みたい",
+      "recommend": "リリースページで変更点を確かめる価値がある",
+      "reason": "Isaac Lab 3.0はオープンソースで、PhysXとNewtonを切り替えられ、エージェントで学習環境を素早く組めると書かれています。処理量が最大2.5倍という数字は、公式の比較です。",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "論文の数字より、使える道具の中身を先に",
+    "cause": "なぜ精密な作業の研究が増えているのか",
+    "steps": "今日、開発者や研究者がまず確かめること",
+    "desk": "連絡や確認はどこでできる？",
+    "worries": "個人や日本で使える？成功率は本当？",
+    "guide": "導入は今決める？待つ？迷ったときの判断"
+  },
+  "depthAt": "2026-11-09T14:25:27+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA公式ブログ",
+    "sourceUrl": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/",
+    "original": "https://blogs.nvidia.com/wp-content/uploads/2026/11/corl-corp-blog-promo-pack-1920x1080-1-1680x945.png",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-09T14:25:31+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.4,
+    "y": 0.513,
+    "box": [
+      0.0,
+      0.044,
+      0.8,
+      0.983
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/nvidia-groot-2-corl-simulation-e3da100b.jpg"
+  }
+}
