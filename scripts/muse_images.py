@@ -38,7 +38,7 @@ INBOX = ROOT / "content" / "muse_images"
 STATE = ROOT / "state" / "muse_images.json"
 SITE = "https://ai-tech-express.jp"
 JST = timezone(timedelta(hours=9))
-DEFAULT_DAILY = 30  # 2026-11-09 オーナー承認どおり 20→30（変数 MUSE_IMAGE_DAILY も 30）
+DEFAULT_DAILY = 200  # 2026-11-09 オーナー「Museの写真は1日200まで上げていい」（変数 MUSE_IMAGE_DAILY も 200）
 KEEP_DAYS = 7
 MODEL = "muse"
 PROVIDER = "Meta AI（Muse）"
