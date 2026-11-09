@@ -928,3 +928,84 @@ function buildOffer(topic: Topic, fallback: string, maxItems: number): Offer | u
   }
   return finishOffer(topic, built);
 }
+
+/**
+ * トップの「暮らしとお金のニュース」の列の下の PR 枠（data-aff-pos="home-mid"。2026-11-10 オーナー承認・チームの合意）。
+ * その列に今並んでいる記事の話題で商品を選ぶ（流出の記事が多ければセキュリティ、電気・暖房の記事が多ければ電気の見直し）。
+ * 選んでよいのは暮らしとお金の話題だけ。化粧品・健康食品・ギャンブル・成人向け・値動きの大きい投資・借入・連鎖販売は扱わない
+ * （投資の口座・クレジットカード・旅行・子どもの学びの話題もこの枠では選ばない）。
+ * 同じ商品の話題は1つにまとめる（セキュリティ対策 2つ・スマホ回線 2つ・ふるさと納税 2つ・確定申告 2つ）
+ */
+export const HOME_MID_TOPICS: Record<string, string> = {
+  "life-leak": "life-leak",
+  security: "life-leak",
+  "life-energy": "life-energy",
+  "life-mobile": "life-mobile",
+  "mobile-switch": "life-mobile",
+  "life-household": "life-household",
+  "life-benefit": "life-household",
+  "life-disaster": "life-disaster",
+  "life-water": "life-water",
+  "life-fire-insurance": "life-fire-insurance",
+  "life-furusato": "life-furusato",
+  furusato: "life-furusato",
+  "life-tax": "life-tax",
+  "tax-filing": "life-tax",
+};
+/** 列の記事に合う話題が無いとき（または商品が上の枠と重なって残らないとき）の、いちばん幅広い暮らしとお金の話題 */
+export const HOME_MID_FALLBACK = ["life-household", "life-energy", "life-mobile"];
+
+export type HomeSectionTally = { key: string; articles: number; score: number };
+
+/** 列の記事ごとに、いちばん合う暮らしとお金の話題を1つ数える（記事の数の多い順。同数なら点数の合計） */
+export function homeSectionTopics(articles: ArticleSummary[]): HomeSectionTally[] {
+  const tally = new Map<string, HomeSectionTally>();
+  for (const article of articles) {
+    const best = articleScored(article).find(({ topic }) => HOME_MID_TOPICS[topic.key]);
+    if (!best) continue;
+    const key = HOME_MID_TOPICS[best.topic.key];
+    const row = tally.get(key) ?? { key, articles: 0, score: 0 };
+    row.articles += 1;
+    row.score += best.score;
+    tally.set(key, row);
+  }
+  return [...tally.values()].sort((a, b) => b.articles - a.articles || b.score - a.score);
+}
+
+/**
+ * home-mid の枠。列の記事にいちばん多い話題の商品を、上の枠（exclude）と重ならないように最大 maxItems 個。
+ * 上の枠（主役の話題）と同じ話題（avoidTopics。例: 主役も列も流出ならセキュリティが2つ続く）は後回しにし、列で次に多い話題を先に出す。
+ * 列にほかの話題が無ければ、同じ話題の残りの商品、それも無ければいちばん幅広い暮らしとお金の話題（HOME_MID_FALLBACK）。
+ * 販売期限のある商品は入れない（期限の確認まで表示を待つと、読み込み後に枠の高さが変わるため）
+ */
+export function homeSectionOffer(
+  articles: ArticleSummary[],
+  exclude: Iterable<string> = [],
+  avoidTopics: Iterable<string> = [],
+  maxItems = MAX_ITEMS,
+): Offer | undefined {
+  const { offers } = load();
+  const skip = new Set(exclude);
+  const avoid = new Set([...avoidTopics].map((key) => HOME_MID_TOPICS[key] ?? key));
+  const ranked = homeSectionTopics(articles);
+  const keys = ranked.map((row) => row.key);
+  const order = [...new Set([...keys.filter((key) => !avoid.has(key)), ...keys, ...HOME_MID_FALLBACK.filter((key) => !avoid.has(key)), ...HOME_MID_FALLBACK])];
+  for (const key of order) {
+    const topic = offers.topics.find((t) => t.key === key);
+    if (!topic || topic.booksOnly) continue;
+    // 記事の場面（暖房・停電など）がいちばん多いものの商品を先に
+    const intents = articles.map((a) => intentFor(topic.intents, a)?.key).filter((k): k is string => Boolean(k));
+    const top = intents.sort((a, b) => intents.filter((k) => k === b).length - intents.filter((k) => k === a).length)[0];
+    const partners = orderByIntent(topic.partners, topic.intents?.find((i) => i.key === top));
+    const built: Built[] = [];
+    for (const partner of partners) {
+      if (built.length >= maxItems || skip.has(partner)) continue;
+      const item = partnerOffer(partner);
+      if (item && !item.item.activeUntil) built.push({ item: { ...item.item, topic: key }, pixel: item.pixel });
+    }
+    if (built.length === 0) continue;
+    const row = ranked.find((r) => r.key === key);
+    return finishOffer({ ...topic, eyebrow: "暮らしとお金のニュースに合わせて" }, built, { relevance: row?.articles ?? 0, fallback: !row });
+  }
+  return undefined;
+}

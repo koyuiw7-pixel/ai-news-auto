@@ -11,7 +11,7 @@ import Timeline from "@/components/Timeline";
 import RailRanking from "@/components/rail/RailRanking";
 import StoryRail from "@/components/story/SwipeDeck";
 import { getStoryRailBundles } from "@/lib/stories";
-import { offerForArticle } from "@/lib/offers";
+import { homeSectionOffer, offerForArticle } from "@/lib/offers";
 import { getAllArticles, getAllGenres, tagSlug, type ArticleSummary } from "@/lib/articles";
 import { companyCounts, thumbSource } from "@/lib/companies";
 import { broadGenresWithArticles, getBroadArticles, isBroadGenre } from "@/lib/sections";
@@ -42,7 +42,9 @@ const NEWS_SIZE = 8;
 /**
  * トップ＝サイトの玄関（2026-11-10 オーナー「ホームは玄関だから魅力感じてもらわないと」）。
  * 上から、ストーリーの丸（仕事とお金・社会・行政・続報が先）→ 主役（暮らしとお金の、読まれている・新しい・写真のある記事）→
- * PR 枠 → 暮らしとお金のニュース（写真のある記事だけ）→ AI・テクノロジーの新着（企業の絞り込みつき）。
+ * PR 枠（home-top）→ 暮らしとお金のニュース（写真のある記事だけ）→ 使い方・調べられること → PR 枠（home-mid）→ AI・テクノロジーの新着（企業の絞り込みつき）。
+ * PR はトップに2つまで。最初の画面・主役より上には置かない。2つが1つの画面に同時に見えないよう、間に1画面分以上の記事を挟む
+ * （2026-11-10 オーナー承認・チーム（Claude・Muse・Grok）の合意）。
  * AI の速報はヘッダー下の帯と AI の新着で見える。写真の無い記事は大きな写真の枠に置かない
  */
 export default function HomePage() {
@@ -61,6 +63,13 @@ export default function HomePage() {
   // トップにもPR枠。いちばん新しい話題に合う商品を出す（話題が合わなければ汎用の枠）
   const found = offerForArticle(lead, 9);
   const offer = found && { ...found, eyebrow: "今日の話題に合わせて" };
+  // 暮らしとお金の列の下の PR 枠。列に並ぶ記事の話題（流出ならセキュリティ、電気・暖房なら電気の見直し）で選び、上の枠の商品は出さない（lib/offers.ts の homeSectionOffer）
+  // 上の枠と同じ話題（主役も列も流出のときのセキュリティなど）は後回しにして、列で次に多い話題を出す
+  const midOffer = homeSectionOffer(
+    lifeMoney,
+    offer?.items.map((item) => item.key) ?? [],
+    offer ? [...new Set(offer.items.map((item) => item.topic ?? offer.topic))] : [],
+  );
 
   const companies = companyCounts(ai);
   const tags = topTags(ai, 14);
@@ -83,8 +92,9 @@ export default function HomePage() {
         <HomeHero lead={lead} />
 
         {offer && (
-          <div className="mt-12">
-            <RailRanking offer={offer} wide title={offer.headline} />
+          // PC の最初の画面に入らないよう、主役との間を少し広く取る（1440×900 で枠の上端が画面の下端より下）
+          <div className="mt-12 lg:mt-16">
+            <RailRanking offer={offer} wide title={offer.headline} pos="home-top" />
           </div>
         )}
 
@@ -106,6 +116,13 @@ export default function HomePage() {
         </nav>
 
         <HomeAssets />
+
+        {/* 2つ目の PR 枠（home-mid）。上の枠とは暮らしとお金の列・使い方の欄を挟み、同じ画面に2つ並ばない */}
+        {midOffer && (
+          <div className="mt-12">
+            <RailRanking offer={midOffer} wide title={midOffer.headline} pos="home-mid" />
+          </div>
+        )}
 
         {/* AI・テクノロジーは暮らしとお金の下（AI は脇役。台帳 A61）。企業での絞り込みもここに置く */}
         <div className="-mx-5 mt-14 border-t border-line sm:-mx-8">

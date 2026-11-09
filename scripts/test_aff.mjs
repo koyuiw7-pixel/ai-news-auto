@@ -42,6 +42,9 @@ try {
   const actionAdOutfile = join(dir, "action-ad-test.mjs");
   await build({ entryPoints: ["lib/action-ad.test.ts"], outfile: actionAdOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning" });
   await import(pathToFileURL(actionAdOutfile).href);
+  const homeOfferOutfile = join(dir, "home-offer-test.mjs");
+  await build({ entryPoints: ["lib/home-offer.test.ts"], outfile: homeOfferOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning" });
+  await import(pathToFileURL(homeOfferOutfile).href);
   const comparisonOutfile = join(dir, "comparison-test.mjs");
   await build({ entryPoints: ["lib/comparison.test.ts"], outfile: comparisonOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning", jsx: "automatic",
     // react-dom/server が Node の組み込み（util など）を require するため

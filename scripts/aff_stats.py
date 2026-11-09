@@ -70,6 +70,8 @@ POSITION_LABELS = {
     "compare": "比較ページ",
     "compare-table": "比較記事の比較表の直後",
     "compare-end": "比較記事の終わり",
+    "home-top": "トップの主役の下の商品枠",
+    "home-mid": "トップの暮らしとお金の列の下の商品枠",
 }
 
 
