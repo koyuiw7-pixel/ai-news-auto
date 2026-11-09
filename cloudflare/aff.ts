@@ -8,6 +8,8 @@
  *
  * 保存先は Workers KV の AFF_KV（saisoku-aff）:
  *   c:<日付>:<提携先ID>:<時分秒><乱数>   1クリック = 1キー（同時に押されても数がずれない）。値は空で metadata にパス・置き場所・訪問者の短いハッシュ。400日で消える
+ *   t:<日付>:<提携先ID>:<時分秒><乱数>   自己点検（x-aff-selftest に AFF_STATS_TOKEN を付けた POST）。本物と同じ確認をすべて通ったときだけ書き、2日で消える。
+ *                                       集計の clicks には入れず、stats の selftest に数だけ出す（2026-11-09: 「0回」が本当に0か、計測の穴かを確かめるため）
  * IP アドレスは保存しない。訪問者のハッシュは「秘密の値 + 日付 + IP + UA」の SHA-256 先頭8桁で、日をまたいで同じ人をたどれない。
  * 連打・機械的な連投は Cache API（そのデータセンターの一時置き場）で間引く。
  */
@@ -83,14 +85,15 @@ async function click(request: Request, url: URL, env: AffEnv, ctx: Ctx): Promise
 
   const now = Date.now();
   const date = jstDate(now);
+  const selftest = safeEqual(request.headers.get("x-aff-selftest") ?? "", env.AFF_STATS_TOKEN);
   const ip = request.headers.get("cf-connecting-ip") ?? "";
   const visitor = (await sha256Hex(`${env.AFF_STATS_TOKEN}|${date}|${ip}|${ua}`)).slice(0, 16);
-  if (await limited(url.origin, visitor, `${program}|${path}`)) return noContent();
+  if (!selftest && (await limited(url.origin, visitor, `${program}|${path}`))) return noContent();
 
   const rand = crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
   const meta: Meta = { path, pos, v: visitor.slice(0, 8) };
   ctx.waitUntil(
-    env.AFF_KV.put(`c:${date}:${program}:${jstTime(now)}${rand}`, "", { expirationTtl: KEEP_DAYS * 86400, metadata: meta }).catch((error) =>
+    env.AFF_KV.put(`${selftest ? "t" : "c"}:${date}:${program}:${jstTime(now)}${rand}`, "", { expirationTtl: (selftest ? 2 : KEEP_DAYS) * 86400, metadata: meta }).catch((error) =>
       console.error("[aff] put failed", String(error)),
     ),
   );
@@ -234,10 +237,12 @@ async function stats(request: Request, url: URL, env: AffEnv): Promise<Response>
     cursor = page.list_complete ? undefined : page.cursor;
   } while (cursor && total < 100_000);
 
+  const selftest = (await env.AFF_KV.list({ prefix: `t:${date}:`, limit: 1000 })).keys.length;
   return json({
     date,
     timezone: "Asia/Tokyo",
     clicks: total,
+    selftest,
     visitors: visitors.size,
     byProgram: sorted(programs, "program"),
     byPage: sorted(pages, "path"),

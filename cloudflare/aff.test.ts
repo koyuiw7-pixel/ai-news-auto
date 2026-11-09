@@ -68,6 +68,14 @@ await test("legacy affiliate counts, positions and A8 plus codes unchanged", asy
   const result = await stats(); assert.equal(result.clicks, 1); assert.equal(result.byProgram[0].program, "A+B+C"); assert.equal(result.byPosition[0].pos, "choose-table"); assert.deepEqual(result.byPlacement[0], { pos: "choose-table", program: "A+B+C", clicks: 1, visitors: 1 });
   assert.equal(result.funnel.stages.find((r: { stage: string }) => r.stage === "guide_view").events, 1);
 });
+await test("selftest clicks pass every real check but stay out of the click totals", async () => {
+  const before = await stats();
+  await call("/api/aff/click", { p: "SELFTEST", path: GUIDE_PATH, pos: "action-ad-1" }, { "x-aff-selftest": env.AFF_STATS_TOKEN });
+  const after = await stats(); assert.equal(after.clicks, before.clicks); assert.equal(after.selftest, before.selftest + 1);
+  // 合言葉が違えば本物のクリックとして数える（合言葉なしで集計から外す道は作らない）。ロボットの UA は自己点検でも捨てる
+  await call("/api/aff/click", { p: "SELFTEST", path: GUIDE_PATH, pos: "action-ad-1" }, { "x-aff-selftest": "wrong", "user-agent": "curl/8" });
+  assert.equal((await stats()).selftest, before.selftest + 1);
+});
 await test("new events cannot exhaust old click burst allowance", async () => {
   reset();
   for (let i = 0; i < 21; i++) await call("/api/aff/event", { ...event, stage: "guide_click", path: `/articles/article-${i}` });

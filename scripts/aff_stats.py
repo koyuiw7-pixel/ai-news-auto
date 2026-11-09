@@ -134,6 +134,8 @@ def fetch(token: str, date: str) -> dict:
 
 def show(data: dict, names: dict[str, str]) -> None:
     print(f"■ {data['date']}（日本時間）自動アクセスを除いたクリック {data['clicks']} 回 / 推定 {data['visitors']} 訪問者")
+    if data.get("selftest"):
+        print(f"  （計測の自己点検 {data['selftest']} 回は、上のクリック数に入れていません）")
     funnel = data.get("funnel")
     if funnel:
         labels = {"entry_view": "ガイド一覧表示", "guide_click": "Dify比較への遷移", "guide_view": "Dify比較ページ表示", "comparison_view": "比較表到達", "choice_click": "行き先クリック", "article_view": "対象Dify記事の可視閲覧"}
@@ -172,18 +174,43 @@ def show(data: dict, names: dict[str, str]) -> None:
     print("  置き場所別（枠の中の順番まで）: " + "、".join(f"{row['pos']} {row['clicks']}" for row in data["byPosition"]))
 
 
+def selftest(token: str) -> int:
+    """本物の画面と同じ見出し（同じオリジン・実ブラウザの UA）で /api/aff/click に1回送り、t: に記録されたかを見る"""
+    today = datetime.now(JST).date().isoformat()
+    before = fetch(token, today).get("selftest", 0)
+    body = json.dumps({"p": "SELFTEST", "path": "/articles/aff-selftest", "pos": "selftest"}).encode()
+    req = urllib.request.Request(f"{SITE}/api/aff/click", data=body, method="POST", headers={
+        "Origin": SITE, "Sec-Fetch-Site": "same-origin", "Content-Type": "text/plain;charset=UTF-8", "x-aff-selftest": token,
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1",
+    })
+    with urllib.request.urlopen(req, timeout=30) as res:
+        status = res.status
+    import time
+    for _ in range(10):
+        time.sleep(3)
+        after = fetch(token, today).get("selftest", 0)
+        if after > before:
+            print(f"[aff] 自己点検 OK: 受け口が {status} を返し、記録が {before}→{after} に増えました（集計のクリック数には入りません）")
+            return 0
+    print(f"[aff] 自己点検 NG: 受け口は {status} を返しましたが、記録が増えません（{before}）", file=sys.stderr)
+    return 1
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--date", help="YYYY-MM-DD（日本時間）")
     parser.add_argument("--yesterday", action="store_true")
     parser.add_argument("--days", type=int, default=1, help="--date（既定は今日）までの日数")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--selftest", action="store_true", help="受け口に自己点検のクリックを1回送り、記録されたか確かめる（集計には入らない）")
     args = parser.parse_args()
 
     token = load_token()
     if not token:
         print("[aff] AFF_STATS_TOKEN が見つかりません（環境変数か .env.local に入れてください）", file=sys.stderr)
         return 1
+    if args.selftest:
+        return selftest(token)
     end = datetime.now(JST).date()
     if args.yesterday:
         end -= timedelta(days=1)
