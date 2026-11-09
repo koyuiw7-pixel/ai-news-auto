@@ -15,23 +15,26 @@ function hashOf(text: string): number {
   return h;
 }
 
+/** 話題1つが記事に当たるか（ジャンル・除く語・見出しに話題の語・関連の点数が基準点以上）。比較記事への案内（lib/comparison.ts）も同じ判定を使う */
+export function actionAdRuleMatches(rule: ActionAdRule, article: ArticleSummary): boolean {
+  const title = `${article.title} ${article.seoTitle ?? ""}`;
+  if (rule.genres && !rule.genres.includes(article.genreSlug)) return false;
+  if (rule.exclude && new RegExp(rule.exclude, "i").test(title)) return false;
+  // 見出しに話題の語があること（タグや要約の脇の1語だけで当てない）
+  let re: RegExp;
+  try {
+    re = new RegExp(rule.match, "i");
+  } catch {
+    return false;
+  }
+  return re.test(title) && relevanceScore(rule.match, article) >= MIN_SCORE;
+}
+
 /** 記事に合う話題（無ければ undefined）。rules を渡せば設定ファイルを読まずに使える（テスト用） */
 export function actionAdRuleFor(article: ArticleSummary, rules: ActionAdRule[] = actionAdRules()): ActionAdRule | undefined {
   // まとめ記事（「…の発表まとめ、詐欺対策も」など）は脇の1語で当たるので出さない
   if (isRoundupArticle(article)) return undefined;
-  const title = `${article.title} ${article.seoTitle ?? ""}`;
-  return rules.find((rule) => {
-    if (rule.genres && !rule.genres.includes(article.genreSlug)) return false;
-    if (rule.exclude && new RegExp(rule.exclude, "i").test(title)) return false;
-    // 見出しに話題の語があること（タグや要約の脇の1語だけで当てない）
-    let re: RegExp;
-    try {
-      re = new RegExp(rule.match, "i");
-    } catch {
-      return false;
-    }
-    return re.test(title) && relevanceScore(rule.match, article) >= MIN_SCORE;
-  });
+  return rules.find((rule) => actionAdRuleMatches(rule, article));
 }
 
 /**

@@ -41,6 +41,8 @@ export type NoirProps = {
   headingsHtml: string;
   calcSlot?: ReactNode;
   priceSlot?: ReactNode;
+  /** 比較記事の提携先の一覧（本文の最初の比較表の直後。lib/comparison.ts） */
+  compareSlot?: ReactNode;
   slots: {
     /** 要点のすぐ下の「すぐにできること」の短い一覧 */
     quick?: ReactNode;
@@ -207,11 +209,11 @@ export default function NoirArticle(props: NoirProps) {
           <div id="article-flow" data-read-mode="expert">
             {slots.easy}
             <div className="read-expert" id="nr-body">
-              <ArticleProse className="prose nr-prose" html={body.top} slot={props.calcSlot} priceSlot={props.priceSlot} />
+              <ArticleProse className="prose nr-prose" html={body.top} slot={props.calcSlot} priceSlot={props.priceSlot} compareSlot={props.compareSlot} />
               {slots.adMidPr && <div className="nr-ad nr-ad-mid">{slots.adMidPr}</div>}
               {body.mid && slots.inlineRead}
               {body.mid && slots.adMid}
-              {body.mid && <ArticleProse className="prose nr-prose" html={body.mid} slot={props.calcSlot} priceSlot={props.priceSlot} />}
+              {body.mid && <ArticleProse className="prose nr-prose" html={body.mid} slot={props.calcSlot} priceSlot={props.priceSlot} compareSlot={props.compareSlot} />}
               {slots.midBoxes}
               {body.tail && slots.beforeTail}
             </div>
@@ -219,7 +221,7 @@ export default function NoirArticle(props: NoirProps) {
             {body.tail && (
               <div className="read-expert">
                 {slots.tailCta}
-                <ArticleProse className="prose nr-prose" html={body.tail} slot={props.calcSlot} priceSlot={props.priceSlot} />
+                <ArticleProse className="prose nr-prose" html={body.tail} slot={props.calcSlot} priceSlot={props.priceSlot} compareSlot={props.compareSlot} />
               </div>
             )}
           </div>

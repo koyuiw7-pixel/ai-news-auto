@@ -30,6 +30,17 @@ try {
   const actionAdOutfile = join(dir, "action-ad-test.mjs");
   await build({ entryPoints: ["lib/action-ad.test.ts"], outfile: actionAdOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning" });
   await import(pathToFileURL(actionAdOutfile).href);
+  const comparisonOutfile = join(dir, "comparison-test.mjs");
+  await build({ entryPoints: ["lib/comparison.test.ts"], outfile: comparisonOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning", jsx: "automatic",
+    // react-dom/server が Node の組み込み（util など）を require するため
+    banner: { js: "import { createRequire as __cr } from 'node:module'; const require = __cr(import.meta.url);" }, plugins: [{
+    name: "next-image-link-for-comparison-test",
+    setup(build) {
+      build.onResolve({ filter: /^next\/(link|image)$|\/components\/Thumb$|^@\/components\/Thumb$/ }, args => ({ path: args.path, namespace: "test-next-stub" }));
+      build.onLoad({ filter: /.*/, namespace: "test-next-stub" }, () => ({ contents: "import { createElement } from 'react'; export default function Stub({ href, src, children, className }) { return href ? createElement('a', { href, className }, children) : createElement('img', { src, className, alt: '' }); }", loader: "js", resolveDir: process.cwd() }));
+    },
+  }] });
+  await import(pathToFileURL(comparisonOutfile).href);
   const footerOutfile = join(dir, "footer-link-test.mjs");
   await build({ entryPoints: ["components/DifyDecisionLink.test.tsx"], outfile: footerOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning", plugins: [{
     name: "next-pathname-for-footer-link-test",

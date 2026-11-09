@@ -88,6 +88,12 @@ export type Article = {
   slug: string;
   /** "roundup" は複数記事を統合した横断まとめ。省略時は通常記事 */
   type?: "roundup";
+  /** "comparison" は選び方・比較の記事（Muse のジャンル「比較」。ニュース記事から案内する受け皿。lib/comparison.ts） */
+  kind?: "comparison";
+  /** 比較記事の話題（content/offers.json の actionAds の key: leak・disaster・energy・mobile・furusato…。scripts/muse_articles.py が公開時に決める） */
+  comparisonTopic?: string;
+  /** Muse の原稿のファイル名（「20261109-比較-…md」。scripts/muse_articles.py） */
+  museFile?: string;
   /** まとめ記事が統合した元記事（type === "roundup" のとき）。
    *  web 記事（話題のニュース・続報あり）では {title, url, source} の出典一覧が入るが、画面では使わない */
   sources?: RoundupSource[];
@@ -292,6 +298,8 @@ export type ArticleSummary = Pick<
   | "speedMinutes"
   | "breaking"
   | "newsType"
+  | "kind"
+  | "comparisonTopic"
 > &
   ArticleDerived;
 

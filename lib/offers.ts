@@ -64,6 +64,8 @@ type Partner = {
   activeUntil?: string;
   facts?: string[];
   caution?: string;
+  /** 向く人（比較記事の一覧に出す。content/offers.json の partners の fit） */
+  fit?: string;
   imageNote?: string;
   cta?: string;
 };
@@ -179,6 +181,8 @@ export type OfferItem = {
   activeUntil?: string;
   facts?: string[];
   caution?: string;
+  /** 向く人（比較記事の一覧に出す。content/offers.json の partners の fit） */
+  fit?: string;
   imageNote?: string;
   /** 記事との関連の点数（記事の枠だけ） */
   relevance?: number;
@@ -693,6 +697,7 @@ export function partnerItem(key: string): { item: OfferItem; pixel?: string } | 
       activeUntil: partner.activeUntil,
       facts: partner.facts,
       caution: partner.caution,
+      fit: partner.fit,
       imageNote: partner.imageNote,
       image: partner.image,
       url,

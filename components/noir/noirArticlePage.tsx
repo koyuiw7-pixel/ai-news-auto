@@ -18,6 +18,8 @@ import { ActionSteps, CauseBox, DecisionGuide, InsightBox, OfficialDesk, Worries
 import { depthOf } from "@/lib/depth";
 import ActionAd from "@/components/ActionAd";
 import type { ActionAd as ActionAdData } from "@/lib/action-ad";
+import type { FunnelCard as FunnelCardData } from "@/lib/comparison";
+import FunnelCard from "@/components/FunnelCard";
 import ShareButtons from "@/components/ShareButtons";
 import ThreadsFollow from "@/components/ThreadsFollow";
 import ReadNextBox from "@/components/ReadNextBox";
@@ -62,6 +64,11 @@ export type NoirPageContext = {
   inlineOffer: Any;
   /** 「すぐにできること」のすぐ下の PR（lib/action-ad.ts）。ここに出した商品は本文中・記事末の枠に重ねない */
   actionAd?: ActionAdData;
+  /** 同じ話題の比較記事への「次に読む」（lib/comparison.ts。自分たちの記事への案内なので広告の枠に数えない） */
+  funnel?: FunnelCardData;
+  /** 比較記事の提携先の一覧（比較表の直後・記事の終わり。広告の枠に数える） */
+  compareInline?: ReactNode;
+  compareEnd?: ReactNode;
   shopLink: Any;
   buyingGuide: Any;
   chooseGuide: ChooseGuide | undefined | null;
@@ -119,6 +126,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
     inlineOffer, shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, offer, inlineRead, mainArticle,
     guideLinks, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
     howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
+    funnel, compareInline, compareEnd,
   } = ctx;
   const noirHtml = noirBodyHtml(bodyHtml, article);
   const depth = depthOf(article);
@@ -163,7 +171,12 @@ export function noirArticlePage(ctx: NoirPageContext) {
         <RailRanking offer={offer} pos="ranking-end" countImpression={false} />
       </div>,
     );
+  // 比較記事の提携先の一覧（比較表の直後・記事の終わり）も本文の列の PR に数え、合わせて3つまでにする
+  const compareCount = (compareInline ? 1 : 0) + (compareEnd ? 1 : 0);
+  if (compareCount > 0) adBlocks.splice(Math.max(0, 3 - compareCount));
   const [adEarly, adMidPr, adEnd] = adBlocks.slice(0, 3);
+  // 比較記事への案内: 判断ガイドがあればその直後、無ければ「すぐにできること」の直後（速報の当日・地震津波の速報は記事の終わりだけ）
+  const funnelMid = funnel?.placement === "both" ? <FunnelCard card={funnel} pos="mid" /> : null;
 
   return (
     <NoirArticle
@@ -180,13 +193,20 @@ export function noirArticlePage(ctx: NoirPageContext) {
       sourceCta={sourceUrl ? (badge === "報道" ? `${sourceName}の記事を読む` : `${org}の発表を読む`) : null}
       sourceUrl={sourceUrl}
       body={{ top: noirTop, mid: noirMid, tail: noirTail }}
+      compareSlot={compareInline}
       headingsHtml={headingTexts(noirHtml).join("")}
       calcSlot={calcInline ? calcBox : undefined}
       priceSlot={priceBox}
       crumbs={crumbs}
       related={related}
       slots={{
-        quick: quickList.length > 0 ? <QuickActions actions={quickList} detailed={stepItems.length > 0} /> : null,
+        quick:
+          quickList.length > 0 || (funnelMid && depth.guide.length === 0) ? (
+            <>
+              {quickList.length > 0 && <QuickActions actions={quickList} detailed={stepItems.length > 0} />}
+              {depth.guide.length === 0 && funnelMid}
+            </>
+          ) : null,
         adEarly,
         afterSummary: (
           <>
@@ -230,6 +250,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
         midBoxes: (
           <>
             {depth.guide.length > 0 && <DecisionGuide groups={depth.guide} heading={depth.headings.guide} />}
+            {depth.guide.length > 0 && funnelMid}
             {depth.worries.length >= 2 && <WorriesBlock items={depth.worries} heading={depth.headings.worries} />}
           </>
         ),
@@ -255,6 +276,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
             )}
             <AssetLinks article={article} />
             {articleFaq.length >= 1 && <ArticleFaq items={articleFaq} />}
+            {compareEnd}
           </>
         ),
         adEnd,
@@ -279,6 +301,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
                       : undefined
               }
             />
+            {funnel && <FunnelCard card={funnel} pos="end" className="mt-12" />}
             <NextRead items={nextReads} />
           </>
         ),

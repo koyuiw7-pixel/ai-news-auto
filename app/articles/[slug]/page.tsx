@@ -93,6 +93,9 @@ import { authorJsonLd, publisherJsonLd } from "@/lib/publisher";
 import { stripListNumber } from "@/lib/list-number";
 import { isNoir } from "@/lib/noir";
 import { noirArticlePage } from "@/components/noir/noirArticlePage";
+import { compareOffersFor, funnelForArticle, insertCompareSlot } from "@/lib/comparison";
+import CompareOffers from "@/components/CompareOffers";
+import FunnelCard from "@/components/FunnelCard";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -207,8 +210,16 @@ export default async function ArticlePage({ params }: Props) {
   // 商品は記事との関連の点数が基準を超えたものだけを、関連の高い順に出す（lib/offers.ts）。
   // (a) に出した商品は (b)(c) に重ねない。右側（1〜3位）と本文中（4〜6位）でも同じ商品は出さない。
   // 各枠は候補の中から、この端末でまだ見ていない商品を先に3つ出す（RankingBody）
-  const actionAd = actionAdForArticle(article);
-  const { offer: offerAll, rail: offer, inline: inlineOffer } = offerPlanForArticle(article, (actionAd?.items ?? []).map((x) => x.item.key));
+  // 選び方・比較の記事（lib/comparison.ts）は、話題の提携先を比較表の直後と記事の終わりに一覧で出す。
+  // 同じ商品の PR を「すぐにできること」の下に重ねない（一覧がその役目）。ほかの枠も一覧の商品を避ける
+  const compareOffers = compareOffersFor(article);
+  const actionAd = compareOffers ? undefined : actionAdForArticle(article);
+  const { offer: offerAll, rail: offer, inline: inlineOffer } = offerPlanForArticle(
+    article,
+    [...(actionAd?.items ?? []), ...(compareOffers?.items ?? [])].map((x) => x.item.key),
+  );
+  // ニュース記事 → 同じ話題の比較記事への「次に読む」のカード（自分たちの記事への案内。広告の枠には数えない）
+  const funnel = funnelForArticle(article, getAllArticles());
   // 商品枠の話題に比較ガイドがあれば、商品枠のすぐ下に1行だけ案内する
   const buyingGuide = buyingGuideForTopic(offerAll?.topic);
   // 製品を扱う記事だけ、本文中の商品枠のそばに「Amazon / 楽天で見る」を1行（右側には出さない）
@@ -283,7 +294,7 @@ export default async function ArticlePage({ params }: Props) {
   const calc = calculatorForArticle(article);
   // 見出しの言い換えは、章名で位置を探す差し込み（図・計算機）が終わってから
   // 本文に置く公式の写真・図（出典つき・1〜2枚。lib/body-images.ts）
-  const bodyHtml = retitleHtml(
+  const bodyHtmlRaw = retitleHtml(
     markCalculatorSlot(
       insertArticleFigures(insertBodyImages(insertFigures(html, figures), article.bodyImages ?? [], article.title), article.figures, article.title),
       calc?.heading ?? null,
@@ -291,6 +302,10 @@ export default async function ArticlePage({ params }: Props) {
     "body",
     article.sectionTitles,
   );
+  // 比較記事は、最初の比較表の直後に提携先の一覧の印を入れる（表が無い記事は記事の終わりの一覧だけ）
+  const bodyHtml = compareOffers ? insertCompareSlot(bodyHtmlRaw) : bodyHtmlRaw;
+  const compareInline = compareOffers && bodyHtml !== bodyHtmlRaw ? <CompareOffers offers={compareOffers} pos="compare-table" /> : undefined;
+  const compareEnd = compareOffers ? <CompareOffers offers={compareOffers} pos="compare-end" countImpression={!compareInline} className="mt-12" /> : undefined;
   const calcInline = Boolean(calc && bodyHtml.includes(CALC_SLOT));
   const calcBox = calc ? <CalculatorBox calc={calc} className="my-10" /> : null;
   // 第3章の前に広告、さらに後半の前に収益導線を挟む
@@ -429,6 +444,7 @@ export default async function ArticlePage({ params }: Props) {
       inlineOffer, shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, offer, inlineRead, mainArticle,
       guideLinks, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
       howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
+      funnel, compareInline, compareEnd,
     });
   }
 
@@ -792,14 +808,14 @@ export default async function ArticlePage({ params }: Props) {
           <div className="read-expert">
 
           {/* 本文（前半） */}
-          <ArticleProse className="prose mt-10 max-w-[40em]" html={bodyTop} slot={calcInline ? calcBox : undefined} priceSlot={priceBox} />
+          <ArticleProse className="prose mt-10 max-w-[40em]" html={bodyTop} slot={calcInline ? calcBox : undefined} priceSlot={priceBox} compareSlot={compareInline} />
           {bodyMid && inlineRead && <InlineRead item={{ article: inlineRead, reason: "同じ話題の記事" }} />}
 
           {/* ② 記事中盤の広告枠 */}
           {showAds && bodyMid && <AdSlot position="article-middle" className="my-10" />}
 
           {bodyMid && (
-            <ArticleProse className="prose max-w-[40em]" html={bodyMid} slot={calcInline ? calcBox : undefined} priceSlot={priceBox} />
+            <ArticleProse className="prose max-w-[40em]" html={bodyMid} slot={calcInline ? calcBox : undefined} priceSlot={priceBox} compareSlot={compareInline} />
           )}
 
           {/* 本文に馴染ませる収益導線。関連ツールは本文の途中（読者がまだ読んでいる位置）に置く。記事末だけだと、ページの4分の3より下まで読んだ人にしか見えなかった */}
@@ -821,7 +837,7 @@ export default async function ArticlePage({ params }: Props) {
           {bodyTail && (
             <div className="read-expert">
               {inlineCta && <CtaBanner genreSlug={article.genreSlug} slot="inline" className="my-10" />}
-              <ArticleProse className="prose max-w-[40em]" html={bodyTail} slot={calcInline ? calcBox : undefined} priceSlot={priceBox} />
+              <ArticleProse className="prose max-w-[40em]" html={bodyTail} slot={calcInline ? calcBox : undefined} priceSlot={priceBox} compareSlot={compareInline} />
             </div>
           )}
           </div>
@@ -838,7 +854,10 @@ export default async function ArticlePage({ params }: Props) {
           {depth.officialDesk.length > 0 && <OfficialDesk items={depth.officialDesk} heading={depth.headings.desk} />}
           {depth.worries.length >= 2 && <WorriesBlock items={depth.worries} heading={depth.headings.worries} />}
           {depth.guide.length > 0 && <DecisionGuide groups={depth.guide} heading={depth.headings.guide} />}
+          {/* 判断ガイドの直後（無ければ「すぐにできること」の並びの終わり）に、同じ話題の比較記事への案内 */}
+          {funnel?.placement === "both" && <FunnelCard card={funnel} pos="mid" className="mt-10" />}
           {articleFaq.length >= 1 && <ArticleFaq items={articleFaq} />}
+          {compareEnd}
 
           {/* 読み終えたところでもう一度シェア */}
           <div className="mt-12 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-y border-line py-4">
@@ -867,7 +886,8 @@ export default async function ArticlePage({ params }: Props) {
             />
           )}
 
-          {/* 読み終えた位置で、次の1本を大きく見せる */}
+          {/* 読み終えた位置で、次の1本を大きく見せる（比較記事への案内があれば先に） */}
+          {funnel && <FunnelCard card={funnel} pos="end" className="mt-12" />}
           <NextRead items={nextReads} />
 
           {/* まとめ記事が統合した元記事 */}

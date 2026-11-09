@@ -68,6 +68,8 @@ POSITION_LABELS = {
     "cta-secondary": "記事末の導線（小）",
     "box": "関連ツールの囲み",
     "compare": "比較ページ",
+    "compare-table": "比較記事の比較表の直後",
+    "compare-end": "比較記事の終わり",
 }
 
 

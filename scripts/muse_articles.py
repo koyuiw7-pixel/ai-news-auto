@@ -50,6 +50,7 @@ LANE_BY_GENRE = {
     "速報解説": "business", "ビジネス": "business", "AI・テック": "ai", "比較": "lifestyle",  # 2026-11-09 比較・選び方（収益の受け皿）
 }
 PROCEDURE_GENRES = {"手続き"}
+COMPARISON_GENRE = "比較"  # 選び方・比較の記事（ニュース記事から「次に読む」で案内する受け皿。lib/comparison.ts）
 
 MUSE_DRAFT_NOTE = """
 
@@ -117,6 +118,47 @@ def muse_disclaimer() -> str:
 
 def pass_score(genre: str) -> int:
     return PROCEDURE_PASS_SCORE if genre in PROCEDURE_GENRES else MUSE_PASS_SCORE
+
+
+def comparison_topic(title: str, body: str, override: str = "") -> str | None:
+    """比較記事の話題（scripts/a8_import.py の ACTION_ADS の key）。lib/comparison.ts の comparisonTopicOf と同じ規則:
+    題名に当たる話題を優先し、題名で当たった語の数 → 本文で当たった語の数の多い順。同点は ACTION_ADS の順。
+    題名に当たらない話題は、本文で3語以上当たったときだけ。除く語（exclude）が題名にある話題は使わない"""
+    import a8_import  # noqa: PLC0415
+
+    keys = [rule["key"] for rule in a8_import.ACTION_ADS]
+    if override and override in keys:
+        return override
+    best: tuple[tuple[int, int, int], str] | None = None
+    for rule in a8_import.ACTION_ADS:
+        try:
+            pattern = re.compile(rule["match"], re.I)
+            exclude = re.compile(rule["exclude"], re.I) if rule.get("exclude") else None
+        except re.error:
+            continue
+        if exclude and exclude.search(title):
+            continue
+        t = len({m.group(0).lower() for m in pattern.finditer(title)})
+        b = len({m.group(0).lower() for m in pattern.finditer(body)})
+        if t == 0 and b < 3:
+            continue
+        score = (1 if t else 0, t, b)
+        if best is None or score > best[0]:
+            best = (score, rule["key"])
+    return best[1] if best else None
+
+
+def mark_comparison(record: dict, data: dict) -> None:
+    """ジャンル「比較」の原稿なら、記事に kind: "comparison" と話題（comparisonTopic）を付ける
+    （ニュース記事の「次に読む」の受け皿・話題の提携先の一覧。lib/comparison.ts）"""
+    if data.get("genre") != COMPARISON_GENRE:
+        return
+    record["kind"] = "comparison"
+    topic = comparison_topic(record.get("title") or data.get("title") or "",
+                             " ".join([record.get("lede") or "", record.get("description") or "", record.get("body") or ""]),
+                             str(data.get("topic") or "").strip())
+    if topic:
+        record["comparisonTopic"] = topic
 
 
 def register_today(state: dict, fid: str, record: dict) -> None:
@@ -262,6 +304,7 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
             # 自動の書き直し（見出し・章の手直し・種類の型）の対象から外す（scripts/rewrite_types.py の refreshMode・section_polish の sectionsPolishedAt）
             "sectionsPolishedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         })
+        mark_comparison(record, data)
         if (data.get("depth") or "").strip():
             # 一歩深くする欄の材料（scripts/depth_fields.py が公式ページで確かめてから使い、使ったら記事から外す。台帳 A66）
             record["museDepthNotes"] = data["depth"].strip()[:3000]
