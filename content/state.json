@@ -4844,13 +4844,6 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/kokuritu/009/mext_00005.html"
     },
-    "157f623c815d8fdb251103227384a9b6600381ff": {
-      "at": "2026-10-26T21:41:13.628283+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1463字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（392字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れ",
-      "skipped": true,
-      "url": "https://jp.investing.com/news/stock-market-news/article-1725036"
-    },
     "1581d1c3b7bdda12": {
       "at": "2026-11-04T01:28:01.160547+00:00",
       "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
@@ -7752,12 +7745,6 @@
       "skipped": true,
       "url": "https://www.ipa.go.jp/shiken/syllabus/henkou/2026/20260622.html"
     },
-    "456e73c41d10e586869a7692ec3ee566a8c6f832": {
-      "at": "2026-10-26T21:40:58.803048+00:00",
-      "reason": "trend sources 1",
-      "skipped": true,
-      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm"
-    },
     "459c4ca756185452": {
       "at": "2026-10-28T17:30:39.592009+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7835,12 +7822,6 @@
       "section": "entertainment",
       "slug": "rayman-legends-retold-astro-bot",
       "url": "https://blog.ja.playstation.com/2026/10/28/20261028-rlr-pre-launch-update-o/"
-    },
-    "46f89d4de8c9613d": {
-      "at": "2026-10-26T21:41:14.037929+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（市場分析レポート）",
-      "skipped": true,
-      "url": "https://www.dreamnews.jp/press/0000366528"
     },
     "4709068104f929f7": {
       "at": "2026-10-29T19:32:12.094069+00:00",
@@ -9362,6 +9343,20 @@
       "section": "ai",
       "slug": "elevenagents-unity-sdk-npc-voice",
       "url": "https://elevenlabs.io/blog/unity-sdk-release"
+    },
+    "5d57e1aa081717ba": {
+      "at": "2026-11-09T21:52:11.044334+00:00",
+      "breaking": true,
+      "costUsd": 0.1029,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "openai-control-room-ai-workload-stop",
+      "url": "https://openai.com/index/introducing-control-room"
     },
     "5d5b1a298658a8df": {
       "at": "2026-11-06T20:04:26.412863+00:00",
@@ -11652,14 +11647,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（懇談会）",
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047872/"
-    },
-    "80861ce532093e27": {
-      "at": "2026-10-26T21:41:43.149068+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "tech-gadget",
-      "slug": "ipa-r08-zenki-exam-deadline",
-      "url": "https://www.ipa.go.jp/shiken/2026/r08zen_exam.html"
     },
     "80d57aebb469d1a9": {
       "at": "2026-11-09T04:42:25.770862+00:00",
@@ -15535,12 +15522,6 @@
       "skipped": true,
       "url": "https://www.ntt-east.co.jp/release/detail/20261028_02.html"
     },
-    "bbf98d62f5f83ec4": {
-      "at": "2026-10-26T21:41:14.037879+00:00",
-      "reason": "short text 394",
-      "skipped": true,
-      "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326725.html"
-    },
     "bc1a673743a9a573": {
       "at": "2026-11-06T08:58:44.242980+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -19053,13 +19034,6 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202610/29kaiken.html"
     },
-    "f5a63a1af5067430": {
-      "at": "2026-10-26T21:41:28.789476+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が短い（362字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.atpress.ne.jp/news/644341"
-    },
     "f5b54c1bebe91857": {
       "at": "2026-10-28T17:37:11.315727+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -20121,58 +20095,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-07T18:33:25.072800+00:00",
-      "attempt": 1,
-      "id": "c1198ca2bc5da2f1",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 47.0字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 90.9,
-        "avg_sentence": 47.0,
-        "long_share": 0.241,
-        "max_paragraph": 149,
-        "paragraphs": 15,
-        "sentences": 29
-      },
-      "score": 94,
-      "source": "vercel-changelog",
-      "title": "Ampersand from Humans& now available on AI Gateway",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CLI・BYOK）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T18:33:46.367110+00:00",
-      "attempt": 0,
-      "id": "c1198ca2bc5da2f1",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.8,
-        "avg_sentence": 40.9,
-        "long_share": 0.147,
-        "max_paragraph": 157,
-        "paragraphs": 15,
-        "sentences": 34
-      },
-      "score": 92,
-      "source": "vercel-changelog",
-      "title": "Ampersand from Humans& now available on AI Gateway",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CLI・BYOK）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-07T19:12:12.163188+00:00",
@@ -27339,6 +27261,60 @@
         "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（HPKI・JIS・IC）",
         "読みやすさ: 文が長い（1文の平均 54.5字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T21:51:49.749979+00:00",
+      "attempt": 1,
+      "id": "5d57e1aa081717ba",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "タイトル「最短35秒で停止」→ 元記事は「maximum（最大）35秒」と書いており、「最短」は数値の取り違え。",
+        "よくある質問「研究者が止めることもあります」→ 元記事に研究者が停止を指示できるという記述はなく、停止は監視モデルや Control Room への停止指示が中心。創作。",
+        "リード「ChatGPTなどの利用に変わりはありません」→ 元記事は ChatGPT に触れておらず、利用方法への影響は書かれていない。推測による補足。",
+        "「現在の利用方法は変わりません」→ 元記事に明記のない利用者への影響の断定。",
+        "「停止系が壊れても出力を止める設計」→ 元記事は Control Room 自体が止まった場合に全リクエストを拒否すると書いており、言い換えとしてはやや言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 75.4,
+        "avg_sentence": 37.7,
+        "long_share": 0.062,
+        "max_paragraph": 111,
+        "paragraphs": 16,
+        "sentences": 32
+      },
+      "score": 62,
+      "source": "openai-news",
+      "title": "Introducing Control Room: Human control over AI workloads",
+      "warnings": [
+        "見出しが60字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DNS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T21:52:11.033257+00:00",
+      "attempt": 1,
+      "id": "5d57e1aa081717ba",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 72.8,
+        "avg_sentence": 37.6,
+        "long_share": 0.065,
+        "max_paragraph": 111,
+        "paragraphs": 16,
+        "sentences": 31
+      },
+      "score": 92,
+      "source": "openai-news",
+      "title": "Introducing Control Room: Human control over AI workloads",
+      "warnings": [
+        "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DNS）"
       ]
     }
   ],

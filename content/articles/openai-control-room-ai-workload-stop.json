@@ -1,0 +1,118 @@
+{
+  "slug": "openai-control-room-ai-workload-stop",
+  "sourceType": "web",
+  "sourceUrl": "https://openai.com/index/introducing-control-room",
+  "sourceName": "OpenAI公式ブログ",
+  "title": "OpenAI、AIの研究ジョブを最大35秒で停止する「Control Room」を導入　他の系が壊れても機能する設計",
+  "seoTitle": "Control Roomとは　OpenAIのAI停止の仕組み",
+  "threadsPost": "AIの安全対策や開発の裏側に関心がある人に、押さえておきたい話です。\n\nOpenAIが研究用のAI処理を止める「Control Room」を導入しました。\n停止の指示から35秒以内に、モデルの出力が止まります。\n\nAIの暴走対策、どこまで仕組みで担保してほしいと思いますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "AIの暴走対策は、どこまで仕組みで担保してほしいですか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "AIの安全装置のために、処理が少し遅くなっても許せますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "OpenAIが、研究用のAI処理を一括で追跡し、問題が見つかれば止める「Control Room」を研究基盤に導入しました。停止の判断から、モデルの出力が止まるまでの最大時間は35秒です。",
+  "description": "OpenAIが研究基盤に導入した「Control Room」は、AIの研究ジョブを一括で追跡し、停止の判断から最大35秒で出力を止める仕組みです。故障時も止まる設計や、残る課題を整理します。",
+  "keywords": [
+    "Control Room",
+    "OpenAI",
+    "AI安全",
+    "ミスアライメント",
+    "モデル監視",
+    "強化学習",
+    "推論",
+    "フェイルクローズ",
+    "AIの停止",
+    "フロンティアモデル"
+  ],
+  "tags": [
+    "生成AI",
+    "OpenAI",
+    "AI安全",
+    "LLM",
+    "セキュリティ"
+  ],
+  "highlights": [
+    "OpenAIは研究用AI処理を一括で止める「Control Room」を導入し、停止の指示から最大35秒で出力を止めます",
+    "止める仕組みは推論エンジン側にあり、研究者のコードが壊れていても停止が効く設計になっています",
+    "Control Room自体が止まった場合は全リクエストを拒否し、この設計は全フロンティアモデル研究に展開済みです"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "社内システム",
+    "free": null,
+    "audience": "AI安全に関心のある人",
+    "take": "一般向けの機能ではなく社内の安全基盤の紹介です。AI企業の安全対策の水準を知る材料として読むとよいでしょう。",
+    "judgedAt": "2026-11-09T21:51:41.948206+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "OpenAIの社内研究基盤の話です。",
+      "AIを自社で運用する担当者は、停止の仕組みを推論の層に置くという設計の考え方を参考にできます。"
+    ]
+  },
+  "body": "Control Roomは、OpenAI社内の研究基盤で動く安全装置です。\n\nControl Roomは、AIモデルを動かす研究用の処理を一括で追跡し、問題があれば止める中央の仕組みです。OpenAIの公式ブログによると、すでに研究基盤全体に導入されています。\n\n## 研究ジョブを一括で追跡し、35秒で止める\n\nOpenAIは、モデルが高性能になるほど安全面やセキュリティ面のリスクも大きくなると説明しています。そのため、問題を検知して、すぐ止められる体制が重要になるとしています。\n\nControl Roomが対象にするのは、研究用の推論（学習済みのAIが答えを出す処理）です。モデルの学習や評価のための、エージェント型のサンプリング（AIが自分で手順を進めて出力を集めること）やデータ処理も含みます。\n\n同社のミスアライメント（AIが意図とずれた動きをすること）の監視システムと連携します。停止を決めてから、モデルの出力が止まるまでの最大時間は35秒です。\n\n一方、外部に提供するモデルの運用基盤は、もともと一元化されています。モデルの提供を素早く止める運用の体制もすでにある、と同社は説明しています。\n\n## ジョブ番号と許可確認で止める流れ\n\nControl Roomは、次の3つをつなぎます。\n\n- ワークロード: 強化学習の実験、評価、大量のサンプリングやデータ処理といった実行中の作業\n- 推論エンジン: GPU上で動くモデル本体\n- Control Roomサービス: 作業を追跡し、出力を続けてよいか判断する中央のサービス\n\n仕組みは次のとおりです。\n\n- 作業を始めるとき、プログラムはControl Roomにjob_idを要求する\n- モデルから出力を得るたび、job_idを付けて推論エンジンに依頼する\n- エンジンはControl Roomに許可を求める\n- 作業が止められていれば、許可が出ずに拒否され、出力が止まる\n\nOpenAIは、エージェント型の推論を行う研究作業のすべてに、承認済みのセーフティケース（安全性の根拠をまとめた文書）を紐づけるよう求めています。\n\n## 監視モデルが異常を見つけたら\n\n最先端の強化学習ジョブは、すべてモニターつきで動いています。モニターとは、学習中のモデルの動きを調べ、問題があれば警告する別のモデルです。\n\nOpenAIによると、最近のDNS関連のインシデントも、モニターが見つけました。異常の内容や深刻さに応じて、モニターはジョブの停止を決められます。その場合、job_idを付けた停止の指示をControl Roomに送ります。\n\n## 研究者のコードが壊れていても止まる設計\n\n研究者が書く作業のコードは頻繁に変わります。OpenAIは、重要な安全機能を置く場所として向かないと説明しています。\n\nそこで、停止の仕組みは推論の層に入れました。OpenAIの研究全体で使われる推論のコードの経路は少なく、運用も一元化されています。このため、すべての推論リクエストが確実に許可の確認を受ける、と同社は説明しています。\n\nさらに、Control Roomを外した推論エンジンを、誤って、あるいは悪意で動かしていないか、継続的に調べています。調査にはエージェントとプログラムの両方を使います。\n\n## Control Room自体が止まったら全リクエストを拒否\n\nこのシステムは「フェイルクローズ」です。システムエラーや改ざんなどで、Control Roomのサービスが止まった場合は、すべての推論リクエストを拒否します。通常運転に戻るまで、拒否が続きます。\n\nフェイルクローズは、すべてのフロンティアモデルの研究作業にすでに展開されています。残りの研究作業へは、今後数日で広げるとしています。\n\n## まだ分からないこと\n\n- 停止までの35秒をゼロにする時期はまだ発表されていません。35秒の遅れは、推論の許可を一時保存する層から生じており、同社はこれをゼロにする作業を進めています。\n- 外部向けに提供するモデルへの適用方法は、今回の発表では示されていません。",
+  "easy": "## ひとことで言うと\n\nOpenAIが、研究中のAIの処理を問題が見つかったときにすぐ止める「Control Room」を導入しました。停止の指示から最大35秒で、モデルの出力が止まります。\n\n## 止める仕組み\n\nAIの学習や評価の作業には、それぞれ番号（job_id）が付きます。AIが文字を作り出すたびに、Control Roomに許可を確認します。止めると決めた作業は、許可が出なくなります。\n\n研究者が書くプログラムは頻繁に変わります。そこで、あまり変わらない「AIを動かす部分」に止める機能を置いています。\n\n## 壊れたときの備え\n\nControl Room自体が止まったり、誰かに無効にされたりした場合は、すべてのリクエストを拒否します。この設計は、最先端モデルの研究にはすでに適用されています。残りの研究作業にも、数日のうちに広げる予定です。\n\n停止までの35秒は、許可の確認を一時的に覚えておく仕組みが原因です。OpenAIは、これをゼロにする作業を進めています。",
+  "channel": "OpenAI公式ブログ",
+  "channelId": "",
+  "channelSlug": "openai-news",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Introducing Control Room: Human control over AI workloads",
+  "publishedAt": "2026-11-09T13:00:00+00:00",
+  "generatedAt": "2026-11-09T21:51:41.948193+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/openai-control-room-ai-workload-stop-c972a824.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "OpenAIの公式ブログで、関連するミスアライメント検知の記事（10月29日付）も読み比べる",
+    "自社でAIを動かす担当者は、停止機能を推論の層に置くという設計の考え方を、社内のAI運用ルールと照らして確認する"
+  ],
+  "qualityScore": 92,
+  "breaking": true,
+  "sourcePublishedAt": "2026-11-09T13:00:00+00:00",
+  "detectedAt": "2026-11-09T21:50:20+00:00",
+  "fastLane": true,
+  "layout": "noir",
+  "summaryLine": "OpenAIは研究用AI処理を一括で止める「Control Room」を導入し、停止の指示から最大35秒で出力を止めます",
+  "imageCredit": {
+    "kind": "official",
+    "org": "OpenAI",
+    "provider": "OpenAI公式ブログ",
+    "sourceUrl": "https://openai.com/index/introducing-control-room",
+    "original": "https://images.ctfassets.net/kftzwdyauwt9/7CRGR1hiay1UfPVqjUSdAk/da9d8e1e61347fdae6d40e0a72962731/introducing-control-room-social.png?w=1600&h=900&fit=fill",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-09T21:52:15+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.501,
+    "y": 0.497,
+    "box": [
+      0.019,
+      0.05,
+      0.984,
+      0.944
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/openai-control-room-ai-workload-stop-c972a824.jpg"
+  },
+  "discoverCandidate": true
+}
