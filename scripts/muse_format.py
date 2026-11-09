@@ -25,6 +25,18 @@ import unicodedata
 # Muse が書いてよいジャンル（ファイル名と genre の欄）。サイトのジャンルへの対応は scripts/muse_articles.py の LANE_BY_GENRE
 GENRES = ("手続き", "お金", "値上げ", "早見表", "速報解説", "暮らし", "AI・テック", "ビジネス", "比較")
 TITLE_MIN, TITLE_MAX = 18, 45  # 品質の門（quality.TITLE_RANGE 18〜64）より短く。一覧で切れない長さ（40字の目安）
+# 2026-11-09 オーナー「落とす理由は嘘だけ」: 長すぎる題名は落とさず、TITLE_HARD_MAX までに区切りで縮める
+TITLE_HARD_MAX = 64
+
+
+def fit_title(title: str) -> str:
+    """長すぎる題名を、区切り（全角の空白・読点）で TITLE_HARD_MAX 字までに縮める。区切りが無ければそのまま切る"""
+    title = re.sub(r"[！!]+", "", title).strip()
+    if len(title) <= TITLE_HARD_MAX:
+        return title
+    head = title[:TITLE_HARD_MAX]
+    cut = max(head.rfind("　"), head.rfind(" "), head.rfind("、"))
+    return (head[:cut] if cut >= TITLE_MIN else head).strip()
 BODY_MIN = 1800  # 地の文の字数（見出し・記号を除く）。公開前の門の「薄い」（indexnow.THIN_BODY 1500字）に落ちないよう余裕を持つ
 BODY_MAX = 9000
 MAX_SOURCES = 10
@@ -32,8 +44,8 @@ NAME_RE = re.compile(r"^(\d{8})-([^-]+)-(.+)\.md$")
 # 出典にしない URL（報道・まとめ・SNS・検索。事実は公式の一次情報だけ・台帳 W31）。正確な判定は Actions 側で public_interest.is_press_url も使う
 NOT_OFFICIAL_RE = re.compile(
     r"(news\.yahoo|yahoo\.co\.jp/news|nikkei\.com|asahi\.com|mainichi\.jp|yomiuri\.co\.jp|sankei\.com|nhk\.or\.jp|jiji\.com|kyodonews|"
-    r"itmedia\.co\.jp|impress\.co\.jp|wikipedia\.org|twitter\.com|x\.com/|facebook\.com|instagram\.com|threads\.(net|com)|"
-    r"youtube\.com|youtu\.be|note\.com|ameblo|hatena|google\.com/search|bing\.com|prtimes\.jp|atpress|newscast|value-press)",
+    r"itmedia\.co\.jp|impress\.co\.jp|wikipedia\.org|twitter\.com|(?<![a-z0-9.-])x\.com/|facebook\.com|instagram\.com|threads\.(net|com)|"
+    r"youtube\.com/(?!premium|intl|t/)|youtu\.be|note\.com|ameblo|hatena|google\.com/search|bing\.com|prtimes\.jp|atpress|newscast|value-press)",
     re.I,
 )
 
@@ -125,13 +137,14 @@ def problems(data: dict, filename: str = "") -> list[str]:
     if filename and not NAME_RE.match(nfc(filename)):
         out.append("ファイル名は「YYYYMMDD-ジャンル-短い題名.md」にしてください（例 20261108-お金-平均給与487万円.md）")
     title = data.get("title") or ""
+    if title:
+        # 2026-11-09 オーナー「落とす理由は嘘だけ」: 長さ・感嘆符は落とさず自動で直す
+        data["title"] = title = fit_title(title)
     if not title:
         out.append("title がありません")
-    elif not TITLE_MIN <= len(title) <= TITLE_MAX:
+    elif len(title) < TITLE_MIN:
         out.append(f"title の長さは{TITLE_MIN}〜{TITLE_MAX}字にしてください（いま{len(title)}字）")
     # 「｜」は落とさず自動で全角の空白に直す（parse の段。2026-11-08 オーナー）
-    if re.search(r"[！!]", title):
-        out.append("title に感嘆符を使わないでください")
     if data.get("genre") and data["genre"] not in GENRES:
         out.append(f"genre は次のどれかにしてください: {'・'.join(GENRES)}（いま「{data['genre']}」）")
     if not data.get("genre"):
@@ -142,6 +155,13 @@ def problems(data: dict, filename: str = "") -> list[str]:
     # 2026-11-09 オーナー: 落とす理由は「嘘」だけ。出典が多いときは落とさず、先頭の MAX_SOURCES 件を使う
     if len(sources) > MAX_SOURCES:
         data["sources"] = sources = sources[:MAX_SOURCES]
+    # 2026-11-09 オーナー「落とす理由は嘘だけ」: http:// は https:// に直す。公式でない出典は、ほかに出典があれば外して続ける
+    for s in sources:
+        if (s.get("url") or "").startswith("http://"):
+            s["url"] = "https://" + s["url"][len("http://"):]
+    official = [s for s in sources if not NOT_OFFICIAL_RE.search(s.get("url") or "")]
+    if official and len(official) < len(sources):
+        data["sources"] = sources = official
     for s in sources:
         url = s.get("url") or ""
         if not url.startswith("https://"):
