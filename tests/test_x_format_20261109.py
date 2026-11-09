@@ -2,8 +2,10 @@
 ①記事に合う本物の画像を必ず付ける（Muse の説明の図 → 写真の載るカード。文字だけのカード・ロゴは使わない。無ければ次の記事・枠は出さない）
 ②本文にリンクを置かず、返信に「続き → URL」（utm_source=x） ③ハッシュタグはトレンドの言葉に当たる記事だけ1つ。
 外部通信なし（Buffer を呼ばない）。"""
+import struct
 import sys
 import tempfile
+import zlib
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -22,6 +24,15 @@ def no_photo(slug="nophoto", made=None):
     # 文字だけのカードになる記事（画像なし・imageCredit.kind=card）
     return article(slug, "Galaxy S26、新色を11月20日に発売　税込4万9800円", made or at(9),
                    thumbnail="", imageCredit={"kind": "card"}, coverImage="")
+
+
+def png(path, w, h):
+    """Pillow を使わない小さな PNG（X のワークフローには Pillow が無い）"""
+    def chunk(kind, data):
+        return struct.pack(">I", len(data)) + kind + data + struct.pack(">I", zlib.crc32(kind + data) & 0xFFFFFFFF)
+    raw = b"".join(b"\x00" + b"\xff" * (w * 3) for _ in range(h))
+    path.write_bytes(b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0))
+                     + chunk(b"IDAT", zlib.compress(raw)) + chunk(b"IEND", b""))
 
 
 class ImageTest(unittest.TestCase):
@@ -51,13 +62,11 @@ class ImageTest(unittest.TestCase):
             self.assertEqual(xp.candidates({}, {}, now, at(0), [no_photo(made=at(11))]), [])
 
     def test_muse_figure_is_preferred(self):
-        from PIL import Image
-
         with tempfile.TemporaryDirectory() as tmp:
             fig = Path(tmp)
-            Image.new("RGB", (1600, 900), "white").save(fig / "pixel-fig1.png")
-            Image.new("RGB", (800, 800), "white").save(fig / "pixel-fig2.png")  # 16:9 でない図は使わない
-            Image.new("RGB", (1600, 900), "white").save(fig / "other-fig1.png")  # ほかの記事の図は使わない
+            png(fig / "pixel-fig1.png", 160, 90)
+            png(fig / "pixel-fig2.png", 80, 80)  # 16:9 でない図は使わない
+            png(fig / "other-fig1.png", 160, 90)  # ほかの記事の図は使わない
             with patch.object(xp, "FIG_DIR", fig):
                 image = xp.x_image(phone())
                 self.assertEqual(image["from"], "figure")

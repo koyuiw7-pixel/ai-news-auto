@@ -202,12 +202,11 @@ def reply_link(article: dict) -> str:
 # ---- 画像（2026-11-09 オーナー承認・台帳 S50。ルール24） ----
 
 def _local_size(path: Path) -> tuple[int, int] | None:
+    """手元の画像の縦横（sns_rules.measure_bytes。Pillow の無い X のワークフローでも測れる）"""
     try:
-        from PIL import Image  # noqa: PLC0415
-
-        with Image.open(path) as im:
-            return im.size
-    except Exception:  # noqa: BLE001
+        with open(path, "rb") as fh:
+            return sns_rules.measure_bytes(fh.read(1_048_576))
+    except (OSError, ValueError):
         return None
 
 
