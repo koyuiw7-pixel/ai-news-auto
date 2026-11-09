@@ -23,7 +23,7 @@ import re
 import unicodedata
 
 # Muse が書いてよいジャンル（ファイル名と genre の欄）。サイトのジャンルへの対応は scripts/muse_articles.py の LANE_BY_GENRE
-GENRES = ("手続き", "お金", "値上げ", "早見表", "速報解説", "暮らし", "AI・テック", "ビジネス")
+GENRES = ("手続き", "お金", "値上げ", "早見表", "速報解説", "暮らし", "AI・テック", "ビジネス", "比較")
 TITLE_MIN, TITLE_MAX = 18, 45  # 品質の門（quality.TITLE_RANGE 18〜64）より短く。一覧で切れない長さ（40字の目安）
 BODY_MIN = 1800  # 地の文の字数（見出し・記号を除く）。公開前の門の「薄い」（indexnow.THIN_BODY 1500字）に落ちないよう余裕を持つ
 BODY_MAX = 9000

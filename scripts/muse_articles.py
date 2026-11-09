@@ -47,7 +47,7 @@ KEEP_RESULTS = 300
 # Muse のジャンル → サイトのレーン（書き方の人物像。最終のジャンルは build_web_record が中身で決め直す）
 LANE_BY_GENRE = {
     "手続き": "public", "お金": "public", "早見表": "public", "値上げ": "lifestyle", "暮らし": "lifestyle",
-    "速報解説": "business", "ビジネス": "business", "AI・テック": "ai",
+    "速報解説": "business", "ビジネス": "business", "AI・テック": "ai", "比較": "lifestyle",  # 2026-11-09 比較・選び方（収益の受け皿）
 }
 PROCEDURE_GENRES = {"手続き"}
 
