@@ -2841,9 +2841,9 @@
       "pages": []
     },
     "nitori-member-data-leak-2026": {
-      "at": "2026-11-09T16:52:24+00:00",
+      "at": "2026-11-09T17:12:37+00:00",
       "status": "gate_failed",
-      "tries": 4,
+      "tries": 5,
       "textAt": "2026-11-09T23:30:00+00:00",
       "textId": "",
       "breaking": false,
@@ -2851,7 +2851,7 @@
       "versions": {
         "full": {
           "ok": false,
-          "seconds": 61.426,
+          "seconds": 61.882,
           "reasons": [],
           "qa": {
             "geometry": true,
@@ -2865,7 +2865,7 @@
         },
         "short": {
           "ok": false,
-          "seconds": 35.49,
+          "seconds": 37.617,
           "reasons": [],
           "qa": {
             "geometry": true,
@@ -2881,27 +2881,96 @@
       "timings": {
         "full": {
           "script": 0.0,
-          "tts": 27.61,
-          "plan_audio": 5.26,
-          "render": 47.94,
-          "gate": 6.02,
-          "sheet": 2.69,
-          "total": 89.6,
-          "ladder_total": 217.1
+          "tts": 16.98,
+          "plan_audio": 3.73,
+          "render": 44.25,
+          "gate": 4.84,
+          "sheet": 2.04,
+          "total": 71.9,
+          "ladder_total": 181.0
         },
         "short": {
           "script": 0.0,
-          "tts": 15.39,
-          "plan_audio": 3.13,
-          "render": 25.75,
-          "gate": 3.89,
-          "sheet": 1.71,
-          "total": 49.9,
-          "ladder_total": 217.1
+          "tts": 10.14,
+          "plan_audio": 2.22,
+          "render": 27.0,
+          "gate": 3.18,
+          "sheet": 1.31,
+          "total": 43.9,
+          "ladder_total": 181.0
         }
       },
       "ok": false,
       "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない / short: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない",
+      "pages": [
+        "ai-tech-express.jp"
+      ]
+    },
+    "docomo-data-leak-family-lines": {
+      "at": "2026-11-09T17:12:37+00:00",
+      "status": "gate_failed",
+      "tries": 1,
+      "textAt": "2026-11-10T01:00:00+00:00",
+      "textId": "",
+      "breaking": false,
+      "scheduled": true,
+      "versions": {
+        "full": {
+          "ok": false,
+          "seconds": 85.56,
+          "reasons": [
+            "長さが 5〜80秒の外（85.6秒）",
+            "v3: 長さが 40〜80秒の外（85.6秒）"
+          ],
+          "qa": {
+            "geometry": true,
+            "vision": false,
+            "version": 1,
+            "v3": false
+          },
+          "template": "",
+          "level": null,
+          "base_layout": "screen-left-headline"
+        },
+        "short": {
+          "ok": false,
+          "seconds": 41.61,
+          "reasons": [],
+          "qa": {
+            "geometry": true,
+            "vision": true,
+            "version": 1,
+            "v3": false
+          },
+          "template": "",
+          "level": null,
+          "base_layout": "screen-left-headline"
+        }
+      },
+      "timings": {
+        "full": {
+          "script": 0.0,
+          "tts": 46.06,
+          "plan_audio": 5.2,
+          "render": 56.36,
+          "gate": 6.34,
+          "sheet": 2.83,
+          "total": 116.8,
+          "ladder_total": 446.1
+        },
+        "short": {
+          "script": 0.0,
+          "tts": 22.01,
+          "plan_audio": 1.83,
+          "render": 27.85,
+          "gate": 3.72,
+          "sheet": 1.53,
+          "total": 57.0,
+          "ladder_total": 446.1
+        }
+      },
+      "ok": false,
+      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: 長さが 5〜80秒の外（85.6秒） / short: どの段でも合格しなかった（あとの回で作り直す）: full: 長さが 5〜80秒の外（85.6秒）",
       "pages": [
         "ai-tech-express.jp"
       ]
@@ -3578,7 +3647,12 @@
     "nitori-member-data-leak-2026": {
       "status": "waiting",
       "why": "動画を作る記事なので 08:30 まで動画を待つ（来なければ写真・カードで出す）",
-      "checkedAt": "2026-11-09T16:56:01+00:00"
+      "checkedAt": "2026-11-09T17:23:04+00:00"
+    },
+    "docomo-data-leak-family-lines": {
+      "status": "waiting",
+      "why": "動画を作る記事なので 10:00 まで動画を待つ（来なければ写真・カードで出す）",
+      "checkedAt": "2026-11-09T17:23:04+00:00"
     }
   },
   "converted": {
