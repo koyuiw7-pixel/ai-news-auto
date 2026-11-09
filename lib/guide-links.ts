@@ -30,8 +30,14 @@ export function guideLinksForArticle(article: ArticleSummary, howtos: HowtoGuide
   if (article.type === "roundup") return [];
   const text = `${article.title} ${article.seoTitle ?? ""}`;
   const matched = howtos.filter((guide) => test(guide.match, text));
-  // 同じ製品（tool）のガイドだけにそろえる（最初に当たった製品）。別の製品のガイドを混ぜない
-  const tool = matched[0]?.tool;
+  // 同じ製品（tool）のガイドだけにそろえる。別の製品のガイドを混ぜない。
+  // 製品の名前が題名に出ているガイドの製品を先にする（いちばん長い名前。claude-code ＞ claude）。
+  // 2026-11-10: 複数の製品にまたがるガイド（ai-privacy-settings。tool は chatgpt）がファイル順で先に当たり、
+  // Claude の記事に ChatGPT の料金ガイドの組を選んで公開前の検査に落ちていた
+  const named = matched
+    .filter((guide) => guide.tool && new RegExp(guide.tool.replace(/-/g, "[\\s-]?"), "i").test(text))
+    .sort((a, b) => (b.tool?.length ?? 0) - (a.tool?.length ?? 0));
+  const tool = named[0]?.tool ?? matched[0]?.tool;
   const sameTool = matched.filter((guide) => guide.tool === tool);
   const links: GuideLink[] = [];
   // 料金のガイドが2本以上ある（「料金」と「無料でどこまで」など）ときは、製品の料金の本体（slug が -pricing）を先に出す。
