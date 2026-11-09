@@ -6143,6 +6143,19 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/kaisai/02kiban09_04000747.html"
     },
+    "28e3a79b5138651e": {
+      "at": "2026-11-09T02:06:36.581996+00:00",
+      "breaking": true,
+      "costUsd": 0.1254,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "plamo-3-fin-open-weight",
+      "url": "https://www.preferred.jp/ja/news/pr20261109"
+    },
     "290dbcbb1becccf6": {
       "at": "2026-10-26T21:14:17.873372+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（説明会）",
@@ -19559,34 +19572,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-06T12:38:41.613360+00:00",
-      "attempt": 2,
-      "id": "5125d565684864f6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jst",
-      "title": "自己回帰生成モデルの熱力学を構築～大規模言語モデルに内在する「世界モデル」の定量的理解に向けて～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T12:52:50.947595+00:00",
-      "attempt": 1,
-      "id": "ed79290dfff2f62b",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "samsung-jp",
-      "title": "Samsung、KT・SKテレコムと韓国の「AI RAN」プロジェクトを推進"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-06T12:54:21.168057+00:00",
       "attempt": 2,
       "id": "ed79290dfff2f62b",
@@ -26245,6 +26230,55 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（FDE・LLM）",
         "読みやすさ: 段落が長い（平均 121.2字・最長 160字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T02:06:07.615757+00:00",
+      "attempt": 1,
+      "id": "28e3a79b5138651e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.8,
+        "avg_sentence": 46.1,
+        "long_share": 0.2,
+        "max_paragraph": 162,
+        "paragraphs": 19,
+        "sentences": 35
+      },
+      "score": 88,
+      "source": "pfn-news",
+      "title": "国産の金融特化型小規模言語モデルPLaMo 3.0 Finをオープンウェイトで公開",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（PFN・NICT・JSON）",
+        "読みやすさ: 文が長い（1文の平均 46.1字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T02:06:36.563082+00:00",
+      "attempt": 0,
+      "id": "28e3a79b5138651e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 86.9,
+        "avg_sentence": 41.3,
+        "long_share": 0.1,
+        "max_paragraph": 162,
+        "paragraphs": 19,
+        "sentences": 40
+      },
+      "score": 88,
+      "source": "pfn-news",
+      "title": "国産の金融特化型小規模言語モデルPLaMo 3.0 Finをオープンウェイトで公開",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（PFN・NICT・JSON）"
       ]
     }
   ],
