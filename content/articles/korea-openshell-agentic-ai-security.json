@@ -3,8 +3,8 @@
   "sourceType": "web",
   "sourceUrl": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/",
   "sourceName": "NVIDIA公式ブログ",
-  "title": "現代自動車グループ、AIエージェントの安全実行基盤「OpenShell」を検討　LGは700万人分の韓国人ペルソナを活用",
-  "seoTitle": "OpenShellとは？韓国企業のAIエージェント安全対策",
+  "title": "現代自動車グループがAIの安全実行基盤を検討　LGは700万人分の韓国人ペルソナを活用",
+  "seoTitle": "OpenShellとは？現代自動車グループが検討するAI実行基盤",
   "threadsPost": "AIエージェントを社内で使う企業の担当者に、押さえておきたい話です。\n\n現代自動車グループが、AIエージェントの安全実行基盤「OpenShell」の採用を検討しています。\n韓国のAIセキュリティ企業AIM Intelligenceも、自社基盤との連携を進めます。\n\n社内の業務にAIを任せるなら、安全面で何を重視しますか？",
   "threadsHook": "callout",
   "threadsQuestions": [
@@ -23,8 +23,8 @@
   ],
   "threadsStyle": 3,
   "writingVoice": "senpai",
-  "lede": "韓国で、AIエージェント（自分で手順を進めるAI）を社内で安全に動かす取り組みが広がっています。現代自動車グループはNVIDIAの「NemoClaw」の設計図と実行環境「OpenShell」を検討しており、LG AI Researchは「K-EXAONE-2.5」のAPI提供を開く方針です。一般の利用者がすぐ使えるものではなく、日本での提供や料金はまだ発表されていません。",
-  "description": "現代自動車グループがNVIDIAのNemoClawとOpenShellを検討し、AIM IntelligenceはStarfortを連携。LGはK-EXAONE-2.5のAPIを開く。700万人の合成ペルソナも解説。",
+  "lede": "AIエージェントの導入を検討する企業に向け、現代自動車グループはNVIDIAの実行環境「OpenShell」などを検討しています。LG AI Researchは、700万人分の架空の韓国人ペルソナを含むデータセットを使って開発した「K-EXAONE-2.5」のAPIアクセスを開く方針です。",
+  "description": "現代自動車グループは、AIエージェントを安全に動かすNVIDIAのOpenShellなどを検討。AIM Intelligenceとの連携や、LGが開発に用いた700万人分の合成ペルソナも解説します。",
   "keywords": [
     "OpenShell",
     "NemoClaw",
@@ -68,7 +68,7 @@
       "開発者は、OpenShellとNemotronの公式ページで対応範囲を確認できます。"
     ]
   },
-  "body": "日本の一般の利用者に、今すぐ変わることはありません。今回の話は、AIエージェントを社内業務に導入しようとする企業や開発者に関係します。日本での提供や料金は、まだ発表されていません。\n\nAIエージェントは、人の指示を受けて自分で手順を進めるAIです。社内の資料やツールに触れるため、実行環境の安全が課題になります。NVIDIA公式ブログは、韓国でその安全対策と国産モデルの整備が進んでいると紹介しました。\n\n## 現代自動車グループはNemoClawとOpenShellを検討\n\nNVIDIAの公式ブログによると、現代自動車グループは「NemoClaw」の設計図（ブループリント）と、実行環境「OpenShell」を検討しています。目的は、従業員の生産性や企業の業務に使う安全なAIエージェントです。\n\nOpenShellは「NVIDIA Open Agent Safety Platform」の中核部品です。外部から隔離した環境（サンドボックス）でAIを動かし、ポリシー（ルール）に基づいて制御します。守る対象は、機密データ、企業ツールへのアクセス、エージェントの自律的な行動です。\n\nNemoClawについては、サイソクの過去記事で解説しています（[NemoClawの発表](/articles/nvidia-nemoclaw-agent-platform)）。OpenShellはGTC Berlinでも取り上げられました（[GTC Berlinの発表](/articles/nvidia-gtc-berlin-2026-vera-rubin-openshell)）。\n\n## AIM IntelligenceがStarfortをOpenShellに連携\n\n韓国のAIセキュリティ企業AIM Intelligenceは、エージェント制御基盤「Starfort」をOpenShellに統合します。OpenShellの実行時のアクセス制御に、Starfortの検知機能を組み合わせる狙いです。\n\n検知するのは、悪意ある指示と、データの漏えいです。同社は公共エネルギー分野での予備的な概念実証（PoC）も検討しています。企業、産業、ロボットの現場への応用も視野に入れています。\n\nOpenShellは、NVIDIAのページで「デフォルトで拒否し、意図に基づいて許可する」仕組みと説明されています。ポリシーはエージェントの外側で適用され、AIの判断や協力に左右されないとされています（NVIDIA公式ブログ「OpenShell」、11/9確認）。\n\n## LGのK-EXAONE-2.5はAPIを開放、700万人のペルソナで学習\n\nモデル側では、LG AI Researchが「K-EXAONE-2.5」のAPIアクセスを開きます。NVIDIAのNemotronデータセットを使って開発されました。\n\nその1つがNemotron-Personas-Koreaです。韓国の公式統計に基づく、700万人分の完全な合成（架空の）ペルソナのオープンデータセットです。モデル開発者が、学習データや評価を韓国の文脈に合わせるために使います。\n\nNemotronは、特化型で効率的なAIエージェントを作るためのオープンなモデル、データ、技術群です。\n\n## まだ分からないこと\n\n- 現代自動車グループの導入の有無と時期は、まだ発表されていません。\n- K-EXAONE-2.5のAPIの料金や開放時期は、まだ発表されていません。\n- 日本の企業が使える条件は、まだ発表されていません。\n\n## 開発者・企業の担当者が確かめること\n\nOpenShellとNemotronは、NVIDIAの公式ページで案内されています。エージェントの導入を検討する企業は、実行環境の隔離とアクセス制御を、選定の比較項目に入れるとよいでしょう。",
+  "body": "今回の発表は、AIエージェントを社内業務に導入しようとする企業や開発者に関係します。現代自動車グループはNVIDIAの実行環境などを検討し、LG AI ResearchはAIモデルのAPIアクセスを開く方針です。\n\nAIエージェントは、人の指示を受けて自分で手順を進めるAIです。社内の資料やツールに触れるため、実行環境の安全が課題になります。NVIDIA公式ブログは、韓国での安全対策とモデル開発に関する取り組みを紹介しました。\n\n## 現代自動車グループはNemoClawとOpenShellを検討\n\nNVIDIAの公式ブログによると、現代自動車グループは「NemoClaw」の設計図（ブループリント）と、実行環境「OpenShell」を検討しています。従業員の生産性向上や企業の業務に使う、安全なAIエージェントを支える取り組みです。\n\nOpenShellは「NVIDIA Open Agent Safety Platform」の中核部品です。外部から隔離した環境（サンドボックス）でAIを動かし、ポリシー（ルール）に基づいて制御します。機密データを守り、企業ツールへのアクセスやエージェントの自律的な行動を管理します。\n\nNemoClawについては、サイソクの過去記事で解説しています（[NemoClawの発表](/articles/nvidia-nemoclaw-agent-platform)）。OpenShellはGTC Berlinでも取り上げられました（[GTC Berlinの発表](/articles/nvidia-gtc-berlin-2026-vera-rubin-openshell)）。\n\n## AIM IntelligenceはStarfortをOpenShellに連携\n\n韓国のAIセキュリティ企業AIM Intelligenceは、エージェント制御基盤「Starfort」をOpenShellに統合しています。OpenShellの実行時のアクセス制御に、Starfortの検知機能を組み合わせる狙いです。\n\n検知するのは、悪意ある指示とデータの漏えいです。同社は公共エネルギー分野での予備的な概念実証（PoC）も検討しています。企業、産業、ロボットの現場への応用も視野に入れています。\n\nOpenShellは、NVIDIAのページで「デフォルトで拒否し、意図に基づいて許可する」仕組みと説明されています。ポリシーはエージェントの外側で適用され、AIの判断や協力に左右されないとされています（NVIDIA公式ブログ「OpenShell」、11/9確認）。\n\n## LGは700万人分の合成ペルソナをモデル開発に活用\n\nLG AI Researchは「K-EXAONE-2.5」のAPIアクセスを開く方針です。このモデルはNVIDIAのNemotronデータセットを使って開発されました。\n\n使われたデータセットの1つが、Nemotron-Personas-Koreaです。韓国の公式統計に基づく、700万人分の完全な合成（架空の）韓国人ペルソナからなるオープンデータセットです。モデル開発者は、学習データや評価を韓国の文脈に合わせるために使います。\n\nNemotronは、特化型で効率的なAIエージェントを作るためのオープンなモデル、データ、技術群です。\n\n## 発表で示された各社の取り組み\n\n- 現代自動車グループは、NemoClawのブループリントとOpenShellを検討しています。\n- AIM Intelligenceは、StarfortとOpenShellを統合しています。\n- LG AI Researchは、K-EXAONE-2.5のAPIアクセスを開く方針です。\n\n## 企業の担当者が確認したい実行環境の制御\n\nOpenShellとNemotronは、NVIDIAの公式ページで案内されています。エージェントの導入を検討する企業は、実行環境の隔離とアクセス制御を、選定の比較項目に入れるとよいでしょう。",
   "easy": "## ひとことで言うと\n\nAIに仕事を任せる企業が増えるなかで、韓国では「安全に動かす仕組み」と「韓国の事情に合った学習データ」の両方を整える動きが出ています。NVIDIAが公式ブログで紹介しました。\n\n## 安全に動かす仕組み\n\nAIエージェントは、自分で手順を進めるAIです。社内の情報やツールに触れるため、意図しない操作を防ぐ仕組みが要ります。\n\nNVIDIAの「OpenShell」は、AIを隔離した環境で動かし、ルールに沿って権限を管理します。現代自動車グループは、これを検討しています。\n\n## 韓国向けのデータとモデル\n\nLG AI Researchは「K-EXAONE-2.5」のAPI（アプリから呼び出す仕組み）を開く方針です。開発には、韓国の公式統計に基づく700万人分の架空の人物データ「Nemotron-Personas-Korea」などが使われました。日本での提供や料金は、まだ発表されていません。",
   "channel": "NVIDIA公式ブログ",
   "channelId": "",
@@ -245,5 +245,48 @@
     "relevant": true,
     "at": "2026-11-09T10:17:40+00:00"
   },
-  "sectionsPolishedAt": "2026-11-09T11:43:35+00:00"
+  "sectionsPolishedAt": "2026-11-09T11:43:35+00:00",
+  "gptReview": {
+    "reviewedBy": "gpt-6.1-terra",
+    "reviewedAt": "2026-11-09T12:32:42+00:00",
+    "changed": [
+      "body",
+      "description",
+      "lede",
+      "seoTitle",
+      "title"
+    ],
+    "before": {
+      "title": "現代自動車グループ、AIエージェントの安全実行基盤「OpenShell」を検討　LGは700万人分の韓国人ペルソナを活用",
+      "lede": "韓国で、AIエージェント（自分で手順を進めるAI）を社内で安全に動かす取り組みが広がっています。現代自動車グループはNVIDIAの「NemoClaw」の設計図と実行環境「OpenShell」を検討しており、LG AI Researchは「K-EXAONE-2.5」のAPI提供を開く方針です。一般の利用者がすぐ使えるものではなく、日本での提供や料金はまだ発表されていません。"
+    },
+    "fixes": [
+      {
+        "before": "LGのK-EXAONE-2.5はAPIを開放、700万人のペルソナで学習",
+        "after": "LGは700万人分の合成ペルソナをモデル開発に活用",
+        "evidence": "「developed using NVIDIA Nemotron datasets, including Nemotron-Personas-Korea」"
+      },
+      {
+        "before": "AIM Intelligenceは、エージェント制御基盤「Starfort」をOpenShellに統合します。",
+        "after": "AIM Intelligenceは、エージェント制御基盤「Starfort」をOpenShellに統合しています。",
+        "evidence": "「is integrating its Starfort agent control platform with NVIDIA OpenShell」"
+      },
+      {
+        "before": "一般の利用者がすぐ使えるものではなく、日本での提供や料金はまだ発表されていません。",
+        "after": "記述を削除",
+        "evidence": "資料1には一般利用、日本での提供条件、料金についての記載がない"
+      },
+      {
+        "before": "現代自動車グループの導入の有無と時期は、まだ発表されていません。",
+        "after": "現代自動車グループは、NemoClawのブループリントとOpenShellを検討しています。",
+        "evidence": "「Hyundai Motor Group is exploring NVIDIA NemoClaw blueprints and the NVIDIA OpenShell runtime」"
+      },
+      {
+        "before": "K-EXAONE-2.5のAPIの料金や開放時期は、まだ発表されていません。日本の企業が使える条件は、まだ発表されていません。",
+        "after": "記述を削除",
+        "evidence": "資料1にはAPIの料金、開放時期、日本での利用条件についての記載がない"
+      }
+    ],
+    "notes": "リードと見出しを、企業・開発者に関係する内容が先に分かるよう整理しました。資料から確認できない未発表の断定を削り、合成ペルソナの用途とStarfortの統合状況を資料に合わせました。"
+  }
 }
