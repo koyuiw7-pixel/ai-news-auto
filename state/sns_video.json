@@ -2789,9 +2789,9 @@
       "pages": []
     },
     "docomo-data-leak-what-to-do": {
-      "at": "2026-11-09T03:52:32+00:00",
+      "at": "2026-11-09T04:36:57+00:00",
       "status": "gate_failed",
-      "tries": 7,
+      "tries": 8,
       "textAt": "2026-11-09T01:31:49+00:00",
       "textId": "6af11bf29214322f6888895f",
       "breaking": false,
@@ -2830,10 +2830,10 @@
       },
       "timings": {
         "full": {
-          "ladder_total": 16.2
+          "ladder_total": 15.9
         },
         "short": {
-          "ladder_total": 16.2
+          "ladder_total": 15.9
         }
       },
       "ok": false,
@@ -3370,10 +3370,18 @@
       "delayedMin": 0
     },
     "caa-recall-accident-report-202610": {
-      "status": "waiting",
+      "status": "created",
       "why": "枠（15:30）の75分前になったら写真・カードで予約する",
       "checkedAt": "2026-11-09T03:52:51+00:00",
-      "photoWait": true
+      "channels": {
+        "threads": "6af14def7522f65ac0bc4e0d"
+      },
+      "id": "6af14def7522f65ac0bc4e0d",
+      "dueAt": "2026-11-09T05:37:00+00:00",
+      "variant": "",
+      "media": "card",
+      "linkPosition": "reply",
+      "delayedMin": 52
     },
     "corporate-data-breach-record-2026": {
       "status": "created",
@@ -3406,12 +3414,12 @@
     "tokyo-email-leak-incident": {
       "status": "waiting",
       "why": "枠（18:00）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T03:52:51+00:00"
+      "checkedAt": "2026-11-09T04:37:19+00:00"
     },
     "ntt-east-omakase-net-shukyaku": {
       "status": "waiting",
       "why": "枠（18:45）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T03:52:51+00:00"
+      "checkedAt": "2026-11-09T04:37:19+00:00"
     }
   },
   "converted": {
@@ -5245,6 +5253,12 @@
       "at": "2026-11-09T03:13:05+00:00",
       "ok": true,
       "card": "https://ai-tech-express.jp/card/respirator-mask-ring-recall-2026?v=2-ffe9d8db"
+    },
+    "6af14383e29b1359f0c93ed3": {
+      "rules": "b11fc16c056b-reply",
+      "at": "2026-11-09T04:36:57+00:00",
+      "ok": true,
+      "card": "https://ai-tech-express.jp/card/famima-karaage-kushi-release?v=2-898dbd76"
     }
   },
   "photoPaused": {}
