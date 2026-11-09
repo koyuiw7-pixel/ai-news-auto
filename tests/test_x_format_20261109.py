@@ -77,6 +77,22 @@ class ImageTest(unittest.TestCase):
                 self.assertEqual(xp.x_image(no_photo("pixel"))["from"], "figure")
 
 
+class OrderTest(unittest.TestCase):
+    def test_reader_style_goes_first(self):
+        now = at(12, 40)
+        arts = [phone("classic", made=at(11)), phone("reader", made=at(10))]
+
+        def fake(a, state=None):
+            if a["slug"] != "reader":
+                return None
+            return {"text": "x", "reply": "続き（確認手順）→ https://ai-tech-express.jp/articles/reader?utm_source=x", "label": "確認手順"}
+
+        with patch.object(xp.bp, "_indexable_rule", return_value=(lambda a, d: True, lambda arts: set())), \
+                patch.object(xp.sns_reader, "x_post", side_effect=fake), patch.object(xp, "problems", return_value=[]):
+            found = xp.candidates({}, {}, now, at(0), arts)
+        self.assertEqual([a["slug"] for a in found], ["reader", "classic"])
+
+
 class LinkTest(unittest.TestCase):
     def test_main_has_no_link_and_reply_has_link_with_utm(self):
         a = phone()
@@ -125,6 +141,21 @@ class TrendTagTest(unittest.TestCase):
         a = phone()
         post = xp.compose_post(a)
         self.assertEqual(xp.problems(a, post["text"], post), [])
+
+
+class FirstLineTest(unittest.TestCase):
+    def test_price_notation_tax_is_not_a_keyword(self):
+        # 2026-11-09 14時の X: 「【税】ポータブル電源AC180は税込5万9,292円から…」。「税込」の「税」が言葉に当たっていた
+        a = article("power", "ポータブル電源AC180は税込5万9,292円から　非常食は1食約504円で比べる", at(9),
+                    lede="BLUETTIのポータブル電源「AC180」はセール価格で税込59,292円です。容量は1,152Whです。")
+        self.assertEqual(sns_plan.x_keyword(a), "ポータブル電源AC180")
+        self.assertFalse(xp.first_line(a).startswith("【"))
+        self.assertNotIn("【税】", xp.x_text(a))
+
+    def test_real_tax_words_still_work(self):
+        self.assertFalse(sns_plan.keyword_like("税", "税込", 1))
+        self.assertFalse(sns_plan.keyword_like("税", "消費税が", 3))
+        self.assertTrue(sns_plan.keyword_like("NISA", "NISAの", 4))
 
 
 class VolumeTest(unittest.TestCase):

@@ -343,7 +343,9 @@ def candidates(xs: dict, posted: dict, now: datetime, since: datetime, articles:
         if sns_plan.x_score(article) < 0 or not ok_for_x(article, xs, posted, recent):
             continue
         # 2026-11-08 夜 オーナー: 軸は暮らしの安全・お金・手続き（レーン＋手続きの言葉）。読者向けの文面がある記事を先に。同じなら X の話題の点数
-        out.append(((sns_reader.rank_key(article, "x", made)[0], sns_plan.x_score(article), made), article))
+        # 2026-11-09（台帳 S50）: 読者向けの文面（誰の話か・数字1つ・記事にしかないもの）がある記事を必ず先に。今までの書き方は無いときだけ
+        ready = compose_post(article)["style"] == "reader"
+        out.append(((ready, sns_reader.rank_key(article, "x", made)[0], sns_plan.x_score(article), made), article))
     out.sort(key=lambda x: x[0], reverse=True)
     return [a for _, a in out]
 

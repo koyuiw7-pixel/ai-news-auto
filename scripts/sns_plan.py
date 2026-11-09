@@ -320,6 +320,18 @@ def x_earnings_only(article: dict | None) -> bool:
 _LEAD = re.compile(r"^(?:【[^】]{1,12}】)?\s*")
 
 
+# 値段・税の書き方（税込・税抜・税別）。この中の「税」はレーンの言葉に当たっても X の1行目の言葉にしない
+PRICE_NOTATION_AFTER = ("込", "抜", "別")
+
+
+def keyword_like(word: str, text: str, end: int) -> bool:
+    """レーン・製品の正規表現に当たった言葉が、X の1行目の頭に置ける検索される言葉か（2文字以上・「税込」などの一部でない）"""
+    word = str(word or "").strip()
+    if len(word) < 2:
+        return False
+    return not str(text or "")[end:end + 1].startswith(PRICE_NOTATION_AFTER)
+
+
 def x_keyword(article: dict) -> str:
     """X の1行目の頭に置く、検索される言葉（地震・震度・製品の名前・ブランドの名前）"""
     title = str(article.get("title") or article.get("seoTitle") or "").strip()
@@ -341,6 +353,8 @@ def x_keyword(article: dict) -> str:
     best = None
     for p in pats:
         for m in _re(p).finditer(body) if p else []:
+            if not keyword_like(m.group(0), body, m.end()):
+                continue  # 「税込」の「税」のような1文字・値段の書き方の一部は検索される言葉ではない（2026-11-09 【税】が頭に付いた）
             key = (m.start(), -len(m.group(0)))
             if best is None or key < best[0]:
                 best = (key, m.group(0))
