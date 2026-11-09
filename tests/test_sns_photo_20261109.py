@@ -192,6 +192,20 @@ class ImagePickTest(unittest.TestCase):
         # SNS の予定に無い前の日の記事は今までどおり頼まない
         self.assertEqual(muse_images.update_requests({"items": {}}, {"child-allowance": old}, set(), cap=30, today="2026-11-09"), [])
 
+    def test_muse_picture_replaces_a_logo_thumbnail(self):
+        from PIL import Image
+
+        path = Path(tempfile.mkdtemp()) / "respirator-recall.jpg"
+        pic = Image.linear_gradient("L").resize((1200, 675)).convert("RGB")  # 明るさに幅のある絵
+        pic.save(path, quality=95)
+        a = json.loads(json.dumps(LOGO))
+        with patch.object(images, "store", lambda name, im, dry: (f"{IMG}{name}-12345678.jpg", im.size)):
+            status, url = muse_images.apply_one(path, a, {"priority": 1}, dry_run=True)
+        self.assertEqual(status, "applied", url)
+        self.assertEqual(a["thumbnail"], url)  # ロゴの写真を Muse の絵に替える
+        self.assertEqual(a["imageCredit"]["model"], "muse")
+        self.assertEqual(r.photo_problem(a), "")
+
     def test_slightly_dark_muse_picture_passes(self):
         from PIL import Image
 

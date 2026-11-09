@@ -354,7 +354,12 @@ def apply_one(path: Path, article: dict, row: dict | None, *, dry_run: bool = Fa
     url, _ = images.store(f"{article.get('slug')}-muse", fit_size(image), dry_run)
     before = article.get("coverImage") or ""
     article["coverImage"] = url
-    article["coverCredit"] = muse_credit()  # 同じ記事に Muse が描き直して置いたときは新しい方に替える（URL が変わるのでキャッシュも替わる）
+    article["coverCredit"] = muse_credit()
+    if got == "none" and article.get("layout") != "noir" and article.get("thumbnail"):
+        # ノワール以外の記事で、記事の写真がロゴ・ほかの記事の画像だった → 記事の写真も Muse の絵にする（台帳 S49）
+        article["thumbnail"] = url
+        article["imageCredit"] = muse_credit()
+        article.pop("imageFocus", None)  # 同じ記事に Muse が描き直して置いたときは新しい方に替える（URL が変わるのでキャッシュも替わる）
     article.pop("coverTries", None)
     return "applied", url + (f"（Workers AI の表紙 {before} から替えた）" if before and got == "ai" else "")
 

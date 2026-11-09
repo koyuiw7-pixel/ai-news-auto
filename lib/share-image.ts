@@ -12,15 +12,20 @@
 import { isOwnImage } from "./thumb-url";
 
 type ShareImageInput = {
+  slug?: string;
   thumbnail?: string;
-  imageCredit?: { kind?: string } | null;
+  imageCredit?: { kind?: string; imageKind?: string } | null;
 };
 
 export type ShareImage = { url: string; width?: number; height?: number; alt?: string };
 
 /** 公式発表の写真をシェア画像の先頭にしてよいか（サイトで配信する幅 1,200px の写真で、出典が公式発表） */
 export function hasOfficialPhoto(article: ShareImageInput): boolean {
-  return isOwnImage(article.thumbnail) && article.imageCredit?.kind === "official";
+  if (!isOwnImage(article.thumbnail) || article.imageCredit?.kind !== "official") return false;
+  // 2026-11-09（台帳 S49）: 公式のロゴ・サイト共通の画像、ほかの記事のために保存した画像は先頭にしない（見出し入りのカバーが先）
+  if (["logo", "generic"].includes(article.imageCredit?.imageKind ?? "")) return false;
+  const name = /\/img\/([^/?#]+)$/.exec((article.thumbnail ?? "").split("?")[0])?.[1] ?? "";
+  return !article.slug || name.startsWith(article.slug.slice(0, 120));
 }
 
 /** og:image の並び。cover は見出し入りのカバーの URL（無ければ空） */
