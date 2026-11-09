@@ -75,14 +75,13 @@
   "videoTitle": "従来の健康保険証は2025年12月1日で終了。マイナ保険証と資格確認書",
   "publishedAt": "2026-11-09T10:38:04.766383+00:00",
   "generatedAt": "2026-11-09T10:39:11.048031+00:00",
-  "thumbnail": "https://www.mhlw.go.jp/common/img/img_ogp.jpg",
+  "thumbnail": "",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "マイナポータルで、自分の健康保険証の利用登録が済んでいるか確かめる",
-    "資格確認書が届いていなければ、加入している医療保険者（勤務先や市区町村）に問い合わせる",
-    "マイナンバーカードの電子証明書の有効期限を券面で確かめる。期限の3か月前から更新できます"
+    "マイナポータルで、健康保険証の利用登録が済んでいるか確かめる",
+    "資格確認書が手元になければ、加入している医療保険者に問い合わせる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -121,5 +120,127 @@
   ],
   "detectedAt": "2026-11-09T10:39:51+00:00",
   "layout": "noir",
-  "summaryLine": "従来の健康保険証は2025年12月1日で有効期限が終了し、受付には使えなくなりました。"
+  "summaryLine": "従来の健康保険証は2025年12月1日で有効期限が終了し、受付には使えなくなりました。",
+  "insight": [
+    {
+      "text": "マイナンバーカードを紛失・更新中の方は、申請により資格確認書が交付されます。資格確認書の有効期限は5年以内で保険者が設定します。",
+      "source": "https://www.mhlw.go.jp/stf/newpage_45470.html"
+    },
+    {
+      "text": "健康保険証の利用登録などの質問は、マイナンバー総合フリーダイヤルの「5番」です。受付は平日9時30分から20時00分まで、土日祝は9時30分から17時30分までです。",
+      "source": "https://www.digital.go.jp/policies/mynumber_contact"
+    },
+    {
+      "text": "転職や引越しで保険者が変わっても、利用登録の再登録は必要ありません。ただし新しい保険者への異動届などの手続は従来どおり必要です。",
+      "source": "https://www.mhlw.go.jp/stf/newpage_40406.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "加入している医療保険者（勤務先や市区町村など）",
+      "url": "https://www.mhlw.go.jp/stf/newpage_45470.html",
+      "source": "https://www.mhlw.go.jp/stf/newpage_45470.html",
+      "note": "資格確認書の交付や様式は保険者ごとに異なるため、届かないときや内容は保険者に確認する。"
+    },
+    {
+      "name": "マイナンバー総合フリーダイヤル（健康保険証の利用）",
+      "url": "https://www.digital.go.jp/policies/mynumber_contact",
+      "source": "https://www.digital.go.jp/policies/mynumber_contact",
+      "howTo": [
+        "お問い合わせ先・関連リンク",
+        "マイナンバー制度に関するお問合せ"
+      ],
+      "phone": "0120-95-0178",
+      "hours": "平日 9時30分から20時00分まで、土日祝 9時30分から17時30分まで（年末年始を除く）",
+      "note": "健康保険証の利用は5番。紛失・盗難によるカードの一時利用停止は24時間365日対応。"
+    },
+    {
+      "name": "マイナポータル（利用登録の確認）",
+      "url": "https://myna.go.jp/certificates/health-insurance-card",
+      "source": "https://www.mhlw.go.jp/stf/newpage_08277.html",
+      "howTo": [
+        "マイナ保険証を利用する方法",
+        "マイナポータルログイン"
+      ],
+      "note": "利用登録の状況は、マイナポータル等で確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "マイナポータルで、健康保険証の利用登録が済んでいるか確かめる",
+      "source": "https://www.mhlw.go.jp/stf/newpage_08277.html",
+      "steps": [
+        "マイナアプリ（旧マイナポータルアプリ）でマイナポータルにログインする",
+        "利用登録の状況を画面で確認する"
+      ],
+      "url": "https://myna.go.jp/certificates/health-insurance-card"
+    },
+    {
+      "action": "資格確認書が手元になければ、加入している医療保険者に問い合わせる",
+      "source": "https://www.mhlw.go.jp/stf/newpage_45470.html",
+      "steps": [
+        "資格確認書に「資格確認書」と書かれているか見る",
+        "届いていなければ保険者に問い合わせる"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/newpage_45470.html"
+    }
+  ],
+  "cause": {
+    "text": "従来の健康保険証は2024年12月2日以降新たに発行されなくなり、マイナ保険証を基本とする仕組みに移行しています。有効期限は2025年12月1日で終了しています。当分の間、マイナ保険証を持たない人には資格確認書が無償で交付されます。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/stf/newpage_08277.html"
+  },
+  "worries": [
+    {
+      "q": "資格確認書がまだ届いていません。どうすればいい？",
+      "a": "届いていない場合は、加入している医療保険者に問い合わせてください。資格確認書の交付等に関する事項は、ご自身が加入している保険者からの情報を確認するよう案内されています。",
+      "source": "https://www.mhlw.go.jp/stf/newpage_45470.html",
+      "action": "勤務先の健康保険か市区町村の国保窓口に、資格確認書が届いていないと問い合わせる。",
+      "actionSource": "https://www.digital.go.jp/policies/mynumber/insurance-card/optional-insured-status"
+    },
+    {
+      "q": "マイナ保険証を持っていても、資格確認書はもらえる？",
+      "a": "もらえます。カードでの受診が困難な配慮が必要な方（ご高齢の方、障害のある方など）は、保険者に申請すれば資格確認書を取得できます。親族などの代理申請も可能です。",
+      "source": "https://www.mhlw.go.jp/stf/newpage_45470.html",
+      "action": "カードでの受診が難しい家族がいれば、加入している保険者に資格確認書の交付を申請する。"
+    },
+    {
+      "q": "マイナンバーカードをなくしたら、保険証はどうなる？",
+      "a": "カードの紛失・盗難の場合、マイナンバー総合フリーダイヤルで利用の一時停止ができます。紛失・更新中の方は、申請により資格確認書が交付されます。",
+      "source": "https://www.mhlw.go.jp/stf/newpage_45470.html",
+      "action": "紛失したらすぐ0120-95-0178（24時間）で利用を一時停止し、保険者に資格確認書を申請する。",
+      "actionSource": "https://www.digital.go.jp/policies/mynumber_contact"
+    },
+    {
+      "q": "電子証明書の期限が切れたら、保険証はどうなる？",
+      "a": "電子証明書の有効期限が切れてから3か月間は健康保険証として利用可能です。ただし、切れた後はマイナンバーカードの健康保険証以外の機能は使えないため、速やかに自治体の窓口で更新します。",
+      "source": "https://www.mhlw.go.jp/stf/newpage_08277.html",
+      "action": "電子証明書の期限の3か月前から、お住まいの自治体の窓口で更新する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "マイナ保険証と資格確認書、どちらを使う？",
+      "situation": "カードがあり、利用登録も済んでいる",
+      "recommend": "マイナ保険証を使ってよい",
+      "reason": "利用登録が済んでいれば、マイナンバーカードがそのまま保険証になります。同意すれば過去の医療情報や処方薬の情報を共有できます。新しい証明書は届きません。",
+      "source": "https://www.mhlw.go.jp/stf/newpage_08277.html"
+    },
+    {
+      "question": "利用登録をしていないが、資格確認書は必要？",
+      "situation": "カードを持っていない、または登録していない",
+      "recommend": "資格確認書が届くのを待つ",
+      "reason": "資格確認書は、マイナ保険証を持っていない人に無償で、申請によらず交付されます。届かない場合は加入している保険者に問い合わせます。",
+      "source": "https://www.mhlw.go.jp/stf/newpage_45470.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "紛失・更新中でも、申請で資格確認書がもらえる",
+    "cause": "なぜ保険証が変わったのか、いま分かっていること",
+    "steps": "今日、利用登録と資格確認書を確かめる",
+    "desk": "困ったときの問い合わせ先と時間帯",
+    "worries": "届かない、なくした、切れたときはどうする？",
+    "guide": "資格確認書かマイナ保険証か、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-09T11:10:27+00:00"
 }

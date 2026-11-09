@@ -134,5 +134,127 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/nencho-2026-dependent-income-limit-62man-84561d10.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "改正で新たに扶養親族等の要件を満たす家族がいれば、「給与所得者の扶養控除等(異動)申告書」等の提出が必要です。改正は令和8年12月1日以後に支払う給与等から適用されます。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/102.pdf"
+    },
+    {
+      "text": "令和8年11月30日以前に年末調整を行う場合は、扶養の所得要件を「58万円以下（給与だけの場合は、給与の収入金額が123万円以下）」に読み替えて使うとされています。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm"
+    },
+    {
+      "text": "特定親族特別控除は、特定親族の合計所得金額が62万円超85万円以下のとき控除額63万円です。給与だけなら収入136万円超159万円以下の範囲にあたります。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/115.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 給与所得者（従業員）の方へ（令和８年分）",
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "howTo": [
+        "年末調整がよくわかるページ（令和８年分）",
+        "給与所得者（従業員）の方へ"
+      ],
+      "note": "扶養親族などがいない人でも、扶養控除等申告書の提出が必要とされています。"
+    },
+    {
+      "name": "国税庁 手続案内 A2-3 給与所得者の保険料控除の申告",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "申告手続・用紙",
+        "税務手続の案内（税目別一覧）",
+        "A2 源泉所得税関係",
+        "A2-3 給与所得者の保険料控除の申告"
+      ],
+      "note": "提出時期は、その年最後に給与等の支払を受ける日の前日までです。旧生命保険料の証明書は残額9,000円超で必要です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "保険料控除申告書の提出期限を、最後の給与日の前日で確かめて勤務先に出す",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "steps": [
+        "「提出時期」の欄を開く",
+        "その年最後に給与等の支払を受ける日の前日までを確認",
+        "勤務先の社内締切は別途確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm"
+    },
+    {
+      "action": "家族全員の今年の収入見込みを集め、扶養の所得要件を確かめる",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/115.pdf",
+      "steps": [
+        "家族ごとに今年1年分の収入見込みを集める",
+        "給与だけなら収入136万円以下が目安",
+        "年末調整計算シートで合計所得金額を計算"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/nencho_keisan/index.htm"
+    }
+  ],
+  "cause": {
+    "text": "令和8年度税制改正により、所得税の基礎控除の引上げ等が行われました。これらの改正は令和8年12月1日に施行され、令和8年分以後の所得税に適用されます。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/102.pdf"
+  },
+  "worries": [
+    {
+      "q": "いまの扶養の申告のままで大丈夫？",
+      "a": "令和8年分から扶養親族の所得要件が合計所得金額62万円以下に変わりました。改正で新たに対象になった家族がいる場合は、異動申告書の提出が必要とされています。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/102.pdf",
+      "action": "新たに扶養の要件を満たす家族がいれば、勤務先に扶養控除等(異動)申告書等を出す"
+    },
+    {
+      "q": "去年の基準のままで判断して書き漏らさない？",
+      "a": "去年までの58万円以下の基準で判断すると、改正後は対象になる家族を書き漏らすおそれがあります。判定は年末調整を行う日の現況で見積もった合計所得金額で行います。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/102.pdf",
+      "action": "家族ごとに今年の見込み所得を62万円以下の基準で計算し直す",
+      "actionSource": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    },
+    {
+      "q": "19歳から22歳の子がいると控除はどうなる？",
+      "a": "19歳以上23歳未満で合計所得金額が62万円超123万円以下の親族は特定親族とされ、控除額は特定親族の所得に応じて最大63万円です。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/115.pdf",
+      "action": "19歳から22歳の子の収入見込みを確かめ、特定親族特別控除の表で控除額を見る"
+    },
+    {
+      "q": "生命保険料の区分を間違えたらどうなる？",
+      "a": "支払った保険料は、新生命保険料・旧生命保険料・介護医療保険料・個人年金保険料の区分ごとに計算し、他の区分に振り替えることはできないとされています。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf",
+      "action": "控除証明書の表記どおりに区分を写し、契約ごとに金額を分けて書く"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "扶養に入れるか、今年の見込みで決めてよい？",
+      "situation": "給与だけで収入が136万円前後の家族がいる",
+      "recommend": "見込み額で対象かを確かめてから申告する",
+      "reason": "判定には1月1日から12月31日までの合計所得金額の見積額が使われます。給与だけの場合は収入136万円以下が目安と書かれています。見込みが変われば異動申告書の提出が必要です。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/102.pdf"
+    },
+    {
+      "question": "扶養の異動申告書は今出すべき？",
+      "situation": "改正で新たに扶養の要件を満たす家族がいる",
+      "recommend": "勤務先に異動申告書等が必要か確認して提出する",
+      "reason": "改正は令和8年12月1日以後に支払う給与等から適用されます。新たに要件を満たす親族の扶養控除を受けるには、異動申告書等の提出が必要とされています。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/102.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "扶養の判定は今年の見込みで、古い基準は使えない",
+    "cause": "なぜ今年から変わるのか、いま分かっていること",
+    "steps": "年末調整前に、家族と保険の書類で確かめること",
+    "desk": "迷ったときに見る国税庁のページ",
+    "worries": "扶養や保険料の書き漏れ、心配な点は？",
+    "guide": "扶養を申告するか、異動申告書を出すかの決め方"
+  },
+  "todayActions": [
+    "保険料控除申告書の提出期限を、最後の給与日の前日で確かめて勤務先に出す",
+    "家族全員の今年の収入見込みを集め、扶養の所得要件を確かめる"
+  ],
+  "depthAt": "2026-11-09T11:09:43+00:00"
 }

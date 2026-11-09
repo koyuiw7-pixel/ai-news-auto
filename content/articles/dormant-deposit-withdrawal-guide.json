@@ -82,9 +82,8 @@
     }
   ],
   "todayActions": [
-    "通帳とキャッシュカードを1か所に集め、口座ごとに最後の取引日を書き出す",
-    "残高1万円以上の口座は、届け出の住所やメールアドレスが今も合っているか確かめる",
-    "使っていない口座は、取引のある金融機関に休眠預金等の有無を問い合わせる"
+    "取引のあった金融機関に、休眠預金等の有無と引き出し手続きを問い合わせる",
+    "残高1万円以上の口座は、登録している住所とメールアドレスが今も合っているか確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -107,5 +106,127 @@
   "qualityScore": 88,
   "detectedAt": "2026-11-09T10:38:02+00:00",
   "layout": "noir",
-  "summaryLine": "取引のない期間が10年を超えた預金は、休眠預金等に区分され、民間の公益活動で役立てられる。"
+  "summaryLine": "取引のない期間が10年を超えた預金は、休眠預金等に区分され、民間の公益活動で役立てられる。",
+  "insight": [
+    {
+      "text": "休眠預金等になっても「引き続きお取引のあった金融機関で引き出し」でき、引き出しに「期限はありません」と金融庁のQ&Aにある。",
+      "source": "https://www.fsa.go.jp/policy/kyuminyokin/kyuminyokin.html"
+    },
+    {
+      "text": "残高1万円以上で、9年が過ぎると登録した住所やメールに通知が届く。住所が古いと通知が届かず、何もしないと休眠預金になる。",
+      "source": "https://www.dic.go.jp/katsudo/010_00123.html"
+    },
+    {
+      "text": "通帳への「記帳」が異動と見なされない金融機関もある。残高照会や住所変更も金融機関ごとに異動の扱いが違う。",
+      "source": "https://www.gov-online.go.jp/article/201907/entry-7475.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "金融庁「長い間、お取引のない預金等はありませんか？」",
+      "url": "https://www.fsa.go.jp/policy/kyuminyokin/kyuminyokin.html",
+      "source": "https://www.fsa.go.jp/policy/kyuminyokin/kyuminyokin.html",
+      "howTo": [
+        "政策・審議会",
+        "長い間、お取引のない預金等はありませんか？"
+      ],
+      "note": "制度や法律について聞きたいときの窓口。個別の口座の有無や引き出し手続きは取引のあった金融機関に問い合わせる。"
+    },
+    {
+      "name": "預金保険機構「長い間お取引のない預金（休眠預金）」",
+      "url": "https://www.dic.go.jp/katsudo/010_00123.html",
+      "source": "https://www.dic.go.jp/katsudo/010_00123.html",
+      "howTo": [
+        "預金者のみなさま",
+        "長い間お取引のない預金（休眠預金）"
+      ],
+      "note": "休眠預金の有無や引き出し手続きは、お取引のあった金融機関が対応すると案内されている。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "取引のあった金融機関に、休眠預金等の有無と引き出し手続きを問い合わせる",
+      "source": "https://www.dic.go.jp/katsudo/010_00123.html",
+      "steps": [
+        "通帳・キャッシュカード・本人確認書類を用意する",
+        "取引のあった金融機関に連絡する",
+        "休眠預金等の有無を確かめる",
+        "引き出しの手続きと必要書類を聞く"
+      ],
+      "url": "https://www.dic.go.jp/katsudo/010_00123.html"
+    },
+    {
+      "action": "残高1万円以上の口座は、登録している住所とメールアドレスが今も合っているか確かめる",
+      "source": "https://www.gov-online.go.jp/article/201907/entry-7475.html",
+      "steps": [
+        "取引のある金融機関の届け出内容を確認する",
+        "現住所と違えば変更を届け出る",
+        "メールアドレスも同様に確認する"
+      ],
+      "url": "https://www.fsa.go.jp/policy/kyuminyokin/kyuminyokin.html"
+    }
+  ],
+  "worries": [
+    {
+      "q": "通帳やキャッシュカードをなくした口座は引き出せる？",
+      "a": "通帳などを紛失していても、本人確認書類（身分証明書）などを持っていけば引き出せると金融庁のQ&Aにある。具体的な書類は取引のあった金融機関に確認する。",
+      "source": "https://www.fsa.go.jp/policy/kyuminyokin/kyuminyokin.html",
+      "action": "本人確認書類を用意し、取引のあった金融機関に紛失を伝えて必要書類を聞く。"
+    },
+    {
+      "q": "引き出すと、お金は現金で受け取れる？",
+      "a": "現金での受け取りになるか、元の口座を引き続き使えるかは金融機関ごとに異なる。",
+      "source": "https://www.fsa.go.jp/policy/kyuminyokin/kyuminyokin.html",
+      "action": "取引のあった金融機関に、受け取り方法を事前に問い合わせる。"
+    },
+    {
+      "q": "亡くなった家族の口座は誰が引き出せる？",
+      "a": "預金者が亡くなった場合は、金融機関所定の手続きを経て相続人が引き出せると書かれている。必要な手続きは金融機関に問い合わせるとある。",
+      "source": "https://www.fsa.go.jp/policy/kyuminyokin/kyuminyokin.html",
+      "action": "口座のあった金融機関に連絡し、相続の手続きと必要書類を確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "給与や引き落としに使っている口座は解約すべき？",
+      "situation": "生活費の口座として今も使っている",
+      "recommend": "解約せず残し、住所などの届け出を直すのがよい",
+      "reason": "取引があれば10年の計算が続き、休眠預金になりにくい。住所が古いと通知が届かないため、届け出の修正が解決につながる。",
+      "source": "https://www.gov-online.go.jp/article/201907/entry-7475.html"
+    },
+    {
+      "question": "残高が少ない口座は解約を検討する？",
+      "situation": "残高1万円未満で長く使っていない",
+      "recommend": "残高を確認して、解約を検討してもよい",
+      "reason": "1万円未満の預金には通知が送られない。解約前に、金融機関で引き出し方法を確認するとよい。",
+      "source": "https://www.gov-online.go.jp/article/201907/entry-7475.html"
+    },
+    {
+      "question": "休眠になったら慌てて引き出すべき？",
+      "situation": "10年以上取引がないが、まだ引き出していない",
+      "recommend": "急がなくてよい",
+      "reason": "休眠預金等になっても引き出しに期限はなく、取引のあった金融機関でいつでも引き出せる。",
+      "source": "https://www.fsa.go.jp/policy/kyuminyokin/kyuminyokin.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "10年たつ前に知っておきたい3つのこと",
+    "steps": "今日できる、口座の確認から",
+    "desk": "問い合わせは、どこに聞けばいい？",
+    "worries": "通帳をなくした口座、引き出せる？",
+    "guide": "残す口座と解約する口座の選び方"
+  },
+  "depthAt": "2026-11-09T11:10:39+00:00",
+  "imageFocus": {
+    "x": 0.49,
+    "y": 0.495,
+    "box": [
+      0.0,
+      0.292,
+      0.981,
+      0.699
+    ],
+    "ar": 1.0025,
+    "src": "https://www.fsa.go.jp/images/title_j_t.png"
+  }
 }

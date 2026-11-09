@@ -66,17 +66,135 @@
     }
   ],
   "todayActions": [
-    "ニトリを名乗る不審な連絡には返信せず、お客様相談室（0120-209-993）へ自分から問い合わせる",
-    "法人会員の担当者は、担当者の氏名やメールアドレスが対象のため、社内で偽の連絡への注意を共有する",
-    "お客様相談室の受付は平日・土日祝の10時〜20時。不審な連絡は受けた日時を控えて相談する"
+    "ニトリを名乗る不審な連絡には返信せず、お問い合わせ窓口へ自分から連絡する",
+    "法人会員の担当者は、担当者の氏名やメールアドレスが対象のため、社内で注意を共有する",
+    "身に覚えのないリンクは開かず、公式サイトをブックマークして正しいサイトから確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261109-速報解説-ニトリ会員情報流出の対象確認.md",
   "sectionsPolishedAt": "2026-11-09T10:54:11+00:00",
-  "museDepthNotes": "なるほど: 流出の恐れがあるのは会員だけでなく「ニトリグループで商品を買った人の購入者情報」と「ニトリネット・ECモールのニトリ公式ショップの注文データ」も含む。会員登録をしていない人も、ネットで注文したことがあれば関係しうる（公式PDF「３．」 https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf）\n窓口: ニトリホールディングス お客様相談室 0120-209-993、受付は平日・土日祝の10:00〜20:00。お問い合わせフォーム https://www.nitori-net.jp/ec/input-inquiry?inquiryRecordCode=04000000（公式PDF末尾）\n原因: 外部からの不正アクセス。原因・侵入経路・二次被害の有無は調査中と発表（公式PDF「４．」）",
   "qualityScore": 92,
   "detectedAt": "2026-11-09T10:54:18+00:00",
   "layout": "noir",
-  "summaryLine": "ニトリの個人情報、最大**3,762万件**が外部に流出した可能性があると発表されました。"
+  "summaryLine": "ニトリの個人情報、最大**3,762万件**が外部に流出した可能性があると発表されました。",
+  "insight": [
+    {
+      "text": "流出の恐れは会員だけでなく、ニトリネットやECモールのニトリ公式ショップで注文した人の注文データも含む。会員登録の覚えがなくても対象になりうる。",
+      "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf"
+    },
+    {
+      "text": "対象の人への連絡は、メールか郵送で順次行うとされている。電話での連絡とは書かれていない。",
+      "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ニトリホールディングス お客様相談室",
+      "url": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf",
+      "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf",
+      "phone": "0120-209-993",
+      "hours": "平日・土日祝 10:00~20:00",
+      "note": "記載された連絡先には返信せず、公式サイトに掲載するお問い合わせ窓口へ連絡するよう案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ニトリを名乗る不審な連絡には返信せず、お問い合わせ窓口へ自分から連絡する",
+      "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf",
+      "steps": [
+        "メール・SMS・電話に書かれたリンクや電話番号は使わない",
+        "返信せず、当社公式サイトのお問い合わせ窓口へ連絡する",
+        "電話は0120-209-993（平日・土日祝10:00〜20:00）"
+      ],
+      "url": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf"
+    },
+    {
+      "action": "法人会員の担当者は、担当者の氏名やメールアドレスが対象のため、社内で注意を共有する",
+      "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf",
+      "steps": [
+        "担当者の氏名・メールアドレス・電話番号も対象とされている",
+        "ニトリを名乗る連絡に注意するよう社内で伝える",
+        "会社はパスワード・カード番号・暗証番号を聞くことはないとしている"
+      ]
+    },
+    {
+      "action": "身に覚えのないリンクは開かず、公式サイトをブックマークして正しいサイトから確かめる",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "電子メールやSMSのリンクはクリックしない",
+        "公式サイトをお気に入りに登録しておく",
+        "同じIDとパスワードの使いまわしはしない"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "原因・侵入経路・二次被害の有無は、外部専門機関と連携して調査中と発表されています。2026年11月6日に第三者による不正アクセスを確認し、11月6日以前にもアクセスされた可能性があるとしています。",
+    "status": "investigating",
+    "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も漏れてしまいましたか？",
+      "a": "クレジットカード情報は、流出の可能性がある情報には含まれていないと発表されています。ログインパスワードも含まれないとされています。",
+      "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf",
+      "action": "カードの利用明細に、身に覚えのない請求がないかいつもどおり確認する。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "ログインパスワードは変えたほうがいい？",
+      "a": "ニトリの発表では、ログインパスワードは流出の可能性がある情報に含まれていません。",
+      "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf",
+      "action": "偽サイトに入力した覚えがあれば、そのIDとパスワードを使うサービスを速やかに変更する。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "ニトリから電話が来たら本物？",
+      "a": "会社は、対象の人へメールか郵送で順次連絡するとしています。電話でパスワード、カード番号、暗証番号を聞くことはないとしています。",
+      "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf",
+      "action": "電話で暗証番号などを聞かれたら答えず、電話を切って公式サイトの窓口へ自分から連絡する。"
+    },
+    {
+      "q": "家族がニトリで買い物していたら、どうすればいい？",
+      "a": "流出の恐れがある情報は、個人会員に加え、ニトリグループでの商品購入者にも及ぶとされています。家族のどの情報が対象かは発表されていません。",
+      "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf",
+      "action": "家族にも、ニトリや配送会社を名乗る偽の連絡に注意するよう伝えておく。"
+    },
+    {
+      "q": "乗っ取りや詐欺の被害は起きていますか？",
+      "a": "二次被害の有無は調査中と発表されています。被害が確認されたという発表は、現時点ではありません。",
+      "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf",
+      "action": "身に覚えのないリンクや添付ファイルは開かず、公式サイトから正しいページに接続する。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ログインパスワードを今すぐ変える？",
+      "situation": "ニトリのアカウントを使っている",
+      "recommend": "急がなくてよい",
+      "reason": "ログインパスワードは今回の流出の可能性がある情報に含まれないと発表されています。偽サイトに入力した覚えがある場合は、速やかに変更するよう案内されています。",
+      "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf"
+    },
+    {
+      "question": "不審な連絡が来たら、どこに問い合わせる？",
+      "situation": "ニトリを名乗る連絡が届いた",
+      "recommend": "返信せず、公式サイトの窓口へ自分から連絡する",
+      "reason": "記載された連絡先には返信せず、当社公式サイトのお問い合わせ窓口へ連絡するよう案内されています。電話は0120-209-993（平日・土日祝10:00〜20:00）です。",
+      "source": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "会員でなくても対象になる場合がある",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日、ニトリを名乗る連絡にどう返すか",
+    "desk": "相談するなら、この窓口へ自分から",
+    "worries": "カードや家族のスマホは大丈夫？",
+    "guide": "連絡を待つか、自分から確かめるか"
+  },
+  "depthAt": "2026-11-09T11:08:23+00:00"
 }

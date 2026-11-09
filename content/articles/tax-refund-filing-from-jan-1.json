@@ -79,9 +79,9 @@
     }
   ],
   "todayActions": [
-    "今年支払った医療費の領収書を家族分まで集め、合計額を出しておく",
-    "ふるさと納税の受領証か「寄附金控除に関する証明書」を探しておく",
-    "源泉徴収票の源泉徴収税額が0円でないかを確かめる"
+    "今年払った医療費の領収書を家族分まで集め、合計額を出す。",
+    "源泉徴収票の「源泉徴収税額」が0円でないかを確かめる。",
+    "ふるさと納税の受領証か「寄附金控除に関する証明書」を探しておく。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -136,5 +136,139 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/tax-refund-filing-from-jan-1-69a72692.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "医療保険者から届く「医療費通知」を申告書に添付すると、医療費控除の明細書の記載を簡略化できます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+    },
+    {
+      "text": "ご自宅からe-Taxで申告する場合は、マイナンバーの本人確認書類の提示や写しの添付は不要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/qa/02.htm"
+    },
+    {
+      "text": "還付金の振込先の預貯金口座は、申告する氏名と同じ口座名義のものを指定してください。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/qa/02.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "確定申告書等作成コーナー",
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "howTo": [
+        "国税庁ホーム",
+        "税について調べる",
+        "所得税（確定申告書等作成コーナー）",
+        "「確定申告書等作成コーナー」"
+      ],
+      "note": "画面の案内に沿って金額を入力すると、申告書の作成と提出ができます。必要な付表や明細書も自動的に作成されます。"
+    },
+    {
+      "name": "税についての相談窓口",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "howTo": [
+        "国税庁ホーム",
+        "お問い合わせ先",
+        "税についての相談窓口"
+      ],
+      "note": "国税に関するご相談は、税についての相談窓口をご覧ください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "今年払った医療費の領収書を家族分まで集め、合計額を出す。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "steps": [
+        "領収書を家族分まとめる",
+        "医療費通知があれば領収書と一緒にする",
+        "支払った医療費の合計額を出す"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+    },
+    {
+      "action": "源泉徴収票の「源泉徴収税額」が0円でないかを確かめる。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "steps": [
+        "源泉徴収票を手元に出す",
+        "「源泉徴収票」欄の数字を見る",
+        "0なら還付される税額はない"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+    },
+    {
+      "action": "ふるさと納税の受領証か「寄附金控除に関する証明書」を探しておく。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm",
+      "steps": [
+        "寄附した団体からの受領証を探す",
+        "「寄附金控除に関する証明書」も使える",
+        "年間寄附金額が書かれているか見る"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm"
+    }
+  ],
+  "cause": {
+    "text": "還付は、源泉徴収や予定納税ですでに納めた所得税が、年間の所得に対して計算した税額より多いときに発生する仕組みです。確定申告の期間とは関係なく、その年の翌年1月1日から5年間出せます。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+  },
+  "worries": [
+    {
+      "q": "還付申告は2月まで待たないといけない？",
+      "a": "待つ必要はありません。還付申告書は、確定申告期間とは関係なく、その年の翌年1月1日から5年間提出することができます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "action": "年明けの1月1日以降、準備できた分から申告書を作成して提出する。"
+    },
+    {
+      "q": "源泉徴収税額が0円でも申告すると戻る？",
+      "a": "戻りません。源泉徴収や予定納税ですでに納めた所得税がない場合は、申告しても還付される所得税額はありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "action": "源泉徴収票の「源泉徴収税額」が0円か確かめ、0円なら還付申告は不要と判断する。"
+    },
+    {
+      "q": "ふるさと納税をワンストップ特例で済ませた場合は？",
+      "a": "確定申告をすると、ワンストップ特例の申請は無効になります。特例で申請した分も含めて、寄附金全部を寄附金控除に入れて計算し直します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/tebiki/2025/01/1_07.htm",
+      "action": "ワンストップ特例の申請分も含め、すべての寄附金を寄附金控除に入れて計算する。"
+    },
+    {
+      "q": "医療費の領収書は提出しないといけない？",
+      "a": "医療費控除の明細書を作って確定申告書に添付します。医療費通知があれば添付して記載を簡略化できます。領収書は、確定申告期限等から5年を経過する日までの間、提示や提出を求める場合があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "action": "医療費の領収書は捨てずに保管し、医療費通知があれば一緒に申告書へ添えられるよう準備する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "還付申告は、年明けすぐに出すべきですか？",
+      "situation": "医療費の領収書などがそろっている",
+      "recommend": "急がなくてよい。年明け以降いつでも出せる",
+      "reason": "還付申告書は、その年の翌年1月1日から5年間提出できます。青色申告特別控除など、3月15日までの提出が要件になる特例を使う場合は、その期限までに出す必要があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+    },
+    {
+      "question": "還付申告は、年明けすぐに出すべきですか？",
+      "situation": "まだ書類がそろっていない",
+      "recommend": "そろった時点で出せばよい",
+      "reason": "還付申告書は5年間提出できるため、書類がそろうまで待っても提出できる期間は残ります。ただし、申告期限が3月15日とされる特例を使う場合は、その期限までに提出します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+    },
+    {
+      "question": "ワンストップ特例を使った後に確定申告したら？",
+      "situation": "ワンストップ特例を申請済みで、確定申告もする",
+      "recommend": "確定申告するなら寄附金をすべて計算に入れる",
+      "reason": "確定申告をすると、ワンストップ特例の申請は無効になります。申告時には、特例で申請した分も含めて寄附金全部を寄附金控除に入れて計算し直す必要があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/tebiki/2025/01/1_07.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "医療費通知を付けると申告書が楽になる",
+    "cause": "なぜ還付が起きるのか、制度の仕組み",
+    "steps": "今日そろえるもの、3つだけ",
+    "desk": "分からないときの公式の窓口",
+    "worries": "待つ必要はある？還付はもらえる？",
+    "guide": "還付申告を年明けに出すか迷ったとき"
+  },
+  "depthAt": "2026-11-09T11:09:03+00:00"
 }
