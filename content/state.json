@@ -7173,6 +7173,12 @@
       "slug": "goyokiki-doctor-online-consultation-survey",
       "url": "https://prtimes.jp/main/html/rd/p/000000071.000049934.html"
     },
+    "3b5455e7cb60ec8f": {
+      "at": "2026-11-09T00:36:12.600494+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/singi/chihou_seido/singi/02gyosei01_04000511_00013.html"
+    },
     "3b59db491a0a0965": {
       "at": "2026-10-28T19:52:40.823067+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（データベース届出情報の更新）",
@@ -13391,6 +13397,17 @@
       "skipped": true,
       "url": "https://www.jfa.jp/news/00036989/"
     },
+    "9e1b54085019d8d6": {
+      "at": "2026-11-09T00:36:11.958287+00:00",
+      "costUsd": 0.003,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash",
+      "score": 72,
+      "section": "business",
+      "slug": "us-october-2026-jobs-report-nli",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87286?site=nli"
+    },
     "9e6e62a6a89b5717": {
       "at": "2026-11-06T19:01:05.327578+00:00",
       "costUsd": 0.1819,
@@ -19426,31 +19443,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T09:25:45.008302+00:00",
-      "attempt": 2,
-      "id": "5125d565684864f6",
-      "kind": "broad",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "problems": [
-        "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める"
-      ],
-      "readability": {
-        "avg_paragraph": 138.3,
-        "avg_sentence": 53.2,
-        "long_share": 0.269,
-        "max_paragraph": 222,
-        "paragraphs": 10,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "jst",
-      "title": "自己回帰生成モデルの熱力学を構築～大規模言語モデルに内在する「世界モデル」の定量的理解に向けて～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（PRX・JST・ERATO）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-06T09:32:04.477237+00:00",
@@ -25990,6 +25982,30 @@
       "score": 55,
       "source": "nvidia-japan-blog",
       "title": "クラウドへの出撃が迫る：『Call of Duty®: Modern Warfare® 4』が GeForce NOW に登場"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T00:36:05.350223+00:00",
+      "attempt": 1,
+      "id": "9e1b54085019d8d6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 109.8,
+        "avg_sentence": 44.9,
+        "long_share": 0.182,
+        "max_paragraph": 143,
+        "paragraphs": 9,
+        "sentences": 22
+      },
+      "score": 72,
+      "source": "nli-research",
+      "title": "米雇用統計（26年10月）－非農業部門雇用者数（前月比）は+16.5万人と前月（+6.0万人）、市場予想（+7.0万人）を大幅に上回る",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "初めて出たところで言い換えていない略語（FOMC）"
+      ]
     }
   ],
   "short_text_retry": {},
