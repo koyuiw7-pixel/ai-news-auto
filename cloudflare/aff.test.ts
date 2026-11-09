@@ -68,6 +68,15 @@ await test("legacy affiliate counts, positions and A8 plus codes unchanged", asy
   const result = await stats(); assert.equal(result.clicks, 1); assert.equal(result.byProgram[0].program, "A+B+C"); assert.equal(result.byPosition[0].pos, "choose-table"); assert.deepEqual(result.byPlacement[0], { pos: "choose-table", program: "A+B+C", clicks: 1, visitors: 1 });
   assert.equal(result.funnel.stages.find((r: { stage: string }) => r.stage === "guide_view").events, 1);
 });
+await test("PR box A/B variant is stored and counted per placement; bad values rejected", async () => {
+  reset();
+  await call("/api/aff/click", { p: "A+B+C", path: GUIDE_PATH, pos: "action-ad-1", ab: "a" });
+  await call("/api/aff/click", { p: "D+E+F", path: GUIDE_PATH, pos: "action-ad-2", ab: "b" }, { "user-agent": "Mozilla/5.0 (iPhone) other" });
+  assert.equal((await call("/api/aff/click", { p: "A+B+C", path: GUIDE_PATH, pos: "action-ad-1", ab: "c" })).status, 400);
+  const result = await stats();
+  assert.equal(result.clicks, 2);
+  assert.deepEqual(result.byVariant.map((r: { pos: string; ab: string; clicks: number }) => `${r.pos}|${r.ab}|${r.clicks}`).sort(), ["action-ad|a|1", "action-ad|b|1"]);
+});
 await test("selftest clicks pass every real check but stay out of the click totals", async () => {
   const before = await stats();
   await call("/api/aff/click", { p: "SELFTEST", path: GUIDE_PATH, pos: "action-ad-1" }, { "x-aff-selftest": env.AFF_STATS_TOKEN });

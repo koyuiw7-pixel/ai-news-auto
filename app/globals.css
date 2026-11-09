@@ -816,3 +816,41 @@ mark {
 :root[data-theme="dark"] .brand-on-dark {
   display: block;
 }
+
+/*
+ * PR の囲みのボタン・チェックの印（components/rail/parts.tsx の PrFeature・PrRow。2026-11-10）。
+ * ボタンの色は A/B: <html data-adv="a|b">（app/layout.tsx の最初のスクリプトが訪問者ごとに決める）。
+ * a = 赤（サイトの「要の数字」の赤。白地 5.7:1）、b = サイトの基本色（ノワールの記事は黒、ほかは紺）。色だけを変え、大きさは同じ（画面がずれない）
+ */
+.pr-cta {
+  background: #c8221a;
+  color: #ffffff;
+}
+.pr-check circle {
+  fill: #c8221a;
+}
+.pr-check path {
+  stroke: #ffffff;
+}
+.pr-link {
+  color: #b01e17;
+}
+:root[data-adv="b"] .pr-cta {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+:root[data-adv="b"] .pr-check circle {
+  fill: var(--accent);
+}
+:root[data-adv="b"] .pr-check path {
+  stroke: var(--accent-ink);
+}
+:root[data-adv="b"] .pr-link {
+  color: var(--accent);
+}
+:root[data-theme="dark"] .pr-link {
+  color: #ff8a80;
+}
+:root[data-theme="dark"][data-adv="b"] .pr-link {
+  color: var(--accent);
+}

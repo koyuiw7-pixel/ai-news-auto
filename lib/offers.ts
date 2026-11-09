@@ -49,7 +49,15 @@ type Topic = {
 export type Intent = { key: string; match: string; partners: string[]; lead?: string };
 
 /** 商品の売り方の材料（scripts/a8_import.py の PITCH）。向く人・特徴（公式の情報の範囲）・ボタンの言葉 */
-export type Pitch = { fit?: string; point?: string; cta?: string };
+export type Pitch = {
+  fit?: string;
+  point?: string;
+  cta?: string;
+  /** 読者がこの商品で確かめられること・できること（囲みの見出し。scripts/a8_import.py の GAIN。数字は書かない） */
+  gain?: string;
+  /** 良いところ 2〜3つ（広告主の公式サイトにある事実だけ。scripts/a8_import.py の MERITS） */
+  merits?: string[];
+};
 
 /** 見出しに当たる最初の場面（無ければ undefined） */
 export function intentFor(intents: Intent[] | undefined, article: Pick<ArticleSummary, "title" | "seoTitle">): Intent | undefined {

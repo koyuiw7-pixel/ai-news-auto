@@ -133,7 +133,7 @@ NEW_TOPICS = [
     {"key": "gadget", "match": "スマートリング|ウェアラブル|イヤホン|スマートグラス|睡眠", "eyebrow": "AIガジェットを選ぶなら", "headline": "身につけるAIは、軽さと電池持ちで選ぶ", "lead": "毎日使うものほど、着けているのを忘れるくらいの軽さが大事です。", "partners": ["ringconn", "e-earphone", "plaud-notepin-s"], "search": ["ガジェット AI", "スマートウォッチ"], "require": "ガジェット|スマート|デバイス|AI", "fill": ["voice", "business"]},
     # 携帯会社の名前と、流出・障害・値上げ・料金・乗り換えの語が同じ欄（見出し・タグ・要約）に並ぶ記事だけ。契約先を見直す人向け。
     # 会社名だけの記事（新端末・社会貢献・法人向けの協業）や、決算・出資・AIの事業の記事には出さない
-    {"key": "mobile-switch", "genres": ["business", "public", "lifestyle", "tech-gadget"], "min": 5, "match": "格安SIM|携帯料金|スマホ料金|通信料金|(?:NTTドコモ|ドコモ|docomo|ソフトバンク(?!グループ|G|・ビジョン)|楽天モバイル|ahamo|povo|LINEMO|UQ ?mobile|ワイモバイル|KDDI|携帯会社|携帯大手|携帯キャリア)(?=[\\s\\S]*?(?:情報流出|流出|漏えい|漏洩|不正アクセス|不正ログイン|通信障害|障害|不具合|つながりにくい|値上げ|料金|新プラン|乗り換え|MNP|解約))|(?:情報流出|流出|漏えい|漏洩|不正アクセス|不正ログイン|通信障害|障害|不具合|つながりにくい|値上げ|料金|新プラン|乗り換え|MNP|解約)(?=[\\s\\S]*?(?:NTTドコモ|ドコモ|docomo|ソフトバンク(?!グループ|G|・ビジョン)|楽天モバイル|ahamo|povo|LINEMO|UQ ?mobile|ワイモバイル|KDDI|携帯会社|携帯大手|携帯キャリア))", "articleExclude": "決算|業績|株価|出資|買収|上場|(?<![A-Za-z])AI(?![A-Za-z])|生成AI|半導体|ロボット|データセンター|基地局", "eyebrow": "スマホの契約を見直すなら", "headline": "スマホの回線は、乗り換えで料金と条件を比べられる", "lead": "流出や障害、値上げをきっかけに契約先を比べる人もいます。料金・条件・手続きは各公式サイトで確認しましょう。", "partners": ["bb-excite", "biglobe-hikari-plus"], "search": ["スマホ 料金 節約"], "require": "スマホ|携帯|通信|格安SIM", "name": "スマホ回線の見直し"},
+    {"key": "mobile-switch", "genres": ["business", "public", "lifestyle", "tech-gadget"], "min": 5, "match": "格安SIM|携帯料金|スマホ料金|通信料金|(?:NTTドコモ|ドコモ|docomo|ソフトバンク(?!グループ|G|・ビジョン)|楽天モバイル|ahamo|povo|LINEMO|UQ ?mobile|ワイモバイル|KDDI|携帯会社|携帯大手|携帯キャリア)(?=[\\s\\S]*?(?:通信障害|障害|不具合|つながりにくい|値上げ|料金|新プラン|乗り換え|MNP|解約))|(?:通信障害|障害|不具合|つながりにくい|値上げ|料金|新プラン|乗り換え|MNP|解約)(?=[\\s\\S]*?(?:NTTドコモ|ドコモ|docomo|ソフトバンク(?!グループ|G|・ビジョン)|楽天モバイル|ahamo|povo|LINEMO|UQ ?mobile|ワイモバイル|KDDI|携帯会社|携帯大手|携帯キャリア))", "articleExclude": "決算|業績|株価|出資|買収|上場|(?<![A-Za-z])AI(?![A-Za-z])|生成AI|半導体|ロボット|データセンター|基地局|情報流出|流出|漏え?い|漏洩|不正アクセス|不正ログイン|乗っ取り|偽SMS|詐欺", "eyebrow": "スマホの契約を見直すなら", "headline": "スマホの回線は、乗り換えで料金と条件を比べられる", "lead": "障害や値上げをきっかけに契約先を比べる人もいます。料金・条件・手続きは各公式サイトで確認しましょう。", "partners": ["bb-excite", "biglobe-hikari-plus"], "search": ["スマホ 料金 節約"], "require": "スマホ|携帯|通信|格安SIM", "name": "スマホ回線の見直し"},
     {"key": "kids", "match": "子ども|子供|小学生|中学生|高校生|学校|教師|先生|教育現場|宿題", "eyebrow": "子どもとAIの付き合い方", "headline": "AIを「使われる側」でなく「作る側」に", "lead": "ゲーム感覚でプログラミングに触れると、AIへの理解も自然に深まります。", "partners": ["digitane", "litalico"], "search": ["子ども プログラミング", "AI 教育"], "require": "子ども|こども|プログラミング|教育|AI", "fill": ["coding"]},
 ]
 
@@ -179,7 +179,9 @@ ACTION_ADS = [
     {"key": "mobile", "title": "毎月のスマホ代を下げたい人へ", "reason": "障害や料金の変更をきっかけに、回線の契約を比べるために", "match": "携帯料金|スマホ料金|通信障害|通信の障害|つながりにくい|格安SIM|携帯キャリア|乗り換え|MNP|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|料金プラン|光回線|ネット回線|固定回線", "partners": ["bb-excite", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
     {"key": "travel", "title": "連休や旅行の宿を探している人へ", "reason": "連休や旅行の予定に合わせて、宿の空きと料金を比べるために", "match": "旅行|連休|ホテル|旅館|宿泊|観光|旅行支援", "partners": ["jalan", "ikyu"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|訪日客数"},
     {"key": "household", "title": "毎月の固定費を下げたい人へ", "reason": "値上げが続くときに、スマホ代や電気代の契約を比べるために", "match": "値上げ|値上がり|物価高|節約|固定費|生活費|家計の負担|家計を圧迫|家計防衛", "partners": ["bb-excite", "elpio", "enepi"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|上場|時価総額|(?<![A-Za-z])AI(?![A-Za-z])|半導体|GPU|API|ユーロ|欧州|米国|中国|英国|景気|業況|GDP|統計|貯蓄率|消費支出"},
-    {"key": "kids", "title": "子どもの学びを、楽しく始めたい家庭へ", "reason": "児童手当や教育費をきっかけに、子どもの学びと家計の備えを確かめるために", "match": "児童手当|子育て|子ども|こども|出産|育児|保育|学費|教育費|高校無償化|学資|幼児教育", "partners": ["digitane", "litalico", "furusato-honpo"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},  # 2026-11-09 オーナー指摘（児童手当の記事にAIの広告）
+    {"key": "kids", "title": "子どもの学びを、楽しく始めたい家庭へ", "reason": "児童手当や教育費をきっかけに、子どもの学びと家計の備えを確かめるために", "match": "児童手当|子育て|子ども|こども|出産|育児|保育|学費|教育費|高校無償化|学資|幼児教育", "partners": ["digitane", "litalico"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "出産手当|出産育児一時金|出産費用|育児休業|育休|産休|産前|産後|妊娠|妊婦"},  # 2026-11-09 オーナー指摘（児童手当の記事にAIの広告）
+    # 2026-11-10 チームの点検（Grok）: 児童手当の記事で、見出し「子どもの学び…」の枠の先頭がふるさと本舗だった → 子どもの学びの話題からふるさと納税を外す。
+    # 出産手当金の記事に子どものプログラミング教室が出ていた → 出産・育休の記事は kids に当てない（合う提携先が無いので、家計の見直し benefit が当たれば benefit、無ければ出さない）
     # 2026-11-10 オーナー承認「記事に合う PR だけ」: 年金・給付金の記事に、ジャンルの既定の証券会社が出ていた（年金生活者支援給付金の記事）。
     # 受け取るお金を確かめる読者に合うのは、毎月出ていくお金（スマホ代・電気代）の見直し。児童手当は上の kids が先に当たる
     {"key": "benefit", "title": "受け取るお金を確かめたら、毎月の出費も", "reason": "年金や給付金を確かめるときに、スマホ代や電気代の契約も比べるために", "match": "年金|給付金|手当|非課税世帯|住民税非課税|生活保護|医療費|介護保険|高額療養費", "partners": ["bb-excite", "enepi", "elpio"], "max": 2, "genres": ["public", "lifestyle", "business", "real-estate", "investment"], "exclude": "株価|決算|業績|GPIF|運用|企業年金|確定拠出|iDeCo|NISA|(?<![A-Za-z])AI(?![A-Za-z])"},
@@ -283,11 +285,80 @@ PITCH = {
 }
 
 
+# 2026-11-10 オーナー「広告が魅力的じゃない。わざとらしすぎず、でも目立って押してしまうような」:
+# PR の囲みの見出しを、話題の一般論（「スマホの回線は、乗り換えで料金と条件を比べられる」）から、
+# 読者がこの商品で「できること」（押した先で確かめられること）の一文にする。数字・効果の約束は書かない（数字は MERITS だけ）。
+GAIN = {
+    "bb-excite": "今のスマホ代と比べて、月いくら下がるか確かめる",
+    "elpio": "今の電気代と比べて、切り替えで下がるか確かめる",
+    "enepi": "住所と使用量から、合う電気料金プランを比べる",
+    "tainavi": "太陽光・蓄電池の費用を、複数の業者で比べる",
+    "gmo-hikari": "契約期間の縛りがない光回線の月額を確かめる",
+    "biglobe-hikari-plus": "新居で使える光回線と、開通までの流れを確かめる",
+    "biglobe-hikari": "スマホとまとめたときの光回線の料金を確かめる",
+    "gmo-home-wifi": "工事なしで使える家のWi-Fiの料金を確かめる",
+    "gmo-wimax": "工事なしで、家でも外でも使える回線を比べる",
+    "biglobe-wimax": "端末込みで、届いた日から使える回線を比べる",
+    "jackery": "停電中のスマホの充電と明かりを、家で用意しておく",
+    "bluetti": "停電が長引いたときの電源を、容量で選ぶ",
+    "akamaru-bousai": "何をそろえるか迷わず、防災用品を一式で用意する",
+    "alpha-foods": "数日分の主食を、水やお湯で食べられる形で備える",
+    "stoole": "家の防災用品を、少しずつ買い足す",
+    "oken-water": "断水に備えて、飲み水を家に届けてもらう",
+    "frecious": "水道水で使える浄水型サーバーの料金を確かめる",
+    "bang-kasai": "今の火災保険と比べて、保険料と補償を見比べる",
+    "norton": "偽SMSや乗っ取りへの対策を、PCとスマホでまとめて始める",
+    "virusbuster": "偽サイトや詐欺への対策を、無料体験で試してみる",
+    "eset": "パソコンとスマホのセキュリティ対策を、無料体験で試す",
+    "surfshark": "外出先のWi-Fiを、VPNで安全に使う",
+    "freee": "帳簿づけから申告書づくりまでを、ひとつで済ませる",
+    "mf-kakutei": "明細を取り込んで、申告書づくりの手間を減らす",
+    "yayoi-kakutei": "白色申告の書類を、無料のソフトで作る",
+    "furusato-honpo": "控除の上限の中で、返礼品を全国から探す",
+    "aupay-furusato": "Pontaポイントをためながら、寄附先を探す",
+    "hikkoshi-samurai": "引越し代を、複数の業者の見積もりで比べる",
+    "epos": "年会費のかからないカードで、支払いとポイントを見直す",
+    "jalan": "連休の宿の空室と料金を、早めに確かめる",
+    "ikyu": "ホテルや旅館を、空室と料金から選ぶ",
+    "digitane": "ゲームを入り口に、プログラミングを無料体験で試す",
+    "litalico": "教室でのものづくりを、子どもに体験させる",
+}
+# 商品の良いところ（2〜3つ）。広告主の公式サイトに書いてある事実だけ（2026-11-10 に公式ページで確認。確認先は各行の右）。
+# 期間限定のキャンペーンの金額・初年度だけの価格は書かない。値が変わったら直すか、行ごと消す（囲みは MERITS が無くても成り立つ）
+MERITS = {
+    "bb-excite": ["使った分だけ払う段階制のプラン", "低速のみなら音声SIMは月495円（税込）", "最低利用期間なし、解約事務手数料0円"],  # bb.excite.co.jp/exmb/sim/fit/ ・/exmb/sim/plan/
+    "elpio": ["切り替え手数料0円、Webで申し込める", "解約手数料0円、契約期間の縛りなし"],  # lpio.jp/lpio_denki/
+    "enepi": ["見積もり・契約の切り替えは無料", "10秒で料金のシミュレーション"],  # enepi.jp
+    "gmo-hikari": ["契約期間の縛りなし、解約違約金0円", "v6プラスをオプション料0円で使える"],  # gmobb.jp/service/gmohikari/
+    "biglobe-hikari-plus": ["申し込みから最短4日でネットが使える", "開通前は5G通信で使える"],  # join.biglobe.ne.jp/ftth/hikari/plus/
+    "gmo-home-wifi": ["工事不要、コンセントに挿すだけ", "解約違約金なし、送料0円"],  # gmobb.jp/gmohomewifi/
+    "jackery": ["保証登録で最長5年の長期保証", "購入30日以内の初期不良は新品と交換"],  # jackery.jp/pages/warranty-and-returns
+    "norton": ["360デラックスは最大3台を保護", "デラックスはVPNとクラウドバックアップ付き"],  # jp.norton.com/products/norton-360-deluxe
+    "virusbuster": ["製品版を30日間無料で試せる", "無料体験はクレジットカード登録不要", "Windows・Mac・スマホに対応"],  # trendmicro.com/ja_jp/forHome/products/vb.html
+    "eset": ["30日間の無料体験版あり", "1台・3台・5台から台数を選べる", "Windows・Mac・スマホに対応"],  # personal.canon.jp/product/app/eset/lineup
+    "surfshark": ["1つの契約で台数無制限に使える", "購入から30日以内は全額返金の保証"],  # surfshark.com/ja
+    "mf-kakutei": ["1か月の無料お試しあり", "白色・青色どちらの申告にも対応"],  # biz.moneyforward.com/tax_return/
+    "freee": ["無料お試しはクレジットカード登録不要", "白色・青色・消費税の申告に対応"],  # freee.co.jp/accounting/individual/
+    "yayoi-kakutei": ["白色申告オンラインはずっと無料", "税務署に行かずe-Taxで申告できる"],  # yayoi-kk.co.jp/shinkoku/
+    "furusato-honpo": ["5万件以上の返礼品を掲載", "クレジットカードは全自治体で使える"],  # furusatohonpo.jp/guide/payment/
+    "aupay-furusato": ["Pontaポイントがたまる・使える", "控除の上限額をかんたんに計算できる"],  # furusato.wowma.jp
+    "bang-kasai": ["火災保険の見積もり依頼は無料", "複数社の商品を比べられる"],  # fire.bang.co.jp
+    "hikkoshi-samurai": ["最大10社へまとめて見積もりを依頼", "業者を比べられる無料のサービス"],  # hikkoshizamurai.jp
+    "epos": ["入会金・年会費は永年無料", "ETCカードも年会費・入会金が無料"],  # eposcard.co.jp
+    "digitane": ["14日間の無料体験あり", "マインクラフトなどのゲームで学べる"],  # digitane.jp
+}
+
+
 def apply_pitch(offers: dict) -> None:
-    """PITCH を offers.json の partners に pitch として入れる（何度実行しても同じ結果）"""
+    """PITCH（と GAIN・MERITS）を offers.json の partners に pitch として入れる（何度実行しても同じ結果）"""
     for key, pitch in PITCH.items():
         if key in offers.get("partners", {}):
-            offers["partners"][key]["pitch"] = pitch
+            merged = dict(pitch)
+            if key in GAIN:
+                merged["gain"] = GAIN[key]
+            if MERITS.get(key):
+                merged["merits"] = MERITS[key]
+            offers["partners"][key]["pitch"] = merged
 
 
 # 「すぐにできること」の話題（ACTION_ADS）を、右側・本文中・記事末の商品枠でも使う話題にする（キーは life-<key>）。

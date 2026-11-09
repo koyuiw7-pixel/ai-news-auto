@@ -96,6 +96,18 @@ def placement_summary(rows: list[dict], names: dict[str, str]) -> list[tuple[str
     return sorted(out, key=lambda r: -r[2])
 
 
+def variant_summary(rows: list[dict]) -> list[str]:
+    """PR の囲みのボタンの色の A/B（cloudflare/aff.ts の byVariant）。置き場所ごとに a と b のクリック数を並べる"""
+    table: dict[str, dict[str, int]] = {}
+    for row in rows:
+        group = position_group(str(row.get("pos", "other")))
+        table.setdefault(group, {"a": 0, "b": 0})
+        ab = str(row.get("ab", ""))
+        if ab in ("a", "b"):
+            table[group][ab] += int(row.get("clicks", 0))
+    return [f"{POSITION_LABELS.get(k, k)} a {v['a']}・b {v['b']}" for k, v in sorted(table.items(), key=lambda kv: -(kv[1]["a"] + kv[1]["b"]))]
+
+
 def program_names() -> dict[str, str]:
     """a8mat → 提携先の名前（affiliate_links.json・content/offers.json・content/products.json から）"""
     # A8 以外はドメインで数えている（components/AffClickTracker.tsx の programOf）
@@ -172,6 +184,9 @@ def show(data: dict, names: dict[str, str]) -> None:
         for label, name, clicks in placements[:20]:
             print(f"    {label} ／ {name}  {clicks}回")
     print("  置き場所別（枠の中の順番まで）: " + "、".join(f"{row['pos']} {row['clicks']}" for row in data["byPosition"]))
+    variants = variant_summary(data.get("byVariant", []))
+    if variants:
+        print("  PR の囲みのボタンの色（A/B。a=赤・b=基本色。訪問者ごとに半々）: " + "、".join(variants))
 
 
 def selftest(token: str) -> int:

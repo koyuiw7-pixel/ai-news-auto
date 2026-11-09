@@ -67,12 +67,13 @@ test("ドコモの情報流出：行動欄・本文中・記事末の3か所に�
   assert.equal(ad?.key, "leak");
   assert.ok(ad?.reason);
   assert.ok(ad!.items.every(({ item }) => item.image), "バナーの素材がある");
-  assert.ok(plan.inline && plan.rail, "本文中と記事末の枠がある");
-  const shown = [...keysOf(ad!.items.map((x) => x.item)), ...keysOf(plan.inline!.items.slice(0, 3)), ...keysOf(plan.rail!.items.slice(0, 3))];
+  assert.ok(plan.rail, "記事末（PC は右側）の枠がある");
+  const shown = [...keysOf(ad!.items.map((x) => x.item)), ...keysOf(plan.inline?.items.slice(0, 3)), ...keysOf(plan.rail!.items.slice(0, 3))];
   assert.equal(new Set(shown).size, shown.length, `同じ商品を2回出さない: ${shown}`);
-  const allowed = /^(norton|virusbuster|eset|surfshark|bb-excite|biglobe-hikari-plus)$/;
+  // 2026-11-10 チームの点検（Grok）: 流出の記事で、流出への対策のすぐ後に格安SIMが出ていた（話題がずれると押されない）。
+  // 流出の記事はセキュリティの商品だけ。合う商品が足りない枠は出さない（ずれた広告で埋めない）
+  const allowed = /^(norton|virusbuster|eset|surfshark)$/;
   for (const key of shown) assert.match(key, allowed);
-  assert.ok(shown.includes("bb-excite") || shown.includes("biglobe-hikari-plus"), "回線の見直しも出す");
   // 行動欄に出した商品の計測は行動欄で数える（右側・本文中の枠のピクセルに入れない）
   for (const { pixel } of ad!.items) if (pixel) assert.ok(!plan.rail!.pixels.includes(pixel));
 });

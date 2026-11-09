@@ -119,7 +119,8 @@ class PitchTest(unittest.TestCase):
         for key, pitch in a8_import.PITCH.items():
             with self.subTest(key=key):
                 self.assertIn(key, offers)
-                self.assertEqual(offers[key]["pitch"], pitch)
+                merged = {**pitch, **({"gain": a8_import.GAIN[key]} if key in a8_import.GAIN else {}), **({"merits": a8_import.MERITS[key]} if a8_import.MERITS.get(key) else {})}
+                self.assertEqual(offers[key]["pitch"], merged)
                 for field in ("fit", "point", "cta"):
                     self.assertTrue(pitch[field])
                     self.assertNotRegex(pitch[field], HYPE)
@@ -128,6 +129,28 @@ class PitchTest(unittest.TestCase):
                 # 数字は note（公式の情報）にあるものだけ（例: 44点・1ギガ・10ギガ）
                 for number in re.findall(r"\d+", pitch["point"] + pitch["fit"]):
                     self.assertIn(number, offers[key]["note"])
+
+    def test_gain_and_merits_are_plain_and_merits_only_hold_the_numbers(self):
+        # 2026-11-10 オーナー「広告が魅力的じゃない」: 見出しは読者が確かめられること（GAIN）、良いところは公式の事実（MERITS）
+        banned = re.compile(r"[→›▶｜]|ざっくり")
+        for key, gain in a8_import.GAIN.items():
+            with self.subTest(gain=key):
+                self.assertIn(key, a8_import.PITCH)
+                self.assertNotRegex(gain, HYPE)
+                self.assertNotRegex(gain, banned)
+                self.assertNotRegex(gain, r"\d")  # 数字の約束は見出しに書かない（MERITS だけ）
+                self.assertLessEqual(len(gain), 30)
+        for key, merits in a8_import.MERITS.items():
+            with self.subTest(merits=key):
+                self.assertIn(key, a8_import.PITCH)
+                self.assertTrue(1 <= len(merits) <= 3)
+                for merit in merits:
+                    self.assertNotRegex(merit, HYPE)
+                    self.assertNotRegex(merit, banned)
+                    self.assertLessEqual(len(merit), 24)
+                    # 金額は税込・税抜を書く
+                    if re.search(r"\d円", merit) and not re.search(r"0円|手数料|違約金", merit):
+                        self.assertRegex(merit, r"税込|税抜")
 
     def test_every_action_rule_has_a_lead_and_valid_intents(self):
         for rule in a8_import.ACTION_ADS:
@@ -153,7 +176,9 @@ class ComponentWiringTest(unittest.TestCase):
     def test_action_ad_block_is_labelled_and_tracked(self):
         src = (ROOT / "components/ActionAd.tsx").read_text(encoding="utf-8")
         self.assertIn('data-aff-pos="action-ad"', src)
-        self.assertIn("AFFILIATE_REL", src)
+        # リンクの部品は右側の枠と同じ（components/rail/parts.tsx の PrFeature・PrRow）
+        self.assertIn("PrFeature", src)
+        self.assertIn("AFFILIATE_REL", (ROOT / "components/rail/parts.tsx").read_text(encoding="utf-8"))
         self.assertIn("PR", src)
         self.assertIn("広告", src)
         rel = (ROOT / "lib/affiliate.ts").read_text(encoding="utf-8")
@@ -209,7 +234,9 @@ class AdPlacementUpgradeTest(unittest.TestCase):
 
     def test_mobile_switch_needs_a_carrier_and_a_reason_to_switch(self):
         pattern = re.compile(self.topics["mobile-switch"]["match"])
-        self.assertRegex("ドコモ情報流出、最大約30万件", pattern)
+        # 2026-11-10 チームの点検（Grok）: 流出の記事で、流出への対策のすぐ後に格安SIMが出ていた → 流出の記事はセキュリティの話題だけ
+        self.assertNotRegex("ドコモ情報流出、最大約30万件", pattern)
+        self.assertRegex("ドコモ情報流出、最大約30万件", re.compile(self.topics["mobile-switch"]["articleExclude"]))
         self.assertRegex("楽天モバイルのMNP手続きの不具合", pattern)
         self.assertNotRegex("ドコモ、新型iPad miniを予約開始", pattern)
         self.assertNotRegex("NTTドコモグループ、被災地で社員ボランティア", pattern)
@@ -232,11 +259,21 @@ class AdPlacementUpgradeTest(unittest.TestCase):
 
     def test_action_ad_shows_banner_without_layout_shift(self):
         src = (ROOT / "components/ActionAd.tsx").read_text(encoding="utf-8")
-        self.assertIn("width={300}", src)
-        self.assertIn("height={250}", src)
-        self.assertIn("aspect-[6/5]", src)
+        parts = (ROOT / "components/rail/parts.tsx").read_text(encoding="utf-8")
+        # バナーは 6:5 の枠（AdThumb）に小さく。幅・高さを先に取る
+        self.assertIn("width={300}", parts)
+        self.assertIn("height={250}", parts)
+        self.assertIn("aspect-[6/5]", parts)
         self.assertIn("ad.reason", src)
         self.assertIn("<Pixels", src)
+
+    def test_kids_ads_stay_on_kids_learning(self):
+        # 2026-11-10 チームの点検（Grok）: 児童手当の記事の「子どもの学び」の枠にふるさと本舗、出産手当金の記事にプログラミング教室
+        kids = next(rule for rule in a8_import.ACTION_ADS if rule["key"] == "kids")
+        self.assertNotIn("furusato-honpo", kids["partners"])
+        for title in ("出産手当金は産前42日から産後56日まで", "育児休業給付金の手続き"):
+            self.assertRegex(title, kids["exclude"])
+        self.assertNotRegex("児童手当、第3子以降は月3万円", kids["exclude"])
 
     def test_ad_cards_have_no_arrow_marks(self):
         # 2026-11-09 オーナー「→みたいな印はいらない」

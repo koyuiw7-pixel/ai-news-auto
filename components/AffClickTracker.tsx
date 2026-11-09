@@ -33,8 +33,11 @@ export default function AffClickTracker() {
       const link = (event.target as Element | null)?.closest?.('a[rel~="sponsored"]') as HTMLAnchorElement | null;
       if (!link?.href) return;
       const rank = link.getAttribute("data-aff-rank");
-      const pos = link.closest("[data-aff-pos]")?.getAttribute("data-aff-pos") || "other";
-      const body = JSON.stringify({ p: programOf(link.href), path: location.pathname, pos: rank ? `${pos}-${rank}` : pos });
+      const box = link.closest("[data-aff-pos]");
+      const pos = box?.getAttribute("data-aff-pos") || "other";
+      // PR の囲み（data-ad-ab）は、ボタンの色の A/B（<html data-adv>。app/layout.tsx）もいっしょに送る（cloudflare/aff.ts の byVariant）
+      const variant = box?.hasAttribute("data-ad-ab") ? document.documentElement.getAttribute("data-adv") : null;
+      const body = JSON.stringify({ p: programOf(link.href), path: location.pathname, pos: rank ? `${pos}-${rank}` : pos, ...(variant === "a" || variant === "b" ? { ab: variant } : {}) });
       navigator.sendBeacon("/api/aff/click", body);
     };
     document.addEventListener("click", onClick, { capture: true, passive: true });

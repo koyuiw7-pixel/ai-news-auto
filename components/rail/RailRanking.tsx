@@ -1,6 +1,6 @@
 import type { Offer } from "@/lib/offers";
 import RankingBody from "./RankingBody";
-import { Pixels, PrNote } from "./parts";
+import { Pixels, PrNote, PrTag } from "./parts";
 import TimedPixels from "./TimedPixels";
 
 /**
@@ -28,15 +28,20 @@ export default function RailRanking({
   /** 見せる商品の数（ノワールの記事の本文の列は2つ。2026-11-10 オーナー承認「PR は小さく」） */
   visible?: number;
 }) {
-  // 掲載順は閲覧履歴で変わるため、順位や実機評価に基づく「イチオシ」とは言わない。
-  const badge = "紹介";
   const hasBook = offer.items.some((i) => i.kind === "book");
+  const heading = title ?? offer.headline;
 
   return (
-    <aside id={id} data-aff-pos={pos ?? (wide ? "ranking-inline" : "ranking-rail")} aria-label="PR：広告・紹介" className="relative overflow-hidden rounded-2xl border border-line bg-paper">
-      <Header offer={offer} wide={wide} title={title ?? offer.headline} />
+    <aside
+      id={id}
+      data-aff-pos={pos ?? (wide ? "ranking-inline" : "ranking-rail")}
+      data-ad-ab=""
+      aria-label="PR：広告・紹介"
+      className="relative overflow-hidden rounded-2xl border border-line bg-paper shadow-[0_1px_2px_rgb(11_26_51/0.05)]"
+    >
+      <Header text={heading} wide={wide} />
 
-      <RankingBody items={offer.items} visible={visible} wide={wide} badge={badge} />
+      <RankingBody items={offer.items} visible={visible} wide={wide} />
 
       <div className="border-t border-line bg-surface px-4 py-2.5">
         <PrNote checkedAt={offer.checkedAt} hasBook={hasBook} />
@@ -46,16 +51,18 @@ export default function RailRanking({
   );
 }
 
-function Header({ offer, wide, title }: { offer: Offer; wide: boolean; title: string }) {
-  // 2026-11-09 オーナー「PRってこんな大きく書いてる？みんな」: 黒い帯に大きな「PR 広告・紹介」をやめ、白地の見出し＋右上の小さな「PR」の札にする。
-  // 広告であることは札・aria-label・枠の下の注記で示す（ステマ規制の表示は残す）
+/**
+ * 枠の上の1行。この枠の話題（offer.headline。本文中は別の見出し）を小さく、右上に小さな「PR」の札。
+ * 2026-11-10 オーナー「広告が魅力的じゃない」: 大きな見出しは、話題の一般論（「スマホの回線は、乗り換えで料金と条件を比べられる」）ではなく、
+ * 1つ目の商品で読者が確かめられること（pitch.gain。RankingBody → PrFeature）にした。
+ * 2つの話題が並ぶ枠でも見出しは商品ごとなので、見出しと商品がずれない（2026-11-10 チームの点検: 「子どもの学び…」の見出しにふるさと納税が出ていた）
+ * 広告であることは札・aria-label・枠の下の注記で示す（ステマ規制の表示は残す）
+ */
+function Header({ text, wide }: { text: string; wide: boolean }) {
   return (
-    <div className={`flex items-start justify-between gap-3 border-b border-line ${wide ? "px-5 pt-4 pb-3.5 sm:px-6" : "px-4 pt-3.5 pb-3"}`}>
-      <div className="min-w-0">
-        <p className={`font-bold leading-snug text-ink ${wide ? "text-[18px]" : "text-[16px]"}`}>{title}</p>
-        {title !== offer.headline && <p className="mt-0.5 text-meta leading-snug text-ink-soft">{offer.headline}</p>}
-      </div>
-      <span className="mt-0.5 shrink-0 rounded-sm border border-line-strong px-1.5 text-[11px] leading-[18px] font-semibold tracking-wider text-muted">PR</span>
+    <div className={`flex items-center justify-between gap-3 border-b border-line ${wide ? "px-4 py-2.5 sm:px-6" : "px-4 py-2.5"}`}>
+      <p className="min-w-0 text-meta font-bold leading-snug text-ink-soft">{text}</p>
+      <PrTag />
     </div>
   );
 }

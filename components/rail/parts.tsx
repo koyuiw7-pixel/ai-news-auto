@@ -1,4 +1,5 @@
 import type { OfferItem } from "@/lib/offers";
+import { AFFILIATE_REL } from "@/lib/affiliate";
 import { priceIsFresh } from "@/lib/offer-time";
 
 const yen = new Intl.NumberFormat("ja-JP");
@@ -135,4 +136,149 @@ export function Pixels({ pixels }: { pixels: string[] }) {
       ))}
     </>
   );
+}
+
+/** ボタンの言葉（押した先で分かること）。「公式サイトで見る」だけの商品は「料金と条件を見る」にする */
+export function ctaOf(item: OfferItem): string {
+  return item.pitch?.cta ?? (item.cta === "公式サイトで見る" ? "料金と条件を見る" : item.cta);
+}
+
+/**
+ * PR の囲みの良いところ（2〜3つ）。広告主の公式サイトにある事実だけ（scripts/a8_import.py の MERITS）。
+ * 印はチェックの形（矢印は使わない。2026-11-09 オーナー）
+ */
+export function MeritList({ merits, className = "" }: { merits: string[]; className?: string }) {
+  if (merits.length === 0) return null;
+  return (
+    <ul className={`grid gap-1.5 ${className}`} aria-label="主な特徴（公式サイトの情報）">
+      {merits.slice(0, 3).map((merit, i) => (
+        // スマホは2つまで（囲みを高くしない。2026-11-10 オーナー承認「PR は小さく」）
+        <li key={merit} className={`${i >= 2 ? "max-sm:hidden " : ""}grid grid-cols-[16px_minmax(0,1fr)] items-start gap-2 text-note leading-[1.55] text-ink`}>
+          <svg aria-hidden="true" viewBox="0 0 16 16" className="pr-check mt-[3px] size-4 shrink-0">
+            <circle cx="8" cy="8" r="8" />
+            <path d="M4.6 8.3 7 10.6l4.4-4.9" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span>{merit}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/**
+ * 広告主のバナー（A8 の 300×250 など）を、縦横比 6:5 の白い枠に小さく収める。切り抜かず（文字が欠けない）、
+ * 幅・高さを先に取るので読み込みで画面がずれない。画像の無い商品は頭文字の札。表示の計測（A8 のバナー）はこの画像で数えられる
+ */
+export function AdThumb({ item, className = "" }: { item: OfferItem; className?: string }) {
+  return (
+    <span className={`relative block aspect-[6/5] shrink-0 overflow-hidden rounded-lg border border-line bg-white ${className}`}>
+      {item.image ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={item.image} alt="" width={300} height={250} loading="lazy" decoding="async" fetchPriority="low" className="absolute inset-0 h-full w-full object-contain" />
+      ) : (
+        <span aria-hidden="true" className="grid size-full place-items-center bg-[#f3f5f8]">
+          <span className="grid size-9 place-items-center rounded-lg bg-[#1d4a8f] text-[17px] font-black text-white">{initialOf(item.name)}</span>
+        </span>
+      )}
+    </span>
+  );
+}
+
+/**
+ * PR の囲みの1つ目（2026-11-10 オーナー「広告が魅力的じゃない。わざとらしすぎず、でも目立って押してしまうような」）。
+ * 見出しは読者がこの商品で確かめられること（pitch.gain）→ 小さな画像と名前 → 良いところ2〜3つ（公式の事実）→ 色のあるボタン → 移動先の名前。
+ * wide は本文の列（PC は画像を左に大きく、ボタンを横に）、それ以外は右の列・スマホ（縦に積む）。
+ * ボタンの色は A/B（<html data-adv>。app/layout.tsx で訪問者ごとに a/b を決める。a=赤、b=サイトの基本色）。CSS は app/globals.css の .pr-cta
+ */
+export function PrFeature({
+  item,
+  wide = false,
+  price,
+  onClick,
+  rank = 1,
+}: {
+  item: OfferItem;
+  wide?: boolean;
+  price?: string;
+  onClick?: () => void;
+  rank?: number;
+}) {
+  // 見出しは読者が確かめられること（pitch.gain）。無い商品は見出しを付けず、画像と名前から始める（枠の上の1行が話題を示す）
+  const gain = item.pitch?.gain;
+  // 良いところ（公式の事実）。無ければ確認済みの仕様（facts）
+  const merits = item.pitch?.merits ?? item.facts ?? [];
+  // どちらも無い商品は、公式の情報から書いた1行（point / note。本は楽天の売れ筋・レビュー）を代わりに出す
+  const point = merits.length === 0 ? (item.pitch?.point ?? reasonOf(item)) : undefined;
+  return (
+    <a
+      href={item.url}
+      target="_blank"
+      rel={AFFILIATE_REL}
+      data-aff-rank={rank}
+      onClick={onClick}
+      className={`group block ${wide ? "p-4 sm:p-6" : "p-4"}`}
+    >
+      {gain && <span className={`block font-bold leading-[1.45] text-ink text-pretty ${wide ? "text-[17px] sm:text-[19px]" : "text-[17px]"}`}>{gain}</span>}
+      <span className={`${gain ? "mt-3" : ""} grid items-start gap-x-3.5 gap-y-3 ${wide ? "grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-[168px_minmax(0,1fr)] sm:gap-x-6" : "grid-cols-[96px_minmax(0,1fr)]"}`}>
+        <AdThumb item={item} className={wide ? "w-[96px] sm:row-span-2 sm:w-[168px]" : "w-[96px]"} />
+        <span className="min-w-0 self-center">
+          {item.label && <span className="block text-[12px] font-bold leading-snug text-muted">{item.label}</span>}
+          <span className="mt-0.5 block text-[16px] font-bold leading-snug text-ink group-hover:underline">{item.name}</span>
+          <span className="mt-1 block empty:hidden">
+            <Rating item={item} />
+          </span>
+          {price && <span className="mt-1 block text-[18px] font-bold tabular-nums text-ink">{price}</span>}
+        </span>
+        <span className={`col-span-2 block ${wide ? "sm:col-span-1 sm:col-start-2" : ""}`}>
+          {merits.length > 0 ? (
+            <MeritList merits={merits} />
+          ) : (
+            point && <span className="block text-note leading-[1.6] text-ink-soft">{point}</span>
+          )}
+          {item.caution && <span className="mt-2 block text-meta leading-[1.6] text-muted">{item.caution}</span>}
+          {item.imageNote && <span className="mt-2 block text-meta leading-[1.5] text-muted">{item.imageNote}</span>}
+          {item.activeUntil && (
+            <span className="mt-2 block text-meta font-bold text-ink-soft">
+              販売終了予定：{new Intl.DateTimeFormat("ja-JP", { timeZone: "Asia/Tokyo", month: "numeric", day: "numeric", hour: "numeric", minute: "2-digit", hourCycle: "h23" }).format(new Date(item.activeUntil))}（変更の場合あり）
+            </span>
+          )}
+          <span className={`mt-3.5 flex flex-col gap-1.5 ${wide ? "sm:flex-row sm:items-center sm:gap-4" : ""}`}>
+            <span className={`pr-cta flex h-12 items-center justify-center rounded-xl px-6 text-[15px] font-bold tracking-wide shadow-[0_2px_0_rgb(0_0_0/0.18)] transition-[filter,transform] group-hover:brightness-110 group-active:translate-y-px motion-reduce:transition-none ${wide ? "sm:min-w-[17em]" : ""}`}>
+              {ctaOf(item)}
+            </span>
+            <span className={`text-center text-[12px] leading-snug text-muted ${wide ? "sm:text-left" : ""}`}>{item.shop}のサイトが開きます</span>
+          </span>
+        </span>
+      </span>
+    </a>
+  );
+}
+
+/** PR の囲みの2つ目以降（小さく1行ずつ）。見出しの代わりに、確かめられること（gain）か向く人を1行 */
+export function PrRow({ item, rank, onClick, price }: { item: OfferItem; rank: number; onClick?: () => void; price?: string }) {
+  const line = item.pitch?.gain ?? (item.pitch?.fit ? `向く人：${item.pitch.fit}` : (item.pitch?.point ?? item.note));
+  return (
+    <a
+      href={item.url}
+      target="_blank"
+      rel={AFFILIATE_REL}
+      data-aff-rank={rank}
+      onClick={onClick}
+      className="group grid grid-cols-[64px_minmax(0,1fr)] items-center gap-3 px-4 py-3 hover:bg-surface"
+    >
+      <AdThumb item={item} className="w-16 rounded-md" />
+      <span className="min-w-0">
+        <span className="block text-note font-bold leading-snug text-ink group-hover:underline">{item.name}</span>
+        {line && <span className="mt-0.5 block text-[12.5px] leading-snug text-ink-soft">{line}</span>}
+        {price && <span className="mt-0.5 block text-note font-bold tabular-nums text-ink">{price}</span>}
+        {/* 矢印の印は付けない（2026-11-09 オーナー）。押した先で分かることを文字で */}
+        <span className="pr-link mt-1 block text-[12.5px] font-bold underline underline-offset-2">{ctaOf(item)}</span>
+      </span>
+    </a>
+  );
+}
+
+/** 囲みの右上の小さな「PR」の札（ステマ規制の「広告であることが分かる表示」。大きくしない。2026-11-09 オーナー） */
+export function PrTag() {
+  return <span className="shrink-0 rounded-sm border border-line-strong px-1.5 text-[11px] leading-[18px] font-semibold tracking-wider text-muted">PR</span>;
 }
