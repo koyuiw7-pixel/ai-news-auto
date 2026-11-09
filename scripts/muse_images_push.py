@@ -257,7 +257,10 @@ def run(clone: Path, git=None, push=None, no_push: bool = False) -> list[str]:
             continue  # 記事の slug でない名前（例: docomo-followup-fig1）は送らずに残す
         fig_dir.mkdir(parents=True, exist_ok=True)
         dest = fig_dir / f"{m.group(1)}-fig{m.group(2)}.png"
-        if dest.exists() and dest.read_bytes() == path.read_bytes():
+        # 送り済みかは「git に入っているか」で見る（前の回の失敗で作業場所に残ったファイルを送り済みと見なさない・2026-11-09）
+        tracked = subprocess.run(["git", "-C", str(clone), "ls-files", "--error-unmatch", str(dest.relative_to(clone))],
+                                 capture_output=True).returncode == 0
+        if tracked and dest.exists() and dest.read_bytes() == path.read_bytes():
             continue
         shutil.copyfile(path, dest)
         figs.append(path)
