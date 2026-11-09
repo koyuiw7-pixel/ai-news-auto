@@ -92,6 +92,14 @@
       "tries": 1,
       "url": "https://j-net21.smrj.go.jp/solution/qa/startup/Q1549.html"
     },
+    "291bc739dbb7e180": {
+      "first": "2026-11-09T05:43:07.635664+00:00",
+      "next": "2026-11-09T08:43:07.635664+00:00",
+      "reason": "リード「誰でも無料で閲覧が可能です」→ 元記事に料金・無料に関する記述がなく、確認済みの文脈にもない。; よくある質問「利用登録なしでWeb上の地図から閲覧できます」→ 利用登録の要否は元記事に書かれておらず、創作。; 本文冒頭「特別な手続きを行わなくてもブラウザから無料で閲覧できます」→ 無料・手続き不要は元記事に無い主張の繰り返し。; 本文「これまでは確認に手間がかかる場合もありました」→ 従",
+      "title": "「不動産情報ライブラリ」コンテンツ追加およびデータ更新！～「特別注視区域」（重要土地等調査法）データの追加等を10月28日に実施しました～",
+      "tries": 1,
+      "url": "http://www.mlit.go.jp/report/press/tochi_fudousan_kensetsugyo17_hh_000001_00091.html"
+    },
     "69fabd0e3c004cb8": {
       "first": "2026-11-06T08:44:56.108789+00:00",
       "next": "2026-11-06T11:44:56.108789+00:00",
@@ -223,6 +231,7 @@
     "68f4b82abee1aa5b": "2026-11-06T18:22:08.318950+00:00",
     "69d14ce787e5945f": "2026-11-05T12:02:48.521507+00:00",
     "709478d4c3025144": "2026-11-06T19:41:01.362264+00:00",
+    "70a840a0a8aff058": "2026-11-09T05:41:05.167572+00:00",
     "716755f19ab6192d": "2026-11-06T06:00:54.354301+00:00",
     "7277a075ec1b338c": "2026-11-05T12:02:48.521507+00:00",
     "7a23190ffe485a96": "2026-11-06T19:41:01.362264+00:00",
@@ -10772,12 +10781,6 @@
       "skipped": true,
       "url": "https://www.ipa.go.jp/jinzai/security-camp/connect/index.html"
     },
-    "70a840a0a8aff058": {
-      "at": "2026-11-09T05:04:16.710365+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.env.go.jp/press/press_05634.html"
-    },
     "70d1c307ea1eb2d2": {
       "at": "2026-10-28T23:13:03.555337+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -19727,6 +19730,14 @@
       "url": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf",
       "writer": "muse"
     },
+    "muse-312de8d301": {
+      "at": "2026-11-09T05:32:06.685686+00:00",
+      "mix": "money",
+      "score": 80,
+      "slug": "furusato-nozei-points-ban-2025",
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/about.html",
+      "writer": "muse"
+    },
     "muse-38a132d9ab": {
       "at": "2026-11-08T05:33:53.803202+00:00",
       "mix": "money",
@@ -19783,6 +19794,14 @@
       "url": "https://www.nta.go.jp/information/release/kokuzeicho/2026/minkan_2026/pdf/01.pdf",
       "writer": "muse"
     },
+    "muse-953d9b143a": {
+      "at": "2026-11-09T05:28:32.245090+00:00",
+      "mix": "other",
+      "score": 88,
+      "slug": "home-smoke-alarm-replace-10-years",
+      "url": "https://www.fdma.go.jp/laws/tutatsu/items/2026_09_07_yobo1.pdf",
+      "writer": "muse"
+    },
     "muse-96dbcc6f2c": {
       "at": "2026-11-08T05:32:08.233634+00:00",
       "mix": "other",
@@ -19833,29 +19852,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-06T18:19:22.828213+00:00",
-      "attempt": 0,
-      "id": "a3c204cd288d4b65",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 104.4,
-        "avg_sentence": 40.9,
-        "long_share": 0.118,
-        "max_paragraph": 162,
-        "paragraphs": 20,
-        "sentences": 51
-      },
-      "score": 90,
-      "source": "google-cloud-blog-ja",
-      "title": "Google Cloud と NASA: 深宇宙ミッション用のロボット システムをテスト",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CMO・DA・CDSS）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-06T18:23:24.593445+00:00",
@@ -26714,6 +26710,36 @@
       "warnings": [
         "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（SK・MGX・XPU）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T05:42:37.168942+00:00",
+      "attempt": 1,
+      "id": "291bc739dbb7e180",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "リード「誰でも無料で閲覧が可能です」→ 元記事に料金・無料に関する記述がなく、確認済みの文脈にもない。",
+        "よくある質問「利用登録なしでWeb上の地図から閲覧できます」→ 利用登録の要否は元記事に書かれておらず、創作。",
+        "本文冒頭「特別な手続きを行わなくてもブラウザから無料で閲覧できます」→ 無料・手続き不要は元記事に無い主張の繰り返し。",
+        "本文「これまでは確認に手間がかかる場合もありました」→ 従来の確認手段や手間について元記事に言及がない。",
+        "事業者向け「重要事項の説明準備や物件情報の自動補完を効率化できます」→ 元記事にない機能・効果の断定。",
+        "かんたん版「土地取引の届出対象かどうかがWebで検索可能に」→ 元記事は地図上での外縁線表示であり、対象かどうかを検索できるとは書かれていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 85.7,
+        "avg_sentence": 46.2,
+        "long_share": 0.154,
+        "max_paragraph": 103,
+        "paragraphs": 7,
+        "sentences": 13
+      },
+      "score": 58,
+      "source": "mlit-press",
+      "title": "「不動産情報ライブラリ」コンテンツ追加およびデータ更新！～「特別注視区域」（重要土地等調査法）データの追加等を10月28日に実施しました～",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 46.2字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],

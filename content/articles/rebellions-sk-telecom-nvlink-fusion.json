@@ -89,9 +89,8 @@
     }
   ],
   "todayActions": [
-    "NVIDIAニュースルームの発表で、R200システムの導入時期が2028年とされている点を確かめる",
-    "自社でGPU以外のチップを検討するなら、NVLink Fusionの対応チップ一覧が今後出るか公式発表を追う",
-    "MGXラックの共通設計（寸法・電力・冷却）が自社の設備計画に合うかを確認する"
+    "NVIDIAニュースルームの発表で、導入時期が2028年の見込みと書かれているかを確かめる。",
+    "続報を受け取るため、NVIDIAニュースルームの購読（Subscribe）から通知を登録する。"
   ],
   "relatedSlugs": [
     "nvidia-nvlink-fusion-custom-silicon"
@@ -137,5 +136,97 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/rebellions-sk-telecom-nvlink-fusion-0fcece87.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "NVIDIAの発表では、製品名を「Rebel R200 neural processing units (NPUs)」と書いています。記事の「R200」と同じ製品を指しています。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "NVIDIA Newsroom の購読（Subscribe）",
+      "url": "https://nvidianews.nvidia.com/alerts",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion",
+      "note": "このページに電話番号や受付時間は書かれていません。発表の更新を受け取るための登録ページです。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "NVIDIAニュースルームの発表で、導入時期が2028年の見込みと書かれているかを確かめる。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion",
+      "steps": [
+        "NVIDIA Newsroomの発表記事を開く",
+        "本文の「Availability」の欄を探す",
+        "「ready for deployment in 2028」を確認する"
+      ],
+      "url": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion"
+    },
+    {
+      "action": "続報を受け取るため、NVIDIAニュースルームの購読（Subscribe）から通知を登録する。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion",
+      "steps": [
+        "ページ下部の「Subscribe」を開く",
+        "通知を受け取る登録をする",
+        "R200や日本での提供の続報を待つ"
+      ],
+      "url": "https://nvidianews.nvidia.com/alerts"
+    }
+  ],
+  "cause": {
+    "text": "韓国では、国内の半導体技術と主権AI（自国の言語や産業に合わせたAI）のインフラをつなぐ狙いで、科学技術情報通信省が協業を支援しています。R200は、大規模モデルで応答の速さと電力効率を高めることを狙っています。",
+    "status": "background",
+    "source": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion"
+  },
+  "worries": [
+    {
+      "q": "日本でR200が使えるようになるのはいつ？",
+      "a": "このページでは、R200システムが導入できる状態になるのは2028年の見込みと書かれています。日本での提供については、このページには記載がなく、発表されていません。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion",
+      "action": "日本での提供の発表は、NVIDIAニュースルームの購読で新しい続報を受け取り、確かめるようにします。"
+    },
+    {
+      "q": "R200の価格や、導入台数はどれくらい？",
+      "a": "このページには、R200の価格や、SKテレコムが導入する台数・規模は書かれていません。R200の具体的な性能数値も示されていません。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion",
+      "action": "価格や台数の発表が出るまでは、数字を前提にした費用計画を立てず、続報を待って判断する。"
+    },
+    {
+      "q": "自社のAI設備にR200を入れるには何を見る？",
+      "a": "MGXという共通のラック設計で、GPUとNPUのシステムがラックの寸法、電力供給、冷却を共有できると書かれています。自社の設備に合うかは、このページからは判断できません。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion",
+      "action": "自社の設備計画で、ラックの寸法・電力供給・冷却が、MGXの設計と合うかを比べて確認する。"
+    },
+    {
+      "q": "NVIDIAのGPUは置き換えられてしまう？",
+      "a": "このページには、GPUを置き換えるとは書かれていません。prefill（プレフィル）の処理はNVIDIAのGPUを使い、decode（デコード）の処理はRebellionsのNPUを使う計画と書かれています。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion",
+      "action": "AIの処理をGPUとNPUに分けるかどうかは、今後の公式発表で役割分担を確かめてから判断する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "自社のAI基盤でR200を今すぐ検討すべき？",
+      "situation": "自社でAI推論用チップを選ぶ立場",
+      "recommend": "急がなくてよい",
+      "reason": "このページでは導入できる状態になるのは2028年の見込みで、価格・台数・日本での提供は書かれていません。判断に必要な数字がまだ無いため、続報を待つ選択もあります。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion"
+    },
+    {
+      "question": "個人や一般企業がR200を使えるのは、いつ？",
+      "situation": "個人や小さな会社で、今すぐ使いたい",
+      "recommend": "今は対象外として扱ってよい",
+      "reason": "このページでは、導入できる状態になるのは2028年の見込みで、日本での提供は書かれていません。今すぐ使える案内は、このページにはありません。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "NVIDIAの発表で分かる製品名と発表日",
+    "cause": "なぜ韓国のチップをつなぐのか",
+    "steps": "発表で導入時期を確かめる手順",
+    "desk": "発表の更新を受け取る窓口",
+    "worries": "日本で使える？価格は？自社に入る？",
+    "guide": "今すぐ検討するか待つか、迷ったときの考え方"
+  },
+  "depthAt": "2026-11-09T05:46:41+00:00"
 }
