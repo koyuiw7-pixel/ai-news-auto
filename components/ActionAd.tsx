@@ -46,7 +46,7 @@ export default function ActionAd({ ad, className = "mt-4" }: { ad: ActionAdData;
           ))}
         </ul>
       )}
-      <p className="border-t border-line bg-surface px-4 py-2.5 text-[11px] leading-relaxed text-muted sm:px-6">
+      <p className="border-t border-line bg-surface px-4 py-2.5 text-note leading-relaxed text-muted sm:px-6">
         広告（アフィリエイトリンク）を含みます。申し込みがあると当サイトに紹介料が入ることがあります。料金・条件は各公式サイトで確認してください。
       </p>
       <Pixels pixels={ad.items.map(({ pixel }) => pixel).filter((p): p is string => Boolean(p))} />

@@ -109,7 +109,7 @@ export default function ProductsPage() {
         }
         if (credits.size === 0) return null;
         return (
-          <p className="mt-10 text-meta leading-[1.8] text-muted">
+          <p className="mt-10 text-note leading-[1.8] text-muted">
             {[...credits].map(([url, credit]) => (
               <span key={url} className="mr-4 inline-block">
                 <a href={url} className="underline underline-offset-2 hover:text-accent" target="_blank" rel="noopener noreferrer">

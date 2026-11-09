@@ -222,7 +222,7 @@ export function PrFeature({
       <span className={`${gain ? "mt-3" : ""} grid items-start gap-x-3.5 gap-y-3 ${wide ? "grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-[168px_minmax(0,1fr)] sm:gap-x-6" : "grid-cols-[96px_minmax(0,1fr)]"}`}>
         <AdThumb item={item} className={wide ? "w-[96px] sm:row-span-2 sm:w-[168px]" : "w-[96px]"} />
         <span className="min-w-0 self-center">
-          {item.label && <span className="block text-[12px] font-bold leading-snug text-muted">{item.label}</span>}
+          {item.label && <span className="block text-meta font-bold leading-snug text-muted">{item.label}</span>}
           <span className="mt-0.5 block text-[16px] font-bold leading-snug text-ink group-hover:underline">{item.name}</span>
           <span className="mt-1 block empty:hidden">
             <Rating item={item} />
@@ -246,7 +246,7 @@ export function PrFeature({
             <span className={`pr-cta flex h-12 items-center justify-center rounded-xl px-6 text-[15px] font-bold tracking-wide shadow-[0_2px_0_rgb(0_0_0/0.18)] transition-[filter,transform] group-hover:brightness-110 group-active:translate-y-px motion-reduce:transition-none ${wide ? "sm:min-w-[17em]" : ""}`}>
               {ctaOf(item)}
             </span>
-            <span className={`text-center text-[12px] leading-snug text-muted ${wide ? "sm:text-left" : ""}`}>{item.shop}のサイトが開きます</span>
+            <span className={`text-center text-meta leading-snug text-muted ${wide ? "sm:text-left" : ""}`}>{item.shop}のサイトが開きます</span>
           </span>
         </span>
       </span>
@@ -269,10 +269,10 @@ export function PrRow({ item, rank, onClick, price }: { item: OfferItem; rank: n
       <AdThumb item={item} className="w-16 rounded-md" />
       <span className="min-w-0">
         <span className="block text-note font-bold leading-snug text-ink group-hover:underline">{item.name}</span>
-        {line && <span className="mt-0.5 block text-[12.5px] leading-snug text-ink-soft">{line}</span>}
+        {line && <span className="mt-0.5 block text-meta leading-snug text-ink-soft">{line}</span>}
         {price && <span className="mt-0.5 block text-note font-bold tabular-nums text-ink">{price}</span>}
         {/* 矢印の印は付けない（2026-11-09 オーナー）。押した先で分かることを文字で */}
-        <span className="pr-link mt-1 block text-[12.5px] font-bold underline underline-offset-2">{ctaOf(item)}</span>
+        <span className="pr-link mt-1 block text-meta font-bold underline underline-offset-2">{ctaOf(item)}</span>
       </span>
     </a>
   );
@@ -280,5 +280,5 @@ export function PrRow({ item, rank, onClick, price }: { item: OfferItem; rank: n
 
 /** 囲みの右上の小さな「PR」の札（ステマ規制の「広告であることが分かる表示」。大きくしない。2026-11-09 オーナー） */
 export function PrTag() {
-  return <span className="shrink-0 rounded-sm border border-line-strong px-1.5 text-[11px] leading-[18px] font-semibold tracking-wider text-muted">PR</span>;
+  return <span className="shrink-0 rounded-sm border border-line-strong px-1.5 text-badge leading-[18px] font-semibold tracking-wider text-muted">PR</span>;
 }
