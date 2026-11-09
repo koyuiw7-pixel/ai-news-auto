@@ -61,8 +61,8 @@
   "newsType": "research",
   "todayActions": [
     "My docomoで手続きする前に、やりたい内容が9項目に入っていないかを確かめる",
-    "SMSやメールのリンクは開かず、公式サイトか公式アプリから入り直す",
-    "心配なら特設ダイヤル0120-451-360（午前9時〜午後8時）に相談する"
+    "SMSやメールのリンクは開かず、公式サイトや公式アプリから入り直す",
+    "心配なら特設ダイヤル0120-451-360に、受付時間内に相談する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -76,5 +76,126 @@
   "relatedSlugs": [
     "docomo-my-docomo-data-breach"
   ],
-  "angleOf": "docomo-my-docomo-data-breach"
+  "angleOf": "docomo-my-docomo-data-breach",
+  "insight": [
+    {
+      "text": "「ahamoからのプラン変更」は止まっていますが、「ahamoへのプラン変更」はahamoサイトから利用できます。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html"
+    },
+    {
+      "text": "「一部のお客さま」の情報には、「金融機関名、支店名、口座番号、口座名義等」や「子育て応援プログラムに関する情報」も含まれるとされています。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "特設ダイヤル",
+      "url": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html",
+      "phone": "0120-451-360",
+      "hours": "午前9時～午後8時",
+      "note": "このページには、自分が流出の対象かどうかを個別に確かめる方法は書かれていません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "My docomoで手続きする前に、やりたい内容が9項目に入っていないかを確かめる",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html",
+      "steps": [
+        "このページの「現在My docomoでご利用いただけないお手続き」の一覧を見る",
+        "やりたい手続きが一覧に無いかを確かめる",
+        "一覧に無ければ、My docomoで通常どおり手続きする"
+      ],
+      "url": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html"
+    },
+    {
+      "action": "SMSやメールのリンクは開かず、公式サイトや公式アプリから入り直す",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html",
+      "steps": [
+        "不審なメール等に記載のURLにはアクセスしない",
+        "添付ファイルは開かない",
+        "公式サイトや公式アプリから入り直す"
+      ]
+    },
+    {
+      "action": "心配なら特設ダイヤル0120-451-360に、受付時間内に相談する",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html",
+      "steps": [
+        "電話番号0120-451-360にかける",
+        "受付時間は午前9時～午後8時",
+        "個人情報やパスワードは電話で入力・回答しない"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "原因は「外部からの不正アクセス」と発表されています。ドコモオンラインショップおよびMy docomoに外部から不正なアクセスが行われ、その不正アクセス以前に一部のお客さま情報が流出したことを確認しました。侵入経路は詳細な調査を進めています。",
+    "status": "stated",
+    "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html"
+  },
+  "worries": [
+    {
+      "q": "カードや口座の情報は大丈夫？",
+      "a": "口座番号などの金融情報は「一部のお客さま」の情報とされ、全員の情報ではありません。ただし、本人確認書類の番号や契約情報は全員の情報に含まれるとされています。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html",
+      "action": "口座やカードの明細を、公式アプリや公式サイトから入って確かめる",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "家族や子どもの回線にも影響はある？",
+      "a": "一部のお客さまには、法定代理人・手続代理人の氏名と連絡先や、子育て応援プログラムに関する情報も含まれるとされています。どの方が対象かは発表されていません。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html",
+      "action": "家族の契約に関わる心当たりがあれば、特設ダイヤルに相談する"
+    },
+    {
+      "q": "ドコモを装った詐欺の電話やSMSが来る？",
+      "a": "流出した情報を悪用し、ドコモや関係者などを装った不審なメール、SMS、電話が届く可能性があると案内されています。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html",
+      "action": "URLを開かず、添付ファイルを開かず、個人情報やパスワードを入力・回答しない"
+    },
+    {
+      "q": "ahamoの契約はそのまま変えられる？",
+      "a": "ahamoからのプラン変更は、まだ利用できません。ahamoへのプラン変更は、ahamoサイトから利用できると案内されています。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html",
+      "action": "ahamoへのプラン変更は、ahamoサイトから手続きする"
+    },
+    {
+      "q": "新しい情報流出は起きていない？",
+      "a": "第四報（11月9日午後5時30分時点）では「現時点で新たな情報流出は確認されておりません」とされています。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html",
+      "action": "このページの「第四報」の時点表記を見て、新しい発表が出ていないか確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "今すぐ手続きしたいことがある",
+      "situation": "変更したい内容が9項目に入っている",
+      "recommend": "再開のお知らせを待つ",
+      "reason": "9項目はまだ使えず、再開時期は「決まり次第お知らせします」とされています。相談は特設ダイヤルでできます。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html"
+    },
+    {
+      "question": "今すぐ手続きしたいことがある",
+      "situation": "変更したい内容が9項目に入っていない",
+      "recommend": "My docomoで手続きできる",
+      "reason": "9項目以外のMy docomoの手続きは、11月9日午後3時00分頃から使えるとされています。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html"
+    },
+    {
+      "question": "ahamoから別のプランに変えたい",
+      "situation": "ahamoから別のプランへ変えたい",
+      "recommend": "再開を待つ",
+      "reason": "ahamoからのプラン変更は現在使えないとされています。ahamoへのプラン変更はahamoサイトから利用できます。",
+      "source": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ahamoは変更先と変更元で扱いが違う",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "やりたい手続きが止まっているか、まず確かめる",
+    "desk": "相談先は特設ダイヤル、受付は9時から20時まで",
+    "worries": "カードや口座、家族の回線は大丈夫？",
+    "guide": "手続きを待つか、今すぐ進めるかの決め方"
+  },
+  "depthAt": "2026-11-09T18:04:38+00:00"
 }

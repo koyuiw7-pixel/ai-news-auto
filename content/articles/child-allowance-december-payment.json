@@ -80,9 +80,8 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "10月と11月に3歳の誕生日を迎える子がいないか、子どもの生年月日を確かめる",
-    "22歳の年度末までの上の子がいる家庭は、「監護相当・生計費の負担についての確認書」が必要か市区町村に問い合わせる",
-    "12月の支給日は、お住まいの市区町村の案内で確かめておく"
+    "子どもの生年月日を確かめ、10月と11月に3歳の誕生日を迎える子がいないか確認する",
+    "22歳の年度末までの上の子がいれば、市区町村に確認書が必要か問い合わせる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -105,5 +104,82 @@
   "qualityScore": 88,
   "detectedAt": "2026-11-09T17:31:04+00:00",
   "layout": "noir",
-  "summaryLine": "12月に振り込まれるのは、10月分と11月分の2か月分です。偶数月に前月までの2か月分を支給します。"
+  "summaryLine": "12月に振り込まれるのは、10月分と11月分の2か月分です。偶数月に前月までの2か月分を支給します。",
+  "insight": [
+    {
+      "text": "里帰り出産などで母親が一時的に住所を離れていても、出生届とは別に、お住まいの市区町村で「認定請求書」による申請が必要です。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/"
+    },
+    {
+      "text": "認定請求に必要な添付書類は、会社員の場合「健康保険証利用登録がされたマイナンバーカード」、健康保険の資格証明書、年金加入証明書の写しなどです。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    },
+    {
+      "text": "手当の振込先の預金口座は、原則として手当を受け取る人が名義人であるものに限られ、配偶者や子どもの名義の口座には支払えません。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "児童手当制度のご案内（こども家庭庁）",
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "note": "認定請求は現住所の市区町村に提出します。公務員の方は勤務先に申請します。詳しくは市区町村にお問い合わせください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "子どもの生年月日を確かめ、10月と11月に3歳の誕生日を迎える子がいないか確認する",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "steps": [
+        "子どもの生年月日を確かめる",
+        "10月・11月に3歳になる子がいないか見る",
+        "該当すれば市区町村に2か月分の額を確かめる"
+      ]
+    },
+    {
+      "action": "22歳の年度末までの上の子がいれば、市区町村に確認書が必要か問い合わせる",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "steps": [
+        "お住まいの市区町村の児童手当の窓口に連絡する",
+        "「監護相当・生計費の負担についての確認書」が必要か尋ねる",
+        "必要なら認定請求の添付書類として提出する"
+      ],
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    }
+  ],
+  "worries": [
+    {
+      "q": "今年の12月、いくら振り込まれるの？",
+      "a": "12月は10月分と11月分の2か月分です。月額は3歳未満15,000円、3歳以上高校生年代まで10,000円、第3子以降は年齢にかかわらず30,000円です。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "action": "子どもの生年月日と人数を確かめ、月額の区分にあてはめて計算してみましょう"
+    },
+    {
+      "q": "大学に通う上の子がいても、下の子の手当は変わる？",
+      "a": "22歳の年度末までの上の子に親等の経済的負担がある場合、進学か否か、同居か別居かにかかわらず「第3子以降」の数え方に入ります。",
+      "source": "https://www.gov-online.go.jp/tokusyu/jidoteate/",
+      "action": "お住まいの市区町村に、「監護相当・生計費の負担についての確認書」が必要か問い合わせる",
+      "actionSource": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    },
+    {
+      "q": "申請が遅れたら、遅れた月分はもらえなくなる？",
+      "a": "申請が遅れると、原則として遅れた月分の手当は受けられなくなります。子どもが生まれたときは出生の日の翌日から15日以内に申請が必要です。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "action": "子どもが生まれた・転入した場合は、15日以内に現住所の市区町村へ申請する"
+    },
+    {
+      "q": "振込先は子ども名義の口座でもいい？",
+      "a": "原則として、手当を受け取る人が名義人の口座に限られ、配偶者や子どもの名義の口座にはできません。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/",
+      "action": "振込先の口座が、手当を受け取る本人の名義かどうか確かめておく"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "里帰り出産や振込先で、つまずきやすい点",
+    "steps": "12月の前に、まずやる2つのこと",
+    "desk": "迷ったら、どこに聞けばいいか",
+    "worries": "12月の金額、上の子、申請の遅れは大丈夫？"
+  },
+  "depthAt": "2026-11-09T18:08:03+00:00"
 }

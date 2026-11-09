@@ -70,9 +70,9 @@
   "affiliates": [],
   "newsType": "explainer",
   "todayActions": [
-    "住んでいる都道府県の灯油の店頭価格と配達価格を、次回の11月11日（水）14時の公表で確かめる",
-    "特設サイトで11月5日以降の支給単価51.9円を確かめ、12月以降の支給単価の変化を毎週見る",
-    "必要な分だけ買い、過剰な買いだめは控える（資源エネルギー庁が呼びかけている内容）"
+    "お住まいの都道府県の店頭・配達価格を、次回11月11日（水）14時の公表で確かめる",
+    "特設サイトで11月5日以降の支給単価51.9円を確かめ、次の更新を毎週見る",
+    "灯油を買うときは必要な分だけにし、過剰な買いだめは控える"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -119,5 +119,124 @@
   ],
   "detectedAt": "2026-11-09T17:37:10+00:00",
   "layout": "noir",
-  "summaryLine": "資源エネルギー庁の記事によると、10月26日時点で灯油の全国平均小売価格は1リットル**143.3円**でした。"
+  "summaryLine": "資源エネルギー庁の記事によると、10月26日時点で灯油の全国平均小売価格は1リットル**143.3円**でした。",
+  "insight": [
+    {
+      "text": "給油所以外の灯油価格は毎月15日に調査され、毎月最終営業日に公表されます。次回は11月30日（月）14：00の予定です。",
+      "source": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html"
+    },
+    {
+      "text": "支給単価の注記では、「調達費用に基づく調整単価」は7.2円/L（2026年11月分）とされています。月ごとの数字なので、次の月の値も確かめます。",
+      "source": "https://nenryo-teigakuhikisage.go.jp/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "資源エネルギー庁 石油製品価格調査",
+      "url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html",
+      "source": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html",
+      "howTo": [
+        "ホーム",
+        "統計・各種データ",
+        "石油・LPガス関連",
+        "石油製品価格調査"
+      ],
+      "phone": "0120-938-356",
+      "hours": "10時～12時、13時～17時（土日祝日、年末年始等は除く）",
+      "note": "問い合わせ前に、F5キーあるいはCtrl＋F5キーでページを更新してください。"
+    },
+    {
+      "name": "中東情勢を踏まえた緊急的激変緩和措置 特設サイト",
+      "url": "https://nenryo-teigakuhikisage.go.jp/",
+      "source": "https://nenryo-teigakuhikisage.go.jp/",
+      "note": "支給単価と全国平均価格のグラフが更新されます（2026/11/5更新）。"
+    },
+    {
+      "name": "灯油直販スキームの受付フォーム",
+      "url": "https://forms.cloud.microsoft/r/dKHU96P58X",
+      "source": "https://www.enecho.meti.go.jp/about/special/johoteikyo/touyu_2026.html",
+      "note": "対象は灯油を必要とする卸売事業者や医療・農業分野などの需要家です。詳しい事情を聞いて、一件一件対応するとされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "お住まいの都道府県の店頭・配達価格を、次回11月11日（水）14時の公表で確かめる",
+      "source": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html",
+      "steps": [
+        "石油製品価格調査のページを開く",
+        "「1．給油所小売価格調査（ガソリン、軽油、灯油）」の調査結果を開く",
+        "「11月5日（木）結果詳細版（EXCEL形式）」で都道府県の価格を見る"
+      ],
+      "url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html"
+    },
+    {
+      "action": "特設サイトで11月5日以降の支給単価51.9円を確かめ、次の更新を毎週見る",
+      "source": "https://nenryo-teigakuhikisage.go.jp/",
+      "steps": [
+        "特設サイトのトップを開く",
+        "「2026年11月5日以降の支給単価」を見る",
+        "「支給単価、全国平均価格のグラフを更新」の新着情報を確かめる"
+      ],
+      "url": "https://nenryo-teigakuhikisage.go.jp/"
+    },
+    {
+      "action": "灯油を買うときは必要な分だけにし、過剰な買いだめは控える",
+      "source": "https://www.enecho.meti.go.jp/about/special/johoteikyo/touyu_2026.html",
+      "steps": [
+        "家の在庫と1週間の使用量を確かめる",
+        "必要な分だけ買う"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "中東情勢の影響で原油価格が高騰し、原油から精製される灯油も価格の影響を受けています。さらに冬季の供給への不安などを背景に、140円前後から徐々に上がり、10月26日時点は1リットル143.3円です。",
+    "status": "stated",
+    "source": "https://www.enecho.meti.go.jp/about/special/johoteikyo/touyu_2026.html"
+  },
+  "worries": [
+    {
+      "q": "この冬、灯油が本当に足りなくなる心配はある？",
+      "a": "日本全体として必要となる量をすでに確保できています。決して供給不足に陥る状況にはないと、資源エネルギー庁は説明しています。",
+      "source": "https://www.enecho.meti.go.jp/about/special/johoteikyo/touyu_2026.html",
+      "action": "必要な分だけ買い、過剰な買いだめは控える。在庫と1週間の使用量を確かめてから買う。"
+    },
+    {
+      "q": "補助はいつまで続くのか、いつ終わるのか気になる",
+      "a": "資源エネルギー庁は、燃料油の価格支援による補助を継続すると示しています。2026年3月19日から実施しています。完全に終わる時期は、このページでは示されていません。",
+      "source": "https://www.enecho.meti.go.jp/category/gekihen_lp/index.html",
+      "action": "特設サイトで11月5日以降の支給単価51.9円を確かめ、グラフの更新を毎週見る。",
+      "actionSource": "https://nenryo-teigakuhikisage.go.jp/"
+    },
+    {
+      "q": "寒い地域では、店頭と配達のどちらが高いの？",
+      "a": "北海道庁の11月2日調査（北海道分）では、店頭が1リットル156.8円、配達が160.0円でした。店頭より配達のほうが高い地域があることが分かります。",
+      "source": "https://www.pref.hokkaido.lg.jp/kz/kks/keizaibu/201684.html",
+      "action": "お住まいの都道府県の価格を、次回11月11日（水）14時の公表で確かめて比べる。",
+      "actionSource": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html"
+    },
+    {
+      "q": "冬に備えて、灯油をまとめて買っておくほうが安心？",
+      "a": "過剰な買いだめは、必要な場所に灯油が行き渡らなくなったり、値上がりを招いたりするおそれがあると説明されています。",
+      "source": "https://www.enecho.meti.go.jp/about/special/johoteikyo/touyu_2026.html",
+      "action": "今の使用量から、次に必要な分だけを見積もって買う。買い足しは在庫が減ってから。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "配達と店頭のどちらで灯油を買うか迷うときは？",
+      "situation": "地域によって配達と店頭の値段が違うとき",
+      "recommend": "急がず、両方の価格を比べてから決めてよい",
+      "reason": "北海道庁の11月2日調査では店頭156.8円、配達160.0円/Lでした。価格は週ごとに変わるため、次回の公表で確かめてから決めるとよいでしょう。",
+      "source": "https://www.pref.hokkaido.lg.jp/kz/kks/keizaibu/201684.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "次の公表日と、支給単価の注記",
+    "cause": "補助があっても灯油が上がる理由",
+    "steps": "今週の価格と次回公表日を確かめる",
+    "desk": "価格や申し込みを確かめる公式窓口",
+    "worries": "足りなくなる？補助はいつまで？",
+    "guide": "店頭と配達、どちらで買うか迷ったら"
+  },
+  "depthAt": "2026-11-09T18:07:37+00:00"
 }

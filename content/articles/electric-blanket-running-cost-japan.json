@@ -63,14 +63,14 @@
   "videoTitle": "電気毛布は1晩8時間で約8円　こたつ・カーペットとの電気代の差",
   "publishedAt": "2026-11-09T17:43:30.352441+00:00",
   "generatedAt": "2026-11-09T17:44:20.216427+00:00",
-  "thumbnail": "https://panasonicjp.scene7.com/is/image/panasonicjp/DB-U12T-G_%E6%A8%99%E6%BA%96%E3%83%95%E3%83%AA-1?fmt=png-alpha",
+  "thumbnail": "",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "寝る前に、手元の電気毛布の「1時間の標準電気料金」を取扱説明書か仕様ページで確かめる",
-    "就寝時は、電気毛布の目盛りを低くするか、スイッチを切って寝る",
-    "電源コードが曲がったり引っ張られたりしていないか確認する"
+    "寝る前に、手元の電気毛布の「1時間の標準電気料金」を仕様ページで確かめる。",
+    "寝るときは電気毛布の目盛りを低くするか、スイッチを切り、体の一部を同じ場所に長く触れさせない。",
+    "電源コードが曲がったり引っ張られたりしていないか、コードプロテクター付近を確かめる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -101,16 +101,113 @@
   "qualityScore": 92,
   "detectedAt": "2026-11-09T17:44:59+00:00",
   "layout": "noir",
-  "imageFocus": {
-    "x": 0.558,
-    "y": 0.511,
-    "box": [
-      0.15,
-      0.241,
-      0.966,
-      0.781
-    ],
-    "ar": 1.0,
-    "src": "https://panasonicjp.scene7.com/is/image/panasonicjp/DB-U12T-G_%E6%A8%99%E6%BA%96%E3%83%95%E3%83%AA-1?fmt=png-alpha"
-  }
+  "insight": [
+    {
+      "text": "NITEの注意では、46℃で30分〜1時間、熱源に触れた部位が圧迫されていると、より短い時間で「低温やけど」になるとされています。",
+      "source": "https://www.nite.go.jp/jiko/chuikanki/mailmagazin/2025fy/vol493_260127.html"
+    },
+    {
+      "text": "電気毛布の事故では、電源コードの「コードプロテクター」付近に繰り返し外力が加わって芯線が断線し、接触不良のスパークから出火した例があります。",
+      "source": "https://www.nite.go.jp/jiko/chuikanki/mailmagazin/2025fy/vol493_260127.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "電気カーペット（ホットカーペット）・暖房器具 サポート",
+      "url": "https://panasonic.jp/danbo/support.html",
+      "source": "https://panasonic.jp/support/contact.html",
+      "note": "商品の使い方や修理の相談はこのページから。電話番号と受付時間は読んだページには載っていません。"
+    },
+    {
+      "name": "製品評価技術基盤機構（NITE）製品安全広報課",
+      "url": "https://www.nite.go.jp/otoiawase/email.html",
+      "source": "https://www.nite.go.jp/jiko/chuikanki/mailmagazin/2025fy/vol493_260127.html",
+      "howTo": [
+        "製品安全",
+        "お問い合わせ"
+      ],
+      "phone": "TEL：06-6612-2066",
+      "note": "電話番号は製品安全広報課の欄に記載。受付時間はページにありません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "寝る前に、手元の電気毛布の「1時間の標準電気料金」を仕様ページで確かめる。",
+      "source": "https://panasonic.jp/danbo/products/DB-U12T/spec.html",
+      "steps": [
+        "型番の仕様・詳細情報ページを開く",
+        "「仕様・スペック」の表を見る",
+        "「1時間の標準電気料金(室温10℃)」の欄を確かめる"
+      ],
+      "url": "https://panasonic.jp/danbo/products/DB-U12T/spec.html"
+    },
+    {
+      "action": "寝るときは電気毛布の目盛りを低くするか、スイッチを切り、体の一部を同じ場所に長く触れさせない。",
+      "source": "https://www.nite.go.jp/jiko/chuikanki/mailmagazin/2025fy/vol493_260127.html",
+      "steps": [
+        "寝る前に布団をあたためる",
+        "寝るときは低い目盛りに下げるか、スイッチを切る",
+        "ひざなど同じ場所が長く触れないようにする"
+      ]
+    },
+    {
+      "action": "電源コードが曲がったり引っ張られたりしていないか、コードプロテクター付近を確かめる。",
+      "source": "https://www.nite.go.jp/jiko/chuikanki/mailmagazin/2025fy/vol493_260127.html",
+      "steps": [
+        "コードプロテクター付近に折れや傷がないか見る",
+        "電源コードを本体に巻き付けない",
+        "電源コードを無理に曲げたり引っ張ったりしない"
+      ]
+    }
+  ],
+  "worries": [
+    {
+      "q": "寝ている間に低温やけどにならない？",
+      "a": "NITEによると、44℃では3〜4時間、46℃では30分〜1時間、50℃では2〜3分で低温やけどになると言われています。熱源に触れた部位が圧迫されていると、より短い時間で起きます。",
+      "source": "https://www.nite.go.jp/jiko/chuikanki/mailmagazin/2025fy/vol493_260127.html",
+      "action": "寝る前に布団をあたため、寝るときは低い目盛りにするかスイッチを切り、同じ場所に長く触れないようにする。"
+    },
+    {
+      "q": "電源コードは大丈夫？傷むと危ない？",
+      "a": "NITEの事故事例では、電気毛布のコードプロテクター付近に繰り返し外力が加わり、芯線が断線して出火したケースがあります。電源コードを傷めると発煙や発火のおそれがあると書かれています。",
+      "source": "https://www.nite.go.jp/jiko/chuikanki/mailmagazin/2025fy/vol493_260127.html",
+      "action": "電源コードが曲がったり引っ張られたりしていないか、コードプロテクター付近を見て、無理に曲げない。"
+    },
+    {
+      "q": "電気代は1時間どれくらい？",
+      "a": "パナソニックの仕様では、室温10℃の標準条件で電気しき毛布DB-U12Tは「強」が約1.0円、「3」が約0.6円です。電力料金目安単価は31円／kWh（税込、2022年7月改定）です。",
+      "source": "https://panasonic.jp/danbo/products/DB-U12T/spec.html",
+      "action": "取扱説明書か仕様ページで、手元の機種の「1時間の標準電気料金」を確かめる。"
+    },
+    {
+      "q": "エアコンやこたつと、どう使い分ける？",
+      "a": "電気毛布は体に密着させてあたためる器具で、少ない消費電力でもあたたかさを感じやすいとされています。就寝時や、ソファでのひざ掛けなど一人で使う場面によく合うと書かれています。",
+      "source": "https://panasonic.jp/life/housework/100166.html",
+      "action": "就寝時や一人で使う場面では電気毛布を使い、部屋全体の寒さはエアコンなど別の暖房で考える。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "寝るとき電気毛布はどうする？",
+      "situation": "就寝中も使いたい",
+      "recommend": "低い目盛りにするか、スイッチを切る",
+      "reason": "NITEは就寝時には適度な低い目盛りに下げるか、スイッチを切って眠ることを勧めています。低温やけどや電源コードの事故を防ぐための注意です。",
+      "source": "https://www.nite.go.jp/jiko/chuikanki/mailmagazin/2025fy/vol493_260127.html"
+    },
+    {
+      "question": "寝るとき電気毛布はどうする？",
+      "situation": "高齢の方や子どもと一緒に使う",
+      "recommend": "低い目盛りやスイッチオフを優先して確かめる",
+      "reason": "NITEによると、高齢者は感覚が鈍く重症化する傾向があり、幼児や身体の不自由な方、糖尿病の方は特に注意が必要と言われています。",
+      "source": "https://www.nite.go.jp/jiko/chuikanki/mailmagazin/2025fy/vol493_260127.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "寝ている間の低温やけど、圧迫で早まる",
+    "steps": "寝る前と寝るときに、まずやること",
+    "desk": "困ったときの問い合わせ先",
+    "worries": "寝ている間の低温やけど、コードは大丈夫？",
+    "guide": "就寝時に目盛りを下げるか、切るか迷ったら"
+  },
+  "depthAt": "2026-11-09T18:06:31+00:00"
 }
