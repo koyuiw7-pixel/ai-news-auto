@@ -38,7 +38,7 @@ INBOX = ROOT / "content" / "muse_images"
 STATE = ROOT / "state" / "muse_images.json"
 SITE = "https://ai-tech-express.jp"
 JST = timezone(timedelta(hours=9))
-DEFAULT_DAILY = 20
+DEFAULT_DAILY = 30  # 2026-11-09 オーナー承認どおり 20→30（変数 MUSE_IMAGE_DAILY も 30）
 KEEP_DAYS = 7
 MODEL = "muse"
 PROVIDER = "Meta AI（Muse）"
@@ -105,6 +105,13 @@ def photo_state(article: dict) -> str:
     """official（使える公式の写真）/ muse / ai（Workers AI の表紙）/ none（写真が無い・文字だけ）"""
     import noir_cover  # noqa: PLC0415
 
+    # ロゴ・サイト共通の画像・ほかの記事の画像は「写真が無い」と同じに扱う（Muse に頼む。2026-11-09 台帳 S49）
+    credit = article.get("imageCredit") or {}
+    thumb = str(article.get("thumbnail") or "")
+    if (credit.get("kind") == "official" and credit.get("imageKind") in ("logo", "generic")) or borrowed(thumb, str(article.get("slug") or "")):
+        if is_muse_cover(article):
+            return "muse"
+        return "ai" if article.get("coverImage") else "none"
     if article.get("layout") == noir_cover.LAYOUT:
         path = noir_cover.cover_path(article)
         if path == "official":
@@ -121,6 +128,12 @@ def photo_state(article: dict) -> str:
     if article.get("coverImage") or (article.get("thumbnail") and kind == "ai"):
         return "ai"
     return "none"
+
+
+def borrowed(url: str, slug: str) -> bool:
+    """自前の画像（/img/<名前>）の名前が、この記事の slug で始まらない（ほかの記事のために保存した画像）"""
+    m = re.search(r"/img/([^/?#]+)$", url or "")
+    return bool(m and slug) and not m.group(1).startswith(slug[:120])
 
 
 def eligible(article: dict) -> bool:
@@ -247,7 +260,9 @@ def update_requests(state: dict, articles: dict[str, dict], sns: set[str], cap: 
     used = sum(1 for r in items.values() if r.get("day") == today and r.get("status") in ("requested", "delivered", "applied"))
     candidates = []
     for slug, article in articles.items():
-        if slug in items or jst_day(article.get("generatedAt") or article.get("publishedAt")) != today or not eligible(article):
+        # SNS に出す予定の記事は、前の日の記事でも頼む（2026-11-09: 前の日の子ども手当の記事が写真なしで出た。台帳 S49）
+        if slug in items or not eligible(article) or (
+                slug not in sns and jst_day(article.get("generatedAt") or article.get("publishedAt")) != today):
             continue
         got = photo_state(article)
         if got in ("official", "muse"):
