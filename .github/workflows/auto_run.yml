@@ -184,7 +184,7 @@ jobs:
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run evergreen.yml --ref main -f max=1 && echo "使い方ガイドを1本作るよう依頼しました"
+        run: gh workflow run evergreen.yml --ref main -f max=1 -f prefer=procedure && echo "暮らしとお金の手続きのガイドを先に1本作るよう依頼しました（台帳 A70）"
 
       # 同じ話題の記事が3本以上たまったら、横断まとめ記事に統合する。
       # 動画を再解析せず既存記事のテキストだけを使うのでAPI消費は1回分。

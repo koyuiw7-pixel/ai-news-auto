@@ -209,6 +209,7 @@ PROSE_WRITERS = {
     "angle_articles.py": ["quality.evaluate("],           # 別の切り口
     "rewrite_types.py": ["quality.evaluate("],            # 型での書き直し
     "section_polish.py": ["added_problems"],             # 章の見出し・文の書き直し（公開中の記事）
+    "deep_dive.py": ["quality.evaluate(", "publish_blocked("],  # 読まれた記事の深掘り（台帳 A70）。ふつうの記事と同じ門
     "muse_articles.py": ["quality.evaluate(", "publish_blocked("],  # Muse の入稿（台帳 A59）。ふつうの記事と同じ門
     "gpt_review.py": ["added_problems"],                 # ChatGPT での公開中の記事の見直し（台帳 A65）
 }

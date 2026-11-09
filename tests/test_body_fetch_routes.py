@@ -45,6 +45,7 @@ class FakeNet:
 class Base(unittest.TestCase):
     def setUp(self):
         feeds._jina_key_dead = None
+        feeds._article_memo.clear()  # 同じ実行の中の覚え（台帳 A70）を試験ごとに消す
         feeds._robots_cache.clear()
         feeds._api_fetch_used = 0
         feeds._api_fetch_blocked_hosts.clear()

@@ -1,0 +1,171 @@
+name: Deep dive
+
+# 読まれた記事を、別の疑問に答える記事に深掘りする（scripts/deep_dive.py。2026-11-10 オーナー承認・台帳 A70）。
+# 前の日に人に読まれた記事（content/popular.json）の上位5本から、公式の出典に答えがある型
+# （対象の確かめ方・家族の分・手続き・不安Q&A・比較・早見表）だけを1本ずつ作る。門はふつうの記事と同じ。
+#   - 夜（日本時間 20時〜翌8時台）は1時間に1回、昼は 12時台・16時台に1回。1回 2本まで（夜に記事が並ぶように散らす）
+#   - 今日の本数に数える（content/state.json の processed_web）。1日の深掘りは DEEP_DIVE_DAILY_CAP（既定20本）まで
+#   - 記事づくりの回（auto-article-pipeline）・Muse の回とは別の列で動く。push は scripts/git_safe_push.py
+on:
+  schedule:
+    - cron: "27 3,7,11-23 * * *"
+  workflow_dispatch:
+    inputs:
+      max:
+        description: "この回に公開する最大本数"
+        required: false
+        default: "2"
+      dry_run:
+        description: "元記事・出典・作れる型を表示するだけ（LLM を使わない）"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: deep-dive
+  cancel-in-progress: false
+
+jobs:
+  deep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # PDF の公式資料（年金・手当の案内など）の文字を取り出す（scripts/pdf_text.py。pypdf より表の行が崩れない）
+      - name: Install poppler
+        continue-on-error: true
+        run: (command -v pdftotext || (sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils)) >/dev/null && pdftotext -v 2>&1 | head -1
+
+      # 読んだ公式ページの覚え（ETag・Last-Modified。変わっていなければ取り直さない。scripts/feeds.py の _fetch_cached）
+      - name: Restore fetch cache
+        uses: actions/cache@v4
+        with:
+          path: .fetch-cache
+          key: fetch-cache-deep-${{ github.run_id }}
+          restore-keys: fetch-cache-deep-
+
+      - name: Decide today's limits
+        id: ramp
+        env:
+          WEB_DAILY_CAP_OVERRIDE: ${{ vars.WEB_DAILY_CAP_BRAKE }}
+          WEB_STAGE_TARGET: ${{ vars.WEB_STAGE_TARGET }}
+          SNS_PER_DAY_OVERRIDE: ${{ vars.SNS_PER_DAY }}
+          BROAD_MAX_PER_RUN_OVERRIDE: ${{ vars.BROAD_MAX_PER_RUN }}
+          AI_MAX_PER_RUN_OVERRIDE: ${{ vars.WEB_MAX_PER_RUN }}
+        run: python scripts/ramp.py
+
+      - name: Deep dive articles
+        continue-on-error: true
+        timeout-minutes: 30
+        env:
+          LLM_WORKFLOW: articles
+          FETCH_CACHE_DIR: .fetch-cache
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
+          CLAUDE_DAILY_MAX: ${{ vars.CLAUDE_DAILY_MAX || '40' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          DEEP_DIVE_DAILY_CAP: ${{ vars.DEEP_DIVE_DAILY_CAP || '20' }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python scripts/deep_dive.py --dry-run
+          else
+            timeout 1700 python scripts/deep_dive.py --daily-cap "${{ steps.ramp.outputs.web_daily_cap }}" --max "${{ inputs.max || '2' }}" --budget 1500
+          fi
+
+      - name: Article images
+        if: ${{ inputs.dry_run != true }}
+        continue-on-error: true
+        timeout-minutes: 6
+        env:
+          LLM_WORKFLOW: images
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_KV_TOKEN: ${{ secrets.CF_DEPLOY_TOKEN }}
+        run: |
+          if [ -n "$(git status --porcelain content/articles)" ]; then
+            timeout 300 python scripts/images.py --changed --max 4 --budget 260
+          fi
+
+      - name: Commit & push
+        if: ${{ inputs.dry_run != true }}
+        id: commit
+        run: |
+          echo "count=0" >> "$GITHUB_OUTPUT"
+          echo "deploy=0" >> "$GITHUB_OUTPUT"
+          if [ -z "$(git status --porcelain content state/deep_dive.json)" ]; then
+            echo "変更なし。コミットをスキップします。"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p state
+          NOW=$(date -u +%s)
+          LAST=$(cat state/last_deploy 2>/dev/null | tr -cd '0-9')
+          LAST=${LAST:-0}
+          python scripts/radar.py coverage || echo "::warning::記事の索引（state/coverage.json）を更新できませんでした"
+          git add -A content
+          for f in state/deep_dive.json state/coverage.json state/claude_api_usage*.json state/llm_usage*.json; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
+          COUNT=$(git diff --cached --name-only --diff-filter=A -- 'content/articles/*.json' | wc -l | tr -d ' ')
+          echo "count=${COUNT}" >> "$GITHUB_OUTPUT"
+          if [ "$COUNT" != "0" ]; then
+            MSG="chore(deep): 読まれた記事の深掘りを公開 (+${COUNT}本)"
+            if [ $((NOW - LAST)) -ge 3300 ]; then
+              echo "$NOW" > state/last_deploy
+              echo 0 > state/deploy_pending
+              echo "deploy=1" >> "$GITHUB_OUTPUT"
+            else
+              echo 1 > state/deploy_pending
+              MSG="${MSG} [no-deploy]"
+            fi
+            git add state/last_deploy state/deploy_pending
+          else
+            MSG="chore(deep): 深掘りの結果を記録 [no-deploy]"
+          fi
+          git commit -m "$MSG"
+          if python3 scripts/git_safe_push.py --regen "python scripts/radar.py coverage"; then exit 0; fi
+          echo "::error::push できませんでした"
+          exit 1
+
+      - name: Deploy to Cloudflare
+        if: ${{ steps.commit.outputs.deploy == '1' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy_cloudflare.yml --ref main
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## 深掘り"
+            echo "- 公開: ${{ steps.commit.outputs.count || '0' }} 本 / デプロイ: ${{ steps.commit.outputs.deploy || '0' }}"
+          } >> "$GITHUB_STEP_SUMMARY"

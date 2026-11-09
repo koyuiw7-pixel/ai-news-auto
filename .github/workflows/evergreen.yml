@@ -22,6 +22,10 @@ on:
         description: "作成済みでも作り直す（only と併用）"
         required: false
         default: "false"
+      prefer:
+        description: "先に作るガイドの種類（procedure＝暮らしとお金の手続き。空なら夜は procedure・台帳 A70）"
+        required: false
+        default: ""
       watch_only:
         description: "Dify公式の変更確認だけを実行（記事生成・公開なし）"
         type: boolean
@@ -84,6 +88,7 @@ jobs:
           CLAUDE_API_LEDGER: evergreen
           ONLY: ${{ inputs.only }}
           FORCE: ${{ inputs.force }}
+          EVERGREEN_PREFER_KIND: ${{ inputs.prefer }}
         run: |
           if [ -n "$ONLY" ]; then
             timeout 2700 python scripts/evergreen.py --only "$ONLY" $([ "$FORCE" = "true" ] && echo --force) --budget 2400

@@ -131,10 +131,21 @@ def queue_score(topic: dict, today: date) -> float:
     return season_urgency(topic, today) * (float(topic.get("accuracy") or 3) + float(topic.get("demand") or 3)) / 2
 
 
-def order_plan(plan: list[dict], today: date | None = None) -> list[dict]:
-    """作る順番。点数の高い順（同点は予定表の順）"""
+# 2026-11-10（台帳 A70）: 夜の穴埋めは暮らしとお金の手続きのガイドを先に（AI の道具のガイドは手続きが尽きてから）。
+# 夜（NIGHT_FROM 時〜NIGHT_UNTIL 時・日本時間）と、記事づくりの回の穴埋めの依頼（--prefer-kind procedure）で使う
+NIGHT_FROM, NIGHT_UNTIL = 20, 9
+
+
+def is_night(now: datetime | None = None) -> bool:
+    hour = (now or datetime.now(JST)).astimezone(JST).hour
+    return hour >= NIGHT_FROM or hour < NIGHT_UNTIL
+
+
+def order_plan(plan: list[dict], today: date | None = None, prefer_kind: str = "") -> list[dict]:
+    """作る順番。点数の高い順（同点は予定表の順）。prefer_kind があれば、その種類（procedure など）を先に"""
     today = today or datetime.now(JST).date()
-    return sorted(plan, key=lambda t: (-queue_score(t, today), t.get("rank", 999)))
+    first = (lambda t: 0 if (t.get("kind") or "ai-tool") == prefer_kind else 1) if prefer_kind else (lambda t: 0)
+    return sorted(plan, key=lambda t: (first(t), -queue_score(t, today), t.get("rank", 999)))
 
 
 def existing() -> dict[str, dict]:
@@ -598,11 +609,16 @@ def main() -> int:
     parser.add_argument("--refresh-days", type=int, default=REFRESH_DAYS)
     parser.add_argument("--budget", type=int, default=0, help="この秒数を過ぎたら新しい作業を始めない")
     parser.add_argument("--list", action="store_true")
+    parser.add_argument("--prefer-kind", default=os.environ.get("EVERGREEN_PREFER_KIND", ""),
+                        help="この種類を先に作る（procedure＝暮らしとお金の手続き）。空なら夜は procedure")
     args = parser.parse_args()
 
     started = time.time()
     over = lambda: args.budget and time.time() - started > args.budget  # noqa: E731
-    plan = order_plan(load_plan())
+    prefer = args.prefer_kind or ("procedure" if is_night() else "")
+    plan = order_plan(load_plan(), prefer_kind=prefer)
+    if prefer:
+        log(f"[order] {prefer} のガイドを先に作ります")
     by_slug = {t["slug"]: t for t in plan}
     guides = existing()
 

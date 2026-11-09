@@ -18,6 +18,7 @@ import os
 import re
 import ssl
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -564,7 +565,8 @@ def _is_legacy_ssl_error(error: BaseException) -> bool:
     return "UNSAFE_LEGACY_RENEGOTIATION" in str(getattr(error, "reason", "") or error)
 
 
-def fetch(url: str, timeout: int = 25, accept: str = "*/*", token: str = "", extra_headers: dict | None = None) -> tuple[bytes, str]:
+def fetch(url: str, timeout: int = 25, accept: str = "*/*", token: str = "", extra_headers: dict | None = None,
+          meta: dict | None = None) -> tuple[bytes, str]:
     """(本文バイト列, 最終URL)。gzip 圧縮のまま返すサーバー（deepmind.google 等）にも対応。
     token は読み取りサービス（r.jina.ai）の鍵（JINA_API_KEY。あれば回数制限にかかりにくい）。
     extra_headers は読み取りサービスへの指定など（例: {"X-Return-Format": "html"}）。
@@ -599,6 +601,9 @@ def fetch(url: str, timeout: int = 25, accept: str = "*/*", token: str = "", ext
         data = response.read(5_000_000)
         encoding = (response.headers.get("Content-Encoding") or "").lower()
         final_url = response.geturl()
+        if meta is not None:  # 取り直しの確かめ（ETag・Last-Modified。_fetch_cached）
+            meta["etag"] = response.headers.get("ETag") or ""
+            meta["last_modified"] = response.headers.get("Last-Modified") or ""
     if data[:2] == b"\x1f\x8b" or encoding == "gzip":
         data = gzip.decompress(data)
     elif encoding == "deflate":
@@ -1261,7 +1266,24 @@ def _short_error(error: Exception) -> str:
 def fetch_article_text(url: str) -> dict:
     """{"text", "image", "title", "description", "final_url", "published"}。取得失敗時は例外。
     直接取れない・中身が薄いときは読み取りサービス → Claude API の web fetch の順で取り直す（一次情報を落とさないため）。
-    例外の文言は理由を先に書く（ログで URL が切れても理由が読めるように）"""
+    例外の文言は理由を先に書く（ログで URL が切れても理由が読めるように）。
+    2026-11-10（台帳 A70）: 同じ実行の中で同じ URL は取り直さない（生成と品質の門で同じ公式ページを何度も読んでいた）"""
+    hit = _article_memo.get(url)
+    if hit and time.time() - hit[0] < ARTICLE_MEMO_SEC:
+        return _copy_page(hit[1])
+    page = _fetch_article_text(url)
+    _article_memo[url] = (time.time(), page)
+    return _copy_page(page)
+
+
+def _copy_page(page: dict) -> dict:
+    out = dict(page)
+    if isinstance(out.get("links"), list):
+        out["links"] = [dict(x) if isinstance(x, dict) else x for x in out["links"]]
+    return out
+
+
+def _fetch_article_text(url: str) -> dict:
     reasons: list[str] = []
     try:
         direct = _fetch_direct(url)
@@ -1292,9 +1314,13 @@ def fetch_article_text(url: str) -> dict:
                 via["description"] = direct.get("description", "")
                 via["published"] = via.get("published") or direct.get("published", "")
             best = via
-        if len(best["text"]) >= 600:
+        # 2026-11-10（台帳 A70）: 直接読めず、読み取りサービスが空の本文を返したとき、ここで止まって次の経路（API）を試していなかった
+        #   （11/9 の沖縄電力のページ・厚生労働省の PDF が「'NoneType' object is not subscriptable」で読めなかった）
+        if best and len(best["text"]) >= 600:
             return best
-    if best:
+        if not via["text"].strip():
+            reasons.append(f"{name} 本文が空")
+    if best and best["text"].strip():
         return best
     raise RuntimeError(f"本文を取得できません（{' / '.join(reasons)}）: {url}")
 
@@ -1340,6 +1366,83 @@ def pdf_title(text: str) -> str:
     return title[:150] if len(title) >= 10 else ""
 
 
+# --------------------------------------------------------------------------- #
+# 無料の経路を主にする（2026-11-10 オーナー「足りなくなっても少ないもので絶対できる」・台帳 A70）
+#   公式ページはまず直接（ふつうのブラウザの見出し）で読み、混んでいる・一時的な失敗（429・5xx）は間をあけて1回だけ読み直す。
+#   読んだページは URL ごとに覚え、同じ実行では取り直さない（_article_memo）。FETCH_CACHE_DIR があれば ETag・Last-Modified を
+#   覚えて、次の実行は「変わっていなければ 304」で前の中身を使う（ワークフローの actions/cache で持ち越す）。
+#   直接読めないときだけ、読み取りサービスの無料枠（鍵なし）→ Claude API の web fetch（予算の帳簿の中）の順。
+# --------------------------------------------------------------------------- #
+ARTICLE_MEMO_SEC = 1800
+_article_memo: dict[str, tuple[float, dict]] = {}
+RETRY_CODES = (429, 500, 502, 503, 504)
+RETRY_WAIT_MAX = 8
+CACHE_FRESH_SEC = int(os.environ.get("FETCH_CACHE_FRESH_SEC") or 1800)
+
+
+def _cache_paths(url: str) -> tuple[Path, Path] | None:
+    root = os.environ.get("FETCH_CACHE_DIR", "").strip()
+    if not root:
+        return None
+    key = hashlib.sha1(url.encode("utf-8")).hexdigest()
+    base = Path(root)
+    return base / f"{key}.json", base / f"{key}.bin"
+
+
+def _retry_wait(error: urllib.error.HTTPError) -> float:
+    try:
+        wait = float(error.headers.get("Retry-After") or 3)
+    except (TypeError, ValueError, AttributeError):
+        wait = 3.0
+    return max(1.0, min(wait, RETRY_WAIT_MAX))
+
+
+def _fetch_cached(url: str, timeout: int = 25, accept: str = "*/*") -> tuple[bytes, str]:
+    """直接の取得（fetch）に、一時的な失敗の読み直し1回と、ETag・Last-Modified の覚え（FETCH_CACHE_DIR）を足したもの"""
+    paths = _cache_paths(url)
+    cached_meta: dict = {}
+    if paths and paths[0].exists() and paths[1].exists():
+        try:
+            cached_meta = json.loads(paths[0].read_text("utf-8"))
+        except (OSError, ValueError):
+            cached_meta = {}
+        if cached_meta and time.time() - float(cached_meta.get("at") or 0) < CACHE_FRESH_SEC:
+            return paths[1].read_bytes(), cached_meta.get("final_url") or url
+    headers = {}
+    if cached_meta.get("etag"):
+        headers["If-None-Match"] = cached_meta["etag"]
+    if cached_meta.get("last_modified"):
+        headers["If-Modified-Since"] = cached_meta["last_modified"]
+    meta: dict = {}
+    extra: dict = {}  # 覚えを使わないときは、今までと同じ呼び方（試験の差し替えの fetch とも合う）
+    if headers:
+        extra["extra_headers"] = headers
+    if paths:
+        extra["meta"] = meta
+    for attempt in (1, 2):
+        try:
+            data, final_url = fetch(url, timeout=timeout, accept=accept, **extra)
+            break
+        except urllib.error.HTTPError as error:
+            if error.code == 304 and paths and paths[1].exists():
+                cached_meta["at"] = time.time()
+                paths[0].write_text(json.dumps(cached_meta, ensure_ascii=False), "utf-8")
+                return paths[1].read_bytes(), cached_meta.get("final_url") or url
+            if error.code in RETRY_CODES and attempt == 1:
+                time.sleep(_retry_wait(error))
+                continue
+            raise
+    if paths and data:
+        try:
+            paths[0].parent.mkdir(parents=True, exist_ok=True)
+            paths[1].write_bytes(data)
+            paths[0].write_text(json.dumps({"url": url, "final_url": final_url, "etag": meta.get("etag", ""),
+                                            "last_modified": meta.get("last_modified", ""), "at": time.time()}, ensure_ascii=False), "utf-8")
+        except OSError:
+            pass
+    return data, final_url
+
+
 SLOW_TIMEOUT = 45
 _slow_hosts: set[str] = set()  # この実行で一度待ち時間を延ばしたホスト（2回目からは延ばさない）
 
@@ -1353,7 +1456,7 @@ def _is_timeout(error: BaseException) -> bool:
 
 
 def _fetch_direct(url: str, timeout: int = 25) -> dict:
-    data, final_url = fetch(url, timeout=timeout, accept="text/html,application/xhtml+xml;q=0.9,*/*;q=0.8")
+    data, final_url = _fetch_cached(url, timeout=timeout, accept="text/html,application/xhtml+xml;q=0.9,*/*;q=0.8")
     if data[:5] == b"%PDF-":
         # PDF の中身をそのまま文字として読むと、壊れた文字列が「本文」になる（2026-11-03）。pypdf で文字を取り出し、
         # 壊れていない（読める日本語・英語の）ときだけ本文にする（2026-11-05 統計の速報の PDF。scripts/pdf_text.py）。
