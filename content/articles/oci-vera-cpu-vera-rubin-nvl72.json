@@ -19,8 +19,8 @@
   ],
   "threadsStyle": 3,
   "writingVoice": "senpai",
-  "lede": "OracleのクラウドOCIで、NVIDIAのCPU「Vera」とGPUシステム「Vera Rubin NVL72」が使えるようになります。OCI Superclusterを、Vera Rubin NVL72でマルチギガワット規模に広げる計画も示されました。価格と日本のリージョンでの提供時期はまだ発表されていません。",
-  "description": "NVIDIAとOracleが、OCIでのVera CPUとVera Rubin NVL72の一般提供と、マルチギガワット規模への拡張計画を発表。CPUとGPUを別々に増やせる点や、価格・日本での提供が未発表な点を整理します。",
+  "lede": "OracleのクラウドOCIで、企業や開発者向けにNVIDIAのCPU「Vera」とGPUシステム「Vera Rubin NVL72」の一般提供が始まりました。両社は、OCI SuperclusterをVera Rubin NVL72でマルチギガワット規模に広げる計画も発表。発表資料には価格や日本のリージョンでの提供時期は記載されていません。",
+  "description": "OracleとNVIDIAがOCIでVera CPUとVera Rubin NVL72の一般提供を開始。CPUとGPUを別々に拡張できる構成や、マルチギガワット規模への拡張計画、発表資料に記載のない価格や提供地域について整理します。",
   "keywords": [
     "Oracle Cloud Infrastructure",
     "OCI",
@@ -62,7 +62,7 @@
       "一般の利用者に今すぐ変わることはありません。価格はまだ発表されていないため、見積もりは窓口で確認するとよいでしょう。"
     ]
   },
-  "body": "日本の一般の利用者に、今すぐ変わることはありません。関係するのは、OCIでAIの学習や推論、AIエージェントの処理を動かす企業や開発者です。\n\n日本のリージョン（データセンターの拠点）での提供は、まだ発表されていません。\n\nOCI（Oracle Cloud Infrastructure）は、Oracleが提供するクラウドサービスです。今回の話は、NVIDIAの日本版ブログが伝えたものです。\n\nそのブログは、10月27日（米国時間）のプレスリリースを抄訳しています。\n\n## CPUとGPUを別々に増やせる構成\n\n発表によると、OCIでは「NVIDIA Vera Rubin NVL72」と「NVIDIA Vera CPU」が一般提供になります。NVL72は、72基のGPUを1つのラックでつないだシステムです。\n\nGPUが得意なのは、大規模なAIモデルの学習や提供です。一方、エージェントがモデルを呼び出す合間には、ツールの実行やコードのテスト、データの取得といった作業が入ります。こちらはCPUの仕事です。\n\nOCIでは、CPUとGPUを別々に増やせます。仕事の中身に合わせて資源を配分できます。そのため、余った能力を減らしやすくなるとNVIDIAは説明しています。\n\n## OCI Superclusterはマルチギガワット規模へ\n\nOCI Superclusterは、Vera Rubin NVL72を使って、マルチギガワット規模に広げる計画です。Superclusterは、多数のGPUをつないだ大規模な計算環境です。\n\n構成には、Oracle Acceleronネットワーキングと、NVIDIA Spectrum-X Ethernetが含まれます。Spectrum-Xには、Spectrum-6スイッチとBlueField-4 DPU（通信処理を担う部品）が使われます。\n\nラック内の72基のGPUは、NVLinkでつながります。OCIのネットワークは、数十万基のGPUまで広げられるとされています。\n\nこの計画は、すでにOCIにあるGB200やGB300 NVL72の上に積み上げる形です。共通のCUDA（NVIDIAのソフトウェア基盤）を使うため、世代をまたいでモデルを動かせるとしています。\n\nVera Rubin NVL72は、GB300 NVL72より1ドル当たりの処理量が最大30倍になるとNVIDIAは説明しています（サイソクの過去記事、11/6）。詳しくは[HBMを増やさず処理量を伸ばす設計の記事](/articles/nvidia-hbm-codesign-throughput-per-dollar)で報じました。\n\n## x86サーバーで使えるHGX Rubin NVL8も計画\n\nOCIは、「NVIDIA HGX Rubin NVL8」も導入する計画です。8基のRubin GPUをNVLinkでつなぎ、x86ベースのサーバーで動かします。\n\n計画されている仕様は次のとおりです。\n\n- Intel Xeon 6 CPU（64コア）を2基\n- DDR5メモリ4TB\n- 6.4Tbpsの高速RDMAネットワーキング\n\nx86向けのアプリケーションとの互換性を保ったまま、小さな8GPU構成でRubin世代のGPUを使えます。用途は学習、ファインチューニング（追加学習）、推論です。\n\n## Vera CPUがエージェントの待ち時間を減らす\n\nOCI Compute with NVIDIA Vera CPUsは、シングルスレッド性能とメモリ帯域幅が高いのが特徴です。前者は個々のツール呼び出しやコード実行を速めます。後者は、エージェントが同時に作業するときに、CPUコアへデータを送り続けます。\n\nその結果、GPUが待つ時間を減らし、規模を広げても性能を保ちやすくなるとNVIDIAは説明しています。\n\n別のNVIDIAの説明では、Vera CPUはx86の最速CPUより、1ワットあたりのエージェント数が1.6倍とされています（サイソクの過去記事、11/6）。[Vera CPUの記事](/articles/nvidia-vera-cpu-agents-per-watt)も参照できます。\n\nOCIでは、OCI Kubernetes EngineでCPUとGPUを別々に増減できます。信頼できないAI生成コードを動かす作業は、Oracle Acceleronでハードウェアベースの分離ができます。\n\n## OpenAIが利用中、Vera CPUも早期に使用\n\nOpenAIは、テキサス州アビリーンのOCI Superclusterで、GPT-6 Astraの学習と提供を行っています。このSuperclusterには、10万基以上のNVIDIA Blackwell GPUが積まれています。\n\nVera CPUには、OpenAIを含む複数の顧客が早期アクセスしています。OpenAIのUday Ruddarraju氏は、OCI上のVeraを本番で使うと述べました。用途は、エージェント型サンドボックス（隔離された実行環境）で使うコードやツールの実行です。\n\n## まだ分からないこと\n\n- OCIでの料金は、まだ発表されていません。\n- 日本のリージョンでの提供時期は、まだ発表されていません。\n- Vera Rubin NVL72とVera CPUの提供開始日や、利用できるリージョンの一覧もまだ発表されていません。\n- マルチギガワット規模の拡張の完了時期は、まだ発表されていません。\n\n## OCIでAIを動かす企業は、提供条件をOracleに確認\n\nOCIの利用企業や開発者は、利用できるリージョンと価格を、Oracleの窓口や公式ページで確認する必要があります。\n\nエージェントの処理でCPUが足かせになっているなら、CPUとGPUを別々に増やせる構成が比較の材料になります。",
+  "body": "日本の一般の利用者に、今すぐ変わることはありません。関係するのは、OCIでAIの学習や推論、AIエージェントの処理を動かす企業や開発者です。\n\n日本のリージョン（データセンターの拠点）での提供については、今回の発表資料に記載がありません。\n\nOCI（Oracle Cloud Infrastructure）は、Oracleが提供するクラウドサービスです。今回の話は、NVIDIAの日本版ブログが伝えたものです。\n\nそのブログは、2026年10月27日（米国時間）のプレスリリースを抄訳しています。\n\n## Vera CPUとVera Rubin NVL72の一般提供が開始\n\n発表によると、OCIでは「NVIDIA Vera Rubin NVL72」と「NVIDIA Vera CPU」の一般提供が始まりました。NVL72は、72基のGPUを1つのラックでつないだシステムです。\n\nGPUが得意なのは、大規模なAIモデルの学習や提供です。一方、エージェントがモデルを呼び出す合間には、ツールの実行やコードのテスト、データの取得といった作業が入ります。こちらはCPUの負荷が高い仕事です。\n\nOCIでは、CPUとGPUを別々に増やせます。仕事の中身に合わせて資源を配分でき、余った能力の削減に役立つとNVIDIAは説明しています。\n\n## OCI Superclusterはマルチギガワット規模へ\n\nOCI Superclusterは、Vera Rubin NVL72を使って、マルチギガワット規模に広げる計画です。Superclusterは、多数のGPUをつないだ大規模な計算環境です。\n\n構成には、Oracle Acceleronネットワーキングと、NVIDIA Spectrum-X Ethernetが含まれます。Spectrum-Xには、Spectrum-6スイッチとBlueField-4 DPU（通信処理を担う部品）が使われます。\n\nラック内の72基のGPUは、NVLinkでつながります。OCIのネットワークは、数十万基のGPUまで広げられるとされています。\n\nこの計画は、すでにOCIにあるGB200やGB300 NVL72の上に積み上げる形です。共通のCUDA（NVIDIAのソフトウェア基盤）を使うため、世代をまたいでモデルを動かせるとしています。\n\nVera Rubin NVL72は、GB300 NVL72より1ドル当たりの処理量が最大30倍になるとNVIDIAは説明しています（サイソクの過去記事、11/6）。詳しくは[HBMを増やさず処理量を伸ばす設計の記事](/articles/nvidia-hbm-codesign-throughput-per-dollar)で報じました。\n\n## x86サーバーで使えるHGX Rubin NVL8も計画\n\nOCIは、「NVIDIA HGX Rubin NVL8」も導入する計画です。8基のRubin GPUをNVLinkでつなぎ、x86ベースのサーバーで動かします。\n\n計画されている仕様は次のとおりです。\n\n- Intel Xeon 6 CPU（64コア）を2基\n- DDR5メモリ4TB\n- 6.4Tbpsの高速RDMAネットワーキング\n\nx86向けのアプリケーションとの互換性を保ったまま、小さな8GPU構成でRubin世代のGPUを使えるとしています。用途は学習、ファインチューニング（追加学習）、推論です。\n\n## Vera CPUはエージェントの処理を支援\n\nOCI Compute with NVIDIA Vera CPUsは、シングルスレッド性能とメモリ帯域幅が高いのが特徴です。前者は個々のツール呼び出しやコード実行を速めます。後者は、エージェントが同時に作業するときに、CPUコアへデータを送り続けます。\n\nその結果、GPUが待つ時間を減らし、規模を広げても性能を保ちやすくなるとNVIDIAは説明しています。\n\n別のNVIDIAの説明では、Vera CPUはx86の最速CPUより、1ワットあたりのエージェント数が1.6倍とされています（サイソクの過去記事、11/6）。[Vera CPUの記事](/articles/nvidia-vera-cpu-agents-per-watt)も参照できます。\n\nOCIでは、OCI Kubernetes EngineでCPUとGPUを別々に増減できます。信頼できないAI生成コードを動かす作業は、Oracle Acceleronでハードウェアベースの分離ができます。\n\n## OpenAIが利用中、Vera CPUにも早期アクセス\n\nOpenAIは、テキサス州アビリーンのOCI Superclusterで、GPT-6 Astraの学習と提供を行っています。このSuperclusterには、10万基以上のNVIDIA Blackwell GPUが積まれています。\n\nVera CPUには、OpenAIを含む複数の顧客が早期アクセスしています。OpenAIのUday Ruddarraju氏は、OCI上のVeraを本番環境に導入すると述べました。用途は、エージェント型サンドボックス（隔離された実行環境）で使うコードやツールの実行です。\n\n## 発表資料に記載のない価格と提供地域\n\n- OCIでの料金は、今回の発表資料に記載されていません。\n- 日本のリージョンでの提供時期は記載されていません。\n- Vera Rubin NVL72とVera CPUの具体的な提供開始日や、利用できるリージョンの一覧は記載されていません。\n- マルチギガワット規模の拡張の完了時期は記載されていません。\n\n## OCIでAIを動かす企業は、提供条件をOracleに確認\n\nOCIの利用企業や開発者は、利用できるリージョンと価格を、Oracleの窓口や公式ページで確認する必要があります。\n\nエージェントの処理でCPUが足かせになっているなら、CPUとGPUを別々に増やせる構成が比較の材料になります。",
   "easy": "## ひとことで言うと\n\nOracleのクラウドOCIで、NVIDIAの新しいCPU「Vera」と、新世代GPUのシステム「Vera Rubin NVL72」が使えるようになります。Oracleは、GPUの大規模クラスターも広げる計画です。\n\n## AIエージェントでは、CPUの速さも大事になる\n\nAIエージェントは、文章を作るだけではありません。ツールを呼び出し、コードを動かし、情報を取ってきます。\n\nこうした作業はCPUが担当します。CPUが遅いと、GPUが待つ時間が増えます。Vera CPUは、この待ち時間を減らすことをねらった製品です。\n\n## CPUとGPUを別々に増やせる\n\nOCIでは、CPUとGPUを別々に増やせます。仕事の中身に合わせて増やせるので、余った能力を減らしやすくなります。",
   "channel": "NVIDIA日本版ブログ",
   "channelId": "",
@@ -240,5 +240,45 @@
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/oci-vera-cpu-vera-rubin-nvl72-111d1767.jpg"
   },
-  "coverTries": 2
+  "coverTries": 2,
+  "gptReview": {
+    "reviewedBy": "gpt-6.1-terra",
+    "reviewedAt": "2026-11-09T01:05:17+00:00",
+    "changed": [
+      "body",
+      "description",
+      "lede"
+    ],
+    "before": {
+      "lede": "OracleのクラウドOCIで、NVIDIAのCPU「Vera」とGPUシステム「Vera Rubin NVL72」が使えるようになります。OCI Superclusterを、Vera Rubin NVL72でマルチギガワット規模に広げる計画も示されました。価格と日本のリージョンでの提供時期はまだ発表されていません。"
+    },
+    "fixes": [
+      {
+        "before": "OCIでは「NVIDIA Vera Rubin NVL72」と「NVIDIA Vera CPU」が一般提供になります。",
+        "after": "OCIでは「NVIDIA Vera Rubin NVL72」と「NVIDIA Vera CPU」の一般提供が始まりました。",
+        "evidence": "「OCI での NVIDIA Vera Rubin NVL72 および NVIDIA Vera CPU の一般提供開始」"
+      },
+      {
+        "before": "日本のリージョンでの提供時期は、まだ発表されていません。",
+        "after": "日本のリージョンでの提供時期は、今回の発表資料に記載されていません。",
+        "evidence": "資料1には日本のリージョンでの提供時期の記載がない"
+      },
+      {
+        "before": "OCIでの料金は、まだ発表されていません。",
+        "after": "OCIでの料金は、今回の発表資料に記載されていません。",
+        "evidence": "資料1にはOCIでの具体的な料金の記載がない"
+      },
+      {
+        "before": "提供開始日や、利用できるリージョンの一覧もまだ発表されていません。",
+        "after": "具体的な提供開始日や、利用できるリージョンの一覧は記載されていません。",
+        "evidence": "資料1は一般提供開始を伝えているが、具体的な開始日とリージョン一覧の記載はない"
+      },
+      {
+        "before": "マルチギガワット規模の拡張の完了時期は、まだ発表されていません。",
+        "after": "マルチギガワット規模の拡張の完了時期は記載されていません。",
+        "evidence": "資料1は拡張計画を発表しているが、完了時期の記載はない"
+      }
+    ],
+    "notes": "一般提供がすでに始まったことをリードと本文で明確にしました。価格や提供地域などは、発表全体の状況を断定せず、今回の資料に記載がない情報として整理しました。"
+  }
 }
