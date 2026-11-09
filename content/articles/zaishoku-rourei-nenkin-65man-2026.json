@@ -89,9 +89,8 @@
     }
   ],
   "todayActions": [
-    "老齢厚生年金の年額と、過去1年間の標準賞与額の合計を手元に用意して計算する",
-    "日本年金機構の在職老齢年金早見表（PDF）で、自分の合計に近い欄の支給停止額を見る",
-    "相談が必要なら、基礎年金番号か照会番号を用意してねんきんダイヤルに電話する"
+    "老齢厚生年金の年額と過去1年の標準賞与額の合計を用意し、自分の基本月額と賃金の合計を計算する",
+    "日本年金機構の在職老齢年金早見表（PDF）で、自分の合計に近い欄の支給停止額を確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -122,5 +121,97 @@
   "qualityScore": 92,
   "detectedAt": "2026-11-09T15:34:59+00:00",
   "layout": "noir",
-  "summaryLine": "働きながら年金を受ける人の減額基準が、2026年4月から月**51万円**から65万円に引き上げられました。"
+  "summaryLine": "働きながら年金を受ける人の減額基準が、2026年4月から月**51万円**から65万円に引き上げられました。",
+  "insight": [
+    {
+      "text": "ニュースの「62万円」は法律成立時(2025年6月)の額で、2026年4月からは「65万円」になると厚生労働省のページに書かれている。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000147284_00022.html"
+    },
+    {
+      "text": "賞与は「その月以前1年間の標準賞与額の合計」を12で割って毎月分に均して計算され、ボーナスの月だけ年金が止まるわけではない。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/zaishoku/20150401-01.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ねんきんダイヤル（年金相談に関する一般的なお問い合わせ）",
+      "url": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "howTo": [
+        "ご相談・Q&A",
+        "ねんきんダイヤル"
+      ],
+      "phone": "0570-05-1165",
+      "hours": "月曜日午前8時30分から午後7時、火曜日から金曜日午前8時30分から午後5時15分、第2土曜日午前9時30分から午後4時",
+      "note": "基礎年金番号または照会番号がわかるものを用意する。夕方(午後4時以降)、週の後半、月の後半(20日以降)、第2土曜日はつながりやすいとされている。"
+    },
+    {
+      "name": "在職老齢年金制度が改正されました（日本年金機構 特設ページ）",
+      "url": "https://www.nenkin.go.jp/tokusetsu/zairoukaisei.html",
+      "source": "https://www.nenkin.go.jp/tokusetsu/zairoukaisei.html"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "老齢厚生年金の年額と過去1年の標準賞与額の合計を用意し、自分の基本月額と賃金の合計を計算する",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/zaishoku/20150401-01.html",
+      "steps": [
+        "老齢厚生年金の年額を12で割り基本月額を出す（加給年金額は含めない）",
+        "標準報酬月額に過去1年の標準賞与額合計を12で割った額を足す",
+        "基本月額と合計し65万円と比べる"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/zaishoku/20150401-01.html"
+    },
+    {
+      "action": "日本年金機構の在職老齢年金早見表（PDF）で、自分の合計に近い欄の支給停止額を確かめる",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/zaishoku/20150401-01.html",
+      "steps": [
+        "在職老齢年金の計算方法のページを開く",
+        "在職老齢年金早見表（PDF）を開く",
+        "自分の合計に近い基準額の欄を見る"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/zaishoku/20150401-01.files/hayamihyo.pdf"
+    }
+  ],
+  "cause": {
+    "text": "高齢者の活躍を後押しし、働く時間を調整せずに働ける仕組みにするための見直しです。働きたい人がより働きやすくすることが趣旨とされています。",
+    "status": "stated",
+    "source": "https://www.nenkin.go.jp/tokusetsu/zairoukaisei.html"
+  },
+  "worries": [
+    {
+      "q": "ボーナスが多いと、その月の年金が止まる？",
+      "a": "賞与は1年分を12で割って毎月分に均して計算されると、公式ページに書かれています。ボーナスの月だけ年金が止まるわけではありません。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/zaishoku/20150401-01.html",
+      "action": "過去1年の標準賞与額の合計を確認し、12で割った額を毎月の賃金に足して計算する。"
+    },
+    {
+      "q": "基礎年金も止まってしまう？",
+      "a": "止まるのは老齢厚生年金だけです。老齢基礎年金は調整の対象にならないと、公式ページに書かれています。",
+      "source": "https://www.nenkin.go.jp/tokusetsu/zairoukaisei.html",
+      "action": "止まるのが老齢厚生年金だけか、年金額改定通知書で内訳を確認する。",
+      "actionSource": "https://www.nenkin.go.jp/section/guidance/onegai.html"
+    },
+    {
+      "q": "62万円と65万円、どちらの基準が使われる？",
+      "a": "改正後の基準額62万円は法律成立時(2025年6月)の額で、2026年4月からは65万円になると厚生労働省が説明しています。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000147284_00022.html",
+      "action": "自分の計算は65万円の基準で行う。",
+      "actionSource": "https://www.nenkin.go.jp/tokusetsu/zairoukaisei.html"
+    },
+    {
+      "q": "退職したら、年金はどう戻る？",
+      "a": "70歳未満の方が退職して1カ月を経過すると、退職した翌月分から年金額が見直され、支給停止がなくなって全額支給されます。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/zaishoku/20150401-01.html",
+      "action": "退職した月を確認し、翌々月からの年金額の改定を待つ。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "65万円を超えた時だけ、超えた分の半分が止まる",
+    "cause": "なぜ基準が上がったのか",
+    "steps": "自分の年金を3ステップで計算する",
+    "desk": "相談はねんきんダイヤルへ",
+    "worries": "賞与や退職後の扱いは大丈夫？"
+  },
+  "depthAt": "2026-11-09T15:48:01+00:00"
 }

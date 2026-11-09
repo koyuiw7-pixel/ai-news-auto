@@ -95,8 +95,7 @@
     }
   ],
   "todayActions": [
-    "Hugging Faceの「nvidia/Nemotron-Personas-Finance-Japan」のページで、50項目の中身を確認する",
-    "社内の金融AIの試験で、実顧客データの代わりに使える項目を洗い出す",
+    "Hugging Faceのデータセットページで、50項目の中身を確認する",
     "CC BY 4.0の出典表示の条件を、利用前に法務担当と確認する"
   ],
   "qualityScore": 92,
@@ -142,6 +141,91 @@
     "ar": 1.8809,
     "src": "https://ai-tech-express.jp/img/nemotron-personas-finance-japan-b85e90a2.jpg"
   },
+  "insight": [
+    {
+      "text": "各ペルソナには、金銭への考え方や財務計画、家計の背景などが自然な日本語の属性として入っています。",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Hugging Face データセットページ（nvidia/Nemotron-Personas-Fi",
+      "url": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan",
+      "note": "ページのコード例は load_dataset(\"nvidia/Nemotron-Personas-Finance-Japan\") で読み込めると書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Hugging Faceのデータセットページで、50項目の中身を確認する",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan",
+      "steps": [
+        "データセットのページを開く",
+        "ブログに書かれた50フィールドの内訳と照らす"
+      ],
+      "url": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan"
+    },
+    {
+      "action": "CC BY 4.0の出典表示の条件を、利用前に法務担当と確認する",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan",
+      "steps": [
+        "ライセンスは CC BY 4.0 と書かれている",
+        "商用・非商用のどちらでも使えると書かれている",
+        "法務担当に条件の確認を依頼する"
+      ],
+      "url": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan"
+    }
+  ],
+  "cause": {
+    "text": "この記事は障害や事故ではなく、データ公開の案内です。金融分野では実データの利用に厳しい規制や、コンプライアンス要件があるため、実在の顧客データを使わずに金融AIを作れる合成データが必要だとされています。",
+    "status": "background",
+    "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan"
+  },
+  "worries": [
+    {
+      "q": "このデータに、実在する人の情報は入っていますか？",
+      "a": "すべて合成（架空）のデータだと書かれています。実在の人の記録から作ったのではなく、公的統計や公的調査の分布から作り、名前も日本人の名前の付け方に沿っているとされています。",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan",
+      "action": "社内の試験で使う前に、実在の顧客の記録が混ざっていないか、データの出所を担当チームと確かめる"
+    },
+    {
+      "q": "商用のサービスで使っても大丈夫？",
+      "a": "CC BY 4.0のもとで、商用・非商用のどちらでも使えると書かれています。ただし、使う前にライセンスの条件をよく確認する必要があります。",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan",
+      "action": "利用を始める前に、CC BY 4.0の条件を法務担当と一緒に確認し、その結果を社内に記録する"
+    },
+    {
+      "q": "このデータは実際のお客さまの傾向と本当に合うの？",
+      "a": "合成データが実際の顧客像をどこまで再現できるかを示す検証結果は、まだ発表されていません。統計に沿って作られたことは書かれていますが、一致の度合いは分かりません。",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan",
+      "action": "本番の判断に使う前に、自社の試験で、結果が実際の顧客の傾向と合うかを小さく確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "社内の試験で、実顧客データの代わりに使うか？",
+      "situation": "社内の金融AIの試験に使いたい",
+      "recommend": "まず中身を確認し、試験の範囲を決めるとよい",
+      "reason": "項目の内容を確認すると、どの項目が実顧客データの代わりになるかを洗い出せます。ただし、実際の顧客像との一致を示す検証結果は発表されていないため、そのまま本番の判断には使えません。",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan"
+    },
+    {
+      "question": "CC BY 4.0の条件は、いつ確認すればよい？",
+      "situation": "利用を始めるのを考えている",
+      "recommend": "利用を始める前に確認しておくと安心",
+      "reason": "ライセンスは CC BY 4.0 で、商用・非商用の両方に使えると書かれています。条件は利用を始める前に確認しておくと、後で慌てずに済みます。",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "架空の人物には、お金の考え方まで入っている",
+    "cause": "なぜ実データを使わずに作るのか",
+    "steps": "今日、社内で確かめる2つのこと",
+    "desk": "データの中身を確かめる場所",
+    "worries": "実在の人の情報や、商用利用は大丈夫？",
+    "guide": "社内の試験に使うか、迷ったときの考え方"
+  },
+  "depthAt": "2026-11-09T15:48:36+00:00",
   "gptReview": {
     "reviewedBy": "gpt-6.1-terra",
     "reviewedAt": "2026-11-09T15:44:20+00:00",
