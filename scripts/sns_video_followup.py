@@ -2313,7 +2313,15 @@ def main() -> None:
         # 予約中の投稿1件の時刻だけを替える（reschedule:ID@2026-11-09T04:10:00Z。文面・画像はそのまま）
         pid, _, when = args.queue_fix[len("reschedule:"):].partition("@")
         key = os.environ.get("BUFFER_API_KEY", "")
-        after = edit_post(key, {"id": pid.strip(), "mode": "customScheduled", "dueAt": _iso(_parse(when.strip())), "saveToDraft": False})
+        cur = read_post(key, pid.strip()) or {}
+        inp = node_edit_input({**cur, "id": pid.strip(), "service": "threads"}, node_texts(cur))  # Buffer は本文の無い編集を断る
+        inp.update({"mode": "customScheduled", "dueAt": _iso(_parse(when.strip())), "saveToDraft": False})
+        slug = (re.search(r"/articles/([A-Za-z0-9_-]+)", " ".join(node_texts(cur))) or [None, ""])[1]
+        try:
+            article = json.loads((ARTICLES / f"{slug}.json").read_text("utf-8")) if slug else None
+        except (OSError, ValueError):
+            article = None
+        after = edit_post(key, inp, article, "threads")
         print(json.dumps({"id": pid, "status": after.get("status"), "dueAt": after.get("dueAt")}, ensure_ascii=False))
         return
     if args.queue_fix and args.queue_fix.startswith("pause:"):
