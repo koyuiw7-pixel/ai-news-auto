@@ -32,6 +32,8 @@ def article(slug, title, made, **extra):
         "lede": f"{title}が、日本の利用者向けに今日から無料で使えるようになりました。料金は変わりません。",
         "workMoney": {"points": ["スマホで調べものをする人は、追加の料金なしで新しい機能を試せます。"]},
         "_virtual": True,  # テスト用の記事（content/articles に無い）
+        # 記事に合う画像（2026-11-09 台帳 S49: 画像の無い記事は SNS に出さない）
+        "thumbnail": f"https://ai-tech-express.jp/img/{slug}-0a1b2c3d.jpg", "imageCredit": {"kind": "stock"},
     }
     base.update(extra)
     return base

@@ -52,7 +52,7 @@ test("記事の写真が AI の絵なら、話題とのつながりを確かめ�
 });
 
 test("使える記事の写真（公式・素材）はそのまま。取得できないときだけ coverImage に回す", () => {
-  const official = { ...FUJIYA, thumbnail: `${IMG}fujiya-x-bbbb2222.jpg`, imageCredit: { kind: "official", org: "不二家" }, heroOk: true };
+  const official = { ...FUJIYA, thumbnail: `${IMG}fujiya-beverage-price-increase-2027-bbbb2222.jpg`, imageCredit: { kind: "official", org: "不二家" }, heroOk: true };
   assert.equal(shareImageArticle(official), official);
   assert.equal(officialCreditText(shareImageArticle(official).imageCredit), "画像：不二家（公式発表より）");
   const stock = { ...official, imageCredit: { kind: "stock", creator: "x" } };

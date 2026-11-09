@@ -74,6 +74,10 @@
      URL は utm_source=<SNS>&utm_campaign=<記事の slug>&utm_content=reader_reply（X）／reader_body（Bluesky・Facebook）。
      X は全角140字まで・タグは災害・行事だけ1つまで。Bluesky は300字まで・タグは1つまで（災害・安全は付けない）。Facebook はタグなし。
 
+  24. （2026-11-09 オーナー指摘・台帳 S49）記事のカード・カバーで出す投稿は、記事に合う本物の画像（公式の写真・Muse の絵・AI のイメージ）が
+     載るときだけ（check_photo・photo_problem）。文字だけのカード・公式のロゴ／サイト共通の画像・ほかの記事のために保存した画像では出さない。
+     枠の時刻に画像が無ければ、その枠は画像のある次の予定の投稿に譲る（sns_video_followup.publish_queued）。地震・津波（noPhoto）と急ぎの安全の知らせは除く。
+
 違反したら: 投稿しない・ログに出す・GitHub の issue（ラベル sns-rule-violation）を立てるか、開いているものにコメントを足す。
 新しく Buffer / Bluesky / Threads の投稿 API を呼ぶ所を作るときは、必ずこの enforce を直前に呼ぶ（tests/test_sns_rules.py が確かめる）。
 
@@ -1541,7 +1545,9 @@ def share_image_article(article: dict | None, force: bool = False) -> dict:
     thumb = str(article.get("thumbnail") or "")
     if not cover or cover == thumb:
         return article
-    if not force and thumb and (article.get("imageCredit") or {}).get("kind") not in ("ai", "card"):
+    credit = article.get("imageCredit") or {}
+    weak = (credit.get("kind") == "official" and credit.get("imageKind") in LOGO_KINDS) or borrowed_image(thumb, str(article.get("slug") or ""))
+    if not force and thumb and credit.get("kind") not in ("ai", "card") and not weak:
         return article
     return {**article, "thumbnail": cover, "imageCredit": cover_credit, "heroOk": None, "imageFocus": None}
 
@@ -1552,6 +1558,47 @@ def card_credit(article: dict | None) -> dict:
     if photo:
         return photo["credit"]
     return share_image_article(article).get("imageCredit") or {}
+
+
+# ---- 本物の画像だけで出す（2026-11-09 オーナー指摘・台帳 S49） ----
+# 子ども手当の記事の Threads が、写真の無い青い文字だけのカードで出た。防じんマスクのリコールの記事は、年金の記事で保存した
+# 厚生労働省のサイト共通のロゴの画像を使い回していた。SNS の投稿（Threads・X・Facebook・Bluesky）は、記事に合った本物の画像
+# （公式の写真・Muse の絵・AI のイメージ）が載るときだけ作る。文字だけのカード・ロゴ・ほかの記事の画像では作らない
+LOGO_KINDS = {"logo", "generic"}
+_IMG_NAME_RE = re.compile(r"/img/([^/?#]+)$")
+
+
+def share_photo(article: dict | None) -> tuple[str, dict]:
+    """/card・/cover に実際に敷かれる画像の (URL, 出典)。無ければ ("", {})"""
+    article = article or {}
+    photo = sns_photo(article)
+    if photo:
+        return str(photo["src"]), photo["credit"] or {}
+    shared = share_image_article(article)
+    return str(shared.get("thumbnail") or ""), shared.get("imageCredit") or {}
+
+
+def borrowed_image(url: str, slug: str) -> bool:
+    """自前の画像（/img/<名前>）で、名前がこの記事の slug で始まらない＝ほかの記事のために保存した画像か"""
+    m = _IMG_NAME_RE.search(urllib.parse.urlsplit(str(url or "")).path)
+    if not m or not slug:
+        return False
+    return not m.group(1).startswith(slug[:120])
+
+
+def photo_problem(article: dict | None) -> str:
+    """SNS に出せる本物の画像が無い理由（出せれば ""）。地震・津波（noPhoto）と急ぎの安全の知らせは画像を待たない"""
+    article = article or {}
+    if not article.get("slug") or article.get("noPhoto") or is_urgent(article):
+        return ""
+    url, credit = share_photo(article)
+    if not url or credit.get("kind") == "card":
+        return "写真が無い（文字だけのカードになる）"
+    if credit.get("kind") == "official" and credit.get("imageKind") in LOGO_KINDS:
+        return "公式のロゴ・サイト共通の画像しか無い"
+    if borrowed_image(url, str(article.get("slug"))):
+        return f"ほかの記事の画像（{url.rsplit('/', 1)[-1][:60]}）"
+    return ""
 
 
 def card_note(article: dict | None) -> str:
@@ -1597,6 +1644,24 @@ def check_media(platform: str, media: list[dict], article: dict | None, kind: st
         if abs(ratio - ASPECT) / ASPECT > ASPECT_TOL:
             out.append(f"[ルール2] {kind_of}が 16:9 でない（{size[0]}×{size[1]}）")
     return out
+
+
+def check_photo(media: list[dict], article: dict | None, kind: str, *, draft: bool = False, pending_video: bool = False) -> list[str]:
+    """ルール24（2026-11-09 オーナー指摘・台帳 S49）: 記事のカード・カバー（/card・/cover）で出す投稿は、記事に合う本物の画像
+    （公式の写真・Muse の絵・AI のイメージ）が載るときだけ。文字だけのカード・ロゴ・ほかの記事の画像では出さない。
+    動画待ちの予定（pending_video）・下書きは、出す時刻にもう一度確かめるのでここでは止めない"""
+    article = article or {}
+    if draft or pending_video or kind in ("digest", "disaster") or not article.get("slug"):
+        return []
+    slug = article["slug"]
+    if has_video(media):
+        return []
+    shares = [m for m in media or [] if (m or {}).get("type") != "video"
+              and urllib.parse.urlsplit(unwrap_transform(str(m.get("url") or ""))).path.rstrip("/") in (f"/card/{slug}", f"/cover/{slug}")]
+    if not shares:
+        return []
+    why = photo_problem(article)
+    return [f"[ルール24] 記事に合う本物の画像が無い: {why}。文字だけのカード・ロゴ・ほかの記事の画像では出さない（台帳 S49）"] if why else []
 
 
 def check_length(platform: str, text: str, reply_text: str) -> list[str]:
@@ -1790,6 +1855,7 @@ def check_post(
     if kind not in ("digest", "disaster") and not is_urgent(article) and not draft and not pending_video and not has_video(media) and not has_picture:
         out.append("[ルール8] 動画も記事の写真・カードも付いていない（文字だけでは出さない）")
     out += check_media(platform, media or [], article, kind, measurer)
+    out += check_photo(media or [], article, kind, draft=draft, pending_video=pending_video)
     out += check_length(platform, text, reply_text)
     out += check_sports(article, content)
     if history and article and already_posted(platform, article, kind, state):

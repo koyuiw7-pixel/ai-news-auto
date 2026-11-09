@@ -126,6 +126,10 @@ def main() -> int:
         if why := tp.sns_plan.excluded(article):
             log(f"[breaking] {article['slug']}: {why}")
             continue
+        if why := tp.sns_rules.photo_problem(article):
+            # 2026-11-09（台帳 S49）: 文字だけのカード・ロゴ・ほかの記事の画像では出さない。画像が付いた次の回に出す
+            log(f"[breaking] {article['slug']}: 記事に合う画像がまだ無いので次の回に（{why}）")
+            continue
         today = now.astimezone(tp.JST).date()
         # 2026-11-06 オーナー決定（台帳 S41）: 速報は1日の上限に数えず、本数に関係なく出す（決算・株の話題の1日の上限は 2026-11-08 の見直しで外した）
         used = tp.sns_plan.count_today(state["posted"], today, tp.sns_plan.video_skipped())

@@ -1807,8 +1807,19 @@ Return:
 
 
 def card_first(plan: dict, article: dict) -> bool:
-    """決算・値上げ・制度の記事で、題名に数字があれば、写真より数字・見出しのカードを先にする（2026-11-07 オーナー）"""
-    return plan.get("category") in CARD_FIRST and bool(CARD_NUMBER.search(str(article.get("title") or "")))
+    """（止めた）決算・値上げ・制度の記事で題名に数字があれば、写真より数字・見出しのカードを先にしていた（2026-11-07）。
+    2026-11-09 オーナー指摘（台帳 S49）: 子ども手当の記事の Threads が青い文字だけのカードで出た。どの記事も題名が浮かぶ本物の画像
+    （公式の写真 → AI のイメージ → Muse）を探し、カードは最後の手段にする"""
+    return False
+
+
+# 公式の画像のうち、記事の画像にしないもの（ロゴ・サイト共通の画像。2026-11-09 オーナー指摘・台帳 S49:
+# 防じんマスクのリコールの記事が、年金の記事で保存した厚生労働省のサイト共通のロゴを使い回していた）
+NOT_COVER_KINDS = ("logo", "generic")
+
+
+def cover_worthy(best: dict | None) -> bool:
+    return bool(best) and best.get("kind") not in NOT_COVER_KINDS
 
 
 # --------------------------------------------------------------------------- #
@@ -2696,7 +2707,7 @@ def process(path: Path, article: dict, ctx: dict) -> str:
     # 自前の画像（まとめ記事・別の切り口の記事が元記事の画像を引き継いだ）なら出典も引き継ぐ
     if is_ours(thumb) and not ctx.get("retry_ai") and not ctx.get("repick"):
         credit = ctx["credit_by_thumb"].get(thumb)
-        if credit:
+        if credit and credit.get("imageKind") not in NOT_COVER_KINDS:
             article["imageCredit"] = credit
             if not ctx["dry_run"]:
                 save(path, article)
@@ -2765,7 +2776,8 @@ def process(path: Path, article: dict, ctx: dict) -> str:
     # 選び直し（--slug・--repick-hours など）で、前に付けた公式の写真を AI・素材・写真なしに替えない
     # （その回だけ元記事が開けない・判定が落ちた、で公式の写真を失わない）
     # ただし調査会社・情報会社のサイトから取った写真は残さない（報道の写真を主役の公式写真として使わない。台帳 A37）
-    if previous.get("kind") == "official" and not research_firms.host_firm(previous.get("sourceUrl") or previous.get("original") or "") \
+    if previous.get("kind") == "official" and previous.get("imageKind") not in NOT_COVER_KINDS \
+            and not research_firms.host_firm(previous.get("sourceUrl") or previous.get("original") or "") \
             and is_ours(previous_thumb := (ctx.get("previous_thumb", {}).get(slug) or thumb)):
         article["thumbnail"] = previous_thumb
         article["imageCredit"] = previous
@@ -2781,7 +2793,7 @@ def process(path: Path, article: dict, ctx: dict) -> str:
         plan = visual_plan(article, product=launch and product, service=launch and not product)
     except Exception as error:  # noqa: BLE001
         log(f"   [img] 検索語を作れない: {str(error)[:100]}")
-        if best:
+        if cover_worthy(best):
             return use_official(path, article, ctx, best, official, release)
         return "error"
     if ctx.get("scene"):
@@ -2853,8 +2865,8 @@ def process(path: Path, article: dict, ctx: dict) -> str:
         log("   [img] 素材が見つからないので今の画像のまま")
         return "kept"
     if image is None:
-        # 4. 公式のロゴ・文字の多い図・バナー（AI も素材も無いとき）
-        if best:
+        # 4. 公式の文字の多い図・バナー（AI も素材も無いとき）。ロゴ・サイト共通の画像は使わない（台帳 S49）
+        if cover_worthy(best):
             return use_official(path, article, ctx, best, official, release)
         # 5. 見出しとつながる画像が作れなかった: 関係の無い写真は出さず、数字・見出しのカード（写真なしのカバー）にする
         if rejected:
@@ -2944,6 +2956,9 @@ def use_official(path: Path, article: dict, ctx: dict, best: dict, official: dic
     source = release["article"] if release else article
     org = (release or {}).get("org") or (wire_org(source) if official["wire"] else org_name(source))
     reuse = ctx["official_by_original"].get(url)
+    if reuse and not str(reuse["thumbnail"]).rsplit("/", 1)[-1].startswith(slug[:120]):
+        # ほかの記事のために保存した画像は使い回さない（同じ公式の写真でも、この記事の名前で保存し直す。台帳 S49）
+        reuse = None
     if reuse:
         new_url, size = reuse["thumbnail"], (reuse["credit"].get("width"), reuse["credit"].get("height"))
         log(f"   [img] 公式の画像（保存済みを使い回す）: {new_url}")

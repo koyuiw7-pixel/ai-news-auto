@@ -56,6 +56,7 @@ import json
 import os
 import re
 import subprocess
+import urllib.parse
 import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -729,6 +730,18 @@ def refresh_if_article_changed(slug: str, rec: dict, article: dict | None, use_l
     return True
 
 
+def photo_problem_of(article: dict | None) -> str:
+    """SNS の投稿に載せる本物の画像が無い理由（あれば ""。sns_rules.photo_problem。記事が読めないときは門番に任せる）"""
+    if not article:
+        return ""
+    import sns_rules
+
+    try:
+        return sns_rules.photo_problem(article)
+    except Exception:  # noqa: BLE001
+        return ""
+
+
 def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=None, issue=None, eligible=None, remote=None) -> list[dict]:
     """SNS の予定の投稿（threads_post.queue_for_video の「動画待ち」の記録）を、枠の順番に Buffer に送る。
     2026-11-05 夕方 オーナー決定（「動画を待たない」「動画を作る記事を限定した方がいいかな」・台帳 S13）:
@@ -756,6 +769,9 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
         slot = _parse((rec.get("pending") or {}).get("slot") or rec.get("dueAt") or "") or now
         rows.append((slot, slug, rec))
     last_due: datetime | None = None
+    # 2026-11-09 オーナー指摘（台帳 S49）: 枠の時刻に記事に合う本物の画像がまだ無い投稿は、文字だけのカードで出さない。
+    # その枠は、後ろの予定のうち画像のある投稿に譲り（枠を空けない・遅らせない）、譲った投稿は譲られた投稿の枠に回す（画像は Muse に頼む）
+    free_slots: list[tuple[datetime, str]] = []  # (譲った枠, 譲った記事)
     for slot, slug, rec in sorted(rows, key=lambda r: r[0]):
         q = queue.setdefault(slug, {"status": "waiting"})
         v = videos.get(slug) or {}
@@ -780,6 +796,19 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
             log(f"[video-followup] {slug} は古くなったので出しません（枠 {slot.astimezone(JST):%m/%d %H:%M}）")
             out.append({"slug": slug, **q})
             continue
+        photo_why = photo_problem_of(art_now)
+        took_from = ""
+        if free_slots and not photo_why and free_slots[0][0] < slot:
+            # 前の枠の投稿に画像が無かった → この投稿（画像あり）がその枠で出る。前の投稿はこの投稿の枠に回る
+            given, took_from = free_slots.pop(0)
+            swapped = (posted.get("posted") or {}).get(took_from) or {}
+            if swapped.get("pending") is not None:
+                swapped["pending"]["slot"] = slot.isoformat(timespec="seconds")
+            log(f"[video-followup] {took_from} の枠（{given.astimezone(JST):%H:%M}）に、画像のある {slug} を先に出す。"
+                f"{took_from} は {slot.astimezone(JST):%H:%M} の枠に回す")
+            if rec.get("pending") is not None:
+                rec["pending"]["slot"] = given.isoformat(timespec="seconds")
+            slot = given
         # 2026-11-05 夕方 オーナー決定（「動画を待たない」「動画を作る記事を限定」・台帳 S13）: 動画を待つのは、動画を作る限られた記事
         # （sns_plan.video_post＝Muse に頼んだ記事）だけで、枠から video_wait_hours（1時間）まで。ほかの投稿と、待っても動画が
         # できなかった投稿は、記事の写真・カード（予定の入力にもとから付いている）で出す。動画が無いことでは投稿を落とさない
@@ -811,6 +840,14 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
                       "checkedAt": now.isoformat(timespec="seconds")})
             out.append({"slug": slug, **q})
             continue
+        if not variant and photo_why:
+            # 文字だけのカード・ロゴ・ほかの記事の画像では出さない（台帳 S49）。枠は後ろの画像のある投稿に譲る
+            free_slots.append((slot, slug))
+            q.update({"status": "waiting", "why": f"記事に合う画像を待っている（{photo_why}）。この枠は画像のある次の投稿に譲る",
+                      "photoWait": True, "checkedAt": now.isoformat(timespec="seconds")})
+            out.append({"slug": slug, **q})
+            continue
+        q.pop("photoWait", None)
         media = "video" if variant else "card"
         try:
             theirs = remote(slug)
@@ -981,7 +1018,49 @@ def node_problems(node: dict) -> tuple[str, bool, list[str]]:
         # リンクの位置が今の THREADS_LINK_POS と違う・決まった動画の行が残っている予約も、出る前に直す（台帳 S39。変数を切り替えたら次の回で効く）
         own = [t.get("text") or "" for t in thread] or [node.get("text") or ""]
         problems += [p for p in (sns_rules.link_shape_problem(service, own), sns_rules.video_line_problem(own)) if p]
+        if not video and (why := sns_rules.photo_problem(article)):
+            problems.append(f"{PHOTO_RULE} 記事に合う本物の画像が無い: {why}（台帳 S49）")
     return slug, video, problems
+
+
+PHOTO_RULE = "[ルール24]"
+
+
+def share_assets_refresh(node: dict, article: dict | None) -> dict | None:
+    """予約中の投稿の画像が記事のカード・カバー（/card・/cover）で、記事の画像が変わって URL の版（?v=）が古いなら、
+    今の URL に替える editPost の入力（文面・時刻はそのまま）。替えるものが無ければ None（2026-11-09 台帳 S49:
+    文字だけのカードで予約したあとに Muse の絵が届いても、Buffer は古いカードの URL のまま出していた）"""
+    import threads_post as tp
+
+    if not article or not article.get("slug"):
+        return None
+    slug = article["slug"]
+    fresh = {f"/card/{slug}": tp.card_url(article), f"/cover/{slug}": tp.cover_url(article)}
+    changed = False
+
+    def swap(a: dict) -> dict:
+        nonlocal changed
+        inp = _asset_input(a)
+        for kind, val in inp.items():
+            url = str(val.get("url") or "")
+            want = fresh.get(urllib.parse.urlsplit(url).path.rstrip("/"))
+            if kind == "image" and want and url != want:
+                val["url"] = want
+                changed = True
+        return inp
+
+    service = node.get("service", "")
+    if service == "facebook":
+        inp = {"id": node["id"], "text": node.get("text") or "", "assets": [swap(a) for a in node.get("assets") or []],
+               "metadata": {"facebook": {"type": "post"}}}
+    else:
+        key = "twitter" if service == "twitter" else "threads"
+        thread = ((node.get("metadata") or {}).get("thread")) or [{"text": node.get("text") or "", "assets": node.get("assets") or []}]
+        items = [{"text": t.get("text") or "", "assets": [swap(a) for a in t.get("assets") or []]} for t in thread]
+        if not ((node.get("metadata") or {}).get("thread")) and not items[0]["assets"] and node.get("assets"):
+            items[0]["assets"] = [swap(a) for a in node.get("assets") or []]
+        inp = {"id": node["id"], "text": items[0]["text"], "assets": [], "metadata": {key: {"thread": items}}}
+    return inp if changed else None
 
 
 def queue_fix(apply: bool = False, now: datetime | None = None, api_key: str | None = None) -> list[dict]:
@@ -1057,6 +1136,16 @@ def rules_version() -> str:
     return hashlib.sha1((Path(__file__).resolve().parent / "sns_rules.py").read_bytes()).hexdigest()[:12] + "-" + sns_plan.threads_link_position()
 
 
+def article_card(slug: str) -> str:
+    """記事の今のカードの URL（画像・題名で版が変わる）。読めなければ """""
+    try:
+        import threads_post as tp
+
+        return tp.card_url(json.loads((ARTICLES / f"{slug}.json").read_text("utf-8")))
+    except Exception:  # noqa: BLE001
+        return ""
+
+
 def presend_targets(state: dict, posted: dict, now: datetime, hours: float = PRESEND_HOURS) -> list[str]:
     """手元の記録から、これから hours 時間以内に出る予約の Buffer の ID のうち、今の門番でまだ読み直していないもの（Buffer は呼ばない）"""
     checked = state.get("presend") or {}
@@ -1068,9 +1157,13 @@ def presend_targets(state: dict, posted: dict, now: datetime, hours: float = PRE
         due = _parse(q.get("dueAt") or rec.get("dueAt") or "")
         if not due or not (now - timedelta(minutes=30) <= due <= horizon) or rec.get("status") != "scheduled":
             continue
+        card = article_card(slug)
         for pid in [rec.get("id"), q.get("id"), *((rec.get("channels") or {}).get(k) for k in ("twitter", "facebook")),
                     *((q.get("channels") or {}).get(k) for k in ("threads", "twitter", "facebook"))]:
-            if pid and not str(pid).startswith("at://") and (checked.get(pid) or {}).get("rules") != version and pid not in ids:
+            seen = checked.get(pid) or {}
+            # 門番が変わった・記事の画像が変わった（カードの URL の版が違う。台帳 S49）予約をもう一度見る
+            stale = seen.get("rules") != version or (card and seen.get("card") and seen.get("card") != card)
+            if pid and not str(pid).startswith("at://") and stale and pid not in ids:
                 ids.append(str(pid))
     return ids
 
@@ -1142,6 +1235,33 @@ def rebuilt_texts(node: dict, slug: str, article: dict, state: dict, posted: dic
     return [t.get("text") or "" for t in thread]
 
 
+def photo_requeue(key: str, node: dict, slug: str, state: dict, posted: dict, now: datetime, pauser=None) -> dict:
+    """画像の無い予約を下書きに戻し（消さない）、同じ枠の「動画待ち」の予定に戻す（publish_queued が枠を譲って出す）"""
+    import threads_post as tp
+
+    pauser = pauser or pause_post
+    service = node.get("service", "")
+    try:
+        after = pauser(key, {**node, "text": node.get("text") or ""})
+    except Exception as error:  # noqa: BLE001
+        return {"action": "photo_pause_failed", "error": str(error)[:200]}
+    if (after.get("status") or "") != "draft":
+        return {"action": "photo_pause_failed", "status": after.get("status")}
+    slot = _parse(node.get("dueAt") or "") or now
+    paused = {service: {"id": node["id"], "ok": True, "dueAt": node.get("dueAt"), "status": "draft"}}
+    try:
+        pending = requeue_inputs(key, tp.buffer_channels(key), slug, [service], slot)
+    except Exception as error:  # noqa: BLE001 - 文面を作れなくても、下書きに戻した記録は残す（次の回に作り直す）
+        log(f"[presend] {slug}/{service}: 予定に戻す文面を作れませんでした: {str(error)[:160]}")
+        return {"action": "photo_paused", "requeued": False}
+    state.setdefault("converted", {})[slug] = {"at": now.isoformat(timespec="seconds"), "paused": paused, "pending": pending,
+                                               "threadsSent": service != "threads", "why": "photo"}
+    apply_converted(state, posted)
+    POSTED.write_text(json.dumps(posted, ensure_ascii=False, indent=2) + "\n", "utf-8")
+    log(f"[presend] {slug}/{service}: 記事に合う画像が無いので下書きに戻し、予定に戻しました（枠は画像のある次の投稿に譲る）")
+    return {"action": "photo_requeued", "requeued": True}
+
+
 def presend_recheck(apply: bool = True, now: datetime | None = None, api_key: str | None = None, hours: float = PRESEND_HOURS,
                     force: bool = False, state: dict | None = None, posted: dict | None = None, nodes=None, editor=None, reader=None,
                     pauser=None, rebuild=None, issue=None) -> list[dict]:
@@ -1176,7 +1296,22 @@ def presend_recheck(apply: bool = True, now: datetime | None = None, api_key: st
         row = {"id": node["id"], "service": node.get("service"), "dueAt": node.get("dueAt"), "slug": slug, "video": video, "problems": problems[:4]}
         rows.append(row)
         if not problems:
-            checked[node["id"]] = {"rules": version, "at": now.isoformat(timespec="seconds"), "ok": True}
+            checked[node["id"]] = {"rules": version, "at": now.isoformat(timespec="seconds"), "ok": True, "card": article_card(slug) if slug else ""}
+            # 記事の画像が予約のあとで変わった（Muse の絵が届いた等）→ カードの URL を今の版に替える（台帳 S49）
+            try:
+                art_now = json.loads((ARTICLES / f"{slug}.json").read_text("utf-8")) if slug else None
+            except (OSError, ValueError):
+                art_now = None
+            refresh = None if video else share_assets_refresh(node, art_now)
+            if refresh and apply and due - now >= timedelta(minutes=EDIT_LEAD_MIN):
+                try:
+                    editor(key, refresh, art_now, node.get("service", ""))
+                    row["action"] = "image_refreshed"
+                    log(f"[presend] {slug}/{node.get('service')}: 記事の画像が変わったのでカードの URL を今の版に替えました")
+                except Exception as error:  # noqa: BLE001
+                    row.update({"action": "image_refresh_failed", "error": str(error)[:200]})
+            elif refresh:
+                row["action"] = "image_refresh_plan"
             continue
         if not apply:
             row["action"] = "plan"
@@ -1197,6 +1332,12 @@ def presend_recheck(apply: bool = True, now: datetime | None = None, api_key: st
         except (OSError, ValueError):
             article = None
         service = node.get("service", "")
+        if article and any(p.startswith(PHOTO_RULE) for p in problems):
+            # 記事に合う画像が無いまま予約されている（文字だけのカード・ロゴ・ほかの記事の画像）→ 下書きに戻し、動画待ちの予定に戻す。
+            # 予定に戻った投稿は publish_queued が、枠を画像のある次の投稿に譲り、画像が届いたら出す（台帳 S49）
+            row.update(photo_requeue(key, node, slug, state, posted, now, pauser))
+            checked[node["id"]] = {**done, "left": row["action"]}
+            continue
         texts = node_texts(node)
         if service == "threads":
             texts = sns_rules.reshape_threads_texts(texts)  # リンクの位置を今の THREADS_LINK_POS（reply / body）に（台帳 S39・S31）

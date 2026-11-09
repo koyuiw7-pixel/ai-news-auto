@@ -107,7 +107,17 @@ type Coverable = Photoable & { coverImage?: string; coverCredit?: ImageCredit; n
 /** 記事の写真（thumbnail）を共有の画像にそのまま使ってよいか（空・AI の絵・写真なしの印 card は使わない） */
 function thumbnailUsable(article: Coverable): boolean {
   const kind = article.imageCredit?.kind;
-  return Boolean(article.thumbnail) && kind !== "ai" && kind !== "card";
+  if (!article.thumbnail || kind === "ai" || kind === "card") return false;
+  // 2026-11-09（台帳 S49）: 公式のロゴ・サイト共通の画像、ほかの記事のために保存した画像は記事の写真として使わない
+  if (kind === "official" && ["logo", "generic"].includes(article.imageCredit?.imageKind ?? "")) return false;
+  return !borrowedImage(article.thumbnail, article.slug ?? "");
+}
+
+/** 自前の画像（/img/<名前>）の名前が、この記事の slug で始まらない（ほかの記事のために保存した画像）か（scripts/sns_rules.py の borrowed_image と同じ） */
+export function borrowedImage(url: string, slug: string): boolean {
+  const m = /\/img\/([^/?#]+)$/.exec((url ?? "").split("?")[0]);
+  if (!m || !slug) return false;
+  return !m[1].startsWith(slug.slice(0, 120));
 }
 
 /**

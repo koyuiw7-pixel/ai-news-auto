@@ -32,6 +32,8 @@ def article(slug, title, made, **extra):
         "generatedAt": iso(made), "description": "説明です。",
         "lede": f"{title.split('、')[0]}は、新しいモデルを11月20日に全国の店舗で発売します。価格は税込3万9800円で、予約は今日から受け付けます。",
         "_virtual": True,  # テスト用の記事（content/articles に無い）
+        # 記事に合う画像（2026-11-09 台帳 S49: 画像の無い記事は SNS に出さない）
+        "thumbnail": f"https://ai-tech-express.jp/img/{slug}-0a1b2c3d.jpg", "imageCredit": {"kind": "stock"},
     }
     base.update(extra)
     return base

@@ -23,7 +23,11 @@ import sns_video_followup as fu  # noqa: E402
 import threads_post as tp  # noqa: E402
 
 NOW = datetime(2026, 11, 4, 3, 0, tzinfo=timezone.utc)  # 12:00 JST
-ART = {"slug": "acme-tool", "title": "Acme が新しいAIツールを公開", "genreSlug": "ai", "_virtual": True}
+ART = {"slug": "acme-tool", "title": "Acme が新しいAIツールを公開", "genreSlug": "ai", "_virtual": True,
+       # 記事に合う画像（2026-11-09 台帳 S49: 画像の無い記事は SNS に出さない）
+       "thumbnail": "https://ai-tech-express.jp/img/acme-tool-0a1b2c3d.jpg", "imageCredit": {"kind": "stock"}}
+# 2026-11-09 から投稿は動画を待たない（muse.wait_hours=0・台帳 S48）。待ちの仕組みそのものを確かめる試験だけ、前の1時間で動かす
+WAIT_1H = patch.dict(sns_plan.plan()["muse"], {"wait_hours": 1, "max_wait_hours": 1})
 LINK = "https://ai-tech-express.jp/articles/acme-tool"
 GOOD = (
     "会議のメモを取っている人、これは要チェックです。\n\n"
@@ -206,6 +210,7 @@ def ready_video(slug: str) -> dict:
 FLAGS = {"post": True, "ab_until": "2026-11-10", "after_ab": "short"}
 
 
+@WAIT_1H
 class PublishQueuedTest(unittest.TestCase):
     """2026-11-05 夕方 オーナー決定（「動画を待たない」「動画を作る記事を限定」・台帳 S13）: ふつうの投稿は枠の時刻に写真・カードで、
     動画を作る限られた記事（sns_plan.video_post）だけ枠から1時間まで動画を待ち、無ければ写真・カードで出す"""
@@ -580,6 +585,7 @@ class OneQualityBarTest(unittest.TestCase):
         self.assertFalse(fu.qa_ok({"level": "L1", "qa": {**good, "vision_how": "deterministic-L4"}}, env={}))
 
 
+@WAIT_1H
 class KeepPostingTest(unittest.TestCase):
     """（2026-11-04 オーナー「投稿を止めない」）1本の動画が作れなくても、ほかの投稿は出る（遅れるのはその投稿だけ）"""
 

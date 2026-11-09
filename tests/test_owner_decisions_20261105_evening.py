@@ -82,6 +82,8 @@ class LinkInBodyTest(unittest.TestCase):
         self.assertIn("/articles/acme-tool", thread[0]["text"])
 
 
+# 2026-11-09 から投稿は動画を待たない（muse.wait_hours=0・台帳 S48）。待ちの仕組みそのものは前の1時間で確かめる
+@__import__("unittest.mock").mock.patch.dict(__import__("sns_plan").plan()["muse"], {"wait_hours": 1, "max_wait_hours": 1})
 class PictureInsteadOfWaitingTest(unittest.TestCase):
     """S13（2026-11-05 夕方）: 動画を待たない・動画は限られた記事だけ"""
 

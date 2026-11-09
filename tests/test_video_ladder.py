@@ -298,6 +298,8 @@ class ApprovedShareTest(unittest.TestCase):
         self.assertTrue(any(c[:3] == ["gh", "issue", "create"] and vl.FALLBACK_LABEL in c for c in calls))
 
 
+# 2026-11-09 から投稿は動画を待たない（muse.wait_hours=0・台帳 S48）。待ちの仕組みそのものは前の1時間で確かめる
+@__import__("unittest.mock").mock.patch.dict(__import__("sns_plan").plan()["muse"], {"wait_hours": 1, "max_wait_hours": 1})
 class PipelineFlowTest(unittest.TestCase):
     """2026-11-04 オーナー: 動画の検査を厳しくしても、記事づくりと予約の投稿は止めない（落ちた動画はその投稿だけ遅らせる）"""
 

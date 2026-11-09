@@ -563,6 +563,8 @@ def brief_candidates(state: dict, extra: dict, now: datetime, since: datetime, a
             continue  # もう出した・少し前に失敗した記事（同じ記事で失敗し続けない。時間がたてば戻す）
         if tp.sns_plan.excluded(article) or not is_indexable(article, dups):
             continue
+        if tp.sns_rules.photo_problem(article):
+            continue  # 記事に合う本物の画像がまだ無い（台帳 S49）。画像が付けば次の回に出す
         if any(similar(article.get("title", ""), title) for title in recent):
             continue
         if not (sns_reader.bluesky_post(article) or brief_lines(article)):

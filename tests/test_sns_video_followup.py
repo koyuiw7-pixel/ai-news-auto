@@ -62,6 +62,8 @@ class FlagsTest(unittest.TestCase):
         self.assertTrue(all(r["status"] == "planned" for r in rows))
 
 
+# 2026-11-09 から投稿は動画を待たない（muse.wait_hours=0・台帳 S48）。待ちの仕組みそのものは前の1時間で確かめる
+@patch.dict(__import__("sns_plan").plan()["muse"], {"wait_hours": 1, "max_wait_hours": 1})
 class SelectTest(VideoPostCase):
     def pick(self, p, state=None, window=12):
         scores = {"a": 1, "b": 5, "c": 3, "old": 9, "news": 9}

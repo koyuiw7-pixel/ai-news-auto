@@ -32,6 +32,8 @@ def article(slug, title, made, **extra):
         "lede": f"{title.split('、')[0]}は、新しいモデルを11月20日に税込3万9800円で発売します。予約は全国の店舗で受け付けます。",
         "workMoney": {"points": ["スマホを買い替える人は、今の端末の下取り額と比べて選べます。"]},
         "_virtual": True,  # テスト用の記事（content/articles に無い）
+        # 記事に合う画像（2026-11-09 台帳 S49: 画像の無い記事は SNS に出さない）
+        "thumbnail": f"https://ai-tech-express.jp/img/{slug}-0a1b2c3d.jpg", "imageCredit": {"kind": "stock"},
     }
     base.update(extra)
     return base

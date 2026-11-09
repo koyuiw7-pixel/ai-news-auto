@@ -154,6 +154,8 @@ class UtmTest(unittest.TestCase):
         self.assertNotIn("動画で解説", new)  # 2026-11-06〜 決まった動画の行は足さない（台帳 S39）
 
 
+# 2026-11-09 から投稿は動画を待たない（muse.wait_hours=0・台帳 S48）。待ちの仕組みそのものは前の1時間で確かめる
+@patch.dict(sns_plan.plan()["muse"], {"wait_hours": 1, "max_wait_hours": 1})
 class MuseTest(unittest.TestCase):
     def queue(self, items):
         return patch.object(sns_plan, "load_muse_queue", return_value={"items": items})

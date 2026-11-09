@@ -201,6 +201,8 @@ class FewerCallsTest(LedgerCase):
                                 f"{path.name}: 呼び出し回数 {name} を main に残していない")
 
 
+# 2026-11-09 から投稿は動画を待たない（muse.wait_hours=0・台帳 S48）。待ちの仕組みそのものは前の1時間で確かめる
+@__import__("unittest.mock").mock.patch.dict(__import__("sns_plan").plan()["muse"], {"wait_hours": 1, "max_wait_hours": 1})
 class PublishQueuedTest(unittest.TestCase):
     SLOT = datetime(2026, 11, 5, 3, 15, tzinfo=timezone.utc)
 
@@ -284,6 +286,8 @@ class BlueskyDirectTest(unittest.TestCase):
             self.assertTrue(rule8(sns_rules.check_post(platform, "x", [], art)), platform)
 
 
+# 2026-11-09 から投稿は動画を待たない（muse.wait_hours=0・台帳 S48）。待ちの仕組みそのものは前の1時間で確かめる
+@__import__("unittest.mock").mock.patch.dict(__import__("sns_plan").plan()["muse"], {"wait_hours": 1, "max_wait_hours": 1})
 class FlagsTest(unittest.TestCase):
     def test_flags_default_on_in_every_workflow(self):
         for path in (ROOT / ".github" / "workflows").glob("*.yml"):

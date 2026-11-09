@@ -38,7 +38,7 @@ class ShareImageCoverTest(unittest.TestCase):
         self.assertEqual(sns_rules.card_note(launch), "公式画像がないためイメージ（AI生成）")
 
     def test_usable_thumbnail_kept(self):
-        official = {**FUJIYA, "thumbnail": f"{IMG}x-bbbb2222.jpg", "imageCredit": {"kind": "official", "org": "不二家"}, "heroOk": True}
+        official = {**FUJIYA, "thumbnail": f"{IMG}fujiya-beverage-price-increase-2027-bbbb2222.jpg", "imageCredit": {"kind": "official", "org": "不二家"}, "heroOk": True}
         self.assertIs(sns_rules.share_image_article(official), official)
         self.assertEqual(sns_rules.card_note(official), "画像：不二家（公式発表より）")
         self.assertEqual(sns_rules.share_image_article(official, force=True)["thumbnail"], FUJIYA["coverImage"])

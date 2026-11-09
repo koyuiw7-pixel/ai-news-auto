@@ -317,8 +317,9 @@ class LaunchAiTest(unittest.TestCase):
         self.assertFalse(images.launch_article({"title": "横浜ゴムの小型トラック・バン用タイヤ7,029本をリコール", "genreSlug": "business", "tags": ["タイヤ"]}))
 
     def test_card_first_for_earnings_with_numbers(self):
-        self.assertTrue(images.card_first({"category": "earnings"}, {"title": "ソニーの中間期、営業利益が42.9%増"}))
-        self.assertTrue(images.card_first({"category": "price"}, {"title": "サントリーが「響」など値上げへ　2027年4月から"}))
+        # 2026-11-09（台帳 S49）: 文字だけのカードを先にしない。数字のある決算・値上げも本物の画像を探す
+        self.assertFalse(images.card_first({"category": "earnings"}, {"title": "ソニーの中間期、営業利益が42.9%増"}))
+        self.assertFalse(images.card_first({"category": "price"}, {"title": "サントリーが「響」など値上げへ　2027年4月から"}))
         self.assertFalse(images.card_first({"category": "earnings"}, {"title": "ソニー、決算を発表"}))
         self.assertFalse(images.card_first({"category": "recall"}, {"title": "タイヤ7,029本をリコール"}))
 
