@@ -40,7 +40,8 @@ function setup() {
   replace("performance", { now: () => now });
   replace("requestAnimationFrame", (fn: () => void) => { fn(); return 1; });
   replace("cancelAnimationFrame", () => {});
-  replace("setTimeout", () => 1);
+  // 測り始めの待ち（600ms）と遅れて出る枠の拾い直しは、すぐ動かす
+  replace("setTimeout", (fn: () => void) => { fn(); return 1; });
   replace("clearTimeout", () => {});
   replace("IntersectionObserver", class { constructor(cb: typeof ioCallback) { ioCallback = cb; } observe() {} unobserve() {} disconnect() {} });
 }
@@ -92,6 +93,16 @@ test("画面切り替えの後片付けでは次のページを測らない", ()
   clean();
   assert.equal(sent.at(-1)!.d, 10);
   assert.equal(sent.at(-1)!.t, 5);
+});
+
+test("サイト内の移動の直後（600ms 以内）は前のページのスクロール位置で測らない", () => {
+  replace("setTimeout", () => 1); // 待ちがまだ終わっていない
+  win.scrollY = 9000;
+  const clean = installReading("b", "internal", send);
+  win.emit("scroll");
+  ioCallback?.([{ isIntersecting: true, target: nextEl }]);
+  now = 400; clean();
+  assert.equal(sent.at(-1)!.d, 0);
 });
 
 test("隠れたまま開いたページは時間を数えない", () => {

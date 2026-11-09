@@ -46,7 +46,10 @@ export function installReading(slug: string, source: ReadingSource, send = (body
   let exit: ExitZone = "";
   let lastSent = "";
 
+  // サイト内の移動の直後は、前のページのスクロール位置が残っている（Next.js が先頭へ戻す前）。少し待ってから測り始める
+  let ready = false;
   const measure = () => {
+    if (!ready) return;
     const main = document.querySelector("main");
     const bottom = main ? main.getBoundingClientRect().bottom + window.scrollY : document.documentElement.scrollHeight;
     if (bottom > 0) maxRatio = Math.max(maxRatio, (window.scrollY + window.innerHeight) / bottom);
@@ -103,11 +106,10 @@ export function installReading(slug: string, source: ReadingSource, send = (body
     if (!io) return;
     document.querySelectorAll("[data-aff-pos], section[aria-labelledby=\"next-read-heading\"]").forEach((el) => io.observe(el));
   };
-  observe();
+  const start = setTimeout(() => { ready = true; measure(); observe(); }, 600);
   // 後から描かれる枠（遅れて出る PR・関連記事）も拾う
   const late = setTimeout(observe, 3000);
 
-  measure();
   window.addEventListener("scroll", onScroll, { passive: true });
   document.addEventListener("visibilitychange", onVisibility);
   const onPageHide = () => flush();
@@ -118,6 +120,7 @@ export function installReading(slug: string, source: ReadingSource, send = (body
   return () => {
     // サイト内で次のページへ移るとき（Next.js の画面切り替えはページを離れないので、ここで送る）
     flush(false);
+    clearTimeout(start);
     clearTimeout(late);
     if (frame) cancelAnimationFrame(frame);
     io?.disconnect();
