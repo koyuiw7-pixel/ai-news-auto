@@ -3756,6 +3756,20 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu2/115/gijiroku/1414021_00007.htm"
     },
+    "057e22ab69c04fb1": {
+      "at": "2026-11-09T15:16:18.382966+00:00",
+      "breaking": true,
+      "costUsd": 0.1091,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "nemotron-personas-finance-japan",
+      "url": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan"
+    },
     "05a87e963785dcee": {
       "at": "2026-10-28T21:12:02.308340+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -3966,12 +3980,6 @@
       "section": "science",
       "slug": "riken-gibberellin-root-growth-2026",
       "url": "https://www.riken.jp/press/2026/20261029_2/index.html"
-    },
-    "09bb38f190da1810": {
-      "at": "2026-10-26T15:10:53.940577+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000120.000115515.html"
     },
     "09f3bad4d1c00581": {
       "at": "2026-10-30T03:22:00.563292+00:00",
@@ -4819,13 +4827,6 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/kouseiroudoushou/saiyou/ikei/index.html"
     },
-    "14fe58965fdb4ed4": {
-      "at": "2026-10-26T14:57:42.113226+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2278字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000081.000141649.html"
-    },
     "150442e45e5b7996": {
       "at": "2026-10-30T05:21:28.250002+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -5150,12 +5151,6 @@
       "section": "public",
       "slug": "fsa-fatf-statement-2026-10",
       "url": "https://www.fsa.go.jp/inter/fatf/20261102/20261102.html"
-    },
-    "186a8635f667b78e": {
-      "at": "2026-10-26T15:01:11.635523+00:00",
-      "reason": "dedupe: 固有名詞が一致（claude・code）: biztex-executive-ai-1day-training",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000033.000011313.html"
     },
     "186bcef5c82081bd": {
       "at": "2026-10-30T00:32:02.060121+00:00",
@@ -6255,13 +6250,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102710"
     },
-    "299e7624d6dfc7ec": {
-      "at": "2026-10-26T14:59:41.239496+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2116字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000220.000068011.html"
-    },
     "29a9ccbde0255995": {
       "at": "2026-11-02T18:44:29.372435+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6845,14 +6833,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102706"
-    },
-    "32e1819db841212f": {
-      "at": "2026-10-26T15:11:54.677109+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "kaitori-koji-sns-meo-management",
-      "url": "https://www.dreamnews.jp/press/0000366438"
     },
     "32fd34fb53eda2f1": {
       "at": "2026-11-09T09:40:36.416635+00:00",
@@ -7591,12 +7571,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102823"
     },
-    "3f779c4c9f9d66c6": {
-      "at": "2026-10-26T14:59:41.239534+00:00",
-      "reason": "prefilter: 告知・お知らせ系",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000196.000048688.html"
-    },
     "3f890e59302d1c86": {
       "at": "2026-10-31T20:20:58.013425+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -8291,13 +8265,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（入札）",
       "skipped": true,
       "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030c.pdf"
-    },
-    "4a5d85df09fdc406": {
-      "at": "2026-10-26T14:58:57.208371+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1817字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000001245.000008062.html"
     },
     "4a7189b342fb41eb": {
       "at": "2026-10-27T17:32:59.719333+00:00",
@@ -11936,13 +11903,6 @@
       "slug": "ipa-r08-zenki-exam-deadline",
       "url": "https://www.ipa.go.jp/shiken/2026/r08zen_exam.html"
     },
-    "80a4fac4d17760a3": {
-      "at": "2026-10-26T15:01:11.635381+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1705字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000059.000130865.html"
-    },
     "80d57aebb469d1a9": {
       "at": "2026-11-09T04:42:25.770862+00:00",
       "costUsd": 0.0055,
@@ -14087,13 +14047,6 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/acp-jinseikaigi/"
     },
-    "a06c1b81e0e42828": {
-      "at": "2026-10-26T15:09:45.887874+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1979字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000032.000071025.html"
-    },
     "a08ab1f6c7db9372": {
       "at": "2026-11-09T05:01:47.109921+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（調達）",
@@ -14816,12 +14769,6 @@
       "reason": "quality: 本文が短い（2095字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000243.000080352.html"
-    },
-    "ab856cd6e743d660": {
-      "at": "2026-10-26T15:06:51.213406+00:00",
-      "reason": "prefilter: 告知・お知らせ系",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000009.000036809.html"
     },
     "ab910377653e904a": {
       "at": "2026-10-29T18:11:23.465850+00:00",
@@ -16864,12 +16811,6 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koushin.html"
     },
-    "cc5a7c27eb8e0b7c": {
-      "at": "2026-10-26T14:58:03.842376+00:00",
-      "reason": "prefilter: 告知・お知らせ系",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000002213.000026157.html"
-    },
     "cc60641d57aa6367": {
       "at": "2026-10-30T08:13:38.625836+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -17173,13 +17114,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（オープン）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/boshu/detail/mext_00571.html"
-    },
-    "d24bb7a52c1b7eff": {
-      "at": "2026-10-26T15:06:51.213364+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2096字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000012.000175615.html"
     },
     "d28967fce9c692cd": {
       "at": "2026-10-29T17:04:53.516126+00:00",
@@ -18410,13 +18344,6 @@
       "skipped": true,
       "url": "https://www.boj.or.jp/paym/bond/mbond_list/mbond261105.pdf"
     },
-    "e529dedc8f0dfc23": {
-      "at": "2026-10-26T15:03:53.336784+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1898字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000031.000168691.html"
-    },
     "e52a1eb6f54ddd76": {
       "at": "2026-10-26T23:21:25.860464+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -19241,13 +19168,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://group.ntt/jp/newsrelease/2026/11/06/261106a.html"
-    },
-    "f208f898be629661": {
-      "at": "2026-10-26T14:58:03.842316+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "採用選考における政府要請や評価のあり方を議論するオンラインシンポジウムの告知であり、AI・テクノロジーの技術発表や製品デモを実質的に扱うものではないため。",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000019.000149769.html"
     },
     "f23fe86a6ade51a9": {
       "at": "2026-11-09T11:25:21.569708+00:00",
@@ -20438,57 +20358,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-07T12:17:22.252703+00:00",
-      "attempt": 0,
-      "id": "d6be14be84f599b5",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「2. 公式ヘルプの手順を確認してください（Salesforceニュースの案内）」→ 元記事の手順2は「Choicesに『Returns』などの選択肢を追加する」であり、「公式ヘルプ」という案内は元記事に無い創作の出典。; 手順番号が1の次に2、そして4と飛んで"
-      ],
-      "readability": {
-        "avg_paragraph": 137.2,
-        "avg_sentence": 43.3,
-        "long_share": 0.158,
-        "max_paragraph": 232,
-        "paragraphs": 12,
-        "sentences": 38
-      },
-      "score": 82,
-      "source": "salesforce-news",
-      "title": "Less Reasoning. More Doing. Meet Koa Decisions.",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T12:53:18.668702+00:00",
-      "attempt": 1,
-      "id": "59154091f75ef85b",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "答えになっていない見出し（「料金は1秒単位、日本からの利用は未定」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
-      ],
-      "readability": {
-        "avg_paragraph": 125.0,
-        "avg_sentence": 42.9,
-        "long_share": 0.143,
-        "max_paragraph": 185,
-        "paragraphs": 12,
-        "sentences": 35
-      },
-      "score": null,
-      "source": "azure-blog",
-      "title": "Building the next generation of multimodal AI experiences with fal in Microsoft ",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LTX・USD・BRK）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-07T12:53:42.182605+00:00",
@@ -27636,6 +27505,58 @@
         "見出しの書き方: 記号: かっこの直後に「、」",
         "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（GR・YAM・LAN）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T15:15:48.979918+00:00",
+      "attempt": 1,
+      "id": "057e22ab69c04fb1",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 83.4,
+        "avg_sentence": 43.3,
+        "long_share": 0.296,
+        "max_paragraph": 156,
+        "paragraphs": 14,
+        "sentences": 27
+      },
+      "score": 92,
+      "source": "hugging-face-blog",
+      "title": "Nemotron-Personas-Finance-Japan: A Synthetic Dataset Capturing Japan's Demograph",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SDG・FDUA・CC）",
+        "読みやすさ: 文が長い（1文の平均 43.3字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T15:16:18.361811+00:00",
+      "attempt": 0,
+      "id": "057e22ab69c04fb1",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「NeMo Data DesignerとNeMo SDG-PGMsは、どちらもApache-2.0ライセンス」→ 元記事でApache-2.0と明記されているのはNeMo SDG-PGMsだけで、NeMo Data DesignerのライセンスについてはBLOG"
+      ],
+      "readability": {
+        "avg_paragraph": 83.4,
+        "avg_sentence": 43.3,
+        "long_share": 0.296,
+        "max_paragraph": 156,
+        "paragraphs": 14,
+        "sentences": 27
+      },
+      "score": 92,
+      "source": "hugging-face-blog",
+      "title": "Nemotron-Personas-Finance-Japan: A Synthetic Dataset Capturing Japan's Demograph",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SDG・FDUA・CC）",
+        "読みやすさ: 文が長い（1文の平均 43.3字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
