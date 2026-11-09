@@ -8,140 +8,124 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "GPT-6 Astraは、PC操作や3D制作などを自動で実行する次世代AIモデルです。米OpenAIによって、2026年9月3日に正式に発表されました。",
+    "text": "GPT-6 Astraは、米OpenAIが2026年9月に発表したフラグシップAIモデルです。PC操作や3D制作などを自律的に実行するAIエージェント機能を備えています。",
     "sources": [
-      "openai-announces-gpt-6-astra"
+      "openai-announces-gpt-6-astra",
+      "openai-gpt-6-astra-comprehensive-guide-matome"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "発表当日から順次提供",
+      "value": "2026年9月3日から順次提供",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "利用できる",
+      "value": "日本からも利用できます",
       "sources": [
-        "openai-announces-gpt-6-astra"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "ChatGPTデスクトップアプリ等",
-      "sources": [
-        "openai-announces-gpt-6-astra"
-      ]
-    },
-    {
-      "label": "向いている人",
-      "value": "ビジネス職、開発者、IT管理者",
-      "sources": [
-        "biobasicsbench-wet-lab-ai-agents",
-        "openai-astra-shield-forge-it-support",
-        "openai-announces-gpt-6-astra"
+        "openai-announces-gpt-6-astra",
+        "openai-gpt6-astra-ultrafast-release"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "PC上の各種アプリケーションを人間に代わって操作するコンピュータ操作機能を持っています。",
+      "text": "PCアプリの自動操作（Computer Use）や複数タスクの並行処理ができます。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
-      "text": "Figma MCP Serverを介してFigmaと直接連携し、約2時間でUIプロトタイプを構築できます。",
+      "text": "音声指示からBlenderでの3Dモデリングや3Dゲームのコーディングができます。",
+      "sources": [
+        "openai-announces-gpt-6-astra"
+      ]
+    },
+    {
+      "text": "Figmaと直接連携し、約2時間でUIプロトタイプを自動構築できます。",
       "sources": [
         "openai-gpt6-astra-figma-integration"
       ]
     },
     {
-      "text": "超高速推論モード「Ultrafast」により、API環境で7倍以上の超高速推論を実現します。",
+      "text": "最大14倍の超高速推論モード「Ultrafast」を利用できます。",
       "sources": [
-        "openai-gpt6-astra-ultrafast-release"
-      ]
-    },
-    {
-      "text": "研究室の実験データを読む新しい評価BioBasicsBenchで平均66.7%の首位を獲得しました。",
-      "sources": [
-        "biobasicsbench-wet-lab-ai-agents"
-      ]
-    },
-    {
-      "text": "米ShieldのIT運用基盤Forgeに採用され、従来のAIモデルより35から40パーセント高速化しました。",
-      "sources": [
-        "openai-astra-shield-forge-it-support"
+        "openai-gpt-6-astra-comprehensive-guide-matome"
       ]
     }
   ],
-  "pricing": [],
-  "japan": [
+  "pricing": [
     {
-      "text": "日本からも利用できます。",
+      "text": "Plus、Pro、Business、Enterprise、API等へ順次拡大して提供されます。",
       "sources": [
         "openai-announces-gpt-6-astra"
+      ]
+    }
+  ],
+  "japan": [
+    {
+      "text": "PlusやProなどのプランを通じて日本から利用できます。",
+      "sources": [
+        "openai-announces-gpt-6-astra",
+        "openai-gpt6-astra-ultrafast-release"
       ]
     }
   ],
   "howto": [
     {
-      "text": "ChatGPTデスクトップアプリなどを通じて利用できます。",
+      "text": "ChatGPTデスクトップアプリやAPI、Codexから利用できます。",
       "sources": [
-        "openai-announces-gpt-6-astra"
-      ]
-    },
-    {
-      "text": "Plus、Pro、Business、Enterprise、API等へ順次拡大されます。",
-      "sources": [
-        "openai-announces-gpt-6-astra"
+        "openai-announces-gpt-6-astra",
+        "openai-gpt6-astra-ultrafast-release"
       ]
     }
   ],
   "differences": [
     {
-      "text": "従来のテキストや画像生成にとどまっていたAIの役割を大きく広げ、PCアプリの自動操作機能を完全に統合しています。",
+      "text": "従来のチャット型AIを超えて、PCや外部アプリを自律操作する機能が統合されました。",
       "sources": [
-        "openai-announces-gpt-6-astra"
+        "openai-announces-gpt-6-astra",
+        "openai-gpt-6-astra-comprehensive-guide-matome"
+      ]
+    },
+    {
+      "text": "超高速推論モード「Ultrafast」により、知性を保ったまま処理速度が大幅に向上しました。",
+      "sources": [
+        "openai-gpt6-astra-ultrafast-release"
       ]
     }
   ],
   "faq": [
     {
       "q": "いつから使えますか？",
-      "a": "エンタープライズやTrusted Access Program参加ユーザー向けに順次提供されています。",
+      "a": "2026年9月3日の発表当日から順次提供が開始されています。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
       "q": "Ultrafastモードとは何ですか？",
-      "a": "知性を維持したまま推論処理を大幅に高速化する新しい実行モードです。",
+      "a": "知性を保ったまま処理速度を最大14倍に高める超高速推論オプションです。",
       "sources": [
+        "openai-gpt-6-astra-comprehensive-guide-matome",
         "openai-gpt6-astra-ultrafast-release"
       ]
     },
     {
       "q": "Figmaと連携できますか？",
-      "a": "Figma MCP Serverを介してプロジェクトファイルに直接アクセスし、プロトタイプを自動構築できます。",
+      "a": "Figma MCP Serverを介して直接連携し、UIプロトタイプを自動構築できます。",
       "sources": [
         "openai-gpt6-astra-figma-integration"
       ]
     },
     {
-      "q": "セキュリティ管理にはどのように活用できますか？",
-      "a": "Ciscoのネットワーク情報と組み合わせて攻撃に高速に対応する防御に活用されています。",
+      "q": "数日間のタスクを実行できますか？",
+      "a": "数日間にわたり自律的に稼働し、複数データソースから情報を収集・分析できます。",
       "sources": [
-        "cisco-openai-cyber-defense"
-      ]
-    },
-    {
-      "q": "どのような安全対策がありますか？",
-      "a": "欺瞞的ふるまいの削減や嘘の減少など、アライメントが大幅に向上しています。",
-      "sources": [
-        "openai-announces-gpt-6-astra"
+        "openai-gpt6-astra-jump-trading-agents"
       ]
     }
   ],
@@ -149,17 +133,12 @@
     {
       "date": "2026-09-04",
       "slug": "openai-announces-gpt-6-astra",
-      "event": "新AIモデル「GPT-6 Astra」を発表"
+      "event": "GPT-6 Astraを発表"
     },
     {
       "date": "2026-09-30",
       "slug": "openai-gpt6-astra-ultrafast-release",
-      "event": "超高速推論「Ultrafast」を追加"
-    },
-    {
-      "date": "2026-11-06",
-      "slug": "biobasicsbench-wet-lab-ai-agents",
-      "event": "新評価BioBasicsBenchで首位を獲得"
+      "event": "超高速推論Ultrafastを追加"
     }
   ],
   "related": [
@@ -200,9 +179,9 @@
     "openai-gpt-6-astra-first-impressions-n-dqdvmwoas",
     "openai-announces-gpt-6-astra"
   ],
-  "signature": "110996894e1a119c",
+  "signature": "fe2ff68def2d3e53",
   "primarySignature": "a2a6b4bf06a6c2be",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:41:21+00:00",
-  "updatedAt": "2026-11-06T19:36:20+00:00"
+  "updatedAt": "2026-11-09T19:42:59+00:00"
 }

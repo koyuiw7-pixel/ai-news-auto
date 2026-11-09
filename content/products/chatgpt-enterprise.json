@@ -6,36 +6,30 @@
   "companyName": "OpenAI",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "ChatGPT Enterpriseは、企業向けのChatGPTの仕事用サービスです。OpenAIが提供しています。",
+    "text": "ChatGPT Enterpriseは、企業向けのChatGPTです。OpenAIが提供し、法人向けプランとして発表されました。",
     "sources": [
+      "chatgpt-enterprise-aws-marketplace",
       "thomson-reuters-openai-chatgpt-enterprise-cocounsel",
-      "uber-openai-chatgpt-work-enterprise-deployment"
+      "openai-reimagining-it-with-chatgpt"
     ]
   },
   "facts": [
     {
-      "label": "提供開始",
-      "value": "2025年9月",
-      "sources": [
-        "heimstaden-openai-real-estate-ai"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "企業向け環境",
-      "sources": [
-        "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
-      ]
-    },
-    {
       "label": "向いている人",
-      "value": "法務プロフェッショナルなどの法人ユーザー",
+      "value": "法人の導入担当や法務担当",
       "sources": [
+        "chatgpt-enterprise-aws-marketplace",
         "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
       ]
     }
   ],
   "capabilities": [
+    {
+      "text": "AWS Marketplaceで既存のAWS契約で購入と管理ができます。",
+      "sources": [
+        "chatgpt-enterprise-aws-marketplace"
+      ]
+    },
     {
       "text": "Thomson ReutersのCoCounsel LegalやHighQと統合できます。",
       "sources": [
@@ -43,19 +37,13 @@
       ]
     },
     {
-      "text": "回答に対して、参照元文献や判例の引用元が明記されます。",
+      "text": "欧州の住宅運営会社では賃料の見立てや広告文の作成に活用されています。",
       "sources": [
-        "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
+        "heimstaden-openai-real-estate-ai"
       ]
     },
     {
-      "text": "複数システム間を行き来せず、単一の画面で作業を完結できます。",
-      "sources": [
-        "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
-      ]
-    },
-    {
-      "text": "社内ITの運用において、ヘルプデスクのチケットを処理できます。",
+      "text": "社内IT部門のヘルプデスクチケットの約45%を自動で処理できます。",
       "sources": [
         "openai-reimagining-it-with-chatgpt"
       ]
@@ -63,48 +51,35 @@
   ],
   "pricing": [],
   "japan": [],
-  "howto": [
-    {
-      "text": "OpenAIとエンタープライズ契約を締結して利用環境を構築します。",
-      "sources": [
-        "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
-      ]
-    },
-    {
-      "text": "関連する外部製品のライセンス確認が必要です。",
-      "sources": [
-        "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
-      ]
-    }
-  ],
+  "howto": [],
   "differences": [],
   "faq": [
     {
-      "q": "誰に向いている？",
-      "a": "法務プロフェッショナルや企業の担当者に向いています。",
+      "q": "どこで買うことができますか？",
+      "a": "AWS Marketplaceなどで購入や管理ができるようになりました。",
+      "sources": [
+        "chatgpt-enterprise-aws-marketplace"
+      ]
+    },
+    {
+      "q": "法律の業務に活用できますか？",
+      "a": "Thomson ReutersのCoCounsel Legalなどを統合して利用できます。",
       "sources": [
         "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
       ]
     },
     {
-      "q": "いつから使える？",
-      "a": "企業での導入事例では2025年9月に使い始めています。",
+      "q": "日本の会社が購入できるかはどこで確認できますか？",
+      "a": "OpenAIまたはAWSのアカウントチームに確認するよう案内されています。",
+      "sources": [
+        "chatgpt-enterprise-aws-marketplace"
+      ]
+    },
+    {
+      "q": "社内業務での活用例はありますか？",
+      "a": "欧州の住宅運営会社で物件画像の制作費削減や環境リスク評価に使われています。",
       "sources": [
         "heimstaden-openai-real-estate-ai"
-      ]
-    },
-    {
-      "q": "どのような機能と連携できる？",
-      "a": "Thomson ReutersのCoCounsel LegalやHighQと統合できます。",
-      "sources": [
-        "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
-      ]
-    },
-    {
-      "q": "出力の根拠は確認できる？",
-      "a": "回答には参照元や引用元が明記される仕組みとなっています。",
-      "sources": [
-        "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
       ]
     }
   ],
@@ -113,26 +88,33 @@
       "date": "2026-10-20",
       "slug": "thomson-reuters-openai-chatgpt-enterprise-cocounsel",
       "event": "Thomson Reutersの法務AIを統合"
+    },
+    {
+      "date": "2026-11-10",
+      "slug": "chatgpt-enterprise-aws-marketplace",
+      "event": "AWS Marketplaceで購入可能に"
     }
   ],
   "related": [
     "chatgpt",
     "chatgpt-work",
     "codex",
-    "chatgpt-voice"
+    "amazon-bedrock"
   ],
   "articles": [
+    "chatgpt-enterprise-aws-marketplace",
     "heimstaden-openai-real-estate-ai",
     "uber-openai-chatgpt-work-enterprise-deployment",
     "thomson-reuters-openai-chatgpt-enterprise-cocounsel",
     "openai-reimagining-it-with-chatgpt"
   ],
   "linkFrom": [
+    "chatgpt-enterprise-aws-marketplace",
     "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
   ],
-  "signature": "4da2bb20b40dbb35",
-  "primarySignature": "a84f3543b07cef4a",
+  "signature": "b7598968a69ce5c9",
+  "primarySignature": "c27375b0774d7c5f",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-04T05:47:09+00:00",
-  "updatedAt": "2026-11-04T05:47:09+00:00"
+  "updatedAt": "2026-11-09T19:43:04+00:00"
 }

@@ -3590,14 +3590,6 @@
       "skipped": true,
       "url": "https://openai.com/chatgpt/pricing/#entry-2026-11-05-a6b810"
     },
-    "0232089e06db66b1": {
-      "at": "2026-10-26T19:21:46.697645+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "sports",
-      "slug": "amagasaki-takumi-championship-2026",
-      "url": "https://kyodonewsprwire.jp/release/202610268686"
-    },
     "0245b2330014ed62": {
       "at": "2026-11-03T01:26:21.538480+00:00",
       "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
@@ -9069,14 +9061,6 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261030.xlsx"
     },
-    "5854ffdfb8165007": {
-      "at": "2026-10-26T19:41:09.355610+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "sports",
-      "slug": "lucent-cup-tokyo-indoor-2027",
-      "url": "https://www.dreamnews.jp/press/0000366359"
-    },
     "5886c5f29f0241fb": {
       "at": "2026-10-29T04:31:38.854810+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -13056,6 +13040,18 @@
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327170.html"
+    },
+    "932fe34bad728f30": {
+      "at": "2026-11-09T19:42:42.002842+00:00",
+      "costUsd": 0.0016,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 88,
+      "section": "ai",
+      "slug": "kuken-industries-drawing-search-openai",
+      "url": "https://openai.com/index/kuken"
     },
     "9367c33359f699fc": {
       "at": "2026-10-27T03:04:42.979534+00:00",
@@ -20247,23 +20243,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-07T17:12:39.075522+00:00",
-      "attempt": 1,
-      "id": "0c1cf97223ad220b",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「Vercel Changelogは11月7日」→ 元記事に発表日の記載がなく、11月7日という日付は根拠がない",
-        "「1秒間に1000を超える文字のかたまり」→ 元記事は1秒あたり1,000トークン以上としており、トークンを文字に言い換えているため不正確",
-        "「文脈は100万トークンで、既存記事で紹介した仕様と同じ」→ 既存記事の文脈に文脈長（100万トークン）の記載はなく、同じ仕様とする根拠がない",
-        "「モデル名を指定すれば、すぐ呼び出せます」→ 元記事の例はコードでの指定であり、「すぐ」は言い過ぎ"
-      ],
-      "score": 62,
-      "source": "vercel-changelog",
-      "title": "DeepSeek V4.1 Flash 1017 Ultrafast now available on AI Gateway"
-    },
     {
       "accepted": false,
       "at": "2026-11-07T17:13:48.655832+00:00",
@@ -27471,6 +27450,26 @@
         "初めて出たところで言い換えていない略語（VP）",
         "読みやすさ: 文が長い（1文の平均 45.3字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T19:42:41.995804+00:00",
+      "attempt": 1,
+      "id": "932fe34bad728f30",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.9,
+        "avg_sentence": 38.0,
+        "long_share": 0.054,
+        "max_paragraph": 151,
+        "paragraphs": 16,
+        "sentences": 37
+      },
+      "score": 88,
+      "source": "openai-news",
+      "title": "Kuken Industries searches 70 years of drawings in minutes"
     }
   ],
   "short_text_retry": {},

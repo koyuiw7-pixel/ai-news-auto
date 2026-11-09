@@ -82,9 +82,9 @@
   "newsType": "product",
   "faq": [],
   "todayActions": [
-    "AWSの契約窓口を持つ会社は、OpenAIまたはAWSのアカウントチームに、ChatGPT Enterpriseの購入資格を問い合わせる",
-    "AWSの利用コミットメントの残額と期間を、経理や購買担当と確認しておく",
-    "Amazon Bedrockで使うOpenAIモデルと、業務で使うChatGPT Enterpriseの用途を分けて整理する"
+    "OpenAIかAWSのアカウントチームに、ChatGPT Enterpriseの利用資格を問い合わせる",
+    "AWS Marketplaceの掲載ページで、ChatGPT Enterpriseの購入と管理の内容を見る",
+    "会社のワークスペースでデータを書き出したいときは、本人では操作できないと確認し、所有者に依頼する"
   ],
   "relatedSlugs": [
     "claude-marketplace-new-agents-products"
@@ -128,5 +128,104 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/chatgpt-enterprise-aws-marketplace-b8de8ca7.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "ChatGPT Enterpriseでは、利用者本人の設定画面からデータの書き出しができず、ワークスペースの所有者（workspace owner）に依頼するよう案内されています。",
+      "source": "https://help.openai.com/en/articles/7730893-data-controls-faq"
+    },
+    {
+      "text": "ChatGPT Enterpriseなどの管理されたワークスペースでは、既定でOpenAIはモデル学習に内容を使わないと書かれています。",
+      "source": "https://help.openai.com/en/articles/7730893-data-controls-faq"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "AWS Marketplace の ChatGPT Enterprise 掲載ページ",
+      "url": "https://aws.amazon.com/marketplace/pp/prodview-sscra4m7iracg",
+      "source": "https://openai.com/index/chatgpt-enterprise-aws-marketplace",
+      "note": "購入前に、OpenAIかAWSのアカウントチームに連絡して利用資格を確認するよう書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "OpenAIかAWSのアカウントチームに、ChatGPT Enterpriseの利用資格を問い合わせる",
+      "source": "https://openai.com/index/chatgpt-enterprise-aws-marketplace",
+      "steps": [
+        "OpenAIかAWSのアカウントチームに連絡する",
+        "利用資格（eligibility）を確認する",
+        "AWS Marketplaceでの購入方法を聞く"
+      ],
+      "url": "https://aws.amazon.com/marketplace/pp/prodview-sscra4m7iracg"
+    },
+    {
+      "action": "AWS Marketplaceの掲載ページで、ChatGPT Enterpriseの購入と管理の内容を見る",
+      "source": "https://openai.com/index/chatgpt-enterprise-aws-marketplace",
+      "steps": [
+        "OpenAIの発表ページを開く",
+        "View in AWS Marketplace を押す",
+        "掲載ページで購入と管理の内容を確かめる"
+      ],
+      "url": "https://aws.amazon.com/marketplace/pp/prodview-sscra4m7iracg"
+    },
+    {
+      "action": "会社のワークスペースでデータを書き出したいときは、本人では操作できないと確認し、所有者に依頼する",
+      "source": "https://help.openai.com/en/articles/7730893-data-controls-faq",
+      "steps": [
+        "個人のアカウントでSettingsを開く",
+        "Data controlsを開いて対象を確認する",
+        "書き出しは所有者へ依頼する"
+      ],
+      "url": "https://help.openai.com/en/articles/7730893-data-controls-faq"
+    }
+  ],
+  "cause": {
+    "text": "今回は障害や事故ではなく、既存のAWS契約で法人がChatGPT Enterpriseを買えるようにした提供開始の案内です。AWSの顧客は直販と同じモデル・機能を、新機能とともに使えると説明されています。",
+    "status": "background",
+    "source": "https://openai.com/index/chatgpt-enterprise-aws-marketplace"
+  },
+  "worries": [
+    {
+      "q": "会社の会話内容は、AIの学習に使われていませんか？",
+      "a": "公式ヘルプには、Business・Enterpriseなどの管理されたワークスペースでは、既定でOpenAIはモデル学習に内容を使わないと書かれています。組織の保持や管理の設定も別途適用されます。",
+      "source": "https://help.openai.com/en/articles/7730893-data-controls-faq",
+      "action": "情報システムや管理者に、自社のワークスペースの学習・保持設定が何かを確認する"
+    },
+    {
+      "q": "データを書き出したいとき、自分で操作できますか？",
+      "a": "Enterprise等のワークスペースでは、本人の設定画面からのデータ書き出しは利用できず、ワークスペースの所有者に依頼するよう書かれています。",
+      "source": "https://help.openai.com/en/articles/7730893-data-controls-faq",
+      "action": "書き出しが必要なら、会社のChatGPTワークスペースの所有者に依頼する"
+    },
+    {
+      "q": "アカウントを消したら、会社の契約はどうなる？",
+      "a": "管理されたワークスペースでは本人による削除はできず、組織の所有者に相談するよう書かれています。契約への影響は、このページからは分かりません。",
+      "source": "https://help.openai.com/en/articles/7730893-data-controls-faq",
+      "action": "管理されたアカウントは自分で消せないため、削除前に所属組織の管理者へ相談し、その指示に従う"
+    },
+    {
+      "q": "AWS経由で買うと、価格や充当の条件はどうなる？",
+      "a": "AWS Marketplaceでの価格や、充当の対象になる支出の条件は、このページでは示されていません。",
+      "source": "https://openai.com/index/chatgpt-enterprise-aws-marketplace",
+      "action": "AWSのアカウントチームに、ChatGPT Enterpriseの価格と充当の対象になる支出を確認する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "AWS経由で買うか、直接契約するか？",
+      "situation": "AWSのコミットメントが残っている会社",
+      "recommend": "急がなくてよい。まず利用資格と充当条件を確認する",
+      "reason": "AWSの顧客は直販と同じモデル・機能を使え、既存の購入・請求の関係で契約できると書かれています。日本の会社が対象かは発表されていません。",
+      "source": "https://openai.com/index/chatgpt-enterprise-aws-marketplace"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "会社のChatGPTは、書き出しも削除も所有者経由",
+    "cause": "今回は障害ではなく、購入の入口が増えた話",
+    "steps": "AWSで買うなら、まず確認すること",
+    "desk": "問い合わせ先と、掲載ページの場所",
+    "worries": "会話の学習や、データ書き出しは大丈夫？",
+    "guide": "AWS経由で買うか、迷ったときの考え方"
+  },
+  "depthAt": "2026-11-09T19:44:07+00:00"
 }
