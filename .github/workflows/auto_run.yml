@@ -303,11 +303,15 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CF_KV_TOKEN: ${{ secrets.CF_DEPLOY_TOKEN }}
           FAST_URL: ${{ inputs.fast_url }}
+          # 写真も AI のイメージも無い記事の「図の表紙」（scripts/figure_cover.py・台帳 I9）。オーナーの見た目の確認後に変数で 1 にする
+          IMAGE_FIGURE_COVER: ${{ vars.IMAGE_FIGURE_COVER || '0' }}
+        # 1本の時間に上限（IMAGE_ARTICLE_SECONDS・既定150秒）があり、budget の後は新しい記事に手を付けない。
+        # budget＋最後の1本（残り時間に収める）＋表紙・主役の位置の後始末が timeout 500 に収まるよう 380 にした（2026-11-10: 420 では2本目の途中で exit 124 に切られていた）
         run: |
           if [ -n "$FAST_URL" ]; then
-            timeout 120 python scripts/images.py --changed --fast --max 3 --budget 60
+            timeout 120 python scripts/images.py --changed --fast --max 3 --budget 50
           else
-            timeout 500 python scripts/images.py --changed --recent 40 --max 15 --budget 420
+            timeout 500 python scripts/images.py --changed --recent 40 --max 15 --budget 380
           fi
 
       # Muse（Meta の AI アプリ）が描いた表紙の写真を付け、今日の写真の無い記事を優先の順に Muse に頼む（2026-11-08 オーナー承認・台帳 I8）。

@@ -137,7 +137,14 @@ def make_cover(article: dict, *, fast: bool = False, dry_run: bool = False) -> d
     # 2026-11-07 オーナー: 公式の画像が無い新製品の発表は、AI が製品（の種類）を描いてよい。札は「公式画像がないためイメージ（AI生成）」。
     # リコールなど発表ではない記事は、ブランド・型の無い一般の物（タイヤ・電池など）を描いてよい
     launch = images.launch_article(article)
-    topic, scenes = cover_scenes(article)
+    if not images.ai_allowed(article):
+        return None  # 今日の AI の枚数が無い・残りは暮らしとお金の記事のため（台帳 I9）。LLM も呼ばない
+    try:
+        # LLM の 500/503・長い待ちで回全体が切られないよう、待つ時間に上限（2026-11-10 台帳 I9）
+        topic, scenes = images.with_timeout(min(images.PLAN_LLM_SECONDS, max(10.0, images.time_left(120) - 40)), cover_scenes, article)
+    except Exception as error:  # noqa: BLE001
+        images.log(f"   [cover] LLM で場面を作れない（{str(error)[:80]}）→ 題名・タグから決まった場面を使う")
+        topic, scenes = "", images.keyword_plan(article)["scenes"]
     if not scenes:
         return None
     for scene in scenes[:MAX_DRAWS]:
@@ -186,6 +193,12 @@ def reuse_thumbnail(article: dict) -> dict | None:
 def ensure_cover(article: dict, *, fast: bool = False, dry_run: bool = False) -> str:
     """ノワールの記事に表紙の背景を持たせる。戻り値は表紙の背景（cover_path の値）。記事の dict を書き換える（保存は呼ぶ側）"""
     if not needs_cover(article):
+        return cover_path(article)
+    import images  # noqa: PLC0415
+
+    if not images.ai_allowed(article):
+        # 今日の AI の枚数が無い（上限・暮らしとお金の取り置き）のは、作れなかった回に数えない。
+        # 数えると上限の夜に3回で coverTries が尽き、上限が戻っても二度と作らなかった（2026-11-10 台帳 I9）
         return cover_path(article)
     made = None
     try:

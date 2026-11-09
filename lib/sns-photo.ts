@@ -108,6 +108,8 @@ type Coverable = Photoable & { coverImage?: string; coverCredit?: ImageCredit; n
 function thumbnailUsable(article: Coverable): boolean {
   const kind = article.imageCredit?.kind;
   if (!article.thumbnail || kind === "ai" || kind === "card") return false;
+  // 2026-11-10（台帳 I9）: 図の表紙（scripts/figure_cover.py）は写真ではないので、共有の画像には AI のイメージ（Muse など）を先にする
+  if (kind === "figure" && article.imageCredit?.imageKind === "cover") return false;
   // 2026-11-09（台帳 S49）: 公式のロゴ・サイト共通の画像、ほかの記事のために保存した画像は記事の写真として使わない
   if (kind === "official" && ["logo", "generic"].includes(article.imageCredit?.imageKind ?? "")) return false;
   return !borrowedImage(article.thumbnail, article.slug ?? "");

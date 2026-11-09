@@ -64,6 +64,7 @@ def patches(face=(False,) * 3, relevant=(True,) * 3, generated=True, launch=Fals
         mock.patch.object(images, "shows_face", side_effect=list(face)),
         mock.patch.object(noir_cover, "relevant", side_effect=list(relevant)),
         mock.patch.object(images, "store", return_value=("https://ai-tech-express.jp/img/x-cover-1.jpg", (1200, 630))),
+        mock.patch.object(images, "ai_allowed", return_value=True),  # AI の枚数が残っている日（台帳 I9 の取り置きの外）
     ]
 
 
@@ -128,6 +129,11 @@ class MakeCoverTest(unittest.TestCase):
 
 
 class EnsureCoverTest(unittest.TestCase):
+    def setUp(self):
+        allowed = mock.patch.object(images, "ai_allowed", return_value=True)  # AI の枚数が残っている日（台帳 I9）
+        allowed.start()
+        self.addCleanup(allowed.stop)
+
     def test_success_keeps_thumbnail(self):
         article = noir()
         made = {"coverImage": "https://ai-tech-express.jp/img/x-cover-ab.jpg", "coverCredit": {"kind": "ai", "model": "flux-1-schnell"}}

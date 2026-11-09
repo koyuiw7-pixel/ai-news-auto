@@ -241,8 +241,9 @@ class ProcessReleaseTest(ReleaseTestBase):
         """2026-11-07 オーナー: 発表に限らず（調査・リコール・決算など）、報道が出典なら会社自身の発表の写真を探す"""
         article = {**ARTICLE, "title": "生成AIの利用実態を調査、6割が業務で利用", "keywords": [], "tags": []}
         article.pop("imageCredit")
+        # 2026-11-10（台帳 I9）: LLM が失敗しても題名から検索語を作る（plan_for）ので、ここでは plan_for ごと止める
         with mock.patch.object(images, "find_official_release", return_value=None) as found, \
-                mock.patch.object(images, "visual_plan", side_effect=RuntimeError("stop")):
+                mock.patch.object(images, "plan_for", side_effect=RuntimeError("stop")):
             self.assertEqual(images.process(Path("/nonexistent/x.json"), article, self.ctx()), "error")
         self.assertEqual(found.call_count, 1)
 
@@ -286,6 +287,7 @@ class LaunchAiTest(unittest.TestCase):
         with mock.patch.object(images, "find_official_release", return_value=None), \
                 mock.patch.object(images, "visual_plan", return_value=dict(self.PLAN)), \
                 mock.patch.object(images, "generate_ai", generate), \
+                mock.patch.object(images, "ai_used_today", return_value=0), \
                 mock.patch.object(images, "shows_face", return_value=False), \
                 mock.patch.object(images, "headline_check", side_effect=list(checks)), \
                 mock.patch.object(images, "find_stock", return_value=(None, None)), \

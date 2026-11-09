@@ -52,6 +52,7 @@ import os
 import re
 import subprocess
 import sys
+import threading
 import time
 import urllib.error
 import urllib.parse
@@ -86,6 +87,19 @@ AI_DAILY_MAX = int(os.environ.get("IMAGE_AI_DAILY_MAX") or "40")
 # 自動で作り直す（RETRY_CAPPED_HOURS 以内の記事）。この実行で上限に当たったか
 AI_CAPPED = False
 RETRY_CAPPED_HOURS = 72
+# 2026-11-10 オーナー「画像がない記事が結構多いから対策しっかりね」（台帳 I9）:
+#  - 1日の AI の枚数（無料の40枚）は、暮らしとお金の記事（muse_images.priority の SNS・手続き・お金）と読まれている記事に先に使う。
+#    残りがこの枚数を切ったら、ほかの記事（海外の AI・企業向けなど）には AI を使わない
+AI_PRIORITY_RESERVE = int(os.environ.get("IMAGE_AI_PRIORITY_RESERVE") or "15")
+#  - 1本にかける時間の上限（秒）。遅い LLM・素材サイトの1本で回全体が外側の timeout（exit 124）に切られ、後ろの記事が毎回手つかずだった
+ARTICLE_SECONDS = float(os.environ.get("IMAGE_ARTICLE_SECONDS") or "150")
+#  - 検索語・場面づくりの LLM を待つ上限（秒）。超えたら題名・タグ・ジャンルから決まった手順で作った検索語（keyword_plan）を使う
+PLAN_LLM_SECONDS = float(os.environ.get("IMAGE_PLAN_LLM_SECONDS") or "40")
+#  - 写真も AI のイメージも無い記事に、題名の数字と話題の絵記号で作る「図の表紙」（scripts/figure_cover.py）を付けるか。
+#    オーナーの見た目の確認が済むまで既定は止めておく（11/2・11/8・11/9 に文字の画像・コードで描いた表紙を断られている）。
+#    リポジトリの変数 IMAGE_FIGURE_COVER=1 で入れる
+FIGURE_COVER = (os.environ.get("IMAGE_FIGURE_COVER") or "0").strip() == "1"
+_DEADLINE = 0.0  # この記事の締め切り（time.time()）。0 なら無し
 PREVIEW_DIR: Path | None = None  # --preview で指定すると、出来上がった JPEG をここにも書く（確認用）
 PAGES_BY_IMAGE: dict[str, set[str]] = {}  # 画像 URL → それを使っている記事の元記事ページ（main で作る）
 
@@ -127,8 +141,56 @@ def log(message: str) -> None:
 # --------------------------------------------------------------------------- #
 
 
-def http_get(url: str, *, ua: str = BROWSER_UA, accept: str = "*/*", timeout: int = 20, limit: int = MAX_BYTES, referer: str = "") -> tuple[bytes, str, str]:
-    """(中身, Content-Type, 最終URL)。大きすぎるものは途中で打ち切って例外"""
+RETRY_STATUS = (429, 500, 502, 503, 504)
+
+
+def time_left(default: float = 1e9) -> float:
+    """この記事の残り時間（秒）。締め切りが無ければ default"""
+    return _DEADLINE - time.time() if _DEADLINE else default
+
+
+def with_timeout(seconds: float, fn, *args, **kwargs):
+    """fn をこの秒数だけ待つ。超えたら TimeoutError（呼んだ処理は裏で放っておく。daemon なので終了を妨げない）。
+    LLM の呼び出しが 500/503 の再試行と 240 秒の待ちで1本に何分もかかり、回全体が切られていた（2026-11-09 夜）"""
+    box: dict = {}
+
+    def run() -> None:
+        try:
+            box["value"] = fn(*args, **kwargs)
+        except BaseException as error:  # noqa: BLE001 - 呼んだ側で投げ直す
+            box["error"] = error
+
+    thread = threading.Thread(target=run, daemon=True)
+    thread.start()
+    thread.join(max(1.0, seconds))
+    if thread.is_alive():
+        raise TimeoutError(f"{seconds:.0f}秒を超えた")
+    if "error" in box:
+        raise box["error"]
+    return box.get("value")
+
+
+def http_get(url: str, *, ua: str = BROWSER_UA, accept: str = "*/*", timeout: int = 20, limit: int = MAX_BYTES, referer: str = "",
+             retries: int = 0) -> tuple[bytes, str, str]:
+    """(中身, Content-Type, 最終URL)。大きすぎるものは途中で打ち切って例外。
+    retries: 混雑（429・5xx）・つながらないときに、間を空けてやり直す回数（素材サイトの API・画像の取り寄せ。2026-11-10）"""
+    for attempt in range(retries + 1):
+        try:
+            return _http_get_once(url, ua=ua, accept=accept, timeout=timeout, limit=limit, referer=referer)
+        except urllib.error.HTTPError as error:
+            if error.code not in RETRY_STATUS or attempt >= retries or time_left() < 10:
+                raise
+            wait = min(int(error.headers.get("Retry-After") or 0) or 2 * (attempt + 1) ** 2, 10)
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
+            if attempt >= retries or time_left() < 10:
+                raise
+            wait = 2 * (attempt + 1) ** 2
+            log(f"   [img] つながらない（{str(error)[:60]}）→ {wait}秒後にやり直す")
+        time.sleep(wait)
+    raise RuntimeError("unreachable")
+
+
+def _http_get_once(url: str, *, ua: str, accept: str, timeout: int, limit: int, referer: str) -> tuple[bytes, str, str]:
     headers = {"User-Agent": ua, "Accept": accept, "Accept-Language": "ja,en;q=0.8"}
     if referer:
         headers["Referer"] = referer
@@ -143,8 +205,8 @@ def http_get(url: str, *, ua: str = BROWSER_UA, accept: str = "*/*", timeout: in
         return data, res.headers.get("Content-Type", ""), res.geturl()
 
 
-def http_json(url: str, *, ua: str = BOT_UA, timeout: int = 20) -> dict:
-    data, _, _ = http_get(url, ua=ua, accept="application/json", timeout=timeout, limit=4 * 1024 * 1024)
+def http_json(url: str, *, ua: str = BOT_UA, timeout: int = 20, retries: int = 0) -> dict:
+    data, _, _ = http_get(url, ua=ua, accept="application/json", timeout=timeout, limit=4 * 1024 * 1024, retries=retries)
     return json.loads(data.decode("utf-8"))
 
 
@@ -1813,6 +1875,209 @@ def card_first(plan: dict, article: dict) -> bool:
     return False
 
 
+# --------------------------------------------------------------------------- #
+# LLM を使わない検索語・場面（2026-11-10 台帳 I9）
+# --------------------------------------------------------------------------- #
+
+# 題名・タグ・キーワードの言葉 → 素材の検索語（英語・写真に写る物）・日本語の検索語・AI の場面・種類。
+# 上から順に、当たったものを使う（暮らしとお金の記事が多い話題を先に）。どれも当たらなければジャンルの既定
+TOPIC_TABLE: list[tuple[str, list[str], str, list[str], str]] = [
+    (r"地震|津波|震度", [], "", [], "other"),  # 地震・津波の記事は写真を付けない（noPhoto）。念のため検索語を作らない
+    (r"電気代|電気料金|電力|燃料費調整|kWh",
+     ["electricity meter", "power outlet plug", "electric meter japan"], "電力量計",
+     ["Close-up of a household electricity meter on the outside wall of a Japanese house, its dial clearly visible.",
+      "A hand holding a paper electricity bill envelope next to a wall power outlet with a plug."], "price"),
+    (r"ガス代|ガス料金|都市ガス|LPガス|プロパン",
+     ["gas stove flame", "gas meter", "kitchen gas burner"], "ガスコンロ",
+     ["Close-up of blue flames on a kitchen gas stove burner with a pot.", "A household gas meter on an outside wall."], "price"),
+    (r"灯油|ストーブ|暖房",
+     ["kerosene heater", "kerosene tank", "oil heater"], "石油ストーブ",
+     ["A red plastic kerosene tank and a hand pump next to a kerosene heater in a Japanese home in winter.",
+      "Close-up of a kerosene heater glowing in a living room."], "price"),
+    (r"ガソリン|軽油|給油",
+     ["gas station pump", "fuel nozzle", "petrol station"], "ガソリンスタンド",
+     ["A hand holding a fuel nozzle refueling a car at a gas station.", "Fuel pumps at a Japanese gas station."], "price"),
+    (r"年金|ねんきん|iDeCo|イデコ",
+     ["pension book", "elderly couple japan", "senior citizen"], "年金手帳",
+     ["Hands of an elderly person checking a bank passbook and a pension notice envelope at a kitchen table.",
+      "An elderly couple seen from behind walking in a quiet Japanese residential street."], "policy"),
+    (r"児童手当|子育て|子ども|こども|出産|育児|保育|妊娠",
+     ["baby stroller", "children school bags", "parent and child hands"], "子育て",
+     ["A parent's hands holding a small child's hand on a sunny street, seen from behind.",
+      "A baby stroller in a bright Japanese apartment entrance."], "policy"),
+    (r"相続|遺言|遺族",
+     ["family documents", "inkan seal", "will document"], "印鑑",
+     ["Hands stamping a Japanese inkan seal on a document beside a family register folder."], "policy"),
+    (r"マイナンバー|保険証|マイナ保険",
+     ["health insurance card", "hospital reception", "medical clinic"], "病院の受付",
+     ["A hand holding a plastic card at a hospital reception counter card reader, no readable text."], "policy"),
+    (r"保険|損保|生命保険",
+     ["insurance documents", "family home", "umbrella rain"], "保険",
+     ["Hands reviewing insurance policy papers with a calculator on a dining table."], "policy"),
+    (r"漏えい|流出|個人情報|不正アクセス|サイバー",
+     ["laptop security", "smartphone lock screen", "padlock keyboard"], "情報セキュリティ",
+     ["A padlock lying on a laptop keyboard in a dim office.", "A hand holding a smartphone showing an abstract warning icon, no text."], "outage"),
+    (r"ドコモ|(?<![A-Za-z])au(?![A-Za-z])|ソフトバンク|楽天モバイル|携帯|スマホ|通信障害|SIM",
+     ["smartphone in hand", "mobile phone shop", "sim card"], "スマートフォン",
+     ["Close-up of hands holding a smartphone on a train platform, screen showing abstract color blocks."], "other"),
+    (r"ボーナス|賞与|給与|給料|手取り|年収|賃金|最低賃金",
+     ["payslip", "salary envelope", "japanese yen bills"], "給与明細",
+     ["Hands holding a salary envelope and Japanese yen banknotes on an office desk."], "earnings"),
+    (r"税|ふるさと納税|確定申告|控除|非課税",
+     ["tax return form", "calculator receipts", "japanese yen coins"], "確定申告",
+     ["Hands with a calculator and a pile of receipts on a desk at home, preparing a tax return."], "policy"),
+    (r"預金|金利|国債|銀行|NISA|投資|株価|株式投資|株主",
+     ["bank passbook", "japanese yen coins", "atm japan"], "通帳",
+     ["Hands opening a Japanese bank passbook beside a stack of coins."], "earnings"),
+    (r"新幹線|鉄道|列車|運休|JR|電車",
+     ["shinkansen", "train station platform japan", "bullet train"], "新幹線",
+     ["A shinkansen bullet train arriving at a platform, seen at an angle."], "other"),
+    (r"値上げ|値下げ|価格改定|物価|値段",
+     ["supermarket shelves", "shopping basket", "price tags"], "スーパー",
+     ["A shopping basket with groceries in a Japanese supermarket aisle."], "price"),
+    (r"お米|コメ|米価|新米|備蓄米",
+     ["rice bag", "rice paddy", "cooked rice"], "お米",
+     ["Bags of rice on a supermarket shelf in Japan."], "price"),
+    (r"リコール|回収|不具合",
+     ["product inspection", "mechanic hands", "service center"], "点検",
+     ["A mechanic's hands inspecting a part in a service workshop."], "recall"),
+    (r"病院|医療|薬|ワクチン|介護",
+     ["hospital corridor", "medicine tablets", "nursing care"], "病院",
+     ["A nurse's hands preparing medicine tablets in a clinic."], "policy"),
+    (r"住宅|家賃|マンション|住まい|空き家",
+     ["japanese houses", "apartment building", "house keys"], "住宅",
+     ["A hand holding house keys in front of a Japanese apartment door."], "price"),
+    (r"学校|教育|大学|奨学金|受験",
+     ["school classroom", "students desks", "university campus"], "教室",
+     ["A student's backpack and textbooks on a desk in a bright Japanese classroom, morning light."], "policy"),
+    (r"就職|転職|求人|雇用|資格|講習",
+     ["job interview", "office workers", "training class"], "研修",
+     ["People in a training class seen from behind, listening to an instructor at a whiteboard with abstract shapes."], "other"),
+]
+GENRE_QUERIES = {
+    "lifestyle": (["household budget", "japanese home kitchen"], "家計"),
+    "public": (["city hall japan", "government office counter"], "市役所"),
+    "business": (["office building japan", "business meeting"], "オフィス"),
+    "investment": (["stock market", "japanese yen"], "お金"),
+    "ai": (["artificial intelligence", "computer server"], "人工知能"),
+    "tech-gadget": (["laptop computer", "smartphone"], "パソコン"),
+    "science": (["laboratory", "microscope"], "研究"),
+}
+
+
+def keyword_plan(article: dict, product: bool = False, service: bool = False) -> dict:
+    """LLM を使わずに、題名・タグ・キーワード・ジャンルから素材の検索語と AI の場面を決める（visual_plan と同じ形）。
+    LLM が 500/503・時間切れのときと、AI の枚数が残っていない（素材だけを探す）ときに使う"""
+    text = " ".join([str(article.get("title") or ""), " ".join(map(str, article.get("tags") or [])), " ".join(map(str, (article.get("keywords") or [])[:6]))])
+    queries: list[str] = []
+    query_ja = ""
+    scenes: list[str] = []
+    category = "other"
+    for pattern, qs, ja, sc, cat in TOPIC_TABLE:
+        if re.search(pattern, text):
+            if not qs and not sc:
+                break
+            for q in qs:
+                if q not in queries:
+                    queries.append(q)
+            query_ja = query_ja or ja
+            scenes += [x for x in sc if x not in scenes]
+            if category == "other":
+                category = cat
+            if len(queries) >= 3:
+                break
+    genre_qs, genre_ja = GENRE_QUERIES.get(str(article.get("genreSlug") or ""), ([], ""))
+    if not queries:
+        queries = list(genre_qs)
+        query_ja = query_ja or genre_ja
+    return {
+        "queries": queries[:3],
+        "query_ja": query_ja,
+        "scene": scenes[0] if scenes else "",
+        "scenes": scenes[:AI_MAX_DRAWS],
+        "category": "launch" if (product or service) else category,
+        "model": "keywords",
+        "product": "computer, phone or app screen" if (service and not product) else "",
+        "productLaunch": product,
+        "serviceLaunch": bool(service and not product),
+    }
+
+
+def plan_for(article: dict, product: bool = False, service: bool = False, *, ai_left: bool = True) -> dict:
+    """検索語と場面。AI の枚数が残っていれば LLM で作り（PLAN_LLM_SECONDS まで待つ）、だめなら・残っていなければ keyword_plan。
+    LLM の場面が空なら決まった手順の場面で補う"""
+    fallback = keyword_plan(article, product=product, service=service)
+    if not ai_left and fallback["queries"]:
+        log("   [img] AI の枚数が残っていないので、検索語は題名・タグから作る（LLM を待たない）")
+        return fallback
+    try:
+        plan = with_timeout(min(PLAN_LLM_SECONDS, max(10.0, time_left() - 30)), visual_plan, article, product=product, service=service)
+    except Exception as error:  # noqa: BLE001 - 500/503・時間切れ・JSON 不正
+        log(f"   [img] LLM で検索語を作れない（{str(error)[:80]}）→ 題名・タグから作る")
+        if not fallback["queries"] and not fallback["scenes"]:
+            raise
+        return fallback
+    if not plan.get("queries"):
+        plan["queries"] = fallback["queries"]
+        plan["query_ja"] = plan.get("query_ja") or fallback["query_ja"]
+    if not plan.get("scenes") and fallback["scenes"]:
+        plan["scenes"] = fallback["scenes"]
+        plan["scene"] = plan.get("scene") or fallback["scene"]
+    return plan
+
+
+# --------------------------------------------------------------------------- #
+# AI の枚数を、暮らしとお金の記事・読まれている記事に先に使う（2026-11-10 台帳 I9）
+# --------------------------------------------------------------------------- #
+
+_SNS_SLUGS: set[str] | None = None
+_VIEWS: dict[str, int] | None = None
+
+
+def article_views(slug: str) -> int:
+    """直近の読まれた回数（content/popular.json。自前の計測）"""
+    global _VIEWS
+    if _VIEWS is None:
+        _VIEWS = {}
+        try:
+            data = json.loads((ROOT / "content" / "popular.json").read_text("utf-8"))
+            for row in data.get("items") or []:
+                if isinstance(row, dict) and row.get("slug"):
+                    _VIEWS[str(row["slug"])] = int(row.get("views") or 0)
+        except (OSError, ValueError, TypeError):
+            pass
+    return _VIEWS.get(slug, 0)
+
+
+def image_tier(article: dict) -> int:
+    """画像の優先の段（小さいほど先）。scripts/muse_images.py の priority と同じ段:
+    1 SNS・動画に出す / 2 手続き・お金（値上げ・給付・年金・税・リコール・障害など）/ 3 暮らしの話題 / 4 軸の外の海外の技術。
+    読まれている記事（views ≥ 5）は1段上げる"""
+    global _SNS_SLUGS
+    try:
+        import muse_images  # noqa: PLC0415
+
+        if _SNS_SLUGS is None:
+            _SNS_SLUGS = muse_images.sns_slugs()
+        tier = muse_images.priority(article, _SNS_SLUGS)
+    except Exception:  # noqa: BLE001 - 判定できないときは真ん中
+        tier = 3
+    if article_views(str(article.get("slug") or "")) >= 5:
+        tier = max(1, tier - 1)
+    return tier
+
+
+def ai_allowed(article: dict) -> bool:
+    """この記事に AI の画像を作ってよいか（1日 AI_DAILY_MAX 枚。残りが AI_PRIORITY_RESERVE 枚を切ったら、段 1・2 の記事だけ）"""
+    used = ai_used_today()
+    if used >= AI_DAILY_MAX:
+        return False
+    if used >= AI_DAILY_MAX - AI_PRIORITY_RESERVE and image_tier(article) > 2:
+        log(f"   [img] AI の残り {AI_DAILY_MAX - used} 枚は暮らしとお金の記事のために取っておく（この記事は段 {image_tier(article)}）")
+        return False
+    return True
+
+
 # 公式の画像のうち、記事の画像にしないもの（ロゴ・サイト共通の画像。2026-11-09 オーナー指摘・台帳 S49:
 # 防じんマスクのリコールの記事が、年金の記事で保存した厚生労働省のサイト共通のロゴを使い回していた）
 NOT_COVER_KINDS = ("logo", "generic")
@@ -1856,7 +2121,7 @@ _rest_down_until = 0.0
 WIKI_INTERVAL = float(os.environ.get("WIKI_INTERVAL") or "2")
 
 
-def wiki_get(url: str, tries: int = 2) -> dict:
+def wiki_get(url: str, tries: int = 3) -> dict:
     """Wikimedia への問い合わせ。続けて叩くと締め出されるので間を空け、混雑（429・5xx）は1回だけ待ってやり直す"""
     global _wiki_last
     for attempt in range(tries):
@@ -1865,9 +2130,9 @@ def wiki_get(url: str, tries: int = 2) -> dict:
         try:
             return http_json(url, timeout=25)
         except urllib.error.HTTPError as error:
-            if error.code not in (429, 500, 502, 503, 504) or attempt == tries - 1:
+            if error.code not in RETRY_STATUS or attempt == tries - 1 or time_left() < 15:
                 raise
-            time.sleep(min(int(error.headers.get("Retry-After") or 0) or 5, 15))
+            time.sleep(min(int(error.headers.get("Retry-After") or 0) or 3 * (attempt + 1), 15))
     raise RuntimeError("unreachable")
 
 
@@ -2035,7 +2300,7 @@ def search_openverse(query: str, limit: int = 12) -> list[dict]:
         "page_size": str(limit),
     }
     try:
-        data = http_json("https://api.openverse.org/v1/images/?" + urllib.parse.urlencode(params), timeout=15)
+        data = http_json("https://api.openverse.org/v1/images/?" + urllib.parse.urlencode(params), timeout=15, retries=1)
     except Exception as error:  # noqa: BLE001
         log(f"   [img] Openverse に失敗（この回は使わない）: {str(error)[:80]}")
         _openverse_down = True
@@ -2300,7 +2565,10 @@ Rules:
 - "[QI]" marks photos that passed Wikimedia's quality review; prefer them when equally relevant
 Return {{"pick": index}} or {{"pick": -1}} if none fits."""
     try:
-        data, _ = llm.generate_json("You are a careful photo editor. Return JSON only.", prompt, PICK_SCHEMA, tier=llm_tier(), temperature=0.1, max_output_tokens=1024)
+        if time_left() < 25:
+            raise TimeoutError("この記事の残り時間が少ない")
+        data, _ = with_timeout(min(30.0, max(5.0, time_left() - 20)), llm.generate_json, "You are a careful photo editor. Return JSON only.",
+                               prompt, PICK_SCHEMA, tier=llm_tier(), temperature=0.1, max_output_tokens=1024)
         index = int(data.get("pick", -1))
     except Exception as error:  # noqa: BLE001
         log(f"   [img] 選定に失敗、検索順の先頭を使う: {str(error)[:80]}")
@@ -2323,12 +2591,17 @@ def find_stock(article: dict, plan: dict, used: set[str]) -> tuple[dict | None, 
     for index, query in enumerate(queries):
         if index == len(plan["queries"]) and len(candidates) >= 6:
             break
+        if time_left() < 30:
+            log("   [img] この記事の残り時間が少ないので、素材の検索をここまでにする")
+            break
         add((search_wikimedia(query, limit=6, quality=True) if index == 0 else []) + search_wikimedia(query))
         if len(candidates) >= 12:
             break
     # Openverse（Flickr など）は応答が遅く、実際の画像が小さいことも多いので、Commons で足りないときだけ
     if len(candidates) < 6:
         for query in plan["queries"]:
+            if time_left() < 30:
+                break
             add(search_openverse(query))
     if not candidates:
         return None, None
@@ -2342,7 +2615,7 @@ def find_stock(article: dict, plan: dict, used: set[str]) -> tuple[dict | None, 
             if by_query[q]:
                 mixed.append(by_query[q].pop(0))
     tried = 0
-    while mixed and tried < 3:
+    while mixed and tried < 3 and time_left() > 15:
         tried += 1
         pick = choose_stock(article, mixed)
         if not pick:
@@ -2354,7 +2627,7 @@ def find_stock(article: dict, plan: dict, used: set[str]) -> tuple[dict | None, 
                     raise ValueError("ライセンスを確かめられない（CC0・PD・CC BY 以外）")
                 pick.update(info)
                 pick.pop("pendingLicense", None)
-            data, ctype, _ = http_get(pick["download"], ua=BOT_UA, accept="image/jpeg,image/*", timeout=40)
+            data, ctype, _ = http_get(pick["download"], ua=BOT_UA, accept="image/jpeg,image/*", timeout=40, retries=1)
             image = open_image(data)
             problem = image_problem(image, MIN_STOCK_WIDTH) or graphic_problem(image) or vision_check(image, article)
             if problem:
@@ -2520,6 +2793,12 @@ def generate_ai(plan: dict, article: dict, fast: bool = False) -> tuple[object, 
         AI_CAPPED = True
         log(f"   [img] AI 生成は今日の上限（{AI_DAILY_MAX}枚）に達した")
         return None
+    if not ai_allowed(article):
+        return None  # 残りは暮らしとお金の記事のため（台帳 I9）
+    if time_left() < 25:
+        log("   [img] この記事の残り時間が少ないので AI 生成は次の回に回す")
+        return None
+    fast = fast or time_left() < 45  # 残りが少なければ速いモデルだけ（flux-2 は待ちが長い）
     if not cf_token("ai"):
         log("   [img] Workers AI のトークンが無いので AI 生成は飛ばす")
         return None
@@ -2527,7 +2806,7 @@ def generate_ai(plan: dict, article: dict, fast: bool = False) -> tuple[object, 
     models = AI_MODELS[1:] if fast else AI_MODELS
     for model in models:
         try:
-            raw = _cf_ai(model, prompt, timeout=150 if "flux-2" in model else 60)
+            raw = _cf_ai(model, prompt, timeout=int(min(150 if "flux-2" in model else 60, max(20.0, time_left() - 15))))
             image = trim_dark_band(open_image(raw))
             llm._record_usage("cf-image:" + model.rsplit("/", 1)[-1])
             return image, model.rsplit("/", 1)[-1]
@@ -2690,6 +2969,15 @@ def save(path: Path, article: dict) -> None:
 
 
 def process(path: Path, article: dict, ctx: dict) -> str:
+    global _DEADLINE
+    _DEADLINE = time.time() + (ctx.get("article_seconds") or ARTICLE_SECONDS)
+    try:
+        return _process(path, article, ctx)
+    finally:
+        _DEADLINE = 0.0
+
+
+def _process(path: Path, article: dict, ctx: dict) -> str:
     slug = article.get("slug") or path.stem
     title = (article.get("title") or "")[:40]
     thumb = article.get("thumbnail", "") or ""
@@ -2790,11 +3078,14 @@ def process(path: Path, article: dict, ctx: dict) -> str:
     launch = launch_article(article)
     try:
         # 新製品の発表は製品の種類を、アプリ・機能の発表は使う人の手元を描く。リコールなど発表ではない実物の話題は一般の物（種類別の場面）
-        plan = visual_plan(article, product=launch and product, service=launch and not product)
+        ai_left = not ctx.get("retry_ai") and ai_used_today() < AI_DAILY_MAX and ai_allowed(article)
+        plan = plan_for(article, product=launch and product, service=launch and not product, ai_left=ai_left)
     except Exception as error:  # noqa: BLE001
         log(f"   [img] 検索語を作れない: {str(error)[:100]}")
         if cover_worthy(best):
             return use_official(path, article, ctx, best, official, release)
+        if FIGURE_COVER and not ctx.get("retry_ai"):
+            return use_figure(path, article, ctx)
         return "error"
     if ctx.get("scene"):
         plan["scene"] = ctx["scene"]
@@ -2868,7 +3159,11 @@ def process(path: Path, article: dict, ctx: dict) -> str:
         # 4. 公式の文字の多い図・バナー（AI も素材も無いとき）。ロゴ・サイト共通の画像は使わない（台帳 S49）
         if cover_worthy(best):
             return use_official(path, article, ctx, best, official, release)
-        # 5. 見出しとつながる画像が作れなかった: 関係の無い写真は出さず、数字・見出しのカード（写真なしのカバー）にする
+        # 5. 写真も AI のイメージも無い: 題名の数字と話題の絵記号の「図の表紙」（IMAGE_FIGURE_COVER=1 のとき。台帳 I9）。
+        #    Muse・Workers AI の写真が後で届けば、そちらが表紙・一覧に出る（photoOf・noirCover は coverImage を先にする）
+        if FIGURE_COVER:
+            return use_figure(path, article, ctx)
+        # 見出しとつながる画像が作れなかった: 関係の無い写真は出さず、数字・見出しのカード（写真なしのカバー）にする
         if rejected:
             return use_card(path, article, ctx, plan.get("category", ""))
         return "none"
@@ -2948,6 +3243,62 @@ def use_card(path: Path, article: dict, ctx: dict, category: str = "") -> str:
     return "card"
 
 
+FIGURE_RETRY_HOURS = 3  # 図の表紙にした記事で、写真・AI のイメージを探し直すまでの時間
+
+
+def use_figure(path: Path, article: dict, ctx: dict) -> str:
+    """写真も AI のイメージも無い記事に「図の表紙」（scripts/figure_cover.py）を付ける（2026-11-10 台帳 I9。IMAGE_FIGURE_COVER=1 のときだけ）。
+    題名の数字と話題の絵記号の明るい図版で、写真ではないことが一目で分かる。載せる言葉は題名のものだけ（数字を作らない）。
+    imageCredit {kind: "figure", imageKind: "cover"}: サイトは図として扱い（切り抜かない・「図：サイソクニュース作成」）、SNS には出さない。
+    Muse・Workers AI の写真が届けば表紙・一覧はそちら（coverImage）が先。FIGURE_RETRY_HOURS 後から写真・AI を探し直す"""
+    import figure_cover  # noqa: PLC0415
+
+    if article.get("noPhoto"):
+        return "none"  # 地震・津波の記事は写真・図の表紙を付けない（台帳の決まりどおり）
+    slug = article.get("slug") or path.stem
+    fact = figure_cover.key_fact(str(article.get("title") or ""))
+    previous = ctx.get("previous_credit", {}).get(slug) or {}
+    prev_thumb = ctx.get("previous_thumb", {}).get(slug) or ""
+    if previous.get("kind") == "figure" and previous.get("imageKind") == "cover" and is_ours(prev_thumb) \
+            and previous.get("number") == fact["number"] and previous.get("label") == fact["label"]:
+        # 探し直しても写真が無かった: 前の図の表紙のまま（作り直さない。次に探すのはまた FIGURE_RETRY_HOURS 後）
+        article["thumbnail"] = prev_thumb
+        article["imageCredit"] = {**previous, "at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+        if not ctx["dry_run"]:
+            save(path, article)
+        return "kept-figure"
+    try:
+        image = figure_cover.render(article)
+        url, size = store(f"{slug}-figure", image, ctx["dry_run"], keep_aspect=True)
+    except Exception as error:  # noqa: BLE001
+        log(f"   [img] 図の表紙を作れない: {str(error)[:120]}")
+        return "error"
+    credit = {"kind": "figure", "imageKind": "cover", "number": fact["number"], "label": fact["label"], "provider": "サイソクニュース",
+              "width": size[0], "height": size[1], "aiCapped": bool(AI_CAPPED), "at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+    if previous.get("original"):
+        credit["original"] = previous["original"]
+    article["thumbnail"] = url
+    article["imageCredit"] = credit
+    article.pop("imageFocus", None)
+    log(f"   [img] 図の表紙: {fact['label'][:20]} {fact['number']}（写真・AI のイメージが届けば替わる）")
+    if not ctx["dry_run"]:
+        save(path, article)
+    return "figure"
+
+
+def figure_retry(article: dict, now: datetime | None = None) -> bool:
+    """図の表紙にした記事を、写真・AI のイメージで作り直す番か（FIGURE_RETRY_HOURS たった・AI の枚数がこの記事に使える）"""
+    credit = article.get("imageCredit") or {}
+    if credit.get("kind") != "figure" or credit.get("imageKind") != "cover":
+        return False
+    try:
+        made = datetime.fromisoformat(str(credit.get("at")).replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    now = now or datetime.now(timezone.utc)
+    return (now - made).total_seconds() >= FIGURE_RETRY_HOURS * 3600 and ai_used_today() < AI_DAILY_MAX
+
+
 def use_official(path: Path, article: dict, ctx: dict, best: dict, official: dict, release: dict | None = None) -> str:
     """公式の画像（写真・動画のサムネイル・見出し画像・図・ロゴ）を保存して記事に付ける。
     release: 報道の記事から見つけた会社自身の発表（find_official_release）。出典はその発表のページにする"""
@@ -3010,12 +3361,15 @@ def noir_covers(ordered: list, args, started: float, tally: Counter) -> None:
     """新しいノワールの記事の表紙を、いつも写真にする（台帳 W36・scripts/noir_cover.py）。
     写真を選び終えたあと、新しい順に見て、公式の写真を表紙に出せない記事へ表紙用の AI のイメージを作る（thumbnail は変えない）。
     公式の写真の判定（heroOk）がまだの記事は、先に判定する"""
+    global _DEADLINE
     import noir_cover  # noqa: PLC0415
     import noir_hero_backfill  # noqa: PLC0415
 
     made = 0
-    noir = [(p, a) for p, a in ordered if noir_cover.is_noir(a) and not a.get("noPhoto")]
-    for path, article in noir[:NOIR_COVER_RECENT]:
+    noir = [(p, a) for p, a in ordered if noir_cover.is_noir(a) and not a.get("noPhoto")][:NOIR_COVER_RECENT]
+    # 表紙の AI の枚数も、暮らしとお金の記事・読まれている記事に先に使う（台帳 I9。並べ替えは安定なので同じ段は新しい順のまま）
+    noir.sort(key=lambda item: image_tier(item[1]) if noir_cover.needs_cover(item[1]) else 9)
+    for path, article in noir:
         elapsed = time.time() - started
         if args.budget and elapsed > args.budget + 20:
             log("[cover] 時間切れ。表紙のイメージは次の回に回す")
@@ -3033,7 +3387,11 @@ def noir_covers(ordered: list, args, started: float, tally: Counter) -> None:
             continue
         made += 1
         # 残りの時間が少ないときは速いモデルだけ（flux-2 は最大 150 秒待つので、外側の timeout に切られない）
-        outcome = noir_cover.ensure_cover(article, fast=args.fast or bool(args.budget and elapsed > args.budget - 120))
+        _DEADLINE = time.time() + (max(30.0, min(ARTICLE_SECONDS, args.budget + 60 - elapsed)) if args.budget else ARTICLE_SECONDS)
+        try:
+            outcome = noir_cover.ensure_cover(article, fast=args.fast or bool(args.budget and elapsed > args.budget - 120))
+        finally:
+            _DEADLINE = 0.0
         log(f"[cover] {article.get('slug')}: 表紙の背景 {outcome}")
         tally[f"cover-{outcome}"] += 1
         save(path, article)
@@ -3232,13 +3590,21 @@ def main() -> int:
         capped = [(p, a) for p, a in ordered if age_hours(a) <= RETRY_CAPPED_HOURS and capped_retry(a, today)]
         for _, a in capped:
             a.pop("imageCredit", None)
+        # 図の表紙にした記事（台帳 I9）は、時間がたって AI の枚数があれば写真・AI のイメージを探し直す
+        figured = [(p, a) for p, a in ordered if age_hours(a) <= RETRY_CAPPED_HOURS and figure_retry(a)][:3]
+        for _, a in figured:
+            a.pop("imageCredit", None)
         missed = [(p, a) for p, a in ordered if age_hours(a) <= RETRY_CAPPED_HOURS and needs_check(a)]
         seen: set[Path] = set()
         targets = []
-        for p, a in first + rest + capped + missed:
+        for p, a in first + rest + capped + figured + missed:
             if p not in seen and needs_check(a):
                 seen.add(p)
                 targets.append((p, a))
+        # 2026-11-10（台帳 I9）: 暮らしとお金の記事・読まれている記事を先に（同じ段では今までの順）。
+        # 遅い記事が先頭に居座って、後ろの記事が毎回手つかずにならないよう、1本の時間にも上限がある（ARTICLE_SECONDS）
+        rank = {p: i for i, (p, _) in enumerate(targets)}
+        targets.sort(key=lambda item: (image_tier(item[1]), rank[item[0]]))
     else:
         parser.error("--changed / --recent / --all / --slug のどれかを指定してください")
 
@@ -3255,6 +3621,9 @@ def main() -> int:
             log("[img] 時間切れ。残りは次の回に回す")
             break
         began = time.time()
+        if args.budget:
+            # 外側の timeout（auto_run.yml は budget＋80秒）に切られないよう、1本の時間を残りの時間に収める
+            ctx["article_seconds"] = max(30.0, min(ARTICLE_SECONDS, args.budget + 40 - (began - started)))
         try:
             outcome = process(path, article, ctx)
         except Exception as error:  # noqa: BLE001 - 1本の失敗で全体を止めない
@@ -3307,6 +3676,12 @@ def main() -> int:
         if focused:
             log(f"[img] 主役の位置を {focused} 本に書きました")
     log(f"[img] 結果: {dict(tally)}（AI 生成は今日 {ai_used_today()} / {AI_DAILY_MAX} 枚）")
+    try:
+        import image_coverage  # noqa: PLC0415
+
+        log(image_coverage.summary_line(load_articles().values()))
+    except Exception as error:  # noqa: BLE001 - 見張りの行が出せなくても画像の処理は終わっている
+        log(f"[img-cover] 数えられない: {str(error)[:100]}")
     return 0
 
 

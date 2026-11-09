@@ -13,6 +13,11 @@ scripts/muse_articles_push.py（launchd・25分ごと）の回の中で呼ばれ
 content/muse_images/ に入れ、描けなかった理由は <slug>.skip.txt にして、まとめてコミットし main に push（[no-deploy]）。
 記事に付けるのは次の Auto Article Pipeline の回（「Muse images」の段）。結果は ledger.md の「Muse さんの画像」の節に出る。
 
+Google ドライブの受け口（2026-11-10 台帳 I9）: チーム（Muse・Grok など）が同期フォルダ
+~/Library/CloudStorage/GoogleDrive-koyuiw7@gmail.com/マイドライブ/サイソク連絡/images/ に置いた <slug>.jpg（.jpeg・.png・.webp も可）と
+<slug>-fig<N>.png を、毎回の初めに上のフォルダへ写す（pull_drive。元のファイルは消さない。同じ名前・大きさ・時刻のものは二度写さない）。
+あとは Muse の写真と同じ確かめ・同じ流れで記事の表紙（coverImage・「画像はイメージ（AI生成）」）になり、図の表紙より先に出る。
+
   python3 scripts/muse_images_push.py --no-push   # 1回だけ（push しない。試すとき。ふだんは muse_articles_push.py の回の中で動く）
 """
 from __future__ import annotations
@@ -32,6 +37,19 @@ HOME = Path.home()
 FOLDER = Path(os.environ.get("MUSE_IMAGES_DIR") or HOME / "Downloads" / "saisoku-images")
 BASE = Path(os.environ.get("MUSE_PUSH_HOME") or HOME / ".saisoku-muse")
 SENT_NOTES = BASE / "images_notes_sent.json"
+DRIVE_DIR = Path(os.environ.get("SAISOKU_DRIVE_IMAGES")
+                 or HOME / "Library" / "CloudStorage" / "GoogleDrive-koyuiw7@gmail.com" / "マイドライブ" / "サイソク連絡" / "images")
+DRIVE_SEEN = BASE / "drive_images_seen.json"
+DRIVE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
+DRIVE_README = """サイソクの記事の写真の受け口です（2026-11-10 から）。
+
+- 記事の URL の最後の部分（slug）をファイル名にして置いてください: <slug>.jpg（1200×675 くらいの横長。.png・.webp も可）
+  例: https://ai-tech-express.jp/articles/electricity-bill-nov-2026-subsidy-ends → electricity-bill-nov-2026-subsidy-ends.jpg
+- 25分ごとに Mac が拾い、確かめてから記事の表紙に付けます（「画像はイメージ（AI生成）」の札が付きます）。
+- 説明の図は <slug>-fig1.png の名前で置くと、記事の本文の図になります。
+- 写真に文字・実在の人物の顔・ロゴは入れないでください。描き直したら同じ名前で置き直すと替わります。
+- 使えなかった写真は ~/Downloads/saisoku-images/rejected/ に理由と一緒に移ります（ここのファイルは消しません）。
+"""
 JST = timezone(timedelta(hours=9))
 SITE = "https://ai-tech-express.jp"
 SETTLE_SEC = 90
@@ -217,9 +235,70 @@ def ledger_section(state: dict, now: datetime | None = None) -> list[str]:
 
 
 # --------------------------------------------------------------------------- 1回分
+def pull_drive(drive: Path | None = None, folder: Path | None = None, seen_path: Path | None = None, now: float | None = None) -> list[str]:
+    """Google ドライブの受け口（DRIVE_DIR）の新しい写真・図を受け箱（FOLDER）へ写す。写した名前の一覧（台帳 I9）。
+    書き込み中かもしれない新しすぎるファイルは次の回に回す。JPEG 以外の写真は sips で JPEG にする（Pillow が無くてもよい）"""
+    drive = drive or DRIVE_DIR
+    folder = folder or FOLDER
+    seen_path = seen_path or DRIVE_SEEN
+    now = now or time.time()
+    try:
+        drive.mkdir(parents=True, exist_ok=True)
+        readme = drive / "README.txt"
+        if not readme.exists():
+            readme.write_text(DRIVE_README, encoding="utf-8")
+        files = sorted(drive.iterdir())
+    except OSError as error:
+        log(f"Google ドライブの受け口を開けません（{str(error)[:100]}）")
+        return []
+    try:
+        seen = json.loads(seen_path.read_text("utf-8"))
+    except (OSError, ValueError):
+        seen = {}
+    copied: list[str] = []
+    folder.mkdir(parents=True, exist_ok=True)
+    for path in files:
+        name = nfc(path.name)
+        if not path.is_file() or name.startswith(".") or path.suffix.lower() not in DRIVE_EXTS:
+            continue
+        stat = path.stat()
+        key = f"{stat.st_size}:{int(stat.st_mtime)}"
+        if seen.get(name) == key or now - stat.st_mtime < SETTLE_SEC:
+            continue
+        stem = nfc(path.stem).strip().lower()
+        try:
+            if re.search(r"-fig\d+$", stem):
+                if path.suffix.lower() != ".png":
+                    continue  # 説明の図は PNG だけ
+                dest = folder / f"{stem}.png"
+                shutil.copyfile(path, dest)
+            elif path.suffix.lower() in (".jpg", ".jpeg"):
+                dest = folder / f"{stem}.jpg"
+                shutil.copyfile(path, dest)
+            else:
+                dest = folder / f"{stem}.jpg"
+                done = subprocess.run(["sips", "-s", "format", "jpeg", "-s", "formatOptions", "90", str(path), "--out", str(dest)],
+                                      capture_output=True, text=True, timeout=120)
+                if done.returncode != 0 or not dest.exists():
+                    log(f"Google ドライブの {name} を JPEG にできません（{(done.stderr or '')[:80]}）")
+                    continue
+            os.utime(dest, (stat.st_mtime, stat.st_mtime))  # 受け箱の「書き込み中」の待ちを、元のファイルの時刻で数える
+        except OSError as error:
+            log(f"Google ドライブの {name} を写せません（{str(error)[:80]}）")
+            continue
+        seen[name] = key
+        copied.append(name)
+    if copied:
+        seen_path.parent.mkdir(parents=True, exist_ok=True)
+        seen_path.write_text(json.dumps(seen, ensure_ascii=False, indent=1), encoding="utf-8")
+        log(f"Google ドライブから受け箱へ写しました: {', '.join(copied)}")
+    return copied
+
+
 def run(clone: Path, git=None, push=None, no_push: bool = False) -> list[str]:
     """requests.md を書き、新しい写真と描けなかった理由を送る。ledger.md に足す行を返す"""
     FOLDER.mkdir(parents=True, exist_ok=True)
+    pull_drive()
     state = load_state(clone)
     (FOLDER / "requests.md").write_text(requests_md(state), encoding="utf-8")
     known = article_slugs(clone)

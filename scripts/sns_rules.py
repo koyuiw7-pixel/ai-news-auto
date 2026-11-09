@@ -1588,7 +1588,8 @@ def share_image_article(article: dict | None, force: bool = False) -> dict:
         return article
     credit = article.get("imageCredit") or {}
     weak = (credit.get("kind") == "official" and credit.get("imageKind") in LOGO_KINDS) or borrowed_image(thumb, str(article.get("slug") or "")) \
-        or (credit.get("kind") == "ai" and bool(FILLER_PROMPT_RE.search(str(credit.get("prompt") or ""))))
+        or (credit.get("kind") == "ai" and bool(FILLER_PROMPT_RE.search(str(credit.get("prompt") or "")))) \
+        or (credit.get("kind") == "figure" and credit.get("imageKind") == "cover")  # 図の表紙は写真ではない（台帳 I9）
     if not force and thumb and credit.get("kind") not in ("ai", "card") and not weak:
         return article
     return {**article, "thumbnail": cover, "imageCredit": cover_credit, "heroOk": None, "imageFocus": None}
@@ -1640,6 +1641,8 @@ def photo_problem(article: dict | None) -> str:
         return "写真が無い（文字だけのカードになる）"
     if credit.get("kind") == "official" and credit.get("imageKind") in LOGO_KINDS:
         return "公式のロゴ・サイト共通の画像しか無い"
+    if credit.get("kind") == "figure" and credit.get("imageKind") == "cover":
+        return "図の表紙しか無い（写真ではない。台帳 I9）"
     if credit.get("kind") == "ai" and FILLER_PROMPT_RE.search(str(credit.get("prompt") or "")):
         return "関係の無い場面のAI画像（誰もいない会場）"
     if borrowed_image(url, str(article.get("slug"))):

@@ -76,6 +76,14 @@ jobs:
           python scripts/check_images.py --fix --issue --run-url "$RUN_URL" || status=1
           exit $status
 
+      # 公開から1時間を過ぎて画像（写真・AI のイメージ）の無い記事の見張り（scripts/image_coverage.py・台帳 I9）。
+      # あれば issue（ラベル missing-image）に一覧を書き、無くなれば閉じる
+      - name: Missing image watch
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/image_coverage.py --issue
+
       - name: Commit fixed articles and deploy
         if: always()
         env:

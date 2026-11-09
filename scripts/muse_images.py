@@ -124,6 +124,8 @@ def photo_state(article: dict) -> str:
     kind = (article.get("imageCredit") or {}).get("kind")
     if is_muse_cover(article):
         return "muse"
+    if article.get("thumbnail") and kind == "figure" and (article.get("imageCredit") or {}).get("imageKind") == "cover":
+        return "none"  # 図の表紙（台帳 I9）は写真ではない。Muse に頼み、届けば一覧・表紙はそちら
     if article.get("thumbnail") and kind not in ("ai", "card"):
         return "official"
     if article.get("coverImage") or (article.get("thumbnail") and kind == "ai"):
