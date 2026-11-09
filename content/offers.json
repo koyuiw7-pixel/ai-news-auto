@@ -1162,6 +1162,28 @@
       "articleExclude": "株価|決算|業績|上場|時価総額|(?<![A-Za-z])AI(?![A-Za-z])|半導体|GPU|API|ユーロ|欧州|米国|中国|英国|景気|業況|GDP|統計|貯蓄率|消費支出"
     },
     {
+      "key": "life-kids",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "児童手当|子育て|子ども|こども|出産|育児|保育|学費|教育費|高校無償化|学資|幼児教育",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "子どもの学びと家計",
+      "lead": "児童手当や教育費の話題をきっかけに、子どもの学びの選択肢と家計の備えを確かめるために。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "digitane",
+        "litalico",
+        "furusato-honpo"
+      ],
+      "name": "子どもの学びと家計"
+    },
+    {
       "key": "life-payment",
       "genres": [
         "public",
@@ -2443,6 +2465,26 @@
         "investment"
       ],
       "exclude": "株価|決算|業績|上場|時価総額|(?<![A-Za-z])AI(?![A-Za-z])|半導体|GPU|API|ユーロ|欧州|米国|中国|英国|景気|業況|GDP|統計|貯蓄率|消費支出"
+    },
+    {
+      "key": "kids",
+      "title": "子どもの学びと家計",
+      "reason": "児童手当や教育費の話題をきっかけに、子どもの学びの選択肢と家計の備えを確かめるために",
+      "match": "児童手当|子育て|子ども|こども|出産|育児|保育|学費|教育費|高校無償化|学資|幼児教育",
+      "partners": [
+        "digitane",
+        "litalico",
+        "furusato-honpo"
+      ],
+      "max": 2,
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ]
     },
     {
       "key": "payment",
