@@ -7,7 +7,7 @@ export const STORY_WINDOW_MS = 24 * 3_600_000;
 
 /** 並び順：段（tier）が小さい丸から、同じ段の中は新しい記事（newest はミリ秒）がある丸から */
 export function byTierThenNewest(x: { tier?: number; newest: number }, y: { tier?: number; newest: number }): number {
-  return (x.tier ?? 2) - (y.tier ?? 2) || y.newest - x.newest;
+  return (x.tier ?? 99) - (y.tier ?? 99) || y.newest - x.newest;
 }
 
 /** 丸の判定に要る形（丸の一覧用の軽い束 RailBundle と、デッキ用の束 Bundle の両方で使う） */

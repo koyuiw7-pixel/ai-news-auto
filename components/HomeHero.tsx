@@ -3,7 +3,9 @@ import Link from "next/link";
 import Morph from "@/components/Morph";
 import { ArticleMark } from "@/components/CompanyMark";
 import RelTime from "@/components/RelTime";
-import type { ArticleSummary } from "@/lib/articles";
+import type { ArticleSummary, ImageCredit as ImageCreditType } from "@/lib/articles";
+import { containPhoto } from "@/lib/photo-fit";
+import { smallThumb } from "@/lib/thumb-url";
 import { companyOf, thumbSource } from "@/lib/companies";
 import { Highlight } from "@/lib/highlight";
 import { officialCreditText } from "@/lib/image-credit";
@@ -21,28 +23,42 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
   const heroLabel = isRoundup ? "まとめ" : liveLabel({ fast: isFastNews(lead), publishedAt: lead.publishedAt }, Date.now());
   const sources = lead.sourceCount;
   const href = `/articles/${lead.slug}`;
-  const credit = officialCreditText(lead.imageCredit);
+  // 写真は photoOf（lib/article-index.mjs）が選んだもの。トップの主役は写真のある記事だけ（lib/home-lead.ts）。
+  // 写真の出典: 公式発表の写真は会社・団体の名前、AI の絵（表紙用の AI のイメージも）は「AI生成」の札
+  const photo = lead.photo;
+  const fromThumbnail = Boolean(photo) && photo?.src === lead.thumbnail;
+  const credit = fromThumbnail && !photo?.ai ? officialCreditText(lead.imageCredit) : null;
+  const aiCredit: ImageCreditType | null = photo?.ai ? { kind: "ai", ...(photo.launch ? { launch: true } : {}) } : null;
+  const contain = containPhoto(photo);
 
   return (
     <section
       aria-label="注目の記事"
-      className="grid items-center gap-6 lg:grid-cols-[1.12fr_1fr] lg:gap-12"
+      // 2026-11-10 オーナー「ホームは玄関」: 写真は見出しの上端にそろえる（縦の真ん中にそろえると写真の上に大きな空白ができていた）
+      className="grid items-start gap-6 lg:grid-cols-[1.12fr_1fr] lg:gap-12"
     >
       <div className="min-w-0">
       <Link
         href={href}
         tabIndex={-1}
         aria-hidden
-        className="group relative block overflow-hidden rounded-3xl bg-surface-2"
+        className="group relative block overflow-hidden rounded-2xl bg-surface-2 sm:rounded-3xl"
       >
         <Morph name={`cover-${lead.slug}`}>
           <div className="relative aspect-video">
+            {/* 縦長・文字の多い画像は切り抜かず、同じ画像をぼかした背景の上に丸ごと収める */}
+            {photo && contain && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={smallThumb(photo.src)} alt="" aria-hidden decoding="async" className="absolute inset-0 size-full scale-110 object-cover opacity-60 blur-2xl" />
+            )}
             <Thumb
-              src={lead.thumbnail}
+              src={photo?.src ?? lead.thumbnail}
               source={thumbSource(lead)}
               cover={coverPath(lead)}
               alt=""
               fill
+              pos={photo?.pos}
+              contain={contain}
               // トップの LCP。他の画像より先に最優先で読む
               preload
               fetchPriority="high"
@@ -61,7 +77,7 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
       {/* 公式発表の写真は発表した会社・団体の名前を小さく添える（lib/image-credit.ts。記事ページと同じ文） */}
       {credit && <p className="mt-2 px-1 text-note leading-relaxed text-ink-soft">{credit}</p>}
       {/* AI 生成の画像は本物の製品・人物と受け取られないよう、記事ページと同じ「AI生成」の札を出す */}
-      {!credit && lead.imageCredit?.kind === "ai" && <ImageCredit credit={lead.imageCredit} className="mt-2 px-1" />}
+      {!credit && aiCredit && <ImageCredit credit={aiCredit} className="mt-2 px-1" />}
       </div>
 
       <div className="flex min-w-0 flex-col gap-4">

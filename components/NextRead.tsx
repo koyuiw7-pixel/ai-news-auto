@@ -76,13 +76,15 @@ function Meta({ item }: { item: NextReadItem }) {
 }
 
 function Cover({ item, sizes, small = false }: { item: NextReadItem; sizes: string; small?: boolean }) {
-  const cover = item.article.thumbnail ? null : coverPath(item.article);
+  // 写真は photoOf（記事の写真が無ければ表紙用の AI のイメージ）。どちらも無い記事だけ独自カバー
+  const photoSrc = item.article.photo?.src || item.article.thumbnail;
+  const cover = photoSrc ? null : coverPath(item.article);
   return (
     <span className={`relative block overflow-hidden bg-surface-2 ${small ? "aspect-[40/21] self-start rounded-lg" : "aspect-[40/21] sm:aspect-auto sm:min-h-full"}`}>
       {cover ? (
         <Image src={cover} alt="" fill sizes={sizes} className="object-contain" />
       ) : (
-        <Thumb src={item.article.thumbnail} source={thumbSource(item.article)} cover={coverPath(item.article)} aiGenerated={item.article.imageCredit?.kind === "ai"} alt="" fill sizes={sizes} className="object-contain" />
+        <Thumb src={photoSrc} source={thumbSource(item.article)} cover={coverPath(item.article)} aiGenerated={item.article.photo ? Boolean(item.article.photo.ai) : item.article.imageCredit?.kind === "ai"} alt="" fill sizes={sizes} className="object-contain" />
       )}
     </span>
   );

@@ -241,7 +241,24 @@ export function reviewedDateLabel(article: Pick<Article, "review">): string | nu
 }
 
 /** 本文から計算する、一覧で使う値（lib/article-index.mjs の derivedOf） */
+/** 一覧・トップに出す記事の写真（lib/article-index.mjs の photoOf） */
+export type ArticlePhoto = {
+  src: string;
+  /** AI が描いた絵（「AI生成」の札を出す） */
+  ai?: boolean;
+  /** 公式画像が無い新製品の発表で、製品の種類を描いた AI の絵 */
+  launch?: boolean;
+  /** 主役の位置（object-position） */
+  pos?: string;
+  /** 文字の多いバナー・図。切り抜かずに枠へ丸ごと収める */
+  fit?: "contain";
+  /** 写真の縦横比（幅÷高さ。分かるときだけ） */
+  ar?: number;
+};
+
 export type ArticleDerived = {
+  /** 一覧・トップに出す写真（無ければ undefined。トップの大きな枠には出さない） */
+  photo?: ArticlePhoto;
   /** 本文の文字数（読了時間・従来の外部配信選定。検索可否は短さだけでは決めない） */
   bodyLength: number;
   /** 「かんたんに読む」版があるか */

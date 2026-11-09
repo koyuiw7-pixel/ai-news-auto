@@ -16,6 +16,8 @@ export type StoryItem = {
   gist: string;
   highlights: string[];
   image: string;
+  /** 写真の主役の位置（object-position。丸に円く切り抜くときに主役を真ん中へ） */
+  pos?: string;
   company: string;
   color: string;
   at: string;
@@ -28,7 +30,7 @@ export type StoryItem = {
 
 /**
  * cover は丸の表紙（束どうしで重ならないようサーバー側で選ぶ）。items は新しい順、at で24時間を数える。
- * tier は並びの段（0=先頭固定、1=読者の関心の中心、2=その他）。同じ段の中は新しい順
+ * tier は並びの段（数字が小さいほど先。lib/stories.ts の tierOf。仕事とお金・社会・行政・続報が先、AI は後ろ）。同じ段の中は新しい順
  */
 export type Bundle = { key: string; label: string; cover?: string; tier?: number; items: StoryItem[] };
 
@@ -37,7 +39,7 @@ export type Bundle = { key: string; label: string; cover?: string; tier?: number
  * 要約や要点（デッキで読む中身）はトップの HTML に載せず、開くときに /stories.json から読む（app/stories.json/route.ts）。
  * トップの HTML が約 80KB（gzip で約 20KB）軽くなり、最初の表示が早くなる
  */
-export type RailItem = Pick<StoryItem, "slug" | "title" | "image" | "at">;
+export type RailItem = Pick<StoryItem, "slug" | "title" | "image" | "at" | "pos">;
 export type RailBundle = Omit<Bundle, "items"> & { items: RailItem[] };
 
 /** デッキの中身（全部の束）。1回だけ読み、失敗したら次に開くときに読み直す */
@@ -102,7 +104,7 @@ function subscribeClock(onChange: () => void) {
  * 束を見終えたら「気になった記事」をまとめて出し、次の束へ進める。
  */
 /** 丸の写真（表紙）と同じ記事。見つからなければ1本目 */
-function previewOf(b: { cover?: string; items: { title: string; image?: string }[] }) {
+function previewOf(b: { cover?: string; items: { title: string; image?: string; pos?: string }[] }) {
   return (b.cover ? b.items.find((it) => it.image === b.cover) : undefined) ?? b.items[0];
 }
 
@@ -182,7 +184,7 @@ export default function StoryRail({ bundles: built }: { bundles: RailBundle[] })
               {/* LCP（下の大きな写真）と取り合わないよう低優先度。画面外の丸は近づいてから読む。
                   読めなければ1本目の記事の独自カバーに替える（app/layout.tsx の画像の受け皿） */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={covers[i]} alt="" width={76} height={76} decoding="async" fetchPriority="low" loading={i < 6 ? undefined : "lazy"} data-fallback={b.items[0] ? coverPath(b.items[0]) : undefined} />
+              <img src={covers[i]} alt="" width={76} height={76} decoding="async" fetchPriority="low" loading={i < 6 ? undefined : "lazy"} style={previewOf(b)?.pos ? { objectPosition: previewOf(b)?.pos } : undefined} data-fallback={b.items[0] ? coverPath(b.items[0]) : undefined} />
               {/* 件数は丸の右下の小さな札（スマホは文字の行を減らして横に5個近く並べる） */}
               <span className="sr-n" data-allow-small="" aria-hidden>{b.items.length}</span>
             </span>

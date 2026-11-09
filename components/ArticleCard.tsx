@@ -23,7 +23,9 @@ type Props = {
 export default function ArticleCard({ article, priority, morph = false, quickImage = false }: Props) {
   const isRoundup = article.type === "roundup";
   const sources = article.sourceCount;
-  const cover = quickImage && article.thumbnail ? null : coverPath(article);
+  // 写真は photoOf（記事の写真が無ければ表紙用の AI のイメージ）。どちらも無い記事だけ独自カバー
+  const photoSrc = article.photo?.src || article.thumbnail;
+  const cover = quickImage && photoSrc ? null : coverPath(article);
   const speed = speedLabel(article);
 
   return (
@@ -43,10 +45,11 @@ export default function ArticleCard({ article, priority, morph = false, quickIma
               />
             ) : (
               <Thumb
-                src={article.thumbnail}
+                src={photoSrc}
                 source={thumbSource(article)}
                 cover={coverPath(article)}
-                aiGenerated={article.imageCredit?.kind === "ai"}
+                aiGenerated={article.photo ? Boolean(article.photo.ai) : article.imageCredit?.kind === "ai"}
+                pos={article.photo?.pos}
                 alt=""
                 fill
                 priority={priority}

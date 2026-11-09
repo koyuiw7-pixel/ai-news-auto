@@ -41,7 +41,28 @@ function AiMark() {
   );
 }
 
-export default function Thumb({ source, cover, aiGenerated, ...props }: ImageProps & { source?: ThumbSource; cover?: string | null; aiGenerated?: boolean }) {
+export default function Thumb({
+  source,
+  cover,
+  aiGenerated,
+  pos,
+  contain,
+  ...rest
+}: ImageProps & {
+  source?: ThumbSource;
+  cover?: string | null;
+  aiGenerated?: boolean;
+  /** 主役の位置（object-position。lib/article-index.mjs の photoOf の pos） */
+  pos?: string;
+  /** 文字の多いバナー・図を切り抜かずに枠へ丸ごと収める（photoOf の fit: "contain"） */
+  contain?: boolean;
+}) {
+  // 2026-11-10 オーナー「画像が見切れている記事があるのはダサい」: 主役の位置に合わせて切り抜き、文字の多い画像は切り抜かない
+  const props: ImageProps = {
+    ...rest,
+    className: contain ? `${(rest.className ?? "").replace(/\bobject-cover\b/g, "")} object-contain` : rest.className,
+    style: pos && !contain ? { ...rest.style, objectPosition: pos } : rest.style,
+  };
   const original = props.src;
   const empty = typeof original === "string" && original.trim() === "";
   const [stage, setStage] = useState<Stage>(empty ? "failed" : "original");
@@ -50,6 +71,8 @@ export default function Thumb({ source, cover, aiGenerated, ...props }: ImagePro
   const failedMark = empty ? "empty" : "error";
 
   if (stage === "failed" && source) {
+    // 写真の代わりの図版。2026-11-10 オーナー「文字が見切れている」: 発信元の名前を大きく描くと長い名前（「Microsoft Source（ニュースルーム）」）が
+    // 枠からはみ出したので、文字は枠の大きさに応じた上限つきの大きさにし、2行で必ず収める。大きな枠（トップの主役）にはそもそも出さない
     return (
       <span
         aria-hidden
@@ -60,16 +83,16 @@ export default function Thumb({ source, cover, aiGenerated, ...props }: ImagePro
         style={{ background: `linear-gradient(135deg, ${source.color} 0%, color-mix(in srgb, ${source.color} 62%, #000) 100%)` }}
       >
         {source.mark && (
-          <span className="absolute -bottom-[14cqw] -right-[4cqw] font-black leading-none tracking-tighter text-white/[0.13] text-[58cqw]">
+          <span className="absolute -bottom-[10cqw] -right-[2cqw] font-black leading-none tracking-tighter text-white/[0.12] text-[min(44cqw,180px)]">
             {source.mark}
           </span>
         )}
-        <span className="absolute left-[6cqw] top-[5.5cqw] font-display text-white/75 text-[max(9px,4.6cqw)]">サイソク</span>
-        <span className="absolute inset-x-[6cqw] bottom-[6cqw] flex flex-col gap-[1.6cqw]">
-          <span className="w-fit rounded-full bg-white/90 px-[2.4cqw] py-[0.6cqw] font-bold text-ink text-[max(8px,3.4cqw)]">
+        <span className="absolute left-[6cqw] top-[6cqw] font-display text-white/75 text-[clamp(8px,4cqw,15px)]">サイソク</span>
+        <span className="absolute inset-x-[6cqw] bottom-[6cqw] flex min-w-0 flex-col items-start gap-[1.6cqw]">
+          <span className="max-w-full truncate rounded-full bg-white/90 px-[2.4cqw] py-[0.6cqw] font-bold text-ink text-[clamp(8px,3.2cqw,13px)]">
             {source.badge ?? "公式発表"}
           </span>
-          <span className="line-clamp-2 font-bold leading-[1.3] text-white text-[max(11px,7.4cqw)]">{source.label}</span>
+          <span className="line-clamp-2 max-w-full font-bold leading-[1.35] text-white [overflow-wrap:anywhere] text-[clamp(10px,5.2cqw,22px)]">{source.label}</span>
         </span>
       </span>
     );

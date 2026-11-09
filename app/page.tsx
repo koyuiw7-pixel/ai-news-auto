@@ -2,7 +2,6 @@ import { articleTitle } from "@/lib/headline";
 import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
 import HomeHero from "@/components/HomeHero";
-import { isNewsOutletChannel } from "@/lib/news-outlets";
 import HomeAssets from "@/components/HomeAssets";
 import CompanyChips from "@/components/CompanyChips";
 import NewsHub from "@/components/NewsHub";
@@ -19,6 +18,8 @@ import { broadGenresWithArticles, getBroadArticles, isBroadGenre } from "@/lib/s
 import type { Metadata } from "next";
 import { siteConfig } from "@/site.config";
 import { coverPath } from "@/lib/cover-path";
+import { containPhoto } from "@/lib/photo-fit";
+import { pickHomeLead, pickLifeMoney } from "@/lib/home-lead";
 import { alsoCoveredSentence } from "@/lib/coverage";
 
 export const revalidate = false;
@@ -36,23 +37,24 @@ export const metadata: Metadata = {
 };
 
 const TIMELINE_SIZE = 24;
-const NEWS_SIZE = 12;
+const NEWS_SIZE = 8;
 
 /**
- * トップ＝速報デスク。
- * 「いつ（時系列）」と「どこが（企業）」の2軸で組み、
- * 一番上には常にいちばん新しい発表を置く（古いまとめ記事を主役にしない）。
+ * トップ＝サイトの玄関（2026-11-10 オーナー「ホームは玄関だから魅力感じてもらわないと」）。
+ * 上から、ストーリーの丸（仕事とお金・社会・行政・続報が先）→ 主役（暮らしとお金の、読まれている・新しい・写真のある記事）→
+ * PR 枠 → 暮らしとお金のニュース（写真のある記事だけ）→ AI・テクノロジーの新着（企業の絞り込みつき）。
+ * AI の速報はヘッダー下の帯と AI の新着で見える。写真の無い記事は大きな写真の枠に置かない
  */
 export default function HomePage() {
-  // AI・テクノロジーに一点集中しているので、トップはAIジャンルだけで組む
-  const ai = getAllArticles().filter((a) => a.genreSlug === "ai");
-  if (ai.length === 0) return <EmptyState />;
+  const all = getAllArticles();
+  if (all.length === 0) return <EmptyState />;
+  const ai = all.filter((a) => a.genreSlug === "ai");
 
-  // 一番上の大きな記事は公式の発表から（報道をもとにした小さな話を主役にしない。2026-11-03 の点検・台帳 W17）。
-  // 直近12時間の新しい順で最初の公式の記事。無ければいちばん新しい記事
-  const newest = Date.parse(ai[0].publishedAt);
-  const lead =
-    ai.slice(0, 8).find((a) => !isNewsOutletChannel(a.channelSlug) && newest - Date.parse(a.publishedAt) <= 12 * 3_600_000) ?? ai[0];
+  // 主役は暮らしとお金の記事から、読まれている・新しい・写真のあるものを選ぶ（2026-11-10 オーナー「ホームは玄関」。lib/home-lead.ts）。
+  // 公式の発表から選ぶ（報道をもとにした記事を主役にしない。台帳 W17）・写真の無い記事は主役にしない
+  const lead = pickHomeLead(all) ?? all[0];
+  // 主役のすぐ下は暮らしとお金の列（写真のある記事だけ）。AI の新着はその下（AI は脇役。台帳 A61）
+  const lifeMoney = pickLifeMoney(all, new Set([lead.slug]), NEWS_SIZE);
   const timeline = ai.filter((a) => a.slug !== lead.slug).slice(0, TIMELINE_SIZE);
   const roundups = ai.filter((a) => a.type === "roundup" && a.slug !== lead.slug).slice(0, 5);
 
@@ -62,9 +64,8 @@ export default function HomePage() {
 
   const companies = companyCounts(ai);
   const tags = topTags(ai, 14);
-  // AI以外の幅広い話題は、AIの新着の下に「ニュース」としてまとめる
-  const broad = getBroadArticles();
-  const broadGenres = broadGenresWithArticles(broad);
+  // 暮らしとお金の列の下の話題の絞り込み（/genres/<slug>）
+  const broadGenres = broadGenresWithArticles(getBroadArticles());
   // 以前扱っていた分野（不動産・投資など）。幅広い話題は「ニュース」側に出すので除く
   const otherGenres = getAllGenres().filter((g) => g.slug !== "ai" && !isBroadGenre(g.slug));
 
@@ -77,7 +78,6 @@ export default function HomePage() {
           <StoryRail bundles={bundles} />
         </div>
       )}
-      <CompanyChips companies={companies.slice(0, 8)} />
 
       <div className="mx-auto max-w-[1240px] px-5 pb-8 pt-8 sm:px-8 sm:pt-10">
         <HomeHero lead={lead} />
@@ -87,6 +87,8 @@ export default function HomePage() {
             <RailRanking offer={offer} wide title={offer.headline} />
           </div>
         )}
+
+        <NewsHub articles={lifeMoney} genres={broadGenres} />
 
         <nav aria-label="AIの使い方と費用" data-funnel-pos="home-guides" className="mt-10 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-y border-line py-4">
           <Link href="/choose/dify-hosting" className="text-[16px] font-bold leading-relaxed text-ink underline-offset-4 hover:text-accent hover:underline">
@@ -105,11 +107,15 @@ export default function HomePage() {
 
         <HomeAssets />
 
-        <div className="mt-14 grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-12">
+        {/* AI・テクノロジーは暮らしとお金の下（AI は脇役。台帳 A61）。企業での絞り込みもここに置く */}
+        <div className="-mx-5 mt-14 border-t border-line sm:-mx-8">
+          <CompanyChips companies={companies.slice(0, 8)} />
+        </div>
+        <div className="mt-8 grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-12">
           <section aria-labelledby="latest-heading" className="min-w-0">
             <div className="mb-2 flex items-end justify-between gap-4">
               <h2 id="latest-heading" className="t-h2">
-                新着
+                AI・テクノロジーの新着
               </h2>
               <Link href="/articles" className="pb-1 text-meta font-bold text-muted hover:text-ink">
                 すべての記事 →
@@ -174,8 +180,6 @@ export default function HomePage() {
           </aside>
         </div>
 
-        <NewsHub articles={broad.slice(0, NEWS_SIZE)} genres={broadGenres} />
-
         <footer className="mt-20 grid gap-3 border-t border-line pt-8">
           <p className="max-w-[70ch] text-desc leading-relaxed text-ink-soft">
             <strong>{siteConfig.siteName}（{siteConfig.nickname}）</strong>は、暮らしとお金の「自分ごと」ニュースを公式発表から最速で伝えるニュースメディアです。要点を3行で整理し、自分は対象か、いくらか、何をすればいいかまで書きます。AIは、暮らしと仕事での使い方の目線で扱います。{alsoCoveredSentence()}
@@ -233,7 +237,7 @@ function RailRoundup({ article }: { article: ArticleSummary }) {
     <li>
       <Link href={`/articles/${article.slug}`} className="group grid grid-cols-[88px_minmax(0,1fr)] gap-3">
         <span className="relative aspect-video overflow-hidden rounded-lg bg-surface-2">
-          <Thumb src={smallThumb(article.thumbnail, "mqdefault")} source={thumbSource(article)} cover={coverPath(article)} aiGenerated={article.imageCredit?.kind === "ai"} alt="" fill sizes="88px" className="object-cover" />
+          <Thumb src={smallThumb(article.photo?.src ?? article.thumbnail, "mqdefault")} source={thumbSource(article)} cover={coverPath(article)} aiGenerated={article.photo ? Boolean(article.photo.ai) : article.imageCredit?.kind === "ai"} pos={article.photo?.pos} contain={containPhoto(article.photo)} alt="" fill sizes="88px" className="object-cover" />
           <span className="index-num absolute bottom-1 left-1 rounded bg-ink/85 px-1.5 py-[1px] text-badge font-semibold text-paper">
             {article.sourceCount}本
           </span>

@@ -12,7 +12,7 @@ const mocks={
  '@/lib/articles':{getAllArticles:()=>items,coverPath:()=>'/cover.png'},
  '@/lib/companies':{COMPANIES,companyOf:(a)=>COMPANIES.find(c=>c.slug===a.company)||{slug:'other',name:'その他',color:'#000'}},
  '@/lib/general':{easyGist:(a)=>a.lede},
- '@/lib/sections':{BROAD_SECTIONS:[{slug:'business',label:'ビジネス・経済'}]},
+ '@/lib/sections':{BROAD_SECTIONS:[{slug:'business',label:'ビジネス・経済'},{slug:'public',label:'社会・行政'}]},
  '@/lib/story-window':win.exports,
  // AIの話題の判定は本物（lib/index-rules.json。scripts/indexnow.py が書き出す）
  '@/lib/indexing':(()=>{const r=JSON.parse(fs.readFileSync(path.join(root,'lib/index-rules.json'),'utf8'));return {AI_TOPIC:new RegExp(r.aiTopic.source,r.aiTopic.flags)}})(),
@@ -45,21 +45,23 @@ test('企業の丸は「30日」ではなく名前だけ、新しい記事があ
  const list=bundles();
  assert.ok(!list.some(b=>/30日/.test(b.label)));
  assert.equal(find('openai').label,'OpenAI');
- for(const tier of [1,2]){const t=list.filter(b=>b.tier===tier).map(b=>Date.parse(b.items[0].at));assert.deepEqual(t,[...t].sort((x,y)=>y-x));}
- assert.ok(list.findIndex(b=>b.key==='openai')<list.findIndex(b=>b.key==='money'));
- assert.ok(list.findIndex(b=>b.key==='money')<list.findIndex(b=>b.key==='google'));
+ for(const tier of new Set(list.map(b=>b.tier))){const t=list.filter(b=>b.tier===tier).map(b=>Date.parse(b.items[0].at));assert.deepEqual(t,[...t].sort((x,y)=>y-x));}
+ // 2026-11-10 オーナー: 仕事とお金の丸が AI の丸より先（AI は脇役。台帳 A61）
+ assert.ok(list.findIndex(b=>b.key==='money')<list.findIndex(b=>b.key==='openai'));
+ assert.ok(list.findIndex(b=>b.key==='openai')<list.findIndex(b=>b.key==='google'));
 });
-test('最新のAIニュースが先頭、次は読者の関心の中心の段、開発者向けなどはその後（段の中は新しい順）',()=>{
+test('仕事とお金・社会・行政・続報ありが先頭（この順）、次に暮らし・お金の分野、AI の丸はその後、開発者向けなどは最後（2026-11-10 オーナー）',()=>{
  items=[
   article('dev','開発者向けの新しいSDKを公開',{hours:0.5,audience:'開発者'}),
   article('o','ChatGPTの料金が改定',{company:'openai',hours:3,verdict:{status:'soon',japan:'ok',free:false,audience:'一般ユーザー'}}),
   article('b','日銀が金利を発表',{genre:'business',hours:2,verdict:undefined}),
+  article('p','児童手当の申請期限',{genre:'public',hours:4,verdict:undefined}),
+  article('fu','前からの給付の話',{genre:'public',hours:60,updatedAt:iso(1),verdict:undefined}),
  ];
  const list=bundles();const keys=list.map(b=>b.key);
- assert.equal(keys[0],'today');
- assert.deepEqual(keys.filter(k=>k!=='google'),['today','money','g-business','openai','dev']);
- assert.ok(keys.indexOf('google')<keys.indexOf('dev'));
- assert.deepEqual(list.map(b=>b.tier),[0,1,1,1,1,2]);
+ assert.deepEqual(keys.slice(0,3),['money','g-public','followup']);
+ assert.deepEqual(keys.filter(k=>k!=='google'),['money','g-public','followup','g-business','today','openai','dev']);
+ assert.ok(keys.indexOf('today')<keys.indexOf('google')&&keys.indexOf('google')<keys.indexOf('dev'));
  const later=win.exports.liveBundles(list,NOW+1*H);
  assert.deepEqual(later.map(b=>b.key),keys);
 });

@@ -7,6 +7,7 @@ import { thumbSource } from "@/lib/companies";
 import { displayHeadline } from "@/lib/headline";
 import { Phrases } from "@/lib/highlight";
 import { coverPath } from "@/lib/cover-path";
+import { containPhoto } from "@/lib/photo-fit";
 
 type GenreChip = { slug: string; label: string; count: number };
 
@@ -72,11 +73,14 @@ function NewsItem({ article, priority }: { article: ArticleSummary; priority: bo
       className="group grid grid-cols-[112px_minmax(0,1fr)] items-start gap-3.5 sm:grid-cols-1 sm:gap-3"
     >
       <span className="relative aspect-video overflow-hidden rounded-lg bg-surface-2 sm:rounded-xl">
+        {/* 写真は photoOf（記事の写真が無ければ表紙用の AI のイメージ）。主役の位置で切り抜き、文字の多い画像は切り抜かない */}
         <Thumb
-          src={smallThumb(article.thumbnail)}
+          src={smallThumb(article.photo?.src ?? article.thumbnail)}
           source={thumbSource(article)}
           cover={coverPath(article)}
-          aiGenerated={article.imageCredit?.kind === "ai"}
+          aiGenerated={article.photo ? Boolean(article.photo.ai) : article.imageCredit?.kind === "ai"}
+          pos={article.photo?.pos}
+          contain={containPhoto(article.photo)}
           alt=""
           fill
           priority={priority}
@@ -97,18 +101,20 @@ function NewsItem({ article, priority }: { article: ArticleSummary; priority: bo
   );
 }
 
-/** トップの下段に置く「ニュース」の入口。記事が無ければ何も出さない */
+/**
+ * トップの主役のすぐ下に置く「暮らしとお金」の入口（2026-11-10 オーナー「ホームは玄関」。サイトの軸は暮らしとお金の「自分ごと」ニュース）。
+ * 記事は lib/home-lead.ts の pickLifeMoney（写真のある記事だけ。読まれている順と新しい順）。記事が無ければ何も出さない
+ */
 export default function NewsHub({ articles, genres }: { articles: ArticleSummary[]; genres: GenreChip[] }) {
   if (articles.length === 0) return null;
   return (
-    <section aria-labelledby="news-heading" className="mt-20 border-t-2 border-ink pt-6">
+    <section aria-labelledby="news-heading" className="mt-12 border-t-2 border-ink pt-6">
       <div className="mb-5 flex items-end justify-between gap-4">
         <div>
-          <p className="eyebrow">NEWS</p>
-          <h2 id="news-heading" className="t-h2 mt-1">
-            ニュース
+          <h2 id="news-heading" className="t-h2">
+            暮らしとお金のニュース
           </h2>
-          <p className="mt-1 text-meta text-muted">AI以外の話題も、公式発表から要点だけ</p>
+          <p className="mt-1 text-meta text-muted">給付・税・料金・値上げ・手続きなど、自分に関わる話を公式発表から</p>
         </div>
         <Link href="/news" className="shrink-0 pb-1 text-meta font-bold text-muted hover:text-ink">
           すべて見る →

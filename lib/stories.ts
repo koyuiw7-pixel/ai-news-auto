@@ -90,8 +90,9 @@ function toItem(a: ArticleSummary, at: number): StoryItem {
     title: a.title,
     gist: easyGist(a),
     highlights: a.highlights.slice(0, 3),
-    // 画像の無い web 記事は、企業色入りの独自カバーで代用する
-    image: a.thumbnail || coverPath(a) || "",
+    // 写真は photoOf（記事の写真が無ければ表紙用の AI のイメージ）。どちらも無い記事だけ独自カバーで代用する
+    image: a.photo?.src || a.thumbnail || coverPath(a) || "",
+    pos: a.photo?.pos,
     // AI以外の話題は企業ではなくジャンル名を出す
     company: ai ? c.name : GENRE_LABEL[a.genreSlug] ?? a.genre,
     color: ai ? c.color : "#465268",
@@ -108,23 +109,28 @@ function toItem(a: ArticleSummary, at: number): StoryItem {
 type Timed = { a: ArticleSummary; at: number };
 
 /**
- * 並びの段。「最新のAIニュース」は常に先頭。
- * 次に読者（仕事・お金・副業・AIに関心のある20〜50代の働く人）の関心の中心、その他は後ろ。
- * 段の中は新しい記事がある丸から（開発者向けなどが先頭の次に来ないように）。
+ * 並びの段（数字が小さいほど先。同じ段の中は新しい記事がある丸から）。
+ * 2026-11-10 オーナー: サイトの軸は暮らしとお金の「自分ごと」ニュースで、AI は脇役（台帳 A61）。
+ * 先頭は「仕事とお金」「社会・行政」「続報あり」の順に固定し、次に暮らし・お金の分野、その後に「最新のAIニュース」と AI の丸、その他は後ろ。
  */
-const PINNED = new Set(["today"]);
+const LEAD_ORDER = ["money", "g-public", "followup"];
+const LIFE_KEYS = new Set(["g-lifestyle", "g-investment", "g-business", "g-real-estate"]);
 /** 表紙（丸の顔）がほかの丸と同じ記事になるなら出さない丸 */
 const UNIQUE_LEAD = new Set(["go", "free"]);
-const CORE = new Set([
-  "money", "g-business", "go", "work", "free", "followup",
-  "openai", "anthropic", "google", "microsoft", "nvidia", "agent",
-]);
-const tierOf = (key: string) => (PINNED.has(key) ? 0 : CORE.has(key) ? 1 : 2);
+const AI_CORE = new Set(["today", "go", "work", "free", "openai", "anthropic", "google", "microsoft", "nvidia", "agent"]);
+export const TIER_AI = LEAD_ORDER.length + 1;
+const tierOf = (key: string) => {
+  const lead = LEAD_ORDER.indexOf(key);
+  if (lead >= 0) return lead;
+  if (LIFE_KEYS.has(key)) return LEAD_ORDER.length;
+  return AI_CORE.has(key) ? TIER_AI : TIER_AI + 1;
+};
 type Draft = { key: string; label: string; items: Timed[] };
 
 /** 見た目が同じになる画像を見分けるキー（独自カバーは企業色が同じなら見分けがつかない） */
 function lookKey(a: ArticleSummary): string {
-  if (a.thumbnail) return a.thumbnail.replace(/(maxres|hq|mq|sd)default/, "");
+  const src = a.photo?.src || a.thumbnail;
+  if (src) return src.replace(/(maxres|hq|mq|sd)default/, "");
   return a.genreSlug === "ai" ? `cover:${companyOf(a).slug}` : `cover:${a.genreSlug}`;
 }
 
@@ -141,7 +147,10 @@ function pickCovers(drafts: Draft[]): (ArticleSummary | undefined)[] {
   return drafts.map((d) => {
     const items = d.items.map((x) => x.a);
     const fresh = items.filter((a) => !usedSlug.has(a.slug));
+    // 丸は小さく円く切り抜くので、文字の多いバナー・図は表紙にしない（写真か AI のイメージを先に）
     const pick =
+      fresh.find((a) => a.photo && a.photo.fit !== "contain" && !usedLook.has(lookKey(a))) ??
+      fresh.find((a) => a.photo && !usedLook.has(lookKey(a))) ??
       fresh.find((a) => a.thumbnail && !usedLook.has(lookKey(a))) ??
       fresh.find((a) => !usedLook.has(lookKey(a))) ??
       fresh[0] ??
@@ -225,7 +234,7 @@ export function getStoryBundles(now: number = Date.now()): Bundle[] {
       key: d.key,
       label: d.label,
       tier: d.tier,
-      cover: cover ? cover.thumbnail || coverPath(cover) || "" : "",
+      cover: cover ? cover.photo?.src || cover.thumbnail || coverPath(cover) || "" : "",
       items: d.items.map((x) => toItem(x.a, x.at)),
     }];
   });
@@ -236,5 +245,8 @@ export function getStoryBundles(now: number = Date.now()): Bundle[] {
  * 要約・要点はトップの HTML に載せず、丸を開くときに /stories.json（app/stories.json/route.ts）から読む
  */
 export function getStoryRailBundles(now: number = Date.now()): RailBundle[] {
-  return getStoryBundles(now).map(({ items, ...rest }) => ({ ...rest, items: items.map(({ slug, title, image, at }) => ({ slug, title, image, at })) }));
+  return getStoryBundles(now).map(({ items, ...rest }) => ({
+    ...rest,
+    items: items.map(({ slug, title, image, at, pos }) => ({ slug, title, image, at, ...(pos ? { pos } : {}) })),
+  }));
 }

@@ -66,7 +66,10 @@ test("答えになっていない見出し（「〜は不明」）は普通の�
 
 test("トップの一番上の記事は公式の発表から（報道をもとにした記事を主役にしない。台帳 W17）", () => {
   const home = fs.readFileSync(path.join(__dirname, "../app/page.tsx"), "utf8");
-  assert.match(home, /!isNewsOutletChannel\(a\.channelSlug\)/);
+  assert.match(home, /pickHomeLead\(/);
+  // 主役の選び方は lib/home-lead.ts（2026-11-10 オーナー: 暮らしとお金の記事・写真のある記事から）
+  const lead = fs.readFileSync(path.join(__dirname, "../lib/home-lead.ts"), "utf8");
+  assert.match(lead, /!isNewsOutletChannel\(a\.channelSlug\)/);
 });
 
 test("答えになっていない小見出し（### 枠が新設かどうかは不明）は見出しの行だけ外し、事実の文は残す", () => {

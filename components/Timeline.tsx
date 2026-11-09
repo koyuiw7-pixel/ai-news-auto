@@ -11,6 +11,7 @@ import { Highlight } from "@/lib/highlight";
 import { isUnknownValue, listUsability, verdictKind, verdictOf } from "@/lib/verdict";
 import { displayHeadline } from "@/lib/headline";
 import { coverPath } from "@/lib/cover-path";
+import { containPhoto } from "@/lib/photo-fit";
 
 /** 48時間以内に続報を足した記事（並び順は作成日時のまま、印だけ付ける） */
 const updatedRecently = (article: ArticleSummary) =>
@@ -149,10 +150,13 @@ function TimelineRow({ article }: { article: ArticleSummary }) {
         <div className="relative hidden aspect-video overflow-hidden rounded-lg bg-surface-2 sm:block">
           <Thumb
             // 一覧の小さな枠には軽い画像（480px）を使う。最高画質（1280px）は記事ページだけ
-            src={smallThumb(article.thumbnail)}
+            // 写真は photoOf（記事の写真が無ければ表紙用の AI のイメージ）。主役の位置で切り抜き、文字の多い画像は切り抜かない
+            src={smallThumb(article.photo?.src ?? article.thumbnail)}
             source={thumbSource(article)}
             cover={coverPath(article)}
-            aiGenerated={article.imageCredit?.kind === "ai"}
+            aiGenerated={article.photo ? Boolean(article.photo.ai) : article.imageCredit?.kind === "ai"}
+            pos={article.photo?.pos}
+            contain={containPhoto(article.photo)}
             alt=""
             fill
             sizes="184px"
