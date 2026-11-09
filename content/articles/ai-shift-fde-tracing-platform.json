@@ -1,0 +1,220 @@
+{
+  "slug": "ai-shift-fde-tracing-platform",
+  "sourceType": "web",
+  "sourceUrl": "https://developers.cyberagent.co.jp/blog/archives/67361/",
+  "sourceName": "CyberAgent Developers Blog",
+  "title": "AIエージェントの実行履歴を自動収集するトレーシング基盤、AI Shiftが開発",
+  "seoTitle": "AI Shift、AIエージェントの実行履歴を自動収集するトレーシング基盤を開発",
+  "threadsPost": "AIエージェントの開発や運用に携わる人に、知っておいてほしい話です。\n\nAI Shiftが、AI Workerなどのエージェント開発で実行履歴を自動収集するトレーシング基盤を構築しました。\nLLM Gatewayによる自動化とSDKやSkillによる手動計装を組み合わせる仕組みです。\n\nAIエージェントの評価や改善を進めるとき、実行履歴の収集はどうしていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "AIエージェントの評価や改善を進めるとき、実行履歴の収集はどうしていますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "AI ShiftのFDE（Forward Deployed Engineer）は、多様なAIエージェントやアプリケーションの評価と改善に向けた実行履歴を確実に収集するため、新しいトレーシング基盤を構築しました。LLM Gatewayによる自動化とTracing SDKによる手動計装を組み合わせ、Langfuseにデータを集約する仕組みです。計装の負担を減らしながら、分析や評価に使いやすい高品質なデータを収集します。",
+  "description": "AI Shiftが構築した、AIエージェントの実行履歴を自動収集するトレーシング基盤の仕組みを解説します。LLM GatewayとSDKの組み合わせで開発負担を軽減します。",
+  "keywords": [
+    "LLMOps",
+    "トレーシング基盤",
+    "AIエージェント",
+    "OpenTelemetry",
+    "Langfuse",
+    "AI Shift",
+    "Agent Router"
+  ],
+  "tags": [
+    "生成AI",
+    "LLM",
+    "LLMOps",
+    "開発ツール",
+    "オブザーバビリティ"
+  ],
+  "highlights": [
+    "AI ShiftのFDEが、多様なAIエージェントの評価と改善に向けた実行履歴を自動収集するトレーシング基盤を構築しました。",
+    "LLM Gatewayでインフラレベルの計装を自動化し、SDKとSkillの併用で業務上の意味を持つデータを付与します。",
+    "収集したデータはOpenTelemetry Collectorを経由し、Langfuseに集約して可視化や分析に活用します。"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "AIエージェントを開発するエンジニアやFDEにとって、実行履歴の収集を仕組み化するための参考になります。",
+      "コーディングAI用のSkillを組み合わせることで、計装にかかる開発負荷を大幅に下げることができます。"
+    ]
+  },
+  "body": "AI ShiftのFDEは、お客様の業務に深く入り込んで多様なAIエージェントやアプリケーションを開発・導入しています。導入後の評価と改善に欠かせない実行履歴を楽に確実に集めるため、新しいトレーシング基盤を構築しました。対象となるのは、AI Worker Platformなどの開発やAIエージェントの運用に携わる開発者です。\n\n### LLM Gatewayによる自動化と手動計装の組み合わせ\n\nAIエージェントを導入した後に品質を評価・改善するには、エージェントがどう動いたかに関する実行履歴が必要です。しかし、履歴を残すためのコードを組み込む計装は、毎回判断が必要でエンジニアの負担になっていました。\n\nそこで今回の基盤では、LLMを呼び出すときにLLM Gateway（Agent Router）を経由させる形にしました。インフラレベルでテレメトリーデータ（動作から送出されるデータ）を自動収集します。これにより、計装の抜け漏れを防ぎます。\n\nただし、LLM Gatewayだけではアプリケーション内の処理の繋がりを収集できません。検索・ツールなどのLLMの使用用途や、ユーザーやセッションのメタデータも収集できません。そのため、専用の「Tracing SDK」とAIエージェント用の「Skill」を開発しました。業務上の意味付けを行う手動計装も併用しています。\n\n### OpenTelemetryとLangfuseによるデータの集約と可視化\n\n収集されたテレメトリーデータは、OpenTelemetry Collectorに集約されます。その後、LLM呼び出しに関連するデータのみが、LLMエンジニアリングプラットフォームであるLangfuseに送信される仕組みです。\n\nSDKを通してメタデータやセッション識別子を付与します。Langfuseの画面上では、LLMの呼び出しが綺麗に構造化された形で確認できるようになります。万が一、SDKによる計装を入れ忘れた場合でも、LLM Gatewayで最低限の呼び出し履歴が記録されます。そのため、データ分析や評価の要件定義を行うことが可能です。\n\n### コーディングAIを活用した開発負荷の軽減\n\nTracing SDKによる計装を行うため、AIエージェント用のSkillが用意されています。このSkillを使えば、コーディングAIに計装を任せられます。実装にかかる負担を大きく下げることができます。\n\n開発プロセスのほぼ全てを自動化する現代のFDEの働き方に合わせています。開発体験を向上させながら、品質管理を行える点が特徴です。",
+  "easy": "## ひとことで言うと\n\nAI Shiftが、AIエージェントの動作履歴を自動かつ確実に集めて評価に活かすための「トレーシング基盤」を開発しました。\n\n## 開発の背景と課題\n\nAIエージェントを導入した後に「どのように動いたか」を評価して改善につなげようとしても、実行履歴を集める基盤が整っていないという課題がありました。\n顧客の課題解決に集中すべきエンジニア（FDE）にとって、履歴を残すためのコード（計装）を毎回手動で入れるのは負担が大きく、優先度が下がりがちでした。\n\n## 仕組みと工夫\n\n今回構築した仕組みでは、LLM（大規模言語モデル）を呼び出すときに「LLM Gateway」を必ず使ってもらう形にしました。\nこれにより、インフラ側で入出力やモデル名、トークン数などのテレメトリーデータ（動作状況を示すデータ）を自動的に収集できます。\n\nさらに、LLM Gatewayだけでは分からない業務上の意味付けを行うため、専用の「Tracing SDK」とAIエージェント用の「Skill」を開発しました。\nコーディングAIに計装を任せることで、エンジニアの手間を減らしつつ、Langfuse（LLMエンジニアリングプラットフォーム）で分析しやすい高品質なデータを集められるようにしています。",
+  "channel": "CyberAgent Developers Blog",
+  "channelId": "",
+  "channelSlug": "cyberagent-developers",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "【LLMOps】FDEの開発を支えるトレーシング基盤の開発",
+  "publishedAt": "2026-11-09T01:13:28+00:00",
+  "generatedAt": "2026-11-09T01:54:10.223586+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/ai-shift-fde-tracing-platform-90861bea.jpg",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "newsType": "research",
+  "faq": [
+    {
+      "q": "LLM Gatewayで自動収集できないデータにはどのようなものがありますか？",
+      "a": "アプリケーション内の処理の繋がりを示すヘッダーや、検索・ツールなどのLLMの使用用途を表すデータ、ユーザーやセッションを表すメタデータやタグが該当します。"
+    }
+  ],
+  "todayActions": [
+    "自分のチームのLLM呼び出しがLLM Gateway経由かを確かめる",
+    "Langfuseの画面で、LLM呼び出しが構造化されて見えるかを確かめる"
+  ],
+  "qualityScore": 90,
+  "sourcePublishedAt": "2026-11-09T01:13:28+00:00",
+  "detectedAt": "2026-11-09T01:50:56+00:00",
+  "speedMinutes": 45,
+  "layout": "noir",
+  "summaryLine": "AI ShiftのFDEが、多様なAIエージェントの評価と改善に向けた実行履歴を自動収集するトレーシング基盤を構築しました。",
+  "insight": [
+    {
+      "text": "LLM Gatewayだけでは、検索・ツールなどのLLMの使用用途や、ユーザー・セッションのメタデータは収集できないと書かれています。",
+      "source": "https://developers.cyberagent.co.jp/blog/archives/67361/"
+    },
+    {
+      "text": "アプリ側がコンテキスト伝播をしないと、LLM Gatewayは毎回新しいトレースを作り、1回のLLM呼び出しごとに深さ1の独立したトレースが生成されると書かれています。",
+      "source": "https://developers.cyberagent.co.jp/blog/archives/67361/"
+    },
+    {
+      "text": "Agent Router（旧Envoy AI Gateway）は環境変数を指定するだけでOpenTelemetryのトレーシングを使えると書かれ、docker-compose.yamlの設定例があります。",
+      "source": "https://developers.cyberagent.co.jp/blog/archives/67361/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Agent Router",
+      "url": "https://www.agent-router.org/",
+      "source": "https://developers.cyberagent.co.jp/blog/archives/67361/",
+      "note": "ブログには docker-compose.yaml の設定例（OTEL_TRACES_EXPORTER、OTEL_EXPORTER_OTLP_ENDPOINT、AI_GATEWAY_TRACING_SEMCONV など）が載っています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自分のチームのLLM呼び出しがLLM Gateway経由かを確かめる",
+      "source": "https://developers.cyberagent.co.jp/blog/archives/67361/",
+      "steps": [
+        "docker-compose.yamlのaigwサービスを開く",
+        "environmentにOTEL_TRACES_EXPORTERがあるか見る",
+        "OTEL_EXPORTER_OTLP_ENDPOINTの送り先を確認する",
+        "AI_GATEWAY_TRACING_SEMCONVの値を確かめる"
+      ],
+      "url": "https://www.agent-router.org/"
+    },
+    {
+      "action": "Langfuseの画面で、LLM呼び出しが構造化されて見えるかを確かめる",
+      "source": "https://developers.cyberagent.co.jp/blog/archives/67361/",
+      "steps": [
+        "Langfuseの画面を開く",
+        "LLMの呼び出しが構造化されているか見る",
+        "ユーザー・セッションの情報が付いているか見る"
+      ],
+      "url": "https://langfuse.com/"
+    }
+  ],
+  "cause": {
+    "text": "導入後に評価しようとしても、実行履歴を集める基盤が整っていないことが課題でした。FDEは顧客課題に集中すべきで、計装は緊急度が低く、入れ方の判断も都度必要なため優先順位が下がりがちだったと説明されています。",
+    "status": "background",
+    "source": "https://developers.cyberagent.co.jp/blog/archives/67361/"
+  },
+  "worries": [
+    {
+      "q": "計装を入れ忘れたら、何も記録されない？",
+      "a": "LLM呼び出しだけはLLM Gatewayで記録されるので、最低限の呼び出し履歴は残ると書かれています。ただし、業務上の意味付けやユーザー・セッションの情報は残りません。",
+      "source": "https://developers.cyberagent.co.jp/blog/archives/67361/",
+      "action": "LLM呼び出しがLLM Gateway経由になっているかを確かめ、経由していなければ経路を見直す。"
+    },
+    {
+      "q": "SDKを組み込むのは開発者の負担が大きい？",
+      "a": "計装のための AIエージェント用のSkillが用意されており、コーディングAIに計装を任せられると書かれています。実装負担を大きく下げられるとされています。",
+      "source": "https://developers.cyberagent.co.jp/blog/archives/67361/",
+      "action": "AIエージェント用のSkillを使い、コーディングAIに計装を任せられるか試してみる。"
+    },
+    {
+      "q": "集めたデータはどこに送られる？",
+      "a": "テレメトリーはOpenTelemetry Collectorに集約され、LLM呼び出しに関連するデータだけがLangfuseに送信されると書かれています。",
+      "source": "https://developers.cyberagent.co.jp/blog/archives/67361/",
+      "action": "Langfuseの画面で、LLM呼び出しが構造化されて見えるかを確かめる。"
+    },
+    {
+      "q": "入力や出力の中身も記録されるのか？",
+      "a": "LLM Gatewayで入出力・モデル名・トークン数などを記録すると書かれています。個人情報の扱いや保存期間については、ページでは発表されていません。",
+      "source": "https://developers.cyberagent.co.jp/blog/archives/67361/",
+      "action": "記録される入出力に個人情報が含まれないか、社内ルールに沿って確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "LLM Gatewayだけで実行履歴を残すか？",
+      "situation": "LLM呼び出しの最低限の記録だけで足りる",
+      "recommend": "LLM Gatewayの経由で最低限の記録が残るので、まずはこれで足りるか確かめる",
+      "reason": "LLM呼び出しはインフラレベルで自動記録され、計装の入れ忘れを防げると書かれています。ただし、ユーザーやセッション、検索・ツールなどの使用用途は記録されません。",
+      "source": "https://developers.cyberagent.co.jp/blog/archives/67361/"
+    },
+    {
+      "question": "Tracing SDKまで入れるか？",
+      "situation": "ユーザーごとや業務の用途別に評価や分析をしたい",
+      "recommend": "Tracing SDKで計装する価値を検討する",
+      "reason": "SDKでメタデータやセッション識別子、LLMの使用用途を付与できると書かれています。計装はAIエージェント用のSkillを使ってコーディングAIに任せられるとされています。",
+      "source": "https://developers.cyberagent.co.jp/blog/archives/67361/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "LLM Gatewayだけでは取れないデータがある",
+    "cause": "実行履歴の基盤が後回しになる理由",
+    "steps": "今日まず確かめたい二つのこと",
+    "desk": "設定例と公式サイトの場所",
+    "worries": "計装を忘れたら何が残る？",
+    "guide": "SDKまで入れるか迷ったときの考え方"
+  },
+  "depthAt": "2026-11-09T01:55:03+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/ai-shift-fde-tracing-platform-fig1-795885f7.jpg",
+      "width": 1200,
+      "height": 678,
+      "kind": "dense",
+      "credit": "CyberAgent Developers",
+      "sourceUrl": "https://developers.cyberagent.co.jp/blog/archives/67361/",
+      "original": "https://static.zenn.studio/user-upload/9f955a06563f-20261027.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "CyberAgent Developers",
+    "provider": "CyberAgent Developers Blog",
+    "sourceUrl": "https://developers.cyberagent.co.jp/blog/archives/67361/",
+    "original": "https://static.zenn.studio/images/drawing/discussion.png",
+    "width": 775,
+    "height": 445,
+    "at": "2026-11-09T01:56:13+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.469,
+    "y": 0.516,
+    "box": [
+      0.0,
+      0.033,
+      0.938,
+      1.0
+    ],
+    "ar": 1.7416,
+    "src": "https://ai-tech-express.jp/img/ai-shift-fde-tracing-platform-90861bea.jpg"
+  },
+  "coverTries": 1
+}

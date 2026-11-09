@@ -166,7 +166,6 @@
     "0656b695035ed990": "2026-11-06T02:00:51.769605+00:00",
     "0a40dc02edbb2ef3": "2026-11-06T19:41:01.362264+00:00",
     "0c6ee60017e73383": "2026-11-05T13:21:07.354021+00:00",
-    "0db0355037c3b764": "2026-11-05T01:40:53.572998+00:00",
     "144c8a573866809e": "2026-11-06T01:40:54.899345+00:00",
     "15a7df0fab82f311": "2026-11-07T15:31:07.844885+00:00",
     "1928f93150be33d5": "2026-11-06T05:20:52.500591+00:00",
@@ -187,6 +186,7 @@
     "47599020119ef3b0": "2026-11-08T09:32:04.569385+00:00",
     "475e5902c768e1a1": "2026-11-06T08:51:04.778179+00:00",
     "47dfc681d3613f3c": "2026-11-05T12:02:48.521507+00:00",
+    "481477ddeda1e7c3": "2026-11-09T01:50:56.126672+00:00",
     "48ab17c00d59b1f2": "2026-11-08T18:30:49.686091+00:00",
     "49610ca35997b054": "2026-11-05T12:02:48.521507+00:00",
     "4adc87ba4ef8878c": "2026-11-06T03:34:09.182177+00:00",
@@ -5826,6 +5826,17 @@
       "slug": "aws-sentinel-ai-audio-provenance",
       "url": "https://aws.amazon.com/jp/blogs/news/jpmne-building-audio-provenance-for-ai-generated-content-at-the-source-with-aws/"
     },
+    "241810bddddba9a3": {
+      "at": "2026-11-09T01:54:30.738512+00:00",
+      "costUsd": 0.0048,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 90,
+      "section": "ai",
+      "slug": "ai-shift-fde-tracing-platform",
+      "url": "https://developers.cyberagent.co.jp/blog/archives/67361/"
+    },
     "244e575abaa1f8eb": {
       "at": "2026-10-27T01:53:44.181495+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7947,12 +7958,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/saiyou/hijyoukin/1423086_00180.htm"
-    },
-    "481477ddeda1e7c3": {
-      "at": "2026-11-09T01:32:48.464152+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.jst.go.jp/pr/announce/20261106/index.html"
     },
     "4829bde7b09d4e37": {
       "at": "2026-10-27T01:31:25.544382+00:00",
@@ -10158,6 +10163,17 @@
       "skipped": true,
       "url": "https://www.value-press.com/pressrelease/383157"
     },
+    "68ed8a616e949db3": {
+      "at": "2026-11-09T01:53:55.103866+00:00",
+      "costUsd": 0.011,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 93,
+      "section": "business",
+      "slug": "fukutoshi-sankou-sh",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203412_1527.html"
+    },
     "68f4b82abee1aa5b": {
       "at": "2026-11-06T18:26:28.189312+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -10557,6 +10573,17 @@
       "section": "business",
       "slug": "toyota-2026-half-year-results",
       "url": "https://global.toyota/jp/company/profile/production-sales-figures/202609.html"
+    },
+    "6fc4dab1c881275b": {
+      "at": "2026-11-09T01:52:37.051448+00:00",
+      "costUsd": 0.0056,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 93,
+      "section": "business",
+      "slug": "publisher-bankruptcies-rise-2026",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203414_1527.html"
     },
     "6fd678299b937417": {
       "at": "2026-10-29T16:43:54.049643+00:00",
@@ -19532,133 +19559,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-06T12:15:18.866440+00:00",
-      "attempt": 1,
-      "id": "d87e2c21f3a743e6",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「本来のアセトアルデヒドには反応しなくなり、長鎖のtrans-2-ノネナールだけに特異的に反応する性質へと変化」→ 元記事は、改変型が長い炭素鎖の基質に高い活性を示し、短鎖基質の活性を失ったと述べるのみで、trans-2-ノネナールだけに特異的とはしていない。",
-        "「加齢臭物質だけを選択的に捉える高精度な酵素センサーの素地が整いました」→ 元記事は応用が「期待できる」「可能性がある」としており、素地が整ったとの断定は言い過ぎ。",
-        "「皮脂の酸化などによって発生する」→ 元記事は脂肪酸の酸化とするのみで、皮脂は元記事にない記述。",
-        "「体臭の度合いを測定するウェアラブルデバイス」「技術基盤となります」→ 元記事に無い製品像と断定で、研究段階の成果を応用が確定しているかのように書いている。",
-        "かんたん版「加齢臭原因物質に特化」「加齢臭物質だけを正確に見つけ出す性質」→ 元記事に無い選択性・正確性の断定。",
-        "かんたん版「分解する能力が従来の2.2倍」→ 元記事は「変換活性」であり、分解とは書かれていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 110.5,
-        "avg_sentence": 58.9,
-        "long_share": 0.467,
-        "max_paragraph": 180,
-        "paragraphs": 16,
-        "sentences": 30
-      },
-      "score": 66,
-      "source": "riken",
-      "title": "機械学習で酵素の強さと能力の高さを両立化",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（YADH・LWFMY・FWYGY）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T12:19:04.228574+00:00",
-      "attempt": 2,
-      "id": "d87e2c21f3a743e6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "riken",
-      "title": "機械学習で酵素の強さと能力の高さを両立化"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T12:32:27.158070+00:00",
-      "attempt": 1,
-      "id": "8b7d4be52a6123fc",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mlit-press",
-      "title": "「砂防堰堤を活用した水力発電の取組事例集」を作成しました～既設砂防堰堤活用による再生可能エネルギーの創出～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T12:32:38.032683+00:00",
-      "attempt": 2,
-      "id": "8b7d4be52a6123fc",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mlit-press",
-      "title": "「砂防堰堤を活用した水力発電の取組事例集」を作成しました～既設砂防堰堤活用による再生可能エネルギーの創出～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T12:34:15.449583+00:00",
-      "attempt": 1,
-      "id": "e07514077fe0fe08",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "soumu",
-      "title": "弾道ミサイルを想定した住民避難訓練の実施"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T12:36:36.948054+00:00",
-      "attempt": 2,
-      "id": "e07514077fe0fe08",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "本文「対象は北海道全域の住民ですが、実施場所は室蘭市中心と見られます。」→ 元記事に対象者や実施場所の記載はなく、創作である。",
-        "本文「訓練は警報発令から避難開始までの手順を確認します。情報伝達や避難経路の課題を検証することが目的です。」→ 元記事にない訓練内容・目的の創作である。",
-        "本文「国の防災担当官は、実際の落下想定を踏まえ評価したいと述べています。」→ 元記事にない発言の創作である。",
-        "本文「室蘭市は港湾地域で重要施設が集中していることから、重点的に訓練を行います。」→ 元記事にない理由・計画の創作である。",
-        "本文「この訓練は、国が定める防災基本計画に基づき実施されます。」→ 元記事に根拠のない法的根拠の創作である。",
-        "本文「防災情報は市町村の公式サイトや防災アプリでも配信されます。」「各自治体の防災ホームページや防災無線で訓練の日時や集合場所などの詳細情報を確認」→ 元記事に訓練の案内方法の記載はなく、創作である。"
-      ],
-      "readability": {
-        "avg_paragraph": 151.4,
-        "avg_sentence": 29.1,
-        "long_share": 0.0,
-        "max_paragraph": 300,
-        "paragraphs": 5,
-        "sentences": 26
-      },
-      "score": 25,
-      "source": "soumu",
-      "title": "弾道ミサイルを想定した住民避難訓練の実施"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T12:37:45.386365+00:00",
-      "attempt": 1,
-      "id": "5125d565684864f6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jst",
-      "title": "自己回帰生成モデルの熱力学を構築～大規模言語モデルに内在する「世界モデル」の定量的理解に向けて～"
-    },
-    {
-      "accepted": false,
       "at": "2026-11-06T12:38:41.613360+00:00",
       "attempt": 2,
       "id": "5125d565684864f6",
@@ -26170,6 +26070,181 @@
         "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（SQL・ADK・CORTEX）",
         "読みやすさ: 文が長い（1文の平均 48.8字・60字超の文が 41% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T01:52:13.141694+00:00",
+      "attempt": 1,
+      "id": "6fc4dab1c881275b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 85.9,
+        "avg_sentence": 46.2,
+        "long_share": 0.154,
+        "max_paragraph": 149,
+        "paragraphs": 7,
+        "sentences": 13
+      },
+      "score": 90,
+      "source": "tsr",
+      "title": "出版社の倒産、7年ぶり高水準 ～ 紙離れとコスト高、出版業界で広がる負の連鎖 ～",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（WEB）",
+        "読みやすさ: 文が長い（1文の平均 46.2字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T01:52:37.034160+00:00",
+      "attempt": 0,
+      "id": "6fc4dab1c881275b",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 59.8,
+        "avg_sentence": 34.1,
+        "long_share": 0.071,
+        "max_paragraph": 93,
+        "paragraphs": 8,
+        "sentences": 14
+      },
+      "score": 93,
+      "source": "tsr",
+      "title": "出版社の倒産、7年ぶり高水準 ～ 紙離れとコスト高、出版業界で広がる負の連鎖 ～",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（WEB）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T01:53:13.496108+00:00",
+      "attempt": 1,
+      "id": "68ed8a616e949db3",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「各地域の詳しい業績の内訳や、人口減少との関係はまだ続いて調査されています」→ 元記事に追加調査が続いているという記述はなく、根拠のない記述である。",
+        "本文「収益の面では二極化が進む形となっています」→ 「二極化」は元記事の見出しにある言葉だが、大阪の売上100億円以上企業の構成比と結びつけた解釈は元記事に書かれていない（編集部の解釈として区別が必要）。",
+        "見出し・かんたん版「大阪は唯一の減益」「4道府県の中で唯一の減益」→ 元記事は優劣をつけることが目的ではないと明記しているのに、順位のように強調している（事実は正しいが、元記事の注意書きが省かれている）。"
+      ],
+      "readability": {
+        "avg_paragraph": 183.8,
+        "avg_sentence": 65.6,
+        "long_share": 0.571,
+        "max_paragraph": 206,
+        "paragraphs": 5,
+        "sentences": 14
+      },
+      "score": 78,
+      "source": "tsr",
+      "title": "「副首都候補」4道府県 中小企業の業況は堅調 収益は二極化、政令に基づき指定へ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TSR）",
+        "読みやすさ: 文が長い（1文の平均 65.6字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 183.8字・最長 206字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T01:53:35.187419+00:00",
+      "attempt": 1,
+      "id": "68ed8a616e949db3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 198.6,
+        "avg_sentence": 66.2,
+        "long_share": 0.6,
+        "max_paragraph": 267,
+        "paragraphs": 5,
+        "sentences": 15
+      },
+      "score": 93,
+      "source": "tsr",
+      "title": "「副首都候補」4道府県 中小企業の業況は堅調 収益は二極化、政令に基づき指定へ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TSR）",
+        "読みやすさ: 文が長い（1文の平均 66.2字・60字超の文が 60% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 198.6字・最長 267字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T01:53:55.059021+00:00",
+      "attempt": 0,
+      "id": "68ed8a616e949db3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 66.9,
+        "avg_sentence": 33.4,
+        "long_share": 0.036,
+        "max_paragraph": 110,
+        "paragraphs": 14,
+        "sentences": 28
+      },
+      "score": 93,
+      "source": "tsr",
+      "title": "「副首都候補」4道府県 中小企業の業況は堅調 収益は二極化、政令に基づき指定へ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TSR）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T01:54:15.797976+00:00",
+      "attempt": 1,
+      "id": "241810bddddba9a3",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 136.3,
+        "avg_sentence": 59.6,
+        "long_share": 0.375,
+        "max_paragraph": 163,
+        "paragraphs": 7,
+        "sentences": 16
+      },
+      "score": 92,
+      "source": "cyberagent-developers",
+      "title": "【LLMOps】FDEの開発を支えるトレーシング基盤の開発",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（FDE・LLM）",
+        "読みやすさ: 文が長い（1文の平均 59.6字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 136.3字・最長 163字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T01:54:30.734305+00:00",
+      "attempt": 0,
+      "id": "241810bddddba9a3",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 121.2,
+        "avg_sentence": 42.2,
+        "long_share": 0.043,
+        "max_paragraph": 160,
+        "paragraphs": 8,
+        "sentences": 23
+      },
+      "score": 90,
+      "source": "cyberagent-developers",
+      "title": "【LLMOps】FDEの開発を支えるトレーシング基盤の開発",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（FDE・LLM）",
+        "読みやすさ: 段落が長い（平均 121.2字・最長 160字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
     }
   ],
