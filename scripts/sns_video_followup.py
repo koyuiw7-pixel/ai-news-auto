@@ -2297,6 +2297,12 @@ def main() -> None:
         llm._load_env_local()
         for row in presend_recheck(apply=args.presend == "apply", hours=args.hours, force=True):
             print(json.dumps(row, ensure_ascii=False))
+        if args.presend == "apply":
+            # 画像待ちで下書きに戻した予約のうち、画像が付いたものを予約に戻す（台帳 S49。手で回すときも）
+            state = load_json(STATE, {"videos": {}})
+            for row in resume_photo_paused(state, datetime.now(timezone.utc)):
+                print(json.dumps(row, ensure_ascii=False))
+            save_state(state)
         return
     if args.queue_fix and args.queue_fix.startswith("pause:"):
         # 予約中の投稿のうち、この ID だけを下書きに戻す（公開しない・消さない。二重に入った予約を止めるとき）
