@@ -208,7 +208,8 @@ def topic_boost(article: dict) -> float:
 
 
 # スポーツは集客の入口。日本のスポーツの大きな結果・ニュースだけ、1日このくらいまで
-SPORTS_DAILY_CAP = 4
+# 2026-11-09 オーナー「スポーツとAIの上限も外していいよ」: 実質なし
+SPORTS_DAILY_CAP = 1000
 
 SPORTS_SCOPE_RULE = (
     "スポーツは日本のスポーツだけを扱う: 日本のリーグ・チーム（NPB・Jリーグ・Bリーグ・大相撲・リーグワン・Vリーグ など）と、"

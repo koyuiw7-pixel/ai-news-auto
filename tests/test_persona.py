@@ -81,7 +81,7 @@ class GenreBalanceTest(unittest.TestCase):
             "e": {"section": "sports", "at": today, "skipped": True},
         }}
         self.assertEqual(w.sports_today(state, now), 2)
-        self.assertTrue(3 <= persona.SPORTS_DAILY_CAP <= 5)
+        self.assertGreaterEqual(persona.SPORTS_DAILY_CAP, 1000)  # 2026-11-09 オーナー: 上限なし
 
 
 def web_record(**extra):

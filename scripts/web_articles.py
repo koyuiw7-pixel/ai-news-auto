@@ -1680,7 +1680,8 @@ def off_persona(item: dict) -> bool:
 # 2026-11-06 オーナー決定（台帳 A47）: 記事を1日100本に増やしても、海外の AI の発表（英語の公式ブログ・ニュースルーム）は
 # 増やさない。増やす分は検索される話題と国内のニュース。11/5・11/6 の実績（1日14本ほど）に合わせた1日の上限。
 # 大きなニュース（本家の新モデルなど）・速報レーンはこの上限の外（従来どおり先に作る）
-FOREIGN_AI_DAILY_CAP = int(os.environ.get("FOREIGN_AI_DAILY_CAP", "15"))
+# 2026-11-09 オーナー「スポーツとAIの上限も外していいよ」: 実質なし
+FOREIGN_AI_DAILY_CAP = int(os.environ.get("FOREIGN_AI_DAILY_CAP", "1000"))
 
 
 def is_foreign_ai(item: dict) -> bool:

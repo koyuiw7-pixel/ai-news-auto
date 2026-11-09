@@ -85,7 +85,7 @@ class SearchIntentGuidesTest(unittest.TestCase):
 
 class MixTest(unittest.TestCase):
     def test_foreign_ai_is_capped_at_todays_level(self):
-        self.assertLessEqual(w.FOREIGN_AI_DAILY_CAP, 15)
+        self.assertGreaterEqual(w.FOREIGN_AI_DAILY_CAP, 1000)  # 2026-11-09 オーナー: 上限なし
         self.assertTrue(w.is_foreign_ai({"source_slug": "openai-news", "lang": "en"}))
         self.assertFalse(w.is_foreign_ai({"source_slug": "google-japan-blog", "lang": "ja"}))
         self.assertFalse(w.is_foreign_ai({"source_slug": "ntt-news-ai"}), "フィードの言語で判定（NTT は日本語）")
