@@ -108,6 +108,14 @@
       "tries": 1,
       "url": "https://jtta.or.jp/news/38778"
     },
+    "8c35f961e318ffbb": {
+      "first": "2026-11-09T02:15:08.028371+00:00",
+      "next": "2026-11-09T05:15:08.028371+00:00",
+      "reason": "リード「今後の防災計画や地域の備えに役立てるための情報として活用されています」→ 元記事に活用実績の記載はなく、利用状況は裏付けられない; 本文「過去の主な津波の高さや遡上高の記録が示されています」→ 抽出された元記事では個別の津波名・高さ・遡上高の数値が確認できず、記事も具体例を一つも示していない; 「津波防災に関する意識を高めるための取り組みが行われています」→ 元記事に記載のない一般的な主張",
+      "title": "Infocalendar －主な津波と遡上高[11月５日は世界津波の日]",
+      "tries": 1,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87284?site=nli"
+    },
     "8dc5cad25319e695": {
       "first": "2026-11-06T06:40:13.129552+00:00",
       "next": "2026-11-06T09:40:13.129552+00:00",
@@ -139,6 +147,14 @@
       "title": "第14回人工知能（AI）技術の利用と消費者問題に関する専門調査会【11月5日開催】",
       "tries": 1,
       "url": "https://www.cao.go.jp/consumer/kabusoshiki/ai_technology/014/shiryou/index.html"
+    },
+    "d083b2d2afa7377a": {
+      "first": "2026-11-09T02:15:34.985262+00:00",
+      "next": "2026-11-09T05:15:34.985262+00:00",
+      "reason": "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「丸隆の電気ストーブ約3万台」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える",
+      "title": "家電製品 丸隆「電気ストーブ：レトロティックカーボンヒーター」 - 点検交換",
+      "tries": 1,
+      "url": "https://www.recall.caa.go.jp/images/rci/img/product/00000036096_1.jpg"
     },
     "dc06143347b399e3": {
       "first": "2026-11-06T08:27:16.596740+00:00",
@@ -13940,6 +13956,12 @@
       "updated": "caa-recall-accident-report-202610",
       "url": "https://www.caa.go.jp/notice/entry/047983/"
     },
+    "a5178b512e07b30a": {
+      "at": "2026-11-09T02:13:52.081943+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（移転）",
+      "skipped": true,
+      "url": "https://www.tokyu-fudosan-hd.co.jp/news/companies/pdf/04379560c41f472aca6902f24c4023733f570c11.pdf"
+    },
     "a520b9d3ebeda8b7": {
       "at": "2026-10-28T17:52:41.572140+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -14523,6 +14545,12 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76912.html"
     },
+    "af4e478bc342c6a8": {
+      "at": "2026-11-09T02:15:08.034295+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（公募）",
+      "skipped": true,
+      "url": "https://www.ipa.go.jp/jinzai/mitou/it/2027/koubo.html"
+    },
     "af6a467fdfe036d7": {
       "at": "2026-11-02T16:02:48.986730+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -14594,6 +14622,17 @@
       "section": "public",
       "slug": "soumu-local-allocation-tax-nov-2026",
       "url": "https://www.soumu.go.jp/menu_news/s-news/01zaisei04_02000191.html"
+    },
+    "b0871561375c193f": {
+      "at": "2026-11-09T02:16:16.279444+00:00",
+      "costUsd": 0.0051,
+      "intent": "neutral",
+      "mix": "quirky",
+      "model": "gemini-3.5-flash-lite",
+      "score": 93,
+      "section": "science",
+      "slug": "jst-japan-vietnam-semiconductor-nexus",
+      "url": "https://www.jst.go.jp/pr/info/info1885/index.html"
     },
     "b0d3e2edc6f50b4d": {
       "at": "2026-10-30T08:51:13.509715+00:00",
@@ -18753,6 +18792,17 @@
       "slug": "arara-message-data-leak-second-report",
       "url": "https://www.arara.com/dcms_media/other/arara_20261102__.pdf"
     },
+    "f584b09228d4aa0e": {
+      "at": "2026-11-09T02:14:41.711755+00:00",
+      "costUsd": 0.0075,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "business",
+      "slug": "nli-research-report-2026-11",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87285?site=nli"
+    },
     "f59bf79b2fc8831b": {
       "at": "2026-10-29T15:23:59.616529+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（ランクイン）",
@@ -19570,102 +19620,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T12:54:21.168057+00:00",
-      "attempt": 2,
-      "id": "ed79290dfff2f62b",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "samsung-jp",
-      "title": "Samsung、KT・SKテレコムと韓国の「AI RAN」プロジェクトを推進"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T13:12:14.610656+00:00",
-      "attempt": 1,
-      "id": "99f5b444c3dec997",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「の定員は100人で、合計300人」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 164.9,
-        "avg_sentence": 66.0,
-        "long_share": 0.72,
-        "max_paragraph": 232,
-        "paragraphs": 10,
-        "sentences": 25
-      },
-      "score": null,
-      "source": "jfa",
-      "title": "SAMURAI BLUE「Team Cam」未公開特別編集版の制作・上映会開催に向けたクラウドファンディングを実施～激闘の裏側にあった、もう一つの物語。2026",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（BLUE・JFA・FIFA）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T13:13:34.742397+00:00",
-      "attempt": 2,
-      "id": "99f5b444c3dec997",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "SAMURAI BLUE「Team Cam」未公開特別編集版の制作・上映会開催に向けたクラウドファンディングを実施～激闘の裏側にあった、もう一つの物語。2026"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T13:14:53.579820+00:00",
-      "attempt": 1,
-      "id": "083cb61269f13ae1",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に2選手を認定 #jfa"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T13:16:14.835057+00:00",
-      "attempt": 2,
-      "id": "083cb61269f13ae1",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jfa",
-      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に2選手を認定 #jfa"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T13:56:28.978310+00:00",
-      "attempt": 1,
-      "id": "76f6c839f4713002",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jtta",
-      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T13:56:52.866032+00:00",
@@ -26279,6 +26233,161 @@
       "warnings": [
         "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（PFN・NICT・JSON）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T02:14:23.424471+00:00",
+      "attempt": 1,
+      "id": "f584b09228d4aa0e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.0,
+        "avg_sentence": 56.0,
+        "long_share": 0.333,
+        "max_paragraph": 121,
+        "paragraphs": 4,
+        "sentences": 6
+      },
+      "score": 86,
+      "source": "nli-research",
+      "title": "基礎研ＲＥＰＯＲＴ（冊子版）11月号[vol.356]",
+      "warnings": [
+        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 56.0字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T02:14:35.520912+00:00",
+      "attempt": 0,
+      "id": "f584b09228d4aa0e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 71.2,
+        "avg_sentence": 44.5,
+        "long_share": 0.0,
+        "max_paragraph": 131,
+        "paragraphs": 5,
+        "sentences": 8
+      },
+      "score": 88,
+      "source": "nli-research",
+      "title": "基礎研ＲＥＰＯＲＴ（冊子版）11月号[vol.356]",
+      "warnings": [
+        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T02:15:08.028275+00:00",
+      "attempt": 1,
+      "id": "8c35f961e318ffbb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「今後の防災計画や地域の備えに役立てるための情報として活用されています」→ 元記事に活用実績の記載はなく、利用状況は裏付けられない",
+        "本文「過去の主な津波の高さや遡上高の記録が示されています」→ 抽出された元記事では個別の津波名・高さ・遡上高の数値が確認できず、記事も具体例を一つも示していない",
+        "「津波防災に関する意識を高めるための取り組みが行われています」→ 元記事に記載のない一般的な主張で、出典がない",
+        "見出しは「主な津波と遡上高のデータ公開」と約束しているが、どの津波の何mかという具体的事実が本文にないため、読者が概要を掴めない"
+      ],
+      "readability": {
+        "avg_paragraph": 129.7,
+        "avg_sentence": 77.8,
+        "long_share": 1.0,
+        "max_paragraph": 155,
+        "paragraphs": 3,
+        "sentences": 5
+      },
+      "score": 72,
+      "source": "nli-research",
+      "title": "Infocalendar －主な津波と遡上高[11月５日は世界津波の日]",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 77.8字・60字超の文が 100% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 129.7字・最長 155字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T02:15:15.258691+00:00",
+      "attempt": 1,
+      "id": "d083b2d2afa7377a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「丸隆の電気ストーブ約3万台」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 149.0,
+        "avg_sentence": 49.7,
+        "long_share": 0.167,
+        "max_paragraph": 151,
+        "paragraphs": 2,
+        "sentences": 6
+      },
+      "score": null,
+      "source": "caa-recall",
+      "title": "家電製品 丸隆「電気ストーブ：レトロティックカーボンヒーター」 - 点検交換",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 49.7字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 149.0字・最長 151字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T02:15:57.448933+00:00",
+      "attempt": 1,
+      "id": "b0871561375c193f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 206.5,
+        "avg_sentence": 82.6,
+        "long_share": 0.8,
+        "max_paragraph": 222,
+        "paragraphs": 2,
+        "sentences": 5
+      },
+      "score": 88,
+      "source": "jst",
+      "title": "日ASEAN科学技術・イノベーション協働連携事業（NEXUS）日本－ベトナム国際共同研究「半導体」における新規課題の決定について",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "初めて出たところで言い換えていない略語（JST・ASEAN・NEXUS）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T02:16:10.526647+00:00",
+      "attempt": 0,
+      "id": "b0871561375c193f",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.0,
+        "avg_sentence": 42.2,
+        "long_share": 0.111,
+        "max_paragraph": 96,
+        "paragraphs": 5,
+        "sentences": 9
+      },
+      "score": 93,
+      "source": "jst",
+      "title": "日ASEAN科学技術・イノベーション協働連携事業（NEXUS）日本－ベトナム国際共同研究「半導体」における新規課題の決定について",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "初めて出たところで言い換えていない略語（ASEAN・NEXUS・JST）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
     }
   ],

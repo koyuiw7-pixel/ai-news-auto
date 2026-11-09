@@ -92,9 +92,9 @@
     }
   ],
   "todayActions": [
-    "自社の直近事業年度の売上が10億円未満か確認し、該当すればHugging Faceの「plamo-3-8b-fin-instruct」を入手する",
-    "問い合わせ分類や書類の突合など、自社で試したい業務を1つ選び、架空データで検証する",
-    "売上10億円以上の企業は、PFNの問い合わせフォームで導入条件を相談する"
+    "直近事業年度の収入または売上が10億円未満かを確かめ、無償の対象になるか判断する",
+    "Hugging Faceの「plamo-3-8b-fin-instruct」を開き、ライセンスを確かめてから入手する",
+    "架空の入力データで、自社で試したい業務を1つ選び、出力を確かめる"
   ],
   "relatedSlugs": [
     "plamo-3-translate-open-weight"
@@ -131,5 +131,126 @@
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/plamo-3-fin-open-weight-9ca06b7d.jpg"
   },
-  "discoverCandidate": true
+  "discoverCandidate": true,
+  "insight": [
+    {
+      "text": "判定の基準は「直近事業年度の収入または売上」が10億円未満か。個人も対象で、商用・非商用を問わず無償と書かれている。",
+      "source": "https://www.preferred.jp/ja/news/pr20261109"
+    },
+    {
+      "text": "公開されたデモは検証用環境で作られ、実際の提供画面とは一部異なる。入力文は架空で、同じ入力でも結果が変わることがある。",
+      "source": "https://www.preferred.jp/ja/news/pr20261109"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "PFNのHugging Faceページ（plamo-3-8b-fin-instruct）",
+      "url": "https://huggingface.co/pfnet/plamo-3-8b-fin-instruct",
+      "source": "https://www.preferred.jp/ja/news/pr20261109",
+      "howTo": [
+        "提供形態",
+        "Hugging Faceでオープンウェイトモデルとして提供"
+      ],
+      "note": "ライセンスはPLaMoコミュニティライセンス。入手前に、直近事業年度の収入または売上が10億円未満かを確かめる。"
+    },
+    {
+      "name": "PFN お問合せフォーム",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSeckNKOA6zcluH7mAEok_rxOUjkdfmFdgTxbqTf2zHa7N7B6Q/viewform",
+      "source": "https://www.preferred.jp/ja/news/pr20261109",
+      "note": "専用モデル構築、閉域・オンプレミス導入、評価・検証の相談を受け付けている。10億円以上の企業の条件は未発表。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "直近事業年度の収入または売上が10億円未満かを確かめ、無償の対象になるか判断する",
+      "source": "https://www.preferred.jp/ja/news/pr20261109",
+      "steps": [
+        "直近事業年度の収入または売上を確かめる",
+        "10億円未満なら無償の対象になる",
+        "10億円以上なら導入条件をお問合せフォームで相談する"
+      ]
+    },
+    {
+      "action": "Hugging Faceの「plamo-3-8b-fin-instruct」を開き、ライセンスを確かめてから入手する",
+      "source": "https://www.preferred.jp/ja/news/pr20261109",
+      "steps": [
+        "提供形態の欄で「plamo-3-8b-fin-instruct」を探す",
+        "PLaMoコミュニティライセンスの範囲を確かめる",
+        "対象なら入手する"
+      ],
+      "url": "https://huggingface.co/pfnet/plamo-3-8b-fin-instruct"
+    },
+    {
+      "action": "架空の入力データで、自社で試したい業務を1つ選び、出力を確かめる",
+      "source": "https://www.preferred.jp/ja/news/pr20261109",
+      "steps": [
+        "問い合わせの分類と振り分けなど1業務を選ぶ",
+        "架空の入力文で出力を確かめる",
+        "同じ入力でも結果が変わることがあるので、複数回試す"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "金融機関には取引の事務処理やモニタリングなど大量に処理する業務が多く、すべてに大規模言語モデルを使うと利用コストがかさみ、費用対効果が見合わない場合がある。顧客情報を扱うため、閉域環境で効率よく動かすことも求められる。",
+    "status": "background",
+    "source": "https://www.preferred.jp/ja/news/pr20261109"
+  },
+  "worries": [
+    {
+      "q": "無料で使えるのは、どんな会社や個人？",
+      "a": "直近事業年度の収入または売上が10億円未満の企業および個人は、PLaMoコミュニティライセンスのもとで無償利用できます。商用・非商用を問わず、プライベートクラウドやオンプレミス環境などで使えます。",
+      "source": "https://www.preferred.jp/ja/news/pr20261109",
+      "action": "直近事業年度の収入または売上が10億円未満かを確かめ、対象になるか判断する。"
+    },
+    {
+      "q": "10億円以上の会社は、この条件で使えない？",
+      "a": "無償の対象は10億円未満の企業と個人と書かれています。10億円以上の企業が使うときの料金や契約条件は、まだ発表されていません。",
+      "source": "https://www.preferred.jp/ja/news/pr20261109",
+      "action": "導入や専用モデルの相談は、お問合せフォームから送って条件を確かめる。"
+    },
+    {
+      "q": "無料のAPIやチャットは、どこまで使える？",
+      "a": "API・Chat（β版）は無料プランがあり、利用量に上限があります。上限の具体的な数字は発表されていません。提供内容は予告なく変更・終了することがあり、稼働率の保証もありません。",
+      "source": "https://www.preferred.jp/ja/news/pr20261109",
+      "action": "本番の業務に組み込む前に、無料プランは試用にとどめ、上限や変更の可能性を考える。"
+    },
+    {
+      "q": "機密データを外部に出さずに使える？",
+      "a": "クラウドの閉域環境やオンプレミス環境に導入でき、GPU1枚から運用できると説明されています。データの送り先など詳しい仕組みは、このページには書かれていません。",
+      "source": "https://www.preferred.jp/ja/news/pr20261109",
+      "action": "機密データを扱うなら、閉域環境やオンプレミスへの導入をお問合せフォームで相談する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "自社は無償の対象になる？",
+      "situation": "直近事業年度の収入または売上が10億円未満",
+      "recommend": "無償で使える条件を確かめてから入手する",
+      "reason": "基準は「直近事業年度の収入または売上」が10億円未満。ダウンロードと商用利用が無償とされ、API・Chatは別で利用上限がある。",
+      "source": "https://www.preferred.jp/ja/news/pr20261109"
+    },
+    {
+      "question": "10億円以上の企業はどうする？",
+      "situation": "直近事業年度の売上が10億円以上",
+      "recommend": "お問合せフォームで条件を相談する",
+      "reason": "10億円以上の企業の料金や契約条件はまだ発表されていない。専用モデル構築や導入の相談は、お問合せフォームで受け付けている。",
+      "source": "https://www.preferred.jp/ja/news/pr20261109"
+    },
+    {
+      "question": "無料のAPI・Chatを業務に使う？",
+      "situation": "本番の業務で使うか迷っている",
+      "recommend": "急がず、試用から考える",
+      "reason": "API・Chat（β版）は利用量に上限があり、提供内容は予告なく変更・終了することがある。稼働率などのサービスレベルの保証もない。",
+      "source": "https://www.preferred.jp/ja/news/pr20261109"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "無償の判定は収入または売上、デモは一例",
+    "cause": "なぜ小型モデルなのか、その理由",
+    "steps": "今日まずやる、3つの確認",
+    "desk": "入手や相談の窓口はどこ？",
+    "worries": "無料で使える？機密データは？",
+    "guide": "無償か相談か、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-09T02:17:23+00:00"
 }
