@@ -3,8 +3,8 @@
   "sourceType": "web",
   "sourceUrl": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
   "sourceName": "Google公式ブログ",
-  "title": "TPU 8tx・8i Maxが登場　暗号化したまま推論、HBM帯域は2倍",
-  "seoTitle": "TPU 8txと8i Maxとは？特徴と提供状況",
+  "title": "TPU 8tx・8i Max登場　機密データを保護、HBM帯域は2倍",
+  "seoTitle": "TPU 8tx・8i Maxの特徴と性能",
   "threadsPost": "AI基盤や開発の担当の人に、押さえておきたい話です。\n\nGoogleがTPUの新システム「8tx」と「8i Max」を追加しました。\n8txはデータを暗号化したまま推論でき、8i Maxは8iの2倍の計算量です。\n\n自社のAI基盤、クラウドとオンプレのどちらに寄せたいですか？",
   "threadsHook": "callout",
   "threadsQuestions": [
@@ -19,8 +19,8 @@
   ],
   "threadsStyle": 3,
   "writingVoice": "senpai",
-  "lede": "GoogleのAI専用チップ「TPU」の第8世代に、機密データ向けの「TPU 8tx」と巨大な入力向けの「TPU 8i Max」が加わりました。1年に4つのTPUシステムを出すのは初めてで、8i Maxは8iの2倍の計算量とHBM帯域を持ちます。価格と提供開始日はまだ発表されておらず、個人が今すぐ使えるものではありません。",
-  "description": "Googleが第8世代TPUに「TPU 8tx」と「8i Max」を追加。8txは使用中も暗号化で保護し、8i Maxは8iの2倍の計算量。価格・提供時期は未発表で、PyTorch対応など周辺ソフトの状況もまとめます。",
+  "lede": "Googleは第8世代TPUに、処理中の機密データを保護する「TPU 8tx」と、8iの2倍の計算能力とHBM帯域を持つ「TPU 8i Max」を追加しました。企業や開発者向けのAI基盤に使う構成で、価格や提供開始日は発表されていません。Googleが1年に4つのTPUシステムを発表するのは初めてです。",
+  "description": "Googleが第8世代TPUに「8tx」と「8i Max」を追加しました。8txは処理中の機密データを保護し、8i Maxは8iの2倍の計算能力とHBM帯域を持ちます。価格や提供時期、周辺ソフトの状況も整理します。",
   "keywords": [
     "TPU 8tx",
     "TPU 8i Max",
@@ -63,7 +63,7 @@
       "PyTorchのコードを書き換えずTPUで動かせるTorchTPUは公開済みで、コスト比較の下調べに使えます。"
     ]
   },
-  "body": "TPU 8txと8i Maxは、いずれも企業やクラウド事業者が使う設備向けです。個人が今すぐ使えるものではありません。日本での提供や価格、提供開始日はまだ発表されていません。\n\nTPU（テンソル・プロセッシング・ユニット）は、Googleが設計したAI専用のチップです。Googleは自社のGeminiの学習や運用、Google Cloudの顧客向けサービスに使っています。Google公式ブログによると、顧客は100社近くまで増えています。\n\n## 4つのシステムがそろった第8世代\n\nGoogleは4月のGoogle Cloud Nextで、第8世代として「8t」と「8i」を発表していました。8tは大規模な学習用、8iはリアルタイムの推論（学習済みAIが答えを出す処理）用です。ブログによると、8tは前世代より学習性能が最大2.7倍、8iは推論の価格性能が80%向上しました。\n\n今回の2つを加えて、1年で4つのTPUシステムを出すのは初めてです。Googleは、新しいチップではなく、チップの周りの計算・通信・保存をまとめた「システム」を変える方法を取りました。その方法で、数か月で新構成を出せると説明しています。\n\n## 暗号化したまま推論できるTPU 8tx\n\nTPU 8txは、機密性の高い推論に向けた構成で、小規模な学習にも使えます。規制の厳しい企業や政府が、独自のモデルやエージェント（自分で手順を進めるAI）を、機微なデータと一緒に動かすことを想定しています。\n\n通常、データは保存中や通信中は暗号化されますが、処理中はメモリ上で復号が必要です。8txはTPU 8tと同じチップに、第5世代のAMD EPYC CPUを組み合わせ、使用中もデータとモデルの重みを守ります。\n\n通信にはリアルタイム推論向けの「Boardfly」ネットワークを採用しました。8tと比べて遅延は最大2分の1で、性能の低下はほぼありません。\n\n同じ設備で、社内データによるファインチューニング（追加学習）や、大きなモデルを小さくする蒸留、強化学習ができます。データを別のクラスターへ移す必要はありません。\n\n## 長い入力に強いTPU 8i Max\n\nTPU 8i Maxは、8iのチップ2つを1つのパッケージにまとめた構成です。ブログによると、計算量、SRAM、HBM（チップに載る高速メモリ）の帯域がいずれも8iの2倍です。\n\n多数のエージェントがコード全体や長い動画を同時に扱うと、メモリの速さが足りなくなります。この「メモリの壁」を狙った構成です。\n\n既存のラックに2倍のシリコンを収められます。そのため、設置面積と電力あたりの計算力も上がります。\n\n## PyTorchやコンテナ基盤の周辺ソフト\n\nソフト面では、複数の機能が同時に示されました。\n\n- TorchTPU（PyTorchのコードをそのままTPUで動かす仕組み）は先月オープンソースになり、Hugging Faceのモデルも動きます（[Google、TPU向け「TorchTPU」をオープンソース公開](/articles/torchtpu-open-source-pytorch-tpu)）\n- TPU Agent Suiteはプレビュー版で、Claude Code、Cursor、Google Antigravityなどに組み込み、TPUへの移行や速度改善を自然な言葉で進められます\n- TPU Syncはオープンソースで公開され、KV cacheをチップの外に移すなどして、KV転送の遅延と最初の応答までの時間（TTFT）を90%以上縮めるとしています\n- Cloud Pathways（複数のTPUを1台のように扱う仕組み）は、GKE（GoogleのコンテナのKubernetes基盤）で一般提供になりました\n- GKEのdynamic slicingも一般提供で、ジョブの開始が最大5倍、障害からの復旧が最大4.5倍速くなるとしています\n\nブログは、InferenceXとAgentXというベンチマーク（性能テスト）でも結果を示しています。vLLMとTorchTPUの組み合わせは、価格あたりの性能で最高水準だったとされています。条件の詳細は示されていません。\n\nTPUの提供先は広がっており、Oracleは2027年からOCIでTPUを導入する予定です（[Google CloudとOracle、OCIでGoogle TPUを提供へ](/articles/google-tpu-oracle-cloud-infrastructure)）。\n\n## まだ分からないこと\n\n- TPU 8txと8i Maxの価格はまだ発表されていません\n- 提供開始の時期と、日本のリージョン（提供地域）で使えるかは未発表です\n- 8txの「最大2分の1の遅延」や8i Maxの2倍の数字が、どの条件での測定かは示されていません\n\n## 開発者・基盤担当者が確かめておくこと\n\nTorchTPUとTPU Agent Suiteは先に使えます。PyTorchの既存コードでTPUが選択肢になるかを、公式ドキュメントで確認しておくとよいでしょう。TPU Agent Suiteは、TPU v6eとTPU7xでのTransformer推論に重点があると案内されています（Google Cloudのドキュメント、11/9確認）。",
+  "body": "TPU 8txと8i Maxは、企業や開発者向けのAI基盤に使う構成です。Googleの発表では、日本での提供や価格、提供開始日は示されていません。\n\nTPU（テンソル・プロセッシング・ユニット）は、Googleが設計したAI専用のチップです。Googleは自社のGeminiの学習や運用、Google Cloudの顧客向けサービスに使っています。Google公式ブログによると、TPUの顧客は100社近くまで増えています。\n\n## 第8世代は学習・推論向けの4構成に\n\nGoogleは4月のGoogle Cloud Nextで、第8世代の「8t」と「8i」を発表していました。8tは大規模な学習用、8iはリアルタイムの推論（学習済みAIが答えを出す処理）用です。ブログによると、8tは前世代より学習性能が最大2.7倍、8iは推論の価格性能が80%向上しました。\n\n今回の2つを加え、Googleが1年に4つのTPUシステムを発表するのは初めてです。新たにチップを設計するのではなく、既存チップの周りの計算・通信・保存を組み合わせた構成を変えました。この方法により、専門用途向けのスーパーコンピューターを数年ではなく数か月で提供できると説明しています。\n\n## TPU 8txは処理中の機密データを保護\n\nTPU 8txは、機密性の高い推論に向けた構成で、小規模な学習にも使えます。規制の厳しい企業や政府が、独自のモデルやエージェント（自分で手順を進めるAI）を、機微なデータと一緒に動かすことを想定しています。\n\n通常、データは保存中や通信中は暗号化されますが、処理中はメモリ上で復号が必要です。8txはTPU 8tと同じチップに、第5世代のAMD EPYC CPUを組み合わせ、使用中も機密データとモデルの重みを保護・隔離します。\n\n通信にはリアルタイム推論向けの「Boardfly」ネットワークを採用しました。Googleによると、8tと比べて遅延は最大で半分になり、性能の低下はほぼありません。\n\n同じシステムで、社内データによるファインチューニング（追加学習）や、大きなモデルを小さくする蒸留、強化学習ができます。機密データを別のクラスターへ移す必要はありません。\n\n## TPU 8i Maxは計算能力とHBM帯域が2倍\n\nTPU 8i Maxは、8iのチップ2つを1つのパッケージにまとめた構成です。ブログによると、計算能力、SRAM、HBM（高速メモリ）の帯域がいずれも8iの2倍です。\n\n多数のエージェントがコード全体や長い動画を同時に扱うと、メモリ帯域が処理の制約になります。8i Maxは、この「メモリの壁」に対応する構成です。\n\n既存のラックと同じ設置面積に2倍のシリコンを収められます。Googleは、設置面積と電力あたりの計算能力も大幅に高められるとしています。\n\n## PyTorch対応やTPUの運用を助けるソフト\n\nソフト面では、複数の機能が同時に示されました。\n\n- TorchTPU（PyTorchのコードをTPUで動かす仕組み）は先月オープンソースになり、Hugging Faceのモデルも動きます（[Google、TPU向け「TorchTPU」をオープンソース公開](/articles/torchtpu-open-source-pytorch-tpu)）\n- TPU Agent Suiteはプレビュー版で、Claude Code、Cursor、Google Antigravityなどに組み込み、TPUへの移行や速度改善を自然な言葉で進められます\n- TPU Syncはオープンソースで公開され、KV cacheをチップの外に移すなどして、KV転送の遅延と最初の応答までの時間（TTFT）を90%以上縮めるとしています\n- Cloud Pathways（複数のTPUを1台のように扱う仕組み）は、GKE（GoogleのコンテナのKubernetes基盤）で一般提供になりました\n- GKEのdynamic slicingも一般提供で、ジョブの開始が最大5倍、障害からの復旧が最大4.5倍速くなるとしています\n\nブログは、InferenceXとAgentXというベンチマーク（性能テスト）でも結果を示しています。TPU上のvLLMとTorchTPUの組み合わせは、価格あたりの性能で最高水準だったとされています。測定条件の詳細はブログには示されていません。\n\nTPUの提供先は広がっており、Oracleは2027年からOCIでTPUを導入する予定です（[Google CloudとOracle、OCIでGoogle TPUを提供へ](/articles/google-tpu-oracle-cloud-infrastructure)）。\n\n## 価格・提供時期・測定条件は発表で示されず\n\n- TPU 8txと8i Maxの価格は、Googleの発表では示されていません\n- 提供開始の時期と、日本のリージョン（提供地域）で使えるかも示されていません\n- 8txの遅延や8i Maxの2倍の数字について、測定条件の詳細は示されていません\n\n## 開発者はPyTorch対応とプレビューを確認\n\nTorchTPUはオープンソースで公開され、TPU Agent Suiteはプレビュー版が提供されています。PyTorchの既存コードでTPUが選択肢になるかを、公式ドキュメントで確認しておくとよいでしょう。TPU Agent Suiteは、TPU v6eとTPU7xでのTransformer推論に重点があると案内されています（Google Cloudのドキュメント、11/9確認）。",
   "easy": "## ひとことで言うと\n\nGoogleがAI専用チップ「TPU」の新しい2つの構成を追加しました。1つは機密データを守りながらAIを動かすもの、もう1つは長い資料を一度に読ませるためのものです。\n\n価格や提供時期はまだ発表されていません。個人がすぐ使えるものではなく、AI基盤を扱う企業や開発者向けです。\n\n## 2つの新しい構成\n\n「TPU 8tx」は、使っている最中のデータも暗号化で守れるのが特徴です。金融機関や政府のように、扱うデータの規制が厳しい組織を想定しています。\n\n「TPU 8i Max」は、従来の8iのチップを2つ1つにまとめたものです。計算量とメモリの速度が、8iの2倍になります。\n\n## 開発者が使いやすくなる周辺ソフト\n\nPyTorch（AI開発で広く使われる道具）のコードを書き換えずにTPUで動かせる「TorchTPU」は、先月オープンソースになりました。\n\nTPUの設定を自動化するツールも、プレビュー版として出ています。",
   "channel": "Google公式ブログ",
   "channelId": "",
@@ -245,5 +245,33 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/google-tpu-8tx-8i-max-2b7c2ae5.jpg"
+  },
+  "gptReview": {
+    "reviewedBy": "gpt-6.1-terra",
+    "reviewedAt": "2026-11-09T13:41:00+00:00",
+    "changed": [
+      "body",
+      "description",
+      "lede",
+      "seoTitle",
+      "title"
+    ],
+    "before": {
+      "title": "TPU 8tx・8i Maxが登場　暗号化したまま推論、HBM帯域は2倍",
+      "lede": "GoogleのAI専用チップ「TPU」の第8世代に、機密データ向けの「TPU 8tx」と巨大な入力向けの「TPU 8i Max」が加わりました。1年に4つのTPUシステムを出すのは初めてで、8i Maxは8iの2倍の計算量とHBM帯域を持ちます。価格と提供開始日はまだ発表されておらず、個人が今すぐ使えるものではありません。"
+    },
+    "fixes": [
+      {
+        "before": "暗号化したまま推論",
+        "after": "処理中の機密データを保護",
+        "evidence": "「protected and isolated even while in active use」"
+      },
+      {
+        "before": "既存のラックに2倍のシリコンを収められます",
+        "after": "既存のラックと同じ設置面積に2倍のシリコンを収められます",
+        "evidence": "「twice the silicon within the existing rack footprint」"
+      }
+    ],
+    "notes": "処理中の暗号化を断定せず、資料にある保護・隔離の説明に直しました。提供状況はGoogleの発表で示されていない範囲に限定し、リードと見出しを読みやすく整理しました。"
   }
 }
