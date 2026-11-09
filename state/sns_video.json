@@ -2737,23 +2737,21 @@
       "pages": []
     },
     "child-allowance-third-child-monthly-30000": {
-      "at": "2026-11-09T00:43:20+00:00",
+      "at": "2026-11-09T00:53:39+00:00",
       "status": "gate_failed",
-      "tries": 4,
-      "textAt": "2026-11-08T23:30:00+00:00",
-      "textId": "",
+      "tries": 5,
+      "textAt": "2026-11-09T00:46:20+00:00",
+      "textId": "6af1172b51492b796e6f0f62",
       "breaking": false,
       "scheduled": false,
       "versions": {
         "full": {
           "ok": false,
-          "seconds": 64.2,
-          "reasons": [
-            "v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 最初の画面が「児童手当の所得制限がなくなり拡充」という硬い見出しだけで、誰に関係するのか、なぜ大事かが伝わらない。読み上げも後半は要約の読み聞かせで、すぐに「高校生年代まで対象」の制度説明に入り引きが"
-          ],
+          "seconds": 57.253,
+          "reasons": [],
           "qa": {
             "geometry": true,
-            "vision": false,
+            "vision": true,
             "version": 1,
             "v3": false
           },
@@ -2763,13 +2761,11 @@
         },
         "short": {
           "ok": false,
-          "seconds": 34.584,
-          "reasons": [
-            "v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 最初の画面が硬い見出しだけで、5秒を過ぎる前に制度の説明調に入る。「3人目は何歳でも月3万円」と家計への影響を最初に示し、続く画面も早めに変えるとよい。"
-          ],
+          "seconds": 36.327,
+          "reasons": [],
           "qa": {
             "geometry": true,
-            "vision": false,
+            "vision": true,
             "version": 1,
             "v3": false
           },
@@ -2781,27 +2777,99 @@
       "timings": {
         "full": {
           "script": 0.0,
-          "tts": 11.39,
-          "plan_audio": 3.14,
-          "render": 29.86,
-          "gate": 4.1,
-          "sheet": 1.85,
-          "total": 50.4,
-          "ladder_total": 296.3
+          "tts": 10.13,
+          "plan_audio": 2.89,
+          "render": 25.58,
+          "gate": 3.69,
+          "sheet": 1.69,
+          "total": 44.0,
+          "ladder_total": 293.0
         },
         "short": {
           "script": 0.0,
-          "tts": 6.03,
-          "plan_audio": 1.79,
-          "render": 16.27,
-          "gate": 2.52,
-          "sheet": 1.0,
-          "total": 27.6,
-          "ladder_total": 296.3
+          "tts": 6.36,
+          "plan_audio": 1.47,
+          "render": 16.59,
+          "gate": 2.66,
+          "sheet": 1.13,
+          "total": 28.2,
+          "ladder_total": 293.0
         }
       },
       "ok": false,
-      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 最初の画面が「児童手当の所得制限がなくなり拡充」という硬い見出しだけで、誰に関係するのか、なぜ大事かが伝わらない。読み上げも後半は要約の読み聞かせで、すぐに「高校生年代まで対象」の制度 / short: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 始まり（最初の8秒で何のニュースか分からない）: 最初の画面が「児童手当の所得制限がなくなり拡充」という硬い見出しだけで、誰に関係するのか、なぜ大事かが伝わらない。読み上げも後半は要約の読み聞かせで、すぐに「高校生年代まで対象」の制度",
+      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない / short: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない",
+      "pages": [
+        "ai-tech-express.jp"
+      ]
+    },
+    "docomo-data-leak-what-to-do": {
+      "at": "2026-11-09T00:53:39+00:00",
+      "status": "gate_failed",
+      "tries": 1,
+      "textAt": "2026-11-09T01:00:00+00:00",
+      "textId": "",
+      "breaking": false,
+      "scheduled": true,
+      "versions": {
+        "full": {
+          "ok": false,
+          "seconds": 67.394,
+          "reasons": [
+            "v3: QA(目視): 場面2（話の食い違い）: 左の「全員分は5区分が流出」・読み上げの5区分の話に対し、選択文は第二報から第三報への更新の説明で、5区分の内容を言っていない",
+            "v3: QA(目視): 場面3（画面の切れ）: 表が左に寄って行の頭が画面の左端で切れ、項目名側が見えない"
+          ],
+          "qa": {
+            "geometry": true,
+            "vision": false,
+            "version": 1,
+            "v3": false
+          },
+          "template": "security",
+          "level": null,
+          "base_layout": "screen-left-headline"
+        },
+        "short": {
+          "ok": false,
+          "seconds": 37.653,
+          "reasons": [
+            "v3: QA(目視): 場面2（話の食い違い）: 左の5区分流出の話に対し、選択文は第二報から第三報への更新で内容が合わない",
+            "v3: QA(目視): 場面2（話の食い違い）: 左の5区分流出の話に対し、選択文は第二報から第三報への更新で内容が合わない"
+          ],
+          "qa": {
+            "geometry": true,
+            "vision": false,
+            "version": 1,
+            "v3": false
+          },
+          "template": "security",
+          "level": null,
+          "base_layout": "screen-left-headline"
+        }
+      },
+      "timings": {
+        "full": {
+          "script": 0.0,
+          "tts": 11.84,
+          "plan_audio": 2.55,
+          "render": 30.95,
+          "gate": 4.22,
+          "sheet": 1.92,
+          "total": 51.5,
+          "ladder_total": 309.8
+        },
+        "short": {
+          "script": 0.0,
+          "tts": 6.64,
+          "plan_audio": 1.87,
+          "render": 17.92,
+          "gate": 2.65,
+          "sheet": 1.18,
+          "total": 30.3,
+          "ladder_total": 309.8
+        }
+      },
+      "ok": false,
+      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 場面2（話の食い違い）: 左の「全員分は5区分が流出」・読み上げの5区分の話に対し、選択文は第二報から第三報への更新の説明で、5区分の内容を言っていない / short: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 場面2（話の食い違い）: 左の「全員分は5区分が流出」・読み上げの5区分の話に対し、選択文は第二報から第三報への更新の説明で、5区分の内容を言っていない",
       "pages": [
         "ai-tech-express.jp"
       ]
@@ -3294,9 +3362,18 @@
       "delayedMin": 0
     },
     "docomo-data-leak-what-to-do": {
-      "status": "waiting",
-      "why": "Muse の動画を 11:00 まで待っている",
-      "checkedAt": "2026-11-09T00:48:19+00:00"
+      "status": "created",
+      "why": "動画を作る記事なので 10:00 まで動画を待つ（来なければ写真・カードで出す）",
+      "checkedAt": "2026-11-09T00:53:39+00:00",
+      "channels": {
+        "threads": "6af11bf29214322f6888895f"
+      },
+      "id": "6af11bf29214322f6888895f",
+      "dueAt": "2026-11-09T01:31:49+00:00",
+      "variant": "",
+      "media": "card",
+      "linkPosition": "reply",
+      "delayedMin": 31
     },
     "child-allowance-third-child-monthly-30000": {
       "status": "created",
@@ -3315,22 +3392,22 @@
     "respirator-mask-ring-recall-2026": {
       "status": "waiting",
       "why": "枠（12:15）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T00:48:19+00:00"
+      "checkedAt": "2026-11-09T01:03:43+00:00"
     },
     "caa-recall-accident-report-202610": {
       "status": "waiting",
       "why": "枠（13:45）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T00:48:19+00:00"
+      "checkedAt": "2026-11-09T01:03:43+00:00"
     },
     "corporate-data-breach-record-2026": {
       "status": "waiting",
       "why": "枠（11:30）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T00:48:19+00:00"
+      "checkedAt": "2026-11-09T01:03:43+00:00"
     },
     "famima-karaage-kushi-release": {
       "status": "waiting",
       "why": "枠（15:30）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T00:48:19+00:00"
+      "checkedAt": "2026-11-09T01:03:43+00:00"
     }
   },
   "converted": {
@@ -5113,11 +5190,6 @@
     }
   },
   "presend": {
-    "6aee4091d6bbae6fa148d8b0": {
-      "rules": "76cffa5f062f-reply",
-      "at": "2026-11-06T21:06:10+00:00",
-      "ok": true
-    },
     "6aee8934af7e526d43f4f7e0": {
       "rules": "7d874b772c1b-reply",
       "at": "2026-11-07T02:33:07+00:00",
