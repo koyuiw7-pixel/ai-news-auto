@@ -5,6 +5,7 @@ import DifyDecisionLink from "@/components/DifyDecisionLink";
 import { ROUNDUP_CHANNEL, getAllArticles, getAllChannels, getAllTags } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
 import { CREATOR_CHANNELS, WIRE_SOURCES } from "@/lib/indexing";
+import { amazonAssociateStatement } from "@/lib/disclosure";
 import { hasActiveAffiliate } from "@/lib/monetization";
 import { isThinSourceChannel } from "@/lib/news-outlets";
 import { genreNav } from "@/lib/nav";
@@ -55,6 +56,7 @@ export default function Footer() {
   const genres = genreNav();
   const companies = companyCounts(ai).slice(0, 8);
   const tags = getAllTags(true).slice(0, 16);
+  const amazonStatement = amazonAssociateStatement();
 
   return (
     <footer data-funnel-pos="footer" className="mt-24 border-t-2 border-ink bg-surface">
@@ -77,8 +79,8 @@ export default function Footer() {
             </div>
 
             <p className="mt-8 max-w-md text-note leading-[1.8] text-muted">
-              当サイトはA8.netなどのアフィリエイトプログラムに参加しており、記事内に広告（プロモーション）を含む場合があります。
-              <span className="mt-1 block">Amazonのアソシエイトとして、{siteConfig.siteName}は適格販売により収入を得ています。</span>
+              当サイトはA8.netなどのアフィリエイトプログラムに参加しており、記事内に広告（プロモーション）を含む場合があります。広告・提携リンクには「PR」と表示しています。
+              {amazonStatement && <span className="mt-1 block">{amazonStatement}</span>}
             </p>
 
             <p className="mt-6 text-note font-bold text-ink">

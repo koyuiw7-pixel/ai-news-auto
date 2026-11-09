@@ -27,7 +27,10 @@ test('記事が増えれば名前が載り、古い記事だけなら消える',
 test('説明文にジャンル名を決め打ちで並べない（不動産・投資は記事が定期的にあるときだけ lib/coverage.ts が足す）',()=>{
  const config=fs.readFileSync(path.join(root,'site.config.ts'),'utf8');
  const desc=config.match(/description:\s*\n?\s*"([^"]+)"/)[1];
- assert.match(desc,/AI・テクノロジーを軸に、仕事とお金に関わるニュース/);
+ assert.match(desc,/暮らしとお金の「自分ごと」ニュース/); // 2026-11-08 台帳 A61 の軸
+ for(const rel of ['app/page.tsx','app/about/page.tsx','app/editorial-policy/page.tsx','app/articles/view.tsx','site.config.ts']){
+  assert.doesNotMatch(fs.readFileSync(path.join(root,rel),'utf8'),/AI・テクノロジーを軸/,rel);
+ }
  assert.doesNotMatch(desc,/不動産|投資|エンタメ/);
  for(const rel of ['app/page.tsx','app/about/page.tsx','app/editorial-policy/page.tsx','app/articles/view.tsx']){
   const src=fs.readFileSync(path.join(root,rel),'utf8');

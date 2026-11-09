@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
+import { AFFILIATE_PROGRAMS, amazonAssociateStatement } from "@/lib/disclosure";
 import { hasActiveAffiliate } from "@/lib/monetization";
 import { siteConfig } from "@/site.config";
 
@@ -10,12 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
+  const amazonStatement = amazonAssociateStatement();
   return (
     <LegalPage
       eyebrow="PRIVACY POLICY"
       title="プライバシーポリシー"
       lead={`${siteConfig.name}（以下「当サイト」）における、利用者情報の取り扱い方針です。`}
-      updatedAt="2026年11月3日"
+      updatedAt="2026年11月9日"
     >
       <h2>1. 取得する情報</h2>
       <p>
@@ -109,14 +111,43 @@ export default function PrivacyPage() {
       <h2>4. アフィリエイトプログラムについて</h2>
       <p>
         {hasActiveAffiliate()
-          ? "当サイトは、複数のアフィリエイトプログラムに参加しています。当サイト内のリンク経由で商品・サービスの申込や購入が行われた場合、当サイトは提携先から紹介料を受け取ることがあります。"
+          ? `当サイトは、${AFFILIATE_PROGRAMS.join("・")}などのアフィリエイト・サービス・プロバイダ（ASP）を通じて、アフィリエイトプログラムに参加しています。楽天市場の商品紹介も、A8.netの楽天アフィリエイトを通じたリンクです。当サイト内のリンク経由で商品・サービスの申込や購入が行われた場合、当サイトは提携先から紹介料を受け取ることがあります。`
           : "当サイトは、今後アフィリエイトプログラムに参加する予定です。参加を開始した時点で、成果報酬が発生するリンクには「PR」表記を付与し、本ページにもその旨を反映します。現時点で当サイトから外部サイトへのリンクは、いずれも紹介料の発生しない通常のリンクです。"}
+        参加するASPや提携先が増えた場合は、本ページを更新してお知らせします。
       </p>
+
+      <h3>提携リンクで使われるCookie</h3>
       <p>
-        これらのリンクを経由した際、提携先の判断でCookieが保存され、成果の計測に使用されることがあります。当サイトが利用者の個人情報を
-        提携先に提供することはありません。該当するリンクには「PR」表記と
+        提携リンク（「PR」と表示したリンク）を押すと、ASPや提携先（ショップ・サービスの運営会社）が、どのサイトから来た申込・購入かを計測するために、利用者のブラウザにCookieや類似の技術で識別子を保存することがあります。
+        保存されるのは、リンクを押した日時・経由したサイト・広告の種類など、成果を計測するための情報です。氏名・住所・メールアドレスなど、個人を直接特定する情報は含まれません。
+        当サイトが、利用者の個人情報を提携先やASPに提供することはありません。該当するリンクには「PR」表記と
         <code>rel=&quot;sponsored nofollow&quot;</code> 属性を付与しています。
       </p>
+      <p>
+        Cookieの取り扱いは各社の方針によります。詳しくは、
+        <a href="https://www.fancs.com/privacy/" target="_blank" rel="noopener noreferrer">
+          A8.netを運営する株式会社ファンコミュニケーションズの個人情報保護方針
+        </a>
+        、
+        <a href="https://privacy.rakuten.co.jp/" target="_blank" rel="noopener noreferrer">
+          楽天グループの個人情報保護方針
+        </a>
+        などをご確認ください。
+      </p>
+      {amazonStatement && (
+        <p>
+          当サイトは、Amazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイトプログラムである、Amazonアソシエイト・プログラムの参加者です。{amazonStatement}
+          Amazonでの個人情報の取り扱いは、Amazon.co.jpのプライバシー規約によります。
+        </p>
+      )}
+
+      <h3>提携リンクのCookieを止めるには</h3>
+      <ul>
+        <li>ブラウザの設定で、Cookieを削除する、またはサードパーティCookie（ほかのサイトのCookie）をブロックできます。iPhone の Safari は「設定」→「Safari」→「サイト越えトラッキングを防ぐ」、Chrome は「設定」→「プライバシーとセキュリティ」→「サードパーティCookie」から変えられます。</li>
+        <li>ブラウザのプライベートブラウズ（シークレットモード）を使うと、閉じたときにCookieが消えます。</li>
+        <li>Cookieを止めても、当サイトの記事はこれまでどおり読めます。止めた場合、提携先での成果の計測が行われないだけで、利用者の申込や購入には影響しません。</li>
+      </ul>
+
       <p>
         広告・提携リンクのクリックを集計しています。また、一部の選び方ガイドでは、ページや比較表の表示、ガイドへの遷移、無料の選択肢を含む行き先のクリックを集計します。記録するのはページのパス、置き場所、行動の種類、行き先の分類、流入元の分類（Google・SNSなど）です。検索語や参照元URLの全文は保存しません。
       </p>

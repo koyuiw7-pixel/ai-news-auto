@@ -69,6 +69,9 @@ const nextConfig: NextConfig = {
         permanent: true,
       })),
       ...guideRedirects(),
+      // よく使われる別名（提携の審査・読者が打ち込む URL）を正しいページへ送る（2026-11-09）
+      { source: "/privacy-policy", destination: "/privacy", permanent: true },
+      { source: "/terms", destination: "/disclaimer", permanent: true },
     ];
   },
   // 新しい記事・カバーだけビルド時に静的化し、残りは初回アクセス時に生成する（ISR）。

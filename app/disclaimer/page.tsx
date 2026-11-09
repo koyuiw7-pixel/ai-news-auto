@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
+import { AFFILIATE_PROGRAMS, amazonAssociateStatement } from "@/lib/disclosure";
 import { hasActiveAffiliate } from "@/lib/monetization";
 import { siteConfig } from "@/site.config";
 
@@ -10,12 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default function DisclaimerPage() {
+  const amazonStatement = amazonAssociateStatement();
   return (
     <LegalPage
       eyebrow="DISCLAIMER"
       title="免責事項・広告について"
       lead="当サイトの記事は、生成AIが下書きし、自動の事実確認を経て公開しています。ご利用前に、その性質と限界を必ずご確認ください。"
-      updatedAt="2026年11月3日"
+      updatedAt="2026年11月9日"
     >
       <h2>1. 記事はAIが下書きしています</h2>
       <p>
@@ -57,13 +59,13 @@ export default function DisclaimerPage() {
       <h2>5. 広告・アフィリエイトについて</h2>
       <p>
         {hasActiveAffiliate()
-          ? "当サイトは、広告収入およびアフィリエイト報酬によって運営費をまかなっています。"
+          ? `当サイトは、${AFFILIATE_PROGRAMS.join("・")}などのアフィリエイトプログラムに参加しています。当サイト内のリンクを経由して商品・サービスの申込や購入があった場合、提携先から紹介料を受け取ることがあります。運営費は、広告収入とこのアフィリエイト報酬でまかなっています。`
           : "当サイトは、今後の広告収入およびアフィリエイト報酬によって運営費をまかなう予定です。現時点では成果報酬が発生するリンクは掲載しておらず、外部サイトへのリンクはいずれも通常のリンクです。"}
-        景品表示法（いわゆるステルスマーケティング規制）および
+        景品表示法の告示（いわゆるステルスマーケティング規制）および
         Googleのガイドラインに従い、次の対応を行っています。
       </p>
       <ul>
-        <li>広告・アフィリエイトを含む箇所には「PR」と明示する</li>
+        <li>広告・アフィリエイトを含むページには「本ページはプロモーションを含みます」と表示し、広告・提携リンクのそばに「PR」と明示する</li>
         <li>
           アフィリエイトリンクには <code>rel=&quot;sponsored nofollow&quot;</code>{" "}
           属性を付与する
@@ -72,12 +74,17 @@ export default function DisclaimerPage() {
         <li>報酬の受け取りを理由に、不利な情報を削除しない</li>
       </ul>
       <p>
-        当サイトは、Amazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイトプログラムである、Amazonアソシエイト・プログラムの参加者です。
-        <strong>Amazonのアソシエイトとして、{siteConfig.siteName}は適格販売により収入を得ています。</strong>
-        Amazonへのリンクには価格や商品画像を載せず、商品名・検索結果へのテキストリンクのみを掲載しています。
+        Amazon・楽天市場へのリンクには、提携リンク（PR）を含みます。これらのリンクには価格や商品画像を載せず、商品名・検索結果へのテキストリンクのみを掲載しています。価格・在庫・仕様は各ショップのページでご確認ください。
       </p>
+      {amazonStatement && (
+        <p>
+          当サイトは、Amazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイトプログラムである、Amazonアソシエイト・プログラムの参加者です。
+          <strong>{amazonStatement}</strong>
+        </p>
+      )}
       <p>
         報酬が発生するのは、利用者がリンクを経由して申込等を行った場合です。利用者に追加の費用が発生することはありません。
+        提携リンクで使うCookieと、その止め方は<a href="/privacy">プライバシーポリシー</a>の「4. アフィリエイトプログラムについて」に書いています。
       </p>
 
       <h2>6. 著作権について</h2>

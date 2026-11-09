@@ -178,7 +178,7 @@ export default function HomePage() {
 
         <footer className="mt-20 grid gap-3 border-t border-line pt-8">
           <p className="max-w-[70ch] text-desc leading-relaxed text-ink-soft">
-            <strong>{siteConfig.siteName}（{siteConfig.nickname}）</strong>は、AI・テクノロジーを軸に、仕事とお金に関わるニュースを公式発表から最速で伝えるニュースメディアです。要点を3行で整理し、仕事やお金にどう活かせるか、明日から何ができるかまで書きます。{alsoCoveredSentence()}
+            <strong>{siteConfig.siteName}（{siteConfig.nickname}）</strong>は、暮らしとお金の「自分ごと」ニュースを公式発表から最速で伝えるニュースメディアです。要点を3行で整理し、自分は対象か、いくらか、何をすればいいかまで書きます。AIは、暮らしと仕事での使い方の目線で扱います。{alsoCoveredSentence()}
           </p>
           <p className="flex flex-wrap gap-x-6 gap-y-2 text-note leading-relaxed text-ink-soft">
             <Link href="/about" className="underline decoration-line-strong underline-offset-4 hover:text-accent">サイソクについて・運営者情報</Link>
