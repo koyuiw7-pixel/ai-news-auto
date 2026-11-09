@@ -62,9 +62,9 @@
   "newsType": "security",
   "faq": [],
   "todayActions": [
-    "住友生命の11月9日付のお詫びとお知らせで、自分が対象かどうかと案内を確認する",
+    "住友生命の11月9日付「お詫びとお知らせ」で、自分が対象かと案内を確認する",
     "NTTデータや住友生命を名乗る電話・メール・郵便物には、パスワードやカード情報を伝えない",
-    "Vitalityの申込みにカードを使った心当たりがあれば、カード会社の明細を確認する"
+    "同じパスワードを使い回しているサービスは、順に変更する"
   ],
   "publicInterest": "breach",
   "qualityScore": 92,
@@ -84,5 +84,103 @@
     ],
     "ar": 1.9048,
     "src": "https://www.nttdata.com/global/ja/-/media/assets/images/sns_share.png?rev=583d5951ace649c08be7a88679328a3b"
-  }
+  },
+  "insight": [
+    {
+      "text": "利用者への案内やサービスへの影響は、住友生命の「業務委託先システムへの不正アクセスによるお客さま情報漏えいに関するお詫びとお知らせ」で確認できると、NTTデータの発表に書かれています。",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/110900"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "住友生命の公表内容（業務委託先システムへの不正アクセスによるお客さま情報漏えいに関するお詫びとお知ら",
+      "url": "https://www.sumitomolife.co.jp/news/detail/newsrelease_261109.html",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/110900",
+      "note": "サービスへの影響や、利用者への案内はこちらの公表内容を参照するよう、NTTデータの発表で求められています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "住友生命の11月9日付「お詫びとお知らせ」で、自分が対象かと案内を確認する",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/110900",
+      "steps": [
+        "住友生命の公表内容で「お詫びとお知らせ」を探す",
+        "サービスへの影響と利用者への案内を読む"
+      ],
+      "url": "https://www.sumitomolife.co.jp/news/detail/newsrelease_261109.html"
+    },
+    {
+      "action": "NTTデータや住友生命を名乗る電話・メール・郵便物には、パスワードやカード情報を伝えない",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/110900",
+      "steps": [
+        "NTTデータや住友生命を装った連絡か確かめる",
+        "パスワードやクレジットカード情報は開示しない",
+        "迷ったら住友生命の公表内容を確認する"
+      ]
+    },
+    {
+      "action": "同じパスワードを使い回しているサービスは、順に変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "パスワードを使い回しているサービスを洗い出す",
+        "サイトごとに違うパスワードに変更する",
+        "パスワード管理アプリの利用も検討する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "NTTデータは2026年11月2日、第三者による不正アクセスを確認しました。不正アクセスの原因や詳細な経緯については、引き続き調査を進めています。住友生命と連携して原因の確認や再発防止策の検討を進めているとしています。",
+    "status": "investigating",
+    "source": "https://www.nttdata.com/global/ja/news/release/2026/110900"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの番号は全員漏れたの？",
+      "a": "カード番号（一部マスキング済み）が漏れたのは約1000名と発表されています。対象の約8万名は、氏名・住所・電話番号・生年月日・メールアドレスのいずれかが漏れたとされています。",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/110900",
+      "action": "カード会社の利用明細を開き、身に覚えのない請求がないか、いつもより注意して確認する",
+      "actionSource": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "actionGeneral": true
+    },
+    {
+      "q": "知らない電話や郵便物が来たら、どうすればいい？",
+      "a": "NTTデータや住友生命を装った不審な電話、メール、郵便物が届いた場合は、パスワードやクレジットカード情報などを開示しないよう呼びかけられています。",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/110900",
+      "action": "知らない番号からの電話には出ず、番号表示や非通知拒否のサービスを設定して、不審な電話を避ける",
+      "actionSource": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "actionGeneral": true
+    },
+    {
+      "q": "パスワードも漏れたから変えないといけない？",
+      "a": "発表された漏えい情報の種類に、パスワードは含まれていません。漏れたのは氏名、住所、電話番号、生年月日、メールアドレス、クレジットカード番号（一部マスキング済み）のいずれかです。",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/110900",
+      "action": "同じパスワードを使い回しているサービスがあれば、サイトごとに違うパスワードへ順に変える",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "サービスはいつ使えるようになる？",
+      "a": "再開時期はまだ決まっていません。安全性を十分に確認したうえで再開を判断するとしています。新たに分かったことは、速やかに公表するとしています。",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/110900",
+      "action": "住友生命の公表内容で、サービス再開の案内が出ていないか確認する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "サービスが再開するまで待つ？",
+      "situation": "Vitalityを今すぐ使いたい",
+      "recommend": "再開時期は未定なので、住友生命の案内を待つ",
+      "reason": "サービスは一時停止中で、再開時期は決まっていません。安全性を十分に確認したうえで再開を判断するとされています。再開の案内は住友生命の公表内容で確認できます。",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/110900"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "被害の範囲と案内は、住友生命の発表で確認",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日やること、迷ったらまず確認",
+    "desk": "案内を探すなら、住友生命の発表へ",
+    "worries": "カードや電話番号、いま気になるのは？",
+    "guide": "サービス再開を待つか、迷ったときの考え方"
+  },
+  "depthAt": "2026-11-09T07:17:36+00:00"
 }

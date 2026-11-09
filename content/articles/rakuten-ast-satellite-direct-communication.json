@@ -86,9 +86,8 @@
     }
   ],
   "todayActions": [
-    "楽天モバイルの契約者は、公式サイトで衛星サービスの料金や提供条件の発表を確かめる",
-    "圏外の山間部や離島で作業する事業者は、2029年3月末の運用開始目標を社内で共有する",
-    "2026年内に始まる商用環境でのテストの続報を、楽天モバイルの発表で確認する"
+    "楽天モバイルのサイトで、衛星サービスの料金や提供条件の発表が出ていないか確かめる",
+    "楽天グループのプレスリリースで、2026年内の商用環境テストの開始発表を確認する"
   ],
   "qualityScore": 88,
   "breaking": true,
@@ -129,5 +128,106 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/rakuten-ast-satellite-direct-communication-1d26b720.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "本事業は山間部や離島の圏外解消に加え、災害などの有事にも通信環境を維持できる体制を整えることも目的とされています。",
+      "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "楽天グループ プレスリリース",
+      "url": "https://corp.rakuten.co.jp/news/press/",
+      "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html",
+      "note": "本事業とは別に、2026年内に衛星ダイレクト通信の商用環境でのテスト開始を予定と書かれています。"
+    },
+    {
+      "name": "楽天モバイル株式会社",
+      "url": "https://corp.mobile.rakuten.co.jp/",
+      "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html",
+      "note": "衛星サービスの料金や提供条件は、読んだプレスリリースには書かれていません。"
+    },
+    {
+      "name": "総務省 自律性確保に向けた低軌道衛星インフラ整備事業（J-LEO）",
+      "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/jiritsuseikakuho.html",
+      "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html",
+      "note": "本事業の採択の根拠として、プレスリリースの注3に示されたリンク先です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "楽天モバイルのサイトで、衛星サービスの料金や提供条件の発表が出ていないか確かめる",
+      "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html",
+      "steps": [
+        "楽天モバイルの詳細が載るウェブサイトを開く",
+        "衛星サービスの料金や提供条件の発表を探す"
+      ],
+      "url": "https://corp.mobile.rakuten.co.jp/"
+    },
+    {
+      "action": "楽天グループのプレスリリースで、2026年内の商用環境テストの開始発表を確認する",
+      "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html",
+      "steps": [
+        "楽天グループのトップの「プレスリリース」を開く",
+        "2026年の発表で衛星ダイレクト通信のテストを探す"
+      ],
+      "url": "https://corp.rakuten.co.jp/news/press/"
+    }
+  ],
+  "cause": {
+    "text": "山間部や離島などの圏外エリア解消に加え、経済安全保障を強めるため、日本国内で運用・管理される非地上系ネットワーク（NTN）を確立する目的だと説明されています。",
+    "status": "background",
+    "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html"
+  },
+  "worries": [
+    {
+      "q": "今の料金や契約は、この発表で変わる？",
+      "a": "この発表で料金や契約が変わるとは書かれていません。衛星サービスの料金や提供方法も、ページには記載がありません。",
+      "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html",
+      "action": "今の契約内容を楽天モバイルのサイトで確認しておく"
+    },
+    {
+      "q": "山間部や離島でも、いつか電波がつながる？",
+      "a": "本事業は山間部や離島などの圏外エリア解消を目的としています。ただし国内運用開始は2029年3月末までの目標で、提供エリアや開始時期は発表されていません。",
+      "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html",
+      "action": "自分の住む地域が対象になるかは、発表後に楽天モバイルの案内で確かめる"
+    },
+    {
+      "q": "特別な機器がいらない？今のスマホで使える？",
+      "a": "特別な機器は不要で、市販のスマートフォンで動画視聴やSNSなどの高速通信を使えるとしています。ただし提供開始の時期は発表されていません。",
+      "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html",
+      "action": "お使いの端末が対応するかは、提供条件が出た時点で楽天モバイルの案内を確かめる"
+    },
+    {
+      "q": "災害のとき、衛星回線でも連絡できる？",
+      "a": "有事にも通信環境を維持できる体制を整えることを企図していると書かれています。ただし、災害時の具体的な提供条件は発表されていません。",
+      "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html",
+      "action": "有事の提供条件が発表されたかを、楽天グループのプレスリリースで確認する"
+    },
+    {
+      "q": "いつから使えるようになる？",
+      "a": "契約者がいつから使えるかは発表されていません。2026年内に商用環境でのテスト開始を予定し、国内運用開始は2029年3月末までの目標です。",
+      "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html",
+      "action": "2026年内のテスト開始の発表を、楽天グループのプレスリリースで確認する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "衛星サービスを待つか、今の契約のままか？",
+      "situation": "圏外で困ることがあり、衛星でつながる場所に住み・働く",
+      "recommend": "急がなくてよい",
+      "reason": "料金や提供方法は発表されておらず、国内運用開始は2029年3月末までの目標です。発表を待ってから比べられます。",
+      "source": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "災害時も使えるようにする狙い",
+    "cause": "なぜ衛星でつなぐのか、目的は",
+    "steps": "今すぐ確かめられること",
+    "desk": "問い合わせ・確認先",
+    "worries": "料金や使える時期はいつ分かる？",
+    "guide": "待つか今の契約のままか、迷ったとき"
+  },
+  "depthAt": "2026-11-09T07:18:13+00:00"
 }
