@@ -401,6 +401,29 @@ BROAD_FEEDS: list[dict] = [
     {"slug": "rakuten-card", "name": "楽天カード お知らせ", "url": "https://www.rakuten-card.co.jp/info/news/", "type": "html",
      "link_re": r"rakuten-card\.co\.jp/info/news/20\d{6}", "section": "investment", "kind": "company", "priority": 3,
      "include_re": "不正アクセス|流出|漏え?い|詐欺|フィッシング|偽|なりすまし|手数料|改定|終了|停止|障害|廃止|3Dセキュア|本人認証"},
+    # 2026-11-10 台帳 A69: 11/9 は公式の新しい発表が1日 約130件しかなく（夜はほぼ0）、100本に届かなかった。
+    #   暮らしとお金の「自分ごと」に効く公式の発信元を足す（どれも 2026-11-10 に一覧から日付つきの項目が読めることを確認）
+    # 帝国データバンク（自社の調査。食品の値上げの集計・倒産の動向・景気・賃金）。動画・事例・地域ブロック別の再掲・個別の倒産速報は外す
+    {"slug": "tdb", "name": "帝国データバンク", "url": "https://www.tdb.co.jp/report/", "type": "html",
+     "link_re": r"tdb\.co\.jp/report/(?:economic|industry)/", "section": "business", "kind": "company", "priority": 2,
+     "exclude_re": r"動画|ブロック|北海道・|事例|セミナー|ウェビナー"},
+    # 製品評価技術基盤機構（NITE）の注意喚起（暖房器具・リチウムイオン電池・子どもの事故など。月1〜2本）
+    {"slug": "nite", "name": "NITE（製品評価技術基盤機構）", "url": "https://www.nite.go.jp/jiko/chuikanki/press/2026fy/index.html",
+     "type": "html", "link_re": r"nite\.go\.jp/jiko/chuikanki/press/\d{4}fy/prs\d+\.html", "section": "lifestyle", "kind": "gov", "priority": 2},
+    # 協会けんぽ（出産手当金・傷病手当金・保険料率・災害時の窓口負担の免除など。11/9 の出産手当金の記事は読まれた）
+    {"slug": "kyoukaikenpo", "name": "全国健康保険協会（協会けんぽ）", "url": "https://www.kyoukaikenpo.or.jp/news/", "type": "html",
+     "link_re": r"kyoukaikenpo\.or\.jp/news/", "section": "public", "kind": "gov", "priority": 2},
+    # 防災庁（2026-11-02 発足）。人事・式典は外す
+    {"slug": "bousai", "name": "防災庁", "url": "https://www.bousai.go.jp/", "type": "html", "section": "public", "kind": "gov", "priority": 2,
+     "exclude_re": r"人事|発足式|看板|ミッション|基本理念|大臣|会見"},
+    # 総務省消防庁の報道発表（本文は PDF）。叙勲・訓練・意見公募が多いので、家の火災・電池・救急・熱中症の注意だけ
+    {"slug": "fdma", "name": "総務省消防庁", "url": "https://www.fdma.go.jp/pressrelease/houdou/", "type": "html",
+     "link_re": r"fdma\.go\.jp/pressrelease/houdou/items/", "section": "public", "kind": "gov", "priority": 3,
+     "include_re": r"火災|警報器|リチウム|電池|ストーブ|暖房|救急|熱中症|避難|地震|豪雨|大雪",
+     "exclude_re": r"訓練|意見公募|叙勲|表彰|褒章|人事"},
+    # 確かめたが使えなかったもの（2026-11-10 A69 の追加分）: 関西電力・東北電力・北海道電力・大阪市・大阪府・川崎市・みずほ・JR東日本・JAL（403/404）、
+    #   国交省の自動車リコール・日本年金機構のお知らせ一覧・ソフトバンクの報道発表・日本郵政・ANA・札幌市（日付つきの項目が読めない）、
+    #   三菱UFJ銀行・Y!mobile（直近7日の更新なし・端末の更新のお知らせばかり）
     # 確かめたが使えなかったもの（2026-11-07 夜 A57 の追加分）: 中小企業庁・経産省の Atom（直近14日の項目が無い）、ソフトバンク・au の障害/お知らせ・
     #   三井住友カード・セブン銀行・PayPay銀行（一覧から日付つきの項目が読めない）、楽天銀行・三菱UFJ の RSS・埼玉県・千葉県・神戸市・川崎市・さいたま市・
     #   九州電力・東北電力（404）、資源エネ庁・関西電力・消費者庁の注意喚起の RSS（403）、個人情報保護委員会（一覧が1件しか読めない）
