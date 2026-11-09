@@ -31,10 +31,12 @@ class DailyTargetTest(unittest.TestCase):
             self.assertEqual(cap, 100, day)
 
     def test_per_run_counts_make_100_reachable(self):
-        # 実際に回るのは1日50回ほど。AI は1回1本のまま、国内のレーンを1回3本にする
-        self.assertEqual(ramp.broad_per_run(100), 3)
+        # 実際に回るのは日中1時間に3回ほど（約54回）。2026-11-09 オーナー「100本/日は必須」: 国内のレーンを1回4本・AI を1回2本にする
+        self.assertEqual(ramp.broad_per_run(100), 4)
+        self.assertEqual(ramp.ai_per_run(100), 2)
         self.assertLessEqual(ramp.broad_per_run(45), 1)
-        self.assertGreaterEqual(50 * (ramp.broad_per_run(100) + 1), 100)
+        self.assertEqual(ramp.ai_per_run(60), 1)
+        self.assertGreaterEqual(50 * 0.7 * (ramp.broad_per_run(100) + ramp.ai_per_run(100)), 100)
 
     def test_main_writes_100_without_the_old_variable(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -49,13 +51,14 @@ class DailyTargetTest(unittest.TestCase):
                     ramp.main()
             text = out.read_text("utf-8")
             self.assertIn("web_daily_cap=100", text)
-            self.assertIn("broad_per_run=3", text)
+            self.assertIn("broad_per_run=4", text)
+            self.assertIn("ai_per_run=2", text)
 
     def test_workflow_reads_only_the_brake_variable(self):
         self.assertIn("WEB_DAILY_CAP_OVERRIDE: ${{ vars.WEB_DAILY_CAP_BRAKE }}", AUTO_RUN)
         self.assertNotIn("vars.WEB_DAILY_CAP }}", AUTO_RUN)
-        # AI のレーン（海外の発表が中心）は1回1本のまま
-        self.assertIn("--max \"${{ vars.WEB_MAX_PER_RUN || '1' }}\"", AUTO_RUN)
+        # AI のレーンの1回あたりは ramp.py が決める（変数 WEB_MAX_PER_RUN があればそちら。海外の AI は1日の上限で止まる）
+        self.assertIn("--max \"${{ vars.WEB_MAX_PER_RUN || steps.ramp.outputs.ai_per_run || '1' }}\"", AUTO_RUN)
 
 
 class SearchIntentGuidesTest(unittest.TestCase):

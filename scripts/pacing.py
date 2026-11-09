@@ -82,6 +82,31 @@ def run_allowance(cap: int, done_today: int, now: datetime | None = None) -> tup
     return min(by_cap, by_pace), by_cap, by_pace
 
 
+# 2026-11-09 オーナー「100本/日は必須」「作業止まるみたいなこと多いからなくして」: 1日の上限に遅れていたら、1回あたりの本数を自動で上げる。
+# 記事の回は日中おおよそ20分に1回（見張り番の Worker が起動）。門で落ちる・候補が尽きる回もあるので、作れる割合（YIELD）で割り戻す
+ACTIVE_START = 6  # この時刻（日本時間）から24時までに1日の上限を作り切る想定
+RUN_INTERVAL_MIN = int(os.environ.get("PACE_RUN_INTERVAL_MIN", "20"))
+RUN_YIELD = float(os.environ.get("PACE_RUN_YIELD", "0.7"))
+BOOST_MAX = int(os.environ.get("PACE_BOOST_MAX", "4"))  # 1回に足す本数の上限（1回の時間 25 分に収める）
+
+
+def needed_per_run(cap: int, done_today: int, now: datetime | None = None) -> int:
+    """24時までに上限に届くには、残りの回で1回あたり何本作ればよいか（作れる割合で割り戻した数）。夜中・上限なしは 0"""
+    if cap <= 0 or done_today >= cap:
+        return 0
+    now = (now or datetime.now(JST)).astimezone(JST)
+    if now.hour < ACTIVE_START:
+        return 0
+    minutes_left = 24 * 60 - (now.hour * 60 + now.minute)
+    runs_left = max(1, minutes_left // max(RUN_INTERVAL_MIN, 1))
+    return math.ceil((cap - done_today) / runs_left / max(RUN_YIELD, 0.1))
+
+
+def behind_boost(cap: int, done_today: int, base_per_run: int, now: datetime | None = None) -> int:
+    """遅れているときに、この回だけ足す本数（0〜BOOST_MAX）"""
+    return max(0, min(BOOST_MAX, needed_per_run(cap, done_today, now) - base_per_run))
+
+
 def by_hour(state: dict, now: datetime | None = None, articles_dir: Path | None = None) -> dict[int, tuple[int, int]]:
     """今日の時間ごとの (作った本数, いま公開中の本数)。読者像外の話題も含む（実際に出た本数を見るため）"""
     now = now or datetime.now(JST)

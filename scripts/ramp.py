@@ -43,23 +43,34 @@ def review_cap(web: int, today: str) -> int:
 
 
 def broad_per_run(web: int) -> int:
-    """幅広い話題（国内のニュース）の1回あたりの本数。AI のレーンは1回1本のまま（海外 AI は増やさない）。
-    実際に回るのは1日50回ほど（1回が20分を超えると次は待つ）。100本/日なら AI と大きなニュースを除いた約75本を
-    国内のレーンで作るので1回3本（作れる本数は pacing の配分と1日の上限で止まる）"""
+    """幅広い話題（国内のニュース・暮らしとお金）の1回あたりの本数。
+    2026-11-09 オーナー「100本/日は必須」: 実際に回るのは日中1時間に3回ほど（6〜24時で約54回）。
+    11/9 の昼は候補が 18〜21 件あるのに1回2本で止まり、14時で23本しか出ていなかった。100本/日なら1回4本
+    （遅れているときは scripts/pacing.py の needed_per_run でさらに増やす。1日の上限・時刻の配分では止まる）"""
     if web <= 45:
         return 1
     if web < 80:
         return 2
-    return 3
+    if web < 100:
+        return 3
+    return 4
+
+
+def ai_per_run(web: int) -> int:
+    """AI のレーン（公式ブログ）の1回あたりの本数。海外の AI の発表は1日の上限（web_articles.FOREIGN_AI_DAILY_CAP・台帳 A47）で止まる。
+    国内の企業の AI の発表・使い方は数えないので、1回2本まで（100本/日のとき）"""
+    return 2 if web >= 80 else 1
 
 
 # 2026-11-08 オーナー決定（台帳 A58）: 100本へは段階を踏んで上げる。40 → 60（3〜4日）→ 80（1週間）→ 100。
 # 次の段に上げるのは (a) 門の合格率が安定し0本の回が無い (b) 新しい記事の7日のインデックス率がおよそ60%以上
 # (c)「クロール済み・インデックス未登録」がインデックス済みより速く増えていない、がそろったときだけ（確かめるのはメインのセッション）。
-# 悪ければ上げるのを止める（本数は減らさない）。段は GitHub の変数 WEB_STAGE_TARGET で上げる（未設定なら 60）。
+# 悪ければ上げるのを止める（本数は減らさない）。段は GitHub の変数 WEB_STAGE_TARGET で上げる（2026-11-09 から未設定なら 100）。
 # ニュースの記事の上限で、使い方・手続きのガイド（evergreen.yml・EVERGREEN_DAILY_CAP）は別に数える
+# 2026-11-09 オーナー指示「100本/日は必須（訪問の目標のため）」: 段は今日から100（変数 WEB_STAGE_TARGET=100・未設定でも100）。
+# インデックス率などの見張りは夜の報告で続けるが、上限を下げる理由にはしない
 STAGES = (40, 60, 80, 100)
-DEFAULT_STAGE = 60
+DEFAULT_STAGE = 100
 
 
 def stage_target() -> int:
@@ -78,11 +89,12 @@ def main() -> None:
     out = os.environ.get("GITHUB_OUTPUT")
     # 20分ごと（1日72回）に出すので、上限が大きい日は1回あたりの本数も増やす
     broad = os.environ.get("BROAD_MAX_PER_RUN_OVERRIDE") or str(broad_per_run(int(web)))
-    lines = f"web_daily_cap={web}\nsns_per_day={sns}\nbroad_per_run={broad}\n"
+    ai = os.environ.get("AI_MAX_PER_RUN_OVERRIDE") or str(ai_per_run(int(web)))
+    lines = f"web_daily_cap={web}\nsns_per_day={sns}\nbroad_per_run={broad}\nai_per_run={ai}\n"
     if out:
         with open(out, "a", encoding="utf-8") as f:
             f.write(lines)
-    print(f"[ramp] {today}: 記事の上限 {web}本/日（動画は別）・SNS {sns}本/日")
+    print(f"[ramp] {today}: 記事の上限 {web}本/日（動画は別）・SNS {sns}本/日・1回あたり 幅広い話題 {broad}本 / AI {ai}本")
 
 
 if __name__ == "__main__":

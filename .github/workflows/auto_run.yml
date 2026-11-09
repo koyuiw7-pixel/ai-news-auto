@@ -109,6 +109,8 @@ jobs:
           WEB_STAGE_TARGET: ${{ vars.WEB_STAGE_TARGET }}
           SNS_PER_DAY_OVERRIDE: ${{ vars.SNS_PER_DAY }}
           BROAD_MAX_PER_RUN_OVERRIDE: ${{ vars.BROAD_MAX_PER_RUN }}
+          # 2026-11-09 オーナー「100本/日は必須」: AI のレーンの1回あたり（未設定なら上限 100本/日で2本。遅れていれば web_articles が自動で足す）
+          AI_MAX_PER_RUN_OVERRIDE: ${{ vars.WEB_MAX_PER_RUN }}
         run: python scripts/ramp.py
 
       # Claude Code（オーナーの契約）を質重視の記事に使う。1日の上限は CLAUDE_DAILY_MAX
@@ -183,7 +185,7 @@ jobs:
             exit 0
           fi
           python scripts/web_articles.py \
-            --max "${{ vars.WEB_MAX_PER_RUN || '1' }}" \
+            --max "${{ vars.WEB_MAX_PER_RUN || steps.ramp.outputs.ai_per_run || '1' }}" \
             --max-broad "${{ steps.ramp.outputs.broad_per_run }}" \
             --trends "${{ vars.TREND_MAX_PER_RUN || '1' }}" \
             --daily-cap "${{ steps.ramp.outputs.web_daily_cap }}" \
@@ -401,6 +403,17 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/pipeline_health.py --alert
+
+      # 止まりの見張り（2026-11-09 オーナー「作業止まるみたいなこと多いからなくして」）: stall_watch.yml の予約が遅れても、
+      # 約20分ごとのこの回で、記事90分なし・公開／テスト／前の回の失敗・SNS の枠の取りこぼしを調べて issue（ラベル stall）を開く・閉じる。
+      # テストはこの回の push の前（scripts/git_safe_push.py）で動くので、ここでは動かさない。state/stall.json は stall_watch.yml が書く
+      - name: Stall watch
+        if: ${{ (inputs.fast_url || '') == '' }}
+        continue-on-error: true
+        timeout-minutes: 3
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/stall_watch.py --issue --skip-tests
 
       - name: Commit & push
         id: commit

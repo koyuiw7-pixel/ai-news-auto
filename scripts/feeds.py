@@ -33,7 +33,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import pdf_text  # noqa: E402  PDF の資料の文字の取り出し（壊れた文字は本文にしない）
 
-UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/125.0 Safari/537.36"
+UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
 TEXT_CAP = 12_000
 
 # --------------------------------------------------------------------------- #
@@ -537,18 +537,38 @@ def legacy_ssl_context() -> ssl.SSLContext:
     return context
 
 
+def _is_legacy_ssl_error(error: BaseException) -> bool:
+    return "UNSAFE_LEGACY_RENEGOTIATION" in str(getattr(error, "reason", "") or error)
+
+
 def fetch(url: str, timeout: int = 25, accept: str = "*/*", token: str = "", extra_headers: dict | None = None) -> tuple[bytes, str]:
     """(本文バイト列, 最終URL)。gzip 圧縮のまま返すサーバー（deepmind.google 等）にも対応。
     token は読み取りサービス（r.jina.ai）の鍵（JINA_API_KEY。あれば回数制限にかかりにくい）。
-    extra_headers は読み取りサービスへの指定など（例: {"X-Return-Format": "html"}）"""
-    headers = {"User-Agent": UA, "Accept": accept, "Accept-Encoding": "gzip, deflate", "Accept-Language": "ja,en;q=0.8", **(extra_headers or {})}
+    extra_headers は読み取りサービスへの指定など（例: {"X-Return-Format": "html"}）。
+    2026-11-09: ページを開くときはブラウザと同じ見出し（Sec-Fetch-* など）を付ける。転送を繰り返して止まったら、クッキーを持って読み直す
+    （クッキーを付けてから同じ URL に戻すサイトが、クッキーなしだと 301 を繰り返して読めなかった）。
+    古い TLS のサーバーは、その相手にだけ古い方式を許して読み直す"""
+    import http.cookiejar  # noqa: PLC0415
+
+    headers = {"User-Agent": UA, "Accept": accept, "Accept-Encoding": "gzip, deflate", "Accept-Language": "ja,en-US;q=0.9,en;q=0.8"}
+    if accept.startswith("text/html"):
+        headers.update({"Upgrade-Insecure-Requests": "1", "Sec-Fetch-Dest": "document", "Sec-Fetch-Mode": "navigate",
+                        "Sec-Fetch-Site": "none", "Sec-Fetch-User": "?1"})
+    headers.update(extra_headers or {})
     if token:
         headers["Authorization"] = f"Bearer {token}"
+
     request = urllib.request.Request(url, headers=headers)
     try:
         response = urllib.request.urlopen(request, timeout=timeout)
+    except urllib.error.HTTPError as error:
+        if error.code not in (301, 302, 303, 307, 308):
+            raise
+        # 転送を繰り返して止まった（クッキーを付けてから同じ URL に戻すサイト）: クッキーを持って読み直す
+        opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+        response = opener.open(request, timeout=timeout)
     except urllib.error.URLError as error:
-        if "UNSAFE_LEGACY_RENEGOTIATION" not in str(error):
+        if not _is_legacy_ssl_error(error):
             raise
         # 古い暗号のやり方のままの公式サイト（2026-11-09 ahamo.com）。証明書の確認はそのままで、古い再交渉だけ許してもう一度読む
         response = urllib.request.urlopen(request, timeout=timeout, context=legacy_ssl_context())
@@ -1070,6 +1090,22 @@ class _DisallowAll:
         return False
 
 
+def _robots_via_reader(origin: str):
+    """読み取りサービス経由の robots.txt。4xx（ファイルなし・ボット除け）は制限なし、読めなければ全部禁止"""
+    try:
+        data, _ = fetch_jina(origin + "/robots.txt", timeout=20, check_robots=False)
+    except urllib.error.HTTPError as error:
+        return None if 400 <= error.code < 500 else _DisallowAll()
+    except Exception:  # noqa: BLE001
+        return _DisallowAll()
+    text = _decode(data[:500_000])
+    if m := re.search(r"Target URL returned error (\d{3})", text):
+        return None if 400 <= int(m.group(1)) < 500 else _DisallowAll()
+    if "Markdown Content:" in text:
+        text = text.split("Markdown Content:", 1)[1]
+    return Robots(text.splitlines())
+
+
 def robots_allows(url: str) -> bool:
     """robots.txt（RFC 9309）が一般のクローラー（*）にこの URL を許しているか。ホストごとに1回だけ読む。
     4xx（ファイルなし・ボット除けで読めない）は「制限なし」、5xx・通信の失敗は「全部禁止」として扱う（RFC 9309 2.3.1）"""
@@ -1083,7 +1119,9 @@ def robots_allows(url: str) -> bool:
         except urllib.error.HTTPError as error:
             parser = None if 400 <= error.code < 500 else _DisallowAll()  # 4xx は制限なし、5xx は全部禁止
         except Exception:  # noqa: BLE001
-            parser = _DisallowAll()
+            # 2026-11-09: こちら（海外のサーバー）から届かないだけのサイトがある。読み取りサービスに robots.txt を読ませて、
+            # その決まりに従う（読めなければ今までどおり全部禁止）
+            parser = _robots_via_reader(origin)
         _robots_cache[origin] = parser
     parser = _robots_cache[origin]
     return parser is None or parser.can_fetch(url)
@@ -1206,7 +1244,16 @@ def fetch_article_text(url: str) -> dict:
         direct = _fetch_direct(url)
     except Exception as error:  # noqa: BLE001
         direct = None
-        reasons.append(f"直接 {_short_error(error)}")
+        host = urllib.parse.urlsplit(url).netloc.lower()
+        if _is_timeout(error) and host not in _slow_hosts:
+            # 2026-11-09: 遅いだけの公式サイトがある。ホストごとに1回だけ、待ち時間を延ばして読み直す
+            _slow_hosts.add(host)
+            try:
+                direct = _fetch_direct(url, timeout=SLOW_TIMEOUT)
+            except Exception as again:  # noqa: BLE001
+                error = again
+        if direct is None:
+            reasons.append(f"直接 {_short_error(error)}")
     if direct and len(direct["text"]) >= 600:
         return direct
     best = direct
@@ -1229,8 +1276,20 @@ def fetch_article_text(url: str) -> dict:
     raise RuntimeError(f"本文を取得できません（{' / '.join(reasons)}）: {url}")
 
 
-def _fetch_direct(url: str) -> dict:
-    data, final_url = fetch(url, accept="text/html,application/xhtml+xml;q=0.9,*/*;q=0.8")
+SLOW_TIMEOUT = 45
+_slow_hosts: set[str] = set()  # この実行で一度待ち時間を延ばしたホスト（2回目からは延ばさない）
+
+
+def _is_timeout(error: BaseException) -> bool:
+    import socket  # noqa: PLC0415
+
+    reason = getattr(error, "reason", None)
+    return isinstance(error, (TimeoutError, socket.timeout)) or isinstance(reason, (TimeoutError, socket.timeout)) \
+        or "timed out" in str(error)
+
+
+def _fetch_direct(url: str, timeout: int = 25) -> dict:
+    data, final_url = fetch(url, timeout=timeout, accept="text/html,application/xhtml+xml;q=0.9,*/*;q=0.8")
     if data[:5] == b"%PDF-":
         # PDF の中身をそのまま文字として読むと、壊れた文字列が「本文」になる（2026-11-03）。pypdf で文字を取り出し、
         # 壊れていない（読める日本語・英語の）ときだけ本文にする（2026-11-05 統計の速報の PDF。scripts/pdf_text.py）。

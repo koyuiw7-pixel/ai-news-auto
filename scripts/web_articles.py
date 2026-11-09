@@ -2047,6 +2047,18 @@ def main() -> int:
     trend_limit = 0 if cap_reached else min(args.trends, remaining)
     ai_limit = 0 if cap_reached else (args.max if args.section in ("ai", "all") else 0)
     broad_limit = 0 if cap_reached else (args.max_broad if args.section in ("broad", "all") else 0)
+    boost = 0 if cap_reached or fast_mode or args.only or args.source else pacing.behind_boost(args.daily_cap, done_today, ai_limit + broad_limit)
+    if boost:
+        # 2026-11-09 オーナー「100本/日は必須」: 24時までに上限に届かないペースなら、この回の本数を自動で上げる（増やすのは主に
+        # 暮らし・お金の入る幅広い話題。AI は海外の AI の1日の上限で止まる。1日の上限・時刻の配分は守る）
+        add_ai = (boost // 3 if broad_limit else boost) if ai_limit else 0
+        ai_limit += add_ai
+        broad_limit += boost - add_ai if broad_limit else 0
+        args.max_wire = max(args.max_wire, math.ceil(broad_limit / 2))
+        args.per_feed = max(args.per_feed, 3)
+        log(f"[pace] 24時までに上限 {args.daily_cap} 本に届くには1回 {pacing.needed_per_run(args.daily_cap, done_today)} 本のペースが必要"
+            f"（いま公開中 {done_today} 本）→ この回は {boost} 本増やして AI {ai_limit} 本 / 幅広い話題 {broad_limit} 本"
+            f"（配信 {args.max_wire} 本・同じフィード {args.per_feed} 本まで）")
     log(f"[info] 今日の生成済み（公開中） {done_today} 本 / 上限 {args.daily_cap or 'なし'}")
 
     recent = dedupe.load_recent(DEDUPE_DAYS)

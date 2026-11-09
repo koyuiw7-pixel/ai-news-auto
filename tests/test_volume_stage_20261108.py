@@ -12,10 +12,11 @@ import web_articles as w  # noqa: E402
 
 
 class StageTest(unittest.TestCase):
-    def test_default_stage_is_60_and_never_above_100(self):
+    def test_default_stage_is_100_and_never_above_100(self):
+        # 2026-11-09 オーナー指示: 100本/日は必須。段は今日から100（未設定でも100）
         old = os.environ.pop("WEB_STAGE_TARGET", None)
         try:
-            self.assertEqual(ramp.stage_target(), 60)
+            self.assertEqual(ramp.stage_target(), 100)
             os.environ["WEB_STAGE_TARGET"] = "80"
             self.assertEqual(ramp.stage_target(), 80)
             os.environ["WEB_STAGE_TARGET"] = "500"

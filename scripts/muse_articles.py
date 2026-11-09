@@ -348,10 +348,18 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
             log(f"   [muse] 試行{attempt}: {problems[0][:160]}")
             continue
         verdict = quality.evaluate(record, source_text, kind, context, check_facts=True)
-        if not verdict["ok"] and not verdict.get("soft") and quality.surgical_ok(verdict):
-            fixed, info = quality.surgical_fix(record, source_text, kind, verdict.get("problems") or [], context)
+        # 2026-11-09 オーナー（台帳 A60 をすべての経路に）: ふつうの記事と同じく、形の指摘（資料に無い数字・電話番号など）も
+        # 作り直さずその場で直す（LLM の手直し → だめなら指摘の文をプログラムで削って門をもう一度。quality.surgical_fix）
+        if not verdict["ok"] and not verdict.get("soft") and quality.repairable(verdict):
+            try:
+                fixed, info = quality.surgical_fix(record, source_text, kind, verdict.get("problems") or [], context)
+            except Exception as error:  # noqa: BLE001 - 直す段が使えなくても、作り直しの試行は続ける
+                fixed, info = None, f"その場の手直しに失敗（{str(error)[:80]}）"
             if fixed is not None:
+                log(f"   [muse] 指摘の箇所を直して合格（{str(info.get('fixed_by'))[:80]}）")
                 record, verdict = fixed, info
+            else:
+                log(f"   [muse] その場の手直しでは救えず: {str(info)[:200]}")
         if verdict.get("soft"):
             polished, info = quality.polish(record, source_text, kind, context)
             if polished is not None:

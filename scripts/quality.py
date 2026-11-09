@@ -14,6 +14,7 @@ web_articles.py は不合格のとき problems を添えて1回だけ作り直�
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 import unicodedata
@@ -1479,6 +1480,155 @@ def surgical_fix(record: dict, source_text: str, kind: str, problems: list[str],
         if round_no == 2 or not latest or not repairable(latest):
             break
         current, todo = latest["_record"], latest.get("problems") or []
+    # 2026-11-09 オーナー（台帳 A60 の徹底）: LLM の手直しで救えなかったら、指摘された文をプログラムで削って（書き足さない・うそは増えない）
+    # もう一度だけ同じ門に通す。削っても本文の中心が残るときだけ（strike_flagged）
+    latest = getattr(_surgical_once, "last_verdict", None)
+    base, flagged = (latest["_record"], latest.get("problems") or []) if latest and repairable(latest) else (record, problems)
+    struck, info = strike_and_regate(base, source_text, kind, flagged, context, check_facts)
+    if struck is not None:
+        return struck, info
+    return None, why + (f" / 指摘の文を削っても不合格: {info}" if info else "")
+
+
+# --------------------------------------------------------------------------- #
+# 指摘された文をプログラムで削る（2026-11-09 オーナー「作業止まるみたいなこと多いからなくして」・台帳 A60）。
+# 事実確認・数字の門が「この文は資料に無い」と引用した文を、本文・リード・要点・かんたん版・仕事とお金の欄・判定カードから外す。
+# 書き足しはしないので、新しいうそは生まれない。見出しと題名は触らない（題名が指摘されたら削れないので諦める）
+# --------------------------------------------------------------------------- #
+
+QUOTE_RE = re.compile(r"[「『]([^「」『』]{6,240})[」』]")
+STRIKE_MIN_KEEP = 0.6  # 本文がこれより短くなるほど削ったら、中心の主張が崩れたとみなす
+_LIST_RE = re.compile(r"^\s*(?:[-*+・]|\d+[.)．])\s+")
+
+
+def flagged_spans(problems: list[str]) -> list[str]:
+    """指摘の中で引用された文（「…」『…』）。省略記号で区切られた引用は長い方の断片を使う"""
+    spans: list[str] = []
+    for problem in problems or []:
+        for quoted in QUOTE_RE.findall(str(problem)):
+            parts = [p for p in re.split(r"…+|\.\.\.+", quoted) if len(_norm(p)) >= 6]
+            for part in parts or []:
+                key = _norm(_strip_inline(part))
+                if len(key) >= 6 and key not in spans:
+                    spans.append(key)
+    return spans
+
+
+def _hits(text: str, spans: list[str], item: bool = False) -> bool:
+    """text が引用を含むか。item=True（要点・仕事とお金の欄の短い1項目）は、項目が引用の一部（10字以上）でも当たり"""
+    flat = _norm(_strip_inline(text))
+    if not flat:
+        return False
+    return any(span in flat or (item and len(flat) >= 10 and flat in span) for span in spans)
+
+
+def _strike_text(text: str, spans: list[str]) -> tuple[str, int]:
+    """Markdown から、引用を含む文・箇条書きの項目・表の行を外す。(新しい本文, 外した数)"""
+    out: list[str] = []
+    removed = 0
+    in_code = False
+    for line in (text or "").splitlines():
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_code = not in_code
+        if in_code or not stripped or stripped.startswith("#") or re.fullmatch(r"\|?[\s:\-|]+\|?", stripped):
+            out.append(line)
+            continue
+        if stripped.startswith("|") or _LIST_RE.match(line):
+            if _hits(line, spans):
+                removed += 1
+                continue
+            out.append(line)
+            continue
+        sentences = [s for s in _SENTENCE_END_RE.split(line) if s]
+        keep = [s for s in sentences if not _hits(s, spans)]
+        removed += len(sentences) - len(keep)
+        if keep and "".join(keep).strip():
+            out.append("".join(keep).rstrip() if len(keep) != len(sentences) else line)
+    # 中身の行が無くなった表（見出し行と区切り行だけ）は外す
+    cleaned: list[str] = []
+    for i, line in enumerate(out):
+        if re.fullmatch(r"\|?[\s:\-|]+\|?", line.strip()) and line.strip():
+            nxt = out[i + 1].strip() if i + 1 < len(out) else ""
+            if not nxt.startswith("|"):
+                if cleaned and cleaned[-1].strip().startswith("|"):
+                    cleaned.pop()
+                continue
+        cleaned.append(line)
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(cleaned)).strip(), removed
+
+
+def strike_flagged(record: dict, problems: list[str]) -> tuple[dict | None, str]:
+    """指摘で引用された文を外した記録と、外した内容の説明。外せない（題名が指摘された・削りすぎ・何も当たらない）なら (None, 理由)"""
+    spans = flagged_spans(problems)
+    drop_card = any(re.search(r"判定(?:欄|カード)?(?:の|:|：|行)", str(p)) for p in problems or [])
+    if not spans and not drop_card:
+        return None, "指摘に引用された文が無い"
+    if spans and _hits(record.get("title") or "", spans):
+        return None, "題名が指摘された（削れない）"
+    fixed = dict(record)
+    notes: list[str] = []
+    body, n_body = _strike_text(record.get("body") or "", spans) if spans else (record.get("body") or "", 0)
+    if n_body:
+        if _plain_len(body) < _plain_len(record.get("body") or "") * STRIKE_MIN_KEEP:
+            return None, f"削ると本文が短くなりすぎる（{_plain_len(record.get('body') or '')}→{_plain_len(body)}字）"
+        fixed["body"] = body
+        notes.append(f"本文 {n_body} 文")
+    if spans and record.get("easy"):
+        easy, n_easy = _strike_text(record["easy"], spans)
+        if n_easy and re.sub(r"(?m)^\s*#{1,6}.*$|\s", "", easy):
+            fixed["easy"] = easy
+            notes.append(f"かんたん版 {n_easy} 文")
+    if spans and _hits(record.get("lede") or "", spans):
+        sentences = [s for s in _SENTENCE_END_RE.split(record.get("lede") or "") if s.strip()]
+        keep = [s for s in sentences if not _hits(s, spans)]
+        if not keep:
+            # リードが丸ごと指摘された: 本文に残った最初の地の文（門を通る文）をリードにする
+            first = next((p for p in paragraphs(fixed.get("body") or "") if p), "")
+            keep = [s for s in _SENTENCE_END_RE.split(first) if s.strip()][:2]
+        if not keep:
+            return None, "リードが指摘され、代わりの文も無い"
+        fixed["lede"] = "".join(keep).strip()
+        notes.append("リード")
+    if spans and record.get("highlights"):
+        kept = [h for h in record["highlights"] if not _hits(str(h), spans, item=True)]
+        if len(kept) != len(record["highlights"]):
+            fixed["highlights"] = kept
+            notes.append(f"要点 {len(record['highlights']) - len(kept)} 個")
+    work_money = record.get("workMoney") or {}
+    if spans and work_money.get("points"):
+        points = [p for p in work_money["points"] if not _hits(str(p), spans, item=True)]
+        if len(points) != len(work_money["points"]):
+            fixed["workMoney"] = persona.clean_work_money({**work_money, "points": points}) if points else None
+            notes.append("仕事・お金の欄")
+    for key, label in OPTIONAL_FIELDS:
+        value = record.get(key)
+        if spans and value and _hits(json.dumps(value, ensure_ascii=False), spans):
+            fixed.pop(key, None)
+            notes.append(label)
+    if drop_card and record.get("verdict"):
+        fixed["verdict"] = None  # 判定カードの言い過ぎ（提供状況・価格）は、カードを出さない（本文で答える）
+        notes.append("判定カード")
+    if not notes:
+        return None, "引用された文が記事の中に見つからない"
+    return fixed, "・".join(notes)
+
+
+def strike_and_regate(record: dict, source_text: str, kind: str, problems: list[str], context: str = "",
+                      check_facts: bool = True, rounds: int = 2):
+    """指摘された文を削って、もう一度同じ門に通す（最大 rounds 回。2回目は新しい指摘の文を削る）。(record, verdict) か (None, 理由)"""
+    current, todo, why = record, problems, ""
+    for _ in range(rounds):
+        struck, info = strike_flagged(current, todo)
+        if struck is None:
+            return None, info if not why else f"{why} / {info}"
+        verdict = evaluate(struck, source_text, kind, context, check_facts=check_facts)
+        if verdict["ok"] or verdict.get("soft"):
+            return struck, {**verdict, "fixed_by": f"strike:{info}"}
+        why = f"削った（{info}）あとも不合格: " + "; ".join(verdict.get("problems", [])[:2])[:300]
+        if not repairable(verdict):
+            break
+        current, todo = struck, verdict.get("problems") or []
     return None, why
 
 

@@ -1,0 +1,47 @@
+name: Stall watch
+
+# 止まりの見張り（2026-11-09 オーナー「作業止まるみたいなこと多いからなくして」・scripts/stall_watch.py）。
+# 30分ごとに、記事が90分出ていない（日本時間 6〜24時）・公開の失敗・main のテストの失敗・記事づくりの回の失敗・SNS の枠の取りこぼし（30分超）を調べ、
+# あれば issue（ラベル stall）を立てて state/stall.json に1行残す。直ったら issue を閉じる。
+# GitHub の予約は遅れることがあるので、記事づくりの回（auto_run.yml の Stall watch）でも同じ確認をする（そちらはテストを動かさない）
+on:
+  schedule:
+    - cron: "10,40 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  actions: read
+
+concurrency:
+  group: stall-watch
+  cancel-in-progress: true
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Check for stalls
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/stall_watch.py --issue --state
+      - name: Save state/stall.json
+        continue-on-error: true
+        run: |
+          if [ -z "$(git status --porcelain state/stall.json)" ]; then exit 0; fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/stall.json
+          git commit -m "chore(stall): 止まりの見張りの記録 [no-deploy]"
+          python3 scripts/git_safe_push.py
