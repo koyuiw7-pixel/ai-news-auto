@@ -137,6 +137,7 @@ class ChooseTest(unittest.TestCase):
 
 class BriefTextTest(unittest.TestCase):
     def sample(self, **extra):
+        extra.setdefault("tags", ["ChatGPT"])  # 話題のタグ（台帳 S51）
         return article("acme-tool", "Acme AIの新機能", at(9), **extra)
 
     def test_two_lines_one_hashtag_no_question(self):
@@ -145,7 +146,7 @@ class BriefTextTest(unittest.TestCase):
         self.assertEqual(len(lines), 3)
         self.assertTrue(lines[0].startswith("Acme AIの新機能が"))
         self.assertTrue(lines[1].startswith("スマホで調べものをする人は"))
-        self.assertEqual(lines[2], "#AI")
+        self.assertEqual(lines[2], "#ChatGPT")  # 話題のタグ1つ（台帳 S51。広い #AI はやめた）
         self.assertFalse(p["text"].rstrip().endswith(("？", "?")))
         self.assertIn("utm_source=bluesky&utm_medium=social&utm_campaign=brief&utm_content=card_body", p["link"])
         record = bp.build_record(p["text"], p["link"], p["title"], p["desc"], None)
@@ -160,8 +161,8 @@ class BriefTextTest(unittest.TestCase):
         tags = [f for f in record["facets"] if f["features"][0]["$type"].endswith("#tag")]
         self.assertEqual(len(tags), 1)
         raw = record["text"].encode()
-        self.assertEqual(raw[tags[0]["index"]["byteStart"]:tags[0]["index"]["byteEnd"]].decode(), "#AI")
-        self.assertEqual(tags[0]["features"][0]["tag"], "AI")
+        self.assertEqual(raw[tags[0]["index"]["byteStart"]:tags[0]["index"]["byteEnd"]].decode(), "#ChatGPT")
+        self.assertEqual(tags[0]["features"][0]["tag"], "ChatGPT")
 
     def test_second_line_skips_questions_and_low_impact(self):
         a = self.sample(workMoney={"points": ["直接の影響は小さいです。", "あなたは使ってみたいですか？"]},
@@ -174,23 +175,31 @@ class BriefTextTest(unittest.TestCase):
         self.assertIsNone(bp.brief_lines(self.sample(workMoney={}, highlights=[])))
 
     def test_hashtag_by_topic(self):
-        self.assertEqual(bp.brief_hashtag(self.sample()), "#AI")
+        # 2026-11-09（台帳 S51）: 広いタグ（#AI・#ガジェット・#暮らし）はやめ、話題の名前のタグ1つ。当たらなければ付けない
+        self.assertEqual(bp.brief_hashtag(self.sample()), "#ChatGPT")
+        self.assertEqual(bp.brief_hashtag(self.sample(tags=["AI"])), "")
         gadget = article("pen", "ドコモの純正タッチペン", at(9), genreSlug="tech-gadget", tags=["ドコモ"])
-        self.assertEqual(bp.brief_hashtag(gadget), "#ガジェット")
+        self.assertEqual(bp.brief_hashtag(gadget), "#ドコモ")
         leak = article("leak", "通販サイトで個人情報が流出", at(9), genreSlug="business", tags=["情報漏えい"])
-        self.assertEqual(bp.brief_hashtag(leak), "")  # 災害・事故・安全の話題は付けない（台帳 S35）
+        self.assertEqual(bp.brief_hashtag(leak), "")  # 名前の無い流出の話は付けない
+        docomo_leak = article("dleak", "ドコモオンラインショップで個人情報が流出", at(9), genreSlug="business")
+        self.assertEqual(bp.brief_hashtag(docomo_leak), "#ドコモ")  # 流出でも会社の名前のタグは付ける（オーナーの例）
+        quake = article("q", "地震保険の請求の注意", at(9), disaster=True)
+        self.assertEqual(bp.brief_hashtag(quake), "")  # 地震・津波の知らせには付けない（台帳 S35）
+        self.assertEqual(bp.brief_hashtag(article("pen2", "年金の受け取り方が変わります", at(9), tags=[])), "#年金")
 
     def test_fits_in_300_with_long_slug(self):
         a = article("a" * 80, "Acme AIの新機能", at(9))
         p = bp.plan_brief(a)
         record = bp.build_record(p["text"], p["link"], p["title"], p["desc"], None)
         self.assertLessEqual(len(record["text"]), bp.MAX_GRAPHEMES)
-        self.assertEqual(record["text"].splitlines()[:3], p["text"].splitlines())  # 切り詰めない
+        n = len(p["text"].splitlines())
+        self.assertEqual(record["text"].splitlines()[:n], p["text"].splitlines())  # 切り詰めない
 
 
 class GateTest(unittest.TestCase):
     URL = f"{LINK}acme-tool?utm_source=bluesky&utm_medium=social&utm_campaign=brief&utm_content=card_body"
-    ART = article("acme-tool", "Acme AIの新機能", at(9))
+    ART = article("acme-tool", "Acme AIの新機能", at(9), tags=["ChatGPT"])
     MEDIA = [{"type": "image", "url": "https://ai-tech-express.jp/card/acme-tool", "card": True}]
 
     def check(self, text, platform="bluesky"):
@@ -198,13 +207,15 @@ class GateTest(unittest.TestCase):
                                     links=[self.URL])
 
     def test_rejects_question_and_wrong_shapes(self):
-        ok = "Acme AIの新機能が、今日から無料で使えるようになりました。\nスマホで調べものをする人は、追加の料金なしで試せます。\n#AI"
+        ok = "Acme AIの新機能が、今日から無料で使えるようになりました。\nスマホで調べものをする人は、追加の料金なしで試せます。\n#ChatGPT"
         self.assertEqual(self.check(ok), [])
-        q = "Acme AIの新機能が、今日から無料で使えるようになりました。\nあなたはどう使いますか？\n#AI"
+        q = "Acme AIの新機能が、今日から無料で使えるようになりました。\nあなたはどう使いますか？\n#ChatGPT"
         self.assertTrue(any("[ルール19]" in v for v in self.check(q)))
-        self.assertTrue(any("ハッシュタグ" in v for v in self.check(ok.replace("\n#AI", ""))))
-        self.assertTrue(any("ハッシュタグ" in v for v in self.check(ok + " #ChatGPT")))
-        self.assertTrue(any("2行" in v for v in self.check("Acme AIの新機能が、今日から無料で使えるようになりました。\n#AI")))
+        self.assertEqual(self.check(ok.replace("\n#ChatGPT", "")), [])  # 話題のタグが無ければ付けなくてよい（台帳 S51）
+        self.assertTrue(any("ハッシュタグ" in v for v in self.check(ok + " #Gemini")))  # 2つは駄目
+        self.assertTrue(any("広いハッシュタグ" in v for v in self.check(ok.replace("#ChatGPT", "#AI"))))
+        self.assertTrue(any("広いハッシュタグ" in v for v in self.check(ok.replace("#ChatGPT", "#暮らし"))))
+        self.assertTrue(any("2行" in v for v in self.check("Acme AIの新機能が、今日から無料で使えるようになりました。\n#ChatGPT")))
         self.assertTrue(any("ざっくり" in v for v in self.check(ok.replace("スマホで", "ざっくり言えばスマホで"))))
 
     def test_audit_reads_brief_posts_by_campaign(self):

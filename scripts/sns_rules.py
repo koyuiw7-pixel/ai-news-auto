@@ -818,6 +818,14 @@ def autofix(text: str, article: dict | None = None, platform: str = "") -> tuple
             ai = True
         pattern = HASHTAG_RE if safety_topic(article) else (re.compile(r"(?<!\S)#AI(?![\w])") if not ai else None)
         keep = sns_plan.x_hashtag(article) if str(platform or "").lower() in ("x", "twitter") else ""  # X は災害・行事のタグ1つを残す（台帳 S42）
+        if str(platform or "").lower() == "bluesky" and not article.get("disaster") and not is_urgent(article):
+            try:  # Bluesky は話題のタグ（会社・サービス・制度の名前）1つを残す（台帳 S51）
+                import bluesky_post  # noqa: PLC0415
+
+                keep = bluesky_post.brief_hashtag(article)
+            except Exception:  # noqa: BLE001
+                keep = ""
+            pattern = HASHTAG_RE
         if pattern:
             stripped = re.sub(r"[ \t]+\n", "\n", pattern.sub(lambda m: m.group(0) if keep and m.group(0) == keep else "", fixed)).rstrip()
             stripped = re.sub(r"\n{3,}", "\n\n", stripped)
@@ -1137,10 +1145,25 @@ def check_brief(platform: str, text: str, content: str, article: dict | None) ->
         out.append(f"[ルール19] 1行目は呼びかけでなく事実（「{first[:24]}」）")
     if first.startswith("【速報】") and not sns_breaking_ok(article) and not is_urgent(article):
         out.append("[ルール6] 速報ではない記事に【速報】を付けている")
+    out += bluesky_tag_problems(str(text or ""), article)
+    return out
+
+
+# 2026-11-09 オーナー承認（台帳 S51）: Bluesky のハッシュタグは話題のタグ（会社・サービス・制度の名前）を1つまで。広いタグは付けない
+BLUESKY_BROAD_TAGS = {"#暮らし", "#ニュース", "#経済", "#住まい", "#スポーツ", "#エンタメ", "#科学", "#テクノロジー", "#ガジェット", "#AI", "#お金", "#生活"}
+
+
+def bluesky_tag_problems(text: str, article: dict | None) -> list[str]:
     tags = HASHTAG_RE.findall(str(text or ""))
-    want = 0 if safety_topic(article) else 1
-    if len(tags) != want:
-        out.append(f"[ルール19] ハッシュタグは{'付けない（災害・事故・安全の話題。台帳 S35）' if not want else 'ちょうど1つ'}（今は{len(tags)}個）")
+    out = []
+    if len(tags) > 1:
+        out.append(f"[ルール19] Bluesky のハッシュタグは話題のタグ1つまで（今は{' '.join(tags)}。台帳 S51）")
+    broad = [t for t in tags if t in BLUESKY_BROAD_TAGS]
+    if broad:
+        out.append(f"[ルール19] 広いハッシュタグ（{' '.join(broad)}）は付けない。会社・サービス・制度の名前のタグにする（台帳 S51）")
+    article = article or {}
+    if tags and (article.get("disaster") or is_urgent(article)):
+        out.append("[ルール19] 地震・津波・急ぎの安全の知らせにハッシュタグを付けない（台帳 S35）")
     return out
 
 
@@ -1340,8 +1363,7 @@ def check_reader_post(platform: str, text: str, reply_text: str, article: dict |
         if len(tags) > 1 or (tags and tags[0] != allowed):
             out.append(f"[ルール23] X のハッシュタグは災害・大きな行事・いまのトレンドの言葉に当たる記事（台帳 S50）だけ1つまで（今は{' '.join(tags)}）")
     elif platform == "bluesky":
-        if len(tags) > 1 or (tags and safety_topic(article)):
-            out.append(f"[ルール23] Bluesky のハッシュタグは1つまで・災害・安全の話題には付けない（今は{' '.join(tags)}）")
+        out += [v.replace("[ルール19]", "[ルール23]") for v in bluesky_tag_problems(" ".join(tags), article)]
     elif tags:
         out.append("[ルール23] Facebook の文面にハッシュタグを付けない")
     return out

@@ -666,8 +666,23 @@ SENTENCE_RE = re.compile(r"[^。！!]+[。！!]")
 # 2行目に向かない文（何も変わらないとだけ言う文）。ほかに無いときだけ使う
 LOW_IMPACT_RE = re.compile(r"影響は(?:小さ|限定|あまりな|ほぼな)")
 EASY_LEAD_RE = re.compile(r"##\s*ひとことで言うと\s*\n+([^\n#]+)")
-GENRE_TAGS = {"tech-gadget": "#ガジェット", "business": "#経済", "investment": "#経済", "public": "#暮らし", "lifestyle": "#暮らし",
-              "real-estate": "#住まい", "sports": "#スポーツ", "entertainment": "#エンタメ", "science": "#科学", "ai": "#テクノロジー"}
+# 2026-11-09 オーナー承認（台帳 S51・ルール19）: 「#暮らし」「#ニュース」のような広いタグは Bluesky ではほとんど検索されないのでやめ、
+# 記事の話題そのもの（会社・サービス・制度の名前）のタグを1つだけ付ける。見出し（無ければ記事のタグ）に言葉がある記事だけ・上から順に1つ。
+# 当たらなければ付けない（付ければ見つけてもらえるときだけ）
+TOPIC_TAGS: list[tuple[str, str]] = [
+    (r"ドコモ|docomo", "#ドコモ"), (r"\bau\b|KDDI", "#au"), (r"ソフトバンク", "#ソフトバンク"), (r"楽天モバイル", "#楽天モバイル"),
+    (r"ahamo", "#ahamo"), (r"povo", "#povo"), (r"PayPay", "#PayPay"), (r"楽天カード", "#楽天カード"), (r"楽天ポイント", "#楽天ポイント"),
+    (r"マイナ保険証", "#マイナ保険証"), (r"マイナンバーカード|マイナカード", "#マイナンバーカード"), (r"マイナポイント", "#マイナポイント"),
+    (r"新NISA|NISA", "#NISA"), (r"iDeCo|イデコ", "#iDeCo"), (r"ふるさと納税", "#ふるさと納税"), (r"確定申告", "#確定申告"),
+    (r"年末調整", "#年末調整"), (r"医療費控除", "#医療費控除"), (r"児童手当", "#児童手当"), (r"年金", "#年金"),
+    (r"最低賃金", "#最低賃金"), (r"電気料金|電気代", "#電気代"), (r"ガス料金|ガス代", "#ガス代"), (r"ガソリン", "#ガソリン価格"),
+    (r"地震保険", "#地震保険"), (r"火災保険", "#火災保険"), (r"住宅ローン", "#住宅ローン"), (r"日銀|日本銀行", "#日銀"),
+    (r"金利", "#金利"), (r"物価|消費者物価", "#物価"), (r"値上げ", "#値上げ"), (r"リコール", "#リコール"),
+    (r"フィッシング|詐欺", "#詐欺"), (r"ゆうちょ", "#ゆうちょ銀行"), (r"三井住友銀行", "#三井住友銀行"), (r"三菱UFJ", "#三菱UFJ銀行"),
+    (r"みずほ", "#みずほ銀行"), (r"ローソン", "#ローソン"), (r"セブン-?イレブン|セブンイレブン", "#セブンイレブン"),
+    (r"ファミリーマート|ファミマ", "#ファミマ"), (r"ChatGPT", "#ChatGPT"), (r"Gemini", "#Gemini"), (r"Claude", "#Claude"),
+    (r"Copilot", "#Copilot"), (r"iPhone", "#iPhone"), (r"Android", "#Android"), (r"Windows", "#Windows"),
+]
 
 
 def _sentences(text: str) -> list[str]:
@@ -675,14 +690,19 @@ def _sentences(text: str) -> list[str]:
 
 
 def brief_hashtag(article: dict) -> str:
-    """ハッシュタグ1つ。AI の話は #AI、ほかはジャンルに合うもの。災害・事故・安全の話題は付けない（台帳 S35）"""
-    if sns_rules.safety_topic(article):
+    """話題のハッシュタグ1つ（TOPIC_TAGS。台帳 S51）。見出しに無ければ記事のタグで探す。当たらなければ ""。
+    地震・津波・急ぎの安全の知らせには付けない（台帳 S35）。流出・リコールなどは会社・サービスの名前のタグだけ（煽る言葉は付けない）"""
+    article = article or {}
+    if article.get("disaster") or sns_rules.is_urgent(article):
         return ""
-    import labels  # noqa: PLC0415
-
-    if labels.ai_topic(str(article.get("title") or ""), article.get("tags") or []):
-        return "#AI"
-    return GENRE_TAGS.get(str(article.get("genreSlug") or ""), "#ニュース")
+    safety = sns_rules.safety_topic(article)
+    for source in (str(article.get("title") or ""), " ".join(str(t) for t in article.get("tags") or [])):
+        for pattern, tag in TOPIC_TAGS:
+            if safety and tag in ("#詐欺", "#リコール", "#値上げ"):
+                continue
+            if re.search(pattern, source, re.I):
+                return tag
+    return ""
 
 
 def brief_lines(article: dict, room: int = MAX_GRAPHEMES) -> tuple[str, str] | None:
