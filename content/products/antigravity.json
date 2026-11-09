@@ -8,45 +8,35 @@
   "companyName": "Google",
   "category": "開発ツール",
   "overview": {
-    "text": "Antigravityは、AIエージェントにコードを書かせたりコマンドを実行させたりするGoogleの開発者向けツールです。2026年8月に発表されました。",
+    "text": "Antigravityは、AIエージェントにコードを書かせたりコマンドを実行させたりするGoogleの開発者向けツールです。",
     "sources": [
-      "antigravity-google-cloud-developer-plugin",
-      "google-antigravity-2-desktop-ai-agents"
+      "antigravity-google-cloud-developer-plugin"
     ]
   },
-  "facts": [
-    {
-      "label": "提供開始",
-      "value": "2026年8月",
-      "sources": [
-        "google-antigravity-2-desktop-ai-agents"
-      ]
-    },
-    {
-      "label": "向いている人",
-      "value": "クラウド開発者",
-      "sources": [
-        "antigravity-google-cloud-developer-plugin"
-      ]
-    }
-  ],
+  "facts": [],
   "capabilities": [
     {
-      "text": "AIエージェントに目標を文章で伝えると、作業を分けて実装や検証を進めます。",
+      "text": "自然言語で指示した目標をエージェントが分け、複数のサブエージェントに並行して処理させることができます。",
       "sources": [
         "google-antigravity-autonomous-software-development"
       ]
     },
     {
-      "text": "複数の異なるAIエージェントを完全に並行して実行できます。",
+      "text": "スマートフォンやブラウザから稼働中のエージェントを遠隔監視し、コードの承認やコマンドの実行許可を行えます。",
       "sources": [
-        "google-antigravity-2-desktop-ai-agents"
+        "google-deepmind-antigravity-remote-control"
       ]
     },
     {
-      "text": "スマートフォンやブラウザから稼働中のエージェントを遠隔監視・操作できます。",
+      "text": "Google Cloud Developer プラグインを導入し、クラウド固有の知識や安全のための制限を加えることができます。",
       "sources": [
-        "google-deepmind-antigravity-remote-control"
+        "antigravity-google-cloud-developer-plugin"
+      ]
+    },
+    {
+      "text": "要件定義のインタビューモードや、実装計画に対する直接のコメント機能を利用できます。",
+      "sources": [
+        "google-antigravity-2-desktop-ai-agents"
       ]
     }
   ],
@@ -54,15 +44,21 @@
   "japan": [],
   "howto": [
     {
-      "text": "デスクトップアプリに加え、CLI、専用IDE、開発者向けのSDKとしても提供されます。",
+      "text": "デスクトップアプリのほか、CLIや専用IDE、SDKなどが用意されています。",
       "sources": [
         "google-antigravity-2-desktop-ai-agents"
+      ]
+    },
+    {
+      "text": "Google Cloud Developer プラグインは、マーケットプレイスから直接インストールできます。",
+      "sources": [
+        "antigravity-google-cloud-developer-plugin"
       ]
     }
   ],
   "differences": [
     {
-      "text": "Antigravity 2.0では、複数の自律型AIエージェントを並行して実行・管理できるようになりました。",
+      "text": "Antigravity 2.0では、複数の異なるAIエージェントを完全に並行して実行できるようになりました。",
       "sources": [
         "google-antigravity-2-desktop-ai-agents"
       ]
@@ -70,24 +66,24 @@
   ],
   "faq": [
     {
-      "q": "誰に向いているツールですか？",
-      "a": "クラウド開発者などのエンジニアに向いています。",
+      "q": "誰に向いている？",
+      "a": "Google Cloudなどでシステムを作る開発者に向いています。",
       "sources": [
         "antigravity-google-cloud-developer-plugin"
       ]
     },
     {
-      "q": "スマホから操作できますか？",
-      "a": "スマートフォンやブラウザから遠隔監視や操作が可能です。",
+      "q": "スマートフォンから操作できる？",
+      "a": "スマートフォンやブラウザから遠隔監視やコードの承認が行えます。",
       "sources": [
         "google-deepmind-antigravity-remote-control"
       ]
     },
     {
-      "q": "プラグインはどこから入れられますか？",
-      "a": "AntigravityのマーケットプレイスのBuild with Google区分から入れられます。",
+      "q": "どのように使い始める？",
+      "a": "デスクトップアプリやCLI、専用IDEなどから利用できます。",
       "sources": [
-        "antigravity-google-cloud-developer-plugin"
+        "google-antigravity-2-desktop-ai-agents"
       ]
     }
   ],
@@ -98,9 +94,14 @@
       "event": "Antigravity 2.0を公開"
     },
     {
+      "date": "2026-09-12",
+      "slug": "google-deepmind-antigravity-remote-control",
+      "event": "Antigravity Remote Controlを発表"
+    },
+    {
       "date": "2026-11-03",
       "slug": "antigravity-google-cloud-developer-plugin",
-      "event": "Google Cloud用プラグインを公開"
+      "event": "GoogleがAntigravity用プラグインを公開"
     }
   ],
   "related": [
@@ -126,9 +127,9 @@
     "google-deepmind-antigravity-remote-control",
     "google-antigravity-2-desktop-ai-agents"
   ],
-  "signature": "e66b55ce35897cad",
-  "primarySignature": "683cf079401854bc",
+  "signature": "2aa25035da62d99c",
+  "primarySignature": "f3a4121edff83ef9",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:45:54+00:00",
-  "updatedAt": "2026-11-04T03:49:29+00:00"
+  "updatedAt": "2026-11-09T06:58:03+00:00"
 }

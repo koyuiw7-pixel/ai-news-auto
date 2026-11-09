@@ -1,0 +1,192 @@
+{
+  "slug": "aws-sap-agentic-ai-series",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/",
+  "sourceName": "AWS ブログ（日本）",
+  "title": "CFOが求めるSAPのAI成果、数週間で実装するAWSの新シリーズ",
+  "seoTitle": "SAPのAI成果を数週間で実装　AWSの新シリーズと自動化",
+  "threadsPost": "SAPを導入している企業のシステム担当者に、知っておいてほしい話です。\n\nAWSが、SAPのワークフローを自動化するAgentic AIのシリーズを公開しました。\n最初のユースケースとして、貿易申告の自動化が紹介されています。\n\n仕事でSAPを使うようになって、定型業務のチェックにどれくらい時間をかけてます？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "仕事でSAPを使うようになって、定型業務のチェックにどれくらい時間をかけてます？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "自動化で夜間の処理が止まらなくなるとしたら、人による事前の確認はどこまで残したいですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "AWSは、SAP環境におけるAgentic AIのユースケースを解説するブログシリーズの提供を始めました。第1弾として、SAP Global Trade Servicesを活用した貿易申告の自動化の仕組みとアーキテクチャが公開されています。導入企業は、手作業による入力エラーやタイムゾーンによる承認の滞留を減らすことが可能です。",
+  "description": "AWSが公開した、SAPの業務を自律型AIで自動化するシリーズの第1弾を解説。貿易申告の自動化や共通アーキテクチャ、実装手順を紹介します。",
+  "keywords": [
+    "AWS",
+    "SAP",
+    "Agentic AI",
+    "Amazon Bedrock",
+    "貿易申告",
+    "自動化",
+    "ERP",
+    "サプライチェーン"
+  ],
+  "tags": [
+    "生成AI",
+    "AWS",
+    "SAP",
+    "クラウド"
+  ],
+  "highlights": [
+    "AWSがSAP業務を自動化するAgentic AIのブログシリーズを開始し、第1弾として貿易申告の自動化を公開しました。",
+    "Amazon BedrockやSAP GTSのOData APIを使い、サプライヤーのドキュメントからデータを自動抽出して申告を作成します。",
+    "タイムゾーンに依存しない24時間365日の処理や、人のレビューによるヒューマンインザループの制御を組み合わせています。"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "SAPの運用管理や経理・貿易業務を担当している人は、定型作業の自動化に向けた具体的なアーキテクチャを確認できます。",
+      "タイムゾーンをまたいだ夜間の処理滞留を解消し、人手による入力ミスを防ぐ仕組みづくりに活かせます。"
+    ]
+  },
+  "body": "製造業などの現場では、SAPのプロセスにおける手作業の入力やタイムゾーンによる承認の滞留が課題となっています。CFOや経営層からは、測定可能な成果を短期間で示すことが求められています。\n\nAWSブログによると、こうした課題に対応するため、Agentic AI（自律的に推論して実行するAI）を活用します。SAPワークフローを自動化するブログシリーズの公開が始まりました。本稿では、シリーズの共通基盤となるアーキテクチャと、第1弾として紹介された貿易申告の自動化について解説します。\n\n### SAPワークフローを自律的に動かす仕組み\n\n従来のルールベースの自動化は、あらかじめ決められた条件に一致する場合のみ処理を実行します。\n\nこれに対し、Agentic AIを利用すると、AIエージェントがライブのSAPデータを読み取り、状況を判断します。必要なアクションも自律的に実行できるようになります。エージェントが信頼度のしきい値を下回る状況に遭遇した場合は、完全なコンテキストを添えて担当者にエスカレーションします。\n\nSAPランドスケープ全体にAIエージェントを導入すると、タイムゾーンに依存しない継続的な実行が可能になります。構造化データと非構造化データの統合処理もできます。また、入力時点での自動検証によるデータ品質の向上や、リアルタイムの意思決定支援といったメリットが得られます。\n\n### 4つのレイヤーで構成される共通アーキテクチャ\n\n本シリーズのユースケースはすべて共通のアーキテクチャパターンに従っており、4つのレイヤーで構成されています。\n\n● 取り込みレイヤー: Amazon S3に保存されたドキュメントや、SAP BTPからのイベントを受け取り、Amazon BedrockやAmazon Textractで構造化フィールドを抽出します。\n● オーケストレーションレイヤー: Amazon Bedrock AgentCore Runtime上でエージェントが実行され、AWS Lambdaがロジックを処理します。\n● アクションレイヤー: OData APIを介してSAP S/4HANAと双方向でデータをやり取りし、Amazon SNS経由で担当者に通知します。\n● オブザーバビリティレイヤー: Amazon CloudWatchやAmazon DynamoDB、AWS CloudTrailにより、アクションや監査証跡を記録・監視します。\n\nセキュリティ面では、通信の暗号化や最小権限のIAMロール、AWS KMSによる保存データの暗号化が実装されています。また、Amazon Bedrockは顧客データを基盤モデルのトレーニングや改善に使用しない仕組みになっています。\n\n### SAP GTSによる貿易申告の自動化の流れ\n\n第1弾のユースケースは、SAP Global Trade Services（SAP GTS）での輸入申告の自動化です。サプライヤーからのドキュメント処理から完了までを自動化します。\n\n取り込んだドキュメントからAIモデルがデータを抽出します。Amazon Bedrock Knowledge Basesの貿易規制情報や、SAP S/4HANAのマスターデータと照合します。\n\n検証結果に基づいて、エージェントが自動でSAP GTSに申告を書き込むか、確認が必要な場合は担当者に通知します。これにより、輸入申告における手作業のデータ入力や、夜間のバックログの発生を抑えることができます。\n\n### まだ分からないこと\n\n● シリーズで予定されている残りのユースケースの具体的な公開日は、今回の発表では明らかにされていません。",
+  "easy": "## ひとことで言うと\n\nAWSが、SAPの業務をAIで自動化する新しいブログシリーズを公開しました。\n\n## 貿易申告の自動化から始まる新シリーズ\n\nAWSは、SAPのワークフローをAIエージェントで自動化するための実践的な解説シリーズを始めました。\n第1弾として取り上げられたのは、SAP Global Trade Services（SAP GTS）を使った輸入申告の自動化です。\nサプライヤーから届くPDFやメールなどの形式が異なる書類から、品目コードや数量などのデータを自動で読み取ります。\n\n## 24時間365日の処理と安全性の両立\n\nエージェントは、AWSのAmazon BedrockやSAPのAPIを介してデータを検証します。\n信頼度が十分な場合はそのままSAPに書き込み、判断に迷う場合は担当者に通知して確認を求めます。\nこれにより、時差や担当者の不在による処理の遅れを防ぎつつ、重要な変更では人の目を挟む仕組みを実現しています。",
+  "channel": "AWS ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "aws-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "CFO は次の四半期に SAP AI の成果を求めている – どこから始めるべきか",
+  "publishedAt": "2026-11-09T02:52:09+00:00",
+  "generatedAt": "2026-11-09T06:57:18.750606+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/aws-sap-agentic-ai-series-5caeab2f.jpg",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "newsType": "research",
+  "faq": [
+    {
+      "q": "AWSのSAP向けAIシリーズでは今後どのようなテーマが予定されていますか？",
+      "a": "サプライヤー納品のリアルタイム監視、サプライチェーン途絶分析、GRCの権限付与自動化、ベンダー支払い問い合わせへの対応などが予定されています。"
+    }
+  ],
+  "todayActions": [
+    "AWS公式ブログのSAP向けAgentic AIシリーズ第1弾の記事で、貿易申告の流れを確認する",
+    "自社の定型業務で滞留している処理を、記事の課題リストと照らして洗い出す"
+  ],
+  "relatedSlugs": [
+    "rivian-finance-operations-amazon-bedrock-ai-agents",
+    "spec-driven-development-sap-abap-aws"
+  ],
+  "qualityScore": 90,
+  "sourcePublishedAt": "2026-11-09T02:52:09+00:00",
+  "detectedAt": "2026-11-09T06:48:56+00:00",
+  "layout": "noir",
+  "summaryLine": "AWSがSAP業務を自動化するAgentic AIのブログシリーズを開始し、第1弾として貿易申告の自動化を公開しました。",
+  "insight": [
+    {
+      "text": "財務記録、コンプライアンス関連データ、またはSAPマスターデータを変更するアクションは、実行前に人による確認が必要です。",
+      "source": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/"
+    },
+    {
+      "text": "税関からの問い合わせに対して、使用したデータ、その出所、最終判断を下した人物を含む完全な記録で回答できると説明されています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "AWS公式ブログのSAP向けAgentic AIシリーズ第1弾の記事で、貿易申告の流れを確認する",
+      "source": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/",
+      "steps": [
+        "記事内の「ユースケース 1: SAP Global Trade Services による貿易申告の自動化」を開く"
+      ],
+      "url": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/"
+    },
+    {
+      "action": "自社の定型業務で滞留している処理を、記事の課題リストと照らして洗い出す",
+      "source": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/",
+      "steps": [
+        "記事の「SAP ワークフロー実行の現状」の5つの制約を読む",
+        "承認の滞留、夜間バッチ、例外処理の遅れがある業務を書き出す"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "SAPの現場では、手作業の入力やタイムゾーンによる承認の滞留が課題になっています。CFOは測定可能な成果を短期間で求めており、AWSはAgentic AIでライブのSAPデータを読んで判断する方式を提案しています。",
+    "status": "background",
+    "source": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/"
+  },
+  "worries": [
+    {
+      "q": "AIが勝手にSAPのデータを書き換えてしまわない？",
+      "a": "財務記録、コンプライアンス関連データ、SAPマスターデータを変更するアクションは、実行前に人による確認が必要とされています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/",
+      "action": "AIに任せる範囲と、人が確認する範囲を社内で先に分けて決めておく。"
+    },
+    {
+      "q": "担当者がいない時間に、AIの判断は誰が確認する？",
+      "a": "信頼度がしきい値を下回る場合、エージェントは人のレビュー担当者にエスカレーションし、分析したデータと推奨アクションを添えて通知します。",
+      "source": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/",
+      "action": "通知を受け取る担当者と、担当者が不在の時間の連絡先を決めておく。"
+    },
+    {
+      "q": "顧客データは安全に扱われる？AIの学習に使われない？",
+      "a": "通信はHTTPS、保存データはAWS KMSで暗号化され、Amazon Bedrockは顧客データを基盤モデルのトレーニングや改善に使用しないとされています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/",
+      "action": "記事の「セキュリティアーキテクチャ」の項目を、社内の確認リストに写して点検する。"
+    },
+    {
+      "q": "AIが誤った申告をしたら、後から説明できる？",
+      "a": "ワークフローのすべてのアクションは監査証跡として記録され、使用したデータ、その出所、最終判断を下した人物を含む記録で回答できるとされています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/",
+      "action": "記事の「監査証跡」の項目で、どの記録がどこに残るかを確認しておく。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "AIが実行する前に人が確認する範囲は決まっている",
+    "cause": "SAPの現場で何が課題になっているか",
+    "steps": "今日やることを、自社の業務に当てはめる",
+    "worries": "AIに任せても大丈夫？よくある心配"
+  },
+  "depthAt": "2026-11-09T06:58:28+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/aws-sap-agentic-ai-series-fig1-5caeab2f.jpg",
+      "width": 1024,
+      "height": 714,
+      "kind": "dense",
+      "credit": "AWS",
+      "sourceUrl": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/",
+      "original": "https://d2908q01vomqb2.cloudfront.net/17ba0791499db908433b80f37c5fbc89b870084b/2026/10/22/sc-architecture-3.1-1024x714.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "AWS",
+    "provider": "AWS ブログ（日本）",
+    "sourceUrl": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/",
+    "original": "https://d2908q01vomqb2.cloudfront.net/17ba0791499db908433b80f37c5fbc89b870084b/2026/10/22/sc-architecture-3.1-1024x714.png",
+    "width": 1024,
+    "height": 714,
+    "at": "2026-11-09T07:05:53+00:00",
+    "imageKind": "dense"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.494,
+    "y": 0.524,
+    "box": [
+      0.0,
+      0.049,
+      0.988,
+      1.0
+    ],
+    "ar": 1.4342,
+    "src": "https://ai-tech-express.jp/img/aws-sap-agentic-ai-series-5caeab2f.jpg"
+  },
+  "coverTries": 1
+}

@@ -71,9 +71,9 @@
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "熱が出たら、発症から48時間以内に受診して相談する（抗インフルエンザウイルス薬は48時間以内の服用開始が目安）",
-    "感染症・予防接種相談窓口（0120-995-956、9:00〜17:00）の番号を控えておく",
-    "11月13日（金）公表の第45週分で、自分の県の数字の増減を確かめる"
+    "「インフルエンザ疫学情報速報」の都道府県別報告（Excel）で、自分の県の数字を確かめる",
+    "11月13日（金）公表予定の第45週分で、自分の県の数字の増減を確かめる",
+    "熱が出たら発症から48時間以内に医療機関を受診し、抗インフルエンザウイルス薬を使うか医師に相談する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -136,5 +136,150 @@
     ],
     "ar": 1.3333,
     "src": "https://ai-tech-express.jp/img/japan-influenza-week44-2026-ab223bff.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "昨年同期の定点当たり報告数は14.90で、第44週の10.26はそれより低い数字です。注意報の目安を超えても、昨年同期よりは低い水準だと分かります。",
+      "source": "https://www.mhlw.go.jp/content/001766066.pdf"
+    },
+    {
+      "text": "都道府県ごとの週別の数字は、国立健康危機管理研究機構の「インフルエンザ疫学情報速報」に「都道府県別報告（Excel）」として掲載されています。",
+      "source": "https://id-info.jihs.go.jp/surveillance/idwr/article/influenza/article.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "感染症・予防接種相談窓口",
+      "url": "https://www.mhlw.go.jp/content/001766066.pdf",
+      "source": "https://www.mhlw.go.jp/content/001766066.pdf",
+      "phone": "0120-995-956",
+      "hours": "9:00~17:00",
+      "note": "報道関係者以外の方は、この窓口で承ると書かれています。"
+    },
+    {
+      "name": "厚生労働省 報道発表資料（インフルエンザ 2026/2027シーズン）",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou01/houdou_00025.html",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html",
+      "howTo": [
+        "インフルエンザ（総合ページ）",
+        "発生状況",
+        "（報道発表資料）"
+      ],
+      "hours": "9月から4月まで、毎週金曜日14時に報道発表（祝日等で変わる場合あり）",
+      "note": "第45週分は2026年11月13日（金）に公表予定です。"
+    },
+    {
+      "name": "インフルエンザ疫学情報速報（国立健康危機管理研究機構）",
+      "url": "https://id-info.jihs.go.jp/surveillance/idwr/article/influenza/article.html",
+      "source": "https://id-info.jihs.go.jp/surveillance/idwr/article/influenza/article.html",
+      "howTo": [
+        "インフルエンザ（総合ページ）",
+        "関連リンク（さらに詳しい情報が必要な方）",
+        "インフルエンザ｜国立健康危機管理研究機構 感染症情報提供サイ"
+      ],
+      "note": "都道府県別報告はExcel形式です。Excelの見方はサイト内の「ファイルの閲覧方法」にあります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "「インフルエンザ疫学情報速報」の都道府県別報告（Excel）で、自分の県の数字を確かめる",
+      "source": "https://id-info.jihs.go.jp/surveillance/idwr/article/influenza/article.html",
+      "steps": [
+        "感染症情報提供サイトの「インフルエンザ疫学情報速報」を開く",
+        "週の一覧から最新の週（第44週など）を選ぶ",
+        "「都道府県別報告（Excel）」を開き、自分の県の行を見る"
+      ],
+      "url": "https://id-info.jihs.go.jp/surveillance/idwr/article/influenza/article.html"
+    },
+    {
+      "action": "11月13日（金）公表予定の第45週分で、自分の県の数字の増減を確かめる",
+      "source": "https://www.mhlw.go.jp/content/001766066.pdf",
+      "steps": [
+        "報道発表資料のページを開く",
+        "第45週分の公表（11月13日）を待つ",
+        "別紙の都道府県別の表で自分の県を見る"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou01/houdou_00025.html"
+    },
+    {
+      "action": "熱が出たら発症から48時間以内に医療機関を受診し、抗インフルエンザウイルス薬を使うか医師に相談する",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html",
+      "steps": [
+        "発熱など症状が出た時刻を控える",
+        "発症から48時間以内に医療機関を受診する",
+        "薬の服用が必要か医師に相談する"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html"
+    }
+  ],
+  "cause": {
+    "text": "インフルエンザは例年12月～3月が流行シーズンで、大きな流行の原因となるのはA型とB型です。今回の全国の数字が増えた理由は、読んだ公式ページでは示されていません。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html"
+  },
+  "worries": [
+    {
+      "q": "お住まいの県は、全国平均より流行しているの？",
+      "a": "第44週の定点当たり報告数は、愛媛県27.89、北海道21.90、東京都6.91など県によって大きく違います。全国は10.26です。",
+      "source": "https://www.mhlw.go.jp/content/001766066.pdf",
+      "action": "厚生労働省の報道発表の別紙にある都道府県別の表で、自分の県の数字を毎週確かめる"
+    },
+    {
+      "q": "こどもや高齢者は、かかるとどうなる？",
+      "a": "こどもでは まれに急性脳症を、高齢者や免疫力が低下している方は細菌による肺炎を伴うなど、重症になることがあると説明されています。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html",
+      "action": "65歳以上の方や、60～64歳で一定の基礎疾患がある方は、定期の予防接種を毎年1回受けられる"
+    },
+    {
+      "q": "熱が出たら、発症から何時間以内に受診すればいい？",
+      "a": "抗インフルエンザウイルス薬は、発症から48時間以内に服用を始めると発熱期間が通常1～2日短くなるとされています。48時間を過ぎると十分な効果は期待できません。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html",
+      "action": "熱が出たら発症から48時間以内に医療機関を受診し、抗インフルエンザウイルス薬を使うか医師に相談する"
+    },
+    {
+      "q": "家族にうつさないために、どれくらい外出を控える？",
+      "a": "発症前日から発症後3～7日間は、鼻やのどからウイルスを排出するといわれています。その間は外出を控える必要があると書かれています。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html",
+      "action": "発症前日から発症後3～7日間は外出を控え、人混みや繁華街への外出も控える"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "今年、インフルエンザワクチンを受けるべき？",
+      "situation": "65歳以上、または60〜64歳で一定の基礎疾患がある",
+      "recommend": "定期接種の対象なので、毎年1回受ける選択肢を検討できる",
+      "reason": "65歳以上と、60～64歳で一定の基礎疾患がある方は、定期の予防接種として毎年1回受けられると書かれています。ワクチンは発症する可能性を下げ、重症化防止に有効と報告されています。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html"
+    },
+    {
+      "question": "今年、インフルエンザワクチンを受けるべき？",
+      "situation": "対象年齢や基礎疾患の条件に当てはまらない",
+      "recommend": "受けるかどうかは、医師に相談して決めるとよい",
+      "reason": "定期接種の対象外の方について、公式ページには費用や対象外の人の接種についての説明は書かれていません。ワクチンの効果は、発症の可能性を下げることと重症化防止として説明されています。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html"
+    },
+    {
+      "question": "熱が出たら、受診はいつまでにすればいい？",
+      "situation": "発熱など症状が出てから48時間以内",
+      "recommend": "早めに医療機関へ相談する",
+      "reason": "抗インフルエンザウイルス薬は、発症から48時間以内に服用を始めると発熱期間が通常1～2日短くなるとされています。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html"
+    },
+    {
+      "question": "熱が出たら、受診はいつまでにすればいい？",
+      "situation": "発症から48時間を過ぎてしまった",
+      "recommend": "受診して、薬を使うかを医師と相談する",
+      "reason": "48時間を過ぎると、抗インフルエンザウイルス薬の十分な効果は期待できないと書かれています。症状に応じた対応は、医師と相談して決めます。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "昨年より低い数字と、県別の見方",
+    "cause": "流行の理由はまだ示されていない",
+    "steps": "今日、県の数字を確かめる方法",
+    "desk": "連絡先と確かめるページ",
+    "worries": "県の数字、ワクチン、熱が出たときは？",
+    "guide": "熱が出たときの受診と薬の判断"
+  },
+  "depthAt": "2026-11-09T07:00:36+00:00"
 }

@@ -114,5 +114,137 @@
   "qualityScore": 82,
   "detectedAt": "2026-11-09T06:26:38+00:00",
   "layout": "noir",
-  "summaryLine": "東京電力エリアの従量電灯Bは、40Aの基本料金が**1,568.24円**に変わる"
+  "summaryLine": "東京電力エリアの従量電灯Bは、40Aの基本料金が**1,568.24円**に変わる",
+  "insight": [
+    {
+      "text": "東電の従量電灯Bは「まったく電気をご使用にならない場合の基本料金は、半額となります。」と書かれています。使わない月の請求は、基本料金の表だけでは決まりません。",
+      "source": "https://www.tepco.co.jp/ep/private/plan/old01.html"
+    },
+    {
+      "text": "エルピオの料金の計算は基本料金と従量料金の合計で、「需給管理費（5.5円/kWh）は含んでおりません」と注記があります。単価表だけでは請求額になりません。",
+      "source": "https://www.lpio.jp/lpio_denki/lpio_denki_tokyo_ryoukin/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "東京電力エナジーパートナー 従量電灯B・Cのページ",
+      "url": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "source": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "howTo": [
+        "電気サービス",
+        "料金プラン",
+        "従量電灯B・C"
+      ],
+      "phone": "0120-995-001",
+      "hours": "9時～17時（日曜・休・祝日除く）",
+      "note": "電話番号は規制料金プラン（従量電灯等）への切り替えの申し込み用と書かれています。料金は2026年11月1日以降の金額です。"
+    },
+    {
+      "name": "新エルピオでんき 東京電力エリア料金表",
+      "url": "https://www.lpio.jp/lpio_denki/lpio_denki_tokyo_ryoukin/",
+      "source": "https://www.lpio.jp/lpio_denki/lpio_denki_tokyo_ryoukin/",
+      "howTo": [
+        "新エルピオでんき",
+        "シミュレーション・料金プラン",
+        "料金プラン"
+      ],
+      "note": "東京電力エリアの料金表です。燃料費調整額や再生可能エネルギー発電促進賦課金は含まれていません。"
+    },
+    {
+      "name": "楽天でんき プランS（アンペア契約）料金",
+      "url": "https://energy.rakuten.co.jp/electricity/fee/plan_s/",
+      "source": "https://energy.rakuten.co.jp/electricity/fee/plan_s/",
+      "howTo": [
+        "楽天でんきTOP",
+        "電気料金プラン・オプション",
+        "プランS（アンペア契約）料金"
+      ],
+      "note": "従量料金はエリアごとに違います。2026年11月1日改定後の金額が載っています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "検針票か請求書で、契約アンペアと先月の使用量（kWh）を確かめる",
+      "source": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "steps": [
+        "検針票か請求書を開く",
+        "契約アンペアの数字を探す",
+        "先月の使用量（kWh）を書き写す"
+      ]
+    },
+    {
+      "action": "東京電力の従量電灯Bの料金表で、自分の契約アンペアの基本料金を見る",
+      "source": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "steps": [
+        "公式サイトの「料金プラン」を開く",
+        "「従量電灯B・C」を選ぶ",
+        "「基本料金」の表で契約アンペアの行を見る"
+      ],
+      "url": "https://www.tepco.co.jp/ep/private/plan/old01.html"
+    },
+    {
+      "action": "エルピオの料金表の注記で、需給管理費5.5円/kWhが単価に含まれないことを確かめる",
+      "source": "https://www.lpio.jp/lpio_denki/lpio_denki_tokyo_ryoukin/",
+      "steps": [
+        "エルピオの東京電力エリア料金表を開く",
+        "注記の「※」の文を読む",
+        "需給管理費（5.5円/kWh）を別に足して計算する"
+      ],
+      "url": "https://www.lpio.jp/lpio_denki/lpio_denki_tokyo_ryoukin/"
+    }
+  ],
+  "cause": {
+    "text": "楽天エナジーは「2026年11月1日より、託送料金の値上げによる料金改定を実施いたします。」と案内しています。東京電力エリアの従量料金は36.85円から38.00円に改定されます。",
+    "status": "background",
+    "source": "https://energy.rakuten.co.jp/electricity/fee/plan_s/"
+  },
+  "worries": [
+    {
+      "q": "基本料金0円なら、使わない月は0円になる？",
+      "a": "楽天でんきのプランSは基本料金が0円で、使った分の従量料金がかかります。基本料金が0円なのは、WEB申込とクレジットカード払いに限定しているためと書かれています。",
+      "source": "https://energy.rakuten.co.jp/electricity/fee/plan_s/",
+      "action": "使わない月の請求は、料金表の単価に使用量をかけて自分で計算してから決める"
+    },
+    {
+      "q": "住む地域が違うと、単価も変わる？",
+      "a": "変わります。楽天でんきのプランSの従量単価は、東京電力エリア38.00円、北海道電力エリア44.67円、関西電力エリア35.28円と、エリアごとに違います。2026年11月1日改定後の金額です。",
+      "source": "https://energy.rakuten.co.jp/electricity/fee/plan_s/",
+      "action": "住んでいるエリアの料金表を公式ページで確かめ、他地域の数字は使わずに比べる"
+    },
+    {
+      "q": "切り替えると、解約金や手数料がかかる？",
+      "a": "エルピオは、切替手数料0円、解約手数料0円と案内しています。楽天でんきは「解約金は発生いたしません」と書かれています。今の会社の解約金は、このページからは分かりません。",
+      "source": "https://www.lpio.jp/lpio_denki/",
+      "action": "今の契約会社の解約金を契約書や公式ページで確かめてから、切り替えを決める"
+    },
+    {
+      "q": "燃料費調整額があると、単価表だけでは請求が決まらない？",
+      "a": "はい。東京電力の従量電灯Bは、電力量料金に燃料費調整額を加えて算定すると書かれています。燃料価格で毎月変わるため、単価表の金額と請求額は一致しません。",
+      "source": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "action": "楽天でんきの燃料費調整単価のページで、月ごとの調整の仕組みを確かめておく"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "基本料金0円の一律単価に切り替える？",
+      "situation": "使用量が少ない月が多い",
+      "recommend": "急がず、少ない月の金額を計算してから決める",
+      "reason": "楽天でんきプランSは基本料金0円、従量単価は東京電力エリア38.00円です（2026年11月1日改定後）。解約金は発生いたしません、と書かれています。",
+      "source": "https://energy.rakuten.co.jp/electricity/fee/plan_s/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "需給管理費は、表の単価に入っていない",
+    "cause": "なぜ単価が変わるのか、いま分かっていること",
+    "steps": "まず契約アンペアと使用量を確かめる",
+    "desk": "各社の料金表と公式ページ",
+    "worries": "解約金やエリアによる単価の違いは？",
+    "guide": "基本料金と単価、どちらで選ぶか迷ったら"
+  },
+  "todayActions": [
+    "検針票か請求書で、契約アンペアと先月の使用量（kWh）を確かめる",
+    "東京電力の従量電灯Bの料金表で、自分の契約アンペアの基本料金を見る",
+    "エルピオの料金表の注記で、需給管理費5.5円/kWhが単価に含まれないことを確かめる"
+  ],
+  "depthAt": "2026-11-09T07:01:26+00:00"
 }
