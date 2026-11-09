@@ -7440,6 +7440,19 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102708"
     },
+    "3ec1977abf10bf78": {
+      "at": "2026-11-09T06:07:12.840330+00:00",
+      "breaking": true,
+      "costUsd": 0.118,
+      "intent": "breaking",
+      "major": true,
+      "mix": "quirky",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "business",
+      "slug": "rakuten-ast-satellite-direct-communication",
+      "url": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html"
+    },
     "3ec2313b14f30f93": {
       "at": "2026-10-27T22:02:24.043635+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -19854,57 +19867,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-06T18:23:24.593445+00:00",
-      "attempt": 1,
-      "id": "e53ef0c89ab22141",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "リード『個人の利用者に変わりはなく』および本文『個人プランやTeamプランの利用者に、今回の変更で変わることはありません』→ 元記事は個人・Teamプランへの影響に触れておらず、影響がないと断定する根拠がない。",
-        "『このため、Enterpriseの管理者と経理担当者に関係する』という対象者の整理は元記事の対象（Enterprise組織）から妥当だが、Team・個人プランの利用者が影響を受けないとまでは言えない。"
-      ],
-      "readability": {
-        "avg_paragraph": 68.6,
-        "avg_sentence": 32.0,
-        "long_share": 0.044,
-        "max_paragraph": 123,
-        "paragraphs": 21,
-        "sentences": 45
-      },
-      "score": 85,
-      "source": "watch-claude-apps-release-notes",
-      "title": "Claude: Track spend by cost code with project tags (beta)",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（WBS・CMEK・CC）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T18:23:47.753043+00:00",
-      "attempt": 1,
-      "id": "e53ef0c89ab22141",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 68.4,
-        "avg_sentence": 31.9,
-        "long_share": 0.044,
-        "max_paragraph": 123,
-        "paragraphs": 21,
-        "sentences": 45
-      },
-      "score": 88,
-      "source": "watch-claude-apps-release-notes",
-      "title": "Claude: Track spend by cost code with project tags (beta)",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（WBS・CMEK・CC）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-06T18:25:12.950819+00:00",
       "attempt": 1,
       "id": "bc8f9eac19663ff6",
@@ -26740,6 +26702,53 @@
       "title": "「不動産情報ライブラリ」コンテンツ追加およびデータ更新！～「特別注視区域」（重要土地等調査法）データの追加等を10月28日に実施しました～",
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 46.2字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:06:43.387994+00:00",
+      "attempt": 1,
+      "id": "3ec1977abf10bf78",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 100.4,
+        "avg_sentence": 50.2,
+        "long_share": 0.231,
+        "max_paragraph": 190,
+        "paragraphs": 13,
+        "sentences": 26
+      },
+      "score": 90,
+      "source": "rakuten-press",
+      "title": "楽天と米AST 、日本における衛星ダイレクト通信構築に向けた新会社「Rakuten AST」を設立",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（AST・LEO・CIAJ）",
+        "読みやすさ: 文が長い（1文の平均 50.2字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T06:07:12.812796+00:00",
+      "attempt": 0,
+      "id": "3ec1977abf10bf78",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 67.0,
+        "avg_sentence": 41.9,
+        "long_share": 0.062,
+        "max_paragraph": 126,
+        "paragraphs": 20,
+        "sentences": 32
+      },
+      "score": 88,
+      "source": "rakuten-press",
+      "title": "楽天と米AST 、日本における衛星ダイレクト通信構築に向けた新会社「Rakuten AST」を設立",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（AST・LEO・CIAJ）"
       ]
     }
   ],
