@@ -18,6 +18,8 @@ import { ActionSteps, CauseBox, DecisionGuide, Fold, InsightBox, OfficialDesk, W
 import StoryLinks from "@/components/noir/StoryLinks";
 import FoldOpener from "@/components/noir/FoldOpener";
 import GenreLine from "@/components/noir/GenreLine";
+import { NextStepsBox, TargetCheck } from "@/components/noir/NextSteps";
+import { nextStepsFor } from "@/lib/next-steps";
 import { depthOf } from "@/lib/depth";
 import ActionAd from "@/components/ActionAd";
 import type { ActionAd as ActionAdData } from "@/lib/action-ad";
@@ -168,6 +170,8 @@ export function noirArticlePage(ctx: NoirPageContext) {
     sourceName;
   // 題名の下の発表元は短く（「日本年金機構「老齢…の概要」（2026年10月1日更新）」→「日本年金機構」。2026-11-10 オーナー承認: 最初の画面を答えに使う）
   const orgShort = shortOrg(org);
+  // よく読まれる記事の「あなたは対象？」と「次にやること」（content/next_steps.json）
+  const steps = nextStepsFor(article.slug);
   // 上の1行: 同じジャンルの新着（自分は除く）
   const genreLatest = getAllArticles().find((a) => a.genreSlug === article.genreSlug && a.slug !== article.slug);
   const noirJsonLd = jsonLd.map((entry, i) =>
@@ -336,7 +340,13 @@ export function noirArticlePage(ctx: NoirPageContext) {
         ),
         adEnd,
         // 本文の直後（出典のボタンの下）に「次に読む記事」（2026-11-10 オーナー承認。以前は画面16〜24枚目）
-        next: <NextRead items={storyEnd} />,
+        next: (
+          <>
+            {steps?.next && <NextStepsBox steps={steps.next} />}
+            <NextRead items={storyEnd} />
+          </>
+        ),
+        check: steps?.check ? <TargetCheck check={steps.check} /> : null,
         afterSource: (
           <>
             <SourceRecord

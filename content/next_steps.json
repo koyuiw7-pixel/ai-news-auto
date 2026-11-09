@@ -1,0 +1,79 @@
+{
+  "_README": "よく読まれる記事の「あなたは対象？」（本文の最初の章の後ろ）と「次にやること」（本文の直後）。2026-11-10 オーナー承認（2ページ目に進む割合を上げる）。文はすべて記事・リンク先の記事にある公式の事実だけ。slug は今ある記事（tests/test_next_steps.cjs が確かめる）。check の href は記事の中の場所（#steps-fold＝手順と公式の窓口の欄）か記事の slug。components/noir/NextSteps.tsx が出す。矢印などの印は付けない",
+  "articles": {
+    "docomo-data-leak-what-to-do": {
+      "check": {
+        "title": "あなたは対象？　当てはまるものを確かめる",
+        "note": "対象かどうかを照会する方法は、11月9日時点でまだ発表されていません。",
+        "items": [
+          { "text": "ドコモオンラインショップかMy docomoを使ったことがある", "slug": "docomo-online-shop-data-leak", "link": "流出した項目を見る" },
+          { "text": "家族の回線の手続きで代理人になった", "slug": "docomo-data-leak-family-lines", "link": "代理人の情報も含まれる" },
+          { "text": "IDやパスワードを、メールやSMSのリンク先に入力した", "href": "#steps-fold", "link": "手順と公式の窓口" }
+        ],
+        "branch": { "text": "迷ったら、公的な相談窓口へ", "slug": "fsa-personal-info-leak-consultation" }
+      },
+      "next": [
+        { "step": "流出した項目を確かめる", "slug": "docomo-online-shop-data-leak" },
+        { "step": "不安や被害を相談する先を知る", "slug": "fsa-personal-info-leak-consultation" },
+        { "step": "端末の対策を比べる", "slug": "security-software-leak-worry-compare" }
+      ]
+    },
+    "docomo-online-shop-data-leak": {
+      "check": {
+        "title": "あなたは対象？　当てはまるものを確かめる",
+        "note": "自分が全員共通の項目だけか、一部の人の項目も含むかは、公式のお知らせからは分かりません。",
+        "items": [
+          { "text": "口座振替などで、金融機関の口座を登録している", "slug": "docomo-data-leak-what-to-do", "link": "今日やる確認" },
+          { "text": "家族の回線の手続きで代理人になった", "slug": "docomo-data-leak-family-lines", "link": "代理人の情報も含まれる" },
+          { "text": "ドコモを名乗るSMSやメールが届いた", "href": "#steps-fold", "link": "手順と公式の窓口" }
+        ],
+        "branch": { "text": "迷ったら、公的な相談窓口へ", "slug": "fsa-personal-info-leak-consultation" }
+      },
+      "next": [
+        { "step": "今日のうちに明細とdアカウントを確かめる", "slug": "docomo-data-leak-what-to-do" },
+        { "step": "不安や被害を相談する先を知る", "slug": "fsa-personal-info-leak-consultation" },
+        { "step": "端末の対策を比べる", "slug": "security-software-leak-worry-compare" }
+      ]
+    },
+    "child-allowance-third-child-monthly-30000": {
+      "check": {
+        "title": "あなたの家は第3子と数えられる？",
+        "note": "子どもが3人以上いても、必ず第3子以降として数えられるわけではありません。",
+        "items": [
+          { "text": "上の子が大学生年代（22歳になった後の最初の年度末まで）", "href": "#steps-fold", "link": "確認書の出し方" },
+          { "text": "その上の子の生計費を親が負担している", "href": "#steps-fold", "link": "確認書の出し方" },
+          { "text": "子が生まれた・引っ越した（15日以内に申請）", "href": "#steps-fold", "link": "申請の段取り" }
+        ]
+      },
+      "next": [
+        { "step": "出産予定なら、出産育児一時金の受け取り方を確かめる", "slug": "maternity-benefit-direct-payment-50man" },
+        { "step": "育休中なら、給付が50%に変わる日を確かめる", "slug": "childcare-leave-benefit-50-percent-day181" },
+        { "step": "年末調整で、扶養の所得要件を確かめる", "slug": "nencho-2026-dependent-income-limit-62man" }
+      ]
+    },
+    "pension-support-benefit-old-age-eligibility": {
+      "check": {
+        "title": "あなたは対象？　3つすべてに当てはまるか",
+        "note": "対象でも、請求しないと支給は始まりません。",
+        "items": [
+          { "text": "65歳以上で、老齢基礎年金を受けている" },
+          { "text": "同じ世帯の全員が、市町村民税非課税" },
+          { "text": "前年の年金などの合計が926,500円以下（昭和31年4月2日以後生まれ）" }
+        ],
+        "branch": { "text": "迷ったら、手順と給付金専用ダイヤルへ", "href": "#steps-fold" }
+      },
+      "next": [
+        { "step": "医療費が多い年は、医療費控除の基準を確かめる", "slug": "medical-expense-deduction-income-threshold" },
+        { "step": "働きながら受け取る人は、減額の基準を確かめる", "slug": "zaishoku-rourei-nenkin-65man-2026" },
+        { "step": "家族が亡くなったときの遺族年金の手続きを知る", "slug": "izoku-nenkin-seikyu-tetsuzuki" }
+      ]
+    },
+    "heater-power-cost-per-hour": {
+      "next": [
+        { "step": "電気料金のプランを比べる", "slug": "tokyo-electricity-4-plans-compare" },
+        { "step": "電気ストーブのリコール対象か確かめる", "slug": "marutaka-carbon-heater-recall-dms-091-wh" },
+        { "step": "停電したときに最初に見る場所を知る", "slug": "power-outage-breaker-check-guide" }
+      ]
+    }
+  }
+}
