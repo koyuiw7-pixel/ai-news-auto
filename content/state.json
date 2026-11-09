@@ -8393,6 +8393,19 @@
       "skipped": true,
       "url": "https://www.jp-bank.japanpost.jp/aboutus/press/2026/abt_prs_id002133.html"
     },
+    "4eebee5ba5132ad0": {
+      "at": "2026-11-09T23:42:29.818109+00:00",
+      "breaking": true,
+      "costUsd": 0.1278,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 86,
+      "section": "business",
+      "slug": "household-survey-2026-09-spending",
+      "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09"
+    },
     "4eebfe08bde633ea": {
       "at": "2026-10-29T18:12:14.465098+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -12263,14 +12276,6 @@
       "section": "ai",
       "slug": "figma-code-layers-open-beta-design",
       "url": "https://www.figma.com/blog/in-conversation-dylan-field-and-david-friedberg/"
-    },
-    "89882f16bf91aea9": {
-      "at": "2026-10-26T23:41:07.187312+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "tech-gadget",
-      "slug": "japan-ai-infrastructure-software-market",
-      "url": "https://www.dreamnews.jp/press/0000366533"
     },
     "89a4261200efbd25": {
       "at": "2026-10-27T02:41:21.294952+00:00",
@@ -20048,42 +20053,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-07T19:52:09.992780+00:00",
-      "attempt": 1,
-      "id": "37a4aa9d2f151d8b",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 90,
-      "source": "mlit-press",
-      "title": "令和8年11月8日01時04分頃の静岡県西部の地震に伴う土砂災害に関する警報等の暫定的な運用"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T19:53:42.967167+00:00",
-      "attempt": 1,
-      "id": "d28d7745dd0262c5",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 107.6,
-        "avg_sentence": 40.9,
-        "long_share": 0.14,
-        "max_paragraph": 150,
-        "paragraphs": 19,
-        "sentences": 50
-      },
-      "score": 88,
-      "source": "github-changelog-copilot",
-      "title": "Copilot code review: API management and review overview updates",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（MCP）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-07T20:28:38.117354+00:00",
       "attempt": 1,
@@ -27265,6 +27234,54 @@
         "見出しの書き方: 記号: かっこの直前に「、」",
         "初めて出たところで言い換えていない略語（FLIM）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T23:42:03.032469+00:00",
+      "attempt": 1,
+      "id": "4eebee5ba5132ad0",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "要点の数字「-1.41ポイント」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
+        "要点の数字「-0.94ポイント」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
+      ],
+      "readability": {
+        "avg_paragraph": 67.4,
+        "avg_sentence": 35.7,
+        "long_share": 0.029,
+        "max_paragraph": 121,
+        "paragraphs": 18,
+        "sentences": 34
+      },
+      "score": null,
+      "source": "fast",
+      "title": "家計調査 2026年9月分（二人以上の世帯の消費支出）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T23:42:29.750779+00:00",
+      "attempt": 1,
+      "id": "4eebee5ba5132ad0",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「実質で前年を上回ったのは、実質0.0%の住居を除くと見当たりません」→ 住居の実質は0.0%で上回っていないため、除外する理由と矛盾する表現になっている",
+        "「国内パック旅行費などの減少が背景にあると押さえておくとよい」→ 元記事は寄与度を示すだけで、背景や理由には触れていない",
+        "「貯蓄に回る余地が広がりました」「使うより手元に残る方向に動いています」→ 平均消費性向の低下から読み取れる解釈で、元記事は貯蓄の増加を示していない",
+        "「大きな買い物や臨時の支出の影響を除いても、減少は変わりません」→ 元記事は住居等を除いた数値を示すのみで、臨時支出の概念への言及はなく、言い換えとして言い過ぎ"
+      ],
+      "readability": {
+        "avg_paragraph": 67.4,
+        "avg_sentence": 35.7,
+        "long_share": 0.029,
+        "max_paragraph": 121,
+        "paragraphs": 18,
+        "sentences": 34
+      },
+      "score": 86,
+      "source": "fast",
+      "title": "家計調査 2026年9月分（二人以上の世帯の消費支出）"
     }
   ],
   "short_text_retry": {},
