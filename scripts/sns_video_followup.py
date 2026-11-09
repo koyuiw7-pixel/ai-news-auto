@@ -1302,6 +1302,7 @@ def add_card_if_missing(inp: dict, article: dict) -> None:
             thread[0]["assets"] = [{"image": {"url": tp.card_url(article)}}]
 
 
+PHOTO_RESUME_GAP_MIN = 45
 PHOTO_RESUME_LEAD_MIN = 15  # 予約に戻すのは今からこれだけ先（デプロイが済んでからカードが読まれるように）
 PHOTO_PAUSE_GIVEUP_H = 12  # 画像を待って下書きにした投稿は、この時間を過ぎたら予約に戻さない（issue で知らせる）
 
@@ -1313,7 +1314,8 @@ def resume_photo_paused(state: dict, now: datetime, api_key: str | None = None, 
     editor, reader, issue = editor or edit_post, reader or read_post, issue or missing_issue
     out = []
     paused = state.get("photoPaused") or {}
-    for pid, entry in list(paused.items()):
+    last_when: datetime | None = None
+    for pid, entry in sorted(paused.items(), key=lambda kv: kv[1].get("dueAt") or ""):
         slug = entry.get("slug") or ""
         try:
             article = json.loads((ARTICLES / f"{slug}.json").read_text("utf-8"))
@@ -1342,6 +1344,8 @@ def resume_photo_paused(state: dict, now: datetime, api_key: str | None = None, 
         add_card_if_missing(inp, article)  # 下書きに戻すと Buffer は画像を外す（pause_input）。記事のカードを付け直す
         # 画像は記事の公開（デプロイ。3〜5分）のあとにカードへ載る。その前に出ないよう、少しあとに予約する
         when = max(due, now + timedelta(minutes=PHOTO_RESUME_LEAD_MIN))
+        if last_when and when < last_when + timedelta(minutes=PHOTO_RESUME_GAP_MIN):
+            when = last_when + timedelta(minutes=PHOTO_RESUME_GAP_MIN)  # 同じ回に戻す投稿どうしも間をあける（S47 の45分）
         inp.update({"mode": "customScheduled", "dueAt": _iso(when), "saveToDraft": False})
         try:
             editor(key, inp, article, node["service"])
@@ -1352,6 +1356,7 @@ def resume_photo_paused(state: dict, now: datetime, api_key: str | None = None, 
             entry["failed"] = int(entry.get("failed") or 0) + 1  # 消さずに次の回にもう一度（PHOTO_PAUSE_GIVEUP_H まで）
             continue
         paused.pop(pid, None)
+        last_when = when
         log(f"[photo-resume] {slug}/{node['service']}: 画像が付いたので {when.astimezone(JST):%H:%M} に予約に戻しました")
         out.append({"id": pid, "slug": slug, "action": "resumed", "dueAt": _iso(when)})
     return out
@@ -2303,6 +2308,13 @@ def main() -> None:
             for row in resume_photo_paused(state, datetime.now(timezone.utc)):
                 print(json.dumps(row, ensure_ascii=False))
             save_state(state)
+        return
+    if args.queue_fix and args.queue_fix.startswith("reschedule:"):
+        # 予約中の投稿1件の時刻だけを替える（reschedule:ID@2026-11-09T04:10:00Z。文面・画像はそのまま）
+        pid, _, when = args.queue_fix[len("reschedule:"):].partition("@")
+        key = os.environ.get("BUFFER_API_KEY", "")
+        after = edit_post(key, {"id": pid.strip(), "mode": "customScheduled", "dueAt": _iso(_parse(when.strip())), "saveToDraft": False})
+        print(json.dumps({"id": pid, "status": after.get("status"), "dueAt": after.get("dueAt")}, ensure_ascii=False))
         return
     if args.queue_fix and args.queue_fix.startswith("pause:"):
         # 予約中の投稿のうち、この ID だけを下書きに戻す（公開しない・消さない。二重に入った予約を止めるとき）
