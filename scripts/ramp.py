@@ -18,7 +18,10 @@ JST = timezone(timedelta(hours=9))
 # (この日から, 公式ブログ・プレスリリース・話題の1日の上限)。動画からの記事（最大8本/日）は別
 # 2026-11-06 オーナー決定（台帳 A47）: この日から100本/日（目標は 11/26 に日本からの訪問 2,500/日）。それより上には増やさない
 OWNER_DAILY_TARGET = 100
-WEB_RAMP = [("2026-10-27", 45), ("2026-11-03", 95), ("2026-11-06", OWNER_DAILY_TARGET)]
+# 2026-11-09 オーナー「目標を妨げる可能性のあるルールは消そう」「達成してもそれ以上を目指す」:
+# 100本は最低ライン。上限は 200 に広げる（品質の門はそのまま）
+WEB_CEILING = 200
+WEB_RAMP = [("2026-10-27", 45), ("2026-11-03", 95), ("2026-11-06", OWNER_DAILY_TARGET), ("2026-11-09", WEB_CEILING)]
 # (この日から, SNS の1日の投稿本数)
 # 2026-11-08 オーナー承認（台帳 S47）: 15本/日（Threads・X・Facebook・Bluesky のそれぞれ。変数 SNS_PER_DAY も15）
 SNS_RAMP = [("2026-10-27", 7), ("2026-11-03", 8), ("2026-11-08", 15)]
@@ -70,7 +73,7 @@ def ai_per_run(web: int) -> int:
 # 2026-11-09 オーナー指示「100本/日は必須（訪問の目標のため）」: 段は今日から100（変数 WEB_STAGE_TARGET=100・未設定でも100）。
 # インデックス率などの見張りは夜の報告で続けるが、上限を下げる理由にはしない
 STAGES = (40, 60, 80, 100)
-DEFAULT_STAGE = 100
+DEFAULT_STAGE = 200
 
 
 def stage_target() -> int:
@@ -78,7 +81,7 @@ def stage_target() -> int:
         value = int(os.environ.get("WEB_STAGE_TARGET") or DEFAULT_STAGE)
     except ValueError:
         value = DEFAULT_STAGE
-    return max(1, min(value, OWNER_DAILY_TARGET))
+    return max(OWNER_DAILY_TARGET, min(value, WEB_CEILING))
 
 
 def main() -> None:

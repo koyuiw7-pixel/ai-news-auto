@@ -16,11 +16,12 @@ class StageTest(unittest.TestCase):
         # 2026-11-09 オーナー指示: 100本/日は必須。段は今日から100（未設定でも100）
         old = os.environ.pop("WEB_STAGE_TARGET", None)
         try:
-            self.assertEqual(ramp.stage_target(), 100)
+            # 2026-11-09 オーナー「目標を妨げるルールは消そう」: 既定は 200、100 を下回らない
+            self.assertEqual(ramp.stage_target(), 200)
             os.environ["WEB_STAGE_TARGET"] = "80"
-            self.assertEqual(ramp.stage_target(), 80)
-            os.environ["WEB_STAGE_TARGET"] = "500"
             self.assertEqual(ramp.stage_target(), 100)
+            os.environ["WEB_STAGE_TARGET"] = "500"
+            self.assertEqual(ramp.stage_target(), 200)
         finally:
             os.environ.pop("WEB_STAGE_TARGET", None)
             if old is not None:

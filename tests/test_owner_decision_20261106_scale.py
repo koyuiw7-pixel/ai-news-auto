@@ -26,9 +26,12 @@ class DailyTargetTest(unittest.TestCase):
     def test_ramp_reaches_100_from_nov_6_and_never_more(self):
         self.assertEqual(ramp.OWNER_DAILY_TARGET, 100)
         self.assertEqual(ramp.pick(ramp.WEB_RAMP, "2026-11-05"), 95)
-        for day in ("2026-11-06", "2026-11-10", "2026-11-26", "2026-12-31"):
+        self.assertEqual(ramp.review_cap(ramp.pick(ramp.WEB_RAMP, "2026-11-06"), "2026-11-06"), 100)
+        # 2026-11-09 オーナー「目標を妨げるルールは消そう」: 100本は最低ライン、上限は 200
+        for day in ("2026-11-09", "2026-11-26", "2026-12-31"):
             cap = ramp.review_cap(ramp.pick(ramp.WEB_RAMP, day), day)
-            self.assertEqual(cap, 100, day)
+            self.assertEqual(cap, ramp.WEB_CEILING, day)
+            self.assertGreaterEqual(cap, 100, day)
 
     def test_per_run_counts_make_100_reachable(self):
         # 実際に回るのは日中1時間に3回ほど（約54回）。2026-11-09 オーナー「100本/日は必須」: 国内のレーンを1回4本・AI を1回2本にする
@@ -64,9 +67,9 @@ class DailyTargetTest(unittest.TestCase):
 class SearchIntentGuidesTest(unittest.TestCase):
     def test_evergreen_runs_more_often_with_a_higher_cap(self):
         self.assertIn('cron: "41 */2 * * *"', EVERGREEN)
-        self.assertIn("EVERGREEN_DAILY_CAP: ${{ vars.EVERGREEN_DAILY_CAP_BRAKE || '20' }}", EVERGREEN)  # A58 で 16→20
+        self.assertIn("EVERGREEN_DAILY_CAP: ${{ vars.EVERGREEN_DAILY_CAP_BRAKE || '40' }}", EVERGREEN)  # A58 で 16→20、11/9 オーナーで 40
         self.assertNotIn("vars.EVERGREEN_DAILY_CAP ||", EVERGREEN)
-        self.assertIn("--max \"${{ inputs.max || '2' }}\"", EVERGREEN)
+        self.assertIn("--max \"${{ inputs.max || '4' }}\"", EVERGREEN)
 
     def test_evergreen_is_written_by_claude_not_demoted_to_free(self):
         self.assertIn("LLM_DEFAULT_PURPOSE: core", EVERGREEN)

@@ -75,7 +75,7 @@ jobs:
           JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
           # 古い変数 EVERGREEN_DAILY_CAP（8）は読まない（台帳 A47 で 16 に上げた）。2026-11-08 台帳 A58: ニュースの記事が0本の回の空いた枠
           # （夜・週末）をガイドで埋めるので 20 に（ニュースの段 60 本＋ガイドで1日60本の段を確実に満たす）
-          EVERGREEN_DAILY_CAP: ${{ vars.EVERGREEN_DAILY_CAP_BRAKE || '20' }}
+          EVERGREEN_DAILY_CAP: ${{ vars.EVERGREEN_DAILY_CAP_BRAKE || '40' }}  # 2026-11-09 オーナー「目標を妨げるルールは消す」で 20→40
           # Claude API の Haiku（中心の段。予算が苦しくても無料モデルに下げない）→ 無料モデル。使用量はこのジョブ専用のファイルに記録（scripts/llm.py）
           # 2026-11-06（台帳 A47）: 「その他」の段では予算の配分で無料モデルになり、無料枠切れで1本も作れない日が続いたので「中心」にする
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -88,7 +88,7 @@ jobs:
           if [ -n "$ONLY" ]; then
             timeout 2700 python scripts/evergreen.py --only "$ONLY" $([ "$FORCE" = "true" ] && echo --force) --budget 2400
           else
-            timeout 2700 python scripts/evergreen.py --max "${{ inputs.max || '2' }}" --refresh --refresh-max 2 --budget 2100
+            timeout 2700 python scripts/evergreen.py --max "${{ inputs.max || '4' }}" --refresh --refresh-max 2 --budget 2100
           fi
 
       - name: Commit & push
