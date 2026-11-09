@@ -5179,13 +5179,6 @@
       "slug": "mhlw-war-dead-memorial-nov2026",
       "url": "https://www.mhlw.go.jp/stf/newpage_77136.html"
     },
-    "188e9fbc4643b05c": {
-      "at": "2026-10-26T16:11:49.835535+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1945字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://blog.google/products-and-platforms/products/education/ai-quests-polar-peaks/"
-    },
     "18bd67bed46c5c04": {
       "at": "2026-10-30T01:51:55.136266+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6998,14 +6991,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102918"
-    },
-    "3650ab66a57422eb": {
-      "at": "2026-10-26T16:13:30.244671+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "tech-gadget",
-      "slug": "tohoku-gakuin-softbank-dx-partnership",
-      "url": "https://www.softbank.jp/sbnews/entry/20261026_01"
     },
     "367032270e6a1554": {
       "at": "2026-10-29T18:14:13.267655+00:00",
@@ -11270,6 +11255,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/discourse/20261101message.html"
+    },
+    "762a26d0ebd2dfc5": {
+      "at": "2026-11-09T16:21:47.655060+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（受賞）",
+      "skipped": true,
+      "url": "https://www.apple.com/jp/newsroom/2026/11/olivia-dean-is-apple-musics-artist-of-the-year-for-2026/"
     },
     "7652741f39ec7ac8": {
       "at": "2026-10-30T10:11:36.991884+00:00",
@@ -18184,6 +18175,18 @@
       "skipped": true,
       "url": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-t.html"
     },
+    "e424c28f526c23bf": {
+      "at": "2026-11-09T16:26:02.252036+00:00",
+      "costUsd": 0.0148,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 85,
+      "section": "ai",
+      "slug": "northern-trust-microsoft-ai-onboarding",
+      "url": "https://news.microsoft.com/source/2026/11/09/northern-trust-and-microsoft-frontier-company-collaborate-to-transform-client-onboarding-through-ai/"
+    },
     "e44ec110ddea54c9": {
       "at": "2026-10-27T03:06:38.812721+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -20266,85 +20269,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-07T13:13:22.667952+00:00",
-      "attempt": 1,
-      "id": "8701fa3f5588adb9",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "リード「この仕組みは一般向けの製品ではなく」→ 元記事は個人のソロアーティストから大企業までを対象にAI動画制作を民主化すると述べており、一般向けでないと断定する根拠がない。",
-        "かんたん版「一般の人が今すぐ使える製品の発表ではありません」→ 元記事に製品の提供範囲の記述はなく、一般向けでないという断定は元記事から確認できない。",
-        "判定欄「提供状況=demo」→ 元記事にない用語で、提供状況の判定根拠が示されていない。",
-        "「Sonnet（編集部注：Anthropicの言語モデル）」→ 編集部注による一般的な補足で問題は小さいが、元記事は Sonnet としか書いていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 129.5,
-        "avg_sentence": 44.2,
-        "long_share": 0.136,
-        "max_paragraph": 180,
-        "paragraphs": 15,
-        "sentences": 44
-      },
-      "score": 80,
-      "source": "google-cloud-blog",
-      "title": "The Blueprint: Orchestrating 5,000+ AI assets for a World Cup TV spot",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CM）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T13:13:45.121191+00:00",
-      "attempt": 1,
-      "id": "8701fa3f5588adb9",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "段落が長い（平均 128.1字・最長 180字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 128.1,
-        "avg_sentence": 43.7,
-        "long_share": 0.114,
-        "max_paragraph": 180,
-        "paragraphs": 15,
-        "sentences": 44
-      },
-      "score": 95,
-      "source": "google-cloud-blog",
-      "title": "The Blueprint: Orchestrating 5,000+ AI assets for a World Cup TV spot",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CM）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T13:14:13.028981+00:00",
-      "attempt": 0,
-      "id": "8701fa3f5588adb9",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 99.5,
-        "avg_sentence": 42.0,
-        "long_share": 0.089,
-        "max_paragraph": 178,
-        "paragraphs": 19,
-        "sentences": 45
-      },
-      "score": 92,
-      "source": "google-cloud-blog",
-      "title": "The Blueprint: Orchestrating 5,000+ AI assets for a World Cup TV spot",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CM）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-07T13:53:07.089620+00:00",
@@ -27465,6 +27389,81 @@
         "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
         "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（HII・HEI）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T16:24:57.610185+00:00",
+      "attempt": 1,
+      "id": "e424c28f526c23bf",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "題名で「日本で使えるか」を約束しているのに、本文に日本での提供・使い方の説明が無い。答えるか、題名から外す"
+      ],
+      "readability": {
+        "avg_paragraph": 183.4,
+        "avg_sentence": 76.4,
+        "long_share": 0.75,
+        "max_paragraph": 264,
+        "paragraphs": 5,
+        "sentences": 12
+      },
+      "score": null,
+      "source": "microsoft-source",
+      "title": "Northern Trust and Microsoft Frontier Company collaborate to transform client on",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 76.4字・60字超の文が 75% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 183.4字・最長 264字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T16:25:34.384885+00:00",
+      "attempt": 1,
+      "id": "e424c28f526c23bf",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 183.2,
+        "avg_sentence": 76.3,
+        "long_share": 0.75,
+        "max_paragraph": 263,
+        "paragraphs": 5,
+        "sentences": 12
+      },
+      "score": 85,
+      "source": "microsoft-source",
+      "title": "Northern Trust and Microsoft Frontier Company collaborate to transform client on",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 76.3字・60字超の文が 75% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 183.2字・最長 263字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T16:26:02.227063+00:00",
+      "attempt": 0,
+      "id": "e424c28f526c23bf",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.5,
+        "avg_sentence": 38.5,
+        "long_share": 0.083,
+        "max_paragraph": 118,
+        "paragraphs": 10,
+        "sentences": 24
+      },
+      "score": 85,
+      "source": "microsoft-source",
+      "title": "Northern Trust and Microsoft Frontier Company collaborate to transform client on",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
