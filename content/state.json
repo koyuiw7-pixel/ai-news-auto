@@ -178,7 +178,6 @@
     "02667be02cad0dd5": "2026-11-07T18:50:54.043233+00:00",
     "0281c9bf841dd5aa": "2026-11-07T15:31:07.844885+00:00",
     "031a673e562848d1": "2026-11-05T12:21:12.462815+00:00",
-    "03ef0f6a91d8d82a": "2026-11-05T02:29:39.911619+00:00",
     "0656b695035ed990": "2026-11-06T02:00:51.769605+00:00",
     "0a40dc02edbb2ef3": "2026-11-06T19:41:01.362264+00:00",
     "0c6ee60017e73383": "2026-11-05T13:21:07.354021+00:00",
@@ -238,7 +237,6 @@
     "877948a180f4280d": "2026-11-05T18:40:52.551314+00:00",
     "884b8cc2f43ba1f5": "2026-11-06T01:01:01.438406+00:00",
     "8a01d45d75d2fb55": "2026-11-05T12:21:12.462815+00:00",
-    "8f321d911be5a10c": "2026-11-05T03:10:54.568103+00:00",
     "8fb0b9dcb6ac4d10": "2026-11-05T18:40:52.551314+00:00",
     "9192d24f26be4d21": "2026-11-06T01:20:53.228732+00:00",
     "95fb99d3788133d4": "2026-11-06T00:01:50.996430+00:00",
@@ -281,7 +279,6 @@
     "d81f119140bd0c5a": "2026-11-06T06:00:54.354301+00:00",
     "d93bb08e587afc9a": "2026-11-05T12:21:12.462815+00:00",
     "db51f5d57cfa9152": "2026-11-06T19:41:01.362264+00:00",
-    "e20b9dad521b1e3b": "2026-11-05T02:20:49.929727+00:00",
     "e67af1bc1abab65a": "2026-11-06T08:51:04.778179+00:00",
     "eba32c23b40357a7": "2026-11-06T06:00:54.354301+00:00",
     "ed8882990ef515aa": "2026-11-05T18:40:52.551314+00:00",
@@ -4062,6 +4059,13 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001302.html"
     },
+    "0a59266bb701bab5": {
+      "at": "2026-11-09T04:12:17.740544+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「トヨタ自動車 グローバルニュースルームは11月9日、…発表しました」→ 元記事はTOYOTA RACINGの公式発表で、発信元と11月9日の発表日は元記事にも確認済みの文脈にも無い。; 「既存記事では8号車が「トップ5に入れば」王座に届くとしていました」→ 確認済みの文脈の過去記事には「トップ5」の条件は無く、8号車が17ポイント差で首位だったとしか書かれてい",
+      "skipped": true,
+      "url": "https://jp.toyota-racing-newsroom.com/blog/wec/artikel/2026-6-hours-of-monza-race/text"
+    },
     "0abcc6e9463d2335": {
       "at": "2026-11-09T01:12:40.548125+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -4366,6 +4370,17 @@
       "reason": "quality: 本文が短い（1383字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://www.reuters.com/jp/markets/japan/N3QCKQ4EWVNG5BHSPZNYN5GUME-2026-10-28/"
+    },
+    "0eee6f243af8755c": {
+      "at": "2026-11-09T04:17:48.032732+00:00",
+      "costUsd": 0.0101,
+      "intent": "query",
+      "mix": "life",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "tech-gadget",
+      "slug": "johoshori-jitsumu-koshu-ipa",
+      "url": "https://www.ipa.go.jp/jinzai/riss/forriss/practical.html"
     },
     "0ef693dc699abbb7": {
       "at": "2026-11-02T19:54:10.270566+00:00",
@@ -8924,6 +8939,12 @@
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/048022/"
     },
+    "56411917d10cbd33": {
+      "at": "2026-11-09T04:13:55.028522+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.cfa.go.jp/councils/shingikai/kodomo_sodachi/azukari_service/5d6b029e"
+    },
     "56793c4e5b2388ab": {
       "at": "2026-11-06T05:41:47.940001+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -10913,6 +10934,14 @@
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/how-gen-digital-built-norton-revamps-ai-curated-news-engine-with-amazon-bedrock-agentcore-web-search/"
     },
+    "74e4eb54c48c60c2": {
+      "at": "2026-11-09T04:18:54.300769+00:00",
+      "costUsd": 0.016,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: リード「月額コストの目安は約16,400円（税別）からと試算」→ 元記事の基本試算は$103.58（約16,400円）で、Fargate Spot利用時は$57.50（約9,100円）と示されており、16,400円は下限ではない。数値の取り違え。; リード・要点「月間1万件の処理コストはFargateなどで約103.58ドル」→ 元記事では$103.58は1,000ワークフロー・",
+      "skipped": true,
+      "url": "https://aws.amazon.com/jp/blogs/news/beyond-traditional-market-price-tracking-a-generative-ai-solution-for-sap-customers/"
+    },
     "74ff1aa266d81f91": {
       "at": "2026-10-27T03:05:10.758136+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（億米ドル）",
@@ -12609,6 +12638,12 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202611/video-327085.html"
     },
+    "8fbbba12a75606c5": {
+      "at": "2026-11-09T04:13:55.028594+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/denpa_kanri/kaisai/02kiban01_04000333.html"
+    },
     "8fd688b05729e308": {
       "at": "2026-10-28T19:53:31.954500+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -14230,6 +14265,17 @@
       "reason": "followup quality: 続報の長さが不適切（285字 / 400〜900字）",
       "skipped": true,
       "url": "https://www.boj.or.jp/statistics/boj/fm/juqf/juqf10.xlsx"
+    },
+    "a92c9990f7881d08": {
+      "at": "2026-11-09T04:19:35.565480+00:00",
+      "costUsd": 0.0069,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 93,
+      "section": "ai",
+      "slug": "rivian-finance-operations-amazon-bedrock-ai-agents",
+      "url": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/"
     },
     "a9ba99b8846683ac": {
       "at": "2026-11-04T11:22:08.295559+00:00",
@@ -17508,6 +17554,17 @@
       "slug": "maff-washoku-health-symposium-2026",
       "url": "https://www.maff.go.jp/j/press/shokuhin/wasyoku/261026_1.html"
     },
+    "df8b910c54899106": {
+      "at": "2026-11-09T04:13:54.560437+00:00",
+      "costUsd": 0.0157,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash",
+      "score": 92,
+      "section": "business",
+      "slug": "china-cpi-ppi-inflation-october-2026",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87280?site=nli"
+    },
     "df909b2e5a3e056a": {
       "at": "2026-10-27T03:06:51.678872+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -19554,6 +19611,14 @@
       "url": "https://www.jma.go.jp/jma/press/2611/08a/202611080305.html",
       "writer": "muse"
     },
+    "muse-477b4b5ef0": {
+      "at": "2026-11-09T04:06:43.540079+00:00",
+      "mix": "money",
+      "score": 92,
+      "slug": "portable-power-emergency-food-compare",
+      "url": "https://www.bluetti.jp/collections/portable-power-station",
+      "writer": "muse"
+    },
     "muse-5dd7f56355": {
       "at": "2026-11-08T05:51:29.216808+00:00",
       "mix": "money",
@@ -19594,6 +19659,14 @@
       "url": "https://www.mhlw.go.jp/stf/newpage_76960.html",
       "writer": "muse"
     },
+    "muse-ae3957be63": {
+      "at": "2026-11-09T04:11:01.151232+00:00",
+      "mix": "other",
+      "score": 92,
+      "slug": "marutaka-carbon-heater-recall-dms-091-wh",
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036096&screenkbn=06",
+      "writer": "muse"
+    },
     "muse-c77101bd90": {
       "at": "2026-11-08T05:54:01.174714+00:00",
       "mix": "other",
@@ -19620,232 +19693,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T13:56:52.866032+00:00",
-      "attempt": 1,
-      "id": "76f6c839f4713002",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jtta",
-      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T13:57:09.377220+00:00",
-      "attempt": 1,
-      "id": "76f6c839f4713002",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "かんたん版「結果や試合の予定は、日本卓球協会の大会情報ページで確認できます」→ 元記事は大会情報ページへのリンクを示すだけで、結果や試合予定が載っているとは書いていない（本文で「ページの中身は書かれていない」としている点とも食い違う）。",
-        "本文「一般の観戦者も、同じページで種目や大会の内容を確認できます」→ ページの内容は元記事で確認できず、断定は言い過ぎ。",
-        "リード・仕事欄「日本卓球協会の大会情報ページで日程を確認できます」→ ページ内容が不明なのに日程が確認できると断定している。",
-        "かんたん版「カデットの部は、中学生年代の選手が出る部門です」→ 元記事は13歳以下・14歳以下とし、中学1・2年生を併記しているだけ。中学生全体とは書いておらず、中学3年生は対象外のように読める。"
-      ],
-      "readability": {
-        "avg_paragraph": 84.9,
-        "avg_sentence": 36.7,
-        "long_share": 0.108,
-        "max_paragraph": 177,
-        "paragraphs": 16,
-        "sentences": 37
-      },
-      "score": 80,
-      "source": "jtta",
-      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JOC）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T13:57:34.182463+00:00",
-      "attempt": 2,
-      "id": "76f6c839f4713002",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "jtta",
-      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T13:57:59.712681+00:00",
-      "attempt": 2,
-      "id": "76f6c839f4713002",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「カデットは中学生年代の部であることが示されています」→ 元記事に「カデット＝中学生年代」という説明はなく、「中学1年生」「中学2年生」の表記からの推測で、発表に示されているという書き方は言い過ぎ。",
-        "「発表では14歳以下の1つの区分でまとめて行われると書かれています」→ 元記事には「ダブルス（14歳以下）」とあるだけで、「まとめて行われる」という趣旨の記述はない。",
-        "「シングルスは13歳以下と14歳以下で学年ごとに分かれている」「中学1年生と中学2年生以下それぞれの日本一」→ 元記事の「13歳以下」「14歳以下」の記載を超えた解釈で、わずかに言い過ぎ。",
-        "「中学生世代の卓球日本一」「2026年全日本卓球選手権大会の中で、この年代の部として」→ 元記事は大会名に基づく説明のみで、「中学生世代の日本一」という断定は発表自体には書かれていない。",
-        "「国内の中学生年代の大会は、その直後に始まった形です」→ 元記事に無い編集上の解釈で、ユースオリンピックとの関連付けは不要な補足。"
-      ],
-      "readability": {
-        "avg_paragraph": 73.5,
-        "avg_sentence": 36.7,
-        "long_share": 0.133,
-        "max_paragraph": 153,
-        "paragraphs": 15,
-        "sentences": 30
-      },
-      "score": 80,
-      "source": "jtta",
-      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 開幕！",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JOC）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T14:07:18.699386+00:00",
-      "attempt": 1,
-      "id": "c66c42b2a35e9bae",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「Q. 自動購入は…目標価格に達したときに、自動で購入を完了します」→ 確認済み文脈に「auto-buy to complete the purchase automatically when the price hits your target」とあり妥当だが、元記事本文では「when the price is ri",
-        "「Amazonは、文字で始めた依頼を…引き継げるようにする予定です」→ 元記事は「is rolling out」で展開中とも読め、「予定」とする表現は軽微な言い換え",
-        "「商品ページでAlexa for Shoppingのアイコンを押し」→ 確認済み文脈の記述に基づくため問題なし（出典は価格履歴ページ）",
-        "「1通で送ると、3つの依頼を同時に進めます」→ 元記事に沿っており問題なし",
-        "「かんたん版：買う段階になれば、カートに入れて購入まで進めます」→ 元記事の「承認」「自動でカートに入れる」設定の条件が省かれ、やや言い過ぎ",
-        "「判定: 価格=不明」→ 元記事に料金の記載はなく、不明の扱いは妥当"
-      ],
-      "readability": {
-        "avg_paragraph": 84.5,
-        "avg_sentence": 35.4,
-        "long_share": 0.07,
-        "max_paragraph": 165,
-        "paragraphs": 18,
-        "sentences": 43
-      },
-      "score": 80,
-      "source": "about-amazon",
-      "title": "Text, shop, done: Alexa for Shopping is now just a text away",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T14:07:36.847569+00:00",
-      "attempt": 1,
-      "id": "c66c42b2a35e9bae",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.7,
-        "avg_sentence": 35.4,
-        "long_share": 0.07,
-        "max_paragraph": 165,
-        "paragraphs": 18,
-        "sentences": 43
-      },
-      "score": 93,
-      "source": "about-amazon",
-      "title": "Text, shop, done: Alexa for Shopping is now just a text away",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T15:13:19.175000+00:00",
-      "attempt": 1,
-      "id": "be1ba71e55b7f125",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 105.2,
-        "avg_sentence": 41.6,
-        "long_share": 0.07,
-        "max_paragraph": 153,
-        "paragraphs": 17,
-        "sentences": 43
-      },
-      "score": 93,
-      "source": "hugging-face-blog",
-      "title": "ToyBlocks: A controlled world for robot learning and evaluation",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（TAMP・VLA・VLM）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T15:15:34.386240+00:00",
-      "attempt": 1,
-      "id": "a307777d6ded3852",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 103.5,
-        "avg_sentence": 39.8,
-        "long_share": 0.077,
-        "max_paragraph": 173,
-        "paragraphs": 10,
-        "sentences": 26
-      },
-      "score": 95,
-      "source": "kddi-news",
-      "title": "2027年3月期第2四半期決算について",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ARPU）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T15:17:02.367447+00:00",
-      "attempt": 1,
-      "id": "d6e8fbe3ae2f3d61",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "mlit-press",
-      "title": "“地域活性化へ”官民連携基盤整備の支援事業を決定～民間と自治体が連携して取り組むインフラ整備の事業化検討を支援します～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T15:17:27.961117+00:00",
-      "attempt": 1,
-      "id": "d6e8fbe3ae2f3d61",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 44.0字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 108.6,
-        "avg_sentence": 44.0,
-        "long_share": 0.216,
-        "max_paragraph": 197,
-        "paragraphs": 15,
-        "sentences": 37
-      },
-      "score": 96,
-      "source": "mlit-press",
-      "title": "“地域活性化へ”官民連携基盤整備の支援事業を決定～民間と自治体が連携して取り組むインフラ整備の事業化検討を支援します～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（PPP・PFI・JR）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-06T15:17:52.214220+00:00",
@@ -26387,6 +26234,256 @@
       "warnings": [
         "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
         "初めて出たところで言い換えていない略語（ASEAN・NEXUS・JST）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T04:12:17.740503+00:00",
+      "attempt": 1,
+      "id": "0a59266bb701bab5",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「トヨタ自動車 グローバルニュースルームは11月9日、…発表しました」→ 元記事はTOYOTA RACINGの公式発表で、発信元と11月9日の発表日は元記事にも確認済みの文脈にも無い。",
+        "「既存記事では8号車が「トップ5に入れば」王座に届くとしていました」→ 確認済みの文脈の過去記事には「トップ5」の条件は無く、8号車が17ポイント差で首位だったとしか書かれていない。",
+        "「コンウェイ選手は、この最終戦が現役最後のレースでした」→ 元記事は「最後のレース」としか書いておらず、「現役」は言い換えとして言い過ぎ。"
+      ],
+      "score": 62,
+      "source": "toyota",
+      "title": "WEC 2026年シーズン 第8戦 モンツァ6時間レース ： 決勝 TOYOTA RACING、8号車がドライバーチャンピオンシップを獲得"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T04:13:06.169495+00:00",
+      "attempt": 1,
+      "id": "df8b910c54899106",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「この背景には、消費者の購買意欲が限定的で食品や衣料品などの製品価格にコスト上昇分を転嫁しづらい構造があります」→ 元記事にない因果の解釈が事実のように書かれている。",
+        "「原油高やAI需要による上流コストの増加が下流の販売価格に反映されないギャップが広がっています」→ 元記事・確認済みの文脈に根拠がない断定。",
+        "「日本企業は…販売価格の据え置き」「販売価格の据え置きという板挟み」→ 販売価格が据え置かれているという事実は元記事に無い。",
+        "「一部業種での生産能力調整による価格持ち直し」「冬季に向けた暖房用石炭需要の増加」→ 元記事は生産能力調整で非金属鉱物製品等が上昇、冬季需要・石炭と書いており、「持ち直し」「暖房用」は元記事に無い補足。",
+        "「CPIとPPIの動きが正反対になっている」（よくある質問）→ 両指数とも前年同月比プラスで、正反対ではない。元記事の数値と矛盾する表現。",
+        "かんたん版「PPI（企業の仕入れ価格の動きを示す指標）」「工場側のコストを示す生産者物価指数」→ 本文では製造業の出荷価格とした定義と食い違い、PPIを仕入れ・コストの指標と誤って説明している。"
+      ],
+      "readability": {
+        "avg_paragraph": 110.2,
+        "avg_sentence": 47.2,
+        "long_share": 0.238,
+        "max_paragraph": 203,
+        "paragraphs": 9,
+        "sentences": 21
+      },
+      "score": 62,
+      "source": "nli-research",
+      "title": "中国の物価関連統計（26年10月）～食品価格下落でCPIは鈍化、エネルギー高でPPIは上昇幅拡大",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CPI）",
+        "読みやすさ: 文が長い（1文の平均 47.2字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T04:13:35.746596+00:00",
+      "attempt": 1,
+      "id": "df8b910c54899106",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 107.5,
+        "avg_sentence": 47.8,
+        "long_share": 0.278,
+        "max_paragraph": 173,
+        "paragraphs": 8,
+        "sentences": 18
+      },
+      "score": 88,
+      "source": "nli-research",
+      "title": "中国の物価関連統計（26年10月）～食品価格下落でCPIは鈍化、エネルギー高でPPIは上昇幅拡大",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CPI）",
+        "読みやすさ: 文が長い（1文の平均 47.8字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T04:13:54.521909+00:00",
+      "attempt": 0,
+      "id": "df8b910c54899106",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.5,
+        "avg_sentence": 39.8,
+        "long_share": 0.091,
+        "max_paragraph": 124,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": 92,
+      "source": "nli-research",
+      "title": "中国の物価関連統計（26年10月）～食品価格下落でCPIは鈍化、エネルギー高でPPIは上昇幅拡大",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CPI）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T04:17:04.457036+00:00",
+      "attempt": 1,
+      "id": "0eee6f243af8755c",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「対面の実践講習の受講を省くことができます」→ 元記事は実践講習の実施形式（対面かどうか）に触れておらず、「対面」は元資料に無い情報である。",
+        "「毎年の講習の負担を軽くできる」→ 元記事は講習の受講義務とオンライン講習のみにすることを述べるが、「毎年の負担」という表現は元記事の言い換えとして言い過ぎ気味である。"
+      ],
+      "readability": {
+        "avg_paragraph": 154.7,
+        "avg_sentence": 48.8,
+        "long_share": 0.263,
+        "max_paragraph": 232,
+        "paragraphs": 6,
+        "sentences": 19
+      },
+      "score": 82,
+      "source": "ipa",
+      "title": "国家資格「情報処理安全確保支援士」実務経験者に対する講習制度の申請受付中です",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IPA・ITSS）",
+        "読みやすさ: 文が長い（1文の平均 48.8字・60字超の文が 26% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 154.7字・最長 232字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T04:17:19.302029+00:00",
+      "attempt": 1,
+      "id": "0eee6f243af8755c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 155.5,
+        "avg_sentence": 49.1,
+        "long_share": 0.263,
+        "max_paragraph": 237,
+        "paragraphs": 6,
+        "sentences": 19
+      },
+      "score": 92,
+      "source": "ipa",
+      "title": "国家資格「情報処理安全確保支援士」実務経験者に対する講習制度の申請受付中です",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IPA・ITSS）",
+        "読みやすさ: 文が長い（1文の平均 49.1字・60字超の文が 26% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 155.5字・最長 237字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T04:17:40.396118+00:00",
+      "attempt": 0,
+      "id": "0eee6f243af8755c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 83.6,
+        "avg_sentence": 40.0,
+        "long_share": 0.13,
+        "max_paragraph": 155,
+        "paragraphs": 11,
+        "sentences": 23
+      },
+      "score": 88,
+      "source": "ipa",
+      "title": "国家資格「情報処理安全確保支援士」実務経験者に対する講習制度の申請受付中です",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IPA・ITSS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T04:18:08.110598+00:00",
+      "attempt": 1,
+      "id": "74e4eb54c48c60c2",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「月額コストの目安は約16,400円（税別）からと試算」→ 元記事の基本試算は$103.58（約16,400円）で、Fargate Spot利用時は$57.50（約9,100円）と示されており、16,400円は下限ではない。数値の取り違え。",
+        "リード・要点「月間1万件の処理コストはFargateなどで約103.58ドル」→ 元記事では$103.58は1,000ワークフロー・10,000URLの全サービス合計で、Fargate単独は$65.83。Fargateの金額として書くのは不正確。",
+        "本文「分析されたデータはAmazon DynamoDBに一時保存され」→ 元記事はDynamoDBを追跡・中間状況の保存先とし、最終的にS3へ保存すると書いており、「一時保存」は元記事に無い表現。",
+        "末尾の「判定: 提供状況=available 価格=従量課金」→ 元記事は提供状況や料金体系を明示しておらず、ブログ記事の解説であるため、提供済みとする根拠が無い。内部判定メモの混入でもある。",
+        "「Fargate Spot利用時」の削減後金額に言及がないまま「約16,400円からと」と書いたため、読者が最低額を誤解する恐れがある。"
+      ],
+      "readability": {
+        "avg_paragraph": 146.5,
+        "avg_sentence": 63.7,
+        "long_share": 0.609,
+        "max_paragraph": 320,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": 70,
+      "source": "aws-japan-blog",
+      "title": "従来の市場価格追跡を超えて: SAP のお客様向け生成AIソリューション",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SAP・BDC・CDS）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 63.7字・60字超の文が 61% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T04:19:15.227323+00:00",
+      "attempt": 1,
+      "id": "a92c9990f7881d08",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.8,
+        "avg_sentence": 67.0,
+        "long_share": 0.6,
+        "max_paragraph": 223,
+        "paragraphs": 14,
+        "sentences": 20
+      },
+      "score": 90,
+      "source": "aws-japan-blog",
+      "title": "Rivian が Amazon Bedrock 上の AI エージェントで財務オペレーションを加速した方法",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SOP・SAP・MCP）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 67.0字・60字超の文が 60% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T04:19:35.546914+00:00",
+      "attempt": 0,
+      "id": "a92c9990f7881d08",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 86.6,
+        "avg_sentence": 42.0,
+        "long_share": 0.091,
+        "max_paragraph": 136,
+        "paragraphs": 16,
+        "sentences": 33
+      },
+      "score": 93,
+      "source": "aws-japan-blog",
+      "title": "Rivian が Amazon Bedrock 上の AI エージェントで財務オペレーションを加速した方法",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SOP・SAP・MCP）",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
     }

@@ -1,0 +1,178 @@
+{
+  "slug": "rivian-finance-operations-amazon-bedrock-ai-agents",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/",
+  "sourceName": "AWS ブログ（日本）",
+  "title": "Rivianが月次決算の手作業を15日超削減、SAP連携のAIエージェントを導入",
+  "seoTitle": "RivianのERP AIエージェント導入事例　月次決算を加速",
+  "threadsPost": "電気自動車の製造・販売を手がける米Rivianが、月次決算の業務を大幅に効率化しました。\n\nAmazon Bedrock AgentCore上に構築したインテリジェントなERP AIエージェントを導入し、サイクルあたり15日を超える手作業を削減しました。\n\n社内の複雑な決算プロセス、まだ手作業で行っている部分はありますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "月次決算の作業で、毎月手作業にかけている日数はどれくらいですか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "複雑な業務ルールの自動化、社内ですすんでいますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "米Rivianは、Amazon Bedrock上のAIエージェントを導入し、月次決算プロセスにおけるサイクルあたり15日超の手作業を削減したと発表しました。ERPシステムと連携して発注の会計計上を自動化し、R2車種の発売に伴う業務の急増に対応しています。ヒューマン・イン・ザ・ループの設計を維持し、外部監査に向けた監査証跡の確保と精度向上を実現しました。",
+  "description": "米RivianがAmazon Bedrock上のAIエージェントを活用し、月次決算のERP業務で手作業を15日以上削減した事例を解説します。",
+  "keywords": [
+    "Rivian",
+    "Amazon Bedrock",
+    "AIエージェント",
+    "ERP",
+    "SAP S/4HANA",
+    "生成AI",
+    "財務オペレーション",
+    "月次決算"
+  ],
+  "tags": [
+    "生成AI",
+    "AWS",
+    "AIエージェント",
+    "ERP"
+  ],
+  "highlights": [
+    "RivianがAmazon Bedrock上のAIエージェントを活用し、月次決算のサイクルあたり15日を超える手作業を削減しました。",
+    "自然言語で書かれた手順書を読み取るSOP主導のインテリジェントな意思決定により、複雑な発注の会計計上を自動化しています。",
+    "仕訳伝票の最終承認を人間が保持するヒューマン・イン・ザ・ループの設計を取り入れ、内部統制と監査の透明性を維持しています。"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "経理や財務の担当者は、複雑な会計処理や手作業のデータ抽出をAIエージェントに任せることで、より戦略的な分析業務へ集中できるようになります。",
+      "月次決算のサイクルが短縮されることで、経営陣や投資家への報告スピードが向上し、事業成長を支える迅速な意思決定が可能になります。"
+    ]
+  },
+  "body": "EV（電気自動車）の生産拡大に伴い、複雑な財務ワークフローを自動化しました。外部監査に対応できる透明性と精度も確保しています。\n\nRivianは、イリノイ州での車両製造やフォルクスワーゲンとの合弁事業などにより、グローバルでのオペレーションが急拡大しています。それに伴い、月次・四半期の決算書類作成やサプライヤーオンボーディングといった手作業の負荷が増加していました。\n\n従来の決算プロセスでは、カスタム治工具の発注に関する複雑な期間按分の会計計上が必要でした。また、詳細な標準作業手順書（SOP）に基づく条件付きルールを適用する必要もありました。従来のハードコードされたスクリプトでは、対応が困難でした。\n\nこうした課題を解決するため、同社はAWSと協働しました。Amazon Bedrock AgentCoreを基盤とした、発注の会計計上自動化システムを開発しました。\n\n## SOP主導のインテリジェントな意思決定\n\nビジネスロジックをアプリケーションのコードに直接書き込むのではありません。すべての会計計上処理の手順を詳細なSOPとして文書化し、Amazon Bedrock Knowledge Basesに保存しています。\n\nAIエージェントはこの文書を操作マニュアルとして参照し、各発注の特性に応じた手順を取得します。これにより柔軟性を備えています。財務マネージャーはコードの変更を依頼せず、ドキュメントの編集だけで手順を更新できます。\n\nまた、金額のしきい値に基づく重要性（マテリアリティ）の概念も取り入れています。金額に応じて、異なる検証ワークフローへ自動的にルーティングします。\n\n## 自律型エージェントの技術アーキテクチャ\n\nシステムの中核をなすのは、Amazon Bedrock AgentCore上で稼働するStrands Agentです。\n\nSAP ODataイベントによる例外の検出を担います。Amazon DynamoDBやナレッジベースからのコンテキスト収集、ルーティングの判断までを自律的に行います。\n\nさらに、Model Context Protocol（MCP）サーバーを経由して、SAP S/4HANAシステムやメール送信の仕組みと連携します。\n\nAWS Lambdaがスケジュールタスクや例外ポーリングを処理します。Amazon SESがパーソナライズされたメール送信を担当します。\n\nまた、Amazon DynamoDBにより、SOX法準拠を満たすタイムスタンプ付きの完全な監査証跡が維持されます。\n\n## ヒューマン・イン・ザ・ループによる安全性\n\n自律的な処理能力を持ちながらも、システムは重要な意思決定ポイントで人間による監督を維持する設計になっています。\n\n財務マネージャーは、いかなる仕訳伝票もSAPに転記される前に最終的な承認権限を保持します。これにより、内部統制の要件を満たします。マネージャーはエージェントの作業をレビューし、エッジケースを特定します。こうしたフィードバックループによって、時間をかけて精度を高めています。\n\n## 測定可能な成果と今後の展開\n\nこのシステム導入により、経理チームの手作業が毎年大幅に削減されました。アナリストは、財務分析や戦略的意思決定支援といった付加価値の高い活動に集中できるようになりました。\n\nR2車種のローンチに伴う発注の急増にも対応できるようスケールしました。一貫したSOPの適用により、精度とコンプライアンスが強化されています。Rivianの財務チームは、今回の成功を踏まえて同様のパターンに従う追加のユースケースをすでに計画しています。",
+  "easy": "## ひとことで言うと\n\n米RivianがAmazon BedrockのAIエージェントを導入し、月次決算の業務で15日以上の手作業を削減したという発表です。\n\n## 決算業務の自動化を進めた背景\n\n自動車を製造するRivianでは、事業の急成長や新車種の投入に伴い、月次決算やリソース予測などの手作業が増えていました。\n\n従来のプログラムでは複雑な会計ルールに対応しきれなかったため、生成AIを活用した自律型エージェントの導入に踏み切りました。\n\n## AIエージェントの仕組み\n\nシステムの中核には、Amazon Bedrock AgentCore上に構築されたStrands Agentが使われています。\n\n会計処理の手順を記した文書をナレッジベースに保存し、AIがそれを読み取って発注データの検証や期間按分の計算を行います。\n\nModel Context Protocol（MCP）サーバーを経由してSAP S/4HANAなどの外部システムと連携し、仮伝票の作成までを自動で実行します。\n\nただし、最終的な仕訳の承認は財務マネージャーが必ず確認する設計になっており、人間による監督が維持されています。",
+  "channel": "AWS ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "aws-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Rivian が Amazon Bedrock 上の AI エージェントで財務オペレーションを加速した方法",
+  "publishedAt": "2026-11-09T02:48:02+00:00",
+  "generatedAt": "2026-11-09T04:19:06.691119+00:00",
+  "thumbnail": "",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "newsType": "research",
+  "faq": [
+    {
+      "q": "Rivianが導入したAIエージェントの基盤は何ですか？",
+      "a": "Amazon Bedrock AgentCore上で構築されたStrands Agentを採用し、Amazon Bedrock Knowledge BasesやMCPサーバーなどと統合されています。"
+    },
+    {
+      "q": "AIエージェントによる自動化でどのような業務が対象になりましたか？",
+      "a": "カスタム治工具購入に関する発注の会計計上など、期間按分の計算やERPシステムとの連携が必要な労働集約的な財務プロセスが対象となりました。"
+    }
+  ],
+  "todayActions": [
+    "自社のERPや財務システムで、手作業がボトルネックになっている定型の会計処理を洗い出す。",
+    "Amazon Bedrock AgentCoreを使った業務プロセス自動化の構成を、本記事の技術アーキテクチャの項で確認する。"
+  ],
+  "qualityScore": 93,
+  "sourcePublishedAt": "2026-11-09T02:48:02+00:00",
+  "detectedAt": "2026-11-09T04:11:02+00:00",
+  "layout": "noir",
+  "summaryLine": "RivianがAmazon Bedrock上のAIエージェントを活用し、月次決算のサイクルあたり15日を超える手作業を削減しました。",
+  "insight": [
+    {
+      "text": "カスタム治工具の発注は、請求書が発注から18か月以上経ってから届くことがあり、費用は開発期間にわたって段階的に会計計上が必要と書かれています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/"
+    },
+    {
+      "text": "会計処理の手順は「操作マニュアル」としてSOPに文書化され、財務マネージャーはコード変更を依頼せず、文書を編集して手順を更新できます。",
+      "source": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/"
+    },
+    {
+      "text": "計上額は定額法（straight-line）で算出し、財務レビュー用の仮伝票（parked journal entry）を作成したうえで、承認ワークフローを経てSAPに転記されます。",
+      "source": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自社のERPや財務システムで、手作業がボトルネックになっている定型の会計処理を洗い出す。",
+      "source": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/",
+      "steps": [
+        "月次決算の処理を一覧にする",
+        "手作業に時間がかかる処理に印を付ける",
+        "各処理の手順が文書化されているか確認する"
+      ]
+    },
+    {
+      "action": "Amazon Bedrock AgentCoreを使った業務プロセス自動化の構成を、本記事の技術アーキテクチャの項で確認する。",
+      "source": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/",
+      "steps": [
+        "「技術アーキテクチャ」の項を読む",
+        "AgentCoreやKnowledge Basesの役割を書き出す",
+        "自社の手作業の処理と対応させて考える"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "ハードコードされたスクリプトでは、発注の会計計上ルールが金額・納期・GAAP要件などに応じて動的で文脈依存的だったため、対応が難しかったと書かれています。",
+    "status": "background",
+    "source": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/"
+  },
+  "worries": [
+    {
+      "q": "AIが仕訳を勝手に計上してしまわない？",
+      "a": "いかなる仕訳伝票も、SAPに転記される前に財務マネージャーが最終承認権限を保持すると書かれています。マネージャーはエージェントの作業をレビューし、エッジケースを見つけてフィードバックします。",
+      "source": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/",
+      "action": "自社でAIを使うときも、仕訳がSAPに転記される前に担当者が承認する段階を入れるかを決める。"
+    },
+    {
+      "q": "監査人に説明できる記録は残る？",
+      "a": "Amazon DynamoDBにより、SOX法準拠を満たすタイムスタンプ付きの完全な監査証跡を維持すると書かれています。外部監査人はAI主導プロセスの透明性を高く評価したとされています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/",
+      "action": "AIの処理ログと承認履歴が、監査で確認できる形で残る仕組みになっているか確かめる。"
+    },
+    {
+      "q": "会計ルールが変わったら、プログラムを直す必要がある？",
+      "a": "ビジネスロジックはコードではなくSOPとしてナレッジベースに保存され、財務マネージャーはドキュメントを編集するだけで手順を更新できると書かれています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/",
+      "action": "会計処理の手順を、担当者が編集できる文書として整理できているか確認する。"
+    },
+    {
+      "q": "AIの計算は本当に正しく動く？",
+      "a": "精度を示す数値は発表されていません。一貫したSOPの適用と、マネージャーのレビューで精度を高めていく設計だと書かれています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/",
+      "action": "導入前に、自社の処理で何件を確認して精度を測るかの基準を決める。"
+    },
+    {
+      "q": "導入には大がかりな開発が必要？",
+      "a": "概念実証（PoC）は5週間で成功裏に完了し、その後本番環境へ迅速に移行したと書かれています。ただし、導入に必要な費用や人数は発表されていません。",
+      "source": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/",
+      "action": "自社の業務で、まず一つの定型処理に絞って試せるかを検討する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "自社でもAIエージェントを導入する？",
+      "situation": "月次決算の手作業が多く、ルールが複雑",
+      "recommend": "まず処理を一つに絞って小さく試す",
+      "reason": "ページは明確に定義されたプロセスから始めることを勧めています。Rivianは5週間の概念実証（PoC）で成功を確認してから本番へ移行しました。費用や効果の金額は書かれていません。",
+      "source": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "按分の計算と承認は、AIに任せても人が最後に確認する",
+    "cause": "なぜ従来の自動化では足りなかったのか",
+    "steps": "今日からできる、業務の洗い出し方",
+    "worries": "AIが勝手に仕訳を入れない？監査は大丈夫？",
+    "guide": "自社で導入するなら、まず何から始めるか"
+  },
+  "depthAt": "2026-11-09T04:20:06+00:00"
+}
