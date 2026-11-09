@@ -187,7 +187,6 @@ export default function NoirArticle(props: NoirProps) {
           {slots.quick}
           {slots.story}
           {!coverOnTop && <CoverFigure {...coverProps} />}
-          {slots.adEarly && <div className="nr-ad nr-ad-early">{slots.adEarly}</div>}
           {slots.afterSummary}
           {slots.adTop}
           {slots.readingMode}
@@ -196,11 +195,15 @@ export default function NoirArticle(props: NoirProps) {
             {slots.easy}
             <div className="read-expert" id="nr-body">
               <ArticleProse className="prose nr-prose" html={body.top} slot={props.calcSlot} priceSlot={props.priceSlot} compareSlot={props.compareSlot} />
-              {slots.adMidPr && <div className="nr-ad nr-ad-mid">{slots.adMidPr}</div>}
+              {/* 1つ目の PR は本文の最初の章の後ろ（話を読んで必要を感じたところ）。以前は本文より前（2026-11-10 オーナー承認） */}
+              {slots.adEarly && <div className="nr-ad nr-ad-early">{slots.adEarly}</div>}
               {body.mid && slots.inlineRead}
               {body.mid && slots.adMid}
               {body.mid && <ArticleProse className="prose nr-prose" html={body.mid} slot={props.calcSlot} priceSlot={props.priceSlot} compareSlot={props.compareSlot} />}
+              {/* 2つ目の PR は本文の途中の章の後ろ（途中の章が無い短い記事は、1つ目と並ばないよう判断ガイド・不安Q&A の後ろ） */}
+              {body.mid && slots.adMidPr && <div className="nr-ad nr-ad-mid">{slots.adMidPr}</div>}
               {slots.midBoxes}
+              {!body.mid && slots.adMidPr && <div className="nr-ad nr-ad-mid">{slots.adMidPr}</div>}
               {body.tail && slots.beforeTail}
             </div>
             {body.tail && slots.betweenTail}

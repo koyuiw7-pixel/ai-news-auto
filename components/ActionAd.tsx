@@ -93,7 +93,8 @@ function FeaturedCard({ item }: { item: OfferItem }) {
             {item.pitch.fit}
           </span>
         )}
-        {pointOf(item) && <span className="mt-1.5 block text-note leading-[1.6] text-ink-soft">{pointOf(item)}</span>}
+        {/* スマホでは特徴の1行を省き、囲みを小さくする（向く人とボタンは残す。2026-11-10 オーナー承認「PR は小さく」） */}
+        {pointOf(item) && <span className="mt-1.5 hidden text-note leading-[1.6] text-ink-soft sm:block">{pointOf(item)}</span>}
         <span className="mt-3 hidden h-11 items-center justify-center gap-1 rounded-lg bg-accent px-6 text-note font-bold text-accent-ink transition-opacity group-hover:opacity-90 sm:inline-flex">
           {ctaOf(item)}
         </span>

@@ -48,5 +48,5 @@ test('ノワール: 題名 → 公式の写真 → 要点 → すぐにできる
   // 本文の列の PR は最大3つ。スマホ用の写しは表示を数えない（右の列で1回だけ数える）
   const ctx = read('components/noir/noirArticlePage.tsx');
   assert.match(ctx, /adBlocks\.slice\(0, 3\)/);
-  assert.match(ctx, /<RailRanking offer=\{offer\} pos="ranking-end" countImpression=\{false\} \/>/);
+  assert.match(ctx, /<RailRanking offer=\{offer\} pos="ranking-end" countImpression=\{false\} visible=\{2\} \/>/);
 });

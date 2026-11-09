@@ -14,6 +14,7 @@ export default function RailRanking({
   title,
   countImpression = true,
   pos,
+  visible = 3,
 }: {
   offer: Offer;
   wide?: boolean;
@@ -24,6 +25,8 @@ export default function RailRanking({
   countImpression?: boolean;
   /** クリックの置き場所の名前（data-aff-pos）。既定は本文中なら ranking-inline、右側なら ranking-rail。記事末のスマホ用は ranking-end */
   pos?: string;
+  /** 見せる商品の数（ノワールの記事の本文の列は2つ。2026-11-10 オーナー承認「PR は小さく」） */
+  visible?: number;
 }) {
   // 掲載順は閲覧履歴で変わるため、順位や実機評価に基づく「イチオシ」とは言わない。
   const badge = "紹介";
@@ -33,7 +36,7 @@ export default function RailRanking({
     <aside id={id} data-aff-pos={pos ?? (wide ? "ranking-inline" : "ranking-rail")} aria-label="PR：広告・紹介" className="relative overflow-hidden rounded-2xl border border-line bg-paper">
       <Header offer={offer} wide={wide} title={title ?? offer.headline} />
 
-      <RankingBody items={offer.items} visible={3} wide={wide} badge={badge} />
+      <RankingBody items={offer.items} visible={visible} wide={wide} badge={badge} />
 
       <div className="border-t border-line bg-surface px-4 py-2.5">
         <PrNote checkedAt={offer.checkedAt} hasBook={hasBook} />

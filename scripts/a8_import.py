@@ -168,19 +168,22 @@ ADD_TO_TOPIC = {
 # 見出しにも match の語があること（タグや要約だけで当てない）。まとめ記事と、見出しが exclude に当たる記事には出さない。genres があればそのジャンルの記事だけ（AI の業界ニュースに家計の広告を出さない）。
 # 出すのは提携リンクのある商品だけ、最大 max 件。名前と1行の説明は PARTNERS（公式の名前と中立な説明）のまま
 ACTION_ADS = [
-    {"key": "leak", "title": "端末とアカウントの安全対策", "reason": "流出した情報を使った偽メール・偽SMSや、不正ログインへの備えに", "match": "情報流出|情報漏え?い|漏え?い|漏洩|件流出|流出の恐れ|が流出|不審メール|個人情報|不正アクセス|不正ログイン|不正利用|詐欺|フィッシング|なりすまし|ランサム|マルウェア|サイバー攻撃|乗っ取り", "partners": ["norton", "virusbuster", "eset"], "max": 2, "exclude": "ガードレール|AIガバナンス|脱獄|LLM"},
-    {"key": "fire-insurance", "title": "火災保険を見直す", "reason": "保険料や補償の変更をきっかけに、今の契約と比べるために", "match": "火災保険|地震保険|水災補償|損害保険料", "partners": ["bang-kasai"], "max": 1, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "water", "title": "飲み水の備え", "reason": "断水や災害で水道が止まったときの飲み水の備えに", "match": "断水|備蓄水|飲料水|給水|水道料金|水道代", "partners": ["oken-water", "frecious"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "disaster", "title": "停電・災害への備え", "reason": "停電・断水が続いたときの電源や食料の備えに", "match": "地震|津波|台風|大雨|豪雨|土砂災害|洪水|氾濫|噴火|停電|防災|避難|警報|大雪|線状降水帯|緊急地震速報|災害|備蓄", "partners": ["jackery", "bluetti", "akamaru-bousai", "alpha-foods", "stoole", "bang-kasai"], "max": 2},
-    {"key": "furusato", "title": "ふるさと納税の寄附先を探す", "reason": "寄附先の返礼品と、控除の上限額を確かめるために", "match": "ふるさと納税|返礼品|ワンストップ特例", "partners": ["furusato-honpo", "aupay-furusato"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "tax", "title": "確定申告・年末調整の準備", "reason": "申告や年末調整の書類づくりを早めに進めるために", "match": "年末調整|確定申告|青色申告|白色申告|e-Tax|インボイス|源泉徴収|医療費控除|扶養控除|所得税", "partners": ["freee", "mf-kakutei", "yayoi-kakutei"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "energy", "title": "電気の契約を見直す", "reason": "電気・ガス代が上がるときに、契約先を比べるために", "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|新電力|電力会社|燃料費調整|再エネ賦課金|節電", "partners": ["elpio", "enepi", "tainavi"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "moving", "title": "引越しの準備", "reason": "引越しの見積もりと、新居のネット回線の手配に", "match": "引っ越し|引越し|引越|転居|住所変更|転入届|転出届", "partners": ["hikkoshi-samurai", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "mobile", "title": "スマホの回線を見直す", "reason": "障害や料金の変更をきっかけに、回線の契約を比べるために", "match": "携帯料金|スマホ料金|通信障害|通信の障害|つながりにくい|格安SIM|携帯キャリア|乗り換え|MNP|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|料金プラン|光回線|ネット回線|固定回線", "partners": ["bb-excite", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "travel", "title": "旅行の宿を探す", "reason": "連休や旅行の予定に合わせて、宿の空きと料金を比べるために", "match": "旅行|連休|ホテル|旅館|宿泊|観光|旅行支援", "partners": ["jalan", "ikyu"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|訪日客数"},
-    {"key": "household", "title": "家計の固定費を見直す", "reason": "値上げが続くときに、スマホ代や電気代の契約を比べるために", "match": "値上げ|値上がり|物価高|節約|固定費|生活費|家計の負担|家計を圧迫|家計防衛", "partners": ["bb-excite", "elpio", "enepi"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|上場|時価総額|(?<![A-Za-z])AI(?![A-Za-z])|半導体|GPU|API|ユーロ|欧州|米国|中国|英国|景気|業況|GDP|統計|貯蓄率|消費支出"},
-    {"key": "kids", "title": "子どもの学びと家計", "reason": "児童手当や教育費をきっかけに、子どもの学びと家計の備えを確かめるために", "match": "児童手当|子育て|子ども|こども|出産|育児|保育|学費|教育費|高校無償化|学資|幼児教育", "partners": ["digitane", "litalico", "furusato-honpo"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},  # 2026-11-09 オーナー指摘（児童手当の記事にAIの広告）
-    {"key": "payment", "title": "支払い方法を見直す", "reason": "支払い方法やポイントの条件が変わるときに、カードを比べるために", "match": "キャッシュレス|クレジットカード|ポイント還元|ポイ活|QRコード決済|PayPay|楽天ペイ|d払い|au PAY|電子マネー|タッチ決済", "partners": ["epos"], "max": 1, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "leak", "title": "偽SMSや乗っ取りが心配な人へ", "reason": "流出した情報を使った偽メール・偽SMSや、不正ログインへの備えに", "match": "情報流出|情報漏え?い|漏え?い|漏洩|件流出|流出の恐れ|が流出|不審メール|個人情報|不正アクセス|不正ログイン|不正利用|詐欺|フィッシング|なりすまし|ランサム|マルウェア|サイバー攻撃|乗っ取り", "partners": ["norton", "virusbuster", "eset"], "max": 2, "exclude": "ガードレール|AIガバナンス|脱獄|LLM"},
+    {"key": "fire-insurance", "title": "火災保険・地震保険を見直したい人へ", "reason": "保険料や補償の変更をきっかけに、今の契約と比べるために", "match": "火災保険|地震保険|水災補償|損害保険料", "partners": ["bang-kasai"], "max": 1, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "water", "title": "断水に備えて、飲み水を用意したい人へ", "reason": "断水や災害で水道が止まったときの飲み水の備えに", "match": "断水|備蓄水|飲料水|給水|水道料金|水道代", "partners": ["oken-water", "frecious"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "disaster", "title": "停電や断水で困らないために", "reason": "停電・断水が続いたときの電源や食料の備えに", "match": "地震|津波|台風|大雨|豪雨|土砂災害|洪水|氾濫|噴火|停電|防災|避難|警報|大雪|線状降水帯|緊急地震速報|災害|備蓄", "partners": ["jackery", "bluetti", "akamaru-bousai", "alpha-foods", "stoole", "bang-kasai"], "max": 2},
+    {"key": "furusato", "title": "ふるさと納税の寄附先を探している人へ", "reason": "寄附先の返礼品と、控除の上限額を確かめるために", "match": "ふるさと納税|返礼品|ワンストップ特例", "partners": ["furusato-honpo", "aupay-furusato"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "tax", "title": "申告や年末調整を早く片づけたい人へ", "reason": "申告や年末調整の書類づくりを早めに進めるために", "match": "年末調整|確定申告|青色申告|白色申告|e-Tax|インボイス|源泉徴収|医療費控除|扶養控除|所得税", "partners": ["freee", "mf-kakutei", "yayoi-kakutei"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "energy", "title": "使い方を変えずに電気代を下げたい人へ", "reason": "電気・ガス代が上がるときに、契約先を比べるために", "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|新電力|電力会社|燃料費調整|再エネ賦課金|節電", "partners": ["elpio", "enepi", "tainavi"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "moving", "title": "引越しの見積もりを比べたい人へ", "reason": "引越しの見積もりと、新居のネット回線の手配に", "match": "引っ越し|引越し|引越|転居|住所変更|転入届|転出届", "partners": ["hikkoshi-samurai", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "mobile", "title": "毎月のスマホ代を下げたい人へ", "reason": "障害や料金の変更をきっかけに、回線の契約を比べるために", "match": "携帯料金|スマホ料金|通信障害|通信の障害|つながりにくい|格安SIM|携帯キャリア|乗り換え|MNP|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|料金プラン|光回線|ネット回線|固定回線", "partners": ["bb-excite", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "travel", "title": "連休や旅行の宿を探している人へ", "reason": "連休や旅行の予定に合わせて、宿の空きと料金を比べるために", "match": "旅行|連休|ホテル|旅館|宿泊|観光|旅行支援", "partners": ["jalan", "ikyu"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|訪日客数"},
+    {"key": "household", "title": "毎月の固定費を下げたい人へ", "reason": "値上げが続くときに、スマホ代や電気代の契約を比べるために", "match": "値上げ|値上がり|物価高|節約|固定費|生活費|家計の負担|家計を圧迫|家計防衛", "partners": ["bb-excite", "elpio", "enepi"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|上場|時価総額|(?<![A-Za-z])AI(?![A-Za-z])|半導体|GPU|API|ユーロ|欧州|米国|中国|英国|景気|業況|GDP|統計|貯蓄率|消費支出"},
+    {"key": "kids", "title": "子どもの学びを、楽しく始めたい家庭へ", "reason": "児童手当や教育費をきっかけに、子どもの学びと家計の備えを確かめるために", "match": "児童手当|子育て|子ども|こども|出産|育児|保育|学費|教育費|高校無償化|学資|幼児教育", "partners": ["digitane", "litalico", "furusato-honpo"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},  # 2026-11-09 オーナー指摘（児童手当の記事にAIの広告）
+    # 2026-11-10 オーナー承認「記事に合う PR だけ」: 年金・給付金の記事に、ジャンルの既定の証券会社が出ていた（年金生活者支援給付金の記事）。
+    # 受け取るお金を確かめる読者に合うのは、毎月出ていくお金（スマホ代・電気代）の見直し。児童手当は上の kids が先に当たる
+    {"key": "benefit", "title": "受け取るお金を確かめたら、毎月の出費も", "reason": "年金や給付金を確かめるときに、スマホ代や電気代の契約も比べるために", "match": "年金|給付金|手当|非課税世帯|住民税非課税|生活保護|医療費|介護保険|高額療養費", "partners": ["bb-excite", "enepi", "elpio"], "max": 2, "genres": ["public", "lifestyle", "business", "real-estate", "investment"], "exclude": "株価|決算|業績|GPIF|運用|企業年金|確定拠出|iDeCo|NISA|(?<![A-Za-z])AI(?![A-Za-z])"},
+    {"key": "payment", "title": "支払いとポイントを見直したい人へ", "reason": "支払い方法やポイントの条件が変わるときに、カードを比べるために", "match": "キャッシュレス|クレジットカード|ポイント還元|ポイ活|QRコード決済|PayPay|楽天ペイ|d払い|au PAY|電子マネー|タッチ決済", "partners": ["epos"], "max": 1, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
 ]
 
 
@@ -205,6 +208,7 @@ ACTION_LEADS = {
     "household": "値上げが続くときは、毎月の固定費から見直すと効果が続きます。",
     "kids": "子どもの学びは、本人が楽しめる入り口選びで続き方が変わります。",
     "payment": "条件が変わるときは、年会費とポイントを比べ直すきっかけです。",
+    "benefit": "スマホ代や電気代は、契約の見直しだけで下がることがあります。",
 }
 ACTION_INTENTS = {
     "disaster": [
@@ -291,7 +295,13 @@ def apply_pitch(offers: dict) -> None:
 # 見出しだけの1語では当てない（基準点 5: 見出し＋タグ、またはタグ＋要約の複数語）
 LIFE_GENRES = ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment", "science"]
 # 枠の見出しを作る短い名前。既存の話題と同じ商品を扱うものは同じ名前にして、「ふるさと納税とふるさと納税の…」のように重ねない
-LIFE_NAMES = {"leak": "セキュリティ対策", "furusato": "ふるさと納税", "tax": "確定申告・節税", "mobile": "スマホ回線の見直し"}
+# 2026-11-10: 見出し（title）を読者の言葉の一文にしたので、2つの話題を並べる見出し（「AとBに役立つサービス」）には短い名前を全部の話題に用意する
+LIFE_NAMES = {
+    "leak": "セキュリティ対策", "furusato": "ふるさと納税", "tax": "確定申告・節税", "mobile": "スマホ回線の見直し",
+    "fire-insurance": "火災保険の見直し", "water": "飲み水の備え", "disaster": "停電・災害の備え", "energy": "電気代の見直し",
+    "moving": "引越しの準備", "travel": "宿探し", "household": "固定費の見直し", "kids": "子どもの学び", "payment": "支払い方法の見直し",
+    "benefit": "毎月の出費の見直し",
+}
 
 
 def life_topics() -> list[dict]:

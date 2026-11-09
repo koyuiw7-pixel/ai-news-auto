@@ -134,11 +134,16 @@ export function shortOrg(org: string): string {
 export function noirArticlePage(ctx: NoirPageContext) {
   const {
     article, jsonLd, bodyHtml, easyHtml, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
-    inlineOffer, shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, offer, inlineRead, mainArticle,
+    shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, inlineRead, mainArticle,
     guideLinks, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
     howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
     funnel, compareInline, compareEnd, storyReads = [],
   } = ctx;
+  // 記事に合う PR だけ出す（2026-11-10 オーナー承認）。話題が当たらずジャンルの既定の広告（fallback-*）になった商品枠は、ノワールの記事では出さない
+  // （年金生活者支援給付金の記事に証券会社が出ていた）。合う話題は scripts/a8_import.py の ACTION_ADS（life-*）で足す
+  const matched = (o: Any) => (o && !String(o.topic ?? "").startsWith("fallback-") ? o : undefined);
+  const inlineOffer = matched(ctx.inlineOffer);
+  const offer = matched(ctx.offer);
   const noirHtml = noirBodyHtml(bodyHtml, article);
   // この話の続き（2026-11-10 オーナー承認）: 同じ話題の記事を、要点の下に文字だけで2本、本文の直後に大きく3本。
   // 下は上と同じ記事から始めてよい（上を押さずに読み進めた人に、いちばん近い話題をもう一度見せる。同じ企業だけの記事より先に同じ話題の記事）
@@ -170,7 +175,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
   );
   const inlinePrBlock = inlineOffer ? (
     <>
-      <RailRanking offer={inlineOffer} wide id="offer-inline" title={inlineOffer.headline} />
+      <RailRanking offer={inlineOffer} wide id="offer-inline" title={inlineOffer.headline} visible={2} />
       {shopLink && <ShopLinks link={shopLink} className="mt-3" />}
       {buyingGuide && <CompareLink slug={buyingGuide.slug} name={guideShortName(buyingGuide)} className="flex" />}
     </>
@@ -191,7 +196,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
   if (offer)
     adBlocks.push(
       <div key="end" className="lg:hidden">
-        <RailRanking offer={offer} pos="ranking-end" countImpression={false} />
+        <RailRanking offer={offer} pos="ranking-end" countImpression={false} visible={2} />
       </div>,
     );
   // 比較記事の提携先の一覧（比較表の直後・記事の終わり）も本文の列の PR に数え、合わせて3つまでにする
