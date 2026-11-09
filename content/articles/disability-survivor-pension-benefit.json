@@ -72,7 +72,7 @@
   "videoTitle": "障害・遺族の年金生活者支援給付金、1級は月7,025円　所得の基準は約492万円",
   "publishedAt": "2026-11-09T17:15:43.432374+00:00",
   "generatedAt": "2026-11-09T17:16:24.661733+00:00",
-  "thumbnail": "https://www.nenkin.go.jp/images/ogp-logo.png",
+  "thumbnail": "",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -122,16 +122,134 @@
   "detectedAt": "2026-11-09T17:17:20+00:00",
   "layout": "noir",
   "summaryLine": "障害と遺族の年金生活者支援給付金、令和8年度の月額は1級7,025円、2級と遺族は**5,620円**",
-  "imageFocus": {
-    "x": 0.454,
-    "y": 0.506,
-    "box": [
-      0.194,
-      0.012,
-      0.713,
-      1.0
-    ],
-    "ar": 1.9048,
-    "src": "https://www.nenkin.go.jp/images/ogp-logo.png"
-  }
+  "insight": [
+    {
+      "text": "令和7年1月以降に「年金生活者支援給付金請求書（はがき型）」が届いた人は電子申請もでき、電子申請なら郵送は不要です。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html"
+    },
+    {
+      "text": "給付金専用ダイヤルは、月曜日は午後7時まで、火曜日から金曜日は午後5時15分まで、第2土曜日は午後4時まで。12月29日から1月3日は利用できません。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/20190805.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "給付金専用ダイヤル",
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/20190805.html",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/20190805.html",
+      "howTo": [
+        "年金生活者支援給付金",
+        "問い合わせ先",
+        "お電話でのお問い合わせ先"
+      ],
+      "phone": "0570-05-4092",
+      "hours": "月曜日午前8時30分から午後7時、火曜日から金曜日午前8時30分から午後5時15分、第2土曜日午前9時30分から午後4時",
+      "note": "相談対象者の基礎年金番号がわかるものをご用意ください。"
+    },
+    {
+      "name": "お近くの年金事務所",
+      "url": "https://www.nenkin.go.jp/section/soudan/index.html",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/20190805.html",
+      "note": "給付金専用ダイヤルとあわせて、対象かどうかを確かめられます。"
+    },
+    {
+      "name": "年金生活者支援給付金請求書（はがき型）の電子申請",
+      "url": "https://www.nenkin.go.jp/denshibenri_kojin/denshibenri_rorei/denshi_shienkyufukin/shienkyufukin_seikyu.html",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html",
+      "howTo": [
+        "年金生活者支援給付金請求書（はがき型）が届いた方へ",
+        "1.電子申請による提出"
+      ],
+      "note": "申請前の準備から提出完了までの手順を動画で説明しています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "9月にはがきが届いたら、記入して切手を貼り、郵便ポストに投函する",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html",
+      "steps": [
+        "緑の封筒の請求書（はがき型）に氏名などを記入",
+        "同封の目隠しシールを貼る",
+        "切手を貼って郵便ポストに投函"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html"
+    },
+    {
+      "action": "はがきが届いていないなら、給付金専用ダイヤルか年金事務所に対象かどうかを確かめる",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/tetsuduki/tetsuduki02.html",
+      "steps": [
+        "給付金専用ダイヤル 0570-05-4092 に電話する",
+        "相談対象者の基礎年金番号がわかるものを用意する",
+        "心当たりは年金事務所でも確かめられる"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/20190805.html"
+    }
+  ],
+  "cause": {
+    "text": "年金生活者支援給付金は、公的年金等の収入やその他の所得額が所得基準額以下の年金受給者の生活を支援するために、年金に上乗せして支給されるものです。給付額は毎年度、物価の変動による改定（物価スライド改定）があります。",
+    "status": "background",
+    "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/20190805.html"
+  },
+  "worries": [
+    {
+      "q": "障害厚生年金だけでももらえる？",
+      "a": "要件は障害基礎年金を受けていることです。厚生年金だけでは、この要件には当てはまりません。遺族厚生年金だけの場合も同じです。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/syougai.html",
+      "action": "今受けている年金が障害基礎年金か厚生年金だけかを確かめ、迷ったら給付金専用ダイヤル（0570-05-4092）に問い合わせる。",
+      "actionSource": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/20190805.html"
+    },
+    {
+      "q": "はがきが届かないけど対象外？",
+      "a": "そうとは限りません。はがきは新たに対象になる人に毎年9月頃から順次送られます。あとから要件に当てはまった場合は、ご自身で認定請求が必要です。",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/tetsuduki/tetsuduki02.html",
+      "action": "心当たりがあれば、給付金専用ダイヤル（0570-05-4092）かお近くの年金事務所に確かめる。"
+    },
+    {
+      "q": "請求してから、いつ入りますか？",
+      "a": "請求書を出してから1〜2カ月後に「年金生活者支援給付金 支給決定通知書」が届きます。支払いは原則、偶数月の中旬に2カ月分ずつです。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/20190805.html",
+      "action": "初回のお支払い月の上旬に届く振込通知書で、記載の給付額を確かめる。"
+    },
+    {
+      "q": "電話で家族の口座番号を聞かれたら本物？",
+      "a": "日本年金機構や厚生労働省が、電話で家族構成や口座番号・暗証番号を聞くことはありません。手数料などの金銭を求めることもありません。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/20190805.html",
+      "action": "不審に感じたら、お近くの年金事務所か警察相談専用電話（#9110）に連絡する。"
+    },
+    {
+      "q": "2人以上の子がいる遺族の場合、金額は？",
+      "a": "2人以上の子が遺族基礎年金を受けている場合は、5,620円を子の人数で割った金額がそれぞれに支払われます。3人の例では一人あたり1,873円（月額）です。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/izoku.html",
+      "action": "自分の家族の子の人数を確認し、5,620円を人数で割って一人あたりの月額を計算しておく。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "はがきは郵送と電子申請、どちらで出す？",
+      "situation": "令和7年1月以降に届いたはがき",
+      "recommend": "どちらでもよい。電子申請なら郵送は不要",
+      "reason": "電子申請で提出すると郵送は不要になります。郵送なら、目隠しシールを貼り切手を貼ってポストに投函すると認定請求が完了します。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html"
+    },
+    {
+      "question": "請求書をなくしたらどうする？",
+      "situation": "封筒や請求書を紛失した",
+      "recommend": "A4型の請求書で手続きする",
+      "reason": "年金生活者支援給付金請求書（A4型）をダウンロードし、必要事項を書いて、お近くの年金事務所に提出します。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "はがきは郵送か電子申請か、届いた時期で選べる",
+    "cause": "なぜこの給付金があるのか",
+    "steps": "9月にはがきが届いたら、まずこれだけ",
+    "desk": "給付金専用ダイヤルで確かめる",
+    "worries": "対象？いつ入る？家族の金額は？",
+    "guide": "郵送か電子申請か、迷ったときの決め方"
+  },
+  "todayActions": [
+    "9月にはがきが届いたら、記入して切手を貼り、郵便ポストに投函する",
+    "はがきが届いていないなら、給付金専用ダイヤルか年金事務所に対象かどうかを確かめる"
+  ],
+  "depthAt": "2026-11-09T18:45:09+00:00"
 }

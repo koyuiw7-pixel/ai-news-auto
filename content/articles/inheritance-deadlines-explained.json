@@ -72,8 +72,9 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "亡くなった人の死亡を知った日を確かめ、3か月と10か月、3年の期限を手帳に書く。",
-    "被相続人の出生から死亡までの戸除籍謄本等を取り寄せ、相続登記や法定相続情報証明制度に備える。"
+    "相続放棄の申述先を確かめ、収入印紙800円分と郵便切手を用意する",
+    "法定相続情報一覧図の写しを作り、登記所で無料の写しを受け取る",
+    "相続人申告登記の申出書を作り、3年以内に不動産を管轄する法務局へ申し出る"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -146,5 +147,140 @@
   ],
   "detectedAt": "2026-11-09T17:28:43+00:00",
   "layout": "noir",
-  "summaryLine": "相続放棄は3か月以内、相続税の申告・納税は10か月以内、相続登記は3年以内が期限です。"
+  "summaryLine": "相続放棄は3か月以内、相続税の申告・納税は10か月以内、相続登記は3年以内が期限です。",
+  "insight": [
+    {
+      "text": "相続人申告登記で義務を果たせるのは基本的義務だけで、遺産分割が成立したあとの追加的義務は、この申出では果たせません。",
+      "source": "https://www.moj.go.jp/MINJI/minji05_00599.html"
+    },
+    {
+      "text": "法定相続情報番号は不動産の相続登記にだけ使えます。「不動産登記以外の手続では、法定相続情報番号はお使いいただけません。」",
+      "source": "https://houmukyoku.moj.go.jp/homu/page7_000013"
+    },
+    {
+      "text": "相続放棄の申述には、収入印紙800円分（申述人1人につき）と連絡用の郵便切手が必要です。郵便料は裁判所ごとに異なります。",
+      "source": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/kazi_06_13/index.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "裁判所 相続の放棄の申述",
+      "url": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/kazi_06_13/index.html",
+      "source": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/kazi_06_13/index.html",
+      "note": "申述先は被相続人の最後の住所地の家庭裁判所です。申述先は「申立書提出先一覧（家庭裁判所）」で調べられます。"
+    },
+    {
+      "name": "法務局 相続人申告登記（法務省）",
+      "url": "https://www.moj.go.jp/MINJI/minji05_00602.html",
+      "source": "https://www.moj.go.jp/MINJI/minji05_00602.html",
+      "howTo": [
+        "トップページ",
+        "民事局",
+        "相続登記の申請義務化特設ページ",
+        "相続人申告登記について"
+      ],
+      "note": "オンラインでも申出できます。押印・電子署名は不要で、登録免許税はかかりません。"
+    },
+    {
+      "name": "法務局 法定相続情報証明制度の具体的な手続",
+      "url": "https://houmukyoku.moj.go.jp/homu/page7_000014.html",
+      "source": "https://houmukyoku.moj.go.jp/homu/page7_000014.html",
+      "howTo": [
+        "法務局トップページ",
+        "法定相続情報証明制度",
+        "法定相続情報証明制度の具体的な手続について"
+      ],
+      "note": "申出先は、被相続人の本籍地、最後の住所地、申出人の住所地、被相続人名義の不動産の所在地から選べます。郵送も可能です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "相続放棄の申述先を確かめ、収入印紙800円分と郵便切手を用意する",
+      "source": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/kazi_06_13/index.html",
+      "steps": [
+        "裁判所サイトの「申立書提出先一覧（家庭裁判所）」を開く",
+        "被相続人の最後の住所地の家庭裁判所を探す",
+        "収入印紙800円分と連絡用の郵便切手を用意する"
+      ],
+      "url": "https://www.courts.go.jp/saiban/tetuzuki/kasai/index.html"
+    },
+    {
+      "action": "法定相続情報一覧図の写しを作り、登記所で無料の写しを受け取る",
+      "source": "https://houmukyoku.moj.go.jp/homu/page7_000014.html",
+      "steps": [
+        "戸除籍謄本等の束と一覧図を登記所へ提出する",
+        "登記官が一覧図の内容を確認する",
+        "認証文付きの一覧図の写しを無料で受け取る"
+      ],
+      "url": "https://houmukyoku.moj.go.jp/homu/page7_000014.html"
+    },
+    {
+      "action": "相続人申告登記の申出書を作り、3年以内に不動産を管轄する法務局へ申し出る",
+      "source": "https://www.moj.go.jp/MINJI/minji05_00602.html",
+      "steps": [
+        "「相続人申告登記について」のページを開く",
+        "申出書を作成し、Webブラウザ上で送信することもできる",
+        "登録免許税はかからない"
+      ],
+      "url": "https://www.moj.go.jp/MINJI/minji05_00602.html"
+    }
+  ],
+  "cause": {
+    "text": "所有者不明土地の発生原因の約3分の2を占める相続登記の未了に対応するため、相続登記の申請が義務化されました。所有者不明土地は、公共事業や民間取引の阻害原因になると説明されています。",
+    "status": "background",
+    "source": "https://www.moj.go.jp/MINJI/minji05_00599.html"
+  },
+  "worries": [
+    {
+      "q": "3か月を過ぎたら、相続放棄はもうできない？",
+      "a": "申述は、相続の開始を知ったときから3か月以内にしなければならないと定められています。3か月で財産を調べても決められない場合は、家庭裁判所に伸長を申し立てられますが、その申立ても3か月以内にする必要があります。",
+      "source": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/kazi_06_13/index.html",
+      "action": "借金が多いかもしれないなら、3か月以内に財産と借金を調べて、放棄するかを決めます。"
+    },
+    {
+      "q": "遺産分割がまとまらなくても、相続登記は間に合う？",
+      "a": "相続人申告登記を期限内（3年以内）に申し出れば、基本的な義務は果たせます。分割が成立したら、成立した日から3年以内に、その内容を踏まえた登記を申請する必要があります。",
+      "source": "https://www.moj.go.jp/MINJI/minji05_00599.html",
+      "action": "相続人申告登記の申出書を作り、3年以内に法務局へ申し出る準備をします。",
+      "actionSource": "https://www.moj.go.jp/MINJI/minji05_00602.html"
+    },
+    {
+      "q": "戸籍の束を何度も出すのは大変。減らす方法は？",
+      "a": "法定相続情報一覧図の写しは、戸除籍謄本等の束の代わりに相続登記に使えます。預金の払戻し、相続税の申告、年金等の手続にも使えますが、提出先によって扱いが違うため事前に確認が必要です。",
+      "source": "https://houmukyoku.moj.go.jp/homu/page7_000013",
+      "action": "法定相続情報証明制度の申出を行い、一覧図の写しを無料で受け取ります。",
+      "actionSource": "https://houmukyoku.moj.go.jp/homu/page7_000014.html"
+    },
+    {
+      "q": "相続放棄の申述には、いくら払えばいい？",
+      "a": "収入印紙800円分（申述人1人につき）と連絡用の郵便切手が必要です。郵便料は裁判所ごとに異なるため、申述先の裁判所で確認します。",
+      "source": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/kazi_06_13/index.html",
+      "action": "申述先の裁判所に、収入印紙800円分と郵便切手を用意してから申述書を出します。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "相続放棄の期限内に決めきれないときは？",
+      "situation": "3か月で財産の状況を調べ切れない",
+      "recommend": "家庭裁判所に期間の伸長を申し立てることを検討する",
+      "reason": "申立てにより3か月の熟慮期間を伸ばせる場合があります。ただし申立て自体も3か月以内にする必要があります。伸長で解決するのは決める期限で、財産の中身は解決しません。",
+      "source": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/kazi_06_25/index.html"
+    },
+    {
+      "question": "遺産分割がまとまらないとき、先に登記すべき？",
+      "situation": "相続人が多く、話し合いが長引いている",
+      "recommend": "相続人申告登記で先に義務を果たす方法を検討する",
+      "reason": "相続人申告登記は相続人1人で申し出られ、登録免許税もかかりません。ただし売却や抵当権設定には別途相続登記が必要で、遺産分割に基づく申請義務は果たせません。",
+      "source": "https://www.moj.go.jp/MINJI/minji05_00599.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "相続人申告登記で果たせないことに注意",
+    "cause": "なぜ相続登記の義務ができたのか",
+    "steps": "今日、確かめて集めるもの",
+    "desk": "相続の手続はどこに連絡する？",
+    "worries": "放棄の期限や書類、お金は大丈夫？",
+    "guide": "放棄か伸長か、迷ったときの判断"
+  },
+  "depthAt": "2026-11-09T18:43:47+00:00"
 }

@@ -106,5 +106,139 @@
   ],
   "detectedAt": "2026-11-09T17:15:30+00:00",
   "layout": "noir",
-  "summaryLine": "女性の年金の平均は月9万4,334円で、10万円未満が**65.1%**を占める（令和5年度末）"
+  "summaryLine": "女性の年金の平均は月9万4,334円で、10万円未満が**65.1%**を占める（令和5年度末）",
+  "insight": [
+    {
+      "text": "対象かどうかを判定する「前年」は、令和8年10月分から令和9年9月分までの給付金を請求する場合、令和7年を指します。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    },
+    {
+      "text": "050から始まる電話でかける場合は、東京03-5539-2216が案内されています。間違い電話が発生しているため、番号を確かめてかけるよう求められています。",
+      "source": "https://www.mhlw.go.jp/nenkinkyuufukin/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "年金生活者支援給付金 給付金専用ダイヤル",
+      "url": "https://www.mhlw.go.jp/nenkinkyuufukin/",
+      "source": "https://www.mhlw.go.jp/nenkinkyuufukin/",
+      "phone": "0570-05-4092",
+      "hours": "月曜日 午前8:30～午後7:00／火～金曜日 午前8:30～午後5:15／第2土曜日 午前9:30～午後4:00",
+      "note": "050から始まる電話でかける場合は東京03-5539-2216。祝日（第2土曜日を除く）と12月29日から1月3日は利用できません。"
+    },
+    {
+      "name": "お近くの年金事務所",
+      "url": "https://www.nenkin.go.jp/section/soudan/index.html",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html",
+      "howTo": [
+        "年金生活者支援給付金請求書（はがき型）が届いた方へ",
+        "お近くの年金事務所"
+      ],
+      "note": "封筒や請求書を紛失した場合は、年金生活者支援給付金請求書（A4型）をダウンロードし、必要事項を記載のうえ提出します。"
+    },
+    {
+      "name": "ねんきんネット 将来の年金額の試算",
+      "url": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/introduction/estimatedamount.html",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/introduction/estimatedamount.html",
+      "howTo": [
+        "ねんきんネット",
+        "将来の年金額を試算する"
+      ],
+      "note": "利用には「ねんきんネット」への登録が必要です。登録は、マイナポータルとの連携かユーザIDの取得でできます。75歳以上は利用できません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "給付金の対象か、給付金専用ダイヤルに電話して相談する",
+      "source": "https://www.mhlw.go.jp/nenkinkyuufukin/",
+      "steps": [
+        "0570-05-4092に電話する",
+        "月曜は午前8時30分から午後7時まで受付",
+        "火～金曜は午後5時15分まで受付",
+        "祝日と12月29日～1月3日は利用不可"
+      ],
+      "url": "https://www.mhlw.go.jp/nenkinkyuufukin/"
+    },
+    {
+      "action": "届いた緑の封筒の請求書で、見込額（月額）を確かめる",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html",
+      "steps": [
+        "封筒の中のはがき型請求書を開く",
+        "見込額（月額）の記載箇所を確認する",
+        "氏名などを記入し、目隠しシールを貼る"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html"
+    },
+    {
+      "action": "自分や親の年金見込額を、ねんきんネットの試算画面で確かめる",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/introduction/estimatedamount.html",
+      "steps": [
+        "ねんきんネットに登録する",
+        "「将来の年金額を試算する」を開く",
+        "75歳以上は利用できない"
+      ],
+      "url": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/introduction/estimatedamount.html"
+    }
+  ],
+  "cause": {
+    "text": "年金生活者支援給付金は、消費税率引き上げ分を活用し、公的年金等の収入や所得が一定基準額以下の年金受給者の生活を支援するため、年金に上乗せして支給されるものです。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/nenkinkyuufukin/"
+  },
+  "worries": [
+    {
+      "q": "年金が少ないと、給付金はもらえる？",
+      "a": "65歳以上で老齢基礎年金を受けている人が対象です。世帯全員が市町村民税非課税で、前年の年金収入とその他の所得の合計が926,500円以下（昭和31年4月2日以後生まれの方）であることが必要です。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "給付金専用ダイヤルに電話して、対象かどうかを相談する",
+      "actionSource": "https://www.mhlw.go.jp/nenkinkyuufukin/"
+    },
+    {
+      "q": "対象になったら、自動で振り込まれる？",
+      "a": "自分から請求しないと支給されません。新たに受け取れる人には、毎年9月の第1営業日から順次、はがき型の請求書が送られます。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html",
+      "action": "届いた封筒の請求書に氏名などを記入し、目隠しシールを貼って投函する"
+    },
+    {
+      "q": "一度請求したら、ずっと受け取れる？",
+      "a": "一度手続きを行えば、来年以降は継続的に支給されます。支給要件を満たさなくなると支給は終了し、その後に要件を満たす場合は改めて請求が必要です。",
+      "source": "https://www.mhlw.go.jp/nenkinkyuufukin/",
+      "action": "要件が変わったら、給付金専用ダイヤルで改めて相談する"
+    },
+    {
+      "q": "電話や詐欺の心配はない？",
+      "a": "日本年金機構や厚生労働省から、電話で口座番号を聞いたり、手数料を求めたりすることはありません。給付金詐欺にご注意くださいとされています。",
+      "source": "https://www.mhlw.go.jp/nenkinkyuufukin/",
+      "action": "不審に感じたら、日本年金機構か警察相談専用電話（#9110）に連絡する"
+    },
+    {
+      "q": "請求書を失くしたら、どうすればいい？",
+      "a": "封筒や請求書を紛失した場合は、年金生活者支援給付金請求書（A4型）をダウンロードし、必要事項を記載のうえ、お近くの年金事務所に提出します。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html",
+      "action": "A4型の請求書をダウンロードし、年金事務所に提出する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "はがきの請求書は郵送と電子申請、どちらにする？",
+      "situation": "令和7年1月以降に請求書が届いた",
+      "recommend": "どちらかの方法で提出します。急ぐ必要はありません。",
+      "reason": "電子申請で提出した場合は郵送が不要になります。手続きの詳しい方法は同封のリーフレットで確認できます。令和7年1月より前に届いた人は郵送で提出します。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "請求は65歳の誕生日の前日から、所得は前年で見る",
+    "cause": "この給付金ができた理由と背景",
+    "steps": "今日は専用ダイヤルと見込額の確認から",
+    "desk": "電話するなら、どこに何番か",
+    "worries": "対象か、請求は必要か、詐欺は大丈夫か",
+    "guide": "電子申請か郵送か、迷ったときの選び方"
+  },
+  "todayActions": [
+    "給付金の対象か、給付金専用ダイヤルに電話して相談する",
+    "届いた緑の封筒の請求書で、見込額（月額）を確かめる",
+    "自分や親の年金見込額を、ねんきんネットの試算画面で確かめる"
+  ],
+  "depthAt": "2026-11-09T18:45:45+00:00"
 }
