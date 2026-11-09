@@ -2839,6 +2839,72 @@
       "ok": false,
       "reason": "full: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI / short: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI",
       "pages": []
+    },
+    "nitori-member-data-leak-2026": {
+      "at": "2026-11-09T16:00:34+00:00",
+      "status": "gate_failed",
+      "tries": 1,
+      "textAt": "2026-11-09T23:30:00+00:00",
+      "textId": "",
+      "breaking": false,
+      "scheduled": true,
+      "versions": {
+        "full": {
+          "ok": false,
+          "seconds": 60.544,
+          "reasons": [],
+          "qa": {
+            "geometry": true,
+            "vision": true,
+            "version": 1,
+            "v3": false
+          },
+          "template": "security",
+          "level": null,
+          "base_layout": "screen-left-headline"
+        },
+        "short": {
+          "ok": false,
+          "seconds": 41.36,
+          "reasons": [],
+          "qa": {
+            "geometry": true,
+            "vision": true,
+            "version": 1,
+            "v3": false
+          },
+          "template": "security",
+          "level": null,
+          "base_layout": "screen-left-headline"
+        }
+      },
+      "timings": {
+        "full": {
+          "script": 0.0,
+          "tts": 25.68,
+          "plan_audio": 4.87,
+          "render": 47.84,
+          "gate": 5.69,
+          "sheet": 2.39,
+          "total": 86.6,
+          "ladder_total": 240.2
+        },
+        "short": {
+          "script": 0.0,
+          "tts": 34.01,
+          "plan_audio": 3.3,
+          "render": 31.85,
+          "gate": 4.22,
+          "sheet": 1.82,
+          "total": 75.2,
+          "ladder_total": 240.2
+        }
+      },
+      "ok": false,
+      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない / short: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない",
+      "pages": [
+        "ai-tech-express.jp"
+      ]
     }
   },
   "queued": {
@@ -3508,6 +3574,11 @@
       "media": "card",
       "linkPosition": "reply",
       "delayedMin": 0
+    },
+    "nitori-member-data-leak-2026": {
+      "status": "waiting",
+      "why": "動画を作る記事なので 08:30 まで動画を待つ（来なければ写真・カードで出す）",
+      "checkedAt": "2026-11-09T16:04:35+00:00"
     }
   },
   "converted": {
