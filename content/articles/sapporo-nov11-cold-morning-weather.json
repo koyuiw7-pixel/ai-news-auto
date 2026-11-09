@@ -74,9 +74,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "今夜のうちに、明日の朝に着る服を決めておく。札幌・仙台は冬物の上着と手袋が目安です。",
-    "札幌で朝に出かける人は、未明の雪で路面が滑るおそれがあるため、滑りにくい靴を用意する。",
-    "那覇で船やマリンレジャーの予定がある人は、運航会社の案内を出発前に確かめる。"
+    "札幌で朝に出かける人は、11日の未明の雪を予報で確かめてから靴を選ぶ。",
+    "名古屋で朝に出かける人は、11日の最低気温8度に備えて重ね着を用意する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -140,5 +139,78 @@
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/sapporo-nov11-cold-morning-weather-8b4ef7a6.jpg"
   },
-  "coverTries": 1
+  "coverTries": 1,
+  "insight": [
+    {
+      "text": "札幌の11日の最低気温は「-1」度ですが、予想の幅は「-4」度から「0」度と書かれています。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/016000.json"
+    },
+    {
+      "text": "札幌の11日の最高気温は「6」度で、予想の幅は「4」度から「10」度と書かれています。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/016000.json"
+    },
+    {
+      "text": "週間予報の信頼度は、14日までは「A」、15日と16日は「C」と書かれています。遠い日ほど予報が変わることがあります。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/016000.json"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "札幌で朝に出かける人は、11日の未明の雪を予報で確かめてから靴を選ぶ。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/016000.json",
+      "steps": [
+        "予報を開き、石狩地方を選ぶ",
+        "11日の天気欄で「未明 雪」を確かめる",
+        "路面が滑るおそれがあるので靴を選ぶ"
+      ]
+    },
+    {
+      "action": "名古屋で朝に出かける人は、11日の最低気温8度に備えて重ね着を用意する。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/230000.json",
+      "steps": [
+        "名古屋の11日の最低気温は「8」度",
+        "最高気温は「19」度と予報されている",
+        "朝は上着、昼は脱げる服を用意する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "この予報は、札幌管区気象台が11月10日5時に発表した予報と、11月9日17時発表の週間予報をもとにしています。",
+    "status": "background",
+    "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/016000.json"
+  },
+  "worries": [
+    {
+      "q": "札幌の朝は、どのくらい寒くなりますか？",
+      "a": "11日の札幌の最低気温は「-1」度で、予想の幅は「-4」度から「0」度です。最高気温は「6」度と予報されています。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/016000.json",
+      "action": "朝に出る前に、冬物の上着と手袋を用意しておく。"
+    },
+    {
+      "q": "札幌で雪はいつ降りますか？",
+      "a": "石狩地方の天気は「くもり 未明 雪」と予報されています。降水確率は11日0時の区切りで「30」％、6時の区切りで「20」％です。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/016000.json",
+      "action": "朝に外へ出る前に、未明の雪で路面が滑るおそれがあるので靴を選ぶ。"
+    },
+    {
+      "q": "仙台は朝晩の冷え込みが心配ですか？",
+      "a": "11日の仙台の最低気温は「4」度、最高気温は「11」度と予報されています。予想の幅は最低が3度から5度、最高が9度から13度です。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/040000.json",
+      "action": "朝晩は冬物の上着を着て、昼は脱げるように重ね着する。"
+    },
+    {
+      "q": "名古屋で雨が降る心配はありますか？",
+      "a": "名古屋の11日の天気は「晴れ」の予報で、降水確率は「10」％と書かれています。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/230000.json",
+      "action": "出かける前に、最新の予報を気象庁の予報ページで確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "札幌の朝は予想の幅で-4度まで下がる",
+    "cause": "この予報は、いつ、どこが出したもの？",
+    "steps": "今夜のうちに用意する服と靴",
+    "worries": "朝の寒さと雪、どのくらい？"
+  },
+  "depthAt": "2026-11-09T21:06:22+00:00",
+  "discoverCandidate": true
 }
