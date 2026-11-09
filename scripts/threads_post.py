@@ -1237,7 +1237,8 @@ def candidates(state: dict, hours: int, genres: set[str] | None = None) -> list[
 # 速報は本物の大きなニュース（主要企業の公式発表・速報レーン）だけなので、すべて出せる本数にする（2026-10-28 オーナー判断）。
 # BREAKING_PER_DAY は暴走よけの安全上限（既定15・最大30。速報レーン＋レーダーの1日の安全上限30と同じ）
 # 速報は投稿時刻を dueAt に記録するので、前後90分の通常枠は空けられ、1日の総数はほぼ増えない
-BREAKING_PER_DAY = max(0, min(30, int(os.environ.get("BREAKING_PER_DAY") or 15)))
+# 2026-11-09 オーナー「速報も上限つけなくていい」: 本数の上限は実質なし（1000）
+BREAKING_PER_DAY = max(0, int(os.environ.get("BREAKING_PER_DAY") or 1000))
 # 生成からこの時間以内の速報記事だけ即時に出す（それより古いものは通常の予約に回す）
 BREAKING_MAX_AGE_MIN = 90
 # 通常の予約が速報記事に手を出さない時間（即時投稿の待ち時間より十分長く）

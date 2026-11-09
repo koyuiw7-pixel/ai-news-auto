@@ -138,7 +138,7 @@ class BudgetTest(unittest.TestCase):
         self.assertGreaterEqual(llm.API_DAILY_CALLS["check"], 600)
         self.assertGreaterEqual(llm.API_DAILY_CALLS["helper"], 600)
         self.assertGreaterEqual(llm.API_DAILY_CALLS["core"], 120)
-        self.assertLessEqual(llm.API_DAILY_CALLS["breaking"], 40, "速報の上限は今回は変えない")
+        self.assertGreaterEqual(llm.API_DAILY_CALLS["breaking"], 1000, "2026-11-09 オーナー: 速報は上限なし")
         self.assertEqual(llm.API_MAX_LEVEL, 2, "Opus は使わない")
 
     def test_quality_gates_are_not_loosened(self):

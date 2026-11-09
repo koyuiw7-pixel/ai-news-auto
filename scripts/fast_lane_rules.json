@@ -1,6 +1,6 @@
 {
   "_doc": "速報レーンの共通ルール。見張り番の Worker（ops/watchdog/src/fastlane.js・radar.js）と scripts/fast_lane.py・scripts/radar.py が同じ判定をする。判定: 除外語なし かつ（主要な製品名＋発表の語/製品名で始まる見出し、または 発表の語だけ＝公式ニュースルームの発表）。ai_only の発信元は AI の語か製品名が要る。daily_max は速報レーン＋レーダーを合わせた1日の安全上限（暴走よけ。通常の記事の上限とは別。超えたら Issue で知らせる）。正規表現は Python と JavaScript の両方で動く書き方だけ（大文字小文字は区別しない）。変えたら ops/watchdog で npm test → npx wrangler deploy。genre のある発信元（新製品・ゲーム）は、AI の判定の代わりに genres の major_re（大きな発表の語）で判定する（主要な製品名＋発表の語でも可）。genre_caps はジャンルごとの1日の上限（1つのジャンルが全体の上限を食いつぶさないように）。quake は気象庁の地震・津波（LLM を使わず決まった書式。全体の上限とは別枠）",
-  "daily_max": 30,
+  "daily_max": 1000,
   "max_age_hours": 12,
   "max_per_run": 1,
   "max_dispatches": 3,
@@ -161,9 +161,7 @@
   },
   "genre_caps": {
     "_doc": "ジャンルごとの1日（日本時間）の起動の上限。合計は上の daily_max（Worker の FAST_DAILY_MAX）まで。ここに無いジャンル（ai・レーダー）は合計の上限だけ。地震・津波は安全のため合計に数えず quake.daily_max だけ",
-    "tech-gadget": 6,
-    "entertainment": 5,
-    "business": 8
+    "_owner_20261109": "オーナー「速報も上限つけなくていい」でジャンルごとの上限は外した"
   },
   "quake": {
     "_doc": "気象庁の防災情報XML（地震・津波）。震度5弱以上・大津波警報・津波警報だけを、LLM を使わない決まった書式の記事にする（scripts/quake.py）。同じ地震（EventID）の続報は同じ記事を更新する。Worker（src/quake.js）が2分ごとに feed を見る。daily_max はこのレーンだけの1日の起動の上限（全体の daily_max には数えない）。push_min_int 以上か大津波警報・津波警報なら、夜間・1日の上限を超えてもプッシュ通知する（安全のため）",
@@ -177,12 +175,12 @@
     "min_int": "5-",
     "push_min_int": "6-",
     "follow_hours": 24,
-    "daily_max": 20,
+    "daily_max": 1000,
     "genre": "public"
   },
   "radar": {
     "_doc": "大きなニュースのレーダー（ops/watchdog/src/radar.js が数分おき・scripts/radar.py が毎朝の見逃しチェック）。まとめサイト（Techmeme・Hacker News・日本の IT メディア）は「見つけるため」だけに使い、記事の出典は一次情報（公式の発表・SEC の書類）を探して使う。一次情報が見つからないときだけ outlets（信頼できる報道機関）の記事を出典にする（「〇〇の報道によると」と明記）。配信サービス（PR Wire 等）は使わない。daily_max はレーダーだけの1日の安全上限（速報レーンと合わせた上限は上の daily_max）",
-    "daily_max": 20,
+    "daily_max": 1000,
     "max_age_hours": 36,
     "max_per_run": 2,
     "coverage_hours": 72,

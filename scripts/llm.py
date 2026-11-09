@@ -965,7 +965,7 @@ API_COST_MID_DEFAULT = {"breaking": 0.125, "video": 0.055, "video_review": 0.02,
 API_LEVEL_COST_RATIO = {1: 0.05, 2: 1.0, 3: 2.0}
 # 1日の回数の安全上限（暴走よけ。環境変数 CLAUDE_API_DAILY_CALLS_<段> で変更）
 # video_review: 台本のレビュー＋動画の目視の確認（2026-11-04 QA。1記事1回・画像つき）で 20 → 40
-API_DAILY_CALLS = {"breaking": 40, "video": 20, "video_review": 40, "check": 600, "helper": 600, "sns": 30, "core": 120, "rest": 160,
+API_DAILY_CALLS = {"breaking": 1000, "video": 20, "video_review": 40, "check": 600, "helper": 600, "sns": 30, "core": 120, "rest": 160,
                    "repair": 300, "rescue": 150, "ymyl": 60}  # 救済の段は暴走よけだけ（台帳 A48）
 # 2026-11-06 オーナー承認: breaking を 20→40 回（KDDI の決算の速報が上限で作れなかった。月の予算 $95 は変えない）
 # 2026-11-06 オーナー決定（台帳 A47）: 記事を1日100本へ。1日40本の上限のときの回数を本数に合わせて広げる

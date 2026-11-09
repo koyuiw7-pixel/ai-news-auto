@@ -34,9 +34,9 @@ DAY_START_GAP_MIN = "14"
 ALERT_GAP_MIN = "120"
 # 速報レーン＋レーダー: 1日（日本時間）に新しく起動する安全上限（暴走よけ。通常の記事の上限とは別。超えたら Issue で知らせる）
 # scripts/fast_lane_rules.json の daily_max より優先
-FAST_DAILY_MAX = "30"
+FAST_DAILY_MAX = "1000"
 # レーダーだけの1日の安全上限（誤検知の暴走よけ。超えたら Issue で知らせる）
-RADAR_DAILY_MAX = "20"
+RADAR_DAILY_MAX = "1000"
 # レーダー: "1" なら outbox に置かずログだけ（動作確認用）
 RADAR_DRY_RUN = "0"
 # 速報レーン: "1" なら起動せずログだけ（動作確認用）

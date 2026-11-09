@@ -343,7 +343,7 @@ test("速報レーンが outbox を取り込み、出典の名前・報道かど
 });
 
 test("速報レーンの安全上限は30本（通常の記事の上限とは別）・ルールの正規表現が Python と JavaScript の両方で読める", () => {
-  assert.equal(RULES.daily_max, 30);
+  assert.equal(RULES.daily_max, 1000);
   const R = compile(RULES);
   assert.ok(R.launch.test("Anthropic files S-1 with the SEC for proposed initial public offering"));
   assert.ok(RR.signal.test("Siri AI、日本語で提供開始"));
