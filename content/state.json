@@ -11315,6 +11315,13 @@
       "skipped": true,
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_fiscal_system/proceedings/material/20261105zaiseia.html"
     },
+    "796a7f7ee338b70f": {
+      "at": "2026-11-09T19:13:36.648431+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 本文「Anthropic公式ニュースは11月10日」→ 元記事に公開日の記載がなく、確認済みの文脈にも無い日付を創作している; リード・要点「5.1より2割安い」→ 5.1の価格$10・$50は確認済みの文脈にあり、2割安いの計算も正しいが、計算であることが明記されていない",
+      "skipped": true,
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2"
+    },
     "79e6fb6d7787c932": {
       "at": "2026-10-27T01:53:44.181577+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -20227,32 +20234,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-07T15:34:25.323370+00:00",
-      "attempt": 2,
-      "id": "f1280b003fab5afa",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "文が長い（1文の平均 46.9字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 98.7,
-        "avg_sentence": 46.9,
-        "long_share": 0.225,
-        "max_paragraph": 201,
-        "paragraphs": 19,
-        "sentences": 40
-      },
-      "score": 92,
-      "source": "google-cloud-blog",
-      "title": "Zero-shot predictions in Pandas using the new BigQuery Accessor",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CSV・SQL・GIFT）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-07T15:34:50.696740+00:00",
       "attempt": 0,
@@ -27435,6 +27416,21 @@
       "warnings": [
         "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T19:13:36.648406+00:00",
+      "attempt": 1,
+      "id": "796a7f7ee338b70f",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "本文「Anthropic公式ニュースは11月10日」→ 元記事に公開日の記載がなく、確認済みの文脈にも無い日付を創作している",
+        "リード・要点「5.1より2割安い」→ 5.1の価格$10・$50は確認済みの文脈にあり、2割安いの計算も正しいが、計算であることが明記されていない"
+      ],
+      "score": 72,
+      "source": "anthropic-news",
+      "title": "Introducing Claude Fable 5.2 and Claude Mythos 5.2"
     }
   ],
   "short_text_retry": {},
