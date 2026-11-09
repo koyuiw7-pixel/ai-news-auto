@@ -2737,9 +2737,9 @@
       "pages": []
     },
     "child-allowance-third-child-monthly-30000": {
-      "at": "2026-11-09T00:16:13+00:00",
+      "at": "2026-11-09T00:25:34+00:00",
       "status": "gate_failed",
-      "tries": 2,
+      "tries": 3,
       "textAt": "2026-11-08T23:30:00+00:00",
       "textId": "",
       "breaking": false,
@@ -2747,13 +2747,11 @@
       "versions": {
         "full": {
           "ok": false,
-          "seconds": 63.213,
-          "reasons": [
-            "v3: QA(目視): 場面5（選択の青）: 選択の青が文の途中「数えに入る子には…」から始まり、前の「数」が切れて語の途中になっている。文頭「第3子以降かどうかは…」が含まれていないか、「数」の位置でずれ"
-          ],
+          "seconds": 63.986,
+          "reasons": [],
           "qa": {
             "geometry": true,
-            "vision": false,
+            "vision": true,
             "version": 1,
             "v3": false
           },
@@ -2763,11 +2761,13 @@
         },
         "short": {
           "ok": false,
-          "seconds": 35.187,
-          "reasons": [],
+          "seconds": 36.444,
+          "reasons": [
+            "事実: conclusion: 数字 3 が記事の中で「記事」と同じ文に出てこない（別の話の数字では？）"
+          ],
           "qa": {
             "geometry": true,
-            "vision": true,
+            "vision": false,
             "version": 1,
             "v3": false
           },
@@ -2779,27 +2779,27 @@
       "timings": {
         "full": {
           "script": 0.0,
-          "tts": 21.15,
-          "plan_audio": 4.22,
-          "render": 38.12,
-          "gate": 4.9,
-          "sheet": 2.16,
-          "total": 70.6,
-          "ladder_total": 367.2
+          "tts": 26.9,
+          "plan_audio": 3.84,
+          "render": 48.27,
+          "gate": 5.94,
+          "sheet": 2.53,
+          "total": 87.6,
+          "ladder_total": 232.4
         },
         "short": {
           "script": 0.0,
-          "tts": 11.79,
-          "plan_audio": 2.43,
-          "render": 21.13,
-          "gate": 3.11,
-          "sheet": 1.29,
-          "total": 39.8,
-          "ladder_total": 367.2
+          "tts": 15.12,
+          "plan_audio": 2.87,
+          "render": 27.55,
+          "gate": 3.79,
+          "sheet": 1.53,
+          "total": 50.9,
+          "ladder_total": 232.4
         }
       },
       "ok": false,
-      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 場面5（選択の青）: 選択の青が文の途中「数えに入る子には…」から始まり、前の「数」が切れて語の途中になっている。文頭「第3子以降かどうかは…」が含まれていないか、「数」の位置でずれ / short: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 場面5（選択の青）: 選択の青が文の途中「数えに入る子には…」から始まり、前の「数」が切れて語の途中になっている。文頭「第3子以降かどうかは…」が含まれていないか、「数」の位置でずれ",
+      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない / short: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない",
       "pages": [
         "ai-tech-express.jp"
       ]
@@ -3294,32 +3294,32 @@
     "docomo-data-leak-what-to-do": {
       "status": "waiting",
       "why": "Muse の動画を 11:00 まで待っている",
-      "checkedAt": "2026-11-09T00:22:21+00:00"
+      "checkedAt": "2026-11-09T00:29:27+00:00"
     },
     "child-allowance-third-child-monthly-30000": {
       "status": "waiting",
       "why": "Muse の動画を 09:30 まで待っている",
-      "checkedAt": "2026-11-09T00:22:21+00:00"
+      "checkedAt": "2026-11-09T00:29:27+00:00"
     },
     "respirator-mask-ring-recall-2026": {
       "status": "waiting",
       "why": "枠（12:15）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T00:22:21+00:00"
+      "checkedAt": "2026-11-09T00:29:27+00:00"
     },
     "caa-recall-accident-report-202610": {
       "status": "waiting",
       "why": "枠（13:45）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T00:22:21+00:00"
+      "checkedAt": "2026-11-09T00:29:27+00:00"
     },
     "corporate-data-breach-record-2026": {
       "status": "waiting",
       "why": "枠（11:30）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T00:22:21+00:00"
+      "checkedAt": "2026-11-09T00:29:27+00:00"
     },
     "famima-karaage-kushi-release": {
       "status": "waiting",
       "why": "枠（15:30）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T00:22:21+00:00"
+      "checkedAt": "2026-11-09T00:29:27+00:00"
     }
   },
   "converted": {
