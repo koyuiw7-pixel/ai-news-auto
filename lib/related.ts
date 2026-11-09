@@ -110,6 +110,8 @@ const urlKey = (url?: string) => (url ?? "").trim().toLowerCase().replace(/[?#].
 
 /** 同じ発表の重複記事（どちらかがもう一方の duplicateOf / angleOf か、同じ出典URL） */
 function isSameStory(a: ArticleSummary, b: ArticleSummary): boolean {
+  // 同じ発表で別の疑問に答える記事（とは・料金・比較・使い方。angleOf。scripts/story.py の link_siblings）は互いに関連として出す（台帳 A68）
+  if ((a.angleOf && (a.angleOf === b.slug || a.angleOf === b.angleOf)) || (b.angleOf && b.angleOf === a.slug)) return false;
   if (a.duplicateOf && (a.duplicateOf === b.slug || a.duplicateOf === b.duplicateOf)) return true;
   if (b.duplicateOf && b.duplicateOf === a.slug) return true;
   const ua = urlKey(a.sourceUrl);

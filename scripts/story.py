@@ -463,16 +463,26 @@ def link_siblings(stories: list[Story], df: dict[str, int], since: datetime | No
                   by_slug: dict, duplicates: dict) -> int:
     """役割違いの記事を relatedSlugs の先頭に入れて互いに結ぶ（すでに入っていれば何もしない）"""
     changed = 0
+    keys = {s.slug: s.keys for s in stories}
     for slug, others in siblings(stories, df, since, duplicates).items():
         path, data = by_slug[slug]
         related = [str(x) for x in (data.get("relatedSlugs") or [])]
         add = [o for o in others if o not in related][:SIBLING_MAX]
-        if not add:
+        # 同じ出典から別の疑問に答える記事（ニュース以外）には angleOf を付ける。サイトと IndexNow の予備の重複判定
+        # （同じ出典URLは1本だけ）から外し、関連記事の一覧で互いに出す（lib/article-index.mjs・lib/related.ts・scripts/indexnow.py）
+        angle = ""
+        if page_role(data.get("title", "")) != "news" and not data.get("angleOf"):
+            same_src = [o for o in others if keys.get(slug, set()) & keys.get(o, set())]
+            news = [o for o in same_src if page_role(by_slug[o][1].get("title", "")) == "news"]
+            angle = (news or same_src or [""])[0]
+        if not add and not angle:
             continue
         changed += 1
-        print(f"[link] {slug}（{ROLE_LABELS[page_role(data.get('title', ''))]}）→ {', '.join(add)}")
+        print(f"[link] {slug}（{ROLE_LABELS[page_role(data.get('title', ''))]}）→ {', '.join(add) or '（結び済み）'}{f' / angleOf {angle}' if angle else ''}")
         if not dry_run:
             data["relatedSlugs"] = add + related
+            if angle:
+                data["angleOf"] = angle
             path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return changed
 

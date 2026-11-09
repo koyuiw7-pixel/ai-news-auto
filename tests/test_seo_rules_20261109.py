@@ -148,6 +148,20 @@ class RealDataTest(unittest.TestCase):
             others = {*RESTORED[:3], "openai-gpt-6-1-terra-announcement"} - {slug}
             self.assertTrue(others <= related, f"{slug} が役割違いの記事と結ばれていない: {others - related}")
 
+    def test_restored_pages_are_not_hidden_by_the_same_url_fallback(self):
+        """サイト（lib/article-index.mjs の markDuplicates）と IndexNow の予備の判定（同じ出典URLは1本だけ）で検索から外れない。
+        11/9 の公開の直後、比較と Copilot の記事が同じ出典URLで noindex になっていた"""
+        rows = [d for _, d in canonical_names.load_all()]
+        dups = indexnow.duplicate_slugs(rows)
+        for slug in RESTORED:
+            a = article(slug)
+            self.assertNotIn(slug, dups)
+            self.assertIsNone(indexnow.noindex_reason(a, dups), slug)
+        for slug in RESTORED[:3]:
+            self.assertEqual("openai-gpt-6-1-terra-announcement", article(slug)["angleOf"])
+        related = (ROOT / "lib" / "related.ts").read_text("utf-8")
+        self.assertIn("a.angleOf === b.slug", related)
+
     def test_terra_prices_match_the_pricing_table(self):
         prices = json.loads((ROOT / "content" / "pricing" / "openai-api.json").read_text("utf-8"))["models"]
         first = {m["id"]: m for m in prices if "≤" in str(m.get("tier"))}
