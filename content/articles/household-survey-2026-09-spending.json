@@ -88,9 +88,8 @@
     }
   ],
   "todayActions": [
-    "電気代や通信費の明細を、9月分と前年同月で見比べる",
-    "家計簿アプリや通帳で、教養娯楽や外食の支出が前年と比べて増減したか確かめる",
-    "政府統計の総合窓口（e-Stat）の家計調査で、自分の世帯人数に近い費目の平均額を調べる"
+    "報告書の第1表で、食料と光熱・水道の前年同月の金額を見比べる",
+    "家計簿や明細で、電気代を9月分と前年同月で比べる"
   ],
   "scheduledRelease": {
     "id": "kakei-2026-09",
@@ -119,5 +118,68 @@
   "layout": "noir",
   "summaryLine": "9月の消費支出は1世帯**28万9,536円**で、前年同月比は実質6.8%減、名目4.5%減でした",
   "duplicateOf": "japan-household-spending-aug-2026",
-  "duplicateReason": "同じ出典URL"
+  "duplicateReason": "同じ出典URL",
+  "insight": [
+    {
+      "text": "季節調整値は、例年1月分の公表時に「過去に遡って改定している」と書かれています。前月比の数字は、後から変わることがあります。",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09"
+    },
+    {
+      "text": "食料は名目で0.2%増えましたが、実質では2.5%減です。物価の上がった分を差し引くと、減って見えることがあります。",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "報告書の第1表で、食料と光熱・水道の前年同月の金額を見比べる",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09",
+      "steps": [
+        "「第1表 主要家計指標」を開く",
+        "2025年 9月と2026年 9月の行を見る",
+        "食料、光熱・水道の列の金額を比べる"
+      ],
+      "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09"
+    },
+    {
+      "action": "家計簿や明細で、電気代を9月分と前年同月で比べる",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09",
+      "steps": [
+        "電気代の明細を9月分と前年同月で並べる",
+        "電気代が前年より下がったかを確かめる",
+        "報告では光熱・水道は実質10.5%減でした"
+      ]
+    }
+  ],
+  "worries": [
+    {
+      "q": "この数字どおり、自分の家計も減っているの？",
+      "a": "この数字は二人以上の世帯1世帯当たりの平均です。前年同月と比べた、世間全体の動きの目安です。ご自身の家計がどうなっているかは、この報告からは分かりません。",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09",
+      "action": "電気代や食料などの明細を、2026年9月分と2025年9月分で並べて見比べ、自分の家計の増減を確かめる。"
+    },
+    {
+      "q": "食べ物や電気代も、やっぱり減っているの？",
+      "a": "食料は実質2.5%減、光熱・水道は実質10.5%減でした。食料は名目で0.2%増えており、物価の変化によって数字の見え方が変わります。",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09",
+      "action": "レシートや明細で食料と電気代の前年同月の金額を書き出し、物価の上がり分を別に考えながら比べてみる。"
+    },
+    {
+      "q": "収入は増えているのに、なぜ使うお金は減る？",
+      "a": "勤労者世帯の実収入は実質0.9%増えましたが、消費支出は実質10.0%減りました。平均消費性向は72.7%で、前年同月の82.1%より9.4ポイント低くなっています。",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09",
+      "action": "家計簿で手取り収入のうち使った割合を月ごとに記録し、前年の同じ月と比べてみる。"
+    },
+    {
+      "q": "この数字は後から変わることもあるのでしょうか？",
+      "a": "季節調整値は、例年1月分の公表時に過去に遡って改定されています。10月分以降の結果は、この報告には含まれていません。今後の公表で数字が変わる場合があります。",
+      "source": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09",
+      "action": "次に統計局のページが更新されたら、9月分の数字が改定されていないか確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "食料は名目では増えたのに、実質では減った",
+    "steps": "今日できる、明細での見比べ方",
+    "worries": "自分の家計も減っている？不安に答えます"
+  },
+  "depthAt": "2026-11-09T23:51:06+00:00"
 }

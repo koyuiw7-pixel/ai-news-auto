@@ -11064,6 +11064,12 @@
       "skipped": true,
       "url": "https://www.apple.com/jp/newsroom/2026/11/olivia-dean-is-apple-musics-artist-of-the-year-for-2026/"
     },
+    "76391f2a864f7fe9": {
+      "at": "2026-11-09T23:49:47.479351+00:00",
+      "reason": "followup: 新しい事実なし（household-survey-2026-09-spending）",
+      "skipped": true,
+      "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/index.html"
+    },
     "7652741f39ec7ac8": {
       "at": "2026-10-30T10:11:36.991884+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16495,6 +16501,12 @@
       "slug": "covid19-bankruptcy-october-2026",
       "url": "https://www.tsr-net.co.jp/data/detail/1203394_1527.html"
     },
+    "cd6495cefc8a2533": {
+      "at": "2026-11-09T23:49:49.950899+00:00",
+      "reason": "followup: 新しい事実なし（household-consumption-survey-september-2026）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01toukei07_01000296.html"
+    },
     "cd69600d9623203f": {
       "at": "2026-10-27T03:05:10.758700+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
@@ -19544,6 +19556,17 @@
       "skipped": true,
       "url": "https://jtta.or.jp/news/38521"
     },
+    "fe3203af316c6759": {
+      "at": "2026-11-09T23:49:44.837882+00:00",
+      "costUsd": 0.0126,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash",
+      "score": 85,
+      "section": "business",
+      "slug": "household-consumption-survey-september-2026",
+      "url": "https://www.stat.go.jp/data/joukyou/12.html"
+    },
     "fe8bde4640d9416b": {
       "at": "2026-10-29T18:13:11.965548+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -20052,86 +20075,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-07T20:28:38.117354+00:00",
-      "attempt": 1,
-      "id": "df141a94aef9dbc1",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「ダッシュボードの日本語版ドキュメントも公開されています」→ 元記事にも確認済みの文脈にも無い情報で、根拠なしに追加された記述である。",
-        "「前回の「Usage metrics API」の更新とあわせて」→ 元記事は関連ページとして別の更新に触れているだけで、「前回」という時系列や管理者が機能ごとの利用を追いやすくなるという評価は元記事の記述から離れている。",
-        "「判定: 提供状況=available 価格=追加料金の記載なし」→ 記事本文の裏付けを補う注記として読めるが、読者向けの判定欄として分かりにくく、元記事の提供条件の記述と照らすと言い過ぎになりうる。"
-      ],
-      "readability": {
-        "avg_paragraph": 86.6,
-        "avg_sentence": 41.3,
-        "long_share": 0.182,
-        "max_paragraph": 171,
-        "paragraphs": 21,
-        "sentences": 44
-      },
-      "score": 82,
-      "source": "github-changelog-copilot",
-      "title": "Copilot impact dashboard adds chat and VS Code agent usage",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（VS）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T20:28:56.503036+00:00",
-      "attempt": 1,
-      "id": "df141a94aef9dbc1",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.8,
-        "avg_sentence": 41.4,
-        "long_share": 0.186,
-        "max_paragraph": 160,
-        "paragraphs": 21,
-        "sentences": 43
-      },
-      "score": 88,
-      "source": "github-changelog-copilot",
-      "title": "Copilot impact dashboard adds chat and VS Code agent usage",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（VS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T21:12:21.344496+00:00",
-      "attempt": 1,
-      "id": "5175c20e07f32dcb",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「Macはユニバーサルではなく、macOS Tahoe 26.6以降が条件です」→ 元記事にもリンク先にもMacの種類（ユニバーサルかどうか）についての記述がなく、創作された条件です。",
-        "「判定: 提供状況=limited 価格=Copilot契約内 ひとこと=…」→ 記事本文に編集用の内部判定メモが混入しており、読者向けの文章として不適切です。",
-        "「JetBrains Airは、複数のAIエージェントの作業を管理する開発環境です」→ 元記事は「Track multiple agent sessions」とのみ書いており、JetBrains Airの性格づけは言い過ぎです。",
-        "「Q. Copilotの無料プランでもXcodeの標準アシスタントは使えますか？」→ 元記事は「全てのCopilotプランが対象」とだけ書いており、無料プランに利用枠の制限があるという補足は確認済み文脈からの推測を含みます。"
-      ],
-      "readability": {
-        "avg_paragraph": 102.0,
-        "avg_sentence": 39.4,
-        "long_share": 0.114,
-        "max_paragraph": 158,
-        "paragraphs": 17,
-        "sentences": 44
-      },
-      "score": 84,
-      "source": "github-changelog-copilot",
-      "title": "GitHub Copilot weekly releases — November 2",
-      "warnings": [
-        "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CLI・VS・IDE）",
-        "英語の画面名（「「Settings」」）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-07T21:12:43.972260+00:00",
@@ -27282,6 +27225,88 @@
       "score": 86,
       "source": "fast",
       "title": "家計調査 2026年9月分（二人以上の世帯の消費支出）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T23:48:44.764770+00:00",
+      "attempt": 1,
+      "id": "fe3203af316c6759",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「普段からネットで買い物をする人とそうでない人の二極化が進んでいる可能性があります」→ 元記事は利用割合と1世帯支出額を示すのみで、二極化には触れていない。根拠のない推測。",
+        "「宿泊予約や食料品の購入などで単価が上がっている様子が窺えます」→ 元記事に「宿泊予約」という具体的な内容はなく、旅行関係費という項目名のみ。",
+        "「実店舗への客足戻りと、ネット通販での高額・定番サービスの利用定着が同時に起きていると考えられます」→ 実店舗への客足に関する情報は元記事に無く、編集部の見方として示しても根拠がない。",
+        "「一時的な調整期にあるものの」→ 一時的かどうかは元記事から判断できない。",
+        "タイトルの「1世帯支出は2万6303円」→ 2万6303円は全世帯平均の支出額で、「1世帯」の語は利用世帯の4万8213円と混同されやすい。二人以上の世帯の数字であることも見出しでは示されていない。",
+        "「旅行の予約や食料品の購入が全体のお買いものを引っぱっています」→ 「予約」は元記事に無い表現。旅行関係費が寄与した事実を超えて書いている。"
+      ],
+      "readability": {
+        "avg_paragraph": 101.5,
+        "avg_sentence": 58.0,
+        "long_share": 0.357,
+        "max_paragraph": 141,
+        "paragraphs": 8,
+        "sentences": 14
+      },
+      "score": 62,
+      "source": "stat",
+      "title": "家計消費状況調査結果 支出関連項目：2026年（令和8年）9月分、7～9月期平均 ICT関連項目 ：2026年（令和8年）7～9月期平均",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "初めて出たところで言い換えていない略語（ICT）",
+        "読みやすさ: 文が長い（1文の平均 58.0字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T23:49:17.252425+00:00",
+      "attempt": 1,
+      "id": "fe3203af316c6759",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.5,
+        "avg_sentence": 61.5,
+        "long_share": 0.455,
+        "max_paragraph": 141,
+        "paragraphs": 8,
+        "sentences": 11
+      },
+      "score": 92,
+      "source": "stat",
+      "title": "家計消費状況調査結果 支出関連項目：2026年（令和8年）9月分、7～9月期平均 ICT関連項目 ：2026年（令和8年）7～9月期平均",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ICT）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T23:49:36.576803+00:00",
+      "attempt": 0,
+      "id": "fe3203af316c6759",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.2,
+        "avg_sentence": 42.1,
+        "long_share": 0.062,
+        "max_paragraph": 137,
+        "paragraphs": 8,
+        "sentences": 16
+      },
+      "score": 85,
+      "source": "stat",
+      "title": "家計消費状況調査結果 支出関連項目：2026年（令和8年）9月分、7～9月期平均 ICT関連項目 ：2026年（令和8年）7～9月期平均",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ICT）"
+      ]
     }
   ],
   "short_text_retry": {},
