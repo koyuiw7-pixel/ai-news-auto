@@ -13567,6 +13567,17 @@
       "skipped": true,
       "url": "https://cloud.google.com/blog/ja/products/ai-machine-learning/claude-opus-55-and-claude-sonnet-55-available-in-antigravity/"
     },
+    "9d39d63def351c9c": {
+      "at": "2026-11-09T23:18:42.957821+00:00",
+      "costUsd": 0.0098,
+      "intent": "neutral",
+      "mix": "quirky",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "science",
+      "slug": "riken-chlorophagy-light-stress",
+      "url": "https://www.riken.jp/press/2026/20261109_2/index.html"
+    },
     "9d60b113aa82dd7b": {
       "at": "2026-11-05T11:22:23.937446+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -19814,6 +19825,14 @@
       "url": "https://www.jma.go.jp/bosai/forecast/data/forecast/016000.json",
       "writer": "muse"
     },
+    "muse-4e56e306cd": {
+      "at": "2026-11-09T22:55:25.025163+00:00",
+      "mix": "money",
+      "score": 90,
+      "slug": "kiso-kojo-2026-nencho",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm",
+      "writer": "muse"
+    },
     "muse-5086fd73d8": {
       "at": "2026-11-09T10:43:49.377712+00:00",
       "mix": "money",
@@ -20014,6 +20033,14 @@
       "url": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/kazi_06_13/index.html",
       "writer": "muse"
     },
+    "muse-db1b01167d": {
+      "at": "2026-11-09T22:57:37.216555+00:00",
+      "mix": "money",
+      "score": 85,
+      "slug": "gasoline-subsidy-5-yen-monthly-from-december",
+      "url": "https://www.kantei.go.jp/jp/105/statement/2026/1029kaiken.html",
+      "writer": "muse"
+    },
     "muse-ebcf85a387": {
       "at": "2026-11-09T17:47:56.104510+00:00",
       "mix": "life",
@@ -20045,90 +20072,9 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
-    },
-    "muse-4e56e306cd": {
-      "at": "2026-11-09T22:55:25.025163+00:00",
-      "mix": "money",
-      "score": 90,
-      "slug": "kiso-kojo-2026-nencho",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm",
-      "writer": "muse"
-    },
-    "muse-db1b01167d": {
-      "at": "2026-11-09T22:57:37.216555+00:00",
-      "mix": "money",
-      "score": 85,
-      "slug": "gasoline-subsidy-5-yen-monthly-from-december",
-      "url": "https://www.kantei.go.jp/jp/105/statement/2026/1029kaiken.html",
-      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-07T19:14:33.867480+00:00",
-      "attempt": 1,
-      "id": "4c00daffcb3d6bea",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "atlassian-blog",
-      "title": "Our Q1 FY27 letter to shareholders"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T19:15:00.685519+00:00",
-      "attempt": 1,
-      "id": "4c00daffcb3d6bea",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "文が長い（1文の平均 46.0字・60字超の文が 19% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 149.6字・最長 266字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 149.6,
-        "avg_sentence": 46.0,
-        "long_share": 0.192,
-        "max_paragraph": 266,
-        "paragraphs": 16,
-        "sentences": 52
-      },
-      "score": 94,
-      "source": "atlassian-blog",
-      "title": "Our Q1 FY27 letter to shareholders",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（RPO・MCP・CQS）",
-        "同じ数字が多い（「2倍」が5回）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T19:15:33.093940+00:00",
-      "attempt": 0,
-      "id": "4c00daffcb3d6bea",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 106.2,
-        "avg_sentence": 43.3,
-        "long_share": 0.167,
-        "max_paragraph": 212,
-        "paragraphs": 22,
-        "sentences": 54
-      },
-      "score": 95,
-      "source": "atlassian-blog",
-      "title": "Our Q1 FY27 letter to shareholders",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（RPO・MCP・CQS）",
-        "同じ数字が多い（「2倍」が5回）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-07T19:52:09.992780+00:00",
@@ -27269,6 +27215,84 @@
       "score": 72,
       "source": "openai-news",
       "title": "Control Room: A central system to track and stop model workloads across our rese"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T23:18:02.189310+00:00",
+      "attempt": 1,
+      "id": "9d39d63def351c9c",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "タイトル「植物の葉はなぜ枯れないのか」→ 元記事は葉緑体レベルの機能不全葉緑体の除去を扱っており、葉が枯れないことや「なぜ枯れないか」への答えは示していない（葉が枯れやすくなるのはphot2変異株の注釈のみ）。言い過ぎ。",
+        "「一部の葉緑体が『盾』のように…」は元記事の「可能性がある」という推測を、タイトルと本文の一部で断定に近く扱っている。",
+        "「植物の葉は…健全性が保たれている」（かんたん版）の『葉全体の健全性』は元記事の『葉緑体集団全体の健全性』とずれており、葉全体の話として書くのは言い換えの域を超える。"
+      ],
+      "readability": {
+        "avg_paragraph": 132.2,
+        "avg_sentence": 66.1,
+        "long_share": 0.583,
+        "max_paragraph": 171,
+        "paragraphs": 6,
+        "sentences": 12
+      },
+      "score": 78,
+      "source": "riken",
+      "title": "機能不全葉緑体の除去が光ストレス応答を支える",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（FLIM）",
+        "読みやすさ: 文が長い（1文の平均 66.1字・60字超の文が 58% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 132.2字・最長 171字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T23:18:20.524327+00:00",
+      "attempt": 1,
+      "id": "9d39d63def351c9c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 132.2,
+        "avg_sentence": 66.1,
+        "long_share": 0.583,
+        "max_paragraph": 171,
+        "paragraphs": 6,
+        "sentences": 12
+      },
+      "score": 88,
+      "source": "riken",
+      "title": "機能不全葉緑体の除去が光ストレス応答を支える",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直前に「、」",
+        "初めて出たところで言い換えていない略語（FLIM）",
+        "読みやすさ: 文が長い（1文の平均 66.1字・60字超の文が 58% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T23:18:37.937857+00:00",
+      "attempt": 0,
+      "id": "9d39d63def351c9c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 104.8,
+        "avg_sentence": 39.9,
+        "long_share": 0.048,
+        "max_paragraph": 140,
+        "paragraphs": 8,
+        "sentences": 21
+      },
+      "score": 92,
+      "source": "riken",
+      "title": "機能不全葉緑体の除去が光ストレス応答を支える",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直前に「、」",
+        "初めて出たところで言い換えていない略語（FLIM）"
+      ]
     }
   ],
   "short_text_retry": {},

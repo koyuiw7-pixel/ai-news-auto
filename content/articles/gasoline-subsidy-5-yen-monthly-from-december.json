@@ -66,13 +66,13 @@
   "videoTitle": "ガソリン補助、12月から1リットル5円ずつ縮小へ　月40リットル使う家はいくら増えるか",
   "publishedAt": "2026-11-09T22:55:36.491563+00:00",
   "generatedAt": "2026-11-09T22:56:54.560724+00:00",
-  "thumbnail": "https://www.kantei.go.jp/contents/topics/71690_ext_26_0.jpg",
+  "thumbnail": "",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "月の給油量をレシートか給油アプリの履歴で確かめ、5円ずつの引き上げで増える額を試算する",
-    "資源エネルギー庁の石油製品価格調査で、住んでいる地域の価格を毎週確かめる"
+    "資源エネルギー庁の調査結果で、住んでいる地域のガソリン価格を毎週確かめる",
+    "11月26日（木）と12月2日（水）の14時に公表される新しい価格を確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -120,16 +120,116 @@
   "detectedAt": "2026-11-09T22:57:37+00:00",
   "layout": "noir",
   "summaryLine": "ガソリン補助は12月以降、基準価格を毎月**5円**ずつ引き上げ、春先に向けて段階的に縮小へ",
-  "imageFocus": {
-    "x": 0.434,
-    "y": 0.542,
-    "box": [
-      0.031,
-      0.085,
-      0.838,
-      1.0
-    ],
-    "ar": 1.4994,
-    "src": "https://www.kantei.go.jp/contents/topics/71690_ext_26_0.jpg"
-  }
+  "insight": [
+    {
+      "text": "資源エネルギー庁の石油製品価格調査は、11月26日（木）と12月2日（水）の14：00に公表される予定です。原則は毎週月曜日に調査し、水曜日に公表します。",
+      "source": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html"
+    },
+    {
+      "text": "2026年11月5日以降のガソリンの支給単価は51.9円/Lで、うち調整単価は7.2円/L（2026年11月分）とされています。単価は週ごとに更新されています。",
+      "source": "https://nenryo-teigakuhikisage.go.jp/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "資源エネルギー庁 石油製品価格調査（調査結果等に関するお問合せ先）",
+      "url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html",
+      "source": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html",
+      "howTo": [
+        "ホーム",
+        "統計・各種データ",
+        "石油・LPガス関連",
+        "石油製品価格調査",
+        "調査の結果"
+      ],
+      "phone": "0120-938-356（フリーダイヤル）",
+      "hours": "10時～12時、13時～17時（土日祝日、年末年始等は除く）",
+      "note": "問い合わせ前に、F5キーあるいはCtrl＋F5キーでページを更新するよう案内されています。"
+    },
+    {
+      "name": "燃料油価格の緊急的激変緩和措置 サイト",
+      "url": "https://nenryo-teigakuhikisage.go.jp/",
+      "source": "https://nenryo-teigakuhikisage.go.jp/",
+      "note": "制度全般の問合せは、件名に【質問】をつけてメールで送る案内です（info@nenryo-teigakuhikisage.go.jp）。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "資源エネルギー庁の調査結果で、住んでいる地域のガソリン価格を毎週確かめる",
+      "source": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html",
+      "steps": [
+        "石油製品価格調査の「調査の結果」を開く",
+        "「11月5日（木）結果詳細版（EXCEL形式）」を選ぶ",
+        "お住まいの地域の価格を探す"
+      ],
+      "url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html"
+    },
+    {
+      "action": "11月26日（木）と12月2日（水）の14時に公表される新しい価格を確かめる",
+      "source": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html",
+      "steps": [
+        "調査結果のページを開く",
+        "公表予定日の欄を見る",
+        "11月26日（木）14：00の公表を確認する"
+      ],
+      "url": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl007/results.html"
+    }
+  ],
+  "cause": {
+    "text": "首相は、この補助は「激変緩和措置」であり、段階的な見直しや「出口戦略」を求める与野党の指摘を受けて支援の在り方を検討したと説明しています。年末調整の所得税負担軽減や、来年4月以降の「飲食料品の消費税率引下げ」など「切れ目ない物価高対策」も踏まえたとしています。",
+    "status": "background",
+    "source": "https://www.kantei.go.jp/jp/105/statement/2026/1029kaiken.html"
+  },
+  "worries": [
+    {
+      "q": "毎月5円ずつ上がると、月にいくら増える？",
+      "a": "基準価格は、12月以降も原油価格を見ながら春先に向けて毎月5円ずつ引き上げることが基本とされています。何回引き上げるか、いつまで続くかは発表されていません。",
+      "source": "https://www.kantei.go.jp/jp/105/statement/2026/1029kaiken.html",
+      "action": "月の給油量をレシートか給油アプリの履歴で確かめ、1回5円上がった場合の増額を計算する"
+    },
+    {
+      "q": "店頭価格がいくらまで上がったら、補助は見直されるの？",
+      "a": "いくらまで引き上げたら補助を考えるかの目安は、予断をもって申し上げることはできないとされ、示されていません。国際価格と比べ日本のガソリン価格は安い水準だと説明されています。",
+      "source": "https://www.kantei.go.jp/jp/105/statement/2026/1029kaiken.html",
+      "action": "毎週の店頭価格と補助単価を確かめ、家計で払える上限を先に決めて、ガソリン代の予算に入れておく",
+      "actionSource": "https://nenryo-teigakuhikisage.go.jp/"
+    },
+    {
+      "q": "冬の電気・ガス代は、12月からどれだけ下がる？",
+      "a": "12月に前倒しして支援が始まり、電気は1kWhあたり12月1円、1月と2月は4.5円です。12月から2月の3か月で電気・ガス合わせて7,000円程度の負担が下がる見込みです。3月は検討中です。",
+      "source": "https://www.kantei.go.jp/jp/105/statement/2026/1029kaiken.html",
+      "action": "電気・ガスの検針票や請求明細を、12月分から見比べて支援が反映されるか確かめる"
+    },
+    {
+      "q": "灯油は寒い時期に、手に入りにくくなる？",
+      "a": "供給の偏りや流通の目詰まりが起きないよう、特に価格が高い輸入灯油への財政措置などの流通円滑化対策を強化すると説明されています。寒い地域の生活に欠かせないとされています。",
+      "source": "https://www.kantei.go.jp/jp/105/statement/2026/1029kaiken.html",
+      "action": "お住まいの地域では、いつも利用する灯油の販売店に、在庫と配達の予定を早めに聞いておく"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "給油が多い家は、今すぐ何か変えるべき？",
+      "situation": "月40リットル程度給油する家庭",
+      "recommend": "急がなくてよい。毎週の店頭価格を確かめる",
+      "reason": "5円ずつの引き上げは基本方針で、回数や完全終了の時期は発表されていません。補助単価は1リットル50円超で、過去最高の水準とされています。",
+      "source": "https://www.kantei.go.jp/jp/105/statement/2026/1029kaiken.html"
+    },
+    {
+      "question": "給油が多い家は、今すぐ何か変えるべき？",
+      "situation": "月20リットル程度と少ない家庭",
+      "recommend": "急がなくてよい。電気・ガス支援の情報も確かめる",
+      "reason": "電気・ガスは12月から支援が前倒しされ、12月から2月の3か月で合わせて7,000円程度の負担が下がるとされています。ガソリンの見直し時期は未発表です。",
+      "source": "https://www.kantei.go.jp/jp/105/statement/2026/1029kaiken.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "給油の前に見たい公表日と支給単価",
+    "cause": "なぜ補助を縮小するのか、政府の説明",
+    "steps": "今日から確かめられる価格の見方",
+    "desk": "価格を確かめる公式の窓口",
+    "worries": "給油代・電気代・灯油はどうなる？",
+    "guide": "給油が多い家の、今の決め方"
+  },
+  "depthAt": "2026-11-09T23:19:33+00:00"
 }

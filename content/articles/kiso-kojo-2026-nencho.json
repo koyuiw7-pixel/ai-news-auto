@@ -72,9 +72,9 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "勤務先に基礎控除申告書を出したかを確かめる。提出していないと基礎控除を受けられません。",
-    "扶養の家族が増えたり、パート収入が変わったりしたら、扶養控除等（異動）申告書を出す。",
-    "住宅ローン控除の2年目以降なら、住宅借入金等特別控除申告書を年末調整の時までに勤務先へ出す。"
+    "勤務先に基礎控除申告書を出したかを、担当者に確かめる",
+    "扶養の家族が増えた・減ったら、扶養控除等（異動）申告書を勤務先に出す",
+    "23歳未満の扶養家族がいる生命保険は、保険料控除申告書の証明書類をそろえる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -143,5 +143,129 @@
       "after": "62万円",
       "note": "上がる"
     }
-  ]
+  ],
+  "insight": [
+    {
+      "text": "23歳未満の扶養親族がいると、新生命保険料は年3万円以下なら全額、3万円超6万円以下なら「新生命保険料×1/2+15,000円」、12万円超は一律6万円で計算します。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/pdf/02.pdf"
+    },
+    {
+      "text": "配偶者が70歳以上の場合は「老人控除対象配偶者」となり、配偶者控除は48万円を限度として控除されます。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 給与所得者（従業員）の方へ（令和８年分）",
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "howTo": [
+        "ホーム",
+        "利用者別に調べる",
+        "源泉徴収義務者の方",
+        "給与所得者（従業員）の方へ（令和８年分）"
+      ],
+      "note": "年末調整で基礎控除を受けるには、基礎控除申告書を勤務先に提出する必要があります。"
+    },
+    {
+      "name": "国税庁 令和８年度税制改正による所得税の基礎控除の引上げ等について",
+      "url": "https://www.nta.go.jp/users/gensen/2026kiso/",
+      "source": "https://www.nta.go.jp/users/gensen/2026kiso/",
+      "howTo": [
+        "ホーム",
+        "利用者別に調べる",
+        "源泉徴収義務者の方",
+        "令和８年度税制改正による所得税の基礎控除の引上げ等について"
+      ],
+      "note": "令和8年11月までの源泉徴収事務に変更は生じません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "勤務先に基礎控除申告書を出したかを、担当者に確かめる",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "steps": [
+        "勤務先の年末調整の案内を確認する",
+        "基礎控除申告書を出したか担当者に聞く",
+        "未提出なら勤務先の指示どおりに出す"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    },
+    {
+      "action": "扶養の家族が増えた・減ったら、扶養控除等（異動）申告書を勤務先に出す",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "steps": [
+        "扶養親族が新たに増えたか確認する",
+        "新たに対象になった人がいれば異動申告書を出す",
+        "年の中途で変わったら、その都度出す"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    },
+    {
+      "action": "23歳未満の扶養家族がいる生命保険は、保険料控除申告書の証明書類をそろえる",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "steps": [
+        "保険会社の証明書で新旧の区分を確かめる",
+        "「年齢23歳未満の扶養親族」欄に記入する",
+        "証明書類を付けて勤務先に出す"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+    }
+  ],
+  "cause": {
+    "text": "令和8年度税制改正により、所得税の基礎控除の引上げ、給与所得控除の最低保障額の引上げ及び扶養親族等の所得要件の改正等が行われました。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/users/gensen/2026kiso/"
+  },
+  "worries": [
+    {
+      "q": "基礎控除はいくら受けられるの？",
+      "a": "合計所得金額489万円以下は一律104万円です。489万円超655万円以下は67万円、655万円超2,350万円以下は62万円で、2,500万円を超えると0円になります。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "action": "給与やほかの所得を合わせた合計所得金額の見積額を出し、基礎控除額の段階を確かめておく。"
+    },
+    {
+      "q": "11月までの給与の天引きは変わる？",
+      "a": "改正の施行は令和8年12月1日です。11月までの源泉徴収事務に変更はなく、12月の年末調整で改正後の基礎控除で計算し直して差を精算します。",
+      "source": "https://www.nta.go.jp/users/gensen/2026kiso/",
+      "action": "11月までの天引きはそのままなので、12月の年末調整で精算される差額を勤務先の明細で確かめる。"
+    },
+    {
+      "q": "パート収入が増えると扶養から外れる？",
+      "a": "給与所得だけなら、給与収入136万円以下で合計所得金額が62万円以下となり、扶養控除の対象になります。令和7年分は123万円以下でした。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180_qa.htm",
+      "action": "今年の給与収入と、給与以外の所得も合わせて見積もり、扶養の範囲に入るか確かめる。"
+    },
+    {
+      "q": "国外で暮らす親を扶養に入れられる？",
+      "a": "30歳以上70歳未満の国外居住親族は、留学・障害者・年38万円以上の送金などに当たる場合だけ扶養控除の対象です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180_qa.htm",
+      "action": "国外居住の親族は、親族関係書類と送金関係書類を勤務先に提出・提示する準備をする。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "基礎控除申告書は今年出すべき？",
+      "situation": "年末調整で基礎控除を受けたい人",
+      "recommend": "提出が必要です。未提出なら勤務先の締切を確かめる",
+      "reason": "基礎控除申告書を勤務先に出さないと基礎控除を受けられません。締切は会社ごとに違うため、勤務先の案内に従ってください。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    },
+    {
+      "question": "扶養の異動申告書は今年出すべき？",
+      "situation": "改正で新たに扶養親族がいることになった",
+      "recommend": "異動申告書を出す必要があります",
+      "reason": "扶養親族等の所得要件が改正され、新たに扶養親族を有することになった場合も異動申告書の提出が必要です。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "23歳未満の子がいる人の生命保険料控除は計算が変わる",
+    "cause": "なぜ変わった？改正の中身と時期",
+    "steps": "勤務先に出す書類、今日確かめること",
+    "desk": "迷ったときに見る公式ページ",
+    "worries": "基礎控除や扶養、天引きは大丈夫？",
+    "guide": "申告書を出すかどうか迷ったときの見方"
+  },
+  "depthAt": "2026-11-09T23:20:15+00:00"
 }
