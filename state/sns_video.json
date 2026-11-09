@@ -2841,9 +2841,9 @@
       "pages": []
     },
     "nitori-member-data-leak-2026": {
-      "at": "2026-11-09T17:52:06+00:00",
+      "at": "2026-11-09T18:17:24+00:00",
       "status": "gate_failed",
-      "tries": 7,
+      "tries": 8,
       "textAt": "2026-11-09T23:30:00+00:00",
       "textId": "",
       "breaking": false,
@@ -2851,7 +2851,7 @@
       "versions": {
         "full": {
           "ok": false,
-          "seconds": 65.595,
+          "seconds": 60.976,
           "reasons": [],
           "qa": {
             "geometry": true,
@@ -2865,7 +2865,7 @@
         },
         "short": {
           "ok": false,
-          "seconds": 38.297,
+          "seconds": 34.333,
           "reasons": [],
           "qa": {
             "geometry": true,
@@ -2881,23 +2881,23 @@
       "timings": {
         "full": {
           "script": 0.0,
-          "tts": 20.32,
-          "plan_audio": 3.06,
-          "render": 44.67,
-          "gate": 4.51,
-          "sheet": 2.06,
-          "total": 74.7,
-          "ladder_total": 207.8
+          "tts": 25.72,
+          "plan_audio": 4.84,
+          "render": 48.33,
+          "gate": 5.69,
+          "sheet": 2.35,
+          "total": 87.0,
+          "ladder_total": 274.1
         },
         "short": {
           "script": 0.0,
-          "tts": 11.5,
-          "plan_audio": 1.82,
-          "render": 26.54,
-          "gate": 2.93,
-          "sheet": 1.24,
-          "total": 44.1,
-          "ladder_total": 207.8
+          "tts": 13.98,
+          "plan_audio": 2.75,
+          "render": 25.64,
+          "gate": 3.56,
+          "sheet": 1.44,
+          "total": 47.4,
+          "ladder_total": 274.1
         }
       },
       "ok": false,
@@ -2907,9 +2907,9 @@
       ]
     },
     "docomo-data-leak-family-lines": {
-      "at": "2026-11-09T17:52:06+00:00",
+      "at": "2026-11-09T18:17:24+00:00",
       "status": "gate_failed",
-      "tries": 3,
+      "tries": 4,
       "textAt": "2026-11-10T01:00:00+00:00",
       "textId": "",
       "breaking": false,
@@ -2917,9 +2917,9 @@
       "versions": {
         "full": {
           "ok": false,
-          "seconds": 62.526,
+          "seconds": 63.115,
           "reasons": [
-            "v3: QA(目視): 場面3（話の食い違い）: 選択文は「名義ごとに分けて考える必要があります」で左の見出しとは合うが、読み上げの「親名義なら親の契約、成人した子どもは自分名義」と選択文の内容は同じ話で問題な"
+            "v3: QA(目視): つかみ（選択の青）: 選択の青が「最大約30万件の顧客情報が流出しました。」の文頭から始まっておらず、1行目は「最大約」だけに付いている。文のまとまりとしては不自然に見える。"
           ],
           "qa": {
             "geometry": true,
@@ -2933,11 +2933,13 @@
         },
         "short": {
           "ok": false,
-          "seconds": 39.139,
-          "reasons": [],
+          "seconds": 38.262,
+          "reasons": [
+            "v3: QA(目視): つかみ（選択の青）: 選択の青が文頭から始まらず、1行目は「最大約」だけに付いている。"
+          ],
           "qa": {
             "geometry": true,
-            "vision": true,
+            "vision": false,
             "version": 1,
             "v3": false
           },
@@ -2949,27 +2951,27 @@
       "timings": {
         "full": {
           "script": 0.0,
-          "tts": 18.18,
-          "plan_audio": 3.81,
-          "render": 39.85,
-          "gate": 4.43,
-          "sheet": 1.96,
-          "total": 68.3,
-          "ladder_total": 429.7
+          "tts": 25.68,
+          "plan_audio": 4.93,
+          "render": 46.16,
+          "gate": 5.97,
+          "sheet": 2.59,
+          "total": 85.4,
+          "ladder_total": 472.6
         },
         "short": {
           "script": 0.0,
-          "tts": 11.32,
-          "plan_audio": 2.44,
-          "render": 24.31,
-          "gate": 3.22,
-          "sheet": 1.39,
-          "total": 42.7,
-          "ladder_total": 429.7
+          "tts": 15.5,
+          "plan_audio": 2.91,
+          "render": 28.83,
+          "gate": 4.05,
+          "sheet": 1.6,
+          "total": 52.9,
+          "ladder_total": 472.6
         }
       },
       "ok": false,
-      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 場面3（話の食い違い）: 選択文は「名義ごとに分けて考える必要があります」で左の見出しとは合うが、読み上げの「親名義なら親の契約、成人した子どもは自分名義」と選択文の内容は同じ話で問題な / short: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): 場面3（話の食い違い）: 選択文は「名義ごとに分けて考える必要があります」で左の見出しとは合うが、読み上げの「親名義なら親の契約、成人した子どもは自分名義」と選択文の内容は同じ話で問題な",
+      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): つかみ（選択の青）: 選択の青が「最大約30万件の顧客情報が流出しました。」の文頭から始まっておらず、1行目は「最大約」だけに付いている。文のまとまりとしては不自然に見える。 / short: どの段でも合格しなかった（あとの回で作り直す）: full: v3: QA(目視): つかみ（選択の青）: 選択の青が「最大約30万件の顧客情報が流出しました。」の文頭から始まっておらず、1行目は「最大約」だけに付いている。文のまとまりとしては不自然に見える。",
       "pages": [
         "ai-tech-express.jp"
       ]
@@ -3646,12 +3648,12 @@
     "nitori-member-data-leak-2026": {
       "status": "waiting",
       "why": "動画を作る記事なので 08:30 まで動画を待つ（来なければ写真・カードで出す）",
-      "checkedAt": "2026-11-09T18:02:44+00:00"
+      "checkedAt": "2026-11-09T18:29:52+00:00"
     },
     "docomo-data-leak-family-lines": {
       "status": "waiting",
       "why": "動画を作る記事なので 10:00 まで動画を待つ（来なければ写真・カードで出す）",
-      "checkedAt": "2026-11-09T18:02:44+00:00"
+      "checkedAt": "2026-11-09T18:29:52+00:00"
     }
   },
   "converted": {
