@@ -15042,14 +15042,6 @@
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/nousan/kikaku/261104.html"
     },
-    "ae2898f665e29e0d": {
-      "at": "2026-10-26T13:12:34.090521+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "tech-gadget",
-      "slug": "brotli-vulnerability-cve-2026-111497",
-      "url": "https://www.jpcert.or.jp/at/2026/at260034.html"
-    },
     "ae4a63cc6b522d86": {
       "at": "2026-11-05T18:41:28.039517+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -19008,6 +19000,18 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/kaisai/02kiban03_04001196.html"
     },
+    "ed213adeba37dce7": {
+      "at": "2026-11-09T13:17:24.405491+00:00",
+      "costUsd": 0.0139,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "google-tpu-8tx-8i-max",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/"
+    },
     "ed2fb42a31ae5238": {
       "at": "2026-10-27T03:01:29.612312+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -20543,81 +20547,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-07T10:53:07.662097+00:00",
-      "attempt": 1,
-      "id": "8983d20a0c94de9b",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 51.3字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 138.2字・最長 266字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 138.2,
-        "avg_sentence": 51.3,
-        "long_share": 0.2,
-        "max_paragraph": 266,
-        "paragraphs": 13,
-        "sentences": 35
-      },
-      "score": 88,
-      "source": "figma-blog",
-      "title": "In conversation: Dylan Field and David Friedberg on the human role in creating w",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "材料の無い章がある（料金と日本での使い方は、まだ発表されていません）。表示では隠す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T10:53:30.897464+00:00",
-      "attempt": 0,
-      "id": "8983d20a0c94de9b",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 87.3,
-        "avg_sentence": 37.4,
-        "long_share": 0.041,
-        "max_paragraph": 139,
-        "paragraphs": 21,
-        "sentences": 49
-      },
-      "score": 92,
-      "source": "figma-blog",
-      "title": "In conversation: Dylan Field and David Friedberg on the human role in creating w",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "材料の無い章がある（料金と日本での使い方は、まだ発表されていません）。表示では隠す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T11:32:50.299740+00:00",
-      "attempt": 1,
-      "id": "abbce93eef91017a",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 101.3,
-        "avg_sentence": 41.2,
-        "long_share": 0.125,
-        "max_paragraph": 168,
-        "paragraphs": 13,
-        "sentences": 32
-      },
-      "score": 88,
-      "source": "nvidia-developer-blog",
-      "title": "Accelerating Reinforcement Learning Weight Refit with the Reshard Collective",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NCCL・DGX・RL）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-07T12:16:44.245657+00:00",
@@ -27738,6 +27667,84 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（JR）",
         "読みやすさ: 文が長い（1文の平均 51.4字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T13:16:31.918396+00:00",
+      "attempt": 1,
+      "id": "ed213adeba37dce7",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "タイトル「暗号化したまま推論、HBM帯域は2倍」→ 元記事は8i Maxの「HBM帯域2倍」を示すが、8txは『使用中のデータも保護』とあり『暗号化したまま推論』の表現は概ね可だが、8i Maxは8iの2倍で『HBM帯域は2倍』自体は正しい。ただし見出しの『暗号化したまま推論』は元記事の『hardware-level ",
+        "リード「1年に4つのTPUシステムを出すのは初めて」→ 元記事に『four TPU systems in a single year』とあり正しい。一方、『8i Maxは8iの2倍の計算量とHBM帯域』は正しい。",
+        "本文「顧客は100社近くまで増えています」→ 元記事は『nearly 100 customers』で正しい。",
+        "本文「8tと比べて遅延は最大2分の1」→ 元記事は『up to 2x lower latency』で、表記は『最大2分の1』と同義で正しい。",
+        "本文「TPU 8i Maxは…既存のラックに2倍のシリコンを収められる」→ 元記事に『fits twice the silicon within the existing rack footprint』とあり正しい。",
+        "本文「TPU Syncは…最初の応答までの時間を90%以上縮める」→ 元記事は『cut KV transfer latency and TTFT by more than 90%』で、KV転送遅延とTTFTを縮めると書かれており、『最初の応答までの時間』だけに限定するのは概ね正しいが条件の省略がある。"
+      ],
+      "readability": {
+        "avg_paragraph": 106.5,
+        "avg_sentence": 46.1,
+        "long_share": 0.167,
+        "max_paragraph": 165,
+        "paragraphs": 13,
+        "sentences": 30
+      },
+      "score": 62,
+      "source": "google-blog-all",
+      "title": "Our newest TPUs: 8tx and 8i Max, built for the agentic era",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TPU・EPYC・SRAM）",
+        "読みやすさ: 文が長い（1文の平均 46.1字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T13:16:58.144506+00:00",
+      "attempt": 1,
+      "id": "ed213adeba37dce7",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 106.5,
+        "avg_sentence": 46.1,
+        "long_share": 0.167,
+        "max_paragraph": 165,
+        "paragraphs": 13,
+        "sentences": 30
+      },
+      "score": 90,
+      "source": "google-blog-all",
+      "title": "Our newest TPUs: 8tx and 8i Max, built for the agentic era",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TPU・EPYC・SRAM）",
+        "読みやすさ: 文が長い（1文の平均 46.1字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T13:17:24.376845+00:00",
+      "attempt": 0,
+      "id": "ed213adeba37dce7",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.9,
+        "avg_sentence": 41.4,
+        "long_share": 0.088,
+        "max_paragraph": 165,
+        "paragraphs": 15,
+        "sentences": 34
+      },
+      "score": 92,
+      "source": "google-blog-all",
+      "title": "Our newest TPUs: 8tx and 8i Max, built for the agentic era",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TPU・EPYC・SRAM）"
       ]
     }
   ],

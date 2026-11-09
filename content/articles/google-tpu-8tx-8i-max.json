@@ -1,0 +1,249 @@
+{
+  "slug": "google-tpu-8tx-8i-max",
+  "sourceType": "web",
+  "sourceUrl": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+  "sourceName": "Google公式ブログ",
+  "title": "TPU 8tx・8i Maxが登場　暗号化したまま推論、HBM帯域は2倍",
+  "seoTitle": "TPU 8txと8i Maxとは？特徴と提供状況",
+  "threadsPost": "AI基盤や開発の担当の人に、押さえておきたい話です。\n\nGoogleがTPUの新システム「8tx」と「8i Max」を追加しました。\n8txはデータを暗号化したまま推論でき、8i Maxは8iの2倍の計算量です。\n\n自社のAI基盤、クラウドとオンプレのどちらに寄せたいですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "tradeoff",
+      "question": "機密データを扱うAI、クラウドと自社設備のどちらに寄せたいですか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "AI基盤を選ぶなら、速さと安全性のどちらを優先しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "GoogleのAI専用チップ「TPU」の第8世代に、機密データ向けの「TPU 8tx」と巨大な入力向けの「TPU 8i Max」が加わりました。1年に4つのTPUシステムを出すのは初めてで、8i Maxは8iの2倍の計算量とHBM帯域を持ちます。価格と提供開始日はまだ発表されておらず、個人が今すぐ使えるものではありません。",
+  "description": "Googleが第8世代TPUに「TPU 8tx」と「8i Max」を追加。8txは使用中も暗号化で保護し、8i Maxは8iの2倍の計算量。価格・提供時期は未発表で、PyTorch対応など周辺ソフトの状況もまとめます。",
+  "keywords": [
+    "TPU 8tx",
+    "TPU 8i Max",
+    "Google TPU",
+    "第8世代TPU",
+    "機密コンピューティング",
+    "AI推論",
+    "TorchTPU",
+    "エージェント型AI",
+    "コンテキストウィンドウ",
+    "Cloud Pathways"
+  ],
+  "tags": [
+    "Google",
+    "TPU",
+    "AI半導体",
+    "生成AI",
+    "Google Cloud"
+  ],
+  "highlights": [
+    "第8世代TPUにTPU 8txと8i Maxが加わり、1年で4システムに",
+    "TPU 8txは使用中のデータも保護し、8tより遅延が最大2分の1",
+    "TPU 8i Maxは8iの2倍の計算・SRAM・HBM帯域をラックに収容"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "soon",
+    "japan": "unknown",
+    "price": "未発表",
+    "free": null,
+    "audience": "AI基盤の担当者",
+    "take": "提供時期と価格は未発表。まず公式ブログで仕様を確認し、TorchTPUなど公開済みのソフトから試すとよいでしょう。",
+    "judgedAt": "2026-11-09T13:16:24.434442+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AI基盤を担当する人は、機密データを扱う案件で8txが選択肢になるかを確かめられます。",
+      "価格と提供時期は未発表のため、今は予算化せず公式ブログの続報を待つ段階です。",
+      "PyTorchのコードを書き換えずTPUで動かせるTorchTPUは公開済みで、コスト比較の下調べに使えます。"
+    ]
+  },
+  "body": "TPU 8txと8i Maxは、いずれも企業やクラウド事業者が使う設備向けです。個人が今すぐ使えるものではありません。日本での提供や価格、提供開始日はまだ発表されていません。\n\nTPU（テンソル・プロセッシング・ユニット）は、Googleが設計したAI専用のチップです。Googleは自社のGeminiの学習や運用、Google Cloudの顧客向けサービスに使っています。Google公式ブログによると、顧客は100社近くまで増えています。\n\n## 4つのシステムがそろった第8世代\n\nGoogleは4月のGoogle Cloud Nextで、第8世代として「8t」と「8i」を発表していました。8tは大規模な学習用、8iはリアルタイムの推論（学習済みAIが答えを出す処理）用です。ブログによると、8tは前世代より学習性能が最大2.7倍、8iは推論の価格性能が80%向上しました。\n\n今回の2つを加えて、1年で4つのTPUシステムを出すのは初めてです。Googleは、新しいチップではなく、チップの周りの計算・通信・保存をまとめた「システム」を変える方法を取りました。その方法で、数か月で新構成を出せると説明しています。\n\n## 暗号化したまま推論できるTPU 8tx\n\nTPU 8txは、機密性の高い推論に向けた構成で、小規模な学習にも使えます。規制の厳しい企業や政府が、独自のモデルやエージェント（自分で手順を進めるAI）を、機微なデータと一緒に動かすことを想定しています。\n\n通常、データは保存中や通信中は暗号化されますが、処理中はメモリ上で復号が必要です。8txはTPU 8tと同じチップに、第5世代のAMD EPYC CPUを組み合わせ、使用中もデータとモデルの重みを守ります。\n\n通信にはリアルタイム推論向けの「Boardfly」ネットワークを採用しました。8tと比べて遅延は最大2分の1で、性能の低下はほぼありません。\n\n同じ設備で、社内データによるファインチューニング（追加学習）や、大きなモデルを小さくする蒸留、強化学習ができます。データを別のクラスターへ移す必要はありません。\n\n## 長い入力に強いTPU 8i Max\n\nTPU 8i Maxは、8iのチップ2つを1つのパッケージにまとめた構成です。ブログによると、計算量、SRAM、HBM（チップに載る高速メモリ）の帯域がいずれも8iの2倍です。\n\n多数のエージェントがコード全体や長い動画を同時に扱うと、メモリの速さが足りなくなります。この「メモリの壁」を狙った構成です。\n\n既存のラックに2倍のシリコンを収められます。そのため、設置面積と電力あたりの計算力も上がります。\n\n## PyTorchやコンテナ基盤の周辺ソフト\n\nソフト面では、複数の機能が同時に示されました。\n\n- TorchTPU（PyTorchのコードをそのままTPUで動かす仕組み）は先月オープンソースになり、Hugging Faceのモデルも動きます（[Google、TPU向け「TorchTPU」をオープンソース公開](/articles/torchtpu-open-source-pytorch-tpu)）\n- TPU Agent Suiteはプレビュー版で、Claude Code、Cursor、Google Antigravityなどに組み込み、TPUへの移行や速度改善を自然な言葉で進められます\n- TPU Syncはオープンソースで公開され、KV cacheをチップの外に移すなどして、KV転送の遅延と最初の応答までの時間（TTFT）を90%以上縮めるとしています\n- Cloud Pathways（複数のTPUを1台のように扱う仕組み）は、GKE（GoogleのコンテナのKubernetes基盤）で一般提供になりました\n- GKEのdynamic slicingも一般提供で、ジョブの開始が最大5倍、障害からの復旧が最大4.5倍速くなるとしています\n\nブログは、InferenceXとAgentXというベンチマーク（性能テスト）でも結果を示しています。vLLMとTorchTPUの組み合わせは、価格あたりの性能で最高水準だったとされています。条件の詳細は示されていません。\n\nTPUの提供先は広がっており、Oracleは2027年からOCIでTPUを導入する予定です（[Google CloudとOracle、OCIでGoogle TPUを提供へ](/articles/google-tpu-oracle-cloud-infrastructure)）。\n\n## まだ分からないこと\n\n- TPU 8txと8i Maxの価格はまだ発表されていません\n- 提供開始の時期と、日本のリージョン（提供地域）で使えるかは未発表です\n- 8txの「最大2分の1の遅延」や8i Maxの2倍の数字が、どの条件での測定かは示されていません\n\n## 開発者・基盤担当者が確かめておくこと\n\nTorchTPUとTPU Agent Suiteは先に使えます。PyTorchの既存コードでTPUが選択肢になるかを、公式ドキュメントで確認しておくとよいでしょう。TPU Agent Suiteは、TPU v6eとTPU7xでのTransformer推論に重点があると案内されています（Google Cloudのドキュメント、11/9確認）。",
+  "easy": "## ひとことで言うと\n\nGoogleがAI専用チップ「TPU」の新しい2つの構成を追加しました。1つは機密データを守りながらAIを動かすもの、もう1つは長い資料を一度に読ませるためのものです。\n\n価格や提供時期はまだ発表されていません。個人がすぐ使えるものではなく、AI基盤を扱う企業や開発者向けです。\n\n## 2つの新しい構成\n\n「TPU 8tx」は、使っている最中のデータも暗号化で守れるのが特徴です。金融機関や政府のように、扱うデータの規制が厳しい組織を想定しています。\n\n「TPU 8i Max」は、従来の8iのチップを2つ1つにまとめたものです。計算量とメモリの速度が、8iの2倍になります。\n\n## 開発者が使いやすくなる周辺ソフト\n\nPyTorch（AI開発で広く使われる道具）のコードを書き換えずにTPUで動かせる「TorchTPU」は、先月オープンソースになりました。\n\nTPUの設定を自動化するツールも、プレビュー版として出ています。",
+  "channel": "Google公式ブログ",
+  "channelId": "",
+  "channelSlug": "google-blog-all",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Our newest TPUs: 8tx and 8i Max, built for the agentic era",
+  "publishedAt": "2026-11-09T13:00:00+00:00",
+  "generatedAt": "2026-11-09T13:16:24.434428+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/google-tpu-8tx-8i-max-2b7c2ae5.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "TPU Agent Suiteはどのチップ向けの機能ですか？",
+      "a": "Google Cloudのドキュメントによると、TPU v6eとTPU7xでの、高密度LLMとMoEモデルのTransformer推論に重点を置いたオープンソース拡張です（11/9確認）。"
+    },
+    {
+      "q": "TorchTPUではPyTorchのコードを書き換える必要がありますか？",
+      "a": "Google Cloudのドキュメントでは、標準の実行モデルでデフォルトで即時実行するため、既存のワークロードを構造から書き換えずに動くと説明しています（11/9確認）。"
+    }
+  ],
+  "todayActions": [
+    "公式ブログで8txと8i Maxの仕様を読み、自社の機密データ案件に当てはまるか確かめる",
+    "記事内の「TPU agent suite」のリンクから、ドキュメントで使い方と条件を確かめる"
+  ],
+  "relatedSlugs": [
+    "torchtpu-open-source-pytorch-tpu",
+    "google-tpu-oracle-cloud-infrastructure"
+  ],
+  "qualityScore": 92,
+  "sourcePublishedAt": "2026-11-09T13:00:00+00:00",
+  "detectedAt": "2026-11-09T13:14:56+00:00",
+  "speedMinutes": 21,
+  "layout": "noir",
+  "summaryLine": "第8世代TPUにTPU 8txと8i Maxが加わり、1年で4システムに",
+  "insight": [
+    {
+      "text": "TPU 8i Maxは8iの2倍のシリコンを既存のラックに収められるため、同じ設置面積で計算力を増やせると書かれています。",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/"
+    },
+    {
+      "text": "8txは同じ設備でファインチューニング、蒸留、強化学習ができ、データを別のクラスターへ移す必要がないとされています。",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Google 公式ブログ（TPU 8tx・8i Max の記事）",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/"
+    },
+    {
+      "name": "TPU agent suite のドキュメント（記事内リンク）",
+      "url": "https://docs.cloud.google.com/tpu/docs/pytorch-on-tpu",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "公式ブログで8txと8i Maxの仕様を読み、自社の機密データ案件に当てはまるか確かめる",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+      "steps": [
+        "Google公式ブログの記事を開く",
+        "TPU 8tx の説明で機密データの部分を読む",
+        "自社が推論のみか学習も行うかを書き出す"
+      ],
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/"
+    },
+    {
+      "action": "記事内の「TPU agent suite」のリンクから、ドキュメントで使い方と条件を確かめる",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+      "steps": [
+        "記事内の「TPU agent suite」のリンクを押す",
+        "ドキュメントで対象の環境と条件を読む"
+      ],
+      "url": "https://docs.cloud.google.com/tpu/docs/pytorch-on-tpu"
+    }
+  ],
+  "cause": {
+    "text": "新しい構成は、エージェントの普及で長い入力を扱う需要が増えたことと、規制の厳しい顧客から専用の暗号化機能を求める声があったことを背景にしています。",
+    "status": "background",
+    "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/"
+  },
+  "worries": [
+    {
+      "q": "個人が今すぐ8txや8i Maxを使えるのか知りたい",
+      "a": "このページでは、8txは規制の厳しい企業や政府向けの構成と説明されています。個人向けにどう提供されるかは、このページには書かれていません。",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+      "action": "個人で使う予定なら、公式ブログの対象の説明を読み、自分の用途に合うかを確かめておく。"
+    },
+    {
+      "q": "機密データは、AIが処理している間も守られるのか",
+      "a": "8txは、データとモデルの重みを使用中も守る仕組みをハードウェアの層で作ると説明されています。ただし、細かな条件や保証の内容は、このページには書かれていません。",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+      "action": "社内の機密データでAIを使う前に、提供元が守る範囲を契約や公式資料で確かめる。"
+    },
+    {
+      "q": "速さは本当に上がる？数字はどう見ればいい？",
+      "a": "8txは8tと比べて遅延が最大2倍低く、性能の低下はほぼないと説明されています。ただし、どの条件で測った数字かは、このページには示されていません。",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+      "action": "数字を社内の導入判断に使う前に、測定条件を提供元に問い合わせて確かめる。"
+    },
+    {
+      "q": "長いコードや動画を扱う仕事にも関係ある？",
+      "a": "8i Maxは、多数のエージェントがコード全体や長い動画を同時に扱う場面を想定し、HBMの帯域を8iの2倍にした構成と説明されています。",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+      "action": "長いコードや動画を扱う業務があるなら、8i Maxの説明を読み、自社の処理の重さと比べてみる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "機密データを扱うなら8txと8i Maxどちら？",
+      "situation": "機密データをAIで処理したい企業",
+      "recommend": "8txの仕様を先に確かめる",
+      "reason": "8txは処理中もデータとモデルの重みを守る構成、8i Maxは長い入力と計算密度向けと説明されています。機密性と入力の長さ、どちらが課題かで選ぶ材料になります。",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/"
+    },
+    {
+      "question": "個人が今すぐ8txや8i Maxを試すべきか迷う",
+      "situation": "個人で使いたいと考えている",
+      "recommend": "急がなくてよい",
+      "reason": "このページには、個人向けの提供や価格、提供開始日の記載がありません。使えるかどうかは、今後の公式発表を待って確かめるのが確実です。",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "機密データ向けと長い入力向け、用途が分かれている",
+    "cause": "なぜ新しい構成を作ったのか",
+    "steps": "今日やること、まず何を確かめる？",
+    "desk": "公式ブログはどこで確かめる？",
+    "worries": "機密データや個人利用は大丈夫？",
+    "guide": "8txと8i Max、どちらを検討するか"
+  },
+  "depthAt": "2026-11-09T13:18:05+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/google-tpu-8tx-8i-max-fig1-4b39b046.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "photo",
+      "credit": "Google",
+      "sourceUrl": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+      "original": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/TPU-8tx_and_8i-Max.width-2200.format-webp.webp"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/google-tpu-8tx-8i-max-fig2-46e4bb0f.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "dense",
+      "credit": "Google",
+      "sourceUrl": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+      "original": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/8th-Gen-range_samesize.width-2000.format-webp.webp"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google",
+    "provider": "Google公式ブログ",
+    "sourceUrl": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+    "original": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/TPU-8tx_and_8i-Max.width-1300.png",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-09T13:18:14+00:00"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.474,
+    "y": 0.509,
+    "box": [
+      0.053,
+      0.206,
+      0.894,
+      0.811
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/google-tpu-8tx-8i-max-2b7c2ae5.jpg"
+  }
+}
