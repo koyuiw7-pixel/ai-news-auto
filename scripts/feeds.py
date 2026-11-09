@@ -16,6 +16,7 @@ import html
 import json
 import os
 import re
+import ssl
 import sys
 import urllib.error
 import urllib.parse
@@ -529,6 +530,13 @@ def log(message: str) -> None:
 # --------------------------------------------------------------------------- #
 
 
+def legacy_ssl_context() -> ssl.SSLContext:
+    """証明書の確認は普通どおりで、古い TLS の再交渉（OP_LEGACY_SERVER_CONNECT）だけ許す"""
+    context = ssl.create_default_context()
+    context.options |= getattr(ssl, "OP_LEGACY_SERVER_CONNECT", 0x4)
+    return context
+
+
 def fetch(url: str, timeout: int = 25, accept: str = "*/*", token: str = "", extra_headers: dict | None = None) -> tuple[bytes, str]:
     """(本文バイト列, 最終URL)。gzip 圧縮のまま返すサーバー（deepmind.google 等）にも対応。
     token は読み取りサービス（r.jina.ai）の鍵（JINA_API_KEY。あれば回数制限にかかりにくい）。
@@ -537,7 +545,14 @@ def fetch(url: str, timeout: int = 25, accept: str = "*/*", token: str = "", ext
     if token:
         headers["Authorization"] = f"Bearer {token}"
     request = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(request, timeout=timeout) as response:
+    try:
+        response = urllib.request.urlopen(request, timeout=timeout)
+    except urllib.error.URLError as error:
+        if "UNSAFE_LEGACY_RENEGOTIATION" not in str(error):
+            raise
+        # 古い暗号のやり方のままの公式サイト（2026-11-09 ahamo.com）。証明書の確認はそのままで、古い再交渉だけ許してもう一度読む
+        response = urllib.request.urlopen(request, timeout=timeout, context=legacy_ssl_context())
+    with response:
         data = response.read(5_000_000)
         encoding = (response.headers.get("Content-Encoding") or "").lower()
         final_url = response.geturl()

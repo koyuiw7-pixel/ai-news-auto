@@ -60,3 +60,43 @@ def test_other_genres_still_need_the_first_source(monkeypatch):
     _fake_feeds(monkeypatch, {"https://a.jp/"})
     sources = [{"url": "https://a.jp/"}, {"url": "https://b.jp/"}]
     assert muse_articles.fetch_sources(sources) == []
+
+
+def test_legacy_tls_sites_are_retried_with_cert_checks_kept(monkeypatch):
+    import ssl
+    import urllib.error
+    import urllib.request
+
+    import feeds
+
+    calls = []
+
+    class Resp:
+        headers = {}
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def read(self, n):
+            return b"<html>ok</html>"
+
+        def geturl(self):
+            return "https://ahamo.com/plan"
+
+    def urlopen(request, timeout=0, context=None):
+        calls.append(context)
+        if context is None:
+            raise urllib.error.URLError("[SSL: UNSAFE_LEGACY_RENEGOTIATION_DISABLED] unsafe legacy renegotiation disabled")
+        return Resp()
+
+    monkeypatch.setattr(urllib.request, "urlopen", urlopen)
+    data, final = feeds.fetch("https://ahamo.com/plan")
+    assert data == b"<html>ok</html>" and len(calls) == 2
+    assert calls[1].verify_mode == ssl.CERT_REQUIRED and calls[1].check_hostname
+
+
+def test_title_claims_must_be_in_the_sources():
+    assert "タイトルの事実の主張" in quality.FACT_PROMPT and "本文に書いてあるだけでは裏付けにならない" in quality.FACT_PROMPT
