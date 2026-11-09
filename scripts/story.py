@@ -28,6 +28,9 @@ duplicateOf を読むだけにする（判定を TypeScript と Python で二重
   - 記事の役割（page_role: とは・料金/プラン・比較・使い方・ニュース）が違う記事。同じ発表でも「〜とは」「料金・プラン」「〜と比較」
     「使い方」は別の疑問で、それぞれ検索で1位を取れていた（11/3 に Terra・Sol・Astra の比較とプラン別の記事を発表の記事へまとめ、
     1位の検索語を失った）。役割ごとに1本だけ残し（同じ役割どうしは今までどおり重複）、mark が互いに関連記事（relatedSlugs）で結ぶ。
+  - 2026-11-10（台帳 A71）: 読者がやることのガイド（家族の分・対象の確かめ方・やること。題名か、本文の見出しの3本以上で見る）も
+    別の役割。ドコモの流出で「今日やるのは明細とdアカウントの確認」「家族の回線はどうなる」が発表の記事の重複にされ、
+    前日いちばん読まれた記事が検索から外れていた。役割の違う同じ出典の記事には mark が angleOf を付ける（予備の判定から外す）。
 代表（canonical）: 同じ話題のうち、ほかの理由で検索から外れない記事の中で最初に載せたもの（無ければ最初の記事）。
   手動で indexable: true にした記事は代表にし、印を付けない。まとめ記事（roundup）・地震の記事は対象外。
 一度付けた duplicateOf は、--recompute を付けない限り外さない（代表が入れ替わって検索のページが揺れないように）。
@@ -75,8 +78,25 @@ ROLE_PATTERNS = (
     ("compare", re.compile(r"比較|違い|どっち|どれを選ぶ|選び方|(?<![A-Za-z])vs\.?(?![A-Za-z])|と比べ", re.I)),
     ("pricing", re.compile(r"料金(?:プラン|体系|表|一覧|と使い方|・プラン)|プラン別|どのプラン|誰が使える|使えるのは誰|いくらかかる|料金.{0,8}(?:整理|まとめ)")),
     ("howto", re.compile(r"使い方|始め方|使うには|設定方法|導入手順|手順を解説|やり方|申し込み方|申請方法")),
+    # 2026-11-10（台帳 A71）: 発表の記事とは別の疑問に答える「読者がやること」のガイド。同じ出典でも重複にしない
+    # （ドコモの流出の「今日やるのは明細とdアカウントの確認」が発表の記事の重複にされ、前日いちばん読まれた記事が検索から外れていた）
+    ("family", re.compile(r"家族の(?:回線|分|契約|確認)|家族(?:は|も)対象|子ども(?:の回線|名義)|親名義|法定代理人")),
+    ("eligibility", re.compile(r"対象(?:か(?:どうか)?[？?\s　、のをはがも]|かどうか|になる(?:か|人)|の確かめ方|者の確かめ方)|(?:自分|あなた|わが家)は対象|確かめ方|調べ方|見分け方|要確認")),
+    # 月・週の発表のまとめ（Google の「10月のAI発表」など）は、まとめに入った1つの製品の記事とは別の疑問（台帳 A71）
+    ("recap", re.compile(r"(?:[0-9０-９]{1,2}月|今月|先月|今週|先週|月間|週間)の.{0,15}(?:発表|ニュース|アップデート|新機能).{0,10}(?:まとめ|総括|一覧)")),
+    ("action", re.compile(r"やること|やるべき|やるのは|すべきこと|すること[はを]|今すぐ(?:確認|変更|やる)|対処法|対処の仕方|備え方|手続き(?:方法|の仕方|の流れ)|確認(?:方法|の仕方|ポイント|すべき)|どうすれば|何をすれば|注意点")),
 )
-ROLE_LABELS = {"about": "とは", "compare": "比較", "pricing": "料金・プラン", "howto": "使い方", "news": "ニュース"}
+GUIDE_ROLES = ("family", "eligibility", "action")
+# 題名がニュースの形でも、本文の見出しの多くが読者の疑問・行動に答えるガイドの記事（見出しで役割を決める）
+GUIDE_HEADS = {
+    "family": re.compile(r"家族|子ども|子供|親名義|法定代理人|未成年"),
+    "eligibility": re.compile(r"対象(?:か|になる|かどうか)|確かめ|調べ|見分け|ですか[？?]?$|ますか[？?]?$"),
+    "action": re.compile(r"やること|何をする|まず何|取る行動|状況別|備え|対処|入力してしまったら|手続き(?:の|を)"),
+}
+GUIDE_HEAD_MIN = 3
+HEADING_RE = re.compile(r"^#{2,3}\s*(.+?)\s*$", re.M)
+ROLE_LABELS = {"about": "とは", "compare": "比較", "pricing": "料金・プラン", "howto": "使い方", "news": "ニュース",
+               "family": "家族の分", "eligibility": "対象の確かめ方", "action": "やること", "recap": "月・週のまとめ"}
 YOUTUBE_RE = re.compile(r"(?:youtube\.com/(?:watch\?(?:.*&)?v=|shorts/|live/|embed/)|youtu\.be/)([A-Za-z0-9_-]{11})")
 
 
@@ -135,7 +155,8 @@ def title_key(title: str) -> str:
 class Story:
     """記事（または候補）1本ぶんの手がかり"""
 
-    __slots__ = ("slug", "title", "head_titles", "gen", "src", "keys", "ents", "head", "tokens", "products", "latin", "kw", "genre", "sources", "data")
+    __slots__ = ("slug", "title", "head_titles", "gen", "src", "keys", "ents", "head", "tokens", "products", "latin", "kw", "genre", "sources", "data",
+                 "role")
 
     def __init__(self, data: dict) -> None:
         self.data = data
@@ -174,6 +195,7 @@ class Story:
         self.kw = {dedupe.normalize(k) for k in keywords if k}
         self.genre = str(data.get("genreSlug") or "")
         self.latin = {t for t in radar.features(self.title, strong=True) if t.isascii() and t.isalpha() and len(t) >= 4}
+        self.role = article_role(data)
 
 
 COMPOUND_RE = re.compile(r"(?<![A-Za-z0-9])([A-Za-z][A-Za-z]+)[ \-]?(\d+(?:\.\d+)?)[ \-]([A-Z][A-Za-z]{2,})")
@@ -238,6 +260,24 @@ def page_role(title: str) -> str:
     return "news"
 
 
+def guide_role_of_body(body: str) -> str | None:
+    """本文の見出しのうち GUIDE_HEAD_MIN 本以上が読者の疑問・行動に答えるなら、いちばん多い型（family / eligibility / action）"""
+    heads = HEADING_RE.findall(str(body or ""))
+    hits = [h for h in heads if any(p.search(h) for p in GUIDE_HEADS.values())]
+    if len(hits) < GUIDE_HEAD_MIN:
+        return None
+    counts = {role: sum(1 for h in hits if GUIDE_HEADS[role].search(h)) for role in GUIDE_ROLES}
+    return max(GUIDE_ROLES, key=lambda role: counts[role])  # 同じ数なら GUIDE_ROLES の順
+
+
+def article_role(data: dict) -> str:
+    """記事の役割。題名で決め（page_role）、題名がニュースの形なら本文の見出しでガイドかを見る（台帳 A71）"""
+    role = page_role(data.get("title") or "")
+    if role == "news" and data.get("body"):
+        role = guide_role_of_body(data["body"]) or role
+    return role
+
+
 def split_drop(a: Story, b: Story) -> bool:
     """同じ発信元が6時間以内に、別の出典（別の動画・別のページ）として出したもの（1つの事例を何本にも分けた公開）。
     役割の違う題名を付けていても同じ話題として見る（2026-11-03 の Legora の事例の分割。同じ出典から役割を変えて書いた記事とは違う）"""
@@ -253,7 +293,7 @@ def same_story(a: Story, b: Story, df: dict[str, int], window: timedelta = WINDO
     役割（page_role）が違う記事は、同じ発表でも別の疑問に答えるので同じ話題にしない（ignore_role=True は互いに結ぶ相手を探すとき）"""
     if gap(a, b) > window:
         return None
-    if not ignore_role and page_role(a.title) != page_role(b.title) and not split_drop(a, b):
+    if not ignore_role and a.role != b.role and not split_drop(a, b):
         return None
     if a.keys & b.keys:
         return "同じ出典URL"
@@ -355,8 +395,9 @@ def plan(stories: list[Story], df: dict[str, int], recheck_since: datetime | Non
     groups: list[list[tuple[Story, str]]] = []  # 先頭が話題の最初の記事
     seen: list[Story] = []
     for s in stories:
-        # 意図して角度を変えた解説は、どの話題にも入れない（ほかの記事の代表にもならない）
-        if any(is_angle(s, x) for x in seen):
+        # 意図して角度を変えた解説は、どの話題にも入れない（ほかの記事の代表にもならない）。
+        # 読まれた記事の深掘り（angleOf と deepDive。scripts/deep_dive.py が同じ型を二度作らない）も同じ
+        if (s.data.get("angleOf") and s.data.get("deepDive")) or any(is_angle(s, x) for x in seen):
             seen.append(s)
             continue
         seen.append(s)
@@ -452,7 +493,7 @@ def siblings(stories: list[Story], df: dict[str, int], since: datetime | None = 
         for b in live[i + 1:]:
             if since and not ((a.gen and a.gen >= since) or (b.gen and b.gen >= since)):
                 continue
-            if page_role(a.title) == page_role(b.title) or not same_story(a, b, df, ignore_role=True):
+            if a.role == b.role or not same_story(a, b, df, ignore_role=True):
                 continue
             out.setdefault(a.slug, []).append(b.slug)
             out.setdefault(b.slug, []).append(a.slug)
@@ -464,6 +505,7 @@ def link_siblings(stories: list[Story], df: dict[str, int], since: datetime | No
     """役割違いの記事を relatedSlugs の先頭に入れて互いに結ぶ（すでに入っていれば何もしない）"""
     changed = 0
     keys = {s.slug: s.keys for s in stories}
+    roles = {s.slug: s.role for s in stories}
     for slug, others in siblings(stories, df, since, duplicates).items():
         path, data = by_slug[slug]
         related = [str(x) for x in (data.get("relatedSlugs") or [])]
@@ -471,14 +513,14 @@ def link_siblings(stories: list[Story], df: dict[str, int], since: datetime | No
         # 同じ出典から別の疑問に答える記事（ニュース以外）には angleOf を付ける。サイトと IndexNow の予備の重複判定
         # （同じ出典URLは1本だけ）から外し、関連記事の一覧で互いに出す（lib/article-index.mjs・lib/related.ts・scripts/indexnow.py）
         angle = ""
-        if page_role(data.get("title", "")) != "news" and not data.get("angleOf"):
+        if roles.get(slug) != "news" and not data.get("angleOf"):
             same_src = [o for o in others if keys.get(slug, set()) & keys.get(o, set())]
-            news = [o for o in same_src if page_role(by_slug[o][1].get("title", "")) == "news"]
+            news = [o for o in same_src if roles.get(o) == "news"]
             angle = (news or same_src or [""])[0]
         if not add and not angle:
             continue
         changed += 1
-        print(f"[link] {slug}（{ROLE_LABELS[page_role(data.get('title', ''))]}）→ {', '.join(add) or '（結び済み）'}{f' / angleOf {angle}' if angle else ''}")
+        print(f"[link] {slug}（{ROLE_LABELS[roles.get(slug, 'news')]}）→ {', '.join(add) or '（結び済み）'}{f' / angleOf {angle}' if angle else ''}")
         if not dry_run:
             data["relatedSlugs"] = add + related
             if angle:
