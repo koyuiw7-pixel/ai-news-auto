@@ -85,9 +85,9 @@
   ],
   "newsType": "pricing",
   "todayActions": [
-    "大盛りオプションを使っているなら、11月30日の提供終了前に、今のデータ量の使い方を確かめる",
-    "ソフトバンク光を契約しているなら、契約期間満了月を確かめ、12月以降の月額が330円上がる時期を把握する",
-    "auひかりやBIGLOBE光へ移るなら、今の契約の解約金と工事費の残りを先に確かめる"
+    "大盛りオプションを使っているなら、11月30日までに今のデータ量の使い方を確かめる",
+    "ソフトバンク光の契約期間満了月を確かめ、12月以降の月額が330円上がる時期を把握する",
+    "povoを使い続けるなら、有料トッピングの購入日と通話・SMS料の合計を確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -139,5 +139,115 @@
   ],
   "qualityScore": 88,
   "detectedAt": "2026-11-09T07:11:02+00:00",
-  "layout": "noir"
+  "layout": "noir",
+  "insight": [
+    {
+      "text": "「ahamo光」はドコモ光セット割の割引対象外となります。ドコモ光を選ぶと、家族内のスマホ1回線ごとに永年最大1,210円（税込）の割引がある点も比べてください。",
+      "source": "https://www.docomo.ne.jp/internet/hikari/charge/"
+    },
+    {
+      "text": "有料トッピングがない180日間でも、国内通話料と国内SMS利用料などの合計が税抜600円（税込660円）を超えていれば、利用停止の対象外になります。",
+      "source": "https://povo.jp/"
+    },
+    {
+      "text": "新規やのりかえで加入し、回線提供開始月から12カ月以内に解約すると契約解除料が発生します。ベストプランは990円、ベストプランVは1,100円です。",
+      "source": "https://www.linemo.jp/plan/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ahamo 料金・データ量",
+      "url": "https://ahamo.com/plan",
+      "source": "https://ahamo.com/plan",
+      "note": "大盛りオプションは2026年11月30日で提供終了となります。改定の詳細はページの「こちら」から確認できます。"
+    },
+    {
+      "name": "ドコモ光 料金プラン",
+      "url": "https://www.docomo.ne.jp/internet/hikari/charge/",
+      "source": "https://www.docomo.ne.jp/internet/hikari/charge/",
+      "note": "ページの工事料金シミュレーションで、自分の工事料を確認できます。"
+    },
+    {
+      "name": "SoftBank 光 料金",
+      "url": "https://www.softbank.jp/internet/sbhikari/price/",
+      "source": "https://www.softbank.jp/internet/sbhikari/price/",
+      "note": "自動更新なしプランの申し込みは、本ページ下部記載の電話番号へ問い合わせるとあります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "大盛りオプションを使っているなら、11月30日までに今のデータ量の使い方を確かめる",
+      "source": "https://ahamo.com/plan",
+      "steps": [
+        "ahamoの料金・データ量のページを開く",
+        "大盛りオプションの提供終了日（2026年11月30日）を確認",
+        "今のデータ量が40GB・60GB・120GBのどれに入るか考える"
+      ],
+      "url": "https://ahamo.com/plan"
+    },
+    {
+      "action": "ソフトバンク光の契約期間満了月を確かめ、12月以降の月額が330円上がる時期を把握する",
+      "source": "https://www.softbank.jp/internet/sbhikari/price/",
+      "steps": [
+        "自動更新ありプランを契約しているか確かめる",
+        "契約期間満了月の翌月利用分から改定後料金になると確認",
+        "満了月の当月・翌月・翌々月は解除料がかからないと確認"
+      ],
+      "url": "https://www.softbank.jp/internet/sbhikari/price/"
+    },
+    {
+      "action": "povoを使い続けるなら、有料トッピングの購入日と通話・SMS料の合計を確かめる",
+      "source": "https://povo.jp/",
+      "steps": [
+        "povo2.0アプリで有料トッピングの購入履歴を見る",
+        "直近180日の国内通話料とSMS利用料を合計する",
+        "合計が税込660円を超えているか確かめる"
+      ],
+      "url": "https://povo.jp/"
+    }
+  ],
+  "worries": [
+    {
+      "q": "既存のahamoの契約者は、いつから新料金になる？",
+      "a": "公式ページには、既存の契約者が改定後の料金にいつから移るかの記載がありません。",
+      "source": "https://ahamo.com/plan",
+      "action": "ahamoの料金ページで、改定の案内が追加されていないか定期的に見る。"
+    },
+    {
+      "q": "ソフトバンク光は、いくら上がるの？",
+      "a": "2026年12月1日から既存の料金プランの月額料金が330円（税込）上がります。SoftBank 光・10ギガは対象外です。",
+      "source": "https://www.softbank.jp/internet/sbhikari/price/",
+      "action": "自分の回線が10ギガではないか、契約しているプラン名を確かめる。"
+    },
+    {
+      "q": "解約すると、どれくらいお金がかかる？",
+      "a": "2年自動更新プランは、契約期間満了月の当月・翌月・翌々月以外で解約すると、割引前の月額利用料金相当額の解除料が必要です。",
+      "source": "https://www.softbank.jp/internet/sbhikari/price/",
+      "action": "乗り換えの前に契約期間満了月を確かめ、その3か月の中で手続きを進める。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ソフトバンク光を続けるか、乗り換えるか？",
+      "situation": "2年自動更新プランを契約中",
+      "recommend": "満了月を確かめてから決めても急がなくてよい",
+      "reason": "契約期間満了月の当月・翌月・翌々月以外で解約すると、割引前の月額利用料金相当額の解除料がかかります。12月以降は月額が330円上がるため、満了月に合わせて比べる価値があります。",
+      "source": "https://www.softbank.jp/internet/sbhikari/price/"
+    },
+    {
+      "question": "ahamo光でも、ドコモ光セット割は使えるか？",
+      "situation": "ahamoを契約していて、ahamo光を検討している",
+      "recommend": "セット割を重視するなら、ドコモ光と比べてから決める",
+      "reason": "「ahamo光」はドコモ光セット割の割引対象外です。ドコモ光は、同じファミリー割引グループ内の家族のスマホ1回線ごとに永年最大1,210円（税込）の割引があります。",
+      "source": "https://www.docomo.ne.jp/internet/hikari/charge/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ドコモ光とahamo光は、セット割の対象が違う",
+    "steps": "12月前に確かめる3つのこと",
+    "desk": "公式ページで確かめる先",
+    "worries": "12月に料金はいくら変わる？",
+    "guide": "今の契約のままか、乗り換えかの決め方"
+  },
+  "depthAt": "2026-11-09T07:54:45+00:00"
 }
