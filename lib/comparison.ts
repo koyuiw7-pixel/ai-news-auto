@@ -4,6 +4,7 @@ import { actionAdRules, isRoundupArticle, partnerItem, type ActionAdRule, type O
 import { isFastNews } from "@/lib/cover-path";
 import { isDisasterArticle } from "@/lib/related";
 import { COMPARE_SLOT } from "@/lib/compare-slot";
+import { comparisonTopicFromText, isComparisonRecord } from "@/lib/article-index.mjs";
 
 /**
  * ニュース → 比較記事の導線（2026-11-09 オーナー「収益考えて」・Muse の調査 saisoku-reply-20261109-1200）。
@@ -22,43 +23,23 @@ type Kindish = Pick<ArticleSummary, "kind"> & { museFile?: string };
 
 /** 選び方・比較の記事か（公開時の印。印の無い Muse の「比較」の原稿はファイル名で拾う） */
 export function isComparison(article: Kindish): boolean {
-  return article.kind === "comparison" || /^\d{8}-比較-/.test(article.museFile ?? "");
-}
-
-function hits(re: RegExp, text: string): number {
-  const found = text.match(new RegExp(re.source, re.flags.includes("g") ? re.flags : `${re.flags}g`));
-  return found ? new Set(found.map((w) => w.toLowerCase())).size : 0;
+  return isComparisonRecord(article);
 }
 
 /**
- * 比較記事の話題（actionAds の key）。公開時に決めた comparisonTopic が無ければ、題名・本文から同じ規則で決める
- * （scripts/muse_articles.py の comparison_topic と同じ: 題名に当たる話題を優先し、当たった語の数・本文の語の数の多い順。同点は actionAds の順）
+ * 比較記事の話題（actionAds の key）。公開時に決めた comparisonTopic（索引では本文から決めた値）が無ければ、題名・本文から同じ規則で決める
+ * （lib/article-index.mjs の comparisonTopicFromText。scripts/muse_articles.py の comparison_topic と同じ規則）
  */
 export function comparisonTopicOf(
   article: Pick<ArticleSummary, "title" | "seoTitle" | "lede" | "description"> & { comparisonTopic?: string; body?: string },
   rules: ActionAdRule[] = actionAdRules(),
 ): string | undefined {
   if (article.comparisonTopic && rules.some((r) => r.key === article.comparisonTopic)) return article.comparisonTopic;
-  const title = `${article.title} ${article.seoTitle ?? ""}`;
-  const body = `${article.lede ?? ""} ${article.description ?? ""} ${article.body ?? ""}`;
-  let best: { key: string; score: [number, number, number] } | undefined;
-  for (const rule of rules) {
-    let re: RegExp;
-    try {
-      re = new RegExp(rule.match, "i");
-    } catch {
-      continue;
-    }
-    if (rule.exclude && new RegExp(rule.exclude, "i").test(title)) continue;
-    const t = hits(re, title);
-    const b = hits(re, body);
-    if (t === 0 && b < 3) continue;
-    const score: [number, number, number] = [t > 0 ? 1 : 0, t, b];
-    if (!best || score[0] > best.score[0] || (score[0] === best.score[0] && (score[1] > best.score[1] || (score[1] === best.score[1] && score[2] > best.score[2])))) {
-      best = { key: rule.key, score };
-    }
-  }
-  return best?.key;
+  return comparisonTopicFromText(
+    rules,
+    `${article.title} ${article.seoTitle ?? ""}`,
+    `${article.lede ?? ""} ${article.description ?? ""} ${article.body ?? ""}`,
+  );
 }
 
 /** ニュースの話題 → 案内してよい比較記事の話題（その話題の比較記事が無いときの近い受け皿） */
@@ -153,11 +134,18 @@ export function compareOffersFor(
   return { topic, title: rule.title, items };
 }
 
-/** 比較記事の本文の最初の表の直後に印を入れる（ノワールの横スクロールの囲みは表だけを包むので、印は囲みの外に残る）。表が無ければそのまま */
+/**
+ * 比較記事の本文に、提携先の一覧の印を入れる。最初の比較表の直後（ノワールの横スクロールの囲みは表だけを包むので、印は囲みの外に残る）。
+ * 表が無い記事は、最初の章（最初の h2 の章）の終わり＝2つ目の h2 の直前。h2 が1つ以下ならそのまま（記事の終わりの一覧だけ）
+ */
 export function insertCompareSlot(html: string): string {
-  const re = /<table[\s>][\s\S]*?<\/table>/i;
-  const m = re.exec(html);
-  if (!m) return html;
-  const end = m.index + m[0].length;
-  return `${html.slice(0, end)}${COMPARE_SLOT}${html.slice(end)}`;
+  const table = /<table[\s>][\s\S]*?<\/table>/i.exec(html);
+  if (table) {
+    const end = table.index + table[0].length;
+    return `${html.slice(0, end)}${COMPARE_SLOT}${html.slice(end)}`;
+  }
+  const h2 = [...html.matchAll(/<h2[\s>]/gi)];
+  if (h2.length < 2) return html;
+  const at = h2[1].index!;
+  return `${html.slice(0, at)}${COMPARE_SLOT}${html.slice(at)}`;
 }

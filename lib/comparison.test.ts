@@ -8,6 +8,8 @@ import { COMPARE_SLOT, compareOffersFor, comparisonByTopic, comparisonTopicOf, f
 import FunnelCard from "../components/FunnelCard";
 import CompareOffers from "../components/CompareOffers";
 import ArticleProse from "../components/ArticleProse";
+import { summarize } from "./article-index.mjs";
+import { actionAdRules } from "./offers";
 
 let passed = 0;
 function test(name: string, fn: () => void) { fn(); passed++; console.log(`ok comparison ${name}`); }
@@ -133,6 +135,29 @@ test("「次に読む」のカードの表示: 題名・理由・画像・内部
   assert.match(out, /data-compare-funnel="leak"/);
   assert.match(out, /security-software-compare\.jpg/);
   assert.ok(!/sponsored|>PR</.test(out));
+});
+
+test("本番の不具合（2026-11-09 15:31）: 印も話題の語も題名に無い防災の比較記事を、索引が本文から防災と決め、地震の記事にカードが出る", () => {
+  const raw = JSON.parse(fs.readFileSync("content/articles/portable-power-emergency-food-compare.json", "utf8"));
+  // 公開時の印が無かった状態（古い仕組みで公開された）を再現する
+  delete raw.kind;
+  delete raw.comparisonTopic;
+  const summary = summarize(raw, actionAdRules()) as unknown as ArticleSummary;
+  assert.equal(summary.kind, "comparison");
+  assert.equal(summary.comparisonTopic, "disaster");
+  const quake = fromFile("shizuoka-west-quake-aftershock-insurance");
+  const card = funnelForArticle(quake, [summary, quake], undefined, NOW);
+  assert.ok(card, "地震の記事にカードが出ない");
+  assert.equal(card.target.slug, "portable-power-emergency-food-compare");
+  // ニュース記事の索引には比較の印を付けない
+  assert.equal((summarize(JSON.parse(fs.readFileSync("content/articles/shizuoka-west-quake-aftershock-insurance.json", "utf8")), actionAdRules()) as { kind?: string }).kind, undefined);
+});
+
+test("表の無い比較記事は、最初の章の終わり（2つ目の h2 の前）に一覧の印", () => {
+  const html = "<p>導入</p><h2>容量</h2><p>a</p><h2>非常食</h2><p>b</p>";
+  const marked = insertCompareSlot(html);
+  assert.equal(marked, `<p>導入</p><h2>容量</h2><p>a</p>${COMPARE_SLOT}<h2>非常食</h2><p>b</p>`);
+  assert.equal(insertCompareSlot("<h2>1つだけ</h2><p>a</p>"), "<h2>1つだけ</h2><p>a</p>");
 });
 
 console.log(`comparison: ${passed} passed`);
