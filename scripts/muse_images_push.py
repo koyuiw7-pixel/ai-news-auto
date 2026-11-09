@@ -246,14 +246,31 @@ def run(clone: Path, git=None, push=None, no_push: bool = False) -> list[str]:
         new.append((path, slug))
     for slug, reason in notes.items():
         (inbox / f"{slug}.skip.txt").write_text(reason + "\n", encoding="utf-8")
-    if not new and not notes:
+    # 2026-11-09: Muse の説明の図（<slug>-fig<N>.png）を public/fig/ に送る（scripts/map_figures.py が記事の figures に付け、X・記事の本文で使う）
+    figs: list[Path] = []
+    fig_dir = clone / "public" / "fig"
+    for path in sorted(FOLDER.glob("*-fig*.png")):
+        if path.name.startswith(".") or now - path.stat().st_mtime < SETTLE_SEC:
+            continue
+        m = re.match(r"^(.+)-fig(\d+)$", nfc(path.stem).strip().lower())
+        if not m or m.group(1) not in known:
+            continue  # 記事の slug でない名前（例: docomo-followup-fig1）は送らずに残す
+        fig_dir.mkdir(parents=True, exist_ok=True)
+        dest = fig_dir / f"{m.group(1)}-fig{m.group(2)}.png"
+        if dest.exists() and dest.read_bytes() == path.read_bytes():
+            continue
+        shutil.copyfile(path, dest)
+        figs.append(path)
+    if not new and not notes and not figs:
         return ledger_section(state)
-    names = [s for _, s in new]
+    names = [s for _, s in new] + [f.name for f in figs]
     if no_push or git is None or push is None:
         log(f"受け箱に入れました（push なし）: 写真 {', '.join(names) or 'なし'}・描けなかった {', '.join(notes) or 'なし'}")
         return ledger_section(state)
     git("add", "content/muse_images")
-    git("commit", "--quiet", "-m", f"chore(muse): Muse の表紙の写真 (+{len(new)}枚・描けなかった {len(notes)}件) [no-deploy]")
+    if figs:
+        git("add", "public/fig")
+    git("commit", "--quiet", "-m", f"chore(muse): Muse の表紙の写真 (+{len(new)}枚・説明の図 +{len(figs)}枚・描けなかった {len(notes)}件) [no-deploy]")
     if not push("muse images"):
         log("push できなかったので、写真はフォルダに残して次の回にもう一度送ります")
         git("reset", "--quiet", "--hard", "origin/main", check=False)
