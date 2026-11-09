@@ -84,6 +84,14 @@
       "tries": 1,
       "url": "https://www.mof.go.jp/policy/customs_tariff/trade/international/conference/ka20261106.html"
     },
+    "6139b69c3d743eb4": {
+      "first": "2026-11-09T00:03:32.678016+00:00",
+      "next": "2026-11-09T03:03:32.678016+00:00",
+      "reason": "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「全体の大きな割合を占める13兆5,279億円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える",
+      "title": "外国為替平衡操作の実施状況(令和8年7月～令和8年9月)",
+      "tries": 1,
+      "url": "https://www.mof.go.jp/policy/international_policy/reference/feio/data/quarter/2026_3Q.html"
+    },
     "69fabd0e3c004cb8": {
       "first": "2026-11-06T08:44:56.108789+00:00",
       "next": "2026-11-06T11:44:56.108789+00:00",
@@ -4166,6 +4174,12 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/recruit/r8/kokusai-01/kokusai-01.html"
     },
+    "0caeea2696fded37": {
+      "at": "2026-11-09T00:03:33.041539+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
+      "skipped": true,
+      "url": "https://www.family.co.jp/company/news_releases/2026/20261109_01.html"
+    },
     "0cb0ca942eabbf75": {
       "at": "2026-11-04T01:17:44.707450+00:00",
       "reason": "prefilter: 不動産の話題ではない",
@@ -5840,6 +5854,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202610/30chiikimirai.html"
+    },
+    "24c3d0d82f3b39d2": {
+      "at": "2026-11-09T00:02:01.735494+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/statistics/boj/other/mbt/mbt2610.pdf"
     },
     "2504bf7e57b1f9b6": {
       "at": "2026-10-26T18:32:34.996029+00:00",
@@ -10895,6 +10915,12 @@
       "section": "business",
       "slug": "tohoku-atotsugi-connect-sendai-2026",
       "url": "https://j-net21.smrj.go.jp/news/bt5puv00000105io.html"
+    },
+    "766d677f1cd460e4": {
+      "at": "2026-11-09T00:02:01.735565+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/statistics/boj/other/tseifu/release/2026/seifu2610.pdf"
     },
     "7681539bf71c6f90": {
       "at": "2026-11-06T04:23:19.827232+00:00",
@@ -18497,6 +18523,12 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/info/info1878/index.html"
     },
+    "f3a56dd76169e332": {
+      "at": "2026-11-09T00:04:47.855958+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/statistics/boj/fm/ope/m_release/2026/ope2610.xlsx"
+    },
     "f3a744592f30667e": {
       "at": "2026-10-30T01:31:32.001614+00:00",
       "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
@@ -18752,6 +18784,13 @@
       "skipped": true,
       "url": "https://www.ipa.go.jp/digital/dx-nintei/hojyo.html"
     },
+    "f7fa6471f13ddbb0": {
+      "at": "2026-11-09T00:02:34.643949+00:00",
+      "model": "gemini-3.5-flash",
+      "reason": "元記事は財務省の外為特会に関する各年度Excelファイルのリンク一覧ページであり、具体的な数値や資産内訳の最新データが本文テキストに含まれておらず、読者に伝えるべき実質的な新情報が確認できないため。",
+      "skipped": true,
+      "url": "https://www.mof.go.jp/policy/international_policy/reference/gaitametokkai/index.html"
+    },
     "f8233524c2ff7d34": {
       "at": "2026-11-06T08:58:44.242949+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -18961,6 +19000,17 @@
       "section": "lifestyle",
       "slug": "famima-karaage-kushi-release",
       "url": "https://www.family.co.jp/company/news_releases/2026/20261102_01.html"
+    },
+    "fb53464aed1c77ca": {
+      "at": "2026-11-09T00:04:47.576913+00:00",
+      "costUsd": 0.0075,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 88,
+      "section": "ai",
+      "slug": "oci-vera-cpu-vera-rubin-nvl72",
+      "url": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/"
     },
     "fb646e5cb17f12fb": {
       "at": "2026-11-03T00:51:42.153196+00:00",
@@ -19360,48 +19410,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-06T09:07:38.799191+00:00",
-      "attempt": 2,
-      "id": "d61c94ec35918b23",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "子供や子育て家庭の不安や悩みに寄り添う相談チャット 子供・子育てメンター“ギュッとチャット”「ギュッとチャット×シナモロール」コラボ動画を配信！"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T09:11:46.383884+00:00",
-      "attempt": 1,
-      "id": "8b7d4be52a6123fc",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mlit-press",
-      "title": "「砂防堰堤を活用した水力発電の取組事例集」を作成しました～既設砂防堰堤活用による再生可能エネルギーの創出～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T09:14:18.116058+00:00",
-      "attempt": 2,
-      "id": "8b7d4be52a6123fc",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mlit-press",
-      "title": "「砂防堰堤を活用した水力発電の取組事例集」を作成しました～既設砂防堰堤活用による再生可能エネルギーの創出～"
-    },
     {
       "accepted": false,
       "at": "2026-11-06T09:15:17.056334+00:00",
@@ -25876,6 +25884,82 @@
       "warnings": [
         "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（DAU）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T00:03:05.634108+00:00",
+      "attempt": 1,
+      "id": "6139b69c3d743eb4",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「全体の大きな割合を占める13兆5,279億円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 116.2,
+        "avg_sentence": 51.7,
+        "long_share": 0.333,
+        "max_paragraph": 181,
+        "paragraphs": 4,
+        "sentences": 9
+      },
+      "score": null,
+      "source": "mof",
+      "title": "外国為替平衡操作の実施状況(令和8年7月～令和8年9月)",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 51.7字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T00:04:15.471823+00:00",
+      "attempt": 1,
+      "id": "fb53464aed1c77ca",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 96.6,
+        "avg_sentence": 45.9,
+        "long_share": 0.15,
+        "max_paragraph": 184,
+        "paragraphs": 19,
+        "sentences": 40
+      },
+      "score": 88,
+      "source": "nvidia-japan-blog",
+      "title": "NVIDIA と Oracle、NVIDIA Vera Rubin をマルチギガワット規模に拡張し、NVIDIA Vera CPU を Oracle Cloud",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（OCI・NVL・HBM）",
+        "読みやすさ: 文が長い（1文の平均 45.9字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T00:04:42.936269+00:00",
+      "attempt": 0,
+      "id": "fb53464aed1c77ca",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 81.2,
+        "avg_sentence": 42.5,
+        "long_share": 0.091,
+        "max_paragraph": 128,
+        "paragraphs": 23,
+        "sentences": 44
+      },
+      "score": 88,
+      "source": "nvidia-japan-blog",
+      "title": "NVIDIA と Oracle、NVIDIA Vera Rubin をマルチギガワット規模に拡張し、NVIDIA Vera CPU を Oracle Cloud",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（OCI・NVL・HBM）"
       ]
     }
   ],

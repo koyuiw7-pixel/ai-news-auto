@@ -1,0 +1,131 @@
+{
+  "slug": "vera-cpu",
+  "name": "Vera CPU",
+  "aliases": [],
+  "company": "nvidia",
+  "companyName": "NVIDIA",
+  "category": "半導体・インフラ",
+  "overview": {
+    "text": "Vera CPUは、AIエージェントの処理やデータ処理を高速化するためにNVIDIAが開発したプロセッサです。2026年8月に実機測定値が公開され、同年11月にはOCIでの一般提供が発表されました。",
+    "sources": [
+      "oci-vera-cpu-vera-rubin-nvl72",
+      "nvidia-vera-rubin-performance-coreweave"
+    ]
+  },
+  "facts": [
+    {
+      "label": "提供開始",
+      "value": "OCIで一般提供に",
+      "sources": [
+        "oci-vera-cpu-vera-rubin-nvl72"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "開発者・法人",
+      "sources": [
+        "oci-vera-cpu-vera-rubin-nvl72"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "x86プロセッサと比較して、コア単体で最大1.8倍の処理性能を達成します。",
+      "sources": [
+        "nvidia-vera-rubin-performance-coreweave"
+      ]
+    },
+    {
+      "text": "1ワットあたりのエージェント数が最速のx86 CPUより1.6倍に向上します。",
+      "sources": [
+        "nvidia-vera-cpu-agents-per-watt"
+      ]
+    },
+    {
+      "text": "1,000個のエージェント用サンドボックス起動が10.8秒で行えます。",
+      "sources": [
+        "nvidia-vera-cpu-agents-per-watt"
+      ]
+    },
+    {
+      "text": "OCIのKubernetes EngineでCPUとGPUを別々に増減できます。",
+      "sources": [
+        "oci-vera-cpu-vera-rubin-nvl72"
+      ]
+    }
+  ],
+  "pricing": [],
+  "japan": [],
+  "howto": [
+    {
+      "text": "OCI（Oracle Cloud Infrastructure）を利用して導入できます。",
+      "sources": [
+        "oci-vera-cpu-vera-rubin-nvl72"
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "text": "従来のx86プロセッサと比較して、コア単体で最大1.8倍の処理性能を達成しています。",
+      "sources": [
+        "nvidia-vera-rubin-performance-coreweave"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "いつから使える？",
+      "a": "OCIで一般提供が開始されています。",
+      "sources": [
+        "oci-vera-cpu-vera-rubin-nvl72"
+      ]
+    },
+    {
+      "q": "誰に向いている？",
+      "a": "OCIでAIの学習や推論、AIエージェントの処理を動かす企業や開発者に向いています。",
+      "sources": [
+        "oci-vera-cpu-vera-rubin-nvl72"
+      ]
+    },
+    {
+      "q": "従来のCPUとの違いは？",
+      "a": "従来のx86プロセッサと比較して、コア単体で最大1.8倍の処理性能を達成しています。",
+      "sources": [
+        "nvidia-vera-rubin-performance-coreweave"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-11-06",
+      "slug": "nvidia-vera-cpu-agents-per-watt",
+      "event": "新CPU「Vera」の電力効率を発表"
+    },
+    {
+      "date": "2026-11-09",
+      "slug": "oci-vera-cpu-vera-rubin-nvl72",
+      "event": "OCIでVera CPUが一般提供に"
+    }
+  ],
+  "related": [
+    "vera-rubin",
+    "blackwell",
+    "meta-muse",
+    "rtx-spark"
+  ],
+  "articles": [
+    "oci-vera-cpu-vera-rubin-nvl72",
+    "nvidia-vera-cpu-agents-per-watt",
+    "nvidia-meta-muse-partnership-expansion",
+    "nvidia-vera-rubin-performance-coreweave"
+  ],
+  "linkFrom": [
+    "oci-vera-cpu-vera-rubin-nvl72",
+    "nvidia-vera-cpu-agents-per-watt"
+  ],
+  "signature": "15e09cceb671d8d8",
+  "primarySignature": "78bef10c55b92cd7",
+  "model": "gemini-3.5-flash-lite",
+  "createdAt": "2026-11-09T00:06:42+00:00",
+  "updatedAt": "2026-11-09T00:06:42+00:00"
+}

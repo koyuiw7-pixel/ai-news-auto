@@ -1,0 +1,244 @@
+{
+  "slug": "oci-vera-cpu-vera-rubin-nvl72",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/",
+  "sourceName": "NVIDIA日本版ブログ",
+  "title": "OCIでVera CPUが一般提供に　Vera RubinはOracleがマルチギガワット規模へ拡張",
+  "seoTitle": "OCIのVera CPUとRubin NVL72とは？提供状況",
+  "threadsPost": "AIエージェントを動かす開発者の人に、押さえておきたい話です。\n\nOracleのOCIで、NVIDIAのVera CPUが一般提供になりました。\nVera Rubin NVL72も、マルチギガワット規模に広げる計画です。\n\nエージェントの処理で、CPUとGPUのどちらがボトルネックになりやすいと感じますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "expert",
+      "question": "エージェントの処理で、CPUとGPUのどちらがボトルネックになりやすいと感じますか？"
+    },
+    {
+      "pattern": "japan",
+      "question": "日本のクラウドで最新GPUが使えるとしたら、まず何に試したいですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "OracleのクラウドOCIで、NVIDIAのCPU「Vera」とGPUシステム「Vera Rubin NVL72」が使えるようになります。OCI Superclusterを、Vera Rubin NVL72でマルチギガワット規模に広げる計画も示されました。価格と日本のリージョンでの提供時期はまだ発表されていません。",
+  "description": "NVIDIAとOracleが、OCIでのVera CPUとVera Rubin NVL72の一般提供と、マルチギガワット規模への拡張計画を発表。CPUとGPUを別々に増やせる点や、価格・日本での提供が未発表な点を整理します。",
+  "keywords": [
+    "Oracle Cloud Infrastructure",
+    "OCI",
+    "Vera Rubin NVL72",
+    "Vera CPU",
+    "NVIDIA",
+    "OCI Supercluster",
+    "AIエージェント",
+    "HGX Rubin NVL8",
+    "AIインフラ",
+    "マルチギガワット"
+  ],
+  "tags": [
+    "NVIDIA",
+    "Oracle",
+    "クラウド",
+    "AIインフラ",
+    "AIエージェント"
+  ],
+  "highlights": [
+    "OCIでVera CPUとVera Rubin NVL72が一般提供に。CPUとGPUを別々に増やせる",
+    "OCI SuperclusterはVera Rubin NVL72でマルチギガワット規模へ拡張する計画",
+    "OpenAIはアビリーンの10万基超のBlackwell GPUでGPT-6 Astraを学習・提供"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "未発表",
+    "free": null,
+    "audience": "開発者・法人",
+    "take": "AIエージェントや大規模学習でOCIを検討する企業は、Oracleに価格と日本での提供リージョンを確認するとよいでしょう。",
+    "judgedAt": "2026-11-09T00:04:07.919589+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "OCIでAIを動かす開発者や情報システム部門は、CPUとGPUを別々に増やせる構成を比べる材料になります。",
+      "一般の利用者に今すぐ変わることはありません。価格はまだ発表されていないため、見積もりは窓口で確認するとよいでしょう。"
+    ]
+  },
+  "body": "日本の一般の利用者に、今すぐ変わることはありません。関係するのは、OCIでAIの学習や推論、AIエージェントの処理を動かす企業や開発者です。\n\n日本のリージョン（データセンターの拠点）での提供は、まだ発表されていません。\n\nOCI（Oracle Cloud Infrastructure）は、Oracleが提供するクラウドサービスです。今回の話は、NVIDIAの日本版ブログが伝えたものです。\n\nそのブログは、10月27日（米国時間）のプレスリリースを抄訳しています。\n\n## CPUとGPUを別々に増やせる構成\n\n発表によると、OCIでは「NVIDIA Vera Rubin NVL72」と「NVIDIA Vera CPU」が一般提供になります。NVL72は、72基のGPUを1つのラックでつないだシステムです。\n\nGPUが得意なのは、大規模なAIモデルの学習や提供です。一方、エージェントがモデルを呼び出す合間には、ツールの実行やコードのテスト、データの取得といった作業が入ります。こちらはCPUの仕事です。\n\nOCIでは、CPUとGPUを別々に増やせます。仕事の中身に合わせて資源を配分できます。そのため、余った能力を減らしやすくなるとNVIDIAは説明しています。\n\n## OCI Superclusterはマルチギガワット規模へ\n\nOCI Superclusterは、Vera Rubin NVL72を使って、マルチギガワット規模に広げる計画です。Superclusterは、多数のGPUをつないだ大規模な計算環境です。\n\n構成には、Oracle Acceleronネットワーキングと、NVIDIA Spectrum-X Ethernetが含まれます。Spectrum-Xには、Spectrum-6スイッチとBlueField-4 DPU（通信処理を担う部品）が使われます。\n\nラック内の72基のGPUは、NVLinkでつながります。OCIのネットワークは、数十万基のGPUまで広げられるとされています。\n\nこの計画は、すでにOCIにあるGB200やGB300 NVL72の上に積み上げる形です。共通のCUDA（NVIDIAのソフトウェア基盤）を使うため、世代をまたいでモデルを動かせるとしています。\n\nVera Rubin NVL72は、GB300 NVL72より1ドル当たりの処理量が最大30倍になるとNVIDIAは説明しています（サイソクの過去記事、11/6）。詳しくは[HBMを増やさず処理量を伸ばす設計の記事](/articles/nvidia-hbm-codesign-throughput-per-dollar)で報じました。\n\n## x86サーバーで使えるHGX Rubin NVL8も計画\n\nOCIは、「NVIDIA HGX Rubin NVL8」も導入する計画です。8基のRubin GPUをNVLinkでつなぎ、x86ベースのサーバーで動かします。\n\n計画されている仕様は次のとおりです。\n\n- Intel Xeon 6 CPU（64コア）を2基\n- DDR5メモリ4TB\n- 6.4Tbpsの高速RDMAネットワーキング\n\nx86向けのアプリケーションとの互換性を保ったまま、小さな8GPU構成でRubin世代のGPUを使えます。用途は学習、ファインチューニング（追加学習）、推論です。\n\n## Vera CPUがエージェントの待ち時間を減らす\n\nOCI Compute with NVIDIA Vera CPUsは、シングルスレッド性能とメモリ帯域幅が高いのが特徴です。前者は個々のツール呼び出しやコード実行を速めます。後者は、エージェントが同時に作業するときに、CPUコアへデータを送り続けます。\n\nその結果、GPUが待つ時間を減らし、規模を広げても性能を保ちやすくなるとNVIDIAは説明しています。\n\n別のNVIDIAの説明では、Vera CPUはx86の最速CPUより、1ワットあたりのエージェント数が1.6倍とされています（サイソクの過去記事、11/6）。[Vera CPUの記事](/articles/nvidia-vera-cpu-agents-per-watt)も参照できます。\n\nOCIでは、OCI Kubernetes EngineでCPUとGPUを別々に増減できます。信頼できないAI生成コードを動かす作業は、Oracle Acceleronでハードウェアベースの分離ができます。\n\n## OpenAIが利用中、Vera CPUも早期に使用\n\nOpenAIは、テキサス州アビリーンのOCI Superclusterで、GPT-6 Astraの学習と提供を行っています。このSuperclusterには、10万基以上のNVIDIA Blackwell GPUが積まれています。\n\nVera CPUには、OpenAIを含む複数の顧客が早期アクセスしています。OpenAIのUday Ruddarraju氏は、OCI上のVeraを本番で使うと述べました。用途は、エージェント型サンドボックス（隔離された実行環境）で使うコードやツールの実行です。\n\n## まだ分からないこと\n\n- OCIでの料金は、まだ発表されていません。\n- 日本のリージョンでの提供時期は、まだ発表されていません。\n- Vera Rubin NVL72とVera CPUの提供開始日や、利用できるリージョンの一覧もまだ発表されていません。\n- マルチギガワット規模の拡張の完了時期は、まだ発表されていません。\n\n## OCIでAIを動かす企業は、提供条件をOracleに確認\n\nOCIの利用企業や開発者は、利用できるリージョンと価格を、Oracleの窓口や公式ページで確認する必要があります。\n\nエージェントの処理でCPUが足かせになっているなら、CPUとGPUを別々に増やせる構成が比較の材料になります。",
+  "easy": "## ひとことで言うと\n\nOracleのクラウドOCIで、NVIDIAの新しいCPU「Vera」と、新世代GPUのシステム「Vera Rubin NVL72」が使えるようになります。Oracleは、GPUの大規模クラスターも広げる計画です。\n\n## AIエージェントでは、CPUの速さも大事になる\n\nAIエージェントは、文章を作るだけではありません。ツールを呼び出し、コードを動かし、情報を取ってきます。\n\nこうした作業はCPUが担当します。CPUが遅いと、GPUが待つ時間が増えます。Vera CPUは、この待ち時間を減らすことをねらった製品です。\n\n## CPUとGPUを別々に増やせる\n\nOCIでは、CPUとGPUを別々に増やせます。仕事の中身に合わせて増やせるので、余った能力を減らしやすくなります。",
+  "channel": "NVIDIA日本版ブログ",
+  "channelId": "",
+  "channelSlug": "nvidia-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "NVIDIA と Oracle、NVIDIA Vera Rubin をマルチギガワット規模に拡張し、NVIDIA Vera CPU を Oracle Cloud Infrastructure に導入",
+  "publishedAt": "2026-11-08T23:58:47+00:00",
+  "generatedAt": "2026-11-09T00:04:07.919576+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/oci-vera-cpu-vera-rubin-nvl72-111d1767.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "OCIのHGX Rubin NVL8はどんな用途に向きますか？",
+      "a": "AIの学習、ファインチューニング、推論に使えます。x86向けのアプリとの互換性を保ちつつ、8GPUの小さな構成でRubin世代を使える点が特徴です。"
+    },
+    {
+      "q": "OCIのVera CPUは信頼できないAI生成コードを安全に動かせますか？",
+      "a": "Oracle Acceleronにより、信頼できないAI生成コードを実行するワークロードをハードウェアベースで分離できるとされています。"
+    }
+  ],
+  "todayActions": [
+    "OracleのOCIページで、Vera CPUとVera Rubin NVL72の提供リージョンを確認する",
+    "エージェントの処理でGPUが待ち状態になっていないか、CPU側の処理を自社で見直す",
+    "HGX Rubin NVL8の計画仕様と、今のGPU構成を並べて比べる"
+  ],
+  "relatedSlugs": [
+    "nvidia-hbm-codesign-throughput-per-dollar",
+    "nvidia-vera-cpu-agents-per-watt"
+  ],
+  "qualityScore": 88,
+  "factSources": [
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-06"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-08T23:58:47+00:00",
+  "detectedAt": "2026-11-09T00:01:09+00:00",
+  "speedMinutes": 9,
+  "layout": "noir",
+  "summaryLine": "OCIでVera CPUとVera Rubin NVL72が一般提供に。CPUとGPUを別々に増やせる",
+  "insight": [
+    {
+      "text": "「Oracle製品について記載された機能の開発、リリース、提供時期および価格は変更される可能性があり」「製品の購入を判断する際の根拠として依拠すべきものではありません」と、Oracleの免責に書かれています。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Oracle Cloud Infrastructure",
+      "url": "https://www.oracle.com/cloud/",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/"
+    },
+    {
+      "name": "OCI Compute with NVIDIA Vera CPUs",
+      "url": "https://blogs.oracle.com/cloud-infrastructure/?p=19220",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "OracleのOCIページで、Vera CPUとVera Rubin NVL72の提供リージョンを確認する",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/",
+      "steps": [
+        "Oracle Cloud Infrastructureのページを開く",
+        "Vera CPUとVera Rubin NVL72の提供リージョンを探す",
+        "記載がなければOracleの窓口に時期を問い合わせる"
+      ],
+      "url": "https://www.oracle.com/cloud/"
+    },
+    {
+      "action": "エージェントの処理でGPUが待ち状態になっていないか、CPU側の処理を自社で見直す",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/",
+      "steps": [
+        "GPUが待機していないか確認する",
+        "ツール呼び出しやコード実行の時間を測る",
+        "CPU側が遅れの原因かを比べる"
+      ]
+    },
+    {
+      "action": "HGX Rubin NVL8の計画仕様と、今のGPU構成を並べて比べる",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/",
+      "steps": [
+        "Intel Xeon 6を2基、DDR5メモリ4TBの計画仕様を確認",
+        "今のGPU台数とメモリ量を書き出す",
+        "用途（学習・推論）ごとに並べる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "エージェントがモデルを呼び出す合間には、ツールの実行やコードのテスト、データの取得などCPUの仕事が入ります。CPUとGPUを別々に増やせるようにすることで、仕事の中身に合わせて資源を配分し、余剰能力を減らすことを狙っています。",
+    "status": "background",
+    "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/"
+  },
+  "worries": [
+    {
+      "q": "日本のリージョンでも今すぐ使えますか？",
+      "a": "このページには、日本のリージョンでの提供時期は書かれていません。対象は、OCIでAIの学習や推論を動かす企業や開発者とされています。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/",
+      "action": "利用したいリージョンが対象か、Oracleの窓口や公式ページで確認する"
+    },
+    {
+      "q": "料金はいくらになりますか？",
+      "a": "ページには、Vera Rubin NVL72やVera CPUの価格は書かれていません。Oracleの免責では、提供時期と価格は変更される可能性があるとされています。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/",
+      "action": "料金は発表待ちとして扱い、Oracleの窓口で今後の価格を確認する"
+    },
+    {
+      "q": "今の環境を移す必要はありますか？",
+      "a": "ページでは、Vera Rubinの拡張は既存のGB200やGB300 NVL72の上に積み上げる形で、共通のCUDA基盤により世代をまたいでモデルを動かせるとされています。移行の必要性や時期は書かれていません。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/",
+      "action": "今のGPU構成と、CPU待ちの有無を自社で確かめてから判断する"
+    },
+    {
+      "q": "CPUが足を引っ張っているかどうか、どう判断する？",
+      "a": "ページでは、ツール呼び出しやコード実行などのCPU処理が遅いと、モデル呼び出しの間にGPUが待機状態になる可能性があると説明されています。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/",
+      "action": "GPUが待機していないか、ツール実行やコード実行の時間を自社の処理で測る"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "今の環境の構成を変えるべきか？",
+      "situation": "エージェント処理でGPUの待ち時間がある",
+      "recommend": "急がなくてよい。まず待ち時間を測り、提供条件を確認する",
+      "reason": "Vera CPUとVera Rubin NVL72は一般提供と書かれていますが、提供リージョンと価格は発表されていません。CPUとGPUを別々に増やせる点は、自社の待ち時間を測ってから比べられます。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/"
+    },
+    {
+      "question": "日本のリージョンで使うのを待つべきか？",
+      "situation": "日本のリージョンで使いたい",
+      "recommend": "窓口で提供時期を確認してから決める",
+      "reason": "このページには日本のリージョンでの提供時期は書かれていません。Oracleの免責では、提供時期や価格は変更される可能性があり、購入判断の根拠にすべきではないとされています。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "提供時期と価格は、まだ変わることがある",
+    "cause": "なぜCPUとGPUを分けて増やすのか",
+    "steps": "今日、自社で確かめられること",
+    "desk": "提供条件を聞くならどこへ",
+    "worries": "リージョン・料金・移行は今どうなる？",
+    "guide": "今すぐ動くか、待つかの判断"
+  },
+  "depthAt": "2026-11-09T00:07:20+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA日本版ブログ",
+    "sourceUrl": "https://blogs.nvidia.co.jp/blog/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure/",
+    "original": "https://blogs.nvidia.co.jp/wp-content/uploads/sites/11/2026/11/oracle-nvidia.jpg",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-09T00:08:32+00:00",
+    "imageKind": "logo"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.497,
+    "y": 0.497,
+    "box": [
+      0.181,
+      0.363,
+      0.812,
+      0.631
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/oci-vera-cpu-vera-rubin-nvl72-111d1767.jpg"
+  },
+  "coverTries": 1
+}
