@@ -2737,9 +2737,9 @@
       "pages": []
     },
     "child-allowance-third-child-monthly-30000": {
-      "at": "2026-11-09T00:53:39+00:00",
+      "at": "2026-11-09T01:14:37+00:00",
       "status": "gate_failed",
-      "tries": 5,
+      "tries": 6,
       "textAt": "2026-11-09T00:46:20+00:00",
       "textId": "6af1172b51492b796e6f0f62",
       "breaking": false,
@@ -2747,60 +2747,46 @@
       "versions": {
         "full": {
           "ok": false,
-          "seconds": 57.253,
-          "reasons": [],
+          "seconds": null,
+          "reasons": [
+            "台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60"
+          ],
           "qa": {
-            "geometry": true,
-            "vision": true,
-            "version": 1,
-            "v3": false
+            "geometry": false,
+            "vision": false,
+            "version": 1
           },
           "template": "",
           "level": null,
-          "base_layout": "screen-left-headline"
+          "base_layout": ""
         },
         "short": {
           "ok": false,
-          "seconds": 36.327,
-          "reasons": [],
+          "seconds": null,
+          "reasons": [
+            "台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60"
+          ],
           "qa": {
-            "geometry": true,
-            "vision": true,
-            "version": 1,
-            "v3": false
+            "geometry": false,
+            "vision": false,
+            "version": 1
           },
           "template": "",
           "level": null,
-          "base_layout": "screen-left-headline"
+          "base_layout": ""
         }
       },
       "timings": {
         "full": {
-          "script": 0.0,
-          "tts": 10.13,
-          "plan_audio": 2.89,
-          "render": 25.58,
-          "gate": 3.69,
-          "sheet": 1.69,
-          "total": 44.0,
-          "ladder_total": 293.0
+          "ladder_total": 14.7
         },
         "short": {
-          "script": 0.0,
-          "tts": 6.36,
-          "plan_audio": 1.47,
-          "render": 16.59,
-          "gate": 2.66,
-          "sheet": 1.13,
-          "total": 28.2,
-          "ladder_total": 293.0
+          "ladder_total": 14.7
         }
       },
       "ok": false,
-      "reason": "full: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない / short: どの段でも合格しなかった（あとの回で作り直す）: full: 描いた位置・画像のレビューの検査（qa）が無い・不合格・承認の形でない",
-      "pages": [
-        "ai-tech-express.jp"
-      ]
+      "reason": "full: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI / short: 台本を作れない: 台本を作れませんでした（LLM 6回・0秒）: Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI 60/60 回）; Claude の1日の上限に達しました（台本用 60/60 回・CLI",
+      "pages": []
     },
     "docomo-data-leak-what-to-do": {
       "at": "2026-11-09T00:53:39+00:00",
@@ -3392,22 +3378,22 @@
     "respirator-mask-ring-recall-2026": {
       "status": "waiting",
       "why": "枠（12:15）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T01:03:43+00:00"
+      "checkedAt": "2026-11-09T01:14:53+00:00"
     },
     "caa-recall-accident-report-202610": {
       "status": "waiting",
       "why": "枠（13:45）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T01:03:43+00:00"
+      "checkedAt": "2026-11-09T01:14:53+00:00"
     },
     "corporate-data-breach-record-2026": {
       "status": "waiting",
       "why": "枠（11:30）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T01:03:43+00:00"
+      "checkedAt": "2026-11-09T01:14:53+00:00"
     },
     "famima-karaage-kushi-release": {
       "status": "waiting",
       "why": "枠（15:30）の75分前になったら写真・カードで予約する",
-      "checkedAt": "2026-11-09T01:03:43+00:00"
+      "checkedAt": "2026-11-09T01:14:53+00:00"
     }
   },
   "converted": {
@@ -5228,6 +5214,11 @@
     "6af07c7ad6bbae6fa1ef3bc2": {
       "rules": "9a4e5a9fd35c-reply",
       "at": "2026-11-08T14:03:35+00:00",
+      "ok": true
+    },
+    "6af11bf29214322f6888895f": {
+      "rules": "9a4e5a9fd35c-reply",
+      "at": "2026-11-09T01:14:37+00:00",
       "ok": true
     }
   }
