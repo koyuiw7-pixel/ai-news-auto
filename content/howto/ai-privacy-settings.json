@@ -1,0 +1,217 @@
+{
+  "slug": "ai-privacy-settings",
+  "kind": "ai-tool",
+  "tool": "chatgpt",
+  "toolName": "ChatGPT / Gemini / Claude / Microsoft Copilot",
+  "company": "openai",
+  "intent": "安全性・個人情報",
+  "keyword": "生成ai 学習させない",
+  "title": "生成AIに学習させない設定はどこ？ChatGPT・Gemini・Claudeの違い",
+  "seoTitle": "生成AIに学習させない設定　ChatGPT・Gemini・Claude",
+  "description": "ChatGPTは設定で新しい会話を学習に使わないようにできます。Geminiは一時チャットを使い、Claudeは料金表でプランごとの扱いを確認できます。Copilotは今回の根拠ページに含まれないため扱いません。",
+  "conclusion": [
+    "ChatGPTは「私のコンテンツでトレーニングしない」を選ぶと、新しい会話を学習に使われないようにできます。",
+    "Geminiは一時チャットを使うと、その会話が最近のチャットに残りません。個人アカウントのみ利用できます。",
+    "Claudeは料金ページで、個人プランはオプトアウト、Team・Enterpriseはデフォルトで学習に使わないと示されています。",
+    "どのサービスでも、個人情報や社外秘の情報は入力しないのが基本です。設定より先に、入力内容を見直すことが大切です。"
+  ],
+  "intro": "この記事では、ChatGPT・Gemini・Claudeで会話内容を学習に使わせない方法と、無料プランでできる範囲を公式ページの情報だけでまとめます。Microsoft Copilotは、今回の根拠となる公式ページがそろわなかったため、この記事では扱いません。設定画面の位置は、各社の料金・ヘルプの表記に沿って書きます。",
+  "steps": [
+    {
+      "title": "ChatGPTの学習オフを設定する",
+      "body": "ChatGPTでは、プライバシーポータルで「私のコンテンツでトレーニングしない」をクリックすると、学習への利用をオプトアウトできます。ChatGPTの会話に関するトレーニングをオフにする場合は、データコントロールFAQの手順に従います。オプトアウトすると、新しい会話は学習に使われません。"
+    },
+    {
+      "title": "業務向けプランの扱いを確認する",
+      "body": "ChatGPT Business や ChatGPT Enterprise などのビジネス向けサービスは、コンテンツをモデルのトレーニングに使用しないと案内されています。仕事で使う場合は、個人版ではなく業務向けプランを使うかどうかを、会社の方針と合わせて確認するとよいでしょう。"
+    },
+    {
+      "title": "Geminiで一時チャットを開始する",
+      "body": "パソコンで gemini.google.com にアクセスし、[チャットを新規作成] の横にある一時チャット アイコンをクリックします。下部のテキスト ボックスに入力して、送信アイコンをクリックします。一時チャットは最近のチャットに表示されず、離れるとアクセスできなくなります。"
+    },
+    {
+      "title": "Claudeのプランごとの学習の扱いを料金表で見る",
+      "body": "Claudeの料金ページの「モデルのトレーニング」欄では、Free・Pro・Max・Ultra がオプトアウト、Team・Enterprise はデフォルトで学習に使用しないと示されています。オプトアウトの具体的な設定手順は、今回の根拠ページでは案内されていません。"
+    },
+    {
+      "title": "機密情報を入力する前に確かめる",
+      "body": "ChatGPTでは、履歴から特定のプロンプトを削除できません。会話で機密情報を共有しないよう案内されています。入力する前に、そのサービスの保存や学習の扱いを確かめるとよいでしょう。"
+    }
+  ],
+  "pricing": [
+    {
+      "plan": "ChatGPT 無料版",
+      "price": "無料",
+      "note": "テキストチャットは無制限です。ただし不正利用防止の安全対策が適用されます。有料プランの金額は料金ページで確認するとよいでしょう。"
+    },
+    {
+      "plan": "Gemini 無料",
+      "price": "￥0 JPY / 月",
+      "note": "Google アカウントをお持ちの方が対象です。"
+    },
+    {
+      "plan": "Google AI Plus",
+      "price": "￥725 JPY / 月",
+      "note": "無料版の 2 倍の使用量上限です。"
+    },
+    {
+      "plan": "Google AI Pro",
+      "price": "￥2,900 JPY / 月",
+      "note": "無料版の 4 倍の使用量上限です。Gemini 4 Argon へのアクセスが含まれます。"
+    },
+    {
+      "plan": "Google AI Ultra",
+      "price": "最小構成価格: ￥14,500 JPY/月",
+      "note": "AI Pro の 5 倍の使用量上限です。￥32,000 JPY /月の構成では AI Pro の 20 倍になります。"
+    },
+    {
+      "plan": "Claude Free",
+      "price": "$0",
+      "note": "すべてのカスタマーに無料で提供されています。5時間ごと・毎週の使用量に制限があります。"
+    },
+    {
+      "plan": "Claude Pro",
+      "price": "$17",
+      "note": "年間サブスクリプション割引適用時の月額（$200 一括請求）です。月払いの場合は $20 です。"
+    },
+    {
+      "plan": "Claude Max",
+      "price": "$100",
+      "note": "月額です。Pro の 5 倍の使用量です。"
+    },
+    {
+      "plan": "Claude Ultra",
+      "price": "$200",
+      "note": "月額です。Pro の 10 倍の使用量（毎週）です。"
+    },
+    {
+      "plan": "Claude Team スタンダードシート",
+      "price": "$20",
+      "note": "年払い時のシートあたり月額です。月払いの場合は $25 です。"
+    },
+    {
+      "plan": "Claude Team プレミアムシート",
+      "price": "$100",
+      "note": "年払い時のシートあたり月額です。月払いの場合は $125 です。"
+    },
+    {
+      "plan": "Claude Enterprise",
+      "price": "US$20/シート/月（年払い、最低20シート）",
+      "note": "使用コストはモデルとタスクに応じて変動します。"
+    }
+  ],
+  "freeTier": [
+    "ChatGPT 無料版：テキストチャットは無制限ですが、不正利用防止の安全対策が適用されます。",
+    "ChatGPT 無料版：画像作成、音声チャット、Deep Research、メモリとコンテキストに上限があります。",
+    "Gemini 無料版：Flash-Lite モデル、画像の生成と編集、Deep Research、Gemini Live、Canvas、Gem などが含まれます。",
+    "Gemini の一時チャットは、個人の Google アカウントでログインしている場合に利用できます。",
+    "Claude 無料版：5時間ごと・毎週の制限付きで、チャット、Web検索、ファイル作成、コード実行などが使えます。",
+    "Claude 無料版では、シークレットチャットとメモリが利用できます。Claude Code は含まれません。"
+  ],
+  "japan": {
+    "answer": "日本語版あり。円表示はGeminiのみ",
+    "body": "ChatGPT の料金ページと Gemini の料金ページは日本語で、Gemini は円（￥）で料金が表示されています。Claude の料金ページは米ドル（$）表示で、表示価格には適用される税金が含まれていないと書かれています。ChatGPT の有料プランの金額と支払い通貨は、今回の根拠ページでは案内されていません。Claude は対応地域にいることが利用条件です。日本が対応地域に含まれるかは、ヘルプで確認するとよいでしょう。"
+  },
+  "tips": [
+    {
+      "title": "入力前に機密情報を外す",
+      "body": "ChatGPT の公式ヘルプでは、会話で機密情報を共有しないよう案内されています。履歴から特定のプロンプトを削除することはできないため、入力する前に内容を見直すとよいでしょう。"
+    },
+    {
+      "title": "社内の資料は業務向けプランを確認する",
+      "body": "ChatGPT Business や Enterprise、Claude の Team・Enterprise は、学習に使わない扱いと案内されています。会社の資料を扱うときは、個人版ではなく業務向けプランを使うかどうかを、社内ルールと照らし合わせて決めるとよいでしょう。"
+    },
+    {
+      "title": "一時チャットは保存の扱いを理解して使う",
+      "body": "Gemini の一時チャットは最近のチャットに残らず、離れるとアクセスできなくなります。データの扱いについては、ヘルプの「一時チャットを使用した場合のデータの取り扱い」の項目を読んでから使うとよいでしょう。"
+    }
+  ],
+  "faq": [
+    {
+      "q": "ChatGPTは学習に使われないようにできる？",
+      "a": "できます。プライバシーポータルで「私のコンテンツでトレーニングしない」をクリックするか、データコントロールFAQの手順に従うと、オプトアウトできます。オプトアウト後の新しい会話は、モデルのトレーニングに使用されません。"
+    },
+    {
+      "q": "Geminiの一時チャットは無料で使える？",
+      "a": "個人の Google アカウントでログインしていれば使えます。仕事用または学校用の Google アカウントでは利用できません。一時チャットは Gemini アプリ アクティビティや最近のチャットに表示されません。"
+    },
+    {
+      "q": "Claudeは学習に使われる？",
+      "a": "料金ページの表では、Free・Pro・Max・Ultra は「オプトアウト」、Team・Enterprise はデフォルトで学習に使用しないと示されています。個人プランでオプトアウトする手順は、今回の根拠ページには案内されていません。"
+    },
+    {
+      "q": "Copilotの学習設定はどこ？",
+      "a": "この記事では扱っていません。Microsoft Copilot の設定は、今回の根拠となる公式ページに含まれないため、Microsoft の公式サイトで確認するとよいでしょう。"
+    },
+    {
+      "q": "ChatGPTの無料版はどこまで使える？",
+      "a": "テキストチャットは無制限で利用できますが、不正利用防止の安全対策が適用されます。画像作成、音声チャット、Deep Research、メモリなどには上限があります。"
+    },
+    {
+      "q": "無料版で個人情報を入れても大丈夫？",
+      "a": "入力しないのが基本です。ChatGPT のヘルプでは、会話で機密情報を共有しないよう案内されています。設定を変えても、入力内容の扱いには注意が必要です。"
+    }
+  ],
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "会議メモや文章の下書きは、無料プランの範囲でも試せます。",
+      "社内資料を扱う前に、個人版と業務向けプランの違いを社内ルールで確かめるとよいでしょう。",
+      "有料プランを検討するなら、学習への扱いを料金表と設定の両方で確認するとよいでしょう。"
+    ]
+  },
+  "match": "(?:ChatGPT)|(?:Gemini(?! ?Notebook))|(?:Claude(?! Code))|(?:(?<!GitHub )Copilot)",
+  "products": [
+    "gpt-6",
+    "chatgpt-work",
+    "chatgpt-voice",
+    "gemini-4-argon",
+    "gemini-4-carbon",
+    "gemini-live",
+    "claude-opus-5-5",
+    "claude-fable-5-1"
+  ],
+  "related": [],
+  "sources": [
+    {
+      "url": "https://chatgpt.com/ja-JP/pricing/",
+      "title": "プランと料金 | ChatGPT",
+      "checkedAt": "2026-11-10T07:45:27+09:00"
+    },
+    {
+      "url": "https://help.openai.com/ja-jp/articles/6783457-what-is-chatgpt",
+      "title": "ChatGPT とは？ | OpenAI Help Center",
+      "checkedAt": "2026-11-10T07:45:27+09:00"
+    },
+    {
+      "url": "https://gemini.google/jp/subscriptions/",
+      "title": "Google AI Pro と Ultra で Gemini 4 Argon などにアクセス",
+      "checkedAt": "2026-11-10T07:45:27+09:00"
+    },
+    {
+      "url": "https://support.google.com/gemini/answer/13275745?hl=ja",
+      "title": "",
+      "checkedAt": "2026-11-10T07:45:27+09:00"
+    },
+    {
+      "url": "https://claude.com/pricing",
+      "title": "プランと料金 | Claude by Anthropic",
+      "checkedAt": "2026-11-10T07:45:27+09:00"
+    },
+    {
+      "url": "https://support.claude.com/ja/articles/8114491-claude-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B",
+      "title": "Claudeを始める | Anthropicヘルプセンター",
+      "checkedAt": "2026-11-10T07:45:27+09:00"
+    }
+  ],
+  "sourceHash": "992f6ab17eeb3558",
+  "fact": {
+    "score": 75,
+    "model": "anthropic-api:claude-haiku-5-5"
+  },
+  "model": "anthropic-api:claude-haiku-5-5",
+  "promptVersion": 1,
+  "createdAt": "2026-11-10T07:45:27+09:00",
+  "updatedAt": "2026-11-10T07:45:27+09:00",
+  "checkedAt": "2026-11-10T07:45:27+09:00"
+}
