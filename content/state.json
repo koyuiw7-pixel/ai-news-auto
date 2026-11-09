@@ -84,14 +84,6 @@
       "tries": 1,
       "url": "https://www.mof.go.jp/policy/customs_tariff/trade/international/conference/ka20261106.html"
     },
-    "6139b69c3d743eb4": {
-      "first": "2026-11-09T00:03:32.678016+00:00",
-      "next": "2026-11-09T03:03:32.678016+00:00",
-      "reason": "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「全体の大きな割合を占める13兆5,279億円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える",
-      "title": "外国為替平衡操作の実施状況(令和8年7月～令和8年9月)",
-      "tries": 1,
-      "url": "https://www.mof.go.jp/policy/international_policy/reference/feio/data/quarter/2026_3Q.html"
-    },
     "69fabd0e3c004cb8": {
       "first": "2026-11-06T08:44:56.108789+00:00",
       "next": "2026-11-06T11:44:56.108789+00:00",
@@ -9651,6 +9643,17 @@
       "skipped": true,
       "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/02/01"
     },
+    "6139b69c3d743eb4": {
+      "at": "2026-11-09T04:43:16.948964+00:00",
+      "costUsd": 0.0073,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 96,
+      "section": "business",
+      "slug": "foreign-exchange-intervention-2026-3q",
+      "url": "https://www.mof.go.jp/policy/international_policy/reference/feio/data/quarter/2026_3Q.html"
+    },
     "613a594f6efe3ff6": {
       "at": "2026-11-03T00:11:20.049082+00:00",
       "reason": "short text 272",
@@ -11591,6 +11594,17 @@
       "reason": "quality: 本文が短い（1705字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000059.000130865.html"
+    },
+    "80d57aebb469d1a9": {
+      "at": "2026-11-09T04:42:25.770862+00:00",
+      "costUsd": 0.0055,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "business",
+      "slug": "bank-yield-tsr-2026",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203415_1527.html"
     },
     "80e2565f9f275b58": {
       "at": "2026-11-02T19:54:10.723463+00:00",
@@ -18228,6 +18242,17 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202610/29keizai.html"
     },
+    "eaeb18a6cc6bba24": {
+      "at": "2026-11-09T04:44:25.394101+00:00",
+      "costUsd": 0.0054,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 95,
+      "section": "ai",
+      "slug": "nvidia-board-independent-investigation-huang",
+      "url": "https://blogs.nvidia.co.jp/blog/statement-from-nvidia-board-of-directors/"
+    },
     "eaecd17577cb955c": {
       "at": "2026-11-04T15:41:53.377719+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -19693,162 +19718,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-06T15:17:52.214220+00:00",
-      "attempt": 0,
-      "id": "d6e8fbe3ae2f3d61",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 元に無い数字が増えた（1952, 20, 22, 44.0, 45）"
-      ],
-      "readability": {
-        "avg_paragraph": 108.6,
-        "avg_sentence": 44.0,
-        "long_share": 0.216,
-        "max_paragraph": 197,
-        "paragraphs": 15,
-        "sentences": 37
-      },
-      "score": 96,
-      "source": "mlit-press",
-      "title": "“地域活性化へ”官民連携基盤整備の支援事業を決定～民間と自治体が連携して取り組むインフラ整備の事業化検討を支援します～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（PPP・PFI・JR）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T15:32:57.164401+00:00",
-      "attempt": 1,
-      "id": "5977b7df855ef250",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要(令和8年11月6日(金曜日))"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T15:34:01.788559+00:00",
-      "attempt": 2,
-      "id": "5977b7df855ef250",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "リード「個人が手続きをする必要はありません」→ 元記事は手続きの要否に触れておらず、断定の根拠がない（本文・よくある質問では「説明はない」にとどめている）",
-        "本文「個人が今すぐ確認する書類や窓口はありません」→ 元記事に無い断定",
-        "見出し「手続き不要」→ 元記事から確認できない内容を見出しで断定している",
-        "「デジタル庁のシステムは、行政手続きを支える基盤です」→ 元記事に無い背景説明の断定（一般的な説明の範囲だが根拠は示されていない）",
-        "「直接の影響は小さい内容です」→ 編集部の解釈として明示されていない評価"
-      ],
-      "readability": {
-        "avg_paragraph": 88.1,
-        "avg_sentence": 40.1,
-        "long_share": 0.182,
-        "max_paragraph": 199,
-        "paragraphs": 15,
-        "sentences": 33
-      },
-      "score": 84,
-      "source": "mof",
-      "title": "片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要(令和8年11月6日(金曜日))",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JT・JTI）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T15:34:41.689292+00:00",
-      "attempt": 2,
-      "id": "5977b7df855ef250",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要(令和8年11月6日(金曜日))"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T15:35:02.928526+00:00",
-      "attempt": 2,
-      "id": "5977b7df855ef250",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "段落が長い（平均 115.7字・最長 248字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 115.7,
-        "avg_sentence": 45.0,
-        "long_share": 0.194,
-        "max_paragraph": 248,
-        "paragraphs": 14,
-        "sentences": 36
-      },
-      "score": 93,
-      "source": "mof",
-      "title": "片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要(令和8年11月6日(金曜日))",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JT・JTI）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-06T15:35:33.993259+00:00",
-      "attempt": 0,
-      "id": "5977b7df855ef250",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 83.0,
-        "avg_sentence": 38.6,
-        "long_share": 0.0,
-        "max_paragraph": 138,
-        "paragraphs": 20,
-        "sentences": 43
-      },
-      "score": 92,
-      "source": "mof",
-      "title": "片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要(令和8年11月6日(金曜日))",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JT・JTI）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-06T15:52:05.543668+00:00",
-      "attempt": 1,
-      "id": "5d4f7dc67c8873a8",
-      "kind": "ai",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "題名で「日本で使えるか」を約束しているのに、本文に日本での提供・使い方の説明が無い。答えるか、題名から外す"
-      ],
-      "readability": {
-        "avg_paragraph": 123.9,
-        "avg_sentence": 72.2,
-        "long_share": 0.667,
-        "max_paragraph": 210,
-        "paragraphs": 14,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "elevenlabs-blog",
-      "title": "Give your Unity NPCs a voice with ElevenAgents",
-      "warnings": [
-        "見出しが64字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NET・XR・UI）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-06T15:52:42.058518+00:00",
@@ -26485,6 +26354,191 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（SOP・SAP・MCP）",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T04:42:05.277663+00:00",
+      "attempt": 1,
+      "id": "80d57aebb469d1a9",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 154.5,
+        "avg_sentence": 61.8,
+        "long_share": 0.5,
+        "max_paragraph": 220,
+        "paragraphs": 4,
+        "sentences": 10
+      },
+      "score": 88,
+      "source": "tsr",
+      "title": "2026年3月期の「銀行利回り」0.25％ 10年間で最高、「逆ざや行」は4行に減少",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 61.8字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 154.5字・最長 220字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T04:42:25.745036+00:00",
+      "attempt": 0,
+      "id": "80d57aebb469d1a9",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「前年から上昇した銀行は全体の88.2%にあたる90行」→ 元記事では88.2%（90行）は比較可能な102行に対する構成比であり、103行全体の割合ではないため、母数の取り違えになっている。"
+      ],
+      "readability": {
+        "avg_paragraph": 154.5,
+        "avg_sentence": 61.8,
+        "long_share": 0.5,
+        "max_paragraph": 220,
+        "paragraphs": 4,
+        "sentences": 10
+      },
+      "score": 88,
+      "source": "tsr",
+      "title": "2026年3月期の「銀行利回り」0.25％ 10年間で最高、「逆ざや行」は4行に減少",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 61.8字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 154.5字・最長 220字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T04:42:51.377409+00:00",
+      "attempt": 1,
+      "id": "6139b69c3d743eb4",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「個人向けの特別な手続きや、今の契約などに変わるものはありません。」→ 元記事にない、個人向け手続きや契約への影響の有無に関する断定です。",
+        "本文「個人向けの特別な手続きや、日々の生活における直接的なルール変更はありません。」→ 同じく元記事にない断定です。",
+        "今日やること「外貨預金や送金の契約は今回の発表で変わらないため」→ 元記事にない契約への影響の断定が前提になっています。",
+        "今日やること「広報誌「ファイナンス」最新号（令和8年10月号）で、為替介入の仕組みを解説した内容を読む」→ 確認済みの文脈では最新号の特集は脱税に関する記事で、為替介入の解説があるとは確認できません。",
+        "かんたん版「介入の金額と日数を公表」→ 元記事は金額と実施日・回数を示しており、「日数」の公表という表現は元記事と合いません。"
+      ],
+      "readability": {
+        "avg_paragraph": 76.0,
+        "avg_sentence": 50.7,
+        "long_share": 0.333,
+        "max_paragraph": 127,
+        "paragraphs": 4,
+        "sentences": 6
+      },
+      "score": 62,
+      "source": "mof",
+      "title": "外国為替平衡操作の実施状況(令和8年7月～令和8年9月)",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 50.7字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T04:43:01.117577+00:00",
+      "attempt": 1,
+      "id": "6139b69c3d743eb4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.7,
+        "avg_sentence": 53.2,
+        "long_share": 0.4,
+        "max_paragraph": 127,
+        "paragraphs": 3,
+        "sentences": 5
+      },
+      "score": 96,
+      "source": "mof",
+      "title": "外国為替平衡操作の実施状況(令和8年7月～令和8年9月)",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 53.2字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T04:43:10.804916+00:00",
+      "attempt": 0,
+      "id": "6139b69c3d743eb4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 90.0,
+        "avg_sentence": 38.6,
+        "long_share": 0.0,
+        "max_paragraph": 127,
+        "paragraphs": 3,
+        "sentences": 7
+      },
+      "score": 96,
+      "source": "mof",
+      "title": "外国為替平衡操作の実施状況(令和8年7月～令和8年9月)",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-09T04:44:07.698348+00:00",
+      "attempt": 1,
+      "id": "eaeb18a6cc6bba24",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "「仕事・お金にどう活かせる？」の欄で『NVIDIAの取引先や株主は、追加情報の公表を待つ形になります』は一般的な助言の範囲だが、元記事に無い関係者の立場を断定している点は軽微な言い過ぎ",
+        "「調査の期間や範囲はまだ発表されていません」は元記事に無い点を述べており問題ないが、リードで『調査の期間や範囲』に触れつつ本文で『調査を見張るのは…経営陣から距離を置く役員が見張る形』と解釈を付加している",
+        "本文「経営陣から距離を置く役員が見張る形になります」は元記事に無い独立性の解釈を事実のように書いている",
+        "「調査で『入手可能なすべての情報』を精査する」は元記事の『入手可能なすべての情報を精査します』の言い換えで問題ない",
+        "「取締役会は、国家安全保障や機密が損なわれたと考える理由はないとしていますが」は元記事と一致する",
+        "見出し『フアンCEOが諜報の標的との報道』は元記事の『最近の報道』と一致するが、リードで『報道』の媒体や内容が不明な点が記事中で明記されていない"
+      ],
+      "readability": {
+        "avg_paragraph": 75.0,
+        "avg_sentence": 32.6,
+        "long_share": 0.043,
+        "max_paragraph": 110,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": 72,
+      "source": "nvidia-japan-blog",
+      "title": "NVIDIA 取締役会からの声明",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GTC）",
+        "答えになっていない見出し（「日本の利用者の製品・サービスに関する変更は示されていない」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-09T04:44:25.384988+00:00",
+      "attempt": 1,
+      "id": "eaeb18a6cc6bba24",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 72.7,
+        "avg_sentence": 33.0,
+        "long_share": 0.045,
+        "max_paragraph": 110,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": 95,
+      "source": "nvidia-japan-blog",
+      "title": "NVIDIA 取締役会からの声明",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GTC）",
+        "答えになっていない見出し（「日本の利用者の製品・サービスに関する変更は示されていない」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
       ]
     }
   ],
