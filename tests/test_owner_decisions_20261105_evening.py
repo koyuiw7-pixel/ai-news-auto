@@ -109,7 +109,7 @@ class PictureInsteadOfWaitingTest(unittest.TestCase):
 
     def test_six_slots_all_go_out_on_time_without_any_video(self):
         """枠6つ（7:15〜21:45）の投稿は、動画が1本も無くてもすべて枠の時刻に出る（1日6本＋朝のまとめは別）"""
-        slots = [DAY.replace(hour=h, minute=m) for h, m in sns_plan.slots_jst()]
+        slots = sorted(DAY.replace(hour=h, minute=m) for h, m in sns_plan.slots_jst())  # 2026-11-10 S54: 夜0時・1時台の枠もあるので時刻の順
         self.assertLessEqual(len(slots), sns_plan.daily_cap())  # 2026-11-06〜 4枠・上限5（速報1本分の空き。S39）
         posted = {f"s{i}": queued_rec(slot.astimezone(timezone.utc)) for i, slot in enumerate(slots)}
         state = {"videos": {}}
@@ -123,7 +123,7 @@ class PictureInsteadOfWaitingTest(unittest.TestCase):
             sent += out
         self.assertEqual(sorted(state["queued"]), sorted(posted))
         threads_due = sorted(d for s, d, _v in sent if s == "threads")
-        self.assertEqual(threads_due, [fu._iso(s.astimezone(timezone.utc)) for s in slots])  # 遅れずに枠の時刻
+        self.assertEqual(threads_due, sorted(fu._iso(s.astimezone(timezone.utc)) for s in slots))  # 遅れずに枠の時刻（2026-11-10 S54: 夜0時・1時台の枠があるので時刻の順に比べる）
         self.assertFalse(any(v for _s, _d, v in sent))
         self.assertTrue(all(q["media"] == "card" for q in state["queued"].values()))
 

@@ -6,7 +6,7 @@ X は Threads の写しをやめ、X だけの上限・枠・話題・文面で�
   枠: 日本時間 7:30・12:30・21:00 に1本ずつ・1日3本まで（sns_plan.json の x.daily_cap）。枠に遅れたら次の枠の前（最後は23時）まで出してよい。
       7時より前・23時より後は出さない。Threads の本数とは別に数え、お互いの本数に数えない。
   速報・ミサイル・災害の知らせ: 枠の外ですぐ出し、本数に数えない（台帳 S41）。速報のワークフローから --breaking-only で呼ぶ。
-      ふつうの回でも、出てから30分たっても X に出ていない速報は拾う（深夜1〜5時は災害の知らせだけ）。
+      ふつうの回でも、出てから30分たっても X に出ていない速報は拾う（深夜2〜5時は災害の知らせだけ）。
   話題（通常の枠）: 公式の地震・気象の知らせ → 通信・サービスの障害 → 製品・セール・値段 → 有名ブランド（sns_plan.x_topic）。
       決算の数字だけの記事は出さない（速報も）。製品の文（Switch 2 の販売台数など）があれば、その製品を1行目にして出す。
       海外の企業向け・開発者向け（S28）は今までどおり出さない。
@@ -23,6 +23,10 @@ X は Threads の写しをやめ、X だけの上限・枠・話題・文面で�
       返信にリンク（utm_content=reader_reply／card_reply）。直近7日に少ない方を出す（sns_plan.x_link_variant・変数 X_LINK_MODE＝ab／body／reply）。
       記録の link（body／reply）と utm_content で夜の報告がクリックを比べる。ハッシュタグはトレンド・災害・行事に加えて記事の話題の名前を2つまで
       （sns_plan.x_hashtags）。
+  2026-11-10（台帳 S53）: 枠では暮らしとお金の記事（sns_plan.life_money）を先に → 読者向けの文面 → Muse の図 → 点数＋人の閲覧（content/popular.json）。
+      枠の時間に無ければ24時間以内から探し、それも無いときだけ AI・企業向け・海外の景気の記事。枠の外の速報は暮らしとお金の記事と災害の知らせだけ。
+      ハッシュタグは話題の名前のタグを2〜3つまで。「｜」は使わない。
+  2026-11-10 オーナー決定（台帳 S54）: 枠は朝6時台から夜0時台まで（sns_plan.json の x.slots_jst・6:00〜翌1:59）。1日15本はそのまま。
   記録: state/x_posted.json（{slug: {id, at, kind=slot|breaking|alert, slot, title}}）。
 
   python3 scripts/x_post.py --dry-run [--breaking-only] [--slug SLUG]  # 文面を表示（Buffer を呼ばない）
@@ -57,6 +61,11 @@ FACT_LINES = 2  # 1行目のあとに置く事実の文の数（入る分だけ�
 FIG_DIR = tp.ROOT / "public" / "fig"
 FIG_NAME_RE = re.compile(r"-fig\d{1,2}\.(?:png|jpe?g|webp)$")
 CARD_SIZE = (1600, 900)  # 門番に渡すカードの縦横（今までどおり）
+# 2026-11-10 台帳 S53: 暮らしとお金の記事（sns_plan.life_money）を先に。AI・企業向け・海外の景気の記事は、この時間内に暮らしとお金の記事が無いときだけ
+LIFE_FRESH_HOURS = 24
+POPULAR_PATH = tp.ROOT / "content" / "popular.json"
+VIEW_BONUS_MAX = 3.0  # 人の閲覧（content/popular.json）で足す点の上限（レーンの点数 4〜6 を超えない）
+VIEWS_PER_POINT = 20  # 20 閲覧で1点
 
 
 def log(message: str) -> None:
@@ -179,10 +188,10 @@ def usable_fact(line: str) -> bool:
 
 def x_text(article: dict) -> str:
     """X だけの文面（リンクは返信なので入れない）。作れなければ \"\""""
-    first = first_line(article)
+    first = re.sub(r"\s*[｜|]\s*", "　", first_line(article)).strip()  # 「｜」は使わない（2026-11-07 オーナー。題名に混ざっていれば全角の空白に直す）
     if not first or sns_rules.x_weight(first) > sns_rules.X_LIMIT - 20:
         return ""
-    tag = " ".join(sns_plan.x_hashtags(article))  # 1〜2つ（台帳 S52）
+    tag = " ".join(sns_plan.x_hashtags(article))  # 2〜3つまで（台帳 S52・S53）
     lines = [first]
     for fact in fact_candidates(article):
         if len(lines) > FACT_LINES:
@@ -327,7 +336,7 @@ def ok_for_x(article: dict, xs: dict, posted: dict, recent: list[str]) -> bool:
 
 
 def breaking_targets(xs: dict, posted: dict, now: datetime, articles: list[dict], min_age_min: int = 0) -> list[dict]:
-    """枠の外ですぐ出す速報・災害の知らせ（新しい順）。深夜1〜5時は災害の知らせだけ（速報は朝の分に回る）"""
+    """枠の外ですぐ出す速報・災害の知らせ（新しい順）。深夜2〜5時は災害の知らせだけ（速報は朝の分に回る）"""
     if breaking_today(xs, now) >= tp.BREAKING_PER_DAY:
         return []
     quiet = now.astimezone(tp.JST).hour in tp.BREAKING_QUIET_HOURS_JST
@@ -337,6 +346,8 @@ def breaking_targets(xs: dict, posted: dict, now: datetime, articles: list[dict]
     for article in articles:
         if not breaking_fresh(article, now) or (quiet and not alert(article)):
             continue
+        if not sns_plan.life_money(article):
+            continue  # AI・企業向け・海外の景気の速報は X の枠の外に出さない（台帳 S53。11/10 7:02 の OpenAI の記事）。ふつうの枠の後ろの候補には残る
         made = _parse(article.get("generatedAt"))
         if now - made < timedelta(minutes=min_age_min):
             continue
@@ -353,6 +364,7 @@ def candidates(xs: dict, posted: dict, now: datetime, since: datetime, articles:
     dups = duplicate_slugs(articles)
     by_slug = {a["slug"]: a for a in articles if a.get("slug")}
     recent = _recent_titles(xs, now, by_slug)
+    views = popular_views()
     out = []
     for article in articles:
         made = _parse(article.get("generatedAt"))
@@ -365,9 +377,41 @@ def candidates(xs: dict, posted: dict, now: datetime, since: datetime, articles:
         # 2026-11-08 夜 オーナー: 軸は暮らしの安全・お金・手続き（レーン＋手続きの言葉）。読者向けの文面がある記事を先に。同じなら X の話題の点数
         # 2026-11-09（台帳 S50）: 読者向けの文面（誰の話か・数字1つ・記事にしかないもの）がある記事を必ず先に。今までの書き方は無いときだけ
         ready = compose_post(article)["style"] == "reader"
-        out.append(((ready, sns_reader.rank_key(article, "x", made)[0], sns_plan.x_score(article), made), article))
+        # 2026-11-10 台帳 S53: ①暮らしとお金の記事 → ②読者向けの文面 → ③Muse の説明の図 → ④点数（＋人の閲覧）→ 話題の点数 → 新しい順
+        score = sns_reader.rank_key(article, "x", made)[0] + view_bonus(article, articles, views)
+        out.append(((sns_plan.life_money(article), ready, bool(figure_image(article)), score, sns_plan.x_score(article), made), article))
     out.sort(key=lambda x: x[0], reverse=True)
     return [a for _, a in out]
+
+
+def popular_views(path: Path | None = None) -> dict[str, int]:
+    """人の閲覧（content/popular.json の items: [{slug, views}]。直近2日）。読めなければ {}"""
+    try:
+        data = json.loads((path or POPULAR_PATH).read_text("utf-8"))
+    except (OSError, ValueError):
+        return {}
+    out = {}
+    for item in (data or {}).get("items") or []:
+        if isinstance(item, dict) and item.get("slug"):
+            try:
+                out[str(item["slug"])] = int(item.get("views") or 0)
+            except (TypeError, ValueError):
+                continue
+    return out
+
+
+def view_bonus(article: dict, articles: list[dict] | None = None, views: dict[str, int] | None = None) -> float:
+    """人の閲覧から足す点（台帳 S53）。その記事の閲覧と、同じ話題の名前のタグ（#ドコモ・#年金 など）の読まれている記事の閲覧の半分の多い方"""
+    views = popular_views() if views is None else views
+    if not views:
+        return 0.0
+    own = views.get(str(article.get("slug") or ""), 0)
+    mine = set(sns_plan.x_topic_tags(article))
+    topic = 0
+    if mine and articles:
+        by_slug = {a.get("slug"): a for a in articles if a.get("slug") in views}
+        topic = max((views[s] for s, a in by_slug.items() if s != article.get("slug") and mine & set(sns_plan.x_topic_tags(a))), default=0)
+    return min(VIEW_BONUS_MAX, max(own, topic / 2) / VIEWS_PER_POINT)
 
 
 def slot_pick(slot: tuple[int, datetime, datetime], xs: dict, posted: dict, now: datetime, articles: list[dict]) -> dict | None:
@@ -380,10 +424,14 @@ def slot_pick(slot: tuple[int, datetime, datetime], xs: dict, posted: dict, now:
     else:
         previous = sns_plan.x_slot_window(start - timedelta(minutes=1))
         ranges = [previous[1] if previous else start, _day_start(now)]
-    for since in ranges:
-        if found := candidates(xs, posted, now, since, articles):
-            return found[0]
-    return None
+    fallback = None
+    for since in [*ranges, now - timedelta(hours=LIFE_FRESH_HOURS)]:
+        found = candidates(xs, posted, now, since, articles)
+        if found and sns_plan.life_money(found[0]):
+            return found[0]  # 暮らしとお金の記事（台帳 S53。枠の時間に無ければ24時間以内から）
+        if found and since in ranges and fallback is None:
+            fallback = found[0]
+    return fallback  # 暮らしとお金の記事が24時間に無いときだけ、AI・企業の記事
 
 
 def choose(xs: dict, posted: dict, now: datetime, articles: list[dict] | None = None, breaking_only: bool = False) -> list[tuple[dict, str]]:

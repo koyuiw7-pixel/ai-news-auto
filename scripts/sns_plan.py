@@ -139,6 +139,51 @@ def has_lane(article: dict) -> bool:
     return bool(lane_of(article)[0])
 
 
+# ---- 暮らしとお金の「自分ごと」の記事か（2026-11-10 台帳 S53。X の枠・速報で先に選ぶ） ----
+# 11/10 7:02 の X が「OpenAI、AIの研究ジョブを最大35秒で停止」（AI・企業の話）だった。サイトの軸は暮らしとお金で、AI の記事はほとんど読まれない。
+# そのまま暮らし・お金の分野（digest.LIFE_MONEY_GENRES から business を除いたもの）
+LIFE_MONEY_GENRES = frozenset({"lifestyle", "public", "investment", "real-estate"})
+# 安全・お金のレーン（流出・障害・リコール・値上げ・料金・手続き）に当たるときだけ暮らしの記事とみなす分野
+CONSUMER_GENRES = frozenset({"business", "tech-gadget", ""})
+B2B_TITLE_RE = re.compile(r"法人向け|企業向け|事業者向け|業務向け|開発者向け|BtoB|B2B|SaaS")
+B2B_AUDIENCE_RE = re.compile(r"開発|エンジニア|担当|企業|法人|経営者|事業者(?!主)|情報システム|情シス|マーケ|研究者|専門家|(?<![A-Za-z])IT(?![A-Za-z])")
+FOREIGN_HEAD_RE = re.compile(r"^(?:【[^】]{1,12}】)?\s*(?:米国?|欧州|ユーロ圏|中国|英国?|独|豪|NY|ECB|FRB|FOMC)")
+MACRO_RE = re.compile(r"雇用|失業率|CPI|物価|GDP|PMI|小売売上|利上げ|利下げ|政策金利|長期金利|国債|株価|ダウ|ナスダック|S&P|景気|インフレ|関税")
+
+
+def b2b(article: dict | None) -> bool:
+    """企業・開発者・担当者向けの記事か（見出しの「法人向け」など、判定の読者が開発者・担当・経営者など）"""
+    article = article or {}
+    audience = str((article.get("verdict") or {}).get("audience") or "")
+    return bool(B2B_TITLE_RE.search(str(article.get("title") or "")) or (audience and B2B_AUDIENCE_RE.search(audience)))
+
+
+def foreign_macro(article: dict | None) -> bool:
+    """海外の景気・金利・株の数字の記事か（「米雇用者数16.5万人増」など）"""
+    title = str((article or {}).get("title") or "")
+    return bool(FOREIGN_HEAD_RE.search(title) and MACRO_RE.search(title))
+
+
+def life_money(article: dict | None) -> bool:
+    """暮らしとお金の「自分ごと」の記事か（台帳 S53）。地震・災害・急ぎの知らせはいつも当たる。
+    暮らし・生活／社会・行政／投資・マネー／不動産の記事と、ビジネス・ガジェットのうち流出・障害・値上げ・料金などのレーンに当たる記事。
+    AI の記事は日本の一般のサービスの流出・障害（安全のレーン）だけ。企業・開発者向け（b2b）・海外の景気の数字（foreign_macro）は当たらない"""
+    article = article or {}
+    if _alert(article):
+        return True
+    if excluded(article) or b2b(article) or foreign_macro(article):
+        return False
+    genre = str(article.get("genreSlug") or "")
+    lane = lane_of(article)[0]
+    if genre in LIFE_MONEY_GENRES:
+        return True
+    if genre in CONSUMER_GENRES:
+        return lane in ("safety", "money")
+    if genre == "ai":
+        return lane == "safety" and japanese_source(article)
+    return False
+
+
 # ---- 枠と1日の上限 ----
 
 def _hm(value: str) -> tuple[int, int]:
@@ -154,9 +199,19 @@ def per_day() -> int:
     return max(0, min(int(raw), top)) if raw.isdigit() else top
 
 
+# 投稿の1日の始まり（日本時間）。2026-11-10 オーナー決定（台帳 S54）: 朝6時から夜1時台（1:59）まで出す。0時・1時台の枠は前の日の夜の続き
+DAY_START_JST = (6, 0)
+
+
+def day_order(hm: tuple[int, int], start: tuple[int, int] = DAY_START_JST) -> int:
+    """枠の並べ順（start からの分）。0:45・1:30 の枠は 23:45 の後に来る"""
+    return (hm[0] * 60 + hm[1] - start[0] * 60 - start[1]) % (24 * 60)
+
+
 def spread(slots: list[tuple[int, int]], n: int) -> list[tuple[int, int]]:
-    """枠を n 個に間引く（1日の中でならす。最初の枠＝朝の枠は必ず残す）。n が枠の数以上ならそのまま"""
-    slots = sorted(slots)
+    """枠を n 個に間引く（1日の中でならす。最初の枠＝朝の枠は必ず残す）。n が枠の数以上ならそのまま。
+    並びは1日の始まり（DAY_START_JST・朝6時）から（夜0時・1時台の枠は最後）"""
+    slots = sorted(slots, key=day_order)
     if n >= len(slots):
         return slots
     if n <= 0:
@@ -167,8 +222,18 @@ def spread(slots: list[tuple[int, int]], n: int) -> list[tuple[int, int]]:
     return [slots[int(i * step + 0.5)] for i in range(n)]
 
 
+def keep_slot(chosen: list[tuple[int, int]], keep: tuple[int, int]) -> list[tuple[int, int]]:
+    """間引いた枠に keep（朝のまとめの 7:15）を必ず入れる（いちばん近い枠と入れ替える）"""
+    if not chosen or keep in chosen:
+        return chosen
+    near = min(range(len(chosen)), key=lambda i: abs(day_order(chosen[i]) - day_order(keep)))
+    return sorted({*chosen[:near], keep, *chosen[near + 1:]}, key=day_order)
+
+
 def slots_jst() -> list[tuple[int, int]]:
-    return spread([_hm(s) for s in plan()["slots_jst"]], daily_cap())
+    slots = [_hm(s) for s in plan()["slots_jst"]]
+    digest = _hm(plan().get("digest_slot_jst") or plan()["slots_jst"][0])
+    return keep_slot(spread(slots, daily_cap()), digest) if digest in slots else spread(slots, daily_cap())
 
 
 def digest_slot_jst() -> tuple[int, int]:
@@ -207,12 +272,17 @@ def bluesky_slot_window(now: datetime) -> tuple[int, datetime, datetime] | None:
 
 def _slot_window(block: dict, now: datetime) -> tuple[int, datetime, datetime] | None:
     """SNS ごとの枠（block の slots_jst・window_start・window_end）で、今の時刻が入る枠（番号, 始まり, 終わり）。外なら None"""
+    # 2026-11-10（台帳 S54）: window_end が window_start より早い時刻（"02:00" など）なら次の日のその時刻まで（夜0時・1時台の枠）。
+    # window_start より前の時刻は前の日の夜の続きとして見る
     local = now.astimezone(JST)
+    start_hm = _hm(block.get("window_start") or "07:00")
     day = local.replace(hour=0, minute=0, second=0, microsecond=0)
-    at = lambda hm: day + timedelta(hours=hm[0], minutes=hm[1])  # noqa: E731
-    first = at(_hm(block.get("window_start") or "07:00"))
+    if day_order((local.hour, local.minute), start_hm) > day_order((local.hour, local.minute), (0, 0)):
+        day -= timedelta(days=1)  # 0:00〜window_start の前は前の日の夜
+    at = lambda hm: day + timedelta(minutes=start_hm[0] * 60 + start_hm[1] + day_order(hm, start_hm))  # noqa: E731
+    first = at(start_hm)
     last = at(_hm(block.get("window_end") or "23:00"))
-    starts = [max(first, at(hm)) for hm in sorted(_hm(x) for x in block.get("slots_jst") or [])]
+    starts = sorted(max(first, at(hm)) for hm in (_hm(x) for x in block.get("slots_jst") or []))
     for i, start in enumerate(starts):
         end = min(starts[i + 1] if i + 1 < len(starts) else last, last)
         if start <= local < end:
@@ -391,21 +461,51 @@ def x_hashtag(article: dict | None) -> str:
     return x_trend_tag(article)
 
 
+# X だけで足す話題の名前のタグ（2026-11-10 台帳 S53。X でいま見られている暮らしの話題。bluesky_post.TOPIC_TAGS のあとに見る）
+X_EXTRA_TOPIC_TAGS: list[tuple[str, str]] = [
+    (r"ニトリ", "#ニトリ"), (r"灯油", "#灯油"), (r"LPガス|プロパンガス", "#LPガス"), (r"暖房", "#暖房"), (r"給付金", "#給付金"),
+]
+# 流出・リコールなどの記事には付けない煽る言葉のタグ（台帳 S35・bluesky_post.brief_hashtag と同じ）
+SAFETY_SKIP_TAGS = ("#詐欺", "#リコール", "#値上げ")
+X_TAG_MAX = 3  # 2026-11-10 台帳 S53: 話題のタグを2〜3つ（S52 の2つまでを3つまでに）
+X_TOPIC_TAG_MAX = 2
+
+
+def x_topic_tags(article: dict | None, limit: int = X_TOPIC_TAG_MAX) -> list[str]:
+    """記事の話題の名前のタグ（会社・サービス・制度の名前。#ドコモ #年金 #給付金 など）を limit 個まで。見出し → 記事のタグの順。
+    地震・津波・急ぎの知らせには付けない（S35）。流出・リコールの記事は会社・サービスの名前だけ"""
+    article = article or {}
+    if article.get("disaster") or _alert(article):
+        return []
+    try:
+        import bluesky_post  # noqa: PLC0415
+        import sns_rules  # noqa: PLC0415
+
+        table = [*bluesky_post.TOPIC_TAGS, *X_EXTRA_TOPIC_TAGS]
+        safety = sns_rules.safety_topic(article)
+    except Exception:  # noqa: BLE001
+        table, safety = list(X_EXTRA_TOPIC_TAGS), False
+    out: list[str] = []
+    for source in (str(article.get("title") or ""), " ".join(str(t) for t in article.get("tags") or [])):
+        for pattern, tag in table:
+            if len(out) >= limit:
+                return out
+            if (safety and tag in SAFETY_SKIP_TAGS) or tag in out:
+                continue
+            if re.search(pattern, source, re.I):
+                out.append(tag)
+    return out
+
+
 def x_hashtags(article: dict | None) -> list[str]:
-    """X のハッシュタグ（2026-11-10 オーナー決定・台帳 S52: 話題のタグを1〜2つまで）。x_hashtag（災害・行事・トレンド）と、
-    記事の話題の名前のタグ（bluesky_post.brief_hashtag と同じ一覧。#ドコモ・#年金 など）。地震・津波・急ぎの知らせは x_hashtag だけ"""
+    """X のハッシュタグ（2026-11-10 台帳 S52 → S53: 話題のタグを2〜3つまで）。x_hashtag（災害・行事・トレンド）と、
+    記事の話題の名前のタグ（x_topic_tags。#ドコモ・#年金・#給付金 など2つまで）。地震・津波・急ぎの知らせは x_hashtag だけ"""
     article = article or {}
     out = [t for t in [x_hashtag(article)] if t]
-    if not _alert(article):
-        try:
-            import bluesky_post  # noqa: PLC0415
-
-            topic = bluesky_post.brief_hashtag(article)
-        except Exception:  # noqa: BLE001
-            topic = ""
-        if topic and topic not in out:
+    for topic in x_topic_tags(article):
+        if topic not in out:
             out.append(topic)
-    return out[:2]
+    return out[:X_TAG_MAX]
 
 
 # ---- X の記事のリンクの場所（2026-11-10 オーナー決定・台帳 S52） ----

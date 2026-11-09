@@ -630,9 +630,10 @@ def slot_pick(slot: tuple[int, datetime, datetime], state: dict, extra: dict, no
     """この枠に出す1本。朝の枠は朝のまとめ（無ければ夜のあいだの記事）、昼の枠はその日の記事のいちばん、
     夜の枠は昼の枠からの記事のいちばん（無ければその日の記事）"""
     index, start, _ = slot
+    # 2026-11-10（台帳 S54）: 朝6時台の枠を足したので、朝のまとめ（7:15）は最初の2つの枠のどちらかで写す（6:30 はまだまとめが無い）
+    if index <= 1 and (found := digest_today(state, now)):
+        return found[0], found[1], "mirror"
     if index == 0:
-        if found := digest_today(state, now):
-            return found[0], found[1], "mirror"
         ranges = [now - timedelta(hours=MORNING_HOURS)]
     elif index == 1:
         ranges = [_day_start(now), now - timedelta(hours=MORNING_HOURS)]

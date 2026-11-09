@@ -1,7 +1,7 @@
 name: Instagram post
 
 # Instagram（@saisoku637）への直接投稿（scripts/instagram_post.py・公式の Instagram Graph API。2026-11-05 オーナー承認・台帳 S36）。
-# SNS の予定の枠の約13分後に、動画（リール）で出す。朝のまとめは号の画像。1日6本（まとめを除く）・深夜1〜5時は出さない。
+# SNS の予定の枠の約13分後に、動画（リール）で出す。朝のまとめは号の画像。1日6本（まとめを除く）・深夜2〜5時は出さない（台帳 S54）。
 # 切り替え: リポジトリの変数 INSTAGRAM_MODE = off（既定・動かない）／ dry（文面と URL の確認だけ。コンテナも作らない）／ live（投稿）。
 # 手動の確認: test_container=image|video でコンテナを作るだけ（公開しない）。トークンと権限の確認に使う。
 # トークンの健康診断（job token）: 毎日・手動（token_check）。INSTAGRAM_MODE に関係なく動き、期限を state/instagram_token.json に記録、

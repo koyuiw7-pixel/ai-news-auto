@@ -1364,8 +1364,8 @@ def check_reader_post(platform: str, text: str, reply_text: str, article: dict |
                    .replace("[ルール22] 返信", "[ルール23] リンクの行" if platform != "x" or x_body else "[ルール23] 返信"))
     if platform == "x":
         allowed = sns_plan.x_hashtags(article)
-        if len(tags) > 2 or any(t not in allowed for t in tags):
-            out.append(f"[ルール23] X のハッシュタグは災害・行事・トレンド・記事の話題の名前のタグだけ2つまで（今は{' '.join(tags)}。台帳 S52）")
+        if len(tags) > sns_plan.X_TAG_MAX or any(t not in allowed for t in tags):
+            out.append(f"[ルール23] X のハッシュタグは災害・行事・トレンド・記事の話題の名前のタグだけ3つまで（今は{' '.join(tags)}。台帳 S52・S53）")
     elif platform == "bluesky":
         out += [v.replace("[ルール19]", "[ルール23]") for v in bluesky_tag_problems(" ".join(tags), article)]
     elif tags:
@@ -1400,14 +1400,16 @@ def check_xpost(platform: str, text: str, content: str, article: dict | None) ->
             out.append(f"[ルール7] 硬い言葉（「{m.group(0)}」）")
     if EMOJI_RE.search(str(text or "")):
         out.append("[ルール20] 絵文字を付けない")
+    if "｜" in str(text or "") or "|" in HASHTAG_RE.sub("", URL_RE.sub("", str(text or ""))):
+        out.append("[ルール20] 「｜」を使わない（AI っぽく見える。2026-11-07 オーナー）")
     if sns_plan.x_earnings_only(article):
         out.append("[ルール20] 決算の数字だけの記事は X に出さない（台帳 S42）")
     elif sns_plan.finance_topic(article) and first and not first.startswith(sns_plan.x_keyword(article) or "\0"):
         out.append("[ルール20] 決算の記事は製品の話（製品の名前から始まる1行目）のときだけ X に出す（台帳 S42）")
     tags = HASHTAG_RE.findall(str(text or ""))
     allowed = sns_plan.x_hashtags(article)
-    if len(tags) > 2 or any(t not in allowed for t in tags):
-        out.append(f"[ルール20] X のハッシュタグは災害・行事・トレンド・記事の話題の名前のタグだけ2つまで（今は{' '.join(tags)}。台帳 S52）")
+    if len(tags) > sns_plan.X_TAG_MAX or any(t not in allowed for t in tags):
+        out.append(f"[ルール20] X のハッシュタグは災害・行事・トレンド・記事の話題の名前のタグだけ3つまで（今は{' '.join(tags)}。台帳 S52・S53）")
     return out
 
 

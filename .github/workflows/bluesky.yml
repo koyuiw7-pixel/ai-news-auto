@@ -3,12 +3,16 @@ name: Bluesky post
 # Bluesky への投稿（scripts/bluesky_post.py）。2026-11-07 から Bluesky だけの枠（日本時間 7:30・13:00・21:00）に1本ずつ・1日3本まで
 # （Threads と別に数える。台帳 S40）。枠に遅れたら次の枠の前（最後は23時）までに出す。ミサイル・災害の知らせは breaking_post.yml からすぐ
 # GitHub の schedule は遅れたり飛んだりするため、10分ごと・枠の少しあと（UTC で書く）・記事の自動処理が終わるたびにも動かす（枠の外では何もしない）
+# 2026-11-10 オーナー決定（台帳 S54）: 枠は朝6時台から夜1時台まで（6:00〜翌1:59）・1日15本（枠は scripts/sns_plan.json）。上の古い枠の説明より sns_plan.json が正
 on:
   schedule:
     - cron: "*/10 * * * *"
+    - cron: "33 21 * * *"  # 6:33 日本時間（朝6時台の枠。2026-11-10 台帳 S54）
     - cron: "33 22 * * *"  # 7:33 日本時間（朝の枠）
     - cron: "3 4 * * *"    # 13:03 日本時間（昼の枠）
     - cron: "3 12 * * *"   # 21:03 日本時間（夜の枠）
+    - cron: "48 15 * * *"  # 0:48 日本時間（夜0時台の枠。台帳 S54。枠は scripts/sns_plan.json の bluesky.slots_jst・1日15本・6:00〜1:59）
+    - cron: "33 16 * * *"  # 1:33 日本時間（夜1時台の枠。台帳 S54）
   workflow_run:
     workflows: ["Auto Article Pipeline"]
     types: [completed]

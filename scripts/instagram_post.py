@@ -11,7 +11,7 @@
   Instagram は JPEG しか受け付けないので、サイトの画像は Cloudflare の画像変換（/cdn-cgi/image/format=jpeg/...）で JPEG にして渡す。
 - 文面は Threads・Bluesky と同じ予定の本文（bluesky_post.plan → sns_rules.autofix）。キャプションのリンクは押せないので
   URL は書かず、最後に「記事はプロフィールのリンクから」の1行（sns_rules.INSTAGRAM_LINK_LINE）。出す直前に sns_rules.enforce を通す。
-- 1日 PER_DAY 本（朝のまとめは数えない）・通常は前の投稿から GAP_MIN 分あける・深夜（1〜5時）は出さない・
+- 1日 PER_DAY 本（朝のまとめは数えない）・通常は前の投稿から GAP_MIN 分あける・深夜（2〜5時。台帳 S54）は出さない・
   content_publishing_limit（24時間で100本）を超えない。同じ記事は1回だけ（channels.instagram・自分の直近の投稿の文面も確かめる）。
 - 結果は channels.instagram（メディアの id）・instagramAt・instagramPermalink に記録。失敗は instagramFailed（他の SNS には影響しない）。
 

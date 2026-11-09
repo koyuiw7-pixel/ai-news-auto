@@ -187,7 +187,7 @@ def ok_for_fb(article: dict, fs: dict, posted: dict, recent: list[str]) -> bool:
 
 
 def breaking_targets(fs: dict, posted: dict, now: datetime, articles: list[dict], min_age_min: int = 0) -> list[dict]:
-    """枠の外ですぐ出す速報・災害の知らせ（新しい順）。深夜1〜5時は災害の知らせだけ"""
+    """枠の外ですぐ出す速報・災害の知らせ（新しい順）。深夜2〜5時は災害の知らせだけ"""
     if xp.breaking_today(fs, now) >= tp.BREAKING_PER_DAY:
         return []
     quiet = now.astimezone(tp.JST).hour in tp.BREAKING_QUIET_HOURS_JST

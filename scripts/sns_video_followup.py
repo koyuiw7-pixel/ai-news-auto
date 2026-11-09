@@ -46,7 +46,7 @@
   3. 品質ゲートに落ちた・時間切れ・置けなかった → その版は出さない・再挑戦しない（記録は state/sns_video.json）。
   4. 差し替えは予約の時刻の EDIT_LEAD_MIN 分前まで。差し替えたら Buffer から読み直し、予約の時刻と状態が変わっていないこと・
      動画が付いたことを確かめる（時刻が動いていたら元の時刻に戻す）。断られたら写真のまま（再挑戦しない）。
-  5. 動画の投稿を別に出すのは速報の後追い（フラグ）だけ。そのときも再送しない。深夜（1〜6時台）は出さない。動画の投稿どうしは40分以上あける。
+  5. 動画の投稿を別に出すのは速報の後追い（フラグ）だけ。そのときも再送しない。深夜（2〜5時台）は出さない。動画の投稿どうしは40分以上あける。
 """
 
 from __future__ import annotations
@@ -127,8 +127,9 @@ def published_at(rec: dict) -> datetime | None:
     return _parse(rec.get("sentAt") or rec.get("dueAt") or rec.get("postedAt") or "")
 
 
-# 動画の投稿を出してよい時間（日本時間）。深夜（1〜6時台）は出さず朝に回す（速報の静かな時間 BREAKING_QUIET_HOURS_JST と同じ考え）
-QUIET_HOURS_JST = range(1, 7)
+# 動画の投稿を出してよい時間（日本時間）。深夜（2〜5時台）は出さず朝に回す（速報の静かな時間 BREAKING_QUIET_HOURS_JST と同じ。
+# 2026-11-10 台帳 S54: 朝6時から夜1時台まで出す）
+QUIET_HOURS_JST = range(2, 6)
 MIN_GAP_MIN = 40  # 動画の投稿どうしの間隔（同じ時間帯に続けて出さない）
 AFTER_TEXT_MIN = 20  # （速報の後追いだけ）文面の投稿が出てから動画を出すまでの最短
 MAKE_LEAD_MIN = 20  # 予約の時刻まで、これだけあれば動画を作って差し替えに間に合う見込み（1本 約5〜10分）
@@ -144,7 +145,7 @@ def mergeable(rec: dict) -> bool:
 def can_post_now(state: dict, now: datetime) -> tuple[bool, str]:
     """静かな時間・前の動画の投稿からの間隔を見て、今この回で動画を1本出してよいか"""
     if now.astimezone(JST).hour in QUIET_HOURS_JST:
-        return False, "深夜（1〜6時台）は出さない"
+        return False, "深夜（2〜5時台）は出さない"
     last = max((_parse(r.get("postedAt", "")) for r in (state.get("videos") or {}).values() if r.get("status") == "posted" and r.get("postedAt")), default=None)  # 別に出した動画の投稿だけ
     if last and now - last < timedelta(minutes=MIN_GAP_MIN):
         return False, f"前の動画の投稿から{MIN_GAP_MIN}分たっていない"

@@ -1243,9 +1243,10 @@ BREAKING_PER_DAY = max(0, int(os.environ.get("BREAKING_PER_DAY") or 1000))
 BREAKING_MAX_AGE_MIN = 90
 # 通常の予約が速報記事に手を出さない時間（即時投稿の待ち時間より十分長く）
 BREAKING_RESERVE_HOURS = 3
-# 深夜（日本時間 1:00〜5:59）は即時投稿しない。その間に作った速報は 6:00 に出す
+# 深夜（日本時間 2:00〜5:59）は即時投稿しない。その間に作った速報は 6:00 に出す
 # （見張り番の Worker が 6:00 に breaking_post.yml を起動し、queued_for_morning の記事を出す。通常の予約には回さない）
-BREAKING_QUIET_HOURS_JST = range(1, 6)
+# 2026-11-10 オーナー決定（台帳 S54）: 夜は1時台（1:59）まで出す（1:00〜 → 2:00〜）
+BREAKING_QUIET_HOURS_JST = range(2, 6)
 BREAKING_MORNING_HOUR_JST = 6
 # 朝の分を出せる時間（6:00〜この時刻まで。Worker の起動が遅れても拾えるように）
 BREAKING_MORNING_UNTIL_JST = 9
@@ -1268,13 +1269,14 @@ def breaking_allowed(state: dict, now: datetime | None = None) -> bool:
 
 
 def queued_for_morning(article: dict, now: datetime | None = None) -> bool:
-    """深夜（日本時間 1〜5時）に出せなかった速報で、朝 6:00 に出す分か。
-    対象は前日 23:30〜当日 6:00 に作った記事（23:30〜1:00 は即時投稿がデプロイ待ちで深夜に入った分）。いまが 1:00〜9:00 のときだけ"""
+    """深夜（日本時間 2〜5時）に出せなかった速報で、朝 6:00 に出す分か。
+    対象は当日 1:30〜6:00 に作った記事（1:30〜2:00 は即時投稿がデプロイ待ちで深夜に入った分。静かな時間の始まりの30分前から）。
+    いまが 2:00〜9:00 のときだけ"""
     now = (now or datetime.now(timezone.utc)).astimezone(JST)
     if not (BREAKING_QUIET_HOURS_JST.start <= now.hour < BREAKING_MORNING_UNTIL_JST):
         return False
     morning = now.replace(hour=BREAKING_MORNING_HOUR_JST, minute=0, second=0, microsecond=0)
-    start = morning - timedelta(hours=6, minutes=30)
+    start = now.replace(hour=BREAKING_QUIET_HOURS_JST.start, minute=0, second=0, microsecond=0) - timedelta(minutes=30)
     generated = datetime.fromisoformat(article["generatedAt"]).astimezone(JST)
     return start <= generated < morning
 

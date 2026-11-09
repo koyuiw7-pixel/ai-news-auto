@@ -102,6 +102,12 @@ def variants(main: str) -> list[str]:
     return [v for v in out if v]
 
 
+def tag_options(tags: str) -> list[str]:
+    """ハッシュタグの付け方の候補（全部 → 1つずつ減らす → 無し）。入る中でいちばん多い形を使う（台帳 S53: 2〜3つ）"""
+    parts = [t for t in str(tags or "").split(" ") if t]
+    return [" ".join(parts[:n]) for n in range(len(parts), 0, -1)] + [""]
+
+
 def x_post(article: dict, state: dict | None = None, link_at: str = "reply") -> dict | None:
     """X の文面 {"text", "reply", "label", "link"}。link_at="reply"（S50）は本文にリンク無し・返信に「続き（◯◯）→ URL」。
     link_at="body"（2026-11-10 台帳 S52）は本文の最後に「続き（◯◯）→ URL」（utm_content=reader_body）・返信なし。使えなければ None"""
@@ -113,7 +119,7 @@ def x_post(article: dict, state: dict | None = None, link_at: str = "reply") -> 
         url = link(article["slug"], "x").replace(f"utm_content={UTM_CONTENT['x']}", f"utm_content={sns_rules.READER_BODY_UTM_CONTENT}")
         line = link_line(rec, url)
         for main in variants(rec["main"]):
-            for t in ([tags, tags.split(" ")[0], ""] if tags else [""]):
+            for t in tag_options(tags):
                 text = f"{main}\n\n{line}" + (f"\n{t}" if t else "")
                 if sns_rules.x_weight(text) > sns_rules.X_LIMIT:
                     continue
@@ -122,7 +128,7 @@ def x_post(article: dict, state: dict | None = None, link_at: str = "reply") -> 
         return None
     reply = link_line(rec, link(article["slug"], "x"))
     for main in variants(rec["main"]):
-        for text in ([f"{main}\n{tags}", f"{main}\n{tags.split(' ')[0]}", main] if tags else [main]):
+        for text in [f"{main}\n{t}" if t else main for t in tag_options(tags)]:
             if sns_rules.x_weight(text) > sns_rules.X_LIMIT:
                 continue
             if not sns_rules.check_reader_post("x", text, reply, article):

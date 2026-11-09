@@ -31,16 +31,20 @@ class SnsVolumeTest(unittest.TestCase):
                 self.assertEqual(cap(), 15)
                 got = slots()
                 self.assertEqual(len(got), 15)
-                minutes = [h * 60 + m for h, m in got]
+                # 2026-11-10 オーナー決定（台帳 S54）: 朝6時から夜1時台まで。並びは朝6時から（0時・1時台の枠は最後）
+                minutes = [sns_plan.day_order(hm) for hm in got]
+                self.assertEqual(minutes, sorted(minutes))
                 self.assertTrue(all(b - a >= sns_plan.min_gap().total_seconds() / 60 for a, b in zip(minutes, minutes[1:])))
-                self.assertGreaterEqual(minutes[0], 7 * 60)
-                self.assertLess(minutes[-1], 24 * 60)  # 2026-11-08 夜: Threads の枠を23時台まで（オーナー承認）
+                self.assertGreaterEqual(minutes[0], 0)  # 6:00 より前（2〜5時台）に枠は無い
+                self.assertLess(minutes[-1], 20 * 60)  # 最後の枠は 1:59 まで（6:00 から20時間）
 
     def test_variable_lowers_and_spreads_but_never_raises(self):
         with patch.dict(os.environ, {"SNS_PER_DAY": "5"}):
             self.assertEqual(sns_plan.x_daily_cap(), 5)
-            self.assertEqual(sns_plan.x_slots_jst(), [(7, 30), (12, 30), (16, 15), (20, 30), (23, 0)])  # 2026-11-08 夜: 夜に寄せた枠
-            self.assertEqual(sns_plan.slots_jst()[0], (7, 15))  # 朝のまとめの枠は残る
+            # 2026-11-10（台帳 S54）: 朝6時台から夜0時台まで1日の中でならす
+            self.assertEqual(sns_plan.x_slots_jst(), [(6, 30), (12, 30), (17, 30), (21, 30), (0, 30)])
+            self.assertIn((7, 15), sns_plan.slots_jst())  # 朝のまとめの枠は残る
+            self.assertEqual(len(sns_plan.slots_jst()), 5)
         with patch.dict(os.environ, {"SNS_PER_DAY": "40"}):
             self.assertEqual(sns_plan.daily_cap(), 15)
 

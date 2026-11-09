@@ -4,12 +4,15 @@ name: X post
 # （Threads と別に数える。台帳 S42）。枠に遅れたら次の枠の前（最後は23時）までに出す。速報・災害の知らせは breaking_post.yml からすぐ
 # （ここでも、出てから30分たっても X に出ていない速報は拾う）。枠の外・出すものが無い回は Buffer を呼ばない。
 # GitHub の schedule は遅れたり飛んだりするため、10分ごと・枠の少しあと（UTC で書く）・記事の自動処理が終わるたびにも動かす
+# 2026-11-10 オーナー決定（台帳 S54）: 枠は朝6時台から夜1時台まで（6:00〜翌1:59）・1日15本（枠は scripts/sns_plan.json）。上の古い枠の説明より sns_plan.json が正
 on:
   schedule:
     - cron: "*/10 * * * *"
+    - cron: "33 21 * * *"  # 6:33 日本時間（朝6時台の枠。2026-11-10 台帳 S54）
     - cron: "33 22 * * *"  # 7:33 日本時間（朝の枠）
     - cron: "33 3 * * *"   # 12:33 日本時間（昼の枠）
     - cron: "3 12 * * *"   # 21:03 日本時間（夜の枠）
+    - cron: "33 15 * * *"  # 0:33 日本時間（夜0時台の枠。台帳 S54。枠は scripts/sns_plan.json の x.slots_jst・1日15本・6:00〜1:59）
   workflow_run:
     workflows: ["Auto Article Pipeline"]
     types: [completed]

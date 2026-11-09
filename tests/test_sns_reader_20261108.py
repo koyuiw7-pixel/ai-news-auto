@@ -151,8 +151,9 @@ class ScheduleTest(unittest.TestCase):
         plan = json.loads((ROOT / "scripts" / "sns_plan.json").read_text("utf-8"))
         for key in ("x", "facebook", "bluesky"):
             block = plan[key]
-            self.assertEqual(block["window_end"], "23:59", key)
-            mins = [int(t[:2]) * 60 + int(t[3:]) for t in block["slots_jst"]]
+            # 2026-11-10 オーナー決定（台帳 S54）: X・Bluesky は夜1時台（1:59）まで。Facebook は今までどおり 23:59 まで
+            self.assertEqual(block["window_end"], "23:59" if key == "facebook" else "02:00", key)
+            mins = [sns_plan.day_order((int(t[:2]), int(t[3:]))) for t in block["slots_jst"]]
             self.assertEqual(len(mins), 15, key)
             self.assertTrue(all(b - a >= 45 for a, b in zip(mins, mins[1:])), key)
         self.assertIn("23:00", plan["x"]["slots_jst"])
