@@ -48,6 +48,7 @@ jobs:
       - name: Post
         env:
           THREADS_MODE: ${{ vars.THREADS_MODE }}
+          X_LINK_MODE: ${{ vars.X_LINK_MODE }}  # 記事のリンクの場所（空＝ab で本文／返信を半分ずつ・body・reply。台帳 S52）
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_LEDGER: x
           BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}  # 30日のソフトの上限（空なら Essentials の 7,000。scripts/buffer_budget.py）
