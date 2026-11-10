@@ -20,6 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import dedupe  # noqa: E402
 import llm  # noqa: E402
 import quality  # noqa: E402
+import updated_at  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -271,8 +272,7 @@ def apply_update(article: dict, data: dict, item: dict, now: datetime | None = N
     if all(dedupe._norm_url(s["url"]) != dedupe._norm_url(item["url"]) for s in sources):
         sources.append({"title": item["title"], "url": item["url"], "source": item["source_name"]})
     record["sources"] = sources
-    record.setdefault("updates", []).append(
-        {"at": now.isoformat(), "title": heading, "sourceUrl": item["url"], "sourceName": item["source_name"]}
-    )
-    record["updatedAt"] = now.isoformat()
+    # 更新日時と更新履歴は共通の関数で書く（続報＝事実が増えたときだけ進める。SEO A16）
+    updated_at.touch_updated(record, "followup", at=now.isoformat(), title=heading,
+                             source_url=item["url"], source_name=item["source_name"])
     return record

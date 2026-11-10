@@ -651,6 +651,10 @@ def apply_fields(record: dict, fields: dict) -> dict:
         record["todayActions"] = [s["action"] for s in fields["todaySteps"]][:3]
     record["depthAt"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     record.pop("museDepthNotes", None)
+    # 公式のページで確かめた事実の欄を足したので、公開の準備（公開から30分以内）でなければ更新日時と更新履歴を残す（SEO A16）
+    import updated_at  # noqa: PLC0415
+
+    updated_at.touch_depth(record, fields)
     return record
 
 

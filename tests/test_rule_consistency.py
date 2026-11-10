@@ -217,6 +217,7 @@ PROSE_WRITERS = {
 }
 # 文章を作らない（決まった欄だけ直す・記録だけ足す・読むだけで別のファイルに書く）もの。理由つき
 NON_PROSE = {
+    "updated_at.py": "更新日時（updatedAt）と更新履歴（updates）の欄だけ。本文は変えない。事実・訂正・続報・資料の読み直しのときだけ進める（SEO A16）",
     "canonical_names.py": "本文の名前の最初の1か所を「とは」の記事へのリンクにする（文字は変えない）・同じ名前の後の「とは」に重複の印だけ（台帳 A68）",
     "search_refresh.py": "書き直しは rewrite_types.rewrite（品質ゲートつき）に任せ、更新日時（updatedAt）と記録の欄だけ足す（台帳 A68）",
     "depth_fields.py": "一歩深くする欄（insight・officialDesk・todaySteps・cause・worries）だけ。本文は変えない。欄の数字・「」の名前・URL は読んだ公式ページとプログラムで照合し、無いものは外す（台帳 A66）",

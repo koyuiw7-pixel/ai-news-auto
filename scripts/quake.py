@@ -447,8 +447,12 @@ def write(article: dict, now: datetime) -> tuple[str, Path]:
         compare = {k: v for k, v in merged.items() if k not in ("generatedAt", "updatedAt", "updates")}
         if compare == {k: v for k, v in old.items() if k not in ("generatedAt", "updatedAt", "updates")}:
             return "same", path
-        merged["updatedAt"] = now.isoformat()
-        merged["updates"] = [*old.get("updates", []), {"at": now.isoformat(), "title": article["title"], "sourceUrl": article["sourceUrl"], "sourceName": "気象庁"}][-20:]
+        # 続報（震度・津波の情報が変わった）だけ更新日時を進める。共通の関数（SEO A16）
+        import updated_at  # noqa: PLC0415
+
+        merged["updates"] = list(old.get("updates", []))
+        updated_at.touch_updated(merged, "followup", at=now.isoformat(), title=article["title"],
+                                 source_url=article["sourceUrl"], source_name="気象庁")
         # 夜間に送れなかった安全の通知は、続報で警報が出たら改めて送れるよう safetyAlert は最新の値
         path.write_text(json.dumps(merged, ensure_ascii=False, indent=2) + "\n", "utf-8")
         return "updated", path

@@ -32,6 +32,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import search_protected  # noqa: E402
+import updated_at  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -103,7 +104,8 @@ def focus_for(row: dict) -> str:
 def stamp(new: dict, row: dict, now: datetime) -> dict:
     """書き直した記事に更新日時（dateModified）と記録を付ける。題名・URL・公開日時はそのまま"""
     at = now.astimezone(timezone.utc).isoformat(timespec="seconds")
-    new["updatedAt"] = at
+    # 公式の資料を取り直して本文を書き直したので、更新日時を進めて更新履歴に残す（共通の関数。SEO A16）
+    updated_at.touch_updated(new, "refresh", at=at)
     new["searchRefreshedAt"] = at
     new["searchRefresh"] = {"query": row.get("query", ""), "position": row.get("position"), "impressions": row.get("impressions")}
     return new

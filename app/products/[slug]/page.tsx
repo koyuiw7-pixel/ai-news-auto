@@ -227,6 +227,11 @@ export default async function ProductPage({ params }: Props) {
             <span className="index-num">
               最終更新 <time dateTime={profile.updatedAt}>{profile.updatedAt.slice(0, 10).replaceAll("-", "/")}</time>
             </span>
+            {profile.checkedAt.slice(0, 10) > profile.updatedAt.slice(0, 10) && (
+              <span className="index-num">
+                公式ページで確認 <time dateTime={profile.checkedAt}>{profile.checkedAt.slice(0, 10).replaceAll("-", "/")}</time>
+              </span>
+            )}
           </p>
           <h1 className="t-h1 mt-2">
             <Phrases text={heading} />

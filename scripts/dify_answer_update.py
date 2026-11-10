@@ -18,6 +18,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import dify_search_watch as watch
+import updated_at
 
 ROOT = Path(__file__).resolve().parents[1]
 GUIDES = {"dify-free-api-cost", "dify-1-18-startup-check"}
@@ -290,7 +291,8 @@ def apply_review(reviewed: dict, state: dict, root: Path = ROOT, dry_run: bool =
                "sourceId": expected["source"]["id"], "sourceUrl": current["sourceUrl"], "sourceHash": current["hash"],
                "articleBeforeHash": digest(original), "paths": paths, "rationale": review["rationale"].strip()}
     updated.setdefault("answerUpdateHistory", []).append(history)
-    updated["updatedAt"] = applied
+    # 公式の資料で答えを直した（訂正）ので更新日時を進める。ガイドは自前の履歴（answerUpdateHistory）を持つ（SEO A16）
+    updated_at.touch_updated(updated, "correction", at=applied, note=False)
     # 部分確認を記事全体の再確認と偽らない。checkedAt/needsReview/sources/保護は元のまま。
     if not dry_run:
         if path.read_bytes() != original:

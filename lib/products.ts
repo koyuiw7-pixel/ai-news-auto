@@ -239,7 +239,10 @@ export type ProductProfile = {
   /** 題名に製品名が出てくる記事（「最新の関連記事」。少なければ関連記事全体） */
   latest: ArticleSummary[];
   relevance: number;
+  /** 中身が変わった日時（製品の説明か公式の料金が変わった日）。構造化データの dateModified と「最終更新」に使う（SEO A16） */
   updatedAt: string;
+  /** 公式ページで確かめた日（中身が同じでも毎日進む。「更新」とは言わない） */
+  checkedAt: string;
 };
 
 function pricingJson(): Record<string, { plans?: { id: string; prices?: unknown[] }[]; models?: { id: string; status?: string }[] } | undefined> {
@@ -368,7 +371,10 @@ export function productProfile(product: Product): ProductProfile {
     liveArticles: articles.length,
     features: features.length + facts.length,
   });
-  const dates = [product.updatedAt, pricingTable?.checkedAt ?? "", japan?.checkedAt ?? ""].filter(Boolean).sort();
+  // 「確かめた日」と「変わった日」を分ける（毎日の確認だけで「最終更新」を進めない。SEO A16）
+  const pricingChanged = pricingTable ? (getPricingProduct(pricingTable.product)?.updatedAt ?? "") : "";
+  const changed = [product.updatedAt, pricingChanged].filter(Boolean).sort();
+  const checked = [pricingTable?.checkedAt ?? "", japan?.checkedAt ?? ""].filter(Boolean).sort();
   const profile: ProductProfile = {
     product,
     source,
@@ -390,7 +396,8 @@ export function productProfile(product: Product): ProductProfile {
     articles,
     latest: titledArticles(product, articles),
     relevance: productRelevance(articles.map((a) => a.publishedAt), new Date()),
-    updatedAt: dates[dates.length - 1],
+    updatedAt: changed[changed.length - 1],
+    checkedAt: checked[checked.length - 1] ?? "",
   };
   profiles.set(product.slug, profile);
   return profile;
