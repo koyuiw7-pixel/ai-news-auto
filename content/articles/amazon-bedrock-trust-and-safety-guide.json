@@ -1,0 +1,206 @@
+{
+  "slug": "amazon-bedrock-trust-and-safety-guide",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/",
+  "sourceName": "AWS ブログ（日本）",
+  "title": "Amazon Bedrockのログは標準でオフ　不正検出時の24時間以内レスポンスなど運用上の注意点",
+  "seoTitle": "Amazon Bedrockの安全運用ガイド　ログ有効化と不正対応",
+  "threadsPost": "Amazon BedrockでAIアプリを開発している人に、知っておいてほしい話です。\n\nBedrockの呼び出しログはデフォルトでオフになっています。\n安全に動かすにはログを有効にし、AWSから不正連絡が来たら24時間以内に返信する必要があります。\n\n自社アプリのログ監視やセキュリティ設定、定期的に確認していますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "自社アプリのログ監視やセキュリティ設定、定期的に確認していますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "AIの誤回答を防ぐ厳格なフィルタと自由な発想、開発で優先したいのはどちらですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "AWSはAmazon Bedrockを活用したAIアプリケーションの信頼性と安全性を高める運用手順を整理しました。基盤モデルの呼び出しログは標準で無効になっているため、利用者が明示的に設定する必要があります。不正利用の報告を受けた際は24時間以内の返信が求められるため、運用体制の確認が大切です。",
+  "description": "AWSがAmazon Bedrockを活用したアプリケーションの信頼性と安全性を高める運用設計指針を公表しました。デフォルトでオフとなっているモデル呼び出しログの有効化や、AWS Trust & Safetyからの不正利用通告に対する24時間以内の初動対応手順などを整理しています。",
+  "keywords": [
+    "Amazon Bedrock",
+    "AWS",
+    "責任あるAI",
+    "Amazon CloudWatch",
+    "Amazon Bedrock Guardrails",
+    "不正検出",
+    "AIセキュリティ",
+    "ログ監視"
+  ],
+  "tags": [
+    "Amazon Bedrock",
+    "AWS",
+    "生成AI",
+    "セキュリティ",
+    "クラウド"
+  ],
+  "highlights": [
+    "Amazon Bedrockの安全運用に関する注意点が示されました",
+    "モデル呼び出しログは初期状態でオフのため、CloudWatch LogsやS3での保存設定が必要です。",
+    "AWSから不正利用の報告を受けた際は、24時間以内の受領連絡と構造的な問題の解消が求められます。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "従量課金",
+    "free": false,
+    "audience": "AIアプリ開発者",
+    "take": "Bedrockを使う開発者は、まずログ保存を有効にし、緊急連絡を受け取れる体制を整えるとよいでしょう。",
+    "judgedAt": "2026-11-10T00:28:18.795383+00:00"
+  },
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "BedrockでAIサービスを運用する際のリスク管理と適切な設計手順を把握できます。"
+    ]
+  },
+  "body": "Amazon Bedrock（複数のAIモデルを統一APIで呼び出せるクラウドサービス）を使ってアプリケーションを運用する企業や開発者は、安全対策を再確認する必要があります。\n\n標準状態では利用ログの記録が停止しています。そのため、手動でログを有効にする作業が求められます。\n\n## モデル呼び出しログは初期オフ　CloudWatch連携で監視体制を整える\n\nAWSが示す運用指針によると、責任あるAIの実践には安全対策を組み込む必要があります。その段階は「設計・開発」「デプロイ」「運用」の3つです。\n\n特に注意が必要なのが、利用状況を把握するためのログ機能です。\n\nAmazon Bedrockでは、デフォルトでログ記録がオフに設定されています（AWS公式ブログ、11/10確認）。\n\n問題が起きた際に追跡できるよう、利用者はログ記録を有効にする必要があります。出力先には Amazon CloudWatch Logs または Amazon S3 を指定します。\n\nログを設定すると、リクエストの量や応答の速さ、コンテンツフィルタリングが動いた回数などの情報を取得できます。\n\nまた、Amazon Bedrock Guardrails（望ましくないトピックや機密情報を遮断する機能）を設定すると、ハルシネーション（AIがもっともらしい嘘をつく現象）を防ぐコントロールも設定できます。\n\n## AWSからの不正報告には24時間以内に返信　根本原因の修正が必須\n\n安全対策を施していても、意図しない不正利用が発生するケースはあります。\n\nAWS Trust & Safety（安全運用チーム）から不正利用の報告を受けた場合、開発者は以下の対応手順を実行する必要があります。\n\n**不正利用の連絡を受けた際の4ステップ**\n\n**1. 24時間以内の受領連絡**\n報告メールを受け取ったら、24時間以内に受領した旨をAWSに返信します。調査中の場合は完了予定日を伝えます。\n\n**2. 全体ログの調査**\n提示されたプロンプトIDだけでなく、アプリケーション全体の入力データや利用パターンをログから追跡します。\n\n**3. 構造的な修正と対処**\n該当ユーザーの利用停止にとどまらず、不正利用を許したシステム側の構造的な脆弱性を修正します。\n\n**4. 経過と結果の報告**\n調査結果と実施した是正措置の内容をAWS Trust & Safetyに報告します。\n\n連絡に返答しない場合や利用規約違反が改善されない場合、AWSによってモデルやBedrockへのアクセスが停止される可能性があります（AWS Bedrockドキュメント、11/10確認）。\n\n**編集部の見方**\nAIアプリケーションの本番運用では、機能開発だけでなく不正検出時のオペレーション設計が不可欠です。あらかじめ連絡窓口とログ調査の手順を決めておくことが、安定稼働につながります。\n\n## Amazon Bedrockを契約・運用する管理者がすること\n\nAmazon Bedrockを導入している企業の管理者は、次の準備を進めてください。\n\n管理コンソールまたはAPIを使用し、モデル呼び出しログの出力設定が完了しているか確認します。\n\nAWSアカウントに登録されている通知先メールアドレスが、担当部署で常時監視されているかチェックしてください。",
+  "easy": "## ひとことで言うと\n\nAmazon BedrockでAIアプリを作るときは、安全に動かすためのログ設定とルール決めが必要です。\n\nログ機能は最初オフになっているため、自分でオンにする必要があります。\n\n## ログ監視と不正対応の流れ\n\nAIがどんな回答をしたか記録するログ機能は、設定しないと動きません。\n\nAWSから「不正な使われ方があった」と連絡が来たら、24時間以内に返信して調べるルールになっています。",
+  "channel": "AWS ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "aws-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Amazon Bedrock を活用したアプリケーションの設計に信頼と安全性を組み込む",
+  "publishedAt": "2026-11-10T00:18:41+00:00",
+  "generatedAt": "2026-11-10T00:28:18.795371+00:00",
+  "thumbnail": "https://d2908q01vomqb2.cloudfront.net/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f/2026/10/16/Pixabay-lock2-1260x630-1.jpg",
+  "model": "gemini-3.5-flash",
+  "affiliates": [],
+  "newsType": "product",
+  "qualityScore": 74,
+  "sourcePublishedAt": "2026-11-10T00:18:41+00:00",
+  "detectedAt": "2026-11-10T00:26:57+00:00",
+  "speedMinutes": 14,
+  "layout": "noir",
+  "summaryLine": "Amazon Bedrockの安全運用に関する注意点が示されました",
+  "insight": [
+    {
+      "text": "Amazon Bedrockのログ記録は標準でオフです。利用者が有効にし、出力先はAmazon S3かAmazon CloudWatch Logsを指定します。",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/"
+    },
+    {
+      "text": "不正利用の報告を受けたら、24時間以内に受領を連絡します。調査が続く場合は、調査完了までの見込み日数を伝えます。",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/"
+    },
+    {
+      "text": "調査結果を報告する際は、可能であればプロンプトの例とビジネスのユースケースも含めるよう書かれています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "AWS 不正使用の報告",
+      "url": "https://repost.aws/ja/knowledge-center/aws-abuse-report",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/",
+      "note": "報告には、プロンプトの例とビジネスのユースケースを含めるとよいとされています。"
+    },
+    {
+      "name": "Amazon Bedrock ユーザーガイド（モデル呼び出しログ）",
+      "url": "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/model-invocation-logging.html",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/",
+      "note": "コンソールまたはAPIで有効化でき、出力先はAmazon S3またはAmazon CloudWatch Logsを指定できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Amazon Bedrockのモデル呼び出しログが有効か、出力先を確認する",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/",
+      "steps": [
+        "管理コンソールまたはAPIで設定を開く",
+        "モデル呼び出しログの出力設定があるか確かめる",
+        "出力先がS3かCloudWatch Logsか確認する"
+      ],
+      "url": "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/model-invocation-logging.html"
+    },
+    {
+      "action": "AWSアカウントの通知先メールが、担当部署で常時見られているか確かめる",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/",
+      "steps": [
+        "AWSアカウントに登録の通知先メールを確認",
+        "担当部署が常時監視しているか確かめる",
+        "監視されていなければ担当を決める"
+      ]
+    },
+    {
+      "action": "不正利用の報告が届いたら、24時間以内に受領の返信を送る",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/",
+      "steps": [
+        "報告メールを受け取った日時を控える",
+        "24時間以内にAWSへ受領の旨を返信",
+        "調査中なら完了までの見込み日数を伝える"
+      ],
+      "url": "https://repost.aws/ja/knowledge-center/aws-abuse-report"
+    }
+  ],
+  "cause": {
+    "text": "原因は書かれていません。ページは、安全対策を施していても意図しない不正利用が起きる可能性があり、新たなリスクが生じるなかで不正使用は発生しうると説明しています。",
+    "status": "background",
+    "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/"
+  },
+  "worries": [
+    {
+      "q": "Amazon Bedrockのログは最初から記録されているの？",
+      "a": "いいえ。デフォルトではログ記録はオフで、利用者がオンにする必要があります。コンソールまたはAPIで有効化でき、出力先はAmazon S3かAmazon CloudWatch Logsです。",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/",
+      "action": "管理コンソールかAPIで、モデル呼び出しログの設定がオンになっているか確かめる。"
+    },
+    {
+      "q": "ログには何が記録され、どんな監視に使えるの？",
+      "a": "ログを設定すると、リクエストの量、レスポンスのレイテンシー、拒否率、コンテンツフィルタリングのトリガーなどを取得できると書かれています。不正使用が疑われるパターンの特定に役立つとされています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/",
+      "action": "CloudWatchでリクエスト量や拒否率の推移を見て、普段と違う動きを確認する。"
+    },
+    {
+      "q": "不正利用の報告が届いたら、まず何をすればいい？",
+      "a": "24時間以内に、報告を受け取った旨をAWSに連絡します。調査が続いている場合は、調査完了までの見込み日数も伝えます。",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/",
+      "action": "報告メールを受け取ったら、24時間以内に受領の返信を送る。"
+    },
+    {
+      "q": "不正が1件見つかったら、その人だけ止めれば十分？",
+      "a": "十分とは限らないとされています。1人のユーザーの不正が、継続的な不正につながりかねない安全機構の弱点を示している可能性があるため、アプリ全体の入力データや利用パターンを調べ、構造的な問題を直すことが求められています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/",
+      "action": "ログで、プロンプトIDだけでなくアプリ全体の入力と利用パターンを調べる。"
+    },
+    {
+      "q": "違反がないと判断したら、どう説明すればいい？",
+      "a": "違反がないと判断した場合は、その結論に至った経緯を説明するよう書かれています。可能であれば、プロンプトの例とビジネスのユースケースも含めるとよいとされています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/",
+      "action": "違反はないと考える根拠を、プロンプト例と用途を添えて整理しておく。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ログはオフのまま？出力先の決め方",
+    "cause": "不正利用は、なぜ起きるのか",
+    "steps": "管理者が今日確かめること",
+    "desk": "報告と設定の、公式の入口",
+    "worries": "ログは何を残す？報告後は？"
+  },
+  "todayActions": [
+    "Amazon Bedrockのモデル呼び出しログが有効か、出力先を確認する",
+    "AWSアカウントの通知先メールが、担当部署で常時見られているか確かめる",
+    "不正利用の報告が届いたら、24時間以内に受領の返信を送る"
+  ],
+  "depthAt": "2026-11-10T00:31:53+00:00",
+  "imageFocus": {
+    "x": 0.498,
+    "y": 0.5,
+    "box": [
+      0.0,
+      0.0,
+      0.997,
+      1.0
+    ],
+    "ar": 2.0,
+    "src": "https://d2908q01vomqb2.cloudfront.net/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f/2026/10/16/Pixabay-lock2-1260x630-1.jpg"
+  }
+}

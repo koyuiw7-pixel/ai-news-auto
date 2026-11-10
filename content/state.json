@@ -6605,6 +6605,12 @@
       "slug": "meal-cancel-skip-vs-cannot-eat-nli",
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87263?site=nli"
     },
+    "311efa190498b7d5": {
+      "at": "2026-11-10T00:27:50.261696+00:00",
+      "reason": "dedupe: 固有名詞が一致（8tx・max・tpu）: google-tpu-8tx-8i-max",
+      "skipped": true,
+      "url": "https://cloud.google.com/blog/ja/topics/ai-infrastructure/tpu-8tx-and-tpu-8i-max/"
+    },
     "31239c46ad6a8bb6": {
       "at": "2026-11-03T01:27:34.744422+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -9391,6 +9397,12 @@
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/operating-in-the-agentic-era-aiops-sessions-at-reinvent-2026/"
     },
+    "5da3efca3ab35d22": {
+      "at": "2026-11-10T00:29:25.912402+00:00",
+      "reason": "prefilter: 告知・お知らせ系",
+      "skipped": true,
+      "url": "https://aws.amazon.com/jp/blogs/news/why-policy-in-amazon-bedrock-agentcore-chose-cedar-for-securing-agentic-workflows/"
+    },
     "5da7346fbf316db3": {
       "at": "2026-10-27T03:05:10.757731+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（世界市場）",
@@ -9526,14 +9538,6 @@
       "reason": "short text 271",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202611/02daijin_nimei.html"
-    },
-    "5ffbb0f8c3ab7480": {
-      "at": "2026-10-27T00:29:17.163979+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "lifestyle",
-      "slug": "peppy-natural-wood-cat-tower",
-      "url": "https://www.atpress.ne.jp/news/639000"
     },
     "5ffe8be254533625": {
       "at": "2026-10-30T03:02:33.801915+00:00",
@@ -15212,6 +15216,17 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/111118_00087.html"
     },
+    "b73537a5f0ed2718": {
+      "at": "2026-11-10T00:29:25.320338+00:00",
+      "costUsd": 0.016,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash",
+      "score": 74,
+      "section": "ai",
+      "slug": "amazon-bedrock-trust-and-safety-guide",
+      "url": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/"
+    },
     "b749fcda386da4a4": {
       "at": "2026-10-30T06:51:20.843102+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -16610,14 +16625,6 @@
       "reason": "quality: easy_markdown が「## ひとことで言うと」から始まっていない",
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/shokuhin/wasyoku/261030.html"
-    },
-    "cf6309826c6639bc": {
-      "at": "2026-10-27T00:21:12.643117+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "lifestyle",
-      "slug": "fpt-servicenow-service-provider-2026",
-      "url": "https://prtimes.jp/main/html/rd/p/000000141.000017750.html"
     },
     "cf750d0c8feca53f": {
       "at": "2026-10-30T04:22:10.696193+00:00",
@@ -20110,79 +20117,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-07T23:55:38.467241+00:00",
-      "attempt": 0,
-      "id": "5cecc12e376b047e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 46.5字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 105.2,
-        "avg_sentence": 46.5,
-        "long_share": 0.233,
-        "max_paragraph": 150,
-        "paragraphs": 19,
-        "sentences": 43
-      },
-      "score": 88,
-      "source": "github-blog",
-      "title": "Beyond code generation: A developer’s guide to agentic engineering"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T00:33:24.525042+00:00",
-      "attempt": 1,
-      "id": "1007c961b5d3e491",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 45.2字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 135.6字・最長 230字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 135.6,
-        "avg_sentence": 45.2,
-        "long_share": 0.231,
-        "max_paragraph": 230,
-        "paragraphs": 13,
-        "sentences": 39
-      },
-      "score": 92,
-      "source": "aws-ml-blog",
-      "title": "SageMaker Inference now supports Multi-Instance GPU to maximize GPU utilization ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（MIG・GKE・RTX）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T00:33:57.143380+00:00",
-      "attempt": 0,
-      "id": "1007c961b5d3e491",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 43.5字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 84.8,
-        "avg_sentence": 43.5,
-        "long_share": 0.205,
-        "max_paragraph": 192,
-        "paragraphs": 20,
-        "sentences": 39
-      },
-      "score": 90,
-      "source": "aws-ml-blog",
-      "title": "SageMaker Inference now supports Multi-Instance GPU to maximize GPU utilization ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（MIG・GKE・RTX）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-08T01:46:30.855528+00:00",
@@ -27396,6 +27330,80 @@
         "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
         "初めて出たところで言い換えていない略語（CTI）",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T00:28:18.975264+00:00",
+      "attempt": 1,
+      "id": "b73537a5f0ed2718",
+      "kind": "ai",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す"
+      ],
+      "readability": {
+        "avg_paragraph": 59.4,
+        "avg_sentence": 54.0,
+        "long_share": 0.318,
+        "max_paragraph": 100,
+        "paragraphs": 20,
+        "sentences": 22
+      },
+      "score": null,
+      "source": "aws-japan-blog",
+      "title": "Amazon Bedrock を活用したアプリケーションの設計に信頼と安全性を組み込む",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 54.0字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T00:29:03.049257+00:00",
+      "attempt": 1,
+      "id": "b73537a5f0ed2718",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 59.5,
+        "avg_sentence": 54.1,
+        "long_share": 0.318,
+        "max_paragraph": 102,
+        "paragraphs": 20,
+        "sentences": 22
+      },
+      "score": 88,
+      "source": "aws-japan-blog",
+      "title": "Amazon Bedrock を活用したアプリケーションの設計に信頼と安全性を組み込む",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 54.1字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T00:29:25.306178+00:00",
+      "attempt": 0,
+      "id": "b73537a5f0ed2718",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 60.2,
+        "avg_sentence": 48.2,
+        "long_share": 0.2,
+        "max_paragraph": 100,
+        "paragraphs": 20,
+        "sentences": 25
+      },
+      "score": 74,
+      "source": "aws-japan-blog",
+      "title": "Amazon Bedrock を活用したアプリケーションの設計に信頼と安全性を組み込む",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 48.2字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
