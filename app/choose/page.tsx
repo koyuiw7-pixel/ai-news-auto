@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getAllChooseGuides } from "@/lib/choose";
 import { guideShortName, LIFE_COMPARE_SLUGS, lifeCompareGuide } from "@/lib/buying-guides";
 import { siteConfig } from "@/site.config";
+import { pageShareImage } from "@/lib/page-share";
 
 /**
  * 選び方ガイドの一覧（/choose。2026-11-10 M6）。今までは /choose/* だけがあり、/choose は 404 だった。
@@ -20,7 +21,9 @@ export const metadata: Metadata = {
     url: "/choose",
     title: "選び方ガイドの一覧",
     description: "暮らしとお金の比較ページと、AIの選び方ガイドの一覧です。",
+    images: [{ url: pageShareImage("choose"), width: 1200, height: 630, alt: "選び方ガイドの一覧" }],
   },
+  twitter: { card: "summary_large_image", images: [pageShareImage("choose")] },
 };
 
 export default function ChooseIndexPage() {

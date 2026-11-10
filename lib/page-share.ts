@@ -31,6 +31,14 @@ export const PAGE_SHARE = {
   about: { heading: "運営者情報", lines: ["サイソクニュースの運営者と", "記事の作り方・編集方針"], footer: "公式発表から最短数分で" },
   "editorial-policy": { heading: "編集方針", lines: ["記事の作り方・AIの使い方", "事実の確かめ方・訂正のしかた"], footer: "サイソクニュースの約束" },
   corrections: { heading: "訂正履歴", lines: ["公開後に訂正した記事の一覧", "いつ・何を直したかを公開"], footer: "サイソクニュースの約束" },
+  // 2026-11-10（SEO A15）: トップ・一覧・発信元などのページも、ページ名入りのシェア画像を出す
+  home: { heading: "サイソクニュース", lines: ["暮らしとお金の新しい動きを、公式発表から最速で", "自分は対象か・いくらか・何をすればいいか"], footer: "最速で、要点だけ。" },
+  articles: { heading: "新着の記事", lines: ["公式発表から最短数分で記事に", "値段・手続き・給付・税の新しい動き"], footer: "最速で、要点だけ。" },
+  events: { heading: "イベントの日程", lines: ["AI・テックの大きな発表会を日本時間で", "基調講演の時刻と発表の要点"], footer: "サイソクの行事ガイド" },
+  choose: { heading: "選び方ガイド", lines: ["格安SIM・光回線・電気・保険の窓口など", "公式の情報で比べて選ぶ"], footer: "サイソクのガイド" },
+  people: { heading: "人物のまとめ", lines: ["発表の場に立つ人の経歴と", "その人に関するニュース"], footer: "公式の発表で確かめた経歴" },
+  roundups: { heading: "値上げ・障害・リコールの一覧", lines: ["暮らしに関わる発表を種類ごとに", "公式の発表をもとに毎日更新"], footer: "サイソクの一覧" },
+  hub: { heading: "サイソクニュース", lines: ["発表元・話題・ジャンルごとの最新ニュース", "公式発表をもとに要点3つで"], footer: "最速で、要点だけ。" },
 } satisfies Record<string, PageShare>;
 
 export type PageShareKey = keyof typeof PAGE_SHARE;

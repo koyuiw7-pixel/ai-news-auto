@@ -5,6 +5,7 @@ import AssetShell, { Crumbs, QHeading } from "@/components/assets/AssetShell";
 import Timeline from "@/components/Timeline";
 import { getAllPeople, getPerson, personPage } from "@/lib/people";
 import { siteConfig } from "@/site.config";
+import { pageShareImage } from "@/lib/page-share";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -35,7 +36,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     ...(indexable ? {} : { robots: { index: false, follow: true } }),
     alternates: { canonical: `/people/${person.slug}` },
-    openGraph: { siteName: siteConfig.siteName, locale: siteConfig.locale, type: "profile", url: `/people/${person.slug}`, title, description },
+    openGraph: { siteName: siteConfig.siteName, locale: siteConfig.locale, type: "profile", url: `/people/${person.slug}`, title, description,
+      images: [{ url: pageShareImage("people"), width: 1200, height: 630, alt: title }] },
+    twitter: { card: "summary_large_image", images: [pageShareImage("people")] },
   };
 }
 

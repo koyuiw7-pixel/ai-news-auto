@@ -46,9 +46,12 @@ export const metadata: Metadata = {
     // Facebook・LINE でシェアするとトップのシェアとして扱われていた）。トップの og:url は app/page.tsx。
     // og:title・og:description も置かない（同じ理由で、下層ページがトップの題名でシェアされていた。2026-11-03）。
     // 置かないページでは SNS がページの <title>・説明文を使う。主な固定ページは lib/page-share.ts で題名・画像を出す
+    // openGraph を書かないページ（ジャンル・タグ・発信元・企業の一覧など）の既定のシェア画像（SEO A15。2026-11-10）
+    images: [{ url: "/og/hub", width: 1200, height: 630, alt: siteConfig.siteName }],
   },
   twitter: {
     card: "summary_large_image",
+    images: ["/og/hub"],
   },
   // Google Discover の大きな写真の条件（2026-11-04 台帳 W32）。googlebot だけでなく robots にも出す（Google の案内の書き方）。
   // 抜粋・動画の下見の長さも制限しない（-1）

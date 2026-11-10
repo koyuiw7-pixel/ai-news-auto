@@ -55,3 +55,48 @@ test('[W32] 記事ページの og:image と X のカードは同じ順番の関�
   assert.match(page, /images: shareImages\(article, cover, title\),/);
   assert.match(page, /images: shareImages\(article, cover, title\)\.map/);
 });
+
+test('[A15] 公式の写真は本当の幅・高さを書く（1,200px 未満の写真に 1200 と書かない）', () => {
+  const { shareImages } = load('lib/share-image.ts');
+  const photo = 'https://ai-tech-express.jp/img/kao-1a2b3c4d.jpg';
+  const small = shareImages({ thumbnail: photo, imageCredit: { kind: 'official', width: 800, height: 450 } }, '/cover/kao?v=1', '題名');
+  assert.equal(small[0].width, 800);
+  assert.equal(small[0].height, 450);
+  const big = shareImages({ thumbnail: photo, imageCredit: { kind: 'official', width: 1200, height: 675 } }, '/cover/kao?v=1', '題名');
+  assert.deepEqual([big[0].width, big[0].height], [1200, 675]);
+});
+
+test('[A15] トップ・ガイド・行事・製品・選び方・一覧のページに og:image（1200×630）', () => {
+  const layout = read('app/layout.tsx');
+  assert.match(layout, /images: \[\{ url: "\/og\/hub", width: 1200, height: 630/);
+  assert.match(read('app/page.tsx'), /pageShareImage\("home"\)/);
+  assert.match(read('app/guides/[slug]/page.tsx'), /withItemImage\(\{[\s\S]*?"guide", howto\.slug/);
+  assert.match(read('app/events/[slug]/page.tsx'), /"event", event\.slug/);
+  assert.match(read('app/events/page.tsx'), /pageShareImage\("events"\)/);
+  assert.match(read('app/choose/[slug]/page.tsx'), /"choose", guide\.slug/);
+  assert.match(read('app/choose/page.tsx'), /pageShareImage\("choose"\)/);
+  assert.match(read('app/products/[slug]/page.tsx'), /itemShareImage\("product", product\.slug/);
+  assert.match(read('app/articles/view.tsx'), /pageShareMetadata\("articles"/);
+  assert.match(read('app/people/page.tsx'), /withPageShare\("people"/);
+  assert.match(read('app/roundups/page.tsx'), /withPageShare\("roundups"/);
+  // 画像はビルド時に描く（Workers で任意の題名を描かない）
+  const route = read('app/og/[key]/route.tsx');
+  assert.match(route, /dynamic = "force-static"/);
+  assert.match(route, /dynamicParams = false/);
+  assert.match(route, /allShareKeys\(\)/);
+});
+
+test('[A15] ガイドの題名は「？」「：」で見出しと下の行に分け、かっこの中や英語の空白では分けない', () => {
+  const ts2 = require('typescript');
+  const src = ts2.transpileModule(read('lib/page-share-items.ts'), { compilerOptions: { target: ts2.ScriptTarget.ES2022, module: ts2.ModuleKind.CommonJS } }).outputText;
+  const m = new Module(path.join(root, 'lib/page-share-items.ts'), module);
+  m.paths = module.paths;
+  const stub = new Proxy({}, { get: () => () => undefined });
+  m.require = (id) => (id.startsWith('@/') ? stub : require(id));
+  m._compile(src, m.id);
+  const { splitTitle } = m.exports;
+  assert.deepEqual(splitTitle('児童手当はいくら？月1万円・1万5千円、高校生年代まで'), { heading: '児童手当はいくら？', rest: '月1万円・1万5千円、高校生年代まで' });
+  assert.deepEqual(splitTitle('ChatGPTで画像生成するやり方：無料版で何枚まで作れるか、公式ページで確認'), { heading: 'ChatGPTで画像生成するやり方', rest: '無料版で何枚まで作れるか、公式ページで確認' });
+  assert.equal(splitTitle('NotebookLM（Gemini Notebook）の使い方は？無料の上限と料金の違いもやさしく解説').rest, '');
+  assert.deepEqual(splitTitle('短い題名'), { heading: '短い題名', rest: '' });
+});

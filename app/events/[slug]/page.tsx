@@ -20,6 +20,7 @@ import {
   type TechEvent,
 } from "@/lib/events";
 import { siteConfig } from "@/site.config";
+import { withItemImage } from "@/lib/page-share-items";
 import { Phrases } from "@/lib/highlight";
 import { faqPageJsonLd } from "@/lib/structured-data";
 
@@ -69,12 +70,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : `${event.nameJa}は${localDateRange(event)}（現地時間）に${event.location.split(",")[0]}で開催。${
     keynote?.startUtc ? `基調講演は日本時間${formatJst(keynote.startUtc)}から。` : ""
   }公式に決まっていることと、発表内容をまとめます。`;
-  return {
+  // 行事ごとのシェア画像（SEO A15。lib/page-share-items.ts）
+  return withItemImage({
     title: titleOf(event),
     description,
     alternates: { canonical: `/events/${event.slug}` },
     openGraph: { siteName: siteConfig.siteName, locale: siteConfig.locale, type: "article", url: `/events/${event.slug}`, title: titleOf(event), description },
-  };
+  }, "event", event.slug, titleOf(event));
 }
 
 const day = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numeric", weekday: "short", timeZone: "Asia/Tokyo" });

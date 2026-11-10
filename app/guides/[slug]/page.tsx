@@ -16,6 +16,7 @@ import { Highlight } from "@/lib/highlight";
 import { getAllHowtos, getHowto } from "@/lib/howto";
 import { siteConfig } from "@/site.config";
 import { stripListNumber } from "@/lib/list-number";
+import { withItemImage } from "@/lib/page-share-items";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -30,12 +31,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const howto = getHowto(slug);
   if (howto) {
-    return {
+    // ガイドごとのシェア画像（SEO A15。lib/page-share-items.ts）
+    return withItemImage({
       title: howto.seoTitle,
       description: howto.description,
       alternates: { canonical: `/guides/${howto.slug}` },
       openGraph: { siteName: siteConfig.siteName, locale: siteConfig.locale, type: "article", url: `/guides/${howto.slug}`, title: howto.title, description: howto.description },
-    };
+    }, "guide", howto.slug, howto.title);
   }
   const guide = getGuide(slug);
   if (!guide) return {};

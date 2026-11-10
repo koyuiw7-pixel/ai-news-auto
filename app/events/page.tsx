@@ -4,6 +4,7 @@ import AssetShell, { Crumbs, QHeading } from "@/components/assets/AssetShell";
 import { getCompany, OTHER } from "@/lib/companies";
 import { daysUntil, eventArticles, eventStatus, formatJst, getAllEvents, localDateRange, type TechEvent } from "@/lib/events";
 import { siteConfig } from "@/site.config";
+import { pageShareImage } from "@/lib/page-share";
 
 const DESCRIPTION =
   "AWS re:Invent、Microsoft Ignite、NVIDIA GTCなど、AI・テックの主要イベントの日程を日本時間でまとめています。基調講演の時刻、公式に決まっていること、開催後の発表内容まで1ページずつ。";
@@ -20,7 +21,9 @@ export function generateMetadata(): Metadata {
     title,
     description: DESCRIPTION,
     alternates: { canonical: "/events" },
-    openGraph: { siteName: siteConfig.siteName, locale: siteConfig.locale, type: "website", url: "/events", title: "AI・テックイベントの日程（日本時間）", description: DESCRIPTION },
+    openGraph: { siteName: siteConfig.siteName, locale: siteConfig.locale, type: "website", url: "/events", title: "AI・テックイベントの日程（日本時間）", description: DESCRIPTION,
+      images: [{ url: pageShareImage("events"), width: 1200, height: 630, alt: "AI・テックイベントの日程" }] },
+    twitter: { card: "summary_large_image", images: [pageShareImage("events")] },
   };
 }
 

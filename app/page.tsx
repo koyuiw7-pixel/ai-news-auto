@@ -17,6 +17,7 @@ import { companyCounts, thumbSource } from "@/lib/companies";
 import { broadGenresWithArticles, getBroadArticles, isBroadGenre } from "@/lib/sections";
 import type { Metadata } from "next";
 import { siteConfig } from "@/site.config";
+import { pageShareImage } from "@/lib/page-share";
 import { coverPath } from "@/lib/cover-path";
 import { containPhoto } from "@/lib/photo-fit";
 import { pickHomeLead, pickLifeMoney } from "@/lib/home-lead";
@@ -34,7 +35,10 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     title: `${siteConfig.siteName} 暮らしとお金の新しい動きが最速でわかる`,
     description: siteConfig.description,
+    // トップのシェア画像（SEO A15。lib/page-share.ts）
+    images: [{ url: pageShareImage("home"), width: 1200, height: 630, alt: siteConfig.siteName }],
   },
+  twitter: { card: "summary_large_image", images: [pageShareImage("home")] },
 };
 
 const TIMELINE_SIZE = 24;

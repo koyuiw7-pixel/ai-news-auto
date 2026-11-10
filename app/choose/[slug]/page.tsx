@@ -5,6 +5,7 @@ import { getAllArticles } from "@/lib/articles";
 import { getAllHowtos } from "@/lib/howto";
 import { chooseGuideForArticle, getAllChooseGuides, getChooseGuide, resolveService } from "@/lib/choose";
 import { siteConfig } from "@/site.config";
+import { withItemImage } from "@/lib/page-share-items";
 import { authorJsonLd, publisherJsonLd } from "@/lib/publisher";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -20,7 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const guide = getChooseGuide(slug);
   if (!guide) return {};
   const url = `/choose/${guide.slug}`;
-  return {
+  // 選び方ガイドごとのシェア画像（SEO A15。lib/page-share-items.ts）
+  return withItemImage({
     title: guide.title,
     description: guide.description,
     keywords: guide.keywords,
@@ -34,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       modifiedTime: guide.updatedAt,
     },
     twitter: { card: "summary_large_image", title: guide.h1, description: guide.description },
-  };
+  }, "choose", guide.slug, guide.h1);
 }
 
 export default async function ChoosePage({ params }: Props) {

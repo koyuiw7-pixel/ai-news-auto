@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { withPageShare } from "@/lib/page-share";
 import Link from "next/link";
 import AssetShell, { Crumbs } from "@/components/assets/AssetShell";
 import { getAllPeople, personArticles } from "@/lib/people";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withPageShare("people", "/people", {
   title: "AI・テックの人物まとめ　経歴と最新ニュース",
   description: "AI・テック企業の経営者などについて、公式の発表で確かめた経歴と、サイソクの関連記事をまとめています。",
   alternates: { canonical: "/people" },
-};
+});
 
 /** 人物のまとめの一覧（台帳 A53） */
 export default function PeopleIndex() {

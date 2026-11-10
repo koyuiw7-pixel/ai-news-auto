@@ -4,13 +4,17 @@ import ArticleCard from "@/components/ArticleCard";
 import Pagination from "@/components/Pagination";
 import { getAllArticles } from "@/lib/articles";
 import { pageHref, pageSuffix, paginate } from "@/lib/paginate";
+import { pageShareMetadata } from "@/lib/page-share";
 
 export function articlesMetadata(page: number): Metadata {
+  const title = `ニュース・解説記事一覧${pageSuffix(page)}`;
+  const description = "公式発表をもとに、暮らしとお金の「自分ごと」ニュースと解説を掲載。新しい記事を時系列で探せます。";
   return {
-    title: `ニュース・解説記事一覧${pageSuffix(page)}`,
-    description:
-      "公式発表をもとに、暮らしとお金の「自分ごと」ニュースと解説を掲載。新しい記事を時系列で探せます。",
+    title,
+    description,
     alternates: { canonical: pageHref("/articles", page) },
+    // シェア画像（SEO A15）
+    ...pageShareMetadata("articles", { title, description, url: pageHref("/articles", page) }),
   };
 }
 

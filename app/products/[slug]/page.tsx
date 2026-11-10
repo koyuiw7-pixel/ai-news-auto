@@ -22,6 +22,8 @@ import {
 import { Phrases } from "@/lib/highlight";
 import { howtosForProduct } from "@/lib/howto";
 import { siteConfig } from "@/site.config";
+import { itemShareImage } from "@/lib/page-share-items";
+import { pageShareImage } from "@/lib/page-share";
 import { authorJsonLd, publisherJsonLd } from "@/lib/publisher";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -52,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: { canonical: `/products/${product.slug}` },
     // 中身がそろわない製品は検索に出さない（一覧にも出さない。データがそろえば自動で外れる）
     ...(profile.listing.listed ? {} : { robots: { index: false, follow: true } }),
-    // 記事の写真は使わない（関係のない写真が出ていた。2026-11-03）。共有画像はサイトの既定
+    // 記事の写真は使わない（関係のない写真が出ていた。2026-11-03）。製品名入りのシェア画像（図鑑に載せる製品だけ。ほかは図鑑の画像。SEO A15）
     openGraph: {
       siteName: siteConfig.siteName,
       locale: siteConfig.locale,
@@ -61,7 +63,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: productHeading(product),
       description,
       modifiedTime: profile.updatedAt,
+      images: [profile.listing.listed ? itemShareImage("product", product.slug, productHeading(product)) : { url: pageShareImage("products"), width: 1200, height: 630 }],
     },
+    twitter: { card: "summary_large_image", images: [profile.listing.listed ? itemShareImage("product", product.slug, "").url : pageShareImage("products")] },
   };
 }
 

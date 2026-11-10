@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { withPageShare } from "@/lib/page-share";
 import Link from "next/link";
 import AssetShell, { Crumbs } from "@/components/assets/AssetShell";
 import { recentEntries, TOPIC_LISTS, topicListsUpdatedAt, weekCount } from "@/lib/topic-lists";
@@ -7,7 +8,7 @@ const TITLE = "値上げ・障害・リコール・サービス終了の一覧�
 const DESCRIPTION =
   "値上げ・料金改定、通信や決済の障害と復旧、リコール・回収、サービスの終了と日本での提供開始を、公式の発表を確かめた記事から一覧にしています。記事ができるたびに自動で更新。";
 
-export const metadata: Metadata = { title: TITLE, description: DESCRIPTION, alternates: { canonical: "/roundups" } };
+export const metadata: Metadata = withPageShare("roundups", "/roundups", { title: TITLE, description: DESCRIPTION, alternates: { canonical: "/roundups" } });
 
 /** 横断の一覧の入口（台帳 A52） */
 export default function TopicListsIndex() {

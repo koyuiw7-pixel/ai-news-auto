@@ -14,7 +14,7 @@ import { isOwnImage } from "./thumb-url";
 type ShareImageInput = {
   slug?: string;
   thumbnail?: string;
-  imageCredit?: { kind?: string; imageKind?: string } | null;
+  imageCredit?: { kind?: string; imageKind?: string; width?: number; height?: number } | null;
 };
 
 export type ShareImage = { url: string; width?: number; height?: number; alt?: string };
@@ -31,7 +31,12 @@ export function hasOfficialPhoto(article: ShareImageInput): boolean {
 /** og:image の並び。cover は見出し入りのカバーの URL（無ければ空） */
 export function shareImages(article: ShareImageInput, cover: string | undefined, alt: string): ShareImage[] {
   const card: ShareImage[] = cover ? [{ url: cover, width: 1200, height: 630, alt }] : [];
-  if (hasOfficialPhoto(article)) return [{ url: article.thumbnail as string, width: 1200, alt }, ...card];
+  if (hasOfficialPhoto(article)) {
+    // 本当の幅・高さを書く（公式の写真の約2割は元が 1,200px 未満。scripts/images.py が保存時に imageCredit に記録。SEO A15）
+    const { width, height } = article.imageCredit ?? {};
+    const size = width && width > 0 ? { width, ...(height && height > 0 ? { height } : {}) } : { width: 1200 };
+    return [{ url: article.thumbnail as string, ...size, alt }, ...card];
+  }
   if (card.length) return card;
   return article.thumbnail ? [{ url: article.thumbnail, width: 1280, height: 720 }] : [];
 }
