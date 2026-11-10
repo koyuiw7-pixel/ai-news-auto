@@ -78,9 +78,9 @@
     }
   ],
   "todayActions": [
-    "過去に応募したキャンペーン名が別紙の37件に当たるか、キリンの発表で確かめる",
-    "不安なときは、キリンビール0120-111-560かキリンビバレッジ0120-595-955に平日10時〜16時に電話する",
-    "キリンを名乗るメールのURLや添付は開かず、両社が入力を求めないことを覚えておく"
+    "過去に応募したキャンペーン名が別紙の37件に当たるか、キリンの発表で確かめておく",
+    "不安なときは、応募した会社の窓口に土日祝日を除く10時〜16時に電話する",
+    "キリンを名乗るメールのURLや添付ファイルは開かず、パスワードなども入力しない"
   ],
   "publicInterest": "breach",
   "searchTrend": "ドコモ 不正 アクセス",
@@ -112,5 +112,104 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/kirin-campaign-ownly-data-leak-figure-9c426a51.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "個人情報に当たるのは、実名のフルネームなど個人を特定できるLINE表示名だけです。個人を特定できない表示名やXのユーザー名などは、個人情報に該当しない1,496件に入ります。",
+      "source": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf"
+    },
+    {
+      "text": "別紙の37件のうち、Xで参加したキャンペーンは個人情報の件数がすべて0件です。個人情報が含まれるのはLINEで参加したキャンペーンだけです。",
+      "source": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "キリンビールお客様相談室",
+      "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf",
+      "source": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf",
+      "phone": "0120-111-560",
+      "hours": "土日祝日除く 10:00~16:00",
+      "note": "本件に関するお問い合わせ窓口として案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "過去に応募したキャンペーン名が別紙の37件に当たるか、キリンの発表で確かめておく",
+      "source": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf",
+      "steps": [
+        "このページの「別紙」を開く",
+        "参加方法がLINEかXかを見る",
+        "応募したキャンペーン名と開始日を照合する"
+      ],
+      "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf"
+    },
+    {
+      "action": "不安なときは、応募した会社の窓口に土日祝日を除く10時〜16時に電話する",
+      "source": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf",
+      "steps": [
+        "キリンビールの0120-111-560か",
+        "キリンビバレッジの0120-595-955に電話",
+        "応募した会社の番号を選ぶ"
+      ],
+      "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf"
+    },
+    {
+      "action": "キリンを名乗るメールのURLや添付ファイルは開かず、パスワードなども入力しない",
+      "source": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf",
+      "steps": [
+        "心当たりのないメールのURLを開かない",
+        "添付ファイルを開かない",
+        "パスワードなどを入力しない"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "提供元スマートシェア社の外部ツール「OWNLY」が第三者による不正アクセスを受けたことが分かっています。原因と影響範囲は、外部専門機関の協力を得て調査中だと発表されています。",
+    "status": "investigating",
+    "source": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf"
+  },
+  "worries": [
+    {
+      "q": "LINEやXの名前が漏れたら、ほかの情報も漏れた？",
+      "a": "漏れたのはLINEの表示名とXのユーザー名です。メールアドレス、パスワード、電話番号、住所、クレジットカード情報は、現時点で漏えいが確認されていないとされています。",
+      "source": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf",
+      "action": "LINEやXの表示名が実名のフルネームかどうかを確かめ、気になるなら変更することを考える"
+    },
+    {
+      "q": "自分が応募したキャンペーンは対象に入っている？",
+      "a": "対象は別紙の37キャンペーンだけです。別紙に載っていないキャンペーンは、参加者情報が閲覧・ダウンロードされた形跡が確認されていないとされています。",
+      "source": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf",
+      "action": "過去に応募したキャンペーン名が別紙の37件に当たるか、キリンの発表で確かめておく"
+    },
+    {
+      "q": "カード番号や銀行口座も漏れたのか気になる",
+      "a": "クレジットカード情報の漏えいは、現時点で確認されていないと発表されています。ページには銀行口座の情報についての記載はありません。",
+      "source": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf",
+      "action": "身に覚えのない支払いがないか、クレジットカードの支払い明細を開いて確かめておく",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "キリンを名乗る連絡がきたら、どうすればいい？",
+      "a": "両社は、電話やメールでパスワードやクレジットカード番号などの入力を求めることはないとしています。外部サイトに誘導して再入力を求めることもないとされています。",
+      "source": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_03.pdf",
+      "action": "心当たりのないメールのURLや添付ファイルは開かず、パスワードなどの入力もしない"
+    },
+    {
+      "q": "家族のところに詐欺の電話がかかってくることはある？",
+      "a": "今回の件で家族への影響は発表されていません。一般に特殊詐欺は電話で信用させて現金をだまし取る手口で、「犯人と話をしない」ことが大切だとされています。",
+      "source": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "action": "知らない番号や非通知の電話は、電話会社の番号表示・非通知拒否サービスを使うことを考える",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "Xで応募したキャンペーンは個人情報がゼロ",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "過去の応募が対象かを確かめる手順",
+    "desk": "問い合わせ先と受付時間",
+    "worries": "表示名だけ？カードや家族は大丈夫？"
+  },
+  "depthAt": "2026-11-10T02:59:39+00:00"
 }
