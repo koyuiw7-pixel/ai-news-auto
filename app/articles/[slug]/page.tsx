@@ -360,21 +360,17 @@ export default async function ArticlePage({ params }: Props) {
   // 記事末の「次に読むならこれ」の1本目とは重ねない
   const inlineRead = inlineReadForArticle(article, getAllArticles(), (a) => companyOf(a).slug, nextReads.slice(0, 1).map((n) => n.article.slug));
   const related = getRelatedArticles(article, 8).filter((a) => !nextSlugs.has(a.slug)).slice(0, 4);
-  // 「この話の続き」: 次にやること → 同じ話題 → 同じ話題で別の疑問に答える記事 → 本文途中の候補 を1つにまとめて最大3本（lib/story-reads.ts。2026-11-11）
+  // 「この話の続き」: 同じ話題で別の疑問に答える記事（SEO A17）2本 → 次にやること → 同じ話題 → 本文途中の候補 を1つにまとめて最大3本（lib/story-reads.ts。2026-11-11）
   const storyAll = getAllArticles();
   const storySteps = (nextStepsFor(article.slug)?.next ?? []).flatMap((s) => {
     const found = storyAll.find((x) => x.slug === s.slug);
     return found ? [{ article: found, reason: s.step }] : [];
   });
   const topic = topicPages(article, storyAll);
+  const topicReads = [...(topic.parent ? [{ article: topic.parent, reason: "この話題の全体の解説" }] : []), ...topic.pages.map((a) => ({ article: a, reason: "同じ話題で別の疑問に答える記事" }))];
   const storyTop = mergeStoryReads(
     article,
-    [
-      storySteps,
-      nextReads,
-      [...(topic.parent ? [{ article: topic.parent, reason: "この話題の全体の解説" }] : []), ...topic.pages.map((a) => ({ article: a, reason: "同じ話題で別の疑問に答える記事" }))],
-      inlineRead ? [{ article: inlineRead, reason: "同じ話題の記事" }] : [],
-    ],
+    [topicReads.slice(0, 2), storySteps.slice(0, 1), topicReads.slice(2), storySteps.slice(1), nextReads, inlineRead ? [{ article: inlineRead, reason: "同じ話題の記事" }] : []],
     3,
   );
 

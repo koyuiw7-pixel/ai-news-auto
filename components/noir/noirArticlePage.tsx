@@ -158,7 +158,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
   const editor = editorInCharge(article.genreSlug);
   const noirHtml = noirBodyHtml(bodyHtml, article);
   // 「次の記事」の枠は2つだけ（2026-11-11 読者目線レビュー 4位。以前は7つの枠に同じ記事が何度も出ていた）:
-  //  ① 要点の下の「この話の続き」: 次にやること（content/next_steps.json）→ 同じ話題 → 同じ話題で別の疑問に答える記事 を1つにまとめて最大3本（lib/story-reads.ts）
+  //  ① 要点の下の「この話の続き」: 同じ話題で別の疑問に答える記事・次にやること（content/next_steps.json）・同じ話題の記事 を1つにまとめて最大3本（lib/story-reads.ts）
   //  ② 本文の直後の「よく読まれている記事」5本（components/PopularReads.tsx。PC は右の列に同じ一覧が付いてくるので本文の列には出さない）
   // 本文途中の「あわせて読みたい」・記事末の「次に読む記事」「関連記事」「この話題のページ」はやめる
   const steps = nextStepsFor(article.slug);
@@ -170,7 +170,12 @@ export function noirArticlePage(ctx: NoirPageContext) {
   });
   const { parent: topicParent, pages: topicSiblings } = topicPages(article, all);
   const topicReads = [...(topicParent ? [{ article: topicParent, reason: "この話題の全体の解説" }] : []), ...topicSiblings.map((a) => ({ article: a, reason: "同じ話題で別の疑問に答える記事" }))];
-  const storyTop = mergeStoryReads(article, [stepReads, reads, topicReads, inlineRead ? [{ article: inlineRead, reason: "同じ話題の記事" }] : []], 3);
+  // 同じ話題で別の疑問に答える記事（SEO A17。元の記事 ⇄ 角度の記事）を先に2本、次にやることを1本、残りを順に
+  const storyTop = mergeStoryReads(
+    article,
+    [topicReads.slice(0, 2), stepReads.slice(0, 1), topicReads.slice(2), stepReads.slice(1), reads, inlineRead ? [{ article: inlineRead, reason: "同じ話題の記事" }] : []],
+    3,
+  );
   const depth = depthOf(article);
   const [noirTop, noirAfterAd] = splitBeforeHeading(noirHtml, 3);
   const [noirMid, noirTail] = splitBeforeHeading(noirAfterAd, 4);

@@ -304,7 +304,9 @@ class SiblingRoleTest(unittest.TestCase):
 
     def test_parent_page_lists_children(self):
         noir = (ROOT / "components" / "noir" / "noirArticlePage.tsx").read_text("utf-8")
-        self.assertIn("<TopicPages article={article}", noir)
+        # 2026-11-11 読者目線レビュー 4位: 「この話題のページ」の枠は要点の下の「この話の続き」にまとめた（同じ話題で別の疑問に答える記事を先に2本）
+        self.assertIn("topicPages(article", noir)
+        self.assertIn("[topicReads.slice(0, 2)", noir)
         comp = (ROOT / "components" / "TopicPages.tsx").read_text("utf-8")
         self.assertIn("この話題のページ", comp)
         self.assertNotIn("<h2", comp)

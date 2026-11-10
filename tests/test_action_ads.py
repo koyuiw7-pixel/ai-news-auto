@@ -321,8 +321,9 @@ class AdPlacementUpgradeTest(unittest.TestCase):
         page = (ROOT / "app/articles/[slug]/page.tsx").read_text(encoding="utf-8")
         # 2026-11-09: 比較記事の提携先の一覧（lib/comparison.ts）の商品も、ほかの枠に重ねない
         self.assertIn("[...(actionAd?.items ?? []), ...(compareOffers?.items ?? [])].map((x) => x.item.key)", page)
-        # スマホは記事の終わり（関連記事の前）に1〜3位の枠。PC は右側
-        self.assertLess(page.index('pos="ranking-end"'), page.index('aria-labelledby="related-heading"'))
+        # スマホは記事の終わりに1〜3位の枠。PC は右側（記事末の「関連記事」は 2026-11-11 にやめ、本文の直後の「よく読まれている記事」にまとめた。枠の位置は変えない）
+        self.assertIn('pos="ranking-end"', page)
+        self.assertNotIn('aria-labelledby="related-heading"', page)
         self.assertIn('"ranking-end"', (ROOT / "scripts/aff_stats.py").read_text(encoding="utf-8"))
 
 
