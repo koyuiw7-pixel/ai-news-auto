@@ -15,7 +15,7 @@ export const publisherJsonLd = {
   publishingPrinciples: `${siteConfig.url}/editorial-policy`,
   correctionsPolicy: `${siteConfig.url}/corrections`,
   sameAs: siteConfig.social.map((social) => social.url),
-  // 運営責任者の名前は全ページに載せない（オーナーの決まり: 名前は /about と /editorial-policy だけ。docs/owner_rules.md W6）
+  // 運営責任者の名前は全ページ共通のデータには載せない（オーナーの決まり W6。記事は下の editorInCharge だけ）
   address: { "@type": "PostalAddress", addressRegion: siteConfig.operator.location, addressCountry: "JP" },
 } as const;
 
@@ -27,3 +27,20 @@ export const authorJsonLd = {
   url: `${siteConfig.url}/about`,
   parentOrganization: { "@id": `${siteConfig.url}/#publisher` },
 } as const;
+
+/**
+ * 編集責任者の名前を出す記事（2026-11-10 オーナー承認。docs/owner_rules.md W6）。
+ * お金と暮らしの記事（年金・税・手当・値上げなど）だけ。出すのは名前だけで、経歴は出さない。
+ * 見張り scripts/owner_rules_audit.py の EDITOR_NAME_GENRES と同じ一覧にする。
+ */
+export const EDITOR_NAME_GENRES: ReadonlySet<string> = new Set(["public", "lifestyle", "investment", "real-estate"]);
+
+/** 記事に出す編集責任者（対象外のジャンルは null）。名前は /about に載せているものと同じ */
+export function editorInCharge(genreSlug: string | undefined) {
+  if (!genreSlug || !EDITOR_NAME_GENRES.has(genreSlug)) return null;
+  const name = siteConfig.operator.representative;
+  return {
+    name,
+    jsonLd: { "@type": "Person", name, url: `${siteConfig.url}/about` },
+  } as const;
+}

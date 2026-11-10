@@ -52,6 +52,8 @@ ISSUE_TITLE = "オーナーのルールに合わないものが本番にあり�
 CONTACT_EMAIL = "contact@ai-tech-express.jp"
 OWNER_NAME = "小室"
 OWNER_NAME_PAGES = ("/about", "/editorial-policy")
+# 記事に「編集責任者」として名前を出すジャンル（2026-11-10 オーナー承認。lib/publisher.ts の EDITOR_NAME_GENRES と同じ）
+EDITOR_NAME_GENRES = ("public", "lifestyle", "investment", "real-estate")
 
 # この点検が確かめる台帳の番号（docs/owner_rules.md の「点検」列と一致させる。tests/test_owner_rules_ledger.py）
 AUDIT_RULES = (
@@ -498,7 +500,13 @@ def article_page_problems(html: str, record: dict) -> list[str]:
     if not re.search(r'rel="[^"]*sponsored', html):
         out.append("[A11] 記事に広告（PR）が1つもない")
     if OWNER_NAME in html:  # 見えない構造化データ（JSON-LD）も含めて見る
-        out.append("[W6] オーナーの名前が記事のページに出ている（/about・/editorial-policy だけ）")
+        # お金と暮らしの記事は「編集責任者：名前」の1行だけ出してよい（経歴は出さない）
+        if record.get("genreSlug") not in EDITOR_NAME_GENRES:
+            out.append("[W6] オーナーの名前が対象外のジャンルの記事に出ている（名前はお金と暮らしの記事の編集責任者だけ）")
+        elif "編集責任者：" not in visible:
+            out.append("[W6] オーナーの名前が「編集責任者」の行以外で記事に出ている")
+        elif re.search(OWNER_NAME + r"[^。<]{0,40}(?:経歴|略歴|出身|卒業|勤務)", visible):
+            out.append("[W6] 編集責任者の経歴が記事に出ている（出すのは名前だけ）")
     out += title_tag_problems(html, record)
     out += slot_problems(html)
     out += related_problems(html, record)

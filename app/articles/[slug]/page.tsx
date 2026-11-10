@@ -89,7 +89,7 @@ import { calculatorForArticle } from "@/lib/calculators";
 import { getFx, getPlanProduct } from "@/lib/plan-prices";
 import PriceTable from "@/components/PriceTable";
 import { hasPriceBlock, markPriceSlot, pricingForArticle, pricingRelevant, PRICE_SLOT, withPriceSlot } from "@/lib/price-slot";
-import { authorJsonLd, publisherJsonLd } from "@/lib/publisher";
+import { authorJsonLd, publisherJsonLd, editorInCharge } from "@/lib/publisher";
 import { stripListNumber } from "@/lib/list-number";
 import { isNoir } from "@/lib/noir";
 import { noirArticlePage } from "@/components/noir/noirArticlePage";
@@ -244,6 +244,8 @@ export default async function ArticlePage({ params }: Props) {
   // 日本語の黙読はおよそ毎分600字
 
   const reviewedLabel = reviewedDateLabel(article);
+  // 編集責任者の名前（お金と暮らしの記事だけ。出すのは名前のみ。オーナー承認 2026-11-10・W6）
+  const editor = editorInCharge(article.genreSlug);
   // 「かんたんに読む」版（ある記事だけ、読み方を切り替えられる）
   // 中身なしの章・つなぎの文を除き（lib/article-sections.ts。scripts/section_gate.py と同じ規則）、
   // 決まった型の見出しは記事ごとの見出し（sectionTitles）か普通の見出しに言い換えて出す
@@ -372,6 +374,8 @@ export default async function ArticlePage({ params }: Props) {
       keywords: article.keywords.join(", "),
       mainEntityOfPage: `${siteConfig.url}/articles/${article.slug}`,
       author: authorJsonLd,
+      // 記事に責任を持つ人（対象のジャンルだけ。名前のみ）
+      ...(editor ? { editor: editor.jsonLd } : {}),
       // 編集方針と訂正方針（誰がどう責任を持つかを検索エンジンに示す）
       publishingPrinciples: `${siteConfig.url}/editorial-policy`,
       correctionsPolicy: `${siteConfig.url}/corrections`,
@@ -517,6 +521,11 @@ export default async function ArticlePage({ params }: Props) {
             <span>
               制作：<Link href="/about" rel="author" className="font-semibold underline decoration-line-strong underline-offset-4 hover:text-accent">{siteConfig.author}</Link>
             </span>
+            {editor && (
+              <span data-editor-in-charge>
+                編集責任者：<Link href="/about" className="font-semibold underline decoration-line-strong underline-offset-4 hover:text-accent">{editor.name}</Link>
+              </span>
+            )}
             <Link href="/editorial-policy" className="underline decoration-line-strong underline-offset-4 hover:text-accent">
               編集方針・AI利用と事実確認
             </Link>

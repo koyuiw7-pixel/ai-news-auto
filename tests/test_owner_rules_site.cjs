@@ -58,10 +58,17 @@ test('[W5] 連絡先は contact@ai-tech-express.jp（ほかのメールアドレ
   assert.deepEqual(bad, []);
 });
 
-test('[W6] オーナーの名前は /about と /editorial-policy だけ（全ページの構造化データにも入れない）', () => {
-  const allowed = new Set(['app/about/page.tsx', 'app/editorial-policy/page.tsx']);
+test('[W6] オーナーの名前は /about・/editorial-policy と、お金と暮らしの記事の「編集責任者」だけ（全ページ共通の構造化データには入れない）', () => {
+  // 記事の名前は lib/publisher.ts の editorInCharge だけが出す（2026-11-10 オーナー承認。経歴は出さない）
+  const allowed = new Set(['app/about/page.tsx', 'app/editorial-policy/page.tsx', 'lib/publisher.ts']);
   const bad = SITE.filter((rel) => !allowed.has(rel) && (/operator\.representative|小室/.test(read(rel))));
   assert.deepEqual(bad, []);
+  // 全ページ共通の発行元データ（publisherJsonLd・authorJsonLd）には名前を入れない
+  const pub = read('lib/publisher.ts');
+  const shared = pub.slice(0, pub.indexOf('export const EDITOR_NAME_GENRES'));
+  assert.doesNotMatch(shared, /operator\.representative|小室/);
+  // 出すのは名前だけ（経歴・肩書きの説明を足さない）
+  assert.doesNotMatch(read('app/articles/[slug]/page.tsx'), /経歴|プロフィール：|略歴/);
 });
 
 test('[A12] 人の確認について実態と違う約束を書かない（全記事を人が確認、確認済み＝人が読んだ記事の一覧）', () => {

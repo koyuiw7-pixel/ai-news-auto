@@ -100,6 +100,12 @@ class PageTest(unittest.TestCase):
         self.assertIn("I4", ids(audit.article_page_problems(f"<h1>題名</h1>{self.AD}", rec(imageCredit={"kind": "ai"}))))
         self.assertNotIn("I4", ids(audit.article_page_problems(f"<h1>題名</h1><span>AI生成</span>{self.AD}", rec(imageCredit={"kind": "ai"}))))
         self.assertIn("W6", ids(audit.article_page_problems(f"<p>小室</p>{self.AD}", rec())))
+        # お金と暮らしの記事は「編集責任者：名前」だけ出してよい（2026-11-10 オーナー承認）。経歴は出さない
+        named = f"<h1>題名</h1><p>編集責任者：小室勇世</p>{self.AD}"
+        self.assertNotIn("W6", ids(audit.article_page_problems(named, rec(genreSlug="public"))))
+        self.assertIn("W6", ids(audit.article_page_problems(named, rec(genreSlug="ai"))))
+        self.assertIn("W6", ids(audit.article_page_problems(f"<p>小室</p>{self.AD}", rec(genreSlug="public"))))
+        self.assertIn("W6", ids(audit.article_page_problems(f"<p>編集責任者：小室勇世（◯◯大学を卒業）</p>{self.AD}", rec(genreSlug="public"))))
 
     def test_noir_cover_ai_label(self):
         # ノワールの表紙の AI のイメージ（coverImage）には「画像はイメージ（AI生成）」の札（台帳 I4・W36）
