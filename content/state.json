@@ -13090,14 +13090,6 @@
       "slug": "kanto-gx-connect-matching-tokyo",
       "url": "https://j-net21.smrj.go.jp/news/bt5puv00000102qs.html"
     },
-    "952e90918f03ac9c": {
-      "at": "2026-10-27T18:52:13.755124+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "microsoft-copilot-cowork-new-skills",
-      "url": "https://blogs.windows.com/japan/2026/10/26/microsoft-copilot-blog-whats-new-in-cowork-expanded-plugins-and-role-based-skills-4566221/"
-    },
     "9535a4f33bd7532d": {
       "at": "2026-11-02T19:52:49.263931+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（表敬）",
@@ -15317,6 +15309,18 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.env.go.jp/press/111118_00087.html"
+    },
+    "b73105fe4ec5f060": {
+      "at": "2026-11-10T19:03:10.640078+00:00",
+      "costUsd": 0.0116,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "ai_consumer",
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "gemini-intelligence-japan-pixel-10",
+      "url": "https://blog.google/products-and-platforms/platforms/android/gemini-intelligence-november-features-devices/"
     },
     "b73537a5f0ed2718": {
       "at": "2026-11-10T00:29:25.320338+00:00",
@@ -17573,12 +17577,6 @@
       "reason": "public-interest: 資料が短い 605字",
       "skipped": true,
       "url": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/09/20261109_Apology_Regarding_the_Email_Address_Leak_Due_to_Unauthorized_Access.pdf"
-    },
-    "dc24ba9175b652cd": {
-      "at": "2026-10-27T18:52:14.708443+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（職員）",
-      "skipped": true,
-      "url": "https://www.nii.ac.jp/about/recruit/2026/1027.html"
     },
     "dc32649e71f520a1": {
       "at": "2026-10-28T23:13:03.555220+00:00",
@@ -19845,14 +19843,6 @@
       "slug": "soumu-ict-economics-r8-01",
       "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/keizaiken/R8_01.html"
     },
-    "ffaa4a29c645a46c": {
-      "at": "2026-10-27T18:54:52.268605+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "science",
-      "slug": "hiroshima-u-glioblastoma-mri-ai",
-      "url": "https://www.hiroshima-u.ac.jp/news/100822"
-    },
     "ffe0526a36b01e3d": {
       "at": "2026-11-10T09:05:35.031168+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -20386,88 +20376,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-09T09:22:47.091396+00:00",
-      "attempt": 1,
-      "id": "b2c79fc69eb9803c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "よくある質問の「2週に分けて発売されます」→ 元記事の発売日は11月10日と11月17日で、間隔は1週間であり、「2週に分けて」は日付と矛盾する。",
-        "本文の「既存の冷凍パスタコーナーに順次並びます」→ 元記事に売り場（冷凍パスタコーナー）の記載はなく、創作にあたる。",
-        "本文の「よりガッツリとした満足感を求める人に適したラインアップ」→ 元記事にない編集部の評価・対象者像を事実のように書いている。",
-        "仕事・お金欄の「近所のローソンで手軽に買えるため」→ 全店で扱うわけではない（ローソンストア100を除く）点が軽く抜けている。"
-      ],
-      "readability": {
-        "avg_paragraph": 82.1,
-        "avg_sentence": 52.3,
-        "long_share": 0.273,
-        "max_paragraph": 111,
-        "paragraphs": 7,
-        "sentences": 11
-      },
-      "score": 78,
-      "source": "lawson",
-      "title": "ロメスパバルボア監修“冷凍パスタ”4品を発売",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "同じ数字が多い（「451円」が6回）",
-        "読みやすさ: 文が長い（1文の平均 52.3字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:23:06.420345+00:00",
-      "attempt": 1,
-      "id": "b2c79fc69eb9803c",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 68.7,
-        "avg_sentence": 48.1,
-        "long_share": 0.2,
-        "max_paragraph": 111,
-        "paragraphs": 7,
-        "sentences": 10
-      },
-      "score": 88,
-      "source": "lawson",
-      "title": "ロメスパバルボア監修“冷凍パスタ”4品を発売",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "同じ数字が多い（「451円」が6回）",
-        "読みやすさ: 文が長い（1文の平均 48.1字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:23:14.198680+00:00",
-      "attempt": 0,
-      "id": "b2c79fc69eb9803c",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: まだ始まっていないことを、もう始まったように書いている文が1か所（「ローソンでは2026年5月にも、食感にこだわった冷凍生パスタ」→11月10日から始まる発売を、もう始まったように書いている。「11月10日から発売が始まります」のように、これからのことだと分かる"
-      ],
-      "readability": {
-        "avg_paragraph": 68.7,
-        "avg_sentence": 48.1,
-        "long_share": 0.2,
-        "max_paragraph": 111,
-        "paragraphs": 7,
-        "sentences": 10
-      },
-      "score": 88,
-      "source": "lawson",
-      "title": "ロメスパバルボア監修“冷凍パスタ”4品を発売",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "同じ数字が多い（「451円」が6回）",
-        "読みやすさ: 文が長い（1文の平均 48.1字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T09:23:32.941473+00:00",
@@ -27741,6 +27649,86 @@
         "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
         "読みやすさ: 文が長い（1文の平均 70.1字・60字超の文が 60% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T19:02:20.708319+00:00",
+      "attempt": 1,
+      "id": "b73105fe4ec5f060",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "本文「ほかの機種では、今回の発表で何かが変わることはありません」→ 元記事では motorola signature 27 にも Rambler が来ると書かれており、他機種への変化がないという記述は元記事と矛盾する。",
+        "「日本のAndroid利用者に関係するのは、タスク自動化の対象国に日本が加わったこと」→ 元記事は英国・インド・日本への拡大と書くのみで、日本での提供開始時期は示されていない。記事自体は未発表と書いているが、「加わった」という書き方は提供済みのように読める。"
+      ],
+      "readability": {
+        "avg_paragraph": 108.3,
+        "avg_sentence": 43.3,
+        "long_share": 0.28,
+        "max_paragraph": 165,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": 72,
+      "source": "google-blog-all",
+      "title": "Gemini Intelligence: New features, on more devices",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（XL・RAM）",
+        "読みやすさ: 文が長い（1文の平均 43.3字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T19:02:42.501025+00:00",
+      "attempt": 1,
+      "id": "b73105fe4ec5f060",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 109.0,
+        "avg_sentence": 43.6,
+        "long_share": 0.28,
+        "max_paragraph": 165,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": 92,
+      "source": "google-blog-all",
+      "title": "Gemini Intelligence: New features, on more devices",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（XL・RAM）",
+        "読みやすさ: 文が長い（1文の平均 43.6字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T19:03:08.889685+00:00",
+      "attempt": 0,
+      "id": "b73105fe4ec5f060",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（43.6→42.1字）"
+      ],
+      "readability": {
+        "avg_paragraph": 109.0,
+        "avg_sentence": 43.6,
+        "long_share": 0.28,
+        "max_paragraph": 165,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": 92,
+      "source": "google-blog-all",
+      "title": "Gemini Intelligence: New features, on more devices",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（XL・RAM）",
+        "読みやすさ: 文が長い（1文の平均 43.6字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
