@@ -77,14 +77,6 @@
   },
   "failed_web": {},
   "gate_retry": {
-    "4c9e0aba14246e1f": {
-      "first": "2026-11-10T07:44:18.263854+00:00",
-      "next": "2026-11-10T10:44:18.263854+00:00",
-      "reason": "タイトル「12月9日開催の全8試合」「全国各地で全8試合」→ 元記事に試合数（8試合）や全国会場の記載がない（元記事は対戦・会場未発表。組み合わせ記事にも会場は後日発表とある）。; リード・本文「全国の会場で一斉に行われます」→ 元記事に会場・一斉開催の記載なし。; 要点・本文「勝ち抜いたチームは…準々決勝、準決勝へと駒を進め」→ 進出の仕組みの記載は元記事にあるが、一般的な大会進行としては概ね妥",
-      "title": "ラウンド16（4回戦）チケット販売概要決定 天皇杯 JFA 第106回全日本サッカー選手権大会 #jfa #天皇杯",
-      "tries": 1,
-      "url": "https://www.jfa.jp/news/00037005/"
-    },
     "8c35f961e318ffbb": {
       "first": "2026-11-09T02:15:08.028371+00:00",
       "next": "2026-11-09T05:15:08.028371+00:00",
@@ -8279,6 +8271,17 @@
       "slug": "suntory-nope-dragon-quest-collaboration",
       "url": "https://www.suntory.co.jp/softdrink/news/pr/article/2026/SBF1742.html?rss=0000000029"
     },
+    "4c9e0aba14246e1f": {
+      "at": "2026-11-10T11:01:04.294321+00:00",
+      "costUsd": 0.0088,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 96,
+      "section": "sports",
+      "slug": "emperor-cup-round16-tickets-2026",
+      "url": "https://www.jfa.jp/news/00037005/"
+    },
     "4cc14492629d9cff": {
       "at": "2026-11-05T11:23:17.620320+00:00",
       "model": "gemini-3.5-flash",
@@ -8524,6 +8527,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（退任）",
       "skipped": true,
       "url": "https://www.jfa.jp/news/00036984/"
+    },
+    "500bda321ca0279f": {
+      "at": "2026-11-10T10:59:42.560174+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "https://www.boj.or.jp/statistics/dl/depo/kashi/kasi2610.pdf"
     },
     "5012da27dd46e5cc": {
       "at": "2026-11-01T23:20:58.168369+00:00",
@@ -14536,6 +14545,14 @@
       "slug": "rivian-finance-operations-amazon-bedrock-ai-agents",
       "url": "https://aws.amazon.com/jp/blogs/news/how-rivian-accelerated-finance-operations-with-ai-agents-on-amazon-bedrock/"
     },
+    "a9726c2c2d82de58": {
+      "at": "2026-11-10T11:00:09.116362+00:00",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 94,
+      "updated": "boj-opinion-october-2026",
+      "url": "https://www.boj.or.jp/mopo/mpmsche_minu/opinion_2026/opi261030.pdf"
+    },
     "a9a8b5c6220955a6": {
       "at": "2026-11-10T07:47:14.963669+00:00",
       "costUsd": 0.0052,
@@ -16685,6 +16702,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（公募）",
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/sogo12_hh_000556.html"
+    },
+    "cbfd34d664fa3105": {
+      "at": "2026-11-10T10:59:42.564474+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（議事）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77344.html"
     },
     "cc043857d93f03dd": {
       "at": "2026-11-06T06:33:11.394463+00:00",
@@ -20479,111 +20502,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-09T07:47:38.828764+00:00",
-      "attempt": 1,
-      "id": "f6caead66b973478",
-      "kind": "broad",
-      "model": "gemini-flash-latest",
-      "problems": [
-        "「アメリカのアトランタにあるナショナルトレーニングセンターを拠点に活動します」→ 元記事は遠征地を「アメリカ／アトランタ」とし、対戦会場を「U.S. Soccer National Training Center」と記すのみで、その施設がアトランタにあるとは書かれていない。所在地の記述は元記事にない",
-        "「MF徳村楓大選手」→ 元記事・確認済みの文脈では徳村選手のポジションは示されておらず、MFと断定する根拠がない",
-        "「中盤のポジションで相次ぐ入れ替え」→ 木實快斗選手を含め、中盤の入れ替えと言える根拠が元記事にない",
-        "「同世代の世界トップレベルとの国際親善試合」→ 対戦相手を世界トップレベルと断じる根拠がなく、言い過ぎ",
-        "「今後の大会に向けたチームづくりと選手の強化が図られます」→ 元記事に無い大会・目的への言及で、推測になっている",
-        "「強豪国」「強豪ユースチーム」→ 元記事に無い評価語で、主観的な誇張"
-      ],
-      "readability": {
-        "avg_paragraph": 82.6,
-        "avg_sentence": 52.5,
-        "long_share": 0.273,
-        "max_paragraph": 136,
-        "paragraphs": 7,
-        "sentences": 11
-      },
-      "score": 72,
-      "source": "jfa",
-      "title": "U-19日本代表 選手変更 アメリカ遠征（11.9-18 アメリカ／アトランタ） #jfa #daihyo",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA・MF・RB）",
-        "読みやすさ: 文が長い（1文の平均 52.5字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T07:47:57.937818+00:00",
-      "attempt": 1,
-      "id": "f6caead66b973478",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.0,
-        "avg_sentence": 53.3,
-        "long_share": 0.222,
-        "max_paragraph": 136,
-        "paragraphs": 6,
-        "sentences": 9
-      },
-      "score": 94,
-      "source": "jfa",
-      "title": "U-19日本代表 選手変更 アメリカ遠征（11.9-18 アメリカ／アトランタ） #jfa #daihyo",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA・MF・RB）",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い",
-        "読みやすさ: 文が長い（1文の平均 53.3字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T07:48:12.485631+00:00",
-      "attempt": 0,
-      "id": "f6caead66b973478",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 81.7,
-        "avg_sentence": 44.5,
-        "long_share": 0.091,
-        "max_paragraph": 136,
-        "paragraphs": 6,
-        "sentences": 11
-      },
-      "score": 92,
-      "source": "jfa",
-      "title": "U-19日本代表 選手変更 アメリカ遠征（11.9-18 アメリカ／アトランタ） #jfa #daihyo",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA・MF・RB）",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T07:51:06.341792+00:00",
-      "attempt": 1,
-      "id": "e66544cb3a5c45f3",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 94.4,
-        "avg_sentence": 47.2,
-        "long_share": 0.111,
-        "max_paragraph": 183,
-        "paragraphs": 9,
-        "sentences": 18
-      },
-      "score": 86,
-      "source": "jrkyushu",
-      "title": "運輸サービス 年末年始の帰省・ご旅行に！冬休みのおでかけをオトクに満喫！『こどもぼうけんきっぷ』",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JR・BRT）",
-        "読みやすさ: 文が長い（1文の平均 47.2字・60字超の文が 11% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T07:51:38.540496+00:00",
@@ -27907,6 +27825,95 @@
         "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
         "読みやすさ: 文が長い（1文の平均 40.8字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T11:00:09.102426+00:00",
+      "attempt": 1,
+      "id": "a9726c2c2d82de58",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "score": 94,
+      "source": "boj",
+      "title": "金融政策決定会合における主な意見（10月29、30日開催分）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T11:00:41.338922+00:00",
+      "attempt": 1,
+      "id": "4c9e0aba14246e1f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「購入手順や販売場所などの詳細な要領については、JFAの公式サイトにて案内されます」→ 元記事は『下記の要領にて』と概要へのリンクを示すのみで、販売場所への言及はなく、『販売場所』の案内は元記事にない内容。",
+        "「対象の対戦カードなどは、JFAの公式サイトを確認してください」（かんたん版）→ 元記事に対戦カード別の販売の区別はなく、対象カードという記述は元記事に裏付けがない。"
+      ],
+      "readability": {
+        "avg_paragraph": 119.3,
+        "avg_sentence": 51.1,
+        "long_share": 0.429,
+        "max_paragraph": 135,
+        "paragraphs": 3,
+        "sentences": 7
+      },
+      "score": 85,
+      "source": "jfa",
+      "title": "ラウンド16（4回戦）チケット販売概要決定 天皇杯 JFA 第106回全日本サッカー選手権大会 #jfa #天皇杯",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JFA）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 51.1字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T11:00:54.904515+00:00",
+      "attempt": 1,
+      "id": "4c9e0aba14246e1f",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 116.3,
+        "avg_sentence": 49.9,
+        "long_share": 0.429,
+        "max_paragraph": 135,
+        "paragraphs": 3,
+        "sentences": 7
+      },
+      "score": 93,
+      "source": "jfa",
+      "title": "ラウンド16（4回戦）チケット販売概要決定 天皇杯 JFA 第106回全日本サッカー選手権大会 #jfa #天皇杯",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JFA）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 49.9字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T11:01:04.272204+00:00",
+      "attempt": 0,
+      "id": "4c9e0aba14246e1f",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 70.2,
+        "avg_sentence": 40.1,
+        "long_share": 0.143,
+        "max_paragraph": 120,
+        "paragraphs": 4,
+        "sentences": 7
+      },
+      "score": 96,
+      "source": "jfa",
+      "title": "ラウンド16（4回戦）チケット販売概要決定 天皇杯 JFA 第106回全日本サッカー選手権大会 #jfa #天皇杯",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JFA）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
     }
   ],
