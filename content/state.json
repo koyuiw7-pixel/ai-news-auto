@@ -6605,6 +6605,12 @@
       "slug": "meal-cancel-skip-vs-cannot-eat-nli",
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87263?site=nli"
     },
+    "311efa190498b7d5": {
+      "at": "2026-11-10T00:27:50.261696+00:00",
+      "reason": "dedupe: 固有名詞が一致（8tx・max・tpu）: google-tpu-8tx-8i-max",
+      "skipped": true,
+      "url": "https://cloud.google.com/blog/ja/topics/ai-infrastructure/tpu-8tx-and-tpu-8i-max/"
+    },
     "31239c46ad6a8bb6": {
       "at": "2026-11-03T01:27:34.744422+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -9390,6 +9396,12 @@
       "reason": "quality: 本文が短い（2217字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/operating-in-the-agentic-era-aiops-sessions-at-reinvent-2026/"
+    },
+    "5da3efca3ab35d22": {
+      "at": "2026-11-10T00:29:25.912402+00:00",
+      "reason": "prefilter: 告知・お知らせ系",
+      "skipped": true,
+      "url": "https://aws.amazon.com/jp/blogs/news/why-policy-in-amazon-bedrock-agentcore-chose-cedar-for-securing-agentic-workflows/"
     },
     "5da7346fbf316db3": {
       "at": "2026-10-27T03:05:10.757731+00:00",
@@ -15204,6 +15216,17 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/111118_00087.html"
     },
+    "b73537a5f0ed2718": {
+      "at": "2026-11-10T00:29:25.320338+00:00",
+      "costUsd": 0.016,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash",
+      "score": 74,
+      "section": "ai",
+      "slug": "amazon-bedrock-trust-and-safety-guide",
+      "url": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/"
+    },
     "b749fcda386da4a4": {
       "at": "2026-10-30T06:51:20.843102+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -17631,6 +17654,26 @@
       "mix": "money",
       "score": 88,
       "slug": "pension-support-benefit-old-age-check",
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "writer": "deep_dive"
+    },
+    "deep-8df61a5b1a": {
+      "angleOf": "kyoukai-kenpo-childbirth-allowance",
+      "at": "2026-11-10T00:53:37.241545+00:00",
+      "deepDive": "check",
+      "mix": "money",
+      "score": 88,
+      "slug": "childbirth-allowance-eligibility-check",
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "writer": "deep_dive"
+    },
+    "deep-f785cb8c90": {
+      "angleOf": "pension-support-benefit-old-age-eligibility",
+      "at": "2026-11-10T00:51:48.670445+00:00",
+      "deepDive": "family",
+      "mix": "money",
+      "score": 85,
+      "slug": "pension-support-benefit-family-share",
       "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
       "writer": "deep_dive"
     },
@@ -20107,29 +20150,6 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
-    },
-    "311efa190498b7d5": {
-      "at": "2026-11-10T00:27:50.261696+00:00",
-      "reason": "dedupe: 固有名詞が一致（8tx・max・tpu）: google-tpu-8tx-8i-max",
-      "skipped": true,
-      "url": "https://cloud.google.com/blog/ja/topics/ai-infrastructure/tpu-8tx-and-tpu-8i-max/"
-    },
-    "5da3efca3ab35d22": {
-      "at": "2026-11-10T00:29:25.912402+00:00",
-      "reason": "prefilter: 告知・お知らせ系",
-      "skipped": true,
-      "url": "https://aws.amazon.com/jp/blogs/news/why-policy-in-amazon-bedrock-agentcore-chose-cedar-for-securing-agentic-workflows/"
-    },
-    "b73537a5f0ed2718": {
-      "at": "2026-11-10T00:29:25.320338+00:00",
-      "costUsd": 0.016,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "gemini-3.5-flash",
-      "score": 74,
-      "section": "ai",
-      "slug": "amazon-bedrock-trust-and-safety-guide",
-      "url": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/"
     }
   },
   "quality_log": [
