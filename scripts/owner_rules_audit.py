@@ -507,6 +507,8 @@ def article_page_problems(html: str, record: dict) -> list[str]:
             out.append("[W6] オーナーの名前が「編集責任者」の行以外で記事に出ている")
         elif re.search(OWNER_NAME + r"[^。<]{0,40}(?:経歴|略歴|出身|卒業|勤務)", visible):
             out.append("[W6] 編集責任者の経歴が記事に出ている（出すのは名前だけ）")
+    elif record.get("genreSlug") in EDITOR_NAME_GENRES:
+        out.append("[W6] お金と暮らしの記事に「編集責任者：名前」の行がない（2026-11-10 オーナー承認）")
     out += title_tag_problems(html, record)
     out += slot_problems(html)
     out += related_problems(html, record)

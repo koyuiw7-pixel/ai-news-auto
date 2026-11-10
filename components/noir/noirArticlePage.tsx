@@ -43,6 +43,7 @@ import { splitBeforeHeading } from "@/lib/markdown";
 import { headingTexts, noirBodyHtml, noirCover } from "@/lib/noir";
 import { getAllArticles, tagHref, type ArticleSummary, type FullArticle } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
+import { editorInCharge } from "@/lib/publisher";
 import type { ChooseGuide } from "@/lib/choose-data";
 
 /* eslint-disable @typescript-eslint/no-explicit-any -- 記事ページ（app/articles/[slug]/page.tsx）で作った値をそのまま受け取る */
@@ -146,6 +147,8 @@ export function noirArticlePage(ctx: NoirPageContext) {
   const matched = (o: Any) => (o && !String(o.topic ?? "").startsWith("fallback-") ? o : undefined);
   const inlineOffer = matched(ctx.inlineOffer);
   const offer = matched(ctx.offer);
+  // お金と暮らしの記事だけ「編集責任者：名前」を出す（出すのは名前のみ。2026-11-10 オーナー承認）
+  const editor = editorInCharge(article.genreSlug);
   const noirHtml = noirBodyHtml(bodyHtml, article);
   // この話の続き（2026-11-10 オーナー承認）: 同じ話題の記事を、要点の下に文字だけで2本、本文の直後に大きく3本。
   // 下は上と同じ記事から始めてよい（上を押さずに読み進めた人に、いちばん近い話題をもう一度見せる。同じ企業だけの記事より先に同じ話題の記事）
@@ -434,6 +437,11 @@ export function noirArticlePage(ctx: NoirPageContext) {
             <span>
               制作：<Link href="/about" rel="author">{siteConfig.author}</Link>
             </span>
+            {editor && (
+              <span data-editor-in-charge>
+                編集責任者：<Link href="/about">{editor.name}</Link>
+              </span>
+            )}
             <Link href="/editorial-policy">編集方針・AI利用と事実確認</Link>
             {reviewedLabel && <span>✓ 編集部が確認済み（{reviewedLabel}）</span>}
           </p>

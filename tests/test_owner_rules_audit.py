@@ -106,6 +106,9 @@ class PageTest(unittest.TestCase):
         self.assertIn("W6", ids(audit.article_page_problems(named, rec(genreSlug="ai"))))
         self.assertIn("W6", ids(audit.article_page_problems(f"<p>小室</p>{self.AD}", rec(genreSlug="public"))))
         self.assertIn("W6", ids(audit.article_page_problems(f"<p>編集責任者：小室勇世（◯◯大学を卒業）</p>{self.AD}", rec(genreSlug="public"))))
+        # 対象の記事に行が出ていないのも見つける（記事の形を1つ直し忘れて本番に出なかった 2026-11-10）
+        self.assertIn("W6", ids(audit.article_page_problems(f"<h1>題名</h1>{self.AD}", rec(genreSlug="lifestyle"))))
+        self.assertNotIn("W6", ids(audit.article_page_problems(f"<h1>題名</h1>{self.AD}", rec(genreSlug="ai"))))
 
     def test_noir_cover_ai_label(self):
         # ノワールの表紙の AI のイメージ（coverImage）には「画像はイメージ（AI生成）」の札（台帳 I4・W36）

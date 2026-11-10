@@ -68,7 +68,13 @@ test('[W6] オーナーの名前は /about・/editorial-policy と、お金と�
   const shared = pub.slice(0, pub.indexOf('export const EDITOR_NAME_GENRES'));
   assert.doesNotMatch(shared, /operator\.representative|小室/);
   // 出すのは名前だけ（経歴・肩書きの説明を足さない）
-  assert.doesNotMatch(read('app/articles/[slug]/page.tsx'), /経歴|プロフィール：|略歴/);
+  // 記事の形はいくつもある（今の本番はノワール）。「制作：」を出す記事の形は全部、編集責任者の行も持つ（片方だけ直して本番に出なかった 2026-11-10）
+  const layouts = SITE.filter((rel) => /制作：<(?:Link|a) href="\/about" rel="author"/.test(read(rel)) && !rel.startsWith('components/article-concept/'));
+  assert.ok(layouts.includes('components/noir/noirArticlePage.tsx') && layouts.includes('app/articles/[slug]/page.tsx'), layouts.join(','));
+  for (const rel of layouts) {
+    assert.match(read(rel), /data-editor-in-charge/, `${rel}: 編集責任者の行がない`);
+    assert.doesNotMatch(read(rel), /経歴|プロフィール：|略歴/, rel);
+  }
 });
 
 test('[A12] 人の確認について実態と違う約束を書かない（全記事を人が確認、確認済み＝人が読んだ記事の一覧）', () => {
