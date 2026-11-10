@@ -14574,6 +14574,19 @@
       "slug": "nvidia-meta-muse-partnership-expansion",
       "url": "https://nvidianews.nvidia.com/news/nvidia-and-meta-to-expand-collaboration-on-muse-and-muse-family-of-models-amid-robust-growth"
     },
+    "b47f19a5d90e7ccc": {
+      "at": "2026-11-10T04:03:54.861558+00:00",
+      "costUsd": 0.1268,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "nemotron-personas-finance-japan-dataset",
+      "url": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan-ja"
+    },
     "b4c408b70c6f4acf": {
       "at": "2026-10-30T10:11:50.407227+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -19541,26 +19554,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-08T15:03:20.776500+00:00",
-      "attempt": 0,
-      "id": "01ae94b0daa02eba",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 78.2,
-        "avg_sentence": 43.0,
-        "long_share": 0.1,
-        "max_paragraph": 108,
-        "paragraphs": 11,
-        "sentences": 20
-      },
-      "score": 88,
-      "source": "aws-ml-blog",
-      "title": "Taxonomy of agentic primitives in Amazon Quick"
-    },
     {
       "accepted": false,
       "at": "2026-11-08T15:21:59.868597+00:00",
@@ -27054,6 +27047,29 @@
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（IP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T04:03:54.837734+00:00",
+      "attempt": 1,
+      "id": "b47f19a5d90e7ccc",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 71.2,
+        "avg_sentence": 44.3,
+        "long_share": 0.189,
+        "max_paragraph": 149,
+        "paragraphs": 23,
+        "sentences": 37
+      },
+      "score": 88,
+      "source": "hugging-face-blog",
+      "title": "Nemotron-Personas-Finance-Japan: 日本の人口分布と金融コンテキストを捉える合成ペルソナデータセット",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CC・BY・SDG）"
       ]
     }
   ],
