@@ -6,7 +6,7 @@ import { CALCULATORS } from "@/lib/calculators";
 const meta = CALCULATORS["defense-tax"];
 
 export const metadata: Metadata = withPageShare("defense-tax", meta.href, {
-  title: "防衛特別所得税の計算　2027年から・年ごとの税額",
+  title: "防衛特別所得税はいつから・いくら　2027年から・年ごとの税額",
   description: meta.description,
   alternates: { canonical: meta.href },
 });
@@ -14,6 +14,11 @@ export const metadata: Metadata = withPageShare("defense-tax", meta.href, {
 export default function DefenseTaxPage() {
   return (
     <ToolPage kind="defense-tax" lead="2027年分から始まる防衛特別所得税と、税率が変わる復興特別所得税を、所得税額から年ごとに計算します。">
+      <ToolSection title="いつから・いくら">
+        <p>防衛特別所得税は、2027年（令和9年）分の所得税から始まります。税率は、基準所得税額の1%です。</p>
+        <p>同じ2027年分から、復興特別所得税の税率が2.1%から1.1%に下がります。2027年から2037年までは、2つを足した税率が2.1%のままなので、年の合計の額は変わりません。たとえば基準所得税額が15万円なら、2026年分も2027年分も合計は3,150円です。</p>
+        <p>違いが出るのは2038年分からです。改正前は2037年で終わるはずだった復興特別所得税が2047年まで続くため、2038年から2047年までは合計2.1%、2048年分からは防衛特別所得税の1%だけになります。</p>
+      </ToolSection>
       <ToolSection title="きまり（財務省の資料）">
         <p>防衛特別所得税＝その年の基準所得税額×1%。2027年（令和9年）分から当分の間です。</p>
         <p>復興特別所得税は、2027年分から税率を2.1%から1.1%に下げ、課税する期間を2037年までから2047年までに延ばします。</p>

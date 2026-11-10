@@ -152,6 +152,20 @@
 | O15 | （2026-11-07 オーナー承認）**Cloudflare Workers AI の有料を避ける**（お金はなるべく使わない・品質と本数は下げない）。①本文を書く段（write・quality）は Flash → 軽量の Gemini（flash-lite・Gemma）→ ほかの会社（Cloudflare → OpenRouter → Groq）の順。前は Flash の次が Cloudflare の gpt-oss-120b だった ②Cloudflare の文章モデルの使用量（ニューロン）を応答の usage から数え、UTC の日ごとに全部のジョブの記録に足す ③1日（UTC）の目安 3,000 ニューロン（`LLM_CF_DAILY_NEURONS`。画像の生成・判定と無料枠 1万を分ける）を超えたら、Cloudflare は候補のいちばん最後に回す。ほかの無料モデルがすべて失敗したときは目安を超えても使う（止めない。台帳 A48 の救済＝Claude の Haiku・Sonnet もそのまま） | 2026-11-07 | 11/6 は Workers AI を 111,921 ニューロン使い、無料枠 1万を超えた分（約 $1.1/日・月 約¥5,000）が有料。その 9割が gpt-oss-120b（132回・1回 約760）。品質ゲートの記録（10/30〜11/7）で gpt-oss の原稿は 171本中5本（3%）しか合格せず（flash-lite は 512本中133本＝26%）、11/3 以降 gpt-oss で書いた記事は0本・使い方ガイドは51回中0回合格＝ほぼ全部むだだった | `scripts/llm.py`（`models_for`・`cf_neurons`・`cf_neurons_today`・`cf_over_budget`・`CF_DAILY_NEURONS_DEFAULT`）・`tests/test_workers_ai_budget_20261107.py`・`tests/test_quality_language.py::test_write_tier_puts_strong_models_before_lite` | 記事の回のログの「今日の使用回数」の `workers-ai-neurons@<日付>`・Workers AI の使用量（Cloudflare のダッシュボード） |
 | O16 | （2026-11-07 費用の点検・お金はなるべく使わない・品質と本数は下げない）**費用の記録を正しく・見えるようにする**。①Claude API の台帳の「段×モデルの段」の欄はモデルの名前（Haiku=1・Sonnet=2・Opus=3）で決める（書き直しのジョブが環境変数で全部の段を Sonnet にしても、Sonnet を Haiku と数えない。1日の配分 api_plan の料金の見込みが正しくなる。月の予算・段の決まりは変えない）。過去の書き直しのジョブの記録（state/claude_api_usage_types.json の「中心×Haiku」183回 $14.96）は「中心×Sonnet」に直した ②Workers AI の画像の判定（llama-4-scout・mistral-small）: 同じ実行の中で同じ画像に同じ質問は1回だけ呼ぶ（temperature=0 で答えは同じ。判定の基準と回数の決まりは変えない）。使ったニューロンを応答の usage から数え、ジョブの記録に「workers-ai-vision-neurons@<UTCの日付>」で足す（見える化だけ。文章の目安 O15 の数え方には入れない） | 2026-11-07 | 「コスパは今後大量の記事を生成する時大切。無料でできるならそれに越したことはない」。書き直しのジョブの Sonnet（1回 約 $0.09）が Haiku と記録され、Haiku の中心の1回が約 $0.04（本当は約 $0.008）と見積もられていた。画像の判定のニューロンは記録が無く、無料枠 1万のうちどれだけ使うか分からなかった | `scripts/llm.py`（`_model_level`）・`scripts/images.py`（`cf_vision`・`_record_vision_neurons`・`VISION_NEURON_KEY`）・`tests/test_cost_audit_20261107.py` | ジョブの記録の `workers-ai-vision-neurons@<日付>`（画像の回）・Claude API の台帳の段ごとの額 |
 
+## 質問ごとの答えのページ（2026-11-10・SEO の作業の束 A7。決まりの変更ではなく記録）
+
+同じ話題の記事が何本もあるときに、読者の1つの質問に答える「持ち主のページ」を1つ決めておく。手で直すときは、この持ち主のページに答えを足し、ほかのページは持ち主へリンクする（表を写さない）。
+Muse の記事（writer: muse・refreshMode: editorial）は手でだけ直し（A59）、直したら `updatedAt` と `updates[]` に1行を足す。試験: `tests/test_answer_owner_pages_20261110.py`
+
+| 話題 | 質問 | 持ち主のページ | ほかのページの役割 |
+|---|---|---|---|
+| 児童手当 | 12月はいつ・いくら入る（支給日・振込額の早見表） | `/articles/child-allowance-december-payment` | 支払月の一覧は `/articles/pension-child-allowance-payment-calendar`、対象かは `/articles/child-allowance-eligibility-check`、第3子の数え方は `/articles/child-allowance-third-child-monthly-30000`、申請の手順は `/guides/jidou-teate` |
+| 年金生活者支援給付金 | 対象か・請求書や給付金が届かない | `/articles/pension-support-benefit-old-age-check` | 制度の全体（基準・請求・月額の計算）は `/articles/pension-support-benefit-old-age-eligibility`、家族の課税は `/articles/pension-support-benefit-family-share`、障害・遺族は `/articles/disability-survivor-pension-benefit`、支払日は `/articles/pension-child-allowance-payment-calendar` |
+| ドコモの情報流出 | 今やること（対象の確かめ方を含む） | `/articles/docomo-data-leak-what-to-do` | 発表と経過は `/articles/docomo-my-docomo-data-breach`、流出した項目は `/articles/docomo-online-shop-data-leak`、家族の回線は `/articles/docomo-data-leak-family-lines`、手続きの再開は `/articles/docomo-my-docomo-resume-procedures` |
+| 防衛特別所得税 | いつから・いくら | `/tools/defense-tax` | 2037年までは年の合計が変わらないと書く。「いくら増える」とは書かない |
+
+- ドコモの持ち主のページの見出しを「対象の確かめ方」にするのは、ドコモの公式のお知らせが確かめ方を示してからにする。11/10 の時点の最新（第三報・11月6日午後6時時点）には、対象かを確かめる方法が書かれていないため、見出しは変えていない。
+
 ## まとめた・外した番号（2026-11-08 の見直し）
 
 `out/rules_audit_20261108.md` の見直し（オーナー承認「おすすめどおりでいいよ」）で、171 本の行を 102 本にした。

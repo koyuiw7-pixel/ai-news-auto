@@ -51,6 +51,19 @@ test("防衛特別所得税：財務省の大綱どおりの年ごとの税率",
   assert.equal(calc.baseFromWithheld(153150), 150000);
 });
 
+test("防衛特別所得税のページ：「いつから・いくら」で、2037年までは年の合計が変わらないと書く（台帳 A7・2026-11-10）", () => {
+  const page = fs.readFileSync(path.join(root, "app/tools/defense-tax/page.tsx"), "utf8");
+  assert.ok(page.includes("いつから・いくら"));
+  assert.ok(!page.includes("いくら増える"), "負担が増えるように読める見出しは使わない");
+  assert.ok(/2037年までは[^<]*年の合計の額は変わりません/.test(page));
+  assert.equal(calc.surtax(150000, 2026).total, calc.surtax(150000, 2027).total);
+  assert.equal(calc.surtax(150000, 2027).total, 3150);
+  for (let year = 2027; year <= 2037; year += 1) {
+    assert.equal(calc.surtax(150000, year).total, calc.surtax(150000, year, true).total, `${year}年`);
+  }
+  assert.ok(calc.surtax(150000, 2038).total > calc.surtax(150000, 2038, true).total);
+});
+
 test("前と今の図：値は記事の文字のまま、棒は0から、差は数字から計算", () => {
   const html = charts.renderBeforeAfter({
     kind: "before_after",
