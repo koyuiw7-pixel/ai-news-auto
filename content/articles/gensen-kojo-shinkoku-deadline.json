@@ -66,7 +66,7 @@
   "videoTitle": "年末調整の扶養控除等申告書はいつまでに出すか 最初の給与の前日が期限で、出し忘れは確定申告でも取り戻せる",
   "publishedAt": "2026-11-10T21:33:23.691105+00:00",
   "generatedAt": "2026-11-10T21:33:36.616304+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/gensen-kojo-shinkoku-deadline-figure-039d2625.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -75,7 +75,6 @@
   "refreshMode": "editorial",
   "museFile": "20261111-手続き-扶養控除申告書の提出期限.md",
   "sectionsPolishedAt": "2026-11-10T21:33:36+00:00",
-  "museDepthNotes": "なるほど: 名前に税務署行きの書類という印象があるが、実際は違う。扶養控除等申告書は本来、給与の支払者を経由して税務署長と市区町村長へ提出することになっているものの、給与の支払者は特に提出を求められた場合以外は提出する必要がなく、勤務先が保管しておくことになっている。出す相手は税務署ではなく勤務先で、締切も勤務先の案内が先に来る理由はここにある。出典は国税庁 手続案内A2-1 https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm\nなるほど: 出さなくてよい人も決まっている。適用される税額表が日額表の丙欄とされる人は、この申告書を提出する必要はないとA2-1に明記されている。逆に、扶養家族がいないから不要、にはならない。国内で給与を受ける居住者は配偶者や扶養親族の有無にかかわらず原則提出で、線引きは家族の有無ではなく税額表の区分である。出典は同じく国税庁 手続案内A2-1",
   "museSources": [
     {
       "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm",
@@ -102,5 +101,146 @@
   "detectedAt": "2026-11-10T21:34:10+00:00",
   "searchTitle": "扶養控除等申告書の期限は最初の給与の前日　出し忘れは勤務先へ",
   "layout": "noir",
-  "summaryLine": "扶養控除等申告書は、その年に最初の給与を受け取る日の前日が提出の締め切りになります。"
+  "summaryLine": "扶養控除等申告書は、その年に最初の給与を受け取る日の前日が提出の締め切りになります。",
+  "insight": [
+    {
+      "text": "2か所以上から給与を受けているなら、申告書は「主たる給与の支払を受けている勤務先」に出します。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    },
+    {
+      "text": "申告書の提出がないと、給与の源泉徴収税額は税額表の「乙」欄が適用され、この申告書を提出した場合よりも高い税率になります。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    },
+    {
+      "text": "適用される税額表が日額表の丙欄とされる人は、この申告書を提出する必要はないと明記されています。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 手続案内「A2-1 給与所得者の扶養控除等の（異動）申告」",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "申告手続・用紙",
+        "申告・申請・届出等、用紙（手続の案内・様式）",
+        "A2 源泉所得税関係"
+      ],
+      "note": "令和９年分と令和８年分の様式と記載例が並んでいます。"
+    },
+    {
+      "name": "国税庁 タックスアンサー No.2671 年末調整の後に扶養親族等の人数が異動したとき",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2671.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2671.htm",
+      "howTo": [
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）",
+        "No.2671"
+      ],
+      "note": "やり直しは、源泉徴収票を作成・交付する日までに異動内容の申告書を出すことが条件です。"
+    },
+    {
+      "name": "国税庁 タックスアンサー No.2030 還付申告",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "howTo": [
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）",
+        "No.2030"
+      ],
+      "note": "還付申告書の提出先は、提出するときの納税地を所轄する税務署長です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "まだ出していなければ、令和８年分の申告書を勤務先へ出す",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm",
+      "steps": [
+        "A2-1のページで令和８年分の申告書（PDF）を開く",
+        "記載要領と記載例（PDF）で書き方を確かめる",
+        "記入した申告書を勤務先の給与の支払者へ提出する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm"
+    },
+    {
+      "action": "給与を2か所からもらっているなら、主たる勤務先に申告書を出す",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "steps": [
+        "給与の支払を受けている勤務先を確認する",
+        "主たる給与の支払を受けている勤務先に申告書を提出する"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm"
+    }
+  ],
+  "cause": {
+    "text": "扶養控除等申告書は、給与から源泉徴収する税額や年末調整で諸控除を正しく計算するために勤務先へ出す仕組みです。扶養親族がいなくても原則として提出が必要で、出さない場合は月々の源泉徴収で諸控除を受けられず、年末調整も行われません。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm"
+  },
+  "worries": [
+    {
+      "q": "扶養家族がいないと、出さなくてもいい？",
+      "a": "扶養親族がいなくても、国内で給与を受ける人は原則として提出が必要です。出さないと月々の源泉徴収で諸控除を受けられず、年末調整も行われません。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm",
+      "action": "扶養家族がいなくても原則提出が必要なので、今年分の申告書を勤務先へ出す。出し忘れは勤務先へ伝えて早急に出す"
+    },
+    {
+      "q": "出し忘れると、給料から引かれる税金は変わる？",
+      "a": "申告書の提出がない人の給与は、税額表の「乙」欄が適用され、申告書を提出した場合よりも高い税率が適用されます。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "action": "まず勤務先へ今年分の申告書の提出状況を聞き、まだなら早急に出してください。"
+    },
+    {
+      "q": "年末調整のあとに家族が増えたら、どうなる？",
+      "a": "その年の12月31日までに控除対象扶養親族の数が増えた場合、年末調整のやり直しができます。源泉徴収票を作成・交付する日までに、異動内容を書いた申告書を出すのが条件です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2671.htm",
+      "action": "家族が増えたら、異動内容を書いた申告書を源泉徴収票の交付日までに勤務先へ出す。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "年末調整のやり直しと還付申告、どちらにする？",
+      "situation": "年末調整の後、12月31日までに扶養親族が増えた",
+      "recommend": "まず勤務先に相談し、やり直しができるか確かめる",
+      "reason": "やり直しは、源泉徴収票を作成・交付する日までに異動内容を書いた申告書を出すのが条件です。間に合わない場合ややり直ししない場合は、確定申告で還付を受けられます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2671.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "2か所以上から給与なら、出す先は主たる勤務先",
+    "cause": "出さないと何が変わるか、仕組み",
+    "steps": "今日、勤務先に出す申告書の用意",
+    "desk": "書類の様式や期限を確かめる窓口",
+    "worries": "家族がいなくても出す必要はある？",
+    "guide": "やり直しか還付申告か、迷ったとき"
+  },
+  "todayActions": [
+    "まだ出していなければ、令和８年分の申告書を勤務先へ出す",
+    "給与を2か所からもらっているなら、主たる勤務先に申告書を出す"
+  ],
+  "depthAt": "2026-11-10T21:57:02+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "扶養控除等申告書の期限は最初の給与の前日",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-10T21:58:50+00:00"
+  },
+  "imageFocus": {
+    "x": 0.526,
+    "y": 0.419,
+    "box": [
+      0.1,
+      0.077,
+      0.953,
+      0.762
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/gensen-kojo-shinkoku-deadline-figure-039d2625.jpg"
+  }
 }
