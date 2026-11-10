@@ -93,6 +93,14 @@
       "tries": 1,
       "url": "https://www.mof.go.jp/jgbs/topics/gov_guaranteed_bonds/hu2033.htm"
     },
+    "cd39b75a4ad90cfc": {
+      "first": "2026-11-10T00:08:20.615102+00:00",
+      "next": "2026-11-10T03:08:20.615102+00:00",
+      "reason": "タイトル「9月分は実質どう動いたか」→ 元記事に9月分の指数値や増減は無く、本文も実質の動きを示していないため、見出しの問いに答えていない。; リード「世帯ごとの平均的な消費支出をみるミクロ指数と…2つの体系で月次動向を示しています」→ 9月分の動向そのものは示されておらず、統計の概要説明にとどまる。; 「今回公表された9月分および7〜9月期平均の詳細は…確認できます」→ 9月分の具体的な結果が本",
+      "title": "2025年基準 消費動向指数（CTI）2026年（令和8年）9月分 及び 7～9月期平均",
+      "tries": 1,
+      "url": "https://www.stat.go.jp/data/cti/index2.html"
+    },
     "d083b2d2afa7377a": {
       "first": "2026-11-09T02:15:34.985262+00:00",
       "next": "2026-11-09T05:15:34.985262+00:00",
@@ -170,7 +178,6 @@
     "87717d1c826ec2f6": "2026-11-08T01:10:50.926550+00:00",
     "884b8cc2f43ba1f5": "2026-11-06T01:01:01.438406+00:00",
     "9192d24f26be4d21": "2026-11-06T01:20:53.228732+00:00",
-    "95fb99d3788133d4": "2026-11-06T00:01:50.996430+00:00",
     "9768eaa6b9472805": "2026-11-06T08:51:04.778179+00:00",
     "97b295127eee65c6": "2026-11-06T18:22:08.318950+00:00",
     "a021b5d3e7b968d3": "2026-11-06T19:23:54.886871+00:00",
@@ -185,7 +192,6 @@
     "b71be0c669ca9810": "2026-11-06T19:23:54.886871+00:00",
     "b7c50d46a5e9f41d": "2026-11-09T07:10:55.440298+00:00",
     "b856ca6e2ad9b4f8": "2026-11-06T19:41:01.362264+00:00",
-    "ba2157cbb6272410": "2026-11-06T00:01:50.996430+00:00",
     "bc1a673743a9a573": "2026-11-06T08:51:04.778179+00:00",
     "bd1cfd5963166b03": "2026-11-06T08:51:04.778179+00:00",
     "bda4433a4e4cd6e4": "2026-11-09T19:01:05.896647+00:00",
@@ -4694,13 +4700,6 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000054.000142334.html"
     },
-    "13bc1f882e6cd17c": {
-      "at": "2026-10-27T00:01:48.372583+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2057字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000031.000045667.html"
-    },
     "13c3f7609d9b5ea9": {
       "at": "2026-11-08T06:45:40.277614+00:00",
       "costUsd": 0.0012,
@@ -6612,12 +6611,6 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/kaisai/02tsushin10_04000740.html"
     },
-    "31317bfb9b6a32d8": {
-      "at": "2026-10-27T00:02:14.132711+00:00",
-      "reason": "prefilter: 告知・お知らせ系",
-      "skipped": true,
-      "url": "https://prtimes.jp/main/html/rd/p/000000022.000154651.html"
-    },
     "317d9d7015af4163": {
       "at": "2026-11-06T06:33:59.576809+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -6630,6 +6623,12 @@
       "reason": "quality: 本文が短い（2042字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/haiku-5-5/"
+    },
+    "31dd58a059d910aa": {
+      "at": "2026-11-10T00:08:20.633457+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（campaign）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77189.html"
     },
     "31f151a5f577f32a": {
       "at": "2026-10-30T05:01:58.633869+00:00",
@@ -7548,6 +7547,17 @@
       "reason": "followup quality: OpenAI公式ブログは2026年10月28日 -> 元記事には「2026年10月28日」という具体的な日付の記載はない",
       "skipped": true,
       "url": "https://openai.com/index/legora"
+    },
+    "41d1b99459c7252d": {
+      "at": "2026-11-10T00:06:21.966780+00:00",
+      "costUsd": 0.0112,
+      "intent": "query",
+      "mix": "money",
+      "model": "gemini-3.5-flash-lite",
+      "score": 96,
+      "section": "business",
+      "slug": "mof-trade-statistics-sep-2026",
+      "url": "https://www.mof.go.jp/outside_link/20261109104812.html"
     },
     "421c7219cebee5fd": {
       "at": "2026-11-02T05:32:00.709636+00:00",
@@ -8970,6 +8980,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
       "skipped": true,
       "url": "https://group.ntt/jp/newsrelease/2026/11/02/261102a.html"
+    },
+    "573fbb2327fb588b": {
+      "at": "2026-11-10T00:07:48.311874+00:00",
+      "costUsd": 0.0127,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "business",
+      "slug": "mof-securities-transactions-october-2026",
+      "url": "https://www.mof.go.jp/policy/international_policy/reference/itn_transactions_in_securities/month.pdf"
     },
     "57842350d2d67a33": {
       "at": "2026-11-03T00:51:13.723143+00:00",
@@ -10609,6 +10630,12 @@
       "slug": "piggparty-tougen-anki-collab",
       "url": "https://www.cyberagent.co.jp/news/detail/id=33965"
     },
+    "6f9884c795f906ec": {
+      "at": "2026-11-10T00:06:22.533308+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/statistics/dl/depo/kashi/kasi2610.pdf"
+    },
     "6fb118c02ff58754": {
       "at": "2026-10-29T05:12:44.876743+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -11368,6 +11395,12 @@
       "section": "public",
       "slug": "government-food-loss-reduction-guide",
       "url": "https://www.gov-online.go.jp/article/201303/entry-7526.html"
+    },
+    "7bdf2a70db0a49fb": {
+      "at": "2026-11-10T00:08:20.620888+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "https://www.mof.go.jp/policy/international_policy/reference/balance_of_payments/preliminary/pg2026hfy.htm"
     },
     "7be025aa4bcf5554": {
       "at": "2026-11-05T01:22:51.057827+00:00",
@@ -12301,13 +12334,6 @@
       "reason": "stale: 発表から53時間（48時間を超えた発表は通常の記事にしない）",
       "skipped": true,
       "url": "https://blog.dropbox.com/topics/company/dropboxs-next-chapter"
-    },
-    "8a0b2a52543d7d01": {
-      "at": "2026-10-27T00:02:01.355124+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1538字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（374字 / 基準 400字以上）; 元記事の文をそのまま書き写している（2文。例「WOWPASSは、韓国国内での決済機能とT-money機能を備えた、訪韓外国人向けのプリペイドカード」）。自分の言葉で要約する",
-      "skipped": true,
-      "url": "https://www.dreamnews.jp/press/0000366439"
     },
     "8a13bd26669509b7": {
       "at": "2026-11-08T07:16:16.894859+00:00",
@@ -14152,14 +14178,6 @@
       "section": "public",
       "slug": "soumu-missile-evacuation-drills-2026",
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001285.html"
-    },
-    "a5f74e121560fc9a": {
-      "at": "2026-10-27T00:02:14.132460+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "entertainment",
-      "slug": "true-temper-jgto-pga-2026-10",
-      "url": "https://prtimes.jp/main/html/rd/p/000000026.000182292.html"
     },
     "a5f92919f373b5e1": {
       "at": "2026-10-28T20:31:53.338431+00:00",
@@ -16430,6 +16448,12 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/kouseiroudoushou/saiyou/hijoukin/hj-ninki-seisakutoukatukan_ikuzi_00001.html"
     },
+    "cbc53cd1638de584": {
+      "at": "2026-11-10T00:08:20.620977+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "https://www.mof.go.jp/policy/international_policy/reference/balance_of_payments/preliminary/pg202609.htm"
+    },
     "cbe0ba8852adf755": {
       "at": "2026-10-27T01:53:14.804383+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16650,6 +16674,17 @@
       "section": "business",
       "slug": "yokohama-rubber-tire-recall-lt151r",
       "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005882.html"
+    },
+    "d0953ac465f737da": {
+      "at": "2026-11-10T00:05:04.373419+00:00",
+      "costUsd": 0.0121,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 94,
+      "section": "investment",
+      "slug": "boj-opinion-october-2026",
+      "url": "http://www.boj.or.jp/mopo/mpmsche_minu/opinion_2026/opi261030.pdf"
     },
     "d095c67c15e8db4d": {
       "at": "2026-11-05T11:21:32.692762+00:00",
@@ -20075,203 +20110,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-07T21:12:43.972260+00:00",
-      "attempt": 1,
-      "id": "5175c20e07f32dcb",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 101.3,
-        "avg_sentence": 39.1,
-        "long_share": 0.114,
-        "max_paragraph": 158,
-        "paragraphs": 17,
-        "sentences": 44
-      },
-      "score": 88,
-      "source": "github-changelog-copilot",
-      "title": "GitHub Copilot weekly releases — November 2",
-      "warnings": [
-        "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CLI・VS・IDE）",
-        "英語の画面名（「「Settings」」）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T21:44:56.410371+00:00",
-      "attempt": 1,
-      "id": "23359978bbf7fef8",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 77.9,
-        "avg_sentence": 41.4,
-        "long_share": 0.156,
-        "max_paragraph": 200,
-        "paragraphs": 17,
-        "sentences": 32
-      },
-      "score": 85,
-      "source": "github-changelog-copilot",
-      "title": "@GitHub in Slack and Teams is generally available and more",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IDE）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T22:13:16.618272+00:00",
-      "attempt": 1,
-      "id": "d6fa7442b9055fd5",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "tsr",
-      "title": "オンラインオリパ運営を提訴、ギャンブル性の課金構造が問題 ～ 弁護士法人・響 西川研一弁護士インタビュー ～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T22:13:43.963556+00:00",
-      "attempt": 1,
-      "id": "d6fa7442b9055fd5",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "tsr",
-      "title": "オンラインオリパ運営を提訴、ギャンブル性の課金構造が問題 ～ 弁護士法人・響 西川研一弁護士インタビュー ～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T22:14:09.540608+00:00",
-      "attempt": 2,
-      "id": "d6fa7442b9055fd5",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 日本の読者に役立つ情報が足りません。日本の読者が自分に関係あるか判断できる章を、資料にある事実だけで書いてください。見出しは決まった質問（「日本で使える？」「料金は？」）にせず中身の言葉にし、日本・無料・料金・使い方・始め方・使える のどれかを含める（例「日本で使えるのは12月から」「料金は月200ドルの"
-      ],
-      "score": null,
-      "source": "tsr",
-      "title": "オンラインオリパ運営を提訴、ギャンブル性の課金構造が問題 ～ 弁護士法人・響 西川研一弁護士インタビュー ～"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T22:14:42.346063+00:00",
-      "attempt": 2,
-      "id": "d6fa7442b9055fd5",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.5,
-        "avg_sentence": 43.8,
-        "long_share": 0.17,
-        "max_paragraph": 181,
-        "paragraphs": 22,
-        "sentences": 47
-      },
-      "score": 90,
-      "source": "tsr",
-      "title": "オンラインオリパ運営を提訴、ギャンブル性の課金構造が問題 ～ 弁護士法人・響 西川研一弁護士インタビュー ～",
-      "warnings": [
-        "同じ数字が多い（「5社」が7回）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T22:52:09.691837+00:00",
-      "attempt": 1,
-      "id": "dcf7efe8bcfb40e1",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "新製品・新サービス・機能の記事に必要な「発売日・提供開始日」が資料にあるのに本文にありません（日付と、段階的な提供ならその順番）。資料の表記どおりに入れてください"
-      ],
-      "score": null,
-      "source": "github-changelog-copilot",
-      "title": "Usage metrics API adds code review details and addressed rate"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T22:52:36.043691+00:00",
-      "attempt": 1,
-      "id": "dcf7efe8bcfb40e1",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.2,
-        "avg_sentence": 40.8,
-        "long_share": 0.143,
-        "max_paragraph": 179,
-        "paragraphs": 18,
-        "sentences": 42
-      },
-      "score": 88,
-      "source": "github-changelog-copilot",
-      "title": "Usage metrics API adds code review details and addressed rate",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（MCP・REST）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-07T23:33:06.266751+00:00",
-      "attempt": 1,
-      "id": "b6de41f0f45eb74b",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 98.6,
-        "avg_sentence": 40.6,
-        "long_share": 0.147,
-        "max_paragraph": 178,
-        "paragraphs": 14,
-        "sentences": 34
-      },
-      "score": 93,
-      "source": "github-changelog-copilot",
-      "title": "Usage metrics API flags telemetry and version gaps",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IDE）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-07T23:55:11.728466+00:00",
-      "attempt": 1,
-      "id": "5cecc12e376b047e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 48.5字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "段落が長い（平均 142.1字・最長 236字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 142.1,
-        "avg_sentence": 48.5,
-        "long_share": 0.293,
-        "max_paragraph": 236,
-        "paragraphs": 14,
-        "sentences": 41
-      },
-      "score": 90,
-      "source": "github-blog",
-      "title": "Beyond code generation: A developer’s guide to agentic engineering"
-    },
     {
       "accepted": true,
       "at": "2026-11-07T23:55:38.467241+00:00",
@@ -27306,6 +27144,258 @@
         "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
         "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（ICT）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T00:04:23.115208+00:00",
+      "attempt": 1,
+      "id": "d0953ac465f737da",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "タイトル「日銀、政策金利の据え置きを決定」→ 元記事は「主な意見」の公表であり、政策金利を据え置くと日銀が決定したとは書かれていない。据え置きは一部委員の意見として示されたにすぎず、決定の事実は元記事にも確認済みの文脈にもない。",
+        "リード・本文の「据え置くことが適当」→ 元記事どおり個別の委員の意見として書かれており問題はないが、見出しとの差で読者が決定と誤解する恐れがある。",
+        "「物価が目標とする2%に達していることから、追加の利上げを段階的に進めるべき」（かんたん版）→ 元記事は「基調的な物価上昇率は既に2%に達しており、政策金利を早く中立水準に持っていく必要がある」という意見であり、「段階的に」は元記事にない言い換えで、やや言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 138.5,
+        "avg_sentence": 79.1,
+        "long_share": 0.714,
+        "max_paragraph": 186,
+        "paragraphs": 4,
+        "sentences": 7
+      },
+      "score": 55,
+      "source": "boj",
+      "title": "金融政策決定会合における主な意見（10月29、30日開催分）",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 79.1字・60字超の文が 71% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T00:04:40.531897+00:00",
+      "attempt": 1,
+      "id": "d0953ac465f737da",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 142.0,
+        "avg_sentence": 81.1,
+        "long_share": 0.714,
+        "max_paragraph": 190,
+        "paragraphs": 4,
+        "sentences": 7
+      },
+      "score": 90,
+      "source": "boj",
+      "title": "金融政策決定会合における主な意見（10月29、30日開催分）",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 81.1字・60字超の文が 71% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T00:04:57.855103+00:00",
+      "attempt": 0,
+      "id": "d0953ac465f737da",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.8,
+        "avg_sentence": 43.3,
+        "long_share": 0.154,
+        "max_paragraph": 143,
+        "paragraphs": 6,
+        "sentences": 13
+      },
+      "score": 94,
+      "source": "boj",
+      "title": "金融政策決定会合における主な意見（10月29、30日開催分）",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T00:05:37.263480+00:00",
+      "attempt": 1,
+      "id": "41d1b99459c7252d",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文「8月の輸出額は10兆4,327億円、輸入額は11兆1,551億円」→ 元記事の表の8月の輸出額は10,043,270百万円（10兆433億円）で、数値が一致しない。出典も付いているが数字が元資料と違う。",
+        "リード「現時点で個人の手続きや契約に変更はありません」→ 元記事・確認済みの文脈のどこにも書かれていない主張。",
+        "「確報」「確々報」の発表時期について「今後の財務省による発表で順次示される予定」「今後の発表予定に合わせて順次公表される見込み」→ 元記事の公表予定一覧はあるが、この記事の品目別・確報値の扱いは元資料の範囲を超える言い方ではないものの、予定の具体性は示していない。",
+        "仕事・お金の欄「原材料コストの変動予測や今後の事業計画に活かせます」→ 一般的な助言として許容範囲だが、為替と原材料コストの関係を具体化していない。"
+      ],
+      "readability": {
+        "avg_paragraph": 100.1,
+        "avg_sentence": 70.1,
+        "long_share": 0.7,
+        "max_paragraph": 153,
+        "paragraphs": 7,
+        "sentences": 10
+      },
+      "score": 45,
+      "source": "mof",
+      "title": "貿易統計(令和8年10月上中旬分速報)【税関ホームページ】",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "読みやすさ: 文が長い（1文の平均 70.1字・60字超の文が 70% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T00:05:58.696633+00:00",
+      "attempt": 1,
+      "id": "41d1b99459c7252d",
+      "kind": "broad",
+      "model": "strike:本文 2 文・かんたん版 1 文・リード・仕事・お金の欄",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 108.6,
+        "avg_sentence": 67.9,
+        "long_share": 0.75,
+        "max_paragraph": 153,
+        "paragraphs": 5,
+        "sentences": 8
+      },
+      "score": 93,
+      "source": "mof",
+      "title": "貿易統計(令和8年10月上中旬分速報)【税関ホームページ】",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "読みやすさ: 文が長い（1文の平均 67.9字・60字超の文が 75% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T00:06:18.703741+00:00",
+      "attempt": 0,
+      "id": "41d1b99459c7252d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 48.9,
+        "avg_sentence": 34.2,
+        "long_share": 0.1,
+        "max_paragraph": 90,
+        "paragraphs": 7,
+        "sentences": 10
+      },
+      "score": 96,
+      "source": "mof",
+      "title": "貿易統計(令和8年10月上中旬分速報)【税関ホームページ】",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T00:06:48.976463+00:00",
+      "attempt": 1,
+      "id": "573fbb2327fb588b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「中長期債についても取得が60万3,703億円」、「万3,703億円、処分が58万4,178億円」、「投資ファンド持分の取得が170万5,906億円」、「る海外株式の買い越し額は1兆円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足"
+      ],
+      "readability": {
+        "avg_paragraph": 117.6,
+        "avg_sentence": 65.3,
+        "long_share": 0.556,
+        "max_paragraph": 147,
+        "paragraphs": 5,
+        "sentences": 9
+      },
+      "score": null,
+      "source": "mof",
+      "title": "対外及び対内証券売買契約等の状況(月次・指定報告機関ベース)",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 65.3字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T00:07:36.260346+00:00",
+      "attempt": 1,
+      "id": "573fbb2327fb588b",
+      "kind": "broad",
+      "model": "strike:本文 2 文・要点 1 個",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.2,
+        "avg_sentence": 61.5,
+        "long_share": 0.667,
+        "max_paragraph": 116,
+        "paragraphs": 4,
+        "sentences": 6
+      },
+      "score": 82,
+      "source": "mof",
+      "title": "対外及び対内証券売買契約等の状況(月次・指定報告機関ベース)",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 61.5字・60字超の文が 67% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T00:07:48.284231+00:00",
+      "attempt": 0,
+      "id": "573fbb2327fb588b",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.4,
+        "avg_sentence": 40.8,
+        "long_share": 0.111,
+        "max_paragraph": 105,
+        "paragraphs": 5,
+        "sentences": 9
+      },
+      "score": 88,
+      "source": "mof",
+      "title": "対外及び対内証券売買契約等の状況(月次・指定報告機関ベース)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T00:08:20.615000+00:00",
+      "attempt": 1,
+      "id": "cd39b75a4ad90cfc",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "タイトル「9月分は実質どう動いたか」→ 元記事に9月分の指数値や増減は無く、本文も実質の動きを示していないため、見出しの問いに答えていない。",
+        "リード「世帯ごとの平均的な消費支出をみるミクロ指数と…2つの体系で月次動向を示しています」→ 9月分の動向そのものは示されておらず、統計の概要説明にとどまる。",
+        "「今回公表された9月分および7〜9月期平均の詳細は…確認できます」→ 9月分の具体的な結果が本文にないまま、詳細の所在だけを案内している。",
+        "「今後の景気や需要の変化を確認する判断材料になります」→ 元記事に景気や需要の見通しに関する記述は無く、用途の言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 150.2,
+        "avg_sentence": 66.8,
+        "long_share": 0.667,
+        "max_paragraph": 199,
+        "paragraphs": 4,
+        "sentences": 9
+      },
+      "score": 72,
+      "source": "stat",
+      "title": "2025年基準 消費動向指数（CTI）2026年（令和8年）9月分 及び 7～9月期平均",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "初めて出たところで言い換えていない略語（CTI）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
     }
   ],
