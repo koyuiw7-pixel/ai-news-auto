@@ -78,9 +78,9 @@
     }
   ],
   "todayActions": [
-    "自治体の浸水想定区域図やハザードマップで、自宅と職場の浸水リスクを確認する",
-    "地下に設備のある事業者は、電気設備や重要書類の置き場所を見直す",
-    "国土交通省のホームページで、とりまとめ資料の全文を確認する"
+    "国土交通省のホームページで、とりまとめ資料と委員会の検討状況を確認する",
+    "内水氾濫の心配は、大臣官房参事官(上下水道技術)の直通番号に電話で問い合わせる",
+    "報道発表資料のPDFを開いて、発表の全文を読む"
   ],
   "publicInterest": "disaster",
   "qualityScore": 92,
@@ -111,5 +111,98 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/urban-flood-measures-mlit-chiba-figure-c32ddde1.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "とりまとめ全般と内水氾濫対策で問い合わせ先が分かれている。内水氾濫なら大臣官房の参事官（上下水道技術）、直通03-5253-8432。",
+      "source": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html"
+    },
+    {
+      "text": "とりまとめ資料は国土交通省ホームページで公表。報道発表資料はPDFで、見るにはAdobe Acrobat Readerが必要。",
+      "source": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国土交通省 水管理・国土保全局 河川計画課 河川計画調整室",
+      "url": "https://www.mlit.go.jp/mizukokudo/river/mizusaigaichousa.html",
+      "source": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html",
+      "phone": "03-5253-8445",
+      "note": "とりまとめ全般についての問い合わせ先です。"
+    },
+    {
+      "name": "国土交通省 大臣官房 参事官(上下水道技術)",
+      "url": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html",
+      "source": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html",
+      "phone": "03-5253-8432",
+      "note": "内水氾濫対策に関することの窓口です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "国土交通省のホームページで、とりまとめ資料と委員会の検討状況を確認する",
+      "source": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html",
+      "steps": [
+        "リンク先のページ（mizusaigaichousa.html）を開く",
+        "とりまとめ資料と検討状況の欄を確認する"
+      ],
+      "url": "https://www.mlit.go.jp/mizukokudo/river/mizusaigaichousa.html"
+    },
+    {
+      "action": "内水氾濫の心配は、大臣官房参事官(上下水道技術)の直通番号に電話で問い合わせる",
+      "source": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html",
+      "steps": [
+        "問い合わせ先の「内水氾濫対策に関すること」を見る",
+        "直通 03-5253-8432 に電話する"
+      ]
+    },
+    {
+      "action": "報道発表資料のPDFを開いて、発表の全文を読む",
+      "source": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html",
+      "steps": [
+        "「添付資料」の報道発表資料を選ぶ",
+        "PDFが開けないときはAcrobat Readerを入れる"
+      ],
+      "url": "https://www.mlit.go.jp/report/press/content/002045201.pdf"
+    }
+  ],
+  "cause": {
+    "text": "千葉豪雨や9月の東海地方の大雨では、都市部で内水氾濫などの被害が出た。水災害調査・対策検討委員会がその被害と課題を検討し、対策方針をとりまとめました。",
+    "status": "background",
+    "source": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html"
+  },
+  "worries": [
+    {
+      "q": "いつから、どんな対策が始まるの？",
+      "a": "このページには、個別の施策の実施時期は書かれていません。「速やかに講じてまいります」とあり、3つの柱で対策を進める方針だけが示されています。",
+      "source": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html",
+      "action": "時期や予算を知りたいときは、内水氾濫対策の窓口（直通03-5253-8432）に問い合わせてみる。"
+    },
+    {
+      "q": "うちの地域も対象になる？",
+      "a": "このページには、対象となる自治体や地域の範囲は書かれていません。とりまとめ資料と検討状況は、国土交通省のホームページで公表されています。",
+      "source": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html",
+      "action": "とりまとめ資料と委員会の検討状況を、国土交通省のホームページで確認する。"
+    },
+    {
+      "q": "地下の店舗や倉庫は、何を見直せばいい？",
+      "a": "このページには、地下の店舗や設備向けの具体的な対策の中身は書かれていません。「局所的な低地や地下空間等」で浸水の形が複雑だとして、リスクの周知を進める方針です。",
+      "source": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html",
+      "action": "地下の店舗や倉庫の対策は、まず内水氾濫対策の窓口（直通03-5253-8432）に問い合わせて確認する。"
+    },
+    {
+      "q": "事業費や予算はどのくらい？税金は増える？",
+      "a": "このページには事業費や予算額の記載がありません。今回は都市型水害への対策方針をまとめたもので、費用の内容はこのページには書かれていません。",
+      "source": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html",
+      "action": "予算の情報は、とりまとめ資料と検討状況を国土交通省のホームページで確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "問い合わせ先と資料の見方はここで確認",
+    "cause": "なぜ今、都市型水害の対策を強めるのか",
+    "steps": "今日やることは、資料と窓口の確認から",
+    "desk": "問い合わせ先は、内容で窓口が違います",
+    "worries": "時期や対象地域、お金のことは分かる？"
+  },
+  "depthAt": "2026-11-10T02:38:41+00:00"
 }
