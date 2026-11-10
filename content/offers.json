@@ -1085,6 +1085,28 @@
       "name": "確定申告・節税"
     },
     {
+      "key": "life-solar",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "太陽光|蓄電池|ソーラー",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "太陽光や蓄電池で電気代を考えたい人へ",
+      "lead": "太陽光発電や蓄電池の設置を考えるときに、費用を比べるために。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "tainavi",
+        "elpio"
+      ],
+      "name": "太陽光・蓄電池の見積もり",
+      "articleExclude": "株価|決算|業績|上場|時価総額|EV|電気自動車|全固体|半導体"
+    },
+    {
       "key": "life-energy",
       "genres": [
         "public",
@@ -1101,8 +1123,7 @@
       "lead": "電気・ガス代が上がるときに、契約先を比べるために。料金・条件は各公式サイトで確認してください。",
       "partners": [
         "elpio",
-        "enepi",
-        "tainavi"
+        "enepi"
       ],
       "name": "電気代の見直し",
       "intents": [
@@ -1110,9 +1131,8 @@
           "key": "bill",
           "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|燃料費調整|再エネ賦課金|新電力|電力会社",
           "partners": [
-            "enepi",
             "elpio",
-            "tainavi"
+            "enepi"
           ]
         }
       ]
@@ -1355,7 +1375,8 @@
       "pixel": "https://www19.a8.net/0.gif?a8mat=4BELTP+C1FL6A+50+7S2QE9",
       "_image_note": "A8の公式バナー（素材ID 042・336x280）。画像とリンク・計測ピクセルは同じ素材のものを組で使う",
       "caution": "無料利用時間を超えるとWebUI利用料金が加算されます。",
-      "priceCheckedAt": "2026-10-31T06:00:00+00:00"
+      "priceCheckedAt": "2026-10-31T06:00:00+00:00",
+      "programId": "s00000000018047"
     },
     "value-ai-writer": {
       "program": "Value AI Writer",
@@ -1367,7 +1388,9 @@
       "image": null,
       "page": null,
       "shop": "GMO公式",
-      "source": null
+      "source": null,
+      "programId": "s00000007238009",
+      "link": "https://px.a8.net/svt/ejp?a8mat=4BEO5P+CLOBQQ+1JUK+1HL85U"
     },
     "creators-japan": {
       "program": "クリエイターズジャパン",
@@ -1686,21 +1709,22 @@
     },
     "surfshark": {
       "program": "Surfshark",
-      "name": "Surfshark",
-      "label": "ネット利用の安全対策",
-      "note": "VPNなどを提供するサービス。機能は契約プランにより異なります。",
+      "name": "Surfshark Antivirus",
+      "label": "ウイルス・マルウェア対策",
+      "note": "ウイルスやマルウェアから端末を守るウイルス対策ソフト。単体では買えず、Surfshark One のセットに含まれます。",
       "image": "https://www23.a8.net/svt/bgt?aid=261026994319&wid=001&eno=01&mid=s00000021488002004000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BEPPU+59XAR6+4LSW+BX3J6",
       "shop": "Surfshark公式",
       "programId": "s00000021488002",
       "pitch": {
-        "fit": "外出先のWi-Fiをよく使う人",
-        "point": "VPNなどを提供するサービス。機能は契約プランで変わります",
-        "cta": "プランと料金を見る",
-        "gain": "外出先のWi-Fiを、VPNで安全に使う",
+        "fit": "PCやAndroidのウイルス対策を考えている人",
+        "point": "使用中のアプリやファイルを常に調べるウイルス対策ソフト",
+        "cta": "対応端末と料金を見る",
+        "gain": "ウイルスやマルウェアへの対策を、PCとAndroidで始める",
         "merits": [
-          "1つの契約で台数無制限に使える",
-          "購入から30日以内は全額返金の保証"
+          "最大5台のデバイスに対応",
+          "Windows・Mac・Androidで使える",
+          "30日間の返金保証"
         ]
       }
     },
@@ -2268,19 +2292,19 @@
       "programId": "s00000013511010",
       "program": "エネピ",
       "name": "エネピ",
-      "label": "電気料金を比べる",
-      "note": "住所や使用量をもとに、電力会社の料金プランを比べられる比較サービス。",
+      "label": "電気・ガス料金の見直しを相談",
+      "note": "電気・ガスの使用状況から料金プランを無料で提案し、切り替えの手続きも行うじげんのサービス。相談には名前と連絡先の登録が必要です。",
       "image": "https://www21.a8.net/svt/bgt?aid=261108130020&wid=001&eno=01&mid=s00000013511010003000&mc=1",
       "link": "https://px.a8.net/svt/ejp?a8mat=4BGGBM+BWOVM+2W92+1NJK7M",
       "shop": "エネピ（じげん）",
       "pitch": {
-        "fit": "どの電力会社が合うか、まず比べたい人",
-        "point": "住所や使用量をもとに、電力会社の料金プランを比べられます",
-        "cta": "電気料金を比べる",
-        "gain": "住所と使用量から、合う電気料金プランを比べる",
+        "fit": "電気やガスの契約先を、相談して決めたい人",
+        "point": "料金プランの提案と、切り替えの手続きを任せられます（登録が必要）",
+        "cta": "料金の見直しを相談する",
+        "gain": "電気・ガス代の見直しを、無料で相談する（登録が必要）",
         "merits": [
-          "見積もり・契約の切り替えは無料",
-          "10秒で料金のシミュレーション"
+          "見積もりから切り替えまで費用は無料",
+          "切り替えの手続きはエネピが行う"
         ]
       }
     },
@@ -2751,14 +2775,34 @@
       "lead": "申告の準備は、明細の整理と書類づくりに時間がかかります。"
     },
     {
+      "key": "solar",
+      "title": "太陽光や蓄電池で電気代を考えたい人へ",
+      "reason": "太陽光発電や蓄電池の設置を考えるときに、費用を比べるために",
+      "match": "太陽光|蓄電池|ソーラー",
+      "partners": [
+        "tainavi",
+        "elpio"
+      ],
+      "max": 2,
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "exclude": "株価|決算|業績|上場|時価総額|EV|電気自動車|全固体|半導体",
+      "lead": "太陽光や蓄電池は、設置の費用を複数の業者で比べるのが基本です。"
+    },
+    {
       "key": "energy",
       "title": "使い方を変えずに電気代を下げたい人へ",
       "reason": "電気・ガス代が上がるときに、契約先を比べるために",
       "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|新電力|電力会社|燃料費調整|再エネ賦課金|節電",
       "partners": [
         "elpio",
-        "enepi",
-        "tainavi"
+        "enepi"
       ],
       "max": 2,
       "genres": [
@@ -2775,9 +2819,8 @@
           "key": "bill",
           "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|燃料費調整|再エネ賦課金|新電力|電力会社",
           "partners": [
-            "enepi",
             "elpio",
-            "tainavi"
+            "enepi"
           ]
         }
       ]

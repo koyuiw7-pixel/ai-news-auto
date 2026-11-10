@@ -6,6 +6,16 @@ TSV は A8 の「参加中プログラム → 広告リンク作成」から取�
   programId, 名前, カテゴリ, 成果報酬, テキスト広告のa8mat, ピクセルのサーバー番号, アンカー文, バナーサイズ, バナーのサーバー番号, バナー(aid,wid,eno,mid,mc)
 
 どの記事にどの商品を出すかは下の PARTNERS と TOPICS で決める（関係の薄い記事には出さない）。
+
+PARTNERS の行に a8（A8 の「広告リンク作成」で取った素材）があれば、TSV の行より a8 を使う。
+いまサイトで使っているリンクと計測ピクセル、バナーの組を、再取込で別の素材に入れ替えないため。
+1つのプログラムで素材を2つ使うときは、2つ目の行のキーを「programId#a8matの末尾」にする（例：弥生 起業・開業ナビ）。
+keepTextLink が True の行は affiliate_links.json（本文中の文字リンク）を書き換えない（文字リンクは別の素材を使っている）。
+
+次のものは、わざと PARTNERS に入れていない（別の仕組みで扱う、またはオーナーの判断待ち）：
+  - PLAUD（s00000025808001）、OZ GAMING（s00000027222001）：商品ごとの枠（content/offers.json の商品の行）で扱う
+  - 楽天アフィリエイト（s00000011623001）：楽天の商品ページへのリンク（deep link）の仕組みで扱う
+  - TOSSY（s00000008903009）：証券の広告で、出すかどうかはオーナーの判断待ち
 """
 from __future__ import annotations
 
@@ -52,7 +62,8 @@ PARTNERS: dict[str, dict] = {
     "s00000016371001": {"key": "norton", "name": "ノートン 360", "label": "端末の安全対策", "note": "PCやスマホ向けのセキュリティ製品。機能と対象端末はプランで確認。", "shop": "ノートン公式"},
     "s00000015315001": {"key": "virusbuster", "name": "ウイルスバスター クラウド", "label": "端末のセキュリティ対策", "note": "パソコンやスマホのセキュリティ対策を検討する人向け。対応端末と料金を確認できます。", "shop": "トレンドマイクロ公式"},
     "s00000005993007": {"key": "eset", "name": "ESET HOME セキュリティ", "label": "セキュリティを検討", "note": "端末向けセキュリティ製品。対応端末とプランを確認できます。", "shop": "ESET公式"},
-    "s00000021488002": {"key": "surfshark", "name": "Surfshark", "label": "ネット利用の安全対策", "note": "VPNなどを提供するサービス。機能は契約プランにより異なります。", "shop": "Surfshark公式"},
+    # 提携は「Surfshark Antivirus」（ウイルス対策）。単体では買えず、Surfshark One のセットに入っている（surfshark.com/ja/antivirus、2026-11-10 確認）
+    "s00000021488002": {"key": "surfshark", "program": "Surfshark", "name": "Surfshark Antivirus", "label": "ウイルス・マルウェア対策", "note": "ウイルスやマルウェアから端末を守るウイルス対策ソフト。単体では買えず、Surfshark One のセットに含まれます。", "shop": "Surfshark公式"},
     # ガジェット
     "s00000026776002": {"key": "ringconn", "name": "RingConn スマートリング", "label": "睡眠を記録するリング", "note": "睡眠や日々の体調管理に使うスマートリング。サイズと機能を確認。", "shop": "RingConn公式"},
     "s00000024072001": {"key": "e-earphone", "name": "e☆イヤホン", "label": "イヤホン専門店", "note": "AI翻訳イヤホンやノイキャンなど、最新イヤホンを専門店で比較", "shop": "e☆イヤホン"},
@@ -103,7 +114,8 @@ PARTNERS: dict[str, dict] = {
                         "a8": ["4BGGBL+D7PD4I+ZXM+HYNBM", "19", "引越し侍", "300×250", "20", "261108129799,001,01,s00000004657003059000,1"]},
     "s00000019543001": {"key": "sourcenext", "name": "ソースネクスト", "label": "パソコン用ソフト", "note": "PDF編集やセキュリティなどのパソコン用ソフトを扱う販売サイト。対応OSと価格は公式サイトで確認できます。", "shop": "ソースネクスト公式"},
     # 2026-11-08 夜の追加（すぐ提携できたもの）
-    "s00000013511010": {"key": "enepi", "name": "エネピ", "label": "電気料金を比べる", "note": "住所や使用量をもとに、電力会社の料金プランを比べられる比較サービス。", "shop": "エネピ（じげん）",
+    # enepi.jp（2026-11-10 確認）：使用状況を入れると料金プランを無料で提案し、切り替えの手続きもエネピが行う。「※電気料金の比較・相談はエネピへ登録が必要です。」
+    "s00000013511010": {"key": "enepi", "name": "エネピ", "label": "電気・ガス料金の見直しを相談", "note": "電気・ガスの使用状況から料金プランを無料で提案し、切り替えの手続きも行うじげんのサービス。相談には名前と連絡先の登録が必要です。", "shop": "エネピ（じげん）",
                         "a8": ["4BGGBM+BWOVM+2W92+1NJK7M", "18", "エネピ", "300×250", "21", "261108130020,001,01,s00000013511010003000,1"]},
     "s00000010685001": {"key": "tainavi", "name": "タイナビ", "label": "太陽光・蓄電池の見積もり", "note": "太陽光発電や蓄電池の設置について、複数の業者に見積もりを依頼できるサービス。", "shop": "タイナビ公式",
                         "a8": ["4BGGBM+TRP0Y+2AG2+63H8I", "17", "【タイナビ】太陽光発電一括見積りナビゲーション", "300×250", "23", "261108130050,001,01,s00000010685001036000,1"]},
@@ -120,6 +132,21 @@ PARTNERS: dict[str, dict] = {
     "s00000000218001": {"key": "ikyu", "name": "一休.com", "label": "ホテル・旅館を予約", "note": "ホテルや旅館を探して予約できる宿泊予約サイト。", "shop": "一休.com",
                         "a8": ["4BGGBM+T69F6+1OK+5YRHE", "11", "一休.com", "300×250", "28", "261108130049,001,01,s00000000218001185000,1"]},
     "s00000023754001": {"key": "ohya", "name": "Oh!Ya（オーヤ）", "label": "面談をまとめて予約", "note": "不動産投資の会社との面談を、まとめて比較・予約できるサービス", "shop": "セレス"},
+    # 2026-11-10 取込の対象に追加（offers.json・affiliate_links.json で使っている素材をそのまま a8 に持つ。名前と説明も今の表示のまま）
+    "s00000021185003": {"key": "mf-setsuritsu", "name": "マネーフォワード クラウド会社設立", "label": "会社設立の書類づくり", "note": "案内に沿って、会社設立に必要な書類を作成できるサービス。法人化を考えたときに。", "shop": "マネーフォワード公式",
+                        "a8": ["4BGCEZ+2T7PMA+4JGQ+HVFKY", "15", "マネーフォワード クラウド会社設立", "", "", ""]},
+    # 弥生 起業・開業ナビは1つのプログラムで素材が2つ（開業届と会社設立）。文字リンク（affiliate_links.json）は開業届の素材
+    "s00000014765003": {"key": "yayoi-kaigyou", "program": "弥生 起業・開業ナビ", "name": "弥生のかんたん開業届", "label": "開業届をかんたん作成", "note": "質問に答えて個人事業の開業届を作成できるサービス。副業・独立の最初の手続きに。", "shop": "弥生公式",
+                        "a8": ["4BGCEY+GCTQ2A+35XE+HZPWI", "16", "弥生 起業・開業ナビ", "", "", ""]},
+    "s00000014765003#HXD0Y": {"key": "yayoi-setsuritsu", "program": "弥生 起業・開業ナビ", "name": "弥生のかんたん会社設立", "label": "会社設立をサポート", "note": "会社設立の書類作成や手続きを案内に沿って進められるサービス。", "shop": "弥生公式", "keepTextLink": True,
+                        "a8": ["4BGCEY+GCTQ2A+35XE+HXD0Y", "16", "弥生 起業・開業ナビ", "", "", ""]},
+    "s00000020550001": {"key": "abema-premium", "name": "ABEMAプレミアム", "label": "スポーツ・アニメを見る", "note": "ABEMAの有料プラン。スポーツ中継やアニメ・ドラマなどを配信しています。", "shop": "ABEMA公式",
+                        "a8": ["4BGCEZ+3PYJW2+4EKC+63OY9", "15", "ABEMAプレミアム", "", "21", "261103067225,001,01,s00000020550001025000,1"]},
+    # 枠は素材042のバナー（336x280）とその組のリンク。本文中の文字リンク（affiliate_links.json）は別の素材（…7RU5R6）なので書き換えない
+    "s00000000018047": {"key": "conoha-ai-canvas", "name": "ConoHa AI Canvas", "label": "PCを買わずに画像生成", "note": "ブラウザで画像生成を試せるサービス。利用時間と料金を確認。", "shop": "ConoHa公式", "keepTextLink": True,
+                        "a8": ["4BELTP+C1FL6A+50+7S2QE9", "19", "ブラウザだけでできる 本格的なAI画像生成 【ConoHa AI Canvas】", "336×280", "20", "261021949728,001,01,s00000000018047042000,1"]},
+    "s00000007238009": {"key": "value-ai-writer", "name": "Value AI Writer", "label": "記事づくりをAIで", "note": "キーワードから構成・本文まで、SEO記事をAIで作るGMOのツール", "shop": "GMO公式",
+                        "a8": ["4BEO5P+CLOBQQ+1JUK+1HL85U", "13", "高品質SEO記事生成AIツール【Value AI Writer byGMO】", "", "", ""]},
 }
 
 # 新しい話題（記事のタイトル・タグに一致したら、その話題の商品を出す）
@@ -174,7 +201,9 @@ ACTION_ADS = [
     {"key": "disaster", "title": "停電や断水で困らないために", "reason": "停電・断水が続いたときの電源や食料の備えに", "match": "地震|津波|台風|大雨|豪雨|土砂災害|洪水|氾濫|噴火|停電|防災|避難|警報|大雪|線状降水帯|緊急地震速報|災害|備蓄", "partners": ["jackery", "bluetti", "akamaru-bousai", "alpha-foods", "stoole", "bang-kasai"], "max": 2},
     {"key": "furusato", "title": "ふるさと納税の寄附先を探している人へ", "reason": "寄附先の返礼品と、控除の上限額を確かめるために", "match": "ふるさと納税|返礼品|ワンストップ特例", "partners": ["furusato-honpo", "aupay-furusato"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
     {"key": "tax", "title": "申告や年末調整を早く片づけたい人へ", "reason": "申告や年末調整の書類づくりを早めに進めるために", "match": "年末調整|確定申告|青色申告|白色申告|e-Tax|インボイス|源泉徴収|医療費控除|扶養控除|所得税", "partners": ["freee", "mf-kakutei", "yayoi-kakutei"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
-    {"key": "energy", "title": "使い方を変えずに電気代を下げたい人へ", "reason": "電気・ガス代が上がるときに、契約先を比べるために", "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|新電力|電力会社|燃料費調整|再エネ賦課金|節電", "partners": ["elpio", "enepi", "tainavi"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    # 2026-11-10: タイナビ（太陽光・蓄電池の見積もり）は、見出しに太陽光・蓄電池・ソーラーがある記事だけ（下の solar）。電気代の記事一般には出さない
+    {"key": "solar", "title": "太陽光や蓄電池で電気代を考えたい人へ", "reason": "太陽光発電や蓄電池の設置を考えるときに、費用を比べるために", "match": "太陽光|蓄電池|ソーラー", "partners": ["tainavi", "elpio"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|上場|時価総額|EV|電気自動車|全固体|半導体"},
+    {"key": "energy", "title": "使い方を変えずに電気代を下げたい人へ", "reason": "電気・ガス代が上がるときに、契約先を比べるために", "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|新電力|電力会社|燃料費調整|再エネ賦課金|節電", "partners": ["elpio", "enepi"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
     {"key": "moving", "title": "引越しの見積もりを比べたい人へ", "reason": "引越しの見積もりと、新居のネット回線の手配に", "match": "引っ越し|引越し|引越|転居|住所変更|転入届|転出届", "partners": ["hikkoshi-samurai", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
     {"key": "mobile", "title": "毎月のスマホ代を下げたい人へ", "reason": "障害や料金の変更をきっかけに、回線の契約を比べるために", "match": "携帯料金|スマホ料金|通信障害|通信の障害|つながりにくい|格安SIM|携帯キャリア|乗り換え|MNP|楽天モバイル|ahamo|povo|LINEMO|UQ mobile|ワイモバイル|料金プラン|光回線|ネット回線|固定回線", "partners": ["bb-excite", "biglobe-hikari-plus"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
     {"key": "travel", "title": "連休や旅行の宿を探している人へ", "reason": "連休や旅行の予定に合わせて、宿の空きと料金を比べるために", "match": "旅行|連休|ホテル|旅館|宿泊|観光|旅行支援", "partners": ["jalan", "ikyu"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|訪日客数"},
@@ -203,6 +232,7 @@ ACTION_LEADS = {
     "disaster": "災害の備えは、電気・水・食料を数日分そろえるのが基本です。",
     "furusato": "ふるさと納税は、控除の上限額の中で寄附先を選ぶのが基本です。",
     "tax": "申告の準備は、明細の整理と書類づくりに時間がかかります。",
+    "solar": "太陽光や蓄電池は、設置の費用を複数の業者で比べるのが基本です。",
     "energy": "使い方を変えなくても、契約の見直しで電気代が下がる場合があります。",
     "moving": "引越しは、見積もりと新居の回線を早めに手配すると慌てません。",
     "mobile": "毎月のデータ量が分かれば、合うプランは絞れます。",
@@ -227,10 +257,10 @@ ACTION_INTENTS = {
          "lead": "地震の備えは、水・食料・明かりを数日分そろえるのが基本です。",
          "partners": ["akamaru-bousai", "alpha-foods", "jackery"]},
     ],
-    # 電気代の記事: まず比べる（比較サービス）→ 切り替え先
+    # 電気代の記事: 切り替え先（エルピオでんき）を先に。エネピは A8 の成果条件を確かめきれていないので先頭にしない（2026-11-10）
     "energy": [
         {"key": "bill", "match": "電気代|電気料金|電力料金|ガス代|ガス料金|電気・ガス|燃料費調整|再エネ賦課金|新電力|電力会社",
-         "partners": ["enepi", "elpio", "tainavi"]},
+         "partners": ["elpio", "enepi"]},
     ],
 }
 for _rule in ACTION_ADS:
@@ -256,10 +286,10 @@ PITCH = {
     "norton": {"fit": "PCとスマホをまとめて守りたい人", "point": "PCやスマホ向けのセキュリティ製品。対象の端末をプランで選べます", "cta": "対象端末と料金を見る"},
     "virusbuster": {"fit": "パソコンとスマホの対策をひとつにまとめたい人", "point": "トレンドマイクロの、パソコンやスマホ向けセキュリティ対策", "cta": "対応端末と料金を見る"},
     "eset": {"fit": "プランを比べて端末の対策を選びたい人", "point": "端末向けのセキュリティ製品。対応端末とプランを選べます", "cta": "プランと料金を見る"},
-    "surfshark": {"fit": "外出先のWi-Fiをよく使う人", "point": "VPNなどを提供するサービス。機能は契約プランで変わります", "cta": "プランと料金を見る"},
+    "surfshark": {"fit": "PCやAndroidのウイルス対策を考えている人", "point": "使用中のアプリやファイルを常に調べるウイルス対策ソフト", "cta": "対応端末と料金を見る"},
     # 電気・家計
     "elpio": {"fit": "今の電力会社から切り替えを考えている人", "point": "家庭向けの電気の契約先を切り替えられる電力会社", "cta": "料金プランを見る"},
-    "enepi": {"fit": "どの電力会社が合うか、まず比べたい人", "point": "住所や使用量をもとに、電力会社の料金プランを比べられます", "cta": "電気料金を比べる"},
+    "enepi": {"fit": "電気やガスの契約先を、相談して決めたい人", "point": "料金プランの提案と、切り替えの手続きを任せられます（登録が必要）", "cta": "料金の見直しを相談する"},
     "tainavi": {"fit": "太陽光や蓄電池で電気代を考えたい人", "point": "太陽光・蓄電池の設置を、複数の業者に見積もり依頼できます", "cta": "見積もりを依頼する"},
     "bb-excite": {"fit": "毎月のスマホ代を下げたい人", "point": "スマホの料金を見直すときの格安SIM", "cta": "料金プランを見る"},
     "epos": {"fit": "丸井グループのカードを検討している人", "point": "丸井グループのクレジットカード", "cta": "年会費とポイント条件を見る"},
@@ -291,7 +321,7 @@ PITCH = {
 GAIN = {
     "bb-excite": "今のスマホ代と比べて、月いくら下がるか確かめる",
     "elpio": "今の電気代と比べて、切り替えで下がるか確かめる",
-    "enepi": "住所と使用量から、合う電気料金プランを比べる",
+    "enepi": "電気・ガス代の見直しを、無料で相談する（登録が必要）",
     "tainavi": "太陽光・蓄電池の費用を、複数の業者で比べる",
     "gmo-hikari": "契約期間の縛りがない光回線の月額を確かめる",
     "biglobe-hikari-plus": "新居で使える光回線と、開通までの流れを確かめる",
@@ -310,7 +340,7 @@ GAIN = {
     "norton": "偽SMSや乗っ取りへの対策を、PCとスマホでまとめて始める",
     "virusbuster": "偽サイトや詐欺への対策を、無料体験で試してみる",
     "eset": "パソコンとスマホのセキュリティ対策を、無料体験で試す",
-    "surfshark": "外出先のWi-Fiを、VPNで安全に使う",
+    "surfshark": "ウイルスやマルウェアへの対策を、PCとAndroidで始める",
     "freee": "帳簿づけから申告書づくりまでを、ひとつで済ませる",
     "mf-kakutei": "明細を取り込んで、申告書づくりの手間を減らす",
     "yayoi-kakutei": "白色申告の書類を、無料のソフトで作る",
@@ -328,7 +358,7 @@ GAIN = {
 MERITS = {
     "bb-excite": ["使った分だけ払う段階制のプラン", "低速のみなら音声SIMは月495円（税込）", "最低利用期間なし、解約事務手数料0円"],  # bb.excite.co.jp/exmb/sim/fit/ ・/exmb/sim/plan/
     "elpio": ["切り替え手数料0円、Webで申し込める", "解約手数料0円、契約期間の縛りなし"],  # lpio.jp/lpio_denki/
-    "enepi": ["見積もり・契約の切り替えは無料", "10秒で料金のシミュレーション"],  # enepi.jp
+    "enepi": ["見積もりから切り替えまで費用は無料", "切り替えの手続きはエネピが行う"],  # enepi.jp/electricity（2026-11-10）「お見積もり依頼から電力会社の切り替えまで費用は一切かかりません」「エネピにて、電力会社の切り替え手続きを行います」
     "gmo-hikari": ["契約期間の縛りなし、解約違約金0円", "v6プラスをオプション料0円で使える"],  # gmobb.jp/service/gmohikari/
     "biglobe-hikari-plus": ["申し込みから最短4日でネットが使える", "開通前は5G通信で使える"],  # join.biglobe.ne.jp/ftth/hikari/plus/
     "gmo-home-wifi": ["工事不要、コンセントに挿すだけ", "解約違約金なし、送料0円"],  # gmobb.jp/gmohomewifi/
@@ -336,7 +366,7 @@ MERITS = {
     "norton": ["360デラックスは最大3台を保護", "デラックスはVPNとクラウドバックアップ付き"],  # jp.norton.com/products/norton-360-deluxe
     "virusbuster": ["製品版を30日間無料で試せる", "無料体験はクレジットカード登録不要", "Windows・Mac・スマホに対応"],  # trendmicro.com/ja_jp/forHome/products/vb.html
     "eset": ["30日間の無料体験版あり", "1台・3台・5台から台数を選べる", "Windows・Mac・スマホに対応"],  # personal.canon.jp/product/app/eset/lineup
-    "surfshark": ["1つの契約で台数無制限に使える", "購入から30日以内は全額返金の保証"],  # surfshark.com/ja
+    "surfshark": ["最大5台のデバイスに対応", "Windows・Mac・Androidで使える", "30日間の返金保証"],  # surfshark.com/ja/antivirus（2026-11-10）
     "mf-kakutei": ["1か月の無料お試しあり", "白色・青色どちらの申告にも対応"],  # biz.moneyforward.com/tax_return/
     "freee": ["無料お試しはクレジットカード登録不要", "白色・青色・消費税の申告に対応"],  # freee.co.jp/accounting/individual/
     "yayoi-kakutei": ["白色申告オンラインはずっと無料", "税務署に行かずe-Taxで申告できる"],  # yayoi-kk.co.jp/shinkoku/
@@ -369,7 +399,7 @@ LIFE_GENRES = ["public", "lifestyle", "business", "tech-gadget", "real-estate", 
 # 2026-11-10: 見出し（title）を読者の言葉の一文にしたので、2つの話題を並べる見出し（「AとBに役立つサービス」）には短い名前を全部の話題に用意する
 LIFE_NAMES = {
     "leak": "セキュリティ対策", "furusato": "ふるさと納税", "tax": "確定申告・節税", "mobile": "スマホ回線の見直し",
-    "fire-insurance": "火災保険の見直し", "water": "飲み水の備え", "disaster": "停電・災害の備え", "energy": "電気代の見直し",
+    "fire-insurance": "火災保険の見直し", "water": "飲み水の備え", "disaster": "停電・災害の備え", "solar": "太陽光・蓄電池の見積もり", "energy": "電気代の見直し",
     "moving": "引越しの準備", "travel": "宿探し", "household": "固定費の見直し", "kids": "子どもの学び", "payment": "支払い方法の見直し",
     "benefit": "毎月の出費の見直し",
 }
@@ -443,10 +473,11 @@ def main() -> int:
     existing_codes = {str(v.get("url", "")) for v in links.values() if isinstance(v, dict)}
 
     added = 0
-    for pid, meta in PARTNERS.items():
+    for entry, meta in PARTNERS.items():
+        pid = entry.split("#")[0]
         f = rows.get(pid)
-        if not f and meta.get("a8"):
-            # TSV に無い提携は、A8 の「広告リンク作成」で取った素材（a8）から同じ形の行を作る
+        if meta.get("a8"):
+            # 素材（a8）を持つ提携は、TSV の行より a8 を使う（いま使っているリンク・ピクセル・バナーの組を入れ替えない）
             f = [pid, meta["name"], "", "", *meta["a8"]]
         if not f:
             print(f"[skip] {pid} {meta['name']}: TSVに無い")
@@ -454,7 +485,7 @@ def main() -> int:
         code, px, bpx, bgt = f[4], f[5] or "13", f[8], f[9]
         url = f"https://px.a8.net/svt/ejp?a8mat={code}"
         program = meta.get("program", meta["name"])
-        if url not in existing_codes:
+        if url not in existing_codes and not meta.get("keepTextLink"):
             links[program] = {
                 "url": url,
                 "pixel": f"https://www{px}.a8.net/0.gif?a8mat={code}",

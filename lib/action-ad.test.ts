@@ -125,9 +125,21 @@ test("停電の記事はポータブル電源が先、地震・備蓄の記事�
   assert.ok(real.lead && real.lead.length <= 36, "つなぎの一文はスマホで2行まで");
 });
 
-test("電気代の記事は、まず比べるサービス（エネピ）を先に", () => {
+// 2026-11-10 M1: エネピは A8 の成果条件を確かめきれていないので先頭にしない。切り替え先（エルピオでんき）を先に
+test("電気代の記事は、エルピオでんきが先、エネピは2番目", () => {
   const ad = actionAdForArticle(article("t-bill", "電気代、12月使用分から補助終了で値上がり", ["電気料金"]))!;
-  assert.equal(ad.items[0].item.key, "enepi");
+  assert.deepEqual(ad.items.map((x) => x.item.key), ["elpio", "enepi"]);
+  const heater = actionAdForArticle(fromFile("heater-power-cost-per-hour"))!;
+  assert.equal(heater.items[0].item.key, "elpio");
+  assert.ok(!heater.items.some((x) => x.item.key === "tainavi"), "太陽光の話でない記事にタイナビを出さない");
+  const plan = offerPlanForArticle(fromFile("heater-power-cost-per-hour"), heater.items.map((x) => x.item.key));
+  for (const box of [plan.rail, plan.inline, plan.offer]) assert.ok(!box || !box.items.some((i) => i.key === "tainavi"));
+});
+
+test("太陽光・蓄電池の見出しの記事だけにタイナビ", () => {
+  const ad = actionAdForArticle(article("t-solar", "家庭用の蓄電池、設置の補助金が来年度も継続", ["蓄電池", "補助金"]))!;
+  assert.equal(ad.key, "solar");
+  assert.ok(ad.items.some((x) => x.item.key === "tainavi"));
 });
 
 test("行動欄の商品には向く人・特徴・ボタンの言葉がある（数字は書かない）", () => {
