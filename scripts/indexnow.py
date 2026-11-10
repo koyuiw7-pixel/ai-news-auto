@@ -345,7 +345,16 @@ TITLE_NOISE = re.compile(r"[\s「」『』【】()（）・、。！？!?:：|�
 
 
 def _url_key(url: str) -> str:
-    return re.sub(r"[?#].*$", "", str(url or "").strip().lower()).rstrip("/")
+    """lib/article-index.mjs の urlKey と同じ。?period=（毎月上書きの資料）と #entry-…（リリースノートの1項目）は残す（SEO A10）"""
+    raw = str(url or "").strip().lower()
+    period = re.search(r"[?&]period=([^&#]+)", raw)
+    entry = re.search(r"#(entry-[^?#]+)", raw)
+    base = re.sub(r"[?#].*$", "", raw).rstrip("/")
+    return base + (f"?period={period.group(1)}" if period else "") + (f"#{entry.group(1)}" if entry else "")
+
+
+def _is_disaster_slug(slug: str) -> bool:
+    return bool(re.match(r"(?:quake|tsunami)-", str(slug or "")))
 
 
 def duplicate_slugs(articles: list[dict]) -> set[str]:
@@ -358,7 +367,7 @@ def duplicate_slugs(articles: list[dict]) -> set[str]:
     items.sort(key=lambda a: -len(a.get("body", "")))
     for a in items:
         keys = ["t:" + TITLE_NOISE.sub("", a.get("title", "")).lower()]
-        if a.get("sourceUrl"):
+        if a.get("sourceUrl") and not _is_disaster_slug(a.get("slug", "")):
             keys.append("u:" + _url_key(a["sourceUrl"]))
         if any(k in keep for k in keys):
             out.add(a.get("slug", ""))

@@ -108,7 +108,16 @@ export function isDisasterArticle(a: Pick<ArticleSummary, "slug" | "title" | "ch
   return /^(?:quake|tsunami)-/.test(a.slug) || a.channelSlug === "jma" || /^【(?:地震|津波)/.test(a.title ?? "");
 }
 
-const urlKey = (url?: string) => (url ?? "").trim().toLowerCase().replace(/[?#].*$/, "").replace(/\/$/, "");
+// 出典 URL の比べ方は索引（lib/article-index.mjs の urlKey）と同じ。?period=・#entry-… は残す。地震・津波は URL で比べない（SEO A10）。
+// lib/article-index.mjs は ESM でテストから読みにくいので写しを持つ（同じ結果になることは tests/test_related_articles.cjs で確かめる）
+export function urlKey(url?: string): string {
+  const raw = String(url ?? "").trim().toLowerCase();
+  const period = /[?&]period=([^&#]+)/.exec(raw)?.[1];
+  const entry = /#(entry-[^?#]+)/.exec(raw)?.[1];
+  const base = raw.replace(/[?#].*$/, "").replace(/\/+$/, "");
+  return base + (period ? `?period=${period}` : "") + (entry ? `#${entry}` : "");
+}
+const isDisasterSlug = (slug?: string) => /^(?:quake|tsunami)-/.test(String(slug ?? ""));
 
 /** 同じ発表の重複記事（どちらかがもう一方の duplicateOf / angleOf か、同じ出典URL） */
 function isSameStory(a: ArticleSummary, b: ArticleSummary): boolean {
@@ -116,6 +125,7 @@ function isSameStory(a: ArticleSummary, b: ArticleSummary): boolean {
   if ((a.angleOf && (a.angleOf === b.slug || a.angleOf === b.angleOf)) || (b.angleOf && b.angleOf === a.slug)) return false;
   if (a.duplicateOf && (a.duplicateOf === b.slug || a.duplicateOf === b.duplicateOf)) return true;
   if (b.duplicateOf && b.duplicateOf === a.slug) return true;
+  if (isDisasterSlug(a.slug) || isDisasterSlug(b.slug)) return false;
   const ua = urlKey(a.sourceUrl);
   return Boolean(ua) && ua === urlKey(b.sourceUrl);
 }

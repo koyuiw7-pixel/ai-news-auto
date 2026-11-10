@@ -146,3 +146,50 @@ class IndexRulesTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class DuplicateSourceKeyTest(unittest.TestCase):
+    """SEO A10: 同じ出典URLの予備の重複判定で ?period=（毎月の資料）と #entry-…（リリースノートの1項目）を残す。
+    地震・津波は気象庁の同じ地図のページが出典なので URL では比べない。Python（indexnow・story）と JS（article-index）で同じ"""
+
+    PDF = "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf"
+    JMA = "https://www.jma.go.jp/bosai/map.html#contents=earthquake_map"
+    NOTES = "https://platform.claude.com/docs/en/release-notes/overview.md"
+
+    def recs(self):
+        return [
+            {"slug": "kakei-08", "title": "8月の家計調査", "sourceUrl": f"{self.PDF}?period=2026-08", "body": "x" * 900, "generatedAt": "1"},
+            {"slug": "kakei-09", "title": "9月の家計調査", "sourceUrl": f"{self.PDF}?period=2026-09", "body": "x" * 800, "generatedAt": "2"},
+            {"slug": "quake-1", "title": "静岡県で震度3", "sourceUrl": self.JMA, "body": "x" * 900, "generatedAt": "1"},
+            {"slug": "quake-2", "title": "千葉県で震度4", "sourceUrl": self.JMA, "body": "x" * 800, "generatedAt": "2"},
+            {"slug": "notes-a", "title": "Claude の新しい API", "sourceUrl": f"{self.NOTES}#entry-2026-11-03", "body": "x" * 900, "generatedAt": "1"},
+            {"slug": "notes-b", "title": "Claude の別の更新", "sourceUrl": f"{self.NOTES}#entry-2026-11-05", "body": "x" * 800, "generatedAt": "2"},
+            {"slug": "utm-a", "title": "発表A", "sourceUrl": "https://example.com/news/a?utm_source=x", "body": "x" * 900, "generatedAt": "1"},
+            {"slug": "utm-b", "title": "発表A の言い換え", "sourceUrl": "https://example.com/news/a/", "body": "x" * 800, "generatedAt": "2"},
+        ]
+
+    def test_python_keeps_period_and_entry(self):
+        self.assertEqual({"utm-b"}, indexnow.duplicate_slugs(self.recs()))
+        import story  # noqa: PLC0415
+
+        self.assertFalse(story.url_keys(f"{self.PDF}?period=2026-08") & story.url_keys(f"{self.PDF}?period=2026-09"))
+        self.assertFalse(story.url_keys(f"{self.NOTES}#entry-2026-11-03") & story.url_keys(f"{self.NOTES}#entry-2026-11-05"))
+        self.assertTrue(story.url_keys("https://example.com/news/a?utm_source=x") & story.url_keys("https://example.com/news/a/"))
+
+    def test_js_mirror_agrees(self):
+        node = shutil.which("node")
+        if not node:
+            self.skipTest("node が無い")
+        script = ("import('./lib/article-index.mjs').then((m) => { const items = JSON.parse(require('node:fs').readFileSync(0, 'utf8'))"
+                  ".map((a) => ({ ...a, bodyLength: a.body.length })); m.markDuplicates(items);"
+                  " process.stdout.write(JSON.stringify(items.filter((a) => a.duplicate).map((a) => a.slug))); })")
+        out = subprocess.run([node, "-e", script], cwd=ROOT, input=json.dumps(self.recs()), capture_output=True, text=True, timeout=60)
+        self.assertEqual(0, out.returncode, out.stderr[-500:])
+        self.assertEqual(["utm-b"], json.loads(out.stdout))
+
+    def test_restored_three_are_not_duplicates(self):
+        arts = [json.loads(p.read_text("utf-8")) for p in (ROOT / "content" / "articles").glob("*.json")]
+        dup = indexnow.duplicate_slugs(arts)
+        for slug in ("household-survey-2026-09-spending", "quake-20261029000759", "claude-text-watermark-api"):
+            if any(a.get("slug") == slug for a in arts):
+                self.assertNotIn(slug, dup, slug)

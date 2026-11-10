@@ -125,3 +125,15 @@ test("情報流出の記事の関連は、名前（ドコモ）だけ重なる�
   // 名前だけ重なる記事は、全部で2本に満たないときだけ（関係の薄い記事で埋めない）
   assert.ok(got.length <= 2, got.join(","));
 });
+
+test("[A10] 出典 URL の比べ方は索引（article-index.mjs）と同じ（?period=・#entry- を残す）", async () => {
+  const { urlKey } = load(path.join(root, "lib/related.ts"));
+  const index = await import(path.join(root, "lib/article-index.mjs"));
+  for (const url of [
+    "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09",
+    "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-03",
+    "https://example.com/news/a/?utm_source=x",
+    "https://www.jma.go.jp/bosai/map.html#contents=earthquake_map",
+  ]) assert.equal(urlKey(url), index.urlKey(url), url);
+  assert.notEqual(urlKey("https://x.jp/a.pdf?period=2026-08"), urlKey("https://x.jp/a.pdf?period=2026-09"));
+});

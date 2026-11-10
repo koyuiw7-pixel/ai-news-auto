@@ -128,9 +128,11 @@ def url_keys(url: str) -> set[str]:
         segs = ["index", *segs[1:]]
     frag = parts.fragment if parts.fragment.startswith("entry-") else ""
     path = "/".join(segs).lower()
-    keys = {f"{host}/{path}" + (f"#{frag}" if frag else "")}
+    # 毎月同じ URL に上書きされる資料（家計調査など）は ?period= で月を分けている。月が違えば別のページ（SEO A10）
+    period = urllib.parse.parse_qs(parts.query).get("period", [""])[0].lower()
+    keys = {f"{host}/{path}" + (f"?period={period}" if period else "") + (f"#{frag}" if frag else "")}
     last = segs[-1].lower() if segs else ""
-    if not frag and len(last) >= 12 and re.search(r"[a-z]-[a-z0-9]", last):
+    if not frag and not period and len(last) >= 12 and re.search(r"[a-z]-[a-z0-9]", last):
         keys.add(f"{host}|{last}")
     return keys
 
