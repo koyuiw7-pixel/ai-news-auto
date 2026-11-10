@@ -121,7 +121,7 @@
     }
   },
   "major_tries": {
-    "1c1046b4dc0f9420": 1
+    "1c1046b4dc0f9420": 2
   },
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
@@ -8444,14 +8444,6 @@
       "skipped": true,
       "url": "https://www.reuters.com/jp/markets/japan/N3QCKQ4EWVNG5BHSPZNYN5GUME-2026-10-28/"
     },
-    "50be6356c75cd37f": {
-      "at": "2026-10-27T21:24:03.368566+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "tech-gadget",
-      "slug": "softbank-net-safety-education-oita",
-      "url": "https://www.softbank.jp/sbnews/entry/20261027_02"
-    },
     "50dcc273211cdf95": {
       "at": "2026-11-07T19:52:10.046278+00:00",
       "reason": "stale: 発表から50時間（48時間を超えた発表は通常の記事にしない）",
@@ -8836,12 +8828,6 @@
       "section": "ai",
       "slug": "smartwatch-hypertension-detection-ai",
       "url": "https://research.google/blog/detecting-signs-of-hypertension-using-wearable-sensors/"
-    },
-    "56abb930daea0460": {
-      "at": "2026-10-27T21:22:00.215462+00:00",
-      "reason": "followup: 新しい事実なし（ntt-docomo-kumamoto-earthquake-volunteer）",
-      "skipped": true,
-      "url": "https://www.docomo.ne.jp/info/news_release/2026/10/27_00.html"
     },
     "56b239e993113c3a": {
       "at": "2026-10-28T23:32:12.244006+00:00",
@@ -15543,13 +15529,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110607"
     },
-    "bd1d4bdc3c50f366": {
-      "at": "2026-10-27T21:21:25.475509+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "reason": "当該記事は大臣の記者会見の開催案内およびその要旨の掲載予告であり、読者が実際に手続きや利用を行うための新しい制度やサービス、給付等の具体的な情報が含まれていないため。",
-      "skipped": true,
-      "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202610/video-326677.html"
-    },
     "bd5d29a32a5f70b7": {
       "at": "2026-11-07T06:12:04.485857+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -20138,30 +20117,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:25:09.261173+00:00",
-      "attempt": 0,
-      "id": "ba8ea39cc7d36631",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.5,
-        "avg_sentence": 39.8,
-        "long_share": 0.042,
-        "max_paragraph": 200,
-        "paragraphs": 10,
-        "sentences": 24
-      },
-      "score": 88,
-      "source": "ntt-news",
-      "title": "静岡県総合防災アプリ「静岡県防災」が衛星通信に対応 -静岡県、ファーストメディア、ドコモが連携し、災害時にも防災情報を取得可能に-",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SMS）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-09T09:25:44.130680+00:00",
@@ -27469,6 +27424,33 @@
       "warnings": [
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（KAYAK・GET）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T21:23:54.587412+00:00",
+      "attempt": 1,
+      "id": "1c1046b4dc0f9420",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「ack、Zapierなど12社」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 103.7,
+        "avg_sentence": 43.8,
+        "long_share": 0.089,
+        "max_paragraph": 221,
+        "paragraphs": 19,
+        "sentences": 45
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "ChatGPT plugins",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KAYAK・GET）",
+        "読みやすさ: 段落が長い（平均 103.7字・最長 221字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
     }
   ],
