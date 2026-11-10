@@ -100,9 +100,9 @@
     }
   ],
   "todayActions": [
-    "Ring Rover Camの予約ページで、12月16日の出荷条件と対応地域を確認する",
-    "Ring Drone Camのメール通知に登録し、FCC認可と出荷の続報を待つ",
-    "自宅や店舗でRingを使っているなら、Ring Protectの契約状況を確認する"
+    "Ring Rover Camの予約ページで、出荷日と対応地域の表示を確認する",
+    "Ring Drone Camのメール通知に登録し、続報を待つ",
+    "Ringを使っているなら、定期巡回に必要なRing Protectの契約状況を確認する"
   ],
   "qualityScore": 88,
   "breaking": true,
@@ -168,5 +168,93 @@
     ],
     "ar": 2.0,
     "src": "https://ai-tech-express.jp/img/ring-drone-cam-rover-cam-robotics-1b41befb.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "Ring Drone Camは、巡回の時間割を組まなくても、いつでも手動で飛ばせると書かれています。",
+      "source": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot?utm_source=rss"
+    },
+    {
+      "text": "Ring Rover Camは、既存のRingのカメラ・ドアベル・センサーと同じ「one app, one account」で、ひとつのアプリから管理できると書かれています。",
+      "source": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot?utm_source=rss"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Ring Rover Cam の予約ページ（Amazon）",
+      "url": "https://www.amazon.com/dp/B0HDVQ32Q7",
+      "source": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot?utm_source=rss",
+      "note": "米国向けの予約注文のページです。ページ1の本文では、このリンクは「Preorder Ring Rover Cam」として示されています。"
+    },
+    {
+      "name": "Ring Drone Cam のメール通知（Amazon）",
+      "url": "https://www.amazon.com/dp/B0H1PBKM3X",
+      "source": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot?utm_source=rss",
+      "note": "Ring Drone Camの続報を受け取るためのメール通知です。ページ1の本文では「Ring Drone Cam email updates」として示されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Ring Rover Camの予約ページで、出荷日と対応地域の表示を確認する",
+      "source": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot?utm_source=rss",
+      "steps": [
+        "Ring Rover Camの予約ページを開く",
+        "出荷日と対応地域の表示を確かめる"
+      ],
+      "url": "https://www.amazon.com/dp/B0HDVQ32Q7"
+    },
+    {
+      "action": "Ring Drone Camのメール通知に登録し、続報を待つ",
+      "source": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot?utm_source=rss",
+      "steps": [
+        "Ring Drone Camのメール通知ページを開く",
+        "メールアドレスを入力して登録する"
+      ],
+      "url": "https://www.amazon.com/dp/B0H1PBKM3X"
+    },
+    {
+      "action": "Ringを使っているなら、定期巡回に必要なRing Protectの契約状況を確認する",
+      "source": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot?utm_source=rss",
+      "steps": [
+        "Ringアプリで契約中のプランを確認する",
+        "定期巡回の機能に必要なプランかを見る"
+      ]
+    }
+  ],
+  "worries": [
+    {
+      "q": "夜や暗い部屋でも映像は見られる？",
+      "a": "Ring Drone Camは、暗い場所で2つの内蔵LEDライトが自動で点灯し、クリアな映像を撮れると書かれています。視野は148度で、360度回転できます。映像は2Kです。",
+      "source": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot?utm_source=rss",
+      "action": "夜に見たい部屋が暗くても映るか、設定後に試して確かめておく"
+    },
+    {
+      "q": "部屋の間取りは自分で用意しないといけない？",
+      "a": "ドローンを持って部屋を歩くか、ロボットに自動で探索させるだけで、AI Pilotが間取り図を作ると書かれています。部屋を見分け、サイドドアや窓などの見回り地点も提案します。",
+      "source": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot?utm_source=rss",
+      "action": "設定では部屋を一周させ、提案された見回り地点を確かめて必要なら追加する"
+    },
+    {
+      "q": "店舗で使うと、いつ録画が始まる？",
+      "a": "Ring Rover Camは移動中やパトロール中、4Kで配信と録画を続けると書かれています。台に停まっていても、視野内で人の動きを検知すると通知して録画を始めます。",
+      "source": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot?utm_source=rss",
+      "action": "店舗で使う前に、録画が始まる場所と、映像を見る人を決めておく"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "Ring Drone Camを買うか迷っている",
+      "situation": "日本に住んでいて、まだ買えない",
+      "recommend": "急がなくてよい",
+      "reason": "公式発表は米国向けの内容です。ページには日本での提供や価格の記載がないため、いま買える前提では考えないほうが確実です。続報を待つ選び方もあります。",
+      "source": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot?utm_source=rss"
+    }
+  ],
+  "depthHeadings": {
+    "steps": "今日確かめたいのは予約と通知登録",
+    "desk": "公式の予約・通知ページ",
+    "worries": "録画はいつ始まる？家や店舗での不安",
+    "guide": "今買うか待つか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-10T13:46:42+00:00"
 }
