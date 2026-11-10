@@ -1,0 +1,178 @@
+{
+  "slug": "claude-whiteboards-sheets-data",
+  "sourceType": "web",
+  "sourceUrl": "https://claude.com/resources/articles/sheets-whiteboards-data",
+  "sourceName": "Claude公式ブログ（claude.com）",
+  "title": "Claudeに共同編集のホワイトボードと表計算が登場　有料プランで利用可能に",
+  "seoTitle": "Claude Whiteboards・Sheetsとは？料金と使い方",
+  "threadsPost": "チームの会議でClaudeを使っている人に、押さえておきたい話です。\n\nClaudeにホワイトボードと表計算の機能が加わり、ベータ版が始まりました。\n議論の内容を整理し、表づくりまでClaudeの中で完結できます。\n\n会議のメモや表づくり、ふだんはどのツールを使っていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "会議のあと、メモの整理に毎回どれくらい時間をかけていますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "AIに表づくりを任せるなら、どこまで任せてよいと考えますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "一つのツールで完結する便利さと、複数ツールの使い分け、どちらを選びますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "Claudeの中で、チームが共同編集できるホワイトボード「Claude Whiteboards」と表計算「Claude Sheets」が使えるようになりました。2つはベータ版で、すべての有料プランが対象です。データ分析の「Claude Dashboards」は「Claude Data」に名前を変えて一般提供に移りました。企業の管理者は、Enterpriseプランでの初期設定を確認する必要があります。",
+  "description": "Claudeにホワイトボード機能「Whiteboards」と表計算機能「Sheets」がベータ版で追加。ダッシュボードは「Claude Data」として一般提供へ。対象は全有料プランで、Enterpriseは設定に注意。",
+  "keywords": [
+    "Claude Whiteboards",
+    "Claude Sheets",
+    "Claude Data",
+    "Claude ホワイトボード",
+    "Claude 表計算",
+    "Claude 料金",
+    "Claude Dashboards",
+    "Claude 日本",
+    "生成AI 共同編集",
+    "Claude Team",
+    "Claude Enterprise"
+  ],
+  "tags": [
+    "Claude",
+    "Anthropic",
+    "生成AI",
+    "業務効率化",
+    "データ分析"
+  ],
+  "highlights": [
+    "Claudeにホワイトボードと表計算が追加され、チームでAIと一緒に編集できる",
+    "Whiteboards・Sheetsはベータ版で、すべての有料プランで使える",
+    "DashboardsはClaude Dataとして一般提供に。認証済みクエリなどが加わった"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "有料プランに含む",
+    "free": false,
+    "audience": "チームで働く人",
+    "take": "有料プランを使っているなら、会議メモや簡単な管理表づくりで試し、Excelが必要な場面を見極めるとよいでしょう。",
+    "judgedAt": "2026-11-10T17:19:37.178328+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "会議の議事整理や施策の管理表づくりを、Claudeの中で完結できる可能性があります。",
+      "Sheetsは機能が限られるため、複雑な計算は.xlsxやCSVに書き出してExcelで行います。",
+      "Team・Enterpriseの管理者は、組織設定で各機能の既定の状態を確認します。"
+    ]
+  },
+  "body": "今回の機能は、Claudeの有料プランの利用者が対象です。無料のFreeプランでは、ホワイトボードと表計算は使えません。\n\nClaudeは、AnthropicのAIアシスタントです。Claudeの公式ブログによると、これまではClaudeの出力を別のツールに移して作業するため、Claudeが進み具合を見られませんでした。今回の機能で、ボードや表をClaudeの中に置いたまま、チームで編集を続けられます。\n\n## 会議のメモをClaudeがテーマ別に整理するホワイトボード\n\nClaude Whiteboardsは、チームがClaudeと一緒にアイデアを出すための共有ボードです。ベータ版として始まりました。\n\n頭の中の計画を声で話すと、担当者と日付つきの工程表にClaudeが変えてくれます。ふり返りの会議では、全員がメモを書き込めば、Claudeがテーマごとに分け、各人のやることの案も作ります。\n\nボードの一部を枠で囲んで、その部分についてClaudeに質問することもできます。作業が終われば、ドキュメントやスライドに変換できます。Lucid、Miro、Zoho傘下のVaniなどのツールに移すこともできます。\n\n## 表計算は書き出しとExcel連携に対応\n\nClaude Sheetsは、Claudeが作成・編集する表計算です。こちらもベータ版です。\n\nタブ（複数のシート）、計算式、書式、プルダウンのある表を、「キャンペーンの管理表」「採用の予算表」などと頼むだけで作れます。セルを編集するときは、変更点をClaudeが説明するため、変更の履歴を追えます。チームで共有して、一緒に編集できます。\n\n現時点の機能は簡易な表計算にとどまり、機能の追加を進めているとのことです。Excelの全機能が必要なときは、.xlsxかCSVに書き出すか、Claude for Excelを使います。Airtable、Asana、monday.com、Smartsheetでも作業を続けられます。\n\n## Claude Dataは認証済みクエリと共有を追加\n\nClaude Dashboardsは10月にベータ版として始まり、Amazon Redshift、BigQuery、ClickHouseなどに保存された社内データへ質問できるものでした。今回、Claude Dataという名前で一般提供になりました。公式ブログは、データの使い方がダッシュボードより広がったため名前を変えたと説明しています。認証済みクエリと、リアルタイムの共有はベータ版です。\n\n追加された主なことは次のとおりです。\n\n- 認証済みの指標: データ担当者が全員の使うクエリを認証でき、グラフに「認証済み」のバッジが付く\n- データストーリー: 指標から、解説文やナレーション付きの動画の下書きを作る。共有の前に確認できる\n- 共有: 閲覧者はデータへの接続権限がなくても最新の数字を見られる。見られるのは結果だけで、実行できるのは承認されたクエリに限られる\n- デザインシステムへの対応、キャッシュ（読み込みの高速化）、更新間隔の設定\n- 変更の履歴: 誰が編集したかを確認し、特定の版に戻せる\n\nClaude Dataの連携先には、Amplitude、Mixpanel、Omni、PostHog、Sigmaがあります。利用にはウェアハウスやCRMなどのデータコネクターが必要です。\n\n## 日本での使い方と料金\n\nClaude自体は日本で使えます（当サイトの確認：11/3）。ただし、今回の新機能の日本での提供はまだ発表されていません。\n\nWhiteboards、Sheets、Claude Dataは、ウェブ、デスクトップ、モバイルで動きます。追加料金の発表はなく、全有料プランが対象です。Proは月払いで$20です（Anthropic公式の料金ページ、11/10確認）。円ではProが消費税込みで約3,470円です（サイソク編集部の計算）。\n\n### Claudeのプランと料金（公式の料金と円の目安）\n\n| プラン | 料金（公式） | 円の目安 | 主な上限・違い |\n| --- | --- | --- | --- |\n| Free | $0/月 |  | 制限された使用量（5 時間ごと・毎週） |\n| Pro | $17/月（年払い・一括$200） / $20/月（月払い） | 約3,480円（税込みの目安） | Free より多い使用量（5 時間ごと・毎週） |\n| Max | $100/月（月払い） | 約17,370円（税込みの目安） | Pro の 5 倍の使用量（5 時間ごと・毎週）、Claude Platform での開発に利用できる月額 $100 分の API クレジット |\n| Ultra | $200/月（月払い） | 約34,750円（税込みの目安） | 5 時間制限なし、Pro の 10 倍の使用量（毎週）、月額 $200 分の API クレジット（Max の $100 からアップグレード） |\n| Team（スタンダードシート） | $20/人・月（年払い） / $25/人・月（月払い） | 約4,340円（税込みの目安） | すべてのClaude 機能、さらにProより多い使用量 |\n| Team（プレミアムシート） | $100/人・月（年払い） / $125/人・月（月払い） | 約21,720円（税込みの目安） | スタンダードシートの5倍の使用量 |\n| Enterprise | $20/人・月（年払い） | 約3,480円（税込みの目安） | US$20/シート/月（年払い、最低20シート）。使用コストはモデルとタスクに応じて変動します。、シート料金 + APIレートでの使用量 |\n\n出典：Claudeの公式ページ（https://claude.com/pricing）／確認日：2026-11-10\n円は1ドル=157.95円（2026-11-09、ECB参照レート（ユーロ経由で計算））で計算した目安です。ドルのプランは消費税10%を足しています。実際の請求額は為替とカード会社の手数料で変わります。\n\n## 連携アプリを会話の横で操作\n\nインタラクティブコネクターは、会話の横や全画面でアプリとして開けるようになりました。Adobe、Atlassian、Box、Notionなどを、自分で操作することも、Claudeに変更を頼むこともできます。\n\n## まだ分からないこと\n\n- 今回の新機能の日本での提供はまだ発表されていません\n- WhiteboardsとSheetsがベータ版から一般提供になる時期はまだ発表されていません\n\n## 管理者が確認すること\n\nTeamプランでは、3つとも初期設定でオンです。\n\nEnterpriseプランでは、WhiteboardsとSheetsは初期設定でオフです。Claude Dataは2026年11月19日に自動でオンになります。切り替えは、組織設定のArtifactsの項目でいつでも変えられます。\n\n編集部の見方では、Excelの代わりではなく、会議の整理や小さな管理表づくりを、Claudeの中で済ませる使い方が現実的です。",
+  "easy": "## ひとことで言うと\n\nClaudeの中で、チームでホワイトボードと表計算を共同編集できるようになりました。どちらもベータ版で、有料プランの利用者が対象です。\n\n## 使えるようになったこと\n\nホワイトボードでは、会議のメモをClaudeがテーマごとに整理し、各自のやることの案まで作ります。\n\n表計算では、「キャンペーンの管理表」などと頼むだけで、複数のシートや計算式、プルダウンのある表を作ってくれます。\n\n## 数字を共有する機能も\n\n以前の「Claude Dashboards」は「Claude Data」という名前で一般提供になりました。同僚は、データへの接続権限がなくても最新の数字を見られます。\n\nなお、利用には有料プランが必要です。日本での提供はまだ発表されていません。",
+  "channel": "Claude公式ブログ（claude.com）",
+  "channelId": "",
+  "channelSlug": "claude-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Introducing Claude Whiteboards, Claude Sheets, and Claude Data",
+  "publishedAt": "2026-11-09T15:00:00+00:00",
+  "generatedAt": "2026-11-10T17:19:37.178318+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/claude-whiteboards-sheets-data-f8e60cfb.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "pricingProduct": "claude",
+  "pricingCompare": "plan:standard",
+  "faq": [
+    {
+      "q": "Claude SheetsとExcelは併用できますか？",
+      "a": "併用できます。Sheetsは.xlsxやCSVに書き出せます。Claude for Excelも使えます。Airtableなどでも作業を続けられます。"
+    },
+    {
+      "q": "Claude Dataの共有でデータは見られてしまいますか？",
+      "a": "閲覧者が見られるのはダッシュボードの結果だけで、元のデータは見えません。実行できるのも承認されたクエリだけです。"
+    },
+    {
+      "q": "EnterpriseでClaude Dataはいつ自動でオンになりますか？",
+      "a": "2026年11月19日に初期設定でオンになります。WhiteboardsとSheetsは初期設定でオフです。"
+    }
+  ],
+  "todayActions": [
+    "有料プランの利用者は、次の会議のメモをWhiteboardsに入れ、テーマ別の整理を試す",
+    "Enterpriseの管理者は、組織設定のArtifactsで11月19日のClaude Dataの有効化を確認する",
+    "簡単な管理表をSheetsで作り、.xlsxで書き出してExcelで開けるか確かめる"
+  ],
+  "qualityScore": 88,
+  "breaking": true,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "Anthropic公式の料金ページ",
+      "url": "https://claude.com/pricing",
+      "checkedAt": "2026-11-10"
+    },
+    {
+      "label": "為替",
+      "name": "ECB参照レート（ユーロ経由で計算）",
+      "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+      "checkedAt": "2026-11-09"
+    },
+    {
+      "label": "計算",
+      "name": "サイソク編集部の計算（元記事と上の資料の数字から）",
+      "url": "",
+      "checkedAt": ""
+    }
+  ],
+  "charts": [
+    {
+      "kind": "ladder",
+      "product": "claude",
+      "afterHeading": "日本での使い方と料金"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-09T15:00:00+00:00",
+  "detectedAt": "2026-11-10T17:18:20+00:00",
+  "fastLane": true,
+  "layout": "noir",
+  "summaryLine": "Claudeにホワイトボードと表計算が追加され、チームでAIと一緒に編集できる",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/claude-whiteboards-sheets-data-fig1-f8e60cfb.jpg",
+      "width": 1200,
+      "height": 630,
+      "kind": "hero",
+      "credit": "Claude公式ブログ（claude.com）",
+      "sourceUrl": "https://claude.com/resources/articles/sheets-whiteboards-data",
+      "original": "https://claude.com/ja/resources/articles/sheets-whiteboards-data/opengraph-image/og"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Claude公式ブログ（claude.com）",
+    "provider": "Claude公式ブログ（claude.com）",
+    "sourceUrl": "https://claude.com/resources/articles/sheets-whiteboards-data",
+    "original": "https://claude.com/resources/articles/sheets-whiteboards-data/opengraph-image/og",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-10T17:19:54+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.492,
+    "y": 0.503,
+    "box": [
+      0.291,
+      0.137,
+      0.694,
+      0.869
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/claude-whiteboards-sheets-data-f8e60cfb.jpg"
+  }
+}

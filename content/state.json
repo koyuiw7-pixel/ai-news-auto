@@ -4971,13 +4971,6 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/vertical/online/video-784.html"
     },
-    "160f6fcc9e4022f5": {
-      "at": "2026-10-27T17:14:35.267344+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1791字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://group.ntt/jp/newsrelease/2026/10/27/261027a.html"
-    },
     "1612ad56da1498eb": {
       "at": "2026-10-28T19:34:03.571405+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6039,12 +6032,6 @@
       "skipped": true,
       "url": "https://www.mof.go.jp/jgbs/topics/gov_guaranteed_bonds/hu2034.htm"
     },
-    "278eaae2a5f3ba0b": {
-      "at": "2026-10-27T17:13:09.104876+00:00",
-      "reason": "prefilter: 告知・お知らせ系",
-      "skipped": true,
-      "url": "https://www.salesforce.com/jp/news/press-releases/2026/10/26/idom-customer-news-2/"
-    },
     "278fc0b212c78d99": {
       "at": "2026-11-06T02:04:06.977371+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
@@ -6517,13 +6504,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102811"
-    },
-    "2f7df4450dee9eaf": {
-      "at": "2026-10-27T17:15:50.093644+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2001字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; title / seo_title に感嘆符がある",
-      "skipped": true,
-      "url": "https://aws.amazon.com/blogs/machine-learning/announcing-soci-indexed-images-for-faster-sagemaker-ai-jobs/"
     },
     "2faf1822c135806a": {
       "at": "2026-10-28T23:13:03.555285+00:00",
@@ -10592,14 +10572,6 @@
       "skipped": true,
       "url": "https://www.nipponham.co.jp/topics_detail24/id=24532"
     },
-    "6dfb7c4dca51fc55": {
-      "at": "2026-10-27T17:16:22.688285+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "spec-driven-development-sap-abap-aws",
-      "url": "https://aws.amazon.com/jp/blogs/news/spec-driven-development-for-sap-abap/"
-    },
     "6e01cc3fe6afc73d": {
       "at": "2026-10-28T20:51:33.895137+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（採用）",
@@ -11262,6 +11234,20 @@
       "reason": "followup quality: 「GitHub Changelog（Copilot）は11月10日、」→ 元記事に発表日は書かれておらず、11月10日という日付は創作である; 「Vercelに続き」「AI Gatewayの上乗せはありません」→ 確認済みの文脈のVercel情報に基づくため問題ないが、リードでは元記事の対象との区別が分かりにくい; 「条件を満たす一部の大企業に限り」→ 元記事の",
       "skipped": true,
       "url": "https://github.blog/changelog/2026-11-09-claude-fable-5-2-in-github-copilot"
+    },
+    "7737e173e31a5988": {
+      "at": "2026-11-10T17:19:47.300034+00:00",
+      "breaking": true,
+      "costUsd": 0.1132,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "claude-whiteboards-sheets-data",
+      "url": "https://claude.com/resources/articles/sheets-whiteboards-data"
     },
     "77db3705f153125d": {
       "at": "2026-10-29T18:13:41.962786+00:00",
@@ -13234,13 +13220,6 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/digital_shokadai/02ryutsu02_04000610.html"
     },
-    "95d5916fd6281c36": {
-      "at": "2026-10-27T17:13:08.660817+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2174字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-      "skipped": true,
-      "url": "https://blog.cloudflare.com/kv-cache-exposure-remediation/"
-    },
     "95e7279c4133d4f8": {
       "at": "2026-10-28T03:02:05.151993+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -13744,20 +13723,6 @@
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/kouku09_hh_000341.html"
     },
-    "9dc524e613f7a2fb": {
-      "at": "2026-10-27T17:14:01.225043+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2018字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://www.docomo.ne.jp/info/news_release/2026/10/27_03.html"
-    },
-    "9dc588e7e8e38c78": {
-      "at": "2026-10-27T17:12:52.838323+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2239字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1209_4780.html"
-    },
     "9dc620733650cc58": {
       "at": "2026-10-28T22:12:53.464722+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -13816,13 +13781,6 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/houdou/2023/1418062_00009.htm"
     },
-    "9eb65dd2b202cbfc": {
-      "at": "2026-10-27T17:15:20.088347+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2263字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://blogs.windows.com/japan/2026/10/27/fileforce-drive-officially-supports-windows-on-arm-making-cloud-file-management-more-seamless-in-the-copilot-pc-era/"
-    },
     "9f041e1602b63eeb": {
       "at": "2026-11-04T10:27:25.799381+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
@@ -13841,13 +13799,6 @@
       "reason": "人事異動・採用・入札などの通知ではなく、定例の統計情報（医科医療費の動向調査の月報）の公表ページであり、個別の制度変更や国民が申し込める新しい給付金等の情報は含まれないため。",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/topics/medias/ika_iryou/2026/06/"
-    },
-    "9f7b5af577bb9f52": {
-      "at": "2026-10-27T17:14:54.438903+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2352字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://www.docomo.ne.jp/info/news_release/2026/10/27_01.html"
     },
     "9f7e69613023002a": {
       "at": "2026-11-02T23:38:17.802512+00:00",
@@ -17633,13 +17584,6 @@
       "slug": "levain-cup-quarterfinals-2026-preview",
       "url": "https://www.jleague.jp/news/article/35328/?navicode=j1"
     },
-    "db04d07f4df92550": {
-      "at": "2026-10-27T17:14:18.390543+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1985字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（356字 / 基準 400字以上）; 元記事の文をそのまま書き写している（2文。例「「Agentforce」がこうした対応を担い、定型的なメッセージでの問い合わせの89%、電話での問い」）。自分の言葉で要約する",
-      "skipped": true,
-      "url": "https://www.salesforce.com/jp/news/stories/getting-to-roi-with-ai/"
-    },
     "db51f5d57cfa9152": {
       "at": "2026-11-06T19:42:20.591781+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -20524,18 +20468,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:04:39.005711+00:00",
-      "attempt": 1,
-      "id": "666783081ce0cfb3",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 95,
-      "source": "nvidia-japan-blog",
-      "title": "NVIDIA、Rebellions、SK Telecom、NVIDIA NVLink Fusion によるソブリン AI インフラの推進に向けた協業を発表"
-    },
     {
       "accepted": true,
       "at": "2026-11-09T09:05:06.107725+00:00",
@@ -27851,6 +27783,29 @@
       "score": 62,
       "source": "google-deepmind-blog",
       "title": "Gemini 4 Carbon is now available"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T17:19:47.278753+00:00",
+      "attempt": 1,
+      "id": "7737e173e31a5988",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.8,
+        "avg_sentence": 39.3,
+        "long_share": 0.116,
+        "max_paragraph": 192,
+        "paragraphs": 18,
+        "sentences": 43
+      },
+      "score": 88,
+      "source": "claude-blog",
+      "title": "Introducing Claude Whiteboards, Claude Sheets, and Claude Data",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CSV・CRM）"
+      ]
     }
   ],
   "short_text_retry": {},
