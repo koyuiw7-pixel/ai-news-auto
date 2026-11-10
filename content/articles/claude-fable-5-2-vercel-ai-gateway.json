@@ -1,0 +1,270 @@
+{
+  "slug": "claude-fable-5-2-vercel-ai-gateway",
+  "sourceType": "web",
+  "sourceUrl": "https://vercel.com/changelog/claude-fable-5-2-now-available-on-ai-gateway",
+  "sourceName": "Vercel Changelog",
+  "title": "「Claude Fable 5.2」がVercelのAI Gatewayで使えるように　入力$8・出力$40",
+  "seoTitle": "Claude Fable 5.2の料金・使い方：AI Gatewayで利用可能に",
+  "threadsPost": "開発でAIを組み込んでいる人に、知っておいてほしい話です。\n\nVercelの「AI Gateway」で、「Claude Fable 5.2」が使えるようになりました。\nAPI料金は100万トークンあたり入力$8、出力$40です。\n\nAIにコードを見てもらう作業、1週間に何回くらいしていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "AIにコードを見てもらう作業、1週間に何回くらいしていますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "コードの修正をAIにどこまで任せるなら安心ですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "Vercelの「AI Gateway」で、「Claude Fable 5.2」が11月9日から使えるようになりました。API料金は100万トークンあたり入力$8、出力$40で、AI Gatewayは上乗せをしません。ZDR（データを保存しない設定）を有効にしているチームは、このモデルへのリクエストがエラーになるため、社内の設定を先に確かめてください。",
+  "description": "Claude Fable 5.2がVercelのAI Gatewayで利用可能に。API料金は入力100万トークンあたり$8、出力$40で、上乗せはありません。ZDRを有効にしたチームは使えない点に注意が必要です。日本での提供条件は未発表です。",
+  "keywords": [
+    "Claude Fable 5.2",
+    "Claude Fable 5.2 料金",
+    "Vercel AI Gateway",
+    "AI Gateway 使い方",
+    "Claude API 料金",
+    "ZDR 設定",
+    "モデル フォールバック",
+    "Anthropic 新モデル",
+    "生成AI API",
+    "Claude Code 使い方"
+  ],
+  "tags": [
+    "生成AI",
+    "LLM",
+    "Claude",
+    "Vercel",
+    "API",
+    "開発ツール"
+  ],
+  "highlights": [
+    "Vercel AI Gatewayで「Claude Fable 5.2」が利用可能に、モデル名はanthropic/claude-fable-5.2",
+    "API料金は100万トークンあたり入力$8、出力$40。AI Gatewayは提供元の料金に上乗せしません",
+    "ZDRを有効にしたチームは、このモデルへの送信がエラーになります。データは30日保存されます。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "入力$8/出力$40",
+    "free": null,
+    "audience": "AIを開発に組み込む人",
+    "take": "社内でZDRを使っているなら、このモデルは使えないため、先に管理者へ確認するとよいでしょう。",
+    "judgedAt": "2026-11-10T15:15:22.541659+00:00",
+    "japanSource": {
+      "name": "Claude",
+      "url": "https://www.anthropic.com/supported-countries",
+      "checkedAt": "2026-11-03"
+    }
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "社内のAI機能を作る担当者は、入力$8・出力$40（100万トークンあたり）を見積もりに入れられます。",
+      "社内でZDRを使っているなら、このモデルは使えません。社内の規程と合うかを、先に情報システム担当に確認するとよいでしょう。"
+    ]
+  },
+  "body": "AI Gatewayは、複数のAIモデルを1つの窓口（API）から呼び出せるサービスです。AI Gatewayを使っていない人の仕事や料金に、今のところ変わることはありません。\n\n## 前の版より、コーディングと長い作業が強くなった\n\nVercelの発表によると、Fable 5.2は前の版の「Fable」系と比べて、コーディング・推論・画像の理解が良くなりました。話し方もわかりやすくなり、出力も速くなっています。\n\n長くて指示のあいまいな作業を、人の手を離れて進められる点も特徴です。簡単な作業を小さいモデルに振り分ける「オーケストレーター」としても動きます。ほかのClaudeモデルが難しい問題で相談を受ける「アドバイザー」としても動きます。\n\n思考の深さ（effort）は、AIがどこまで考えてから答えるかの設定です。low から max まで選べ、APIの既定値は high です。\n\n## 料金は入力$8・出力$40、AI Gatewayの上乗せはなし\n\n料金は、100万トークンあたりの入力（送る文章）と出力（返ってくる文章）で決まります。Fable 5.2は入力が$8、出力が$40です（Vercelのモデルページ、11/11確認）。トークンは、AIが文字を数える単位です。\n\n一度に扱える文脈は100万トークン、出力は最大12万8,000トークンです（Vercelのモデルページ、11/11確認）。サイソクの過去記事によると、API料金は5.1より2割安くなっています（[Claude Fable 5.2、API料金は入力$8・出力$40に](/articles/claude-fable-5-2-api-price)、11/10）。\n\nAI Gatewayは提供元の料金にそのまま合わせ、プラットフォーム料金も取りません。自分のAPIキーを持ち込むBYOKの利用も同じです（Vercelの発表）。\n\n高速モードは、モデル名の末尾に -fast を付けて使えます。標準料金の2倍で、最大2.5倍速になります（[Claude Fable 5.2とOpus 5.5の高速モード](/articles/claude-fast-mode-fable-5-2)、11/10）。\n\n## 安全の分類器で止まったら、予備のモデルに回す\n\nFable 5.2には、サイバーセキュリティと生物学の安全分類器（危ない使い方を判定して止める仕組み）が組み込まれています。サイバーセキュリティの分類器が依頼を断ったときは、予備のモデルに回せます。\n\n方法は、providerOptions の gateway に models の配列を入れることです。例えば Opus 5.5、Sonnet 5.5 の順に指定すると、一つ目で断られた場合に二つ目で試されます。この指定はどのAPI形式でも同じように働きます。\n\n## 使い方：モデル名で呼び出す\n\nモデル名は anthropic/claude-fable-5.2 です。AI SDK、OpenAIのChat Completions・Responses、AnthropicのMessages APIのどれからでも呼び出せます。コーディング用のエージェント（作業を自分で進めるAI）からも使えます。\n\nClaude Code、Codex、Cursorなどで使うなら、最新版のVercel CLIを入れて npx vercel ai-gateway setup を実行します。試すだけなら、Vercelのモデルプレイグラウンドで触れます。\n\nClaude APIは日本で使えます（当サイトの確認：11/3）。ただし、Fable 5.2の日本での提供条件はまだ発表されていません。\n\n## まだ分からないこと\n\n- Fable 5.2の日本での提供条件は、まだ発表されていません。\n- Fable 5.2がZDRに対応する時期は、まだ発表されていません。\n\n## ZDRを有効にしているチームは、このモデルを使えない\n\nFable 5.2を使うには、プロンプトと回答を30日間保存することが条件です。Anthropicは、このモデルについてゼロデータ保存（ZDR）に対応していません。Claudeの学習には使われないとされています。\n\n社内でチーム全体のZDRを有効にしている場合、AI Gatewayはこのモデルへのリクエストを送らず、エラーを返します。ZDRを使うかどうかは、社内の規程と照らして決めてください。",
+  "easy": "## ひとことで言うと\n\nVercelのAI Gatewayで、Anthropicの「Claude Fable 5.2」が使えるようになりました。料金は100万トークンあたり入力$8、出力$40です。\n\n## 使う前に確かめたいこと\n\n社内でZDR（データを保存しない設定）を使っているなら、このモデルへのリクエストはエラーになります。社内の設定を先に確かめてください。",
+  "channel": "Vercel Changelog",
+  "channelId": "",
+  "channelSlug": "vercel-changelog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Claude Fable 5.2 now available on AI Gateway",
+  "publishedAt": "2026-11-09T00:00:00+00:00",
+  "generatedAt": "2026-11-10T15:15:22.541647+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/claude-fable-5-2-vercel-ai-gateway-figure-3ec25c40.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "社内でAI Gatewayを使うなら、チーム全体のZDRが有効かを先に確かめる。",
+    "Claude CodeなどでFable 5.2を試すなら、最新版のVercel CLIでsetupを実行する。",
+    "料金を見積もるなら、モデルページの料金欄で使う提供元の単価を確かめる。"
+  ],
+  "relatedSlugs": [
+    "claude-fast-mode-fable-5-2",
+    "claude-fable-5-2-api-price"
+  ],
+  "qualityScore": 92,
+  "factSources": [
+    {
+      "label": "他社との比較",
+      "name": "各社公式の料金ページ",
+      "url": "",
+      "checkedAt": "2026-11-03"
+    },
+    {
+      "label": "関連ページ",
+      "name": "Vercel Changelog「Claude Fable 5.2 API, Pricing & Playground | Vercel AI Gateway」",
+      "url": "https://vercel.com/ai-gateway/models/claude-fable-5.2",
+      "checkedAt": "2026-11-11"
+    },
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-10"
+    },
+    {
+      "label": "日本での提供",
+      "name": "Claudeの公式ページ",
+      "url": "https://www.anthropic.com/supported-countries",
+      "checkedAt": "2026-11-03"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-09T00:00:00+00:00",
+  "detectedAt": "2026-11-10T15:10:59+00:00",
+  "layout": "noir",
+  "summaryLine": "Vercel AI Gatewayで「Claude Fable 5.2」が利用可能に、モデル名はanthropic/claude-fable-5.2",
+  "insight": [
+    {
+      "text": "モデルページの料金欄では、キャッシュの「Read」が$0.20/M、「Write」が$10/Mと表示されている。入力・出力とは別の欄なので、見積もりに入れる。",
+      "source": "https://vercel.com/ai-gateway/models/claude-fable-5.2"
+    },
+    {
+      "text": "「only」で提供元を絞ると、その中で使えないときは別の提供元へ回らず失敗する。「order」は優先順で、ほかの提供元も候補に残る。",
+      "source": "https://vercel.com/ai-gateway/models/claude-fable-5.2"
+    },
+    {
+      "text": "「Regional Inference」欄は、Anthropicと「Bedrock」が「US」、Google Vertex AIは「—」。提供元で推論の地域表示が違う。",
+      "source": "https://vercel.com/ai-gateway/models/claude-fable-5.2"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Claude Fable 5.2 モデルページ（Vercel AI Gateway）",
+      "url": "https://vercel.com/ai-gateway/models/claude-fable-5.2",
+      "source": "https://vercel.com/ai-gateway/models/claude-fable-5.2",
+      "note": "提供元ごとに料金・速度・地域の欄が違うので、使う提供元の行を見る。"
+    },
+    {
+      "name": "Anthropic 対応国・地域の一覧",
+      "url": "https://www.anthropic.com/supported-countries",
+      "source": "https://www.anthropic.com/supported-countries",
+      "note": "一覧に「Japan」の記載がある。このページはAnthropicの製品・APIの対応地域を示す。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "社内でAI Gatewayを使うなら、チーム全体のZDRが有効かを先に確かめる。",
+      "source": "https://vercel.com/changelog/claude-fable-5-2-now-available-on-ai-gateway",
+      "steps": [
+        "チーム全体のZDRが有効かを確かめる",
+        "有効ならこのモデルへの依頼はエラーになる",
+        "ZDRを使うかは社内の規程と照らして決める"
+      ],
+      "url": "https://vercel.com/docs/ai-gateway/security-and-compliance/zdr"
+    },
+    {
+      "action": "Claude CodeなどでFable 5.2を試すなら、最新版のVercel CLIでsetupを実行する。",
+      "source": "https://vercel.com/changelog/claude-fable-5-2-now-available-on-ai-gateway",
+      "steps": [
+        "最新版のVercel CLIを入れる",
+        "npx vercel ai-gateway setup を実行する",
+        "Claude Code、Codex、Cursorなどで使える"
+      ],
+      "url": "https://vercel.com/docs/ai-gateway/coding-agents"
+    },
+    {
+      "action": "料金を見積もるなら、モデルページの料金欄で使う提供元の単価を確かめる。",
+      "source": "https://vercel.com/ai-gateway/models/claude-fable-5.2",
+      "steps": [
+        "モデルページの料金欄を見る",
+        "提供元ごとの入力・出力の単価を確かめる",
+        "キャッシュのRead・Writeも見て計算に入れる"
+      ],
+      "url": "https://vercel.com/ai-gateway/models/claude-fable-5.2"
+    }
+  ],
+  "cause": {
+    "text": "Anthropicが、このモデルではゼロデータ保存（ZDR）に対応していないためです。利用には30日間の保存が条件で、チームでZDRを有効にしているとAI Gatewayはリクエストを送らず、エラーを返します。",
+    "status": "stated",
+    "source": "https://vercel.com/changelog/claude-fable-5-2-now-available-on-ai-gateway"
+  },
+  "worries": [
+    {
+      "q": "社内でZDRを使っていたら、このモデルは使えなくなる？",
+      "a": "使えません。Fable 5.2は利用に30日間の保存が条件で、Anthropicはこのモデルに対してZDRに対応していません。チームでZDRを有効にしていると、AI Gatewayはリクエストを送らずエラーを返します。",
+      "source": "https://vercel.com/changelog/claude-fable-5-2-now-available-on-ai-gateway",
+      "action": "チームのZDR設定を先に確かめ、有効なら社内の規程と照らして使うかどうかを決める。"
+    },
+    {
+      "q": "分類器で依頼が断られたら、どうなる？",
+      "a": "サイバーセキュリティの分類器が依頼を断ったとき、providerOptionsのgatewayにあるmodels配列で指定したモデルへ順に回せます。例はOpus 5.5、次にSonnet 5.5です。同じ書き方はどのAPI形式でも働きます。",
+      "source": "https://vercel.com/changelog/claude-fable-5-2-now-available-on-ai-gateway",
+      "action": "呼び出しのコードで providerOptions の gateway に models の配列を入れておく。"
+    },
+    {
+      "q": "提供元によって料金は違うの？",
+      "a": "モデルページの料金欄に、提供元ごとの表示があります。入力は「$8/M」、出力は「$40/M」と表示されています。キャッシュは読み込み「$0.20/M」、書き込み「$10/M」です。",
+      "source": "https://vercel.com/ai-gateway/models/claude-fable-5.2",
+      "action": "見積もる前に、使う提供元の料金欄で単価を確かめる。"
+    },
+    {
+      "q": "日本からでも使える？",
+      "a": "Anthropicの対応国・地域の一覧には「Japan」が含まれています。一方、モデルページのRegional Inference欄では、Anthropicと「Bedrock」が「US」と表示されています。",
+      "source": "https://www.anthropic.com/supported-countries",
+      "action": "社内で使う前に、対応国の一覧とモデルページの地域欄を見比べて確かめる。",
+      "actionSource": "https://vercel.com/ai-gateway/models/claude-fable-5.2"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "社内でZDRを有効にしているチームは使う？",
+      "situation": "チーム全体でZDRを有効にしている",
+      "recommend": "急いで使わなくてよい。",
+      "reason": "ZDRが有効だと、このモデルへのリクエストはAI Gatewayからエラーになります。このモデルは30日間の保存が条件で、ZDRの有無は社内の規程と照らして決める必要があります。",
+      "source": "https://vercel.com/changelog/claude-fable-5-2-now-available-on-ai-gateway"
+    },
+    {
+      "question": "分類器で依頼が断られるときの備えは入れる？",
+      "situation": "依頼が止まると困る業務で使う",
+      "recommend": "止まると困る業務なら、models配列を設定する。",
+      "reason": "models配列を入れると、サイバーセキュリティ分類器が依頼を断ったとき、指定した順に別のモデルで試されます。分類器以外で止まる場合は、このページの範囲では判断できません。",
+      "source": "https://vercel.com/changelog/claude-fable-5-2-now-available-on-ai-gateway"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "提供元を絞ると、別の提供元へは回らない",
+    "cause": "ZDRでエラーになるのは、なぜか",
+    "steps": "今日すぐ確かめられる3つのこと",
+    "desk": "料金と対応国を確かめる先",
+    "worries": "ZDR・料金・日本からの利用、気になる点",
+    "guide": "ZDRを使うか、このモデルを試すか迷ったら"
+  },
+  "depthAt": "2026-11-10T15:17:32+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「Claude Fable 5.2」がVercelのAI Gatewayで使えるように",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-10T15:19:52+00:00"
+  },
+  "imageFocus": {
+    "x": 0.529,
+    "y": 0.39,
+    "box": [
+      0.081,
+      0.048,
+      0.978,
+      0.732
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/claude-fable-5-2-vercel-ai-gateway-figure-3ec25c40.jpg"
+  },
+  "duplicateOf": "claude-fable-5-2-api-price",
+  "duplicateReason": "製品名が一致（fable5.2）"
+}

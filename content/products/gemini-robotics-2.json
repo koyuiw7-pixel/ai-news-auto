@@ -1,113 +1,92 @@
 {
   "slug": "gemini-robotics-2",
   "name": "Gemini Robotics 2",
-  "aliases": [],
+  "aliases": [
+    "Gemini Robotics"
+  ],
   "company": "google",
   "companyName": "Google",
   "category": "ロボット",
   "overview": {
-    "text": "Gemini Robotics 2は、物理世界で自律的に動作する身体性AIの統合システムです。Google DeepMindが開発し、2026年7月30日から8月7日にかけて発表されました。",
+    "text": "Gemini Robotics 2は、Google DeepMindが開発するロボット制御用のAI基盤モデルです。映像と言葉を理解してロボットの手足を動かし、2026年7月に発表されました。",
     "sources": [
-      "gemini-robotics-2-comprehensive-summary-matome",
-      "google-deepmind-gemini-robotics-2-apollo",
-      "google-deepmind-gemini-robotics-2-multi-robot-collaboration"
+      "gemini-robotics-2-comprehensive-summary-matome"
     ]
   },
-  "facts": [
-    {
-      "label": "料金",
-      "value": "未発表",
-      "sources": [
-        "google-deepmind-gemini-robotics-2-apollo",
-        "google-deepmind-gemini-robotics-2-multi-robot-collaboration"
-      ]
-    },
-    {
-      "label": "提供開始",
-      "value": "研究・デモ段階",
-      "sources": [
-        "google-deepmind-gemini-robotics-2-apollo",
-        "google-deepmind-gemini-robotics-2-multi-robot-collaboration"
-      ]
-    },
-    {
-      "label": "日本での提供",
-      "value": "日本では未提供",
-      "sources": [
-        "google-deepmind-gemini-robotics-2-apollo",
-        "google-deepmind-gemini-robotics-2-multi-robot-collaboration"
-      ]
-    },
-    {
-      "label": "向いている人",
-      "value": "ロボット開発者",
-      "sources": [
-        "google-deepmind-gemini-robotics-2-apollo"
-      ]
-    }
-  ],
+  "facts": [],
   "capabilities": [
     {
-      "text": "22関節の多指ハンドを駆使し、ゴミ袋結びやジッパー袋の開閉といった繊細な柔軟体操作を実現します。",
+      "text": "22関節の多指ハンドを使い、薄手のゴミ袋を結ぶなどの柔軟な操作ができます。",
+      "sources": [
+        "gemini-robotics-2-comprehensive-summary-matome",
+        "google-deepmind-gemini-robotics-2-apollo"
+      ]
+    },
+    {
+      "text": "二足歩行ロボットの全身バランスをリアルタイムで計算し、転倒を防止します。",
       "sources": [
         "gemini-robotics-2-comprehensive-summary-matome"
       ]
     },
     {
-      "text": "全身協調制御により、二足歩行ロボットの動的なバランス保持と複雑な作業を両立します。",
+      "text": "異なるタイプのロボット同士が自然言語で会話し、自律的に役割分担を行えます。",
       "sources": [
-        "gemini-robotics-2-comprehensive-summary-matome"
-      ]
-    },
-    {
-      "text": "分散型ニューラルネットワークを搭載した複数ロボットが、自然言語の対話を通じて自律的に役割を分担します。",
-      "sources": [
-        "gemini-robotics-2-comprehensive-summary-matome"
-      ]
-    },
-    {
-      "text": "人間の自然言語による音声指示を正確に解釈し、ロボット同士が連携して作業を遂行します。",
-      "sources": [
-        "google-deepmind-gemini-robotics-2-apollo",
+        "gemini-robotics-2-comprehensive-summary-matome",
         "google-deepmind-gemini-robotics-2-multi-robot-collaboration"
+      ]
+    },
+    {
+      "text": "工場での実証実験で、部品の仕分け作業を96%の成功率でこなしました。",
+      "sources": [
+        "gemini-robotics-2-5-dexterity"
       ]
     }
   ],
   "pricing": [],
-  "japan": [
+  "japan": [],
+  "howto": [],
+  "differences": [
     {
-      "text": "発表の時点では、日本での提供について案内はありません。",
+      "text": "2.5では作業成功率が30〜100%向上しました。",
       "sources": [
-        "google-deepmind-gemini-robotics-2-apollo",
-        "google-deepmind-gemini-robotics-2-multi-robot-collaboration"
+        "gemini-robotics-2-5-dexterity"
+      ]
+    },
+    {
+      "text": "2.5では作業時間が20〜30%短くなりました。",
+      "sources": [
+        "gemini-robotics-2-5-dexterity"
       ]
     }
   ],
-  "howto": [],
-  "differences": [],
   "faq": [
     {
-      "q": "いつから使える？",
-      "a": "発表の時点では研究・デモ段階であり、一般への提供時期は未発表です。",
+      "q": "Gemini Robotics 2はいつ発表されましたか？",
+      "a": "2026年7月30日に発表されました。",
       "sources": [
-        "google-deepmind-gemini-robotics-2-apollo"
+        "gemini-robotics-2-comprehensive-summary-matome"
       ]
     },
     {
-      "q": "対応するロボットは？",
-      "a": "人型のApolloやApollo 2などで動作します。",
+      "q": "どんなロボットを動かせますか？",
+      "a": "人型ロボットのApolloや双腕ロボットのDuoなどを動かせます。",
       "sources": [
         "gemini-robotics-2-comprehensive-summary-matome",
-        "google-deepmind-gemini-robotics-2-apollo"
-      ]
-    },
-    {
-      "q": "複数のロボットで連携できる？",
-      "a": "自然言語を介して複数のロボットが自律的に役割を分担し、協調動作を行います。",
-      "sources": [
-        "gemini-robotics-2-comprehensive-summary-matome",
-        "google-deepmind-gemini-robotics-2-apollo",
         "google-deepmind-gemini-robotics-2-multi-robot-collaboration"
+      ]
+    },
+    {
+      "q": "一般の人は使えますか？",
+      "a": "ロボット開発企業や提携先向けのシステムです。",
+      "sources": [
+        "gemini-robotics-2-5-dexterity"
+      ]
+    },
+    {
+      "q": "前の版と何が違いますか？",
+      "a": "2.5では成功率が30〜100%高くなりました。",
+      "sources": [
+        "gemini-robotics-2-5-dexterity"
       ]
     }
   ],
@@ -115,38 +94,48 @@
     {
       "date": "2026-07-30",
       "slug": "google-deepmind-gemini-robotics-2-multi-robot-collaboration",
-      "event": "複数ロボットが自律連携するGemini Robotics 2を公開"
+      "event": "複数ロボットが連携するデモを公開"
     },
     {
       "date": "2026-08-07",
       "slug": "gemini-robotics-2-comprehensive-summary-matome",
-      "event": "Googleのロボット用AI「Gemini Robotics 2」が実現する高度な動作"
+      "event": "Gemini Robotics 2を発表"
     },
     {
       "date": "2026-08-07",
       "slug": "google-deepmind-gemini-robotics-2-apollo",
-      "event": "複数ロボットが言語で連携するGemini Robotics 2の最新デモを公開"
+      "event": "Apollo 2を用いた実証デモ動画を公開"
+    },
+    {
+      "date": "2026-11-10",
+      "slug": "gemini-robotics-2-5-dexterity",
+      "event": "Gemini Robotics 2.5を発表"
     }
   ],
   "related": [
     "gemini",
+    "gemini-4-argon",
     "antigravity",
-    "gemini-notebook",
-    "gemini-enterprise"
+    "claude"
   ],
   "articles": [
+    "gemini-robotics-2-5-dexterity",
+    "gemini-robotics-er-2-google-cloud",
+    "google-cloud-ai-october-2026-recap",
     "google-deepmind-gemini-robotics-2-apollo",
     "gemini-robotics-2-comprehensive-summary-matome",
     "google-deepmind-gemini-robotics-2-multi-robot-collaboration"
   ],
   "linkFrom": [
+    "gemini-robotics-2-5-dexterity",
+    "gemini-robotics-er-2-google-cloud",
     "google-deepmind-gemini-robotics-2-apollo",
     "gemini-robotics-2-comprehensive-summary-matome",
     "google-deepmind-gemini-robotics-2-multi-robot-collaboration"
   ],
-  "signature": "d4225a5465783d28",
-  "primarySignature": "d4225a5465783d28",
+  "signature": "a708443b42161f2f",
+  "primarySignature": "e83c6b808247a105",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:41:38+00:00",
-  "updatedAt": "2026-11-03T09:41:43+00:00"
+  "updatedAt": "2026-11-10T15:16:26+00:00"
 }

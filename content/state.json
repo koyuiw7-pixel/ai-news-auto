@@ -3723,13 +3723,6 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77023.html"
     },
-    "03f8a607b05da2e8cd73624ffc97819a0e4433ec": {
-      "at": "2026-10-27T15:14:08.993393+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 形式が不正: 本文が短すぎます（749字）",
-      "skipped": true,
-      "url": "https://finance.yahoo.co.jp/news/detail/2a2ed4e2d11d4b797087d7b732efb8a26e93054c"
-    },
     "04606784cfbb0419": {
       "at": "2026-11-07T15:15:05.638232+00:00",
       "costUsd": 0.0176,
@@ -6477,12 +6470,6 @@
       "slug": "aws-kiro-crew-1000-prs-stability",
       "url": "https://aws.amazon.com/jp/blogs/news/software-factory-stability/"
     },
-    "2e5ae7a5070b5cde": {
-      "at": "2026-10-27T15:15:38.584341+00:00",
-      "reason": "dedupe: 固有名詞が一致（argon・gemini）: gemini-4-argon-google-builders",
-      "skipped": true,
-      "url": "https://blog.google/products-and-platforms/products/gemini/gemini-4-argon-in-action/"
-    },
     "2e9f83e45747a59d": {
       "at": "2026-11-08T05:03:08.758768+00:00",
       "costUsd": 0.0136,
@@ -7009,13 +6996,6 @@
       "skipped": true,
       "url": "http://www.npa.go.jp/newlyarrived/2026/20260331001.html"
     },
-    "3812e52740a44b1dbcdd52914c2abc976c2d3445": {
-      "at": "2026-10-27T15:12:33.746366+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1464字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://forbesjapan.com/articles/detail/106874"
-    },
     "381ffd878144b6ba": {
       "at": "2026-11-09T11:25:21.964091+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -7532,13 +7512,6 @@
       "reason": "地方自治体のAI活用に関する研究会の議事録であり、読者が直接利用できる制度・サービスではないため。",
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/chiho_jichitaini_AItorans/02gyosei04_04000207.html"
-    },
-    "41a626c06e7b614715ce0db2d419796bc5859756": {
-      "at": "2026-10-27T15:15:38.128259+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1452字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-      "skipped": true,
-      "url": "https://www.dazn.com/ja-JP/news/%E3%82%B5%E3%83%83%E3%82%AB%E3%83%BC/fleetwood-town-column/1quzs1xw6nfvd1vcf5ue16gob4"
     },
     "41b6d223bb026d8a": {
       "at": "2026-10-28T19:35:29.924306+00:00",
@@ -11705,6 +11678,18 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77172.html"
     },
+    "7da1b2b4758f6148": {
+      "at": "2026-11-10T15:14:04.235612+00:00",
+      "costUsd": 0.0227,
+      "foreignAi": true,
+      "intent": "query",
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "gemini-robotics-2-5-dexterity",
+      "url": "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/"
+    },
     "7da9fc739690622b": {
       "at": "2026-11-04T15:41:53.379361+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -11803,6 +11788,18 @@
       "reason": "quality: easy_markdown が短い（361字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://www.cyberagent.co.jp/news/detail/id=33971"
+    },
+    "7f5a45cbedf07663": {
+      "at": "2026-11-10T15:15:51.764299+00:00",
+      "costUsd": 0.0186,
+      "foreignAi": true,
+      "intent": "query",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "claude-fable-5-2-vercel-ai-gateway",
+      "url": "https://vercel.com/changelog/claude-fable-5-2-now-available-on-ai-gateway"
     },
     "7f8195a895d8e8b800bd144de3744ccecb1cf778": {
       "at": "2026-10-28T15:07:21.970528+00:00",
@@ -14793,13 +14790,6 @@
       "reason": "内閣官房長官の定例記者会見の案内ページであり、国民の暮らしに直接影響する新しい制度やサービス、法改正の具体的な発表内容が含まれていないため対象外とします。",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326920.html"
-    },
-    "acba861221feb78809883b66d044c885651b8682": {
-      "at": "2026-10-27T15:11:29.242902+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1587字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://news.yahoo.co.jp/articles/651261f245236f078d87858bdcf3d32505fff39d"
     },
     "acd855e80bfa3dab": {
       "at": "2026-11-10T06:58:44.617505+00:00",
@@ -20642,106 +20632,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T08:29:00.243432+00:00",
-      "attempt": 1,
-      "id": "6d49d73492813e52",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 104.9,
-        "avg_sentence": 42.0,
-        "long_share": 0.12,
-        "max_paragraph": 170,
-        "paragraphs": 10,
-        "sentences": 25
-      },
-      "score": 90,
-      "source": "nvidia-blog",
-      "title": "NVIDIA Announces New Planned Investments in Korean Startups at the MSIT-NVIDIA A",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（MSIT・COEX・RLWRLD）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T08:29:52.918318+00:00",
-      "attempt": 1,
-      "id": "bb55601e21d10805",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 59.9,
-        "avg_sentence": 38.5,
-        "long_share": 0.143,
-        "max_paragraph": 94,
-        "paragraphs": 9,
-        "sentences": 14
-      },
-      "score": 85,
-      "source": "jma-press",
-      "title": "南海トラフ地震関連解説情報について －最近の南海トラフ周辺の地殻活動－",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T08:30:32.555495+00:00",
-      "attempt": 1,
-      "id": "524b441fcbae1820",
-      "kind": "ai",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「「Action → Video」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
-      ],
-      "readability": {
-        "avg_paragraph": 113.8,
-        "avg_sentence": 56.9,
-        "long_share": 0.4,
-        "max_paragraph": 173,
-        "paragraphs": 10,
-        "sentences": 20
-      },
-      "score": null,
-      "source": "sbintuitions-blog",
-      "title": "Learning to Act with Visual Priors",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SB・JEPA・RDT）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T08:31:33.920937+00:00",
-      "attempt": 1,
-      "id": "524b441fcbae1820",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 114.0,
-        "avg_sentence": 60.0,
-        "long_share": 0.421,
-        "max_paragraph": 171,
-        "paragraphs": 10,
-        "sentences": 19
-      },
-      "score": 80,
-      "source": "sbintuitions-blog",
-      "title": "Learning to Act with Visual Priors",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SB・JEPA・RDT）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T08:32:05.866314+00:00",
@@ -28023,6 +27913,104 @@
       "warnings": [
         "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（MAX・CX）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T15:13:33.609558+00:00",
+      "attempt": 1,
+      "id": "7da1b2b4758f6148",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 106.1,
+        "avg_sentence": 45.1,
+        "long_share": 0.25,
+        "max_paragraph": 202,
+        "paragraphs": 17,
+        "sentences": 40
+      },
+      "score": 88,
+      "source": "google-deepmind-blog",
+      "title": "Gemini Robotics 2.5 accelerates real-world general dexterity",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ER・ASIMOV）",
+        "読みやすさ: 文が長い（1文の平均 45.1字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T15:14:04.209097+00:00",
+      "attempt": 0,
+      "id": "7da1b2b4758f6148",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 101.7,
+        "avg_sentence": 41.6,
+        "long_share": 0.159,
+        "max_paragraph": 203,
+        "paragraphs": 18,
+        "sentences": 44
+      },
+      "score": 90,
+      "source": "google-deepmind-blog",
+      "title": "Gemini Robotics 2.5 accelerates real-world general dexterity",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ER・ASIMOV）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T15:15:30.240188+00:00",
+      "attempt": 1,
+      "id": "7f5a45cbedf07663",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 99.4,
+        "avg_sentence": 43.9,
+        "long_share": 0.206,
+        "max_paragraph": 143,
+        "paragraphs": 15,
+        "sentences": 34
+      },
+      "score": 88,
+      "source": "vercel-changelog",
+      "title": "Claude Fable 5.2 now available on AI Gateway",
+      "warnings": [
+        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（BYOK・CLI・ZDR）",
+        "読みやすさ: 文が長い（1文の平均 43.9字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T15:15:51.734259+00:00",
+      "attempt": 0,
+      "id": "7f5a45cbedf07663",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 99.9,
+        "avg_sentence": 42.8,
+        "long_share": 0.171,
+        "max_paragraph": 143,
+        "paragraphs": 15,
+        "sentences": 35
+      },
+      "score": 92,
+      "source": "vercel-changelog",
+      "title": "Claude Fable 5.2 now available on AI Gateway",
+      "warnings": [
+        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（BYOK・CLI・ZDR）"
       ]
     }
   ],

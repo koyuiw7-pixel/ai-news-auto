@@ -1,0 +1,176 @@
+{
+  "slug": "claude-fable-5-2",
+  "name": "Claude Fable 5.2",
+  "aliases": [],
+  "company": "anthropic",
+  "companyName": "Anthropic",
+  "category": "AIモデル",
+  "overview": {
+    "text": "Claude Fable 5.2は、Anthropicが提供する高度な推論やエージェント型の作業向け対話AIモデルです。2026年11月に発表され、APIやVercelのAI Gatewayなどで利用できるようになりました。",
+    "sources": [
+      "claude-fast-mode-fable-5-2",
+      "claude-fable-5-2-api-price",
+      "claude-fable-5-2-vercel-ai-gateway"
+    ]
+  },
+  "facts": [
+    {
+      "label": "料金",
+      "value": "入力$8・出力$40（100万トークン）",
+      "sources": [
+        "claude-fast-mode-fable-5-2",
+        "claude-fable-5-2-api-price",
+        "claude-fable-5-2-vercel-ai-gateway"
+      ]
+    },
+    {
+      "label": "提供開始",
+      "value": "2026年11月",
+      "sources": [
+        "claude-fast-mode-fable-5-2",
+        "claude-fable-5-2-api-price",
+        "claude-fable-5-2-vercel-ai-gateway"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "APIでClaudeを組み込む開発者",
+      "sources": [
+        "claude-fast-mode-fable-5-2",
+        "claude-fable-5-2-api-price"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "100万トークンの文脈に対応し、最大12万8千トークンを出力できます。",
+      "sources": [
+        "claude-fable-5-2-api-price",
+        "claude-fable-5-2-vercel-ai-gateway"
+      ]
+    },
+    {
+      "text": "標準料金の2倍の価格で、出力速度が最大2.5倍になる高速モードが使えます。",
+      "sources": [
+        "claude-fast-mode-fable-5-2",
+        "claude-fable-5-2-api-price"
+      ]
+    },
+    {
+      "text": "考えてから答える適応型思考が常に有効で、コーディングや推論、画像理解を行います。",
+      "sources": [
+        "claude-fable-5-2-api-price",
+        "claude-fable-5-2-vercel-ai-gateway"
+      ]
+    }
+  ],
+  "pricing": [
+    {
+      "text": "APIの料金は100万トークンあたり入力が$8、出力が$40です。",
+      "sources": [
+        "claude-fast-mode-fable-5-2",
+        "claude-fable-5-2-api-price",
+        "claude-fable-5-2-vercel-ai-gateway"
+      ]
+    },
+    {
+      "text": "高速モードを利用する場合の料金は、入力が$16、出力が$80になります。",
+      "sources": [
+        "claude-fast-mode-fable-5-2",
+        "claude-fable-5-2-api-price"
+      ]
+    }
+  ],
+  "japan": [],
+  "howto": [
+    {
+      "text": "モデル名「anthropic/claude-fable-5.2」を指定して呼び出します。",
+      "sources": [
+        "claude-fable-5-2-vercel-ai-gateway"
+      ]
+    },
+    {
+      "text": "VercelのAI GatewayやClaude API、AWS上のClaude Platformなどで利用できます。",
+      "sources": [
+        "claude-fast-mode-fable-5-2",
+        "claude-fable-5-2-api-price",
+        "claude-fable-5-2-vercel-ai-gateway"
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "text": "前の版のFable 5.1に比べて、API料金が入力$8・出力$40へと2割安くなりました。",
+      "sources": [
+        "claude-fable-5-2-api-price"
+      ]
+    },
+    {
+      "text": "前の版と比べて、コーディング、推論、画像の理解が良くなっています。",
+      "sources": [
+        "claude-fable-5-2-vercel-ai-gateway"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "高速モードの仕組みと費用は？",
+      "a": "標準料金の2倍の価格で、最大2.5倍の速さで出力できます。",
+      "sources": [
+        "claude-fast-mode-fable-5-2",
+        "claude-fable-5-2-api-price"
+      ]
+    },
+    {
+      "q": "ゼロデータ保持（ZDR）で使えますか？",
+      "a": "30日間のデータ保管が必須のため、ZDRを有効にしているチームはエラーになり使えません。",
+      "sources": [
+        "claude-fable-5-2-api-price",
+        "claude-fable-5-2-vercel-ai-gateway"
+      ]
+    },
+    {
+      "q": "VercelのAI Gatewayで使えますか？",
+      "a": "モデル名「anthropic/claude-fable-5.2」を指定して利用できます。",
+      "sources": [
+        "claude-fable-5-2-vercel-ai-gateway"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-11-09",
+      "slug": "claude-fable-5-2-vercel-ai-gateway",
+      "event": "VercelのAI Gatewayで利用可能に"
+    },
+    {
+      "date": "2026-11-10",
+      "slug": "claude-fast-mode-fable-5-2",
+      "event": "高速モードに対応し料金ページを更新"
+    },
+    {
+      "date": "2026-11-10",
+      "slug": "claude-fable-5-2-api-price",
+      "event": "API料金を入力$8・出力$40で提供開始"
+    }
+  ],
+  "related": [
+    "claude",
+    "claude-fable-5-1"
+  ],
+  "articles": [
+    "claude-fast-mode-fable-5-2",
+    "claude-fable-5-2-api-price",
+    "claude-fable-5-2-vercel-ai-gateway"
+  ],
+  "linkFrom": [
+    "claude-fast-mode-fable-5-2",
+    "claude-fable-5-2-api-price",
+    "claude-fable-5-2-vercel-ai-gateway"
+  ],
+  "signature": "e0ca371409ab71e2",
+  "primarySignature": "e0ca371409ab71e2",
+  "model": "gemini-3.5-flash-lite",
+  "createdAt": "2026-11-10T15:16:37+00:00",
+  "updatedAt": "2026-11-10T15:16:37+00:00"
+}
