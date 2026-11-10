@@ -109,14 +109,6 @@
       "tries": 1,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87284?site=nli"
     },
-    "9610f192270bc289": {
-      "first": "2026-11-10T05:30:50.550954+00:00",
-      "next": "2026-11-10T08:30:50.550954+00:00",
-      "reason": "元記事の文をそのまま書き写している（4文。例「10月の負債総額は153億9,200万円（前年同月比16.7％増）で、5カ月ぶりに前年同月を上回った」）。自分の言葉で要約する",
-      "title": "10月の「物価高」 倒産 ことし3番目の80件 小・零細企業が半数超える、価格転嫁がカギ",
-      "tries": 1,
-      "url": "https://www.tsr-net.co.jp/data/detail/1203424_1527.html"
-    },
     "9a892e935752466d": {
       "first": "2026-11-08T01:49:51.805951+00:00",
       "next": "2026-11-08T04:49:51.805951+00:00",
@@ -3476,6 +3468,12 @@
       "skipped": true,
       "url": "https://huggingface.co/blog/ibm-research/cuga-harness"
     },
+    "004ad0ec25b71ae4": {
+      "at": "2026-11-10T08:45:15.593893+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（出演）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111008"
+    },
     "00829269e89181f3": {
       "at": "2026-11-04T03:57:04.107139+00:00",
       "major": true,
@@ -3538,6 +3536,17 @@
       "skipped": true,
       "url": "https://cloud.google.com/blog/ja/topics/hybrid-cloud/managed-rag-search-inside-the-sovereign-perimeter-gemini-on-gdc-enterprise-search/"
     },
+    "012bd510f3a35481": {
+      "at": "2026-11-10T08:46:51.921698+00:00",
+      "costUsd": 0.006,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "public",
+      "slug": "tokyo-jafda-bicycle-safety-agreement",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111006"
+    },
     "015d389a8563486d": {
       "at": "2026-11-04T15:51:25.581693+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -3551,6 +3560,18 @@
       "section": "business",
       "slug": "mof-tax-stamp-revenue-sep-2026",
       "url": "https://www.mof.go.jp/tax_policy/reference/taxes_and_stamp_revenues/202609.pdf"
+    },
+    "01a8528fa117926a": {
+      "at": "2026-11-10T08:48:05.953759+00:00",
+      "costUsd": 0.0057,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "ai-guidance-gap-education-thinkyoung",
+      "url": "https://openai.com/index/closing-ai-guidance-gap-education"
     },
     "01ae94b0daa02eba": {
       "at": "2026-11-08T15:03:20.788927+00:00",
@@ -5896,6 +5917,17 @@
       "slug": "mlit-gaiko-kaiun-kentoukai-3",
       "url": "http://www.mlit.go.jp/report/press/kaiji02_hh_000298.html"
     },
+    "24f3e6b3b235f463": {
+      "at": "2026-11-10T08:50:58.228836+00:00",
+      "costUsd": 0.0035,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 91,
+      "section": "sports",
+      "slug": "mito-hollyhock-signing-lee-hyun-gi",
+      "url": "https://www.jleague.jp/news/article/35331/?navicode=j1"
+    },
     "250e5d8f302445e7": {
       "at": "2026-10-27T15:53:28.205250+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6106,6 +6138,13 @@
       "score": 95,
       "updated": "docomo-my-docomo-data-breach",
       "url": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html"
+    },
+    "28a2d425e524c5da": {
+      "at": "2026-11-10T08:44:21.987414+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: リード「口座番号や暗証番号は現時点で含まれていません」→ 元記事（九州電力）は口座情報の漏えい可能性なしとのみ述べ、暗証番号には触れていない。暗証番号は三井住友銀行の件の確認済み文脈の記述で、九州電力の件に流用している; リード・本文「同じ経路で漏えい」→ 元記事はアララのメール配信エンジンへの不正アクセスと記述しており、経路の同一性は確認済み文脈から補えるが、",
+      "skipped": true,
+      "url": "https://www.kyuden.co.jp/press/2026/h261110-1.html"
     },
     "28c32a0ff9a111fc": {
       "at": "2026-11-02T02:11:17.348721+00:00",
@@ -8114,6 +8153,17 @@
       "skipped": true,
       "url": "https://cloud.google.com/blog/ja/topics/threat-intelligence/llmjacking-monetizing-compromised-cloud-models/"
     },
+    "4b444bcd86ed8d3b": {
+      "at": "2026-11-10T08:46:06.015573+00:00",
+      "costUsd": 0.0055,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "public",
+      "slug": "upgrade-with-tokyo-64-greenery",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111009"
+    },
     "4b7179257f66c6e5": {
       "at": "2026-10-28T19:52:40.823030+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9005,6 +9055,17 @@
       "slug": "aws-transform-reinvent-2026-migration",
       "url": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/"
     },
+    "5853709e13ca8649": {
+      "at": "2026-11-10T08:48:47.909183+00:00",
+      "costUsd": 0.0057,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 93,
+      "section": "sports",
+      "slug": "gamba-osaka-youth-promotion-2026",
+      "url": "https://www.jleague.jp/news/article/35330/?navicode=j1"
+    },
     "5886c5f29f0241fb": {
       "at": "2026-10-29T04:31:38.854810+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9883,6 +9944,12 @@
       "slug": "corporate-data-breach-record-2026",
       "url": "https://www.tsr-net.co.jp/data/detail/1203409_1527.html"
     },
+    "63b25ab6cf34c929": {
+      "at": "2026-11-10T08:45:15.594468+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111012"
+    },
     "63c4b7d8634c79e8": {
       "at": "2026-11-02T10:31:24.723385+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -10724,6 +10791,12 @@
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/06/20261106-20-years-of-ps-store-o/"
     },
+    "7110d262fd40c555": {
+      "at": "2026-11-10T08:50:02.053744+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（募集）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111010"
+    },
     "713bd1f5da5a0523": {
       "at": "2026-11-03T00:51:10.726284+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
@@ -10935,6 +11008,12 @@
       "section": "ai",
       "slug": "gemini-plans-daily-brief-added",
       "url": "https://gemini.google/us/subscriptions/?hl=en#entry-2026-11-04-f58336"
+    },
+    "74bc77e289b0d220": {
+      "at": "2026-11-10T08:45:15.594140+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/houdou/0000212707_00059.html"
     },
     "74c9b2e03867b173": {
       "at": "2026-11-03T19:51:15.184960+00:00",
@@ -12536,6 +12615,12 @@
       "skipped": true,
       "url": "https://www.suntory.co.jp/news/article/2026/15158.html?rss=0000000029"
     },
+    "8d275a673da0d300": {
+      "at": "2026-11-10T08:50:58.846011+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（講座）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111003"
+    },
     "8d40bd57193cb55f": {
       "at": "2026-11-10T07:14:25.248027+00:00",
       "breaking": true,
@@ -13009,6 +13094,12 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030a.pdf"
     },
+    "9461934bf2f0bc08": {
+      "at": "2026-11-10T08:46:52.535239+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（受賞）",
+      "skipped": true,
+      "url": "https://www.suntory.co.jp/news/article/2026/15170.html?rss=0000000029"
+    },
     "948f28b89431d9b7": {
       "at": "2026-10-29T15:22:25.276063+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -13121,6 +13212,17 @@
       "reason": "quality: easy_markdown が短い（365字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001287.html"
+    },
+    "9610f192270bc289": {
+      "at": "2026-11-10T08:45:14.894633+00:00",
+      "costUsd": 0.0055,
+      "intent": "query",
+      "mix": "money",
+      "model": "gemini-3.5-flash-lite",
+      "score": 86,
+      "section": "business",
+      "slug": "inflation-bankruptcies-october-2026",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203424_1527.html"
     },
     "96392a0c8111c13f": {
       "at": "2026-10-30T03:42:19.797923+00:00",
@@ -15911,6 +16013,17 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110902"
     },
+    "c21d01723e0ec0fb": {
+      "at": "2026-11-10T08:50:01.408022+00:00",
+      "costUsd": 0.0075,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 90,
+      "section": "public",
+      "slug": "yoyogi-park-fountain-renewal",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111007"
+    },
     "c246a0edd354bc64": {
       "at": "2026-11-03T00:36:28.378270+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -16257,6 +16370,12 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.suntory.co.jp/news/article/2026/15166.html?rss=0000000029"
+    },
+    "c8282b8bcda25833": {
+      "at": "2026-11-10T08:44:21.992317+00:00",
+      "reason": "dedupe: 固有名詞が一致（アクセス・メール）: メール配信サービス事業者（アララ株式会社）への不正アクセスに伴う当社EVカーシェ",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111005"
     },
     "c865b1246b5375fb": {
       "at": "2026-11-06T13:11:27.079250+00:00",
@@ -19517,6 +19636,12 @@
       "skipped": true,
       "url": "https://www.docomo.ne.jp/info/news_release/2026/11/04_00.html"
     },
+    "fc957715059c1ab0": {
+      "at": "2026-11-10T08:50:58.855088+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（開催について）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111011"
+    },
     "fcb81763c4955df7": {
       "at": "2026-11-02T17:37:14.542074+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
@@ -19694,6 +19819,12 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/ai_network/02tsushin06_04000145.html"
     },
+    "feeec4c4b4efc4e1": {
+      "at": "2026-11-10T08:50:58.850552+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（講座）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111004"
+    },
     "fefa1b6c88ebec6f": {
       "at": "2026-10-30T11:42:37.791481+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -19752,6 +19883,12 @@
       "section": "science",
       "slug": "hiroshima-u-glioblastoma-mri-ai",
       "url": "https://www.hiroshima-u.ac.jp/news/100822"
+    },
+    "ffe0526a36b01e3d": {
+      "at": "2026-11-10T08:46:06.684021+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111002"
     },
     "fffe65155421d33d": {
       "at": "2026-11-02T14:51:29.992715+00:00",
@@ -20224,405 +20361,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T06:51:11.976461+00:00",
-      "attempt": 1,
-      "id": "754e43a98a8b0288",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 139.0,
-        "avg_sentence": 55.6,
-        "long_share": 0.4,
-        "max_paragraph": 169,
-        "paragraphs": 4,
-        "sentences": 10
-      },
-      "score": 92,
-      "source": "nli-research",
-      "title": "英国金融政策（11月ＭＰＣ公表）－紛争長期化を受けて利上げを決定",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CPI）",
-        "読みやすさ: 文が長い（1文の平均 55.6字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T06:51:32.440204+00:00",
-      "attempt": 0,
-      "id": "754e43a98a8b0288",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 85.5,
-        "avg_sentence": 34.2,
-        "long_share": 0.0,
-        "max_paragraph": 130,
-        "paragraphs": 6,
-        "sentences": 15
-      },
-      "score": 90,
-      "source": "nli-research",
-      "title": "英国金融政策（11月ＭＰＣ公表）－紛争長期化を受けて利上げを決定",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CPI）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T06:52:00.624213+00:00",
-      "attempt": 1,
-      "id": "557a49ea5a78c865",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "リード「現在の在庫や購入方法が自動で切り替わることはありません」→ 元記事・確認済みの文脈のどこにも書かれていない主張で、根拠のない断定である",
-        "対象製品の新しい価格一覧で、同じ「公式ヘルプの手順を確認してください」という文が6回繰り返されており、価格表の中身がない（元記事の表の内容が反映されていない）",
-        "「今日やること」の「棚札で確かめる」は一般的な行動として妥当だが、価格変更は2027年2月以降のため、今日の店頭での行動としては時期が合っていない",
-        "「小売・飲食業界での仕入れ価格に影響します」は元記事に無い推測で、言い過ぎにあたる",
-        "「定番製品」という表現は確認済みの文脈（ロングセラー）から言えるが、元記事自体には書かれていない"
-      ],
-      "readability": {
-        "avg_paragraph": 90.0,
-        "avg_sentence": 37.5,
-        "long_share": 0.083,
-        "max_paragraph": 192,
-        "paragraphs": 5,
-        "sentences": 12
-      },
-      "score": 72,
-      "source": "house-foods",
-      "title": "ハウスウェルネスフーズ C1000瓶飲料 価格改定のお知らせ",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T06:52:50.009448+00:00",
-      "attempt": 1,
-      "id": "69edce649ff8a48e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「従来の材料を上回る高い移動度」（リード）→ 比較対象のScAlN/GaNも研究段階の新規材料で、「従来の材料」とは元記事に書かれていない。",
-        "「これまで使われていた別の材料よりも移動度が高く」（かんたん版）→ 元記事はScAlN/GaNヘテロ接合との比較で、実用に使われてきた材料との比較ではない。",
-        "「今後はこの材料を使ったトランジスタの設計や、さらなる実用化に向けた研究開発が進められていく予定です」→ 元記事に今後の計画の記載がなく、予定として書かれているのは元記事にない内容。",
-        "「次世代の半導体に使われる新しい材料」（かんたん版）→ 実用化・採用が決まったかのような書き方で、元記事は基礎研究段階と述べている。",
-        "「移動度が高く、SdH振動の振幅が大きくなることが確認されています」→ 比較は同程度の2DEG密度での結果であるという条件が添えられていない。",
-        "「量子緩和時間は67フェムト秒と比較的一長めである」→ 「一長め」は不自然な表現で、元記事の「比較的長い」の言い換えとして正確でない。"
-      ],
-      "readability": {
-        "avg_paragraph": 127.1,
-        "avg_sentence": 74.2,
-        "long_share": 0.583,
-        "max_paragraph": 217,
-        "paragraphs": 7,
-        "sentences": 12
-      },
-      "score": 78,
-      "source": "jst",
-      "title": "新規窒化物半導体ヘテロ接合における二次元電子の量子輸送特性を解明～次世代GaNトランジスタの性能向上に道筋～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IWN・DEG・HEMT）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 74.2字・60字超の文が 58% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T06:53:11.879724+00:00",
-      "attempt": 1,
-      "id": "69edce649ff8a48e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 129.9,
-        "avg_sentence": 69.9,
-        "long_share": 0.538,
-        "max_paragraph": 217,
-        "paragraphs": 7,
-        "sentences": 13
-      },
-      "score": 93,
-      "source": "jst",
-      "title": "新規窒化物半導体ヘテロ接合における二次元電子の量子輸送特性を解明～次世代GaNトランジスタの性能向上に道筋～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IWN・DEG・HEMT）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 69.9字・60字超の文が 54% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T06:53:34.520975+00:00",
-      "attempt": 0,
-      "id": "69edce649ff8a48e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 137.1,
-        "avg_sentence": 50.5,
-        "long_share": 0.211,
-        "max_paragraph": 227,
-        "paragraphs": 7,
-        "sentences": 19
-      },
-      "score": 88,
-      "source": "jst",
-      "title": "新規窒化物半導体ヘテロ接合における二次元電子の量子輸送特性を解明～次世代GaNトランジスタの性能向上に道筋～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IWN・DEG・HEMT）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 50.5字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T06:54:02.534093+00:00",
-      "attempt": 1,
-      "id": "60900222ede9bec5",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "リード「NVIDIA公式ブログの続報で」・本文「NVIDIA公式ブログは11月9日に発表」→ 元記事に「公式ブログ」や「11月9日」の記載はなく、「Read more in the press release」とあるだけで発信元は確認できない。日付と発信形式の創作。",
-        "要点・かんたん版「NVIDIAの公式ブログによると、11月9日に」→ 元記事に無い発信元と日付をそのまま使っており、同じ創作を繰り返している。",
-        "本文「既存記事で伝えたR200とSKテレコムの計画は、この協業の一部です」→ 確認済みの文脈と一致しており問題なし（参考）。",
-        "本文「韓国政府の『AI for All』構想」→ 元記事は「Korea's AI for All initiative」で、政府構想との言い換えは許容範囲。"
-      ],
-      "score": 62,
-      "source": "nvidia-blog",
-      "title": "From Chips to Skills, NVIDIA and Korea Expand Sovereign AI Collaboration"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T06:54:22.197863+00:00",
-      "attempt": 1,
-      "id": "3cc34ce62f35ac76",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 100.8,
-        "avg_sentence": 55.0,
-        "long_share": 0.273,
-        "max_paragraph": 150,
-        "paragraphs": 6,
-        "sentences": 11
-      },
-      "score": 88,
-      "source": "jfa",
-      "title": "日程・概要決定 U-18女子サッカープレミアリーグ 2026 プレーオフ #jfa #nadeshiko #みんななでしこ",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JFA・WE）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T06:54:37.194679+00:00",
-      "attempt": 0,
-      "id": "3cc34ce62f35ac76",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 74.9,
-        "avg_sentence": 54.5,
-        "long_share": 0.273,
-        "max_paragraph": 147,
-        "paragraphs": 8,
-        "sentences": 11
-      },
-      "score": 88,
-      "source": "jfa",
-      "title": "日程・概要決定 U-18女子サッカープレミアリーグ 2026 プレーオフ #jfa #nadeshiko #みんななでしこ",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JFA・WE）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T06:55:01.523878+00:00",
-      "attempt": 1,
-      "id": "a11ae2cd53db2089",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "リード「現時点で一般の利用者の手続きに変更はありません」→ 元記事に利用者の手続きへの影響に関する記述はなく、無変更という断定は元資料から確認できない。",
-        "本文「一般の旅行者の搭乗手続きやルールがすぐに変わるものではありません」→ 元記事に書かれていない推測。出典つきで事実のように書いている。",
-        "かんたん版「会議のあとには、長崎空港の近くにある…視察も行われました」→ 元記事は視察の実施は書くが、会議の後だったという時系列は書かれていない。",
-        "かんたん版「定期的に政策を進めています」→ 2023年の発表では定期的な確認を予定とした記述で、現在の活動状況は元記事に無い。"
-      ],
-      "readability": {
-        "avg_paragraph": 132.6,
-        "avg_sentence": 73.7,
-        "long_share": 0.778,
-        "max_paragraph": 158,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 82,
-      "source": "mlit-press",
-      "title": "韓国航空当局との航空政策対話を実施～両国航空当局間の信頼関係を更に深化～",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 73.7字・60字超の文が 78% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 132.6字・最長 158字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T06:55:19.597647+00:00",
-      "attempt": 1,
-      "id": "a11ae2cd53db2089",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 126.2,
-        "avg_sentence": 70.1,
-        "long_share": 0.667,
-        "max_paragraph": 158,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 92,
-      "source": "mlit-press",
-      "title": "韓国航空当局との航空政策対話を実施～両国航空当局間の信頼関係を更に深化～",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 70.1字・60字超の文が 67% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 126.2字・最長 158字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T06:55:37.471745+00:00",
-      "attempt": 0,
-      "id": "a11ae2cd53db2089",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.3,
-        "avg_sentence": 55.6,
-        "long_share": 0.333,
-        "max_paragraph": 158,
-        "paragraphs": 7,
-        "sentences": 12
-      },
-      "score": 92,
-      "source": "mlit-press",
-      "title": "韓国航空当局との航空政策対話を実施～両国航空当局間の信頼関係を更に深化～",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 55.6字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T06:55:55.577918+00:00",
-      "attempt": 1,
-      "id": "9b960847a32cc3d2",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 105.8,
-        "avg_sentence": 58.8,
-        "long_share": 0.667,
-        "max_paragraph": 204,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": null,
-      "source": "salesforce-jp",
-      "title": "Salesforce、「IDC MarketScape: Worldwide Agentic AI Platforms 2026」でリーダーカテゴリーに",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IDC・AVA）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T06:56:40.870030+00:00",
-      "attempt": 1,
-      "id": "7b6bb0ecb09b0eb4",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトル「AWSのSAP運用基盤でモデル保守期間が半減」→ 元記事でSAP運用基盤（BasisPilot）はToyota Motor North Americaの事例で、半減という数値は元記事にない。半減が書かれているのは、ニッセイ情報テクノロジーの法人向け通知帳票改修案件（6名6か月→4名3か月の見込み）であり、タイ",
-        "要点「個人保険基幹系システムの保守開発期間を半減させる見込み」→ 元記事は改修案件1件の見込みで、個人保険基幹系システム全体の保守開発期間が半減するとは書かれていない。範囲を広げた言い過ぎ。",
-        "リード「現在の契約や導入環境のままで、順次利用できる機能が拡張されます」→ 元記事に契約・導入環境のままで利用できるという記載はなく、根拠のない断定。",
-        "Kiro Enterpriseのクレジットプーリングについて「追加クレジットや上限設定をAWSアカウント経由で管理できます」→ 元記事は請求がAWSアカウント経由と述べ、利用上限は3段階で設定できるとするのみで、管理全般をAWSアカウント経由で行えるとは書かれていない。",
-        "仕事・お金の欄「組織全体でのAI利用コストの管理がしやすくなります」→ 元記事は共有プールと繰り越しを説明しているだけで、コスト管理が楽になる効果までは述べていない。軽い言い過ぎ。",
-        "本文の「導入された」ニュースの中に、Toyota（BasisPilot）の内容が一切含まれていないため、タイトルの約束が本文で果たされていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 173.4,
-        "avg_sentence": 75.9,
-        "long_share": 0.688,
-        "max_paragraph": 235,
-        "paragraphs": 7,
-        "sentences": 16
-      },
-      "score": 45,
-      "source": "aws-japan-blog",
-      "title": "週刊生成AI with AWS – 2026年11月2日週",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GA・USD）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 75.9字・60字超の文が 69% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T06:57:06.772241+00:00",
-      "attempt": 1,
-      "id": "33417f0b416f7292",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 94,
-      "source": "google-cloud-blog-ja",
-      "title": "Google Cloud Developer プラグインが Antigravity Marketplace から入手可能に"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T06:57:27.544996+00:00",
-      "attempt": 1,
-      "id": "6eea17ab61b0e016",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 153.3,
-        "avg_sentence": 65.7,
-        "long_share": 0.429,
-        "max_paragraph": 329,
-        "paragraphs": 9,
-        "sentences": 21
-      },
-      "score": 88,
-      "source": "aws-japan-blog",
-      "title": "CFO は次の四半期に SAP AI の成果を求めている – どこから始めるべきか",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SAP・BTP・HANA）",
-        "読みやすさ: 文が長い（1文の平均 65.7字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 153.3字・最長 329字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T06:57:50.714923+00:00",
@@ -27659,6 +27397,393 @@
       "title": "4個パックヨーグルト容器の資源循環に向けた回収実証実験を12月1日（火）よりヤオコー東大和店にて開始",
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 19% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T08:44:21.987385+00:00",
+      "attempt": 1,
+      "id": "28a2d425e524c5da",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "リード「口座番号や暗証番号は現時点で含まれていません」→ 元記事（九州電力）は口座情報の漏えい可能性なしとのみ述べ、暗証番号には触れていない。暗証番号は三井住友銀行の件の確認済み文脈の記述で、九州電力の件に流用している",
+        "リード・本文「同じ経路で漏えい」→ 元記事はアララのメール配信エンジンへの不正アクセスと記述しており、経路の同一性は確認済み文脈から補えるが、三井住友銀行の件と同一の事案であることは元記事に明記されていない",
+        "本文「名前や住所、口座情報は…漏えいの可能性はない」→ 元記事は電話番号・免許証情報を含む一覧で可能性なしとしており、記事は一部を省略している（言い過ぎではないが不完全）"
+      ],
+      "score": 72,
+      "source": "kyuden",
+      "title": "メール配信サービス事業者（アララ株式会社）への不正アクセスに伴う当社EVカーシェアサービス「weev」会員さまのメールアドレス漏えいについて"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:44:55.075558+00:00",
+      "attempt": 1,
+      "id": "9610f192270bc289",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 111.0,
+        "avg_sentence": 55.5,
+        "long_share": 0.4,
+        "max_paragraph": 122,
+        "paragraphs": 5,
+        "sentences": 10
+      },
+      "score": 88,
+      "source": "tsr",
+      "title": "10月の「物価高」 倒産 ことし3番目の80件 小・零細企業が半数超える、価格転嫁がカギ",
+      "warnings": [
+        "faq の質問が疑問文になっていない（「10月の物価高倒産で負債総額が増えた主な」）",
+        "faq の質問が疑問文になっていない（「どのような産業で物価高による倒産が目立っ」）",
+        "読みやすさ: 文が長い（1文の平均 55.5字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:45:14.863438+00:00",
+      "attempt": 0,
+      "id": "9610f192270bc289",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 58.7,
+        "avg_sentence": 37.7,
+        "long_share": 0.0,
+        "max_paragraph": 112,
+        "paragraphs": 9,
+        "sentences": 14
+      },
+      "score": 86,
+      "source": "tsr",
+      "title": "10月の「物価高」 倒産 ことし3番目の80件 小・零細企業が半数超える、価格転嫁がカギ",
+      "warnings": [
+        "faq の質問が疑問文になっていない（「どのような産業で物価高による倒産が目立っ」）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:45:44.079189+00:00",
+      "attempt": 1,
+      "id": "4b444bcd86ed8d3b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 116.7,
+        "avg_sentence": 58.3,
+        "long_share": 0.5,
+        "max_paragraph": 161,
+        "paragraphs": 6,
+        "sentences": 12
+      },
+      "score": 85,
+      "source": "tokyo-metro",
+      "title": "都政課題の解決に向けたスタートアップピッチイベント UPGRADE with TOKYO 第64回・成果報告会 同時開催決定！",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TOKYO・SQUARE・JAPAN）",
+        "読みやすさ: 文が長い（1文の平均 58.3字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:46:00.659102+00:00",
+      "attempt": 0,
+      "id": "4b444bcd86ed8d3b",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.3,
+        "avg_sentence": 40.4,
+        "long_share": 0.125,
+        "max_paragraph": 130,
+        "paragraphs": 7,
+        "sentences": 16
+      },
+      "score": 88,
+      "source": "tokyo-metro",
+      "title": "都政課題の解決に向けたスタートアップピッチイベント UPGRADE with TOKYO 第64回・成果報告会 同時開催決定！",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TOKYO・SQUARE・JAPAN）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:46:37.713441+00:00",
+      "attempt": 1,
+      "id": "012bd510f3a35481",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 59.1,
+        "avg_sentence": 59.1,
+        "long_share": 0.556,
+        "max_paragraph": 84,
+        "paragraphs": 9,
+        "sentences": 9
+      },
+      "score": 85,
+      "source": "tokyo-metro",
+      "title": "東京都自転車安全利用サポーター 日本フードデリバリーサービス協会（JaFDA）と協定を締結します！",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 59.1字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:46:51.902720+00:00",
+      "attempt": 0,
+      "id": "012bd510f3a35481",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 60.7,
+        "avg_sentence": 42.0,
+        "long_share": 0.077,
+        "max_paragraph": 87,
+        "paragraphs": 9,
+        "sentences": 13
+      },
+      "score": 88,
+      "source": "tokyo-metro",
+      "title": "東京都自転車安全利用サポーター 日本フードデリバリーサービス協会（JaFDA）と協定を締結します！",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T08:47:40.288295+00:00",
+      "attempt": 1,
+      "id": "01a8528fa117926a",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "タイトルと本文の「欧州の調査機関ThinkYoung」「この調査は欧州の学生と教師が対象」→ 元記事はThinkYoungの調査地域や対象を示しておらず、欧州を対象とする根拠がない",
+        "本文の「この調査は…日本の学校や子どもの数字ではありません」→ 調査対象国が元記事に書かれていないため、日本との関係を断定できない",
+        "「この差は、欧州の調査機関ThinkYoungの研究が示した」→ 元記事は調査の地域を示していないため、欧州の調査とする部分は創作",
+        "編集部の見方の「79%と47%の差は、AIの利用が学校の指導より先に進んでいることを示す数字」→ 元記事の数字から導ける範囲を超えた解釈で、断定的すぎる"
+      ],
+      "readability": {
+        "avg_paragraph": 80.0,
+        "avg_sentence": 42.1,
+        "long_share": 0.105,
+        "max_paragraph": 131,
+        "paragraphs": 10,
+        "sentences": 19
+      },
+      "score": 62,
+      "source": "openai-news",
+      "title": "Closing the AI guidance gap in education",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（EMEA・OECD）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:48:05.948209+00:00",
+      "attempt": 1,
+      "id": "01a8528fa117926a",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.3,
+        "avg_sentence": 41.7,
+        "long_share": 0.105,
+        "max_paragraph": 131,
+        "paragraphs": 10,
+        "sentences": 19
+      },
+      "score": 92,
+      "source": "openai-news",
+      "title": "Closing the AI guidance gap in education",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（EMEA・OECD）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T08:48:16.511547+00:00",
+      "attempt": 1,
+      "id": "5853709e13ca8649",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "元記事の文をそのまま書き写している（3文。例「「幼い頃からとても憧れていたクラブでプロキャリアをスタートできることを大変嬉しく思います。」）。自分の言葉で要約する"
+      ],
+      "readability": {
+        "avg_paragraph": 97.9,
+        "avg_sentence": 52.7,
+        "long_share": 0.231,
+        "max_paragraph": 155,
+        "paragraphs": 7,
+        "sentences": 13
+      },
+      "score": null,
+      "source": "jleague",
+      "title": "ユースよりDF丸岡ら3選手の昇格が内定【Ｇ大阪】 明治安田Ｊ１リーグ 2026/11/10 (火) 17:30",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（DF・MF）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 52.7字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:48:33.878774+00:00",
+      "attempt": 1,
+      "id": "5853709e13ca8649",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.0,
+        "avg_sentence": 57.4,
+        "long_share": 0.3,
+        "max_paragraph": 124,
+        "paragraphs": 7,
+        "sentences": 10
+      },
+      "score": 92,
+      "source": "jleague",
+      "title": "ユースよりDF丸岡ら3選手の昇格が内定【Ｇ大阪】 明治安田Ｊ１リーグ 2026/11/10 (火) 17:30",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（DF・MF）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 57.4字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:48:47.901167+00:00",
+      "attempt": 0,
+      "id": "5853709e13ca8649",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.3,
+        "avg_sentence": 37.0,
+        "long_share": 0.0,
+        "max_paragraph": 128,
+        "paragraphs": 7,
+        "sentences": 15
+      },
+      "score": 93,
+      "source": "jleague",
+      "title": "ユースよりDF丸岡ら3選手の昇格が内定【Ｇ大阪】 明治安田Ｊ１リーグ 2026/11/10 (火) 17:30",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（DF・MF）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:49:42.259126+00:00",
+      "attempt": 1,
+      "id": "c21d01723e0ec0fb",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 126.7,
+        "avg_sentence": 54.3,
+        "long_share": 0.286,
+        "max_paragraph": 146,
+        "paragraphs": 3,
+        "sentences": 7
+      },
+      "score": 90,
+      "source": "tokyo-metro",
+      "title": "都立代々木公園 噴水のリニューアルについて",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 54.3字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 126.7字・最長 146字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:50:01.388637+00:00",
+      "attempt": 0,
+      "id": "c21d01723e0ec0fb",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: タイトル・リード「11月13日から」→ 元記事は「令和8年11月13日（金曜日）（予定）」。予定である旨が抜け、確定事項のように読める。; 本文「供用は11月13日から開始されます」→ 元記事の「（予定）」を落として確定的に書いている。"
+      ],
+      "readability": {
+        "avg_paragraph": 126.7,
+        "avg_sentence": 54.3,
+        "long_share": 0.286,
+        "max_paragraph": 146,
+        "paragraphs": 3,
+        "sentences": 7
+      },
+      "score": 90,
+      "source": "tokyo-metro",
+      "title": "都立代々木公園 噴水のリニューアルについて",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 54.3字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 126.7字・最長 146字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:50:48.073958+00:00",
+      "attempt": 1,
+      "id": "24f3e6b3b235f463",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 45.3,
+        "avg_sentence": 45.3,
+        "long_share": 0.333,
+        "max_paragraph": 83,
+        "paragraphs": 3,
+        "sentences": 3
+      },
+      "score": 90,
+      "source": "jleague",
+      "title": "ボイン高校DFイ ヒョンギの2026/27シーズン加入が内定【水戸】 明治安田Ｊ１リーグ 2026/11/10 (火) 17:30",
+      "warnings": [
+        "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 45.3字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T08:50:58.218882+00:00",
+      "attempt": 0,
+      "id": "24f3e6b3b235f463",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 54.0,
+        "avg_sentence": 36.0,
+        "long_share": 0.0,
+        "max_paragraph": 87,
+        "paragraphs": 2,
+        "sentences": 3
+      },
+      "score": 91,
+      "source": "jleague",
+      "title": "ボイン高校DFイ ヒョンギの2026/27シーズン加入が内定【水戸】 明治安田Ｊ１リーグ 2026/11/10 (火) 17:30",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
     }
   ],
