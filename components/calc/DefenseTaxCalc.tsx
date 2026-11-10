@@ -1,22 +1,14 @@
 "use client";
 
 import { useId, useState } from "react";
-import { baseFromWithheld, surtax, yen } from "@/lib/calc-math";
+import { baseFromWithheld, DEFENSE_TAX_DEFAULT_BASE, DEFENSE_TAX_PERIODS, surtax, yen } from "@/lib/calc-math";
 import { Field, INPUT_CLASS, Segmented, toNumber } from "@/components/calc/parts";
-
-/** 年ごとの区切り（財務省「令和8年度税制改正の大綱」） */
-const PERIODS = [
-  { label: "2026年分まで", year: 2026 },
-  { label: "2027〜2037年分", year: 2030 },
-  { label: "2038〜2047年分", year: 2040 },
-  { label: "2048年分から", year: 2050 },
-];
 
 /**
  * 防衛特別所得税・復興特別所得税（国の税）の計算。基準所得税額×税率（1円未満切り捨て）。
  * 入力は画面の中の計算だけに使い、送信・保存はしない。
  */
-export default function DefenseTaxCalc({ defaultBase = 150000 }: { defaultBase?: number }) {
+export default function DefenseTaxCalc({ defaultBase = DEFENSE_TAX_DEFAULT_BASE }: { defaultBase?: number }) {
   const id = useId();
   const [mode, setMode] = useState<"base" | "withheld">("base");
   const [amount, setAmount] = useState(String(defaultBase));
@@ -50,7 +42,7 @@ export default function DefenseTaxCalc({ defaultBase = 150000 }: { defaultBase?:
       </div>
 
       <ul className="mt-5 divide-y divide-line rounded-xl bg-surface px-4" aria-live="polite" aria-label={`年ごとの税額（所得税額 ${yen(base)} のとき）`}>
-        {PERIODS.map((period) => {
+        {DEFENSE_TAX_PERIODS.map((period) => {
           const now = surtax(base, period.year);
           const before = surtax(base, period.year, true);
           const diff = now.total - before.total;

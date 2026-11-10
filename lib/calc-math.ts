@@ -81,6 +81,36 @@ export function furusatoLimit(residentIncomeLevy: number, ratePercent: FurusatoT
   return { cap: Math.floor(levy / 5), limit, rounded: Math.floor(limit / 1000) * 1000 };
 }
 
+/** 計算ページ（/tools/furusato-limit）の「計算の例」の表の行（住民税の所得割額）と列（所得税の税率） */
+export const FURUSATO_EXAMPLE_LEVIES = [100000, 200000, 300000, 500000] as const;
+export const FURUSATO_EXAMPLE_RATES = [5, 10, 20, 23] as const satisfies readonly FurusatoTaxRate[];
+/** 「計算の例」の文章で使う1人分の例（所得割額300,000円・税率10% → 77,197円） */
+export const FURUSATO_EXAMPLE = { levy: 300000, rate: 10 } as const satisfies { levy: number; rate: FurusatoTaxRate };
+
+/** 「計算の例」の表。各セルは furusatoLimit() の limit（1円未満切り捨て） */
+export function furusatoExampleTable(): { levy: number; cells: { rate: FurusatoTaxRate; limit: number }[] }[] {
+  return FURUSATO_EXAMPLE_LEVIES.map((levy) => ({
+    levy,
+    cells: FURUSATO_EXAMPLE_RATES.map((rate) => ({ rate, limit: furusatoLimit(levy, rate)?.limit ?? 0 })),
+  }));
+}
+
+/** 防衛特別所得税の計算機の最初の値（1年の基準所得税額）。ページの「計算の例」の文と同じ値を使う */
+export const DEFENSE_TAX_DEFAULT_BASE = 150000;
+
+/** 防衛特別所得税のページの「計算の例」の最初の文（1つの文字列で出し、HTMLの中で途切れないようにする） */
+export function defenseTaxExampleSentence(base: number): string {
+  return `例：1年の所得税額（基準所得税額）が${yen(base)}の場合`;
+}
+
+/** 防衛特別所得税の計算機と「計算の例」の年ごとの区切り（財務省「令和8年度税制改正の大綱」）。year はその区切りの代表の年 */
+export const DEFENSE_TAX_PERIODS = [
+  { label: "2026年分まで", year: 2026 },
+  { label: "2027〜2037年分", year: 2030 },
+  { label: "2038〜2047年分", year: 2040 },
+  { label: "2048年分から", year: 2050 },
+] as const;
+
 /** 1,234,567 → "123.5万"、2.5e8 → "2.5億"（図の差分の表示用） */
 export function compactJa(value: number): string {
   const abs = Math.abs(value);

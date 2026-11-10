@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import AssetShell, { Crumbs } from "@/components/assets/AssetShell";
 import { Calculator, CALC_NOTES } from "@/components/calc/CalculatorBox";
-import { CALCULATORS, type CalculatorKind } from "@/lib/calculators";
+import { CALCULATORS, checkedDateJa, toolPageJsonLd, type CalculatorKind } from "@/lib/calculators";
 import { siteConfig } from "@/site.config";
 import { Phrases } from "@/lib/highlight";
 import { moneyRowsForTool, toolRelatedArticleSlugs } from "@/lib/money-pages";
@@ -16,30 +16,7 @@ import { articleTitle } from "@/lib/headline";
  */
 export default function ToolPage({ kind, lead, afterCalc, children }: { kind: CalculatorKind; lead: string; afterCalc?: ReactNode; children?: ReactNode }) {
   const meta = CALCULATORS[kind];
-  const url = `${siteConfig.url}${meta.href}`;
-  const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      name: meta.title,
-      description: meta.description,
-      url,
-      applicationCategory: "FinanceApplication",
-      operatingSystem: "Web",
-      inLanguage: "ja",
-      isAccessibleForFree: true,
-      offers: { "@type": "Offer", price: 0, priceCurrency: "JPY" },
-      publisher: { "@type": "Organization", name: siteConfig.siteName, url: siteConfig.url },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "ホーム", item: siteConfig.url },
-        { "@type": "ListItem", position: 2, name: meta.title, item: url },
-      ],
-    },
-  ];
+  const jsonLd = toolPageJsonLd(kind, siteConfig);
   return (
     <AssetShell>
       <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -53,6 +30,9 @@ export default function ToolPage({ kind, lead, afterCalc, children }: { kind: Ca
       </section>
       <p className="mt-4 max-w-[40em] text-note leading-[1.75] text-ink-soft">{CALC_NOTES[kind]}</p>
       <p className="mt-2 max-w-[40em] text-note leading-[1.75] text-ink-soft">入力した数字は、この画面の中の計算だけに使います。送信・保存はしません。</p>
+      <p className="mt-2 max-w-[40em] text-note leading-[1.75] text-ink-soft">
+        出典の公式ページを確かめた日：<time dateTime={meta.checked}>{checkedDateJa(meta.checked)}</time>
+      </p>
       {afterCalc}
       {children ? <div className="mt-12 max-w-[40em]">{children}</div> : null}
       <ToolRelated href={meta.href} />
@@ -60,11 +40,11 @@ export default function ToolPage({ kind, lead, afterCalc, children }: { kind: Ca
   );
 }
 
-/** 単独ページの説明の章 */
-export function ToolSection({ title, children }: { title: string; children: ReactNode }) {
+/** 単独ページの説明の章。id は見出し（h2）に付け、ページ内リンクと AI の回答からの引用先にする */
+export function ToolSection({ id, title, children }: { id?: string; title: string; children: ReactNode }) {
   return (
     <section className="mt-10 first:mt-0">
-      <h2 className="t-h2 border-b border-line-strong pb-2.5">{title}</h2>
+      <h2 id={id} className="t-h2 scroll-mt-24 border-b border-line-strong pb-2.5">{title}</h2>
       <div className="mt-4 grid gap-3 text-desc leading-[1.85] text-ink-soft">{children}</div>
     </section>
   );

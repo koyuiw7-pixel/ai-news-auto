@@ -19,18 +19,60 @@ export type ArticleCalculator = {
   heading: RegExp | null;
 };
 
-export const CALCULATORS: Record<CalculatorKind, { href: string; title: string; description: string }> = {
+/**
+ * checked は、そのページの出典（公式ページ）を開いて式・数字を確かめた日（YYYY-MM-DD）。ビルドの日ではない。
+ * 出典を確かめ直したときだけ書き換える。JSON-LD の dateModified と、ページの「出典を確かめた日」に使う（2026-11-10 LLMO-A7）。
+ */
+export const CALCULATORS: Record<CalculatorKind, { href: string; title: string; description: string; checked: string }> = {
   "defense-tax": {
     href: "/tools/defense-tax",
     title: "防衛特別所得税の計算",
     description: "所得税額（基準所得税額）から、2027年からの防衛特別所得税と復興特別所得税を年ごとに計算します。",
+    checked: "2026-11-03",
   },
   "furusato-limit": {
     href: "/tools/furusato-limit",
     title: "ふるさと納税の上限額の計算",
     description: "住民税の所得割額と所得税の税率から、自己負担2,000円で済むふるさと納税の寄附額の目安を、総務省の計算式で計算します。",
+    checked: "2026-11-10",
   },
 };
+
+/** "2026-11-10" → "2026年11月10日" */
+export function checkedDateJa(date: string): string {
+  const [y, m, d] = date.split("-").map(Number);
+  return `${y}年${m}月${d}日`;
+}
+
+/** 計算機の単独ページの JSON-LD（WebApplication と パンくず）。dateModified は出典を確かめた日（checked） */
+export function toolPageJsonLd(kind: CalculatorKind, site: { url: string; siteName: string }) {
+  const meta = CALCULATORS[kind];
+  const url = `${site.url}${meta.href}`;
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: meta.title,
+      description: meta.description,
+      url,
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "Web",
+      inLanguage: "ja",
+      isAccessibleForFree: true,
+      dateModified: meta.checked,
+      offers: { "@type": "Offer", price: 0, priceCurrency: "JPY" },
+      publisher: { "@type": "Organization", name: site.siteName, url: site.url },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "ホーム", item: site.url },
+        { "@type": "ListItem", position: 2, name: meta.title, item: url },
+      ],
+    },
+  ];
+}
 
 type ArticleLike = {
   title: string;
