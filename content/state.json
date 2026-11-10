@@ -101,14 +101,6 @@
       "tries": 1,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87284?site=nli"
     },
-    "8e0e2265da838c47": {
-      "first": "2026-11-10T02:56:59.738860+00:00",
-      "next": "2026-11-10T05:56:59.738860+00:00",
-      "reason": "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「の発売予定で、価格は本体1,580円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える",
-      "title": "クリスマスや年末のパーティを彩る、手軽に楽しむ「ごちそうメニュー」を発売",
-      "tries": 1,
-      "url": "https://www.aeon.info/news/release_115616/"
-    },
     "9610f192270bc289": {
       "first": "2026-11-10T05:30:50.550954+00:00",
       "next": "2026-11-10T08:30:50.550954+00:00",
@@ -156,8 +148,6 @@
     "21a31b24b98510ba": "2026-11-06T19:23:54.886871+00:00",
     "2592c29864b9601b": "2026-11-09T09:18:59.972459+00:00",
     "272f393bead73334": "2026-11-06T08:51:04.778179+00:00",
-    "27d427150ff600e8": "2026-11-06T06:51:06.565719+00:00",
-    "317d9d7015af4163": "2026-11-06T06:32:48.286502+00:00",
     "3268d748c777ced6": "2026-11-06T08:51:04.778179+00:00",
     "32fd34fb53eda2f1": "2026-11-09T09:38:56.467516+00:00",
     "37d9e27da3a5b9ea": "2026-11-06T19:41:01.362264+00:00",
@@ -191,7 +181,6 @@
     "7a23190ffe485a96": "2026-11-06T19:41:01.362264+00:00",
     "7de55ba420d51858": "2026-11-06T19:41:01.362264+00:00",
     "845e2ba9d3e3680a": "2026-11-06T09:30:56.243778+00:00",
-    "84b1b5976acb35a3": "2026-11-06T06:32:48.286502+00:00",
     "87717d1c826ec2f6": "2026-11-08T01:10:50.926550+00:00",
     "9768eaa6b9472805": "2026-11-06T08:51:04.778179+00:00",
     "97b295127eee65c6": "2026-11-06T18:22:08.318950+00:00",
@@ -4133,6 +4122,12 @@
       "skipped": true,
       "url": "https://www.softbank.jp/sbnews/entry/20261105_02"
     },
+    "0c458b47e5cfe321": {
+      "at": "2026-11-10T06:55:40.506043+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
+      "skipped": true,
+      "url": "https://www.sumitomo-rd.co.jp/news/2026111022497/"
+    },
     "0c474249e0f1f853": {
       "at": "2026-11-05T12:06:44.049343+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -4555,6 +4550,12 @@
       "reason": "quality: 本文が短い（2288字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://blog.google/products-and-platforms/products/chrome/enhanced-autofill-gmail/"
+    },
+    "1155921715ead158": {
+      "at": "2026-11-10T06:58:44.617216+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を開催）",
+      "skipped": true,
+      "url": "https://www.waterworks.metro.tokyo.lg.jp/information/press/r8/11/2026111001"
     },
     "11675352249b4b74": {
       "at": "2026-10-27T21:01:10.369239+00:00",
@@ -6682,6 +6683,12 @@
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010z2u.html"
     },
+    "3421b19126f9fb9f": {
+      "at": "2026-11-10T06:55:40.505889+00:00",
+      "reason": "prefilter: お知らせ・統計の書き写しになる発表（記事にしない）",
+      "skipped": true,
+      "url": "https://www.sumitomo-rd.co.jp/news/2026111022504/"
+    },
     "34370e88c88d0cd4": {
       "at": "2026-10-27T16:33:58.480379+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8011,6 +8018,17 @@
       "skipped": true,
       "url": "https://www.ipa.go.jp/security/scs/index.html"
     },
+    "4b76e9447d8ccc5c": {
+      "at": "2026-11-10T06:59:34.119473+00:00",
+      "costUsd": 0.0056,
+      "intent": "neutral",
+      "mix": "brand",
+      "model": "gemini-3.1-flash-lite",
+      "score": 92,
+      "section": "tech-gadget",
+      "slug": "samsung-opens-built-in-showroom-germany",
+      "url": "https://news.samsung.com/jp/samsung-opens-built-in-appliance-showroom-in-germany2611?utm_source=rss&utm_medium=direct"
+    },
     "4b9a0f82ac7c22af": {
       "at": "2026-10-27T17:57:22.972051+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8065,6 +8083,18 @@
       "section": "ai",
       "slug": "atlassian-q1-fy27-shareholder-letter",
       "url": "https://www.atlassian.com/blog/company-news/shareholder-letter-q1fy27"
+    },
+    "4c031ea18a9a9b70": {
+      "at": "2026-11-10T06:58:44.617913+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/actions/202611/09vietnam.html"
+    },
+    "4c12bcacdeb0e8fe": {
+      "at": "2026-11-10T07:00:31.361868+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.riken.jp/press/2026/20261110_1/index.html"
     },
     "4c3f60ee2f3441d9": {
       "at": "2026-11-03T01:26:55.382918+00:00",
@@ -9169,6 +9199,12 @@
       "skipped": true,
       "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1209_4781.html"
     },
+    "5ccf7e2f3a2e442c": {
+      "at": "2026-11-10T06:58:44.617984+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_76846.html"
+    },
     "5cda413903691f04": {
       "at": "2026-11-04T13:53:28.160286+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
@@ -9890,6 +9926,17 @@
       "slug": "boj-ueda-press-conf-oct30",
       "url": "https://www.boj.or.jp/about/press/kaiken_2026/kk261102a.pdf"
     },
+    "6738fd2b368c3c70": {
+      "at": "2026-11-10T06:57:35.981626+00:00",
+      "costUsd": 0.0096,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "gemini-3.6-flash",
+      "score": 90,
+      "section": "business",
+      "slug": "tax-delinquency-bankruptcies-record-high-2026",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203426_1527.html"
+    },
     "674606b2c14036da": {
       "at": "2026-11-05T01:01:36.592319+00:00",
       "reason": "prefilter: 投資・マネーの話題ではない",
@@ -9936,6 +9983,12 @@
       "score": 100,
       "updated": "attosecond-xray-laser-riken-2026",
       "url": "https://www.jst.go.jp/pr/announce/20261027/index.html"
+    },
+    "681393bfefa2feca": {
+      "at": "2026-11-10T06:58:44.617531+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（贈呈）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77319.html"
     },
     "682a3d6aa5bd15c7": {
       "at": "2026-10-29T23:51:56.590774+00:00",
@@ -10149,6 +10202,17 @@
       "slug": "kyoto-railway-museum-admission-fee-change",
       "url": "https://www.westjr.co.jp/press/article/2026/11/02/page_31179.html"
     },
+    "6bcb6696bbfd3251": {
+      "at": "2026-11-10T06:58:44.159404+00:00",
+      "costUsd": 0.0066,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "gemini-3.1-flash-lite",
+      "score": 85,
+      "section": "business",
+      "slug": "ice-age-generation-pension-analysis",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87294?site=nli"
+    },
     "6be50951d265dfaf": {
       "at": "2026-11-08T02:44:47.324734+00:00",
       "costUsd": 0.0826,
@@ -10202,6 +10266,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327011.html"
+    },
+    "6cc31741afb8b89f": {
+      "at": "2026-11-10T06:58:44.617734+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/actions/202611/09vietnam2.html"
     },
     "6ce9fe52db65d87a": {
       "at": "2026-11-07T04:54:47.751835+00:00",
@@ -12342,6 +12412,14 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77243.html"
     },
+    "8e0e2265da838c47": {
+      "at": "2026-11-10T07:00:30.739606+00:00",
+      "costUsd": 0.0062,
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: 元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「、1,000gへ増量して1,580円」、「チキン(丸鶏)**:本体2,980円」、「:本体2,980円(税込3,218.40円」、「:本体1,980円(税込2,138.40円」、「キン(1本980円、2本1,880円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめ",
+      "skipped": true,
+      "url": "https://www.aeon.info/news/release_115616/"
+    },
     "8e292e711633c8da": {
       "at": "2026-11-03T00:51:42.152950+00:00",
       "model": "gemini-3.5-flash",
@@ -12667,6 +12745,12 @@
       "skipped": true,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87213?site=nli"
     },
+    "9394a9d021ab21f9": {
+      "at": "2026-11-10T06:58:44.617965+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.cfa.go.jp/councils/shingikai/hinkon_hitorioya/db5ea08f"
+    },
     "93b612d519cf77e4b14aa268b9cdd3b9e53107fd": {
       "at": "2026-11-04T01:43:30.517432+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -12861,6 +12945,12 @@
       "reason": "quality: 本文が短い（1511字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（368字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102816"
+    },
+    "971847f0c7223a93": {
+      "at": "2026-11-10T06:58:44.617678+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01toukei04_01000308.html"
     },
     "971de4c0be5cc066": {
       "at": "2026-11-07T13:53:28.292416+00:00",
@@ -13147,6 +13237,12 @@
       "section": "ai",
       "slug": "kddi-ai-vulnerability-management-solution",
       "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1212_4787.html"
+    },
+    "9be8c44eaa315506": {
+      "at": "2026-11-10T06:58:44.617867+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01kiban13_02000139.html"
     },
     "9c22661ce9de81e3": {
       "at": "2026-11-03T16:30:33.372116+00:00",
@@ -13661,6 +13757,12 @@
       "skipped": true,
       "url": "https://cloud.google.com/blog/ja/products/identity-security/introducing-new-scalable-perimeter-options-with-vpc-service-controls/"
     },
+    "a383b70ef81ee133": {
+      "at": "2026-11-10T06:55:40.478849+00:00",
+      "reason": "public-interest: 資料が短い 720字",
+      "skipped": true,
+      "url": "https://www.caa.go.jp/notice/entry/048088/"
+    },
     "a3a879144b2984ac": {
       "at": "2026-10-27T16:53:03.045319+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -13937,6 +14039,12 @@
       "skipped": true,
       "url": "https://openai.com/chatgpt/pricing/#entry-2026-11-08-3ca870"
     },
+    "a7f10c6aec80b466": {
+      "at": "2026-11-10T07:00:31.362043+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.jst.go.jp/pr/info/info1886/index.html"
+    },
     "a7fcfcf24af1c1ba": {
       "at": "2026-10-27T16:12:08.091583+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -13982,6 +14090,17 @@
       "section": "ai",
       "slug": "claude-fast-mode-fable-5-2",
       "url": "https://claude.com/pricing#entry-2026-11-10-dc84d6"
+    },
+    "a847d03cb751eff9": {
+      "at": "2026-11-10T07:01:47.546445+00:00",
+      "costUsd": 0.0053,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.1-flash-lite",
+      "score": 94,
+      "section": "sports",
+      "slug": "amputee-soccer-world-cup-2026-japan",
+      "url": "https://www.jfa.jp/news/00037004/"
     },
     "a874e3b4a06b5092": {
       "at": "2026-11-06T05:23:48.145293+00:00",
@@ -14210,6 +14329,12 @@
       "reason": "quality: 本文が短い（1587字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/651261f245236f078d87858bdcf3d32505fff39d"
+    },
+    "acd855e80bfa3dab": {
+      "at": "2026-11-10T06:58:44.617505+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（募集）",
+      "skipped": true,
+      "url": "https://www.cfa.go.jp/policies/youth/ikusei-hikikomori/youkou-r8"
     },
     "acefadff72bf4c8c": {
       "at": "2026-11-05T14:31:17.918521+00:00",
@@ -14642,6 +14767,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（入札）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110516"
+    },
+    "b409226acfdae22c": {
+      "at": "2026-11-10T07:00:59.172517+00:00",
+      "costUsd": 0.0016,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.1-flash-lite",
+      "score": 85,
+      "section": "ai",
+      "slug": "kindai-university-ai-camera-experiment",
+      "url": "https://www.ntt-f.co.jp/news/2026/20261110-01.html"
     },
     "b4214c53045ec78f": {
       "at": "2026-11-05T12:04:08.071678+00:00",
@@ -15995,6 +16131,12 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327182.html"
+    },
+    "caafd8b201ef9657": {
+      "at": "2026-11-10T06:58:44.617442+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/archives"
     },
     "cabe8a08dfb85810": {
       "at": "2026-10-30T17:41:39.494492+00:00",
@@ -17529,6 +17671,12 @@
       "skipped": true,
       "url": "https://www.jfa.jp/news/00036961/"
     },
+    "e30de0a3f25d85bd": {
+      "at": "2026-11-10T06:55:40.506021+00:00",
+      "reason": "prefilter: 不動産の話題ではない",
+      "skipped": true,
+      "url": "https://www.sumitomo-rd.co.jp/news/2026111022506/"
+    },
     "e34c16449eb87ea4": {
       "at": "2026-11-04T07:26:29.601692+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -17650,6 +17798,12 @@
       "section": "ai",
       "slug": "claude-project-tags-cost-code",
       "url": "https://support.claude.com/en/articles/12138966-release-notes#entry-2026-11-06"
+    },
+    "e5767fb6fc421c72": {
+      "at": "2026-11-10T06:58:44.617947+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（人事）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/saiyou/hijyoukin/1421780_00221.html"
     },
     "e593e69d8d7e0e21": {
       "at": "2026-10-30T05:01:58.633859+00:00",
@@ -18749,6 +18903,12 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110601"
     },
+    "f83e69ba8ae92049": {
+      "at": "2026-11-10T06:58:44.617789+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77165.html"
+    },
     "f8463a39840f5052": {
       "at": "2026-11-09T06:57:55.183349+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -19703,286 +19863,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-09T01:53:13.496108+00:00",
-      "attempt": 1,
-      "id": "68ed8a616e949db3",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "リード「各地域の詳しい業績の内訳や、人口減少との関係はまだ続いて調査されています」→ 元記事に追加調査が続いているという記述はなく、根拠のない記述である。",
-        "本文「収益の面では二極化が進む形となっています」→ 「二極化」は元記事の見出しにある言葉だが、大阪の売上100億円以上企業の構成比と結びつけた解釈は元記事に書かれていない（編集部の解釈として区別が必要）。",
-        "見出し・かんたん版「大阪は唯一の減益」「4道府県の中で唯一の減益」→ 元記事は優劣をつけることが目的ではないと明記しているのに、順位のように強調している（事実は正しいが、元記事の注意書きが省かれている）。"
-      ],
-      "readability": {
-        "avg_paragraph": 183.8,
-        "avg_sentence": 65.6,
-        "long_share": 0.571,
-        "max_paragraph": 206,
-        "paragraphs": 5,
-        "sentences": 14
-      },
-      "score": 78,
-      "source": "tsr",
-      "title": "「副首都候補」4道府県 中小企業の業況は堅調 収益は二極化、政令に基づき指定へ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TSR）",
-        "読みやすさ: 文が長い（1文の平均 65.6字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 183.8字・最長 206字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T01:53:35.187419+00:00",
-      "attempt": 1,
-      "id": "68ed8a616e949db3",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 198.6,
-        "avg_sentence": 66.2,
-        "long_share": 0.6,
-        "max_paragraph": 267,
-        "paragraphs": 5,
-        "sentences": 15
-      },
-      "score": 93,
-      "source": "tsr",
-      "title": "「副首都候補」4道府県 中小企業の業況は堅調 収益は二極化、政令に基づき指定へ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TSR）",
-        "読みやすさ: 文が長い（1文の平均 66.2字・60字超の文が 60% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 198.6字・最長 267字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T01:53:55.059021+00:00",
-      "attempt": 0,
-      "id": "68ed8a616e949db3",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 66.9,
-        "avg_sentence": 33.4,
-        "long_share": 0.036,
-        "max_paragraph": 110,
-        "paragraphs": 14,
-        "sentences": 28
-      },
-      "score": 93,
-      "source": "tsr",
-      "title": "「副首都候補」4道府県 中小企業の業況は堅調 収益は二極化、政令に基づき指定へ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TSR）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T01:54:15.797976+00:00",
-      "attempt": 1,
-      "id": "241810bddddba9a3",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 136.3,
-        "avg_sentence": 59.6,
-        "long_share": 0.375,
-        "max_paragraph": 163,
-        "paragraphs": 7,
-        "sentences": 16
-      },
-      "score": 92,
-      "source": "cyberagent-developers",
-      "title": "【LLMOps】FDEの開発を支えるトレーシング基盤の開発",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FDE・LLM）",
-        "読みやすさ: 文が長い（1文の平均 59.6字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 136.3字・最長 163字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T01:54:30.734305+00:00",
-      "attempt": 0,
-      "id": "241810bddddba9a3",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 121.2,
-        "avg_sentence": 42.2,
-        "long_share": 0.043,
-        "max_paragraph": 160,
-        "paragraphs": 8,
-        "sentences": 23
-      },
-      "score": 90,
-      "source": "cyberagent-developers",
-      "title": "【LLMOps】FDEの開発を支えるトレーシング基盤の開発",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FDE・LLM）",
-        "読みやすさ: 段落が長い（平均 121.2字・最長 160字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T02:06:07.615757+00:00",
-      "attempt": 1,
-      "id": "28e3a79b5138651e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.8,
-        "avg_sentence": 46.1,
-        "long_share": 0.2,
-        "max_paragraph": 162,
-        "paragraphs": 19,
-        "sentences": 35
-      },
-      "score": 88,
-      "source": "pfn-news",
-      "title": "国産の金融特化型小規模言語モデルPLaMo 3.0 Finをオープンウェイトで公開",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PFN・NICT・JSON）",
-        "読みやすさ: 文が長い（1文の平均 46.1字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T02:06:36.563082+00:00",
-      "attempt": 0,
-      "id": "28e3a79b5138651e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 86.9,
-        "avg_sentence": 41.3,
-        "long_share": 0.1,
-        "max_paragraph": 162,
-        "paragraphs": 19,
-        "sentences": 40
-      },
-      "score": 88,
-      "source": "pfn-news",
-      "title": "国産の金融特化型小規模言語モデルPLaMo 3.0 Finをオープンウェイトで公開",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PFN・NICT・JSON）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T02:14:23.424471+00:00",
-      "attempt": 1,
-      "id": "f584b09228d4aa0e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.0,
-        "avg_sentence": 56.0,
-        "long_share": 0.333,
-        "max_paragraph": 121,
-        "paragraphs": 4,
-        "sentences": 6
-      },
-      "score": 86,
-      "source": "nli-research",
-      "title": "基礎研ＲＥＰＯＲＴ（冊子版）11月号[vol.356]",
-      "warnings": [
-        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 56.0字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T02:14:35.520912+00:00",
-      "attempt": 0,
-      "id": "f584b09228d4aa0e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 71.2,
-        "avg_sentence": 44.5,
-        "long_share": 0.0,
-        "max_paragraph": 131,
-        "paragraphs": 5,
-        "sentences": 8
-      },
-      "score": 88,
-      "source": "nli-research",
-      "title": "基礎研ＲＥＰＯＲＴ（冊子版）11月号[vol.356]",
-      "warnings": [
-        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T02:15:08.028275+00:00",
-      "attempt": 1,
-      "id": "8c35f961e318ffbb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "リード「今後の防災計画や地域の備えに役立てるための情報として活用されています」→ 元記事に活用実績の記載はなく、利用状況は裏付けられない",
-        "本文「過去の主な津波の高さや遡上高の記録が示されています」→ 抽出された元記事では個別の津波名・高さ・遡上高の数値が確認できず、記事も具体例を一つも示していない",
-        "「津波防災に関する意識を高めるための取り組みが行われています」→ 元記事に記載のない一般的な主張で、出典がない",
-        "見出しは「主な津波と遡上高のデータ公開」と約束しているが、どの津波の何mかという具体的事実が本文にないため、読者が概要を掴めない"
-      ],
-      "readability": {
-        "avg_paragraph": 129.7,
-        "avg_sentence": 77.8,
-        "long_share": 1.0,
-        "max_paragraph": 155,
-        "paragraphs": 3,
-        "sentences": 5
-      },
-      "score": 72,
-      "source": "nli-research",
-      "title": "Infocalendar －主な津波と遡上高[11月５日は世界津波の日]",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 77.8字・60字超の文が 100% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 129.7字・最長 155字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T02:15:15.258691+00:00",
-      "attempt": 1,
-      "id": "d083b2d2afa7377a",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「丸隆の電気ストーブ約3万台」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
-      ],
-      "readability": {
-        "avg_paragraph": 149.0,
-        "avg_sentence": 49.7,
-        "long_share": 0.167,
-        "max_paragraph": 151,
-        "paragraphs": 2,
-        "sentences": 6
-      },
-      "score": null,
-      "source": "caa-recall",
-      "title": "家電製品 丸隆「電気ストーブ：レトロティックカーボンヒーター」 - 点検交換",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 49.7字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 149.0字・最長 151字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T02:15:57.448933+00:00",
@@ -27202,6 +27082,275 @@
         "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（IMO・CO）",
         "読みやすさ: 文が長い（1文の平均 53.8字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T06:56:52.522655+00:00",
+      "attempt": 1,
+      "id": "6738fd2b368c3c70",
+      "kind": "broad",
+      "model": "gemini-3.6-flash",
+      "problems": [
+        "よくある質問A「税務署などが資産差押えの準備として金融機関や取引先に『取引照会票』を送付」→ 元記事は取引照会票の送付のみを述べ、送付主体（税務署）や差押え準備という目的は元記事にも確認済みの文脈にも無い創作的説明",
+        "本文「コロナ禍での借入金の返済負担が重くのしかかり」→ 元記事は『コロナ禍が落ち着くと同時に円安に伴う物価高や人件費上昇』『過剰債務』を挙げており、コロナ禍の借入返済負担という要因は元記事と異なる",
+        "本文「税務署などから金融機関や取引先へ『取引照会票』が送付されます」→ 送付主体を税務署としているが元記事に記載なし",
+        "かんたん版「納税を後回しにした結果、破産に至るケースが増えています」→ 納税の先送りが破産増加の原因だとする因果関係は元記事に書かれていない"
+      ],
+      "readability": {
+        "avg_paragraph": 89.8,
+        "avg_sentence": 56.1,
+        "long_share": 0.375,
+        "max_paragraph": 112,
+        "paragraphs": 10,
+        "sentences": 16
+      },
+      "score": 76,
+      "source": "tsr",
+      "title": "１-10月の「税金滞納」倒産 過去最多の217件 小・零細規模の労働集約型で多発傾向",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 56.1字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T06:57:12.249550+00:00",
+      "attempt": 1,
+      "id": "6738fd2b368c3c70",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 90.9,
+        "avg_sentence": 53.5,
+        "long_share": 0.353,
+        "max_paragraph": 112,
+        "paragraphs": 10,
+        "sentences": 17
+      },
+      "score": 90,
+      "source": "tsr",
+      "title": "１-10月の「税金滞納」倒産 過去最多の217件 小・零細規模の労働集約型で多発傾向",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 53.5字・60字超の文が 35% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T06:57:35.970366+00:00",
+      "attempt": 0,
+      "id": "6738fd2b368c3c70",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 見出し「建設や卸売で100%超の伸び」→ 元記事では建設業は100.0%増で「100%超」ではなく、100%ちょうどである（卸売は163.6%増で正しい）; 本文「倒産の97.2%が破産で再建は極めて困難」→ 元記事は「再建が困難なことを示している」としており、"
+      ],
+      "readability": {
+        "avg_paragraph": 90.9,
+        "avg_sentence": 53.5,
+        "long_share": 0.353,
+        "max_paragraph": 112,
+        "paragraphs": 10,
+        "sentences": 17
+      },
+      "score": 90,
+      "source": "tsr",
+      "title": "１-10月の「税金滞納」倒産 過去最多の217件 小・零細規模の労働集約型で多発傾向",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 53.5字・60字超の文が 35% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T06:58:17.660782+00:00",
+      "attempt": 1,
+      "id": "6bcb6696bbfd3251",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 143.4,
+        "avg_sentence": 59.8,
+        "long_share": 0.583,
+        "max_paragraph": 178,
+        "paragraphs": 5,
+        "sentences": 12
+      },
+      "score": 85,
+      "source": "nli-research",
+      "title": "氷河期世代の正社員比率は改善したが、将来の年金水準には不安も～年金改革ウォッチ 2026年11月号",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "読みやすさ: 文が長い（1文の平均 59.8字・60字超の文が 58% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 143.4字・最長 178字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T06:58:37.815994+00:00",
+      "attempt": 0,
+      "id": "6bcb6696bbfd3251",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.3,
+        "avg_sentence": 39.0,
+        "long_share": 0.053,
+        "max_paragraph": 120,
+        "paragraphs": 9,
+        "sentences": 19
+      },
+      "score": 85,
+      "source": "nli-research",
+      "title": "氷河期世代の正社員比率は改善したが、将来の年金水準には不安も～年金改革ウォッチ 2026年11月号",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T06:59:13.613003+00:00",
+      "attempt": 1,
+      "id": "4b76e9447d8ccc5c",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 90.7,
+        "avg_sentence": 54.4,
+        "long_share": 0.6,
+        "max_paragraph": 137,
+        "paragraphs": 6,
+        "sentences": 10
+      },
+      "score": 88,
+      "source": "samsung-jp",
+      "title": "Samsung、ドイツにビルトイン家電ショールームを新設 欧州市場における本格展開を推進",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IH・SPACE）",
+        "読みやすさ: 文が長い（1文の平均 54.4字・60字超の文が 60% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T06:59:27.424304+00:00",
+      "attempt": 0,
+      "id": "4b76e9447d8ccc5c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 56.4,
+        "avg_sentence": 37.6,
+        "long_share": 0.067,
+        "max_paragraph": 83,
+        "paragraphs": 10,
+        "sentences": 15
+      },
+      "score": 92,
+      "source": "samsung-jp",
+      "title": "Samsung、ドイツにビルトイン家電ショールームを新設 欧州市場における本格展開を推進",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IH・SPACE）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T06:59:48.951199+00:00",
+      "attempt": 1,
+      "id": "8e0e2265da838c47",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「、1,000gへ増量して1,580円」、「チキン(丸鶏)**:本体2,980円」、「:本体2,980円(税込3,218.40円」、「:本体1,980円(税込2,138.40円」、「キン(1本980円、2本1,880円」）。元記事か束の数字に直すか、そ"
+      ],
+      "readability": {
+        "avg_paragraph": 67.7,
+        "avg_sentence": 43.1,
+        "long_share": 0.182,
+        "max_paragraph": 110,
+        "paragraphs": 7,
+        "sentences": 11
+      },
+      "score": null,
+      "source": "aeon",
+      "title": "クリスマスや年末のパーティを彩る、手軽に楽しむ「ごちそうメニュー」を発売",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T07:00:51.289495+00:00",
+      "attempt": 1,
+      "id": "b409226acfdae22c",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 78.8,
+        "avg_sentence": 43.8,
+        "long_share": 0.111,
+        "max_paragraph": 134,
+        "paragraphs": 5,
+        "sentences": 9
+      },
+      "score": 85,
+      "source": "ntt-news-ai",
+      "title": "近畿大学東大阪キャンパス施設内でAIカメラ等による実証実験 ー学生の行動把握による施設評価と学修行動を検証ー"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T07:01:31.807786+00:00",
+      "attempt": 1,
+      "id": "a847d03cb751eff9",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 61.2,
+        "avg_sentence": 43.7,
+        "long_share": 0.286,
+        "max_paragraph": 108,
+        "paragraphs": 5,
+        "sentences": 7
+      },
+      "score": 94,
+      "source": "jfa",
+      "title": "アンプティサッカー日本代表がWAFFワールドカップに出場！ #jfa",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JFA）",
+        "読みやすさ: 文が長い（1文の平均 43.7字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T07:01:47.528502+00:00",
+      "attempt": 0,
+      "id": "a847d03cb751eff9",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 本文「大会は11月13日（金）から22日（日）まで行われます」→ 元記事と一致するが、「日本時間で11月15日から試合が始まります」（リード）は元記事の日本時間表記と整合するため問題なし; 「日本代表は計22名で構成されています。内訳は選手15名、スタッフ7名で"
+      ],
+      "readability": {
+        "avg_paragraph": 61.2,
+        "avg_sentence": 43.7,
+        "long_share": 0.286,
+        "max_paragraph": 108,
+        "paragraphs": 5,
+        "sentences": 7
+      },
+      "score": 94,
+      "source": "jfa",
+      "title": "アンプティサッカー日本代表がWAFFワールドカップに出場！ #jfa",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JFA）",
+        "読みやすさ: 文が長い（1文の平均 43.7字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
