@@ -76,7 +76,7 @@
   "videoTitle": "年金生活者支援給付金は請求しないと始まらない　老齢は前年92万6,500円以下が対象",
   "publishedAt": "2026-11-10T19:54:51.744647+00:00",
   "generatedAt": "2026-11-10T19:56:05.575256+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/pension-support-benefit-scam-check-figure-70306706.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -91,5 +91,113 @@
   "originalTitle": "年金生活者支援給付金の詐欺が心配　年金機構は電話で口座番号を聞かない",
   "titleStyle": "2026-11-03",
   "layout": "noir",
-  "summaryLine": "年金生活者支援給付金の請求書は、基礎年金を受けている人に毎年9月の第1営業日から順次届く。"
+  "summaryLine": "年金生活者支援給付金の請求書は、基礎年金を受けている人に毎年9月の第1営業日から順次届く。",
+  "insight": [
+    {
+      "text": "請求書は65歳になる誕生日の前日以降に提出します。令和8年10月分から令和9年9月分を請求する場合、判定に使う前年は令和7年になります。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    },
+    {
+      "text": "昭和31年4月2日以後生まれの方は、全額免除・4分の3免除・半額免除の期間が月額11,768円、4分の1免除の期間が月額5,884円で計算されます。免除期間があると給付額が上がります。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "年金生活者支援給付金に関する手続き（日本年金機構）",
+      "url": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/index.html",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "howTo": [
+        "関連情報",
+        "年金生活者支援給付金に関する手続き"
+      ],
+      "note": "保険料納付済期間などは、お手持ちの年金証書や支給額変更通知書で確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "年金証書で、保険料納付済期間と免除期間の月数を確かめる",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "steps": [
+        "お手持ちの年金証書を用意する",
+        "支給額変更通知書があれば一緒に見る",
+        "納付済期間と免除期間の月数を確認する"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    },
+    {
+      "action": "生年月日に合う基準額で、前年の所得が対象か確かめる",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "steps": [
+        "「支給要件と給付額」の項目を開く",
+        "生年月日が昭和31年4月1日以前か確認",
+        "前年の所得の合計を基準額と比べる"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    }
+  ],
+  "worries": [
+    {
+      "q": "うちは対象になるか、どう確かめればいい？",
+      "a": "65歳以上で老齢基礎年金を受けていること、世帯全員が市町村民税非課税であること、前年の所得合計が926,500円以下（昭和31年4月1日以前生まれは924,100円以下）であることが要件です。障害年金・遺族年金等の非課税収入は含まれません。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "前年の年金収入とその他の所得の合計を出し、生年月日に合う基準額と比べて確かめる"
+    },
+    {
+      "q": "電話で口座の話を持ちかけられたら、どうすればいい？",
+      "a": "「キャッシュカードの交換手続きが必要」などと言い、カードや通帳をだまし取る預貯金詐欺の手口があります。特殊詐欺では、犯人と話をしないことが大切とされています。",
+      "source": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "action": "不審な電話は話を続けず、いったん切って、公式の窓口へ自分から電話をかけ直して確かめる",
+      "general": true
+    },
+    {
+      "q": "届いたメールが本物の機構からか、見分けられる？",
+      "a": "電子メールの送信元の名前やアドレスは簡単に偽装できるため、表示だけで本物かどうか判断するのは難しいとされています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メールやSMSのリンクは開かず、お気に入りに登録した公式サイトを自分で開いて確かめる",
+      "general": true
+    },
+    {
+      "q": "うっかりIDやパスワードを入力したら、どうすればいい？",
+      "a": "普段使っているIDやパスワードを入力してしまった場合は、それを使っている全サービスのパスワードを速やかに変更するよう案内されています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "銀行やSNSなど、同じIDやパスワードを使うサービスを書き出し、すべてのパスワードを速やかに変更する",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "生まれ年や免除で、額と判定が変わる",
+    "steps": "年金証書で、免除の月数を確かめよう",
+    "desk": "手続きを確かめる先はここ",
+    "worries": "うちは対象？うっかり入力したら？"
+  },
+  "todayActions": [
+    "年金証書で、保険料納付済期間と免除期間の月数を確かめる",
+    "生年月日に合う基準額で、前年の所得が対象か確かめる"
+  ],
+  "depthAt": "2026-11-10T20:02:53+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "年金生活者支援給付金の電話、口座番号は聞かれない",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-10T20:04:32+00:00"
+  },
+  "imageFocus": {
+    "x": 0.54,
+    "y": 0.413,
+    "box": [
+      0.103,
+      0.077,
+      0.978,
+      0.75
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/pension-support-benefit-scam-check-figure-70306706.jpg"
+  },
+  "discoverCandidate": true
 }
