@@ -82,6 +82,18 @@ export type BuyingGuide = {
   quiz?: { key: string; label: string; options: { value: string; label: string }[] }[];
   howWeMade?: string;
   editorial?: "manual";
+  /** 「最新ニュース」の注記（省略時は従来の文） */
+  newsNote?: string;
+  /** 提携商品のボタンの文（省略時は「公式ストアで見る」） */
+  sponsoredCta?: string;
+  /** 向いている人・向いていない人の表（状況 → おすすめ → 理由 → 出典）。読者の得を先に書く */
+  fitTable?: { situation: string; fit: "suits" | "not"; recommendation: string; reason: string; source: { label: string; url: string } }[];
+  /** 公的機関の案内（総務省・資源エネルギー庁など。開けることを確かめた URL だけ） */
+  officialGuidance?: { label: string; url: string; note: string }[];
+  /**
+   * 本題とは別の囲み（例: 保険相談のページの「火災保険」）。ここに挙げた商品は、比較表・判定・詳細の一覧には入れず、この囲みだけに出す
+   */
+  sideSections?: { id: string; label: string; title: string; body: string; products: string[] }[];
 };
 
 /** 表示用：ガイドの商品に提携リンクを合わせたもの */
@@ -103,6 +115,24 @@ let cache: BuyingGuide[] | null = null;
  * 中身とデザインを作り直すまでは false：ページは残すが検索には出さず、導線も出さない。
  */
 export const COMPARE_PUBLIC = false;
+
+/**
+ * 暮らしとお金の比較ページ（格安SIM・光回線・電気とガス・保険相談・ふるさと納税サイト）。
+ * COMPARE_PUBLIC を変えずに（検索・サイトマップには出さないまま）、記事のお金の囲みや入口から案内してよいページの一覧。
+ * 検索に出すかどうかはオーナーが決める（COMPARE_PUBLIC と app/compare/[slug] の robots はそのまま）。
+ */
+export const LIFE_COMPARE_SLUGS = ["kakuyasu-sim", "hikari", "denki-gas", "hoken-soudan", "furusato-sites"] as const;
+export type LifeCompareSlug = (typeof LIFE_COMPARE_SLUGS)[number];
+
+export function isLifeCompareSlug(slug: string): slug is LifeCompareSlug {
+  return (LIFE_COMPARE_SLUGS as readonly string[]).includes(slug);
+}
+
+/** サイト内から案内する比較ページ（LIFE_COMPARE_SLUGS のうち、いま表示できるものだけ） */
+export function lifeCompareGuide(slug: LifeCompareSlug): { href: string; guide: BuyingGuide } | undefined {
+  const guide = getBuyingGuide(slug);
+  return guide ? { href: `/compare/${guide.slug}`, guide } : undefined;
+}
 
 /** 「公式ページに記載なし」は表に出さない（比較表のセルは空欄、注意点の箇条書きは項目ごと消す。lib/no-data.ts） */
 function withoutNoDataGuide(guide: BuyingGuide): BuyingGuide {

@@ -17,6 +17,8 @@ export type GuideView = {
   byKey: Map<string, ResolvedProduct>;
   personas: { who: string; why: string; products: ResolvedProduct[] }[];
   rows: { key: string; label: string }[];
+  /** 本題とは別の囲み（guide.sideSections）。ここの商品は products に入れない */
+  sideSections: { id: string; label: string; title: string; body: string; products: ResolvedProduct[] }[];
   related: ArticleSummary[];
   pixels: string[];
   /** 例: 10月27日時点・公式サイトより */
@@ -26,8 +28,15 @@ export type GuideView = {
 };
 
 export function buildGuideView(guide: BuyingGuide): GuideView {
-  const products = resolveProducts(guide);
+  const all = resolveProducts(guide);
+  const sideKeys = new Set((guide.sideSections ?? []).flatMap((section) => section.products));
+  const products = all.filter((p) => !sideKeys.has(p.key));
   const byKey = new Map(products.map((p) => [p.key, p]));
+  const allByKey = new Map(all.map((p) => [p.key, p]));
+  const sideSections = (guide.sideSections ?? []).flatMap((section) => {
+    const picks = section.products.flatMap((key) => allByKey.get(key) ?? []);
+    return picks.length > 0 ? [{ ...section, products: picks }] : [];
+  });
   const personas = (guide.personas ?? []).flatMap((persona) => {
     const picks = persona.picks.flatMap((key) => byKey.get(key) ?? []);
     return picks.length > 0 ? [{ who: persona.who, why: persona.why, products: picks }] : [];
@@ -39,10 +48,11 @@ export function buildGuideView(guide: BuyingGuide): GuideView {
     byKey,
     personas,
     rows: guide.rows ?? [],
+    sideSections,
     related: guideRelatedArticles(guide),
-    pixels: [...new Set(products.flatMap((p) => (p.pixel ? [p.pixel] : [])))],
+    pixels: [...new Set(all.flatMap((p) => (p.pixel ? [p.pixel] : [])))],
     checkedLabel: guide.checkedLabel ?? `${checkedDate(guide.priceCheckedAt)}時点・公式サイトより`,
-    hasSponsored: products.some((p) => p.sponsored),
+    hasSponsored: all.some((p) => p.sponsored),
     jsonLd: [
       {
         "@context": "https://schema.org",
