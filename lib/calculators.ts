@@ -7,9 +7,11 @@ import type { ArticleChart } from "@/lib/charts";
 /**
  * 2026-11-03 オーナー「このページもいらない」で /tools/usd-jpy（ドル建てサブスクの円換算）を終了した（台帳 W14。URL は cloudflare/worker.ts で 410）。
  * ドルの月額に為替と消費税を掛けるだけで、料金の段の表（円の目安つき）と重なり、記事への埋め込みも料金の話に合っていなかった。
- * 計算ツールは「公式の数字から読者自身の金額を出す」ものだけ置く（いまは防衛特別所得税だけ）。
+ * 計算ツールは「公式の数字から読者自身の金額を出す」ものだけ置く（防衛特別所得税と、ふるさと納税の上限額）。
+ * 2026-11-10: ふるさと納税の上限額（/tools/furusato-limit）を追加。住民税決定通知書の所得割額と所得税の税率から、
+ * 総務省の計算式で「自己負担2,000円で済む寄附額の目安」を出す（年収からの推定はしない。式は lib/calc-math.ts）。
  */
-export type CalculatorKind = "defense-tax";
+export type CalculatorKind = "defense-tax" | "furusato-limit";
 
 export type ArticleCalculator = {
   kind: CalculatorKind;
@@ -22,6 +24,11 @@ export const CALCULATORS: Record<CalculatorKind, { href: string; title: string; 
     href: "/tools/defense-tax",
     title: "防衛特別所得税の計算",
     description: "所得税額（基準所得税額）から、2027年からの防衛特別所得税と復興特別所得税を年ごとに計算します。",
+  },
+  "furusato-limit": {
+    href: "/tools/furusato-limit",
+    title: "ふるさと納税の上限額の計算",
+    description: "住民税の所得割額と所得税の税率から、自己負担2,000円で済むふるさと納税の寄附額の目安を、総務省の計算式で計算します。",
   },
 };
 
@@ -36,6 +43,7 @@ type ArticleLike = {
 };
 
 const TAX_WORDS = /防衛特別所得税|防衛増税|防衛税|復興特別所得税/;
+const FURUSATO_WORDS = /ふるさと納税/;
 
 /**
  * AIの有料プランの費用計算（/tools/ai-plan-cost）は 2026-11-03 に終了した（「12か月で16,800円」「Plusの0.5個分」のような
@@ -49,5 +57,18 @@ export function calculatorForArticle(article: ArticleLike): ArticleCalculator | 
   if (TAX_WORDS.test(title) || article.tags.some((t) => TAX_WORDS.test(t))) {
     return { kind: "defense-tax", heading: /仕組み|いくら|負担|税率|数字|数値|変わる/ };
   }
+  // ふるさと納税の記事（見出しに「ふるさと納税」がある記事だけ。タグや本文の脇の1語では置かない）
+  if (FURUSATO_WORDS.test(title)) {
+    return { kind: "furusato-limit", heading: /上限|限度|いくら|控除|計算|目安|仕組み/ };
+  }
+  return null;
+}
+
+/**
+ * 手続きガイド（/guides/*）から案内する計算ツール。ふるさと納税のガイド（tool: "furusato"、または見出しに「ふるさと納税」「ワンストップ特例」）だけ。
+ * ガイドには計算機そのものは置かず、ツールのページへの案内を1つ出す（components/HowtoGuideView.tsx）
+ */
+export function calculatorForGuide(guide: { tool?: string; title: string; seoTitle?: string }): CalculatorKind | null {
+  if (guide.tool === "furusato" || /ふるさと納税|ワンストップ特例/.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "furusato-limit";
   return null;
 }

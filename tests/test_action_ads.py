@@ -175,7 +175,9 @@ class PitchTest(unittest.TestCase):
 class ComponentWiringTest(unittest.TestCase):
     def test_action_ad_block_is_labelled_and_tracked(self):
         src = (ROOT / "components/ActionAd.tsx").read_text(encoding="utf-8")
-        self.assertIn('data-aff-pos="action-ad"', src)
+        # 置き場所の名前は記事では "action-ad"（手続きガイド・計算ツールは pos で渡す。lib/guide-ads.ts）
+        self.assertIn('pos = "action-ad"', src)
+        self.assertIn("data-aff-pos={pos}", src)
         # リンクの部品は右側の枠と同じ（components/rail/parts.tsx の PrFeature・PrRow）
         self.assertIn("PrFeature", src)
         self.assertIn("AFFILIATE_REL", (ROOT / "components/rail/parts.tsx").read_text(encoding="utf-8"))

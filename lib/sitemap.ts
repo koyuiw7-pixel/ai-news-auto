@@ -110,8 +110,8 @@ export function sitemapEntries(): SitemapEntry[] {
     { url: `${base}/usable`, lastModified, changeFrequency: "daily" as const, priority: 0.9 },
     // 料金早見表・週まとめ・イベント（被リンクとブックマークを狙う定番ページ）
     { url: `${base}/ai-pricing`, lastModified: new Date(getPricing().updatedAt), changeFrequency: "weekly" as const, priority: 0.9 },
-    // 計算ツールは防衛特別所得税だけ（AIプランの費用計算・ドル建てサブスクの円換算は 2026-11-03 に終了・410。/tools は転送）
-    ...["/tools/defense-tax"].map((path) => ({
+    // 計算ツールは防衛特別所得税と、ふるさと納税の上限額（2026-11-10 追加）。AIプランの費用計算・ドル建てサブスクの円換算は 2026-11-03 に終了・410。/tools は転送
+    ...["/tools/defense-tax", "/tools/furusato-limit"].map((path) => ({
       url: `${base}${path}`,
       lastModified,
       changeFrequency: "monthly" as const,

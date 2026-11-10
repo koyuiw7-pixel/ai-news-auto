@@ -315,7 +315,7 @@ GAIN = {
     "mf-kakutei": "明細を取り込んで、申告書づくりの手間を減らす",
     "yayoi-kakutei": "白色申告の書類を、無料のソフトで作る",
     "furusato-honpo": "控除の上限の中で、返礼品を全国から探す",
-    "aupay-furusato": "Pontaポイントをためながら、寄附先を探す",
+    "aupay-furusato": "返礼品を探して、そのまま寄附する",  # ポイントのことは書かない（ふるさと納税サイトのポイント付与は2025年10月から禁止）
     "hikkoshi-samurai": "引越し代を、複数の業者の見積もりで比べる",
     "epos": "年会費のかからないカードで、支払いとポイントを見直す",
     "jalan": "連休の宿の空室と料金を、早めに確かめる",
@@ -341,7 +341,7 @@ MERITS = {
     "freee": ["無料お試しはクレジットカード登録不要", "白色・青色・消費税の申告に対応"],  # freee.co.jp/accounting/individual/
     "yayoi-kakutei": ["白色申告オンラインはずっと無料", "税務署に行かずe-Taxで申告できる"],  # yayoi-kk.co.jp/shinkoku/
     "furusato-honpo": ["5万件以上の返礼品を掲載", "クレジットカードは全自治体で使える"],  # furusatohonpo.jp/guide/payment/
-    "aupay-furusato": ["Pontaポイントがたまる・使える", "控除の上限額をかんたんに計算できる"],  # furusato.wowma.jp
+    "aupay-furusato": ["控除の上限額をかんたんに計算できる"],  # furusato.wowma.jp。ポイントのことは書かない
     "bang-kasai": ["火災保険の見積もり依頼は無料", "複数社の商品を比べられる"],  # fire.bang.co.jp
     "hikkoshi-samurai": ["最大10社へまとめて見積もりを依頼", "業者を比べられる無料のサービス"],  # hikkoshizamurai.jp
     "epos": ["入会金・年会費は永年無料", "ETCカードも年会費・入会金が無料"],  # eposcard.co.jp

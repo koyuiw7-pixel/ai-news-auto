@@ -11,16 +11,17 @@ import { Pixels, PrFeature, PrRow, PrTag } from "@/components/rail/parts";
  *  - 1つ目は、読者がこの商品で確かめられること（pitch.gain）を見出しにし、良いところ2〜3つ（公式の事実だけ）と色のあるボタン（components/rail/parts.tsx の PrFeature）
  *  - バナーは 6:5 の小さな枠に収める（大きなバナーをそのまま貼らない）。場所は先に取り、読み込みで画面がずれない。ポップアップは出さない
  *  - 2つ目は小さく1行
- * クリックは data-aff-pos="action-ad"（components/AffClickTracker.tsx → cloudflare/aff.ts の byPlacement）で、置き場所×提携先ごとに数える。
+ * クリックは data-aff-pos（記事は "action-ad"。components/AffClickTracker.tsx → cloudflare/aff.ts の byPlacement）で、置き場所×提携先ごとに数える。
+ * 手続きガイドと計算ツールにも同じ囲みを出す（pos は "guide-top"・"guide-lower"・"tool-result"。lib/guide-ads.ts。2026-11-10）。
  * data-ad-ab のある枠は、ボタンの色の A/B（<html data-adv>）もいっしょに送る（byVariant）。
  */
-export default function ActionAd({ ad, className = "mt-4" }: { ad: ActionAdData; className?: string }) {
+export default function ActionAd({ ad, className = "mt-4", pos = "action-ad" }: { ad: ActionAdData; className?: string; pos?: string }) {
   if (ad.items.length === 0) return null;
   const [first, ...rest] = ad.items;
   const lead = ad.lead ?? ad.reason;
   return (
     <aside
-      data-aff-pos="action-ad"
+      data-aff-pos={pos}
       data-action-ad={ad.key}
       data-ad-ab=""
       aria-label="PR：広告"

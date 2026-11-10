@@ -58,6 +58,9 @@ def load_token() -> str:
 # 置き場所（components の data-aff-pos）→ 報告での呼び名。末尾の「-1」「-2」は枠の中の順番
 POSITION_LABELS = {
     "action-ad": "すぐにできることの下（本文中のPR）",
+    "guide-top": "手続きガイドの結論の下のPR",
+    "guide-lower": "手続きガイドのよくある質問の前のPR",
+    "tool-result": "計算ツールの結果の下のPR",
     "ranking-inline": "本文中の商品枠",
     "ranking-rail": "右側の商品枠",
     "ranking-end": "記事末の商品枠（スマホ）",

@@ -5,8 +5,11 @@ import { CALCULATORS, type CalculatorKind } from "@/lib/calculators";
 import { siteConfig } from "@/site.config";
 import { Phrases } from "@/lib/highlight";
 
-/** 計算機の単独ページ（/tools/*）の共通の枠。計算ツールは1つだけなので一覧（/tools）は無く、/tools は next.config.ts で転送する（2026-11-03） */
-export default function ToolPage({ kind, lead, children }: { kind: CalculatorKind; lead: string; children?: ReactNode }) {
+/**
+ * 計算機の単独ページ（/tools/*）の共通の枠。一覧（/tools）は無く、/tools は next.config.ts で転送する（2026-11-03）。
+ * afterCalc は、計算の結果のすぐ下に置くもの（ふるさと納税の上限額のページの PR の囲みなど。2026-11-10）
+ */
+export default function ToolPage({ kind, lead, afterCalc, children }: { kind: CalculatorKind; lead: string; afterCalc?: ReactNode; children?: ReactNode }) {
   const meta = CALCULATORS[kind];
   const url = `${siteConfig.url}${meta.href}`;
   const jsonLd = [
@@ -45,6 +48,7 @@ export default function ToolPage({ kind, lead, children }: { kind: CalculatorKin
       </section>
       <p className="mt-4 max-w-[40em] text-note leading-[1.75] text-ink-soft">{CALC_NOTES[kind]}</p>
       <p className="mt-2 max-w-[40em] text-note leading-[1.75] text-ink-soft">入力した数字は、この画面の中の計算だけに使います。送信・保存はしません。</p>
+      {afterCalc}
       {children ? <div className="mt-12 max-w-[40em]">{children}</div> : null}
     </AssetShell>
   );

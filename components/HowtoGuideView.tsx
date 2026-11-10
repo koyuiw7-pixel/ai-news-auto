@@ -13,6 +13,9 @@ import DifyCreditEstimator from "@/components/DifyCreditEstimator";
 import WorkMoneyCard from "@/components/WorkMoneyCard";
 import { workMoneyOf } from "@/lib/work-money";
 import { Phrases } from "@/lib/highlight";
+import ActionAd from "@/components/ActionAd";
+import { GUIDE_AD_POS, guideAds } from "@/lib/guide-ads";
+import { CALCULATORS, calculatorForGuide } from "@/lib/calculators";
 
 /** 手続き・お金のページ（kind: procedure）の見出し。AI ツールのページの「料金・無料・日本で使える？」を読み替える（台帳 A55） */
 const LABELS = {
@@ -36,6 +39,11 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
   const L = LABELS[guide.kind === "procedure" ? "procedure" : "ai-tool"];
   const hasCreditEstimator = guide.slug === "dify-free-api-cost";
   const workMoney = workMoneyOf(guide.workMoney);
+  // ガイドの話題と同じ提携商品の PR（ふるさと納税 → ふるさと納税のサイト、年末調整・確定申告 → 確定申告ソフト。当たらなければ出さない。lib/guide-ads.ts）
+  const ads = guideAds(guide);
+  // ふるさと納税のガイドから、上限額の計算ツールへ案内する（lib/calculators.ts）
+  const toolKind = calculatorForGuide(guide);
+  const tool = toolKind ? CALCULATORS[toolKind] : undefined;
 
   const jsonLd = [
     {
@@ -129,6 +137,17 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
       {workMoney && <WorkMoneyCard workMoney={workMoney} />}
 
       <p className="mt-6 text-desc leading-[1.95] text-ink-soft">{guide.intro}</p>
+
+      {tool && (
+        <aside aria-label="計算ツール" className="mt-6 max-w-[40em] border-l-[3px] border-accent bg-surface px-4 py-4">
+          <Link href={tool.href} className="text-[17px] font-bold leading-relaxed text-ink underline decoration-line-strong underline-offset-4 hover:text-accent">
+            {tool.title}
+          </Link>
+          <p className="mt-2 text-desc leading-[1.85] text-ink-soft">{tool.description}</p>
+        </aside>
+      )}
+
+      {ads.top && <ActionAd ad={ads.top} pos={GUIDE_AD_POS.top} className="mt-8" />}
 
       <nav aria-label="目次" className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-note font-bold text-ink-soft">
         {hasCreditEstimator && <a href="#credit-estimator" className="underline decoration-line-strong underline-offset-4 hover:text-accent">回数の目安を計算</a>}
@@ -237,6 +256,8 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
           <p className="mt-2 text-desc leading-[1.85] text-ink-soft">{decisionGuide.articleNote}</p>
         </aside>
       ) : null}
+
+      {ads.lower && <ActionAd ad={ads.lower} pos={GUIDE_AD_POS.lower} className="mt-12" />}
 
       <Section id="faq" title="よくある質問">
         <div className="divide-y divide-line border-y border-line">

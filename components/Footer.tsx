@@ -28,6 +28,7 @@ const REFERENCE_LINKS = [
   { href: "/guides", label: "AIの使い方ガイド" },
   { href: "/ai-pricing", label: "AIの料金・日本対応 早見表" },
   { href: "/tools/defense-tax", label: "防衛特別所得税の計算" },
+  { href: "/tools/furusato-limit", label: "ふるさと納税の上限額の計算" },
   { href: "/products", label: "AIサービス図鑑" },
   { href: "/choose/internet-for-ai", label: "AIのための通信回線の選び方" },
   { href: "/choose/dify-hosting", label: "Difyの無料利用・VPSの選び方" },

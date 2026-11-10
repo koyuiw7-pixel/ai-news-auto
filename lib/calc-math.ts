@@ -1,5 +1,5 @@
 /**
- * 計算機（/tools/defense-tax）と記事の図で使う計算。サーバー・ブラウザ共通、依存なし。
+ * 計算機（/tools/defense-tax・/tools/furusato-limit）と記事の図で使う計算。サーバー・ブラウザ共通、依存なし。
  * ここの式は tests/test_charts_calc.cjs で確かめている。
  */
 
@@ -39,6 +39,46 @@ export function surtax(baseIncomeTax: number, year: number, beforeReform = false
 export function baseFromWithheld(withheld: number): number {
   if (!(withheld > 0)) return 0;
   return Math.floor(withheld / 1.021);
+}
+
+/**
+ * ふるさと納税で、自己負担が2,000円で済む寄附額の上限の目安（2026年＝令和8年の寄附）。2026-11-10 に公式ページで確認。
+ *
+ * 出典:
+ *  - 総務省 ふるさと納税ポータル「税金の控除について」: 住民税からの控除（特例分）＝（寄附額−2,000円）×（100%−10%−所得税の税率）。
+ *    特例分が住民税所得割額の2割を超えると、特例分＝住民税所得割額×20% になり、自己負担は2,000円を超える。
+ *    所得税の税率は復興特別所得税の税率を加えた率。
+ *  - 国税庁 タックスアンサー No.1155（所得割額の20%を限度）・No.2260（所得税の税率と、復興特別所得税 2.1%）
+ *  - 地方税法 第37条の2・第314条の7（特例控除額の上限は所得割の額の100分の20）、附則第5条の6
+ *    （特例分の割合 84.895%・79.79%・69.58%・66.517%・56.307%・49.16%・44.055%。＝90%−所得税の税率×1.021）
+ *
+ * 上限の目安 ＝ 住民税の所得割額×20% ÷（90%−所得税の税率×1.021）＋ 2,000円
+ * 総所得金額等の40%（所得税）・30%（住民税の基本分）の上限と、人ごとの控除の違いは入れていない（目安）。
+ */
+export const FURUSATO_TAX_RATES = [0, 5, 10, 20, 23, 33, 40, 45] as const;
+export type FurusatoTaxRate = (typeof FURUSATO_TAX_RATES)[number];
+
+/** 特例分の割合（10万分率）。5% → 84,895（84.895%）。小数の誤差を出さないよう整数で持つ */
+export function furusatoSpecialShare(ratePercent: FurusatoTaxRate): number {
+  return 90000 - ratePercent * 1021;
+}
+
+export type FurusatoLimit = {
+  /** 特例分の上限（住民税の所得割額×20%。1円未満切り捨て） */
+  cap: number;
+  /** 自己負担が2,000円で済む寄附額の上限の目安（1円未満切り捨て） */
+  limit: number;
+  /** limit を1,000円未満で切り捨てた額（寄附額を決めるときの目安） */
+  rounded: number;
+};
+
+export function furusatoLimit(residentIncomeLevy: number, ratePercent: FurusatoTaxRate): FurusatoLimit | null {
+  if (!(residentIncomeLevy > 0) || !FURUSATO_TAX_RATES.includes(ratePercent)) return null;
+  const levy = Math.floor(residentIncomeLevy);
+  const share = furusatoSpecialShare(ratePercent);
+  // （寄附額−2,000円）× share/100000 ≦ 所得割額×20% を満たす、いちばん大きい寄附額
+  const limit = Math.floor((levy * 20000) / share) + 2000;
+  return { cap: Math.floor(levy / 5), limit, rounded: Math.floor(limit / 1000) * 1000 };
 }
 
 /** 1,234,567 → "123.5万"、2.5e8 → "2.5億"（図の差分の表示用） */

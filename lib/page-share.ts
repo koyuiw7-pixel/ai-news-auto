@@ -19,6 +19,7 @@ export type PageShare = {
 
 export const PAGE_SHARE = {
   "defense-tax": { heading: "防衛特別所得税", lines: ["2027年から始まる新しい税", "自分の場合の税額を年ごとに計算"], footer: "サイソクの計算ツール" },
+  "furusato-limit": { heading: "ふるさと納税の上限額", lines: ["住民税の所得割額と所得税の税率から", "自己負担2,000円で済む寄附額の目安を計算"], footer: "サイソクの計算ツール" },
   "ai-pricing": { heading: "AIの料金早見表", lines: ["ChatGPT・Claude・GeminiのAPIと月額プラン", "日本で使えるか・無料で試せるかも"], footer: "数字はすべて出典の記事で確認" },
   usable: { heading: "今すぐ使えるAI", lines: ["発表されたばかりの新機能・新モデルから", "今日から使えるものだけを毎日更新"], footer: "日本から使えるか・料金・無料かを判定" },
   guides: { heading: "手続きと使い方のガイド", lines: ["年末調整・確定申告からAIの料金まで", "公式の情報をもとに1ページで"], footer: "サイソクのガイド" },
