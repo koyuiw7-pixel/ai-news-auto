@@ -216,6 +216,59 @@ def source_urls(base: dict) -> list[dict]:
     return out[:MAX_SOURCES]
 
 
+# 角度の記事の「答える疑問の役割」（SEO A17・2026-11-10）。同じ元記事に同じ役割のページを2本作らない。
+# Google は同じサイトから上位に出すのは普通2件まで。年金生活者支援給付金・児童手当・ドコモで各4ページになっていた。
+# 手で作った角度の記事（scripts/angle_articles.py。deepDive の印が無い）は題名から役割を読む。上から順に最初に当たったもの
+ROLE_RULES: list[tuple[str, re.Pattern]] = [
+    ("今日やること", re.compile(r"今日やる|今やる|やること|まずやる|すぐやる")),
+    ("対象の確かめ方", re.compile(r"確かめ方|対象は|対象か|対象になる|誰が使える|使えるか|使うには")),
+    ("家族の分", re.compile(r"家族|配偶者|法定代理人|子どもの分")),
+    ("手続き", re.compile(r"手続|申請|届出|届け出|請求の仕方|窓口")),
+    ("不安Q&A", re.compile(r"Q&A|Q＆A|不安|よくある")),
+    ("比較・早見表", re.compile(r"比較|比べ|早見|違い")),
+]
+FIGURE_RE = re.compile(r"(?:最大|約|計|合計)*[0-9０-９][0-9０-９,，.]*(?:万|億|千)?(?:件|円|人|%|％|倍|社|台|回)")
+
+
+def query_role(text: str) -> str:
+    """題名・方向の文から、答える疑問の役割（ROLE_RULES の名前。当たらなければ空）"""
+    for role, pattern in ROLE_RULES:
+        if pattern.search(text or ""):
+            return role
+    return ""
+
+
+def role_of(record: dict) -> str:
+    """角度の記事の役割（queryRole → 深掘りの型 → 題名の順）"""
+    if record.get("queryRole"):
+        return str(record["queryRole"])
+    if record.get("deepDive") in ANGLE_BY_KEY:
+        return ANGLE_BY_KEY[record["deepDive"]]["label"]
+    return query_role(str(record.get("title") or ""))
+
+
+def existing_roles(articles: dict[str, dict], base_slug: str, siblings: list[str] | None = None) -> set[str]:
+    """この元記事（と同じ発表の記事）の角度の記事が、すでに答えている役割"""
+    bases = {base_slug, *(siblings or [])}
+    return {r for a in articles.values() if a.get("angleOf") in bases and (r := role_of(a))}
+
+
+def leading_figure(title: str) -> str:
+    """元の記事の題名の最初の数字（「最大約30万件」→「30万件」。「最大・約」は外す。無ければ空）"""
+    m = FIGURE_RE.search(title or "")
+    return re.sub(r"^(?:最大|約|計|合計)+", "", m.group(0)) if m else ""
+
+
+def sibling_problem(title: str, role: str, base: dict, articles: dict[str, dict]) -> str | None:
+    """角度の記事の候補を出してよいか。同じ役割がある・元の記事の最初の数字で始まる題名なら理由（SEO A17）"""
+    if role and role in existing_roles(articles, base["slug"], list(base.get("_siblings") or [])):
+        return f"同じ役割（{role}）のページがすでにある"
+    figure = leading_figure(str(base.get("title") or ""))
+    if figure and figure in (title or "")[:16]:
+        return f"題名が元の記事と同じ数字（{figure}）で始まる（同じ質問のページになる）"
+    return None
+
+
 def supported(angle: dict, text: str) -> bool:
     """公式の出典ページに、この型に答える材料があるか（言葉の数で見る安い確かめ。最後は品質の門の事実確認）"""
     hits = re.findall(angle["support"], text or "")
@@ -262,6 +315,7 @@ def plan(bases: list[tuple[dict, int]], articles: dict[str, dict], state: dict, 
         slug = base["slug"]
         siblings = list(base.get("_siblings") or [])
         have = existing_angles(articles, slug, siblings)
+        roles = existing_roles(articles, slug, siblings)
         room = ANGLES_PER_BASE - len(have)
         rows = []
         titles = " ".join([base.get("title") or ""] + [articles[s].get("title") or "" for s in siblings if s in articles])
@@ -269,6 +323,9 @@ def plan(bases: list[tuple[dict, int]], articles: dict[str, dict], state: dict, 
             if room <= 0:
                 break
             if angle["key"] in have or any(blocked_attempt(state, b, angle["key"]) for b in [slug, *siblings]):
+                continue
+            # 手で作った角度の記事が、同じ役割にすでに答えている（SEO A17）
+            if angle["label"] in roles:
                 continue
             if COVERED_RE[angle["key"]].search(titles):
                 continue
@@ -389,7 +446,10 @@ def build(base: dict, angle: dict, fetched: list[dict]) -> tuple[str, dict | str
         if verdict.get("ok") and score >= PASS_SCORE:
             if dup := title_duplicate(record.get("title") or "", base["slug"]):
                 return "reject", f"題名がこの7日の記事とほぼ同じ: {dup}"
+            if why := sibling_problem(record.get("title") or "", angle["label"], base, all_articles()):
+                return "reject", why
             record["qualityScore"] = score
+            record["queryRole"] = angle["label"]
             # 門の手直しで消えても、元の記事との結びは残す
             record["angleOf"], record["deepDive"] = base["slug"], angle["key"]
             ensure_base_link(record, base)

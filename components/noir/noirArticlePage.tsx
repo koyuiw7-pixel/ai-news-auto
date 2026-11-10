@@ -28,6 +28,7 @@ import FunnelCard from "@/components/FunnelCard";
 import ShareButtons from "@/components/ShareButtons";
 import MoneyCheckLink from "@/components/MoneyCheckLink";
 import TopicListMembership from "@/components/TopicListMembership";
+import TopicPages from "@/components/TopicPages";
 import type { MoneyTarget } from "@/lib/money-pages";
 import ThreadsFollow from "@/components/ThreadsFollow";
 import ReadNextBox from "@/components/ReadNextBox";
@@ -388,6 +389,8 @@ export function noirArticlePage(ctx: NoirPageContext) {
             <NewsletterSignup variant="article" />
             <PushOptIn />
             {!noirTail && readNextInline && <ReadNextBox link={readNextInline} className="mt-12" />}
+            {/* 同じ話題で別の疑問に答えるページ（元の記事 ⇄ 角度の記事。SEO A17） */}
+            <TopicPages article={article} className="mt-12" />
             {/* 「この記事は「値上げ情報」に載っています」（今までの見た目と同じ。載っていなければ何も出さない。SEO A12） */}
             <TopicListMembership slug={article.slug} className="mt-12" />
             {article.tags.length > 0 && (

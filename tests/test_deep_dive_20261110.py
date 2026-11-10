@@ -260,3 +260,53 @@ class LedgerTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SiblingRoleTest(unittest.TestCase):
+    """SEO A17: 同じ元記事に同じ役割のページを2本作らない・元の記事の最初の数字で始まる題名を出さない"""
+
+    def setUp(self):
+        self.base = art("docomo-my-docomo-data-breach", genre="business", title="ドコモの顧客情報最大約30万件流出　My docomoは緊急メンテナンス中")
+        self.articles = {
+            self.base["slug"]: self.base,
+            "docomo-data-leak-what-to-do": art("docomo-data-leak-what-to-do", title="ドコモの流出　今日やるのは明細とdアカウントの確認",
+                                               angleOf="docomo-my-docomo-data-breach"),
+        }
+
+    def test_role_from_title_and_deep_dive_key(self):
+        self.assertEqual("今日やること", deep_dive.query_role("ドコモ情報流出　今日やるのは明細の確認"))
+        self.assertEqual("家族の分", deep_dive.role_of({"deepDive": "family", "title": "x"}))
+        self.assertEqual("手続き", deep_dive.role_of({"queryRole": "手続き", "title": "家族"}))
+
+    def test_same_role_is_refused(self):
+        why = deep_dive.sibling_problem("ドコモ流出で今やること　パスワードの変更", "今日やること", self.base, self.articles)
+        self.assertIn("今日やること", why)
+
+    def test_title_starting_with_parent_figure_is_refused(self):
+        self.assertEqual("30万件", deep_dive.leading_figure(self.base["title"]))
+        why = deep_dive.sibling_problem("ドコモ流出は最大30万件　一部は法定代理人の情報も", "家族の分", self.base, self.articles)
+        self.assertIn("30万件", why)
+
+    def test_new_role_without_parent_figure_passes(self):
+        self.assertIsNone(deep_dive.sibling_problem("ドコモの手続きはどこで？　再開した9項目", "手続き", self.base, self.articles))
+
+    def test_plan_skips_role_answered_by_hand_made_angle(self):
+        base = art("b1", title="年金生活者支援給付金の対象")
+        articles = {"b1": base, "k": art("k", title="給付金の対象は？生年月日で確かめ方", angleOf="b1")}
+        todo = deep_dive.plan([(base, 50)], articles, {"attempts": {}}, {"b1": RICH})
+        self.assertNotIn("check", [a["key"] for _, a in todo])
+
+    def test_angle_parents_exist(self):
+        """角度の記事の元の記事（angleOf）は、載っている記事（別の登録簿は作らない）"""
+        arts = {p.stem: json.loads(p.read_text("utf-8")) for p in (ROOT / "content" / "articles").glob("*.json")}
+        missing = sorted(f"{s} → {a['angleOf']}" for s, a in arts.items() if a.get("angleOf") and a["angleOf"] not in arts)
+        self.assertEqual([], missing)
+
+    def test_parent_page_lists_children(self):
+        noir = (ROOT / "components" / "noir" / "noirArticlePage.tsx").read_text("utf-8")
+        self.assertIn("<TopicPages article={article}", noir)
+        comp = (ROOT / "components" / "TopicPages.tsx").read_text("utf-8")
+        self.assertIn("この話題のページ", comp)
+        self.assertNotIn("<h2", comp)
+        self.assertEqual(5, deep_dive.TOP_BASES)
+        self.assertEqual(4, deep_dive.ANGLES_PER_BASE)

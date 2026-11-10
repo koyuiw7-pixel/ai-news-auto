@@ -248,3 +248,14 @@ export function nextReads(article: ArticleSummary, candidates: ArticleSummary[],
   for (const { item } of sameCompany) add(item, "同じ企業の発表");
   return picked;
 }
+
+/**
+ * 「この話題のページ」（SEO A17・2026-11-10）。元の記事には、同じ話題で別の疑問に答える角度の記事（angleOf）の一覧。
+ * 角度の記事には、元の記事とほかの角度の記事。別の登録簿は作らず angleOf だけで結ぶ（角度の記事はニュースのサイトマップに載らないので、元の記事から必ず結ぶ）
+ */
+export function topicPages(article: ArticleSummary, all: ArticleSummary[]): { parent?: ArticleSummary; pages: ArticleSummary[] } {
+  const parentSlug = article.angleOf || article.slug;
+  const parent = article.angleOf ? all.find((a) => a.slug === parentSlug) : undefined;
+  const pages = all.filter((a) => a.angleOf === parentSlug && a.slug !== article.slug);
+  return { parent, pages };
+}

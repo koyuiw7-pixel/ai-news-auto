@@ -1,6 +1,7 @@
 import { articleTitle, searchResultTitle } from "@/lib/headline";
 import PeopleInArticle from "@/components/PeopleInArticle";
 import TopicListMembership from "@/components/TopicListMembership";
+import TopicPages from "@/components/TopicPages";
 import { canonicalPathOf, isIndexable, isZeroVisit } from "@/lib/indexing";
 import type { Metadata } from "next";
 import Thumb from "@/components/Thumb";
@@ -940,6 +941,7 @@ export default async function ArticlePage({ params }: Props) {
           {!bodyTail && !inlineOffer && shopLink && <ShopLinks link={shopLink} className="mt-12" />}
 
           {/* 値上げ・障害・リコール・サービス終了の一覧に載っている記事（台帳 A52） */}
+          <TopicPages article={article} className="mt-12" />
           <TopicListMembership slug={article.slug} className="mt-12" />
           {/* 記事に出てくる人物のまとめページ（台帳 A53） */}
           <PeopleInArticle article={article} className="mt-3" />

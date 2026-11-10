@@ -20,6 +20,7 @@ import archive  # noqa: E402
 import feeds  # noqa: E402
 import llm  # noqa: E402
 import main as m  # noqa: E402
+import deep_dive  # noqa: E402
 import quality  # noqa: E402
 import web_articles as w  # noqa: E402
 from genres import AI  # noqa: E402
@@ -61,6 +62,11 @@ def main() -> int:
 
     for spec in args.angle:
         direction, question, reader = (spec.split("|") + ["", "", ""])[:3]
+        # 同じ元記事に同じ役割（今日やること・対象の確かめ方など）のページを2本作らない（SEO A17。deep_dive と同じ門）
+        role = deep_dive.query_role(f"{direction} {question}")
+        if why := deep_dive.sibling_problem("", role, base, deep_dive.all_articles()):
+            print(f"[skip] {direction[:30]}: {why}")
+            continue
         item = {
             "id": f"angle-{args.base}-{abs(hash(spec)) % 10**8}",
             "url": pages[0][0],
@@ -97,7 +103,12 @@ def main() -> int:
             if blocked:
                 verdict = {"ok": False, "problems": [f"公開前の門: {w.indexnow.PUBLISH_FEEDBACK[blocked]}"]}
             if verdict.get("ok") or verdict.get("soft"):
+                if why := deep_dive.sibling_problem(record.get("title") or "", role, base, deep_dive.all_articles()):
+                    print(f"[skip] {record.get('title')}: {why}")
+                    break
                 record["qualityScore"] = verdict.get("score")
+                if role:
+                    record["queryRole"] = role
                 path = m.write_article(record)
                 print(f"[OK] {path.name} {record['title']} / {record['seoTitle']} / {len(record['body'])}字 読みやすさ={verdict.get('readability')}")
                 break
