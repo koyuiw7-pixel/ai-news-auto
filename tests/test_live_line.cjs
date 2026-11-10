@@ -54,3 +54,11 @@ test("速報かどうかは画像の札と同じ isFastNews（breaking か公式
   // 一覧の索引に breaking が入っている（帯・カードが判定に使う）
   assert.match(read("lib/article-index.mjs"), /breaking:\s*a\.breaking/);
 });
+
+test("赤い「速報」は読者に関わる話題だけ（2026-11-11 読者目線レビュー 6位: 財務大臣の面会に「速報」）", () => {
+  assert.equal(isFastNews({ speedMinutes: 30, genreSlug: "public", title: "財務省の片山大臣、ベトナム財政大臣と面会　今後の二国間協力を協議" }), false);
+  assert.equal(isFastNews({ speedMinutes: 30, genreSlug: "public", title: "児童手当の申請期限を延長" }), true);
+  assert.equal(isFastNews({ breaking: true, genreSlug: "ai", title: "OpenAI が新しいモデルを公開" }), true);
+  assert.equal(isFastNews({ speedMinutes: 10, genreSlug: "business", title: "国際海事機関、事務局長の再任を決定" }), false);
+});
+

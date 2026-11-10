@@ -14,8 +14,8 @@ const mocks={
  '@/lib/general':{easyGist:(a)=>a.lede},
  '@/lib/sections':{BROAD_SECTIONS:[{slug:'business',label:'ビジネス・経済'},{slug:'public',label:'社会・行政'}]},
  '@/lib/story-window':win.exports,
- // 面会・式典などの判定は本物（lib/reader-urgency.ts）
- '@/lib/reader-urgency':(()=>{const f=path.join(root,'lib/reader-urgency.ts');const x=new Module(f,module);x.filename=f;x._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,f);return x.exports})(),
+ // 面会・式典などの判定は本物（lib/reader-urgency.ts。本体は lib/cover-path.ts）
+ '@/lib/reader-urgency':(()=>{const f=path.join(root,'lib/cover-path.ts');const x=new Module(f,module);x.filename=f;x._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,f);return x.exports})(),
  // AIの話題の判定は本物（lib/index-rules.json。scripts/indexnow.py が書き出す）
  '@/lib/indexing':(()=>{const r=JSON.parse(fs.readFileSync(path.join(root,'lib/index-rules.json'),'utf8'));return {AI_TOPIC:new RegExp(r.aiTopic.source,r.aiTopic.flags)}})(),
  '@/lib/verdict':{freeLabel:()=>'',japanLabel:()=>'',usability:(v)=>v.status==='available'?'go':'wait',listUsability:(a)=>a.verdict?(a.verdict.status==='available'?'go':'wait'):undefined,verdictOf:(a)=>a.verdict??undefined,isProductNews:(a)=>!/決算|統計|取り組み|啓発/.test(a.title),USABILITY_LABEL:{go:'使える',wait:'まだ'}}

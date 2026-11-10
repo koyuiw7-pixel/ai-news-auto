@@ -127,7 +127,9 @@ class PostShapeTest(unittest.TestCase):
 
     def test_breaking_starts_with_breaking_label_and_callout(self):
         """2026-11-03 オーナー承認その2: 本当の速報だけ【速報】＋読者への呼びかけ。「発表からN分で掲載」は使わない"""
-        for article in (dict(OLD, breaking=True, sourcePublishedAt=FRESH), dict(OLD, speedMinutes=12, publishedAt=FRESH)):
+        # 2026-11-11 読者目線レビュー 6位: 【速報】は読者に関わる話題だけ（persona.urgent_for_reader）。倒産の統計は速報にしないので、速報の形は値上げの話題で確かめる
+        hike = dict(OLD, title="電気料金が12月から値上げ、標準家庭で月300円")
+        for article in (dict(hike, breaking=True, sourcePublishedAt=FRESH), dict(hike, speedMinutes=12, publishedAt=FRESH)):
             with no_weak():
                 text = tp.compose(article, [], breaking=True)
             first = text.splitlines()[0]
@@ -184,7 +186,8 @@ class PostShapeTest(unittest.TestCase):
 
 class OtherChannelsTest(unittest.TestCase):
     def test_x_fits_and_keeps_question_when_possible(self):
-        for base, breaking in ((OLD, False), (NEW, False), (OLD, True)):
+        # 【速報】は読者に関わる話題だけ（2026-11-11）。速報の形は値上げの話題で確かめる
+        for base, breaking in ((OLD, False), (NEW, False), (dict(OLD, title="電気料金が12月から値上げ、標準家庭で月300円"), True)):
             article = dict(base, breaking=breaking, sourcePublishedAt=FRESH)
             with no_weak(), patch.object(tp, "speed_line", return_value=""):
                 text = tp.compose(article, [], breaking=breaking)
@@ -371,3 +374,13 @@ def tearDownModule():
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ReaderUrgencyTest(unittest.TestCase):
+    def test_statistics_and_meetings_do_not_get_breaking_label(self):
+        """2026-11-11 読者目線レビュー 6位: 倒産の統計・大臣の面会に【速報】を付けない（sns_rules.is_fast_news → persona.urgent_for_reader）"""
+        import sns_rules  # noqa: PLC0415
+
+        self.assertFalse(sns_rules.is_fast_news(dict(OLD, breaking=True)))
+        self.assertFalse(sns_rules.is_fast_news(dict(OLD, title="財務大臣がベトナム財政大臣と面会", genreSlug="public", speedMinutes=5)))
+

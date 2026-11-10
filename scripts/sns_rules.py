@@ -298,7 +298,10 @@ def is_fast_news(article: dict | None) -> bool:
     if article.get("type") == "roundup":
         return False
     minutes = article.get("speedMinutes")
-    return bool(article.get("breaking")) or (isinstance(minutes, (int, float)) and not isinstance(minutes, bool))
+    if not (bool(article.get("breaking")) or (isinstance(minutes, (int, float)) and not isinstance(minutes, bool))):
+        return False
+    # 読者に関わる話題だけ（2026-11-11 読者目線レビュー 6位: 財務大臣の面会に「速報」。persona.urgent_for_reader・lib/reader-urgency.ts と同じ）
+    return persona.urgent_for_reader(article)
 
 
 FAST_NEWS_HOURS = 2  # SNS の【速報】は公式の発表からこの時間まで（2026-11-05 オーナー指摘・台帳 S35）
