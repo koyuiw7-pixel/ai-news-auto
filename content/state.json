@@ -3868,14 +3868,6 @@
       "skipped": true,
       "url": "https://www.suntory.co.jp/softdrink/news/pr/article/2026/SBF1746.html?rss=0000000029"
     },
-    "077bebe706eb696a": {
-      "at": "2026-10-27T18:31:51.429066+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "science",
-      "slug": "hiroshima-u-baseball-umpire-bayesian-model",
-      "url": "https://www.hiroshima-u.ac.jp/news/100883"
-    },
     "07b389c6b52900ce": {
       "at": "2026-10-29T03:52:46.823080+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -5067,12 +5059,6 @@
       "reason": "WRC（世界ラリー選手権）へのチーム体制とドライバーの顔ぶれを発表したもので、働く人や家計に関係する経済の一次情報には当たらないため。",
       "skipped": true,
       "url": "https://toyotagazooracing.com/jp/pressrelease/2026/1103-01/"
-    },
-    "17afb76fbd6d3e2b": {
-      "at": "2026-10-27T18:31:29.945936+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（講座）",
-      "skipped": true,
-      "url": "https://www.nii.ac.jp/news/2026/1027-1.html"
     },
     "17c5a2d8cee2cbde": {
       "at": "2026-11-09T08:32:11.406691+00:00",
@@ -9349,6 +9335,20 @@
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
       "skipped": true,
       "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1209_4781.html"
+    },
+    "5ca4dc7b6d88cb31": {
+      "at": "2026-11-10T18:39:45.005839+00:00",
+      "breaking": true,
+      "costUsd": 0.1048,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "businesses-in-chatgpt-business-agents",
+      "url": "https://openai.com/index/introducing-businesses-chatgpt"
     },
     "5ccf7e2f3a2e442c": {
       "at": "2026-11-10T06:58:44.617984+00:00",
@@ -17266,14 +17266,6 @@
       "slug": "digital-agency-mynumber-dashboard-update",
       "url": "https://www.digital.go.jp/resources/govdashboard/mynumber_card_penetration_usage"
     },
-    "d762cc9acb4c6ed6": {
-      "at": "2026-10-27T18:31:29.945739+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "amazon-renaissance-developer-ai-guidelines",
-      "url": "https://www.aboutamazon.com/news/company-news/amazon-software-engineer-role-guideline-ai?utm_source=rss"
-    },
     "d766247d0af6597d": {
       "at": "2026-11-07T15:31:54.986698+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -20400,18 +20392,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:20:09.797211+00:00",
-      "attempt": 1,
-      "id": "2895644a61953b4d",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 95,
-      "source": "docomo-notice",
-      "title": "【お詫び】ドコモオンラインショップ、My docomoの緊急メンテナンス実施について/当社サーバーへの不正アクセスによるお客さま情報流出に関するお知らせ（第四報"
-    },
     {
       "accepted": false,
       "at": "2026-11-09T09:21:02.235659+00:00",
@@ -27741,6 +27721,30 @@
       "warnings": [
         "見出しの書き方: 記号: かっこの直後に「、」",
         "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T18:39:44.980069+00:00",
+      "attempt": 1,
+      "id": "5ca4dc7b6d88cb31",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 80.5,
+        "avg_sentence": 43.3,
+        "long_share": 0.038,
+        "max_paragraph": 128,
+        "paragraphs": 14,
+        "sentences": 26
+      },
+      "score": 88,
+      "source": "openai-news",
+      "title": "Introducing Businesses in ChatGPT",
+      "warnings": [
+        "見出しが60字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（EC）"
       ]
     }
   ],
