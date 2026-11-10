@@ -28,6 +28,11 @@ type Rule = {
 
 // 上から順に見て、最初に当たったものを使う（細かい製品名を先に）
 const RULES: Rule[] = [
+  // 冬の暖房（電気代・燃料代を比べた記事）。リコール・事故の記事には出さない（2026-11-10）
+  { match: /電気(しき|敷き|かけ|掛け)?毛布/, exclude: /リコール|回収|発火|発煙|事故|火災/, name: "電気毛布", query: "電気毛布" },
+  { match: /こたつ/, exclude: /リコール|回収|発火|発煙|事故|火災/, name: "こたつ", query: "こたつ" },
+  { match: /ホットカーペット/, exclude: /リコール|回収|発火|発煙|事故|火災/, name: "ホットカーペット", query: "ホットカーペット" },
+  { match: /石油(ファン)?ヒーター|石油ストーブ/, exclude: /リコール|回収|発火|発煙|事故|火災/, name: "石油ファンヒーター", query: "石油ファンヒーター" },
   { match: /iPhone/i, exclude: /iOS|Siri|更新|アップデート|脆弱性|修正/, name: "iPhone", query: "Apple iPhone" },
   { match: /iPad\s?mini/i, name: "iPad mini", query: "Apple iPad mini" },
   { match: /iPad\s?Pro/i, name: "iPad Pro", query: "Apple iPad Pro" },
