@@ -1,0 +1,152 @@
+{
+  "slug": "alphaproof-code-signal-verification",
+  "sourceType": "web",
+  "sourceUrl": "https://deepmind.google/blog/introducing-alphaproof-code/",
+  "sourceName": "Google DeepMind公式ブログ",
+  "title": "Signalの暗号コード、AIが約4週間で数学的に検証　DeepMind「AlphaProof Code」",
+  "seoTitle": "AlphaProof Codeとは？Signalの検証を解説",
+  "threadsPost": "Signalやメッセージアプリを使っている人に、知っておいてほしい話です。\n\nGoogle DeepMindのAIが、Signalの暗号プロトコルの実際のコードを数学的に検証しました。\n専門家チームなら数年かかる作業を、約4週間で終えたといいます。\n\nメッセージアプリを選ぶとき、何を重視しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "メッセージアプリを選ぶとき、何を重視しますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "使いやすさと安全性、どちらを優先してアプリを選びますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "Signalなどで使われる暗号プロトコルの実際のコードについて、安全性の主要な性質が数学的に証明されました。Google DeepMindのAIエージェントが、従来は専門家チームで数年かかる検証を約4週間で終えたといいます。ツールの一般提供は未発表で、成果物はオープンソースとして公開されています。",
+  "description": "Google DeepMindがAlphaProof Codeを発表。Signalの暗号プロトコルの実コードを約4週間で形式検証し、人の確認は全体の1%に抑えました。仕組みと今後の課題を解説します。",
+  "keywords": [
+    "AlphaProof Code",
+    "形式検証",
+    "Signal",
+    "暗号プロトコル",
+    "Google DeepMind",
+    "Lean",
+    "AIエージェント",
+    "セキュリティ",
+    "Gemini 4 Carbon",
+    "CodeMender"
+  ],
+  "tags": [
+    "生成AI",
+    "AIエージェント",
+    "セキュリティ",
+    "形式検証",
+    "Google DeepMind"
+  ],
+  "highlights": [
+    "Google DeepMindが、Signalプロトコルの実コードの安全性をAIで数学的に証明",
+    "AIが生成したLeanのコードは600万行超で、人が再確認した範囲は全体の1%",
+    "過去に修正済みの実在のバグ2件を戻すと、どちらも危険と機械的に証明"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "セキュリティ担当",
+    "take": "今すぐ使うツールではなく研究成果です。公開された成果物と技術論文で、検証の範囲を確認するとよいでしょう。",
+    "judgedAt": "2026-11-10T12:08:04.992843+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "一般の利用者がすぐ操作するものではなく、直接の影響は小さい発表です。",
+      "セキュリティや暗号実装の担当者は、公開された成果物と技術論文で検証の範囲を確認できます。"
+    ]
+  },
+  "body": "Signalや、Google Messagesのようなメッセージアプリを使っている人にとって、画面や操作が変わる発表ではありません。一方で、通信を守る暗号プログラムの安全性を確かめる手法が大きく進んだことを示しています。\n\nAlphaProof Codeは、AIエージェント（自分で手順を進めるAI）に形式検証をさせる研究用の枠組みです。形式検証とは、コードが欠陥なく動くことを数学的に証明する方法を指します。Google DeepMindの公式ブログによると、対象はSignalプロトコルの実際のコードです。\n\n## 設計ではなく実際のコードを証明\n\n暗号プロトコル（通信を守る決まり事）は、ネットバンキングやウェブ閲覧など、ほぼすべてのデジタル通信を支えています。1つの欠陥で、多くの人が一度に危険にさらされかねません。\n\nそのため、設計段階の検証は長年行われてきました。ただ、実際の脆弱性は設計と実装の間のすき間に潜みがちです。今回のAIエージェントは、端末で動く実際のコードが主要な安全性を満たすことを証明しました。DeepMindはそう説明しています。\n\n証明した性質の例は、端末が一時的に乗っ取られた前後でも、メッセージが保護されることです。DeepMindは、広く使われる暗号プロトコルの実装を形式検証したのは、AIの有無を問わず初めてだとしています。\n\n## 人が決め、AIが証明する分業\n\nAlphaProof Codeは複数の大規模言語モデルを使う枠組みで、研究チームのように作業を分けます。\n\n- 人の専門家とAIが、Signalの安全性の目標を数学的な仕様に翻訳する。人がすべての仕様を確認した\n- Gemini Carbonを使うエージェントが証明を作る。Leanのコードは600万行を超えた\n- エージェントが証明を監査し、人が再確認すべき箇所を示す。範囲はコード全体の1%\n\nLeanは、コードの正しさを数学的に確かめる言語です。残りの部分はLeanが自動で検査するので、専門家は人の判断が要る場所に集中できました。\n\nGemini Carbonについては、Googleが10月に公開した最上位モデルです（[Gemini 4 Carbon](/articles/gemini-4-carbon-cybersecurity-model)）。\n\n## 4週間で完了、過去のバグも見抜く\n\nDeepMindによると、検証にかかったのは約4週間でした。従来は専門家チームが数年かけてきた作業だと説明しています。\n\nシステムが正しいコードと欠陥のあるコードを区別できるかも試されました。過去に修正された実在のバグ2件を、隔離したSignalのコードに戻しました。どちらも、機械で検査できる形で安全でないと証明されたといいます。\n\nSignalの最高技術責任者（CTO）Ehren Kret氏は、従来の検証は範囲が限られていたと述べました。AIエージェントで実際のコードをLeanの定理に変換できる点を「大きな進歩」と評価しています。\n\n## 医療機器や電力網への展開を想定\n\nDeepMindは、この成果が企業・政府・重要インフラに高い水準の安全保証をもたらすと説明します。Signalの中核暗号の検証は、医療機器のファームウェアや電力網のソフトなど、ほかの重要システムを守る土台になるとしています。\n\n自動防御エージェントの「CodeMender」と組み合わせれば、サイバー攻撃の速さと規模に対抗できる可能性も挙げました。ただし、技術の拡大には引き続き研究が必要だと述べています。\n\n## まだ分からないこと\n\n- AlphaProof Codeを一般の開発者や企業が使えるようになる時期や料金は、まだ発表されていません。\n- 日本での提供や日本語対応は、まだ発表されていません。\n- Signal以外のプロトコルやソフトへの適用予定は、具体的には示されていません。\n\n## 開発者・セキュリティ担当者へ\n\nDeepMindは、形式検証の成果物（検証に使ったコードや証明）をオープンソースで公開しています。技術論文も公開されており、自社の暗号実装や重要ソフトの検証を考える担当者は、検証の範囲や前提を確認できます。",
+  "easy": "## ひとことで言うと\n\nGoogle DeepMindのAIが、メッセージアプリSignalの暗号のしくみを、実際のコードの段階まで数学的に確かめました。専門家チームなら数年かかる作業が、約4週間で終わったといいます。\n\n## 何をしたのか\n\n「形式検証」とは、コードが欠陥なく動くことを数学で証明する方法です。安全性の確認としては最も厳しい基準ですが、手間がかかります。\n\nDeepMindは「AlphaProof Code」という仕組みで、人の専門家とAIエージェント（自分で手順を進めるAI）に仕事を分けました。人が「何を証明するか」を決め、AIが証明を作りました。\n\n## 人の確認は1%だけ\n\nAIが作った証明は、Leanという言語で600万行を超えました。Leanが自動で正しさを確かめるため、人が見直したのは全体の1%です。\n\nまた、過去に直された実際のバグ2件を戻したところ、どちらも危険だと証明できました。\n\n## 今後\n\nDeepMindは、医療機器のファームウェアや電力網のソフトにも広げたいとしています。成果物はオープンソースで公開されています。",
+  "channel": "Google DeepMind公式ブログ",
+  "channelId": "",
+  "channelSlug": "google-deepmind-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Introducing AlphaProof Code: a breakthrough in verifying complex software at depth",
+  "publishedAt": "2026-11-10T12:02:28+00:00",
+  "generatedAt": "2026-11-10T12:08:04.992831+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/alphaproof-code-signal-verification-d39e24b2.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "AlphaProof CodeはSignal以外のソフトにも使えますか？",
+      "a": "DeepMindは医療機器のファームウェアや電力網のソフトへの展開を見据えています。ただし、拡大には継続的な研究が必要だと説明しています。"
+    },
+    {
+      "q": "AlphaProof Codeの成果物は誰でも見られますか？",
+      "a": "DeepMindは形式検証の成果物をオープンソースで公開するとしています。詳しい手法は技術論文で読めます。"
+    }
+  ],
+  "todayActions": [
+    "DeepMindの技術論文を開き、Signalのどの安全性が証明されたかを確かめる",
+    "公開された形式検証の成果物（オープンソース）を、自社の暗号実装の検証方針と見比べる",
+    "利用中のメッセージアプリが、暗号の検証をどう公表しているか確認する"
+  ],
+  "relatedSlugs": [
+    "gemini-4-carbon-cybersecurity-model"
+  ],
+  "qualityScore": 92,
+  "breaking": true,
+  "sourcePublishedAt": "2026-11-10T12:02:28+00:00",
+  "detectedAt": "2026-11-10T12:04:20+00:00",
+  "fastLane": true,
+  "speedMinutes": 10,
+  "layout": "noir",
+  "summaryLine": "Google DeepMindが、Signalプロトコルの実コードの安全性をAIで数学的に証明",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/alphaproof-code-signal-verification-fig1-2cdc7937.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "hero",
+      "credit": "Google DeepMind",
+      "sourceUrl": "https://deepmind.google/blog/introducing-alphaproof-code/",
+      "original": "https://lh3.googleusercontent.com/PHIZgiGejgu8shHsJV9pVfWv7Kr5rTj-e2yIj73c8LkDKBnTTAr2r28DN9aZd1vLDjCnd1Wi2qOD0t8bPpNN-3DfmbEgxj0TE-TttqVbpdoOD1xmFQk=w2880-h1620-n-nu-rw-lo"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/alphaproof-code-signal-verification-fig2-0cfe02cf.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "hero",
+      "credit": "Google DeepMind",
+      "sourceUrl": "https://deepmind.google/blog/introducing-alphaproof-code/",
+      "original": "https://lh3.googleusercontent.com/PHIZgiGejgu8shHsJV9pVfWv7Kr5rTj-e2yIj73c8LkDKBnTTAr2r28DN9aZd1vLDjCnd1Wi2qOD0t8bPpNN-3DfmbEgxj0TE-TttqVbpdoOD1xmFQk=w1440-h810-n-nu"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google DeepMind",
+    "provider": "Google DeepMind公式ブログ",
+    "sourceUrl": "https://deepmind.google/blog/introducing-alphaproof-code/",
+    "original": "https://lh3.googleusercontent.com/hn6AiI6lYFo6chi1mL6uJ9nOW9UXfsAKnSyOApiie2urHNU2tmSPUmGn0hNfWyYLRcsWCGjCIrBZSCt1ihZmvW-LDJPfyolsr5w-yvzlknZVzmaH=w1200-h630-n-nu-rw",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-10T12:08:46+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.478,
+    "y": 0.485,
+    "box": [
+      0.0,
+      0.077,
+      0.956,
+      0.893
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/alphaproof-code-signal-verification-d39e24b2.jpg"
+  }
+}

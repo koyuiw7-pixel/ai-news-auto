@@ -19566,6 +19566,20 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/toukei/saikin/hw/iryosd/m26/is2608.html"
     },
+    "f8c1a7370c130fe5": {
+      "at": "2026-11-10T12:08:31.671665+00:00",
+      "breaking": true,
+      "costUsd": 0.1066,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "alphaproof-code-signal-verification",
+      "url": "https://deepmind.google/blog/introducing-alphaproof-code/"
+    },
     "f8df09fff3fe9127": {
       "at": "2026-10-27T16:16:48.998876+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -20546,55 +20560,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T08:22:13.413112+00:00",
-      "attempt": 1,
-      "id": "1b85fcf758d7fe83",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.5,
-        "avg_sentence": 57.2,
-        "long_share": 0.286,
-        "max_paragraph": 233,
-        "paragraphs": 13,
-        "sentences": 21
-      },
-      "score": 88,
-      "source": "jnet21",
-      "title": "創業とスタートアップの違いは何ですか。それぞれの特徴や支援制度について教えてください。",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NEDO・SBIR・JETRO）",
-        "読みやすさ: 文が長い（1文の平均 57.2字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T08:22:46.020273+00:00",
-      "attempt": 0,
-      "id": "1b85fcf758d7fe83",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 69.0,
-        "avg_sentence": 43.1,
-        "long_share": 0.083,
-        "max_paragraph": 150,
-        "paragraphs": 15,
-        "sentences": 24
-      },
-      "score": 90,
-      "source": "jnet21",
-      "title": "創業とスタートアップの違いは何ですか。それぞれの特徴や支援制度について教えてください。",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NEDO・SBIR・JETRO）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-09T08:23:28.512930+00:00",
@@ -27939,6 +27904,53 @@
       "score": 90,
       "source": "mof",
       "title": "片山大臣とベトナムのゴー・ヴァン・トゥアン財政大臣との面会（令和8年11月10日（火））"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T12:08:11.496835+00:00",
+      "attempt": 1,
+      "id": "f8c1a7370c130fe5",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.6,
+        "avg_sentence": 46.3,
+        "long_share": 0.143,
+        "max_paragraph": 141,
+        "paragraphs": 14,
+        "sentences": 28
+      },
+      "score": 90,
+      "source": "google-deepmind-blog",
+      "title": "Introducing AlphaProof Code: a breakthrough in verifying complex software at dep",
+      "warnings": [
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 46.3字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T12:08:31.643469+00:00",
+      "attempt": 0,
+      "id": "f8c1a7370c130fe5",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.7,
+        "avg_sentence": 43.3,
+        "long_share": 0.067,
+        "max_paragraph": 141,
+        "paragraphs": 14,
+        "sentences": 30
+      },
+      "score": 92,
+      "source": "google-deepmind-blog",
+      "title": "Introducing AlphaProof Code: a breakthrough in verifying complex software at dep",
+      "warnings": [
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
     }
   ],
   "short_text_retry": {},
