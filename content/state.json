@@ -16518,6 +16518,20 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111005"
     },
+    "c855e581aacf3d04": {
+      "at": "2026-11-10T13:29:56.260607+00:00",
+      "breaking": true,
+      "costUsd": 0.1135,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "ring-drone-cam-rover-cam-robotics",
+      "url": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot?utm_source=rss"
+    },
     "c865b1246b5375fb": {
       "at": "2026-11-06T13:11:27.079250+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -20610,30 +20624,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T08:26:15.345296+00:00",
-      "attempt": 1,
-      "id": "9c455c94fb7ec58f",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 96.7,
-        "avg_sentence": 64.4,
-        "long_share": 0.556,
-        "max_paragraph": 162,
-        "paragraphs": 6,
-        "sentences": 9
-      },
-      "score": 92,
-      "source": "tokyo-metro",
-      "title": "令和8年度東京都税制調査会報告について",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（EV）",
-        "読みやすさ: 文が長い（1文の平均 64.4字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T08:26:38.445397+00:00",
@@ -27992,6 +27982,30 @@
       "warnings": [
         "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（SEI）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T13:29:56.228350+00:00",
+      "attempt": 1,
+      "id": "c855e581aacf3d04",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.4,
+        "avg_sentence": 33.1,
+        "long_share": 0.025,
+        "max_paragraph": 163,
+        "paragraphs": 15,
+        "sentences": 40
+      },
+      "score": 88,
+      "source": "about-amazon",
+      "title": "Ring announces Ring Robotics, ushering in a new era of security",
+      "warnings": [
+        "見出しが64字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（FCC・LED・TAKE）"
       ]
     }
   ],
