@@ -859,6 +859,12 @@ def main() -> int:
         log(f"[bluesky] 今日 {posted_today(state, now, extra)}/{PER_DAY} 本・前回 {last_sent(state, extra)}")
         if not todo and not live:  # 下書きは直近24時間のいちばんの記事を見本にする（枠の外でも文面を確かめられる）
             todo = [(a["slug"], {"article": a}, "brief") for a in brief_candidates(state, extra, now, now - timedelta(hours=24))[:1]]
+    if live and todo and (why := tp.sns_plan.auto_post_off_reason("bluesky", None, "bluesky_post")):
+        # 2026-11-10 オーナー決定「今後は全て手投稿にしよう」（sns_plan.json の auto_post.bluesky）。急ぎの知らせは auto_post.alerts のときだけ
+        kept = [t for t in todo if tp.sns_plan.auto_post_on("bluesky", t[1].get("article") or t[1])]
+        if len(kept) < len(todo):
+            log(f"[bluesky] {why}（{len(todo) - len(kept)} 本を出しません）")
+        todo = kept
     if not todo:
         log("[bluesky] 出すものはありません（上限・枠・対象なし）")
         return 0

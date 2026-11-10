@@ -34,6 +34,10 @@ class ThreadsHeld(RuntimeError):
     """いまは Threads に投稿を出さない（新しい書き方の承認待ち・間隔が近すぎる公式 API の予備の経路）。記事は落とさず、次の回にもう一度"""
 
 
+class AutoPostOff(ThreadsHeld):
+    """この SNS への記事の自動投稿は止めている（sns_plan.json の auto_post。2026-11-10 オーナー決定「今後は全て手投稿にしよう」）"""
+
+
 def log(message: str) -> None:
     print(message, flush=True)
 

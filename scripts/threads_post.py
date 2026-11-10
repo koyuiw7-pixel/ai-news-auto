@@ -1410,6 +1410,8 @@ def publish(token: dict, text: str, link: str, article: dict | None = None, fetc
     if existing := meta_existing_post(token, article, fetch):
         log(f"  [threads] 同じ記事の投稿がもうあります（{existing}）。二重に出しません")
         return {"id": existing, "permalink": "", "duplicate": True}
+    if why := sns_plan.auto_post_off_reason("threads", article, "threads_post.publish"):
+        raise threads_gate.AutoPostOff(why)  # 2026-11-10 オーナー決定「今後は全て手投稿にしよう」
     threads_gate.enforce_direct(article)  # 新しい書き方の承認待ち（台帳 S46）・間隔（S47）。止めている間は LLM も呼ばない
     reply = ""
     if sns_rules.reader_kind("threads", "article", article) == "reader":
@@ -2159,6 +2161,10 @@ def create_post(api_key: str, post_input: dict, *, service: str, article: dict |
     if service == "facebook" and not source.startswith("facebook_post") and sns_plan.fb_on() and not post_input.get("saveToDraft"):
         # 2026-11-07〜 Facebook の投稿は scripts/facebook_post.py だけ（台帳 S43）
         raise XOwnSlotsOnly(f"Facebook の投稿は facebook_post.py だけが作ります（台帳 S43・{source}）")
+    if not post_input.get("saveToDraft") and (why := sns_plan.auto_post_off_reason(service, article, source)):
+        # 2026-11-10 オーナー決定「今後は全て手投稿にしよう」: どの経路から来ても、止めている SNS には自動で作らない（Buffer は呼ばない）。
+        # ThreadsHeld なので、呼ぶ側は記事を落とさず issue も立てない（スイッチを戻せば次の回から出る）
+        raise threads_gate.AutoPostOff(why)
     reader = service == "threads" and sns_rules.reader_kind("threads", kind, article) == "reader"
     if service == "threads" and not post_input.get("saveToDraft"):
         # 2026-11-07 夜 オーナー承認（台帳 S46）: 新しい書き方の最初の3本が承認されるまで Threads の自動投稿は出さない（ThreadsHeld）
@@ -2581,6 +2587,12 @@ def main() -> int:
             return 0
         # 投稿が無い回でも期限（60日）を延ばし続ける
         token = refresh_if_needed(token)
+
+    # 2026-11-10 オーナー決定「今後は全て手投稿にしよう」: Threads への記事の自動投稿は sns_plan.json の auto_post.threads が true のときだけ。
+    # 止めている間は新しい予定（動画待ちの記録）を作らない（Buffer も LLM も呼ばない）
+    if why := sns_plan.auto_post_off_reason("threads", None, "threads_post"):
+        log(f"[skip] {why}")
+        return 0
 
     # Buffer 経由では、次の自動処理までに来る投稿枠をまとめて予約する。枠が無ければ Buffer を一度も呼ばずに終わる
     slots: list[datetime | None] = free_slots(state) if buffer_key else [None] * args.max

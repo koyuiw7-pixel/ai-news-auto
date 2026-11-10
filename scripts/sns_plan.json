@@ -2,6 +2,14 @@
   "_doc": "SNS の伸ばし方の計画（台帳 S47・S28・S6。2026-11-08 の台帳の見直しで古い枠の数字・リンクの比べ・テストの日の決まりを外した）。scripts/sns_plan.py だけが読む。数字・語を変えるだけで選び方・枠・待ち時間を変えられる。slots_jst は通常の投稿の時刻（日本時間）。daily_cap は1日（日本時間）の自分の投稿の上限（Threads の分。Bluesky は bluesky の別の上限・枠＝台帳 S40、X は 2026-11-07 から x の別の上限・枠＝台帳 S42、Facebook は 2026-11-07 から facebook の別の上限・枠＝台帳 S43。速報も数える。cap_exempt の種類＝ミサイル・災害だけは数えない）。min_gap_min は投稿どうしの最短の間隔。lanes は出す話題（点数が高いほど先）。exclude は SNS に出さない話題（海外の企業向け・開発者向け。サイトには載せる）。muse はとろいも（Muse）の動画の受け渡し。utm は記事のリンクに付ける印",
   "version": 1,
   "decided": "2026-11-05",
+  "auto_post": {
+    "_doc": "2026-11-10 18:35 オーナー決定「自動投稿は伸びない。今後は全て手投稿にしよう」: パイプラインからの記事の自動投稿を SNS ごとに止める（false＝止める・既定）。true にすればその SNS だけ元の自動投稿に戻る。止めるのは記事の自動投稿（通常の枠・速報・朝のまとめ・動画の後追い・埋め合わせ）。手で出す経路（scripts/threads_figure_queue.py・scripts/threads_control_post.py）と、読むだけの点検・計測は止めない。地震・ミサイルなどの急ぎの知らせも自動では出さない（出すなら alerts を true）。11/1〜の Threads の自動投稿は94本・ビューを測れた70本の中央値12.5",
+    "threads": false,
+    "x": false,
+    "bluesky": false,
+    "facebook": false,
+    "alerts": false
+  },
   "slots_jst": [
     "06:30",
     "07:15",

@@ -517,6 +517,12 @@ def main() -> int:
         log(f"[x] 今日 {posted_today(xs, now)}/{sns_plan.x_daily_cap()} 本（速報 {breaking_today(xs, now)} 本は数えない）")
         if not todo and not live and not args.breaking_only:
             todo = [(a, "sample") for a in candidates(xs, flat, now, now - timedelta(hours=24), articles)[:1]]
+    if live and todo and (why := sns_plan.auto_post_off_reason("x", None, "x_post")):
+        # 2026-11-10 オーナー決定「今後は全て手投稿にしよう」（sns_plan.json の auto_post.x）。急ぎの知らせは auto_post.alerts のときだけ
+        kept = [(a, k) for a, k in todo if sns_plan.auto_post_on("x", a)]
+        if len(kept) < len(todo):
+            log(f"[x] {why}（{len(todo) - len(kept)} 本を出しません）")
+        todo = kept
     if not todo:
         log("[x] 出すものはありません（上限・枠・対象なし）")
         return 0

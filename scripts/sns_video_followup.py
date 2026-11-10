@@ -798,6 +798,15 @@ def publish_queued(state: dict, posted: dict, now: datetime, f: dict, creator=No
             q.update({"status": "skipped", "why": why_ex, "at": now.isoformat(timespec="seconds")})
             out.append({"slug": slug, **q})
             continue
+        services = list(((rec.get("pending") or {}).get("inputs") or {}).keys()) or ["threads"]
+        offs = [sns_plan.auto_post_off_reason(s, art_now, "sns_video_followup.publish_queued") for s in services]
+        if all(offs):
+            # 2026-11-10 オーナー決定「今後は全て手投稿にしよう」（sns_plan.json の auto_post）: まだ Buffer に送っていない自動投稿の予定は送らない。
+            # 送った投稿には触らない。スイッチを戻しても、見送った予定は出し直さない（新しい予定から出る）
+            q.update({"status": "skipped", "why": offs[0], "autoPostOff": True, "at": now.isoformat(timespec="seconds")})
+            log(f"[video-followup] {slug} は自動投稿を止めているので送りません（枠 {slot.astimezone(JST):%m/%d %H:%M}）")
+            out.append({"slug": slug, **q})
+            continue
         if stale_post(slug, rec, slot, now):
             # （2026-11-05 S33）Buffer が止まっていた等で出せないまま、出せる時刻から STALE_POST_H 時間を過ぎた → 遅れて出さない
             q.update({"status": "skipped", "why": f"出せる時刻から{STALE_POST_H}時間を過ぎた（Buffer の上限などで出せなかった）ので遅れて出さない", "stale": True,

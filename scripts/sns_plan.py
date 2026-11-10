@@ -653,6 +653,35 @@ def min_gap() -> timedelta:
     return timedelta(minutes=int(plan()["min_gap_min"]))
 
 
+# ---- 記事の自動投稿のスイッチ（2026-11-10 オーナー決定「今後は全て手投稿にしよう」。sns_plan.json の auto_post） ----
+AUTO_POST_SERVICES = {"threads": "threads", "twitter": "x", "x": "x", "bluesky": "bluesky", "facebook": "facebook"}
+# 手で出す経路（止めない）。人が文面を用意して出す
+MANUAL_SOURCES = ("threads_figure_queue", "threads_control_post")
+
+
+def auto_post_on(service: str, article: dict | None = None) -> bool:
+    """この SNS（threads / twitter・x / bluesky / facebook）に、パイプラインが記事を自動で出してよいか。
+    sns_plan.json の auto_post.<SNS> が true のときだけ。キーが無い・読めないときは止める（既定は手投稿だけ）。
+    地震・ミサイルなどの急ぎの知らせ（article の disaster・missile・urgent・safetyAlert）は auto_post.alerts が true なら出す"""
+    try:
+        block = plan().get("auto_post") or {}
+    except (OSError, ValueError):
+        return False
+    key = AUTO_POST_SERVICES.get(str(service or "").lower(), str(service or "").lower())
+    if bool(block.get(key, False)):
+        return True
+    return bool(block.get("alerts", False) and article and _alert(article))
+
+
+def auto_post_off_reason(service: str, article: dict | None = None, source: str = "") -> str:
+    """自動投稿を止めている理由（出してよければ ""）。手で出す経路（MANUAL_SOURCES）は止めない"""
+    if any(str(source or "").startswith(s) for s in MANUAL_SOURCES) or auto_post_on(service, article):
+        return ""
+    key = AUTO_POST_SERVICES.get(str(service or "").lower(), str(service or "").lower())
+    return (f"{key} への記事の自動投稿は止めています（2026-11-10 オーナー決定「今後は全て手投稿にしよう」。"
+            f"scripts/sns_plan.json の auto_post.{key} を true にすれば戻ります）")
+
+
 def cap_exempt(record: dict | None) -> bool:
     """1日の上限に数えない（ミサイル・災害の知らせ）。記事でも投稿の記録でもよい"""
     record = record or {}

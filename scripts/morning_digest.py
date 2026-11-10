@@ -705,6 +705,10 @@ def main() -> int:
     if not tp.DIGEST_ON:
         log("[digest] SNS_DIGEST=0 のため出しません")
         return 0
+    if live and (why := tp.sns_plan.auto_post_off_reason("threads", None, "morning_digest")):
+        # 2026-11-10 オーナー決定「今後は全て手投稿にしよう」（sns_plan.json の auto_post.threads）。朝のまとめも自動では出さない
+        log(f"[digest] {why}")
+        return 0
     if not in_window(args.kind, now) and not args.force:
         log(f"[{args.kind}] いまは出す時間ではありません（{jst:%a %H:%M}）")
         return 0

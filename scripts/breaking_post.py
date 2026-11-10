@@ -136,6 +136,10 @@ def main() -> int:
         if not (tp.sns_plan.cap_exempt(article) or tp.sns_plan.breaking_exempt(article)) and used >= tp.sns_plan.daily_cap():
             log(f"[breaking] {article['slug']}: 今日の自分の投稿が上限 {tp.sns_plan.daily_cap()} 本に達しているので SNS には出しません")
             continue
+        if live and (why := tp.sns_plan.auto_post_off_reason("threads", article, "breaking_post")):
+            # 2026-11-10 オーナー決定「今後は全て手投稿にしよう」（sns_plan.json の auto_post.threads）
+            log(f"[breaking] {article['slug']}: {why}")
+            continue
         kept.append(article)
     found = kept if not args.slug else found
     if not found:
