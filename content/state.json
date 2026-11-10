@@ -3670,6 +3670,20 @@
       "slug": "jr-kyushu-hakata-late-night-extra-trains",
       "url": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/02/20261102Year_End_Party_Season_is_Here_Extra_Late_Night_Trains_Departing_Hakata_in_the_Hour.pdf"
     },
+    "02e4a20d191af380": {
+      "at": "2026-11-10T13:03:20.782793+00:00",
+      "breaking": true,
+      "costUsd": 0.1062,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "gemini-for-healthcare-preview",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-for-healthcare/"
+    },
     "031a673e562848d1": {
       "at": "2026-11-05T13:12:04.999278+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -20578,87 +20592,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-09T08:23:28.512930+00:00",
-      "attempt": 1,
-      "id": "38df0c5f031b95f5",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "リード「2026年3月31日からの適用に向け準備が進む」→ 確認済みの文脈（金融庁「10.pdf」）では2026年3月31日は既に「適用開始」の日付で、適用はすでに始まっている。適用前の準備段階とするのは日付の取り違え",
-        "本文「2026年3月31日からの適用開始に向けて準備が進められています」→ 同上。適用開始は2026年3月31日で、記事公開時点（2026年11月）より前のため、将来の予定として書くのは誤り",
-        "「2026年3月の本格適用に向けた細部の詰めの段階に入ったことを示しています」（編集部の見方）→ 2026年3月は既に過去であり、この解釈は確認済みの日付と矛盾する",
-        "「金融庁は、送信者の氏名や属性の付記を求めており、個人情報や法人情報に配慮しつつ意見内容を公表するとしています」→ 元記事は氏名等の開示は「開示の請求等があった場合」と書いており、公表するとは書いていないため、言い換えが不正確",
-        "「個人契約者が行う手続きはありません」「加入中の契約…が今すぐ変わるものではありません」→ 元記事に直接の記載はなく、制度の性質からの推測として書かれている（根拠の明示が無い断定）",
-        "「専門家や保険会社からの意見募集」→ 元記事は意見の提出者を専門家や保険会社に限っておらず、対象を狭めている"
-      ],
-      "readability": {
-        "avg_paragraph": 81.3,
-        "avg_sentence": 56.3,
-        "long_share": 0.462,
-        "max_paragraph": 133,
-        "paragraphs": 9,
-        "sentences": 13
-      },
-      "score": 62,
-      "source": "fsa",
-      "title": "「経済価値ベースのソルベンシー規制に関する告示の一部改正（案）」について公表しました。",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 56.3字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T08:24:10.273729+00:00",
-      "attempt": 1,
-      "id": "38df0c5f031b95f5",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 74.0,
-        "avg_sentence": 53.8,
-        "long_share": 0.455,
-        "max_paragraph": 106,
-        "paragraphs": 8,
-        "sentences": 11
-      },
-      "score": 88,
-      "source": "fsa",
-      "title": "「経済価値ベースのソルベンシー規制に関する告示の一部改正（案）」について公表しました。",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 53.8字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T08:24:22.260445+00:00",
-      "attempt": 0,
-      "id": "38df0c5f031b95f5",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 指示文の見出しが本文に混ざった（# 今の原稿の数値）"
-      ],
-      "readability": {
-        "avg_paragraph": 74.0,
-        "avg_sentence": 53.8,
-        "long_share": 0.455,
-        "max_paragraph": 106,
-        "paragraphs": 8,
-        "sentences": 11
-      },
-      "score": 88,
-      "source": "fsa",
-      "title": "「経済価値ベースのソルベンシー規制に関する告示の一部改正（案）」について公表しました。",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 53.8字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-09T08:25:25.687241+00:00",
       "attempt": 1,
       "id": "9c455c94fb7ec58f",
@@ -27966,6 +27899,86 @@
       "title": "Introducing AlphaProof Code: a breakthrough in verifying complex software at dep",
       "warnings": [
         "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T13:02:42.404301+00:00",
+      "attempt": 1,
+      "id": "02e4a20d191af380",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "本文「一般の患者や個人の利用者の手続きは変わりません」→ 元記事に患者や個人利用者への影響の記載はなく、断定の根拠がない。",
+        "本文「AIが単独で最終判断をする形ではありません」→ 元記事は人の監督（human oversight）を置くとだけ書いており、単独判断でないとまでは述べていない。",
+        "かんたん版「使えるのは一部のパートナーだけです」→ 元記事は当初プレビュー提供でパートナーと並んで提供すると書くのみで、利用範囲を限定する記述はない。",
+        "本文「現時点で使えるのはプレビュー版の参加企業に限られ」→ 参加条件が未発表なのに、利用者を参加企業に限定するように読める。",
+        "今日やること「日本向けのGoogle AI Plusは月725円、Proは月2,900円」→ 確認済みの料金表と一致するが、Gemini for healthcareとは別の個人向けプランであり、記事の主題との関係が説明されていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 85.7,
+        "avg_sentence": 47.1,
+        "long_share": 0.2,
+        "max_paragraph": 193,
+        "paragraphs": 11,
+        "sentences": 20
+      },
+      "score": 80,
+      "source": "google-blog-all",
+      "title": "Google Cloud launches Gemini for healthcare.",
+      "warnings": [
+        "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（HCA）",
+        "読みやすさ: 文が長い（1文の平均 47.1字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T13:02:59.791704+00:00",
+      "attempt": 1,
+      "id": "02e4a20d191af380",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.7,
+        "avg_sentence": 47.9,
+        "long_share": 0.211,
+        "max_paragraph": 193,
+        "paragraphs": 11,
+        "sentences": 19
+      },
+      "score": 90,
+      "source": "google-blog-all",
+      "title": "Google Cloud launches Gemini for healthcare.",
+      "warnings": [
+        "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（HCA）",
+        "読みやすさ: 文が長い（1文の平均 47.9字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T13:03:20.759803+00:00",
+      "attempt": 0,
+      "id": "02e4a20d191af380",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.5,
+        "avg_sentence": 42.3,
+        "long_share": 0.136,
+        "max_paragraph": 196,
+        "paragraphs": 11,
+        "sentences": 22
+      },
+      "score": 93,
+      "source": "google-blog-all",
+      "title": "Google Cloud launches Gemini for healthcare.",
+      "warnings": [
+        "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（HCA）"
       ]
     }
   ],
