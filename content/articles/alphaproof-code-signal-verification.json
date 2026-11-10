@@ -90,9 +90,8 @@
     }
   ],
   "todayActions": [
-    "DeepMindの技術論文を開き、Signalのどの安全性が証明されたかを確かめる",
-    "公開された形式検証の成果物（オープンソース）を、自社の暗号実装の検証方針と見比べる",
-    "利用中のメッセージアプリが、暗号の検証をどう公表しているか確認する"
+    "DeepMindの技術論文を開き、証明されたSignalの安全性の性質を確かめる",
+    "公開された形式検証の成果物を開き、検証の範囲と前提を確かめる"
   ],
   "relatedSlugs": [
     "gemini-4-carbon-cybersecurity-model"
@@ -148,5 +147,70 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/alphaproof-code-signal-verification-d39e24b2.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "証明は、端末で実際に動くコンパイル後のコードまで及ぶとされています。設計と実装の隙間に潜む欠陥を狙うため、証明の難しさが大きく増すと説明されています。",
+      "source": "https://deepmind.google/blog/introducing-alphaproof-code/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "DeepMindの技術論文を開き、証明されたSignalの安全性の性質を確かめる",
+      "source": "https://deepmind.google/blog/introducing-alphaproof-code/",
+      "steps": [
+        "ページの「Read the technical paper」を押す",
+        "PDFを開き、証明された安全性の性質を探す",
+        "端末が一時的に乗っ取られた場合の保護が対象か見る"
+      ],
+      "url": "https://deepmind.google/documents/36/Formal_Verification_of_Signal_4.pdf"
+    },
+    {
+      "action": "公開された形式検証の成果物を開き、検証の範囲と前提を確かめる",
+      "source": "https://deepmind.google/blog/introducing-alphaproof-code/",
+      "steps": [
+        "「formal verification artifacts」のリンクを開く",
+        "検証に使ったコードと証明の範囲を確認する"
+      ],
+      "url": "https://google-deepmind.github.io/code-verification"
+    }
+  ],
+  "cause": {
+    "text": "暗号プロトコルは設計段階の検証が長年行われてきましたが、実際の脆弱性は設計と実装のすき間に潜みがちです。そこで、端末で動く実際のコードまで証明する取り組みが行われました。",
+    "status": "background",
+    "source": "https://deepmind.google/blog/introducing-alphaproof-code/"
+  },
+  "worries": [
+    {
+      "q": "Signalの中核の暗号コードは本当に安全だと確かめられた？",
+      "a": "研究では、Signalの中核の暗号コードが、開発者が定めた主要な安全性を満たすことを証明したと説明されています。過去に修正された実在のバグ2件は、証明の仕組みで安全でないと見抜けたとされています。",
+      "source": "https://deepmind.google/blog/introducing-alphaproof-code/",
+      "action": "論文で、どの安全性が証明されたのかを自分の目で確かめる"
+    },
+    {
+      "q": "端末が乗っ取られたら、それまでのメッセージは守られる？",
+      "a": "証明された性質の例として、端末が一時的に乗っ取られた前後でも、メッセージが保護されることが挙げられています。研究では、この性質が実際に動くコードまで証明されたと説明されています。",
+      "source": "https://deepmind.google/blog/introducing-alphaproof-code/",
+      "action": "論文で、乗っ取り時の保護がどの範囲まで証明されたかを確認する"
+    },
+    {
+      "q": "AIが作った証明は、本当に信用できる？",
+      "a": "AIエージェントが作った証明は、すべてLeanという言語で検査されると説明されています。人の専門家は、Signalの安全性の目標を数学的な仕様に翻訳する部分を確認しました。",
+      "source": "https://deepmind.google/blog/introducing-alphaproof-code/",
+      "action": "成果物のページで、検証に使われたコードと証明が公開されているかを見る"
+    },
+    {
+      "q": "医療機器や電力網のソフトも、同じように守られる？",
+      "a": "Signalの中核暗号の検証は、医療機器のファームウェアや電力網のソフトなど、ほかの重要システムを守る土台になるとされています。ただし、技術の拡大には引き続き研究が必要だと述べられています。",
+      "source": "https://deepmind.google/blog/introducing-alphaproof-code/",
+      "action": "重要システムへの応用はまだ研究段階と説明されているため、すぐに何かを変える必要はないと押さえておく"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "設計の隙間まで証明したことが肝",
+    "cause": "なぜ設計だけでなく実際のコードを証明したか",
+    "steps": "論文と成果物を、今日自分で確かめる",
+    "worries": "Signalは今も安全？端末が乗っ取られたら？"
+  },
+  "depthAt": "2026-11-10T12:25:49+00:00"
 }

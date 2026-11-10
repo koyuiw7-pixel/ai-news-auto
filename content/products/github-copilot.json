@@ -10,38 +10,46 @@
   "companyName": "Microsoft",
   "category": "開発ツール",
   "overview": {
-    "text": "GitHub Copilotは、プログラムの補完や作業の代行をするAIの開発支援サービスです。Microsoftが提供しており、モデルの選択肢追加やAPIによる設定管理などのアップデートが発表されています。",
+    "text": "GitHub Copilotは、プログラムの補完や作業の代行をするAIの開発支援サービスです。Microsoftが提供し、複数のモデルやエージェント機能の拡張が順次発表されています。",
     "sources": [
-      "github-copilot-code-review-api-settings",
-      "github-copilot-weekly-releases-nov-2"
+      "github-copilot-weekly-releases-nov-2",
+      "microsoft-ai-ecosystem-kimi-k3-mcp-matome"
     ]
   },
   "facts": [
-    {
-      "label": "料金",
-      "value": "月10ドルから",
-      "sources": [
-        "github-copilot-security-extension"
-      ]
-    },
     {
       "label": "日本での提供",
       "value": "日本で利用できる",
       "sources": [
         "github-copilot-code-review-api-settings",
-        "github-copilot-security-extension"
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "VS Code、Xcode等",
+      "sources": [
+        "github-copilot-weekly-releases-nov-2",
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "開発者および管理者",
+      "sources": [
+        "github-copilot-code-review-api-settings"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "コードレビューの設定をREST APIとGraphQL APIから変更できます。",
+      "text": "REST APIやGraphQL APIからコードレビューの設定を変更できます。",
       "sources": [
         "github-copilot-code-review-api-settings"
       ]
     },
     {
-      "text": "Xcode 27.3 betaの標準コーディングアシスタントで利用できます。",
+      "text": "Xcode 27.3 betaの標準コーディングアシスタントとして利用できます。",
       "sources": [
         "github-copilot-weekly-releases-nov-2"
       ]
@@ -53,21 +61,27 @@
       ]
     },
     {
-      "text": "JetBrains AirでCopilotを使ったクラウド実行ができます。",
+      "text": "フロンティア級LLM「Kimi K3」をモデル選択肢に追加して利用できます。",
       "sources": [
-        "github-copilot-jetbrains-air"
+        "github-copilot-kimi-k3-multi-agent"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "Proプランは月10ドル、Pro+プランは月39ドル、Maxプランは月100ドルです。",
+      "text": "Proプランは月15ドル分のAIクレジットが付与されます。",
       "sources": [
         "github-copilot-security-extension"
       ]
     },
     {
-      "text": "Freeプランは0ドルで利用できます。",
+      "text": "Pro+プランは月70ドル分のAIクレジットが付与されます。",
+      "sources": [
+        "github-copilot-security-extension"
+      ]
+    },
+    {
+      "text": "Maxプランは月200ドル分のAIクレジットが付与されます。",
       "sources": [
         "github-copilot-security-extension"
       ]
@@ -77,20 +91,25 @@
     {
       "text": "GitHub Copilot自体は日本で使えます。",
       "sources": [
-        "github-copilot-code-review-api-settings",
-        "github-copilot-security-extension"
+        "github-copilot-code-review-api-settings"
+      ]
+    },
+    {
+      "text": "公式ドキュメントは日本語で公開されています。",
+      "sources": [
+        "github-copilot-weekly-releases-nov-2"
       ]
     }
   ],
   "howto": [
     {
-      "text": "XcodeではXcode 27.3 betaのSettingsにあるIntelligence画面で設定します。",
+      "text": "XcodeではXcode 27.3 betaの「Settings」にある「Intelligence」から設定できます。",
       "sources": [
         "github-copilot-weekly-releases-nov-2"
       ]
     },
     {
-      "text": "セキュリティ拡張はターミナルでのコマンド実行やアプリのカスタマイズから導入できます。",
+      "text": "セキュリティ拡張機能はターミナル等からインストールして利用できます。",
       "sources": [
         "github-copilot-security-extension"
       ]
@@ -98,46 +117,40 @@
   ],
   "differences": [
     {
-      "text": "影響ダッシュボードの採用グラフにチャットとVS Codeのエージェント画面が加わり9機能になりました。",
+      "text": "コードレビューの設定をREST APIとGraphQL APIから変更できるようになりました。",
       "sources": [
-        "copilot-impact-dashboard-chat-vscode-agent"
+        "github-copilot-code-review-api-settings"
       ]
     }
   ],
   "faq": [
     {
-      "q": "無料で使えるプランはありますか？",
-      "a": "Freeプランが用意されていますが、利用制限があります。",
+      "q": "どのようなプランがコードレビュー設定のAPI対象ですか？",
+      "a": "Pro、Pro+、Max、Business、Enterpriseの各プランが対象です。",
       "sources": [
-        "github-copilot-security-extension"
+        "github-copilot-code-review-api-settings"
       ]
     },
     {
-      "q": "どのようなプランがありますか？",
-      "a": "Free、Pro、Pro+、Maxなどのプランが用意されています。",
-      "sources": [
-        "github-copilot-security-extension"
-      ]
-    },
-    {
-      "q": "Xcodeで使えますか？",
-      "a": "Xcode 27.3 betaの標準コーディングアシスタントで公開プレビューとして利用できます。",
+      "q": "Xcodeで使うにはどのバージョンが必要ですか？",
+      "a": "Xcode 27.3 betaが必要です。",
       "sources": [
         "github-copilot-weekly-releases-nov-2"
       ]
     },
     {
-      "q": "SlackやTeamsで使えますか？",
-      "a": "@GitHubを使ってチャット上でバグ調査や実装を進められます。",
+      "q": "モデルの選択肢にはどのようなものがありますか？",
+      "a": "Kimi K3などのフロンティア級LLMが追加されています。",
       "sources": [
-        "github-copilot-slack-teams-ga"
+        "microsoft-ai-ecosystem-kimi-k3-mcp-matome",
+        "github-copilot-kimi-k3-multi-agent"
       ]
     }
   ],
   "timeline": [
     {
-      "date": "2026-08-15",
-      "slug": "github-copilot-kimi-k3-multi-agent",
+      "date": "2026-09-08",
+      "slug": "microsoft-ai-ecosystem-kimi-k3-mcp-matome",
       "event": "GitHub CopilotにKimi K3を追加"
     },
     {
@@ -152,13 +165,13 @@
     },
     {
       "date": "2026-11-07",
-      "slug": "github-copilot-code-review-api-settings",
-      "event": "コードレビューの設定をAPIで変更可能に"
+      "slug": "github-copilot-weekly-releases-nov-2",
+      "event": "XcodeやJetBrains Airで利用可能に"
     },
     {
       "date": "2026-11-07",
-      "slug": "github-copilot-weekly-releases-nov-2",
-      "event": "XcodeやJetBrains Airに対応"
+      "slug": "github-copilot-code-review-api-settings",
+      "event": "コードレビューの設定をAPIで変更可能に"
     }
   ],
   "related": [
@@ -216,9 +229,9 @@
     "github-copilot-reusable-agent-skills-guide",
     "github-copilot-kimi-k3-multi-agent"
   ],
-  "signature": "2b11ab46af918d7b",
-  "primarySignature": "96100670556d65c4",
+  "signature": "31a852981c0d3bdc",
+  "primarySignature": "82f31170524ee2c6",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:48+00:00",
-  "updatedAt": "2026-11-09T13:35:47+00:00"
+  "updatedAt": "2026-11-10T12:24:14+00:00"
 }

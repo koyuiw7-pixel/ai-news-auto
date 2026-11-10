@@ -6,7 +6,7 @@
   "companyName": "Google",
   "category": "AIモデル",
   "overview": {
-    "text": "Gemini 4 Carbonは、ソフトの弱点発見や修正、長時間の開発作業に強いGoogleのAIモデルです。Google DeepMindが2026年10月28日に発表しました。",
+    "text": "Gemini 4 Carbonは、Googleが開発したAIモデルシリーズの最上位モデルです。長い開発作業とサイバー防御を重点に置いており、2026年10月28日付で発表されました。",
     "sources": [
       "gemini-4-carbon-cybersecurity-model"
     ]
@@ -14,105 +14,84 @@
   "facts": [
     {
       "label": "料金",
-      "value": "入力100万トークン2ドル、出力10ドル",
+      "value": "入力100万トークン2ドル",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
       "label": "提供開始",
-      "value": "2026年10月28日に発表",
+      "value": "一部のサイバー防御担当者",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "label": "日本での提供",
-      "value": "発表の時点では案内はありません",
-      "sources": [
-        "google-ai-news-october-2026"
-      ]
-    },
-    {
       "label": "向いている人",
-      "value": "サイバー防御担当者、開発者",
+      "value": "セキュリティ防御の専門チーム",
       "sources": [
-        "google-ai-news-october-2026",
         "gemini-4-carbon-cybersecurity-model"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "ソフトの弱点（脆弱性）の発見から検証、修正までをこなすことができます。",
+      "text": "SEC-bench Proで88.2%を記録し、実在するソフトの脆弱性を見つけます。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "text": "数日かかるような長時間の開発作業や不具合の修正を進めることができます。",
+      "text": "CWE-benchで71.0%を記録し、原因から修正コードを作ります。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "text": "安全なコードを生成できる成功率がArgonの2倍以上になっています。",
+      "text": "Signalの暗号プロトコルの実コードを約4週間で形式検証しました。",
       "sources": [
-        "gemini-4-carbon-cybersecurity-model"
+        "alphaproof-code-signal-verification"
       ]
     },
     {
-      "text": "曖昧な指示のときに勝手に推測せず、関連資料を集めて違いを確認してから動きます。",
+      "text": "Gemini Carbonを使うエージェントが、Leanのコードを600万行超で作りました。",
       "sources": [
-        "gemini-4-carbon-cybersecurity-model"
+        "alphaproof-code-signal-verification"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "入力は100万トークンあたり2ドルです。",
+      "text": "導入価格として、入力100万トークンあたり2ドル、出力100万トークンあたり10ドルです。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "text": "出力は100万トークンあたり10ドルです。",
-      "sources": [
-        "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "text": "キャッシュ済みの入力は、入力価格の95%引きになります。",
+      "text": "キャッシュ済みの入力は、入力価格から95%引きになります。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     }
   ],
-  "japan": [
+  "japan": [],
+  "howto": [
     {
-      "text": "発表の時点では、日本での提供について案内はありません。",
+      "text": "「Fairwind Program」を通じて信頼できるパートナーに段階的に広げられます。",
       "sources": [
-        "google-ai-news-october-2026",
         "gemini-4-carbon-cybersecurity-model"
       ]
     }
   ],
-  "howto": [],
   "differences": [
     {
-      "text": "Argonに比べて、安全なコード生成の成功率が2倍以上になりました。",
+      "text": "10月13日に提供が始まったGemini 4 Argonの約2週間後に発表された最上位モデルです。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "text": "根拠のない主張や、やりすぎ・やり残しが減りました。",
-      "sources": [
-        "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "text": "プロンプト注入攻撃への耐性が高まりました。",
+      "text": "安全なコードを生成できる成功率がArgonの2倍以上と説明されています。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
@@ -120,32 +99,31 @@
   ],
   "faq": [
     {
-      "q": "いつから使える？",
-      "a": "まずは一部のサイバー防御担当者向けに提供が始まっています。一般向けの提供時期は未定です。",
-      "sources": [
-        "google-ai-news-october-2026",
-        "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "q": "誰に向いている？",
-      "a": "サイバー防御担当者や開発者に向いています。数日続く調査や大規模コードの不具合修正に使えます。",
+      "q": "いつ発表されましたか？",
+      "a": "Google公式ブログによると、10月28日付で発表されました。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "q": "Gemini 4 Argonとの違いは？",
-      "a": "安全なコード生成の成功率や、攻撃への耐性が高くなっています。根拠のない主張も約半分に減りました。",
+      "q": "得意なことは何ですか？",
+      "a": "長い時間をかけて進める開発作業と、ソフトの弱点を見つけて直すサイバー防御を重点に置いています。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "q": "無料で試せる？",
-      "a": "無料枠についての言及はありません。料金はAPIの従量課金制です。",
+      "q": "誰が使えますか？",
+      "a": "発表時点では一部のサイバー防御担当者や信頼できるパートナーに提供されています。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
+      ]
+    },
+    {
+      "q": "試験中の段階ですか？",
+      "a": "GoogleのまとめではCarbonは試験中とされ、限られた人だけが試している段階です。",
+      "sources": [
+        "google-ai-news-october-2026"
       ]
     }
   ],
@@ -153,7 +131,7 @@
     {
       "date": "2026-10-29",
       "slug": "gemini-4-carbon-cybersecurity-model",
-      "event": "上位モデル「Gemini 4 Carbon」を発表"
+      "event": "新AIモデル「Gemini 4 Carbon」を発表"
     }
   ],
   "related": [
@@ -163,15 +141,16 @@
     "genie-4"
   ],
   "articles": [
+    "alphaproof-code-signal-verification",
     "google-ai-news-october-2026",
     "gemini-4-carbon-cybersecurity-model"
   ],
   "linkFrom": [
     "gemini-4-carbon-cybersecurity-model"
   ],
-  "signature": "d9d6c053db03d881",
+  "signature": "ce25e8b16a7d1c8d",
   "primarySignature": "462be5b121013300",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-29T12:27:16+00:00",
-  "updatedAt": "2026-11-03T11:01:30+00:00"
+  "updatedAt": "2026-11-10T12:25:22+00:00"
 }

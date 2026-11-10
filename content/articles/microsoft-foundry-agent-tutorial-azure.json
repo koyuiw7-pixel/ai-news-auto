@@ -1,0 +1,121 @@
+{
+  "slug": "microsoft-foundry-agent-tutorial-azure",
+  "title": "「Microsoft Foundry」の使い方と無料枠　200ドル分のテストが可能に",
+  "seoTitle": "Microsoft Foundryの使い方と料金：日本での提供状況",
+  "threadsPost": "社内の業務自動化を試したい人に、知っておいてほしい話です。\n\nMicrosoftがAIエージェント開発基盤「Microsoft Foundry」のデモを公開しました。\n新規登録で200ドル分の無料枠が使え、OpenAIやAnthropicなどのモデルを切り替えてテストできます。\n\n社内ツールの開発で使うAIモデル、一番重視するのは応答速度ですか、それとも回答の正確さですか？",
+  "threadsHook": "use_case",
+  "threadsQuestions": [
+    {
+      "pattern": "ab",
+      "question": "社内ツールの開発で使うAIモデル、一番重視するのは応答速度ですか、それとも回答の正確さですか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "AIエージェントに外部連携させるとき、セキュリティ面で一番気をつけるポイントは何ですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "Microsoftは、AIエージェントの開発や評価、コスト管理を1箇所で行えるプラットフォーム「Microsoft Foundry」の解説動画を公開しました。新規登録時には200ドル分の無料テスト枠が利用でき、OpenAIやAnthropicなどの多様なAIモデルを切り替えて検証できます。自社の業務システムにAIエージェントを組み込みたい開発者は、ポータルサイトからすぐに試せます。",
+  "description": "Microsoft Foundryの使い方や料金、企業での導入メリットを解説。200ドル分の無料枠を使ったAIエージェント構築手順や、Zapier MCP連携、Azure SDKでの組み込み方法まで動画をもとに分かりやすく伝えます。",
+  "keywords": [
+    "Microsoft Foundry",
+    "AIエージェント",
+    "Azure",
+    "使い方",
+    "料金",
+    "無料枠",
+    "MCP",
+    "ポータル"
+  ],
+  "tags": [
+    "Microsoft",
+    "Copilot",
+    "生成AI",
+    "Azure",
+    "AIエージェント",
+    "開発ツール"
+  ],
+  "highlights": [
+    "「Microsoft Foundry」は200ドル分の無料枠でAIエージェントの構築とテストが試せます。",
+    "OpenAIやAnthropic、DeepSeekなどの主要モデルを同一画面で切り替えて比較検証できます。",
+    "外部のMCPサーバーと連携し、権限を絞った安全な業務自動化エージェントを構築できます。"
+  ],
+  "timetable": [
+    {
+      "time": "0:00",
+      "label": "Adrian Twarog氏とAdam Bogobowicz氏のオープニング対談"
+    },
+    {
+      "time": "2:00",
+      "label": "Microsoft Foundryのアカウント開設とAzureサブスクリプション連携"
+    },
+    {
+      "time": "3:53",
+      "label": "エージェントの新規作成とPlaygroundでのプロンプトテスト"
+    },
+    {
+      "time": "4:42",
+      "label": "モデルカタログの確認と利用枠（クォータ）の申請手順"
+    },
+    {
+      "time": "6:36",
+      "label": "ツール機能の確認とZapier MCPサーバーの接続デモ"
+    },
+    {
+      "time": "9:27",
+      "label": "エージェントのWebアプリ公開とAzure SDKコードの生成"
+    },
+    {
+      "time": "10:16",
+      "label": "開発の背景とエンタープライズ管理の重要性に関する対談"
+    }
+  ],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "無料枠あり",
+    "free": true,
+    "audience": "開発者",
+    "take": "200ドル分の無料枠があるため、まずはai.azure.comから手元の業務自動化をテストするとよいでしょう。",
+    "judgedAt": "2026-11-10T12:21:48.435932+00:00"
+  },
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "社内の問い合わせ対応やメール下書き作成などの業務を、AIエージェントで自動化できます。",
+      "200ドル分の無料クレジットを活用すれば、自社の開発コストをかけずに検証を開始できます。",
+      "Azureの管理画面でトークン使用量や利用金額を一元監視できるため、副業や社内開発での予算オーバーを防げます。"
+    ]
+  },
+  "body": "AIエージェントを使った自社ツールの開発や検証を考えている開発者に関係する発表です。個人で試す場合、自動で有料プランに切り替わることはなく、登録時に付与される無料枠の範囲で安全にテストできます。「Microsoft Foundry」は、AIモデルの選定からエージェント作成、外部ツール連携、コスト管理までを1つの画面で行える開発プラットフォームです。\n\n## 「Microsoft Foundry」の使い方と無料枠の始め方\n\n利用を始めるには、ポータルサイト（ai.azure.com）にアクセスします。\n\nサインインには既存のGitHubアカウントなどを利用できます。\n\nログイン後、Azureのサブスクリプション（利用契約）を登録してアカウントを連携させます。\n\n登録時には200ドル（約3万円）分の無料クレジットが付与されるため、費用をかけずに初期テストを進められます。\n\n## エージェント構築とモデル選択の手順\n\n画面上の「Build an agent」から新しいAIエージェントを作成します。\n\n対話モードとしてテキストや音声を選択し、名前を設定するとテスト環境（Playground）が開きます。\n\nPlaygroundでは、プロンプト（指示文）を入力して即座に応答を確認できます。\n\n使用するAIモデルは画面上のドロップダウンから切り替えられます。\n\nモデルカタログには、OpenAIのGPTシリーズだけでなく、AnthropicのClaudeやDeepSeek、Qwenなど多様なモデルが揃っています。\n\n特定の大型モデルを使用する場合は、「Manage」メニューの「Quota」から利用枠の増加申請を行います。\n\n申請フォームを送信後、承認まで1〜2営業日ほどかかります。\n\n## Zapier MCPを連携した安全なツール呼び出し\n\nエージェントに特定の作業を実行させるため、外部ツールとの連携を設定できます。\n\nMCP（AIと外部システムを接続する標準規格）を利用すれば、Zapierなどの外部サービスと安全に連携できます。\n\n例えばZapier MCPを接続する際、メールの検索と下書き作成の権限だけを許可するように絞り込めます。\n\n誤ってメールを送信したり削除したりするリスクを伏せ、安全な自動化エージェントを構築できます。\n\n## Webアプリ公開とAzure SDKでの組み込み\n\n作成したエージェントは、画面上の「Publish」ボタンからWebアプリとしてすぐに公開できます。\n\nブラウザ上で動くWebアプリのプレビュー画面が生成され、実際の挙動を確認できます。\n\nまた「Continue in code」を選択すると、JavaScriptやPython向けのAzure SDK（開発用キット）のコードが表示されます。\n\nこのコードを自社のアプリケーションに貼り付けるだけで、作成したエージェントを組み込めます。\n\n## 企業で導入するメリットとコスト管理\n\n動画内では、MicrosoftのAdam Bogobowicz氏と開発者のAdrian Twarog氏による対談も行われました。\n\n企業でMicrosoft Foundryを導入する最大のメリットは、IT部門による集中管理とコストの可視化です。\n\n開発チームや部署ごとに別のAIツールを個別に契約すると、コスト管理が煩雑になります。\n\nMicrosoft Foundryはすべての利用状況がAzure Portalに紐づくため、トークン使用量や消費金額を一元監視できます。\n\n予算オーバーや野良AIツールの乱立を防ぎながら、安全にAIエージェントを展開できます。\n\n## まだ分からないこと\n\n- 各AIモデルの詳細な従量課金単価や最新の提供リージョンは、ポータル上の各モデル詳細画面で随時確認する必要があります。\n- 利用枠（クォータ）の増加申請に対する承認時間は、混雑状況によって前後する可能性があります。\n\n## 企業のIT管理者や開発者が準備すること\n\n社内での導入を検討する場合、まずはai.azure.comにアクセスし、Azureサブスクリプションの管理者権限を確認してください。\n\n社内システムや外部SaaSと連携させる際は、MCP経由で許可する操作範囲（読み取りのみ、下書き作成のみなど）の運用ポリシーをあらかじめ定めておくと安全です。",
+  "easy": "## ひとことで言うと\n\nMicrosoft Foundryは、AIエージェントを簡単に作って試せる開発者向けのプラットフォームです。登録すると200ドル（約3万円）分の無料テスト枠がもらえます。\n\n## 何ができるの？\n\nChatGPTを作るOpenAIだけでなく、AnthropicやDeepSeekなどのさまざまなAIモデルを画面上で選んで使えます。\n\nメール作成やデータ検索などの外部ツールとAIを安全につなぐ仕組み（MCP）も備わっています。\n\n## どうやって始めるの？\n\nGitHubなどのアカウントを使ってai.azure.comにログインし、Azureの契約（サブスクリプション）を紐付けることで使い始められます。",
+  "channel": "Microsoft Developer",
+  "channelId": "UCsMica-v34Irf9KVTh6xx-g",
+  "channelSlug": "microsoft-developer",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "-B9pIyQfaSU",
+  "videoUrl": "https://www.youtube.com/watch?v=-B9pIyQfaSU",
+  "videoTitle": "Microsoft Foundry with Adrian Twarog: Build Your First Agent",
+  "publishedAt": "2026-11-10T08:00:17+00:00",
+  "generatedAt": "2026-11-10T12:21:48.436049+00:00",
+  "thumbnail": "https://i.ytimg.com/vi/-B9pIyQfaSU/maxresdefault.jpg",
+  "model": "gemini-3.5-flash",
+  "affiliates": [],
+  "newsType": "general",
+  "depthAt": "2026-11-10T12:25:24+00:00",
+  "imageFocus": {
+    "x": 0.48,
+    "y": 0.497,
+    "box": [
+      0.016,
+      0.0,
+      0.944,
+      0.994
+    ],
+    "ar": 1.7778,
+    "src": "https://i.ytimg.com/vi/-B9pIyQfaSU/maxresdefault.jpg"
+  }
+}
