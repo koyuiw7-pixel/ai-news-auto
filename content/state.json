@@ -120,7 +120,9 @@
       "url": "https://www.nomura-re-hd.co.jp/news/005005.html"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "1c1046b4dc0f9420": 1
+  },
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
     "02667be02cad0dd5": "2026-11-07T18:50:54.043233+00:00",
@@ -20138,31 +20140,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-09T09:24:42.352911+00:00",
-      "attempt": 1,
-      "id": "ba8ea39cc7d36631",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 133.7,
-        "avg_sentence": 52.0,
-        "long_share": 0.278,
-        "max_paragraph": 201,
-        "paragraphs": 7,
-        "sentences": 18
-      },
-      "score": 86,
-      "source": "ntt-news",
-      "title": "静岡県総合防災アプリ「静岡県防災」が衛星通信に対応 -静岡県、ファーストメディア、ドコモが連携し、災害時にも防災情報を取得可能に-",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SMS）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 52.0字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-09T09:25:09.261173+00:00",
       "attempt": 0,
       "id": "ba8ea39cc7d36631",
@@ -27466,6 +27443,32 @@
       "warnings": [
         "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（GET）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T21:20:40.864276+00:00",
+      "attempt": 1,
+      "id": "1c1046b4dc0f9420",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「cart、Slackなど12社」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 85.0,
+        "avg_sentence": 41.5,
+        "long_share": 0.093,
+        "max_paragraph": 165,
+        "paragraphs": 21,
+        "sentences": 43
+      },
+      "score": null,
+      "source": "openai-news",
+      "title": "ChatGPT plugins",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KAYAK・GET）"
       ]
     }
   ],
