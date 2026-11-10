@@ -544,7 +544,8 @@ def compose_hook3(article: dict, use_llm: bool = False) -> str:
         except Exception as error:  # noqa: BLE001
             log(f"  [hook3] LLM で書けませんでした: {str(error)[:120]}")
             lines = []
-    if not lines or sns_rules.hook_problems("\n".join(lines)) or not hook3_facts_ok(lines, article) or sns_rules.duplicate_lines("\n".join(lines)):
+    if (not lines or sns_rules.hook_problems("\n".join(lines)) or not hook3_facts_ok(lines, article) or sns_rules.duplicate_lines("\n".join(lines))
+            or sns_rules.grammar_problems("\n".join(lines))):  # 数字の抜けた「名・件」など（2026-11-10）は記事の文から組み立て直す
         one = _first_sentence(article.get("lede") or article.get("description") or "")
         points = (article.get("workMoney") or {}).get("points") or article.get("highlights") or []
         two = next((_first_sentence(str(x)) for x in points if _first_sentence(str(x)) and not re.search(r"影響は小さい|直接の影響", str(x))), "")
