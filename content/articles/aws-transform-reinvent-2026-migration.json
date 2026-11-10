@@ -1,0 +1,216 @@
+{
+  "slug": "aws-transform-reinvent-2026-migration",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/",
+  "sourceName": "AWS ブログ（日本）",
+  "title": "AWSの移行AIでサーバー1,800台のコスト48%削減へ　re:Invent 2026ガイド",
+  "seoTitle": "AWS Transformとは？使い方と料金　クラウド移行の最新情報",
+  "threadsPost": "インフラ管理やクラウド移行に携わる人に、知っておいてほしい話です。\n\nAWSが移行自動化AI「AWS Transform」の最新情報をイベントで公開します。\nVMwareやサーバー1,800台の移行でコスト48%削減が見込まれる事例なども発表されます。\n\n自社のサーバー管理で、移行の手間やコストに困ったことはありますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "自社のサーバー管理で、移行の手間やコストに困ったことはありますか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "クラウド移行で一番大変だと感じる作業は何ですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "AWSは11月30日から開催するイベントで、システム移行を自動化するAI「AWS Transform」の最新情報を公開します。VMwareやベアメタル環境からの移行において、AIが事前評価からネットワーク変換までの工程を自動処理します。個別機能の利用料金や日本での詳細な提供開始時期はまだ発表されていません。",
+  "description": "AWSが「re:Invent 2026」に向け、インフラ移行を自動化するAI「AWS Transform」の活用ガイドを公開しました。AIエージェントによる調査・計画の自動化やVMware環境の移行、コスト48%削減の事例などが紹介されます。",
+  "keywords": [
+    "AWS Transform",
+    "AWS re:Invent 2026",
+    "クラウド移行",
+    "VMware移行",
+    "Amazon EVS",
+    "AWS Outposts",
+    "エージェント型AI",
+    "インフラモダナイゼーション"
+  ],
+  "tags": [
+    "クラウド",
+    "AWS",
+    "生成AI",
+    "インフラ",
+    "VMware"
+  ],
+  "highlights": [
+    "AWS TransformのAI機能によりVMware等の移行作業を自動化する手法が公開されます。",
+    "事例ではサーバー1,800台の移行においてインフラコストを48%削減できる見込みが示されました。",
+    "Amazon EVSを活用することでEC2上でVMware Cloud Foundationを運用可能です。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "soon",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "インフラ管理者",
+    "take": "オンプレミスやVMware環境の移行を検討する担当者は最新セッションを確認するとよいでしょう。",
+    "judgedAt": "2026-11-10T01:00:06.588399+00:00"
+  },
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "自社のデータセンター撤退やVMware環境の見直しにおいて、AIによる移行自動化で工数とコストを大きく削れる可能性があります。",
+      "1,800台のサーバー移行でコスト48%削減といった実際の事例データを、自社の意思決定や提案の根拠として活用できます。"
+    ]
+  },
+  "body": "オンプレミスやVMware環境のクラウド移行、データセンター撤退を検討・管理しているIT担当者や経営層に関係する発表です。手作業での移行計画に時間を取られている環境や、既存の運用ツールを変えずに移行したい現場で役立ちます。一般のクラウド利用者や個人契約の変更はありません。なお、AWS Transform（AIによる移行ライフサイクル全体の自動化機能）はAWSが提供する移行支援の仕組みです。（当サイトの確認：2026-11-10）\n\n## 使い方や移行コストを大きく変えるAWS Transformの自動化機能\n\nAWSは2026年11月30日から12月4日までラスベガスで開催するイベント「AWS re:Invent 2026」に向けて、インフラ移行セッションのガイドを公開しました。\n\nAIエージェントの「AWS Transform」は、評価や計画からネットワーク変換、最終的な切り替えまでの移行工程を自動化します。対象はVMware、ベアメタル、ハイブリッド環境です。\n\n実際の発表予定セッションでは、5つのデータセンターにある1,800台のサーバーを移行し、インフラコストを48%削減できる見込みを示した事例が取り上げられます。また、10,000台以上のサーバー移行において、通常18か月かかっていたタイムラインを10か月以下に短縮した実例も紹介されます。\n\n## VMware環境をそのままAWS上で動かすAmazon EVS\n\nAmazon Elastic VMware Service（Amazon EVS）は、Amazon VPC内のEC2ベアメタルインスタンス上でVMware Cloud Foundation（VCF）を実行できるサービスです。\n\n現場のチームが使い慣れたツールや管理手順をそのまま維持できます。設備投資からオンデマンドの伸縮性のあるインフラへと切り替えることが可能です。\n\n## オンプレミス環境を残す要件に対応するAWS Outposts\n\nデータの保存場所制限や低遅延が求められ、自社環境に残す必要があるワークロードには「AWS Outposts」が活用できます。第2世代ハードウェアでは、最大40%のコストパフォーマンス向上が図られています。\n\n開発環境であるIDEから移行手順を進める連携ツール「Kiro」との組み合わせや、移行後の90日間で自動スケーリングや最適化を行う手法も公開されます。\n\n## まだ分からないこと\n\n- 各新機能やサービスの日本国内における具体的な提供時期はまだ発表されていません。\n- AWS Transformの個別利用における詳細な料金体系はまだ発表されていません。\n\n## クラウド移行を進める企業や管理者への影響\n\n自社データセンターの撤退やVMwareの運用見直しを迫られている企業では、調査や計画の負担をAIで削減できる見通しが得られます。自社の状況に合わせて、AIエージェントを用いた段階的な移行計画を検討するのがよいでしょう。",
+  "easy": "## ひとことで言うと\n\nAWSが、クラウドへのシステム移行をAIで自動化する仕組み「AWS Transform」の最新情報をイベントで公開します。\n\n## なぜ注目されているのか\n\nこれまでサーバーの移行には、調査や計画に何か月もの手作業が必要でした。\nAWS Transformは、専用のAIがシステムの調査からネットワークの切り替え、本番移行までを自動で進めます。\n\n## VMware環境からの移行もスムーズに\n\nVMwareの環境をそのままAWSのサーバー上で動かせるサービス「Amazon Elastic VMware Service (Amazon EVS)」も紹介されます。\n使い慣れたツールをそのまま使いながらコストを最適化できるため、自社データセンターの撤退を検討する企業にとって有効な選択肢となります。",
+  "channel": "AWS ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "aws-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "インフラストラクチャの移行: AWS re:Invent 2026 完全ガイド",
+  "publishedAt": "2026-11-10T00:58:06+00:00",
+  "generatedAt": "2026-11-10T01:00:06.588385+00:00",
+  "thumbnail": "https://d2908q01vomqb2.cloudfront.net/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f/2026/11/09/infrastructure-migrations-your-complete-aws-reinvent-2026-guide_featured-image-1120x630-10.jpg",
+  "model": "gemini-3.5-flash",
+  "affiliates": [],
+  "newsType": "explainer",
+  "faq": [
+    {
+      "q": "AWS Transformはどのような環境からの移行に対応していますか？",
+      "a": "VMware環境、ベアメタル、ハイブリッド環境のワークロードに対応しており、調査からネットワーク変換、切り替えまでを自動化します。"
+    },
+    {
+      "q": "Amazon EVSを利用すると既存のVMwareツールはそのまま使えますか？",
+      "a": "Amazon VPC内のEC2ベアメタルインスタンス上でVMware Cloud Foundationを実行するため、使い慣れたツールや管理手順を継続できます。"
+    }
+  ],
+  "todayActions": [
+    "社内のVMwareやオンプレミスサーバーの台数と移行優先度を一覧にする",
+    "re:Invent 2026のMAMトラックで、AWS Transform関連セッションを探す",
+    "ハンズオンのセッションに出るなら、ノートPCを持参する準備をする"
+  ],
+  "qualityScore": 82,
+  "sourcePublishedAt": "2026-11-10T00:58:06+00:00",
+  "detectedAt": "2026-11-10T00:58:56+00:00",
+  "speedMinutes": 6,
+  "layout": "noir",
+  "summaryLine": "AWS TransformのAI機能によりVMware等の移行作業を自動化する手法が公開されます。",
+  "insight": [
+    {
+      "text": "ハンズオン形式のワークショップとビルダーズセッションは、ノートPCを持参するよう案内されています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/"
+    },
+    {
+      "text": "MAM225「What's new with AWS Transform for migrations」はMGM Grandで12月2日(水)午後2:30 (PST)に開催。他の多くのセッションはCaesars Palaceです。",
+      "source": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "AWS re:Invent 2026 イベントカタログ（MAMトラック）",
+      "url": "https://registration.awsevents.com/flow/awsevents/reinvent2026/eventcatalog/page/eventcatalog?search=MAM",
+      "source": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/",
+      "howTo": [
+        "AWS re:Invent 2026",
+        "re:Invent イベントカタログ",
+        "Migration & Modernization (MAM"
+      ],
+      "note": "ワークショップとビルダーズセッションはハンズオン形式のため、ノート PC をご持参ください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "社内のVMwareやオンプレミスサーバーの台数と移行優先度を一覧にする",
+      "source": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/",
+      "steps": [
+        "VMwareとオンプレのサーバーを台数で数える",
+        "業務ごとに移行の優先度を付ける",
+        "データの保存場所に制限がある業務に印を付ける"
+      ]
+    },
+    {
+      "action": "re:Invent 2026のMAMトラックで、AWS Transform関連セッションを探す",
+      "source": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/",
+      "steps": [
+        "re:Inventイベントカタログを開く",
+        "「Migration & Modernization (MAM) トラックのセッション」を選ぶ",
+        "AWS Transform関連のセッション番号を確認する"
+      ],
+      "url": "https://registration.awsevents.com/flow/awsevents/reinvent2026/eventcatalog/page/eventcatalog?search=MAM"
+    },
+    {
+      "action": "ハンズオンのセッションに出るなら、ノートPCを持参する準備をする",
+      "source": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/",
+      "steps": [
+        "ワークショップ・ビルダーズセッションを選ぶ",
+        "会場と時間(PST)を確認する",
+        "ノートPCを持参する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "かつてオンプレミス環境からの移行では、調査用のスプレッドシートや依存関係マッピング、手作業の移行ウェーブ計画に何カ月も費やす必要がありました。AWS Transformは専用のAIエージェントで、その工程を自動化します。",
+    "status": "background",
+    "source": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/"
+  },
+  "worries": [
+    {
+      "q": "データを社外に出せない業務は、どうすればいい？",
+      "a": "データの保存場所に制限があり、低遅延も求められるなど、自社環境に残す必要があるワークロードには、AWS Outpostsが活用できると紹介されています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/",
+      "action": "保存場所の制限がある業務を洗い出し、残す候補として別に書き出す"
+    },
+    {
+      "q": "移行にはどのくらい時間がかかるのか？",
+      "a": "10,000台以上のサーバー移行で、通常18か月かかっていたタイムラインを10か月以下に短縮した実例が、セッションで紹介されると案内されています。自社の期間はここからは分かりません。",
+      "source": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/",
+      "action": "社内の移行計画で時間のかかっている工程を書き出し、自動化できそうな所を確認する"
+    },
+    {
+      "q": "48%のコスト削減は、自社でも期待できる？",
+      "a": "48%は、Fanatics Commerceが5つのデータセンター・1,800台の移行で見込んでいる数字です。ページは他社の見込みを紹介するもので、自社の削減率を示すものではありません。",
+      "source": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/",
+      "action": "自社のサーバー台数とデータセンターの数を数え、コストを比べる材料にする"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "VMware環境は移すか、そのまま動かすか？",
+      "situation": "VMware環境の運用を変えたくない",
+      "recommend": "EVSを候補に、運用の変わり方を比べる",
+      "reason": "Amazon EVSはVMware Cloud FoundationをVPC内のEC2ベアメタル上で実行でき、現場のツールや管理手順をそのまま維持できるとされています。ただし料金はこのページには示されていません。",
+      "source": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/"
+    },
+    {
+      "question": "自社に残すサーバーは、どう扱えばいい？",
+      "situation": "保存場所の制限や低遅延の要件がある",
+      "recommend": "Outpostsを候補に入れて検討する価値がある",
+      "reason": "AWS Outpostsは自社環境に残すワークロード向けとされ、第2世代ハードウェアでは最大40%のコストパフォーマンス向上が図られていると書かれています。比較の基準は書かれていません。",
+      "source": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ハンズオンはノートPC持参、時間はPSTで確認",
+    "cause": "なぜ移行に何か月もかかってきたのか",
+    "steps": "今日やるなら、まず台数を数えることから",
+    "desk": "セッションの日時と会場は公式カタログで確認",
+    "worries": "VMwareの運用や費用、時間は大丈夫？",
+    "guide": "VMwareを移すか残すか、迷ったときの考え方"
+  },
+  "depthAt": "2026-11-10T01:01:29+00:00",
+  "imageFocus": {
+    "x": 0.417,
+    "y": 0.644,
+    "box": [
+      0.066,
+      0.289,
+      0.769,
+      1.0
+    ],
+    "ar": 1.7778,
+    "src": "https://d2908q01vomqb2.cloudfront.net/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f/2026/11/09/infrastructure-migrations-your-complete-aws-reinvent-2026-guide_featured-image-1120x630-10.jpg"
+  }
+}

@@ -73,18 +73,18 @@
   "videoTitle": "年金生活者支援給付金は請求しないと始まらない　老齢は前年92万6,500円以下が対象",
   "publishedAt": "2026-11-10T00:49:31.504702+00:00",
   "generatedAt": "2026-11-10T00:50:35.203777+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/pension-support-benefit-family-share-figure-a3ac86d2.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "基礎年金番号を手元に用意し、給付金専用ダイヤル（0570-05-4092）に問い合わせる準備をする",
-    "成年後見人などが付いている家族がいる場合は、請求書の「氏名」「電話番号」「差出人」欄の書き方を確かめる",
-    "電話で家族構成や口座番号・暗証番号を聞かれたら答えず、年金事務所か警察相談専用電話（#9110）に相談する"
+    "年金証書か支給額変更通知書で、納付済期間と免除期間の月数を確かめる",
+    "前年の年金収入金額とその他の所得の合計が826,500円以下かを確かめる"
   ],
   "angleOf": "pension-support-benefit-old-age-eligibility",
   "deepDive": "family",
   "relatedSlugs": [
+    "pension-support-benefit-old-age-check",
     "pension-support-benefit-old-age-eligibility"
   ],
   "qualityScore": 85,
@@ -92,5 +92,99 @@
   "originalTitle": "年金生活者支援給付金、家族の分はどうなる？　世帯全員の非課税も条件に",
   "titleStyle": "2026-11-03",
   "layout": "noir",
-  "summaryLine": "老齢の年金生活者支援給付金の額は本人の保険料納付期間や免除期間に応じて決まり、家族の人数による加算は記載がありません"
+  "summaryLine": "老齢の年金生活者支援給付金の額は本人の保険料納付期間や免除期間に応じて決まり、家族の人数による加算は記載がありません",
+  "insight": [
+    {
+      "text": "所得の判定は「前年の年金収入金額とその他の所得の合計」で見ます。「障害年金・遺族年金等の非課税収入は含まれません」とページにあります。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    },
+    {
+      "text": "昭和31年4月2日以後生まれの方は、前年の所得が826,500円以下なら老齢年金生活者支援給付金、826,500円を超え926,500円以下なら補足的老齢年金生活者支援給付金の対象です。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    },
+    {
+      "text": "請求書は「65歳になる誕生日の前日以降にご提出ください」とページにあります。提出する時期の条件として確かめておきましょう。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "年金生活者支援給付金に関する手続き",
+      "url": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/index.html",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "note": "請求などの手続きをまとめたページです。読んだページの「関連情報」からたどれます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "年金証書か支給額変更通知書で、納付済期間と免除期間の月数を確かめる",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "steps": [
+        "年金証書か支給額変更通知書を探す",
+        "保険料納付済期間と保険料免除期間の月数を見る",
+        "給付額の計算式に当てはめる"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    },
+    {
+      "action": "前年の年金収入金額とその他の所得の合計が826,500円以下かを確かめる",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "steps": [
+        "前年の年金収入金額を確かめる",
+        "その他の所得を足す",
+        "合計を826,500円と比べる"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    }
+  ],
+  "worries": [
+    {
+      "q": "配偶者や子どもの人数で給付額は増えますか？",
+      "a": "給付額は、保険料納付済期間に基づく額と保険料免除期間に基づく額を足して決まります。計算式に家族の人数は出てきません。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "年金証書で納付済・免除の月数を確かめ、ページの計算式で給付額を見積もる。"
+    },
+    {
+      "q": "同じ世帯の家族の収入も関係ありますか？",
+      "a": "請求者本人を含む世帯全員の市町村民税が非課税であることが条件の一つです。世帯の誰か一人でも課税されていると、この条件は満たしません。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "同じ世帯の家族の市町村民税の課税状況を確かめておく。"
+    },
+    {
+      "q": "障害年金や遺族年金も所得に入りますか？",
+      "a": "障害年金・遺族年金等の非課税収入は、前年の年金収入金額とその他の所得の合計に含まれないとページにあります。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "前年の年金収入と他の所得の合計を、826,500円と比べて確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "給付額と対象は、家族の何を見る？",
+    "steps": "今日確かめる2つのこと",
+    "desk": "問い合わせ先と手続きのページ",
+    "worries": "家族の人数や収入は関係ある？"
+  },
+  "depthAt": "2026-11-10T01:02:28+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "年金生活者支援給付金に家族の人数による加算は記載なし",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-10T01:05:19+00:00"
+  },
+  "imageFocus": {
+    "x": 0.519,
+    "y": 0.413,
+    "box": [
+      0.103,
+      0.083,
+      0.934,
+      0.744
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/pension-support-benefit-family-share-figure-a3ac86d2.jpg"
+  }
 }

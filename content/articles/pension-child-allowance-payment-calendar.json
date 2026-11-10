@@ -58,7 +58,7 @@
   "videoTitle": "偶数月6回、年金は15日で児童手当は日が市区町村ごと 年金と給付の支払日カレンダー",
   "publishedAt": "2026-11-10T00:39:09.165415+00:00",
   "generatedAt": "2026-11-10T00:39:24.581795+00:00",
-  "thumbnail": "https://www.nenkin.go.jp/images/ogp-logo.png",
+  "thumbnail": "https://ai-tech-express.jp/img/pension-child-allowance-payment-calendar-figure-b5522686.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -88,16 +88,150 @@
   "detectedAt": "2026-11-10T00:40:18+00:00",
   "layout": "noir",
   "summaryLine": "年金は偶数月の15日、児童手当は偶数月で日は案内に書かれていない",
+  "insight": [
+    {
+      "text": "出生の申請は「出生日の次の日から数えて15日以内」と案内されています。里帰り出産でも、出生届とは別に現住所の市区町村で申請が必要です。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/"
+    },
+    {
+      "text": "児童手当の振込先は、原則として手当を受け取る人が名義人である口座に限られ、子どもや配偶者の名義には原則として振り込めません。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/"
+    },
+    {
+      "text": "ねんきんダイヤルは「お手元に通知書が届いてから5日間程度」電話が集中し、つながりにくくなると案内されています。",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ねんきんダイヤル（年金相談に関する一般的なお問い合わせ）",
+      "url": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "phone": "0570-05-1165",
+      "hours": "月曜日午前8時30分から午後7時、火曜日から金曜日午前8時30分から午後5時15分、第2土曜日午前9時30分から午後4時",
+      "note": "夕方（午後4時以降）、週の後半、月の後半（20日以降）、第2土曜日がつながりやすい。基礎年金番号か照会番号が分かるものを用意。"
+    },
+    {
+      "name": "お住まいの市区町村の児童手当の窓口（公務員の方は勤務先）",
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/",
+      "note": "個別の相談は、手当の支給事務を行う市区町村に問い合わせる。公務員の方は勤務先が窓口。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "12月の対象月を、年金の支払月と支払対象月の表で確かめる",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/uketori/uketori/shiharaiduki/20140421-01.html",
+      "steps": [
+        "「年金の支払月と支払対象月」の表を開く",
+        "支払月12月の行を見る",
+        "12月は10月分と11月分と確かめる"
+      ],
+      "url": "https://www.nenkin.go.jp/section/faq/jukyu/uketori/uketori/shiharaiduki/20140421-01.html"
+    },
+    {
+      "action": "児童手当の申請が済んでいるか、お住まいの市区町村の窓口に確かめる",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/",
+      "steps": [
+        "お住まいの市区町村の児童手当の窓口に連絡",
+        "申請が済んでいるかを聞く",
+        "公務員の方は勤務先に確かめる"
+      ],
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/"
+    },
+    {
+      "action": "児童手当の振込先口座が、受け取る人本人の名義か確かめる",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/",
+      "steps": [
+        "振込先口座の名義を確かめる",
+        "子どもや配偶者の名義は原則不可と確かめる"
+      ],
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/"
+    }
+  ],
+  "worries": [
+    {
+      "q": "児童手当は何日に振り込まれる？",
+      "a": "こども家庭庁の案内は、偶数月に前月までの2か月分を支給することを示しています。何日に入るかは案内に書かれていません。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "action": "振込日は案内に無いので、お住まいの市区町村の窓口に確かめる。",
+      "actionSource": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/"
+    },
+    {
+      "q": "赤ちゃんが生まれたら、いつまでに申請する？",
+      "a": "出生日の次の日から数えて15日以内に、お住まいの市区町村へ申請が必要です。里帰り出産でも、現住所の市区町村で申請します。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/",
+      "action": "出生の日の翌日から15日以内に、現住所の市区町村へ認定請求書を出す。"
+    },
+    {
+      "q": "申請が遅れたら、手当はどうなる？",
+      "a": "原則として、遅れた月分の手当は受けられなくなると案内されています。申請した月の翌月分から支給が原則です。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "action": "期限の15日を過ぎそうなら、早めに市区町村の窓口へ申請する。"
+    },
+    {
+      "q": "児童手当の振込先は子どもの口座でもいい？",
+      "a": "原則として、手当を受け取る人本人が名義人の口座に限られます。配偶者や子どもの名義の口座には、原則として支払うことができません。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/",
+      "action": "振込先の口座の名義が、受け取る人本人になっているか確かめる。"
+    },
+    {
+      "q": "ねんきんダイヤルはつながりにくい？",
+      "a": "お手元に通知書が届いてから5日間程度は、電話が集中してつながりにくくなると案内されています。夕方や月の後半は比較的つながりやすいとされています。",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "action": "夕方（午後4時以降）や月の後半（20日以降）など、つながりやすい時間にかける。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "出生後の児童手当の申請、いつまでに出す？",
+      "situation": "子どもが生まれた",
+      "recommend": "出生日の次の日から15日以内に出す",
+      "reason": "期限を過ぎると原則、遅れた月分の手当は受けられない。里帰り出産でも現住所の市区町村で申請が必要。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/"
+    },
+    {
+      "question": "転居後の児童手当の申請、いつまでに出す？",
+      "situation": "他の市区町村へ転居した",
+      "recommend": "転出予定日の次の日から15日以内に転入先で出す",
+      "reason": "期限を過ぎると原則、遅れた月分の手当は受けられない。申請は転入先の市区町村で行う。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "児童手当の申請は15日以内、遅れると原則もらえない",
+    "steps": "12月分を受け取る前に確かめたいこと",
+    "desk": "電話や窓口に問い合わせるときの先",
+    "worries": "カレンダーや振込先、申請は大丈夫？",
+    "guide": "出生や引っ越しのあと、いつ申請するか"
+  },
+  "todayActions": [
+    "12月の対象月を、年金の支払月と支払対象月の表で確かめる",
+    "児童手当の申請が済んでいるか、お住まいの市区町村の窓口に確かめる",
+    "児童手当の振込先口座が、受け取る人本人の名義か確かめる"
+  ],
+  "depthAt": "2026-11-10T01:03:11+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "年金は偶数月15日、児童手当は偶数月",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-10T01:06:01+00:00"
+  },
   "imageFocus": {
-    "x": 0.454,
-    "y": 0.506,
+    "x": 0.494,
+    "y": 0.399,
     "box": [
-      0.194,
-      0.012,
-      0.713,
-      1.0
+      0.066,
+      0.048,
+      0.922,
+      0.75
     ],
     "ar": 1.9048,
-    "src": "https://www.nenkin.go.jp/images/ogp-logo.png"
+    "src": "https://ai-tech-express.jp/img/pension-child-allowance-payment-calendar-figure-b5522686.jpg"
   }
 }

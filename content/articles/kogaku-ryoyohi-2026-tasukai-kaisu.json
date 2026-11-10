@@ -82,7 +82,7 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "入院や手術の予定があるなら、受診前にマイナ保険証が使えるか確かめ、使えない場合は限度額適用認定証を申請する",
+    "入院・手術の予定があるなら、受診前にマイナ保険証が使えるか確かめる",
     "加入している保険者名を、マイナポータルか資格確認書で確かめる"
   ],
   "writer": "muse",
@@ -136,5 +136,115 @@
     ],
     "ar": 1.9048,
     "src": "https://www.mhlw.go.jp/common/img/img_ogp.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "多数回該当の回数は、保険者が変わると通算されません。限度額適用認定証を使って限度額だけ払った月も回数に入ります。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/002/index.html"
+    },
+    {
+      "text": "標準報酬月額15万円以下であることが確認できた人は、年間上限が41万円になり、令和9年8月以降に償還払いされます。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/002/index.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "全国健康保険協会（協会けんぽ）",
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/",
+      "note": "申請書受付月より前の月の限度額適用認定証は交付できないため、日程に余裕を持って提出してください。"
+    },
+    {
+      "name": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html",
+      "phone": "03-5253-1111（代表）",
+      "note": "今般の制度見直しに関する質問は厚生労働省コールセンターでも承っています。保険者名はマイナポータルか資格確認書で確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "入院・手術の予定があるなら、受診前にマイナ保険証が使えるか確かめる",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/",
+      "steps": [
+        "受診先がオンライン資格確認を導入しているか確かめる",
+        "導入していれば、マイナ保険証で受診する",
+        "使えない場合は限度額適用認定申請書を提出する"
+      ],
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/"
+    },
+    {
+      "action": "加入している保険者名を、マイナポータルか資格確認書で確かめる",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html",
+      "steps": [
+        "マイナポータルでマイナ保険証の資格情報を確認・取得する",
+        "資格確認書を持っている人は、そこに書かれた保険者名を見る",
+        "「全国健康保険協会」と書かれていれば協会けんぽに問い合わせる"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html"
+    }
+  ],
+  "cause": {
+    "text": "制度全体の持続可能性を確保するため、医療費の伸びに応じて月額の上限額を見直し、長期療養者が将来の負担を見通しやすいように年間上限を新設したと説明されています。低所得の方への配慮も含まれています。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html"
+  },
+  "worries": [
+    {
+      "q": "自分の区分が分からないと、上限額が計算できない？",
+      "a": "限度額は所得区分ごとに決まり、健康保険は標準報酬月額、国民健康保険は旧ただし書き所得で区分されています。ご自分がどの区分かを確かめる方法は、このページには書かれていません。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/002/index.html",
+      "action": "協会けんぽの70歳未満の表で、自分の標準報酬月額が当てはまる区分と月の上限額を探してメモする"
+    },
+    {
+      "q": "窓口で先に払う金額を、上限までに抑えるには？",
+      "a": "マイナ保険証で受診すれば、限度額適用認定証の申請は不要です。オンライン資格確認により、限度額情報が医療機関へ提供されます。ただし受診先が導入済みであることが前提です。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/",
+      "action": "入院や手術の予定が出たら、受診先がオンライン資格確認に対応しているか確かめる"
+    },
+    {
+      "q": "保険が変わると、多数回の回数はどうなる？",
+      "a": "転職や退職で保険者が変わると、それまでの多数回該当の月数は通算されません。退職して被扶養者に変わった場合なども、通算されないとされています。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/002/index.html",
+      "action": "保険が切り替わる前後に治療が続く人は、回数が数え直しになる前提で資金を計画する"
+    },
+    {
+      "q": "月末に入院が決まって申請が翌月になったら？",
+      "a": "認定証は申請書を受け付けた日の属する月の1日から有効で、受付月より前の月の分は交付できないとされています。月末の入院では、申請が翌月にずれないよう注意が必要です。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/",
+      "action": "入院が決まった時点で、限度額適用認定申請書を加入先に提出し、受付月をずらさない"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "マイナ保険証と認定証、どちらで支払いを抑える？",
+      "situation": "マイナ保険証を使える病院で受診する予定",
+      "recommend": "マイナ保険証で受診すれば、申請は不要",
+      "reason": "オンライン資格確認により限度額情報が医療機関へ提供されます。受診先がオンライン資格確認を導入していることが前提です。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/"
+    },
+    {
+      "question": "マイナ保険証と認定証、どちらで支払いを抑える？",
+      "situation": "受診先がオンライン資格確認に対応していない",
+      "recommend": "限度額適用認定証を事前に申請する",
+      "reason": "オンライン資格確認を導入していない医療機関等を受診する場合は、医療費を支払う前に加入先へ申請し、交付された認定証を窓口で提出します。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/"
+    },
+    {
+      "question": "低所得に当たる人も、マイナ保険証だけで足りる？",
+      "situation": "住民税非課税などで低所得区分に当たる",
+      "recommend": "減額認定の申請書を提出する",
+      "reason": "被保険者が低所得者に該当する場合は、マイナ保険証を利用する場合でも限度額適用・標準負担額減額認定証を申請するとされています。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "認定証は申請した月の1日からしか効かない",
+    "cause": "なぜ見直すのか、政府が挙げている理由",
+    "steps": "入院が決まったら、受診前にまずこの2つ",
+    "desk": "相談先は加入している保険者の窓口",
+    "worries": "窓口でいくら払う？保険が変わると？",
+    "guide": "マイナ保険証か認定証か、迷ったときは"
+  },
+  "depthAt": "2026-11-10T01:03:51+00:00"
 }
