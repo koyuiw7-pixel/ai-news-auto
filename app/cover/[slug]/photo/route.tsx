@@ -24,7 +24,8 @@ export const revalidate = 604800;
 export function generateStaticParams() {
   return getAllArticles()
     .slice(0, PRERENDER_LIMIT)
-    .filter((article) => photoCover(article))
+    // 一覧の要約には表紙の欄（coverImage）が無いので、記事の JSON を読んで決める
+    .filter((article) => photoCover(getArticle(article.slug) ?? article))
     .map((article) => ({ slug: article.slug }));
 }
 
@@ -45,12 +46,15 @@ function loadFont() {
 async function photoSource(url: string): Promise<string | null> {
   try {
     const photo = await fetchPhoto(url);
-    if (!photo) return null;
-    const jpeg = await sharp(photo).resize(WIDTH, HEIGHT, { fit: "cover", position: "attention" }).jpeg({ quality: 90 }).toBuffer();
-    return `data:image/jpeg;base64,${jpeg.toString("base64")}`;
+    if (photo) {
+      const jpeg = await sharp(photo).resize(WIDTH, HEIGHT, { fit: "cover", position: "attention" }).jpeg({ quality: 90 }).toBuffer();
+      return `data:image/jpeg;base64,${jpeg.toString("base64")}`;
+    }
   } catch {
-    return /^https:\/\//.test(url) ? url : null;
+    // sharp が無い（Workers）: 下で URL のまま敷く
   }
+  // fetchPhoto は sharp で画像を確かめるので、Workers では取れても null になる。サイトの画像の URL はそのまま敷く
+  return /^https:\/\//.test(url) ? url : null;
 }
 
 async function renderPhoto(cover: string, label: string): Promise<Response | null> {

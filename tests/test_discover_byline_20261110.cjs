@@ -66,6 +66,8 @@ test('写真の共有画像は AI の札を付け、見出しの文字は重ね�
   assert.match(route, /aiCreditText\(article\.coverCredit\)/);
   assert.match(route, /PHOTO_SHARE_WIDTH as WIDTH/);
   assert.doesNotMatch(route, /articleTitle|splitTitle/);
+  // ビルド時に描く記事は記事の JSON で決める（一覧の要約には coverImage が無く、1本も描かれずに Workers で失敗していた 2026-11-10）
+  assert.match(route, /photoCover\(getArticle\(article\.slug\)/);
   const worker = read('cloudflare/worker.ts');
   assert.match(worker, /url\.pathname\.startsWith\("\/cover\/"\)[\s\S]{0,200}loadFonts/);
 });

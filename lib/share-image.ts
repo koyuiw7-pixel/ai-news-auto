@@ -25,7 +25,7 @@ type ShareImageInput = {
 export const PHOTO_SHARE_WIDTH = 1200;
 export const PHOTO_SHARE_HEIGHT = 675;
 /** 写真の共有画像の版。描き方を変えたら1つ上げる（URL の ?v= が変わり、古い画像のキャッシュを使わせない） */
-export const PHOTO_SHARE_VERSION = 1;
+export const PHOTO_SHARE_VERSION = 2;
 
 export type ShareImage = { url: string; width?: number; height?: number; alt?: string };
 
