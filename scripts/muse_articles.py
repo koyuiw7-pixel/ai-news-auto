@@ -383,6 +383,12 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
             record["qualityScore"] = score
             w.finalize_facts(record, source_text)
             w.stamp_times(record, item, datetime.now(timezone.utc))
+            # Muse の原稿のかんたん版は「ひとことで言うと」の要約だけになりやすく、記事ページでは要約の章を出さないため
+            # 「かんたんに読む」が消えていた（2026-11-10）。本文だけを材料に作り直す（scripts/easy_version.py。
+            # 数字の照合＋本文との事実確認に通ったときだけ使う。だめでも公開は止めない）
+            import easy_version  # noqa: PLC0415
+
+            log(f"   [muse] かんたん版: {easy_version.ensure(record, log=log)[:200]}")
             return "ok", record
         problems = list(verdict.get("problems") or [])
         if verdict.get("ok") and score < need:

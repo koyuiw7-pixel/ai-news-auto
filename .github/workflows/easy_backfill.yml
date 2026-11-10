@@ -1,0 +1,81 @@
+name: Easy version backfill
+
+# 「かんたんに読む」版が要約だけで、記事ページで切り替えが出ない記事のかんたん版を、本文だけを材料に作り直す
+# （scripts/easy_version.py。2026-11-10 オーナー指摘: いちばん読まれている Muse の記事で切り替えが消えていた）。
+# 数字の照合＋本文との事実確認に通ったものだけ書き込む。だめな記事はそのまま（次の回にもう一度）。
+# Muse の記事を新しい順に1回20本まで。全部終わったら何もしないで終わる。SNS には何も出さない
+on:
+  schedule:
+    - cron: "47 */3 * * *"
+  workflow_dispatch:
+    inputs:
+      max:
+        description: "1回で直す記事の数"
+        required: false
+        default: "20"
+      slugs:
+        description: "この記事だけ（カンマ区切り。空なら、Muse の記事で切り替えが出ないものを新しい順に）"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: easy-backfill
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Rewrite thin easy versions
+        id: easy
+        continue-on-error: true
+        env:
+          LLM_WORKFLOW: products
+          # API の使用額はこのジョブ専用のファイルに記録（ほかのジョブと書き込みがぶつからない。予算はファイルの合計で見る）
+          CLAUDE_API_LEDGER: easy
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          MAX: ${{ inputs.max || '20' }}
+          SLUGS: ${{ inputs.slugs }}
+        run: |
+          if [ -n "$SLUGS" ]; then
+            timeout 1800 python -u scripts/easy_version.py --slug "$SLUGS" --apply --purpose helper
+          else
+            timeout 1800 python -u scripts/easy_version.py --muse --apply --max "$MAX" --purpose helper
+          fi
+      - name: Commit and deploy
+        if: ${{ !cancelled() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add content/articles
+          if [ -f state/claude_api_usage_easy.json ]; then git add state/claude_api_usage_easy.json; fi
+          if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(content): かんたん版を本文から作り直す（切り替えが出ない記事）"
+          # 無料枠の使用回数の記録（content/llm_usage*.json）はこのジョブではコミットしない（ほかのジョブとぶつかるため）
+          # 記事づくりの回（auto_run）が走っている間は push を待つ。ぶつかっても項目ごとにマージする（scripts/git_safe_push.py）
+          if python3 scripts/git_safe_push.py --wait-idle auto_run.yml --wait-max 1200; then
+            gh workflow run deploy_cloudflare.yml --ref main
+            exit 0
+          fi
+          exit 1

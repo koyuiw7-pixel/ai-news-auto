@@ -214,6 +214,7 @@ PROSE_WRITERS = {
     "deep_dive.py": ["quality.evaluate(", "publish_blocked("],  # 読まれた記事の深掘り（台帳 A70）。ふつうの記事と同じ門
     "muse_articles.py": ["quality.evaluate(", "publish_blocked("],  # Muse の入稿（台帳 A59）。ふつうの記事と同じ門
     "gpt_review.py": ["added_problems"],                 # ChatGPT での公開中の記事の見直し（台帳 A65）
+    "easy_version.py": ["added_problems", "fact_check("],  # かんたん版を本文から作り直す（2026-11-10。数字の照合＋本文との事実確認）
 }
 # 文章を作らない（決まった欄だけ直す・記録だけ足す・読むだけで別のファイルに書く）もの。理由つき
 NON_PROSE = {
