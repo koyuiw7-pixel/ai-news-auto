@@ -91,9 +91,8 @@
     }
   ],
   "todayActions": [
-    "自社がECかオンラインサービスか確認し、Business Agentの対象カテゴリをOpenAIの公式ブログで見る",
-    "Shopifyで店を運営しているなら、管理画面からBusiness Hubへの接続手順を確認する",
-    "OpenAI EnterpriseかChatGPT広告を使っているなら、担当者に登録の進め方を問い合わせる"
+    "自社がECかオンラインサービスか確認し、対象カテゴリをOpenAIのページで見る",
+    "Business Hubで自社を登録し、Shopifyの店舗なら接続を選ぶ"
   ],
   "relatedSlugs": [
     "chatgpt-business-hub"
@@ -128,5 +127,90 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/businesses-in-chatgpt-business-agents-48ccd416.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "Business Hubでは、事業者が認証（verified）を終えると、主要な情報を更新し、価格と在庫を含む商品フィードを自分で追加できます。",
+      "source": "https://openai.com/index/introducing-businesses-chatgpt"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Business Hub",
+      "url": "https://chatgpt.com/business-hub",
+      "source": "https://openai.com/index/introducing-businesses-chatgpt",
+      "note": "Shopifyの店舗は、Business HubかShopifyの管理画面から接続でき、認証の確認を効率化できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自社がECかオンラインサービスか確認し、対象カテゴリをOpenAIのページで見る",
+      "source": "https://openai.com/index/introducing-businesses-chatgpt",
+      "steps": [
+        "「here」のリンクから対象カテゴリのページを開く",
+        "自社がどの対象カテゴリに当てはまるか確かめる"
+      ],
+      "url": "https://openai.com/policies/business-agents-policy/"
+    },
+    {
+      "action": "Business Hubで自社を登録し、Shopifyの店舗なら接続を選ぶ",
+      "source": "https://openai.com/index/introducing-businesses-chatgpt",
+      "steps": [
+        "Business Hubを開く",
+        "「claim your business」で自社を登録する",
+        "Shopifyの店舗は接続の方法を選ぶ"
+      ],
+      "url": "https://chatgpt.com/business-hub"
+    }
+  ],
+  "cause": {
+    "text": "ChatGPTは商品探しや比較、判断に使われるようになりました。そこで、事業者と利用者がAIの中でつながる場を作るためとしています。まずは正確な事業情報、役立つ集計、判断を助ける会話から始めるとしています。",
+    "status": "background",
+    "source": "https://openai.com/index/introducing-businesses-chatgpt"
+  },
+  "worries": [
+    {
+      "q": "うちの店は登録の対象になる？",
+      "a": "登録は、ChatGPTが使える地域にある対象事業者ならBusiness Hubから行えます。Business Agentは現在、米国の対象EC・オンラインサービス事業者に提供されています。",
+      "source": "https://openai.com/index/introducing-businesses-chatgpt",
+      "action": "まず自社がECかオンラインサービスか確認し、対象カテゴリのページで当てはまるか見る"
+    },
+    {
+      "q": "利用者の会話が事業者に見られてしまう？",
+      "a": "利用者の会話やBusiness Agentとのチャットは、事業者に共有されないとしています。集計データは、十分な件数などの基準を超えたときだけ表示されます。",
+      "source": "https://openai.com/index/introducing-businesses-chatgpt",
+      "action": "Business Hubで、メンション数やクリック数などの集計を確認する"
+    },
+    {
+      "q": "自社の価格や在庫は、自分で直せる？",
+      "a": "確認が済んだあと、主要な情報を更新でき、価格や在庫を含む商品フィードを自分で追加できます。",
+      "source": "https://openai.com/index/introducing-businesses-chatgpt",
+      "action": "登録の確認後に、主要な情報と価格・在庫の商品フィードを自社で更新する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "Business Agentを今すぐ作る？",
+      "situation": "米国のEC・オンラインサービスの事業者",
+      "recommend": "対象かどうかを確かめてから検討する",
+      "reason": "Business Agentは、米国の対象EC・オンラインサービス事業者に提供されています。対象外の事業者は、今回の仕組みでは作れないと読み取れます。",
+      "source": "https://openai.com/index/introducing-businesses-chatgpt"
+    },
+    {
+      "question": "登録はBusiness Hubと担当者のどちらから？",
+      "situation": "既存のOpenAI Enterprise顧客・広告主",
+      "recommend": "OpenAIの担当者と直接進める",
+      "reason": "既存のOpenAI Enterprise顧客と広告主は、OpenAIの担当者と直接進めて登録できるとされています。ほかの事業者はBusiness Hubから登録します。",
+      "source": "https://openai.com/index/introducing-businesses-chatgpt"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "登録は認証のあとに、商品と価格を自分で足せる",
+    "cause": "なぜ、この仕組みが始まったのか",
+    "steps": "今日、確かめられること",
+    "desk": "登録の窓口はどこか",
+    "worries": "うちは対象？利用者の会話は見られる？",
+    "guide": "Business Agentを作るか、迷ったとき"
+  },
+  "depthAt": "2026-11-10T18:43:18+00:00"
 }
