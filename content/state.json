@@ -10023,6 +10023,20 @@
       "skipped": true,
       "url": "https://www.databricks.com/blog/deliberate-decisions-and-enterprise-ai-value"
     },
+    "646e58946cb76443": {
+      "at": "2026-11-10T13:05:55.104278+00:00",
+      "breaking": true,
+      "costUsd": 0.0799,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "ibm-microsoft-imagine-enterprise",
+      "url": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/"
+    },
     "6472fdf22ab62433": {
       "at": "2026-11-04T10:23:39.547154+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -20591,37 +20605,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-09T08:25:25.687241+00:00",
-      "attempt": 1,
-      "id": "9c455c94fb7ec58f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "かんたん版「法律で定められた決まった業種（70業種など）」→ 元記事・確認済みの文脈に「70業種」という数字がなく、出典のない具体的数値である",
-        "Q&A「単なるお小遣い稼ぎか事業性があるかの判断基準が今後明確化される予定です」→ 元記事は判断基準を明確にすべきだと提言しているだけで、明確化の予定は書かれていない",
-        "本文「東京都の諮問機関による提言」→ 元記事は東京都税制調査会を「知事の懇談会」と説明しており、諮問機関という性格づけは元記事と異なる",
-        "タイトル「YouTuberや副業も個人事業税の対象へ」→ 元記事では課税対象の拡大は提言段階で、対象になることは決まっていないため言い過ぎ（リードで提言段階と補足はされている）",
-        "本文「会社員として通常の給与所得のみを得ている人の税負担には直接影響しません」→ 元記事に書かれていない推論が断定的に書かれている",
-        "本文「すべての自動車に対して車両重量や走行距離、CO2排出量を基準とした課税体系の導入を検討すべき」→ 元記事は全車両に重量基準を導入することも考えられると述べ、CO2排出量は別の選択肢として挙げており、要約がやや混ざっている"
-      ],
-      "readability": {
-        "avg_paragraph": 105.3,
-        "avg_sentence": 63.2,
-        "long_share": 0.5,
-        "max_paragraph": 166,
-        "paragraphs": 6,
-        "sentences": 10
-      },
-      "score": 72,
-      "source": "tokyo-metro",
-      "title": "令和8年度東京都税制調査会報告について",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（EV・CO）",
-        "読みやすさ: 文が長い（1文の平均 63.2字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-09T08:26:15.345296+00:00",
       "attempt": 1,
@@ -27979,6 +27962,30 @@
       "warnings": [
         "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（HCA）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T13:05:55.069157+00:00",
+      "attempt": 1,
+      "id": "646e58946cb76443",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 89.9,
+        "avg_sentence": 41.2,
+        "long_share": 0.125,
+        "max_paragraph": 153,
+        "paragraphs": 11,
+        "sentences": 24
+      },
+      "score": 92,
+      "source": "microsoft-source",
+      "title": "IBM and Microsoft announce a new AI agent platform designed for industry-specifi",
+      "warnings": [
+        "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SEI）"
       ]
     }
   ],
