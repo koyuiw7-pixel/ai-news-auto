@@ -15,9 +15,9 @@ function isCurrent(href: string, path: string): boolean {
 /**
  * ヘッダーの下のジャンルのタブ（スマホは横にスクロール、PC は1列に並ぶ）。
  * 今いるジャンルは文字を濃くして赤い下線。高さ 44px（指で押しやすい大きさ）で固定し、表示後に動かない。
- * utility はスマホ・タブレットだけタブの最後に出す（PC はヘッダーの帯の右に出している）。
+ * lead（暮らしとお金の入口）はスマホ・タブレットだけタブの先頭に出す（PC はヘッダーの帯の右に出している。2026-11-11 読者目線レビュー 14位）。
  */
-export default function GenreTabs({ items, utility }: { items: Item[]; utility: Item[] }) {
+export default function GenreTabs({ items, lead }: { items: Item[]; lead: Item[] }) {
   const path = usePathname() ?? "/";
   const box = useRef<HTMLDivElement>(null);
 
@@ -29,9 +29,9 @@ export default function GenreTabs({ items, utility }: { items: Item[]; utility: 
     el.scrollLeft = active.offsetLeft - (el.clientWidth - active.offsetWidth) / 2;
   }, [path]);
 
-  const link = (item: Item, sub = false) => {
+  const link = (item: Item) => {
     const current = isCurrent(item.href, path);
-    const idle = sub ? "font-semibold text-muted" : "font-bold text-ink-soft";
+    const idle = "font-bold text-ink-soft";
     return (
       <Link
         href={item.href}
@@ -52,15 +52,15 @@ export default function GenreTabs({ items, utility }: { items: Item[]; utility: 
         className="mx-auto max-w-[1240px] overflow-x-auto [mask-image:linear-gradient(to_right,#000_88%,transparent)] [scrollbar-width:none] lg:[mask-image:none] [&::-webkit-scrollbar]:hidden"
       >
         <ul className="flex h-11 w-max items-stretch gap-5 px-4 sm:px-8 lg:gap-4 xl:gap-6">
-          {items.map((item) => (
-            <li key={item.href} className="flex">
+          {lead.map((item) => (
+            <li key={item.href} className="flex lg:hidden">
               {link(item)}
             </li>
           ))}
-          <li aria-hidden="true" className="my-3 w-px bg-line-strong lg:hidden" />
-          {utility.map((item) => (
-            <li key={item.href} className="flex lg:hidden">
-              {link(item, true)}
+          {lead.length > 0 && <li aria-hidden="true" className="my-3 w-px bg-line-strong lg:hidden" />}
+          {items.map((item) => (
+            <li key={item.href} className="flex">
+              {link(item)}
             </li>
           ))}
           {/* 右端のぼかしで最後のタブが隠れないよう、少し余白を足す */}

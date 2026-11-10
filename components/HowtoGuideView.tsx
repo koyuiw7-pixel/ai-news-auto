@@ -48,6 +48,8 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
   const toolKind = calculatorForGuide(guide);
   const tool = toolKind ? CALCULATORS[toolKind] : undefined;
 
+  // 児童手当・年末調整などのお金の手続きは「お金の手続きガイド」の棚（AI の使い方と同じ棚に見えていた。2026-11-11 読者目線レビュー 14位）
+  const shelf = guide.kind === "procedure" ? "お金の手続きガイド" : "使い方ガイド";
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -90,7 +92,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "ホーム", item: siteConfig.url },
-        { "@type": "ListItem", position: 2, name: "使い方ガイド", item: `${siteConfig.url}/guides` },
+        { "@type": "ListItem", position: 2, name: shelf, item: `${siteConfig.url}/guides` },
         { "@type": "ListItem", position: 3, name: guide.title, item: url },
       ],
     },
@@ -107,7 +109,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
       <nav aria-label="パンくず" className="flex flex-wrap items-center gap-1.5 text-meta text-muted">
         <Link href="/" className="hover:text-accent">ホーム</Link>
         <span aria-hidden>/</span>
-        <Link href="/guides" className="hover:text-accent">使い方ガイド</Link>
+        <Link href="/guides" className="hover:text-accent">{shelf}</Link>
         <span aria-hidden>/</span>
         <span>{guide.toolName}</span>
       </nav>

@@ -6,7 +6,7 @@ import { getAllArticles, type ArticleSummary } from "@/lib/articles";
 import { isLifeMoneyStory, pickHomeLead } from "@/lib/home-lead";
 import { isFastNews } from "@/lib/cover-path";
 import { displayHeadline } from "@/lib/headline";
-import { genreNav, UTILITY_NAV } from "@/lib/nav";
+import { genreNav, MONEY_NAV, UTILITY_NAV } from "@/lib/nav";
 import { siteConfig } from "@/site.config";
 
 /** 虫めがねの線画（検索の入口） */
@@ -47,7 +47,7 @@ export default function Header() {
             <span className="hidden text-meta font-bold text-mast-muted sm:inline md:hidden xl:inline">{siteConfig.tagline}</span>
           </Link>
 
-          <nav aria-label="定番ページ" className="ml-auto hidden items-center gap-5 lg:flex">
+          <nav aria-label="暮らしとお金の入口" className="ml-auto hidden items-center gap-4 lg:flex xl:gap-5">
             {UTILITY_NAV.map((item) => (
               <Link key={item.href} href={item.href} className="whitespace-nowrap text-meta font-bold text-mast-muted transition-colors hover:text-mast-ink">
                 {item.label}
@@ -81,7 +81,7 @@ export default function Header() {
         </div>
       </header>
 
-      <GenreTabs items={genreNav()} utility={UTILITY_NAV} />
+      <GenreTabs items={genreNav()} lead={MONEY_NAV} />
 
       {latest && (
         <LiveLine

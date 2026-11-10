@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getAllChooseGuides } from "@/lib/choose";
 import { guideShortName, LIFE_COMPARE_SLUGS, lifeCompareGuide } from "@/lib/buying-guides";
 import { siteConfig } from "@/site.config";
+import { CALCULATORS } from "@/lib/calculators";
 import { pageShareImage } from "@/lib/page-share";
 
 /**
@@ -31,16 +32,29 @@ export default function ChooseIndexPage() {
     const found = lifeCompareGuide(slug);
     return found ? [{ href: found.href, title: `${guideShortName(found.guide)}の比較`, note: found.guide.description }] : [];
   });
+  // お金の計算ツール（ヘッダーの「比較・計算」の入口。2026-11-11 読者目線レビュー 14位）。10〜12月はふるさと納税を先に
+  const tools = [CALCULATORS["furusato-limit"], CALCULATORS["defense-tax"]].map((t) => ({ href: t.href, title: t.title, note: t.description }));
   const chooses = getAllChooseGuides().map((guide) => ({ href: `/choose/${guide.slug}`, title: guide.articleLabel, note: guide.articleNote }));
 
   return (
     <div className="mx-auto max-w-[920px] px-5 py-10 sm:px-8 sm:py-14">
       <p className="eyebrow">CHOOSE</p>
       <h1 className="t-h1 mt-2">選び方ガイドの一覧</h1>
-      <p className="t-lead mt-3">料金や条件を、各社の公式サイトの記載をもとに比べたページです。</p>
+      <p className="t-lead mt-3">料金や条件を、各社の公式サイトの記載をもとに比べたページと、お金の計算ツールです。</p>
+
+      <section aria-labelledby="choose-calc" className="mt-10">
+        <h2 id="choose-calc" className="t-h2">お金の計算</h2>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+          {tools.map((item) => (
+            <li key={item.href}>
+              <ChooseCard {...item} money />
+            </li>
+          ))}
+        </ul>
+      </section>
 
       {compares.length > 0 && (
-        <section aria-labelledby="choose-money" className="mt-10">
+        <section aria-labelledby="choose-money" className="mt-12">
           <h2 id="choose-money" className="t-h2">暮らしとお金の比較</h2>
           <ul className="mt-4 grid gap-3 sm:grid-cols-2">
             {compares.map((item) => (

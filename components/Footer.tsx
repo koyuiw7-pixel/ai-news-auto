@@ -36,6 +36,8 @@ const REFERENCE_LINKS = [
   { href: "/guides/kogaku-ryoyohi", label: "高額療養費の上限額" },
   { href: "/products", label: "AIサービス図鑑" },
   { href: "/choose", label: "選び方ガイドの一覧" },
+  // ヘッダーの帯から移した一覧（2026-11-11 読者目線レビュー 14位。ヘッダーは暮らしとお金の入口にした）
+  { href: "/roundups", label: "値上げ・障害・リコールの一覧" },
   { href: "/weekly", label: "今週のAIニュースまとめ" },
   { href: "/events", label: "AIイベントの日程（日本時間）" },
 ];

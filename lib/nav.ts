@@ -36,10 +36,18 @@ export function genreNav(): NavItem[] {
   ];
 }
 
-/** 何度も使う定番ページ（PC は帯の右、スマホはタブの最後） */
-export const UTILITY_NAV: NavItem[] = [
-  { href: "/guides", label: "使い方ガイド" },
-  { href: "/ai-pricing", label: "AI料金表" },
-  { href: "/products", label: "AIサービス図鑑" },
-  { href: "/roundups", label: "値上げ・障害一覧" },
+/**
+ * 暮らしとお金の入口（PC は帯の右、スマホはジャンルのタブの先頭。2026-11-11 読者目線レビュー 14位）。
+ * 以前は「使い方ガイド・AI料金表・AIサービス図鑑・値上げ・障害一覧」で、年金や児童手当の投稿から来た人に AI のサイトに見えていた。
+ * 行き先は実在するページだけ（タグのページ・値上げの一覧・選び方と計算の一覧）。AI の定番ページはフッターから辿れる
+ */
+export const MONEY_NAV: NavItem[] = [
+  { href: `/tags/${encodeURIComponent("年金")}`, label: "年金・給付金" },
+  { href: `/tags/${encodeURIComponent("子育て支援")}`, label: "子育て" },
+  { href: `/tags/${encodeURIComponent("税金")}`, label: "税金・年末調整" },
+  { href: "/roundups/price-hikes", label: "電気・ガス・値上げ" },
+  { href: "/choose", label: "比較・計算" },
 ];
+
+/** PC の帯の右に出す定番ページ（今は暮らしとお金の入口） */
+export const UTILITY_NAV: NavItem[] = MONEY_NAV;
