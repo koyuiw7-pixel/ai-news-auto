@@ -274,7 +274,8 @@ class AdPlacementUpgradeTest(unittest.TestCase):
         self.assertIn("width={300}", parts)
         self.assertIn("height={250}", parts)
         self.assertIn("aspect-[6/5]", parts)
-        self.assertIn("ad.reason", src)
+        # 2026-11-11 オーナー「文字ばっか」（台帳 W39）: 記事から商品へつなぐ一文（ad.lead / ad.reason）は囲みに出さない
+        self.assertNotIn("{lead", src)
         self.assertIn("<Pixels", src)
 
     def test_kids_ads_stay_on_kids_learning(self):

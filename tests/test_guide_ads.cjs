@@ -250,7 +250,7 @@ test("置き場所：ガイドは導入のすぐ下とよくある質問の前�
   const shell = fs.readFileSync(path.join(root, "components/calc/ToolPage.tsx"), "utf8");
   assert.ok(shell.indexOf("<Calculator calc={{ kind }} />") < shell.indexOf("{afterCalc}") && shell.indexOf("{afterCalc}") < shell.indexOf("{children ?"));
   const block = fs.readFileSync(path.join(root, "components/ActionAd.tsx"), "utf8");
-  assert.ok(block.includes("data-aff-pos={pos}") && block.includes("<PrTag />") && block.includes("PrFeature") && block.includes("PrRow"));
+  assert.ok(block.includes("data-aff-pos={pos}") && block.includes("<PrTag />") && block.includes("PrFeature") && block.includes("OtherSites"));
   const parts = fs.readFileSync(path.join(root, "components/rail/parts.tsx"), "utf8");
   assert.ok(parts.includes("rel={AFFILIATE_REL}"));
   assert.match(AFFILIATE_REL, /^sponsored /);

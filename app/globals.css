@@ -73,11 +73,10 @@
   --shadow: 0 1px 2px rgb(11 26 51 / 0.06), 0 0 0 1px rgb(11 26 51 / 0.05);
   --shadow-lift: 0 14px 28px -14px rgb(11 26 51 / 0.32), 0 0 0 1px rgb(11 26 51 / 0.07);
   --glass: rgb(255 255 255 / 0.74);
-  /* 広告の囲み（PR）だけに使う砂色。記事の赤・紺・灰・緑（今できること）・ノワールの青／水色と重ならない（台帳 W37） */
-  --ad-bg: #fbf6ea;
-  --ad-head: #f4ebd6;
-  --ad-line: #e3d3ad;
-  --ad-badge: #6b5317;
+  /* 広告の囲み（PR）。白地に黒の細い枠、黒地に白の「PR」の札（2026-11-11 オーナー「このへんな黄色やめて。せめて黒とかで囲う感じに」。砂色・黄色は使わない） */
+  --ad-bg: #ffffff;
+  --ad-line: #111111;
+  --ad-badge: #111111;
   --ad-badge-ink: #ffffff;
   color-scheme: light;
 }
@@ -115,11 +114,10 @@
   --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.04);
   --shadow-lift: 0 16px 30px -14px rgb(0 0 0 / 0.6), 0 0 0 1px rgb(143 179 240 / 0.18);
   --glass: rgb(8 16 31 / 0.72);
-  --ad-bg: #1b170e;
-  --ad-head: #241e12;
-  --ad-line: #4a3d22;
-  --ad-badge: #e3c27a;
-  --ad-badge-ink: #1b170e;
+  --ad-bg: var(--surface);
+  --ad-line: #c1cadb;
+  --ad-badge: #e8edf6;
+  --ad-badge-ink: #08101f;
   color-scheme: dark;
 }
 
@@ -867,24 +865,18 @@ mark {
 }
 
 /*
- * 広告の囲み（2026-11-10 オーナー「広告がうまく入れられているのはいい感じ。だけど色の使い方が記事と同じすぎてメリハリがない」。台帳 W37）。
- * 本文と同じ白地をやめ、砂色の地と枠で記事と分ける。上の1行（.ad-head）は少し濃い帯、右上に塗りの小さな「PR」の札（.ad-pr）。
- * ボタン（.pr-cta）の色・大きさ・位置は変えない。囲みの中の罫線も砂色にそろえる
+ * 広告の囲み（台帳 W37 → 2026-11-11 オーナー「このへんな黄色やめてって言ったよね。せめて黒とかで囲う感じにしよう」）。
+ * 白地（ダークは面の色）に 1px の黒い枠・角の丸み 8px。色の帯は付けない。右上に黒地に白の小さな「PR」の札（.ad-pr）。
+ * 囲みの中の区切りの線はふつうの薄い線のまま（黒い枠は外側だけ）。ボタン（.pr-cta）の色・大きさ・位置は変えない
  */
 .ad-box {
   background: var(--ad-bg) !important;
-  border-color: var(--ad-line) !important;
-  box-shadow: 0 1px 0 rgb(0 0 0 / 0.02), 0 6px 18px -14px rgb(80 60 10 / 0.35);
-}
-.ad-box :where(.border-line, .border-line-strong),
-.ad-box :where(.divide-line) > :not(:last-child) {
-  border-color: var(--ad-line) !important;
+  border: 1px solid var(--ad-line) !important;
+  border-radius: 8px !important;
+  box-shadow: none;
 }
 .ad-box .ad-head {
-  background: var(--ad-head);
-}
-.ad-box :where(.hover\:bg-surface):hover {
-  background: var(--ad-head) !important;
+  background: transparent;
 }
 .ad-pr {
   display: inline-grid;
@@ -987,11 +979,11 @@ mark {
   font-size: 0.8125rem;
 }
 
-/* 得のカードの数字のチップと比べの棒（components/rail/parts.tsx の BenefitNumbers。台帳 W38） */
+/* 得のカードの数字のチップと比べの棒（components/rail/parts.tsx の BenefitNumbers。台帳 W38。色は付けず薄い線と黒） */
 .ad-chip {
-  background: var(--paper);
-  border: 1px solid var(--ad-line);
+  background: var(--ad-bg);
+  border: 1px solid var(--line-strong);
 }
 .ad-bar {
-  background: var(--ad-badge);
+  background: var(--ink);
 }

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { OfferItem } from "@/lib/offers";
 import { nextOfferExpiry, offerIsActive } from "@/lib/offer-time";
-import { PrFeature, PrRow, catalogPriceText } from "./parts";
+import { OtherSites, PrFeature, catalogPriceText } from "./parts";
 
 const SEEN_KEY = "saisoku:offers-seen";
 type Seen = Record<string, { n: number; at: number; clicked?: number }>;
@@ -110,18 +110,11 @@ export default function RankingBody({
   if (!first) return null;
   return (
     <div ref={root}>
-      <div className={wide ? "" : "border-b border-line"}>
+      <div>
         <PrFeature item={first} wide={wide} price={catalogPriceText(first, now)} onClick={() => onClick(first)} />
       </div>
-      {rest.length > 0 && (
-        <ol className={wide ? "grid border-t border-line sm:grid-cols-2 sm:[&>li:nth-child(2)]:border-l sm:[&>li]:border-b-0" : ""} start={2}>
-          {rest.map((item, index) => (
-            <li key={item.key} className="border-b border-line last:border-b-0">
-              <PrRow item={item} rank={index + 2} onClick={() => onClick(item)} price={catalogPriceText(item, now)} />
-            </li>
-          ))}
-        </ol>
-      )}
+      {/* 2つ目以降はボタンを付けず1行のリンク（1つの囲みにボタンは1つ。2026-11-11 オーナー） */}
+      <OtherSites items={rest} first={first} onClick={onClick} className={`px-4 pb-3 ${wide ? "sm:px-6" : "pt-3"}`} />
     </div>
   );
 }

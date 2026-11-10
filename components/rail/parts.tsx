@@ -235,8 +235,8 @@ export function PrFeature({
       <span className={`${gain ? "mt-3" : ""} grid items-start gap-x-3.5 gap-y-3 ${wide ? "grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-[168px_minmax(0,1fr)] sm:gap-x-6" : "grid-cols-[96px_minmax(0,1fr)]"}`}>
         <AdThumb item={item} className={wide ? "w-[96px] sm:row-span-2 sm:w-[168px]" : "w-[96px]"} />
         <span className="min-w-0 self-center">
-          {item.label && <span className="block text-meta font-bold leading-snug text-muted">{item.label}</span>}
-          <span className="mt-0.5 block text-[16px] font-bold leading-snug text-ink group-hover:underline">{item.name}</span>
+          {/* 分類の1行（「ふるさと納税」など）は出さない。見出しと名前で分かる（2026-11-11 オーナー「文字ばっか」） */}
+          <span className="block text-[16px] font-bold leading-snug text-ink group-hover:underline">{item.name}</span>
           <span className="mt-1 block empty:hidden">
             <Rating item={item} />
           </span>
@@ -258,11 +258,11 @@ export function PrFeature({
               販売終了予定：{new Intl.DateTimeFormat("ja-JP", { timeZone: "Asia/Tokyo", month: "numeric", day: "numeric", hour: "numeric", minute: "2-digit", hourCycle: "h23" }).format(new Date(item.activeUntil))}（変更の場合あり）
             </span>
           )}
-          <span className={`mt-3.5 flex flex-col gap-1.5 ${wide ? "sm:flex-row sm:items-center sm:gap-4" : ""}`}>
-            <span className={`pr-cta flex h-12 items-center justify-center rounded-xl px-6 text-[15px] font-bold tracking-wide shadow-[0_2px_0_rgb(0_0_0/0.18)] transition-[filter,transform] group-hover:brightness-110 group-active:translate-y-px motion-reduce:transition-none ${wide ? "sm:min-w-[17em]" : ""}`}>
+          {/* ボタンは1つの囲みに1つだけ。下の「〇〇のサイトが開きます」の1行は出さない（2026-11-11 オーナー「文字ばっか」） */}
+          <span className={`mt-3.5 flex ${wide ? "sm:block" : ""}`}>
+            <span className={`pr-cta flex h-12 w-full items-center justify-center rounded-lg px-6 text-[15px] font-bold tracking-wide shadow-[0_2px_0_rgb(0_0_0/0.18)] transition-[filter,transform] group-hover:brightness-110 group-active:translate-y-px motion-reduce:transition-none ${wide ? "sm:inline-flex sm:w-auto sm:min-w-[17em]" : ""}`}>
               {ctaOf(item)}
             </span>
-            <span className={`text-center text-meta leading-snug text-muted ${wide ? "sm:text-left" : ""}`}>{item.shop}のサイトが開きます</span>
           </span>
         </span>
       </span>
@@ -371,8 +371,52 @@ export function PrRow({ item, rank, onClick, price }: { item: OfferItem; rank: n
 }
 
 /**
+ * 囲みの2つ目以降のサイト（2026-11-11 オーナー「返礼品を探すボタンも2個あってどっちなんだ？違うふるさと納税なのかって思ったり」）。
+ * 1つの囲みにボタンは1つ（PrFeature）。ほかの提携先は画像もボタンも付けず、小さな文字のリンクを1行に並べる「ほかのサイト：au PAY ふるさと納税」。
+ * 分類が1つ目と違う商品（スマホの囲みのふるさと本舗など）だけ、名前のあとに分類を（）で添える。
+ * リンクは rel=sponsored・data-aff-rank のまま（囲みの data-aff-pos で置き場所ごとに数える。components/AffClickTracker.tsx）
+ */
+export function OtherSites({
+  items,
+  first,
+  onClick,
+  className = "",
+}: {
+  items: OfferItem[];
+  first?: OfferItem;
+  onClick?: (item: OfferItem) => void;
+  className?: string;
+}) {
+  if (items.length === 0) return null;
+  return (
+    <p data-other-sites="" className={`text-meta leading-relaxed text-ink-soft ${className}`}>
+      ほかのサイト：
+      {items.map((item, index) => {
+        const tag = item.label && item.label !== first?.label && !item.name.includes(item.label) ? `（${item.label}）` : "";
+        return (
+          <span key={item.key}>
+            {index > 0 && "／"}
+            <a
+              href={item.url}
+              target="_blank"
+              rel={AFFILIATE_REL}
+              data-aff-rank={index + 2}
+              onClick={onClick ? () => onClick(item) : undefined}
+              className="font-bold text-ink underline decoration-line-strong underline-offset-2 hover:decoration-ink"
+            >
+              {item.name}
+            </a>
+            {tag}
+          </span>
+        );
+      })}
+    </p>
+  );
+}
+
+/**
  * 囲みの右上の小さな「PR」の札（ステマ規制の「広告であることが分かる表示」。大きくしない。2026-11-09 オーナー）。
- * 2026-11-10（台帳 W37）: 枠の線だけの札から、砂色の塗りの札（app/globals.css の .ad-pr）に。囲みの注記を外したので、札ではっきり示す
+ * 2026-11-10（台帳 W37）: 囲みの注記を外したので、塗りの札ではっきり示す。2026-11-11: 黒地に白（app/globals.css の .ad-pr。黄色・砂色は使わない）
  */
 export function PrTag() {
   return <span className="ad-pr">PR</span>;

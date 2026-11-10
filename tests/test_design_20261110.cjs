@@ -62,14 +62,14 @@ test("[W37] 記事末の「出典と更新履歴」は小さな閉じた「出�
   assert.match(css, /\.src-fold \{[^}]*font-size: 0\.8125rem/);
 });
 
-test("[W37] 広告の囲みは砂色の地（.ad-box）と塗りの「PR」の札（.ad-pr）。ライト・ダークの両方に色がある", () => {
+test("[W37/W39] 広告の囲み（.ad-box）と塗りの「PR」の札（.ad-pr）。ライト・ダークの両方に色がある", () => {
   const css = read("app/globals.css");
   assert.equal((css.match(/--ad-bg:/g) || []).length, 2, "ライトとダークの両方");
   assert.match(css, /\.ad-box \{[^}]*background: var\(--ad-bg\)/);
   assert.match(css, /\.ad-pr \{[^}]*background: var\(--ad-badge\)/);
   assert.match(read("components/rail/parts.tsx"), /<span className="ad-pr">PR<\/span>/);
   for (const f of ["components/ActionAd.tsx", "components/rail/RailRanking.tsx", "components/CompareOffers.tsx", "components/AffiliateBox.tsx", "components/CtaBanner.tsx"]) {
-    assert.match(read(f), /ad-box/, `${f} に砂色の囲み`);
+    assert.match(read(f), /ad-box/, `${f} に広告の囲み`);
   }
 });
 
@@ -181,4 +181,34 @@ test("[W38] 記事・ガイド・計算ツールの PR に得のカードを付�
   assert.match(parts, /<BenefitNumbers benefit=\{benefit\} \/>/);
   assert.match(parts, /出典・確認日：/);
   assert.match(read("components/ActionAd.tsx"), /data-aff-pos=\{pos\}/);
+});
+
+// 台帳 W39（2026-11-11 オーナー「このへんな黄色やめてって言ったよね。せめて黒とかで囲う感じにしよう」「文字ばっか」「返礼品を探すボタンも2個あってどっちなんだ？」）
+test("[W39] 広告の囲みは白地（ダークは面の色）に 1px の黒い枠・角 8px・黒地に白の PR の札。砂色・黄色・色の帯は使わない", () => {
+  const css = read("app/globals.css");
+  const light = /:root \{[\s\S]*?--ad-bg: ([^;]+);[\s\S]*?--ad-line: ([^;]+);[\s\S]*?--ad-badge: ([^;]+);[\s\S]*?--ad-badge-ink: ([^;]+);/.exec(css);
+  assert.ok(light, "ライトの色");
+  assert.deepEqual(light.slice(1), ["#ffffff", "#111111", "#111111", "#ffffff"]);
+  assert.match(css, /\.ad-box \{[^}]*border: 1px solid var\(--ad-line\)[^}]*border-radius: 8px/);
+  assert.match(css, /\.ad-box \.ad-head \{[^}]*background: transparent/);
+  assert.doesNotMatch(css, /--ad-head|#fbf6ea|#f4ebd6|#e3d3ad|#6b5317|#e3c27a|#1b170e/, "砂色の色を残さない");
+});
+
+test("[W39] 1つの囲みにボタンは1つ。2つ目以降は「ほかのサイト：」の1行のリンク（提携の印と置き場所の計測は残す）", () => {
+  const parts = read("components/rail/parts.tsx");
+  assert.doesNotMatch(parts, /\}のサイトが開きます/, "ボタンの下の「〇〇のサイトが開きます」は出さない");
+  const other = parts.slice(parts.indexOf("export function OtherSites"), parts.indexOf("export function PrTag"));
+  assert.match(other, /ほかのサイト：/);
+  assert.match(other, /rel=\{AFFILIATE_REL\}/);
+  assert.match(other, /data-aff-rank=/);
+  assert.doesNotMatch(other, /pr-cta|AdThumb|RowThumb/, "ボタン・画像の枠を付けない");
+  for (const f of ["components/ActionAd.tsx", "components/rail/RankingBody.tsx"]) {
+    const src = read(f);
+    assert.match(src, /<OtherSites /, `${f} の2つ目以降は OtherSites`);
+    assert.doesNotMatch(src, /<PrRow /, `${f} に2つ目のボタンを出さない`);
+  }
+  assert.match(read("components/rail/RailRanking.tsx"), /data-aff-pos=/);
+  assert.match(read("components/ActionAd.tsx"), /data-aff-pos=\{pos\}/);
+  const money = read("components/InternalMoneyCard.tsx");
+  assert.doesNotMatch(money, /→|›|矢印の印を付ける/);
 });
