@@ -60,8 +60,16 @@ test('[A15] 公式の写真は本当の幅・高さを書く（1,200px 未満の
   const { shareImages } = load('lib/share-image.ts');
   const photo = 'https://ai-tech-express.jp/img/kao-1a2b3c4d.jpg';
   const small = shareImages({ thumbnail: photo, imageCredit: { kind: 'official', width: 800, height: 450 } }, '/cover/kao?v=1', '題名');
-  assert.equal(small[0].width, 800);
-  assert.equal(small[0].height, 450);
+  // 2026-11-10: 1,200px 未満の写真は 1,200px のカバーの後ろ（Discover の大きなカード）。幅・高さは本当の値のまま
+  assert.equal(small[0].url, '/cover/kao?v=1');
+  assert.equal(small[1].url, photo);
+  assert.equal(small[1].width, 800);
+  assert.equal(small[1].height, 450);
+  // 表紙の写真のイメージがあれば、それ（16:9・1200px）が先
+  const withCover = shareImages({ slug: 'kao', thumbnail: photo, imageCredit: { kind: 'official', width: 800, height: 450 },
+    coverImage: 'https://ai-tech-express.jp/img/kao-muse-1a2b3c4d.jpg', coverCredit: { kind: 'ai', model: 'muse' } }, '/cover/kao?v=1', '題名');
+  assert.match(withCover[0].url, /^\/cover\/kao\/photo\?v=/);
+  assert.equal(withCover.at(-1).width, 800);
   const big = shareImages({ thumbnail: photo, imageCredit: { kind: 'official', width: 1200, height: 675 } }, '/cover/kao?v=1', '題名');
   assert.deepEqual([big[0].width, big[0].height], [1200, 675]);
 });

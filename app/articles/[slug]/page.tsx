@@ -77,8 +77,7 @@ import {
   tagHref,
 } from "@/lib/articles";
 import { Highlight } from "@/lib/highlight";
-import { isOwnImage } from "@/lib/thumb-url";
-import { photoSharePath, shareImages } from "@/lib/share-image";
+import { articleImageOrder, shareImages } from "@/lib/share-image";
 import { bylineDates } from "@/lib/byline";
 import {
   renderMarkdown,
@@ -375,11 +374,8 @@ export default async function ArticlePage({ params }: Props) {
       // 写真が無い・外部の画像の記事は従来どおり見出し入りのカバーが先
       // 公式の写真が無く表紙の写真のイメージ（Muse の写真など）がある記事は、その写真（16:9・札だけ。lib/share-image.ts の photoSharePath）を先頭に。
       // 文字の多い数字の図・見出し入りのカバーは後ろ（2026-11-10 Discover の準備）
-      image: (photoSharePath(article)
-        ? [photoSharePath(article), coverPath(article)]
-        : isOwnImage(article.thumbnail) ? [article.thumbnail, coverPath(article)] : [coverPath(article), article.thumbnail])
-        .filter(Boolean)
-        .map((src) => (src!.startsWith("/") ? `${siteConfig.url}${src}` : src)),
+      // 1,200px 未満の公式の写真は、1,200px のカバーの後ろ（lib/share-image.ts の articleImageOrder）
+      image: articleImageOrder(article, coverPath(article)).map((src) => (src.startsWith("/") ? `${siteConfig.url}${src}` : src)),
       // サイソクに載せた日時（ニュースサイトマップ・フィードと同じ。元の発表日時は本文側に表示）
       datePublished: article.generatedAt || article.publishedAt,
       // 続報を足した記事は最終更新日時

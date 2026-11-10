@@ -74,7 +74,16 @@ test('写真の共有画像は AI の札を付け、見出しの文字は重ね�
 
 test('NewsArticle の image も同じ順（写真の共有画像があれば先頭）', () => {
   const page = read('app/articles/[slug]/page.tsx');
-  assert.match(page, /image: \(photoSharePath\(article\)\s*\?\s*\[photoSharePath\(article\), coverPath\(article\)\]/);
+  assert.match(page, /image: articleImageOrder\(article, coverPath\(article\)\)/);
+  const { articleImageOrder } = load('lib/share-image.ts');
+  assert.match(articleImageOrder(museArticle, '/cover/electricity-bill?v=5-x')[0], /^\/cover\/electricity-bill\/photo\?v=/);
+  // 数字の図だけの記事は今までどおり図が先（写真が無いとき）
+  assert.equal(articleImageOrder({ ...museArticle, coverImage: '', coverCredit: null }, '/c')[0], FIGURE);
+  // 1,200px 未満の公式の写真は 1,200px のカバーが先
+  const small = { slug: 'kao', thumbnail: 'https://ai-tech-express.jp/img/kao-1a2b3c4d.jpg', imageCredit: { kind: 'official', width: 640 } };
+  assert.deepEqual(articleImageOrder(small, '/cover/kao'), ['/cover/kao', small.thumbnail]);
+  const big = { ...small, imageCredit: { kind: 'official', width: 1600 } };
+  assert.equal(articleImageOrder(big, '/cover/kao')[0], small.thumbnail);
 });
 
 test('署名の日時: 公開は datePublished と同じ時刻、更新は分単位で違うときだけ', () => {

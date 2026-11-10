@@ -26,6 +26,8 @@ export const PHOTO_SHARE_WIDTH = 1200;
 export const PHOTO_SHARE_HEIGHT = 675;
 /** 写真の共有画像の版。描き方を変えたら1つ上げる（URL の ?v= が変わり、古い画像のキャッシュを使わせない） */
 export const PHOTO_SHARE_VERSION = 2;
+/** Google Discover の大きなカードに要る幅 */
+export const DISCOVER_MIN_WIDTH = 1200;
 
 export type ShareImage = { url: string; width?: number; height?: number; alt?: string };
 
@@ -43,8 +45,15 @@ export function hasOfficialPhoto(article: ShareImageInput): boolean {
  * （coverImage。Muse の写真・Workers AI の表紙。どちらも記事に合うかを確かめたもの。lib/noir.ts の noirCover と同じ順）。
  * 文字の多い図の表紙・見出し入りのカバーより先に、共有画像（og:image）と NewsArticle の image に出す。無ければ null
  */
+/** 公式の写真の幅が分かっていて 1,200px 未満か（Discover の大きなカードに足りない。scripts/images.py が imageCredit.width に記録） */
+export function smallOfficialPhoto(article: ShareImageInput): boolean {
+  const width = article.imageCredit?.width ?? 0;
+  return hasOfficialPhoto(article) && width > 0 && width < DISCOVER_MIN_WIDTH;
+}
+
 export function photoCover(article: ShareImageInput): string | null {
-  if (article.noPhoto || hasOfficialPhoto(article)) return null;
+  // 公式の写真が 1,200px 以上ならそれが先。1,200px 未満なら表紙の写真のイメージ（あれば）を先にする（2026-11-10）
+  if (article.noPhoto || (hasOfficialPhoto(article) && !smallOfficialPhoto(article))) return null;
   const cover = (article.coverImage ?? "").trim();
   if (!cover || article.coverCredit?.kind !== "ai" || !isOwnImage(cover)) return null;
   return cover;
@@ -62,13 +71,29 @@ export function shareImages(article: ShareImageInput, cover: string | undefined,
   const card: ShareImage[] = cover ? [{ url: cover, width: 1200, height: 630, alt }] : [];
   // 公式の写真が無く、表紙の写真のイメージがある記事は、その写真（札だけ・見出しの文字なし）を先に。見出し入りのカバーは2つ目（2026-11-10）
   const photo = photoSharePath(article);
-  if (photo) return [{ url: photo, width: PHOTO_SHARE_WIDTH, height: PHOTO_SHARE_HEIGHT, alt }, ...card];
-  if (hasOfficialPhoto(article)) {
-    // 本当の幅・高さを書く（公式の写真の約2割は元が 1,200px 未満。scripts/images.py が保存時に imageCredit に記録。SEO A15）
-    const { width, height } = article.imageCredit ?? {};
-    const size = width && width > 0 ? { width, ...(height && height > 0 ? { height } : {}) } : { width: 1200 };
-    return [{ url: article.thumbnail as string, ...size, alt }, ...card];
-  }
+  // 本当の幅・高さを書く（公式の写真の約2割は元が 1,200px 未満。scripts/images.py が保存時に imageCredit に記録。SEO A15）
+  const { width, height } = article.imageCredit ?? {};
+  const official: ShareImage[] = hasOfficialPhoto(article)
+    ? [{ url: article.thumbnail as string, ...(width && width > 0 ? { width, ...(height && height > 0 ? { height } : {}) } : { width: 1200 }), alt }]
+    : [];
+  if (photo) return [{ url: photo, width: PHOTO_SHARE_WIDTH, height: PHOTO_SHARE_HEIGHT, alt }, ...card, ...official];
+  // 1,200px 未満の公式の写真は、1,200px の見出し入りのカバーの後ろに回す（Discover の大きなカードに足りない。幅は本当の値のまま。2026-11-10）
+  if (official.length && smallOfficialPhoto(article) && card.length) return [...card, ...official];
+  if (official.length) return [...official, ...card];
   if (card.length) return card;
   return article.thumbnail ? [{ url: article.thumbnail, width: 1280, height: 720 }] : [];
+}
+
+/** NewsArticle の image の並び（og:image と同じ考え方）。サイトの中の絶対パスはそのまま返す（呼ぶ側でサイトの URL を付ける） */
+export function articleImageOrder(article: ShareImageInput, cover: string): string[] {
+  const photo = photoSharePath(article);
+  const thumb = article.thumbnail ?? "";
+  const list = photo
+    ? [photo, cover, ...(hasOfficialPhoto(article) ? [thumb] : [])]
+    : smallOfficialPhoto(article)
+      ? [cover, thumb]
+      : isOwnImage(thumb)
+        ? [thumb, cover]
+        : [cover, thumb];
+  return list.filter(Boolean);
 }
