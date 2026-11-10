@@ -107,7 +107,7 @@ export async function smartnewsFeedXml(now = Date.now()): Promise<{ xml: string;
   <channel>
     <title>${escapeXml(siteConfig.siteName)}</title>
     <link>${siteConfig.url}</link>
-    <description>海外AIの新発表を最速で解説</description>
+    <description>${escapeXml(siteConfig.feedShortDescription)}</description>
     <pubDate>${built}</pubDate>
     <language>ja</language>
     <copyright>© ${escapeXml(siteConfig.siteName)}</copyright>

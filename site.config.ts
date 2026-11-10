@@ -18,6 +18,11 @@ export const siteConfig = {
   // ページ側で足す（lib/coverage.ts）。ここには、いつでも本当のこと（軸と約束）だけを書く
   description:
     "暮らしとお金の「自分ごと」ニュースを、公式発表から最短数分で。値段・手続き・給付・税・障害・リコールなどを要点3つに整理し、自分は対象か・いくらか・何をすればいいかまで伝えます。",
+  // 提携先の配信ファイル（グノシー・スマートニュース）のサイトの説明（2026-11-10 オーナー承認。昔の「海外AIの新発表…」から軸に合わせた）
+  feedDescription:
+    "暮らしとお金の「自分ごと」ニュース。公式発表をもとに、値上げ・手続き・給付・税金・情報流出などを「自分は対象？今やること」で伝えます。",
+  // スマートニュースの配信ファイルの説明は15字まで（仕様。tests/test_smartnews_feed_xml.py）
+  feedShortDescription: "暮らしとお金の自分ごとニュース",
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.VERCEL_PROJECT_PRODUCTION_URL

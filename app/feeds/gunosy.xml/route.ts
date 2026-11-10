@@ -30,7 +30,7 @@ export async function GET() {
   <channel>
     <title>${escapeXml(siteConfig.siteName)}</title>
     <link>${siteConfig.url}</link>
-    <description>海外AIの新発表を最速で日本語に。今すぐ使えるかまで解説</description>
+    <description>${escapeXml(siteConfig.feedDescription)}</description>
     <language>ja</language>
     <copyright>© ${escapeXml(siteConfig.siteName)}</copyright>
     <ttl>15</ttl>
