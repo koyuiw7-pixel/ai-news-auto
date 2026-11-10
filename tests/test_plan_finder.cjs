@@ -91,7 +91,9 @@ for (const g of guides) {
       for (const pick of persona.picks) assert.ok(f.items.some((i) => i.id === pick), `${pick} が一覧にない`);
       const amounts = [...persona.why.matchAll(/([\d,]{3,})円/g)].map((m) => Number(m[1].replace(/,/g, "")));
       const all = new Set(f.items.flatMap((i) => Object.values(i.matrix).flatMap((row) => Object.values(row).flatMap((c) => (c ? [c.yen] : [])))).concat(f.items.map((i) => i.initialYen)));
-      for (const yen of amounts) assert.ok(all.has(yen), `${g.slug}: 結論の ${yen}円 が表にない（${persona.who}）`);
+      // 表の金額か、選んだ会社の「くわしく」に書いた金額（セット割など）だけを使う
+      const factText = f.items.filter((i) => persona.picks.includes(i.id)).flatMap((i) => i.facts.map((x) => x.value)).join(" ");
+      for (const yen of amounts) assert.ok(all.has(yen) || factText.includes(`${yen.toLocaleString("ja-JP")}円`), `${g.slug}: 結論の ${yen}円 が表にない（${persona.who}）`);
     }
   });
 }
@@ -100,7 +102,7 @@ test("一覧の部品: 3つの質問・並べ替え・PR の札・sponsored の�
   const src = read("components/compare/PlanFinder.tsx");
   assert.match(src, /あなたに合うのは/);
   assert.match(src, /月額の安い順/);
-  assert.match(src, /初めの費用の安い順/);
+  assert.match(src, /\{initialLabel\}の安い順/);
   assert.match(src, /データ量の多い順/);
   assert.match(src, /rel=\{product\.sponsored \? "sponsored nofollow noopener noreferrer" : "nofollow noopener"\}/);
   assert.match(src, /data-aff-pos="compare"/);

@@ -1,16 +1,16 @@
 {
   "schemaVersion": 2,
   "editorial": "manual",
-  "checkedLabel": "11月10日時点・公式サイトより",
+  "checkedLabel": "11月11日時点・各社の公式サイトより",
   "columns": [],
   "quickPick": [],
   "publishedAt": "2026-11-10T17:20:00+09:00",
-  "updatedAt": "2026-11-10T17:20:00+09:00",
-  "priceCheckedAt": "2026-11-10T17:20:00+09:00",
+  "updatedAt": "2026-11-11T02:20:00+09:00",
+  "priceCheckedAt": "2026-11-11T02:20:00+09:00",
   "slug": "hikari",
-  "title": "光回線とホームルーターの選び方と比較　2026年11月時点",
+  "title": "光回線の比較　15社の月額を住まいと契約期間で絞り込む（2026年11月）",
   "shortName": "光回線・ホームルーター",
-  "description": "家のネット回線を決めたい人へ。GMOとくとくBB光、BIGLOBE光、BIGLOBE光プラス、GMOとくとくBBホームWi-Fi、GMOとくとくBB WiMAX、BIGLOBE WiMAX +5Gの月額・工事費・解約時の費用を、11月10日時点の公式サイトの記載だけで比べました。",
+  "description": "マンションか一戸建てか、契約期間の決まりがあってよいか、セット割を使いたいスマホの3つを選ぶと、光回線・ホームルーター15社の公式の月額から条件に合うものを安い順に並べます。ドコモ光、ソフトバンク光、auひかり、NURO光、楽天ひかり、enひかりなどを11月11日時点の公式サイトの記載だけで比べました。",
   "targetQueries": [
     "光回線 比較",
     "光回線 選び方",
@@ -22,37 +22,34 @@
   "topics": [
     "telecom"
   ],
-  "intro": "家のネット回線は、月額だけでなく、工事ができる住まいか、契約期間と解約時の費用、スマホとのセット割で総額が変わります。このページでは、光回線3つと工事不要の回線3つを、各社の公式サイトに載っている料金と条件だけで並べました。並べた6つはすべて当サイトの提携先（PR）です。編集部が回線を契約して試したものではありません。",
+  "intro": "家のネット回線は、月額だけでなく、住まいの種類、契約期間と解約時の費用、スマホとのセット割で総額が変わります。このページでは、光回線とホームルーター15社の料金を、各社の公式サイトに載っている数字だけで並べました。住まいと契約期間、セット割を使いたいスマホを選ぶと、条件に合うものが月額の安い順に出ます。",
   "personas": [
     {
-      "who": "引っ越し先で、工事を待たずにすぐ使いたい人",
+      "who": "マンションで、月額をできるだけ抑えたい人",
       "picks": [
-        "gmo-home-wifi",
-        "biglobe-hikari-plus"
+        "en-hikari",
+        "rakuten-hikari",
+        "nuro-hikari"
       ],
-      "why": "ホームWi-Fiは工事不要でコンセントに挿して使う。BIGLOBE光プラスはルーターが届けば工事前でも5G通信で使え、申し込みから最短4日と記載。"
+      "why": "マンションの1ギガ（NURO光は2.5ギガ）の月額は、enひかり3,520円（契約期間の決まりなし）、楽天ひかり4,180円、NURO光4,180円（3年契約・提供地域が限られる）です（税込・割引なし）。"
     },
     {
-      "who": "契約期間の縛りがない光回線を選びたい人",
+      "who": "一戸建てで、契約期間に縛られずに光回線を使いたい人",
       "picks": [
-        "gmo-hikari"
+        "en-hikari",
+        "gmo-hikari",
+        "sonet-hikari"
       ],
-      "why": "契約期間の縛りなし、解約違約金0円と記載。1ギガのマンションタイプは月4,290円（税込）。"
+      "why": "契約期間の決まりがない一戸建ての1ギガは、enひかり4,620円、GMOとくとくBB光5,390円、So-net光 M 5,995円です。"
     },
     {
-      "who": "auやUQ mobileのスマホを使っている人",
+      "who": "スマホのセット割を使いたい人",
       "picks": [
-        "biglobe-hikari"
+        "docomo-hikari",
+        "softbank-hikari",
+        "au-hikari"
       ],
-      "why": "BIGLOBE光電話と同時に申し込むと、auスマートバリューやUQ mobile自宅セット割の対象になると記載。"
-    },
-    {
-      "who": "工事なしで、解約時の費用も抑えたい人",
-      "picks": [
-        "gmo-wimax",
-        "biglobe-wimax"
-      ],
-      "why": "どちらも工事不要で解約違約金なし。BIGLOBE WiMAX +5Gは最低利用期間もなしと記載。"
+      "why": "ドコモ光はドコモのスマホ1回線ごとに最大1,210円引き、ソフトバンク光はソフトバンクのスマホが毎月1,100円引き、auひかりはauスマホから最大1,100円引きです。セット割の額は各社の公式サイトの記載です。"
     }
   ],
   "rows": [
@@ -112,6 +109,243 @@
     }
   ],
   "products": [
+    {
+      "id": "docomo-hikari",
+      "name": "ドコモ光",
+      "maker": "NTTドコモ",
+      "category": "光回線（フレッツ光の回線）",
+      "price": "月4,400円から",
+      "priceNote": "1ギガ タイプA/C（2年定期契約）・税込",
+      "officialUrl": "https://www.docomo.ne.jp/internet/hikari/",
+      "summary": "NTTドコモの光回線（フレッツ光の回線）。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "ドコモ光公式（料金）",
+          "url": "https://www.docomo.ne.jp/internet/hikari/charge/index.html"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.docomo.ne.jp/internet/hikari/charge/index.html",
+        "checkedAt": "2026-11-11T02:20:00+09:00"
+      }
+    },
+    {
+      "id": "softbank-hikari",
+      "name": "ソフトバンク光",
+      "maker": "ソフトバンク",
+      "category": "光回線（フレッツ光の回線）",
+      "price": "月4,180円から",
+      "priceNote": "マンション（2年自動更新プラン）・税込",
+      "officialUrl": "https://www.softbank.jp/internet/sbhikari/",
+      "summary": "ソフトバンクの光回線（フレッツ光の回線）。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "ソフトバンク光公式（料金）",
+          "url": "https://www.softbank.jp/internet/sbhikari/price/"
+        },
+        {
+          "label": "ソフトバンク公式（おうち割 光セット）",
+          "url": "https://www.softbank.jp/mobile/special/ouchiwari-hikari/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.softbank.jp/internet/sbhikari/price/",
+        "checkedAt": "2026-11-11T02:20:00+09:00"
+      }
+    },
+    {
+      "id": "au-hikari",
+      "name": "auひかり",
+      "maker": "KDDI",
+      "category": "光回線（auひかりの回線）",
+      "price": "月4,455円から",
+      "priceNote": "マンション ギガ（お得プランA）・税込",
+      "officialUrl": "https://www.au.com/internet/auhikari_1g/",
+      "summary": "KDDIの光回線（auひかりの回線）。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "auひかり公式（ホーム）",
+          "url": "https://www.au.com/internet/auhikari_1g/charge/"
+        },
+        {
+          "label": "auひかり公式（マンション）",
+          "url": "https://www.au.com/internet/mansion/mansion-giga/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.au.com/internet/auhikari_1g/charge/",
+        "checkedAt": "2026-11-11T02:20:00+09:00"
+      }
+    },
+    {
+      "id": "nuro-hikari",
+      "name": "NURO光",
+      "maker": "ソニーネットワークコミュニケーションズ",
+      "category": "光回線（独自の回線・一部地域）",
+      "price": "月4,180円から",
+      "priceNote": "NURO 光(M)・下り最大2.5Gbps（Wi-Fiルーター月550円は2年割の間0円）・税込",
+      "officialUrl": "https://www.nuro.jp/hikari/",
+      "summary": "ソニーネットワークコミュニケーションズの光回線（独自の回線・一部地域）。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "NURO光公式（戸建て料金）",
+          "url": "https://www.nuro.jp/hikari/house/price/"
+        },
+        {
+          "label": "NURO光公式（マンション料金）",
+          "url": "https://www.nuro.jp/hikari/mansion/price/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.nuro.jp/hikari/house/price/",
+        "checkedAt": "2026-11-11T02:20:00+09:00"
+      }
+    },
+    {
+      "id": "rakuten-hikari",
+      "name": "楽天ひかり",
+      "maker": "楽天モバイル",
+      "category": "光回線（フレッツ光の回線）",
+      "price": "月4,180円から",
+      "priceNote": "マンションプラン・税込",
+      "officialUrl": "https://network.mobile.rakuten.co.jp/hikari/",
+      "summary": "楽天モバイルの光回線（フレッツ光の回線）。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "楽天ひかり公式（料金表）",
+          "url": "https://network.mobile.rakuten.co.jp/hikari/fee/pricelist/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://network.mobile.rakuten.co.jp/hikari/fee/pricelist/",
+        "checkedAt": "2026-11-11T02:20:00+09:00"
+      }
+    },
+    {
+      "id": "sonet-hikari",
+      "name": "So-net光 M",
+      "maker": "ソニーネットワークコミュニケーションズ",
+      "category": "光回線（フレッツ光の回線）",
+      "price": "月4,895円から",
+      "priceNote": "So-net 光 M（1ギガ）・税込",
+      "officialUrl": "https://www.so-net.ne.jp/access/hikari/",
+      "summary": "ソニーネットワークコミュニケーションズの光回線（フレッツ光の回線）。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "So-net光公式",
+          "url": "https://www.so-net.ne.jp/access/hikari/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.so-net.ne.jp/access/hikari/",
+        "checkedAt": "2026-11-11T02:20:00+09:00"
+      }
+    },
+    {
+      "id": "commufa-hikari",
+      "name": "コミュファ光",
+      "maker": "中部テレコミュニケーション",
+      "category": "光回線（独自の回線・東海）",
+      "price": "月5,170円から",
+      "priceNote": "ホーム1G（スタート割。期間内の解約で月額1か月分の解除料）・税込",
+      "officialUrl": "https://www.commufa.jp/",
+      "summary": "中部テレコミュニケーションの光回線（独自の回線・東海）。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "コミュファ光公式",
+          "url": "https://www.commufa.jp/services/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.commufa.jp/services/",
+        "checkedAt": "2026-11-11T02:20:00+09:00"
+      }
+    },
+    {
+      "id": "en-hikari",
+      "name": "enひかり",
+      "maker": "縁人",
+      "category": "光回線（フレッツ光の回線）",
+      "price": "月3,520円から",
+      "priceNote": "マンションタイプ・税込",
+      "officialUrl": "https://enhikari.jp/",
+      "summary": "縁人の光回線（フレッツ光の回線）。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "enひかり公式",
+          "url": "https://enhikari.jp/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://enhikari.jp/",
+        "checkedAt": "2026-11-11T02:20:00+09:00"
+      }
+    },
+    {
+      "id": "iijmio-hikari",
+      "name": "IIJmioひかり",
+      "maker": "IIJ",
+      "category": "光回線（フレッツ光の回線）",
+      "price": "月4,356円から",
+      "priceNote": "マンションタイプ（最低利用期間24か月）・税込",
+      "officialUrl": "https://www.iijmio.jp/imh/",
+      "summary": "IIJの光回線（フレッツ光の回線）。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "IIJmioひかり公式",
+          "url": "https://www.iijmio.jp/imh/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.iijmio.jp/imh/",
+        "checkedAt": "2026-11-11T02:20:00+09:00"
+      }
+    },
     {
       "specs": [],
       "id": "gmo-hikari",
@@ -456,9 +690,41 @@
     {
       "q": "電話で光回線の勧誘を受けたら、どうすればいいですか？",
       "a": "国民生活センターは、名乗った事業者名とサービス名を確かめ、口頭の説明だけで契約せず、説明書面を見てから検討するよう呼びかけています。契約書面が届いたらすぐに内容を確かめ、やめたいときは速やかに契約先に申し出るよう案内しています。"
+    },
+    {
+      "q": "フレッツ光は比べないのですか？",
+      "a": "NTT東日本・西日本のフレッツ光は回線だけの料金で、プロバイダの料金が別にかかるため、一覧には入れていません。回線だけの月額は、東日本の戸建て（ギガラインタイプ）5,940円などと公式サイトに書かれています。"
+    },
+    {
+      "q": "eo光は比べないのですか？",
+      "a": "関西のeo光は、公式サイトの料金表を自動で読み取れず、税込の月額を確かめられなかったため、今回は一覧に入れていません。"
+    },
+    {
+      "q": "フレッツ光は比べないのですか？",
+      "a": "NTT東日本・西日本のフレッツ光は回線だけの料金で、プロバイダの料金が別にかかるため、一覧には入れていません。回線だけの月額は、東日本の戸建て（ギガラインタイプ）5,940円などと公式サイトに書かれています。"
+    },
+    {
+      "q": "eo光は比べないのですか？",
+      "a": "関西のeo光は、公式サイトの料金表を自動で読み取れず、税込の月額を確かめられなかったため、今回は一覧に入れていません。"
+    },
+    {
+      "q": "フレッツ光は比べないのですか？",
+      "a": "NTT東日本・西日本のフレッツ光は回線だけの料金で、プロバイダの料金が別にかかるため、一覧には入れていません。回線だけの月額は、東日本の戸建て（ギガラインタイプ）5,940円などと公式サイトに書かれています。"
+    },
+    {
+      "q": "eo光は比べないのですか？",
+      "a": "関西のeo光は、公式サイトの料金表を自動で読み取れず、税込の月額を確かめられなかったため、今回は一覧に入れていません。"
+    },
+    {
+      "q": "フレッツ光は比べないのですか？",
+      "a": "NTT東日本・西日本のフレッツ光は回線だけの料金で、プロバイダの料金が別にかかるため、一覧には入れていません。回線だけの月額は、東日本の戸建て（ギガラインタイプ）5,940円などと公式サイトに書かれています。"
+    },
+    {
+      "q": "eo光は比べないのですか？",
+      "a": "関西のeo光は、公式サイトの料金表を自動で読み取れず、税込の月額を確かめられなかったため、今回は一覧に入れていません。"
     }
   ],
-  "howWeMade": "2026年11月10日に、各社の公式サイトの料金ページを取得し、そこに書かれた料金と条件だけで作りました。キャッシュバックなどのキャンペーンは時期で変わるため、表には入れていません。編集部は回線を契約・試用しておらず、点数や順位はつけていません。並べた6つはすべて当サイトの提携先（PR）で、リンク経由の申し込みで紹介料が入ることがあります。",
+  "howWeMade": "2026年11月11日に、15社の公式サイトの料金ページを取得し、そこに書かれた料金と条件だけで作りました（GMOとくとくBB光は11月11日に公式ページを読み込めなかったため、11月10日に確認した料金です）。月額はスマホとのセット割やキャッシュバックなどのキャンペーンを入れない税込の額で、工事費は入れていません。編集部は回線を契約・試用しておらず、点数はつけていません。並び順は、選んだ条件の月額の安い順です。GMOとくとくBB光、BIGLOBE光、BIGLOBE光プラス、GMOとくとくBB ホームWi-Fi、GMOとくとくBB WiMAX、BIGLOBE WiMAX +5Gは当サイトの提携先（PR）で、リンク経由の申し込みで紹介料が入ることがありますが、順番には影響させていません。ほかの9社は提携していません。",
   "newsNote": "サイソクが報じたネット回線と通信料金の関連記事",
   "sponsoredCta": "料金と条件を見る",
   "relatedArticleSlugs": [
@@ -471,5 +737,755 @@
     "工事費の「実質0円」は分割の値引きと理解する",
     "端末代・ルーター代を含めて毎月の額を見る",
     "スマホとのセット割の条件を確かめる"
-  ]
+  ],
+  "planFinder": {
+    "unit": "税込・割引なし",
+    "tierQuestion": "住まいは",
+    "tiers": [
+      {
+        "key": "mansion",
+        "label": "マンション・アパート"
+      },
+      {
+        "key": "house",
+        "label": "一戸建て"
+      }
+    ],
+    "optionQuestion": "契約期間の決まり（やめるときの費用）は",
+    "options": [
+      {
+        "key": "any",
+        "label": "期間の決まりがあってもよい"
+      },
+      {
+        "key": "none",
+        "label": "期間の決まりがないほうがいい"
+      }
+    ],
+    "tagQuestion": "セット割を使いたいスマホ",
+    "tags": [
+      "ドコモ",
+      "au",
+      "UQ mobile",
+      "ソフトバンク",
+      "Y!mobile",
+      "IIJmio"
+    ],
+    "anyTag": "こだわらない",
+    "initialLabel": "事務手数料",
+    "sortRule": "並び順の決まり：選んだ住まいの1ギガ（NURO光は2.5ギガ）の月額（税込・スマホのセット割やキャンペーンの割引なし）の安い順です。同じ金額なら事務手数料（工事費は入れていません）が安い順。提携先（PR）かどうかで順番は変えていません。",
+    "items": [
+      {
+        "id": "docomo-hikari",
+        "kind": "光回線（フレッツ光の回線）",
+        "tags": [
+          "ドコモ"
+        ],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 4400,
+              "label": "1ギガ タイプA/C（2年定期契約）"
+            },
+            "none": {
+              "yen": 5500,
+              "label": "1ギガ タイプA/C（定期契約なし）"
+            }
+          },
+          "house": {
+            "any": {
+              "yen": 5720,
+              "label": "1ギガ タイプA/C（2年定期契約）"
+            },
+            "none": {
+              "yen": 7370,
+              "label": "1ギガ タイプA/C（定期契約なし）"
+            }
+          }
+        },
+        "initialYen": 4950,
+        "facts": [
+          {
+            "label": "スマホのセット割",
+            "value": "ドコモのスマホ1回線ごとに最大1,210円引き（プランによる）"
+          },
+          {
+            "label": "初めの費用",
+            "value": "契約事務手数料4,950円。工事費は新規の代表例28,600円（工事費の特典は別のキャンペーン）"
+          },
+          {
+            "label": "解約",
+            "value": "2年定期契約の解約金 マンション4,180円・戸建て5,500円"
+          },
+          {
+            "label": "10ギガ",
+            "value": "2年定期契約で6,380円（戸建て・マンション同額）"
+          },
+          {
+            "label": "提供エリア",
+            "value": "フレッツ光の提供エリア"
+          }
+        ]
+      },
+      {
+        "id": "softbank-hikari",
+        "kind": "光回線（フレッツ光の回線）",
+        "tags": [
+          "ソフトバンク",
+          "Y!mobile"
+        ],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 4180,
+              "label": "マンション（2年自動更新プラン）"
+            },
+            "none": {
+              "yen": 5390,
+              "label": "マンション（自動更新なしプラン）"
+            }
+          },
+          "house": {
+            "any": {
+              "yen": 5720,
+              "label": "ファミリー（2年自動更新プラン）"
+            },
+            "none": {
+              "yen": 6930,
+              "label": "ファミリー（自動更新なしプラン）"
+            }
+          }
+        },
+        "initialYen": 4950,
+        "facts": [
+          {
+            "label": "スマホのセット割",
+            "value": "ソフトバンクのスマホは毎月1,100円引き（一部プラン550円）。Y!mobileも割引あり"
+          },
+          {
+            "label": "初めの費用",
+            "value": "契約事務手数料4,950円。工事費は立会いありで47,520円（工事費の割引キャンペーンあり）"
+          },
+          {
+            "label": "解約",
+            "value": "2年自動更新プランは月額相当（ファミリー5,720円）"
+          },
+          {
+            "label": "10ギガ",
+            "value": "6,380円（2年自動更新プラン）"
+          },
+          {
+            "label": "提供エリア",
+            "value": "フレッツ光の提供エリア"
+          }
+        ],
+        "change": "12月1日から、1ギガなどの月額が一律330円上がります（10ギガは対象外）。"
+      },
+      {
+        "id": "au-hikari",
+        "kind": "光回線（auひかりの回線）",
+        "tags": [
+          "au",
+          "UQ mobile"
+        ],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 4455,
+              "label": "マンション ギガ（お得プランA）"
+            },
+            "none": null
+          },
+          "house": {
+            "any": {
+              "yen": 6380,
+              "label": "ホーム1ギガ ずっとギガ得プラン（1年目。2年目6,270円・3年目から6,160円）"
+            },
+            "none": null
+          }
+        },
+        "initialYen": 4950,
+        "facts": [
+          {
+            "label": "スマホのセット割",
+            "value": "auスマートバリューでauスマホから最大1,100円引き。UQ mobileの自宅セット割の対象"
+          },
+          {
+            "label": "初めの費用",
+            "value": "新規登録料4,950円。工事費は戸建て48,950円・マンション33,000円（初期費用相当額の割引キャンペーンあり）"
+          },
+          {
+            "label": "解約",
+            "value": "ずっとギガ得プラン4,730円・お得プランA 2,290円"
+          },
+          {
+            "label": "月額に含むもの",
+            "value": "戸建てはプロバイダ料と機器のレンタル料を含む"
+          },
+          {
+            "label": "提供エリア",
+            "value": "公式で確認中（地域や建物で使えない場合あり）"
+          }
+        ]
+      },
+      {
+        "id": "nuro-hikari",
+        "kind": "光回線（独自の回線・一部地域）",
+        "tags": [],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 4180,
+              "label": "NURO 光(M)・下り最大2.5Gbps（Wi-Fiルーター月550円は2年割の間0円）"
+            },
+            "none": null
+          },
+          "house": {
+            "any": {
+              "yen": 5170,
+              "label": "NURO 光(H)・下り最大2.5Gbps（Wi-Fiルーター月550円は2年割の間0円）"
+            },
+            "none": null
+          }
+        },
+        "initialYen": 3300,
+        "facts": [
+          {
+            "label": "スマホのセット割",
+            "value": "スマホとのセット割の記載なし（NURO でんき・ガスとのセット割あり）"
+          },
+          {
+            "label": "初めの費用",
+            "value": "契約事務手数料3,300円（通常6,050円を特典で割引）。基本工事費55,000円は実質無料のキャンペーン"
+          },
+          {
+            "label": "解約",
+            "value": "3年契約。解約金 戸建て3,643円・マンション2,653円"
+          },
+          {
+            "label": "ルーター",
+            "value": "ホームゲートウェイ月550円（2年割の間は0円）"
+          },
+          {
+            "label": "提供エリア",
+            "value": "北海道・関東・東海・関西・中国・九州の一部の都道府県（一部を除く）"
+          }
+        ]
+      },
+      {
+        "id": "rakuten-hikari",
+        "kind": "光回線（フレッツ光の回線）",
+        "tags": [],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 4180,
+              "label": "マンションプラン"
+            },
+            "none": null
+          },
+          "house": {
+            "any": {
+              "yen": 5280,
+              "label": "ファミリープラン"
+            },
+            "none": null
+          }
+        },
+        "initialYen": 880,
+        "facts": [
+          {
+            "label": "スマホのセット割",
+            "value": "料金表のページにセット割の記載なし"
+          },
+          {
+            "label": "初めの費用",
+            "value": "初期登録費880円（新規）。工事費は最大22,000円"
+          },
+          {
+            "label": "解約",
+            "value": "解約金 マンション4,180円・ファミリー5,280円"
+          },
+          {
+            "label": "ルーター",
+            "value": "ホームゲートウェイ220円＋無線LANカード（東日本330円・西日本110円）"
+          },
+          {
+            "label": "提供エリア",
+            "value": "フレッツ光の提供エリア"
+          }
+        ]
+      },
+      {
+        "id": "sonet-hikari",
+        "kind": "光回線（フレッツ光の回線）",
+        "tags": [],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 4895,
+              "label": "So-net 光 M（1ギガ）"
+            },
+            "none": {
+              "yen": 4895,
+              "label": "So-net 光 M（1ギガ）"
+            }
+          },
+          "house": {
+            "any": {
+              "yen": 5995,
+              "label": "So-net 光 M（1ギガ）"
+            },
+            "none": {
+              "yen": 5995,
+              "label": "So-net 光 M（1ギガ）"
+            }
+          }
+        },
+        "initialYen": 6050,
+        "facts": [
+          {
+            "label": "スマホのセット割",
+            "value": "公式で確認中"
+          },
+          {
+            "label": "初めの費用",
+            "value": "事務手数料6,050円。派遣工事39,600円（特典で実質無料）"
+          },
+          {
+            "label": "解約",
+            "value": "いつ解約しても解約金なし"
+          },
+          {
+            "label": "ルーター",
+            "value": "Wi-Fiルーター月660円（レンタル）"
+          },
+          {
+            "label": "10ギガ",
+            "value": "6,380円"
+          },
+          {
+            "label": "提供エリア",
+            "value": "フレッツ光の提供エリア"
+          }
+        ]
+      },
+      {
+        "id": "commufa-hikari",
+        "kind": "光回線（独自の回線・東海）",
+        "tags": [
+          "au"
+        ],
+        "matrix": {
+          "mansion": {
+            "any": null,
+            "none": null
+          },
+          "house": {
+            "any": {
+              "yen": 5170,
+              "label": "ホーム1G（スタート割。期間内の解約で月額1か月分の解除料）"
+            },
+            "none": null
+          }
+        },
+        "initialYen": 770,
+        "facts": [
+          {
+            "label": "スマホのセット割",
+            "value": "auスマートバリューの対象（金額は公式で確認中）"
+          },
+          {
+            "label": "初めの費用",
+            "value": "契約事務手数料770円。工事費47,520円（条件つきで無料のキャンペーンあり）"
+          },
+          {
+            "label": "解約",
+            "value": "スタート割の期間内は月額1か月分と工事費の残り"
+          },
+          {
+            "label": "ルーター",
+            "value": "Wi-Fiルーターを標準で提供"
+          },
+          {
+            "label": "マンション",
+            "value": "マンションの料金は公式で確認中"
+          },
+          {
+            "label": "提供エリア",
+            "value": "愛知・岐阜・三重・静岡と長野の一部"
+          }
+        ]
+      },
+      {
+        "id": "en-hikari",
+        "kind": "光回線（フレッツ光の回線）",
+        "tags": [
+          "UQ mobile"
+        ],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 3520,
+              "label": "マンションタイプ"
+            },
+            "none": {
+              "yen": 3520,
+              "label": "マンションタイプ"
+            }
+          },
+          "house": {
+            "any": {
+              "yen": 4620,
+              "label": "ファミリータイプ"
+            },
+            "none": {
+              "yen": 4620,
+              "label": "ファミリータイプ"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "スマホのセット割",
+            "value": "UQ mobile・povo・ahamoは「勝手に割り」で月110円引き（申請が必要）"
+          },
+          {
+            "label": "初めの費用",
+            "value": "契約事務手数料は公式で確認中。工事費は戸建て16,500円など（工事費無料のキャンペーン中）"
+          },
+          {
+            "label": "解約",
+            "value": "契約期間の決まりなし・解約金なし"
+          },
+          {
+            "label": "ルーター",
+            "value": "ホームゲートウェイ220円、無線LAN付き330円"
+          },
+          {
+            "label": "10ギガ",
+            "value": "enひかりクロス 4,700円"
+          },
+          {
+            "label": "提供エリア",
+            "value": "フレッツ光の提供エリア"
+          }
+        ]
+      },
+      {
+        "id": "iijmio-hikari",
+        "kind": "光回線（フレッツ光の回線）",
+        "tags": [
+          "IIJmio"
+        ],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 4356,
+              "label": "マンションタイプ（最低利用期間24か月）"
+            },
+            "none": null
+          },
+          "house": {
+            "any": {
+              "yen": 5456,
+              "label": "ファミリータイプ（最低利用期間24か月）"
+            },
+            "none": null
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "スマホのセット割",
+            "value": "IIJmioのスマホとのmio割で660円引き"
+          },
+          {
+            "label": "初めの費用",
+            "value": "契約事務手数料は公式で確認中。工事費28,600円（割引で実質0円のキャンペーン）"
+          },
+          {
+            "label": "解約",
+            "value": "最低利用期間内の解約で3,000円"
+          },
+          {
+            "label": "ルーター",
+            "value": "レンタル 1ギガ対応330円・10ギガ対応550円"
+          },
+          {
+            "label": "10ギガ",
+            "value": "6,380円"
+          },
+          {
+            "label": "提供エリア",
+            "value": "フレッツ光の提供エリア"
+          }
+        ]
+      },
+      {
+        "id": "gmo-hikari",
+        "kind": "光回線（フレッツ光の回線）",
+        "tags": [],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 4290,
+              "label": "1ギガ マンション"
+            },
+            "none": {
+              "yen": 4290,
+              "label": "1ギガ マンション"
+            }
+          },
+          "house": {
+            "any": {
+              "yen": 5390,
+              "label": "1ギガ ファミリー"
+            },
+            "none": {
+              "yen": 5390,
+              "label": "1ギガ ファミリー"
+            }
+          }
+        },
+        "initialYen": 3300,
+        "facts": [
+          {
+            "label": "スマホのセット割",
+            "value": "記載なし"
+          },
+          {
+            "label": "初めの費用",
+            "value": "事務手数料3,300円。基本工事費は36回の分割と同額の値引き（途中解約は残りを一括）"
+          },
+          {
+            "label": "解約",
+            "value": "契約期間の縛りなし・解約違約金0円"
+          },
+          {
+            "label": "ルーター",
+            "value": "1ギガはWi-Fiルーターを0円でレンタル"
+          },
+          {
+            "label": "確認日",
+            "value": "11月10日に公式サイトで確認（11月11日は公式ページを読み込めず）"
+          }
+        ]
+      },
+      {
+        "id": "biglobe-hikari",
+        "kind": "光回線（フレッツ光の回線）",
+        "tags": [
+          "au",
+          "UQ mobile"
+        ],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 4378,
+              "label": "マンション1ギガ（3年プラン）"
+            },
+            "none": null
+          },
+          "house": {
+            "any": {
+              "yen": 5478,
+              "label": "ファミリー1ギガ（3年プラン）"
+            },
+            "none": null
+          }
+        },
+        "initialYen": 3300,
+        "facts": [
+          {
+            "label": "スマホのセット割",
+            "value": "auスマートバリュー・UQ mobile自宅セット割（BIGLOBE光電話の同時申し込みが条件）"
+          },
+          {
+            "label": "初めの費用",
+            "value": "申込手数料3,300円（1ギガ・新規）。工事費は最大28,600円を値引き"
+          },
+          {
+            "label": "解約",
+            "value": "3年の自動更新。違約金 ファミリー4,100円・マンション3,000円"
+          },
+          {
+            "label": "10ギガ",
+            "value": "6,270円（2年プラン）"
+          }
+        ]
+      },
+      {
+        "id": "biglobe-hikari-plus",
+        "kind": "光回線＋5G（工事前も使える）",
+        "tags": [],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 4642,
+              "label": "集合住宅1ギガ（2年契約）"
+            },
+            "none": null
+          },
+          "house": {
+            "any": {
+              "yen": 5720,
+              "label": "一戸建て1ギガ（2年契約）"
+            },
+            "none": null
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "スマホのセット割",
+            "value": "公式で確認中"
+          },
+          {
+            "label": "初めの費用",
+            "value": "派遣工事 一戸建て1,650円×24回など（特典で実質0円）。申込の手数料は公式で確認中"
+          },
+          {
+            "label": "解約",
+            "value": "2年契約・自動更新。契約解除料あり"
+          },
+          {
+            "label": "ルーター",
+            "value": "ハイブリッドホームルーター（レンタル月858円）"
+          },
+          {
+            "label": "特徴",
+            "value": "工事が終わるまで5G通信で使える"
+          }
+        ]
+      },
+      {
+        "id": "gmo-home-wifi",
+        "kind": "ホームルーター（工事なし）",
+        "tags": [],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 5687,
+              "label": "ホームWi-Fi（端末代の分割と同額を割引した月額）"
+            },
+            "none": {
+              "yen": 5687,
+              "label": "ホームWi-Fi（端末代の分割と同額を割引した月額）"
+            }
+          },
+          "house": {
+            "any": {
+              "yen": 5687,
+              "label": "ホームWi-Fi（端末代の分割と同額を割引した月額）"
+            },
+            "none": {
+              "yen": 5687,
+              "label": "ホームWi-Fi（端末代の分割と同額を割引した月額）"
+            }
+          }
+        },
+        "initialYen": 3300,
+        "facts": [
+          {
+            "label": "初めの費用",
+            "value": "事務手数料3,300円"
+          },
+          {
+            "label": "解約",
+            "value": "解約違約金なし（端末代の分割が残っていれば残りを払う）"
+          },
+          {
+            "label": "速度",
+            "value": "混雑時に速度を制限する場合あり"
+          }
+        ]
+      },
+      {
+        "id": "gmo-wimax",
+        "kind": "WiMAX（工事なし）",
+        "tags": [],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 5566,
+              "label": "WiMAX +5G（1か月目以降）"
+            },
+            "none": {
+              "yen": 5566,
+              "label": "WiMAX +5G（1か月目以降）"
+            }
+          },
+          "house": {
+            "any": {
+              "yen": 5566,
+              "label": "WiMAX +5G（1か月目以降）"
+            },
+            "none": {
+              "yen": 5566,
+              "label": "WiMAX +5G（1か月目以降）"
+            }
+          }
+        },
+        "initialYen": 3300,
+        "facts": [
+          {
+            "label": "初めの費用",
+            "value": "事務手数料3,300円"
+          },
+          {
+            "label": "解約",
+            "value": "解約違約金なし（端末代の分割が残っていれば残りを払う）"
+          },
+          {
+            "label": "注意",
+            "value": "プラスエリアモードを使った月は1,100円かかる"
+          }
+        ]
+      },
+      {
+        "id": "biglobe-wimax",
+        "kind": "WiMAX（工事なし）",
+        "tags": [],
+        "matrix": {
+          "mansion": {
+            "any": {
+              "yen": 5258,
+              "label": "WiMAX +5G（25か月目以降の月額。24か月目までは1,650円引き）"
+            },
+            "none": {
+              "yen": 5258,
+              "label": "WiMAX +5G（25か月目以降の月額。24か月目までは1,650円引き）"
+            }
+          },
+          "house": {
+            "any": {
+              "yen": 5258,
+              "label": "WiMAX +5G（25か月目以降の月額。24か月目までは1,650円引き）"
+            },
+            "none": {
+              "yen": 5258,
+              "label": "WiMAX +5G（25か月目以降の月額。24か月目までは1,650円引き）"
+            }
+          }
+        },
+        "initialYen": 3300,
+        "facts": [
+          {
+            "label": "初めの費用",
+            "value": "申込手数料3,300円"
+          },
+          {
+            "label": "解約",
+            "value": "最低利用期間なし・契約解除料なし（ルーター代の分割が残っていれば残りを払う）"
+          },
+          {
+            "label": "データ量",
+            "value": "無制限（混雑時に速度制限の場合あり）"
+          }
+        ]
+      }
+    ]
+  }
 }

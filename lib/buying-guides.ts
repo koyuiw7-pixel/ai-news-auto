@@ -89,6 +89,8 @@ export type PlanFinder = {
   anyTag: string;
   /** 並び順の決まり（ページに必ず出す） */
   sortRule: string;
+  /** initialYen の呼び名（省略時は「初めの費用」。光回線は「事務手数料」） */
+  initialLabel?: string;
   items: PlanFinderItem[];
 };
 

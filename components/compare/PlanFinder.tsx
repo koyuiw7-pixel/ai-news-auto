@@ -87,6 +87,8 @@ export default function PlanFinder({ finder, products, checkedLabel }: { finder:
     return byPrice(a, b);
   });
   const missing = matching.filter((row) => !row.cell);
+  const initialLabel = finder.initialLabel ?? "初めの費用";
+  const hasGb = finder.items.some((i) => Object.values(i.matrix).some((r) => Object.values(r).some((c) => c?.gb !== undefined)));
   const tierLabel = finder.tiers.find((t) => t.key === tier)?.label ?? "";
   const optionLabel = finder.options?.find((o) => o.key === option)?.label;
 
@@ -125,6 +127,7 @@ export default function PlanFinder({ finder, products, checkedLabel }: { finder:
                     </a>
                     {product.sponsored && <Pr />}
                     <span className="mt-0.5 block text-note leading-snug text-ink-soft">{cell!.label}</span>
+                    <span className="mt-0.5 block text-meta leading-snug text-muted">{item.kind}</span>
                   </span>
                   <span className="shrink-0 text-right">
                     <span className="index-num block text-[19px] font-black leading-tight text-ink">{yen(cell!.yen)}</span>
@@ -150,17 +153,17 @@ export default function PlanFinder({ finder, products, checkedLabel }: { finder:
           <span className="mr-2">並べ替え</span>
           <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} className="h-11 rounded-lg border border-line-strong bg-paper px-3 text-note font-bold text-ink">
             <option value="price">月額の安い順</option>
-            <option value="initial">初めの費用の安い順</option>
-            <option value="data">データ量の多い順</option>
+            <option value="initial">{initialLabel}の安い順</option>
+            {hasGb ? <option value="data">データ量の多い順</option> : null}
           </select>
         </label>
       </div>
       <ul className="mt-3 grid gap-3">
         {listed.map(({ item, product, cell }) => (
-          <Row key={item.id} item={item} product={product} cell={cell} />
+          <Row key={item.id} item={item} product={product} cell={cell} initialLabel={initialLabel} />
         ))}
         {missing.map(({ item, product }) => (
-          <Row key={item.id} item={item} product={product} cell={null} />
+          <Row key={item.id} item={item} product={product} cell={null} initialLabel={initialLabel} />
         ))}
       </ul>
       <p className="mt-3 text-meta leading-[1.7] text-muted">
@@ -170,7 +173,7 @@ export default function PlanFinder({ finder, products, checkedLabel }: { finder:
   );
 }
 
-function Row({ item, product, cell }: { item: Finder["items"][number]; product: FinderProduct; cell: PlanFinderCell }) {
+function Row({ item, product, cell, initialLabel }: { item: Finder["items"][number]; product: FinderProduct; cell: PlanFinderCell; initialLabel: string }) {
   return (
     <li id={`p-${item.id}`} className={`scroll-mt-24 rounded-xl border border-line px-3.5 py-3 ${cell ? "" : "opacity-70"}`}>
       <div className="flex items-start justify-between gap-3">
@@ -184,7 +187,7 @@ function Row({ item, product, cell }: { item: Finder["items"][number]; product: 
         </div>
         <p className="shrink-0 text-right">
           <span className="index-num block text-[18px] font-black leading-tight text-ink">{cell ? yen(cell.yen) : "ー"}</span>
-          <span className="block text-meta text-muted">{item.initialYen === null ? "初めの費用：公式で確認中" : `初めの費用 ${yen(item.initialYen)}`}</span>
+          <span className="block whitespace-nowrap text-meta text-muted">{item.initialYen === null ? `${initialLabel}：公式で確認中` : `${initialLabel} ${yen(item.initialYen)}`}</span>
         </p>
       </div>
       {item.change ? <p className="mt-2 rounded-md bg-accent-soft px-2.5 py-1.5 text-meta leading-[1.6] text-ink">{item.change}</p> : null}
