@@ -742,6 +742,8 @@ FAQ_TODAY_FIELD = """# faq と today_actions（記事ページの「よくある
   元記事・確認済みの事実の束にある具体的なもの（窓口の正式名と番号・受付時間・締切の日時・本物の送信元の名前・確かめる明細の名前）を入れ、
   この記事にしか書けない行動を先にする（手順・公式窓口の URL・なるほど・不安の Q&A は、公開のあとに scripts/depth_fields.py が公式ページから足す）。
   提供予定・研究段階・統計や業績の話題でも、公式発表で条件を確かめる・自分の契約や設定を見直す など、記事に沿った行動を書く。
+  ただし読者個人がとれる行動が無い発表（大臣の面会・会談・式典・人事・表彰など）は today_actions を空配列 [] にする。
+  「面会の詳しい内容を〇〇課に電話で問い合わせる」のような、記事の中身を問い合わせるだけの行動は書かない（2026-11-11 読者目線レビュー 6位）。
   特定の銘柄・物件の売買はすすめない。頭に番号（「1.」）を付けない。"""
 FAQ_TODAY_OFF = """# faq と today_actions
 - このジャンルでは faq と today_actions は空配列 [] にする。"""
@@ -840,6 +842,9 @@ def fill_faq_actions(record: dict, source_text: str = "", context: str = "") -> 
         return []
     # よくある質問は本文に無い情報があるときだけ（2026-11-05 台帳 A45）。空は「書くことが無い」答えなので書き足さない
     need = [k for k in ("todayActions",) if not record.get(k)]
+    # 読者がすることの無い発表（面会・式典など）は「今日やること」を書き足さない（2026-11-11 読者目線レビュー 6位）
+    if persona.no_reader_action(record.get("title")):
+        need = []
     if not need:
         return []
     verdict = record.get("verdict") or {}
@@ -858,7 +863,7 @@ def fill_faq_actions(record: dict, source_text: str = "", context: str = "") -> 
     if "faq" in need and (faq := clean_faq(data.get("faq"))):
         record["faq"] = faq
         added.append("faq")
-    if "todayActions" in need and (actions := clean_actions(data.get("today_actions"))):
+    if "todayActions" in need and (actions := clean_actions(data.get("today_actions"), record.get("title"))):
         record["todayActions"] = actions
         added.append("todayActions")
     if added:
@@ -902,12 +907,15 @@ def clean_faq(raw: object) -> list[dict]:
     return out[:4]
 
 
-def clean_actions(raw: object) -> list[str]:
+def clean_actions(raw: object, title: str | None = None) -> list[str]:
+    """「今日やること」を整える。読者がすることの無い発表（title が面会・式典など）は空、意味の無い行動は外す（persona.reader_actions）"""
+    if title is not None and persona.no_reader_action(title):
+        return []
     out = []
     for value in raw if isinstance(raw, list) else []:
         # 先頭の箇条書きの印（「・」「- 」「1. 」「2）」）だけ外す。「2026年11月10日に…」の年の数字は消さない
         text = re.sub(r"^(?:[・\-*]\s*|\d{1,2}\s*[.)）]\s*)", "", re.sub(r"\s+", " ", str(value or "")).strip().lstrip("　 ")).strip()
-        if text and text not in out:
+        if text and text not in out and not persona.meaningless_action(text):
             out.append(text[:90])
     return out[:3] if len(out) >= 2 else []
 
@@ -1342,7 +1350,7 @@ def build_web_record(item: dict, data: dict, page: dict, model_name: str, voice_
     if resolved.slug in FAQ_GENRES:
         if faq := clean_faq(data.get("faq")):
             record["faq"] = faq
-        if actions := clean_actions(data.get("today_actions")):
+        if actions := clean_actions(data.get("today_actions"), record.get("title")):
             record["todayActions"] = actions
     if item.get("secondary"):
         fix_press_first_person(record, item["source_name"])

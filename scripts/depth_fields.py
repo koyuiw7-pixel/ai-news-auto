@@ -42,6 +42,7 @@ from urllib.parse import urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import nonanswer  # noqa: E402  答えになっていない答え（「書かれていません」）の式（SEO A4・LLMO-A4）
+import persona  # noqa: E402  読者がすることの無い発表・意味の無い行動の判定（2026-11-11 読者目線レビュー 6位）
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -99,6 +100,8 @@ PROMPT = """# 頼みたいこと
 - action は20〜60字の1文（何をするか）。steps はその手順を2〜4個（各40字以内。画面・メニューの名前はページにあるときだけ）。
 - url は、その行動をするページ（一覧のページか、そのリンクの URL。無ければ ""）。source はその行動の根拠のページの URL。
 - 特定の銘柄・物件の売買はすすめない。頭に番号を付けない。
+- 読者個人がとれる行動が無い発表（大臣の面会・会談・式典・人事・表彰など）は today_steps を空配列 [] にする。
+  「面会の詳しい内容を〇〇課に電話で問い合わせる」「ほかの面会の記録を見る」のような、記事の中身を問い合わせるだけの行動は書かない（2026-11-11）。
 
 ## cause（なぜ起きた？）
 - 起きたことの原因・背景を、公式ページが書いている範囲だけで、やさしい言葉で1〜3文（60〜200字）。推測しない。
@@ -600,6 +603,11 @@ def validate(data: dict, pages: list[dict], record: dict | None = None) -> tuple
         out["insight"] = insight[:3]
     if desks:
         out["officialDesk"] = desks[:3]
+    # 読者がすることの無い発表（面会・式典など）には書かない。意味の無い行動（記事の中身を問い合わせるだけ）は外す（2026-11-11 読者目線レビュー 6位）
+    kept = persona.reader_actions((record or {}).get("title"), steps)
+    if len(kept) < len(steps):
+        dropped.append(f"today_steps: 読者がすることの無い・意味の無い行動 {len(steps) - len(kept)}個")
+    steps = kept
     if len(steps) >= 2:
         out["todaySteps"] = steps[:3]
     return out, dropped

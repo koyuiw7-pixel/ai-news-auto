@@ -3,6 +3,7 @@
  * 画面に出す前にもう一度、URL が https:// か http:// の外のページかだけを確かめる（ほかの照合は書く段で済んでいる）。
  */
 import { answeredOnly } from "@/lib/nonanswer";
+import { noReaderAction, readerActions } from "@/lib/reader-urgency";
 
 export type InsightItem = { text: string; source: string };
 export type DeskEntry = { name: string; url: string; source?: string; howTo?: string[]; phone?: string; hours?: string; note?: string };
@@ -15,6 +16,8 @@ export type GuideRow = { question: string; situation: string; recommend: string;
 export type DepthHeadings = Partial<Record<"insight" | "cause" | "steps" | "desk" | "worries" | "guide", string>>;
 
 export type DepthFields = {
+  /** 記事の題名（面会・式典などの、読者がすることの無い発表かの判定に使う。lib/reader-urgency.ts） */
+  title?: string;
   depthHeadings?: DepthHeadings;
   decisionGuide?: GuideRow[];
   insight?: InsightItem[];
@@ -30,11 +33,14 @@ const str = (s: unknown): s is string => typeof s === "string" && s.trim().lengt
 /** 記事の JSON から、画面に出せる形の欄だけを取り出す（壊れた項目は外す） */
 export function depthOf(a: DepthFields) {
   const insight = (a.insight ?? []).filter((x) => str(x?.text) && okUrl(x?.source)).slice(0, 3);
-  const officialDesk = (a.officialDesk ?? [])
+  // 読者がすることの無い発表（面会・式典など）には「すぐにできること」と問い合わせ先を出さない。意味の無い行動（記事の中身を問い合わせるだけ）は外す
+  // （2026-11-11 読者目線レビュー 6位: 財務大臣の面会に「財務省国際局地域協力課に電話で問い合わせる」）
+  const noAction = noReaderAction(a.title);
+  const officialDesk = (noAction ? [] : a.officialDesk ?? [])
     .filter((d) => str(d?.name) && okUrl(d?.url))
     .map((d) => ({ ...d, howTo: (d.howTo ?? []).filter(str).slice(0, 5) }))
     .slice(0, 3);
-  const steps = (a.todaySteps ?? [])
+  const steps = readerActions(a.title, a.todaySteps ?? [], (s) => String(s?.action ?? ""))
     .filter((s) => str(s?.action))
     .map((s) => ({ ...s, steps: (s.steps ?? []).filter(str).slice(0, 4), url: okUrl(s.url) ? s.url : undefined }))
     .slice(0, 3);

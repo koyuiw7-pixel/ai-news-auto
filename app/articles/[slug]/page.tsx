@@ -4,6 +4,7 @@ import TopicListMembership from "@/components/TopicListMembership";
 import StoryLinks from "@/components/noir/StoryLinks";
 import PopularReads from "@/components/PopularReads";
 import { mergeStoryReads } from "@/lib/story-reads";
+import { readerActions } from "@/lib/reader-urgency";
 import { topicPages } from "@/lib/related";
 import { nextStepsFor } from "@/lib/next-steps";
 import { canonicalPathOf, isIndexable, isZeroVisit } from "@/lib/indexing";
@@ -220,7 +221,8 @@ export default async function ArticlePage({ params }: Props) {
   const moneyLink = moneyLinkFor(article);
   // 答えが「書かれていません」の問いは、見える欄にも FAQPage にも出さない（lib/nonanswer.ts。SEO A4・LLMO-A4）
   const articleFaq = answeredOnly((article.faq ?? []).map((row) => ({ ...row, a: cleanTake(row.a ?? "") })).filter((row) => row.q && row.a));
-  const todayActions = article.todayActions ?? [];
+  // 読者がすることの無い発表（面会・式典など）には出さない・意味の無い行動は外す（lib/reader-urgency.ts。2026-11-11 読者目線レビュー 6位）
+  const todayActions = readerActions(article.title, article.todayActions ?? [], (x) => x);
   const depth = depthOf(article);
   // 広告の置き場所は本文の列に最大3つ（2026-11-09 オーナー指示「邪魔になりすぎるのは良くないけど慈善事業じゃない」）:
   //  (a) 「すぐにできること」のすぐ下の PR（情報流出→セキュリティ、地震→防災の備え など。lib/action-ad.ts）
