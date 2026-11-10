@@ -910,6 +910,14 @@ def write_article(record: dict) -> Path:
         log(f"   [safety] {change}")
     ARTICLES_DIR.mkdir(parents=True, exist_ok=True)
     path = ARTICLES_DIR / f"{record['slug']}.json"
+    # 検索結果の題名 searchTitle（<title> だけ。2026-11-10 オーナー承認・台帳 A29 の変更。scripts/search_title.py）:
+    # 書き直しで決まりに合わなくなった値は外し、新しい暮らしとお金の記事には案を作って決まりを通ったときだけ付ける（公開は止めない）
+    import search_title  # noqa: PLC0415 - 必要なときだけ読む
+
+    if note := search_title.revalidate(record):
+        log(f"   [search-title] {note}")
+    if not path.exists() and (note := search_title.attach(record)):
+        log(f"   [search-title] {note}")
     # 新しい記事だけ、新しい見た目（ノワール）の印と要点の欄を付ける。今ある記事のファイルは書き換えない（2026-11-07 台帳 W36。scripts/noir_layout.py）
     if not path.exists():
         for change in noir_layout.attach(record):
