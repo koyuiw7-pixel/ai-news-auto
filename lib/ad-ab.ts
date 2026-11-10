@@ -58,6 +58,28 @@ export const BLUE_65_SAVING = Math.round(650_000 * (0.1 * 1.021 + 0.1));
 
 const FURUSATO = new Set(["rakuten-furusato", "aupay-furusato", "furusato-honpo"]);
 
+/**
+ * ボタンの下の小さなリンクの言葉（2026-11-11 リーダーの確認: 「au PAY ふるさと納税」だけでは2つ目の広告か見出しに見える）。
+ * 同じ用事の提携先は「au PAYでも探せる」「弥生と比べる」、用事が違う提携先は「ITものづくり教室なら：LITALICOワンダー」。
+ * どれにも当てはまらない（分類の無い）提携先は出さない
+ */
+const NEEDS: Record<string, { group: string; brand: string; verb: string }> = {
+  "rakuten-furusato": { group: "furusato", brand: "楽天", verb: "でも探せる" },
+  "aupay-furusato": { group: "furusato", brand: "au PAY", verb: "でも探せる" },
+  "furusato-honpo": { group: "furusato", brand: "ふるさと本舗", verb: "でも探せる" },
+  "mf-kakutei": { group: "kakutei", brand: "マネーフォワード", verb: "と比べる" },
+  "yayoi-kakutei": { group: "kakutei", brand: "弥生", verb: "と比べる" },
+  freee: { group: "kakutei", brand: "freee", verb: "と比べる" },
+};
+
+export function altLinkText(other: { key: string; name: string; label?: string }, first: { key: string }): string | undefined {
+  const a = NEEDS[other.key];
+  const b = NEEDS[first.key];
+  if (a && b && a.group === b.group) return `${a.brand}${a.verb}`;
+  if (other.label) return `${other.label}なら：${shortName(other.name)}`;
+  return undefined;
+}
+
 const man = (yen: number) => (Math.floor(yen / 1000) / 10).toFixed(1).replace(/\.0$/, "");
 const comma = (yen: number) => yen.toLocaleString("ja-JP");
 
@@ -122,14 +144,17 @@ export function abCardFor(item: OfferItem): AbCard | undefined {
       cta: "マネーフォワードの料金と無料お試しを見る",
       note: {
         arm1: `12月に料金改定予定（公式）。出典：${sourceLine([MF_PRICE])}`,
-        arm2: `青色申告の65万円控除（e-Tax・複式簿記が条件）、所得税率10%の例。料金は12月改定予定。出典：国税庁 No.2072・マネーフォワード公式（11/11確認）`,
+        arm2: `65万円の青色申告控除（e-Tax・複式簿記が条件）で税率10%の例。12月に料金改定予定。出典：国税庁・マネーフォワード（11/11確認）`,
       },
       sources: [MF_PRICE, NTA_2072],
     };
   }
 
   const [first, ...more] = benefit.chips;
-  const who = benefit.headline ?? item.pitch?.gain ?? item.label ?? name;
+  // 誰の話か: 記事ごとの見出しが大きな数字をくり返すとき（「まず14日間の無料で試す」と「無料体験 14日間」）は、商品ごとの「誰向けか」（content/ad_benefits.json の who）
+  const digits = (first.value.match(/\d[\d,.]*/) ?? [""])[0];
+  const repeats = Boolean(digits && benefit.headline?.includes(digits));
+  const who = (repeats ? benefit.who : undefined) ?? benefit.headline ?? benefit.who ?? item.pitch?.gain ?? item.label ?? name;
   const subs = (chips: typeof benefit.chips) => chips.map((c) => (c.sub ? `${c.label}は${c.sub}` : "")).filter(Boolean).join("・");
   const bars = benefit.compare && benefit.compare.rows.length >= 2
     ? (() => {
@@ -144,7 +169,8 @@ export function abCardFor(item: OfferItem): AbCard | undefined {
     compare: bars ? { lead: benefit.compare!.label, bars } : { chips: benefit.chips.slice(0, 3).map((c) => ({ label: c.label, value: c.value })) },
     cta: `${name}で${item.pitch?.cta ?? (item.cta === "公式サイトで見る" ? "料金と条件を見る" : item.cta)}`,
     note: {
-      arm1: [subs([first, ...more.slice(0, 1)]), `出典：${sourceLine(benefit.sources.filter((s) => !s.url.startsWith("/")))}`].filter(Boolean).join("。"),
+      // 小さな文字に入れるのは価格の条件（税込・税抜）だけ（「無料体験はゲームを題材に学べる」のような意味の通らない文を作らない）
+      arm1: [subs([first, ...more.slice(0, 1)].filter((c) => /税込|税抜/.test(c.sub ?? ""))), `出典：${sourceLine(benefit.sources.filter((s) => !s.url.startsWith("/")))}`].filter(Boolean).join("。"),
       arm2: [subs(benefit.chips.slice(0, 3).filter((c) => /税込|税抜/.test(c.sub ?? ""))), `出典：${sourceLine(benefit.sources.filter((s) => !s.url.startsWith("/")))}`].filter(Boolean).join("。"),
     },
     sources: benefit.sources,

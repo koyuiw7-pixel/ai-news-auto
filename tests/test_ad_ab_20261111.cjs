@@ -65,7 +65,9 @@ test("[W41] 囲み: 両方の arm を HTML に入れ、data-ab-arm・ボタン1�
   assert.match(layout, /\[\?&\]ab=\(\[12\]\)/);
   const css = read("app/globals.css");
   assert.match(css, /:root:not\(\[data-abc="1"\]\) \.abx-arm-1,\n:root\[data-abc="1"\] \.abx-arm-2 \{\n  display: none;/);
-  assert.match(css, /\.abx-arm \{[^}]*min-height: 250px/);
+  // 2026-11-11 リーダーの確認: 決まった高さで空白を作らない（高さは中身で決まり、arm は描画前に決まるので画面はずれない）・小さな文字は「…」で切らない
+  assert.doesNotMatch(css, /\.abx-arm \{[^}]*min-height/);
+  assert.doesNotMatch(css, /\.abx-note \{[^}]*line-clamp/);
   assert.match(css, /\.abx-link \{[^}]*min-height: 44px/);
   assert.match(css, /\.abx-cta \{[^}]*min-height: 48px/);
   for (const f of ["components/rail/RailRanking.tsx", "components/ActionAd.tsx"]) assert.match(read(f), /<AbBox/);
@@ -91,4 +93,19 @@ test("[W41] lib/reading.ts: b と k は省略でき、正しい値だけ受け�
   assert.deepEqual(mod.exports.parseReading({ ...base, b: "1", k: ["action-ad", "action-ad"] }).k, ["action-ad"]);
   assert.equal(mod.exports.parseReading({ ...base, b: "3", k: ["action-ad"] }), null);
   assert.equal(mod.exports.parseReading({ ...base, b: "2", k: ["BAD POS"] }), null);
+});
+
+test("[W41] ボタンの下のリンクは何のリンクか分かる言葉（au PAYでも探せる・ITものづくり教室なら：LITALICOワンダー）", () => {
+  assert.equal(ab.altLinkText({ key: "aupay-furusato", name: "au PAY ふるさと納税", label: "ふるさと納税" }, { key: "rakuten-furusato" }), "au PAYでも探せる");
+  assert.equal(ab.altLinkText({ key: "yayoi-kakutei", name: "弥生のクラウド確定申告ソフト", label: "個人事業主の確定申告" }, { key: "mf-kakutei" }), "弥生と比べる");
+  assert.equal(ab.altLinkText({ key: "litalico", name: "LITALICOワンダー", label: "ITものづくり教室" }, { key: "digitane" }), "ITものづくり教室なら：LITALICOワンダー");
+  assert.equal(ab.altLinkText({ key: "x", name: "X" }, { key: "digitane" }), undefined);
+});
+
+test("[W41] 見出しが大きな数字をくり返すときは「誰向けか」の1行（デジタネ: 子どもの習いごとを探している方）", () => {
+  const b = { headline: "子どもの習いごとを、まず14日間の無料で試す", who: "子どもの習いごとを探している方", chips: [{ label: "無料体験", value: "14日間", source: src("https://example.com/") }], points: [], sources: [src("https://example.com/")] };
+  const card = ab.abCardFor({ key: "digitane", kind: "partner", name: "デジタネ", url: "u", shop: "", cta: "", benefit: b });
+  assert.equal(card.who, "子どもの習いごとを探している方");
+  const data = JSON.parse(read("content/ad_benefits.json"));
+  assert.equal(data.offers.digitane.who, "子どもの習いごとを探している方");
 });

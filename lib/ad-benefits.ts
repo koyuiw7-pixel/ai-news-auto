@@ -15,6 +15,8 @@ export type BenefitChip = { label: string; value: string; sub?: string; source: 
 export type BenefitCompare = { label: string; rows: { name: string; value: number; text: string }[]; source: BenefitSource };
 export type Benefit = {
   headline?: string;
+  /** 誰向けか（平易な1行。content/ad_benefits.json の offers の who。得のカードの A/B の上の行に使う。lib/ad-ab.ts） */
+  who?: string;
   chips: BenefitChip[];
   points: string[];
   compare?: BenefitCompare;
@@ -27,6 +29,7 @@ export type Benefit = {
 type RawChip = { label: string; value: string; sub?: string; src: string };
 type RawOffer = {
   use?: string;
+  who?: string;
   chips?: RawChip[];
   points?: string[];
   compare?: { label: string; rows: { name: string; value: number; text: string }[]; src: string };
@@ -100,7 +103,7 @@ export function benefitFor(key: string, slug?: string): Benefit | undefined {
   }
   const points = (raw?.points ?? []).filter((p) => clean(p)).slice(0, 3);
   if (!headline && chips.length === 0 && !compare && points.length === 0) return undefined;
-  return { headline, chips, points, compare, link: raw?.link, sources };
+  return { headline, ...(raw?.who && clean(raw.who) ? { who: raw.who } : {}), chips, points, compare, link: raw?.link, sources };
 }
 
 /** 記事の枠の商品に、その記事の見出しを入れた得のカードを付け直す（枠の中身・順番・置き場所は変えない） */

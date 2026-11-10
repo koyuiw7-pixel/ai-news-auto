@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { OfferItem } from "@/lib/offers";
 import type { MoneyTarget } from "@/lib/money-pages";
 import { AFFILIATE_REL } from "@/lib/affiliate";
-import { AB_ARMS, type AbArm, type AbCard, type AbNumber } from "@/lib/ad-ab";
+import { AB_ARMS, altLinkText, type AbArm, type AbCard, type AbNumber } from "@/lib/ad-ab";
 import { Pixels, PrTag } from "@/components/rail/parts";
 
 /**
@@ -113,16 +113,15 @@ function Compare({ card }: { card: AbCard }) {
 /** ボタンの下の小さなリンクの1行: サイト内の案内・ほかの提携先（rel=sponsored と data-aff-rank はそのまま） */
 function Links({ arm, tool, rest, first }: { arm: AbArm; tool?: MoneyTarget; rest: OfferItem[]; first: OfferItem }) {
   if (!tool && rest.length === 0) return null;
-  // 1行（タップの高さ 44px）に収める。分類が1つ目と違う提携先は（分類）を付け、付けて収まらなければその提携先は出さない
-  // （分類なしの「freee会計」がふるさと納税の囲みに並ぶと、何のリンクか分からない。2026-11-11 の確認）
-  const tagOf = (other: OfferItem) => (other.label && other.label !== first.label && !other.name.includes(other.label) ? `（${other.label}）` : "");
+  // 1行（タップの高さ 44px）に収める。言葉は lib/ad-ab.ts の altLinkText（「au PAYでも探せる」「ITものづくり教室なら：LITALICOワンダー」）。
+  // 言葉の作れない提携先・1行に収まらない提携先は出さない
   let room = 24 - (tool?.label.length ?? 0);
-  const shown: OfferItem[] = [];
+  const shown: { item: OfferItem; text: string }[] = [];
   for (const other of rest.slice(0, tool ? 1 : 2)) {
-    const size = other.name.length + tagOf(other).length;
-    if (size > room) continue;
-    shown.push(other);
-    room -= size;
+    const text = altLinkText(other, first);
+    if (!text || text.length > room) continue;
+    shown.push({ item: other, text });
+    room -= text.length;
   }
   return (
     <p className="abx-links">
@@ -131,15 +130,11 @@ function Links({ arm, tool, rest, first }: { arm: AbArm; tool?: MoneyTarget; res
           {tool.label}
         </Link>
       )}
-      {shown.map((other, index) => {
-        const tag = tagOf(other);
-        return (
-          <a key={`${arm}-${other.key}`} href={other.url} target="_blank" rel={AFFILIATE_REL} data-aff-rank={index + 2} className="abx-link">
-            {other.name}
-            {tag}
-          </a>
-        );
-      })}
+      {shown.map(({ item: other, text }, index) => (
+        <a key={`${arm}-${other.key}`} href={other.url} target="_blank" rel={AFFILIATE_REL} data-aff-rank={index + 2} className="abx-link">
+          {text}
+        </a>
+      ))}
     </p>
   );
 }
