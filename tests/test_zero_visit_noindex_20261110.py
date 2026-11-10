@@ -87,9 +87,14 @@ class ZeroVisitRuleTest(unittest.TestCase):
     def test_article_page_hides_pr_boxes(self):
         page = (ROOT / "app" / "articles" / "[slug]" / "page.tsx").read_text("utf-8")
         self.assertIn("const noPr = isZeroVisit(article.slug);", page)
-        for needle in ("noPr ? undefined : compareOffersFor(article)", "compareOffers || noPr ? undefined : actionAdForArticle(article)",
+        for needle in ("noPr ? undefined : compareOffersFor(article)", "compareOffers || noPr ? undefined : actionAdWithBenefits(actionAdForArticle(article)",
                        "noPr ? undefined : shopLinkForArticle(article)", "!noPr && bodyTail", "!noPr && !actionAd"):
             self.assertIn(needle, page)
+        # 得のカード（ad-benefits）は広告・商品枠が undefined ならそのまま undefined を返す＝noPr では得のカードも出ない
+        self.assertIn("const offerPlan = noPr\n    ? { offer: undefined, rail: undefined, inline: undefined }", page)
+        bene = (ROOT / "lib" / "ad-benefits.ts").read_text("utf-8")
+        self.assertIn("return ad ? { ...ad, items: withArticleBenefits(ad.items, slug) } : ad;", bene)
+        self.assertIn("return offer ? { ...offer, items: itemsWithArticleBenefits(offer.items, slug) } : offer;", bene)
         # AdSense の枠は検索に出す記事だけ（showAds = isIndexable）。zero-visit は isIndexable が false
         self.assertIn("const showAds = isIndexable(", page)
 
