@@ -204,7 +204,7 @@ class ImagePickTest(unittest.TestCase):
         pic = Image.linear_gradient("L").resize((1200, 675)).convert("RGB")  # 明るさに幅のある絵
         pic.save(path, quality=95)
         a = json.loads(json.dumps(LOGO))
-        with patch.object(images, "store", lambda name, im, dry: (f"{IMG}{name}-12345678.jpg", im.size)):
+        with patch.object(images, "store", lambda name, im, dry, keep_aspect=False: (f"{IMG}{name}-12345678.jpg", im.size)):
             status, url = muse_images.apply_one(path, a, {"priority": 1}, dry_run=True)
         self.assertEqual(status, "applied", url)
         self.assertEqual(a["thumbnail"], url)  # ロゴの写真を Muse の絵に替える

@@ -9,6 +9,8 @@ import NoirFonts, { noirFontHref } from "@/components/noir/NoirFonts";
 import { announcedAt, formatDate, type ArticleSummary, type FullArticle } from "@/lib/articles";
 import { displayGlyphs, noirAiLabel, noirKeyFigure, splitEmphasis, type NoirCover } from "@/lib/noir";
 import { stripListNumber } from "@/lib/list-number";
+import { bylineDates } from "@/lib/byline";
+import { siteConfig } from "@/site.config";
 import "./noir.css";
 
 /**
@@ -106,6 +108,7 @@ export default function NoirArticle(props: NoirProps) {
   const aiShown = cover?.kind === "ai" || (cover && article.imageCredit?.kind === "ai");
   const coverOnTop = cover?.kind === "official";
   const announced = announcedAt(article);
+  const dates = bylineDates(article);
   const coverProps = { article, title, cover, photo, panel, focus, creditOf, aiShown: Boolean(aiShown), priority: coverOnTop };
 
   return (
@@ -137,10 +140,23 @@ export default function NoirArticle(props: NoirProps) {
             <h1>{title}</h1>
             <div className="nr-meta">
               <span className="nr-origin">{props.origin}</span>
+              {/* 署名（2026-11-10 Google Discover・ニュースの準備）: 編集した媒体（/about へ）と、公開・更新の日付と時刻。
+                  時刻は構造化データの datePublished・dateModified と同じ（lib/byline.ts）。人が確かめたとは書かない */}
+              <span className="nr-byline" data-byline>
+                編集：<Link href="/about" rel="author">{siteConfig.author}</Link>
+              </span>
+              {dates && (
+                <span data-byline-dates>
+                  公開 <time dateTime={dates.published}>{dates.publishedLabel}</time>
+                </span>
+              )}
+              {dates?.updated && (
+                <span>
+                  更新 <time dateTime={dates.updated}>{dates.updatedLabel}</time>
+                </span>
+              )}
               {/* 発表は元の発表の時刻が分かる記事だけ。掲載より後には見せない（SEO A5・lib/articles.ts announcedAt） */}
               {announced && formatDate(announced) && <time dateTime={announced}>発表 {formatDate(announced)}</time>}
-              {article.generatedAt && <span>掲載 {formatDate(article.generatedAt)}</span>}
-              {article.updatedAt && <span>更新 {formatDate(article.updatedAt)}</span>}
               <span>読了 {props.readMinutes}分</span>
             </div>
           </header>

@@ -354,10 +354,11 @@ def apply_one(path: Path, article: dict, row: dict | None, *, dry_run: bool = Fa
         return "skipped", "公式の写真が付いたので使いませんでした"
     if got == "ai" and tier not in HIGH_TIERS:
         return "skipped", "先に Workers AI の表紙が付いた記事で、優先が高くないので替えませんでした"
-    url, _ = images.store(f"{article.get('slug')}-muse", fit_size(image), dry_run)
+    # 16:9（1200×675）のまま置く（2026-11-10 Discover の準備: 共有画像 /cover/<slug>/photo は 16:9。以前は 1200×630 に切っていた）
+    url, size = images.store(f"{article.get('slug')}-muse", fit_size(image), dry_run, keep_aspect=True)
     before = article.get("coverImage") or ""
     article["coverImage"] = url
-    article["coverCredit"] = muse_credit()
+    article["coverCredit"] = {**muse_credit(), "width": size[0], "height": size[1]}
     if got == "none" and article.get("layout") != "noir" and article.get("thumbnail"):
         # ノワール以外の記事で、記事の写真がロゴ・ほかの記事の画像だった → 記事の写真も Muse の絵にする（台帳 S49）
         article["thumbnail"] = url

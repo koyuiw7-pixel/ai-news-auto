@@ -250,7 +250,8 @@ function retiredPageResponse(request: Request, url: URL): Response | null {
 /** wrangler.jsonc の triggers.crons と同じ文字列（UTC 22:00 = 日本時間 7:00） */
 const PUSH_MORNING_CRON = "0 22 * * *";
 
-const ARTICLE = /^\/(?:articles|cover|card)\/([^/]+?)(?:\.rsc)?\/?$/;
+// /cover/<slug>/photo は表紙の写真の共有画像（app/cover/[slug]/photo/route.tsx。2026-11-10 Discover の準備）。同じく記事の JSON を先に読む
+const ARTICLE = /^\/(?:articles|cover|card)\/([^/]+?)(?:\.rsc|\/photo)?\/?$/;
 
 type Ctx = { waitUntil(promise: Promise<unknown>): void };
 

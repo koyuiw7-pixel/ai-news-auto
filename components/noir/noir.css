@@ -240,6 +240,13 @@ html:has(.noir) body {
   font-weight: 700;
   color: var(--nr-text);
 }
+/* 題名の下の署名（編集した媒体へのリンク。2026-11-10 Discover の準備） */
+.noir .nr-meta .nr-byline a {
+  color: var(--nr-text);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 /* 表紙の写真（16:9。場所を先に取るので読み込みでずれない）。スマホは画面の端まで */
 .noir .nr-cover {

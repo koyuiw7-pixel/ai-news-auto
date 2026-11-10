@@ -62,7 +62,6 @@ import {
   announcedAt,
   coverPath,
   formatDate,
-  formatDateTime,
   getAllArticles,
   getArticle,
   getArticleSummary,
@@ -79,7 +78,8 @@ import {
 } from "@/lib/articles";
 import { Highlight } from "@/lib/highlight";
 import { isOwnImage } from "@/lib/thumb-url";
-import { shareImages } from "@/lib/share-image";
+import { photoSharePath, shareImages } from "@/lib/share-image";
+import { bylineDates } from "@/lib/byline";
 import {
   renderMarkdown,
   splitBeforeHeading,
@@ -265,6 +265,8 @@ export default async function ArticlePage({ params }: Props) {
   const reviewedLabel = reviewedDateLabel(article);
   // 編集責任者の名前（お金と暮らしの記事だけ。出すのは名前のみ。オーナー承認 2026-11-10・W6）
   const editor = editorInCharge(article.genreSlug);
+  // 題名の下の署名の行に出す公開・更新の日時（lib/byline.ts）
+  const dates = bylineDates(article);
   // 「かんたんに読む」版（ある記事だけ、読み方を切り替えられる）
   // 中身なしの章・つなぎの文を除き（lib/article-sections.ts。scripts/section_gate.py と同じ規則）、
   // 決まった型の見出しは記事ごとの見出し（sectionTitles）か普通の見出しに言い換えて出す
@@ -371,7 +373,11 @@ export default async function ArticlePage({ params }: Props) {
       description: article.description,
       // サイトで配信する写真（/img/、幅 1200px の JPEG）があれば先頭に置く（Google Discover の大きな画像。robots は max-image-preview:large）。
       // 写真が無い・外部の画像の記事は従来どおり見出し入りのカバーが先
-      image: (isOwnImage(article.thumbnail) ? [article.thumbnail, coverPath(article)] : [coverPath(article), article.thumbnail])
+      // 公式の写真が無く表紙の写真のイメージ（Muse の写真など）がある記事は、その写真（16:9・札だけ。lib/share-image.ts の photoSharePath）を先頭に。
+      // 文字の多い数字の図・見出し入りのカバーは後ろ（2026-11-10 Discover の準備）
+      image: (photoSharePath(article)
+        ? [photoSharePath(article), coverPath(article)]
+        : isOwnImage(article.thumbnail) ? [article.thumbnail, coverPath(article)] : [coverPath(article), article.thumbnail])
         .filter(Boolean)
         .map((src) => (src!.startsWith("/") ? `${siteConfig.url}${src}` : src)),
       // サイソクに載せた日時（ニュースサイトマップ・フィードと同じ。元の発表日時は本文側に表示）
@@ -486,17 +492,8 @@ export default async function ArticlePage({ params }: Props) {
                 <span className="index-num">（{formatDate(announced)}）</span>
               </span>
             )}
-            {article.generatedAt && formatDateTime(article.generatedAt) && (
-              <span className="index-num text-muted">
-                掲載: <time dateTime={article.generatedAt}>{formatDateTime(article.generatedAt)}</time>
-              </span>
-            )}
+            {/* 公開・更新の日時は題名のすぐ下の署名の行に出す（2026-11-10 Discover の準備） */}
             <span className="index-num text-muted">読了 {readMinutes}分</span>
-            {article.updatedAt && formatDateTime(article.updatedAt) && (
-              <span className="index-num font-semibold text-ink-soft">
-                最終更新: <time dateTime={article.updatedAt}>{formatDateTime(article.updatedAt)}</time>
-              </span>
-            )}
           </div>
 
           <Morph name={`title-${article.slug}`}>
@@ -512,6 +509,17 @@ export default async function ArticlePage({ params }: Props) {
             {editor && (
               <span data-editor-in-charge>
                 編集責任者：<Link href="/about" className="font-semibold underline decoration-line-strong underline-offset-4 hover:text-accent">{editor.name}</Link>
+              </span>
+            )}
+            {/* 署名の行の公開・更新の日時（構造化データの datePublished・dateModified と同じ時刻。lib/byline.ts） */}
+            {dates && (
+              <span className="index-num" data-byline-dates>
+                公開 <time dateTime={dates.published}>{dates.publishedLabel}</time>
+                {dates.updated && (
+                  <>
+                    <span aria-hidden>　</span>更新 <time dateTime={dates.updated}>{dates.updatedLabel}</time>
+                  </>
+                )}
               </span>
             )}
             <Link href="/editorial-policy" className="underline decoration-line-strong underline-offset-4 hover:text-accent">
