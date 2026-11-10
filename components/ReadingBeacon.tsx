@@ -67,7 +67,8 @@ export function installReading(slug: string, source: ReadingSource, send = (body
     const ms = visibleMs + (visibleSince >= 0 ? now - visibleSince : 0);
     // 画面切り替えの後片付けでは、もう次のページが描かれているので測り直さない
     if (remeasure) measure();
-    const arm = document.documentElement.getAttribute("data-abc");
+    let arm: string | null = null;
+    try { arm = document.documentElement.getAttribute("data-abc"); } catch { /* 計測は読む動きを止めない */ }
     const tested = normalizeAdPositions(abSeen);
     const body = JSON.stringify({
       p: slug, s: source, d: depthBucket(maxRatio), t: timeBucket(ms / 1000), n: nextRead, a: normalizeAdPositions(seen), x: exit,
@@ -109,7 +110,7 @@ export function installReading(slug: string, source: ReadingSource, send = (body
       const pos = el.getAttribute("data-aff-pos");
       if (pos) {
         if (!seen.includes(pos)) seen.push(pos);
-        if (el.querySelector("[data-ab-arm]") && !abSeen.includes(pos)) abSeen.push(pos);
+        if (typeof el.querySelector === "function" && el.querySelector("[data-ab-arm]") && !abSeen.includes(pos)) abSeen.push(pos);
       } else nextRead = true;
       io?.unobserve(el);
     }

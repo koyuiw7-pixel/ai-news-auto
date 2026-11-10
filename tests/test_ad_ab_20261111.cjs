@@ -76,7 +76,7 @@ test("[W41] 計測: クリックに arm、表示（枠が半分以上見えた�
   const aff = read("cloudflare/aff.ts");
   assert.match(aff, /body\?\.arm === "1" \|\| body\?\.arm === "2"/);
   assert.match(aff, /byArm:/);
-  assert.match(read("components/ReadingBeacon.tsx"), /querySelector\("\[data-ab-arm\]"\)/);
+  assert.match(read("components/ReadingBeacon.tsx"), /el.querySelector\("\[data-ab-arm\]"\)/);
   assert.match(read("cloudflare/reading.ts"), /abSeen/);
   assert.match(read("scripts/aff_stats.py"), /def arm_summary/);
   assert.match(read("docs/owner_rules.md"), /^\| W41 \| \*\*2026-11-11/m);
