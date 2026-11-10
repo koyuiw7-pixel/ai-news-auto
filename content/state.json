@@ -10197,6 +10197,18 @@
       "skipped": true,
       "url": "https://elevenlabs.io/blog/angle-health"
     },
+    "66ed14c6418f09b7": {
+      "at": "2026-11-10T14:02:41.640647+00:00",
+      "costUsd": 0.0049,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "google-adobe-acrobat-gmail-drive",
+      "url": "https://blog.google/company-news/inside-google/company-announcements/adobe-google-partnership-integration/"
+    },
     "672c1f7fb07a8d66": {
       "at": "2026-11-02T18:51:05.949442+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16512,6 +16524,12 @@
       "skipped": true,
       "url": "https://www.suntory.co.jp/news/article/2026/15166.html?rss=0000000029"
     },
+    "c8225faec2785741": {
+      "at": "2026-11-10T14:02:42.393236+00:00",
+      "reason": "prefilter: 告知・お知らせ系",
+      "skipped": true,
+      "url": "https://www.salesforce.com/news/press-releases/2026/11/10/missionforce-achieves-awardable-status/"
+    },
     "c8282b8bcda25833": {
       "at": "2026-11-10T08:44:21.992317+00:00",
       "reason": "dedupe: 固有名詞が一致（アクセス・メール）: メール配信サービス事業者（アララ株式会社）への不正アクセスに伴う当社EVカーシェ",
@@ -20624,56 +20642,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T08:26:38.445397+00:00",
-      "attempt": 0,
-      "id": "9c455c94fb7ec58f",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 74.1,
-        "avg_sentence": 42.4,
-        "long_share": 0.071,
-        "max_paragraph": 114,
-        "paragraphs": 8,
-        "sentences": 14
-      },
-      "score": 92,
-      "source": "tokyo-metro",
-      "title": "令和8年度東京都税制調査会報告について",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（EV）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T08:27:41.710391+00:00",
-      "attempt": 1,
-      "id": "0b034b16a6e12052",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 196.4,
-        "avg_sentence": 81.8,
-        "long_share": 1.0,
-        "max_paragraph": 253,
-        "paragraphs": 5,
-        "sentences": 12
-      },
-      "score": null,
-      "source": "softbank-news",
-      "title": "【ビジネスブログ】法人向けインターネット回線を比較！選定時に確認したい5つのポイント",
-      "warnings": [
-        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
-        "初めて出たところで言い換えていない略語（IP）",
-        "読みやすさ: 文が長い（1文の平均 81.8字・60字超の文が 100% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T08:29:00.243432+00:00",
@@ -28006,6 +27974,55 @@
       "warnings": [
         "見出しが64字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（FCC・LED・TAKE）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T14:02:24.417900+00:00",
+      "attempt": 1,
+      "id": "66ed14c6418f09b7",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 121.0,
+        "avg_sentence": 40.3,
+        "long_share": 0.111,
+        "max_paragraph": 162,
+        "paragraphs": 9,
+        "sentences": 27
+      },
+      "score": 92,
+      "source": "google-blog-all",
+      "title": "We’re bringing Adobe’s creative and productivity tools closer to your everyday G",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MAX・CX）",
+        "読みやすさ: 段落が長い（平均 121.0字・最長 162字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T14:02:41.626165+00:00",
+      "attempt": 0,
+      "id": "66ed14c6418f09b7",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 85.0,
+        "avg_sentence": 39.2,
+        "long_share": 0.038,
+        "max_paragraph": 124,
+        "paragraphs": 12,
+        "sentences": 26
+      },
+      "score": 92,
+      "source": "google-blog-all",
+      "title": "We’re bringing Adobe’s creative and productivity tools closer to your everyday G",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MAX・CX）"
       ]
     }
   ],
