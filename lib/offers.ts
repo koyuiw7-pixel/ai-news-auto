@@ -198,6 +198,8 @@ export type ActionAdRule = {
    * true は記事の話題に当たる行の行き先。文字列は、当たる行が無いときに使う行の key（例: "kogaku-ryoyohi"）
    */
   internal?: boolean | string;
+  /** true なら記事の話題の行ではなく、いつも internal の key の行を出す（年末調整の記事 → ふるさと納税の上限額の計算。2026-11-10 M4） */
+  internalFixed?: boolean;
 };
 
 /** 「すぐにできること」のそばの PR の話題（上から順に照合する） */

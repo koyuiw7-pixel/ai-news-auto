@@ -25,9 +25,9 @@ export type ActionAd = {
 };
 
 /** 話題の internal（scripts/a8_import.py の ACTION_ADS）から、記事に出すサイト内の案内（自分自身は指さない） */
-export function internalCardFor(rule: Pick<ActionAdRule, "internal">, article: Pick<ArticleSummary, "slug" | "title" | "seoTitle" | "tags">): MoneyTarget[] {
+export function internalCardFor(rule: Pick<ActionAdRule, "internal" | "internalFixed">, article: Pick<ArticleSummary, "slug" | "title" | "seoTitle" | "tags">): MoneyTarget[] {
   if (!rule.internal) return [];
-  const found = moneyLinkFor(article);
+  const found = rule.internalFixed && typeof rule.internal === "string" ? undefined : moneyLinkFor(article);
   if (found) return [found];
   if (typeof rule.internal !== "string") return [];
   const row = MONEY_PAGES.find((r) => r.key === rule.internal);

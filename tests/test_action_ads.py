@@ -24,6 +24,8 @@ class ActionAdsTest(unittest.TestCase):
         self.offers = json.loads((ROOT / "content/offers.json").read_text(encoding="utf-8"))
         self.links = json.loads((ROOT / "affiliate_links.json").read_text(encoding="utf-8"))
         self.keys = {meta["key"] for meta in a8_import.PARTNERS.values()}
+        # 楽天アフィリエイトの楽天ページへのリンク（rpx.a8.net。a8_import.RAKUTEN_DEEPLINKS）
+        self.rakuten = set(a8_import.RAKUTEN_DEEPLINKS)
 
     def test_offers_json_matches_importer(self):
         self.assertEqual(self.offers["actionAds"], a8_import.ACTION_ADS)
@@ -32,10 +34,16 @@ class ActionAdsTest(unittest.TestCase):
         for rule in a8_import.ACTION_ADS:
             for key in rule["partners"]:
                 with self.subTest(rule=rule["key"], key=key):
-                    self.assertIn(key, self.keys)
                     partner = self.offers["partners"][key]
                     self.assertFalse(partner.get("hidden"))
                     self.assertIn(partner["program"], self.links)
+                    if key in self.rakuten:
+                        meta = a8_import.RAKUTEN_DEEPLINKS[key]
+                        self.assertEqual(partner["link"], a8_import.rakuten_page_url(meta["page"]))
+                        self.assertEqual(self.links[partner["program"]]["url"], partner["link"])
+                        self.assertTrue(partner["link"].startswith("https://rpx.a8.net/svt/ejp?a8mat=4BELTP+50ED2Q+2HOM+BWGDT&rakuten=y&a8ejpredirect="))
+                        continue
+                    self.assertIn(key, self.keys)
                     self.assertTrue(partner["link"].startswith("https://px.a8.net/svt/ejp?a8mat="))
                     self.assertRegex(partner["link"].split("a8mat=")[1], A8MAT)
 
@@ -246,7 +254,7 @@ class AdPlacementUpgradeTest(unittest.TestCase):
         self.assertNotRegex("ソフトバンクグループの決算", pattern)
 
     def test_programs_in_new_topics_exist_in_importer(self):
-        keys = {meta["key"] for meta in a8_import.PARTNERS.values()}
+        keys = {meta["key"] for meta in a8_import.PARTNERS.values()} | set(a8_import.RAKUTEN_DEEPLINKS)
         for key in ("mobile-switch", *[t["key"] for t in a8_import.life_topics()]):
             for partner in self.topics[key]["partners"]:
                 with self.subTest(topic=key, partner=partner):

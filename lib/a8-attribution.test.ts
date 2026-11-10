@@ -1,6 +1,8 @@
 /** A8への通信・自己クリックをせず、元URL保持・限定範囲・privacy・履歴遷移を検証する。 */
 import assert from "node:assert/strict";
 import { a8EntryOf, appendDifyA8Attribution, difyDecisionHref, installDifyA8Attribution } from "./a8-attribution";
+import { programOf } from "./aff-program";
+import { rakutenPageUrl, RAKUTEN_FURUSATO_PAGE } from "./amazon";
 import { GUIDE_PATH } from "./revenue-funnel";
 
 const base = "https://px.a8.net/svt/ejp?a8mat=TEST+KEEP+BYTE+EXACT";
@@ -115,5 +117,11 @@ test("cleanup does not overwrite a link subsequently changed by another owner", 
   const clean = installDifyA8Attribution(GUIDE_PATH, "", documentWith([link]), nav, origin);
   link.setAttribute("href", "https://replacement.invalid/"); clean();
   assert.equal(link.attrs.href, "https://replacement.invalid/");
+});
+test("Rakuten furusato deep link is counted under the Rakuten a8mat and is never rewritten by the Dify attribution", () => {
+  const rakuten = rakutenPageUrl(RAKUTEN_FURUSATO_PAGE);
+  assert.equal(programOf(rakuten), "4BELTP+50ED2Q+2HOM+BWGDT");
+  assert.notEqual(programOf(rakuten), "unknown");
+  assert.equal(appendDifyA8Attribution(rakuten, "direct", "table"), rakuten);
 });
 console.log(`${passed} attribution checks passed; mock DOM only, no ASP requests.`);
