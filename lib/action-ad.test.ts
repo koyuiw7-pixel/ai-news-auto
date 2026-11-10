@@ -15,7 +15,9 @@ const cases: [ArticleSummary, string, RegExp][] = [
   [article("t-leak", "ドコモ情報流出、最大約30万件　対象かどうかと今やること", ["通信", "情報流出", "ドコモ"]), "leak", /ノートン|ウイルスバスター|ESET/],
   [article("t-quake", "愛知県知多市、土砂災害の警報基準を通常の8割に", ["防災", "地震"]), "disaster", /ポータブル電源|防災|安心米|スツーレ/],
   [article("t-furusato", "ふるさと納税の期限は12月31日　間に合わなければ確定申告", ["ふるさと納税", "確定申告"]), "furusato", /ふるさと/],
-  [article("t-tax", "年末調整の書類、今年から変わる点", ["年末調整", "税金"]), "tax", /freee|マネーフォワード|弥生/],
+  [article("t-tax", "確定申告の書類、今年から変わる点", ["確定申告", "税金"]), "tax", /freee|マネーフォワード|弥生/],
+  // 年末調整の記事は、ふるさと納税の上限額の案内（nencho）が先に出る（M4）。確定申告の話題は従来どおり tax。
+  [article("t-nencho", "年末調整の書類、今年から変わる点", ["年末調整", "税金"]), "nencho", /ふるさと/],
   [article("t-power", "電気代、12月使用分から補助終了で値上がり", ["電気料金"]), "energy", /エルピオでんき|エネピ|タイナビ/],
   [article("t-move", "引っ越しの住所変更、マイナポータルで一括に", ["引っ越し", "手続き"]), "moving", /引越し侍|BIGLOBE光/],
   [article("t-mobile", "楽天モバイルで通信障害、復旧の見通し", ["通信障害"]), "mobile", /BB\.excite|BIGLOBE光/],
@@ -25,6 +27,9 @@ const cases: [ArticleSummary, string, RegExp][] = [
   [article("t-pay", "PayPayのポイント還元、12月から条件変更", ["キャッシュレス"]), "payment", /エポスカード/],
 ];
 
+// A8 の提携リンクだけ。楽天は A8 経由の楽天ふるさと納税の提携リンク（a8mat 完全一致）だけを許す（tests/test_guide_ads.cjs と同じ形）。
+const AFF_URL = /^https:\/\/(?:px\.a8\.net\/svt\/ejp\?a8mat=[A-Z0-9+]+|rpx\.a8\.net\/svt\/ejp\?a8mat=4BELTP\+50ED2Q\+2HOM\+BWGDT&rakuten=y&a8ejpredirect=[A-Za-z0-9%._~-]+)$/;
+
 for (const [a, key, name] of cases) {
   test(`${key}: ${a.title.slice(0, 16)}`, () => {
     const ad = actionAdForArticle(a);
@@ -33,7 +38,7 @@ for (const [a, key, name] of cases) {
     assert.ok(ad.items.length >= 1 && ad.items.length <= 2);
     for (const { item } of ad.items) {
       assert.match(item.name, name);
-      assert.match(item.url, /^https:\/\/px\.a8\.net\/svt\/ejp\?a8mat=/);
+      assert.match(item.url, AFF_URL);
     }
   });
 }
