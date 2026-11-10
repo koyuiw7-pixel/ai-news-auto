@@ -87,6 +87,36 @@ def record(created: int, candidates: int, reason: str = "", now: datetime | None
     return data
 
 
+LLMO_NOTE = ("確認は GitHub の実行環境から行っていて、本物の巡回とは IP が違います。"
+             "本物の AI 巡回が通っているかは、Cloudflare の画面（AI Crawl Control）が正しい情報です。")
+
+
+def record_llmo_access(failures: list[str], now: datetime | None = None) -> dict:
+    """AI検索の巡回の毎日の確認（scripts/llmo_access_check.py・LLMO-A2）の結果を llmo_access に書く。
+    朝・夜の報告がこのファイルを読む。結果（失敗の中身）が変わったときだけ書き直す（毎日のコミットを増やさない）"""
+    now = now or datetime.now(timezone.utc)
+    old = load()
+    data = dict(old)
+    before = old.get("llmo_access") if isinstance(old.get("llmo_access"), dict) else {}
+    failures = [str(f)[:300] for f in failures][:10]
+    entry = dict(before)
+    if failures:
+        entry.update(status="failed", failures=failures, note=LLMO_NOTE)
+        if before.get("status") != "failed":
+            entry["since"] = now.isoformat(timespec="seconds")
+        entry.pop("recovered_at", None)
+    else:
+        entry = {"status": "ok"}
+        if before.get("status") == "failed":
+            entry["recovered_at"] = now.isoformat(timespec="seconds")
+        elif before.get("recovered_at"):
+            entry["recovered_at"] = before["recovered_at"]
+    data["llmo_access"] = entry
+    if data != old:
+        save(data)
+    return data
+
+
 def _parse_time(value) -> datetime | None:
     try:
         moment = datetime.fromisoformat(str(value).replace("Z", "+00:00"))

@@ -4,9 +4,12 @@ name: Stall watch
 # 30分ごとに、記事が90分出ていない（日本時間 6〜24時）・公開の失敗・main のテストの失敗・記事づくりの回の失敗・SNS の枠の取りこぼし（30分超）を調べ、
 # あれば issue（ラベル stall）を立てて state/stall.json に1行残す。直ったら issue を閉じる。
 # GitHub の予約は遅れることがあるので、記事づくりの回（auto_run.yml の Stall watch）でも同じ確認をする（そちらはテストを動かさない）
+# 1日1回（09:25 JST の予約）だけ、AI検索の巡回が本番を読めるかも確かめる（scripts/llmo_access_check.py・LLMO-A2。読み取りだけ・通信25回まで）。
+# 11/12 までは表示だけ。11/13 から失敗を state/pipeline_health.json の llmo_access に書く（変わったときだけ）
 on:
   schedule:
     - cron: "10,40 * * * *"
+    - cron: "25 0 * * *"
   workflow_dispatch:
 
 permissions:
@@ -36,12 +39,25 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/stall_watch.py --issue --state
+      - name: AI search access check (daily)
+        if: ${{ github.event.schedule == '25 0 * * *' || github.event_name == 'workflow_dispatch' }}
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          {
+            echo '## AI検索の巡回の確認（LLMO-A2）'
+            echo '本物の巡回が通っているかは、Cloudflare の画面（AI Crawl Control）が正しい情報です（GitHub の実行環境は IP が違うため）。'
+            echo '```'
+            python scripts/llmo_access_check.py --record 2>&1
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Save state/stall.json
         continue-on-error: true
         run: |
-          if [ -z "$(git status --porcelain state/stall.json)" ]; then exit 0; fi
+          if [ -z "$(git status --porcelain state/stall.json state/pipeline_health.json)" ]; then exit 0; fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add state/stall.json
+          if [ -n "$(git status --porcelain state/pipeline_health.json)" ]; then git add state/pipeline_health.json; fi
           git commit -m "chore(stall): 止まりの見張りの記録 [no-deploy]"
           python3 scripts/git_safe_push.py
