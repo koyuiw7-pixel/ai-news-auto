@@ -4,6 +4,7 @@ import path from "node:path";
 import { getAllArticles, type ArticleSummary } from "@/lib/articles";
 import { politeDeep } from "@/lib/polite-text";
 import { answeredOnly, answerOrNull, stripNotStated } from "@/lib/nonanswer";
+import { moneyTopicFor } from "@/lib/money-pages";
 
 /**
  * 使い方ガイド（content/howto/*.json、scripts/evergreen.py が作る。URL は /guides/<slug>）。
@@ -144,8 +145,20 @@ export function siblingHowtos(guide: HowtoGuide, limit = 6): HowtoGuide[] {
     .slice(0, limit);
 }
 
+/**
+ * お金の話題（lib/money-pages.ts）で決めたガイド。表で決めていない話題は undefined（今までどおり match で選ぶ）、
+ * 「出さない」と決めた話題は null。lib/guide-links.ts も同じ答えを使う（見える「使い方ガイド」と案内の欄をそろえる。SEO A12）
+ */
+export function moneyGuideFor(article: Pick<ArticleSummary, "title" | "seoTitle" | "tags">, guides: HowtoGuide[]): HowtoGuide | null | undefined {
+  const row = moneyTopicFor(article);
+  if (!row || row.guide === undefined) return undefined;
+  return (row.guide && guides.find((guide) => guide.slug === row.guide)) || null;
+}
+
 /** 記事の見出しに題材が出てくるガイド（記事ページから1行だけ案内する） */
 export function howtoForArticle(article: ArticleSummary, guides: HowtoGuide[] = getAllHowtos()): HowtoGuide | undefined {
+  const money = moneyGuideFor(article, guides);
+  if (money !== undefined) return money ?? undefined;
   const text = `${article.title} ${article.seoTitle ?? ""}`;
   const matches = (pattern: string | undefined, flags = "") => {
     try {

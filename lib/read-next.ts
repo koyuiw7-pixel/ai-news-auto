@@ -46,7 +46,8 @@ const CANDIDATES: Candidate[] = [
   // 働き方・お金
   { href: "/choose/internet-for-ai", match: "光回線|ネット回線|WiMAX|Wi-?Fi|格安SIM|スマホ料金|携帯料金|通信料金|5G|テレワーク|リモートワーク|在宅勤務", side: true },
   { href: "/compare/rental-server", match: "副業|複業|フリーランス|個人事業|独立|起業|開業|創業|ホームページ|Webサイト|ブログ|WordPress|集客|ネットショップ|ECサイト", consumer: true, side: true },
-  { href: "/choose/ai-career", match: "転職|求人|採用|就職|雇用|就業者|人材|リスキリング|学び直し|スキル|資格|試験|キャリア|賃金|給与|年収|働き方|人手不足|AI人材" },
+  // 「資格確認書」（マイナ保険証の代わり）・「資格情報」は仕事の資格ではない（SEO A12。保険証の記事に転職の案内が出ていた）
+  { href: "/choose/ai-career", match: "転職|求人|採用|就職|雇用|就業者|人材|リスキリング|学び直し|スキル|資格(?!確認書|情報)|試験|キャリア|賃金|給与|年収|働き方|人手不足|AI人材" },
 ];
 
 /**

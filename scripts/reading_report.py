@@ -25,7 +25,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from aff_stats import JST, load_token  # noqa: E402
 from inflow_report import LABELS, site, title_of  # noqa: E402
 
-ZONES = {"story": "要点の下の「この話の続き」", "nextread": "次に読む記事", "body": "本文とその前後", "header": "上のメニュー・速報の帯", "aside": "横の欄", "footer": "ページの一番下"}
+ZONES = {"story": "要点の下の「この話の続き」", "money": "要点の下の「自分は対象か確かめる」", "nextread": "次に読む記事", "body": "本文とその前後", "header": "上のメニュー・速報の帯", "aside": "横の欄", "footer": "ページの一番下"}
 LABELS_ALL = {**LABELS, "internal": "サイト内の移動"}
 
 

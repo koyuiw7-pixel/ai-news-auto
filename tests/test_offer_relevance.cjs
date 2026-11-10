@@ -378,3 +378,13 @@ test("写真の無いサービスは「WEB SERVICE」の板ではなく頭文字
     assert.ok(!/bg-live|text-live/.test(src), `${file}: 広告の枠に速報の赤（live）を使っている（W20）`);
   }
 });
+
+test("[A12] 「資格確認書」「資格情報」の記事（マイナ保険証）に転職の案内を出さない。仕事の資格・転職の記事には今までどおり出す", () => {
+  const real = JSON.parse(fs.readFileSync(path.join(root, "content/articles/mynumber-insurance-card-guide.json"), "utf8"));
+  const insurance = article({ ...real, highlights: real.highlights ?? [], tags: real.tags ?? [], keywords: real.keywords ?? [] });
+  assert.ok(readNextForArticle(insurance, [], 5).every((l) => l.href !== "/choose/ai-career"), real.title);
+  assert.ok(readNextForArticle(article({ title: "資格確認書の交付が始まる　資格情報のお知らせも届く", genreSlug: "public" }), [], 5).every((l) => l.href !== "/choose/ai-career"));
+  // ジャンルでは分けない（ビジネスの仕事の資格・転職の記事は /choose/ai-career のまま）
+  assert.equal(readNextForArticle(article({ title: "国家資格の取得で転職に有利に　キャリアの選び方", genreSlug: "business", genre: "ビジネス" }))[0]?.href, "/choose/ai-career");
+  assert.equal(readNextForArticle(article({ title: "介護の資格を取る社会人が増加", genreSlug: "business", genre: "ビジネス" }))[0]?.href, "/choose/ai-career");
+});

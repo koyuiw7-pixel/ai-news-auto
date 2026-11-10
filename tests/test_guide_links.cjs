@@ -16,12 +16,32 @@ const howtos = fs
   .readdirSync(path.join(root, "content/howto"))
   .filter((file) => file.endsWith(".json"))
   .map((file) => readGuide(file.replace(/\.json$/, "")));
+// 使い方ガイドの振り分け（lib/howto.ts の moneyGuideFor と、表 lib/money-pages.ts）は本物を使う（SEO A12）
+const loadTs = (rel, mocks) => {
+  const file = path.join(root, rel);
+  const out = ts.transpileModule(fs.readFileSync(file, "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true } }).outputText;
+  const mod = new Module(file, module);
+  mod.filename = file;
+  mod.paths = Module._nodeModulePaths(path.dirname(file));
+  const original = mod.require.bind(mod);
+  mod.require = (name) => (name in mocks ? mocks[name] : original(name));
+  mod._compile(out, file);
+  return mod.exports;
+};
+const moneyPages = loadTs("lib/money-pages.ts", {});
+const howtoLib = loadTs("lib/howto.ts", {
+  "@/lib/content-fs": fs,
+  "@/lib/articles": { getAllArticles: () => [] },
+  "@/lib/polite-text": { politeDeep: (value) => value },
+  "@/lib/nonanswer": { answeredOnly: (x) => x, answerOrNull: (x) => x, stripNotStated: (x) => x },
+  "@/lib/money-pages": moneyPages,
+});
 const loaded = new Module(sourcePath, module);
 loaded.filename = sourcePath;
 loaded.paths = Module._nodeModulePaths(path.dirname(sourcePath));
 const requireOriginal = loaded.require.bind(loaded);
 loaded.require = (name) => {
-  if (name === "@/lib/howto") return { getAllHowtos: () => howtos };
+  if (name === "@/lib/howto") return { getAllHowtos: () => howtos, moneyGuideFor: howtoLib.moneyGuideFor };
   if (name === "@/lib/guides") return { getAllGuides: () => [], guideHref: (slug) => `/guides/${slug}` };
   if (name === "@/lib/choose") return { chooseGuideForArticle: () => undefined };
   return requireOriginal(name);
@@ -57,4 +77,17 @@ test("料金の章の終わりに料金ガイドへの1行を差し込む", () =
   // 料金の章が無い・料金ガイドでない案内なら本文は変えない
   assert.equal(insertAfterPricingSection("## 概要\nA", { kind: "pricing", href: "/x", label: "x" }), "## 概要\nA");
   assert.equal(insertAfterPricingSection(body, { kind: "howto", href: "/x", label: "x" }), body);
+});
+
+// 2026-11-10 SEO A12: 見える「使い方ガイド」（lib/howto.ts の howtoForArticle）と、この案内の欄は同じ1つの決まりで選ぶ
+test("[A12] お金の話題の記事は、使い方ガイドの1行と案内の欄が同じガイドを指す（年金生活者支援給付金には出さない）", () => {
+  const read = (slug) => JSON.parse(fs.readFileSync(path.join(root, "content/articles", `${slug}.json`), "utf8"));
+  for (const slug of ["pension-support-benefit-old-age-eligibility", "pension-support-benefit-old-age-check", "kogaku-ryoyohi-2026-tasukai-kaisu", "child-allowance-third-child-monthly-30000", "kyoukai-kenpo-childbirth-allowance", "mynumber-insurance-card-guide"]) {
+    const a = read(slug);
+    const howto = howtoLib.howtoForArticle(a, howtos);
+    const links = guideLinksForArticle(a, howtos).filter((l) => l.kind === "howto" || l.kind === "pricing").map((l) => l.href);
+    assert.deepEqual(links, howto ? [`/guides/${howto.slug}`] : [], slug);
+  }
+  assert.deepEqual(guideLinksForArticle(read("pension-support-benefit-old-age-eligibility"), howtos), []);
+  assert.deepEqual(guideLinksForArticle(read("kogaku-ryoyohi-2026-tasukai-kaisu"), howtos).map((l) => l.href), ["/guides/kogaku-ryoyohi"]);
 });

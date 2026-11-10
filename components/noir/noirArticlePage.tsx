@@ -26,6 +26,9 @@ import type { ActionAd as ActionAdData } from "@/lib/action-ad";
 import type { FunnelCard as FunnelCardData } from "@/lib/comparison";
 import FunnelCard from "@/components/FunnelCard";
 import ShareButtons from "@/components/ShareButtons";
+import MoneyCheckLink from "@/components/MoneyCheckLink";
+import TopicListMembership from "@/components/TopicListMembership";
+import type { MoneyTarget } from "@/lib/money-pages";
 import ThreadsFollow from "@/components/ThreadsFollow";
 import ReadNextBox from "@/components/ReadNextBox";
 import ShopLinks from "@/components/ShopLinks";
@@ -84,6 +87,8 @@ export type NoirPageContext = {
   inlineRead: Any;
   mainArticle: ArticleSummary | undefined;
   guideLinks: { href: string; kind: string; label: string }[];
+  /** 要点のすぐ下の「自分は対象か確かめる」（lib/money-pages.ts） */
+  moneyLink?: MoneyTarget;
   calc: Any;
   calcInline: boolean;
   calcBox: ReactNode;
@@ -138,7 +143,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
   const {
     article, jsonLd, bodyHtml, easyHtml, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
     shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, inlineRead, mainArticle,
-    guideLinks, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
+    guideLinks, moneyLink, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
     howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
     funnel, compareInline, compareEnd, storyReads = [],
   } = ctx;
@@ -236,9 +241,11 @@ export function noirArticlePage(ctx: NoirPageContext) {
       related={relatedRest}
       slots={{
         genreLine: <GenreLine genre={article.genre} item={genreLatest} />,
+        // 要点のすぐ下（「すぐにできること」・1つ目の PR より上）に「自分は対象か確かめる」の1行（2026-11-10 M2。PR の数と位置は変えない）
         quick:
-          quickList.length > 0 || (funnelMid && depth.guide.length === 0) ? (
+          moneyLink || quickList.length > 0 || (funnelMid && depth.guide.length === 0) ? (
             <>
+              <MoneyCheckLink target={moneyLink} className="mb-6" />
               {quickList.length > 0 && <QuickActions actions={quickList} detailed={stepItems.length > 0} />}
               {depth.guide.length === 0 && funnelMid}
             </>
@@ -381,6 +388,8 @@ export function noirArticlePage(ctx: NoirPageContext) {
             <NewsletterSignup variant="article" />
             <PushOptIn />
             {!noirTail && readNextInline && <ReadNextBox link={readNextInline} className="mt-12" />}
+            {/* 「この記事は「値上げ情報」に載っています」（今までの見た目と同じ。載っていなければ何も出さない。SEO A12） */}
+            <TopicListMembership slug={article.slug} className="mt-12" />
             {article.tags.length > 0 && (
               <div className="mt-12 flex flex-wrap gap-2">
                 {article.tags.map((tag) => (

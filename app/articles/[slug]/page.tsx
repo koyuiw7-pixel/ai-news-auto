@@ -43,6 +43,8 @@ import { depthOf } from "@/lib/depth";
 import ActionAd from "@/components/ActionAd";
 import { actionAdForArticle } from "@/lib/action-ad";
 import ShareButtons from "@/components/ShareButtons";
+import MoneyCheckLink from "@/components/MoneyCheckLink";
+import { moneyLinkFor } from "@/lib/money-pages";
 import ThreadsFollow from "@/components/ThreadsFollow";
 import { offerPlanForArticle } from "@/lib/offers";
 import { getCta } from "@/lib/monetization";
@@ -202,6 +204,8 @@ export default async function ArticlePage({ params }: Props) {
   // 同じ製品の料金・使い方ガイドへの固定の案内（要点のすぐ下と、本文の料金の章の下。lib/guide-links.ts）
   const guideLinks = guideLinksForArticle(article);
   const pricingLink = guideLinks.find((link) => link.kind === "pricing");
+  // 要点のすぐ下の「自分は対象か確かめる」（話題 → お金のページの表 lib/money-pages.ts。自分自身へは出さない。2026-11-10 M2）
+  const moneyLink = moneyLinkFor(article);
   // 答えが「書かれていません」の問いは、見える欄にも FAQPage にも出さない（lib/nonanswer.ts。SEO A4・LLMO-A4）
   const articleFaq = answeredOnly((article.faq ?? []).map((row) => ({ ...row, a: cleanTake(row.a ?? "") })).filter((row) => row.q && row.a));
   const todayActions = article.todayActions ?? [];
@@ -450,7 +454,7 @@ export default async function ArticlePage({ params }: Props) {
     return noirArticlePage({
       article, jsonLd, bodyHtml, easyHtml, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
       inlineOffer, shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, offer, inlineRead, mainArticle,
-      guideLinks, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
+      guideLinks, moneyLink, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
       howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
       funnel, compareInline, compareEnd,
       // 同じ話題の記事を多めに（上の2本は「この話の続き」、残りは本文直後の「次に読む記事」。2026-11-10）
@@ -555,6 +559,8 @@ export default async function ArticlePage({ params }: Props) {
               </ol>
             </section>
           )}
+          {/* 自分は対象か確かめる（お金の話題の記事だけ。囲みは作らない1行。広告の枠と位置は変えない） */}
+          <MoneyCheckLink target={moneyLink} className="mt-4" />
           {/* シェア（要点を読んだ直後。小さく1行） */}
           <ShareButtons url={`${siteConfig.url}/articles/${article.slug}`} title={articleTitle(article)} className="mt-4" />
           {/* 同じ製品の料金・使い方ガイド（あるときだけ。要点のすぐ下に固定） */}

@@ -1,5 +1,5 @@
 import type { ArticleSummary } from "@/lib/articles";
-import { getAllHowtos, type HowtoGuide } from "@/lib/howto";
+import { getAllHowtos, moneyGuideFor, type HowtoGuide } from "@/lib/howto";
 import { getAllGuides, guideHref } from "@/lib/guides";
 import { chooseGuideForArticle } from "@/lib/choose";
 
@@ -29,7 +29,10 @@ function label(guide: HowtoGuide): string {
 export function guideLinksForArticle(article: ArticleSummary, howtos: HowtoGuide[] = getAllHowtos()): GuideLink[] {
   if (article.type === "roundup") return [];
   const text = `${article.title} ${article.seoTitle ?? ""}`;
-  const matched = howtos.filter((guide) => test(guide.match, text));
+  // お金の話題（lib/money-pages.ts）でガイドを決めている記事は、そのガイドだけ（無しと決めた話題は出さない）。
+  // 記事ページの「使い方ガイド」の1行（lib/howto.ts の howtoForArticle）と同じ答え（SEO A12。年金の記事に年金の確定申告のガイドが出ていた）
+  const money = moneyGuideFor(article, howtos);
+  const matched = money !== undefined ? (money ? [money] : []) : howtos.filter((guide) => test(guide.match, text));
   // 同じ製品（tool）のガイドだけにそろえる。別の製品のガイドを混ぜない。
   // 製品の名前が題名に出ているガイドの製品を先にする（いちばん長い名前。claude-code ＞ claude）。
   // 2026-11-10: 複数の製品にまたがるガイド（ai-privacy-settings。tool は chatgpt）がファイル順で先に当たり、

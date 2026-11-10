@@ -22,6 +22,8 @@ const loadTs = (rel, mocks = {}) => {
   return mod.exports;
 };
 const nonanswer = loadTs("lib/nonanswer.ts");
+// お金の話題 → ガイドの表（lib/money-pages.ts）も本物を使う（SEO A12。lib/guide-links.ts と同じ答え）
+const moneyPages = loadTs("lib/money-pages.ts");
 const sourcePath = path.join(root, "lib/howto.ts");
 const compiled = ts.transpileModule(fs.readFileSync(sourcePath, "utf8"), {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
@@ -36,6 +38,7 @@ loaded.require = (name) => {
   // 文末の言い換え（lib/polite-text.ts）は振り分けに関係しない
   if (name === "@/lib/polite-text") return { politeDeep: (value) => value };
   if (name === "@/lib/nonanswer") return nonanswer;
+  if (name === "@/lib/money-pages") return moneyPages;
   return requireOriginal(name);
 };
 loaded._compile(compiled, sourcePath);
@@ -129,4 +132,17 @@ test("答えになっていない文の式は、普通の答えを外さない",
   assert.equal(nonanswer.answerOrNull("料金は公式ページに記載がありません。"), null);
   assert.equal(nonanswer.answerOrNull("この記事では説明を控えます。"), null);
   assert.equal(nonanswer.answerOrNull("提供時期はまだ発表されていません。"), null);
+});
+
+// 2026-11-10 SEO A12: お金の話題は lib/money-pages.ts の表で決めたガイドだけ（lib/guide-links.ts と同じ1つの決まり）
+test("[A12] 年金生活者支援給付金の記事に、「年金」の1語で当たる別のガイド（年金の確定申告）を出さない", () => {
+  const all = require("node:fs").readdirSync(path.join(root, "content/howto")).filter((f) => f.endsWith(".json")).map((f) => readGuide(f.replace(/\.json$/, "")));
+  for (const slug of ["pension-support-benefit-old-age-eligibility", "pension-support-benefit-old-age-check"]) {
+    const a = JSON.parse(fs.readFileSync(path.join(root, "content/articles", `${slug}.json`), "utf8"));
+    assert.equal(howtoForArticle(a, all), undefined, slug);
+  }
+  // 表でガイドを決めた話題はそのガイド。表に無い話題（年金の税金）は今までどおり match で選ぶ
+  assert.equal(howtoForArticle({ title: "高額療養費の上限が変わる", tags: [] }, all)?.slug, "kogaku-ryoyohi");
+  assert.equal(howtoForArticle({ title: "児童手当の支給日", tags: [] }, all)?.slug, "jidou-teate");
+  assert.ok(howtoForArticle({ title: "年金の源泉徴収はいくら", tags: [] }, all));
 });
