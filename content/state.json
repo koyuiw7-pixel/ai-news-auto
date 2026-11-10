@@ -6412,12 +6412,6 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/about/bcp/fin_bcp/fbcp261104a.pdf"
     },
-    "2f1df1094cb5652f": {
-      "at": "2026-10-27T23:41:05.859122+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（ブース）",
-      "skipped": true,
-      "url": "https://www.meiji.co.jp/corporate/pressrelease/2026/10_20/index.html?link=rss"
-    },
     "2f24a87add5bcdc5": {
       "at": "2026-10-30T02:41:48.750681+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6682,12 +6676,6 @@
       "section": "business",
       "slug": "docomo-d-value-pass-uber-luup-2026",
       "url": "https://www.docomo.ne.jp/info/news_release/2026/10/30_00.html"
-    },
-    "334dbbd92f5dc473": {
-      "at": "2026-10-27T23:41:05.859206+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（会議）",
-      "skipped": true,
-      "url": "https://www.maff.go.jp/j/press/keiei/kourei/261027.html"
     },
     "3399ec20c63f8ce6": {
       "at": "2026-10-29T03:25:46.360670+00:00",
@@ -7664,6 +7652,17 @@
       "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "skipped": true,
       "url": "https://blog.google/products-and-platforms/products/education/google-org-funding-ai-education/"
+    },
+    "4688c6cc3e602063": {
+      "at": "2026-11-10T23:50:30.124851+00:00",
+      "costUsd": 0.0053,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "ai",
+      "slug": "ai-dlc-mbk-wellness-bottleneck",
+      "url": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/"
     },
     "469734839162d61b": {
       "at": "2026-10-28T17:54:19.157507+00:00",
@@ -11876,12 +11875,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv00000113mj.html"
-    },
-    "85a7b5ac4cd3606c": {
-      "at": "2026-10-27T23:41:05.859169+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（募集）",
-      "skipped": true,
-      "url": "https://www.maff.go.jp/j/press/syouan/nouan/261027.html"
     },
     "85c82f0a957177ca": {
       "at": "2026-11-02T05:03:21.511808+00:00",
@@ -17569,14 +17562,6 @@
       "slug": "china-cpi-ppi-inflation-october-2026",
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87280?site=nli"
     },
-    "dfa6a52031c0de0b": {
-      "at": "2026-10-27T23:42:20.123321+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "lifestyle",
-      "slug": "tsuruhachi-labeling-violation-maff",
-      "url": "https://www.maff.go.jp/j/press/syouan/kansa/261027.html"
-    },
     "e0664abf07afbb1d": {
       "at": "2026-11-04T13:53:27.693117+00:00",
       "mix": "ai_consumer",
@@ -18722,12 +18707,6 @@
       "section": "public",
       "slug": "decarbonization-renovation-subsidy-extension",
       "url": "https://www.env.go.jp/press/press_05813.html"
-    },
-    "f3d855bbde243772": {
-      "at": "2026-10-27T23:41:05.859191+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（受賞）",
-      "skipped": true,
-      "url": "https://www.maff.go.jp/j/press/shokuhin/gaisyoku/261027.html"
     },
     "f423424e36ede3ad": {
       "at": "2026-11-09T01:31:36.840800+00:00",
@@ -20035,50 +20014,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-09T09:25:44.130680+00:00",
-      "attempt": 1,
-      "id": "b04b9cd5579669e8",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文「秋の味くらべセット（燻製サーモン味と司令塔しお味が各1箱・計2箱）」→ 元記事では「湖池屋揚げたて直送便 芋の旨み味わう しお味」であり、「司令塔しお味」という商品名は元記事に存在しない誤り",
-        "リード・要点「定番のしお味」→ 元記事に「定番」という位置づけの記載はなく、根拠のない形容",
-        "よくある質問「店頭での通常販売はありません」→ 元記事は受注販売・オンラインショップでの販売と書くが、店頭販売がないとまでは明記しておらず、やや言い過ぎ"
-      ],
-      "readability": {
-        "avg_paragraph": 84.2,
-        "avg_sentence": 42.1,
-        "long_share": 0.0,
-        "max_paragraph": 149,
-        "paragraphs": 5,
-        "sentences": 10
-      },
-      "score": 72,
-      "source": "nissin",
-      "title": "湖池屋 「季節の揚げたて直送便 燻製サーモン味」(11月9日より受注販売開始)"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:26:00.578415+00:00",
-      "attempt": 1,
-      "id": "b04b9cd5579669e8",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.8,
-        "avg_sentence": 40.4,
-        "long_share": 0.0,
-        "max_paragraph": 146,
-        "paragraphs": 5,
-        "sentences": 10
-      },
-      "score": 93,
-      "source": "nissin",
-      "title": "湖池屋 「季節の揚げたて直送便 燻製サーモン味」(11月9日より受注販売開始)"
-    },
     {
       "accepted": true,
       "at": "2026-11-09T09:40:35.916574+00:00",
@@ -27369,6 +27304,55 @@
         "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（KAYAK・GET）",
         "読みやすさ: 段落が長い（平均 103.7字・最長 221字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T23:50:07.056476+00:00",
+      "attempt": 1,
+      "id": "4688c6cc3e602063",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 137.9,
+        "avg_sentence": 68.9,
+        "long_share": 0.643,
+        "max_paragraph": 192,
+        "paragraphs": 7,
+        "sentences": 14
+      },
+      "score": 88,
+      "source": "aws-japan-blog",
+      "title": "AIが進め、人が決める ― AI駆動開発の本当のボトルネックはどこにあったか",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MBK）",
+        "読みやすさ: 文が長い（1文の平均 68.9字・60字超の文が 64% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T23:50:24.859783+00:00",
+      "attempt": 0,
+      "id": "4688c6cc3e602063",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.3,
+        "avg_sentence": 41.9,
+        "long_share": 0.125,
+        "max_paragraph": 143,
+        "paragraphs": 13,
+        "sentences": 24
+      },
+      "score": 88,
+      "source": "aws-japan-blog",
+      "title": "AIが進め、人が決める ― AI駆動開発の本当のボトルネックはどこにあったか",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MBK）"
       ]
     }
   ],

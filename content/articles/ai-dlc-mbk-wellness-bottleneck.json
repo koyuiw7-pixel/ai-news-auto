@@ -1,0 +1,198 @@
+{
+  "slug": "ai-dlc-mbk-wellness-bottleneck",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/",
+  "sourceName": "AWS ブログ（日本）",
+  "title": "AI駆動開発で本当に詰まるのは技術ではない　MBK Wellnessが体験した組織の課題",
+  "seoTitle": "AI駆動開発のボトルネックとは：組織と意思決定の課題",
+  "threadsPost": "開発現場のスピードを上げるために、組織や意思決定のあり方から見直した事例です。\n\nAIツールを導入しても部署間の調整で足踏みしがちだった課題に対し、経営層が参加して仕様や手段をその場で決めるワークショップが行われました。\n\n新しい開発の進め方を導入するとき、社内の調整で最も時間がかかるのはどの部署だと感じますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "新しい開発の進め方を導入するとき、社内の調整で最も時間がかかるのはどの部署だと感じますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "MBK WellnessとAWSが実施した AI-DLC ワークショップから、開発スピードを阻む本当のボトルネックが浮き彫りになりました。ツールや技術ではなく、部門をまたぐ意思決定のプロセスや組織の構造に課題があることが示されています。今後は組織のフラット化や権限委譲を含めた見直しが進められる予定です。",
+  "description": "MBK WellnessとAWSが実施したワークショップから、AI駆動開発の本当のボトルネックが組織と意思決定にあることが明らかになりました。具体的な課題と次のステップを解説します。",
+  "keywords": [
+    "AI-DLC",
+    "AI駆動開発",
+    "AWS",
+    "MBK Wellness",
+    "Claude Code",
+    "組織改革",
+    "意思決定",
+    "ソフトウェア開発"
+  ],
+  "tags": [
+    "生成AI",
+    "LLM",
+    "開発ツール",
+    "クラウド",
+    "ビジネス"
+  ],
+  "highlights": [
+    "AI駆動開発を進める上での本当のボトルネックは、技術ではなく部署間の意思決定や組織の構造にあることが判明しました。",
+    "MBK Wellnessのワークショップでは役員を含む22名が参加し、Inceptionフェーズを中心にモックアップ作成までを1日で実施しました。",
+    "APIの制約で方針転換が必要になった際、AIの差分改訂を活用してその場で手段を選び直す柔軟な意思決定が行われました。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "ok",
+    "price": "不明",
+    "free": null,
+    "audience": "開発リーダー",
+    "take": "開発だけでなく組織の意思決定プロセスをセットで見直すことが、AI駆動開発を活かす鍵になります。",
+    "judgedAt": "2026-11-10T23:49:58.743298+00:00"
+  },
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "開発部門だけでなく事業部門や経営層が同じ場で議論することで、企画段階の手戻りを減らすことができます。",
+      "「作ってほしい」と頼む際の心理的ハードルが下がり、アイデアを素早く形にできるようになります。",
+      "今後は意思決定権限の委譲や組織のフラット化に向けた具体的な検討が進められます。"
+    ]
+  },
+  "body": "三井物産グループのウェルネス企業であるMBK Wellnessは、2026年7月29日にAWSとともに「AI-DLC（AI-Driven Development Lifecycle）」を1日で体験するワークショップを実施しました。開発のスピードを加速したいという相談から始まった取り組みです。\n\nこの取り組みでは、特定のツールの導入だけでなく、組織のあり方や開発の進め方そのものをどう変えるかが検証されました。\n\n### AI-DLCの仕組みと役割分担\nAI-DLCは、AIを前提にソフトウェア開発のライフサイクルを組み直す方法論です。\n\n全体は3つのフェーズで構成されています。Inceptionは意図の詳細化と計画、Constructionは設計・実装・テスト、Operationはデプロイと運用です。\n\nこの方法論では、プランニングやタスク分解、アーキテクチャの提案といった実行をAIが担います。検証や意思決定、監督の最終責任は人間が持ち続けます。\n\n当日は実装に「Claude Code」が使われました。AWSがオープンソースとして公開している「awslabs/aidlc-workflows」（バージョン1.0.1）も使われました。\n\n### 役員と事業部門が参加したワークショップの実際\nワークショップには役員4名を含む22名が参加しました。4つのグループに分かれて、実際の検討案件に取り組みました。\n\nPCを操作するドライバーは開発部が務めました。事業部門のメンバーや役員が画面を見ながら議論を進めました。\n\nあるチームでは、APIの制約によって当初の企画通りにデータを保存できないことが判明しました。しかし、AIの差分改訂機能を使って要件を書き直しました。\n\nチャットで相談内容を聞き取り、既存の回答から探すという別のアプローチへ、その場で方針を切り替えることができました。手戻りが例外扱いされず、迅速な意思決定につながった形です。\n\n### 技術的課題よりも浮き彫りになった組織の壁\n参加者アンケートの自由記述では、組織や意思決定、権限に関わる課題が多く挙げられました。一方で、ツールの使いにくさや環境構築といった技術的な課題の指摘は1件もありませんでした。\n\n実際の開発では、仕様変更や追加確認が発生すると、セキュリティや法務といった複数部署への確認が連鎖します。その結果、待ち時間が増える傾向があります。\n\nAIによってアウトプットが速くなっても、既存のワークスタイルのままでは全体が停滞してしまいます。そのため、柔軟な組織体制や意思決定権限の委譲が必要という共通認識が導き出されました。\n\n### まだ分からないこと\n- 組織改革に伴う具体的なスケジュールや、新しい体制における詳細な役割分担の最終的な決定時期についてはまだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nAIを使った開発を速くするためには、ツールだけでなく、部署をまたぐ意思決定の仕組みや組織のあり方を見直すことが重要だと分かりました。\n\nAIが計画や実装を進め、人間が検証や判断の責任を持つ「AI-DLC（AI駆動開発ライフサイクル）」という方法論を用いたワークショップの事例です。開発のスピードそのものよりも、事業部門や経営層を巻き込んだスピーディーな意思決定ができるかどうかが、成果を大きく左右するという結果が示されました。",
+  "channel": "AWS ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "aws-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "AIが進め、人が決める ― AI駆動開発の本当のボトルネックはどこにあったか",
+  "publishedAt": "2026-11-10T23:48:12+00:00",
+  "generatedAt": "2026-11-10T23:49:58.743285+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/ai-dlc-mbk-wellness-bottleneck-120d76ab.jpg",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "ワークショップの参加人数とチーム構成はどうなっていましたか？",
+      "a": "役員4名を含む22名が参加し、4つのグループに分かれてエンジニアと非エンジニアが混在する形で実施されました。"
+    }
+  ],
+  "todayActions": [
+    "開発案件の仕様変更で、確認が必要な部署を一覧にして並べる",
+    "AIツール導入の検討に、意思決定権を持つ部門を最初から入れる"
+  ],
+  "qualityScore": 88,
+  "sourcePublishedAt": "2026-11-10T23:48:12+00:00",
+  "detectedAt": "2026-11-10T23:48:55+00:00",
+  "speedMinutes": 6,
+  "layout": "noir",
+  "summaryLine": "AI駆動開発を進める上での本当のボトルネックは、技術ではなく部署間の意思決定や組織の構造にあることが判明しました。",
+  "insight": [
+    {
+      "text": "図3の説明では、並列に相談できれば最長1部署分で済む待ちが、逐次だと部署数ぶんの足し算になると書かれています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/"
+    },
+    {
+      "text": "AIは曖昧なまま進まず、選択式で問いを投げてくると書かれています。「何を作らないか」を最初に決めきれたのは、この問いのおかげだったそうです。",
+      "source": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "開発案件の仕様変更で、確認が必要な部署を一覧にして並べる",
+      "source": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/",
+      "steps": [
+        "変更で影響する範囲を書き出す",
+        "確認が必要な部署を一覧にする",
+        "並列で相談できるかを確かめる"
+      ]
+    },
+    {
+      "action": "AIツール導入の検討に、意思決定権を持つ部門を最初から入れる",
+      "source": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/",
+      "steps": [
+        "導入の検討に開発以外の部門も呼ぶ",
+        "意思決定できる担当者を先に決める",
+        "AIの出力を同じ場でレビューする"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "AIで開発のアウトプットは速くなっても、部署をまたぐ意思決定が速くならなければ全体は速くなりません。理由は技術の外側、部署をまたぐ意思決定の側にあると書かれています。",
+    "status": "background",
+    "source": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/"
+  },
+  "worries": [
+    {
+      "q": "AIを導入すれば、開発は本当にすぐ速くなるの？",
+      "a": "AIでアウトプットは速くできるものの、開発チームの外との意思決定が速くならなければ、スピードはそこで頭打ちになると書かれています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/",
+      "action": "AI導入の前に、開発以外の関係部署がそれぞれ何を決めるかを一覧にする"
+    },
+    {
+      "q": "仕様変更が出たとき、待ちはどこで増える？",
+      "a": "仕様変更や追加確認が発生すると、セキュリティや法務などの部署への確認が連鎖し、待ち時間が増える傾向があると書かれています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/",
+      "action": "仕様変更が来たら、確認が必要な部署を一覧にして、同時に相談できるか先に決める"
+    },
+    {
+      "q": "事業部門や役員も開発に関わる必要がある？",
+      "a": "ワークショップでは役員や事業部門が画面を見ながら議論し、開発チームだけではサービスの仕様やビジネスへの影響を判断できず、待つしかないと書かれています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/",
+      "action": "次の開発会議に、判断できる事業部門の担当者を一人入れる"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "AIが速くても、部署の確認で止まる理由",
+    "cause": "なぜ、開発の外で止まるのか",
+    "steps": "今日から確かめられる、部署をまたぐ確認",
+    "worries": "AIを入れても速くならない？"
+  },
+  "depthAt": "2026-11-10T23:50:56+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/ai-dlc-mbk-wellness-bottleneck-fig1-070d1a75.jpg",
+      "width": 1200,
+      "height": 600,
+      "kind": "hero",
+      "credit": "AWS",
+      "sourceUrl": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/",
+      "original": "https://d2908q01vomqb2.cloudfront.net/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f/2026/10/29/mbk-wellness-ai-dlc-workshop_thumbnail_def03b3b-1260x630.png"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/ai-dlc-mbk-wellness-bottleneck-fig2-310cbc0d.jpg",
+      "width": 1200,
+      "height": 600,
+      "kind": "hero",
+      "credit": "AWS",
+      "sourceUrl": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/",
+      "original": "https://d2908q01vomqb2.cloudfront.net/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f/2026/10/29/mbk-wellness-ai-dlc-workshop_fig-2-key-message_a4eeb05a.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "AWS",
+    "provider": "AWS ブログ（日本）",
+    "sourceUrl": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/",
+    "original": "https://d2908q01vomqb2.cloudfront.net/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f/2026/10/29/mbk-wellness-ai-dlc-workshop_photo-1-workshop_b65684e9.jpg",
+    "width": 1200,
+    "height": 900,
+    "at": "2026-11-10T23:51:52+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.5,
+    "y": 0.479,
+    "box": [
+      0.0,
+      0.0,
+      1.0,
+      0.958
+    ],
+    "ar": 1.3333,
+    "src": "https://ai-tech-express.jp/img/ai-dlc-mbk-wellness-bottleneck-120d76ab.jpg"
+  }
+}
