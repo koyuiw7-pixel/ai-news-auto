@@ -83,17 +83,7 @@ export function amazonUrl(rule: Pick<Rule, "query" | "asin">): string {
 
 /** A8 の楽天リンクと同じ形で、楽天市場の検索結果へ飛ばす */
 export function rakutenSearchUrl(query: string): string {
-  return rakutenPageUrl(`https://search.rakuten.co.jp/search/mall/${encodeURIComponent(query)}/`);
-}
-
-/** 楽天ふるさと納税のトップ（2026-11-10 に event.rakuten.co.jp で確かめた公式のURL） */
-export const RAKUTEN_FURUSATO_PAGE = "https://event.rakuten.co.jp/furusato/";
-
-/**
- * A8 の楽天リンク（rakutenSearchUrl・scripts/rakuten_books.py と同じ a8mat と hgc）で、楽天の決まったページへ飛ばす。
- * 同じ形を scripts/a8_import.py の RAKUTEN_DEEPLINKS が offers.json に書く（tests/test_rakuten_furusato.cjs が一致を確かめる）
- */
-export function rakutenPageUrl(page: string): string {
+  const page = `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(query)}/`;
   const inner = `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_HGC}?pc=${encodeURIComponent(page)}&m=${encodeURIComponent(page)}`;
   return `https://rpx.a8.net/svt/ejp?a8mat=${A8MAT}&rakuten=y&a8ejpredirect=${encodeURIComponent(inner)}`;
 }

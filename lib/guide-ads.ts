@@ -7,8 +7,7 @@ import { actionAdRules, partnerItem, partnerKeysMatching, type ActionAdRule, typ
  *
  * ガイドの話題と同じ提携商品だけを出す。話題は記事の PR（lib/action-ad.ts）と同じ設定（content/offers.json の actionAds）のうち、
  * 下の3つだけを使う。どれにも当たらないガイドには何も出さない（AIツールの使い方ガイドには出さない）。
- *  - furusato: ふるさと納税 → ふるさと納税のサイト（ふるさと本舗・楽天ふるさと納税・au PAY ふるさと納税をずらして2件）
- *  - nencho: 年末調整 → ふるさと納税の上限額の計算（サイト内）とふるさと納税のサイト。下の囲みは確定申告ソフト（2026-11-10 M4）
+ *  - furusato: ふるさと納税 → ふるさと納税のサイト
  *  - tax: 年末調整・確定申告 → 確定申告ソフト
  *  - mobile: スマホの乗り換え → 格安SIM（光回線は乗り換えの手順と話題が違うので出さない）
  *  - kids: 児童手当 → 子どもの学び（上）とふるさと納税のサイト＋上限額の計算への案内（下）（2026-11-10 M3）
@@ -51,9 +50,6 @@ const secondOf = (key: string): MoneyTarget[] => {
 
 export const GUIDE_AD_RULES: GuideRule[] = [
   { key: "furusato" },
-  // 年末調整のガイド（nencho-*・two-jobs-nencho など）: 上はふるさと納税の上限額の計算とふるさと納税のサイト、下は確定申告ソフト（2026-11-10 M4）。
-  // 見出しの「年末調整」だけで当てる（相続税の「基礎控除」などで当てない）。tax より前に置き、同じ位置で当たったときに上の囲みにする
-  { key: "nencho", extra: /年末調整/, only: true, internal: targetOf("furusato") },
   // 還付申告・事業所得・雑所得は、どれも確定申告で申告する
   { key: "tax", extra: /還付申告|事業所得|雑所得/ },
   { key: "mobile", partners: ["bb-excite"] },

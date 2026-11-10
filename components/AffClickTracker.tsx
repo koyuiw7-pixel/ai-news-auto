@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { programOf } from "@/lib/aff-program";
 import { BOT_UA } from "@/lib/revenue-funnel";
 
 /**
@@ -9,6 +8,21 @@ import { BOT_UA } from "@/lib/revenue-funnel";
  * ASP のクリック数にはクローラーや自動ブラウザが混ざるので、実数と見比べるため。
  * 個人を特定する情報は送らない（送るのは 提携先の ID・ページのパス・置き場所 だけ）。受け口は cloudflare/aff.ts
  */
+
+/** 提携先の ID（A8 は a8mat、それ以外はドメイン） */
+function programOf(href: string): string {
+  try {
+    const url = new URL(href);
+    const a8mat = url.searchParams.get("a8mat");
+    // a8mat の「+」は URLSearchParams で空白に化けるので戻す
+    if (a8mat) return a8mat.replace(/ /g, "+").slice(0, 60);
+    if (/(^|\.)afl\.rakuten\.co\.jp$/.test(url.hostname)) return "rakuten";
+    if (/amazon\.|amzn\.to$/.test(url.hostname)) return "amazon";
+    return url.hostname.slice(0, 60);
+  } catch {
+    return "unknown";
+  }
+}
 
 export default function AffClickTracker() {
   useEffect(() => {
