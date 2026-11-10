@@ -1,98 +1,425 @@
 {
-  "_README": "広告の「得のカード」（2026-11-10 オーナー「約いくらみたいな感じ。直感的に見てわかる状態に」「提携している広告の魅力を上げる作戦を記事ごとに」。台帳 W38）。lib/ad-benefits.ts が読み、components/rail/parts.tsx の PrFeature が描く。chips は大きな数字（3つまで）。数字はすべて sources の公式ページ（url と checkedAt）から。出典の無い数字・「最安」「必ず」「絶対」「No.1」などの言葉は lib/ad-benefits.ts が捨てる（景品表示法の優良誤認・有利誤認）。数字で語れない広告は points（3つまで。公式の事実）。articles は記事ごとの見出し（読者の状況）で、match は記事の slug に当てる正規表現。Grok（公式の数字と URL・確認日）と Muse（見出しの言葉）の追加はここに足す。",
+  "_README": "広告の「得のカード」（2026-11-10 オーナー「約いくらみたいな感じ。直感的に見てわかる状態に」「提携している広告の魅力を上げる作戦を記事ごとに」。台帳 W38）。lib/ad-benefits.ts が読み、components/rail/parts.tsx の PrFeature が描く。chips は大きな数字（3つまで）。数字はすべて sources の公式ページ（url と checkedAt）から。出典の無い数字・「最安」「必ず」「絶対」「No.1」などの言葉は lib/ad-benefits.ts が捨てる（景品表示法の優良誤認・有利誤認）。数字で語れない広告は points（3つまで。公式の事実）。articles は記事ごとの見出し（読者の状況）で、match は「slug と題名」に当てる正規表現（上から順に最初に当たった行。具体的な slug の行を先、題名の語の広い行を後に）。Grok（公式の数字と URL・確認日）と Muse（見出しの言葉）の追加はここに足す。",
   "sources": {
-    "mf-price": { "name": "マネーフォワード クラウド確定申告の料金プラン", "url": "https://biz.moneyforward.com/tax_return/price/", "checkedAt": "2026-11-10" },
-    "soumu-furusato": { "name": "総務省 ふるさと納税など個人住民税の寄附金税制", "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/080430_3_kojin.html", "checkedAt": "2026-11-10" },
-    "saisoku-furusato": { "name": "サイソクのふるさと納税の上限額の計算", "url": "/tools/furusato-limit", "checkedAt": "2026-11-10" },
-    "bbexcite-plan": { "name": "BB.exciteモバイルの料金プラン", "url": "https://bb.excite.co.jp/exmb/sim/plan/", "checkedAt": "2026-11-10" },
-    "frecious": { "name": "every frecious 公式サイト", "url": "https://every.frecious.jp/", "checkedAt": "2026-11-10" },
-    "biglobe-hikari": { "name": "BIGLOBE光 公式サイト", "url": "https://join.biglobe.ne.jp/ftth/hikari/", "checkedAt": "2026-11-10" },
-    "virusbuster": { "name": "ウイルスバスター クラウド 公式サイト", "url": "https://www.trendmicro.com/ja_jp/forHome/products/vb.html", "checkedAt": "2026-11-10" },
-    "eset": { "name": "ESET HOME セキュリティ 製品ラインアップ", "url": "https://personal.canon.jp/product/app/eset/lineup", "checkedAt": "2026-11-10" },
-    "surfshark": { "name": "Surfshark Antivirus 公式サイト", "url": "https://surfshark.com/ja/antivirus", "checkedAt": "2026-11-10" },
-    "norton": { "name": "ノートン 360 デラックス 公式サイト", "url": "https://jp.norton.com/products/norton-360-deluxe", "checkedAt": "2026-11-10" },
-    "elpio": { "name": "エルピオでんき 公式サイト", "url": "https://lpio.jp/lpio_denki/", "checkedAt": "2026-11-10" },
-    "enepi": { "name": "エネピ 電気の見直し", "url": "https://enepi.jp/electricity", "checkedAt": "2026-11-10" },
-    "digitane": { "name": "デジタネ 公式サイト", "url": "https://digitane.jp/", "checkedAt": "2026-11-10" }
+    "mf-price": {
+      "name": "マネーフォワード クラウド確定申告の料金プラン",
+      "url": "https://biz.moneyforward.com/tax_return/price/",
+      "checkedAt": "2026-11-10"
+    },
+    "soumu-furusato": {
+      "name": "総務省 ふるさと納税など個人住民税の寄附金税制",
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/080430_3_kojin.html",
+      "checkedAt": "2026-11-10"
+    },
+    "saisoku-furusato": {
+      "name": "サイソクのふるさと納税の上限額の計算",
+      "url": "/tools/furusato-limit",
+      "checkedAt": "2026-11-10"
+    },
+    "bbexcite-plan": {
+      "name": "BB.exciteモバイルの料金プラン",
+      "url": "https://bb.excite.co.jp/exmb/sim/plan/",
+      "checkedAt": "2026-11-10"
+    },
+    "frecious": {
+      "name": "every frecious 公式サイト",
+      "url": "https://every.frecious.jp/",
+      "checkedAt": "2026-11-10"
+    },
+    "biglobe-hikari": {
+      "name": "BIGLOBE光 公式サイト",
+      "url": "https://join.biglobe.ne.jp/ftth/hikari/",
+      "checkedAt": "2026-11-10"
+    },
+    "virusbuster": {
+      "name": "ウイルスバスター クラウド 公式サイト",
+      "url": "https://www.trendmicro.com/ja_jp/forHome/products/vb.html",
+      "checkedAt": "2026-11-10"
+    },
+    "eset": {
+      "name": "ESET HOME セキュリティ 製品ラインアップ",
+      "url": "https://personal.canon.jp/product/app/eset/lineup",
+      "checkedAt": "2026-11-10"
+    },
+    "surfshark": {
+      "name": "Surfshark Antivirus 公式サイト",
+      "url": "https://surfshark.com/ja/antivirus",
+      "checkedAt": "2026-11-10"
+    },
+    "norton": {
+      "name": "ノートン 360 デラックス 公式サイト",
+      "url": "https://jp.norton.com/products/norton-360-deluxe",
+      "checkedAt": "2026-11-10"
+    },
+    "elpio": {
+      "name": "エルピオでんき 公式サイト",
+      "url": "https://lpio.jp/lpio_denki/",
+      "checkedAt": "2026-11-10"
+    },
+    "enepi": {
+      "name": "エネピ 電気の見直し",
+      "url": "https://enepi.jp/electricity",
+      "checkedAt": "2026-11-10"
+    },
+    "digitane": {
+      "name": "デジタネ 公式サイト",
+      "url": "https://digitane.jp/",
+      "checkedAt": "2026-11-10"
+    },
+    "gmo-hikari": {
+      "name": "GMOとくとくBB光 公式サイト",
+      "url": "https://gmobb.jp/service/gmohikari/",
+      "checkedAt": "2026-11-10"
+    },
+    "gmo-home-wifi": {
+      "name": "GMOとくとくBB ホームWi-Fi 公式サイト",
+      "url": "https://gmobb.jp/gmohomewifi/",
+      "checkedAt": "2026-11-10"
+    },
+    "yayoi-shinkoku": {
+      "name": "弥生のクラウド確定申告ソフト 公式サイト",
+      "url": "https://www.yayoi-kk.co.jp/shinkoku/",
+      "checkedAt": "2026-11-10"
+    },
+    "jackery": {
+      "name": "Jackery 保証と返品",
+      "url": "https://www.jackery.jp/pages/warranty-and-returns",
+      "checkedAt": "2026-11-10"
+    },
+    "epos": {
+      "name": "エポスカード 公式サイト",
+      "url": "https://www.eposcard.co.jp/",
+      "checkedAt": "2026-11-10"
+    },
+    "hikkoshi-samurai": {
+      "name": "引越し侍 公式サイト",
+      "url": "https://hikkoshizamurai.jp/",
+      "checkedAt": "2026-11-10"
+    },
+    "bang-kasai": {
+      "name": "保険スクエアbang！ 火災保険",
+      "url": "https://fire.bang.co.jp/",
+      "checkedAt": "2026-11-10"
+    },
+    "biglobe-hikari-plus": {
+      "name": "BIGLOBE光プラス 公式サイト",
+      "url": "https://join.biglobe.ne.jp/ftth/hikari/plus/",
+      "checkedAt": "2026-11-10"
+    }
   },
   "offers": {
     "mf-kakutei": {
       "chips": [
-        { "label": "料金", "value": "年10,800円〜", "sub": "税抜・年払いのパーソナルミニ", "src": "mf-price" },
-        { "label": "無料お試し", "value": "1か月", "sub": "カード登録なしで試せる", "src": "mf-price" }
+        {
+          "label": "料金",
+          "value": "年10,800円〜",
+          "sub": "税抜・年払いのパーソナルミニ",
+          "src": "mf-price"
+        },
+        {
+          "label": "無料お試し",
+          "value": "1か月",
+          "sub": "カード登録なしで試せる",
+          "src": "mf-price"
+        }
       ]
     },
-    "rakuten-furusato": { "use": "furusato" },
-    "aupay-furusato": { "use": "furusato" },
-    "furusato-honpo": { "use": "furusato" },
+    "rakuten-furusato": {
+      "use": "furusato"
+    },
+    "aupay-furusato": {
+      "use": "furusato"
+    },
+    "furusato-honpo": {
+      "use": "furusato"
+    },
     "furusato": {
       "chips": [
-        { "label": "自己負担", "value": "2,000円", "sub": "上限の中の寄附なら、残りは税から控除", "src": "soumu-furusato" },
-        { "label": "上限の例", "value": "約7.7万円", "sub": "住民税の所得割30万円・所得税率10%の人", "src": "saisoku-furusato" }
+        {
+          "label": "自己負担",
+          "value": "2,000円",
+          "sub": "上限の中の寄附なら、残りは税から控除",
+          "src": "soumu-furusato"
+        },
+        {
+          "label": "上限の例",
+          "value": "約7.7万円",
+          "sub": "住民税の所得割30万円・所得税率10%の人",
+          "src": "saisoku-furusato"
+        }
       ]
     },
     "bb-excite": {
       "chips": [
-        { "label": "音声SIM", "value": "月495円〜", "sub": "税込・低速通信のみの月", "src": "bbexcite-plan" },
-        { "label": "3GBまで", "value": "月690円", "sub": "税込・Fitプランの音声SIM", "src": "bbexcite-plan" },
-        { "label": "解約の手数料", "value": "0円", "sub": "最低利用期間なし", "src": "bbexcite-plan" }
+        {
+          "label": "音声SIM",
+          "value": "月495円〜",
+          "sub": "税込・低速通信のみの月",
+          "src": "bbexcite-plan"
+        },
+        {
+          "label": "3GBまで",
+          "value": "月690円",
+          "sub": "税込・Fitプランの音声SIM",
+          "src": "bbexcite-plan"
+        },
+        {
+          "label": "解約の手数料",
+          "value": "0円",
+          "sub": "最低利用期間なし",
+          "src": "bbexcite-plan"
+        }
       ]
     },
     "frecious": {
       "chips": [
-        { "label": "月額（税込）", "value": "月2,750円〜", "sub": "レンタル・カートリッジ代込み（水道代は別）", "src": "frecious" },
-        { "label": "宅配の水", "value": "受け取り不要", "sub": "水道水を入れて使う", "src": "frecious" }
+        {
+          "label": "月額（税込）",
+          "value": "月2,750円〜",
+          "sub": "レンタル・カートリッジ代込み（水道代は別）",
+          "src": "frecious"
+        },
+        {
+          "label": "宅配の水",
+          "value": "受け取り不要",
+          "sub": "水道水を入れて使う",
+          "src": "frecious"
+        }
       ]
     },
     "biglobe-hikari": {
       "chips": [
-        { "label": "マンション", "value": "月4,378円", "sub": "1ギガ・3年プラン", "src": "biglobe-hikari" },
-        { "label": "戸建て", "value": "月5,478円", "sub": "1ギガ・3年プラン", "src": "biglobe-hikari" }
+        {
+          "label": "マンション",
+          "value": "月4,378円",
+          "sub": "1ギガ・3年プラン",
+          "src": "biglobe-hikari"
+        },
+        {
+          "label": "戸建て",
+          "value": "月5,478円",
+          "sub": "1ギガ・3年プラン",
+          "src": "biglobe-hikari"
+        }
       ]
     },
     "virusbuster": {
       "chips": [
-        { "label": "無料体験", "value": "30日間", "sub": "製品版をカード登録なしで", "src": "virusbuster" }
+        {
+          "label": "無料体験",
+          "value": "30日間",
+          "sub": "製品版をカード登録なしで",
+          "src": "virusbuster"
+        }
       ]
     },
     "eset": {
       "chips": [
-        { "label": "無料体験", "value": "30日間", "sub": "体験版", "src": "eset" },
-        { "label": "台数", "value": "1・3・5台", "sub": "から選べる", "src": "eset" }
+        {
+          "label": "無料体験",
+          "value": "30日間",
+          "sub": "体験版",
+          "src": "eset"
+        },
+        {
+          "label": "台数",
+          "value": "1・3・5台",
+          "sub": "から選べる",
+          "src": "eset"
+        }
       ]
     },
     "surfshark": {
       "chips": [
-        { "label": "守れる台数", "value": "最大5台", "sub": "Windows・Mac・Android", "src": "surfshark" },
-        { "label": "返金保証", "value": "30日間", "sub": "", "src": "surfshark" }
+        {
+          "label": "守れる台数",
+          "value": "最大5台",
+          "sub": "Windows・Mac・Android",
+          "src": "surfshark"
+        },
+        {
+          "label": "返金保証",
+          "value": "30日間",
+          "sub": "",
+          "src": "surfshark"
+        }
       ]
     },
     "norton": {
       "chips": [
-        { "label": "守れる台数", "value": "最大3台", "sub": "360 デラックス", "src": "norton" }
+        {
+          "label": "守れる台数",
+          "value": "最大3台",
+          "sub": "360 デラックス",
+          "src": "norton"
+        }
       ]
     },
     "elpio": {
       "chips": [
-        { "label": "切り替え手数料", "value": "0円", "sub": "Webで申し込める", "src": "elpio" },
-        { "label": "解約手数料", "value": "0円", "sub": "契約期間の縛りなし", "src": "elpio" }
+        {
+          "label": "切り替え手数料",
+          "value": "0円",
+          "sub": "Webで申し込める",
+          "src": "elpio"
+        },
+        {
+          "label": "解約手数料",
+          "value": "0円",
+          "sub": "契約期間の縛りなし",
+          "src": "elpio"
+        }
       ]
     },
     "enepi": {
       "chips": [
-        { "label": "見積もり〜切り替え", "value": "0円", "sub": "手続きはエネピが行う", "src": "enepi" }
+        {
+          "label": "見積もり〜切り替え",
+          "value": "0円",
+          "sub": "手続きはエネピが行う",
+          "src": "enepi"
+        }
       ]
     },
     "digitane": {
       "chips": [
-        { "label": "無料体験", "value": "14日間", "sub": "ゲームを題材に学べる", "src": "digitane" }
+        {
+          "label": "無料体験",
+          "value": "14日間",
+          "sub": "ゲームを題材に学べる",
+          "src": "digitane"
+        }
+      ]
+    },
+    "gmo-hikari": {
+      "chips": [
+        {
+          "label": "解約違約金",
+          "value": "0円",
+          "sub": "契約期間の縛りなし",
+          "src": "gmo-hikari"
+        },
+        {
+          "label": "v6プラス",
+          "value": "0円",
+          "sub": "オプション料",
+          "src": "gmo-hikari"
+        }
+      ]
+    },
+    "gmo-home-wifi": {
+      "chips": [
+        {
+          "label": "工事",
+          "value": "不要",
+          "sub": "コンセントに挿すだけ",
+          "src": "gmo-home-wifi"
+        },
+        {
+          "label": "送料",
+          "value": "0円",
+          "sub": "解約違約金もなし",
+          "src": "gmo-home-wifi"
+        }
+      ]
+    },
+    "yayoi-kakutei": {
+      "chips": [
+        {
+          "label": "白色申告",
+          "value": "0円",
+          "sub": "白色申告オンラインはずっと無料",
+          "src": "yayoi-shinkoku"
+        },
+        {
+          "label": "税務署",
+          "value": "行かずに",
+          "sub": "e-Taxで申告できる",
+          "src": "yayoi-shinkoku"
+        }
+      ]
+    },
+    "jackery": {
+      "chips": [
+        {
+          "label": "長期保証",
+          "value": "最長5年",
+          "sub": "保証登録で",
+          "src": "jackery"
+        },
+        {
+          "label": "初期不良",
+          "value": "30日以内",
+          "sub": "新品と交換",
+          "src": "jackery"
+        }
+      ]
+    },
+    "epos": {
+      "chips": [
+        {
+          "label": "年会費",
+          "value": "0円",
+          "sub": "入会金も永年無料",
+          "src": "epos"
+        },
+        {
+          "label": "ETCカード",
+          "value": "0円",
+          "sub": "年会費・入会金",
+          "src": "epos"
+        }
+      ]
+    },
+    "hikkoshi-samurai": {
+      "chips": [
+        {
+          "label": "見積もり依頼",
+          "value": "最大10社",
+          "sub": "まとめて頼める",
+          "src": "hikkoshi-samurai"
+        },
+        {
+          "label": "利用料",
+          "value": "無料",
+          "sub": "業者を比べられる",
+          "src": "hikkoshi-samurai"
+        }
+      ]
+    },
+    "bang-kasai": {
+      "chips": [
+        {
+          "label": "見積もり依頼",
+          "value": "無料",
+          "sub": "複数社の商品を比べられる",
+          "src": "bang-kasai"
+        }
+      ]
+    },
+    "biglobe-hikari-plus": {
+      "chips": [
+        {
+          "label": "使い始め",
+          "value": "最短4日",
+          "sub": "申し込みから",
+          "src": "biglobe-hikari-plus"
+        },
+        {
+          "label": "開通前",
+          "value": "5Gで使える",
+          "sub": "5G通信でつなげる",
+          "src": "biglobe-hikari-plus"
+        }
       ]
     }
   },
   "articles": [
     {
       "match": "^pension-support-benefit-|^disability-survivor-pension-benefit",
-      "headlines": { "bb-excite": "年金暮らしのスマホ代、月いくらまで下がるか確かめる" }
+      "headlines": {
+        "bb-excite": "年金暮らしのスマホ代、月いくらまで下がるか確かめる"
+      }
     },
     {
       "match": "^child-allowance-|^pension-child-allowance-payment-calendar",
@@ -145,6 +472,84 @@
         "virusbuster": "流出のあとに届く偽SMS・偽サイトに備える",
         "eset": "流出が心配なら、PCとスマホのセキュリティ対策を30日無料で",
         "surfshark": "流出が心配なら、不審なファイルやアプリへの対策を"
+      }
+    },
+    {
+      "match": "ふるさと納税",
+      "headlines": {
+        "rakuten-furusato": "今年分のふるさと納税、上限の中なら負担は2,000円",
+        "aupay-furusato": "今年分のふるさと納税、上限の中なら負担は2,000円",
+        "furusato-honpo": "今年分のふるさと納税、上限の中なら負担は2,000円"
+      }
+    },
+    {
+      "match": "確定申告|医療費控除|年末調整|源泉徴収|副業|所得控除|基礎控除",
+      "headlines": {
+        "rakuten-furusato": "控除を確かめたら、ふるさと納税の上限も見ておく",
+        "aupay-furusato": "控除を確かめたら、ふるさと納税の上限も見ておく",
+        "furusato-honpo": "控除を確かめたら、ふるさと納税の上限も見ておく",
+        "mf-kakutei": "確定申告の書類づくりを、早めに片づける",
+        "freee": "確定申告の書類づくりを、早めに片づける",
+        "yayoi-kakutei": "確定申告の書類づくりを、早めに片づける"
+      }
+    },
+    {
+      "match": "地震|津波|台風|大雨|停電|防災|災害|避難|断水",
+      "headlines": {
+        "jackery": "停電に備えて、家で使える電気を用意しておく",
+        "bang-kasai": "地震や水害の補償を、今の火災保険と見比べる"
+      }
+    },
+    {
+      "match": "引っ越し|引越|転居|転入|転出|新居",
+      "headlines": {
+        "hikkoshi-samurai": "引っ越しの見積もりを、まとめて比べる",
+        "biglobe-hikari-plus": "新居のネットを、早めに使い始める",
+        "gmo-home-wifi": "新居のネットを、工事なしで始める"
+      }
+    },
+    {
+      "match": "電気代|電気料金|ガス代|光熱費|電力|ガス料金",
+      "headlines": {
+        "elpio": "電気代を見直すなら、切り替えの手数料は0円",
+        "enepi": "電気・ガス代の見直しを、0円で相談する"
+      }
+    },
+    {
+      "match": "スマホ|携帯電話|通信費|格安SIM|SIM",
+      "headlines": {
+        "bb-excite": "スマホ代、月いくら下がるか確かめる"
+      }
+    },
+    {
+      "match": "流出|漏えい|漏洩|不正アクセス|フィッシング|なりすまし|偽SMS|詐欺",
+      "headlines": {
+        "norton": "流出や詐欺が心配なら、PCとスマホの対策を",
+        "virusbuster": "流出や詐欺が心配なら、PCとスマホの対策を",
+        "eset": "流出や詐欺が心配なら、PCとスマホの対策を",
+        "surfshark": "流出や詐欺が心配なら、PCとスマホの対策を"
+      }
+    },
+    {
+      "match": "年金|給付金",
+      "headlines": {
+        "bb-excite": "毎月の固定費、スマホ代から見直す"
+      }
+    },
+    {
+      "match": "出産|産休|育休|育児",
+      "headlines": {
+        "bb-excite": "産休・育休の間の固定費、スマホ代から見直す",
+        "frecious": "産休中の家で、水の宅配の受け取りを減らす"
+      }
+    },
+    {
+      "match": "児童手当|子育て|保育|教育費",
+      "headlines": {
+        "rakuten-furusato": "子育て世帯のふるさと納税、上限の中なら負担は2,000円",
+        "aupay-furusato": "子育て世帯のふるさと納税、上限の中なら負担は2,000円",
+        "furusato-honpo": "子育て世帯のふるさと納税、上限の中なら負担は2,000円",
+        "digitane": "子どもの習いごとを、まず14日間の無料で試す"
       }
     }
   ]

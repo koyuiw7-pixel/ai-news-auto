@@ -3,6 +3,7 @@ import RankingBody from "./RankingBody";
 import { Pixels, PrNote, PrTag } from "./parts";
 import TimedPixels from "./TimedPixels";
 import InternalMoneyCard from "@/components/InternalMoneyCard";
+import { benefitFor } from "@/lib/ad-benefits";
 
 /**
  * 「サイソクのおすすめ3選」。記事の文脈に合う商品を番号つきで並べ、1位を大きく推す。
@@ -30,6 +31,8 @@ export default function RailRanking({
   visible?: number;
 }) {
   const hasBook = offer.items.some((i) => i.kind === "book");
+  // 得のカード（大きな数字。台帳 W38）。記事のページは記事ごとの見出しつきで付けて渡す。ホーム・一覧など付いていない枠は商品の既定の数字だけ
+  const items = offer.items.map((item) => (item.benefit || item.kind !== "partner" ? item : { ...item, benefit: benefitFor(item.key) }));
   const heading = title ?? offer.headline;
 
   return (
@@ -42,7 +45,7 @@ export default function RailRanking({
     >
       <Header text={heading} wide={wide} />
 
-      <RankingBody items={offer.items} visible={visible} wide={wide} />
+      <RankingBody items={items} visible={visible} wide={wide} />
 
       {/* 枠の話題に合うサイト内のお金のページ（例: 児童手当の記事 → ふるさと納税の上限額の計算。lib/offers.ts の money。広告ではない） */}
       {offer.money && <InternalMoneyCard links={[offer.money]} className="border-t border-line" />}

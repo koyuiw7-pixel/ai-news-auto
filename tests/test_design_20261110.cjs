@@ -157,14 +157,24 @@ test("[W38] 記事ごとの見出し（読者の状況）は記事の slug で�
   assert.equal(listed[0].pixel, "p", "枠の中身はそのまま");
   assert.match(listed[0].item.benefit.headline, /ボーナス/);
   // 見出しの正規表現が、今ある記事に当たる
-  const slugs = fs.readdirSync(path.join(root, "content/articles")).map((f) => f.replace(/\.json$/, ""));
-  for (const row of benefitData.articles) assert.ok(slugs.some((s) => new RegExp(row.match).test(s)), `当たる記事が無い: ${row.match}`);
+  const contexts = fs
+    .readdirSync(path.join(root, "content/articles"))
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => {
+      const a = JSON.parse(fs.readFileSync(path.join(root, "content/articles", f), "utf8"));
+      return `${a.slug} ${a.title} ${a.seoTitle ?? ""}`;
+    });
+  for (const row of benefitData.articles) assert.ok(contexts.some((c) => new RegExp(row.match).test(c)), `当たる記事が無い: ${row.match}`);
+  // 題名の語でも当たる（slug に語が無い記事にも広げる。2026-11-11 オーナー「今回の施策を大幅に広め」）
+  assert.match(benefits.benefitFor("jackery", "some-quake-article 地震のあとに停電").headline, /停電/);
+  assert.match(benefits.benefitFor("hikkoshi-samurai", "x 引っ越しの手続き").headline, /引っ越し/);
 });
 
 test("[W38] 記事・ガイド・計算ツールの PR に得のカードを付け、PrFeature が数字と出典を描く（クリックの置き場所 data-aff-pos は変えない）", () => {
   const page = read("app/articles/[slug]/page.tsx");
-  assert.match(page, /actionAdWithBenefits\(actionAdForArticle\(article\), article\.slug\)/);
-  assert.match(page, /offerWithBenefits\(offerPlan\.rail, article\.slug\)/);
+  assert.match(page, /actionAdWithBenefits\(actionAdForArticle\(article\), benefitContext\)/);
+  assert.match(page, /const benefitContext = `\$\{article\.slug\} \$\{article\.title\}/);
+  assert.match(page, /offerWithBenefits\(offerPlan\.rail, benefitContext\)/);
   assert.match(read("components/HowtoGuideView.tsx"), /actionAdWithBenefits\(rawAds\.top/);
   assert.match(read("app/tools/furusato-limit/page.tsx"), /actionAdWithBenefits\(toolAd\("furusato"\)/);
   const parts = read("components/rail/parts.tsx");

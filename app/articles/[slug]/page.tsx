@@ -232,7 +232,9 @@ export default async function ArticlePage({ params }: Props) {
   const noPr = isZeroVisit(article.slug);
   const compareOffers = noPr ? undefined : compareOffersFor(article);
   // 広告の「得のカード」（大きな数字・記事ごとの見出し。lib/ad-benefits.ts・台帳 W38）を付ける。枠の中身・順番・置き場所は変えない
-  const actionAd = compareOffers || noPr ? undefined : actionAdWithBenefits(actionAdForArticle(article), article.slug);
+  // 見出しは slug と題名で決める（content/ad_benefits.json の articles。具体的な記事の行が先、題名の語の広い行が後）
+  const benefitContext = `${article.slug} ${article.title} ${article.seoTitle ?? ""}`;
+  const actionAd = compareOffers || noPr ? undefined : actionAdWithBenefits(actionAdForArticle(article), benefitContext);
   const offerPlan = noPr
     ? { offer: undefined, rail: undefined, inline: undefined }
     : offerPlanForArticle(
@@ -240,9 +242,9 @@ export default async function ArticlePage({ params }: Props) {
         [...(actionAd?.items ?? []), ...(compareOffers?.items ?? [])].map((x) => x.item.key),
         actionAd?.intent ? actionAd.items.slice(0, 1).map((x) => x.item.key) : [],
       );
-  const offerAll = offerWithBenefits(offerPlan.offer, article.slug);
-  const offer = offerWithBenefits(offerPlan.rail, article.slug);
-  const inlineOffer = offerWithBenefits(offerPlan.inline, article.slug);
+  const offerAll = offerWithBenefits(offerPlan.offer, benefitContext);
+  const offer = offerWithBenefits(offerPlan.rail, benefitContext);
+  const inlineOffer = offerWithBenefits(offerPlan.inline, benefitContext);
   // ニュース記事 → 同じ話題の比較記事への「次に読む」のカード（自分たちの記事への案内。広告の枠には数えない）
   const funnel = funnelForArticle(article, getAllArticles());
   // 商品枠の話題に比較ガイドがあれば、商品枠のすぐ下に1行だけ案内する

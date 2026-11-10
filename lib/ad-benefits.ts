@@ -57,7 +57,7 @@ function rawOf(key: string): RawOffer | undefined {
   return raw;
 }
 
-/** 記事ごとの見出し（slug が match に合う最初の行。無ければ undefined） */
+/** 記事ごとの見出し（context＝「slug 題名」が match に合う最初の行。その商品の見出しが無い行は飛ばす。無ければ undefined） */
 export function articleHeadline(key: string, slug: string | undefined): string | undefined {
   if (!slug) return undefined;
   for (const row of FILE.articles) {
