@@ -2,6 +2,8 @@ import popular from "@/content/popular.json";
 import type { ArticleSummary } from "@/lib/articles";
 import { isNewsOutletChannel } from "@/lib/news-outlets";
 import { containPhoto } from "@/lib/photo-fit";
+import { lifeLink } from "@/lib/indexing";
+import { noReaderAction } from "@/lib/reader-urgency";
 
 /**
  * トップ（玄関）の主役と「暮らしとお金」の列を選ぶ（2026-11-10 オーナー）。
@@ -55,6 +57,7 @@ function listable(a: ArticleSummary, now: number): boolean {
 export function heroEligible(a: ArticleSummary, now: number): boolean {
   return (
     LIFE_MONEY_GENRES.has(a.genreSlug) &&
+    !noReaderAction(a.title) &&
     listable(a, now) &&
     !isNewsOutletChannel(a.channelSlug) &&
     Boolean(a.photo) &&
@@ -84,10 +87,35 @@ export function pickHomeLead(all: ArticleSummary[], now: number = Date.now()): A
  * 前半は読まれている順、後半は新しい順（読まれている記事だけで埋めず、新しい話も入口に出す）
  */
 export function pickLifeMoney(all: ArticleSummary[], exclude: Set<string>, limit = 8, now: number = Date.now()): ArticleSummary[] {
-  const pool = all.filter((a) => LIFE_MONEY_GENRES.has(a.genreSlug) && listable(a, now) && a.photo && !exclude.has(a.slug));
+  const pool = all.filter((a) => LIFE_MONEY_GENRES.has(a.genreSlug) && !noReaderAction(a.title) && listable(a, now) && a.photo && !exclude.has(a.slug));
   const half = Math.ceil(limit / 2);
   const read = pool.filter((a) => viewsOf(a.slug) > 0).sort(byScore(now)).slice(0, half);
   const taken = new Set(read.map((a) => a.slug));
   const fresh = pool.filter((a) => !taken.has(a.slug)).slice(0, limit - read.length);
+  return [...read, ...fresh];
+}
+
+/**
+ * 暮らしとお金の「自分ごと」の記事か（トップの見出し・ヘッダー下の帯。2026-11-11 読者目線レビュー 1位・2位・11位）。
+ * 暮らしとお金の分野で、題名がお金か暮らしにつながり（lib/indexing.ts の lifeLink。台帳 A61）、面会・式典・人事などの読者がすることの無い発表ではない
+ */
+export function isLifeMoneyStory(a: ArticleSummary): boolean {
+  return LIFE_MONEY_GENRES.has(a.genreSlug) && lifeLink(a.title ?? "") && !noReaderAction(a.title);
+}
+
+/**
+ * スマホの最初の画面に並べる、暮らしとお金の見出し（写真なし・文字だけ。Yahoo!ニュースの最初の画面は見出し6本）。
+ * 写真の有無は問わない。前半は実際に読まれている順（content/popular.json の回数を新しさで割り引いた点数）、後半は新しい順。
+ * 人が選ぶのではなく、分野・題名・読まれた回数で決める
+ */
+export function pickHomeHeadlines(all: ArticleSummary[], exclude: Set<string>, limit = 6, now: number = Date.now()): ArticleSummary[] {
+  const pool = all.filter((a) => isLifeMoneyStory(a) && listable(a, now) && !exclude.has(a.slug));
+  const half = Math.ceil(limit / 2);
+  const read = pool.filter((a) => viewsOf(a.slug) > 0).sort(byScore(now)).slice(0, half);
+  const taken = new Set(read.map((a) => a.slug));
+  const fresh = pool
+    .filter((a) => !taken.has(a.slug))
+    .sort((x, y) => Date.parse(y.generatedAt || y.publishedAt) - Date.parse(x.generatedAt || x.publishedAt))
+    .slice(0, limit - read.length);
   return [...read, ...fresh];
 }

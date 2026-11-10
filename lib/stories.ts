@@ -5,6 +5,7 @@ import { easyGist } from "@/lib/general";
 import { AI_TOPIC } from "@/lib/indexing";
 import { BROAD_SECTIONS } from "@/lib/sections";
 import { byTierThenNewest, STORY_WINDOW_MS } from "@/lib/story-window";
+import { noReaderAction } from "@/lib/reader-urgency";
 import { freeLabel, isProductNews, japanLabel, listUsability, usability, USABILITY_LABEL, verdictOf } from "@/lib/verdict";
 
 /*
@@ -114,6 +115,8 @@ type Timed = { a: ArticleSummary; at: number };
  * 先頭は「仕事とお金」「社会・行政」「続報あり」の順に固定し、次に暮らし・お金の分野、その後に「最新のAIニュース」と AI の丸、その他は後ろ。
  */
 const LEAD_ORDER = ["money", "g-public", "followup"];
+/** 暮らしとお金の分野（lib/home-lead.ts の LIFE_MONEY_GENRES と同じ） */
+const LIFE_GENRES = new Set(["public", "lifestyle", "investment", "business", "real-estate"]);
 const LIFE_KEYS = new Set(["g-lifestyle", "g-investment", "g-business", "g-real-estate"]);
 /** 表紙（丸の顔）がほかの丸と同じ記事になるなら出さない丸 */
 const UNIQUE_LEAD = new Set(["go", "free"]);
@@ -177,8 +180,13 @@ export function getStoryBundles(now: number = Date.now()): Bundle[] {
   const aiWhere = (test: (a: ArticleSummary) => boolean) => ai.filter((x) => test(x.a));
   const forPeople = (a: ArticleSummary) => !forTechOnly(a);
 
+  // 暮らしとお金の丸に入れる記事（分野が暮らしとお金で、面会・式典・人事などの読者がすることの無い発表ではない。lib/reader-urgency.ts）
+  const lifeStory = (a: ArticleSummary) => LIFE_GENRES.has(a.genreSlug) && !noReaderAction(a.title);
+  const life = recent.filter((x) => lifeStory(x.a));
+
+  // 続報ありの丸は暮らしとお金の続報だけ（先頭の丸なので、AI の続報で埋めない。2026-11-11 読者目線レビュー 1位）
   const followups: Timed[] = all
-    .filter((a) => a.updatedAt)
+    .filter((a) => a.updatedAt && lifeStory(a))
     .map((a) => ({ a, at: Date.parse(a.updatedAt!) }))
     .filter((x) => inWindow(x.at));
 
@@ -207,7 +215,8 @@ export function getStoryBundles(now: number = Date.now()): Bundle[] {
     {
       key: "money",
       label: "仕事とお金",
-      items: recent.filter((x) => x.a.genreSlug !== "ai" && MONEY.test(x.a.title)),
+      // 暮らしとお金の分野だけ（ガジェットの「防犯ドローン」が先頭に出ていた。2026-11-11 読者目線レビュー 1位）
+      items: life.filter((x) => MONEY.test(x.a.title)),
     },
     { key: "followup", label: "続報あり", items: followups },
     // 企業別も24時間。名前だけにして、本数は丸の下に出る
@@ -215,7 +224,8 @@ export function getStoryBundles(now: number = Date.now()): Bundle[] {
     ...BROAD_SECTIONS.map((s) => ({
       key: `g-${s.slug}`,
       label: GENRE_LABEL[s.slug] ?? s.label,
-      items: recent.filter((x) => x.a.genreSlug === s.slug),
+      // 暮らしとお金の分野の丸は、面会・式典などの発表を入れない（社会・行政の丸の顔が財務大臣の面会の写真だった）
+      items: recent.filter((x) => x.a.genreSlug === s.slug && (!LIFE_GENRES.has(s.slug) || !noReaderAction(x.a.title))),
     })),
   ];
 

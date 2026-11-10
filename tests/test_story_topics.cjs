@@ -14,6 +14,8 @@ const mocks={
  '@/lib/general':{easyGist:(a)=>a.lede},
  '@/lib/sections':{BROAD_SECTIONS:[{slug:'business',label:'ビジネス・経済'},{slug:'public',label:'社会・行政'}]},
  '@/lib/story-window':win.exports,
+ // 面会・式典などの判定は本物（lib/reader-urgency.ts）
+ '@/lib/reader-urgency':(()=>{const f=path.join(root,'lib/reader-urgency.ts');const x=new Module(f,module);x.filename=f;x._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,f);return x.exports})(),
  // AIの話題の判定は本物（lib/index-rules.json。scripts/indexnow.py が書き出す）
  '@/lib/indexing':(()=>{const r=JSON.parse(fs.readFileSync(path.join(root,'lib/index-rules.json'),'utf8'));return {AI_TOPIC:new RegExp(r.aiTopic.source,r.aiTopic.flags)}})(),
  '@/lib/verdict':{freeLabel:()=>'',japanLabel:()=>'',usability:(v)=>v.status==='available'?'go':'wait',listUsability:(a)=>a.verdict?(a.verdict.status==='available'?'go':'wait'):undefined,verdictOf:(a)=>a.verdict??undefined,isProductNews:(a)=>!/決算|統計|取り組み|啓発/.test(a.title),USABILITY_LABEL:{go:'使える',wait:'まだ'}}
@@ -83,7 +85,8 @@ test('仕事とお金の丸は家計・働き方に関わる見出しだけ（AI
  assert.deepEqual(find('g-business').items.map(a=>a.slug).sort(),['buyback','rate']);
 });
 test('続報の丸は続報の時刻で24時間を数える',()=>{
- items=[article('fu','前からの話',{hours:60,updatedAt:iso(3)}),article('stale','古い続報',{hours:80,updatedAt:iso(40)})];
+ items=[article('fu','前からの話',{genre:'public',hours:60,updatedAt:iso(3)}),article('stale','古い続報',{genre:'public',hours:80,updatedAt:iso(40)}),article('aifu','AIの続報',{hours:60,updatedAt:iso(2)})];
+ // 2026-11-11 読者目線レビュー: 先頭の「続報あり」は暮らしとお金の続報だけ（AI の続報は入れない）
  assert.deepEqual(find('followup').items.map(a=>a.slug),['fu']);
  assert.equal(find('today'),undefined);
 });
@@ -124,4 +127,13 @@ test('「今使える」「無料で試せる」は、ほかの丸と同じ記�
  const list=bundles();
  const lead=['today','go','free'].map(k=>list.find(b=>b.key===k)).filter(Boolean).map(b=>b.cover);
  assert.equal(new Set(lead).size,lead.length,`先頭の丸の表紙が重なっている: ${lead}`);
+});
+test('暮らしとお金の丸に面会・式典などの発表を入れず、仕事とお金の丸にガジェットの記事を入れない（2026-11-11 読者目線レビュー）',()=>{
+ items=[
+  article('meet','財務大臣、ベトナム財政大臣と面会',{genre:'public',verdict:undefined}),
+  article('kid','児童手当の申請期限',{genre:'public',hours:2,verdict:undefined}),
+  article('drone','室内を飛ぶ防犯ドローンが値下げ',{genre:'tech-gadget',verdict:undefined}),
+ ];
+ assert.deepEqual(find('g-public').items.map(a=>a.slug),['kid']);
+ assert.ok(!find('money')||!find('money').items.some(a=>a.slug==='drone'));
 });

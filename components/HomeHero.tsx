@@ -35,7 +35,7 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
     <section
       aria-label="注目の記事"
       // 2026-11-10 オーナー「ホームは玄関」: 写真は見出しの上端にそろえる（縦の真ん中にそろえると写真の上に大きな空白ができていた）
-      className="grid items-start gap-6 lg:grid-cols-[1.12fr_1fr] lg:gap-12"
+      className="grid items-start gap-3 sm:gap-6 lg:grid-cols-[1.12fr_1fr] lg:gap-12"
     >
       <div className="min-w-0">
       <Link
@@ -45,7 +45,7 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
         className="group relative block overflow-hidden rounded-2xl bg-surface-2 sm:rounded-3xl"
       >
         <Morph name={`cover-${lead.slug}`}>
-          <div className="relative aspect-video">
+          <div className="relative aspect-[2/1] sm:aspect-video">
             {/* 縦長・文字の多い画像は切り抜かず、同じ画像をぼかした背景の上に丸ごと収める */}
             {photo && contain && (
               // eslint-disable-next-line @next/next/no-img-element
@@ -73,14 +73,24 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
             <span className="text-meta font-bold">本の発表を統合</span>
           </span>
         )}
+        {/* スマホは写真を小さくし、AI の札は写真の上に短く重ねる（下の2行の注記は PC だけ。最初の画面に見出しを並べるため。2026-11-11 読者目線レビュー 2位） */}
+        {!credit && aiCredit && (
+          <span data-allow-small="" className="absolute left-2 top-2 rounded-sm bg-ink/85 px-1.5 py-[1px] text-badge font-bold text-paper sm:hidden">
+            {aiCredit.launch ? "AIで描いたイメージ" : "AI生成のイメージ"}
+          </span>
+        )}
       </Link>
       {/* 公式発表の写真は発表した会社・団体の名前を小さく添える（lib/image-credit.ts。記事ページと同じ文） */}
-      {credit && <p className="mt-2 px-1 text-note leading-relaxed text-ink-soft">{credit}</p>}
+      {credit && <p className="mt-1.5 px-1 text-meta leading-relaxed text-ink-soft sm:mt-2 sm:text-note">{credit}</p>}
       {/* AI 生成の画像は本物の製品・人物と受け取られないよう、記事ページと同じ「AI生成」の札を出す */}
-      {!credit && aiCredit && <ImageCredit credit={aiCredit} className="mt-2 px-1" />}
+      {!credit && aiCredit && (
+        <div className="hidden sm:block">
+          <ImageCredit credit={aiCredit} className="mt-2 px-1" />
+        </div>
+      )}
       </div>
 
-      <div className="flex min-w-0 flex-col gap-4">
+      <div className="flex min-w-0 flex-col gap-2 sm:gap-4">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-meta">
           {/* 赤は本当の速報だけ（ヘッダー下の帯と同じ判定 lib/live-line.ts。台帳 W23・2026-11-04 オーナー承認）。ほかは紺 */}
           <span
@@ -95,18 +105,18 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
 
         <Link href={href} className="group">
           <Morph name={`title-${lead.slug}`}>
-            <h2 className="display font-bold text-[1.65rem] leading-[1.45] text-ink decoration-2 underline-offset-[6px] group-hover:underline sm:text-[2.05rem]">
+            <h2 className="display font-bold text-[1.32rem] leading-[1.45] text-ink decoration-2 underline-offset-[6px] group-hover:underline sm:text-[2.05rem]">
               <Highlight text={lead.title} />
             </h2>
           </Morph>
         </Link>
 
-        <p className="line-clamp-2 text-desc leading-[1.85] text-ink-soft">
+        <p className="hidden text-desc leading-[1.85] text-ink-soft sm:line-clamp-2">
           {lead.lede || lead.description}
         </p>
 
         {lead.highlights.length > 0 && (
-          <div className="border-t border-line pt-4">
+          <div className="hidden border-t border-line pt-4 sm:block">
             <p className="text-meta font-bold text-muted">この記事のポイント</p>
             <ol className="mt-2.5 grid gap-2.5">
               {lead.highlights.slice(0, 3).map((point, index) => (
@@ -123,7 +133,7 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
 
         <Link
           href={href}
-          className="mt-1 inline-flex w-fit items-center gap-2 rounded-md bg-ink px-5 py-2.5 text-note font-bold text-paper transition-opacity hover:opacity-85"
+          className="mt-1 hidden w-fit items-center gap-2 rounded-md bg-ink sm:inline-flex px-5 py-2.5 text-note font-bold text-paper transition-opacity hover:opacity-85"
         >
           {isRoundup ? "まとめを読む" : "記事を読む"}
           <span aria-hidden>→</span>

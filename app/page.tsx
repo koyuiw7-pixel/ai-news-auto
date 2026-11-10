@@ -2,6 +2,7 @@ import { articleTitle } from "@/lib/headline";
 import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
 import HomeHero from "@/components/HomeHero";
+import HomeHeadlines from "@/components/HomeHeadlines";
 import HomeAssets from "@/components/HomeAssets";
 import CompanyChips from "@/components/CompanyChips";
 import NewsHub from "@/components/NewsHub";
@@ -20,7 +21,7 @@ import { siteConfig } from "@/site.config";
 import { pageShareImage } from "@/lib/page-share";
 import { coverPath } from "@/lib/cover-path";
 import { containPhoto } from "@/lib/photo-fit";
-import { pickHomeLead, pickLifeMoney } from "@/lib/home-lead";
+import { pickHomeHeadlines, pickHomeLead, pickLifeMoney } from "@/lib/home-lead";
 import { alsoCoveredSentence } from "@/lib/coverage";
 import { guideShortName, lifeCompareGuide, type LifeCompareSlug } from "@/lib/buying-guides";
 
@@ -41,7 +42,8 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", images: [pageShareImage("home")] },
 };
 
-const TIMELINE_SIZE = 24;
+// AI・テクノロジーは脇役なので5本だけ（残りは「もっと見る」。2026-11-11 読者目線レビュー 1位）
+const TIMELINE_SIZE = 5;
 
 /**
  * トップの「お金の計算と比較」の入口（2026-11-10 M6）。10〜12月（日本時間）は、その年の12月31日までの寄附が対象になるふるさと納税の
@@ -65,7 +67,7 @@ const NEWS_SIZE = 8;
 
 /**
  * トップ＝サイトの玄関（2026-11-10 オーナー「ホームは玄関だから魅力感じてもらわないと」）。
- * 上から、ストーリーの丸（仕事とお金・社会・行政・続報が先）→ 主役（暮らしとお金の、読まれている・新しい・写真のある記事）→
+ * 上から、主役（暮らしとお金の、読まれている・新しい・写真のある記事）→ 暮らしとお金の主な見出し（文字だけ）→ ストーリーの丸（暮らしとお金が先）→
  * PR 枠（home-top）→ 暮らしとお金のニュース（写真のある記事だけ）→ 使い方・調べられること → PR 枠（home-mid）→ AI・テクノロジーの新着（企業の絞り込みつき）。
  * PR はトップに2つまで。最初の画面・主役より上には置かない。2つが1つの画面に同時に見えないよう、間に1画面分以上の記事を挟む
  * （2026-11-10 オーナー承認・チーム（Claude・Muse・Grok）の合意）。
@@ -80,7 +82,9 @@ export default function HomePage() {
   // 公式の発表から選ぶ（報道をもとにした記事を主役にしない。台帳 W17）・写真の無い記事は主役にしない
   const lead = pickHomeLead(all) ?? all[0];
   // 主役のすぐ下は暮らしとお金の列（写真のある記事だけ）。AI の新着はその下（AI は脇役。台帳 A61）
-  const lifeMoney = pickLifeMoney(all, new Set([lead.slug]), NEWS_SIZE);
+  // スマホの最初の画面に、暮らしとお金の見出しを文字だけで並べる（2026-11-11 読者目線レビュー 2位。Yahoo!ニュースは最初の画面に6本）
+  const headlines = pickHomeHeadlines(all, new Set([lead.slug]), 6);
+  const lifeMoney = pickLifeMoney(all, new Set([lead.slug, ...headlines.map((a) => a.slug)]), NEWS_SIZE);
   const timeline = ai.filter((a) => a.slug !== lead.slug).slice(0, TIMELINE_SIZE);
   const roundups = ai.filter((a) => a.type === "roundup" && a.slug !== lead.slug).slice(0, 5);
 
@@ -109,14 +113,16 @@ export default function HomePage() {
     <>
       {/* ページの主見出し（検索エンジンと読み上げ用。見た目はロゴと主役の記事が担う） */}
       <h1 className="sr-only">{siteConfig.siteName} 暮らしとお金の新しい動きが最速でわかる</h1>
-      {bundles.length > 0 && (
-        <div className="mx-auto max-w-[1240px]">
-          <StoryRail bundles={bundles} />
-        </div>
-      )}
-
-      <div className="mx-auto max-w-[1240px] px-5 pb-8 pt-8 sm:px-8 sm:pt-10">
+      <div className="mx-auto max-w-[1240px] px-5 pb-8 pt-4 sm:px-8 sm:pt-10">
         <HomeHero lead={lead} />
+        <HomeHeadlines articles={headlines} />
+
+        {/* ストーリーの丸は見出しの下（暮らしとお金の丸が先。lib/stories.ts。2026-11-11 読者目線レビュー 1位・2位） */}
+        {bundles.length > 0 && (
+          <div className="-mx-5 mt-4 sm:-mx-8 sm:mt-8">
+            <StoryRail bundles={bundles} />
+          </div>
+        )}
 
         {offer && (
           // PC の最初の画面に入らないよう、主役との間を少し広く取る（1440×900 で枠の上端が画面の下端より下）
@@ -175,7 +181,7 @@ export default function HomePage() {
                 すべての記事 →
               </Link>
             </div>
-            <Timeline articles={timeline} filterable />
+            <Timeline articles={timeline} />
             <Link
               href="/articles"
               className="mt-8 flex items-center justify-center rounded-full border border-line-strong py-3 text-note font-bold text-ink transition-colors hover:border-ink"
@@ -184,7 +190,8 @@ export default function HomePage() {
             </Link>
           </section>
 
-          <aside className="grid content-start gap-12 lg:sticky lg:top-24">
+          {/* スマホでは出さない（AI の企業・トピックの一覧が画面何枚分も続き、暮らしとお金のサイトに見えなかった。2026-11-11 読者目線レビュー 1位） */}
+          <aside className="hidden content-start gap-12 lg:sticky lg:top-24 lg:grid">
             {roundups.length > 0 && (
               <section aria-labelledby="roundups-heading" id="roundups">
                 <RailHead id="roundups-heading" title="話題まるごと解説" note="同じ話題の発表を1本に" />
