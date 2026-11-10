@@ -109,5 +109,39 @@ class ValidateTest(unittest.TestCase):
         self.assertEqual(d.general_urls({"title": "ふるさと納税の期限"}), [])
 
 
+class NotStatedTest(unittest.TestCase):
+    """2026-11-10 SEO A4・LLMO-A4: 答えが「このページには書かれていません」の不安は書かない（2つ未満なら欄ごと書かない）"""
+
+    def worries(self, rows):
+        data = {"worries": [{"q": q, "a": a, "action": "", "source": NOTICE, "general": False, "action_source": ""} for q, a in rows]}
+        return d.validate(data, PAGES, {"body": "", "lede": ""})
+
+    def test_not_stated_answer_is_dropped(self):
+        out, dropped = self.worries([
+            ("補償はある？", "このページには、補償の有無は書かれていません。お問い合わせは特設ダイヤルで受け付けています。"),
+            ("どこに相談すればいい？", "特設ダイヤル 0120-451-360 が案内されています。受付時間はこのページには書かれていません。"),
+            ("原因は分かっている？", "原因は外部からの不正アクセスとされています。"),
+        ])
+        self.assertEqual([w["q"] for w in out["worries"]], ["どこに相談すればいい？", "原因は分かっている？"])
+        self.assertEqual(out["worries"][0]["a"], "特設ダイヤル 0120-451-360 が案内されています。")  # 2文目の「書かれていません」は外す
+        self.assertTrue(any("答えになっていない" in x for x in dropped))
+
+    def test_block_is_not_written_when_fewer_than_two_remain(self):
+        out, _ = self.worries([
+            ("補償はある？", "このページには、補償の有無は書かれていません。"),
+            ("原因は分かっている？", "原因は外部からの不正アクセスとされています。"),
+        ])
+        self.assertNotIn("worries", out)
+
+    def test_prompt_says_drop_unanswerable_questions(self):
+        self.assertIn("答えられない問いは作らない", d.PROMPT)
+
+    def test_corpus_has_no_not_stated_answers(self):
+        import nonanswer
+        counts = nonanswer.corpus_counts(Path(__file__).resolve().parent.parent / "content")
+        self.assertEqual(counts["articleAnswers"], 0, "python3 scripts/sweep_not_stated.py で外す")
+        self.assertEqual(counts["guideAnswers"], 0, "python3 scripts/sweep_not_stated.py で外す")
+
+
 if __name__ == "__main__":
     unittest.main()

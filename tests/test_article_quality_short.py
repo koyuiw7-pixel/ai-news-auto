@@ -82,5 +82,44 @@ class ShortNewsGateTests(unittest.TestCase):
                 web_articles.build_web_record(item, {**data, "body_markdown": ""}, {}, "mock", "test")
 
 
+class PricePromiseTests(unittest.TestCase):
+    """2026-11-10 SEO A4: 「月\\d」が「3月1日」に当たって、金額の無い料金の記事を通していた"""
+
+    KYOTO = {
+        "title": "京都鉄道博物館の入館料金が2027年3月1日から改定へ　JR西日本が案内を公開",
+        "seoTitle": "京都鉄道博物館の入館料金が2027年3月1日から改定　JR西日本",
+        "lede": "京都鉄道博物館の入館料金などが、2027年3月1日から改定されます。改定後の金額や対象区分は、ニュースリリースに掲載されたPDFで確認できます。",
+        "body": "## 入館料金などの改定は2027年3月1日から\n\nJR西日本は2026年11月2日、京都鉄道博物館の入館料金などを2027年3月1日から改定すると発表しました。",
+    }
+    HOUSE = {
+        "title": "うまかっちゃんやマロニーちゃんが7.4%〜24.2%値上げへ　ハウス食品、2027年2月から",
+        "seoTitle": "ハウス食品、うまかっちゃんやマロニーちゃんを2027年2月に値上げ",
+        "lede": "ハウス食品は、即席袋麺やマロニー製品など20品目の希望小売価格を、2027年2月1日納品分から引き上げます。",
+        "body": "## うまかっちゃん5個パックは680円から730円に\n\n- うまかっちゃん 5個パック：680円から730円\n- マロニーちゃん 180g：371円から427円",
+    }
+
+    def test_date_is_not_a_price(self):
+        self.assertIsNone(quality.PRICE_ANSWER_RE.search("2027年3月1日から改定"))
+        self.assertTrue(quality.PRICE_ANSWER_RE.search("月額980円で使えます"))
+        self.assertTrue(quality.PRICE_ANSWER_RE.search("月々 500から"))
+
+    def test_kyoto_fee_change_without_amounts_is_a_broken_promise(self):
+        self.assertTrue(quality.promise_problems(self.KYOTO))
+
+    def test_price_change_with_old_and_new_amounts_passes(self):
+        self.assertEqual(quality.promise_problems(self.HOUSE), [])
+        self.assertEqual(quality.promise_problems({"title": "新プランの料金", "body": "料金は月額980円です。"}), [])
+
+    def test_price_change_needs_two_amounts_or_old_to_new(self):
+        one = {"title": "入館料を値上げ", "lede": "", "body": "大人は1,500円になります。"}
+        self.assertTrue(quality.promise_problems(one))
+        self.assertEqual(quality.promise_problems({**one, "body": "大人は1,200円から1,500円になります。"}), [])
+        self.assertEqual(quality.promise_problems({**one, "body": "運賃を平均14.1%引き上げます。"}), [])
+
+    def test_price_words_that_promise_no_price_are_left_alone(self):
+        self.assertEqual(quality.price_change_problem("主食用米の取引で19事業者に指導　農水省、価格協議への対応などで", "農水省が指導しました。"), "")
+        self.assertEqual(quality.price_change_problem("豆腐店の約4割が赤字、値上げも追いつかず倒産増える", "帝国データバンクの調査です。"), "")
+
+
 if __name__ == "__main__":
     unittest.main()

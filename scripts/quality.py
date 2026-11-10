@@ -33,6 +33,7 @@ import ui_claims  # noqa: E402
 import genre_focus  # noqa: E402  投資助言・売買のすすめ・取引のやり方の門（2026-11-03・台帳 A22）
 import public_interest  # noqa: E402  事件・災害・政治の書き方の門（2026-11-04・台帳 A39）
 import facts_bundle  # noqa: E402  読めなかった開示資料があるときに「未発表」と書かせない（台帳 A44）
+import nonanswer  # noqa: E402  答えになっていない答え（「書かれていません」）の式（SEO A4・LLMO-A4）
 import release_quality  # noqa: E402  発表時刻が決まった速報（統計・決算）の数字の門（2026-11-05・台帳 W35）
 
 TITLE_RANGE = (18, 64)
@@ -74,15 +75,40 @@ FIRST_PERSON_TEST_RE = re.compile(
     r"実際に(?:試して|使って|触って)みた(?:ところ|結果|感想)|手元の(?:環境|PC|パソコン|端末|スマホ)で(?:試|確認|計測)"
 )
 # FAQ の答えが「分からない」だけのもの（質問として出さない）
-FAQ_UNANSWERED_RE = re.compile(r"^(?:元記事(?:では|には)|現時点では|発表では)?[^。]{0,20}(?:書かれていません|言及(?:は)?ありません|記載(?:は)?ありません|分かりません|不明です)")
+# 2026-11-10（SEO A4・LLMO-A4）から、最初の文に「書かれていません」「載っていません」などがある答え。式は scripts/nonanswer.py の
+# NOT_STATED_RE と同じもの（lib/index-rules.json の notStated でサイトの表示の段にも渡す）
+FAQ_UNANSWERED_RE = re.compile(r"^[^。！？\n]*(?:" + nonanswer.NOT_STATED_RE.pattern + ")")
 # 題名の約束（題名にこの言葉があれば、本文に答えが要る）
 PROMISE_JAPAN_RE = re.compile(r"日本で(?:も)?使え|日本での(?:使い方|提供|利用)|日本から使|日本(?:で|でも)(?:提供|発売|利用)")
 PROMISE_PRICE_RE = re.compile(r"料金|価格|値段|いくら|月額|年額|費用")
-PRICE_ANSWER_RE = re.compile(r"\d[\d,.]*\s*(?:円|ドル|万円|億円|ユーロ)|[$＄￥¥]\s?\d|無料|月\d|税込|税別")
+# 「月\d」は「3月1日」にも当たって、金額の無い記事を通していた（2026-11-10 京都鉄道博物館の入館料金の記事。SEO A4）
+PRICE_ANSWER_RE = re.compile(r"\d[\d,.]*\s*(?:円|ドル|万円|億円|ユーロ)|[$＄￥¥]\s?\d|無料|月額?\s?\d[\d,]*\s*円|月々\s?\d|税込|税別")
+# 題名が値段の話（料金・運賃・価格・値上げ・値下げ・改定）なら、リードか本文に金額が要る。値上げ・値下げ・料金の改定なら、
+# 新旧の2つの金額（か「680円から730円」の形）が要る（2026-11-10 SEO A4）
+# 「価格協議」「値上げも追いつかず」のような、値段を約束しない言い方は外す
+PRICE_HEADLINE_RE = re.compile(r"(?:料金|運賃|価格)(?!協議|転嫁|交渉|競争|動向|見通し)|(?:値上げ|値下げ)(?!も)")
+# 「平均14.1%引き上げ」「約7〜14%値上げ」のような率も、新旧の差を示す答えとして数える
+PERCENT_RE = re.compile(r"\d[\d.]*\s*[%％]")
+PRICE_CHANGE_RE = re.compile(r"値上げ|値下げ|改定")
+AMOUNT_RE = re.compile(r"\d[\d,.]*\s*(?:万|億)?(?:円|ドル|ユーロ)|[$＄￥¥]\s?\d[\d,.]*")
+OLD_NEW_RE = re.compile(AMOUNT_RE.pattern.join(("(?:", r")\s*(?:→|⇒|➡|から)\s*[^。\n]{0,12}?(?:", ")")))
 PROMISE_HOWTO_RE = re.compile(r"使い方|やり方|手順|設定方法|始め方|申し込み方|申請方法")
 HOWTO_ANSWER_RE = re.compile(r"(?m)^\s*(?:\d+[.)．]|[-*・])\s+\S|^#{2,3}\s.*(?:使い方|手順|方法|始め方|やり方|申し込|申請)")
 PROMISE_WHEN_RE = re.compile(r"いつから|開始日|発売日|いつ始まる")
 WHEN_ANSWER_RE = re.compile(r"\d{1,2}月\d{1,2}日|\d{4}年\d{1,2}月|\d{1,2}月(?:上旬|中旬|下旬|中|から)|未定|発表されていません")
+
+
+def price_change_problem(title: str, text: str) -> str:
+    """値段の題名（料金・運賃・価格・値上げ・値下げ）に、リード・本文の金額が答えているか（SEO A4）"""
+    if not PRICE_HEADLINE_RE.search(title):
+        return ""
+    amounts = {re.sub(r"[\s,]", "", m.group(0)) for m in AMOUNT_RE.finditer(text)}
+    if not amounts and not re.search(r"無料", text) and not PERCENT_RE.search(text):
+        return "題名が料金・価格の話なのに、リードと本文に金額が無い。公式の金額を書くか、題名から料金の話を外す"
+    if PRICE_CHANGE_RE.search(title) and len(amounts) < 2 and not OLD_NEW_RE.search(text) and not PERCENT_RE.search(f"{title} {text}"):
+        return ("題名が値上げ・値下げ・料金の改定なのに、リードと本文に新旧の金額（「680円から730円」など）が無い。"
+                "公式の新旧の金額を書くか、金額が出ていないことが分かる題名にする")
+    return ""
 
 
 def promise_problems(record: dict) -> list[str]:
@@ -104,6 +130,8 @@ def promise_problems(record: dict) -> list[str]:
             problems.append("題名で「日本で使えるか」を約束しているのに、本文に日本での提供・使い方の説明が無い。答えるか、題名から外す")
     if PROMISE_PRICE_RE.search(title) and not PRICE_ANSWER_RE.search(body):
         problems.append("題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す")
+    elif problem := price_change_problem(title, f"{record.get('lede') or ''}\n{body}"):
+        problems.append(problem)
     if PROMISE_HOWTO_RE.search(title) and not HOWTO_ANSWER_RE.search(body):
         problems.append("題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す")
     if PROMISE_WHEN_RE.search(title) and not WHEN_ANSWER_RE.search(body):

@@ -36,6 +36,7 @@ import type { ChooseGuide } from "@/lib/choose-data";
 import { STATUS_LABEL, freeLabel, isUnknownValue, japanLabel, verdictKind, verdictOf } from "@/lib/verdict";
 import { guideLinksForArticle, insertAfterPricingSection } from "@/lib/guide-links";
 import ArticleFaq from "@/components/ArticleFaq";
+import { answeredOnly } from "@/lib/nonanswer";
 import TodayActions from "@/components/TodayActions";
 import { ActionSteps, CauseBox, DecisionGuide, InsightBox, OfficialDesk, WorriesBlock } from "@/components/DepthBoxes";
 import { depthOf } from "@/lib/depth";
@@ -201,7 +202,8 @@ export default async function ArticlePage({ params }: Props) {
   // 同じ製品の料金・使い方ガイドへの固定の案内（要点のすぐ下と、本文の料金の章の下。lib/guide-links.ts）
   const guideLinks = guideLinksForArticle(article);
   const pricingLink = guideLinks.find((link) => link.kind === "pricing");
-  const articleFaq = (article.faq ?? []).map((row) => ({ ...row, a: cleanTake(row.a ?? "") })).filter((row) => row.q && row.a);
+  // 答えが「書かれていません」の問いは、見える欄にも FAQPage にも出さない（lib/nonanswer.ts。SEO A4・LLMO-A4）
+  const articleFaq = answeredOnly((article.faq ?? []).map((row) => ({ ...row, a: cleanTake(row.a ?? "") })).filter((row) => row.q && row.a));
   const todayActions = article.todayActions ?? [];
   const depth = depthOf(article);
   // 広告の置き場所は本文の列に最大3つ（2026-11-09 オーナー指示「邪魔になりすぎるのは良くないけど慈善事業じゃない」）:

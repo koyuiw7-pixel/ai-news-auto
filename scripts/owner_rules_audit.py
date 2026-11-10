@@ -38,6 +38,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import headline_normalize as hn  # noqa: E402
+import nonanswer  # noqa: E402  答えになっていない答えの数（SEO A4・LLMO-A4）
 import section_gate  # noqa: E402（表示の段 lib/article-sections.ts と同じ規則で、読者に見える形にしてから確かめる）
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -1190,6 +1191,14 @@ def write_issue(found: dict[str, list[str]], body: str, *, label: str = LABEL, t
     return made.returncode == 0
 
 
+def answer_slot_lines() -> str:
+    """答えの欄の「書かれていません」の数と、答えを待っている質問の数（SEO A4・LLMO-A4。scripts/nonanswer.py）"""
+    counts = nonanswer.corpus_counts(Path(__file__).resolve().parent.parent / "content")
+    return (f"guide answers that are non-answers: {counts['guideAnswers']}\n"
+            f"article answers that are non-answers: {counts['articleAnswers']}\n"
+            f"open questions waiting for a source: {counts['openQuestions']}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="オーナーのルールの毎日の点検（読むだけ）")
     parser.add_argument("--latest", type=int, default=20)
@@ -1206,7 +1215,7 @@ def main() -> int:
         print("\n".join(bad) or "ok: コメントはすべて 10:20〜22:59・言い方の点検（O14）も問題なし")
         return 0
     found = run(args.latest, args.sns_days, not args.no_network, args.base)
-    body = render(found, args.latest)
+    body = render(found, args.latest) + "\n" + answer_slot_lines()
     print(body)
     if args.out:
         Path(args.out).parent.mkdir(parents=True, exist_ok=True)

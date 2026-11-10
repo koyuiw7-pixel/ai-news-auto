@@ -29,6 +29,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import persona  # noqa: E402  読者像（検索に出す話題の基準）
+import nonanswer  # noqa: E402  答えになっていない答えの式（lib/index-rules.json の notStated）
 import public_interest  # noqa: E402  公共性の高い話題（台帳 A40）
 import notice_gate  # noqa: E402  お知らせ・告知・統計の転載を作らない（公開前の門）
 import genre_focus  # noqa: E402  エンタメはビジネス・テックの目線だけ（2026-11-03）
@@ -579,6 +580,8 @@ def index_rules() -> dict:
         "launchTopic": _js_regex(public_interest.LAUNCH_RE),
         "launchContext": _js_regex(public_interest.LAUNCH_CONTEXT_RE),
         "launchSources": list(public_interest.LAUNCH_SOURCES),
+        # 答えの欄に出さない「書かれていません」「載っていません」の文（scripts/nonanswer.py。lib/nonanswer.ts が読む。SEO A4・LLMO-A4）
+        "notStated": _js_regex(nonanswer.NOT_STATED_RE),
     }
 
 

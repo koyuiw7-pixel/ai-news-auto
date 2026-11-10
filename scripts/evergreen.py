@@ -35,6 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import feeds  # noqa: E402
 import llm  # noqa: E402
 import persona  # noqa: E402
+import nonanswer  # noqa: E402  答えになっていない答え（「載っていません」）の式（LLMO-A4）
 import quality  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -318,6 +319,7 @@ PROMPT = """# 書くページ
 
 # 書き方のルール（必ず守る）
 - 事実（料金・回数・上限・対応機種・提供地域・機能名・モデル名・手順の画面名）は上の公式ページに書かれていることだけ。書かれていないことは「公式ページでは案内されていない」とするか、触れない。
+  ただし conclusion・description・faq には、答えられない項目（「公式ページでは案内されていない」「載っていない」）を入れない。答えられない問いは作らない（その問いは捨てる）。
   公式ページどうしで食い違うときは、料金ページ・更新日の新しいページを優先し、古い情報（古いモデル名など）は書かない。
 - 料金・回数・容量などの数字は、公式ページの表記どおりに写す（円・ドルの換算や概算はしない。「約」も付けない）。
 - 使った・試したとは書かない（「実際に使うと」「使ってみた」は禁止）。点数・おすすめ度・最強・絶対・評判は書かない。
@@ -342,10 +344,10 @@ PROMPT = """# 書くページ
 - work_money: 「{work_money_heading}」欄。2〜3個、各25〜70字の1文。仕事・副業でどんな作業に使えるか、無料でどこまでできるか・
   有料にする前に何を確かめるかなど、読者が明日から動ける形で書く。料金などの数字は公式ページの表記どおりだけ（節約額・短縮時間を計算しない）。
   「稼げる」「儲かる」など儲け話にしない。有料プランを勧めない。
-- faq: よくある質問を4〜6個。検索されやすい形の質問（「〇〇は無料で使える？」など）にし、a は60〜180字で結論から。
+- faq: よくある質問を0〜6個。上の公式ページの事実で答えられる質問だけ（答えが「案内されていない」「載っていない」になる質問は入れない）。検索されやすい形の質問（「〇〇は無料で使える？」など）にし、a は60〜180字で結論から。
 - used_sources: 実際に根拠にした公式ページの番号（S1 なら 1）。
 - 分量: intro・steps・japan_body・tips・faq の地の文の合計は2200字が目安（公式ページの事実で具体的に。推測で水増ししない。資料が少なければ短くてよい）。
-{feedback}"""
+{open_questions}{feedback}"""
 
 
 SYSTEM_PROCEDURE = """あなたは暮らしとお金の解説サイトの編集者です。税金・年金・保険・行政の手続きを、官公庁などの公式ページだけを根拠に、
@@ -407,7 +409,7 @@ def style_notes(data: dict, procedure: bool = False) -> list[str]:
         notes.append(f"title の長さ（{len(title)}字 / 目安 32〜48字）")
     if hn_template := re.search(r"とは[？?].{0,40}(?:を)?(?:解説|まとめ)|を(?:わかりやすく|やさしく)?解説(?:$|　)", title):
         notes.append(f"title が「〜とは？〜を解説」の決まり文句（「{hn_template.group(0)}」。台帳 A50）")
-    for key, lo, hi in (("conclusion", 3, 4), ("steps", 3, 7), ("faq", 4, 6), ("work_money", 1, 3)):
+    for key, lo, hi in (("conclusion", 3, 4), ("steps", 3, 7), ("faq", 0, 6), ("work_money", 1, 3)):
         if not lo <= len(data.get(key, [])) <= hi:
             notes.append(f"{key} の数（{len(data.get(key, []))}個 / 目安 {lo}〜{hi}個）")
     length = len(re.sub(r"\s|#", "", prose_of(data)))
@@ -423,7 +425,8 @@ def structural_problems(data: dict, sources: list[dict], procedure: bool = False
     for key in ("title", "seo_title"):
         if isinstance(data.get(key), str):
             data[key] = re.sub(r"[！!]+", "", data[key]).replace("｜", "　").strip()  # 感嘆符・「｜」は落とさず直す
-    for key in ("conclusion", "steps", "faq"):
+    # よくある質問は0個でもよい（答えられない問いは作らない。LLMO-A4）
+    for key in ("conclusion", "steps"):
         if not data.get(key):
             problems.append(f"{key} が空")
     problems += persona.work_money_problems(persona.clean_work_money({"relevance": "high", "points": data.get("work_money", [])}))
@@ -481,6 +484,7 @@ def generate(topic: dict, sources: list[dict], attempts: int = 2) -> tuple[dict,
             today=today_jst(),
             work_money_heading=persona.WORK_MONEY_HEADING,
             sources=source_block(sources, cap),
+            open_questions=open_questions_block(topic.get("_openQuestions") or []),
             feedback=feedback,
         ) + (PROCEDURE_NOTE if procedure else "")
         try:
@@ -506,8 +510,38 @@ def generate(topic: dict, sources: list[dict], attempts: int = 2) -> tuple[dict,
     return None
 
 
+def open_questions_block(questions: list[dict]) -> str:
+    """前の版で答えが公式ページに無くて外した質問（今回の公式ページに答えがあるときだけ faq に入れる）"""
+    if not questions:
+        return ""
+    rows = "\n".join(f"- {q['q']}" for q in questions[:8] if q.get("q"))
+    return ("\n# 前の版で、公式ページに答えが無くて外した質問（上の公式ページに答えがあるときだけ faq に入れる。無ければ入れない）\n"
+            f"{rows}\n")
+
+
+def answer_slots(data: dict, previous: dict | None, now: str) -> tuple[list[dict], list[str], str, list[dict]]:
+    """よくある質問・結論・説明文から「載っていません」を外す（scripts/nonanswer.py）。外した質問は openQuestions に残す（LLMO-A4。
+    答えは作らない。公式ページに答えが出たら、次に作り直すときに答える）"""
+    faq, dropped = [], []
+    for f in data.get("faq") or []:
+        q, a = (f.get("q") or "").strip(), (f.get("a") or "").strip()
+        if not q:
+            continue
+        if answer := nonanswer.answer_or_none(a):
+            faq.append({"q": q, "a": answer})
+        else:
+            dropped.append(q)
+    conclusion = [kept for c in data.get("conclusion") or [] if (kept := nonanswer.answer_or_none(c.strip()))]
+    description = nonanswer.strip_not_stated((data.get("description") or "").strip()) or (conclusion[0] if conclusion else "")
+    answered = {f["q"] for f in faq}
+    since = {o["q"]: o.get("since", now) for o in (previous or {}).get("openQuestions") or [] if o.get("q")}
+    open_q = [{"q": q, "since": since.get(q, now)} for q in dict.fromkeys([*since, *dropped]) if q not in answered]
+    return faq, conclusion, description, open_q
+
+
 def assemble(topic: dict, data: dict, fact: dict, sources: list[dict], previous: dict | None) -> dict:
     now = now_iso()
+    faq, conclusion, description, open_q = answer_slots(data, previous, now)
     used = {i for i in data.get("used_sources", []) if isinstance(i, int)}
     cited = [s for i, s in enumerate(sources, 1) if not used or i in used] or sources
     return {
@@ -520,15 +554,16 @@ def assemble(topic: dict, data: dict, fact: dict, sources: list[dict], previous:
         "keyword": topic["keyword"],
         "title": data["title"].strip(),
         "seoTitle": data["seo_title"].strip(),
-        "description": data["description"].strip(),
-        "conclusion": [c.strip() for c in data["conclusion"]],
+        "description": description,
+        "conclusion": conclusion,
         "intro": data["intro"].strip(),
         "steps": [{"title": s["title"].strip(), "body": s["body"].strip()} for s in data["steps"]],
         "pricing": [{"plan": p["plan"].strip(), "price": p["price"].strip(), "note": (p.get("note") or "").strip()} for p in data["pricing"]],
         "freeTier": [f.strip() for f in data["free_tier"]],
         "japan": {"answer": data["japan_answer"].strip(), "body": data["japan_body"].strip()},
         "tips": [{"title": t["title"].strip(), "body": t["body"].strip()} for t in data["tips"]],
-        "faq": [{"q": f["q"].strip(), "a": f["a"].strip()} for f in data["faq"]],
+        "faq": faq,
+        **({"openQuestions": open_q} if open_q else {}),
         "workMoney": persona.clean_work_money({"relevance": "high", "points": data.get("work_money") or []}),
         "match": topic.get("match", ""),
         "products": topic.get("products", []),
@@ -562,7 +597,7 @@ def build(topic: dict, previous: dict | None = None) -> dict | None:
         log(f"   ::warning::{problem}ので見送り")
         last_failure.update({"reason": problem, "sourceChars": chars})
         return None
-    result = generate(topic, sources)
+    result = generate({**topic, "_openQuestions": (previous or {}).get("openQuestions") or []}, sources)
     if not result:
         log("   ::warning::合格しなかったので公開しない")
         return None
@@ -623,6 +658,10 @@ def refresh(guide: dict, topic: dict, reason: str) -> None:
         fact = None if bad else quality.fact_check(to_record(data), source_block(sources, max(2500, 12500 // len(sources))))
         same = not bad and fact is not None and not fact["fatal"] and fact["score"] >= PASS_SCORE
         log(f"   公式ページに変更あり → 今の原稿は{'まだ正しい' if same else 'ずれている'}" + (f"（数字 {bad[:3]}）" if bad else f"（{fact['score']}点）" if fact else ""))
+    # 外した質問（openQuestions）があるガイドは、確認の期限が来たら作り直して、公式ページに答えが出ていないかを確かめる（LLMO-A4）
+    if same and guide.get("openQuestions") and reason.endswith("日経過"):
+        log(f"   答えを待っている質問 {len(guide['openQuestions'])}件 → 作り直して公式ページの答えを探す")
+        same = False
     if same:
         guide["checkedAt"] = now
         guide["sourceHash"] = source_hash(sources)

@@ -41,6 +41,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import nonanswer  # noqa: E402  答えになっていない答え（「書かれていません」）の式（SEO A4・LLMO-A4）
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -109,7 +110,7 @@ PROMPT = """# 頼みたいこと
 ## worries（こんな不安ありませんか）3〜5個
 - この記事を読んだ人が自然に抱く不安を、関係の深い順に3〜5個（全部は書かない。この記事の読者に一番関係のあるものだけ）。
   例（情報流出）: クレジットカードは大丈夫？／口座は大丈夫？／家族に詐欺の電話が来る？／親や子どもの回線は？／乗っ取りは本当に起きる？
-- q は読者の言葉で20〜40字の疑問文。a は、公式ページにある事実だけで答える（60〜160字）。分からないことは「発表されていません」と正直に書く。
+- q は読者の言葉で20〜40字の疑問文。a は、公式ページにある事実だけで答える（60〜160字）。答えられない問いは作らない（その問いは捨てる。「このページには書かれていません」「発表されていません」で答えない）。
   action は、その不安に対して今できる具体的な行動を1文（40〜80字）。action の根拠が答えと別のページなら action_source にその URL（同じなら ""）。
 - 記事の公式ページが答えていない不安は、「一般的な注意のページ」（下の一覧で【一般】の印のもの）にある一般的に正しい安全な行動で答え、
   general を true にする（source はその一般のページ）。公式ページで答えたものは general を false。
@@ -533,6 +534,11 @@ def validate(data: dict, pages: list[dict], record: dict | None = None) -> tuple
         if bad := unsupported(f"{a} {act}", corpus):
             dropped.append(f"worry: ページに無い {'・'.join(bad[:3])}（{q[:30]}）")
             continue
+        # 答えが「このページには書かれていません」の不安は捨てる（2文目以降のその文は外す。scripts/nonanswer.py。SEO A4・LLMO-A4）
+        if not (answer := nonanswer.answer_or_none(a)):
+            dropped.append(f"worry: 答えになっていない（{q[:30]}: {a[:30]}）")
+            continue
+        a = answer
         # 一般のページを出典にした答えは、必ず「一般的な注意」の札を付ける（記事の発表元の答えと見分けられるように）
         general = bool(by_url[canon_url(source)].get("general"))
         entry = {"q": q, "a": a, "source": source}

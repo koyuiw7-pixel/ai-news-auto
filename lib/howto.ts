@@ -3,6 +3,7 @@ import fs from "@/lib/content-fs";
 import path from "node:path";
 import { getAllArticles, type ArticleSummary } from "@/lib/articles";
 import { politeDeep } from "@/lib/polite-text";
+import { answeredOnly, answerOrNull, stripNotStated } from "@/lib/nonanswer";
 
 /**
  * 使い方ガイド（content/howto/*.json、scripts/evergreen.py が作る。URL は /guides/<slug>）。
@@ -31,6 +32,8 @@ export type HowtoGuide = {
   japan: { answer: string; body: string };
   tips: { title: string; body: string }[];
   faq: { q: string; a: string }[];
+  /** 答えが公式ページに無くて外した質問（次に公式ページを確かめるときに答えを探す。LLMO-A4） */
+  openQuestions?: { q: string; since: string }[];
   /** 「仕事・お金にどう活かせる？」欄（2026-11-02 以降に作り直した解説だけ） */
   workMoney?: WorkMoney | null;
   /** 関連ニュースを見つける正規表現（見出しと短い題名に照合） */
@@ -59,6 +62,25 @@ export type HowtoGuide = {
   decisionGuideSlug?: string;
 };
 
+/**
+ * 答えの欄に「このページには載っていません」を出さない（2026-11-10 LLMO-A4。lib/nonanswer.ts）。
+ * よくある質問（見える欄・FAQPage の両方がこれを使う）は答えている問いだけ、結論は答えている点だけ（2文目以降のその文は外す）、
+ * 説明文（検索結果・llms.txt に出る）はその文を外し、何も残らなければ残った結論の1つ目を使う。
+ * 外した問いは openQuestions（scripts/sweep_not_stated.py・scripts/evergreen.py が記録）で、公式ページに答えが出たら次の作り直しで答える
+ */
+export function answerSlots(guide: HowtoGuide): HowtoGuide {
+  const conclusion = (guide.conclusion ?? []).flatMap((point) => {
+    const kept = answerOrNull(point);
+    return kept ? [kept] : [];
+  });
+  return {
+    ...guide,
+    faq: answeredOnly(guide.faq ?? []),
+    conclusion,
+    description: stripNotStated(guide.description ?? "") || conclusion[0] || guide.description,
+  };
+}
+
 // 文字列で組み立てて、content/ 全体をサーバー関数に同梱させない（lib/articles.ts と同じ理由）
 const HOWTO_DIR = [process.cwd(), "content", "howto"].join(path.sep);
 
@@ -74,7 +96,7 @@ export function getAllHowtos(): HowtoGuide[] {
     .flatMap((file) => {
       try {
         // 文末の「〜しましょう」は落ち着いた言い方にして出す（台帳 W13。lib/polite-text.ts）
-        const data = politeDeep(JSON.parse(fs.readFileSync(/* turbopackIgnore: true */ `${HOWTO_DIR}${path.sep}${file}`, "utf8")) as HowtoGuide);
+        const data = answerSlots(politeDeep(JSON.parse(fs.readFileSync(/* turbopackIgnore: true */ `${HOWTO_DIR}${path.sep}${file}`, "utf8")) as HowtoGuide));
         return data.slug && data.steps?.length ? [data] : [];
       } catch {
         return [];

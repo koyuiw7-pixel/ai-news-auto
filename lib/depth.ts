@@ -2,6 +2,8 @@
  * 記事を一歩深くする欄の形と取り出し（scripts/depth_fields.py が書く。components/DepthBoxes.tsx が描く。台帳 A66）。
  * 画面に出す前にもう一度、URL が https:// か http:// の外のページかだけを確かめる（ほかの照合は書く段で済んでいる）。
  */
+import { answeredOnly } from "@/lib/nonanswer";
+
 export type InsightItem = { text: string; source: string };
 export type DeskEntry = { name: string; url: string; source?: string; howTo?: string[]; phone?: string; hours?: string; note?: string };
 export type StepItem = { action: string; steps?: string[]; url?: string; source?: string };
@@ -37,8 +39,8 @@ export function depthOf(a: DepthFields) {
     .map((s) => ({ ...s, steps: (s.steps ?? []).filter(str).slice(0, 4), url: okUrl(s.url) ? s.url : undefined }))
     .slice(0, 3);
   const cause = a.cause && str(a.cause.text) && okUrl(a.cause.source) ? a.cause : null;
-  const worries = (a.worries ?? [])
-    .filter((w) => str(w?.q) && str(w?.a) && okUrl(w?.source))
+  // 答えが「書かれていません」の不安は出さない（2文目以降のその文は外す。lib/nonanswer.ts。SEO A4・LLMO-A4）。2つ未満なら欄ごと出さない
+  const worries = answeredOnly((a.worries ?? []).filter((w) => str(w?.q) && str(w?.a) && okUrl(w?.source)))
     .map((w) => ({ ...w, actionSource: okUrl(w.actionSource) ? w.actionSource : undefined }))
     .slice(0, 5);
   // 判断ガイド: 問いごとにまとめる（同じ問いの状況違いの行を並べる）

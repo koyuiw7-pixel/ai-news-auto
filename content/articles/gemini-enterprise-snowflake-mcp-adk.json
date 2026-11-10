@@ -80,7 +80,7 @@
   "faq": [
     {
       "q": "Gemini EnterpriseとSnowflakeの接続で、トークンはいつまで有効？",
-      "a": "サンプルの設定では、更新トークンの有効期間は90日（7776000秒）です。ブログはこれをSnowflakeが許す上限としています。期限後の再認可の手順は示されていません。"
+      "a": "サンプルの設定では、更新トークンの有効期間は90日（7776000秒）です。ブログはこれをSnowflakeが許す上限としています。"
     }
   ],
   "todayActions": [
@@ -178,7 +178,7 @@
     },
     {
       "q": "接続の鍵（更新トークン）は、いつまで有効？",
-      "a": "更新トークンの有効期間は最大90日（7776000秒）と書かれています。期限が切れたあとにどう再認可するかは、このページには書かれていません。",
+      "a": "更新トークンの有効期間は最大90日（7776000秒）と書かれています。",
       "source": "https://cloud.google.com/blog/ja/products/data-analytics/bridge-gemini-enterprise-and-snowflake-with-google-adk/",
       "action": "セキュリティインテグレーションの設定で、OAUTH_REFRESH_TOKEN_VALIDITY の値を確かめておく"
     },

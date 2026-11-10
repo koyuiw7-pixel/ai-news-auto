@@ -7,6 +7,21 @@ const ts = require("typescript");
 
 // Next.js を起動せず、本体の選択関数と実際のガイド設定をオフラインで検査する。
 const root = path.resolve(__dirname, "..");
+// 答えの欄の判定（lib/nonanswer.ts。式は lib/index-rules.json の notStated）は本物を使う
+const loadTs = (rel, mocks = {}) => {
+  const file = path.join(root, rel);
+  const out = ts.transpileModule(fs.readFileSync(file, "utf8"), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true, resolveJsonModule: true },
+  }).outputText;
+  const mod = new Module(file, module);
+  mod.filename = file;
+  mod.paths = Module._nodeModulePaths(path.dirname(file));
+  const original = mod.require.bind(mod);
+  mod.require = (name) => (name in mocks ? mocks[name] : original(name));
+  mod._compile(out, file);
+  return mod.exports;
+};
+const nonanswer = loadTs("lib/nonanswer.ts");
 const sourcePath = path.join(root, "lib/howto.ts");
 const compiled = ts.transpileModule(fs.readFileSync(sourcePath, "utf8"), {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
@@ -20,10 +35,11 @@ loaded.require = (name) => {
   if (name === "@/lib/articles") return { getAllArticles: () => [] };
   // 文末の言い換え（lib/polite-text.ts）は振り分けに関係しない
   if (name === "@/lib/polite-text") return { politeDeep: (value) => value };
+  if (name === "@/lib/nonanswer") return nonanswer;
   return requireOriginal(name);
 };
 loaded._compile(compiled, sourcePath);
-const { howtoForArticle } = loaded.exports;
+const { howtoForArticle, answerSlots } = loaded.exports;
 const readGuide = (slug) => JSON.parse(fs.readFileSync(path.join(root, "content/howto", `${slug}.json`), "utf8"));
 const startup = readGuide("dify-1-18-startup-check");
 const cost = readGuide("dify-free-api-cost");
@@ -80,4 +96,37 @@ test("同点は従来順を保ち、候補配列を変更しない", () => {
   const before = candidates.map((guide) => guide.slug);
   assert.equal(pick("Difyの起動", "", candidates), startup.slug);
   assert.deepEqual(candidates.map((guide) => guide.slug), before);
+});
+
+// 2026-11-10 LLMO-A4: 答えの欄に「このページには載っていません」を出さない（見える欄・FAQPage・結論・説明文）
+test("答えが「載っていません」の質問は、よくある質問（見える欄と FAQPage）から外す", () => {
+  const passport = {
+    slug: "passport", conclusion: ["申請は住民登録のある都道府県の窓口で行います。", "手数料の金額は、このページには載っていません。"],
+    description: "パスポートの申請の流れをまとめました。手数料の金額は、このページには載っていません。",
+    faq: [
+      { q: "パスポートの手数料はいくら？", a: "金額は、このページには載っていません。外務省は「手数料改定関連情報」を令和8年3月26日付で掲載しています。申請前に、最新の金額をそのページで確認します。" },
+      { q: "どこで申請する？", a: "住民登録をしている都道府県のパスポート申請窓口で申請します。" },
+      { q: "受け取りは代理でできる？", a: "受け取りは本人が窓口に行く必要があります。代理の受け取りの条件は案内されていません。" },
+    ],
+  };
+  const out = answerSlots(passport);
+  assert.deepEqual(out.faq.map((f) => f.q), ["どこで申請する？", "受け取りは代理でできる？"]);
+  assert.equal(out.faq[0].a, passport.faq[1].a); // 答えている質問はそのまま
+  assert.equal(out.faq[1].a, "受け取りは本人が窓口に行く必要があります。"); // 2文目の「案内されていません」は外す
+  assert.deepEqual(out.conclusion, ["申請は住民登録のある都道府県の窓口で行います。"]);
+  assert.equal(out.description, "パスポートの申請の流れをまとめました。");
+  assert.equal(answerSlots({ ...passport, description: "手数料はこのページには載っていません。" }).description, out.conclusion[0]);
+});
+
+test("本物の passport ガイドでも、FAQ に「載っていません」の答えが出ない", () => {
+  const out = answerSlots(readGuide("passport"));
+  assert.ok(out.faq.every((f) => !nonanswer.isNotStated(f.a)), JSON.stringify(out.faq));
+  assert.ok(!out.faq.some((f) => f.q === "パスポートの手数料はいくら？"));
+});
+
+test("答えになっていない文の式は、普通の答えを外さない", () => {
+  assert.equal(nonanswer.answerOrNull("無料プランでも使えます。上限は1日10回です。"), "無料プランでも使えます。上限は1日10回です。");
+  assert.equal(nonanswer.answerOrNull("料金は公式ページに記載がありません。"), null);
+  assert.equal(nonanswer.answerOrNull("この記事では説明を控えます。"), null);
+  assert.equal(nonanswer.answerOrNull("提供時期はまだ発表されていません。"), null);
 });
