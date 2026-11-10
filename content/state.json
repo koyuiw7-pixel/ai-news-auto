@@ -14533,6 +14533,18 @@
       "skipped": true,
       "url": "https://www.rinya.maff.go.jp/j/press/sanson_ryokka/261106.html"
     },
+    "b2e1a49b6271a848": {
+      "at": "2026-11-10T05:06:31.079623+00:00",
+      "costUsd": 0.1058,
+      "intent": "breaking",
+      "major": true,
+      "mix": "brand",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "agent-i-app-ios-launch",
+      "url": "https://www.lycorp.co.jp/ja/news/release/020972/"
+    },
     "b30e44fae271d390": {
       "at": "2026-11-04T03:34:46.829540+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
@@ -19614,30 +19626,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T01:12:22.844999+00:00",
-      "attempt": 1,
-      "id": "fd8f32a4ff83951f",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 111.2,
-        "avg_sentence": 50.5,
-        "long_share": 0.273,
-        "max_paragraph": 147,
-        "paragraphs": 5,
-        "sentences": 11
-      },
-      "score": 92,
-      "source": "mof",
-      "title": "国の災害用備蓄食品の有効活用の取組みについて",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 50.5字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T01:12:40.038170+00:00",
@@ -27133,6 +27121,30 @@
       "warnings": [
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
         "読みやすさ: 文が長い（1文の平均 59.7字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T05:06:25.201288+00:00",
+      "attempt": 1,
+      "id": "b2e1a49b6271a848",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 91.4,
+        "avg_sentence": 33.2,
+        "long_share": 0.03,
+        "max_paragraph": 129,
+        "paragraphs": 12,
+        "sentences": 33
+      },
+      "score": 90,
+      "source": "lycorp-press",
+      "title": "LINEヤフー、AIエージェント「Agent i」のアプリを提供開始｜LINEヤフー株式会社",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JAPAN・LYP）"
       ]
     }
   ],
