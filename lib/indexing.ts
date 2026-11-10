@@ -2,6 +2,8 @@ import type { ArticleSummary } from "@/lib/articles";
 // 判定の材料（文字数・ジャンル・話題の正規表現）は scripts/indexnow.py --export-rules が書き出す。
 // 正本は scripts/indexnow.py と scripts/persona.py（読者像）。ここに値を複製しない。
 import rules from "./index-rules.json";
+// 14日間訪問0の記事の一覧（2026-11-10 オーナー承認。正本は content/noindex_zero_visit.json。scripts/indexnow.py も同じファイルを読む）
+import zeroVisit from "../content/noindex_zero_visit.json";
 
 /**
  * Google に見せる記事を選ぶ（サイトでは全記事を読める。noindex でも一覧・内部リンクには残す）。
@@ -136,6 +138,17 @@ export function isFocus(article: ArticleSummary): boolean {
   return false;
 }
 
+/** 14日間訪問0で、検索に出さない記事（content/noindex_zero_visit.json の slugs） */
+const ZERO_VISIT = new Set<string>(zeroVisit.slugs);
+
+/**
+ * 14日間訪問0の記事か（2026-11-10 オーナー承認）。公開したまま・一覧やリンクからは読めるが、検索に出さず、広告・提携の囲みも出さない。
+ * 手動の indexable（記事 JSON）があればそちらが先（noindexReason）
+ */
+export function isZeroVisit(slug: string | undefined | null): boolean {
+  return Boolean(slug) && ZERO_VISIT.has(slug as string);
+}
+
 /** 本文が無いとみなす字数（scripts/indexnow.py の NO_BODY） */
 export const NO_BODY: number = rules.noBody;
 
@@ -150,6 +163,8 @@ export function noindexReason(article: ArticleSummary): string | null {
   if ((article.bodyLength ?? 0) < NO_BODY) return "no-body";
   // 重複の印は記事 JSON の duplicateOf と、索引を作るときの予備の判定（lib/article-index.mjs の markDuplicates）
   if (article.duplicate || (article.duplicateOf && article.duplicateOf !== article.slug)) return "duplicate";
+  // 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認。記事は消さない）
+  if (isZeroVisit(article.slug)) return "zero-visit";
   // 今まで検索に出していた主題（isFocus）はそのまま出す（ゆるめるだけで、出していた記事を外さない）
   // 地震・災害の記事は題名に「地震」などがあるのでつながる（scripts/indexnow.py は disaster も見る）
   if (!lifeLink(article.title ?? "") && !isFocus(article)) return "no-life-link";

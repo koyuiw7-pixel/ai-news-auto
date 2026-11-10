@@ -40,6 +40,18 @@ HOWTO_DIR = ROOT / "content" / "howto"
 PUBLIC_DIR = ROOT / "public"
 ENDPOINT = "https://api.indexnow.org/indexnow"
 MAX_URLS = 10000  # 1リクエストあたりの上限
+# 14日間訪問0の記事の一覧（2026-11-10 オーナー承認。サイトの lib/indexing.ts も同じファイルを読む）
+ZERO_VISIT_FILE = ROOT / "content" / "noindex_zero_visit.json"
+
+
+def _zero_visit_slugs() -> frozenset[str]:
+    try:
+        return frozenset(json.loads(ZERO_VISIT_FILE.read_text("utf-8")).get("slugs") or [])
+    except (OSError, ValueError):
+        return frozenset()
+
+
+ZERO_VISIT = _zero_visit_slugs()
 
 
 def site_url() -> str:
@@ -433,6 +445,9 @@ def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> s
         return "no-body"
     if article.get("slug") in dups or (article.get("duplicateOf") and article.get("duplicateOf") != article.get("slug")):
         return "duplicate"
+    # 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認。公開したまま・広告なし）
+    if article.get("slug") in ZERO_VISIT:
+        return "zero-visit"
     # 今まで検索に出していた主題（is_focus）はそのまま出す（ゆるめるだけで、出していた記事を外さない）
     if not (article.get("disaster") or life_link(article.get("title") or "") or is_focus(article)):
         return "no-life-link"

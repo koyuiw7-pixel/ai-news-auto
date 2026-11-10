@@ -501,8 +501,11 @@ def article_page_problems(html: str, record: dict) -> list[str]:
             and "イメージ（AI生成）" not in visible:
         # 札は「画像はイメージ（AI生成）」か、公式の画像が無い新製品の発表なら「公式画像がないためイメージ（AI生成）」
         out.append("[I4] ノワールの表紙の AI のイメージに「イメージ（AI生成）」の札がない")
+    # 14日間訪問0で検索に出さない記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認）は広告を出さない決まり
     if not re.search(r'rel="[^"]*sponsored', html):
-        out.append("[A11] 記事に広告（PR）が1つもない")
+        import indexnow  # noqa: PLC0415
+        if record.get("slug") not in indexnow.ZERO_VISIT:
+            out.append("[A11] 記事に広告（PR）が1つもない")
     if OWNER_NAME in html:  # 見えない構造化データ（JSON-LD）も含めて見る
         # お金と暮らしの記事は「編集責任者：名前」の1行だけ出してよい（経歴は出さない）
         if record.get("genreSlug") not in EDITOR_NAME_GENRES:
