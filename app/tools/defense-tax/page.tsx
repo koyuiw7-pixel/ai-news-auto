@@ -6,7 +6,7 @@ import { CALCULATORS } from "@/lib/calculators";
 const meta = CALCULATORS["defense-tax"];
 
 export const metadata: Metadata = withPageShare("defense-tax", meta.href, {
-  title: "防衛特別所得税の計算｜2027年から・年ごとの税額",
+  title: "防衛特別所得税の計算　2027年から・年ごとの税額",
   description: meta.description,
   alternates: { canonical: meta.href },
 });
