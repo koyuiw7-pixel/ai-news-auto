@@ -92,15 +92,14 @@
     }
   ],
   "todayActions": [
-    "離職票が届いたら、受給資格の決定に持っていく身元確認書類と通帳をそろえる",
-    "在職中に雇用保険被保険者証の有無と、離職証明書の離職理由の記載を確認する",
-    "管轄のハローワークへは16時前に行き、求職の申込みと離職票の提出をする"
+    "離職票が届いたら、16時前に管轄のハローワークへ行き、求職の申込みと離職票の提出をする",
+    "持ち物をそろえる。マイナンバーカードがあれば、写真2枚の提示は省略できる",
+    "離職理由に食い違いがあれば、管轄のハローワークに相談する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261110-手続き-失業給付の手続きと待期7日.md",
   "sectionsPolishedAt": "2026-11-10T03:39:24+00:00",
-  "museDepthNotes": "なるほど：待期の7日は「連続した7日」ではなく「通算して7日」です。数えるのは失業の状態にあった日だけで、働いた日など失業の状態でなかった日は待期に含まれません。出典はハローワーク「よくあるご質問」Q5と「雇用保険の具体的な手続き」の待期の説明 https://www.hellowork.mhlw.go.jp/help/question05.html?scid=wi_mny_tax_deductible_article_2102_00008_34432_01 。\nなるほど：写真2枚は、マイナンバーカードをこの手続きと今後の支給申請ごとに提示すれば省略できます。出典は「雇用保険の具体的な手続き」の持参書類 https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html 。\nなるほど：離職理由は離職前に確かめる場面があります。会社がハローワークへ出す離職証明書は、離職前に本人が氏名を記載することになっており、離職理由等の記載内容もその時点で確認できます。決まった後で食い違う場合は、ハローワークが事業主と離職者双方の主張と客観的な資料で判定し、事業主一方の主張だけで決めることはないとQ6にあります。\nなるほど：求職活動の実績は、最初の認定対象期間だけ1回で足り、通常は2回以上です。求人情報を見ただけ、知人に紹介を頼んだだけでは実績に入りません。出典は「雇用保険の具体的な手続き」の失業の認定の欄。\n窓口：手続き先は住居を管轄する公共職業安定所（ハローワーク）で、手続き時間は月曜日から金曜日（休祝日・年末年始を除く）の8時30分から17時15分、求職申込みに時間がかかるため16時前までの来所が勧められています。管轄の探し方は本文の窓口の見出しに書きました。\nすぐにできること：離職票（－1、2）が届いたら受給期間（離職日の翌日から原則1年）の残りを先に数え、個人番号確認書類、身元確認書類、写真2枚、本人名義の通帳かキャッシュカードをそろえて管轄ハローワークへ行く。初回説明会と第1回失業認定日は、その場と説明会で知らされるのでカレンダーへ入れる。",
   "museSources": [
     {
       "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html",
@@ -149,5 +148,107 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/unemployment-benefit-procedure-flow-figure-fbe31da7.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "不正受給では、返還に加えて、直接不正の行為で受けた額の2倍に相当する額以下の金額の納付を、原則として命じられます。",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_basicbenefit.html"
+    },
+    {
+      "text": "基本手当日額の上限は（令和8年8月1日現在）、30歳未満7,450円、30歳以上45歳未満8,270円、45歳以上60歳未満9,110円、60歳以上65歳未満7,830円です。",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_basicbenefit.html"
+    },
+    {
+      "text": "被保険者期間は、離職日から1か月ごとに区切り、賃金支払いの基礎日数が11日以上、または時間数が80時間以上ある月を1か月と数えます。",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_basicbenefit.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "公共職業安定所（ハローワーク）",
+      "url": "https://www.hellowork.mhlw.go.jp/info/location_list.html",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html",
+      "howTo": [
+        "雇用保険の具体的な手続き",
+        "ハローワーク等所在地情報"
+      ],
+      "hours": "月曜日～金曜日（休祝日・年末年始を除く）の8時30分～17時15分",
+      "note": "求職申込みに一定の時間がかかるため、16時前までのご来所がお勧めされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "離職票が届いたら、16時前に管轄のハローワークへ行き、求職の申込みと離職票の提出をする",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html",
+      "steps": [
+        "受給資格決定は住居を管轄するハローワークで行う",
+        "受付は8時30分～17時15分、16時前までの来所が勧められています",
+        "雇用保険被保険者離職票（－1、2）を提出する"
+      ],
+      "url": "https://www.hellowork.mhlw.go.jp/info/location_list.html"
+    },
+    {
+      "action": "持ち物をそろえる。マイナンバーカードがあれば、写真2枚の提示は省略できる",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html",
+      "steps": [
+        "個人番号確認書類と身元確認書類を用意する",
+        "写真は縦3.0cm×横2.4cm、最近のもの2枚",
+        "本人名義の預金通帳かキャッシュカードを持参する"
+      ],
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html"
+    },
+    {
+      "action": "離職理由に食い違いがあれば、管轄のハローワークに相談する",
+      "source": "https://www.hellowork.mhlw.go.jp/help/question05.html?scid=wi_mny_tax_deductible_article_2102_00008_34432_01",
+      "steps": [
+        "事業主からの退職勧奨なのに自己都合退職とされている場合が一例",
+        "ハローワークが事実関係を調査して離職理由を判定する",
+        "判定は事業主一方の主張だけでは決まらない"
+      ],
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html"
+    }
+  ],
+  "worries": [
+    {
+      "q": "離職票が届かないときはどうすればいい？",
+      "a": "前に勤めていた会社に離職証明書の交付を請求し、その証明書をハローワークに出せば離職票の交付を受けられます。会社から交付されない場合や事業主が行方不明の場合は、住居地を管轄するハローワークに問い合わせます。",
+      "source": "https://www.hellowork.mhlw.go.jp/help/question05.html?scid=wi_mny_tax_deductible_article_2102_00008_34432_01",
+      "action": "会社に離職証明書を請求し、交付されなければ管轄のハローワークに相談する"
+    },
+    {
+      "q": "病気で15日以上働けないと、失業給付はどうなる？",
+      "a": "求職の申込み後に15日以上引き続き病気やけがで職業に就けない場合は傷病手当の対象になり、14日以内なら基本手当が支給されます。傷病手当の日額は基本手当の日額と同額です。",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_basicbenefit.html",
+      "action": "病気で働けない期間が続くなら、その理由がやんだ後の最初の認定日までに管轄のハローワークで傷病の認定を受ける"
+    },
+    {
+      "q": "待期の7日は連続していないとダメ？",
+      "a": "待期は離職票の提出と求職の申込みを行った日から通算して7日間です。ページには、待期の日数は連続した日ではなく通算して数えると書かれています。失業の状態にあった日だけが数えられます。",
+      "source": "https://www.hellowork.mhlw.go.jp/help/question05.html?scid=wi_mny_tax_deductible_article_2102_00008_34432_01",
+      "action": "求職の申込みの日を控え、失業の状態にあった日を数えて待期の7日を確認する"
+    },
+    {
+      "q": "自己都合で辞めた場合、給付制限は何か月？",
+      "a": "正当な理由のない自己都合で、離職日が令和7年4月1日以降なら原則1か月です。令和7年3月31日以前は原則2か月でした。重責解雇などの場合は3か月です。",
+      "source": "https://www.hellowork.mhlw.go.jp/help/question05.html?scid=wi_mny_tax_deductible_article_2102_00008_34432_01",
+      "action": "離職日と離職理由を確かめ、給付制限の区分を管轄のハローワークで確認する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "病気で働けないとき、受給期間を延長する？",
+      "situation": "病気やけがで引き続き30日以上働けない",
+      "recommend": "延長できるか確かめる価値がある",
+      "reason": "延長できるのは働けなくなった日数だけで、最長3年です。申請は早めが原則ですが、延長後の受給期間の最後の日までなら申請できます。",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_basicbenefit.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "なるほど、知らないと損する数字と決まり",
+    "steps": "今日そろえる物と行く時間",
+    "desk": "管轄のハローワークの探し方と受付時間",
+    "worries": "離職票や病気、待期のことで迷ったら",
+    "guide": "受給期間を延ばすか迷ったときの決め方"
+  },
+  "depthAt": "2026-11-10T06:40:21+00:00"
 }
