@@ -14,12 +14,14 @@ keepTextLink が True の行は affiliate_links.json（本文中の文字リン�
 
 次のものは、わざと PARTNERS に入れていない（別の仕組みで扱う、またはオーナーの判断待ち）：
   - PLAUD（s00000025808001）、OZ GAMING（s00000027222001）：商品ごとの枠（content/offers.json の商品の行）で扱う
-  - 楽天アフィリエイト（s00000011623001）：楽天の商品ページへのリンク（deep link）の仕組みで扱う
+  - 楽天アフィリエイト（s00000011623001）：楽天の商品ページへのリンク（deep link）の仕組みで扱う。
+    楽天ふるさと納税の枠（rakuten-furusato）は下の RAKUTEN_DEEPLINKS で毎回書く（TSV の行の素材は楽天トラベル向けなので使わない）
   - TOSSY（s00000008903009）：証券の広告で、出すかどうかはオーナーの判断待ち
 """
 from __future__ import annotations
 
 import json
+import urllib.parse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -149,6 +151,61 @@ PARTNERS: dict[str, dict] = {
                         "a8": ["4BEO5P+CLOBQQ+1JUK+1HL85U", "13", "高品質SEO記事生成AIツール【Value AI Writer byGMO】", "", "", ""]},
 }
 
+# 楽天アフィリエイト（s00000011623001）の楽天ページへのリンク（deep link）。lib/amazon.ts の rakutenPageUrl と同じ a8mat・hgc・形
+# （scripts/rakuten_books.py も同じ）。TSV の行の素材（…6KMIQ）は楽天トラベル向けなので使わない。
+RAKUTEN_A8MAT = "4BELTP+50ED2Q+2HOM+BWGDT"
+RAKUTEN_HGC = "g00q0724.2bo11c45.g00q0724.2bo12179/a26102173090_4BELTP_50ED2Q_2HOM_BWGDT"
+RAKUTEN_PIXEL = "https://www15.a8.net/0.gif?a8mat=" + RAKUTEN_A8MAT
+
+
+def rakuten_page_url(page: str) -> str:
+    """lib/amazon.ts の rakutenPageUrl と同じ（encodeURIComponent と同じ文字を残す）"""
+    q = lambda text: urllib.parse.quote(text, safe="-_.!~*'()")
+    inner = f"https://hb.afl.rakuten.co.jp/hgc/{RAKUTEN_HGC}?pc={q(page)}&m={q(page)}"
+    return f"https://rpx.a8.net/svt/ejp?a8mat={RAKUTEN_A8MAT}&rakuten=y&a8ejpredirect={q(inner)}"
+
+
+# 名前・説明は event.rakuten.co.jp/furusato/ の表示から（2026-11-10 確認：題名「【楽天市場】楽天ふるさと納税」、寄付限度額シミュレーター、
+# 楽天会員のログインで寄付状況や寄付限度額が分かる）。ポイント・還元のことは書かない（ふるさと納税サイトのポイント付与は2025年10月から禁止）。
+# 楽天アフィリエイトの料率のページ（affiliate.rakuten.co.jp/guides/rate/）に、ふるさと納税の寄付が成果になるかは書かれていない（オーナーが確かめる）
+# program は本文中の文字リンク（scripts/main.py）が記事の語と照合しない名前にする（枠だけで使う）
+RAKUTEN_DEEPLINKS = {
+    "rakuten-furusato": {
+        "program": "楽天アフィリエイト（ふるさと納税）",
+        "page": "https://event.rakuten.co.jp/furusato/",
+        "name": "楽天ふるさと納税",
+        "label": "ふるさと納税",
+        "note": "楽天市場の中のふるさと納税。返礼品を探して寄付できます。",
+        "shop": "楽天ふるさと納税（楽天市場）",
+    },
+}
+
+
+def apply_rakuten_deeplinks(offers: dict, links: dict) -> None:
+    """RAKUTEN_DEEPLINKS を offers.json の partners と affiliate_links.json に書く（何度実行しても同じ結果）"""
+    for key, meta in RAKUTEN_DEEPLINKS.items():
+        url = rakuten_page_url(meta["page"])
+        links[meta["program"]] = {
+            "url": url,
+            "pixel": RAKUTEN_PIXEL,
+            "label": meta["name"],
+            "note": meta["note"],
+            "aliases": [],
+            "topics": [],
+        }
+        offers["partners"][key] = {
+            **offers["partners"].get(key, {}),
+            "programId": "s00000011623001",
+            "program": meta["program"],
+            "name": meta["name"],
+            "label": meta["label"],
+            "note": meta["note"],
+            "image": None,
+            "link": url,
+            "shop": meta["shop"],
+        }
+
+
 # 新しい話題（記事のタイトル・タグに一致したら、その話題の商品を出す）
 NEW_TOPICS = [
     {"key": "server", "match": "Dify|n8n|セルフホスト|VPS|レンタルサーバー|WordPress|デプロイ|ホスティング|Docker", "eyebrow": "この記事の技術を試すなら", "headline": "AIアプリを自分で動かすなら、サーバーから", "lead": "自分で運用する場合の選択肢です。無料で使える公式サービスと、必要な管理・料金を比較しましょう。", "partners": ["xserver-vps", "conoha-vps", "xserver"], "search": ["サーバー 構築 入門", "Docker 入門"], "require": "サーバ|Docker|Linux|クラウド|インフラ", "fill": ["coding", "agent"]},
@@ -186,7 +243,7 @@ ADD_TO_TOPIC = {
     "invest-nisa": ["matsui", "dmm-kabu"],
     "invest": ["matsui", "dmm-kabu"],
     "re-invest": ["ohya"],
-    "furusato": ["furusato-honpo"],
+    "furusato": ["furusato-honpo", "rakuten-furusato"],
     "tax-filing": ["freee"],
 }
 
@@ -194,12 +251,17 @@ ADD_TO_TOPIC = {
 # 上から順に、見出し・タグ・要約で match が基準点を超えた最初の行を使う（lib/offers.ts の relevanceScore と同じ点数）。
 # 見出しにも match の語があること（タグや要約だけで当てない）。まとめ記事と、見出しが exclude に当たる記事には出さない。genres があればそのジャンルの記事だけ（AI の業界ニュースに家計の広告を出さない）。
 # 出すのは提携リンクのある商品だけ、最大 max 件。名前と1行の説明は PARTNERS（公式の名前と中立な説明）のまま
+# ふるさと納税の3社（記事・ガイドは記事ごとにずらして2件。上限額の計算のページも同じ並び）
+FURUSATO_PARTNERS = ["furusato-honpo", "rakuten-furusato", "aupay-furusato"]
 ACTION_ADS = [
     {"key": "leak", "title": "偽SMSや乗っ取りが心配な人へ", "reason": "流出した情報を使った偽メール・偽SMSや、不正ログインへの備えに", "match": "情報流出|情報漏え?い|漏え?い|漏洩|件流出|流出の恐れ|が流出|不審メール|個人情報|不正アクセス|不正ログイン|不正利用|詐欺|フィッシング|なりすまし|ランサム|マルウェア|サイバー攻撃|乗っ取り", "partners": ["norton", "virusbuster", "eset"], "max": 2, "exclude": "ガードレール|AIガバナンス|脱獄|LLM"},
     {"key": "fire-insurance", "title": "火災保険・地震保険を見直したい人へ", "reason": "保険料や補償の変更をきっかけに、今の契約と比べるために", "match": "火災保険|地震保険|水災補償|損害保険料", "partners": ["bang-kasai"], "max": 1, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
     {"key": "water", "title": "断水に備えて、飲み水を用意したい人へ", "reason": "断水や災害で水道が止まったときの飲み水の備えに", "match": "断水|備蓄水|飲料水|給水|水道料金|水道代", "partners": ["oken-water", "frecious"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
     {"key": "disaster", "title": "停電や断水で困らないために", "reason": "停電・断水が続いたときの電源や食料の備えに", "match": "地震|津波|台風|大雨|豪雨|土砂災害|洪水|氾濫|噴火|停電|防災|避難|警報|大雪|線状降水帯|緊急地震速報|災害|備蓄", "partners": ["jackery", "bluetti", "akamaru-bousai", "alpha-foods", "stoole", "bang-kasai"], "max": 2},
-    {"key": "furusato", "title": "ふるさと納税の寄附先を探している人へ", "reason": "寄附先の返礼品と、控除の上限額を確かめるために", "match": "ふるさと納税|返礼品|ワンストップ特例", "partners": ["furusato-honpo", "aupay-furusato"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    {"key": "furusato", "title": "ふるさと納税の寄附先を探している人へ", "reason": "寄附先の返礼品と、控除の上限額を確かめるために", "match": "ふるさと納税|返礼品|ワンストップ特例", "partners": FURUSATO_PARTNERS, "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
+    # 2026-11-10 M4: 年末調整の記事（会社員）は、確定申告ソフトではなく、ふるさと納税の上限額の計算（サイト内）とふるさと納税のサイト。
+    # 確定申告・個人事業の語がある記事は下の tax（確定申告ソフト）。相続税・贈与税の「基礎控除」の記事には出さない。囲みの1行目は記事の話題によらず上限額の計算（internalFixed）
+    {"key": "nencho", "title": "年末調整の時期に、ふるさと納税も確かめたい人へ", "reason": "年末調整の時期に、ふるさと納税の上限額と寄附先を確かめるために", "match": "年末調整|扶養控除等申告書|基礎控除|源泉徴収票", "partners": FURUSATO_PARTNERS, "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "確定申告|青色申告|白色申告|e-Tax|インボイス|相続|贈与", "internal": "furusato", "internalFixed": True},
     {"key": "tax", "title": "申告や年末調整を早く片づけたい人へ", "reason": "申告や年末調整の書類づくりを早めに進めるために", "match": "年末調整|確定申告|青色申告|白色申告|e-Tax|インボイス|源泉徴収|医療費控除|扶養控除|所得税", "partners": ["freee", "mf-kakutei", "yayoi-kakutei"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
     # 2026-11-10: タイナビ（太陽光・蓄電池の見積もり）は、見出しに太陽光・蓄電池・ソーラーがある記事だけ（下の solar）。電気代の記事一般には出さない
     {"key": "solar", "title": "太陽光や蓄電池で電気代を考えたい人へ", "reason": "太陽光発電や蓄電池の設置を考えるときに、費用を比べるために", "match": "太陽光|蓄電池|ソーラー", "partners": ["tainavi", "elpio"], "max": 2, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "exclude": "株価|決算|業績|上場|時価総額|EV|電気自動車|全固体|半導体"},
@@ -238,6 +300,7 @@ ACTION_LEADS = {
     "water": "断水のとき最初に困るのは、飲み水の確保です。",
     "disaster": "災害の備えは、電気・水・食料を数日分そろえるのが基本です。",
     "furusato": "ふるさと納税は、控除の上限額の中で寄附先を選ぶのが基本です。",
+    "nencho": "今年分のふるさと納税は、12月31日までの寄附が対象です。",
     "tax": "申告の準備は、明細の整理と書類づくりに時間がかかります。",
     "solar": "太陽光や蓄電池は、設置の費用を複数の業者で比べるのが基本です。",
     "energy": "使い方を変えなくても、契約の見直しで電気代が下がる場合があります。",
@@ -305,6 +368,7 @@ PITCH = {
     # 税・ふるさと納税
     "furusato-honpo": {"fit": "返礼品を全国から選びたい人", "point": "全国の特産品を返礼品として選べるふるさと納税サイト", "cta": "返礼品を探す"},
     "aupay-furusato": {"fit": "返礼品を探して、そのまま寄附したい人", "point": "返礼品を探して寄附できるふるさと納税サイト", "cta": "返礼品を探す"},
+    "rakuten-furusato": {"fit": "楽天市場で返礼品を探したい人", "point": "楽天市場の中のふるさと納税。返礼品を探して寄付できます", "cta": "返礼品を探す"},
     "freee": {"fit": "帳簿づけから申告書までひとつで済ませたい人", "point": "帳簿づけから確定申告の書類づくりまでできるクラウド会計ソフト", "cta": "料金プランを見る"},
     "mf-kakutei": {"fit": "銀行やカードの明細を取り込みたい人", "point": "明細を取り込んで、帳簿づけから申告書の作成まで進められます", "cta": "料金プランを見る"},
     "yayoi-kakutei": {"fit": "個人事業主・副業で申告する人", "point": "青色申告・白色申告に対応するクラウド確定申告ソフト", "cta": "料金と無料期間を見る"},
@@ -354,6 +418,7 @@ GAIN = {
     "mf-kakutei": "明細を取り込んで、申告書づくりの手間を減らす",
     "yayoi-kakutei": "白色申告の書類を、無料のソフトで作る",
     "furusato-honpo": "控除の上限の中で、返礼品を全国から探す",
+    "rakuten-furusato": "楽天市場の中で返礼品を探して寄付する",  # ポイントのことは書かない
     "aupay-furusato": "返礼品を探して、そのまま寄附する",  # ポイントのことは書かない（ふるさと納税サイトのポイント付与は2025年10月から禁止）
     "hikkoshi-samurai": "引越し代を、複数の業者の見積もりで比べる",
     "epos": "年会費のかからないカードで、支払いとポイントを見直す",
@@ -380,6 +445,7 @@ MERITS = {
     "freee": ["無料お試しはクレジットカード登録不要", "白色・青色・消費税の申告に対応"],  # freee.co.jp/accounting/individual/
     "yayoi-kakutei": ["白色申告オンラインはずっと無料", "税務署に行かずe-Taxで申告できる"],  # yayoi-kk.co.jp/shinkoku/
     "furusato-honpo": ["5万件以上の返礼品を掲載", "クレジットカードは全自治体で使える"],  # furusatohonpo.jp/guide/payment/
+    "rakuten-furusato": ["寄付限度額のシミュレーターがある", "楽天会員でログインすると寄付状況を確かめられる"],  # event.rakuten.co.jp/furusato/（2026-11-10）。ポイントのことは書かない
     "aupay-furusato": ["控除の上限額をかんたんに計算できる"],  # furusato.wowma.jp。ポイントのことは書かない
     "bang-kasai": ["火災保険の見積もり依頼は無料", "複数社の商品を比べられる"],  # fire.bang.co.jp
     "hikkoshi-samurai": ["最大10社へまとめて見積もりを依頼", "業者を比べられる無料のサービス"],  # hikkoshizamurai.jp
@@ -408,7 +474,7 @@ LIFE_GENRES = ["public", "lifestyle", "business", "tech-gadget", "real-estate", 
 # 枠の見出しを作る短い名前。既存の話題と同じ商品を扱うものは同じ名前にして、「ふるさと納税とふるさと納税の…」のように重ねない
 # 2026-11-10: 見出し（title）を読者の言葉の一文にしたので、2つの話題を並べる見出し（「AとBに役立つサービス」）には短い名前を全部の話題に用意する
 LIFE_NAMES = {
-    "leak": "セキュリティ対策", "furusato": "ふるさと納税", "tax": "確定申告・節税", "mobile": "スマホ回線の見直し",
+    "leak": "セキュリティ対策", "furusato": "ふるさと納税", "nencho": "ふるさと納税", "tax": "確定申告・節税", "mobile": "スマホ回線の見直し",
     "fire-insurance": "火災保険の見直し", "water": "飲み水の備え", "disaster": "停電・災害の備え", "solar": "太陽光・蓄電池の見積もり", "energy": "電気代の見直し",
     "moving": "引越しの準備", "travel": "宿探し", "household": "固定費の見直し", "kids": "子どもの学び", "payment": "支払い方法の見直し",
     "benefit": "毎月の出費の見直し", "medical": "毎月の出費の見直し", "childbirth": "出産前後の飲み水の用意",
@@ -446,7 +512,7 @@ LIFE_EXTRA_TOPICS = [
     {"key": "life-kids-furusato", "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "min": 5,
      "match": "児童手当", "eyebrow": "この記事のあとにできること", "headline": "今年分のふるさと納税は12月31日まで",
      "lead": "ふるさと納税は、12月31日までの寄附がその年の控除の対象です。料金・条件は各公式サイトで確認してください。",
-     "partners": ["furusato-honpo", "aupay-furusato"], "name": "ふるさと納税", "money": "furusato"},
+     "partners": FURUSATO_PARTNERS, "name": "ふるさと納税", "money": "furusato"},
     # 高額療養費・医療費の記事: 行動欄の格安SIMのほかに、医療費控除の申告（確定申告ソフト）を本文中・記事末の枠に（ジャンルの既定の AI の講座を出さない）
     {"key": "life-medical-tax", "genres": ["public", "lifestyle", "business", "real-estate", "investment"], "min": 5,
      "match": "高額療養費|医療費", "eyebrow": "この記事のあとにできること", "headline": "医療費控除の申告を、ソフトで進めたい人へ",
@@ -543,6 +609,7 @@ def main() -> int:
         }
         added += 1
 
+    apply_rakuten_deeplinks(offers, links)
     apply_topics(offers)
     LINKS.write_text(json.dumps(links, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     OFFERS.write_text(json.dumps(offers, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

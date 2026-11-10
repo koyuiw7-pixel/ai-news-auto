@@ -44,18 +44,21 @@ const guide = (slug) => {
 };
 const keys = (ad) => (ad?.items ?? []).map(({ item }) => item.key);
 
-const FURUSATO = ["furusato-honpo", "aupay-furusato"];
+// 2026-11-10 M4: 楽天ふるさと納税（楽天アフィリエイトの rpx.a8.net のリンク）を足して3社。囲みにはずらして2件
+const FURUSATO = ["furusato-honpo", "rakuten-furusato", "aupay-furusato"];
+const AFF_URL = /^https:\/\/(?:px\.a8\.net\/svt\/ejp\?a8mat=[A-Z0-9+]+|rpx\.a8\.net\/svt\/ejp\?a8mat=4BELTP\+50ED2Q\+2HOM\+BWGDT&rakuten=y&a8ejpredirect=[A-Za-z0-9%._~-]+)$/;
 const TAX = ["freee", "mf-kakutei", "yayoi-kakutei"];
 const KIDS = ["digitane", "litalico"];
-const ALLOWED = { furusato: FURUSATO, tax: TAX, mobile: ["bb-excite"], kids: KIDS, medical: [] };
+const ALLOWED = { furusato: FURUSATO, nencho: FURUSATO, tax: TAX, mobile: ["bb-excite"], kids: KIDS, medical: [] };
 
 test("ふるさと納税のガイドは、上も下もふるさと納税のサイト（確定申告のガイドだけ、下は確定申告ソフト）", () => {
   for (const slug of ["furusato-how", "furusato-limit", "furusato-onestop"]) {
     const { top, lower } = guideAds(guide(slug));
     assert.equal(top?.key, "furusato", slug);
     assert.equal(lower?.key, "furusato", slug);
-    assert.deepEqual([...keys(top)].sort(), [...FURUSATO].sort(), slug);
-    assert.deepEqual([...keys(lower)].sort(), [...FURUSATO].sort(), slug);
+    assert.equal(keys(top).length, 2, slug);
+    assert.equal(keys(lower).length, 2, slug);
+    assert.ok([...keys(top), ...keys(lower)].every((key) => FURUSATO.includes(key)), slug);
     // 下の囲みは、上で先頭でなかった商品を先頭にする
     assert.notEqual(keys(top)[0], keys(lower)[0], slug);
   }
@@ -65,8 +68,26 @@ test("ふるさと納税のガイドは、上も下もふるさと納税のサ�
   assert.ok(keys(kakutei.lower).every((key) => TAX.includes(key)));
 });
 
-test("年末調整・確定申告のガイドは確定申告ソフト", () => {
-  for (const slug of ["nencho-how-to", "nencho-mid-career", "nencho-spouse", "nencho-target", "two-jobs-nencho", "fukugyo-20man", "iryohi-kojo", "nenkin-kakutei", "kanpu-shinkoku", "jigyo-shotoku", "zatsu-shotoku"]) {
+// 2026-11-10 M4: 年末調整のガイドは、上がふるさと納税の上限額の計算（サイト内）とふるさと納税のサイト、下が確定申告ソフト
+test("年末調整のガイド：上は /tools/furusato-limit への案内とふるさと納税のサイト、下は確定申告ソフト", () => {
+  const seen = new Set();
+  for (const slug of ["nencho-how-to", "nencho-mid-career", "nencho-spouse", "nencho-target", "two-jobs-nencho"]) {
+    const { top, lower } = guideAds(guide(slug));
+    assert.equal(top?.key, "nencho", slug);
+    assert.equal(lower?.key, "tax", slug);
+    assert.deepEqual((top.internal ?? []).map((link) => link.href), ["/tools/furusato-limit"], slug);
+    assert.ok(keys(top).length === 2 && keys(top).every((key) => FURUSATO.includes(key)), `${slug}: ${keys(top)}`);
+    assert.ok(keys(lower).length >= 1 && keys(lower).every((key) => TAX.includes(key)), slug);
+    keys(top).forEach((key) => seen.add(key));
+  }
+  // ガイドごとにずらすので、3社とも年末調整のガイドのどこかに出る
+  assert.deepEqual([...seen].sort(), [...FURUSATO].sort());
+  // 相続税の「基礎控除」のガイドには出さない
+  assert.deepEqual(guideAds(guide("sozoku-zei")), {});
+});
+
+test("確定申告のガイドは確定申告ソフト", () => {
+  for (const slug of ["fukugyo-20man", "iryohi-kojo", "nenkin-kakutei", "kanpu-shinkoku", "jigyo-shotoku", "zatsu-shotoku"]) {
     const { top, lower } = guideAds(guide(slug));
     assert.equal(top?.key, "tax", slug);
     assert.equal(lower?.key, "tax", slug);
@@ -74,9 +95,9 @@ test("年末調整・確定申告のガイドは確定申告ソフト", () => {
     assert.ok(keys(lower).every((key) => TAX.includes(key)), slug);
     assert.notEqual(keys(top)[0], keys(lower)[0], slug);
   }
-  // 年末のお金の手続き（年末調整・ふるさと納税）は、見出しで先に出る話題が上、もう1つが下
+  // 年末のお金の手続き（年末調整・ふるさと納税）は、見出しで先に出る年末調整（ふるさと納税の上限額とサイト）が上、確定申告ソフトが下
   const calendar = guideAds(guide("nenmatsu-money-calendar"));
-  assert.deepEqual([calendar.top?.key, calendar.lower?.key], ["tax", "furusato"]);
+  assert.deepEqual([calendar.top?.key, calendar.lower?.key], ["nencho", "tax"]);
 });
 
 test("スマホの乗り換えのガイドは格安SIMだけ（光回線は出さない）", () => {
@@ -156,7 +177,7 @@ test("出る商品は、話題ごとに決めた提携先だけ。リンクは�
       for (const { item: offer } of ad.items) {
         shown += 1;
         assert.ok(ALLOWED[ad.key]?.includes(offer.key), `${item.slug}: ${ad.key} に ${offer.key}`);
-        assert.match(offer.url, /^https:\/\/px\.a8\.net\/svt\/ejp\?a8mat=[A-Z0-9+]+$/, offer.key);
+        assert.match(offer.url, AFF_URL, offer.key);
         assert.doesNotMatch(offer.url, /YOUR_ID/);
         assert.doesNotMatch(`${offer.name} ${offer.label ?? ""} ${offer.note ?? ""}`, excluded, offer.key);
       }
@@ -205,10 +226,10 @@ test("広告の文：ふるさと納税のサイトにポイントの約束を�
   for (const rule of offers.actionAds.filter((r) => GUIDE_AD_RULES.some((c) => c.key === r.key))) {
     const text = `${rule.title} ${rule.reason ?? ""} ${rule.lead ?? ""}`;
     assert.doesNotMatch(text, /ざっくり|｜|\|/, rule.key);
-    if (rule.key === "furusato") assert.doesNotMatch(text, /ポイント|還元/, rule.key);
+    if (rule.key === "furusato" || rule.key === "nencho") assert.doesNotMatch(text, /ポイント|還元/, rule.key);
   }
   const importer = fs.readFileSync(path.join(root, "scripts/a8_import.py"), "utf8");
-  for (const line of importer.split("\n").filter((l) => /^\s*"(aupay-furusato|furusato-honpo)":/.test(l))) {
+  for (const line of importer.split("\n").filter((l) => /^\s*"(aupay-furusato|furusato-honpo|rakuten-furusato)":/.test(l))) {
     assert.doesNotMatch(line.split("#")[0], /ポイント|還元|Ponta/i, line.trim().slice(0, 40));
   }
 });
@@ -233,8 +254,10 @@ test("置き場所：ガイドは導入のすぐ下とよくある質問の前�
   const parts = fs.readFileSync(path.join(root, "components/rail/parts.tsx"), "utf8");
   assert.ok(parts.includes("rel={AFFILIATE_REL}"));
   assert.match(AFFILIATE_REL, /^sponsored /);
-  // 計算ツールの PR はふるさと納税のサイトだけ
-  assert.deepEqual([...keys(toolAd("furusato"))].sort(), [...FURUSATO].sort());
+  // 計算ツールの PR はふるさと納税のサイトだけ（3社の並びの先頭2件）
+  const tool2 = keys(toolAd("furusato"));
+  assert.equal(tool2.length, 2);
+  assert.ok(tool2.every((key) => FURUSATO.includes(key)), tool2.join());
 });
 
 // 2026-11-10 M3: 囲みを実際に描いて、提携リンクと「サイソクの案内」を確かめる（Next.js を起動しない。next/link は a に置き換える）
@@ -279,7 +302,7 @@ test("描いた囲み：提携リンクはすべて rel=sponsored で [data-aff-
     assert.ok(ad, slug);
     boxes.push([slug, ad, "action-ad"]);
   }
-  for (const slug of ["jidou-teate", "kogaku-ryoyohi"]) {
+  for (const slug of ["jidou-teate", "kogaku-ryoyohi", "nencho-how-to", "furusato-how"]) {
     const { top, lower } = guideAds(guide(slug));
     if (top) boxes.push([slug, top, GUIDE_AD_POS.top]);
     if (lower) boxes.push([slug, lower, GUIDE_AD_POS.lower]);
@@ -294,7 +317,7 @@ test("描いた囲み：提携リンクはすべて rel=sponsored で [data-aff-
       if (href.startsWith("/")) {
         assert.doesNotMatch(a, /sponsored|data-aff-rank/, `${slug}: サイト内の案内に sponsored`);
       } else {
-        assert.match(href, /^https:\/\/px\.a8\.net\//, slug);
+        assert.match(href.replace(/&amp;/g, "&"), AFF_URL, slug);
         assert.match(a, /rel="sponsored[^"]*"/, `${slug}: ${href}`);
       }
     }
