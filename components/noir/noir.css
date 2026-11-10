@@ -218,11 +218,12 @@ html:has(.noir) body {
   background: #ffffff;
 }
 .noir .nr-head h1 {
-  /* 本文の 1.8 倍（スマホ 16px→29px）・2.5 倍（PC 17px→43px）以上（docs/typography.md の h1） */
-  font: 900 clamp(29px, 6.6vw, 43px) / 1.4 var(--nr-display);
+  /* 2026-11-10 オーナー「題名が大きすぎ・4行は使いすぎ・字間が遠い」: スマホ 23px・PC 30px、詰め組み（palt）で字間を詰める（docs/typography.md の h1） */
+  font: 800 clamp(23px, 5.6vw, 30px) / 1.38 var(--nr-display);
   margin: 12px 0 0;
   text-wrap: pretty;
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
+  font-feature-settings: "palt" 1;
   color: var(--nr-text);
 }
 .noir .nr-meta {

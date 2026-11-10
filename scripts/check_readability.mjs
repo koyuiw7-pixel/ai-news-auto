@@ -36,7 +36,7 @@ export const RULES = {
   // 見出し。自信のある見え方＝本文との大きさの差をはっきり付ける
   heading: {
     wideFrom: 1024,
-    h1: { minSize: 28, minSizeWide: 36, minWeight: 700, minContrast: 7, ratio: 1.8, ratioWide: 2.5 },
+    h1: { minSize: 22, minSizeWide: 28, minWeight: 700, minContrast: 7, ratio: 1.4, ratioWide: 1.65 },
     h2: { minSize: 20, minWeight: 700, minContrast: 7, ratio: 1.35 },
     h3: { minSize: 17, minWeight: 700 }, // 一覧の題名・小見出し
   },
