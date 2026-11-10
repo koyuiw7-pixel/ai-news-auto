@@ -90,9 +90,9 @@
     }
   ],
   "todayActions": [
-    "自社の業種が金融・保険・小売に当たるか確認し、IBM Consultingの専用ページで条件を見る",
+    "自社の業種が金融・保険・小売に当たるかを確認し、IBM Consultingの専用ページで条件を見る",
     "試したい業務を1つ決め、既存システムとの連携要件を社内で整理する",
-    "SEIの事例を参考に、規制対応や管理の要件を情報システム部門と共有する"
+    "規制対応や管理の要件を、情報システム部門と共有する"
   ],
   "qualityScore": 92,
   "breaking": true,
@@ -126,5 +126,98 @@
     ],
     "ar": 1.3333,
     "src": "https://ai-tech-express.jp/img/ibm-microsoft-imagine-enterprise-0a672171.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "導入はIBM Consultingに運用を任せる形、共同で大規模に構築する形、自社で管理する形から選べると書かれています。",
+      "source": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "IBM Consulting Imagine Enterprise 専用ページ",
+      "url": "https://protect.checkpoint.com/v2/r01/___https:/www.ibm.com/consulting/imagine-enterprise___.YzJ1OndlY29tbXVuaWNhdGlvbnM6YzpvZmZpY2UzNjVfZW1haWxzX2F0dGFjaG1lbnQ6MGY3ZmM1YzQ3YWUyYTFiZTNiYjgxNTQwNDhiY2I2OTY6Nzo5MTA4OmNkZjQ3OGVhM2MzZDAyOTNlMjViMDExNTkyOTlkMDUxZWU1NDNiYWZiMWYxYzJkNTQ4ODRlNTI2ODU4ZmM5NmU6cDpUOkY",
+      "source": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/",
+      "note": "技術者の支援（forward-deployed engineering）は、条件を満たす案件が対象と書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自社の業種が金融・保険・小売に当たるかを確認し、IBM Consultingの専用ページで条件を見る",
+      "source": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/",
+      "steps": [
+        "IBM Consultingの専用ページを開く",
+        "当初の対象業界が金融、保険、小売であることを確認",
+        "導入の形（運用委託・共同構築・自社管理）を見る"
+      ],
+      "url": "https://protect.checkpoint.com/v2/r01/___https:/www.ibm.com/consulting/imagine-enterprise___.YzJ1OndlY29tbXVuaWNhdGlvbnM6YzpvZmZpY2UzNjVfZW1haWxzX2F0dGFjaG1lbnQ6MGY3ZmM1YzQ3YWUyYTFiZTNiYjgxNTQwNDhiY2I2OTY6Nzo5MTA4OmNkZjQ3OGVhM2MzZDAyOTNlMjViMDExNTkyOTlkMDUxZWU1NDNiYWZiMWYxYzJkNTQ4ODRlNTI2ODU4ZmM5NmU6cDpUOkY"
+    },
+    {
+      "action": "試したい業務を1つ決め、既存システムとの連携要件を社内で整理する",
+      "source": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/",
+      "steps": [
+        "既存のデータや業務の流れ、システムにつなぐ設計と発表",
+        "今の基盤を入れ替える必要はないと説明",
+        "連携させたい既存システムを社内で書き出す"
+      ]
+    },
+    {
+      "action": "規制対応や管理の要件を、情報システム部門と共有する",
+      "source": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/",
+      "steps": [
+        "統制、監視、AIコンプライアンス支援の仕組みを確認",
+        "本人確認や管理、セキュリティの仕組みを確認",
+        "業務で守るべき要件を情報システム部門に伝える"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "企業がAIの導入を早められるよう、IBM ConsultingとMicrosoftが技術と経験を組み合わせた基盤です。ページは、白紙から始めたり今の基盤を入れ替えたりせず、既存の仕組みを生かして始められる点を挙げています。",
+    "status": "background",
+    "source": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/"
+  },
+  "worries": [
+    {
+      "q": "今使っている社内システムは入れ替えが必要ですか？",
+      "a": "ページでは、既存のデータや業務の流れ、システムにつなぐ設計で、今使っている基盤を入れ替える必要はないと説明されています。本人確認や管理の仕組みも組み込まれていると書かれています。",
+      "source": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/",
+      "action": "連携させたいシステムと業務の流れを社内で書き出し、情報システム部門と共有する"
+    },
+    {
+      "q": "AIエージェントが勝手に動いて問題を起こさない？",
+      "a": "ページでは、AIエージェントを統制（controls）や監視（observability）、AIコンプライアンス支援の仕組みで管理する設計だと説明されています。セキュリティや本人確認も基盤に組み込まれると書かれています。",
+      "source": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/",
+      "action": "導入の前に、統制や監視の仕組みを情報システム部門と一緒に確かめる"
+    },
+    {
+      "q": "導入は、どのような形で始めるのですか？",
+      "a": "ページでは、IBM Consultingに運用を任せる形、共同で大規模に構築する形、自社で管理する形から選べると説明されています。また、業界向けに用意されたエージェントを自社向けに調整して始める考え方だとされています。",
+      "source": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/",
+      "action": "IBM Consultingの専用ページで、3つの導入の形と対象業界を確認する"
+    },
+    {
+      "q": "自社の業界は、最初の対象に入っていますか？",
+      "a": "当初の枠組みは金融、保険、小売で、製造、エネルギー、公共、モビリティなどは将来の候補として挙げられています。つまり、今すぐ対象になるのは当初の3業界です。",
+      "source": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/",
+      "action": "自社の業種が金融、保険、小売に当たるかを、専用ページで確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "導入の相談に進むか、今は情報収集か？",
+      "situation": "自社が当初の3業界に当たる",
+      "recommend": "まず専用ページで条件を確認すると良い",
+      "reason": "当初の対象は金融、保険、小売で、導入はIBM Consultingへの相談から始まります。料金はまだ発表されていないため、料金の比較は今はできません。",
+      "source": "https://news.microsoft.com/source/2026/11/10/ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "導入の形は3つ、既存システムは置き換えない",
+    "cause": "なぜ作られたのか、発表された背景",
+    "steps": "今日できること、業種と連携から確認",
+    "desk": "IBMの専用ページで条件を見る",
+    "worries": "既存システムや安全性、導入の不安",
+    "guide": "導入相談に進むか、今は情報収集か"
+  },
+  "depthAt": "2026-11-10T13:22:41+00:00"
 }
