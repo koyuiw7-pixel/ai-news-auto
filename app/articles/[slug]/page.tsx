@@ -101,6 +101,7 @@ import { isNoir } from "@/lib/noir";
 import { noirArticlePage } from "@/components/noir/noirArticlePage";
 import { compareOffersFor, funnelForArticle, insertCompareSlot } from "@/lib/comparison";
 import CompareOffers from "@/components/CompareOffers";
+import { foldSourceLists } from "@/lib/source-fold";
 import FunnelCard from "@/components/FunnelCard";
 import { canonicalChannel, channelName } from "@/lib/channel-labels";
 
@@ -276,7 +277,7 @@ export default async function ArticlePage({ params }: Props) {
     : "";
   const easy = article.highlights.length > 0 ? dropSummarySections(easyClean) : easyClean;
   const easyMinutes = Math.max(1, Math.round(easy.length / 500));
-  const easyHtml = easy ? retitleHtml(await renderMarkdown(easy, affiliates.map((a) => a.url), isLiveArticleSlug), "easy", article.sectionTitles, "easy") : "";
+  const easyHtml = easy ? foldSourceLists(retitleHtml(await renderMarkdown(easy, affiliates.map((a) => a.url), isLiveArticleSlug), "easy", article.sectionTitles, "easy")) : "";
   // 古い記事の「## 概要」の章は、リードと「この記事のポイント」のくり返しなので出さない（台帳 A19。新しい記事は門で作らせない）
   // リンクの文字が slug のままの記事へのリンクは、リンク先の題名にする（台帳 A36）
   const bodyOpened = stripSummaryOpener(titleSlugLinks(article.body, (s) => getArticleSummary(s)?.title), article.lede ?? "");
@@ -319,14 +320,15 @@ export default async function ArticlePage({ params }: Props) {
   const calc = calculatorForArticle(article);
   // 見出しの言い換えは、章名で位置を探す差し込み（図・計算機）が終わってから
   // 本文に置く公式の写真・図（出典つき・1〜2枚。lib/body-images.ts）
-  const bodyHtmlRaw = retitleHtml(
+  // 本文の終わりの出典の一覧は、閉じた「出典を見る（N件）」にたたむ（2026-11-10 オーナー。lib/source-fold.ts・台帳 W37）
+  const bodyHtmlRaw = foldSourceLists(retitleHtml(
     markCalculatorSlot(
       insertArticleFigures(insertBodyImages(insertFigures(html, figures), article.bodyImages ?? [], article.title), article.figures, article.title),
       calc?.heading ?? null,
     ),
     "body",
     article.sectionTitles,
-  );
+  ));
   // 比較記事は、最初の比較表の直後に提携先の一覧の印を入れる（表が無い記事は記事の終わりの一覧だけ）
   const bodyHtml = compareOffers ? insertCompareSlot(bodyHtmlRaw) : bodyHtmlRaw;
   const compareInline = compareOffers && bodyHtml !== bodyHtmlRaw ? <CompareOffers offers={compareOffers} pos="compare-table" /> : undefined;

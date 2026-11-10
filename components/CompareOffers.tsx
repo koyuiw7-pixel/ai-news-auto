@@ -26,10 +26,10 @@ export default function CompareOffers({
       data-aff-pos={pos}
       data-compare-topic={offers.topic}
       aria-label="PR：広告"
-      className={`relative max-w-[46em] rounded-2xl border border-line-strong bg-surface p-4 sm:p-5 ${className}`}
+      className={`ad-box relative max-w-[46em] rounded-2xl border border-line-strong p-4 sm:p-5 ${className}`}
     >
       <p className="flex items-center gap-2 text-meta font-bold text-muted">
-        <span className="rounded border border-current px-1.5 tracking-wider">PR</span>
+        <span className="ad-pr">PR</span>
         {pos === "compare-table" ? "比べた候補の公式サイト" : "申し込みは公式サイトで"}
       </p>
       <ul className="mt-3 grid gap-2.5">
@@ -59,9 +59,8 @@ export default function CompareOffers({
           </li>
         ))}
       </ul>
-      <p className="mt-2.5 text-meta leading-relaxed text-muted">
-        ※ 広告（アフィリエイトリンク）です。申し込みがあると当サイトに紹介料が支払われることがあります。並びは記事の評価ではありません。料金・条件は各公式サイトで確認してください。
-      </p>
+      {/* 広告の長い注記は出さない（2026-11-10 オーナー決定・台帳 W37。PR の札とページ冒頭の表示で示す）。並びの意味だけ1行 */}
+      <p className="mt-2 text-meta leading-relaxed text-muted">並びは記事の評価ではありません。</p>
       {countImpression && <Pixels pixels={offers.items.map(({ pixel }) => pixel).filter((p): p is string => Boolean(p))} />}
     </aside>
   );

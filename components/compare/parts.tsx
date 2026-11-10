@@ -33,8 +33,8 @@ export function Breadcrumb() {
 export function PrMark({ className = "" }: { className?: string }) {
   return (
     <span
-      className={`inline-grid h-[18px] place-items-center rounded-[3px] border border-current px-1 text-badge font-bold leading-none tracking-wider ${className}`}
-      title="提携先の商品（リンク経由の購入で紹介料が入ることがあります）"
+      className={`ad-pr ${className}`}
+      title="提携先の商品（広告）"
     >
       PR
     </span>
@@ -323,7 +323,7 @@ export function Disclosure({ view, className = "" }: { view: GuideView; classNam
       {view.hasSponsored && (
         <>
           <PrMark className="mr-1.5 align-[1px] text-ink" />
-          本ページはプロモーションを含みます。「PR」の付いた商品は提携先で、リンク経由の購入で当サイトに紹介料が入ることがあります。それ以外は提携していません。
+          本ページはプロモーションを含みます（「PR」の付いた商品が提携先です）。
         </>
       )}
       編集部が実際に使って評価したものではありません。

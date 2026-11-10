@@ -33,16 +33,23 @@ export default function SourceRecord({
     !mixed &&
     (isNewsOutletChannel(article.channelSlug) ||
       ((article.channelSlug ?? "").startsWith("radar-") && !/公式|省|庁|委員会|政府|都庁|県|市役所/.test(sourceName)));
-  const row = "grid gap-1 py-3 sm:grid-cols-[9rem_1fr] sm:gap-4";
-  const key = "text-meta font-bold text-muted";
-  const link = "font-semibold text-ink underline decoration-line-strong underline-offset-4 hover:text-accent";
+  // 2026-11-10 オーナー「出典はこんなに大きくいらない。表示すればいいだけなのにメインの内容みたいになっている」（台帳 W37）:
+  // 小さな文字の1行「出典を見る（N件）」にたたむ（閉じた <details>）。中身は HTML に残す（検索エンジン・AI にも読める。出典は消さない）
+  const row = "grid gap-0.5 py-1.5 sm:grid-cols-[7rem_1fr] sm:gap-3";
+  const key = "font-bold text-muted";
+  const link = "text-ink-soft underline decoration-line-strong underline-offset-2 hover:text-accent";
+  const count = (sourceUrl ? 1 : 0) + (article.factSources ?? []).length;
 
   return (
-    <section aria-labelledby="record-heading" className="mt-12 max-w-[46em] rounded-2xl border border-line px-5 py-4 sm:px-6">
-      <h2 id="record-heading" className="t-h3">
-        出典と更新履歴
-      </h2>
-      <dl className="mt-2 divide-y divide-line text-note leading-relaxed text-ink-soft">
+    <section aria-labelledby="record-heading" className="src-record mt-10 max-w-[46em]">
+      <details className="src-fold">
+        <summary>
+          <h2 id="record-heading" className="src-fold-title">
+            {count > 0 ? `出典を見る（${count}件）` : "出典と更新履歴を見る"}
+          </h2>
+          <span className="src-fold-sub">・確認方法・更新履歴</span>
+        </summary>
+      <dl className="mt-1 divide-y divide-line leading-relaxed text-muted">
         {sourceUrl && (
           <div className={row}>
             <dt className={key}>{article.sourceType === "web" ? (mixed ? "出典" : reported ? "出典（報道）" : "出典（公式）") : "元の動画"}</dt>
@@ -160,6 +167,7 @@ export default function SourceRecord({
           </dd>
         </div>
       </dl>
+      </details>
     </section>
   );
 }

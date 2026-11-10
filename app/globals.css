@@ -73,6 +73,12 @@
   --shadow: 0 1px 2px rgb(11 26 51 / 0.06), 0 0 0 1px rgb(11 26 51 / 0.05);
   --shadow-lift: 0 14px 28px -14px rgb(11 26 51 / 0.32), 0 0 0 1px rgb(11 26 51 / 0.07);
   --glass: rgb(255 255 255 / 0.74);
+  /* 広告の囲み（PR）だけに使う砂色。記事の赤・紺・灰・緑（今できること）・ノワールの青／水色と重ならない（台帳 W37） */
+  --ad-bg: #fbf6ea;
+  --ad-head: #f4ebd6;
+  --ad-line: #e3d3ad;
+  --ad-badge: #6b5317;
+  --ad-badge-ink: #ffffff;
   color-scheme: light;
 }
 
@@ -109,6 +115,11 @@
   --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.04);
   --shadow-lift: 0 16px 30px -14px rgb(0 0 0 / 0.6), 0 0 0 1px rgb(143 179 240 / 0.18);
   --glass: rgb(8 16 31 / 0.72);
+  --ad-bg: #1b170e;
+  --ad-head: #241e12;
+  --ad-line: #4a3d22;
+  --ad-badge: #e3c27a;
+  --ad-badge-ink: #1b170e;
   color-scheme: dark;
 }
 
@@ -853,4 +864,125 @@ mark {
 }
 :root[data-theme="dark"][data-adv="b"] .pr-link {
   color: var(--accent);
+}
+
+/*
+ * 広告の囲み（2026-11-10 オーナー「広告がうまく入れられているのはいい感じ。だけど色の使い方が記事と同じすぎてメリハリがない」。台帳 W37）。
+ * 本文と同じ白地をやめ、砂色の地と枠で記事と分ける。上の1行（.ad-head）は少し濃い帯、右上に塗りの小さな「PR」の札（.ad-pr）。
+ * ボタン（.pr-cta）の色・大きさ・位置は変えない。囲みの中の罫線も砂色にそろえる
+ */
+.ad-box {
+  background: var(--ad-bg) !important;
+  border-color: var(--ad-line) !important;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.02), 0 6px 18px -14px rgb(80 60 10 / 0.35);
+}
+.ad-box :where(.border-line, .border-line-strong),
+.ad-box :where(.divide-line) > :not(:last-child) {
+  border-color: var(--ad-line) !important;
+}
+.ad-box .ad-head {
+  background: var(--ad-head);
+}
+.ad-box :where(.hover\:bg-surface):hover {
+  background: var(--ad-head) !important;
+}
+.ad-pr {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 3px;
+  background: var(--ad-badge);
+  color: var(--ad-badge-ink);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+/*
+ * 出典の一覧（本文の終わり・記事末の「出典と更新履歴」）は、小さな文字の閉じた1行にたたむ（lib/source-fold.ts・components/SourceRecord.tsx。台帳 W37）
+ * 2026-11-10 オーナー「出典はこんなに大きくいらない。表示すればいいだけなのにメインの内容みたいになっている」
+ */
+.src-fold {
+  margin: 1.25rem 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.src-fold > summary {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+  padding: 4px 2px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  color: var(--muted);
+}
+.src-fold > summary::-webkit-details-marker {
+  display: none;
+}
+.src-fold > summary::before {
+  content: "+";
+  display: inline-block;
+  width: 1em;
+  font-weight: 700;
+  text-align: center;
+}
+.src-fold[open] > summary::before {
+  content: "−";
+}
+.src-fold > summary:hover {
+  color: var(--ink-soft);
+}
+.src-fold .src-fold-title {
+  display: inline;
+  margin: 0 !important;
+  font: inherit !important;
+  color: inherit;
+  letter-spacing: 0;
+}
+.src-fold .src-fold-sub {
+  font-weight: 400;
+}
+.src-fold.src-fold .src-list {
+  list-style: none;
+  margin: 2px 0 0 !important;
+  padding: 6px 0 0 1.35em !important;
+  background: none !important;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+}
+.src-fold.src-fold .src-list > li {
+  margin: 0 !important;
+  padding: 2px 0 !important;
+  font-size: 0.8125rem !important;
+  line-height: 1.6 !important;
+  color: var(--muted);
+}
+.src-fold.src-fold .src-list > li::before {
+  content: none !important;
+}
+.src-fold a {
+  color: var(--ink-soft) !important;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong) !important;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+.src-fold .src-host {
+  margin-left: 0.5em;
+  color: var(--muted);
+  font-size: 0.92em;
+}
+.src-record .src-fold {
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.src-record dl {
+  font-size: 0.8125rem;
 }

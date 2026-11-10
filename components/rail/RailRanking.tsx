@@ -38,7 +38,7 @@ export default function RailRanking({
       data-aff-pos={pos ?? (wide ? "ranking-inline" : "ranking-rail")}
       data-ad-ab=""
       aria-label="PR：広告・紹介"
-      className="relative overflow-hidden rounded-2xl border border-line bg-paper shadow-[0_1px_2px_rgb(11_26_51/0.05)]"
+      className="ad-box relative overflow-hidden rounded-2xl border border-line"
     >
       <Header text={heading} wide={wide} />
 
@@ -47,9 +47,12 @@ export default function RailRanking({
       {/* 枠の話題に合うサイト内のお金のページ（例: 児童手当の記事 → ふるさと納税の上限額の計算。lib/offers.ts の money。広告ではない） */}
       {offer.money && <InternalMoneyCard links={[offer.money]} className="border-t border-line" />}
 
-      <div className="border-t border-line bg-surface px-4 py-2.5">
-        <PrNote checkedAt={offer.checkedAt} hasBook={hasBook} />
-      </div>
+      {/* 価格・評価を出す枠だけ、その時点の1行（広告の長い注記は出さない。2026-11-10 オーナー決定・台帳 W37） */}
+      {hasBook && (
+        <div className="border-t border-line px-4 py-2">
+          <PrNote checkedAt={offer.checkedAt} hasBook={hasBook} />
+        </div>
+      )}
       {countImpression && <><Pixels pixels={offer.pixels} /><TimedPixels enabled={process.env.VERCEL_ENV === "production"} pixels={offer.timedPixels ?? []} /></>}
     </aside>
   );
@@ -60,11 +63,11 @@ export default function RailRanking({
  * 2026-11-10 オーナー「広告が魅力的じゃない」: 大きな見出しは、話題の一般論（「スマホの回線は、乗り換えで料金と条件を比べられる」）ではなく、
  * 1つ目の商品で読者が確かめられること（pitch.gain。RankingBody → PrFeature）にした。
  * 2つの話題が並ぶ枠でも見出しは商品ごとなので、見出しと商品がずれない（2026-11-10 チームの点検: 「子どもの学び…」の見出しにふるさと納税が出ていた）
- * 広告であることは札・aria-label・枠の下の注記で示す（ステマ規制の表示は残す）
+ * 広告であることは札・aria-label・砂色の枠で示す（ステマ規制の表示は残す。枠の下の長い注記は 2026-11-10 に外した・台帳 W37）
  */
 function Header({ text, wide }: { text: string; wide: boolean }) {
   return (
-    <div className={`flex items-center justify-between gap-3 border-b border-line ${wide ? "px-4 py-2.5 sm:px-6" : "px-4 py-2.5"}`}>
+    <div className={`ad-head flex items-center justify-between gap-3 border-b border-line ${wide ? "px-4 py-2.5 sm:px-6" : "px-4 py-2.5"}`}>
       <p className="min-w-0 text-meta font-bold leading-snug text-ink-soft">{text}</p>
       <PrTag />
     </div>

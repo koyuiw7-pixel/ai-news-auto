@@ -33,14 +33,12 @@ function BlockCta({
   return (
     <section
       data-aff-pos={compact ? "cta-secondary" : "cta-primary"}
-      className={`relative overflow-hidden rounded-2xl border border-accent/25 bg-accent-soft ${
+      className={`relative overflow-hidden rounded-2xl border ${cta.isAffiliate ? "ad-box border-line" : "border-accent/25 bg-accent-soft"} ${
         compact ? "p-5" : "p-6 sm:p-8"
       } ${className ?? ""}`}
     >
       {cta.isAffiliate && (
-        <span className="absolute right-3 top-3 rounded bg-surface/70 px-1.5 py-0.5 text-badge font-semibold text-muted">
-          PR
-        </span>
+        <span className="ad-pr absolute right-3 top-3">PR</span>
       )}
 
       {cta.eyebrow && <p className="eyebrow">{cta.eyebrow}</p>}
@@ -76,7 +74,6 @@ function BlockCta({
       {cta.note && (
         <p className="mt-3 text-meta text-muted">
           {cta.note}
-          {cta.isAffiliate && "／当サイトは広告収入を得ています"}
         </p>
       )}
     </section>
@@ -95,13 +92,13 @@ function InlineCta({
   return (
     <aside
       data-aff-pos="cta-inline"
-      className={`flex flex-col gap-4 border-y-2 border-accent/30 py-5 sm:flex-row sm:items-center sm:justify-between ${
+      className={`flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between ${cta.isAffiliate ? "ad-box rounded-2xl border border-line px-4 py-4 sm:px-6" : "border-y-2 border-accent/30 py-5"} ${
         className ?? ""
       }`}
     >
       <div className="min-w-0">
         {cta.isAffiliate && (
-          <p className="text-meta font-bold tracking-widest text-muted">PR</p>
+          <span className="ad-pr">PR</span>
         )}
         <p className="mt-1 text-[15px] font-bold leading-[1.6] text-ink">
           {cta.title}

@@ -109,12 +109,17 @@ export function initialOf(name: string): string {
   return first.toUpperCase();
 }
 
+/**
+ * 枠の下の注記。2026-11-10 オーナー決定（台帳 W37）: 「価格・在庫・利用条件はリンク先でご確認ください。リンク経由の購入で当サイトに紹介料が
+ * 入ることがあります。」は出さない（広告に集中できない）。広告の表示はページ冒頭の「本ページはプロモーションを含みます」と枠の「PR」の札で足りる。
+ * 価格・評価を出す枠（本）だけ、その数字がいつのものかを1行で残す（表示した価格の時点。広告の説明ではない）。それ以外は何も出さない
+ */
 export function PrNote({ checkedAt, hasBook }: { checkedAt: string; hasBook: boolean }) {
+  if (!hasBook) return null;
   return (
-    <p className="text-note leading-relaxed text-muted">
+    <p className="text-meta leading-relaxed text-muted">
       {/* 並びは閲覧履歴で変わり、本が見えていない枠もある（セキュリティソフトだけの枠に「書籍の」と出ていた）ので「書籍」とは言わない */}
-      {hasBook && <>表示中の価格・評価は取得時点（{checkedDate(checkedAt)}）のものです。</>}
-      価格・在庫・利用条件はリンク先でご確認ください。リンク経由の購入で当サイトに紹介料が入ることがあります。
+      表示中の価格・評価は取得時点（{checkedDate(checkedAt)}）のものです。
     </p>
   );
 }
@@ -278,7 +283,10 @@ export function PrRow({ item, rank, onClick, price }: { item: OfferItem; rank: n
   );
 }
 
-/** 囲みの右上の小さな「PR」の札（ステマ規制の「広告であることが分かる表示」。大きくしない。2026-11-09 オーナー） */
+/**
+ * 囲みの右上の小さな「PR」の札（ステマ規制の「広告であることが分かる表示」。大きくしない。2026-11-09 オーナー）。
+ * 2026-11-10（台帳 W37）: 枠の線だけの札から、砂色の塗りの札（app/globals.css の .ad-pr）に。囲みの注記を外したので、札ではっきり示す
+ */
 export function PrTag() {
-  return <span className="shrink-0 rounded-sm border border-line-strong px-1.5 text-badge leading-[18px] font-semibold tracking-wider text-muted">PR</span>;
+  return <span className="ad-pr">PR</span>;
 }

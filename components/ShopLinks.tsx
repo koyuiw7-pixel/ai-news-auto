@@ -13,7 +13,7 @@ export default function ShopLinks({ link, className = "" }: { link: ShopLink; cl
       <a href={link.rakuten} target="_blank" rel={AFFILIATE_REL} className="mx-1 text-accent underline underline-offset-4">
         楽天で見る
       </a>
-      <span className="text-muted">（PR）</span>
+      <span className="ad-pr ml-1 align-[1px]">PR</span>
     </p>
   );
 }

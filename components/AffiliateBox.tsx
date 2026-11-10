@@ -15,15 +15,13 @@ export default function AffiliateBox({ links, compact }: Props) {
   return (
     <section
       data-aff-pos="box"
-      className={`rounded-2xl border border-line bg-surface ${compact ? "p-5" : "p-6"}`}
+      className={`ad-box rounded-2xl border border-line ${compact ? "p-5" : "p-6"}`}
     >
       <div className="flex items-baseline justify-between gap-2">
         <h2 className={compact ? "t-card" : "t-h3"}>
           この記事に関連するツール・サービス
         </h2>
-        <span className="shrink-0 rounded bg-line px-1.5 py-0.5 text-meta text-muted">
-          PR
-        </span>
+        <span className="ad-pr">PR</span>
       </div>
 
       <ul className={`mt-4 ${compact ? "space-y-2.5" : "space-y-3"}`}>
@@ -55,9 +53,7 @@ export default function AffiliateBox({ links, compact }: Props) {
         ))}
       </ul>
 
-      <p className="mt-4 text-note leading-relaxed text-muted">
-        ※ 上記リンクはアフィリエイトリンクを含みます。リンク経由で申し込まれた場合、当サイトに紹介料が支払われることがあります。価格・提供条件は各公式サイトをご確認ください。
-      </p>
+
     </section>
   );
 }
