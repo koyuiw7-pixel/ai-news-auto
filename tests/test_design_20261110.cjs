@@ -100,3 +100,75 @@ test("[W37] 囲みの下の長い広告の注記は出さない（ページ冒�
   assert.match(read("app/articles/[slug]/page.tsx"), /本ページはプロモーションを含みます/);
   assert.match(read("docs/owner_rules.md"), /^\| W37 \| \*\*2026-11-10 オーナー決定/m);
 });
+
+// 台帳 W38（2026-11-10 オーナー）: 広告の「得のカード」。数字は公式の出典と確認日つき・景品表示法の言葉を使わない・記事ごとの見出し
+function loadBenefits() {
+  const out = ts.transpileModule(read("lib/ad-benefits.ts").replace(/^import data from "@\/content\/ad_benefits\.json";/m, "const data = __DATA__;"), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+  }).outputText;
+  const mod = { exports: {} };
+  new Function("module", "exports", "__DATA__", out)(mod, mod.exports, JSON.parse(read("content/ad_benefits.json")));
+  return mod.exports;
+}
+const benefits = loadBenefits();
+const benefitData = JSON.parse(read("content/ad_benefits.json"));
+
+test("[W38] 得のカードの数字はすべて出典（https の公式ページかサイト内のページ）と確認日つき", () => {
+  for (const [key, raw] of Object.entries(benefitData.offers)) {
+    for (const chip of raw.chips ?? []) {
+      const src = benefitData.sources[chip.src];
+      assert.ok(src, `${key}: 出典 ${chip.src} が無い`);
+      assert.match(src.url, /^(https:\/\/|\/)/, `${key}: ${src.url}`);
+      assert.match(src.checkedAt, /^\d{4}-\d{2}-\d{2}$/, `${key}: 確認日`);
+    }
+    if (raw.use) assert.ok(benefitData.offers[raw.use], `${key}: use ${raw.use}`);
+  }
+  // 出典の無い数字は捨てる
+  assert.equal(benefits.benefitFor("no-such-offer"), undefined);
+});
+
+test("[W38] 景品表示法で根拠なしに使えない言葉（最安・必ず・絶対・No.1・一番）を得のカードに書かない", () => {
+  const text = JSON.stringify({ offers: benefitData.offers, articles: benefitData.articles });
+  assert.doesNotMatch(text, benefits.BANNED_WORDS);
+  // ふるさと納税の「2,000円」は「上限の中なら」の条件つきで見せる
+  for (const row of benefitData.articles) for (const h of Object.values(row.headlines)) if (/2,000円/.test(h)) assert.match(h, /上限の中/, h);
+});
+
+test("[W38] ふるさと納税の上限の例は計算ツール（lib/calc-math.ts）と同じ数字", () => {
+  const out = ts.transpileModule(read("lib/calc-math.ts"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
+  const mod = { exports: {} };
+  new Function("module", "exports", "require", out)(mod, mod.exports, require);
+  const limit = mod.exports.furusatoLimit(300000, 10).limit;
+  const chip = benefitData.offers.furusato.chips.find((c) => c.label === "上限の例");
+  assert.equal(chip.value, `約${(Math.round(limit / 1000) / 10).toFixed(1)}万円`);
+  assert.match(chip.sub, /所得割30万円・所得税率10%/);
+});
+
+test("[W38] 記事ごとの見出し（読者の状況）は記事の slug で決まり、ない記事は商品の見出しのまま", () => {
+  const ca = benefits.benefitFor("rakuten-furusato", "child-allowance-december-payment");
+  assert.match(ca.headline, /子育て世帯/);
+  assert.equal(ca.chips[0].value, "2,000円");
+  assert.ok(ca.sources.some((x) => x.url === "/tools/furusato-limit"), "上限の例は計算ツールが出典");
+  assert.match(benefits.benefitFor("rakuten-furusato", "nencho-2026-changes").headline, /年末調整/);
+  assert.equal(benefits.benefitFor("rakuten-furusato", "some-other-article").headline, undefined);
+  assert.match(benefits.benefitFor("norton", "docomo-data-leak-what-to-do").headline, /流出/);
+  assert.match(benefits.benefitFor("bb-excite", "pension-support-benefit-old-age-eligibility").headline, /年金/);
+  const listed = benefits.withArticleBenefits([{ item: { key: "mf-kakutei" }, pixel: "p" }], "winter-bonus-take-home-pay-calculation");
+  assert.equal(listed[0].pixel, "p", "枠の中身はそのまま");
+  assert.match(listed[0].item.benefit.headline, /ボーナス/);
+  // 見出しの正規表現が、今ある記事に当たる
+  const slugs = fs.readdirSync(path.join(root, "content/articles")).map((f) => f.replace(/\.json$/, ""));
+  for (const row of benefitData.articles) assert.ok(slugs.some((s) => new RegExp(row.match).test(s)), `当たる記事が無い: ${row.match}`);
+});
+
+test("[W38] 記事・ガイド・計算ツールの PR に得のカードを付け、PrFeature が数字と出典を描く（クリックの置き場所 data-aff-pos は変えない）", () => {
+  const page = read("app/articles/[slug]/page.tsx");
+  assert.match(page, /actionAdWithBenefits\(actionAdForArticle\(article\), article\.slug\)/);
+  assert.match(page, /offerWithBenefits\(offerPlan\.rail, article\.slug\)/);
+  assert.match(read("components/HowtoGuideView.tsx"), /actionAdWithBenefits\(rawAds\.top/);
+  assert.match(read("app/tools/furusato-limit/page.tsx"), /actionAdWithBenefits\(toolAd\("furusato"\)/);
+  const parts = read("components/rail/parts.tsx");
+  assert.match(parts, /<BenefitNumbers benefit=\{benefit\} \/>/);
+  assert.match(parts, /出典・確認日：/);
+  assert.match(read("components/ActionAd.tsx"), /data-aff-pos=\{pos\}/);
+});

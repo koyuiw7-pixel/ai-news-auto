@@ -1,6 +1,8 @@
 import type { OfferItem } from "@/lib/offers";
 import { AFFILIATE_REL } from "@/lib/affiliate";
 import { priceIsFresh } from "@/lib/offer-time";
+import Link from "next/link";
+import type { Benefit } from "@/lib/ad-benefits";
 
 const yen = new Intl.NumberFormat("ja-JP");
 const dateFormat = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numeric", timeZone: "Asia/Tokyo" });
@@ -208,20 +210,25 @@ export function PrFeature({
   onClick?: () => void;
   rank?: number;
 }) {
-  // 見出しは読者が確かめられること（pitch.gain）。無い商品は見出しを付けず、画像と名前から始める（枠の上の1行が話題を示す）
-  const gain = item.pitch?.gain;
+  // 見出しは記事ごとの読者の状況（benefit.headline。lib/ad-benefits.ts）→ 読者が確かめられること（pitch.gain）。
+  // 無い商品は見出しを付けず、画像と名前から始める（枠の上の1行が話題を示す）
+  const benefit = item.benefit;
+  const numbers = Boolean(benefit && (benefit.chips.length > 0 || benefit.compare));
+  const gain = benefit?.headline ?? item.pitch?.gain;
   // 良いところ（公式の事実）。無ければ確認済みの仕様（facts）
   const merits = item.pitch?.merits ?? item.facts ?? [];
   // どちらも無い商品は、公式の情報から書いた1行（point / note。本は楽天の売れ筋・レビュー）を代わりに出す
   const point = merits.length === 0 ? (item.pitch?.point ?? reasonOf(item)) : undefined;
   return (
+    <>
     <a
       href={item.url}
       target="_blank"
       rel={AFFILIATE_REL}
       data-aff-rank={rank}
+      data-benefit={numbers ? "numbers" : benefit ? "headline" : undefined}
       onClick={onClick}
-      className={`group block ${wide ? "p-4 sm:p-6" : "p-4"}`}
+      className={`group block ${wide ? "p-4 sm:p-6" : "p-4"} ${benefit && (benefit.link || benefit.sources.length > 0) ? "pb-3 sm:pb-3" : ""}`}
     >
       {gain && <span className={`block font-bold leading-[1.45] text-ink text-pretty ${wide ? "text-[17px] sm:text-[19px]" : "text-[17px]"}`}>{gain}</span>}
       <span className={`${gain ? "mt-3" : ""} grid items-start gap-x-3.5 gap-y-3 ${wide ? "grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-[168px_minmax(0,1fr)] sm:gap-x-6" : "grid-cols-[96px_minmax(0,1fr)]"}`}>
@@ -235,7 +242,10 @@ export function PrFeature({
           {price && <span className="mt-1 block text-[18px] font-bold tabular-nums text-ink">{price}</span>}
         </span>
         <span className={`col-span-2 block ${wide ? "sm:col-span-1 sm:col-start-2" : ""}`}>
-          {merits.length > 0 ? (
+          {/* 得のカード: 大きな数字（3つまで）と前後の比べ。数字のある広告は良いところの文を出さない（説明にしない。2026-11-10 オーナー） */}
+          {benefit && numbers ? (
+            <BenefitNumbers benefit={benefit} />
+          ) : merits.length > 0 ? (
             <MeritList merits={merits} />
           ) : (
             point && <span className="block text-note leading-[1.6] text-ink-soft">{point}</span>
@@ -256,7 +266,82 @@ export function PrFeature({
         </span>
       </span>
     </a>
+    {benefit && <BenefitFoot benefit={benefit} wide={wide} />}
+    </>
   );
+}
+
+/** 得のカードの大きな数字（チップ）と、前と後の比べの棒。数字はすべて出典つき（lib/ad-benefits.ts が出典の無い数字を捨てる） */
+export function BenefitNumbers({ benefit }: { benefit: Benefit }) {
+  const max = Math.max(1, ...(benefit.compare?.rows.map((r) => r.value) ?? [1]));
+  return (
+    <span className="block">
+      {benefit.chips.length > 0 && (
+        <span className={`grid gap-2 ${benefit.chips.length >= 3 ? "grid-cols-2 sm:grid-cols-3" : "grid-cols-2"}`}>
+          {benefit.chips.map((chip) => (
+            <span key={`${chip.label}-${chip.value}`} className={`ad-chip block rounded-xl px-3 py-2.5 ${Array.from(chip.value).length > 7 ? "max-sm:col-span-2" : ""}`}>
+              <span className="block text-meta font-bold leading-snug text-muted">{chip.label}</span>
+              <span className={`mt-0.5 block font-black leading-tight tabular-nums text-ink ${Array.from(chip.value).length > 7 ? "text-[20px]" : "text-[20px] sm:text-[22px]"} whitespace-nowrap`}>{chip.value}</span>
+              {chip.sub && <span className="mt-0.5 block text-[11px] leading-snug text-muted">{chip.sub}</span>}
+            </span>
+          ))}
+        </span>
+      )}
+      {benefit.compare && (
+        <span className="mt-3 block" aria-label={benefit.compare.label}>
+          <span className="block text-meta font-bold text-ink-soft">{benefit.compare.label}</span>
+          {benefit.compare.rows.map((row) => (
+            <span key={row.name} className="mt-1.5 grid grid-cols-[5.5em_minmax(0,1fr)] items-center gap-2 text-meta">
+              <span className="text-muted">{row.name}</span>
+              <span className="flex items-center gap-2">
+                <span aria-hidden="true" className="ad-bar block h-2.5 rounded-full" style={{ width: `${Math.max(6, (row.value / max) * 100)}%` }} />
+                <span className="shrink-0 font-bold tabular-nums text-ink">{row.text}</span>
+              </span>
+            </span>
+          ))}
+        </span>
+      )}
+    </span>
+  );
+}
+
+/** 得のカードの下: サイト内の案内（計算ツールなど。広告ではない）と、数字の出典・確認日（小さく1行） */
+export function BenefitFoot({ benefit, wide }: { benefit: Benefit; wide: boolean }) {
+  if (!benefit.link && benefit.sources.length === 0) return null;
+  return (
+    <span className={`block pb-3 ${wide ? "px-4 sm:px-6" : "px-4"}`}>
+      {benefit.link && (
+        <Link href={benefit.link.href} data-money-link="" className="block text-note font-bold text-ink underline decoration-line-strong underline-offset-4 hover:text-accent">
+          {benefit.link.label}
+        </Link>
+      )}
+      {benefit.sources.length > 0 && (
+        <span className="mt-1 block text-[11px] leading-relaxed text-muted">
+          出典・確認日：
+          {benefit.sources.map((s, i) => (
+            <span key={s.url}>
+              {i > 0 && "／"}
+              {s.url.startsWith("/") ? (
+                <Link href={s.url} className="underline underline-offset-2">
+                  {s.name}
+                </Link>
+              ) : (
+                <a href={s.url} target="_blank" rel="noopener" className="underline underline-offset-2">
+                  {s.name}
+                </a>
+              )}
+              （{shortDay(s.checkedAt)}）
+            </span>
+          ))}
+        </span>
+      )}
+    </span>
+  );
+}
+
+function shortDay(iso: string): string {
+  const m = /^\d{4}-(\d{2})-(\d{2})/.exec(iso);
+  return m ? `${Number(m[1])}/${Number(m[2])}` : iso;
 }
 
 /** PR の囲みの2つ目以降（小さく1行ずつ）。見出しの代わりに、確かめられること（gain）か向く人を1行 */

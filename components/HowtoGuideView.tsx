@@ -1,3 +1,4 @@
+import { actionAdWithBenefits } from "@/lib/ad-benefits";
 import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
 import Timeline from "@/components/Timeline";
@@ -40,7 +41,9 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
   const hasCreditEstimator = guide.slug === "dify-free-api-cost";
   const workMoney = workMoneyOf(guide.workMoney);
   // ガイドの話題と同じ提携商品の PR（ふるさと納税 → ふるさと納税のサイト、年末調整・確定申告 → 確定申告ソフト。当たらなければ出さない。lib/guide-ads.ts）
-  const ads = guideAds(guide);
+  const rawAds = guideAds(guide);
+  // 得のカード（大きな数字。lib/ad-benefits.ts・台帳 W38）。ガイドに記事ごとの見出しは無い
+  const ads = { top: actionAdWithBenefits(rawAds.top, ""), lower: actionAdWithBenefits(rawAds.lower, "") };
   // ふるさと納税のガイドから、上限額の計算ツールへ案内する（lib/calculators.ts）
   const toolKind = calculatorForGuide(guide);
   const tool = toolKind ? CALCULATORS[toolKind] : undefined;

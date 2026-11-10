@@ -102,6 +102,7 @@ import { noirArticlePage } from "@/components/noir/noirArticlePage";
 import { compareOffersFor, funnelForArticle, insertCompareSlot } from "@/lib/comparison";
 import CompareOffers from "@/components/CompareOffers";
 import { foldSourceLists } from "@/lib/source-fold";
+import { actionAdWithBenefits, offerWithBenefits } from "@/lib/ad-benefits";
 import FunnelCard from "@/components/FunnelCard";
 import { canonicalChannel, channelName } from "@/lib/channel-labels";
 
@@ -230,14 +231,18 @@ export default async function ArticlePage({ params }: Props) {
   // 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認）は検索に出さず、広告・提携の囲みも出さない（記事は公開したまま）
   const noPr = isZeroVisit(article.slug);
   const compareOffers = noPr ? undefined : compareOffersFor(article);
-  const actionAd = compareOffers || noPr ? undefined : actionAdForArticle(article);
-  const { offer: offerAll, rail: offer, inline: inlineOffer } = noPr
+  // 広告の「得のカード」（大きな数字・記事ごとの見出し。lib/ad-benefits.ts・台帳 W38）を付ける。枠の中身・順番・置き場所は変えない
+  const actionAd = compareOffers || noPr ? undefined : actionAdWithBenefits(actionAdForArticle(article), article.slug);
+  const offerPlan = noPr
     ? { offer: undefined, rail: undefined, inline: undefined }
     : offerPlanForArticle(
         article,
         [...(actionAd?.items ?? []), ...(compareOffers?.items ?? [])].map((x) => x.item.key),
         actionAd?.intent ? actionAd.items.slice(0, 1).map((x) => x.item.key) : [],
       );
+  const offerAll = offerWithBenefits(offerPlan.offer, article.slug);
+  const offer = offerWithBenefits(offerPlan.rail, article.slug);
+  const inlineOffer = offerWithBenefits(offerPlan.inline, article.slug);
   // ニュース記事 → 同じ話題の比較記事への「次に読む」のカード（自分たちの記事への案内。広告の枠には数えない）
   const funnel = funnelForArticle(article, getAllArticles());
   // 商品枠の話題に比較ガイドがあれば、商品枠のすぐ下に1行だけ案内する

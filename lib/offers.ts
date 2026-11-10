@@ -4,6 +4,7 @@ import type { ArticleSummary } from "@/lib/articles";
 import { amazonUrl, rakutenSearchUrl } from "@/lib/amazon";
 import { productCategoryForArticle } from "@/lib/keyword-products";
 import { MONEY_PAGES, type MoneyTarget } from "@/lib/money-pages";
+import type { Benefit } from "@/lib/ad-benefits";
 
 /**
  * 記事の広告枠（右側の1〜3位・本文中の4〜6位）。
@@ -249,6 +250,8 @@ export type OfferItem = {
   topic?: string;
   /** 向く人・特徴・ボタンの言葉（提携商品だけ） */
   pitch?: Pitch;
+  /** 得のカードの中身（大きな数字・記事ごとの見出し。lib/ad-benefits.ts の withArticleBenefits が付ける。台帳 W38） */
+  benefit?: Benefit;
 };
 
 export type Offer = {

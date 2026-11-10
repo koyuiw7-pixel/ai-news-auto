@@ -1,3 +1,4 @@
+import { actionAdWithBenefits } from "@/lib/ad-benefits";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { withPageShare } from "@/lib/page-share";
@@ -44,7 +45,7 @@ function Source({ source }: { source: { href: string; label: string } }) {
 }
 
 export default function FurusatoLimitPage() {
-  const ad = toolAd("furusato");
+  const ad = actionAdWithBenefits(toolAd("furusato"), "");
   // 「計算の例」の数字はすべて、計算機と同じ furusatoLimit() でビルドのときに出す（手で書かない）
   const example = furusatoLimit(FURUSATO_EXAMPLE.levy, FURUSATO_EXAMPLE.rate)!;
   const shareText = `${(furusatoSpecialShare(FURUSATO_EXAMPLE.rate) / 1000).toLocaleString("ja-JP", { maximumFractionDigits: 3 })}%`;
