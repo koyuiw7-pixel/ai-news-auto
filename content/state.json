@@ -109,14 +109,6 @@
       "tries": 1,
       "url": "https://www.mof.go.jp/jgbs/topics/gov_guaranteed_bonds/hu2033.htm"
     },
-    "cd39b75a4ad90cfc": {
-      "first": "2026-11-10T00:08:20.615102+00:00",
-      "next": "2026-11-10T03:08:20.615102+00:00",
-      "reason": "タイトル「9月分は実質どう動いたか」→ 元記事に9月分の指数値や増減は無く、本文も実質の動きを示していないため、見出しの問いに答えていない。; リード「世帯ごとの平均的な消費支出をみるミクロ指数と…2つの体系で月次動向を示しています」→ 9月分の動向そのものは示されておらず、統計の概要説明にとどまる。; 「今回公表された9月分および7〜9月期平均の詳細は…確認できます」→ 9月分の具体的な結果が本",
-      "title": "2025年基準 消費動向指数（CTI）2026年（令和8年）9月分 及び 7～9月期平均",
-      "tries": 1,
-      "url": "https://www.stat.go.jp/data/cti/index2.html"
-    },
     "d083b2d2afa7377a": {
       "first": "2026-11-09T02:15:34.985262+00:00",
       "next": "2026-11-09T05:15:34.985262+00:00",
@@ -4567,6 +4559,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202610/27getsurei.html"
+    },
+    "117b2c162c1e1e8d": {
+      "at": "2026-11-10T03:33:06.095379+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/seisakunitsuite/bunya/koyou_roudou/roudouseisaku/sougikoui/index.html"
     },
     "1184d3a025fd9d05": {
       "at": "2026-11-05T16:13:17.341822+00:00",
@@ -11949,6 +11947,12 @@
       "slug": "figma-code-layers-open-beta-design",
       "url": "https://www.figma.com/blog/in-conversation-dylan-field-and-david-friedberg/"
     },
+    "89c09403b01085b8": {
+      "at": "2026-11-10T03:33:06.095513+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/shingi/chousa/shougai/047/siryo/1412213_00019.htm"
+    },
     "8a01d45d75d2fb55": {
       "at": "2026-11-05T13:12:04.999388+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -12477,6 +12481,12 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/b75ce6c7ecac74b46f42c5d540c8417612a107d5"
     },
+    "91c4f1a6ea32acba": {
+      "at": "2026-11-10T03:33:06.095459+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
+      "skipped": true,
+      "url": "https://www.digital.go.jp/speech/minister-261110-01"
+    },
     "91d07db2a7132c51": {
       "at": "2026-11-02T13:47:48.437367+00:00",
       "major": true,
@@ -12883,6 +12893,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
       "skipped": true,
       "url": "https://www.digital.go.jp/procurement"
+    },
+    "990c0019559adbab": {
+      "at": "2026-11-10T03:36:16.278631+00:00",
+      "costUsd": 0.0106,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "investment",
+      "slug": "investment-sector-trading-202610",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87291?site=nli"
     },
     "991c87a6da209ab2": {
       "at": "2026-10-28T19:52:10.662592+00:00",
@@ -14059,6 +14080,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（人事）",
       "skipped": true,
       "url": "https://www.mof.go.jp/about_mof/introduction/personnel/transfers/2026.11.1.pdf"
+    },
+    "ac21671bcf70f6cd": {
+      "at": "2026-11-10T03:37:28.199979+00:00",
+      "costUsd": 0.0116,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 80,
+      "section": "lifestyle",
+      "slug": "aeon-topvalu-yasashi-gohan-2026-11",
+      "url": "https://www.aeon.info/news/release_115550/"
     },
     "ac56a512dd320df7": {
       "at": "2026-11-04T11:24:42.037003+00:00",
@@ -15961,6 +15993,17 @@
       "slug": "covid19-bankruptcy-october-2026",
       "url": "https://www.tsr-net.co.jp/data/detail/1203394_1527.html"
     },
+    "cd39b75a4ad90cfc": {
+      "at": "2026-11-10T03:33:05.450096+00:00",
+      "costUsd": 0.0083,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash",
+      "score": 88,
+      "section": "business",
+      "slug": "consumption-trend-index-september-2026",
+      "url": "https://www.stat.go.jp/data/cti/index2.html"
+    },
     "cd6495cefc8a2533": {
       "at": "2026-11-09T23:49:49.950899+00:00",
       "reason": "followup: 新しい事実なし（household-consumption-survey-september-2026）",
@@ -17768,6 +17811,17 @@
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047986/"
     },
+    "eaeed8f05d344239": {
+      "at": "2026-11-10T03:38:35.418494+00:00",
+      "costUsd": 0.0105,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 96,
+      "section": "lifestyle",
+      "slug": "aeon-topvalu-godiva-chocolate-2026",
+      "url": "https://www.aeon.info/news/release_115604/"
+    },
     "eb21c214c4d1ab0d": {
       "at": "2026-11-06T01:26:31.277088+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -19434,259 +19488,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-08T06:23:48.705485+00:00",
-      "attempt": 0,
-      "id": "6bc2f8234b7530f9",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 57.0,
-        "avg_sentence": 34.2,
-        "long_share": 0.0,
-        "max_paragraph": 106,
-        "paragraphs": 3,
-        "sentences": 5
-      },
-      "score": 92,
-      "source": "jrwest",
-      "title": "（月）より入館料金等改定のおしらせ （京都鉄道博物館）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JR）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T06:45:40.268534+00:00",
-      "attempt": 1,
-      "id": "13c3f7609d9b5ea9",
-      "kind": "broad",
-      "model": "gemini-3.6-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 57.5,
-        "avg_sentence": 35.9,
-        "long_share": 0.062,
-        "max_paragraph": 121,
-        "paragraphs": 10,
-        "sentences": 16
-      },
-      "score": 92,
-      "source": "meiji",
-      "title": "冬期限定チョコレート「メルティーキッス」 「コク深キャラメル」を新たに人気のラインアップに加えた5商品を発売 10月20日 新発売／全国 | 2026年 | プ",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T06:47:43.011176+00:00",
-      "attempt": 1,
-      "id": "5e225945ad61e8c3",
-      "kind": "broad",
-      "model": "gemini-flash-latest",
-      "problems": [
-        "本文「契約者が自ら申し込む手続きは不要で」（リード）→ 元記事に手続きの要否についての記述はなく、この断定は元記事に裏付けがない。本文・Q&A・今日やることでも繰り返されている。",
-        "本文「九州電力と契約している家庭や事業所では…電気代の負担が増えます」→ 元記事が示すのは従量電灯Bの標準家庭の試算のみで、全契約者・事業所が一律に増えるとは書かれていない。自由料金の改定内容も不明。",
-        "本文「九州電力以外の電力会社と契約している人には、今回の改定による直接の影響はありません」→ 元記事にない記述で、根拠が示されていない。",
-        "本文「11月の検針分から自動的に新しい単価で日割計算されます」（かんたん版）→ 元記事は日割計算を述べているが、「自動的に」という適用方法は元記事にない表現。",
-        "Q&A「契約者自身による手続きは不要です」→ 元記事に無い手続きの有無についての断定。"
-      ],
-      "readability": {
-        "avg_paragraph": 74.0,
-        "avg_sentence": 49.3,
-        "long_share": 0.133,
-        "max_paragraph": 127,
-        "paragraphs": 10,
-        "sentences": 15
-      },
-      "score": 62,
-      "source": "kyuden",
-      "title": "託送料金見直しを反映した新たな電気料金単価を設定します－2026年11月１日から新単価を適用－",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 49.3字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T06:48:24.330892+00:00",
-      "attempt": 1,
-      "id": "5e225945ad61e8c3",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 74.9,
-        "avg_sentence": 51.8,
-        "long_share": 0.231,
-        "max_paragraph": 122,
-        "paragraphs": 9,
-        "sentences": 13
-      },
-      "score": 88,
-      "source": "kyuden",
-      "title": "託送料金見直しを反映した新たな電気料金単価を設定します－2026年11月１日から新単価を適用－",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 51.8字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T06:48:43.440062+00:00",
-      "attempt": 0,
-      "id": "5e225945ad61e8c3",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 66.6,
-        "avg_sentence": 37.4,
-        "long_share": 0.062,
-        "max_paragraph": 122,
-        "paragraphs": 9,
-        "sentences": 16
-      },
-      "score": 92,
-      "source": "kyuden",
-      "title": "託送料金見直しを反映した新たな電気料金単価を設定します－2026年11月１日から新単価を適用－"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T07:15:51.369709+00:00",
-      "attempt": 1,
-      "id": "8a13bd26669509b7",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 167.0,
-        "avg_sentence": 66.8,
-        "long_share": 0.5,
-        "max_paragraph": 210,
-        "paragraphs": 4,
-        "sentences": 10
-      },
-      "score": 90,
-      "source": "meiji",
-      "title": "明治、TOPPAN、「明治ブルガリアヨーグルト」紙カップの回収を実施 横浜市内のイオン・イオンスタイル・イオンフードスタイルの計13店舗にて回収 2026年10",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（BOX・TOPPAN・LB）",
-        "読みやすさ: 文が長い（1文の平均 66.8字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 167.0字・最長 210字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T07:16:16.878223+00:00",
-      "attempt": 0,
-      "id": "8a13bd26669509b7",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 65.1,
-        "avg_sentence": 40.1,
-        "long_share": 0.154,
-        "max_paragraph": 154,
-        "paragraphs": 8,
-        "sentences": 13
-      },
-      "score": 88,
-      "source": "meiji",
-      "title": "明治、TOPPAN、「明治ブルガリアヨーグルト」紙カップの回収を実施 横浜市内のイオン・イオンスタイル・イオンフードスタイルの計13店舗にて回収 2026年10",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（BOX・TOPPAN・LB）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T07:58:20.188766+00:00",
-      "attempt": 1,
-      "id": "fcd7792e5b346cce",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 75.1,
-        "avg_sentence": 45.0,
-        "long_share": 0.2,
-        "max_paragraph": 146,
-        "paragraphs": 15,
-        "sentences": 25
-      },
-      "score": 90,
-      "source": "google-ai-blog",
-      "title": "Android のマイナンバーカード、本日より提供開始。日常生活での本人確認をよりスマートに",
-      "warnings": [
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（EC・ISO）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T09:33:17.668061+00:00",
-      "attempt": 1,
-      "id": "e866c3795cb085f8",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「既存の記事では三井寺選手を横浜F・マリノスの選手として紹介していました」→ 確認済みの文脈の過去記事は選手の所属に触れておらず、既存記事の紹介内容が裏付けられない。"
-      ],
-      "score": 85,
-      "source": "jfa",
-      "title": "U-21日本代表 選手変更 海外遠征（11.8-18 スペイン／アルメンドラレホ エジプト／カイロ） #jfa #daihyo"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T14:42:20.362302+00:00",
-      "attempt": 1,
-      "id": "b579082b3d6b6787",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 61.7,
-        "avg_sentence": 54.0,
-        "long_share": 0.375,
-        "max_paragraph": 117,
-        "paragraphs": 7,
-        "sentences": 8
-      },
-      "score": 88,
-      "source": "jtta",
-      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 閉幕！",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JSC）",
-        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
-        "読みやすさ: 文が長い（1文の平均 54.0字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T14:42:35.849392+00:00",
-      "attempt": 0,
-      "id": "b579082b3d6b6787",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 63.6,
-        "avg_sentence": 40.5,
-        "long_share": 0.0,
-        "max_paragraph": 121,
-        "paragraphs": 7,
-        "sentences": 11
-      },
-      "score": 93,
-      "source": "jtta",
-      "title": "JOCジュニアオリンピックカップ 2026年全日本卓球選手権大会（カデットの部） 閉幕！",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JSC）",
-        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-08T15:02:34.269169+00:00",
@@ -26917,6 +26718,289 @@
       "warnings": [
         "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（TPU・FIFA）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T03:32:28.886083+00:00",
+      "attempt": 1,
+      "id": "cd39b75a4ad90cfc",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "元記事の文をそのまま書き写している（2文。例「- 世帯消費動向指数（CTIミクロ）：世帯における平均消費支出額について、基準年の平均月額を100と」）。自分の言葉で要約する"
+      ],
+      "readability": {
+        "avg_paragraph": 74.1,
+        "avg_sentence": 57.7,
+        "long_share": 0.556,
+        "max_paragraph": 131,
+        "paragraphs": 7,
+        "sentences": 9
+      },
+      "score": null,
+      "source": "stat",
+      "title": "2025年基準 消費動向指数（CTI）2026年（令和8年）9月分 及び 7～9月期平均",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "初めて出たところで言い換えていない略語（CTI）",
+        "読みやすさ: 文が長い（1文の平均 57.7字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T03:32:45.875676+00:00",
+      "attempt": 1,
+      "id": "cd39b75a4ad90cfc",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 74.1,
+        "avg_sentence": 57.7,
+        "long_share": 0.556,
+        "max_paragraph": 131,
+        "paragraphs": 7,
+        "sentences": 9
+      },
+      "score": 88,
+      "source": "stat",
+      "title": "2025年基準 消費動向指数（CTI）2026年（令和8年）9月分 及び 7～9月期平均",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "初めて出たところで言い換えていない略語（CTI）",
+        "読みやすさ: 文が長い（1文の平均 57.7字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T03:33:00.636956+00:00",
+      "attempt": 0,
+      "id": "cd39b75a4ad90cfc",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 57.8,
+        "avg_sentence": 47.3,
+        "long_share": 0.273,
+        "max_paragraph": 83,
+        "paragraphs": 9,
+        "sentences": 11
+      },
+      "score": 88,
+      "source": "stat",
+      "title": "2025年基準 消費動向指数（CTI）2026年（令和8年）9月分 及び 7～9月期平均",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "初めて出たところで言い換えていない略語（CTI）",
+        "読みやすさ: 文が長い（1文の平均 47.3字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T03:35:48.353865+00:00",
+      "attempt": 1,
+      "id": "990c0019559adbab",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "body に投資助言・売買のすすめの言い回しがある（「押し目買い」）。一般的な情報と判断材料の提示に直す"
+      ],
+      "readability": {
+        "avg_paragraph": 75.3,
+        "avg_sentence": 45.2,
+        "long_share": 0.0,
+        "max_paragraph": 104,
+        "paragraphs": 6,
+        "sentences": 10
+      },
+      "score": null,
+      "source": "nli-research",
+      "title": "投資部門別売買動向（26年10月）～事業法人の自社株買いと個人の押し目買い～",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TOPIX）",
+        "読みやすさ: 文が長い（1文の平均 45.2字・60字超の文が 0% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T03:36:16.238889+00:00",
+      "attempt": 1,
+      "id": "990c0019559adbab",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 68.0,
+        "avg_sentence": 40.8,
+        "long_share": 0.0,
+        "max_paragraph": 104,
+        "paragraphs": 6,
+        "sentences": 10
+      },
+      "score": 88,
+      "source": "nli-research",
+      "title": "投資部門別売買動向（26年10月）～事業法人の自社株買いと個人の押し目買い～",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TOPIX）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T03:36:42.708266+00:00",
+      "attempt": 1,
+      "id": "ac21671bcf70f6cd",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「今の契約や既存の品目のままでアレルギー対応を続けられます」→ 元記事・確認済みの文脈のどこにも書かれていない契約・対応に関する主張の創作",
+        "本文「2024年4月に「くるみ」が追加されて現在は9品目」→ 元資料では「くるみ」は令和5年3月9日の表示基準改正で追加、カシューナッツは2026年4月に追加。年月と品目の取り違え",
+        "「アレルギーを持つ人でも安心して同じ食卓を囲めるように工夫されています」→ 元記事の「同じ食卓を囲んでいただきたい」という想いの言い換えとしては強く、安心を保証するような言い過ぎ",
+        "「仕事・お金にどう活かせる」「家庭や…人に向いています」→ 一般的な助言の範囲だが、元記事に無い対象者像を補っている"
+      ],
+      "readability": {
+        "avg_paragraph": 118.2,
+        "avg_sentence": 64.5,
+        "long_share": 0.545,
+        "max_paragraph": 203,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 55,
+      "source": "aeon",
+      "title": "食物アレルギーに配慮した「トップバリュ やさしごはん」 レンジで簡単に調理できる蒸しパン、冷凍焼売・餃子を新発売",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 64.5字・60字超の文が 55% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T03:37:05.465479+00:00",
+      "attempt": 1,
+      "id": "ac21671bcf70f6cd",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 121.8,
+        "avg_sentence": 66.5,
+        "long_share": 0.545,
+        "max_paragraph": 225,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 80,
+      "source": "aeon",
+      "title": "食物アレルギーに配慮した「トップバリュ やさしごはん」 レンジで簡単に調理できる蒸しパン、冷凍焼売・餃子を新発売",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 66.5字・60字超の文が 55% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 121.8字・最長 225字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T03:37:28.179627+00:00",
+      "attempt": 0,
+      "id": "ac21671bcf70f6cd",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: リード・本文の「11月10日より順次」→ 元記事の製品別表では冷凍焼売・餃子の発売日は2026年11月11日で、全4品目を11月10日から販売としている点が元記事と食い違う; かんたん版「2026年11月10日から…順次販売されています」→ 冷凍の焼売・餃子は1"
+      ],
+      "readability": {
+        "avg_paragraph": 121.8,
+        "avg_sentence": 66.5,
+        "long_share": 0.545,
+        "max_paragraph": 225,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 80,
+      "source": "aeon",
+      "title": "食物アレルギーに配慮した「トップバリュ やさしごはん」 レンジで簡単に調理できる蒸しパン、冷凍焼売・餃子を新発売",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 66.5字・60字超の文が 55% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 121.8字・最長 225字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T03:37:55.987530+00:00",
+      "attempt": 1,
+      "id": "eaeed8f05d344239",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文「発売日は2026年11月18日で、「イオン」「イオンスタイル」「マックスバリュ」など全国の約2,900店舗が対象」→ 元記事では11月18日は第1弾の発売日で、第2弾は2027年1月13日、第3弾は2027年1月下旬。全体の発売日が11月18日だと読める書き方は日付の取り違えにあたる",
+        "かんたん版の見出し「## ひとことが言うと」→ 直前の見出しと重複し、誤字のような見出しになっている（創作ではない）",
+        "末尾の「判定: 提供状況=soon 価格=本体298円から ひとこと=…」→ 記事本文ではなく内部のメモ書きが残っており、読者向けの文章として不適切（事実の誤りではない）",
+        "かんたん版「ひとこと=身近な店舗で手軽にゴディバの味を楽しみたい人に向いています」→ 元記事に無い編集部の判断だが、一般的な推奨の範囲で大きな問題ではない"
+      ],
+      "readability": {
+        "avg_paragraph": 71.6,
+        "avg_sentence": 59.7,
+        "long_share": 0.5,
+        "max_paragraph": 93,
+        "paragraphs": 5,
+        "sentences": 6
+      },
+      "score": 85,
+      "source": "aeon",
+      "title": "トップバリュから、ゴディバと楽しむ“ちょっと特別なおやつ時間” チョコレートの魅力を気軽に味わえるコラボレーション商品を発売",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 59.7字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T03:38:20.664093+00:00",
+      "attempt": 1,
+      "id": "eaeed8f05d344239",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 74.6,
+        "avg_sentence": 53.3,
+        "long_share": 0.429,
+        "max_paragraph": 98,
+        "paragraphs": 5,
+        "sentences": 7
+      },
+      "score": 95,
+      "source": "aeon",
+      "title": "トップバリュから、ゴディバと楽しむ“ちょっと特別なおやつ時間” チョコレートの魅力を気軽に味わえるコラボレーション商品を発売",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 53.3字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T03:38:35.404761+00:00",
+      "attempt": 0,
+      "id": "eaeed8f05d344239",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.2,
+        "avg_sentence": 40.8,
+        "long_share": 0.125,
+        "max_paragraph": 98,
+        "paragraphs": 5,
+        "sentences": 8
+      },
+      "score": 96,
+      "source": "aeon",
+      "title": "トップバリュから、ゴディバと楽しむ“ちょっと特別なおやつ時間” チョコレートの魅力を気軽に味わえるコラボレーション商品を発売",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
