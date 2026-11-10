@@ -1,7 +1,7 @@
 import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
 import NewsletterSignup from "@/components/NewsletterSignup";
-import DifyDecisionLink from "@/components/DifyDecisionLink";
+import { guideShortName, LIFE_COMPARE_SLUGS, lifeCompareGuide } from "@/lib/buying-guides";
 import { ROUNDUP_CHANNEL, getAllArticles, getAllChannels, getAllTags } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
 import { CREATOR_CHANNELS, WIRE_SOURCES } from "@/lib/indexing";
@@ -27,12 +27,17 @@ const REFERENCE_LINKS = [
   { href: "/usable", label: "今日から使えるAI" },
   { href: "/guides", label: "AIの使い方ガイド" },
   { href: "/ai-pricing", label: "AIの料金・日本対応 早見表" },
-  { href: "/tools/defense-tax", label: "防衛特別所得税の計算" },
+  // お金のページ（計算・比較・手続き）。AI の選び方ガイド（/choose/*）は一覧ページ /choose から見られる（2026-11-10 M6）
   { href: "/tools/furusato-limit", label: "ふるさと納税の上限額の計算" },
+  { href: "/tools/defense-tax", label: "防衛特別所得税の計算" },
+  ...LIFE_COMPARE_SLUGS.flatMap((slug) => {
+    const found = lifeCompareGuide(slug);
+    return found ? [{ href: found.href, label: `${guideShortName(found.guide)}の比較` }] : [];
+  }),
+  { href: "/guides/jidou-teate", label: "児童手当の金額と対象" },
+  { href: "/guides/kogaku-ryoyohi", label: "高額療養費の上限額" },
   { href: "/products", label: "AIサービス図鑑" },
-  { href: "/choose/internet-for-ai", label: "AIのための通信回線の選び方" },
-  { href: "/choose/dify-hosting", label: "Difyの無料利用・VPSの選び方" },
-  { href: "/choose/ai-career", label: "AI転職・学び直しの選び方" },
+  { href: "/choose", label: "選び方ガイドの一覧" },
   { href: "/weekly", label: "今週のAIニュースまとめ" },
   { href: "/events", label: "AIイベントの日程（日本時間）" },
 ];
@@ -126,13 +131,9 @@ export default function Footer() {
             <ul className="mb-8 mt-4 space-y-2.5">
               {REFERENCE_LINKS.map((link) => (
                 <li key={link.href}>
-                  {link.href === "/choose/dify-hosting" ? (
-                    <DifyDecisionLink className="text-note font-semibold text-ink-soft hover:text-accent">{link.label}</DifyDecisionLink>
-                  ) : (
-                    <Link href={link.href} className="text-note font-semibold text-ink-soft hover:text-accent">
-                      {link.label}
-                    </Link>
-                  )}
+                  <Link href={link.href} className="text-note font-semibold text-ink-soft hover:text-accent">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>

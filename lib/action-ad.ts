@@ -1,4 +1,5 @@
 import type { ArticleSummary } from "@/lib/articles";
+import { lifeCompareGuide, guideShortName, type LifeCompareSlug } from "@/lib/buying-guides";
 import { MONEY_PAGES, moneyLinkFor, type MoneyTarget } from "@/lib/money-pages";
 import { actionAdRules, intentFor, isRoundupArticle, MIN_SCORE, orderByIntent, partnerItem, relevanceScore, type ActionAdRule, type OfferItem } from "@/lib/offers";
 
@@ -22,7 +23,29 @@ export type ActionAd = {
    * 行き先は lib/money-pages.ts の表だけ
    */
   internal?: MoneyTarget[];
+  /**
+   * 囲みのすぐ下に出す1行「料金と条件を比べる：比較ページ」（サイト内の案内。広告ではない。2026-11-10 M6）。
+   * 行き先は COMPARE_FOR_RULE の比較ページ（lib/buying-guides.ts の LIFE_COMPARE_SLUGS）だけ
+   */
+  compare?: MoneyTarget;
 };
+
+/** 話題（content/offers.json の actionAds の key）→ 囲みの下で案内する比較ページ（2026-11-10 M6） */
+export const COMPARE_FOR_RULE: Partial<Record<string, LifeCompareSlug>> = {
+  energy: "denki-gas",
+  household: "denki-gas",
+  mobile: "kakuyasu-sim",
+  moving: "hikari",
+  furusato: "furusato-sites",
+  nencho: "furusato-sites",
+};
+
+/** 話題に合う比較ページ（ページが無ければ undefined） */
+export function compareLinkForRule(key: string): MoneyTarget | undefined {
+  const slug = COMPARE_FOR_RULE[key];
+  const found = slug ? lifeCompareGuide(slug) : undefined;
+  return found ? { href: found.href, label: `${guideShortName(found.guide)}の比較` } : undefined;
+}
 
 /** 話題の internal（scripts/a8_import.py の ACTION_ADS）から、記事に出すサイト内の案内（自分自身は指さない） */
 export function internalCardFor(rule: Pick<ActionAdRule, "internal" | "internalFixed">, article: Pick<ArticleSummary, "slug" | "title" | "seoTitle" | "tags">): MoneyTarget[] {
@@ -83,9 +106,10 @@ export function actionAdForArticle(
   const available = orderByIntent(rule.partners, intent).map((key) => pick(key)).filter((x): x is { item: OfferItem; pixel?: string } => Boolean(x));
   if (available.length === 0) return undefined;
   const internal = internalCardFor(rule, article);
+  const compare = compareLinkForRule(rule.key);
   const start = intent ? 0 : hashOf(article.slug) % available.length;
   const rotated = [...available.slice(start), ...available.slice(0, start)];
   const skip = new Set(avoid);
   const ordered = [...rotated.filter((x) => !skip.has(x.item.key)), ...rotated.filter((x) => skip.has(x.item.key))];
-  return { key: rule.key, title: rule.title, reason: rule.reason, lead: intent?.lead ?? rule.lead, intent: intent?.key, items: ordered.slice(0, rule.max ?? 2), ...(internal.length ? { internal } : {}) };
+  return { key: rule.key, title: rule.title, reason: rule.reason, lead: intent?.lead ?? rule.lead, intent: intent?.key, items: ordered.slice(0, rule.max ?? 2), ...(internal.length ? { internal } : {}), ...(compare ? { compare } : {}) };
 }

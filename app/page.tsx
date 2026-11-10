@@ -21,6 +21,7 @@ import { coverPath } from "@/lib/cover-path";
 import { containPhoto } from "@/lib/photo-fit";
 import { pickHomeLead, pickLifeMoney } from "@/lib/home-lead";
 import { alsoCoveredSentence } from "@/lib/coverage";
+import { guideShortName, lifeCompareGuide, type LifeCompareSlug } from "@/lib/buying-guides";
 
 export const revalidate = false;
 
@@ -37,6 +38,25 @@ export const metadata: Metadata = {
 };
 
 const TIMELINE_SIZE = 24;
+
+/**
+ * トップの「お金の計算と比較」の入口（2026-11-10 M6）。10〜12月（日本時間）は、その年の12月31日までの寄附が対象になるふるさと納税の
+ * 上限額の計算とサイトの比較を先にする。それ以外の月は電気・ガスの比較を先にする。光回線の比較はいつも出す。
+ * 行き先は実在するページだけ（比較ページは lib/buying-guides.ts の LIFE_COMPARE_SLUGS）
+ */
+function homeMoneyLinks(now = new Date()): { main: { href: string; label: string }; compare: { href: string; label: string }[] } {
+  const month = new Date(now.getTime() + 9 * 60 * 60 * 1000).getUTCMonth() + 1;
+  const furusatoSeason = month >= 10;
+  const compare = (slug: LifeCompareSlug) => {
+    const found = lifeCompareGuide(slug);
+    return found ? [{ href: found.href, label: `${guideShortName(found.guide)}の比較` }] : [];
+  };
+  if (furusatoSeason) {
+    return { main: { href: "/tools/furusato-limit", label: "ふるさと納税はいくらまで？上限額を計算する" }, compare: [...compare("furusato-sites"), ...compare("hikari")] };
+  }
+  const [first, ...rest] = [...compare("denki-gas"), ...compare("hikari"), ...compare("kakuyasu-sim")];
+  return { main: first ?? { href: "/tools/furusato-limit", label: "ふるさと納税の上限額を計算する" }, compare: rest };
+}
 const NEWS_SIZE = 8;
 
 /**
@@ -79,6 +99,7 @@ export default function HomePage() {
   const otherGenres = getAllGenres().filter((g) => g.slug !== "ai" && !isBroadGenre(g.slug));
 
   const bundles = getStoryRailBundles();
+  const homeMoney = homeMoneyLinks();
 
   return (
     <>
@@ -102,12 +123,22 @@ export default function HomePage() {
 
         <NewsHub articles={lifeMoney} genres={broadGenres} />
 
-        <nav aria-label="AIの使い方と費用" data-funnel-pos="home-guides" className="mt-10 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-y border-line py-4">
-          <Link href="/choose/dify-hosting" className="text-[16px] font-bold leading-relaxed text-ink underline-offset-4 hover:text-accent hover:underline">
-            DifyにVPSは必要？無料で試す方法と費用を比べる →
+        {/* お金のページへの入口（計算・比較。サイト内リンクで広告ではない。2026-11-10 M6）。AI の使い方ガイドはその下の行 */}
+        <nav aria-label="お金の計算と比較、AIの使い方" data-funnel-pos="home-guides" className="mt-10 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-y border-line py-4">
+          <Link href={homeMoney.main.href} data-money-link="" className="text-[16px] font-bold leading-relaxed text-ink underline-offset-4 hover:text-accent hover:underline">
+            {homeMoney.main.label} →
           </Link>
-          <Link href="/guides" className="text-note font-semibold text-accent underline underline-offset-4">AIの使い方ガイド一覧</Link>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {homeMoney.compare.map((link) => (
+              <Link key={link.href} href={link.href} data-money-link="" className="text-note font-semibold text-accent underline underline-offset-4">
+                {link.label}
+              </Link>
+            ))}
+          </div>
           <div className="mt-2 flex w-full flex-wrap gap-x-6 gap-y-2">
+            <Link href="/guides" className="text-note font-semibold text-ink-soft underline decoration-line-strong underline-offset-4 hover:text-accent">
+              AIの使い方ガイド一覧
+            </Link>
             <Link href="/guides/dify-free-api-cost" className="text-note font-semibold text-ink-soft underline decoration-line-strong underline-offset-4 hover:text-accent">
               Difyは無料？200クレジットとAPI料金を確認
             </Link>

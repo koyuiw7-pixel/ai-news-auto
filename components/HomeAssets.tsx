@@ -18,7 +18,7 @@ export default function HomeAssets() {
     { href: "/usable", title: "日本で使える？無料？", note: `発表ごとに判定（${judged}本）` },
     { href: "/guides", title: "使い方ガイド", note: `料金・無料枠・始め方（${howtos}本）` },
     { href: "/ai-pricing", title: "AIの料金早見表", note: pricingAt ? `公式ページで確認 ${pricingAt}` : "主要AIの料金と日本対応" },
-    { href: "/choose/internet-for-ai", title: "選び方ガイド", note: `回線・VPS・転職など（${chooses}本）` },
+    { href: "/choose", title: "選び方ガイド", note: `回線・VPS・転職など（${chooses}本）` },
     // 値上げ・障害・リコール・サービス終了の一覧（台帳 A52）
     { href: "/roundups", title: "値上げ・障害・リコール一覧", note: `公式発表から自動で更新（今週${weeklyChanges}件）` },
   ];
