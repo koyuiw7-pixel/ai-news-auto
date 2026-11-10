@@ -5,8 +5,9 @@ export const publisherJsonLd = {
   "@type": "NewsMediaOrganization",
   "@id": `${siteConfig.url}/#publisher`,
   name: siteConfig.siteName,
-  // 旧名「サイソクAIニュース」を残す（改名後も Google に同じ媒体だと伝えるため。消さない）
-  alternateName: [siteConfig.formerName, siteConfig.nickname, "AI速報サイソク"],
+  // 別名は略称「サイソク」を先頭に。旧名「サイソクAIニュース」は残す（改名後も Google に同じ媒体だと伝えるため。消さない）。
+  // 使っていない別の呼び名は入れない（2026-11-10 LLMO-A13）
+  alternateName: [siteConfig.nickname, siteConfig.formerName],
   url: siteConfig.url,
   // Organization のロゴは縦横とも 112px 以上。既存のブランド画像を使う。
   logo: { "@type": "ImageObject", url: `${siteConfig.url}/icons/icon-512.png`, width: 512, height: 512 },

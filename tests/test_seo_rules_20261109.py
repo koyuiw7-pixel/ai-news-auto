@@ -315,6 +315,22 @@ class PeoplePageTest(unittest.TestCase):
         index = (ROOT / "app" / "people" / "page.tsx").read_text("utf-8")
         self.assertIn("personArticles(p).length > 0 ?", index)
 
+class PublisherAlternateNameTest(unittest.TestCase):
+    """LLMO-A13: 別名は略称「サイソク」が先頭。旧名は残す（消さない）。使っていない呼び名は入れない"""
+
+    def test_alternate_name(self):
+        import re
+
+        src = (ROOT / "lib" / "publisher.ts").read_text("utf-8")
+        match = re.search(r"alternateName:\s*\[([^\]]*)\]", src)
+        self.assertIsNotNone(match)
+        items = [item.strip() for item in match.group(1).split(",") if item.strip()]
+        self.assertEqual(items, ["siteConfig.nickname", "siteConfig.formerName"])
+        self.assertNotIn("AI速報サイソク", src)
+        config = (ROOT / "site.config.ts").read_text("utf-8")
+        self.assertIn('nickname: "サイソク"', config)
+        self.assertIn('formerName: "サイソクAIニュース"', config)
+
 
 if __name__ == "__main__":
     unittest.main()
