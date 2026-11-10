@@ -15,7 +15,7 @@
  * 数えないもの: 機械・プレビュー・自動ブラウザの UA、ヘッダー X-Saisoku-Internal: 1、?_internal=1 のページから来た送信、JS が動かないアクセス。
  */
 import { json, readJson, safeEqual, sameOrigin, sha256Hex, type KvNamespace } from "./push";
-import { INFLOW_BOT_UA, INFLOW_SOURCES, INTERNAL_HEADER, INTERNAL_PARAM, validPageKey, validTag, type InflowSource } from "../lib/inflow";
+import { INFLOW_BOT_UA, INFLOW_SOURCES, INTERNAL_HEADER, INTERNAL_PARAM, isArticleKey, validPageKey, validTag, type InflowSource } from "../lib/inflow";
 import { recordVideoVisit } from "./video";
 
 export type InflowEnv = { AFF_KV?: KvNamespace; AFF_STATS_TOKEN?: string };
@@ -97,7 +97,7 @@ async function view(request: Request, url: URL, env: InflowEnv, ctx: Ctx): Promi
   // SNS の動画投稿は、短い版と全部の版の比べ（scripts/sns_video_followup.py --ab-report）にも数える。
   // 2026-11-05〜 utm_campaign=sns_video_short|sns_video_full・utm_content=<種類>_<位置>（台帳 S29）。以前の utm_campaign=sns_video・utm_content=short|full も数える
   const variant = videoVariant(campaign, content);
-  if (variant && !page.startsWith("digest-") && page !== "_home") {
+  if (variant && isArticleKey(page)) {
     recordVideoVisit(env.AFF_KV, page, variant, ctx, now);
   }
   return noContent();
@@ -140,7 +140,7 @@ export async function summarize(date: string, kv: KvNamespace) {
     timezone: "Asia/Tokyo",
     version: 1,
     definition:
-      "Landing page views (first page of a browser tab) of articles, digests and the top page from browsers that ran JavaScript. Excludes known bots, link previewers, automated/headless browsers, Lighthouse/PageSpeed and internal tests (?_internal=1 / X-Saisoku-Internal). Same visitor + page + source within 30 min counts once. Visitors are a daily IP/UA hash estimate; do not sum visitors across rows or days.",
+      "Landing page views (first page of a browser tab) of articles, digests, the top page and guide/tool/event/product pages (guides--<slug> etc.) from browsers that ran JavaScript. Excludes known bots, link previewers, automated/headless browsers, Lighthouse/PageSpeed and internal tests (?_internal=1 / X-Saisoku-Internal). Same visitor + page + source within 30 min counts once. Visitors are a daily IP/UA hash estimate; do not sum visitors across rows or days.",
     truncated: !!cursor,
     views: total.views,
     visitors: total.visitors.size,

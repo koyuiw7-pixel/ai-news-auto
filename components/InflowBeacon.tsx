@@ -8,7 +8,7 @@ import { INFLOW_BOT_UA, INTERNAL_PARAM, INTERNAL_STORAGE_KEY, classifyInflow, pa
 let handled = false;
 
 /**
- * 外から記事に来た人を1回だけ数える（cloudflare/inflow.ts の POST /api/aff/view）。
+ * 外から記事・ガイド・計算ツール・イベント・製品のページ・トップに来た人を1回だけ数える（cloudflare/inflow.ts の POST /api/aff/view。ページの名前は lib/inflow.ts の pageKey）。
  * JS が動く実ブラウザだけが送るので、リンクプレビュー・curl・クローラーは数えない。
  * 自動ブラウザ（navigator.webdriver）・HeadlessChrome・Lighthouse・PageSpeed も送らない。
  * ?_internal=1 で開いたブラウザは、以後このブラウザでは数えない（?_internal=0 で戻る）。

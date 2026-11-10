@@ -8,12 +8,14 @@
   python3 scripts/inflow_report.py --yesterday --top 5
   python3 scripts/inflow_report.py --date 2026-11-03 --json   # 生の JSON
 
-数えるもの: 記事・朝のまとめ・トップページを「そのタブで最初に開いた」1回（外からの入口）。JS が動いた実ブラウザだけ。
+数えるもの: 記事・朝のまとめ・トップページ・製品ガイド・計算ツール・イベント・製品のページ（guides--<slug> / tools--<slug> /
+  events--<slug> / products--<slug>）を「そのタブで最初に開いた」1回（外からの入口）。JS が動いた実ブラウザだけ。
 数えないもの: ロボット・SNS のリンクプレビュー・自動ブラウザ（HeadlessChrome・webdriver）・Lighthouse・PageSpeed・
   JS の動かないアクセス・自社のテスト（?_internal=1 を付けて開いたブラウザ、ヘッダー X-Saisoku-Internal: 1）。
   同じ人が同じページを30分以内に開き直したものは1回。人数は「日付+IP+UA」のハッシュによる推定（日をまたいで足さない）。
 流入元: utm_source があればそれ（threads / x / facebook / bluesky / instagram / newsletter / line）、無ければ参照元のサイト
-  （google / yahoo / bing / discover / news / direct / other）。
+  （google / yahoo / bing / discover / news / direct / other）。AI の回答から来た人は chatgpt / perplexity / copilot / gemini /
+  claude / meta_ai / deepseek / grok。Google の AI による概要（AI Overviews）からのクリックは google、参照元を送らないアプリからの起動は direct に入る。
 
 鍵 AFF_STATS_TOKEN は環境変数か .env.local（メインのフォルダ）から読む（scripts/aff_stats.py と同じ）。中身は表示しない。
 数えるのは Worker（cloudflare/inflow.ts）、送るのは画面の components/InflowBeacon.tsx。
@@ -23,6 +25,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -38,8 +41,14 @@ LABELS = {
     "threads": "Threads", "x": "X", "facebook": "Facebook", "bluesky": "Bluesky", "instagram": "Instagram", "google": "Google検索",
     "yahoo": "Yahoo!検索", "bing": "Bing", "discover": "Googleアプリ/Discover", "news": "ニュースアプリ",
     "newsletter": "メルマガ", "line": "LINE", "direct": "直接・不明", "other": "その他のサイト",
+    "chatgpt": "ChatGPT", "perplexity": "Perplexity", "copilot": "Copilot", "gemini": "Gemini", "claude": "Claude",
+    "meta_ai": "Meta AI", "deepseek": "DeepSeek", "grok": "Grok",
 }
 SNS = ("threads", "x", "facebook", "bluesky", "instagram")
+# AI の回答から来た人（lib/inflow.ts の INFLOW_SOURCES と同じ名前）
+AI_SOURCES = ("chatgpt", "perplexity", "copilot", "gemini", "claude", "meta_ai", "deepseek", "grok")
+# 記事以外の入口（lib/inflow.ts の pageKey。<種類>--<slug>）
+PAGE_TYPES = {"guides": "ガイド", "tools": "計算ツール", "events": "イベント", "products": "製品"}
 # 書き出しの型（state/threads_posted.json の opener → hook の順）。opener は 2026-11-03〜の1行目の呼びかけの言い回し
 HOOK_LABELS = {
     "check": "呼びかけ・要チェック", "good": "呼びかけ・朗報", "see": "呼びかけ・見てほしい", "know": "呼びかけ・知っておいて",
@@ -75,12 +84,33 @@ def fetch(token: str, date: str, fresh: bool = False) -> dict:
         return json.loads(res.read())
 
 
+def landing_title(kind: str, slug: str) -> str:
+    """ガイド・計算ツール・イベント・製品のページの名前（読めなければ slug）"""
+    try:
+        if kind == "tools":
+            text = (ROOT / "app" / "tools" / slug / "page.tsx").read_text("utf-8")
+            m = re.search(r'^\s*title:\s*"([^"]+)"', text, re.M)
+            return m.group(1) if m else slug
+        if kind == "events":
+            events = json.loads((ROOT / "content" / "events.json").read_text("utf-8")).get("events") or []
+            event = next((e for e in events if e.get("slug") == slug), {})
+            return str(event.get("title") or event.get("name") or slug)
+        data = json.loads((ROOT / "content" / kind / f"{slug}.json").read_text("utf-8"))
+        return str(data.get("title") or data.get("name") or slug)
+    except (OSError, ValueError, AttributeError):
+        return slug
+
+
 def title_of(page: str, width: int = 26) -> str:
     if page == "_home":
         return "トップページ"
     if page.startswith("digest-"):
         d = page[len("digest-"):]
         return f"朝のまとめ {d[4:6]}/{d[6:8]}" if len(d) == 8 else page
+    kind, sep, slug = page.partition("--")
+    if sep and kind in PAGE_TYPES and slug and "/" not in slug and ".." not in slug:
+        text = f"{PAGE_TYPES[kind]}: {landing_title(kind, slug)}"
+        return text if len(text) <= width else text[: width - 1] + "…"
     try:
         data = json.loads((ROOT / "content" / "articles" / f"{page}.json").read_text("utf-8"))
         text = str(data.get("title") or page)
@@ -254,6 +284,10 @@ def show(data: dict, posted: dict, videos: dict, top: int = 3) -> None:
     print("  流入元: " + " / ".join(f"{LABELS.get(r['source'], r['source'])} {r['views']}（{r['visitors']}人）" for r in data["bySource"]))
     sns_total = sum(r["views"] for r in data["bySource"] if r["source"] in SNS)
     print(f"  SNS 合計: {sns_total}回")
+    ai = [r for r in data["bySource"] if r["source"] in AI_SOURCES]
+    detail = "・".join(f"{LABELS.get(r['source'], r['source'])} {r['views']}" for r in ai)
+    print(f"  AIの回答から: {sum(r['views'] for r in ai)}回" + (f"（{detail}）" if detail else "")
+          + "（Google の AI による概要からのクリックは Google検索、参照元の無いアプリからの起動は直接・不明に入ります）")
 
     print(f"  流入元ごとの人気ページ（上位{top}）:")
     for src in [r["source"] for r in data["bySource"]]:

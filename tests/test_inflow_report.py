@@ -91,6 +91,48 @@ class InflowReportTest(unittest.TestCase):
         self.assertIn("より前に出た投稿", text)
         self.assertIn("まだ出ていない予約: 1本（23:59 classic", text)
 
+    def test_ai_answers_line(self):
+        """AI の回答から来た数を1行で（内訳つき）。AI Overviews と参照元の無いアプリの扱いも書く（LLMO-A1）"""
+        data = {"date": "2026-11-11", "views": 6, "visitors": 6, "bySource": [
+            {"source": "google", "views": 2, "visitors": 2}, {"source": "chatgpt", "views": 2, "visitors": 2},
+            {"source": "perplexity", "views": 1, "visitors": 1}, {"source": "meta_ai", "views": 1, "visitors": 1}],
+            "rows": [
+                {"page": "tools--furusato-limit", "source": "chatgpt", "campaign": "", "content": "", "views": 2, "visitors": 2},
+                {"page": "guides--chatgpt-work", "source": "perplexity", "campaign": "", "content": "", "views": 1, "visitors": 1},
+                {"page": "x", "source": "meta_ai", "campaign": "", "content": "", "views": 1, "visitors": 1},
+                {"page": "x", "source": "google", "campaign": "", "content": "", "views": 2, "visitors": 2}]}
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            r.show(data, {}, {})
+        text = out.getvalue()
+        self.assertIn("AIの回答から: 4回（ChatGPT 2・Perplexity 1・Meta AI 1）", text)
+        self.assertIn("AI による概要からのクリックは Google検索", text)
+        self.assertIn("直接・不明", text)
+        self.assertIn("ChatGPT: 「計算ツール: ふるさと納税", text)
+        self.assertNotIn("｜", text)
+        self.assertNotIn("ざっくり", text)
+
+    def test_ai_answers_zero(self):
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            r.show(DATA, POSTED, VIDEOS)
+        self.assertIn("AIの回答から: 0回（", out.getvalue())
+
+    def test_title_of_landing_pages(self):
+        self.assertTrue(r.title_of("tools--furusato-limit", 80).startswith("計算ツール: ふるさと納税の上限額"))
+        self.assertTrue(r.title_of("guides--chatgpt-work", 80).startswith("ガイド: ChatGPT Work"))
+        self.assertEqual(r.title_of("products--amazon-bedrock", 80), "製品: Amazon Bedrock")
+        self.assertEqual(r.title_of("events--github-universe-2026", 80), "イベント: GitHub Universe 2026")
+        self.assertEqual(r.title_of("guides--no-such-guide", 80), "ガイド: no-such-guide")
+        self.assertLessEqual(len(r.title_of("tools--furusato-limit")), 26)
+        self.assertEqual(r.title_of("_home"), "トップページ")
+
+    def test_no_article_slug_has_double_hyphen(self):
+        """記事の slug に "--" が無いので、guides--<slug> などの名前と重ならない"""
+        articles = Path(r.ROOT) / "content" / "articles"
+        self.assertEqual([p.name for p in articles.glob("*--*.json")], [])
+        self.assertEqual(set(r.AI_SOURCES) <= set(r.LABELS), True)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -6,6 +6,8 @@ import { BOT_UA } from "./revenue-funnel";
 
 export const INFLOW_SOURCES = [
   "threads", "x", "facebook", "bluesky", "instagram", "google", "yahoo", "bing", "discover", "news", "newsletter", "line", "direct", "other",
+  // AI の回答から来た人（LLMO の効果を見る）。Google の AI による概要（AI Overviews）からのクリックは参照元が google なので google に入る
+  "chatgpt", "perplexity", "copilot", "gemini", "claude", "meta_ai", "deepseek", "grok",
 ] as const;
 export type InflowSource = typeof INFLOW_SOURCES[number];
 
@@ -27,23 +29,42 @@ export const INTERNAL_STORAGE_KEY = "saisoku-internal";
 const SLUG = /^[A-Za-z0-9][A-Za-z0-9_-]{0,160}$/;
 const TAG = /^[a-z0-9][a-z0-9_.-]{0,39}$/;
 
-/** 数えるページ → 集計の名前。記事は slug、朝のまとめは digest-<YYYYMMDD>（state/threads_posted.json のキーと同じ）、トップは _home */
+/** 記事以外で数えるページの種類（/<種類>/<slug> → <種類>--<slug>。記事の slug には "--" が無いので重ならない） */
+export const LANDING_TYPES = ["guides", "tools", "events", "products"] as const;
+
+const decodeSlug = (raw: string): string | null => {
+  let slug = raw;
+  try { slug = decodeURIComponent(slug); } catch { return null; }
+  return SLUG.test(slug) ? slug : null;
+};
+
+/**
+ * 数えるページ → 集計の名前。記事は slug、朝のまとめは digest-<YYYYMMDD>（state/threads_posted.json のキーと同じ）、トップは _home。
+ * 製品ガイド・計算ツール・イベント・製品のページは guides--<slug> / tools--<slug> / events--<slug> / products--<slug>
+ */
 export function pageKey(pathname: string): string | null {
   const article = /^\/articles\/([^/]+)\/?$/.exec(pathname);
-  if (article) {
-    let slug = article[1];
-    try { slug = decodeURIComponent(slug); } catch { return null; }
-    return SLUG.test(slug) ? slug : null;
+  if (article) return decodeSlug(article[1]);
+  const landing = /^\/(guides|tools|events|products)\/([^/]+)\/?$/.exec(pathname);
+  if (landing) {
+    const slug = decodeSlug(landing[2]);
+    return slug && !slug.includes("--") ? `${landing[1]}--${slug}` : null;
   }
   const digest = /^\/digest\/(\d{8})\/?$/.exec(pathname);
   if (digest) return `digest-${digest[1]}`;
   return pathname === "/" ? "_home" : null;
 }
 export const validPageKey = (key: string) => SLUG.test(key) || key === "_home";
+/** 記事のページか（_home・朝のまとめ・guides-- などではない） */
+export const isArticleKey = (key: string) =>
+  key !== "_home" && !key.startsWith("digest-") && !LANDING_TYPES.some((type) => key.startsWith(`${type}--`));
 export const validTag = (value: string) => value === "" || TAG.test(value);
 
 const UTM_ALIASES: Record<string, InflowSource> = {
   twitter: "x", "t.co": "x", fb: "facebook", ig: "instagram", bsky: "bluesky", gnews: "news",
+  // ChatGPT はリンクに utm_source=chatgpt.com を付ける
+  "chatgpt.com": "chatgpt", openai: "chatgpt", "perplexity.ai": "perplexity",
+  "copilot.com": "copilot", "copilot.microsoft.com": "copilot", "claude.ai": "claude", "meta.ai": "meta_ai",
 };
 
 /** 参照元のホスト名 → 流入元。同じサイト内からの移動は null（数えない） */
@@ -61,6 +82,15 @@ export function sourceFromReferrer(referrer: string, origin: string): InflowSour
   if (/(^|\.)(facebook\.com|fb\.com|fb\.me|messenger\.com)$/.test(host)) return "facebook";
   if (/(^|\.)(bsky\.app|bsky\.social)$/.test(host)) return "bluesky";
   if (/(^|\.)instagram\.com$/.test(host)) return "instagram"; // プロフィールのリンク（l.instagram.com）から（S36）
+  // AI の回答から（google / bing の決まりより先に見る。gemini.google.com を google にしないため）
+  if (/(^|\.)chatgpt\.com$/.test(host) || host === "chat.openai.com") return "chatgpt";
+  if (/(^|\.)perplexity\.ai$/.test(host)) return "perplexity";
+  if (/^(copilot\.microsoft\.com|copilot\.cloud\.microsoft|copilot\.com)$/.test(host)) return "copilot";
+  if (/^(gemini|bard|notebooklm)\.google\.com$/.test(host)) return "gemini";
+  if (/(^|\.)claude\.ai$/.test(host)) return "claude";
+  if (/(^|\.)meta\.ai$/.test(host)) return "meta_ai";
+  if (host === "chat.deepseek.com") return "deepseek";
+  if (/(^|\.)grok\.com$/.test(host)) return "grok";
   if (/^news\.google\./.test(host) || /^news\.yahoo\.co\.jp$/.test(host) || /(^|\.)(smartnews\.com|gunosy\.com|newspicks\.com|msn\.com|line\.me|antenna\.jp|nordot\.app)$/.test(host)) {
     return host.endsWith("line.me") ? "line" : "news";
   }

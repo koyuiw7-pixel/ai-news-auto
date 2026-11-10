@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { INFLOW_BOT_UA, INTERNAL_PARAM, INTERNAL_STORAGE_KEY, classifyInflow, pageKey } from "@/lib/inflow";
+import { INFLOW_BOT_UA, INTERNAL_PARAM, INTERNAL_STORAGE_KEY, classifyInflow, isArticleKey, pageKey } from "@/lib/inflow";
 import { depthBucket, normalizeAdPositions, timeBucket, type ExitZone, type ReadingSource } from "@/lib/reading";
 
 /** そのタブで最初に開いたページか（2ページ目からはサイト内の移動として "internal"） */
@@ -21,7 +21,7 @@ export default function ReadingBeacon() {
     firstPage = false;
     try {
       const slug = pageKey(pathname);
-      if (!slug || slug === "_home" || slug.startsWith("digest-")) return;
+      if (!slug || !isArticleKey(slug)) return;
       if (navigator.webdriver || INFLOW_BOT_UA.test(navigator.userAgent) || typeof navigator.sendBeacon !== "function") return;
       if (navigator.doNotTrack === "1" || (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl) return;
       if (new URLSearchParams(location.search).get(INTERNAL_PARAM) === "1") return;

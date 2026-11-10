@@ -1,7 +1,7 @@
 /** 記事への流入計測（lib/inflow.ts の分類・cloudflare/inflow.ts の記録と集計）の回帰テスト。本番 KV には通信しない。node scripts/test_aff.mjs */
 import assert from "node:assert/strict";
 import { handleAff } from "./aff";
-import { classifyInflow, pageKey, sourceFromReferrer, INFLOW_BOT_UA } from "../lib/inflow";
+import { classifyInflow, isArticleKey, pageKey, sourceFromReferrer, validPageKey, INFLOW_BOT_UA } from "../lib/inflow";
 
 const O = "https://ai-tech-express.jp";
 const records = new Map<string, { value: string; metadata?: unknown; expirationTtl?: number }>();
@@ -52,6 +52,53 @@ await test("ページの名前", () => {
   assert.equal(pageKey("/"), "_home");
   assert.equal(pageKey("/news"), null);
   assert.equal(pageKey("/articles/../x"), null);
+  assert.equal(pageKey("/articles/abc"), "abc");
+  assert.equal(pageKey("/about"), null);
+  // ガイド・計算ツール・イベント・製品のページ（LLMO-A1）
+  assert.equal(pageKey("/tools/furusato-limit"), "tools--furusato-limit");
+  assert.equal(pageKey("/tools/furusato-limit/"), "tools--furusato-limit");
+  assert.equal(pageKey("/guides/jidou-teate"), "guides--jidou-teate");
+  assert.equal(pageKey("/events/wwdc-2026"), "events--wwdc-2026");
+  assert.equal(pageKey("/products/amazon-bedrock"), "products--amazon-bedrock");
+  assert.equal(pageKey("/guides"), null);
+  assert.equal(pageKey("/tools/a/b"), null);
+  assert.equal(pageKey("/guides/a--b"), null);
+  assert.equal(pageKey("/companies/openai"), null);
+  assert.ok(validPageKey("tools--furusato-limit"));
+  assert.ok(isArticleKey("claude-ultra"));
+  for (const key of ["_home", "digest-20261103", "tools--furusato-limit", "guides--jidou-teate"]) assert.ok(!isArticleKey(key), key);
+});
+
+await test("AI の回答からの流入（参照元・utm）", () => {
+  const ref = (url: string) => sourceFromReferrer(url, O);
+  assert.equal(classifyInflow("?utm_source=chatgpt.com", "", O)?.source, "chatgpt");
+  assert.equal(classifyInflow("?utm_source=chatgpt.com", "https://chatgpt.com/", O)?.source, "chatgpt");
+  assert.equal(classifyInflow("?utm_source=openai", "", O)?.source, "chatgpt");
+  assert.equal(classifyInflow("?utm_source=perplexity", "", O)?.source, "perplexity");
+  assert.equal(classifyInflow("?utm_source=perplexity.ai", "", O)?.source, "perplexity");
+  assert.equal(classifyInflow("?utm_source=copilot.com", "", O)?.source, "copilot");
+  assert.equal(classifyInflow("?utm_source=gemini", "", O)?.source, "gemini");
+  assert.equal(classifyInflow("?utm_source=claude.ai", "", O)?.source, "claude");
+  assert.equal(classifyInflow("?utm_source=meta.ai", "", O)?.source, "meta_ai");
+  assert.equal(ref("https://chatgpt.com/"), "chatgpt");
+  assert.equal(ref("https://chat.openai.com/c/x"), "chatgpt");
+  assert.equal(ref("https://www.perplexity.ai/search/x"), "perplexity");
+  assert.equal(ref("https://copilot.microsoft.com/"), "copilot");
+  assert.equal(ref("https://copilot.cloud.microsoft/"), "copilot");
+  assert.equal(ref("https://copilot.com/"), "copilot");
+  assert.equal(ref("https://gemini.google.com/app"), "gemini");
+  assert.equal(ref("https://bard.google.com/"), "gemini");
+  assert.equal(ref("https://notebooklm.google.com/"), "gemini");
+  assert.equal(ref("https://claude.ai/"), "claude");
+  assert.equal(ref("https://www.meta.ai/"), "meta_ai");
+  assert.equal(ref("https://chat.deepseek.com/"), "deepseek");
+  assert.equal(ref("https://grok.com/"), "grok");
+  // これまでどおり
+  assert.equal(ref("https://www.google.com/"), "google");
+  assert.equal(ref("https://www.bing.com/"), "bing");
+  assert.equal(ref("https://news.google.com/"), "news");
+  assert.equal(ref("https://discover.google.com/"), "discover");
+  assert.equal(ref("https://evilchatgpt.com.example/"), "other");
 });
 
 await test("流入元の分類（utm を優先・参照元のホスト）", () => {
@@ -118,6 +165,18 @@ await test("SNS ごとに記録し、自社テスト・機械・不正な値は�
   assert.equal((await view({ p: "claude-ultra", s: "myspace", c: "", t: "" })).status, 400);
   assert.equal((await view({ p: "claude-ultra", s: "x", c: "<b>", t: "" })).status, 400);
   assert.equal(keys("i:").length, 8);
+});
+
+await test("AI の回答から・ツールやガイドの入口も記録する", async () => {
+  assert.equal((await view({ p: "tools--furusato-limit", s: "chatgpt", c: "", t: "" })).status, 204);
+  assert.equal((await view({ p: "guides--jidou-teate", s: "perplexity", c: "", t: "" })).status, 204);
+  assert.equal((await view({ p: "claude-ultra", s: "gemini", c: "", t: "" })).status, 204);
+  // 動画の版の記録は記事だけ
+  assert.equal((await view({ p: "tools--furusato-limit", s: "threads", c: "sns_video_short", t: "" })).status, 204);
+  assert.equal(keys("i:").length, 4);
+  assert.equal(keys("v:").length, 0);
+  const metas = keys("i:").map((key) => records.get(key)!.metadata as { p: string; s: string });
+  assert.ok(metas.some((m) => m.p === "tools--furusato-limit" && m.s === "chatgpt"));
 });
 
 await test("同じ人の開き直しは30分に1回・訪問者のハッシュだけ残す", async () => {
