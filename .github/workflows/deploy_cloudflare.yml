@@ -69,7 +69,9 @@ jobs:
         run: node --test tests/test_pricing_fx.cjs tests/test_gone_page.cjs tests/test_live_line.cjs
 
       - name: Verify every crawlable page is built ahead (no first-hit rendering after deploy, W29)
-        run: python3 -m unittest tests/test_cold_check.py
+        run: |
+          python3 -m unittest tests/test_cold_check.py
+          node --test tests/test_worker_cache.cjs
 
       - name: Build
         run: npm run cf:build
@@ -125,3 +127,10 @@ jobs:
       # 2秒を超えたページ・開けないページがあれば赤にする（デプロイ自体は終わっている。知らせのため）
       - name: Check first hits right after deploy
         run: python3 scripts/cold_check.py check --previous "${{ steps.before.outputs.version }}" --n 30
+
+      # 何も付けない URL（読者・検索のロボットが開く URL）のトップとサイトマップが、今の版で新しい記事を載せているか（seo A1）。
+      # 報告だけ（デプロイを赤にしない）
+      - name: Check plain URLs serve the new version
+        if: always()
+        continue-on-error: true
+        run: python3 scripts/cold_check.py plain

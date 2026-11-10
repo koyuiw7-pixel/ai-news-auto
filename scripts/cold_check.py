@@ -4,6 +4,7 @@
   python3 scripts/cold_check.py version                 # 今の版（x-saisoku-ver）を出す（デプロイ前に控える）
   python3 scripts/cold_check.py check --previous <版>   # 新しい版に切り替わるのを待ってから測る（deploy_cloudflare.yml）
   python3 scripts/cold_check.py check --n 40            # 手元で測る
+  python3 scripts/cold_check.py plain                   # 何も付けない URL で、新しい版・新しい記事が出ているか（報告だけ）
 
 サイトマップから選んだページ（毎回入れる決まったページ＋無作為の n 本）を、エッジのキャッシュに無い
 URL（?_cold=<乱数>）で開き、最初の1バイトが届くまでの時間（TTFB）を測る。デプロイ直後に読者・検索の
@@ -133,6 +134,70 @@ def wait_for_new_version(base: str, previous: str, seconds: int = 120) -> str:
     return current
 
 
+PLAIN_PATHS = ["/", "/sitemap.xml"]
+ARTICLE_LINK = re.compile(r"/articles/([A-Za-z0-9][A-Za-z0-9_-]*)")
+
+
+def fetch_body(base: str, path: str, nonce: str | None = None, plain: bool = False) -> dict:
+    """GET して版と本文を返す。plain=True のときは ?_internal も付けない（読者・検索のロボットと同じ URL。印は X-Saisoku-Internal だけ）"""
+    url = base + (path if plain else with_params(path, nonce))
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, headers=HEADERS), timeout=TIMEOUT) as res:
+            headers = {k.lower(): v for k, v in res.headers.items()}
+            return {"status": res.status, "ver": headers.get("x-saisoku-ver", ""), "edge": headers.get("x-saisoku-edge", ""), "body": res.read().decode("utf-8", "replace"), "error": ""}
+    except urllib.error.HTTPError as error:
+        return {"status": error.code, "ver": error.headers.get("x-saisoku-ver", ""), "edge": error.headers.get("x-saisoku-edge", ""), "body": "", "error": ""}
+    except Exception as error:  # 時間切れ・接続の失敗
+        return {"status": 0, "ver": "", "edge": "", "body": "", "error": type(error).__name__}
+
+
+def top_slug(body: str) -> str:
+    """描いたばかりのトップで最初に出てくる記事（いちばん上の記事）"""
+    match = ARTICLE_LINK.search(body)
+    return match.group(1) if match else ""
+
+
+def judge_plain(path: str, version: str, newest: str, second: dict) -> tuple[bool, str]:
+    """何も付けない URL の2回目が、今の版で、トップのいちばん上の記事を含むか（seo A1）"""
+    if second["error"] or second["status"] != 200:
+        return False, f"{path}: 開けない（{second['error'] or second['status']}）"
+    if second["ver"] != version:
+        return False, f"{path}: 古い版を返した（{second['ver'][:8] or '版の印なし'}・今は {version[:8]}・{second['edge'] or '-'}）"
+    if newest and f"/articles/{newest}" not in second["body"]:
+        return False, f"{path}: トップのいちばん上の記事（{newest}）が載っていない"
+    return True, f"{path}: 今の版（{version[:8]}・{second['edge'] or '-'}）で、新しい記事も載っている"
+
+
+def plain(args) -> int:
+    """報告だけ（終了コードはいつも 0。デプロイを赤にしない）"""
+    base = site_url()
+    nonce = str(random.randrange(10**12))
+    fresh_home = fetch_body(base, "/", nonce=nonce)
+    version = fresh_home["ver"]
+    newest = top_slug(fresh_home["body"])
+    lines = ["## 何も付けない URL の確かめ（seo A1。報告だけ）", "", f"- 今の版: {version[:8] or '(不明)'}・トップのいちばん上の記事: {newest or '(不明)'}"]
+    problems = []
+    if not version:
+        problems.append("今の版が分からない（描いたばかりのトップに x-saisoku-ver が無い）")
+    else:
+        for path in PLAIN_PATHS:
+            fetch_body(base, path, plain=True)
+            second = fetch_body(base, path, plain=True)
+            ok, message = judge_plain(path, version, newest, second)
+            lines.append(f"- {'✓' if ok else '✗'} {message}")
+            if not ok:
+                problems.append(message)
+    report = "\n".join(lines)
+    print(report, flush=True)
+    summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary:
+        with open(summary, "a", encoding="utf-8") as fh:
+            fh.write(report + "\n")
+    for message in problems:
+        print(f"::warning::{message}", flush=True)
+    return 0
+
+
 def check(args) -> int:
     base = site_url()
     if args.previous:
@@ -201,10 +266,13 @@ def main() -> int:
     c.add_argument("--limit", type=float, default=LIMIT)
     c.add_argument("--seed", default=None)
     c.add_argument("--json", default="")
+    sub.add_parser("plain")
     args = parser.parse_args()
     if args.command == "version":
         print(fetch(site_url(), "/", nonce=str(random.randrange(10**12)))["ver"])
         return 0
+    if args.command == "plain":
+        return plain(args)
     return check(args)
 
 

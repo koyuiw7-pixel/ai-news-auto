@@ -54,7 +54,74 @@ class SampleTest(unittest.TestCase):
         self.assertEqual(cold_check.with_params("/a?b=1"), "/a?b=1&_internal=1")
 
 
+class PlainTest(unittest.TestCase):
+    """何も付けない URL の確かめ（seo A1。報告だけ）"""
+
+    def second(self, ver="new", body="<a href=\"/articles/newest\">", status=200, error=""):
+        return {"status": status, "ver": ver, "edge": "hit", "body": body, "error": error}
+
+    def test_top_slug_is_the_first_article_link(self):
+        self.assertEqual(cold_check.top_slug('<a href="/articles/a-1">x</a><a href="/articles/b">'), "a-1")
+        self.assertEqual(cold_check.top_slug(f"<loc>{BASE}/articles/c_2</loc>"), "c_2")
+        self.assertEqual(cold_check.top_slug("<p>none</p>"), "")
+
+    def test_old_version_or_missing_article_is_reported(self):
+        self.assertTrue(cold_check.judge_plain("/", "new", "newest", self.second())[0])
+        ok, message = cold_check.judge_plain("/", "new", "newest", self.second(ver="old"))
+        self.assertFalse(ok)
+        self.assertIn("古い版", message)
+        ok, message = cold_check.judge_plain("/sitemap.xml", "new", "newest", self.second(body="<urlset/>"))
+        self.assertFalse(ok)
+        self.assertIn("newest", message)
+        self.assertFalse(cold_check.judge_plain("/", "new", "newest", self.second(status=0, error="TimeoutError"))[0])
+
+    def test_plain_fetch_has_no_query_string(self):
+        seen = []
+
+        class Res:
+            status = 200
+            headers = {"x-saisoku-ver": "new"}
+
+            def read(self):
+                return b'<a href="/articles/newest">'
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *a):
+                return False
+
+        def fake(request, timeout):
+            seen.append(request.full_url)
+            return Res()
+
+        original = cold_check.urllib.request.urlopen
+        cold_check.urllib.request.urlopen = fake
+        try:
+            self.assertEqual(cold_check.plain(None), 0)
+        finally:
+            cold_check.urllib.request.urlopen = original
+        base = cold_check.site_url()
+        self.assertTrue(seen[0].startswith(base + "/?_internal=1&_cold="))
+        self.assertEqual(seen[1:], [base + "/", base + "/", base + "/sitemap.xml", base + "/sitemap.xml"])
+
+    def test_report_never_fails_the_deploy(self):
+        original = cold_check.fetch_body
+        cold_check.fetch_body = lambda *a, **k: {"status": 0, "ver": "", "edge": "", "body": "", "error": "URLError"}
+        try:
+            self.assertEqual(cold_check.plain(None), 0)
+        finally:
+            cold_check.fetch_body = original
+
+
 class WorkflowTest(unittest.TestCase):
+    def test_plain_check_runs_after_deploy_and_is_report_only(self):
+        wf = (Path(__file__).resolve().parent.parent / ".github" / "workflows" / "deploy_cloudflare.yml").read_text("utf-8")
+        self.assertIn("scripts/cold_check.py plain", wf)
+        self.assertLess(wf.index("npx opennextjs-cloudflare deploy"), wf.index("scripts/cold_check.py plain"))
+        step = wf[wf.rindex("- name:", 0, wf.index("scripts/cold_check.py plain")):]
+        self.assertIn("continue-on-error: true", step)
+
     def test_deploy_runs_the_check_after_publishing(self):
         wf = (Path(__file__).resolve().parent.parent / ".github" / "workflows" / "deploy_cloudflare.yml").read_text("utf-8")
         self.assertIn("scripts/cold_check.py version", wf)

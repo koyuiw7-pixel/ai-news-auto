@@ -12,6 +12,7 @@ import { flushHeld, handlePush, type PushEnv } from "./push";
 import { handleAff, type AffEnv } from "./aff";
 import { serveVideo } from "./video";
 import { handleReview, type ReviewEnv } from "./review";
+import { edgeCacheKeyUrl, edgeHitDecision } from "./edge-cache";
 // @ts-ignore ビルド時に生成される（scripts/cf_content.mjs。JS・CSS のファイル名の組のハッシュ）
 import codeInfo from "../.open-next/saisoku-code.json";
 
@@ -279,14 +280,8 @@ function edgeCacheKey(request: Request, url: URL, env: Env): Request | null {
   if (request.method !== "GET" || request.headers.has("rsc") || url.searchParams.has("_rsc")) return null;
   if (url.pathname.startsWith("/_next/") || url.pathname.startsWith("/api/")) return null;
   if (isImmutableImage(url)) return new Request(`${url.origin}${url.pathname}?v=${url.searchParams.get("v")}&__c=immutable`, { method: "GET" });
-  const key = new URL(url);
-  // 表示に関係しない計測用のパラメータ（シェアボタンの utm_*・SNS のクリック ID）はキーから外し、
-  // 同じページを別物として描き直さない。/search の q もページは同じ（検索はブラウザ側で行う）
-  for (const name of [...key.searchParams.keys()]) {
-    if (/^utm_/.test(name) || name === "fbclid" || name === "gclid" || (name === "q" && key.pathname === "/search")) key.searchParams.delete(name);
-  }
-  key.searchParams.set("__c", (codeInfo as { hash?: string }).hash || deployVersion(env));
-  return new Request(key.toString(), { method: "GET" });
+  // 表示に関係しない計測用のパラメータ（utm_*・SNS や広告のクリック ID など。cloudflare/edge-cache.ts）はキーから外す
+  return new Request(edgeCacheKeyUrl(url, (codeInfo as { hash?: string }).hash || deployVersion(env)), { method: "GET" });
 }
 
 /** 作り直し中のキー（同じ isolate で重ねて描かない） */
@@ -393,9 +388,27 @@ export default {
     const edge = cacheKey ? (caches as unknown as { default: Cache }).default : null;
     if (edge && cacheKey) {
       const hit = await edge.match(cacheKey);
+      const decision = hit ? edgeHitDecision(url.pathname, hit.headers.get("x-saisoku-ver"), deployVersion(env), isImmutableImage(url)) : null;
+      // 前のデプロイで描いたトップ・一覧・サイトマップ・フィード: 古い版は返さず、ここでその場で描き直す（新しい記事がすぐ載る）。
+      // 描き直しが 5xx のときだけ、古い版を返す（エラーよりよい）
+      if (hit && decision === "render") {
+        const response = await render(request, url, env, ctx);
+        if (response.status >= 500) {
+          const out = new Response(hit.body, hit);
+          out.headers.set("x-saisoku-edge", "stale-error");
+          return out;
+        }
+        if (edgeCacheable(response)) {
+          const cached = forEdge(response, env);
+          ctx.waitUntil(edge.put(cacheKey, cached.clone()));
+          cached.headers.set("x-saisoku-edge", "rerender");
+          return cached;
+        }
+        return response;
+      }
       if (hit) {
-        const fresh = isImmutableImage(url) || hit.headers.get("x-saisoku-ver") === deployVersion(env);
-        // 前のデプロイで描いたもの: すぐ返し、裏で今の版に作り直す
+        const fresh = decision === "fresh";
+        // 前のデプロイで描いたもの（記事ページなど）: すぐ返し、裏で今の版に作り直す
         if (!fresh && !refreshing.has(cacheKey.url)) {
           refreshing.add(cacheKey.url);
           ctx.waitUntil(
