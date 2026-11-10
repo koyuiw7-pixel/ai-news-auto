@@ -138,12 +138,50 @@ class WiringTest(unittest.TestCase):
 
     def test_backfill_workflow(self):
         text = (ROOT / ".github" / "workflows" / "easy_backfill.yml").read_text("utf-8")
-        self.assertIn("scripts/easy_version.py --muse --apply", text)
+        self.assertIn("scripts/easy_version.py --wide --apply", text)
         self.assertIn("CLAUDE_API_LEDGER: easy", text)
         self.assertIn("git_safe_push.py --wait-idle auto_run.yml", text)
         import llm
 
         self.assertIn("easy", llm.MAINTENANCE_LEDGERS)
+
+
+class WideTargetTest(unittest.TestCase):
+    def _run(self, records, noindex=(), retired=(), views=None):
+        import json
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as d:
+            art = Path(d)
+            for r in records:
+                (art / f"{r['slug']}.json").write_text(json.dumps(r, ensure_ascii=False), "utf-8")
+            files = {
+                "noindex_zero_visit.json": {"slugs": list(noindex)},
+                "retired.json": {"articles": {s: {} for s in retired}},
+                "popular.json": {"items": [{"slug": k, "views": v} for k, v in (views or {}).items()]},
+            }
+            with patch.object(ev, "ARTICLES_DIR", art), patch.object(ev, "_load_json", lambda n: files.get(n, {})):
+                args = type("A", (), {"slug": "", "muse": False, "wide": True})()
+                return [p.stem for p in ev.targets(args)]
+
+    def test_wide_order_and_exclusions(self):
+        def rec(slug, genre, at):
+            return record(slug=slug, genre=genre, publishedAt=at, body=BODY)
+
+        got = self._run(
+            [
+                rec("tech-new", "AI・テクノロジー", "2026-11-09"),
+                rec("life-old", "暮らし・生活", "2026-10-01"),
+                rec("life-new", "暮らし・生活", "2026-11-05"),
+                rec("seen-tech", "AI・テクノロジー", "2026-09-01"),
+                rec("noindexed", "暮らし・生活", "2026-11-08"),
+                rec("gone", "暮らし・生活", "2026-11-08"),
+            ],
+            noindex=["noindexed"],
+            retired=["gone"],
+            views={"seen-tech": 5},
+        )
+        self.assertEqual(got, ["seen-tech", "life-new", "life-old", "tech-new"])
 
 
 if __name__ == "__main__":

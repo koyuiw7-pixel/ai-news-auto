@@ -21,6 +21,7 @@ dropSummarySections）。すると easy が空になり、「かんたんに読�
   python3 scripts/easy_version.py --slug electricity-bill-nov-2026-subsidy-ends          # 試し（前と後を表示。書き込まない）
   python3 scripts/easy_version.py --slug electricity-bill-nov-2026-subsidy-ends --apply  # 書き込む
   python3 scripts/easy_version.py --muse --apply --max 30 --purpose helper               # Muse の記事で空になるものを新しい順に
+  python3 scripts/easy_version.py --wide --apply --max 30 --purpose helper              # 空になるすべての記事（暮らしとお金・最近読まれた記事が先）
   python3 scripts/easy_version.py --list                                                 # 空になる記事の一覧（LLM なし）
 """
 
@@ -232,9 +233,40 @@ def ensure(record: dict, *, purpose: str | None = "helper", log=print) -> str:
     return f"ok（{report.get('model')}・{report.get('score')}点）"
 
 
+# 暮らしとお金のジャンル（ひろげた作り直しで先に直す）
+PRIORITY_GENRES = ("暮らし・生活", "社会・行政", "投資・マネー")
+
+
+def _load_json(name: str):
+    try:
+        return json.loads((ROOT / "content" / name).read_text("utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def excluded_slugs() -> set[str]:
+    """検索に出さない記事（content/noindex_zero_visit.json）と、取り下げた記事（content/retired.json）"""
+    noindex = _load_json("noindex_zero_visit.json").get("slugs") or []
+    retired = _load_json("retired.json").get("articles") or {}
+    return set(noindex) | set(retired)
+
+
+def wide_rank(record: dict, views: dict) -> tuple:
+    """小さいほど先。(最近読まれている記事, 暮らしとお金のジャンル, 新しい順) の順"""
+    visited = 0 if views.get(record.get("slug") or "", 0) > 0 else 1
+    genre = 0 if record.get("genre") in PRIORITY_GENRES else 1
+    published = str(record.get("publishedAt") or "")
+    # 新しい順にするため、日時の文字を反転せず、並べ替えは reverse 側ではなく負の順位で扱う
+    return (visited, genre, [-ord(c) for c in published])
+
+
 def targets(args) -> list[Path]:
     if args.slug:
         return [ARTICLES_DIR / f"{s.strip()}.json" for s in args.slug.split(",") if s.strip()]
+    skip = excluded_slugs() if args.wide else set()
+    views = {}
+    if args.wide:
+        views = {i.get("slug"): i.get("views", 0) for i in (_load_json("popular.json").get("items") or []) if isinstance(i, dict)}
     paths = []
     for path in ARTICLES_DIR.glob("*.json"):
         try:
@@ -243,8 +275,15 @@ def targets(args) -> list[Path]:
             continue
         if args.muse and not record.get("museFile"):
             continue
+        if args.wide and (path.stem in skip or record.get("slug") in skip):
+            continue
         if thin(record):
-            paths.append((str(record.get("publishedAt") or ""), path))
+            if args.wide:
+                paths.append((wide_rank(record, views), path))
+            else:
+                paths.append((str(record.get("publishedAt") or ""), path))
+    if args.wide:
+        return [p for _, p in sorted(paths, key=lambda t: t[0])]
     return [p for _, p in sorted(paths, reverse=True)]
 
 
@@ -253,12 +292,13 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--slug", help="この記事だけ（カンマ区切り）")
     ap.add_argument("--muse", action="store_true", help="Muse の記事（museFile のある記事）だけ")
     ap.add_argument("--all", action="store_true", help="すべての記事")
+    ap.add_argument("--wide", action="store_true", help="かんたん版が空になるすべての記事（検索に出さない記事・取り下げた記事は除く。最近読まれている記事→暮らしとお金→新しい順）")
     ap.add_argument("--list", action="store_true", help="空になる記事の一覧だけ（LLM なし）")
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--max", type=int, default=0)
     ap.add_argument("--purpose", default="helper", help="Claude API の段（helper = Haiku）。none で無料モデルだけ")
     args = ap.parse_args(argv)
-    if not (args.slug or args.muse or args.all):
+    if not (args.slug or args.muse or args.all or args.wide):
         ap.print_help()
         return 1
     paths = targets(args)
