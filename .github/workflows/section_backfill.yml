@@ -60,6 +60,12 @@ jobs:
           else
             timeout 1800 python -u scripts/section_polish.py --all --apply --max "$MAX" --purpose helper
           fi
+      # 古い記事の「本日・来週」に日付を添える／過ぎた予定の見出しに、公式ページで確かめた更新履歴を足す（SEO A19。LLM は使わない）
+      - name: Stale relative words and passed-date headlines
+        continue-on-error: true
+        run: |
+          timeout 300 python -u scripts/stale_words.py --sweep --apply | tail -5
+          timeout 600 python -u scripts/stale_words.py --passed --apply
       - name: Commit and deploy
         if: ${{ !cancelled() }}
         env:

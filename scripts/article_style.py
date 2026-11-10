@@ -624,6 +624,11 @@ def autofix(record: dict) -> list[str]:
     changes += reader_order_autofix(record)
     # 「｜」は題名にも本文にも使わない（台帳 2026-11-07「｜」禁止）。落とさず、ここで置き換える
     changes += strip_vertical_bars(record)
+    # 古くなる「本日・明日・来週」に、出典の発表日からの日付を添える（SEO A19。scripts/stale_words.py。言い回しの直しなので更新日時は動かさない）
+    import stale_words  # noqa: PLC0415
+
+    fixed, _ambiguous = stale_words.absolutize(record)
+    changes += [f"{key}: 「本日・来週」などに日付を添えた" for key in fixed]
     return changes
 
 
