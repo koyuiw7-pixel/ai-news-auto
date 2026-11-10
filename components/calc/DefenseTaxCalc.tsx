@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 import { baseFromWithheld, DEFENSE_TAX_DEFAULT_BASE, DEFENSE_TAX_PERIODS, surtax, yen } from "@/lib/calc-math";
 import { Field, INPUT_CLASS, Segmented, toNumber } from "@/components/calc/parts";
+import { incomeTaxEstimate } from "@/lib/furusato-easy";
 
 /**
  * 防衛特別所得税・復興特別所得税（国の税）の計算。基準所得税額×税率（1円未満切り捨て）。
@@ -10,10 +11,19 @@ import { Field, INPUT_CLASS, Segmented, toNumber } from "@/components/calc/parts
  */
 export default function DefenseTaxCalc({ defaultBase = DEFENSE_TAX_DEFAULT_BASE }: { defaultBase?: number }) {
   const id = useId();
-  const [mode, setMode] = useState<"base" | "withheld">("base");
+  // 2026-11-11 COMPARE-4: 所得税額が手元に無い人のため「年収から」を足した（給与収入だけ・社会保険料15%の目安）
+  const [mode, setMode] = useState<"base" | "withheld" | "salary">("base");
   const [amount, setAmount] = useState(String(defaultBase));
+  const [salary, setSalary] = useState("600");
+  const [spouse, setSpouse] = useState<"no" | "yes">("no");
   const value = toNumber(amount) ?? 0;
-  const base = mode === "base" ? Math.floor(value) : baseFromWithheld(value);
+  const salaryYen = Math.round((toNumber(salary) ?? 0) * 10000);
+  const base =
+    mode === "salary"
+      ? incomeTaxEstimate({ salary: salaryYen, spouse: spouse === "yes", teens: 0, students: 0 })
+      : mode === "base"
+        ? Math.floor(value)
+        : baseFromWithheld(value);
 
   return (
     <div>
@@ -26,19 +36,38 @@ export default function DefenseTaxCalc({ defaultBase = DEFENSE_TAX_DEFAULT_BASE 
           options={[
             { value: "base", label: "所得税額" },
             { value: "withheld", label: "源泉徴収票の税額" },
+            { value: "salary", label: "年収から" },
           ]}
         />
-        <Field
-          id={`${id}-amount`}
-          label={mode === "base" ? "1年の所得税額（基準所得税額・円）" : "源泉徴収票の「源泉徴収税額」（円）"}
-          help={
-            mode === "base"
-              ? "確定申告書の「基準所得税額」の欄の金額です。"
-              : `復興特別所得税（2.1%）を含んだ金額なので、1.021で割って所得税額の目安（${yen(base)}）にします。`
-          }
-        >
-          <input id={`${id}-amount`} type="text" inputMode="numeric" autoComplete="off" value={amount} onChange={(e) => setAmount(e.target.value)} className={INPUT_CLASS} />
-        </Field>
+        {mode === "salary" ? (
+          <div className="grid gap-4">
+            <Field id={`${id}-salary`} label="給与の年収（額面・万円）" help={`給与収入だけ・社会保険料は年収の15%・扶養なしとして、2027年分の所得税のきまりで出した目安（所得税額 ${yen(base)}）です。`}>
+              <input id={`${id}-salary`} type="text" inputMode="decimal" autoComplete="off" value={salary} onChange={(e) => setSalary(e.target.value)} className={INPUT_CLASS} />
+            </Field>
+            <Segmented
+              name={`${id}-spouse`}
+              label="配偶者"
+              value={spouse}
+              onChange={setSpouse}
+              options={[
+                { value: "no", label: "いない・共働き" },
+                { value: "yes", label: "収入のない配偶者がいる" },
+              ]}
+            />
+          </div>
+        ) : (
+          <Field
+            id={`${id}-amount`}
+            label={mode === "base" ? "1年の所得税額（基準所得税額・円）" : "源泉徴収票の「源泉徴収税額」（円）"}
+            help={
+              mode === "base"
+                ? "確定申告書の「基準所得税額」の欄の金額です。"
+                : `復興特別所得税（2.1%）を含んだ金額なので、1.021で割って所得税額の目安（${yen(base)}）にします。`
+            }
+          >
+            <input id={`${id}-amount`} type="text" inputMode="numeric" autoComplete="off" value={amount} onChange={(e) => setAmount(e.target.value)} className={INPUT_CLASS} />
+          </Field>
+        )}
       </div>
 
       <ul className="mt-5 divide-y divide-line rounded-xl bg-surface px-4" aria-live="polite" aria-label={`年ごとの税額（所得税額 ${yen(base)} のとき）`}>

@@ -62,6 +62,7 @@ export default function DefenseTaxPage() {
       </ToolSection>
       <ToolSection id="base" title="基準所得税額とは">
         <p>所得税から、住宅ローン控除などの税額控除を引いたあとの金額です。確定申告書に欄があります。会社員の源泉徴収票の「源泉徴収税額」は、これに復興特別所得税を足した金額なので、1.021で割ると目安になります。</p>
+        <p>どちらも手元にないときは、計算機の「年収から」で目安を出せます。給与収入だけ・社会保険料は年収の15%・扶養なしとして、2027年分の所得税のきまり（基礎控除・給与所得控除は国税庁のタックスアンサーNo.1199・No.1410）で計算します。</p>
       </ToolSection>
       <ToolSection id="faq" title="よくある質問">
         <h3 className="font-bold text-ink">2027年から税金は増えますか</h3>

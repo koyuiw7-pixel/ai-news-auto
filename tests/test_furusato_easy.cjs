@@ -85,3 +85,10 @@ test("ページ: 「年収から」が既定、表は計算で出す、前提と
   assert.doesNotMatch(page, /61,000円|61000/);
   assert.doesNotMatch(page, /最安|No\.1(?!\d)|日本一/);
 });
+
+test("防衛特別所得税の計算機にも「年収から」（独身・年収600万円 → 所得税額144,500円）", () => {
+  assert.equal(easy.incomeTaxEstimate({ salary: 6000000, spouse: false, teens: 0, students: 0 }), 144500);
+  const src = read("components/calc/DefenseTaxCalc.tsx");
+  assert.match(src, /\{ value: "salary", label: "年収から" \}/);
+  assert.match(src, /incomeTaxEstimate\(/);
+});
