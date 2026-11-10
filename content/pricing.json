@@ -1,12 +1,12 @@
 {
  "updatedAt": "2026-11-09T20:01:38.283874+00:00",
- "generatedAt": "2026-11-10T01:45:59+00:00",
+ "generatedAt": "2026-11-10T23:43:17+00:00",
  "stats": {
-  "articlesScanned": 936,
-  "candidateArticles": 73,
-  "rowsVerified": 44,
-  "rowsRejected": 57,
-  "plans": 18,
+  "articlesScanned": 1038,
+  "candidateArticles": 75,
+  "rowsVerified": 49,
+  "rowsRejected": 66,
+  "plans": 19,
   "apis": 12
  },
  "items": [
@@ -332,7 +332,7 @@
     "quote": "| Free | $0/月 | | 制限された使用量(5 時間ごと・毎週) |"
    },
    "verdictSource": null,
-   "confirmedIn": 1,
+   "confirmedIn": 2,
    "legacy": false
   },
   {
@@ -386,14 +386,14 @@
    "legacy": false
   },
   {
-   "id": "plan-claude-team",
+   "id": "plan-claude-pro",
    "kind": "plan",
    "vendor": "Anthropic",
    "companySlug": "anthropic",
    "product": "Claude",
-   "plan": "Team(月払い)",
+   "plan": "Pro",
    "currency": "USD",
-   "monthly": 25,
+   "monthly": 20,
    "input": null,
    "output": null,
    "cachedInput": null,
@@ -401,10 +401,10 @@
    "status": "limited",
    "free": true,
    "source": {
-    "slug": "claude-personal-finance-beta",
-    "title": "Claude Personal Financeとは？日本で使える？料金も",
-    "publishedAt": "2026-11-05T00:00:00+00:00",
-    "quote": "| Team(スタンダードシート) | $20/人・月(年払い) / $25/人・月(月払い) | 約4,350円(税込みの目安) | すべてのClaude 機能、さらにProより多い使用量 |"
+    "slug": "claude-whiteboards-sheets-data",
+    "title": "Claude Whiteboards・Sheetsとは？料金と使い方",
+    "publishedAt": "2026-11-09T15:00:00+00:00",
+    "quote": "Proは月払いで$20です(Anthropic公式の料金ページ、11/10確認)。円ではProが消費税込みで約3,470円です(サイソク編集部の計算)。"
    },
    "verdictSource": null,
    "confirmedIn": 1,
@@ -436,6 +436,31 @@
    "legacy": false
   },
   {
+   "id": "plan-claude-team",
+   "kind": "plan",
+   "vendor": "Anthropic",
+   "companySlug": "anthropic",
+   "product": "Claude",
+   "plan": "Team(月払い)",
+   "currency": "USD",
+   "monthly": 25,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": "limited",
+   "free": true,
+   "source": {
+    "slug": "claude-whiteboards-sheets-data",
+    "title": "Claude Whiteboards・Sheetsとは？料金と使い方",
+    "publishedAt": "2026-11-09T15:00:00+00:00",
+    "quote": "| Team(スタンダードシート) | $20/人・月(年払い) / $25/人・月(月払い) | 約4,340円(税込みの目安) | すべてのClaude 機能、さらにProより多い使用量 |"
+   },
+   "verdictSource": null,
+   "confirmedIn": 2,
+   "legacy": false
+  },
+  {
    "id": "plan-claude-max",
    "kind": "plan",
    "vendor": "Anthropic",
@@ -457,7 +482,7 @@
     "quote": "| Max | $100/月(月払い) | 約17,420円(税込みの目安) | Pro の 5 倍の使用量(5 時間ごと・毎週)、Claude Platform での開発に利用できる月額 $100 分の API クレジット |"
    },
    "verdictSource": null,
-   "confirmedIn": 2,
+   "confirmedIn": 3,
    "legacy": false
   },
   {
@@ -591,31 +616,6 @@
    "vendor": "Google",
    "companySlug": "google",
    "product": "Gemini Enterprise",
-   "plan": "Business エディション",
-   "currency": "USD",
-   "monthly": 21,
-   "input": null,
-   "output": null,
-   "cachedInput": null,
-   "japan": "unknown",
-   "status": null,
-   "free": null,
-   "source": {
-    "slug": "gemini-omni-12-flash-ga",
-    "title": "Gemini Omni 1.2 Flashとは？料金と日本での提供状況",
-    "publishedAt": "2026-11-05T17:00:00+00:00",
-    "quote": "| Gemini Enterprise Business エディション | $21/人・月から | 約3,660円(税込みの目安) | ユーザー数: 最大 300 人 |"
-   },
-   "verdictSource": null,
-   "confirmedIn": 2,
-   "legacy": false
-  },
-  {
-   "id": "plan-geminienterprise-business",
-   "kind": "plan",
-   "vendor": "Google",
-   "companySlug": "google",
-   "product": "Gemini Enterprise",
    "plan": "Business",
    "currency": "USD",
    "monthly": 21,
@@ -633,6 +633,31 @@
    },
    "verdictSource": null,
    "confirmedIn": 1,
+   "legacy": false
+  },
+  {
+   "id": "plan-geminienterprise-business",
+   "kind": "plan",
+   "vendor": "Google",
+   "companySlug": "google",
+   "product": "Gemini Enterprise",
+   "plan": "Business エディション",
+   "currency": "USD",
+   "monthly": 21,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": null,
+   "free": null,
+   "source": {
+    "slug": "gemini-robotics-2-5-dexterity",
+    "title": "Gemini Robotics 2.5とは？提携先に提供、日本での提供は未発表",
+    "publishedAt": "2026-11-09T19:51:47+00:00",
+    "quote": "| Gemini Enterprise Business エディション | $21/人・月から | 約3,650円(税込みの目安) | ユーザー数: 最大 300 人 |"
+   },
+   "verdictSource": null,
+   "confirmedIn": 3,
    "legacy": false
   },
   {
