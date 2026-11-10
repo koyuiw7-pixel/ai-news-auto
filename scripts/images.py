@@ -3286,6 +3286,40 @@ def use_figure(path: Path, article: dict, ctx: dict) -> str:
     return "figure"
 
 
+FIGURE_REFRESH_MAX = 10  # 1回に描き直す図の表紙の数（写真は探さないので軽い）
+
+
+def figure_stale(article: dict) -> bool:
+    """図の表紙の数字・言葉が、今の題名から抜き出したものと違うか（題名を直した・抜き出し方を直した）。
+    2026-11-10: 「約3億5,000万件」が「約3億」、「毎月5円」が「月5円」と切れた図が出ていた。図に古い・欠けた数字を残さない"""
+    import figure_cover  # noqa: PLC0415
+
+    credit = article.get("imageCredit") or {}
+    if credit.get("kind") != "figure" or credit.get("imageKind") != "cover" or not is_ours(article.get("thumbnail") or ""):
+        return False
+    fact = figure_cover.key_fact(str(article.get("title") or ""))
+    return (credit.get("number") or "") != fact["number"] or (credit.get("label") or "") != fact["label"]
+
+
+def refresh_stale_figures(ordered: list[tuple[Path, dict]], ctx: dict, tally: Counter, limit: int = FIGURE_REFRESH_MAX) -> int:
+    """数字・言葉が今の題名と合わない図の表紙を、写真を探さずに描き直す（use_figure。数字は題名の文字のまま）"""
+    done = 0
+    for path, article in ordered:
+        if done >= limit:
+            break
+        if not figure_stale(article):
+            continue
+        log(f"[img] 図の表紙を描き直す（数字・言葉が題名と合わない）: {article.get('slug') or path.stem}")
+        try:
+            outcome = use_figure(path, article, {**ctx, "previous_credit": {}, "previous_thumb": {}})
+        except Exception as error:  # noqa: BLE001 - 1本の失敗で全体を止めない
+            log(f"   [img] 図の表紙を描き直せない: {str(error)[:120]}")
+            outcome = "error"
+        tally[f"figure-refresh-{outcome}"] += 1
+        done += 1
+    return done
+
+
 def figure_retry(article: dict, now: datetime | None = None) -> bool:
     """図の表紙にした記事を、写真・AI のイメージで作り直す番か（FIGURE_RETRY_HOURS たった・AI の枚数がこの記事に使える）"""
     credit = article.get("imageCredit") or {}
@@ -3662,6 +3696,9 @@ def main() -> int:
             with open(args.report, "a", encoding="utf-8") as fh:
                 row = {"slug": article.get("slug"), "outcome": outcome, "seconds": round(time.time() - began, 1), "thumbnail": article.get("thumbnail"), "imageCredit": article.get("imageCredit")}
                 fh.write(json.dumps(row, ensure_ascii=False) + "\n")
+    # 図の表紙の数字・言葉が題名と合わないものを描き直す（速報の急ぎの回はしない。時間が残っているときだけ）
+    if not args.dry_run and not args.fast and (args.changed or args.recent or args.all) and (not args.budget or time.time() - started < args.budget + 40):
+        refresh_stale_figures(ordered, ctx, tally)
     if not args.dry_run:
         noir_covers(ordered, args, started, tally)
     if args.focus_recent and not args.dry_run:

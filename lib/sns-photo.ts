@@ -102,6 +102,14 @@ export function snsCardArticle<T extends Photoable>(article: T): T {
   } as T;
 }
 
+/**
+ * 図の表紙（scripts/figure_cover.py が描いた、題名の言葉・数字と絵記号の図。「図：サイソクニュース作成」入り）か。
+ * 図には題名がもう描いてあるので、共有の画像（/cover・/card）では見出し・注記を重ねずにそのまま使う（2026-11-10）
+ */
+export function isFigureCover(credit?: Pick<ImageCredit, "kind" | "imageKind"> | null): boolean {
+  return credit?.kind === "figure" && credit.imageKind === "cover";
+}
+
 type Coverable = Photoable & { coverImage?: string; coverCredit?: ImageCredit; noPhoto?: boolean };
 
 /** 記事の写真（thumbnail）を共有の画像にそのまま使ってよいか（空・AI の絵・写真なしの印 card は使わない） */
@@ -109,7 +117,7 @@ function thumbnailUsable(article: Coverable): boolean {
   const kind = article.imageCredit?.kind;
   if (!article.thumbnail || kind === "ai" || kind === "card") return false;
   // 2026-11-10（台帳 I9）: 図の表紙（scripts/figure_cover.py）は写真ではないので、共有の画像には AI のイメージ（Muse など）を先にする
-  if (kind === "figure" && article.imageCredit?.imageKind === "cover") return false;
+  if (isFigureCover(article.imageCredit)) return false;
   // 2026-11-09（台帳 S49）: 公式のロゴ・サイト共通の画像、ほかの記事のために保存した画像は記事の写真として使わない
   if (kind === "official" && ["logo", "generic"].includes(article.imageCredit?.imageKind ?? "")) return false;
   return !borrowedImage(article.thumbnail, article.slug ?? "");

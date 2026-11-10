@@ -80,3 +80,29 @@ test("カバー・カードの画像の作り手が shareImageArticle を通し�
   assert.match(tp, /CARD_VERSION = \d+/);
   assert.match(tp, /return cover_url\(article\)/);
 });
+
+// 2026-11-10: 図の表紙（scripts/figure_cover.py）には題名・ジャンルの札・「図：サイソクニュース作成」がもう描いてある。
+// リンクカード（/cover）がその上に見出しの帯と注記を重ね、同じ題名が2回・注記が2回出ていた（年金生活者支援給付金の記事）
+test("図の表紙は、共有の画像で見出し・注記を重ねずに図をそのまま使う（Muse の写真があればそちら）", () => {
+  const { isFigureCover } = load("lib/sns-photo.ts");
+  const figure = {
+    slug: "pension-support-benefit-old-age-eligibility",
+    title: "年金生活者支援給付金は請求しないと始まらない　老齢は前年92万6,500円以下が対象",
+    thumbnail: `${IMG}pension-support-benefit-old-age-eligibility-figure-bcffccab.jpg`,
+    imageCredit: { kind: "figure", imageKind: "cover", provider: "サイソクニュース" },
+  };
+  assert.ok(isFigureCover(figure.imageCredit));
+  assert.ok(!isFigureCover({ kind: "figure" })); // 数字の図（render_figure）は今までどおり
+  assert.ok(!isFigureCover({ kind: "official", imageKind: "cover" }));
+  // Muse・Workers AI の表紙があれば写真を先にする（図ではなくなる）
+  assert.equal(shareImageArticle(figure), figure);
+  const muse = shareImageArticle({ ...figure, coverImage: `${IMG}pension-muse-1.jpg`, coverCredit: { kind: "ai", model: "muse" } });
+  assert.ok(!isFigureCover(muse.imageCredit));
+  const cover = read("app/cover/[slug]/route.tsx");
+  assert.match(cover, /const figure = await figureCoverImage\(article\);\s*if \(figure\) return figure;/);
+  assert.match(cover, /fit: "contain"/);
+  // カードの隅の注記も重ねない（scripts/sns_rules.py の card_note と同じく空）
+  assert.match(read("lib/card-designs.tsx"), /if \(isFigureCover\(c\)\) return "";/);
+  // 7日のキャッシュに見出しを重ねた古い画像を残さない
+  assert.ok(COVER_VERSION >= 5);
+});

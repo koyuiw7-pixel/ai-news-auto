@@ -9,7 +9,7 @@ import { isFastNews } from "@/lib/cover-path";
 import { articleTitle, splitHeadline } from "@/lib/headline";
 import { aiCreditText, officialCreditText } from "@/lib/image-credit";
 import { siteConfig } from "@/site.config";
-import { shareImageArticle } from "@/lib/sns-photo";
+import { isFigureCover, shareImageArticle } from "@/lib/sns-photo";
 import {
   basePhoto,
   COVER_HEIGHT as HEIGHT,
@@ -209,9 +209,43 @@ function coverCredit(article: FullArticle): string {
   return c.license?.startsWith("CC BY") ? `写真はイメージ　Photo: ${who} / ${c.license}` : "写真はイメージ";
 }
 
+/**
+ * 図の表紙（scripts/figure_cover.py。imageCredit {kind: "figure", imageKind: "cover"}）を、そのまま共有の画像にする。
+ * 図には題名の言葉・数字・ジャンルの札・「図：サイソクニュース作成」がもう描いてあるので、その上に見出しの帯・ラベル・注記を重ねると
+ * 同じ題名が2回出て読みにくい（2026-11-10 年金生活者支援給付金の記事のリンクカード）。暗くもしない。
+ * 取得できないときは null（今までのカバーに回す）
+ */
+async function figureCoverImage(article: FullArticle): Promise<ImageResponse | null> {
+  if (!isFigureCover(article.imageCredit) || !article.thumbnail) return null;
+  let src: string | null = null;
+  try {
+    const photo = await fetchPhoto(article.thumbnail);
+    if (photo) {
+      const fitted = await sharp(photo).resize(WIDTH, HEIGHT, { fit: "contain", background: "#ffffff" }).toBuffer();
+      src = await toDataUrl(fitted);
+    }
+  } catch {
+    // Cloudflare Workers（sharp なし）では URL のまま敷く
+    src = await reachablePhoto(article.thumbnail);
+  }
+  if (!src) return null;
+  return new ImageResponse(
+    (
+      <div style={{ width: WIDTH, height: HEIGHT, display: "flex", background: "#ffffff" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={src} alt="" width={WIDTH} height={HEIGHT} style={{ objectFit: "contain" }} />
+      </div>
+    ),
+    { width: WIDTH, height: HEIGHT },
+  );
+}
+
 async function renderCover(found: FullArticle): Promise<ImageResponse> {
   // 写真は ①使える記事の写真 ②表紙用の AI のイメージ（coverImage。札「画像はイメージ（AI生成）」つき） ③文字だけ（lib/sns-photo.ts の shareImageArticle）
   let article = shareImageArticle(found);
+  // 表紙用の AI のイメージが無い図の表紙は、図をそのまま（見出しを重ねない）
+  const figure = await figureCoverImage(article);
+  if (figure) return figure;
   const company = companyOf(article);
   const isOther = company.slug === "other";
   // 公式ブログ・プレスリリース記事で企業が判別できないときは、発信元名を出す

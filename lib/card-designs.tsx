@@ -9,6 +9,7 @@ import { fetchPhoto } from "@/lib/cover";
 import { isFastNews } from "@/lib/cover-path";
 import { articleTitle, headOf } from "@/lib/headline";
 import { aiCreditText, officialCreditText } from "@/lib/image-credit";
+import { isFigureCover } from "@/lib/sns-photo";
 import { containRect, coverFit, cornerRect, DEFAULT_AR, focusOf, freeCorner as freeCornerOf, NOTE, NOTE_SMALL, overlap, photoOnlyLayout, TAG, TAG_SMALL, type Box, type Corner, type Rect } from "@/lib/card-geometry";
 
 /**
@@ -478,6 +479,8 @@ function freeCorner(subject: Rect, w: number, h: number): Corner {
 /** 写真の注記（カバー画像と同じ。AI 生成・素材写真・公式写真のときだけ。CC BY は作者とライセンスの表示が条件） */
 export function cardCredit(article: FullArticle): string {
   const c = article.imageCredit;
+  // 図の表紙は「図：サイソクニュース作成」が図の中にもう描いてある（隅にもう1つ重ねない。scripts/sns_rules.py の card_note も空）
+  if (isFigureCover(c)) return "";
   if (c?.kind === "ai") return aiCreditText(c) ?? "";
   if (c?.kind === "official" || c?.kind === "figure") return officialCreditText(c) ?? "";
   if (c?.kind !== "stock") return "";

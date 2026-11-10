@@ -122,6 +122,38 @@ class FigureCoverTest(unittest.TestCase):
             for part in (fact["label"], fact["number"], fact["after"], fact["sub"]):
                 self.assertIn(part, title)
 
+    def test_key_fact_keeps_whole_numbers(self):
+        # 2026-11-10: 「約3億5,000万件」が「約3億」、「毎月5円」が「月5円」（前の言葉は「12月から毎」）と切れた図が出ていた
+        cases = {
+            "上場企業の個人情報漏えい、約3億5,000万件で過去最多に　10月に大型事故が集中": ("上場企業の個人情報漏えい", "約3億5,000万件", "過去最多に"),
+            "ガソリン補助、12月から毎月5円ずつ縮小へ　春先に向けて基準価格を引き上げ": ("12月から", "毎月5円", "ずつ縮小へ"),
+            "年金は月6万9,308円に増額": ("年金", "月6万9,308円", "増額"),
+            "トヨタの中間決算、営業利益2兆1,911億円で9.2%増": ("営業利益", "2兆1,911億円", "9.2%増"),
+            "老齢は前年92万6,500円以下が対象": ("老齢は前年", "92万6,500円", "以下が対象"),
+            "パナソニック電気しき毛布DB-U12Tの電気代は1時間約1円　こたつ・ホットカーペットとは条件の違う目安": ("パナソニック電気しき毛布DB-U12Tの電気代は1時間", "約1円", ""),
+            "トヨタ、自社株買いの枠を1兆円から1.3兆円に": ("自社株買いの枠", "1兆円", "から1.3兆円に"),
+        }
+        for title, (label, number, after) in cases.items():
+            fact = figure_cover.key_fact(title)
+            self.assertEqual((fact["label"], fact["number"], fact["after"]), (label, number, after), title)
+            self.assertIn(fact["number"], title)  # 数字は題名の文字のまま
+
+    def test_stale_figures_are_redrawn_without_photo_search(self):
+        title = "上場企業の個人情報漏えい、約3億5,000万件で過去最多に　10月に大型事故が集中"
+        old = art("breach", title=title, thumbnail="https://ai-tech-express.jp/img/breach-figure-e76581d7.jpg",
+                  imageCredit={"kind": "figure", "imageKind": "cover", "number": "約3億", "label": "上場企業の個人情報漏えい"})
+        fresh = {**old, "imageCredit": {**old["imageCredit"], "number": "約3億5,000万件"}}
+        self.assertTrue(images.figure_stale(old))
+        self.assertFalse(images.figure_stale(fresh))
+        self.assertFalse(images.figure_stale({**old, "imageCredit": {"kind": "ai"}}))
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "breach.json"
+            with patch.object(images, "store", return_value=("https://ai-tech-express.jp/img/breach-figure-new.jpg", (1200, 630))):
+                done = images.refresh_stale_figures([(path, old), (path, fresh)], {"dry_run": True}, images.Counter())
+        self.assertEqual(done, 1)
+        self.assertEqual(old["imageCredit"]["number"], "約3億5,000万件")
+        self.assertEqual(old["thumbnail"], "https://ai-tech-express.jp/img/breach-figure-new.jpg")
+
     def test_dates_are_not_the_key_number(self):
         fact = figure_cover.key_fact("11月9日午後3時から手続き再開　ドコモでまだ使えない9項目")
         self.assertEqual(fact["number"], "")

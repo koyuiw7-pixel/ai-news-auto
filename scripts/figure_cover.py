@@ -55,11 +55,20 @@ ICON_RULES: list[tuple[str, str]] = [
 ]
 
 NUMBER_RE = re.compile(
-    r"(?:約|最大|最低|月|年|1人|一人)?"
+    # 「月」「年」は「月10万円」の頭の言葉としてだけ付ける（「毎月5円」の「月」・「前年92万」の「年」を数字に入れない）
+    r"(?:約|最大|最低|毎月|毎年|(?<![一-龥々])月|(?<![一-龥々])年|1人|一人)?"
     r"([0-9０-９][0-9０-９,，.．]*)\s*"
     r"(万円|億円|兆円|万人|万件|万|億|兆)?"
     r"(円|%|％|ポイント|倍|人|件|社|本|台|歳|日|時間|か月分|カ月分|ヶ月分|か月|カ月|ヶ月|年分|割|kWh|万)?"
 )
+# 「92万」「3億」「2兆」の後ろに続く下の位（「92万6,500円」「3億5,000万件」「2兆1,911億円」を1つの数字にする。途中で切ると別の数に読める）
+LOWER_PLACE_RE = re.compile(
+    r"[0-9０-９][0-9０-９,，.．]*\s*"
+    r"(?:万円|億円|兆円|万人|万件|万|億)?"
+    r"(?:円|%|％|ポイント|倍|人|件|社|本|台|歳|か月分|カ月分|ヶ月分|か月|カ月|ヶ月|割|kWh)?"
+)
+# 主役にしない数字の単位（条件の「1時間」より、その後の「約1円」を主役にする。ほかに数字が無ければ使う）
+WEAK_UNITS = ("時間",)
 # 数字の前後で切る言葉（題名の文の区切り）
 CLAUSE_SPLIT = re.compile(r"[　、。！？!?]|\s{2,}")
 TRAIL_PARTICLE = re.compile(r"(は|が|を|に|の|で|と|も|へ)$")
@@ -91,6 +100,7 @@ def key_fact(title: str) -> dict:
     「11月」「2026年」のような日付は主役にしない（単位の無い数字・月・年も）"""
     head, tail = split_title(title)
     best = None
+    weak = None
     for m in NUMBER_RE.finditer(head):
         digits, scale, unit = m.group(1), m.group(2) or "", m.group(3) or ""
         if not (scale or unit):
@@ -102,11 +112,20 @@ def key_fact(title: str) -> dict:
             continue  # 日付・年は主役にしない
         if re.match(r"^(月|年|日)", head[m.end():]) and not (scale or unit):
             continue
+        if unit in WEAK_UNITS and not scale:
+            weak = weak or m
+            continue
         best = m
         break
+    best = best or weak
     if best is None:
         return {"label": head, "number": "", "after": "", "sub": tail}
     start, end = best.start(), best.end()
+    # 「92万」「3億」で止まった数字は、続く下の位までを1つにする（「92万6,500円」「3億5,000万件」）
+    if not best.group(3) and (best.group(2) or "") in ("万", "億", "兆"):
+        lower = LOWER_PLACE_RE.match(head[end:])
+        if lower and lower.group(0).strip():
+            end += len(lower.group(0).rstrip())
     # 「1万〜3万円」のような幅の書き方は、後ろの数字までを1つにする
     more = re.match(r"[〜～~\-－]\s*" + NUMBER_RE.pattern, head[end:])
     if more:
