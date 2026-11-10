@@ -12343,6 +12343,19 @@
       "skipped": true,
       "url": "https://www.suntory.co.jp/news/article/2026/15158.html?rss=0000000029"
     },
+    "8d40bd57193cb55f": {
+      "at": "2026-11-10T07:14:25.248027+00:00",
+      "breaking": true,
+      "costUsd": 0.1198,
+      "intent": "breaking",
+      "major": true,
+      "mix": "jp_corp",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 91,
+      "section": "investment",
+      "slug": "resona-hd-fy2027-interim-results",
+      "url": "https://www.release.tdnet.info/inbs/140120261110571070.pdf"
+    },
     "8d5c737c495043c1": {
       "at": "2026-10-30T08:31:43.288757+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -19865,31 +19878,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-09T02:15:57.448933+00:00",
-      "attempt": 1,
-      "id": "b0871561375c193f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 206.5,
-        "avg_sentence": 82.6,
-        "long_share": 0.8,
-        "max_paragraph": 222,
-        "paragraphs": 2,
-        "sentences": 5
-      },
-      "score": 88,
-      "source": "jst",
-      "title": "日ASEAN科学技術・イノベーション協働連携事業（NEXUS）日本－ベトナム国際共同研究「半導体」における新規課題の決定について",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "初めて出たところで言い換えていない略語（JST・ASEAN・NEXUS）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-09T02:16:10.526647+00:00",
       "attempt": 0,
       "id": "b0871561375c193f",
@@ -27351,6 +27339,30 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（JFA）",
         "読みやすさ: 文が長い（1文の平均 43.7字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T07:14:25.168628+00:00",
+      "attempt": 1,
+      "id": "8d40bd57193cb55f",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 74.6,
+        "avg_sentence": 35.9,
+        "long_share": 0.037,
+        "max_paragraph": 134,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": 91,
+      "source": "fast",
+      "title": "りそなホールディングス 2027年3月期第2四半期（中間期）決算短信〔日本基準〕(連結)",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（HD・IR）"
       ]
     }
   ],
