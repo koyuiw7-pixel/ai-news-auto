@@ -19,6 +19,8 @@
   python3 scripts/retire_articles.py                 # 対象を数えるだけ（何も変えない）
   python3 scripts/retire_articles.py --report out.md # 対象の一覧を Markdown に書く
   python3 scripts/retire_articles.py --apply         # 取り下げる
+  python3 scripts/retire_articles.py --resweep       # 取り下げ済みの記事へのリンクが残るファイルを並べる（何も変えない）
+  python3 scripts/retire_articles.py --resweep --apply  # それを直す。記事を戻したあとは必ず回す（台帳 A9。11/08 の復元で漏れた）
 
 追加の取り下げ（2026-11-03 オーナー承認）: --noindex で、検索に出していない（noindex の）記事をすべて取り下げる。
   区分は scripts/indexnow.py の noindex_reason（off-focus 主題外 / no-japan-value 日本の読者に役立つ情報がない / thin 薄い /
@@ -431,9 +433,12 @@ class Rewriter:
 
         def repl(m: re.Match) -> str:
             to = self.target(m.group(2))
-            return f"[{m.group(1)}](/articles/{to}{m.group(3) or ''})" if to else m.group(1)
+            if to:
+                return f"[{m.group(1)}](/articles/{to}{m.group(3) or ''})"
+            # リンクの文字が slug そのものなら、読者に意味が無いので（）ごと外す（台帳 A9）
+            return "\0" if m.group(1).strip() == m.group(2) else m.group(1)
 
-        out = self.link.sub(repl, value)
+        out = re.sub(r"[（(]\0[）)]|\0", "", self.link.sub(repl, value))
 
         def repl_bare(m: re.Match) -> str:
             to = self.target(m.group(1))
@@ -470,6 +475,9 @@ class Rewriter:
                         out[k] = None  # 料金表の型（string | null）を保つ
                     continue  # duplicateOf など: 消す
                 out[k] = self.walk(v, k)
+            # まとめ記事への案内を外したら、その題名も残さない（台帳 A9）
+            if "roundupSlug" in value and "roundupSlug" not in out:
+                out.pop("roundupTitle", None)
             return out
         if isinstance(value, list):
             if value and all(isinstance(v, str) for v in value) and any(v in self.retired for v in value):
@@ -555,7 +563,8 @@ def forget_products(slugs) -> list[str]:
     return gone
 
 
-def apply(retired: dict[str, dict], now: datetime) -> dict:
+def apply(retired: dict[str, dict], now: datetime, dry_run: bool = False) -> dict:
+    """取り下げて、残る参照を付け替える。dry_run なら何も書かず、変わるファイルを stats["files"] に並べるだけ（--resweep の確認用）"""
     # 最後の守り: 検索から人が来ている記事（content/search_protected.json）は、計画に入っていても取り下げない（台帳 A46）
     _, refused = search_protected.split(list(retired))
     if refused:
@@ -599,12 +608,13 @@ def apply(retired: dict[str, dict], now: datetime) -> dict:
             print(f"[retire] 転送先に名前が無いので転送しない（410）: {slug} → {target}（足りない名前: {'・'.join(missing)}）")
             entry.pop("redirect", None)
     rw = Rewriter(all_retired)
-    stats = {"deleted": 0, "articles_rewritten": 0, "data_rewritten": 0, "products_removed": []}
+    stats = {"deleted": 0, "articles_rewritten": 0, "data_rewritten": 0, "products_removed": [], "files": []}
 
     for slug in retired:
         path = ARTICLES / f"{slug}.json"
         if path.exists():
-            path.unlink()
+            if not dry_run:
+                path.unlink()
             stats["deleted"] += 1
 
     for path in sorted(ARTICLES.glob("*.json")):
@@ -619,8 +629,10 @@ def apply(retired: dict[str, dict], now: datetime) -> dict:
                 rw.changed += 1
         new = rw.walk(data)
         if rw.changed:
-            path.write_text(json.dumps(new, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            if not dry_run:
+                path.write_text(json.dumps(new, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             stats["articles_rewritten"] += 1
+            stats["files"].append(str(path.relative_to(ROOT)))
 
     removed_names: dict[str, str] = {}
     files = [ROOT / f for f in DATA_FILES] + [p for d in DATA_DIRS for p in sorted((ROOT / d).glob("*.json"))]
@@ -634,14 +646,20 @@ def apply(retired: dict[str, dict], now: datetime) -> dict:
         if path.parent.name == "products":
             fixed = fix_product(new)
             if fixed is None:
-                path.unlink()
+                if not dry_run:
+                    path.unlink()
                 stats["products_removed"].append(path.stem)
                 removed_names[path.stem] = str(new.get("name") or path.stem)
                 continue
             new = fixed
         if rw.changed:
-            path.write_text(json.dumps(new, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            if not dry_run:
+                path.write_text(json.dumps(new, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             stats["data_rewritten"] += 1
+            stats["files"].append(str(path.relative_to(ROOT)))
+
+    if dry_run:
+        return stats
 
     # 消した製品ページは 404 にせず、親の製品ページ（無ければ図鑑の一覧）へ転送する（台帳 W30）
     if removed_names or store.get("products"):
@@ -726,12 +744,23 @@ def main() -> int:
     parser.add_argument("--apply", action="store_true", help="取り下げる（指定しなければ数えるだけ）")
     parser.add_argument("--report", type=Path, help="対象の一覧を Markdown に書く")
     parser.add_argument("--refs", action="store_true", help="取り下げ済みの記事への参照だけを付け替える（新しく取り下げない）")
+    parser.add_argument("--resweep", action="store_true",
+                        help="取り下げ済みの記事への参照を探し直す（記事を戻したあとに使う。--apply が無ければ変わるファイルを並べるだけ）")
     parser.add_argument("--noindex", action="store_true", help="検索に出していない（noindex の）記事をすべて取り下げる")
     parser.add_argument("--notice", action="store_true", help="お知らせ・告知・統計の転載の記事を取り下げる（scripts/notice_gate.py）")
     parser.add_argument("--creator", action="store_true", help="他人の動画の要約の記事（CREATOR_CHANNELS）をすべて取り下げる（D3）")
     parser.add_argument("--append", type=Path, help="--noindex / --notice の一覧を Markdown の末尾に足す")
     args = parser.parse_args()
     now = datetime.now(timezone.utc)
+    if args.resweep:
+        # 記事を戻したとき（2026-11-08 の 132本の復元など）、戻した記事の中に取り下げ済みの記事へのリンクが残る。
+        # 戻したあとは必ずこれを回す（台帳 A9）。まず --apply なしで、変わるファイルを確かめる
+        stats = apply({}, now, dry_run=not args.apply)
+        label = "実行" if args.apply else "確認だけ（何も変えない）"
+        print(f"[retire] 参照の探し直し {label}: 記事 {stats['articles_rewritten']} 本・データ {stats['data_rewritten']} 件")
+        for f in stats["files"]:
+            print(f"  - {f}")
+        return 0
     if args.refs:
         print(f"[retire] 参照の付け替え: {json.dumps(apply({}, now), ensure_ascii=False)}")
         return 0

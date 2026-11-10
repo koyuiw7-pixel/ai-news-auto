@@ -5,6 +5,7 @@ import { insertBodyImages } from "@/lib/body-images";
 import { isAffiliateUrl } from "@/lib/affiliate";
 import { isDistributionEligible, isIndexable } from "@/lib/indexing";
 import { renderMarkdown } from "@/lib/markdown";
+import { isLiveArticleSlug } from "@/lib/retired";
 import { buildItems, articleUrl, cdata, coverUrl, escapeXml, publishedOf, rfc822 } from "@/lib/feeds";
 import { feedPhoto, photoFigure, smartnewsBody } from "@/lib/smartformat";
 import { siteConfig } from "@/site.config";
@@ -54,7 +55,7 @@ export async function smartnewsHtml(article: FullArticle): Promise<string> {
   // 記事ページと同じ下ごしらえ（app/articles/[slug]/page.tsx）: 要約の書き出し・概要の章を除き、空の章を隠す
   const opened = stripSummaryOpener(titleSlugLinks(article.body, (s) => getArticleSummary(s)?.title), article.lede ?? "");
   const body = cleanSections(article.lede && article.highlights.length > 0 ? dropOverviewSections(opened) : opened, article.sectionTitles?.body).markdown;
-  const rendered = await renderMarkdown(body, [...affiliateUrls]);
+  const rendered = await renderMarkdown(body, [...affiliateUrls], isLiveArticleSlug);
   const withImages = retitleHtml(insertBodyImages(rendered, article.bodyImages ?? [], article.title), "body", article.sectionTitles);
 
   const title = articleTitle(article);

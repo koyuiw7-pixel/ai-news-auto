@@ -1,6 +1,7 @@
 import { marked } from "marked";
 import { AFFILIATE_REL, isAffiliateUrl } from "@/lib/affiliate";
 import { bareUrlToken } from "@/lib/autolink";
+import { dropDeadArticleLinks, type IsLiveArticle } from "@/lib/live-links";
 
 marked.setOptions({ gfm: true, breaks: false });
 // 生のURLの自動リンクは、日本語・全角記号・空白の手前で止める（lib/autolink.ts）
@@ -39,11 +40,14 @@ function hardenLinks(html: string, affiliateUrls: string[] = []): string {
 export async function renderMarkdown(
   markdown: string,
   affiliateUrls: string[] = [],
+  /** 渡せば、生きていない記事（取り下げ・無い記事）へのリンクを外す（lib/live-links.ts。台帳 A9） */
+  isLiveArticle?: IsLiveArticle,
 ): Promise<string> {
   // 生成文の「です。 次の文」の半角スペースは、日本語の文中では不自然な隙間に見えるので詰める（2026-11-03 の画面の点検）
   const tidy = (markdown ?? "").replace(/([。！？])[ \u00a0]+(?=[^\s|])/g, "$1");
   const html = await marked.parse(tidy);
-  return hardenLinks(sanitize(html), affiliateUrls);
+  const hardened = hardenLinks(sanitize(html), affiliateUrls);
+  return isLiveArticle ? dropDeadArticleLinks(hardened, isLiveArticle) : hardened;
 }
 
 /**

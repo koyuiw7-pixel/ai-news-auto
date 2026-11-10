@@ -1,5 +1,5 @@
 import retiredJson from "@/content/retired.json";
-import { getAllArticles, type ArticleSummary } from "@/lib/articles";
+import { getAllArticles, getArticleSummary, type ArticleSummary } from "@/lib/articles";
 
 /**
  * 取り下げた記事（content/retired.json。scripts/retire_articles.py が書く）の 410 ページの材料（2026-11-03 オーナー決定・台帳 W22）。
@@ -12,6 +12,11 @@ const RETIRED = ((retiredJson as { articles?: Record<string, RetiredEntry> }).ar
 
 export function getRetired(slug: string): RetiredEntry | undefined {
   return Object.prototype.hasOwnProperty.call(RETIRED, slug) ? RETIRED[slug] : undefined;
+}
+
+/** リンクしてよい記事か（取り下げていない・今も載っている）。本文のリンクとまとめの案内に使う（lib/live-links.ts。台帳 A9） */
+export function isLiveArticleSlug(slug: string): boolean {
+  return !getRetired(slug) && Boolean(getArticleSummary(slug));
 }
 
 /** 取り下げた記事の slug の一覧（サイト内検索の索引から外す。lib/search-index.mjs の searchExclusion） */

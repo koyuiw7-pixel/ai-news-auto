@@ -1,6 +1,7 @@
 import { isDistributionEligible } from "@/lib/indexing";
 import { coverPath, getAllArticles, getArticle, sourceHref, sourceLabel, type ArticleSummary, type FullArticle } from "@/lib/articles";
 import { renderMarkdown } from "@/lib/markdown";
+import { isLiveArticleSlug } from "@/lib/retired";
 import { isAffiliateUrl } from "@/lib/affiliate";
 import { siteConfig } from "@/site.config";
 
@@ -54,7 +55,7 @@ export type FeedHtmlOptions = {
 /** 記事の全文 HTML（リード・要点・本文・出典・AI利用の開示）。JS・CSS・広告は含めない */
 export async function feedHtml(article: FullArticle, options: FeedHtmlOptions): Promise<string> {
   const affiliateUrls = new Set((article.affiliates ?? []).map((a) => a.url));
-  let body = await renderMarkdown(article.body);
+  let body = await renderMarkdown(article.body, [], isLiveArticleSlug);
   body = body
     // サイト内リンクは絶対URLに
     .replace(/(href|src)="\/(?!\/)/g, `$1="${siteConfig.url}/`)

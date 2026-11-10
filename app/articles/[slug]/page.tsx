@@ -8,7 +8,8 @@ import ImageCredit from "@/components/ImageCredit";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import GoneView, { GONE_TITLE } from "@/components/GoneView";
-import { getRetired } from "@/lib/retired";
+import { getRetired, isLiveArticleSlug } from "@/lib/retired";
+import { withLiveRoundup } from "@/lib/live-links";
 import AdSlot from "@/components/AdSlot";
 import MobilePrBar from "@/components/rail/MobilePrBarLazy";
 import RailRanking from "@/components/rail/RailRanking";
@@ -161,13 +162,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
-  const article = getArticle(slug);
-  if (!article) {
+  const found = getArticle(slug);
+  if (!found) {
     // 取り下げた記事は、サイトの見た目のまま「掲載を終了しました」と近い記事を出す（状態コード 410 は cloudflare/worker.ts が付ける。台帳 W22）
     const retired = getRetired(slug);
     if (retired) return <GoneView entry={retired} />;
     notFound();
   }
+  // 取り下げた・無いまとめ記事への案内は出さない（記事を戻したときに残った roundupSlug。台帳 A9）
+  const article = withLiveRoundup(found, isLiveArticleSlug);
 
   const isRoundup = article.type === "roundup";
   // 検索に出さない記事（薄い・主題外・重複・他人の動画の要約など）には AdSense の広告枠を出さない。
@@ -262,7 +265,7 @@ export default async function ArticlePage({ params }: Props) {
     : "";
   const easy = article.highlights.length > 0 ? dropSummarySections(easyClean) : easyClean;
   const easyMinutes = Math.max(1, Math.round(easy.length / 500));
-  const easyHtml = easy ? retitleHtml(await renderMarkdown(easy, affiliates.map((a) => a.url)), "easy", article.sectionTitles, "easy") : "";
+  const easyHtml = easy ? retitleHtml(await renderMarkdown(easy, affiliates.map((a) => a.url), isLiveArticleSlug), "easy", article.sectionTitles, "easy") : "";
   // 古い記事の「## 概要」の章は、リードと「この記事のポイント」のくり返しなので出さない（台帳 A19。新しい記事は門で作らせない）
   // リンクの文字が slug のままの記事へのリンクは、リンク先の題名にする（台帳 A36）
   const bodyOpened = stripSummaryOpener(titleSlugLinks(article.body, (s) => getArticleSummary(s)?.title), article.lede ?? "");
@@ -289,6 +292,7 @@ export default async function ArticlePage({ params }: Props) {
       // 料金表を出さない記事（料金が話題でない・別の製品の表）では、本文 JSON に残った作った日の表も出さない（台帳 A32）
       insertAfterPricingSection(pricing ? withPriceSlot(body, !ladderChart) : withPriceSlot(body, false), pricingLink),
       affiliates.map((a) => a.url),
+      isLiveArticleSlug,
     ),
   );
   const priceBox =
