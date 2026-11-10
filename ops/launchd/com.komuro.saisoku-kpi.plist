@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.komuro.saisoku-kpi</string>
+  <!-- サイソク: 1時間ごとの数字の記録と遅れの警報（scripts/kpi_hourly.py）。入れ方は ops/launchd/README_kpi_ja.md -->
+  <!-- パスは ASCII（launchd は非ASCIIのパスを扱えない）。鍵はここに書かない（wrangler のログインと .env.local を読む） -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/python3</string>
+    <string>/Users/komuroyusei/.saisoku-kpi/repo/scripts/kpi_hourly.py</string>
+  </array>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+  <key>StartInterval</key>
+  <integer>3600</integer>
+  <key>RunAtLoad</key>
+  <false/>
+  <key>StandardOutPath</key>
+  <string>/Users/komuroyusei/.saisoku-kpi/kpi.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/komuroyusei/.saisoku-kpi/kpi.log</string>
+</dict>
+</plist>
