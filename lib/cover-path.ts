@@ -7,8 +7,9 @@
  * 3: 画像の題名を検索向けの seoTitle から記事の題名（lib/headline.ts の articleTitle）に替えた（2026-11-03 の点検 10）
  * 4: 記事の写真が無いとき、表紙用の AI のイメージ（coverImage）を「画像はイメージ（AI生成）」つきで敷く（2026-11-07 不二家の記事で暗い画像が出た）
  * 5: 図の表紙（imageCredit kind figure・imageKind cover）は図をそのまま使い、見出し・ラベル・注記を重ねない（2026-11-10 同じ題名が2回出ていた）
+ * 6: 「ニュース」の札を折り返さない・発表元は団体名を1行で（2026-11-11 読者目線レビュー 13位）
  */
-export const COVER_VERSION = 5;
+export const COVER_VERSION = 6;
 
 /** 題名の短いハッシュ（題名を直したら URL が変わり、ブラウザ・SNS・エッジに残った古い画像を使わせない） */
 export function titleHash(title: string): string {

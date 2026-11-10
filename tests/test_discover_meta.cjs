@@ -50,10 +50,13 @@ test('[W32] AI の絵・フリー素材・外部の画像の記事は、これ�
   assert.equal(shareImages({ thumbnail: 'https://i.ytimg.com/vi/x/maxresdefault.jpg' }, undefined, '題名')[0].width, 1280);
 });
 
-test('[W32] 記事ページの og:image と X のカードは同じ順番の関数を使う', () => {
+test('[W32] 記事ページの og:image は shareImages、X のカードは見出し入りのカバー（2026-11-11 読者目線レビュー 13位）', () => {
   const page = read('app/articles/[slug]/page.tsx');
   assert.match(page, /images: shareImages\(article, cover, title\),/);
-  assert.match(page, /images: shareImages\(article, cover, title\)\.map/);
+  assert.match(page, /images: \[twitterImage\(article, cover, title\)\]/);
+  const { twitterImage } = load('lib/share-image.ts');
+  const photo = 'https://ai-tech-express.jp/img/apple-health-1a2b3c4d.jpg';
+  assert.equal(twitterImage({ slug: 'apple-health', thumbnail: photo, imageCredit: { kind: 'official', width: 1600 } }, '/cover/apple-health?v=1', '題名'), '/cover/apple-health?v=1');
 });
 
 test('[A15] 公式の写真は本当の幅・高さを書く（1,200px 未満の写真に 1200 と書かない）', () => {
@@ -65,10 +68,11 @@ test('[A15] 公式の写真は本当の幅・高さを書く（1,200px 未満の
   assert.equal(small[1].url, photo);
   assert.equal(small[1].width, 800);
   assert.equal(small[1].height, 450);
-  // 表紙の写真のイメージがあれば、それ（16:9・1200px）が先
+  // 表紙の写真のイメージがあれば、見出し入りのカバーの次（16:9・1200px。2026-11-11 読者目線レビュー 13位: 1枚目は見出し入り）
   const withCover = shareImages({ slug: 'kao', thumbnail: photo, imageCredit: { kind: 'official', width: 800, height: 450 },
     coverImage: 'https://ai-tech-express.jp/img/kao-muse-1a2b3c4d.jpg', coverCredit: { kind: 'ai', model: 'muse' } }, '/cover/kao?v=1', '題名');
-  assert.match(withCover[0].url, /^\/cover\/kao\/photo\?v=/);
+  assert.equal(withCover[0].url, '/cover/kao?v=1');
+  assert.match(withCover[1].url, /^\/cover\/kao\/photo\?v=/);
   assert.equal(withCover.at(-1).width, 800);
   const big = shareImages({ thumbnail: photo, imageCredit: { kind: 'official', width: 1200, height: 675 } }, '/cover/kao?v=1', '題名');
   assert.deepEqual([big[0].width, big[0].height], [1200, 675]);

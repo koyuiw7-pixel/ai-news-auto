@@ -78,7 +78,7 @@ import {
   tagHref,
 } from "@/lib/articles";
 import { Highlight } from "@/lib/highlight";
-import { articleImageOrder, shareImages } from "@/lib/share-image";
+import { articleImageOrder, shareImages, twitterImage } from "@/lib/share-image";
 import { bylineDates } from "@/lib/byline";
 import {
   renderMarkdown,
@@ -163,7 +163,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description: article.description,
-      images: shareImages(article, cover, title).map((image) => image.url).slice(0, 1),
+      // X のカードは見出し入りのカバー（2026-11-11 読者目線レビュー 13位: 共有したときに見出しの無い写真だけが出ていた。lib/share-image.ts）
+      images: [twitterImage(article, cover, title)].filter((url): url is string => Boolean(url)),
     },
   };
 }

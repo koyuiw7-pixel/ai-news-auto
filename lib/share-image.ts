@@ -66,7 +66,14 @@ export function photoSharePath(article: ShareImageInput): string | null {
   return `/cover/${article.slug}/photo?v=${PHOTO_SHARE_VERSION}-${titleHash(cover)}`;
 }
 
-/** og:image の並び。cover は見出し入りのカバーの URL（無ければ空） */
+/**
+ * og:image の並び。cover は見出し入りのカバーの URL（無ければ空）。
+ * 2026-11-11 読者目線レビュー 13位: X・Threads・LINE・Facebook は og:image の1枚目（X は twitter:image）を出す。
+ * 写真を1枚目にしていた記事（年金・児童手当・出産手当金など、よく読まれている記事）は、共有したときに見出しの無い写真だけが出ていた。
+ * 表紙の写真のイメージ（AI の写真）しか無い記事は、オーナーが選んだ見出し入りの「報道テロップ型」（/cover）を1枚目にし、写真は2枚目に残す。
+ * 幅 1,200px 以上の公式の写真がある記事は、今までどおり写真が先（台帳 W32）。X のカード（twitter:image）は全記事で見出し入りのカバー（twitterImage）。
+ * Google Discover の大きな写真（2026-11-10 の変更）は NewsArticle の image（articleImageOrder）で写真を先にしたまま
+ */
 export function shareImages(article: ShareImageInput, cover: string | undefined, alt: string): ShareImage[] {
   const card: ShareImage[] = cover ? [{ url: cover, width: 1200, height: 630, alt }] : [];
   // 公式の写真が無く、表紙の写真のイメージがある記事は、その写真（札だけ・見出しの文字なし）を先に。見出し入りのカバーは2つ目（2026-11-10）
@@ -76,12 +83,17 @@ export function shareImages(article: ShareImageInput, cover: string | undefined,
   const official: ShareImage[] = hasOfficialPhoto(article)
     ? [{ url: article.thumbnail as string, ...(width && width > 0 ? { width, ...(height && height > 0 ? { height } : {}) } : { width: 1200 }), alt }]
     : [];
-  if (photo) return [{ url: photo, width: PHOTO_SHARE_WIDTH, height: PHOTO_SHARE_HEIGHT, alt }, ...card, ...official];
-  // 1,200px 未満の公式の写真は、1,200px の見出し入りのカバーの後ろに回す（Discover の大きなカードに足りない。幅は本当の値のまま。2026-11-10）
-  if (official.length && smallOfficialPhoto(article) && card.length) return [...card, ...official];
-  if (official.length) return [...official, ...card];
-  if (card.length) return card;
+  const photoImage: ShareImage[] = photo ? [{ url: photo, width: PHOTO_SHARE_WIDTH, height: PHOTO_SHARE_HEIGHT, alt }] : [];
+  // 幅 1,200px 以上の公式の写真は、今までどおり写真が先（台帳 W32・2026-11-04 オーナー承認。レビューの例はこの形ではない）
+  if (official.length && !smallOfficialPhoto(article)) return [...official, ...card];
+  if (card.length) return [...card, ...photoImage, ...official];
+  if (photoImage.length || official.length) return [...photoImage, ...official];
   return article.thumbnail ? [{ url: article.thumbnail, width: 1280, height: 720 }] : [];
+}
+
+/** X のカード（twitter:image）。見出し入りのカバーがあれば全記事でそれ（2026-11-11 読者目線レビュー 13位）。無ければ og:image の1枚目 */
+export function twitterImage(article: ShareImageInput, cover: string | undefined, alt: string): string | undefined {
+  return cover || shareImages(article, cover, alt)[0]?.url;
 }
 
 /** NewsArticle の image の並び（og:image と同じ考え方）。サイトの中の絶対パスはそのまま返す（呼ぶ側でサイトの URL を付ける） */

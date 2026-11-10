@@ -240,6 +240,12 @@ async function figureCoverImage(article: FullArticle): Promise<ImageResponse | n
   );
 }
 
+/** 発表元の名前を短くする（「日本年金機構「老齢…の概要」（2026年10月1日更新）」→「日本年金機構」。components/noir/noirArticlePage.tsx の shortOrg と同じ） */
+function orgName(name: string): string {
+  const head = name.split(/[「『（(]/)[0].trim();
+  return head.length >= 2 ? head : name;
+}
+
 async function renderCover(found: FullArticle): Promise<ImageResponse> {
   // 写真は ①使える記事の写真 ②表紙用の AI のイメージ（coverImage。札「画像はイメージ（AI生成）」つき） ③文字だけ（lib/sns-photo.ts の shareImageArticle）
   let article = shareImageArticle(found);
@@ -378,9 +384,12 @@ async function renderCover(found: FullArticle): Promise<ImageResponse> {
           <div style={{ width: BAR, borderRadius: BAR / 2, background: isOther ? "#d92d20" : company.color }} />
           <div style={{ width: TEXT_WIDTH, display: "flex", flexDirection: "column", gap: 10 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 23, fontWeight: 700, color: "#fff" }}>
-              <div style={{ display: "flex", padding: "3px 13px", borderRadius: 4, background: labelColor }}>{label}</div>
+              {/* 札は折り返さない。発表元は資料名を外した団体名を1行で（「ニュー／ス」と2行に割れていた。2026-11-11 読者目線レビュー 13位） */}
+              <div style={{ display: "flex", flexShrink: 0, whiteSpace: "nowrap", padding: "3px 13px", borderRadius: 4, background: labelColor }}>{label}</div>
               {(!isOther || sourceName) && (
-                <div style={{ display: "flex", textShadow: SHADOW }}>{isOther ? sourceName : company.name}</div>
+                <div style={{ display: "block", flex: 1, minWidth: 0, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", textShadow: SHADOW }}>
+                  {isOther ? orgName(sourceName) : company.name}
+                </div>
               )}
             </div>
 

@@ -33,15 +33,17 @@ const museArticle = {
   coverCredit: { kind: 'ai', model: 'muse' },
 };
 
-test('表紙の写真のイメージ（Muse）がある記事は、16:9 の写真の共有画像が先・見出し入りのカバーが2つ目（文字の多い図より先）', () => {
-  const { shareImages, photoSharePath } = load('lib/share-image.ts');
+test('表紙の写真のイメージ（Muse）がある記事は、og:image は見出し入りのカバーが先・16:9 の写真の共有画像が2つ目（文字の多い図より先）。NewsArticle の image は写真が先のまま', () => {
+  // 2026-11-11 読者目線レビュー 13位: X・Threads・LINE は og:image の1枚目を出すので、見出しの無い写真だけが出ていた。Discover 向けの NewsArticle の image は写真が先のまま
+  const { shareImages, photoSharePath, articleImageOrder } = load('lib/share-image.ts');
   const images = shareImages(museArticle, '/cover/electricity-bill?v=5-x', '題名');
-  assert.match(images[0].url, /^\/cover\/electricity-bill\/photo\?v=\d+-[0-9a-z]+$/);
-  assert.deepEqual([images[0].width, images[0].height], [1200, 675]);
-  assert.equal(images[1].url, '/cover/electricity-bill?v=5-x');
+  assert.equal(images[0].url, '/cover/electricity-bill?v=5-x');
+  assert.match(images[1].url, /^\/cover\/electricity-bill\/photo\?v=\d+-[0-9a-z]+$/);
+  assert.deepEqual([images[1].width, images[1].height], [1200, 675]);
+  assert.match(articleImageOrder(museArticle, '/cover/electricity-bill?v=5-x')[0], /\/photo\?v=/);
   // URL は写真が替わると変わる（古い画像のキャッシュを使わせない）。cloudflare/worker.ts の immutable の形（?v=数字-英数字）
   const other = photoSharePath({ ...museArticle, coverImage: MUSE.replace('cf88fa2b', 'aaaa1111') });
-  assert.notEqual(other, images[0].url);
+  assert.notEqual(other, images[1].url);
 });
 
 test('公式の写真がある記事は今までどおり公式の写真が先（表紙のイメージより優先）', () => {
