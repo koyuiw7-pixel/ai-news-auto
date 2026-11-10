@@ -3575,6 +3575,12 @@
       "skipped": true,
       "url": "https://www.ntt-east.co.jp/release/detail/20261102_01.html"
     },
+    "01bff59602ac637f": {
+      "at": "2026-11-10T16:52:08.186552+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://blog.ja.playstation.com/2026/11/11/20261111-psplus-game-catalog-o/"
+    },
     "01c050212d7cc79e": {
       "at": "2026-10-27T20:13:19.059779+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -6787,13 +6793,6 @@
       "skipped": true,
       "url": "https://www.sumitomo-rd.co.jp/news/2026111022504/"
     },
-    "34370e88c88d0cd4": {
-      "at": "2026-10-27T16:33:58.480379+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2414字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（365字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://huggingface.co/blog/allenai/novelty-bench"
-    },
     "34646b6dea05d4fd": {
       "at": "2026-11-06T02:23:12.964820+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（周年）",
@@ -7471,6 +7470,12 @@
       "reason": "公開前の門: サイトの主題（AI・テック／お金・投資・不動産・起業／制度のお金の話／日本のスポーツ）から外れた話題は公開しません",
       "skipped": true,
       "url": "https://www.tokyo-gas.co.jp/news/press/20261105-04.html"
+    },
+    "405fdcad1ce1a75c": {
+      "at": "2026-11-10T16:52:08.221712+00:00",
+      "reason": "dedupe: 固有名詞が一致（open・source）: nvidia-open-source-6g-research-tools",
+      "skipped": true,
+      "url": "https://blogs.nvidia.com/blog/open-source-openshell-infrastructure/"
     },
     "408d83e364fa3424": {
       "at": "2026-11-05T18:23:10.492398+00:00",
@@ -9524,13 +9529,6 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77017.html"
     },
-    "5ef94984dce414f6": {
-      "at": "2026-10-27T16:07:12.575009+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2240字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/"
-    },
     "5f03773e5e7f3489": {
       "at": "2026-11-10T02:34:35.701647+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（オープン）",
@@ -11579,14 +11577,6 @@
       "slug": "nissin-y-pirkul-65ml-2026",
       "url": "https://www.nissin.com/jp/news/13991/"
     },
-    "7cbd3a287b51bf61": {
-      "at": "2026-10-27T16:33:31.220253+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "tech-gadget",
-      "slug": "apple-imac-m6-2026-10",
-      "url": "https://www.apple.com/jp/newsroom/2026/10/apple-unveils-new-imac-with-m6/"
-    },
     "7cc85f64fdd707de": {
       "at": "2026-10-29T03:51:43.858389+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -12847,13 +12837,6 @@
       "reason": "quality: easy_markdown が短い（334字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://www.microsoft.com/en-us/research/podcast/microsoft-research-focus-edition-97/"
-    },
-    "8f2f08b6e197805b": {
-      "at": "2026-10-27T16:11:16.648053+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2243字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://openai.com/index/openai-cut-incident-investigation"
     },
     "8f321d911be5a10c": {
       "at": "2026-11-05T03:11:13.874735+00:00",
@@ -14306,13 +14289,12 @@
       "skipped": true,
       "url": "https://blog.google/innovation-and-ai/technology/developers-tools/connected-apps-one-place/"
     },
-    "a528c04c331c051e": {
-      "at": "2026-10-27T16:09:39.298690+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "tech-gadget",
-      "slug": "apple-14-inch-macbook-pro-m6",
-      "url": "https://www.apple.com/jp/newsroom/2026/10/apple-introduces-the-new-14-inch-macbook-pro-with-m6/"
+    "a525fa830b85f106": {
+      "at": "2026-11-10T16:52:08.168771+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「既存記事では、一部のサイバー防御担当者への提供から段階的に広げる予定でしたが」→ 元記事は、一部のサイバー防御担当者へ2週間前に提供したと述べるだけで、段階的に広げる予定だったとは書かれていない。確認済みの文脈にもこの予定はない。; 「前回は一部の専門家向けでしたが」→ 元記事では、前回の提供先はFairwind Programを通じたサイバー防御担当者であり",
+      "skipped": true,
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/"
     },
     "a52feb664fcf3b5f": {
       "at": "2026-11-06T19:26:40.312292+00:00",
@@ -14460,13 +14442,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/info/info1886/index.html"
-    },
-    "a7fcfcf24af1c1ba": {
-      "at": "2026-10-27T16:12:08.091583+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1910字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-      "skipped": true,
-      "url": "https://engineering.fb.com/2026/10/27/developer-tools/python-typing-survey-2026-ai-tools-checker-landscape/"
     },
     "a80efade9c9f0d83": {
       "at": "2026-11-06T06:33:58.973484+00:00",
@@ -16204,13 +16179,6 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77043.html"
     },
-    "c39fc6a231d46dae": {
-      "at": "2026-10-27T16:14:12.036496+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2088字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1209_4783.html"
-    },
     "c3d9c0114f0e103f": {
       "at": "2026-11-02T17:37:13.893331+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16616,13 +16584,6 @@
       "reason": "followup quality: 「当初の記事では、米国の家禽でのH5N1亜型を10月13日としていました」→ 元記事に米国の旧い日付は無く、10月13日は元記事では台湾のH5N1の日付にあたる。米国の日付の取り違えと創作; 「ドイツと英国の家禽でのH5N1亜型は、当初の10月24日と10月15日から」→ 元記事にドイツ10月24日・英国10月15日の記載は無く、元記事のドイツ（2026.11.",
       "skipped": true,
       "url": "https://www.maff.go.jp/j/syouan/douei/tori/attach/pdf/index-1282.pdf"
-    },
-    "c9c03a759210419f": {
-      "at": "2026-10-27T16:12:57.596609+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1832字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://www.docomo.ne.jp/info/news_release/2026/10/27_02.html"
     },
     "c9e1983e65557acd": {
       "at": "2026-10-27T21:43:35.359697+00:00",
@@ -18157,13 +18118,6 @@
       "slug": "kddi-wing-drone-delivery-partnership",
       "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1209_4782.html"
     },
-    "e198be2b7c3eb84d": {
-      "at": "2026-10-27T16:15:28.911399+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2152字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1211_4785.html"
-    },
     "e1a0a06cf111f8c7": {
       "at": "2026-11-02T01:45:47.966788+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -19048,14 +19002,6 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/conference/minister/2026b/20261015-1.html"
     },
-    "f021b117984cad55": {
-      "at": "2026-10-27T16:35:31.980348+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "ntt-bbtower-iown-apn-storage-integration",
-      "url": "https://www.ntt-east.co.jp/release/detail/20261027_01.html"
-    },
     "f029953cc78abfc4": {
       "at": "2026-11-05T06:38:02.850650+00:00",
       "breaking": true,
@@ -19622,14 +19568,6 @@
       "section": "ai",
       "slug": "alphaproof-code-signal-verification",
       "url": "https://deepmind.google/blog/introducing-alphaproof-code/"
-    },
-    "f8df09fff3fe9127": {
-      "at": "2026-10-27T16:16:48.998876+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "salesforce-agentic-ai-roi-survey-2026",
-      "url": "https://www.salesforce.com/jp/news/stories/agentic-ai-leaders-survey-on-roi/"
     },
     "f8df9fb17624f626": {
       "at": "2026-10-29T18:13:12.615771+00:00",
@@ -20615,30 +20553,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:03:25.734070+00:00",
-      "attempt": 0,
-      "id": "6332077cf8e1119e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 79.4,
-        "avg_sentence": 35.3,
-        "long_share": 0.056,
-        "max_paragraph": 134,
-        "paragraphs": 8,
-        "sentences": 18
-      },
-      "score": 95,
-      "source": "tokyo-metro",
-      "title": "キッズスポーツフェスin 両国国技館 開催",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（TOKYO・UNITE）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T09:03:44.143126+00:00",
@@ -27967,6 +27881,21 @@
       "score": 60,
       "source": "google-blog-all",
       "title": "Gemini 4 Carbon is now available for developers."
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T16:52:08.168744+00:00",
+      "attempt": 1,
+      "id": "a525fa830b85f106",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「既存記事では、一部のサイバー防御担当者への提供から段階的に広げる予定でしたが」→ 元記事は、一部のサイバー防御担当者へ2週間前に提供したと述べるだけで、段階的に広げる予定だったとは書かれていない。確認済みの文脈にもこの予定はない。",
+        "「前回は一部の専門家向けでしたが」→ 元記事では、前回の提供先はFairwind Programを通じたサイバー防御担当者であり、「専門家」という一般的な表現は言い換えとして不正確。"
+      ],
+      "score": 72,
+      "source": "google-gemini-blog",
+      "title": "Gemini 4 Carbon is now available"
     }
   ],
   "short_text_retry": {},
