@@ -894,6 +894,9 @@ def clean_faq(raw: object) -> list[dict]:
         a = re.sub(r"\s+", " ", str(row.get("a") or "")).strip()
         if not q or not a or q in seen or quality.FAQ_UNANSWERED_RE.search(a):
             continue
+        # 2文目以降の「まだ発表されていません」なども消す（scripts/nonanswer.py。SEO A4・LLMO-A4）。消して短すぎれば問いごと捨てる
+        if quality.nonanswer.has_not_stated(a) and not (a := quality.nonanswer.answer_or_none(a) or ""):
+            continue
         seen.add(q)
         out.append({"q": q[:60], "a": a[:200]})
     return out[:4]

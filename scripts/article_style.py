@@ -486,6 +486,40 @@ def reader_order_autofix(record: dict) -> list[str]:
         if len(kept) != len(faq):
             record["faq"] = kept
             changes.append(f"本文のくり返しのよくある質問を{len(faq) - len(kept)}問外した（新しい情報か読者が検索しそうな問いだけ残す）")
+    # 答えの欄（よくある質問・「こんな不安ありませんか」）の「書かれていません」（2026-11-10 SEO A4・LLMO-A4）。
+    # 生成の段ごとの門（web_articles.clean_faq・depth_fields）を通らない書き直し（gpt_review など）でも、ここで同じ決まりで外す。
+    # その文がある答えだけ: 最初の文が答えになっていなければ問いを捨て、2文目以降のその文は消す（scripts/nonanswer.py。言葉は足さない）
+    import nonanswer  # noqa: E402  遅い import（標準ライブラリだけ）
+
+    removed = trimmed = 0
+    for key in ("faq", "worries"):
+        items = record.get(key)
+        if not isinstance(items, list) or not items:
+            continue
+        kept = []
+        for item in items:
+            text = str(item.get("a") or "") if isinstance(item, dict) else ""
+            if not text or not nonanswer.has_not_stated(text):
+                kept.append(item)
+            elif answer := nonanswer.answer_or_none(text):
+                kept.append({**item, "a": answer})
+                trimmed += 1
+            else:
+                removed += 1
+        if len(kept) == len(items) and kept == items:
+            continue
+        if key == "worries" and len(kept) < 2:  # 不安が2つ未満なら欄ごと外す（lib/depth.ts・scripts/sweep_not_stated.py と同じ）
+            record.pop("worries", None)
+            heads = dict(record.get("depthHeadings") or {})
+            if heads.pop("worries", None) is not None:
+                if heads:
+                    record["depthHeadings"] = heads
+                else:
+                    record.pop("depthHeadings", None)
+        else:
+            record[key] = kept
+    if removed or trimmed:
+        changes.append(f"答えになっていない答え（「書かれていません」など）を外した（問い{removed}・文{trimmed}）")
     return changes
 
 

@@ -136,6 +136,23 @@ class NotStatedTest(unittest.TestCase):
     def test_prompt_says_drop_unanswerable_questions(self):
         self.assertIn("答えられない問いは作らない", d.PROMPT)
 
+    def test_shared_autofix_trims_not_stated_on_every_path(self):
+        # 2026-11-10: gpt_review の書き直しや clean_faq の2文目から「まだ発表されていません」が記事に残った。共通の autofix で外す
+        import article_style
+        import web_articles
+
+        rec = {"faq": [{"q": "日本でも？", "a": "今回はEMEAの提携です。日本での予定は、まだ発表されていません。"},
+                       {"q": "日本で使える？", "a": "使えます。"}],
+               "worries": [{"q": "影響は？", "a": "統計の目的は基礎資料です。個別の会社への影響については書かれていません。"},
+                           {"q": "補償は？", "a": "このページには、補償の有無は書かれていません。"}],
+               "depthHeadings": {"worries": "こんな不安ありませんか"}}
+        article_style.reader_order_autofix(rec)
+        self.assertEqual(rec["faq"], [{"q": "日本でも？", "a": "今回はEMEAの提携です。"}, {"q": "日本で使える？", "a": "使えます。"}])
+        self.assertNotIn("worries", rec)  # 不安が2つ未満になったら欄と見出しごと外す
+        self.assertNotIn("depthHeadings", rec)
+        rows = web_articles.clean_faq([{"q": "日本でも？", "a": "今回はEMEAの提携です。日本での予定は、まだ発表されていません。"}])
+        self.assertEqual(rows, [{"q": "日本でも？", "a": "今回はEMEAの提携です。"}])
+
     def test_corpus_has_no_not_stated_answers(self):
         import nonanswer
         counts = nonanswer.corpus_counts(Path(__file__).resolve().parent.parent / "content")

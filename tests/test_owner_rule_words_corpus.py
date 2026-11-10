@@ -71,7 +71,12 @@ class SourceTitleTest(unittest.TestCase):
     def test_faq_name_splits_on_fullwidth_space(self):
         src = _read("app/articles/[slug]/page.tsx")
         m = re.search(r"seoTitle\?\.split\(/\[([^\]]*)\]", src)
-        self.assertIsNotNone(m)
+        if m is None:
+            # 2026-11-10 SEO A18（e1bd20a7）: FAQPage は表示している「よくある質問」だけで作り、seoTitle から名前を切り出して
+            # 「〇〇は今すぐ使える？」の問いを作り足すことをやめた。題名から名前を切り出す処理が無ければ、縦棒の区切りの心配もない
+            self.assertNotRegex(src, r"seoTitle\?\.split\(")
+            self.assertNotRegex(src, r"`\$\{name\}は今すぐ使える？`")
+            return
         self.assertIn("　", m.group(1))
         self.assertIn(BAR, m.group(1))  # 古い題の区切りも残す
 

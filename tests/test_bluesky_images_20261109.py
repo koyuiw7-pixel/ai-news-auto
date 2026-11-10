@@ -20,6 +20,8 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import conftest  # noqa: E402,F401  unittest でも自動投稿のスイッチを戻したときの決まり（auto_post=true）で動かす（tests/conftest.py・2026-11-10）
 
 import bluesky_post as bp  # noqa: E402
 import sns_reader as sr  # noqa: E402
