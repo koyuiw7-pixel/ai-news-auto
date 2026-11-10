@@ -742,6 +742,7 @@ mark {
 .prose.answer-table :where(table) {
   display: table;
   width: 100%;
+  table-layout: fixed;
   margin: 0;
 }
 .prose.answer-table :where(td, th),

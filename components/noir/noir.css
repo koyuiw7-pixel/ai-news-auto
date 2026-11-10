@@ -339,7 +339,8 @@ html:has(.noir) body {
 .noir .nr-answer table {
   display: table;
   width: 100%;
-  table-layout: auto;
+  /* 列の幅は文字の読み込みで変えない（書体が入れ替わったときに列が動いて画面がずれていた） */
+  table-layout: fixed;
   border-collapse: collapse;
   font-variant-numeric: tabular-nums;
 }
