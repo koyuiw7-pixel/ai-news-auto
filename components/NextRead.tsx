@@ -17,10 +17,11 @@ export default function NextRead({ items }: { items: NextReadItem[] }) {
   const [first, ...rest] = items;
   return (
     <section aria-labelledby="next-read-heading" className="mt-12 max-w-[46em]">
-      <h2 id="next-read-heading" className="t-h2 flex items-center gap-2">
+      {/* 記事の外側の欄の見出しは h2 にしない（SEO A20） */}
+      <p id="next-read-heading" className="t-h2 flex items-center gap-2 font-bold">
         次に読む記事
         <span aria-hidden className="text-live">→</span>
-      </h2>
+      </p>
 
       <Link
         href={`/articles/${first.article.slug}`}

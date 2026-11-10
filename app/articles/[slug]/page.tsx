@@ -1007,9 +1007,10 @@ export default async function ArticlePage({ params }: Props) {
 
           {related.length > 0 && (
             <section aria-labelledby="related-heading" className="mt-16">
-              <h2 id="related-heading" className="t-h2 mb-5 border-b border-line-strong pb-3">
+              {/* 記事の外側の欄の見出しは h2 にしない（SEO A20） */}
+              <p id="related-heading" className="t-h2 mb-5 border-b border-line-strong pb-3 font-bold">
                 関連記事
-              </h2>
+              </p>
               <div className="grid gap-3.5 sm:grid-cols-2">
                 {related.map((item) => (
                   <ArticleCard key={item.slug} article={item} quickImage />

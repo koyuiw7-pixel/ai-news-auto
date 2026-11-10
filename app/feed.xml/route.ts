@@ -3,6 +3,17 @@ import { getAllArticles } from "@/lib/articles";
 import { getAllWeeks, weekPublishedAt } from "@/lib/weekly";
 import { isNewsOutletChannel } from "@/lib/news-outlets";
 import { siteConfig } from "@/site.config";
+import { coverUrl } from "@/lib/feeds";
+import { feedPhoto } from "@/lib/smartformat";
+
+/** 記事の画像（スマートニュースの配信と同じ順: 写真 → 見出しのカバー）と種類（SEO A20） */
+function feedImage(article: Parameters<typeof coverUrl>[0]): { url: string; type: string } {
+  const url = feedPhoto(article)?.url ?? coverUrl(article);
+  const path = url.split("?")[0].toLowerCase();
+  // 写真（/img/*.jpg）も見出しのカバー（/cover/…）も JPEG で配信している
+  const type = path.endsWith(".webp") ? "image/webp" : path.endsWith(".png") ? "image/png" : "image/jpeg";
+  return { url, type };
+}
 
 export const dynamic = "force-static";
 
@@ -29,6 +40,8 @@ export function GET() {
       <description>${escapeXml(article.description)}</description>
       <category>${escapeXml(article.genre)}</category>
 ${isNewsOutletChannel(article.channelSlug) ? "" : `      <category>${escapeXml(article.channel)}</category>\n`}      <pubDate>${new Date(postedAt(article)).toUTCString()}</pubDate>
+      <dc:creator>${escapeXml(siteConfig.author)}</dc:creator>
+      <enclosure url="${escapeXml(feedImage(article).url)}" type="${feedImage(article).type}" length="0" />
     </item>`,
   }));
   // 週まとめ（直近4週）も同じフィードに流す
@@ -51,12 +64,13 @@ ${isNewsOutletChannel(article.channelSlug) ? "" : `      <category>${escapeXml(a
     .join("\n");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>${escapeXml(siteConfig.name)}</title>
     <link>${siteConfig.url}</link>
     <description>${escapeXml(siteConfig.description)}</description>
     <language>ja</language>
+    <lastBuildDate>${new Date(Math.max(...articleItems.map((i) => i.at).filter(Number.isFinite), 0)).toUTCString()}</lastBuildDate>
     <atom:link href="${siteConfig.url}/feed.xml" rel="self" type="application/rss+xml" />
 ${items}
   </channel>

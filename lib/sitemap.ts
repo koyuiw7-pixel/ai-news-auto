@@ -49,6 +49,7 @@ export const STATIC_LASTMOD: Record<string, string> = {
   "/disclaimer": "2026-11-09",
   "/contact": "2026-11-03",
   "/corrections": "2026-11-03",
+  "/newsletter": "2026-11-10",
   "/tools/defense-tax": "2026-11-10",
   "/tools/furusato-limit": "2026-11-10",
 };
@@ -106,7 +107,7 @@ export function sitemapEntries(): SitemapEntry[] {
     ...(allArticles.some((article) => isBroadGenre(article.genreSlug))
       ? [{ url: `${base}/news`, lastModified: newestOf(articles.filter((a) => isBroadGenre(a.genreSlug))) }]
       : []),
-    ...["/about", "/editorial-policy", "/privacy", "/disclaimer", "/contact"].map(fixed),
+    ...["/about", "/editorial-policy", "/privacy", "/disclaimer", "/contact", "/newsletter"].map(fixed),
     // 訂正のページは、いちばん新しい訂正の日
     { url: `${base}/corrections`, lastModified: newestDate([STATIC_LASTMOD["/corrections"], ...corrections.map((c) => c.date)]) },
     ...articles.map((article) => ({

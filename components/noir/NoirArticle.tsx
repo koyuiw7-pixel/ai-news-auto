@@ -251,9 +251,10 @@ export default function NoirArticle(props: NoirProps) {
 
           {props.related.length > 0 && (
             <section aria-labelledby="related-heading">
-              <h2 id="related-heading" className="nr-h2">
+              {/* 記事の外側の欄の見出しは h2 にしない（SEO A20） */}
+              <p id="related-heading" className="nr-h2">
                 関連記事
-              </h2>
+              </p>
               <div className="nr-rel">
                 {props.related.map((item) => (
                   <Link key={item.slug} href={`/articles/${item.slug}`}>

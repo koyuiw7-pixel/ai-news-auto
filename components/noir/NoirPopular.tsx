@@ -23,7 +23,8 @@ export default function NoirPopular({ current, limit = 5 }: { current: string; l
   if (items.length === 0) return null;
   return (
     <section className="nr-pop" aria-labelledby="nr-pop-heading">
-      <h2 id="nr-pop-heading">{isRanked ? "よく読まれている記事" : "新着記事"}</h2>
+      {/* 記事の外側の欄の見出しは h2 にしない（SEO A20） */}
+      <p id="nr-pop-heading" className="nr-pop-h">{isRanked ? "よく読まれている記事" : "新着記事"}</p>
       <ol>
         {items.map((a, i) => (
           <li key={a.slug}>

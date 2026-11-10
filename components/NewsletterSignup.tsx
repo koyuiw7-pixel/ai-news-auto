@@ -83,12 +83,13 @@ export default function NewsletterSignup({ variant = "article" }: { variant?: Va
       {variant !== "page" && (
         <>
         <p className="text-meta font-semibold tracking-[0.14em] text-muted">NEWSLETTER</p>
-        <h2
+        {/* 記事の外側の欄の見出しは h2 にしない（SEO A20） */}
+        <p
           id={`nl-${variant}`}
-          className={`mt-1.5 leading-snug ${compact ? "t-card" : "t-h3"}`}
+          className={`mt-1.5 font-bold leading-snug ${compact ? "t-card" : "t-h3"}`}
         >
           毎朝7時、暮らしとお金のニュースの<span className="whitespace-nowrap">要点を5本</span>
-        </h2>
+        </p>
         {!compact && (
           <p className="mt-2 text-desc leading-[1.8] text-ink-soft">
             前日に出た記事から、給付・税・料金・値上げなど暮らしとお金に関わる話を中心に選び、1本2行でまとめてメールで届けます。無料・いつでも解除できます。

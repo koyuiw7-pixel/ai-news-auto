@@ -37,7 +37,7 @@ export default function Sidebar({ current, affiliates = [], showAds = true }: Pr
 
       {latest.length > 0 && (
         <section className="rounded-2xl border border-line bg-surface p-5">
-          <h2 className="t-card">最新記事</h2>
+          <p className="t-card font-bold">最新記事</p>
           <ul className="mt-4 space-y-4">
             {latest.map((article) => (
               <li key={article.slug}>
@@ -57,7 +57,7 @@ export default function Sidebar({ current, affiliates = [], showAds = true }: Pr
 
       {tags.length > 0 && (
         <section className="rounded-2xl border border-line bg-surface p-5">
-          <h2 className="t-card">トピック</h2>
+          <p className="t-card font-bold">トピック</p>
           <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <Link

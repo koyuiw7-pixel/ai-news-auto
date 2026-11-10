@@ -12,9 +12,10 @@ export default function StoryLinks({ items, heading = "この話の続き" }: { 
   if (items.length === 0) return null;
   return (
     <nav aria-labelledby="story-links-heading" data-read-zone="story" className="nr-story mb-8 max-w-[40em] border-y border-line py-3">
-      <h2 id="story-links-heading" className="text-badge font-bold tracking-wide text-accent">
+      {/* 記事の外側の欄の見出しは h2 にしない（SEO A20） */}
+      <p id="story-links-heading" className="text-badge font-bold tracking-wide text-accent">
         {heading}
-      </h2>
+      </p>
       <ul className="mt-1 divide-y divide-line">
         {items.map(({ article, reason }) => (
           <li key={article.slug}>
