@@ -1,0 +1,226 @@
+{
+  "slug": "aws-ransomware-security-seminar-2026",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/",
+  "sourceName": "AWS ブログ（日本）",
+  "title": "ランサムウェア対策、防御から復旧までAWSとパートナーが解説　AI時代の新たな3つの軸",
+  "seoTitle": "AWSのランサムウェア対策セミナーとは？防御・復旧・説明責任の3軸を解説",
+  "threadsPost": "セキュリティ担当でなくても知っておきたい、AI時代のランサムウェア対策の現在地。\n\nAWSとパートナーが「防御」「復旧」に「説明責任」を加えた3つの軸で、今やるべき設定や手順を整理しました。\n\nランサムウェア対策、自社ではどこから手をつけていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "ランサムウェア対策、自社ではどこから手をつけていますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "バックアップのリストア訓練、社内で年に何回実施していますか？"
+    },
+    {
+      "pattern": "future",
+      "question": "インシデント発生時の説明責任、自社のログでどこまで追えると感じますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "アマゾン ウェブ サービス ジャパンは10月26日、麻布台オフィスで招待制のセキュリティセミナーを開催し、84名が参加しました。ランサムウェア対策として「防御」「復旧」に加え、新たに「説明責任」の3つ目の軸が提示されました。GuardDutyの有効化やAWS BackupのVault Lockなど、今日から取り組める具体的な手順が紹介されています。",
+  "description": "AWSジャパンが開催したランサムウェア対策セミナーのレポート。「防御」「復旧」「説明責任」の3軸で、GuardDutyやAWS Backupを使った具体的な備えを解説します。",
+  "keywords": [
+    "AWS",
+    "ランサムウェア対策",
+    "セキュリティ",
+    "Amazon GuardDuty",
+    "AWS Backup",
+    "ゼロトラスト",
+    "説明責任",
+    "インシデント対応"
+  ],
+  "tags": [
+    "セキュリティ",
+    "AWS",
+    "クラウド",
+    "ランサムウェア"
+  ],
+  "highlights": [
+    "AWSとパートナー企業が、AI時代のランサムウェア対策における「防御」「復旧」「説明責任」の3つの軸を解説しました。",
+    "Amazon GuardDutyやSecurity Hubの有効化、Organizationsからの離脱禁止など、既存システムに影響なく今日から始められる対策が示されました。",
+    "AWS BackupのVault Lockやリストアテスト、ログの横断分析を活用し、万一の際に備える具体的な復旧手順が公開されました。"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "ITインフラやセキュリティの担当者は、自社のバックアップ設定やログ取得状況を見直す絶好の機会になります。",
+      "経営層や事業部門とセキュリティ担当者が一体となり、復旧手順や説明責任の準備を進めることが重要です。",
+      "AWS BackupのVault Lock有効化やGuardDutyの導入など、今日から着手できる具体的な設定を確認できます。"
+    ]
+  },
+  "body": "本セミナーは、同年5月に開催された「防御」と「復旧」をテーマにしたイベントの続編です（AWS 公式ブログ、11/10確認）。\n\n事前の相談会やアンケートでは、「万一のとき、経営や顧客、監督官庁に何を根拠に説明すればよいのか」という疑問が多く寄せられました。この疑問に応えるため、今回は「説明責任」が3つ目の軸として新たに追加されました（AWS 公式ブログ、11/10確認）。\n\nこれら3つの軸は互いにつながっています。例えばログから侵入時期が分かれば、どの時点のバックアップに戻せばよいかを素早く絞り込めます（AWS 公式ブログ、11/10確認）。\n\n## 基調講演：変わらない原則と、見直したい先送りしてきた対策\n\nシニアセキュリティソリューションアーキテクトの中島智広氏は、ランサムウェアをめぐって「変わること」と「変わらないこと」を整理しました（AWS 公式ブログ、11/10確認）。\n\n攻撃側も防御側もAIを使う時代になっても、セキュリティの原則自体は変わりません（AWS 公式ブログ、11/10確認）。一方で変わったのは、システムの重要度や運用負荷、コストを理由に後回しにしてきた対策の位置づけです（AWS 公式ブログ、11/10確認）。\n\nAIによって脆弱性が短時間で大量に見つかるようになりました。かつて合理的だった水準を、もう一段引き上げる必要があります（AWS 公式ブログ、11/10確認）。\n\nMITRE ATT&CKの14のフェーズのうち、ランサムウェア固有のデータ暗号化は最後の段階にあたります（AWS 公式ブログ、11/10確認）。裏を返せば、暗号化に至るまでに止められる機会が13段階あります。そのため、前段での素早い対策が重要になります（AWS 公式ブログ、11/10確認）。\n\n## 防御・検知：暗号化に至る前の段階で止める\n\nシニアセキュリティソリューションアーキテクトの須田聡氏は、マルウェア全般に共通する防御・検知の軸を担当しました（AWS 公式ブログ、11/10確認）。\n\nAmazon GuardDutyとAWS Security Hub CSPMは、既存のシステムに影響を与えずに後から有効化できます。独自ルールを作る前に、重要度の高い検知から確実に対応する順番が推奨されています（AWS 公式ブログ、11/10確認）。\n\n組織単位でまず入れてほしい設定として、AWS Organizationsからのアカウント離脱の禁止が挙げられました（AWS 公式ブログ、11/10確認）。特権を奪われたアカウントが別の組織に移される手口を防ぐため、既存の組織も一度確認が必要です（AWS 公式ブログ、11/10確認）。\n\nさらに、Zscalerによるゼロトラストを活用した侵入・拡散対策が紹介されました。また、CrowdStrikeによるOS標準ツールを悪用するマルウェアフリー攻撃への対応と、振る舞い検知の重要性も紹介されました（AWS 公式ブログ、11/10確認）。\n\n## 説明責任：侵入後に何が起きたかを時間内に説明する\n\n「説明責任」の軸では、Cyber Security CloudとSplunkが登壇しました（AWS 公式ブログ、11/10確認）。\n\nCyber Security Cloudは、正規の権限を奪われてもデータを消させず、戻せて、異変に気づける状態を普段の設定で作る重要性を指摘しました（AWS 公式ブログ、11/10確認）。S3 Object LockやRDSの削除保護に加え、それらを外す操作をSCPで組織全体で拒否することが解説されました。AWS CloudTrailでS3のデータイベントやRDSの監査ログも取得しておく方法が解説されました（AWS 公式ブログ、11/10確認）。\n\nSplunkは、ログを横断して分析し、侵入の経路を組み立てる手法を紹介しました（AWS 公式ブログ、11/10確認）。\n\n単一の警告だけでは感染経路は分かりません。不審なリクエストや通信を横断的に見ることで、C2サーバーとの通信という像が浮かび上がります（AWS 公式ブログ、11/10確認）。その像が、再発防止や説明責任につながります。\n\n## 復旧：消されないバックアップを持ち、戻せることを確かめておく\n\nシニアストレージソリューションアーキテクトの焼尾徹氏は、AWS Backupを中心とした復旧力を解説しました（AWS 公式ブログ、11/10確認）。\n\n今日から取り組める3ステップとして、以下の内容が示されました（AWS 公式ブログ、11/10確認）。\n\n- AWS BackupのVault Lockの有効化（コンプライアンスモードにより保持期間中は誰も削除できない）\n- リストアテストの実行（データベースの件数照合やGuardDutyによるクリーンさの確認）\n- IaC（Infrastructure as Code）の活用（AWS CloudFormationやTerraformで環境定義を持ち、定義ファイルもObject Lockで守る）\n\nまた、Clumioからは、バックアップが取れているか、運用チームが確実に戻せるかを平時から検証しておく重要性が語られました（AWS 公式ブログ、11/10確認）。\n\n## まだ分からないこと\n\n- 次回開催の具体的なスケジュールや、本セミナーの一般公開の有無はまだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nAWSジャパンが開催したセキュリティセミナーで、AI時代におけるランサムウェア対策として「防御」「復旧」に「説明責任」を加えた3つの軸と、今日から取り組める具体的な手順が示されました。\n\n従来のセキュリティ対策を見直し、攻撃が暗号化の最終段階に至る前に防ぐ仕組みや、万一の際に確実にデータを戻せる体制づくりの重要性が解説されています。",
+  "channel": "AWS ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "aws-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "【開催報告】ランサムウェアに備える「防御」「復旧」「説明責任」— AI エージェント時代に見直す対策と次の一歩",
+  "publishedAt": "2026-11-10T01:03:44+00:00",
+  "generatedAt": "2026-11-10T01:25:58.039936+00:00",
+  "thumbnail": "https://d2908q01vomqb2.cloudfront.net/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f/2026/11/03/ransomware-security-seminar-oct-2026-00_eyecatch_v3-1204x630.png",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "newsType": "security",
+  "faq": [
+    {
+      "q": "AWS BackupのVault Lockを有効にするとどうなる？",
+      "a": "コンプライアンスモードに設定しておけば、強い権限を奪われた場合でも保持期間中は誰もオブジェクトを削除できなくなります。"
+    },
+    {
+      "q": "AWS Organizationsで確認すべき設定とは？",
+      "a": "アカウントの組織からの離脱を禁止する設定です。特権を奪われたアカウントが別の組織に移される手口を防ぐために確認が推奨されています。"
+    }
+  ],
+  "todayActions": [
+    "GuardDutyとSecurity Hub CSPMが有効になっているか確認する",
+    "Organizationsからのアカウント離脱が禁止されているか確かめる",
+    "CloudTrailでS3のデータイベントとRDSの監査ログが取れているか確かめる"
+  ],
+  "qualityScore": 88,
+  "sourcePublishedAt": "2026-11-10T01:03:44+00:00",
+  "detectedAt": "2026-11-10T01:22:54+00:00",
+  "speedMinutes": 27,
+  "layout": "noir",
+  "summaryLine": "AWSとパートナー企業が、AI時代のランサムウェア対策における「防御」「復旧」「説明責任」の3つの軸を解説しました。",
+  "sectionsPolishedAt": "2026-11-10T01:28:44+00:00",
+  "insight": [
+    {
+      "text": "GuardDutyとSecurity Hub CSPMは、既存のシステムに影響を与えずに後から有効化できます。独自ルールを作る前に、重要度の高い検知から対応する順番が推奨されています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/"
+    },
+    {
+      "text": "AWS Organizationsの離脱禁止は、コンソールで新しく作成した組織には既定で入るようになりました。既存の組織は一度確認してほしいと案内されています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/"
+    },
+    {
+      "text": "Clumioは、S3はオブジェクト単位、EBSはファイル単位で任意の時点から取り出せると説明しました。CloudTrailやGuardDutyのログで「どのオブジェクトが暴れたか」が分かっていれば、戻す時点を絞り込めます。",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "AWS Organizations",
+      "url": "https://aws.amazon.com/jp/organizations/",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/",
+      "note": "離脱禁止は組織単位で設定します。既存の組織は一度確認してみてください。"
+    },
+    {
+      "name": "AWS CloudTrail（データイベント）",
+      "url": "https://docs.aws.amazon.com/ja_jp/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/",
+      "note": "S3のオブジェクト操作などのデータイベントを取得しているか確認しておくとよいとされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "GuardDutyとSecurity Hub CSPMが有効になっているか確認する",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/",
+      "steps": [
+        "各サービスの画面で有効状態を見る",
+        "既存システムへの影響なく後から有効化できる",
+        "重要度の高い検知から対応する"
+      ],
+      "url": "https://aws.amazon.com/jp/guardduty/"
+    },
+    {
+      "action": "Organizationsからのアカウント離脱が禁止されているか確かめる",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/",
+      "steps": [
+        "既存の組織で離脱禁止の設定を確認する",
+        "新しく作成した組織は既定で入っている",
+        "組織単位で禁止しておく"
+      ],
+      "url": "https://aws.amazon.com/jp/organizations/"
+    },
+    {
+      "action": "CloudTrailでS3のデータイベントとRDSの監査ログが取れているか確かめる",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/",
+      "steps": [
+        "CloudTrailの設定でデータイベントを確認する",
+        "S3のオブジェクト操作が対象か見る",
+        "RDSの監査ログの取得を確かめる"
+      ],
+      "url": "https://docs.aws.amazon.com/ja_jp/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html"
+    }
+  ],
+  "cause": {
+    "text": "AIによって脆弱性が短時間で大量に見つかるようになり、ソースコードが公開されているOSSでは修正前後の差分から攻撃コードまで作れてしまいます。そのため、かつて合理的だった水準をもう一段上げる必要があると説明されました。",
+    "status": "background",
+    "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/"
+  },
+  "worries": [
+    {
+      "q": "AWSのデータを消されても、元に戻せますか？",
+      "a": "バックアップのVault Lockをコンプライアンスモードにすると、強い権限を奪われても保持期間中は誰も削除できないと説明されています。ただし、実際に戻せるかはリストア訓練で確かめる必要があるとされています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/",
+      "action": "AWS BackupのVault Lockを有効にし、リストアテストを1回実行して戻せるかを確かめる。"
+    },
+    {
+      "q": "侵入されたとき、いつの時点に戻せばいいか分からない",
+      "a": "ログから侵入の時期が分かれば、どの時点のバックアップに戻せばよいかを早く絞り込めると説明されています。攻撃者は侵入後すぐには動かず潜伏するとも示されました。",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/",
+      "action": "CloudTrailなどのログが残る設定にしておき、侵入時期を追えるようにする。"
+    },
+    {
+      "q": "S3のファイルを誰かに読まれたり消されたりしても気づける？",
+      "a": "大量削除や暗号化の兆候に早く気づくための土台がデータイベントの取得だと説明されています。攻撃者は削除の前に大量の読み取りを行うため、GuardDutyのS3 Protectionで窃取の段階に気づける可能性も示されました。",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/",
+      "action": "S3のデータイベントの取得状況を確認し、GuardDuty S3 Protectionの有効化も検討する。"
+    },
+    {
+      "q": "バックアップがあれば、いざというとき安心？",
+      "a": "訓練していない組織が当日いきなりバックアップを戻すのは難しいと、Clumioは指摘しています。確認するのは、バックアップが取れているかと運用チームが戻せるかの2点だと示されました。",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/",
+      "action": "今週中にでもリストア訓練を1回行い、運用チームが戻せるかを確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "GuardDutyとSecurity Hubは今すぐ有効にすべき？",
+      "situation": "まだ有効にしていない",
+      "recommend": "確認して早めに検討する価値がある",
+      "reason": "既存のシステムに影響を与えずに後から有効化できると説明されています。ただし、体制が整ってからカバレッジを広げる順番が推奨されています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/"
+    },
+    {
+      "question": "バックアップ対策はどこから始めればいい？",
+      "situation": "バックアップの保護がまだ不十分",
+      "recommend": "1-1-0の3点から始めるのが出発点",
+      "reason": "イミュータブル保存、管理者権限を切り離した別アカウントへのエアギャップ、戻せることの検証がクラウドでのスタート地点と説明されています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "AWSの設定で、今日確かめられる3つのこと",
+    "cause": "なぜ今、対策を見直すのか",
+    "steps": "今日確かめたい3つの設定",
+    "desk": "設定を確かめる公式ページ",
+    "worries": "バックアップは本当に戻せる？",
+    "guide": "今すぐ有効にするか、順番に進めるか"
+  },
+  "depthAt": "2026-11-10T01:29:40+00:00",
+  "imageFocus": {
+    "x": 0.481,
+    "y": 0.386,
+    "box": [
+      0.006,
+      0.066,
+      0.956,
+      0.707
+    ],
+    "ar": 1.9111,
+    "src": "https://d2908q01vomqb2.cloudfront.net/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f/2026/11/03/ransomware-security-seminar-oct-2026-00_eyecatch_v3-1204x630.png"
+  }
+}

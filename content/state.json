@@ -109,6 +109,14 @@
       "tries": 1,
       "url": "https://www.recall.caa.go.jp/images/rci/img/product/00000036096_1.jpg"
     },
+    "dd7e9812623e4017": {
+      "first": "2026-11-10T01:25:33.405684+00:00",
+      "next": "2026-11-10T04:25:33.405684+00:00",
+      "reason": "「愛知県など12都県市」（タイトル・リード）→ 元記事の連名は11都県2政令市で計13。数え方が元記事と合わない。; 「全日ト協」（かんたん版）→ 元記事の要請者は「全日本自動車産業労働組合総連合会」。略称が誤っており、別団体（全日本トラック協会等）と取り違えるおそれがある。; 「加わる方向で調整」（本文）→ 元記事では要請者は調整中とされており、JAFなどが確定して加わるかのように読める。; 「",
+      "title": "【知事会見】自動車諸税の抜本的な見直しに係る要請について",
+      "tries": 1,
+      "url": "https://www.pref.aichi.jp/press-release/jidosha-shozei-2026.html"
+    },
     "ebb1c52e70ff5c7f": {
       "first": "2026-11-08T03:36:57.817240+00:00",
       "next": "2026-11-08T06:36:57.817240+00:00",
@@ -176,14 +184,11 @@
     "84b1b5976acb35a3": "2026-11-06T06:32:48.286502+00:00",
     "864c165c89cc122a": "2026-11-06T01:40:54.899345+00:00",
     "87717d1c826ec2f6": "2026-11-08T01:10:50.926550+00:00",
-    "884b8cc2f43ba1f5": "2026-11-06T01:01:01.438406+00:00",
-    "9192d24f26be4d21": "2026-11-06T01:20:53.228732+00:00",
     "9768eaa6b9472805": "2026-11-06T08:51:04.778179+00:00",
     "97b295127eee65c6": "2026-11-06T18:22:08.318950+00:00",
     "a021b5d3e7b968d3": "2026-11-06T19:23:54.886871+00:00",
     "a029bd16e7729841": "2026-11-06T19:41:01.362264+00:00",
     "a52feb664fcf3b5f": "2026-11-06T19:23:54.886871+00:00",
-    "a55b8a7415413318": "2026-11-06T01:20:53.228732+00:00",
     "a9f8fc0979118b50": "2026-11-07T19:10:55.244910+00:00",
     "aad9d7bdcca6307e": "2026-11-06T19:41:01.362264+00:00",
     "ac845688cab42468": "2026-11-06T19:41:01.362264+00:00",
@@ -4994,14 +4999,6 @@
       "skipped": true,
       "url": "https://www.zoom.com/en/blog/ai-for-social-media-content/"
     },
-    "1758535ac6be3e6b": {
-      "at": "2026-10-27T01:23:39.311985+00:00",
-      "model": "gemini-3.6-flash",
-      "score": 100,
-      "section": "ai",
-      "slug": "openai-gpt-6-1-terra-announcement",
-      "url": "https://openai.com/index/introducing-gpt-6-1-terra"
-    },
     "1797980fa3e7a238": {
       "at": "2026-11-09T21:27:56.399445+00:00",
       "costUsd": 0.0132,
@@ -6954,6 +6951,12 @@
       "skipped": true,
       "url": "https://www.nissin.com/jp/news/13985/"
     },
+    "37ed2f5037e2e327": {
+      "at": "2026-11-10T01:23:39.775519+00:00",
+      "reason": "dedupe: 固有名詞が一致（nintendo・switch）: nintendo-fy2027-interim-results",
+      "skipped": true,
+      "url": "https://www.nintendo.com/jp/topics/article/31e57164-941c-4103-bd30-f04744073cc3"
+    },
     "37f4b2b7747aee43": {
       "at": "2026-10-27T17:51:57.399640+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7061,6 +7064,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（協賛）",
       "skipped": true,
       "url": "https://www.atpress.ne.jp/news/641994"
+    },
+    "38f52a35af291982": {
+      "at": "2026-11-10T01:23:39.775797+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://www.nintendo.com/jp/topics/article/1f0dba7a-c553-4ae7-bb75-a6586db1d824"
     },
     "391b23f56ce31826": {
       "at": "2026-10-30T21:40:45.244664+00:00",
@@ -7255,6 +7264,13 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/toukei/list/71-r07.html"
+    },
+    "3c843b1022dc50fb": {
+      "at": "2026-11-10T01:28:33.819616+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「AWS ブログ（日本）は2026年11月10日、…公開しました」→ 元記事の公開日は2026年10月15日で、11月10日という日付は元記事にも確認済みの文脈にも無く、創作の日付である。; 「AWS上のMicrosoftワークロード」のre:Invent 2026向けガイドを「インフラ移行ガイド」と言い換えており、元記事の題材（Microsoftワークロードの",
+      "skipped": true,
+      "url": "https://aws.amazon.com/jp/blogs/news/microsoft-workloads-on-aws-your-complete-reinvent-2026-guide/"
     },
     "3c8aedb547f4a5b7": {
       "at": "2026-11-09T19:02:53.679121+00:00",
@@ -9133,6 +9149,17 @@
       "slug": "cyber-security-reserve-fund-10b-yen",
       "url": "https://www.mof.go.jp/public_relations/conference/my20261106.html"
     },
+    "59856d4a5588f2d4": {
+      "at": "2026-11-10T01:26:55.477200+00:00",
+      "costUsd": 0.0154,
+      "intent": "breaking",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "ai",
+      "slug": "aws-ransomware-security-seminar-2026",
+      "url": "https://aws.amazon.com/jp/blogs/news/ransomware-security-seminar-oct-2026/"
+    },
     "598c6194c0d34c23": {
       "at": "2026-11-02T19:34:35.973911+00:00",
       "model": "claude:sonnet",
@@ -10871,6 +10898,12 @@
       "skipped": true,
       "url": "https://prtimes.jp/main/html/rd/p/000000172.000021828.html"
     },
+    "736e69303431b217": {
+      "at": "2026-11-10T01:25:34.198956+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（採用）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/common/recruit/r8/shiho-05/shiho-05.html"
+    },
     "73c7084640d94745": {
       "at": "2026-10-28T04:02:46.712719+00:00",
       "breaking": true,
@@ -11171,6 +11204,12 @@
       "slug": "claude-fable-5-2-api-price",
       "url": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-09"
     },
+    "780c080a98a4dbd4": {
+      "at": "2026-11-10T01:25:34.198904+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.fsa.go.jp/ordinary/chuui/highrisk.html"
+    },
     "7829dd05ce695068": {
       "at": "2026-11-09T07:52:19.526816+00:00",
       "costUsd": 0.0061,
@@ -11236,6 +11275,12 @@
       "reason": "followup quality: 本文「Anthropic公式ニュースは11月10日」→ 元記事に公開日の記載がなく、確認済みの文脈にも無い日付を創作している; リード・要点「5.1より2割安い」→ 5.1の価格$10・$50は確認済みの文脈にあり、2割安いの計算も正しいが、計算であることが明記されていない",
       "skipped": true,
       "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2"
+    },
+    "79b05ed2d6072e00": {
+      "at": "2026-11-10T01:25:44.001114+00:00",
+      "reason": "short text 311",
+      "skipped": true,
+      "url": "https://www3.jitec.ipa.go.jp/JitesCbt/html/openinfo/pass.html"
     },
     "79e6fb6d7787c932": {
       "at": "2026-10-27T01:53:44.181577+00:00",
@@ -11860,14 +11905,6 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326974.html"
     },
-    "830d1e82575a6407": {
-      "at": "2026-10-27T01:11:10.153802+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "entertainment",
-      "slug": "shirow-masamune-t-shirt-vol-08",
-      "url": "https://www.value-press.com/pressrelease/383221"
-    },
     "83548c83d8b70a3b": {
       "at": "2026-10-28T16:06:41.329190+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -12439,6 +12476,12 @@
       "section": "business",
       "slug": "mof-jgb-interest-rate-202610",
       "url": "https://www.mof.go.jp/jgbs/reference/interest_rate/jgbcm.csv"
+    },
+    "8bf3ec49a96cf17a": {
+      "at": "2026-11-10T01:25:44.004547+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
+      "skipped": true,
+      "url": "https://www.nissin.com/jp/news/13992/"
     },
     "8c09187c205ca7d6": {
       "at": "2026-10-28T17:32:31.148933+00:00",
@@ -13934,6 +13977,12 @@
       "reason": "quality: 本文が短い（2147字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://jp.newsroom.ibm.com/2026-10-28-ibm-introduces-identity-and-control-for-ai-agents,-securing-frontier-intelligence-for-the-enterprise"
+    },
+    "a32d44d8a10f6154": {
+      "at": "2026-11-10T01:23:39.775991+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://www.nintendo.com/jp/topics/article/e77acfd6-fdd4-4265-9d2f-d682b85430d9"
     },
     "a343e882fa87e60d": {
       "at": "2026-11-03T00:34:53.218258+00:00",
@@ -16891,6 +16940,12 @@
       "slug": "copilot-in-sharepoint-october-2026",
       "url": "https://blogs.windows.com/japan/2026/10/27/whats-new-in-copilot-in-sharepoint-october-2026/"
     },
+    "d4ab52be6b0650e1": {
+      "at": "2026-11-10T01:24:31.466551+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（周年）",
+      "skipped": true,
+      "url": "http://global.nissannews.com/ja-JP/releases/261110-01-j"
+    },
     "d4bb9d43157ae4ed": {
       "at": "2026-11-06T05:01:15.385085+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -17658,6 +17713,17 @@
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/house07_hh_000321.html"
     },
+    "df7291db4ea5a6f9": {
+      "at": "2026-11-10T01:27:59.306664+00:00",
+      "costUsd": 0.0096,
+      "intent": "neutral",
+      "mix": "quirky",
+      "model": "gemini-3.5-flash-lite",
+      "score": 85,
+      "section": "tech-gadget",
+      "slug": "kddi-quantum-network-optimization",
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1236_4820.html"
+    },
     "df8b910c54899106": {
       "at": "2026-11-09T04:13:54.560437+00:00",
       "costUsd": 0.0157,
@@ -17957,6 +18023,12 @@
       "section": "business",
       "slug": "mof-onchain-government-bonds-study",
       "url": "https://www.mof.go.jp/about_mof/councils/study_on_chain/index.html"
+    },
+    "e466505f8ac173b1": {
+      "at": "2026-11-10T01:28:33.826505+00:00",
+      "reason": "dedupe: 見出しが類似（0.53）: ITパスポート試験（令和8年9月実施）の合格証書は11月9日（月曜日）発送済です",
+      "skipped": true,
+      "url": "https://www.ipa.go.jp/shiken/mousikomi/cbt_sg_fe.html"
     },
     "e466f624af7d1128": {
       "at": "2026-11-03T19:55:16.917860+00:00",
@@ -18433,6 +18505,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110609"
+    },
+    "ec57642124ecc1d6": {
+      "at": "2026-11-10T01:24:30.703808+00:00",
+      "costUsd": 0.0064,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "business",
+      "slug": "curry-rice-price-index-sep-2026",
+      "url": "https://www.tdb.co.jp/report/economic/20261110-curry2609/"
     },
     "ec5d4434c569cf19": {
       "at": "2026-10-30T00:31:47.061247+00:00",
@@ -20109,210 +20192,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-08T01:47:35.563228+00:00",
-      "attempt": 2,
-      "id": "2e9f83e45747a59d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「51億円、変動10年の約3.6倍」、「年と固定3年は、どちらも3,000億円」、「3,000億円台で、差は100億円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 69.0,
-        "avg_sentence": 30.4,
-        "long_share": 0.0,
-        "max_paragraph": 143,
-        "paragraphs": 22,
-        "sentences": 50
-      },
-      "score": null,
-      "source": "mof",
-      "title": "個人向け国債の応募額（令和8年10月）",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T01:47:47.209835+00:00",
-      "attempt": 2,
-      "id": "2e9f83e45747a59d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「年と固定3年は、どちらも3,000億円」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計算済みの数字の欄にあるものだけ使う）"
-      ],
-      "readability": {
-        "avg_paragraph": 68.5,
-        "avg_sentence": 30.1,
-        "long_share": 0.0,
-        "max_paragraph": 143,
-        "paragraphs": 22,
-        "sentences": 50
-      },
-      "score": null,
-      "source": "mof",
-      "title": "個人向け国債の応募額（令和8年10月）",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T01:48:25.947333+00:00",
-      "attempt": 1,
-      "id": "9a892e935752466d",
-      "kind": "broad",
-      "model": "gemini-flash-latest",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "第553回日本高速道路保有・債務返済機構債券（ソーシャルボンド）に対する政府保証の付与"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T01:48:51.527953+00:00",
-      "attempt": 1,
-      "id": "9a892e935752466d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "第553回日本高速道路保有・債務返済機構債券（ソーシャルボンド）に対する政府保証の付与"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T01:49:11.989474+00:00",
-      "attempt": 2,
-      "id": "9a892e935752466d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "第553回日本高速道路保有・債務返済機構債券（ソーシャルボンド）に対する政府保証の付与"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T01:49:31.736949+00:00",
-      "attempt": 2,
-      "id": "9a892e935752466d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "mof",
-      "title": "第553回日本高速道路保有・債務返済機構債券（ソーシャルボンド）に対する政府保証の付与"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T01:49:51.805775+00:00",
-      "attempt": 2,
-      "id": "9a892e935752466d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "本文「発行日と償還日は日付が10日ずれているため、ちょうど10年ではなく、10年と10日ほどの期間です」→ 元記事にない期間の計算結果で、計算済みの数字にも含まれていない。日付自体は正しく、計算も正しいが、出典や式が示されていない。",
-        "本文「令和18年（2036年）」→ 西暦への換算は元記事に無いが、令和8年＝2026年から導ける正しい換算で、重大な問題ではない。"
-      ],
-      "readability": {
-        "avg_paragraph": 93.8,
-        "avg_sentence": 34.7,
-        "long_share": 0.022,
-        "max_paragraph": 226,
-        "paragraphs": 17,
-        "sentences": 46
-      },
-      "score": 88,
-      "source": "mof",
-      "title": "第553回日本高速道路保有・債務返済機構債券（ソーシャルボンド）に対する政府保証の付与",
-      "warnings": [
-        "同じ数字が多い（「2.987%」が5回）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T01:53:47.867675+00:00",
-      "attempt": 1,
-      "id": "fcc4518b2dc415cf",
-      "kind": "broad",
-      "model": "gemini-3.7-flash",
-      "problems": [
-        "本文の日程表「2026年11月25日（月）：交付決定通知」→ 元記事では11月25日は水曜日（月曜は11月16日・12月7日）。曜日の取り違え。",
-        "本文「競技職種によって異なる道具や材料の負担金も含めて全額が対象」→ 元記事は「大会参加費及び職種別負担金の全額」とのみ記載。道具・材料への言及は創作。",
-        "本文「学校教育法で定められた私立の学校、専修学校、各種学校（愛知県立を除く）」→ 元記事は学校等（愛知県立を除く）で、私立に限定していない。対象範囲の誤り。",
-        "要点・かんたん版「民間の職業訓練施設」「私立学校」→ 元記事に民間・私立の限定はなく、対象の範囲を狭めて書いている。",
-        "本文「大会出場に必要な一定の公的費用が全額補助」→ 元記事に無い「公的費用」の限定表現。",
-        "かんたん版「選手の自己負担や所属先の負担を実質ゼロにできます」→ 対象は要件を満たす者に限られ、実質ゼロとまでは元記事で言えない言い過ぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 81.5,
-        "avg_sentence": 49.5,
-        "long_share": 0.25,
-        "max_paragraph": 139,
-        "paragraphs": 17,
-        "sentences": 28
-      },
-      "score": 55,
-      "source": "pref-aichi",
-      "title": "2026年度技能五輪全国大会に出場する愛知県選手の出場費用を助成します！"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T01:54:29.184377+00:00",
-      "attempt": 1,
-      "id": "fcc4518b2dc415cf",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "かんたん版の「県立の学校等や施設に所属する選手は対象外です」→ 元記事の（1）イでは愛知県立の学校等又は職業訓練施設に所属する本県選手は対象であり、本文の記述とも矛盾する",
-        "「判定: 提供状況=available 価格=全額助成 ひとこと=…」→ 内部の判定メモが記事本文に混入しており、読者向けの文章になっていない",
-        "仕事・お金の欄「全額負担を避けられます」→ 助成は要件充足と予算内での受付が前提（予算上限で受付終了あり）であり、確実に全額負担を避けられるように読める言い過ぎ",
-        "今日やること「先着順で予算上限に達する前に、メールまたは郵送で申請書を提出する」→ 元記事は持参も提出方法として挙げており、手段の限定は軽微な不正確さ"
-      ],
-      "readability": {
-        "avg_paragraph": 76.0,
-        "avg_sentence": 38.9,
-        "long_share": 0.133,
-        "max_paragraph": 209,
-        "paragraphs": 23,
-        "sentences": 45
-      },
-      "score": 55,
-      "source": "pref-aichi",
-      "title": "2026年度技能五輪全国大会に出場する愛知県選手の出場費用を助成します！"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T01:55:02.170568+00:00",
-      "attempt": 2,
-      "id": "fcc4518b2dc415cf",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 71.9,
-        "avg_sentence": 37.2,
-        "long_share": 0.138,
-        "max_paragraph": 134,
-        "paragraphs": 15,
-        "sentences": 29
-      },
-      "score": 90,
-      "source": "pref-aichi",
-      "title": "2026年度技能五輪全国大会に出場する愛知県選手の出場費用を助成します！"
-    },
     {
       "accepted": false,
       "at": "2026-11-08T01:59:56.368064+00:00",
@@ -27421,6 +27300,254 @@
         "初めて出たところで言い換えていない略語（EVS・VPC・EC）",
         "読みやすさ: 文が長い（1文の平均 55.1字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T01:24:02.203973+00:00",
+      "attempt": 1,
+      "id": "ec57642124ecc1d6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 125.3,
+        "avg_sentence": 58.5,
+        "long_share": 0.267,
+        "max_paragraph": 156,
+        "paragraphs": 7,
+        "sentences": 15
+      },
+      "score": 93,
+      "source": "tdb",
+      "title": "物価・価格 「カレーライス物価指数（2026年基準改定）」調査―2026年9月 2026年9月のカレー物価 １食342円 5年ぶりに前年割れ",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 58.5字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 125.3字・最長 156字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T01:24:30.685042+00:00",
+      "attempt": 0,
+      "id": "ec57642124ecc1d6",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 55.6,
+        "avg_sentence": 32.9,
+        "long_share": 0.045,
+        "max_paragraph": 119,
+        "paragraphs": 13,
+        "sentences": 22
+      },
+      "score": 88,
+      "source": "tdb",
+      "title": "物価・価格 「カレーライス物価指数（2026年基準改定）」調査―2026年9月 2026年9月のカレー物価 １食342円 5年ぶりに前年割れ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T01:24:57.974291+00:00",
+      "attempt": 1,
+      "id": "dd7e9812623e4017",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「愛知県など12都県市」（タイトル・リード）→ 元記事の連名は11都県2政令市で計13。数え方が元記事と合わない。",
+        "「全日ト協」（かんたん版）→ 元記事の要請者は「全日本自動車産業労働組合総連合会」。略称が誤っており、別団体（全日本トラック協会等）と取り違えるおそれがある。",
+        "「加わる方向で調整」（本文）→ 元記事では要請者は調整中とされており、JAFなどが確定して加わるかのように読める。",
+        "「大村知事らが…直接要請を行う予定」（要点）→ 元記事は要請先を「政府（経済産業省等）、政党」とし、日程・訪問先は調整中と明記しており、『直接』の表現は元記事より言い切っている。"
+      ],
+      "readability": {
+        "avg_paragraph": 79.6,
+        "avg_sentence": 61.9,
+        "long_share": 0.556,
+        "max_paragraph": 166,
+        "paragraphs": 7,
+        "sentences": 9
+      },
+      "score": 45,
+      "source": "pref-aichi",
+      "title": "【知事会見】自動車諸税の抜本的な見直しに係る要請について",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JAF）",
+        "読みやすさ: 文が長い（1文の平均 61.9字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T01:26:06.792863+00:00",
+      "attempt": 1,
+      "id": "59856d4a5588f2d4",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "タイトル「AWSとパートナーが実演」→ 元記事は各社の登壇・講演の内容であり、実機デモや実演があったとは書かれていないため、発表形式を誤って伝えている。"
+      ],
+      "readability": {
+        "avg_paragraph": 127.7,
+        "avg_sentence": 77.7,
+        "long_share": 0.826,
+        "max_paragraph": 280,
+        "paragraphs": 14,
+        "sentences": 23
+      },
+      "score": 85,
+      "source": "aws-japan-blog",
+      "title": "【開催報告】ランサムウェアに備える「防御」「復旧」「説明責任」— AI エージェント時代に見直す対策と次の一歩",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MITRE・ATT・CK）",
+        "読みやすさ: 文が長い（1文の平均 77.7字・60字超の文が 83% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T01:26:24.346572+00:00",
+      "attempt": 1,
+      "id": "59856d4a5588f2d4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 127.7,
+        "avg_sentence": 77.7,
+        "long_share": 0.826,
+        "max_paragraph": 280,
+        "paragraphs": 14,
+        "sentences": 23
+      },
+      "score": 92,
+      "source": "aws-japan-blog",
+      "title": "【開催報告】ランサムウェアに備える「防御」「復旧」「説明責任」— AI エージェント時代に見直す対策と次の一歩",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MITRE・ATT・CK）",
+        "読みやすさ: 文が長い（1文の平均 77.7字・60字超の文が 83% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T01:26:55.457140+00:00",
+      "attempt": 0,
+      "id": "59856d4a5588f2d4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 101.0,
+        "avg_sentence": 58.6,
+        "long_share": 0.516,
+        "max_paragraph": 222,
+        "paragraphs": 18,
+        "sentences": 31
+      },
+      "score": 88,
+      "source": "aws-japan-blog",
+      "title": "【開催報告】ランサムウェアに備える「防御」「復旧」「説明責任」— AI エージェント時代に見直す対策と次の一歩",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MITRE・ATT・CK）",
+        "読みやすさ: 文が長い（1文の平均 58.6字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T01:27:15.618566+00:00",
+      "attempt": 1,
+      "id": "df7291db4ea5a6f9",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "仕事・お金の欄「利用者が自身の端末で行う特別な手続きや追加の料金は不要です」→ 元記事に料金や手続きの有無の記述はなく、追加料金が無いという提供条件は創作",
+        "本文「現在の契約のままで自動的に適用される」→ 元記事に契約条件や自動適用の記述はなく、提供内容の創作",
+        "タイトル「上り通信の低速化を約80％削減」→ 元記事は混雑時間帯における1.5Mbps未満の通信の発生頻度の削減であり、対象時間と指標（頻度）が抜けていて誤読を招く",
+        "かんたん版「混雑した時間帯でも写真や動画をスムーズにアップロードできるようにしました」→ 元記事は発生頻度の削減であり、スムーズな通信を保証する表現は言い過ぎ",
+        "かんたん版「写真の送信やWeb会議の映像送りが快適になります」→ 元記事に快適化の確認はなく、効果の断定に近い言い過ぎ",
+        "本文「それ以外の地域や他社の回線を利用している人には直接の変化はありません」→ 元記事に記載のない推測を事実として断定している"
+      ],
+      "readability": {
+        "avg_paragraph": 112.3,
+        "avg_sentence": 61.3,
+        "long_share": 0.636,
+        "max_paragraph": 138,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 55,
+      "source": "kddi-topics",
+      "title": "量子技術で電波干渉を抑える最適な設定を算出、商用基地局へ適用",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 61.3字・60字超の文が 64% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T01:27:42.725718+00:00",
+      "attempt": 1,
+      "id": "df7291db4ea5a6f9",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.5,
+        "avg_sentence": 57.3,
+        "long_share": 0.5,
+        "max_paragraph": 123,
+        "paragraphs": 6,
+        "sentences": 10
+      },
+      "score": 85,
+      "source": "kddi-topics",
+      "title": "量子技術で電波干渉を抑える最適な設定を算出、商用基地局へ適用",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 57.3字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T01:27:59.298948+00:00",
+      "attempt": 0,
+      "id": "df7291db4ea5a6f9",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 仕事・お金にどう活かせる？「東京都内の一部エリア...でモバイル回線を利用している人が対象となります」→ 元記事は適用された基地局と対象エリアを述べるのみで、利用者の対象条件を明記していない。; よくある質問「基地局側の設定変更による最適化のため、利用者が何か手"
+      ],
+      "readability": {
+        "avg_paragraph": 95.5,
+        "avg_sentence": 57.3,
+        "long_share": 0.5,
+        "max_paragraph": 123,
+        "paragraphs": 6,
+        "sentences": 10
+      },
+      "score": 85,
+      "source": "kddi-topics",
+      "title": "量子技術で電波干渉を抑える最適な設定を算出、商用基地局へ適用",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 57.3字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T01:28:33.819583+00:00",
+      "attempt": 1,
+      "id": "3c843b1022dc50fb",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「AWS ブログ（日本）は2026年11月10日、…公開しました」→ 元記事の公開日は2026年10月15日で、11月10日という日付は元記事にも確認済みの文脈にも無く、創作の日付である。",
+        "「AWS上のMicrosoftワークロード」のre:Invent 2026向けガイドを「インフラ移行ガイド」と言い換えており、元記事の題材（Microsoftワークロードのガイド）とずれている。",
+        "「5つのデータセンターにある1,800台を移行する見込み」→ 元記事は48%削減の見込みを示すが、1,800台がすべて移行対象かどうかは元記事の文言（5つのデータセンター、1,800台、48%削減）を超えて断定に近く書かれている。",
+        "「続報で.NETやSQL Serverの移行セッションも加わりました」→ 『続報』『加わった』という経緯は元記事に無く、元記事の内容をもとにした編集上の説明としても根拠が示されていない。"
+      ],
+      "score": 72,
+      "source": "aws-japan-blog",
+      "title": "AWS 上の Microsoft ワークロード: re:Invent 2026 完全ガイド"
     }
   ],
   "short_text_retry": {},
