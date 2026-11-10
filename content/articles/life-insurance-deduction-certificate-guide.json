@@ -77,14 +77,13 @@
     }
   ],
   "todayActions": [
-    "手元の生命保険・介護医療・個人年金の証明書を、契約ごとに区分と新旧を見て分けておく",
-    "地震保険料の証明書は金額にかかわらず必要なので、地震保険の契約分を別に取り分けておく"
+    "証明書の区分と新旧を見て、申告書の同じ区分の欄へそのまま写す",
+    "地震保険の証明書を、金額にかかわらず別に取り分けておく"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261110-手続き-保険料控除証明書と年末調整.md",
   "sectionsPolishedAt": "2026-11-10T03:36:22+00:00",
-  "museDepthNotes": "なるほど：電子データの証明書は写真やスクリーンショットではない。国税庁No.1140が言う電磁的記録印刷書面は、電子証明書等に記録された情報の内容と二次元コードが付された出力書面で、紙で出す場合は国税庁のQRコード付証明書等作成システムで作る。スマートフォンは推奨環境外。\nなるほど：証明書が9,000円以下なら要らない、は旧契約の一般の生命保険料だけの例外。地震保険料は金額にかかわらず証明書が要る。混同すると地震の分だけ出し忘れる。\nなるほど：新旧両方ある人の境目は旧契約の支払額6万円。6万円を超えると旧契約だけで計算し、以下なら新旧の合計で最高4万円になる（No.1140）。証明書を新旧で分けて合計してから判定する。",
   "museSources": [
     {
       "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
@@ -133,5 +132,133 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/life-insurance-deduction-certificate-guide-figure-3df00b04.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "勤務先を対象とする団体特約で払った保険料は、証明書を出さなくても、勤務先で保険料の内容や契約者などに誤りがないことを確認すれば足ります",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf"
+    },
+    {
+      "text": "月払いの契約は、年間の支払額の代わりに、毎月の払込保険料と本年1月から9月までの払込状況が分かる事項があれば証明書として足ります",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf"
+    },
+    {
+      "text": "保険金の受取人が本人・配偶者・親族だけでないと、支払った保険料は控除の対象になりません（個人年金は親族を除く）",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 タックスアンサー No.1140 生命保険料控除",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "howTo": [
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）",
+        "No.1140 生命保険料控除"
+      ],
+      "note": "区分ごとの控除額の表と、新契約と旧契約の両方がある場合の計算が載っています。令和8年4月1日現在の法令等に基づく内容です。"
+    },
+    {
+      "name": "国税庁 A2-3 給与所得者の保険料控除の申告",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "申告手続・用紙",
+        "申告・申請・届出等、用紙（手続の案内・様式）",
+        "A2 源泉所得税関係",
+        "A2-3 給与所得者の保険料控除の申告"
+      ],
+      "note": "令和8年分の申告書と記載例のPDFがあります。令和8年11月30日以前に年末調整を行う場合の読み替えも書かれています。"
+    },
+    {
+      "name": "国税庁 控除証明書等の電子的交付について",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/kakutei/koujyo.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/kakutei/koujyo.htm",
+      "howTo": [
+        "税について調べる",
+        "所得税（確定申告書等作成コーナー）",
+        "控除証明書等の電子的交付について"
+      ],
+      "note": "スマートフォンは推奨環境外のため、使えないおそれがあります。パソコンでQRコード付証明書等作成システムを使う案内があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "証明書の区分と新旧を見て、申告書の同じ区分の欄へそのまま写す",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf",
+      "steps": [
+        "証明書の区分（一般・介護医療・個人年金）を見る",
+        "契約日で新契約か旧契約かを確かめる",
+        "申告書の同じ区分の欄へ写す（振り替えはしない）"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm"
+    },
+    {
+      "action": "地震保険の証明書を、金額にかかわらず別に取り分けておく",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf",
+      "steps": [
+        "地震保険料の証明書を1か所にまとめる",
+        "少額でも証明書は省略しない",
+        "提出の締切を勤務先に確認する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "年末調整の保険料控除は、社員から出された申告書に基づいて行うことになっています。そのため、保険料を支払った事実を証明書類で確かめる仕組みになっています。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf"
+  },
+  "worries": [
+    {
+      "q": "証明書をなくしたら、生命保険料の控除は受けられない？",
+      "a": "証明書の交付を請求中などで確認できない場合は、翌年1月末日までに提出・提示することを条件に、生命保険料の控除をして年末調整を行ってもよい取扱いがあります。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf",
+      "action": "まず発行元の保険会社等に再発行を相談し、勤務先の締切前に状況を伝える"
+    },
+    {
+      "q": "9,000円以下の保険は、証明書なしで書いてもいい？",
+      "a": "証明書が要らないのは、旧生命保険料で1契約の支払額（剰余金などを差し引いた残額）が9,000円以下のものだけです。それ以外は金額にかかわらず必要です。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf",
+      "action": "旧契約の1契約ごとの年間支払額を確かめ、9,000円以下かどうかを見る"
+    },
+    {
+      "q": "地震保険料も、少額なら証明書はいらない？",
+      "a": "地震保険料は、保険料の金額の多少に関係なく、証明書類または電磁的記録印刷書面を保険料控除申告書に添付して提出または提示する必要があります。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf",
+      "action": "地震保険の証明書を取り分け、申告書と一緒に勤務先へ出す"
+    },
+    {
+      "q": "新しい保険と古い保険は、同じ欄に足してもいい？",
+      "a": "新生命保険料を旧生命保険料に含めるなど、支払った保険料の区分を他の区分に振り替えることはできません。区分ごとにそれぞれ合計を計算します。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf",
+      "action": "新契約と旧契約を証明書ごとに分け、区分ごとに金額を合計する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "証明書がまだ手元に届かないとき、どうする？",
+      "situation": "締切前だが証明書が手元にない",
+      "recommend": "先に勤務先へ事情を伝えて相談する",
+      "reason": "証明書が確認できない場合でも、翌年1月末日までに提出・提示することを条件に、生命保険料の控除をして年末調整を行ってもよい取扱いがあります。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf"
+    },
+    {
+      "question": "証明書がまだ届かないとき、どうする？",
+      "situation": "締切までに証明書が届く見込みがある",
+      "recommend": "届いてから区分と金額を写して提出する",
+      "reason": "証明書の区分と金額をそのまま申告書に写して、証明書を添付するのが本来の出し方です。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "団体特約や月払いの証明書、見落としやすい例外",
+    "cause": "なぜ証明書を求められるのか",
+    "steps": "証明書から申告書へ、写す手順",
+    "desk": "出す先と確かめ先はここ",
+    "worries": "証明書が見当たらないときの不安",
+    "guide": "まだ届かないときは、どう進める？"
+  },
+  "depthAt": "2026-11-10T09:08:40+00:00"
 }
