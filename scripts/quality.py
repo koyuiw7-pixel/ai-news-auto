@@ -424,7 +424,7 @@ def sentence_language_issues(sentence: str, source_text: str = "") -> list[str]:
 def _language_units(record: dict) -> list[tuple[str, int | None, str]]:
     """(欄, 一覧の番号 or None, 文)。本文などは1文ずつに分ける"""
     units: list[tuple[str, int | None, str]] = []
-    for key in ("title", "seoTitle", "lede", "description", "body", "easy", "threadsPost"):
+    for key in ("title", "seoTitle", "searchTitle", "lede", "description", "body", "easy", "threadsPost"):
         value = record.get(key)
         if not isinstance(value, str):
             continue

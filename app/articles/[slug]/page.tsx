@@ -1,4 +1,4 @@
-import { articleTitle } from "@/lib/headline";
+import { articleTitle, searchResultTitle } from "@/lib/headline";
 import PeopleInArticle from "@/components/PeopleInArticle";
 import TopicListMembership from "@/components/TopicListMembership";
 import { canonicalPathOf, isIndexable } from "@/lib/indexing";
@@ -129,7 +129,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // 以前は <title> と画像の alt に検索向けの seoTitle（「〜とは？日本で使える？」）を使い、見出しと別ものになっていた（2026-11-03 の点検 10）
   const title = articleTitle(article);
   return {
-    title,
+    // 検索結果の題名（<title>）だけは、記事に searchTitle があれば検索の言葉の形の題名（2026-11-10 オーナー承認。台帳 A29 の変更）。
+    // og:title・X のカード・画像の alt・見出し（h1）・構造化データは記事の題名（title）のまま
+    title: searchResultTitle(article),
     description: article.description,
     keywords: article.keywords,
     // 同じ発表の重複記事は、代表の記事を正式なページにする（lib/indexing.ts）

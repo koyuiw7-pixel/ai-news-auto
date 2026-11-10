@@ -92,3 +92,19 @@ export function articleTitle(article: { title?: string | null; seoTitle?: string
   const title = stripKnownDescriptors((article.title ?? "").trim());
   return title || stripKnownDescriptors((article.seoTitle ?? "").trim());
 }
+
+/** 検索結果用の題名（searchTitle）の上限（全角換算ではなく文字数。2026-11-10 オーナー承認の見本は32字以内） */
+export const SEARCH_TITLE_MAX = 32;
+
+/**
+ * 検索結果に出す題名（<title> だけ）。2026-11-10 オーナー承認（台帳 A29 の変更）: 記事 JSON に searchTitle があれば、
+ * 人が検索に打つ言葉の形の題名を <title> に使う。見出し（h1）・og:title・X のカード・OG 画像・SNS・構造化データは articleTitle のまま。
+ * 古い自動の seoTitle（「〜とは？日本で使える？」の型）は使わない。searchTitle の書き方の決まりは docs/owner_rules.md の A29
+ * （記事の本文にある事実だけ・32字以内・縦棒なし・あおりなし。scripts/rewrite_titles.py の check_title と check_seo を通す）。
+ * 決まりに合わない値（空・長すぎる・縦棒）は使わず、記事の題名にもどす。
+ */
+export function searchResultTitle(article: { title?: string | null; seoTitle?: string | null; searchTitle?: string | null }): string {
+  const search = (article.searchTitle ?? "").trim();
+  if (search && search.length <= SEARCH_TITLE_MAX && !/[｜|]/.test(search)) return search;
+  return articleTitle(article);
+}

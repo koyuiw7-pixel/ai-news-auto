@@ -103,8 +103,11 @@ export type Article = {
   roundupSlug?: string;
   roundupTitle?: string;
   title: string;
-  /** 検索結果用の短い題名（<title>）。無ければ title を使う */
+  /** 古い自動の検索向けの題名（「〜とは？日本で使える？」の型）。<title> には使わない（台帳 A29。lib/headline.ts の articleTitle） */
   seoTitle?: string;
+  /** 検索結果（<title>）だけに使う、検索の言葉の形の題名（2026-11-10 オーナー承認。lib/headline.ts の searchResultTitle）。
+   *  見出し（h1）・og:title・SNS・画像は title のまま。決まりは docs/owner_rules.md の A29 */
+  searchTitle?: string;
   /** 記事冒頭のリード文 */
   lede: string;
   description: string;

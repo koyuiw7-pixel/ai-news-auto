@@ -376,6 +376,13 @@ class TitleTagTest(unittest.TestCase):
     def test_og_title_mismatch_and_descriptor(self):
         self.assertEqual({"A29"}, ids(audit.title_tag_problems(self.page(self.H1, og="ChatGPTのOpenAIが報奨金を増額"))))
 
+    def test_search_title_in_tab_is_allowed_only_when_set(self):
+        # 2026-11-10 オーナー承認（A29 の変更）: 記事に searchTitle があれば <title> だけはその題名でよい。og:title は見出しのまま
+        search = "OpenAIのバグ報奨金はいくら？　重大な欠陥は最大3万ドル"
+        self.assertEqual([], audit.title_tag_problems(self.page(search), {"searchTitle": search}))
+        self.assertEqual({"A29"}, ids(audit.title_tag_problems(self.page(search), {})))
+        self.assertEqual({"A29"}, ids(audit.title_tag_problems(self.page(search, og=search), {"searchTitle": search})))
+
 
 class LabelTest(unittest.TestCase):
     """A30: ジャンル・タグの付け間違い（scripts/labels.py）"""

@@ -449,9 +449,12 @@ def title_tag_problems(html: str, record: dict | None = None) -> list[str]:
     out = []
     norm = lambda t: re.sub(r"\s+", " ", _html.unescape(t or "")).strip()  # noqa: E731
     target = norm(h1)
+    # 2026-11-10 オーナー承認（A29 の変更）: 記事 JSON に searchTitle があれば、<title> だけは検索の言葉の形の題名でよい。
+    # og:title・twitter:title は見出しと同じまま
+    search = norm((record or {}).get("searchTitle") or "")
     if m := TITLE_TAG.search(html):
         tab = SITE_SUFFIX.sub("", norm(m.group(1)))
-        if tab != target:
+        if tab != target and not (search and tab == search):
             out.append(f"[A29] ブラウザのタブの題名（<title>）が見出しと違う（「{tab[:40]}」）")
     for name, value in META_TITLE.findall(html):
         if norm(value) != target:

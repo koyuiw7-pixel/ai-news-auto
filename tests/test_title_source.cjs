@@ -21,7 +21,7 @@ function load(rel) {
   return m.exports;
 }
 
-const { articleTitle } = load("lib/headline.ts");
+const { articleTitle, searchResultTitle } = load("lib/headline.ts");
 const { coverPath } = load("lib/cover-path.ts");
 const read = (rel) => fs.readFileSync(path.join(root, rel), "utf8");
 
@@ -32,6 +32,18 @@ test("題名の正本は記事の title。検索向けの seoTitle は使わな�
   };
   assert.equal(articleTitle(article), article.title);
   assert.equal(articleTitle({ title: "", seoTitle: "予備の題名" }), "予備の題名");
+});
+
+test("<title> だけは searchTitle を使ってよい（2026-11-10 オーナー承認・A29 の変更）。古い seoTitle は使わない", () => {
+  const base = { title: "12月の児童手当は10月分・11月分の2か月分", seoTitle: "児童手当の12月振込額は2か月分、子の人数別に早見表" };
+  assert.equal(searchResultTitle(base), base.title);
+  assert.equal(searchResultTitle({ ...base, searchTitle: "児童手当の12月はいくら？　2か月分の振込額を人数別に" }), "児童手当の12月はいくら？　2か月分の振込額を人数別に");
+  // 決まりに合わない値（縦棒・33字以上・空）は使わず記事の題名にもどす
+  assert.equal(searchResultTitle({ ...base, searchTitle: "児童手当｜12月はいくら" }), base.title);
+  assert.equal(searchResultTitle({ ...base, searchTitle: "あ".repeat(33) }), base.title);
+  assert.equal(searchResultTitle({ ...base, searchTitle: "  " }), base.title);
+  // 見出しなどの題名は searchTitle があっても title のまま
+  assert.equal(articleTitle({ ...base, searchTitle: "児童手当の12月はいくら？" }), base.title);
 });
 
 test("説明つきの社名（「ChatGPTのOpenAIが」）は外す", () => {
@@ -62,6 +74,10 @@ test("記事ページ・画像・サイトマップ・RSS は articleTitle を�
   assert.match(meta, /const title = articleTitle\(article\)/);
   assert.doesNotMatch(meta, /article\.seoTitle/);
   assert.doesNotMatch(meta, /title: article\.title/);
+  // <title> は searchResultTitle（searchTitle か記事の題名）。og:title・twitter:title は記事の題名（2026-11-10 オーナー承認）
+  assert.match(meta, /title: searchResultTitle\(article\)/);
+  assert.match(meta, /openGraph: \{[\s\S]*?\n      title,\n/);
+  assert.match(meta, /twitter: \{[\s\S]*?\n      title,\n/);
   assert.match(page, /<Highlight text=\{articleTitle\(article\)\} \/>/);
   assert.match(page, /headline: articleTitle\(article\)/);
   assert.match(read("app/cover/[slug]/route.tsx"), /const title = articleTitle\(article\)/);

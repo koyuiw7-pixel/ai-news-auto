@@ -599,10 +599,10 @@ VERTICAL_BAR_RE = re.compile(r"[ \u3000]*｜[ \u3000]*")
 def strip_vertical_bars(record: dict) -> list[str]:
     """全角の「｜」を消す（題名は全角の空白、本文は「・」に置き換え）。表の半角「|」はそのまま"""
     changes = []
-    for key in ("title", "seoTitle", "videoTitle", "description", "lede", "body", "easy", "threadsPost"):
+    for key in ("title", "seoTitle", "searchTitle", "videoTitle", "description", "lede", "body", "easy", "threadsPost"):
         value = record.get(key)
         if isinstance(value, str) and "｜" in value:
-            record[key] = VERTICAL_BAR_RE.sub("　" if key in ("title", "seoTitle", "videoTitle") else "・", value)
+            record[key] = VERTICAL_BAR_RE.sub("　" if key in ("title", "seoTitle", "searchTitle", "videoTitle") else "・", value)
             changes.append(f"{key}の「｜」を置き換えた")
     if isinstance(record.get("highlights"), list) and any("｜" in str(h) for h in record["highlights"]):
         record["highlights"] = [VERTICAL_BAR_RE.sub("・", str(h)) for h in record["highlights"]]

@@ -166,6 +166,7 @@
 
 - 検索流入改善（ChatGPT/IPA/Work IQ、Dify振分け、sitemap、手動改稿保護）: `docs/search-growth-2026-10-30.md`。`refreshMode: editorial` は自動再生成せず編集待ちを記録する。確認後はcheckedAtを更新しneedsReviewとneedsReviewReasonを消す。
 
+- 検索結果の題名 `searchTitle`（2026-11-10 オーナー承認・台帳 A29 の変更）: 記事 JSON に `searchTitle` があれば `<title>` だけそれを使う（h1・og:title・SNS・画像は `title`）。新しい値を付けるときも同じ決まり（本文にある事実だけ・32字以内・「｜」なし・「ざっくり」なし・あおりなし・`rewrite_titles.check_title`（reviewed）と `check_seo` を通す。`tests/test_search_title_20261110.py`）。まとめて書き直さず1本ずつ。14日間訪問0の記事の noindex（広告なし・公開したまま）の一覧は `content/noindex_zero_visit.json`（台帳 A61）。
 - 検索クリック改善（Copilot Fusion/IPA/Work IQの題名・回答・利用条件）: `docs/search-ctr-2026-10-30.md`。公開・Google再取得・検索表示・クリック増を別段階で判定し、少数の表示や未反映の数字で成否を断定しない。
 
 - Google再取得申請エラーの切り分けとトップDify入口: `docs/google-reindex-recovery-20261030.md`。本人のChrome更新後も個別申請は送信/reCAPTCHA接続エラー。公開URLテスト成功、Googleサイトマップは通知受付と当日読み込み成功を確認済み。個別申請修復・記事再取得・検索反映を完了扱いしない。
