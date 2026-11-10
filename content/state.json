@@ -4715,13 +4715,6 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01gyosei07_02000185.html"
     },
-    "13412a369e090d4c": {
-      "at": "2026-10-27T15:56:39.505118+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2098字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-      "skipped": true,
-      "url": "https://www.aboutamazon.com/news/company-news/amazon-q3-2026-earnings-preview?utm_source=rss"
-    },
     "13515cec206f1d26f0abe56daf90242f82455be2": {
       "at": "2026-11-02T18:24:25.920952+00:00",
       "kind": "trend",
@@ -4884,6 +4877,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（議事）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/kokuritu/009/mext_00005.html"
+    },
+    "15706f35e993d4cb": {
+      "at": "2026-11-10T16:03:45.405560+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 本文「出力100万トークン10ドル」→ 元記事にも確認済みの文脈にも出力価格の記載がなく、創作された数字である; リード・本文の「導入価格は入力100万トークン2ドル」→ 確認済みの文脈に明記されており問題なし（参考として記載しない）",
+      "skipped": true,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-4-carbon-developers/"
     },
     "1581d1c3b7bdda12": {
       "at": "2026-11-04T01:28:01.160547+00:00",
@@ -5235,16 +5235,6 @@
       "reason": "followup quality: かんたん版: 価格は今年末までの発売記念価格として 19,9000円（税込）から -> 「19,9000」という不自然な桁数のカンマ区切り（199,900円の誤記）になっている。",
       "skipped": true,
       "url": "https://blog.google/intl/ja-jp/products/devices-services/xrealaura/"
-    },
-    "1a1d4bf2fc111eb8": {
-      "at": "2026-10-27T15:52:12.081442+00:00",
-      "breaking": true,
-      "major": true,
-      "model": "claude:sonnet",
-      "score": 100,
-      "section": "ai",
-      "slug": "coderabbit-secure-gpt-6-1-sol-security",
-      "url": "https://openai.com/index/gpt-6-1-sol-coderabbit-code-security"
     },
     "1a21d5a6b7c5cac3": {
       "at": "2026-11-07T19:52:10.046561+00:00",
@@ -5867,14 +5857,6 @@
       "slug": "supabase-mcp-claude-issued-auth",
       "url": "https://supabase.com/blog/claude-issued-enterprise-managed-auth-for-mcp"
     },
-    "2479fd3a59c35d02": {
-      "at": "2026-10-27T15:55:42.967534+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "boj-cpi-core-indicators",
-      "url": "http://www.boj.or.jp/research/research_data/cpi/index.htm"
-    },
     "248e3fca6d7b96e9": {
       "at": "2026-11-09T06:57:55.173314+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -5914,13 +5896,6 @@
       "section": "sports",
       "slug": "mito-hollyhock-signing-lee-hyun-gi",
       "url": "https://www.jleague.jp/news/article/35331/?navicode=j1"
-    },
-    "250e5d8f302445e7": {
-      "at": "2026-10-27T15:53:28.205250+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2281字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://openai.com/index/greptile-code-review-codex-astra"
     },
     "2522854c2f8363bb": {
       "at": "2026-10-30T00:32:02.060178+00:00",
@@ -10802,13 +10777,6 @@
       "slug": "apple-reports-q4-2026-results",
       "url": "https://www.apple.com/jp/newsroom/2026/11/apple-reports-fourth-quarter-results/"
     },
-    "7087d444d8f5d17d": {
-      "at": "2026-10-27T15:56:20.936356+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2469字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が「## ひとことで言うと」から始まっていない",
-      "skipped": true,
-      "url": "https://blog.google/company-news/outreach-and-initiatives/google-org/digital-public-infrastructure-farmers/"
-    },
     "708c10cef0c38c26": {
       "at": "2026-10-30T09:51:29.059918+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -13185,13 +13153,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
       "skipped": true,
       "url": "https://www.env.go.jp/press/press_05801.html"
-    },
-    "9401fe00400266b3": {
-      "at": "2026-10-27T15:57:44.143309+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 「2026年10月に開催された」→元記事には「2026 Open Compute Project (OCP) Global Summit」とあるが「10月」という月は指定されていないため不正確。",
-      "skipped": true,
-      "url": "https://engineering.fb.com/2026/10/26/open-source/ocp-summit-2026-meta-networking-talks/"
     },
     "94113be481147bc2": {
       "at": "2026-10-29T18:13:12.615725+00:00",
@@ -19177,14 +19138,6 @@
       "skipped": true,
       "url": "https://www.boj.or.jp/research/imes/dps/dps26_e.htm"
     },
-    "f16aefe89a6e3f3b": {
-      "at": "2026-10-27T15:58:57.739891+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "openai-scientific-understanding-2026",
-      "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities"
-    },
     "f1af937fcc0acf6b": {
       "at": "2026-10-28T21:32:22.433717+00:00",
       "breaking": true,
@@ -20662,31 +20615,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:03:04.639219+00:00",
-      "attempt": 1,
-      "id": "6332077cf8e1119e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 159.0,
-        "avg_sentence": 45.4,
-        "long_share": 0.143,
-        "max_paragraph": 195,
-        "paragraphs": 4,
-        "sentences": 14
-      },
-      "score": 93,
-      "source": "tokyo-metro",
-      "title": "キッズスポーツフェスin 両国国技館 開催",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（TOKYO・UNITE）",
-        "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T09:03:25.734070+00:00",
@@ -28024,6 +27952,21 @@
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T16:03:45.405536+00:00",
+      "attempt": 1,
+      "id": "15706f35e993d4cb",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "本文「出力100万トークン10ドル」→ 元記事にも確認済みの文脈にも出力価格の記載がなく、創作された数字である",
+        "リード・本文の「導入価格は入力100万トークン2ドル」→ 確認済みの文脈に明記されており問題なし（参考として記載しない）"
+      ],
+      "score": 60,
+      "source": "google-blog-all",
+      "title": "Gemini 4 Carbon is now available for developers."
     }
   ],
   "short_text_retry": {},
