@@ -172,7 +172,9 @@ test('[W29] サイトマップに載るページと一覧の2ページ目以降�
   const worker = read('cloudflare/worker.ts');
   assert.match(worker, /function isImmutableImage\(url: URL\)/);
   assert.match(worker, /if \(isImmutableImage\(url\)\) return new Request\(/);
-  assert.match(worker, /const fresh = isImmutableImage\(url\) \|\|/);
+  // 版に関係しない画像は、エッジの写しをいつも「今の版」とみなす（判断は cloudflare/edge-cache.ts の edgeHitDecision）
+  assert.match(worker, /edgeHitDecision\([^;]*isImmutableImage\(url\)\)/);
+  assert.match(read('cloudflare/edge-cache.ts'), /if \(immutable \|\| cachedVersion === currentVersion\) return "fresh"/);
   const { coverPath } = load('lib/cover-path.ts');
   const v = new URL(coverPath({ slug: 'a', title: '題名' }), 'https://x').searchParams.get('v');
   assert.match(v, /^\d+-[0-9a-z]+$/, 'coverPath の ?v= は worker の isImmutableImage と同じ形');
