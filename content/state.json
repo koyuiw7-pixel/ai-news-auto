@@ -140,6 +140,7 @@
     "0281c9bf841dd5aa": "2026-11-07T15:31:07.844885+00:00",
     "0a40dc02edbb2ef3": "2026-11-06T19:41:01.362264+00:00",
     "0c576c3038614889": "2026-11-09T07:10:55.440298+00:00",
+    "1498249b89ddfd8a": "2026-11-10T02:30:58.044638+00:00",
     "15a7df0fab82f311": "2026-11-07T15:31:07.844885+00:00",
     "1928f93150be33d5": "2026-11-06T05:20:52.500591+00:00",
     "1b2cb430dd85d0a6": "2026-11-09T09:18:59.972459+00:00",
@@ -174,7 +175,6 @@
     "60944a24710b0d78": "2026-11-09T07:42:55.305009+00:00",
     "61763bc0d78266a7": "2026-11-06T18:22:08.318950+00:00",
     "632ab217c6f08ade": "2026-11-09T09:38:56.467516+00:00",
-    "63454807800a7d74": "2026-11-06T02:20:53.435941+00:00",
     "65716c697cbe2575": "2026-11-06T19:23:54.886871+00:00",
     "65a2876b6174c083": "2026-11-06T19:23:54.886871+00:00",
     "660bf673c08d0f27": "2026-11-07T04:50:58.842979+00:00",
@@ -4826,7 +4826,7 @@
       "url": "https://www.salesforce.com/jp/news/stories/japan-claudeforce-and-slackforce-demo/"
     },
     "1498249b89ddfd8a": {
-      "at": "2026-11-10T02:11:10.741414+00:00",
+      "at": "2026-11-10T02:34:35.689044+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/tokeihoto/02toukatsu01_04000556.html"
@@ -5951,13 +5951,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327172.html"
-    },
-    "2620945420b1f156": {
-      "at": "2026-10-27T02:30:54.857701+00:00",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "reason": "競技団体・リーグ・クラブ・大会主催者・スポーツメーカーによるスポーツイベント・製品・サービスの発表ではなく、大学の実践型授業（産学連携）に関するお知らせであるため。",
-      "skipped": true,
-      "url": "https://kyodonewsprwire.jp/release/202610218364"
     },
     "262cfa35f4308cc0": {
       "at": "2026-11-03T05:32:33.798246+00:00",
@@ -8019,6 +8012,12 @@
       "slug": "ocean-acidification-foraminifera-alkalinity",
       "url": "https://www.jst.go.jp/pr/announce/20261029-5/index.html"
     },
+    "4959e00fe1aa5744": {
+      "at": "2026-11-10T02:34:35.701684+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（メンテナンス）",
+      "skipped": true,
+      "url": "https://network.mobile.rakuten.co.jp/information/maintenance/3958/"
+    },
     "49610ca35997b054": {
       "at": "2026-11-05T12:03:46.686224+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -9475,6 +9474,12 @@
       "skipped": true,
       "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/"
     },
+    "5f03773e5e7f3489": {
+      "at": "2026-11-10T02:34:35.701647+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（オープン）",
+      "skipped": true,
+      "url": "https://www.nttud.co.jp/news_pdf/news_261110_001.pdf"
+    },
     "5f08894ec4446b36": {
       "at": "2026-10-27T19:31:49.839313+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -9924,14 +9929,6 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/tyoukanpress/202610/27_a.html"
     },
-    "64c05351fd08b827": {
-      "at": "2026-10-27T02:33:09.598189+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "tech-gadget",
-      "slug": "softbank-fast-access-performance-test",
-      "url": "https://www.softbank.jp/sbnews/entry/20261027_01"
-    },
     "64d59b55a8fb8666": {
       "at": "2026-10-27T15:27:59.298082+00:00",
       "breaking": true,
@@ -10338,6 +10335,17 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102704"
     },
+    "6bad6b4c659c8230": {
+      "at": "2026-11-10T02:33:27.449358+00:00",
+      "costUsd": 0.0077,
+      "intent": "query",
+      "mix": "life",
+      "model": "gemini-3.5-flash-lite",
+      "score": 95,
+      "section": "business",
+      "slug": "26th-japan-venture-awards-startups",
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv00000113xj.html"
+    },
     "6bc2f8234b7530f9": {
       "at": "2026-11-08T06:23:48.709713+00:00",
       "costUsd": 0.0037,
@@ -10678,6 +10686,12 @@
       "skipped": true,
       "url": "https://www.nipponham.co.jp/topics_detail1/id=25681"
     },
+    "709ccf094f875d5a": {
+      "at": "2026-11-10T02:34:35.689201+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/tyoukanpress/202611/10_a.html"
+    },
     "70a6d50c8a692703": {
       "at": "2026-11-04T10:24:03.638162+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -10714,6 +10728,17 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.mext.go.jp/a_menu/jinzai/rdm-pro_rolemodel.html"
+    },
+    "71930262e0936a86": {
+      "at": "2026-11-10T02:34:35.071946+00:00",
+      "costUsd": 0.0106,
+      "intent": "query",
+      "mix": "money",
+      "model": "gemini-3.5-flash-lite",
+      "score": 85,
+      "section": "business",
+      "slug": "monodukuri-hojokin-2nd-2026",
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv00000113tx.html"
     },
     "71a07098bdbfcb83": {
       "at": "2026-10-29T18:34:23.669967+00:00",
@@ -14879,12 +14904,6 @@
       "skipped": true,
       "url": "https://blog.google/company-news/outreach-and-initiatives/grow-with-google/national-veterans-small-business-week-2026/"
     },
-    "b32fc1ff91add27f": {
-      "at": "2026-10-27T02:31:09.461076+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（懇談会）",
-      "skipped": true,
-      "url": "https://www.fsa.go.jp/policy/kashikin/tajusaimukondankai/20261028/20261028.html"
-    },
     "b34db828e28cd179": {
       "at": "2026-10-30T10:51:47.719169+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15361,6 +15380,17 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/topics/2026/10/tp1028-1.html"
     },
+    "bac22808938bb3e7": {
+      "at": "2026-11-10T02:36:29.020385+00:00",
+      "costUsd": 0.0053,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "business",
+      "slug": "ctbase-jointpro2-salesforce-voice",
+      "url": "https://www.ntt-tx.co.jp/whatsnew/2026/261110.html"
+    },
     "bac9edc458a4db1a": {
       "at": "2026-11-02T05:31:19.966527+00:00",
       "reason": "stale: 発表から65時間（48時間を超えた発表は通常の記事にしない）",
@@ -15750,13 +15780,6 @@
       "reason": "顧客事例の紹介記事で、新しい製品・提供開始・料金・日本での提供状況などの発表がなく、読者が今すぐ使えるか判断できる事実が元記事にほとんどないため。記事化すると水増しになる。",
       "skipped": true,
       "url": "https://openai.com/index/franklin-templeton"
-    },
-    "c0e2f38aabbe8325": {
-      "at": "2026-10-27T02:31:30.162056+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "reason": "quality: body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）",
-      "skipped": true,
-      "url": "https://www.digital.go.jp/policies/administrative_procedures_online"
     },
     "c1198ca2bc5da2f1": {
       "at": "2026-11-07T18:33:52.408719+00:00",
@@ -16238,6 +16261,13 @@
       "section": "public",
       "slug": "mhlw-job-openings-september-2026",
       "url": "https://www.mhlw.go.jp/stf/newpage_76960.html"
+    },
+    "c9bed6f4fd890937": {
+      "at": "2026-11-10T02:35:12.274498+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「当初の記事では、米国の家禽でのH5N1亜型を10月13日としていました」→ 元記事に米国の旧い日付は無く、10月13日は元記事では台湾のH5N1の日付にあたる。米国の日付の取り違えと創作; 「ドイツと英国の家禽でのH5N1亜型は、当初の10月24日と10月15日から」→ 元記事にドイツ10月24日・英国10月15日の記載は無く、元記事のドイツ（2026.11.",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/syouan/douei/tori/attach/pdf/index-1282.pdf"
     },
     "c9c03a759210419f": {
       "at": "2026-10-27T16:12:57.596609+00:00",
@@ -17589,6 +17619,17 @@
       "slug": "kddi-quantum-network-optimization",
       "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1236_4820.html"
     },
+    "df7c349f8bec6a12": {
+      "at": "2026-11-10T02:35:53.627905+00:00",
+      "costUsd": 0.0044,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 82,
+      "section": "business",
+      "slug": "geospace-aerial-photo-expansion",
+      "url": "https://geospace.nttinf.co.jp/news/20261110.html"
+    },
     "df8b910c54899106": {
       "at": "2026-11-09T04:13:54.560437+00:00",
       "costUsd": 0.0157,
@@ -18654,13 +18695,6 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030c.pdf"
     },
-    "f13bf850a6274660": {
-      "at": "2026-10-27T02:31:09.461045+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "reason": "quality: 本文が短い（1689字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://www.riken.jp/press/2026/20261027_1/index.html"
-    },
     "f15afd4a3868ac2c": {
       "at": "2026-10-31T08:21:06.821628+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
@@ -19045,13 +19079,6 @@
       "reason": "quality: 本文が短い（2330字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（300字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://www.aboutamazon.com/news/company-news/amazon-stores-growth-q3-2026-earnings?utm_source=rss"
-    },
-    "f7930f5692647d14": {
-      "at": "2026-10-27T02:32:51.684975+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "reason": "quality: 本文が短い（1267字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; body_markdown に「## ひとことで言うと」の章がない（構成どおりの見出しを使う）",
-      "skipped": true,
-      "url": "http://www.boj.or.jp/statistics/pi/cspi_release/sppi2609.pdf"
     },
     "f7a80f9f25f06106": {
       "at": "2026-10-30T04:42:29.522450+00:00",
@@ -20011,258 +20038,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-08T02:34:17.890898+00:00",
-      "attempt": 1,
-      "id": "e5b75fb5559cea9b",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "文が長い（1文の平均 45.7字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ],
-      "readability": {
-        "avg_paragraph": 104.4,
-        "avg_sentence": 45.7,
-        "long_share": 0.281,
-        "max_paragraph": 211,
-        "paragraphs": 14,
-        "sentences": 32
-      },
-      "score": 92,
-      "source": "fujiya",
-      "title": "ニュースリリース カルピス（株）特撰バターを使用した期間限定商品が初登場！「カントリーマアム（特撰バター）」「プレミアムルック（特撰バター）」2026年11月1",
-      "warnings": [
-        "見出しが62字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JAN・IR）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T02:34:45.170270+00:00",
-      "attempt": 0,
-      "id": "e5b75fb5559cea9b",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 69.2,
-        "avg_sentence": 36.3,
-        "long_share": 0.048,
-        "max_paragraph": 147,
-        "paragraphs": 22,
-        "sentences": 42
-      },
-      "score": 92,
-      "source": "fujiya",
-      "title": "ニュースリリース カルピス（株）特撰バターを使用した期間限定商品が初登場！「カントリーマアム（特撰バター）」「プレミアムルック（特撰バター）」2026年11月1",
-      "warnings": [
-        "見出しが62字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JAN・IR）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T02:41:13.546324+00:00",
-      "attempt": 1,
-      "id": "37bacc2502a9bb94",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「ミズナラ樽は…世界中のコレクターから高い評価を受けています」→ 元記事にない評価・主張の創作",
-        "「アルコール分が53.4%と高めに設定されているため、香りと味わいの要素が薄まることなく…長く豊かな余韻」→ 元記事は余韻の長さを述べるのみで、度数との因果関係は根拠がない",
-        "「発売前から品質が証明されている格別の1本です」→ 受賞事実を超えた誇大な断定",
-        "「スコットランドの蒸溜所の中でも特に時間をかけて」→ 元記事は蒸留に時間をかけるとだけ書いており、比較級の『特に』は言い過ぎ",
-        "「グレンゴイン10年」はフレッシュ、「21年」は重厚な深みがあるという味の特徴づけ→ 元記事に無い",
-        "「雑味を抑えたなめらかな口当たり」「グレンゴインが持つフルーティーで澄んだ原酒」→ 元記事の蒸留・原酒の記述を超えた補足"
-      ],
-      "readability": {
-        "avg_paragraph": 151.4,
-        "avg_sentence": 56.1,
-        "long_share": 0.444,
-        "max_paragraph": 244,
-        "paragraphs": 10,
-        "sentences": 27
-      },
-      "score": 62,
-      "source": "asahi",
-      "title": "商品 『グレンゴイン シングルモルト ミズナラオーク16年』 11月25日から数量限定発売",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（ISC）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T02:42:01.020568+00:00",
-      "attempt": 2,
-      "id": "37bacc2502a9bb94",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "asahi",
-      "title": "商品 『グレンゴイン シングルモルト ミズナラオーク16年』 11月25日から数量限定発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T02:42:29.785464+00:00",
-      "attempt": 2,
-      "id": "37bacc2502a9bb94",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "要点「ミズナラ樽で16年熟成させた限定品」→ 元記事はシェリー樽10年の後にミズナラ樽6年で、全期間をミズナラ樽で熟成したわけではないため、熟成工程の記述が元記事と食い違う。",
-        "「飲み比べなら店で試す方法もあります」（判定欄）→ 元記事に飲み比べの提供やその方法への言及はなく、根拠のない提案になっている。"
-      ],
-      "readability": {
-        "avg_paragraph": 66.3,
-        "avg_sentence": 35.1,
-        "long_share": 0.029,
-        "max_paragraph": 126,
-        "paragraphs": 18,
-        "sentences": 34
-      },
-      "score": 85,
-      "source": "asahi",
-      "title": "商品 『グレンゴイン シングルモルト ミズナラオーク16年』 11月25日から数量限定発売",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T02:42:45.106127+00:00",
-      "attempt": 2,
-      "id": "37bacc2502a9bb94",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 69.8,
-        "avg_sentence": 35.9,
-        "long_share": 0.057,
-        "max_paragraph": 126,
-        "paragraphs": 18,
-        "sentences": 35
-      },
-      "score": 95,
-      "source": "asahi",
-      "title": "商品 『グレンゴイン シングルモルト ミズナラオーク16年』 11月25日から数量限定発売",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T02:43:29.409474+00:00",
-      "attempt": 1,
-      "id": "6be50951d265dfaf",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください"
-      ],
-      "score": null,
-      "source": "asahi",
-      "title": "商品 本物の梅干しを付属した缶チューハイ『アサヒ梅星屋』 「アサヒ空想開発局」で11月24日から数量限定発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T02:43:55.536824+00:00",
-      "attempt": 1,
-      "id": "6be50951d265dfaf",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "Webページの英語の残骸が残っている（「cookie」）"
-      ],
-      "readability": {
-        "avg_paragraph": 72.8,
-        "avg_sentence": 41.2,
-        "long_share": 0.167,
-        "max_paragraph": 181,
-        "paragraphs": 17,
-        "sentences": 30
-      },
-      "score": null,
-      "source": "asahi",
-      "title": "商品 本物の梅干しを付属した缶チューハイ『アサヒ梅星屋』 「アサヒ空想開発局」で11月24日から数量限定発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T02:44:19.372058+00:00",
-      "attempt": 2,
-      "id": "6be50951d265dfaf",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "Webページの英語の残骸が残っている（「cookie」）"
-      ],
-      "readability": {
-        "avg_paragraph": 53.9,
-        "avg_sentence": 29.6,
-        "long_share": 0.025,
-        "max_paragraph": 110,
-        "paragraphs": 22,
-        "sentences": 40
-      },
-      "score": null,
-      "source": "asahi",
-      "title": "商品 本物の梅干しを付属した缶チューハイ『アサヒ梅星屋』 「アサヒ空想開発局」で11月24日から数量限定発売"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T02:44:47.318359+00:00",
-      "attempt": 2,
-      "id": "6be50951d265dfaf",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 62.7,
-        "avg_sentence": 29.9,
-        "long_share": 0.023,
-        "max_paragraph": 140,
-        "paragraphs": 21,
-        "sentences": 44
-      },
-      "score": 90,
-      "source": "asahi",
-      "title": "商品 本物の梅干しを付属した缶チューハイ『アサヒ梅星屋』 「アサヒ空想開発局」で11月24日から数量限定発売"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-08T02:53:58.961493+00:00",
-      "attempt": 1,
-      "id": "246785620fc97f8d",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「全国のスーパーやコンビニエンスストアなどで買い求めることができます」→ 元記事は全国で新発売とだけ書き、販売チャネル（スーパー・コンビニ）には触れていないため、元記事にない記述である",
-        "「既存の定番フレーバーが自動で切り替わるわけではなく」→ 元記事に既存商品の扱いについての記述がなく、確認できない推測である",
-        "「ガーリックマヨネーズ「ガリマヨ」」→ 元記事は「ガーリックの風味とまろやかなコクを加える「ガリマヨ」」としか書いておらず、商品の種類を断定している",
-        "「日々のランチ代を抑えつつ手軽にガッツリ食べたいときの選択肢になります」→ 元記事に節約効果や比較価格の根拠がなく、経済的なメリットを前提にした言い過ぎである"
-      ],
-      "readability": {
-        "avg_paragraph": 119.1,
-        "avg_sentence": 52.1,
-        "long_share": 0.438,
-        "max_paragraph": 182,
-        "paragraphs": 7,
-        "sentences": 16
-      },
-      "score": 82,
-      "source": "nissin",
-      "title": "清食品 「背徳BLACK」シリーズ3品 (11月16日発売)",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（BLACK）",
-        "読みやすさ: 文が長い（1文の平均 52.1字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-08T02:54:18.558064+00:00",
@@ -27479,6 +27254,278 @@
       "score": 92,
       "source": "aeon",
       "title": "トップバリュベストプライス 緑茶飲料４品目を値下げ 輸入洋菓子５品目を新発売"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T02:32:48.092507+00:00",
+      "attempt": 1,
+      "id": "6bad6b4c659c8230",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文「現在の事業を自動で切り替えるようなものではなく、イベントへの参加や視聴を希望する人が手続きを行う形となる」→ 元記事に無い説明で、何を指すのかも不明確な記述である。",
+        "本文「対象は新事業の創出や市場開拓に挑むスタートアップの経営者や起業に関心を持つ人」→ 元記事では経営者の表彰やプログラムの対象を述べており、申込受付の対象とは書かれていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 150.5,
+        "avg_sentence": 75.2,
+        "long_share": 0.75,
+        "max_paragraph": 195,
+        "paragraphs": 4,
+        "sentences": 8
+      },
+      "score": 80,
+      "source": "jnet21",
+      "title": "「第26回JVA」会場参加・オンライン視聴の受付開始",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JVA）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T02:33:02.953080+00:00",
+      "attempt": 1,
+      "id": "6bad6b4c659c8230",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 127.2,
+        "avg_sentence": 72.7,
+        "long_share": 0.714,
+        "max_paragraph": 152,
+        "paragraphs": 4,
+        "sentences": 7
+      },
+      "score": 95,
+      "source": "jnet21",
+      "title": "「第26回JVA」会場参加・オンライン視聴の受付開始",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JVA）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T02:33:21.998951+00:00",
+      "attempt": 0,
+      "id": "6bad6b4c659c8230",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 103.0,
+        "avg_sentence": 39.6,
+        "long_share": 0.077,
+        "max_paragraph": 141,
+        "paragraphs": 5,
+        "sentences": 13
+      },
+      "score": 95,
+      "source": "jnet21",
+      "title": "「第26回JVA」会場参加・オンライン視聴の受付開始",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JVA）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T02:33:54.458384+00:00",
+      "attempt": 1,
+      "id": "71930262e0936a86",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「補助額は枠や従業員数に応じて最大2,500万円から7,000万円」→ 元記事では革新的新製品・サービス枠は最大750万～2,500万円、新事業進出枠・グローバル枠は最大2,500万～7,000万円で、枠ごとに別の範囲である。一つの範囲にまとめて誤読を招く。",
+        "「現在の契約や通常の業務には自動的な変更はありません」→ 元記事・確認済みの文脈のどこにも書かれていない主張で、創作にあたる。",
+        "「仕事・お金にどう活かせる？」→「革新的新製品・サービス枠では最大2,500万円、新事業進出枠などでは最大7,000万円の補助が受けられます」は、上限額を誰でも受けられるように断定している。元記事では従業員数や賃上げ特例などの条件で額が変わるため、言い過ぎで金額の取り違えに当たる。",
+        "「よくある質問」の補助率の答えは、枠と事業者規模により2分の1から3分の2とし、特例で引き上げられる場合があるとしており、元記事と整合する。",
+        "補助率の本文「革新的新製品・サービス枠：中小企業は2分の1」「グローバル枠：3分の2」は元記事と一致する。"
+      ],
+      "readability": {
+        "avg_paragraph": 84.9,
+        "avg_sentence": 45.7,
+        "long_share": 0.154,
+        "max_paragraph": 148,
+        "paragraphs": 7,
+        "sentences": 13
+      },
+      "score": 58,
+      "source": "jnet21",
+      "title": "「新事業進出・ものづくり商業サービス補助金」第2回公募 11月30日受付開始",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 45.7字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T02:34:15.392877+00:00",
+      "attempt": 1,
+      "id": "71930262e0936a86",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 81.1,
+        "avg_sentence": 47.3,
+        "long_share": 0.167,
+        "max_paragraph": 148,
+        "paragraphs": 7,
+        "sentences": 12
+      },
+      "score": 88,
+      "source": "jnet21",
+      "title": "「新事業進出・ものづくり商業サービス補助金」第2回公募 11月30日受付開始",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 47.3字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T02:34:35.060597+00:00",
+      "attempt": 0,
+      "id": "71930262e0936a86",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 57.0,
+        "avg_sentence": 33.2,
+        "long_share": 0.0,
+        "max_paragraph": 129,
+        "paragraphs": 7,
+        "sentences": 12
+      },
+      "score": 85,
+      "source": "jnet21",
+      "title": "「新事業進出・ものづくり商業サービス補助金」第2回公募 11月30日受付開始",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T02:35:12.274475+00:00",
+      "attempt": 1,
+      "id": "c9bed6f4fd890937",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「当初の記事では、米国の家禽でのH5N1亜型を10月13日としていました」→ 元記事に米国の旧い日付は無く、10月13日は元記事では台湾のH5N1の日付にあたる。米国の日付の取り違えと創作",
+        "「ドイツと英国の家禽でのH5N1亜型は、当初の10月24日と10月15日から」→ 元記事にドイツ10月24日・英国10月15日の記載は無く、元記事のドイツ（2026.11.4 / [2026.10.22]）と英国（2026.11.4 / [2026.10.30]）とも一致しない創作",
+        "「当初の記事」「日付が変わった事例」という訂正の経緯 → 元記事・確認済みの文脈に訂正前の記事は存在せず、経緯そのものが裏付けられない",
+        "「11月9日」に公表したと本文に記載 → 元記事は「2026年11月9日現在」の報告状況であり、公表日は元記事から確認できない（軽微）",
+        "「かんたん版」で米国の最新事例が「10月13日から10月21日の報告に変わっています」と繰り返す → 上記の創作された旧日付に基づく記述"
+      ],
+      "score": 35,
+      "source": "maff-tori",
+      "title": "高病原性鳥インフルエンザの発生・感染報告状況（2026年11月9日現在）(PDF : 474KB)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T02:35:34.654805+00:00",
+      "attempt": 1,
+      "id": "df7c349f8bec6a12",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 72.7,
+        "avg_sentence": 50.9,
+        "long_share": 0.1,
+        "max_paragraph": 137,
+        "paragraphs": 7,
+        "sentences": 10
+      },
+      "score": 80,
+      "source": "ntt-news",
+      "title": "GEOSPACE航空写真（関東・中部・九州エリア）リリース",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 50.9字・60字超の文が 10% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T02:35:49.067543+00:00",
+      "attempt": 0,
+      "id": "df7c349f8bec6a12",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 67.2,
+        "avg_sentence": 35.9,
+        "long_share": 0.0,
+        "max_paragraph": 104,
+        "paragraphs": 8,
+        "sentences": 15
+      },
+      "score": 82,
+      "source": "ntt-news",
+      "title": "GEOSPACE航空写真（関東・中部・九州エリア）リリース",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T02:36:12.210221+00:00",
+      "attempt": 1,
+      "id": "bac22808938bb3e7",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 105.9,
+        "avg_sentence": 74.1,
+        "long_share": 0.7,
+        "max_paragraph": 126,
+        "paragraphs": 7,
+        "sentences": 10
+      },
+      "score": 92,
+      "source": "ntt-news",
+      "title": "マルチベンダ対応ソフトフォン「CTBASE/JointPro2」が「Salesforce Voice」との連携に対応",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CTBASE・CTI・PBX）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T02:36:29.011767+00:00",
+      "attempt": 0,
+      "id": "bac22808938bb3e7",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「AVAYA、CTstage、Aspire、Amazon Connect、Genesys Cloudといった主要なPBXの資産をそのまま活用できるようになります」→ 元記事の対応PBX一覧はCTBASE/JointPro2全体の対応先であり、各PBXがSales"
+      ],
+      "readability": {
+        "avg_paragraph": 105.9,
+        "avg_sentence": 74.1,
+        "long_share": 0.7,
+        "max_paragraph": 126,
+        "paragraphs": 7,
+        "sentences": 10
+      },
+      "score": 92,
+      "source": "ntt-news",
+      "title": "マルチベンダ対応ソフトフォン「CTBASE/JointPro2」が「Salesforce Voice」との連携に対応",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CTBASE・CTI・PBX）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
     }
   ],
   "short_text_retry": {},
