@@ -77,14 +77,6 @@
   },
   "failed_web": {},
   "gate_retry": {
-    "1ebed63e5815115a": {
-      "first": "2026-11-10T06:34:58.767184+00:00",
-      "next": "2026-11-10T09:34:58.767184+00:00",
-      "reason": "FAQ「具体的な規制改定は次回のIMO総会で議論される見込み」→ 元記事に総会での規制議論への言及がなく、確認済みの文脈にも無い見通しを創作している。; FAQ「現在の方針は…CO2削減の強化」・本文「CO2削減基準の強化が予想され」→ 元記事は温室効果ガス削減への取り組みに触れるのみで、強化の方針や予想は書かれていない。; 仕事・お金の欄「輸送コストの急激な上昇リスクが抑えられます」「海運企業の",
-      "title": "IMOがドミンゲス事務局長の再任を決定～国際海事機関（IMO）第138回理事会の開催結果概要～",
-      "tries": 1,
-      "url": "http://www.mlit.go.jp/report/press/kaiji01_hh_000600.html"
-    },
     "4c9e0aba14246e1f": {
       "first": "2026-11-10T07:44:18.263854+00:00",
       "next": "2026-11-10T10:44:18.263854+00:00",
@@ -190,7 +182,6 @@
     "780c080a98a4dbd4": "2026-11-10T02:03:09.291270+00:00",
     "7a23190ffe485a96": "2026-11-06T19:41:01.362264+00:00",
     "7de55ba420d51858": "2026-11-06T19:41:01.362264+00:00",
-    "845e2ba9d3e3680a": "2026-11-06T09:30:56.243778+00:00",
     "87717d1c826ec2f6": "2026-11-08T01:10:50.926550+00:00",
     "971847f0c7223a93": "2026-11-10T07:17:00.645387+00:00",
     "97b295127eee65c6": "2026-11-06T18:22:08.318950+00:00",
@@ -210,6 +201,7 @@
     "b856ca6e2ad9b4f8": "2026-11-06T19:41:01.362264+00:00",
     "bda4433a4e4cd6e4": "2026-11-09T19:01:05.896647+00:00",
     "c0aaac229fee24e1": "2026-11-06T18:22:08.318950+00:00",
+    "c3e784ee53def147": "2026-11-10T09:36:51.365678+00:00",
     "c63d1aa22d52b881": "2026-11-09T10:02:58.007406+00:00",
     "c658e8765203d16e": "2026-11-07T15:31:07.844885+00:00",
     "ca7a6e8f8515fc6d": "2026-11-07T18:30:54.073661+00:00",
@@ -5476,6 +5468,17 @@
       "score": 100,
       "slug": "apple-14-inch-macbook-pro-m6-1eabbb64",
       "url": "https://www.nytimes.com/2026/10/28/technology/apple-touch-screen-macbook-pro.html"
+    },
+    "1ebed63e5815115a": {
+      "at": "2026-11-10T09:45:26.697313+00:00",
+      "costUsd": 0.0061,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 96,
+      "section": "business",
+      "slug": "imo-dominguez-reappointment-2026",
+      "url": "http://www.mlit.go.jp/report/press/kaiji01_hh_000600.html"
     },
     "1f056e11706ca300": {
       "at": "2026-11-09T09:26:00.598430+00:00",
@@ -11106,6 +11109,12 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/press_05764.html"
     },
+    "75af778bdc8e108e": {
+      "at": "2026-11-10T09:45:27.056335+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.jfa.maff.go.jp/j/press/sigen/161005.html"
+    },
     "75b4656784b98b32": {
       "at": "2026-11-09T05:01:47.109813+00:00",
       "reason": "stale: 発表から69時間（48時間を超えた発表は通常の記事にしない）",
@@ -16142,7 +16151,7 @@
       "url": "https://developer.nvidia.com/blog/build-world-models-for-interactive-simulation-with-nvidia-cosmos/"
     },
     "c3e784ee53def147": {
-      "at": "2026-11-10T09:21:37.769512+00:00",
+      "at": "2026-11-10T09:45:27.043260+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.cfa.go.jp/press/9b95e378-b813-45ae-9716-dbee3e54db8f"
@@ -20331,14 +20340,6 @@
       "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036096&screenkbn=06",
       "writer": "muse"
     },
-    "muse-b6f8ccab09": {
-      "at": "2026-11-10T09:44:58.599790+00:00",
-      "mix": "other",
-      "score": 93,
-      "slug": "kokuho-genkagaku-limit-proposal",
-      "url": "https://www.mhlw.go.jp/stf/newpage_77211.html",
-      "writer": "muse"
-    },
     "muse-babdde7fcb": {
       "at": "2026-11-09T17:37:10.896341+00:00",
       "mix": "money",
@@ -20450,86 +20451,17 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
+    },
+    "muse-b6f8ccab09": {
+      "at": "2026-11-10T09:44:58.599790+00:00",
+      "mix": "other",
+      "score": 93,
+      "slug": "kokuho-genkagaku-limit-proposal",
+      "url": "https://www.mhlw.go.jp/stf/newpage_77211.html",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T07:14:24.517729+00:00",
-      "attempt": 1,
-      "id": "869a145bada96b91",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 70.6,
-        "avg_sentence": 44.1,
-        "long_share": 0.0,
-        "max_paragraph": 110,
-        "paragraphs": 5,
-        "sentences": 8
-      },
-      "score": 93,
-      "source": "house-foods",
-      "title": "ハウス食品 即席袋麺・マロニー製品・穀物ご飯の素 価格改定のお知らせ",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T07:14:41.490477+00:00",
-      "attempt": 1,
-      "id": "08753915d32c2977",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「最終戦では予選で「#23 Z」が7位、「#12 Z」が9位、「#23 Z」が13位」→ 13位は#24 Zが正しい。同じ車番を二度書いており、元記事の「#24 Zが13位」と矛盾する。",
-        "「かんたん版」の見出しが「ひとことで言うと」と「ひとことが言うと」の2つあり、後者は内容が空。誤字と空の見出しがある。"
-      ],
-      "readability": {
-        "avg_paragraph": 145.1,
-        "avg_sentence": 59.8,
-        "long_share": 0.412,
-        "max_paragraph": 198,
-        "paragraphs": 7,
-        "sentences": 17
-      },
-      "score": 82,
-      "source": "nissan",
-      "title": "SUPER GT第3戦/第8戦、#12 Zが第3戦を制し、最終戦を3位で締めくくる",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SUPER・GT・TRS）",
-        "読みやすさ: 文が長い（1文の平均 59.8字・60字超の文が 41% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 145.1字・最長 198字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T07:15:18.817207+00:00",
-      "attempt": 1,
-      "id": "08753915d32c2977",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 146.3,
-        "avg_sentence": 60.2,
-        "long_share": 0.471,
-        "max_paragraph": 198,
-        "paragraphs": 7,
-        "sentences": 17
-      },
-      "score": 95,
-      "source": "nissan",
-      "title": "SUPER GT第3戦/第8戦、#12 Zが第3戦を制し、最終戦を3位で締めくくる",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SUPER・GT・TRS）",
-        "読みやすさ: 文が長い（1文の平均 60.2字・60字超の文が 47% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 146.3字・最長 198字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T07:15:42.326610+00:00",
@@ -27884,6 +27816,79 @@
       "warnings": [
         "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T09:44:57.923746+00:00",
+      "attempt": 1,
+      "id": "1ebed63e5815115a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「国際海事機関（IMO）は11月10日、…再任を決定しました」→ 元記事では再任が決定されたのは11月2日から6日までの第138回理事会で、11月10日は結果を公表した日であり、決定日の取り違えになっている。"
+      ],
+      "readability": {
+        "avg_paragraph": 115.6,
+        "avg_sentence": 57.8,
+        "long_share": 0.3,
+        "max_paragraph": 154,
+        "paragraphs": 5,
+        "sentences": 10
+      },
+      "score": 70,
+      "source": "mlit-press",
+      "title": "IMOがドミンゲス事務局長の再任を決定～国際海事機関（IMO）第138回理事会の開催結果概要～",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IMO）",
+        "読みやすさ: 文が長い（1文の平均 57.8字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T09:45:09.837695+00:00",
+      "attempt": 1,
+      "id": "1ebed63e5815115a",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 115.6,
+        "avg_sentence": 57.8,
+        "long_share": 0.3,
+        "max_paragraph": 154,
+        "paragraphs": 5,
+        "sentences": 10
+      },
+      "score": 96,
+      "source": "mlit-press",
+      "title": "IMOがドミンゲス事務局長の再任を決定～国際海事機関（IMO）第138回理事会の開催結果概要～",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IMO）",
+        "読みやすさ: 文が長い（1文の平均 57.8字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T09:45:26.690394+00:00",
+      "attempt": 0,
+      "id": "1ebed63e5815115a",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 67.0,
+        "avg_sentence": 40.2,
+        "long_share": 0.0,
+        "max_paragraph": 107,
+        "paragraphs": 9,
+        "sentences": 15
+      },
+      "score": 96,
+      "source": "mlit-press",
+      "title": "IMOがドミンゲス事務局長の再任を決定～国際海事機関（IMO）第138回理事会の開催結果概要～",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IMO）"
       ]
     }
   ],
