@@ -654,13 +654,13 @@ def min_gap() -> timedelta:
 
 
 # ---- 記事の自動投稿のスイッチ（2026-11-10 オーナー決定「今後は全て手投稿にしよう」。sns_plan.json の auto_post） ----
-AUTO_POST_SERVICES = {"threads": "threads", "twitter": "x", "x": "x", "bluesky": "bluesky", "facebook": "facebook"}
+AUTO_POST_SERVICES = {"threads": "threads", "twitter": "x", "x": "x", "bluesky": "bluesky", "facebook": "facebook", "instagram": "instagram"}
 # 手で出す経路（止めない）。人が文面を用意して出す
 MANUAL_SOURCES = ("threads_figure_queue", "threads_control_post")
 
 
 def auto_post_on(service: str, article: dict | None = None) -> bool:
-    """この SNS（threads / twitter・x / bluesky / facebook）に、パイプラインが記事を自動で出してよいか。
+    """この SNS（threads / twitter・x / bluesky / facebook / instagram）に、パイプラインが記事を自動で出してよいか。
     sns_plan.json の auto_post.<SNS> が true のときだけ。キーが無い・読めないときは止める（既定は手投稿だけ）。
     地震・ミサイルなどの急ぎの知らせ（article の disaster・missile・urgent・safetyAlert）は auto_post.alerts が true なら出す"""
     try:

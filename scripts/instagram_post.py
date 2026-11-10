@@ -495,6 +495,12 @@ def main() -> int:
         log(f"[instagram] 今日 {posted_today(state, now)}/{PER_DAY} 本（まとめを除く）・前回 {last_sent(state)}")
         if not todo and not live:  # 下書きは動画のある最新の記事を見本にする
             todo = [(k, e) for k, e in state["posted"].items() if not e.get("style")][-1:]
+    if live and todo and (why := tp.sns_plan.auto_post_off_reason("instagram", None, "instagram_post")):
+        # 2026-11-10 オーナー決定「今後は全て手投稿にしよう」（sns_plan.json の auto_post.instagram）。急ぎの知らせは auto_post.alerts のときだけ
+        kept = [t for t in todo if tp.sns_plan.auto_post_on("instagram", t[1])]
+        if len(kept) < len(todo):
+            log(f"[instagram] {why}（{len(todo) - len(kept)} 本を出しません）")
+        todo = kept
     if not todo:
         log("[instagram] 出すものはありません（上限・間隔・対象なし）")
         return 0

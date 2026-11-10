@@ -1,6 +1,6 @@
 """テスト全体の下ごしらえ。
 
-2026-11-10 オーナー決定「今後は全て手投稿にしよう」で、本番の scripts/sns_plan.json の auto_post（Threads・X・Bluesky・Facebook への
+2026-11-10 オーナー決定「今後は全て手投稿にしよう」で、本番の scripts/sns_plan.json の auto_post（Threads・X・Bluesky・Facebook・Instagram への
 記事の自動投稿のスイッチ）は false（止める）になった。今までのテストは「自動投稿が動いているときの決まり」（枠・門番・文面）を確かめるもの
 なので、そのまま auto_post を true とみなして動かす（スイッチを戻したときに同じ決まりで動くことを確かめ続ける）。
 止めている状態そのものは tests/test_auto_post_off_20261110.py が本物の設定（AUTO_POST_REAL）で確かめる。
@@ -21,7 +21,7 @@ def _plan_with_auto_post():
     if AUTO_POST_REAL["on"]:
         return data
     data = copy.copy(data)
-    data["auto_post"] = {**(data.get("auto_post") or {}), "threads": True, "x": True, "bluesky": True, "facebook": True}
+    data["auto_post"] = {**(data.get("auto_post") or {}), "threads": True, "x": True, "bluesky": True, "facebook": True, "instagram": True}
     return data
 
 

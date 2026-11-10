@@ -25,9 +25,9 @@ class RealSwitch(unittest.TestCase):
 
     def test_config_is_off_for_every_service(self):
         block = json.loads((ROOT / "scripts" / "sns_plan.json").read_text("utf-8"))["auto_post"]
-        for key in ("threads", "x", "bluesky", "facebook", "alerts"):
+        for key in ("threads", "x", "bluesky", "facebook", "instagram", "alerts"):
             self.assertIs(block[key], False, key)
-        for service in ("threads", "twitter", "x", "bluesky", "facebook"):
+        for service in ("threads", "twitter", "x", "bluesky", "facebook", "instagram"):
             self.assertFalse(sns_plan.auto_post_on(service), service)
             self.assertIn("auto_post", sns_plan.auto_post_off_reason(service, None, "x_post"))
         self.assertFalse(sns_plan.auto_post_on("threads", {"disaster": True, "title": "地震"}))  # 急ぎの知らせも alerts が false なら出さない
