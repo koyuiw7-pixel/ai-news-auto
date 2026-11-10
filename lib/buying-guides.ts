@@ -52,6 +52,46 @@ export type BuyingGuideProduct = {
   sources?: { label: string; url: string }[];
 };
 
+/**
+ * 比較ページの「絞り込み・並べ替え・あなたに合うのは」（components/compare/PlanFinder.tsx。2026-11-11 COMPARE-2）。
+ * 数字はすべて各社の公式ページの記載（税込）。表の値は「段（データ量や住まい）× 条件（通話など）」ごとに、条件を満たす
+ * いちばん安いプランを、データを作るときに計算して持つ（読者の画面では並べ替えるだけ）。提携先かどうかで順番は変えない。
+ */
+export type PlanFinderCell = { yen: number; label: string; gb?: number | null } | null;
+
+export type PlanFinderItem = {
+  /** products の id（提携商品は partner）と同じ */
+  id: string;
+  /** 種別（大手のサブブランド・格安SIM など） */
+  kind: string;
+  /** 絞り込みの札（回線など） */
+  tags: string[];
+  /** 段の key → 条件の key → いちばん安いプラン（無ければ null） */
+  matrix: Record<string, Record<string, PlanFinderCell>>;
+  /** 初めにかかる費用（税込。分からなければ null） */
+  initialYen: number | null;
+  /** くわしく（通話料・5G・解約など） */
+  facts: { label: string; value: string }[];
+  /** 発表済みの料金の変更（例: 12月1日から） */
+  change?: string;
+};
+
+export type PlanFinder = {
+  /** 金額の単位の説明（例: 月額・税込・割引なし） */
+  unit: string;
+  tierQuestion: string;
+  tiers: { key: string; label: string }[];
+  optionQuestion?: string;
+  options?: { key: string; label: string }[];
+  tagQuestion: string;
+  tags: string[];
+  /** 「こだわらない」の文 */
+  anyTag: string;
+  /** 並び順の決まり（ページに必ず出す） */
+  sortRule: string;
+  items: PlanFinderItem[];
+};
+
 export type BuyingGuide = {
   /** 2 = 提携外の商品も含めて手で作った新形式 */
   schemaVersion?: number;
@@ -94,6 +134,8 @@ export type BuyingGuide = {
    * 本題とは別の囲み（例: 保険相談のページの「火災保険」）。ここに挙げた商品は、比較表・判定・詳細の一覧には入れず、この囲みだけに出す
    */
   sideSections?: { id: string; label: string; title: string; body: string; products: string[] }[];
+  /** 絞り込み・並べ替え・「あなたに合うのは」。あるときは比較表と「1つずつ見る」の代わりに出す */
+  planFinder?: PlanFinder;
 };
 
 /** 表示用：ガイドの商品に提携リンクを合わせたもの */

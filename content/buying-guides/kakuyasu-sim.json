@@ -1,50 +1,57 @@
 {
   "schemaVersion": 2,
   "editorial": "manual",
-  "checkedLabel": "11月10日時点・公式サイトより",
+  "checkedLabel": "11月11日時点・各社の公式サイトより",
   "columns": [],
   "quickPick": [],
   "publishedAt": "2026-11-10T17:20:00+09:00",
-  "updatedAt": "2026-11-10T17:20:00+09:00",
-  "priceCheckedAt": "2026-11-10T17:20:00+09:00",
+  "updatedAt": "2026-11-11T01:50:00+09:00",
+  "priceCheckedAt": "2026-11-11T01:50:00+09:00",
   "slug": "kakuyasu-sim",
-  "title": "格安SIMの選び方と比較　2026年11月時点",
+  "title": "格安SIMの比較　16社の料金を3つの質問で絞り込む（2026年11月）",
   "shortName": "格安SIM",
-  "description": "毎月のスマホ代を下げたい人へ。BB.exciteモバイル、IIJmio、mineoの料金・初期費用・解約時の費用・回線を、11月10日時点の各社公式サイトの記載だけで比べました。",
+  "description": "毎月のデータ量・電話のかけ方・回線の3つを選ぶと、16社の公式料金から条件に合うプランを月額の安い順に並べます。ahamo、povo、LINEMO、UQ mobile、Y!mobile、楽天モバイル、IIJmio、mineoなどを、11月11日時点の公式サイトの記載だけで比べました。",
   "targetQueries": [
     "格安SIM 比較",
-    "格安SIM 選び方",
-    "スマホ代 見直し",
-    "格安SIM 初期費用",
-    "BB.exciteモバイル 料金",
-    "mineo IIJmio 比較"
+    "格安SIM おすすめ 料金",
+    "格安SIM 3GB 安い",
+    "格安SIM 20GB 比較",
+    "かけ放題 格安SIM 比較",
+    "ahamo povo LINEMO 比較",
+    "スマホ代 見直し"
   ],
   "topics": [
     "life-mobile",
     "mobile-switch"
   ],
-  "intro": "スマホ代を下げる近道は、使っている量に合ったプランに替えることです。このページでは、格安SIM3社の料金と、契約時と解約時にかかる費用を、各社の公式サイトに載っている数字だけで並べました。編集部が回線を契約して試したものではありません。乗り換えの前に、今の明細で毎月何GB使っているかを確かめておくと、選ぶプランがすぐ決まります。",
+  "intro": "スマホ代を下げる近道は、使う量に合ったプランに替えることです。このページでは、大手のサブブランドやオンライン専用プランを含む16社の料金を、各社の公式サイトに載っている数字だけで並べました。毎月のデータ量と電話のかけ方、使いたい回線を選ぶと、条件に合うプランが月額の安い順に出ます。編集部が回線を契約して試したものではありません。",
   "personas": [
     {
-      "who": "月によって使う量が大きく違う人",
+      "who": "データは3GBくらい、電話はほとんどしない人",
       "picks": [
-        "bb-excite"
+        "bb-excite",
+        "nihontsushin",
+        "his"
       ],
-      "why": "Fit（段階制）プランは使った量で料金が決まり、音声SIMは低速通信のみなら月495円（税込）。初期費用は0円と記載。"
+      "why": "3GBで比べた月額は、BB.exciteモバイル（Fitプラン）690円、日本通信SIM 730円、HISモバイル770円（税込・割引なし）。初めの費用は、BB.exciteモバイルが0円、ほかの2社は3,300円です。"
     },
     {
-      "who": "月5ギガほど使い、毎月の額を抑えたい人",
+      "who": "20GBくらい使い、5分以内の電話もする人",
       "picks": [
+        "nihontsushin",
+        "his",
+        "rakuten-mobile"
+      ],
+      "why": "日本通信SIMの合理的みんなのプランは20GBで1,390円（5分かけ放題か月70分無料が込み）。HISモバイルは20GBで1,699円（6分かけ放題込み）、楽天モバイルは20GBまで2,178円で、Rakuten Linkアプリを使えば通話が無料です。"
+    },
+    {
+      "who": "データをたくさん使い、長電話もする人",
+      "picks": [
+        "rakuten-mobile",
+        "mineo",
         "iijmio"
       ],
-      "why": "公式の組み合わせ例では、5ギガの音声SIMが月950円（税込）。初期費用は3,300円で、12月1日の申し込みから3,850円に改定。"
-    },
-    {
-      "who": "ソフトバンク回線も含めて、回線を選びたい人",
-      "picks": [
-        "mineo"
-      ],
-      "why": "Aプラン・Dプラン・Sプランから回線を選べ、解約手数料とMNP転出手数料は無料と記載。"
+      "why": "楽天モバイルはデータ無制限が3,278円で、Rakuten Linkアプリを使えば国内通話が無料。mineoは50GBと時間無制限かけ放題で4,158円、IIJmioは55ギガとかけ放題で5,300円です。"
     }
   ],
   "rows": [
@@ -84,146 +91,263 @@
   "decisionPoints": [
     {
       "title": "毎月何GB使っているかを明細で確かめる",
-      "body": "料金はデータ量で大きく変わります。BB.exciteモバイルのFitプランは使った量で料金が決まる段階制、FlatプランとIIJmio・mineoは選んだ容量の定額です。直近3か月の明細で使った量を見てから選ぶと、払いすぎを防げます。"
+      "body": "料金はデータ量で大きく変わります。直近3か月の明細で使った量を見てから、上の「毎月どれくらい」を選ぶと、払いすぎを防げます。使う量が月によって違う人は、使った量で料金が決まる段階制（楽天モバイル、BB.exciteモバイルのFit、LINEMOのベストプランなど）も候補です。"
     },
     {
-      "title": "初期費用と、やめるときの費用を先に見る",
-      "body": "BB.exciteモバイルは初期費用0円、IIJmioは3,300円（12月1日の新規申し込みから3,850円）、mineoは契約事務手数料3,850円です。解約するときの手数料は、3社とも0円と記載しています。"
+      "title": "電話をよくかけるなら、通話込みの料金で比べる",
+      "body": "国内通話は多くの会社で22円／30秒です。5分や10分の無料通話が料金に込みのプラン（ahamo、日本通信SIM、HISモバイルの20GB以上など）と、かけ放題のオプションを足したときの額で比べると、実際の支払いに近づきます。"
+    },
+    {
+      "title": "初めの費用と、1年以内にやめたときの費用を見る",
+      "body": "事務手数料は0円から4,290円まで差があります。UQ mobile、Y!mobile、LINEMO、LIBMOは、1年（12か月）以内に解約すると契約解除料がかかると公式サイトに書いています。"
     },
     {
       "title": "回線と、今のスマホがそのまま使えるかを確かめる",
-      "body": "BB.exciteモバイルとIIJmioはドコモ回線とau回線、mineoはそれに加えてソフトバンク回線も選べます。SIMフリーの端末は、各社の動作確認済み端末の一覧で確かめてから申し込むと安心です。"
-    },
-    {
-      "title": "電話をよくかけるなら通話料も比べる",
-      "body": "国内通話料は、BB.exciteモバイルとmineoが22円／30秒、IIJmioが11円／30秒です。BB.exciteモバイルは専用アプリ「エキモバでんわ」を使うと11円／30秒になります。"
+      "body": "ドコモ・au・ソフトバンク・楽天のどの回線かで、使える端末やつながる場所が変わります。申し込む前に、各社の動作確認済み端末の一覧で今のスマホを確かめると安心です。"
     }
   ],
   "products": [
     {
+      "id": "ahamo",
+      "name": "ahamo",
+      "maker": "NTTドコモ",
+      "category": "大手のオンライン専用（ドコモ回線）",
+      "price": "月2,970円から",
+      "priceNote": "ahamo 30GB・税込",
+      "officialUrl": "https://ahamo.com/plan/",
+      "summary": "NTTドコモの大手のオンライン専用。ドコモ回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
       "specs": [],
-      "id": "bb-excite",
-      "partner": "bb-excite",
-      "name": "BB.exciteモバイル",
-      "maker": "エキサイト",
-      "category": "格安SIM（ドコモ回線・au回線）",
-      "price": "月495円から",
-      "priceNote": "音声SIM・Fitプランの低速通信のみ・税込",
-      "officialUrl": "https://bb.excite.co.jp/exmb/",
-      "summary": "使った量で料金が決まるFit（段階制）と、毎月同じ料金のFlat（定額制）から選べる格安SIMです。初期費用は0円で、利用開始時・解約時・プラン変更時の手数料はかからないと公式サイトに記載しています。",
-      "bestFor": "使う量が月ごとに違う人、初期費用をかけずに始めたい人",
-      "strengths": [
-        "Fitプランの音声SIMは、低速のみ495円・3GB 690円・7GB 1,190円・12GB 1,890円・17GB 2,750円・25GB 2,990円（税込）。",
-        "Flatプランの音声SIMは、5GB 1,210円・14GB 1,650円・30GB 1,980円・40GB 2,970円・50GB 4,400円（税込）。",
-        "初期費用（新規契約手数料・SIMカード発行手数料）は0円。",
-        "SIMは最大5枚まで追加して、データを分け合える。Flatプランは余ったデータを繰り越せる。"
-      ],
-      "limits": [
-        "SIMを追加すると1枚あたり月528円（音声SIM）がかかる。",
-        "国内通話料は22円／30秒。11円／30秒にするには「エキモバでんわ」を使う。",
-        "音声通話機能は月額料金制で、入会・解約のタイミングにかかわらず日割り計算はしないと記載。"
-      ],
-      "cells": {
-        "price": "Fit（段階制）低速のみ495円・3GB 690円・7GB 1,190円・12GB 1,890円・17GB 2,750円・25GB 2,990円。Flat（定額制）5GB 1,210円・14GB 1,650円・30GB 1,980円・40GB 2,970円・50GB 4,400円",
-        "network": "ドコモ回線・au回線",
-        "initial": "0円（新規契約手数料・SIMカード発行手数料）",
-        "cancel": "利用開始時・解約時・プラン変更時の手数料なし",
-        "sim": "eSIM・SIMカードを選べる。5G対応",
-        "call": "22円／30秒（エキモバでんわは11円／30秒）",
-        "data": "SIMは最大5枚まで追加してデータを分け合える（1枚月528円）。繰り越しはFlatプランのみ",
-        "after": "最大200kbps"
-      },
       "sources": [
         {
-          "label": "BB.exciteモバイル公式（料金と仕様）",
-          "url": "https://bb.excite.co.jp/exmb/"
+          "label": "ahamo公式（料金）",
+          "url": "https://ahamo.com/plan/"
+        },
+        {
+          "label": "ドコモ公式（12月からの料金）",
+          "url": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
         }
       ],
       "priceSource": {
         "type": "official",
-        "url": "https://bb.excite.co.jp/exmb/",
-        "checkedAt": "2026-11-10T17:20:00+09:00"
+        "url": "https://ahamo.com/plan/",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
       }
     },
     {
+      "id": "povo",
+      "name": "povo2.0",
+      "maker": "KDDI",
+      "category": "大手のオンライン専用（au回線）",
+      "price": "月990円から",
+      "priceNote": "3GB（30日間のトッピング）・税込",
+      "officialUrl": "https://povo.jp/",
+      "summary": "KDDIの大手のオンライン専用。au回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
       "specs": [],
+      "sources": [
+        {
+          "label": "povo公式（料金・仕様）",
+          "url": "https://povo.jp/spec/"
+        },
+        {
+          "label": "povo公式（トッピング）",
+          "url": "https://povo.jp/topping-list/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://povo.jp/spec/",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
+      "id": "linemo",
+      "name": "LINEMO",
+      "maker": "ソフトバンク",
+      "category": "大手のオンライン専用（ソフトバンク回線）",
+      "price": "月990円から",
+      "priceNote": "ベストプラン（3GBまで）・税込",
+      "officialUrl": "https://www.linemo.jp/",
+      "summary": "ソフトバンクの大手のオンライン専用。ソフトバンク回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "LINEMO公式（料金プラン）",
+          "url": "https://www.linemo.jp/plan/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.linemo.jp/plan/",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
+      "id": "uq",
+      "name": "UQ mobile",
+      "maker": "KDDI",
+      "category": "大手のサブブランド（au回線）",
+      "price": "月2,948円から",
+      "priceNote": "トクトクプラン2（5GBまでの月。4,048円から1,100円引き）・税込",
+      "officialUrl": "https://www.uqwimax.jp/mobile/",
+      "summary": "KDDIの大手のサブブランド。au回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "UQ mobile公式（料金プラン）",
+          "url": "https://www.uqwimax.jp/mobile/plan/"
+        },
+        {
+          "label": "UQ mobile公式（トクトクプラン2）",
+          "url": "https://www.uqwimax.jp/mobile/plan/tokutoku2/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.uqwimax.jp/mobile/plan/",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
+      "id": "ymobile",
+      "name": "Y!mobile",
+      "maker": "ソフトバンク",
+      "category": "大手のサブブランド（ソフトバンク回線）",
+      "price": "月3,278円から",
+      "priceNote": "シンプル3 S（5GB）・税込",
+      "officialUrl": "https://www.ymobile.jp/",
+      "summary": "ソフトバンクの大手のサブブランド。ソフトバンク回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "Y!mobile公式（料金プラン）",
+          "url": "https://www.ymobile.jp/plan/"
+        },
+        {
+          "label": "Y!mobile公式（手数料）",
+          "url": "https://www.ymobile.jp/plan/commission/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.ymobile.jp/plan/",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
+      "id": "rakuten-mobile",
+      "name": "楽天モバイル",
+      "maker": "楽天モバイル",
+      "category": "大手（自社回線）（楽天回線）",
+      "price": "月1,078円から",
+      "priceNote": "Rakuten最強プラン（3GBまで）・税込",
+      "officialUrl": "https://network.mobile.rakuten.co.jp/",
+      "summary": "楽天モバイルの大手（自社回線）。楽天回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "楽天モバイル公式（料金）",
+          "url": "https://network.mobile.rakuten.co.jp/fee/saikyo-plan/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://network.mobile.rakuten.co.jp/fee/saikyo-plan/",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
+      "id": "nihontsushin",
+      "name": "日本通信SIM",
+      "maker": "日本通信",
+      "category": "格安SIM（ドコモ回線）",
+      "price": "月730円から",
+      "priceNote": "合理的シンプル290（1GB 290円＋1GBごと220円で3GB）・税込",
+      "officialUrl": "https://www.nihontsushin.com/",
+      "summary": "日本通信の格安SIM。ドコモ回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "日本通信公式（合理的シンプル290）",
+          "url": "https://www.nihontsushin.com/plan/plansimple.html"
+        },
+        {
+          "label": "日本通信公式（みんなのプラン）",
+          "url": "https://www.nihontsushin.com/plan/planminna.html"
+        },
+        {
+          "label": "日本通信公式（50GBプラン）",
+          "url": "https://www.nihontsushin.com/plan/plangbgdvc.html"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.nihontsushin.com/plan/plansimple.html",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
       "id": "iijmio",
-      "name": "IIJmio ギガプラン",
-      "maker": "IIJmio",
-      "category": "格安SIM（ドコモ網・au網）",
-      "price": "月950円",
-      "priceNote": "5ギガの音声SIM・税込・公式の組み合わせ例",
-      "officialUrl": "https://www.iijmio.jp/gigaplan/",
-      "summary": "音声・SMS・データのSIMと、データ量を組み合わせて選ぶ格安SIMです。回線はドコモ網とau網から選べ、物理SIMとeSIMのどちらにも対応しています。",
-      "bestFor": "月5ギガ前後を使い、毎月の額を抑えたい人",
-      "strengths": [
-        "公式の組み合わせ例では、5ギガの音声SIMが月950円（税込）。",
-        "契約解除料0円、他社へ乗り換えるときの手数料0円。",
-        "余ったデータ量は翌月に繰り越せ、データシェアもできる。",
-        "国内通話料は11円／30秒（税込）。"
-      ],
-      "limits": [
-        "初期費用は3,300円（税込）。2026年12月1日の新規申し込みから3,850円に改定すると告知している。",
-        "初期費用とは別に、SIMカード発行手数料（税込433.4円または446.6円）やeSIMの発行手数料がかかる。",
-        "データeSIM（ドコモ網）などは5G非対応。5ギガ以外の容量の料金は、公式サイトの料金表で確かめる必要がある。"
-      ],
-      "cells": {
-        "price": "5ギガの音声SIMで950円（公式の組み合わせ例）。ほかの容量は公式の料金表で確認",
-        "network": "ドコモ網・au網から選べる",
-        "initial": "3,300円（12月1日の新規申し込みから3,850円）。別にSIMカードやeSIMの発行手数料",
-        "cancel": "契約解除料0円、他社への乗り換え手数料0円",
-        "sim": "物理SIM・eSIMを選べる。5Gは無料（一部のSIMは非対応）",
-        "call": "11円／30秒",
-        "data": "翌月に繰り越し。データシェアができる"
-      },
+      "name": "IIJmio",
+      "maker": "IIJ",
+      "category": "格安SIM（ドコモ回線・au回線）",
+      "price": "月850円から",
+      "priceNote": "ギガプラン 2ギガ・税込",
+      "officialUrl": "https://www.iijmio.jp/",
+      "summary": "IIJの格安SIM。ドコモ回線・au回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
       "sources": [
         {
           "label": "IIJmio公式（ギガプラン）",
           "url": "https://www.iijmio.jp/gigaplan/"
         },
         {
-          "label": "IIJmio公式（初期費用・通話料）",
+          "label": "IIJmio公式（料金と仕様）",
           "url": "https://www.iijmio.jp/hdc/spec/"
         }
       ],
       "priceSource": {
         "type": "official",
         "url": "https://www.iijmio.jp/gigaplan/",
-        "checkedAt": "2026-11-10T17:20:00+09:00"
+        "checkedAt": "2026-11-11T01:50:00+09:00"
       }
     },
     {
-      "specs": [],
       "id": "mineo",
-      "name": "mineo マイピタ",
-      "maker": "mineo",
-      "category": "格安SIM（au・ドコモ・ソフトバンク回線）",
+      "name": "mineo",
+      "maker": "オプテージ",
+      "category": "格安SIM（ドコモ回線・au回線・ソフトバンク回線）",
       "price": "月1,298円から",
-      "priceNote": "デュアルタイプ（音声通話つき）3GB・税込",
-      "officialUrl": "https://mineo.jp/price/",
-      "summary": "Aプラン・Dプラン・Sプランから回線を選べる格安SIMです。音声通話つきのデュアルタイプは3GBから50GBまでの5つのコースがあり、余ったデータは翌月に繰り越せます。",
-      "bestFor": "ソフトバンク回線も含めて回線を選びたい人",
-      "strengths": [
-        "デュアルタイプは3GB 1,298円・7GB 1,518円・15GB 1,958円・30GB 2,178円・50GB 2,948円（税込）。",
-        "解約手数料とMNP転出手数料は無料。",
-        "容量を使い切った後も最大200kbpsで通信できる。100MBあたり55円でチャージもできる。",
-        "5G通信オプションとeSIMプロファイル発行料は無料。"
-      ],
-      "limits": [
-        "契約事務手数料3,850円と、SIMカード発行料440円（税込）がかかる。",
-        "eSIMを提供していないプランがある。",
-        "Aプラン・Dプラン・Sプランの間でプランを変えると、変更事務手数料3,850円とSIMカード発行料440円がかかる。"
-      ],
-      "cells": {
-        "price": "デュアルタイプ 3GB 1,298円・7GB 1,518円・15GB 1,958円・30GB 2,178円・50GB 2,948円",
-        "network": "Aプラン・Dプラン・Sプランから選べる（au・ドコモ・ソフトバンクのエリア）",
-        "initial": "契約事務手数料3,850円、SIMカード発行料440円（eSIMプロファイル発行料は無料）",
-        "cancel": "解約手数料・MNP転出手数料は無料",
-        "sim": "eSIMは一部のプランで提供。5G通信オプションは無料",
-        "call": "22円／30秒",
-        "data": "余ったデータ容量は翌月に繰り越し",
-        "after": "最大200kbps"
-      },
+      "priceNote": "マイピタ 3GB・税込",
+      "officialUrl": "https://mineo.jp/",
+      "summary": "オプテージの格安SIM。ドコモ回線・au回線・ソフトバンク回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
       "sources": [
         {
           "label": "mineo公式（料金表）",
@@ -233,7 +357,191 @@
       "priceSource": {
         "type": "official",
         "url": "https://mineo.jp/price/",
-        "checkedAt": "2026-11-10T17:20:00+09:00"
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
+      "id": "nuro",
+      "name": "NUROモバイル",
+      "maker": "ソニーネットワークコミュニケーションズ",
+      "category": "格安SIM（ドコモ回線・au回線・ソフトバンク回線）",
+      "price": "月792円から",
+      "priceNote": "バリュープラス VSプラン 3GB・税込",
+      "officialUrl": "https://mobile.nuro.jp/",
+      "summary": "ソニーネットワークコミュニケーションズの格安SIM。ドコモ回線・au回線・ソフトバンク回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "NUROモバイル公式（料金プラン）",
+          "url": "https://mobile.nuro.jp/plan/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://mobile.nuro.jp/plan/",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
+      "id": "bb-excite",
+      "partner": "bb-excite",
+      "name": "BB.exciteモバイル",
+      "maker": "エキサイト",
+      "category": "格安SIM（ドコモ回線・au回線）",
+      "price": "月690円から",
+      "priceNote": "Fitプラン（3GBまでの月）・税込",
+      "officialUrl": "https://bb.excite.co.jp/exmb/",
+      "summary": "エキサイトの格安SIM。ドコモ回線・au回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "BB.exciteモバイル公式（料金プラン）",
+          "url": "https://bb.excite.co.jp/exmb/sim/plan/"
+        },
+        {
+          "label": "BB.exciteモバイル公式（仕様）",
+          "url": "https://bb.excite.co.jp/exmb/sim/spec/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://bb.excite.co.jp/exmb/sim/plan/",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
+      "id": "aeon",
+      "name": "イオンモバイル",
+      "maker": "イオンリテール",
+      "category": "格安SIM（ドコモ回線・au回線）",
+      "price": "月803円から",
+      "priceNote": "音声プラン 0.5GB・税込",
+      "officialUrl": "https://aeonmobile.jp/",
+      "summary": "イオンリテールの格安SIM。ドコモ回線・au回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "イオンモバイル公式（料金プラン）",
+          "url": "https://aeonmobile.jp/plan/"
+        },
+        {
+          "label": "イオンモバイル公式（料金表PDF）",
+          "url": "https://aeonmobile.jp/pdf/plans_all.pdf"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://aeonmobile.jp/plan/",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
+      "id": "his",
+      "name": "HISモバイル",
+      "maker": "HISモバイル",
+      "category": "格安SIM（ドコモ回線）",
+      "price": "月770円から",
+      "priceNote": "自由自在プラン 3GB・税込",
+      "officialUrl": "https://his-mobile.com/",
+      "summary": "HISモバイルの格安SIM。ドコモ回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "HISモバイル公式（自由自在プラン）",
+          "url": "https://his-mobile.com/domestic/service/jiyujizai290"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://his-mobile.com/domestic/service/jiyujizai290",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
+      "id": "libmo",
+      "name": "LIBMO",
+      "maker": "TOKAIコミュニケーションズ",
+      "category": "格安SIM（ドコモ回線）",
+      "price": "月990円から",
+      "priceNote": "超なっとくプラン 5GB・税込",
+      "officialUrl": "https://www.libmo.jp/",
+      "summary": "TOKAIコミュニケーションズの格安SIM。ドコモ回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "LIBMO公式（料金プラン）",
+          "url": "https://www.libmo.jp/plan/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.libmo.jp/plan/",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
+      "id": "jcom-mobile",
+      "name": "J:COM MOBILE",
+      "maker": "JCOM",
+      "category": "格安SIM（au回線）",
+      "price": "月1,408円から",
+      "priceNote": "Aプラン 1GB・税込",
+      "officialUrl": "https://www.jcom.co.jp/service/mobile/",
+      "summary": "JCOMの格安SIM。au回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "J:COM公式（料金）",
+          "url": "https://www.jcom.co.jp/service/mobile/price/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.jcom.co.jp/service/mobile/price/",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
+      }
+    },
+    {
+      "id": "yumobile",
+      "name": "y.u mobile",
+      "maker": "y.u mobile",
+      "category": "格安SIM（ドコモ回線）",
+      "price": "月1,070円から",
+      "priceNote": "シングル 5GB・税込",
+      "officialUrl": "https://www.yumobile.jp/",
+      "summary": "y.u mobileの格安SIM。ドコモ回線。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "y.u mobile公式（料金）",
+          "url": "https://www.yumobile.jp/price"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.yumobile.jp/price",
+        "checkedAt": "2026-11-11T01:50:00+09:00"
       }
     }
   ],
@@ -242,7 +550,7 @@
       "situation": "電話番号を変えずに乗り換えたい",
       "fit": "suits",
       "recommendation": "MNP（番号ポータビリティ）で乗り換える",
-      "reason": "総務省の携帯電話ポータルサイトが、電話番号を変えずに乗り換える方法を説明しています。IIJmioとmineoは他社へ移るときの手数料を0円としています。",
+      "reason": "総務省の携帯電話ポータルサイトが、電話番号を変えずに乗り換える方法を説明しています。IIJmio、mineo、NUROモバイル、日本通信SIMなどは、他社へ移るときの手数料を0円としています。",
       "source": {
         "label": "総務省 携帯電話ポータルサイト Q1",
         "url": "https://www.soumu.go.jp/menu_seisaku/ictseisaku/keitai_portal/gimonkaiketsu/q_1.html"
@@ -252,37 +560,37 @@
       "situation": "月によって使う量が大きく違う",
       "fit": "suits",
       "recommendation": "使った量で料金が決まる段階制のプラン",
-      "reason": "BB.exciteモバイルのFitプランは、低速のみの月は音声SIMで495円、使った月は段階的に上がり25GBで2,990円（税込）です。",
+      "reason": "楽天モバイルは3GBまで1,078円・20GBまで2,178円・無制限3,278円、BB.exciteモバイルのFitプランは3GBまで690円から25GBまで2,990円と、使った量で料金が決まります。",
       "source": {
-        "label": "BB.exciteモバイル公式",
-        "url": "https://bb.excite.co.jp/exmb/"
+        "label": "楽天モバイル公式（料金）",
+        "url": "https://network.mobile.rakuten.co.jp/fee/saikyo-plan/"
       }
     },
     {
-      "situation": "毎月30GB前後を使う",
+      "situation": "電話をよくかける",
       "fit": "suits",
-      "recommendation": "大容量の定額プラン",
-      "reason": "30GBの音声SIMは、BB.exciteモバイルのFlatプランが月1,980円、mineoのデュアルタイプが月2,178円（いずれも税込）です。",
+      "recommendation": "無料通話込みのプランか、かけ放題を足した額で比べる",
+      "reason": "日本通信SIMの合理的みんなのプラン（20GB 1,390円）は5分かけ放題か月70分無料が込み。IIJmioは通話定額を5分500円・10分700円・かけ放題1,400円で足せます。",
       "source": {
-        "label": "mineo公式（料金表）",
-        "url": "https://mineo.jp/price/"
+        "label": "日本通信公式（みんなのプラン）",
+        "url": "https://www.nihontsushin.com/plan/planminna.html"
       }
     },
     {
       "situation": "契約してすぐやめるかもしれない",
       "fit": "not",
-      "recommendation": "初期費用のかかる契約は、先に総額を計算する",
-      "reason": "IIJmioは初期費用3,300円（12月1日から3,850円）、mineoは契約事務手数料3,850円がかかります。BB.exciteモバイルは初期費用0円です。",
+      "recommendation": "1年以内の解約金と、初めの費用を先に足しておく",
+      "reason": "UQ mobile（1,100円）、Y!mobile（858円から）、LINEMO（990円から）、LIBMO（月額1か月分）は、1年（12か月）以内の解約で契約解除料がかかると公式サイトに書いています。",
       "source": {
-        "label": "IIJmio公式（初期費用）",
-        "url": "https://www.iijmio.jp/hdc/spec/"
+        "label": "Y!mobile公式（手数料）",
+        "url": "https://www.ymobile.jp/plan/commission/"
       }
     },
     {
       "situation": "今のスマホが使えるかわからない",
       "fit": "not",
       "recommendation": "申し込む前に、SIMロックと動作確認端末を確かめる",
-      "reason": "総務省の携帯電話ポータルサイトは、端末を変えずに乗り換えるためのSIMロック解除の手順を案内しています。IIJmioも、SIMフリー端末は動作確認済み端末の一覧で確かめるよう案内しています。",
+      "reason": "総務省の携帯電話ポータルサイトは、端末を変えずに乗り換えるためのSIMロック解除の手順を案内しています。各社も動作確認済み端末の一覧を公開しています。",
       "source": {
         "label": "総務省 携帯電話ポータルサイト",
         "url": "https://www.soumu.go.jp/menu_seisaku/ictseisaku/keitai_portal/"
@@ -309,22 +617,26 @@
   "faq": [
     {
       "q": "格安SIMにすると電話番号は変わりますか？",
-      "a": "MNP（番号ポータビリティ）を使えば、電話番号を変えずに乗り換えられます。説明は総務省の携帯電話ポータルサイトにあります。IIJmioとmineoは、他社へ移るときの転出手数料を0円としています。"
+      "a": "MNP（番号ポータビリティ）を使えば、電話番号を変えずに乗り換えられます。説明は総務省の携帯電話ポータルサイトにあります。"
     },
     {
       "q": "最初にいくらかかりますか？",
-      "a": "11月10日時点の公式サイトでは、BB.exciteモバイルは初期費用0円、IIJmioは初期費用3,300円（12月1日の新規申し込みから3,850円）とSIMの発行手数料、mineoは契約事務手数料3,850円とSIMカード発行料440円です（いずれも税込）。"
+      "a": "11月11日時点の公式サイトでは、ahamo、povo2.0（5回線目まで）、楽天モバイル（4回線目まで）、BB.exciteモバイルは0円です。ほかは3,300円から4,290円で、IIJmioは12月1日の新規申し込みから初期費用が3,850円に上がります（いずれも税込）。"
+    },
+    {
+      "q": "ahamoの料金は12月から変わりますか？",
+      "a": "ドコモの発表では、12月1日から、40GBまで3,135円・60GBまで4,125円・120GBまで5,115円の3段階になります。大盛りオプションは11月30日で終わります。このページの一覧は11月11日時点の料金（30GB 2,970円）で並べています。"
+    },
+    {
+      "q": "OCN モバイル ONEやirumoは比べないのですか？",
+      "a": "OCN モバイル ONEとirumoは、新規の申し込みの受付を終えていると各公式サイトに書かれているため、このページでは比べていません。"
     },
     {
       "q": "データを使い切ったらどうなりますか？",
-      "a": "BB.exciteモバイルとmineoは、使い切った後も最大200kbpsで通信できると記載しています。追加は、BB.exciteモバイルが1GBあたり220円（Fitプランは25GB以上の利用時のみ）、mineoが100MBあたり55円です。"
-    },
-    {
-      "q": "5Gは使えますか？",
-      "a": "BB.exciteモバイルは5G対応、IIJmioは5G通信を無料で使えます（データeSIM（ドコモ網）など一部は非対応）。mineoは5G通信オプションが無料で、5G対応の端末が必要と記載しています。"
+      "a": "多くの会社は速度を落として使い続けられます。最大200kbpsの会社（mineo、イオンモバイル、BB.exciteモバイルなど）と、最大1Mbpsの会社（ahamo、UQ mobile、NUROモバイルのNEOプランなど）があります。各社の「くわしく」に書いています。"
     }
   ],
-  "howWeMade": "2026年11月10日に、各社の公式サイトの料金ページを取得し、そこに書かれた料金と条件だけで作りました。編集部は回線を契約・試用しておらず、点数や順位はつけていません。BB.exciteモバイルは当サイトの提携先（PR）で、リンク経由の申し込みで紹介料が入ることがあります。IIJmioとmineoは提携していません。",
+  "howWeMade": "2026年11月11日に、16社の公式サイトの料金ページを取得し、そこに書かれた料金と条件だけで作りました。料金は音声通話つきの月額（税込）で、家族割・光回線とのセット割・期間限定のキャンペーンは入れていません。編集部は回線を契約・試用しておらず、点数はつけていません。並び順は、選んだ条件で使えるいちばん安いプランの月額の安い順です。BB.exciteモバイルは当サイトの提携先（PR）で、リンク経由の申し込みで紹介料が入ることがありますが、順番には影響させていません。ほかの15社は提携していません。",
   "newsNote": "サイソクが報じたスマホ料金と通信の関連記事",
   "sponsoredCta": "料金プランを見る",
   "relatedArticleSlugs": [
@@ -332,8 +644,1381 @@
   ],
   "criteria": [
     "毎月何GB使っているかを明細で確かめる",
-    "初期費用と、やめるときの費用を先に見る",
-    "回線と、今のスマホがそのまま使えるかを確かめる",
-    "電話をよくかけるなら通話料も比べる"
-  ]
+    "電話をよくかけるなら、通話込みの料金で比べる",
+    "初めの費用と、1年以内にやめたときの費用を見る",
+    "回線と、今のスマホがそのまま使えるかを確かめる"
+  ],
+  "planFinder": {
+    "unit": "税込・割引なし",
+    "tierQuestion": "毎月どれくらいデータを使いますか",
+    "tiers": [
+      {
+        "key": "3",
+        "label": "3GBくらい"
+      },
+      {
+        "key": "20",
+        "label": "20GBくらい"
+      },
+      {
+        "key": "50",
+        "label": "50GB以上・無制限"
+      }
+    ],
+    "optionQuestion": "電話はどれくらいかけますか",
+    "options": [
+      {
+        "key": "none",
+        "label": "ほとんどしない"
+      },
+      {
+        "key": "5",
+        "label": "5分以内の電話が多い"
+      },
+      {
+        "key": "10",
+        "label": "10分くらい話す"
+      },
+      {
+        "key": "inf",
+        "label": "長電話もする（かけ放題）"
+      }
+    ],
+    "tagQuestion": "使いたい回線",
+    "tags": [
+      "ドコモ回線",
+      "au回線",
+      "ソフトバンク回線",
+      "楽天回線"
+    ],
+    "anyTag": "こだわらない",
+    "sortRule": "並び順の決まり：選んだデータ量を使える、いちばん安いプランの月額（税込・割引なし。通話を選んだときは、その分の無料通話かオプションの料金を足した額）の安い順です。同じ金額なら初めの費用が安い順。提携先（PR）かどうかで順番は変えていません。",
+    "items": [
+      {
+        "id": "ahamo",
+        "kind": "大手のオンライン専用",
+        "tags": [
+          "ドコモ回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 2970,
+              "label": "ahamo 30GB",
+              "gb": 30
+            },
+            "5": {
+              "yen": 2970,
+              "label": "ahamo 30GB・5分以内の通話無料",
+              "gb": 30
+            },
+            "10": null,
+            "inf": null
+          },
+          "20": {
+            "none": {
+              "yen": 2970,
+              "label": "ahamo 30GB",
+              "gb": 30
+            },
+            "5": {
+              "yen": 2970,
+              "label": "ahamo 30GB・5分以内の通話無料",
+              "gb": 30
+            },
+            "10": null,
+            "inf": null
+          },
+          "50": {
+            "none": null,
+            "5": null,
+            "10": null,
+            "inf": null
+          }
+        },
+        "initialYen": 0,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "5分以内の国内通話は無料（料金に込み）。超えた分は22円／30秒"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "5G対応・eSIMあり"
+          },
+          {
+            "label": "初めの費用",
+            "value": "事務手数料0円"
+          },
+          {
+            "label": "解約",
+            "value": "公式で確認中"
+          },
+          {
+            "label": "使い切った後",
+            "value": "最大1Mbps"
+          },
+          {
+            "label": "割引",
+            "value": "光回線などとのセット割はなし"
+          }
+        ],
+        "change": "12月1日から料金が変わります（40GBまで3,135円・60GBまで4,125円・120GBまで5,115円の3段階）。大盛りオプションは11月30日で終了。"
+      },
+      {
+        "id": "povo",
+        "kind": "大手のオンライン専用",
+        "tags": [
+          "au回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 990,
+              "label": "3GB（30日間のトッピング）",
+              "gb": 3
+            },
+            "5": {
+              "yen": 1540,
+              "label": "3GB（30日間のトッピング）＋5分以内かけ放題 550円",
+              "gb": 3
+            },
+            "10": null,
+            "inf": null
+          },
+          "20": {
+            "none": {
+              "yen": 2780,
+              "label": "30GB（30日間のトッピング）",
+              "gb": 30
+            },
+            "5": {
+              "yen": 3330,
+              "label": "30GB（30日間のトッピング）＋5分以内かけ放題 550円",
+              "gb": 30
+            },
+            "10": null,
+            "inf": null
+          },
+          "50": {
+            "none": null,
+            "5": null,
+            "10": null,
+            "inf": null
+          }
+        },
+        "initialYen": 0,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "22円／30秒（5分以内かけ放題は月550円のトッピング）"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "5G対応・eSIMあり"
+          },
+          {
+            "label": "初めの費用",
+            "value": "同じ名義で5回線目まで0円（6回線目から3,850円）"
+          },
+          {
+            "label": "解約",
+            "value": "公式で確認中"
+          },
+          {
+            "label": "使い切った後",
+            "value": "最大128kbps"
+          },
+          {
+            "label": "しくみ",
+            "value": "基本料0円に、必要なデータ量を30日ごとに買い足す（24時間使い放題330円などもある）"
+          }
+        ]
+      },
+      {
+        "id": "linemo",
+        "kind": "大手のオンライン専用",
+        "tags": [
+          "ソフトバンク回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 990,
+              "label": "ベストプラン（3GBまで）",
+              "gb": 3
+            },
+            "5": {
+              "yen": 2970,
+              "label": "ベストプランV（30GB）・5分以内の通話無料",
+              "gb": 30
+            },
+            "10": null,
+            "inf": null
+          },
+          "20": {
+            "none": {
+              "yen": 2970,
+              "label": "ベストプランV（30GB）",
+              "gb": 30
+            },
+            "5": {
+              "yen": 2970,
+              "label": "ベストプランV（30GB）・5分以内の通話無料",
+              "gb": 30
+            },
+            "10": null,
+            "inf": null
+          },
+          "50": {
+            "none": null,
+            "5": null,
+            "10": null,
+            "inf": null
+          }
+        },
+        "initialYen": 3850,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "22円／30秒。ベストプランVは5分以内の国内通話が無料"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "5G対応・eSIMあり"
+          },
+          {
+            "label": "初めの費用",
+            "value": "新規・乗り換えの手数料3,850円"
+          },
+          {
+            "label": "解約",
+            "value": "12か月以内に解約すると契約解除料（ベストプラン990円・ベストプランV 1,100円）"
+          },
+          {
+            "label": "使い切った後",
+            "value": "ベストプラン：10GB超で300kbps／ベストプランV：30GB超で1Mbps"
+          }
+        ]
+      },
+      {
+        "id": "uq",
+        "kind": "大手のサブブランド",
+        "tags": [
+          "au回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 2948,
+              "label": "トクトクプラン2（5GBまでの月。4,048円から1,100円引き）",
+              "gb": 5
+            },
+            "5": {
+              "yen": 3828,
+              "label": "コミコミプランバリュー（35GB）・1回10分以内の通話無料",
+              "gb": 35
+            },
+            "10": {
+              "yen": 3828,
+              "label": "コミコミプランバリュー（35GB）・1回10分以内の通話無料",
+              "gb": 35
+            },
+            "inf": null
+          },
+          "20": {
+            "none": {
+              "yen": 3828,
+              "label": "コミコミプランバリュー（35GB）",
+              "gb": 35
+            },
+            "5": {
+              "yen": 3828,
+              "label": "コミコミプランバリュー（35GB）・1回10分以内の通話無料",
+              "gb": 35
+            },
+            "10": {
+              "yen": 3828,
+              "label": "コミコミプランバリュー（35GB）・1回10分以内の通話無料",
+              "gb": 35
+            },
+            "inf": null
+          },
+          "50": {
+            "none": null,
+            "5": null,
+            "10": null,
+            "inf": null
+          }
+        },
+        "initialYen": 3850,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "22円／30秒。コミコミプランバリューは1回10分以内の国内通話が無料"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "5G対応・eSIMあり"
+          },
+          {
+            "label": "初めの費用",
+            "value": "契約事務手数料4,950円（ウェブ手続きは3,850円）"
+          },
+          {
+            "label": "解約",
+            "value": "2025年10月1日以降の契約は、1年以内の解約で契約解除料1,100円"
+          },
+          {
+            "label": "使い切った後",
+            "value": "最大1Mbps"
+          },
+          {
+            "label": "割引",
+            "value": "トクトクプラン2は自宅セット割で1,100円引き、家族セット割で550円引き、au PAYカード払いで220円引き"
+          }
+        ]
+      },
+      {
+        "id": "ymobile",
+        "kind": "大手のサブブランド",
+        "tags": [
+          "ソフトバンク回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 3278,
+              "label": "シンプル3 S（5GB）",
+              "gb": 5
+            },
+            "5": {
+              "yen": 5478,
+              "label": "シンプル3 L（35GB）・1回10分以内の通話無料",
+              "gb": 35
+            },
+            "10": {
+              "yen": 5478,
+              "label": "シンプル3 L（35GB）・1回10分以内の通話無料",
+              "gb": 35
+            },
+            "inf": null
+          },
+          "20": {
+            "none": {
+              "yen": 4378,
+              "label": "シンプル3 M（30GB）",
+              "gb": 30
+            },
+            "5": {
+              "yen": 5478,
+              "label": "シンプル3 L（35GB）・1回10分以内の通話無料",
+              "gb": 35
+            },
+            "10": {
+              "yen": 5478,
+              "label": "シンプル3 L（35GB）・1回10分以内の通話無料",
+              "gb": 35
+            },
+            "inf": null
+          },
+          "50": {
+            "none": null,
+            "5": null,
+            "10": null,
+            "inf": null
+          }
+        },
+        "initialYen": 3850,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "22円／30秒。シンプル3 Lは1回10分以内の国内通話が無料"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "eSIMあり（5Gは公式で確認中）"
+          },
+          {
+            "label": "初めの費用",
+            "value": "契約事務手数料 店頭4,950円・オンライン3,850円"
+          },
+          {
+            "label": "解約",
+            "value": "12か月以内に解約すると契約解除料（S・M 858円、L 1,100円）"
+          },
+          {
+            "label": "使い切った後",
+            "value": "S：最大300kbps／M・L：最大1Mbps"
+          },
+          {
+            "label": "割引",
+            "value": "おうち割 光セット(A)で1,650円引き、PayPayカード払いで330円引きなど"
+          }
+        ]
+      },
+      {
+        "id": "rakuten-mobile",
+        "kind": "大手（自社回線）",
+        "tags": [
+          "楽天回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 1078,
+              "label": "Rakuten最強プラン（3GBまで）",
+              "gb": 3
+            },
+            "5": {
+              "yen": 1078,
+              "label": "Rakuten最強プラン（3GBまで）・Rakuten Linkアプリで通話無料",
+              "gb": 3
+            },
+            "10": {
+              "yen": 1078,
+              "label": "Rakuten最強プラン（3GBまで）・Rakuten Linkアプリで通話無料",
+              "gb": 3
+            },
+            "inf": {
+              "yen": 1078,
+              "label": "Rakuten最強プラン（3GBまで）・Rakuten Linkアプリで通話無料",
+              "gb": 3
+            }
+          },
+          "20": {
+            "none": {
+              "yen": 2178,
+              "label": "Rakuten最強プラン（20GBまで）",
+              "gb": 20
+            },
+            "5": {
+              "yen": 2178,
+              "label": "Rakuten最強プラン（20GBまで）・Rakuten Linkアプリで通話無料",
+              "gb": 20
+            },
+            "10": {
+              "yen": 2178,
+              "label": "Rakuten最強プラン（20GBまで）・Rakuten Linkアプリで通話無料",
+              "gb": 20
+            },
+            "inf": {
+              "yen": 2178,
+              "label": "Rakuten最強プラン（20GBまで）・Rakuten Linkアプリで通話無料",
+              "gb": 20
+            }
+          },
+          "50": {
+            "none": {
+              "yen": 3278,
+              "label": "Rakuten最強プラン（無制限）",
+              "gb": null
+            },
+            "5": {
+              "yen": 3278,
+              "label": "Rakuten最強プラン（無制限）・Rakuten Linkアプリで通話無料",
+              "gb": null
+            },
+            "10": {
+              "yen": 3278,
+              "label": "Rakuten最強プラン（無制限）・Rakuten Linkアプリで通話無料",
+              "gb": null
+            },
+            "inf": {
+              "yen": 3278,
+              "label": "Rakuten最強プラン（無制限）・Rakuten Linkアプリで通話無料",
+              "gb": null
+            }
+          }
+        },
+        "initialYen": 0,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "Rakuten Linkアプリを使えば国内通話無料（一部の番号を除く）。アプリを使わないと22円／30秒"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "5G対応（一部のエリア）・eSIMあり"
+          },
+          {
+            "label": "初めの費用",
+            "value": "累計4回線目まで契約事務手数料0円"
+          },
+          {
+            "label": "解約",
+            "value": "公式で確認中"
+          },
+          {
+            "label": "使い切った後",
+            "value": "データ無制限（混雑時などに速度を制御する場合あり）"
+          },
+          {
+            "label": "割引",
+            "value": "最強家族割で110円引き"
+          }
+        ]
+      },
+      {
+        "id": "nihontsushin",
+        "kind": "格安SIM",
+        "tags": [
+          "ドコモ回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 730,
+              "label": "合理的シンプル290（1GB 290円＋1GBごと220円で3GB）",
+              "gb": 3
+            },
+            "5": {
+              "yen": 1390,
+              "label": "合理的みんなのプラン（20GB）・5分かけ放題か月70分無料",
+              "gb": 20
+            },
+            "10": null,
+            "inf": null
+          },
+          "20": {
+            "none": {
+              "yen": 1390,
+              "label": "合理的みんなのプラン（20GB）",
+              "gb": 20
+            },
+            "5": {
+              "yen": 1390,
+              "label": "合理的みんなのプラン（20GB）・5分かけ放題か月70分無料",
+              "gb": 20
+            },
+            "10": null,
+            "inf": null
+          },
+          "50": {
+            "none": {
+              "yen": 2178,
+              "label": "合理的50GBプラン（50GB）",
+              "gb": 50
+            },
+            "5": {
+              "yen": 2178,
+              "label": "合理的50GBプラン（50GB）・5分かけ放題か月70分無料",
+              "gb": 50
+            },
+            "10": null,
+            "inf": null
+          }
+        },
+        "initialYen": 3300,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "11円／30秒。みんなのプラン・50GBプランは「5分かけ放題」か「月70分無料」を選べる"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "5Gはオプション・eSIMあり"
+          },
+          {
+            "label": "初めの費用",
+            "value": "初期手数料3,300円"
+          },
+          {
+            "label": "解約",
+            "value": "最低利用期間・解約金・MNP転出手数料なし"
+          },
+          {
+            "label": "使い切った後",
+            "value": "速度の数値は公式で示していない"
+          }
+        ]
+      },
+      {
+        "id": "iijmio",
+        "kind": "格安SIM",
+        "tags": [
+          "ドコモ回線",
+          "au回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 950,
+              "label": "ギガプラン 5ギガ",
+              "gb": 5
+            },
+            "5": {
+              "yen": 1450,
+              "label": "ギガプラン 5ギガ＋5分かけ放題 500円",
+              "gb": 5
+            },
+            "10": {
+              "yen": 1650,
+              "label": "ギガプラン 5ギガ＋10分かけ放題 700円",
+              "gb": 5
+            },
+            "inf": {
+              "yen": 2350,
+              "label": "ギガプラン 5ギガ＋かけ放題 1,400円",
+              "gb": 5
+            }
+          },
+          "20": {
+            "none": {
+              "yen": 2000,
+              "label": "ギガプラン 25ギガ",
+              "gb": 25
+            },
+            "5": {
+              "yen": 2500,
+              "label": "ギガプラン 25ギガ＋5分かけ放題 500円",
+              "gb": 25
+            },
+            "10": {
+              "yen": 2700,
+              "label": "ギガプラン 25ギガ＋10分かけ放題 700円",
+              "gb": 25
+            },
+            "inf": {
+              "yen": 3400,
+              "label": "ギガプラン 25ギガ＋かけ放題 1,400円",
+              "gb": 25
+            }
+          },
+          "50": {
+            "none": {
+              "yen": 3900,
+              "label": "ギガプラン 55ギガ",
+              "gb": 55
+            },
+            "5": {
+              "yen": 4400,
+              "label": "ギガプラン 55ギガ＋5分かけ放題 500円",
+              "gb": 55
+            },
+            "10": {
+              "yen": 4600,
+              "label": "ギガプラン 55ギガ＋10分かけ放題 700円",
+              "gb": 55
+            },
+            "inf": {
+              "yen": 5300,
+              "label": "ギガプラン 55ギガ＋かけ放題 1,400円",
+              "gb": 55
+            }
+          }
+        },
+        "initialYen": 3733,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "11円／30秒。通話定額は5分500円・10分700円・かけ放題1,400円"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "5Gは無料（一部のSIMは対象外）・eSIMあり"
+          },
+          {
+            "label": "初めの費用",
+            "value": "初期費用3,300円とSIMカード発行手数料433.4円（ドコモ回線）"
+          },
+          {
+            "label": "解約",
+            "value": "MNP転出・解約の手数料なし"
+          },
+          {
+            "label": "使い切った後",
+            "value": "最大300kbps"
+          },
+          {
+            "label": "割引",
+            "value": "家族割で1回線100円引き"
+          }
+        ],
+        "change": "12月1日の新規申し込みから、初期費用が3,850円に上がります。"
+      },
+      {
+        "id": "mineo",
+        "kind": "格安SIM",
+        "tags": [
+          "ドコモ回線",
+          "au回線",
+          "ソフトバンク回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 1298,
+              "label": "マイピタ 3GB",
+              "gb": 3
+            },
+            "5": {
+              "yen": 1848,
+              "label": "マイピタ 3GB＋10分かけ放題 550円",
+              "gb": 3
+            },
+            "10": {
+              "yen": 1848,
+              "label": "マイピタ 3GB＋10分かけ放題 550円",
+              "gb": 3
+            },
+            "inf": {
+              "yen": 2508,
+              "label": "マイピタ 3GB＋時間無制限かけ放題 1,210円",
+              "gb": 3
+            }
+          },
+          "20": {
+            "none": {
+              "yen": 2178,
+              "label": "マイピタ 30GB",
+              "gb": 30
+            },
+            "5": {
+              "yen": 2728,
+              "label": "マイピタ 30GB＋10分かけ放題 550円",
+              "gb": 30
+            },
+            "10": {
+              "yen": 2728,
+              "label": "マイピタ 30GB＋10分かけ放題 550円",
+              "gb": 30
+            },
+            "inf": {
+              "yen": 3388,
+              "label": "マイピタ 30GB＋時間無制限かけ放題 1,210円",
+              "gb": 30
+            }
+          },
+          "50": {
+            "none": {
+              "yen": 2948,
+              "label": "マイピタ 50GB",
+              "gb": 50
+            },
+            "5": {
+              "yen": 3498,
+              "label": "マイピタ 50GB＋10分かけ放題 550円",
+              "gb": 50
+            },
+            "10": {
+              "yen": 3498,
+              "label": "マイピタ 50GB＋10分かけ放題 550円",
+              "gb": 50
+            },
+            "inf": {
+              "yen": 4158,
+              "label": "マイピタ 50GB＋時間無制限かけ放題 1,210円",
+              "gb": 50
+            }
+          }
+        },
+        "initialYen": 4290,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "22円／30秒。10分かけ放題550円・時間無制限1,210円"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "5Gは無料のオプション・eSIMはAプランとDプラン"
+          },
+          {
+            "label": "初めの費用",
+            "value": "契約事務手数料3,850円とSIMカード発行料440円"
+          },
+          {
+            "label": "解約",
+            "value": "解約手数料・MNP転出手数料なし"
+          },
+          {
+            "label": "使い切った後",
+            "value": "最大200kbps"
+          },
+          {
+            "label": "速度で選ぶプラン",
+            "value": "マイそく（データ量でなく速度で決まる）は、最大1.5Mbpsのスタンダードが990円など"
+          }
+        ]
+      },
+      {
+        "id": "nuro",
+        "kind": "格安SIM",
+        "tags": [
+          "ドコモ回線",
+          "au回線",
+          "ソフトバンク回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 792,
+              "label": "バリュープラス VSプラン 3GB",
+              "gb": 3
+            },
+            "5": {
+              "yen": 1282,
+              "label": "バリュープラス VSプラン 3GB＋5分かけ放題 490円",
+              "gb": 3
+            },
+            "10": {
+              "yen": 1672,
+              "label": "バリュープラス VSプラン 3GB＋10分かけ放題 880円",
+              "gb": 3
+            },
+            "inf": {
+              "yen": 2222,
+              "label": "バリュープラス VSプラン 3GB＋かけ放題 1,430円",
+              "gb": 3
+            }
+          },
+          "20": {
+            "none": {
+              "yen": 2699,
+              "label": "NEOプラン 35GB",
+              "gb": 35
+            },
+            "5": {
+              "yen": 3189,
+              "label": "NEOプラン 35GB＋5分かけ放題 490円",
+              "gb": 35
+            },
+            "10": {
+              "yen": 3579,
+              "label": "NEOプラン 35GB＋10分かけ放題 880円",
+              "gb": 35
+            },
+            "inf": {
+              "yen": 4129,
+              "label": "NEOプラン 35GB＋かけ放題 1,430円",
+              "gb": 35
+            }
+          },
+          "50": {
+            "none": {
+              "yen": 3980,
+              "label": "NEOプランW 55GB",
+              "gb": 55
+            },
+            "5": {
+              "yen": 4470,
+              "label": "NEOプランW 55GB＋5分かけ放題 490円",
+              "gb": 55
+            },
+            "10": {
+              "yen": 4860,
+              "label": "NEOプランW 55GB＋10分かけ放題 880円",
+              "gb": 55
+            },
+            "inf": {
+              "yen": 5410,
+              "label": "NEOプランW 55GB＋かけ放題 1,430円",
+              "gb": 55
+            }
+          }
+        },
+        "initialYen": 3740,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "22円／30秒（NUROモバイルでんわは11円）。5分490円・10分880円・かけ放題1,430円"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "5Gは無料のオプション・eSIMあり"
+          },
+          {
+            "label": "初めの費用",
+            "value": "登録事務手数料3,300円とSIMカード準備料440円"
+          },
+          {
+            "label": "解約",
+            "value": "解約金・MNP転出手数料0円"
+          },
+          {
+            "label": "使い切った後",
+            "value": "バリュープラス：最大200kbps／NEOプラン：最大1Mbps"
+          }
+        ]
+      },
+      {
+        "id": "bb-excite",
+        "kind": "格安SIM",
+        "tags": [
+          "ドコモ回線",
+          "au回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 690,
+              "label": "Fitプラン（3GBまでの月）",
+              "gb": 3
+            },
+            "5": null,
+            "10": null,
+            "inf": null
+          },
+          "20": {
+            "none": {
+              "yen": 1980,
+              "label": "Flatプラン 30GB",
+              "gb": 30
+            },
+            "5": null,
+            "10": null,
+            "inf": null
+          },
+          "50": {
+            "none": {
+              "yen": 4400,
+              "label": "Flatプラン 50GB",
+              "gb": 50
+            },
+            "5": null,
+            "10": null,
+            "inf": null
+          }
+        },
+        "initialYen": 0,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "22円／30秒（エキモバでんわは11円／30秒）。3分かけ放題は月759円"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "5Gは追加料金なし・eSIMあり（音声SIM）"
+          },
+          {
+            "label": "初めの費用",
+            "value": "新規契約手数料とSIM発行手数料は、新規契約者特典で0円"
+          },
+          {
+            "label": "解約",
+            "value": "最低利用期間なし、解約・MNP転出の手数料0円"
+          },
+          {
+            "label": "使い切った後",
+            "value": "最大200kbps"
+          },
+          {
+            "label": "割引",
+            "value": "BB.excite光とのセットで音声SIM1枚あたり220円引き"
+          }
+        ]
+      },
+      {
+        "id": "aeon",
+        "kind": "格安SIM",
+        "tags": [
+          "ドコモ回線",
+          "au回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 1078,
+              "label": "音声プラン 3GB",
+              "gb": 3
+            },
+            "5": null,
+            "10": null,
+            "inf": null
+          },
+          "20": {
+            "none": {
+              "yen": 1958,
+              "label": "音声プラン 20GB",
+              "gb": 20
+            },
+            "5": null,
+            "10": null,
+            "inf": null
+          },
+          "50": {
+            "none": {
+              "yen": 3608,
+              "label": "音声プラン 50GB",
+              "gb": 50
+            },
+            "5": null,
+            "10": null,
+            "inf": null
+          }
+        },
+        "initialYen": 3300,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "11円／30秒（イオンでんわ）"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "5Gは追加料金なし・eSIMあり"
+          },
+          {
+            "label": "初めの費用",
+            "value": "契約事務手数料3,300円（SIM代金を含む）"
+          },
+          {
+            "label": "解約",
+            "value": "最低利用期間・解約金なし、MNP転出手数料無料"
+          },
+          {
+            "label": "使い切った後",
+            "value": "最大200kbps"
+          },
+          {
+            "label": "割引",
+            "value": "イオンゴールドカード払いで利用料金5%引き"
+          }
+        ]
+      },
+      {
+        "id": "his",
+        "kind": "格安SIM",
+        "tags": [
+          "ドコモ回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 770,
+              "label": "自由自在プラン 3GB",
+              "gb": 3
+            },
+            "5": {
+              "yen": 1270,
+              "label": "自由自在プラン 3GB＋6分かけ放題 500円",
+              "gb": 3
+            },
+            "10": {
+              "yen": 2250,
+              "label": "自由自在プラン 3GB＋完全かけ放題 1,480円",
+              "gb": 3
+            },
+            "inf": {
+              "yen": 2250,
+              "label": "自由自在プラン 3GB＋完全かけ放題 1,480円",
+              "gb": 3
+            }
+          },
+          "20": {
+            "none": {
+              "yen": 1699,
+              "label": "自由自在プラン 20GB",
+              "gb": 20
+            },
+            "5": {
+              "yen": 1699,
+              "label": "自由自在プラン 20GB・6分かけ放題",
+              "gb": 20
+            },
+            "10": {
+              "yen": 3179,
+              "label": "自由自在プラン 20GB＋完全かけ放題 1,480円",
+              "gb": 20
+            },
+            "inf": {
+              "yen": 3179,
+              "label": "自由自在プラン 20GB＋完全かけ放題 1,480円",
+              "gb": 20
+            }
+          },
+          "50": {
+            "none": null,
+            "5": null,
+            "10": null,
+            "inf": null
+          }
+        },
+        "initialYen": 3300,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "9円／30秒。20GB・30GBは6分かけ放題込み。完全かけ放題は月1,480円"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "5Gは無料のオプション・eSIMあり"
+          },
+          {
+            "label": "初めの費用",
+            "value": "初回契約事務手数料3,300円"
+          },
+          {
+            "label": "解約",
+            "value": "解約料金・MNP転出手数料0円"
+          },
+          {
+            "label": "使い切った後",
+            "value": "最大200kbps"
+          }
+        ]
+      },
+      {
+        "id": "libmo",
+        "kind": "格安SIM",
+        "tags": [
+          "ドコモ回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 990,
+              "label": "超なっとくプラン 5GB",
+              "gb": 5
+            },
+            "5": {
+              "yen": 1540,
+              "label": "超なっとくプラン 5GB＋5分かけ放題 550円",
+              "gb": 5
+            },
+            "10": {
+              "yen": 1760,
+              "label": "超なっとくプラン 5GB＋10分かけ放題 770円",
+              "gb": 5
+            },
+            "inf": {
+              "yen": 2420,
+              "label": "超なっとくプラン 5GB＋かけ放題マックス 1,430円",
+              "gb": 5
+            }
+          },
+          "20": {
+            "none": {
+              "yen": 1980,
+              "label": "超なっとくプラン 20GB",
+              "gb": 20
+            },
+            "5": {
+              "yen": 2530,
+              "label": "超なっとくプラン 20GB＋5分かけ放題 550円",
+              "gb": 20
+            },
+            "10": {
+              "yen": 2750,
+              "label": "超なっとくプラン 20GB＋10分かけ放題 770円",
+              "gb": 20
+            },
+            "inf": {
+              "yen": 3410,
+              "label": "超なっとくプラン 20GB＋かけ放題マックス 1,430円",
+              "gb": 20
+            }
+          },
+          "50": {
+            "none": {
+              "yen": 3960,
+              "label": "超なっとくプラン 60GB",
+              "gb": 60
+            },
+            "5": {
+              "yen": 4510,
+              "label": "超なっとくプラン 60GB＋5分かけ放題 550円",
+              "gb": 60
+            },
+            "10": {
+              "yen": 4730,
+              "label": "超なっとくプラン 60GB＋10分かけ放題 770円",
+              "gb": 60
+            },
+            "inf": {
+              "yen": 5390,
+              "label": "超なっとくプラン 60GB＋かけ放題マックス 1,430円",
+              "gb": 60
+            }
+          }
+        },
+        "initialYen": 3733,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "22円／30秒。5分550円・10分770円・かけ放題1,430円"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "eSIMあり（5Gは公式で確認中）"
+          },
+          {
+            "label": "初めの費用",
+            "value": "契約事務手数料3,300円とSIM発行手数料433円"
+          },
+          {
+            "label": "解約",
+            "value": "音声SIMを使い始めて1年以内に解約すると、月額1か月分の契約解除料"
+          },
+          {
+            "label": "使い切った後",
+            "value": "公式で確認中"
+          },
+          {
+            "label": "割引",
+            "value": "TOKAIグループの光・CATVとのセットで220〜660円引き"
+          }
+        ]
+      },
+      {
+        "id": "jcom-mobile",
+        "kind": "格安SIM",
+        "tags": [
+          "au回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 1958,
+              "label": "Aプラン 5GB",
+              "gb": 5
+            },
+            "5": {
+              "yen": 2508,
+              "label": "Aプラン 5GB＋5分かけ放題 550円",
+              "gb": 5
+            },
+            "10": {
+              "yen": 3608,
+              "label": "Aプラン 5GB＋60分かけ放題 1,650円",
+              "gb": 5
+            },
+            "inf": null
+          },
+          "20": {
+            "none": {
+              "yen": 3058,
+              "label": "Aプラン 20GB",
+              "gb": 20
+            },
+            "5": {
+              "yen": 3608,
+              "label": "Aプラン 20GB＋5分かけ放題 550円",
+              "gb": 20
+            },
+            "10": {
+              "yen": 4708,
+              "label": "Aプラン 20GB＋60分かけ放題 1,650円",
+              "gb": 20
+            },
+            "inf": null
+          },
+          "50": {
+            "none": {
+              "yen": 3828,
+              "label": "Aプラン 50GB",
+              "gb": 50
+            },
+            "5": {
+              "yen": 4378,
+              "label": "Aプラン 50GB＋5分かけ放題 550円",
+              "gb": 50
+            },
+            "10": {
+              "yen": 5478,
+              "label": "Aプラン 50GB＋60分かけ放題 1,650円",
+              "gb": 50
+            },
+            "inf": null
+          }
+        },
+        "initialYen": 3300,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "22円／30秒。5分かけ放題550円・60分かけ放題1,650円"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "一部エリアで5G・eSIMあり（Aプラン SU）"
+          },
+          {
+            "label": "初めの費用",
+            "value": "契約事務手数料3,300円（ウェブ申し込みで初期費用なしの表示あり）"
+          },
+          {
+            "label": "解約",
+            "value": "契約解除料なし"
+          },
+          {
+            "label": "使い切った後",
+            "value": "1GB・5GB：最大200kbps／10GB以上：最大1Mbps"
+          },
+          {
+            "label": "割引",
+            "value": "J:COMのほかのサービスを使う人は、同じ料金でデータが増える（データ盛）"
+          }
+        ]
+      },
+      {
+        "id": "yumobile",
+        "kind": "格安SIM",
+        "tags": [
+          "ドコモ回線"
+        ],
+        "matrix": {
+          "3": {
+            "none": {
+              "yen": 1070,
+              "label": "シングル 5GB",
+              "gb": 5
+            },
+            "5": {
+              "yen": 1620,
+              "label": "シングル 5GB＋10分かけ放題 550円",
+              "gb": 5
+            },
+            "10": {
+              "yen": 1620,
+              "label": "シングル 5GB＋10分かけ放題 550円",
+              "gb": 5
+            },
+            "inf": {
+              "yen": 2470,
+              "label": "シングル 5GB＋無制限かけ放題 1,400円",
+              "gb": 5
+            }
+          },
+          "20": {
+            "none": null,
+            "5": null,
+            "10": null,
+            "inf": null
+          },
+          "50": {
+            "none": null,
+            "5": null,
+            "10": null,
+            "inf": null
+          }
+        },
+        "initialYen": 3740,
+        "facts": [
+          {
+            "label": "通話",
+            "value": "22円／30秒（y.uでんわは11円）。10分かけ放題550円・無制限1,400円"
+          },
+          {
+            "label": "5G・eSIM",
+            "value": "eSIMは利用開始後に切り替え（5Gは公式で確認中）"
+          },
+          {
+            "label": "初めの費用",
+            "value": "登録事務手数料3,300円とSIMカード発行手数料440円"
+          },
+          {
+            "label": "解約",
+            "value": "公式で確認中"
+          },
+          {
+            "label": "使い切った後",
+            "value": "公式で確認中"
+          },
+          {
+            "label": "ほかのプラン",
+            "value": "U-NEXTの見放題がセットの10GB・20GBのプランもある"
+          }
+        ]
+      }
+    ]
+  }
 }

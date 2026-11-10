@@ -79,7 +79,7 @@ test("価格には公式の出典と確認日があり、提携していない�
       if (p.partner) continue;
       assert.ok(p.id && p.name && p.officialUrl, `${where}: 提携していない商品は名前と公式URLが要る`);
       const urls = [p.officialUrl, ...(p.sources ?? []).map((s) => s.url), p.priceSource.url].join(" ");
-      assert.doesNotMatch(urls, /a8\.net|rakuten|amazon|afl\.|valuecommerce|accesstrade|moshimo|afb/i, `${where}: 広告のリンク`);
+      assert.doesNotMatch(urls, /a8\.net|afl\.rakuten|hb\.afl|amazon|afl\.|valuecommerce|accesstrade|moshimo|afb/i, `${where}: 広告のリンク`);
     }
   }
 });
@@ -171,7 +171,7 @@ test("5本とも表示でき、検索に出さない（robots index:false・foll
     assert.ok(out[slug], `${slug} が読み込めない（商品が2つ未満か JSON の誤り）`);
     assert.deepEqual(out[slug].meta.robots, { index: false, follow: true }, slug);
     assert.equal(out[slug].href, `/compare/${slug}`);
-    assert.match(out[slug].html, /11月10日時点/, `${slug}: 確認日が見えない`);
+    assert.match(out[slug].html, /11月1[01]日時点/, `${slug}: 確認日が見えない`);
     assert.doesNotMatch(out[slug].html, /｜|ざっくり/, slug);
   }
 });

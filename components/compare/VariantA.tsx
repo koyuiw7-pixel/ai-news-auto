@@ -14,6 +14,7 @@ import {
   VerdictMark,
 } from "./parts";
 import type { GuideView } from "./view";
+import PlanFinder from "./PlanFinder";
 import { Phrases } from "@/lib/highlight";
 
 /**
@@ -73,6 +74,18 @@ export default function VariantA({ view }: { view: GuideView }) {
         </ol>
       </section>
 
+      {/* 3つの質問と、絞り込み・並べ替えの一覧（2026-11-11 COMPARE-2） */}
+      {guide.planFinder && (
+        <section aria-labelledby="a-table" className="mt-12">
+          <Telop id="a-table" label="一覧" title={`${products.length}件を条件で比べる`} note={view.checkedLabel} />
+          <PlanFinder
+            finder={guide.planFinder}
+            checkedLabel={view.checkedLabel}
+            products={products.map((p) => ({ key: p.key, name: p.item.name, href: p.item.url, sponsored: p.sponsored, sources: p.sources ?? [] }))}
+          />
+        </section>
+      )}
+
       {/* 向いている人・向いていない人（状況 → おすすめ → 理由 → 出典） */}
       {guide.fitTable && guide.fitTable.length > 0 && (
         <section aria-labelledby="a-fit" className="mt-12">
@@ -112,11 +125,13 @@ export default function VariantA({ view }: { view: GuideView }) {
       </section>
       )}
 
-      {/* 比較表 */}
-      <section aria-labelledby="a-table" className="mt-12">
-        <Telop id="a-table" label="一覧" title="比較表" note={`${view.rows.length}項目・公式サイトの記載どおり`} />
-        <CompareTable view={view} tone="news" />
-      </section>
+      {/* 比較表（絞り込みのあるガイドは、結論のすぐ下に3つの質問と一覧を出す） */}
+      {!guide.planFinder && (
+        <section aria-labelledby="a-table" className="mt-12">
+          <Telop id="a-table" label="一覧" title="比較表" note={`${view.rows.length}項目・公式サイトの記載どおり`} />
+          <CompareTable view={view} tone="news" />
+        </section>
+      )}
 
       {/* 選び方 */}
       <section aria-labelledby="a-how" className="mt-12">
@@ -132,7 +147,8 @@ export default function VariantA({ view }: { view: GuideView }) {
         </ol>
       </section>
 
-      {/* 商品ごと */}
+      {/* 商品ごと（絞り込みのあるガイドは、一覧の「くわしく」に入れたので出さない） */}
+      {!guide.planFinder && (
       <section aria-labelledby="a-products" className="mt-12">
         <Telop id="a-products" label="詳細" title="1つずつ見る：できること・注意点" />
         <div className="grid gap-10">
@@ -172,6 +188,7 @@ export default function VariantA({ view }: { view: GuideView }) {
           ))}
         </div>
       </section>
+      )}
 
       {/* 本題とは別の囲み（例: 保険相談のページの火災保険） */}
       {view.sideSections.map((section) => (
