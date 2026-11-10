@@ -128,6 +128,7 @@
   },
   "major_tries": {},
   "pi_reopened": {
+    "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
     "02667be02cad0dd5": "2026-11-07T18:50:54.043233+00:00",
     "0281c9bf841dd5aa": "2026-11-07T15:31:07.844885+00:00",
     "0a40dc02edbb2ef3": "2026-11-06T19:41:01.362264+00:00",
@@ -3576,7 +3577,7 @@
       "url": "https://www.ntt-east.co.jp/release/detail/20261102_01.html"
     },
     "01bff59602ac637f": {
-      "at": "2026-11-10T16:52:08.186552+00:00",
+      "at": "2026-11-10T17:12:44.970604+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/11/20261111-psplus-game-catalog-o/"
@@ -7160,13 +7161,6 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202610/video-326675.html"
     },
-    "3a37808a86b2e58d": {
-      "at": "2026-10-27T16:53:33.719042+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "followup quality: 続報の長さが不適切（210字 / 400〜900字）",
-      "skipped": true,
-      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1219_4789.html"
-    },
     "3aaecb9913a0e575": {
       "at": "2026-11-02T23:52:55.867046+00:00",
       "reason": "short text 494",
@@ -7909,6 +7903,13 @@
       "section": "lifestyle",
       "slug": "suntory-non-aru-sakaba-new-release",
       "url": "https://www.suntory.co.jp/news/article/2026/15160.html?rss=0000000029"
+    },
+    "47ef8098f28e3a34": {
+      "at": "2026-11-10T17:12:14.596580+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 本文「Google AI プラン（Gemini）料金ページは11月11日、料金・プランの記載変更を公開しました」→ 元記事に公開日の11月11日は無く、差分の確認時刻は2026-11-10T17:11+00:00までなので、公開日を11月11日とするのは日付の創作である; リード「11月10日の差分では国・地域案内のモデル名がArgonからCarbonに変わりま",
+      "skipped": true,
+      "url": "https://gemini.google/us/subscriptions/?hl=en#entry-2026-11-11-293931"
     },
     "47fe40d0187dd449": {
       "at": "2026-11-06T02:26:34.642823+00:00",
@@ -11490,14 +11491,6 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/kaiken/01koho01_02001589.html"
     },
-    "7b7a9b09c0599cf2": {
-      "at": "2026-10-27T17:12:19.208475+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "lifestyle",
-      "slug": "kirin-good-ale-limited-message-can",
-      "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1027_01.html"
-    },
     "7b989b7aa0d3bfd4": {
       "at": "2026-11-04T03:01:31.453588+00:00",
       "reason": "stale: 発表から307時間（記事ページの日付）",
@@ -11793,12 +11786,6 @@
       "reason": "dedupe: 見出しが類似（0.83）: 令和8年10月29日(木)午後-内閣官房長官記者会見",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326861.html"
-    },
-    "806a357f4cfce02d": {
-      "at": "2026-10-27T17:11:38.062153+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（懇談会）",
-      "skipped": true,
-      "url": "https://www.caa.go.jp/notice/entry/047872/"
     },
     "80b66c43c323cf52": {
       "at": "2026-11-10T07:43:43.127485+00:00",
@@ -14161,14 +14148,6 @@
       "reason": "public-interest: 資料が短い 720字",
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/048088/"
-    },
-    "a3a879144b2984ac": {
-      "at": "2026-10-27T16:53:03.045319+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "openai-oracle-partnership-chatgpt",
-      "url": "https://openai.com/index/oracle-apps-in-chatgpt"
     },
     "a3acde162bc9d6a8": {
       "at": "2026-11-08T05:23:18.488986+00:00",
@@ -18165,14 +18144,6 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77054.html"
     },
-    "e2437ef711cac173": {
-      "at": "2026-10-27T16:54:50.157475+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "lifestyle",
-      "slug": "caa-recall-accident-report-202610",
-      "url": "https://www.caa.go.jp/notice/entry/047930/"
-    },
     "e2654f5d2f822277": {
       "at": "2026-11-04T08:04:11.849363+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -19177,13 +19148,6 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu31/001/kaisai/230125_00003.htm"
     },
-    "f2c670168a6c1ca6": {
-      "at": "2026-10-27T17:11:38.062110+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2120字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（336字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.ntt.com/about-us/press-releases/news/article/2026/1027_3.html"
-    },
     "f30582815c21ca92": {
       "at": "2026-11-07T06:12:04.512754+00:00",
       "reason": "dedupe: 同じ発表の記事あり（製品名が一致（gemini4argon））: google-ai-news-october-2026",
@@ -19753,6 +19717,13 @@
       "reason": "followup quality: 要点: 複数のAIモデルを自動で最適にルーティングする新機能「GitHub Copilot Fusion」が一般提供を開始しました。 → 元記事では「experimental preview（実験的プレビュー）」としてリリースされたとあり、「一般提供」との記述は矛盾する。; 本文: GitHub Changelog（Copilot）は2026年10月29日 → ",
       "skipped": true,
       "url": "https://github.blog/changelog/2026-10-28-github-copilot-fusion-now-supports-selection-of-local-models"
+    },
+    "fc6b6a56df7b3650": {
+      "at": "2026-11-10T17:12:44.478051+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「10月28日の発表時点では、一般向けは「できるだけ早く」とされていました」→ 元記事にも確認済みの文脈にも、10月28日の発表日や「できるだけ早く」という表現は無く、創作された日付と引用である; 「今回、開発者、企業、研究者、一般利用者に広がりました」→ 元記事では一般利用者向けの提供は Google AI Ultra 契約者の展開（順次ロールアウト）に限られ",
+      "skipped": true,
+      "url": "https://deepmind.google/blog/gemini-4-carbon-is-now-available/"
     },
     "fc8cde8a364c329f": {
       "at": "2026-11-04T04:55:11.390959+00:00",
@@ -20553,56 +20524,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:03:44.143126+00:00",
-      "attempt": 1,
-      "id": "adad9792c087072f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 133.6,
-        "avg_sentence": 51.4,
-        "long_share": 0.385,
-        "max_paragraph": 219,
-        "paragraphs": 5,
-        "sentences": 13
-      },
-      "score": 90,
-      "source": "jrcentral",
-      "title": "「EX推しチャンス」サービスの開始について 1.1MB",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（EX・JR）",
-        "感嘆符（！）が多い。感嘆符は使わない"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:04:07.885834+00:00",
-      "attempt": 0,
-      "id": "adad9792c087072f",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 85.8,
-        "avg_sentence": 40.4,
-        "long_share": 0.059,
-        "max_paragraph": 129,
-        "paragraphs": 8,
-        "sentences": 17
-      },
-      "score": 88,
-      "source": "jrcentral",
-      "title": "「EX推しチャンス」サービスの開始について 1.1MB",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（EX・JR）",
-        "感嘆符（！）が多い。感嘆符は使わない"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T09:04:39.005711+00:00",
@@ -27896,6 +27817,40 @@
       "score": 72,
       "source": "google-gemini-blog",
       "title": "Gemini 4 Carbon is now available"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T17:12:14.596556+00:00",
+      "attempt": 1,
+      "id": "47ef8098f28e3a34",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "本文「Google AI プラン（Gemini）料金ページは11月11日、料金・プランの記載変更を公開しました」→ 元記事に公開日の11月11日は無く、差分の確認時刻は2026-11-10T17:11+00:00までなので、公開日を11月11日とするのは日付の創作である",
+        "リード「11月10日の差分では国・地域案内のモデル名がArgonからCarbonに変わりました」→ 差分の内容としては元記事と一致するが、本文の11月11日公開という日付と並ぶことで読者が変更日を誤認しうる"
+      ],
+      "score": 72,
+      "source": "watch-gemini-subscriptions",
+      "title": "Geminiの料金・プランのページが更新（プランの記載が変更）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T17:12:44.478017+00:00",
+      "attempt": 1,
+      "id": "fc6b6a56df7b3650",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「10月28日の発表時点では、一般向けは「できるだけ早く」とされていました」→ 元記事にも確認済みの文脈にも、10月28日の発表日や「できるだけ早く」という表現は無く、創作された日付と引用である",
+        "「今回、開発者、企業、研究者、一般利用者に広がりました」→ 元記事では一般利用者向けの提供は Google AI Ultra 契約者の展開（順次ロールアウト）に限られており、一般利用者すべてに提供されたようには読めるため言い過ぎ",
+        "タイトル「検索AIモードで利用可能に」→ 元記事では AI Mode in Search は Google AI Ultra 加入者へのロールアウトとされ、対象が限定されることが省かれている",
+        "「API、Google AI Studio、Gemini for business、Antigravityなどで利用できます」（リード）→ Antigravity は元記事で Ultra 加入者向けに展開中とされ、API と同列の一般提供のように読める",
+        "「複数のAIが分担して作業する機能も、試せる形で案内されています」→ 元記事は /swarm を preview として提供すると述べるのみで、試せる範囲や対象は書かれていない",
+        "「次点の外部モデルと比べてタスクあたりのコストは2倍以上低い」→ 元記事の「more than 2X lower cost per task」と一致するが、MKA の6倍超と並べると指標の違いが読者に伝わりにくい"
+      ],
+      "score": 62,
+      "source": "google-deepmind-blog",
+      "title": "Gemini 4 Carbon is now available"
     }
   ],
   "short_text_retry": {},
@@ -27908,8 +27863,8 @@
       "5242b0a9a92ab49c": "baseline",
       "536f539d104eb80e": "baseline",
       "65a08b362ab42df1": "baseline",
-      "862a1e12615dce30": "baseline",
       "87a563b673727f20": "baseline",
+      "9bfd9c1f738fffc8": "2026-11-10T17:11:11.024399+00:00",
       "a5e8cd8d3d0fa545": "baseline",
       "ad2d1a0152d0c640": "baseline",
       "b0d16b78d77a4b37": "baseline",
