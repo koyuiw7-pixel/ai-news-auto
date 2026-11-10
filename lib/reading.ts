@@ -50,12 +50,20 @@ export function normalizeAdPositions(list: string[]): string[] {
   return out;
 }
 
-export type ReadingEvent = { p: string; s: ReadingSource; d: number; t: number; n: boolean; a: string[]; x: ExitZone };
+/** 得のカードの A/B の arm（lib/ad-ab.ts。台帳 W41） */
+export const AB_ARMS = ["1", "2"] as const;
+export type ReadingArm = typeof AB_ARMS[number];
+
+/**
+ * b: 得のカードの A/B の arm（<html data-abc>）/ k: 画面に半分以上出た、A/B のカードのある PR 枠（data-aff-pos）。表示の数（クリック率の分母）に使う。
+ * どちらも省略できる（A/B のカードを見ていない表示・古い画面）
+ */
+export type ReadingEvent = { p: string; s: ReadingSource; d: number; t: number; n: boolean; a: string[]; x: ExitZone; b?: ReadingArm; k?: string[] };
 
 /** 受け取った送信の中身を確かめて、決まった形に直す。おかしければ null */
 export function parseReading(body: Record<string, unknown> | null): ReadingEvent | null {
   if (!body) return null;
-  const { p, s, d, t, n, a, x } = body;
+  const { p, s, d, t, n, a, x, b, k } = body;
   if (typeof p !== "string" || !validPageKey(p) || p === "_home" || p.startsWith("digest-")) return null;
   if (typeof s !== "string" || !READING_SOURCES.includes(s as ReadingSource)) return null;
   if (typeof d !== "number" || !Number.isInteger(d) || d < 0 || d > MAX_DEPTH || d % 10 !== 0) return null;
@@ -63,5 +71,8 @@ export function parseReading(body: Record<string, unknown> | null): ReadingEvent
   if (typeof n !== "boolean") return null;
   if (!Array.isArray(a) || a.length > MAX_AD_POS || !a.every((v) => typeof v === "string" && AD_POS.test(v))) return null;
   if (typeof x !== "string" || !EXIT_ZONES.includes(x as ExitZone)) return null;
-  return { p, s: s as ReadingSource, d, t, n, a: [...new Set(a as string[])], x: x as ExitZone };
+  if (b !== undefined && !AB_ARMS.includes(b as ReadingArm)) return null;
+  if (k !== undefined && (!Array.isArray(k) || k.length > MAX_AD_POS || !k.every((v) => typeof v === "string" && AD_POS.test(v)))) return null;
+  const tested = Array.isArray(k) && b !== undefined ? [...new Set(k as string[])] : [];
+  return { p, s: s as ReadingSource, d, t, n, a: [...new Set(a as string[])], x: x as ExitZone, ...(tested.length ? { b: b as ReadingArm, k: tested } : {}) };
 }

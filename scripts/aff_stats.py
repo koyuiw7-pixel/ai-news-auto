@@ -113,6 +113,47 @@ def variant_summary(rows: list[dict]) -> list[str]:
     return [f"{POSITION_LABELS.get(k, k)} a {v['a']}・b {v['b']}" for k, v in sorted(table.items(), key=lambda kv: -(kv[1]["a"] + kv[1]["b"]))]
 
 
+ARM_LABELS = {"1": "1 結果を先に見せる", "2": "2 比べて選ぶ（基準）"}
+
+
+def arm_summary(clicks_rows: list[dict], seen: dict | None) -> list[str]:
+    """得のカードの A/B（lib/ad-ab.ts。台帳 W41）。arm ごとに 表示（/api/aff/reading の abSeen。記事のページで枠が半分以上見えた数）・
+    クリック（/api/aff/stats の byArm）・クリック率。置き場所ごとの行と合計。表示は記事のページだけなので、ガイド・計算ツールのクリックは率に入れない"""
+    seen = seen or {}
+    clicks: dict[str, dict[str, int]] = {"1": {}, "2": {}}
+    for row in clicks_rows:
+        arm = str(row.get("arm", ""))
+        if arm in clicks:
+            pos = position_group(str(row.get("pos", "other")))
+            clicks[arm][pos] = clicks[arm].get(pos, 0) + int(row.get("clicks", 0))
+    lines: list[str] = []
+    for arm in ("1", "2"):
+        views = {k: int(v) for k, v in (seen.get(arm) or {}).items()}
+        positions = sorted(set(views) | set(clicks[arm]))
+        total_v = sum(views.values())
+        total_c = sum(clicks[arm].get(p, 0) for p in views)
+        rate = f"{total_c / total_v:.2%}" if total_v else "分母なし"
+        lines.append(f"{ARM_LABELS[arm]}: 表示 {total_v}・クリック {total_c}・クリック率 {rate}")
+        for pos in positions:
+            v, c = views.get(pos, 0), clicks[arm].get(pos, 0)
+            r = f"{c / v:.2%}" if v else "表示なし"
+            lines.append(f"    {POSITION_LABELS.get(pos, pos)}: 表示 {v}・クリック {c}・{r}")
+    return lines
+
+
+def fetch_reading(token: str, date: str) -> dict:
+    """記事の読まれ方（cloudflare/reading.ts）。A/B の表示の数（abSeen）に使う。取れなければ空"""
+    req = urllib.request.Request(
+        f"{SITE}/api/aff/reading?date={date}",
+        headers={"Authorization": f"Bearer {token}", "User-Agent": "SaisokuAffStats/1.0"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=120) as res:
+            return json.loads(res.read())
+    except (urllib.error.URLError, TimeoutError, ValueError):
+        return {}
+
+
 def program_names() -> dict[str, str]:
     """a8mat → 提携先の名前（affiliate_links.json・content/offers.json・content/products.json から）"""
     # A8 以外はドメインで数えている（components/AffClickTracker.tsx の programOf）
@@ -172,7 +213,7 @@ def show(data: dict, names: dict[str, str]) -> None:
             print("    注意: 導入日途中・送信欠測・日跨ぎの影響あり。観測0は全訪問0の証明ではありません。")
         if funnel.get("truncated"):
             print("    注意: 集計上限に達しました。全件集計ではありません。")
-    if not data["clicks"]:
+    if not data["clicks"] and not data.get("_abSeen"):
         return
     print("  提携先別:")
     for row in data["byProgram"]:
@@ -189,6 +230,10 @@ def show(data: dict, names: dict[str, str]) -> None:
         for label, name, clicks in placements[:20]:
             print(f"    {label} ／ {name}  {clicks}回")
     print("  置き場所別（枠の中の順番まで）: " + "、".join(f"{row['pos']} {row['clicks']}" for row in data["byPosition"]))
+    if data.get("byArm") or (data.get("_abSeen") or {}).get("1") or (data.get("_abSeen") or {}).get("2"):
+        print("  得のカードの A/B（訪問者ごとに半々。表示＝記事で枠が半分以上見えた数）:")
+        for line in arm_summary(data.get("byArm", []), data.get("_abSeen")):
+            print(f"    {line}")
     variants = variant_summary(data.get("byVariant", []))
     if variants:
         print("  PR の囲みのボタンの色（A/B。a=赤・b=基本色。訪問者ごとに半々）: " + "、".join(variants))
@@ -240,6 +285,8 @@ def main() -> int:
 
     try:
         results = [fetch(token, d) for d in dates]
+        for data in results:
+            data["_abSeen"] = fetch_reading(token, data["date"]).get("abSeen") or {}
     except urllib.error.HTTPError as error:
         print(f"[aff] 取得に失敗しました: HTTP {error.code}", file=sys.stderr)
         return 1

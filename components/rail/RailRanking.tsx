@@ -4,6 +4,8 @@ import { Pixels, PrNote, PrTag } from "./parts";
 import TimedPixels from "./TimedPixels";
 import InternalMoneyCard from "@/components/InternalMoneyCard";
 import { benefitFor } from "@/lib/ad-benefits";
+import { abCardFor } from "@/lib/ad-ab";
+import AbBox from "./AbBox";
 
 /**
  * 「サイソクのおすすめ3選」。記事の文脈に合う商品を番号つきで並べ、1位を大きく推す。
@@ -34,11 +36,31 @@ export default function RailRanking({
   // 得のカード（大きな数字。台帳 W38）。記事のページは記事ごとの見出しつきで付けて渡す。ホーム・一覧など付いていない枠は商品の既定の数字だけ
   const items = offer.items.map((item) => (item.benefit || item.kind !== "partner" ? item : { ...item, benefit: benefitFor(item.key) }));
   const heading = title ?? offer.headline;
+  const place = pos ?? (wide ? "ranking-inline" : "ranking-rail");
+
+  // 1つ目が数字のある提携商品なら、得のカードの A/B の囲み（lib/ad-ab.ts。台帳 W41）。並べ替えはしない（arm どうしで同じ商品を比べる）
+  const ab = items[0] ? abCardFor(items[0]) : undefined;
+  if (ab) {
+    return (
+      <>
+        <AbBox
+          id={id}
+          card={ab}
+          item={items[0]}
+          rest={items.slice(1, visible)}
+          pos={place}
+          internal={offer.money}
+          pixels={countImpression ? offer.pixels : []}
+        />
+        {countImpression && <TimedPixels enabled={process.env.VERCEL_ENV === "production"} pixels={offer.timedPixels ?? []} />}
+      </>
+    );
+  }
 
   return (
     <aside
       id={id}
-      data-aff-pos={pos ?? (wide ? "ranking-inline" : "ranking-rail")}
+      data-aff-pos={place}
       data-ad-ab=""
       aria-label="PR：広告・紹介"
       className="ad-box relative overflow-hidden rounded-2xl border border-line"

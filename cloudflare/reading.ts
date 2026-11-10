@@ -59,7 +59,7 @@ async function record(request: Request, url: URL, env: ReadingEnv, ctx: Ctx): Pr
   const visitor = (await sha256Hex(`${env.AFF_STATS_TOKEN}|${date}|${request.headers.get("cf-connecting-ip") ?? ""}|${ua}`)).slice(0, 12);
   if (await burst(url.origin, visitor)) return noContent();
   const page = (await sha256Hex(event.p)).slice(0, 12);
-  const meta = { p: event.p, s: event.s, d: event.d, t: event.t, n: event.n ? 1 : 0, a: event.a.join(","), x: event.x };
+  const meta = { p: event.p, s: event.s, d: event.d, t: event.t, n: event.n ? 1 : 0, a: event.a.join(","), x: event.x, ...(event.b && event.k ? { b: event.b, k: event.k.join(",") } : {}) };
   ctx.waitUntil(
     env.AFF_KV.put(`r:${date}:${visitor}:${page}`, "", { expirationTtl: KEEP_DAYS * 86400, metadata: meta }).catch((error) =>
       console.error("[reading] put failed", String(error)),
@@ -68,7 +68,7 @@ async function record(request: Request, url: URL, env: ReadingEnv, ctx: Ctx): Pr
   return noContent();
 }
 
-type Meta = { p?: string; s?: string; d?: number; t?: number; n?: number; a?: string; x?: string };
+type Meta = { p?: string; s?: string; d?: number; t?: number; n?: number; a?: string; x?: string; b?: string; k?: string };
 type Row = { views: number; depth: number[]; time: number[]; nextSeen: number; exits: Record<string, number>; adSeen: Record<string, number> };
 const newRow = (): Row => ({ views: 0, depth: Array(11).fill(0), time: TIME_BUCKETS.map(() => 0), nextSeen: 0, exits: {}, adSeen: {} });
 
@@ -107,6 +107,8 @@ function shape(row: Row) {
 
 export async function summarizeReading(date: string, kv: KvNamespace) {
   const total = newRow();
+  // 得のカードの A/B: arm ごと・置き場所ごとに、カードが画面に半分以上出た表示の数（クリックは /api/aff/stats の byArm）
+  const abSeen: Record<string, Record<string, number>> = { "1": {}, "2": {} };
   const pages = new Map<string, Row>();
   const sources = new Map<string, Row>();
   let count = 0;
@@ -118,6 +120,9 @@ export async function summarizeReading(date: string, kv: KvNamespace) {
       if (!meta.p || !meta.s) continue;
       count++;
       add(total, meta);
+      if ((meta.b === "1" || meta.b === "2") && meta.k) {
+        for (const pos of meta.k.split(",").filter(Boolean)) abSeen[meta.b][pos] = (abSeen[meta.b][pos] ?? 0) + 1;
+      }
       for (const [map, name] of [[pages, meta.p], [sources, meta.s]] as const) {
         let row = map.get(name);
         if (!row) map.set(name, (row = newRow()));
@@ -134,6 +139,7 @@ export async function summarizeReading(date: string, kv: KvNamespace) {
       "One record per estimated visitor x article x JST day (latest snapshot wins). Depth = share of the page above the footer that was on screen (10% steps). Engaged = seconds the tab was visible (bucketed). nextReadSeen = the 'next article' section was at least half on screen. internalClicks = the last same-site link clicked, by zone. adSeen = PR boxes (data-aff-pos) at least half on screen. Excludes bots, automated browsers, DNT/GPC and internal tests. Snapshots can be lost when a browser is closed abruptly, so counts are a lower bound.",
     truncated: !!cursor,
     total: shape(total),
+    abSeen,
     bySource: [...sources].map(([source, row]) => ({ source, ...shape(row) })).sort((a, b) => b.views - a.views),
     byPage: [...pages].map(([page, row]) => ({ page, ...shape(row) })).sort((a, b) => b.views - a.views),
   };

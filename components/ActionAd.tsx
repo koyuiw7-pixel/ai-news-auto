@@ -2,6 +2,8 @@ import type { ActionAd as ActionAdData } from "@/lib/action-ad";
 import { OtherSites, Pixels, PrFeature, PrTag } from "@/components/rail/parts";
 import InternalMoneyCard from "@/components/InternalMoneyCard";
 import Link from "next/link";
+import { abCardFor } from "@/lib/ad-ab";
+import AbBox from "@/components/rail/AbBox";
 
 /**
  * 「すぐにできること」のすぐ下に置く、編集部の言葉で書いた PR の囲み（1記事に1つ。lib/action-ad.ts）。
@@ -31,7 +33,19 @@ export default function ActionAd({ ad, className = "mt-4", pos = "action-ad" }: 
   if (ad.items.length === 0 && internal.length === 0) return null;
   const [first, ...rest] = ad.items;
   const hasPr = Boolean(first);
-  const box = (
+  // 1つ目が数字のある提携商品なら、得のカードの A/B の囲み（lib/ad-ab.ts。台帳 W41）
+  const ab = first ? abCardFor(first.item) : undefined;
+  const box = ab && first ? (
+    <AbBox
+      card={ab}
+      item={first.item}
+      rest={rest.map(({ item }) => item)}
+      pos={pos}
+      internal={internal[0]}
+      pixels={ad.items.map(({ pixel }) => pixel).filter((p): p is string => Boolean(p))}
+      className={`max-w-[40em] ${className}`}
+    />
+  ) : (
     <aside
       data-aff-pos={pos}
       data-action-ad={ad.key}

@@ -43,6 +43,8 @@ export function installReading(slug: string, source: ReadingSource, send = (body
   let maxRatio = 0;
   let nextRead = false;
   const seen: string[] = [];
+  // 得のカードの A/B のカードがある枠（data-ab-arm を含む data-aff-pos）。表示の数に使う（lib/reading.ts の k）
+  const abSeen: string[] = [];
   let exit: ExitZone = "";
   let lastSent = "";
 
@@ -65,7 +67,12 @@ export function installReading(slug: string, source: ReadingSource, send = (body
     const ms = visibleMs + (visibleSince >= 0 ? now - visibleSince : 0);
     // 画面切り替えの後片付けでは、もう次のページが描かれているので測り直さない
     if (remeasure) measure();
-    const body = JSON.stringify({ p: slug, s: source, d: depthBucket(maxRatio), t: timeBucket(ms / 1000), n: nextRead, a: normalizeAdPositions(seen), x: exit });
+    const arm = document.documentElement.getAttribute("data-abc");
+    const tested = normalizeAdPositions(abSeen);
+    const body = JSON.stringify({
+      p: slug, s: source, d: depthBucket(maxRatio), t: timeBucket(ms / 1000), n: nextRead, a: normalizeAdPositions(seen), x: exit,
+      ...((arm === "1" || arm === "2") && tested.length ? { b: arm, k: tested } : {}),
+    });
     // 前回と同じ中身なら送らない（Worker は同じ人・同じ記事の記録を最新で上書きする）
     if (body === lastSent) return;
     try { if (send(body)) lastSent = body; } catch { /* 計測は読む動きを止めない */ }
@@ -100,7 +107,10 @@ export function installReading(slug: string, source: ReadingSource, send = (body
       if (!entry.isIntersecting || document.visibilityState !== "visible") continue;
       const el = entry.target as HTMLElement;
       const pos = el.getAttribute("data-aff-pos");
-      if (pos) { if (!seen.includes(pos)) seen.push(pos); } else nextRead = true;
+      if (pos) {
+        if (!seen.includes(pos)) seen.push(pos);
+        if (el.querySelector("[data-ab-arm]") && !abSeen.includes(pos)) abSeen.push(pos);
+      } else nextRead = true;
       io?.unobserve(el);
     }
   }, { threshold: 0.5 }) : null;

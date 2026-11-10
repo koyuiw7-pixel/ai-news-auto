@@ -25,7 +25,7 @@ export type AffEnv = {
 };
 
 type Ctx = { waitUntil(promise: Promise<unknown>): void };
-type Meta = { path?: string; pos?: string; v?: string; ab?: string };
+type Meta = { path?: string; pos?: string; v?: string; ab?: string; arm?: string };
 type FunnelMeta = Meta & { stage?: string; source?: string; choice?: string; articleMeasurement?: number };
 
 const PROGRAM = /^[A-Za-z0-9+._-]{1,60}$/;
@@ -79,13 +79,15 @@ async function click(request: Request, url: URL, env: AffEnv, ctx: Ctx): Promise
   // 機械のアクセス・設定が無いときは黙って捨てる（画面には何も返さなくてよい）
   if (!ua || BOT_UA.test(ua) || isInternal(request) || !env.AFF_KV || !env.AFF_STATS_TOKEN) return noContent();
 
-  const body = await readJson<{ p?: unknown; path?: unknown; pos?: unknown; ab?: unknown }>(request, 1024);
+  const body = await readJson<{ p?: unknown; path?: unknown; pos?: unknown; ab?: unknown; arm?: unknown }>(request, 1024);
   const program = typeof body?.p === "string" ? body.p : "";
   const path = typeof body?.path === "string" ? body.path : "";
   const pos = typeof body?.pos === "string" ? body.pos : "other";
   // PR の囲みのボタンの色の A/B（a・b のどちらか。無ければ記録しない。components/AffClickTracker.tsx）
   const ab = body?.ab === "a" || body?.ab === "b" ? body.ab : undefined;
-  if (!PROGRAM.test(program) || !PATH.test(path) || !POS.test(pos) || (body?.ab !== undefined && !ab)) return json({ error: "invalid" }, 400);
+  // 得のカードの A/B（"1" = 結果を先に見せる、"2" = 比べて選ぶ。lib/ad-ab.ts。台帳 W41）
+  const arm = body?.arm === "1" || body?.arm === "2" ? body.arm : undefined;
+  if (!PROGRAM.test(program) || !PATH.test(path) || !POS.test(pos) || (body?.ab !== undefined && !ab) || (body?.arm !== undefined && !arm)) return json({ error: "invalid" }, 400);
 
   const now = Date.now();
   const date = jstDate(now);
@@ -95,7 +97,7 @@ async function click(request: Request, url: URL, env: AffEnv, ctx: Ctx): Promise
   if (!selftest && (await limited(url.origin, visitor, `${program}|${path}`))) return noContent();
 
   const rand = crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
-  const meta: Meta = { path, pos, v: visitor.slice(0, 8), ...(ab ? { ab } : {}) };
+  const meta: Meta = { path, pos, v: visitor.slice(0, 8), ...(ab ? { ab } : {}), ...(arm ? { arm } : {}) };
   ctx.waitUntil(
     env.AFF_KV.put(`${selftest ? "t" : "c"}:${date}:${program}:${jstTime(now)}${rand}`, "", { expirationTtl: (selftest ? 2 : KEEP_DAYS) * 86400, metadata: meta }).catch((error) =>
       console.error("[aff] put failed", String(error)),
@@ -223,6 +225,8 @@ async function stats(request: Request, url: URL, env: AffEnv): Promise<Response>
   const hours = new Map<string, Row>();
   // PR の囲みのボタンの色の A/B（置き場所 × a/b）。訪問者ごとに半々で決めるので、表示回数はほぼ同じ。クリック数をそのまま比べる（2026-11-10）
   const variants = new Map<string, Row>();
+  // 得のカードの A/B（置き場所 × arm）。表示の数は /api/aff/reading の abSeen（cloudflare/reading.ts）。scripts/aff_stats.py がクリック率にする
+  const arms = new Map<string, Row>();
   const visitors = new Set<string>();
   let total = 0;
   let cursor: string | undefined;
@@ -239,6 +243,7 @@ async function stats(request: Request, url: URL, env: AffEnv): Promise<Response>
       bump(positions, meta.pos ?? "other", visitor);
       bump(placements, `${(meta.pos ?? "other").replace(/-\d+$/, "")}|${program}`, visitor);
       bump(hours, rest.slice(0, 2) || "??", visitor);
+      if (meta.arm) bump(arms, `${(meta.pos ?? "other").replace(/-\d+$/, "")}|${meta.arm}`, visitor);
       if (meta.ab) bump(variants, `${(meta.pos ?? "other").replace(/-\d+$/, "")}|${meta.ab}`, visitor);
     }
     cursor = page.list_complete ? undefined : page.cursor;
@@ -261,6 +266,10 @@ async function stats(request: Request, url: URL, env: AffEnv): Promise<Response>
     byVariant: sorted(variants, "key").map(({ key, clicks, visitors }) => {
       const [pos, ab] = String(key).split("|");
       return { pos, ab, clicks, visitors };
+    }),
+    byArm: sorted(arms, "key").map(({ key, clicks, visitors }) => {
+      const [pos, arm] = String(key).split("|");
+      return { pos, arm, clicks, visitors };
     }),
     byHour: sorted(hours, "hour").sort((a, b) => String(a.hour).localeCompare(String(b.hour))),
     funnel: await funnelStats(date, env.AFF_KV),

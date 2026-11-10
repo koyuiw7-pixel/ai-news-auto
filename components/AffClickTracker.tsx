@@ -23,7 +23,15 @@ export default function AffClickTracker() {
       const pos = box?.getAttribute("data-aff-pos") || "other";
       // PR の囲み（data-ad-ab）は、ボタンの色の A/B（<html data-adv>。app/layout.tsx）もいっしょに送る（cloudflare/aff.ts の byVariant）
       const variant = box?.hasAttribute("data-ad-ab") ? document.documentElement.getAttribute("data-adv") : null;
-      const body = JSON.stringify({ p: programOf(link.href), path: location.pathname, pos: rank ? `${pos}-${rank}` : pos, ...(variant === "a" || variant === "b" ? { ab: variant } : {}) });
+      // 得のカードの A/B（lib/ad-ab.ts。台帳 W41）: 押したリンクのある arm（data-ab-arm）。cloudflare/aff.ts の byArm
+      const arm = link.closest("[data-ab-arm]")?.getAttribute("data-ab-arm");
+      const body = JSON.stringify({
+        p: programOf(link.href),
+        path: location.pathname,
+        pos: rank ? `${pos}-${rank}` : pos,
+        ...(variant === "a" || variant === "b" ? { ab: variant } : {}),
+        ...(arm === "1" || arm === "2" ? { arm } : {}),
+      });
       navigator.sendBeacon("/api/aff/click", body);
     };
     document.addEventListener("click", onClick, { capture: true, passive: true });

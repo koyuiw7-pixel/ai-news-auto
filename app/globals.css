@@ -993,3 +993,233 @@ mark {
 .ad-bar {
   background: var(--ink);
 }
+
+/*
+ * 得のカードの A/B（components/rail/AbBox.tsx・lib/ad-ab.ts。台帳 W41。2026-11-11）。
+ * <html data-abc="1|2">（app/layout.tsx の最初のスクリプト。?ab=1 / ?ab=2 で固定）で片方の arm だけ見せる。決まっていないとき（スクリプトなし）は基準の 2。
+ * スマホ 390px で高さ 260px 以内。両方の arm を同じ高さ（min-height）にそろえ、arm が変わっても画面がずれない。
+ * 数字と単位は同じ書体・同じ太さで、単位を少し小さく、下の線をそろえる（2026-11-11 オーナー「約7.7と万円が別の書体に見える」）
+ */
+:root:not([data-abc="1"]) .abx-arm-1,
+:root[data-abc="1"] .abx-arm-2 {
+  display: none;
+}
+.abx-arm {
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
+  padding: 12px 16px 8px;
+}
+.abx-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.abx-who {
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+.abx {
+  container-type: inline-size;
+}
+.abx-result,
+.abx-compare {
+  flex: 1 0 auto;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+.abx-big {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 6px;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.abx-num {
+  display: inline-flex;
+  align-items: baseline;
+  font-weight: 800;
+  font-feature-settings: "palt";
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.abx-num .abx-digits {
+  font-size: 22px;
+}
+.abx-num .abx-unit {
+  font-size: 16px;
+}
+.abx-num-big .abx-digits {
+  font-size: 34px;
+  line-height: 1.1;
+}
+.abx-num-big .abx-unit {
+  font-size: 22px;
+}
+.abx-after,
+.abx-label {
+  font-size: 17px;
+  font-weight: 700;
+}
+.abx-sub {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.abx-lead {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.abx-bars {
+  display: grid;
+  gap: 4px;
+}
+.abx-bar-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.abx-bar-value {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  white-space: nowrap;
+  font-feature-settings: "palt";
+}
+.abx-bar-value.is-accent {
+  color: var(--accent);
+}
+.abx-track {
+  height: 8px;
+  margin-top: 2px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--line);
+}
+.abx-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--muted);
+}
+.abx-fill.is-accent {
+  background: var(--accent);
+}
+.abx-chips {
+  display: grid;
+  gap: 8px;
+  margin-top: 2px;
+}
+.abx-chips-1 .abx-chip-value {
+  font-size: 28px;
+}
+.abx-chips-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.abx-chips-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.abx-chip {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 6px 0 0;
+  border-top: 2px solid var(--ink);
+}
+.abx-chip-label {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+.abx-chip-value {
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--ink);
+  font-feature-settings: "palt";
+  overflow-wrap: anywhere;
+}
+.abx-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+  text-decoration: none;
+}
+.abx-cta:hover {
+  filter: brightness(1.1);
+}
+.abx-cta:focus-visible,
+.abx-link:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.abx-links {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  column-gap: 16px;
+  justify-content: center;
+}
+.abx-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 0;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+.abx-link:hover {
+  text-decoration-color: var(--ink);
+}
+.abx-note {
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: var(--muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@container (min-width: 520px) {
+  .abx-arm {
+    min-height: 220px;
+    padding: 14px 20px 10px;
+  }
+  .abx-cta {
+    align-self: flex-start;
+    min-width: 20em;
+  }
+  .abx-links {
+    justify-content: flex-start;
+  }
+}
+/* 右の列（幅 340px まで）: 数字を折り返さない */
+@container (max-width: 340px) {
+  .abx-chip-value {
+    font-size: 15px;
+    white-space: nowrap;
+  }
+  .abx-arm {
+    padding: 12px 14px 8px;
+  }
+}
