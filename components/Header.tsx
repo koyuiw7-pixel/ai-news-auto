@@ -2,7 +2,8 @@ import Link from "next/link";
 import GenreTabs from "@/components/HeaderNav";
 import LiveLine from "@/components/LiveLine";
 import ThemeToggle from "@/components/ThemeToggle";
-import { getAllArticles } from "@/lib/articles";
+import { getAllArticles, type ArticleSummary } from "@/lib/articles";
+import { isLifeMoneyStory, pickHomeLead } from "@/lib/home-lead";
 import { isFastNews } from "@/lib/cover-path";
 import { displayHeadline } from "@/lib/headline";
 import { genreNav, UTILITY_NAV } from "@/lib/nav";
@@ -24,9 +25,16 @@ function SearchIcon({ className = "" }: { className?: string }) {
  * 検索窓はただのフォーム（/search?q=…）なので、JS を読まなくても動く。
  */
 export default function Header() {
-  // いちばん新しいAIの記事（AI速報サイトの看板の1行）
-  // トップでは先頭の大きな記事と重ならないよう、2番目の記事を出す（LiveLine が切り替える）
-  const [latest, second] = getAllArticles().filter((a) => a.genreSlug === "ai").slice(0, 2);
+  // いちばん新しく載せた暮らしとお金の記事（2026-11-11 読者目線レビュー 11位: 帯が AI の記事で、日付も下の一覧と食い違っていた）。
+  // 面会・式典などの発表は出さない（lib/home-lead.ts の isLifeMoneyStory）。並びと時刻は載せた時刻（下の一覧・記事の「公開」と同じ）
+  const all = getAllArticles();
+  const postedAt = (a: ArticleSummary) => a.generatedAt || a.publishedAt;
+  const [latest, second, third] = all
+    .filter((a) => isLifeMoneyStory(a) && a.type !== "roundup" && !a.duplicate)
+    .sort((x, y) => Date.parse(postedAt(y)) - Date.parse(postedAt(x)))
+    .slice(0, 3);
+  // トップでは主役の記事と重ならないものを出す（LiveLine が切り替える）
+  const lead = pickHomeLead(all)?.slug;
   // 描いた時刻（静的ページの「速報／最新」の札の初期値。表示後に閲覧時刻で当て直す。components/LiveLine.tsx）
   const renderedAt = Date.now();
 
@@ -78,10 +86,11 @@ export default function Header() {
       {latest && (
         <LiveLine
           renderedAt={renderedAt}
-          items={[latest, second ?? latest].map((a) => ({
+          skipOnHome={lead}
+          items={[latest, second, third].filter((a): a is ArticleSummary => Boolean(a)).map((a) => ({
             slug: a.slug,
             title: displayHeadline(a.title),
-            publishedAt: a.publishedAt,
+            publishedAt: postedAt(a),
             // 赤い「速報」は本当の速報だけ（画像の札と同じ判定。台帳 A9・W23）
             fast: isFastNews(a),
           }))}

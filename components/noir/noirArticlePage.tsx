@@ -20,6 +20,7 @@ import { TargetCheck } from "@/components/noir/NextSteps";
 import PopularReads from "@/components/PopularReads";
 import { mergeStoryReads } from "@/lib/story-reads";
 import { topicPages } from "@/lib/related";
+import { noReaderAction } from "@/lib/reader-urgency";
 import { nextStepsFor } from "@/lib/next-steps";
 import { depthOf } from "@/lib/depth";
 import ActionAd from "@/components/ActionAd";
@@ -186,7 +187,10 @@ export function noirArticlePage(ctx: NoirPageContext) {
   // 題名の下の発表元は短く（「日本年金機構「老齢…の概要」（2026年10月1日更新）」→「日本年金機構」。2026-11-10 オーナー承認: 最初の画面を答えに使う）
   const orgShort = shortOrg(org);
   // 上の1行: 同じジャンルの新着（自分は除く）
-  const genreLatest = getAllArticles().find((a) => a.genreSlug === article.genreSlug && a.slug !== article.slug);
+  // 面会・式典などの読者がすることの無い発表は出さない。いちばん新しく載せた記事（2026-11-11 読者目線レビュー 11位: 年金の記事の上に財務大臣の面会が出ていた）
+  const genreLatest = getAllArticles()
+    .filter((a) => a.genreSlug === article.genreSlug && a.slug !== article.slug && !noReaderAction(a.title) && a.type !== "roundup" && !a.duplicate)
+    .sort((x, y) => Date.parse(y.generatedAt || y.publishedAt) - Date.parse(x.generatedAt || x.publishedAt))[0];
   const noirJsonLd = jsonLd.map((entry, i) =>
     i === 0 ? { ...entry, speakable: { "@type": "SpeakableSpecification", cssSelector: [".nr-sum"] } } : entry,
   );

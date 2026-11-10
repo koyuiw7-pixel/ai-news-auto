@@ -18,9 +18,11 @@ import { liveLabel } from "@/lib/live-line";
  * 人は文字より画像を強く記憶する（画像優位性効果）ので、左に大きな写真、右に見出しを置く。
  * 強調は「何本を統合したか」の黒いバッジと、見出しの蛍光ペンの2か所だけに絞る。
  */
-export default function HomeHero({ lead }: { lead: ArticleSummary }) {
+export default function HomeHero({ lead, popular = false }: { lead: ArticleSummary; popular?: boolean }) {
   const isRoundup = lead.type === "roundup";
-  const heroLabel = isRoundup ? "まとめ" : liveLabel({ fast: isFastNews(lead), publishedAt: lead.publishedAt }, Date.now());
+  // 時刻は載せた時刻（下の一覧・記事の「公開」と同じ）。24時間を過ぎた主役は「最新」ではなく、読まれていれば「よく読まれています」（2026-11-11 読者目線レビュー 11位）
+  const postedAt = lead.generatedAt || lead.publishedAt;
+  const heroLabel = isRoundup ? "まとめ" : liveLabel({ fast: isFastNews(lead), publishedAt: postedAt }, Date.now()) ?? (popular ? "よく読まれています" : null);
   const sources = lead.sourceCount;
   const href = `/articles/${lead.slug}`;
   // 写真は photoOf（lib/article-index.mjs）が選んだもの。トップの主役は写真のある記事だけ（lib/home-lead.ts）。
@@ -93,14 +95,16 @@ export default function HomeHero({ lead }: { lead: ArticleSummary }) {
       <div className="flex min-w-0 flex-col gap-2 sm:gap-4">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-meta">
           {/* 赤は本当の速報だけ（ヘッダー下の帯と同じ判定 lib/live-line.ts。台帳 W23・2026-11-04 オーナー承認）。ほかは紺 */}
-          <span
-            data-hero-label={heroLabel}
-            className={`rounded-sm px-2.5 py-0.5 text-badge font-bold tracking-wider ${heroLabel === "速報" ? "bg-live text-live-ink" : "bg-accent text-accent-ink"}`}
-          >
-            {heroLabel}
-          </span>
+          {heroLabel && (
+            <span
+              data-hero-label={heroLabel}
+              className={`rounded-sm px-2.5 py-0.5 text-badge font-bold tracking-wider ${heroLabel === "速報" ? "bg-live text-live-ink" : "bg-accent text-accent-ink"}`}
+            >
+              {heroLabel}
+            </span>
+          )}
           <ArticleMark company={companyOf(lead)} genre={lead.genre} size={18} />
-          <RelTime iso={lead.publishedAt} className="index-num font-semibold text-muted" />
+          <RelTime iso={postedAt} className="index-num font-semibold text-muted" />
         </div>
 
         <Link href={href} className="group">

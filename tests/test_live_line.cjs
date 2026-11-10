@@ -34,6 +34,12 @@ test("速報の記事でも、6時間を過ぎたら「最新」（「19時間�
   assert.equal(liveLabel({ fast: true, publishedAt: "壊れた日付" }, NOW), "最新");
 });
 
+test("載せてから24時間を過ぎた記事には「最新」も付けない（2026-11-11 読者目線レビュー 11位: 2日前の記事に「最新」）", () => {
+  assert.equal(liveLabel({ fast: false, publishedAt: ago(23) }, NOW), "最新");
+  assert.equal(liveLabel({ fast: false, publishedAt: ago(25) }, NOW), null);
+  assert.equal(liveLabel({ fast: true, publishedAt: ago(48) }, NOW), null);
+});
+
 test("速報かどうかは画像の札と同じ isFastNews（breaking か公式発表から60分以内）", () => {
   assert.equal(isFastNews({ breaking: true }), true);
   assert.equal(isFastNews({ speedMinutes: 12 }), true);

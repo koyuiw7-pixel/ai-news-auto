@@ -21,7 +21,7 @@ import { siteConfig } from "@/site.config";
 import { pageShareImage } from "@/lib/page-share";
 import { coverPath } from "@/lib/cover-path";
 import { containPhoto } from "@/lib/photo-fit";
-import { pickHomeHeadlines, pickHomeLead, pickLifeMoney } from "@/lib/home-lead";
+import { pickHomeHeadlines, pickHomeLead, pickLifeMoney, viewsOf } from "@/lib/home-lead";
 import { alsoCoveredSentence } from "@/lib/coverage";
 import { guideShortName, lifeCompareGuide, type LifeCompareSlug } from "@/lib/buying-guides";
 
@@ -114,7 +114,7 @@ export default function HomePage() {
       {/* ページの主見出し（検索エンジンと読み上げ用。見た目はロゴと主役の記事が担う） */}
       <h1 className="sr-only">{siteConfig.siteName} 暮らしとお金の新しい動きが最速でわかる</h1>
       <div className="mx-auto max-w-[1240px] px-5 pb-8 pt-4 sm:px-8 sm:pt-10">
-        <HomeHero lead={lead} />
+        <HomeHero lead={lead} popular={viewsOf(lead.slug) > 0} />
         <HomeHeadlines articles={headlines} />
 
         {/* ストーリーの丸は見出しの下（暮らしとお金の丸が先。lib/stories.ts。2026-11-11 読者目線レビュー 1位・2位） */}
