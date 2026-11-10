@@ -57,7 +57,9 @@ for (const g of guides) {
   test(`${g.slug}: 条件を厳しくすると金額は下がらない（データ量・通話）`, () => {
     for (const item of f.items) {
       const opts = (f.options ?? [{ key: "any" }]).map((o) => o.key);
-      for (const tier of f.tiers) {
+      // 電気の「比べ方」（調整額を入れる／入れない）は条件の厳しさではないので、データ量・使用量の段だけ確かめる
+      const optionsAreStricter = g.slug !== "denki-gas";
+      for (const tier of optionsAreStricter ? f.tiers : []) {
         let prev = 0;
         for (const o of opts) {
           const cell = item.matrix[tier.key][o];

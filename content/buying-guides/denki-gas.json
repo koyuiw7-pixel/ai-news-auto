@@ -1,16 +1,16 @@
 {
   "schemaVersion": 2,
   "editorial": "manual",
-  "checkedLabel": "11月10日時点・公式サイトより",
+  "checkedLabel": "11月11日時点・各社の公式サイトより",
   "columns": [],
   "quickPick": [],
   "publishedAt": "2026-11-10T17:20:00+09:00",
-  "updatedAt": "2026-11-10T17:20:00+09:00",
-  "priceCheckedAt": "2026-11-10T17:20:00+09:00",
+  "updatedAt": "2026-11-11T02:26:00+09:00",
+  "priceCheckedAt": "2026-11-11T02:26:00+09:00",
   "slug": "denki-gas",
-  "title": "電気・ガスの契約先の選び方と比較　2026年11月時点",
+  "title": "電気料金の比較　東京電力エリア14プランを使い方別に計算（2026年11月）",
   "shortName": "電気・ガスの契約先",
-  "description": "電気代やガス代を見直したい人へ。自分で電力会社を選んで切り替える方法（エルピオでんき）と、相談して切り替えを任せる方法（エネピ）を、11月10日時点の公式サイトの記載と資源エネルギー庁の案内で比べました。",
+  "description": "一人暮らし・二人暮らし・家族の使い方を選ぶと、東京電力エリアの13社14プランの公式の料金表から1か月の電気代の目安を計算し、安い順に並べます。11月の燃料費調整・市場価格調整を入れた額と、基本料金と電力量料金だけの額を切り替えられます。",
   "targetQueries": [
     "電力会社 切り替え",
     "電気代 見直し",
@@ -22,21 +22,25 @@
   "topics": [
     "life-energy"
   ],
-  "intro": "電気とガスは、小売の全面自由化で契約先を選べるようになりました。見直しの方法は、自分で電力会社を選んで申し込むか、使用状況を伝えて相談し、切り替えまで任せるかの2通りです。このページでは、その2つの代表を公式サイトの記載だけで並べ、資源エネルギー庁の案内で切り替えの前に知っておきたい点を確かめました。どちらも当サイトの提携先（PR）です。編集部が契約して試したものではありません。",
+  "intro": "電気代は、基本料金と電力量料金の単価だけでなく、毎月変わる燃料費調整や市場価格の調整で大きく変わります。このページでは、東京電力エリアの13社14プランの料金を公式の料金表どおりに計算し、使い方ごとの1か月の目安を並べました。11月の調整単価を公式に出している会社は、その分を足した額でも比べられます。",
   "personas": [
     {
-      "who": "電力会社を自分で選んで、Webで切り替えたい人",
+      "who": "一人暮らし（30A・月200kWh）で、11月の請求に近い額で比べたい人",
       "picks": [
-        "elpio"
+        "tokyogas-denki",
+        "idemitsu-denki",
+        "tepco-s"
       ],
-      "why": "基本料金0円（電気のみ）、切替手数料と解約手数料は0円、契約期間の縛りなしと記載。"
+      "why": "11月の調整額まで入れた目安は、東京ガスの電気6,288円、idemitsuでんき6,476円、東京電力EP スタンダードS 6,608円（従量電灯Bも同じ額）です（税込・再エネ賦課金なし）。"
     },
     {
-      "who": "電気やプロパンガスの見直しを、相談して決めたい人",
+      "who": "家族（40A・月400kWh）で、11月の請求に近い額で比べたい人",
       "picks": [
-        "enepi"
+        "idemitsu-denki",
+        "tokyogas-denki",
+        "tepco-s"
       ],
-      "why": "使用状況から料金プランを無料で提案し、切り替えの手続きも行うと記載。相談には登録が必要。"
+      "why": "idemitsuでんき12,999円、東京ガスの電気13,053円、東京電力EP スタンダードS 13,633円（従量電灯Bも同じ額）です。単価の安い会社でも、市場価格に連動する調整額が大きいと請求は高くなります。"
     }
   ],
   "rows": [
@@ -67,20 +71,20 @@
   ],
   "decisionPoints": [
     {
-      "title": "今の契約の料金と解約金を先に確かめる",
-      "body": "資源エネルギー庁は、料金プランによっては解約金がかかることがあるため、契約前によく確かめるよう案内しています。検針票やWebの明細で、今のプラン名と毎月の使用量（kWh）を見ておくと比べやすくなります。"
+      "title": "検針票で契約アンペアと使用量を確かめる",
+      "body": "基本料金は契約アンペア（30A・40Aなど）で、電力量料金は使った量で決まります。検針票やWeb明細で、直近の使用量を見てから上の使い方を選ぶと、目安が実際に近づきます。"
     },
     {
-      "title": "基本料金と従量料金を分けて見る",
-      "body": "エルピオでんきは基本料金0円（電気のみ）で、使った分の料金を払う形です。電気を少ししか使わない月でも基本料金がかからない一方、燃料費調整額と再生可能エネルギー発電促進賦課金は別にかかります。"
+      "title": "単価だけでなく、毎月の調整額のしくみを見る",
+      "body": "東京電力と同じ形の燃料費調整なら11月分は−5.33円/kWhですが、市場価格に連動する調整の会社は、楽天でんき+15.42円、HTBエナジー+23.73円と、11月はプラスでした。単価が安く見えても、請求額が高くなることがあります。"
     },
     {
-      "title": "料金が市場で動くプランかどうかを確かめる",
-      "body": "エルピオでんきのスマートダイレクトプランは、30分ごとに変わる市場価格を反映すると記載しています。毎月の額を一定に近づけたいなら、市場の影響を受けないプランを選びます。"
+      "title": "11月の料金改定を反映しているかを確かめる",
+      "body": "11月1日の託送料金の改定を受けて、多くの会社が基本料金を上げました（東京電力EPの30Aは935.25円→1,176.18円）。東京ガスの電気は2027年1月検針分から、J:COM でんきは12月検針分から改定します。"
     },
     {
-      "title": "自分で選ぶか、相談して任せるかを決める",
-      "body": "エネピは、使用状況を入力すると料金プランを無料で提案し、切り替えの手続きも行うと記載しています。比較・相談には登録が必要ですが、削減額の目安を調べるだけなら登録は不要です。"
+      "title": "解約金と手数料を先に見る",
+      "body": "楽天でんき、オクトパスエナジーは解約金なし、ソフトバンクでんきは解約事務手数料550円、ENEOSでんきの割引プランは途中解約で1,100円と公式サイトに書いています。"
     }
   ],
   "products": [
@@ -91,24 +95,22 @@
       "name": "エルピオでんき",
       "maker": "エルピオ",
       "category": "電力会社（電気の小売）",
-      "price": "基本料金0円",
-      "priceNote": "電気のみ・従量料金はエリアとプランで異なる",
+      "price": "30A・月200kWhで7,190円",
+      "priceNote": "新スタンダードプランS・基本料金＋電力量料金・税込",
       "officialUrl": "https://www.lpio.jp/lpio_denki/",
-      "summary": "家庭向けの電気を販売する電力会社です。基本料金0円で使った分だけ払う形、切替手数料と解約手数料は0円、契約期間の縛りなしと公式サイトに記載しています。都市ガスやプロパンガスも扱っています。",
+      "summary": "電気と都市ガス・プロパンガスを扱う会社です。東京電力エリアの新スタンダードプランSは、基本料金と電力量料金が東京電力の従量電灯Bより低い設定で、別に独自の燃料費調整額（11月分は+16.43円/kWh）がかかります。",
       "bestFor": "今の電力会社から、Webで自分で切り替えたい人",
       "strengths": [
-        "基本料金0円（電気のみ。都市ガスには基本料金がある）。",
-        "切替手数料0円、解約手数料0円、契約期間の縛りなし。Webで申し込みが完結する。",
-        "新スタンダードプラン、グリーンプラン（実質再生可能エネルギー100％）、スマートダイレクトプランの3つから選べる。"
+        "基本料金 30A 858.24円・40A 1,144.32円（税込）",
+        "ガスとのセット割（LPガス月220円・都市ガス月110円）"
       ],
       "limits": [
-        "独自の燃料費調整額（容量拠出負担金を含む）と、再生可能エネルギー発電促進賦課金が別にかかる。",
-        "スマートダイレクトプランは、30分ごとに変わる市場価格を反映する。",
-        "従量料金はエリアとプランで異なる。自分の地域の料金表は公式サイトで確かめる。"
+        "独自の燃料費調整額がかかり、11月分は+16.43円/kWh（東京電力EPは−5.33円/kWh）",
+        "11月1日の託送料金の改定を反映した料金かは公式で確認中"
       ],
       "cells": {
         "kind": "電力会社（電気の小売）。都市ガス・プロパンガスも扱う",
-        "price": "基本料金0円（電気のみ）。従量料金はエリアとプランで異なる",
+        "price": "東京電力エリアの新スタンダードプランS：基本料金 30A 858.24円・40A 1,144.32円、電力量料金 120kWhまで29.80円・300kWhまで34.45円・それより上35.81円（税込）",
         "switch": "切替手数料0円（Webで申し込みが完結）",
         "cancel": "解約手数料0円、契約期間の縛りなし",
         "area": "東京・東北・中部・北陸・関西・中国・四国・九州の各電力エリアのページがある",
@@ -116,14 +118,371 @@
       },
       "sources": [
         {
-          "label": "エルピオでんき 公式",
-          "url": "https://www.lpio.jp/lpio_denki/"
+          "label": "エルピオでんき公式（東京電力エリア）",
+          "url": "https://www.lpio.jp/lpio_denki/tokyo/"
+        },
+        {
+          "label": "エルピオでんき公式（燃料費調整単価）",
+          "url": "https://lpio.jp/pdf/standard_nenryo.pdf"
         }
       ],
       "priceSource": {
         "type": "official",
-        "url": "https://www.lpio.jp/lpio_denki/",
-        "checkedAt": "2026-11-10T17:20:00+09:00"
+        "url": "https://www.lpio.jp/lpio_denki/tokyo/",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "tepco-b",
+      "name": "東京電力EP 従量電灯B",
+      "maker": "東京電力エナジーパートナー",
+      "category": "電気（東京電力エリア・大手電力（規制料金））",
+      "price": "30A・月200kWhで7,674円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "summary": "東京電力エナジーパートナーの電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "東京電力EP公式（従量電灯B）",
+          "url": "https://www.tepco.co.jp/ep/private/plan/old01.html"
+        },
+        {
+          "label": "東京電力EP公式（燃料費調整単価）",
+          "url": "https://www.tepco.co.jp/ep/private/fuelcost2/newlist/index-j.html"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "tepco-s",
+      "name": "東京電力EP スタンダードS",
+      "maker": "東京電力エナジーパートナー",
+      "category": "電気（東京電力エリア・大手電力（自由料金））",
+      "price": "30A・月200kWhで7,674円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://www.tepco.co.jp/ep/private/plan/standard/kanto/index-j.html",
+      "summary": "東京電力エナジーパートナーの電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "東京電力EP公式（スタンダードS）",
+          "url": "https://www.tepco.co.jp/ep/private/plan/standard/kanto/index-j.html"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.tepco.co.jp/ep/private/plan/standard/kanto/index-j.html",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "tokyogas-denki",
+      "name": "東京ガスの電気（基本プラン）",
+      "maker": "東京ガス",
+      "category": "電気（東京電力エリア・大手ガス会社）",
+      "price": "30A・月200kWhで7,354円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://home.tokyo-gas.co.jp/gas_power/plan/power/menu_basic.html",
+      "summary": "東京ガスの電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "東京ガス公式（電気料金）",
+          "url": "https://home.tokyo-gas.co.jp/gas_power/plan/power/price.html"
+        },
+        {
+          "label": "東京ガス公式（料金改定のお知らせ）",
+          "url": "https://home.tokyo-gas.co.jp/information/power-202610-01.html"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://home.tokyo-gas.co.jp/gas_power/plan/power/price.html",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "idemitsu-denki",
+      "name": "idemitsuでんき（Sプラン）",
+      "maker": "出光興産",
+      "category": "電気（東京電力エリア・石油会社）",
+      "price": "30A・月200kWhで7,542円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://denki.idemitsu.com/",
+      "summary": "出光興産の電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "出光興産公式（電気料金要綱 2026年11月1日実施）",
+          "url": "https://denki.idemitsu.com/docs/kanto_spplan_20261101.pdf"
+        },
+        {
+          "label": "出光興産公式（11月の燃料費調整）",
+          "url": "https://denki.idemitsu.com/media/wp-content/uploads/2026/09/202611nencho.pdf"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://denki.idemitsu.com/docs/kanto_spplan_20261101.pdf",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "eneos-denki",
+      "name": "ENEOSでんき（東京Vプラン）",
+      "maker": "ENEOS Power",
+      "category": "電気（東京電力エリア・石油会社）",
+      "price": "30A・月200kWhで7,550円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://www.eneos-power.co.jp/denki/",
+      "summary": "ENEOS Powerの電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "ENEOS Power公式（Vプラン）",
+          "url": "https://www.eneos-power.co.jp/denki/plan/v/"
+        },
+        {
+          "label": "ENEOS Power公式（11月の料金改定）",
+          "url": "https://www.eneos-power.co.jp/denkigas/information/uploads/denki-important-20261015-390.pdf"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.eneos-power.co.jp/denki/plan/v/",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "softbank-denki",
+      "name": "ソフトバンクでんき（おうちでんき）",
+      "maker": "SBパワー",
+      "category": "電気（東京電力エリア・通信会社）",
+      "price": "30A・月200kWhで7,674円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://www.softbank.jp/energy/",
+      "summary": "SBパワーの電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "ソフトバンクでんき公式（料金）",
+          "url": "https://www.softbank.jp/energy/price/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.softbank.jp/energy/price/",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "au-denki",
+      "name": "auでんき（でんきM 東京D）",
+      "maker": "auエネルギー&ライフ",
+      "category": "電気（東京電力エリア・通信会社）",
+      "price": "30A・月200kWhで7,672円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://www.au.com/energy/denki/",
+      "summary": "auエネルギー&ライフの電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "auでんき公式（料金プラン）",
+          "url": "https://www.au.com/energy/denki/merit/plan/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.au.com/energy/denki/merit/plan/",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "cd-energy",
+      "name": "CDエナジー（ベーシックでんきB）",
+      "maker": "CDエナジーダイレクト",
+      "category": "電気（東京電力エリア・大手電力・ガスの合弁）",
+      "price": "30A・月200kWhで7,504円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://www.cdedirect.co.jp/",
+      "summary": "CDエナジーダイレクトの電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "CDエナジー公式（ベーシックでんきB）",
+          "url": "https://www.cdedirect.co.jp/plan/denki/basic_denki/"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.cdedirect.co.jp/plan/denki/basic_denki/",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "jcom-denki",
+      "name": "J:COM でんき（a従量B）",
+      "maker": "JCOM",
+      "category": "電気（東京電力エリア・ケーブルテレビ会社）",
+      "price": "30A・月200kWhで7,376円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://www.jcom.co.jp/service/electricity/",
+      "summary": "JCOMの電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "J:COM公式（電気料金）",
+          "url": "https://www.jcom.co.jp/service/electricity/price/tokyo_juryo.html"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.jcom.co.jp/service/electricity/price/tokyo_juryo.html",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "octopus-energy",
+      "name": "オクトパスエナジー（グリーンオクトパス）",
+      "maker": "TGオクトパスエナジー",
+      "category": "電気（東京電力エリア・新電力）",
+      "price": "30A・月200kWhで5,513円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://octopusenergy.co.jp/",
+      "summary": "TGオクトパスエナジーの電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "オクトパスエナジー公式（料金）",
+          "url": "https://octopusenergy.co.jp/tariffs-lp"
+        },
+        {
+          "label": "オクトパスエナジー公式（料金表 2026-10 東京）",
+          "url": "https://a.storyblok.com/f/122730/x/5ebddf63fa/_greenoctopus-2026-10-tokyo.pdf"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://octopusenergy.co.jp/tariffs-lp",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "shin-energy",
+      "name": "シン・エナジー（きほんプラン）",
+      "maker": "シン・エナジー",
+      "category": "電気（東京電力エリア・新電力）",
+      "price": "30A・月200kWhで5,377円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://www.symenergy.net/",
+      "summary": "シン・エナジーの電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "シン・エナジー公式（料金プラン）",
+          "url": "https://www.symenergy.net/plan"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://www.symenergy.net/plan",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "rakuten-denki",
+      "name": "楽天でんき（プランS）",
+      "maker": "楽天エナジー",
+      "category": "電気（東京電力エリア・新電力）",
+      "price": "30A・月200kWhで7,600円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://energy.rakuten.co.jp/electricity/",
+      "summary": "楽天エナジーの電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "楽天でんき公式（プランS）",
+          "url": "https://energy.rakuten.co.jp/electricity/fee/plan_s/"
+        },
+        {
+          "label": "楽天でんき公式（11月の市場価格調整）",
+          "url": "https://energy.rakuten.co.jp/electricity/fee/market_linked/pdf/202611.pdf"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://energy.rakuten.co.jp/electricity/fee/plan_s/",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
+      }
+    },
+    {
+      "id": "htb-energy",
+      "name": "HTBエナジー（ベーシックプラン）",
+      "maker": "HTBエナジー",
+      "category": "電気（東京電力エリア・新電力）",
+      "price": "30A・月200kWhで6,270円",
+      "priceNote": "基本料金＋電力量料金・税込",
+      "officialUrl": "https://htb-energy.com/",
+      "summary": "HTBエナジーの電気の料金プラン。",
+      "bestFor": "",
+      "strengths": [],
+      "limits": [],
+      "specs": [],
+      "sources": [
+        {
+          "label": "HTBエナジー公式（東京エリア）",
+          "url": "https://htb-energy.com/guide/tokyo.html"
+        },
+        {
+          "label": "HTBエナジー公式（11月の燃料費等調整単価）",
+          "url": "https://htb-energy.com/dcms_media/other/nenchouhitanka202611.pdf"
+        }
+      ],
+      "priceSource": {
+        "type": "official",
+        "url": "https://htb-energy.com/guide/tokyo.html",
+        "checkedAt": "2026-11-11T02:26:00+09:00"
       }
     },
     {
@@ -243,22 +602,26 @@
   "faq": [
     {
       "q": "電力会社を変えると、停電しやすくなりますか？",
-      "a": "資源エネルギー庁は、今ある送配電網を使うため新たに電線を引くことはなく、電気の品質や停電の可能性はどの会社から買っても同じとしています。"
+      "a": "資源エネルギー庁は、今ある送配電網を使うので、電気の品質や停電の可能性はどの会社から買っても同じとしています。"
     },
     {
       "q": "賃貸やマンションでも切り替えられますか？",
-      "a": "資源エネルギー庁の案内では、マンションに住んでいても切り替えはできます。ただし、管理組合などがマンション全体で一括して電気を契約している場合は、その契約やマンション内の取り決めを確かめる必要があります。"
+      "a": "資源エネルギー庁は、マンションでも切り替えはできるとしています。ただし管理組合などがマンション全体で一括して契約している場合は、その契約の確認が必要です。"
     },
     {
-      "q": "切り替えにお金はかかりますか？",
-      "a": "エルピオでんきは切替手数料0円・解約手数料0円、エネピは見積もり依頼から切り替えまで費用はかからないと記載しています。ただし、今の契約に解約金がある場合があるため、資源エネルギー庁は契約内容を確かめるよう案内しています。"
+      "q": "東京電力エリア以外の料金も比べられますか？",
+      "a": "今は東京電力エリア（関東など）の料金だけを計算しています。ほかのエリアは、各社の公式サイトのエリア別の料金表で確かめてください。"
+    },
+    {
+      "q": "Looopでんきは比べないのですか？",
+      "a": "Looopでんきのスマートタイムプランは、30分ごとの市場価格で単価が変わり、決まった単価がないため、1か月の目安を計算していません。解約手数料は0円と公式サイトに書いています。"
     },
     {
       "q": "エネピに相談するには何が必要ですか？",
-      "a": "電気料金の比較・相談には、エネピへの登録が必要です。電気の使用状況を入力して削減額の目安を調べるだけなら、登録は不要と記載しています。"
+      "a": "エネピは比較・相談に登録が必要で、削減額の目安を調べるだけなら登録は不要と公式サイトに書いています。"
     }
   ],
-  "howWeMade": "2026年11月10日に、各社の公式サイトと資源エネルギー庁のページを取得し、そこに書かれた料金と条件だけで作りました。キャッシュバックなどのキャンペーンは時期で変わるため、表には入れていません。編集部は契約・試用しておらず、点数や順位はつけていません。エルピオでんきとエネピは当サイトの提携先（PR）で、リンク経由の申し込みで紹介料が入ることがあります。",
+  "howWeMade": "2026年11月11日に、東京電力エリアの電気を売る13社の公式の料金表（PDFを含む）を取得し、そこに書かれた基本料金・電力量料金・11月の調整単価だけで計算しました。再エネ賦課金は各社共通のため入れていません。ポイントやセット割、キャンペーンは入れていません。Looopでんきは市場価格に連動して30分ごとに単価が変わるため、計算には入れていません。編集部は契約・試用しておらず、点数はつけていません。エルピオでんきとエネピは当サイトの提携先（PR）で、リンク経由の申し込みで紹介料が入ることがありますが、順番には影響させていません。ほかの12社は提携していません。",
   "newsNote": "サイソクが報じた電気代・ガス代の関連記事",
   "sponsoredCta": "料金と条件を見る",
   "relatedArticleSlugs": [
@@ -273,5 +636,830 @@
     "基本料金と従量料金を分けて見る",
     "料金が市場で動くプランかどうかを確かめる",
     "自分で選ぶか、相談して任せるかを決める"
-  ]
+  ],
+  "sideSections": [
+    {
+      "id": "enepi",
+      "label": "相談",
+      "title": "自分で選ばず、相談して決めたい人へ",
+      "body": "電気やプロパンガスの料金を、使用状況を伝えて比べてもらい、切り替えまで任せる方法もあります。エネピは見積もり依頼から切り替えまで費用はかからないと公式サイトに書いています（相談には登録が必要）。",
+      "products": [
+        "enepi"
+      ]
+    }
+  ],
+  "planFinder": {
+    "unit": "税込・東京電力エリア・再エネ賦課金なし",
+    "tierQuestion": "家の電気の使い方は",
+    "tiers": [
+      {
+        "key": "200",
+        "label": "一人暮らし（30A・月200kWh）"
+      },
+      {
+        "key": "300",
+        "label": "二人暮らし（30A・月300kWh）"
+      },
+      {
+        "key": "400",
+        "label": "家族（40A・月400kWh）"
+      }
+    ],
+    "optionQuestion": "比べ方",
+    "options": [
+      {
+        "key": "adj",
+        "label": "11月の調整額も入れる（請求に近い）"
+      },
+      {
+        "key": "base",
+        "label": "基本料金と電力量料金だけ"
+      }
+    ],
+    "tagQuestion": "料金の調整のしくみ",
+    "tags": [
+      "東京電力と同じ形の燃料費調整",
+      "市場価格に連動する調整"
+    ],
+    "anyTag": "こだわらない",
+    "detailsLabel": "くわしく（単価・調整・解約など）",
+    "hideInitial": true,
+    "perLabel": "1か月の目安",
+    "sortRule": "並び順の決まり：選んだ使い方で計算した1か月の電気代の目安（基本料金＋電力量料金。「11月の調整額も入れる」を選ぶと、各社が公式に出している11月の調整単価×使用量を足した額。再エネ賦課金は各社共通なので入れていません。1円未満切り捨て）の安い順です。11月の調整単価を確かめられなかった会社は、その比べ方では順位に入れていません。提携先（PR）かどうかで順番は変えていません。",
+    "items": [
+      {
+        "id": "tepco-b",
+        "kind": "大手電力（規制料金）",
+        "tags": [
+          "東京電力と同じ形の燃料費調整"
+        ],
+        "matrix": {
+          "200": {
+            "adj": {
+              "yen": 6608,
+              "label": "30A・200kWh：基本料金＋電力量料金＋11月の調整額（-5.33円/kWh）"
+            },
+            "base": {
+              "yen": 7674,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": {
+              "yen": 9720,
+              "label": "30A・300kWh：基本料金＋電力量料金＋11月の調整額（-5.33円/kWh）"
+            },
+            "base": {
+              "yen": 11319,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": {
+              "yen": 13633,
+              "label": "40A・400kWh：基本料金＋電力量料金＋11月の調整額（-5.33円/kWh）"
+            },
+            "base": {
+              "yen": 15765,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 1,176.18円・40A 1,568.24円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "120kWhまで29.85円・〜300kWhまで36.45円・それより上40.54円"
+          },
+          {
+            "label": "燃料費調整",
+            "value": "11月分 −5.33円/kWh（規制料金のため上限あり）"
+          },
+          {
+            "label": "11月の改定",
+            "value": "11月1日から30Aの基本料金が935.25円→1,176.18円"
+          },
+          {
+            "label": "解約",
+            "value": "公式で確認中"
+          }
+        ]
+      },
+      {
+        "id": "tepco-s",
+        "kind": "大手電力（自由料金）",
+        "tags": [
+          "東京電力と同じ形の燃料費調整"
+        ],
+        "matrix": {
+          "200": {
+            "adj": {
+              "yen": 6608,
+              "label": "30A・200kWh：基本料金＋電力量料金＋11月の調整額（-5.33円/kWh）"
+            },
+            "base": {
+              "yen": 7674,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": {
+              "yen": 9720,
+              "label": "30A・300kWh：基本料金＋電力量料金＋11月の調整額（-5.33円/kWh）"
+            },
+            "base": {
+              "yen": 11319,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": {
+              "yen": 13633,
+              "label": "40A・400kWh：基本料金＋電力量料金＋11月の調整額（-5.33円/kWh）"
+            },
+            "base": {
+              "yen": 15765,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 1,176.18円・40A 1,568.24円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "120kWhまで29.85円・〜300kWhまで36.45円・それより上40.54円"
+          },
+          {
+            "label": "燃料費調整",
+            "value": "11月分 −5.33円/kWh（自由料金のため上限なし）"
+          },
+          {
+            "label": "手数料",
+            "value": "紙の検針票は月110円、振込用紙は月220円"
+          },
+          {
+            "label": "ポイント",
+            "value": "くらしTEPCOポイント"
+          }
+        ]
+      },
+      {
+        "id": "tokyogas-denki",
+        "kind": "大手ガス会社",
+        "tags": [
+          "東京電力と同じ形の燃料費調整"
+        ],
+        "matrix": {
+          "200": {
+            "adj": {
+              "yen": 6288,
+              "label": "30A・200kWh：基本料金＋電力量料金＋11月の調整額（-5.33円/kWh）"
+            },
+            "base": {
+              "yen": 7354,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": {
+              "yen": 9324,
+              "label": "30A・300kWh：基本料金＋電力量料金＋11月の調整額（-5.33円/kWh）"
+            },
+            "base": {
+              "yen": 10923,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": {
+              "yen": 13053,
+              "label": "40A・400kWh：基本料金＋電力量料金＋11月の調整額（-5.33円/kWh）"
+            },
+            "base": {
+              "yen": 15185,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 935.22円・40A 1,246.96円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "120kWhまで29.70円・〜300kWhまで35.69円・それより上39.50円"
+          },
+          {
+            "label": "燃料費調整",
+            "value": "11月分 −5.33円/kWh（上限なし）"
+          },
+          {
+            "label": "割引",
+            "value": "ガスとのセット割あり"
+          }
+        ],
+        "change": "2027年1月検針分から新しい料金になります（30Aの基本料金1,176.15円など）。"
+      },
+      {
+        "id": "idemitsu-denki",
+        "kind": "石油会社",
+        "tags": [
+          "東京電力と同じ形の燃料費調整"
+        ],
+        "matrix": {
+          "200": {
+            "adj": {
+              "yen": 6476,
+              "label": "30A・200kWh：基本料金＋電力量料金＋11月の調整額（-5.33円/kWh）"
+            },
+            "base": {
+              "yen": 7542,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": {
+              "yen": 9424,
+              "label": "30A・300kWh：基本料金＋電力量料金＋11月の調整額（-5.33円/kWh）"
+            },
+            "base": {
+              "yen": 11023,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": {
+              "yen": 12999,
+              "label": "40A・400kWh：基本料金＋電力量料金＋11月の調整額（-5.33円/kWh）"
+            },
+            "base": {
+              "yen": 15131,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 1,176.18円・40A 1,568.24円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "120kWhまで29.85円・〜300kWhまで34.81円・それより上37.15円"
+          },
+          {
+            "label": "燃料費調整",
+            "value": "11月分 −5.33円/kWh"
+          },
+          {
+            "label": "特典",
+            "value": "ガソリン・EVの割引（クルマ特割）などのポイント"
+          },
+          {
+            "label": "解約",
+            "value": "公式で確認中"
+          }
+        ]
+      },
+      {
+        "id": "eneos-denki",
+        "kind": "石油会社",
+        "tags": [],
+        "matrix": {
+          "200": {
+            "adj": null,
+            "base": {
+              "yen": 7550,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": null,
+            "base": {
+              "yen": 11040,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": null,
+            "base": {
+              "yen": 15127,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 1,176.18円・40A 1,568.24円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "120kWhまで29.85円・〜300kWhまで34.90円・それより上36.95円"
+          },
+          {
+            "label": "燃料費調整",
+            "value": "独自の調整・上限なし（11月の単価は公式で確認中）"
+          },
+          {
+            "label": "割引",
+            "value": "にねんとく2割（2年間0.2円/kWh引き）。途中解約は1,100円"
+          }
+        ]
+      },
+      {
+        "id": "softbank-denki",
+        "kind": "通信会社",
+        "tags": [],
+        "matrix": {
+          "200": {
+            "adj": null,
+            "base": {
+              "yen": 7674,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": null,
+            "base": {
+              "yen": 11319,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": null,
+            "base": {
+              "yen": 15765,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 1,176.18円・40A 1,568.24円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "120kWhまで29.85円・〜300kWhまで36.45円・それより上40.54円"
+          },
+          {
+            "label": "燃料費調整",
+            "value": "あり（11月の単価は公式で確認中）"
+          },
+          {
+            "label": "割引",
+            "value": "ソフトバンクのスマホとのセット割（おうち割 でんきセット）"
+          },
+          {
+            "label": "解約",
+            "value": "解約事務手数料550円"
+          }
+        ]
+      },
+      {
+        "id": "au-denki",
+        "kind": "通信会社",
+        "tags": [],
+        "matrix": {
+          "200": {
+            "adj": null,
+            "base": {
+              "yen": 7672,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": null,
+            "base": {
+              "yen": 11316,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": null,
+            "base": {
+              "yen": 15761,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 1,176.17円・40A 1,568.23円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "120kWhまで29.84円・〜300kWhまで36.44円・それより上40.53円"
+          },
+          {
+            "label": "燃料費調整",
+            "value": "あり（11月の単価は公式で確認中）"
+          },
+          {
+            "label": "単価",
+            "value": "公式の税込の参考単価で計算"
+          },
+          {
+            "label": "ポイント",
+            "value": "Pontaポイントがたまる（率は公式で確認中）"
+          }
+        ]
+      },
+      {
+        "id": "cd-energy",
+        "kind": "大手電力・ガスの合弁",
+        "tags": [
+          "東京電力と同じ形の燃料費調整"
+        ],
+        "matrix": {
+          "200": {
+            "adj": null,
+            "base": {
+              "yen": 7504,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": null,
+            "base": {
+              "yen": 11063,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": null,
+            "base": {
+              "yen": 15069,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 1,069.14円・40A 1,425.52円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "120kWhまで29.90円・〜300kWhまで35.59円・それより上36.50円"
+          },
+          {
+            "label": "燃料費調整",
+            "value": "東京電力EPの自由料金と同じ計算式・上限なし（11月の単価は公式で確認中）"
+          },
+          {
+            "label": "11月の改定",
+            "value": "11月の計量日から30Aの基本料金が830.70円→1,069.14円"
+          }
+        ]
+      },
+      {
+        "id": "jcom-denki",
+        "kind": "ケーブルテレビ会社",
+        "tags": [
+          "東京電力と同じ形の燃料費調整"
+        ],
+        "matrix": {
+          "200": {
+            "adj": null,
+            "base": {
+              "yen": 7376,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": null,
+            "base": {
+              "yen": 10979,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": null,
+            "base": {
+              "yen": 15219,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 935.25円・40A 1,247.00円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "120kWhまで29.80円・〜300kWhまで36.40円・それより上40.49円"
+          },
+          {
+            "label": "燃料費調整",
+            "value": "東京電力と同じ計算式・上限なし（11月の単価は公式で確認中）"
+          },
+          {
+            "label": "割引",
+            "value": "電力量料金を段ごとに0.5%・1%・3%引き（計算に入れています）"
+          }
+        ],
+        "change": "12月検針分から基本料金が上がります（30A 1,176.18円・40A 1,568.24円）。"
+      },
+      {
+        "id": "octopus-energy",
+        "kind": "新電力",
+        "tags": [],
+        "matrix": {
+          "200": {
+            "adj": null,
+            "base": {
+              "yen": 5513,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": null,
+            "base": {
+              "yen": 8028,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": null,
+            "base": {
+              "yen": 11251,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "1日36.90円（30A）・49.20円（40A）×30日"
+          },
+          {
+            "label": "電力量料金",
+            "value": "120kWhまで19.95円・〜300kWhまで25.15円・それより上28.54円"
+          },
+          {
+            "label": "基本料金",
+            "value": "1日あたり 30A 36.90円・40A 49.20円（30日で計算）"
+          },
+          {
+            "label": "燃料費調整",
+            "value": "独自。基準燃料価格は44,200円（東京電力は86,100円）。11月の単価は公式で確認中"
+          },
+          {
+            "label": "解約",
+            "value": "解約金・違約金0円"
+          }
+        ]
+      },
+      {
+        "id": "shin-energy",
+        "kind": "新電力",
+        "tags": [
+          "市場価格に連動する調整"
+        ],
+        "matrix": {
+          "200": {
+            "adj": null,
+            "base": {
+              "yen": 5377,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": null,
+            "base": {
+              "yen": 7855,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": null,
+            "base": {
+              "yen": 10971,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 1,034.50円・40A 1,379.33円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "120kWhまで19.67円・〜300kWhまで24.78円・それより上27.71円"
+          },
+          {
+            "label": "調整",
+            "value": "電源調達調整費（市場価格に連動）と燃料費調整額。11月の単価は公式で確認中"
+          }
+        ]
+      },
+      {
+        "id": "rakuten-denki",
+        "kind": "新電力",
+        "tags": [
+          "市場価格に連動する調整"
+        ],
+        "matrix": {
+          "200": {
+            "adj": {
+              "yen": 10684,
+              "label": "30A・200kWh：基本料金＋電力量料金＋11月の調整額（+15.42円/kWh）"
+            },
+            "base": {
+              "yen": 7600,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": {
+              "yen": 16026,
+              "label": "30A・300kWh：基本料金＋電力量料金＋11月の調整額（+15.42円/kWh）"
+            },
+            "base": {
+              "yen": 11400,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": {
+              "yen": 21368,
+              "label": "40A・400kWh：基本料金＋電力量料金＋11月の調整額（+15.42円/kWh）"
+            },
+            "base": {
+              "yen": 15200,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 0.00円・40A 0.00円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "1kWhあたり38.00円"
+          },
+          {
+            "label": "調整",
+            "value": "燃料費調整ではなく市場価格調整。11月分 +15.42円/kWh"
+          },
+          {
+            "label": "解約",
+            "value": "解約金なし"
+          },
+          {
+            "label": "ポイント",
+            "value": "楽天ポイントがたまる・使える"
+          }
+        ]
+      },
+      {
+        "id": "htb-energy",
+        "kind": "新電力",
+        "tags": [
+          "市場価格に連動する調整"
+        ],
+        "matrix": {
+          "200": {
+            "adj": {
+              "yen": 11016,
+              "label": "30A・200kWh：基本料金＋電力量料金＋11月の調整額（+23.73円/kWh）（容量拠出金の反映額は含まず）"
+            },
+            "base": {
+              "yen": 6270,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": {
+              "yen": 16249,
+              "label": "30A・300kWh：基本料金＋電力量料金＋11月の調整額（+23.73円/kWh）（容量拠出金の反映額は含まず）"
+            },
+            "base": {
+              "yen": 9130,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": {
+              "yen": 21482,
+              "label": "40A・400kWh：基本料金＋電力量料金＋11月の調整額（+23.73円/kWh）（容量拠出金の反映額は含まず）"
+            },
+            "base": {
+              "yen": 11990,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 550.00円・40A 550.00円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "1kWhあたり28.60円"
+          },
+          {
+            "label": "調整",
+            "value": "燃料費等調整単価 11月分 +23.73円/kWh（電源調達調整は市場価格に連動）。容量拠出金の反映額は別"
+          },
+          {
+            "label": "手数料",
+            "value": "コンビニ払いの手数料あり"
+          },
+          {
+            "label": "11月の改定",
+            "value": "11月1日の改定を反映した料金かは公式で確認中"
+          }
+        ]
+      },
+      {
+        "id": "elpio",
+        "kind": "新電力",
+        "tags": [],
+        "matrix": {
+          "200": {
+            "adj": {
+              "yen": 10476,
+              "label": "30A・200kWh：基本料金＋電力量料金＋11月の調整額（+16.43円/kWh）"
+            },
+            "base": {
+              "yen": 7190,
+              "label": "30A・200kWh：基本料金＋電力量料金"
+            }
+          },
+          "300": {
+            "adj": {
+              "yen": 15564,
+              "label": "30A・300kWh：基本料金＋電力量料金＋11月の調整額（+16.43円/kWh）"
+            },
+            "base": {
+              "yen": 10635,
+              "label": "30A・300kWh：基本料金＋電力量料金"
+            }
+          },
+          "400": {
+            "adj": {
+              "yen": 21074,
+              "label": "40A・400kWh：基本料金＋電力量料金＋11月の調整額（+16.43円/kWh）"
+            },
+            "base": {
+              "yen": 14502,
+              "label": "40A・400kWh：基本料金＋電力量料金"
+            }
+          }
+        },
+        "initialYen": null,
+        "facts": [
+          {
+            "label": "基本料金",
+            "value": "30A 858.24円・40A 1,144.32円"
+          },
+          {
+            "label": "電力量料金",
+            "value": "120kWhまで29.80円・〜300kWhまで34.45円・それより上35.81円"
+          },
+          {
+            "label": "調整",
+            "value": "独自の燃料費調整（容量拠出負担金を含む）。11月分 +16.43円/kWh"
+          },
+          {
+            "label": "割引",
+            "value": "ガスとのセット割（LPガス月220円・都市ガス月110円）"
+          },
+          {
+            "label": "11月の改定",
+            "value": "11月1日の託送料金の改定を反映した料金かは公式で確認中（公式の比較表は東京電力の改定前の料金と比べています）"
+          }
+        ]
+      }
+    ]
+  }
 }

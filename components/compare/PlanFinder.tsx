@@ -114,7 +114,7 @@ export default function PlanFinder({ finder, products, checkedLabel }: { finder:
 
         <div className="mt-5 border-t border-line pt-4" aria-live="polite">
           <p className="text-note text-ink-soft">
-            {[tierLabel, optionLabel, tag !== "any" ? tag : null].filter(Boolean).map((t) => `「${t}」`).join("")}で、月額の安い順（{finder.unit}）
+            {[tierLabel, optionLabel, tag !== "any" ? tag : null].filter(Boolean).map((t) => `「${t}」`).join("")}で、{finder.perLabel ?? "月額"}の安い順（{finder.unit}）
           </p>
           {top.length > 0 ? (
             <ol className="mt-3 grid gap-3">
@@ -131,7 +131,7 @@ export default function PlanFinder({ finder, products, checkedLabel }: { finder:
                   </span>
                   <span className="shrink-0 text-right">
                     <span className="index-num block text-[19px] font-black leading-tight text-ink">{yen(cell!.yen)}</span>
-                    <span className="block text-meta text-muted">月額</span>
+                    <span className="block text-meta text-muted">{finder.perLabel ?? "月額"}</span>
                   </span>
                 </li>
               ))}
@@ -153,32 +153,32 @@ export default function PlanFinder({ finder, products, checkedLabel }: { finder:
           <span className="mr-2">並べ替え</span>
           <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} className="h-11 rounded-lg border border-line-strong bg-paper px-3 text-note font-bold text-ink">
             <option value="price">月額の安い順</option>
-            <option value="initial">{initialLabel}の安い順</option>
+            {finder.hideInitial ? null : <option value="initial">{initialLabel}の安い順</option>}
             {hasGb ? <option value="data">データ量の多い順</option> : null}
           </select>
         </label>
       </div>
       <ul className="mt-3 grid gap-3">
         {listed.map(({ item, product, cell }) => (
-          <Row key={item.id} item={item} product={product} cell={cell} initialLabel={initialLabel} />
+          <Row key={item.id} item={item} product={product} cell={cell} initialLabel={finder.hideInitial ? null : initialLabel} detailsLabel={finder.detailsLabel ?? "くわしく"} />
         ))}
         {missing.map(({ item, product }) => (
-          <Row key={item.id} item={item} product={product} cell={null} initialLabel={initialLabel} />
+          <Row key={item.id} item={item} product={product} cell={null} initialLabel={finder.hideInitial ? null : initialLabel} detailsLabel={finder.detailsLabel ?? "くわしく"} />
         ))}
       </ul>
       <p className="mt-3 text-meta leading-[1.7] text-muted">
-        {checkedLabel}。金額は月額（{finder.unit}）。キャンペーンや期間限定の割引は入れていません。「公式で確認中」は公式ページで確かめられなかった項目です。
+        {checkedLabel}。金額は{finder.perLabel ?? "月額"}（{finder.unit}）。キャンペーンや期間限定の割引は入れていません。「公式で確認中」は公式ページで確かめられなかった項目です。
       </p>
     </div>
   );
 }
 
-function Row({ item, product, cell, initialLabel }: { item: Finder["items"][number]; product: FinderProduct; cell: PlanFinderCell; initialLabel: string }) {
+function Row({ item, product, cell, initialLabel, detailsLabel }: { item: Finder["items"][number]; product: FinderProduct; cell: PlanFinderCell; initialLabel: string | null; detailsLabel: string }) {
   return (
     <li id={`p-${item.id}`} className={`scroll-mt-24 rounded-xl border border-line px-3.5 py-3 ${cell ? "" : "opacity-70"}`}>
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-meta text-muted">{item.kind}・{lineText(item.tags)}</p>
+          <p className="text-meta text-muted">{item.tags.length ? `${item.kind}・${lineText(item.tags)}` : item.kind}</p>
           <p className="mt-0.5 text-[16px] font-black leading-snug text-ink">
             {product.name}
             {product.sponsored && <Pr />}
@@ -187,13 +187,15 @@ function Row({ item, product, cell, initialLabel }: { item: Finder["items"][numb
         </div>
         <p className="shrink-0 text-right">
           <span className="index-num block text-[18px] font-black leading-tight text-ink">{cell ? yen(cell.yen) : "ー"}</span>
-          <span className="block whitespace-nowrap text-meta text-muted">{item.initialYen === null ? `${initialLabel}：公式で確認中` : `${initialLabel} ${yen(item.initialYen)}`}</span>
+          {initialLabel ? (
+            <span className="block whitespace-nowrap text-meta text-muted">{item.initialYen === null ? `${initialLabel}：公式で確認中` : `${initialLabel} ${yen(item.initialYen)}`}</span>
+          ) : null}
         </p>
       </div>
       {item.change ? <p className="mt-2 rounded-md bg-accent-soft px-2.5 py-1.5 text-meta leading-[1.6] text-ink">{item.change}</p> : null}
       <details className="group mt-1">
         <summary className="-mb-2 flex min-h-11 cursor-pointer list-none items-center gap-1 text-note font-bold text-accent">
-          くわしく（通話・5G・解約など）<span aria-hidden className="transition-transform group-open:rotate-45">＋</span>
+          {detailsLabel}<span aria-hidden className="transition-transform group-open:rotate-45">＋</span>
         </summary>
         <dl className="mt-1 grid gap-1.5 text-note leading-[1.65]">
           {item.facts.map((fact) => (

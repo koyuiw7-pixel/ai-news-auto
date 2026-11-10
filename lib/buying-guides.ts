@@ -91,6 +91,12 @@ export type PlanFinder = {
   sortRule: string;
   /** initialYen の呼び名（省略時は「初めの費用」。光回線は「事務手数料」） */
   initialLabel?: string;
+  /** 初めの費用を出さない（電気など、比べる意味が薄いとき） */
+  hideInitial?: boolean;
+  /** 金額の呼び名（省略時は「月額」。電気は「1か月の目安」） */
+  perLabel?: string;
+  /** 行をひらく「くわしく」の文（例: くわしく（通話・5G・解約など）） */
+  detailsLabel?: string;
   items: PlanFinderItem[];
 };
 
