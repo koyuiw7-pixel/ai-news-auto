@@ -6,9 +6,10 @@
   "companyName": "NVIDIA",
   "category": "AIモデル",
   "overview": {
-    "text": "Nemotronは、NVIDIAが提供するオープンなAIモデルやデータセット群です。2026年10月から11月にかけて公開されました。",
+    "text": "NemotronはNVIDIAが提供するAIモデル群です。2026年10月に新モデルやデータが発表されました。",
     "sources": [
-      "korea-openshell-agentic-ai-security",
+      "nemotron-pii-japan-finance-datasets",
+      "aws-nvidia-nemotron-35-super-vl",
       "nvidia-nemotron-35-transcribe"
     ]
   },
@@ -17,145 +18,182 @@
       "label": "料金",
       "value": "オープンウェイト（無償公開）",
       "sources": [
+        "aws-nvidia-nemotron-35-super-vl",
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
       "label": "提供開始",
-      "value": "2026年10月〜11月",
+      "value": "2026年11月10日",
       "sources": [
-        "nemotron-personas-finance-japan",
+        "nemotron-pii-japan-finance-datasets"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "利用可能",
+      "sources": [
+        "nemotron-pii-japan-finance-datasets",
         "aws-nvidia-nemotron-35-super-vl",
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "label": "日本での提供",
-      "value": "利用できる",
+      "label": "使える場所",
+      "value": "Hugging Face、AWS",
       "sources": [
-        "nemotron-personas-finance-japan",
-        "aws-nvidia-nemotron-35-super-vl",
-        "nvidia-nemotron-35-transcribe"
+        "nemotron-pii-japan-finance-datasets",
+        "aws-nvidia-nemotron-35-super-vl"
       ]
     },
     {
       "label": "向いている人",
       "value": "AI開発者・研究者",
       "sources": [
-        "aws-nvidia-nemotron-35-super-vl",
+        "nemotron-pii-japan-finance-datasets",
         "nvidia-nemotron-35-transcribe"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "テキストや画像、ドキュメント、動画を1つのモデルで処理できます。",
+      "text": "日本語文書向けPII検出用データ10万件を提供。",
+      "sources": [
+        "nemotron-pii-japan-finance-datasets"
+      ]
+    },
+    {
+      "text": "金融向け合成ペルソナを900万件公開。",
+      "sources": [
+        "nemotron-pii-japan-finance-datasets"
+      ]
+    },
+    {
+      "text": "120B MoEでテキスト・画像・動画を統合処理。",
       "sources": [
         "aws-nvidia-nemotron-35-super-vl"
       ]
     },
     {
-      "text": "40言語の文字起こしや、31言語の翻訳を行えます。",
+      "text": "40言語の音声文字起こしと話者識別を単一モデルで実現。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "text": "13言語での話者識別に対応しています。",
+      "text": "TensorRT Edge-LLMでNemotron-3.5 Lightningをエッジ実行。",
       "sources": [
-        "nvidia-nemotron-35-transcribe"
-      ]
-    },
-    {
-      "text": "日本の金融AI向け合成ペルソナ900万件を利用できます。",
-      "sources": [
-        "nemotron-personas-finance-japan"
+        "nvidia-tensorrt-edge-llm-edge-ai"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "モデルの重みやデータセットは、無償で公開されています。",
+      "text": "モデルとデータはオープンウェイトで無償公開。",
       "sources": [
         "aws-nvidia-nemotron-35-super-vl",
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "text": "クラウドやサーバーで実行する場合の利用コストが別途かかります。",
+      "text": "実行にはGPU環境が必要で、クラウド費用が別途発生。",
       "sources": [
-        "aws-nvidia-nemotron-35-super-vl",
-        "nvidia-nemotron-35-transcribe"
+        "nvidia-nemotron-35-transcribe",
+        "nvidia-tensorrt-edge-llm-edge-ai"
       ]
     }
   ],
   "japan": [
     {
-      "text": "Hugging Face等からモデルをダウンロードして使えます。",
+      "text": "日本からHugging FaceやAWSで利用できます。",
       "sources": [
-        "nvidia-nemotron-35-transcribe"
+        "nemotron-pii-japan-finance-datasets",
+        "aws-nvidia-nemotron-35-super-vl"
       ]
     },
     {
-      "text": "AWSの国内リージョンでもデプロイや検証を行えます。",
+      "text": "TensorRT Edge-LLMは日本でも使用可能です。",
       "sources": [
-        "aws-nvidia-nemotron-35-super-vl"
+        "nvidia-tensorrt-edge-llm-edge-ai"
       ]
     }
   ],
   "howto": [
     {
-      "text": "Hugging Face等から必要なモデルを入手できます。",
+      "text": "Hugging Faceでデータセットやモデルをダウンロード。",
       "sources": [
-        "nemotron-personas-finance-japan",
+        "nemotron-pii-japan-finance-datasets",
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "text": "AWS上のAmazon EKSなどを使ってデプロイできます。",
+      "text": "AWSのEKSやSageMakerでモデルをデプロイ。",
       "sources": [
         "aws-nvidia-nemotron-35-super-vl"
+      ]
+    },
+    {
+      "text": "trtedgeコマンドでローカルにモデル取得し実行。",
+      "sources": [
+        "nvidia-tensorrt-edge-llm-edge-ai"
       ]
     }
   ],
   "differences": [
     {
-      "text": "従来のFinance-Japan版は22項目でしたが、新しい版は50項目になりました。",
+      "text": "Nemotron 3 Ultraと比べコストが約10分の1に削減。",
       "sources": [
-        "nemotron-personas-finance-japan"
+        "nvidia-nemoclaw-agent-platform"
+      ]
+    },
+    {
+      "text": "Super VLは120B MoEで前世代より規模が大幅拡大。",
+      "sources": [
+        "aws-nvidia-nemotron-35-super-vl"
+      ]
+    },
+    {
+      "text": "Transcribeは1モデルで文字起こし・翻訳・話者識別を統合。",
+      "sources": [
+        "nvidia-nemotron-35-transcribe"
+      ]
+    },
+    {
+      "text": "Edge-LLMは数コマンドでエッジデバイスに展開可能。",
+      "sources": [
+        "nvidia-tensorrt-edge-llm-edge-ai"
       ]
     }
   ],
   "faq": [
     {
-      "q": "無料で使えますか？",
-      "a": "モデルやデータは無償公開されていますが、実行するためのGPU環境などの料金はかかります。",
+      "q": "無料で使える？",
+      "a": "モデルとデータはオープンウェイトで無償です。ただし実行環境の費用は別です。",
       "sources": [
         "aws-nvidia-nemotron-35-super-vl",
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "q": "どんなデータを処理できますか？",
-      "a": "Super VLモデルではテキストや動画などを処理でき、Transcribeモデルでは音声処理を行えます。",
+      "q": "どんなデータが提供されている？",
+      "a": "日本語PIIデータ10万件と金融ペルソナ900万件が公開されています。",
       "sources": [
-        "aws-nvidia-nemotron-35-super-vl",
-        "nvidia-nemotron-35-transcribe"
+        "nemotron-pii-japan-finance-datasets"
       ]
     },
     {
-      "q": "商用利用はできますか？",
-      "a": "金融向けの合成ペルソナデータなどは商用利用も可能です。",
+      "q": "エッジデバイスで動かせますか？",
+      "a": "TensorRT Edge-LLMで数コマンドだけでエッジに展開できます。",
       "sources": [
-        "nemotron-personas-finance-japan"
+        "nvidia-tensorrt-edge-llm-edge-ai"
       ]
     },
     {
-      "q": "どこから入手できますか？",
-      "a": "Hugging Faceなどのプラットフォームから入手できます。",
+      "q": "セキュリティはどう確保されていますか？",
+      "a": "OpenShellでサンドボックス化し、ポリシーでアクセスを制御します。",
       "sources": [
-        "nemotron-personas-finance-japan",
-        "nvidia-nemotron-35-transcribe"
+        "nvidia-secure-agent-ai-factory",
+        "nvidia-nemoclaw-agent-platform"
       ]
     }
   ],
@@ -163,17 +201,22 @@
     {
       "date": "2026-10-28",
       "slug": "nvidia-nemotron-35-transcribe",
-      "event": "Nemotron 3.5 Transcribeを発表"
+      "event": "Nemotron 3.5 Transcribeを公開"
     },
     {
       "date": "2026-10-30",
       "slug": "aws-nvidia-nemotron-35-super-vl",
-      "event": "AWSがNemotron 3.5 Super VLのサポートを発表"
+      "event": "Nemotron 3.5 Super VLがAWSで利用開始"
+    },
+    {
+      "date": "2026-10-31",
+      "slug": "nvidia-nemotron-halloween-monsterhouse",
+      "event": "MonsterHouseのローカル音声エージェントを公開"
     },
     {
       "date": "2026-11-10",
-      "slug": "nemotron-personas-finance-japan",
-      "event": "金融向けペルソナ900万件を公開"
+      "slug": "nemotron-pii-japan-finance-datasets",
+      "event": "日本語PIIデータと金融ペルソナを公開"
     }
   ],
   "related": [
@@ -183,7 +226,7 @@
     "blackwell"
   ],
   "articles": [
-    "nemotron-personas-finance-japan",
+    "nemotron-pii-japan-finance-datasets",
     "korea-openshell-agentic-ai-security",
     "nvidia-tensorrt-edge-llm-edge-ai",
     "nvidia-nemotron-halloween-monsterhouse",
@@ -196,14 +239,14 @@
     "bharatgen-india-sovereign-ai-nvidia-nemotron"
   ],
   "linkFrom": [
-    "nemotron-personas-finance-japan",
+    "nemotron-pii-japan-finance-datasets",
     "nvidia-nemotron-halloween-monsterhouse",
     "aws-nvidia-nemotron-35-super-vl",
     "nvidia-nemotron-35-transcribe"
   ],
-  "signature": "d3aa61bb76928d5f",
-  "primarySignature": "0367f8535c2a4ff2",
-  "model": "gemini-3.5-flash-lite",
+  "signature": "3b0618b9a237d451",
+  "primarySignature": "85044aeccd18f19c",
+  "model": "cloudflare:@cf/openai/gpt-oss-120b",
   "createdAt": "2026-10-29T17:50:17+00:00",
-  "updatedAt": "2026-11-09T15:47:04+00:00"
+  "updatedAt": "2026-11-10T04:28:58+00:00"
 }

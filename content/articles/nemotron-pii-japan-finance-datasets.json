@@ -1,0 +1,258 @@
+{
+  "slug": "nemotron-pii-japan-finance-datasets",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/",
+  "sourceName": "NVIDIA日本版ブログ",
+  "title": "日本語の個人情報検出用データ10万件と金融ペルソナ900万件　NVIDIAが公開",
+  "seoTitle": "Nemotron PII Japanとは　日本語の個人情報検出データ",
+  "threadsPost": "日本語文書の個人情報を隠すAI向けに、10万件のデータが公開されました。\n\nNVIDIAが合成データセット「Nemotron PII Japan」を出しました。実在する個人情報は使っていません。\n金融向けの合成ペルソナ900万件のデータセットも、同じ日に公開されています。\n\n仕事の書類をAIに渡す前、個人情報はどう扱っていますか？",
+  "threadsHook": "number",
+  "threadsQuestions": [
+    {
+      "pattern": "tradeoff",
+      "question": "仕事の書類をAIに渡す前、個人情報はどう扱っていますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "AIに渡してよい書類は、どこまでと決めていますか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "職場で生成AIに入力する情報に、ルールはありますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "日本語の個人情報を検出して隠すAIの開発に使える合成データ「Nemotron PII Japan」10万件が、Hugging Faceで公開されました。医療や金融など8分野、43種類の文書を収め、実在の個人情報は含みません。金融向けの合成ペルソナ「Nemotron Personas Finance Japan」も同時に出ており、ライセンスなどの詳細は各ブログで確認できます。",
+  "description": "NVIDIAが日本語の個人情報(PII)検出用の合成データ10万件「Nemotron PII Japan」と、金融向け合成ペルソナ900万件を公開。NECが検証に参加。公開場所と使い道を整理します。",
+  "keywords": [
+    "Nemotron PII Japan",
+    "Nemotron Personas Finance Japan",
+    "合成データ",
+    "日本語 個人情報 検出",
+    "PII マスキング",
+    "NVIDIA Nemotron",
+    "Hugging Face",
+    "エージェント型AI",
+    "合成ペルソナ",
+    "NEC"
+  ],
+  "tags": [
+    "NVIDIA",
+    "Nemotron",
+    "合成データ",
+    "生成AI",
+    "個人情報保護"
+  ],
+  "highlights": [
+    "Nemotron PII Japanは、日本語文書向けの個人情報検出用に作られた10万件規模の完全合成データ",
+    "PII Japanは医療・金融・行政など8分野、診断書や申請書など43種類の文書を収録",
+    "金融版ペルソナは900万件で、損保ジャパンや福岡銀行など国内金融機関の知見を反映"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "Hugging Faceで公開",
+    "free": null,
+    "audience": "AI開発者",
+    "take": "自社で日本語文書を扱うAIを作る人は、Hugging Faceで利用条件を確かめてから試すとよいでしょう。",
+    "judgedAt": "2026-11-10T04:22:58.803072+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "顧客の文書をAIで処理する企業の開発担当者は、実データを持ち出さずに個人情報の検出を検証できます。",
+      "金融機関の企画・営業部門は、顧客シミュレーションに使えるペルソナの利用条件を確かめるとよいでしょう。"
+    ]
+  },
+  "body": "対象になるのは、日本語の文書を扱うAIを自分で作る開発者と、金融分野でAIを試したい企業です。AIを使うだけの一般の利用者には、今すぐ変わることはありません。\n\n「Nemotron PII Japan」は、日本語の文書から個人情報を見つけて隠す（マスキング）AIを育てるための学習・評価用データです。PIIとは、氏名や住所のように個人を特定できる情報のことです。\n\nNVIDIAの日本版ブログによると、2つのデータセットは11月10日に発表されました。発表の場は、都内で開いた開発者向けイベント「NVIDIA Agentic AI Day」です。どちらも、エージェント型AI（自分で手順を進めるAI）向けのオープンなモデルとデータの集まり「NVIDIA Nemotron」の一部です。\n\n## 日本語の個人情報を探すためのデータが10万件\n\n実在の個人情報が入ったデータは、取得も共有も簡単ではありません。特に金融、医療、公共の分野では、これがAI開発の壁になります。そこでNVIDIAは、実在の情報を使わず文書の形だけを再現した合成データを用意しました。\n\nNemotron PII Japanの中身は次のとおりです。\n\n- 規模：10万件の完全合成データセット\n- 分野：医療、金融、行政、雇用、教育、法律、IT・セキュリティ、Eコマースの8分野\n- 文書：診断書、ローン審査書類、住所変更届、申請書など43種類\n- ラベル：氏名、住所、メールアドレス、各種識別番号が文中のどこにあり、どのカテゴリーかを示す注釈\n\n文書と正解ラベルがセットなので、検出モデルの追加学習や評価、改善に使えます。顧客から受け取った文書をLLM（大規模言語モデル）で処理する前に、氏名や住所を自動で隠す専用モデルを作る場面が想定されています。\n\n公開されたのはデータセットで、日本語PIIモデルそのものではありません。ここは取り違えやすい点です。\n\n## NECが検証、誤検知が減ったと説明\n\n検証には、早期に試す「アーリーアクセス」でNECが参加しました。NECの吉川彰一氏（AIプラットフォームサービス統括部 統括部長）は、「客観的に検証できるようになり」と説明しています。背景には、日本語PIIの公開データセットが少ないことがあります。\n\n同氏によると、新たな外部データでも高い検出性能を確認できました。このデータで追加学習すると、高い検出率を保ったまま適合率が上がりました。誤検知が減ったということです。\n\n## 金融ペルソナは900万件、日本の金融機関が助言\n\nもう1つの「Nemotron Personas Finance Japan」は、2025年に公開された日本人の合成ペルソナ「Nemotron Personas Japan」（V1）の金融版です。V1は、公的な人口統計や労働統計に基づく100万レコードから、600万件のペルソナを生成していました。\n\n金融版は100万サンプルを土台にしています。ペルソナ数は600万件から900万件に増えました。収入や資産のほか、支出、貯蓄、投資、金融上の意思決定を表す属性が加わりました。\n\nV1の22項目に対し、金融版は1件あたり50項目という整理も、サイソクの過去記事で伝えています（サイソクの過去記事、11/10）。詳しくは[金融AI向け合成ペルソナ900万件の記事](/articles/nemotron-personas-finance-japan)にまとめました。\n\n想定される使い道は、マルチターン会話（やり取りが複数回続く会話）の合成です。ほかに、マーケティングや市場調査のシミュレーション、営業トレーニング用の顧客シミュレーションも想定されています。属性は公開統計から確率モデルでサンプリングし、NVIDIA NeMo Data Designerで個人像の文章を生成しました。\n\n開発の主導はNVIDIAです。実装と大規模なデータ生成は、東京大学の松尾研究所発のスタートアップElithが担いました。設計の段階では、損害保険ジャパン、東京海上ホールディングス、福岡銀行、みずほフィナンシャルグループ、明治安田生命保険、金融データ活用推進協会（FDUA）が意見を出しています。\n\n編集部の見方です。個人情報の検出モデルは、日本語の書式や住所表記に合わせた評価用データが少ないことが課題でした。NECの説明のとおり、共通の物差しとして使えるなら、各社の検証結果を比べやすくなります。\n\n## 使えるのはHugging Face、条件は各ブログで\n\n2つのデータセットは、現在Hugging Faceで公開されています。データの詳細、ライセンス、使い方は、Hugging Face上の各データセットのブログに載っています。\n\n## まだ分からないこと\n\n- Nemotron PII Japanのライセンスは、日本版ブログの発表文では示されていません。\n- 日本語PIIを検出するモデル自体の公開予定は、まだ発表されていません。\n\n## 日本語文書を扱うAIを作る開発者・企業へ\n\n個人情報を隠す機能を作る場合は、Hugging FaceのNemotron PII Japanのブログでライセンスとデータ形式を確認します。自社の文書の種類が、43種類のどれに近いかも見ておくとよいでしょう。\n\n金融機関で顧客対応AIを試す場合は、Nemotron Personas Finance Japanのブログを確認します。ライセンスは、先に掲載した過去記事にも整理しています。",
+  "easy": "## ひとことで言うと\n\nNVIDIAが、日本語向けのAI開発に使える2種類の作り物のデータを公開しました。1つは個人情報を見つけて隠すAI用、もう1つは金融向けの架空の人物像です。\n\n実在の人の情報は使っていません。どちらもHugging Faceで公開されています。\n\n## 個人情報を隠すAI用のデータ\n\n「Nemotron PII Japan」は、診断書やローン審査書類、住所変更届など43種類の文書を、10万件規模で作ったデータです。医療、金融、行政など8分野をカバーします。\n\n文書ごとに、氏名や住所などが文中のどこにあるかの正解ラベルが付いています。これでAIを追加学習させたり、性能を測ったりできます。\n\n公開されたのはデータだけで、個人情報を検出するAIそのものではありません。\n\n## 金融向けの架空の人物像\n\n「Nemotron Personas Finance Japan」は、収入や資産、貯蓄、投資の考え方などを備えた架空の日本人像のデータです。数は900万件で、前の版の600万件から増えました。\n\n銀行や保険会社が、顧客との会話の練習やテストに使うことを想定しています。\n\n## 使ってみるには\n\n詳しい利用条件は、Hugging Faceの各データセットのブログで確認できます。",
+  "channel": "NVIDIA日本版ブログ",
+  "channelId": "",
+  "channelSlug": "nvidia-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "NVIDIA、日本のエージェント型AI開発を支える2つの合成データセットを発表",
+  "publishedAt": "2026-11-10T04:01:23+00:00",
+  "generatedAt": "2026-11-10T04:22:58.803059+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/nemotron-pii-japan-finance-datasets-b85e90a2.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "Nemotron Personas Finance Japanに金融機関の顧客データは使われた？",
+      "a": "使われていません。協力した金融機関の各社固有の顧客データや機密情報は使わず、ヒアリングや中間成果物のレビューで得た金融実務の知見だけを設計と品質改善に反映したとしています。"
+    },
+    {
+      "q": "Nemotron Personas Finance JapanはNeMo User Simと使える？",
+      "a": "使えます。NeMo User Simは、現実的なマルチターンの対話を再現してAIエージェントを試すためのものです。金融サービス向けのプローブと組み合わせたり、日本の商慣行に合わせて拡張したりもできます。"
+    }
+  ],
+  "todayActions": [
+    "Hugging Faceの「Nemotron PII Japanブログ」で、ライセンスとデータ形式を確認する",
+    "金融向けAIを試す人は、Nemotron Personas Finance Japanの利用条件を確認する",
+    "自社の文書が、43種類のどれに近いかを照らし合わせる"
+  ],
+  "relatedSlugs": [
+    "nemotron-personas-finance-japan"
+  ],
+  "qualityScore": 90,
+  "factSources": [
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-10"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-10T04:01:23+00:00",
+  "detectedAt": "2026-11-10T04:18:58+00:00",
+  "speedMinutes": 26,
+  "layout": "noir",
+  "summaryLine": "Nemotron PII Japanは、日本語文書向けの個人情報検出用に作られた**10万件**規模の完全合成データ",
+  "insight": [
+    {
+      "text": "Nemotron Personas Finance Japanは、NVIDIA NeMo User Simの金融サービス向けプローブと組み合わせて、AIエージェントの応答をテストできる。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/"
+    },
+    {
+      "text": "金融版のペルソナは、「各社固有の顧客データや機密情報は使用せず」、金融実務に関する知見のみを設計と品質改善に反映したと書かれている。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/"
+    },
+    {
+      "text": "各文書には氏名や住所などのPIIの位置とカテゴリーのアノテーションが付き、検出モデルの追加学習や評価に使えると書かれている。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Nemotron PII Japanブログ（Hugging Face）",
+      "url": "https://huggingface.co/blog/nvidia/nemotron-pii-japan-ja",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/",
+      "howTo": [
+        "Hugging Face",
+        "Nemotron PII Japan ブログ"
+      ],
+      "note": "データセットの詳細、ライセンス、利用方法はこのブログで確認する。"
+    },
+    {
+      "name": "Nemotron Personas Finance Japanブログ（Hugging Face）",
+      "url": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan-ja",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/",
+      "howTo": [
+        "Hugging Face",
+        "Nemotron Personas Finance Japa"
+      ],
+      "note": "データセットの詳細、ライセンス、利用方法はこのブログで確認する。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Hugging Faceの「Nemotron PII Japanブログ」で、ライセンスとデータ形式を確認する",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/",
+      "steps": [
+        "Hugging Faceで Nemotron PII Japan ブログを開く",
+        "ライセンスの内容を確認する",
+        "文書とラベルのデータ形式を確認する"
+      ],
+      "url": "https://huggingface.co/blog/nvidia/nemotron-pii-japan-ja"
+    },
+    {
+      "action": "金融向けAIを試す人は、Nemotron Personas Finance Japanの利用条件を確認する",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/",
+      "steps": [
+        "Nemotron Personas Finance Japan ブログを開く",
+        "利用条件とライセンスを確認する",
+        "NeMo User Simの金融向けプローブと組み合わせるか検討する"
+      ],
+      "url": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan-ja"
+    },
+    {
+      "action": "自社の文書が、43種類のどれに近いかを照らし合わせる",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/",
+      "steps": [
+        "診断書、ローン審査書類、住所変更届、申請書など43種類を確認する",
+        "自社文書の種類と分野を照らし合わせる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "日本語の個人情報を検出するモデルは、公開データセットが少なく、性能を客観的に比べにくい状況でした。実在の個人情報は取得や共有が容易でないため、合成データで文書の形を再現して用意したと説明されています。",
+    "status": "background",
+    "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/"
+  },
+  "worries": [
+    {
+      "q": "顧客から受け取った文書の個人情報は、この データで消せる？",
+      "a": "このデータセットは、氏名や住所を自動で隠す専用モデルの開発に役立つものです。今回公開するのは日本語PIIモデルそのものではなく、データセットだと明記されています。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/",
+      "action": "検出モデルを作る人は、Hugging FaceのNemotron PII Japanブログでライセンスとデータ形式を確認する。"
+    },
+    {
+      "q": "合成データには、実在の人の情報は入っていない？",
+      "a": "実在する個人情報は一切使用していないと書かれています。すべての人物は人工的に生成され、実在する個人とは結びつかないとも説明されています。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/",
+      "action": "データを使う前に、Hugging Face上の各データセットのブログで詳細を確認する。"
+    },
+    {
+      "q": "金融向けのペルソナに、実際の顧客情報は使われている？",
+      "a": "各社固有の顧客データや機密情報は使用せず、金融実務に関する知見のみを反映したと書かれています。金融機関の協力は、設計やレビューへのフィードバックという形でした。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/",
+      "action": "金融向けデータを試す場合は、Nemotron Personas Finance JapanのHugging Faceブログで利用条件を確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "個人情報を隠す検出モデルの開発に、このデータを使うか",
+      "situation": "日本語文書を扱うAIを自分で作る開発者",
+      "recommend": "ライセンスとデータ形式を確認してから検討する",
+      "reason": "データは文書と正解ラベルのセット。ただし公開されたのはデータセットで、日本語PIIモデルそのものではない。ライセンスの内容は、このページには書かれていない。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/"
+    },
+    {
+      "question": "金融向けの対話AIの試験に、この合成ペルソナを使うか",
+      "situation": "金融機関で顧客対応AIを試したい企業",
+      "recommend": "利用条件を確認してから決める",
+      "reason": "NeMo User Simと組み合わせ、金融シナリオごとのAI応答をテストできる。利用条件はHugging Faceの各データセットのブログで確認するよう案内されている。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "NeMo User Simで金融AIの応答を試せる",
+    "cause": "なぜ作られた？いま分かっていること",
+    "steps": "まずはライセンスと形式を確認しよう",
+    "desk": "データの詳細とライセンスの確認先",
+    "worries": "実データは使われている？消せる？",
+    "guide": "自社で使うか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-10T04:30:04+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA日本版ブログ",
+    "sourceUrl": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/",
+    "original": "https://blogs.nvidia.co.jp/wp-content/uploads/sites/11/2026/11/ent-26-dl-nemotron-dataset-1280x680-jaJP-5805263.jpg",
+    "width": 1200,
+    "height": 638,
+    "at": "2026-11-10T04:34:59+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.484,
+    "y": 0.514,
+    "box": [
+      0.078,
+      0.135,
+      0.891,
+      0.894
+    ],
+    "ar": 1.8809,
+    "src": "https://ai-tech-express.jp/img/nemotron-pii-japan-finance-datasets-b85e90a2.jpg"
+  }
+}

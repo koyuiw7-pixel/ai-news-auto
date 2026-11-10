@@ -95,9 +95,9 @@
     }
   ],
   "todayActions": [
-    "Hugging Faceのnvidia/Nemotron-Personas-Finance-Japanを開き、100万行のデータの中身を数件確認する",
-    "CC BY 4.0の表示条件を確認し、自社製品に組み込む際の出典表記の方法を決める",
-    "顧客向けAIのテスト用に、都市と地方など検証したい属性の条件を洗い出す"
+    "Hugging Faceのnvidia/Nemotron-Personas-Finance-Japanを開き、100万行の中身を数件確認する",
+    "CC BY 4.0の条項を読み、自社製品に組み込むときの出典表記を決める",
+    "顧客向けAIのテストで確かめたい属性の条件を洗い出す"
   ],
   "relatedSlugs": [
     "nemotron-personas-finance-japan"
@@ -195,5 +195,118 @@
     ],
     "ar": 1.8809,
     "src": "https://ai-tech-express.jp/img/nemotron-personas-finance-japan-dataset-b85e90a2.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "データの列には sex、age、household_financial_assets、financial_literacy などがあり、条件を絞るときの項目として使える。",
+      "source": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan"
+    },
+    {
+      "text": "データセットページの Dataset Viewer で、subset「default」・split「train」の100万行を画面上で見られる。",
+      "source": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Nemotron-Personas-Finance-Japan データセットページ（Hugging ",
+      "url": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan",
+      "source": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan",
+      "note": "Dataset Viewer で列と行を確認でき、Expand in Data Studio から広げて見られる。"
+    },
+    {
+      "name": "Creative Commons Attribution 4.0 International Lic",
+      "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "source": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan",
+      "note": "データセットページからこのライセンス条項へ移れる。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Hugging Faceのnvidia/Nemotron-Personas-Finance-Japanを開き、100万行の中身を数件確認する",
+      "source": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan",
+      "steps": [
+        "Hugging Faceでデータセットページを開く",
+        "Dataset Viewerで subset「default」を選ぶ",
+        "split「train」の行を数件見る"
+      ],
+      "url": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan"
+    },
+    {
+      "action": "CC BY 4.0の条項を読み、自社製品に組み込むときの出典表記を決める",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan-ja",
+      "steps": [
+        "データセットページのリンクから条項を開く",
+        "Creative Commons Attribution 4.0 International License",
+        "表示の文言を社内の資料用に決める"
+      ],
+      "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+    },
+    {
+      "action": "顧客向けAIのテストで確かめたい属性の条件を洗い出す",
+      "source": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan",
+      "steps": [
+        "Dataset Viewerで列名を見る",
+        "例: prefecture、city、age、education_level",
+        "都市と地方は region か area で比べる"
+      ],
+      "url": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan"
+    }
+  ],
+  "cause": {
+    "text": "金融業界は、厳格なプライバシー保護や規制への準拠から実データの利用に大きな制約があります。そのため、実際の顧客データを使わずに人口分布や資産状況を再現できる合成データが必要とされ、今回の公開につながりました。",
+    "status": "background",
+    "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan-ja"
+  },
+  "worries": [
+    {
+      "q": "顧客の実データがAIの試験に使われていない？",
+      "a": "すべてのペルソナは完全に合成されたもので、実在する個人をモデルにしていません。人口統計や家計の財務状況は公的統計や公開調査データに基づき、名前は日本の命名規則に従っています。",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan-ja",
+      "action": "一般の利用者が手続きをする必要はないと書かれているため、今すぐ何かを変える必要はありません。"
+    },
+    {
+      "q": "自分の情報が、この金融AIに使われた？",
+      "a": "ブログによると、本データは実際の顧客データを使わずに利用でき、一般の利用者が手続きをする必要はなく、今の金融サービスが変わるわけでもないとされています。",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan-ja",
+      "action": "この発表で利用者が行う手続きは書かれていないため、この記事の範囲では対応は不要です。"
+    },
+    {
+      "q": "無料で使えるけど、商用の製品に入れられる？",
+      "a": "CC BY 4.0のもとで公開され、商用・非商用を問わず利用できます。データセットページからライセンス条項の文言を確認できます。",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan-ja",
+      "action": "自社製品に組み込む前に、ライセンス条項を読んで表示の方法を決めておきましょう。",
+      "actionSource": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-Finance-Japan"
+    },
+    {
+      "q": "このデータでAIの精度は保証される？",
+      "a": "各ペルソナの品質を測る評価結果の数字は、ブログではまだ示されていません。まず少量を読み込み、想定顧客層と分布が合うかを確かめる方法が示されています。",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan-ja",
+      "action": "100万行のデータを数件開いて、想定する顧客像と合うかを自社で確認しましょう。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "自社の顧客向けAIの試験に使うか迷っている",
+      "situation": "想定する顧客層と分布が合うかを確かめたい",
+      "recommend": "まず少量を読み込み、確かめてから判断するとよい",
+      "reason": "ブログは、少量を読み込んで想定顧客層とペルソナの分布が合うか、記述が業務シナリオに使えるかを見ることを勧めています。各ペルソナの品質を測る評価結果の数字は、まだ示されていません。",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan-ja"
+    },
+    {
+      "question": "個人情報の保護テストにも組み合わせるか迷う",
+      "situation": "パイプラインが個人情報を守れているか確かめたい",
+      "recommend": "同日公開のNemotron-PII-Japanと組み合わせて検討する",
+      "reason": "ブログは、Finance-Japanで顧客を模擬し、PII-Japanで顧客の個人情報をパイプラインがどう守っているかをテストできるとしています。PII-Japanは、ラベル付き個人情報を含む10万件の合成ビジネス文書です。",
+      "source": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan-ja"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "列名を見れば、絞り込める属性が分かる",
+    "cause": "なぜ合成データが必要とされたのか",
+    "steps": "まず100万行の中身を数件のぞいてみる",
+    "desk": "データとライセンスを確かめる公式ページ",
+    "worries": "顧客情報は使われた？商用で使える？",
+    "guide": "社内の試験に使うか、迷ったときの考え方"
+  },
+  "depthAt": "2026-11-10T04:32:02+00:00"
 }

@@ -140,6 +140,7 @@
     "0281c9bf841dd5aa": "2026-11-07T15:31:07.844885+00:00",
     "0a40dc02edbb2ef3": "2026-11-06T19:41:01.362264+00:00",
     "0c576c3038614889": "2026-11-09T07:10:55.440298+00:00",
+    "117b2c162c1e1e8d": "2026-11-10T04:18:58.067230+00:00",
     "1498249b89ddfd8a": "2026-11-10T02:30:58.044638+00:00",
     "15a7df0fab82f311": "2026-11-07T15:31:07.844885+00:00",
     "1928f93150be33d5": "2026-11-06T05:20:52.500591+00:00",
@@ -165,7 +166,6 @@
     "475e5902c768e1a1": "2026-11-06T08:51:04.778179+00:00",
     "481477ddeda1e7c3": "2026-11-09T01:50:56.126672+00:00",
     "48ab17c00d59b1f2": "2026-11-08T18:30:49.686091+00:00",
-    "4adc87ba4ef8878c": "2026-11-06T03:34:09.182177+00:00",
     "4aeb050a32861a4a": "2026-11-06T08:51:04.778179+00:00",
     "4bc6cfdfe01d0f0c": "2026-11-06T19:23:54.886871+00:00",
     "4be4160850983eb6": "2026-11-06T05:00:53.564873+00:00",
@@ -212,7 +212,6 @@
     "c0aaac229fee24e1": "2026-11-06T18:22:08.318950+00:00",
     "c63d1aa22d52b881": "2026-11-09T10:02:58.007406+00:00",
     "c658e8765203d16e": "2026-11-07T15:31:07.844885+00:00",
-    "c6c5eaf37e872625": "2026-11-06T03:34:09.182177+00:00",
     "c8cabbdd5caa174b": "2026-11-06T06:20:57.963971+00:00",
     "ca7a6e8f8515fc6d": "2026-11-07T18:30:54.073661+00:00",
     "d0a6cf45971cc4dd": "2026-11-06T06:00:54.354301+00:00",
@@ -4561,7 +4560,7 @@
       "url": "https://www.kantei.go.jp/jp/105/actions/202610/27getsurei.html"
     },
     "117b2c162c1e1e8d": {
-      "at": "2026-11-10T03:33:06.095379+00:00",
+      "at": "2026-11-10T04:21:01.816096+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/seisakunitsuite/bunya/koyou_roudou/roudouseisaku/sougikoui/index.html"
@@ -9068,6 +9067,17 @@
       "skipped": true,
       "url": "https://www.cfa.go.jp/councils/shingikai/shakai_katei/care-needs/d66b8a15"
     },
+    "5bc690806dc2f2be": {
+      "at": "2026-11-10T04:25:11.471612+00:00",
+      "costUsd": 0.0067,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "lifestyle",
+      "slug": "maff-shokuryo-system-law-guidance",
+      "url": "https://www.maff.go.jp/j/press/shokuhin/kikaku/261110.html"
+    },
     "5bd202a12453fed9": {
       "at": "2026-10-30T03:41:29.231318+00:00",
       "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
@@ -10600,6 +10610,12 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/recruit/r8/shiho-05/shiho-05.html"
     },
+    "736fdbf8c0382fb2": {
+      "at": "2026-11-10T04:25:11.950394+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo3/002/mext_00027.html"
+    },
     "73c7084640d94745": {
       "at": "2026-10-28T04:02:46.712719+00:00",
       "breaking": true,
@@ -11035,6 +11051,17 @@
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "https://www.cyberagent.co.jp/news/detail/id=33979"
+    },
+    "7ae7407c57e61447": {
+      "at": "2026-11-10T04:21:01.280602+00:00",
+      "costUsd": 0.0129,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "public",
+      "slug": "subaru-j-esop-rs-stock-disposal",
+      "url": "https://www.subaru.co.jp/news/2026_11_10_122023"
     },
     "7ae8eb20550eee76": {
       "at": "2026-10-28T15:48:04.787605+00:00",
@@ -14804,6 +14831,17 @@
       "skipped": true,
       "url": "https://nttsportict.co.jp/topics/20261029_saitamastadium/"
     },
+    "b77a103ad566ce07": {
+      "at": "2026-11-10T04:23:36.124936+00:00",
+      "costUsd": 0.0081,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 90,
+      "section": "ai",
+      "slug": "nemotron-pii-japan-finance-datasets",
+      "url": "https://blogs.nvidia.co.jp/blog/nvidia-agentic-ai-day-japan-2026-two-japanese-dataset/"
+    },
     "b78ac8a961aced77": {
       "at": "2026-10-28T19:12:53.361982+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -15915,6 +15953,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
       "skipped": true,
       "url": "https://www.jfa.jp/news/00036967/"
+    },
+    "cb71cc0e810f0b61": {
+      "at": "2026-11-10T04:24:26.285645+00:00",
+      "costUsd": 0.0069,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "sports",
+      "slug": "jleague-tiktok-partnership-2026",
+      "url": "https://www.jleague.jp/news/article/35321/?navicode=j1"
     },
     "cb870809b890adb4": {
       "at": "2026-11-06T19:18:02.541131+00:00",
@@ -17573,6 +17622,17 @@
       "reason": "followup quality: 「回線条件…は、今回の発表では触れられていません」→ 元記事には各機種に「他社から電話番号そのまま乗り換え（MNP）、新規お申し込み」の区分があり、回線利用の申込区分は示されているため、「触れられていない」は元記事と食い違う。; 「iPad（A16）とiPad Air（M4）で回線を使えるモデルがあるかについては…触れられていません」→ 元記事は両機種にもMNP",
       "skipped": true,
       "url": "https://network.mobile.rakuten.co.jp/info/ipad-2611/"
+    },
+    "e65fc950bbffbc04": {
+      "at": "2026-11-10T04:22:09.753449+00:00",
+      "costUsd": 0.0095,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "lifestyle",
+      "slug": "food-loss-reduction-reference-2026",
+      "url": "https://www.caa.go.jp/notice/entry/048079/"
     },
     "e66544cb3a5c45f3": {
       "at": "2026-11-09T07:51:38.552365+00:00",
@@ -19554,330 +19614,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-08T15:21:59.868597+00:00",
-      "attempt": 1,
-      "id": "0f0cb95e5bb05a5c",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "元記事の文をそのまま書き写している（2文。例「\"description\": \"Unique order identifier assigned a」）。自分の言葉で要約する"
-      ],
-      "readability": {
-        "avg_paragraph": 173.6,
-        "avg_sentence": 86.8,
-        "long_share": 0.714,
-        "max_paragraph": 281,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": null,
-      "source": "aws-ml-blog",
-      "title": "Serverless MCP server for AI agent data lake access on Amazon ECS Fargate",
-      "warnings": [
-        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LLM・NASC・ECS）",
-        "読みやすさ: 文が長い（1文の平均 86.8字・60字超の文が 71% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T15:22:21.654252+00:00",
-      "attempt": 1,
-      "id": "0f0cb95e5bb05a5c",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 166.9,
-        "avg_sentence": 83.4,
-        "long_share": 0.688,
-        "max_paragraph": 281,
-        "paragraphs": 8,
-        "sentences": 16
-      },
-      "score": 85,
-      "source": "aws-ml-blog",
-      "title": "Serverless MCP server for AI agent data lake access on Amazon ECS Fargate",
-      "warnings": [
-        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LLM・NASC・ECS）",
-        "読みやすさ: 文が長い（1文の平均 83.4字・60字超の文が 69% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T15:22:50.368008+00:00",
-      "attempt": 0,
-      "id": "0f0cb95e5bb05a5c",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 108.6,
-        "avg_sentence": 52.3,
-        "long_share": 0.259,
-        "max_paragraph": 215,
-        "paragraphs": 13,
-        "sentences": 27
-      },
-      "score": 85,
-      "source": "aws-ml-blog",
-      "title": "Serverless MCP server for AI agent data lake access on Amazon ECS Fargate",
-      "warnings": [
-        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LLM・NASC・MCP）",
-        "読みやすさ: 文が長い（1文の平均 52.3字・60字超の文が 26% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T22:24:24.704982+00:00",
-      "attempt": 1,
-      "id": "63aa449b9c963b76",
-      "kind": "broad",
-      "model": "gemini-flash-latest",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 85.1,
-        "avg_sentence": 44.2,
-        "long_share": 0.12,
-        "max_paragraph": 122,
-        "paragraphs": 13,
-        "sentences": 25
-      },
-      "score": 88,
-      "source": "tsr",
-      "title": "上場企業「個人情報漏えい」、過去最悪を更新 ～ 1-10月速報値、約3億5,000件分が漏えい ～",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SG）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-08T23:22:56.393948+00:00",
-      "attempt": 1,
-      "id": "5ab80ff19e3f2e94",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 86.5,
-        "avg_sentence": 44.6,
-        "long_share": 0.129,
-        "max_paragraph": 150,
-        "paragraphs": 16,
-        "sentences": 31
-      },
-      "score": 90,
-      "source": "google-cloud-blog-ja",
-      "title": "損害保険ジャパン:「正しく使われる」ための運用設計で、約 2 万ユーザーの Gemini Enterprise 活用を推進",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DAU）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T00:03:05.634108+00:00",
-      "attempt": 1,
-      "id": "6139b69c3d743eb4",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「全体の大きな割合を占める13兆5,279億円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
-      ],
-      "readability": {
-        "avg_paragraph": 116.2,
-        "avg_sentence": 51.7,
-        "long_share": 0.333,
-        "max_paragraph": 181,
-        "paragraphs": 4,
-        "sentences": 9
-      },
-      "score": null,
-      "source": "mof",
-      "title": "外国為替平衡操作の実施状況(令和8年7月～令和8年9月)",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 51.7字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T00:04:15.471823+00:00",
-      "attempt": 1,
-      "id": "fb53464aed1c77ca",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 96.6,
-        "avg_sentence": 45.9,
-        "long_share": 0.15,
-        "max_paragraph": 184,
-        "paragraphs": 19,
-        "sentences": 40
-      },
-      "score": 88,
-      "source": "nvidia-japan-blog",
-      "title": "NVIDIA と Oracle、NVIDIA Vera Rubin をマルチギガワット規模に拡張し、NVIDIA Vera CPU を Oracle Cloud",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（OCI・NVL・HBM）",
-        "読みやすさ: 文が長い（1文の平均 45.9字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T00:04:42.936269+00:00",
-      "attempt": 0,
-      "id": "fb53464aed1c77ca",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 81.2,
-        "avg_sentence": 42.5,
-        "long_share": 0.091,
-        "max_paragraph": 128,
-        "paragraphs": 23,
-        "sentences": 44
-      },
-      "score": 88,
-      "source": "nvidia-japan-blog",
-      "title": "NVIDIA と Oracle、NVIDIA Vera Rubin をマルチギガワット規模に拡張し、NVIDIA Vera CPU を Oracle Cloud",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（OCI・NVL・HBM）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T00:17:14.811307+00:00",
-      "attempt": 1,
-      "id": "66899d2f897c21b0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「資産の多くは、外国の国債などの証券と外国中央銀行への預金で構成されています」→ 元記事は証券の内訳（国債か否か）を示していないため、「外国の国債」は元記事に無い具体化である。",
-        "「外国債券などの証券」→ 元記事は「証券」とだけ記載しており、債券の種類を特定できない。"
-      ],
-      "readability": {
-        "avg_paragraph": 54.2,
-        "avg_sentence": 31.0,
-        "long_share": 0.071,
-        "max_paragraph": 90,
-        "paragraphs": 8,
-        "sentences": 14
-      },
-      "score": 85,
-      "source": "mof",
-      "title": "外貨準備等の状況（令和8年10月末現在）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IMF）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T00:17:49.670490+00:00",
-      "attempt": 1,
-      "id": "66899d2f897c21b0",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 53.1,
-        "avg_sentence": 28.6,
-        "long_share": 0.077,
-        "max_paragraph": 90,
-        "paragraphs": 7,
-        "sentences": 13
-      },
-      "score": 92,
-      "source": "mof",
-      "title": "外貨準備等の状況（令和8年10月末現在）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IMF）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T00:18:21.794639+00:00",
-      "attempt": 1,
-      "id": "4e4b5a7349f40569",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「NVIDIA日本版ブログは11月9日、」→ 元記事に公開日の記載がなく、11月9日は創作された日付である",
-        "「既存記事では発売日を明記していなかったため、この点を補足します」→ 既存記事の内容を裏付ける資料がなく、根拠の無い記述である",
-        "「10月23日から遊べます」「発売日から遊べ」→ 元記事は「発売に合わせて登場」とし、提供開始時期は異なる場合があると注意しており、断定は言い過ぎである",
-        "「Fire TV Stickからも…会員に申し込めるようになりました」「購入できるようになりました」→ 元記事は『順次開始します』としており、既に提供済みと言い切るのは誤りである",
-        "「提供は順次始まります」→ 前段の「できるようになりました」と矛盾しており、提供状況の書き方が一貫していない",
-        "かんたん版の「Fire TV Stickからも、Amazonを通じて会員に申し込めるようになりました」→ 提供が順次開始である点が省かれている"
-      ],
-      "score": 55,
-      "source": "nvidia-japan-blog",
-      "title": "クラウドへの出撃が迫る：『Call of Duty®: Modern Warfare® 4』が GeForce NOW に登場"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T00:36:05.350223+00:00",
-      "attempt": 1,
-      "id": "9e1b54085019d8d6",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 109.8,
-        "avg_sentence": 44.9,
-        "long_share": 0.182,
-        "max_paragraph": 143,
-        "paragraphs": 9,
-        "sentences": 22
-      },
-      "score": 72,
-      "source": "nli-research",
-      "title": "米雇用統計（26年10月）－非農業部門雇用者数（前月比）は+16.5万人と前月（+6.0万人）、市場予想（+7.0万人）を大幅に上回る",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "初めて出たところで言い換えていない略語（FOMC）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T01:12:07.195474+00:00",
-      "attempt": 1,
-      "id": "fd8f32a4ff83951f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "リード・本文の「無償で提供」→ 元記事は「提供」とのみ書いており、無償とは明記されていない。",
-        "本文「審査や選考を経て提供先として決まった組織」→ 元記事は先着順で、審査や選考があるとは書かれておらず、先着順と矛盾する。",
-        "本文「通常の入れ替え作業によって役割を終えた備蓄食品を廃棄せず」→ 元記事に廃棄しないとの記述はなく、推測が混ざっている。",
-        "よくある質問「各地域の財務局でも同様の取り組み」→ 確認できたのは東海財務局の例のみで、「各地域の財務局」全般は言い過ぎ。",
-        "申込期限の日付が記事に無く、読者が期限を把握できない点は不足。"
-      ],
-      "readability": {
-        "avg_paragraph": 120.8,
-        "avg_sentence": 54.9,
-        "long_share": 0.273,
-        "max_paragraph": 163,
-        "paragraphs": 5,
-        "sentences": 11
-      },
-      "score": 65,
-      "source": "mof",
-      "title": "国の災害用備蓄食品の有効活用の取組みについて",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 54.9字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 120.8字・最長 163字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T01:12:22.844999+00:00",
@@ -27070,6 +26806,333 @@
       "title": "Nemotron-Personas-Finance-Japan: 日本の人口分布と金融コンテキストを捉える合成ペルソナデータセット",
       "warnings": [
         "初めて出たところで言い換えていない略語（CC・BY・SDG）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T04:20:07.034168+00:00",
+      "attempt": 1,
+      "id": "7ae7407c57e61447",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「を導入 12月に自己株式15万株」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 78.3,
+        "avg_sentence": 58.8,
+        "long_share": 0.375,
+        "max_paragraph": 142,
+        "paragraphs": 6,
+        "sentences": 8
+      },
+      "score": null,
+      "source": "subaru",
+      "title": "株式給付信託（J-ESOP-RS）の導入に伴う自己株式の処分に関するお知らせ",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SUBARU・ESOP・RS）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T04:20:42.741245+00:00",
+      "attempt": 1,
+      "id": "7ae7407c57e61447",
+      "kind": "broad",
+      "model": "strike:今日やること",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 91.0,
+        "avg_sentence": 60.7,
+        "long_share": 0.444,
+        "max_paragraph": 215,
+        "paragraphs": 6,
+        "sentences": 9
+      },
+      "score": 95,
+      "source": "subaru",
+      "title": "株式給付信託（J-ESOP-RS）の導入に伴う自己株式の処分に関するお知らせ",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SUBARU・ESOP・RS）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T04:21:01.262593+00:00",
+      "attempt": 0,
+      "id": "7ae7407c57e61447",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 71.6,
+        "avg_sentence": 41.8,
+        "long_share": 0.083,
+        "max_paragraph": 112,
+        "paragraphs": 7,
+        "sentences": 12
+      },
+      "score": 92,
+      "source": "subaru",
+      "title": "株式給付信託（J-ESOP-RS）の導入に伴う自己株式の処分に関するお知らせ",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SUBARU・ESOP・RS）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T04:21:35.118597+00:00",
+      "attempt": 1,
+      "id": "e65fc950bbffbc04",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「まだ分からないこと」の「次回の資料更新や各自治体の計画策定の中で順次示される予定です」→ 元記事にも確認済みの文脈にも今後の公表予定の記載がなく、予定があるかのように書いているため創作にあたる。",
+        "本文の「今回の更新では…持続可能な開発目標（SDGs）に向けた取り組みが網羅されています」→ 元資料の目次にSDGsの項目はあるが、「網羅」と言えるほどの裏付けは元記事からは確認できず、言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 121.0,
+        "avg_sentence": 69.1,
+        "long_share": 0.714,
+        "max_paragraph": 157,
+        "paragraphs": 4,
+        "sentences": 7
+      },
+      "score": 85,
+      "source": "caa",
+      "title": "「食品ロス削減関係参考資料」を更新しました。",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 69.1字・60字超の文が 71% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 121.0字・最長 157字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T04:21:50.140281+00:00",
+      "attempt": 1,
+      "id": "e65fc950bbffbc04",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 140.3,
+        "avg_sentence": 70.2,
+        "long_share": 0.667,
+        "max_paragraph": 157,
+        "paragraphs": 3,
+        "sentences": 6
+      },
+      "score": 88,
+      "source": "caa",
+      "title": "「食品ロス削減関係参考資料」を更新しました。",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 70.2字・60字超の文が 67% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 140.3字・最長 157字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T04:22:04.617662+00:00",
+      "attempt": 0,
+      "id": "e65fc950bbffbc04",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 63.0,
+        "avg_sentence": 37.8,
+        "long_share": 0.0,
+        "max_paragraph": 113,
+        "paragraphs": 6,
+        "sentences": 10
+      },
+      "score": 88,
+      "source": "caa",
+      "title": "「食品ロス削減関係参考資料」を更新しました。",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T04:23:06.203790+00:00",
+      "attempt": 1,
+      "id": "b77a103ad566ce07",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 105.0,
+        "avg_sentence": 47.0,
+        "long_share": 0.263,
+        "max_paragraph": 180,
+        "paragraphs": 17,
+        "sentences": 38
+      },
+      "score": 92,
+      "source": "nvidia-japan-blog",
+      "title": "NVIDIA、日本のエージェント型AI開発を支える2つの合成データセットを発表",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（PII・FDUA）",
+        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す",
+        "読みやすさ: 文が長い（1文の平均 47.0字・60字超の文が 26% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T04:23:36.102392+00:00",
+      "attempt": 0,
+      "id": "b77a103ad566ce07",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 101.2,
+        "avg_sentence": 42.3,
+        "long_share": 0.163,
+        "max_paragraph": 155,
+        "paragraphs": 18,
+        "sentences": 43
+      },
+      "score": 90,
+      "source": "nvidia-japan-blog",
+      "title": "NVIDIA、日本のエージェント型AI開発を支える2つの合成データセットを発表",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（PII・FDUA）",
+        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T04:23:53.539355+00:00",
+      "attempt": 1,
+      "id": "cb71cc0e810f0b61",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「特設データハブの開設」→ 元記事は「特設ページ」としか書いておらず「データハブ」は元記事に無い機能名の創作。",
+        "リード「順次展開される予定です」→ 元記事は「共同で開催します」「展開します」と書いており、「順次」「予定」は時期の言い換えとして元記事より不確かな表現。",
+        "本文「ファン自身が動画を投稿してコミュニティに参加できる仕組みを用意し」→ 元記事は「ファン参加型の投稿キャンペーン」とのみ書き、動画投稿を前提とする仕組みは補足として踏み込み過ぎ。",
+        "リード「2026年10月から連携を再開しました」→ 元記事は「契約開始 2026年10月」と書くのみで、「再開」は解釈を含む言い換え。"
+      ],
+      "readability": {
+        "avg_paragraph": 115.0,
+        "avg_sentence": 57.5,
+        "long_share": 0.417,
+        "max_paragraph": 142,
+        "paragraphs": 6,
+        "sentences": 12
+      },
+      "score": 78,
+      "source": "jleague",
+      "title": "TikTokとＪリーグサポーティングパートナー契約を締結 2026/11/10 (火) 13:00",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 57.5字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T04:24:11.468059+00:00",
+      "attempt": 1,
+      "id": "cb71cc0e810f0b61",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 110.7,
+        "avg_sentence": 55.3,
+        "long_share": 0.417,
+        "max_paragraph": 137,
+        "paragraphs": 6,
+        "sentences": 12
+      },
+      "score": 92,
+      "source": "jleague",
+      "title": "TikTokとＪリーグサポーティングパートナー契約を締結 2026/11/10 (火) 13:00",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 55.3字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T04:24:22.699963+00:00",
+      "attempt": 0,
+      "id": "cb71cc0e810f0b61",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 112.5,
+        "avg_sentence": 39.7,
+        "long_share": 0.118,
+        "max_paragraph": 139,
+        "paragraphs": 6,
+        "sentences": 17
+      },
+      "score": 92,
+      "source": "jleague",
+      "title": "TikTokとＪリーグサポーティングパートナー契約を締結 2026/11/10 (火) 13:00",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T04:24:49.568080+00:00",
+      "attempt": 1,
+      "id": "5bc690806dc2f2be",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 158.4,
+        "avg_sentence": 99.0,
+        "long_share": 0.875,
+        "max_paragraph": 205,
+        "paragraphs": 5,
+        "sentences": 8
+      },
+      "score": 80,
+      "source": "maff",
+      "title": "食料システム法に基づく指導について",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 99.0字・60字超の文が 88% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 158.4字・最長 205字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T04:25:11.455478+00:00",
+      "attempt": 0,
+      "id": "5bc690806dc2f2be",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 109.5,
+        "avg_sentence": 59.7,
+        "long_share": 0.455,
+        "max_paragraph": 191,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 88,
+      "source": "maff",
+      "title": "食料システム法に基づく指導について",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 59.7字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
