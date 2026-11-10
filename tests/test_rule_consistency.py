@@ -220,6 +220,7 @@ NON_PROSE = {
     "depth_fields.py": "一歩深くする欄（insight・officialDesk・todaySteps・cause・worries）だけ。本文は変えない。欄の数字・「」の名前・URL は読んだ公式ページとプログラムで照合し、無いものは外す（台帳 A66）",
     "threads_reader.py": "記事を読むだけ（Threads の投稿の文面を state/threads_reader.json に書く。記事は書かない。台帳 S46）",
     "noir_hero_backfill.py": "ノワールの表紙に写真を出すかの欄（heroOk）だけ（台帳 W36）",
+    "fix_future_dates.py": "一度だけ: 9時間先にずれた発表の時刻（sourcePublishedAt・publishedAt）の欄だけ直す。文章は書かない（SEO A5）",
     "noir_cover.py": "ノワールの表紙の背景の画像の欄（coverImage・coverCredit）だけ。文章は書かない（台帳 W36）",
     "topic_lists.py": "記事を読むだけ（値上げ・障害などの一覧 content/topic_lists.json を書く。台帳 A52）",
     "map_figures.py": "本文の図の欄（figures。public/fig/ に置いた画像の場所と説明）だけ。文章は書かない（2026-11-09 オーナー）",

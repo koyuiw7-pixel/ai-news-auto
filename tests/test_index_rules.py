@@ -110,5 +110,39 @@ class IndexRulesTest(unittest.TestCase):
         self.assertEqual(diffs, [], "IndexNow とサイトで noindex の理由が違う")
 
 
+    def test_news_reason_agrees(self):
+        """ニュース用サイトマップに載せない理由も両方で同じ（SEO A5: 発表の時刻が分からない比較の記事は publishedAt で代用しない）"""
+        node = shutil.which("node")
+        if not node or subprocess.run([node, "-e", "require.resolve('typescript')"], cwd=ROOT,
+                                      capture_output=True).returncode != 0:
+            self.skipTest("node / typescript が無い")
+        from datetime import datetime, timezone
+
+        now = "2026-11-02T12:00:00+00:00"
+        base = {"sourceType": "web", "genreSlug": "business", "title": "財務省が国債金利を公表", "slug": "x",
+                "body": "## 日本で使える？\n" + "a" * 2000, "generatedAt": "2026-11-02T06:00:00+00:00"}
+        cases = [
+            {"publishedAt": "2026-11-02T05:00:00+00:00"},
+            {"publishedAt": "2026-10-27T16:00:00+00:00"},  # ニュース: publishedAt で代用 → stale-source
+            {"publishedAt": "2026-10-27T16:00:00+00:00", "kind": "comparison"},  # 比較: 代用しない → 載せる
+            {"publishedAt": "2026-10-27T16:00:00+00:00", "kind": "comparison", "sourcePublishedAt": "2026-10-27T16:00:00+00:00"},
+            {"publishedAt": "2026-11-02T05:00:00+00:00", "sourcePublishedAt": "2026-10-29T00:00:00+00:00"},
+            {"publishedAt": "2026-11-02T05:00:00+00:00", "generatedAt": "2026-10-30T00:00:00+00:00"},
+            {"publishedAt": "2026-11-02T05:00:00+00:00", "late": True},
+        ]
+        articles = [{**base, **c} for c in cases]
+        expected = [indexnow.news_reason(a, now=datetime.fromisoformat(now)) for a in articles]
+        self.assertEqual(expected, [None, "stale-source", None, "stale-source", "stale-source", "old", "late"])
+        summaries = []
+        for a in articles:
+            row = _summary(a, len(a["body"]), True)
+            row.update({k: a[k] for k in ("publishedAt", "generatedAt", "sourcePublishedAt", "kind", "late") if k in a})
+            summaries.append(row)
+        script = NODE_SCRIPT.replace("m.exports.noindexReason(a)", f"m.exports.newsSitemapReason(a, Date.parse('{now}'))")
+        out = subprocess.run([node, "-e", script], cwd=ROOT, input=json.dumps(summaries), capture_output=True,
+                             text=True, check=True)
+        self.assertEqual(json.loads(out.stdout), expected, "IndexNow とサイトでニュース用サイトマップの理由が違う")
+
+
 if __name__ == "__main__":
     unittest.main()

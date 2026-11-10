@@ -372,13 +372,14 @@ def _unescape(value: str) -> str:
 
 
 def parse_time(value) -> datetime | None:
+    """ISO 8601 の時刻。時間帯の書かれていない時刻・日付だけは日本時間として読む（SEO A5。scripts/feeds.py _parse_date と同じ）"""
     if not value:
         return None
     try:
-        dt = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        dt = datetime.fromisoformat(str(value).strip().replace("Z", "+00:00"))
     except ValueError:
         return None
-    return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+    return dt if dt.tzinfo else dt.replace(tzinfo=timezone(timedelta(hours=9)))
 
 
 def missed_genres(hours: int) -> int:

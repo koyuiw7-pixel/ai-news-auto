@@ -58,6 +58,7 @@ import Morph from "@/components/Morph";
 import RoundupSources from "@/components/RoundupSources";
 import Sidebar from "@/components/Sidebar";
 import {
+  announcedAt,
   coverPath,
   formatDate,
   formatDateTime,
@@ -274,6 +275,7 @@ export default async function ArticlePage({ params }: Props) {
     article.sectionTitles?.body,
   ).markdown;
   const readMinutes = Math.max(1, Math.round(body.length / 600));
+  const announced = announcedAt(article);
   // 料金の章に差し込んだ表は、毎日更新の料金表（と同じ段の他社比較）に差し替える（lib/price-slot.ts）。
   // 同じ製品の料金の段の図（charts の ladder）を出す記事では、表は図のすぐ下に「詳しい表」として出し、同じ数字を2か所に並べない
   const pricing = pricingForArticle(article);
@@ -504,10 +506,13 @@ export default async function ArticlePage({ params }: Props) {
             {/* 表示後に「3時間前」「昨日 13:55」などへ置き換わる。新しい記事は置き換え後の幅を先に取っておき、行の折り返しが変わって下の要点が押し下げられる（CLS）のを防ぐ。
                 幅は全体（発表＋経過時間＋日付）で取る。経過時間だけに取ると「12時間前　　（11/03）」と間が空いて見えた（2026-11-03 の画面の点検）。
                 「発表」と付けるのは、すぐ右の「掲載:」（サイソクに載せた時刻）と取り違えないため */}
-            <span className={`text-muted ${isRecent(article.publishedAt) ? "inline-block min-w-[17em]" : ""}`}>
-              発表 <RelTime iso={article.publishedAt} className="index-num font-semibold text-ink" />
-              <span className="index-num">（{formatDate(article.publishedAt)}）</span>
-            </span>
+            {/* 発表は元の発表の時刻が分かる記事だけ。掲載より後には見せない（SEO A5・lib/articles.ts announcedAt） */}
+            {announced && formatDate(announced) && (
+              <span className={`text-muted ${isRecent(announced) ? "inline-block min-w-[17em]" : ""}`}>
+                発表 <RelTime iso={announced} className="index-num font-semibold text-ink" />
+                <span className="index-num">（{formatDate(announced)}）</span>
+              </span>
+            )}
             {article.generatedAt && formatDateTime(article.generatedAt) && (
               <span className="index-num text-muted">
                 掲載: <time dateTime={article.generatedAt}>{formatDateTime(article.generatedAt)}</time>

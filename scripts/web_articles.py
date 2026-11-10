@@ -1899,7 +1899,7 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
         published = (
             item.get("published_at")
             or (None if from_radar else fast_lane.parse_time(meta.get("publishedAt")))
-            or fast_lane.parse_time((page or {}).get("published"))
+            or feeds.page_published(page)  # 記事ページの article:published_time・JSON-LD datePublished（「+0900」・JST も読む）
         )
         # 発表の時刻が分からなければ検知の時刻で代用する（速さのラベルは出さない）
         item["published_at"] = published or detected

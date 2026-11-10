@@ -625,7 +625,14 @@ def _text(el) -> str:
     return (el.text or "").strip() if el is not None else ""
 
 
+# RFC 822 の日時の末尾の時間帯。「JST」は parsedate_to_datetime が読めず、時間帯なしの時刻として返る
+_RFC_ZONE_RE = re.compile(r"\s([A-Za-z]{1,5}|[+-]\d{4})\s*$")
+_TOKYO = timezone(timedelta(hours=9))
+
+
 def _parse_date(value: str) -> datetime | None:
+    """フィード・記事ページの日時。時間帯の書かれていない時刻（「JST」・日付だけを含む）は日本時間として読む
+    （2026-11-10 SEO A5: 金融庁の「Mon, 09 Nov 2026 17:00:00 JST」を UTC として読み、発表が9時間先の未来に見えていた）"""
     value = (value or "").strip()
     if not value:
         return None
@@ -633,9 +640,17 @@ def _parse_date(value: str) -> datetime | None:
         dt = parsedate_to_datetime(value)
     except (TypeError, ValueError, IndexError):
         dt = None
+    if dt is not None and dt.tzinfo is None:
+        zone = _RFC_ZONE_RE.search(value)
+        token = zone.group(1).upper() if zone else ""
+        # 「-0000」は RFC 5322 で「UTC（発信元の時間帯は不明）」。JST・時間帯なしは日本時間。ほかの読めない略号は従来どおり UTC
+        tz = _TOKYO if token in {"", "JST"} else timezone.utc
+        return dt.replace(tzinfo=tz)
     if dt is None and re.fullmatch(r"\d{4}-\d{2}-\d{2}Z?", value):
-        # 日付だけ（Apple Newsroom の「2026-10-28Z」など。Python 3.12 の fromisoformat は読めない）
-        dt = datetime.strptime(value[:10], "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        # 日付だけ（Apple Newsroom の「2026-10-28Z」など。Python 3.12 の fromisoformat は読めない）。
+        # 「Z」付きは UTC の0時、時間帯なし（統計局の「2026-11-10」など）は日本時間の0時
+        tz = timezone.utc if value.endswith("Z") else _TOKYO
+        dt = datetime.strptime(value[:10], "%Y-%m-%d").replace(tzinfo=tz)
     if dt is None:
         # Python 3.9 の fromisoformat は「Z」「+0900」を読めないので「+09:00」にそろえる
         iso = re.sub(r"([+-]\d{2})(\d{2})$", r"\1:\2", value.replace("Z", "+00:00"))
@@ -643,7 +658,7 @@ def _parse_date(value: str) -> datetime | None:
             dt = datetime.fromisoformat(iso)
         except ValueError:
             return None
-    return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+    return dt if dt.tzinfo else dt.replace(tzinfo=_TOKYO)
 
 
 def unescape_text(value: str) -> str:

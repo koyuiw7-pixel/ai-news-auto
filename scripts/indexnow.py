@@ -624,7 +624,12 @@ def news_reason(article: dict, dups: set[str] | frozenset = frozenset(), now: da
     published = _parse(article.get("generatedAt") or article.get("publishedAt"))
     if published is None or now - published >= NEWS_WINDOW:
         return "old"
-    source = _parse(article.get("sourcePublishedAt") or article.get("publishedAt"))
+    # 元の発表の時刻が分からない記事: ニュース（kind なし）は publishedAt で代用、比較・選び方の記事（kind あり）は代用しない（SEO A5。
+    # lib/indexing.ts sourceTimeOf と同じ）
+    if article.get("sourcePublishedAt"):
+        source = _parse(article["sourcePublishedAt"])
+    else:
+        source = None if article.get("kind") else _parse(article.get("publishedAt"))
     if source and published - source > NEWS_MAX_SOURCE_AGE:
         return "stale-source"
     return None

@@ -201,8 +201,12 @@ export const NEWS_WINDOW_MS = 2 * 86_400_000;
 export const NEWS_MAX_SOURCE_AGE_MS = 48 * 3_600_000;
 
 /** 元の発表の時刻（web 記事は sourcePublishedAt、動画は投稿時刻 publishedAt） */
-export function sourceTimeOf(article: Pick<ArticleSummary, "sourcePublishedAt" | "publishedAt">): number {
-  return Date.parse(article.sourcePublishedAt || article.publishedAt || "");
+export function sourceTimeOf(article: Pick<ArticleSummary, "sourcePublishedAt" | "publishedAt" | "kind">): number {
+  if (article.sourcePublishedAt) return Date.parse(article.sourcePublishedAt);
+  // 元の発表の時刻が分からない記事: ニュース（kind なし）は publishedAt で代用。比較・選び方の記事（kind あり）の publishedAt は
+  // 元の発表の時刻ではないので代用しない（不明＝NaN。SEO A5。scripts/indexnow.py news_reason と同じ）
+  if (article.kind) return NaN;
+  return Date.parse(article.publishedAt || "");
 }
 
 /**

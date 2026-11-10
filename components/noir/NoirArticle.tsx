@@ -6,7 +6,7 @@ import ArticleProse from "@/components/ArticleProse";
 import ImageCredit from "@/components/ImageCredit";
 import NoirChrome from "@/components/noir/NoirChrome";
 import NoirFonts, { noirFontHref } from "@/components/noir/NoirFonts";
-import { formatDate, type ArticleSummary, type FullArticle } from "@/lib/articles";
+import { announcedAt, formatDate, type ArticleSummary, type FullArticle } from "@/lib/articles";
 import { displayGlyphs, noirAiLabel, noirKeyFigure, splitEmphasis, type NoirCover } from "@/lib/noir";
 import { stripListNumber } from "@/lib/list-number";
 import "./noir.css";
@@ -105,6 +105,7 @@ export default function NoirArticle(props: NoirProps) {
   const creditOf = cover?.kind === "ai" ? article.coverCredit : article.imageCredit;
   const aiShown = cover?.kind === "ai" || (cover && article.imageCredit?.kind === "ai");
   const coverOnTop = cover?.kind === "official";
+  const announced = announcedAt(article);
   const coverProps = { article, title, cover, photo, panel, focus, creditOf, aiShown: Boolean(aiShown), priority: coverOnTop };
 
   return (
@@ -136,7 +137,8 @@ export default function NoirArticle(props: NoirProps) {
             <h1>{title}</h1>
             <div className="nr-meta">
               <span className="nr-origin">{props.origin}</span>
-              <time dateTime={article.publishedAt}>発表 {formatDate(article.publishedAt)}</time>
+              {/* 発表は元の発表の時刻が分かる記事だけ。掲載より後には見せない（SEO A5・lib/articles.ts announcedAt） */}
+              {announced && formatDate(announced) && <time dateTime={announced}>発表 {formatDate(announced)}</time>}
               {article.generatedAt && <span>掲載 {formatDate(article.generatedAt)}</span>}
               {article.updatedAt && <span>更新 {formatDate(article.updatedAt)}</span>}
               <span>読了 {props.readMinutes}分</span>

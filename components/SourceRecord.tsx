@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatDateTime, reviewedDateLabel, type FullArticle } from "@/lib/articles";
+import { announcedAt, formatDateTime, reviewedDateLabel, type FullArticle } from "@/lib/articles";
 import { isNewsOutletChannel, TRENDS } from "@/lib/news-outlets";
 
 /**
@@ -23,7 +23,8 @@ export default function SourceRecord({
   sourceName: string;
   guide?: { href: string; label: string };
 }) {
-  const official = article.sourcePublishedAt && /T\d/.test(article.sourcePublishedAt) ? article.sourcePublishedAt : "";
+  // 掲載より後の発表時刻は出さない（時間帯の書き違い。lib/articles.ts announcedAt・SEO A5）
+  const official = article.sourcePublishedAt && /T\d/.test(article.sourcePublishedAt) ? announcedAt(article) : "";
   const updates = article.updates ?? [];
   // 話題の見張り（radar-）から来た記事は報道が元のことがある。公式・官公庁の名前でなければ「報道」と表示する
   // 報道機関の発信元（lib/news-outlets.ts）は必ず「報道」。話題のまとめ（trends）は報道と公式が混ざるので「出典」だけ（台帳 W12）

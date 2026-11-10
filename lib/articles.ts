@@ -613,6 +613,8 @@ export function getArticlesByChannel(channelSlug: string): ArticleSummary[] {
 }
 
 /** "2026/10/27 09:30"（日本時間） */
+export { announcedAt } from "@/lib/announced";
+
 export function formatDateTime(iso: string): string {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return "";
