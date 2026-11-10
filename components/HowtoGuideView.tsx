@@ -7,7 +7,7 @@ import { howtoArticles, siblingHowtos, type HowtoGuide } from "@/lib/howto";
 import { getChooseGuide } from "@/lib/choose";
 import { getProduct } from "@/lib/products";
 import { siteConfig } from "@/site.config";
-import { publisherJsonLd } from "@/lib/publisher";
+import { authorJsonLd, publisherJsonLd } from "@/lib/publisher";
 import { difyDecisionHref } from "@/lib/a8-attribution";
 import DifyCreditEstimator from "@/components/DifyCreditEstimator";
 import WorkMoneyCard from "@/components/WorkMoneyCard";
@@ -55,7 +55,8 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
       datePublished: guide.createdAt,
       dateModified: guide.checkedAt > guide.updatedAt ? guide.checkedAt : guide.updatedAt,
       mainEntityOfPage: url,
-      author: { "@type": "Organization", name: siteConfig.author, url: `${siteConfig.url}/about` },
+      // 記事と同じ編集部（#editorial）を指す（SEO A18）
+      author: authorJsonLd,
       publisher: publisherJsonLd,
     },
     {

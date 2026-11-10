@@ -4,6 +4,7 @@ import LegalPage from "@/components/LegalPage";
 import { getAllArticles, getAllGenres } from "@/lib/articles";
 import { siteConfig } from "@/site.config";
 import { alsoCoveredSentence } from "@/lib/coverage";
+import { editorPersonId, publisherJsonLd } from "@/lib/publisher";
 
 export const metadata: Metadata = withPageShare("about", "/about", {
   title: "運営者情報・編集方針",
@@ -15,6 +16,31 @@ export default function AboutPage() {
   const articles = getAllArticles();
   const genres = getAllGenres();
   const { operator } = siteConfig;
+  // このページの構造化データ: 運営者情報のページ（AboutPage）で、発行元（#publisher）と、表に載せている運営・編集責任者（#editor）を示す。
+  // 記事の editor（lib/publisher.ts の editorInCharge）は同じ @id を指す。載せるのは表に見えている名前と役目だけ（SEO A18）
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "@id": `${siteConfig.url}/about`,
+      url: `${siteConfig.url}/about`,
+      name: "運営者情報・編集方針",
+      inLanguage: "ja",
+      isPartOf: { "@type": "WebSite", url: siteConfig.url, name: siteConfig.siteName },
+      about: { "@id": publisherJsonLd["@id"] },
+      mainEntity: { "@id": publisherJsonLd["@id"] },
+    },
+    { "@context": "https://schema.org", ...publisherJsonLd },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": editorPersonId,
+      name: operator.representative,
+      jobTitle: "運営・編集責任者",
+      url: `${siteConfig.url}/about`,
+      worksFor: { "@id": publisherJsonLd["@id"] },
+    },
+  ];
 
   return (
     <LegalPage
@@ -23,6 +49,7 @@ export default function AboutPage() {
       lead={`${siteConfig.siteName}（略称：${siteConfig.nickname}）は、暮らしとお金の「自分ごと」ニュースを、公式発表をもとに日本語で伝えるニュースメディアです。値段の変更・手続き・給付・税・障害・リコール・新製品などを、「自分は対象か・いくらか・何をすればいいか」に答える形でまとめます。制作にはAIを使い、情報源と確認方法を開示しています。`}
       updatedAt="2026年11月9日"
     >
+      <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <h2>運営者情報</h2>
       <table>
         <tbody>

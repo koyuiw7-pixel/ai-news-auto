@@ -29,6 +29,9 @@ export const authorJsonLd = {
   parentOrganization: { "@id": `${siteConfig.url}/#publisher` },
 } as const;
 
+/** 編集責任者（/about に名前を載せている人）の @id。記事の editor と /about の Person が同じ人を指す（SEO A18） */
+export const editorPersonId = `${siteConfig.url}/about#editor`;
+
 /**
  * 編集責任者の名前を出す記事（2026-11-10 オーナー承認。docs/owner_rules.md W6）。
  * お金と暮らしの記事（年金・税・手当・値上げなど）だけ。出すのは名前だけで、経歴は出さない。
@@ -42,6 +45,6 @@ export function editorInCharge(genreSlug: string | undefined) {
   const name = siteConfig.operator.representative;
   return {
     name,
-    jsonLd: { "@type": "Person", name, url: `${siteConfig.url}/about` },
+    jsonLd: { "@type": "Person", "@id": editorPersonId, name, url: `${siteConfig.url}/about` },
   } as const;
 }

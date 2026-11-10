@@ -82,6 +82,8 @@ export type ArticleVideoInfo = {
   title?: string;
   /** 声のクレジット（例 VOICEVOX:九州そら） */
   credit?: string;
+  /** 記事に動画を足した日時（ISO 8601。VideoObject の uploadDate。scripts/sns_video_followup.py が書く） */
+  uploadedAt?: string;
 };
 
 export type Article = {

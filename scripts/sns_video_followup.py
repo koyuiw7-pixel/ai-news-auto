@@ -364,6 +364,9 @@ def write_embed(slug: str, info: dict) -> None:
     """記事 JSON に video を書く（components/ArticleVideo.tsx が使う。次のデプロイで記事ページに出る）"""
     path = ARTICLES / f"{slug}.json"
     article = json.loads(path.read_text("utf-8"))
+    # 記事に動画を足した日時（VideoObject の uploadDate。前に足した日時があればそのまま。SEO A18）
+    prev = article.get("video") if isinstance(article.get("video"), dict) else {}
+    info = {**info, "uploadedAt": info.get("uploadedAt") or (prev.get("uploadedAt") if prev.get("src") == info.get("src") else None) or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}
     article["video"] = info
     path.write_text(json.dumps(article, ensure_ascii=False, indent=2) + "\n", "utf-8")
 

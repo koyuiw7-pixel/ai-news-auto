@@ -21,6 +21,7 @@ import {
 } from "@/lib/events";
 import { siteConfig } from "@/site.config";
 import { Phrases } from "@/lib/highlight";
+import { faqPageJsonLd } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -45,6 +46,15 @@ function titleOf(event: TechEvent): string {
   return eventStatus(event) === "upcoming"
     ? `${event.nameJa}【${shortRange(event)}開催】${upcomingTail}`
     : `${event.nameJa}の発表内容まとめ（${shortRange(event)}開催）`;
+}
+
+/** 見出しに出す問い（FAQPage の問いと同じ文。イベント名を入れて、問いだけ読んでも何の話か分かるようにする） */
+function eventQuestions(event: TechEvent) {
+  return {
+    keynote: event.timezone === "Asia/Tokyo" ? `${event.nameJa}の基調講演はいつ？` : `${event.nameJa}の基調講演は日本時間で何時？`,
+    attend: `${event.nameJa}は誰でも参加できる？`,
+    watch: `${event.nameJa}はどこで見られる？`,
+  };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -87,19 +97,25 @@ export default async function EventPage({ params }: Props) {
   const url = `${siteConfig.url}/events/${event.slug}`;
   const firstKeynote = event.keynotes.find((k) => k.startUtc);
 
+  // FAQPage は、このページに見出しとして出している問いと、その下に表示している答えだけで作る（見えない問いを入れない。SEO A18）
+  const q = eventQuestions(event);
   const faq = [
     ...(event.answers ?? []).map((item) => ({ q: item.q, a: item.a })),
-    { q: `${event.nameJa}はいつ？`, a: `${event.dateLabel ? `${event.startDate.slice(0, 4)}年${event.dateLabel}` : localDateRange(event)}（現地時間）に、${event.location}で開かれます。` },
-    ...(event.attend ? [{ q: `${event.nameJa}は誰でも参加できる？`, a: event.attend }] : []),
     {
-      q: `${event.nameJa}の基調講演は日本時間で何時？`,
-      a: firstKeynote?.startUtc
-        ? `${firstKeynote.title}は日本時間で${formatJst(firstKeynote.startUtc)}からです（現地時間 ${localDay(firstKeynote.startLocal)} ${localTime(firstKeynote.startLocal)}）。`
-        : `基調講演の開始時刻は、${event.verifiedAt.replaceAll("-", "/")}時点の確認情報にありません。`,
+      q: q.keynote,
+      a: event.keynotes.length > 0
+        ? event.keynotes
+            .map((k) => `${k.startUtc ? `日本時間${formatJst(k.startUtc)}` : "時刻未定"}：${k.title}（現地時間 ${localDay(k.startLocal)} ${localTime(k.startLocal)}）`)
+            .join("。")
+        : `基調講演の開始時刻は、${event.verifiedAt.replaceAll("-", "/")}時点の確認情報にありません。時刻が分かり次第、日本時間で載せます。`,
     },
-    ...(event.livestream
-      ? [{ q: `${event.nameJa}はどこで見られる？`, a: "公式サイトでオンライン配信が案内されています。視聴の条件は公式サイトで確認してください。" }]
-      : []),
+    ...(event.attend ? [{ q: q.attend, a: event.attend }] : []),
+    {
+      q: q.watch,
+      a: event.livestream
+        ? "公式サイトでオンライン配信が案内されています。"
+        : "オンライン配信は、確認した時点では公式に案内されていません。開催後はこのページで発表内容を日本語で読めます。",
+    },
   ];
 
   const jsonLd = [
@@ -123,11 +139,7 @@ export default async function EventPage({ params }: Props) {
       ...(event.officialUrl ? { url: event.officialUrl } : {}),
       mainEntityOfPage: url,
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: faq.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })),
-    },
+    ...[faqPageJsonLd(faq)].filter((entry) => entry !== null),
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -250,7 +262,7 @@ export default async function EventPage({ params }: Props) {
       )}
 
       <section aria-labelledby="keynote-heading" className="mt-12">
-        <QHeading id="keynote-heading">{event.timezone === "Asia/Tokyo" ? "基調講演はいつ？" : "基調講演は日本時間で何時？"}</QHeading>
+        <QHeading id="keynote-heading">{q.keynote}</QHeading>
         {event.keynotes.length > 0 ? (
           <ul className="divide-y divide-line border-y border-line">
             {event.keynotes.map((k) => (
@@ -275,7 +287,7 @@ export default async function EventPage({ params }: Props) {
 
       {event.attend && (
         <section aria-labelledby="attend-heading" className="mt-12">
-          <QHeading id="attend-heading">参加できる？</QHeading>
+          <QHeading id="attend-heading">{q.attend}</QHeading>
           <p className="text-desc leading-[1.8] text-ink-soft">{event.attend}</p>
         </section>
       )}
@@ -298,7 +310,7 @@ export default async function EventPage({ params }: Props) {
       )}
 
       <section aria-labelledby="watch-heading" className="mt-12">
-        <QHeading id="watch-heading">どこで見られる？</QHeading>
+        <QHeading id="watch-heading">{q.watch}</QHeading>
         {event.livestream ? (
           <p className="text-desc leading-[1.8] text-ink-soft">
             公式サイトでオンライン配信が案内されています。

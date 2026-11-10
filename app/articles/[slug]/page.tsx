@@ -34,7 +34,7 @@ import { productForArticle, supersedesGuide } from "@/lib/products";
 import { buyingGuideForTopic, guideShortName } from "@/lib/buying-guides";
 import { chooseGuideForArticle } from "@/lib/choose";
 import type { ChooseGuide } from "@/lib/choose-data";
-import { STATUS_LABEL, freeLabel, isUnknownValue, japanLabel, verdictKind, verdictOf } from "@/lib/verdict";
+import { verdictKind, verdictOf } from "@/lib/verdict";
 import { guideLinksForArticle, insertAfterPricingSection } from "@/lib/guide-links";
 import ArticleFaq from "@/components/ArticleFaq";
 import { answeredOnly } from "@/lib/nonanswer";
@@ -95,6 +95,7 @@ import { getFx, getPlanProduct } from "@/lib/plan-prices";
 import PriceTable from "@/components/PriceTable";
 import { hasPriceBlock, markPriceSlot, pricingForArticle, pricingRelevant, PRICE_SLOT, withPriceSlot } from "@/lib/price-slot";
 import { authorJsonLd, publisherJsonLd, editorInCharge } from "@/lib/publisher";
+import { faqPageJsonLd, playableVideoJsonLd, sourceJsonLd } from "@/lib/structured-data";
 import { stripListNumber } from "@/lib/list-number";
 import { isNoir } from "@/lib/noir";
 import { noirArticlePage } from "@/components/noir/noirArticlePage";
@@ -341,24 +342,10 @@ export default async function ArticlePage({ params }: Props) {
   const inlineRead = inlineReadForArticle(article, getAllArticles(), (a) => companyOf(a).slug, nextReads.slice(0, 1).map((n) => n.article.slug));
   const related = getRelatedArticles(article, 8).filter((a) => !nextSlugs.has(a.slug)).slice(0, 4);
 
-  // 判定カードに見えている問いと答えを、そのまま FAQ の構造化データにする（AI検索の引用向け）
-  // 「〇〇とは？…」型の題は「とは」「？」の前までを名前にする。長すぎる名前は問いが崩れるので「この発表」にする
-  const titleName = article.seoTitle?.split(/[｜|：:？?　]|とは/)[0]?.trim() ?? "";
-  const name = titleName && titleName.length <= 30 ? titleName : "この発表";
-  // 本文の「よくある質問」（記事に表示している問いと答え）があればそれを使う（2026-11-05 台帳 A45: 本文に無い情報だけの1〜4問。無ければ欄を出さない）。
+  // FAQPage は、ページに表示している「よくある質問」（ArticleFaq・ノワールの不安Q&A の後ろ）の問いと答えだけで作る。
+  // 判定カードは答え（状態・料金など）を見せるが「〜は今すぐ使える？」の問いの文は見せていないので、FAQPage に作り足さない（SEO A18）。
   // Google の FAQ のリッチリザルトは 2026-05 に終了したが、ページに見えている Q&A の印は他の検索・AI の答えに使われうるので残す
-  const faq = articleFaq.length >= 1
-    ? articleFaq.map((row) => ({ q: row.q, a: row.a }))
-    : verdict && cardKind === "product"
-    ? [
-        { q: `${name}は今すぐ使える？`, a: `${STATUS_LABEL[verdict.status]}。${cleanTake(verdict.take ?? "")}` },
-        { q: `${name}は日本から使える？`, a: japanLabel(verdict) },
-        { q: `${name}の料金は？`, a: verdict.price || "不明" },
-        { q: `${name}は無料で試せる？`, a: freeLabel(verdict.free) },
-        ...(verdict.audience ? [{ q: `${name}は誰に向いている？`, a: verdict.audience }] : []),
-        // 答えが「記載なし」「不明」の問いは載せない（答えになっていない Q&A は検索・AI の引用で逆効果）
-      ].filter((row) => row.a && !/^(記載なし|不明|未定)/.test(row.a) && !isUnknownValue(row.a))
-    : [];
+  const faq = articleFaq.map((row) => ({ q: row.q, a: row.a }));
 
   // パンくず。企業が決まらない記事（ビジネス・お金の記事の多く）に「その他」を出さず、ジャンルを先に置く
   const crumbs = [
@@ -403,33 +390,9 @@ export default async function ArticlePage({ params }: Props) {
         "@type": "SpeakableSpecification",
         cssSelector: ["#points-heading + ol", "#verdict-heading + p"],
       },
-      // web 記事は元記事を出典として明示する
-      ...(web && sourceUrl
-        ? {
-            isBasedOn: sourceUrl,
-            citation: {
-              "@type": "CreativeWork",
-              name: article.videoTitle,
-              url: sourceUrl,
-              publisher: { "@type": "Organization", name: sourceName },
-            },
-          }
-        : {}),
+      // 元記事・元動画を出典として明示する。YouTube の元動画はページで再生できないので VideoObject にはしない（SEO A18）
+      ...sourceJsonLd((web || video) && sourceUrl ? { url: sourceUrl, name: article.videoTitle, publisher: sourceName } : null),
     },
-    ...(video
-      ? [
-          {
-            "@context": "https://schema.org",
-            "@type": "VideoObject",
-            name: article.videoTitle,
-            description: article.description,
-            ...(article.thumbnail ? { thumbnailUrl: [article.thumbnail] } : {}),
-            uploadDate: article.publishedAt,
-            contentUrl: article.videoUrl,
-            embedUrl: `https://www.youtube.com/embed/${article.videoId}`,
-          },
-        ]
-      : []),
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -440,19 +403,7 @@ export default async function ArticlePage({ params }: Props) {
         { name: articleTitle(article) },
       ].map((entry, i) => ({ "@type": "ListItem", position: i + 1, ...entry })),
     },
-    ...(faq.length > 0
-      ? [
-          {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faq.map(({ q, a }) => ({
-              "@type": "Question",
-              name: q,
-              acceptedAnswer: { "@type": "Answer", text: a },
-            })),
-          },
-        ]
-      : []),
+    ...[faqPageJsonLd(faq)].filter((entry) => entry !== null),
   ];
 
   // 2026-11-07 以降の新しい記事（layout: "noir"）だけ、新しい見た目で出す。印の無い今までの記事は下の今までの見た目のまま（台帳 W36）
@@ -468,12 +419,25 @@ export default async function ArticlePage({ params }: Props) {
     });
   }
 
+  // VideoObject は、このページで再生できる解説動画（下の ArticleVideo）があるときだけ。今までの見た目だけが再生部品を出すので、ここで足す。
+  // YouTube の元動画はページで再生できないので VideoObject にせず、NewsArticle の isBasedOn で示す（SEO A18）
+  const pageJsonLd = [
+    ...jsonLd,
+    ...[playableVideoJsonLd(article.video, {
+      rendered: true,
+      siteUrl: siteConfig.url,
+      name: articleTitle(article),
+      description: article.description,
+      publisherId: publisherJsonLd["@id"],
+    })].filter((entry) => entry !== null),
+  ];
+
   return (
     <div className="mx-auto max-w-[1240px] px-5 py-8 sm:px-8 sm:py-10">
       <script
         type="application/ld+json"
         suppressHydrationWarning
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJsonLd) }}
       />
 
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
