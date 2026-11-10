@@ -5,19 +5,20 @@ export type NavItem = { href: string; label: string };
 
 /**
  * ジャンルのタブの並び（読者像の順。AGENTS.md「0. 読者」・docs/persona-20261102.md）。
- * 速報 → AI → 仕事とお金（ビジネス・投資・不動産）→ 税・制度（社会・行政）→ ガジェット → スポーツ → 暮らし → エンタメ。
+ * 速報 → 税・制度（社会・行政）→ 暮らし → 仕事とお金（ビジネス・投資・不動産）→ AI → ガジェット → スポーツ → エンタメ。
+ * 軸は「暮らしとお金の自分ごとニュース」で、AI は脇役（2026-11-08 のオーナー方針）。読まれているのも年金・手当・流出の記事なので、その順に並べる。
  * 「起業・副業」はジャンルのページが無い（記事も数本だけ）ので、ページができたらここに足す。
  * 科学・宇宙は読者像の外なので、タブには出さず /news の切り替えから辿る。
  */
 export const GENRE_NAV_ORDER = [
-  "ai",
+  "public",
+  "lifestyle",
   "business",
   "investment",
   "real-estate",
-  "public",
+  "ai",
   "tech-gadget",
   "sports",
-  "lifestyle",
   "entertainment",
 ] as const;
 

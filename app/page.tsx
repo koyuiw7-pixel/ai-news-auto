@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.siteName,
     locale: siteConfig.locale,
     url: siteConfig.url,
-    title: `${siteConfig.siteName} AI・ビジネス・お金の新しい動きが最速でわかる`,
+    title: `${siteConfig.siteName} 暮らしとお金の新しい動きが最速でわかる`,
     description: siteConfig.description,
   },
 };
@@ -82,6 +82,8 @@ export default function HomePage() {
 
   return (
     <>
+      {/* ページの主見出し（検索エンジンと読み上げ用。見た目はロゴと主役の記事が担う） */}
+      <h1 className="sr-only">{siteConfig.siteName} 暮らしとお金の新しい動きが最速でわかる</h1>
       {bundles.length > 0 && (
         <div className="mx-auto max-w-[1240px]">
           <StoryRail bundles={bundles} />

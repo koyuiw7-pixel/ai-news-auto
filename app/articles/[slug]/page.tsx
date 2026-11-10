@@ -379,7 +379,8 @@ export default async function ArticlePage({ params }: Props) {
       backstory: `${reviewedLabel ? `生成AIで下書きを作成し、元の発表と自動で照合してから公開しました。${reviewedLabel}に編集部が記事を読んで確認しています。` : "生成AIで下書きを作成し、元の発表と自動で照合してから公開しています。"}制作方法と事実確認の手順: ${siteConfig.url}/editorial-policy`,
       publisher: publisherJsonLd,
       isAccessibleForFree: true,
-      articleSection: company.name,
+      // 一覧に無い会社（年金・手当などの記事）は「その他」ではなくジャンル名を入れる
+      articleSection: company.name === "その他" ? article.genre : company.name,
       about: article.tags.slice(0, 5).map((tag) => ({ "@type": "Thing", name: tag })),
       // 音声アシスタント・AI検索が読み上げ／引用しやすい要約部分
       speakable: {

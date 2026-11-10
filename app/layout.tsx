@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     // 強み（最速・日本語・使えるかの判定）が伝わる題名。区切りの縦棒は使わない
-    default: `${siteConfig.siteName} AI・ビジネス・お金の新しい動きが最速でわかる`,
+    default: `${siteConfig.siteName} 暮らしとお金の新しい動きが最速でわかる`,
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,

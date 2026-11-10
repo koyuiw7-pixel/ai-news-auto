@@ -15,7 +15,8 @@ export const dynamic = "force-static";
 export function GET() {
   const base = siteConfig.url;
   const ai = getAllArticles().filter((a) => a.genreSlug === "ai");
-  const latest = ai.filter((a) => a.type !== "roundup").slice(0, 40);
+  // 新着は全ジャンルから（軸は暮らしとお金。AI だけに絞ると、AI のサイトだと伝わってしまう）
+  const latest = getAllArticles().filter((a) => a.type !== "roundup").slice(0, 40);
   const roundups = ai.filter((a) => a.type === "roundup").slice(0, 10);
   const companies = companyCounts(ai).filter(({ company }) => COMPANIES.some((c) => c.slug === company.slug));
 
