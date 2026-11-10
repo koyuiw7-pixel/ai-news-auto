@@ -287,11 +287,28 @@ class AdPlacementUpgradeTest(unittest.TestCase):
 
     def test_ad_cards_have_no_arrow_marks(self):
         # 2026-11-09 オーナー「→みたいな印はいらない」
-        for path in ("components/ActionAd.tsx", "components/rail/RankingBody.tsx", "components/rail/RailRanking.tsx", "components/CompareOffers.tsx"):
+        for path in ("components/ActionAd.tsx", "components/rail/RankingBody.tsx", "components/rail/RailRanking.tsx", "components/CompareOffers.tsx",
+                     # 2026-11-11: 得のカード（parts.tsx）・サイト内の案内の行・小さなバナー・得のカードの読み込み
+                     "components/rail/parts.tsx", "components/rail/RowThumb.tsx", "components/InternalMoneyCard.tsx", "lib/ad-benefits.ts"):
             src = (ROOT / path).read_text(encoding="utf-8")
             code = "\n".join(line for line in src.splitlines() if not line.strip().startswith(("*", "//", "{/*", "/**")))
             with self.subTest(path=path):
                 self.assertNotRegex(code, "[→›]")
+
+    def test_benefit_data_has_no_arrow_marks(self):
+        # 得のカードの文言（content/ad_benefits.json の _README 以外）にも矢印は入れない
+        import json
+        data = json.loads((ROOT / "content/ad_benefits.json").read_text(encoding="utf-8"))
+        data.pop("_README", None)
+        self.assertNotRegex(json.dumps(data, ensure_ascii=False), "[→›]")
+
+    def test_rows_without_image_hide_the_image_box(self):
+        # 2026-11-11 オーナー指摘: 画像の無い・読み込めない行に空の白い枠を出さない
+        parts = (ROOT / "components/rail/parts.tsx").read_text(encoding="utf-8")
+        self.assertIn("{item.image && <RowThumb", parts)
+        thumb = (ROOT / "components/rail/RowThumb.tsx").read_text(encoding="utf-8")
+        self.assertIn("onError", thumb)
+        self.assertIn("return null", thumb)
 
     def test_pages_keep_inline_offer_next_to_action_ad(self):
         # 行動欄そばの PR がある記事でも、本文の途中の商品枠を出す（以前は記事末に回して、多くの記事で消えていた）

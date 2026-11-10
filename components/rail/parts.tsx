@@ -3,6 +3,7 @@ import { AFFILIATE_REL } from "@/lib/affiliate";
 import { priceIsFresh } from "@/lib/offer-time";
 import Link from "next/link";
 import type { Benefit } from "@/lib/ad-benefits";
+import RowThumb from "@/components/rail/RowThumb";
 
 const yen = new Intl.NumberFormat("ja-JP");
 const dateFormat = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numeric", timeZone: "Asia/Tokyo" });
@@ -354,10 +355,11 @@ export function PrRow({ item, rank, onClick, price }: { item: OfferItem; rank: n
       rel={AFFILIATE_REL}
       data-aff-rank={rank}
       onClick={onClick}
-      className="group grid grid-cols-[64px_minmax(0,1fr)] items-center gap-3 px-4 py-3 hover:bg-surface"
+      className="group flex items-center gap-3 px-4 py-3 hover:bg-surface"
     >
-      <AdThumb item={item} className="w-16 rounded-md" />
-      <span className="min-w-0">
+      {/* 画像の無い商品・読み込めなかった画像は枠ごと出さない（空の白い枠にしない。2026-11-11） */}
+      {item.image && <RowThumb src={item.image} className="w-16 rounded-md" />}
+      <span className="min-w-0 flex-1">
         <span className="block text-note font-bold leading-snug text-ink group-hover:underline">{item.name}</span>
         {line && <span className="mt-0.5 block text-meta leading-snug text-ink-soft">{line}</span>}
         {price && <span className="mt-0.5 block text-note font-bold tabular-nums text-ink">{price}</span>}

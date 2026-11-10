@@ -16,7 +16,6 @@ export default function InternalMoneyCard({ links, className = "" }: { links: Mo
           <li key={link.href}>
             <Link href={link.href} className="text-desc font-bold leading-snug text-accent underline decoration-line-strong underline-offset-4 hover:decoration-accent">
               {link.label}
-              <span aria-hidden className="ml-1">→</span>
             </Link>
           </li>
         ))}
