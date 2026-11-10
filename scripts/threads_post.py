@@ -2164,8 +2164,9 @@ def create_post(api_key: str, post_input: dict, *, service: str, article: dict |
         # 2026-11-07 夜 オーナー承認（台帳 S46）: 新しい書き方の最初の3本が承認されるまで Threads の自動投稿は出さない（ThreadsHeld）
         if why := threads_gate.style_hold(article, kind):
             raise threads_gate.ThreadsHeld(why)
-    if reader:
+    if reader and kind != "reader":
         # どの経路から来ても、Threads の記事の投稿は新しい書き方（本文＋返信「続き（◯◯）→ URL」）にする。作れなければ次の回（ThreadsHeld）
+        # kind="reader" で渡した投稿（scripts/threads_figure_queue.py の用意した文面）は書き換えず、そのまま下の門番（ルール22）で確かめる
         import threads_reader  # noqa: PLC0415
 
         threads_reader.apply_input(post_input, article)

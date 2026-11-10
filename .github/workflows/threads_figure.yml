@@ -1,0 +1,66 @@
+name: Threads figure posts (evening)
+
+# 夜の図つき Threads 投稿（本文＋図、返信に記事のリンク）を 19:00〜23:30 の枠に Buffer で予約する（scripts/threads_figure_queue.py・2026-11-10 ops O2）。
+# spec は content/sns_reposts/figure-<日付>.json。live を true にしないと下見だけ（Buffer を呼ばない）。手で動かすときだけ（定期では動かさない）。
+on:
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: "spec の JSON（例: content/sns_reposts/figure-20261110.json）"
+        required: true
+      live:
+        description: "true で Buffer に予約する（false は下見だけ）"
+        required: false
+        default: "false"
+      taken:
+        description: "手で出した（出す）夜の投稿の時刻 HH:MM をカンマ区切りで（例: 19:20,21:05）"
+        required: false
+        default: ""
+      last_cluster:
+        description: "手で出した直前の投稿の話題の群れ（例: 年金）"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  issues: write  # 門番（scripts/sns_rules.py）が止めた投稿の issue
+
+concurrency:
+  group: threads-figure
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Schedule
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_LEDGER: figure
+          BUFFER_30D_CAP: ${{ vars.BUFFER_30D_CAP }}
+          THREADS_MODE: ${{ vars.THREADS_MODE }}
+          SPEC: ${{ github.event.inputs.spec }}
+          LIVE: ${{ github.event.inputs.live }}
+          TAKEN: ${{ github.event.inputs.taken }}
+          LAST_CLUSTER: ${{ github.event.inputs.last_cluster }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          args=(--spec "$SPEC" --taken "$TAKEN" --last-cluster "$LAST_CLUSTER")
+          if [ "$LIVE" = "true" ]; then python scripts/threads_figure_queue.py "${args[@]}" --live; else python scripts/threads_figure_queue.py "${args[@]}"; fi
+      - name: Commit record
+        if: ${{ always() && github.event.inputs.live == 'true' }}
+        run: |
+          if [ -z "$(git status --porcelain state/threads_figure.json state/buffer_calls/figure.json)" ]; then exit 0; fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f state/buffer_calls/figure.json ]; then git add state/buffer_calls/figure.json; fi
+          if [ -f state/threads_figure.json ]; then git add state/threads_figure.json; fi
+          git commit -m "chore(threads): 夜の図つき投稿の予約を記録 [no-deploy]"
+          python3 scripts/git_safe_push.py
