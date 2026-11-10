@@ -4,6 +4,7 @@ import TopicListMembership from "@/components/TopicListMembership";
 import StoryLinks from "@/components/noir/StoryLinks";
 import PopularReads from "@/components/PopularReads";
 import { mergeStoryReads } from "@/lib/story-reads";
+import { ANSWER_TABLE_ID, extractAnswerTable } from "@/lib/answer-table";
 import { readerActions } from "@/lib/reader-urgency";
 import { topicPages } from "@/lib/related";
 import { nextStepsFor } from "@/lib/next-steps";
@@ -347,7 +348,9 @@ export default async function ArticlePage({ params }: Props) {
   const calcInline = Boolean(calc && bodyHtml.includes(CALC_SLOT));
   const calcBox = calc ? <CalculatorBox calc={calc} className="my-10" /> : null;
   // 第3章の前に広告、さらに後半の前に収益導線を挟む
-  const [bodyTop, afterAd] = splitBeforeHeading(bodyHtml, 3);
+  // 答えの表（早見表など）を要点のすぐ下へ（今までの見た目。ノワールは components/noir/noirArticlePage.tsx。比較記事の表は動かさない。lib/answer-table.ts）
+  const answer = compareInline ? null : extractAnswerTable(bodyHtml);
+  const [bodyTop, afterAd] = splitBeforeHeading(answer ? answer.rest : bodyHtml, 3);
   const [bodyMid, bodyTail] = splitBeforeHeading(afterAd, 4);
   // 本文中の PR は1か所だけ（PC は右側の1〜3位＋本文中1つ、スマホは本文中1つ＋ページ下の1〜3位の最大2つ）。
   // 同じページに PR の囲みが3つ以上並ぶと広告だらけに見えるため（2026-11-03 監査）。優先順:
@@ -569,6 +572,13 @@ export default async function ArticlePage({ params }: Props) {
                   </li>
                 ))}
               </ol>
+            </section>
+          )}
+          {/* 答えの表（早見表など。2026-11-11 オーナー「答えを先に」・読者目線レビュー 3位） */}
+          {answer && (
+            <section id={ANSWER_TABLE_ID} aria-labelledby="answer-table-heading" className="mt-6">
+              <p id="answer-table-heading" className="border-l-4 border-live pl-2.5 text-[16px] font-bold leading-snug text-ink">{answer.caption}</p>
+              <div className="prose answer-table mt-3 max-w-none" dangerouslySetInnerHTML={{ __html: answer.html }} />
             </section>
           )}
           {/* 自分は対象か確かめる（お金の話題の記事だけ。囲みは作らない1行。広告の枠と位置は変えない） */}

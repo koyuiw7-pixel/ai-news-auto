@@ -203,11 +203,15 @@ class ComponentWiringTest(unittest.TestCase):
         today = src.index("<TodayActions actions={todayActions} />}")
         self.assertLess(today, src.index("<ActionAd ad={actionAd}"))
         self.assertLess(src.index("<ActionAd ad={actionAd}") - today, 300)
-        # ノワール（2026-11-09 オーナー「広告が一番下だけ」・2026-11-10 オーナー「合う広告は上のほうに」）:
-        # 要点 → すぐにできること → この話の続き のすぐ下が1つ目の PR（本文より前。画面2〜3枚目）
+        # ノワール（2026-11-09 オーナー「広告が一番下だけ」・2026-11-10 オーナー「合う広告は上のほうに」・
+        # 2026-11-11 オーナー「答えを先に。1つ目の広告は答えの直後」）:
+        # 要点 → 答えの表 → すぐにできること のすぐ下が1つ目の PR（本文より前）。この話の続き・イメージ写真はその後ろ
         noir = (ROOT / "components/noir/NoirArticle.tsx").read_text(encoding="utf-8")
-        self.assertLess(noir.index("{slots.quick}"), noir.index("{slots.story}"))
-        self.assertLess(noir.index("{slots.story}"), noir.index("{slots.adEarly"))
+        self.assertLess(noir.index('className="nr-sum"'), noir.index("{slots.answer}"))
+        self.assertLess(noir.index("{slots.answer}"), noir.index("{slots.quick}"))
+        self.assertLess(noir.index("{slots.quick}"), noir.index("{slots.adEarly"))
+        self.assertLess(noir.index("{slots.adEarly"), noir.index("{slots.story}"))
+        self.assertLess(noir.index("{slots.story}"), noir.index("{!coverOnTop && <CoverFigure"))
         self.assertLess(noir.index("{slots.adEarly"), noir.index('id="nr-body"'))
         page = (ROOT / "components/noir/noirArticlePage.tsx").read_text(encoding="utf-8")
         self.assertIn("if (actionAd) adBlocks.push(<ActionAd", page)

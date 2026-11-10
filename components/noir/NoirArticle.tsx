@@ -51,6 +51,8 @@ export type NoirProps = {
     quick?: ReactNode;
     /** 上の帯（サイトの速報の1行の代わり）: 同じジャンルの新着1本 */
     genreLine?: ReactNode;
+    /** 要点のすぐ下の答えの表（lib/answer-table.ts） */
+    answer?: ReactNode;
     /** 要点の下の「この話の続き」（同じ話題の記事2本。components/noir/StoryLinks.tsx） */
     story?: ReactNode;
     /** 本文の最初の章の後ろの「あなたは対象？」（content/next_steps.json） */
@@ -204,10 +206,13 @@ export default function NoirArticle(props: NoirProps) {
             </section>
           )}
 
+          {/* 答えの表（早見表など。本文の最初の2章の表を要点のすぐ下へ。lib/answer-table.ts。2026-11-11 オーナー「弱点になるなら全部改善して」・読者目線レビュー 3位） */}
+          {slots.answer}
           {slots.quick}
-          {slots.story}
-          {/* 1つ目の PR（記事に合うものだけ）は「この話の続き」のすぐ下（2026-11-10 オーナー: 合う広告は上のほうに見える場所へ。画面7〜8枚目は遠すぎた） */}
+          {/* 1つ目の PR（記事に合うものだけ）は答え（要点・答えの表・すぐにできること）のすぐ下（2026-11-11 オーナー: 答えを先に、広告は答えの直後で上のほうに） */}
           {slots.adEarly && <div className="nr-ad nr-ad-early">{slots.adEarly}</div>}
+          {slots.story}
+          {/* AI のイメージ・素材の写真は、答え・1つ目の PR・この話の続きの後ろ（Discover・SNS の画像には今までどおり使う） */}
           {!coverOnTop && <CoverFigure {...coverProps} />}
           {slots.afterSummary}
           {slots.adTop}

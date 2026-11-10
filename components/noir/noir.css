@@ -318,6 +318,51 @@ html:has(.noir) body {
 }
 
 /* 要点: 上に赤い太線の白い箱。大事な数字は赤い印。残りの要点は赤い点の一覧 */
+/* 答えの表（要点のすぐ下。lib/answer-table.ts。2026-11-11 オーナー「答えを先に」） */
+.noir .nr-answer {
+  margin: 0 0 22px;
+}
+.noir .nr-answer-h {
+  margin: 0 0 8px;
+  padding-left: 10px;
+  border-left: 4px solid var(--nr-red);
+  font: 800 16px/1.5 var(--nr-display);
+  color: var(--nr-text);
+}
+.noir .nr-answer .nr-prose > :first-child {
+  margin-top: 0;
+}
+/* 答えの表はスマホの幅に収める（横にずらさないと答えの列が見えなかった）。列は折り返し、いちばん右の列（答えの数字）を太く */
+.noir .nr-answer .nr-scroll {
+  overflow-x: visible;
+}
+.noir .nr-answer table {
+  display: table;
+  width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.noir .nr-answer th,
+.noir .nr-answer td {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  padding: 10px 8px;
+}
+.noir .nr-answer td:last-child {
+  font: 800 15px/1.5 var(--nr-num);
+  color: var(--nr-text);
+}
+.noir .nr-answer .nr-prose > :last-child {
+  margin-bottom: 0;
+}
+.noir .nr-prose .answer-table-moved {
+  font-size: 14px;
+}
+.noir .nr-prose .answer-table-moved a {
+  font-weight: 700;
+}
 .noir .nr-sum {
   margin: 0 0 22px;
   display: grid;

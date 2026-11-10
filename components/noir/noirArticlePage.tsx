@@ -19,6 +19,7 @@ import GenreLine from "@/components/noir/GenreLine";
 import { TargetCheck } from "@/components/noir/NextSteps";
 import PopularReads from "@/components/PopularReads";
 import { mergeStoryReads } from "@/lib/story-reads";
+import { ANSWER_TABLE_ID, extractAnswerTable } from "@/lib/answer-table";
 import { topicPages } from "@/lib/related";
 import { noReaderAction } from "@/lib/reader-urgency";
 import { nextStepsFor } from "@/lib/next-steps";
@@ -177,7 +178,9 @@ export function noirArticlePage(ctx: NoirPageContext) {
     3,
   );
   const depth = depthOf(article);
-  const [noirTop, noirAfterAd] = splitBeforeHeading(noirHtml, 3);
+  // 答えの表（早見表など）を要点のすぐ下へ（比較記事の表は提携先の一覧が直後に付くので動かさない。lib/answer-table.ts）
+  const answer = compareInline ? null : extractAnswerTable(noirHtml);
+  const [noirTop, noirAfterAd] = splitBeforeHeading(answer ? answer.rest : noirHtml, 3);
   const [noirMid, noirTail] = splitBeforeHeading(noirAfterAd, 4);
   const noirInlineCta = !actionAd && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
   const noirPrimaryCta = !actionAd && !inlineOffer && !shopLink && !noirInlineCta && getCta(article.genreSlug, "primary") ? "primary" : undefined;
@@ -264,6 +267,13 @@ export function noirArticlePage(ctx: NoirPageContext) {
               {depth.guide.length === 0 && funnelMid}
             </>
           ) : null,
+        answer: answer ? (
+          <section id={ANSWER_TABLE_ID} className="nr-answer" aria-labelledby="answer-table-heading">
+            {/* 記事の章の見出しではないので h2 にしない（本文の同じ章の見出しは本文に残る） */}
+            <p id="answer-table-heading" className="nr-answer-h">{answer.caption}</p>
+            <div className="prose nr-prose" dangerouslySetInnerHTML={{ __html: answer.html }} />
+          </section>
+        ) : null,
         story: (
           <>
             <StoryLinks items={storyTop} />

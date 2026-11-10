@@ -738,6 +738,28 @@ mark {
   text-underline-offset: 3px;
 }
 
+/* 要点のすぐ下の答えの表（lib/answer-table.ts。2026-11-11）。スマホの幅に収め、答えの列（いちばん右）を太く */
+.prose.answer-table :where(table) {
+  display: table;
+  width: 100%;
+  margin: 0;
+}
+.prose.answer-table :where(td, th),
+.prose.answer-table :where(td:first-child, th:first-child) {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  padding: 0.6rem 0.5rem;
+}
+.prose.answer-table :where(td:last-child) {
+  font-weight: 800;
+  color: var(--ink);
+}
+.prose :where(.answer-table-moved) {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
 /*
  * 本文の長い URL・英数字の連なり（リンク・コード）がスマホで横にはみ出さないよう、入りきらないときだけ途中で折る。
  * 日本語の普段の改行位置は変わらない（overflow-wrap は折れる場所が無い連なりにだけ効く）。
