@@ -35,6 +35,7 @@ on:
 permissions:
   contents: write
   actions: write
+  issues: write  # 季節の最中のガイドが作れないときの issue（scripts/evergreen.py --issue）
 
 concurrency:
   group: evergreen
@@ -89,11 +90,12 @@ jobs:
           ONLY: ${{ inputs.only }}
           FORCE: ${{ inputs.force }}
           EVERGREEN_PREFER_KIND: ${{ inputs.prefer }}
+          GH_TOKEN: ${{ github.token }}  # 作れなかった理由は state/evergreen_failed.json、季節の最中の失敗は issue に書く
         run: |
           if [ -n "$ONLY" ]; then
-            timeout 2700 python scripts/evergreen.py --only "$ONLY" $([ "$FORCE" = "true" ] && echo --force) --budget 2400
+            timeout 2700 python scripts/evergreen.py --only "$ONLY" $([ "$FORCE" = "true" ] && echo --force) --budget 2400 --issue
           else
-            timeout 2700 python scripts/evergreen.py --max "${{ inputs.max || '4' }}" --refresh --refresh-max 2 --budget 2100
+            timeout 2700 python scripts/evergreen.py --max "${{ inputs.max || '4' }}" --refresh --refresh-max 2 --budget 2100 --issue
           fi
 
       - name: Commit & push

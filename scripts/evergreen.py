@@ -64,7 +64,15 @@ BANNED_RE = re.compile(
     r"★|☆|点満点|総合評価|口コミ|評判|最強|圧倒的|絶対|今すぐ(登録|購入)|必見"
 )
 # 公式ページが取れていない（ボット除け・エラー画面）
-BROKEN_RE = re.compile(r"Page cannot be found|Just a moment|Enable JavaScript and cookies|Error - Office\.com|そのページは存在しません|Something went wrong")
+# 2026-11-10（A6）: 役所の「ページが見つかりません」画面（200 で返る）も公式ページとして数えていたので足す
+BROKEN_RE = re.compile(r"Page cannot be found|Just a moment|Enable JavaScript and cookies|Error - Office\.com|そのページは存在しません|Something went wrong|"
+                       r"お探しのページ(?:が|は)?(?:見つかりません|表示できません)|指定されたページ(?:を|は)?(?:表示できませんでした|見つかりません)")
+# 2026-11-10（A6）: 題名・キーワードが日付を約束する（期限・いつまで・支給日）なら、その日付が公式ページのどれかに載っていないと作らない
+DATE_PROMISE_RE = re.compile(r"期限|いつまで|支給日")
+DATE_RE = re.compile(r"\d{1,2}月\d{1,2}日|\d{1,2}月(?:末|中|分|まで)")
+# 季節の最中（season_urgency が 3）の題材が作れなかったら issue で知らせる（owner_rules_audit.write_issue を使う）
+ISSUE_LABEL = "evergreen-in-season-failed"
+ISSUE_TITLE = "季節の最中の使い方ガイドが作れていません（scripts/evergreen.py）"
 # 数字に付く単位。これらの数字は公式ページの文字にそのまま載っていないといけない
 UNIT_NUM_RE = re.compile(
     r"(?:US\$|\$|￥|¥)\s?\d[\d,，]*(?:\.\d+)?|\d[\d,，]*(?:\.\d+)?\s?(?:円|ドル|回|枚|件|GB|TB|MB|ファイル|個|本|分|時間|語|文字|ページ|%|％|日間|か月|カ月|ヶ月)"
@@ -167,22 +175,47 @@ def is_editorial(guide: dict | None) -> bool:
 # --------------------------------------------------------------------------- #
 
 
-def fetch_sources(urls: list[str]) -> list[dict]:
-    """[{url, title, text}]。取れなかったページは除く"""
+def fetch_sources(urls: list[str], skipped: list[dict] | None = None) -> list[dict]:
+    """[{url, title, text}]。取れなかったページは除く（skipped があれば、除いた理由を足す）"""
     out = []
     for url in urls:
         try:
             page = feeds.fetch_article_text(url)
         except Exception as error:  # noqa: BLE001
             log(f"   取得失敗 {url}: {str(error)[:80]}")
+            if skipped is not None:
+                status = re.search(r"\b([45]\d\d)\b", str(error))
+                skipped.append({"url": url, "error": str(error)[:120], **({"status": int(status.group(1))} if status else {})})
             continue
         text = (page.get("text") or "").strip()
         title = (page.get("title") or "").strip()
         if len(text) < MIN_SOURCE or BROKEN_RE.search(f"{title} {text[:300]}"):
             log(f"   使えない {url}（{len(text)}字）")
+            if skipped is not None:
+                skipped.append({"url": url, "chars": len(text), "error": "エラー画面" if BROKEN_RE.search(f"{title} {text[:300]}") else "文字が少ない"})
             continue
         out.append({"url": url, "title": title[:120], "text": text})
     return out
+
+
+def _date_norm(text: str) -> str:
+    return re.sub(r"\s", "", (text or "").translate(str.maketrans("０１２３４５６７８９", "0123456789")))
+
+
+def date_promise_problem(topic: dict, sources: list[dict]) -> str:
+    """題名・キーワードが日付を約束するのに、公式ページで確かめられないときの理由（問題がなければ空）。
+    題名に日付（例: 1月10日）があればその文字が、無ければ何かの日付が、どれかの公式ページに載っていること"""
+    promise = f"{topic.get('title', '')} {topic.get('keyword', '')}"
+    if not DATE_PROMISE_RE.search(promise):
+        return ""
+    texts = [_date_norm(s.get("text", "")) for s in sources]
+    wanted = sorted(set(DATE_RE.findall(_date_norm(topic.get("title", "")))))
+    missing = [d for d in wanted if not any(d in t for t in texts)]
+    if missing:
+        return f"題名の日付（{'、'.join(missing)}）が公式ページに無い"
+    if not wanted and not any(DATE_RE.search(t) for t in texts):
+        return "題名が日付を約束する（期限・いつまで・支給日）のに、公式ページに日付が無い"
+    return ""
 
 
 def source_block(sources: list[dict], cap_each: int) -> str:
@@ -430,6 +463,10 @@ def check(data: dict, sources: list[dict], procedure: bool = False) -> dict:
     return {"ok": not problems, "problems": problems, "fact": fact, "warnings": style_notes(data, procedure)}
 
 
+# 最後に作れなかった理由（build が None を返したときに main が state/evergreen_failed.json に書く）
+last_failure: dict = {}
+
+
 def generate(topic: dict, sources: list[dict], attempts: int = 2) -> tuple[dict, dict] | None:
     cap = max(3000, min(SOURCE_GEN_CAP, SOURCE_TOTAL_CAP // max(1, len(sources))))
     feedback = ""
@@ -452,6 +489,7 @@ def generate(topic: dict, sources: list[dict], attempts: int = 2) -> tuple[dict,
                                             tier=os.environ.get("EVERGREEN_TIER", "quality"), **({"purpose": "ymyl"} if procedure else {}))
         except Exception as error:  # noqa: BLE001
             log(f"   生成に失敗: {str(error)[:120]}")
+            last_failure.update({"reason": "生成に失敗", "error": str(error)[:160]})
             return None
         verdict = check(data, sources, procedure)
         fact = verdict["fact"]
@@ -461,6 +499,9 @@ def generate(topic: dict, sources: list[dict], attempts: int = 2) -> tuple[dict,
             return data, fact
         for p in verdict["problems"][:8]:
             log(f"     - {p}")
+        last_failure.update({"reason": "合格しなかった", "problems": [p[:160] for p in verdict["problems"][:6]],
+                             "factScore": fact["score"] if fact else None,
+                             "unverifiedNumbers": unverified_numbers(all_text(data), sources)[:8]})
         feedback = "\n# 前回の原稿の問題（必ず直す）\n" + "\n".join(f"- {p}" for p in verdict["problems"][:10])
     return None
 
@@ -509,9 +550,17 @@ def build(topic: dict, previous: dict | None = None) -> dict | None:
         log(f"手動編集待ち: {topic['slug']}（refreshMode: editorial のため自動生成しない）")
         return None
     log(f"■ {topic['slug']}（{topic['keyword']}）")
-    sources = fetch_sources(topic.get("sources", []))
-    if not sources or sum(len(s["text"]) for s in sources) < 2500:
+    last_failure.clear()
+    skipped: list[dict] = []
+    sources = fetch_sources(topic.get("sources", []), skipped)
+    chars = sum(len(s["text"]) for s in sources)
+    if not sources or chars < 2500:
         log("   公式ページが足りないので見送り")
+        last_failure.update({"reason": "公式ページが足りない", "sourceChars": chars, "skippedSources": skipped})
+        return None
+    if problem := date_promise_problem(topic, sources):
+        log(f"   ::warning::{problem}ので見送り")
+        last_failure.update({"reason": problem, "sourceChars": chars})
         return None
     result = generate(topic, sources)
     if not result:
@@ -593,6 +642,51 @@ def refresh(guide: dict, topic: dict, reason: str) -> None:
 # --------------------------------------------------------------------------- #
 
 
+def failed_at(entry) -> str:
+    """state/evergreen_failed.json の1件の時刻（古い形は時刻の文字だけ、新しい形は {at, reason, ...}）"""
+    return (entry.get("at") or "") if isinstance(entry, dict) else (entry or "")
+
+
+def in_season_failures(failed: dict, by_slug: dict[str, dict], today: date | None = None) -> list[str]:
+    """季節の最中（season_urgency が 3）なのに作れていない題材の1行ずつ"""
+    today = today or datetime.now(JST).date()
+    rows = []
+    for slug, entry in sorted(failed.items()):
+        topic = by_slug.get(slug)
+        if not topic or season_urgency(topic, today) < 3.0:
+            continue
+        reason = entry.get("reason", "理由の記録なし") if isinstance(entry, dict) else "理由の記録なし（古い形）"
+        extra = []
+        if isinstance(entry, dict):
+            if entry.get("factScore") is not None:
+                extra.append(f"事実確認 {entry['factScore']}点")
+            if entry.get("unverifiedNumbers"):
+                extra.append(f"公式ページに無い数字 {'、'.join(entry['unverifiedNumbers'][:4])}")
+            if "sourceChars" in entry:
+                extra.append(f"公式ページ {entry['sourceChars']}字")
+            for s in entry.get("skippedSources", [])[:3]:
+                extra.append(f"{s.get('url', '')} {s.get('status') or s.get('error', '')}")
+        rows.append(f"`{slug}`（{failed_at(entry)[:16]}）: {reason}" + (f"（{' / '.join(extra)}）" if extra else ""))
+    return rows
+
+
+def alert_in_season(failed: dict, by_slug: dict[str, dict], today: date | None = None) -> bool:
+    """季節の最中の失敗を1つの issue に書く（無くなれば閉じる）。gh が使えなければ False"""
+    import owner_rules_audit  # noqa: PLC0415（gh の issue の扱いを共通にする）
+    rows = in_season_failures(failed, by_slug, today)
+    body = "\n".join([
+        f"季節の最中（いま検索されている時期）の使い方ガイドのうち、**{len(rows)} 本**が作れていません。",
+        "理由は state/evergreen_failed.json に記録しています。公式ページを足すか、予定表（content/evergreen_plan.json）を直してください。",
+        "",
+        *[f"- {r}" for r in rows],
+        "",
+        "見張り: scripts/evergreen.py --issue（.github/workflows/evergreen.yml）。作れれば自動で閉じます。",
+    ])
+    return owner_rules_audit.write_issue({"evergreen": rows} if rows else {}, body, label=ISSUE_LABEL, title=ISSUE_TITLE,
+                                         label_description="季節の最中の使い方ガイドが作れていない",
+                                         ok_comment="季節の最中のガイドの失敗はなくなりました。", tag="evergreen")
+
+
 def created_today(guides: dict[str, dict]) -> int:
     day = today_jst()
     return sum(1 for g in guides.values() if (g.get("createdAt") or "").startswith(day))
@@ -609,6 +703,7 @@ def main() -> int:
     parser.add_argument("--refresh-days", type=int, default=REFRESH_DAYS)
     parser.add_argument("--budget", type=int, default=0, help="この秒数を過ぎたら新しい作業を始めない")
     parser.add_argument("--list", action="store_true")
+    parser.add_argument("--issue", action="store_true", help="季節の最中の失敗を GitHub の issue に書く（無くなれば閉じる）")
     parser.add_argument("--prefer-kind", default=os.environ.get("EVERGREEN_PREFER_KIND", ""),
                         help="この種類を先に作る（procedure＝暮らしとお金の手続き）。空なら夜は procedure")
     args = parser.parse_args()
@@ -652,7 +747,7 @@ def main() -> int:
                 done += 1
 
     failed = load_json(FAILED, {})
-    recent_fail = lambda slug: (failed.get(slug) or "") > (datetime.now(JST) - timedelta(days=RETRY_DAYS)).isoformat()  # noqa: E731
+    recent_fail = lambda slug: failed_at(failed.get(slug)) > (datetime.now(JST) - timedelta(days=RETRY_DAYS)).isoformat()  # noqa: E731
     room = max(0, args.daily_cap - created_today(guides))
     if only:
         todo, limit = [by_slug[s] for s in only if s in by_slug], len(only)
@@ -673,11 +768,13 @@ def main() -> int:
             made += 1
             failed.pop(topic["slug"], None)
         else:
-            failed[topic["slug"]] = now_iso()
+            failed[topic["slug"]] = {"at": now_iso(), **(dict(last_failure) or {"reason": "理由の記録なし"})}
     if failed or FAILED.exists():
         FAILED.parent.mkdir(parents=True, exist_ok=True)
         FAILED.write_text(json.dumps(failed, ensure_ascii=False, indent=2) + "\n", "utf-8")
     log(f"新規・作り直し {made}本")
+    if args.issue and not alert_in_season(failed, by_slug):
+        log("::warning::季節の最中の失敗を issue に書けませんでした")
     return 0
 
 

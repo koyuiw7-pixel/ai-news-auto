@@ -1163,27 +1163,30 @@ def _gh(*args: str) -> subprocess.CompletedProcess:
     return subprocess.run(["gh", *args], capture_output=True, text=True, timeout=60, check=False)
 
 
-def write_issue(found: dict[str, list[str]], body: str) -> bool:
-    """issue を開く・直す・閉じる。gh が失敗したら False（実行を赤にして、知らせが届かないことに気づけるようにする）"""
-    listed = _gh("issue", "list", "--label", LABEL, "--state", "open", "--limit", "1", "--json", "number", "--jq", ".[0].number // empty")
+def write_issue(found: dict[str, list[str]], body: str, *, label: str = LABEL, title: str = ISSUE_TITLE,
+                label_description: str = "オーナーのルール（docs/owner_rules.md）に合わないもの",
+                ok_comment: str = "今日の点検では違反はありませんでした。", tag: str = "owner-audit") -> bool:
+    """issue を開く・直す・閉じる。gh が失敗したら False（実行を赤にして、知らせが届かないことに気づけるようにする）。
+    label・title などを変えると、ほかの見張り（scripts/evergreen.py の季節のガイドの失敗）でも同じ形で使える"""
+    listed = _gh("issue", "list", "--label", label, "--state", "open", "--limit", "1", "--json", "number", "--jq", ".[0].number // empty")
     if listed.returncode != 0:
-        print(f"[owner-audit] issue の一覧を読めません: {listed.stderr.strip()[:200]}", file=sys.stderr)
+        print(f"[{tag}] issue の一覧を読めません: {listed.stderr.strip()[:200]}", file=sys.stderr)
         return False
     number = listed.stdout.strip()
     run_url = f"{os.environ.get('GITHUB_SERVER_URL', 'https://github.com')}/{os.environ.get('GITHUB_REPOSITORY', '')}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')}"
     if not found:
         if number:
-            return _gh("issue", "close", number, "--comment", f"今日の点検では違反はありませんでした。{run_url}").returncode == 0
+            return _gh("issue", "close", number, "--comment", f"{ok_comment}{run_url}").returncode == 0
         return True
     body = f"{body}\n\n実行: {run_url}"
     if number:
         edited = _gh("issue", "edit", number, "--body", body)
         _gh("issue", "comment", number, "--body", f"今日の点検: {sum(len(v) for v in found.values())} 件（本文を最新に更新しました）。{run_url}")
-        print(f"[owner-audit] issue #{number} を更新しました" if edited.returncode == 0 else f"[owner-audit] issue #{number} を直せません: {edited.stderr.strip()[:200]}")
+        print(f"[{tag}] issue #{number} を更新しました" if edited.returncode == 0 else f"[{tag}] issue #{number} を直せません: {edited.stderr.strip()[:200]}")
         return edited.returncode == 0
-    _gh("label", "create", LABEL, "--color", "B60205", "--description", "オーナーのルール（docs/owner_rules.md）に合わないもの", "--force")
-    made = _gh("issue", "create", "--title", ISSUE_TITLE, "--label", LABEL, "--body", body)
-    print(f"[owner-audit] issue を立てました: {made.stdout.strip() or made.stderr.strip()[:200]}")
+    _gh("label", "create", label, "--color", "B60205", "--description", label_description, "--force")
+    made = _gh("issue", "create", "--title", title, "--label", label, "--body", body)
+    print(f"[{tag}] issue を立てました: {made.stdout.strip() or made.stderr.strip()[:200]}")
     return made.returncode == 0
 
 
