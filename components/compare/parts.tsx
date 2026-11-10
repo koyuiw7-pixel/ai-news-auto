@@ -32,12 +32,8 @@ export function Breadcrumb() {
 /** 広告（提携商品）の印。四角い枠の「PR」だけにして目立たせすぎない */
 export function PrMark({ className = "" }: { className?: string }) {
   return (
-    <span
-      className={`ad-pr ${className}`}
-      title="提携先の商品（広告）"
-    >
-      PR
-    </span>
+    // 2026-11-11 オーナー決定（台帳 W40）「広告の表示は『PR』だけ」: 説明の吹き出し（title）も付けない
+    <span className={`ad-pr ${className}`}>PR</span>
   );
 }
 
