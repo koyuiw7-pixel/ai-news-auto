@@ -1,7 +1,11 @@
 import { articleTitle, searchResultTitle } from "@/lib/headline";
 import PeopleInArticle from "@/components/PeopleInArticle";
 import TopicListMembership from "@/components/TopicListMembership";
-import TopicPages from "@/components/TopicPages";
+import StoryLinks from "@/components/noir/StoryLinks";
+import PopularReads from "@/components/PopularReads";
+import { mergeStoryReads } from "@/lib/story-reads";
+import { topicPages } from "@/lib/related";
+import { nextStepsFor } from "@/lib/next-steps";
 import { canonicalPathOf, isIndexable, isZeroVisit } from "@/lib/indexing";
 import type { Metadata } from "next";
 import Thumb from "@/components/Thumb";
@@ -14,14 +18,11 @@ import { withLiveRoundup } from "@/lib/live-links";
 import AdSlot from "@/components/AdSlot";
 import MobilePrBar from "@/components/rail/MobilePrBarLazy";
 import RailRanking from "@/components/rail/RailRanking";
-import ArticleCard from "@/components/ArticleCard";
 import CompanyMark, { ArticleMark } from "@/components/CompanyMark";
 import CtaBanner from "@/components/CtaBanner";
 import RelTime from "@/components/RelTime";
-import NextRead from "@/components/NextRead";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import PushOptIn from "@/components/PushOptIn";
-import InlineRead from "@/components/InlineRead";
 import ReadingMode from "@/components/ReadingMode";
 import VerdictCard from "@/components/VerdictCard";
 import WorkMoneyCard from "@/components/WorkMoneyCard";
@@ -359,6 +360,23 @@ export default async function ArticlePage({ params }: Props) {
   // 記事末の「次に読むならこれ」の1本目とは重ねない
   const inlineRead = inlineReadForArticle(article, getAllArticles(), (a) => companyOf(a).slug, nextReads.slice(0, 1).map((n) => n.article.slug));
   const related = getRelatedArticles(article, 8).filter((a) => !nextSlugs.has(a.slug)).slice(0, 4);
+  // 「この話の続き」: 次にやること → 同じ話題 → 同じ話題で別の疑問に答える記事 → 本文途中の候補 を1つにまとめて最大3本（lib/story-reads.ts。2026-11-11）
+  const storyAll = getAllArticles();
+  const storySteps = (nextStepsFor(article.slug)?.next ?? []).flatMap((s) => {
+    const found = storyAll.find((x) => x.slug === s.slug);
+    return found ? [{ article: found, reason: s.step }] : [];
+  });
+  const topic = topicPages(article, storyAll);
+  const storyTop = mergeStoryReads(
+    article,
+    [
+      storySteps,
+      nextReads,
+      [...(topic.parent ? [{ article: topic.parent, reason: "この話題の全体の解説" }] : []), ...topic.pages.map((a) => ({ article: a, reason: "同じ話題で別の疑問に答える記事" }))],
+      inlineRead ? [{ article: inlineRead, reason: "同じ話題の記事" }] : [],
+    ],
+    3,
+  );
 
   // FAQPage は、ページに表示している「よくある質問」（ArticleFaq・ノワールの不安Q&A の後ろ）の問いと答えだけで作る。
   // 判定カードは答え（状態・料金など）を見せるが「〜は今すぐ使える？」の問いの文は見せていないので、FAQPage に作り足さない（SEO A18）。
@@ -558,6 +576,10 @@ export default async function ArticlePage({ params }: Props) {
           <MoneyCheckLink target={moneyLink} className="mt-4" />
           {/* シェア（要点を読んだ直後。小さく1行） */}
           <ShareButtons url={`${siteConfig.url}/articles/${article.slug}`} title={articleTitle(article)} className="mt-4" />
+          {/* 「この話の続き」（最大3本）。次の記事の枠は、これと本文の直後の「よく読まれている記事」の2つだけ（2026-11-11 読者目線レビュー 4位） */}
+          <div className="mt-6">
+            <StoryLinks items={storyTop} />
+          </div>
           {/* 同じ製品の料金・使い方ガイド（あるときだけ。要点のすぐ下に固定） */}
           {guideLinks.length > 0 && (
             <nav aria-label="この製品のガイド" className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-note">
@@ -820,7 +842,6 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 本文（前半） */}
           <ArticleProse className="prose mt-10 max-w-[40em]" html={bodyTop} slot={calcInline ? calcBox : undefined} priceSlot={priceBox} compareSlot={compareInline} />
-          {bodyMid && inlineRead && <InlineRead item={{ article: inlineRead, reason: "同じ話題の記事" }} />}
 
           {/* ② 記事中盤の広告枠 */}
           {showAds && bodyMid && <AdSlot position="article-middle" className="my-10" />}
@@ -870,6 +891,9 @@ export default async function ArticlePage({ params }: Props) {
           {articleFaq.length >= 1 && <ArticleFaq items={articleFaq} />}
           {compareEnd}
 
+          {/* 本文の直後に「よく読まれている記事」5本（2026-11-11 読者目線レビュー 4位。以前の「次に読む記事」「関連記事」「この話題のページ」はやめた） */}
+          <PopularReads current={article.slug} />
+
           {/* 読み終えたところでもう一度シェア */}
           <div className="mt-12 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-y border-line py-4">
             <p className="text-note font-bold text-ink">この記事をシェアする</p>
@@ -899,7 +923,6 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 読み終えた位置で、次の1本を大きく見せる（比較記事への案内があれば先に） */}
           {funnel && <FunnelCard card={funnel} pos="end" className="mt-12" />}
-          <NextRead items={nextReads} />
 
           {/* まとめ記事が統合した元記事 */}
           {isRoundup && <RoundupSources sources={article.sources ?? []} />}
@@ -949,7 +972,6 @@ export default async function ArticlePage({ params }: Props) {
           {!bodyTail && !inlineOffer && shopLink && <ShopLinks link={shopLink} className="mt-12" />}
 
           {/* 値上げ・障害・リコール・サービス終了の一覧に載っている記事（台帳 A52） */}
-          <TopicPages article={article} className="mt-12" />
           <TopicListMembership slug={article.slug} className="mt-12" />
           {/* 記事に出てくる人物のまとめページ（台帳 A53） */}
           <PeopleInArticle article={article} className="mt-3" />
@@ -1005,19 +1027,6 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           )}
 
-          {related.length > 0 && (
-            <section aria-labelledby="related-heading" className="mt-16">
-              {/* 記事の外側の欄の見出しは h2 にしない（SEO A20） */}
-              <p id="related-heading" className="t-h2 mb-5 border-b border-line-strong pb-3 font-bold">
-                関連記事
-              </p>
-              <div className="grid gap-3.5 sm:grid-cols-2">
-                {related.map((item) => (
-                  <ArticleCard key={item.slug} article={item} quickImage />
-                ))}
-              </div>
-            </section>
-          )}
         </div>
 
         {/* ③ サイドバー（最上部に広告枠） */}

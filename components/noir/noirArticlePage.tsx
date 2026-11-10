@@ -4,10 +4,8 @@ import AdSlot from "@/components/AdSlot";
 import MobilePrBar from "@/components/rail/MobilePrBarLazy";
 import RailRanking from "@/components/rail/RailRanking";
 import CtaBanner from "@/components/CtaBanner";
-import NextRead from "@/components/NextRead";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import PushOptIn from "@/components/PushOptIn";
-import InlineRead from "@/components/InlineRead";
 import ReadingMode from "@/components/ReadingMode";
 import VerdictCard from "@/components/VerdictCard";
 import WorkMoneyCard from "@/components/WorkMoneyCard";
@@ -18,7 +16,10 @@ import { ActionSteps, CauseBox, DecisionGuide, Fold, InsightBox, OfficialDesk, W
 import StoryLinks from "@/components/noir/StoryLinks";
 import FoldOpener from "@/components/noir/FoldOpener";
 import GenreLine from "@/components/noir/GenreLine";
-import { NextStepsBox, TargetCheck } from "@/components/noir/NextSteps";
+import { TargetCheck } from "@/components/noir/NextSteps";
+import PopularReads from "@/components/PopularReads";
+import { mergeStoryReads } from "@/lib/story-reads";
+import { topicPages } from "@/lib/related";
 import { nextStepsFor } from "@/lib/next-steps";
 import { depthOf } from "@/lib/depth";
 import ActionAd from "@/components/ActionAd";
@@ -28,7 +29,6 @@ import FunnelCard from "@/components/FunnelCard";
 import ShareButtons from "@/components/ShareButtons";
 import MoneyCheckLink from "@/components/MoneyCheckLink";
 import TopicListMembership from "@/components/TopicListMembership";
-import TopicPages from "@/components/TopicPages";
 import type { MoneyTarget } from "@/lib/money-pages";
 import ThreadsFollow from "@/components/ThreadsFollow";
 import ReadNextBox from "@/components/ReadNextBox";
@@ -145,7 +145,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
     article, jsonLd, bodyHtml, easyHtml, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
     shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, inlineRead, mainArticle,
     guideLinks, moneyLink, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
-    howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
+    howto, guide, product, nextReads, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
     funnel, compareInline, compareEnd, storyReads = [],
   } = ctx;
   // 記事に合う PR だけ出す（2026-11-10 オーナー承認）。話題が当たらずジャンルの既定の広告（fallback-*）になった商品枠は、ノワールの記事では出さない
@@ -156,14 +156,20 @@ export function noirArticlePage(ctx: NoirPageContext) {
   // お金と暮らしの記事だけ「編集責任者：名前」を出す（出すのは名前のみ。2026-11-10 オーナー承認）
   const editor = editorInCharge(article.genreSlug);
   const noirHtml = noirBodyHtml(bodyHtml, article);
-  // この話の続き（2026-11-10 オーナー承認）: 同じ話題の記事を、要点の下に文字だけで2本、本文の直後に大きく3本。
-  // 下は上と同じ記事から始めてよい（上を押さずに読み進めた人に、いちばん近い話題をもう一度見せる。同じ企業だけの記事より先に同じ話題の記事）
+  // 「次の記事」の枠は2つだけ（2026-11-11 読者目線レビュー 4位。以前は7つの枠に同じ記事が何度も出ていた）:
+  //  ① 要点の下の「この話の続き」: 次にやること（content/next_steps.json）→ 同じ話題 → 同じ話題で別の疑問に答える記事 を1つにまとめて最大3本（lib/story-reads.ts）
+  //  ② 本文の直後の「よく読まれている記事」5本（components/PopularReads.tsx。PC は右の列に同じ一覧が付いてくるので本文の列には出さない）
+  // 本文途中の「あわせて読みたい」・記事末の「次に読む記事」「関連記事」「この話題のページ」はやめる
+  const steps = nextStepsFor(article.slug);
   const reads: { article: ArticleSummary; reason: string }[] = storyReads.length > 0 ? storyReads : nextReads;
-  const storyTop = reads.slice(0, 2);
-  const storyEnd = reads.slice(0, 3);
-  const storySlugs = new Set([...storyTop, ...storyEnd].map((r) => r.article.slug));
-  const relatedRest = related.filter((a) => !storySlugs.has(a.slug));
-  const inlineReadShown = inlineRead && !storySlugs.has(inlineRead.slug) ? inlineRead : undefined;
+  const all = getAllArticles();
+  const stepReads = (steps?.next ?? []).flatMap((s) => {
+    const a = all.find((x) => x.slug === s.slug);
+    return a ? [{ article: a, reason: s.step }] : [];
+  });
+  const { parent: topicParent, pages: topicSiblings } = topicPages(article, all);
+  const topicReads = [...(topicParent ? [{ article: topicParent, reason: "この話題の全体の解説" }] : []), ...topicSiblings.map((a) => ({ article: a, reason: "同じ話題で別の疑問に答える記事" }))];
+  const storyTop = mergeStoryReads(article, [stepReads, reads, topicReads, inlineRead ? [{ article: inlineRead, reason: "同じ話題の記事" }] : []], 3);
   const depth = depthOf(article);
   const [noirTop, noirAfterAd] = splitBeforeHeading(noirHtml, 3);
   const [noirMid, noirTail] = splitBeforeHeading(noirAfterAd, 4);
@@ -179,8 +185,6 @@ export function noirArticlePage(ctx: NoirPageContext) {
     sourceName;
   // 題名の下の発表元は短く（「日本年金機構「老齢…の概要」（2026年10月1日更新）」→「日本年金機構」。2026-11-10 オーナー承認: 最初の画面を答えに使う）
   const orgShort = shortOrg(org);
-  // よく読まれる記事の「あなたは対象？」と「次にやること」（content/next_steps.json）
-  const steps = nextStepsFor(article.slug);
   // 上の1行: 同じジャンルの新着（自分は除く）
   const genreLatest = getAllArticles().find((a) => a.genreSlug === article.genreSlug && a.slug !== article.slug);
   const noirJsonLd = jsonLd.map((entry, i) =>
@@ -239,7 +243,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
       calcSlot={calcInline ? calcBox : undefined}
       priceSlot={priceBox}
       crumbs={crumbs}
-      related={relatedRest}
+      related={[]}
       slots={{
         genreLine: <GenreLine genre={article.genre} item={genreLatest} />,
         // 要点のすぐ下（「すぐにできること」・1つ目の PR より上）に「自分は対象か確かめる」の1行（2026-11-10 M2。PR の数と位置は変えない）
@@ -293,7 +297,6 @@ export function noirArticlePage(ctx: NoirPageContext) {
             <article className="prose nr-prose mt-5" dangerouslySetInnerHTML={{ __html: noirBodyHtml(easyHtml, {}) }} />
           </div>
         ) : null,
-        inlineRead: inlineReadShown ? <InlineRead item={{ article: inlineReadShown, reason: "同じ話題の記事" }} /> : null,
         adMid: showAds ? <AdSlot position="article-middle" className="my-10" /> : null,
         adMidPr,
         // 本文の途中: 読者の迷い・不安に答える欄（判断ガイド・不安Q&A）
@@ -350,13 +353,9 @@ export function noirArticlePage(ctx: NoirPageContext) {
           </>
         ),
         adEnd,
-        // 本文の直後（出典のボタンの下）に「次に読む記事」（2026-11-10 オーナー承認。以前は画面16〜24枚目）
-        next: (
-          <>
-            {steps?.next && <NextStepsBox steps={steps.next} />}
-            <NextRead items={storyEnd} />
-          </>
-        ),
+        // 本文の直後（出典のボタンの下）に「よく読まれている記事」5本（2026-11-11 読者目線レビュー 4位。以前はページのほぼ一番下）。
+        // PC は右の列に同じ一覧が付いてくるので、本文の列はスマホ・タブレットだけ
+        next: <PopularReads current={article.slug} className="lg:hidden" />,
         check: steps?.check ? <TargetCheck check={steps.check} /> : null,
         afterSource: (
           <>
@@ -389,8 +388,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
             <NewsletterSignup variant="article" />
             <PushOptIn />
             {!noirTail && readNextInline && <ReadNextBox link={readNextInline} className="mt-12" />}
-            {/* 同じ話題で別の疑問に答えるページ（元の記事 ⇄ 角度の記事。SEO A17） */}
-            <TopicPages article={article} className="mt-12" />
+            {/* 同じ話題で別の疑問に答えるページ（SEO A17）は、要点の下の「この話の続き」にまとめた（2026-11-11） */}
             {/* 「この記事は「値上げ情報」に載っています」（今までの見た目と同じ。載っていなければ何も出さない。SEO A12） */}
             <TopicListMembership slug={article.slug} className="mt-12" />
             {article.tags.length > 0 && (
@@ -438,7 +436,10 @@ export function noirArticlePage(ctx: NoirPageContext) {
                 {showAds && <AdSlot position="sidebar" />}
               </div>
             )}
-            <NoirPopular current={article.slug} />
+            {/* よく読まれている記事は PC の右の列だけ（スマホは本文の直後に出す） */}
+            <div className="hidden lg:block">
+              <NoirPopular current={article.slug} />
+            </div>
           </>
         ),
         mobileBar: offer && adBlocks.length === 0 ? <MobilePrBar item={offer.items[0]} watchId="offer-inline" /> : null,

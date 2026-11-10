@@ -18,7 +18,8 @@ test('[A20] タグの題名・h1・説明に「年金 の最新」のような�
 test('[A20] 記事の外側の欄（関連記事・次に読む・この話の続き・よく読まれている・メール配信）の見出しは h2 にしない', () => {
   for (const [rel, id] of [
     ['components/noir/NoirArticle.tsx', 'related-heading'],
-    ['app/articles/[slug]/page.tsx', 'related-heading'],
+    // 記事末の「関連記事」は 2026-11-11 にやめ、本文の直後の「よく読まれている記事」にまとめた（読者目線レビュー 4位）
+    ['components/PopularReads.tsx', 'next-read-heading'],
     ['components/NextRead.tsx', 'next-read-heading'],
     ['components/noir/StoryLinks.tsx', 'story-links-heading'],
     ['components/noir/NoirPopular.tsx', 'nr-pop-heading'],
