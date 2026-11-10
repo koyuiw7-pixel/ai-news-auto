@@ -120,8 +120,9 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
       </div>
 
       {guide.disclosure && (
-        <p className="mt-3 border-l-4 border-ink bg-surface px-4 py-3 text-note leading-[1.8] text-ink" data-editorial-disclosure>
-          <strong>PR</strong>　{guide.disclosure}
+        <p className="mt-3" data-editorial-disclosure>
+          {/* 2026-11-11 オーナー決定（台帳 W40）「広告の表示は『PR』だけ」: 説明の文は出さず、札だけ（guide.disclosure の文は /disclaimer の方針で説明） */}
+          <span className="ad-pr">PR</span>
         </p>
       )}
       <h1 className="t-h1 mt-3"><Phrases text={guide.title} /></h1>
@@ -230,6 +231,7 @@ export default function HowtoGuideView({ guide }: { guide: HowtoGuide }) {
             target="_blank"
             rel={/a8\.net|rakuten|amazon\.|amzn\.|valuecommerce|moshimo/.test(guide.officialAction.url) ? "sponsored nofollow noopener noreferrer" : "nofollow noopener noreferrer"} className="mt-5 inline-flex rounded-lg border border-ink px-5 py-3 text-note font-bold text-ink underline underline-offset-4 hover:text-accent">
             {guide.officialAction.label}
+            {/a8\.net|rakuten|amazon\.|amzn\.|valuecommerce|moshimo/.test(guide.officialAction.url) && <span className="ad-pr ml-2 self-center">PR</span>}
           </a>
         )}
       </Section>

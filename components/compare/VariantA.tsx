@@ -40,8 +40,7 @@ export default function VariantA({ view }: { view: GuideView }) {
         <h1 className="t-h1 mt-4"><Phrases text={guide.title} /></h1>
         <p className="index-num mt-3 border-y border-ink py-2 text-meta text-ink">
           <span className="font-semibold">{view.checkedLabel}</span>
-          <span className="mx-2 text-line-strong">|</span>提携{products.filter((p) => p.sponsored).length}・提携なし
-          {products.filter((p) => !p.sponsored).length}
+          <span className="mx-2 text-line-strong">|</span>{products.length}件を比較
         </p>
         <p className="t-lead mt-4">{guide.intro}</p>
         <Disclosure view={view} className="mt-3" />

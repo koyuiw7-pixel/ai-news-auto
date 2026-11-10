@@ -515,7 +515,7 @@ function headingFor(items: OfferItem[], fallbackTopic: Topic): Pick<Offer, "topi
     topic: topics[0].key,
     eyebrow: "この記事の話題に合わせて",
     headline: `${shown}に役立つ${kinds}`,
-    lead: `${names.join("・")}に関わる${kinds}を、記事との関連が高い順に並べています。料金や条件はリンク先で確認してください。`,
+    lead: `${names.join("・")}に関わる${kinds}を、記事との関連が高い順に並べています。`,
   };
 }
 
@@ -743,7 +743,7 @@ function secondHeading(offer: Offer): Pick<Offer, "eyebrow" | "headline" | "lead
   return {
     eyebrow: "あわせて比べたい候補",
     headline: `ほかの${kinds}も比べる`,
-    lead: `右の枠とは別の${kinds}です。料金や条件はリンク先で確認してください。`,
+    lead: `右の枠とは別の${kinds}です。`,
   };
 }
 

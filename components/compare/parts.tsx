@@ -320,12 +320,7 @@ export function HowWeMade({ view, className = "" }: { view: GuideView; className
 export function Disclosure({ view, className = "" }: { view: GuideView; className?: string }) {
   return (
     <p className={`text-note leading-[1.75] text-muted ${className}`}>
-      {view.hasSponsored && (
-        <>
-          <PrMark className="mr-1.5 align-[1px] text-ink" />
-          本ページはプロモーションを含みます（「PR」の付いた商品が提携先です）。
-        </>
-      )}
+      {/* 2026-11-11 オーナー決定（台帳 W40）: 「本ページはプロモーションを含みます」は出さない。提携先の商品には各行の「PR」の札 */}
       編集部が実際に使って評価したものではありません。
     </p>
   );

@@ -140,7 +140,7 @@ export default async function ComparePage({ params }: Props) {
 
       <p className="mt-5 rounded-xl bg-surface px-4 py-3 text-note leading-[1.8] text-ink-soft">
         <span className="font-bold text-ink">この記事は{asOf}時点の公式情報をもとに作成しています。</span>
-        編集部が実際に購入・使用して評価したものではありません。本ページはプロモーションを含みます（掲載している商品はすべて当サイトの提携先です）。
+        編集部が実際に購入・使用して評価したものではありません。
       </p>
 
       <p className="mt-6 text-desc leading-[1.95] text-ink-soft">{guide.intro}</p>

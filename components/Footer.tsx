@@ -5,8 +5,6 @@ import { guideShortName, LIFE_COMPARE_SLUGS, lifeCompareGuide } from "@/lib/buyi
 import { ROUNDUP_CHANNEL, getAllArticles, getAllChannels, getAllTags } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
 import { CREATOR_CHANNELS, WIRE_SOURCES } from "@/lib/indexing";
-import { amazonAssociateStatement } from "@/lib/disclosure";
-import { hasActiveAffiliate } from "@/lib/monetization";
 import { isThinSourceChannel } from "@/lib/news-outlets";
 import { genreNav } from "@/lib/nav";
 import { siteConfig } from "@/site.config";
@@ -62,7 +60,6 @@ export default function Footer() {
   const genres = genreNav();
   const companies = companyCounts(ai).slice(0, 8);
   const tags = getAllTags(true).slice(0, 16);
-  const amazonStatement = amazonAssociateStatement();
 
   return (
     <footer data-funnel-pos="footer" className="mt-24 border-t-2 border-ink bg-surface">
@@ -84,10 +81,7 @@ export default function Footer() {
               <NewsletterSignup variant="footer" />
             </div>
 
-            <p className="mt-8 max-w-md text-note leading-[1.8] text-muted">
-              当サイトはA8.netなどのアフィリエイトプログラムに参加しており、記事内に広告（プロモーション）を含む場合があります。広告・提携リンクには「PR」と表示しています。
-              {amazonStatement && <span className="mt-1 block">{amazonStatement}</span>}
-            </p>
+            {/* 2026-11-11 オーナー決定（台帳 W40）「広告の表示は『PR』だけ」: 足もとの広告の説明文は出さない。説明は /disclaimer・/privacy（下のリンク「免責事項・広告について」） */}
 
             <p className="mt-6 text-note font-bold text-ink">
               公式SNS：
@@ -200,8 +194,6 @@ export default function Footer() {
         <div className="mx-auto max-w-[1240px] px-5 py-6 sm:px-8">
           <p className="text-note leading-[1.9] text-muted">
             本サイトの記事は、公式発表・公開されている動画・報道をもとに生成AIが下書きし、元の発表と照らし合わせる自動の事実確認を通したものです。公開後は編集部（運営者）が速報や多くの人に読まれている記事を中心に読み、誤りは訂正方針に沿って直します（出典は各記事に記載。詳しくは<Link href="/editorial-policy" className="underline underline-offset-2 hover:text-ink">編集方針</Link>）。誤りが含まれる可能性があるため、重要な判断の際は必ず出典および各社の公式発表をご確認ください。
-            {hasActiveAffiliate() &&
-              "当サイトは広告およびアフィリエイトプログラムによる収益を得ています。"}
           </p>
           <p className="index-num mt-4 text-meta text-muted">
             © {new Date().getFullYear()} {siteConfig.name}

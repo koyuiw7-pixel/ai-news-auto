@@ -65,7 +65,7 @@ export default function DisclaimerPage() {
         Googleのガイドラインに従い、次の対応を行っています。
       </p>
       <ul>
-        <li>広告・アフィリエイトを含むページには「本ページはプロモーションを含みます」と表示し、広告・提携リンクのそばに「PR」と明示する</li>
+        <li>広告・提携リンクの枠には、それぞれ「PR」と明示する</li>
         <li>
           アフィリエイトリンクには <code>rel=&quot;sponsored nofollow&quot;</code>{" "}
           属性を付与する

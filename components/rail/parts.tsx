@@ -120,9 +120,9 @@ export function initialOf(name: string): string {
 export function PrNote({ checkedAt, hasBook }: { checkedAt: string; hasBook: boolean }) {
   if (!hasBook) return null;
   return (
-    <p className="text-meta leading-relaxed text-muted">
+    <p className="text-[11px] leading-relaxed text-muted">
       {/* 並びは閲覧履歴で変わり、本が見えていない枠もある（セキュリティソフトだけの枠に「書籍の」と出ていた）ので「書籍」とは言わない */}
-      表示中の価格・評価は取得時点（{checkedDate(checkedAt)}）のものです。
+      {checkedDate(checkedAt)}時点
     </p>
   );
 }

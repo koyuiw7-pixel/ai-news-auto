@@ -166,8 +166,7 @@ export default function NoirArticle(props: NoirProps) {
               （2026-11-10 オーナー承認: Threads から来た人の最初の画面が、関係の薄い写真で埋まり答えが2画面目だった） */}
           {coverOnTop && <CoverFigure {...coverProps} />}
 
-          {/* ステマ規制（景品表示法）に沿い、広告を含みうる全記事の冒頭で明示する */}
-          <p className="nr-pr">本ページはプロモーションを含みます</p>
+          {/* 2026-11-11 オーナー決定（台帳 W40）「広告の表示は『PR』だけ。全部で」: ページ冒頭の「本ページはプロモーションを含みます」は出さない。広告の枠ごとの「PR」の札で示す */}
 
           {(sum || fig) && (
             <section className="nr-sum" aria-label="要点">

@@ -652,12 +652,7 @@ export default async function ArticlePage({ params }: Props) {
             </p>
           )}
 
-          <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-meta text-muted">
-            {/* ステマ規制（景品表示法）に沿い、広告を含みうる全記事の冒頭で明示する */}
-            <span className="rounded-sm bg-surface px-2 py-0.5 text-badge font-bold">
-              本ページはプロモーションを含みます
-            </span>
-          </div>
+          {/* 2026-11-11 オーナー決定（台帳 W40）「広告の表示は『PR』だけ。全部で」: ページ冒頭の「本ページはプロモーションを含みます」は出さない。広告の枠ごとの「PR」の札で示す */}
 
           {/* 個別記事 → 同じ話題のまとめ記事へ */}
           {article.roundupSlug && (

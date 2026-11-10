@@ -11,7 +11,9 @@ test('Amazon の決まった文はフラグの後ろにだけある',()=>{
  const lib=read('lib/disclosure.ts');
  assert.match(lib,/export const AMAZON_ASSOCIATE_APPROVED = (true|false);/);
  assert.match(lib,/Amazonのアソシエイトとして、\$\{siteConfig\.siteName\}は適格販売により収入を得ています。/);
- for(const rel of ['components/Footer.tsx','app/privacy/page.tsx','app/disclaimer/page.tsx']){
+ // 2026-11-11 オーナー決定（台帳 W40「広告の表示は『PR』だけ」）: フッターの広告の説明文は外した。Amazon の決まった文は /privacy・/disclaimer に出す
+ assert.doesNotMatch(read('components/Footer.tsx'),/Amazonのアソシエイトとして|アフィリエイトプログラムに参加しており/);
+ for(const rel of ['app/privacy/page.tsx','app/disclaimer/page.tsx']){
   const src=read(rel);
   assert.doesNotMatch(src,/Amazonのアソシエイトとして/,rel);
   assert.match(src,/amazonAssociateStatement\(\)/,rel);

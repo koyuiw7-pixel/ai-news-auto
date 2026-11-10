@@ -24,9 +24,7 @@ export default function CompareIndexPage() {
       <p className="t-lead mt-3">
         AIを使うための道具やサービスを、各社の公式情報と価格をもとに比べました。価格は定期的に確認し直しています。
       </p>
-      <p className="mt-3 text-note text-muted">
-        本ページはプロモーションを含みます（「PR」の付いたガイドに提携先の商品があります）。
-      </p>
+      {/* 2026-11-11 オーナー決定（台帳 W40）「広告の表示は『PR』だけ。全部で」: ページ冒頭の「本ページはプロモーションを含みます」は出さない。広告の枠ごとの「PR」の札で示す */}
       <ul className="mt-10 grid gap-4 sm:grid-cols-2">
         {guides.map((guide) => {
           const products = resolveProducts(guide);

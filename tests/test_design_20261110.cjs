@@ -73,7 +73,7 @@ test("[W37/W39] 広告の囲み（.ad-box）と塗りの「PR」の札（.ad-pr�
   }
 });
 
-test("[W37] 囲みの下の長い広告の注記は出さない（ページ冒頭の「本ページはプロモーションを含みます」と PR の札は残す）", () => {
+test("[W37/W40] 広告の注記は出さない。表示は各枠の「PR」の札だけ（2026-11-11 オーナー決定: ページ冒頭の「本ページはプロモーションを含みます」も外す）", () => {
   const banned = [
     /広告（アフィリエイトリンク）を含みます/,
     /申し込みがあると当サイトに紹介料が入ることがあります/,
@@ -81,6 +81,13 @@ test("[W37] 囲みの下の長い広告の注記は出さない（ページ冒�
     /リンク経由の購入で当サイトに紹介料が入ることがあります/,
     /上記リンクはアフィリエイトリンクを含みます/,
     /当サイトは広告収入を得ています/,
+    /本ページはプロモーションを含みます/,
+    /広告・サイソクに紹介料が入ります/,
+    /リンク先で確認してください/,
+    /のサイトが開きます/,
+    /このページには広告リンクを含みます/,
+    /アフィリエイトプログラムに参加しており/,
+    /取得時点/,
   ];
   const files = [
     "components/ActionAd.tsx",
@@ -90,15 +97,26 @@ test("[W37] 囲みの下の長い広告の注記は出さない（ページ冒�
     "components/AffiliateBox.tsx",
     "components/CtaBanner.tsx",
     "components/compare/parts.tsx",
+    "components/noir/NoirArticle.tsx",
+    "app/articles/[slug]/page.tsx",
+    "app/guides/[slug]/page.tsx",
+    "app/compare/page.tsx",
+    "app/compare/[slug]/page.tsx",
+    "components/choose/ChooseView.tsx",
+    "components/HowtoGuideView.tsx",
+    "components/Footer.tsx",
+    "lib/offers.ts",
+    "content/offers.json",
   ];
   for (const f of files) {
     // コメントの中の引用（決定の記録）は数えない
     const code = read(f).replace(/\/\*[\s\S]*?\*\//g, "").replace(/\{\/\*[\s\S]*?\*\/\}/g, "").replace(/^\s*\/\/.*$/gm, "");
     for (const re of banned) assert.doesNotMatch(code, re, `${f}: ${re}`);
   }
-  assert.match(read("components/noir/NoirArticle.tsx"), /本ページはプロモーションを含みます/);
-  assert.match(read("app/articles/[slug]/page.tsx"), /本ページはプロモーションを含みます/);
   assert.match(read("docs/owner_rules.md"), /^\| W37 \| \*\*2026-11-10 オーナー決定/m);
+  assert.match(read("docs/owner_rules.md"), /^\| W40 \| \*\*2026-11-11 オーナー決定/m);
+  // 本文中の提携リンクにも札（ページ冒頭の一文に頼らない）
+  assert.match(read("lib/markdown.ts"), /ad-pr ad-pr-inline">PR<\/span>/);
 });
 
 // 台帳 W38（2026-11-10 オーナー）: 広告の「得のカード」。数字は公式の出典と確認日つき・景品表示法の言葉を使わない・記事ごとの見出し

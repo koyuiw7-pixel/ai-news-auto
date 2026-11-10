@@ -28,13 +28,18 @@ function sanitize(html: string): string {
  */
 function hardenLinks(html: string, affiliateUrls: string[] = []): string {
   const sponsored = new Set(affiliateUrls);
-  return html.replace(
+  // 本文中の提携リンクのすぐ後ろに小さな「PR」の札（2026-11-11 オーナー決定・台帳 W40「広告の表示は『PR』だけ」。ページ冒頭の一文は出さない）
+  return markBodyPr(html.replace(
     /<a\s+href="(https?:\/\/[^"]+)"/gi,
     (_match, href: string) =>
       isAffiliateUrl(href.replace(/&amp;/g, "&"), sponsored) || sponsored.has(href)
         ? `<a href="${href}" target="_blank" rel="${AFFILIATE_REL}" data-aff-pos="body"`
         : `<a href="${href}" target="_blank" rel="noopener noreferrer nofollow"`,
-  );
+  ));
+}
+
+function markBodyPr(html: string): string {
+  return html.replace(/(<a [^>]*data-aff-pos="body"[^>]*>[\s\S]*?<\/a>)(?!<span class="ad-pr)/g, '$1<span class="ad-pr ad-pr-inline">PR</span>');
 }
 
 export async function renderMarkdown(

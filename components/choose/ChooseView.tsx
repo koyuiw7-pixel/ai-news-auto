@@ -50,11 +50,7 @@ export default function ChooseView({ guide, services, related, others, jsonLd }:
           <span>{services.length}件を比較</span>
           <span>料金・条件は{checked}に公式サイトで確認</span>
         </p>
-        {hasSponsored && (
-          <p className="mt-1.5 text-meta text-muted">
-            このページには広告リンクを含みます（<a href="#about" className="underline underline-offset-2">詳しく</a>）
-          </p>
-        )}
+        {/* 2026-11-11 オーナー決定（台帳 W40）: 「このページには広告リンクを含みます」は出さない。提携先のリンクの横の「PR」の札で示す */}
       </header>
 
       {/* 使い方から考える */}
@@ -200,11 +196,9 @@ export default function ChooseView({ guide, services, related, others, jsonLd }:
           <p>
             料金・条件・特典は、{checked}に各社の公式サイトに書かれていた内容だけで作っています。記載が見つからなかった項目は「公式ページで確認」としています。編集部が実際に契約して試した結果ではありません。
           </p>
-          {hasSponsored && (
-            <p>
-              一部のリンクは広告（アフィリエイト）リンクで、そこから申し込みがあると当サイトに紹介料が入ることがあります。広告かどうかで載せる順番や書き方は変えていません。広告でないサービスも同じように並べています。
-            </p>
-          )}
+          <p>
+            載せる順番や書き方は、提携しているかどうかで変えていません。提携していないサービスも同じように並べています。
+          </p>
           <p>
             制作方法は<Link href="/editorial-policy" className="mx-1 text-accent underline underline-offset-2">編集方針</Link>、
             誤りのご指摘は<Link href="/contact" className="mx-1 text-accent underline underline-offset-2">お問い合わせ</Link>へ。
@@ -258,7 +252,7 @@ function OutLink({ service, dify = false, className = "" }: { service: ResolvedS
       rel={service.sponsored ? AFFILIATE_REL : "nofollow noopener"}
       className={`font-semibold text-accent underline underline-offset-2 ${className}`}
     >
-      公式サイト{service.sponsored && "（広告）"}
+      公式サイト{service.sponsored && <span className="ad-pr ml-1.5 align-[1px] no-underline">PR</span>}
       <span className="sr-only">（新しいタブで開きます）</span>
     </a>
   );

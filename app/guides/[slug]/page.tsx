@@ -154,9 +154,7 @@ export default async function GuidePage({ params }: Props) {
       </section>
 
       <p className="mt-6 text-desc leading-[1.95] text-ink-soft">{guide.intro}</p>
-      <p className="mt-3 inline-block rounded-sm bg-surface px-2 py-0.5 text-badge font-bold text-muted">
-        本ページはプロモーションを含みます
-      </p>
+      {/* 2026-11-11 オーナー決定（台帳 W40）「広告の表示は『PR』だけ。全部で」: ページ冒頭の「本ページはプロモーションを含みます」は出さない。広告の枠ごとの「PR」の札で示す */}
 
       <Section id="features" title={`${guide.name}でできること`}>
         <div className="grid gap-3 sm:grid-cols-2">
