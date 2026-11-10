@@ -26,6 +26,7 @@ import { archiveMonths, MIN_INDEX_ENTRIES, monthEntries, recentEntries, TOPIC_LI
 import { getAllWeeks, weekPublishedAt } from "@/lib/weekly";
 import { isBroadGenre } from "@/lib/sections";
 import { isThinSourceChannel } from "@/lib/news-outlets";
+import { canonicalChannel, hasChannelLabel } from "@/lib/channel-labels";
 import { siteConfig } from "@/site.config";
 
 /**
@@ -80,11 +81,10 @@ export function sitemapEntries(): SitemapEntry[] {
   // 全ジャンルが対象。ただし薄くなりやすい記事は検索に出さないので載せない（lib/indexing.ts）
   const allArticles = getAllArticles();
   const articles = allArticles.filter(isIndexable);
-  const liveChannels = new Set(articles.map((a) => a.channelSlug));
+  const liveChannels = new Set(articles.map((a) => canonicalChannel(a.channelSlug)));
   const liveTags = new Set(articles.flatMap((a) => a.tags.map(tagSlug)));
-  // 一覧ページの noindex 方針に合わせる。チャンネルは AI 記事があるもの、タグは記事が2本以上。
+  // 一覧ページの noindex 方針に合わせる。発信元は名前の表にある組織（SEO A11）、タグは記事が2本以上。
   // 件数はページと同じく全記事で数え、同じ記事内の重複タグは1本として扱う。
-  const aiChannels = new Set(allArticles.filter((a) => a.genreSlug === "ai").map((a) => a.channelSlug));
   const tagArticleCounts = new Map<string, number>();
   for (const article of allArticles) {
     for (const slug of new Set(article.tags.map(tagSlug))) {
@@ -122,7 +122,8 @@ export function sitemapEntries(): SitemapEntry[] {
     })),
     ...getAllChannels()
       // 報道機関の発信元・各社が混ざった radar-official は薄いページなので入れない（台帳 W12。ページ側も noindex）
-      .filter((channel) => !isThinSourceChannel(channel.slug) && liveChannels.has(channel.slug) && aiChannels.has(channel.slug) && isListingIndexable(getArticlesByChannel(channel.slug)))
+      // 名前の表にある組織で、検索に出す記事が3本以上（ジャンルは問わない。ページの robots と同じ。SEO A11）
+      .filter((channel) => !isThinSourceChannel(channel.slug) && liveChannels.has(channel.slug) && hasChannelLabel(channel.slug) && isListingIndexable(getArticlesByChannel(channel.slug)))
       .map((channel) => ({
       url: `${base}/channels/${channel.slug}`,
       lastModified: newestOf(getArticlesByChannel(channel.slug).filter(isIndexable))

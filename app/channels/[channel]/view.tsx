@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import ArticleCard from "@/components/ArticleCard";
 import Pagination from "@/components/Pagination";
 import { getAllChannels, getArticlesByChannel, isWeb } from "@/lib/articles";
 import { isListingIndexable } from "@/lib/indexing";
+import { canonicalChannel, hasChannelLabel } from "@/lib/channel-labels";
 import {
   channelDescription as describe,
   channelDisplayLabel,
@@ -19,19 +20,21 @@ export function channelMetadata(channel: string, page: number): Metadata {
   const label = channelLabel(channel);
   const items = getArticlesByChannel(channel);
   const count = items.length;
-  // AI記事が無い・検索対象の記事が少ないチャンネルは検索対象から外す。
+  // 検索に出すのは、名前の表（content/channel_labels.json）にある組織で、検索に出す記事が3本以上の発信元（ジャンルは問わない。SEO A11）。
   // 報道機関の発信元（radar-<報道機関>）と、各社が混ざった radar-official は薄いページなので検索に出さない（台帳 W12）
-  const indexable = !isThinSourceChannel(channel) && items.some((a) => a.genreSlug === "ai") && isListingIndexable(items);
+  const indexable = !isThinSourceChannel(channel) && hasChannelLabel(channel) && isListingIndexable(items);
 
   return {
     title: `${label}${titleTail(channel)}${pageSuffix(page)}`,
     description: describe(channel, label, items[0] && isWeb(items[0]), count),
-    alternates: { canonical: pageHref(`/channels/${channel}`, page) },
+    alternates: { canonical: pageHref(`/channels/${canonicalChannel(channel)}`, page) },
     ...(indexable ? {} : { robots: { index: false, follow: true } }),
   };
 }
 
 export default function ChannelView({ channel, page }: { channel: string; page: number }) {
+  // 同じ組織の別の slug（/channels/mhlw）は、まとめた先へ転送する（SEO A11）
+  if (canonicalChannel(channel) !== channel) permanentRedirect(pageHref(`/channels/${canonicalChannel(channel)}`, page));
   const articles = getArticlesByChannel(channel);
   if (articles.length === 0) notFound();
   const paged = paginate(articles, page);

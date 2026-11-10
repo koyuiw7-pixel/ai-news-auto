@@ -102,6 +102,7 @@ import { noirArticlePage } from "@/components/noir/noirArticlePage";
 import { compareOffersFor, funnelForArticle, insertCompareSlot } from "@/lib/comparison";
 import CompareOffers from "@/components/CompareOffers";
 import FunnelCard from "@/components/FunnelCard";
+import { canonicalChannel, channelName } from "@/lib/channel-labels";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -358,7 +359,8 @@ export default async function ArticlePage({ params }: Props) {
     ...(article.genreSlug && article.genre ? [{ href: `/genres/${article.genreSlug}`, label: article.genre }] : []),
     // 企業ページがある会社だけ（ガジェットだけの会社はページが無く 404 になる。台帳 W3）
     ...(company.slug !== OTHER.slug && companyPageSlugs(getAllArticles()).has(company.slug) ? [{ href: `/companies/${company.slug}`, label: company.name }] : []),
-    { href: `/channels/${article.channelSlug}`, label: article.channel },
+    // 発信元は組織の名前（資料名ではない。content/channel_labels.json・SEO A11）
+    { href: `/channels/${canonicalChannel(article.channelSlug)}`, label: channelName(article.channelSlug, article.channel) },
   ];
   const jsonLd = [
     {

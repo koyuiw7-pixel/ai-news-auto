@@ -1,4 +1,5 @@
 import type { ArticleChart } from "@/lib/charts";
+import { canonicalChannel, channelName, channelTableLabel } from "@/lib/channel-labels";
 import type { NoirChange, NoirKeyFigure, NoirWrapItem } from "@/lib/noir";
 import type { BodyImage } from "@/lib/body-images";
 import fs, { hasVirtualFs } from "@/lib/content-fs";
@@ -579,12 +580,13 @@ export function getArticlesByGenre(genreSlug: string): ArticleSummary[] {
 export function getChannelsByGenre(genreSlug: string): Facet[] {
   const map = new Map<string, Facet>();
   for (const article of getArticlesByGenre(genreSlug)) {
-    const found = map.get(article.channelSlug);
+    const slug = canonicalChannel(article.channelSlug);
+    const found = map.get(slug);
     if (found) found.count += 1;
     else
-      map.set(article.channelSlug, {
-        slug: article.channelSlug,
-        label: article.channel,
+      map.set(slug, {
+        slug,
+        label: channelName(slug, article.channel),
         count: 1,
       });
   }
@@ -598,15 +600,17 @@ export function getAllChannels(): Facet[] {
   const map = new Map<string, Facet>();
   for (const article of getAllArticles()) {
     if (!article.channelSlug) continue;
-    const found = map.get(article.channelSlug);
+    // 同じ組織の別の slug（mhlw → mhlw-go-jp）は1つにまとめる。名前は表（content/channel_labels.json。SEO A11）が先
+    const slug = canonicalChannel(article.channelSlug);
+    const found = map.get(slug);
     if (found) {
       found.count += 1;
       // 先に見つかったのがまとめ記事なら、発信元の本当の名前に置き換える（フッターの SOURCES に内部の言葉が出ていた）
-      if (ROUNDUP_CHANNEL.test(found.label) && article.channel && !ROUNDUP_CHANNEL.test(article.channel)) found.label = article.channel;
+      if (!channelTableLabel(slug) && ROUNDUP_CHANNEL.test(found.label) && article.channel && !ROUNDUP_CHANNEL.test(article.channel)) found.label = article.channel;
     } else
-      map.set(article.channelSlug, {
-        slug: article.channelSlug,
-        label: article.channel,
+      map.set(slug, {
+        slug,
+        label: channelName(slug, article.channel),
         count: 1,
       });
   }
@@ -614,7 +618,8 @@ export function getAllChannels(): Facet[] {
 }
 
 export function getArticlesByChannel(channelSlug: string): ArticleSummary[] {
-  return getAllArticles().filter((a) => a.channelSlug === channelSlug);
+  const slug = canonicalChannel(channelSlug);
+  return getAllArticles().filter((a) => canonicalChannel(a.channelSlug) === slug);
 }
 
 /** "2026/10/27 09:30"（日本時間） */
