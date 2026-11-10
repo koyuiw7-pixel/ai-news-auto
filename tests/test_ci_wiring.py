@@ -38,6 +38,23 @@ class CiWiringTest(unittest.TestCase):
                 stray.append(str(path.relative_to(ROOT)))
         self.assertEqual(stray, [], "テストの名前が test_ で始まっていない（CI で動かない）")
 
+    def test_indexnow_runs_after_the_page_is_live(self):
+        """seo A2・LLMO-A3（2026-11-10）: IndexNow はデプロイの完了を待たない auto_run.yml では送らず、
+        deploy_cloudflare.yml で公開の確認（Record live time）のあとに送る。失敗してもデプロイは赤にしない"""
+        auto = (WORKFLOWS / "auto_run.yml").read_text("utf-8")
+        self.assertNotRegex(auto, r"(?m)^\s*(?:run:\s*)?python3? scripts/indexnow\.py")
+        self.assertNotRegex(auto, r"(?m)^\s*- name: Notify IndexNow")
+        deploy = (WORKFLOWS / "deploy_cloudflare.yml").read_text("utf-8")
+        live = deploy.index("- name: Record live time")
+        step = deploy.index("- name: Notify IndexNow")
+        self.assertLess(deploy.index("- name: Deploy\n"), live)
+        self.assertLess(live, step)
+        body = deploy[step:deploy.index("- name:", step + 1)]
+        self.assertIn("continue-on-error: true", body)
+        self.assertIn("scripts/indexnow.py --hours", body)
+        self.assertIn("--merge-state", body)
+        self.assertIn("git add state/indexnow_sent.json", body)
+
 
 if __name__ == "__main__":
     unittest.main()

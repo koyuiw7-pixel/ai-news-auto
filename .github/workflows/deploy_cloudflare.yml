@@ -122,6 +122,36 @@ jobs:
           done
           echo "::warning::公開時刻を push できませんでした（速さの集計から抜けるだけ）"
 
+      # 検索エンジンに更新を通知する（IndexNow。アカウント不要で Bing などに直接届く。seo A2・LLMO-A3）。
+      # 公開を確かめた（上の Record live time）あとに、デプロイした版の中身で、前と同じ中身のURLを除いて送る。
+      # 送ったURLの指紋と HTTP の番号は state/indexnow_sent.json に残す（200/202 以外は scripts/pipeline_health.py --alert が issue にする）。
+      # 失敗してもデプロイは成功のまま
+      - name: Notify IndexNow
+        continue-on-error: true
+        run: |
+          git fetch -q origin main || true
+          git checkout -q --detach "$GITHUB_SHA"
+          git show origin/main:state/indexnow_sent.json > state/indexnow_sent.json 2>/dev/null || rm -f state/indexnow_sent.json
+          set +e
+          python3 scripts/indexnow.py --hours 12 --state-out "$RUNNER_TEMP/indexnow.json"
+          code=$?
+          set -e
+          if [ ! -f "$RUNNER_TEMP/indexnow.json" ]; then exit $code; fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main
+            python3 scripts/indexnow.py --merge-state "$RUNNER_TEMP/indexnow.json"
+            git add state/indexnow_sent.json
+            if git diff --cached --quiet; then exit $code; fi
+            git commit -m "chore(indexnow): 検索エンジンに送ったURLを記録"
+            git push origin HEAD:main && exit $code
+            echo "push に失敗しました。リトライ $i/5"
+            sleep 5
+          done
+          echo "::warning::IndexNow の記録を push できませんでした（次の回に同じURLを送り直すだけ）"
+          exit $code
+
       # デプロイ直後の1回目の表示の速さ（台帳 W29。オーナー「デプロイ直後でもすぐ開けること」）。
       # サイトマップから選んだページをエッジのキャッシュに無い URL で開き、アクセスが来てから作ったページ（MISS）・
       # 2秒を超えたページ・開けないページがあれば赤にする（デプロイ自体は終わっている。知らせのため）

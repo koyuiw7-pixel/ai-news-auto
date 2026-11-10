@@ -532,13 +532,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run breaking_post.yml --ref main
 
-      # 検索エンジンに更新を通知する（IndexNow）。
-      # Search Console と違いアカウント不要で、Bing/DuckDuckGo などに直接届く。
-      # 公開前の URL を通知しないよう、デプロイする回だけ送る（--hours 12 なので保留していた記事も含まれる）
-      - name: Notify IndexNow
-        if: ${{ steps.commit.outputs.deploy == '1' }}
-        continue-on-error: true
-        run: python scripts/indexnow.py --hours 12
+      # 検索エンジンへの更新の通知（IndexNow）は deploy_cloudflare.yml が、ページが開けるようになってから送る（seo A2・LLMO-A3）。
+      # ここ（デプロイの完了を待たない呼び出しの直後）で送ると、まだ公開されていない URL を知らせてしまうため
 
       # 新着記事を Threads に投稿する（公式APIは無料）。
       # 変数 THREADS_MODE が live 以外なら、下書きをサマリーに出すだけで何も公開しない。

@@ -8,6 +8,7 @@ web_articles.py が通常の回の終わりに record() を呼ぶ。候補があ
   python3 scripts/pipeline_health.py            # いまの状態を表示
   python3 scripts/pipeline_health.py --alert    # 止まっていれば GitHub に issue（ラベル pipeline-stalled）を立てる。
                                                 # 直ったら、その issue に一言書いて閉じる（gh と GH_TOKEN が必要）
+                                                # IndexNow（検索エンジンへの通知）の最後の結果が 200/202 以外のときも issue（ラベル indexnow-failed）
 """
 
 from __future__ import annotations
@@ -27,6 +28,15 @@ STALL_RUNS = 2  # 救済モードを止めている（PIPELINE_RESCUE=0）とき
 # 救済モードでも0本の回がこの回数続いたときだけ issue でオーナーに知らせる
 RESCUE_FAIL_ALERT = 2
 LABEL = "pipeline-stalled"
+# 検索エンジンへの通知（scripts/indexnow.py）の記録。最後の送信が受理（200/202）されなかったら知らせる（seo A2・LLMO-A3）
+INDEXNOW_PATH = ROOT / "state" / "indexnow_sent.json"
+INDEXNOW_LABEL = "indexnow-failed"
+INDEXNOW_OK = (200, 202)
+INDEXNOW_HINT = {
+    403: "鍵のファイル（public/<key>.txt）が開けないか、中身が鍵と違う",
+    422: "送った URL のホストが鍵の登録と合わない",
+    429: "短い時間に送りすぎた（しばらく待てば戻ることが多い）",
+}
 
 
 def load() -> dict:
@@ -178,7 +188,50 @@ def alert() -> int:
     return 0
 
 
+def indexnow_problem(path: Path | None = None) -> str | None:
+    """IndexNow の最後の送信が受理されなかったら、その説明（受理されていれば・記録が無ければ None）"""
+    try:
+        data = json.loads((path or INDEXNOW_PATH).read_text("utf-8"))
+    except Exception:  # noqa: BLE001
+        return None
+    last = data.get("last") if isinstance(data, dict) else None
+    if not isinstance(last, dict) or last.get("status") in INDEXNOW_OK:
+        return None
+    status = last.get("status")
+    hint = INDEXNOW_HINT.get(status, "送信そのものが失敗した（通信の失敗など）" if status == "error" else "")
+    return (f"検索エンジンへの更新の通知（IndexNow）が受け付けられませんでした。\n\n"
+            f"- 時刻: {last.get('time')}\n- 結果: HTTP {status}{('（' + hint + '）') if hint else ''}\n"
+            f"- 送ろうとした URL の数: {last.get('count')}\n\n"
+            "記事の公開は止まっていません。受け付けられなかった URL は次のデプロイの回に送り直します。\n"
+            "次の回で 200 か 202 になれば、この知らせは自動で閉じます。（くわしい記録: state/indexnow_sent.json）")
+
+
+def indexnow_alert(path: Path | None = None) -> int:
+    """最後の結果が 200/202 以外なら issue を立て、受理に戻ったら閉じる。開いている issue はラベルで探す（記録のファイルを増やさない）"""
+    problem = indexnow_problem(path)
+    try:
+        open_issues = _gh("issue", "list", "--label", INDEXNOW_LABEL, "--state", "open", "--json", "number", "--jq", ".[].number")
+    except Exception as error:  # noqa: BLE001
+        print(f"[health] IndexNow の issue を確かめられませんでした: {error}")
+        return 0
+    numbers = [n for n in open_issues.split() if n.strip()]
+    try:
+        if problem and not numbers:
+            subprocess.run(["gh", "label", "create", INDEXNOW_LABEL, "--color", "D93F0B", "--description", "検索エンジンへの通知が受け付けられない", "--force"],
+                           check=False, capture_output=True, text=True)
+            url = _gh("issue", "create", "--title", "検索エンジンへの通知（IndexNow）が受け付けられていません", "--label", INDEXNOW_LABEL, "--body", problem)
+            print(f"[health] IndexNow が受理されていないので issue を立てました: {url}")
+        elif not problem and numbers:
+            for number in numbers:
+                _gh("issue", "close", number, "--comment", "検索エンジンへの通知が受け付けられるようになりました。")
+            print("[health] IndexNow が受理に戻ったので issue を閉じました")
+    except Exception as error:  # noqa: BLE001
+        print(f"[health] IndexNow の issue を開け閉めできませんでした: {error}")
+    return 0
+
+
 if __name__ == "__main__":
     if "--alert" in sys.argv:
-        raise SystemExit(alert())
+        alert()
+        raise SystemExit(indexnow_alert())
     print(json.dumps(load(), ensure_ascii=False, indent=2))

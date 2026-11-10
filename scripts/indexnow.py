@@ -8,16 +8,21 @@ IndexNow はアカウント不要で Bing / DuckDuckGo / Yandex などに直接�
   python3 scripts/indexnow.py --all      # 全記事を送信（初回用）
   python3 scripts/indexnow.py --hours 12 # 直近12時間に生成された記事だけ
   python3 scripts/indexnow.py --urls https://ai-tech-express.jp/guides/a,...  # 指定した URL だけ
+
+ページが開けるようになってから送る（deploy_cloudflare.yml の「Record live time」のあと）。送ったURLと中身の指紋・
+HTTP の番号を state/indexnow_sent.json に残し、前と同じ中身で受理されたURLは送り直さない（seo A2・LLMO-A3）。
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
 import sys
 import unicodedata
+import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -67,15 +72,119 @@ def latest_guide_timestamp(guide: dict) -> datetime | None:
     return max(timestamps) if timestamps else None
 
 
-def collect_urls(base: str, hours: int | None) -> list[str]:
-    """インデックス対象（noindex_reason が None）の記事URLを集める。
+# 送ったURLと中身の指紋（seo A2・LLMO-A3）。前と同じ中身のURLは送り直さない。送った結果（HTTP の番号）も残し、
+# scripts/pipeline_health.py --alert が 200/202 以外（403 鍵・422 ホスト・429 送りすぎ）なら issue で知らせる
+STATE_PATH = ROOT / "state" / "indexnow_sent.json"
+EVENTS_PATH = ROOT / "content" / "events.json"
+TOPIC_LISTS_PATH = ROOT / "content" / "topic_lists.json"
+TOOLS_DIR = ROOT / "app" / "tools"
+LIB_DIR = ROOT / "lib"
+OK_STATUS = (200, 202)
+LOG_KEEP = 200  # 送った回の記録は新しい順にこの数だけ残す
+PRUNE_DAYS = 14  # 記事・ガイドの指紋はこの日数で消す（--hours の窓より十分長い。道具・イベント・一覧は消さない）
+# 記事の中身の指紋に入れない項目（SNS の下書き・作った道具の記録など、ページに出ないもの）
+HASH_SKIP_PREFIX = ("threads",)
+HASH_SKIP = {"model", "qualityScore", "gptReview", "coverTries"}
 
-    noindex にしている記事を送っても意味がないため、対象から外す。
-    """
+
+def _digest(value) -> str:
+    raw = value if isinstance(value, bytes) else json.dumps(value, ensure_ascii=False, sort_keys=True).encode("utf-8")
+    return hashlib.sha256(raw).hexdigest()[:16]
+
+
+def article_hash(article: dict) -> str:
+    return _digest({k: v for k, v in article.items() if k not in HASH_SKIP and not k.startswith(HASH_SKIP_PREFIX)})
+
+
+def load_state(path: Path | None = None) -> dict:
+    path = path or STATE_PATH
+    try:
+        data = json.loads(path.read_text("utf-8"))
+    except (OSError, ValueError):
+        data = {}
+    if not isinstance(data, dict):
+        data = {}
+    if not isinstance(data.get("urls"), dict):
+        data["urls"] = {}
+    if not isinstance(data.get("log"), list):
+        data["log"] = []
+    return data
+
+
+def save_state(state: dict, path: Path | None = None) -> None:
+    path = path or STATE_PATH
+    now = datetime.now(timezone.utc)
+    keep = {}
+    for url, entry in state.get("urls", {}).items():
+        sent = _parse((entry or {}).get("sentAt"))
+        dated = "/articles/" in url or "/guides/" in url
+        if dated and sent and now - sent > timedelta(days=PRUNE_DAYS):
+            continue
+        keep[url] = entry
+    out = {"urls": dict(sorted(keep.items())), "log": state.get("log", [])[-LOG_KEEP:]}
+    if state.get("last"):
+        out["last"] = state["last"]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", "utf-8")
+
+
+def merge_state(path: str) -> int:
+    """この回の記録（RUNNER_TEMP のファイル）を、最新の main の state/indexnow_sent.json に足す（デプロイの記録の push と同じやり方）"""
+    mine = load_state(Path(path))
+    data = load_state()
+    for url, entry in mine["urls"].items():
+        old = data["urls"].get(url) or {}
+        if str(entry.get("sentAt", "")) >= str(old.get("sentAt", "")):
+            data["urls"][url] = entry
+    seen = {json.dumps(e, sort_keys=True) for e in data["log"]}
+    data["log"] += [e for e in mine["log"] if json.dumps(e, sort_keys=True) not in seen]
+    data["log"].sort(key=lambda e: str(e.get("time", "")))
+    if mine.get("last") and str(mine["last"].get("time", "")) >= str((data.get("last") or {}).get("time", "")):
+        data["last"] = mine["last"]
+    save_state(data)
+    print(f"[done] state/{STATE_PATH.name} に {len(mine['urls'])} 件を足しました")
+    return 0
+
+
+def tool_hashes() -> dict[str, str]:
+    """計算の道具（/tools/<slug>）。ページのファイルと、計算の部品（lib/calc*）の中身で指紋をとる"""
+    shared = b"".join(p.read_bytes() for p in sorted(LIB_DIR.glob("calc*")) if p.is_file())
+    out = {}
+    if TOOLS_DIR.is_dir():
+        for folder in sorted(p for p in TOOLS_DIR.iterdir() if p.is_dir() and not p.name.startswith(("_", "[", "("))):
+            files = sorted(p for p in folder.rglob("*") if p.is_file())
+            if files:
+                out[folder.name] = _digest(shared + b"".join(p.read_bytes() for p in files))
+    return out
+
+
+def _read_json(path: Path):
+    try:
+        return json.loads(path.read_text("utf-8"))
+    except (OSError, ValueError):
+        return None
+
+
+def event_hashes() -> dict[str, str]:
+    data = _read_json(EVENTS_PATH)
+    events = data.get("events") if isinstance(data, dict) else None
+    return {e["slug"]: _digest(e) for e in events or [] if isinstance(e, dict) and e.get("slug")}
+
+
+def roundup_hashes() -> dict[str, str]:
+    data = _read_json(TOPIC_LISTS_PATH)
+    lists = data.get("lists") if isinstance(data, dict) else None
+    return {kind: _digest(entries) for kind, entries in (lists or {}).items() if isinstance(kind, str)} if isinstance(lists, dict) else {}
+
+
+def collect_candidates(base: str, hours: int | None) -> list[tuple[str, str | None, str]]:
+    """送る候補 (URL, 指紋, 入口のページの種類)。指紋が None の入口（トップ・一覧・ジャンル）は、中の項目が変わったときだけ足す。
+
+    noindex にしている記事を送っても意味がないため、対象から外す。"""
     threshold = (
         datetime.now(timezone.utc) - timedelta(hours=hours) if hours else None
     )
-    urls = [base, f"{base}/articles", f"{base}/genres/ai"]
+    items: list[tuple[str, str, str]] = []
 
     articles = []
     for path in sorted(ARTICLES_DIR.glob("*.json")):
@@ -95,26 +204,88 @@ def collect_urls(base: str, hours: int | None) -> list[str]:
                 continue
             if generated < threshold:
                 continue
-        urls.append(f"{base}/articles/{article['slug']}")
+        genre = str(article.get("genreSlug") or "").strip()
+        items.append((f"{base}/articles/{article['slug']}", article_hash(article), f"genre:{genre}" if genre else "articles"))
 
     # 使い方ガイド（/guides/<slug>）。作成・全体確認・部分更新の最新日時で選ぶ。
-    guides = []
     for path in sorted(HOWTO_DIR.glob("*.json")):
         try:
             guide = json.loads(path.read_text("utf-8"))
         except json.JSONDecodeError:
             continue
-        if not isinstance(guide, dict):
+        if not isinstance(guide, dict) or not guide.get("slug"):
             continue
         touched = latest_guide_timestamp(guide)
         if touched is None:
             continue
         if threshold is None or touched >= threshold:
-            guides.append(f"{base}/guides/{guide['slug']}")
-    if guides:
-        urls += [f"{base}/guides", *guides]
+            items.append((f"{base}/guides/{guide['slug']}", _digest(guide), "guides"))
 
-    return urls[:MAX_URLS]
+    # お金の道具・イベント・横断の一覧は日時を持たないので、中身の指紋が変わったときだけ送る
+    items += [(f"{base}/tools/{slug}", h, "tools") for slug, h in tool_hashes().items()]
+    items += [(f"{base}/events/{slug}", h, "events") for slug, h in event_hashes().items()]
+    items += [(f"{base}/roundups/{kind}", h, "roundups") for kind, h in roundup_hashes().items()]
+    return items
+
+
+def hub_urls(base: str, kinds: list[str]) -> list[str]:
+    """変わった項目が載る入口のページ。記事ならトップ・記事一覧・その記事のジャンル（/genres/ai に固定しない）"""
+    hubs: list[str] = []
+
+    def add(url: str) -> None:
+        if url not in hubs:
+            hubs.append(url)
+
+    for kind in kinds:
+        if kind == "articles" or kind.startswith("genre:"):
+            add(base)
+            add(f"{base}/articles")
+            if kind.startswith("genre:"):
+                add(f"{base}/genres/{kind[6:]}")
+        elif kind in ("guides", "events", "roundups"):
+            add(f"{base}/{kind}")
+    return hubs
+
+
+def changed_items(base: str, hours: int | None, state: dict | None = None) -> list[tuple[str, str, str]]:
+    """前に同じ中身で受理された（200/202）URL を除いた (URL, 指紋, 入口の種類)"""
+    sent = (state or {}).get("urls", {})
+    out = []
+    for url, digest, kind in collect_candidates(base, hours):
+        old = sent.get(url) or {}
+        if old.get("hash") == digest and old.get("status") in OK_STATUS:
+            continue
+        out.append((url, digest, kind))
+    return out
+
+
+def urls_for(base: str, changed: list[tuple[str, str, str]]) -> list[str]:
+    """変わった項目がある入口（記事ならトップ・記事一覧・その記事のジャンル）を先に、続けて変わった項目"""
+    if not changed:
+        return []
+    return (hub_urls(base, [kind for _, _, kind in changed]) + [url for url, _, _ in changed])[:MAX_URLS]
+
+
+def collect_urls(base: str, hours: int | None, state: dict | None = None) -> list[str]:
+    return urls_for(base, changed_items(base, hours, state))
+
+
+def record_result(state: dict, urls: list[str], hashes: dict[str, str], status: int | str, now: datetime | None = None) -> dict:
+    """送った結果を残す。受理（200/202）されなかったURLは指紋を残さず、次の回に送り直す"""
+    now_s = (now or datetime.now(timezone.utc)).isoformat(timespec="seconds")
+    for url in urls:
+        entry = dict(state["urls"].get(url) or {})
+        entry.update({"sentAt": now_s, "status": status})
+        if status in OK_STATUS and url in hashes:
+            entry["hash"] = hashes[url]
+        elif url in hashes:
+            entry.pop("hash", None)
+        if url in hashes or status in OK_STATUS:
+            state["urls"][url] = entry
+    line = {"time": now_s, "count": len(urls), "status": status}
+    state["log"].append(line)
+    state["last"] = line
+    return state
 
 
 def submit(base: str, key: str, urls: list[str]) -> int:
@@ -478,12 +649,16 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="送信せず対象を表示")
     parser.add_argument("--urls", default="", help="カンマ区切りの URL だけを送る")
     parser.add_argument("--export-rules", action="store_true", help="サイト側の判定材料 lib/index-rules.json を書き出す")
+    parser.add_argument("--state-out", default="", help="送った記録を書くファイル（既定は state/indexnow_sent.json）")
+    parser.add_argument("--merge-state", default="", help="--state-out で書いた記録を state/indexnow_sent.json に足す")
     args = parser.parse_args()
 
     if args.export_rules:
         RULES_PATH.write_text(rules_json(), "utf-8")
         print(f"[done] {RULES_PATH.relative_to(ROOT)} を書き出しました")
         return 0
+    if args.merge_state:
+        return merge_state(args.merge_state)
     if rules_drift():
         print("[warn] lib/index-rules.json が scripts/indexnow.py・persona.py の基準とずれています。"
               "python3 scripts/indexnow.py --export-rules で直してください（サイトの noindex と通知対象が食い違います）", file=sys.stderr)
@@ -494,10 +669,17 @@ def main() -> int:
         return 1
 
     base = site_url()
+    state = load_state()
     explicit = [u.strip() for u in args.urls.split(",") if u.strip().startswith(base)]
-    urls = explicit or collect_urls(base, None if args.all else args.hours)
+    hashes: dict[str, str] = {}
+    if explicit:
+        urls = explicit
+    else:
+        changed = changed_items(base, None if args.all else args.hours, state)
+        hashes = {url: digest for url, digest, _ in changed}
+        urls = urls_for(base, changed)
 
-    print(f"[info] 送信先ホスト: {base} / 対象 {len(urls)} 件")
+    print(f"[info] 送信先ホスト: {base} / 対象 {len(urls)} 件（前と同じ中身のURLは送り直さない）")
     for url in urls[:5]:
         print("   ", url)
     if len(urls) > 5:
@@ -506,16 +688,26 @@ def main() -> int:
     if args.dry_run:
         print("[dry-run] 送信しませんでした")
         return 0
-    if not explicit and len(urls) <= 3:
-        print("[skip] 新規URLがないため送信しません")
+    if not urls:
+        print("[skip] 変わったURLがないため送信しません")
         return 0
 
+    out = Path(args.state_out) if args.state_out else STATE_PATH
     try:
-        status = submit(base, key, urls)
-    except Exception as error:  # noqa: BLE001 - 通知失敗で全体を落とさない
+        status: int | str = submit(base, key, urls)
+    except urllib.error.HTTPError as error:
+        status = error.code
+    except Exception as error:  # noqa: BLE001 - 記録だけ残して、呼び出し側（continue-on-error）で止めない
         print(f"[NG] 送信失敗: {error}", file=sys.stderr)
-        return 0
+        save_state(record_result(state, urls, hashes, "error"), out)
+        return 1
 
+    save_state(record_result(state, urls, hashes, status), out)
+    if status not in OK_STATUS:
+        hint = {403: "鍵のファイル（public/<key>.txt）が開けない・中身が違う", 422: "URL のホストが鍵と合わない",
+                429: "送りすぎ（しばらく待つ）"}.get(status, "")
+        print(f"[NG] HTTP {status} {hint}".rstrip(), file=sys.stderr)
+        return 1
     print(f"[done] HTTP {status}（200/202 なら受理）")
     return 0
 
