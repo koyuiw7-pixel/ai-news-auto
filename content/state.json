@@ -181,6 +181,7 @@
     "65a2876b6174c083": "2026-11-06T19:23:54.886871+00:00",
     "660bf673c08d0f27": "2026-11-07T04:50:58.842979+00:00",
     "68f4b82abee1aa5b": "2026-11-06T18:22:08.318950+00:00",
+    "690c438ade454699": "2026-11-10T09:20:50.649203+00:00",
     "709478d4c3025144": "2026-11-06T19:41:01.362264+00:00",
     "709ccf094f875d5a": "2026-11-10T02:48:53.350891+00:00",
     "70a840a0a8aff058": "2026-11-09T05:41:05.167572+00:00",
@@ -3459,6 +3460,12 @@
       "skipped": true,
       "url": "https://huggingface.co/blog/ibm-research/cuga-harness"
     },
+    "004ad0ec25b71ae4": {
+      "at": "2026-11-10T08:45:15.593893+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（出演）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111008"
+    },
     "00829269e89181f3": {
       "at": "2026-11-04T03:57:04.107139+00:00",
       "major": true,
@@ -3521,6 +3528,17 @@
       "skipped": true,
       "url": "https://cloud.google.com/blog/ja/topics/hybrid-cloud/managed-rag-search-inside-the-sovereign-perimeter-gemini-on-gdc-enterprise-search/"
     },
+    "012bd510f3a35481": {
+      "at": "2026-11-10T08:46:51.921698+00:00",
+      "costUsd": 0.006,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "public",
+      "slug": "tokyo-jafda-bicycle-safety-agreement",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111006"
+    },
     "015d389a8563486d": {
       "at": "2026-11-04T15:51:25.581693+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -3534,6 +3552,18 @@
       "section": "business",
       "slug": "mof-tax-stamp-revenue-sep-2026",
       "url": "https://www.mof.go.jp/tax_policy/reference/taxes_and_stamp_revenues/202609.pdf"
+    },
+    "01a8528fa117926a": {
+      "at": "2026-11-10T08:48:05.953759+00:00",
+      "costUsd": 0.0057,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "ai-guidance-gap-education-thinkyoung",
+      "url": "https://openai.com/index/closing-ai-guidance-gap-education"
     },
     "01ae94b0daa02eba": {
       "at": "2026-11-08T15:03:20.788927+00:00",
@@ -5879,6 +5909,17 @@
       "slug": "mlit-gaiko-kaiun-kentoukai-3",
       "url": "http://www.mlit.go.jp/report/press/kaiji02_hh_000298.html"
     },
+    "24f3e6b3b235f463": {
+      "at": "2026-11-10T08:50:58.228836+00:00",
+      "costUsd": 0.0035,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 91,
+      "section": "sports",
+      "slug": "mito-hollyhock-signing-lee-hyun-gi",
+      "url": "https://www.jleague.jp/news/article/35331/?navicode=j1"
+    },
     "250e5d8f302445e7": {
       "at": "2026-10-27T15:53:28.205250+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6089,6 +6130,13 @@
       "score": 95,
       "updated": "docomo-my-docomo-data-breach",
       "url": "https://www.docomo.ne.jp/info/notice/page/261109_00_m.html"
+    },
+    "28a2d425e524c5da": {
+      "at": "2026-11-10T08:44:21.987414+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: リード「口座番号や暗証番号は現時点で含まれていません」→ 元記事（九州電力）は口座情報の漏えい可能性なしとのみ述べ、暗証番号には触れていない。暗証番号は三井住友銀行の件の確認済み文脈の記述で、九州電力の件に流用している; リード・本文「同じ経路で漏えい」→ 元記事はアララのメール配信エンジンへの不正アクセスと記述しており、経路の同一性は確認済み文脈から補えるが、",
+      "skipped": true,
+      "url": "https://www.kyuden.co.jp/press/2026/h261110-1.html"
     },
     "28c32a0ff9a111fc": {
       "at": "2026-11-02T02:11:17.348721+00:00",
@@ -6815,6 +6863,17 @@
       "reason": "厚生労働省の審議会（検討会）の開催案内であり、国民生活に直接関わる新しい制度や法律の決定ではなく、行政の会議スケジュールのお知らせであるため。",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76989.html"
+    },
+    "35867efb094da2f9": {
+      "at": "2026-11-10T09:07:04.060418+00:00",
+      "costUsd": 0.0131,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "sports",
+      "slug": "u17-womens-world-cup-2026-morocco-2",
+      "url": "https://www.jfa.jp/news/00037008/"
     },
     "358c7b25779727f0": {
       "at": "2026-10-30T10:12:37.250871+00:00",
@@ -8097,6 +8156,17 @@
       "skipped": true,
       "url": "https://cloud.google.com/blog/ja/topics/threat-intelligence/llmjacking-monetizing-compromised-cloud-models/"
     },
+    "4b444bcd86ed8d3b": {
+      "at": "2026-11-10T08:46:06.015573+00:00",
+      "costUsd": 0.0055,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "public",
+      "slug": "upgrade-with-tokyo-64-greenery",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111009"
+    },
     "4b7179257f66c6e5": {
       "at": "2026-10-28T19:52:40.823030+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8988,6 +9058,17 @@
       "slug": "aws-transform-reinvent-2026-migration",
       "url": "https://aws.amazon.com/jp/blogs/news/infrastructure-migrations-your-complete-aws-reinvent-2026-guide/"
     },
+    "5853709e13ca8649": {
+      "at": "2026-11-10T08:48:47.909183+00:00",
+      "costUsd": 0.0057,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 93,
+      "section": "sports",
+      "slug": "gamba-osaka-youth-promotion-2026",
+      "url": "https://www.jleague.jp/news/article/35330/?navicode=j1"
+    },
     "5886c5f29f0241fb": {
       "at": "2026-10-29T04:31:38.854810+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9866,6 +9947,12 @@
       "slug": "corporate-data-breach-record-2026",
       "url": "https://www.tsr-net.co.jp/data/detail/1203409_1527.html"
     },
+    "63b25ab6cf34c929": {
+      "at": "2026-11-10T09:05:35.030902+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111012"
+    },
     "63c4b7d8634c79e8": {
       "at": "2026-11-02T10:31:24.723385+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -10176,6 +10263,12 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202611/video-327113.html"
+    },
+    "690c438ade454699": {
+      "at": "2026-11-10T09:21:37.769636+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/daijin/detail/mext_00750.html"
     },
     "691aeb39c4445330": {
       "at": "2026-10-30T15:21:39.707682+00:00",
@@ -10707,6 +10800,12 @@
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/06/20261106-20-years-of-ps-store-o/"
     },
+    "7110d262fd40c555": {
+      "at": "2026-11-10T08:50:02.053744+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（募集）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111010"
+    },
     "713bd1f5da5a0523": {
       "at": "2026-11-03T00:51:10.726284+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
@@ -10919,6 +11018,12 @@
       "slug": "gemini-plans-daily-brief-added",
       "url": "https://gemini.google/us/subscriptions/?hl=en#entry-2026-11-04-f58336"
     },
+    "74bc77e289b0d220": {
+      "at": "2026-11-10T09:05:35.030695+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/houdou/0000212707_00059.html"
+    },
     "74c9b2e03867b173": {
       "at": "2026-11-03T19:51:15.184960+00:00",
       "reason": "dedupe: 固有名詞が一致（agentcore・bedrock）: ServiceNow on-behalf-of token exchange w",
@@ -10932,6 +11037,12 @@
       "reason": "quality: リード「月額コストの目安は約16,400円（税別）からと試算」→ 元記事の基本試算は$103.58（約16,400円）で、Fargate Spot利用時は$57.50（約9,100円）と示されており、16,400円は下限ではない。数値の取り違え。; リード・要点「月間1万件の処理コストはFargateなどで約103.58ドル」→ 元記事では$103.58は1,000ワークフロー・",
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/beyond-traditional-market-price-tracking-a-generative-ai-solution-for-sap-customers/"
+    },
+    "74fc8c4286ab6c41": {
+      "at": "2026-11-10T09:05:35.031062+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/kaisai/02kiban14_04001379.html"
     },
     "7505013630af597a": {
       "at": "2026-11-07T00:13:03.044294+00:00",
@@ -12519,6 +12630,12 @@
       "skipped": true,
       "url": "https://www.suntory.co.jp/news/article/2026/15158.html?rss=0000000029"
     },
+    "8d275a673da0d300": {
+      "at": "2026-11-10T08:50:58.846011+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（講座）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111003"
+    },
     "8d40bd57193cb55f": {
       "at": "2026-11-10T07:14:25.248027+00:00",
       "breaking": true,
@@ -12992,6 +13109,12 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030a.pdf"
     },
+    "9461934bf2f0bc08": {
+      "at": "2026-11-10T08:46:52.535239+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（受賞）",
+      "skipped": true,
+      "url": "https://www.suntory.co.jp/news/article/2026/15170.html?rss=0000000029"
+    },
     "948f28b89431d9b7": {
       "at": "2026-10-29T15:22:25.276063+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -13104,6 +13227,17 @@
       "reason": "quality: easy_markdown が短い（365字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001287.html"
+    },
+    "9610f192270bc289": {
+      "at": "2026-11-10T08:45:14.894633+00:00",
+      "costUsd": 0.0055,
+      "intent": "query",
+      "mix": "money",
+      "model": "gemini-3.5-flash-lite",
+      "score": 86,
+      "section": "business",
+      "slug": "inflation-bankruptcies-october-2026",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203424_1527.html"
     },
     "96392a0c8111c13f": {
       "at": "2026-10-30T03:42:19.797923+00:00",
@@ -14860,6 +14994,12 @@
       "slug": "ntt-docomo-kumamoto-earthquake-volunteer",
       "url": "https://www.docomosolutions.co.jp/news/pr26102701.html"
     },
+    "b19a37afd7007bab": {
+      "at": "2026-11-10T09:05:35.030931+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
+      "skipped": true,
+      "url": "https://www.kantei.go.jp/jp/105/discourse/20261110message.html"
+    },
     "b1a2bc897173fea2": {
       "at": "2026-11-09T15:41:45.831160+00:00",
       "reason": "stale: 発表から164時間（記事ページの日付）",
@@ -15850,6 +15990,17 @@
       "slug": "ampersand-on-ai-gateway-free-trial",
       "url": "https://vercel.com/changelog/humans-and-ampersand-now-available-on-ai-gateway"
     },
+    "c12d4d8a91c1ade2": {
+      "at": "2026-11-10T09:07:56.914145+00:00",
+      "costUsd": 0.008,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "sports",
+      "slug": "emperors-cup-2026-semifinal-schedule",
+      "url": "https://www.jfa.jp/news/00037007/"
+    },
     "c163e5401c88db95": {
       "at": "2026-10-30T18:31:28.344172+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -15893,6 +16044,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（公募）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110902"
+    },
+    "c21d01723e0ec0fb": {
+      "at": "2026-11-10T08:50:01.408022+00:00",
+      "costUsd": 0.0075,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 90,
+      "section": "public",
+      "slug": "yoyogi-park-fountain-renewal",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111007"
     },
     "c246a0edd354bc64": {
       "at": "2026-11-03T00:36:28.378270+00:00",
@@ -15978,6 +16140,12 @@
       "section": "ai",
       "slug": "nvidia-cosmos-world-models-simulation",
       "url": "https://developer.nvidia.com/blog/build-world-models-for-interactive-simulation-with-nvidia-cosmos/"
+    },
+    "c3e784ee53def147": {
+      "at": "2026-11-10T09:21:37.769512+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.cfa.go.jp/press/9b95e378-b813-45ae-9716-dbee3e54db8f"
     },
     "c3faa8bab2cf2ce3": {
       "at": "2026-10-29T00:51:46.046709+00:00",
@@ -16240,6 +16408,12 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.suntory.co.jp/news/article/2026/15166.html?rss=0000000029"
+    },
+    "c8282b8bcda25833": {
+      "at": "2026-11-10T08:44:21.992317+00:00",
+      "reason": "dedupe: 固有名詞が一致（アクセス・メール）: メール配信サービス事業者（アララ株式会社）への不正アクセスに伴う当社EVカーシェ",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111005"
     },
     "c865b1246b5375fb": {
       "at": "2026-11-06T13:11:27.079250+00:00",
@@ -18964,6 +19138,12 @@
       "slug": "qst-hyperpolarized-mri-liver-pon",
       "url": "https://www.qst.go.jp/site/press/20261030.html"
     },
+    "f3a3fc028a84123e": {
+      "at": "2026-11-10T09:07:57.676452+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/shingi/chousa/shotou/213/1418128_00001.html"
+    },
     "f3a56dd76169e332": {
       "at": "2026-11-09T00:04:47.855958+00:00",
       "reason": "prefilter: お知らせ・統計の転載（statistics）",
@@ -19500,6 +19680,12 @@
       "skipped": true,
       "url": "https://www.docomo.ne.jp/info/news_release/2026/11/04_00.html"
     },
+    "fc957715059c1ab0": {
+      "at": "2026-11-10T08:50:58.855088+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（開催について）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111011"
+    },
     "fcb81763c4955df7": {
       "at": "2026-11-02T17:37:14.542074+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
@@ -19677,6 +19863,12 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/ai_network/02tsushin06_04000145.html"
     },
+    "feeec4c4b4efc4e1": {
+      "at": "2026-11-10T08:50:58.850552+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（講座）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111004"
+    },
     "fefa1b6c88ebec6f": {
       "at": "2026-10-30T11:42:37.791481+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -19735,6 +19927,12 @@
       "section": "science",
       "slug": "hiroshima-u-glioblastoma-mri-ai",
       "url": "https://www.hiroshima-u.ac.jp/news/100822"
+    },
+    "ffe0526a36b01e3d": {
+      "at": "2026-11-10T09:05:35.031168+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111002"
     },
     "fffe65155421d33d": {
       "at": "2026-11-02T14:51:29.992715+00:00",
@@ -20244,197 +20442,6 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
-    },
-    "004ad0ec25b71ae4": {
-      "at": "2026-11-10T08:45:15.593893+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（出演）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111008"
-    },
-    "012bd510f3a35481": {
-      "at": "2026-11-10T08:46:51.921698+00:00",
-      "costUsd": 0.006,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "gemini-3.5-flash-lite",
-      "score": 88,
-      "section": "public",
-      "slug": "tokyo-jafda-bicycle-safety-agreement",
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111006"
-    },
-    "01a8528fa117926a": {
-      "at": "2026-11-10T08:48:05.953759+00:00",
-      "costUsd": 0.0057,
-      "foreignAi": true,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "claude:sonnet",
-      "score": 92,
-      "section": "ai",
-      "slug": "ai-guidance-gap-education-thinkyoung",
-      "url": "https://openai.com/index/closing-ai-guidance-gap-education"
-    },
-    "24f3e6b3b235f463": {
-      "at": "2026-11-10T08:50:58.228836+00:00",
-      "costUsd": 0.0035,
-      "intent": "query",
-      "mix": "other",
-      "model": "gemini-3.5-flash-lite",
-      "score": 91,
-      "section": "sports",
-      "slug": "mito-hollyhock-signing-lee-hyun-gi",
-      "url": "https://www.jleague.jp/news/article/35331/?navicode=j1"
-    },
-    "28a2d425e524c5da": {
-      "at": "2026-11-10T08:44:21.987414+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "followup quality: リード「口座番号や暗証番号は現時点で含まれていません」→ 元記事（九州電力）は口座情報の漏えい可能性なしとのみ述べ、暗証番号には触れていない。暗証番号は三井住友銀行の件の確認済み文脈の記述で、九州電力の件に流用している; リード・本文「同じ経路で漏えい」→ 元記事はアララのメール配信エンジンへの不正アクセスと記述しており、経路の同一性は確認済み文脈から補えるが、",
-      "skipped": true,
-      "url": "https://www.kyuden.co.jp/press/2026/h261110-1.html"
-    },
-    "35867efb094da2f9": {
-      "at": "2026-11-10T09:07:04.060418+00:00",
-      "costUsd": 0.0131,
-      "intent": "query",
-      "mix": "other",
-      "model": "gemini-3.5-flash-lite",
-      "score": 92,
-      "section": "sports",
-      "slug": "u17-womens-world-cup-2026-morocco-2",
-      "url": "https://www.jfa.jp/news/00037008/"
-    },
-    "4b444bcd86ed8d3b": {
-      "at": "2026-11-10T08:46:06.015573+00:00",
-      "costUsd": 0.0055,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "gemini-3.5-flash-lite",
-      "score": 88,
-      "section": "public",
-      "slug": "upgrade-with-tokyo-64-greenery",
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111009"
-    },
-    "5853709e13ca8649": {
-      "at": "2026-11-10T08:48:47.909183+00:00",
-      "costUsd": 0.0057,
-      "intent": "query",
-      "mix": "other",
-      "model": "gemini-3.5-flash-lite",
-      "score": 93,
-      "section": "sports",
-      "slug": "gamba-osaka-youth-promotion-2026",
-      "url": "https://www.jleague.jp/news/article/35330/?navicode=j1"
-    },
-    "63b25ab6cf34c929": {
-      "at": "2026-11-10T09:05:35.030902+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111012"
-    },
-    "690c438ade454699": {
-      "at": "2026-11-10T09:05:35.031017+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.mext.go.jp/b_menu/daijin/detail/mext_00750.html"
-    },
-    "7110d262fd40c555": {
-      "at": "2026-11-10T08:50:02.053744+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（募集）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111010"
-    },
-    "74bc77e289b0d220": {
-      "at": "2026-11-10T09:05:35.030695+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/houdou/0000212707_00059.html"
-    },
-    "74fc8c4286ab6c41": {
-      "at": "2026-11-10T09:05:35.031062+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/kaisai/02kiban14_04001379.html"
-    },
-    "8d275a673da0d300": {
-      "at": "2026-11-10T08:50:58.846011+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（講座）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111003"
-    },
-    "9461934bf2f0bc08": {
-      "at": "2026-11-10T08:46:52.535239+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（受賞）",
-      "skipped": true,
-      "url": "https://www.suntory.co.jp/news/article/2026/15170.html?rss=0000000029"
-    },
-    "9610f192270bc289": {
-      "at": "2026-11-10T08:45:14.894633+00:00",
-      "costUsd": 0.0055,
-      "intent": "query",
-      "mix": "money",
-      "model": "gemini-3.5-flash-lite",
-      "score": 86,
-      "section": "business",
-      "slug": "inflation-bankruptcies-october-2026",
-      "url": "https://www.tsr-net.co.jp/data/detail/1203424_1527.html"
-    },
-    "b19a37afd7007bab": {
-      "at": "2026-11-10T09:05:35.030931+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
-      "skipped": true,
-      "url": "https://www.kantei.go.jp/jp/105/discourse/20261110message.html"
-    },
-    "c12d4d8a91c1ade2": {
-      "at": "2026-11-10T09:07:56.914145+00:00",
-      "costUsd": 0.008,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "gemini-3.5-flash-lite",
-      "score": 92,
-      "section": "sports",
-      "slug": "emperors-cup-2026-semifinal-schedule",
-      "url": "https://www.jfa.jp/news/00037007/"
-    },
-    "c21d01723e0ec0fb": {
-      "at": "2026-11-10T08:50:01.408022+00:00",
-      "costUsd": 0.0075,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "gemini-3.5-flash-lite",
-      "score": 90,
-      "section": "public",
-      "slug": "yoyogi-park-fountain-renewal",
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111007"
-    },
-    "c8282b8bcda25833": {
-      "at": "2026-11-10T08:44:21.992317+00:00",
-      "reason": "dedupe: 固有名詞が一致（アクセス・メール）: メール配信サービス事業者（アララ株式会社）への不正アクセスに伴う当社EVカーシェ",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111005"
-    },
-    "f3a3fc028a84123e": {
-      "at": "2026-11-10T09:07:57.676452+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（会議）",
-      "skipped": true,
-      "url": "https://www.mext.go.jp/b_menu/shingi/chousa/shotou/213/1418128_00001.html"
-    },
-    "fc957715059c1ab0": {
-      "at": "2026-11-10T08:50:58.855088+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（開催について）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111011"
-    },
-    "feeec4c4b4efc4e1": {
-      "at": "2026-11-10T08:50:58.850552+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（講座）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111004"
-    },
-    "ffe0526a36b01e3d": {
-      "at": "2026-11-10T09:05:35.031168+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111002"
     }
   },
   "quality_log": [
