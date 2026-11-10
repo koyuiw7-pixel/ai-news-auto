@@ -331,7 +331,7 @@ export default async function ArticlePage({ params }: Props) {
 
   // 判定カードに見えている問いと答えを、そのまま FAQ の構造化データにする（AI検索の引用向け）
   // 「〇〇とは？…」型の題は「とは」「？」の前までを名前にする。長すぎる名前は問いが崩れるので「この発表」にする
-  const titleName = article.seoTitle?.split(/[｜|：:？?]|とは/)[0]?.trim() ?? "";
+  const titleName = article.seoTitle?.split(/[｜|：:？?　]|とは/)[0]?.trim() ?? "";
   const name = titleName && titleName.length <= 30 ? titleName : "この発表";
   // 本文の「よくある質問」（記事に表示している問いと答え）があればそれを使う（2026-11-05 台帳 A45: 本文に無い情報だけの1〜4問。無ければ欄を出さない）。
   // Google の FAQ のリッチリザルトは 2026-05 に終了したが、ページに見えている Q&A の印は他の検索・AI の答えに使われうるので残す

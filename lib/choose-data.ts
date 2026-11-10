@@ -65,7 +65,7 @@ const CHECKED = "2026-10-29";
 
 const internet: ChooseGuide = {
   slug: "internet-for-ai",
-  title: "AIを使うための通信回線の選び方｜光回線・ホームWi-Fi・WiMAX・スマホ回線を公式情報で比較",
+  title: "AIを使うための通信回線の選び方　光回線・ホームWi-Fi・WiMAX・スマホ回線を公式情報で比較",
   h1: "AIを快適に使うための、通信回線の選び方",
   description:
     "動画生成AI、大きなファイルのやり取り、ビデオ会議、ローカルAIのモデルのダウンロード。AIの使い方ごとに必要な回線を整理し、光回線・ホームWi-Fi・WiMAX・スマホ回線10件の月額・データ量・契約期間・特典を公式サイトの情報で比べました。",
@@ -356,7 +356,7 @@ const internet: ChooseGuide = {
 
 const career: ChooseGuide = {
   slug: "ai-career",
-  title: "AIスキルを生かす転職・学び直しの選び方｜IT転職エージェントとAI講座・公的支援を比較",
+  title: "AIスキルを生かす転職・学び直しの選び方　IT転職エージェントとAI講座・公的支援を比較",
   h1: "AIスキルを生かす転職・学び直しサービスの選び方",
   description:
     "AIの仕事に就きたい、AIを学び直したい人向けに、IT転職エージェント4社、AI講座、国の支援制度を、対象になる人（経験・地域）・費用・できることで比べました。条件は各公式サイトで2026年10月29日に確認しています。",

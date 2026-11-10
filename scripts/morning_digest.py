@@ -305,7 +305,7 @@ def link_card(post: dict) -> dict:
     """返信のリンクカード。号のページなら号のシェア画像、従来の /news ならロゴ"""
     if "/digest/" in str(post.get("link")):
         return {
-            "title": f"{post['text'].splitlines()[0]}｜サイソクニュース",
+            "title": f"{post['text'].splitlines()[0]}　サイソクニュース",
             "description": "・".join(i.get("headline", "") for i in (post.get("edition") or {}).get("items", []))[:120]
             or "AI・ビジネス・お金の公式発表を、速く・分かりやすく。",
             "thumbnail": {"url": f"{post['link'].rstrip('/')}/share.png?v={dp.image_rev()}"},

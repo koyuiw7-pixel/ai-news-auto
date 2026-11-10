@@ -182,8 +182,8 @@ export function hasBuyingInfo(product: Product): boolean {
 /** 検索結果の題名（決まった型の問いかけにしない。2026-11-03） */
 export function productSeoTitle(product: Product): string {
   return productProfile(product).pricingTable
-    ? `${product.name}とは｜料金プラン・機能・日本での提供状況`
-    : `${product.name}とは｜機能と発表の履歴`;
+    ? `${product.name}とは　料金プラン・機能・日本での提供状況`
+    : `${product.name}とは　機能と発表の履歴`;
 }
 
 /** ページの見出し */

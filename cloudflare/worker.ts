@@ -144,7 +144,7 @@ async function retiredProductResponse(url: URL, env: Env): Promise<Response | nu
 
 const RETIRED_PATH = /^\/(articles|cover|card)\/([^/]+?)(\.rsc)?\/?$/;
 
-const GONE_HTML = `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>この記事は掲載を終了しました｜サイソクニュース</title><style>body{margin:0;background:#f3f5f8;color:#0b1a33;font:16px/1.8 system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif}main{max-width:640px;margin:0 auto;padding:48px 16px}h1{font-size:22px;margin:0 0 12px}a{color:#1d4a8f}ul{padding-left:1.2em}</style></head><body><main><p style="color:#1d4a8f;font-weight:700;margin:0">サイソクニュース</p><h1>この記事は掲載を終了しました</h1><p>サイソクニュースでは、読者の方に役立つ記事を中心にお届けするため、記事の整理を行っています。この記事はその中で掲載を終了しました。ご不便をおかけし、申し訳ありません。</p><ul><li><a href="/">トップページ</a></li><li><a href="/articles">新着記事</a></li><li><a href="/editorial-policy">編集方針</a></li></ul></main></body></html>`;
+const GONE_HTML = `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>この記事は掲載を終了しました　サイソクニュース</title><style>body{margin:0;background:#f3f5f8;color:#0b1a33;font:16px/1.8 system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif}main{max-width:640px;margin:0 auto;padding:48px 16px}h1{font-size:22px;margin:0 0 12px}a{color:#1d4a8f}ul{padding-left:1.2em}</style></head><body><main><p style="color:#1d4a8f;font-weight:700;margin:0">サイソクニュース</p><h1>この記事は掲載を終了しました</h1><p>サイソクニュースでは、読者の方に役立つ記事を中心にお届けするため、記事の整理を行っています。この記事はその中で掲載を終了しました。ご不便をおかけし、申し訳ありません。</p><ul><li><a href="/">トップページ</a></li><li><a href="/articles">新着記事</a></li><li><a href="/editorial-policy">編集方針</a></li></ul></main></body></html>`;
 
 /**
  * Next の読み込み用スクリプトを外した HTML（410 のページは画面を動かさない静的なページにする）。
@@ -239,7 +239,7 @@ function retiredPageResponse(request: Request, url: URL): Response | null {
   const page = RETIRED_PAGES[path];
   if (!page) return null;
   const links = page.links.map(([href, label]) => `<li><a href="${href}">${label}</a></li>`).join("");
-  const html = GONE_HTML.replace(/<title>[^<]*<\/title>/, `<title>${page.title}｜サイソクニュース</title>`).replace(
+  const html = GONE_HTML.replace(/<title>[^<]*<\/title>/, `<title>${page.title}　サイソクニュース</title>`).replace(
     /<h1>[\s\S]*<\/ul>/,
     `<h1>${page.title}</h1><p>${page.text}</p><ul>${links}</ul>`,
   );

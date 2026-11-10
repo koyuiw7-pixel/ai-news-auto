@@ -339,11 +339,11 @@ def plan(key: str, entry: dict, platform: str = "bluesky") -> dict | None:
         covers = [tp.card_url(items[0])] if items else []  # 写真だけのカード（見出し入りのカバーは使わない。ルール2）
         if "/digest/" in page:
             return {"text": text, "link": tp.utm_link(page, platform, "digest"),
-                    "title": f"{text.splitlines()[0]}｜サイソクニュース", "desc": "直近のAIニュースを3本だけ。写真と要約つき。",
+                    "title": f"{text.splitlines()[0]}　サイソクニュース", "desc": "直近のAIニュースを3本だけ。写真と要約つき。",
                     "images": [f"{page.rstrip('/')}/share.png?v={md.dp.image_rev()}", *covers],
                     "kind": "digest", "gate": {"link": page, "items": items}}
         link = tp.utm_link(f"{tp.site_url()}/news", platform, "digest")
-        return {"text": text, "link": link, "title": "AIニュースまとめ｜サイソクニュース",
+        return {"text": text, "link": link, "title": "AIニュースまとめ　サイソクニュース",
                 "desc": "直近のAIニュースを1分で。", "images": covers, "kind": "digest", "gate": {"link": link, "items": items}}
     path = tp.ARTICLES_DIR / f"{key}.json"
     if not path.exists():
