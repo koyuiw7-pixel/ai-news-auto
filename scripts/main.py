@@ -631,9 +631,17 @@ def slugify(value: str) -> str:
     return value[:60].strip("-")
 
 
+def _retired_slugs() -> set[str]:
+    try:
+        return set(json.loads((ROOT / "content" / "retired.json").read_text(encoding="utf-8")).get("articles", {}))
+    except (OSError, json.JSONDecodeError):
+        return set()
+
+
 def unique_slug(base: str, video_id: str) -> str:
+    """取り下げた記事の slug も使わない（サイトはその slug に 410 を返すため、同じ slug の新しい記事は読めない）"""
     slug = base or video_id.lower()
-    if not (ARTICLES_DIR / f"{slug}.json").exists():
+    if not (ARTICLES_DIR / f"{slug}.json").exists() and slug not in _retired_slugs():
         return slug
     return f"{slug}-{video_id.lower()}"
 

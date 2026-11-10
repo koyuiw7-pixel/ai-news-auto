@@ -37,7 +37,7 @@ class RetiredSources(unittest.TestCase):
                     self.assertTrue((ROOT / "content" / "articles" / f"{entry['redirect']}.json").exists(), "転送先の記事が無い")
 
     def test_retired_source_urls_block_regeneration(self):
-        items = [e for e in retired().values() if e.get("sourceUrl")]
+        items = [e for e in retired().values() if e.get("sourceUrl") and e.get("blockSource") is not False]
         if not items:
             self.skipTest("出典URLのある取り下げ記事なし")
         index = dedupe.load_recent(1)

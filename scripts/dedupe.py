@@ -183,9 +183,14 @@ def load_recent(days: int = 4, skip_roundups: bool = False) -> Index:
         retired = json.loads(RETIRED_PATH.read_text(encoding="utf-8")).get("articles", {})
     except (OSError, json.JSONDecodeError):
         retired = {}
+    # blockSource: false の項目は「記事（slug）だけ取り下げ、出典は正しく使えば書き直してよい」もの。
+    # 例: 2026-11-10 の kokuho-genkagaku-limit-proposal は出典の取り違え（前年の会議の資料）が原因で、
+    # 新しい会議の資料が出たあとの正しい記事は同じ公式ページを出典にしてよい（slug は scripts/main.py unique_slug が避ける）
     for entry in retired.values():
+        if not isinstance(entry, dict) or entry.get("blockSource") is False:
+            continue
         for key in ("sourceUrl", "videoUrl"):
-            if isinstance(entry, dict) and entry.get(key):
+            if entry.get(key):
                 index.urls.add(_norm_url(str(entry[key])))
     return index
 

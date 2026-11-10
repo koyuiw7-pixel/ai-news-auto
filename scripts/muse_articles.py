@@ -33,6 +33,7 @@ from urllib.parse import urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import muse_format  # noqa: E402
+import source_date  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 INBOX = ROOT / "content" / "muse_inbox"
@@ -312,6 +313,12 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
     genre, system, prompt, schema, kind, context, bundle = w.compose_with_facts(item, source_text, lane, [], voice_text, page,
                                                                                     extra_sources=fetched[1:])
     prompt += MUSE_DRAFT_NOTE.format(title=data["title"], notes=data.get("notes") or "（なし）", body=data["body"])
+    # 出典の資料の日付・会議の回と、記事が書く出来事が合っているか（2026-11-10 の取り下げ。scripts/source_date.py）。
+    # 下書きの時点で分かった食い違いは、最初の試行から直させる（公開前の門は下の試行の中で記事の JSON に当てる）
+    today = datetime.now(JST).date()
+    if early := source_date.check([data["title"], data["body"]], fetched, today):
+        prompt += "\n\n【出典の日付の注意（必ず直す）】\n" + "\n".join(f"- {p}" for p in early)
+        log(f"   [muse] 出典の日付の注意: {early[0][:160]}")
     need = pass_score(data["genre"])
     problems: list[str] = []
     for attempt in range(1, MAX_ATTEMPTS + 1):
@@ -346,6 +353,10 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
         if blocked:
             problems = [f"公開前の門: {w.indexnow.PUBLISH_FEEDBACK[blocked]}"]
             log(f"   [muse] 試行{attempt}: {problems[0][:160]}")
+            continue
+        if dated := source_date.check(source_date.record_texts(record), fetched, today):
+            problems = dated
+            log(f"   [muse] 試行{attempt}: {dated[0][:160]}")
             continue
         verdict = quality.evaluate(record, source_text, kind, context, check_facts=True)
         # 2026-11-09 オーナー（台帳 A60 をすべての経路に）: ふつうの記事と同じく、形の指摘（資料に無い数字・電話番号など）も
