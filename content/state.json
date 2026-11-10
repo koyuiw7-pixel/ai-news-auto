@@ -85,6 +85,14 @@
       "tries": 1,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87284?site=nli"
     },
+    "96626834403c6444": {
+      "first": "2026-11-10T15:34:50.889860+00:00",
+      "next": "2026-11-10T18:34:50.889860+00:00",
+      "reason": "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
+      "title": "Introducing Reddit Reviews",
+      "tries": 1,
+      "url": "https://redditinc.com/news/introducing-reddit-reviews"
+    },
     "9a892e935752466d": {
       "first": "2026-11-08T01:49:51.805951+00:00",
       "next": "2026-11-08T04:49:51.805951+00:00",
@@ -4722,14 +4730,6 @@
       "slug": "yukimi-daifuku-fujisawa-ryoka",
       "url": "https://news.yahoo.co.jp/articles/665557ba443284b46e77077206af16c366813e92"
     },
-    "13657a084b9310b9": {
-      "at": "2026-10-27T15:18:19.259077+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "ntt-4k-ai-video-surveillance-2026",
-      "url": "https://group.ntt/jp/newsrelease/2026/10/27/261027b.html"
-    },
     "136a46008993a284": {
       "at": "2026-11-03T00:55:29.237875+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -5142,13 +5142,6 @@
       "reason": "quality: 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
       "skipped": true,
       "url": "https://www.riken.jp/press/2026/20261030_1/index.html"
-    },
-    "18ff4e0015efbefe": {
-      "at": "2026-10-27T15:17:02.626158+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1739字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-      "skipped": true,
-      "url": "https://sakana.ai/vp-of-gtm-interview/"
     },
     "191056a627871c9b": {
       "at": "2026-11-02T05:31:51.219862+00:00",
@@ -6455,6 +6448,12 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76910.html"
     },
+    "2e186972ef6cdfd3": {
+      "at": "2026-11-10T15:32:15.803774+00:00",
+      "reason": "dedupe: 固有名詞が一致（claude・fable）: Claude Fable 5.2 in GitHub Copilot",
+      "skipped": true,
+      "url": "https://aws.amazon.com/blogs/machine-learning/introducing-claude-fable-5-2-on-aws/"
+    },
     "2e3f3ef33d8db967": {
       "at": "2026-11-04T15:45:37.849602+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -6646,6 +6645,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/houdou/mext_01698.html"
+    },
+    "3229de0d919212c3": {
+      "at": "2026-11-10T15:34:52.946763+00:00",
+      "reason": "dedupe: 固有名詞が一致（face・hugging）: nemotron-personas-finance-japan",
+      "skipped": true,
+      "url": "https://huggingface.co/blog/decision"
     },
     "322de511a9d70b13": {
       "at": "2026-11-04T15:47:30.497202+00:00",
@@ -6870,6 +6875,18 @@
       "section": "sports",
       "slug": "u17-womens-world-cup-2026-morocco-2",
       "url": "https://www.jfa.jp/news/00037008/"
+    },
+    "3588ceed41552e46": {
+      "at": "2026-11-10T15:33:37.677440+00:00",
+      "costUsd": 0.0129,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "openai-upwork-freelance-ai-demand",
+      "url": "https://openai.com/index/ai-effect-on-freelance-work"
     },
     "358c7b25779727f0": {
       "at": "2026-10-30T10:12:37.250871+00:00",
@@ -8040,14 +8057,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
       "skipped": true,
       "url": "https://www.fsa.go.jp/inter/etc/20261029/20261029-2.html"
-    },
-    "4a299d1e9f3d5424": {
-      "at": "2026-10-27T15:19:52.426643+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "nvidia-ai-c-brain-dementia-research",
-      "url": "https://blogs.nvidia.com/blog/open-source-ai-tools-cbrain-dementia/"
     },
     "4a29cf0a9e1bd354": {
       "at": "2026-11-06T04:41:58.327169+00:00",
@@ -10027,16 +10036,6 @@
       "slug": "mof-debt-balance-202609",
       "url": "https://www.mof.go.jp/jgbs/reference/gbb/202609.html"
     },
-    "64d59b55a8fb8666": {
-      "at": "2026-10-27T15:27:59.298082+00:00",
-      "breaking": true,
-      "major": true,
-      "model": "claude:sonnet",
-      "score": 92,
-      "section": "ai",
-      "slug": "openai-signals-chatgpt-work-data",
-      "url": "https://openai.com/index/chatgpt-expanding-world-of-work"
-    },
     "64dd073c425d0f04": {
       "at": "2026-11-04T01:28:01.508919+00:00",
       "reason": "prefilter: お知らせ・統計の転載（listing）",
@@ -11289,6 +11288,13 @@
       "section": "investment",
       "slug": "sony-group-fy2026-h1-results",
       "url": "https://www.release.tdnet.info/inbs/140120261104564860.pdf"
+    },
+    "773234e7b2aca6b3": {
+      "at": "2026-11-10T15:32:15.790422+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「GitHub Changelog（Copilot）は11月10日、」→ 元記事に発表日は書かれておらず、11月10日という日付は創作である; 「Vercelに続き」「AI Gatewayの上乗せはありません」→ 確認済みの文脈のVercel情報に基づくため問題ないが、リードでは元記事の対象との区別が分かりにくい; 「条件を満たす一部の大企業に限り」→ 元記事の",
+      "skipped": true,
+      "url": "https://github.blog/changelog/2026-11-09-claude-fable-5-2-in-github-copilot"
     },
     "77db3705f153125d": {
       "at": "2026-10-29T18:13:41.962786+00:00",
@@ -13741,6 +13747,12 @@
       "reason": "中国経済産業局が11月24日に広島市で開く「地域共創カンファレンス」の参加者募集が中心のお知らせで、読者が今すぐ使う・買う制度や新しい事実の発表が少ないため。申込期限は11月13日午後5時。",
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010tks.html"
+    },
+    "9c986f66f8a00011": {
+      "at": "2026-11-10T15:34:52.928488+00:00",
+      "reason": "stale: 発表から48時間（記事ページの日付）",
+      "skipped": true,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/build-google-maps-platform-ai-studio/"
     },
     "9c9e5f41bc5712d7": {
       "at": "2026-11-05T21:13:17.735241+00:00",
@@ -17151,6 +17163,12 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/96e3c45f22506b331d9bb22e054c25150ba49841"
     },
+    "d2b711c4c75d2e8b": {
+      "at": "2026-11-10T15:34:52.744372+00:00",
+      "reason": "stale: 発表から48時間（記事ページの日付）",
+      "skipped": true,
+      "url": "https://developers.googleblog.com/announcing-long-context-training-on-tpus-with-maxtext-context-parallelism/"
+    },
     "d2dcc5433b77dccb": {
       "at": "2026-11-02T16:51:49.808113+00:00",
       "reason": "dedupe: 固有名詞が一致（gpt-6.1・terra）: openai-gpt-61-terra-amazon-bedrock",
@@ -19999,6 +20017,18 @@
       "skipped": true,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87214?site=nli"
     },
+    "fead6112027b4623": {
+      "at": "2026-11-10T15:36:17.027050+00:00",
+      "costUsd": 0.0123,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "google-language-explorer-world-languages",
+      "url": "https://research.google/blog/exploring-the-worlds-languages-with-language-explorer/"
+    },
     "feb4caa835f163bd": {
       "at": "2026-10-27T17:51:36.497157+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -20632,134 +20662,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T08:32:05.866314+00:00",
-      "attempt": 0,
-      "id": "524b441fcbae1820",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.6,
-        "avg_sentence": 44.1,
-        "long_share": 0.115,
-        "max_paragraph": 145,
-        "paragraphs": 12,
-        "sentences": 26
-      },
-      "score": 80,
-      "source": "sbintuitions-blog",
-      "title": "Learning to Act with Visual Priors",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SB・JEPA・RDT）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T08:58:48.133760+00:00",
-      "attempt": 1,
-      "id": "291bc739dbb7e180",
-      "kind": "broad",
-      "model": "gemini-3.6-flash",
-      "problems": [
-        "「不動産取引の当事者でない場合や、対象エリア外での取引には直接の影響はありません。」→ 元記事に無い法的影響の断定で、重要土地等調査法の届出義務の範囲を言い切っている。",
-        "リード「2026年10月28日から表示できるようになりました」→ 元記事は10月28日に「データの追加等を実施」としており、表示開始日として断定するのは若干の言い換えが過ぎる。"
-      ],
-      "readability": {
-        "avg_paragraph": 109.0,
-        "avg_sentence": 49.5,
-        "long_share": 0.364,
-        "max_paragraph": 229,
-        "paragraphs": 5,
-        "sentences": 11
-      },
-      "score": 82,
-      "source": "mlit-press",
-      "title": "「不動産情報ライブラリ」コンテンツ追加およびデータ更新！～「特別注視区域」（重要土地等調査法）データの追加等を10月28日に実施しました～",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 49.5字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 109.0字・最長 229字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T08:59:02.017014+00:00",
-      "attempt": 1,
-      "id": "291bc739dbb7e180",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 101.0,
-        "avg_sentence": 50.5,
-        "long_share": 0.4,
-        "max_paragraph": 189,
-        "paragraphs": 5,
-        "sentences": 10
-      },
-      "score": 92,
-      "source": "mlit-press",
-      "title": "「不動産情報ライブラリ」コンテンツ追加およびデータ更新！～「特別注視区域」（重要土地等調査法）データの追加等を10月28日に実施しました～",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 50.5字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T08:59:15.099529+00:00",
-      "attempt": 0,
-      "id": "291bc739dbb7e180",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 71.1,
-        "avg_sentence": 45.3,
-        "long_share": 0.182,
-        "max_paragraph": 127,
-        "paragraphs": 7,
-        "sentences": 11
-      },
-      "score": 90,
-      "source": "mlit-press",
-      "title": "「不動産情報ライブラリ」コンテンツ追加およびデータ更新！～「特別注視区域」（重要土地等調査法）データの追加等を10月28日に実施しました～",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 45.3字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T09:02:47.999519+00:00",
-      "attempt": 1,
-      "id": "6332077cf8e1119e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "仕事・お金にどう活かせる欄の「都内在住・在学の小学生の保護者を対象に」→ 元記事の対象は都内在住・在学の小学生本人で、保護者が対象とは書かれていない（対象の取り違え）",
-        "仕事・お金にどう活かせる欄の「プロスポーツ選手から直接指導を受けられる」→ 元記事はゲストの来場を述べるonly で、指導を受けられるとは書かれていない",
-        "本文の「会場までの交通費などは自己負担となります」→ 元記事（2026年）には交通費の記載がなく、過去回の注記を今回の条件として書いている",
-        "かんたん版の「参加には12月7日までの事前申込と抽選が必要」→ 抽選は応募多数の場合のみで、必ず抽選になるかのような書き方になっている"
-      ],
-      "readability": {
-        "avg_paragraph": 164.0,
-        "avg_sentence": 46.9,
-        "long_share": 0.143,
-        "max_paragraph": 195,
-        "paragraphs": 4,
-        "sentences": 14
-      },
-      "score": 62,
-      "source": "tokyo-metro",
-      "title": "キッズスポーツフェスin 両国国技館 開催",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（TOKYO・UNITE）",
-        "読みやすさ: 文が長い（1文の平均 46.9字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T09:03:04.639219+00:00",
@@ -28011,6 +27913,116 @@
       "warnings": [
         "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（BYOK・CLI・ZDR）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T15:32:15.790368+00:00",
+      "attempt": 1,
+      "id": "773234e7b2aca6b3",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「GitHub Changelog（Copilot）は11月10日、」→ 元記事に発表日は書かれておらず、11月10日という日付は創作である",
+        "「Vercelに続き」「AI Gatewayの上乗せはありません」→ 確認済みの文脈のVercel情報に基づくため問題ないが、リードでは元記事の対象との区別が分かりにくい",
+        "「条件を満たす一部の大企業に限り」→ 元記事の「eligible enterprise customers」に対応する言い換えで、概ね正確"
+      ],
+      "score": 62,
+      "source": "github-changelog-copilot",
+      "title": "Claude Fable 5.2 in GitHub Copilot"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T15:33:37.648899+00:00",
+      "attempt": 1,
+      "id": "3588ceed41552e46",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 100.8,
+        "avg_sentence": 44.8,
+        "long_share": 0.148,
+        "max_paragraph": 158,
+        "paragraphs": 12,
+        "sentences": 27
+      },
+      "score": 93,
+      "source": "openai-news",
+      "title": "Work at the Frontier: AI’s effect on freelance work"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T15:34:31.914918+00:00",
+      "attempt": 1,
+      "id": "96626834403c6444",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 140.0,
+        "avg_sentence": 63.6,
+        "long_share": 0.455,
+        "max_paragraph": 163,
+        "paragraphs": 5,
+        "sentences": 11
+      },
+      "score": null,
+      "source": "reddit-blog",
+      "title": "Introducing Reddit Reviews",
+      "warnings": [
+        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T15:35:55.211206+00:00",
+      "attempt": 1,
+      "id": "fead6112027b4623",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 119.1,
+        "avg_sentence": 46.3,
+        "long_share": 0.278,
+        "max_paragraph": 201,
+        "paragraphs": 7,
+        "sentences": 18
+      },
+      "score": 92,
+      "source": "google-research-blog",
+      "title": "Exploring the world's languages with Language Explorer",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 46.3字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T15:36:10.544803+00:00",
+      "attempt": 0,
+      "id": "fead6112027b4623",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 105.1,
+        "avg_sentence": 42.0,
+        "long_share": 0.2,
+        "max_paragraph": 133,
+        "paragraphs": 8,
+        "sentences": 20
+      },
+      "score": 93,
+      "source": "google-research-blog",
+      "title": "Exploring the world's languages with Language Explorer",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
