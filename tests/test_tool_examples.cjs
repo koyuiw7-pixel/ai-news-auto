@@ -84,7 +84,7 @@ test("JSON-LD の dateModified は出典を確かめた日（CHECKED）で、ビ
     assert.equal(app.dateModified, checked);
     assert.equal(app.url, `${site.url}${CALCULATORS[kind].href}`);
   }
-  assert.equal(CALCULATORS["furusato-limit"].checked, "2026-11-10");
+  assert.equal(CALCULATORS["furusato-limit"].checked, "2026-11-11");
   assert.equal(CALCULATORS["defense-tax"].checked, "2026-11-03");
   assert.equal(checkedDateJa("2026-11-03"), "2026年11月3日");
   const tool = read("components/calc/ToolPage.tsx");
@@ -98,9 +98,10 @@ test("見出しに id、定義とよくある質問があり、使わない文�
     const src = read(rel);
     assert.doesNotMatch(src, /<ToolSection title=/, `${rel}: id の無い章がある`);
     assert.match(src, /<ToolSection id="what"/);
-    assert.match(src, /<ToolSection id="example" title="計算の例"/);
+    // ふるさと納税は「年収から」の表が先にあるため、通知書の例は「通知書から計算するときの例」（2026-11-11 COMPARE-1）
+    assert.match(src, /<ToolSection id="example" title="(計算の例|通知書から計算するときの例)"/);
     assert.match(src, /<ToolSection id="faq" title="よくある質問"/);
-    assert.equal((src.match(/<h3 /g) || []).length, 3);
+    assert.equal((src.match(/<h3 /g) || []).length, rel.includes("furusato") ? 4 : 3);
     assert.doesNotMatch(src, /｜|ざっくり/);
     // 日付は CALCULATORS の checked から出す
     assert.doesNotMatch(src, /2026-11-\d\d確認/);

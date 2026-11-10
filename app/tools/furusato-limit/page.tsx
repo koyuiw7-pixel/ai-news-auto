@@ -7,11 +7,12 @@ import ActionAd from "@/components/ActionAd";
 import { CALCULATORS, checkedDateJa } from "@/lib/calculators";
 import { FURUSATO_EXAMPLE, FURUSATO_EXAMPLE_RATES, furusatoExampleTable, furusatoLimit, furusatoSpecialShare, yen } from "@/lib/calc-math";
 import { GUIDE_AD_POS, toolAd } from "@/lib/guide-ads";
+import { FURUSATO_FAMILIES, FURUSATO_EASY_TABLE_FAMILIES, furusatoEasyTable } from "@/lib/furusato-easy";
 
 const meta = CALCULATORS["furusato-limit"];
 
 export const metadata: Metadata = withPageShare("furusato-limit", meta.href, {
-  title: "ふるさと納税の上限額の計算　住民税の所得割額から目安を出す",
+  title: "ふるさと納税の上限額の計算　年収と家族構成から2026年の目安",
   description: meta.description,
   alternates: { canonical: meta.href },
 });
@@ -27,6 +28,13 @@ const SOURCES = {
   nta2260: { href: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm", label: "国税庁 タックスアンサー No.2260「所得税の税率」" },
   law: { href: "https://laws.e-gov.go.jp/law/325AC0000000226", label: "e-Gov 法令検索「地方税法」（第37条の2・第314条の7、附則第5条の6）" },
   kobe: { href: "https://www.city.kobe.lg.jp/documents/1882/20260511131050.pdf", label: "神戸市「特別徴収税額の決定・変更通知書の見方」（PDF）" },
+  soumuTable: {
+    href: "https://web.archive.org/web/20251023154903/https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
+    label: "総務省「税金の控除について」2025年10月23日時点の写し（Web Archive。目安表が載っていたころ）",
+  },
+  nta1410: { href: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm", label: "国税庁 タックスアンサー No.1410「給与所得控除」" },
+  nta1411: { href: "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1411.htm", label: "国税庁 タックスアンサー No.1411「所得金額調整控除」" },
+  mof2026: { href: "https://www.mof.go.jp/tax_policy/tax_reform/outline/fy2026/08taikou_gaiyou.pdf", label: "財務省「令和8年度税制改正の大綱の概要」（PDF）" },
 } as const;
 
 const GUIDES = [
@@ -50,10 +58,12 @@ export default function FurusatoLimitPage() {
   const example = furusatoLimit(FURUSATO_EXAMPLE.levy, FURUSATO_EXAMPLE.rate)!;
   const shareText = `${(furusatoSpecialShare(FURUSATO_EXAMPLE.rate) / 1000).toLocaleString("ja-JP", { maximumFractionDigits: 3 })}%`;
   const table = furusatoExampleTable();
+  const easyTable = furusatoEasyTable();
+  const familyLabel = (key: string) => FURUSATO_FAMILIES.find((f) => f.key === key)!.short;
   return (
     <ToolPage
       kind="furusato-limit"
-      lead="住民税の決定通知書にある「所得割額」と所得税の税率から、自己負担2,000円で済むふるさと納税の寄附額の目安を計算します。2026年（令和8年）の寄附が対象です。"
+      lead="年収と家族構成を選ぶだけで、自己負担2,000円で済むふるさと納税の寄附額の目安が出ます。住民税の決定通知書がある人は、通知書の「所得割額」からも計算できます。2026年（令和8年）の寄附が対象です。"
       afterCalc={ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} className="mt-8" /> : null}
     >
       <ToolSection id="what" title="ふるさと納税の上限額とは">
@@ -62,7 +72,57 @@ export default function FurusatoLimitPage() {
         </p>
       </ToolSection>
 
-      <ToolSection id="example" title="計算の例">
+      <ToolSection id="by-income" title="年収と家族構成別の目安（2026年の寄附）">
+        <p>給与収入だけの人の目安です。上の「年収から（かんたん）」と同じ計算で出しています（1,000円未満切り捨て）。</p>
+        <p id="by-income-caption" className="text-note text-ink-soft">自己負担2,000円で済む寄附額の目安（社会保険料は年収の15%、ほかの控除なし。表は横に動かせます）</p>
+        <div className="overflow-x-auto">
+          <table aria-describedby="by-income-caption" className="w-full border-collapse text-note tabular-nums">
+            <thead>
+              <tr className="border-b border-line-strong">
+                <th scope="col" className="py-2 pr-3 text-left font-bold text-ink">年収</th>
+                {FURUSATO_EASY_TABLE_FAMILIES.map((key) => (
+                  <th key={key} scope="col" className="py-2 pl-3 text-right align-bottom font-bold leading-snug text-ink">{familyLabel(key)}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {easyTable.map((row) => (
+                <tr key={row.salary} className="border-b border-line">
+                  <th scope="row" className="whitespace-nowrap py-2 pr-3 text-left font-bold text-ink">{`${(row.salary / 10000).toLocaleString("ja-JP")}万円`}</th>
+                  {row.cells.map((cell) => (
+                    <td key={cell.key} className="whitespace-nowrap py-2 pl-3 text-right">{cell.rounded ? yen(cell.rounded) : "ー"}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>「独身・共働き」は、配偶者控除を受けていない人です（配偶者の給与収入が201万円を超える共働きなど）。「高校生」は16〜18歳、「大学生」は19〜22歳の扶養している子です。中学生以下の子は上限に影響しません。</p>
+      </ToolSection>
+
+      <ToolSection id="easy-basis" title="「年収から」の計算の前提">
+        <p>
+          総務省のふるさと納税ポータルは、2025年10月まで、給与収入と家族構成別の「全額控除されるふるさと納税額（年間上限）の目安」の表を載せていました（社会保険料は給与収入の15%と仮定）。2026年11月11日に確かめたところ、この表と計算シートはポータルから外されていました。
+        </p>
+        <p>
+          そこでこのツールは、総務省の表と同じ前提（給与収入だけ・社会保険料は年収の15%・住宅ローン控除や医療費控除などはなし）で、2026年の所得にかかる住民税のきまりで計算しています。年収300万〜900万円では、総務省が載せていた表の金額と、175か所のうち174か所で同じになることを確かめました（残る1か所も計算では14円の差）。
+        </p>
+        <p>
+          年収が900万円を超えると、総務省の表は社会保険料を15%より少なく見ていたため、このツールの目安は表より少なめに出ます。源泉徴収票の社会保険料を「くわしく入れる」に入れると、実際に近づきます。
+        </p>
+        <p>
+          上限は住民税の側で決まります（住民税の特例分は所得割額の2割まで）。2026年分の所得税の基礎控除の引き上げは住民税には入らないため、上限の目安はほとんど変わりません。給与所得控除の最低額の引き上げは、年収220万円未満の人だけに関係します。
+        </p>
+        <p>
+          目安は、ワンストップ特例で申し込む場合です。確定申告で控除を受ける場合は、総務省の説明にあるとおり特例分の計算に使う税率と実際の所得税の税率が違うことがあり、負担が2,000円を少し超えることがあります。
+        </p>
+        <p>
+          出典：
+          <Source source={SOURCES.soumuTable} />、<Source source={SOURCES.deduction} />、<Source source={SOURCES.nta1410} />、<Source source={SOURCES.nta1411} />、<Source source={SOURCES.mof2026} />、<Source source={SOURCES.law} />（{CHECKED}）
+        </p>
+      </ToolSection>
+
+      <ToolSection id="example" title="通知書から計算するときの例">
         <p>{`例：住民税の所得割額が${yen(FURUSATO_EXAMPLE.levy)}で、所得税の税率が${FURUSATO_EXAMPLE.rate}%の場合`}</p>
         <ol className="grid list-decimal gap-1.5 pl-5">
           <li>{`特例分の上限は、所得割額の20%で${yen(example.cap)}です。`}</li>
@@ -119,7 +179,7 @@ export default function FurusatoLimitPage() {
         </p>
       </ToolSection>
 
-      <ToolSection id="shotokuwari" title="所得割額はどこに書いてあるか">
+      <ToolSection id="shotokuwari" title="通知書の所得割額はどこに書いてあるか">
         <p>
           住民税の決定通知書（給与から住民税が引かれている人は「特別徴収税額の決定通知書」）の税額の欄に、市区町村民税と道府県民税（東京都は都民税）のそれぞれの「所得割額」が書かれています。この2つを足した金額を入れてください。
         </p>
@@ -176,6 +236,8 @@ export default function FurusatoLimitPage() {
       <ToolSection id="faq" title="よくある質問">
         <h3 className="font-bold text-ink">上限額を超えて寄附するとどうなりますか</h3>
         <p>超えた分は住民税の特例分から引かれないため、自己負担が2,000円より多くなります。</p>
+        <h3 className="font-bold text-ink">住民税の通知書がなくても計算できますか</h3>
+        <p>できます。「年収から（かんたん）」を選び、今年の年収の見込みと家族構成を入れると目安が出ます。源泉徴収票の社会保険料や、iDeCoの掛金を入れると、実際に近づきます。</p>
         <h3 className="font-bold text-ink">所得割額はどこで分かりますか</h3>
         <p>住民税の決定通知書の税額の欄です。市区町村民税と道府県民税（東京都は都民税）の所得割額を足した金額を使います。</p>
         <h3 className="font-bold text-ink">いつまでに寄附すれば2026年分になりますか</h3>

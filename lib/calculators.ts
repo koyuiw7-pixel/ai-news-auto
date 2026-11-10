@@ -9,7 +9,9 @@ import type { ArticleChart } from "@/lib/charts";
  * ドルの月額に為替と消費税を掛けるだけで、料金の段の表（円の目安つき）と重なり、記事への埋め込みも料金の話に合っていなかった。
  * 計算ツールは「公式の数字から読者自身の金額を出す」ものだけ置く（防衛特別所得税と、ふるさと納税の上限額）。
  * 2026-11-10: ふるさと納税の上限額（/tools/furusato-limit）を追加。住民税決定通知書の所得割額と所得税の税率から、
- * 総務省の計算式で「自己負担2,000円で済む寄附額の目安」を出す（年収からの推定はしない。式は lib/calc-math.ts）。
+ * 総務省の計算式で「自己負担2,000円で済む寄附額の目安」を出す（式は lib/calc-math.ts）。
+ * 2026-11-11: 通知書を持っていない人が多いため、年収と家族構成からの「かんたん」を既定にした（lib/furusato-easy.ts）。
+ * 総務省が2025年10月まで載せていた目安表と同じ前提で計算し、表の年収300万〜900万円と一致することを tests/test_furusato_easy.cjs で確かめている。
  */
 export type CalculatorKind = "defense-tax" | "furusato-limit";
 
@@ -33,8 +35,8 @@ export const CALCULATORS: Record<CalculatorKind, { href: string; title: string; 
   "furusato-limit": {
     href: "/tools/furusato-limit",
     title: "ふるさと納税の上限額の計算",
-    description: "住民税の所得割額と所得税の税率から、自己負担2,000円で済むふるさと納税の寄附額の目安を、総務省の計算式で計算します。",
-    checked: "2026-11-10",
+    description: "年収と家族構成から、自己負担2,000円で済むふるさと納税の寄附額の目安を計算します。住民税決定通知書の所得割額からの計算もできます。",
+    checked: "2026-11-11",
   },
 };
 
