@@ -9692,6 +9692,17 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/statistics/boj/other/mb/mb.htm"
     },
+    "611d1b632b07398d": {
+      "at": "2026-11-10T11:56:21.839805+00:00",
+      "costUsd": 0.0082,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 90,
+      "section": "business",
+      "slug": "mof-katayama-vietnam-finance-minister",
+      "url": "https://www.mof.go.jp/policy/international_policy/convention/dialogue/20261110114158.html"
+    },
     "611eaa424a2ea349": {
       "at": "2026-11-07T19:52:10.047721+00:00",
       "reason": "stale: 発表から54時間（48時間を超えた発表は通常の記事にしない）",
@@ -16748,6 +16759,12 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102907"
     },
+    "cc786059d21aaa5e": {
+      "at": "2026-11-10T11:56:22.573742+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77343.html"
+    },
     "ccb7e90515f4de26": {
       "at": "2026-10-28T21:54:27.444092+00:00",
       "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
@@ -17897,6 +17914,16 @@
       "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
       "writer": "deep_dive"
     },
+    "deep-6ed825ee61": {
+      "angleOf": "kyoukai-kenpo-childbirth-allowance",
+      "at": "2026-11-10T11:33:59.192042+00:00",
+      "deepDive": "family",
+      "mix": "money",
+      "score": 90,
+      "slug": "kyoukai-kenpo-childbirth-allowance-family",
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "writer": "deep_dive"
+    },
     "deep-8df61a5b1a": {
       "angleOf": "kyoukai-kenpo-childbirth-allowance",
       "at": "2026-11-10T00:53:37.241545+00:00",
@@ -17905,6 +17932,16 @@
       "score": 88,
       "slug": "childbirth-allowance-eligibility-check",
       "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "writer": "deep_dive"
+    },
+    "deep-ba6c65f5a8": {
+      "angleOf": "child-allowance-third-child-monthly-30000",
+      "at": "2026-11-10T11:32:40.464385+00:00",
+      "deepDive": "procedure",
+      "mix": "money",
+      "score": 92,
+      "slug": "child-allowance-application-deadline",
+      "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
       "writer": "deep_dive"
     },
     "deep-f785cb8c90": {
@@ -20506,108 +20543,9 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
-    },
-    "deep-6ed825ee61": {
-      "angleOf": "kyoukai-kenpo-childbirth-allowance",
-      "at": "2026-11-10T11:33:59.192042+00:00",
-      "deepDive": "family",
-      "mix": "money",
-      "score": 90,
-      "slug": "kyoukai-kenpo-childbirth-allowance-family",
-      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
-      "writer": "deep_dive"
-    },
-    "deep-ba6c65f5a8": {
-      "angleOf": "child-allowance-third-child-monthly-30000",
-      "at": "2026-11-10T11:32:40.464385+00:00",
-      "deepDive": "procedure",
-      "mix": "money",
-      "score": 92,
-      "slug": "child-allowance-application-deadline",
-      "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
-      "writer": "deep_dive"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T07:51:59.240557+00:00",
-      "attempt": 1,
-      "id": "7829dd05ce695068",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 165.7,
-        "avg_sentence": 55.2,
-        "long_share": 0.222,
-        "max_paragraph": 170,
-        "paragraphs": 3,
-        "sentences": 9
-      },
-      "score": 96,
-      "source": "jfa",
-      "title": "【Match Report】フットサル日本代表、モロッコに0-4で敗れ、国際親善試合を連敗で終える #jfa #daihyo",
-      "warnings": [
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
-        "読みやすさ: 文が長い（1文の平均 55.2字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 165.7字・最長 170字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T07:52:19.505565+00:00",
-      "attempt": 0,
-      "id": "7829dd05ce695068",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 65.4,
-        "avg_sentence": 34.9,
-        "long_share": 0.0,
-        "max_paragraph": 97,
-        "paragraphs": 8,
-        "sentences": 15
-      },
-      "score": 93,
-      "source": "jfa",
-      "title": "【Match Report】フットサル日本代表、モロッコに0-4で敗れ、国際親善試合を連敗で終える #jfa #daihyo",
-      "warnings": [
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T08:20:32.581838+00:00",
-      "attempt": 1,
-      "id": "f23fe86a6ade51a9",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "リード・本文「ニッセイ基礎研究所の調べ」「ニッセイ基礎研究所が発表したレポート」→元記事は研究所の調査ではなく、外部研究者（神戸大学）の寄稿で「筆者個人の見解」と明記されている。出典の主体を誤認している。",
-        "Q「利益を増やす手軽な方法として人件費の抑制が選ばれ」→元記事に「手軽な方法」という記述はなく、人件費抑制は「結果として」起きたもので「企図したものではない」とされている。元記事にない因果の説明を加えている。",
-        "本文「企業が収益性を高める過程で人件費を抑制し、配当金の支払いを優先する構造が作られた」→元記事は「推測される」「思える」と留保しており、断定に言い換えている。",
-        "リード「株主重視のコーポレート・ガバナンス改革が賃金抑制の一因と分析」→元記事は仮説的な推測として述べているため、やや言い過ぎ。",
-        "「仕事・お金にどう活かせる」の「今後の賃上げ交渉や企業評価では…指標になります」→元記事にない見通しを断定的に述べている。"
-      ],
-      "readability": {
-        "avg_paragraph": 74.5,
-        "avg_sentence": 54.6,
-        "long_share": 0.333,
-        "max_paragraph": 105,
-        "paragraphs": 11,
-        "sentences": 15
-      },
-      "score": 72,
-      "source": "nli-research",
-      "title": "賃金抑制とコーポレート・ガバナンス（CG）改革－リフレ政策を検討する（２）－",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 54.6字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T08:22:13.413112+00:00",
@@ -27932,6 +27870,75 @@
       "score": 85,
       "source": "anthropic-news",
       "title": "Anthropic launches roadshow for proposed initial public offering"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T11:55:52.628820+00:00",
+      "attempt": 1,
+      "id": "611d1b632b07398d",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「日本の財務省で片山大臣とベトナム財政大臣が面会」→ 元記事は面会の場所を示しておらず、「日本の財務省で」は元記事に無い創作",
+        "「今回の面会では、両国の経済分野における関係強化に向けた話し合いが行われています」→ 元記事は今後の二国間協力についての意見交換としか述べておらず、経済分野の関係強化を話し合ったとするのは言い過ぎ"
+      ],
+      "readability": {
+        "avg_paragraph": 75.5,
+        "avg_sentence": 50.3,
+        "long_share": 0.0,
+        "max_paragraph": 94,
+        "paragraphs": 2,
+        "sentences": 3
+      },
+      "score": 82,
+      "source": "mof",
+      "title": "片山大臣とベトナムのゴー・ヴァン・トゥアン財政大臣との面会（令和8年11月10日（火））",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 50.3字・60字超の文が 0% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T11:56:07.078692+00:00",
+      "attempt": 1,
+      "id": "611d1b632b07398d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.0,
+        "avg_sentence": 50.7,
+        "long_share": 0.0,
+        "max_paragraph": 94,
+        "paragraphs": 2,
+        "sentences": 3
+      },
+      "score": 92,
+      "source": "mof",
+      "title": "片山大臣とベトナムのゴー・ヴァン・トゥアン財政大臣との面会（令和8年11月10日（火））",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 50.7字・60字超の文が 0% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-10T11:56:16.167875+00:00",
+      "attempt": 0,
+      "id": "611d1b632b07398d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.0,
+        "avg_sentence": 38.0,
+        "long_share": 0.0,
+        "max_paragraph": 94,
+        "paragraphs": 2,
+        "sentences": 4
+      },
+      "score": 90,
+      "source": "mof",
+      "title": "片山大臣とベトナムのゴー・ヴァン・トゥアン財政大臣との面会（令和8年11月10日（火））"
     }
   ],
   "short_text_retry": {},
