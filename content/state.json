@@ -12095,6 +12095,13 @@
       "slug": "government-education-loan-guide-2026",
       "url": "https://www.gov-online.go.jp/article/201512/entry-8156.html"
     },
+    "85a32fe1244f6425": {
+      "at": "2026-11-10T11:37:51.288313+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 本文「10月の届出時点では未定だった株数と価格の範囲が、今回示されました」→ 元記事にも確認済みの文脈にも10月に届出された日付は書かれておらず、「10月」は根拠のない日付である。",
+      "skipped": true,
+      "url": "https://www.anthropic.com/news/roadshow-launch"
+    },
     "85a769e699f8c256": {
       "at": "2026-11-10T02:50:38.495930+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -17890,16 +17897,6 @@
       "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
       "writer": "deep_dive"
     },
-    "deep-6ed825ee61": {
-      "angleOf": "kyoukai-kenpo-childbirth-allowance",
-      "at": "2026-11-10T11:33:59.192042+00:00",
-      "deepDive": "family",
-      "mix": "money",
-      "score": 90,
-      "slug": "kyoukai-kenpo-childbirth-allowance-family",
-      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
-      "writer": "deep_dive"
-    },
     "deep-8df61a5b1a": {
       "angleOf": "kyoukai-kenpo-childbirth-allowance",
       "at": "2026-11-10T00:53:37.241545+00:00",
@@ -17908,16 +17905,6 @@
       "score": 88,
       "slug": "childbirth-allowance-eligibility-check",
       "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
-      "writer": "deep_dive"
-    },
-    "deep-ba6c65f5a8": {
-      "angleOf": "child-allowance-third-child-monthly-30000",
-      "at": "2026-11-10T11:32:40.464385+00:00",
-      "deepDive": "procedure",
-      "mix": "money",
-      "score": 92,
-      "slug": "child-allowance-application-deadline",
-      "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
       "writer": "deep_dive"
     },
     "deep-f785cb8c90": {
@@ -20519,33 +20506,29 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
+    },
+    "deep-6ed825ee61": {
+      "angleOf": "kyoukai-kenpo-childbirth-allowance",
+      "at": "2026-11-10T11:33:59.192042+00:00",
+      "deepDive": "family",
+      "mix": "money",
+      "score": 90,
+      "slug": "kyoukai-kenpo-childbirth-allowance-family",
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "writer": "deep_dive"
+    },
+    "deep-ba6c65f5a8": {
+      "angleOf": "child-allowance-third-child-monthly-30000",
+      "at": "2026-11-10T11:32:40.464385+00:00",
+      "deepDive": "procedure",
+      "mix": "money",
+      "score": 92,
+      "slug": "child-allowance-application-deadline",
+      "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
+      "writer": "deep_dive"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T07:51:38.540496+00:00",
-      "attempt": 0,
-      "id": "e66544cb3a5c45f3",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 85.8,
-        "avg_sentence": 42.9,
-        "long_share": 0.05,
-        "max_paragraph": 112,
-        "paragraphs": 10,
-        "sentences": 20
-      },
-      "score": 85,
-      "source": "jrkyushu",
-      "title": "運輸サービス 年末年始の帰省・ご旅行に！冬休みのおでかけをオトクに満喫！『こどもぼうけんきっぷ』",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JR・BRT）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T07:51:59.240557+00:00",
@@ -27935,6 +27918,20 @@
         "初めて出たところで言い換えていない略語（JFA）",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-10T11:37:51.288281+00:00",
+      "attempt": 1,
+      "id": "85a32fe1244f6425",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "本文「10月の届出時点では未定だった株数と価格の範囲が、今回示されました」→ 元記事にも確認済みの文脈にも10月に届出された日付は書かれておらず、「10月」は根拠のない日付である。"
+      ],
+      "score": 85,
+      "source": "anthropic-news",
+      "title": "Anthropic launches roadshow for proposed initial public offering"
     }
   ],
   "short_text_retry": {},
