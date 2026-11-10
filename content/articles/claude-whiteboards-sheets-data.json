@@ -102,8 +102,8 @@
     }
   ],
   "todayActions": [
-    "有料プランの利用者は、次の会議のメモをWhiteboardsに入れ、テーマ別の整理を試す",
-    "Enterpriseの管理者は、組織設定のArtifactsで11月19日のClaude Dataの有効化を確認する",
+    "Enterpriseの管理者は、組織設定のArtifactsでClaude Dataの設定を確認する",
+    "有料プランで、会議のメモをWhiteboardsに入れてテーマ別に整理する",
     "簡単な管理表をSheetsで作り、.xlsxで書き出してExcelで開けるか確かめる"
   ],
   "qualityScore": 88,
@@ -174,5 +174,131 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/claude-whiteboards-sheets-data-f8e60cfb.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "Team plan は「2〜150名のチーム向け」です。スタンダードシートは年払い$20/人・月、月払い$25/人・月で、プレミアムシートは年払い$100/人・月です。",
+      "source": "https://claude.com/pricing"
+    },
+    {
+      "text": "営業チームが対応するのは「500 シート以上の導入や BaaS などの複雑な取引だけ」で、それ以外は購買エージェントとチャットして見積もりを受け取れます。",
+      "source": "https://claude.com/ja/contact-sales"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "営業担当者に問い合わせる",
+      "url": "https://claude.com/ja/contact-sales",
+      "source": "https://claude.com/ja/contact-sales",
+      "note": "500 シート以上の導入や BaaS などの複雑な取引は営業チームが担当します。購買エージェントとのチャットで、見積もりを受け取って購入手続きもできます。"
+    },
+    {
+      "name": "プランと料金",
+      "url": "https://claude.com/pricing",
+      "source": "https://claude.com/pricing",
+      "note": "表示価格には適用される税金が含まれていません。価格およびプランは変わる場合があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Enterpriseの管理者は、組織設定のArtifactsでClaude Dataの設定を確認する",
+      "source": "https://claude.com/resources/articles/sheets-whiteboards-data",
+      "steps": [
+        "組織設定（Organization settings）を開く",
+        "Artifactsの項目を開く",
+        "Claude Dataが11月19日に自動でオンになることを確かめる"
+      ],
+      "url": "https://claude.com/resources/articles/sheets-whiteboards-data"
+    },
+    {
+      "action": "有料プランで、会議のメモをWhiteboardsに入れてテーマ別に整理する",
+      "source": "https://claude.com/resources/articles/sheets-whiteboards-data",
+      "steps": [
+        "全員がメモを書き込む",
+        "Claudeにテーマごとに分けてもらう",
+        "各人のやることの案を作ってもらう"
+      ],
+      "url": "https://claude.com/resources/articles/sheets-whiteboards-data"
+    },
+    {
+      "action": "簡単な管理表をSheetsで作り、.xlsxで書き出してExcelで開けるか確かめる",
+      "source": "https://claude.com/resources/articles/sheets-whiteboards-data",
+      "steps": [
+        "タブ・計算式・プルダウンを確かめる",
+        "書き出しで.xlsxかCSVを選ぶ"
+      ],
+      "url": "https://claude.com/resources/articles/sheets-whiteboards-data"
+    }
+  ],
+  "cause": {
+    "text": "Claudeの出力を別のツールに移して作業すると、Claudeが進み具合や変更を追えませんでした。今回の機能で、ボードや表をClaudeの中に置いたまま、チームで編集を続けられるようになりました。",
+    "status": "background",
+    "source": "https://claude.com/resources/articles/sheets-whiteboards-data"
+  },
+  "worries": [
+    {
+      "q": "無料のFreeプランでも使えるの？有料だけ？",
+      "a": "Whiteboards、Sheets、Claude Dataは有料の全プランが対象です。料金表では、Freeプランの「Claude Dashboards（ベータ）」は「いいえ」になっています。",
+      "source": "https://claude.com/resources/articles/sheets-whiteboards-data",
+      "action": "自分のプランが有料か、料金プランの表で確かめてから、ホワイトボードや表計算を使い始める。",
+      "actionSource": "https://claude.com/pricing"
+    },
+    {
+      "q": "共有すると、社内のデータそのものが見られてしまう？",
+      "a": "閲覧者は元のデータではなく、ダッシュボードの結果だけを見ます。実行できるのは、承認されたクエリだけと書かれています。",
+      "source": "https://claude.com/resources/articles/sheets-whiteboards-data",
+      "action": "共有の前に、データ担当者に使うクエリを認証してもらい、グラフに「認証済み」のバッジが付いているか確かめる。"
+    },
+    {
+      "q": "Enterpriseの管理者は、何を確認すればいい？",
+      "a": "WhiteboardsとSheetsは初期設定でオフ、Claude Dataは2026年11月19日に自動でオンになります。切り替えは組織設定のArtifactsでいつでもできます。",
+      "source": "https://claude.com/resources/articles/sheets-whiteboards-data",
+      "action": "11月19日より前に、組織設定のArtifactsで、Claude Dataを使うかどうかを決めて設定する。"
+    },
+    {
+      "q": "チームで編集して間違えたら、元に戻せる？",
+      "a": "Claude Dataには変更の履歴があり、誰が編集したかを確認できます。必要なときは、特定の版に戻すこともできると書かれています。",
+      "source": "https://claude.com/resources/articles/sheets-whiteboards-data",
+      "action": "大事な数字を共有する前に、変更の履歴で誰が編集したかを確かめ、必要なら特定の版に戻す。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "Excelの代わりに、Sheetsで表を作るべき？",
+      "situation": "簡単な管理表を作りたい",
+      "recommend": "Sheetsで試す価値がある",
+      "reason": "Sheetsは簡易な表計算で、タブ・計算式・書式・プルダウンのある表を頼んで作れます。Excelの全機能が必要なら、.xlsxかCSVに書き出すか、Claude for Excelを使います。",
+      "source": "https://claude.com/resources/articles/sheets-whiteboards-data"
+    },
+    {
+      "question": "Excelの代わりに、Sheetsで表を作るべき？",
+      "situation": "Excelの全機能が必要な作業がある",
+      "recommend": "Excelを使う場面は書き出して併用する",
+      "reason": "Sheetsは現時点で簡易な表計算にとどまり、機能を追加していくとされています。全機能が必要なときは、.xlsxかCSVに書き出すか、Claude for Excelを使います。",
+      "source": "https://claude.com/resources/articles/sheets-whiteboards-data"
+    },
+    {
+      "question": "Enterpriseで、Claude Dataを使わせる？",
+      "situation": "管理者で、11月19日に自動でオンになると知った",
+      "recommend": "11月19日までに、組織設定で設定を確かめる",
+      "reason": "Claude Dataは2026年11月19日に自動でオンになります。切り替えは組織設定のArtifactsでいつでも変えられ、WhiteboardsとSheetsはEnterpriseでは初期設定でオフです。",
+      "source": "https://claude.com/resources/articles/sheets-whiteboards-data"
+    },
+    {
+      "question": "Enterpriseは自分で申し込む？営業に相談？",
+      "situation": "500シート未満の導入を考えている",
+      "recommend": "まず購買エージェントに質問し、見積もりを確かめる",
+      "reason": "500シート以上の導入やBaaSなどの複雑な取引は営業チームが担当します。Enterpriseは$20/シート/月（年払い、最低20シート）で、使用量は別にかかります。",
+      "source": "https://claude.com/pricing"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "Teamは2〜150名向け、料金も事前に確かめる",
+    "cause": "なぜ別ツールに移さなくてよくなった？",
+    "steps": "今日から、会議メモと小さな表を試してみる",
+    "desk": "相談や料金を確かめる公式の窓口",
+    "worries": "無料で使える？共有すると社内データは見える？",
+    "guide": "Excelの代わりに使うか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-10T17:43:12+00:00"
 }
