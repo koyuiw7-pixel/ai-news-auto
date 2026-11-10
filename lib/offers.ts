@@ -3,6 +3,7 @@ import path from "node:path";
 import type { ArticleSummary } from "@/lib/articles";
 import { amazonUrl, rakutenSearchUrl } from "@/lib/amazon";
 import { productCategoryForArticle } from "@/lib/keyword-products";
+import { MONEY_PAGES, type MoneyTarget } from "@/lib/money-pages";
 
 /**
  * 記事の広告枠（右側の1〜3位・本文中の4〜6位）。
@@ -40,6 +41,10 @@ type Topic = {
   name?: string;
   /** 記事の場面ごとの商品の順番（scripts/a8_import.py の ACTION_INTENTS。停電の記事はポータブル電源を先に） */
   intents?: Intent[];
+  /** この話題の商品が並ぶ枠に、サイト内のお金のページ（lib/money-pages.ts の行の key）への案内を1行出す（例: 児童手当の記事の枠 → ふるさと納税の上限額の計算） */
+  money?: string;
+  /** 行動欄の PR で候補を使い切ったとき、ジャンルの既定の広告で埋めない（年金・給付金の記事に証券会社を出さない。scripts/a8_import.py の LIFE_NO_FALLBACK） */
+  noFallback?: boolean;
 };
 
 /**
@@ -188,6 +193,11 @@ export type ActionAdRule = {
   /** 記事から商品へつなぐ編集部の一文（場面に当たらないとき） */
   lead?: string;
   intents?: Intent[];
+  /**
+   * 囲みの1行目に、サイト内のお金のページ（lib/money-pages.ts）への案内を1つ出す（広告ではない。2026-11-10 M3）。
+   * true は記事の話題に当たる行の行き先。文字列は、当たる行が無いときに使う行の key（例: "kogaku-ryoyohi"）
+   */
+  internal?: boolean | string;
 };
 
 /** 「すぐにできること」のそばの PR の話題（上から順に照合する） */
@@ -254,6 +264,8 @@ export type Offer = {
   relevance?: number;
   /** 記事に合う話題が無く、ジャンルの既定の広告を出している */
   fallback?: boolean;
+  /** 枠の中に出すサイト内のお金のページへの案内（広告ではない。rel=sponsored を付けない。話題の money から） */
+  money?: MoneyTarget;
 };
 
 const MAX_ITEMS = 3;
@@ -523,7 +535,27 @@ function pickBox(pool: OfferItem[], max: number, visible: number): OfferItem[] {
  * 表示計測のピクセルは従来どおり候補全体の分をそのまま使う（ASP の計測の扱いを変えない）
  */
 function boxOffer(offer: Offer, items: OfferItem[], baseTopic: Topic): Offer {
-  return { ...offer, ...headingFor(items, baseTopic), items };
+  const money = moneyOfItems(items.slice(0, MAX_ITEMS));
+  return { ...offer, ...headingFor(items, baseTopic), items, ...(money ? { money } : {}) };
+}
+
+/** 枠に見えている商品の話題のうち、最初に money（lib/money-pages.ts の行）を持つ話題の行き先 */
+function moneyOfItems(items: OfferItem[]): MoneyTarget | undefined {
+  const { offers } = load();
+  for (const item of items) {
+    const key = offers.topics.find((t) => t.key === item.topic)?.money;
+    const row = key ? MONEY_PAGES.find((r) => r.key === key) : undefined;
+    if (row) return { href: row.href, label: row.label };
+  }
+  return undefined;
+}
+
+/** 名前か短い説明（label）が pattern に当たる提携商品の key（提携リンクのあるものだけ。手続きガイドの「あとから足す提携先」用） */
+export function partnerKeysMatching(pattern: RegExp): string[] {
+  const { offers } = load();
+  return Object.entries(offers.partners)
+    .filter(([key, partner]) => pattern.test(`${partner.name} ${partner.label}`) && partnerItem(key))
+    .map(([key]) => key);
 }
 
 export function offerForArticle(article: ArticleSummary, maxItems = MAX_ITEMS): Offer | undefined {
@@ -665,7 +697,11 @@ export function offerPlanForArticle(article: ArticleSummary, exclude: Iterable<s
     if (!built) continue;
     const kept = built.items.filter((item) => !skip.has(item.key));
     if (scoredSource) leadItems = leadKeys.map((key) => built.items.find((item) => item.key === key)).filter((item): item is OfferItem => Boolean(item));
-    if (kept.length === 0) continue;
+    if (kept.length === 0) {
+      // 記事にいちばん合う話題が「既定の広告で埋めない」話題なら、ほかの枠は出さない（合わない広告で埋めない）
+      if (scoredSource && scored[0]?.topic.noFallback) return {};
+      continue;
+    }
     full = skip.size ? { ...built, items: kept, pixels: built.pixels.filter((p) => !skipPixels.has(p)) } : built;
     fromScored = scoredSource;
     break;

@@ -4,7 +4,7 @@ import path from "node:path";
 import { getAllArticles, type ArticleSummary } from "@/lib/articles";
 import { politeDeep } from "@/lib/polite-text";
 import { answeredOnly, answerOrNull, stripNotStated } from "@/lib/nonanswer";
-import { moneyTopicFor } from "@/lib/money-pages";
+import { moneyTopicFor, procedureSiblings } from "@/lib/money-pages";
 
 /**
  * 使い方ガイド（content/howto/*.json、scripts/evergreen.py が作る。URL は /guides/<slug>）。
@@ -139,6 +139,8 @@ export function howtosForProduct(productSlug: string): HowtoGuide[] {
 
 /** 同じ題材（ツール）のほかのガイド */
 export function siblingHowtos(guide: HowtoGuide, limit = 6): HowtoGuide[] {
+  // 手続き・お金のガイドの「あわせて読む」は、AIツールのガイドではなく同じ話題のお金のガイド（lib/money-pages.ts）→ 同じ分野の手続き → ほかの手続き（2026-11-10 M3）
+  if (guide.kind === "procedure") return procedureSiblings(guide, getAllHowtos(), limit);
   return getAllHowtos()
     .filter((other) => other.slug !== guide.slug && other.tool === guide.tool)
     .concat(getAllHowtos().filter((other) => other.slug !== guide.slug && other.tool !== guide.tool))

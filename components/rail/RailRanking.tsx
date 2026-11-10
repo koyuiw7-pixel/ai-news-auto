@@ -2,6 +2,7 @@ import type { Offer } from "@/lib/offers";
 import RankingBody from "./RankingBody";
 import { Pixels, PrNote, PrTag } from "./parts";
 import TimedPixels from "./TimedPixels";
+import InternalMoneyCard from "@/components/InternalMoneyCard";
 
 /**
  * 「サイソクのおすすめ3選」。記事の文脈に合う商品を番号つきで並べ、1位を大きく推す。
@@ -42,6 +43,9 @@ export default function RailRanking({
       <Header text={heading} wide={wide} />
 
       <RankingBody items={offer.items} visible={visible} wide={wide} />
+
+      {/* 枠の話題に合うサイト内のお金のページ（例: 児童手当の記事 → ふるさと納税の上限額の計算。lib/offers.ts の money。広告ではない） */}
+      {offer.money && <InternalMoneyCard links={[offer.money]} className="border-t border-line" />}
 
       <div className="border-t border-line bg-surface px-4 py-2.5">
         <PrNote checkedAt={offer.checkedAt} hasBook={hasBook} />

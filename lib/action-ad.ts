@@ -1,4 +1,5 @@
 import type { ArticleSummary } from "@/lib/articles";
+import { MONEY_PAGES, moneyLinkFor, type MoneyTarget } from "@/lib/money-pages";
 import { actionAdRules, intentFor, isRoundupArticle, MIN_SCORE, orderByIntent, partnerItem, relevanceScore, type ActionAdRule, type OfferItem } from "@/lib/offers";
 
 /**
@@ -16,7 +17,25 @@ export type ActionAd = {
   /** 当たった場面（停電・地震など）。無ければ undefined */
   intent?: string;
   items: { item: OfferItem; pixel?: string }[];
+  /**
+   * 囲みの1行目に出す、サイト内のお金のページへの案内（「サイソクの案内」。広告ではないので rel=sponsored を付けない。2026-11-10 M3）。
+   * 行き先は lib/money-pages.ts の表だけ
+   */
+  internal?: MoneyTarget[];
 };
+
+/** 話題の internal（scripts/a8_import.py の ACTION_ADS）から、記事に出すサイト内の案内（自分自身は指さない） */
+export function internalCardFor(rule: Pick<ActionAdRule, "internal">, article: Pick<ArticleSummary, "slug" | "title" | "seoTitle" | "tags">): MoneyTarget[] {
+  if (!rule.internal) return [];
+  const found = moneyLinkFor(article);
+  if (found) return [found];
+  if (typeof rule.internal !== "string") return [];
+  const row = MONEY_PAGES.find((r) => r.key === rule.internal);
+  if (!row) return [];
+  const self = `/articles/${article.slug}`;
+  const target = row.href !== self ? { href: row.href, label: row.label } : row.second && row.second.href !== self ? row.second : undefined;
+  return target ? [target] : [];
+}
 
 function hashOf(text: string): number {
   let h = 0;
@@ -63,9 +82,10 @@ export function actionAdForArticle(
   const intent = intentFor(rule.intents, article);
   const available = orderByIntent(rule.partners, intent).map((key) => pick(key)).filter((x): x is { item: OfferItem; pixel?: string } => Boolean(x));
   if (available.length === 0) return undefined;
+  const internal = internalCardFor(rule, article);
   const start = intent ? 0 : hashOf(article.slug) % available.length;
   const rotated = [...available.slice(start), ...available.slice(0, start)];
   const skip = new Set(avoid);
   const ordered = [...rotated.filter((x) => !skip.has(x.item.key)), ...rotated.filter((x) => skip.has(x.item.key))];
-  return { key: rule.key, title: rule.title, reason: rule.reason, lead: intent?.lead ?? rule.lead, intent: intent?.key, items: ordered.slice(0, rule.max ?? 2) };
+  return { key: rule.key, title: rule.title, reason: rule.reason, lead: intent?.lead ?? rule.lead, intent: intent?.key, items: ordered.slice(0, rule.max ?? 2), ...(internal.length ? { internal } : {}) };
 }

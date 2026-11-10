@@ -153,4 +153,86 @@ test("行動欄の商品には向く人・特徴・ボタンの言葉がある�
   }
 });
 
+// 2026-11-10 M3（gap_g3 の点検）: 年金・出産・医療費の記事に電気の契約の広告（エネピ・エルピオでんき）が出ていた。
+// 話題に合う提携先だけにし、囲みの1行目にサイト内のお金のページ（lib/money-pages.ts）への案内を出す（広告ではない）
+const MISMATCHED = /^(enepi|elpio|tainavi)$/;
+test("年金生活者支援給付金：サイト内の対象の確かめ方＋格安SIM、電気の契約の広告は出さない", () => {
+  const a = fromFile("pension-support-benefit-old-age-eligibility");
+  const ad = actionAdForArticle(a)!;
+  assert.equal(ad.key, "benefit");
+  assert.deepEqual(ad.internal?.map((x) => x.href), ["/articles/pension-support-benefit-old-age-check"]);
+  assert.deepEqual(ad.items.map((x) => x.item.key), ["bb-excite"]);
+  assert.equal(ad.items[0].item.pitch?.merits?.[0], "低速のみなら音声SIMは月495円（税込）");
+  const plan = offerPlanForArticle(a, ad.items.map((x) => x.item.key));
+  for (const box of [plan.rail, plan.inline, plan.offer]) {
+    for (const item of box?.items ?? []) assert.doesNotMatch(item.key, MISMATCHED);
+    // 候補を行動欄で使い切っても、証券会社や AI の講座（ジャンルの既定の広告）で埋めない
+    for (const item of box?.items ?? []) assert.doesNotMatch(item.key, /^(matsui|dmm-kabu|doraverse|skillhacks|coloso)$/);
+  }
+});
+
+test("出産手当金：childbirth の話題で、サイト内の案内＋every frecious（子どもの学び・エネピは出さない）", () => {
+  const a = fromFile("kyoukai-kenpo-childbirth-allowance");
+  const ad = actionAdForArticle(a)!;
+  assert.equal(ad.key, "childbirth");
+  assert.deepEqual(ad.internal?.map((x) => x.href), ["/articles/childbirth-allowance-eligibility-check"]);
+  assert.deepEqual(ad.items.map((x) => x.item.key), ["frecious"]);
+  assert.ok((ad.items[0].item.pitch?.merits ?? []).length >= 2, "公式ページで確かめた良いところ");
+  const plan = offerPlanForArticle(a, ad.items.map((x) => x.item.key));
+  for (const box of [plan.rail, plan.inline]) for (const item of box?.items ?? []) assert.doesNotMatch(item.key, /^(enepi|elpio|tainavi|digitane|litalico)$/);
+  // 出産・育休の見出しは、子どもの学び（kids）より先に childbirth
+  assert.equal(actionAdRuleFor(article("t-ikukyu", "育児休業給付金の申請、必要な書類と期限", ["育休", "給付金"]))?.key, "childbirth");
+});
+
+test("児童手当：上の囲みは子どもの学び（今までどおり）。記事末・右側の枠はエネピではなくふるさと納税と上限額の計算", () => {
+  const a = fromFile("child-allowance-third-child-monthly-30000");
+  const ad = actionAdForArticle(a)!;
+  assert.equal(ad.key, "kids");
+  assert.ok(ad.items.every((x) => /^(digitane|litalico)$/.test(x.item.key)));
+  assert.equal(ad.internal, undefined, "子どもの学びの囲みは今までどおり");
+  const plan = offerPlanForArticle(a, ad.items.map((x) => x.item.key));
+  const boxes = [plan.rail, plan.inline].filter(Boolean);
+  assert.ok(boxes.length >= 1);
+  const shown = boxes.flatMap((box) => box!.items.slice(0, 3).map((i) => i.key));
+  for (const key of shown) assert.doesNotMatch(key, MISMATCHED);
+  assert.ok(shown.some((key) => /^(furusato-honpo|aupay-furusato)$/.test(key)), shown.join());
+  assert.ok(boxes.some((box) => box!.money?.href === "/tools/furusato-limit"), "上限額の計算への案内");
+});
+
+test("高額療養費：medical の話題で、サイト内の高額療養費のガイド＋格安SIM", () => {
+  const a = fromFile("kogaku-ryoyohi-2026-tasukai-kaisu");
+  const ad = actionAdForArticle(a)!;
+  assert.equal(ad.key, "medical");
+  assert.deepEqual(ad.internal?.map((x) => x.href), ["/guides/kogaku-ryoyohi"]);
+  assert.deepEqual(ad.items.map((x) => x.item.key), ["bb-excite"]);
+  const plan = offerPlanForArticle(a, ad.items.map((x) => x.item.key));
+  for (const box of [plan.rail, plan.inline]) for (const item of box?.items ?? []) assert.match(item.key, /^(freee|mf-kakutei|yayoi-kakutei)$/);
+  // 見出しに話題の行が無い医療費の記事も、話題の既定（高額療養費のガイド）へ案内する
+  const general = actionAdForArticle(article("t-med", "医療費の窓口負担、2027年から見直し　70歳以上の上限額", ["医療費"]))!;
+  assert.equal(general.key, "medical");
+  assert.deepEqual(general.internal?.map((x) => x.href), ["/guides/kogaku-ryoyohi"]);
+});
+
+test("遺族年金：エネピ・エルピオでんきは出さない（合う行が無いのでサイト内の案内は出さない）", () => {
+  const a = fromFile("izoku-nenkin-seikyu-tetsuzuki");
+  const ad = actionAdForArticle(a)!;
+  assert.equal(ad.key, "benefit");
+  assert.ok(ad.items.length >= 1 && ad.items.every((x) => !MISMATCHED.test(x.item.key)));
+  const plan = offerPlanForArticle(a, ad.items.map((x) => x.item.key));
+  for (const box of [plan.rail, plan.inline]) for (const item of box?.items ?? []) assert.doesNotMatch(item.key, MISMATCHED);
+});
+
+test("サイト内の案内は lib/money-pages.ts の行き先だけ。年金・給付金・医療費・出産の話題に、電気の契約の提携先を入れない", () => {
+  const rules = JSON.parse(fs.readFileSync("content/offers.json", "utf8")).actionAds as { key: string; partners: string[] }[];
+  for (const key of ["benefit", "medical", "childbirth"]) {
+    const rule = rules.find((r) => r.key === key)!;
+    assert.ok(rule, key);
+    for (const partner of rule.partners) assert.doesNotMatch(partner, MISMATCHED, key);
+  }
+  const order = rules.map((r) => r.key);
+  assert.ok(order.indexOf("childbirth") < order.indexOf("benefit") && order.indexOf("medical") < order.indexOf("benefit"));
+  // まだ決めていない話題（支払い・投資）はそのまま
+  assert.deepEqual(rules.find((r) => r.key === "payment")!.partners, ["epos"]);
+});
+
 console.log(`action-ad: ${passed} passed`);

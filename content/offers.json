@@ -1247,6 +1247,48 @@
       "articleExclude": "出産手当|出産育児一時金|出産費用|育児休業|育休|産休|産前|産後|妊娠|妊婦"
     },
     {
+      "key": "life-childbirth",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "出産手当|出産育児一時金|出産費用|育児休業|育休|産休|産前|産後|妊娠|妊婦",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "出産の前後に、家の飲み水を用意したい人へ",
+      "lead": "出産の前後で買い物に出にくい時期に、家で飲み水を用意する方法として。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "frecious"
+      ],
+      "name": "出産前後の飲み水の用意",
+      "articleExclude": "株価|決算|業績|(?<![A-Za-z])AI(?![A-Za-z])",
+      "noFallback": true
+    },
+    {
+      "key": "life-medical",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "高額療養費|医療費控除|医療費",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "医療費を確かめたら、毎月の出費も",
+      "lead": "医療費の負担を確かめるときに、スマホ代の契約も比べるために。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "bb-excite"
+      ],
+      "name": "毎月の出費の見直し",
+      "articleExclude": "株価|決算|業績|(?<![A-Za-z])AI(?![A-Za-z])",
+      "noFallback": true
+    },
+    {
       "key": "life-benefit",
       "genres": [
         "public",
@@ -1259,14 +1301,13 @@
       "match": "年金|給付金|手当|非課税世帯|住民税非課税|生活保護|医療費|介護保険|高額療養費",
       "eyebrow": "この記事のあとにできること",
       "headline": "受け取るお金を確かめたら、毎月の出費も",
-      "lead": "年金や給付金を確かめるときに、スマホ代や電気代の契約も比べるために。料金・条件は各公式サイトで確認してください。",
+      "lead": "年金や給付金を確かめるときに、スマホ代の契約も比べるために。料金・条件は各公式サイトで確認してください。",
       "partners": [
-        "bb-excite",
-        "enepi",
-        "elpio"
+        "bb-excite"
       ],
       "name": "毎月の出費の見直し",
-      "articleExclude": "株価|決算|業績|GPIF|運用|企業年金|確定拠出|iDeCo|NISA|(?<![A-Za-z])AI(?![A-Za-z])"
+      "articleExclude": "株価|決算|業績|GPIF|運用|企業年金|確定拠出|iDeCo|NISA|(?<![A-Za-z])AI(?![A-Za-z])",
+      "noFallback": true
     },
     {
       "key": "life-payment",
@@ -1287,6 +1328,50 @@
         "epos"
       ],
       "name": "支払い方法の見直し"
+    },
+    {
+      "key": "life-kids-furusato",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "tech-gadget",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "児童手当",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "今年分のふるさと納税は12月31日まで",
+      "lead": "ふるさと納税は、12月31日までの寄附がその年の控除の対象です。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "furusato-honpo",
+        "aupay-furusato"
+      ],
+      "name": "ふるさと納税",
+      "money": "furusato"
+    },
+    {
+      "key": "life-medical-tax",
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "real-estate",
+        "investment"
+      ],
+      "min": 5,
+      "match": "高額療養費|医療費",
+      "eyebrow": "この記事のあとにできること",
+      "headline": "医療費控除の申告を、ソフトで進めたい人へ",
+      "lead": "1年の医療費が一定額を超えると、確定申告で医療費控除を受けられます（高額療養費で戻った分は差し引きます）。料金・条件は各公式サイトで確認してください。",
+      "partners": [
+        "freee",
+        "mf-kakutei",
+        "yayoi-kakutei"
+      ],
+      "name": "医療費控除の申告",
+      "articleExclude": "株価|決算|業績|(?<![A-Za-z])AI(?![A-Za-z])"
     }
   ],
   "audience": {
@@ -2212,8 +2297,8 @@
         "cta": "料金プランを見る",
         "gain": "今のスマホ代と比べて、月いくら下がるか確かめる",
         "merits": [
-          "使った分だけ払う段階制のプラン",
           "低速のみなら音声SIMは月495円（税込）",
+          "使った分だけ払う段階制のプラン",
           "最低利用期間なし、解約事務手数料0円"
         ]
       }
@@ -2373,7 +2458,12 @@
         "fit": "ボトルの受け取りや保管を減らしたい人",
         "point": "水道水を入れて使う浄水型のウォーターサーバー",
         "cta": "料金と設置条件を見る",
-        "gain": "水道水で使える浄水型サーバーの料金を確かめる"
+        "gain": "水道水で使える浄水型サーバーの料金を確かめる",
+        "merits": [
+          "月額は税込2,750円から（水道代は別）",
+          "レンタル料と浄水カートリッジ代は月額に込み",
+          "水道水を注いで使うので、宅配水の受け取りが不要"
+        ]
       }
     },
     "biglobe-hikari-plus": {
@@ -2930,14 +3020,52 @@
       "lead": "子どもの学びは、本人が楽しめる入り口選びで続き方が変わります。"
     },
     {
+      "key": "childbirth",
+      "title": "出産の前後に、家の飲み水を用意したい人へ",
+      "reason": "出産の前後で買い物に出にくい時期に、家で飲み水を用意する方法として",
+      "match": "出産手当|出産育児一時金|出産費用|育児休業|育休|産休|産前|産後|妊娠|妊婦",
+      "partners": [
+        "frecious"
+      ],
+      "max": 2,
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "real-estate",
+        "investment"
+      ],
+      "exclude": "株価|決算|業績|(?<![A-Za-z])AI(?![A-Za-z])",
+      "internal": true,
+      "lead": "出産の前後は、重い水を買いに出るのも負担になりがちです。"
+    },
+    {
+      "key": "medical",
+      "title": "医療費を確かめたら、毎月の出費も",
+      "reason": "医療費の負担を確かめるときに、スマホ代の契約も比べるために",
+      "match": "高額療養費|医療費控除|医療費",
+      "partners": [
+        "bb-excite"
+      ],
+      "max": 2,
+      "genres": [
+        "public",
+        "lifestyle",
+        "business",
+        "real-estate",
+        "investment"
+      ],
+      "exclude": "株価|決算|業績|(?<![A-Za-z])AI(?![A-Za-z])",
+      "internal": "kogaku-ryoyohi",
+      "lead": "スマホ代は、契約の見直しだけで下がることがあります。"
+    },
+    {
       "key": "benefit",
       "title": "受け取るお金を確かめたら、毎月の出費も",
-      "reason": "年金や給付金を確かめるときに、スマホ代や電気代の契約も比べるために",
+      "reason": "年金や給付金を確かめるときに、スマホ代の契約も比べるために",
       "match": "年金|給付金|手当|非課税世帯|住民税非課税|生活保護|医療費|介護保険|高額療養費",
       "partners": [
-        "bb-excite",
-        "enepi",
-        "elpio"
+        "bb-excite"
       ],
       "max": 2,
       "genres": [
@@ -2948,7 +3076,8 @@
         "investment"
       ],
       "exclude": "株価|決算|業績|GPIF|運用|企業年金|確定拠出|iDeCo|NISA|(?<![A-Za-z])AI(?![A-Za-z])",
-      "lead": "スマホ代や電気代は、契約の見直しだけで下がることがあります。"
+      "internal": true,
+      "lead": "スマホ代は、契約の見直しだけで下がることがあります。"
     },
     {
       "key": "payment",

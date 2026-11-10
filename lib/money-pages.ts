@@ -122,3 +122,28 @@ export function toolRelatedArticleSlugs(
   }
   return out.slice(0, limit);
 }
+
+/**
+ * 手続きガイド（/guides/*）の「あわせて読む」に出す、同じ話題のお金のガイドの slug（2026-11-10 M3）。
+ * ガイドの見出し・短い題名・検索語に当たる行のガイド（href・second・guide・guides）を先に、残りは表にあるほかのお金のガイドを表の順に。自分自身は除く
+ */
+export function moneyGuideSlugs(guide: { slug: string; title: string; seoTitle?: string; keyword?: string }, rows: MoneyPage[] = MONEY_PAGES): string[] {
+  const slugsOf = (row: MoneyPage) =>
+    [row.href, row.second?.href, row.guide ? `/guides/${row.guide}` : undefined, ...(row.guides ?? []).map((slug) => `/guides/${slug}`)]
+      .filter((href): href is string => Boolean(href && href.startsWith("/guides/")))
+      .map((href) => href.slice("/guides/".length));
+  const own = moneyTopicFor({ title: guide.title, seoTitle: guide.seoTitle, tags: guide.keyword ? [guide.keyword] : [] }, rows);
+  const ordered = [...(own ? slugsOf(own) : []), ...rows.flatMap(slugsOf)];
+  return [...new Set(ordered)].filter((slug) => slug !== guide.slug);
+}
+
+type GuideLike = { slug: string; kind?: string; tool: string; title: string; seoTitle?: string; keyword?: string };
+
+/** 手続きガイドの「あわせて読む」: 同じ話題のお金のガイド → 同じ分野の手続き → ほかの手続き（AIツールのガイドは入れない） */
+export function procedureSiblings<T extends GuideLike>(guide: T, all: T[], limit = 6, rows: MoneyPage[] = MONEY_PAGES): T[] {
+  const procedures = all.filter((other) => other.slug !== guide.slug && other.kind === "procedure");
+  const bySlug = new Map(procedures.map((other) => [other.slug, other]));
+  const money = moneyGuideSlugs(guide, rows).map((slug) => bySlug.get(slug)).filter((other): other is T => Boolean(other));
+  const ordered = [...money, ...procedures.filter((other) => other.tool === guide.tool), ...procedures];
+  return [...new Set(ordered)].slice(0, limit);
+}

@@ -213,7 +213,14 @@ ACTION_ADS = [
     # 出産手当金の記事に子どものプログラミング教室が出ていた → 出産・育休の記事は kids に当てない（合う提携先が無いので、家計の見直し benefit が当たれば benefit、無ければ出さない）
     # 2026-11-10 オーナー承認「記事に合う PR だけ」: 年金・給付金の記事に、ジャンルの既定の証券会社が出ていた（年金生活者支援給付金の記事）。
     # 受け取るお金を確かめる読者に合うのは、毎月出ていくお金（スマホ代・電気代）の見直し。児童手当は上の kids が先に当たる
-    {"key": "benefit", "title": "受け取るお金を確かめたら、毎月の出費も", "reason": "年金や給付金を確かめるときに、スマホ代や電気代の契約も比べるために", "match": "年金|給付金|手当|非課税世帯|住民税非課税|生活保護|医療費|介護保険|高額療養費", "partners": ["bb-excite", "enepi", "elpio"], "max": 2, "genres": ["public", "lifestyle", "business", "real-estate", "investment"], "exclude": "株価|決算|業績|GPIF|運用|企業年金|確定拠出|iDeCo|NISA|(?<![A-Za-z])AI(?![A-Za-z])"},
+    # 2026-11-10 M3（gap_g3 の点検）: 出産・育休の記事にエネピ（電気・ガス料金の相談）が出ていた。出産の前後に合う提携先は浄水型のウォーターサーバー（every frecious）。
+    # 囲みの1行目はサイト内の「出産手当金を受けられるかを確かめる」（lib/money-pages.ts。internal）。オーケンウォーターは申し込みページを確かめるまで入れない
+    {"key": "childbirth", "title": "出産の前後に、家の飲み水を用意したい人へ", "reason": "出産の前後で買い物に出にくい時期に、家で飲み水を用意する方法として", "match": "出産手当|出産育児一時金|出産費用|育児休業|育休|産休|産前|産後|妊娠|妊婦", "partners": ["frecious"], "max": 2, "genres": ["public", "lifestyle", "business", "real-estate", "investment"], "exclude": "株価|決算|業績|(?<![A-Za-z])AI(?![A-Za-z])", "internal": True},
+    # 医療費の記事: 1行目はサイト内の「高額療養費の上限額を確かめる」（記事の話題に当たる行が無ければ医療費控除のガイド。lib/money-pages.ts）。
+    # 医療費控除は上の tax（確定申告ソフト）が先に当たる。保険相談の提携先はまだ無いので、PR は格安SIM だけ
+    {"key": "medical", "title": "医療費を確かめたら、毎月の出費も", "reason": "医療費の負担を確かめるときに、スマホ代の契約も比べるために", "match": "高額療養費|医療費控除|医療費", "partners": ["bb-excite"], "max": 2, "genres": ["public", "lifestyle", "business", "real-estate", "investment"], "exclude": "株価|決算|業績|(?<![A-Za-z])AI(?![A-Za-z])", "internal": "kogaku-ryoyohi"},
+    # 2026-11-10 M3: 年金・給付金・遺族の記事からエネピ・エルピオでんきを外す（電気の契約の広告は、年金を確かめる読者に合わない）。囲みの1行目はサイト内の対象の確かめ方（lib/money-pages.ts。当たる行が無い記事は出さない）
+    {"key": "benefit", "title": "受け取るお金を確かめたら、毎月の出費も", "reason": "年金や給付金を確かめるときに、スマホ代の契約も比べるために", "match": "年金|給付金|手当|非課税世帯|住民税非課税|生活保護|医療費|介護保険|高額療養費", "partners": ["bb-excite"], "max": 2, "genres": ["public", "lifestyle", "business", "real-estate", "investment"], "exclude": "株価|決算|業績|GPIF|運用|企業年金|確定拠出|iDeCo|NISA|(?<![A-Za-z])AI(?![A-Za-z])", "internal": True},
     {"key": "payment", "title": "支払いとポイントを見直したい人へ", "reason": "支払い方法やポイントの条件が変わるときに、カードを比べるために", "match": "キャッシュレス|クレジットカード|ポイント還元|ポイ活|QRコード決済|PayPay|楽天ペイ|d払い|au PAY|電子マネー|タッチ決済", "partners": ["epos"], "max": 1, "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"]},
 ]
 
@@ -240,7 +247,9 @@ ACTION_LEADS = {
     "household": "値上げが続くときは、毎月の固定費から見直すと効果が続きます。",
     "kids": "子どもの学びは、本人が楽しめる入り口選びで続き方が変わります。",
     "payment": "条件が変わるときは、年会費とポイントを比べ直すきっかけです。",
-    "benefit": "スマホ代や電気代は、契約の見直しだけで下がることがあります。",
+    "benefit": "スマホ代は、契約の見直しだけで下がることがあります。",
+    "medical": "スマホ代は、契約の見直しだけで下がることがあります。",
+    "childbirth": "出産の前後は、重い水を買いに出るのも負担になりがちです。",
 }
 ACTION_INTENTS = {
     "disaster": [
@@ -356,7 +365,7 @@ GAIN = {
 # 商品の良いところ（2〜3つ）。広告主の公式サイトに書いてある事実だけ（2026-11-10 に公式ページで確認。確認先は各行の右）。
 # 期間限定のキャンペーンの金額・初年度だけの価格は書かない。値が変わったら直すか、行ごと消す（囲みは MERITS が無くても成り立つ）
 MERITS = {
-    "bb-excite": ["使った分だけ払う段階制のプラン", "低速のみなら音声SIMは月495円（税込）", "最低利用期間なし、解約事務手数料0円"],  # bb.excite.co.jp/exmb/sim/fit/ ・/exmb/sim/plan/
+    "bb-excite": ["低速のみなら音声SIMは月495円（税込）", "使った分だけ払う段階制のプラン", "最低利用期間なし、解約事務手数料0円"],  # bb.excite.co.jp/exmb/sim/fit/ ・/exmb/sim/plan/
     "elpio": ["切り替え手数料0円、Webで申し込める", "解約手数料0円、契約期間の縛りなし"],  # lpio.jp/lpio_denki/
     "enepi": ["見積もりから切り替えまで費用は無料", "切り替えの手続きはエネピが行う"],  # enepi.jp/electricity（2026-11-10）「お見積もり依頼から電力会社の切り替えまで費用は一切かかりません」「エネピにて、電力会社の切り替え手続きを行います」
     "gmo-hikari": ["契約期間の縛りなし、解約違約金0円", "v6プラスをオプション料0円で使える"],  # gmobb.jp/service/gmohikari/
@@ -375,6 +384,7 @@ MERITS = {
     "bang-kasai": ["火災保険の見積もり依頼は無料", "複数社の商品を比べられる"],  # fire.bang.co.jp
     "hikkoshi-samurai": ["最大10社へまとめて見積もりを依頼", "業者を比べられる無料のサービス"],  # hikkoshizamurai.jp
     "epos": ["入会金・年会費は永年無料", "ETCカードも年会費・入会金が無料"],  # eposcard.co.jp
+    "frecious": ["月額は税込2,750円から（水道代は別）", "レンタル料と浄水カートリッジ代は月額に込み", "水道水を注いで使うので、宅配水の受け取りが不要"],  # every.frecious.jp（2026-11-10）lite「月額 2,500円 （税込2,750円）」・月額に含まれるもの・「宅配水の受け取りが不要」
     "digitane": ["14日間の無料体験あり", "マインクラフトなどのゲームで学べる"],  # digitane.jp
 }
 
@@ -401,7 +411,7 @@ LIFE_NAMES = {
     "leak": "セキュリティ対策", "furusato": "ふるさと納税", "tax": "確定申告・節税", "mobile": "スマホ回線の見直し",
     "fire-insurance": "火災保険の見直し", "water": "飲み水の備え", "disaster": "停電・災害の備え", "solar": "太陽光・蓄電池の見積もり", "energy": "電気代の見直し",
     "moving": "引越しの準備", "travel": "宿探し", "household": "固定費の見直し", "kids": "子どもの学び", "payment": "支払い方法の見直し",
-    "benefit": "毎月の出費の見直し",
+    "benefit": "毎月の出費の見直し", "medical": "毎月の出費の見直し", "childbirth": "出産前後の飲み水の用意",
 }
 
 
@@ -423,12 +433,33 @@ def life_topics() -> list[dict]:
             topic["articleExclude"] = rule["exclude"]
         if rule.get("intents"):
             topic["intents"] = rule["intents"]
+        if topic["key"] in LIFE_NO_FALLBACK:
+            topic["noFallback"] = True
         topics.append(topic)
     return topics
 
 
+# 行動欄の PR には出さず、本文中・記事末（PC は右側）の商品枠だけで使う暮らしの話題（キーは life-<key>）。
+# 2026-11-10 M3: 児童手当の記事の本文中・記事末の枠がエネピ（電気・ガス料金の相談）だった。年内に家計で動けることとして、ふるさと納税のサイトと
+# サイト内の上限額の計算（money は lib/money-pages.ts の行の key。枠の中に1行の案内として出す）。ポイントのことは書かない
+LIFE_EXTRA_TOPICS = [
+    {"key": "life-kids-furusato", "genres": ["public", "lifestyle", "business", "tech-gadget", "real-estate", "investment"], "min": 5,
+     "match": "児童手当", "eyebrow": "この記事のあとにできること", "headline": "今年分のふるさと納税は12月31日まで",
+     "lead": "ふるさと納税は、12月31日までの寄附がその年の控除の対象です。料金・条件は各公式サイトで確認してください。",
+     "partners": ["furusato-honpo", "aupay-furusato"], "name": "ふるさと納税", "money": "furusato"},
+    # 高額療養費・医療費の記事: 行動欄の格安SIMのほかに、医療費控除の申告（確定申告ソフト）を本文中・記事末の枠に（ジャンルの既定の AI の講座を出さない）
+    {"key": "life-medical-tax", "genres": ["public", "lifestyle", "business", "real-estate", "investment"], "min": 5,
+     "match": "高額療養費|医療費", "eyebrow": "この記事のあとにできること", "headline": "医療費控除の申告を、ソフトで進めたい人へ",
+     "lead": "1年の医療費が一定額を超えると、確定申告で医療費控除を受けられます（高額療養費で戻った分は差し引きます）。料金・条件は各公式サイトで確認してください。",
+     "partners": ["freee", "mf-kakutei", "yayoi-kakutei"], "name": "医療費控除の申告", "articleExclude": "株価|決算|業績|(?<![A-Za-z])AI(?![A-Za-z])"},
+]
+# 行動欄に出した商品で候補を使い切ったとき、ジャンルの既定の広告（証券会社・AIの講座など）で埋めない話題。
+# 2026-11-10 オーナー承認「記事に合う PR だけ」（年金の記事に証券会社が出ていた）。年金・給付金・遺族・出産の記事は、合う提携先が行動欄の1つだけ
+LIFE_NO_FALLBACK = {"life-benefit", "life-childbirth", "life-medical"}
+
+
 def apply_life_topics(offers: dict) -> None:
-    derived = life_topics()
+    derived = life_topics() + LIFE_EXTRA_TOPICS
     keys = {t["key"] for t in derived}
     offers["topics"] = [t for t in offers["topics"] if t["key"] not in keys] + derived
 

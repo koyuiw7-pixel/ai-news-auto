@@ -46,7 +46,8 @@ const keys = (ad) => (ad?.items ?? []).map(({ item }) => item.key);
 
 const FURUSATO = ["furusato-honpo", "aupay-furusato"];
 const TAX = ["freee", "mf-kakutei", "yayoi-kakutei"];
-const ALLOWED = { furusato: FURUSATO, tax: TAX, mobile: ["bb-excite"] };
+const KIDS = ["digitane", "litalico"];
+const ALLOWED = { furusato: FURUSATO, tax: TAX, mobile: ["bb-excite"], kids: KIDS, medical: [] };
 
 test("ふるさと納税のガイドは、上も下もふるさと納税のサイト（確定申告のガイドだけ、下は確定申告ソフト）", () => {
   for (const slug of ["furusato-how", "furusato-limit", "furusato-onestop"]) {
@@ -84,11 +85,48 @@ test("スマホの乗り換えのガイドは格安SIMだけ（光回線は出�
   assert.deepEqual(keys(top), ["bb-excite"]);
 });
 
-test("関係のないガイドには出さない（AIツール・NISA・年金・子育て・マイナンバー・相続など）", () => {
+// 2026-11-10 M3: 児童手当のガイドは、上が子どもの学び、下がふるさと納税のサイトと上限額の計算への案内
+test("児童手当のガイド：上は子どもの学び、下はふるさと納税のサイトと /tools/furusato-limit への案内", () => {
+  const { top, lower } = guideAds(guide("jidou-teate"));
+  assert.equal(top?.key, "kids");
+  assert.ok(keys(top).length >= 1 && keys(top).every((key) => KIDS.includes(key)), keys(top).join());
+  assert.equal(lower?.key, "furusato");
+  assert.ok(keys(lower).length >= 1 && keys(lower).every((key) => FURUSATO.includes(key)), keys(lower).join());
+  assert.deepEqual((lower.internal ?? []).map((link) => link.href), ["/tools/furusato-limit"]);
+  assert.ok(!top.internal, "上の囲みにはサイト内の案内を出さない");
+  // 子育ての広い語（子ども・出産・保育など）では、ほかの手続きのガイドに子どもの学びを出さない
+  for (const item of guides.filter((g) => g.slug !== "jidou-teate")) {
+    for (const ad of Object.values(guideAds(item))) assert.notEqual(ad?.key, "kids", item.slug);
+  }
+});
+
+test("高額療養費のガイド：上の位置にサイト内の案内だけ（関係の薄い提携先は出さない）。保険相談の提携先が入れば同じ囲みに並ぶ", () => {
+  const { top, lower } = guideAds(guide("kogaku-ryoyohi"));
+  assert.equal(top?.key, "medical");
+  assert.deepEqual(keys(top), [], "格安SIMなど話題の違う提携先を出さない");
+  assert.equal(lower, undefined);
+  const hrefs = (top.internal ?? []).map((link) => link.href);
+  assert.deepEqual(hrefs, ["/guides/iryohi-kojo", "/articles/kogaku-ryoyohi-2026-tasukai-kaisu"]);
+  assert.ok(fs.existsSync(path.join(root, "content/howto/iryohi-kojo.json")));
+  assert.ok(fs.existsSync(path.join(root, "content/articles/kogaku-ryoyohi-2026-tasukai-kaisu.json")));
+  for (const link of top.internal) assert.doesNotMatch(`${link.label} ${top.title} ${top.lead ?? ""}`, /ざっくり|｜/);
+  // 保険相談の提携先（名前か説明に「保険相談」）が offers.json に入ると、ガイドを直さずに同じ囲みに並ぶ
+  const fake = { item: { key: "hoken-soudan", kind: "partner", name: "保険相談の窓口", url: "https://px.a8.net/svt/ejp?a8mat=A+B+C+D" } };
+  const seen = [];
+  const filled = guideAds(guide("kogaku-ryoyohi"), (key) => (key === "hoken-soudan" ? fake : undefined), undefined, (pattern) => {
+    seen.push(pattern);
+    return pattern.test("保険相談の窓口") ? ["hoken-soudan"] : [];
+  });
+  assert.ok(seen.length === 1 && !seen[0].test("保険スクエアbang！ 火災保険を見直す"), "火災保険の見積もりは保険相談に数えない");
+  assert.deepEqual(keys(filled.top), ["hoken-soudan"]);
+  assert.deepEqual((filled.top.internal ?? []).map((link) => link.href), hrefs);
+});
+
+test("関係のないガイドには出さない（AIツール・NISA・年金・マイナンバー・相続など）", () => {
   for (const item of guides.filter((g) => g.kind !== "procedure")) {
     assert.deepEqual(guideAds(item), {}, item.slug);
   }
-  for (const slug of ["nisa-start", "nisa-limit", "jidou-teate", "myna-card-apply", "passport", "sozoku-zei", "zoyo-zei", "kokunen-menjo", "shitsugyo-kyufu", "nenshu-kabe", "kogaku-ryoyohi"]) {
+  for (const slug of ["nisa-start", "nisa-limit", "myna-card-apply", "passport", "sozoku-zei", "zoyo-zei", "kokunen-menjo", "shitsugyo-kyufu", "nenshu-kabe"]) {
     assert.deepEqual(guideAds(guide(slug)), {}, slug);
   }
   // 見出しや検索語に話題の語が無いガイドは、どれも出ない
@@ -99,7 +137,8 @@ test("関係のないガイドには出さない（AIツール・NISA・年金�
     assert.ok(rules.length > 0, item.slug);
     const text = `${item.title} ${item.seoTitle ?? ""} ${item.keyword ?? ""}`;
     const config = GUIDE_AD_RULES.find((c) => c.key === ads.top.key);
-    const pattern = new RegExp(config.extra ? `${rules.find((r) => r.rule.key === ads.top.key).rule.match}|${config.extra.source}` : rules.find((r) => r.rule.key === ads.top.key).rule.match, "i");
+    const base = rules.find((r) => r.rule.key === ads.top.key).rule.match;
+    const pattern = new RegExp(config.only ? config.extra.source : config.extra ? `${base}|${config.extra.source}` : base, "i");
     assert.ok(pattern.test(text), `${item.slug}: ${ads.top.key}`);
   }
 });
@@ -112,7 +151,8 @@ test("出る商品は、話題ごとに決めた提携先だけ。リンクは�
     assert.ok(!lower || top, item.slug);
     for (const ad of [top, lower]) {
       if (!ad) continue;
-      assert.ok(ad.items.length >= 1 && ad.items.length <= 2, item.slug);
+      // 提携商品の無い囲みは、サイト内の案内だけ（高額療養費のガイド）
+      assert.ok(ad.items.length <= 2 && (ad.items.length >= 1 || (ad.internal ?? []).length >= 1), item.slug);
       for (const { item: offer } of ad.items) {
         shown += 1;
         assert.ok(ALLOWED[ad.key]?.includes(offer.key), `${item.slug}: ${ad.key} に ${offer.key}`);
@@ -195,4 +235,117 @@ test("置き場所：ガイドは導入のすぐ下とよくある質問の前�
   assert.match(AFFILIATE_REL, /^sponsored /);
   // 計算ツールの PR はふるさと納税のサイトだけ
   assert.deepEqual([...keys(toolAd("furusato"))].sort(), [...FURUSATO].sort());
+});
+
+// 2026-11-10 M3: 囲みを実際に描いて、提携リンクと「サイソクの案内」を確かめる（Next.js を起動しない。next/link は a に置き換える）
+function loadTsx(file) {
+  if (cache.has(file)) return cache.get(file).exports;
+  const compiled = ts.transpileModule(fs.readFileSync(file, "utf8"), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true, jsx: ts.JsxEmit.ReactJSX },
+  }).outputText;
+  const mod = new Module(file, module);
+  mod.filename = file;
+  mod.paths = Module._nodeModulePaths(path.dirname(file));
+  cache.set(file, mod);
+  const original = mod.require.bind(mod);
+  mod.require = (name) => {
+    if (name === "next/link") {
+      const React = require("react");
+      return { __esModule: true, default: ({ href, children, ...rest }) => React.createElement("a", { href, ...rest }, children) };
+    }
+    if (name === "@/lib/content-fs") return fs;
+    if (name === "@/lib/articles") return { getAllArticles: () => [] };
+    if (name.startsWith("@/lib/")) return load(path.join(root, "lib", `${name.slice(6)}.ts`));
+    if (name.startsWith("@/components/")) return loadTsx(path.join(root, "components", `${name.slice(13)}.tsx`));
+    if (name.startsWith("./")) {
+      const base = path.join(path.dirname(file), name);
+      return fs.existsSync(`${base}.tsx`) ? loadTsx(`${base}.tsx`) : load(`${base}.ts`);
+    }
+    return original(name);
+  };
+  mod._compile(compiled, file);
+  return mod.exports;
+}
+
+test("描いた囲み：提携リンクはすべて rel=sponsored で [data-aff-pos] の中、サイト内の案内には sponsored を付けない", () => {
+  const React = require("react");
+  const { renderToStaticMarkup } = require("react-dom/server");
+  const ActionAd = loadTsx(path.join(root, "components/ActionAd.tsx")).default;
+  const { actionAdForArticle } = load(path.join(root, "lib/action-ad.ts"));
+  const article = (slug) => JSON.parse(fs.readFileSync(path.join(root, `content/articles/${slug}.json`), "utf8"));
+  const boxes = [];
+  for (const slug of ["pension-support-benefit-old-age-eligibility", "kyoukai-kenpo-childbirth-allowance", "child-allowance-third-child-monthly-30000", "kogaku-ryoyohi-2026-tasukai-kaisu", "izoku-nenkin-seikyu-tetsuzuki"]) {
+    const ad = actionAdForArticle(article(slug));
+    assert.ok(ad, slug);
+    boxes.push([slug, ad, "action-ad"]);
+  }
+  for (const slug of ["jidou-teate", "kogaku-ryoyohi"]) {
+    const { top, lower } = guideAds(guide(slug));
+    if (top) boxes.push([slug, top, GUIDE_AD_POS.top]);
+    if (lower) boxes.push([slug, lower, GUIDE_AD_POS.lower]);
+  }
+  for (const [slug, ad, pos] of boxes) {
+    const html = renderToStaticMarkup(React.createElement(ActionAd, { ad, pos }));
+    assert.match(html, new RegExp(`^<aside data-aff-pos="${pos}"`), slug);
+    assert.equal((html.match(/<aside/g) ?? []).length, 1, slug);
+    const anchors = html.match(/<a [^>]*>/g) ?? [];
+    for (const a of anchors) {
+      const href = a.match(/href="([^"]+)"/)[1];
+      if (href.startsWith("/")) {
+        assert.doesNotMatch(a, /sponsored|data-aff-rank/, `${slug}: サイト内の案内に sponsored`);
+      } else {
+        assert.match(href, /^https:\/\/px\.a8\.net\//, slug);
+        assert.match(a, /rel="sponsored[^"]*"/, `${slug}: ${href}`);
+      }
+    }
+    const internal = (ad.internal ?? []).map((x) => x.href);
+    for (const href of internal) assert.ok(html.includes(`href="${href}"`), `${slug}: ${href}`);
+    if (internal.length) {
+      assert.match(html, /サイソクの案内/);
+      // 案内は囲みの1行目（提携商品より前）
+      const first = html.indexOf(`href="${internal[0]}"`);
+      const sponsored = html.indexOf('rel="sponsored');
+      assert.ok(sponsored < 0 || first < sponsored, `${slug}: 案内が先`);
+    }
+    if (ad.items.length === 0) {
+      assert.doesNotMatch(html, />PR</, `${slug}: 広告の無い囲みに PR の札を出さない`);
+      assert.doesNotMatch(html, /アフィリエイトリンク/, slug);
+    } else {
+      assert.match(html, />PR</, slug);
+    }
+  }
+  const htmlOf = (slug, which) => renderToStaticMarkup(React.createElement(ActionAd, { ad: guideAds(guide(slug))[which], pos: GUIDE_AD_POS[which] }));
+  assert.match(htmlOf("jidou-teate", "lower"), /href="\/tools\/furusato-limit"/);
+  assert.match(htmlOf("kogaku-ryoyohi", "top"), /data-aff-pos="guide-top"/);
+});
+
+test("手続きガイドの「あわせて読む」は同じ話題のお金のガイド（AIツールのガイドを入れない）", () => {
+  const { procedureSiblings } = load(path.join(root, "lib/money-pages.ts"));
+  const all = guides;
+  for (const slug of ["jidou-teate", "kogaku-ryoyohi", "nencho-how-to", "furusato-how"]) {
+    const list = procedureSiblings(guide(slug), all);
+    assert.ok(list.length >= 1, slug);
+    for (const other of list) {
+      assert.equal(other.kind, "procedure", `${slug}: ${other.slug}`);
+      assert.notEqual(other.slug, slug);
+    }
+  }
+  assert.equal(procedureSiblings(guide("kogaku-ryoyohi"), all)[0].slug, "iryohi-kojo");
+  // 年末調整のガイドは、表で同じ話題の年末調整の対象のガイドが先
+  assert.equal(procedureSiblings(guide("nencho-how-to"), all)[0].slug, "nencho-target");
+  const view = fs.readFileSync(path.join(root, "components/HowtoGuideView.tsx"), "utf8");
+  assert.ok(view.includes("siblingHowtos(guide)"));
+  const howto = fs.readFileSync(path.join(root, "lib/howto.ts"), "utf8");
+  assert.ok(howto.includes('if (guide.kind === "procedure") return procedureSiblings(guide, getAllHowtos(), limit);'));
+});
+
+test("記事の行動欄の PR は「すぐにできること」のすぐ下のまま（本文の下に動かさない）", () => {
+  const page = fs.readFileSync(path.join(root, "app/articles/[slug]/page.tsx"), "utf8");
+  const today = page.indexOf("<TodayActions actions={todayActions} />");
+  const ad = page.indexOf("{actionAd && <ActionAd ad={actionAd}");
+  const desk = page.indexOf("{depth.officialDesk.length > 0 && <OfficialDesk");
+  const faq = page.indexOf("{articleFaq.length >= 1 && <ArticleFaq");
+  assert.ok(today > 0 && today < ad && ad < desk && desk < faq, "今やること → PR → 公式の窓口 → よくある質問");
+  const between = page.slice(today, ad);
+  assert.equal((between.match(/\n/g) ?? []).length, 2, "今やることと PR のあいだに別の部品を入れない");
 });
