@@ -115,7 +115,9 @@
       "url": "https://www.recall.caa.go.jp/images/rci/img/product/00000036096_1.jpg"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "b971dd88507174df": 1
+  },
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
     "02667be02cad0dd5": "2026-11-07T18:50:54.043233+00:00",
@@ -21238,32 +21240,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-10T07:01:47.528502+00:00",
-      "attempt": 0,
-      "id": "a847d03cb751eff9",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 本文「大会は11月13日（金）から22日（日）まで行われます」→ 元記事と一致するが、「日本時間で11月15日から試合が始まります」（リード）は元記事の日本時間表記と整合するため問題なし; 「日本代表は計22名で構成されています。内訳は選手15名、スタッフ7名で"
-      ],
-      "readability": {
-        "avg_paragraph": 61.2,
-        "avg_sentence": 43.7,
-        "long_share": 0.286,
-        "max_paragraph": 108,
-        "paragraphs": 5,
-        "sentences": 7
-      },
-      "score": 94,
-      "source": "jfa",
-      "title": "アンプティサッカー日本代表がWAFFワールドカップに出場！ #jfa",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA）",
-        "読みやすさ: 文が長い（1文の平均 43.7字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-10T07:14:25.168628+00:00",
       "attempt": 1,
       "id": "8d40bd57193cb55f",
@@ -28601,6 +28577,32 @@
       "title": "New survey finds enterprises trapped between legacy software and AI modernizatio",
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 48.0字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T15:27:27.585407+00:00",
+      "attempt": 1,
+      "id": "b971dd88507174df",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 108.1,
+        "avg_sentence": 42.8,
+        "long_share": 0.083,
+        "max_paragraph": 186,
+        "paragraphs": 19,
+        "sentences": 48
+      },
+      "score": null,
+      "source": "google-deepmind-blog",
+      "title": "AlphaGenome: AI for better understanding the genome — Google DeepMind",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DNA・RNA・ENCODE）"
       ]
     }
   ],
