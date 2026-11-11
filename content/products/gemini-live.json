@@ -6,57 +6,93 @@
   "companyName": "Google",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Gemini Liveは、Googleが提供する低遅延で自然な音声対話を実現するAIモデルおよび機能です。2026年8月頃から開発者向けの音声AIエージェント構築などで活用されています。",
+    "text": "Gemini Liveは、声で話しかけてそのまま会話を続けられる音声AI機能です。Googleが開発し、音声対話やロボット、イヤホンなど様々な環境で提供されています。",
     "sources": [
-      "voice-agent-observability-langsmith-gemini-live"
+      "gemini-apple-carplay-rollout",
+      "google-gemini-live-sprout-plant-robot",
+      "samsung-galaxy-buds-on-cuff-earbuds"
     ]
   },
   "facts": [
     {
-      "label": "使える場所",
-      "value": "Google AI Studioなど",
+      "label": "提供開始",
+      "value": "2026年11月11日から順次",
       "sources": [
+        "gemini-apple-carplay-rollout"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "日本からも利用可能",
+      "sources": [
+        "gemini-apple-carplay-rollout",
         "google-gemini-live-sprout-plant-robot"
       ]
     },
     {
       "label": "向いている人",
-      "value": "音声AIエージェントの開発者",
+      "value": "運転中や学習時に声で使いたい人",
       "sources": [
-        "voice-agent-observability-langsmith-gemini-live"
+        "gemini-apple-carplay-rollout",
+        "google-gemini-college-student-features"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "音声入力をそのまま処理し音声出力するSpeech-to-Speechによる応答ができます。",
+      "text": "音声入力をそのまま処理し音声出力する低遅延な対話ができます。",
       "sources": [
         "voice-agent-observability-langsmith-gemini-live"
       ]
     },
     {
-      "text": "人間の相づちに合わせて滑らかに話し、冗談を言うこともできます。",
+      "text": "車載ディスプレイのCarPlayから呼び出し、運転中に音声で会話できます。",
       "sources": [
-        "google-gemini-live-sprout-plant-robot"
+        "gemini-apple-carplay-rollout"
       ]
     },
     {
-      "text": "面接や発表の練習、新しいソフトの操作を教わる用途に使えます。",
+      "text": "面接や発表の練習、新しいソフトの操作の学習に使えます。",
       "sources": [
         "google-gemini-college-student-features"
       ]
     },
     {
-      "text": "スマートフォンなどの対応端末で話しかけて呼び出せます。",
+      "text": "Google Workspaceと連携し、予定の確認や未読メールの要約ができます。",
       "sources": [
-        "samsung-galaxy-buds-on-cuff-earbuds"
+        "gemini-apple-carplay-rollout"
       ]
     }
   ],
-  "pricing": [],
+  "pricing": [
+    {
+      "text": "無料プランは0円/月で15 GBのクラウドストレージ付きです。",
+      "sources": [
+        "gemini-apple-carplay-rollout"
+      ]
+    },
+    {
+      "text": "Google AI Plusは725円/月（月払い）です。",
+      "sources": [
+        "gemini-apple-carplay-rollout"
+      ]
+    },
+    {
+      "text": "Google AI Proは2,900円/月（月払い）です。",
+      "sources": [
+        "gemini-apple-carplay-rollout"
+      ]
+    }
+  ],
   "japan": [
     {
-      "text": "Google AI Studioを通じて日本からも利用可能です。",
+      "text": "Geminiアプリは日本で使えます。",
+      "sources": [
+        "gemini-apple-carplay-rollout"
+      ]
+    },
+    {
+      "text": "日本の開発者がAPIを使って同じような仕組みを試すことも可能です。",
       "sources": [
         "google-gemini-live-sprout-plant-robot"
       ]
@@ -64,39 +100,52 @@
   ],
   "howto": [
     {
-      "text": "Google AI Studioにアクセスし、GoogleアカウントでログインしてAPIキーを発行します。",
+      "text": "iPhoneのGeminiアプリを最新版に更新し、マイクの権限を許可します。",
       "sources": [
-        "google-gemini-live-sprout-plant-robot"
+        "gemini-apple-carplay-rollout"
       ]
     },
     {
-      "text": "開発用環境からAPIを呼び出して利用できます。",
+      "text": "車に接続し、CarPlayの画面のGeminiアイコンをタップして始めます。",
       "sources": [
-        "google-gemini-live-sprout-plant-robot"
+        "gemini-apple-carplay-rollout"
       ]
     }
   ],
-  "differences": [],
-  "faq": [
+  "differences": [
     {
-      "q": "誰に向いている？",
-      "a": "低遅延な音声AIエージェントを構築したい開発者に向いています。",
-      "sources": [
-        "voice-agent-observability-langsmith-gemini-live"
-      ]
-    },
-    {
-      "q": "どこで試せる？",
-      "a": "Google AI Studioなどから利用できます。",
+      "text": "従来の音声アシスタントのような一拍置くぎこちさがなく、人間の相づちに合わせて滑らかに話します。",
       "sources": [
         "google-gemini-live-sprout-plant-robot"
       ]
     },
     {
-      "q": "対応する端末は？",
-      "a": "スマートフォンなどの対応端末で利用できます。",
+      "text": "音声入力をそのまま処理するSpeech-to-Speechモデルを採用し、レイテンシーが極めて低くなっています。",
       "sources": [
-        "samsung-galaxy-buds-on-cuff-earbuds"
+        "voice-agent-observability-langsmith-gemini-live"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "無料で使える？",
+      "a": "0円/月の無料プランが用意されています。",
+      "sources": [
+        "gemini-apple-carplay-rollout"
+      ]
+    },
+    {
+      "q": "車での操作方法は？",
+      "a": "CarPlayの画面のGeminiアイコンをタップして始めます。アプリの最新版とマイクの許可が必要です。",
+      "sources": [
+        "gemini-apple-carplay-rollout"
+      ]
+    },
+    {
+      "q": "主な活用シーンは？",
+      "a": "声での会話や予定の確認、Gmailの未読メールの要約などができます。",
+      "sources": [
+        "gemini-apple-carplay-rollout"
       ]
     }
   ],
@@ -104,12 +153,17 @@
     {
       "date": "2026-08-01",
       "slug": "voice-agent-observability-langsmith-gemini-live",
-      "event": "LangChainがGemini Liveエージェントのトレーシング手法を解説"
+      "event": "LangSmithで音声AIエージェントの追跡手法を解説"
+    },
+    {
+      "date": "2026-10-28",
+      "slug": "samsung-galaxy-buds-on-cuff-earbuds",
+      "event": "サムスン初のオープンイヤー型Galaxy Buds Onを発表"
     },
     {
       "date": "2026-10-29",
       "slug": "google-gemini-live-sprout-plant-robot",
-      "event": "GoogleがGemini搭載の植物ロボットSproutを公開"
+      "event": "植物ロボットSproutの技術デモを公開"
     }
   ],
   "related": [
@@ -119,6 +173,7 @@
     "gemini-notebook"
   ],
   "articles": [
+    "gemini-apple-carplay-rollout",
     "google-gemini-live-sprout-plant-robot",
     "samsung-galaxy-buds-on-cuff-earbuds",
     "google-gemini-college-student-features",
@@ -128,9 +183,9 @@
     "samsung-galaxy-buds-on-cuff-earbuds",
     "voice-agent-observability-langsmith-gemini-live"
   ],
-  "signature": "d0699b5d1a88705a",
+  "signature": "79ba368d6c00a526",
   "primarySignature": "0f9ff7937a74e8b1",
-  "model": "gemini-3.5-flash-lite",
+  "model": "gemini-3.1-flash-lite",
   "createdAt": "2026-10-27T10:59:22+00:00",
-  "updatedAt": "2026-11-04T17:12:05+00:00"
+  "updatedAt": "2026-11-11T17:24:38+00:00"
 }

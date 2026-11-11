@@ -10034,16 +10034,6 @@
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/kouku05_hh_000249.html"
     },
-    "6318bf62f2c5750d": {
-      "at": "2026-10-28T17:02:42.932741+00:00",
-      "breaking": true,
-      "major": true,
-      "model": "claude:sonnet",
-      "score": 92,
-      "section": "ai",
-      "slug": "gemini-4-carbon-cybersecurity-model",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/"
-    },
     "63191815420e7348": {
       "at": "2026-11-09T05:04:16.710407+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
@@ -11051,6 +11041,13 @@
       "section": "ai",
       "slug": "google-distributed-cloud-ai-innovations-2026",
       "url": "https://cloud.google.com/blog/ja/topics/hybrid-cloud/new-innovations-in-google-distributed-cloud/"
+    },
+    "71a4bd7e4d0d0d89": {
+      "at": "2026-11-11T17:22:21.944100+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「ChatGPT 料金ページは2026年11月12日付で…公開しました」→ 元記事に11月12日という公開日は無く、差分の時刻は2026-11-11T17:21+00:00までである。公開日の創作; 「既存記事では、ページの更新日を11月2日（協定世界時）としていました」→ 確認済みの文脈や元記事に11月2日の記述がなく、根拠が確認できない; 「Proの特徴欄の",
+      "skipped": true,
+      "url": "https://openai.com/chatgpt/pricing/#entry-2026-11-12-2cf63d"
     },
     "71aaa2946db119b3": {
       "at": "2026-11-07T14:33:37.075447+00:00",
@@ -17737,6 +17734,18 @@
       "slug": "kitsuki-station-survey-subsidy",
       "url": "http://www.mlit.go.jp/report/press/kokudoseisaku09_hh_000195.html"
     },
+    "d6f0075961b79de9": {
+      "at": "2026-11-11T17:23:41.980128+00:00",
+      "costUsd": 0.0118,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "gemini-apple-carplay-rollout",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-on-apple-carplay/"
+    },
     "d6fa7442b9055fd5": {
       "at": "2026-11-07T22:14:42.352533+00:00",
       "costUsd": 0.1146,
@@ -17823,13 +17832,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01cyber01_02000001_00309.html"
-    },
-    "d8103b8af50d92a5": {
-      "at": "2026-10-28T17:19:52.844388+00:00",
-      "model": "claude:sonnet",
-      "reason": "followup quality: 「当初は10月29日（木）としていました」→ 元記事にも確認済みの文脈にも当初の予約開始日が10月29日とする根拠がなく、日付の創作の疑いがある。; 「Liquid Retina XDRディスプレイ」という当初記事の記載→ 元記事にも確認済みの文脈にもなく、当初記事の内容として根拠が確認できない。",
-      "skipped": true,
-      "url": "https://www.apple.com/newsroom/2026/10/apple-unveils-groundbreaking-macbook-pro-with-proled-xdr-display/"
     },
     "d81f119140bd0c5a": {
       "at": "2026-11-06T06:03:10.187493+00:00",
@@ -21210,56 +21212,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:22:58.672146+00:00",
-      "attempt": 0,
-      "id": "f3b074b5adb25794",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 45.7,
-        "avg_sentence": 37.4,
-        "long_share": 0.0,
-        "max_paragraph": 70,
-        "paragraphs": 9,
-        "sentences": 11
-      },
-      "score": 88,
-      "source": "env-press",
-      "title": "【公募期間延長】令和８年度予算「業務用建築物の脱炭素改修加速化事業」の公募開始について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T07:23:22.687704+00:00",
-      "attempt": 1,
-      "id": "ecc2be329a543fc2",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "リード「全国の店舗で順次販売される予定で、今のところ予約などの手続きは必要ありません」→ 元記事は「全国で期間限定新発売」とのみ記し、「順次」販売や予約不要には触れていない。提供状況と購入条件の創作にあたる",
-        "よくある質問「全国の酒類取扱店で順次販売される予定です」→ 元記事に「酒類取扱店」「順次」の記述はなく、発表内容と異なる販売形態を書いている",
-        "判定欄「事前の予約などは不要です」→ 元記事に予約の記述がなく、確認できない購入条件を断定している",
-        "リード「350ml缶で171円」→ 元記事は「350ml」とのみ記し、「缶」とは書いていない（軽微な補足）",
-        "今日やること「「ほろよい〈紅白スパークリング」」→ 括弧が閉じておらず商品名の表記が誤っている（軽微）",
-        "本文「幅広い年代から支持されているロングセラーブランド」→ 元記事は「若年層をはじめ、幅広い年代」と書いており、若年層への言及が落ちている（軽微）"
-      ],
-      "readability": {
-        "avg_paragraph": 52.7,
-        "avg_sentence": 39.5,
-        "long_share": 0.125,
-        "max_paragraph": 101,
-        "paragraphs": 6,
-        "sentences": 8
-      },
-      "score": 62,
-      "source": "suntory",
-      "title": "「ほろよい〈紅白スパークリング〉」期間限定新発売",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T07:23:52.764464+00:00",
@@ -28571,6 +28523,46 @@
         "見出しの書き方: 記号: かっこの直後に「、」",
         "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
         "材料の無い章がある（日本では使えるか、まだ発表されていません）。表示では隠す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T17:22:21.944072+00:00",
+      "attempt": 1,
+      "id": "71a4bd7e4d0d0d89",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「ChatGPT 料金ページは2026年11月12日付で…公開しました」→ 元記事に11月12日という公開日は無く、差分の時刻は2026-11-11T17:21+00:00までである。公開日の創作",
+        "「既存記事では、ページの更新日を11月2日（協定世界時）としていました」→ 確認済みの文脈や元記事に11月2日の記述がなく、根拠が確認できない",
+        "「Proの特徴欄の「毎月最大500ドルのAPIクレジット」という1行は既存記事と同じです」→ 元記事の差分では「Up to $500 in monthly API credits」は追加行であり、既存の記述と同じとは言えず矛盾する",
+        "「前回の記事と同じです」（金額100・200・500ドル）→ 前回記事の金額は確認済みの文脈に概要の形でしか無く、同一である根拠が示されていない"
+      ],
+      "score": 50,
+      "source": "watch-chatgpt-pricing",
+      "title": "ChatGPTの料金・プランのページが更新（料金の記載が変更）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T17:23:33.786609+00:00",
+      "attempt": 1,
+      "id": "d6f0075961b79de9",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 62.8,
+        "avg_sentence": 35.3,
+        "long_share": 0.125,
+        "max_paragraph": 103,
+        "paragraphs": 9,
+        "sentences": 16
+      },
+      "score": 93,
+      "source": "google-gemini-blog",
+      "title": "Talk it through with Gemini, now on Apple CarPlay",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
