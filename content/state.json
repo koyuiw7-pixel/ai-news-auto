@@ -12362,6 +12362,14 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026103013"
     },
+    "8c30e3c30eb946ca": {
+      "at": "2026-11-11T01:08:11.633634+00:00",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "updated": "gemini-intelligence-japan-pixel-10",
+      "url": "https://blog.google/intl/ja-jp/products/devices-services/november-2026-pixel-drop/"
+    },
     "8c35f961e318ffbb": {
       "at": "2026-11-09T06:50:39.612666+00:00",
       "model": "gemini-3.8-flash",
@@ -15156,16 +15164,6 @@
       "skipped": true,
       "url": "https://www.digital.go.jp/speech/minister-261102-01"
     },
-    "b7dc23ae3cdc5826": {
-      "at": "2026-10-28T01:06:40.222980+00:00",
-      "breaking": true,
-      "major": true,
-      "model": "claude:sonnet",
-      "score": 88,
-      "section": "ai",
-      "slug": "google-genie-4-world-model",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-genie-4/"
-    },
     "b856ca6e2ad9b4f8": {
       "at": "2026-11-06T19:42:20.591222+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -17482,6 +17480,26 @@
       "score": 85,
       "slug": "child-allowance-faq-high-school-apply",
       "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
+      "writer": "deep_dive"
+    },
+    "deep-44b3301ddf": {
+      "angleOf": "pension-support-benefit-old-age-eligibility",
+      "at": "2026-11-11T00:48:53.499228+00:00",
+      "deepDive": "compare",
+      "mix": "money",
+      "score": 90,
+      "slug": "pension-support-old-age-amount-table",
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "writer": "deep_dive"
+    },
+    "deep-4a4ab405b4": {
+      "angleOf": "child-allowance-december-payment",
+      "at": "2026-11-11T00:54:34.906805+00:00",
+      "deepDive": "check",
+      "mix": "money",
+      "score": 88,
+      "slug": "child-allowance-eligibility-check-deep-4a4",
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
       "writer": "deep_dive"
     },
     "deep-5ab3ab69db": {
@@ -20064,55 +20082,9 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
-    },
-    "deep-44b3301ddf": {
-      "angleOf": "pension-support-benefit-old-age-eligibility",
-      "at": "2026-11-11T00:48:53.499228+00:00",
-      "deepDive": "compare",
-      "mix": "money",
-      "score": 90,
-      "slug": "pension-support-old-age-amount-table",
-      "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
-      "writer": "deep_dive"
-    },
-    "deep-4a4ab405b4": {
-      "angleOf": "child-allowance-december-payment",
-      "at": "2026-11-11T00:54:34.906805+00:00",
-      "deepDive": "check",
-      "mix": "money",
-      "score": 88,
-      "slug": "child-allowance-eligibility-check-deep-4a4",
-      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
-      "writer": "deep_dive"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T10:23:43.184835+00:00",
-      "attempt": 0,
-      "id": "51b2afab61a8edf5",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 指示文の見出しが本文に混ざった（# 今の原稿の数値）"
-      ],
-      "readability": {
-        "avg_paragraph": 89.9,
-        "avg_sentence": 54.9,
-        "long_share": 0.333,
-        "max_paragraph": 155,
-        "paragraphs": 11,
-        "sentences": 18
-      },
-      "score": 90,
-      "source": "nli-research",
-      "title": "フィリピンGDP(26年7-9月期) ～成長率は2.1％に鈍化、消費・投資の低迷続く",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（BSP）",
-        "読みやすさ: 文が長い（1文の平均 54.9字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-09T11:24:16.409119+00:00",
@@ -27426,6 +27398,18 @@
       "warnings": [
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T01:08:11.612761+00:00",
+      "attempt": 1,
+      "id": "8c30e3c30eb946ca",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "score": 88,
+      "source": "google-japan-blog-all",
+      "title": "11 月の Pixel Drop：Gemini で毎日のタスクをもっとスマートに。Google Pixel Tag も新発売"
     }
   ],
   "short_text_retry": {},
