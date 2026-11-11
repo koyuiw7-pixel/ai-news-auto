@@ -7073,6 +7073,19 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202611/video-327212.html"
     },
+    "3c984dfddb0e3137": {
+      "at": "2026-11-11T23:51:27.833923+00:00",
+      "breaking": true,
+      "costUsd": 0.1164,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "business",
+      "slug": "cgpi-october-2026-preliminary",
+      "url": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf"
+    },
     "3c9b16241cef56ed": {
       "at": "2026-11-06T19:21:43.556738+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
@@ -16005,16 +16018,6 @@
       "slug": "cultfit-codex-internal-apps",
       "url": "https://openai.com/index/cultfit-builds-with-codex"
     },
-    "c8c0435586ef694f": {
-      "at": "2026-10-28T23:47:53.171807+00:00",
-      "breaking": true,
-      "major": true,
-      "model": "claude:sonnet",
-      "score": 91,
-      "section": "ai",
-      "slug": "kddi-iret-ai-use-cases-113",
-      "url": "https://www.itmedia.co.jp/aiplus/article/2610/29/2000002685/"
-    },
     "c8cabbdd5caa174b": {
       "at": "2026-11-06T06:21:19.202405+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -20231,31 +20234,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:44:52.900503+00:00",
-      "attempt": 1,
-      "id": "f1bb2329c184d55c",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 123.0,
-        "avg_sentence": 61.5,
-        "long_share": 0.429,
-        "max_paragraph": 167,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": 82,
-      "source": "nli-research",
-      "title": "内閣府調査「13分野すべて上昇」をどう読むか～過去8年間と生活満足度の変化と分析から考える政策課題",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（WLB）",
-        "読みやすさ: 文が長い（1文の平均 61.5字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 123.0字・最長 167字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T07:45:14.584201+00:00",
@@ -27595,6 +27573,26 @@
         "初めて出たところで言い換えていない略語（QLED・EL・RGB）",
         "work_money（「仕事・お金にどう活かせる？」欄）が無い"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T23:51:27.750021+00:00",
+      "attempt": 1,
+      "id": "3c984dfddb0e3137",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 67.4,
+        "avg_sentence": 35.0,
+        "long_share": 0.0,
+        "max_paragraph": 126,
+        "paragraphs": 13,
+        "sentences": 25
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "企業物価指数 2026年10月速報（国内企業物価の前年比）"
     }
   ],
   "short_text_retry": {},
