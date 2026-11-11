@@ -169,9 +169,7 @@
       "url": "https://www.fortience.com/company/newsroom/20261111/"
     }
   },
-  "major_tries": {
-    "7ef3b2a69d793a00": 1
-  },
+  "major_tries": {},
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
     "02667be02cad0dd5": "2026-11-07T18:50:54.043233+00:00",
@@ -10963,16 +10961,6 @@
       "updated": "ntt-bbtower-iown-apn-storage-integration",
       "url": "http://www.ntt-west.co.jp/news/2610/261030a.html"
     },
-    "748766fd79db6652": {
-      "at": "2026-10-28T04:51:51.646213+00:00",
-      "breaking": true,
-      "major": true,
-      "model": "gemini-3.5-flash",
-      "score": 100,
-      "section": "ai",
-      "slug": "microsoft-ui-reactor-winui-csharp-mvu",
-      "url": "https://devblogs.microsoft.com/ifdef-windows/microsoft-ui-reactor-a-c-first-way-to-build-winui-apps/"
-    },
     "748ef40f3abf85ff": {
       "at": "2026-11-04T02:39:06.294893+00:00",
       "reason": "prefilter: お知らせ・統計の転載（listing）",
@@ -11644,6 +11632,19 @@
       "section": "ai",
       "slug": "nvidia-vera-cpu-agents-per-watt",
       "url": "https://blogs.nvidia.com/blog/vera-cpu-highest-throughput-fastest-agents/"
+    },
+    "7ef3b2a69d793a00": {
+      "at": "2026-11-11T04:52:02.129346+00:00",
+      "costUsd": 0.0966,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "google-new-domains-eat-fly-here",
+      "url": "https://blog.google/products-and-platforms/products/registry/new-google-domains-eat-fly-here/"
     },
     "7f04b62d80588514": {
       "at": "2026-10-29T06:52:46.939109+00:00",
@@ -20342,54 +20343,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-10T00:06:48.976463+00:00",
-      "attempt": 1,
-      "id": "573fbb2327fb588b",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「中長期債についても取得が60万3,703億円」、「万3,703億円、処分が58万4,178億円」、「投資ファンド持分の取得が170万5,906億円」、「る海外株式の買い越し額は1兆円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足"
-      ],
-      "readability": {
-        "avg_paragraph": 117.6,
-        "avg_sentence": 65.3,
-        "long_share": 0.556,
-        "max_paragraph": 147,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": null,
-      "source": "mof",
-      "title": "対外及び対内証券売買契約等の状況(月次・指定報告機関ベース)",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 65.3字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T00:07:36.260346+00:00",
-      "attempt": 1,
-      "id": "573fbb2327fb588b",
-      "kind": "broad",
-      "model": "strike:本文 2 文・要点 1 個",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.2,
-        "avg_sentence": 61.5,
-        "long_share": 0.667,
-        "max_paragraph": 116,
-        "paragraphs": 4,
-        "sentences": 6
-      },
-      "score": 82,
-      "source": "mof",
-      "title": "対外及び対内証券売買契約等の状況(月次・指定報告機関ベース)",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 61.5字・60字超の文が 67% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-10T00:07:48.284231+00:00",
       "attempt": 0,
@@ -27687,6 +27640,54 @@
       "warnings": [
         "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（UTC）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T04:51:37.569181+00:00",
+      "attempt": 1,
+      "id": "7ef3b2a69d793a00",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「Onfly（出張向けAIアシスタント）: onfly.fly」→ 元記事では「all on.fly」とあり、ドメインは on.fly。onfly.fly は誤り（固有名詞・ドメインの取り違え）"
+      ],
+      "readability": {
+        "avg_paragraph": 46.9,
+        "avg_sentence": 32.2,
+        "long_share": 0.125,
+        "max_paragraph": 91,
+        "paragraphs": 11,
+        "sentences": 16
+      },
+      "score": 72,
+      "source": "google-ai-blog",
+      "title": "Introducing 3 new domains: .eat, .fly, and .here",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T04:51:55.300024+00:00",
+      "attempt": 1,
+      "id": "7ef3b2a69d793a00",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 46.9,
+        "avg_sentence": 32.2,
+        "long_share": 0.125,
+        "max_paragraph": 91,
+        "paragraphs": 11,
+        "sentences": 16
+      },
+      "score": 88,
+      "source": "google-ai-blog",
+      "title": "Introducing 3 new domains: .eat, .fly, and .here",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
