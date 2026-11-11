@@ -1,0 +1,216 @@
+{
+  "slug": "ai-recycling-sorting-nvidia-inception",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.com/blog/ai-recycling-startups/",
+  "sourceName": "NVIDIA公式ブログ",
+  "title": "ごみ選別AIで処理量が約3倍へ　台湾AIRECOは運用コスト85%減を狙う",
+  "seoTitle": "リサイクル選別AIとは？NVIDIA採用4社の事例",
+  "threadsPost": "リサイクルや製造の現場に関わる人に、知っておいてほしい話です。\n\n台湾のAIRECOは、AIで廃プラの選別を自動化しています。\n来年の本稼働では、年間の処理量を1万8,000トンから4万8,000トンへ増やす計画です。\n\nごみの選別、人の目と機械の目、どちらが向くと思いますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "仕分けの仕事は、どこまでAIに任せてよいと考えますか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "ごみの分別、ふだんどこで迷うことが多いですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "廃プラスチックや古着の選別をAIとロボットが担う事例が、NVIDIAの公式ブログで4社分まとめて紹介されました。台湾のAIRECOは、来年（2027年）の本稼働ラインで年間の処理量を1万8,000トンから4万8,000トンへ増やし、運用コストを85%減らす計画です。日本での導入や料金はまだ発表されていません。",
+  "description": "NVIDIAが公式ブログで紹介した、ごみ選別AIの4社の事例。AIRECOは処理量を1万8,000トンから4万8,000トンへ、Greyparrotは検査時間を375時間から6時間へ短縮。数字と仕組みを整理します。",
+  "keywords": [
+    "リサイクル AI",
+    "ごみ選別 ロボット",
+    "NVIDIA Inception",
+    "Jetson Orin NX",
+    "AIRECO",
+    "EverestLabs",
+    "Greyparrot",
+    "reverse.fashion",
+    "廃プラスチック 選別",
+    "画像認識 リサイクル"
+  ],
+  "tags": [
+    "AI",
+    "ロボティクス",
+    "画像認識",
+    "NVIDIA",
+    "リサイクル",
+    "エッジAI"
+  ],
+  "highlights": [
+    "台湾AIRECOが来年（2027年）の本稼働で、年間処理量を1万8,000トンから4万8,000トンへ増やす計画",
+    "米EverestLabs AIのロボットは約150台が稼働し、累計で約40億個の物体を識別",
+    "Greyparrotは15トン分の廃棄物の確認を375時間から6時間に短縮したと説明"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "リサイクル事業者",
+    "take": "日本での提供は未発表です。自社の選別工程で手作業が多い部分を洗い出し、事例の数字と比べるとよいでしょう。",
+    "judgedAt": "2026-11-11T03:12:50.434196+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の影響は小さい話です。廃棄物処理、リサイクル、物流、アパレルの現場に関わる人は、各社の導入規模を参考にできます。"
+    ]
+  },
+  "body": "対象は、廃棄物処理やリサイクル、アパレルの現場に関わる事業者です。一般の消費者の暮らしや料金が、すぐ変わる話ではありません。日本での提供はまだ発表されていません。\n\nNVIDIA公式ブログは、同社のスタートアップ支援プログラム「NVIDIA Inception」に参加する4社の事例を紹介しました。いずれも、ベルトコンベヤー上の廃棄物をカメラで見分け、AIとロボットで選別する会社です。\n\nブログによると、世界で使われる素材のうち、再生・再利用品は7%未満です。都市ごみの発生量は年20億トンを超え、2050年にはほぼ倍増しうるとしています。\n\n## 廃プラを細かく分けて処理量を約3倍に　台湾AIRECO\n\nAIRECOは、画像認識AIでプラスチックを細かく分けます。細かく分けると、ボトルをまたボトルに戻す「クローズドループ」（使用済み品を同じ製品に再生する方式）に回せます。\n\n台南のリサイクル工場の試験ラインでは、NVIDIA Jetson Orin NX（機器の中で動くAI用モジュール）で推論（学習済みAIが答えを出す処理）を実行しています。ロボットアームの制御にも使っています。試験ラインの認識精度は95%超です。\n\n来年（2027年）予定の本稼働ラインでは、年間処理量を1万8,000トンから4万8,000トンに増やす計画です。運用コストは85%減らす狙いです。\n\n## ロボット約150台が稼働　米EverestLabs AI\n\nEverestLabs AIは、家庭ごみを仕分ける施設にカメラ誘導のロボットを導入しています。北米とオーストラリアで約150台が稼働中です。\n\nベルトは一定の速さで流れるため、素材が過ぎる前に動く必要があります。CEOのR. Paul Singh氏は「リアルタイムの勝負だ」と説明しています。推論はNVIDIA RTX GPUで、学習はデータセンター用GPUで行っています。\n\n同社の推計では、これまでに約40億個を識別し、約2万5,000トンをリサイクルしました。二酸化炭素の排出は約3万トン回避したとしています。現場の管理者向けに、エージェント型（自分で手順を進める）のAIツールも提供しています。\n\n## 375時間の確認が6時間に　英Greyparrot\n\nリサイクル工場では、1日に数万トンを処理しても、ベルト上の中身は1%未満の手作業サンプルで判断してきました。Greyparrotの「Analyzer」はベルトの上に設置し、素材とブランドを1つずつ識別します。毎秒4メートルのベルトで、粉じんや暗い環境でも動くとしています。\n\n300台超が20か国以上で稼働し、15トン分の確認は375時間から6時間になりました。利用施設は効率が10〜30%上がったと報告しています。包装大手Amcorでは、食品用プラスチックの回収率が12%上がりました。Coca-Cola、Colgate-Palmolive、Kenvueも包装の再生状況の計測に使っています。\n\n## 古着を毎秒3メートルで選別　独reverse.fashion\n\n欧州では年に約700万トンの古着が出ます。約4分の1は別に回収され、人の手で数百の区分に分けられています。\n\nベルリンのreverse.fashionは、種類・傷・色・サイズ・ブランド・季節などをAIで判定し、最も価値が高い区分に振り分けます。毎秒3メートルで流れる衣類は、12個を超える画像AIモデルを通ります。モデルはNVIDIA TensorRTで最適化し、Jetson上で動かします。\n\n共同創業者のKarsten Pufahl氏は、従来1週間かかった作業を1時間でこなせると見積もっています。欧州の施設に順次展開中です。\n\n編集部の見方では、4社に共通するのは、ベルトの速さに間に合う画像認識を機器の側で動かす点です。ただし、効果の数字は各社の報告や見積もりです。条件をそろえた比較ではありません。\n\n## まだ分からないこと\n\n- AIRECOの本稼働ラインの開始時期は「来年」としか発表されていません。\n- 4社の日本での提供や料金は発表されていません。",
+  "easy": "## ひとことで言うと\n\nごみや古着の仕分けを、カメラとAIとロボットで自動化する取り組みが広がっています。NVIDIAが、スタートアップ4社の事例を公式ブログで紹介しました。\n\n## 4社が何をしているか\n\n台湾のAIRECOは、廃プラスチックを細かく分けます。細かく分けるほど、ペットボトルをまたボトルに戻すような再利用がしやすくなります。来年（2027年）の本稼働ラインでは、年間の処理量を1万8,000トンから4万8,000トンに増やし、運用コストを85%減らす計画です。\n\n米国のEverestLabs AIは、仕分けラインのロボットを約150台稼働させています。英国のGreyparrotは、ベルト上のごみを撮影して中身を調べます。15トン分の確認が375時間から6時間になったと説明しています。\n\nドイツのreverse.fashionは古着を選別します。従来は1週間かかった作業を1時間でこなせると、共同創業者が見積もっています。\n\n日本での導入や料金はまだ発表されていません。",
+  "channel": "NVIDIA公式ブログ",
+  "channelId": "",
+  "channelSlug": "nvidia-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "How AI Helps Recyclers Turn Mixed Waste Into Reusable Material",
+  "publishedAt": "2026-11-11T03:00:20+00:00",
+  "generatedAt": "2026-11-11T03:12:50.434183+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/ai-recycling-sorting-nvidia-inception-054f113b.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "explainer",
+  "faq": [
+    {
+      "q": "Greyparrotの「Analyzer」は、どんな環境で使えますか？",
+      "a": "ベルトの上に取り付け、粉じんの多い場所や暗い場所でも識別できるとしています。毎秒4メートルで動くベルトに対応します。"
+    },
+    {
+      "q": "reverse.fashionのAIは古着の何を見分けますか？",
+      "a": "種類、傷、色、サイズ、ブランド、生地の構造、季節、スタイルを判定し、最も価値が高い区分に振り分けると説明しています。"
+    }
+  ],
+  "todayActions": [
+    "自社の選別工程で、手作業で確かめている部分を書き出す",
+    "Greyparrotの375時間から6時間は、自社の検査時間と比べてみる"
+  ],
+  "qualityScore": 92,
+  "sourcePublishedAt": "2026-11-11T03:00:20+00:00",
+  "detectedAt": "2026-11-11T03:10:57+00:00",
+  "speedMinutes": 16,
+  "layout": "noir",
+  "summaryLine": "台湾AIRECOが来年（2027年）の本稼働で、年間処理量を1万8,000トンから4万8,000トンへ増やす計画",
+  "sectionsPolishedAt": "2026-11-11T03:15:01+00:00",
+  "insight": [
+    {
+      "text": "再生素材が使われるのは、コストと品質が新品に対抗できるときだけ。ごみの品質はばらつき、選別は手作業に頼るため、AIで細かく選別する狙いがある。",
+      "source": "https://blogs.nvidia.com/blog/ai-recycling-startups/"
+    },
+    {
+      "text": "衣類は人の目が細かいため、reverse.fashionのAIは一般の廃棄物選別より高い解像度で動かす必要がある。小さな傷を見つけて、品質と価値を判断する。",
+      "source": "https://blogs.nvidia.com/blog/ai-recycling-startups/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自社の選別工程で、手作業で確かめている部分を書き出す",
+      "source": "https://blogs.nvidia.com/blog/ai-recycling-startups/",
+      "steps": [
+        "選別ラインで手作業の確認が入る場所を洗い出す",
+        "確認にかかる時間を工程ごとに記録する"
+      ]
+    },
+    {
+      "action": "Greyparrotの375時間から6時間は、自社の検査時間と比べてみる",
+      "source": "https://blogs.nvidia.com/blog/ai-recycling-startups/",
+      "steps": [
+        "自社で15トン分の検査にかかる時間を出す",
+        "公式ブログの375時間と6時間の数字と並べて比べる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "再生素材は、コストと品質が新品と競えなければ使われにくいと公式ブログは説明しています。ごみの品質はばらつき、選別は手作業に頼るため人手が見つかりにくいことも課題とされています。AIで細かく安く選別し、再生素材を商品として使いやすくする狙いです。",
+    "status": "background",
+    "source": "https://blogs.nvidia.com/blog/ai-recycling-startups/"
+  },
+  "worries": [
+    {
+      "q": "手作業の選別やサンプル検査は本当に減らせる？",
+      "a": "Greyparrotによると、工場では1%未満の手作業サンプルで判断してきましたが、Analyzerは通過する物を1つずつ素材とブランドで識別します。15トン分の確認は375時間から6時間になったと公式ブログは書いています。",
+      "source": "https://blogs.nvidia.com/blog/ai-recycling-startups/",
+      "action": "自社で、サンプル検査に1回かかる時間と量を書き出し、AIの報告と比べる準備をする"
+    },
+    {
+      "q": "ベルトが速くても、AIの判定は間に合う？",
+      "a": "EverestLabsのCEOは、ベルトは一定の速さで流れるため素材が過ぎる前に動く必要があると説明しています。Analyzerは毎秒4メートルまでのベルトで、粉じんや暗い環境でも動くとしています。",
+      "source": "https://blogs.nvidia.com/blog/ai-recycling-startups/",
+      "action": "導入を考える機器は、自社のベルトの速さと粉じん・照明の条件を照らして確かめる"
+    },
+    {
+      "q": "AIで選別すると、再生素材は本当に増えるの？",
+      "a": "AIRECOは、細かく選別すると使用済み品を同じ製品に戻すクローズドループに回せるとしています。試験ラインの認識精度は95%超で、来年予定の本稼働では年間処理量を1万8,000トンから4万8,000トンへ増やす計画です。",
+      "source": "https://blogs.nvidia.com/blog/ai-recycling-startups/",
+      "action": "自社の選別で、同じ製品に戻せる素材がどれだけ混ざっているか数える"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "AI選別の効果の数字を、判断材料にできる？",
+      "situation": "自社の選別で手作業が多く、導入を考えている",
+      "recommend": "数字は各社の報告として見て、急がず比べる",
+      "reason": "EverestLabsの約40億個の識別などは同社の推計で、Greyparrotの効率10〜30%向上は施設からの報告です。ページには条件をそろえた比較がないため、自社の量で確かめる必要があります。",
+      "source": "https://blogs.nvidia.com/blog/ai-recycling-startups/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "手作業の選別と、衣類の細かさという壁",
+    "cause": "なぜ再生素材が増えにくいのか",
+    "steps": "今日は手作業の時間を数えてみる",
+    "worries": "手作業の選別は本当に減らせる？",
+    "guide": "導入を検討するときの見方"
+  },
+  "depthAt": "2026-11-11T03:15:36+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/ai-recycling-sorting-nvidia-inception-fig1-f11c1d9f.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "photo",
+      "credit": "NVIDIA",
+      "sourceUrl": "https://blogs.nvidia.com/blog/ai-recycling-startups/",
+      "original": "https://blogs.nvidia.com/wp-content/uploads/2026/11/QC.png"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/ai-recycling-sorting-nvidia-inception-fig2-43346a61.jpg",
+      "width": 1200,
+      "height": 800,
+      "kind": "photo",
+      "credit": "NVIDIA",
+      "sourceUrl": "https://blogs.nvidia.com/blog/ai-recycling-startups/",
+      "original": "https://blogs.nvidia.com/wp-content/uploads/2026/11/everestlabs-robot-pic.jpeg"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA公式ブログ",
+    "sourceUrl": "https://blogs.nvidia.com/blog/ai-recycling-startups/",
+    "original": "https://blogs.nvidia.com/wp-content/uploads/2026/11/recycling-company-grid-1920x1080-1-1680x945.png",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-11T03:17:35+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.512,
+    "y": 0.528,
+    "box": [
+      0.025,
+      0.056,
+      1.0,
+      1.0
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/ai-recycling-sorting-nvidia-inception-054f113b.jpg"
+  }
+}

@@ -4837,6 +4837,12 @@
       "slug": "meiji-meltykiss-caramel-2026-release",
       "url": "https://www.meiji.co.jp/corporate/pressrelease/2026/10_09/index.html?link=rss"
     },
+    "13c87e920b1767ec": {
+      "at": "2026-11-11T03:12:01.847238+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（部会）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu2/shiryo/mext_00043.html"
+    },
     "13cfed5bd682c6ac": {
       "at": "2026-11-06T04:01:18.492465+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（の開催）",
@@ -5435,6 +5441,12 @@
       "reason": "prefilter: お知らせ・統計の転載（listing）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001303.html"
+    },
+    "1d1c7f92cbfd0da2": {
+      "at": "2026-11-11T03:12:01.847278+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77345.html"
     },
     "1d4e78b6d168bccd": {
       "at": "2026-10-28T21:54:21.903385+00:00",
@@ -13125,14 +13137,6 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/digital_shokadai/02ryutsu02_04000610.html"
     },
-    "95e7279c4133d4f8": {
-      "at": "2026-10-28T03:02:05.151993+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "ntt-docomo-business-ancar-agent",
-      "url": "https://www.ntt.com/about-us/press-releases/news/article/2026/1028.html"
-    },
     "95fb99d3788133d4": {
       "at": "2026-11-06T00:08:55.264240+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -14025,6 +14029,18 @@
       "section": "lifestyle",
       "slug": "tges-macnica-humanoid-plant-inspection",
       "url": "https://www.tokyo-gas.co.jp/news/press/20261105-05.html"
+    },
+    "a3f9078912ac05de": {
+      "at": "2026-11-11T03:13:00.950365+00:00",
+      "costUsd": 0.0017,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "ai-recycling-sorting-nvidia-inception",
+      "url": "https://blogs.nvidia.com/blog/ai-recycling-startups/"
     },
     "a410e9f8c0f04381": {
       "at": "2026-11-11T02:04:56.461399+00:00",
@@ -16034,6 +16050,12 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77043.html"
     },
+    "c3bc8a132c531475": {
+      "at": "2026-11-11T03:11:44.318340+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ダウンロード）",
+      "skipped": true,
+      "url": "https://blog.ja.playstation.com/2026/11/11/20261111-monthly-ps-store-ranking-s/"
+    },
     "c3d9c0114f0e103f": {
       "at": "2026-11-02T17:37:13.893331+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -18010,6 +18032,14 @@
       "skipped": true,
       "url": "https://elevenlabs.io/blog/elevenagents-contact-center-integrations"
     },
+    "e2a1a6bbf0a516cc": {
+      "at": "2026-11-11T03:12:01.837308+00:00",
+      "costUsd": 0.0044,
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "ブランド発表会でのスピーチと、2003年から2016年までのブランド「サイオン」の経緯が中心です。3つのモビリティの名称・価格・発売時期・日本での提供は元の文章から確認できず、読者が今すぐ使う・買う情報がありません。",
+      "skipped": true,
+      "url": "https://toyotatimes.jp/toyota_news/scion_by_toyota/001.html?padid=ag478_from_newsroom"
+    },
     "e2c8a0e90064bbd6": {
       "at": "2026-10-28T04:22:33.307854+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -18270,14 +18300,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（億米ドル）",
       "skipped": true,
       "url": "https://news.samsung.com/jp/samsung-to-invest-usd-1-billion-in-ai-infrastructure-company-helix2610?utm_source=rss&utm_medium=direct"
-    },
-    "e6b690b26d8be60c": {
-      "at": "2026-10-28T03:02:34.788222+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "science",
-      "slug": "mosquito-mating-gene-discovery",
-      "url": "https://www.jst.go.jp/pr/announce/20261028/index.html"
     },
     "e6bc890b8e0378b5": {
       "at": "2026-11-03T08:40:23.765520+00:00",
@@ -18907,6 +18929,17 @@
       "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102712"
+    },
+    "f1f7e1ffb2ded8c5": {
+      "at": "2026-11-11T03:14:50.167145+00:00",
+      "costUsd": 0.0094,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.1-flash-lite",
+      "score": 95,
+      "section": "sports",
+      "slug": "u21-japan-abema-live-streaming",
+      "url": "https://www.jfa.jp/news/00037012/"
     },
     "f1fb885281fc7130": {
       "at": "2026-11-06T04:23:30.736662+00:00",
@@ -20362,102 +20395,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-09T22:24:35.724205+00:00",
-      "attempt": 1,
-      "id": "f37b680abcf7adcb",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "本文「OpenAI公式ブログは11月9日、…」→ 元記事・確認済みの文脈に公開日の記載がなく、11月9日は創作された日付である",
-        "タイトル「停止に加え一時停止も対象に」→ 「対象に」は後から追加されたという変更の主張だが、元記事にはそうした変更の記述がない（一時停止を含むことは元記事にある）",
-        "本文「既存の記事と比べると…新たに示されています」→ 確認済みの文脈の要点は停止のみを挙げており、一時停止が新情報だとする比較の根拠が元記事にない",
-        "本文「停止の対象は一時停止も含む」の見出し→ 元記事は停止と一時停止を並べて記述しているだけで、一時停止が新たに対象になったとは書かれていない",
-        "リード「フロンティアモデルの研究作業にはすでに展開」→ 元記事の展開状況（全フロンティアモデル研究ワークロードに展開済み）と一致し問題なし"
-      ],
-      "score": 72,
-      "source": "openai-news",
-      "title": "Control Room: A central system to track and stop model workloads across our rese"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T23:18:02.189310+00:00",
-      "attempt": 1,
-      "id": "9d39d63def351c9c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトル「植物の葉はなぜ枯れないのか」→ 元記事は葉緑体レベルの機能不全葉緑体の除去を扱っており、葉が枯れないことや「なぜ枯れないか」への答えは示していない（葉が枯れやすくなるのはphot2変異株の注釈のみ）。言い過ぎ。",
-        "「一部の葉緑体が『盾』のように…」は元記事の「可能性がある」という推測を、タイトルと本文の一部で断定に近く扱っている。",
-        "「植物の葉は…健全性が保たれている」（かんたん版）の『葉全体の健全性』は元記事の『葉緑体集団全体の健全性』とずれており、葉全体の話として書くのは言い換えの域を超える。"
-      ],
-      "readability": {
-        "avg_paragraph": 132.2,
-        "avg_sentence": 66.1,
-        "long_share": 0.583,
-        "max_paragraph": 171,
-        "paragraphs": 6,
-        "sentences": 12
-      },
-      "score": 78,
-      "source": "riken",
-      "title": "機能不全葉緑体の除去が光ストレス応答を支える",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FLIM）",
-        "読みやすさ: 文が長い（1文の平均 66.1字・60字超の文が 58% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 132.2字・最長 171字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T23:18:20.524327+00:00",
-      "attempt": 1,
-      "id": "9d39d63def351c9c",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 132.2,
-        "avg_sentence": 66.1,
-        "long_share": 0.583,
-        "max_paragraph": 171,
-        "paragraphs": 6,
-        "sentences": 12
-      },
-      "score": 88,
-      "source": "riken",
-      "title": "機能不全葉緑体の除去が光ストレス応答を支える",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直前に「、」",
-        "初めて出たところで言い換えていない略語（FLIM）",
-        "読みやすさ: 文が長い（1文の平均 66.1字・60字超の文が 58% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T23:18:37.937857+00:00",
-      "attempt": 0,
-      "id": "9d39d63def351c9c",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 104.8,
-        "avg_sentence": 39.9,
-        "long_share": 0.048,
-        "max_paragraph": 140,
-        "paragraphs": 8,
-        "sentences": 21
-      },
-      "score": 92,
-      "source": "riken",
-      "title": "機能不全葉緑体の除去が光ストレス応答を支える",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直前に「、」",
-        "初めて出たところで言い換えていない略語（FLIM）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-09T23:42:03.032469+00:00",
@@ -27711,6 +27648,102 @@
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（JPCERT・CC・CVE）",
         "読みやすさ: 文が長い（1文の平均 52.0字・60字超の文が 7% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T03:12:59.278846+00:00",
+      "attempt": 1,
+      "id": "a3f9078912ac05de",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 97.9,
+        "avg_sentence": 37.7,
+        "long_share": 0.077,
+        "max_paragraph": 159,
+        "paragraphs": 15,
+        "sentences": 39
+      },
+      "score": 92,
+      "source": "nvidia-blog",
+      "title": "How AI Helps Recyclers Turn Mixed Waste Into Reusable Material",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（AIRECO・RTX）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T03:14:23.899481+00:00",
+      "attempt": 1,
+      "id": "f1f7e1ffb2ded8c5",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "リード「視聴に特別な手続きは必要なく、開始時間に合わせてABEMAの配信ページにアクセスすれば観戦できます」→ 元記事は無料生配信と発表しているだけで、視聴手続きや配信ページへのアクセス方法は書かれていないため、元記事に無い記述です。"
+      ],
+      "readability": {
+        "avg_paragraph": 80.5,
+        "avg_sentence": 53.7,
+        "long_share": 0.333,
+        "max_paragraph": 123,
+        "paragraphs": 4,
+        "sentences": 6
+      },
+      "score": 85,
+      "source": "jfa",
+      "title": "U-21日本代表 11月海外遠征2試合の配信が決定 #jfa #daihyo",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JFA・ABEMA）",
+        "読みやすさ: 文が長い（1文の平均 53.7字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T03:14:38.897614+00:00",
+      "attempt": 1,
+      "id": "f1f7e1ffb2ded8c5",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 80.5,
+        "avg_sentence": 53.7,
+        "long_share": 0.333,
+        "max_paragraph": 123,
+        "paragraphs": 4,
+        "sentences": 6
+      },
+      "score": 97,
+      "source": "jfa",
+      "title": "U-21日本代表 11月海外遠征2試合の配信が決定 #jfa #daihyo",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JFA・ABEMA）",
+        "読みやすさ: 文が長い（1文の平均 53.7字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T03:14:50.143463+00:00",
+      "attempt": 0,
+      "id": "f1f7e1ffb2ded8c5",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.0,
+        "avg_sentence": 41.0,
+        "long_share": 0.0,
+        "max_paragraph": 123,
+        "paragraphs": 4,
+        "sentences": 8
+      },
+      "score": 95,
+      "source": "jfa",
+      "title": "U-21日本代表 11月海外遠征2試合の配信が決定 #jfa #daihyo",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JFA・ABEMA）"
       ]
     }
   ],
