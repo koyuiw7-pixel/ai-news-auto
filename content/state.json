@@ -98,6 +98,14 @@
       "tries": 1,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87284?site=nli"
     },
+    "bad6ee94c35695d3": {
+      "first": "2026-11-11T16:23:24.912257+00:00",
+      "next": "2026-11-11T19:23:24.912257+00:00",
+      "reason": "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
+      "title": "Try Tabletop: Customizable, collaborative spaces for groups to plan, play and do more together.",
+      "tries": 1,
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"
+    },
     "bf1537f4a0ba0146": {
       "first": "2026-11-10T07:18:16.939386+00:00",
       "next": "2026-11-10T10:18:16.939386+00:00",
@@ -11788,16 +11796,6 @@
       "skipped": true,
       "url": "https://www.jfa.jp/news/00036962/"
     },
-    "7d55bf793aaf58cc": {
-      "at": "2026-10-28T16:17:02.434065+00:00",
-      "breaking": true,
-      "major": true,
-      "model": "claude:sonnet",
-      "score": 80,
-      "section": "ai",
-      "slug": "reddit-for-you-following-feed",
-      "url": "https://techcrunch.com/2026/10/28/reddit-is-the-latest-platform-to-embrace-the-for-you-feed/"
-    },
     "7d77be3bcb44aee6": {
       "at": "2026-11-05T00:22:59.585012+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（議事）",
@@ -12218,14 +12216,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326974.html"
-    },
-    "83548c83d8b70a3b": {
-      "at": "2026-10-28T16:06:41.329190+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "tech-gadget",
-      "slug": "sony-spatial-reality-display-elf-mn1",
-      "url": "https://www.sony.jp/CorporateCruise/Press/202610/26-1028/?s_tc=jp_app_msa_spatial-reality-display_bravia_home-theater_261028_1"
     },
     "836b2380461daad1": {
       "at": "2026-11-10T05:23:15.398833+00:00",
@@ -14668,6 +14658,13 @@
       "section": "sports",
       "slug": "amputee-soccer-world-cup-2026-japan",
       "url": "https://www.jfa.jp/news/00037004/"
+    },
+    "a853227795cc2abe": {
+      "at": "2026-11-11T16:22:22.553664+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 要点「GoとPlusもルピア表示になり」→ 差分にはGoとPlusの変更前の表示が示されておらず、ドルからルピアに変わったとは元記事から言えない（本文の「ドル建ての金額が変わったかは判断できない」とも食い違う）; 本文「GoとPlusの月額も…それぞれ75,000ルピアと349,000ルピアと表示」→ 現ページの表示として正しいが、変更前の扱いについては元記事に",
+      "skipped": true,
+      "url": "https://openai.com/chatgpt/pricing/#entry-2026-11-12-02f61b"
     },
     "a85b9afbcf2d5798": {
       "at": "2026-11-11T06:00:26.490751+00:00",
@@ -21225,59 +21222,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-10T07:21:59.265522+00:00",
-      "attempt": 1,
-      "id": "f3b074b5adb25794",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "「jGrantsを運営する」の主語が環境共創イニシアチブ（SII）になっている → jGrantsの運営元は元記事にも確認済み情報にも無く、執行団体の運営とするのは固有名詞の取り違え",
-        "「12月24日17時まで申請可能です」（かんたん版の判定欄） → 確認済み公式情報では2026年12月24日23:59締切。17時は元記事で11月30日の表記に付いた「17時必着」で、取り違え",
-        "「業務用建築物の所有者や管理者が対象です」（よくある質問） → 元記事・確認済み情報に対象者の記載が無く、創作の対象者条件",
-        "タイトルの「補助金の公募期間を12月24日まで延長」は元記事と一致するが、本文の「当初の11月30日」は元記事の日付構成が曖昧なため、締切時刻の記述と合わせて読者に誤解を与える",
-        "「最大10億円の補助」は上限額の記載で、個別事業の補助額を保証するかのような書き方になっている"
-      ],
-      "readability": {
-        "avg_paragraph": 92.0,
-        "avg_sentence": 55.2,
-        "long_share": 0.2,
-        "max_paragraph": 124,
-        "paragraphs": 6,
-        "sentences": 10
-      },
-      "score": 55,
-      "source": "env-press",
-      "title": "【公募期間延長】令和８年度予算「業務用建築物の脱炭素改修加速化事業」の公募開始について",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SII）",
-        "読みやすさ: 文が長い（1文の平均 55.2字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:22:42.729806+00:00",
-      "attempt": 1,
-      "id": "f3b074b5adb25794",
-      "kind": "broad",
-      "model": "strike:本文 2 文・かんたん版 1 文・判定カード",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.6,
-        "avg_sentence": 47.0,
-        "long_share": 0.111,
-        "max_paragraph": 124,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 92,
-      "source": "env-press",
-      "title": "【公募期間延長】令和８年度予算「業務用建築物の脱炭素改修加速化事業」の公募開始について",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 47.0字・60字超の文が 11% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T07:22:58.672146+00:00",
@@ -28596,6 +28540,49 @@
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（VL）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T16:22:22.553636+00:00",
+      "attempt": 1,
+      "id": "a853227795cc2abe",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "要点「GoとPlusもルピア表示になり」→ 差分にはGoとPlusの変更前の表示が示されておらず、ドルからルピアに変わったとは元記事から言えない（本文の「ドル建ての金額が変わったかは判断できない」とも食い違う）",
+        "本文「GoとPlusの月額も…それぞれ75,000ルピアと349,000ルピアと表示」→ 現ページの表示として正しいが、変更前の扱いについては元記事に根拠がない",
+        "かんたん版「毎月のアプリ向け利用枠」→ 元記事の「build your own apps and agents」を言い換えたもので、ほぼ妥当だが「アプリ向け」は限定的な訳語"
+      ],
+      "score": 82,
+      "source": "watch-chatgpt-pricing",
+      "title": "ChatGPTの料金・プランのページが更新（料金の記載が変更）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T16:23:05.461796+00:00",
+      "attempt": 1,
+      "id": "bad6ee94c35695d3",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 55.3,
+        "avg_sentence": 35.2,
+        "long_share": 0.091,
+        "max_paragraph": 89,
+        "paragraphs": 7,
+        "sentences": 11
+      },
+      "score": null,
+      "source": "google-ai-blog",
+      "title": "Try Tabletop: Customizable, collaborative spaces for groups to plan, play and do",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "材料の無い章がある（日本では使えるか、まだ発表されていません）。表示では隠す"
       ]
     }
   ],
