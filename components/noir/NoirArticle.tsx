@@ -7,7 +7,7 @@ import ImageCredit from "@/components/ImageCredit";
 import NoirChrome from "@/components/noir/NoirChrome";
 import NoirFonts, { noirFontHref } from "@/components/noir/NoirFonts";
 import { announcedAt, formatDate, type ArticleSummary, type FullArticle } from "@/lib/articles";
-import { displayGlyphs, noirAiLabel, noirKeyFigure, splitEmphasis, type NoirCover } from "@/lib/noir";
+import { NOIR_AI_TAG, displayGlyphs, noirKeyFigure, splitEmphasis, type NoirCover } from "@/lib/noir";
 import { stripListNumber } from "@/lib/list-number";
 import { bylineDates } from "@/lib/byline";
 import { siteConfig } from "@/site.config";
@@ -327,10 +327,11 @@ function CoverFigure({ article, title, cover, photo, panel, focus, creditOf, aiS
                   className={panel ? "object-contain" : "object-cover"}
                   style={panel ? undefined : { objectPosition: focus ? `${Math.round(focus.x * 100)}% ${Math.round(focus.y * 100)}%` : "50% 40%" }}
                 />
-                {/* AI のイメージには、写真の上に必ず札を出す（本物の写真と受け取られないように。台帳 I4） */}
+                {/* AI のイメージには、写真の上に必ず札を出す（本物の写真と受け取られないように。台帳 I4）。
+                    2026-11-11 オーナー承認: 札は小さく右下の角に「イメージ（AI生成）」だけ。発表の札・長い説明は写真の下の注記（ImageCredit） */}
                 {aiShown && (
-                  <span className="nr-ailabel" data-allow-small="">
-                    {cover?.kind === "ai" ? noirAiLabel(article) : "画像はイメージ（AI生成）"}
+                  <span className="nr-ailabel ai-tag" data-ai-tag="" data-allow-small="">
+                    {NOIR_AI_TAG}
                   </span>
                 )}
               </div>

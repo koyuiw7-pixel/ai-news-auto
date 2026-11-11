@@ -60,6 +60,12 @@ export const NOIR_AI_LABEL = "画像はイメージ（AI生成）";
 /** 公式の画像が無い新製品・サービスの発表で、AI が製品（の種類）を描いた表紙の札（2026-11-07 オーナー） */
 export const NOIR_AI_LAUNCH_LABEL = "公式画像がないためイメージ（AI生成）";
 
+/**
+ * 写真の上に重ねる短い札（2026-11-11 オーナー承認・台帳 I4 の見た目を小さく）。写真の右下の角に 12px で「イメージ（AI生成）」。
+ * 長い説明（発表の札「公式画像がないためイメージ（AI生成）」・「記事で紹介している製品・人物…ではありません」）は写真のすぐ下の注記（components/ImageCredit.tsx）に残す
+ */
+export const NOIR_AI_TAG = "イメージ（AI生成）";
+
 /** 表紙の AI のイメージの札の文（coverCredit.launch なら発表の札） */
 export function noirAiLabel(article: Pick<Article, "coverCredit">): string {
   return article.coverCredit?.launch ? NOIR_AI_LAUNCH_LABEL : NOIR_AI_LABEL;

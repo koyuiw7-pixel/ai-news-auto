@@ -35,7 +35,7 @@ function ytWebp(src: string): string {
 /** 一覧の小さい写真にも出す「AI生成」の札（2026-11-04 オーナー承認・台帳 I4。記事ページ・トップの大きな写真は ImageCredit） */
 function AiMark() {
   return (
-    <span data-ai-mark="" className="pointer-events-none absolute bottom-1 left-1 z-[1] rounded-sm bg-black/70 px-1 text-badge font-bold leading-[1.5] text-white">
+    <span data-ai-mark="" data-allow-small="" className="ai-tag ai-tag--thumb">
       AI生成
     </span>
   );

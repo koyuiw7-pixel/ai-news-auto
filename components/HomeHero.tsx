@@ -76,9 +76,10 @@ export default function HomeHero({ lead, popular = false }: { lead: ArticleSumma
           </span>
         )}
         {/* スマホは写真を小さくし、AI の札は写真の上に短く重ねる（下の2行の注記は PC だけ。最初の画面に見出しを並べるため。2026-11-11 読者目線レビュー 2位） */}
+        {/* 2026-11-11 オーナー承認: 小さく静かに右下の角（app/globals.css の .ai-tag）。発表の札・長い説明は PC の写真の下の注記 */}
         {!credit && aiCredit && (
-          <span data-allow-small="" className="absolute left-2 top-2 rounded-sm bg-ink/85 px-1.5 py-[1px] text-badge font-bold text-paper sm:hidden">
-            {aiCredit.launch ? "AIで描いたイメージ" : "AI生成のイメージ"}
+          <span data-allow-small="" data-ai-tag="" className="ai-tag sm:hidden">
+            イメージ（AI生成）
           </span>
         )}
       </Link>

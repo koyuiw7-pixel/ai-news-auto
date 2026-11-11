@@ -296,19 +296,10 @@ html:has(.noir) body {
 .noir .nr-cover figcaption p {
   font-size: 13px;
 }
-/* AI のイメージの札（台帳 I4）。写真の色に左右されないよう、札そのものに暗い地を敷く（白い文字と 4.5:1 以上） */
+/* AI のイメージの札（台帳 I4）。2026-11-11 オーナー承認: 小さく静かに、右下の角（顔や主役にかからない）。
+   見た目は app/globals.css の .ai-tag（どの写真の上でも白い文字と 4.5:1 以上）。ここでは書体だけノワールに合わせる */
 .noir .nr-ailabel {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
-  font: 700 12px/1.5 var(--nr-body);
-  letter-spacing: 0.04em;
-  color: #ffffff;
-  background: rgb(10 11 13 / 0.72);
-  border: 1px solid rgb(255 255 255 / 0.28);
-  padding: 3px 8px;
-  border-radius: 3px;
+  font-family: var(--nr-body);
 }
 
 .noir .nr-pr {

@@ -78,7 +78,9 @@ test('[W36] 表紙はいつも写真（公式の写真 → AI のイメージ �
   assert.ok(page.indexOf('<h1>{title}</h1>') < page.indexOf('className={`nr-cover'), '写真は題名の下');
   assert.match(page, /\{photo && \(\s*<figure className=\{`nr-cover/);
   // AI のイメージには写真の上に札（台帳 I4）。出典・AI の注記は写真の下（ImageCredit）
-  assert.match(page, /\{aiShown && \(\s*<span className="nr-ailabel"[^>]*>\s*\{cover\?\.kind === "ai" \? noirAiLabel\(article\)/);
+  // 2026-11-11 オーナー承認: 札は小さく右下の角に「イメージ（AI生成）」。発表の札・長い説明は写真の下の注記（ImageCredit）
+  assert.match(page, /\{aiShown && \(\s*<span className="nr-ailabel ai-tag"[^>]*>\s*\{NOIR_AI_TAG\}/);
+  assert.equal(noir.NOIR_AI_TAG, 'イメージ（AI生成）');
   assert.match(page, /<ImageCredit credit=\{creditOf\} \/>/);
   assert.doesNotMatch(page, /nr-blur/);
   const css = read('components/noir/noir.css');

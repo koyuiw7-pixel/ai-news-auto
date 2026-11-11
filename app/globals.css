@@ -1239,3 +1239,30 @@ mark {
     padding: 12px 14px 8px;
   }
 }
+
+/* AI のイメージの札（台帳 I4。2026-11-11 オーナー承認で小さく）。写真の上に重ねる短い札は全部これ。
+   12px（文字の見やすさの点検 W9 の札の下限）・太さ 600・右下の角。地は 62% の黒で、真っ白な写真の上でも白い文字と約 6:1 */
+.ai-tag {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  z-index: 2;
+  pointer-events: none;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: #ffffff;
+  background: rgb(0 0 0 / 0.62);
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+/* 一覧の小さな写真（幅 80〜120px）は左下の角に寄せ、余白を詰める */
+.ai-tag--thumb {
+  right: auto;
+  left: 3px;
+  bottom: 3px;
+  padding: 0 4px;
+}

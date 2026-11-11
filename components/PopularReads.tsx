@@ -72,7 +72,7 @@ function SmallPhoto({ article }: { article: ArticleSummary }) {
             style={photo.pos ? { objectPosition: photo.pos } : undefined}
           />
           {photo.ai && (
-            <span data-ai-mark="" className="pointer-events-none absolute bottom-0.5 left-0.5 rounded-sm bg-black/70 px-1 text-badge font-bold leading-[1.5] text-white">
+            <span data-ai-mark="" data-allow-small="" className="ai-tag ai-tag--thumb">
               AI生成
             </span>
           )}
