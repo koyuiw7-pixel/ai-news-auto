@@ -62,15 +62,14 @@
   "videoTitle": "労働者負担は一般の事業で5/1,000、冬のボーナスから引かれる雇用保険料の料率",
   "publishedAt": "2026-11-11T21:14:12.905381+00:00",
   "generatedAt": "2026-11-11T21:14:59.851578+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/employment-insurance-rate-fy2026-figure-64c15718.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "faq": [],
   "todayActions": [
-    "冬のボーナスの明細で、雇用保険料の欄の率が令和8年度の一般の事業の5/1,000かを見る",
-    "勤め先の事業の種類が分からないときは、担当に区分を聞いておく",
-    "前年度の率のまま計算していないか、令和7年度の表と見比べて確かめる"
+    "冬のボーナスの明細で、雇用保険料の率が令和8年度の一般の事業5/1,000かを見る",
+    "勤め先の担当に事業の種類を聞き、表のどの区分に当たるか確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -102,5 +101,110 @@
   "detectedAt": "2026-11-11T21:15:06+00:00",
   "searchTitle": "雇用保険料の労働者負担はいくら？　一般の事業は5/1,000",
   "layout": "noir",
-  "summaryLine": "冬のボーナスの雇用保険料、一般の事業の労働者負担は令和8年度に5/1,000へ下がった"
+  "summaryLine": "冬のボーナスの雇用保険料、一般の事業の労働者負担は令和8年度に5/1,000へ下がった",
+  "insight": [
+    {
+      "text": "「一般の事業の率が適用されます」と注記されている事業は、園芸サービス、牛馬の育成、酪農、養鶏、養豚、内水面養殖と、船員を雇用する事業です。",
+      "source": "https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20250213.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "神奈川労働局 労働保険徴収課",
+      "url": "https://jsite.mhlw.go.jp/kanagawa-roudoukyoku/hourei_seido_tetsuzuki/roudou_hoken/hourei_seido/2024_00008.html",
+      "source": "https://jsite.mhlw.go.jp/kanagawa-roudoukyoku/hourei_seido_tetsuzuki/roudou_hoken/hourei_seido/2024_00008.html",
+      "howTo": [
+        "神奈川労働局",
+        "各種法令・制度・手続き",
+        "労働保険関係",
+        "労働保険の料率について"
+      ],
+      "phone": "045-650-2803",
+      "note": "電話は適用係の番号で、事務組合係は045-650-2866です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "冬のボーナスの明細で、雇用保険料の率が令和8年度の一般の事業5/1,000かを見る",
+      "source": "https://jsite.mhlw.go.jp/kanagawa-roudoukyoku/hourei_seido_tetsuzuki/roudou_hoken/hourei_seido/2024_00008.html",
+      "steps": [
+        "明細の雇用保険料の欄の率を見る",
+        "5/1,000なら令和8年度の一般の事業の率",
+        "5.5/1,000なら令和7年度の率のまま"
+      ]
+    },
+    {
+      "action": "勤め先の担当に事業の種類を聞き、表のどの区分に当たるか確かめる",
+      "source": "https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20250213.html",
+      "steps": [
+        "勤め先の担当に事業の種類を聞く",
+        "一般、農林水産・清酒製造、建設のどれか確かめる",
+        "園芸サービスなどの業種に当たるかも聞く"
+      ],
+      "url": "https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20250213.html"
+    }
+  ],
+  "cause": {
+    "text": "雇用保険料率は年度ごとに定められています。令和8年度の表では一般の事業の労働者負担が5/1,000で、令和7年度の5.5/1,000より下がっています。",
+    "status": "background",
+    "source": "https://jsite.mhlw.go.jp/kanagawa-roudoukyoku/hourei_seido_tetsuzuki/roudou_hoken/hourei_seido/2024_00008.html"
+  },
+  "worries": [
+    {
+      "q": "冬のボーナスの明細の率、去年のままになっていない？",
+      "a": "令和8年度の一般の事業の労働者負担は5/1,000です。令和7年度の表では同じ区分が5.5/1,000と載っています。",
+      "source": "https://jsite.mhlw.go.jp/kanagawa-roudoukyoku/hourei_seido_tetsuzuki/roudou_hoken/hourei_seido/2024_00008.html",
+      "action": "明細の雇用保険料の率が5/1,000かを見て、5.5/1,000なら勤め先の担当に確かめる"
+    },
+    {
+      "q": "農林水産や建設の仕事だと、率はいくつになる？",
+      "a": "令和8年度の労働者負担は、農林水産・清酒製造の事業と建設の事業がどちらも6/1,000です。一般の事業は5/1,000です。",
+      "source": "https://jsite.mhlw.go.jp/kanagawa-roudoukyoku/hourei_seido_tetsuzuki/roudou_hoken/hourei_seido/2024_00008.html",
+      "action": "勤め先の事業の種類を担当に聞き、表のどの区分か確かめる"
+    },
+    {
+      "q": "園芸や畜産、船員の仕事も区分は変わる？",
+      "a": "令和7年度の案内では、園芸サービス、牛馬の育成、酪農、養鶏、養豚、内水面養殖、船員を雇用する事業には一般の事業の率が適用されると注記されています。",
+      "source": "https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20250213.html",
+      "action": "自分の仕事がこの業種に当たるか、勤め先の担当に確かめる"
+    },
+    {
+      "q": "料率の表は、どこで見られる？",
+      "a": "神奈川労働局の料率ページには、令和8年度と令和7年度の表が並んで載っています。",
+      "source": "https://jsite.mhlw.go.jp/kanagawa-roudoukyoku/hourei_seido_tetsuzuki/roudou_hoken/hourei_seido/2024_00008.html",
+      "action": "神奈川労働局の料率ページで令和8年度の表を開き、明細の率と見比べる"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "一般の率が当てはまる業種もある",
+    "cause": "令和8年度に率が下がった中身",
+    "steps": "明細で確かめる三つのこと",
+    "desk": "料率を確かめる公式の窓口",
+    "worries": "明細の率は合っている？業種は？"
+  },
+  "depthAt": "2026-11-11T21:41:16+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "ボーナスの雇用保険料、一般の事業は労働者負担5/1,000に",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-11T21:42:26+00:00"
+  },
+  "imageFocus": {
+    "x": 0.511,
+    "y": 0.387,
+    "box": [
+      0.084,
+      0.054,
+      0.938,
+      0.72
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/employment-insurance-rate-fy2026-figure-64c15718.jpg"
+  },
+  "discoverCandidate": true
 }
