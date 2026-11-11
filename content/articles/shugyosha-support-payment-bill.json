@@ -68,13 +68,13 @@
   "videoTitle": "現金給付の対象、就業者の3割以上にする考え　支援金は2027年4月からで金額は未定",
   "publishedAt": "2026-11-11T10:30:36.258996+00:00",
   "generatedAt": "2026-11-11T10:31:35.889580+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/shugyosha-support-payment-bill-figure-5425f006.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
     "公金受取口座（給付金などを受け取るために国に登録する口座）の登録があるかを確かめる",
-    "申請はまだ始まっていないので、内閣官房の公式ページで政令の公表を確かめる"
+    "内閣官房の制度ページで、政令や新しい発表が出ていないかを確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -98,5 +98,106 @@
   "detectedAt": "2026-11-11T10:32:10+00:00",
   "searchTitle": "就業者負担軽減支援金、2027年4月施行の予定　金額は未定",
   "layout": "noir",
-  "summaryLine": "働く中低所得者への所得に応じた現金給付の法案、施行は2027年4月1日の予定です"
+  "summaryLine": "働く中低所得者への所得に応じた現金給付の法案、施行は2027年4月1日の予定です",
+  "insight": [
+    {
+      "text": "配偶者の合計所得の要件は令和9・10年度の支給では問われず、令和11年度から「配偶者所得上限額」が適用されます。",
+      "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/pdf/sankou5.pdf"
+    },
+    {
+      "text": "非課税ライン以下の所得は把握が難しく、給付を増やすと誤支給につながるおそれがあるため、「定額」を支給するとされています。",
+      "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/pdf/sankou5.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "内閣官房 「飲食料品に係る消費税率の引下げ」及び「給付付き税額控除」について",
+      "url": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html",
+      "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html",
+      "phone": "03-5253-2111（代表）",
+      "note": "一般向けの相談窓口は今後整備される予定で、国はコールセンターの設置やウェブサイトでの支援額の算定などを構築するとされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "公金受取口座（給付金などを受け取るために国に登録する口座）の登録があるかを確かめる",
+      "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/pdf/sankou15.pdf",
+      "steps": [
+        "給付金などを受け取るために国に登録する口座です",
+        "登録者は市区町村長が職権で支給認定できると法案にあります"
+      ]
+    },
+    {
+      "action": "内閣官房の制度ページで、政令や新しい発表が出ていないかを確かめる",
+      "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html",
+      "steps": [
+        "内閣官房の「給付付き税額控除」のページを開く",
+        "新しい発表の表示や資料一覧を見る"
+      ],
+      "url": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html"
+    }
+  ],
+  "cause": {
+    "text": "諸外国との比較で純負担率の改善が必要だとされ、中低所得の現役勤労者の負担を軽減して、「年収の壁」などによる「働き控え」を緩和するために導入されます。",
+    "status": "background",
+    "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html"
+  },
+  "worries": [
+    {
+      "q": "いつから、どれくらいの金額を受け取れるの？",
+      "a": "施行日は令和9年4月1日で、令和9年度に先行導入されます。令和11年度から「所得に連動したきめ細かな給付」を本格導入するとされています。金額は政令などで決まります。",
+      "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html",
+      "action": "支給は請求に基づき市区町村が認定するため、お住まいの市区町村からの案内を確かめる",
+      "actionSource": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/pdf/sankou5.pdf"
+    },
+    {
+      "q": "公金受取口座を登録していると、何か変わる？",
+      "a": "公金受取口座の登録者には、市区町村長が請求なしで職権により支給を認定できる仕組みが法案に入っています。受給者と市町村の事務負担を軽くする目的です。",
+      "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/pdf/sankou15.pdf",
+      "action": "公金受取口座に登録があるかを確かめ、ない場合は登録の方法を調べておく"
+    },
+    {
+      "q": "働いて収入が増えたら、もらえる額は減るの？",
+      "a": "大綱では、働くほど支援額が増える区間（逓増）を設ける一方、合計所得金額が一定額を超えると公平性の観点から支援額を逓減・消失させる基準を設けるとされています。",
+      "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/pdf/sankou5.pdf",
+      "action": "境目の金額は政令で決まるので、決まったら自分の合計所得と照らして確かめることが大切です。"
+    },
+    {
+      "q": "子どもがいる家庭も対象になるの？給付は増える？",
+      "a": "支援額は、19歳未満の居住扶養親族の人数に応じて決まり、令和9・10年度は16歳未満の扶養親族の数で数えるとされています。こども加算の仕組みもあります。",
+      "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/pdf/sankou15.pdf",
+      "action": "扶養している子の年齢が19歳未満か、令和9・10年度は16歳未満かを確かめておく"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "配偶者の収入や子どもの年齢で変わる仕組み",
+    "cause": "なぜこの制度が始まるのか、分かっていること",
+    "steps": "今の準備は口座の確認と、案内を待つこと",
+    "desk": "金額や期日を確かめる公式の窓口",
+    "worries": "いつから？いくら？自分は対象になる？"
+  },
+  "depthAt": "2026-11-11T10:38:24+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "働く中低所得者に現金給付の法案、2027年4月施行の予定",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-11T10:40:59+00:00"
+  },
+  "imageFocus": {
+    "x": 0.533,
+    "y": 0.39,
+    "box": [
+      0.1,
+      0.06,
+      0.966,
+      0.72
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/shugyosha-support-payment-bill-figure-5425f006.jpg"
+  }
 }
