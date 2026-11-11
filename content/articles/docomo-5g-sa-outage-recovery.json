@@ -68,8 +68,8 @@
   "affiliates": [],
   "newsType": "security",
   "todayActions": [
-    "まだつながらないなら、スマホを再起動するか、機内モードをオンにしてからオフに戻してみる。",
-    "自分の回線が5G SAか分からないときは、ドコモの携帯から113に問い合わせて確かめる。"
+    "つながらないときは、スマホを再起動するか、機内モードをオンにしてからオフに戻す",
+    "再起動しても使えないときは、ドコモの携帯から113に問い合わせる（24時間受付）"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -121,5 +121,103 @@
     "relevant": true,
     "at": "2026-11-11T08:41:58+00:00",
     "reused": true
-  }
+  },
+  "insight": [
+    {
+      "text": "問い合わせは「24時間・年中無休」で受け付けています。ドコモ携帯からは113、一般電話などからは0120-800-000です。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html"
+    },
+    {
+      "text": "最新の第八報の案内は、再起動か機内モードのオン・オフだけです。第五報にあった「ネットワーク設定において4Gをご選択いただき」は、第八報には書かれていません。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ドコモ 重要なお知らせ（通信障害等）",
+      "url": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html",
+      "phone": "ドコモ携帯電話から：113 一般電話などから：0120-800-000",
+      "hours": "24時間・年中無休",
+      "note": "復旧の見込みについては、あらためてお知らせいたします。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "つながらないときは、スマホを再起動するか、機内モードをオンにしてからオフに戻す",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html",
+      "steps": [
+        "携帯電話を再起動する",
+        "機内モードをオンにしてから、オフに戻す"
+      ]
+    },
+    {
+      "action": "再起動しても使えないときは、ドコモの携帯から113に問い合わせる（24時間受付）",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html",
+      "steps": [
+        "ドコモの携帯から113に発信する",
+        "受付は24時間・年中無休"
+      ],
+      "url": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html"
+    }
+  ],
+  "cause": {
+    "text": "原因は調査中です。ドコモは、事象発生の前後を含めて、不正アクセスの形跡やサイバー攻撃を示す事象は確認されていないとしています。",
+    "status": "investigating",
+    "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html"
+  },
+  "worries": [
+    {
+      "q": "4Gを使っているけど、この障害に巻き込まれる？",
+      "a": "4Gサービスをご利用のお客さまには影響はございません。ドコモ回線利用MVNOにも影響ございません。5G SA以外の5Gも対象外と案内されています。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html",
+      "action": "4Gで問題なく使えているなら、特別な操作は不要です。使えないときだけ再起動か機内モードを試してください。"
+    },
+    {
+      "q": "停電や事故のとき、緊急通報は使えなくなる？",
+      "a": "緊急通報には影響ございません、と案内されています。ただし、圏外表示になる場合はあります。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html",
+      "action": "緊急時は普段どおり緊急通報をかけてください。圏外表示になる場合は、再起動か機内モードを試してください。"
+    },
+    {
+      "q": "不正アクセスや乗っ取りが原因じゃないの？",
+      "a": "現時点の調査では、事象発生の前後を含め、不正アクセスの形跡やサイバー攻撃を示す事象は確認されていないとしています。原因は調査中です。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html",
+      "action": "攻撃を心配して慌てて設定を変える必要はなく、まずは再起動か機内モードを試してください。"
+    },
+    {
+      "q": "いつ完全に直るのか、まだ分からない？",
+      "a": "一部のお客さまを除き、サービスは復旧しています。完全復旧に向けた対応は続いており、復旧の見込みについては、あらためてお知らせするとされています。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html",
+      "action": "ドコモの重要なお知らせ（通信障害等）で、最新の情報を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "5G SAでつながらないとき、まず何を試す？",
+      "situation": "5G SAを契約していて、通話やデータが使えない",
+      "recommend": "まず再起動か機内モードのオン・オフを試す",
+      "reason": "再起動か機内モードのオン・オフで使えるとされています。4Gへの切り替えは第五報（11月11日午後2時30分時点）で「場合があります」と案内されたもので、最新の第八報には書かれていません。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "最新の案内は、再起動と機内モードだけ",
+    "cause": "原因はまだ調査中で、攻撃の形跡は確認なし",
+    "steps": "つながらないときに今すぐできること",
+    "desk": "ドコモの問い合わせ先と障害のお知らせ",
+    "worries": "4G・緊急通報・攻撃の心配は大丈夫？",
+    "guide": "まず試すこと、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-11T09:26:31+00:00",
+  "updatedAt": "2026-11-11T09:26:31+00:00",
+  "updates": [
+    {
+      "at": "2026-11-11T09:26:31+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_07_m.html",
+      "sourceName": "NTTドコモ「重要なお知らせ（通信障害等）」第八報（11月11日午後5時15分時点）"
+    }
+  ]
 }

@@ -80,7 +80,7 @@
   "videoTitle": "Open your apps in Claude and work in them together",
   "publishedAt": "2026-11-11T08:57:24.629000+00:00",
   "generatedAt": "2026-11-11T08:59:51.493344+00:00",
-  "thumbnail": "https://claude.com/ja/resources/articles/interactive-connectors-full-tool/opengraph-image/og",
+  "thumbnail": "https://ai-tech-express.jp/img/claude-interactive-connectors-open-apps-fe0b3299.jpg",
   "model": "anthropic-api:claude-sonnet-5-5",
   "affiliates": [],
   "newsType": "product",
@@ -101,9 +101,8 @@
     }
   ],
   "todayActions": [
-    "Claudeの公式ディレクトリで、NotionやCanvaなど普段使うツールを接続しておく",
-    "アカウントが新しいClaudeに更新されているか、公式の設定画面で確認する",
-    "会社で使う場合は、管理者にコネクタのツール制限の設定を確認する"
+    "ディレクトリで Notion や Canva を探し、Claude に接続しておく",
+    "よく使うツールをサイドバーに固定して、一クリックで開けるようにする"
   ],
   "qualityScore": 84,
   "factSources": [
@@ -125,15 +124,100 @@
   "layout": "noir",
   "summaryLine": "連携したアプリを会話の横や全画面で開き、Claudeに直接編集を頼めます",
   "imageFocus": {
-    "x": 0.484,
-    "y": 0.492,
+    "x": 0.461,
+    "y": 0.5,
     "box": [
-      0.253,
-      0.179,
+      0.206,
+      0.06,
       0.716,
-      0.804
+      0.94
     ],
     "ar": 1.9048,
-    "src": "https://claude.com/ja/resources/articles/interactive-connectors-full-tool/opengraph-image/og"
-  }
+    "src": "https://ai-tech-express.jp/img/claude-interactive-connectors-open-apps-fe0b3299.jpg"
+  },
+  "insight": [
+    {
+      "text": "コネクタのツール制限を管理者が設定できるのは、Team と Enterprise です。料金ページの表では、Free・Pro・Max・Ultra は「いいえ」になっています。",
+      "source": "https://claude.com/pricing"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Claude のコネクタ ディレクトリ",
+      "url": "https://claude.ai/directory/featured/interactive-connectors",
+      "source": "https://claude.com/ja/resources/articles/interactive-connectors-full-tool",
+      "note": "最初に対応しているのは Asana、Canva、Carta、Dropbox、monday.com、Smartsheet、Vercel、Webflow などです。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ディレクトリで Notion や Canva を探し、Claude に接続しておく",
+      "source": "https://claude.com/ja/resources/articles/interactive-connectors-full-tool",
+      "steps": [
+        "ディレクトリを開く",
+        "使いたいツールを選ぶ",
+        "ツールを接続する"
+      ],
+      "url": "https://claude.ai/directory/featured/interactive-connectors"
+    },
+    {
+      "action": "よく使うツールをサイドバーに固定して、一クリックで開けるようにする",
+      "source": "https://claude.com/ja/resources/articles/interactive-connectors-full-tool",
+      "steps": [
+        "開きたいツールを表示する",
+        "サイドバーに固定する",
+        "「+」メニューからも開ける"
+      ],
+      "url": "https://claude.com/ja/resources/articles/interactive-connectors-full-tool"
+    }
+  ],
+  "worries": [
+    {
+      "q": "会社のデータを勝手に書き換えられない？",
+      "a": "Claude の操作は、これまでのコネクタと同じ方法で承認します。変更はClaudeが作業するたびにツール上へ表示されます。組織が許可している場合に機能が出ます。",
+      "source": "https://claude.com/ja/resources/articles/interactive-connectors-full-tool",
+      "action": "会社で使う場合は、管理者にコネクタのツール制限の設定を確認してもらう。"
+    },
+    {
+      "q": "Claudeが変えた内容は、その場で見られる？",
+      "a": "変更はClaudeが作業するたびにツール上へ表示されます。そのため、自分も隣で作業を続けられます。Claudeの操作は、コネクタの操作と同じ方法で承認します。",
+      "source": "https://claude.com/ja/resources/articles/interactive-connectors-full-tool",
+      "action": "Claudeが変更を入れたら、ツール上で内容を見てから次の作業に進む。"
+    },
+    {
+      "q": "自分のアカウントで使えるようになるのはいつ？",
+      "a": "新しいClaudeに更新されたアカウント、または組織が機能を有効にした場合に表示されます。ウェブ版とデスクトップアプリで、全プランが対象です。",
+      "source": "https://claude.com/ja/resources/articles/interactive-connectors-full-tool",
+      "action": "今使っているアカウントが新しいClaudeに更新されているかを確かめ、表示されなければ組織の設定も確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "会社のアカウントで使ってもいい？",
+      "situation": "会社や組織のアカウントで使いたい",
+      "recommend": "管理者の設定を先に確認する",
+      "reason": "ツールの制限は管理者が設定します。料金ページの表では、管理者コントロールは Team と Enterprise にだけあります。個人の Pro などでは管理者の制限機能は使えません。",
+      "source": "https://claude.com/pricing"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "対応コネクタかどうかが、開けるかの分かれ目",
+    "steps": "今日やる2つのこと",
+    "desk": "コネクタを探す場所",
+    "worries": "会社のデータや承認は大丈夫？",
+    "guide": "会社で使うなら、先に管理者の設定を"
+  },
+  "depthAt": "2026-11-11T09:25:56+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Claude公式ブログ（claude.com）",
+    "provider": "Claude公式ブログ（claude.com）",
+    "sourceUrl": "https://claude.com/ja/resources/articles/interactive-connectors-full-tool",
+    "original": "https://claude.com/ja/resources/articles/interactive-connectors-full-tool/opengraph-image/og",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-11T09:29:23+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false
 }
