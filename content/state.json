@@ -112,6 +112,14 @@
       "tries": 1,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87284?site=nli"
     },
+    "a289a1d58ce4aad3": {
+      "first": "2026-11-11T05:23:41.740399+00:00",
+      "next": "2026-11-11T08:23:41.740399+00:00",
+      "reason": "要点「中学校を含めた義務教育段階での完全無償化の法改正を国へ強く要求」→ 元資料の要請5は中学校を含む制度化（法改正）の実現に向けた「具体的な検討を進める」ことを求めるもので、法改正での実現や「完全」無償化を求めてはいない。; 本文の5点目「中学校を含めた義務教育の給食費無償化を法改正で実現すること」→ 要請文は実現ではなく具体的な検討を進めることを求めており、要請内容を強めて書き換えている。; ",
+      "title": "【記者発表】「学校給食費の無償化に関する指定都市市長会緊急要請」について原澤 敦美 横浜市長が文部科学省に要請を行いました",
+      "tries": 1,
+      "url": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/seisaku/2026/1111yousei.html"
+    },
     "a85b9afbcf2d5798": {
       "first": "2026-11-11T02:40:44.090681+00:00",
       "next": "2026-11-11T05:40:44.090681+00:00",
@@ -201,7 +209,6 @@
     "60944a24710b0d78": "2026-11-09T07:42:55.305009+00:00",
     "632ab217c6f08ade": "2026-11-09T09:38:56.467516+00:00",
     "63b25ab6cf34c929": "2026-11-10T09:04:48.294575+00:00",
-    "660bf673c08d0f27": "2026-11-07T04:50:58.842979+00:00",
     "690c438ade454699": "2026-11-10T09:20:50.649203+00:00",
     "6a1520fe1ed55314": "2026-11-10T18:21:06.372918+00:00",
     "709ccf094f875d5a": "2026-11-10T02:48:53.350891+00:00",
@@ -4400,6 +4407,14 @@
       "skipped": true,
       "url": "https://openai.com/chatgpt/pricing/#entry-2026-11-08-2cf63d"
     },
+    "0dd3ee9e34670eac": {
+      "at": "2026-11-11T05:21:49.404067+00:00",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 90,
+      "updated": "ntt-hibiya-light-city-room-2027",
+      "url": "https://www.nttud.co.jp/news_pdf/news_261111_001.pdf"
+    },
     "0de465538c9fc2f4": {
       "at": "2026-10-30T04:42:40.853885+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7256,6 +7271,17 @@
       "section": "ai",
       "slug": "amazon-trainium-ai-chip-nba-prime-360",
       "url": "https://www.aboutamazon.com/news/innovation/trainium-ai-chip-prime-360-nba-highlights?utm_source=rss"
+    },
+    "3c32b51ee61f5260": {
+      "at": "2026-11-11T05:21:22.836933+00:00",
+      "costUsd": 0.0192,
+      "intent": "query",
+      "mix": "money",
+      "model": "gemini-3.7-flash",
+      "score": 84,
+      "section": "business",
+      "slug": "customs-post-clearance-audit-results",
+      "url": "https://www.mof.go.jp/policy/customs_tariff/trade/collection/ka20261111.html"
     },
     "3c6177ead4c30c9c": {
       "at": "2026-11-04T09:02:45.888251+00:00",
@@ -17670,6 +17696,19 @@
       "slug": "mlit-autumn-2026-decoration",
       "url": "http://www.mlit.go.jp/report/press/kanbo03_hh_000428.html"
     },
+    "dee5e7b75204dd5c": {
+      "at": "2026-11-11T05:18:59.086260+00:00",
+      "costUsd": 0.0125,
+      "intent": "neutral",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 93,
+      "section": "sports",
+      "slug": "jfa-store-gmo-atobarai-leak",
+      "url": "https://www.jfa.jp/news/00037015/"
+    },
     "dee9547078e3646a": {
       "at": "2026-11-06T18:16:13.376169+00:00",
       "costUsd": 0.1192,
@@ -20355,205 +20394,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-10T00:28:18.975264+00:00",
-      "attempt": 1,
-      "id": "b73537a5f0ed2718",
-      "kind": "ai",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す"
-      ],
-      "readability": {
-        "avg_paragraph": 59.4,
-        "avg_sentence": 54.0,
-        "long_share": 0.318,
-        "max_paragraph": 100,
-        "paragraphs": 20,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "aws-japan-blog",
-      "title": "Amazon Bedrock を活用したアプリケーションの設計に信頼と安全性を組み込む",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 54.0字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T00:29:03.049257+00:00",
-      "attempt": 1,
-      "id": "b73537a5f0ed2718",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 59.5,
-        "avg_sentence": 54.1,
-        "long_share": 0.318,
-        "max_paragraph": 102,
-        "paragraphs": 20,
-        "sentences": 22
-      },
-      "score": 88,
-      "source": "aws-japan-blog",
-      "title": "Amazon Bedrock を活用したアプリケーションの設計に信頼と安全性を組み込む",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 54.1字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T00:29:25.306178+00:00",
-      "attempt": 0,
-      "id": "b73537a5f0ed2718",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 60.2,
-        "avg_sentence": 48.2,
-        "long_share": 0.2,
-        "max_paragraph": 100,
-        "paragraphs": 20,
-        "sentences": 25
-      },
-      "score": 74,
-      "source": "aws-japan-blog",
-      "title": "Amazon Bedrock を活用したアプリケーションの設計に信頼と安全性を組み込む",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 48.2字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T01:00:18.524639+00:00",
-      "attempt": 1,
-      "id": "582f072fcebd18dc",
-      "kind": "ai",
-      "model": "gemini-3.5-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 110.2,
-        "avg_sentence": 55.1,
-        "long_share": 0.5,
-        "max_paragraph": 215,
-        "paragraphs": 9,
-        "sentences": 18
-      },
-      "score": 82,
-      "source": "aws-japan-blog",
-      "title": "インフラストラクチャの移行: AWS re:Invent 2026 完全ガイド",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（EVS・VPC・EC）",
-        "読みやすさ: 文が長い（1文の平均 55.1字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T01:00:45.862357+00:00",
-      "attempt": 0,
-      "id": "582f072fcebd18dc",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: タイトル「AWSの移行AIでサーバー1,800台のコスト48%削減へ」→ 元記事では1,800台・48%削減は Fanatics Commerce の見込みであり、AWS Transform の成果ではないのに、AI の効果のように読める; 本文「1,800台の"
-      ],
-      "readability": {
-        "avg_paragraph": 110.2,
-        "avg_sentence": 55.1,
-        "long_share": 0.5,
-        "max_paragraph": 215,
-        "paragraphs": 9,
-        "sentences": 18
-      },
-      "score": 82,
-      "source": "aws-japan-blog",
-      "title": "インフラストラクチャの移行: AWS re:Invent 2026 完全ガイド",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（EVS・VPC・EC）",
-        "読みやすさ: 文が長い（1文の平均 55.1字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T01:24:02.203973+00:00",
-      "attempt": 1,
-      "id": "ec57642124ecc1d6",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 125.3,
-        "avg_sentence": 58.5,
-        "long_share": 0.267,
-        "max_paragraph": 156,
-        "paragraphs": 7,
-        "sentences": 15
-      },
-      "score": 93,
-      "source": "tdb",
-      "title": "物価・価格 「カレーライス物価指数（2026年基準改定）」調査―2026年9月 2026年9月のカレー物価 １食342円 5年ぶりに前年割れ",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 58.5字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 125.3字・最長 156字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T01:24:30.685042+00:00",
-      "attempt": 0,
-      "id": "ec57642124ecc1d6",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 55.6,
-        "avg_sentence": 32.9,
-        "long_share": 0.045,
-        "max_paragraph": 119,
-        "paragraphs": 13,
-        "sentences": 22
-      },
-      "score": 88,
-      "source": "tdb",
-      "title": "物価・価格 「カレーライス物価指数（2026年基準改定）」調査―2026年9月 2026年9月のカレー物価 １食342円 5年ぶりに前年割れ"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T01:24:57.974291+00:00",
-      "attempt": 1,
-      "id": "dd7e9812623e4017",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「愛知県など12都県市」（タイトル・リード）→ 元記事の連名は11都県2政令市で計13。数え方が元記事と合わない。",
-        "「全日ト協」（かんたん版）→ 元記事の要請者は「全日本自動車産業労働組合総連合会」。略称が誤っており、別団体（全日本トラック協会等）と取り違えるおそれがある。",
-        "「加わる方向で調整」（本文）→ 元記事では要請者は調整中とされており、JAFなどが確定して加わるかのように読める。",
-        "「大村知事らが…直接要請を行う予定」（要点）→ 元記事は要請先を「政府（経済産業省等）、政党」とし、日程・訪問先は調整中と明記しており、『直接』の表現は元記事より言い切っている。"
-      ],
-      "readability": {
-        "avg_paragraph": 79.6,
-        "avg_sentence": 61.9,
-        "long_share": 0.556,
-        "max_paragraph": 166,
-        "paragraphs": 7,
-        "sentences": 9
-      },
-      "score": 45,
-      "source": "pref-aichi",
-      "title": "【知事会見】自動車諸税の抜本的な見直しに係る要請について",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JAF）",
-        "読みやすさ: 文が長い（1文の平均 61.9字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-10T01:26:06.792863+00:00",
@@ -27700,6 +27540,202 @@
       "title": "サントリー食品インターナショナル 2026年12月期 第３四半期決算短信〔IFRS〕（連結）",
       "warnings": [
         "初めて出たところで言い換えていない略語（IFRS・BOSS・NOPE）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T05:18:16.953364+00:00",
+      "attempt": 1,
+      "id": "dee5e7b75204dd5c",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「連絡がない人は、この件の対象ではないと考えられます。後払いを使っていない人にも影響はありません。」→ 元記事に、連絡の有無で対象かどうかを判断できるとする記載も、後払い未利用者に影響がないとする記載もない。記事側の推測・拡大解釈である。",
+        "「アララの発表（2026年11月2日付と11月6日付のPDF）」→ 日付は元記事のPDFのURL（arara_20261102、arara_20261106）から読み取ったもので、元記事本文に発表日として明記されていない。",
+        "「直接の影響は小さい話です」→ 元記事に影響の大きさの評価はなく、編集部の解釈として区別して書かれていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 83.0,
+        "avg_sentence": 43.7,
+        "long_share": 0.211,
+        "max_paragraph": 129,
+        "paragraphs": 10,
+        "sentences": 19
+      },
+      "score": 86,
+      "source": "jfa",
+      "title": "JFA STOREで「GMO後払い」をご利用のお客様の情報への不正アクセスに関するご報告 #jfa",
+      "warnings": [
+        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JFA・STORE・GMO）",
+        "読みやすさ: 文が長い（1文の平均 43.7字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T05:18:34.334680+00:00",
+      "attempt": 1,
+      "id": "dee5e7b75204dd5c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.3,
+        "avg_sentence": 44.9,
+        "long_share": 0.235,
+        "max_paragraph": 118,
+        "paragraphs": 10,
+        "sentences": 17
+      },
+      "score": 95,
+      "source": "jfa",
+      "title": "JFA STOREで「GMO後払い」をご利用のお客様の情報への不正アクセスに関するご報告 #jfa",
+      "warnings": [
+        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JFA・STORE・GMO）",
+        "読みやすさ: 文が長い（1文の平均 44.9字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T05:18:49.306010+00:00",
+      "attempt": 0,
+      "id": "dee5e7b75204dd5c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.6,
+        "avg_sentence": 40.8,
+        "long_share": 0.105,
+        "max_paragraph": 118,
+        "paragraphs": 10,
+        "sentences": 19
+      },
+      "score": 93,
+      "source": "jfa",
+      "title": "JFA STOREで「GMO後払い」をご利用のお客様の情報への不正アクセスに関するご報告 #jfa",
+      "warnings": [
+        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JFA・STORE・GMO）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T05:19:49.546497+00:00",
+      "attempt": 1,
+      "id": "3c32b51ee61f5260",
+      "kind": "broad",
+      "model": "gemini-3.7-flash",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「方としては、追徴税額の約94%」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 85.4,
+        "avg_sentence": 51.2,
+        "long_share": 0.35,
+        "max_paragraph": 122,
+        "paragraphs": 12,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "mof",
+      "title": "令和７事務年度の関税等の申告に係る輸入事後調査の結果",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JETRO）",
+        "読みやすさ: 文が長い（1文の平均 51.2字・60字超の文が 35% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T05:20:51.843328+00:00",
+      "attempt": 1,
+      "id": "3c32b51ee61f5260",
+      "kind": "broad",
+      "model": "strike:本文 2 文・要点 1 個",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 72.2,
+        "avg_sentence": 51.0,
+        "long_share": 0.353,
+        "max_paragraph": 122,
+        "paragraphs": 12,
+        "sentences": 17
+      },
+      "score": 84,
+      "source": "mof",
+      "title": "令和７事務年度の関税等の申告に係る輸入事後調査の結果",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JETRO）",
+        "読みやすさ: 文が長い（1文の平均 51.0字・60字超の文が 35% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T05:21:17.908983+00:00",
+      "attempt": 0,
+      "id": "3c32b51ee61f5260",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: タイトル「輸入事後調査で7割の企業に申告漏れ」とリード「海外から部品や製品を仕入れる企業の7割超」→ 元記事の72.3%は今回調査された3,657者の中の割合で、輸入企業全体の割合ではない。母集団を誤って一般化している; 「10%から35%の加算税や重加算税が上"
+      ],
+      "readability": {
+        "avg_paragraph": 72.2,
+        "avg_sentence": 51.0,
+        "long_share": 0.353,
+        "max_paragraph": 122,
+        "paragraphs": 12,
+        "sentences": 17
+      },
+      "score": 84,
+      "source": "mof",
+      "title": "令和７事務年度の関税等の申告に係る輸入事後調査の結果",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JETRO）",
+        "読みやすさ: 文が長い（1文の平均 51.0字・60字超の文が 35% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T05:21:49.398364+00:00",
+      "attempt": 1,
+      "id": "0dd3ee9e34670eac",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "score": 90,
+      "source": "ntt-news",
+      "title": "日比谷からはじまる「光の街」づくりpowered by IOWN ～「光の街」プレゼンテーションルームを開設予定～"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T05:23:10.219786+00:00",
+      "attempt": 1,
+      "id": "a289a1d58ce4aad3",
+      "kind": "broad",
+      "model": "gemini-3.7-flash",
+      "problems": [
+        "要点「中学校を含めた義務教育段階での完全無償化の法改正を国へ強く要求」→ 元資料の要請5は中学校を含む制度化（法改正）の実現に向けた「具体的な検討を進める」ことを求めるもので、法改正での実現や「完全」無償化を求めてはいない。",
+        "本文の5点目「中学校を含めた義務教育の給食費無償化を法改正で実現すること」→ 要請文は実現ではなく具体的な検討を進めることを求めており、要請内容を強めて書き換えている。",
+        "かんたん版「中学校も含めて給食費を無償化する法律を作るよう求めています」→ 元資料は法改正に向けた検討を求めるもので、法律の制定を求めた記載はない。",
+        "小見出し・本文「自治体の予算計画にも影響が出ています」→ 元資料では基準額変動による影響は「懸念される」とされており、既に影響が出ているという事実は確認できない。",
+        "本文「基準額と実際の仕入れ価格との差額が自治体財政を圧迫し続けています」→ 元資料は「圧迫することとなり」「懸念」として述べており、現在進行形で圧迫が生じているとの断定は言い過ぎ。元資料は仕入れ価格ではなく「食材費見込額」「実勢価格」と記す。",
+        "本文「副大臣に手渡しました」→ 元資料は要請を行ったとのみ記しており、手渡しという行為は確認できない（軽微な補足）。"
+      ],
+      "readability": {
+        "avg_paragraph": 93.1,
+        "avg_sentence": 54.3,
+        "long_share": 0.333,
+        "max_paragraph": 161,
+        "paragraphs": 7,
+        "sentences": 12
+      },
+      "score": 62,
+      "source": "city-yokohama",
+      "title": "【記者発表】「学校給食費の無償化に関する指定都市市長会緊急要請」について原澤 敦美 横浜市長が文部科学省に要請を行いました",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 54.3字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
