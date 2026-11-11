@@ -11771,6 +11771,20 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202610/video-326861.html"
     },
+    "80b38ea7da372c49": {
+      "at": "2026-11-11T05:44:48.675137+00:00",
+      "breaking": true,
+      "costUsd": 0.1169,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "chatgpt-plus-veterans-free-year",
+      "url": "https://openai.com/index/chatgpt-plus-for-veterans"
+    },
     "80b66c43c323cf52": {
       "at": "2026-11-10T07:43:43.127485+00:00",
       "costUsd": 0.0014,
@@ -20420,30 +20434,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-10T01:27:42.725718+00:00",
-      "attempt": 1,
-      "id": "df7291db4ea5a6f9",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.5,
-        "avg_sentence": 57.3,
-        "long_share": 0.5,
-        "max_paragraph": 123,
-        "paragraphs": 6,
-        "sentences": 10
-      },
-      "score": 85,
-      "source": "kddi-topics",
-      "title": "量子技術で電波干渉を抑える最適な設定を算出、商用基地局へ適用",
-      "warnings": [
-        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 57.3字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-10T01:27:59.298948+00:00",
       "attempt": 0,
       "id": "df7291db4ea5a6f9",
@@ -27745,6 +27735,30 @@
       "score": 80,
       "source": "nli-research",
       "title": "年金額改定の本来の意義は実質的な価値の維持－年金額改定の仕組みと2027年度以降の見通し (1)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T05:44:48.638342+00:00",
+      "attempt": 1,
+      "id": "80b38ea7da372c49",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 100.6,
+        "avg_sentence": 41.4,
+        "long_share": 0.118,
+        "max_paragraph": 181,
+        "paragraphs": 14,
+        "sentences": 34
+      },
+      "score": 92,
+      "source": "openai-news",
+      "title": "ChatGPT Plus for veterans and servicemembers",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GI）"
+      ]
     }
   ],
   "short_text_retry": {},
