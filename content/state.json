@@ -116,7 +116,7 @@
     }
   },
   "major_tries": {
-    "b971dd88507174df": 1
+    "b971dd88507174df": 2
   },
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
@@ -21239,30 +21239,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-10T07:14:25.168628+00:00",
-      "attempt": 1,
-      "id": "8d40bd57193cb55f",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 74.6,
-        "avg_sentence": 35.9,
-        "long_share": 0.037,
-        "max_paragraph": 134,
-        "paragraphs": 13,
-        "sentences": 27
-      },
-      "score": 91,
-      "source": "fast",
-      "title": "りそなホールディングス 2027年3月期第2四半期（中間期）決算短信〔日本基準〕(連結)",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（HD・IR）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-10T07:18:16.939281+00:00",
       "attempt": 1,
@@ -28603,6 +28579,34 @@
       "warnings": [
         "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（DNA・RNA・ENCODE）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T15:36:23.605046+00:00",
+      "attempt": 1,
+      "id": "b971dd88507174df",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「## 性能は46評価中46件」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 95.8,
+        "avg_sentence": 45.1,
+        "long_share": 0.157,
+        "max_paragraph": 192,
+        "paragraphs": 24,
+        "sentences": 51
+      },
+      "score": null,
+      "source": "google-deepmind-blog",
+      "title": "AlphaGenome: AI for better understanding the genome — Google DeepMind",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DNA・ENCODE・FANTOM）",
+        "読みやすさ: 文が長い（1文の平均 45.1字・60字超の文が 16% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
