@@ -96,14 +96,6 @@
       "tries": 1,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87284?site=nli"
     },
-    "b2f355d4f86e33ca": {
-      "first": "2026-11-11T08:17:32.085008+00:00",
-      "next": "2026-11-11T11:17:32.085008+00:00",
-      "reason": "work_money の1項目が長い（102字 / 70字以内）。「行政課題の解決を目指す事業者は、都のブー…」",
-      "title": "令和8年度第2四半期におけるスタートアップとの官民協働の取組状況 被災地支援や健康への関心づくりなど、現場での活用事例を紹介",
-      "tries": 1,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111103"
-    },
     "bf1537f4a0ba0146": {
       "first": "2026-11-10T07:18:16.939386+00:00",
       "next": "2026-11-10T10:18:16.939386+00:00",
@@ -15422,6 +15414,14 @@
       "slug": "agent-i-app-ios-launch",
       "url": "https://www.lycorp.co.jp/ja/news/release/020972/"
     },
+    "b2f355d4f86e33ca": {
+      "at": "2026-11-11T11:26:48.930444+00:00",
+      "costUsd": 0.0068,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: タイトル「防災や健康分野で導入広がる」→ 元記事は防災・健康分野を事例として紹介しているだけで、これらの分野で導入が広がっているという傾向や件数は示していない。; 本文「都市インフラの維持管理、環境やエネルギー分野の対策」→ 元記事の「都市・インフラ、環境・エネルギー分野における取組」を超えて「維持管理」「対策」という具体的な内容を補っている。; 本文「行政運営の効率化につながる",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111103"
+    },
     "b30e44fae271d390": {
       "at": "2026-11-04T03:34:46.829540+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
@@ -18383,16 +18383,6 @@
       "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
       "writer": "deep_dive"
     },
-    "deep-8aa3827d1c": {
-      "angleOf": "kyoukai-kenpo-childbirth-allowance",
-      "at": "2026-11-11T11:20:57.054541+00:00",
-      "deepDive": "procedure",
-      "mix": "money",
-      "score": 92,
-      "slug": "kyoukai-kenpo-childbirth-allowance-application",
-      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
-      "writer": "deep_dive"
-    },
     "deep-8df61a5b1a": {
       "angleOf": "kyoukai-kenpo-childbirth-allowance",
       "at": "2026-11-10T00:53:37.241545+00:00",
@@ -18401,16 +18391,6 @@
       "score": 88,
       "slug": "childbirth-allowance-eligibility-check",
       "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
-      "writer": "deep_dive"
-    },
-    "deep-a4077a6e4e": {
-      "angleOf": "child-allowance-december-payment",
-      "at": "2026-11-11T11:24:29.252158+00:00",
-      "deepDive": "procedure",
-      "mix": "money",
-      "score": 92,
-      "slug": "child-allowance-application-steps",
-      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
       "writer": "deep_dive"
     },
     "deep-ba6c65f5a8": {
@@ -21243,33 +21223,29 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
+    },
+    "deep-8aa3827d1c": {
+      "angleOf": "kyoukai-kenpo-childbirth-allowance",
+      "at": "2026-11-11T11:20:57.054541+00:00",
+      "deepDive": "procedure",
+      "mix": "money",
+      "score": 92,
+      "slug": "kyoukai-kenpo-childbirth-allowance-application",
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "writer": "deep_dive"
+    },
+    "deep-a4077a6e4e": {
+      "angleOf": "child-allowance-december-payment",
+      "at": "2026-11-11T11:24:29.252158+00:00",
+      "deepDive": "procedure",
+      "mix": "money",
+      "score": 92,
+      "slug": "child-allowance-application-steps",
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "writer": "deep_dive"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T06:59:13.613003+00:00",
-      "attempt": 1,
-      "id": "4b76e9447d8ccc5c",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.7,
-        "avg_sentence": 54.4,
-        "long_share": 0.6,
-        "max_paragraph": 137,
-        "paragraphs": 6,
-        "sentences": 10
-      },
-      "score": 88,
-      "source": "samsung-jp",
-      "title": "Samsung、ドイツにビルトイン家電ショールームを新設 欧州市場における本格展開を推進",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IH・SPACE）",
-        "読みやすさ: 文が長い（1文の平均 54.4字・60字超の文が 60% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T06:59:27.424304+00:00",
@@ -28599,6 +28575,36 @@
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "読みやすさ: 文が長い（1文の平均 66.6字・60字超の文が 64% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 186.6字・最長 294字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T11:26:31.502155+00:00",
+      "attempt": 1,
+      "id": "b2f355d4f86e33ca",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "タイトル「防災や健康分野で導入広がる」→ 元記事は防災・健康分野を事例として紹介しているだけで、これらの分野で導入が広がっているという傾向や件数は示していない。",
+        "本文「都市インフラの維持管理、環境やエネルギー分野の対策」→ 元記事の「都市・インフラ、環境・エネルギー分野における取組」を超えて「維持管理」「対策」という具体的な内容を補っている。",
+        "本文「行政運営の効率化につながるシステム導入」→ 元記事に無い「システム導入」という具体的な形態を付け加えている。",
+        "本文「被災地の支援や健康への関心を高める取り組みなど、現場のニーズに即したサービスが導入されています」→ 元記事は事例紹介であり、「現場のニーズに即した」という評価は元記事に無い。"
+      ],
+      "readability": {
+        "avg_paragraph": 128.2,
+        "avg_sentence": 64.1,
+        "long_share": 0.375,
+        "max_paragraph": 166,
+        "paragraphs": 4,
+        "sentences": 8
+      },
+      "score": 62,
+      "source": "tokyo-metro",
+      "title": "令和8年度第2四半期におけるスタートアップとの官民協働の取組状況 被災地支援や健康への関心づくりなど、現場での活用事例を紹介",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 64.1字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 128.2字・最長 166字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
     }
   ],
