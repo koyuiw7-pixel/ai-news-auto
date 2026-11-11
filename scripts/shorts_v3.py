@@ -48,6 +48,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import shorts  # noqa: E402  (記事・企業・フォント・VOICEVOX・ffmpeg)
 import shorts_v2 as v2  # noqa: E402  (声の前後の無音処理・公式ページの判定・折り返し)
+from browser_guard import should_block as beacon_blocked  # noqa: E402  本番の計測を止める（台帳 O17）
 import video_gate as gate  # noqa: E402
 
 try:  # 描画を速くする（無ければ Pillow で同じことを遅くやる）
@@ -333,7 +334,7 @@ async def _capture_one(browser, url: str, page_no: int, timeout_ms: int) -> Page
     ctx = await browser.new_context(viewport={"width": CAPTURE_W, "height": 960}, device_scale_factor=CAPTURE_DPR, locale="ja-JP", extra_http_headers={"Accept-Language": "ja,en;q=0.8"})
     try:
         page = await ctx.new_page()
-        await page.route("**/*", lambda r: r.abort() if any(h in r.request.url for h in AD_HOSTS) else r.continue_())
+        await page.route("**/*", lambda r: r.abort() if any(h in r.request.url for h in AD_HOSTS) or beacon_blocked(r.request.url) else r.continue_())
         resp = await page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
         if not resp or resp.status >= 400:
             log(f"   [v3] 撮れない（HTTP {resp.status if resp else '?'}）: {url}")

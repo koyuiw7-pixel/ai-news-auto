@@ -47,6 +47,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import shorts  # noqa: E402  (記事・企業色・フォント・TTS・ffmpeg を共有)
 import video_gate as gate  # noqa: E402
+from browser_guard import should_block as beacon_blocked  # noqa: E402  本番の計測を止める（台帳 O17）
 
 W, H, FPS = gate.W, gate.H, gate.FPS
 SAFE = gate.SAFE
@@ -489,7 +490,7 @@ def page_screenshot(url: str, dst: Path, timeout_ms: int = 25000) -> Image.Image
             except Exception:  # noqa: BLE001
                 browser = p.chromium.launch(headless=True)
             page = browser.new_page(viewport={"width": 400, "height": 860}, device_scale_factor=2.5, locale="ja-JP")
-            page.route("**/*", lambda r: r.abort() if any(h in r.request.url for h in AD_HOSTS) else r.continue_())
+            page.route("**/*", lambda r: r.abort() if any(h in r.request.url for h in AD_HOSTS) or beacon_blocked(r.request.url) else r.continue_())
             page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
             try:
                 page.wait_for_load_state("networkidle", timeout=8000)

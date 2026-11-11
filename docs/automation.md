@@ -12,6 +12,9 @@
    - `amazon.co.jp` `*.amazon.co.jp` `amzn.to`（Amazonアソシエイト。tag=saisokuai-22 のリンク）
    - `*.amazon-adsystem.com`
    - `*.googlesyndication.com` `*.doubleclick.net` `*.googleadservices.com` `adservice.google.com` `*.adtrafficquality.google`（AdSense）
+   - **訪問者の数の計測（2026-11-11 オーナー承認・台帳 O17。必ず）**: `static.cloudflareinsights.com`（Cloudflare Web Analytics の読み込み。エッジで全ページに差し込まれる）と、送り先の `/cdn-cgi/rum`。止めないと、撮影・確かめの1回ごとにその日の訪問者が増える（2026-11-11 に自分たちの撮影で訪問者の数が汚れた）
+   - 確かめるだけのとき: サイトの自前の計測 `/api/aff/*`（クリック・入口の表示・読んだ深さ・お金の導線）
+   - 止める決まりは1か所 `scripts/browser_guard.cjs`（Node）・`scripts/browser_guard.py`（Python）。本番を開く新しいスクリプトは必ずこれを使う（`tests/test_browser_guard_20261111.cjs` が見張る）
 2. **提携リンク（`rel` に `sponsored` を含む a）は押さない・URL を取りに行かない**（curl・WebFetch・リンク切れ検査も禁止）。
    リンク先の確認は管理画面（A8 など）で行う。
 3. **自社アクセスのしるしを付ける**: 本番の URL には `?_internal=1` を付けるか、ヘッダー `X-Saisoku-Internal: 1` を付ける（curl・Playwright の `extraHTTPHeaders`・Lighthouse の `--extra-headers`）。記事への流入数（`scripts/inflow_report.py`）と提携リンクのクリック数から除くため。
@@ -22,12 +25,14 @@
 
 - **Chrome を自分で起動する場合**（いちばん確実。新しいタブ・ポップアップも止まる）:
   `--host-resolver-rules="MAP a8.net ~NOTFOUND, MAP *.a8.net ~NOTFOUND, MAP *.afl.rakuten.co.jp ~NOTFOUND, MAP amazon.co.jp ~NOTFOUND, MAP *.amazon.co.jp ~NOTFOUND, MAP amzn.to ~NOTFOUND, MAP *.amazon-adsystem.com ~NOTFOUND, MAP *.googlesyndication.com ~NOTFOUND, MAP *.doubleclick.net ~NOTFOUND"`
-- **スクショが欲しいだけなら** `npm run check:readability -- --paths /articles/<slug> --shots out/shots` を使う（上の止め方が入っている。scripts/check_readability.mjs）
+- **スクショが欲しいだけなら** `node scripts/safe_shot.mjs https://ai-tech-express.jp/articles/<slug> --out shot.png --width 390 [--full] [--selector CSS]` を使う（計測・広告を止め、`?_internal=1` と `X-Saisoku-Internal: 1` も付ける。最後に「Cloudflare の計測に届いた通信 なし」と出ることを確かめる）。まとめて撮るなら `npm run check:readability -- --paths /articles/<slug> --shots out/shots`（同じ止め方が入っている）
+- **Playwright で自分で書くとき**: `const guard = require("./scripts/browser_guard.cjs"); await guard.guardPlaywright(context);`（ほかの route を登録した後に呼ぶ）。Python は `from browser_guard import guard_sync` → `guard_sync(context)`
 - **Playwright**:
   ```js
   await context.route(/^https?:\/\/([^/]+\.)?(a8\.net|afl\.rakuten\.co\.jp|amazon\.co\.jp|amzn\.to|amazon-adsystem\.com|googlesyndication\.com|doubleclick\.net|googleadservices\.com)\//, (r) => r.abort());
   ```
-- **通信を止められないブラウザ**（Claude のブラウザ画面・Chrome 拡張など）では本番の記事ページを開かない。開いた場合も PR 枠には触れない。
+- **通信を止められないブラウザ**（Claude のブラウザ画面・Chrome 拡張・computer use で動かす Safari / Chrome など）では本番のページを開かない（Cloudflare Web Analytics を止められず、訪問者に数えられる）。見た目は safe_shot.mjs で撮った画像で確かめる。
+- 画面側でも、自前の計測（ReadingBeacon・InflowBeacon・AffClickTracker・RevenueFunnelTracker）は `navigator.webdriver` が true の自動ブラウザでは送らない。ただし Cloudflare Web Analytics は画面側で止められないので、上の止め方が必要
 
 ## 人のクリックの数え方
 

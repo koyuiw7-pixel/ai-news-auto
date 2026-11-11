@@ -20,6 +20,8 @@ import { spawn } from "node:child_process";
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { homedir, tmpdir } from "node:os";
 import { dirname, join } from "node:path";
+// 本番を開くときは訪問者の数（Cloudflare Web Analytics）と自前の計測を必ず止める（台帳 O17）
+import beaconGuard from "./browser_guard.cjs";
 
 // ---------------------------------------------------------------------------
 // ルール（docs/typography.md と同じ数字）
@@ -105,9 +107,10 @@ const BLOCKED_HOSTS = [
   "adservice.google.com",
   "*.adtrafficquality.google",
 ];
-const BLOCK_FLAG = `--host-resolver-rules=${BLOCKED_HOSTS.map((h) => `MAP ${h} ~NOTFOUND`).join(", ")}`;
+const BLOCK_FLAG = `--host-resolver-rules=${BLOCKED_HOSTS.map((h) => `MAP ${h} ~NOTFOUND`).join(", ")}, ${beaconGuard.HOST_RESOLVER_RULE}`;
 // 1枚のタブの中でも念のため止める（Network.setBlockedURLs のパターン）
-const BLOCKED_URLS = BLOCKED_HOSTS.map((h) => `*://${h}/*`);
+// Cloudflare Web Analytics（static.cloudflareinsights.com・/cdn-cgi/rum）と自前の計測（/api/aff/*）も止める（scripts/browser_guard.cjs）
+const BLOCKED_URLS = [...BLOCKED_HOSTS.map((h) => `*://${h}/*`), ...beaconGuard.CDP_BLOCKED_URLS];
 
 function findChrome() {
   if (process.env.CHROME_PATH) return process.env.CHROME_PATH;

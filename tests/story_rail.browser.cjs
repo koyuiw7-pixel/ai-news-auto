@@ -1,11 +1,14 @@
 const { chromium, devices } = require('playwright');
 const assert = require('node:assert/strict');
+// 本番を開いても訪問者の数・自前の計測に入れない（台帳 O17。scripts/browser_guard.cjs）
+const beaconGuard = require('../scripts/browser_guard.cjs');
 const adHosts = /(^|\.)(a8\.net|afl\.rakuten\.co\.jp|amazon\.co\.jp|amzn\.to|amazon-adsystem\.com|googlesyndication\.com|doubleclick\.net|googleadservices\.com|adtrafficquality\.google|adservice\.google\.com|cloudflareinsights\.com|google-analytics\.com|googletagmanager\.com)$/i;
 (async()=>{
  const browser = await chromium.launch({headless:true, executablePath:process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
  for (const mobile of [false,true]) {
   const context=await browser.newContext(mobile ? {...devices['iPhone 13'], reducedMotion:'reduce'} : { viewport:{width:1440,height:900}, reducedMotion:'reduce' });
-  await context.route('**/*', route => {const host=new URL(route.request().url()).hostname; return adHosts.test(host) ? route.abort() : route.continue();});
+  await context.route('**/*', route => {const host=new URL(route.request().url()).hostname; return adHosts.test(host) || beaconGuard.shouldBlock(route.request().url()) ? route.abort() : route.continue();});
+  await beaconGuard.guardPlaywright(context);
   const page=await context.newPage();
   await page.goto(process.env.STORY_TEST_URL || 'http://127.0.0.1:3184/',{waitUntil:'domcontentloaded'});
   const rail=page.locator('.sr'); const next=page.getByRole('button',{name:'ストーリーを右に移動'}); const prev=page.getByRole('button',{name:'ストーリーを左に移動'});

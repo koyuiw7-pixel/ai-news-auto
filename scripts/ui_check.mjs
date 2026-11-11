@@ -28,6 +28,8 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+// 本番を開くときは訪問者の数（Cloudflare Web Analytics）と自前の計測を必ず止める（台帳 O17）
+import beaconGuard from "./browser_guard.cjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -438,10 +440,12 @@ async function auditOne(browser, page, vp, theme, dela) {
     const req = route.request();
     let u;
     try { u = new URL(req.url()); } catch { return route.continue(); }
-    if (BLOCKED_HOST.test(u.hostname)) return route.abort("blockedbyclient");
+    if (BLOCKED_HOST.test(u.hostname) || beaconGuard.shouldBlock(u.href)) return route.abort("blockedbyclient");
     if (u.origin === origin) return route.continue({ headers: { ...req.headers(), "x-saisoku-internal": "1" } });
     return route.continue();
   });
+  // 後に登録した route が先に動くので、計測の止め役は最後に足す（scripts/browser_guard.cjs）
+  await beaconGuard.guardPlaywright(ctx);
   await ctx.addInitScript(([t]) => {
     try {
       localStorage.setItem("theme", t);
@@ -470,7 +474,7 @@ async function auditOne(browser, page, vp, theme, dela) {
     if (page.kind === "404" && /status of 404/.test(text)) return; // 404 ページそのもの
     if (/status of 404/.test(text) && /localhost|127\.0\.0\.1/.test(BASE)) return; // ローカルの next start には /img・/_vercel が無い（読み込み失敗は下で URL ごとに数える）
     const loc = m.location()?.url || "";
-    if (loc && BLOCKED_HOST.test((() => { try { return new URL(loc).hostname; } catch { return ""; } })())) return;
+    if (loc && (BLOCKED_HOST.test((() => { try { return new URL(loc).hostname; } catch { return ""; } })()) || beaconGuard.shouldBlock(loc))) return;
     consoleErrors.push(text.slice(0, 240));
   });
   p.on("pageerror", (e) => consoleErrors.push(`JS エラー: ${String(e.message || e).slice(0, 240)}`));
