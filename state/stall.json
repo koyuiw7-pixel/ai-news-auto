@@ -1,22 +1,22 @@
 {
- "checkedAt": "2026-11-11T09:54:36+09:00",
+ "checkedAt": "2026-11-11T15:48:56+09:00",
  "ok": false,
  "alerts": [
   {
    "kind": "sns_missed_threads",
-   "message": "threads の枠 07:15・08:30 を30分以上過ぎても投稿がありません"
+   "message": "threads の枠 13:45 を30分以上過ぎても投稿がありません"
   },
   {
    "kind": "sns_missed_bluesky",
-   "message": "bluesky の枠 07:15・08:30 を30分以上過ぎても投稿がありません"
+   "message": "bluesky の枠 13:45 を30分以上過ぎても投稿がありません"
   },
   {
    "kind": "sns_missed_x",
-   "message": "x の枠 07:30・08:30 を30分以上過ぎても投稿がありません"
+   "message": "x の枠 13:45・15:00 を30分以上過ぎても投稿がありません"
   },
   {
    "kind": "sns_missed_facebook",
-   "message": "facebook の枠 07:30・08:30 を30分以上過ぎても投稿がありません"
+   "message": "facebook の枠 13:45・15:00 を30分以上過ぎても投稿がありません"
   }
  ],
  "log": [
@@ -95,6 +95,21 @@
     "bluesky の枠 07:15・08:30 を30分以上過ぎても投稿がありません",
     "x の枠 07:30・08:30 を30分以上過ぎても投稿がありません",
     "facebook の枠 07:30・08:30 を30分以上過ぎても投稿がありません"
+   ]
+  },
+  {
+   "at": "2026-11-11T15:48:56+09:00",
+   "kinds": [
+    "sns_missed_bluesky",
+    "sns_missed_facebook",
+    "sns_missed_threads",
+    "sns_missed_x"
+   ],
+   "messages": [
+    "threads の枠 13:45 を30分以上過ぎても投稿がありません",
+    "bluesky の枠 13:45 を30分以上過ぎても投稿がありません",
+    "x の枠 13:45・15:00 を30分以上過ぎても投稿がありません",
+    "facebook の枠 13:45・15:00 を30分以上過ぎても投稿がありません"
    ]
   }
  ]
