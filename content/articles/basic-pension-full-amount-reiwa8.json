@@ -73,13 +73,12 @@
   "newsType": "policy",
   "todayActions": [
     "ねんきんネットにログインし、納付済月数と免除月数を確かめる",
-    "ねんきんダイヤル0570-05-1165は、基礎年金番号か照会番号を用意してからかける"
+    "ねんきんダイヤルにかける前に、基礎年金番号か照会番号を手元に用意する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261111-お金-老齢基礎年金の満額はいくら.md",
   "sectionsPolishedAt": "2026-11-11T09:41:23+00:00",
-  "museDepthNotes": "なるほど：学生納付特例と納付猶予の期間は、追納していないと年金額には1円も反映されない。日本年金機構の老齢基礎年金のページは、免除等期間について追納している期間は保険料納付済期間に含む一方で、学生納付特例、納付猶予の期間は保険料を追納していない場合、年金額には反映されませんと分けている。受給資格期間には数えても、金額の計算では0のままという違いがある。出典は https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/jukyu-yoken/20150401-02.html 。\nなるほど：免除の数え方は、平成21年3月分までと4月分以降で違う。全額免除は平成21年4月以降なら8分の4（2分の1）で数えるが、平成21年3月分までは3分の1で数える。同じ全額免除でも、時期で年金額への残り方が変わる。出典は同ページ。\nなるほど：付加保険料は、あとから気づいても前の月分を埋められない。申し出をした日の属する月分から始まり、令和8年4月中に申し出た場合は4月分からで、3月分以前にさかのぼって納付することはできないと、機構が例で明記している。出典は https://www.nenkin.go.jp/service/kokunen/hokenryo/fukanofu.html 。\nなるほど：ねんきんダイヤルは、夕方（午後4時以降）、週の後半、月の後半（20日以降）および第2土曜日がつながりやすいと機構が案内している。週の初日は混雑が予想され、通知書が届いてから5日間程度は電話が集中する。出典は https://www.nenkin.go.jp/section/tel/toiawase_ippan.html 。\n窓口：日本年金機構「老齢基礎年金の受給要件・支給開始時期・年金額」 https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/jukyu-yoken/20150401-02.html が計算式の正本で、「令和8年4月分からの年金額等について」 https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202604/0401.html が令和8年度の月額の正本。自分の記録は「ねんきんネット」 https://www.nenkin.go.jp/n_net/ 、電話はねんきんダイヤル0570-05-1165。たどり方は本文の窓口の見出しに書いた。",
   "museSources": [
     {
       "url": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202604/0401.html",
@@ -113,5 +112,115 @@
     "at": "2026-11-11T09:58:34+00:00",
     "original": "https://www.nenkin.go.jp/images/ogp-logo.png"
   },
-  "coverTries": 1
+  "coverTries": 1,
+  "insight": [
+    {
+      "text": "付加保険料をやめる場合、申出を行った月の前月から納付する方でなくなります。やめるときも「国民年金被保険者関係届書（申出書）」を出します。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/fukanofu.html"
+    },
+    {
+      "text": "日本年金機構を装ったメールが確認されています。不審なメールを見つけた場合は、「日本年金機構へのご意見・ご要望」よりご連絡をお願いしています。",
+      "source": "https://www.nenkin.go.jp/n_net/"
+    },
+    {
+      "text": "ねんきんダイヤルは時間外にかけると、自動音声ガイダンスに従ってねんきんチャットボットのURLがSMSで届くサービスがあります。",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ねんきんネット",
+      "url": "https://www.nenkin.go.jp/n_net/",
+      "source": "https://www.nenkin.go.jp/n_net/",
+      "note": "初めての方は「新規登録」、利用したことがある方は「ログイン」のボタンから入ります。"
+    },
+    {
+      "name": "ねんきんダイヤル（年金相談に関する一般的なお問い合わせ）",
+      "url": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "phone": "0570-05-1165",
+      "hours": "月曜日午前8時30分から午後7時、火曜日から金曜日午前8時30分から午後5時15分、第2土曜日午前9時30分から午後4時",
+      "note": "基礎年金番号か照会番号がわかるものを用意してください。夕方（午後4時以降）、週の後半、月の後半（20日以降）、第2土曜日がつながりやすいとされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ねんきんネットにログインし、納付済月数と免除月数を確かめる",
+      "source": "https://www.nenkin.go.jp/n_net/",
+      "steps": [
+        "トップの「ログイン」（利用したことがある方はこちら）を押す",
+        "「自分の年金記録を確認したい！」を開く",
+        "納付済月数と免除月数を見る"
+      ],
+      "url": "https://www.nenkin.go.jp/n_net/"
+    },
+    {
+      "action": "ねんきんダイヤルにかける前に、基礎年金番号か照会番号を手元に用意する",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "steps": [
+        "各種通知書などで基礎年金番号か照会番号を探す",
+        "夕方（午後4時以降）か週の後半にかける",
+        "0570-05-1165にかける"
+      ],
+      "url": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html"
+    }
+  ],
+  "cause": {
+    "text": "令和8年度は、法律の規定により令和7年度から国民年金（基礎年金）が1.9％の引き上げとなります。令和8年4月分（6月15日支払分）から適用されます。",
+    "status": "background",
+    "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202604/0401.html"
+  },
+  "worries": [
+    {
+      "q": "月数が足りないと、年金はどれくらい減るの？",
+      "a": "年金額は納めた月数に応じて計算され、計算式の分母は480月（40年）です。免除の期間は種類ごとに数える割合が決まっていて、残りの保険料を納めたかどうかも関係します。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/jukyu-yoken/20150401-02.html",
+      "action": "ねんきんネットで自分の納付済月数と免除月数を確かめ、足りないかを見る",
+      "actionSource": "https://www.nenkin.go.jp/n_net/"
+    },
+    {
+      "q": "免除や学生納付特例の期間は、年金に入っているの？",
+      "a": "免除等期間のうち、あとから保険料を追納した期間は保険料納付済期間に含まれます。学生納付特例と納付猶予の期間は、追納していない場合、年金額には反映されません。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/jukyu-yoken/20150401-02.html",
+      "action": "ねんきんネットで自分の年金記録を確認し、免除期間がどう数えられているか見る",
+      "actionSource": "https://www.nenkin.go.jp/n_net/"
+    },
+    {
+      "q": "付加保険料は今から払えば、前の月分も対象になる？",
+      "a": "付加保険料の納付は、申出をした日の属する月分から開始します。令和8年3月分以前にさかのぼって納付することはできません。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/fukanofu.html",
+      "action": "付加保険料を始めるなら、申出書を市（区）役所か町村役場、お近くの年金事務所に出す（電子申請も可）"
+    },
+    {
+      "q": "日本年金機構からのメールが届いたら、怪しくないか？",
+      "a": "日本年金機構を装い、個人情報を盗み出したり、不審なサイトへ誘導しようとするメールが確認されています。送付メールに関する情報は、ねんきんネットのページで確かめられます。",
+      "source": "https://www.nenkin.go.jp/n_net/",
+      "action": "不審なメールを見つけたら、ねんきんネットの「日本年金機構へのご意見・ご要望」から連絡する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "付加保険料を今から納めるかどうか迷っています",
+      "situation": "国民年金第1号被保険者で、まだ付加保険料を納めていない",
+      "recommend": "急がなくてよい。自分の納付状況を確かめてから検討する価値がある",
+      "reason": "納めた月数に応じて、200円×月数が年金額に上乗せされます。月400円で、機構の例では40年で年額96,000円です。申出の月からの納付で、さかのぼっては納められません。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/fukanofu.html"
+    },
+    {
+      "question": "付加保険料を今から納めるかどうか迷っています",
+      "situation": "全額免除や一部免除などを受けている",
+      "recommend": "付加保険料は加入できないため、この選択肢は対象外",
+      "reason": "国民年金保険料の納付を免除されている方は、付加年金に加入できません。産前産後免除の場合は加入できます。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/fukanofu.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "付加保険料は、やめ方も確かめておく",
+    "cause": "なぜ額が上がるのか、いま分かっていること",
+    "steps": "今日はねんきんネットで月数を確かめよう",
+    "desk": "ねんきんダイヤルとねんきんネットの使い分け",
+    "worries": "月数が足りないと損？まず確かめたいこと",
+    "guide": "付加保険料を始めるか迷ったときの決め方"
+  },
+  "depthAt": "2026-11-11T10:06:51+00:00"
 }
