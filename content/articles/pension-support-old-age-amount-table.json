@@ -84,9 +84,8 @@
     }
   ],
   "todayActions": [
-    "9月に届く年金生活者支援給付金請求書（はがき型）の見込額（月額）の欄で、請求した場合の金額を確かめる",
-    "年金証書か支給額変更通知書で、保険料納付済期間と免除期間の月数を確かめる",
-    "金額や期限で迷ったら、給付金専用ダイヤル（0570-05-4092）に相談する"
+    "年金証書か支給額変更通知書で、納付済みと免除の月数を確かめる",
+    "納付済月数と免除月数を計算式に当てはめ、月額の目安を出す"
   ],
   "angleOf": "pension-support-benefit-old-age-eligibility",
   "deepDive": "compare",
@@ -120,5 +119,107 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/pension-support-old-age-amount-table-figure-b119c8e4.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "免除期間の額は種類で違います。4分の1免除期間は5,884円で、全額・4分の3・半額の免除期間は11,768円です（昭和31年4月2日以後生まれ）。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    },
+    {
+      "text": "昭和16年4月1日以前に生まれた方は、生年月日に応じて「480月を短縮」して計算します。計算式の480月がそのぶん短くなります。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    },
+    {
+      "text": "対象になる老齢基礎年金には、旧法の老齢年金や旧共済の退職年金など、政令で定める年金も含まれると書かれています。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "年金生活者支援給付金に関する手続き",
+      "url": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/index.html",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "howTo": [
+        "関連情報",
+        "年金生活者支援給付金に関する手続き"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "年金証書か支給額変更通知書で、納付済みと免除の月数を確かめる",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "steps": [
+        "年金証書か支給額変更通知書を手元に用意",
+        "保険料納付済期間の月数を見る",
+        "保険料免除期間の月数を見る"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    },
+    {
+      "action": "納付済月数と免除月数を計算式に当てはめ、月額の目安を出す",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "steps": [
+        "納付済期間は5,620円×納付済月数÷480月",
+        "免除期間は11,768円×免除月数÷480月",
+        "4分の1免除期間は5,884円で計算（4月2日以後生まれ）"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+    }
+  ],
+  "cause": {
+    "text": "この給付金は年金に上乗せして受け取る制度で、額は保険料を納めた月数と免除を受けた月数で決まります。免除の額は、毎年度の老齢基礎年金の改定に応じて変動します。",
+    "status": "background",
+    "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html"
+  },
+  "worries": [
+    {
+      "q": "もらえる金額は、どうやって決まるの？",
+      "a": "保険料を納めた月数に応じた額と、免除を受けた月数に応じた額の合計です。納付済みは5,620円×納付済月数÷480、免除は11,768円×免除月数÷480で計算します。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "年金証書か支給額変更通知書で、納付済み月数と免除月数を確認する。"
+    },
+    {
+      "q": "所得が多いと、もらえなくなる？",
+      "a": "前年の所得が上限以下であることが条件です。上限は生まれた日で違い、昭和31年4月2日以後生まれは826,500円以下、4月1日以前生まれは824,100円以下です。障害年金・遺族年金等の非課税収入は含まれません。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "前年の年金収入とその他の所得の合計を出し、生まれた日に応じた上限と比べる。"
+    },
+    {
+      "q": "免除を受けていたら、もらえる額は変わる？",
+      "a": "変わります。4分の1免除期間は5,884円、全額・4分の3・半額の免除期間は11,768円で計算されます（昭和31年4月2日以後生まれ）。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "年金証書か支給額変更通知書で、免除期間の月数を確認し、免除の種類ごとの額で計算する。"
+    },
+    {
+      "q": "生まれた年が古いと、計算はどう変わる？",
+      "a": "昭和16年4月1日以前に生まれた方は、生年月日に応じて480月を短縮して計算します。計算式の480月が、そのぶん短くなります。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "生年月日を確かめ、昭和16年4月1日以前かどうかで計算式の480月が変わるかを見る。"
+    },
+    {
+      "q": "旧法の年金や共済の年金でも対象になる？",
+      "a": "対象になります。旧法の老齢年金や旧共済の退職年金、その他の老齢・退職を支給事由とする年金で政令で定めるものも、老齢基礎年金の対象に含まれると書かれています。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "action": "受け取っている年金の種類が、旧法の老齢年金や旧共済の退職年金かどうかを確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "免除の種類や生年月日で計算が変わる",
+    "cause": "給付額は何で決まるの？",
+    "steps": "年金証書で自分の月数をすぐ確かめる",
+    "desk": "確認に使える公式ページと道順",
+    "worries": "もらえる額や所得の上限、免除の心配"
+  },
+  "depthAt": "2026-11-11T02:11:39+00:00",
+  "updatedAt": "2026-11-11T02:11:39+00:00",
+  "updates": [
+    {
+      "at": "2026-11-11T02:11:39+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」を追記しました",
+      "sourceUrl": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
+      "sourceName": "日本年金機構「老齢（補足的老齢）年金生活者支援給付金の概要」（2026年10月1日更新）"
+    }
+  ]
 }
