@@ -6015,16 +6015,6 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/useful/202610/video-326870.html"
     },
-    "274aedb084ae6e00": {
-      "at": "2026-10-28T02:28:35.667895+00:00",
-      "breaking": true,
-      "major": true,
-      "model": "claude:sonnet",
-      "score": 93,
-      "section": "ai",
-      "slug": "apple-creator-studio-new-ai-features",
-      "url": "https://www.apple.com/jp/newsroom/2026/10/apple-creator-studio-adds-powerful-new-ai-features-and-even-more-creative-tools/"
-    },
     "27611e9c9997cbd4": {
       "at": "2026-11-10T18:22:58.193669+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -14979,16 +14969,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102917"
     },
-    "b459574059fadb91": {
-      "at": "2026-10-28T02:11:02.231729+00:00",
-      "breaking": true,
-      "major": true,
-      "model": "claude:sonnet",
-      "score": 90,
-      "section": "ai",
-      "slug": "nvidia-meta-muse-partnership-expansion",
-      "url": "https://nvidianews.nvidia.com/news/nvidia-and-meta-to-expand-collaboration-on-muse-and-muse-family-of-models-amid-robust-growth"
-    },
     "b47f19a5d90e7ccc": {
       "at": "2026-11-10T04:03:54.861558+00:00",
       "costUsd": 0.1268,
@@ -18372,6 +18352,13 @@
       "skipped": true,
       "url": "https://survey.gov-online.go.jp"
     },
+    "ea431217fca2f5c3": {
+      "at": "2026-11-11T02:33:48.733038+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「前回の記事では、iPhone Duoは決算説明で挙げられた新製品として紹介していました。」→ 決算説明で iPhone Duo が挙げられたという内容は、元記事にも確認済みの文脈にも無く、裏付けられない。; 「Apple Newsroom（日本）は10月15日、…発表しました」→ 元記事は Apple Japan の発表日付（2026年10月15日）で、「Ap",
+      "skipped": true,
+      "url": "https://www.apple.com/jp/newsroom/2026/10/open-up-to-new-possibilities-with-iphone-duo/"
+    },
     "ea66f5a34808c903": {
       "at": "2026-11-02T10:31:24.723345+00:00",
       "reason": "stale: 発表から68時間（48時間を超えた発表は通常の記事にしない）",
@@ -20257,21 +20244,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-09T19:13:36.648406+00:00",
-      "attempt": 1,
-      "id": "796a7f7ee338b70f",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "本文「Anthropic公式ニュースは11月10日」→ 元記事に公開日の記載がなく、確認済みの文脈にも無い日付を創作している",
-        "リード・要点「5.1より2割安い」→ 5.1の価格$10・$50は確認済みの文脈にあり、2割安いの計算も正しいが、計算であることが明記されていない"
-      ],
-      "score": 72,
-      "source": "anthropic-news",
-      "title": "Introducing Claude Fable 5.2 and Claude Mythos 5.2"
-    },
     {
       "accepted": false,
       "at": "2026-11-09T19:17:07.600647+00:00",
@@ -27589,6 +27561,21 @@
         "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（IQ）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T02:33:48.733019+00:00",
+      "attempt": 1,
+      "id": "ea431217fca2f5c3",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「前回の記事では、iPhone Duoは決算説明で挙げられた新製品として紹介していました。」→ 決算説明で iPhone Duo が挙げられたという内容は、元記事にも確認済みの文脈にも無く、裏付けられない。",
+        "「Apple Newsroom（日本）は10月15日、…発表しました」→ 元記事は Apple Japan の発表日付（2026年10月15日）で、「Apple Newsroom」という発信元名は元記事に書かれていない。"
+      ],
+      "score": 72,
+      "source": "apple-newsroom-jp-all",
+      "title": "iPhone Duoで新しい可能性を開きましょう"
     }
   ],
   "short_text_retry": {},
