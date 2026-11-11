@@ -15492,6 +15492,19 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/housou_seisaku/02ryutsu07_04000602.html"
     },
+    "bb2d741d25208d58": {
+      "at": "2026-11-11T05:02:21.546844+00:00",
+      "breaking": true,
+      "costUsd": 0.1317,
+      "intent": "breaking",
+      "major": true,
+      "mix": "jp_corp",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 95,
+      "section": "investment",
+      "slug": "suntory-beverage-q3-2026-results",
+      "url": "https://www.release.tdnet.info/inbs/140120261110572433.pdf"
+    },
     "bb2f74751471878b": {
       "at": "2026-11-05T09:02:42.894442+00:00",
       "mix": "other",
@@ -20342,56 +20355,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T00:07:48.284231+00:00",
-      "attempt": 0,
-      "id": "573fbb2327fb588b",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 73.4,
-        "avg_sentence": 40.8,
-        "long_share": 0.111,
-        "max_paragraph": 105,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 88,
-      "source": "mof",
-      "title": "対外及び対内証券売買契約等の状況(月次・指定報告機関ベース)"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T00:08:20.615000+00:00",
-      "attempt": 1,
-      "id": "cd39b75a4ad90cfc",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトル「9月分は実質どう動いたか」→ 元記事に9月分の指数値や増減は無く、本文も実質の動きを示していないため、見出しの問いに答えていない。",
-        "リード「世帯ごとの平均的な消費支出をみるミクロ指数と…2つの体系で月次動向を示しています」→ 9月分の動向そのものは示されておらず、統計の概要説明にとどまる。",
-        "「今回公表された9月分および7〜9月期平均の詳細は…確認できます」→ 9月分の具体的な結果が本文にないまま、詳細の所在だけを案内している。",
-        "「今後の景気や需要の変化を確認する判断材料になります」→ 元記事に景気や需要の見通しに関する記述は無く、用途の言い過ぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 150.2,
-        "avg_sentence": 66.8,
-        "long_share": 0.667,
-        "max_paragraph": 199,
-        "paragraphs": 4,
-        "sentences": 9
-      },
-      "score": 72,
-      "source": "stat",
-      "title": "2025年基準 消費動向指数（CTI）2026年（令和8年）9月分 及び 7～9月期平均",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "初めて出たところで言い換えていない略語（CTI）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-10T00:28:18.975264+00:00",
@@ -27688,6 +27651,55 @@
       "title": "Introducing 3 new domains: .eat, .fly, and .here",
       "warnings": [
         "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T05:01:56.933828+00:00",
+      "attempt": 1,
+      "id": "bb2d741d25208d58",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "見出し「7〜9月累計は増収増益」→ 元記事の累計期間は2026年1〜9月（1月1日〜9月30日）で、7〜9月は誤り。期間の取り違えにあたる。",
+        "簡易版「円安が数字を押し上げた面があります」→ 元記事は為替の影響があったと述べるのみで、円安とは明記していない。為替レートの前提から推測した記述で、事実と区別されていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 70.9,
+        "avg_sentence": 35.5,
+        "long_share": 0.023,
+        "max_paragraph": 114,
+        "paragraphs": 22,
+        "sentences": 44
+      },
+      "score": 72,
+      "source": "fast",
+      "title": "サントリー食品インターナショナル 2026年12月期 第３四半期決算短信〔IFRS〕（連結）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IFRS・BOSS・NOPE）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T05:02:21.512755+00:00",
+      "attempt": 1,
+      "id": "bb2d741d25208d58",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 69.5,
+        "avg_sentence": 35.6,
+        "long_share": 0.023,
+        "max_paragraph": 114,
+        "paragraphs": 22,
+        "sentences": 43
+      },
+      "score": 95,
+      "source": "fast",
+      "title": "サントリー食品インターナショナル 2026年12月期 第３四半期決算短信〔IFRS〕（連結）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IFRS・BOSS・NOPE）"
       ]
     }
   ],
