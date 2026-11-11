@@ -66,14 +66,13 @@
   "videoTitle": "ドコモ障害は5G SA契約者だけが対象　4Gへの切り替え方と対象の確かめ方",
   "publishedAt": "2026-11-11T07:01:17.478588+00:00",
   "generatedAt": "2026-11-11T07:01:59.188632+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/docomo-5g-sa-outage-4g-switch-figure-dc19551a.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "5G SAを契約しているなら、ネットワーク設定で4Gを選び、端末を再起動するか機内モードをONからOFFにする。",
-    "ドコモの障害が復旧したら、4Gに変えた設定を5Gに戻す。",
-    "困ったときは、ドコモ携帯から113（一般電話は0120-800-000、24時間）に問い合わせる。"
+    "Androidは「優先ネットワークの種類」で「5G」か「4G」を含む項目を選び、再起動する",
+    "iPhoneは「設定」→「モバイル通信」で「音声通話とデータ」を「LTE」に変える"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -100,5 +99,141 @@
   "qualityScore": 93,
   "detectedAt": "2026-11-11T07:02:32+00:00",
   "layout": "noir",
-  "summaryLine": "5G SAの契約者だけが対象で、音声通話・データ通信・SMSが使いづらい状況が続いています（11月11日午前10時34分から）。"
+  "summaryLine": "5G SAの契約者だけが対象で、音声通話・データ通信・SMSが使いづらい状況が続いています（11月11日午前10時34分から）。",
+  "insight": [
+    {
+      "text": "ahamoを使う人も、Androidの「優先ネットワークの種類」は「5G」「4G」のいずれかを含む項目に設定する。",
+      "source": "https://otasuke-robot.front.smt.docomo.ne.jp/android/network-mode.html"
+    },
+    {
+      "text": "スマートフォンやPCからは「ドコモおたすけロボット」でも問い合わせられ、受付は24時間・年中無休と案内されている。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261106_00_m.html?icid=CRP_TOP_to_CRP_INFO_network_pages"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ドコモ 重要なお知らせ（通信障害等）",
+      "url": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_04_m.html",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_04_m.html",
+      "phone": "113（一般電話などから 0120-800-000）",
+      "hours": "24時間・年中無休",
+      "note": "復旧の見込みは「あらためてお知らせいたします」とされているため、このページで更新を確かめる。"
+    },
+    {
+      "name": "ドコモおたすけロボット",
+      "url": "https://otasuke-robot.front.smt.docomo.ne.jp/index.html",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261106_00_m.html?icid=CRP_TOP_to_CRP_INFO_network_pages",
+      "howTo": [
+        "お問い合わせ先",
+        "スマートフォン、PCから",
+        "ドコモおたすけロボット"
+      ],
+      "hours": "24時間・年中無休",
+      "note": "ドコモ携帯電話からは113、一般電話などからは0120-800-000も案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Androidは「優先ネットワークの種類」で「5G」か「4G」を含む項目を選び、再起動する",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_04_m.html",
+      "steps": [
+        "「設定」→「ネットワークとインターネット」→「SIM」",
+        "表示されたSIMをタップ",
+        "「優先ネットワークの種類」で「5G」か「4G」を含む項目を選ぶ",
+        "端末を再起動するか、機内モードをONからOFFにする"
+      ],
+      "url": "https://otasuke-robot.front.smt.docomo.ne.jp/android/network-mode.html"
+    },
+    {
+      "action": "iPhoneは「設定」→「モバイル通信」で「音声通話とデータ」を「LTE」に変える",
+      "source": "https://support.apple.com/ja-jp/108383",
+      "steps": [
+        "「設定」を開き、「モバイル通信」をタップ",
+        "「モバイルデータ通信のオプション」→「通信のオプション」をタップ",
+        "「音声通話とデータ」で「LTE」を選ぶ",
+        "携帯電話を再起動するか、機内モードをONからOFFにする"
+      ],
+      "url": "https://support.apple.com/ja-jp/108383"
+    }
+  ],
+  "cause": {
+    "text": "ドコモは原因を「調査中」と発表しています。現時点の調査では、事象の前後を含めて、不正アクセスの形跡やサイバー攻撃を示す事象は確認されていないとしています。",
+    "status": "investigating",
+    "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_04_m.html"
+  },
+  "worries": [
+    {
+      "q": "いつ直るのか、目安はありますか？",
+      "a": "ドコモは復旧の見込みについて「あらためてお知らせいたします」としています。新しい発表が出るまでは、再起動や機内モードのON/OFFを試せます。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_04_m.html",
+      "action": "ドコモの「重要なお知らせ（通信障害等）」のページで更新を確かめる"
+    },
+    {
+      "q": "ドコモ回線のMVNOや4Gの人も影響を受ける？",
+      "a": "ドコモ回線利用MVNOには影響がないとされています。5G SA以外の5Gや4Gサービスを使う人にも影響はなく、緊急通報にも影響はないとされています。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_04_m.html",
+      "action": "5G SAの契約でなければ、設定を変えずにいつもどおり使う"
+    },
+    {
+      "q": "4Gに変えた設定は、いつ戻せばいい？",
+      "a": "ドコモは、4Gへの切り替えは暫定対処だとして、復旧後に設定を5Gに戻すよう案内しています。前回の障害でも、暫定対処で4Gにした人は設定を戻すよう案内されていました。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261106_00_m.html?icid=CRP_TOP_to_CRP_INFO_network_pages",
+      "action": "復旧の発表が出たら、ネットワーク設定を5Gに戻す"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "今すぐ4Gに切り替えるべき？",
+      "situation": "5G SAを契約していて、通話やSMSが使えない",
+      "recommend": "使えない間は試してよい",
+      "reason": "4Gへの切り替えと再起動・機内モードON/OFFで使える場合があるとドコモが案内。ただし使えない場合もあり、復旧後は5Gに戻す必要がある。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_04_m.html"
+    },
+    {
+      "question": "今すぐ4Gに切り替えるべき？",
+      "situation": "自分が5G SAの契約か分からない",
+      "recommend": "先に契約を確かめてから決める",
+      "reason": "発表の対象は5G SAサービスの契約者。当てはまるか分からないときは113で確認できる。対象外なら切り替えの必要はないとされている。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_04_m.html"
+    },
+    {
+      "question": "障害が直ったあと、設定はどうする？",
+      "situation": "4Gに変えたままになっている",
+      "recommend": "復旧の発表があったら5Gに戻す",
+      "reason": "4Gへの切り替えは障害中の一時的な対処とされている。前回の障害でも、暫定対処で4Gに変えた人は設定を戻すよう案内された。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261106_00_m.html?icid=CRP_TOP_to_CRP_INFO_network_pages"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "Androidは設定の名前を確かめてから切り替える",
+    "cause": "なぜ起きた？いま分かっていること",
+    "steps": "今すぐできる、4Gへの切り替え手順",
+    "desk": "問い合わせ先と受付時間",
+    "worries": "いつ直る？対象かどうかの確かめ方",
+    "guide": "障害中に4Gへ変えるか、迷ったとき"
+  },
+  "depthAt": "2026-11-11T07:21:55+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "ドコモ障害は5G SA契約者だけが対象",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-11T07:24:11+00:00"
+  },
+  "imageFocus": {
+    "x": 0.522,
+    "y": 0.414,
+    "box": [
+      0.094,
+      0.054,
+      0.95,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/docomo-5g-sa-outage-4g-switch-figure-dc19551a.jpg"
+  }
 }
