@@ -69,9 +69,8 @@
   "affiliates": [],
   "newsType": "security",
   "todayActions": [
-    "車台番号（S0023-やS0031-で始まる番号）を確認し、リコール届出一覧表の範囲と照らす",
-    "判断に迷うときは、ヤンマーアグリ品質保証部（TEL 086-276-8176）か販売店に問い合わせる",
-    "改善済みか見分けるため、運転席後部のフレームにNo.5907のステッカーがあるか見る"
+    "手元のトラクターの車台番号を確認し、リコール届出一覧表の型式ごとの範囲と照らす",
+    "運転席後部のフレームにNo.5907のステッカーがあるかを見て、改善済みかを確かめる"
   ],
   "publicInterest": "recall",
   "qualityScore": 92,
@@ -109,5 +108,111 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/yanmar-tractor-recall-fuel-hose-cover-figure-79753ab0.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "メーカー等のホームページの検索画面でも、対象かどうかを確認できます（一部メーカー等を除く）。",
+      "source": "http://www.mlit.go.jp/report/press/jidosha08_hh_005887.html"
+    },
+    {
+      "text": "添付資料の「改善箇所説明図」（PDF）もあり、どの部分を直すのかを図で確認できます。",
+      "source": "http://www.mlit.go.jp/report/press/jidosha08_hh_005887.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国土交通省 物流・自動車局審査・リコール課リコール監理室",
+      "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005887.html",
+      "source": "http://www.mlit.go.jp/report/press/jidosha08_hh_005887.html",
+      "phone": "（03）5253-8111 （内線42361）",
+      "note": "車両が対象かどうかは、販売店または届出者へ問い合わせるよう案内されています。"
+    },
+    {
+      "name": "ヤンマーアグリ品質保証部",
+      "url": "https://www.mlit.go.jp/report/press/content/002045476.pdf",
+      "source": "https://www.mlit.go.jp/report/press/content/002045476.pdf",
+      "phone": "TEL.086-276-8176",
+      "note": "届出者の問い合わせ先です。車台番号の範囲で迷うときの連絡先になります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元のトラクターの車台番号を確認し、リコール届出一覧表の型式ごとの範囲と照らす",
+      "source": "https://www.mlit.go.jp/report/press/content/002045476.pdf",
+      "steps": [
+        "車台番号（S0023-またはS0031-で始まる番号）を確認する",
+        "リコール届出一覧表で型式ごとの範囲を見る",
+        "範囲に入るか迷ったら販売店かヤンマーアグリに問い合わせる"
+      ],
+      "url": "https://www.mlit.go.jp/report/press/content/002045476.pdf"
+    },
+    {
+      "action": "運転席後部のフレームにNo.5907のステッカーがあるかを見て、改善済みかを確かめる",
+      "source": "https://www.mlit.go.jp/report/press/content/002045476.pdf",
+      "steps": [
+        "運転席の後ろ側のフレームを見る",
+        "No.5907のステッカーが貼られているか確認する",
+        "ステッカーがあれば改善実施済みの車両"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "燃料ホースカバーの取付ボルトの締め付けが不十分なため、ボルトが緩むことがあります。そのまま使い続けるとボルトが脱落し、最悪の場合はカバーが脱落するおそれがあります。発見のきっかけは市場からの情報です。",
+    "status": "stated",
+    "source": "https://www.mlit.go.jp/report/press/content/002045476.pdf"
+  },
+  "worries": [
+    {
+      "q": "自分のトラクターが対象か、どう確かめればいい？",
+      "a": "車台番号（S0023-やS0031-で始まる番号）が、リコール届出一覧表の型式ごとの範囲に入るかで確認します。ただし範囲には対象外の車両も含まれることがあるため、迷うときは販売店か届出者に確認します。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045476.pdf",
+      "action": "手元のトラクターの車台番号を確認し、リコール届出一覧表の型式ごとの範囲と照らして、範囲に入るかを見てみましょう。"
+    },
+    {
+      "q": "放っておくと、どんな危険があるの？",
+      "a": "そのまま使い続けるとボルトが脱落し、最悪の場合はカバーが脱落するおそれがあります。発見のきっかけは市場からの情報でした。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045476.pdf",
+      "action": "対象かもしれないトラクターは、使い続ける前に販売店かヤンマーアグリ品質保証部へ早めに確認しましょう。",
+      "actionSource": "http://www.mlit.go.jp/report/press/jidosha08_hh_005887.html"
+    },
+    {
+      "q": "修理や改善は、どうやって受けるの？",
+      "a": "全車両で、燃料ホースカバーの取付ボルトを規定トルク（決められた締め付けの強さ）で締め直します。改善済みの車両には、運転席後部のフレームにNo.5907のステッカーが貼られます。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045476.pdf",
+      "action": "販売店かヤンマーアグリ品質保証部に電話し、対象かどうかと改善の受け方を聞きましょう。"
+    },
+    {
+      "q": "ステッカーを見れば、直したかどうか分かる？",
+      "a": "改善実施済みの車両には、運転席後部のフレームにNo.5907のステッカーが貼られます。ステッカーがあれば、改善済みかどうかを見分けられます。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045476.pdf",
+      "action": "運転席の後ろ側のフレームを見て、No.5907のステッカーが貼られているかを確かめましょう。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "対象か分からないとき、まず誰に聞く？",
+      "situation": "車台番号が対象範囲に入るか迷う",
+      "recommend": "販売店か届出者に確認する",
+      "reason": "対象かどうかは販売店または届出者へ問い合わせるよう案内されています。範囲には対象外の車両も含まれる場合があるため、範囲に入ったら確認が必要です。",
+      "source": "http://www.mlit.go.jp/report/press/jidosha08_hh_005887.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "メーカーサイトの検索や説明図でも確かめられる",
+    "cause": "なぜボルトが緩んだのか、分かっていること",
+    "steps": "車台番号とステッカー、まず何を見ればいい？",
+    "desk": "迷ったら、どこに問い合わせればいい？",
+    "worries": "対象か、放っておくとどうなる？",
+    "guide": "対象か分からないときは誰に聞く？"
+  },
+  "depthAt": "2026-11-11T07:54:45+00:00",
+  "updatedAt": "2026-11-11T07:54:45+00:00",
+  "updates": [
+    {
+      "at": "2026-11-11T07:54:45+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceName": "国土交通省 報道発表"
+    }
+  ]
 }
