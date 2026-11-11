@@ -15699,6 +15699,19 @@
       "skipped": true,
       "url": "https://kabutan.jp/news/marketnews/?b=n202611040052"
     },
+    "bd9342f2217520d0": {
+      "at": "2026-11-11T05:30:41.859731+00:00",
+      "costUsd": 0.1188,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "daikin-d60-w-ai-factory-cooling",
+      "url": "https://www.daikin.co.jp/press/2026/20261111"
+    },
     "bda2ca88f48f8801": {
       "at": "2026-11-02T03:51:18.940839+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -20394,58 +20407,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-10T01:26:06.792863+00:00",
-      "attempt": 1,
-      "id": "59856d4a5588f2d4",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトル「AWSとパートナーが実演」→ 元記事は各社の登壇・講演の内容であり、実機デモや実演があったとは書かれていないため、発表形式を誤って伝えている。"
-      ],
-      "readability": {
-        "avg_paragraph": 127.7,
-        "avg_sentence": 77.7,
-        "long_share": 0.826,
-        "max_paragraph": 280,
-        "paragraphs": 14,
-        "sentences": 23
-      },
-      "score": 85,
-      "source": "aws-japan-blog",
-      "title": "【開催報告】ランサムウェアに備える「防御」「復旧」「説明責任」— AI エージェント時代に見直す対策と次の一歩",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（MITRE・ATT・CK）",
-        "読みやすさ: 文が長い（1文の平均 77.7字・60字超の文が 83% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T01:26:24.346572+00:00",
-      "attempt": 1,
-      "id": "59856d4a5588f2d4",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 127.7,
-        "avg_sentence": 77.7,
-        "long_share": 0.826,
-        "max_paragraph": 280,
-        "paragraphs": 14,
-        "sentences": 23
-      },
-      "score": 92,
-      "source": "aws-japan-blog",
-      "title": "【開催報告】ランサムウェアに備える「防御」「復旧」「説明責任」— AI エージェント時代に見直す対策と次の一歩",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（MITRE・ATT・CK）",
-        "読みやすさ: 文が長い（1文の平均 77.7字・60字超の文が 83% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T01:26:55.457140+00:00",
@@ -27736,6 +27697,55 @@
       "title": "【記者発表】「学校給食費の無償化に関する指定都市市長会緊急要請」について原澤 敦美 横浜市長が文部科学省に要請を行いました",
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 54.3字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T05:30:17.863261+00:00",
+      "attempt": 1,
+      "id": "bd9342f2217520d0",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 94.2,
+        "avg_sentence": 45.8,
+        "long_share": 0.216,
+        "max_paragraph": 160,
+        "paragraphs": 18,
+        "sentences": 37
+      },
+      "score": 88,
+      "source": "radar-official",
+      "title": "NVIDIAの設計基盤に対応した大規模データセンター向け冷却リファレンス・アーキテクチャを発表 | ニュースリリース | ダイキン工業株式会社",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DAA・MW・NVL）",
+        "読みやすさ: 文が長い（1文の平均 45.8字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T05:30:41.840724+00:00",
+      "attempt": 0,
+      "id": "bd9342f2217520d0",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 91.2,
+        "avg_sentence": 37.7,
+        "long_share": 0.087,
+        "max_paragraph": 160,
+        "paragraphs": 19,
+        "sentences": 46
+      },
+      "score": 88,
+      "source": "radar-official",
+      "title": "NVIDIAの設計基盤に対応した大規模データセンター向け冷却リファレンス・アーキテクチャを発表 | ニュースリリース | ダイキン工業株式会社",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DAA・MW・NVL）"
       ]
     }
   ],
