@@ -1,7 +1,24 @@
 {
- "checkedAt": "2026-11-11T05:36:23+09:00",
- "ok": true,
- "alerts": [],
+ "checkedAt": "2026-11-11T09:54:36+09:00",
+ "ok": false,
+ "alerts": [
+  {
+   "kind": "sns_missed_threads",
+   "message": "threads の枠 07:15・08:30 を30分以上過ぎても投稿がありません"
+  },
+  {
+   "kind": "sns_missed_bluesky",
+   "message": "bluesky の枠 07:15・08:30 を30分以上過ぎても投稿がありません"
+  },
+  {
+   "kind": "sns_missed_x",
+   "message": "x の枠 07:30・08:30 を30分以上過ぎても投稿がありません"
+  },
+  {
+   "kind": "sns_missed_facebook",
+   "message": "facebook の枠 07:30・08:30 を30分以上過ぎても投稿がありません"
+  }
+ ],
  "log": [
   {
    "at": "2026-11-09T14:27:07+09:00",
@@ -63,6 +80,21 @@
    "kinds": [],
    "messages": [
     "直りました"
+   ]
+  },
+  {
+   "at": "2026-11-11T09:54:36+09:00",
+   "kinds": [
+    "sns_missed_bluesky",
+    "sns_missed_facebook",
+    "sns_missed_threads",
+    "sns_missed_x"
+   ],
+   "messages": [
+    "threads の枠 07:15・08:30 を30分以上過ぎても投稿がありません",
+    "bluesky の枠 07:15・08:30 を30分以上過ぎても投稿がありません",
+    "x の枠 07:30・08:30 を30分以上過ぎても投稿がありません",
+    "facebook の枠 07:30・08:30 を30分以上過ぎても投稿がありません"
    ]
   }
  ]
