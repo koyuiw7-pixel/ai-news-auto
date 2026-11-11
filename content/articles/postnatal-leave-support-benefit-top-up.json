@@ -83,15 +83,14 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "勤務先の担当者に、育休の開始日と取る日数を伝え、出生後休業支援給付金を一緒に申請できるか相談する",
-    "厚生労働省の簡易診断（要件確認）で、自分と配偶者が要件に当たるか確かめる",
-    "育児休業等給付コールセンター（0570-200-406、平日8時30分から17時15分）に、申請の疑問を聞く"
+    "簡易診断ツールで、自分と配偶者が要件に当たるかを先に確かめる",
+    "勤務先の担当者に、出生後休業支援給付金を一緒に申請できるか相談する",
+    "育児休業等給付コールセンターに、申請の疑問を平日の受付時間内に聞く"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261111-お金-出生後休業支援給付金の13パーセント.md",
   "sectionsPolishedAt": "2026-11-11T06:42:12+00:00",
-  "museDepthNotes": "この記事だけのなるほど：父親が申請する場合、配偶者である母親は子の出生日の翌日時点で産後休業中に当たるため、「配偶者の育児休業を要件としない場合」の6．配偶者が産後休業中に該当し、配偶者側の14日要件はその時点で満たした扱いになります。母親側の育休の取り方を待たずに父親の上乗せが決まる点は見落としやすいところです。出典はパンフレット「育児休業等給付の内容と支給申請手続」2頁と13頁から15頁（https://jsite.mhlw.go.jp/osaka-roudoukyoku/content/contents/001909146.pdf）。\nこの記事だけのなるほど：休業期間を対象に事業主から賃金が出た場合でも、賃金額が賃金日額×日数の13％を超えて80％未満なら、出生後休業支援給付金の額自体は減額されません。減るのは土台の出生時育児休業給付金側です。ただし賃金が80％以上になり土台が不支給になると、上乗せも連動して支給されません。出典は同パンフレット4頁（https://jsite.mhlw.go.jp/osaka-roudoukyoku/content/contents/001909146.pdf）。\n公式窓口：申請先は事業所の所在地を管轄する公共職業安定所（ハローワーク）。正式名称は厚生労働省「育児休業等給付について」（https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html）。たどり方は、厚生労働省の公式サイトで「育児休業等給付について」を開き、「お問合せ・申請先」とパンフレット、簡易診断ツールへのリンクを確認する順です。電話の窓口は育児休業等給付コールセンター0570-200-406（平日8時30分から17時15分、土日祝日と12月29日から1月3日を除く）で、同ページに載っています。要件の当てはまりだけを先に確かめたいときは、厚生労働省「出生後休業支援給付の簡易診断（要件確認）」（https://www.mhlw.go.jp/stf/syussyougo_kanishindan_00001.html）で自分の状況を選んで進めます。",
   "museSources": [
     {
       "url": "https://www.mhlw.go.jp/stf/syussyougo_kanishindan_00001.html",
@@ -145,5 +144,150 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/postnatal-leave-support-benefit-top-up-figure-57cc19dc.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "会社から賃金が出ても、休業開始時賃金日額×休業期間の日数の80％未満なら、出生後休業支援給付金は減りません。80％以上になると、上乗せも支給されません。",
+      "source": "https://jsite.mhlw.go.jp/osaka-roudoukyoku/content/contents/001909146.pdf"
+    },
+    {
+      "text": "申請には、配偶者の同意書や賃金支払状況についての証明書など、専用の様式があります。様式は「育児休業等給付について」のページの「各種お知らせ・様式」から確認できます。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "育児休業等給付コールセンター",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html",
+      "howTo": [
+        "分野別の政策一覧",
+        "雇用・労働",
+        "雇用保険制度",
+        "育児休業等給付について"
+      ],
+      "phone": "０５７０ー２００ー４０６",
+      "hours": "平日8:30～17:15（土日祝日、12/29～1/3を除く）",
+      "note": "支給処理の目安は聞けますが、具体的な支給日は答えられないと案内されています。"
+    },
+    {
+      "name": "出生後休業支援給付の簡易診断（要件確認）ツール",
+      "url": "https://www.mhlw.go.jp/stf/syussyougo_kanishindan_00001.html",
+      "source": "https://www.mhlw.go.jp/stf/syussyougo_kanishindan_00001.html",
+      "howTo": [
+        "育児休業等給付について",
+        "育児休業中の給付金",
+        "簡易診断ツール"
+      ],
+      "note": "最初に「父親（子が養子でない）」「母親（自身が出産）」「父親 or 母親（子が養子）」から自分に当てはまるものを選びます。"
+    },
+    {
+      "name": "ハローワークの所在地一覧",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/hellowork.html",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html",
+      "howTo": [
+        "育児休業等給付について",
+        "お問合せ・申請先",
+        "ハローワークの所在地一覧"
+      ],
+      "note": "申請先は、事業所の所在地を管轄するハローワークです。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "簡易診断ツールで、自分と配偶者が要件に当たるかを先に確かめる",
+      "source": "https://www.mhlw.go.jp/stf/syussyougo_kanishindan_00001.html",
+      "steps": [
+        "簡易診断ツールを開く",
+        "「父親」「母親」「父親 or 母親（子が養子）」から選ぶ",
+        "画面の手順に沿って進む"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/syussyougo_kanishindan_00001.html"
+    },
+    {
+      "action": "勤務先の担当者に、出生後休業支援給付金を一緒に申請できるか相談する",
+      "source": "https://jsite.mhlw.go.jp/osaka-roudoukyoku/content/contents/001909146.pdf",
+      "steps": [
+        "申請は原則、勤務先（事業主）が行う",
+        "出生時育児休業給付金と同じ支給申請書で申請するのが原則",
+        "本人が希望すれば本人が直接提出もできる"
+      ]
+    },
+    {
+      "action": "育児休業等給付コールセンターに、申請の疑問を平日の受付時間内に聞く",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html",
+      "steps": [
+        "０５７０ー２００ー４０６に電話する",
+        "平日8:30～17:15に受け付けている",
+        "具体的な支給日は答えられないと案内されている"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html"
+    }
+  ],
+  "cause": {
+    "text": "出生後休業支援給付金は、子の出生直後に両親がともに14日以上育児休業を取る場合に、育児休業給付金などに上乗せして支給する制度です。2025年4月1日に創設され、こども未来戦略に基づく支援策だと厚生労働省が説明しています。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html"
+  },
+  "worries": [
+    {
+      "q": "父親だけ申請するとき、母親の育休は必要？",
+      "a": "母親が子を出産している場合、子の出生日の翌日時点で母親は産後休業中にあたり、配偶者側の要件を満たすことになります。ただし父親本人が対象期間内に通算14日以上の育児休業を取る必要はあります。",
+      "source": "https://jsite.mhlw.go.jp/osaka-roudoukyoku/content/contents/001909146.pdf",
+      "action": "母親が産後休業中かを確かめ、勤務先に父親本人の育休の開始日と日数を伝えて相談する"
+    },
+    {
+      "q": "会社から給料が出ると、上乗せは減る？",
+      "a": "事業主から支払われた賃金が、休業開始時賃金日額×休業期間の日数の13％以下なら、上乗せは減りません。13％超80％未満でも、出生後休業支援給付金の額は減らないとされています。80％以上になると支給されません。",
+      "source": "https://jsite.mhlw.go.jp/osaka-roudoukyoku/content/contents/001909146.pdf",
+      "action": "休業中に会社から支払われる賃金の額を、勤務先に事前に確かめ、13％と80％の境目を計算しておく"
+    },
+    {
+      "q": "申請はどこに、誰が出すの？",
+      "a": "申請は、原則として被保険者を雇用している事業主が行います。提出先は、事業所の所在地を管轄するハローワークで、電子申請も利用できます。",
+      "source": "https://jsite.mhlw.go.jp/osaka-roudoukyoku/content/contents/001909146.pdf",
+      "action": "事業所の所在地から管轄のハローワークを、所在地一覧で探し、勤務先と提出方法を相談する"
+    },
+    {
+      "q": "令和8年8月以降に申請すると、手続きは変わる？",
+      "a": "厚生労働省の新着情報によると、令和8年8月1日から育児休業等給付の申請手続きを見直すとされています。変更の中身は、新着情報のページで確かめられます。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html",
+      "action": "新着情報の「令和８年８月１日から育児休業等給付の申請手続きを見直します」を開いて確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "父親だけ申請するとき、母親の14日を待つ必要はある？",
+      "situation": "母親が出産し、産後休業中の場合",
+      "recommend": "母親の育休日数を待たず、勤務先への相談は早めに始めてよい",
+      "reason": "母親が子を出産している場合、子の出生日の翌日時点で母親は産後休業中にあたり、配偶者側の要件を満たすことになります。父親本人の14日以上の育休は別に必要です。",
+      "source": "https://jsite.mhlw.go.jp/osaka-roudoukyoku/content/contents/001909146.pdf"
+    },
+    {
+      "question": "上乗せは今回まとめて、それとも後から出す？",
+      "situation": "出生時育児休業給付金の申請を先に出した場合",
+      "recommend": "土台の給付金の支給が決まってから、後で単独で申請できる",
+      "reason": "出生後休業支援給付金は、出生時育児休業給付金と同じ支給申請書で申請するのが原則です。後から単独で申請する場合は、土台の給付金の支給決定後に申請します。",
+      "source": "https://jsite.mhlw.go.jp/osaka-roudoukyoku/content/contents/001909146.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "会社から給料が出ても、80％未満なら上乗せは残る",
+    "cause": "なぜできた制度？分かっていること",
+    "steps": "今日は、簡易診断と勤務先への相談から",
+    "desk": "電話と申請先は、どこに聞けばいい？",
+    "worries": "父親だけの申請や、賃金の扱いは大丈夫？",
+    "guide": "上乗せを今まとめて出すか、後にするか"
+  },
+  "depthAt": "2026-11-11T07:48:13+00:00",
+  "updatedAt": "2026-11-11T07:48:13+00:00",
+  "updates": [
+    {
+      "at": "2026-11-11T07:48:13+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.mhlw.go.jp/stf/syussyougo_kanishindan_00001.html",
+      "sourceName": "厚生労働省「出生後休業支援給付の簡易診断（要件確認）」"
+    }
+  ]
 }

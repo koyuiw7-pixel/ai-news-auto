@@ -104,14 +104,6 @@
       "tries": 1,
       "url": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/seisaku/2026/1111yousei.html"
     },
-    "b1435fe199ba13be": {
-      "first": "2026-11-11T04:20:10.023441+00:00",
-      "next": "2026-11-11T07:20:10.023441+00:00",
-      "reason": "題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す",
-      "title": "SalesforceのAgentforce Coworkerは利用が3カ月で21倍に急増。導入企業は実際の業務をAIエージェントに任せ始めた",
-      "tries": 1,
-      "url": "https://www.salesforce.com/jp/news/stories/agentforce-coworker-surpasses-185k-users/"
-    },
     "b8c092e554a77e02": {
       "first": "2026-11-11T06:21:43.869885+00:00",
       "next": "2026-11-11T09:21:43.869885+00:00",
@@ -181,6 +173,7 @@
     "8b761f56da6ddf72": "2026-11-11T02:54:51.172733+00:00",
     "95efafa687a45f09": "2026-11-11T04:30:56.150308+00:00",
     "971847f0c7223a93": "2026-11-10T07:17:00.645387+00:00",
+    "9b9469084fa0c1a8": "2026-11-11T07:38:56.415903+00:00",
     "9be8c44eaa315506": "2026-11-10T07:17:00.645387+00:00",
     "a32d44d8a10f6154": "2026-11-10T02:03:09.291270+00:00",
     "a7f10c6aec80b466": "2026-11-10T07:17:00.645387+00:00",
@@ -9842,6 +9835,12 @@
       "skipped": true,
       "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/02/01"
     },
+    "6136106213c42dfe": {
+      "at": "2026-11-11T07:43:14.971393+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
+      "skipped": true,
+      "url": "https://www.cao.go.jp/consumer/iinkai/2026/502/shiryou/index.html"
+    },
     "6139b69c3d743eb4": {
       "at": "2026-11-09T04:43:16.948964+00:00",
       "costUsd": 0.0073,
@@ -10890,6 +10889,17 @@
       "section": "business",
       "slug": "publisher-bankruptcies-rise-2026",
       "url": "https://www.tsr-net.co.jp/data/detail/1203414_1527.html"
+    },
+    "6fd09bb38a52c757": {
+      "at": "2026-11-11T07:43:14.195199+00:00",
+      "costUsd": 0.0114,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-flash-latest",
+      "score": 88,
+      "section": "business",
+      "slug": "esu-and-mu-conservation-units",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87299?site=nli"
     },
     "6fd678299b937417": {
       "at": "2026-10-29T16:43:54.049643+00:00",
@@ -13656,7 +13666,7 @@
       "url": "https://www.mhlw.go.jp/stf/newpage_77206.html"
     },
     "9b9469084fa0c1a8": {
-      "at": "2026-11-11T07:19:35.499091+00:00",
+      "at": "2026-11-11T07:43:14.996760+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/syouan/syokubo/261111.html"
@@ -15115,6 +15125,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
       "skipped": true,
       "url": "https://www.fsa.go.jp/news/r8/sonota/20261016/symposium.html"
+    },
+    "b1435fe199ba13be": {
+      "at": "2026-11-11T07:45:07.689863+00:00",
+      "costUsd": 0.0216,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.1-flash-lite",
+      "score": 92,
+      "section": "ai",
+      "slug": "salesforce-agentforce-coworker-growth-features",
+      "url": "https://www.salesforce.com/jp/news/stories/agentforce-coworker-surpasses-185k-users/"
     },
     "b19a37afd7007bab": {
       "at": "2026-11-10T09:05:35.030931+00:00",
@@ -20889,156 +20910,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T04:23:06.203790+00:00",
-      "attempt": 1,
-      "id": "b77a103ad566ce07",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 105.0,
-        "avg_sentence": 47.0,
-        "long_share": 0.263,
-        "max_paragraph": 180,
-        "paragraphs": 17,
-        "sentences": 38
-      },
-      "score": 92,
-      "source": "nvidia-japan-blog",
-      "title": "NVIDIA、日本のエージェント型AI開発を支える2つの合成データセットを発表",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（PII・FDUA）",
-        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す",
-        "読みやすさ: 文が長い（1文の平均 47.0字・60字超の文が 26% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T04:23:36.102392+00:00",
-      "attempt": 0,
-      "id": "b77a103ad566ce07",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 101.2,
-        "avg_sentence": 42.3,
-        "long_share": 0.163,
-        "max_paragraph": 155,
-        "paragraphs": 18,
-        "sentences": 43
-      },
-      "score": 90,
-      "source": "nvidia-japan-blog",
-      "title": "NVIDIA、日本のエージェント型AI開発を支える2つの合成データセットを発表",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（PII・FDUA）",
-        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T04:23:53.539355+00:00",
-      "attempt": 1,
-      "id": "cb71cc0e810f0b61",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "リード「特設データハブの開設」→ 元記事は「特設ページ」としか書いておらず「データハブ」は元記事に無い機能名の創作。",
-        "リード「順次展開される予定です」→ 元記事は「共同で開催します」「展開します」と書いており、「順次」「予定」は時期の言い換えとして元記事より不確かな表現。",
-        "本文「ファン自身が動画を投稿してコミュニティに参加できる仕組みを用意し」→ 元記事は「ファン参加型の投稿キャンペーン」とのみ書き、動画投稿を前提とする仕組みは補足として踏み込み過ぎ。",
-        "リード「2026年10月から連携を再開しました」→ 元記事は「契約開始 2026年10月」と書くのみで、「再開」は解釈を含む言い換え。"
-      ],
-      "readability": {
-        "avg_paragraph": 115.0,
-        "avg_sentence": 57.5,
-        "long_share": 0.417,
-        "max_paragraph": 142,
-        "paragraphs": 6,
-        "sentences": 12
-      },
-      "score": 78,
-      "source": "jleague",
-      "title": "TikTokとＪリーグサポーティングパートナー契約を締結 2026/11/10 (火) 13:00",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 57.5字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T04:24:11.468059+00:00",
-      "attempt": 1,
-      "id": "cb71cc0e810f0b61",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 110.7,
-        "avg_sentence": 55.3,
-        "long_share": 0.417,
-        "max_paragraph": 137,
-        "paragraphs": 6,
-        "sentences": 12
-      },
-      "score": 92,
-      "source": "jleague",
-      "title": "TikTokとＪリーグサポーティングパートナー契約を締結 2026/11/10 (火) 13:00",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 55.3字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T04:24:22.699963+00:00",
-      "attempt": 0,
-      "id": "cb71cc0e810f0b61",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 112.5,
-        "avg_sentence": 39.7,
-        "long_share": 0.118,
-        "max_paragraph": 139,
-        "paragraphs": 6,
-        "sentences": 17
-      },
-      "score": 92,
-      "source": "jleague",
-      "title": "TikTokとＪリーグサポーティングパートナー契約を締結 2026/11/10 (火) 13:00",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T04:24:49.568080+00:00",
-      "attempt": 1,
-      "id": "5bc690806dc2f2be",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 158.4,
-        "avg_sentence": 99.0,
-        "long_share": 0.875,
-        "max_paragraph": 205,
-        "paragraphs": 5,
-        "sentences": 8
-      },
-      "score": 80,
-      "source": "maff",
-      "title": "食料システム法に基づく指導について",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 99.0字・60字超の文が 88% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 158.4字・最長 205字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T04:25:11.455478+00:00",
@@ -28214,6 +28085,168 @@
       "score": 40,
       "source": "energia",
       "title": "電気・ガス料金支援の実施に係る電気料金の特別措置について"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T07:42:37.697551+00:00",
+      "attempt": 1,
+      "id": "6fd09bb38a52c757",
+      "kind": "broad",
+      "model": "gemini-flash-latest",
+      "problems": [
+        "かんたん版「何万年もかけて身につけてきた特徴」→ 元記事は「長い年月」とonly書いており、「何万年」という具体的な年数は元記事にない創作的な数値。",
+        "よくある質問「MUは…鳥獣被害対策など…の実務で使われます」→ 元記事はMUの例として漁獲規制とヒグマの地域個体群管理を挙げており、鳥獣被害対策をMUの用途とする記述は元記事にない拡張。",
+        "本文「交配の機会がなくなり」→ 元記事は「交配する機会がほとんどない」であり、完全になくなるとまで言うのは言い過ぎ。",
+        "かんたん版「2つの物差し」→ 元記事ではFstが物差しで、ESUとMUは保全の単位。ESU・MUを物差しと呼ぶのは用語の取り違え。"
+      ],
+      "readability": {
+        "avg_paragraph": 97.9,
+        "avg_sentence": 57.6,
+        "long_share": 0.353,
+        "max_paragraph": 182,
+        "paragraphs": 10,
+        "sentences": 17
+      },
+      "score": 82,
+      "source": "nli-research",
+      "title": "「種」だけでは守れないもの－ESUとMU、二つの保全の単位が生まれるまで",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ESU・MU・DPS）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 57.6字・60字超の文が 35% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T07:42:59.123942+00:00",
+      "attempt": 1,
+      "id": "6fd09bb38a52c757",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.6,
+        "avg_sentence": 56.2,
+        "long_share": 0.412,
+        "max_paragraph": 182,
+        "paragraphs": 10,
+        "sentences": 17
+      },
+      "score": 88,
+      "source": "nli-research",
+      "title": "「種」だけでは守れないもの－ESUとMU、二つの保全の単位が生まれるまで",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ESU・MU・DPS）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 56.2字・60字超の文が 41% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T07:43:14.182153+00:00",
+      "attempt": 0,
+      "id": "6fd09bb38a52c757",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 指示文の見出しが本文に混ざった（# 今の原稿の数値）"
+      ],
+      "readability": {
+        "avg_paragraph": 95.6,
+        "avg_sentence": 56.2,
+        "long_share": 0.412,
+        "max_paragraph": 182,
+        "paragraphs": 10,
+        "sentences": 17
+      },
+      "score": 88,
+      "source": "nli-research",
+      "title": "「種」だけでは守れないもの－ESUとMU、二つの保全の単位が生まれるまで",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ESU・MU・DPS）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 56.2字・60字超の文が 41% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T07:43:43.288804+00:00",
+      "attempt": 1,
+      "id": "b1435fe199ba13be",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "本文「今回の機能強化により、Teamsやモバイルアプリから直接業務を指示できるようになりました」→ 元記事では、Microsoft Teams向けCoworkerとiOSアプリは「2026年11月に一般提供開始」と書かれており、提供時期の書き方が現在の提供開始済みとして読めるため誤解を招く。",
+        "判定欄の「提供状況=available」→ Teams連携やモバイル・デスクトップアプリは元記事で2026年11月の一般提供予定であり、利用可能状態として一括りにするのは言い過ぎ。",
+        "リード「管理画面からすぐに機能を有効化できます」「既存のSalesforce契約があれば」→ 元記事は料金・ライセンス契約（無制限または従量制、Unmetered利用には権限セットの割り当てが必要）の条件を示しており、既存契約だけで全機能が即利用可能とは書かれていない。",
+        "「既存のセキュリティやガバナンスの枠組みが適用されるため、新たな権限設定の手間を最小限に抑えられます」→ 元記事に無い手間の削減の断定。Data 360データは既定で全ユーザーに閲覧可能になる点も記事に書かれていない。",
+        "「Google WorkspaceやMicrosoft 365と接続することで、メールやカレンダーの情報もCRMデータと組み合わせて活用可能です」→ 元記事でGoogle Workspaceとの接続は提供中だが、Microsoft 365との接続の提供時期は示されておらず、現状で使えるかのように読める。",
+        "「日本市場向けの円建て価格については、営業担当者への個別相談が必要です」→ 元記事は価格の地域や円建てについて言及しておらず、日本市場向けという前提は元記事に無い。"
+      ],
+      "readability": {
+        "avg_paragraph": 126.2,
+        "avg_sentence": 52.6,
+        "long_share": 0.333,
+        "max_paragraph": 189,
+        "paragraphs": 5,
+        "sentences": 12
+      },
+      "score": 62,
+      "source": "salesforce-jp",
+      "title": "SalesforceのAgentforce Coworkerは利用が3カ月で21倍に急増。導入企業は実際の業務をAIエージェントに任せ始めた",
+      "warnings": [
+        "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 52.6字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 126.2字・最長 189字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T07:44:48.672733+00:00",
+      "attempt": 1,
+      "id": "b1435fe199ba13be",
+      "kind": "ai",
+      "model": "strike:本文 2 文・今日やること",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 143.8,
+        "avg_sentence": 55.3,
+        "long_share": 0.385,
+        "max_paragraph": 272,
+        "paragraphs": 5,
+        "sentences": 13
+      },
+      "score": 88,
+      "source": "salesforce-jp",
+      "title": "SalesforceのAgentforce Coworkerは利用が3カ月で21倍に急増。導入企業は実際の業務をAIエージェントに任せ始めた",
+      "warnings": [
+        "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 55.3字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 143.8字・最長 272字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T07:45:07.676053+00:00",
+      "attempt": 0,
+      "id": "b1435fe199ba13be",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 90.4,
+        "avg_sentence": 40.2,
+        "long_share": 0.111,
+        "max_paragraph": 186,
+        "paragraphs": 8,
+        "sentences": 18
+      },
+      "score": 92,
+      "source": "salesforce-jp",
+      "title": "SalesforceのAgentforce Coworkerは利用が3カ月で21倍に急増。導入企業は実際の業務をAIエージェントに任せ始めた",
+      "warnings": [
+        "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
     }
   ],
   "short_text_retry": {},
