@@ -10363,6 +10363,19 @@
       "slug": "nvidia-agentic-ai-extraterrestrial-search",
       "url": "https://blogs.nvidia.com/blog/ai-joins-the-search-for-extraterrestrial-signals/"
     },
+    "6950870614b43cf4": {
+      "at": "2026-11-11T06:38:44.556494+00:00",
+      "breaking": true,
+      "costUsd": 0.114,
+      "intent": "breaking",
+      "major": true,
+      "mix": "jp_corp",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 96,
+      "section": "investment",
+      "slug": "recruit-holdings-fy2027-interim-results",
+      "url": "https://www.release.tdnet.info/inbs/140120261106568174.pdf"
+    },
     "6955ee89a2df1f06": {
       "at": "2026-11-01T18:31:05.066641+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
@@ -20710,31 +20723,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-10T03:21:55.905191+00:00",
-      "attempt": 1,
-      "id": "a1606887bf973a51",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.0,
-        "avg_sentence": 46.0,
-        "long_share": 0.167,
-        "max_paragraph": 166,
-        "paragraphs": 21,
-        "sentences": 42
-      },
-      "score": 90,
-      "source": "google-ai-blog",
-      "title": "Q2 2026 earnings call: Remarks from our CEO",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（TPU・FIFA）",
-        "読みやすさ: 文が長い（1文の平均 46.0字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-10T03:22:30.424585+00:00",
       "attempt": 0,
       "id": "a1606887bf973a51",
@@ -28054,6 +28042,30 @@
       "title": "【ホットピ！～HotTopic～】女子日本一を決する戦い、皇后杯 JFA 第48回全日本女子サッカー選手権大会がまもなく開幕 #jfa #nadeshiko #",
       "warnings": [
         "初めて出たところで言い換えていない略語（WE・MUFG・JFA）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T06:38:44.508619+00:00",
+      "attempt": 1,
+      "id": "6950870614b43cf4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 68.1,
+        "avg_sentence": 33.0,
+        "long_share": 0.065,
+        "max_paragraph": 114,
+        "paragraphs": 15,
+        "sentences": 31
+      },
+      "score": 96,
+      "source": "fast",
+      "title": "リクルートホールディングス 2027年3月期 第2四半期(中間期)決算短信〔IFRS〕(連結)",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（HR・EBITDA）"
       ]
     }
   ],
