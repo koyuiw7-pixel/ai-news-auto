@@ -124,9 +124,7 @@
       "url": "https://www.recall.caa.go.jp/images/rci/img/product/00000036096_1.jpg"
     }
   },
-  "major_tries": {
-    "9c7c8759efa30077": 1
-  },
+  "major_tries": {},
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
     "02667be02cad0dd5": "2026-11-07T18:50:54.043233+00:00",
@@ -13725,6 +13723,20 @@
       "slug": "morinaga-cocoa-bowel-movement-study",
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3229"
     },
+    "9c7c8759efa30077": {
+      "at": "2026-11-11T18:09:51.073039+00:00",
+      "breaking": true,
+      "costUsd": 0.1075,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "grok-bot-1-0-team-bots",
+      "url": "https://x.ai/news/grok-bot-1-0"
+    },
     "9c8cef8c2ef449cb": {
       "at": "2026-11-06T04:43:42.299094+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -21096,35 +21108,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-10T07:24:52.805656+00:00",
-      "attempt": 1,
-      "id": "d83fdbcce81621a4",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "リード「本大会に向けた準備をさらに加速させる狙いです」→ 元記事に招集の狙いや目的は書かれておらず、記事独自の推測が事実のように書かれている",
-        "「FIFA U-17ワールドカップカタール2026は、2026年11月19日から12月13日まで開催されます（）。」→ 出典の括弧が空で、確認済みの文脈（大会TOPページ、2026/11/19～12/13）の出典が示されていない",
-        "「U-17日本代表はグループLに入っており、以下の日程でグループステージを戦います（）。」→ 出典の括弧が空で、確認元が示されていない",
-        "リード「11月11日から始まるFIFA U-17ワールドカップカタール2026の活動」→ 元記事は「11月11日(水)より開始するU-17日本代表の活動」としており、大会名と結びつける書き方は元記事より踏み込んでいる"
-      ],
-      "readability": {
-        "avg_paragraph": 53.0,
-        "avg_sentence": 42.4,
-        "long_share": 0.0,
-        "max_paragraph": 58,
-        "paragraphs": 4,
-        "sentences": 5
-      },
-      "score": 85,
-      "source": "jfa",
-      "title": "U-17日本代表 トレーニングパートナー追加招集のお知らせ FIFA U-17ワールドカップカタール2026（11.11-12.13 カタール） #jfa #d",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DF・MF・RB）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-10T07:25:13.180772+00:00",
       "attempt": 1,
@@ -28448,6 +28431,29 @@
       "title": "Introducing Grok Bot 1.0",
       "warnings": [
         "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T18:09:51.041474+00:00",
+      "attempt": 1,
+      "id": "9c7c8759efa30077",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.7,
+        "avg_sentence": 31.4,
+        "long_share": 0.0,
+        "max_paragraph": 124,
+        "paragraphs": 22,
+        "sentences": 46
+      },
+      "score": 88,
+      "source": "xai-news",
+      "title": "Introducing Grok Bot 1.0",
+      "warnings": [
+        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
