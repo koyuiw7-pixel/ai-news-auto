@@ -124,7 +124,9 @@
       "url": "https://www.recall.caa.go.jp/images/rci/img/product/00000036096_1.jpg"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "9c7c8759efa30077": 1
+  },
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
     "02667be02cad0dd5": "2026-11-07T18:50:54.043233+00:00",
@@ -13553,13 +13555,6 @@
       "skipped": true,
       "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1104_01.html"
     },
-    "99e0e76bd5ab3b42": {
-      "at": "2026-10-28T18:03:32.148088+00:00",
-      "model": "claude:sonnet",
-      "reason": "followup quality: 「Apple Newsroom（日本）が公開したMac Studioの購入ページ」→ 元記事は発信元の記載がなく、ドル表記($9)などから米国のApple購入ページと見られ、Apple Newsroom（日本）とする根拠がない。; 「検証動画の測定条件も、このページには記載されていません」→ 元記事・文脈に検証動画への言及がなく、動画の存在を前提にした記述は裏付",
-      "skipped": true,
-      "url": "https://www.apple.com/shop/buy-mac/mac-studio/m5-ultra-chip-30-core-cpu-64-core-gpu-96gb-memory-1tb-storage"
-    },
     "99e2b1ac5154c601": {
       "at": "2026-10-28T22:30:58.505954+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -21101,18 +21096,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-10T07:24:36.147576+00:00",
-      "attempt": 1,
-      "id": "e5439a81af7f29e6",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 92,
-      "source": "ntt-news-ai",
-      "title": "近畿大学東大阪キャンパス施設内でAIカメラ等による実証実験 学生の行動把握による施設評価と学修行動を検証"
-    },
-    {
       "accepted": false,
       "at": "2026-11-10T07:24:52.805656+00:00",
       "attempt": 1,
@@ -28441,6 +28424,31 @@
       "score": 85,
       "source": "watch-gemini-subscriptions",
       "title": "Geminiの料金・プランのページが更新（プランの記載が変更）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T18:07:34.963770+00:00",
+      "attempt": 1,
+      "id": "9c7c8759efa30077",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 80.7,
+        "avg_sentence": 35.6,
+        "long_share": 0.029,
+        "max_paragraph": 125,
+        "paragraphs": 15,
+        "sentences": 34
+      },
+      "score": null,
+      "source": "xai-news",
+      "title": "Introducing Grok Bot 1.0",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
     }
   ],
   "short_text_retry": {},
