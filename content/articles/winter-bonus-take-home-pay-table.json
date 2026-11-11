@@ -65,7 +65,7 @@
   "videoTitle": "冬のボーナスの手取り早見表　額面50万円なら手取りは400,960円",
   "publishedAt": "2026-11-11T22:31:11.798551+00:00",
   "generatedAt": "2026-11-11T22:31:59.267447+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/winter-bonus-take-home-pay-table-figure-c10a81ec.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -76,8 +76,8 @@
     }
   ],
   "todayActions": [
-    "前月の給与明細で、社会保険料を差し引いた後の金額が260千円以上309千円未満かを確かめる。",
-    "扶養控除等申告書に書いた扶養親族の数を確かめる。扶養親族の数で所得税の率の列が決まります。"
+    "前月の給与明細で、社会保険料等を差し引いた後の金額と扶養親族等の数を確かめる",
+    "算出率の表で、その金額と扶養親族等の数が交わる行の率を確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -113,5 +113,127 @@
   "detectedAt": "2026-11-11T22:32:56+00:00",
   "searchTitle": "冬のボーナスの手取りは？　額面50万円で400,960円",
   "layout": "noir",
-  "summaryLine": "額面**50万円**の手取りは400,960円。東京都・39歳以下・扶養0人、前月の給与285,000円の場合の計算です。"
+  "summaryLine": "額面**50万円**の手取りは400,960円。東京都・39歳以下・扶養0人、前月の給与285,000円の場合の計算です。",
+  "insight": [
+    {
+      "text": "40歳から64歳までの方（介護保険第2号被保険者）は、健康保険料率と子ども・子育て支援金（0.23％）に全国一律の介護保険料率（1.62％）が加わります。",
+      "source": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/"
+    },
+    {
+      "text": "建設の事業は、雇用保険料の労働者負担が6/1,000で、一般の事業の5/1,000より高くなります。",
+      "source": "https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20260316.html"
+    },
+    {
+      "text": "賞与（社会保険料等控除後）が前月の給与（同）の10倍を超えると、算出率の表ではなく月額表で税額を計算します。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/15-16.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 タックスアンサー No.2523 賞与に対する源泉徴収",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2523.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2523.htm",
+      "howTo": [
+        "ホーム",
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）"
+      ],
+      "note": "令和9年分以後は算出率の表や月額表が改正されているので、その年の表を使う。"
+    },
+    {
+      "name": "全国健康保険協会（協会けんぽ） 都道府県単位保険料率",
+      "url": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/",
+      "source": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/",
+      "note": "令和8年度の料率は3月分（4月納付分）から適用されます。"
+    },
+    {
+      "name": "日本年金機構 賞与にかかる保険料はどのように計算するのですか",
+      "url": "https://www.nenkin.go.jp/section/faq/kounen/hokenryo/shoyokeisan.html",
+      "source": "https://www.nenkin.go.jp/section/faq/kounen/hokenryo/shoyokeisan.html",
+      "note": "標準賞与額は1,000円未満を切り捨て、1回150万円が上限です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "前月の給与明細で、社会保険料等を差し引いた後の金額と扶養親族等の数を確かめる",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/15-16.pdf",
+      "steps": [
+        "前月の給与明細を開く",
+        "社会保険料等を差し引いた後の金額を見る",
+        "扶養控除等申告書の扶養親族の数を見る"
+      ]
+    },
+    {
+      "action": "算出率の表で、その金額と扶養親族等の数が交わる行の率を確かめる",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/15-16.pdf",
+      "steps": [
+        "算出率の表の甲欄を開く",
+        "扶養親族等の数の列を探す",
+        "前月の金額が入る行の率を見る"
+      ],
+      "url": "https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/15-16.pdf"
+    }
+  ],
+  "cause": {
+    "text": "賞与から源泉徴収する所得税は、原則として「賞与に対する源泉徴収税額の算出率の表」で計算します。前月の給与（社会保険料等を差し引いた金額）と扶養親族等の数で率が決まり、率の表は年ごとに改正されます。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2523.htm"
+  },
+  "worries": [
+    {
+      "q": "同じ額面のボーナスなら、手取りは誰でも同じになりますか？",
+      "a": "同じ額面でも所得税の率は変わります。率は賞与の額ではなく、前月の給与から社会保険料等を差し引いた金額と扶養親族等の数で決まります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2523.htm",
+      "action": "前月の給与明細で、社会保険料等を差し引いた後の金額と、扶養親族等の数を確かめる。"
+    },
+    {
+      "q": "夏と冬のボーナスを合わせると、保険料は増えますか？",
+      "a": "健康保険料は年度（4月から翌年3月）の累計573万円を超えた分にはかかりません。厚生年金は1回150万円が上限で、同じ月に2回以上なら合算して上限が適用されます。",
+      "source": "https://www.nenkin.go.jp/section/faq/kounen/hokenryo/shoyokeisan.html",
+      "action": "夏と冬の賞与の額と支給月を並べ、年度の累計が573万円を超えそうか計算してみる。"
+    },
+    {
+      "q": "40歳を過ぎると、ボーナスの引かれ方は変わりますか？",
+      "a": "40歳から64歳までの方は、健康保険料率と子ども・子育て支援金（0.23％）に、全国一律の介護保険料率（1.62％）が加わります。",
+      "source": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/",
+      "action": "自分が40歳から64歳に当てはまるか確かめ、明細の控除欄に介護保険料があるかを見る。"
+    },
+    {
+      "q": "扶養家族が増えると、ボーナスの税金はどう変わる？",
+      "a": "扶養親族等の数が多い列ほど、同じ前月の給与でも所得税の率は低くなります。率は表の該当する行と列の交わるところで決まります。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/15-16.pdf",
+      "action": "扶養控除等申告書に書いた扶養親族の数が、今の家族の状況と合っているか確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "年齢や業種で、引かれる保険料が変わる",
+    "cause": "なぜこの金額になるのか、いま分かっていること",
+    "steps": "手取りを求める前に、明細で確かめる2つ",
+    "desk": "正式な計算の確かめ先",
+    "worries": "手取りに響く不安、先に確かめたいこと"
+  },
+  "depthAt": "2026-11-11T22:49:14+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "50万円",
+    "label": "額面",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-11T22:50:11+00:00"
+  },
+  "imageFocus": {
+    "x": 0.438,
+    "y": 0.465,
+    "box": [
+      0.037,
+      0.06,
+      0.838,
+      0.869
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/winter-bonus-take-home-pay-table-figure-c10a81ec.jpg"
+  }
 }

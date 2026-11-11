@@ -66,14 +66,14 @@
   "videoTitle": "個人向け国債の11月募集は30日まで　固定5年は年2.17%、変動10年の初回は1.85%",
   "publishedAt": "2026-11-11T22:28:22.714314+00:00",
   "generatedAt": "2026-11-11T22:30:52.255197+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/kojin-kokusai-november-2026-rates-figure-de08157d.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "11月30日までに、口座のある取扱金融機関で申し込む（購入代金・預金通帳・印鑑が必要）",
-    "初めて買う金融機関なら、口座開設用の本人確認書類と印鑑を用意する",
-    "3種類の違いを確かめ、3年・5年・10年のどれを持つか決める"
+    "11月30日までに、取扱金融機関で個人向け国債を申し込む",
+    "初めて買うなら、口座開設用の本人確認書類と印鑑を用意する",
+    "3種類の利率と償還期限を、募集ページで確かめてから決める"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -108,5 +108,154 @@
   "qualityScore": 93,
   "detectedAt": "2026-11-11T22:31:00+00:00",
   "layout": "noir",
-  "summaryLine": "個人向け国債の11月募集は11月30日まで。固定5年は年**2.17%**（税引前）で、3種類のうち最も高い利率です。"
+  "summaryLine": "個人向け国債の11月募集は11月30日まで。固定5年は年**2.17%**（税引前）で、3種類のうち最も高い利率です。",
+  "insight": [
+    {
+      "text": "変動10年の基準金利は、10年固定利付国債の入札の平均落札利回りで決まり、利率は「基準金利×0.66」（下限0.05%）です。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/outline/"
+    },
+    {
+      "text": "初回の利子は、実際に保有していただいた期間（発行日から初回の利子支払日）に対応した利子をお支払いします。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/issue/hendou10/No_200.html"
+    },
+    {
+      "text": "固定5年と固定3年の基準金利は、募集期間開始日の2営業日前において、市場実勢利回りを基に計算されます。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/outline/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "財務省 個人向け国債 初めて購入される方はこちら",
+      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/how_to_buy/",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/issue/hendou10/No_200.html",
+      "howTo": [
+        "現在募集中の個人向け国債・新窓販国債",
+        "個人向け国債を初めて購入される方はこちら"
+      ],
+      "note": "初めて口座を開設するときは、運転免許証やマイナンバーが記載されている書類などの本人確認書類と印鑑が必要です。"
+    },
+    {
+      "name": "財務省 個人向け国債 取扱金融機関一覧",
+      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/organization/",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/issue/hendou10/No_200.html",
+      "howTo": [
+        "現在募集中の個人向け国債・新窓販国債",
+        "詳しくは、こちらをご覧ください"
+      ],
+      "note": "金融機関によっては口座の管理手数料等がかかる場合があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "11月30日までに、取扱金融機関で個人向け国債を申し込む",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html",
+      "steps": [
+        "募集期間は令和8年11月9日〜30日",
+        "購入代金・預金通帳・印鑑を用意",
+        "取扱金融機関で申し込む"
+      ],
+      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html"
+    },
+    {
+      "action": "初めて買うなら、口座開設用の本人確認書類と印鑑を用意する",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/issue/hendou10/No_200.html",
+      "steps": [
+        "運転免許証やマイナンバーが記載されている書類などを用意",
+        "印鑑を用意",
+        "購入する金融機関で国債の取引口座を開設"
+      ],
+      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/how_to_buy/"
+    },
+    {
+      "action": "3種類の利率と償還期限を、募集ページで確かめてから決める",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html",
+      "steps": [
+        "「表面利率(年)」の欄で利率を見る",
+        "「償還期限」の欄で満期を確かめる",
+        "「募集期間」の欄で締切を確かめる"
+      ],
+      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html"
+    }
+  ],
+  "worries": [
+    {
+      "q": "途中でお金が必要になったら換金できる？",
+      "a": "発行後1年が過ぎれば、国の買取でいつでも中途換金できます。ただし直前2回分の各利子（税引前）相当額×0.79685が差し引かれます。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html",
+      "action": "1年以内に使う予定があるお金なら、今回の申し込みは控える。"
+    },
+    {
+      "q": "利子に税金はかかる？",
+      "a": "利子には20.315%の税金がかかり、受け取るときに差し引かれます。障害者などの非課税貯蓄制度の適用を受ければ、非課税にできます。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/outline/",
+      "action": "非課税の制度を使えるか、税務署などに問い合わせて確かめる。"
+    },
+    {
+      "q": "買う金融機関によって条件は違う？",
+      "a": "取扱金融機関は871機関あり、金融機関によっては口座の管理手数料等がかかる場合があります。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/issue/hendou10/No_200.html",
+      "action": "買う前に、取扱金融機関で口座の管理手数料がかかるか確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "3種類のどれを選べばいい？",
+      "situation": "5年以上使う予定がない",
+      "recommend": "利子を先に確定させたいなら検討する価値がある",
+      "reason": "固定5年は満期まで表面利率が2.17%（税引前）で変わらず、3種類の中で一番高い。償還期限は令和13年12月15日です。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html"
+    },
+    {
+      "question": "3種類のどれを選べばいい？",
+      "situation": "3年くらいで使うかもしれない",
+      "recommend": "固定3年を検討する価値がある",
+      "reason": "固定3年は表面利率1.94%（税引前）で満期まで変わらず、償還期限は令和11年12月15日と3種類で一番早い。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html"
+    },
+    {
+      "question": "金利が上がると利子も増える形がいい？",
+      "situation": "半年ごとに利率が変わってもよい",
+      "recommend": "変動10年を検討する価値がある",
+      "reason": "変動10年は半年ごとに利率が見直され、実勢金利が上がれば受け取る利子が増えることもある。初回の表面利率は1.85%です。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/outline/"
+    },
+    {
+      "question": "1年以内に使うかもしれないお金は？",
+      "situation": "発行後1年以内に使う可能性がある",
+      "recommend": "今回は急がなくてよい",
+      "reason": "発行後1年間は原則として中途換金ができないため、1年以内に使う予定のお金には向きません。",
+      "source": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "変動10年の利率は何で決まる？",
+    "steps": "今日、申し込みまでにすること",
+    "desk": "申し込み先と、初めての口座開設",
+    "worries": "途中で換金したくなったら？",
+    "guide": "3種類、どれを選ぶかの目安"
+  },
+  "depthAt": "2026-11-11T22:49:58+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "個人向け国債の11月募集は30日まで",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-11T22:51:39+00:00"
+  },
+  "imageFocus": {
+    "x": 0.522,
+    "y": 0.378,
+    "box": [
+      0.081,
+      0.042,
+      0.963,
+      0.714
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/kojin-kokusai-november-2026-rates-figure-de08157d.jpg"
+  }
 }
