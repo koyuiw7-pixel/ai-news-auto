@@ -68,17 +68,18 @@
   "videoTitle": "出産手当金は産前42日から産後56日まで　1日あたり標準報酬月額の平均の3分の2",
   "publishedAt": "2026-11-11T11:20:25.816633+00:00",
   "generatedAt": "2026-11-11T11:20:40.734981+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/kyoukai-kenpo-childbirth-allowance-application-figure-05a3ee8b.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "マイナポータルの「健康保険証＞資格情報」で、加入している協会けんぽ支部を確認する",
-    "申請期限は、受けられるようになった日の翌日から2年なので、出産日から期限を控えておく"
+    "退職する予定なら、退職日に出勤するかどうかを会社と前もって決めておく",
+    "出産手当金は、加入している協会けんぽ支部に申請書を提出する"
   ],
   "angleOf": "kyoukai-kenpo-childbirth-allowance",
   "deepDive": "procedure",
   "relatedSlugs": [
+    "kyoukai-kenpo-childbirth-allowance-family",
     "kyoukai-kenpo-childbirth-allowance"
   ],
   "qualityScore": 92,
@@ -86,5 +87,151 @@
   "detectedAt": "2026-11-11T11:20:47+00:00",
   "searchTitle": "出産手当金の申請先は？電子申請か支部へ郵送　期限は2年",
   "layout": "noir",
-  "summaryLine": "申請書は電子申請か、加入している協会けんぽ支部への郵送で出せます。"
+  "summaryLine": "申請書は電子申請か、加入している協会けんぽ支部への郵送で出せます。",
+  "insight": [
+    {
+      "text": "資格喪失後も出産手当金を受けられるのは、資格喪失日の前日まで被保険者期間が継続して1年以上ある場合などです。「休職（有給休含む）のまま退職した場合」は受けられますが、退職日に出勤した場合は資格喪失後の出産手当金を受けられません。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/"
+    },
+    {
+      "text": "出産手当金と傷病手当金は重複して受給できません。傷病手当金の支給額が出産手当金の支給額より多い場合は、その差額が傷病手当金として支給されます。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/"
+    },
+    {
+      "text": "支給開始日以前が12か月に満たない場合は、直近の標準報酬月額の平均と上限額のうち低い額で計算します。上限額は、支給開始日が令和7年3月31日以前なら30万円、令和7年4月1日以降なら32万円です。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "健康保険出産手当金支給申請書",
+      "url": "https://www.kyoukaikenpo.or.jp/application_form/benefit/009",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "howTo": [
+        "出産手当金",
+        "申請に関して",
+        "申請書"
+      ],
+      "note": "申請書の様式は、このページのリンクから開けます。"
+    },
+    {
+      "name": "協会けんぽ 都道府県支部一覧",
+      "url": "https://www.kyoukaikenpo.or.jp/about/about_kenpo/location/branches",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "howTo": [
+        "出産手当金",
+        "申請に関して",
+        "提出先",
+        "都道府県支部一覧"
+      ],
+      "note": "申請書は、ご加入の協会けんぽ支部に提出します。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "退職する予定なら、退職日に出勤するかどうかを会社と前もって決めておく",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "steps": [
+        "「休職（有給休含む）のまま退職した場合」を確認する",
+        "「退職日に出勤した場合」の扱いを確認する",
+        "退職日の出勤の有無を会社と決める"
+      ],
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/"
+    },
+    {
+      "action": "出産手当金は、加入している協会けんぽ支部に申請書を提出する",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "steps": [
+        "「申請に関して」の「申請書」を開く",
+        "「提出先」の「都道府県支部一覧」を開く",
+        "ご加入の協会けんぽ支部を探して送付先を確認する"
+      ],
+      "url": "https://www.kyoukaikenpo.or.jp/about/about_kenpo/location/branches"
+    }
+  ],
+  "cause": {
+    "text": "このページは、出産のため会社を休んだ間の給付範囲と支給額の計算を案内しています。支給開始日以前が12か月に満たない場合の上限額は、支給開始日によって30万円と32万円に分けられています。",
+    "status": "background",
+    "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/"
+  },
+  "worries": [
+    {
+      "q": "会社を辞めても出産手当金はもらえる？",
+      "a": "資格喪失日の前日まで被保険者期間が継続して1年以上あり、資格喪失日の前日に出産手当金を受けている、または受けられる状態なら、資格喪失後も支給を受けられます。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "action": "退職日に出勤するかどうかを、退職前に会社と決めておく。"
+    },
+    {
+      "q": "出産手当金の申請はどこに出せばいい？",
+      "a": "申請書は「健康保険出産手当金支給申請書」で、提出先はご加入の協会けんぽ支部です。支部の一覧は「都道府県支部一覧」のページにあります。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "action": "申請書を開き、加入中の支部を都道府県支部一覧で探しておく。"
+    },
+    {
+      "q": "支給額はどれくらいになる？",
+      "a": "支給額は、標準報酬月額の平均を30で割った額の3分の2が1日あたりの額になります。ページの例では、平均17万円から1日3,780円となっています。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "action": "支給開始日以前12か月の標準報酬月額を確認し、ページの計算例で試算する。"
+    },
+    {
+      "q": "出産が予定日より遅れたらどうなる？",
+      "a": "出産が予定日より遅れた場合、その遅れた期間も出産手当金の支給対象になります。支給対象は、出産日以前42日から出産の翌日以後56日目までの範囲で、会社を休んだ期間です。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "action": "出産予定日が遅れたときも、休んだ期間を会社と確認しておく。"
+    },
+    {
+      "q": "休んだ間に給与をもらったら、どうなる？",
+      "a": "休んだ期間についての給与の支払いがあっても、その給与の日額が出産手当金の日額より少ない場合は、出産手当金と給与の差額が支給されます。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
+      "action": "休んだ期間の給与の日額と、出産手当金の日額を比べて確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "退職後も出産手当金を受け取りたいなら？",
+      "situation": "休職（有給含む）のまま退職する予定",
+      "recommend": "退職日に出勤しない形を会社と確認する",
+      "reason": "休職のまま退職した場合は、資格喪失後も引き続き出産手当金を受けられると書かれています。退職日に出勤した場合は、資格喪失後の出産手当金は受けられません。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/"
+    },
+    {
+      "question": "傷病手当金と両方もらえる？",
+      "situation": "傷病手当金の支給額が多い場合",
+      "recommend": "差額が傷病手当金として支払われる仕組みを確認する",
+      "reason": "出産手当金と傷病手当金は重複して受給できません。傷病手当金の支給額が出産手当金の支給額より多い場合は、その差額が傷病手当金として支給されます。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "退職日の出勤で受け取れなくなる場合がある",
+    "cause": "支給額の上限は支給開始日で決まる",
+    "steps": "申請先の探し方と、退職前の確認",
+    "desk": "申請書と支部一覧はここで確認",
+    "worries": "会社を辞めても、出産手当金は受けられる？",
+    "guide": "退職と出勤で迷ったときの決め方"
+  },
+  "depthAt": "2026-11-11T11:42:45+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "出産手当金の申請はどこで？必要書類と期限を整理",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-11T11:43:50+00:00"
+  },
+  "imageFocus": {
+    "x": 0.517,
+    "y": 0.41,
+    "box": [
+      0.087,
+      0.071,
+      0.947,
+      0.75
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/kyoukai-kenpo-childbirth-allowance-application-figure-05a3ee8b.jpg"
+  }
 }
