@@ -7061,13 +7061,6 @@
       "slug": "ai-enjoyable-work-atlassian-survey",
       "url": "https://www.atlassian.com/blog/ai-at-work/ai-was-supposed-to-take-on-the-drudgery-workers-say-its-taking-on-the-good-stuff-too"
     },
-    "36eb3dda48d9ab1e": {
-      "at": "2026-10-28T15:08:12.635282+00:00",
-      "model": "claude:sonnet",
-      "reason": "followup quality: 要点「100社超のパートナーが参画」→ 元記事にも確認済みの文脈にも無い数値で、創作。; 「価格や各社の具体的な機種名は、今回の発表では確認できていません」→ 元記事には「starting at $2,599」と価格が明記されており、記述が元記事と食い違う。",
-      "skipped": true,
-      "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-laptops-updates-models-agents-games/"
-    },
     "3755ba968c2af6de": {
       "at": "2026-10-29T18:12:15.173076+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（公募）",
@@ -7817,13 +7810,6 @@
       "reason": "followup quality: 「2026年11月4日、…発表しました」→ 元記事に公開日の記載がなく、確認済みの文脈にも日付がないため、日付は創作の疑いがある。; 「ローカル利用には法人向け組織「Air Teams」は不要」「法人向けプランが不要」→ 元記事は Air Teams が不要としか書いておらず、「法人向けプラン」の要否には触れていない。ただしCopilotの契約は必要で、「サイン",
       "skipped": true,
       "url": "https://blog.jetbrains.com/air/2026/11/github-copilot-in-air/"
-    },
-    "44c40aaac29222c10f7c6b4d0af9467078985b1c": {
-      "at": "2026-10-28T15:04:53.742681+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1488字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（383字 / 基準 400字以上）; title / seo_title に感嘆符がある",
-      "skipped": true,
-      "url": "https://www.nintendo.com/jp/topics/article/c8c6ed2b-cff7-4ff5-8953-32bd770e2537"
     },
     "44c5bae3db1e350a": {
       "at": "2026-11-09T07:43:42.725761+00:00",
@@ -11998,13 +11984,6 @@
       "slug": "claude-fable-5-2-vercel-ai-gateway",
       "url": "https://vercel.com/changelog/claude-fable-5-2-now-available-on-ai-gateway"
     },
-    "7f8195a895d8e8b800bd144de3744ccecb1cf778": {
-      "at": "2026-10-28T15:07:21.970528+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（917字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（341字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://finance.yahoo.co.jp/news/detail/9d95797449c78d42bc2c74eb52cd6e8adb6007f1"
-    },
     "7fadfa1e7a1a6173": {
       "at": "2026-11-05T01:25:21.178565+00:00",
       "mix": "other",
@@ -12148,6 +12127,18 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.fsa.go.jp/news/r8/singi/20261109.html"
+    },
+    "819d0c1ccd00d40c": {
+      "at": "2026-11-11T15:15:34.994812+00:00",
+      "costUsd": 0.0164,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 82,
+      "section": "ai",
+      "slug": "legacy-ai-modernization-survey",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/new-survey-finds-enterprises-trapped-between-legacy-software-and-ai-modernization/"
     },
     "81baaaf3b2d16a22": {
       "at": "2026-11-03T19:37:51.089666+00:00",
@@ -12420,13 +12411,6 @@
       "reason": "quality: 本文が短い（1527字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（248字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102904"
-    },
-    "8680d800c55fcf4a4471ad82d47e6d61b87c0911": {
-      "at": "2026-10-28T15:06:35.113783+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1359字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-      "skipped": true,
-      "url": "https://news.yahoo.co.jp/articles/b7974c3c61bfa330c6d5c7c9b2871c15e1bbef7f"
     },
     "869a145bada96b91": {
       "at": "2026-11-09T07:14:24.525588+00:00",
@@ -18985,6 +18969,18 @@
       "skipped": true,
       "url": "https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation"
     },
+    "e879c6fc35d4933f": {
+      "at": "2026-11-11T15:13:54.697447+00:00",
+      "costUsd": 0.0199,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "alphagenome-2-cell-variant-prediction",
+      "url": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
+    },
     "e887449fa547326c": {
       "at": "2026-11-02T14:11:49.973834+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -21240,98 +21236,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T06:59:27.424304+00:00",
-      "attempt": 0,
-      "id": "4b76e9447d8ccc5c",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 56.4,
-        "avg_sentence": 37.6,
-        "long_share": 0.067,
-        "max_paragraph": 83,
-        "paragraphs": 10,
-        "sentences": 15
-      },
-      "score": 92,
-      "source": "samsung-jp",
-      "title": "Samsung、ドイツにビルトイン家電ショールームを新設 欧州市場における本格展開を推進",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IH・SPACE）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T06:59:48.951199+00:00",
-      "attempt": 1,
-      "id": "8e0e2265da838c47",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「、1,000gへ増量して1,580円」、「チキン(丸鶏)**:本体2,980円」、「:本体2,980円(税込3,218.40円」、「:本体1,980円(税込2,138.40円」、「キン(1本980円、2本1,880円」）。元記事か束の数字に直すか、そ"
-      ],
-      "readability": {
-        "avg_paragraph": 67.7,
-        "avg_sentence": 43.1,
-        "long_share": 0.182,
-        "max_paragraph": 110,
-        "paragraphs": 7,
-        "sentences": 11
-      },
-      "score": null,
-      "source": "aeon",
-      "title": "クリスマスや年末のパーティを彩る、手軽に楽しむ「ごちそうメニュー」を発売",
-      "warnings": [
-        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:00:51.289495+00:00",
-      "attempt": 1,
-      "id": "b409226acfdae22c",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 78.8,
-        "avg_sentence": 43.8,
-        "long_share": 0.111,
-        "max_paragraph": 134,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 85,
-      "source": "ntt-news-ai",
-      "title": "近畿大学東大阪キャンパス施設内でAIカメラ等による実証実験 ー学生の行動把握による施設評価と学修行動を検証ー"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:01:31.807786+00:00",
-      "attempt": 1,
-      "id": "a847d03cb751eff9",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 61.2,
-        "avg_sentence": 43.7,
-        "long_share": 0.286,
-        "max_paragraph": 108,
-        "paragraphs": 5,
-        "sentences": 7
-      },
-      "score": 94,
-      "source": "jfa",
-      "title": "アンプティサッカー日本代表がWAFFワールドカップに出場！ #jfa",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA）",
-        "読みやすさ: 文が長い（1文の平均 43.7字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T07:01:47.528502+00:00",
@@ -28599,6 +28503,104 @@
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
         "読みやすさ: 文が長い（1文の平均 64.1字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 128.2字・最長 166字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T15:13:32.153420+00:00",
+      "attempt": 1,
+      "id": "e879c6fc35d4933f",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 94.9,
+        "avg_sentence": 47.5,
+        "long_share": 0.167,
+        "max_paragraph": 183,
+        "paragraphs": 12,
+        "sentences": 24
+      },
+      "score": 90,
+      "source": "google-deepmind-blog",
+      "title": "AlphaGenome 2: Deciphering how cells read DNA to better understand disease",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DNA・IBD・ETS）",
+        "読みやすさ: 文が長い（1文の平均 47.5字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T15:13:54.670790+00:00",
+      "attempt": 0,
+      "id": "e879c6fc35d4933f",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（47.5→45.9字）"
+      ],
+      "readability": {
+        "avg_paragraph": 94.9,
+        "avg_sentence": 47.5,
+        "long_share": 0.167,
+        "max_paragraph": 183,
+        "paragraphs": 12,
+        "sentences": 24
+      },
+      "score": 90,
+      "source": "google-deepmind-blog",
+      "title": "AlphaGenome 2: Deciphering how cells read DNA to better understand disease",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DNA・IBD・ETS）",
+        "読みやすさ: 文が長い（1文の平均 47.5字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T15:15:12.295869+00:00",
+      "attempt": 1,
+      "id": "819d0c1ccd00d40c",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 100.3,
+        "avg_sentence": 50.2,
+        "long_share": 0.292,
+        "max_paragraph": 154,
+        "paragraphs": 12,
+        "sentences": 24
+      },
+      "score": 88,
+      "source": "google-cloud-blog",
+      "title": "New survey finds enterprises trapped between legacy software and AI modernizatio",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 50.2字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T15:15:34.976804+00:00",
+      "attempt": 0,
+      "id": "819d0c1ccd00d40c",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 60.0,
+        "avg_sentence": 48.0,
+        "long_share": 0.24,
+        "max_paragraph": 100,
+        "paragraphs": 20,
+        "sentences": 25
+      },
+      "score": 82,
+      "source": "google-cloud-blog",
+      "title": "New survey finds enterprises trapped between legacy software and AI modernizatio",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 48.0字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],

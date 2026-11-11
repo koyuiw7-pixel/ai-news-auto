@@ -1,0 +1,235 @@
+{
+  "slug": "alphagenome-2-cell-variant-prediction",
+  "sourceType": "web",
+  "sourceUrl": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+  "sourceName": "Google DeepMind公式ブログ",
+  "title": "AlphaGenome 2、細胞ごとに遺伝子変異の影響を予測　研究者向けAPIで公開",
+  "seoTitle": "AlphaGenome 2とは？細胞ごとの遺伝子予測、日本で使える？",
+  "threadsPost": "遺伝子の研究や創薬に関わる人に、知っておいてほしい話です。\n\n遺伝子の変異が細胞ごとにどう効くかを予測するAIが出ました。\n原因になりそうな変異の見つけやすさは、前の版の16%から30%に上がっています。\n\n研究の仕事、AIに任せられる部分はこれから増えると感じますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "future",
+      "question": "研究の仕事、AIに任せられる部分はこれから増えると感じますか？"
+    },
+    {
+      "pattern": "ab",
+      "question": "研究の下調べ、AIに候補を出させるのと自分で始めるのどちらが多いですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "研究者は、病気に関わる遺伝子の変異を細胞の種類ごとに絞り込めるようになります。前の版と比べて原因の変異を見つける割合は16%から30%に上がり、非商用の研究はAPIから使えます。日本での提供と料金はまだ発表されておらず、臨床や診断向けには検証も承認もされていません。",
+  "description": "AlphaGenome 2は、遺伝子変異が細胞の種類ごとにどう効くかを予測するAIモデルです。前の版より原因になりそうな変異を見つける割合が高く、非商用の研究はAPIから使えます。日本での提供と料金は未発表です。",
+  "keywords": [
+    "AlphaGenome 2",
+    "AlphaGenome",
+    "遺伝子変異 予測",
+    "細胞 遺伝子発現 AI",
+    "DNA 解析 AI",
+    "ゲノム AI",
+    "創薬 AI",
+    "Google DeepMind 遺伝子",
+    "遺伝子 変異 細胞の種類",
+    "GWAS 変異 予測"
+  ],
+  "tags": [
+    "生成AI",
+    "ゲノム",
+    "AlphaGenome 2",
+    "Google DeepMind",
+    "創薬"
+  ],
+  "highlights": [
+    "遺伝子変異が細胞の種類ごとにどう効くかを予測するAIモデル「AlphaGenome 2」を発表",
+    "免疫細胞データの比較で、原因になっている変異を見つけた割合が16%から30%に上昇",
+    "非商用の研究はAPIで利用可能、商用は非公開プレビュー。日本での提供と料金は未発表"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "研究者・創薬の担当者",
+    "take": "研究用途ならAPIで使えます。商用は非公開プレビューのため、公式の案内で参加条件を確かめるとよいでしょう。",
+    "judgedAt": "2026-11-11T15:13:25.529839+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "遺伝子解析や創薬の研究に関わる人以外には、直接の影響は小さいです。"
+    ]
+  },
+  "body": "体の細胞は、どれも同じDNAの設計図を持っています。それでも心臓の筋肉の細胞と免疫細胞で働き方が違うのは、細胞ごとに使う遺伝子のスイッチが違うからです。研究の現場の人には関係しますが、一般の人の検査や治療に、すぐ関わる話ではありません。\n\n## 組織の平均から、細胞ひとつずつの予測へ\n\n前の版は、100万文字のDNA配列から、多くの組織の実験結果を一度に予測していました。効率はよい一方で、よく似た細胞どうしの小さな違いを捉えにくい欠点がありました。\n\nAlphaGenome 2は、「どの細胞か」という条件をDNAと一緒に入力し、1つの条件ずつ予測する形に変わりました。学習には、人とマウスの細胞データ1億700万個以上（68の組織）を使っています。\n\n## 原因になりそうな変異を見つける割合が上がった\n\n免疫細胞28種類のデータ「TenK10K」で、従来の手法と比べた結果は次のとおりです。\n\n- 原因になっている変異を見つけた割合：16%から30%。発表では「ほぼ2倍」と説明されています。\n- 遺伝子の働きが上がるか下がるかを当てた割合：23%から43%\n\n比べた相手は、単一細胞データで追加学習した従来のAlphaGenomeなどの専用ツールです。\n\n腸の炎症性疾患（IBD）の例も示されています。遠くにある遺伝子のスイッチの変異が、腸の免疫細胞（マクロファージ）でETS2という遺伝子を強く働かせる、という最近の重要な研究があります。AlphaGenome 2はこの結果を計算上で再現し、原因の変異を特定しました。他の細胞や遺伝子への影響はほとんどないとされています。\n\n## 学習し直さずに、新しい細胞の状態を扱える\n\n細胞ひとつずつの遺伝子の働きを測ったデータを、わずか数十個の細胞分だけ読み込めば、学習し直さずに使えるとされています。\n\n新型コロナウイルスのmRNAワクチンの研究データでは、ワクチンで活性化したT細胞と、休止している細胞を見分けました。さらに、重症化に関わるとされる変異が、活性化した状態でだけ遺伝子の働きを強く崩すことも示しています。\n\n## 使い方と提供の状況\n\n現時点で使えるのは、非商用の研究にAPIから使う方法です。クラウドで動かすには、NVIDIAのA100かH100を搭載したマシンが少なくとも1台必要です（Google Cloud公式ドキュメント、11/12確認）。AlphaGenome 2で同じ手順が使えるかは、まだ発表されていません。前の版には、人のゲノムで起こりうる約90億通りの1文字の変化の予測をまとめた「AlphaGenome Atlas」もあります。\n\n## まだ分からないこと\n\n- 日本での提供と料金は、まだ発表されていません。\n- 商用研究の正式な提供日は、まだ発表されていません。非公開プレビューの参加条件も示されていません。\n- エージェント型の開発環境「Google Antigravity」で使える「AlphaGenome 2 Skills」は、近く提供されると発表されています。日付はまだ発表されていません。\n\n## 商用研究や企業で使う場合\n\n商用の研究は、今は非公開プレビューで受け付けています。Genomics PLCのCEOのPeter Donnelly氏は、創薬を支援する同社のプラットフォーム「Mystra」に組み込む予定だと述べています。\n\n活用事例を紹介してほしい研究者は、11月30日までに発表文中のフォームから連絡できます。選ばれた事例には、追加の利用枠やクレジットが付く場合があるとされています。",
+  "easy": "## ひとことで言うと\n\nAlphaGenome 2は、遺伝子の変異が細胞ごとにどう働くかをAIで予測する研究用のモデルです。前の版より原因になりそうな変異を見つけやすくなり、非商用の研究はAPIから使えます。日本での提供と料金は、まだ発表されていません。体の細胞は同じ設計図を持っていますが、心臓の細胞と免疫細胞では使うスイッチが違うので、働き方も違います。",
+  "channel": "Google DeepMind公式ブログ",
+  "channelId": "",
+  "channelSlug": "google-deepmind-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "AlphaGenome 2: Deciphering how cells read DNA to better understand disease",
+  "publishedAt": "2026-11-11T15:00:15+00:00",
+  "generatedAt": "2026-11-11T15:13:25.529826+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/alphagenome-2-cell-variant-prediction-1b008e04.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "AlphaGenome 2 のAPIのドキュメントを開き、非商用研究で使えるか確かめる",
+    "AlphaGenome のコミュニティフォーラムに参加して、ほかの研究者の使い方を見る"
+  ],
+  "searchTrend": "bet",
+  "qualityScore": 90,
+  "sourcePublishedAt": "2026-11-11T15:00:15+00:00",
+  "detectedAt": "2026-11-11T15:11:03+00:00",
+  "speedMinutes": 17,
+  "layout": "noir",
+  "summaryLine": "遺伝子変異が細胞の種類ごとにどう効くかを予測するAIモデル「AlphaGenome 2」を発表",
+  "sectionsPolishedAt": "2026-11-11T15:15:53+00:00",
+  "insight": [
+    {
+      "text": "自分で測った単一細胞のデータは「cell encoder」を通して条件として入力でき、学習し直さずに使えるとされています。",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
+    },
+    {
+      "text": "1つの測定データ（単一細胞の遺伝子活性など）から、未測定の項目（クロマチンのアクセス性など）を予測できるとされています。",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
+    },
+    {
+      "text": "DNAメチル化も予測の対象に加わりました。研究者から要望が多かった項目とされています。",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "AlphaGenome 2 API（ドキュメント）",
+      "url": "https://www.alphagenomedocs.com/",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+      "note": "非商用研究向けのAPIです。商用研究は非公開プレビューとされています。"
+    },
+    {
+      "name": "AlphaGenome コミュニティフォーラム",
+      "url": "https://www.alphagenomecommunity.com/",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "AlphaGenome 2 のAPIのドキュメントを開き、非商用研究で使えるか確かめる",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+      "steps": [
+        "公式ブログの「Access the AlphaGenome 2 API」を押す",
+        "表示されたAPIのドキュメントを開く",
+        "非商用研究の利用かどうかを確かめる"
+      ],
+      "url": "https://www.alphagenomedocs.com/"
+    },
+    {
+      "action": "AlphaGenome のコミュニティフォーラムに参加して、ほかの研究者の使い方を見る",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+      "steps": [
+        "公式ブログの「Join the community forum」を押す",
+        "alphagenomecommunity.comを開き、参加する"
+      ],
+      "url": "https://www.alphagenomecommunity.com/"
+    }
+  ],
+  "cause": {
+    "text": "前のモデルは多くの組織の平均を並列に予測していたため、よく似た細胞どうしの違いを捉えにくかったとされています。そこで細胞の条件を入力として与える形に作り直しました。",
+    "status": "background",
+    "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
+  },
+  "worries": [
+    {
+      "q": "商用の研究や企業でも、今すぐ使える？",
+      "a": "今日から使えるのは、非商用の研究向けにAPIから使う方法です。商用の研究は非公開プレビューとして受け付けると書かれています。",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+      "action": "商用で使いたい場合は、APIのドキュメントで非公開プレビューの案内を確かめる"
+    },
+    {
+      "q": "自分が測ったデータでも使えるの？",
+      "a": "研究者は自分の単一細胞データを、細胞の条件として入力できると書かれています。新しい細胞の状態にも、学習し直さずに対応するとされています。",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+      "action": "手元の単一細胞データを使う前に、APIのドキュメントで入力の形を確認する"
+    },
+    {
+      "q": "変異の原因を見つける力は、前の版より上がった？",
+      "a": "TenK10Kという免疫細胞のデータでは、原因の変異を見つけた割合が16%から30%に上がったと書かれています。遺伝子の働きが上がるか下がるかを当てた割合も23%から43%です。",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+      "action": "予測で候補の変異を絞り込み、次に行う実験を選ぶ材料にする"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "AlphaGenome 2を今すぐ研究で使い始めるか？",
+      "situation": "非商用の研究をしている",
+      "recommend": "APIを使って試せる",
+      "reason": "非商用の研究であれば、今日からAPIで使えると書かれています。使い方はAPIのドキュメントで確かめられ、商用研究の扱いとは分けて考えられます。",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
+    },
+    {
+      "question": "AlphaGenome 2を今すぐ研究で使い始めるか？",
+      "situation": "商用の研究や企業で使いたい",
+      "recommend": "急がなくてよい",
+      "reason": "商用の研究は非公開プレビューとして受け付けると書かれています。公開の時期は、このページからは分かりません。",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "細胞の種類ごとに、自分のデータも入力できる",
+    "cause": "なぜ予測の精度が上がったのか",
+    "steps": "今日すぐ試せるのは、非商用の研究から",
+    "desk": "使い始めに見る公式の場所",
+    "worries": "商用で使えるか、自分のデータで使えるか",
+    "guide": "非商用か商用かで、今すぐ試すかが分かれる"
+  },
+  "depthAt": "2026-11-11T15:16:56+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/alphagenome-2-cell-variant-prediction-fig1-c05d5c00.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "hero",
+      "credit": "Google DeepMind",
+      "sourceUrl": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+      "original": "https://lh3.googleusercontent.com/7eOcEXEyA41RlNbAgNmBUQLy34StN16i5xFpfAZ5hUxQmBQKZDYd3vVlnIbl_eK-4azSQ9QJBmi3wm2leu9zY0gflvcLBD5Vwdkmb6q9D1uwtfj-5A=w2880-h1620-n-nu-rw-lo"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/alphagenome-2-cell-variant-prediction-fig2-918f3acf.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "hero",
+      "credit": "Google DeepMind",
+      "sourceUrl": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+      "original": "https://lh3.googleusercontent.com/7eOcEXEyA41RlNbAgNmBUQLy34StN16i5xFpfAZ5hUxQmBQKZDYd3vVlnIbl_eK-4azSQ9QJBmi3wm2leu9zY0gflvcLBD5Vwdkmb6q9D1uwtfj-5A=w1440-h810-n-nu"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google DeepMind",
+    "provider": "Google DeepMind公式ブログ",
+    "sourceUrl": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+    "original": "https://lh3.googleusercontent.com/VPOhADdGu1T7kK_gWBiGzyVawQbKCjpL3-B0L0wxpYCyr8cHxviYmo9Hghy4f1laeIo2YKwuz8E07TR9HWWk2b0EONi0uvju-8TDLHX6YWHG4dXe3w=w1200-h630-n-nu-rw",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-11T15:18:59+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.514,
+    "y": 0.512,
+    "box": [
+      0.028,
+      0.036,
+      1.0,
+      0.988
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/alphagenome-2-cell-variant-prediction-1b008e04.jpg"
+  }
+}

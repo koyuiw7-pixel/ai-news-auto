@@ -1,0 +1,176 @@
+{
+  "slug": "legacy-ai-modernization-survey",
+  "sourceType": "web",
+  "sourceUrl": "https://cloud.google.com/blog/products/ai-machine-learning/new-survey-finds-enterprises-trapped-between-legacy-software-and-ai-modernization/",
+  "sourceName": "Google Cloud公式ブログ",
+  "title": "企業の49%が古いソフトでAI導入を遅らせた　Google Cloud調査",
+  "seoTitle": "Google Cloud調査：企業のAI導入を阻む古いソフト",
+  "threadsPost": "情シスの人に知っておいてほしい調査です。\n\n米国の1,250人への調査で、49%が古いソフトのせいでAI関連の取り組みを遅らせたと答えました。\n保守の手間と契約の縛りが、理由として挙がっています。\n\n社内の古いソフトの保守に、毎月どれくらい時間を取られていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "社内の古いソフトの保守に、毎月どれくらい時間を取られていますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "古いソフトを使い続けるのと、乗り換えの手間、どちらが重いと感じますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "社内で長く使われている古いソフトが、AI導入の足かせになっています。米国の企業IT・事業部門の意思決定者1,250人への調査で、49%が古いソフトのせいでAI関連の取り組みを遅らせたり止めたりしたと答えました。日本の企業での割合は、この調査には含まれていません。",
+  "description": "Google Cloudの調査で、企業の49%が社内の古いソフトのせいでAI関連の取り組みを遅らせたと答えました。保守の負担と契約の縛りが主な課題で、日本の企業の数字はまだ示されていません。",
+  "keywords": [
+    "レガシーソフト",
+    "AI導入",
+    "ベンダーロックイン",
+    "オンプレミス",
+    "Google Cloud 調査",
+    "AI導入 遅れ",
+    "パッチ適用",
+    "単一障害点",
+    "AIモダナイゼーション",
+    "Gemini Enterprise"
+  ],
+  "tags": [
+    "生成AI",
+    "Google Cloud",
+    "エンタープライズAI",
+    "レガシーシステム",
+    "調査"
+  ],
+  "highlights": [
+    "社内の古いソフトのせいで、49%の企業がAI関連の取り組みを遅らせたり止めたりしたと答えた",
+    "ソフトの修正プログラムの適用と保守が、AI開発に回すエンジニアの時間を奪っているという指摘",
+    "39%がライセンスや契約の縛りに直面し、80%は既存の導入実績でAIを選ぶべきでないと回答"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "社内のシステムを担当する人は、AI導入の前に、自社で保守しているソフトの作業量を確かめるとよいでしょう。",
+      "契約の更新時期が近いソフトは、乗り換えの条件や契約の縛りを先に確かめておくとよいでしょう。"
+    ]
+  },
+  "body": "社内で使い続けている古いソフトが、AIの導入を遅らせています。\n\n個人の契約や手続きが変わる話ではありません。企業のIT部門や、AI活用を任される立場の人に関係する調査です。\n\nこの調査で「レガシーソフト」とは、クラウドではなく自分たちのパソコンやサーバーの中で動くソフトのことを指します。\n\n## 49%が、古いソフトのせいでAIの計画を遅らせた\n\nGoogle Cloudは、Hypothesis Groupと組んで、米国の企業IT・事業部門の意思決定者1,250人を調べました。\n\n回答者の49%が、社内で運用するソフトのせいで、AIなどの技術プロジェクトを遅らせた、規模を縮めた、一時停止した、中止したと答えています。\n\nGoogle Cloudの公式ブログは、目立つ負担として修正プログラムの適用（脆弱性を直すための更新）と保守を挙げています。\n\nAIで脆弱性（セキュリティ上の欠陥）を見つける速度が上がり、古いコードの欠陥が人手の対応を超えつつあると説明しています。\n\nエンジニアの時間は限られています。保守に使えば、AIの開発にまわせません。Google Cloudはこれを「ゼロサムゲーム（一方が増えれば他方が減る関係）」と表現しています。\n\n## 39%が、契約の縛りに悩んでいる\n\n古いソフトを使い続ける理由について、Google Cloudは技術的な好みではなく、ベンダーロックイン（特定の会社の製品から離れにくくなる状態）の結果だと説明しています。\n\n回答者の39%が、ライセンス（使用許諾）や契約の条件、交渉の余地の少なさに向き合っていると答えました。\n\n一つの会社にOS（基本ソフト）、業務ソフト、クラウド、AIモデルを集中させると、その会社の障害がすべてに響きます。\n\nGoogle Cloudはこれを「単一障害点（ひとつ壊れると全体が止まる場所）」と呼んでいます。\n\nAIエージェント（自分で手順を進めるAI）の安全性も、その下のOSやネットワークに左右されると述べています。\n\n## 80%が、導入実績で選ぶべきでないと答えた\n\n80%の意思決定者が、すでに使われている製品の多さで、どのAI技術を使うかを決めるべきではないと答えました。\n\n78%は、前の時代の業務ソフトの大手が、AIの時代でも最適とは限らないと考えています。\n\n編集部の見方では、この数字は古い製品を捨てたいというより、既存製品の機能に頼らず選択肢を持ちたい、という意思として読めます。\n\n## 日本の企業では、この割合は分かりません\n\nこの調査の対象は米国の1,250人です。日本の企業で同じ割合になるかは、この調査からは分かりません。（編集部注）日本の会社でも、社内サーバーで動くソフトを使い続けているケースは珍しくありません。\n\n## まだ分からないこと\n\n- 日本の企業での割合は、この調査には含まれていません。\n- 調査の続報や、詳しい結果がいつ出るかは、発表されていません。\n- 社内のソフトを乗り換える費用や期間の目安は、この発表では示されていません。\n\n## 社内のシステム担当者が見ておくこと\n\nGoogle Cloudは、対策として次の3つを挙げています。\n\n- 導入先やクラウドの選択肢を確保する\n- 脆弱性が生まれにくい設計（セキュアバイデザイン）をソフト開発側に求める\n- AIを使った防御で、既存の古いソフトの欠陥を先に見つける\n\n3つ目では、Security Command Center（Google Cloudのセキュリティ管理サービス）とMandiant threat analytics（Mandiantの脅威分析）を挙げています。\n\n悪用されうる経路を優先順位つきで見つけ、修正まで自動化できると説明しています。",
+  "easy": "## ひとことで言うと\n\n社内の古いソフトの保守に追われて、AI導入が遅れている企業が多いという調査です。米国の1,250人への調査で、49%が古いソフトのせいでAI関連の取り組みを遅らせたり止めたりしたと答えました。\n\n修正プログラムを当てる作業が増えると、エンジニアの時間が取られます。その時間は、AIの開発に回せなくなります。\n\nさらに39%は、特定の会社の製品やクラウドに縛られ、契約の条件で動きにくくなっていると答えています。",
+  "channel": "Google Cloud公式ブログ",
+  "channelId": "",
+  "channelSlug": "google-cloud-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "New survey finds enterprises trapped between legacy software and AI modernization",
+  "publishedAt": "2026-11-09T17:00:00+00:00",
+  "generatedAt": "2026-11-11T15:15:06.620962+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/legacy-ai-modernization-survey-ba72b8f1.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [],
+  "newsType": "research",
+  "todayActions": [
+    "社内で自分たちのサーバーに入れているソフトを一覧にし、修正プログラムの適用に毎月かかる時間を確かめる。",
+    "AIを使う業務を決める前に、そのソフトの契約の更新時期と乗り換えの条件を確かめる。"
+  ],
+  "searchTrend": "bet",
+  "qualityScore": 82,
+  "sourcePublishedAt": "2026-11-09T17:00:00+00:00",
+  "detectedAt": "2026-11-11T15:11:03+00:00",
+  "layout": "noir",
+  "summaryLine": "社内の古いソフトのせいで、**49%**の企業がAI関連の取り組みを遅らせたり止めたりしたと答えた",
+  "cause": {
+    "text": "この調査では、古いソフトの修正や保守にエンジニアの時間が取られ、AI開発にまわせなくなっています。また、特定の会社の製品から離れにくいベンダーロックインが、古いソフトを使い続ける理由だと説明されています。",
+    "status": "background",
+    "source": "https://cloud.google.com/blog/products/ai-machine-learning/new-survey-finds-enterprises-trapped-between-legacy-software-and-ai-modernization/"
+  },
+  "worries": [
+    {
+      "q": "うちの会社の社内ソフトは「古いソフト」に当たる？",
+      "a": "この調査でレガシーとは、クラウドではなく自社のパソコンやサーバーの中で動くソフトのことです。クラウドで動く製品は、この定義には当たりません。",
+      "source": "https://cloud.google.com/blog/products/ai-machine-learning/new-survey-finds-enterprises-trapped-between-legacy-software-and-ai-modernization/",
+      "action": "社内で使っているソフトが、自社のサーバーやパソコンで動いているかを一つずつ確かめる。"
+    },
+    {
+      "q": "古いソフトのせいでAIの導入は本当に遅れている？",
+      "a": "調査では、回答者の49%が社内で運用するソフトのせいで、AIなどの技術プロジェクトを遅らせた、規模を縮めた、一時停止した、中止したと答えています。対象は米国の企業1,250人で、日本の割合は含まれていません。",
+      "source": "https://cloud.google.com/blog/products/ai-machine-learning/new-survey-finds-enterprises-trapped-between-legacy-software-and-ai-modernization/",
+      "action": "自社のAI計画が、古いソフトの保守に時間を取られていないか、担当者と確かめる。"
+    },
+    {
+      "q": "古いソフトから乗り換えられない理由は？",
+      "a": "ページでは、技術的な好みではなくベンダーロックインの結果だと説明しています。回答者の39%が、ライセンスや契約条件、交渉の余地の少なさに向き合っていると答えました。",
+      "source": "https://cloud.google.com/blog/products/ai-machine-learning/new-survey-finds-enterprises-trapped-between-legacy-software-and-ai-modernization/",
+      "action": "ソフトの契約の更新時期と、乗り換えの条件を確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "社内の古いソフトは今すぐ乗り換えるべき？",
+      "situation": "社内で古いソフトを使い続けている",
+      "recommend": "急がず、契約の更新時期と条件を先に確かめるとよい",
+      "reason": "ページは、ライセンスや契約の条件に縛られると交渉の余地が少なくなると説明しています。乗り換えの費用や期間の目安は、この発表では示されていません。",
+      "source": "https://cloud.google.com/blog/products/ai-machine-learning/new-survey-finds-enterprises-trapped-between-legacy-software-and-ai-modernization/"
+    },
+    {
+      "question": "社内の古いソフトは今すぐ乗り換えるべき？",
+      "situation": "これからAIを使う業務を決める段階",
+      "recommend": "業務を決める前に、そのソフトの契約更新時期と乗り換え条件を確かめるとよい",
+      "reason": "ページは、AIを使う業務を進める前に、古いソフトの契約や技術の縛りが影響すると述べています。ただし、どの程度の期間や費用がかかるかは示されていません。",
+      "source": "https://cloud.google.com/blog/products/ai-machine-learning/new-survey-finds-enterprises-trapped-between-legacy-software-and-ai-modernization/"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜAI導入が止まるのか、いま分かっていること",
+    "worries": "古いソフトは本当にAIの足かせになる？",
+    "guide": "乗り換えを急ぐべきか、迷ったときの考え方"
+  },
+  "depthAt": "2026-11-11T15:16:20+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/legacy-ai-modernization-survey-fig1-b1ab0bb4.jpg",
+      "width": 1200,
+      "height": 899,
+      "kind": "dense",
+      "credit": "Google Cloud",
+      "sourceUrl": "https://cloud.google.com/blog/products/ai-machine-learning/new-survey-finds-enterprises-trapped-between-legacy-software-and-ai-modernization/",
+      "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/image_1_legacy_software_blog_8uCnV8N.max-2200x2200.png"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/legacy-ai-modernization-survey-fig2-107008c7.jpg",
+      "width": 1200,
+      "height": 936,
+      "kind": "dense",
+      "credit": "Google Cloud",
+      "sourceUrl": "https://cloud.google.com/blog/products/ai-machine-learning/new-survey-finds-enterprises-trapped-between-legacy-software-and-ai-modernization/",
+      "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/The_Innovation_Paradox_10.max-2200x2200.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "stock",
+    "title": "NOIRLab HQ Server Racks (6V6A0395-CC)",
+    "creator": "NOIRLab/NSF/AURA/T. Slovinský",
+    "creatorUrl": "",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "provider": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NOIRLab_HQ_Server_Racks_(6V6A0395-CC).jpg",
+    "query": "computer server",
+    "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/AI__ML.max-2500x2500.jpg",
+    "at": "2026-11-11T15:18:44+00:00"
+  },
+  "imageFocus": {
+    "x": 0.545,
+    "y": 0.497,
+    "box": [
+      0.091,
+      0.0,
+      1.0,
+      0.995
+    ],
+    "ar": 1.5,
+    "src": "https://ai-tech-express.jp/img/legacy-ai-modernization-survey-ba72b8f1.jpg"
+  }
+}
