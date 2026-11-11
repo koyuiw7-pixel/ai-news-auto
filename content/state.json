@@ -115,7 +115,9 @@
       "url": "https://www.recall.caa.go.jp/images/rci/img/product/00000036096_1.jpg"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "b971dd88507174df": 1
+  },
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
     "02667be02cad0dd5": "2026-11-07T18:50:54.043233+00:00",
@@ -5690,14 +5692,6 @@
       "slug": "cwe-bench-v2-security-benchmark",
       "url": "https://huggingface.co/blog/cwe-bench"
     },
-    "20cc7c9e1bb19e7a": {
-      "at": "2026-10-28T15:44:12.732582+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "amazon-alexa-plus-launch",
-      "url": "https://www.aboutamazon.jp/news/devices/things-you-can-do-with-new-alexa-plus?utm_source=rss"
-    },
     "20ce38e970e73a0f": {
       "at": "2026-10-30T07:51:42.654846+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6663,13 +6657,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（出展）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102806"
-    },
-    "2fc8e689e413caad": {
-      "at": "2026-10-28T15:42:40.487041+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "followup quality: OpenAI公式ブログは2026年10月28日 → 元記事に「2026年10月28日」という具体的な日付の記載がない",
-      "skipped": true,
-      "url": "https://openai.com/index/legora-agentic-operating-system-for-legal-work"
     },
     "2feb0d4ab15a7e59": {
       "at": "2026-11-09T06:50:40.343295+00:00",
@@ -11655,14 +11642,6 @@
       "section": "public",
       "slug": "subaru-j-esop-rs-stock-disposal",
       "url": "https://www.subaru.co.jp/news/2026_11_10_122023"
-    },
-    "7ae8eb20550eee76": {
-      "at": "2026-10-28T15:48:04.787605+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "nvidia-nemotron-35-transcribe",
-      "url": "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary"
     },
     "7b147aedaa65a0fe": {
       "at": "2026-10-29T18:34:40.873004+00:00",
@@ -21234,37 +21213,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-10T07:18:16.939281+00:00",
-      "attempt": 1,
-      "id": "bf1537f4a0ba0146",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "タイトル「NTT、投資有価証券の売却で特別利益を計上へ」→ 元記事（NTT公式の開示事項の経過PDFのタイトルのみ）に売却・特別利益の計上の具体的内容が一切なく、元記事と確認済みの文脈で裏付けられない",
-        "リード「NTTは11月10日、保有する投資有価証券の一部を売却し、特別利益を計上する見込みだと明らかにしました」→ 元記事は『投資有価証券の売却に関するお知らせ』という題名のみで、一部売却・特別利益の計上見込みは本文から確認できない",
-        "本文「今回の売却は、グループ全体の資産構成を最適化し、経営効率を高めるための取り組みの一環です」→ 元記事に売却の目的や資産構成最適化の記載はなく創作",
-        "本文「2026年度の通期業績に与える影響はまだ確定していません」「NTTは現在、売却に伴う詳細な数値を精査している段階です」→ 元記事に2026年度業績・精査状況の記載はなく創作",
-        "「今日やること」の「特別利益の金額が書かれているか確かめる」「2026年度業績への影響額の開示を待つ」→ 元記事の内容を前提にした推測で、元記事で確認できない事項を前提にしている",
-        "よくある質問「今回の発表は会社側による資産運用の見直しに関するもの」→ 元記事に資産運用見直しの記載はなく、根拠がない"
-      ],
-      "readability": {
-        "avg_paragraph": 79.0,
-        "avg_sentence": 45.1,
-        "long_share": 0.143,
-        "max_paragraph": 119,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 35,
-      "source": "ntt-news",
-      "title": "（開示事項の経過）投資有価証券の売却に関するお知らせ（PDF：112KB）",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 45.1字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-10T07:18:34.077024+00:00",
       "attempt": 1,
       "id": "78155d2d3708df63",
@@ -28601,6 +28549,32 @@
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（DNA・ENCODE・FANTOM）",
         "読みやすさ: 文が長い（1文の平均 45.1字・60字超の文が 16% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T15:49:18.389778+00:00",
+      "attempt": 1,
+      "id": "b971dd88507174df",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 83.2,
+        "avg_sentence": 40.7,
+        "long_share": 0.128,
+        "max_paragraph": 175,
+        "paragraphs": 23,
+        "sentences": 47
+      },
+      "score": null,
+      "source": "google-deepmind-blog",
+      "title": "AlphaGenome: AI for better understanding the genome — Google DeepMind",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DNA・RNA・ENCODE）"
       ]
     }
   ],
