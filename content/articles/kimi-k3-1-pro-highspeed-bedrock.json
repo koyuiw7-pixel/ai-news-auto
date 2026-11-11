@@ -100,8 +100,8 @@
   ],
   "todayActions": [
     "Kimi K3を使っているなら、テスト環境でモデルIDをglobal.moonshotai.kimi-k3.1に変えて速度を測る",
-    "評価や要約などの急がない処理は、service_tierをflexにして標準との費用を比べる",
-    "256トークン以上の固定指示文を送る処理は、prompt_cache_breakpointでキャッシュのヒットを確認する"
+    "速さより費用を優先する処理は、service_tierにflexを指定して少量から試す",
+    "簡単な処理は、reasoning_effortをlowにして遅延と出力トークンを減らす"
   ],
   "relatedSlugs": [
     "kimi-k3-bedrock-india-inference"
@@ -137,5 +137,137 @@
     ],
     "ar": 2.0,
     "src": "https://ai-tech-express.jp/img/kimi-k3-1-pro-highspeed-bedrock-c5b390ef.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "推論の度合いは未設定だとmaxになります。簡単な処理ではlow・highに下げると、遅延と出力トークンを減らせます。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/"
+    },
+    {
+      "text": "Flex層は標準価格の半額ですが、利用枠はStandard・Priority・Flexの3つの層で共有されます。層ごとの利用量はCloudWatchのServiceTierで見られます。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/"
+    },
+    {
+      "text": "globalのプロファイルは、地域指定のものより1トークンあたりの料金が安いと書かれています。データを米国内かインド国内に限る必要があるときだけ、usかinを選びます。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Amazon Bedrock コンソール",
+      "url": "https://console.aws.amazon.com/bedrock/",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+      "howTo": [
+        "Amazon Bedrock console",
+        "Test",
+        "Playground",
+        "Kimi K3.1"
+      ],
+      "note": "コードを書かずに試せます。Playgroundで Kimi K3.1 を選びます。"
+    },
+    {
+      "name": "Amazon Bedrock 料金",
+      "url": "https://aws.amazon.com/bedrock/pricing/",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+      "note": "料金の具体額は、料金ページで確認する形になっています。"
+    },
+    {
+      "name": "Amazon Bedrock リージョン別提供状況",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/models-region-compatibility.html",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+      "note": "対応リージョンは、このページでモデルごとに確認します。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Kimi K3を使っているなら、テスト環境でモデルIDをglobal.moonshotai.kimi-k3.1に変えて速度を測る",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+      "steps": [
+        "既存コードのmodel IDを変更する",
+        "同じ入力のリクエストを送り、応答時間を測る"
+      ],
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/inference-chat-completions.html"
+    },
+    {
+      "action": "速さより費用を優先する処理は、service_tierにflexを指定して少量から試す",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+      "steps": [
+        "リクエストにservice_tier=flexを指定する",
+        "CloudWatchでServiceTierを見て利用量を確認する",
+        "遅延と費用を比べてから割合を増やす"
+      ],
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/service-tiers-inference.html"
+    },
+    {
+      "action": "簡単な処理は、reasoning_effortをlowにして遅延と出力トークンを減らす",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+      "steps": [
+        "reasoning_effortにlowを指定する",
+        "high・maxの応答時間と比べる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "新しいモデルの提供の案内です。Kimi K3に追加の後学習を加えたもので、長い作業をこなすエージェント処理と、事実の誤りを減らすことを狙ったと、Moonshot AIが説明しています。",
+    "status": "background",
+    "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/"
+  },
+  "worries": [
+    {
+      "q": "既存のKimi K3の処理は、変えると何が起きますか？",
+      "a": "エンドポイントとAPIはKimi K3と同じで、モデルIDを変えるだけで試せます。ツール呼び出しや構造化出力、画像入力なども同じ機能として挙げられています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+      "action": "テスト環境で既存コードのモデルIDを変え、同じ入力で応答を確認する。"
+    },
+    {
+      "q": "送ったデータは学習に使われて外に出ませんか？",
+      "a": "データはAWSのデータ境界内で処理され、Moonshot AIには共有されず、モデルの学習にも使われないと書かれています。推論ではゼロデータ保持が常に有効です。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+      "action": "社外に出せない内容を扱う場合は、このページの説明と社内の規定を照らし合わせてから使う。"
+    },
+    {
+      "q": "Flexにすると、応答が遅くなりすぎませんか？",
+      "a": "Flexは標準価格の半額ですが、応答が遅くなる可能性があります。評価や要約など、速さより費用を優先する作業に向くとされています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+      "action": "全体の一部だけFlexに回し、CloudWatchで遅延と費用を比べてから増やす。"
+    },
+    {
+      "q": "速度は本当に2〜3倍になりますか？",
+      "a": "2〜3倍という数字は、Moonshot AIが報告している速さです。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+      "action": "自社の実際の処理で応答時間を測ってから、切り替えを決める。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "Kimi K3から切り替えるべき？",
+      "situation": "Kimi K3を使っている",
+      "recommend": "急がず、テストで速度を比べてから決める",
+      "reason": "モデルIDを変えるだけで試せます。速さは2〜3倍とMoonshot AIが報告していますが、自分の処理での数字は別途測る必要があります。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/"
+    },
+    {
+      "question": "Flexの層を使うべき？",
+      "situation": "急がない評価や要約の処理がある",
+      "recommend": "少量から試す価値がある",
+      "reason": "Flexは標準価格の半額ですが、応答が遅くなる可能性があります。少量から始め、遅延と費用を比べてから増やすとAWSは勧めています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/"
+    },
+    {
+      "question": "データの所在地でプロファイルを選ぶ？",
+      "situation": "データを国内に限る必要がある",
+      "recommend": "usかinを選ぶ",
+      "reason": "usは米国内のリージョン、inはインド国内のリージョンに処理を限ります。globalは安く多くの用途で推奨ですが、対応する商用リージョンのどこかで処理されます。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "推論の度合いを下げると、速く安くなる",
+    "cause": "新しいモデルが出た背景",
+    "steps": "まずはモデルIDを変えて試してみる",
+    "desk": "確かめるならどこを見ればいい？",
+    "worries": "データや速さ、本当に大丈夫？",
+    "guide": "Flexやリージョンの選び方の目安"
+  },
+  "depthAt": "2026-11-11T01:39:09+00:00"
 }
