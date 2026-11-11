@@ -19,8 +19,8 @@
   ],
   "threadsStyle": 3,
   "writingVoice": "explainer",
-  "lede": "画像生成APIを使う開発者は、MiniMaxの別アカウントを作らなくても、AI Gatewayの1つのAPIキーで「MiniMax H3 Image」を使えるようになりました。2K・4K出力に対応し、高速版「Highspeed」の料金は入力が100万トークンあたり2.30ドル、出力が7.60ドルです。開発者は今すぐモデル名を指定して試せますが、日本での提供はまだ発表されていません。",
-  "description": "MiniMaxの画像生成モデル「MiniMax H3 Image」と高速版が、Vercel AI GatewayでAPIキー1つから使えるようになりました。2K・4K出力や画像の編集に対応し、料金は従量課金です。",
+  "lede": "画像生成APIを使う開発者は、MiniMaxの別アカウントを作らなくても、Vercel AI GatewayのAPIキー1つで「MiniMax H3 Image」を使えるようになりました。2K・4K出力に対応し、高速版「Highspeed」の料金は100万トークンあたり入力2.30ドル、出力7.60ドルです。モデル名を指定するか、試用画面で利用できます。",
+  "description": "MiniMaxの画像生成モデル「MiniMax H3 Image」と高速版が、Vercel AI Gatewayで利用可能になりました。APIキー1つで画像生成や編集ができ、2K・4K出力にも対応。高速版の料金も紹介します。",
   "keywords": [
     "MiniMax H3 Image",
     "MiniMax H3 Image Highspeed",
@@ -64,7 +64,7 @@
       "高速版（Highspeed）は入力100万トークンあたり2.30ドル、出力7.60ドルです（Vercel公式のモデルページ、11/12確認）。"
     ]
   },
-  "body": "画像生成AIを自分のアプリやサービスに組み込みたい開発者にとって、今回の発表は使えるモデルが1つ増えたことを意味します。\n\nAI Gatewayを使っていない人の環境には、今のところ直接の変化はありません。\n\nAI Gatewayは、Vercelが提供する、AIモデルを呼び出すための窓口です。1つのAPIキー（サービスを呼び出すときの認証に使う鍵の文字列）で、複数社のモデルを使えます。利用量と料金は、まとめて確認できます。\n\n今回、この窓口から「MiniMax H3 Image」と高速版の「MiniMax H3 Image Highspeed」が使えるようになりました。MiniMaxの別アカウントを作る必要はありません。\n\n## 文から画像を作り、指示で直せる\n\n両モデルとも、文章（プロンプト）から画像を作れます。作った画像を指示文と一緒に渡すと、色や被写体、構図を変えられます。発表の例では、花瓶の色を「テラコッタ」に変え、花と背景は残す指示が使われています。\n\n```ts\nimport { generateImage } from 'ai';\nconst { image } = await generateImage({\nmodel: 'minimax/minimax-h3-image',\nprompt: '日の差す木のテーブルに、野の花を挿した青い陶器の花瓶を置いた画像',\nsize: '2048x2048',\nproviderOptions: { minimax: { outputFormat: 'png' } },\n});\n```\n\nモデル名は、標準版が minimax/minimax-h3-image、高速版が minimax/minimax-h3-image-highspeed です。Vercel AI SDK（AIアプリを作るためのライブラリ）から呼び出せます。\n\nOpenAI互換の /v1/images/generations と /v1/images/edits の経路にも対応しています。モデルの試用画面（playground）でも試せます。\n\n## 2K・4Kまで、サイズと縦横比を指定できる\n\n出力のサイズと縦横比は指定できます。発表では2K・4Kの出力が挙げられています。\n\n高速版は、参照画像を最大16枚まで渡せます。出力は最大2,000万画素です。\n\nファイル形式はJPEG、PNG、WebPに対応します（Vercel公式のモデルページ、11/12確認）。\n\n## 高速版の料金は、入力と出力で分かれている\n\n高速版の料金は、次のとおりです（Vercel公式のモデルページ、11/12確認）。\n\n- 入力：100万トークンあたり2.30ドル\n- 出力：7.60ドル\n\nトークンは、AIが処理する量を数える単位です。標準版の料金は、まだ発表されていません。\n\nAI Gatewayは、推論（AIが答えや画像を作る処理）の料金に手数料を上乗せしていません。プラットフォーム手数料もありません（Vercel公式のAI Gatewayの料金ページ、11/12確認）。\n\n## 無料枠は上限が低く、クレジットで上限が上がる\n\n無料枠では、モデルごとの利用上限が有料より低く設定されています。上限を超えると429エラーが返り、少し待ってから再試行します。AI Gatewayのクレジットを購入すると有料の枠に移り、上限が上がります（Vercel公式のAI Gatewayの料金ページ、11/12確認）。\n\n## 日本での提供は、まだ発表されていません\n\n日本での提供や日本語の対応は、まだ発表されていません。利用するときは、MiniMaxの利用規約とプライバシーポリシーに従う必要があります（Vercel公式のモデルページ、11/12確認）。\n\n## まだ分からないこと\n\n- 標準版（MiniMax H3 Image）の料金は、まだ発表されていません。\n- 日本での提供や日本語の対応は、まだ発表されていません。",
+  "body": "画像生成AIを自分のアプリやサービスに組み込みたい開発者は、Vercel AI GatewayからMiniMaxの画像モデルを選べるようになりました。\n\nAI Gatewayは、Vercelが提供する、AIモデルを呼び出すための窓口です。1つのAPIキー（サービスを呼び出すときの認証に使う鍵の文字列）で複数社のモデルを使えます。利用量と料金は、まとめて確認できます。\n\n今回、この窓口から「MiniMax H3 Image」と高速版の「MiniMax H3 Image Highspeed」が使えるようになりました。MiniMaxの別アカウントを作る必要はありません。\n\n## 文章から画像を作り、指示で編集できる\n\n両モデルとも、文章（プロンプト）から画像を作れます。作った画像を指示文と一緒に渡すと、色や被写体、構図を変えられます。発表の例では、花瓶の色を「テラコッタ」に変え、花と背景は残す指示が使われています。\n\n```ts\nimport { generateImage } from 'ai';\nconst { image } = await generateImage({\nmodel: 'minimax/minimax-h3-image',\nprompt: '日の差す木のテーブルに、野の花を挿した青い陶器の花瓶を置いた画像',\nsize: '2048x2048',\nproviderOptions: { minimax: { outputFormat: 'png' } },\n});\n```\n\nモデル名は、標準版が minimax/minimax-h3-image、高速版が minimax/minimax-h3-image-highspeed です。Vercel AI SDK（AIアプリを作るためのライブラリ）から呼び出せます。\n\nOpenAI互換の /v1/images/generations と /v1/images/edits の経路にも対応しています。モデルの試用画面（playground）でも試せます。\n\n## 両モデルで2K・4K出力に対応\n\n両モデルとも、出力のサイズと縦横比を指定できます。発表では2K・4Kの出力が挙げられています。\n\n高速版は、参照画像を最大16枚まで渡せます。出力は最大2,000万画素です。ファイル形式はJPEG、PNG、WebPに対応します（Vercel公式のモデルページ、11/12確認）。\n\n## 高速版は100万トークンあたり入力2.30ドル、出力7.60ドル\n\n高速版の料金は、次のとおりです（Vercel公式のモデルページ、11/12確認）。\n\n- 入力：100万トークンあたり2.30ドル\n- 出力：100万トークンあたり7.60ドル\n\nトークンは、AIが処理する量を数える単位です。今回の資料には、標準版の料金は記載されていません。\n\nAI Gatewayは、推論（AIが答えや画像を作る処理）の料金に手数料を上乗せしていません。推論にプラットフォーム手数料もありません。\n\n## 利用前に規約を確認\n\n高速版の利用には、MiniMaxの利用規約とプライバシーポリシーが適用されます（Vercel公式のモデルページ、11/12確認）。\n\n## 今回の資料に記載されていないこと\n\n- 標準版（MiniMax H3 Image）の料金\n- 日本での提供や日本語への対応",
   "easy": "## ひとことで言うと\n\nAI Gatewayで、MiniMaxの画像生成モデル「MiniMax H3 Image」と高速版が使えるようになりました。APIキー1つで、文章から画像を作ることも、作った画像を指示で直すこともできます。\n\n料金は、高速版が入力100万トークン（AIが扱う文字や画像の量の単位）あたり2.30ドル、出力が7.60ドルです（Vercel公式のモデルページ、11/12確認）。標準版の料金は、まだ発表されていません。日本での提供も、まだ発表されていません。",
   "channel": "Vercel Changelog",
   "channelId": "",
@@ -199,5 +199,40 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/minimax-h3-image-ai-gateway-figure-f1082a7a.jpg"
+  },
+  "gptReview": {
+    "reviewedBy": "gpt-6.1-terra",
+    "reviewedAt": "2026-11-11T16:32:39+00:00",
+    "changed": [
+      "body",
+      "description",
+      "lede"
+    ],
+    "before": {
+      "lede": "画像生成APIを使う開発者は、MiniMaxの別アカウントを作らなくても、AI Gatewayの1つのAPIキーで「MiniMax H3 Image」を使えるようになりました。2K・4K出力に対応し、高速版「Highspeed」の料金は入力が100万トークンあたり2.30ドル、出力が7.60ドルです。開発者は今すぐモデル名を指定して試せますが、日本での提供はまだ発表されていません。"
+    },
+    "fixes": [
+      {
+        "before": "日本での提供はまだ発表されていません。",
+        "after": "今回の資料には、日本での提供や日本語への対応の記載がないとしました。",
+        "evidence": "資料1・2には日本での提供や日本語対応の記載がない"
+      },
+      {
+        "before": "標準版の料金は、まだ発表されていません。",
+        "after": "今回の資料には、標準版の料金は記載されていません。",
+        "evidence": "資料2の料金は「MiniMax H3 Image Highspeed」の「Input $2.30, Output $7.60」"
+      },
+      {
+        "before": "出力：7.60ドル",
+        "after": "出力：100万トークンあたり7.60ドル",
+        "evidence": "資料2「Input $2.30, Output $7.60, Per 1M tokens」"
+      },
+      {
+        "before": "ファイル形式はJPEG、PNG、WebPに対応します。",
+        "after": "高速版の対応形式としてJPEG、PNG、WebPを記載しました。",
+        "evidence": "資料2「MiniMax H3 Image Highspeed ... JPEG, PNG, and WebP formats」"
+      }
+    ],
+    "notes": "資料から確認できない提供状況や標準版の料金は、未発表と断定せず、今回の資料に記載がないことを示しました。無料枠やクレジットに関する記述は、提示された資料で確認できないため削除しました。"
   }
 }
