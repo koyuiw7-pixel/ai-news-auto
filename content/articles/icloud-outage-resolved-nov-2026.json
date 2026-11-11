@@ -67,9 +67,9 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "メールが届かないときは、icloud.com/mailで受信できるかを先に確かめる",
-    "iCloudメールの「データの取得方法」で「プッシュ」がオンかを確認する",
-    "「探す」が使えないときは、Appleのシステム状況ページで状態を確かめる"
+    "届かないメールは、icloud.com/mailで受信できるかを先に確かめる",
+    "iCloudメールの「データの取得方法」で「プッシュ」がオンかを確かめる",
+    "「探す」が使えないときは、システム状況ページで状態を確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -111,5 +111,127 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/icloud-outage-resolved-nov-2026-figure-f1e5ea68.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "「昨日 22:49」「今日 00:22」などの時刻は協定世界時（Coordinated Universal Time）で表示されており、日本時間に直すと7時49分から9時22分になります。",
+      "source": "https://www.apple.com/jp/support/systemstatus/"
+    },
+    {
+      "text": "メールの「データの取得方法」の「プッシュ」は一度に1つのアカウントでのみ利用できます。「フェッチ」は「自動」が選ばれているかも確かめます。",
+      "source": "https://support.apple.com/ja-jp/102562"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Apple システム状況",
+      "url": "https://www.apple.com/jp/support/systemstatus/",
+      "source": "https://www.apple.com/jp/support/systemstatus/",
+      "note": "最終更新日の表示は協定世界時（UTC）です。「探す」など、サービスごとの状態が並んでいます。"
+    },
+    {
+      "name": "Appleサポート お問い合わせ",
+      "url": "https://support.apple.com/ja-jp/contact",
+      "source": "https://support.apple.com/ja-jp/contact",
+      "howTo": [
+        "サポート",
+        "お問い合わせ"
+      ],
+      "note": "製品別サポートや、Appleサポートアプリでチャットでの質問や修理の申し込みができます。"
+    },
+    {
+      "name": "iCloudでメールが届かない（Appleサポート）",
+      "url": "https://support.apple.com/ja-jp/102562",
+      "source": "https://support.apple.com/ja-jp/102562",
+      "note": "メールが届かないときの確かめ方が、デバイス別の手順で書かれています。公開日は2026年06月12日です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "届かないメールは、icloud.com/mailで受信できるかを先に確かめる",
+      "source": "https://support.apple.com/ja-jp/102562",
+      "steps": [
+        "ブラウザでicloud.com/mailを開く",
+        "メールが届いているかを確かめる"
+      ],
+      "url": "https://www.icloud.com/mail"
+    },
+    {
+      "action": "iCloudメールの「データの取得方法」で「プッシュ」がオンかを確かめる",
+      "source": "https://support.apple.com/ja-jp/102562",
+      "steps": [
+        "「設定」→「アプリ」→「メール」を開く",
+        "「メールアカウント」を選び「データの取得方法」をタップ",
+        "「プッシュ」がオンかを確認する",
+        "「フェッチ」が「自動」か確認する"
+      ],
+      "url": "https://support.apple.com/ja-jp/102562"
+    },
+    {
+      "action": "「探す」が使えないときは、システム状況ページで状態を確かめる",
+      "source": "https://www.apple.com/jp/support/systemstatus/",
+      "steps": [
+        "システム状況ページを開く",
+        "「探す」の「解決済みの問題」の表示を見る"
+      ],
+      "url": "https://www.apple.com/jp/support/systemstatus/"
+    }
+  ],
+  "cause": {
+    "text": "原因は発表されていません。システム状況ページには「一部のユーザに対して、本サービスの利用に問題が発生した可能性があります」と書かれています。",
+    "status": "investigating",
+    "source": "https://www.apple.com/jp/support/systemstatus/"
+  },
+  "worries": [
+    {
+      "q": "朝に届かなかったメール、今は届いている？",
+      "a": "公式ページは、iCloudメールが使えないときは後でもう一度試すよう案内しています。そのうえで、ブラウザでicloud.com/mailにアクセスし、メールが届いているかを確かめる方法を示しています。",
+      "source": "https://support.apple.com/ja-jp/102562",
+      "action": "ブラウザでicloud.com/mailを開き、受信トレイを確かめる"
+    },
+    {
+      "q": "自分が送ったメールは相手に届いている？",
+      "a": "送信済みメールの宛先が正しいかを確かめ、受信者に迷惑メールのフォルダを見てもらうよう依頼するとよいとされています。送信元にも宛先にも警告が出ていない場合は、サーバーでブロックされたりフィルタで振り分けられたりした可能性もあります。",
+      "source": "https://support.apple.com/ja-jp/102562",
+      "action": "相手に迷惑メールのフォルダを確認してもらうよう頼む"
+    },
+    {
+      "q": "サインインできなかったけど、今も直らない？",
+      "a": "システム状況ページでは、iCloudアカウントおよびサインインの機能停止は「解決済み」と表示されています。まだ不具合が続くときは、デバイスの電源を入れ直す、OSを最新版にするなどが案内されています。",
+      "source": "https://www.apple.com/jp/support/systemstatus/",
+      "action": "iPhoneでVPNを使っているならオフにしてから、もう一度サインインを試す",
+      "actionSource": "https://support.apple.com/ja-jp/102562"
+    },
+    {
+      "q": "「探す」は今も使える？",
+      "a": "システム状況ページでは、「探す」の障害は7時50分から9時54分までで、解決済みと表示されています。速度の低下や利用できなかった可能性があると書かれています。",
+      "source": "https://www.apple.com/jp/support/systemstatus/",
+      "action": "「探す」が使えないときは、システム状況ページで状態を確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "メールが届かないとき、まず何を確かめる？",
+      "situation": "icloud.com/mailで届いている",
+      "recommend": "端末のプッシュ設定を確かめる",
+      "reason": "icloud.com/mailで受信できていれば、端末側の設定が原因の可能性があるため、「データの取得方法」の「プッシュ」を確かめる順番になります。",
+      "source": "https://support.apple.com/ja-jp/102562"
+    },
+    {
+      "question": "メールが届かないとき、まず何を確かめる？",
+      "situation": "icloud.com/mailでも届いていない",
+      "recommend": "後でもう一度試す",
+      "reason": "公式ページは、iCloudメールが利用できない場合は後でもう一度試すよう案内しています。手続きや費用はかかりません。",
+      "source": "https://support.apple.com/ja-jp/102562"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "時刻はUTC表示、プッシュは1アカウントだけ",
+    "cause": "なぜ起きた？いま分かっていること",
+    "steps": "届かないメールを今すぐ確かめる方法",
+    "desk": "直接たずねるなら、Appleの窓口はここ",
+    "worries": "朝のメールやサインインは大丈夫？",
+    "guide": "届かないとき、設定を変えるか待つか"
+  },
+  "depthAt": "2026-11-11T02:48:31+00:00"
 }
