@@ -99,14 +99,6 @@
       "tries": 1,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87284?site=nli"
     },
-    "bad6ee94c35695d3": {
-      "first": "2026-11-11T16:23:24.912257+00:00",
-      "next": "2026-11-11T19:23:24.912257+00:00",
-      "reason": "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
-      "title": "Try Tabletop: Customizable, collaborative spaces for groups to plan, play and do more together.",
-      "tries": 1,
-      "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"
-    },
     "bf1537f4a0ba0146": {
       "first": "2026-11-10T07:18:16.939386+00:00",
       "next": "2026-11-10T10:18:16.939386+00:00",
@@ -178,7 +170,6 @@
     "a32d44d8a10f6154": "2026-11-10T02:03:09.291270+00:00",
     "a3b54a56dddbb351": "2026-11-11T10:05:09.530100+00:00",
     "a7f10c6aec80b466": "2026-11-10T07:17:00.645387+00:00",
-    "a9f8fc0979118b50": "2026-11-07T19:10:55.244910+00:00",
     "ae8ca6386c357aa1": "2026-11-11T01:46:50.194316+00:00",
     "b6fc33c3201bba86": "2026-11-10T18:21:06.372918+00:00",
     "b7c50d46a5e9f41d": "2026-11-09T07:10:55.440298+00:00",
@@ -5642,13 +5633,6 @@
       "slug": "rakuten-card-revo-fee-calc-postponed",
       "url": "https://www.rakuten-card.co.jp/info/news/20261106/"
     },
-    "204064d4bd48e1b5": {
-      "at": "2026-10-28T19:13:04.598761+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "政治家への提言申入れに関する行事であり、国民向けの新しい制度・サービス・製品・法律の施行などの実質的な情報が含まれないため。",
-      "skipped": true,
-      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-326851.html"
-    },
     "206d2c539e8e0d62": {
       "at": "2026-10-28T23:32:47.313346+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7866,13 +7850,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102912"
     },
-    "47097ee488013dee": {
-      "at": "2026-10-28T19:13:25.608302+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-      "skipped": true,
-      "url": "https://www.aboutamazon.jp/news/devices/new-echo-time-and-echo-dot-for-alexa-plus?utm_source=rss"
-    },
     "47175dd79f7a4918": {
       "at": "2026-10-29T01:14:29.352614+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9141,13 +9118,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（表彰）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_76872.html"
-    },
-    "589231a9efbec26b": {
-      "at": "2026-10-28T19:13:45.185026+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が「## ひとことで言うと」から始まっていない",
-      "skipped": true,
-      "url": "https://www.softbank.jp/sbnews/entry/20261028_01"
     },
     "58a090b4c9116a8f": {
       "at": "2026-11-04T19:09:48.151092+00:00",
@@ -15676,12 +15646,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111102"
     },
-    "b78ac8a961aced77": {
-      "at": "2026-10-28T19:12:53.361982+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
-      "skipped": true,
-      "url": "https://www.fsa.go.jp/news/r8/singi/20261029.html"
-    },
     "b7b19ea4715d7ab8": {
       "at": "2026-10-28T19:35:06.632582+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15890,6 +15854,18 @@
       "reason": "開催案内のページで、有識者ヒアリングの内容や検討状況の報告の中身が本文に書かれていない。議事録は準備中で、配布資料も中身を確認できないため、読者に伝えられる実質的な情報がない。",
       "skipped": true,
       "url": "https://www.cao.go.jp/consumer/kabusoshiki/ai_technology/014/shiryou/index.html"
+    },
+    "bad6ee94c35695d3": {
+      "at": "2026-11-11T19:32:22.767368+00:00",
+      "costUsd": 0.001,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "google-labs-tabletop-group-spaces",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"
     },
     "baed61a4dbe0301752e0f27f675ecbde0ae5cb53": {
       "at": "2026-11-02T00:02:48.731978+00:00",
@@ -16400,14 +16376,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（人事）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01kanbo01_02001184.html"
-    },
-    "c39d350dff74c362": {
-      "at": "2026-10-28T19:14:17.339375+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "lifestyle",
-      "slug": "kirin-holdings-kirink-media-launch",
-      "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1028_02.html"
     },
     "c39de0152eab23c6": {
       "at": "2026-11-03T01:26:21.538561+00:00",
@@ -17692,13 +17660,6 @@
       "skipped": true,
       "url": "https://about.fb.com/news/2026/10/the-future-is-for-everyone-meta-and-cnib-partner-to-support-canadians-who-are-blind-deafblind-or-have-low-vision/"
     },
-    "d739341503470be57955540dc33416b7a16f7c83": {
-      "at": "2026-10-28T19:32:14.849949+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1534字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://www.apple.com/jp/newsroom/2026/10/apple-unveils-groundbreaking-macbook-pro-with-proled-xdr-display/"
-    },
     "d73f8b83aa40db8a": {
       "at": "2026-10-30T09:31:55.097696+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -17821,13 +17782,6 @@
       "section": "business",
       "slug": "rakuten-sec-1500-million-accounts",
       "url": "https://corp.rakuten.co.jp/news/press/2026/1102_02.html"
-    },
-    "d8a8903606ffb523": {
-      "at": "2026-10-28T19:12:53.361927+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "人事・公募・若手人材交流プログラムの採択決定の案内であり、実用的な製品やサービス、あるいは科学的な研究成果そのものの発表ではないため対象外とします。",
-      "skipped": true,
-      "url": "https://www.jst.go.jp/pr/info/info1883/index.html"
     },
     "d8b27fed6c7237fa": {
       "at": "2026-11-06T06:53:11.196484+00:00",
@@ -20263,13 +20217,6 @@
       "skipped": true,
       "url": "https://www.aboutamazon.com/news/company-news/aws-growth-ai-demand-q3-2026-earnings?utm_source=rss"
     },
-    "fe2cc772edbc6ab1": {
-      "at": "2026-10-28T19:12:44.082147+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が短い（299字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://jtta.or.jp/news/38521"
-    },
     "fe3203af316c6759": {
       "at": "2026-11-09T23:49:44.837882+00:00",
       "costUsd": 0.0126,
@@ -21118,29 +21065,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:26:17.059708+00:00",
-      "attempt": 0,
-      "id": "02687bffe30663a2",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 77.0,
-        "avg_sentence": 41.1,
-        "long_share": 0.067,
-        "max_paragraph": 145,
-        "paragraphs": 8,
-        "sentences": 15
-      },
-      "score": 85,
-      "source": "tsr",
-      "title": "10月の「飲食業」倒産 10月では最多の98件 専門料理店、居酒屋など小・零細飲食店が苦境",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TSR・REPORT）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-10T07:26:38.836375+00:00",
@@ -28465,6 +28389,30 @@
         "見出しの書き方: 記号: かっこの直後に「、」",
         "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（OCR・MCP・REST）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T19:32:13.910684+00:00",
+      "attempt": 1,
+      "id": "bad6ee94c35695d3",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.3,
+        "avg_sentence": 38.7,
+        "long_share": 0.0,
+        "max_paragraph": 102,
+        "paragraphs": 6,
+        "sentences": 12
+      },
+      "score": 92,
+      "source": "google-ai-blog",
+      "title": "Try Tabletop: Customizable, collaborative spaces for groups to plan, play and do",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "答えになっていない見出し（「米国の18歳以上は順番待ち、日本は案内なし」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
       ]
     }
   ],

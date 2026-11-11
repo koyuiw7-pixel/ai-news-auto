@@ -1,0 +1,145 @@
+{
+  "slug": "decisions-api",
+  "name": "Decisions API",
+  "aliases": [],
+  "company": "openai",
+  "companyName": "OpenAI",
+  "category": "アプリ・サービス",
+  "overview": {
+    "text": "Decisions APIは、あらかじめ定義した選択肢から答えを選ぶ判断専用のAPIです。OpenAIが2026年10月6日に発表しました。",
+    "sources": [
+      "openai-announces-decisions-api-gpt6-luna"
+    ]
+  },
+  "facts": [
+    {
+      "label": "料金",
+      "value": "入力100万トークン0.10ドル",
+      "sources": [
+        "gemini-decisions-api-decision-1"
+      ]
+    },
+    {
+      "label": "提供開始",
+      "value": "プレビュー提供",
+      "sources": [
+        "openai-announces-decisions-api-gpt6-luna"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "開発者",
+      "sources": [
+        "gemini-decisions-api-decision-1",
+        "openai-announces-decisions-api-gpt6-luna"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "テキストや画像の入力をもとに、次に取るべきアクションをミリ秒単位で選択・決定できます。",
+      "sources": [
+        "openai-announces-decisions-api-gpt6-luna"
+      ]
+    },
+    {
+      "text": "最大1,000問を同時に評価でき、応答は150〜250ミリ秒です。",
+      "sources": [
+        "gemini-decisions-api-decision-1"
+      ]
+    },
+    {
+      "text": "開発の段階ごとにどのルールやスキルを当てはめるかを選ぶことができます。",
+      "sources": [
+        "qodo-codex-plugin-code-review"
+      ]
+    }
+  ],
+  "pricing": [
+    {
+      "text": "入力は100万トークンあたり0.10ドルで、出力は課金なしです。",
+      "sources": [
+        "gemini-decisions-api-decision-1"
+      ]
+    },
+    {
+      "text": "試作用のAPI無料枠が用意されています。",
+      "sources": [
+        "gemini-decisions-api-decision-1"
+      ]
+    }
+  ],
+  "japan": [],
+  "howto": [
+    {
+      "text": "Google AI StudioのGemini APIから使うことができます。",
+      "sources": [
+        "gemini-decisions-api-decision-1"
+      ]
+    },
+    {
+      "text": "Google AI StudioでAPIキーを取得して始められます。",
+      "sources": [
+        "gemini-decisions-api-decision-1"
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "text": "自由なテキストを出力する従来のAPIと比較して、処理速度を約10倍に高めています。",
+      "sources": [
+        "openai-announces-decisions-api-gpt6-luna"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "いつから使える？",
+      "a": "開発者が自身のアプリケーションに即座に組み込めるプレビューとして提供されています。",
+      "sources": [
+        "openai-announces-decisions-api-gpt6-luna"
+      ]
+    },
+    {
+      "q": "誰に向いている？",
+      "a": "アプリや社内システムを作る開発者が対象です。",
+      "sources": [
+        "gemini-decisions-api-decision-1"
+      ]
+    },
+    {
+      "q": "無料で使える？",
+      "a": "Google AI Studioには試作用のAPI無料枠があります。",
+      "sources": [
+        "gemini-decisions-api-decision-1"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-10-07",
+      "slug": "openai-announces-decisions-api-gpt6-luna",
+      "event": "Decisions APIを発表"
+    }
+  ],
+  "related": [
+    "chatgpt",
+    "codex",
+    "gpt-6-astra",
+    "gemini"
+  ],
+  "articles": [
+    "gemini-decisions-api-decision-1",
+    "salesforce-koa-decisions-model",
+    "qodo-codex-plugin-code-review",
+    "openai-announces-decisions-api-gpt6-luna"
+  ],
+  "linkFrom": [
+    "openai-announces-decisions-api-gpt6-luna"
+  ],
+  "signature": "d3f9c011f7b9c637",
+  "primarySignature": "781a90334cc3671d",
+  "model": "gemini-3.5-flash-lite",
+  "createdAt": "2026-11-11T19:32:37+00:00",
+  "updatedAt": "2026-11-11T19:32:37+00:00"
+}

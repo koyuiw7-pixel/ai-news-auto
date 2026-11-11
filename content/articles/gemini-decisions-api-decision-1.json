@@ -95,9 +95,9 @@
     }
   ],
   "todayActions": [
-    "Google AI StudioでAPIキーを取得し、無料枠でgemini-decision-1を試す",
-    "公式ドキュメントのPython・JavaScript・RESTのガイドから自分の環境の手順を選ぶ",
-    "自社の振り分けや規約チェックを、はい・いいえ・選択肢・採点の3種類の質問に書き換えてみる"
+    "Google AI StudioでAPIキーを取得し、gemini-decision-1を試す",
+    "デモアプリを開いて、判断APIの動きを試してみる",
+    "自社の振り分けや規約チェックを、はい・いいえ・選択肢・採点の質問に書き換える"
   ],
   "relatedSlugs": [
     "salesforce-koa-decisions-model"
@@ -153,5 +153,104 @@
     ],
     "ar": 1.7751,
     "src": "https://ai-tech-express.jp/img/gemini-decisions-api-decision-1-0edb4328.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "料金は共通の入力を1リクエストにつき1回だけ課金され、質問を増やすと加わるのは各質問の指示と基準のトークン分だけです。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/"
+    },
+    {
+      "text": "1リクエストで最大1,000問まで質問でき、16Kトークンまでの入力なら1〜100問で遅延はほぼ変わらないとされています。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Gemini API（Decisions APIのドキュメント）",
+      "url": "https://aistudio.google.com/docs/decisions-api",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "note": "Python・JavaScript・RESTの各ガイドがあると書かれています。"
+    },
+    {
+      "name": "Google AI Studio（APIキーの取得）",
+      "url": "https://aistudio.google.com/api-keys",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "note": "APIキーを取得して、無料枠で試作できると書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Google AI StudioでAPIキーを取得し、gemini-decision-1を試す",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "steps": [
+        "Google AI Studioを開く",
+        "APIキーを取得する",
+        "gemini-decision-1を指定して試す"
+      ],
+      "url": "https://aistudio.google.com/api-keys"
+    },
+    {
+      "action": "デモアプリを開いて、判断APIの動きを試してみる",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "steps": [
+        "Doorstep Partcelsではなく Doorstep Parcelsを開く",
+        "Speed Sketchを開く",
+        "Find the Zoo Keeperを開く"
+      ],
+      "url": "https://aistudio.google.com/apps/bundled/doorstep-parcels-qa?fullscreenApplet=true"
+    },
+    {
+      "action": "自社の振り分けや規約チェックを、はい・いいえ・選択肢・採点の質問に書き換える",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "steps": [
+        "はい・いいえの判定はnoul",
+        "選択肢から選ぶ処理はchoice",
+        "段階の採点はscore"
+      ],
+      "url": "https://aistudio.google.com/docs/decisions-api"
+    }
+  ],
+  "cause": {
+    "text": "判断だけを返す用途では、答えの文章を1トークンずつ書き出さず、候補を1回の計算（フォワードパス）で採点して確率と確信度を返すため、速さと安さを狙えると説明されています。",
+    "status": "background",
+    "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/"
+  },
+  "worries": [
+    {
+      "q": "料金はどれくらいかかりますか？",
+      "a": "入力は100万トークンあたり0.10ドルで、出力トークンは0ドルです。試作用にはGoogle AI Studioに API無料枠があり、共通の入力は1リクエストにつき1回だけ課金されると書かれています。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "action": "Google AI Studioでアカウントにログインし、APIキーを取得して無料枠で試す"
+    },
+    {
+      "q": "回答の確かさは、どう分かりますか？",
+      "a": "すべての答えに0から1の確信度が付き、確信度の低い案件を別の処理や人の確認に回す使い方が想定されています。校正誤差（確率のずれ）は最小だとGoogleは述べています。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "action": "確信度が低い回答を人の確認に回す分岐を、アプリ側で先に用意しておく"
+    },
+    {
+      "q": "今の生成AIの仕組みから置き換えるのは大変？",
+      "a": "入力の形式はInteractions APIのContentブロックと同じで、PythonとJavaScript、RESTの手順がドキュメントにあると書かれています。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "action": "公式ドキュメントのPython・JavaScript・RESTのガイドから、自分の環境に合う手順を選ぶ"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "判断だけ欲しい処理を、新しいAPIに移す？",
+      "situation": "分岐や振り分けだけで、文章は要らない処理",
+      "recommend": "まず無料枠で小さく試すのがよい",
+      "reason": "出力トークンは0ドルで、入力は100万トークンあたり0.10ドル（2026年11月11日のブログ記載）。日本円の料金や日本語入力での精度は発表されていないため、本番導入の前に確かめる必要があります。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "文章を作らない分、課金がかなり安い",
+    "cause": "なぜ文章を作らずに判断できるのか",
+    "steps": "まず無料枠で試すための手順",
+    "desk": "公式ドキュメントと試せるページ",
+    "worries": "料金や精度、移行の手間は？",
+    "guide": "文章生成から切り替えるか、迷ったときは"
+  },
+  "depthAt": "2026-11-11T19:33:58+00:00"
 }
