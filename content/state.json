@@ -43,7 +43,7 @@
     "YJCyJ7ItHk0": 2,
     "YQYckl38zpo": 1,
     "YcFnDg6dl0s": 2,
-    "Z9k5oI3Paoc": 1,
+    "Z9k5oI3Paoc": 2,
     "a75xDflRooI": 1,
     "dQMYDBGX0uk": 2,
     "dS6cFdoyit8": 1,
@@ -1445,6 +1445,10 @@
     "OEmEfobzodE": {
       "at": "2026-07-31T16:44:34.404732+00:00",
       "slug": "google-deepmind-gemini-robotics-2-announcement-oemefobzode"
+    },
+    "OGe27KkS6dk": {
+      "at": "2026-11-11T00:21:26.321559+00:00",
+      "slug": "microsoft-foundry-agent-playground-test"
     },
     "OMxEUdIgsQc": {
       "at": "2026-10-16T20:12:31.396177+00:00",
@@ -6847,6 +6851,17 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/houdou/mext_01699.html"
     },
+    "3793b7b76bf66ac6": {
+      "at": "2026-11-11T00:30:07.726694+00:00",
+      "costUsd": 0.0098,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 96,
+      "section": "sports",
+      "slug": "winticket-new-cm-series-2026",
+      "url": "https://www.cyberagent.co.jp/news/detail/id=34001"
+    },
     "37a4aa9d2f151d8b": {
       "at": "2026-11-07T19:52:10.007287+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -10673,6 +10688,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv0000011228.html"
+    },
+    "723436300f37e0c4": {
+      "at": "2026-11-11T00:28:50.920906+00:00",
+      "costUsd": 0.01,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "tech-gadget",
+      "slug": "jpcert-weekly-report-20261111-vulnerabilities",
+      "url": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1"
     },
     "7277a075ec1b338c": {
       "at": "2026-11-05T12:03:46.686156+00:00",
@@ -19985,14 +20011,6 @@
       "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
       "writer": "muse"
     },
-    "muse-f556c07a36": {
-      "at": "2026-11-11T00:24:12.961646+00:00",
-      "mix": "other",
-      "score": 90,
-      "slug": "withholding-slip-issue-deadline-japan",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
-      "writer": "muse"
-    },
     "muse-f5aa507ff2": {
       "at": "2026-11-10T00:40:18.417334+00:00",
       "mix": "money",
@@ -20016,159 +20034,17 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
+    },
+    "muse-f556c07a36": {
+      "at": "2026-11-11T00:24:12.961646+00:00",
+      "mix": "other",
+      "score": 90,
+      "slug": "withholding-slip-issue-deadline-japan",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:40:35.916574+00:00",
-      "attempt": 1,
-      "id": "b510493e30220ef6",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 87.8,
-        "avg_sentence": 42.3,
-        "long_share": 0.148,
-        "max_paragraph": 150,
-        "paragraphs": 13,
-        "sentences": 27
-      },
-      "score": 88,
-      "source": "pmda-safety",
-      "title": "[医薬]クラスI回収 該当回収品目 照射赤血球液-LR「日赤」",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LR・PMDA・II）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T09:41:05.930920+00:00",
-      "attempt": 1,
-      "id": "e4c904d6c8434ba0",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "要点・本文の「対戦相手はアメリカ、パラグアイ、コロンビアのU-19代表」→ 元記事にも確認済みの文脈にもパラグアイとの対戦は書かれておらず、確認済みの文脈は「アメリカやコロンビアなどと対戦」とするのみで、パラグアイを対戦相手に加えたのは創作である。",
-        "リードの「遠征は11月9日から18日まで」および本文の「アトランタでの3試合」は確認済みの文脈と一致しており問題ないが、対戦相手の列挙は元記事に裏付けがない。"
-      ],
-      "score": 62,
-      "source": "jfa",
-      "title": "U-19日本代表 追加招集 アメリカ遠征（11.9-18 アメリカ／アトランタ） #jfa #daihyo"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T09:41:26.976029+00:00",
-      "attempt": 1,
-      "id": "0545bdd52361a391",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトル「元代表の井原正巳さんと久保竜彦さんが熊本・八代で指導」→ 元記事は両氏を「ゲストとして参加予定」としており、指導役とは書かれていない。役割の取り違えである。",
-        "タイトル「ウォーキングフットボール大会」→ 元記事は「イベント」であり、大会・競技会とは書かれていない。",
-        "「参加を希望する場合は事前の対象確認や関係者を通じた確認が必要です」→ 元記事に「関係者を通じた確認」という手順の記載はない。対象は日奈久小学校関係者と近隣住民の方限定とあるのみ。",
-        "かんたん版「事前の案内がない場合の当日参加は受け付けていません」→ 元記事は「当日参加のご案内は行っておりません」であり、受け付けないとまでは書かれていない（軽い言い換えの域）。"
-      ],
-      "readability": {
-        "avg_paragraph": 90.2,
-        "avg_sentence": 67.6,
-        "long_share": 0.75,
-        "max_paragraph": 152,
-        "paragraphs": 6,
-        "sentences": 8
-      },
-      "score": 72,
-      "source": "jfa",
-      "title": "熊本地震復興応援プロジェクト「JFA・キリン ビッグスマイルフィールド」を11月14日(土)熊本県八代市で開催 #jfa",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JFA）",
-        "読みやすさ: 文が長い（1文の平均 67.6字・60字超の文が 75% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:41:43.354092+00:00",
-      "attempt": 1,
-      "id": "0545bdd52361a391",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 89.3,
-        "avg_sentence": 59.6,
-        "long_share": 0.556,
-        "max_paragraph": 152,
-        "paragraphs": 6,
-        "sentences": 9
-      },
-      "score": 96,
-      "source": "jfa",
-      "title": "熊本地震復興応援プロジェクト「JFA・キリン ビッグスマイルフィールド」を11月14日(土)熊本県八代市で開催 #jfa",
-      "warnings": [
-        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JFA）",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T09:42:01.146909+00:00",
-      "attempt": 0,
-      "id": "0545bdd52361a391",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 79.4,
-        "avg_sentence": 42.8,
-        "long_share": 0.077,
-        "max_paragraph": 142,
-        "paragraphs": 7,
-        "sentences": 13
-      },
-      "score": 94,
-      "source": "jfa",
-      "title": "熊本地震復興応援プロジェクト「JFA・キリン ビッグスマイルフィールド」を11月14日(土)熊本県八代市で開催 #jfa",
-      "warnings": [
-        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JFA）",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T10:06:42.319811+00:00",
-      "attempt": 1,
-      "id": "557a49ea5a78c865",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "リード「店舗の在庫や販売価格が自動で切り替わることはありませんが」→ 元記事・確認済みの文脈に無い店頭運用についての断定である",
-        "本文の製品別価格表が「公式ヘルプの手順を確認してください」という同じ文の繰り返しに置き換わっており、元記事にない「公式ヘルプ」という案内で、実際の価格情報が本文に出ていない",
-        "「かんたん版」にも同じ誤った placeholder 文が6回繰り返され、製品ごとの新価格が読者に示されていない",
-        "「現行価格の維持が極めて厳しい」→ 元記事は「大変厳しい」であり、強調が元記事より大きい",
-        "末尾の「判定: 提供状況=soon 価格=148円〜168円（税別） ひとこと=…」は内部の注記が記事本文に漏れている",
-        "リンク先は元記事のPDFであるのに「公式ヘルプの手順」「ハウス食品グループの案内」と説明されており、案内内容と一致しない"
-      ],
-      "readability": {
-        "avg_paragraph": 129.4,
-        "avg_sentence": 43.1,
-        "long_share": 0.2,
-        "max_paragraph": 192,
-        "paragraphs": 5,
-        "sentences": 15
-      },
-      "score": 70,
-      "source": "house-foods",
-      "title": "ハウスウェルネスフーズ C1000瓶飲料 価格改定のお知らせ",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 段落が長い（平均 129.4字・最長 192字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-09T10:07:03.886785+00:00",
@@ -27358,6 +27234,164 @@
       "warnings": [
         "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（MBK）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T00:28:13.804613+00:00",
+      "attempt": 1,
+      "id": "723436300f37e0c4",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文「Zyxel Networks製ルーターやアクセスポイント」→ 元記事では悪用が報告されたGS1900シリーズはスイッチであり、製品種別の記述が元記事と食い違う（スイッチが抜けている）。",
+        "Data Integrationツール「Airbyte」→ 元記事に製品分類の記載はなく、一般的な説明を元記事の事実のように書いている（軽微）。"
+      ],
+      "readability": {
+        "avg_paragraph": 123.0,
+        "avg_sentence": 98.4,
+        "long_share": 0.8,
+        "max_paragraph": 179,
+        "paragraphs": 4,
+        "sentences": 5
+      },
+      "score": 82,
+      "source": "jpcert",
+      "title": "Weekly Report: Cloud Software GroupのXenServerに複数の脆弱性",
+      "warnings": [
+        "見出しが64字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JPCERT・GS・CVE）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T00:28:32.471129+00:00",
+      "attempt": 1,
+      "id": "723436300f37e0c4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 123.0,
+        "avg_sentence": 98.4,
+        "long_share": 0.8,
+        "max_paragraph": 179,
+        "paragraphs": 4,
+        "sentences": 5
+      },
+      "score": 88,
+      "source": "jpcert",
+      "title": "Weekly Report: Cloud Software GroupのXenServerに複数の脆弱性",
+      "warnings": [
+        "見出しが64字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JPCERT・GS・CVE）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T00:28:50.899251+00:00",
+      "attempt": 0,
+      "id": "723436300f37e0c4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 102.8,
+        "avg_sentence": 57.1,
+        "long_share": 0.556,
+        "max_paragraph": 155,
+        "paragraphs": 5,
+        "sentences": 9
+      },
+      "score": 92,
+      "source": "jpcert",
+      "title": "Weekly Report: Cloud Software GroupのXenServerに複数の脆弱性",
+      "warnings": [
+        "見出しが64字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JPCERT・GS・CVE）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T00:29:18.965299+00:00",
+      "attempt": 1,
+      "id": "3793b7b76bf66ac6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文「今回の告知はサービスに関するプロモーションであり、既存の利用料金や投票システムの仕組みに変更があるものではありません」→ 元記事に利用料金や投票システムに関する記述はなく、変更がないという主張は創作。",
+        "判定行「価格=無料」→ 元記事にサービスの料金や無料かどうかの記載はなく、創作された価格情報。",
+        "判定行「提供状況=available」→ 元記事・確認済みの文脈に基づかない提供状況の表示で、本文の文脈と結びつかず読者に誤解を与える。",
+        "リード「テレビCM2本とWEB用のCM1本が順次展開される予定です」→ 元記事は3本の公開を示すが『順次』『予定』の時期の情報はなく、言い過ぎ。",
+        "「仕事・お金にどう活かせる？」→ 『仕事や収入への直接的な影響はありません』は元記事に無い判断で、言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 81.5,
+        "avg_sentence": 46.6,
+        "long_share": 0.286,
+        "max_paragraph": 147,
+        "paragraphs": 4,
+        "sentences": 7
+      },
+      "score": 55,
+      "source": "cyberagent",
+      "title": "公営競技のインターネット投票サービス「WINTICKET」 新CMシリーズ「競輪の輪」を11月16日(月)より公開",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CM・TVCM・WEBCM）",
+        "読みやすさ: 文が長い（1文の平均 46.6字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T00:29:50.008212+00:00",
+      "attempt": 1,
+      "id": "3793b7b76bf66ac6",
+      "kind": "broad",
+      "model": "strike:判定カード",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 66.8,
+        "avg_sentence": 44.5,
+        "long_share": 0.333,
+        "max_paragraph": 101,
+        "paragraphs": 4,
+        "sentences": 6
+      },
+      "score": 95,
+      "source": "cyberagent",
+      "title": "公営競技のインターネット投票サービス「WINTICKET」 新CMシリーズ「競輪の輪」を11月16日(月)より公開",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CM・TVCM・WEBCM）",
+        "読みやすさ: 文が長い（1文の平均 44.5字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T00:30:00.510050+00:00",
+      "attempt": 0,
+      "id": "3793b7b76bf66ac6",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 67.8,
+        "avg_sentence": 30.1,
+        "long_share": 0.111,
+        "max_paragraph": 102,
+        "paragraphs": 4,
+        "sentences": 9
+      },
+      "score": 96,
+      "source": "cyberagent",
+      "title": "公営競技のインターネット投票サービス「WINTICKET」 新CMシリーズ「競輪の輪」を11月16日(月)より公開",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CM・TVCM・WEBCM）"
       ]
     }
   ],

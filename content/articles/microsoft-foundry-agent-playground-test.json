@@ -1,0 +1,108 @@
+{
+  "slug": "microsoft-foundry-agent-playground-test",
+  "title": "Microsoft FoundryでAIエージェントの事前テストが可能に　Playgroundの操作手順",
+  "seoTitle": "Microsoft Foundryとは？AIエージェントのテスト・調整手順",
+  "threadsPost": "AIエージェント開発に取り組む人に、知っておいてほしい話です。\n\nMicrosoft FoundryのPlaygroundでは、作成したAIを公開前にテストできます。\n指示文の調整やツールの連携設定を切り替えながら、実際の応答挙動をその場で確認できます。\n\n開発したAIの事前テストで、一番重視する項目は何ですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "開発したAIの事前テストで、一番重視する項目は何ですか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "AIの応答速度と正確さ、どちらを優先して調整しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "Microsoft Foundryにおいて、開発したAIエージェントを本番公開前に挙動検証できる「Playground」機能が提供されています。指示文の最適化やWeb検索などのツール連携、安全性を保つガードレール設定を画面上で切り替えながら、テスト送信で動作を確かめられます。自社の業務自動化アプリや顧客対応システムの事前検証に活用できます。",
+  "description": "Microsoft Foundryの「Playground」機能を使えば、AIエージェントの指示文調整やツール連携、応答確認を本番公開前に行えます。操作手順と画面構成を解説します。",
+  "keywords": [
+    "Microsoft Foundry",
+    "AIエージェント",
+    "Playground",
+    "使い方",
+    "テスト環境",
+    "Azure",
+    "LLM",
+    "プロンプト調整"
+  ],
+  "tags": [
+    "Microsoft",
+    "Copilot",
+    "AIエージェント",
+    "Azure",
+    "開発ツール",
+    "生成AI"
+  ],
+  "highlights": [
+    "Microsoft FoundryでAIエージェントを本番公開前にテスト可能に",
+    "指示文やWeb検索ツール、ガードレールを画面上で細かく設定できる",
+    "チャット画面とYAML表示を切り替えて即時に応答挙動を確認可能"
+  ],
+  "timetable": [
+    {
+      "time": "0:00",
+      "label": "Microsoft Foundryでの作成開始画面（3つの選択肢）"
+    },
+    {
+      "time": "0:06",
+      "label": "AIエージェントの新規作成と名前入力"
+    },
+    {
+      "time": "0:14",
+      "label": "Playground画面での指示文・ツール・ガードレール設定"
+    },
+    {
+      "time": "0:24",
+      "label": "テストチャット画面でのプロンプト送信と応答検証"
+    }
+  ],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "Azure従量課金",
+    "free": false,
+    "audience": "開発者",
+    "take": "Microsoft Foundry上でAIエージェントを本番投入する前にプロンプトやツール連携を試すのに便利です。",
+    "judgedAt": "2026-11-11T00:21:26.321492+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AIエージェント構築時のバグや不適切な応答を公開前に防止できます。",
+      "コードを書かずに指示文（Instructions）の推敲やツール追加の実験が行えます。"
+    ]
+  },
+  "body": "Microsoft Foundryで作成したAIエージェント（特定の作業を自動でこなすAI）は、ユーザーに本番公開する前に「Playground（実験環境）」で動作を確認できます。\n\n対象はMicrosoftのポータル上でAIアプリを開発・運用するユーザーです。コードを書かずに画面上の設定だけでエージェントの挙動を調整できます。\n\n## 画面上で指示文や外部ツールを設定して即時テストする使い方\n\nエージェントの作成を開始すると、まず名前の登録と対話モード（テキストまたは音声）の選択を行います。作成完了後に表示されるPlayground画面では、以下の要素を一元管理できます。\n\n- 使用する基盤モデルの切り替え（例：gpt-5-miniなど）\n- AIへの指示文（Instructions）の入力と自動改善ボタン\n- BingによるWeb検索などのツール連携（Tools）\n- 会話の記憶保持設定（Memory）\n- 安全性を担保するガードレール（Guardrails）\n\n画面右側にはテスト用のチャット画面が配置されています。「Hello World」などのテスト文章を送信すると、設定された条件に基づいてAIがどのように応答するかをリアルタイムで確認可能です。\n\n設定データはYAML形式でも確認・出力できるため、動作検証が済んだ構成をスムーズに次の工程へ引き継げます。\n\n## まだ分からないこと\n\n- 選択できるモデルの最新一覧と具体的な利用料金の上乗せ条件はまだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nMicrosoft Foundryの「Playground」を使うと、作ったAIエージェントをユーザーに見せる前に実験画面でテストできます。\n\n## なにができるの？\n\nAIに与える指示の文章を変えたり、Web検索の機能を付けたりしたあとに、右側のチャット画面で「Hello World」などの文章を送って正しく動くか試せます。\n\n安全性を守るルール（ガードレール）の設定もその場で確かめられます。",
+  "channel": "Microsoft Developer",
+  "channelId": "UCsMica-v34Irf9KVTh6xx-g",
+  "channelSlug": "microsoft-developer",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "OGe27KkS6dk",
+  "videoUrl": "https://www.youtube.com/watch?v=OGe27KkS6dk",
+  "videoTitle": "Microsoft Foundry: Test Your Agent Before You Ship",
+  "publishedAt": "2026-11-10T21:00:23+00:00",
+  "generatedAt": "2026-11-11T00:21:26.321559+00:00",
+  "thumbnail": "https://i.ytimg.com/vi/OGe27KkS6dk/maxresdefault.jpg",
+  "model": "gemini-3.5-flash",
+  "affiliates": [],
+  "newsType": "general",
+  "depthAt": "2026-11-11T00:33:35+00:00",
+  "imageFocus": {
+    "x": 0.519,
+    "y": 0.489,
+    "box": [
+      0.291,
+      0.0,
+      0.747,
+      0.978
+    ],
+    "ar": 1.7778,
+    "src": "https://i.ytimg.com/vi/OGe27KkS6dk/maxresdefault.jpg"
+  }
+}

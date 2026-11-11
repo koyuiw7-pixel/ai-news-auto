@@ -1,0 +1,224 @@
+{
+  "slug": "jpcert-weekly-report-20261111-vulnerabilities",
+  "sourceType": "web",
+  "sourceUrl": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1",
+  "sourceName": "JPCERT/CC",
+  "title": "Cloud Software Groupの「XenServer」やFirefoxなどに複数の脆弱性　JPCERT/CCが注意喚起",
+  "seoTitle": "XenServerやFirefoxに複数脆弱性　JPCERT/CCが更新を呼びかけ",
+  "threadsPost": "XenServerやFirefoxを使っている人に、知っておいてほしい話です。\n\n複数の主要ソフトやクラウド製品に脆弱性が確認され、修正版へのアップデートが呼びかけられています。\nAirbyteなどでは実際の悪用も報告されています。\n\nお使いのソフトのバージョン、最新になっていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "仕事や日常で使うパソコンやスマホのソフト、普段どれくらいの頻度で更新していますか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "お使いの環境で、主要なソフトやOSのアップデートは自動設定にしていますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "JPCERT/CCは11月11日、Cloud Software Groupの「XenServer」やMozillaの「Firefox」など、複数の主要なソフトウェアやサービスに複数の脆弱性が見つかったと発表しました。対象製品では不正アクセスや任意のコード実行のおそれがあり、一部では悪用も確認されています。利用者は速やかに修正済みのバージョンへアップデートを行う必要があります。",
+  "description": "Cloud Software GroupのXenServerやFirefox、Airbyteなどに複数の脆弱性が確認されました。JPCERT/CCが修正版への更新を呼びかけています。",
+  "keywords": [
+    "JPCERT",
+    "脆弱性",
+    "XenServer",
+    "Firefox",
+    "Airbyte",
+    "Zyxel",
+    "セキュリティ",
+    "アップデート"
+  ],
+  "tags": [
+    "セキュリティ",
+    "アプリ",
+    "PC",
+    "通信"
+  ],
+  "highlights": [
+    "XenServerやFirefox、Airbyteなど複数の製品に複数の脆弱性が確認されました。",
+    "AirbyteやZyxel製品などでは、実際の攻撃での悪用やエクスプロイトコードの存在が報告されています。",
+    "JPCERT/CCは、対象製品を速やかに修正済みのバージョンへ更新するよう呼びかけています。"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "システム管理者やIT担当者は、管理下のサーバーやクライアント製品のバージョンを確認し、速やかにアップデートを実施してください。",
+      "個人利用のブラウザや端末（FirefoxやChrome、Androidなど）をお使いの方は、自動更新や最新版への適用状況を確認してください。"
+    ]
+  },
+  "body": "JPCERT/CC（一般社団法人JPCERTコーディネーションセンター）は11月11日、セキュリティ情報を公開しました。対象は、国内外で利用されている多数のソフトウェアやサービスです。\n\n今回の発表は、サーバー仮想化基盤から日常的に使うブラウザやスマートフォン向けOSまで、多岐にわたる製品を対象としています。影響を受けるシステムや端末では、早急な確認と対策が求められます。\n\n今回の発表で対象となった主な製品と脆弱性の概要は次のとおりです。\n\n- Cloud Software Group「XenServer」：複数の脆弱性が存在し、修正済みバージョンへの更新が必要（JPCERT/CCの週報、11/11確認）\n- Perforce「Puppet Server」および「OpenVox」：デシリアライゼーションによるコード実行や認証バイパスの脆弱性（JPCERT/CCの週報、11/11確認）\n- Airbyte：任意のコード実行につながる脆弱性があり、すでに悪用が確認されている（JPCERT/CCの週報、11/11確認）\n- Mozilla Foundation「Firefox」：バッファエラーの脆弱性（JPCERT/CCの週報、11/11確認）\n- Zyxel Networks製スイッチ（GS1900シリーズ）など：アウトオブバウンズ書き込みやバッファオーバーフローの脆弱性。セキュリティ企業のBinarlyがGS1900シリーズの脆弱性（CVE-2026-107441）における実際の攻撃コードを分析したと報告している（JPCERT/CCの週報、11/11確認）\n- Barracuda Networks製品：認証前の認可バイパスおよびコマンドインジェクションの脆弱性があり、エクスプロイトコードが公表されている。開発元は信頼できるネットワークへのアクセス制限も推奨している（JPCERT/CCの週報、11/11確認）\n\nそのほか、ManageEngine製品、Microsoft Edge、Absolute Security製品、Elastic製品、Google Chromeにも脆弱性が報告されています。Android、PostgreSQL向けツール（pgAdminやpsqlODBCなど）についても、複数の脆弱性が報告されています。\n\n内閣官房国家サイバー統括室（NCO）は11月5日、「個人情報の漏えい等につながる不正アクセスへの対策について」を公開しました。Webサイトやモバイルアプリを運営する事業者に対して、デジタル資産の把握や継続的な脆弱性診断の徹底を求めています（JPCERT/CCの週報、11/11確認）。\n\n## まだ分からないこと\n\n- 各製品における具体的な影響範囲や、個別のパッチ適用完了までの詳細なスケジュールは開発者情報に依存しており、一括した数値などは示されていません。",
+  "easy": "## ひとことで言うと\n\nJPCERT/CCが公開した週報で、XenServerやFirefox、Airbyteなど多くの主要ソフトに複数の脆弱性が見つかったことが分かりました。修正済みのバージョンへの更新が呼びかけられています。\n\n## 主な対象製品と注意点\n\n今回の発表では、サーバー向けソフトからブラウザ、OSまで幅広い製品が対象となっています。AirbyteやZyxelの機器ではすでに悪用や攻撃コードの存在が確認されているため、早めの対応が必要です。",
+  "channel": "JPCERT/CC",
+  "channelId": "",
+  "channelSlug": "jpcert",
+  "genre": "テクノロジー・ガジェット",
+  "genreSlug": "tech-gadget",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。価格・仕様・提供時期は変更される場合があるため、購入・利用の前に発表元の一次情報をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Weekly Report: Cloud Software GroupのXenServerに複数の脆弱性",
+  "publishedAt": "2026-11-11T00:07:00+00:00",
+  "generatedAt": "2026-11-11T00:28:04.273098+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/jpcert-weekly-report-20261111-vulnerabilities-figure-e3ea1dd1.jpg",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "newsType": "security",
+  "faq": [
+    {
+      "q": "Airbyteの脆弱性ではすでに被害が出ている？",
+      "a": "Airbyteの任意のコード実行につながる脆弱性については、悪用が確認されているため、修正済みのバージョンへの速やかな更新が必要です。"
+    },
+    {
+      "q": "Zyxel製品の脆弱性ではどのような攻撃が報告されている？",
+      "a": "セキュリティ企業のBinarlyが実際の攻撃で使用されたエクスプロイトコードを分析し、GS1900シリーズの脆弱性を特定したと報告しています。"
+    }
+  ],
+  "todayActions": [
+    "Firefoxが修正済みバージョンか、Mozillaの情報で確かめて更新する",
+    "Barracuda製品の管理画面を信頼できるネットワークだけに限る",
+    "XenServerの修正済みバージョンを開発者の情報で確かめ、更新する"
+  ],
+  "relatedSlugs": [
+    "jpcert-security-advisory-wordpress-edge-chrome-updates"
+  ],
+  "qualityScore": 92,
+  "sourcePublishedAt": "2026-11-11T00:07:00+00:00",
+  "detectedAt": "2026-11-11T00:21:36+00:00",
+  "speedMinutes": 25,
+  "layout": "noir",
+  "summaryLine": "XenServerやFirefox、Airbyteなど複数の製品に複数の脆弱性が確認されました。",
+  "insight": [
+    {
+      "text": "Airbyteの修正版は、リリースノートの「v-2.2」と、GitHubのセキュリティ助言「GHSA-g35w-6r6v-h4r7」に関連文書として載っています。",
+      "source": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1"
+    },
+    {
+      "text": "事業者向けの注意喚起の正式名は「個人情報の漏えい等につながる不正アクセスへの対策について - ウェブサイトやモバイルアプリに関する基本的な対策の徹底 -」です。",
+      "source": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "XenServer セキュリティ更新情報（Cloud Software Group）",
+      "url": "https://support.citrix.com/external/article/CTX697256/xenserver-security-update-for-multiple-i.html",
+      "source": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1",
+      "note": "修正済みバージョンへの更新の詳細は、開発者が提供するこの情報を参照してください。"
+    },
+    {
+      "name": "JPCERT/CC インシデント報告の方法",
+      "url": "https://www.jpcert.or.jp/form/",
+      "source": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1",
+      "note": "JPCERT/CCへのセキュリティインシデントの報告方法が書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Firefoxが修正済みバージョンか、Mozillaの情報で確かめて更新する",
+      "source": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1",
+      "steps": [
+        "Mozillaのセキュリティ勧告（mfsa2026-123）を開く",
+        "記載の修正済みバージョンと自分のFirefoxを比べる",
+        "古ければ更新を適用する"
+      ],
+      "url": "https://www.mozilla.org/en-US/security/advisories/mfsa2026-123/"
+    },
+    {
+      "action": "Barracuda製品の管理画面を信頼できるネットワークだけに限る",
+      "source": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1",
+      "steps": [
+        "開発元の情報でパッチの適用方法を確かめる",
+        "管理インターフェースへのアクセスを制限する",
+        "制限とパッチ適用をあわせて行う"
+      ],
+      "url": "https://trust.barracuda.com/security/pre-authentication-authorization-bypass-command-injection"
+    },
+    {
+      "action": "XenServerの修正済みバージョンを開発者の情報で確かめ、更新する",
+      "source": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1",
+      "steps": [
+        "Citrixのセキュリティ更新情報（CTX697256）を開く",
+        "修正済みのバージョンを確認する",
+        "該当バージョンに更新する"
+      ],
+      "url": "https://support.citrix.com/external/article/CTX697256/xenserver-security-update-for-multiple-i.html"
+    }
+  ],
+  "cause": {
+    "text": "各製品に脆弱性（バッファエラー、デシリアライゼーション、アウトオブバウンズ書き込みなど）が見つかったためです。JPCERT/CCの週報では、どの製品も修正済みのバージョンに更新することで解決するとされています。",
+    "status": "stated",
+    "source": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1"
+  },
+  "worries": [
+    {
+      "q": "自分のブラウザは更新が必要？",
+      "a": "JPCERT/CCの週報では、Firefox、Microsoft Edge、Google Chrome、Androidに脆弱性があると案内されています。どの製品も修正済みのバージョンに更新することで解決するとされています。",
+      "source": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1",
+      "action": "使っているブラウザやスマホのOSを開き、最新版になっているか確認し、古ければ更新する。"
+    },
+    {
+      "q": "会社のサーバーや業務ツールは大丈夫？",
+      "a": "XenServer、Puppet Server（OpenVox含む）、Airbyteなどに脆弱性があるとされています。Airbyteは悪用が確認されており、いずれも修正済みバージョンへの更新が必要です。",
+      "source": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1",
+      "action": "管理している製品の公式サイトで修正版の情報を確かめ、アップデートを適用する。"
+    },
+    {
+      "q": "攻撃に使われるプログラムは出回っている？",
+      "a": "Barracuda Networks製品では、脆弱性のエクスプロイトコード（攻撃に使うプログラム）が公表されていることをJPCERT/CCが確認しています。Zyxel GS1900シリーズでは、実際の攻撃で使われたコードの分析が報告されています。",
+      "source": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1",
+      "action": "Barracuda製品を使う場合は、パッチを適用し、管理インターフェースへのアクセスを信頼できるネットワークに制限する。"
+    },
+    {
+      "q": "修正をうながすメールやSMSが来たら？",
+      "a": "フィッシングは、切迫感のあるメールやSMSで偽サイトに誘導する手口です。メールやSMSのリンクは見た目で本物か判断しにくいため、リンクを押さず公式サイトを自分で開いて確認するよう呼びかけられています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "更新を求めるメールやSMSのリンクは押さず、公式サイトを自分で開いてから確認する。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "管理画面を外からの接続に開けたままにする？",
+      "situation": "Barracuda製品の管理画面が外部から見える",
+      "recommend": "信頼できるネットワークに限る設定を検討する価値がある",
+      "reason": "開発者は管理インターフェースへのアクセスを信頼できるネットワークに制限することを推奨しています。パッチの適用で脆弱性そのものは解決するとされ、アクセス制限は攻撃される入口を減らす対策です。",
+      "source": "https://www.jpcert.or.jp/wr/2026/wr261111.html#1"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "攻撃コードが出回っている製品がある",
+    "cause": "なぜ脆弱性が見つかったのか、分かっていること",
+    "steps": "今日やること、この製品はどう確かめる？",
+    "desk": "公式の窓口と、報告の入り口",
+    "worries": "自分のブラウザやサーバーは大丈夫？",
+    "guide": "管理画面を外に開けたままにするか、迷ったとき"
+  },
+  "depthAt": "2026-11-11T00:33:35+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "Cloud Software Groupの「XenServer」やFirefoxなどに複数の脆弱性",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-11T00:34:21+00:00"
+  },
+  "imageFocus": {
+    "x": 0.533,
+    "y": 0.364,
+    "box": [
+      0.094,
+      0.048,
+      0.972,
+      0.679
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/jpcert-weekly-report-20261111-vulnerabilities-figure-e3ea1dd1.jpg"
+  }
+}
