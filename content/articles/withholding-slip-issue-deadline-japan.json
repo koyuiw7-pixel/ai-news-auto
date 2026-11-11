@@ -66,20 +66,19 @@
   "videoTitle": "源泉徴収票はいつもらえるか 退職後は退職の日以後1か月以内、在職中は翌年1月31日まで",
   "publishedAt": "2026-11-11T00:23:01.051320+00:00",
   "generatedAt": "2026-11-11T00:23:57.054844+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/withholding-slip-issue-deadline-japan-figure-9ded5c9e.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "退職した会社から源泉徴収票が届いたら、転職先の年末調整に出すまで捨てずに保管する",
-    "退職後1か月を過ぎても届かなければ、前の勤務先へ交付を求め、その依頼の記録を残す",
+    "退職後1か月を過ぎても源泉徴収票が届かないときは、前の勤務先へ交付を求め、依頼した記録を残す",
+    "前の勤務先の源泉徴収票が届いたら、転職先の勤務先に出せるよう捨てずに保管する",
     "在職中の源泉徴収票は、翌年1月31日を過ぎても届かなければ勤務先へ確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261111-手続き-源泉徴収票が届く時期.md",
   "sectionsPolishedAt": "2026-11-11T00:23:57+00:00",
-  "museDepthNotes": "なるほど: 電子で受け取った源泉徴収票でも、紙でほしいと頼めば書面で交付してもらえる。国税庁No.7411は、承諾など一定の要件の下で書面交付に代えて電磁的方法で提供できるとした上で、電磁的方法により提供した場合でも受給者から請求があるときは書面により交付しなければならない、としている。確定申告で紙の控えがほしい人は、まず勤務先へ書面交付を請求するのが公式の道筋である。出典は国税庁 タックスアンサー No.7411 https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm\nなるほど: 市区町村へ給与支払報告書を出したから本人への源泉徴収票は出ない、にはならない。令和9年1月1日以後に提出すべき分では、給与支払報告書を市区町村へ提出すれば税務署へ提出したものとみなされるが、No.7411は、みなし提出の特例により給与支払報告書を提出した場合であっても、すべての受給者へ翌年1月31日まで（中途退職は退職の日以後1か月以内）に交付しなければならない、と明記している。税務署向けの省略と、本人向けの交付は別である。出典は同じく国税庁 タックスアンサー No.7411",
   "museSources": [
     {
       "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
@@ -97,5 +96,159 @@
   "qualityScore": 90,
   "detectedAt": "2026-11-11T00:24:04+00:00",
   "layout": "noir",
-  "summaryLine": "在職中は翌年1月31日まで、年の途中で退職した人は退職の日以後1か月以内に源泉徴収票が交付される"
+  "summaryLine": "在職中は翌年1月31日まで、年の途中で退職した人は退職の日以後1か月以内に源泉徴収票が交付される",
+  "insight": [
+    {
+      "text": "市区町村へ給与支払報告書を出していても、本人への源泉徴収票は省かれません。すべての受給者に交付しなければならないと、国税庁のページにあります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+    },
+    {
+      "text": "不交付の届出で添付するのは、給与支払明細書が保存されていればその写しと、「勤務先に対して、源泉徴収票の交付を求めたことが分かる書類等」です。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm"
+    },
+    {
+      "text": "税務署の総合窓口は、令和8年10月1日から原則として午前9時から午後3時までです。土日祝と年末年始（12月29日から1月3日）は執務を行っていません。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "源泉徴収票不交付の届出手続（国税庁 F5-4）",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "申告・申請・届出等、用紙（手続の案内・様式）",
+        "税務手続の案内（税目別一覧）",
+        "F 法定調書関係"
+      ],
+      "hours": "９時から15時まで",
+      "note": "e-Taxソフトで作るほか、書面で作って持参か送付もできます。書面の様式は令和8年8月に変わったので、ページの最新様式を使います。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "退職後1か月を過ぎても源泉徴収票が届かないときは、前の勤務先へ交付を求め、依頼した記録を残す",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm",
+      "steps": [
+        "勤務先へ源泉徴収票の交付を求める",
+        "交付を求めたことが分かる書類等を残す",
+        "交付期限（退職後1月）を過ぎても届かないか確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm"
+    },
+    {
+      "action": "前の勤務先の源泉徴収票が届いたら、転職先の勤務先に出せるよう捨てずに保管する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2674.htm",
+      "steps": [
+        "届いた源泉徴収票を捨てずに保管する",
+        "転職先の勤務先へ提出する",
+        "前の源泉徴収票で確認できないと年末調整はできない"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2674.htm"
+    },
+    {
+      "action": "在職中の源泉徴収票は、翌年1月31日を過ぎても届かなければ勤務先へ確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
+      "steps": [
+        "翌年1月31日を過ぎても届かないか確認する",
+        "勤務先へ源泉徴収票の交付を求める",
+        "紙がほしい場合は書面での交付を請求する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+    }
+  ],
+  "cause": {
+    "text": "源泉徴収票は、給与を支払った勤務先が作って渡す書類です。交付期限は在職中か退職後かで分かれており、税務署への提出範囲に関わらず、すべての受給者に交付する決まりです。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+  },
+  "worries": [
+    {
+      "q": "退職した会社の源泉徴収票は、いつまでに届く？",
+      "a": "年の途中で退職した人の源泉徴収票は、退職の日以後1か月以内に交付されます。在職中の人は、その年の翌年1月31日までです。税務署への提出範囲に関わらず、すべての受給者に交付しなければならないとされています。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
+      "action": "退職の日から1か月を過ぎても届かなければ、前の勤務先へ交付を求め、そのやり取りを記録に残す。",
+      "actionSource": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm"
+    },
+    {
+      "q": "転職先の年末調整に、前の会社の分は必要？",
+      "a": "年の途中で就職し年末まで勤務した人も年末調整の対象です。新しい勤務先は、就職前に別の会社から受けた給与があるかを確認し、あればその額と税額を前の会社の源泉徴収票などで確かめます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2674.htm",
+      "action": "前の会社の源泉徴収票が届いたら、転職先の勤務先へ出せるように保管しておく。"
+    },
+    {
+      "q": "期限を過ぎても届かないとき、どうすればいい？",
+      "a": "まず勤務先へ源泉徴収票の交付を求めます。それでも届かないときは、交付期限を過ぎてから「源泉徴収票不交付の届出書」を税務署に提出できます。提出先は納税地を所轄する税務署長です。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm",
+      "action": "勤務先への依頼が分かる書類などを残し、届出書をe-Taxか書面で提出する。"
+    },
+    {
+      "q": "一度もらった源泉徴収票をなくしたら、税務署に届け出る？",
+      "a": "いいえ。既に交付された源泉徴収票の再発行は、不交付の届出とは別で、この手続の対象外です。前の勤務先へ直接依頼してください。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm",
+      "action": "前の勤務先へ直接、源泉徴収票の再発行を依頼する。"
+    },
+    {
+      "q": "電子で受け取った源泉徴収票は、紙で確定申告に使える？",
+      "a": "電子で提供されていても、受給者から請求があれば書面で交付しなければならないとされています。紙がほしい人は、勤務先へ書面での交付を頼めます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
+      "action": "勤務先へ、源泉徴収票の書面での交付を請求する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "電子で受け取った源泉徴収票を紙でほしいときは？",
+      "situation": "電子で受け取った後、紙で確定申告したい",
+      "recommend": "まず勤務先へ書面での交付を請求する",
+      "reason": "電子で提供された場合でも、受給者から請求があれば書面で交付しなければならないとされています。紙を請求しても、電子で受け取った事実は変わりません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+    },
+    {
+      "question": "退職後1か月を過ぎても届かないときは？",
+      "situation": "前の勤務先から源泉徴収票が届かない",
+      "recommend": "まず勤務先へ交付を求め、依頼の記録を残す",
+      "reason": "届出の添付書類に、勤務先へ交付を求めたことが分かる書類等があります。交付期限を過ぎてから不交付の届出書を随時提出できますが、届出だけでは勤務先からの交付そのものは解決しません。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm"
+    },
+    {
+      "question": "退職後1か月を過ぎても届かないときは？",
+      "situation": "紛失して、もう一度ほしい",
+      "recommend": "前の勤務先へ直接再発行を依頼する",
+      "reason": "既に交付された源泉徴収票の再発行は、不交付の届出の対象外です。税務署への届出では再発行されないため、勤務先へ直接依頼します。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "本人への交付は、税務署提出とは別の決まり",
+    "cause": "源泉徴収票が本人に届く決まり",
+    "steps": "期限を過ぎたら、まず何をするか",
+    "desk": "届かないときの届出先と受付時間",
+    "worries": "期限や転職先の年末調整は大丈夫？",
+    "guide": "紙がほしい、届かないときの決め方"
+  },
+  "depthAt": "2026-11-11T00:40:23+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "1か月",
+    "label": "源泉徴収票は退職後",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-11T00:40:40+00:00"
+  },
+  "imageFocus": {
+    "x": 0.45,
+    "y": 0.527,
+    "box": [
+      0.019,
+      0.054,
+      0.881,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/withholding-slip-issue-deadline-japan-figure-9ded5c9e.jpg"
+  }
 }
