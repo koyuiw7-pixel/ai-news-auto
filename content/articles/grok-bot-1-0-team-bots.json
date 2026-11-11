@@ -95,9 +95,8 @@
     }
   ],
   "todayActions": [
-    "自社のxAIのプランが、Team Botsの対象のTeamかEnterpriseか確認する",
-    "Enterprise管理者は、公式ヘルプで会議機能を有効にする設定を確認する",
-    "SlackやTeamsでBotに任せたい仕事を、期限が近い資料づくりなどから選ぶ"
+    "契約プランが Team か Enterprise かを確かめ、Team Bots が使えるか見る",
+    "Enterprise の管理者は、設定で Meetings を有効にしてから会議に呼ぶ"
   ],
   "qualityScore": 88,
   "breaking": true,
@@ -155,5 +154,99 @@
     ],
     "ar": 1.7804,
     "src": "https://ai-tech-express.jp/img/grok-bot-1-0-team-bots-8d854741.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "会議への参加は Team・Enterprise・Ultra のプランで使えます。Enterprise では、管理者が設定で Meetings を有効にする必要があります。",
+      "source": "https://x.ai/news/grok-bot-1-0"
+    },
+    {
+      "text": "Bot は重要な操作の前に確認し、公開チャンネルに出してよい情報かどうかも確かめます。共有の場での安全策として示されています。",
+      "source": "https://x.ai/news/grok-bot-1-0"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Contact sales（Grok Bot の販売窓口）",
+      "url": "https://cursor.com/contact-sales?product=grok-bot",
+      "source": "https://x.ai/news/grok-bot-1-0",
+      "howTo": [
+        "Back to news",
+        "Introducing Grok Bot 1.0",
+        "Contact sales"
+      ],
+      "note": "導入の相談は、この窓口への問い合わせから行えます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "契約プランが Team か Enterprise かを確かめ、Team Bots が使えるか見る",
+      "source": "https://x.ai/news/grok-bot-1-0",
+      "steps": [
+        "契約しているプラン名を確認する",
+        "Team か Enterprise なら Team Bots が使える",
+        "Ultra だけの場合、Team Bots は対象外"
+      ],
+      "url": "https://x.ai/news/grok-bot-1-0"
+    },
+    {
+      "action": "Enterprise の管理者は、設定で Meetings を有効にしてから会議に呼ぶ",
+      "source": "https://x.ai/news/grok-bot-1-0",
+      "steps": [
+        "Enterprise の管理者として設定を開く",
+        "Meetings を有効にする",
+        "有効にしたあと、Bot を会議に参加させる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "Grok Bot は、仕事を引き継いでもらう AI アシスタントとして始まりました。1.0 では、チームの仕事と担当者を理解し、他の同僚のように貢献できるよう改良されました。",
+    "status": "background",
+    "source": "https://x.ai/news/grok-bot-1-0"
+  },
+  "worries": [
+    {
+      "q": "自分用の Bot だけでも作れる？",
+      "a": "はい。Grok Bot 1.0 では、自分用の Bot を作ることも、チームに共有することも、Slack・Microsoft Teams・ビデオ通話に呼ぶこともできます。",
+      "source": "https://x.ai/news/grok-bot-1-0",
+      "action": "まず自分用の Bot を作り、小さな仕事を1つ任せて使い心地を確かめる"
+    },
+    {
+      "q": "ビデオ通話に Bot を呼ぶには、どのプランが必要？",
+      "a": "会議への参加は Team・Enterprise・Ultra のプランで使えます。Enterprise では、管理者が設定で Meetings を有効にする必要があります。",
+      "source": "https://x.ai/news/grok-bot-1-0",
+      "action": "契約プランが Team・Enterprise・Ultra のどれかを確かめ、Enterprise なら管理者に Meetings の設定を頼む"
+    },
+    {
+      "q": "チームの会話に Bot を入れても、情報が勝手に出回らない？",
+      "a": "Bot は各人の権限を尊重し、重要な操作の前に確認します。公開チャンネルで出してよい情報かどうかも確かめる仕組みが追加されています。",
+      "source": "https://x.ai/news/grok-bot-1-0",
+      "action": "Bot に任せる前に、共有先が公開チャンネルかどうかを確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "会議に Bot を呼びたいが、今のプランで足りる？",
+      "situation": "Ultra プランを使っている",
+      "recommend": "急ぐ必要はない。チーム共有が必要かで判断する",
+      "reason": "会議への参加は Team・Enterprise・Ultra で使えます。ただし Team Bots（チームで同じ Bot を共有する機能）は Team と Enterprise だけが対象なので、チーム共有は使えません。",
+      "source": "https://x.ai/news/grok-bot-1-0"
+    },
+    {
+      "question": "会議に Bot を呼びたいが、今のプランで足りる？",
+      "situation": "Team または Enterprise を使っている",
+      "recommend": "Enterprise なら、先に管理者に Meetings の設定を確認する",
+      "reason": "Team と Enterprise では Team Bots と会議への参加の両方が対象です。Enterprise では、管理者が設定で Meetings を有効にする必要があります。",
+      "source": "https://x.ai/news/grok-bot-1-0"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "会議に呼ぶには、プランと管理者の設定が要る",
+    "cause": "Bot をチームで使うようになった背景",
+    "steps": "今日、プランと設定を確かめる",
+    "desk": "導入の相談は販売窓口から",
+    "worries": "自分用で使える？会議は？共有は安全？",
+    "guide": "Ultra か Team か、迷ったときの見方"
+  },
+  "depthAt": "2026-11-11T18:32:09+00:00"
 }
