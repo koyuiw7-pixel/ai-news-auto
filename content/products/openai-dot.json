@@ -8,9 +8,8 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "OpenAI dotは、カレンダーやメールと連携してタスクを代行する自律型AIエージェントです。OpenAIが開発し、2026年10月に発表されました。",
+    "text": "OpenAI dotは、カレンダーやメールと連携してタスクを自律的にこなすAIエージェントです。OpenAIが提供し、モバイルアプリでの初期設定機能などが2026年10月に発表されました。",
     "sources": [
-      "openai-dot-bug-hunting-codex",
       "openai-dot-on-call-agent-demo",
       "chatgpt-mobile-dot-setup"
     ]
@@ -18,113 +17,102 @@
   "facts": [
     {
       "label": "提供開始",
-      "value": "モバイルアプリで一般提供中",
+      "value": "2026年10月",
       "sources": [
         "chatgpt-mobile-dot-setup"
       ]
     },
     {
-      "label": "日本での提供",
-      "value": "利用できる",
+      "label": "使える場所",
+      "value": "iOS、Android、Slack",
       "sources": [
+        "openai-dot-on-call-agent-demo",
         "chatgpt-mobile-dot-setup"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者や業務を自動化したい人",
+      "value": "開発者や運用業務を担当する人",
       "sources": [
         "openai-dot-bug-hunting-codex",
-        "openai-dot-on-call-agent-demo",
-        "chatgpt-mobile-dot-setup"
+        "openai-dot-on-call-agent-demo"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "ChatGPT Spaceを使い、外部SNSから15件のバグ報告を自動収集して管理表を更新できます。",
-      "sources": [
-        "openai-dot-bug-hunting-codex"
-      ]
-    },
-    {
-      "text": "リアルタイム音声通話を通じて、AIエージェントと不具合の優先度や原因を議論できます。",
-      "sources": [
-        "openai-dot-bug-hunting-codex"
-      ]
-    },
-    {
-      "text": "Codexと連携し、バックエンドコードの解析や修正PRを自動作成できます。",
-      "sources": [
-        "openai-dot-bug-hunting-codex"
-      ]
-    },
-    {
-      "text": "Slackと連携し、チャネル監視や障害アラートを受信して自動調査を実行します。",
+      "text": "Slackと連携してチャネル監視や障害アラートを受信し、自動調査を行います。",
       "sources": [
         "openai-dot-on-call-agent-demo"
       ]
     },
     {
-      "text": "カレンダーやメールと連携し、状況を把握してタスクを代行します。",
+      "text": "音声通話での指示を受けて、プロトタイプの作成やSlackでのメンバーとの協働を行えます。",
       "sources": [
+        "openai-dot-bug-hunting-codex",
         "chatgpt-mobile-dot-setup"
+      ]
+    },
+    {
+      "text": "SNSの投稿を探して管理表を更新するなど、ブラウザを操作して情報を集められます。",
+      "sources": [
+        "openai-dot-bug-hunting-codex"
+      ]
+    },
+    {
+      "text": "コードの修正案を考え、最小限の修正のプルリクエストを作ることができます。",
+      "sources": [
+        "openai-dot-bug-hunting-codex"
       ]
     }
   ],
   "pricing": [],
-  "japan": [
-    {
-      "text": "ChatGPTモバイルアプリから利用できます。",
-      "sources": [
-        "chatgpt-mobile-dot-setup"
-      ]
-    }
-  ],
+  "japan": [],
   "howto": [
     {
-      "text": "iOSおよびAndroidのChatGPTモバイルアプリからセットアップできます。",
+      "text": "ChatGPTモバイルアプリの左上にあるボタンをタップして設定を始められます。",
       "sources": [
         "chatgpt-mobile-dot-setup"
       ]
     },
     {
-      "text": "アプリ左上のMeet dotをタップすると、対話スレッドが自動作成されます。",
+      "text": "Slackとの接続設定を行い、固有のIDを割り当てることで作業を指示できます。",
       "sources": [
-        "chatgpt-mobile-dot-setup"
+        "openai-dot-on-call-agent-demo"
       ]
     }
   ],
   "differences": [],
   "faq": [
     {
-      "q": "どこからセットアップできますか？",
-      "a": "ChatGPTモバイルアプリの画面左上にあるMeet dotから初期設定が可能です。",
+      "q": "いつから使える？",
+      "a": "ChatGPTモバイルアプリでセットアップ機能が提供されています。",
       "sources": [
         "chatgpt-mobile-dot-setup"
       ]
     },
     {
-      "q": "どのような外部ツールと連携できますか？",
-      "a": "カレンダー、メール、Slackなどと連携してタスクを処理します。",
+      "q": "誰に向いている？",
+      "a": "開発者や製品の改善を担当する人に向いています。",
+      "sources": [
+        "openai-dot-bug-hunting-codex",
+        "openai-dot-on-call-agent-demo"
+      ]
+    },
+    {
+      "q": "スマホから操作できる？",
+      "a": "iOSやAndroidのChatGPTアプリから音声で指示を出せます。",
       "sources": [
         "openai-dot-on-call-agent-demo",
         "chatgpt-mobile-dot-setup"
       ]
     },
     {
-      "q": "スマートフォンから指示を出せますか？",
-      "a": "iOSやAndroidのアプリから音声通話やチャットで指示を出せます。",
+      "q": "どんなツールと連携できる？",
+      "a": "カレンダーやメール、Slackなどと連携できます。",
       "sources": [
         "openai-dot-on-call-agent-demo",
         "chatgpt-mobile-dot-setup"
-      ]
-    },
-    {
-      "q": "コードの修正も自動で行えますか？",
-      "a": "Codexと連携してバックエンドコードの解析や修正PRの作成を行います。",
-      "sources": [
-        "openai-dot-bug-hunting-codex"
       ]
     }
   ],
@@ -132,17 +120,17 @@
     {
       "date": "2026-10-10",
       "slug": "chatgpt-mobile-dot-setup",
-      "event": "ChatGPTモバイルアプリでdotのセットアップに対応"
+      "event": "ChatGPTモバイルアプリでdotの初期設定に対応"
     },
     {
       "date": "2026-10-17",
       "slug": "openai-dot-on-call-agent-demo",
-      "event": "夜間システム障害対応のデモ動画を公開"
+      "event": "夜間の障害対応を自動で行うデモを公開"
     },
     {
       "date": "2026-10-24",
       "slug": "openai-dot-bug-hunting-codex",
-      "event": "バグ報告の収集からコード修正までを自動化する実演を公開"
+      "event": "バグ報告の収集から修正PR作成までの実演動画を公開"
     }
   ],
   "related": [
@@ -160,9 +148,9 @@
     "openai-dot-bug-hunting-codex",
     "openai-dot-on-call-agent-demo"
   ],
-  "signature": "3849704bfdddf224",
-  "primarySignature": "3849704bfdddf224",
+  "signature": "bd6b903ef30dc06b",
+  "primarySignature": "bd6b903ef30dc06b",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:45:25+00:00",
-  "updatedAt": "2026-10-27T10:54:38+00:00"
+  "updatedAt": "2026-11-11T03:59:40+00:00"
 }
