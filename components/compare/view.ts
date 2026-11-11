@@ -7,6 +7,7 @@ import {
   type ResolvedProduct,
 } from "@/lib/buying-guides";
 import { siteConfig } from "@/site.config";
+import { authorJsonLd, publisherJsonLd } from "@/lib/publisher";
 
 /**
  * 比較ガイド（新形式）の表示用データ。A/B/C どのデザインも同じこのデータだけを描く。
@@ -55,23 +56,28 @@ export function buildGuideView(guide: BuyingGuide): GuideView {
     hasSponsored: all.some((p) => p.sponsored),
     jsonLd: [
       {
+        // 2026-11-11（台帳 W42・検索に出す準備）: 型は schema.org の Article（以前は型の名前の置き換えで "ArticleSummary" という無い型になっていた）。
+        // 発行元・著者は記事ページと同じ @id（lib/publisher.ts）
         "@context": "https://schema.org",
-        "@type": "ArticleSummary",
+        "@type": "Article",
         headline: guide.title,
         description: guide.description,
         inLanguage: "ja",
         datePublished: guide.publishedAt,
         dateModified: guide.updatedAt,
         mainEntityOfPage: url,
-        author: { "@type": "Organization", name: siteConfig.author, url: `${siteConfig.url}/about` },
-        publisher: {
-          "@type": "Organization",
-          name: siteConfig.name,
-          url: siteConfig.url,
-          logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png`, width: 600, height: 60 },
-        },
+        author: authorJsonLd,
+        publisher: publisherJsonLd,
         publishingPrinciples: `${siteConfig.url}/editorial-policy`,
         keywords: guide.targetQueries.join(", "),
+      },
+      {
+        // 比べている商品・サービスの一覧（並びはページの表と同じ）。提携のリンク（a8.net など）は載せず、名前だけ
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: guide.title,
+        numberOfItems: products.length,
+        itemListElement: products.map((p, i) => ({ "@type": "ListItem", position: i + 1, name: p.item.name })),
       },
       {
         "@context": "https://schema.org",

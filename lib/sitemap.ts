@@ -1,5 +1,4 @@
 import { getAllChooseGuides } from "@/lib/choose";
-import { COMPARE_PUBLIC } from "@/lib/buying-guides";
 import { isIndexable, isListingIndexable } from "@/lib/indexing";
 import {
   getAllArticles,
@@ -17,7 +16,7 @@ import corrections from "@/content/corrections.json";
 import { companyCounts, companyOf } from "@/lib/companies";
 import { getAllGuides, guideArticles, isThinGuide } from "@/lib/guides";
 import { getAllHowtos } from "@/lib/howto";
-import { getAllBuyingGuides } from "@/lib/buying-guides";
+import { getIndexableBuyingGuides } from "@/lib/buying-guides";
 import { eventArticles, getAllEvents } from "@/lib/events";
 import { getPricing } from "@/lib/pricing";
 import { listedProducts, productProfile, supersedesGuide } from "@/lib/products";
@@ -192,10 +191,11 @@ export function sitemapEntries(): SitemapEntry[] {
       lastModified: toDate(guideArticles(guide)[0]?.publishedAt)
     })),
     // 比較ガイド（購買意図の強い検索の受け皿）
-    ...(COMPARE_PUBLIC && getAllBuyingGuides().length > 0
-      ? [{ url: `${base}/compare`, lastModified: newestDate(getAllBuyingGuides().map((g) => g.updatedAt)) }]
+    // 検索に出す比較ページだけ（作り直した新形式。2026-11-11 オーナー承認・台帳 W42）
+    ...(getIndexableBuyingGuides().length > 0
+      ? [{ url: `${base}/compare`, lastModified: newestDate(getIndexableBuyingGuides().map((g) => g.updatedAt)) }]
       : []),
-    ...(COMPARE_PUBLIC ? getAllBuyingGuides() : []).map((guide) => ({
+    ...getIndexableBuyingGuides().map((guide) => ({
       url: `${base}/compare/${guide.slug}`,
       lastModified: toDate(guide.updatedAt)
     })),

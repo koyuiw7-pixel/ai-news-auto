@@ -1,22 +1,23 @@
-import { COMPARE_PUBLIC } from "@/lib/buying-guides";
 import type { Metadata } from "next";
 import { withPageShare } from "@/lib/page-share";
 import Link from "next/link";
 import { formatDate } from "@/lib/articles";
-import { getAllBuyingGuides, guideShortName, resolveProducts } from "@/lib/buying-guides";
+import { getAllBuyingGuides, getIndexableBuyingGuides, guideShortName, isGuideIndexable, resolveProducts } from "@/lib/buying-guides";
 import { PrMark, ProductVisual } from "@/components/compare/parts";
 
+// 2026-11-11 オーナー承認（台帳 W42）: 暮らしとお金の比較ページを検索に出す。一覧も検索に出し、検索に出すページを先に並べる
 export const metadata: Metadata = withPageShare("compare", "/compare", {
-  title: "比較ガイド：AI時代の道具を公式情報で比べる",
+  title: "比較ガイド：格安SIM・光回線・電気料金・ふるさと納税を公式の料金で比べる",
   description:
-    "セキュリティソフト、Dify・n8n用のVPS、AIボイスレコーダー、ローカルLLM用PC、動画編集ソフト、AI英会話などを、公式情報と価格をもとに比較。選び方とよくある質問もまとめています。",
+    "格安SIM 16社、光回線 15社、電気料金 14プラン、ふるさと納税サイト、保険相談の窓口などを、各社の公式サイトの料金と条件だけで比較。使い方に合わせて絞り込めます。",
   alternates: { canonical: "/compare" },
-  ...(COMPARE_PUBLIC ? {} : { robots: { index: false, follow: true } }),
+  ...(getIndexableBuyingGuides().length > 0 ? {} : { robots: { index: false, follow: true } }),
 });
 
 /** 比較ガイドの一覧 */
 export default function CompareIndexPage() {
-  const guides = getAllBuyingGuides();
+  // 検索に出す（作り直した）ページを先に、旧形式のページは後ろ
+  const guides = [...getAllBuyingGuides()].sort((a, b) => Number(isGuideIndexable(b)) - Number(isGuideIndexable(a)));
   return (
     <div className="mx-auto max-w-[920px] px-5 py-10 sm:px-8 sm:py-14">
       <p className="eyebrow">COMPARE</p>

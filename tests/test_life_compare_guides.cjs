@@ -123,7 +123,7 @@ async function renderAll() {
   const entry = `
     import { createElement } from "react";
     import { renderToStaticMarkup } from "react-dom/server";
-    import { COMPARE_PUBLIC, getBuyingGuide, isLifeCompareSlug, lifeCompareGuide, LIFE_COMPARE_SLUGS } from "@/lib/buying-guides";
+    import { COMPARE_PUBLIC, getAllBuyingGuides, getBuyingGuide, isGuideIndexable, isLifeCompareSlug, lifeCompareGuide, LIFE_COMPARE_SLUGS } from "@/lib/buying-guides";
     import { buildGuideView } from "@/components/compare/view";
     import VariantA from "@/components/compare/VariantA";
     import { generateMetadata } from "@/app/compare/[slug]/page";
@@ -135,13 +135,19 @@ async function renderAll() {
         const view = buildGuideView(guide);
         out[slug] = {
           html: renderToStaticMarkup(createElement(VariantA, { view })),
+          jsonLd: view.jsonLd,
           meta: await generateMetadata({ params: Promise.resolve({ slug }) }),
           sponsored: view.products.filter((p) => p.sponsored).map((p) => p.key),
           side: view.sideSections.map((s) => s.products.map((p) => p.key)),
           href: lifeCompareGuide(slug)?.href,
         };
       }
-      return { COMPARE_PUBLIC, out, notLife: isLifeCompareSlug("ai-voice-recorder") };
+      const thin = {};
+      for (const g of getAllBuyingGuides()) {
+        if (isGuideIndexable(g)) continue;
+        thin[g.slug] = (await generateMetadata({ params: Promise.resolve({ slug: g.slug }) })).robots;
+      }
+      return { COMPARE_PUBLIC, out, thin, notLife: isLifeCompareSlug("ai-voice-recorder") };
     }
   `;
   await build({
@@ -163,13 +169,20 @@ async function renderAll() {
   return rendered;
 }
 
-test("5本とも表示でき、検索に出さない（robots index:false・follow）まま", async () => {
-  const { COMPARE_PUBLIC, out, notLife } = await renderAll();
-  assert.equal(COMPARE_PUBLIC, false, "COMPARE_PUBLIC を変えるのはオーナーの判断");
+test("5本とも表示でき、検索に出す（robots を付けない＝index・follow。2026-11-11 オーナー承認・台帳 W42）", async () => {
+  const { COMPARE_PUBLIC, out, thin, notLife } = await renderAll();
+  assert.equal(COMPARE_PUBLIC, false, "記事の商品枠からの話題の案内（buyingGuideForTopic）は別の判断");
   assert.equal(notLife, false);
+  // 旧形式の薄いページは noindex のまま
+  assert.ok(Object.keys(thin).length > 0);
+  for (const [slug, robots] of Object.entries(thin)) assert.deepEqual(robots, { index: false, follow: true }, slug);
   for (const slug of SLUGS) {
     assert.ok(out[slug], `${slug} が読み込めない（商品が2つ未満か JSON の誤り）`);
-    assert.deepEqual(out[slug].meta.robots, { index: false, follow: true }, slug);
+    assert.equal(out[slug].meta.robots, undefined, slug);
+    assert.equal(out[slug].meta.alternates.canonical, `/compare/${slug}`);
+    const types = out[slug].jsonLd.map((x) => x["@type"]);
+    assert.deepEqual(types, ["Article", "ItemList", "BreadcrumbList", "FAQPage"], slug);
+    assert.doesNotMatch(JSON.stringify(out[slug].jsonLd), /a8\.net|ArticleSummary/, slug);
     assert.equal(out[slug].href, `/compare/${slug}`);
     assert.match(out[slug].html, /11月1[01]日時点/, `${slug}: 確認日が見えない`);
     assert.doesNotMatch(out[slug].html, /｜|ざっくり/, slug);
@@ -203,10 +216,11 @@ test("PR のボタンは rel に sponsored を含み、[data-aff-pos] の中に�
   assert.ok(firstSponsored > fireAt, "火災保険の囲みより前に PR のリンクがある");
 });
 
-test("サイトマップは COMPARE_PUBLIC が false の間 /compare を載せない", () => {
+test("サイトマップは検索に出す比較ページ（新形式）だけを載せる（台帳 W42）", () => {
   const sitemap = read("lib/sitemap.ts");
-  assert.match(sitemap, /\.\.\.\(COMPARE_PUBLIC && getAllBuyingGuides\(\)\.length > 0/);
-  assert.match(sitemap, /\.\.\.\(COMPARE_PUBLIC \? getAllBuyingGuides\(\) : \[\]\)\.map/);
+  assert.match(sitemap, /getIndexableBuyingGuides\(\)\.length > 0/);
+  assert.match(sitemap, /\.\.\.getIndexableBuyingGuides\(\)\.map/);
+  assert.doesNotMatch(sitemap, /getAllBuyingGuides/);
   assert.match(read("lib/buying-guides.ts"), /export const COMPARE_PUBLIC = false;/);
-  assert.match(read("app/compare/[slug]/page.tsx"), /COMPARE_PUBLIC \? \{\} : \{ robots: \{ index: false, follow: true \} \}/);
+  assert.match(read("app/compare/[slug]/page.tsx"), /isGuideIndexable\(guide\) \? \{\} : \{ robots: \{ index: false, follow: true \} \}/);
 });

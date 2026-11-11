@@ -161,15 +161,15 @@ const DIR = path.join(/*turbopackIgnore: true*/ process.cwd(), "content", "buyin
 let cache: BuyingGuide[] | null = null;
 
 /**
- * 比較ガイドを公開（検索・メニュー・記事からの導線）するか。
- * 中身とデザインを作り直すまでは false：ページは残すが検索には出さず、導線も出さない。
+ * 記事の商品枠から、話題の合う比較ガイドへ案内するか（buyingGuideForTopic）。
+ * 検索に出すかどうかはページごとに isGuideIndexable が決める（2026-11-11 台帳 W42。新形式のページは index）。
  */
 export const COMPARE_PUBLIC = false;
 
 /**
  * 暮らしとお金の比較ページ（格安SIM・光回線・電気とガス・保険相談・ふるさと納税サイト）。
- * COMPARE_PUBLIC を変えずに（検索・サイトマップには出さないまま）、記事のお金の囲みや入口から案内してよいページの一覧。
- * 検索に出すかどうかはオーナーが決める（COMPARE_PUBLIC と app/compare/[slug] の robots はそのまま）。
+ * 記事のお金の囲みや入口から案内してよいページの一覧。
+ * 検索には isGuideIndexable で出す（2026-11-11 オーナー承認・台帳 W42）。
  */
 export const LIFE_COMPARE_SLUGS = ["kakuyasu-sim", "hikari", "denki-gas", "hoken-soudan", "furusato-sites"] as const;
 export type LifeCompareSlug = (typeof LIFE_COMPARE_SLUGS)[number];
@@ -256,6 +256,21 @@ export function resolveProducts(guide: BuyingGuide): ResolvedProduct[] {
 /** 新形式（提携外の商品も並べ、判定・診断・詳しい比較表を持つ）か */
 export function isRichGuide(guide: BuyingGuide): boolean {
   return (guide.schemaVersion ?? 1) >= 2;
+}
+
+/**
+ * 検索に出す（index・サイトマップに載せる）比較ページか（2026-11-11 オーナー承認・台帳 W42）。
+ * 作り直した新形式（格安SIM 16社・光回線 15社・電気 14プラン・ふるさと納税サイト・保険相談・AIボイスレコーダー）だけ。
+ * 商品2〜5つの旧形式のページ（提携先を並べただけの薄いページ）は今までどおり noindex（作り直せば自動で載る）。
+ * COMPARE_PUBLIC（記事の商品枠から話題で案内する導線）とは別の判定
+ */
+export function isGuideIndexable(guide: BuyingGuide): boolean {
+  return isRichGuide(guide);
+}
+
+/** 検索に出す比較ページ（サイトマップ・/compare の一覧の先頭） */
+export function getIndexableBuyingGuides(): BuyingGuide[] {
+  return getAllBuyingGuides().filter(isGuideIndexable);
 }
 
 export function guideRelatedArticles(guide: BuyingGuide, limit = 6): ArticleSummary[] {

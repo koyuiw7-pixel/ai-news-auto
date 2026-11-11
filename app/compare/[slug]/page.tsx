@@ -1,4 +1,3 @@
-import { COMPARE_PUBLIC } from "@/lib/buying-guides";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -9,6 +8,7 @@ import {
   getAllBuyingGuides,
   getBuyingGuide,
   guideRelatedArticles,
+  isGuideIndexable,
   isRichGuide,
   resolveProducts,
   type ResolvedProduct,
@@ -38,7 +38,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: guide.description,
     keywords: guide.targetQueries,
     alternates: { canonical: url },
-    ...(COMPARE_PUBLIC ? {} : { robots: { index: false, follow: true } }),
+    // 作り直した新形式のページは検索に出す（2026-11-11 オーナー承認・台帳 W42）。旧形式の薄いページは noindex のまま
+    ...(isGuideIndexable(guide) ? {} : { robots: { index: false, follow: true } }),
     openGraph: { siteName: siteConfig.siteName, locale: siteConfig.locale,
       type: "article",
       url,
