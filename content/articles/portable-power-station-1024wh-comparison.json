@@ -73,7 +73,7 @@
   "videoTitle": "ポータブル電源の選び方 1,024Whで比べる停電の備えと公式価格",
   "publishedAt": "2026-11-09T07:04:48.723000+00:00",
   "generatedAt": "2026-11-11T03:24:23.113863+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/portable-power-station-1024wh-comparison-figure-999dd04f.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [
     {
@@ -86,8 +86,8 @@
   ],
   "newsType": "product",
   "todayActions": [
-    "守りたい家電の消費電力を書き出し、合計が1,500W以内かを確かめる",
-    "Jackery・EcoFlow・Anker各社の公式ストアで、注文の直前に表示価格を確かめる"
+    "守りたい家電の消費電力を足し、合計が1500W以内かをシミュレーションで確かめる",
+    "ソーラーをつなぐ前に、本体の残量を確かめて長時間つなぎっぱなしを避ける"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -113,5 +113,128 @@
   "sourcePublishedAt": "2026-11-09T07:04:48+00:00",
   "detectedAt": "2026-11-11T03:25:11+00:00",
   "layout": "noir",
-  "summaryLine": "1,024Whのポータブル電源3製品、公式ストアの表示価格は77,990〜**259,600円**（税込）でした。"
+  "summaryLine": "1,024Whのポータブル電源3製品、公式ストアの表示価格は77,990〜**259,600円**（税込）でした。",
+  "insight": [
+    {
+      "text": "AC出力ボタンを2つオンにしても、AC出力の合計は1500Wまで。接続する機器の合計消費電力が1500Wを超えないよう使うよう案内されています。",
+      "source": "https://www.jackery.jp/products/explorer-1000-new-v3"
+    },
+    {
+      "text": "ソーラーパネルをつないだまま、残量が10％未満なら長時間つなぎっぱなしにしないこと。残量0％で24時間以上つなぐと、性能低下や故障につながるおそれがあります。",
+      "source": "https://www.jackery.jp/products/explorer-1000-new-v3"
+    },
+    {
+      "text": "防塵防水の等級は本体とバッテリーパックで違い、DELTA 3 Plusは本体がIP20、バッテリーパックがIP65と書かれています。",
+      "source": "https://jp.ecoflow.com/products/delta-3-plus-portable-power-station"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Jackery ポータブル電源 1000 New V3 製品ページ",
+      "url": "https://www.jackery.jp/products/explorer-1000-new-v3",
+      "source": "https://www.jackery.jp/products/explorer-1000-new-v3",
+      "note": "公式サイトで購入すると3年保証に2年の自動延長保証が付き、登録は不要と案内されています。"
+    },
+    {
+      "name": "DELTA 3 Plus 製品ページ（EcoFlow）",
+      "url": "https://jp.ecoflow.com/products/delta-3-plus-portable-power-station",
+      "source": "https://jp.ecoflow.com/products/delta-3-plus-portable-power-station",
+      "note": "保証について詳しくは、ページのリンク「保証について詳しく」から確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "守りたい家電の消費電力を足し、合計が1500W以内かをシミュレーションで確かめる",
+      "source": "https://www.jackery.jp/products/explorer-1000-new-v3",
+      "steps": [
+        "製品ページの稼働時間のシミュレーションを開く",
+        "電化製品の消費電力（ワット数）を入力する",
+        "計算するを押し、1500Wを超えると稼働できないと表示されないか見る"
+      ],
+      "url": "https://www.jackery.jp/products/explorer-1000-new-v3"
+    },
+    {
+      "action": "ソーラーをつなぐ前に、本体の残量を確かめて長時間つなぎっぱなしを避ける",
+      "source": "https://www.jackery.jp/products/explorer-1000-new-v3",
+      "steps": [
+        "アプリまたは本体で残量（SOC）を確認する",
+        "残量が10％未満なら、ソーラーパネルを長時間つなげたままにしない",
+        "残量0％では、24時間以上連続して接続しない"
+      ],
+      "url": "https://www.jackery.jp/products/explorer-1000-new-v3"
+    }
+  ],
+  "worries": [
+    {
+      "q": "停電の夜、冷蔵庫や電子レンジは使える？",
+      "a": "消費電力が1500W以内の機器なら使えると案内されています。ただし冷蔵庫、電子レンジ、ドライヤー、電動工具などは起動時に大きな電力が必要で、使えない場合があるとされています。",
+      "source": "https://www.jackery.jp/products/explorer-1000-new-v3",
+      "action": "使う機器の仕様を確認し、消費電力の合計が1500W以内かを先に確かめる"
+    },
+    {
+      "q": "ソーラーパネルをつないでおくと、電池は減る？",
+      "a": "夜間や雨天などで発電が少ないと、接続したままでも待機時の消費電力で残量が少しずつ減ることがあると案内されています。残量10％未満では長時間つなぎっぱなしにしないよう書かれています。",
+      "source": "https://www.jackery.jp/products/explorer-1000-new-v3",
+      "action": "残量が10％を下回ったら、ソーラーパネルを長くつなぎっぱなしにしない"
+    },
+    {
+      "q": "重さが気になるけど、持ち運びは大丈夫？",
+      "a": "Jackery ポータブル電源 1000 New V3は約10.6kgの軽量ボディで、前モデル比19%小型化と案内されています。置き場所を選ばないサイズとも書かれています。",
+      "source": "https://www.jackery.jp/products/explorer-1000-new-v3",
+      "action": "持ち運ぶ人と置き場所を決め、その重さを受け入れられるかを確かめる"
+    },
+    {
+      "q": "ソーラーパネルは何枚まで つなげる？",
+      "a": "ソーラー入力は合計最大400Wです。200Wパネルなら最大2枚、100Wパネルなら最大4枚までで、4枚のときは別売りのSolarSagaアダプターが2個必要です。",
+      "source": "https://www.jackery.jp/products/explorer-1000-new-v3",
+      "action": "ソーラーパネルは同じ型番のJackery製を選び、2つのポートに接続枚数をそろえるようにする"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "将来、容量を増やす予定があるなら？",
+      "situation": "後から容量を増やしたい",
+      "recommend": "拡張に対応しているかを製品ページで確かめてから決める",
+      "reason": "EcoFlow DELTA 3 Plusは専用のエクストラバッテリーをつなぐと最大5kWhまで広げられると案内されています。ただしJackery 1000 New V3の拡張については、このページでは確認できませんでした。",
+      "source": "https://jp.ecoflow.com/products/delta-3-plus-portable-power-station"
+    },
+    {
+      "question": "停電時に、ソーラー充電を頼りにするべき？",
+      "situation": "電源コンセントだけに頼りたくない",
+      "recommend": "ソーラーパネルの接続条件を確かめてから決めてよい",
+      "reason": "Jackeryのソーラー入力は合計最大400Wで、200Wパネルなら最大2枚までと案内されています。夜間や雨天など発電が少ないときは、接続したままでも待機で残量が減ることがあります。",
+      "source": "https://www.jackery.jp/products/explorer-1000-new-v3"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "1500Wの合計と、ソーラーの残量の注意",
+    "steps": "守りたい家電の合計が1500Wに収まるかを確かめる",
+    "desk": "価格と保証を確かめる公式ページ",
+    "worries": "容量と重さ、ソーラーは大丈夫？",
+    "guide": "拡張やソーラーを足すか迷ったときの決め方"
+  },
+  "depthAt": "2026-11-11T03:30:43+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "停電に備える1,024Whポータブル電源3製品",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-11T03:32:42+00:00"
+  },
+  "imageFocus": {
+    "x": 0.526,
+    "y": 0.419,
+    "box": [
+      0.094,
+      0.071,
+      0.959,
+      0.768
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/portable-power-station-1024wh-comparison-figure-999dd04f.jpg"
+  }
 }

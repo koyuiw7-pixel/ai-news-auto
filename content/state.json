@@ -4837,6 +4837,12 @@
       "slug": "meiji-meltykiss-caramel-2026-release",
       "url": "https://www.meiji.co.jp/corporate/pressrelease/2026/10_09/index.html?link=rss"
     },
+    "13c87e920b1767ec": {
+      "at": "2026-11-11T03:12:01.847238+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（部会）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu2/shiryo/mext_00043.html"
+    },
     "13cfed5bd682c6ac": {
       "at": "2026-11-06T04:01:18.492465+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（の開催）",
@@ -5435,6 +5441,12 @@
       "reason": "prefilter: お知らせ・統計の転載（listing）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001303.html"
+    },
+    "1d1c7f92cbfd0da2": {
+      "at": "2026-11-11T03:12:01.847278+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77345.html"
     },
     "1d4e78b6d168bccd": {
       "at": "2026-10-28T21:54:21.903385+00:00",
@@ -12058,13 +12070,6 @@
       "skipped": true,
       "url": "https://www.ipa.go.jp/shiken/2026/cbt-202701-yotei.html"
     },
-    "8526199ec7b5548b": {
-      "at": "2026-10-28T03:23:53.297166+00:00",
-      "model": "claude:sonnet",
-      "reason": "followup quality: 「既存記事の早見表にある14万4800円から」→ 元記事にも確認済みの文脈にも14万4800円という価格や早見表の記載はなく、創作の可能性が高い。",
-      "skipped": true,
-      "url": "https://k-tai.watch.impress.co.jp/docs/news/2151814.html"
-    },
     "852d5d7ce61f0e5a": {
       "at": "2026-11-01T18:15:54.421755+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -14018,6 +14023,18 @@
       "slug": "tges-macnica-humanoid-plant-inspection",
       "url": "https://www.tokyo-gas.co.jp/news/press/20261105-05.html"
     },
+    "a3f9078912ac05de": {
+      "at": "2026-11-11T03:13:00.950365+00:00",
+      "costUsd": 0.0017,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 92,
+      "section": "ai",
+      "slug": "ai-recycling-sorting-nvidia-inception",
+      "url": "https://blogs.nvidia.com/blog/ai-recycling-startups/"
+    },
     "a410e9f8c0f04381": {
       "at": "2026-11-11T02:04:56.461399+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -15212,13 +15229,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102909"
     },
-    "b64d489d45134fc3": {
-      "at": "2026-10-28T03:25:45.476344+00:00",
-      "model": "claude:sonnet",
-      "reason": "followup quality: 「マイナビニュースは10月28日、…と報じました」→ 元記事には媒体名も「10月28日」という日付も書かれておらず、出典と日付が創作されている。",
-      "skipped": true,
-      "url": "https://news.mynavi.jp/article/20261028-5209377/"
-    },
     "b65c6137f01e091a": {
       "at": "2026-11-06T12:51:10.039670+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -16026,6 +16036,12 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77043.html"
     },
+    "c3bc8a132c531475": {
+      "at": "2026-11-11T03:11:44.318340+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（ダウンロード）",
+      "skipped": true,
+      "url": "https://blog.ja.playstation.com/2026/11/11/20261111-monthly-ps-store-ranking-s/"
+    },
     "c3d9c0114f0e103f": {
       "at": "2026-11-02T17:37:13.893331+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16443,6 +16459,17 @@
       "section": "ai",
       "slug": "agent-distraction-stale-todo",
       "url": "https://developers.googleblog.com/agent-distraction/"
+    },
+    "ca4e56ac61b3b8df": {
+      "at": "2026-11-11T03:29:08.687293+00:00",
+      "costUsd": 0.0112,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "gemini-3.1-flash-lite",
+      "score": 85,
+      "section": "public",
+      "slug": "pension-system-standardization-mhlw",
+      "url": "https://www.mhlw.go.jp/stf/nenkin_kenkyuukai-siryo02_00168.html"
     },
     "ca6e643ea2a04065": {
       "at": "2026-11-05T12:03:46.693697+00:00",
@@ -18002,6 +18029,14 @@
       "skipped": true,
       "url": "https://elevenlabs.io/blog/elevenagents-contact-center-integrations"
     },
+    "e2a1a6bbf0a516cc": {
+      "at": "2026-11-11T03:12:01.837308+00:00",
+      "costUsd": 0.0044,
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "ブランド発表会でのスピーチと、2003年から2016年までのブランド「サイオン」の経緯が中心です。3つのモビリティの名称・価格・発売時期・日本での提供は元の文章から確認できず、読者が今すぐ使う・買う情報がありません。",
+      "skipped": true,
+      "url": "https://toyotatimes.jp/toyota_news/scion_by_toyota/001.html?padid=ag478_from_newsroom"
+    },
     "e2c8a0e90064bbd6": {
       "at": "2026-10-28T04:22:33.307854+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -18891,6 +18926,17 @@
       "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102712"
+    },
+    "f1f7e1ffb2ded8c5": {
+      "at": "2026-11-11T03:14:50.167145+00:00",
+      "costUsd": 0.0094,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.1-flash-lite",
+      "score": 95,
+      "section": "sports",
+      "slug": "u21-japan-abema-live-streaming",
+      "url": "https://www.jfa.jp/news/00037012/"
     },
     "f1fb885281fc7130": {
       "at": "2026-11-06T04:23:30.736662+00:00",
@@ -20367,138 +20413,9 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
-    },
-    "13c87e920b1767ec": {
-      "at": "2026-11-11T03:12:01.847238+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（部会）",
-      "skipped": true,
-      "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu2/shiryo/mext_00043.html"
-    },
-    "1d1c7f92cbfd0da2": {
-      "at": "2026-11-11T03:12:01.847278+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/newpage_77345.html"
-    },
-    "a3f9078912ac05de": {
-      "at": "2026-11-11T03:13:00.950365+00:00",
-      "costUsd": 0.0017,
-      "foreignAi": true,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "claude:sonnet",
-      "score": 92,
-      "section": "ai",
-      "slug": "ai-recycling-sorting-nvidia-inception",
-      "url": "https://blogs.nvidia.com/blog/ai-recycling-startups/"
-    },
-    "c3bc8a132c531475": {
-      "at": "2026-11-11T03:11:44.318340+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（ダウンロード）",
-      "skipped": true,
-      "url": "https://blog.ja.playstation.com/2026/11/11/20261111-monthly-ps-store-ranking-s/"
-    },
-    "e2a1a6bbf0a516cc": {
-      "at": "2026-11-11T03:12:01.837308+00:00",
-      "costUsd": 0.0044,
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "ブランド発表会でのスピーチと、2003年から2016年までのブランド「サイオン」の経緯が中心です。3つのモビリティの名称・価格・発売時期・日本での提供は元の文章から確認できず、読者が今すぐ使う・買う情報がありません。",
-      "skipped": true,
-      "url": "https://toyotatimes.jp/toyota_news/scion_by_toyota/001.html?padid=ag478_from_newsroom"
-    },
-    "f1f7e1ffb2ded8c5": {
-      "at": "2026-11-11T03:14:50.167145+00:00",
-      "costUsd": 0.0094,
-      "intent": "query",
-      "mix": "other",
-      "model": "gemini-3.1-flash-lite",
-      "score": 95,
-      "section": "sports",
-      "slug": "u21-japan-abema-live-streaming",
-      "url": "https://www.jfa.jp/news/00037012/"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-09T23:42:03.032469+00:00",
-      "attempt": 1,
-      "id": "4eebee5ba5132ad0",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "要点の数字「-1.41ポイント」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「-0.94ポイント」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
-      ],
-      "readability": {
-        "avg_paragraph": 67.4,
-        "avg_sentence": 35.7,
-        "long_share": 0.029,
-        "max_paragraph": 121,
-        "paragraphs": 18,
-        "sentences": 34
-      },
-      "score": null,
-      "source": "fast",
-      "title": "家計調査 2026年9月分（二人以上の世帯の消費支出）"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T23:42:29.750779+00:00",
-      "attempt": 1,
-      "id": "4eebee5ba5132ad0",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「実質で前年を上回ったのは、実質0.0%の住居を除くと見当たりません」→ 住居の実質は0.0%で上回っていないため、除外する理由と矛盾する表現になっている",
-        "「国内パック旅行費などの減少が背景にあると押さえておくとよい」→ 元記事は寄与度を示すだけで、背景や理由には触れていない",
-        "「貯蓄に回る余地が広がりました」「使うより手元に残る方向に動いています」→ 平均消費性向の低下から読み取れる解釈で、元記事は貯蓄の増加を示していない",
-        "「大きな買い物や臨時の支出の影響を除いても、減少は変わりません」→ 元記事は住居等を除いた数値を示すのみで、臨時支出の概念への言及はなく、言い換えとして言い過ぎ"
-      ],
-      "readability": {
-        "avg_paragraph": 67.4,
-        "avg_sentence": 35.7,
-        "long_share": 0.029,
-        "max_paragraph": 121,
-        "paragraphs": 18,
-        "sentences": 34
-      },
-      "score": 86,
-      "source": "fast",
-      "title": "家計調査 2026年9月分（二人以上の世帯の消費支出）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-09T23:48:44.764770+00:00",
-      "attempt": 1,
-      "id": "fe3203af316c6759",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「普段からネットで買い物をする人とそうでない人の二極化が進んでいる可能性があります」→ 元記事は利用割合と1世帯支出額を示すのみで、二極化には触れていない。根拠のない推測。",
-        "「宿泊予約や食料品の購入などで単価が上がっている様子が窺えます」→ 元記事に「宿泊予約」という具体的な内容はなく、旅行関係費という項目名のみ。",
-        "「実店舗への客足戻りと、ネット通販での高額・定番サービスの利用定着が同時に起きていると考えられます」→ 実店舗への客足に関する情報は元記事に無く、編集部の見方として示しても根拠がない。",
-        "「一時的な調整期にあるものの」→ 一時的かどうかは元記事から判断できない。",
-        "タイトルの「1世帯支出は2万6303円」→ 2万6303円は全世帯平均の支出額で、「1世帯」の語は利用世帯の4万8213円と混同されやすい。二人以上の世帯の数字であることも見出しでは示されていない。",
-        "「旅行の予約や食料品の購入が全体のお買いものを引っぱっています」→ 「予約」は元記事に無い表現。旅行関係費が寄与した事実を超えて書いている。"
-      ],
-      "readability": {
-        "avg_paragraph": 101.5,
-        "avg_sentence": 58.0,
-        "long_share": 0.357,
-        "max_paragraph": 141,
-        "paragraphs": 8,
-        "sentences": 14
-      },
-      "score": 62,
-      "source": "stat",
-      "title": "家計消費状況調査結果 支出関連項目：2026年（令和8年）9月分、7～9月期平均 ICT関連項目 ：2026年（令和8年）7～9月期平均",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "初めて出たところで言い換えていない略語（ICT）",
-        "読みやすさ: 文が長い（1文の平均 58.0字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-09T23:49:17.252425+00:00",
@@ -27769,6 +27686,79 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（JFA・ABEMA）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T03:28:13.096488+00:00",
+      "attempt": 1,
+      "id": "ca4e56ac61b3b8df",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "タイトル「厚労省がワーキングチームで議論へ」→ 元記事によると会議は2026年10月20日に開催済みで、資料が11月6日に公開された。「議論へ」は未来形で時期を誤って伝えている。",
+        "本文「ガバメントクラウドへ移行するための具体的な検討が行われています」→ 元記事（厚労省資料）にガバメントクラウドへの移行検討は書かれておらず、デジタル庁の一般的な標準化の文脈からの推測を、国民年金システムの検討内容として書いている。",
+        "本文「保守運用コストの増大や、制度改正ごとの改修負担が課題」→ 元記事に国民年金システム固有の課題の記載はなく、一般的な背景を当該システムの事情のように書いている。",
+        "よくある質問「標準化によりシステム基盤が共通化されることで、将来的な利便性向上の土台となります」→ 元記事にない将来の利便性向上の見込みを断定的に書いている。",
+        "本文「個人が窓口で手続きする手順や内容に直ちに変更はありません」→ 元記事に明示はなく、自治体・事業者向けの資料という内容からの推論として書くべきところを、事実のように書いている。",
+        "「仕事・お金」欄とかんたん版は、元記事にない「将来的に手続きがよりスムーズになることが期待」などの見通しを含み、根拠の明示がない。"
+      ],
+      "readability": {
+        "avg_paragraph": 80.8,
+        "avg_sentence": 50.5,
+        "long_share": 0.125,
+        "max_paragraph": 106,
+        "paragraphs": 5,
+        "sentences": 8
+      },
+      "score": 70,
+      "source": "mhlw",
+      "title": "国民年金システム標準化研究会ワーキングチーム 資料(第２回)",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 50.5字・60字超の文が 12% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T03:28:35.935576+00:00",
+      "attempt": 1,
+      "id": "ca4e56ac61b3b8df",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.8,
+        "avg_sentence": 47.0,
+        "long_share": 0.143,
+        "max_paragraph": 92,
+        "paragraphs": 5,
+        "sentences": 7
+      },
+      "score": 88,
+      "source": "mhlw",
+      "title": "国民年金システム標準化研究会ワーキングチーム 資料(第２回)",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 47.0字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T03:28:51.146269+00:00",
+      "attempt": 0,
+      "id": "ca4e56ac61b3b8df",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 67.6,
+        "avg_sentence": 37.6,
+        "long_share": 0.0,
+        "max_paragraph": 96,
+        "paragraphs": 5,
+        "sentences": 9
+      },
+      "score": 85,
+      "source": "mhlw",
+      "title": "国民年金システム標準化研究会ワーキングチーム 資料(第２回)"
     }
   ],
   "short_text_retry": {},
