@@ -86,9 +86,8 @@
     }
   ],
   "todayActions": [
-    "お子さんの生年月日を確かめ、3歳未満か3歳以上か、高校生年代までかを見る。",
-    "会社員なら、健康保険証利用登録のあるマイナンバーカードを持っているか確かめる。",
-    "離婚協議中などで別居しているなら、現況届が必要かをお住まいの市区町村に問い合わせる。"
+    "出生や転入から15日以内なら、現住所の市区町村へ「認定請求書」を提出する",
+    "会社員の場合は、健康保険証利用登録がされたマイナンバーカードを添付書類として用意する"
   ],
   "angleOf": "child-allowance-december-payment",
   "deepDive": "check",
@@ -131,5 +130,117 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/child-allowance-eligibility-check-deep-4a4-figure-54994ed6.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "出生の日の翌日から15日以内に、現住所の市区町村へ申請が必要です。里帰り出産などで母親が一時的に現住所を離れている場合も、現住所の市区町村への申請が必要です。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    },
+    {
+      "text": "申請が遅れると、原則として遅れた月分の手当を受けられなくなります。出生日や転入日が月末に近い場合は、申請日が翌月でも申請した月分から支給されることがあります。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "児童手当制度のご案内（こども家庭庁）",
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "note": "申請先は現住所の市区町村です（公務員の場合は勤務先）。必要な書類は状況で変わるため、市区町村に確認してください。"
+    },
+    {
+      "name": "児童手当Q&A（こども家庭庁）",
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/",
+      "note": "手当に関する個別の相談は、お住まいの市区町村（公務員の場合は勤務先）へ問い合わせてください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "出生や転入から15日以内なら、現住所の市区町村へ「認定請求書」を提出する",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "steps": [
+        "出生日または転入日を確かめる",
+        "その翌日から数えて15日以内か確認する",
+        "現住所の市区町村に「認定請求書」を提出する"
+      ],
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    },
+    {
+      "action": "会社員の場合は、健康保険証利用登録がされたマイナンバーカードを添付書類として用意する",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "steps": [
+        "認定請求に必要な添付書類を確かめる",
+        "健康保険証利用登録がされたマイナンバーカードを用意する",
+        "健康保険の資格証明書や年金加入証明書の写しも確認する"
+      ],
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    }
+  ],
+  "cause": {
+    "text": "令和6年10月からの拡充で制度が変わりました。制度改正に伴う申請は、令和7年3月までに申請すれば令和6年10月分から受け取れると案内されています。",
+    "status": "background",
+    "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+  },
+  "worries": [
+    {
+      "q": "出産や引っ越しのあと、いつまでに申請すればいい？",
+      "a": "出生の日の翌日から15日以内に、現住所の市区町村へ認定請求書を出す必要があります。他の市区町村へ転入した場合は、転入の翌日から15日以内に転入先の市区町村へ申請します。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "action": "出生や転入の日から15日以内に、現住所の市区町村へ申請する"
+    },
+    {
+      "q": "申請が遅れたら、さかのぼって受け取れる？",
+      "a": "申請が遅れると、原則として遅れた月分の手当は受けられなくなります。ただし出生日や転入日が月末に近い場合は、申請日が翌月でも15日以内なら申請した月分から支給されます。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "action": "15日を過ぎそうなら、後回しにせず申請を急ぎ、お住まいの市区町村に期限を直接確かめる"
+    },
+    {
+      "q": "父母が別居しているとき、手当はどちらが受け取る？",
+      "a": "父母が離婚協議中などで別居している場合は、児童と同居している方に優先的に支給されます。また、離婚協議中で配偶者と別居している人は、現況届の提出が引き続き必要です。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "action": "別居しているなら、市区町村に児童との同居の状況と現況届の必要性を確かめる"
+    },
+    {
+      "q": "海外に住んでいる子も手当の対象になる？",
+      "a": "原則として、日本国内に住んでいる児童が対象です。留学のために海外に住んでいる場合も、日本国内に住所があった期間などの一定の要件を満たせば、例外として支給されます。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/",
+      "action": "海外に住む子がいるなら、要件に当てはまるかをお住まいの市区町村に相談する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "制度改正の申請は今からでも間に合う？",
+      "situation": "令和6年10月分から受け取れるか気になる",
+      "recommend": "令和7年3月までに、まず市区町村に確かめる",
+      "reason": "令和7年3月までに申請すれば令和6年10月分から受け取れると案内されています。申請が遅れると、原則として遅れた月分は受け取れなくなります。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    },
+    {
+      "question": "里帰り出産中でも、申請先は実家の市区町村？",
+      "situation": "出産で実家に帰っている",
+      "recommend": "現住所の市区町村で申請する",
+      "reason": "出生届とは別に、お住まいの市区町村で申請が必要です。里帰り先の市区町村では手続きできず、出生の翌日から数えて15日以内に現住所で申請します。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "出産や引っ越しから15日以内の申請、里帰り中も注意",
+    "cause": "なぜ制度が変わったのか、いま分かっていること",
+    "steps": "申請に必要な書類と、いつまでに出すか",
+    "desk": "分からないときに頼れる公式の窓口",
+    "worries": "申請が遅れると損？別居や海外の子は対象？",
+    "guide": "制度改正の申請、今からでも間に合うか"
+  },
+  "depthAt": "2026-11-11T01:57:19+00:00",
+  "updatedAt": "2026-11-11T01:57:19+00:00",
+  "updates": [
+    {
+      "at": "2026-11-11T01:57:19+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "sourceName": "こども家庭庁「児童手当制度のご案内」"
+    }
+  ]
 }

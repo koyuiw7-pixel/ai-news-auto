@@ -1,0 +1,230 @@
+{
+  "slug": "copilot-for-finance-skills-plugins",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/",
+  "sourceName": "Windows ブログ（日本）",
+  "title": "Copilotに財務スキル25超　Excelの財務スキルは一般提供、会計は試験段階",
+  "seoTitle": "Copilotの財務スキルとは：Excel会計機能の提供状況",
+  "threadsPost": "経理や財務の仕事をしている人に、知っておいてほしい話です。\n\nCopilotに25を超える財務スキルが加わりました。\nExcelの財務スキルは一般提供ですが、会計スキルはFrontierでの提供です。\n\n仕事でExcelの照合や仕訳の下書きに、どのくらい時間をかけていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "Excelでの照合や仕訳の作業に、週どのくらい時間をかけていますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "経理の作業で、AIにどこまで下書きを任せてよいと考えますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "Microsoft Copilotに、会計や資本市場向けの25を超える財務スキルとパートナー製のプラグインが加わりました。Excelの財務スキルとCoworkのプラグイン2種は一般提供ですが、会計スキルはFrontier（早期提供プログラム）での提供です。会計スキルは限定提供の7日間で、8,000人を超える利用者が使いました。日本での提供状況はまだ発表されていません。",
+  "description": "Microsoft Copilotに25超の財務スキルとプラグインが追加。Excelの財務スキルは一般提供、会計スキルはFrontier提供。照合・仕訳・買収モデルの内容と提供状況、日本での扱いを整理します。",
+  "keywords": [
+    "Microsoft Copilot",
+    "財務スキル",
+    "Copilot in Excel",
+    "会計スキル",
+    "Cowork",
+    "Capital Markets plugin",
+    "Finance plugin",
+    "Frontier",
+    "経理 AI",
+    "Dynamics 365 ERP",
+    "Fabric IQ"
+  ],
+  "tags": [
+    "Microsoft Copilot",
+    "Excel",
+    "生成AI",
+    "AIエージェント",
+    "経理・財務"
+  ],
+  "highlights": [
+    "Copilot全体に25を超える財務スキルとパートナー製プラグインが追加され、会計・資本市場・財務業務に対応します",
+    "会計スキルはFrontierで提供中で、限定の7日間に8,000人超が44,000回超呼び出しました",
+    "Excelの財務スキルとCoworkの2つのプラグインは一般提供で、ERPとパートナー製は順次提供です"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "経理担当者は、照合や仕訳の下書きをCopilotに任せる試験を、Frontierの利用可否から確認できます。",
+      "料金は、Microsoft 365 Copilot Businessが年払いで2,698円/人・月から（税別）です。",
+      "出力は元の記録や会計基準に照らして人が確認する前提です。"
+    ]
+  },
+  "body": "対象は、経理・財務・投資分析の仕事でMicrosoft 365のCopilotを使う人です。Copilotそのものは日本で使えます（当サイトの確認：11/3）。ただし、今回の財務機能が日本で同じように使えるかは、まだ発表されていません。\n\nCopilotは、Excelなどに組み込まれたMicrosoftのAIアシスタントです。Windows ブログ（日本）の発表によると、今回は会計、資本市場、財務業務向けに、25を超える財務スキルとパートナー製のプラグイン（外部サービスをつなぐ拡張）が加わりました。元は米国時間10月29日の公開記事の抄訳です。\n\n## 8,000人超が7日間で試した会計スキル\n\n会計スキルは、Copilot in ExcelとCowork（複数手順の作業を任せるエージェント）向けです。Frontierという早期提供の枠で使えます。主な機能は次の3つです。\n\n- 勘定照合：残高と取引を比べて不一致を見つけ、レビュー用の調整項目を用意します。\n- 仕訳の下書き：見越計上、組替、配賦、逆仕訳、定期仕訳を作り、入力項目と貸借の一致を確かめます。\n- 差異レポート：計画と実績を比べ、主な変動要因を説明します。\n\nInsiders向けの限定提供の7日間で、次のとおりでした。\n\n- 利用者：8,000人を超えました\n- 会話：18,000件を超える会話でスキルを呼び出されました\n- 呼び出し：44,000回を超えています\n\n限定期間の数字なので、一般公開後の利用規模とは比べられません。\n\nExcelでは、会計機能を呼ぶたびに監査証跡（何をなぜ変えたかの記録）を残す選択肢も加わります。記録はチャット履歴に作られます。\n\n## 買収の検証から決算レビューまで任せるCowork\n\nCoworkには、2つのプラグインが加わりました。\n\n- Capital Markets plugin：投資ケースの準備や、類似上場会社比較とLBOモデル（借入を使う買収の収益モデル）による検証を担います。出典に基づく入力値とアナリストの前提は、分けて保持されます。\n- Finance plugin：決算レビュー資料や、経営陣への予測レビューの報告資料をまとめます。複数のファイルや会話をまたぐ作業が対象です。\n\nMicrosoft公式サポートによると、Excelの財務スキルには、3表連動モデルの完成、買収候補リストの作成、合併モデルの希薄化分析などがあります（Microsoft公式サポート、11/11確認）。スキルは、@のあとにスキル名を入力して呼び出します。\n\n## 連携先と、提供状況の早見表\n\nDynamics 365 ERP apps pluginは、基幹システムのデータを使って仕訳と明細表を作れます。Fabric IQは、まずPower BIのレポートとセマンティックモデルに対応します。\n\nパートナー製プラグインには、Intuit QuickBooks、Xero、FactSet、LSEG、S&P Globalなどが含まれます。各サービスには、個別のライセンスや契約、管理者による有効化が要る場合があります。\n\n**提供状況は、機能ごとにそろっていません。**\n\n| 機能 | 状況 |\n|---|---|\n| 会計機能（Excel・Cowork） | Frontierで提供 |\n| Excelの財務スキル | 一般提供 |\n| Capital Markets・Finance plugin | 一般提供 |\n| Fabric IQ | Coworkで一般提供 |\n| Dynamics 365 ERP・パートナー製 | プラグインレジストリで順次提供 |\n\n## 導入企業の声と、人が確認する前提\n\nEY Irelandの担当者は、Excelの会計スキルを週次レポートに使い、機能はまだテスト中だとしています。Zurich Insurance North Americaは、Coworkで経費と手作業の仕訳レビューのダッシュボードを作ったと説明しました。\n\nMicrosoft公式サポートは、Copilotが会計・税務の専門的な判断に代わるものではないとしています。計算や勘定マッピング、税務処理の出力は、元の記録や会計基準に照らして確認するよう求めています（Microsoft公式サポート、11/11確認）。\n\nデータ保護について、発表では、プロンプトや応答、文書を基盤モデルの学習に使わないとしています。既存のアクセス許可と秘密度ラベルも守られます。\n\n## 日本での使い方と料金の目安\n\nMicrosoft 365 Copilot Businessは、年払いで2,698円/人・月から（税別）です。大企業向けのMicrosoft 365 Copilotは年払いで4,497円/人・月（税別）です（Microsoft公式の料金ページ、11/10確認）。今回の財務機能が追加料金なしで使えるかは、まだ発表されていません。\n\n過去の記事で伝えたとおり、Excelの会計スキルは11月に全世界で提供される予定でした（[Copilotの新機能、Excelの会計スキルは11月に全世界へ　日本は未発表](/articles/copilot-whats-new-october-2026)）。\n\n## まだ分からないこと\n\n- 日本でのCopilot財務機能の提供時期と範囲はまだ発表されていません。\n- 会計スキルがFrontierから一般提供になる時期はまだ決まっていません。\n- Dynamics 365 ERP apps pluginと各パートナー製プラグインの料金は、まだ発表されていません。\n\n## 財務部門の管理者がすること\n\nFrontierの会計スキルは、早期提供プログラムの参加が前提です。参加方法は、Microsoftの公式ヘルプを確認してください。\n\nパートナー製プラグインは、サービスごとの契約と管理者の有効化が要る場合があります。使う前に、アクセス許可と秘密度ラベルの設定を確かめるとよいでしょう。",
+  "easy": "## ひとことで言うと\n\nMicrosoftのAI「Copilot」に、経理や財務の作業を手伝う機能が25以上加わりました。Excelの財務スキルは一般提供です。会計スキルは、早期提供のFrontierで使えます。\n\n## 何ができるのか\n\n会計スキルは、残高と取引の不一致を見つけたり、仕訳の下書きを作ったりします。予算と実績の差の理由をまとめたレポートも作れます。\n\nCoworkでは、決算レビューの資料づくりや、買収案の検証のような複数の手順の作業を任せられます。\n\n## 使うときの注意\n\nCopilotは、決定や承認までは行いません。最終的な判断は、財務の担当者が行います。\n\n日本での提供はまだ発表されていません。会計スキルは、Frontierへの参加が前提です。",
+  "channel": "Windows ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "windows-blog-jp",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "財務向け Microsoft Copilot: 財務チームの働き方に合わせた専用設計",
+  "publishedAt": "2026-11-11T01:32:25+00:00",
+  "generatedAt": "2026-11-11T01:52:48.532292+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/copilot-for-finance-skills-plugins-75bcf71c.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "research",
+  "faq": [
+    {
+      "q": "Copilot in Excelの会計スキルはどうやって呼び出しますか？",
+      "a": "Microsoft公式サポートによると、Copilotへの入力で@のあとにスキル名を入れて呼び出します。会計スキルは、プラグインとスキルの管理画面の会計フォルダーにあります。"
+    },
+    {
+      "q": "Copilotの財務機能は会計や税務の判断を任せられますか？",
+      "a": "任せられません。Microsoft公式サポートは、専門家の判断に代わるものではないとし、出力を元の記録や会計基準、税法に照らして確認するよう求めています。"
+    }
+  ],
+  "todayActions": [
+    "会計機能はFrontierで提供されるため、自社の管理者に利用可否を確認する",
+    "Copilot in Excelの財務スキルは一般提供中なので、Excelで試して使い方を確かめる",
+    "使いたい連携先の契約状況を、提供元の案内で確かめておく"
+  ],
+  "relatedSlugs": [
+    "copilot-whats-new-october-2026"
+  ],
+  "qualityScore": 90,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "Microsoft公式の料金ページ",
+      "url": "https://www.microsoft.com/ja-jp/microsoft-365/buy/compare-all-microsoft-365-products",
+      "checkedAt": "2026-11-10"
+    },
+    {
+      "label": "調べた公式情報",
+      "name": "Microsoft公式サポート",
+      "url": "https://support.microsoft.com/ja-jp/teams/copilot/how-to-use-microsoft-365-copilot-in-teams-chats-and-channels",
+      "checkedAt": "2026-11-11"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-11T01:32:25+00:00",
+  "detectedAt": "2026-11-11T01:46:50+00:00",
+  "speedMinutes": 24,
+  "layout": "noir",
+  "summaryLine": "Copilot全体に25を超える財務スキルとパートナー製プラグインが追加され、会計・資本市場・財務業務に対応します",
+  "insight": [
+    {
+      "text": "Excel と Cowork の会計機能は「Frontier で利用できます」、Copilot in Excel の財務スキルは「一般提供されています」と書かれています。同じ Excel でも提供の段階が違います。",
+      "source": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/"
+    },
+    {
+      "text": "サードパーティのサービスでは、各プロバイダーによる個別のライセンス、サブスクリプション、認証、または管理者による有効化が必要になる場合があります。QuickBooks などの連携先は、契約を先に確かめる必要があります。",
+      "source": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/"
+    },
+    {
+      "text": "財務担当者が会計機能を呼び出すたびに、監査証跡の記録を開始するオプションを選べます。選ぶと、Copilot が何をなぜ変更したかの記録がチャット履歴に作られます。",
+      "source": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "会計機能はFrontierで提供されるため、自社の管理者に利用可否を確認する",
+      "source": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/",
+      "steps": [
+        "自社のMicrosoft 365管理者に問い合わせる",
+        "Frontierで会計機能が使えるか確かめる",
+        "Excel と Cowork の会計機能が対象か聞く"
+      ]
+    },
+    {
+      "action": "Copilot in Excelの財務スキルは一般提供中なので、Excelで試して使い方を確かめる",
+      "source": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/",
+      "steps": [
+        "Copilot in Excelの財務スキルは一般提供中",
+        "Excelで財務スキルを呼び出して試す",
+        "呼び出し方は公式サポートのページで確認"
+      ],
+      "url": "https://support.microsoft.com/ja-jp/excel/copilot/copilot-in-excel-built-in-skills"
+    },
+    {
+      "action": "使いたい連携先の契約状況を、提供元の案内で確かめておく",
+      "source": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/",
+      "steps": [
+        "連携先（QuickBooks、Xeroなど）の契約を確認",
+        "管理者による有効化が必要か確かめる",
+        "Dynamics 365 ERPのプラグインは順次提供中"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "財務業務は、AI が価値を発揮するうえで特に要求の厳しい領域だとされています。役割ごとの業務を理解し、業務の背景を活かす専用の機能を広げた、とMicrosoftは説明しています。",
+    "status": "background",
+    "source": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/"
+  },
+  "worries": [
+    {
+      "q": "入力した財務データは、AIの学習に使われない？",
+      "a": "プロンプト、応答、ドキュメントを、Copilotを支える基盤モデルのトレーニングに使用することはないとされています。Copilotは各ユーザーがアクセスできる内容だけを扱い、既存のアクセス許可と秘密度ラベルを尊重します。",
+      "source": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/",
+      "action": "使う前に、財務データのアクセス許可と秘密度ラベルの設定を確かめ、社内の管理ルールに合っているか見る。"
+    },
+    {
+      "q": "QuickBooksなどの連携に追加の契約は必要？",
+      "a": "連携先によっては、個別のライセンス、サブスクリプション、認証、または管理者による有効化が必要になる場合があります。必要かどうかは、サービスごとに確かめる必要があります。",
+      "source": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/",
+      "action": "使いたい連携先の契約状況を確かめ、必要なら社内の管理者に有効化を頼む。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "会計機能を業務で使うか、今は待つか",
+      "situation": "Frontierに参加していない",
+      "recommend": "急がなくてよい",
+      "reason": "会計機能はFrontierで提供されるため、参加していないと使えません。Excelの財務スキルは一般提供なので、そちらから試せます。",
+      "source": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/"
+    },
+    {
+      "question": "会計機能を業務で試すか迷う",
+      "situation": "Frontierで利用できる状態",
+      "recommend": "検証から始める価値がある",
+      "reason": "監査証跡の記録を残す選択肢があります。ただし、作業の背後にある情報源と前提条件は、人が精査する必要があります。",
+      "source": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/"
+    },
+    {
+      "question": "QuickBooksなど外部サービスとつなぐか",
+      "situation": "連携先の契約や有効化が分からない",
+      "recommend": "契約と管理者の有効化を先に確かめる",
+      "reason": "連携すると外部のデータを取り込めますが、ライセンスや管理者の有効化が済むまで使えない場合があります。提供元の案内で確かめてください。",
+      "source": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ広げたのか、背景は",
+    "steps": "今日、管理者に何を確かめるか",
+    "worries": "結果の確認や、データの扱いは大丈夫？",
+    "guide": "会計機能を試すか待つか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-11T01:55:56+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Windows",
+    "provider": "Windows ブログ（日本）",
+    "sourceUrl": "https://blogs.windows.com/japan/2026/11/11/microsoft-copilot-for-finance-purpose-built-for-the-way-finance-teams-work/",
+    "original": "https://winblogs.thesourcemediaassets.com/sites/31/2026/11/e8cefbb36609d7f6c7b6b3a9b33c293e.png",
+    "width": 1200,
+    "height": 672,
+    "at": "2026-11-11T01:57:37+00:00"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.517,
+    "y": 0.514,
+    "box": [
+      0.047,
+      0.056,
+      0.988,
+      0.972
+    ],
+    "ar": 1.7857,
+    "src": "https://ai-tech-express.jp/img/copilot-for-finance-skills-plugins-75bcf71c.jpg"
+  }
+}
