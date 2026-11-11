@@ -8,9 +8,9 @@
   "threadsPost": "先に言うと、10月のGoogleは発表が多すぎました。\n\n要約すると、Googleが新AI「Gemini 4 Argon」を公開し、2週間後に「Carbon」も発表しました。\nAIで作った画像や音声を調べる「SynthID Detector」も、英語で世界に広がりました。\n\nあなたの仕事で、いちばん気になった発表はどれですか？",
   "threadsHook": "free",
   "threadsStyle": 3,
-  "writingVoice": "senpai",
-  "lede": "Google公式ブログは2026年11月2日付で、10月のAI関連発表をまとめました。目玉は、複雑な作業向けの新AI「Gemini 4 Argon」と、その2週間後に発表した「Gemini 4 Carbon」です。偽コンテンツの判別ツールやAndroidの詐欺対策、量子コンピューターの成果も並びます。何が使えて何が準備中かを整理します。",
-  "description": "Google公式ブログが10月のAI発表を総括。Gemini 4 Argonは提供済み、Carbonは試験中。Genie 4、SynthID Detector、Android詐欺対策、Fitbit Edgeなどを、使える範囲とあわせて解説します。",
+  "writingVoice": "explainer",
+  "lede": "Googleの10月のAI発表は、新AIモデル「Gemini 4 Argon」の全世界での提供が中心でした。Gemini APIの料金は入力100万トークンあたり2ドル、出力は10ドルです。次の「Gemini 4 Carbon」は、元の発表では広い提供の前に限定的なテスト段階とされています。",
+  "description": "Googleが10月のAI発表をまとめました。Gemini 4 Argonは日本でも使えるGemini APIの料金は入力2ドル・出力10ドル。Genie 4、SynthID Detector、量子計算の成果まで要点を整理します。",
   "keywords": [
     "Gemini 4 Argon",
     "Gemini 4 Carbon",
@@ -32,29 +32,35 @@
     "量子コンピューター"
   ],
   "highlights": [
-    "Gemini 4 Argonはコーディングや財務分析向けに提供済み。Carbonは試験中",
-    "SynthID Detectorが英語で世界に拡大。画像・動画・音声がAI製か確認できる",
-    "Android詐欺対策は月500万件超を検知。新モードは利用者が選んでオンにする方式"
+    "Gemini 4 Argonが全世界で順次提供され、Googleのコーディングや金融分析、法務の業務向けに使える",
+    "Argonの料金は入力100万トークンで2ドル、出力は10ドル。Claude Opus 5.5は4ドルと20ドル",
+    "Googleは量子コンピューターで誤りを約40分の1に減らす実験結果を、科学誌Scienceで発表した"
   ],
   "timetable": [],
   "verdict": {
-    "status": "limited",
-    "japan": "unknown",
-    "price": "不明",
+    "status": "available",
+    "japan": "ok",
+    "price": "API従量課金",
     "free": null,
-    "audience": "会社員・開発者",
-    "take": "Argonは使える範囲を公式で確認し、Carbonは続報を待つ。偽コンテンツ確認は英語で試せる。",
-    "judgedAt": "2026-11-02T18:00:33.906177+00:00"
+    "audience": "開発者・業務利用者",
+    "take": "Argonは日本でも使えるので、既存の業務でGemini APIの料金と性能を試して比べるとよいでしょう。",
+    "judgedAt": "2026-11-11T00:20:40.447641+00:00",
+    "japanSource": {
+      "name": "Gemini（Googleの生成AI）",
+      "url": "https://support.google.com/gemini/answer/13575153?hl=ja",
+      "checkedAt": "2026-11-03"
+    }
   },
   "workMoney": {
     "relevance": "medium",
     "points": [
-      "コードや財務分析、法務の作業が多い人は、Gemini 4 Argonが使える画面（Geminiアプリなど）で試す価値があります。",
-      "取引先や顧客から届く画像・音声の真偽が気になる人は、SynthID Detectorを英語画面で試せます。"
+      "開発者はArgonのAPI料金（入力2ドル・出力10ドル）を、今使っているモデルと比べられます。",
+      "個人はGoogle AI Proなど有料プランで、Argonとタスク機能を使えます。",
+      "SynthID Detectorは、画像や音声が生成AI製かを確かめる仕事の場面で使えます。"
     ]
   },
-  "body": "## 概要\n\nGoogleが、10月に出したAIの新しい機能や研究を、まとめて紹介しました。\n\nいちばんの話題は、難しい仕事に強い新AI「Gemini 4 Argon」です。もう世界で提供が始まっています。\n\n2週間後には、さらに強い「Gemini 4 Carbon」も発表されました。こちらは、まだ限られた人だけが試している段階です。\n\nほかにも、AIで作った画像を見分けるツールや、詐欺を見つけやすくするAndroidの機能が出ました。\n\n## 何が発表された？\n\nGoogle公式ブログは2026年11月2日付で、10月のAI関連の発表をまとめました。新しい発表というより、月間の総括記事です。\n\n中心は2つのAIモデルです。Gemini 4 Argonは、複雑なコード作成、財務分析、法務の作業向けに、世界で提供されました。使える場所は次のとおりです。\n\n- Google AI Studio（開発者向けの試用画面）\n- Gemini API（アプリからAIを呼び出す仕組み）\n- Google Cloud\n- 検索\n- Geminiアプリ\n\nGemini 4 Carbonは、長時間の開発作業とサイバー防御に強いモデルです。いまは「Fairwind Program」を通じて、米国政府と一部の信頼できる防御担当者が事前テスト中です。開発者や企業、一般向けの提供は、その後と書かれています。\n\n## 前と何が違う？\n\n### 複雑な仕事向けのAIが、すでに使える（Gemini 4 Argon）\n\nArgonは、公式ブログで「フロンティア推論モデル」と紹介されています。要するに、最先端の「考える力」が強いAIです。\n\n同じArgonの仕組みで、ロボット向けの「Gemini 4 Argon for Robotics」も出ています。ロボットが現実世界の状況を理解する用途です。\n\n### 2週間後に、もう次のモデル（Gemini 4 Carbon）\n\nCarbonは「最も強い」モデルと説明されています。得意なのは、長い時間かかる開発作業と、サイバー攻撃への防御です。\n\nGoogleは、安全対策を整えながら、段階的に広げる方針です。Argonのときと同じ進め方だと書いています。\n\n### 話しかけて操作できる仮想世界（Genie 4）\n\nGenie 4は、リアルタイムで動く仮想世界を作るモデルです。音声も最初からついています。\n\n物理の動きや人の動きがよりリアルになりました。文章で指示すると、場面が動いている最中に変えられます。ロボットやAIエージェントの訓練用の安全な環境づくりにも使えると説明されています。デモはGoogle DeepMindのブログにあります。\n\n### AIで作った画像・音声かを確認（SynthID Detector）\n\nGoogleはSynthIDという目印を、1,800億枚超の画像と動画、24万年分の音声に入れてきました。SynthID Detectorは、その目印を調べるツールです。\n\n今回、英語で世界に広がりました。誰でも、画像・動画・音声がAI製かを確認できます。OpenAI、NVIDIA、Kakao、Appleなど他社のAIコンテンツも見つけられると書かれています。検索、Chrome、Geminiアプリにも確認機能があり、1日に100万件以上の依頼を処理しているそうです。\n\n### 会話型の詐欺を見つけるAndroid機能\n\nPhone by GoogleとGoogle Messagesの詐欺検知は、すでに毎月500万件超の怪しい通話やメッセージを見つけています。\n\n新しく、Google Messagesに「Enhanced protection」モードが加わります。利用者が自分でオンにする方式です。最新のクラウド版Geminiを使い、巧妙な会話型の詐欺を見つけます。通話転送や画面共有を悪用する手口への守りも強まりました。\n\n### そのほかの発表\n\n- **Fitbit Edge**：電池は最大7日。50種類以上の運動を自動で認識します。\n- **AMIE（医療AI）**：医学誌The Lancetに論文が載りました。診察前の問診を担当し、医師の準備を75%のケースで助けました。最終的な鑑別診断と90%一致しています。\n- **Playground**：文章だけでゲームを作れる実験的な場です。コードは書きません。\n- **EmbeddingGemma 2**：7億4,000万パラメータのオープンなモデルです。コード、画像、動画、音声を1つの空間で検索できます。端末内に保存するデータ量を最大6分の1にできます。\n- **Project Suncatcher**：宇宙に打ち上げたTPUが、Gemma 4でハイクを作りました。宇宙で動いたAI応答として初と書かれています。\n- **量子コンピューター**：Willowチップで「マジックステート・カルティベーション」が実際に働きました。エラーを約40分の1にしています。\n\n## 数字で見るとどう変わった？\n\n前の版と直接比べられる数値は示されていません。示されているのは次の数字です。\n\n- 詐欺検知：毎月500万件超の怪しい通話・メッセージ\n- SynthID：1,800億枚超の画像・動画、24万年分の音声\n- AMIE：医師の準備を助けたのが75%、最終診断との一致が90%\n- 量子：エラーが約40分の1。従来は高純度の状態づくりが資源の最大95%を使う恐れがあった\n- Google.org：17団体に3,600万ドルを助成\n\n## ライバルと比べてどう？\n\nOpenAIやAnthropicとの比較は示されていません。\n\n（編集部注）Googleは、モデル、検索、スマホ、ウェアラブルまで自社で持つ点が特徴です。ただし、各モデルの性能比較には、同じ条件での測定が必要です。\n\n## 料金は？\n\nGemini 4 ArgonやCarbon、Fitbit Edgeの価格は示されていません。\n\n提供済みのArgonは、無料か有料かの区別も示されていません。Carbonは試験中で、価格は未発表です。\n\n## 日本で使える？\n\nGeminiアプリ自体は、日本で使えます。対応言語に日本語があり、料金は円建てです（当サイトの確認：11/3）。\n\n今回の新機能が日本で同じように使えるかは、まだ発表されていません。\n\n- まず、Geminiアプリでモデルの選択肢にArgonがあるかを確認します。機能は地域や言語で違うことがあります。\n- SynthID Detectorは、英語で世界に広がることが示されています。日本語対応は示されていません。\n- Carbonは、一般向けの提供がまだです。\n- Android詐欺対策の新モードの日本での提供は、まだ示されていません。\n\n## 自分にはどう関係する？\n\n### 会社員として\n\nコード、財務分析、法務の作業をしている人は、Argonが使える画面で試せます。Gemini API、Google Cloud、Google AI Studioでも提供されています。\n\n業務で使う前に、社内のAI利用ルールを確認してください。\n\n### 副業・独立を考えている人\n\n文章でゲームを作れるPlaygroundや、Androidのアプリを作ってGoogle Playから入れられるGoogle AI Studioがあります。\n\n収益化の方法は示されていません。\n\n### お金・資産づくりの面で\n\n詐欺の手口が心配な人には、Androidの新しい守りが役立ちます。日本での提供は、まだ示されていません。\n\n## これまでの流れ\n\n- **10月14日**：Google DeepMindが「Gemini 4 Argon」を公開（Argonの公開記事）\n- **10月29日**：「Gemini 4 Carbon」を発表。段階的に提供（Carbonの発表記事）\n- **11月2日**：Google公式ブログが、10月の発表をまとめて総括\n\nArgonは提供済み、Carbonは試験中という違いがあります。\n\n## まとめ\n\nArgonは使える範囲が広がっています。Carbonは、これから段階的に広がる見通しです。\n\nまず、Geminiアプリで自分のアカウントにArgonが出ているかを確認してください。詐欺や偽コンテンツが気になる人は、SynthID Detectorを英語画面で試してください。",
-  "easy": "## ひとことで言うと\n\nGoogleが10月に出したAIの新情報のまとめです。\n\n目玉は新しいAI「Gemini 4 Argon」です。2週間後には、さらに強い「Carbon」も発表されました。\n\n## 何がすごいの？\n\nArgonは、プログラム作り、お金の分析、法律関係の作業のような、頭を使う仕事向けのAIです。すでに世界で提供が始まっています。\n\nCarbonは、長い時間かかる開発の仕事や、サイバー攻撃を防ぐ仕事に強いAIです。ただし今は、アメリカ政府や一部の防御担当者が試している段階です。一般向けの提供は、もっと先です。\n\nほかにも、次のものがあります。\n\n- 画像や音声がAIで作られたかを調べる「SynthID Detector」。英語で世界に広がりました。\n- Androidの詐欺対策。ショートメッセージの怪しいやり取りを、AIが見つけやすくなります。利用者が自分で選んでオンにします。\n- 文章で指示するだけで作れるゲームの場「Playground」。実験中のサービスです。\n\n## 自分に関係ある？\n\n仕事でAIを使う人には、Argonが関係します。詐欺メールや偽の画像が心配な人には、SynthID DetectorとAndroidの新機能が役に立ちます。\n\nたとえば、届いた音声が本物か不安なとき、確認の道具として使えます。\n\n## 使ってみるには\n\nGeminiアプリは日本で使えます（当サイトの確認：11/3）。ただし、今回の新機能が日本でも同じように使えるかは、まだ発表されていません。\n\nまずGeminiアプリでArgonが選べるかを確かめてください。Carbonは、まだ一般には使えません。",
+  "body": "Gemini 4 Argonは日本でも使えます。Gemini アプリは日本語に対応し（当サイトの確認：11/3）、Gemini APIも日本が対応地域に入っています（当サイトの確認：11/3）。ただし、今回の10月の発表に出てくる個々の新機能が、日本ですべて使えるかはまだ発表されていません。\n\nGoogleの公式ブログによると、今回の内容は10月のAI発表をまとめたものです。ここでは中心となるモデルと、仕事や暮らしに関わる発表を順に整理します。\n\n## Gemini 4 Argonは複雑な業務向け、API料金は入力2ドル\n\nGemini 4 Argonは、考えてから答える推論モデルです。Googleは、複雑なコーディング、金融分析、法務の作業向けと説明しています。\n\n提供先は、Google AI StudioとGemini API、Google Cloud、検索、Gemini アプリです。ロボット向けの「Gemini 4 Argon for Robotics」では、物理世界の推論にも使われます。\n\nGemini アプリでは、Google AI ProとUltraの契約者が使えます（Google公式ブログ、11/11確認）。日本向けのGoogle AI Proは月2,900円です（Google公式ページ、11/10確認）。\n\nGemini APIの料金は次のとおりです（Google公式の料金ページ、11/10確認）。\n\n- 入力100万トークン（AIが文字を数える単位）: 2ドル（約320円）\n- 出力100万トークン: 10ドル（約1,580円）\n\n円は1ドル=157.95円で計算した税別の目安です。\n\n## 他社モデルとの料金比較\n\n**入力・出力とも、Argonの料金は表の3つの中でいちばん低い設定です。**\n\n| モデル | 入力（100万トークン） | 出力（100万トークン） | 有利なのは |\n|---|---|---|---|\n| Gemini 4 Argon | $2 | $10 | **Argon** |\n| Claude Opus 5.5 | $4 | $20 | **Argonの約半額** |\n| GPT-6 Astra（入力272K以下） | $10 | $50 | **Argonの約5分の1** |\n\n（各社公式の料金ページ、11/10確認）。料金の安さだけで性能の優劣は決まりません。仕事で使うなら、自分の作業で試して比べる必要があります。\n\n## Gemini 4 Carbonは、限定的なテスト段階\n\n2週間後には、次のモデル「Gemini 4 Carbon」が発表されました。Googleは、長い開発作業とサイバー防御で、これまででいちばん強いモデルと説明しています。\n\n元の発表では、CarbonはいまFairwind Programを通じて、米国政府と一部の信頼できる防御担当者がテストしている段階です。安全対策を整え、提携先のテストを広げたうえで、開発者、企業、一般向けに広げる計画とされています。\n\nサイソクの過去記事は、Carbonの提供開始を報じています（[Gemini 4 Carbonの記事](/articles/gemini-4-carbon-cybersecurity-model)）。そこでは有料プランの開発者と企業が使えるとされ、一部提供の状況です。広い提供の時期は、Googleの今回のまとめに日付がありません。\n\nGoogle Cloudの10月の発表は、別の記事で整理しています（[Google Cloudの10月のまとめ](/articles/google-cloud-ai-october-2026-recap)）。\n\n## Genie 4は音声つきで操作できる世界シミュレーション\n\nGenie 4は、リアルタイムで動く世界シミュレーションのAIです。自然な言葉で、場面の展開を操作できます。\n\nGoogleによると、物理表現や人の動き、音声が強化されました。ロボットやAIエージェント（自分で手順を進めるAI）の安全な訓練環境づくりに役立てる考えです。デモはGoogle DeepMindのブログで見られます。\n\n## 生成AIの見分けと詐欺対策が広がる\n\nGoogleは、SynthIDという透かし技術を、画像と動画で1,800億件以上、音声で24万年分に付けたとしています。\n\n「SynthID Detector」は、英語で世界に広がります。画像、動画、音声がAIで作られたかを、誰でも確かめられます。OpenAI、NVIDIA、Kakao、Appleといった提携先のAI生成物も見分けられます。\n\nAndroidでは、Google メッセージで任意の強化保護モードが追加されます。Private AI Computeと最新のクラウド版Geminiを使い、巧妙な会話型の詐欺を見つけます。\n\nGoogleによると、既存の詐欺検知は毎月500万件超の疑わしい通話やメッセージを警告しています。日本での提供はまだ発表されていません。\n\n## 医療研究、量子計算、宇宙でのAI実験\n\n医療のAI「AMIE」の研究は、The Lancetに載りました。Googleとベス・イスラエル・ディーコネス医療センターが、実際の診療で評価しています。\n\n診察前の問診と要約で、医師の準備を助けたのは75%の場面でした。医師の最終的な鑑別診断と一致したのは90%でした。\n\n量子計算では、Willowプロセッサーで「マジックステート培養」という技術が実際に機能しました。誤りは、培養しない場合に比べて約40分の1です。これまで、高純度の状態づくりが量子コンピューターの資源の最大95%を使う可能性があったとされています。\n\n宇宙では、Project Suncatcherの試作衛星が、データセンター級のTPUで作ったAIの応答を地球に送りました。Gemma 4が作った俳句です。放射線や温度への耐性は、これから試験されます。\n\n## ものづくりと開発者向けの新ツール\n\nPlaygroundは、文章の指示だけでゲームを作り、共有できる実験的なサービスです。コードを書く必要はありません。Androidでは、Google AI Studioで作った個人用のAIアプリを、Google Play経由で入れられます。\n\n「EmbeddingGemma 2」は、7億4,000万パラメーターの公開モデルです。コード、画像、動画、音声を1つの空間で扱い、端末上で動きます。保存に使うベクトルの容量は、最大で6分の1に抑えられるとされています。\n\nGoogle Fitbit Edgeは、最大7日間のバッテリーと50種類以上の運動の自動認識を備えます。Googleの発表ではGemini搭載の健康コーチも使えます。米国の価格は179.99ドルで、10月27日に店頭に並びました（Google公式ブログ、11/11確認）。\n\n## まだ分からないこと\n\n- Gemini 4 Carbonの広い提供の日付は、今回のまとめで示されていません。\n- Genie 4の利用条件や価格は、今回の発表では示されていません。\n- Android詐欺対策の強化保護モードの、日本での提供はまだ発表されていません。\n\n## 開発者がやること\n\nGemini APIのArgonは、日本で使える開発者向けの経路です。まず、今のモデルとの料金差を、自分のトークン量で計算するとよいでしょう。",
+  "easy": "## ひとことで言うと\n\nGoogleの10月のAI発表では、新しいAIモデル「Gemini 4 Argon」が中心でした。開発者向けの料金は入力100万トークンで2ドル、出力は10ドルです。\n\nGemini 4 Argonは、コーディングや金融分析、法務の作業を想定した、考えてから答えるAIです。Google AI StudioやGemini API、Gemini アプリなどで使えます。\n\nGeminiアプリでは、Google AI ProとUltraの契約者が使えます（Google公式ブログ、11/11確認）。日本向けのGoogle AI Proは月2,900円です（Google公式ページ、11/10確認）。\n\n## 次のモデルと、ほかの発表\n\n次のモデル「Gemini 4 Carbon」は、サイバー防御や長い開発作業に強いとされています。Googleによると、今は米国政府と一部の防御担当者によるテスト段階です。\n\n画像や音声が生成AI製かを調べる「SynthID Detector」は、英語で世界に広がります。Androidでは、詐欺のメッセージを見つける保護機能が追加されます。\n\n量子コンピューターでは、誤りを約40分の1に減らす技術が実験で確認されました。",
   "channel": "Google公式ブログ",
   "channelId": "",
   "channelSlug": "google-blog-all",
@@ -67,33 +73,26 @@
   "publishedAt": "2026-11-02T17:45:00+00:00",
   "generatedAt": "2026-11-02T18:00:33.906162+00:00",
   "thumbnail": "https://ai-tech-express.jp/img/google-ai-news-october-2026-28943383.jpg",
-  "model": "claude:sonnet",
+  "model": "anthropic-api:claude-sonnet-5-5",
   "affiliates": [],
   "faq": [
     {
-      "q": "Gemini 4 Carbonは今すぐ使える？",
-      "a": "一般にはまだです。米国政府とFairwind Programの一部の防御担当者が事前テスト中で、開発者・企業・一般向けの提供はその後と元記事にあります。"
+      "q": "Gemini 4 ArgonのGeminiアプリでの提供対象は？",
+      "a": "Google AI ProとUltraの契約者が、Gemini アプリでArgonを使えます。タスク機能も同じ対象です（Google公式ブログ、11/11確認）。"
     },
     {
-      "q": "Gemini 4 Argonはどこで使える？",
-      "a": "Google AI Studio、Gemini API、Google Cloud、検索、Geminiアプリで提供されます。"
-    },
-    {
-      "q": "SynthID Detectorで何が確認できる？",
-      "a": "画像・動画・音声がAIで作られたかを確認できます。英語で世界に広がりました。OpenAIやAppleなど他社のAI製コンテンツも見つけられると書かれています。"
-    },
-    {
-      "q": "Androidの新しい詐欺対策は自動でオンになる？",
-      "a": "Google Messagesの「Enhanced protection」モードは、利用者が自分で選んでオンにする方式です。最新のクラウド版Geminiを使います。"
+      "q": "Google Fitbit Edgeの米国での価格は？",
+      "a": "米国では179.99ドルです。購入すると、Google Health Premiumが3か月無料で付きます。"
     }
   ],
   "todayActions": [
-    "Geminiアプリを開き、モデルの選択肢にGemini 4 Argonがあるか確認する",
-    "気になる画像や音声があれば、SynthID Detectorで確認してみる",
-    "AndroidのGoogle Messagesで、詐欺対策の設定を公式の設定画面で確認する"
+    "Gemini APIの料金ページで、Argonの入力2ドル・出力10ドルを自分の使用量で計算する",
+    "画像や音声の真偽を確かめたいときは、英語版のSynthID Detectorで試す",
+    "Google AI Proを使っている人は、Geminiアプリで4 Argonが選べるか確認する"
   ],
   "relatedSlugs": [
-    "google-gemini-4-argon-surf-clock-hardware"
+    "google-cloud-ai-october-2026-recap",
+    "gemini-4-carbon-cybersecurity-model"
   ],
   "qualityScore": 100,
   "breaking": true,
@@ -134,21 +133,39 @@
   },
   "originalTitle": "GoogleのAI「Gemini 4」など10月の新発表まとめ　詐欺対策や偽画像の判別も",
   "titleStyle": "2026-11-03",
-  "sectionTitles": {
-    "body": {
-      "何が発表された？": "10月のAI発表、中心は2つのAIモデル",
-      "前と何が違う？": "Argonは「考える力」が強い推論モデル",
-      "数字で見るとどう変わった？": "分野ごとの実績数字、前版との比較はなし",
-      "ライバルと比べてどう？": "Google自社で完結する強みと比較の不足",
-      "料金は？": "Carbonは試験中で、価格は未発表",
-      "日本で使える？": "日本ではGeminiアプリが使える",
-      "自分にはどう関係する？": "会社員は社内ルール確認、副業はゲーム制作も"
+  "sectionsPolishedAt": "2026-11-11T00:20:53+00:00",
+  "newsType": "product",
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "Google公式の料金ページ",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "checkedAt": "2026-11-10"
     },
-    "easy": {
-      "何がすごいの？": "Argonは提供中、Carbonは試験段階",
-      "自分に関係ある？": "詐欺メールや偽画像が心配なら確認ツールを",
-      "使ってみるには": "まずはGeminiアプリでArgonを確認"
+    {
+      "label": "他社との比較",
+      "name": "各社公式の料金ページ",
+      "url": "",
+      "checkedAt": "2026-11-10"
+    },
+    {
+      "label": "関連ページ",
+      "name": "Google公式ブログ「Google Fitbit Edge: Our all-new smartest fitness tracker ever」",
+      "url": "https://blog.google/products-and-platforms/devices/fitbit/google-fitbit-edge/",
+      "checkedAt": "2026-11-11"
+    },
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-03"
+    },
+    {
+      "label": "日本での提供",
+      "name": "Gemini（Googleの生成AI）の公式ページ",
+      "url": "https://support.google.com/gemini/answer/13575153?hl=ja",
+      "checkedAt": "2026-11-03"
     }
-  },
-  "sectionsPolishedAt": "2026-11-03T12:16:44+00:00"
+  ],
+  "typesRewrittenAt": "2026-11-11T00:20:53+00:00"
 }
