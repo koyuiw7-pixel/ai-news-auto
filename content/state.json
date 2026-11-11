@@ -115,9 +115,7 @@
       "url": "https://www.recall.caa.go.jp/images/rci/img/product/00000036096_1.jpg"
     }
   },
-  "major_tries": {
-    "b971dd88507174df": 1
-  },
+  "major_tries": {},
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
     "02667be02cad0dd5": "2026-11-07T18:50:54.043233+00:00",
@@ -7217,6 +7215,18 @@
       "skipped": true,
       "url": "https://newsroom.kddi.com/ir-news/detail/kddi_ir-1250_4776.html"
     },
+    "39585ac01d2043c6": {
+      "at": "2026-11-11T16:03:36.828390+00:00",
+      "costUsd": 0.0185,
+      "foreignAi": true,
+      "intent": "query",
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "minimax-h3-image-ai-gateway",
+      "url": "https://vercel.com/changelog/minimax-h3-image-and-highspeed-now-available-on-ai-gateway"
+    },
     "397907f6b884d495": {
       "at": "2026-11-05T04:45:48.301741+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（役員）",
@@ -7328,14 +7338,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（表彰）",
       "skipped": true,
       "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1105_02.html"
-    },
-    "3c23d4960b1f8efe": {
-      "at": "2026-10-28T16:04:52.004138+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "amazon-trainium-ai-chip-nba-prime-360",
-      "url": "https://www.aboutamazon.com/news/innovation/trainium-ai-chip-prime-360-nba-highlights?utm_source=rss"
     },
     "3c32b51ee61f5260": {
       "at": "2026-11-11T05:21:22.836933+00:00",
@@ -14459,6 +14461,18 @@
       "skipped": true,
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3226"
     },
+    "a5c3d321385253fd": {
+      "at": "2026-11-11T16:04:58.581167+00:00",
+      "costUsd": 0.0118,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "elevenagents-memory-elevenai-summit-nyc",
+      "url": "https://elevenlabs.io/blog/nyc-summit"
+    },
     "a5e447f9eb16adba": {
       "at": "2026-10-28T23:12:11.872582+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
@@ -21211,100 +21225,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-10T07:18:34.077024+00:00",
-      "attempt": 1,
-      "id": "78155d2d3708df63",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「となり、2013年から約200万世帯」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
-      ],
-      "readability": {
-        "avg_paragraph": 90.0,
-        "avg_sentence": 54.0,
-        "long_share": 0.4,
-        "max_paragraph": 115,
-        "paragraphs": 6,
-        "sentences": 10
-      },
-      "score": null,
-      "source": "nli-research",
-      "title": "時間制約社会とペット消費－飼える人は減り、関わり方は深まる",
-      "warnings": [
-        "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める",
-        "読みやすさ: 文が長い（1文の平均 54.0字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T07:21:08.391351+00:00",
-      "attempt": 1,
-      "id": "107e230024be6388",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "「10月中に噴火警戒レベルや予報事項に変更があった火山は以下の通り」→ 雌阿寒岳（11月4日）とベヨネース列岩（8日）は11月の変更であり、10月中ではない（元記事と矛盾）"
-      ],
-      "readability": {
-        "avg_paragraph": 74.8,
-        "avg_sentence": 53.4,
-        "long_share": 0.143,
-        "max_paragraph": 104,
-        "paragraphs": 5,
-        "sentences": 7
-      },
-      "score": 70,
-      "source": "jma-press",
-      "title": "令和８年10月の地震活動及び火山活動について",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 53.4字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:21:21.766120+00:00",
-      "attempt": 1,
-      "id": "107e230024be6388",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 72.8,
-        "avg_sentence": 52.0,
-        "long_share": 0.143,
-        "max_paragraph": 104,
-        "paragraphs": 5,
-        "sentences": 7
-      },
-      "score": 93,
-      "source": "jma-press",
-      "title": "令和８年10月の地震活動及び火山活動について",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 52.0字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:21:35.018463+00:00",
-      "attempt": 0,
-      "id": "107e230024be6388",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 59.6,
-        "avg_sentence": 42.6,
-        "long_share": 0.0,
-        "max_paragraph": 88,
-        "paragraphs": 5,
-        "sentences": 7
-      },
-      "score": 96,
-      "source": "jma-press",
-      "title": "令和８年10月の地震活動及び火山活動について"
-    },
     {
       "accepted": false,
       "at": "2026-11-10T07:21:59.265522+00:00",
@@ -28575,6 +28495,107 @@
       "warnings": [
         "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（DNA・RNA・ENCODE）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T16:02:55.731141+00:00",
+      "attempt": 1,
+      "id": "39585ac01d2043c6",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "元記事の文をそのまま書き写している（2文。例「prompt: 'A blue ceramic vase with wildflowers on a」）。自分の言葉で要約する"
+      ],
+      "readability": {
+        "avg_paragraph": 129.3,
+        "avg_sentence": 43.1,
+        "long_share": 0.296,
+        "max_paragraph": 202,
+        "paragraphs": 9,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "vercel-changelog",
+      "title": "MiniMax H3 Image and Highspeed now available on AI Gateway",
+      "warnings": [
+        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "材料の無い章がある（日本での提供は、まだ発表されていません）。表示では隠す",
+        "初めて出たところで言い換えていない略語（JPEG・PNG）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T16:03:16.612157+00:00",
+      "attempt": 1,
+      "id": "39585ac01d2043c6",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 129.3,
+        "avg_sentence": 43.1,
+        "long_share": 0.296,
+        "max_paragraph": 202,
+        "paragraphs": 9,
+        "sentences": 27
+      },
+      "score": 90,
+      "source": "vercel-changelog",
+      "title": "MiniMax H3 Image and Highspeed now available on AI Gateway",
+      "warnings": [
+        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "材料の無い章がある（日本での提供は、まだ発表されていません）。表示では隠す",
+        "初めて出たところで言い換えていない略語（JPEG・PNG）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T16:03:36.813856+00:00",
+      "attempt": 0,
+      "id": "39585ac01d2043c6",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.3,
+        "avg_sentence": 39.4,
+        "long_share": 0.172,
+        "max_paragraph": 135,
+        "paragraphs": 15,
+        "sentences": 29
+      },
+      "score": 88,
+      "source": "vercel-changelog",
+      "title": "MiniMax H3 Image and Highspeed now available on AI Gateway",
+      "warnings": [
+        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "材料の無い章がある（日本での提供は、まだ発表されていません）。表示では隠す",
+        "初めて出たところで言い換えていない略語（JPEG・PNG）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T16:04:40.225348+00:00",
+      "attempt": 1,
+      "id": "a5c3d321385253fd",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.5,
+        "avg_sentence": 41.1,
+        "long_share": 0.12,
+        "max_paragraph": 171,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": 92,
+      "source": "elevenlabs-blog",
+      "title": "Building the interaction layer for AI: Everything announced at ElevenLabs Summit",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（VL）"
       ]
     }
   ],

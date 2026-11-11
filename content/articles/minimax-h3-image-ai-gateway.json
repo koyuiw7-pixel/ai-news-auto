@@ -1,0 +1,203 @@
+{
+  "slug": "minimax-h3-image-ai-gateway",
+  "sourceType": "web",
+  "sourceUrl": "https://vercel.com/changelog/minimax-h3-image-and-highspeed-now-available-on-ai-gateway",
+  "sourceName": "Vercel Changelog",
+  "title": "MiniMaxの画像モデル「H3 Image」がAI Gatewayで利用可能に　2K・4K出力にも対応",
+  "seoTitle": "MiniMax H3 Imageとは？AI Gatewayで使える料金も",
+  "threadsPost": "画像生成APIを使って開発している人に、知っておいてほしい話です。\n\nMiniMaxの画像モデル「H3 Image」が、AI Gatewayで使えるようになりました。\nAPIキー1つで、2K・4K出力や画像の編集まで試せます。\n\n画像生成のAPI、いまどの会社のものを使っていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "画像生成のAPI、いまどの会社のものを使っていますか？"
+    },
+    {
+      "pattern": "price",
+      "question": "画像生成APIに、毎月いくらまで払えますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "画像生成APIを使う開発者は、MiniMaxの別アカウントを作らなくても、AI Gatewayの1つのAPIキーで「MiniMax H3 Image」を使えるようになりました。2K・4K出力に対応し、高速版「Highspeed」の料金は入力が100万トークンあたり2.30ドル、出力が7.60ドルです。開発者は今すぐモデル名を指定して試せますが、日本での提供はまだ発表されていません。",
+  "description": "MiniMaxの画像生成モデル「MiniMax H3 Image」と高速版が、Vercel AI GatewayでAPIキー1つから使えるようになりました。2K・4K出力や画像の編集に対応し、料金は従量課金です。",
+  "keywords": [
+    "MiniMax H3 Image",
+    "MiniMax H3 Image Highspeed",
+    "AI Gateway",
+    "画像生成AI API",
+    "画像編集AI",
+    "Vercel AI Gateway 料金",
+    "MiniMax 画像生成",
+    "AI画像 API",
+    "生成AI API 従量課金",
+    "AI Gateway 使い方",
+    "MiniMax 2K 4K"
+  ],
+  "tags": [
+    "生成AI",
+    "画像生成",
+    "API",
+    "MiniMax",
+    "AI Gateway",
+    "Vercel"
+  ],
+  "highlights": [
+    "MiniMaxの画像モデル「H3 Image」と高速版が、AI Gatewayで利用可能になった。文字からの生成と画像の編集に対応する。",
+    "2K・4Kの出力、任意のサイズと縦横比に対応。高速版Highspeedは同じ機能で生成が速い。",
+    "AI Gatewayは推論の料金に上乗せせず、プラットフォーム手数料もない（Vercel公式の料金ページ、11/12確認）。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "API従量課金",
+    "free": null,
+    "audience": "開発者",
+    "take": "画像生成APIを組み込む開発者は、AI Gatewayのキーで試せます。料金は使った分の従量課金です。",
+    "judgedAt": "2026-11-11T16:02:55.656285+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "画像を自動で作るアプリや社内ツールを作る開発者は、画像生成の部分を1つのAPIキーにまとめられます。",
+      "高速版（Highspeed）は入力100万トークンあたり2.30ドル、出力7.60ドルです（Vercel公式のモデルページ、11/12確認）。"
+    ]
+  },
+  "body": "画像生成AIを自分のアプリやサービスに組み込みたい開発者にとって、今回の発表は使えるモデルが1つ増えたことを意味します。\n\nAI Gatewayを使っていない人の環境には、今のところ直接の変化はありません。\n\nAI Gatewayは、Vercelが提供する、AIモデルを呼び出すための窓口です。1つのAPIキー（サービスを呼び出すときの認証に使う鍵の文字列）で、複数社のモデルを使えます。利用量と料金は、まとめて確認できます。\n\n今回、この窓口から「MiniMax H3 Image」と高速版の「MiniMax H3 Image Highspeed」が使えるようになりました。MiniMaxの別アカウントを作る必要はありません。\n\n## 文から画像を作り、指示で直せる\n\n両モデルとも、文章（プロンプト）から画像を作れます。作った画像を指示文と一緒に渡すと、色や被写体、構図を変えられます。発表の例では、花瓶の色を「テラコッタ」に変え、花と背景は残す指示が使われています。\n\n```ts\nimport { generateImage } from 'ai';\nconst { image } = await generateImage({\nmodel: 'minimax/minimax-h3-image',\nprompt: '日の差す木のテーブルに、野の花を挿した青い陶器の花瓶を置いた画像',\nsize: '2048x2048',\nproviderOptions: { minimax: { outputFormat: 'png' } },\n});\n```\n\nモデル名は、標準版が minimax/minimax-h3-image、高速版が minimax/minimax-h3-image-highspeed です。Vercel AI SDK（AIアプリを作るためのライブラリ）から呼び出せます。\n\nOpenAI互換の /v1/images/generations と /v1/images/edits の経路にも対応しています。モデルの試用画面（playground）でも試せます。\n\n## 2K・4Kまで、サイズと縦横比を指定できる\n\n出力のサイズと縦横比は指定できます。発表では2K・4Kの出力が挙げられています。\n\n高速版は、参照画像を最大16枚まで渡せます。出力は最大2,000万画素です。\n\nファイル形式はJPEG、PNG、WebPに対応します（Vercel公式のモデルページ、11/12確認）。\n\n## 高速版の料金は、入力と出力で分かれている\n\n高速版の料金は、次のとおりです（Vercel公式のモデルページ、11/12確認）。\n\n- 入力：100万トークンあたり2.30ドル\n- 出力：7.60ドル\n\nトークンは、AIが処理する量を数える単位です。標準版の料金は、まだ発表されていません。\n\nAI Gatewayは、推論（AIが答えや画像を作る処理）の料金に手数料を上乗せしていません。プラットフォーム手数料もありません（Vercel公式のAI Gatewayの料金ページ、11/12確認）。\n\n## 無料枠は上限が低く、クレジットで上限が上がる\n\n無料枠では、モデルごとの利用上限が有料より低く設定されています。上限を超えると429エラーが返り、少し待ってから再試行します。AI Gatewayのクレジットを購入すると有料の枠に移り、上限が上がります（Vercel公式のAI Gatewayの料金ページ、11/12確認）。\n\n## 日本での提供は、まだ発表されていません\n\n日本での提供や日本語の対応は、まだ発表されていません。利用するときは、MiniMaxの利用規約とプライバシーポリシーに従う必要があります（Vercel公式のモデルページ、11/12確認）。\n\n## まだ分からないこと\n\n- 標準版（MiniMax H3 Image）の料金は、まだ発表されていません。\n- 日本での提供や日本語の対応は、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nAI Gatewayで、MiniMaxの画像生成モデル「MiniMax H3 Image」と高速版が使えるようになりました。APIキー1つで、文章から画像を作ることも、作った画像を指示で直すこともできます。\n\n料金は、高速版が入力100万トークン（AIが扱う文字や画像の量の単位）あたり2.30ドル、出力が7.60ドルです（Vercel公式のモデルページ、11/12確認）。標準版の料金は、まだ発表されていません。日本での提供も、まだ発表されていません。",
+  "channel": "Vercel Changelog",
+  "channelId": "",
+  "channelSlug": "vercel-changelog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "MiniMax H3 Image and Highspeed now available on AI Gateway",
+  "publishedAt": "2026-11-10T00:00:00+00:00",
+  "generatedAt": "2026-11-11T16:02:55.656275+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/minimax-h3-image-ai-gateway-figure-f1082a7a.jpg",
+  "model": "anthropic-api:claude-haiku-5-5",
+  "affiliates": [
+    {
+      "name": "ConoHa AI Canvas",
+      "label": "ConoHa AI Canvas（ブラウザで使える画像生成AI）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BELTP+C1FL6A+50+7RU5R6",
+      "note": "環境構築なしで、ブラウザだけで本格的な画像生成AIを使えるGMOインターネットのサービス",
+      "pixel": "https://www18.a8.net/0.gif?a8mat=4BELTP+C1FL6A+50+7RU5R6"
+    }
+  ],
+  "newsType": "product",
+  "todayActions": [
+    "AI Gatewayのダッシュボードで、リクエストと利用料金を確かめる",
+    "minimax-h3-image で2048x2048の画像を1枚作り、編集の指示まで試す",
+    "利用する前に、MiniMaxの利用規約とプライバシーポリシーを読んでおく"
+  ],
+  "qualityScore": 88,
+  "factSources": [
+    {
+      "label": "関連ページ",
+      "name": "Vercel Changelog「MiniMax H3 Image Highspeed API & Pricing | Vercel AI Gateway」",
+      "url": "https://vercel.com/ai-gateway/models/minimax-h3-image-highspeed",
+      "checkedAt": "2026-11-12"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-10T00:00:00+00:00",
+  "detectedAt": "2026-11-11T16:01:00+00:00",
+  "layout": "noir",
+  "summaryLine": "MiniMaxの画像モデル「H3 Image」と高速版が、AI Gatewayで利用可能になった。文字からの生成と画像の編集に対応する。",
+  "insight": [
+    {
+      "text": "モデルの試用画面では参照画像は「Add up to 4 images」、つまり4枚まで追加できます。一方、APIでは最大16枚の参照画像を渡せると書かれています。",
+      "source": "https://vercel.com/ai-gateway/models/minimax-h3-image-highspeed"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Vercel AI Gateway モデルページ（MiniMax H3 Image Highspee",
+      "url": "https://vercel.com/ai-gateway/models/minimax-h3-image-highspeed",
+      "source": "https://vercel.com/ai-gateway/models/minimax-h3-image-highspeed"
+    },
+    {
+      "name": "AI Gateway 料金ページ",
+      "url": "https://vercel.com/docs/ai-gateway/pricing",
+      "source": "https://vercel.com/changelog/minimax-h3-image-and-highspeed-now-available-on-ai-gateway",
+      "note": "推論の料金に上乗せはなく、プラットフォーム手数料もないと書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "AI Gatewayのダッシュボードで、リクエストと利用料金を確かめる",
+      "source": "https://vercel.com/changelog/minimax-h3-image-and-highspeed-now-available-on-ai-gateway",
+      "steps": [
+        "ダッシュボードを開く",
+        "リクエストと spend（利用料金）を見る"
+      ]
+    },
+    {
+      "action": "minimax-h3-image で2048x2048の画像を1枚作り、編集の指示まで試す",
+      "source": "https://vercel.com/changelog/minimax-h3-image-and-highspeed-now-available-on-ai-gateway",
+      "steps": [
+        "公式の例で model を minimax/minimax-h3-image に",
+        "size を 2048x2048 に指定",
+        "画像と指示文を渡して編集（terracottaなど）を試す"
+      ],
+      "url": "https://vercel.com/ai-gateway/models/minimax-h3-image"
+    },
+    {
+      "action": "利用する前に、MiniMaxの利用規約とプライバシーポリシーを読んでおく",
+      "source": "https://vercel.com/ai-gateway/models/minimax-h3-image-highspeed",
+      "steps": [
+        "モデルページの「Terms」を開く",
+        "「Privacy」も開いて内容を確かめる"
+      ],
+      "url": "https://vercel.com/ai-gateway/models/minimax-h3-image-highspeed"
+    }
+  ],
+  "worries": [
+    {
+      "q": "MiniMaxの別アカウントを作る必要はある？",
+      "a": "いいえ。MiniMaxの別アカウントを作らなくても、AI GatewayのAPIキー1つで両モデルを使えると書かれています。生成も編集も同じキーで行えます。",
+      "source": "https://vercel.com/changelog/minimax-h3-image-and-highspeed-now-available-on-ai-gateway",
+      "action": "AI Gatewayの「Get API key」からAPIキーを取得し、モデル名を指定して呼び出す",
+      "actionSource": "https://vercel.com/ai-gateway/models/minimax-h3-image-highspeed"
+    },
+    {
+      "q": "利用規約やプライバシーは、どこまで気にすればいい？",
+      "a": "利用には、MiniMaxの利用規約とプライバシーポリシーが適用されると書かれています。両方ともモデルページからリンクされています。",
+      "source": "https://vercel.com/ai-gateway/models/minimax-h3-image-highspeed",
+      "action": "使い始める前に、利用規約とプライバシーポリシーの内容を読んでおく"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "試用画面は4枚まで、APIは16枚まで",
+    "steps": "今日のうちに試せる3つの手順",
+    "desk": "料金と窓口は、このページで確かめる",
+    "worries": "別アカウントや料金、規約は大丈夫？"
+  },
+  "depthAt": "2026-11-11T16:07:40+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "MiniMaxの画像モデル「H3 Image」がAI Gatewayで利用可能に",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-11T16:11:11+00:00"
+  },
+  "imageFocus": {
+    "x": 0.519,
+    "y": 0.387,
+    "box": [
+      0.075,
+      0.042,
+      0.963,
+      0.732
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/minimax-h3-image-ai-gateway-figure-f1082a7a.jpg"
+  }
+}
