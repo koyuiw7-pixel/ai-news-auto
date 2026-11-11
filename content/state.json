@@ -5533,14 +5533,6 @@
       "slug": "nvidia-aicr-vera-rubin-kubernetes",
       "url": "https://developer.nvidia.com/blog/making-kubernetes-ai-ready-for-nvidia-vera-rubin-on-day-one/"
     },
-    "1eabbb64216942938ae7fb8532595e34945bc67b": {
-      "at": "2026-10-28T19:11:59.737412+00:00",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "slug": "apple-14-inch-macbook-pro-m6-1eabbb64",
-      "url": "https://www.nytimes.com/2026/10/28/technology/apple-touch-screen-macbook-pro.html"
-    },
     "1ebed63e5815115a": {
       "at": "2026-11-10T09:45:26.697313+00:00",
       "costUsd": 0.0061,
@@ -14949,14 +14941,6 @@
       "skipped": true,
       "url": "https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/"
     },
-    "adf1996fc9707c2b": {
-      "at": "2026-10-28T19:12:24.996973+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "github-copilot-security-extension",
-      "url": "https://github.blog/changelog/2026-10-28-security-extension-for-the-github-copilot-app"
-    },
     "ae04509b394cb839": {
       "at": "2026-11-02T23:34:28.448402+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -17034,6 +17018,20 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.hiroshima-u.ac.jp/news/100975"
+    },
+    "cce714811b519a82": {
+      "at": "2026-11-11T19:12:27.142300+00:00",
+      "breaking": true,
+      "costUsd": 0.1157,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 85,
+      "section": "ai",
+      "slug": "gemini-decisions-api-decision-1",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/"
     },
     "ccf5c040b0fb4ce8": {
       "at": "2026-11-11T06:03:19.154151+00:00",
@@ -21120,54 +21118,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:25:26.037019+00:00",
-      "attempt": 0,
-      "id": "d83fdbcce81621a4",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 65.5,
-        "avg_sentence": 37.4,
-        "long_share": 0.0,
-        "max_paragraph": 97,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 94,
-      "source": "jfa",
-      "title": "U-17日本代表 トレーニングパートナー追加招集のお知らせ FIFA U-17ワールドカップカタール2026（11.11-12.13 カタール） #jfa #d",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DF・MF・RB）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:25:54.077593+00:00",
-      "attempt": 1,
-      "id": "02687bffe30663a2",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 97.9,
-        "avg_sentence": 48.9,
-        "long_share": 0.143,
-        "max_paragraph": 136,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": 82,
-      "source": "tsr",
-      "title": "10月の「飲食業」倒産 10月では最多の98件 専門料理店、居酒屋など小・零細飲食店が苦境",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TSR・REPORT）",
-        "読みやすさ: 文が長い（1文の平均 48.9字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T07:26:17.059708+00:00",
@@ -28465,6 +28415,56 @@
       "title": "JioStar’s chief architect on AI discovery at 500M-user scale",
       "warnings": [
         "初めて出たところで言い換えていない略語（LLM）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T19:11:48.167947+00:00",
+      "attempt": 1,
+      "id": "cce714811b519a82",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 98.3,
+        "avg_sentence": 46.1,
+        "long_share": 0.188,
+        "max_paragraph": 174,
+        "paragraphs": 15,
+        "sentences": 32
+      },
+      "score": 92,
+      "source": "google-ai-blog",
+      "title": "Gemini Decisions API: Fast, calibrated multimodal decisions",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（OCR・MCP・REST）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T19:12:15.197876+00:00",
+      "attempt": 0,
+      "id": "cce714811b519a82",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.3,
+        "avg_sentence": 40.3,
+        "long_share": 0.167,
+        "max_paragraph": 124,
+        "paragraphs": 19,
+        "sentences": 36
+      },
+      "score": 85,
+      "source": "google-ai-blog",
+      "title": "Gemini Decisions API: Fast, calibrated multimodal decisions",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（OCR・MCP・REST）"
       ]
     }
   ],

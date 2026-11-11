@@ -1,0 +1,157 @@
+{
+  "slug": "gemini-decisions-api-decision-1",
+  "sourceType": "web",
+  "sourceUrl": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+  "sourceName": "Google公式ブログ（AI）",
+  "title": "「Gemini Decisions API」公開　入力100万トークン0.10ドル、出力は課金なし",
+  "seoTitle": "Gemini Decisions APIとは？料金と使い方",
+  "threadsPost": "AIで問い合わせの振り分けや審査を組む開発者の人に、押さえておきたい話です。\n\nGoogleが判断専用のAPI「Gemini Decisions API」を公開しました。\n1回の入力に最大1,000問をぶつけ、確信度つきで150〜250ミリ秒で返します。\n\nAIの判断をコードに組み込むなら、速さと費用のどちらを重視しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "tradeoff",
+      "question": "AIの判断をコードに組み込むなら、速さと費用のどちらを重視しますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "AIの判断を自動で通すのは、確信度がどこまでなら安心できますか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "仕事で、AIに振り分けを任せたい作業はありますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "Googleが、文章を生成せず「はい・いいえ」や選択肢の確率だけを返す判断専用のGemini Decisions APIを公開しました。料金は入力100万トークンあたり0.10ドルで、出力トークンは課金されません。Google AI Studioで今日からAPIキーを取得して試せます。",
+  "description": "GoogleのGemini Decisions APIは、判断専用モデル「Gemini Decision 1」で最大1,000問を1回で評価し、確信度を返します。応答は150〜250ミリ秒、入力100万トークン0.10ドル、出力は課金なしです。",
+  "keywords": [
+    "Gemini Decisions API",
+    "Gemini Decision 1",
+    "判断専用モデル",
+    "Gemini API 料金",
+    "確信度スコア",
+    "モデルルーティング",
+    "マルチモーダル API",
+    "Google AI Studio",
+    "低遅延 AI",
+    "分類 API"
+  ],
+  "tags": [
+    "生成AI",
+    "Gemini",
+    "API",
+    "Google",
+    "LLM"
+  ],
+  "highlights": [
+    "Gemini Decisions APIは文章を生成せず、選択肢の確率を1回の処理で返す判断専用のAPIです",
+    "最大1,000問を同時に評価でき、応答は150〜250ミリ秒、料金は入力100万トークン0.10ドルです",
+    "Gemini 3.5 Flash-Lite＋Interactions APIと比べ、共通ベンチマークで約5分の1のコストとされます"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "partial",
+    "price": "入力100万トークン0.10ドル",
+    "free": true,
+    "audience": "開発者",
+    "take": "振り分けや審査の処理を作る開発者は、無料枠のAI Studioでまず自社の質問で精度と遅延を確かめるとよいでしょう。",
+    "judgedAt": "2026-11-11T19:11:39.922044+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "問い合わせの振り分けや規約チェックを作る開発者は、専用分類器の学習なしに選択肢の定義だけで組み込めます。",
+      "費用は入力トークンのみの課金で、出力や文字起こし、OCRの別料金はありません。",
+      "確信度が低い案件を人の確認に回す設計にすると、自動化の失敗を抑えられます。"
+    ]
+  },
+  "body": "Gemini Decisions APIは、Google AI StudioのGemini APIから使える開発者向けの機能です。一般の利用者が画面で使うものではなく、アプリや社内システムを作る人が対象です。\n\nGemini APIは日本で使えます（当サイトの確認：11/3）。ただし、今回の新しい判断用エンドポイントの日本での提供条件は、まだ発表されていません。\n\nこのAPIは、文章を作らずに、あらかじめ決めた選択肢の中から答えを選ぶためのものです。Googleの公式ブログによると、土台は新モデル「Gemini Decision 1」（gemini-decision-1）です。\n\n## 文章を書かず、選択肢に点数をつける仕組み\n\n通常の生成AIは、答えを1トークン（AIが文字を数える単位）ずつ書き出します。Gemini Decision 1は、候補を1回の計算（フォワードパス）で採点し、確率と確信度を返します。\n\n入力はテキスト、画像、音声、動画、PDFで、合わせて最大256Kトークンです。そこに最大1,000個の独立した質問を付けられます。たとえば、通話の録音と顧客情報、スキャンしたPDFの申請書と被害写真を、1つの入力にまとめられます。\n\n質問は3種類です。\n\n- noul（はい・いいえ）: 条件が成り立つ確率を返します\n- choice（多肢選択）: 2〜255個の選択肢から勝者を選び、全候補の確率を返します\n- score（順序つき採点）: 0から始まる段階で採点し、重み付きの連続スコアと各段階の確率を返します\n\nすべての答えに0〜1の確信度が付きます。確信度が低い案件を別の処理や人の確認に回す使い方が想定されています。入力の形式はInteractions APIのContentブロックと同じです。\n\n## 料金は入力100万トークン0.10ドル、出力は無料\n\n料金は次のとおりです。\n\n- 入力: 100万トークンあたり0.10ドル\n- 出力: 0ドル\n\nGoogle AI Studioには、試作用のAPI無料枠があります。通貨はドルで、円換算は公式発表にありません。\n\n共通の入力は、質問の数にかかわらず、1リクエストにつき1回だけ課金されます。各質問が加えるのは、その質問の指示と基準のトークン分だけです。推論用トークンの変動課金や、音声の文字起こし・OCRの別料金もありません。\n\nGoogleは、共通のベンチマーク（性能テスト）で、Gemini 3.5 Flash-LiteとInteractions APIの組み合わせより約5分の1安いと説明しています。\n\n## 応答は150〜250ミリ秒、質問を増やしても遅くなりにくい\n\nモデル自体の処理時間の中央値は50〜100ミリ秒です。通信を含む全体では150〜250ミリ秒です。\n\n16Kトークンまでの入力では、遅延はほぼ変わらないとされています。その条件は次のとおりです。\n\n- 1リクエストあたりの質問: 1〜100問\n\n精度については、エージェントの振り分け、推論、ランキング、マルチモーダル理解のベンチマークで首位だとGoogleは述べています。確率のずれ（校正誤差）も最小だとしています。比較対象の一覧や個別の数値は、公式ブログの抜粋にはありません。\n\n## Googleの社内では振り分けや絵文字選びに使用\n\nGoogleは社内の利用例を4つ挙げています。\n\n- Gemini Notebook: 質問を最適なモデル階層と思考レベルに振り分けます。日常の質問で最大40%遅延が下がり、難しい課題には深い推論モデルを残します\n- Stitch: 製品の画面の流れを数秒で作る「rapid canvas」の実験で使います\n- CC（Google Labs）: 200種類以上の絵文字から反応を選びます\n- Google検索: MCPツールの安全層で、敵対的な行動や内容を検出します\n\n編集部の見方では、共通するのは「生成を待たずに分岐だけ決めたい」処理です。\n\nSalesforceも判断専用モデル「Koa Decisions」で、約26ミリ秒の振り分けを示しています（[Salesforceの判断専用モデル](/articles/salesforce-koa-decisions-model)）。判断だけを速く安く返す専用モデルが、各社で出てきています。\n\n## 始め方と対応ツール\n\nGoogle AI StudioでAPIキーを取得し、デモアプリ「Doorstep Parcels」「Speed Sketch」「Find the Zoo Keeper」を試せます。公式ドキュメントにPythonとJavaScript、RESTの手順があります。\n\nOpenRouter、LangChain、Vercel、LiteLLM、Pydantic AI、Pipecat、LiveKit、OpenCodeへの対応が、google-genai SDKとあわせて順次提供されています。\n\n## まだ分からないこと\n\n- Gemini in Google Cloudでの提供は「まもなく」とされ、時期は発表されていません\n- 日本向けの円建て料金や、日本語の入力での精度は発表されていません\n- ベンチマークの比較対象ごとの具体的な数値は、公式ブログの抜粋では示されていません",
+  "easy": "## ひとことで言うと\n\nGoogleが、答えの文章を作らず「はい・いいえ」や選択肢の確率だけをすばやく返すAPIを公開しました。入力100万トークンあたり0.10ドルで、出力は課金されません。\n\n## 何ができるのか\n\n普通のAIは文章を1語ずつ書きます。このAPIは候補を点数づけするだけなので、150〜250ミリ秒で返ります。\n\nテキスト、画像、音声、動画、PDFをまとめて渡せます。1回の入力に最大1,000問をぶつけられます。答えには0〜1の確信度が付きます。\n\n## 使ってみるには\n\nGoogle AI StudioでAPIキーを取得すると使えます。プロトタイプ用の無料枠があります。Python、JavaScript、RESTのガイドが公式ドキュメントにあります。",
+  "channel": "Google公式ブログ（AI）",
+  "channelId": "",
+  "channelSlug": "google-ai-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Gemini Decisions API: Fast, calibrated multimodal decisions",
+  "publishedAt": "2026-11-11T18:00:00+00:00",
+  "generatedAt": "2026-11-11T19:11:39.922032+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/gemini-decisions-api-decision-1-0edb4328.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "Gemini Decisions APIで1回に選べる選択肢の数は？",
+      "a": "choice型は2〜255個の選択肢から選べます。はい・いいえ型は条件ごとに真偽の説明を付けられ、score型は0から始まる順序つきの基準で採点します。"
+    },
+    {
+      "q": "Gemini Decision 1は画像や動画の解像度を調整できる？",
+      "a": "できます。画像と動画の入力は解像度を調整でき、見える細かさとトークンの費用を調整できます。入力はテキストやPDF、音声と組み合わせられます。"
+    }
+  ],
+  "todayActions": [
+    "Google AI StudioでAPIキーを取得し、無料枠でgemini-decision-1を試す",
+    "公式ドキュメントのPython・JavaScript・RESTのガイドから自分の環境の手順を選ぶ",
+    "自社の振り分けや規約チェックを、はい・いいえ・選択肢・採点の3種類の質問に書き換えてみる"
+  ],
+  "relatedSlugs": [
+    "salesforce-koa-decisions-model"
+  ],
+  "qualityScore": 85,
+  "breaking": true,
+  "sourcePublishedAt": "2026-11-11T18:00:00+00:00",
+  "detectedAt": "2026-11-11T19:09:24+00:00",
+  "fastLane": true,
+  "originalTitle": "Gemini「Decisions API」、入力100万トークン0.10ドル　出力は課金なし",
+  "titleStyle": "2026-11-03",
+  "layout": "noir",
+  "summaryLine": "Gemini Decisions APIは文章を生成せず、選択肢の確率を1回の処理で返す判断専用のAPIです",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/gemini-decisions-api-decision-1-fig1-2d85f9c7.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "hero",
+      "credit": "Google",
+      "sourceUrl": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "original": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini__decisions__blog-header_2784x1566.width-1300.png"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/gemini-decisions-api-decision-1-fig2-c52d8bff.jpg",
+      "width": 1200,
+      "height": 491,
+      "kind": "dense",
+      "credit": "Google",
+      "sourceUrl": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "original": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/decisions-architecture_f0NFXU9.width-2000.format-webp.webp"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google",
+    "provider": "Google公式ブログ（AI）",
+    "sourceUrl": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+    "original": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/decisions-hero-hud_l8rnHOK.width-2000.format-webp.webp",
+    "width": 1200,
+    "height": 676,
+    "at": "2026-11-11T19:12:36+00:00"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.436,
+    "y": 0.478,
+    "box": [
+      0.0,
+      0.0,
+      0.872,
+      0.956
+    ],
+    "ar": 1.7751,
+    "src": "https://ai-tech-express.jp/img/gemini-decisions-api-decision-1-0edb4328.jpg"
+  }
+}
