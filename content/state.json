@@ -120,6 +120,14 @@
       "tries": 1,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87297?site=nli"
     },
+    "b1435fe199ba13be": {
+      "first": "2026-11-11T04:20:10.023441+00:00",
+      "next": "2026-11-11T07:20:10.023441+00:00",
+      "reason": "題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す",
+      "title": "SalesforceのAgentforce Coworkerは利用が3カ月で21倍に急増。導入企業は実際の業務をAIエージェントに任せ始めた",
+      "tries": 1,
+      "url": "https://www.salesforce.com/jp/news/stories/agentforce-coworker-surpasses-185k-users/"
+    },
     "bf1537f4a0ba0146": {
       "first": "2026-11-10T07:18:16.939386+00:00",
       "next": "2026-11-10T10:18:16.939386+00:00",
@@ -3985,6 +3993,17 @@
       "reason": "stale: 発表から62時間（48時間を超えた発表は通常の記事にしない）",
       "skipped": true,
       "url": "https://newsroom.arm.com/blog/ai-developer-takeaways-models-deployment"
+    },
+    "08a655aae280f834": {
+      "at": "2026-11-11T04:19:28.427681+00:00",
+      "costUsd": 0.0094,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 85,
+      "section": "business",
+      "slug": "ntt-hibiya-light-city-room-2027",
+      "url": "https://group.ntt/jp/newsrelease/2026/11/11/261111a.html"
     },
     "08b710f1e7801fa8": {
       "at": "2026-11-03T13:22:42.160804+00:00",
@@ -7922,6 +7941,17 @@
       "slug": "hokuriku-electric-hokulink-leak",
       "url": "https://news.yahoo.co.jp/articles/1a2e6ef472c5df46ae574d193f1d60e20907ef27"
     },
+    "4862314a29bc4e3b": {
+      "at": "2026-11-11T04:18:17.139910+00:00",
+      "costUsd": 0.0157,
+      "intent": "neutral",
+      "mix": "brand",
+      "model": "gemini-flash-latest",
+      "score": 88,
+      "section": "business",
+      "slug": "paypay-balance-cooperation-paypay-bank",
+      "url": "https://about.paypay.ne.jp/pr/20261111/01/"
+    },
     "48661b10a37603f5": {
       "at": "2026-10-29T16:43:54.049584+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（説明会）",
@@ -10918,16 +10948,6 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo3/002/mext_00027.html"
     },
-    "73c7084640d94745": {
-      "at": "2026-10-28T04:02:46.712719+00:00",
-      "breaking": true,
-      "major": true,
-      "model": "claude:sonnet",
-      "score": 93,
-      "section": "ai",
-      "slug": "ios-18-7-11-security-update",
-      "url": "https://k-tai.watch.impress.co.jp/docs/news/2151840.html"
-    },
     "73e6b1863c01a835": {
       "at": "2026-11-02T21:11:41.349271+00:00",
       "reason": "short text 543",
@@ -13073,6 +13093,12 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/digital_shokadai/02ryutsu02_04000610.html"
     },
+    "95efafa687a45f09": {
+      "at": "2026-11-11T04:15:50.855661+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://news.xbox.com/ja-jp/2026/11/11/grand-theft-auto-6-comes-to-xbox-cloud-gaming-november-19/"
+    },
     "95fb99d3788133d4": {
       "at": "2026-11-06T00:08:55.264240+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -13177,6 +13203,12 @@
       "reason": "quality: 「対象者 | 関係省庁（防衛省、警察庁、国土交通省など）」→元記事には関係省庁の具体的な名称は記載されていないため、創作にあたる。; 「会社員・学生：通勤や通学中に情報が流れた場合、まずは落ち着いて屋内に避難してください。」→元記事には具体的な避難行動の指示は含まれていないため、過度な補足である。; 「鉄道などの公共交通機関が一時停止する可能性もあります。」→元記事には記載がない",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/discourse/20261029shiji.html"
+    },
+    "97799384bd944668": {
+      "at": "2026-11-11T04:15:50.831388+00:00",
+      "reason": "public-interest: 資料が短い 1154字",
+      "skipped": true,
+      "url": "https://www.cao.go.jp/others/csi/security/20261111notice.html"
     },
     "97940a5736ed8dc2": {
       "at": "2026-10-29T18:35:20.173428+00:00",
@@ -20347,187 +20379,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-09T23:49:17.252425+00:00",
-      "attempt": 1,
-      "id": "fe3203af316c6759",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.5,
-        "avg_sentence": 61.5,
-        "long_share": 0.455,
-        "max_paragraph": 141,
-        "paragraphs": 8,
-        "sentences": 11
-      },
-      "score": 92,
-      "source": "stat",
-      "title": "家計消費状況調査結果 支出関連項目：2026年（令和8年）9月分、7～9月期平均 ICT関連項目 ：2026年（令和8年）7～9月期平均",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（ICT）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-09T23:49:36.576803+00:00",
-      "attempt": 0,
-      "id": "fe3203af316c6759",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.2,
-        "avg_sentence": 42.1,
-        "long_share": 0.062,
-        "max_paragraph": 137,
-        "paragraphs": 8,
-        "sentences": 16
-      },
-      "score": 85,
-      "source": "stat",
-      "title": "家計消費状況調査結果 支出関連項目：2026年（令和8年）9月分、7～9月期平均 ICT関連項目 ：2026年（令和8年）7～9月期平均",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（ICT）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T00:04:23.115208+00:00",
-      "attempt": 1,
-      "id": "d0953ac465f737da",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトル「日銀、政策金利の据え置きを決定」→ 元記事は「主な意見」の公表であり、政策金利を据え置くと日銀が決定したとは書かれていない。据え置きは一部委員の意見として示されたにすぎず、決定の事実は元記事にも確認済みの文脈にもない。",
-        "リード・本文の「据え置くことが適当」→ 元記事どおり個別の委員の意見として書かれており問題はないが、見出しとの差で読者が決定と誤解する恐れがある。",
-        "「物価が目標とする2%に達していることから、追加の利上げを段階的に進めるべき」（かんたん版）→ 元記事は「基調的な物価上昇率は既に2%に達しており、政策金利を早く中立水準に持っていく必要がある」という意見であり、「段階的に」は元記事にない言い換えで、やや言い過ぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 138.5,
-        "avg_sentence": 79.1,
-        "long_share": 0.714,
-        "max_paragraph": 186,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 55,
-      "source": "boj",
-      "title": "金融政策決定会合における主な意見（10月29、30日開催分）",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 79.1字・60字超の文が 71% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T00:04:40.531897+00:00",
-      "attempt": 1,
-      "id": "d0953ac465f737da",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 142.0,
-        "avg_sentence": 81.1,
-        "long_share": 0.714,
-        "max_paragraph": 190,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 90,
-      "source": "boj",
-      "title": "金融政策決定会合における主な意見（10月29、30日開催分）",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 81.1字・60字超の文が 71% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T00:04:57.855103+00:00",
-      "attempt": 0,
-      "id": "d0953ac465f737da",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.8,
-        "avg_sentence": 43.3,
-        "long_share": 0.154,
-        "max_paragraph": 143,
-        "paragraphs": 6,
-        "sentences": 13
-      },
-      "score": 94,
-      "source": "boj",
-      "title": "金融政策決定会合における主な意見（10月29、30日開催分）",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T00:05:37.263480+00:00",
-      "attempt": 1,
-      "id": "41d1b99459c7252d",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文「8月の輸出額は10兆4,327億円、輸入額は11兆1,551億円」→ 元記事の表の8月の輸出額は10,043,270百万円（10兆433億円）で、数値が一致しない。出典も付いているが数字が元資料と違う。",
-        "リード「現時点で個人の手続きや契約に変更はありません」→ 元記事・確認済みの文脈のどこにも書かれていない主張。",
-        "「確報」「確々報」の発表時期について「今後の財務省による発表で順次示される予定」「今後の発表予定に合わせて順次公表される見込み」→ 元記事の公表予定一覧はあるが、この記事の品目別・確報値の扱いは元資料の範囲を超える言い方ではないものの、予定の具体性は示していない。",
-        "仕事・お金の欄「原材料コストの変動予測や今後の事業計画に活かせます」→ 一般的な助言として許容範囲だが、為替と原材料コストの関係を具体化していない。"
-      ],
-      "readability": {
-        "avg_paragraph": 100.1,
-        "avg_sentence": 70.1,
-        "long_share": 0.7,
-        "max_paragraph": 153,
-        "paragraphs": 7,
-        "sentences": 10
-      },
-      "score": 45,
-      "source": "mof",
-      "title": "貿易統計(令和8年10月上中旬分速報)【税関ホームページ】",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "読みやすさ: 文が長い（1文の平均 70.1字・60字超の文が 70% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T00:05:58.696633+00:00",
-      "attempt": 1,
-      "id": "41d1b99459c7252d",
-      "kind": "broad",
-      "model": "strike:本文 2 文・かんたん版 1 文・リード・仕事・お金の欄",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 108.6,
-        "avg_sentence": 67.9,
-        "long_share": 0.75,
-        "max_paragraph": 153,
-        "paragraphs": 5,
-        "sentences": 8
-      },
-      "score": 93,
-      "source": "mof",
-      "title": "貿易統計(令和8年10月上中旬分速報)【税関ホームページ】",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "読みやすさ: 文が長い（1文の平均 67.9字・60字超の文が 75% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-10T00:06:18.703741+00:00",
       "attempt": 0,
       "id": "41d1b99459c7252d",
@@ -27688,6 +27539,188 @@
       "score": 85,
       "source": "mhlw",
       "title": "国民年金システム標準化研究会ワーキングチーム 資料(第２回)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T04:17:00.721000+00:00",
+      "attempt": 1,
+      "id": "4862314a29bc4e3b",
+      "kind": "broad",
+      "model": "gemini-flash-latest",
+      "problems": [
+        "「これまでのオートチャージは『残高が一定額を下回ったらあらかじめ決めた金額をチャージする』仕組み」→ 元資料のオートチャージは決済時に残高不足の場合に設定額を即時チャージする仕組みで、残高の一定額割れで動くとは書かれていない。既存機能の説明を取り違えている",
+        "「そのため、口座からまとまった資金がアプリ側に移動してしまう特徴がありました」→ 元資料に無い既存機能の欠点の記述で、創作にあたる",
+        "「設定はPayPayアプリ内から数分で行え」→ 元資料は『6タップで設定完了』とあるのみで、「数分」という時間は元資料に無い",
+        "「追加の手数料は一切かかりません」→ 元資料はチャージ・出金の手数料について条件付き（ソフトバンク・ワイモバイルまとめて支払いの2回目以降など）で書いており、『一切』は言い過ぎ",
+        "「最大年0.7％」の普通預金金利とポイントの記載に、ステップアップ円預金の上限1,000万円超の扱いや、ポイントは500万円を適用上限とする条件が書かれていない",
+        "「個人間送金の受け取りなどで手元に残った『PayPayマネー』（本人確認後にチャージや受け取りをした残高）」→ 本人確認が必要なのは出金・受取の一部条件であり、対象の条件を簡略化・言い換えしすぎている"
+      ],
+      "readability": {
+        "avg_paragraph": 85.2,
+        "avg_sentence": 53.8,
+        "long_share": 0.368,
+        "max_paragraph": 175,
+        "paragraphs": 12,
+        "sentences": 19
+      },
+      "score": 68,
+      "source": "paypay",
+      "title": "PayPay銀行にお金を預けたまま、「PayPay」に必要な不足分だけ自動チャージして支払いと送金ができる！「PayPay残高連携」を提供開始",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 53.8字・60字超の文が 37% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T04:17:36.767683+00:00",
+      "attempt": 1,
+      "id": "4862314a29bc4e3b",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.2,
+        "avg_sentence": 52.1,
+        "long_share": 0.381,
+        "max_paragraph": 155,
+        "paragraphs": 13,
+        "sentences": 21
+      },
+      "score": 92,
+      "source": "paypay",
+      "title": "PayPay銀行にお金を預けたまま、「PayPay」に必要な不足分だけ自動チャージして支払いと送金ができる！「PayPay残高連携」を提供開始",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 52.1字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T04:18:08.599620+00:00",
+      "attempt": 0,
+      "id": "4862314a29bc4e3b",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 69.9,
+        "avg_sentence": 39.9,
+        "long_share": 0.036,
+        "max_paragraph": 107,
+        "paragraphs": 16,
+        "sentences": 28
+      },
+      "score": 88,
+      "source": "paypay",
+      "title": "PayPay銀行にお金を預けたまま、「PayPay」に必要な不足分だけ自動チャージして支払いと送金ができる！「PayPay残高連携」を提供開始",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T04:18:52.124318+00:00",
+      "attempt": 1,
+      "id": "08a655aae280f834",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文「対象はNTTグループのプロジェクトに関心を持つ関係者などで」→ 元記事では対象はNTTグループ社員に限る完全招待制であり、関心のある関係者が対象とする記述はない。対象者の取り違え。",
+        "本文「NTT R&D FORUM 2026において一般向けに展示される予定」→ 元記事は「展示予定」としか書いておらず、一般向けに公開されるとは書かれていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 151.0,
+        "avg_sentence": 64.7,
+        "long_share": 0.571,
+        "max_paragraph": 159,
+        "paragraphs": 3,
+        "sentences": 7
+      },
+      "score": 60,
+      "source": "ntt-news",
+      "title": "日比谷からはじまる「光の街」づくりpowered by IOWN～「光の街」プレゼンテーションルームを開設予定～",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HIBIYA・FORUM）",
+        "読みやすさ: 文が長い（1文の平均 64.7字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 151.0字・最長 159字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T04:19:07.556495+00:00",
+      "attempt": 1,
+      "id": "08a655aae280f834",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 147.7,
+        "avg_sentence": 55.4,
+        "long_share": 0.5,
+        "max_paragraph": 159,
+        "paragraphs": 3,
+        "sentences": 8
+      },
+      "score": 88,
+      "source": "ntt-news",
+      "title": "日比谷からはじまる「光の街」づくりpowered by IOWN～「光の街」プレゼンテーションルームを開設予定～",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HIBIYA・FORUM）",
+        "読みやすさ: 文が長い（1文の平均 55.4字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 147.7字・最長 159字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T04:19:28.419131+00:00",
+      "attempt": 0,
+      "id": "08a655aae280f834",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 89.8,
+        "avg_sentence": 40.8,
+        "long_share": 0.273,
+        "max_paragraph": 138,
+        "paragraphs": 5,
+        "sentences": 11
+      },
+      "score": 85,
+      "source": "ntt-news",
+      "title": "日比谷からはじまる「光の街」づくりpowered by IOWN～「光の街」プレゼンテーションルームを開設予定～",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HIBIYA・FORUM）",
+        "読みやすさ: 文が長い（1文の平均 40.8字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-11T04:19:47.089625+00:00",
+      "attempt": 1,
+      "id": "b1435fe199ba13be",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す"
+      ],
+      "readability": {
+        "avg_paragraph": 134.6,
+        "avg_sentence": 63.4,
+        "long_share": 0.529,
+        "max_paragraph": 232,
+        "paragraphs": 8,
+        "sentences": 17
+      },
+      "score": null,
+      "source": "salesforce-jp",
+      "title": "SalesforceのAgentforce Coworkerは利用が3カ月で21倍に急増。導入企業は実際の業務をAIエージェントに任せ始めた",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MCP・BACA）"
+      ]
     }
   ],
   "short_text_retry": {},
