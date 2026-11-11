@@ -6337,6 +6337,17 @@
       "slug": "katayama-mof-budget-2027-tax-estimate",
       "url": "https://www.mof.go.jp/public_relations/conference/my20261102.html"
     },
+    "2a3ac4983c49b69f": {
+      "at": "2026-11-11T08:00:32.215905+00:00",
+      "costUsd": 0.0056,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.1-flash-lite",
+      "score": 86,
+      "section": "ai",
+      "slug": "sakana-ai-appoints-advisors-rogers-moran",
+      "url": "https://sakana.ai/michael-tom/"
+    },
     "2ad38473eb930e41": {
       "at": "2026-10-28T11:52:12.468139+00:00",
       "model": "claude:sonnet",
@@ -12123,6 +12134,12 @@
       "section": "ai",
       "slug": "asr-leaderboard-egypt-nigeria-english",
       "url": "https://huggingface.co/blog/open-asr-leaderboard-liva"
+    },
+    "828277d104d357dc": {
+      "at": "2026-11-11T07:59:43.079204+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026100109"
     },
     "82870a11b510856e": {
       "at": "2026-11-04T15:34:28.833211+00:00",
@@ -20912,54 +20929,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-10T04:25:11.455478+00:00",
-      "attempt": 0,
-      "id": "5bc690806dc2f2be",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 109.5,
-        "avg_sentence": 59.7,
-        "long_share": 0.455,
-        "max_paragraph": 191,
-        "paragraphs": 6,
-        "sentences": 11
-      },
-      "score": 88,
-      "source": "maff",
-      "title": "食料システム法に基づく指導について",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 59.7字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T05:06:25.201288+00:00",
-      "attempt": 1,
-      "id": "b2e1a49b6271a848",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 91.4,
-        "avg_sentence": 33.2,
-        "long_share": 0.03,
-        "max_paragraph": 129,
-        "paragraphs": 12,
-        "sentences": 33
-      },
-      "score": 90,
-      "source": "lycorp-press",
-      "title": "LINEヤフー、AIエージェント「Agent i」のアプリを提供開始｜LINEヤフー株式会社",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JAPAN・LYP）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-10T05:23:15.372660+00:00",
       "attempt": 1,
       "id": "836b2380461daad1",
@@ -28246,6 +28215,56 @@
       "title": "SalesforceのAgentforce Coworkerは利用が3カ月で21倍に急増。導入企業は実際の業務をAIエージェントに任せ始めた",
       "warnings": [
         "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T08:00:02.403961+00:00",
+      "attempt": 1,
+      "id": "2a3ac4983c49b69f",
+      "kind": "ai",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 136.3,
+        "avg_sentence": 63.6,
+        "long_share": 0.467,
+        "max_paragraph": 161,
+        "paragraphs": 7,
+        "sentences": 15
+      },
+      "score": 88,
+      "source": "sakana-ai",
+      "title": "マイケル・ロジャース米退役海軍大将、トム・モラン元CIA支局長がSakana AIのシニアアドバイザーに就任",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NSA・CIA・UC）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T08:00:26.644145+00:00",
+      "attempt": 0,
+      "id": "2a3ac4983c49b69f",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.9,
+        "avg_sentence": 44.0,
+        "long_share": 0.095,
+        "max_paragraph": 100,
+        "paragraphs": 14,
+        "sentences": 21
+      },
+      "score": 86,
+      "source": "sakana-ai",
+      "title": "マイケル・ロジャース米退役海軍大将、トム・モラン元CIA支局長がSakana AIのシニアアドバイザーに就任",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NSA・CIA・UC）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
     }
   ],
