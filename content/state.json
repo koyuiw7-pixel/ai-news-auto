@@ -127,7 +127,6 @@
   "major_tries": {},
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
-    "02667be02cad0dd5": "2026-11-07T18:50:54.043233+00:00",
     "0326445f62efbab9": "2026-11-10T18:21:06.372918+00:00",
     "0466210f78aa4c55": "2026-11-11T06:18:54.989337+00:00",
     "0ab48362868db31d": "2026-11-10T18:21:06.372918+00:00",
@@ -158,6 +157,7 @@
     "60944a24710b0d78": "2026-11-09T07:42:55.305009+00:00",
     "632ab217c6f08ade": "2026-11-09T09:38:56.467516+00:00",
     "63b25ab6cf34c929": "2026-11-10T09:04:48.294575+00:00",
+    "67659b4bccb64e40": "2026-11-11T18:50:54.383665+00:00",
     "690c438ade454699": "2026-11-10T09:20:50.649203+00:00",
     "6a1520fe1ed55314": "2026-11-10T18:21:06.372918+00:00",
     "709ccf094f875d5a": "2026-11-10T02:48:53.350891+00:00",
@@ -170,6 +170,7 @@
     "828277d104d357dc": "2026-11-11T08:14:58.602626+00:00",
     "87717d1c826ec2f6": "2026-11-08T01:10:50.926550+00:00",
     "8b761f56da6ddf72": "2026-11-11T02:54:51.172733+00:00",
+    "9403a23a06ef907c": "2026-11-11T18:50:54.383665+00:00",
     "95efafa687a45f09": "2026-11-11T04:30:56.150308+00:00",
     "971847f0c7223a93": "2026-11-10T07:17:00.645387+00:00",
     "9b9469084fa0c1a8": "2026-11-11T07:38:56.415903+00:00",
@@ -187,9 +188,9 @@
     "c3b9ae34f152218c": "2026-11-11T07:16:52.117730+00:00",
     "c3e784ee53def147": "2026-11-10T09:36:51.365678+00:00",
     "c63d1aa22d52b881": "2026-11-09T10:02:58.007406+00:00",
-    "ca7a6e8f8515fc6d": "2026-11-07T18:30:54.073661+00:00",
     "caafd8b201ef9657": "2026-11-10T07:17:00.645387+00:00",
     "d2c5f4e11d401551": "2026-11-11T02:54:51.172733+00:00",
+    "d59119d08c91014e": "2026-11-11T18:50:54.383665+00:00",
     "d684a4d1111b95fb": "2026-11-10T18:21:06.372918+00:00",
     "d85d25074ac5ad46": "2026-11-11T06:18:54.989337+00:00",
     "f423424e36ede3ad": "2026-11-09T01:30:49.435293+00:00",
@@ -5483,14 +5484,6 @@
       "slug": "github-agentic-workflows-generally-available",
       "url": "https://github.blog/changelog/2026-10-28-github-agentic-workflows-generally-available"
     },
-    "1d69506adc9560dd": {
-      "at": "2026-10-28T18:37:15.904906+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "sports",
-      "slug": "womens-futsal-japan-camp-oct-2026",
-      "url": "https://www.jfa.jp/news/00036957/"
-    },
     "1d76284dfb48095d": {
       "at": "2026-11-09T06:49:47.117079+00:00",
       "reason": "prefilter: お知らせ・統計の転載（statistics）",
@@ -7184,14 +7177,6 @@
       "reason": "dedupe: 固有名詞＋見出しが類似（live / 0.31）: google-gemini-live-sprout-plant-robot",
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/preview-web-apps-live-as-your-coding-agent-builds-them-with-amazon-bedrock-agentcore-runtime/"
-    },
-    "393d97d2e4478dbd": {
-      "at": "2026-10-28T18:39:43.943021+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "github-enterprise-includes-copilot",
-      "url": "https://github.blog/changelog/2026-10-28-github-enterprise-now-includes-access-to-github-copilot"
     },
     "39430fca08334293": {
       "at": "2026-11-06T06:05:39.166996+00:00",
@@ -10306,7 +10291,7 @@
       "url": "https://openai.com/index/credit-saison"
     },
     "67659b4bccb64e40": {
-      "at": "2026-11-11T18:31:39.287689+00:00",
+      "at": "2026-11-11T18:51:40.236161+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202611/video-327280.html"
@@ -12730,6 +12715,18 @@
       "skipped": true,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87284?site=nli"
     },
+    "8c999d6885d24711": {
+      "at": "2026-11-11T18:52:46.530862+00:00",
+      "costUsd": 0.0016,
+      "foreignAi": true,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 88,
+      "section": "ai",
+      "slug": "jiostar-openai-ai-discovery-eval",
+      "url": "https://openai.com/index/jiostar-vijay-seshadri"
+    },
     "8cb0d25615cc72cf": {
       "at": "2026-11-11T08:20:38.772605+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（講座）",
@@ -13218,7 +13215,7 @@
       "url": "https://www.env.go.jp/press/press_05801.html"
     },
     "9403a23a06ef907c": {
-      "at": "2026-11-11T18:31:39.287572+00:00",
+      "at": "2026-11-11T18:51:40.236019+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202611/video-327291.html"
@@ -17567,7 +17564,7 @@
       "url": "https://www.kantei.go.jp/jp/105/actions/202611/02hossokushiki.html"
     },
     "d59119d08c91014e": {
-      "at": "2026-11-11T18:31:39.287775+00:00",
+      "at": "2026-11-11T18:51:40.236249+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/chief_cabinet_secretary/202611/video-327263.html"
@@ -21123,31 +21120,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:25:13.180772+00:00",
-      "attempt": 1,
-      "id": "d83fdbcce81621a4",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 65.2,
-        "avg_sentence": 65.2,
-        "long_share": 0.5,
-        "max_paragraph": 97,
-        "paragraphs": 4,
-        "sentences": 4
-      },
-      "score": 94,
-      "source": "jfa",
-      "title": "U-17日本代表 トレーニングパートナー追加招集のお知らせ FIFA U-17ワールドカップカタール2026（11.11-12.13 カタール） #jfa #d",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DF・MF・RB）",
-        "読みやすさ: 文が長い（1文の平均 65.2字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T07:25:26.037019+00:00",
@@ -28470,6 +28442,29 @@
       "title": "Introducing Grok Bot 1.0",
       "warnings": [
         "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T18:52:45.203832+00:00",
+      "attempt": 1,
+      "id": "8c999d6885d24711",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 89.4,
+        "avg_sentence": 38.6,
+        "long_share": 0.068,
+        "max_paragraph": 154,
+        "paragraphs": 19,
+        "sentences": 44
+      },
+      "score": 88,
+      "source": "openai-news",
+      "title": "JioStar’s chief architect on AI discovery at 500M-user scale",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（LLM）"
       ]
     }
   ],
