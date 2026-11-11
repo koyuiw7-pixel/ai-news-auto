@@ -1,0 +1,179 @@
+{
+  "slug": "novo-nordisk-clinical-data-agent-microsoft-foundry",
+  "sourceType": "web",
+  "sourceUrl": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/",
+  "sourceName": "Microsoft Source（ニュースルーム）",
+  "title": "ノボ　ノルディスクの臨床データ分析AI、Microsoftの「Foundry」へ移行　専用環境で数千人の研究者を支援",
+  "seoTitle": "ノボの臨床データ分析AIがMicrosoft Foundryへ移行：移行の理由と4つの変化",
+  "threadsPost": "臨床データを探索的に分析するAIエージェント、運用基盤がどう変わったのか気になる人に、知っておいてほしい話です。\n\nノボ ノルディスクとマイクロソフトが共同開発した臨床試験データの分析エージェントが、専用のクラウド基盤へ移行しました。\n個別のコンテナ管理からプラットフォーム管理へ移り、数千人の医療専門家がより安全に利用できる仕組みになっています。\n\n社内の複雑な分析データを扱うAI基盤、インフラを自前で持つかプラットフォームに任せるか、どちらの設計が理想だと感じますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "tradeoff",
+      "question": "インフラを自前で細かく制御するのと、プラットフォームに任せるの、どちらを重視しますか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "医療データを扱うAIシステムに最も求められるのは何だと感じますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "ノボ ノルディスクとマイクロソフトは11月、臨床試験データの二次分析を支援するAIエージェントを「Microsoft Foundry」のホステッドエージェント環境へ移行したと発表しました。移行後も評価フレームワークや品質管理の仕組みはそのまま引き継がれています。",
+  "description": "ノボ ノルディスクの臨床試験データ分析AIがMicrosoft Foundryへ移行。スケーリングやセッション隔離、評価ループの統合による変化を専門記者が解説します。",
+  "keywords": [
+    "Microsoft Foundry",
+    "ノボ ノルディスク",
+    "AIエージェント",
+    "臨床データ",
+    "生成AI",
+    "Azure",
+    "データ分析"
+  ],
+  "tags": [
+    "生成AI",
+    "LLM",
+    "Microsoft",
+    "医療"
+  ],
+  "highlights": [
+    "ノボ ノルディスクの臨床データ分析AIがMicrosoft Foundryへ移行し、数千人の研究者を支援する体制を強化しました。",
+    "セッション単位の仮想マシン隔離やプライベートネットワークにより、機密性の高い臨床データを安全に処理できるようになりました。",
+    "トレース機能と評価システムを統合し、専門家の検証済みの回答に基づいた継続的な品質改善ループを維持しています。"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "医療分野や機密データを扱うシステムで、AIエージェントの運用基盤の設計やセキュリティ設計に携わる開発者や管理者に役立ちます。"
+    ]
+  },
+  "body": "臨床試験のデータ分析は、あらかじめ決められた手順通りに進むとは限りません。\n\n医療の専門家は、新たな仮説を試したり、患者集団を比較したり、トレンドを可視化したりと、さまざまな角度からデータを探索します。ノボ ノルディスクとマイクロソフトの共同開発チームは、こうした二次分析を支援するAIエージェントを構築しました。さらに、「Microsoft Foundry」のホステッドエージェント環境へ移行しています。\n\n## 運用の仕組みと移行による4つの変化\n\n最初の本番アーキテクチャでは、「Azure Container Apps」と動的セッション、「PostgreSQL」を組み合わせて構築していました。この構成ではすべてのコンポーネントを自前で制御できました。一方で、コンテナのスケーリングやセッションのライフサイクル、ネットワークの管理などを自チームで管理する必要がありました。\n\n「Microsoft Foundry」のホステッドエージェントを利用すると、エージェントのロジックやモデル、ツールはそのまま保持できます。エンドポイントやセッションのコンピュート、状態の保存、スケーリングなどの管理は、プラットフォーム側に任せられるようになりました。具体的には次の4つの点が変化しています。\n\n- スケーリングがセッション単位になり、プラットフォーム側で管理されるようになりました。\n- 各セッションが仮想マシン（VM）で隔離され、機密性の高い臨床データを扱う際の安全性が高まりました。\n- トレース、評価、実験、モニタリングなどの開発ライフサイクルが1つのプラットフォームに統合されました。\n\n## インフラ設計からネットワーク、トレースの教訓\n\n移行プロジェクトから得られた知見として、プライベートネットワークの設計は後回しにせず、初期段階で行うべきだとされています。\n\nホステッドエージェントは、セッション、プロジェクト、エージェント、リビジョンなどがIP使用量に寄与します。そのため、あらかじめピーク時の同時セッション数を見積もり、余裕を持って設計することが推奨されています。\n\n現在のネットワークのガイダンスでは、本番環境には/24のサブネットが推奨されています。小規模な環境の最小は/27とされています。\n\nまた、OpenTelemetryを活用したトレース機能を使うと、ユーザーの入力やAIの出力、モデルの呼び出し、トークン使用量を記録できます。機密データを扱う医療の現場では、テレメトリーデータにも通常のデータと同様に、アクセス制御や最小化、秘匿化の規律が不可欠です。\n\n品質管理の面では、移行前と同じ評価セットや専門家による検証済みの回答が使われています。これにより、新しい環境でも動作を検証できる仕組みが維持されています。これにより、システムの変更が品質に与える影響を確認しながら、継続的な改善を行える環境が保たれています。",
+  "easy": "## ひとことで言うと\n\nノボ ノルディスクの臨床データ分析AIが、マイクロソフトの専用基盤「Microsoft Foundry」へ移行し、数千人の研究者がより安全に使えるようになりました。\n\n臨床データを探索的に調べるAIエージェントを、自前で構築したコンテナ環境から、プラットフォーム側で運用やスケーリングを管理する仕組みへ組み替えました。これにより、セッションごとに独立した安全な環境でのコード実行や、ネットワークの分離が標準で利用できるようになっています。\n\nまた、これまでの評価の仕組みはそのまま引き継がれており、移行にあたって評価の仕組みを作り直す必要はありませんでした。",
+  "channel": "Microsoft Source（ニュースルーム）",
+  "channelId": "",
+  "channelSlug": "microsoft-source",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "What it takes to bring an AI research assistant to thousands of medical experts",
+  "publishedAt": "2026-11-11T15:07:19+00:00",
+  "generatedAt": "2026-11-11T21:58:55.385034+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/novo-nordisk-clinical-data-agent-microsoft-foundry-05bd2c8c.jpg",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "newsType": "general",
+  "todayActions": [
+    "Microsoft Foundryのホステッドエージェントの公式ドキュメントを読む",
+    "社内AIの構築で、プライベートネットワークのサブネットを先に見積もる"
+  ],
+  "qualityScore": 82,
+  "sourcePublishedAt": "2026-11-11T15:07:19+00:00",
+  "detectedAt": "2026-11-11T21:55:01+00:00",
+  "layout": "noir",
+  "summaryLine": "ノボ ノルディスクの臨床データ分析AIがMicrosoft Foundryへ移行し、数千人の研究者を支援する体制を強化しました。",
+  "insight": [
+    {
+      "text": "サブネットはアカウント単位で固定された指定で、後から変更できません。範囲が小さすぎると、容量を増やすときにインフラ全体の移行が必要になることがあります。",
+      "source": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/"
+    },
+    {
+      "text": "スケーリングは、事前に台数を予測して設定するレプリカ数ではなく、使用中のセッション数に合わせて行われます。",
+      "source": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/"
+    },
+    {
+      "text": "Microsoft Agent 365との連携で、企業向けのインベントリ管理、ID、アクセス制御、ライフサイクル管理の道筋が得られると書かれています。",
+      "source": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Microsoft Foundryのホステッドエージェントの公式ドキュメントを読む",
+      "source": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/",
+      "steps": [
+        "記事内のリンク「hosted agent in Microsoft Foundry」を開く",
+        "エージェントの概要と設定の内容を確認する"
+      ],
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/hosted-agents"
+    },
+    {
+      "action": "社内AIの構築で、プライベートネットワークのサブネットを先に見積もる",
+      "source": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/",
+      "steps": [
+        "ピーク時の同時セッション数を見積もる",
+        "「networking guidance」のリンクを開き、必要なサイズを確認する",
+        "余裕を持った範囲で設計する"
+      ],
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/networking-options"
+    }
+  ],
+  "cause": {
+    "text": "自前で管理していた実行基盤の負担（コンテナのスケーリング、セッション管理、会話の保存、ネットワークなど）を減らすための移行です。エージェントのロジックやモデルはそのまま保持されています。",
+    "status": "background",
+    "source": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/"
+  },
+  "worries": [
+    {
+      "q": "患者データの分析は他の利用者と混ざらない？",
+      "a": "各セッションは仮想マシン（VM）で隔離されたサンドボックスで動きます。他のセッションとプロセスや汎用のアプリ用コンテナを共有しないと書かれています。",
+      "source": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/",
+      "action": "社内でAIを使うときは、データを扱う範囲（ネットワークの境界）を先に決めておく。"
+    },
+    {
+      "q": "移行すると、分析の回答の品質は落ちない？",
+      "a": "移行前と同じ評価セットや、専門家が検証した回答が使われています。新しい環境でも動作を検証できる仕組みが保たれていると書かれています。",
+      "source": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/",
+      "action": "変更のたびに同じ評価セットで回答の品質を確認する。"
+    },
+    {
+      "q": "移行したら、セキュリティは自動的に任せられる？",
+      "a": "ホステッドエージェントを使っても、アクセス制御の定義、テレメトリーの最小化と保護、呼び出せるシステムの確認は利用者側の責任だと書かれています。",
+      "source": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/",
+      "action": "アクセス制御を自分で定義し、テレメトリーに記録する情報を最小限にする。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "自社のAIエージェントを専用の実行基盤へ移すべき？",
+      "situation": "自社でAIエージェントを運用している",
+      "recommend": "移行を検討する前に、ネットワーク設計を先に決める",
+      "reason": "サブネットは後から変えにくいと書かれています。ピーク時の同時セッション数を見積もると、移行後の容量不足を減らせます。ただし、セキュリティや品質の管理責任は利用者側に残ると書かれています。",
+      "source": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "サブネットは後から変えにくい、という落とし穴",
+    "cause": "なぜ移したのか、ページが書いていること",
+    "steps": "今日できる確認は2つ",
+    "worries": "患者データは他の利用者と混ざらない？",
+    "guide": "自社でAIを動かすなら、先に決めたいこと"
+  },
+  "depthAt": "2026-11-11T22:00:55+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Microsoft",
+    "provider": "Microsoft Source（ニュースルーム）",
+    "sourceUrl": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/",
+    "original": "https://commandline.microsoft.com/wp-content/uploads/2026/11/from-custom-infrastructure-to-hosted-agents-hero.png",
+    "width": 1200,
+    "height": 600,
+    "at": "2026-11-11T22:00:59+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.483,
+    "y": 0.472,
+    "box": [
+      0.0,
+      0.019,
+      0.966,
+      0.925
+    ],
+    "ar": 2.0,
+    "src": "https://ai-tech-express.jp/img/novo-nordisk-clinical-data-agent-microsoft-foundry-05bd2c8c.jpg"
+  }
+}

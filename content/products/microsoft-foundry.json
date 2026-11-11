@@ -8,24 +8,23 @@
   "companyName": "Microsoft",
   "category": "開発ツール",
   "overview": {
-    "text": "Microsoft Foundryは、AIアプリの開発から運用までを1つの画面で行えるプラットフォームです。Microsoftが提供しています。",
+    "text": "Microsoft Foundryは、AIエージェントの開発やモデル管理を行えるMicrosoftの開発プラットフォームです。2026年9月頃から機能拡張や新機能の発表が行われています。",
     "sources": [
-      "microsoft-foundry-agent-tutorial-azure",
+      "microsoft-foundry-agent-playground-test",
       "microsoft-foundry-model-router-update"
     ]
   },
   "facts": [
     {
       "label": "料金",
-      "value": "200ドル分の無料枠あり、従量課金",
+      "value": "Azure従量課金",
       "sources": [
-        "microsoft-foundry-agent-tutorial-azure",
-        "microsoft-foundry-model-router-update"
+        "microsoft-foundry-agent-playground-test"
       ]
     },
     {
       "label": "提供開始",
-      "value": "提供中（公開プレビュー含む）",
+      "value": "公開プレビュー提供中",
       "sources": [
         "microsoft-foundry-video-models-fal",
         "microsoft-foundry-agent-service-copilot-harness"
@@ -33,51 +32,52 @@
     },
     {
       "label": "日本での提供",
-      "value": "日本から利用できる",
+      "value": "利用できる",
       "sources": [
         "microsoft-foundry-agent-playground-test",
-        "microsoft-foundry-agent-framework-customization"
+        "microsoft-foundry-agent-service-copilot-harness"
       ]
     },
     {
       "label": "使える場所",
       "value": "Microsoft Foundryポータル",
       "sources": [
-        "microsoft-foundry-agent-tutorial-azure"
+        "microsoft-foundry-agent-tutorial-azure",
+        "microsoft-foundry-agent-framework-customization"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者、AIアプリ運用者",
+      "value": "開発者",
       "sources": [
         "microsoft-foundry-agent-playground-test",
-        "microsoft-foundry-agent-tutorial-azure"
+        "microsoft-foundry-video-models-fal"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "主要モデルを同一画面で切り替えて比較検証できます。",
+      "text": "Playgroundを使ってAIエージェントの指示文やツール連携、応答挙動を本番公開前にテストできます。",
       "sources": [
-        "microsoft-foundry-agent-tutorial-azure"
+        "microsoft-foundry-agent-playground-test"
       ]
     },
     {
-      "text": "動画生成AIの5モデルを用いて文章や画像から動画を作れます。",
+      "text": "文章や画像から動画を作れる5つの動画生成AIモデルを利用できます。",
       "sources": [
         "microsoft-foundry-video-models-fal"
       ]
     },
     {
-      "text": "複数モデルを束ねて単一エンドポイントから自動的にルーティングできます。",
+      "text": "ブラウザを自動操作してAPIがないWebシステムやフォームを処理するエージェントを実行できます。",
       "sources": [
-        "microsoft-foundry-model-router-update"
+        "dotnet-11-rc2-python-arm64-foundry-browser-automation"
       ]
     },
     {
-      "text": "AIが画面を直接操作するブラウザ自動化ツールを利用できます。",
+      "text": "Model Router機能により、タスクに合わせて複数の大規模言語モデルへ自動的に処理を振り分けられます。",
       "sources": [
-        "dotnet-11-rc2-python-arm64-foundry-browser-automation"
+        "microsoft-foundry-model-router-update"
       ]
     }
   ],
@@ -89,15 +89,22 @@
       ]
     },
     {
-      "text": "動画生成AIは1秒あたりの単価で決まります。",
+      "text": "動画生成AIモデルの料金は1秒あたりの単価で決まります。",
       "sources": [
         "microsoft-foundry-video-models-fal"
+      ]
+    },
+    {
+      "text": "利用に応じてAzureのAPI従量課金が発生します。",
+      "sources": [
+        "microsoft-foundry-agent-framework-customization",
+        "microsoft-foundry-model-router-update"
       ]
     }
   ],
   "japan": [
     {
-      "text": "日本国内からAzureのアカウントを開設して利用できます。",
+      "text": "日本国内のAzureアカウントから利用できます。",
       "sources": [
         "microsoft-foundry-agent-framework-customization"
       ]
@@ -105,59 +112,53 @@
   ],
   "howto": [
     {
-      "text": "ポータルサイト（ai.azure.com）にアクセスします。",
+      "text": "ポータルサイトにアクセスし、Azureサブスクリプションを登録して始めます。",
       "sources": [
         "microsoft-foundry-agent-tutorial-azure"
       ]
     },
     {
-      "text": "Azureのサブスクリプションを登録して連携させます。",
+      "text": "チャット画面のボタンから直接VS Codeを開いてコードを編集できます。",
       "sources": [
-        "microsoft-foundry-agent-tutorial-azure"
+        "microsoft-foundry-agent-framework-customization"
       ]
     }
   ],
   "differences": [
     {
-      "text": "チャット画面から直接VS Codeを開いてコードを編集できます。",
+      "text": "チャット画面からワンクリックでVS Codeのコードへ直接飛べるようになりました。",
       "sources": [
         "microsoft-foundry-agent-framework-customization"
-      ]
-    },
-    {
-      "text": "サーバーやコンテナの準備なしでエージェントを構築できます。",
-      "sources": [
-        "microsoft-copilot-harness-foundry-agent-builder"
       ]
     }
   ],
   "faq": [
     {
       "q": "無料で使える？",
-      "a": "登録時に付与される200ドル分の無料枠でテストを進められます。",
+      "a": "登録時に付与される200ドル分の無料枠の範囲でテストできます。",
       "sources": [
         "microsoft-foundry-agent-tutorial-azure"
       ]
     },
     {
-      "q": "セキュリティの仕組みは？",
-      "a": "会話の記憶保持や安全性を担保するガードレールを設定できます。",
-      "sources": [
-        "microsoft-foundry-agent-playground-test"
-      ]
-    },
-    {
-      "q": "モデルの自動振り分けはある？",
-      "a": "Model Router機能があり、コストや品質に応じたルーティングが可能です。",
-      "sources": [
-        "microsoft-foundry-model-router-update"
-      ]
-    },
-    {
-      "q": "外部ツールとの連携は？",
-      "a": "MCPを利用してZapierなどの外部サービスと安全に連携できます。",
+      "q": "どんなモデルが使える？",
+      "a": "OpenAIのGPTシリーズに加え、AnthropicやDeepSeekなどの多様なモデルが揃っています。",
       "sources": [
         "microsoft-foundry-agent-tutorial-azure"
+      ]
+    },
+    {
+      "q": "動画生成はできる？",
+      "a": "文章や画像から動画を作れる5つのモデルが公開プレビューで提供されています。",
+      "sources": [
+        "microsoft-foundry-video-models-fal"
+      ]
+    },
+    {
+      "q": "コードの編集方法は？",
+      "a": "チャット画面のボタンから直接VS Codeを開いてエージェントのコードを編集できます。",
+      "sources": [
+        "microsoft-foundry-agent-framework-customization"
       ]
     }
   ],
@@ -170,7 +171,7 @@
     {
       "date": "2026-10-26",
       "slug": "dotnet-11-rc2-python-arm64-foundry-browser-automation",
-      "event": "ブラウザ自動化ツールが一般提供に"
+      "event": "ブラウザ自動化ツールのGA公開"
     },
     {
       "date": "2026-10-29",
@@ -180,7 +181,7 @@
     {
       "date": "2026-10-31",
       "slug": "microsoft-foundry-agent-framework-customization",
-      "event": "VS Code連携を追加"
+      "event": "VS Code連携機能の実演を公開"
     },
     {
       "date": "2026-11-07",
@@ -190,12 +191,12 @@
     {
       "date": "2026-11-07",
       "slug": "microsoft-foundry-agent-service-copilot-harness",
-      "event": "Foundry Agent Serviceを追加"
+      "event": "Copilot harnessのパブリックプレビュー開始"
     },
     {
       "date": "2026-11-11",
       "slug": "microsoft-foundry-agent-playground-test",
-      "event": "Playgroundでの事前テストが可能に"
+      "event": "AIエージェントの事前テスト機能を提供"
     }
   ],
   "related": [
@@ -205,6 +206,7 @@
     "typescript-7"
   ],
   "articles": [
+    "novo-nordisk-clinical-data-agent-microsoft-foundry",
     "microsoft-foundry-agent-playground-test",
     "ibm-microsoft-imagine-enterprise",
     "microsoft-foundry-agent-tutorial-azure",
@@ -225,6 +227,7 @@
     "microsoft-fabric-onelake-ai-stack"
   ],
   "linkFrom": [
+    "novo-nordisk-clinical-data-agent-microsoft-foundry",
     "microsoft-foundry-agent-playground-test",
     "microsoft-foundry-agent-tutorial-azure",
     "microsoft-foundry-video-models-fal",
@@ -238,9 +241,9 @@
     "microsoft-foundry-model-router-auto-evaluation",
     "microsoft-foundry-model-router-update"
   ],
-  "signature": "27145318fc18c4d6",
-  "primarySignature": "edf11fc2842221d2",
+  "signature": "9368515da50d3ded",
+  "primarySignature": "6d72a26846afa78e",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:54+00:00",
-  "updatedAt": "2026-11-11T00:32:48+00:00"
+  "updatedAt": "2026-11-11T22:00:29+00:00"
 }
