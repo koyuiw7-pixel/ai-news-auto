@@ -6,7 +6,7 @@
   "companyName": "Google",
   "category": "AIモデル",
   "overview": {
-    "text": "Gemini 4 Carbonは、Googleが開発したAIモデルです。長時間の開発作業やサイバー防御に特化しており、2026年10月28日に発表されました。",
+    "text": "Gemini 4 Carbonは、Googleが開発したAIモデルです。脆弱性の発見やソフトウェアの修正に強みを持つ最上位モデルとして、2026年10月28日に発表されました。",
     "sources": [
       "google-ai-news-october-2026",
       "gemini-4-carbon-cybersecurity-model"
@@ -15,14 +15,15 @@
   "facts": [
     {
       "label": "料金",
-      "value": "入力100万トークン2ドル、出力10ドル",
+      "value": "入力$2、出力$10（100万トークンあたり）",
       "sources": [
+        "gemini-4-carbon-ai-gateway-half-price",
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
       "label": "提供開始",
-      "value": "2026年11月11日",
+      "value": "2026年11月11日（一般提供）",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
@@ -32,66 +33,70 @@
       "value": "開発者、企業、セキュリティ担当者",
       "sources": [
         "alphaproof-code-signal-verification",
+        "gemini-4-carbon-ai-gateway-half-price",
         "gemini-4-carbon-cybersecurity-model"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "実在するソフトの脆弱性を88.2%の精度で発見します。",
+      "text": "100万トークンのコンテキストウィンドウを備え、大きなコードベースや長い入力を扱えます。",
       "sources": [
+        "gemini-4-carbon-ai-gateway-half-price"
+      ]
+    },
+    {
+      "text": "ソフトウェアの実コードに潜む脆弱性の発見、リスクの検証、修正パッチの作成に対応します。",
+      "sources": [
+        "gemini-4-carbon-ai-gateway-half-price",
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "text": "原因から修正コードを71.0%の精度で作成します。",
+      "text": "複数のエージェントが協調するチームを立ち上げ、複雑な開発作業を分担して進められます。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "text": "複数のエージェントが協調する/swarm機能で大規模な開発作業に対応します。",
-      "sources": [
-        "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "text": "数日間動き続け、複雑な不具合の原因を探し修正します。",
-      "sources": [
-        "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "text": "Signalプロトコルの実コードを約4週間で形式検証しました。",
-      "sources": [
-        "alphaproof-code-signal-verification"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "入力100万トークンあたり2ドル、出力100万トークンあたり10ドルです。",
+      "text": "入力は100万トークンあたり2ドルです。",
       "sources": [
+        "gemini-4-carbon-ai-gateway-half-price",
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "text": "キャッシュ済みの入力は、入力価格から95%引きになります。",
+      "text": "出力は100万トークンあたり10ドルです。",
       "sources": [
+        "gemini-4-carbon-ai-gateway-half-price",
         "gemini-4-carbon-cybersecurity-model"
+      ]
+    },
+    {
+      "text": "VercelのAI Gatewayでは、11月30日まで50%引きで提供されています。",
+      "sources": [
+        "gemini-4-carbon-ai-gateway-half-price"
       ]
     }
   ],
   "japan": [],
   "howto": [
     {
-      "text": "有料プランの開発者・企業はGoogle AI StudioのAPIなどで利用できます。",
+      "text": "すべての有料プランの開発者と企業は、Google AI StudioのAPIやGemini for businessから利用できます。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "text": "Google AI UltraのユーザーはGeminiアプリなどで順次利用できます。",
+      "text": "VercelのAI Gateway経由で呼び出すことができ、CLIの設定1回でClaude CodeやCursorからも選べます。",
+      "sources": [
+        "gemini-4-carbon-ai-gateway-half-price"
+      ]
+    },
+    {
+      "text": "Google AI Ultraのユーザーには、Google AntigravityやGeminiアプリ、Google検索のAIモードで順次展開されます。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
@@ -99,13 +104,13 @@
   ],
   "differences": [
     {
-      "text": "Argonと比較して、安全なコード生成の成功率が2倍以上です。",
+      "text": "同じ世代のGemini 4 Argonに比べて、長い開発作業やサイバー防御などの高度なタスク向けに位置づけられています。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "text": "根拠のない主張がArgonの約半分に抑えられています。",
+      "text": "社内評価では、安全なコードを生成できる成功率がArgonの2倍以上とされています。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
@@ -113,31 +118,26 @@
   ],
   "faq": [
     {
-      "q": "誰に向いているモデルですか？",
-      "a": "複雑な開発作業やサイバー防御を行う開発者や企業に向いています。",
+      "q": "いつから使える？",
+      "a": "2026年11月11日に有料プランの開発者や企業向けに一般提供が開始されました。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "q": "Argonとの違いは何ですか？",
-      "a": "Argonはコード作成や財務分析向けで、Carbonは高度な試行錯誤が必要な作業向けです。",
+      "q": "誰に向いている？",
+      "a": "複雑なソフトウェア開発や長時間のエージェント作業を行う開発者や企業、セキュリティ担当者に向いています。",
       "sources": [
-        "google-ai-news-october-2026",
+        "alphaproof-code-signal-verification",
+        "gemini-4-carbon-ai-gateway-half-price",
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "q": "いつから使えますか？",
-      "a": "2026年11月11日から、有料プランの開発者・企業向けに提供が開始されています。",
+      "q": "どんな機能が使える？",
+      "a": "100万トークンの文脈に対応し、脆弱性の発見や修正パッチの作成、複数エージェントによる協調作業ができます。",
       "sources": [
-        "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "q": "安全性は高いですか？",
-      "a": "不正な指示への耐性が高く、ベンチマークで高い成績を収めています。",
-      "sources": [
+        "gemini-4-carbon-ai-gateway-half-price",
         "gemini-4-carbon-cybersecurity-model"
       ]
     }
@@ -147,6 +147,11 @@
       "date": "2026-10-29",
       "slug": "gemini-4-carbon-cybersecurity-model",
       "event": "Gemini 4 Carbonを発表"
+    },
+    {
+      "date": "2026-11-10",
+      "slug": "gemini-4-carbon-ai-gateway-half-price",
+      "event": "AI Gatewayで半額提供"
     }
   ],
   "related": [
@@ -157,15 +162,17 @@
   ],
   "articles": [
     "alphaproof-code-signal-verification",
+    "gemini-4-carbon-ai-gateway-half-price",
     "google-ai-news-october-2026",
     "gemini-4-carbon-cybersecurity-model"
   ],
   "linkFrom": [
+    "gemini-4-carbon-ai-gateway-half-price",
     "gemini-4-carbon-cybersecurity-model"
   ],
-  "signature": "1e731667a809a1ed",
-  "primarySignature": "06158f37c25b8ab0",
+  "signature": "bfb3ae0fd0040ef7",
+  "primarySignature": "0416cbbc5cd00fd2",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-29T12:27:16+00:00",
-  "updatedAt": "2026-11-10T21:03:42+00:00"
+  "updatedAt": "2026-11-11T00:59:16+00:00"
 }

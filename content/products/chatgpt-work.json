@@ -8,135 +8,114 @@
   "companyName": "OpenAI",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "ChatGPT Workは、企業の業務実務に特化したOpenAIのワークスペースです。2026年9月に発表され、チャットとは別の専用タブで資料作成から外部ツール連携までを自動化します。",
+    "text": "ChatGPT Workは、自然言語の指示から高度なデータ分析やダッシュボードの自動生成を行うビジネス向けAIワークスペースです。OpenAIがEnterpriseプラン向けに提供を開始しました。",
     "sources": [
-      "openai-chatgpt-work-launch",
+      "chatgpt-work-dashboard-generation",
       "openai-chatgpt-work-enterprise-rollout"
     ]
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "Enterprise契約など",
-      "sources": [
-        "openai-chatgpt-work-launch",
-        "openai-chatgpt-work-enterprise-rollout"
-      ]
-    },
-    {
       "label": "提供開始",
-      "value": "2026年9月に順次提供",
+      "value": "2026年7月24日",
       "sources": [
-        "openai-chatgpt-work-launch",
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本から利用できます",
+      "value": "Enterpriseプランの契約ユーザー向けに提供",
       "sources": [
-        "openai-chatgpt-work-launch"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "Web、デスクトップ、モバイル",
-      "sources": [
-        "openai-chatgpt-work-launch",
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
       "label": "向いている人",
-      "value": "データ担当者、ビジネス職",
+      "value": "法人の導入担当やデータ分析を行うビジネス職",
       "sources": [
-        "chatgpt-work-dashboard-generation",
-        "openai-chatgpt-work-launch"
+        "gilbert-tobin-chatgpt-work-case",
+        "openai-chatgpt-work-enterprise-rollout"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "手書きのホワイトボード画像やPDFから、ブランドのスタイルガイドに沿ったインフォグラフィックを生成できます。",
-      "sources": [
-        "openai-chatgpt-work-launch"
-      ]
-    },
-    {
-      "text": "プロンプトからの指示で、メール送信やカレンダーの会議設定といった外部ツールとの連携を自動実行します。",
-      "sources": [
-        "openai-chatgpt-work-launch"
-      ]
-    },
-    {
-      "text": "自然言語の指示から、インタラクティブなダッシュボードを数秒で自動生成できます。",
+      "text": "自然言語の指示から数秒でインタラクティブなダッシュボードを自動生成できます。",
       "sources": [
         "chatgpt-work-dashboard-generation"
       ]
     },
     {
-      "text": "DatabricksやSlack、Google Driveと連携し、データ分析やファンネル分析を実行できます。",
+      "text": "DatabricksやSlack、Google Driveなどのデータを横断して分析を実行します。",
       "sources": [
-        "chatgpt-work-data-agent-launch",
+        "openai-chatgpt-work-product-insights-demo"
+      ]
+    },
+    {
+      "text": "ファンネル分析によりサービス利用のボトルネックを特定し、数値化します。",
+      "sources": [
+        "openai-chatgpt-work-product-insights-demo"
+      ]
+    },
+    {
+      "text": "分析結果のレポートやタスクの割り当てをSlackへ直接投稿できます。",
+      "sources": [
         "openai-chatgpt-work-product-insights-demo"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "Enterpriseプランなどの有料プランに含まれる追加機能として提供されています。",
+      "text": "Enterpriseプラン向けに順次提供されています。",
       "sources": [
-        "openai-chatgpt-work-launch",
         "openai-chatgpt-work-enterprise-rollout"
       ]
     }
   ],
   "japan": [
     {
-      "text": "日本国内の企業やユーザーでも利用できます。",
+      "text": "Enterpriseプランの契約ユーザー向けに提供されています。",
       "sources": [
-        "openai-chatgpt-work-launch"
+        "openai-chatgpt-work-enterprise-rollout"
       ]
     }
   ],
   "howto": [
     {
-      "text": "Webブラウザやデスクトップアプリ、モバイルアプリの画面上部にある「Work」タブに切り替えて利用します。",
+      "text": "Webブラウザ、デスクトップアプリ、モバイルアプリから利用できます。",
       "sources": [
-        "openai-chatgpt-work-launch",
         "openai-chatgpt-work-enterprise-rollout"
       ]
     }
   ],
-  "differences": [
-    {
-      "text": "通常の対話型チャットスペースとは別に、ビジネス文書や企業のアセットを扱う専用のWorkタブが新設されています。",
-      "sources": [
-        "openai-chatgpt-work-launch"
-      ]
-    }
-  ],
+  "differences": [],
   "faq": [
     {
-      "q": "いつから使えますか？",
-      "a": "2026年9月からEnterpriseプランなどのユーザー向けに順次提供されています。",
-      "sources": [
-        "openai-chatgpt-work-launch",
-        "openai-chatgpt-work-enterprise-rollout"
-      ]
-    },
-    {
-      "q": "どんなデバイスで使えますか？",
-      "a": "Webブラウザ、デスクトップアプリ、モバイルアプリのすべての環境で利用できます。",
+      "q": "いつから使える？",
+      "a": "2026年7月24日からEnterpriseプラン向けに順次提供されています。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
-      "q": "メールやカレンダーの操作もできますか？",
-      "a": "プロンプトからメールの送信やカレンダーの会議設定を自動で行うことができます。",
+      "q": "どこからアクセスできる？",
+      "a": "Webブラウザ版、デスクトップアプリ、iOSやAndroidのモバイルアプリから利用可能です。",
       "sources": [
-        "openai-chatgpt-work-launch"
+        "openai-chatgpt-work-enterprise-rollout"
+      ]
+    },
+    {
+      "q": "どのような分析ができる？",
+      "a": "DatabricksやSlackなどのデータを統合し、自然言語の指示でファンネル分析やダッシュボード作成が行えます。",
+      "sources": [
+        "openai-chatgpt-work-product-insights-demo"
+      ]
+    },
+    {
+      "q": "誰に向けた機能？",
+      "a": "Enterpriseプランを導入している企業のビジネス職やデータ担当者に向いています。",
+      "sources": [
+        "openai-chatgpt-work-enterprise-rollout"
       ]
     }
   ],
@@ -147,19 +126,19 @@
       "event": "ChatGPT WorkをEnterpriseプランで順次提供"
     },
     {
-      "date": "2026-09-16",
-      "slug": "openai-chatgpt-work-launch",
-      "event": "ChatGPTに実務向けのChatGPT Workを追加"
-    },
-    {
-      "date": "2026-09-18",
-      "slug": "chatgpt-work-data-agent-launch",
-      "event": "ChatGPT Workにデータエージェントを追加"
-    },
-    {
       "date": "2026-09-18",
       "slug": "chatgpt-work-dashboard-generation",
-      "event": "ChatGPT Workのダッシュボード自動生成を実演"
+      "event": "ダッシュボード自動生成機能を実演"
+    },
+    {
+      "date": "2026-09-18",
+      "slug": "chatgpt-work-tailor-dashboards-demo",
+      "event": "生成したダッシュボードの編集デモを公開"
+    },
+    {
+      "date": "2026-11-12",
+      "slug": "gilbert-tobin-chatgpt-work-case",
+      "event": "法律事務所での年次評価作業の活用事例が公開"
     }
   ],
   "related": [
@@ -169,6 +148,7 @@
     "gpt-6"
   ],
   "articles": [
+    "gilbert-tobin-chatgpt-work-case",
     "chatgpt-codex-shared-usage-limits",
     "openai-oracle-partnership-chatgpt",
     "chatgpt-work-realpage-ai-training",
@@ -195,6 +175,7 @@
     "openai-chatgpt-work-enterprise-rollout"
   ],
   "linkFrom": [
+    "gilbert-tobin-chatgpt-work-case",
     "chatgpt-work-realpage-ai-training",
     "uber-openai-chatgpt-work-enterprise-deployment",
     "chatgpt-work-dashboard-generation",
@@ -213,9 +194,9 @@
     "openai-chatgpt-work-admin-api",
     "openai-chatgpt-work-enterprise-rollout"
   ],
-  "signature": "4c77d53469bef02f",
-  "primarySignature": "d967792fc34eb0df",
+  "signature": "18c3f337ebd4bdb4",
+  "primarySignature": "bec1746c05d81037",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:34:50+00:00",
-  "updatedAt": "2026-11-04T02:39:17+00:00"
+  "updatedAt": "2026-11-11T00:58:55+00:00"
 }
