@@ -8572,6 +8572,20 @@
       "skipped": true,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87260?site=nli"
     },
+    "52c1a0c9377c6505": {
+      "at": "2026-11-11T01:15:45.644741+00:00",
+      "breaking": true,
+      "costUsd": 0.118,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 85,
+      "section": "ai",
+      "slug": "kimi-k3-1-pro-highspeed-bedrock",
+      "url": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/"
+    },
     "52dedc30355aed7e": {
       "at": "2026-11-02T03:31:26.022587+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -20086,33 +20100,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-09T11:24:16.409119+00:00",
-      "attempt": 1,
-      "id": "f23fe86a6ade51a9",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く"
-      ],
-      "readability": {
-        "avg_paragraph": 111.3,
-        "avg_sentence": 61.2,
-        "long_share": 0.55,
-        "max_paragraph": 159,
-        "paragraphs": 11,
-        "sentences": 20
-      },
-      "score": null,
-      "source": "nli-research",
-      "title": "賃金抑制とコーポレート・ガバナンス（CG）改革－リフレ政策を検討する（２）－",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ROE・KPI）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 61.2字・60字超の文が 55% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-09T11:24:44.541801+00:00",
       "attempt": 1,
@@ -27410,6 +27397,30 @@
       "score": 88,
       "source": "google-japan-blog-all",
       "title": "11 月の Pixel Drop：Gemini で毎日のタスクをもっとスマートに。Google Pixel Tag も新発売"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-11T01:15:45.623506+00:00",
+      "attempt": 1,
+      "id": "52c1a0c9377c6505",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 90.2,
+        "avg_sentence": 40.1,
+        "long_share": 0.133,
+        "max_paragraph": 191,
+        "paragraphs": 20,
+        "sentences": 45
+      },
+      "score": 85,
+      "source": "aws-ml-blog",
+      "title": "Introducing Kimi K3.1 Pro on Amazon Bedrock",
+      "warnings": [
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CAD）"
+      ]
     }
   ],
   "short_text_retry": {},

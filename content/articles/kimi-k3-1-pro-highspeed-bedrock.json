@@ -1,0 +1,141 @@
+{
+  "slug": "kimi-k3-1-pro-highspeed-bedrock",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+  "sourceName": "AWS Machine Learning Blog",
+  "title": "Bedrockで「Kimi K3.1 Pro Highspeed」が利用可能に　出力速度は従来版の2〜3倍",
+  "seoTitle": "Kimi K3.1 Pro Highspeedとは？Bedrockでの使い方",
+  "threadsPost": "AIコーディングエージェントを使っている人に、押さえておきたい話です。\n\nAmazon Bedrockで「Kimi K3.1 Pro Highspeed」が使えるようになりました。\nMoonshot AIによると、出力の速さはKimi K3.1 Proの2〜3倍です。\n\n開発用のAIを選ぶとき、速さと精度のどちらを重視しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "expert",
+      "question": "開発用のAIを選ぶとき、速さと精度のどちらを重視しますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "応答が遅くなっても、料金が半額になるなら選びますか？"
+    },
+    {
+      "pattern": "count",
+      "question": "コーディングAIの待ち時間は、1日に合計どれくらいですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "Amazon Bedrockで、Moonshot AIの「Kimi K3.1 Pro Highspeed」が使えるようになりました。出力の速さはKimi K3.1 Proの2〜3倍とされ、コンテキストウィンドウ（一度に読める量）は100万トークンです。「Kimi K3」を使っている開発者は、コード上のモデルIDを変えるだけで試せます。料金はAmazon Bedrockの料金ページで確認する形で、日本向けの案内はまだ発表されていません。",
+  "description": "Amazon Bedrockに「Kimi K3.1 Pro Highspeed」が登場。出力速度はK3.1 Proの2〜3倍で、モデルIDの変更だけで切り替え可能。Flex層は標準価格の半額。使い方と注意点を整理します。",
+  "keywords": [
+    "Kimi K3.1 Pro Highspeed",
+    "Amazon Bedrock",
+    "Moonshot AI",
+    "Kimi K3",
+    "Flex層",
+    "プロンプトキャッシュ",
+    "OpenCode",
+    "オープンウェイト",
+    "AIエージェント",
+    "コーディングAI"
+  ],
+  "tags": [
+    "生成AI",
+    "LLM",
+    "Amazon Bedrock",
+    "Kimi",
+    "AWS"
+  ],
+  "highlights": [
+    "Bedrockに「Kimi K3.1 Pro Highspeed」が登場し、出力速度はK3.1 Proの2〜3倍とMoonshot AIが説明",
+    "「Kimi K3」と同じエンドポイント・APIで、モデルIDの変更だけで試せる",
+    "Flex層は標準価格の半額で、プロンプトキャッシュは256トークン以上の固定部分が対象"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "API従量課金",
+    "free": false,
+    "audience": "開発者",
+    "take": "Kimi K3を使っているなら、モデルIDを変えて速度とコストを小さな割合のトラフィックで比べるとよいでしょう。",
+    "judgedAt": "2026-11-11T01:15:35.979092+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AIエージェントやコーディング支援を自社で組む開発者は、待ち時間の短縮を検証できます。",
+      "Flex層は標準価格の半額で、評価や要約などの急がない処理のコスト削減に向きます。",
+      "まず一部のトラフィックをFlexに移し、遅延と費用を比べてから広げるのが公式の推奨です。"
+    ]
+  },
+  "body": "AWSのブログによると、「Kimi K3.1 Pro Highspeed」はAmazon Bedrock（AWSの生成AI基盤）で使えます。日本での提供や日本語対応は、まだ発表されていません。\n\n「Kimi K3」を使っている開発者には切り替えが簡単です。使っていない人には、何も変わりません。\n\n「Kimi K3.1 Pro Highspeed」は、Moonshot AIが公開したK3.1シリーズの一つです。企業や開発者がアプリに組み込んで使うAIモデルです。\n\n## 前の版との違いは速度と後学習\n\nAWSの発表によると、このモデルはKimi K3に追加の学習（後学習）を加えたものです。構造は、約3兆パラメーター級のオープンウェイト（重みを公開したモデル）で、100万トークンの文脈を扱えます。\n\nMoonshot AIは、追加の後学習で長い作業をこなすエージェント型の処理と、事実の誤りの少なさを狙ったと説明しています。財務モデルの作成や業務文書、ゲームエンジン・3Dシーン・CADスクリプトのコーディングも改善したとしています。\n\nHighspeed版は、出力トークン（AIが文字を数える単位）を作る速さが上がっています。Moonshot AIの説明では、Kimi K3.1 Proの2〜3倍です。\n\nできることは、ツール呼び出し、構造化出力、推論の度合いの設定、画像入力、ストリーミングです。\n\n## 日本の開発者向け：Kimi K3と同じAPIで、モデルIDだけ変える\n\nエンドポイントとAPIはKimi K3と同じです。コードを書かずに試すなら、Bedrockコンソールの「Test」から「Playground」を開き、「Kimi K3.1」を選びます。\n\nコードからは、bedrock-runtimeエンドポイントで次のAPIが使えます。AWSはChat Completionsを推奨しています。\n\n- OpenAI互換のChat CompletionsとResponses\n- Amazon BedrockのConverseとInvoke\n\nモデルへは、クロスリージョン推論プロファイルで接続します。\n\n- global.moonshotai.kimi-k3.1：対応する商用リージョンのどこかで処理します。地域指定のものより1トークンあたりの料金が安く、多くの用途で推奨されています。\n- us.moonshotai.kimi-k3.1：処理を米国内のリージョンに限ります。\n- in.moonshotai.kimi-k3.1：処理をインド国内に限ります。\n\nインド限定の設定は、サイソクが以前に報じた[Kimi K3のインド国内推論](/articles/kimi-k3-bedrock-india-inference)と同じ仕組みです。\n\n推論の度合いは、low・high・maxから選びます。未設定ではmaxになるため、簡単な処理では下げると遅延と出力トークンを減らせます。\n\n## Flex層は標準価格の半額、キャッシュは256トークンから\n\nFlex層は標準価格の半額で、応答が遅くなる可能性があります。モデルの評価、要約、エージェントの裏の処理のように、速さより費用を優先する作業に向きます。リクエストごとに層を選べるため、急ぐ処理にPriority、普段の処理にStandard、費用重視の処理にFlexと使い分けられます。利用枠は3つの層で共有します。\n\n使うには、service_tierにflexを指定します。Converse APIでは、serviceTierに{\"type\": \"flex\"}を指定します。層ごとの利用量は、Amazon CloudWatchのServiceTierとResolvedServiceTierで見られます。AWSは、少量のトラフィックをFlexに回して遅延と費用を比べてから、割合を増やすよう勧めています。\n\nエージェントや開発支援ツールは、システム指示やツール定義のような同じ前半部分を毎回送ります。このモデルは繰り返しの前半部分を自動でキャッシュし、明示的なキャッシュ指定でヒット率を高められます。条件は次のとおりです。\n\n- Chat Completions、Responses、Invokeで使え、Converseでは使えません\n- 区切りのprompt_cache_breakpointは、256トークン以上の固定内容の後に置きます\n- キャッシュは少なくとも30分間保持されます\n- 書き込みは通常の入力より高く、読み出しは割引料金で課金されます\n- 読み出しは、毎分の入力トークン枠に数えられません\n\n## データは学習に使われず、Moonshot AIにも渡らない\n\nAWSによると、データはAWSのデータ境界内で処理され、Moonshot AIには共有されず、モデルの学習にも使われません。推論リクエストではゼロデータ保持が常に有効です。ゼロオペレーターアクセスにより、AWSの運用担当者も推論中のプロンプトと応答を見られません。\n\n## OpenCodeに接続すると編集とテストの待ちが短くなる\n\nOpenCodeは、ターミナルで動くオープンソースのコーディングエージェントです。Bedrockのチャット補完API経由で、このモデルをつなげられます。Bedrockコンソールの「API keys」で鍵を作り、設定ファイルにプロバイダーを書きます。\n\n短期の鍵は最長12時間有効で、作成したリージョンでのみ動き、本番用に推奨されています。長期の鍵は試用向けです。\n\nAWSは、速度がエージェント型コーディングで特に効くと説明しています。エージェントは、ファイルの読み込み、変更計画、編集、テスト、修正を何度も繰り返し、各呼び出しが終わるまで次に進めません。出力が速ければ、その1回1回が短くなります。\n\n編集部の見方として、速度の優位性は2〜3倍というMoonshot AIの自己申告です。自社の作業で測ってから切り替えるのが確実です。\n\n## まだ分からないこと\n\n- 料金の具体額はAmazon Bedrockの料金ページ参照で、この発表には示されていません。\n- 対応リージョンはモデルカードとリージョン別提供状況のページで確認する必要があります。\n- 日本語の性能や、日本のリージョンでの提供はまだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nAmazon Bedrockで、文章やコードを速く作れるAI「Kimi K3.1 Pro Highspeed」が使えるようになりました。Moonshot AIによると、出力の速さはKimi K3.1 Proの2〜3倍です。\n\n## 使い始めるには\n\n「Kimi K3」をすでに使っている開発者は、プログラム内のモデルIDを書き換えるだけで試せます。コードを書かずに試したい場合は、Bedrockの管理画面にある試用の場で選べます。\n\n## コストを抑える方法\n\n公式ヘルプの手順を確認してください（[AWS Machine Learning Blogの案内](https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/)）。料金は標準の半額ですが、応答が遅くなることがあります。\n\n同じ指示文の前半を何度も送る場合は、キャッシュ機能で時間と入力コストを減らせます。価格の詳細はBedrockの料金ページで確認できます。",
+  "channel": "AWS Machine Learning Blog",
+  "channelId": "",
+  "channelSlug": "aws-ml-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Introducing Kimi K3.1 Pro on Amazon Bedrock",
+  "publishedAt": "2026-11-11T01:07:19+00:00",
+  "generatedAt": "2026-11-11T01:15:35.979082+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/kimi-k3-1-pro-highspeed-bedrock-c5b390ef.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "Kimi K3.1 Pro HighspeedはAmazon Bedrockのどの画面で試せる？",
+      "a": "コンソールの「Test」から「Playground」を開き、「Kimi K3.1」を選べば、コードを書かずに試せます。コードから使う場合は、bedrock-runtimeエンドポイントを利用します。"
+    },
+    {
+      "q": "Kimi K3.1 Pro Highspeedを呼び出すIAMの権限は何が必要？",
+      "a": "対象の推論プロファイルに対し、bedrock:InvokeModelとbedrock:InvokeModelWithResponseStreamが必要です。ベアラートークンで認証するなら、bedrock:CallWithBearerTokenも追加します。"
+    },
+    {
+      "q": "OpenCodeで使うBedrockのAPIキーはどれを選ぶ？",
+      "a": "短期キーは最長12時間有効で、作成したリージョンでのみ動き、本番用に推奨されています。長期キーは試用向けとされています。"
+    }
+  ],
+  "todayActions": [
+    "Kimi K3を使っているなら、テスト環境でモデルIDをglobal.moonshotai.kimi-k3.1に変えて速度を測る",
+    "評価や要約などの急がない処理は、service_tierをflexにして標準との費用を比べる",
+    "256トークン以上の固定指示文を送る処理は、prompt_cache_breakpointでキャッシュのヒットを確認する"
+  ],
+  "relatedSlugs": [
+    "kimi-k3-bedrock-india-inference"
+  ],
+  "qualityScore": 85,
+  "breaking": true,
+  "sourcePublishedAt": "2026-11-11T01:07:19+00:00",
+  "detectedAt": "2026-11-11T01:14:20+00:00",
+  "fastLane": true,
+  "speedMinutes": 12,
+  "layout": "noir",
+  "summaryLine": "Bedrockに「Kimi K3.1 Pro Highspeed」が登場し、出力速度はK3.1 Proの2〜**3倍**とMoonshot AIが説明",
+  "imageCredit": {
+    "kind": "official",
+    "org": "AWS",
+    "provider": "AWS Machine Learning Blog",
+    "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+    "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/02/ML-22229-featured-image.png",
+    "width": 1152,
+    "height": 576,
+    "at": "2026-11-11T01:16:18+00:00",
+    "imageKind": "banner"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.501,
+    "y": 0.643,
+    "box": [
+      0.037,
+      0.287,
+      0.966,
+      1.0
+    ],
+    "ar": 2.0,
+    "src": "https://ai-tech-express.jp/img/kimi-k3-1-pro-highspeed-bedrock-c5b390ef.jpg"
+  }
+}
