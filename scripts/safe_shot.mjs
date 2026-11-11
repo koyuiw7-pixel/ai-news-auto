@@ -89,7 +89,11 @@ await page.goto(target.href, { waitUntil: "load", timeout: 60000 });
 await page.evaluate(() => document.fonts?.ready);
 await page.waitForTimeout(800);
 const scrollTo = opt("scroll-to", "");
-if (scrollTo) await page.locator(scrollTo).first().scrollIntoViewIfNeeded();
+if (scrollTo) {
+  await page.locator(scrollTo).first().scrollIntoViewIfNeeded();
+  // 遅れて読む写真（loading="lazy"）が出るまで待つ
+  await page.waitForTimeout(1500);
+}
 const selector = opt("selector", "");
 if (selector) await page.locator(selector).first().screenshot({ path: out });
 else await page.screenshot({ path: out, fullPage: flag("full") });
