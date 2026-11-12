@@ -5525,6 +5525,17 @@
       "slug": "rakuten-card-revo-fee-calc-postponed",
       "url": "https://www.rakuten-card.co.jp/info/news/20261106/"
     },
+    "204a02e3308ad97e": {
+      "at": "2026-11-12T04:33:53.420407+00:00",
+      "costUsd": 0.0102,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 94,
+      "section": "sports",
+      "slug": "dohaku-masato-albirex-niigata-special-player",
+      "url": "https://www.jfa.jp/news/00037016/"
+    },
     "20954e3ac0ff87f7": {
       "at": "2026-11-04T04:24:46.782856+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -8822,12 +8833,6 @@
       "slug": "smartwatch-hypertension-detection-ai",
       "url": "https://research.google/blog/detecting-signs-of-hypertension-using-wearable-sensors/"
     },
-    "56ba5261efb5221e": {
-      "at": "2026-10-29T04:31:38.854871+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（ブース）",
-      "skipped": true,
-      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1215_4788.html"
-    },
     "56cccc4ff18aac82": {
       "at": "2026-11-05T10:41:34.989313+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -8910,13 +8915,6 @@
       "section": "sports",
       "slug": "gamba-osaka-youth-promotion-2026",
       "url": "https://www.jleague.jp/news/article/35330/?navicode=j1"
-    },
-    "5886c5f29f0241fb": {
-      "at": "2026-10-29T04:31:38.854810+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1614字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102707"
     },
     "588776d5fd509bfe": {
       "at": "2026-11-05T14:11:27.460900+00:00",
@@ -18460,12 +18458,6 @@
       "skipped": true,
       "url": "https://www.nomura-re-hd.co.jp/news/005005.html"
     },
-    "ebee271797294dcb": {
-      "at": "2026-10-29T04:31:23.344370+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/main_sosiki/singi/chizai/02zaisei02_04001397_00975.html"
-    },
     "ec2079a5cdf6ce4a": {
       "at": "2026-10-30T12:17:55.401449+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -20525,86 +20517,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-10T19:02:20.708319+00:00",
-      "attempt": 1,
-      "id": "b73105fe4ec5f060",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "本文「ほかの機種では、今回の発表で何かが変わることはありません」→ 元記事では motorola signature 27 にも Rambler が来ると書かれており、他機種への変化がないという記述は元記事と矛盾する。",
-        "「日本のAndroid利用者に関係するのは、タスク自動化の対象国に日本が加わったこと」→ 元記事は英国・インド・日本への拡大と書くのみで、日本での提供開始時期は示されていない。記事自体は未発表と書いているが、「加わった」という書き方は提供済みのように読める。"
-      ],
-      "readability": {
-        "avg_paragraph": 108.3,
-        "avg_sentence": 43.3,
-        "long_share": 0.28,
-        "max_paragraph": 165,
-        "paragraphs": 10,
-        "sentences": 25
-      },
-      "score": 72,
-      "source": "google-blog-all",
-      "title": "Gemini Intelligence: New features, on more devices",
-      "warnings": [
-        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（XL・RAM）",
-        "読みやすさ: 文が長い（1文の平均 43.3字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T19:02:42.501025+00:00",
-      "attempt": 1,
-      "id": "b73105fe4ec5f060",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 109.0,
-        "avg_sentence": 43.6,
-        "long_share": 0.28,
-        "max_paragraph": 165,
-        "paragraphs": 10,
-        "sentences": 25
-      },
-      "score": 92,
-      "source": "google-blog-all",
-      "title": "Gemini Intelligence: New features, on more devices",
-      "warnings": [
-        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（XL・RAM）",
-        "読みやすさ: 文が長い（1文の平均 43.6字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T19:03:08.889685+00:00",
-      "attempt": 0,
-      "id": "b73105fe4ec5f060",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（43.6→42.1字）"
-      ],
-      "readability": {
-        "avg_paragraph": 109.0,
-        "avg_sentence": 43.6,
-        "long_share": 0.28,
-        "max_paragraph": 165,
-        "paragraphs": 10,
-        "sentences": 25
-      },
-      "score": 92,
-      "source": "google-blog-all",
-      "title": "Gemini Intelligence: New features, on more devices",
-      "warnings": [
-        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（XL・RAM）",
-        "読みやすさ: 文が長い（1文の平均 43.6字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-10T19:22:10.431590+00:00",
@@ -28046,6 +27958,86 @@
         "初めて出たところで言い換えていない略語（SAP・ECC・ABAP）",
         "読みやすさ: 文が長い（1文の平均 61.7字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 135.8字・最長 238字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T04:33:23.115828+00:00",
+      "attempt": 1,
+      "id": "204a02e3308ad97e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文「認定日は2016年ではなく11月10日付となっています。」→ 元記事に2016年への言及はなく、年号の誤りを訂正するような一文が根拠なく挿入されている。読者を混乱させる誤った日付情報",
+        "かんたん版「J1の舞台で」→ 元記事は受入先アルビレックス新潟のカテゴリーに触れておらず、J1での出場とする記述は元記事に無い",
+        "本文「今シーズンも多くの大学生や高校生が認定を受けており、若手選手の育成と強化の重要なルート」→ 関連ニュースの件数や位置づけを具体的に示さず、評価を含む一般化で、根拠は関連ページの見出し一覧に留まる",
+        "「名古屋グランパスのアカデミー」→ 元記事は名古屋グランパスU-12・U-15としか書いておらず、アカデミーという呼称は言い換えとして軽微な誇張"
+      ],
+      "readability": {
+        "avg_paragraph": 90.5,
+        "avg_sentence": 60.3,
+        "long_share": 0.667,
+        "max_paragraph": 132,
+        "paragraphs": 4,
+        "sentences": 6
+      },
+      "score": 62,
+      "source": "jfa",
+      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に道白優斗選手（専修大）を認定 #jfa",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "初めて出たところで言い換えていない略語（JFA）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T04:33:36.021897+00:00",
+      "attempt": 1,
+      "id": "204a02e3308ad97e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.7,
+        "avg_sentence": 69.5,
+        "long_share": 1.0,
+        "max_paragraph": 132,
+        "paragraphs": 3,
+        "sentences": 4
+      },
+      "score": 93,
+      "source": "jfa",
+      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に道白優斗選手（専修大）を認定 #jfa",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "初めて出たところで言い換えていない略語（JFA）",
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T04:33:49.010704+00:00",
+      "attempt": 0,
+      "id": "204a02e3308ad97e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 69.5,
+        "avg_sentence": 46.3,
+        "long_share": 0.333,
+        "max_paragraph": 76,
+        "paragraphs": 4,
+        "sentences": 6
+      },
+      "score": 94,
+      "source": "jfa",
+      "title": "2026/27シーズン JFA・Ｊリーグ特別指定選手に道白優斗選手（専修大）を認定 #jfa",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "初めて出たところで言い換えていない略語（JFA）",
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
       ]
     }
   ],
