@@ -63,7 +63,7 @@
   "videoTitle": "三菱UFJ銀行、auじぶん銀行あて振込が2027年4月から有料に",
   "publishedAt": "2026-11-12T11:15:56.344227+00:00",
   "generatedAt": "2026-11-12T11:17:02.444562+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/mufg-aujibun-transfer-fee-2027-figure-868bf350.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -74,9 +74,9 @@
     }
   ],
   "todayActions": [
-    "毎月auじぶん銀行へ定額自動送金している場合は、2027年3月31日までに送金の額と回数を確かめる。",
-    "三菱UFJダイレクトで2027年3月31日に振り込む予定があるなら、23時頃から4月1日1時頃の時間帯を避ける。",
-    "iDeCoに加入しているなら、2027年1月26日の引き落とし分から加入中の手数料が120円（月額）になることを押さえる。"
+    "毎月の定額自動送金の額と回数を確かめ、3月31日までの送金予定を決める",
+    "口座間の送金はCOIN+を使うと手数料0円になるか、案内を確かめる",
+    "iDeCoの加入中の手数料が月額120円になることを、公式サイトで確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -131,5 +131,155 @@
   ],
   "detectedAt": "2026-11-12T11:18:28+00:00",
   "layout": "noir",
-  "summaryLine": "三菱UFJ銀行からauじぶん銀行への振込は、2027年4月1日から「他行あて扱い」に改定されます。"
+  "summaryLine": "三菱UFJ銀行からauじぶん銀行への振込は、2027年4月1日から「他行あて扱い」に改定されます。",
+  "insight": [
+    {
+      "text": "「COIN+（コインプラス）」を使うと、口座間の送金が手数料0円でできると案内されています。",
+      "source": "https://www.jibunbank.co.jp/announcement/2026/1001_01.html"
+    },
+    {
+      "text": "「スーパー普通預金（メインバンク プラス）」から他行あてに振り込むと、お取引内容によっては無料になると書かれています。",
+      "source": "https://www.bk.mufg.jp/tesuuryou/furikomi/ichiranhyo.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "みずほ銀行 確定拠出年金コールセンター",
+      "url": "https://www.mizuhobank.co.jp/oshirase/ideco_fee.html",
+      "source": "https://www.mizuhobank.co.jp/oshirase/ideco_fee.html",
+      "howTo": [
+        "ホーム",
+        "お知らせ一覧",
+        "iDeCo加入者に係る手数料見直しのご案内"
+      ],
+      "phone": "0120–867–401",
+      "hours": "平日 9時00分～21時00分／土・日曜日 9時00分～17時00分",
+      "note": "12月31日～1月3日、祝日・振替休日、ゴールデンウィークの一部の日およびメンテナンスの日は利用できません。"
+    },
+    {
+      "name": "auじぶん銀行 お問い合わせ",
+      "url": "https://www.jibunbank.co.jp/help/",
+      "source": "https://www.jibunbank.co.jp/announcement/2026/1001_01.html",
+      "howTo": [
+        "ホーム",
+        "お問い合わせ"
+      ]
+    },
+    {
+      "name": "三菱UFJ銀行 振込手数料一覧（個人のお客さま）",
+      "url": "https://www.bk.mufg.jp/tesuuryou/furikomi/ichiranhyo.html",
+      "source": "https://www.bk.mufg.jp/tesuuryou/furikomi/ichiranhyo.html",
+      "note": "本人確認手続きが済んでいない場合は、10万円を超えるキャッシュカードでの振込はできません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "毎月の定額自動送金の額と回数を確かめ、3月31日までの送金予定を決める",
+      "source": "https://www.bk.mufg.jp/info/20261001_aujibun.html",
+      "steps": [
+        "定額自動送金サービスの設定内容を開く",
+        "送金の額（3万円未満・以上）と回数を書き出す",
+        "2027年3月31日までに送る分を決める"
+      ],
+      "url": "https://www.bk.mufg.jp/tesuuryou/furikomi/ichiranhyo.html"
+    },
+    {
+      "action": "口座間の送金はCOIN+を使うと手数料0円になるか、案内を確かめる",
+      "source": "https://www.jibunbank.co.jp/announcement/2026/1001_01.html",
+      "steps": [
+        "「詳しくはこちら」でCOIN+の案内を開く",
+        "対象の送金が手数料0円か確かめる"
+      ],
+      "url": "https://www.jibunbank.co.jp/announcement/2026/1001_01.html"
+    },
+    {
+      "action": "iDeCoの加入中の手数料が月額120円になることを、公式サイトで確かめる",
+      "source": "https://www.mizuhobank.co.jp/oshirase/ideco_fee.html",
+      "steps": [
+        "iDeCo公式サイトで手数料の内容を確かめる",
+        "2027年1月26日の引き落とし分から適用と確認する"
+      ],
+      "url": "https://www.mizuhobank.co.jp/external.html?site_id=4767"
+    }
+  ],
+  "cause": {
+    "text": "auじぶん銀行によると、auじぶん銀行と三菱UFJ銀行の資本関係の変更を踏まえ、これまでの手数料体系を他の金融機関と同様のものに見直すためとされています。",
+    "status": "stated",
+    "source": "https://www.jibunbank.co.jp/announcement/2026/1001_01.html"
+  },
+  "worries": [
+    {
+      "q": "毎月の定額自動送金は、いくら増えますか？",
+      "a": "定額自動送金の手数料は、3万円未満が110円から264円、3万円以上が330円から550円になります（税込）。取扱手数料は従前と同額で、実質的な変更はないとされています。",
+      "source": "https://www.bk.mufg.jp/info/20261001_aujibun.html",
+      "action": "毎月の送金の額と回数を確かめ、2027年3月31日までにまとめ方を決めておく"
+    },
+    {
+      "q": "ATMから振り込むと、いくらになりますか？",
+      "a": "ATM（カード）は、個人の当行カードの場合は110円から275円、法人・団体は440円から770円になります（税込）。ATM（現金）は550円から880円です。",
+      "source": "https://www.bk.mufg.jp/info/20261001_aujibun.html",
+      "action": "ATMより三菱UFJダイレクトの方が安いので、振込の前に手数料の表を見比べる",
+      "actionSource": "https://www.bk.mufg.jp/tesuuryou/furikomi/ichiranhyo.html"
+    },
+    {
+      "q": "3月31日までに予約した振込は、いつの手数料になりますか？",
+      "a": "2027年3月31日（水）までに指定日振込（振込予約）を行った振込は、振込指定日が4月になっても改定前の手数料が適用されます。",
+      "source": "https://www.jibunbank.co.jp/announcement/2026/1001_01.html",
+      "action": "4月に送る予約振込は、2027年3月31日までに予約しておけば改定前の手数料になる"
+    },
+    {
+      "q": "iDeCoの手数料も上がりますか？",
+      "a": "加入中の手数料は、105円（掛金拠出時）から120円（月額）に変わります。2027年1月26日の口座引き落とし分の掛金から適用され、加入者の手続きは不要です。",
+      "source": "https://www.mizuhobank.co.jp/oshirase/ideco_fee.html",
+      "action": "2027年1月の引き落としから月額120円になるので、家計の見直しに入れておく"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "定額自動送金で毎月送っていたら、どうする？",
+      "situation": "毎月、auじぶん銀行へ定額で送っている",
+      "recommend": "2027年3月31日までに送り方を見直す価値がある",
+      "reason": "定額自動送金は、3万円未満が110円から264円、3万円以上が330円から550円（税込、2027年4月1日から）になります。取扱手数料の実質的な変更はないとされています。",
+      "source": "https://www.bk.mufg.jp/info/20261001_aujibun.html"
+    },
+    {
+      "question": "年に数回だけ振り込むなら、どうする？",
+      "situation": "年に数回、ATMやダイレクトで振り込む",
+      "recommend": "急がなくてよい",
+      "reason": "ATM（カード）は110円から275円、三菱UFJダイレクトは3万円未満が無料から154円、3万円以上が無料から220円になります（税込）。振込の前に方法を比べると安く済みます。",
+      "source": "https://www.bk.mufg.jp/info/20261001_aujibun.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "手数料を抑える方法は、公式ページにもあった",
+    "cause": "なぜ手数料が変わるのか、わかっていること",
+    "steps": "今日やることは、送金の額と回数の確認から",
+    "desk": "問い合わせ先と、確かめるページ",
+    "worries": "定額送金やATMの振込、iDeCoは大丈夫？",
+    "guide": "まとめて送るか、今のままか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-12T11:32:44+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "三菱UFJ銀行からauじぶん銀行への振込、2027年4月から有料に",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T11:34:55+00:00"
+  },
+  "imageFocus": {
+    "x": 0.525,
+    "y": 0.384,
+    "box": [
+      0.106,
+      0.048,
+      0.944,
+      0.72
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/mufg-aujibun-transfer-fee-2027-figure-868bf350.jpg"
+  }
 }

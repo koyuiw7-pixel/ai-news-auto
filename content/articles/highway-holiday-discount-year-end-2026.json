@@ -60,7 +60,7 @@
   "videoTitle": "高速道路の休日割引、2026年末年始は12月26日から1月3日の土日祝が使えません",
   "publishedAt": "2026-11-12T11:25:11.923850+00:00",
   "generatedAt": "2026-11-12T11:25:55.639927+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/highway-holiday-discount-year-end-2026-figure-947f2e7e.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "general",
@@ -76,8 +76,7 @@
   ],
   "todayActions": [
     "出発日と帰着日が、12月26日・27日、2027年1月1日〜3日に重ならないか確かめる",
-    "重なるなら、12月19日・20日の土日に寄せられないか検討する",
-    "各社のルート検索で、通常料金を調べて予算に入れる"
+    "ドラぷらの料金・ルート検索で、出発地と目的地の通常料金を調べて予算に入れる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -117,5 +116,139 @@
   "detectedAt": "2026-11-12T11:26:07+00:00",
   "searchTitle": "高速の休日割引は年末年始に使えない　12月26日〜1月3日",
   "layout": "noir",
-  "summaryLine": "年末年始の5日間は、土日祝でも休日割引が使えない適用除外日になる"
+  "summaryLine": "年末年始の5日間は、土日祝でも休日割引が使えない適用除外日になる",
+  "insight": [
+    {
+      "text": "1ナンバーの車両は中型車以上となり対象外、4ナンバーは普通車以下となり対象になります。普通車でけん引をすると対象外です。",
+      "source": "https://dc2.c-nexco.co.jp/etc/discount/etc/holiday/index.html"
+    },
+    {
+      "text": "2026年11月21日～23日は「渋滞の激化を避けるため休日割引が適用されません」と案内されています。年内の土日の予定を立てるときは、この3日も外してください。",
+      "source": "https://dc2.c-nexco.co.jp/etc/discount/etc/holiday/index.html"
+    },
+    {
+      "text": "休日割引の時間判定は、入口料金所と出口料金所の通過時間を基本として判定されます。",
+      "source": "https://www.w-nexco.co.jp/etc/etc_info/etc_time/discount_holiday.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "NEXCO東日本 2026年度における休日割引適用日のお知らせ",
+      "url": "https://www.e-nexco.co.jp/news/important_info/2026/0317/00016041.html",
+      "source": "https://www.e-nexco.co.jp/news/important_info/2026/0317/00016041.html",
+      "howTo": [
+        "コーポレートトップ",
+        "お知らせ",
+        "ご利用に関する重要なお知らせ",
+        "2026年度における休日割引適用日のお知らせ"
+      ],
+      "note": "別紙【PDF：71KB】のカレンダーで、適用日（■）と適用除外日（×）を確かめられます。"
+    },
+    {
+      "name": "NEXCO中日本 休日割引のページ",
+      "url": "https://dc2.c-nexco.co.jp/etc/discount/etc/holiday/index.html",
+      "source": "https://dc2.c-nexco.co.jp/etc/discount/etc/holiday/index.html",
+      "howTo": [
+        "ETC割引",
+        "休日割引"
+      ],
+      "note": "割引条件、適用区間、適用除外の日を案内しています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "出発日と帰着日が、12月26日・27日、2027年1月1日〜3日に重ならないか確かめる",
+      "source": "https://www.e-nexco.co.jp/news/cms_assets/news/2026/03/17/01.pdf",
+      "steps": [
+        "NEXCO東日本の別紙カレンダーを開く",
+        "■が適用日、×が適用除外日",
+        "12月26日・27日と1月1日〜3日を見る"
+      ],
+      "url": "https://www.e-nexco.co.jp/news/cms_assets/news/2026/03/17/01.pdf"
+    },
+    {
+      "action": "ドラぷらの料金・ルート検索で、出発地と目的地の通常料金を調べて予算に入れる",
+      "source": "https://www.e-nexco.co.jp/news/important_info/2026/0317/00016041.html",
+      "steps": [
+        "ドラぷら（ドライバーズサイト）を開く",
+        "料金・ルート検索を選ぶ",
+        "出発地と目的地を入れて通常料金を見る"
+      ],
+      "url": "https://www.driveplaza.com/"
+    }
+  ],
+  "cause": {
+    "text": "年末年始は交通混雑期のため、休日割引を適用しない期間になっています。観光需要の平準化や交通分散が理由とされています。",
+    "status": "background",
+    "source": "https://www.w-nexco.co.jp/etc/etc_info/etc_time/discount_holiday.html"
+  },
+  "worries": [
+    {
+      "q": "年末年始に走ると、料金はいくら高くなる？",
+      "a": "広島～名古屋西は通常料金10,200円、休日割引が使える日は7,600円で、差額は2,600円です。宮崎～武雄南は7,270円と5,090円で、差額は2,180円です。",
+      "source": "https://www.w-nexco.co.jp/etc/etc_info/etc_time/discount_holiday.html",
+      "action": "出発前に、ドラぷらで自分の区間の通常料金を確かめて予算に入れる。",
+      "actionSource": "https://www.e-nexco.co.jp/news/important_info/2026/0317/00016041.html"
+    },
+    {
+      "q": "軽自動車やETCカード払いでも割引は受けられる？",
+      "a": "対象は軽自動車等と普通車で、中型車・大型車・特大車は対象外です。ETCカードで払った場合は、ETC車載器を取り付けていないと休日割引は適用されません。",
+      "source": "https://www.w-nexco.co.jp/etc/etc_info/etc_time/discount_holiday.html",
+      "action": "ETC車載器を付けて、入口の料金所をETC無線通信で通るか確かめる。"
+    },
+    {
+      "q": "年末年始に深夜割引も使えなくなる？",
+      "a": "NEXCO東日本は2024年2月の発表で、適用除外日でも深夜割引など休日割引以外の割引は変わらないとしています。休日割引と深夜割引は重複せず、割引額の大きい方が適用されます。",
+      "source": "https://www.e-nexco.co.jp/pt/pressroom/head_office/2024/0216/00013489.html",
+      "action": "深夜に走る予定なら、深夜割引の条件を満たすかを事前に確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "年末年始の5日間に重なるなら、日程を動かす？",
+      "situation": "出発か帰着のどちらかが5日間に入る",
+      "recommend": "12月19日・20日の土日に寄せられるか検討する価値がある",
+      "reason": "除外日に広島～名古屋西を走ると、通常料金10,200円に対し割引料金は7,600円で、2,600円の差が出ます（2026年度の走行例）。",
+      "source": "https://www.w-nexco.co.jp/etc/etc_info/etc_time/discount_holiday.html"
+    },
+    {
+      "question": "年末年始の5日間から日程を動かせないときは？",
+      "situation": "5日間の中でしか出発できない",
+      "recommend": "通常料金で予算を組むのが確実",
+      "reason": "割引の見込みを立てずに通常料金で予算を組むと、差額で慌てずに済みます。割引は地方部区間の分だけに効くため、実際の差は区間で変わります。",
+      "source": "https://dc2.c-nexco.co.jp/etc/discount/etc/holiday/index.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "1ナンバーとけん引車は、休日割引の対象外になる",
+    "cause": "なぜ年末年始は割引がないのか",
+    "steps": "5日間に重なるか、まず確かめる",
+    "desk": "公式のカレンダーと料金の調べ方",
+    "worries": "料金の差、車やETCの条件は大丈夫？",
+    "guide": "日程を動かすか、通常料金で組むか"
+  },
+  "depthAt": "2026-11-12T11:31:22+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "年末年始の高速道路、土日祝でも割引なしの5日間",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T11:34:26+00:00"
+  },
+  "imageFocus": {
+    "x": 0.539,
+    "y": 0.405,
+    "box": [
+      0.094,
+      0.06,
+      0.984,
+      0.75
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/highway-holiday-discount-year-end-2026-figure-947f2e7e.jpg"
+  }
 }

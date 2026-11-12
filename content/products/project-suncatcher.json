@@ -6,10 +6,11 @@
   "companyName": "Google",
   "category": "半導体・インフラ",
   "overview": {
-    "text": "Project Suncatcherは、宇宙空間でAIの計算処理を行うGoogleの長期研究プロジェクトです。2026年9月に発表されました。",
+    "text": "Project Suncatcherは、宇宙空間にデータセンターを構築するGoogleの長期研究です。太陽光発電を利用し、軌道上でAI処理を行う基盤を目指しています。2026年9月から10月にかけて最新の技術進捗が発表されました。",
     "sources": [
       "google-project-suncatcher-satellite-response",
-      "https://www.youtube.com/watch?v=o1JK79jszqo"
+      "google-project-suncatcher-thermal-engineering",
+      "google-project-suncatcher-laser-1-6tbps"
     ]
   },
   "facts": [
@@ -17,23 +18,19 @@
       "label": "提供開始",
       "value": "研究・デモ段階",
       "sources": [
-        "google-project-suncatcher-satellite-response",
-        "google-project-suncatcher-thermal-engineering",
-        "google-project-suncatcher-laser-1-6tbps"
+        "google-project-suncatcher-satellite-response"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "未提供",
+      "value": "未確認",
       "sources": [
-        "google-project-suncatcher-satellite-response",
-        "google-project-suncatcher-thermal-engineering",
-        "google-project-suncatcher-laser-1-6tbps"
+        "google-project-suncatcher-satellite-response"
       ]
     },
     {
-      "label": "向いている人",
-      "value": "研究者・エンジニア",
+      "label": "使える場所",
+      "value": "宇宙空間（試験衛星）",
       "sources": [
         "google-project-suncatcher-satellite-response"
       ]
@@ -41,73 +38,66 @@
   ],
   "capabilities": [
     {
-      "text": "移動する衛星間で双方向800Gbps、合計1.6Tbpsの超高速レーザー通信を行う。",
-      "sources": [
-        "google-project-suncatcher-laser-1-6tbps"
-      ]
-    },
-    {
-      "text": "ヒートパイプとポンプ式液ループを用いて、TPUの高熱を外部ラジエーターへ運んで排熱する。",
-      "sources": [
-        "google-project-suncatcher-thermal-engineering"
-      ]
-    },
-    {
-      "text": "オープンモデルGemma 4を使い、地上からのプロンプトに対する詩の生成に成功した。",
+      "text": "軌道上のTPUがAIの応答を返すことに成功しました。",
       "sources": [
         "google-project-suncatcher-satellite-response"
+      ]
+    },
+    {
+      "text": "Gemma 4が宇宙に関する俳句やリメリックを生成しました。",
+      "sources": [
+        "google-project-suncatcher-satellite-response"
+      ]
+    },
+    {
+      "text": "衛星上のモデルで機器の状態報告を処理しました。",
+      "sources": [
+        "google-project-suncatcher-satellite-response"
+      ]
+    },
+    {
+      "text": "双方向1.6Tbpsのレーザー通信実験に成功しました。",
+      "sources": [
+        "google-project-suncatcher-laser-1-6tbps"
       ]
     }
   ],
   "pricing": [],
   "japan": [
     {
-      "text": "発表の時点では、日本の一般ユーザーが直接利用できるサービスやAPIとしては提供されていません。",
+      "text": "日本のユーザーが直接利用できるデバイスやAPIは提供されていません。",
       "sources": [
-        "google-project-suncatcher-satellite-response"
+        "google-project-suncatcher-thermal-engineering"
       ]
     }
   ],
   "howto": [],
-  "differences": [
-    {
-      "text": "従来の宇宙機と異なり、データセンタークラスの最先端TPUを軌道上に持ち込み、実用的な機械学習を実行した。",
-      "sources": [
-        "google-project-suncatcher-satellite-response"
-      ]
-    },
-    {
-      "text": "長距離向けの既存OISLとは異なり、近距離でテラビット級の超広帯域通信を行う設計になっている。",
-      "sources": [
-        "google-project-suncatcher-laser-1-6tbps"
-      ]
-    }
-  ],
+  "differences": [],
   "faq": [
     {
-      "q": "いつ発表された？",
-      "a": "2026年9月にGoogleのムーンショットプロジェクトとして発表されました。",
-      "sources": [
-        "https://www.youtube.com/watch?v=o1JK79jszqo"
-      ]
-    },
-    {
-      "q": "どんなチップが使われている？",
-      "a": "Googleのデータセンター向けチップであるTPUが搭載されています。",
+      "q": "誰に向いているプロジェクトですか？",
+      "a": "AIや宇宙の関係者向けの研究開発プロジェクトです。",
       "sources": [
         "google-project-suncatcher-satellite-response"
       ]
     },
     {
-      "q": "通信速度はどれくらい？",
-      "a": "衛星間のレーザー通信実験で双方向合計1.6Tbpsを達成しています。",
+      "q": "通信速度はどれくらいですか？",
+      "a": "実験室環境で双方向合計1.6Tbpsを達成しています。",
       "sources": [
         "google-project-suncatcher-laser-1-6tbps"
       ]
     },
     {
-      "q": "どのようなテストが行われた？",
-      "a": "オープンモデルGemma 4を用いた宇宙をテーマにした詩の生成テストなどに成功しています。",
+      "q": "どのように冷却するのですか？",
+      "a": "ヒートパイプや液循環ループで熱を外部のラジエーターに運びます。",
+      "sources": [
+        "google-project-suncatcher-thermal-engineering"
+      ]
+    },
+    {
+      "q": "衛星はいつ打ち上げられましたか？",
+      "a": "10月1日にSpaceXのTransporter-18で打ち上げられました。",
       "sources": [
         "google-project-suncatcher-satellite-response"
       ]
@@ -115,25 +105,19 @@
   ],
   "timeline": [
     {
-      "date": "2026-09-24",
-      "slug": "",
-      "event": "GoogleがProject Suncatcherを発表",
-      "url": "https://www.youtube.com/watch?v=o1JK79jszqo"
-    },
-    {
       "date": "2026-09-30",
       "slug": "google-project-suncatcher-laser-1-6tbps",
-      "event": "双方向1.6Tbpsのレーザー通信に成功"
+      "event": "1.6Tbpsのレーザー通信に成功"
     },
     {
       "date": "2026-10-01",
       "slug": "google-project-suncatcher-thermal-engineering",
-      "event": "真空でのTPU排熱機構を公開"
+      "event": "熱設計技術を公開"
     },
     {
       "date": "2026-10-31",
       "slug": "google-project-suncatcher-satellite-response",
-      "event": "試作衛星で世界初のAI応答に成功"
+      "event": "宇宙の試作衛星でAI応答に成功"
     }
   ],
   "related": [
@@ -151,17 +135,9 @@
     "google-project-suncatcher-thermal-engineering",
     "google-project-suncatcher-laser-1-6tbps"
   ],
-  "signature": "0ac045d08e90eebe",
-  "primarySignature": "0ac045d08e90eebe",
+  "signature": "6f3a0656abf87c98",
+  "primarySignature": "6f3a0656abf87c98",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:45:39+00:00",
-  "updatedAt": "2026-10-30T17:17:40+00:00",
-  "officialSources": {
-    "https://www.youtube.com/watch?v=o1JK79jszqo": {
-      "title": "Google’s latest moonshot to put machine learning in space",
-      "publisher": "Google の YouTube 公式チャンネル",
-      "kind": "video",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T11:30:46+00:00"
 }

@@ -6,20 +6,13 @@
   "companyName": "OpenAI",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "ChatGPT Voiceは、音声だけでパソコンの操作や外部ツールとの連携、タスクの自動実行ができる機能です。OpenAIが開発し、2026年7月23日からデスクトップ版の提供が始まりました。",
+    "text": "ChatGPT Voiceは、OpenAIが提供する音声対話システムです。声によるパソコンやアプリの操作、外部ツールとの連携が行えます。",
     "sources": [
-      "openai-chatgpt-voice-gpt56-integration-matome",
+      "openai-chatgpt-voice-update-gpt6-astra",
       "openai-chatgpt-voice-desktop-gpt-live"
     ]
   },
   "facts": [
-    {
-      "label": "料金",
-      "value": "Plus、Proなどの有料プラン",
-      "sources": [
-        "openai-chatgpt-voice-desktop-gpt-live"
-      ]
-    },
     {
       "label": "提供開始",
       "value": "2026年7月23日（デスクトップ版）",
@@ -28,56 +21,51 @@
       ]
     },
     {
-      "label": "日本での提供",
-      "value": "利用できる",
+      "label": "使える場所",
+      "value": "macOS・Windowsアプリ、モバイル、Web",
       "sources": [
-        "openai-chatgpt-voice-update-gpt6-astra"
+        "openai-chatgpt-voice-update-gpt6-astra",
+        "openai-chatgpt-voice-desktop-gpt-live"
       ]
     },
     {
-      "label": "使える場所",
-      "value": "macOSとWindowsのデスクトップアプリなど",
+      "label": "向いている人",
+      "value": "ビジネス職、開発者",
       "sources": [
+        "openai-chatgpt-voice-update-gpt6-astra",
         "openai-chatgpt-voice-desktop-gpt-live"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "カレンダーやメール、Slackなどの外部ツールと連携し、予定の確認やメール送信を音声で行えます。",
+      "text": "カレンダーやメールなどの外部ツールと連携し、タスクを自律的に実行できます。",
       "sources": [
         "openai-chatgpt-voice-update-gpt6-astra"
       ]
     },
     {
-      "text": "音声指示だけで、決済機能付きのWebサイトやプレゼン用のビジュアルデッキを自動で構築できます。",
+      "text": "音声指示だけで決済機能付きのWebサイトを自動構築できます。",
       "sources": [
         "openai-chatgpt-voice-update-gpt6-astra"
       ]
     },
     {
-      "text": "バグの検出や修正、GitHubへのプルリクエストの作成を自律的に実行できます。",
+      "text": "毎秒750トークンの超高速推論と瞬時の障害解析をUltrafast modeで行えます。",
       "sources": [
-        "openai-chatgpt-voice-gpt56-integration-matome",
+        "openai-chatgpt-voice-gpt56-integration-matome"
+      ]
+    },
+    {
+      "text": "音声の指示を受けて、Codexがバグの調査や修正、プルリクエストの作成を行います。",
+      "sources": [
         "openai-chatgpt-voice-desktop-gpt-live"
-      ]
-    },
-    {
-      "text": "出張手配ツール「Navan」を使い、航空券やホテルの予約を最終確認の手前まで進められます。",
-      "sources": [
-        "https://www.youtube.com/watch?v=_Gd9yzAc-WI"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "Plus、Pro、Business、Enterpriseの有料プランで利用できます。",
-      "sources": [
-        "openai-chatgpt-voice-desktop-gpt-live"
-      ]
-    },
-    {
-      "text": "無料プランは含まれません。",
+      "text": "Plus、Pro、Business、Enterpriseの有料プランが対象です。",
       "sources": [
         "openai-chatgpt-voice-desktop-gpt-live"
       ]
@@ -85,7 +73,7 @@
   ],
   "japan": [
     {
-      "text": "日本からも利用できます。",
+      "text": "日本語での音声指示に対しても、カレンダー連携やメール送信、Webサイト構築などの指示が可能です。",
       "sources": [
         "openai-chatgpt-voice-update-gpt6-astra"
       ]
@@ -93,59 +81,55 @@
   ],
   "howto": [
     {
-      "text": "macOSやWindowsのデスクトップアプリから利用できます。",
+      "text": "macOSおよびWindows、またはモバイルの公式アプリを最新バージョンにアップデートします。",
       "sources": [
+        "openai-chatgpt-voice-update-gpt6-astra",
         "openai-chatgpt-voice-desktop-gpt-live"
       ]
     },
     {
-      "text": "ショートカットキーやUI上の音声ボタンで起動して使います。",
+      "text": "既存のOpenAIアカウントでログインし、音声モードを有効にして利用します。",
       "sources": [
-        "https://www.youtube.com/watch?v=_Gd9yzAc-WI"
+        "openai-chatgpt-voice-update-gpt6-astra"
       ]
     }
   ],
   "differences": [
     {
-      "text": "従来の音声入力が発言をテキストに変換するだけだったのに対し、作業中も寄り添い続ける継続的な会話が可能です。",
+      "text": "従来の音声モードから、外部プラグインの連携や実務的なタスクの自律的な完結が可能になりました。",
       "sources": [
-        "https://www.youtube.com/watch?v=_Gd9yzAc-WI"
-      ]
-    },
-    {
-      "text": "話が終わるのを待たずに、聞きながら画面への書き込みと発話を並行して進められます。",
-      "sources": [
-        "openai-chatgpt-voice-desktop-gpt-live"
+        "openai-chatgpt-voice-update-gpt6-astra"
       ]
     }
   ],
   "faq": [
     {
-      "q": "無料で使える？",
-      "a": "無料プランは対象外で、Plusなどの有料プランが必要です。",
+      "q": "無料で使えますか？",
+      "a": "デスクトップ版の対象は有料プランであり、無料プランは含まれません。",
       "sources": [
         "openai-chatgpt-voice-desktop-gpt-live"
       ]
     },
     {
-      "q": "どのデバイスで使える？",
-      "a": "macOSとWindowsのデスクトップアプリで使えます。",
+      "q": "いつから使えますか？",
+      "a": "デスクトップ版は2026年7月23日から世界で順次提供が始まっています。",
       "sources": [
         "openai-chatgpt-voice-desktop-gpt-live"
       ]
     },
     {
-      "q": "パソコンから離れても動く？",
-      "a": "バックグラウンドで作業が続き、進み具合をスマートフォンで確かめられます。",
+      "q": "どんな端末で使えますか？",
+      "a": "macOSとWindowsのデスクトップアプリ、モバイルアプリ、Webブラウザに対応しています。",
       "sources": [
+        "openai-chatgpt-voice-update-gpt6-astra",
         "openai-chatgpt-voice-desktop-gpt-live"
       ]
     },
     {
-      "q": "自動で購入まで完了してしまう？",
-      "a": "自動決済の前に最終確認の段階で人間へ判断を戻す設計になっています。",
+      "q": "どのようなプランが必要ですか？",
+      "a": "Plus、Pro、Business、Enterpriseの有料プランが必要です。",
       "sources": [
-        "https://www.youtube.com/watch?v=_Gd9yzAc-WI"
+        "openai-chatgpt-voice-desktop-gpt-live"
       ]
     }
   ],
@@ -153,18 +137,12 @@
     {
       "date": "2026-07-24",
       "slug": "openai-chatgpt-voice-desktop-gpt-live",
-      "event": "デスクトップ版を提供開始"
-    },
-    {
-      "date": "2026-07-30",
-      "slug": "",
-      "event": "仕事活用デモを公開",
-      "url": "https://www.youtube.com/watch?v=_Gd9yzAc-WI"
+      "event": "デスクトップ版ChatGPT Voiceを公開"
     },
     {
       "date": "2026-09-24",
       "slug": "openai-chatgpt-voice-update-gpt6-astra",
-      "event": "GPT-6搭載で更新"
+      "event": "外部ツール連携とGPT-6搭載の更新を発表"
     }
   ],
   "related": [
@@ -183,17 +161,9 @@
     "openai-chatgpt-voice-gpt56-integration-matome",
     "openai-chatgpt-voice-desktop-gpt-live"
   ],
-  "signature": "4434651f9e7722db",
-  "primarySignature": "4434651f9e7722db",
+  "signature": "a783180754a17431",
+  "primarySignature": "a783180754a17431",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:45:15+00:00",
-  "updatedAt": "2026-11-04T03:49:16+00:00",
-  "officialSources": {
-    "https://www.youtube.com/watch?v=_Gd9yzAc-WI": {
-      "title": "Using Voice in ChatGPT Work",
-      "publisher": "OpenAI の YouTube 公式チャンネル",
-      "kind": "video",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T11:30:42+00:00"
 }
