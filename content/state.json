@@ -33,7 +33,7 @@
     "MFwdoEtxbwA": 2,
     "MxwXGl-lpe0": 1,
     "NCxD-qsQcN0": 1,
-    "NS220dAaRMo": 1,
+    "NS220dAaRMo": 2,
     "NsOlCHYn99k": 1,
     "Oi9DHk57KeQ": 2,
     "UGLV3ufFZEw": 1,
@@ -117,14 +117,6 @@
       "title": "東京電力ホールディングス株式会社 当社原子力発電所における原子力規制庁による2026年度第2四半期の原子力規制検査等の結果について",
       "tries": 1,
       "url": "https://www.tepco.co.jp/press/release/2026/pdf4/261112j0101.pdf"
-    },
-    "874ce4e4f9a343e9": {
-      "first": "2026-11-12T06:52:42.059768+00:00",
-      "next": "2026-11-12T09:52:42.059768+00:00",
-      "reason": "「サイソクの見方」の章が無い・足りない（自動で足しても事実確認で残らなかった）: 「サイソクの見方」の章に読者の判断の目安が無い（「〜ならA、〜ならB」の形で、確かめる・申し込む・待つ・見送るを書く）",
-      "title": "2027年3月期 第2四半期（中間期）決算短信〔日本基準〕(連結)",
-      "tries": 1,
-      "url": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file6af51b5e1ab12.pdf"
     },
     "bf1537f4a0ba0146": {
       "first": "2026-11-10T07:18:16.939386+00:00",
@@ -7742,14 +7734,6 @@
       "skipped": true,
       "url": "https://www.pref.aichi.jp/press-release/zero-kisosannsennyatomi261108.html"
     },
-    "4430856536e9007c": {
-      "at": "2026-10-29T15:08:25.181600+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "tech-gadget",
-      "slug": "samsung-galaxy-z-fold8-review",
-      "url": "https://news.samsung.com/jp/galaxy-z-fold8-interview2610?utm_source=rss&utm_medium=direct"
-    },
     "4484bcd0ed3dc07a": {
       "at": "2026-11-06T19:42:20.592027+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -12372,6 +12356,14 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/shingi/shingi-tingin_127939.html"
     },
+    "874ce4e4f9a343e9": {
+      "at": "2026-11-12T15:05:58.950072+00:00",
+      "costUsd": 0.0278,
+      "model": "gemini-3.5-flash",
+      "reason": "quality: 元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「業利益が同12.4%減の33億9,900万円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える",
+      "skipped": true,
+      "url": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file6af51b5e1ab12.pdf"
+    },
     "87717d1c826ec2f6": {
       "at": "2026-11-08T01:11:38.719353+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -13263,6 +13255,12 @@
       "reason": "followup quality: 「Anthropic公式は11月6日、ヘルプセンターの記事で」→ 元記事に公開日・更新日は無く、11月6日という日付は裏付けられない創作; 「ヘルプセンターの記事で…具体的に示しました」→ 元記事は公式ヘルプ記事だが、公開時期を示す情報がなく『続報』として時点を断定する根拠が元記事に無い",
       "skipped": true,
       "url": "https://support.claude.com/en/articles/18185620-use-personal-finance-in-claude"
+    },
+    "9593273301d3619e": {
+      "at": "2026-11-12T15:05:59.511462+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/finsys/intlact_fs/kisei/kis261112a.htm"
     },
     "95ace0e08e8db609": {
       "at": "2026-11-04T02:27:37.138362+00:00",
@@ -16327,6 +16325,12 @@
       "slug": "disaster-agency-launch-nov2026",
       "url": "https://www.gov-online.go.jp/article/202611/radio-3782.html"
     },
+    "c25678489237ce3a": {
+      "at": "2026-11-12T15:05:59.506903+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://blog.ja.playstation.com/2026/11/12/20261112-vdf-title-announcement-o/"
+    },
     "c30b24f37f16a541": {
       "at": "2026-10-30T10:51:06.423903+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -17128,13 +17132,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（アワード）",
       "skipped": true,
       "url": "https://www.cyberagent.co.jp/news/detail/id=34007"
-    },
-    "cf9e04d889375e82": {
-      "at": "2026-10-29T15:05:17.713439+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1237字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（285字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://corp.rakuten.co.jp/news/press/2026/1029_11.html"
     },
     "cfbeac36ec36dde9": {
       "at": "2026-11-04T08:03:10.192263+00:00",
@@ -19498,6 +19495,17 @@
       "slug": "toyota-fy2027-interim-results",
       "url": "https://www.release.tdnet.info/inbs/140120261030561115.pdf"
     },
+    "f53fd8b42eaaef82": {
+      "at": "2026-11-12T15:09:10.235159+00:00",
+      "costUsd": 0.0221,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.1-flash-lite",
+      "score": 90,
+      "section": "business",
+      "slug": "boj-jgb-holdings-nov-2026",
+      "url": "http://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261110.xlsx"
+    },
     "f55e388a77844969": {
       "at": "2026-10-29T15:25:59.405314+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -20062,13 +20070,6 @@
       "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "skipped": true,
       "url": "https://finance.yahoo.co.jp/news/detail/538fc2b35387b38c07f95aac5bb2b2a42b4147ba"
-    },
-    "fcf6901fbd725b70": {
-      "at": "2026-10-29T15:04:07.394309+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2367字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（382字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://sakana.ai/us-midterms-analysis/"
     },
     "fcfd6740eb17fc15": {
       "at": "2026-11-02T16:11:31.709159+00:00",
@@ -21294,108 +21295,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-11T04:19:28.419131+00:00",
-      "attempt": 0,
-      "id": "08a655aae280f834",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 89.8,
-        "avg_sentence": 40.8,
-        "long_share": 0.273,
-        "max_paragraph": 138,
-        "paragraphs": 5,
-        "sentences": 11
-      },
-      "score": 85,
-      "source": "ntt-news",
-      "title": "日比谷からはじまる「光の街」づくりpowered by IOWN～「光の街」プレゼンテーションルームを開設予定～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HIBIYA・FORUM）",
-        "読みやすさ: 文が長い（1文の平均 40.8字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T04:19:47.089625+00:00",
-      "attempt": 1,
-      "id": "b1435fe199ba13be",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す"
-      ],
-      "readability": {
-        "avg_paragraph": 134.6,
-        "avg_sentence": 63.4,
-        "long_share": 0.529,
-        "max_paragraph": 232,
-        "paragraphs": 8,
-        "sentences": 17
-      },
-      "score": null,
-      "source": "salesforce-jp",
-      "title": "SalesforceのAgentforce Coworkerは利用が3カ月で21倍に急増。導入企業は実際の業務をAIエージェントに任せ始めた",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（MCP・BACA）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T04:47:30.018519+00:00",
-      "attempt": 1,
-      "id": "7ef3b2a69d793a00",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 57.1,
-        "avg_sentence": 36.9,
-        "long_share": 0.059,
-        "max_paragraph": 144,
-        "paragraphs": 11,
-        "sentences": 17
-      },
-      "score": null,
-      "source": "google-ai-blog",
-      "title": "Introducing 3 new domains: .eat, .fly, and .here",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（UTC）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T04:51:37.569181+00:00",
-      "attempt": 1,
-      "id": "7ef3b2a69d793a00",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「Onfly（出張向けAIアシスタント）: onfly.fly」→ 元記事では「all on.fly」とあり、ドメインは on.fly。onfly.fly は誤り（固有名詞・ドメインの取り違え）"
-      ],
-      "readability": {
-        "avg_paragraph": 46.9,
-        "avg_sentence": 32.2,
-        "long_share": 0.125,
-        "max_paragraph": 91,
-        "paragraphs": 11,
-        "sentences": 16
-      },
-      "score": 72,
-      "source": "google-ai-blog",
-      "title": "Introducing 3 new domains: .eat, .fly, and .here",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T04:51:55.300024+00:00",
@@ -28849,6 +28748,111 @@
       "title": "NVIDIA Announces CEO Transition",
       "warnings": [
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T15:04:40.474749+00:00",
+      "attempt": 1,
+      "id": "874ce4e4f9a343e9",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「業利益が同12.4%減の33億9,900万円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 115.5,
+        "avg_sentence": 60.5,
+        "long_share": 0.524,
+        "max_paragraph": 225,
+        "paragraphs": 11,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "morinaga",
+      "title": "2027年3月期 第2四半期（中間期）決算短信〔日本基準〕(連結)",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 60.5字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 115.5字・最長 225字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T15:08:23.080281+00:00",
+      "attempt": 1,
+      "id": "f53fd8b42eaaef82",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "要点「毎月公表される統計」→ 元記事・確認済みの文脈に月次公表の記載がなく、公表頻度を断定している",
+        "タイトル「2026年11月12日時点」→ 公表日であり、データの基準時点は元記事に示されていないため、時点の意味が読者に誤解される恐れがある",
+        "「統計」ページから入手できます（本文・リード）→ 確認済みの文脈で一覧に「統計」の項目はあるが、データ掲載先の明示は限定的"
+      ],
+      "readability": {
+        "avg_paragraph": 147.2,
+        "avg_sentence": 63.1,
+        "long_share": 0.571,
+        "max_paragraph": 331,
+        "paragraphs": 6,
+        "sentences": 14
+      },
+      "score": 82,
+      "source": "boj",
+      "title": "日本銀行が保有する国債の銘柄別残高",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（XLSX・KB）",
+        "読みやすさ: 文が長い（1文の平均 63.1字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 147.2字・最長 331字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T15:08:42.692431+00:00",
+      "attempt": 1,
+      "id": "f53fd8b42eaaef82",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 145.8,
+        "avg_sentence": 62.5,
+        "long_share": 0.571,
+        "max_paragraph": 331,
+        "paragraphs": 6,
+        "sentences": 14
+      },
+      "score": 90,
+      "source": "boj",
+      "title": "日本銀行が保有する国債の銘柄別残高",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（XLSX・KB）",
+        "読みやすさ: 文が長い（1文の平均 62.5字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 145.8字・最長 331字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T15:09:06.310389+00:00",
+      "attempt": 0,
+      "id": "f53fd8b42eaaef82",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 98.6,
+        "avg_sentence": 49.3,
+        "long_share": 0.278,
+        "max_paragraph": 130,
+        "paragraphs": 9,
+        "sentences": 18
+      },
+      "score": 90,
+      "source": "boj",
+      "title": "日本銀行が保有する国債の銘柄別残高",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（XLSX・KB）",
+        "読みやすさ: 文が長い（1文の平均 49.3字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
