@@ -229,6 +229,7 @@
     "d684a4d1111b95fb": "2026-11-10T18:21:06.372918+00:00",
     "d85d25074ac5ad46": "2026-11-11T06:18:54.989337+00:00",
     "da38c64b9638bb2b": "2026-11-12T07:10:55.106500+00:00",
+    "e65d3d1adacd2321": "2026-11-12T07:43:00.350221+00:00",
     "f423424e36ede3ad": "2026-11-09T01:30:49.435293+00:00",
     "f87a98fff6eb3eb5": "2026-11-09T09:18:59.972459+00:00",
     "ffe0526a36b01e3d": "2026-11-10T09:04:48.294575+00:00"
@@ -7097,6 +7098,12 @@
       "slug": "korea-physical-ai-nvidia-samsung-lg-kakao",
       "url": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/"
     },
+    "38a2eacb8991eadb": {
+      "at": "2026-11-12T07:43:52.089615+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/statistics/set/bffail/sjgb2610.pdf"
+    },
     "38ad10ff8a82e2cd": {
       "at": "2026-10-29T18:13:41.962809+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -10727,6 +10734,13 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu28/001/kaisai/mext_00023.html"
     },
+    "6ed5e2e981bf0e4b": {
+      "at": "2026-11-12T07:44:21.033006+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 「既存記事の対戦成績や直近5試合の結果に、今回の発表による変更はありません」→ 直近5試合の結果は元記事にも確認済みの文脈にも無く、存在を裏付けられない; 「https://www.jfa.jp/news/00037020/」→ 元記事に記載の無いURLで、確認済みの文脈にも無いため、出典として裏付けられない; 「既存記事では…背番号は取り上げていませんでした」",
+      "skipped": true,
+      "url": "https://www.jfa.jp/news/00037020/"
+    },
     "6eea17ab61b0e016": {
       "at": "2026-11-09T06:57:54.636087+00:00",
       "costUsd": 0.0064,
@@ -13939,6 +13953,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
       "skipped": true,
       "url": "https://www.au.com/information/topic/auwallet/2026-032/"
+    },
+    "a13bff37858a1e38": {
+      "at": "2026-11-12T07:46:15.655310+00:00",
+      "costUsd": 0.0117,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash",
+      "score": 93,
+      "section": "sports",
+      "slug": "nasuno-hayato-bork-bullet-kitakyushu-special-player",
+      "url": "https://www.jfa.jp/news/00037017/"
     },
     "a14cf79215af0a48": {
       "at": "2026-11-06T19:42:20.580061+00:00",
@@ -18630,7 +18655,7 @@
       "url": "https://network.mobile.rakuten.co.jp/info/ipad-2611/"
     },
     "e65d3d1adacd2321": {
-      "at": "2026-11-12T07:28:53.961711+00:00",
+      "at": "2026-11-12T07:43:52.096039+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202611/12teigen.html"
@@ -21072,81 +21097,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-11T03:28:51.146269+00:00",
-      "attempt": 0,
-      "id": "ca4e56ac61b3b8df",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 67.6,
-        "avg_sentence": 37.6,
-        "long_share": 0.0,
-        "max_paragraph": 96,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 85,
-      "source": "mhlw",
-      "title": "国民年金システム標準化研究会ワーキングチーム 資料(第２回)"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T04:17:00.721000+00:00",
-      "attempt": 1,
-      "id": "4862314a29bc4e3b",
-      "kind": "broad",
-      "model": "gemini-flash-latest",
-      "problems": [
-        "「これまでのオートチャージは『残高が一定額を下回ったらあらかじめ決めた金額をチャージする』仕組み」→ 元資料のオートチャージは決済時に残高不足の場合に設定額を即時チャージする仕組みで、残高の一定額割れで動くとは書かれていない。既存機能の説明を取り違えている",
-        "「そのため、口座からまとまった資金がアプリ側に移動してしまう特徴がありました」→ 元資料に無い既存機能の欠点の記述で、創作にあたる",
-        "「設定はPayPayアプリ内から数分で行え」→ 元資料は『6タップで設定完了』とあるのみで、「数分」という時間は元資料に無い",
-        "「追加の手数料は一切かかりません」→ 元資料はチャージ・出金の手数料について条件付き（ソフトバンク・ワイモバイルまとめて支払いの2回目以降など）で書いており、『一切』は言い過ぎ",
-        "「最大年0.7％」の普通預金金利とポイントの記載に、ステップアップ円預金の上限1,000万円超の扱いや、ポイントは500万円を適用上限とする条件が書かれていない",
-        "「個人間送金の受け取りなどで手元に残った『PayPayマネー』（本人確認後にチャージや受け取りをした残高）」→ 本人確認が必要なのは出金・受取の一部条件であり、対象の条件を簡略化・言い換えしすぎている"
-      ],
-      "readability": {
-        "avg_paragraph": 85.2,
-        "avg_sentence": 53.8,
-        "long_share": 0.368,
-        "max_paragraph": 175,
-        "paragraphs": 12,
-        "sentences": 19
-      },
-      "score": 68,
-      "source": "paypay",
-      "title": "PayPay銀行にお金を預けたまま、「PayPay」に必要な不足分だけ自動チャージして支払いと送金ができる！「PayPay残高連携」を提供開始",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 53.8字・60字超の文が 37% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T04:17:36.767683+00:00",
-      "attempt": 1,
-      "id": "4862314a29bc4e3b",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.2,
-        "avg_sentence": 52.1,
-        "long_share": 0.381,
-        "max_paragraph": 155,
-        "paragraphs": 13,
-        "sentences": 21
-      },
-      "score": 92,
-      "source": "paypay",
-      "title": "PayPay銀行にお金を預けたまま、「PayPay」に必要な不足分だけ自動チャージして支払いと送金ができる！「PayPay残高連携」を提供開始",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 52.1字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T04:18:08.599620+00:00",
@@ -28639,6 +28589,72 @@
       "title": "高市総理は日本経済団体連合会による「ＡＺＥＣ２．０」構想の具体化に向けた提言を受け取りました",
       "warnings": [
         "初めて出たところで言い換えていない略語（AZEC）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T07:44:21.032967+00:00",
+      "attempt": 1,
+      "id": "6ed5e2e981bf0e4b",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「既存記事の対戦成績や直近5試合の結果に、今回の発表による変更はありません」→ 直近5試合の結果は元記事にも確認済みの文脈にも無く、存在を裏付けられない",
+        "「https://www.jfa.jp/news/00037020/」→ 元記事に記載の無いURLで、確認済みの文脈にも無いため、出典として裏付けられない",
+        "「既存記事では…背番号は取り上げていませんでした」→ 過去記事の内容を確認できる材料が無く、断定の根拠が不明",
+        "元記事は見出しと日付のみで選手ごとの番号は未掲載だが、記事本文の「背番号を公開しました」「対象は11月14日・17日」は元記事のタイトルと日付に沿っており概ね一致"
+      ],
+      "score": 62,
+      "source": "jfa",
+      "title": "SAMURAI BLUE（日本代表）背番号 MIZUHO BLUE CHALLENGE THE KALLANG FOOTBALL SERIES SINGAPOR"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T07:45:43.284671+00:00",
+      "attempt": 1,
+      "id": "a13bff37858a1e38",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 136.0,
+        "avg_sentence": 45.3,
+        "long_share": 0.286,
+        "max_paragraph": 174,
+        "paragraphs": 7,
+        "sentences": 21
+      },
+      "score": 92,
+      "source": "jfa",
+      "title": "2026年JFA・Ｆリーグ特別指定選手に奈須野隼選手（ボルクセカンド）を認定 #jfa",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JFA）",
+        "読みやすさ: 文が長い（1文の平均 45.3字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 136.0字・最長 174字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T07:46:10.466436+00:00",
+      "attempt": 0,
+      "id": "a13bff37858a1e38",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.7,
+        "avg_sentence": 43.5,
+        "long_share": 0.227,
+        "max_paragraph": 174,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": 93,
+      "source": "jfa",
+      "title": "2026年JFA・Ｆリーグ特別指定選手に奈須野隼選手（ボルクセカンド）を認定 #jfa",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JFA）",
+        "読みやすさ: 文が長い（1文の平均 43.5字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
