@@ -12,7 +12,7 @@ import Timeline from "@/components/Timeline";
 import RailRanking from "@/components/rail/RailRanking";
 import StoryRail from "@/components/story/SwipeDeck";
 import { getStoryRailBundles } from "@/lib/stories";
-import { homeSectionOffer, offerForArticle } from "@/lib/offers";
+import { fallbackOfferForArticle, homeSectionOffer, offerForArticle } from "@/lib/offers";
 import { getAllArticles, getAllGenres, tagSlug, type ArticleSummary } from "@/lib/articles";
 import { companyCounts, thumbSource } from "@/lib/companies";
 import { broadGenresWithArticles, getBroadArticles, isBroadGenre } from "@/lib/sections";
@@ -88,9 +88,15 @@ export default function HomePage() {
   const timeline = ai.filter((a) => a.slug !== lead.slug).slice(0, TIMELINE_SIZE);
   const roundups = ai.filter((a) => a.type === "roundup" && a.slug !== lead.slug).slice(0, 5);
 
-  // トップにもPR枠。いちばん新しい話題に合う商品を出す（話題が合わなければ汎用の枠）
-  const found = offerForArticle(lead, 9);
-  const offer = found && { ...found, eyebrow: "今日の話題に合わせて" };
+  // トップにもPR枠。いちばん新しい話題に合う商品を出す。主役の話題に合う商品が無いときは、最初の画面に並ぶ見出し・暮らしとお金の列の
+  // 記事の順で、話題が合う最初の記事の商品を出す（2026-11-12: 主役が日産とキリンの共創の記事の日に上の枠が消え、トップの PR が1つになった）。
+  // どれにも合わなければ汎用の枠（lib/offers.ts の fallbackOfferForArticle）
+  const matched = [lead, ...headlines, ...lifeMoney].reduce<ReturnType<typeof offerForArticle>>(
+    (got, article) => got ?? offerForArticle(article, 9),
+    undefined,
+  );
+  const fallback = matched ? undefined : fallbackOfferForArticle(lead, 9);
+  const offer = matched ? { ...matched, eyebrow: "今日の話題に合わせて" } : fallback;
   // 暮らしとお金の列の下の PR 枠。列に並ぶ記事の話題（流出ならセキュリティ、電気・暖房なら電気の見直し）で選び、上の枠の商品は出さない（lib/offers.ts の homeSectionOffer）
   // 上の枠と同じ話題（主役も列も流出のときのセキュリティなど）は後回しにして、列で次に多い話題を出す
   const midOffer = homeSectionOffer(
