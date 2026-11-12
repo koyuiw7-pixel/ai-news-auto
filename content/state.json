@@ -5718,6 +5718,20 @@
       "slug": "kirin-supplements-sales-record-2026",
       "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1110_01.html"
     },
+    "21ab7432dba474e0": {
+      "at": "2026-11-12T20:17:46.921929+00:00",
+      "breaking": true,
+      "costUsd": 0.1319,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "claude-meetings-beta",
+      "url": "https://claude.com/resources/articles/claude-meetings"
+    },
     "21b9ad530469352ed79e298118d1b253bad891fc": {
       "at": "2026-11-04T01:57:48.878910+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -20916,52 +20930,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-11T05:58:18.698571+00:00",
-      "attempt": 1,
-      "id": "fa87a51b2332a613",
-      "kind": "broad",
-      "model": "strike:本文 5 文・かんたん版 1 文",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 59.9,
-        "avg_sentence": 37.1,
-        "long_share": 0.048,
-        "max_paragraph": 104,
-        "paragraphs": 13,
-        "sentences": 21
-      },
-      "score": 92,
-      "source": "mlit-press",
-      "title": "リコールの届出について（ヤンマー ＹＴ４７２Ａ 他）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（YT・TEL）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T05:59:16.378917+00:00",
-      "attempt": 1,
-      "id": "545c3131b7c3dd1a",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 78.9,
-        "avg_sentence": 35.1,
-        "long_share": 0.037,
-        "max_paragraph": 156,
-        "paragraphs": 12,
-        "sentences": 27
-      },
-      "score": 90,
-      "source": "mlit-press",
-      "title": "リコールの届出について（ニチユ トリンカ）",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-11T05:59:45.849087+00:00",
       "attempt": 1,
@@ -28483,6 +28451,59 @@
       "title": "Claude: Claude Meetings is rolling out in beta on Team and Enterprise plans in C",
       "warnings": [
         "見出しが61字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ZDR・HIPAA・CMEK）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T20:17:11.949967+00:00",
+      "attempt": 1,
+      "id": "21ab7432dba474e0",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "Team（スタンダード）の「$20/人・月（年払い）／$25/人・月（月払い）」に「約4,380円」を付けている → $20×159.23×1.1≒約3,500円で、4,380円は$25（月払い）に相当するため、ドル額と円の目安が対応していない",
+        "「Claudeのプランと料金」表のTeam（スタンダードシート）も同じく「$20/人・月（年払い）／$25/人・月（月払い）」に「約4,380円」を付けており、年払い$20の円換算と合わない",
+        "同表のEnterpriseの行に「使用コストはモデルとタスクに応じて変動します。、シート料金 + APIレートでの使用量」という途中で切れた不自然な文字列が残っている（元の参照データの残骸）",
+        "同表で「Team（プレミアムシート）」の円目安（約21,890円）は$125の値であり、年払い$100の円換算（約17,520円）と併記されていて、どの価格に対応するかが読者に分かりにくい"
+      ],
+      "readability": {
+        "avg_paragraph": 81.2,
+        "avg_sentence": 37.0,
+        "long_share": 0.105,
+        "max_paragraph": 193,
+        "paragraphs": 26,
+        "sentences": 57
+      },
+      "score": 80,
+      "source": "claude-blog",
+      "title": "Introducing Claude Meetings",
+      "warnings": [
+        "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ZDR・HIPAA・CMEK）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T20:17:46.876679+00:00",
+      "attempt": 1,
+      "id": "21ab7432dba474e0",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 81.2,
+        "avg_sentence": 37.0,
+        "long_share": 0.105,
+        "max_paragraph": 193,
+        "paragraphs": 26,
+        "sentences": 57
+      },
+      "score": 92,
+      "source": "claude-blog",
+      "title": "Introducing Claude Meetings",
+      "warnings": [
+        "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（ZDR・HIPAA・CMEK）"
       ]
     }
