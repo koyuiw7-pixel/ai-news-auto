@@ -8,51 +8,59 @@
   "companyName": "Google",
   "category": "開発ツール",
   "overview": {
-    "text": "Antigravityは、AIエージェントにコードを書かせたりコマンドを実行させたりするGoogleの開発者向けツールです。2026年8月に実行環境の「Antigravity 2.0」が公開されました。",
+    "text": "Antigravityは、文章で伝えた目標に沿ってAIエージェントが実装から検証まで進める開発ツールです。Googleが提供しています。",
     "sources": [
-      "https://cloud.google.com/blog/topics/developers-practitioners/google-cloud-developer-plugin-now-available-in-antigravity-marketplace/",
-      "https://www.youtube.com/watch?v=bSp-foRDH5M"
+      "google-antigravity-autonomous-software-development",
+      "google-deepmind-antigravity-remote-control"
     ]
   },
   "facts": [
     {
-      "label": "使える場所",
-      "value": "デスクトップアプリ、CLI、IDE",
+      "label": "提供開始",
+      "value": "提供中",
       "sources": [
-        "https://www.youtube.com/watch?v=bSp-foRDH5M"
+        "google-deepmind-antigravity-remote-control"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "CLI、Webブラウザなど",
+      "sources": [
+        "google-antigravity-autonomous-software-development",
+        "google-deepmind-antigravity-remote-control"
       ]
     },
     {
       "label": "向いている人",
-      "value": "クラウド開発者",
+      "value": "開発者",
       "sources": [
-        "https://cloud.google.com/blog/topics/developers-practitioners/google-cloud-developer-plugin-now-available-in-antigravity-marketplace/"
+        "google-deepmind-antigravity-remote-control"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "自然言語の指示に基づき、AIエージェントが計画策定から実装、テストまでを自律的に行います。",
+      "text": "文章で伝えた目標に沿って、AIエージェントが手順を分けて実装や検証を自律的に進めることができます。",
       "sources": [
-        "https://www.youtube.com/watch?v=bSp-foRDH5M"
+        "google-antigravity-autonomous-software-development"
       ]
     },
     {
-      "text": "複数のAIエージェントを並行して実行・管理し、異なるプロジェクトを同時に進められます。",
-      "sources": [
-        "https://www.youtube.com/watch?v=bSp-foRDH5M"
-      ]
-    },
-    {
-      "text": "Google Cloud Developerプラグインにより、クラウド固有の知識を用いた安全なコード生成が可能です。",
-      "sources": [
-        "https://cloud.google.com/blog/topics/developers-practitioners/google-cloud-developer-plugin-now-available-in-antigravity-marketplace/"
-      ]
-    },
-    {
-      "text": "モバイル端末から稼働中のエージェントを監視し、コードレビューやコマンド実行の承認を行えます。",
+      "text": "スマホやブラウザから稼働中のエージェントを遠隔監視・操作できます。",
       "sources": [
         "google-deepmind-antigravity-remote-control"
+      ]
+    },
+    {
+      "text": "Google Cloudの顧客向けにClaude Opus 5.5などが使えます。",
+      "sources": [
+        "google-cloud-ai-october-2026-recap"
+      ]
+    },
+    {
+      "text": "Google AI StudioやAntigravityでGeminiに資料を読ませて計画とコードを作らせることができます。",
+      "sources": [
+        "building-digital-synth-with-google-gemini"
       ]
     }
   ],
@@ -60,67 +68,53 @@
   "japan": [],
   "howto": [
     {
-      "text": "デスクトップアプリのほか、CLIや専用IDEから利用を開始できます。",
+      "text": "CLIに目標を英語などで入力して使います。",
       "sources": [
-        "https://www.youtube.com/watch?v=bSp-foRDH5M"
+        "google-antigravity-autonomous-software-development"
       ]
     },
     {
-      "text": "Google Cloud Developerプラグインはマーケットプレイスからインストール可能です。",
+      "text": "Webブラウザや専用アプリからリモートコントロール機能を利用できます。",
       "sources": [
-        "https://cloud.google.com/blog/topics/developers-practitioners/google-cloud-developer-plugin-now-available-in-antigravity-marketplace/"
+        "google-deepmind-antigravity-remote-control"
       ]
     }
   ],
-  "differences": [
-    {
-      "text": "2.0では複数のAIエージェントを並行して実行・管理できるようになりました。",
-      "sources": [
-        "https://www.youtube.com/watch?v=bSp-foRDH5M"
-      ]
-    }
-  ],
+  "differences": [],
   "faq": [
     {
-      "q": "スマホから操作できますか？",
-      "a": "はい、専用アプリやブラウザからエージェントの監視や承認が可能です。",
+      "q": "誰に向いているツールですか？",
+      "a": "開発者に向いているツールです。",
       "sources": [
         "google-deepmind-antigravity-remote-control"
       ]
     },
     {
-      "q": "誰に向いていますか？",
-      "a": "クラウド開発者や、開発プロセスの自動化を目指すエンジニアに向いています。",
+      "q": "どこから操作できますか？",
+      "a": "CLIやスマートフォン、Webブラウザから操作できます。",
       "sources": [
-        "https://cloud.google.com/blog/topics/developers-practitioners/google-cloud-developer-plugin-now-available-in-antigravity-marketplace/",
-        "https://www.youtube.com/watch?v=cBBWorSU0P4"
+        "google-antigravity-autonomous-software-development",
+        "google-deepmind-antigravity-remote-control"
       ]
     },
     {
-      "q": "安全性はどうですか？",
-      "a": "エージェントは必要最小限の権限で動き、課金や構成変更の前に利用者の同意を求めます。",
+      "q": "どのモデルが使えますか？",
+      "a": "Claude Opus 5.5などが使えます。",
       "sources": [
-        "https://cloud.google.com/blog/topics/developers-practitioners/google-cloud-developer-plugin-now-available-in-antigravity-marketplace/"
+        "google-cloud-ai-october-2026-recap"
       ]
     }
   ],
   "timeline": [
-    {
-      "date": "2026-08-05",
-      "slug": "",
-      "event": "Antigravity 2.0を公開",
-      "url": "https://www.youtube.com/watch?v=bSp-foRDH5M"
-    },
     {
       "date": "2026-09-12",
       "slug": "google-deepmind-antigravity-remote-control",
       "event": "Antigravity Remote Controlを発表"
     },
     {
-      "date": "2026-11-03",
-      "slug": "",
-      "event": "Google Cloud用プラグインを公開",
-      "url": "https://cloud.google.com/blog/topics/developers-practitioners/google-cloud-developer-plugin-now-available-in-antigravity-marketplace/"
+      "date": "2026-10-30",
+      "slug": "google-antigravity-autonomous-software-development",
+      "event": "Antigravityの事例を公開"
     }
   ],
   "related": [
@@ -142,29 +136,9 @@
     "google-antigravity-autonomous-software-development",
     "google-deepmind-antigravity-remote-control"
   ],
-  "signature": "bc4bbee665a651a7",
-  "primarySignature": "f3a4121edff83ef9",
-  "model": "gemini-3.1-flash-lite",
+  "signature": "c010ff1a869938b7",
+  "primarySignature": "2967adafe13fdc4a",
+  "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:45:54+00:00",
-  "updatedAt": "2026-11-12T07:14:39+00:00",
-  "officialSources": {
-    "https://cloud.google.com/blog/topics/developers-practitioners/google-cloud-developer-plugin-now-available-in-antigravity-marketplace/": {
-      "title": "Google Cloud Developer plugin now available in Antigravity Marketplace",
-      "publisher": "Google Cloud 公式ブログ",
-      "kind": "web",
-      "checkedAt": "2026-11-12"
-    },
-    "https://www.youtube.com/watch?v=bSp-foRDH5M": {
-      "title": "How to build apps and automate tasks with Google Antigravity 2.0",
-      "publisher": "Google の YouTube 公式チャンネル",
-      "kind": "video",
-      "checkedAt": "2026-11-12"
-    },
-    "https://www.youtube.com/watch?v=cBBWorSU0P4": {
-      "title": "Building the ultimate morning dashboard with Gemini 3.6 Flash and Nano Banana",
-      "publisher": "Google for Developers の YouTube 公式チャンネル",
-      "kind": "video",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T12:18:27+00:00"
 }

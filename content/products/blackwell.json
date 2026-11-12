@@ -6,44 +6,37 @@
   "companyName": "NVIDIA",
   "category": "半導体・インフラ",
   "overview": {
-    "text": "Blackwellは、米NVIDIAが開発した次世代GPUアーキテクチャです。AI処理や大規模言語モデルの学習を加速します。",
+    "text": "Blackwellは、NVIDIAが提供するAIや大規模計算向けの次世代GPUアーキテクチャです。画像生成AIの高速化やノートPC向け統合プロセッサへの採用など、多様なワークロードを処理します。",
     "sources": [
-      "nvidia-rtx-spark-announcement",
-      "nvidia-ai-infrastructure-fungible-durable-productive",
-      "nvidia-dgx-10-years-history-vera-rubin"
+      "flux-3-image-klein-blackwell-speedup",
+      "nvidia-rtx-spark-announcement"
     ]
   },
   "facts": [
     {
-      "label": "提供開始",
-      "value": "一般提供を開始",
-      "sources": [
-        "https://cloud.google.com/blog/ja/topics/hybrid-cloud/new-innovations-in-google-distributed-cloud/"
-      ]
-    },
-    {
       "label": "向いている人",
-      "value": "情報システム管理者や開発者",
+      "value": "画像生成AIの開発者やクリエイター",
       "sources": [
+        "flux-3-image-klein-blackwell-speedup",
         "nvidia-rtx-spark-announcement"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "Blackwell UltraアーキテクチャのHGX B300システムを採用しています。",
+      "text": "B200を1台使い、テキストからの画像生成を最大3.46倍速く処理できます。",
       "sources": [
-        "https://cloud.google.com/blog/ja/topics/hybrid-cloud/new-innovations-in-google-distributed-cloud/"
+        "flux-3-image-klein-blackwell-speedup"
       ]
     },
     {
-      "text": "FP4精度で1 petaFLOPのAI処理性能を実現します。",
+      "text": "B200を1台使い、画像からの画像生成を最大4.45倍速く処理できます。",
       "sources": [
-        "nvidia-rtx-spark-announcement"
+        "flux-3-image-klein-blackwell-speedup"
       ]
     },
     {
-      "text": "6,144基のCUDAコアを搭載しています。",
+      "text": "6,144基のCUDAコアを備え、1 petaFLOPのAI処理性能を発揮します。",
       "sources": [
         "nvidia-rtx-spark-announcement"
       ]
@@ -51,55 +44,44 @@
   ],
   "pricing": [],
   "japan": [],
-  "howto": [
-    {
-      "text": "Google Cloudの公式ブログやGDCのドキュメントページにアクセスします。",
-      "sources": [
-        "https://cloud.google.com/blog/ja/topics/hybrid-cloud/new-innovations-in-google-distributed-cloud/"
-      ]
-    },
-    {
-      "text": "詳細なデモや見積もりについてGoogle Cloudの担当者に相談できます。",
-      "sources": [
-        "https://cloud.google.com/blog/ja/topics/hybrid-cloud/new-innovations-in-google-distributed-cloud/"
-      ]
-    }
-  ],
+  "howto": [],
   "differences": [
     {
-      "text": "HopperからBlackwellへの移行により、自律型AIを支える超広帯域と大容量メモリを備えました。",
+      "text": "次世代のVera Rubin NVL72では、電力効率がBlackwell比10倍です。",
       "sources": [
-        "nvidia-dgx-10-years-history-vera-rubin"
+        "nvidia-vera-rubin-performance-coreweave"
       ]
     }
   ],
   "faq": [
     {
-      "q": "誰に向いている製品ですか？",
-      "a": "情報システム管理者や開発者を対象としています。",
+      "q": "Blackwellは誰に向いている製品ですか？",
+      "a": "画像生成AIの開発者や、高度なローカルAI処理を求めるクリエイターに向いています。",
+      "sources": [
+        "flux-3-image-klein-blackwell-speedup",
+        "nvidia-rtx-spark-announcement"
+      ]
+    },
+    {
+      "q": "画像生成AIの処理速度はどれくらい向上しますか？",
+      "a": "B200を1台使ったテストでは、テキストからの生成が最大3.46倍速くなります。",
+      "sources": [
+        "flux-3-image-klein-blackwell-speedup"
+      ]
+    },
+    {
+      "q": "RTX Sparkでの構成はどうなっていますか？",
+      "a": "Blackwell RTX GPUと20コアのGrace CPUが結合されています。",
       "sources": [
         "nvidia-rtx-spark-announcement"
       ]
     },
     {
-      "q": "AI処理性能はどのくらいですか？",
-      "a": "FP4精度において1 petaFLOPの性能を発揮します。",
+      "q": "次の世代のモデルは何ですか？",
+      "a": "次世代のVera Rubinアーキテクチャが発表されています。",
       "sources": [
-        "nvidia-rtx-spark-announcement"
-      ]
-    },
-    {
-      "q": "どのようなシステムに採用されていますか？",
-      "a": "NVIDIA HGX B300システムなどに採用されています。",
-      "sources": [
-        "https://cloud.google.com/blog/ja/topics/hybrid-cloud/new-innovations-in-google-distributed-cloud/"
-      ]
-    },
-    {
-      "q": "CUDAコア数はいくつですか？",
-      "a": "6,144基のCUDAコアを搭載しています。",
-      "sources": [
-        "nvidia-rtx-spark-announcement"
+        "nvidia-dgx-10-years-history-vera-rubin",
+        "nvidia-vera-rubin-performance-coreweave"
       ]
     }
   ],
@@ -107,7 +89,7 @@
     {
       "date": "2026-10-15",
       "slug": "nvidia-rtx-spark-announcement",
-      "event": "Blackwell GPU搭載のRTX Sparkを発表"
+      "event": "RTX Sparkを発表"
     }
   ],
   "related": [
@@ -126,17 +108,9 @@
   "linkFrom": [
     "nvidia-rtx-spark-announcement"
   ],
-  "signature": "ec4ef5b374088e7c",
-  "primarySignature": "1c34aa67dddde023",
+  "signature": "c0e82e2588197b7a",
+  "primarySignature": "2536f69e9dd8cccb",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:50:46+00:00",
-  "updatedAt": "2026-11-02T08:02:08+00:00",
-  "officialSources": {
-    "https://cloud.google.com/blog/ja/topics/hybrid-cloud/new-innovations-in-google-distributed-cloud/": {
-      "title": "ソブリン AI の新時代を切り開く: Google Distributed Cloud の最新イノベーション",
-      "publisher": "Google Cloud 公式ブログ",
-      "kind": "web",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T12:18:42+00:00"
 }
