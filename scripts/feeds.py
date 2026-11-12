@@ -422,6 +422,57 @@ BROAD_FEEDS: list[dict] = [
      "link_re": r"fdma\.go\.jp/pressrelease/houdou/items/", "section": "public", "kind": "gov", "priority": 3,
      "include_re": r"火災|警報器|リチウム|電池|ストーブ|暖房|救急|熱中症|避難|地震|豪雨|大雪",
      "exclude_re": r"訓練|意見公募|叙勲|表彰|褒章|人事"},
+    # 2026-11-12 オーナー「記事を少しずつ増やす」: 暮らし・お金の候補が1回 1〜6件しかなく（暮らし・お金の記事は 18%／めやす 60%）、
+    #   上限ではなく公式の候補の数が足りていなかった。値上げ・料金・手数料・金利・情報流出・リコールを公式に出す大手ブランドを足す。
+    #   どれも 2026-11-12 に robots.txt 許可・一覧から日付つきの項目が読める・直近30日に暮らしとお金の項目があることを確かめた。
+    #   量の多い一覧は include_re で料金・価格・回収・流出などの題名だけにする（決算・人事・催しは今までの足切りで落ちる）
+    # 携帯（ドコモの報道発表は AI のレーンでは AI の話題だけだったので、幅広い話題でも読む。povo は料金・データの新しいトッピング）
+    {"slug": "docomo-news-release", "name": "NTTドコモ 報道発表", "url": "https://www.docomo.ne.jp/info/rss/news_release.rdf",
+     "section": "tech-gadget", "kind": "company", "priority": 2},  # 直近30日 25件
+    {"slug": "povo", "name": "povo ニュースリリース", "url": "https://povo.jp/notice/", "type": "html",
+     "link_re": r"povo\.jp/(?:news|important_news)/newsrelease/20", "section": "tech-gadget", "kind": "company", "priority": 3},
+    # 電気（中部電力ミライズは中部の家庭の電気・ガスの料金、東京電力パワーグリッドは停電・託送料金と料金支援の申請）
+    {"slug": "miraiz-chuden", "name": "中部電力ミライズ プレスリリース", "url": "https://miraiz.chuden.co.jp/info/press/", "type": "html",
+     "link_re": r"miraiz\.chuden\.co\.jp/info/press/\d+_\d+\.html", "section": "lifestyle", "kind": "company", "priority": 2},
+    {"slug": "tepco-pg", "name": "東京電力パワーグリッド プレスリリース", "url": "https://www.tepco.co.jp/pg/company/press-information/press/index-j.html",
+     "type": "html", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "料金|停電|託送|支援|補助|約款|障害|流出|漏え?い|不正アクセス|詐欺|なりすまし"},
+    # 銀行（預金金利・手数料の改定・詐欺の注意）。ローン・融資・法人向けは扱わない
+    {"slug": "netbk", "name": "ドコモSMTBネット銀行 プレスリリース", "url": "https://www.netbk.co.jp/contents/company/press/", "type": "html",
+     "link_re": r"netbk\.co\.jp/contents/company/press/20", "section": "investment", "kind": "company", "priority": 3,
+     "exclude_re": "法人|ローン|融資|借入"},
+    {"slug": "smtb", "name": "三井住友信託銀行 ニュースリリース", "url": "https://www.smtb.jp/corporate/release/", "type": "html",
+     "section": "investment", "kind": "company", "priority": 3,
+     "include_re": "金利|手数料|改定|詐欺|なりすまし|不正|漏え?い|漏洩|流出|障害|終了|NISA|預金|相続|年金",
+     "exclude_re": "法人|ローン|融資|借入|サーベイ"},
+    # 暮らしの大手チェーン（ニトリ・ドン・キホーテは情報流出・ポイントの期限・価格の知らせ。出店・開店の告知は外す）
+    {"slug": "nitori", "name": "ニトリホールディングス ニュースリリース", "url": "https://www.nitorihd.co.jp/news/", "type": "html",
+     "link_re": r"nitorihd\.co\.jp/news/items/", "section": "lifestyle", "kind": "company", "priority": 2,
+     "exclude_re": "出店|オープン|開店"},  # 直近30日 23件
+    {"slug": "ppih", "name": "パン・パシフィック・インターナショナルHD（ドン・キホーテ）", "url": "https://ppih.co.jp/news/", "type": "html",
+     "link_re": r"ppih\.co\.jp/news/", "section": "lifestyle", "kind": "company", "priority": 3,
+     "exclude_re": "IRニュース|出店|オープン|開店|発表会"},
+    {"slug": "kfc", "name": "日本KFC ニュース", "url": "https://japan.kfc.co.jp/news", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "価格|値上げ|値下げ|改定|不正アクセス|漏え?い|漏洩|流出|回収|販売終了|サービス終了|ポイント"},
+    # 食品の価格改定・回収・障害（新商品・催し・寄付の知らせは取らない）
+    {"slug": "nippn", "name": "ニップン ニュースリリース", "url": "https://www.nippn.co.jp/news/", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "価格|改定|値上げ|値下げ|回収|終了|障害|不正アクセス|漏え?い"},
+    {"slug": "nissui", "name": "ニッスイ ニュースリリース", "url": "https://www.nissui.co.jp/news/", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "価格|改定|値上げ|値下げ|回収|終了|障害|不正アクセス|漏え?い"},
+    # 車・タイヤのリコール・情報流出（検索で「ヨコハマタイヤ リコール」が5〜20位に出ている）
+    {"slug": "yokohama-rubber", "name": "横浜ゴム ニュースリリース", "url": "https://www.y-yokohama.com/release/", "type": "html",
+     "section": "lifestyle", "kind": "company", "priority": 3,
+     "include_re": "リコール|回収|価格|改定|値上げ|値下げ|障害|不正アクセス|漏え?い|漏洩|流出"},
+    {"slug": "mitsubishi-motors", "name": "三菱自動車 ニュースルーム", "url": "https://www.mitsubishi-motors.com/jp/newsroom/", "type": "html",
+     "link_re": r"mitsubishi-motors\.com/jp/newsroom/(?:newsrelease/20|notice/notice20)", "section": "auto", "fallback": "business",
+     "kind": "company", "priority": 3},
+    # 確かめたが使えなかったもの（2026-11-12 の追加分）: ソフトバンクの報道発表・ヤマト運輸・JCB・ホンダ・スズキ・コカ・コーラ・スシロー・
+    #   トリドール・コメダ（一覧がスクリプトで描かれ、日付つきの項目が読めない）、関西電力・JR東日本・東京メトロ・西鉄・イオン銀行・しまむら・
+    #   カルビー・サントリー食品・アサヒ飲料（403）、東北電力（403）・北海道電力・沖縄電力・東武・京成・近鉄・南海・UQ mobile・LINEMO・
+    #   佐川急便（404）、良品計画・首都高（429）、日高屋（古い暗号方式で接続できない）、
+    #   直近30日に暮らしとお金の項目が無かったもの: 西武鉄道・名鉄（きっぷの販促ばかり）、東邦ガス・ENEOS・ニチレイ・吉野家（催し・期間限定の品）・
+    #   日清オイリオ・auじぶん銀行・楽天モバイルの報道発表（楽天の RSS と重なる）・ダイハツ（題名に分類の語が混ざる）・CCC・全銀協、
+    #   住友ゴム（ゴルフ用品・スポーツの話題が中心）、ブリヂストン（一覧に最近の項目が無い）
     # 確かめたが使えなかったもの（2026-11-10 A69 の追加分）: 関西電力・東北電力・北海道電力・大阪市・大阪府・川崎市・みずほ・JR東日本・JAL（403/404）、
     #   国交省の自動車リコール・日本年金機構のお知らせ一覧・ソフトバンクの報道発表・日本郵政・ANA・札幌市（日付つきの項目が読めない）、
     #   三菱UFJ銀行・Y!mobile（直近7日の更新なし・端末の更新のお知らせばかり）
@@ -678,6 +729,27 @@ def strip_html(value: str) -> str:
     return re.sub(r"\s+", " ", unescape_text(value)).strip()
 
 
+# 題名の末尾に付くファイルの大きさ・窓の案内（2026-11-12: ニトリ「[ 419.0 KB]」・三井住友信託「（103KB）」・ニップン「 82 KB」・
+#   西武鉄道「（PDFを開く）」・三菱自動車「（別ウィンドウで開く）」）。記事の題名でないので外す（重複の判定・種類の判定を正しくする）。
+#   GB と小数のない MB は外さない（「（30GB）」のような料金プランの容量が題名にある）
+_TITLE_NOISE_RE = re.compile(
+    r"\s*[\[［(（]\s*(?:PDF\s*[：:／/]?\s*)?(?:\d+(?:[.,]\d+)?\s*KB|\d+[.,]\d+\s*MB)\s*[\]］)）]"
+    r"|\s*[\[［(（]\s*PDF\s*[：:／/]?\s*\d+(?:[.,]\d+)?\s*MB\s*[\]］)）]"
+    r"|\s*[（(](?:PDF\s*を開く|別ウィンドウで開く|新しいウィンドウで開く|外部サイトへ移動します)[）)]"
+    r"|\s+\d+(?:\.\d+)?\s*KB$",
+    re.I,
+)
+
+
+def clean_title(title: str) -> str:
+    """題名の末尾のファイルの大きさ・窓の案内を外す（中身の語は変えない）"""
+    prev = None
+    while prev != title:
+        prev = title
+        title = _TITLE_NOISE_RE.sub("", title).strip()
+    return title
+
+
 # ---- RSS の無い公式のお知らせ一覧のページ（2026-11-07 オーナー「監視する場所を増やす。Yahooニュースに勝つつもりで」・台帳 A51） ----
 # feed["type"] == "html" のフィードは、一覧のページの「日付＋リンク」の並びを項目にする（公式の一次情報だけ。報道機関のページは載せない）。
 #   link_re … 項目のリンクの URL がこの正規表現に合うものだけ（ナビ・バナーを外す）。省略時は同じホストのリンク
@@ -744,6 +816,7 @@ def parse_html_list(feed: dict, data: bytes | None = None) -> list[dict]:
             title = _HTML_DATE_RE.sub("", strip_html(seg)).strip(" 　|：:-")[:120]
         title = re.sub(r"\s+", " ", title).strip()
         title = re.sub(rf"^(?:{_HTML_DATE_RE.pattern})\s*|\s*(?:{_HTML_DATE_RE.pattern})$", "", title).strip(" 　|：:-")  # 頭・末尾の日付を外す
+        title = clean_title(title)
         if len(title) < min_title or url in seen:
             continue
         seen.add(url)
@@ -795,6 +868,13 @@ def parse_feed(feed: dict) -> list[dict]:
         # Shift_JIS の XML（総務省・国交省など）は expat が読めないので文字列に直してから解析する
         text = re.sub(r"^\s*<\?xml[^>]*\?>", "", _decode(data))
         root = ET.fromstring(text)
+    except ET.ParseError:
+        # 題名の「&」をそのまま書いた XML（2026-11-12 りそな「M&A」で全件が読めなくなっていた）。
+        # 実体参照でない「&」だけ「&amp;」に直して読み直す（ほかの壊れた XML は今までどおり失敗にする）
+        fixed = re.sub(rb"&(?!#\d+;|#x[0-9A-Fa-f]+;|[A-Za-z][A-Za-z0-9]*;)", b"&amp;", data)
+        if fixed == data:
+            raise
+        root = ET.fromstring(fixed)
     nodes = root.findall(".//item") or root.findall(f".//{ATOM}entry") or root.findall(f".//{RSS1}item")
     items = []
     for node in nodes:
@@ -805,7 +885,7 @@ def parse_feed(feed: dict) -> list[dict]:
                     return el.text.strip()
             return ""
 
-        title = strip_html(first("title", f"{ATOM}title", f"{RSS1}title"))
+        title = clean_title(strip_html(first("title", f"{ATOM}title", f"{RSS1}title")))
         link = first("link", f"{RSS1}link")
         if not link:
             for el in node.findall(f"{ATOM}link"):
