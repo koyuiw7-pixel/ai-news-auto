@@ -11670,13 +11670,6 @@
       "slug": "jpcert-security-advisory-wordpress-edge-chrome-updates",
       "url": "https://www.jpcert.or.jp/wr/2026/wr261105.html#1"
     },
-    "7fd3d90be223b966": {
-      "at": "2026-10-29T20:06:24.619131+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1692字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（361字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.waterworks.metro.tokyo.lg.jp/information/press/r8/10/2026102902"
-    },
     "800f7f236fb8f898": {
       "at": "2026-11-12T02:40:15.132571+00:00",
       "model": "claude:sonnet",
@@ -12820,13 +12813,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111107"
     },
-    "9160fd7588bbc93d": {
-      "at": "2026-10-29T19:52:05.611318+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が短い（388字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102920"
-    },
     "916a69791bdd7e61": {
       "at": "2026-11-03T14:38:00.260209+00:00",
       "reason": "stale: 発表から279時間（記事ページの日付）",
@@ -13561,6 +13547,19 @@
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
       "skipped": true,
       "url": "https://jp.security.ntt/news/release_20261102/"
+    },
+    "9def9fac8535e342": {
+      "at": "2026-11-12T20:12:32.779351+00:00",
+      "costUsd": 0.1285,
+      "foreignAi": true,
+      "intent": "neutral",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "claude-meetings-google-meet-beta",
+      "url": "https://support.claude.com/en/articles/12138966-release-notes#entry-2026-11-12"
     },
     "9e174f33bd4dd7f2": {
       "at": "2026-11-06T04:43:25.856713+00:00",
@@ -15047,13 +15046,6 @@
       "reason": "prefilter: 不動産の話題ではない",
       "skipped": true,
       "url": "https://lifull.com/news/50885/"
-    },
-    "b4357728ad4b8bd0": {
-      "at": "2026-10-29T19:51:49.722286+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が「## ひとことで言うと」から始まっていない",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102917"
     },
     "b47f19a5d90e7ccc": {
       "at": "2026-11-10T04:03:54.861558+00:00",
@@ -18040,14 +18032,6 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001288.html"
     },
-    "e0b2bbdde388a2c0": {
-      "at": "2026-10-29T20:06:48.324754+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "public",
-      "slug": "tokyo-water-smart-meter-power-network",
-      "url": "https://www.waterworks.metro.tokyo.lg.jp/information/press/r8/10/2026102901"
-    },
     "e0be2f0a8eaa6b94": {
       "at": "2026-11-02T21:54:58.365382+00:00",
       "model": "claude:sonnet",
@@ -20931,31 +20915,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-11T05:57:32.729197+00:00",
-      "attempt": 1,
-      "id": "fa87a51b2332a613",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「ホームページの検索画面」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
-      ],
-      "readability": {
-        "avg_paragraph": 68.1,
-        "avg_sentence": 35.3,
-        "long_share": 0.0,
-        "max_paragraph": 104,
-        "paragraphs": 14,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "mlit-press",
-      "title": "リコールの届出について（ヤンマー ＹＴ４７２Ａ 他）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（YT・TEL）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T05:58:18.698571+00:00",
@@ -28502,6 +28461,30 @@
       "score": 85,
       "source": "google-gemini-blog",
       "title": "Introducing Gemini 4 Hydrogen"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T20:12:32.748299+00:00",
+      "attempt": 1,
+      "id": "9def9fac8535e342",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 96.3,
+        "avg_sentence": 39.3,
+        "long_share": 0.113,
+        "max_paragraph": 187,
+        "paragraphs": 29,
+        "sentences": 71
+      },
+      "score": 92,
+      "source": "watch-claude-apps-release-notes",
+      "title": "Claude: Claude Meetings is rolling out in beta on Team and Enterprise plans in C",
+      "warnings": [
+        "見出しが61字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ZDR・HIPAA・CMEK）"
+      ]
     }
   ],
   "short_text_retry": {},

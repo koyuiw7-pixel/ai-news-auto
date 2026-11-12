@@ -1,0 +1,221 @@
+{
+  "slug": "claude-meetings-google-meet-beta",
+  "sourceType": "web",
+  "sourceUrl": "https://support.claude.com/en/articles/12138966-release-notes#entry-2026-11-12",
+  "sourceName": "Claude リリースノート（アプリ）",
+  "title": "Claude Meetings、Google Meetに参加しメモや資料を作成　Team・Enterpriseでベータ提供",
+  "seoTitle": "Claude Meetingsとは？使い方と対象プラン",
+  "threadsPost": "会議の議事録づくりが負担な人に、知っておいてほしい話です。\n\nClaudeをGoogle Meetの参加者として呼べるようになりました。\n通話中にメモを取り、質問に答え、資料も作ります。\n\n会議のメモ取り、ふだんは誰が担当していますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "会議の議事録づくりに、1週間でどれくらい時間を使っていますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "会議をAIに文字起こしされるのは、便利さと引き換えに許せますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "会議のメモや資料づくり、AIにどこまで任せてよいと考えますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "Claudeを、Google Meetの通話に見える参加者として加えられるようになりました。対象はTeamとEnterpriseプランで、ClaudeとClaude Desktopでベータ版として順次提供されています。通話中はメモの作成と質問への回答、文書やホワイトボードなどの作成を担当し、日本での新機能の提供状況はまだ発表されていません。",
+  "description": "Claude Meetingsは、Google Meetの通話にClaudeを参加させ、議事メモ・質問への回答・資料作成を任せられる機能です。TeamとEnterpriseでベータ提供。使い方と外部ゲストの扱い、管理者の設定を整理します。",
+  "keywords": [
+    "Claude Meetings",
+    "Claude 会議 議事録",
+    "Google Meet Claude",
+    "Claude Team",
+    "Claude Enterprise",
+    "AI 議事録",
+    "Claude 使い方",
+    "Claude ベータ版",
+    "Claude 外部ゲスト",
+    "Claude 自動参加"
+  ],
+  "tags": [
+    "Claude",
+    "生成AI",
+    "Anthropic",
+    "Google Meet",
+    "議事録"
+  ],
+  "highlights": [
+    "Claude MeetingsでClaudeをGoogle Meetに参加者として追加でき、TeamとEnterpriseのベータ版として順次提供されます",
+    "通話中に「Claude, make a doc」と頼むと、文書やホワイトボード、スライドを作り会議ページに保存します",
+    "通話後は要約と次の作業の一覧がまとまり、招待された社内の人に要約メールが届きます"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "Team・Enterpriseで提供",
+    "free": null,
+    "audience": "チーム・法人",
+    "take": "Teamなら初期設定でオンです。参加者全員に文字起こしの了解を取ってから使うとよいでしょう。",
+    "judgedAt": "2026-11-12T20:12:23.072984+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "Teamプランの管理者は初期設定でオンのため、社内で使うかどうかを先に決めておく必要があります。",
+      "会議後に要約と次の作業の一覧が届くため、議事録づくりの手間を減らせます。",
+      "外部ゲストとの会議では、管理者の許可が要るかどうかがプランで異なります。"
+    ]
+  },
+  "body": "Claude Meetingsは、Claudeを会議の参加者としてGoogle Meetに呼べる機能です。TeamとEnterpriseの管理者や利用者が対象で、無料版、Pro、Max、Ultraの個人向けプランは対象に挙がっていません。\n\nClaude Meetingsは、会議の記録と、その場での調べものや資料づくりをAIに任せる仕組みです。Claudeの公式ヘルプによると、Claudeは通話に見える参加者として入り、メモを取り、質問に答え、文書やホワイトボード、スライドといった成果物をその場で作ります。\n\n## 通話に呼ぶまでと、通話中にできること\n\nClaudeリリースノート（2026年11月12日の項目）によると、ClaudeとClaude Desktopで、ベータ版として順次提供されています。\n\n呼び出す手順は公式ヘルプに次のとおり書かれています。\n\n1. Claudeの「Meetings」を開く\n2. Googleカレンダーをつなぐ（先に管理者がGoogleカレンダーを組織で有効にしておく必要があります）\n3. カレンダーから会議を選ぶ\n4. 「Add Claude」を押す\n\nClaudeは、誰かが追加したとき、または自動参加がオンのときに会議へ入ります。自動参加は、設定の「Capabilities > Meetings > Auto-join」で変えられます。全部の会議か、1対1を除く全部の会議かを選べます。管理者が利用者の代わりに自動参加を設定することはできません。\n\n通常は許可を求めずに入ります。求められた場合は、主催者が入室を許可します。主催者が断ると、誰かがもう一度追加するまで、Claudeはその会議に入り直しません。\n\n通話中は、「Claude」と呼びかけてから質問します。Meetのチャットに文字で入力しても使えます。初期設定では、Claudeの答えはMeetのチャットに文字で出ます。\n\n「Claude, make a doc」や「Claude, make a whiteboard」と頼むと、成果物を作ります。チームの誰でも頼めます。作ったものは会議ページに保存され、数に制限はなく、すべての種類に対応します。\n\n## つないだツールを通話中に使う仕組み\n\nClaudeは、つないであるツールを通話中に使えます。たとえばSlackにメッセージを送れます。その際は、頼んだ本人のツールを本人の許可のもとで使います。\n\n初回は確認があり、「はい」と答えると以後は有効になります。ただし現時点では、声で頼んだ場合は、誰が話しているかを確かめるため、毎回確認が入ります。承認の依頼は、できればMeetのチャットに表示されます。Claudeアカウントの確認が必要なときは、会議ページに出ます。\n\nClaudeの状態は、通話画面のClaudeのタイルでリアルタイムに確認できます。止めたいときは、聞き取りをやめるよう頼むか、会議ページを使います。再開は会議ページで行います。退出させるには、頼むか、会議ページの「Remove Claude」を押します。同じ会議に再度追加すると、同じ会議ページに戻ります。滞在は最長8時間で、退出前に知らせが出ます。\n\n会議ページは、Claudeが参加時にMeetのチャットへ貼るリンクから開けます。ここに、リアルタイムの文字起こしとチャット、Claudeが作ったものがまとまります。\n\n注意点として、Claudeが通話のチャットに書いた内容は、参加者全員に見えます。一方、会議ページ内のチャットは組織の内部向けで、社外のゲストには見えません。\n\n## 通話のあとに残るもの\n\n会議後の会議ページには、要約と次の作業の一覧を含むメモ、文字起こし、作った成果物がそろいます。招待された組織内の人には、そのページへのリンク付きの要約メールが届きます。\n\n招待された組織内の人は、メモを見て、Claudeが作ったものを編集できます。会議ページは組織内の他の人に共有することもできます。Meetingsのカレンダーでは、過去と今後の会議が一覧でき、過去の会議に戻ることも、次の会議にClaudeを加えることもできます。\n\n会議後は、通常のチャットで、自分が見られる過去の会議についてClaudeに質問することもできます。\n\n## 社外ゲストがいる会議の扱い\n\n社外の人が入る会議では、プランで初期設定が異なります。Teamでは、初期設定で社外ゲストとの通話に参加でき、管理者が止められます。Enterpriseでは、管理者が先に許可する必要があります。\n\n許可していない場合、初期設定では、社外の人が招待された会議にClaudeは入りません。途中で他社の議事録ボットを含む社外の人が加わると、Claudeは退出します。\n\n許可している場合、Claudeは聞き取ってメモを取り、通話のチャットに通知を出しますが、そこでは返信しません。ゲストの発言もメモと文字起こしに含まれます。リアルタイムの文書、ホワイトボード、チャットは会議ページにあり、ゲストにはそのページも要約メールも届きません。個人ごとに、設定の「Capabilities > Meetings」に外部ゲストとの会議についての設定もあります。\n\n## 提供の条件と、管理者の設定\n\nベータ版の間は、一部の組織では使えません。公式ヘルプが挙げている例は、データを保持しない契約（ZDR）、HIPAA対応の構成、顧客管理の暗号鍵（CMEK）を使う組織です。\n\nTeamでは初期設定でオンで、オーナーがオフにできます。Enterpriseでは、オーナーが組織全体または一部に対してオンにします。一部の場合は、カスタムロールを使います。\n\nオーナーと主オーナーは、組織設定の「Products > Claude Meetings (beta)」で管理します。\n\nなお、同じ時期にxAIも、ビデオ通話に参加できるボットを出しています（[Grok Bot 1.0、Slack・Teamsやビデオ通話に参加](/articles/grok-bot-1-0-team-bots)）。\n\n## サイソクの見方：Teamは初期設定でオン、使う前に社内ルールを決めたい\n\nTeamプランは初期設定でオンのため、管理者が気づかないうちに社内で使われ始めることがあります。公式ヘルプも、Claudeを追加する前に参加者全員が文字起こしを了承しているか確認するよう促しています。\n判断の目安は次のとおりです。\n- 社外ゲストとの会議が多いTeamの管理者は、初期設定でゲストの会議にも入る点を確認し、不要ならオフにする\n- Enterpriseなら、まず一部の部署だけカスタムロールでオンにして試す\n- ZDRやHIPAA、CMEKの契約がある組織は、ベータ版の間は対象外と考えて待つ\n料金は、Teamがスタンダードシートで1人あたり月$20（年払い）または$25（月払い）、Enterpriseは1人あたり月$20（年払い、最低20シート）です（Anthropic公式の料金ページ、11/12確認）。Claude Meetingsの追加料金の有無は、まだ発表されていません。\n\n## まだ分からないこと\n\n- Claude Meetingsだけに別料金がかかるかは、まだ発表されていません\n- Google Meet以外の会議サービスに対応するかは、まだ発表されていません\n- 日本語の会議での文字起こしや回答の品質、日本での新機能の提供状況は、まだ発表されていません。Claude自体は日本で使えます（当サイトの確認：11/3）\n- ベータ版が終わる時期と、一般提供の日付は、まだ発表されていません\n\n## 管理者がすること\n\nTeamのオーナーは、使わせたくない場合に、組織設定の「Products > Claude Meetings (beta)」で機能をオフにします。社外ゲストとの会議を止めたいときも、オーナーが設定します。\n\nEnterpriseのオーナーは、全体または一部にオンにします。一部にするときはカスタムロールを使います。Googleカレンダーの連携も、利用者が使う前にオーナーが組織で有効にしておく必要があります。\n\n### Claudeのプランと料金（公式の料金と円の目安）\n\n| プラン | 料金（公式） | 円の目安 | 主な上限・違い |\n| --- | --- | --- | --- |\n| Free | $0/月 |  | 制限された使用量（5 時間ごと・毎週） |\n| Pro | $17/月（年払い・一括$200） / $20/月（月払い） | 約3,500円（税込みの目安） | Free より多い使用量（5 時間ごと・毎週） |\n| Max | $100/月（月払い） | 約17,520円（税込みの目安） | Pro の 5 倍の使用量（5 時間ごと・毎週）、Claude Platform での開発に利用できる月額 $100 分の API クレジット |\n| Ultra | $200/月（月払い） | 約35,030円（税込みの目安） | 5 時間制限なし、Pro の 10 倍の使用量（毎週）、月額 $200 分の API クレジット（Max の $100 からアップグレード） |\n| Team（スタンダードシート） | $20/人・月（年払い） / $25/人・月（月払い） | 約4,380円（税込みの目安） | すべてのClaude 機能、さらにProより多い使用量 |\n| Team（プレミアムシート） | $100/人・月（年払い） / $125/人・月（月払い） | 約21,890円（税込みの目安） | スタンダードシートの5倍の使用量 |\n| Enterprise | $20/人・月（年払い） | 約3,500円（税込みの目安） | US$20/シート/月（年払い、最低20シート）。使用コストはモデルとタスクに応じて変動します。、シート料金 + APIレートでの使用量 |\n\n出典：Claudeの公式ページ（https://claude.com/pricing）／確認日：2026-11-12\n円は1ドル=159.23円（2026-11-11、ECB参照レート（ユーロ経由で計算））で計算した目安です。ドルのプランは消費税10%を足しています。実際の請求額は為替とカード会社の手数料で変わります。\n",
+  "easy": "## ひとことで言うと\n\nClaudeをGoogle Meetの会議に参加者として呼べるようになりました。会議中にメモを取り、質問に答え、資料も作ります。TeamとEnterpriseプランで、ベータ版として順次提供されています。\n\n## 使い方の流れ\n\nClaudeの画面でMeetingsを開き、Googleカレンダーをつなぎます。カレンダーから会議を選んで「Add Claude」を押すと、Claudeが参加します。\n\n通話中は「Claude」と呼びかけて質問できます。Meetのチャットに文字で打ち込んでも使えます。\n\n会議が終わると、要約と次の作業の一覧が会議ページにまとまります。招待された社内の人には要約メールが届きます。\n\n## 使う前に知っておくこと\n\nTeamプランでは初期設定でオンです。Enterpriseプランでは、管理者がオンにします。\n\n社外の人がいる会議には、初期設定では参加しません。使う前に、参加者全員が文字起こしに同意しているか確認してください。",
+  "channel": "Claude リリースノート（アプリ）",
+  "channelId": "",
+  "channelSlug": "watch-claude-apps-release-notes",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Claude: Claude Meetings is rolling out in beta on Team and Enterprise plans in Claude and Claude Desktop.",
+  "publishedAt": "2026-11-12T20:11:35.955353+00:00",
+  "generatedAt": "2026-11-12T20:12:23.072974+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/claude-meetings-google-meet-beta-figure-e5423986.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [
+    {
+      "name": "PLAUD",
+      "label": "PLAUD NOTE（AIボイスレコーダー）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BELTP+BKRG8I+5J4W+5YZ76",
+      "note": "会議や取材の録音を、AIで文字起こし・要約できるカード型レコーダー",
+      "pixel": "https://www13.a8.net/0.gif?a8mat=4BELTP+BKRG8I+5J4W+5YZ76"
+    }
+  ],
+  "newsType": "pricing",
+  "pricingProduct": "claude",
+  "pricingCompare": "plan:enterprise",
+  "faq": [
+    {
+      "q": "Claude Meetingsの自動参加は管理者が設定できる？",
+      "a": "できません。自動参加は利用者本人が、設定のCapabilitiesにあるMeetingsで選びます。全会議か、1対1を除く全会議かを選べます。"
+    },
+    {
+      "q": "Claude Meetingsで主催者が入室を断るとどうなる？",
+      "a": "Claudeは、誰かがもう一度追加しない限り、その会議には入り直しません。断られた事実は利用者の画面にも表示されます。"
+    }
+  ],
+  "todayActions": [
+    "Teamの管理者は、Claude Meetingsが初期設定でオンになっている点を確認し、止めたいなら組織設定で見直す",
+    "Enterpriseの管理者は、Googleカレンダーの連携と、オンにする範囲（全体か一部か）を社内で決める",
+    "会議でClaudeを追加する前に、参加者全員へ文字起こしの了承を取る"
+  ],
+  "relatedSlugs": [
+    "grok-bot-1-0-team-bots"
+  ],
+  "qualityBar": {
+    "score": 8,
+    "missing": [],
+    "notes": {},
+    "checkedAt": "2026-11-12T20:12:32+00:00",
+    "before": [],
+    "repaired": false
+  },
+  "qualityScore": 92,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "Anthropic公式の料金ページ",
+      "url": "https://claude.com/pricing",
+      "checkedAt": "2026-11-12"
+    },
+    {
+      "label": "為替",
+      "name": "ECB参照レート（ユーロ経由で計算）",
+      "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+      "checkedAt": "2026-11-11"
+    }
+  ],
+  "detectedAt": "2026-11-12T20:11:35+00:00",
+  "layout": "noir",
+  "summaryLine": "Claude MeetingsでClaudeをGoogle Meetに参加者として追加でき、TeamとEnterpriseのベータ版として順次提供されます",
+  "sectionsPolishedAt": "2026-11-12T20:12:53+00:00",
+  "insight": [
+    {
+      "text": "Enterpriseは「US$20/シート/月（年払い、最低20シート）」と書かれ、「使用コストはモデルとタスクに応じて変動します」とも書かれています。",
+      "source": "https://claude.com/pricing"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Use Claude Meetings（公式ヘルプ）",
+      "url": "https://support.claude.com/en/articles/18325154-use-claude-meetings",
+      "source": "https://support.claude.com/en/articles/12138966-release-notes#entry-2026-11-12",
+      "note": "リリースノートで、TeamとEnterpriseのベータ提供と、この記事へのリンクが確認できます。"
+    }
+  ],
+  "worries": [
+    {
+      "q": "個人のProプランでもClaude Meetingsは使えますか？",
+      "a": "Claude Meetingsは、リリースノートで「Team and Enterprise plans」でベータとして提供と書かれています。個人向けのProなどは、その提供先に含まれていません。",
+      "source": "https://support.claude.com/en/articles/12138966-release-notes#entry-2026-11-12",
+      "action": "個人プランで使いたいなら、会社のTeamかEnterpriseの管理者に導入の有無を相談する"
+    },
+    {
+      "q": "会議でClaudeは参加者に見えますか？",
+      "a": "はい。リリースノートでは、Claudeは「visible participant」として通話に加わり、メモを取り、質問に答え、文書やホワイトボード、スライドを作ると書かれています。",
+      "source": "https://support.claude.com/en/articles/12138966-release-notes#entry-2026-11-12",
+      "action": "会議の前に、参加者全員にClaudeが通話に入ることを伝え、文字起こしの了承を取っておく"
+    },
+    {
+      "q": "Enterpriseの料金は、いくらからかかりますか？",
+      "a": "料金ページには、Enterpriseは「US$20/シート/月（年払い、最低20シート）」と書かれています。使用コストはモデルとタスクに応じて変動するとも書かれています。",
+      "source": "https://claude.com/pricing",
+      "action": "Enterpriseを検討するなら、まず社内で使う人数が最低20シート以上になるかを数える"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "会議で使うなら、TeamとEnterpriseどちらがいい？",
+      "situation": "利用者が20名以上いる",
+      "recommend": "Enterpriseの条件を確かめて比べる",
+      "reason": "Enterpriseは「最低20シート」からの年払いで、「US$20/シート/月」と書かれています。使用コストはモデルとタスクで変わるため、利用量を見てから決めると安心です。",
+      "source": "https://claude.com/pricing"
+    },
+    {
+      "question": "Claude Meetingsを今すぐ使い始める？",
+      "situation": "社内でまだ導入を決めていない",
+      "recommend": "急がなくてよい",
+      "reason": "リリースノートでは「beta」として順次提供と書かれています。ベータ版の間の変更や一般提供の時期は、このページからは分かりません。",
+      "source": "https://support.claude.com/en/articles/12138966-release-notes#entry-2026-11-12"
+    }
+  ],
+  "depthHeadings": {
+    "desk": "使い方はヘルプの記事で確かめる",
+    "worries": "参加者に見える？個人プランでも使える？",
+    "guide": "今使うか、ベータが終わるまで待つか"
+  },
+  "depthAt": "2026-11-12T20:13:48+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "Claude Meetings、Google Meetに参加しメモや資料を作成",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T20:14:47+00:00"
+  },
+  "imageFocus": {
+    "x": 0.536,
+    "y": 0.381,
+    "box": [
+      0.091,
+      0.048,
+      0.981,
+      0.714
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/claude-meetings-google-meet-beta-figure-e5423986.jpg"
+  }
+}
