@@ -215,7 +215,8 @@ class ComponentWiringTest(unittest.TestCase):
         self.assertLess(noir.index("{slots.adEarly"), noir.index('id="nr-body"'))
         page = (ROOT / "components/noir/noirArticlePage.tsx").read_text(encoding="utf-8")
         self.assertIn("if (actionAd) adBlocks.push(<ActionAd", page)
-        self.assertIn("const [adEarly, adMidPr, adEnd] = adBlocks.slice(0, 3);", page)
+        # 2026-11-12: AdSense の審査の期間は1つだけ・本文の後ろ（lib/ad-review.ts）。期間のあとは元の3つ
+        self.assertIn("const [adEarly, adMidPr, adEnd] = adReview ? [null, null, adBlocks[0] ?? null] : adBlocks.slice(0, 3);", page)
 
 class AdPlacementUpgradeTest(unittest.TestCase):
     """2026-11-09: ドコモの情報流出の記事（いちばん読まれた記事）に、ほとんど広告が出ていなかった件の再発防止"""

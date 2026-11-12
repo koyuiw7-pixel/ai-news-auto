@@ -87,8 +87,9 @@ class ZeroVisitRuleTest(unittest.TestCase):
     def test_article_page_hides_pr_boxes(self):
         page = (ROOT / "app" / "articles" / "[slug]" / "page.tsx").read_text("utf-8")
         self.assertIn("const noPr = isZeroVisit(article.slug);", page)
-        for needle in ("noPr ? undefined : compareOffersFor(article)", "compareOffers || noPr ? undefined : actionAdWithBenefits(actionAdForArticle(article)",
-                       "noPr ? undefined : shopLinkForArticle(article)", "!noPr && bodyTail", "!noPr && !actionAd"):
+        # 2026-11-12: AdSense の審査の期間（lib/ad-review.ts の adReview）も同じ枠を消す
+        for needle in ("noPr || adReview ? undefined : compareOffersFor(article)", "compareOffers || noPr || adReview ? undefined : actionAdWithBenefits(actionAdForArticle(article)",
+                       "noPr || adReview ? undefined : shopLinkForArticle(article)", "!noPr && !adReview && bodyTail", "!noPr && !adReview && !actionAd"):
             self.assertIn(needle, page)
         # 得のカード（ad-benefits）は広告・商品枠が undefined ならそのまま undefined を返す＝noPr では得のカードも出ない
         self.assertIn("const offerPlan = noPr\n    ? { offer: undefined, rail: undefined, inline: undefined }", page)
