@@ -85,14 +85,6 @@
   },
   "failed_web": {},
   "gate_retry": {
-    "16b7534a7c99522f": {
-      "first": "2026-11-12T01:38:00.348153+00:00",
-      "next": "2026-11-12T04:38:00.348153+00:00",
-      "reason": "タイトル・リード「長崎市で挨拶」→ 元記事は「長崎県金融経済懇談会」とのみ記しており、開催地が長崎市とは書かれていない（県の会合を市と特定した追加情報）; リード「わが国の経済・物価情勢と金融政策について解説しました」→ 元記事は挨拶の題目と要旨で、本文の具体的な景気・物価判断の内容は本記事に反映されていない; 本文全体が日銀の一般的な役割・金融政策決定の仕組みの説明に終始し、浅田審議委員が挨拶で",
-      "title": "【挨拶】浅田審議委員「わが国の経済・物価情勢と金融政策」（長崎）",
-      "tries": 1,
-      "url": "http://www.boj.or.jp/about/press/koen_2026/ko261112a.htm"
-    },
     "19f6d88c9d76c05e": {
       "first": "2026-11-12T03:45:35.208854+00:00",
       "next": "2026-11-12T06:45:35.208854+00:00",
@@ -4960,6 +4952,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（の開催）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001309.html"
+    },
+    "16b7534a7c99522f": {
+      "at": "2026-11-12T04:51:47.203845+00:00",
+      "costUsd": 0.0021,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 「地域の経済界の代表者らと意見を交わす」→ 元記事に懇談の参加者や意見交換の内容は書かれていない。創作された会の内容である; 「配布された資料の全文」→ 元記事は挨拶要旨の全文PDFへのリンクのみで、配布資料という記述はない; 「中央銀行としての役割や物価安定の目標に向けた金融政策の基本的な考え方が示されています」→ 挨拶本文は元記事に含まれておらず、内容を確認できない推測; 「",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/about/press/koen_2026/ko261112a.htm"
     },
     "16d3a056bb66afe0": {
       "at": "2026-11-05T13:15:07.612403+00:00",
@@ -10582,6 +10582,17 @@
       "slug": "nvidia-game-ready-driver-621-14-wow-forever",
       "url": "https://www.nvidia.com/en-us/geforce/news/world-of-warcraft-forever-geforce-rtx-spark-game-ready-driver/"
     },
+    "6feff53a80bd94a2": {
+      "at": "2026-11-12T04:51:17.017353+00:00",
+      "costUsd": 0.0063,
+      "intent": "neutral",
+      "mix": "brand",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "business",
+      "slug": "lexus-rz-minor-change-2026",
+      "url": "https://global.toyota/jp/newsroom/lexus/44972971.html"
+    },
     "700303e202ec4bac": {
       "at": "2026-11-06T19:34:38.916968+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -12780,6 +12791,12 @@
       "reason": "dedupe: 固有名詞が一致（agentic・era）: docker-blueprint-alliance-agent-baseline",
       "skipped": true,
       "url": "https://cloud.google.com/blog/topics/consulting/lessons-for-adopting-ai-agents/"
+    },
+    "92d7c9fd97dac299": {
+      "at": "2026-11-12T04:51:47.247831+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（表彰）",
+      "skipped": true,
+      "url": "https://corp.rakuten.co.jp/news/press/2026/1112_02.html"
     },
     "92ebb0d3af1fd62b": {
       "at": "2026-11-04T01:28:01.507055+00:00",
@@ -18713,14 +18730,6 @@
       "slug": "empress-cup-48-kickoff",
       "url": "https://www.jfa.jp/news/00037011/"
     },
-    "f0974527a57e05ee": {
-      "at": "2026-10-29T04:36:16.971171+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "public",
-      "slug": "tokyo-waste-management-dx-tool",
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102711"
-    },
     "f0cd214204837748": {
       "at": "2026-11-11T06:04:53.712494+00:00",
       "costUsd": 0.0046,
@@ -20517,86 +20526,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-10T19:22:10.431590+00:00",
-      "attempt": 1,
-      "id": "2c864d3cf06edb75",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「Pixel Watchの会話要約は、ドイツ語、フランス語…に対応しましたが」→ 元記事では、これらの言語は会話要約で利用可能になったと書かれ、Pixel Watchへは「soon」で今後の予定とされている。Pixel Watchで既に対応したように書くのは提供状況の取り違え。",
-        "「米国での価格は1個29.99ドル」→ 元記事は『$29.99』『$99.99』とのみ書き、米国とは明記していない。ドル表記からの推測を事実として書いている。",
-        "「Pixel Tagが11月11日に発売され」→ 元記事は『available November 11』（11月11日から提供）と書いており、発売済みのように過去形で書くのは時制の言い過ぎ。"
-      ],
-      "score": 72,
-      "source": "google-blog-all",
-      "title": "Pixel 10 with Gemini Intelligence, custom widgets, and more in our November Pixe"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T21:02:27.711053+00:00",
-      "attempt": 1,
-      "id": "dd5cddcd1e770205",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 90,
-      "source": "google-japan-blog",
-      "title": "Gemini 4 Carbon の提供を開始"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T21:15:48.763335+00:00",
-      "attempt": 1,
-      "id": "1c1046b4dc0f9420",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「edia・Slackなど12社」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
-      ],
-      "readability": {
-        "avg_paragraph": 83.7,
-        "avg_sentence": 38.5,
-        "long_share": 0.06,
-        "max_paragraph": 149,
-        "paragraphs": 23,
-        "sentences": 50
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "ChatGPT plugins",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（GET）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T21:20:40.864276+00:00",
-      "attempt": 1,
-      "id": "1c1046b4dc0f9420",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「cart、Slackなど12社」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
-      ],
-      "readability": {
-        "avg_paragraph": 85.0,
-        "avg_sentence": 41.5,
-        "long_share": 0.093,
-        "max_paragraph": 165,
-        "paragraphs": 21,
-        "sentences": 43
-      },
-      "score": null,
-      "source": "openai-news",
-      "title": "ChatGPT plugins",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（KAYAK・GET）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-10T21:23:54.587412+00:00",
@@ -28038,6 +27967,114 @@
         "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
         "初めて出たところで言い換えていない略語（JFA）",
         "work_money（「仕事・お金にどう活かせる？」欄）が無い"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T04:50:34.058247+00:00",
+      "attempt": 1,
+      "id": "6feff53a80bd94a2",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "題名で「いつから」を約束しているのに、本文に日付が無い。元記事の日付を書くか、題名から外す"
+      ],
+      "readability": {
+        "avg_paragraph": 67.9,
+        "avg_sentence": 54.3,
+        "long_share": 0.3,
+        "max_paragraph": 142,
+        "paragraphs": 8,
+        "sentences": 10
+      },
+      "score": null,
+      "source": "toyota",
+      "title": "LEXUS、「RZ」を一部改良",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（RZ・BEV・SPORT）",
+        "読みやすさ: 文が長い（1文の平均 54.3字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T04:50:53.374266+00:00",
+      "attempt": 1,
+      "id": "6feff53a80bd94a2",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 70.0,
+        "avg_sentence": 56.0,
+        "long_share": 0.4,
+        "max_paragraph": 159,
+        "paragraphs": 8,
+        "sentences": 10
+      },
+      "score": 88,
+      "source": "toyota",
+      "title": "LEXUS、「RZ」を一部改良",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（RZ・BEV・SPORT）",
+        "読みやすさ: 文が長い（1文の平均 56.0字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T04:51:01.529637+00:00",
+      "attempt": 0,
+      "id": "6feff53a80bd94a2",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 本文に「# 」の見出しが入った（# RZ 改良）"
+      ],
+      "readability": {
+        "avg_paragraph": 70.0,
+        "avg_sentence": 56.0,
+        "long_share": 0.4,
+        "max_paragraph": 159,
+        "paragraphs": 8,
+        "sentences": 10
+      },
+      "score": 88,
+      "source": "toyota",
+      "title": "LEXUS、「RZ」を一部改良",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（RZ・BEV・SPORT）",
+        "読みやすさ: 文が長い（1文の平均 56.0字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T04:51:47.203726+00:00",
+      "attempt": 1,
+      "id": "16b7534a7c99522f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「地域の経済界の代表者らと意見を交わす」→ 元記事に懇談の参加者や意見交換の内容は書かれていない。創作された会の内容である",
+        "「配布された資料の全文」→ 元記事は挨拶要旨の全文PDFへのリンクのみで、配布資料という記述はない",
+        "「中央銀行としての役割や物価安定の目標に向けた金融政策の基本的な考え方が示されています」→ 挨拶本文は元記事に含まれておらず、内容を確認できない推測",
+        "「地域の経済実態を把握する」「日銀の金融政策について説明する場」→ 懇談会の目的や形式を元記事から確認できず、一般論を事実のように書いている",
+        "「今回の懇談会は…直接伝える場として開催されました」→ 会の趣旨の断定が元記事に無い",
+        "本文・かんたん版全体で挨拶の具体的な主張（経済・物価の判断、金融政策の方向性）が一切示されず、見出しの『経済・物価情勢と金融政策』の中身に答えていない"
+      ],
+      "readability": {
+        "avg_paragraph": 99.5,
+        "avg_sentence": 79.6,
+        "long_share": 0.8,
+        "max_paragraph": 120,
+        "paragraphs": 4,
+        "sentences": 5
+      },
+      "score": 55,
+      "source": "boj",
+      "title": "【挨拶】浅田審議委員「わが国の経済・物価情勢と金融政策」（長崎）",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KB）",
+        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
       ]
     }
   ],
