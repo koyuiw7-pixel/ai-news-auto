@@ -1088,6 +1088,14 @@ def build_trend_record(item: dict, fetched: list[dict], data: dict, model_name: 
     return record
 
 
+def log_feed_errors(lane: str, report: dict) -> None:
+    """読めなかった発信元の slug と失敗の種類だけを出す（2026-11-12: 合計の数だけでは、足した発信元が本番で読めているか確かめられなかった）。
+    題名・本文・相手のエラーの文面は出さない"""
+    failed = sorted(f"{slug}({str(r.get('error') or '').split(':', 1)[0]})" for slug, r in report.items() if r.get("error"))
+    if failed:
+        log(f"[feed-health] {lane} 読めなかった発信元: {', '.join(failed)}")
+
+
 def log(message: str) -> None:
     print(message, flush=True)
 
@@ -2206,6 +2214,7 @@ def main() -> int:
         report = {}
         ai_items = usable(feeds.collect(args.days, state, selected, report=report)) if selected else []
         log(f"[feed-health] AI {json.dumps(feeds.report_totals(report), ensure_ascii=False, sort_keys=True)}")
+        log_feed_errors("AI", report)
     if not fast_mode and (broad_limit > 0 or (args.max_major > 0 and args.section in ("broad", "all"))):
         selected = [f for f in feeds.BROAD_FEEDS if not args.source or f["slug"] in args.source]
         report = {}
@@ -2216,6 +2225,7 @@ def main() -> int:
         broad_raw = [i for i in broad_raw if i["published_at"] >= since or life_late_ok(i)]
         broad_items = tag_sections(usable(broad_raw))
         log(f"[feed-health] broad {json.dumps(feeds.report_totals(report), ensure_ascii=False, sort_keys=True)}")
+        log_feed_errors("broad", report)
     if args.only:
         only_re = re.compile(args.only)
         ai_items = [i for i in ai_items if only_re.search(i["title"])]

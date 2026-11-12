@@ -92,5 +92,20 @@ class LifeBrandSourcesTest(unittest.TestCase):
                 feeds.parse_feed({"slug": "x", "name": "x", "url": "https://example.invalid/", "lang": "ja"})
 
 
+class FeedErrorLogTest(unittest.TestCase):
+    def test_failed_feeds_are_named_without_error_text(self):
+        import web_articles  # noqa: PLC0415
+        lines = []
+        report = {"ok": {"error": ""}, "capcom-ir": {"error": "ParseError: no element found: line 1"},
+                  "nitori": {"error": "HTTPError: HTTP Error 403: Forbidden"}}
+        with patch.object(web_articles, "log", lines.append):
+            web_articles.log_feed_errors("broad", report)
+        self.assertEqual(lines, ["[feed-health] broad 読めなかった発信元: capcom-ir(ParseError), nitori(HTTPError)"])
+        lines.clear()
+        with patch.object(web_articles, "log", lines.append):
+            web_articles.log_feed_errors("AI", {"ok": {"error": ""}})
+        self.assertEqual(lines, [])
+
+
 if __name__ == "__main__":
     unittest.main()
