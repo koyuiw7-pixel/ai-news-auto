@@ -69,9 +69,8 @@
     }
   ],
   "todayActions": [
-    "「フラボス」の購入記録（注文の控えなど）を探しておく",
-    "ニコリオのお客様窓口に、対象かどうかを問い合わせる",
-    "返金の実施期間は令和9年3月8日までなので、早めに確かめる"
+    "分からないときは、消費者ホットライン188番に電話して、近くの消費生活センターを案内してもらう",
+    "消費者庁の申出・問合せ窓口で、個別の問合せ先を確かめる"
   ],
   "angleOf": "nicorio-flavos-refund-process",
   "deepDive": "check",
@@ -120,5 +119,99 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/flavos-refund-eligibility-check-figure-105fa814.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "一部のIP電話・プリペイド式携帯・電話リレーサービスからは、188番ではなくお住まいの地域の相談窓口に直接かけるよう書かれています。",
+      "source": "https://www.caa.go.jp/policies/application/inquiry/"
+    },
+    {
+      "text": "消費者ホットライン188番は、相談窓口につながった時点から通話料がかかります。相談は無料で、携帯の定額サービスでも別途ナビダイヤル料金が発生すると書かれています。",
+      "source": "https://www.caa.go.jp/about_us/about/contact/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "消費者庁 申出・問合せ窓口",
+      "url": "https://www.caa.go.jp/policies/application/inquiry/",
+      "source": "https://www.caa.go.jp/policies/application/inquiry/",
+      "howTo": [
+        "消費者庁ホーム",
+        "申出・問合せ窓口"
+      ],
+      "phone": "03-3507-8800",
+      "note": "消費者庁へのお問合せは消費者庁大代表（03-3507-8800）に電話すると、関係部署に案内されます。"
+    },
+    {
+      "name": "消費者ホットライン（188番）",
+      "url": "https://www.caa.go.jp/policies/policy/local_cooperation/local_consumer_administration/hotline/",
+      "source": "https://www.caa.go.jp/about_us/about/contact/",
+      "howTo": [
+        "消費者庁ホーム",
+        "消費者からの問合せ窓口",
+        "「消費者ホットライン」"
+      ],
+      "phone": "188",
+      "note": "相談は無料ですが、相談窓口につながった時点から通話料がかかります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "分からないときは、消費者ホットライン188番に電話して、近くの消費生活センターを案内してもらう",
+      "source": "https://www.caa.go.jp/about_us/about/contact/",
+      "steps": [
+        "188番に電話する",
+        "相談窓口につながると通話料がかかる",
+        "相談は無料と案内されている"
+      ],
+      "url": "https://www.caa.go.jp/policies/application/inquiry/"
+    },
+    {
+      "action": "消費者庁の申出・問合せ窓口で、個別の問合せ先を確かめる",
+      "source": "https://www.caa.go.jp/about_us/about/contact/",
+      "steps": [
+        "消費者庁ホームの「申出・問合せ窓口」を開く",
+        "消費者庁の大代表（03-3507-8800）に電話する",
+        "個別の問合せ先は窓口のページで案内されている"
+      ],
+      "url": "https://www.caa.go.jp/policies/application/inquiry/"
+    }
+  ],
+  "worries": [
+    {
+      "q": "IP電話やプリペイド式携帯からでも188番にかけられる？",
+      "a": "一部のIP電話、プリペイド式携帯電話、電話リレーサービスからは、188番ではなくお住まいの地域の相談窓口に直接かけるよう案内されています。",
+      "source": "https://www.caa.go.jp/policies/application/inquiry/",
+      "action": "IP電話やプリペイド式携帯なら、188番を使わず地域の消費生活相談窓口の番号を探してかける"
+    },
+    {
+      "q": "相談の電話にはお金がかかりますか？",
+      "a": "消費者ホットライン188番は、相談窓口につながった時点から通話料がかかります。相談は無料です。携帯の通話定額サービスなどでも別途ナビダイヤル通話料がかかる場合があり、相談窓口に直接かけたほうが安くなることもあると案内されています。",
+      "source": "https://www.caa.go.jp/about_us/about/contact/",
+      "action": "電話する前に、最寄りの消費生活センターの連絡先を国民生活センターで調べ、直接かける"
+    },
+    {
+      "q": "どこに聞けばいいか分からないときは？",
+      "a": "消費者庁へのお問合せは消費者庁大代表（03-3507-8800）に電話すると、関係部署に案内されます。個別のお問合わせ先は申出・問合せ窓口にあります。被害にあったら、消費者ホットライン188番で近くの相談窓口を案内してもらえます。",
+      "source": "https://www.caa.go.jp/policies/application/inquiry/",
+      "action": "まず消費者庁大代表（03-3507-8800）に電話し、担当部署を案内してもらう"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "188番より先に、通話料と例外を知っておく",
+    "steps": "対象か分からないときの、最初の一歩",
+    "desk": "どこに電話すれば早いか",
+    "worries": "相談の電話代や掛け方は大丈夫？"
+  },
+  "depthAt": "2026-11-12T02:42:32+00:00",
+  "updatedAt": "2026-11-12T02:42:32+00:00",
+  "updates": [
+    {
+      "at": "2026-11-12T02:42:32+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「よくある不安」を追記しました",
+      "sourceUrl": "https://www.caa.go.jp/notice/entry/048110/",
+      "sourceName": "消費者庁"
+    }
+  ]
 }

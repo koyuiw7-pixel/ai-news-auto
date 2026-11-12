@@ -59,8 +59,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の目薬の製品名と末尾のロット番号を、本文の一覧と照らし合わせる",
-    "対象かわからないときや目に違和感があるときは、0120-610-300（9時～17時、土日祝・年末年始を除く）に電話する"
+    "手元の目薬の販売名とJANコードを、回収一覧の表と見比べる",
+    "対象か分からない、目に違和感があるときは0120-610-300に電話する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -93,5 +93,78 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/rohto-eye-drop-recall-36-lots-2026-figure-c9381ffc.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "ロート製薬 コミュニケーションコール（本件専用ダイヤル）",
+      "url": "https://www.rohto.co.jp/news/whatsnew/2026/1111_01",
+      "source": "https://www.rohto.co.jp/news/whatsnew/2026/1111_01",
+      "phone": "0120-610-300",
+      "hours": "9:00 AM to 5:00 PM (excluding Saturdays, Sundays, public hol",
+      "note": "本件専用の窓口として案内されています。土日祝・年末年始は受付していません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の目薬の販売名とJANコードを、回収一覧の表と見比べる",
+      "source": "https://www.rohto.co.jp/news/whatsnew/2026/1111_01",
+      "steps": [
+        "表の「Sales name」「JAN code」で製品を探す",
+        "「Target lot」の列にあるロット番号と照らす",
+        "末尾の文字まで同じかを見る"
+      ],
+      "url": "https://www.rohto.co.jp/news/whatsnew/2026/1111_01"
+    },
+    {
+      "action": "対象か分からない、目に違和感があるときは0120-610-300に電話する",
+      "source": "https://www.rohto.co.jp/news/whatsnew/2026/1111_01",
+      "steps": [
+        "電話番号 0120-610-300 にかける",
+        "土・日・祝日・年末年始は受付しない"
+      ],
+      "url": "https://www.rohto.co.jp/news/whatsnew/2026/1111_01"
+    }
+  ],
+  "cause": {
+    "text": "ベトナムにあるグループの製造拠点で行った調査では、製造工程の一部で所定の管理が適切に実施されていなかったことが分かったとしています。",
+    "status": "stated",
+    "source": "https://www.rohto.co.jp/news/whatsnew/2026/1111_01"
+  },
+  "worries": [
+    {
+      "q": "手元の目薬は回収の対象になりますか？",
+      "a": "対象は表に載った6製品の指定ロットだけです。表の「Target lot」にある番号が該当し、回収は小売店と流通業者が持つ在庫が対象だとしています。",
+      "source": "https://www.rohto.co.jp/news/whatsnew/2026/1111_01",
+      "action": "手元の製品のJANコードとロット番号を、回収の表と照らし合わせて確かめる"
+    },
+    {
+      "q": "目に違和感があったら、どうすればいい？",
+      "a": "発表時点で、本件に関連する健康被害の報告は確認されていないとしています。対象ロットについても、製品の品質への影響はないことを確認したとしています。",
+      "source": "https://www.rohto.co.jp/news/whatsnew/2026/1111_01",
+      "action": "目に違和感があるときは、本件専用の0120-610-300に電話して相談する。受付は9時から17時まで"
+    },
+    {
+      "q": "この目薬の製造は、品質をちゃんと検査している？",
+      "a": "この拠点で作る目薬は、無菌性試験を含む品質試験を全ロットで行っていると説明しています。日本向けの製品は、国内で受け入れる際にも全ロットを試験しているとしています。",
+      "source": "https://www.rohto.co.jp/news/whatsnew/2026/1111_01",
+      "action": "対象かどうか迷うときは、製品名とロット番号を控えて0120-610-300に問い合わせる"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "製造工程で何が守られていなかったのか",
+    "steps": "手元の目薬が対象か、一覧で確かめる",
+    "desk": "迷ったら、どこに電話すればいいか",
+    "worries": "対象か、目の不安か、品質は大丈夫か"
+  },
+  "depthAt": "2026-11-12T02:41:01+00:00",
+  "updatedAt": "2026-11-12T02:41:01+00:00",
+  "updates": [
+    {
+      "at": "2026-11-12T02:41:01+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「公式の窓口」・「今日やること」・「理由」・「よくある不安」を追記しました",
+      "sourceUrl": "https://www.rohto.co.jp/news/whatsnew/2026/1111_01",
+      "sourceName": "ロート製薬「一部目薬製品の流通・小売在庫の自主回収に関するお知らせ」（2026年11月11日）"
+    }
+  ]
 }
