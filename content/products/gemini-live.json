@@ -6,7 +6,7 @@
   "companyName": "Google",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Gemini Liveは、声で話しかけてそのまま会話を続けられる音声AI機能です。Googleが開発し、音声対話やロボット、イヤホンなど様々な環境で提供されています。",
+    "text": "Gemini Liveは、声で話しかけてそのまま会話を続けられるAI機能です。Googleが提供しており、車での音声会話や植物ロボットの対話、イヤホンからの呼び出しなど様々な場面で活用されています。",
     "sources": [
       "gemini-apple-carplay-rollout",
       "google-gemini-live-sprout-plant-robot",
@@ -23,44 +23,44 @@
     },
     {
       "label": "日本での提供",
-      "value": "日本からも利用可能",
+      "value": "日本からも利用できます",
       "sources": [
-        "gemini-apple-carplay-rollout",
         "google-gemini-live-sprout-plant-robot"
       ]
     },
     {
-      "label": "向いている人",
-      "value": "運転中や学習時に声で使いたい人",
+      "label": "使える場所",
+      "value": "CarPlay、イヤホン、アプリ",
       "sources": [
         "gemini-apple-carplay-rollout",
-        "google-gemini-college-student-features"
+        "google-gemini-live-sprout-plant-robot",
+        "samsung-galaxy-buds-on-cuff-earbuds"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "音声入力をそのまま処理し音声出力する低遅延な対話ができます。",
-      "sources": [
-        "https://www.youtube.com/watch?v=z6l5nyE_6-I"
-      ]
-    },
-    {
-      "text": "車載ディスプレイのCarPlayから呼び出し、運転中に音声で会話できます。",
+      "text": "運転中に音声で予定の確認やGmailの未読メールの要約ができます。",
       "sources": [
         "gemini-apple-carplay-rollout"
       ]
     },
     {
-      "text": "面接や発表の練習、新しいソフトの操作の学習に使えます。",
+      "text": "ロボットとリアルタイムで自然な音声対話を行うことができます。",
+      "sources": [
+        "google-gemini-live-sprout-plant-robot"
+      ]
+    },
+    {
+      "text": "イヤホンを着けたまま「Hey Google, let's talk Live」と話しかけて呼び出せます。",
+      "sources": [
+        "samsung-galaxy-buds-on-cuff-earbuds"
+      ]
+    },
+    {
+      "text": "面接や発表の練習、新しいソフトの操作を教わることができます。",
       "sources": [
         "google-gemini-college-student-features"
-      ]
-    },
-    {
-      "text": "Google Workspaceと連携し、予定の確認や未読メールの要約ができます。",
-      "sources": [
-        "gemini-apple-carplay-rollout"
       ]
     }
   ],
@@ -86,13 +86,7 @@
   ],
   "japan": [
     {
-      "text": "Geminiアプリは日本で使えます。",
-      "sources": [
-        "gemini-apple-carplay-rollout"
-      ]
-    },
-    {
-      "text": "日本の開発者がAPIを使って同じような仕組みを試すことも可能です。",
+      "text": "GeminiアプリやAI機能は日本から利用できます。",
       "sources": [
         "google-gemini-live-sprout-plant-robot"
       ]
@@ -100,71 +94,59 @@
   ],
   "howto": [
     {
-      "text": "iPhoneのGeminiアプリを最新版に更新し、マイクの権限を許可します。",
+      "text": "iPhoneのGeminiアプリを最新版にし、マイクの権限を許可して一度スマホで使います。",
       "sources": [
         "gemini-apple-carplay-rollout"
       ]
     },
     {
-      "text": "車に接続し、CarPlayの画面のGeminiアイコンをタップして始めます。",
+      "text": "車に接続してCarPlayの画面のGeminiアイコンをタップして始めます。",
       "sources": [
         "gemini-apple-carplay-rollout"
       ]
-    }
-  ],
-  "differences": [
-    {
-      "text": "従来の音声アシスタントのような一拍置くぎこちさがなく、人間の相づちに合わせて滑らかに話します。",
-      "sources": [
-        "google-gemini-live-sprout-plant-robot"
-      ]
     },
     {
-      "text": "音声入力をそのまま処理するSpeech-to-Speechモデルを採用し、レイテンシーが極めて低くなっています。",
+      "text": "対応イヤホンを接続し「Hey Google, let's talk Live」と話しかけて呼び出します。",
       "sources": [
-        "https://www.youtube.com/watch?v=z6l5nyE_6-I"
+        "samsung-galaxy-buds-on-cuff-earbuds"
       ]
     }
   ],
+  "differences": [],
   "faq": [
     {
       "q": "無料で使える？",
-      "a": "0円/月の無料プランが用意されています。",
+      "a": "0円/月で15 GBのストレージが付いた無料プランが用意されています。",
       "sources": [
         "gemini-apple-carplay-rollout"
       ]
     },
     {
-      "q": "車での操作方法は？",
-      "a": "CarPlayの画面のGeminiアイコンをタップして始めます。アプリの最新版とマイクの許可が必要です。",
+      "q": "いつから使える？",
+      "a": "iPhoneのCarPlayでは2026年11月11日から全世界で順次提供されています。",
       "sources": [
         "gemini-apple-carplay-rollout"
       ]
     },
     {
-      "q": "主な活用シーンは？",
-      "a": "声での会話や予定の確認、Gmailの未読メールの要約などができます。",
+      "q": "誰に向いている？",
+      "a": "運転中に音声で作業したい人や、学習で音声対話を使いたい学生に向いています。",
       "sources": [
-        "gemini-apple-carplay-rollout"
+        "gemini-apple-carplay-rollout",
+        "google-gemini-college-student-features"
       ]
     }
   ],
   "timeline": [
     {
-      "date": "2026-08-01",
-      "slug": "",
-      "event": "LangSmithで音声AIエージェントの追跡手法を解説",
-      "url": "https://www.youtube.com/watch?v=z6l5nyE_6-I"
-    },
-    {
       "date": "2026-10-28",
       "slug": "samsung-galaxy-buds-on-cuff-earbuds",
-      "event": "サムスン初のオープンイヤー型Galaxy Buds Onを発表"
+      "event": "Galaxy Buds Onを発表"
     },
     {
       "date": "2026-10-29",
       "slug": "google-gemini-live-sprout-plant-robot",
-      "event": "植物ロボットSproutの技術デモを公開"
+      "event": "植物ロボットSproutを公開"
     }
   ],
   "related": [
@@ -182,17 +164,9 @@
   "linkFrom": [
     "samsung-galaxy-buds-on-cuff-earbuds"
   ],
-  "signature": "79ba368d6c00a526",
-  "primarySignature": "0f9ff7937a74e8b1",
-  "model": "gemini-3.1-flash-lite",
+  "signature": "cb0f43517ead3416",
+  "primarySignature": "26dceba283119754",
+  "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:59:22+00:00",
-  "updatedAt": "2026-11-11T17:24:38+00:00",
-  "officialSources": {
-    "https://www.youtube.com/watch?v=z6l5nyE_6-I": {
-      "title": "Voice Agent observability with LangSmith",
-      "publisher": "Google for Developers の YouTube 公式チャンネル",
-      "kind": "video",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T12:03:18+00:00"
 }

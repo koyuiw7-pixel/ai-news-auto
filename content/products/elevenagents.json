@@ -6,77 +6,66 @@
   "companyName": "ElevenLabs",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "ElevenAgentsは、ElevenLabsが提供する音声やチャットで顧客と会話するAIを作って運用する仕組みです。2026年11月に、顧客の好みを覚えるMemory機能などが発表されました。",
+    "text": "ElevenAgentsは、ElevenLabsが提供する音声やチャットで顧客と会話するAIを作って運用する仕組みです。2026年11月に新機能や関連アプリが発表されました。",
     "sources": [
-      "elevenagents-memory-elevenai-summit-nyc"
+      "elevenagents-memory-elevenai-summit-nyc",
+      "elevenagents-unity-sdk-npc-voice"
     ]
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "月6ドルから",
+      "label": "提供開始",
+      "value": "一部で提供中",
       "sources": [
-        "https://elevenlabs.io/blog/ai-voice-agent-pricing-guide"
+        "elevenagents-memory-elevenai-summit-nyc"
       ]
     },
     {
       "label": "向いている人",
-      "value": "電話対応を自動化したい企業",
+      "value": "顧客対応の担当者、Unity開発者",
       "sources": [
-        "https://elevenlabs.io/blog/ai-voice-agent-pricing-guide"
+        "elevenagents-memory-elevenai-summit-nyc",
+        "elevenagents-unity-sdk-npc-voice"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "Memory機能により、会話で出た顧客の好みや条件を記憶して次回の応対に活かせます。",
+      "text": "顧客の好みを覚えるMemory機能により、再度の電話で前の好みや条件を覚えて応対できます。",
       "sources": [
         "elevenagents-memory-elevenai-summit-nyc"
       ]
     },
     {
-      "text": "Routines機能で、事前審査や予約キャンセル対応などの作業を自動化できます。",
+      "text": "会話の前後に続く作業を自動で進めるRoutines機能を使えます。",
       "sources": [
         "elevenagents-memory-elevenai-summit-nyc"
       ]
     },
     {
-      "text": "Unity SDKを使い、ゲーム内のキャラクターとプレイヤーが声で会話する環境を作れます。",
+      "text": "Unityゲームのキャラクターとプレイヤーがマイクを使って声で会話できます。",
       "sources": [
         "elevenagents-unity-sdk-npc-voice"
       ]
     },
     {
-      "text": "Nemotron 3.5 Super VLなどのモデルを利用可能です。",
+      "text": "Unity SDKでテキスト入力、マイクのミュート、音量調整、入出力機器の切り替えに対応します。",
       "sources": [
-        "elevenagents-memory-elevenai-summit-nyc"
+        "elevenagents-unity-sdk-npc-voice"
       ]
     }
   ],
-  "pricing": [
-    {
-      "text": "無料プランは月15分まで利用できます。有料プランは通話1分あたり0.08ドルです。",
-      "sources": [
-        "https://elevenlabs.io/blog/ai-voice-agent-pricing-guide"
-      ]
-    },
-    {
-      "text": "LLM利用料と電話代は実費で別途請求されます。",
-      "sources": [
-        "https://elevenlabs.io/blog/ai-voice-agent-pricing-guide"
-      ]
-    }
-  ],
+  "pricing": [],
   "japan": [],
   "howto": [
     {
-      "text": "管理画面でエージェントを作成し、指示文と声を設定して利用を開始します。",
+      "text": "UnityのPackage ManagerでGit URLからSDKを入れることで導入できます。",
       "sources": [
         "elevenagents-unity-sdk-npc-voice"
       ]
     },
     {
-      "text": "Unity開発者は公式SDKをGitHubから導入し、Conversation APIで接続します。",
+      "text": "管理画面で作ったエージェントのIDを使い、GettingStartedサンプルなどで始められます。",
       "sources": [
         "elevenagents-unity-sdk-npc-voice"
       ]
@@ -85,29 +74,30 @@
   "differences": [],
   "faq": [
     {
-      "q": "無料で使える？",
-      "a": "無料プランがあり、月15分まで利用できます。ただしLLM利用料と電話代は別途かかります。",
+      "q": "誰に向いている？",
+      "a": "顧客対応を行う企業や、Unityでゲームを作る開発者に向いています。",
       "sources": [
-        "https://elevenlabs.io/blog/ai-voice-agent-pricing-guide"
+        "elevenagents-memory-elevenai-summit-nyc",
+        "elevenagents-unity-sdk-npc-voice"
       ]
     },
     {
-      "q": "Unityで使えますか？",
-      "a": "公式SDKが公開されており、ゲーム内のキャラクターと声で会話する場面を作れます。",
+      "q": "Memory機能とは？",
+      "a": "会話で出た好みや条件をAIが覚えておき、次に顧客から電話があったときに応対に活かす機能です。",
+      "sources": [
+        "elevenagents-memory-elevenai-summit-nyc"
+      ]
+    },
+    {
+      "q": "Unity SDKの対応環境は？",
+      "a": "Editor、デスクトップ、WebGLに対応し、iOS、Android、XRはベータ版として提供されています。",
       "sources": [
         "elevenagents-unity-sdk-npc-voice"
       ]
     },
     {
-      "q": "誰に向いていますか？",
-      "a": "電話やウェブでの問い合わせ対応を自動化したい企業に向いています。",
-      "sources": [
-        "https://elevenlabs.io/blog/ai-voice-agent-pricing-guide"
-      ]
-    },
-    {
-      "q": "何が記憶されますか？",
-      "a": "会話の中で出た顧客の好みや条件をAIが記憶し、次回の電話応対に活かします。",
+      "q": "ElevenAIとは？",
+      "a": "社員の仕事を支えるアプリで、会話を聞き取って議事録と次にやることにまとめます。",
       "sources": [
         "elevenagents-memory-elevenai-summit-nyc"
       ]
@@ -115,20 +105,14 @@
   ],
   "timeline": [
     {
-      "date": "2026-11-04",
-      "slug": "",
-      "event": "AI音声エージェントの料金プランを発表",
-      "url": "https://elevenlabs.io/blog/ai-voice-agent-pricing-guide"
-    },
-    {
       "date": "2026-11-06",
       "slug": "elevenagents-unity-sdk-npc-voice",
-      "event": "ElevenAgents Unity SDKを公開"
+      "event": "ElevenLabsが公式SDKを公開"
     },
     {
       "date": "2026-11-11",
       "slug": "elevenagents-memory-elevenai-summit-nyc",
-      "event": "Memory機能とElevenAIを発表"
+      "event": "ElevenAgentsにMemoryを追加"
     }
   ],
   "related": [],
@@ -140,17 +124,9 @@
     "elevenagents-memory-elevenai-summit-nyc",
     "elevenagents-unity-sdk-npc-voice"
   ],
-  "signature": "0d6bf2f1387b333b",
-  "primarySignature": "0d6bf2f1387b333b",
+  "signature": "a661af67f0673201",
+  "primarySignature": "a661af67f0673201",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-11T16:06:37+00:00",
-  "updatedAt": "2026-11-11T16:06:37+00:00",
-  "officialSources": {
-    "https://elevenlabs.io/blog/ai-voice-agent-pricing-guide": {
-      "title": "AI voice agent pricing: What it costs and how to plan",
-      "publisher": "ElevenLabs 公式ブログ",
-      "kind": "web",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T12:03:00+00:00"
 }
