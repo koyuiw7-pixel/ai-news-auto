@@ -1,12 +1,19 @@
 {
  "articles": {
+  "ajinomoto-household-price-hike-2026-dec": {
+   "at": "2026-11-12T17:44:23+00:00",
+   "before": 1396,
+   "status": "skipped",
+   "tries": 0,
+   "why": "人が確かめた記事（Muse・編集部）"
+  },
   "amputee-soccer-world-cup-2026-japan": {
-   "at": "2026-11-12T05:52:06+00:00",
+   "at": "2026-11-12T17:44:23+00:00",
    "before": 409,
-   "gateTries": 1,
-   "status": "not-thicker",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）"
+   "gateTries": 2,
+   "status": "gate-failed",
+   "tries": 2,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（タイトル「15日未明から」→ 初戦は日本時間7:00で、未明（夜明け前）ではなく朝の時間帯。見出しが本文・元記事の時刻と食い違う。）"
   },
   "att-openai-ai-legal-workflows-legaledge": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -30,12 +37,12 @@
    "why": "公式の発表の資料が無い（動画などが元）"
   },
   "boj-deposits-by-depositor-2026-09": {
-   "at": "2026-11-12T05:52:06+00:00",
+   "at": "2026-11-12T17:44:23+00:00",
    "before": 317,
-   "gateTries": 1,
-   "status": "not-thicker",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）"
+   "gateTries": 2,
+   "status": "gate-failed",
+   "tries": 2,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「ホームページの統計ページ」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く）"
   },
   "building-digital-synth-with-google-gemini": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -86,6 +93,13 @@
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
   },
+  "child-support-levy-2026-payroll": {
+   "at": "2026-11-12T17:44:23+00:00",
+   "before": 1484,
+   "status": "skipped",
+   "tries": 0,
+   "why": "人が確かめた記事（Muse・編集部）"
+  },
   "childbirth-allowance-eligibility-check": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 1297,
@@ -94,12 +108,12 @@
    "why": "別の切り口の記事（親の記事と同じ資料）"
   },
   "dbj-government-guaranteed-bond-93": {
-   "at": "2026-11-12T05:52:06+00:00",
+   "at": "2026-11-12T17:44:23+00:00",
    "before": 327,
-   "gateTries": 1,
+   "gateTries": 2,
    "status": "not-thicker",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）"
+   "tries": 2,
+   "why": "後処理のあと 553字（627字に届かない）"
   },
   "digital-dx": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -145,13 +159,20 @@
    "tries": 1,
    "why": ""
   },
+  "earthquake-insurance-deduction-limit": {
+   "at": "2026-11-12T17:44:23+00:00",
+   "before": 1429,
+   "status": "skipped",
+   "tries": 0,
+   "why": "人が確かめた記事（Muse・編集部）"
+  },
   "economy-watcher-survey-october-2026": {
-   "at": "2026-11-12T05:52:06+00:00",
+   "at": "2026-11-12T17:44:23+00:00",
    "before": 382,
-   "gateTries": 1,
-   "status": "gate-failed",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）（題名が料金・価格の話なのに、リードと本文に金額が無い。公式の金額を書くか、題名から料金の話を外す）"
+   "gateTries": 2,
+   "status": "not-thicker",
+   "tries": 2,
+   "why": "後処理のあと 519字（682字に届かない）"
   },
   "employment-insurance-rate-fy2026": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -168,12 +189,17 @@
    "why": "別の切り口の記事（親の記事と同じ資料）"
   },
   "food-loss-reduction-reference-2026": {
-   "at": "2026-11-12T05:52:06+00:00",
+   "after": 1314,
+   "at": "2026-11-12T17:44:23+00:00",
+   "bar": [
+    6
+   ],
    "before": 398,
    "gateTries": 1,
-   "status": "gate-failed",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）（リード「今の生活習慣を変える必要はなく」→ 元記事・確認済みの文脈に、生活習慣を変える必要がないという記述はない。創作。）"
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 2,
+   "why": ""
   },
   "foreign-exchange-intervention-2026-3q": {
    "after": 701,
@@ -197,6 +223,14 @@
    "status": "skipped",
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
+  },
+  "groove-energy-renewable-energy-levy-delinquency": {
+   "at": "2026-11-12T17:44:23+00:00",
+   "before": 423,
+   "gateTries": 1,
+   "status": "gate-failed",
+   "tries": 1,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（かんたん版「国に納めるべきお金を期限までに払わなかった」「国の仕組みに納められます」→ 元記事は納付先を広域的運営推進機関としており、国に納めるとは書かれていない。本文の記述とも矛盾する。）"
   },
   "hokuriku-electric-hokulink-leak": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -227,12 +261,12 @@
    "why": "公式の発表の資料が無い（動画などが元）"
   },
   "investment-sector-trading-202610": {
-   "at": "2026-11-12T05:52:06+00:00",
+   "at": "2026-11-12T17:44:23+00:00",
    "before": 399,
-   "gateTries": 1,
-   "status": "not-thicker",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）"
+   "gateTries": 2,
+   "status": "gate-failed",
+   "tries": 2,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（body に投資助言・売買のすすめの言い回しがある（「押し目買い」）。一般的な情報と判断材料の提示に直す）"
   },
   "japan-cpi-september-2026-green-tea": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -286,12 +320,12 @@
    "why": "人が確かめた記事（Muse・編集部）"
   },
   "kyoto-railway-museum-admission-fee-change": {
-   "at": "2026-11-12T05:52:06+00:00",
+   "at": "2026-11-12T17:44:23+00:00",
    "before": 261,
-   "gateTries": 1,
+   "gateTries": 2,
    "status": "gate-failed",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）（元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「入館料、3月1日から一般1,900円」、「00円に、前売りの一般は1,800円」、「 | 1,300円 | 1,400円」、「 | 1,200円 | 1,520円」、「 ）"
+   "tries": 2,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「027年3月1日から一般1,900円」、「は一般が1,500円から1,800円」、「 | 1,300円 | 1,400円」、「 | 1,200円 | 1,520円」、「 ）"
   },
   "kyoukai-kenpo-childbirth-allowance-application": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -357,20 +391,46 @@
    "why": "人が確かめた記事（Muse・編集部）"
   },
   "mof-debt-balance-202609": {
-   "at": "2026-11-12T05:52:06+00:00",
+   "after": 1530,
+   "at": "2026-11-12T17:44:23+00:00",
+   "bar": [
+    1,
+    6
+   ],
    "before": 388,
    "gateTries": 1,
-   "status": "not-thicker",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）"
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 2,
+   "why": ""
   },
   "mof-securities-transactions-october-2026": {
-   "at": "2026-11-12T05:52:06+00:00",
+   "after": 718,
+   "at": "2026-11-12T17:44:23+00:00",
+   "bar": [
+    3,
+    6
+   ],
    "before": 367,
    "gateTries": 1,
-   "status": "not-thicker",
+   "model": "gemini-3.1-flash-lite",
+   "status": "thickened",
+   "tries": 2,
+   "why": ""
+  },
+  "nagano-otari-hotel-renovation-mlit": {
+   "after": 1254,
+   "at": "2026-11-12T17:44:23+00:00",
+   "bar": [
+    1,
+    3,
+    4
+   ],
+   "before": 424,
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
    "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）"
+   "why": ""
   },
   "national-pension-two-year-prepayment": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -440,12 +500,18 @@
    "why": "公式の発表の資料が無い（動画などが元）"
   },
   "outdoor-advertiser-exam-error": {
-   "at": "2026-11-12T05:52:06+00:00",
+   "after": 1359,
+   "at": "2026-11-12T17:44:23+00:00",
+   "bar": [
+    1,
+    7
+   ],
    "before": 314,
    "gateTries": 1,
-   "status": "gate-failed",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）（本文「今回の試験を受験していない人や屋外広告物に関わらない人には影響はありません」→ 元記事にない影響の有無の断定である。）"
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 2,
+   "why": ""
   },
   "pension-early-claim-reduction-rate": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -510,12 +576,32 @@
    "tries": 0,
    "why": "公式の発表の資料が無い（動画などが元）"
   },
+  "suntory-kinmugi-hojun-sales-plan-raised": {
+   "after": 1784,
+   "at": "2026-11-12T17:44:23+00:00",
+   "bar": [
+    1
+   ],
+   "before": 421,
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
+  },
   "tax-refund-filing-from-jan-1": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 1385,
    "status": "skipped",
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
+  },
+  "tsunelog-vol27-beach-soccer": {
+   "at": "2026-11-12T17:44:23+00:00",
+   "before": 421,
+   "gateTries": 1,
+   "status": "gate-failed",
+   "tries": 1,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（「日本代表の最新の試合は、サイソクの過去記事でも扱っています」→ 参照先の過去記事は11月14日に行われる対ブラジル戦の予告で、「最新の試合」ではない（元記事・確認済みの文脈と矛盾する記述））"
   },
   "uber-openai-chatgpt-work-enterprise-deployment": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -531,9 +617,30 @@
    "tries": 0,
    "why": "公式の発表の資料が無い（動画などが元）"
   },
+  "winticket-new-cm-series-2026": {
+   "after": 1278,
+   "at": "2026-11-12T17:44:23+00:00",
+   "bar": [
+    6,
+    7,
+    8
+   ],
+   "before": 424,
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
+  },
   "year-end-tax-adjustment-refund-december": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 1341,
+   "status": "skipped",
+   "tries": 0,
+   "why": "人が確かめた記事（Muse・編集部）"
+  },
+  "yucho-atm-familymart-end-2027": {
+   "at": "2026-11-12T17:44:23+00:00",
+   "before": 1489,
    "status": "skipped",
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
@@ -559,6 +666,12 @@
    "thickened": 5,
    "tried": 15,
    "usd": 0.1525
+  },
+  {
+   "at": "2026-11-12T17:44:23+00:00",
+   "thickened": 7,
+   "tried": 15,
+   "usd": 1.3742
   }
  ]
 }
