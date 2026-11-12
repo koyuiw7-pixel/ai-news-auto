@@ -73,7 +73,7 @@
   "videoTitle": "e-Taxのログイン方式の違い マイナンバーカード方式とID・パスワード方式はどちらで出すのか",
   "publishedAt": "2026-11-12T03:30:06.825364+00:00",
   "generatedAt": "2026-11-12T03:31:50.122847+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/e-tax-login-mynumber-card-vs-id-figure-a4d24300.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -88,15 +88,14 @@
     }
   ],
   "todayActions": [
-    "手元に「ID・パスワード方式の届出完了通知」があるか確かめる。ない場合は、マイナンバーカード方式で登録する。",
-    "マイナンバーカードの電子証明書の有効期限を、市区町村の窓口で確かめる。",
-    "e-Tax・作成コーナーヘルプデスク（0570-01-5901、月〜金9時〜17時）に、ログインや送信の疑問を相談する。"
+    "手元に「ID・パスワード方式の届出完了通知」があるかを確かめる",
+    "マイナンバーカードの電子証明書の有効期限を確かめ、失効していれば更新する",
+    "マイナンバーカード方式の登録を、e-Taxホームページの「ログイン」から始める"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261112-手続き-eTaxのログイン方式の違い.md",
   "sectionsPolishedAt": "2026-11-12T03:31:50+00:00",
-  "museDepthNotes": "なるほど: ID・パスワード方式は、マイナンバーカードが普及するまでの暫定的な対応として運用されてきたものである。e-Taxは令和7年9月25日掲載の案内で、その前提のうえで新規発行を停止したと明記している（https://www.e-tax.nta.go.jp/topics/2025/topics_20250925.htm）\nなるほど: ID・パスワード方式で申告書を送れても、e-Taxのメッセージボックスの閲覧については原則としてマイナンバーカード等の電子証明書が必要になる。カードなしで送れることと、送信後の確認までカードなしで済むことは同じではない（https://www.e-tax.nta.go.jp/toiawase/qa/kanbenka/12.htm）\nなるほど: マイナンバーカード方式で使う暗証番号は場面で違う。ログインは利用者証明用電子証明書の数字4桁（3回連続で間違えるとロック）、申告等データへの電子署名は署名用電子証明書の英数字6文字以上16文字以下（5回連続で間違えるとロック）である（https://www.e-tax.nta.go.jp/kojin/mycd_login.htm）\n公式窓口: e-Tax・作成コーナーヘルプデスク（0570-01-5901、IP電話等は03-5638-5171、月曜日から金曜日・休祝日及び12月29日から1月3日を除く9時から17時）。たどり方は本文の窓口の見出しに書いた\nすぐにできること: 届出完了通知の有無を確かめる／マイナンバーカードの電子証明書が失効していないか確かめる／ログイン用の数字4桁と署名用の英数字6文字以上16文字以下を混同しないよう分けて確かめる",
   "museSources": [
     {
       "url": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm",
@@ -126,5 +125,174 @@
   "qualityScore": 93,
   "detectedAt": "2026-11-12T03:32:03+00:00",
   "layout": "noir",
-  "summaryLine": "e-Taxのログインは、マイナンバーカード方式が基本になります。ID・パスワード方式は令和9年分で終わる予定です。"
+  "summaryLine": "e-Taxのログインは、マイナンバーカード方式が基本になります。ID・パスワード方式は令和9年分で終わる予定です。",
+  "insight": [
+    {
+      "text": "マイナンバーカード方式でログインすると、利用者識別番号は「マイページ」の「基本情報」メニューから、パスワードは「マイページ」の「その他の登録情報」メニューから確認できます。",
+      "source": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm"
+    },
+    {
+      "text": "既に利用者識別番号を持つ人がマイナンバーカード方式の手続きをしても、利用者識別番号は変更されません。",
+      "source": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm"
+    },
+    {
+      "text": "Androidの「スマホ用電子証明書」には基本４情報とマイナンバーが搭載されません。e-Taxのマイページで「給与所得の源泉徴収票情報の取得希望の手続」を初めて行うときなどは、カードを読み取る必要があります。",
+      "source": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "e-Tax・作成コーナーヘルプデスク",
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/st/ccw0900",
+      "source": "https://www.keisan.nta.go.jp/kyoutu/ky/st/ccw0900",
+      "howTo": [
+        "お問い合わせ",
+        "事前準備、送信方法、エラー解消など",
+        "e-Tax・作成コーナーヘルプデスク"
+      ],
+      "phone": "0570-01-5901",
+      "hours": "月曜日～金曜日（休祝日及び12月29日～１月３日を除きます。）9:00～17:00",
+      "note": "「050」から始まるIP電話等では03-5638-5171にかけます。お問い合わせの前に、FAQ上位70件を見ると「約７割」の質問に答えています。"
+    },
+    {
+      "name": "マイナンバー総合フリーダイヤル",
+      "url": "https://www.kojinbango-card.go.jp/otoiawase/",
+      "source": "https://www.keisan.nta.go.jp/kyoutu/ky/st/ccw0900",
+      "howTo": [
+        "お問い合わせ",
+        "その他のお問い合わせ窓口について",
+        "マイナンバー総合フリーダイヤル"
+      ],
+      "phone": "0120-95-0178（通話料金無料）",
+      "hours": "平日 9:30～20:00、土日祝 9:30～17:30",
+      "note": "ICカードリーダライタの設定やパソコン操作の相談に使います。一部IP電話等では050-3818-1250（通話料がかかります）にかけます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元に「ID・パスワード方式の届出完了通知」があるかを確かめる",
+      "source": "https://www.e-tax.nta.go.jp/toiawase/qa/kanbenka/12.htm",
+      "steps": [
+        "手元の書類で「ID・パスワード方式の届出完了通知」を探す",
+        "通知にはIDとパスワードが書かれている"
+      ],
+      "url": "https://www.e-tax.nta.go.jp/toiawase/qa/kanbenka/12.htm"
+    },
+    {
+      "action": "マイナンバーカードの電子証明書の有効期限を確かめ、失効していれば更新する",
+      "source": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm",
+      "steps": [
+        "電子証明書の有効期限（5年間）を確かめる",
+        "失効していたら市区町村の窓口で更新する"
+      ],
+      "url": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm"
+    },
+    {
+      "action": "マイナンバーカード方式の登録を、e-Taxホームページの「ログイン」から始める",
+      "source": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm",
+      "steps": [
+        "e-Taxホームページ上部の「ログイン」ボタンを押す",
+        "e-Taxソフト（WEB版）のログイン画面で「マイナンバーカード」を選ぶ",
+        "「スマートフォンを利用」か「ICカードリーダーで読み取り」を選ぶ"
+      ],
+      "url": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm"
+    }
+  ],
+  "cause": {
+    "text": "ID・パスワード方式は、マイナンバーカードが普及するまでの暫定的な対応として運用されてきました。国税庁は、その前提のもとで令和7年10月1日からIDとパスワードの新規発行を停止したと案内しています。",
+    "status": "background",
+    "source": "https://www.e-tax.nta.go.jp/topics/2025/topics_20250925.htm"
+  },
+  "worries": [
+    {
+      "q": "IDとパスワードを持っていないけど、大丈夫？",
+      "a": "令和7年10月1日からIDとパスワードの新規発行を止めているため、お持ちでない方はID・パスワード方式を使えません。マイナンバーカード方式であれば、カードを事前に登録して利用できます。",
+      "source": "https://www.e-tax.nta.go.jp/toiawase/faq/zizen/13.htm",
+      "action": "マイナンバーカードを持っているなら、e-Taxホームページ上部の「ログイン」から登録を始める。",
+      "actionSource": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm"
+    },
+    {
+      "q": "ID・パスワードで送っても、送信後の確認はできる？",
+      "a": "ID・パスワード方式で申告書を送信できても、e-Taxのメッセージボックスの閲覧は原則としてマイナンバーカード等の電子証明書が必要です。",
+      "source": "https://www.e-tax.nta.go.jp/toiawase/qa/kanbenka/12.htm",
+      "action": "送信後にメッセージボックスを見る予定があるなら、カードの電子証明書が手元で使えるか確かめる。"
+    },
+    {
+      "q": "暗証番号を間違えたら、ロックされる？",
+      "a": "ログインに使う利用者証明用の数字4桁は3回連続で間違えるとロックされ、署名用の英数字6文字以上16文字以下は5回連続で間違えるとロックされます。ロックされても、JPKI暗証番号リセットアプリとコンビニ等のキオスク端末を使えば初期化できます。",
+      "source": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm",
+      "action": "暗証番号を入力する前に、ログイン用（数字4桁）か署名用（英数字）かを確かめてから入力する。"
+    },
+    {
+      "q": "スマホのマイナンバーカードなら、カードを持ち歩かなくて済む？",
+      "a": "スマートフォンのマイナンバーカードは、カードをかざさずに申告書の作成とe-Tax送信ができます。機種によっては、数字4桁の入力の代わりに生体認証も使えます。",
+      "source": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm",
+      "action": "対応するスマートフォンを持つなら、デジタル庁の「スマートフォンのマイナンバーカード」ページで申し込み方法を確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "届出完了通知があるけど、どちらで送る？",
+      "situation": "届出完了通知を持っていて、今後も使いたい",
+      "recommend": "急ぐ必要はないが、マイナンバーカード方式の登録も検討する価値がある",
+      "reason": "ID・パスワード方式は令和9年分の確定申告からは利用できなくなる予定です（令和8年7月23日更新のページ）。マイナンバーカード方式は事前の登録が必要ですが、IDとパスワードの管理は不要になります。",
+      "source": "https://www.e-tax.nta.go.jp/toiawase/qa/kanbenka/12.htm"
+    },
+    {
+      "question": "届出完了通知がない場合は、どうする？",
+      "situation": "IDとパスワードを持っていない",
+      "recommend": "マイナンバーカード方式で登録する",
+      "reason": "ID・パスワードの新規発行は令和7年10月1日から止まっているため、この方式は使えません。マイナンバーカード方式はカードを事前に登録すれば利用でき、税務署長への届出は不要です。",
+      "source": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm"
+    },
+    {
+      "question": "電子証明書の期限が切れていたら、どうする？",
+      "situation": "マイナンバーカードの電子証明書が失効した",
+      "recommend": "市区町村の窓口で電子証明書を更新する",
+      "reason": "電子証明書の有効期限は5年間です。失効した場合は、市区町村の窓口で更新すればe-Taxを利用できます。",
+      "source": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ID・パスワードを忘れても、マイページで確かめられる",
+    "cause": "なぜID・パスワードを止めるのか",
+    "steps": "今日、まず確かめる3つのこと",
+    "desk": "分からない時の電話窓口",
+    "worries": "カードや暗証番号、送信後の確認は大丈夫？",
+    "guide": "ID・パスワードのまま使うか迷ったとき"
+  },
+  "depthAt": "2026-11-12T04:03:54+00:00",
+  "updatedAt": "2026-11-12T04:03:54+00:00",
+  "updates": [
+    {
+      "at": "2026-11-12T04:03:54+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm",
+      "sourceName": "e-Tax「マイナンバーカード方式について」"
+    }
+  ],
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "e-Taxのログイン、ID・パスワード方式は2027年分で使えなくなる予定",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T04:07:04+00:00"
+  },
+  "imageFocus": {
+    "x": 0.505,
+    "y": 0.423,
+    "box": [
+      0.044,
+      0.048,
+      0.966,
+      0.798
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/e-tax-login-mynumber-card-vs-id-figure-a4d24300.jpg"
+  }
 }

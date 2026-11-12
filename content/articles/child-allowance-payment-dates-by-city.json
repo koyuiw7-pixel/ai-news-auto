@@ -62,13 +62,14 @@
   "videoTitle": "児童手当の支給日はいつか　偶数月に2か月分が入るが、何日かは市区町村で違う",
   "publishedAt": "2026-11-12T03:36:06.260917+00:00",
   "generatedAt": "2026-11-12T03:37:02.522554+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/child-allowance-payment-dates-by-city-figure-2793e69e.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "お住まいの市区町村の児童手当のページで、令和8年度の支給日と休日の扱いを確かめる",
-    "公務員の人は、勤務先の支給案内で振込日を確かめる"
+    "京都市の児童手当のページで、令和8年度の定期支給月の表を確かめる",
+    "大阪市の児童手当のページで、令和8年度の支給日と担当区を確かめる",
+    "出生や転入の翌日から15日以内なら、区役所の子ども・家庭相談係に申請する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -104,5 +105,154 @@
   "detectedAt": "2026-11-12T03:38:13+00:00",
   "searchTitle": "児童手当の振込はいつ？　偶数月に2か月分、支給日は市区町村で違う",
   "layout": "noir",
-  "summaryLine": "児童手当は偶数月（2・4・6・8・10・12月）に、前の2か月分をまとめて振り込む制度です。"
+  "summaryLine": "児童手当は偶数月（2・4・6・8・10・12月）に、前の2か月分をまとめて振り込む制度です。",
+  "insight": [
+    {
+      "text": "京都市のページでは、「8日」と問い合わせを受けることがあるものの、現在は10日（土日祝の場合はその前営業日）に振り込むと案内されています。",
+      "source": "https://www.city.kyoto.lg.jp/hagukumi/page/0000182951.html"
+    },
+    {
+      "text": "北九州市では、出生日や転入日などの翌日から15日以内に申請すれば、出生・転入等の日の属する月の翌月分から受けられます。15日を過ぎると、申請のあった月の翌月分からになります。",
+      "source": "https://www.city.kitakyushu.lg.jp/contents/924_10089.html"
+    },
+    {
+      "text": "京都市のページでは、令和9年度分の支給日は令和9年3月下旬に掲載を予定とされています。今の時点では、来年度の支給日は確定して載っていません。",
+      "source": "https://www.city.kyoto.lg.jp/hagukumi/page/0000182951.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "大阪市 児童手当（保健福祉センター児童手当担当）",
+      "url": "https://www.city.osaka.lg.jp/kodomo/page/0000370608.html",
+      "source": "https://www.city.osaka.lg.jp/kodomo/page/0000370608.html",
+      "howTo": [
+        "くらし",
+        "妊娠・出産",
+        "金銭的支援",
+        "育児に関する金銭的支援",
+        "児童手当"
+      ],
+      "note": "各区の担当は「各区お問い合わせ先一覧」（児童手当担当課連絡先一覧のPDF）で確かめる。振込口座は受給者名義の普通預金に限られる。"
+    },
+    {
+      "name": "京都市 児童手当（取扱窓口は子ども家庭支援課分室）",
+      "url": "https://www.city.kyoto.lg.jp/hagukumi/page/0000182951.html",
+      "source": "https://www.city.kyoto.lg.jp/hagukumi/page/0000182951.html",
+      "howTo": [
+        "子育て・教育",
+        "子どもや家庭へのお金などのサポート（手当・助成）",
+        "手当・給付など",
+        "児童手当"
+      ],
+      "note": "手続によって通帳・健康保険証などが必要な場合がある。詳しくは取扱窓口（分室）に問い合わせる。"
+    },
+    {
+      "name": "北九州市 児童手当について（各区役所保健福祉課子ども・家庭相談係）",
+      "url": "https://www.city.kitakyushu.lg.jp/contents/924_10089.html",
+      "source": "https://www.city.kitakyushu.lg.jp/contents/924_10089.html",
+      "howTo": [
+        "くらしの情報",
+        "子育て・教育",
+        "子育て",
+        "助成・手当",
+        "児童手当"
+      ],
+      "note": "請求には、請求者名義の普通預金通帳と、番号確認書類・身元確認書類が必要。電子申請の条件もページに記載がある。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "京都市の児童手当のページで、令和8年度の定期支給月の表を確かめる",
+      "source": "https://www.city.kyoto.lg.jp/hagukumi/page/0000182951.html",
+      "steps": [
+        "児童手当のページを開く",
+        "「定期支給月（令和8年度）」の表を見る",
+        "支給日が金融機関休業日なら前営業日になると確かめる"
+      ],
+      "url": "https://www.city.kyoto.lg.jp/hagukumi/page/0000182951.html"
+    },
+    {
+      "action": "大阪市の児童手当のページで、令和8年度の支給日と担当区を確かめる",
+      "source": "https://www.city.osaka.lg.jp/kodomo/page/0000370608.html",
+      "steps": [
+        "「概要」の欄を開く",
+        "「令和8年度の支給日」の一覧を見る",
+        "「各区お問い合わせ先一覧」で担当区を確かめる"
+      ],
+      "url": "https://www.city.osaka.lg.jp/kodomo/page/0000370608.html"
+    },
+    {
+      "action": "出生や転入の翌日から15日以内なら、区役所の子ども・家庭相談係に申請する",
+      "source": "https://www.city.kitakyushu.lg.jp/contents/924_10089.html",
+      "steps": [
+        "「請求に必要なもの」を確かめる",
+        "請求者名義の普通預金通帳を用意する",
+        "番号確認書類と身元確認書類をそろえる"
+      ],
+      "url": "https://www.city.kitakyushu.lg.jp/contents/924_10089.html"
+    }
+  ],
+  "cause": {
+    "text": "令和6年10月より、児童手当の支払回数が年3回から年6回となりました。次代の社会を担う児童の発達や成長を社会全体で応援するため、児童を養育している方に手当を支給すると説明されています。",
+    "status": "background",
+    "source": "https://www.city.osaka.lg.jp/kodomo/page/0000370608.html"
+  },
+  "worries": [
+    {
+      "q": "2か月分まとめて入るのはなぜ？",
+      "a": "法律では、毎年2月、4月、6月、8月、10月、12月の6回に、それぞれの前月までの分を支払うと定めています。偶数月の振込には前の2か月分が入ります。",
+      "source": "https://laws.e-gov.go.jp/law/346AC0000000073?occasion_date=20270615",
+      "action": "偶数月の振込には前の2か月分が入る前提で、家計の予定表に入金日を書き込んでおく"
+    },
+    {
+      "q": "自分の市の支給日はいつ？",
+      "a": "大阪市は偶数月の5日が原則で、土日祝のときは翌開庁日です。京都市と北九州市は10日が原則です。休日の扱いは市区町村で違います。",
+      "source": "https://www.city.osaka.lg.jp/kodomo/page/0000370608.html",
+      "action": "お住まいの市区町村の児童手当のページで、令和8年度の支給日を確かめる"
+    },
+    {
+      "q": "申請が遅れるとどうなる？",
+      "a": "認定請求をした日の属する月の翌月分から支給されます。出生日や転入日などの翌日から15日以内に申請すれば、その月の翌月分から受けられます。遅れた月分は受けられなくなります。",
+      "source": "https://www.city.kitakyushu.lg.jp/contents/924_10089.html",
+      "action": "出生や転入の翌日から15日以内に、お住まいの区役所の子ども・家庭相談係へ申請する"
+    },
+    {
+      "q": "振込が予定日に入らないときは？",
+      "a": "大阪市は、支給日に間に合わなかった場合などには、支給日以外の月に支払うとしています。京都市は、振込時間は金融機関により異なると案内しています。",
+      "source": "https://www.city.osaka.lg.jp/kodomo/page/0000370608.html",
+      "action": "当日は時間を置いて口座を確かめ、入らなければお住まいの区役所の担当へ問い合わせる",
+      "actionSource": "https://www.city.kyoto.lg.jp/hagukumi/page/0000182951.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "京都市は「8日」ではなく10日に振り込み",
+    "cause": "なぜ2か月分まとめて？制度の変更点",
+    "steps": "今日、まず確かめる支給日と持ち物",
+    "desk": "お住まいの市の児童手当ページで確かめる",
+    "worries": "支給日や申請の期限、どこを見ればいい？"
+  },
+  "depthAt": "2026-11-12T04:03:11+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "2か月分",
+    "label": "偶数月",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T04:04:36+00:00"
+  },
+  "imageFocus": {
+    "x": 0.477,
+    "y": 0.428,
+    "box": [
+      0.037,
+      0.036,
+      0.916,
+      0.821
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/child-allowance-payment-dates-by-city-figure-2793e69e.jpg"
+  }
 }

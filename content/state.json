@@ -109,14 +109,6 @@
       "tries": 1,
       "url": "https://www.caa.go.jp/notice/entry/048095/"
     },
-    "50ac86895fbba3e4": {
-      "first": "2026-11-12T00:48:10.270635+00:00",
-      "next": "2026-11-12T03:48:10.270635+00:00",
-      "reason": "本文「これまでに三重県や兵庫県、福岡県など計13府県が認定を受けています」→ 元記事の参考リストの認定自治体は12府県（三重・滋賀・大阪・奈良・岡山・福岡・千葉・神奈川・兵庫・鳥取・鹿児島・沖縄）で、「計13府県」は元記事と合わない数字である。; 「登録から3年が経過すると、全国で通常の保育士として勤務できるようになる」→ 「3年」という期間は元記事にも確認済みの文脈にも書かれておらず、根拠の無い",
-      "title": "報道発表 地域限定保育士試験実施方法書の認定について掲載しました",
-      "tries": 1,
-      "url": "https://www.cfa.go.jp/press/f0a50f99-2b3e-460f-aa78-8b48d5b45884"
-    },
     "531469c6637ace9b": {
       "first": "2026-11-12T01:02:31.219405+00:00",
       "next": "2026-11-12T04:02:31.219405+00:00",
@@ -3858,14 +3850,6 @@
       "skipped": true,
       "url": "https://www.suntory.co.jp/softdrink/news/pr/article/2026/SBF1746.html?rss=0000000029"
     },
-    "07b389c6b52900ce": {
-      "at": "2026-10-29T03:52:46.823080+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "google-gke-inference-gateway-4x-speed",
-      "url": "https://cloud.google.com/blog/ja/products/containers-kubernetes/zenteiq-scales-physical-ai-inference-4x-with-gke-and-llm-d/"
-    },
     "07bb381eca9ebf96": {
       "at": "2026-10-30T05:53:35.358046+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4188,13 +4172,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（訂正）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/toukei/list/30-1b.html"
-    },
-    "0b49b02e51904f80": {
-      "at": "2026-10-29T03:53:31.084159+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "reason": "quality: 本文が短い（1671字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102705"
     },
     "0c1cf97223ad220b": {
       "at": "2026-11-07T17:12:39.075551+00:00",
@@ -8376,6 +8353,17 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/discourse/20261104message.html"
     },
+    "50ac86895fbba3e4": {
+      "at": "2026-11-12T04:00:41.894019+00:00",
+      "costUsd": 0.006,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "public",
+      "slug": "chiiki-gentei-hoikushi-nintei-2026",
+      "url": "https://www.cfa.go.jp/press/f0a50f99-2b3e-460f-aa78-8b48d5b45884"
+    },
     "50dcc273211cdf95": {
       "at": "2026-11-07T19:52:10.046278+00:00",
       "reason": "stale: 発表から50時間（48時間を超えた発表は通常の記事にしない）",
@@ -11382,13 +11370,6 @@
       "slug": "tokyo-office-rent-nli-2026-q3",
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87300?site=nli"
     },
-    "7cc85f64fdd707de": {
-      "at": "2026-10-29T03:51:43.858389+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2437字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://blog.google/innovation-and-ai/technology/health/google-for-health-summit-singapore/"
-    },
     "7cd5e10290710b74": {
       "at": "2026-11-09T14:24:41.236126+00:00",
       "costUsd": 0.0028,
@@ -13269,13 +13250,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/saiyou/sonota/1417284_00051.htm"
-    },
-    "9b0f6140a4fd5eba": {
-      "at": "2026-10-29T03:51:57.553738+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が短い（378字 / 基準 400字以上）; body_markdown に「## 自分に関係ある？」の章がない（構成どおりの見出しを使う）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102703"
     },
     "9b3b0fa673706dad": {
       "at": "2026-11-11T02:03:43.930892+00:00",
@@ -18195,12 +18169,6 @@
       "skipped": true,
       "url": "https://www.qst.go.jp/site/press/20261106.html"
     },
-    "e6946ccebe084c64": {
-      "at": "2026-10-29T03:51:57.553808+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（億米ドル）",
-      "skipped": true,
-      "url": "https://news.samsung.com/jp/samsung-to-invest-usd-1-billion-in-ai-infrastructure-company-helix2610?utm_source=rss&utm_medium=direct"
-    },
     "e6bc890b8e0378b5": {
       "at": "2026-11-03T08:40:23.765520+00:00",
       "breaking": true,
@@ -19867,6 +19835,14 @@
       "url": "https://www.fsa.go.jp/policy/kyuminyokin/kyuminyokin.html",
       "writer": "muse"
     },
+    "muse-2f18c4b6e3": {
+      "at": "2026-11-12T03:38:34.257625+00:00",
+      "mix": "money",
+      "score": 92,
+      "slug": "child-allowance-payment-dates-by-city",
+      "url": "https://laws.e-gov.go.jp/law/346AC0000000073?occasion_date=20270615",
+      "writer": "muse"
+    },
     "muse-312de8d301": {
       "at": "2026-11-09T05:32:06.685686+00:00",
       "mix": "money",
@@ -20211,6 +20187,14 @@
       "url": "https://laws.e-gov.go.jp/law/338RJNJ09040000",
       "writer": "muse"
     },
+    "muse-8f0fdf14b8": {
+      "at": "2026-11-12T03:41:46.875522+00:00",
+      "mix": "other",
+      "score": 88,
+      "slug": "humidifier-type-electricity-cost-winter",
+      "url": "https://panasonic.jp/kashitsu/products/FE-KF07D.html",
+      "writer": "muse"
+    },
     "muse-939013074f": {
       "at": "2026-11-09T10:16:37.561161+00:00",
       "mix": "money",
@@ -20475,6 +20459,14 @@
       "url": "https://japan.kfc.co.jp/news_release/8191",
       "writer": "muse"
     },
+    "muse-f4ed2961e1": {
+      "at": "2026-11-12T03:32:03.423437+00:00",
+      "mix": "other",
+      "score": 93,
+      "slug": "e-tax-login-mynumber-card-vs-id",
+      "url": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm",
+      "writer": "muse"
+    },
     "muse-f556c07a36": {
       "at": "2026-11-11T00:24:12.961646+00:00",
       "mix": "other",
@@ -20522,71 +20514,9 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
-    },
-    "muse-2f18c4b6e3": {
-      "at": "2026-11-12T03:38:34.257625+00:00",
-      "mix": "money",
-      "score": 92,
-      "slug": "child-allowance-payment-dates-by-city",
-      "url": "https://laws.e-gov.go.jp/law/346AC0000000073?occasion_date=20270615",
-      "writer": "muse"
-    },
-    "muse-8f0fdf14b8": {
-      "at": "2026-11-12T03:41:46.875522+00:00",
-      "mix": "other",
-      "score": 88,
-      "slug": "humidifier-type-electricity-cost-winter",
-      "url": "https://panasonic.jp/kashitsu/products/FE-KF07D.html",
-      "writer": "muse"
-    },
-    "muse-f4ed2961e1": {
-      "at": "2026-11-12T03:32:03.423437+00:00",
-      "mix": "other",
-      "score": 93,
-      "slug": "e-tax-login-mynumber-card-vs-id",
-      "url": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm",
-      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T15:36:10.544803+00:00",
-      "attempt": 0,
-      "id": "fead6112027b4623",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 105.1,
-        "avg_sentence": 42.0,
-        "long_share": 0.2,
-        "max_paragraph": 133,
-        "paragraphs": 8,
-        "sentences": 20
-      },
-      "score": 93,
-      "source": "google-research-blog",
-      "title": "Exploring the world's languages with Language Explorer",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T16:03:45.405536+00:00",
-      "attempt": 1,
-      "id": "15706f35e993d4cb",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "本文「出力100万トークン10ドル」→ 元記事にも確認済みの文脈にも出力価格の記載がなく、創作された数字である",
-        "リード・本文の「導入価格は入力100万トークン2ドル」→ 確認済みの文脈に明記されており問題なし（参考として記載しない）"
-      ],
-      "score": 60,
-      "source": "google-blog-all",
-      "title": "Gemini 4 Carbon is now available for developers."
-    },
     {
       "accepted": false,
       "at": "2026-11-10T16:52:08.168744+00:00",
@@ -28025,6 +27955,54 @@
       "score": 58,
       "source": "jfa",
       "title": "第10回 パワーチェアフットボール チャンピオンシップ ジャパン 2026 supported by Jatcoを静岡で開催 #jfa"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T04:00:26.278416+00:00",
+      "attempt": 1,
+      "id": "50ac86895fbba3e4",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 116.0,
+        "avg_sentence": 64.4,
+        "long_share": 0.444,
+        "max_paragraph": 170,
+        "paragraphs": 5,
+        "sentences": 9
+      },
+      "score": 85,
+      "source": "cfa-news",
+      "title": "報道発表 地域限定保育士試験実施方法書の認定について掲載しました",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 64.4字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T04:00:41.866475+00:00",
+      "attempt": 0,
+      "id": "50ac86895fbba3e4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 118.0,
+        "avg_sentence": 45.4,
+        "long_share": 0.077,
+        "max_paragraph": 171,
+        "paragraphs": 5,
+        "sentences": 13
+      },
+      "score": 88,
+      "source": "cfa-news",
+      "title": "報道発表 地域限定保育士試験実施方法書の認定について掲載しました",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 8% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
     }
   ],
   "short_text_retry": {},
