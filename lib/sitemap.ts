@@ -1,5 +1,5 @@
 import { getAllChooseGuides } from "@/lib/choose";
-import { isIndexable, isListingIndexable } from "@/lib/indexing";
+import { isIndexable, isListingIndexable, isProtectedListing, isVideoListing } from "@/lib/indexing";
 import {
   getAllArticles,
   getAllChannels,
@@ -124,7 +124,10 @@ export function sitemapEntries(): SitemapEntry[] {
     ...getAllChannels()
       // 報道機関の発信元・各社が混ざった radar-official は薄いページなので入れない（台帳 W12。ページ側も noindex）
       // 名前の表にある組織で、検索に出す記事が3本以上（ジャンルは問わない。ページの robots と同じ。SEO A11）
-      .filter((channel) => !isThinSourceChannel(channel.slug) && liveChannels.has(channel.slug) && hasChannelLabel(channel.slug) && isListingIndexable(getArticlesByChannel(channel.slug)))
+      // 2026-11-12 AdSense 監査: 公開の記事が5本未満・YouTube の動画の要約の一覧は入れない（読まれた一覧 list_pages_protected.json は残す。ページの robots と同じ）
+      .filter((channel) => !isThinSourceChannel(channel.slug) && liveChannels.has(channel.slug) && hasChannelLabel(channel.slug)
+        && isListingIndexable(getArticlesByChannel(channel.slug), `/channels/${channel.slug}`)
+        && (!isVideoListing(getArticlesByChannel(channel.slug)) || isProtectedListing(`/channels/${channel.slug}`)))
       .map((channel) => ({
       url: `${base}/channels/${channel.slug}`,
       lastModified: newestOf(getArticlesByChannel(channel.slug).filter(isIndexable))
@@ -147,7 +150,8 @@ export function sitemapEntries(): SitemapEntry[] {
       lastModified: toDate(week.generatedAt)
     })),
     // 人物のまとめ（台帳 A53）
-    { url: `${base}/people`, lastModified: newestDate(getAllPeople().map((p) => p.verifiedAt)) },
+    // 人物の一覧は2人以上になってから載せる（1人だけの一覧は薄い。2026-11-12 AdSense 監査。ページも noindex）
+    ...(getAllPeople().length >= 2 ? [{ url: `${base}/people`, lastModified: newestDate(getAllPeople().map((p) => p.verifiedAt)) }] : []),
     ...getAllPeople().map((p) => ({ url: `${base}/people/${p.slug}`, lastModified: toDate(p.verifiedAt) })),
     // 値上げ・障害・リコール・サービス終了の一覧（台帳 A52）。載っている発表が少ない一覧は検索に出さないので載せない
     // 一覧の最終更新は、いちばん新しく載せた発表の時刻（まとめを作り直した時刻ではない）
@@ -205,12 +209,12 @@ export function sitemapEntries(): SitemapEntry[] {
       url: `${base}/compare/${guide.slug}`,
       lastModified: toDate(guide.updatedAt)
     })),
-    ...companyCounts(articles).filter(({ company }) => isListingIndexable(allArticles.filter((a) => a.genreSlug === "ai" && companyOf(a).slug === company.slug))).map(({ company }) => ({
+    ...companyCounts(articles).filter(({ company }) => isListingIndexable(allArticles.filter((a) => a.genreSlug === "ai" && companyOf(a).slug === company.slug), `/companies/${company.slug}`)).map(({ company }) => ({
       url: `${base}/companies/${company.slug}`,
       lastModified: newestOf(articles.filter((a) => companyOf(a).slug === company.slug))
     })),
     ...getAllTags()
-      .filter((tag) => liveTags.has(tag.slug) && (tagArticleCounts.get(tag.slug) ?? 0) >= 2 && isListingIndexable(getArticlesByTag(tag.slug)))
+      .filter((tag) => liveTags.has(tag.slug) && (tagArticleCounts.get(tag.slug) ?? 0) >= 2 && isListingIndexable(getArticlesByTag(tag.slug), `/tags/${tag.slug}`))
       .map((tag) => ({
       url: `${base}/tags/${encodeURIComponent(tag.slug)}`,
       lastModified: newestOf(getArticlesByTag(tag.slug).filter(isIndexable))

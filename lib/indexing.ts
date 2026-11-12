@@ -4,6 +4,8 @@ import type { ArticleSummary } from "@/lib/articles";
 import rules from "./index-rules.json";
 // 14日間訪問0の記事の一覧（2026-11-10 オーナー承認。正本は content/noindex_zero_visit.json。scripts/indexnow.py も同じファイルを読む）
 import zeroVisit from "../content/noindex_zero_visit.json";
+// 検索に出したままにする一覧ページ（2026-11-12 AdSense 監査。読まれた一覧は、記事が少なくても外さない）
+import listGuard from "../content/list_pages_protected.json";
 
 /**
  * Google に見せる記事を選ぶ（サイトでは全記事を読める。noindex でも一覧・内部リンクには残す）。
@@ -243,17 +245,48 @@ export function newsSitemapReason(article: ArticleSummary, now = Date.now()): st
 
 /** 一覧ページ（タグ・チャンネル・企業・ジャンル）を検索に出す最低本数（検索対象の記事で数える） */
 export const MIN_LISTING = 3;
+/**
+ * 一覧ページを検索に出す、公開中の記事の最低本数（2026-11-12 AdSense 監査）。
+ * 同じ型の文で記事が数本だけの一覧（タグ・発信元が327件・サイトマップの22%）は、自動で作った薄いページに見えるため。
+ * content/list_pages_protected.json にある一覧（読まれた一覧）は、この本数に届かなくても検索に出したまま
+ */
+export const MIN_LISTING_LIVE = 5;
+const LIST_PROTECTED = new Set<string>(listGuard.paths);
 
-/** 検索対象の記事が少ない一覧は noindex（ページ自体は残す） */
-export function isListingIndexable(articles: ArticleSummary[]): boolean {
+function decodedPath(path: string): string {
+  try {
+    return decodeURIComponent(path).replace(/\/+$/, "");
+  } catch {
+    return path;
+  }
+}
+
+/** 読まれた一覧として、検索に出したままにする一覧か */
+export function isProtectedListing(path?: string): boolean {
+  return Boolean(path) && LIST_PROTECTED.has(decodedPath(path as string));
+}
+
+/** 検索対象の記事が少ない一覧は noindex（ページ自体は残す）。path を渡すと、守る一覧（list_pages_protected.json）は公開の本数の条件を外す */
+export function isListingIndexable(articles: ArticleSummary[], path?: string): boolean {
   let n = 0;
-  for (const a of articles) if (isIndexable(a) && ++n >= MIN_LISTING) return true;
-  return false;
+  for (const a of articles) if (isIndexable(a) && ++n >= MIN_LISTING) break;
+  if (n < MIN_LISTING) return false;
+  return isProtectedListing(path) || articles.length >= MIN_LISTING_LIVE;
+}
+
+/**
+ * YouTube の動画から作った記事の一覧か（記事の半分以上が動画の要約）。他のサイトの動画の要約を集めたページに見えるため、
+ * 守る一覧でなければ検索に出さない（2026-11-12 AdSense 監査。/channels/openai・/channels/microsoft-research など）
+ */
+export function isVideoListing(articles: ArticleSummary[]): boolean {
+  if (articles.length === 0) return false;
+  const videos = articles.filter((a) => a.sourceType !== "web" && Boolean(a.videoId)).length;
+  return videos * 2 >= articles.length;
 }
 
 /** 一覧ページの robots 指定（検索に出すなら空） */
-export function listingRobots(articles: ArticleSummary[]) {
-  return isListingIndexable(articles) ? {} : { robots: { index: false, follow: true } };
+export function listingRobots(articles: ArticleSummary[], path?: string) {
+  return isListingIndexable(articles, path) ? {} : { robots: { index: false, follow: true } };
 }
 
 /** 外部配信・既存のメール等は、検索方針の変更による内容の急変を防ぎ従来基準を保持する。 */

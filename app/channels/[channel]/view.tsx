@@ -3,7 +3,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import ArticleCard from "@/components/ArticleCard";
 import Pagination from "@/components/Pagination";
 import { getAllChannels, getArticlesByChannel, isWeb } from "@/lib/articles";
-import { isListingIndexable } from "@/lib/indexing";
+import { isListingIndexable, isProtectedListing, isVideoListing } from "@/lib/indexing";
 import { canonicalChannel, hasChannelLabel } from "@/lib/channel-labels";
 import {
   channelDescription as describe,
@@ -22,7 +22,10 @@ export function channelMetadata(channel: string, page: number): Metadata {
   const count = items.length;
   // 検索に出すのは、名前の表（content/channel_labels.json）にある組織で、検索に出す記事が3本以上の発信元（ジャンルは問わない。SEO A11）。
   // 報道機関の発信元（radar-<報道機関>）と、各社が混ざった radar-official は薄いページなので検索に出さない（台帳 W12）
-  const indexable = !isThinSourceChannel(channel) && hasChannelLabel(channel) && isListingIndexable(items);
+  // 2026-11-12 AdSense 監査: 公開の記事が5本未満の発信元と、YouTube の動画の要約の一覧は検索に出さない（読まれた一覧は残す）
+  const path = `/channels/${channel}`;
+  const indexable = !isThinSourceChannel(channel) && hasChannelLabel(channel) && isListingIndexable(items, path)
+    && (!isVideoListing(items) || isProtectedListing(path));
 
   return {
     title: `${label}${titleTail(channel)}${pageSuffix(page)}`,

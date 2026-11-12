@@ -34,10 +34,12 @@ test('[A11] 各社が混ざる配信・報道・話題のまとめは表に載�
 
 test('[A11] 検索の扱いはページとサイトマップで同じ規則（AI の記事の有無ではなく、表の名前）', () => {
   const view = read('app/channels/[channel]/view.tsx');
-  assert.match(view, /!isThinSourceChannel\(channel\) && hasChannelLabel\(channel\) && isListingIndexable\(items\)/);
+  assert.match(view, /!isThinSourceChannel\(channel\) && hasChannelLabel\(channel\) && isListingIndexable\(items, path\)/);
+  assert.match(view, /!isVideoListing\(items\) \|\| isProtectedListing\(path\)/);
   assert.doesNotMatch(view, /genreSlug === "ai"/);
   const sitemap = read('lib/sitemap.ts');
-  assert.match(sitemap, /hasChannelLabel\(channel\.slug\) && isListingIndexable\(getArticlesByChannel\(channel\.slug\)\)/);
+  assert.match(sitemap, /hasChannelLabel\(channel\.slug\)\s*&& isListingIndexable\(getArticlesByChannel\(channel\.slug\), `\/channels\/\$\{channel\.slug\}`\)/);
+  assert.match(sitemap, /!isVideoListing\(getArticlesByChannel\(channel\.slug\)\) \|\| isProtectedListing\(`\/channels\/\$\{channel\.slug\}`\)/);
   assert.doesNotMatch(sitemap, /aiChannels/);
   // 名前は表から（h1・パンくず・足元）
   assert.match(read('lib/articles.ts'), /label: channelName\(slug, article\.channel\)/);

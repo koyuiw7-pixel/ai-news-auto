@@ -21,7 +21,7 @@ export function tagMetadata(tag: string, page: number): Metadata {
     description: `${label}の新しい記事は${newest}など${articles.length}本。${genres}の話題を、公式発表などをもとに要点・数字・注意点までまとめています。`,
     alternates: { canonical: pageHref(base, page) },
     // 検索対象の記事が少ない薄いタグは検索対象から外す
-    ...listingRobots(articles),
+    ...listingRobots(articles, `/tags/${tagSlug(label)}`),
   };
 }
 

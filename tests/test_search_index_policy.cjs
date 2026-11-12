@@ -11,7 +11,7 @@ const loaded = new Module(filename, module);
 loaded.filename = filename;
 loaded.paths = module.paths;
 loaded._compile(compiled, filename);
-const { isIndexable, isDistributionEligible, noindexReason, focusReason, lifeLink, isListingIndexable, canonicalPathOf, newsSitemapReason } = loaded.exports;
+const { isIndexable, isDistributionEligible, noindexReason, focusReason, lifeLink, isListingIndexable, isVideoListing, canonicalPathOf, newsSitemapReason } = loaded.exports;
 
 const good = { sourceType: 'web', channelSlug: 'official', genreSlug: 'ai', title: 'x', tags: [], bodyLength: 2000, hasJapanValue: true };
 
@@ -57,10 +57,26 @@ test('手動指定・配信元・まとめ記事の扱いと、既存の配信�
   assert.equal(isDistributionEligible({ ...short, channelSlug: 'prtimes' }), false);
 });
 
-test('一覧ページは検索対象の記事が3本以上で検索に出す', () => {
+test('一覧ページは検索対象の記事が3本以上・公開の記事が5本以上で検索に出す（2026-11-12 AdSense 監査）', () => {
   assert.equal(isListingIndexable([good, good]), false);
   assert.equal(isListingIndexable([good, good, { ...good, bodyLength: 1 }]), false);
-  assert.equal(isListingIndexable([good, good, good]), true);
+  assert.equal(isListingIndexable([good, good, good]), false);
+  assert.equal(isListingIndexable([good, good, good, good, good]), true);
+  assert.equal(isListingIndexable([good, good, good, { ...good, bodyLength: 1 }, { ...good, bodyLength: 1 }]), true);
+});
+
+test('読まれた一覧（content/list_pages_protected.json）は公開の記事が5本未満でも検索に出したまま', () => {
+  assert.equal(isListingIndexable([good, good, good], '/tags/年金'), true);
+  assert.equal(isListingIndexable([good, good, good], '/tags/%E5%B9%B4%E9%87%91'), true);
+  assert.equal(isListingIndexable([good, good, good], '/tags/not-read'), false);
+  assert.equal(isListingIndexable([good, good], '/tags/年金'), false);
+});
+
+test('YouTube の動画の要約が半分以上の一覧は動画の一覧', () => {
+  const video = { ...good, sourceType: 'video', videoId: 'abc' };
+  assert.equal(isVideoListing([video, video, good]), true);
+  assert.equal(isVideoListing([video, good, good]), false);
+  assert.equal(isVideoListing([]), false);
 });
 
 test('重複記事（duplicateOf）は noindex で canonical は代表へ', () => {

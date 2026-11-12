@@ -26,7 +26,7 @@ export function companyMetadata(slug: string, page: number): Metadata {
     title: `${name}の最新ニュース・発表まとめ${pageSuffix(page)}`,
     description: `${name}の新モデル・新機能・料金などの最新発表を、日本語で要点だけ時系列にまとめています（${count}本）。`,
     alternates: { canonical: pageHref(`/companies/${slug}`, page) },
-    ...listingRobots(items),
+    ...listingRobots(items, `/companies/${slug}`),
   };
 }
 

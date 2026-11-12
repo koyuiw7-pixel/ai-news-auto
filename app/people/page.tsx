@@ -8,6 +8,8 @@ export const metadata: Metadata = withPageShare("people", "/people", {
   title: "AI・テックの人物まとめ　経歴と最新ニュース",
   description: "AI・テック企業の経営者などについて、公式の発表で確かめた経歴と、サイソクの関連記事をまとめています。",
   alternates: { canonical: "/people" },
+  // 人物が1人だけの一覧は薄いので、2人以上になるまで検索に出さない（2026-11-12 AdSense 監査。サイトマップも同じ）
+  ...(getAllPeople().length >= 2 ? {} : { robots: { index: false, follow: true } }),
 });
 
 /** 人物のまとめの一覧（台帳 A53） */
