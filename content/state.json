@@ -10556,6 +10556,20 @@
       "slug": "surface-camera-ai-noise-reduction-gen2",
       "url": "https://blogs.windows.com/japan/2026/11/04/from-optics-to-ai-diving-into-surface-camera-innovation/"
     },
+    "6b5db77df3bfd94b": {
+      "at": "2026-11-12T16:57:54.082140+00:00",
+      "breaking": true,
+      "costUsd": 0.1229,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 85,
+      "section": "ai",
+      "slug": "claude-for-manufacturing-plugin",
+      "url": "https://claude.com/resources/articles/claude-for-manufacturing"
+    },
     "6bad6b4c659c8230": {
       "at": "2026-11-10T02:33:27.449358+00:00",
       "costUsd": 0.0077,
@@ -21403,18 +21417,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-11T05:21:49.398364+00:00",
-      "attempt": 1,
-      "id": "0dd3ee9e34670eac",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 90,
-      "source": "ntt-news",
-      "title": "日比谷からはじまる「光の街」づくりpowered by IOWN ～「光の街」プレゼンテーションルームを開設予定～"
-    },
-    {
       "accepted": false,
       "at": "2026-11-11T05:23:10.219786+00:00",
       "attempt": 1,
@@ -28967,6 +28969,30 @@
         "初めて出たところで言い換えていない略語（BIM）",
         "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める",
         "読みやすさ: 段落が長い（平均 129.1字・最長 290字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T16:57:54.025024+00:00",
+      "attempt": 1,
+      "id": "6b5db77df3bfd94b",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 97.1,
+        "avg_sentence": 42.9,
+        "long_share": 0.116,
+        "max_paragraph": 151,
+        "paragraphs": 19,
+        "sentences": 43
+      },
+      "score": 85,
+      "source": "claude-blog",
+      "title": "Introducing Claude for Manufacturing",
+      "warnings": [
+        "見出しが64字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す"
       ]
     }
   ],
