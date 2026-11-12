@@ -7813,14 +7813,6 @@
       "slug": "docker-coding-agent-horror-stories-cve",
       "url": "https://www.docker.com/blog/coding-agent-horror-stories-the-cve-that-did-not-exist/"
     },
-    "49384cd85f07d187": {
-      "at": "2026-10-29T01:41:58.847293+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "science",
-      "slug": "ocean-acidification-foraminifera-alkalinity",
-      "url": "https://www.jst.go.jp/pr/announce/20261029-5/index.html"
-    },
     "4959e00fe1aa5744": {
       "at": "2026-11-10T02:34:35.701684+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（メンテナンス）",
@@ -10182,13 +10174,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（会見要旨）",
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047995/"
-    },
-    "6aa0232a2b135089": {
-      "at": "2026-10-29T01:41:42.144015+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1696字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; title の長さが不適切（72字 / 18〜64字）",
-      "skipped": true,
-      "url": "https://www.nintendo.com/jp/topics/article/d8cda5f3-adbe-403c-98e1-66d69711d293"
     },
     "6ab07c38457bc02e": {
       "at": "2026-10-29T18:09:13.757860+00:00",
@@ -12906,6 +12891,19 @@
       "reason": "quality: 本文が短い（1421字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（283字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/047949/"
+    },
+    "964f3c468280001e": {
+      "at": "2026-11-12T01:49:37.870370+00:00",
+      "breaking": true,
+      "costUsd": 0.1103,
+      "intent": "breaking",
+      "major": true,
+      "mix": "brand",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "tech-gadget",
+      "slug": "apple-designers-of-tomorrow-2026",
+      "url": "https://www.apple.com/jp/newsroom/2026/10/apple-unveils-the-2026-designers-of-tomorrow/"
     },
     "96626834403c6444": {
       "at": "2026-11-10T18:42:34.415779+00:00",
@@ -17588,6 +17586,16 @@
       "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
       "writer": "deep_dive"
     },
+    "deep-dc788458b3": {
+      "angleOf": "nicorio-flavos-refund-process",
+      "at": "2026-11-12T01:38:44.920249+00:00",
+      "deepDive": "check",
+      "mix": "other",
+      "score": 90,
+      "slug": "flavos-refund-eligibility-check",
+      "url": "https://www.caa.go.jp/notice/entry/048110/",
+      "writer": "deep_dive"
+    },
     "deep-ef9fdcd8bc": {
       "angleOf": "pension-support-benefit-old-age-eligibility",
       "at": "2026-11-10T19:57:10.166266+00:00",
@@ -20345,49 +20353,9 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
-    },
-    "deep-dc788458b3": {
-      "angleOf": "nicorio-flavos-refund-process",
-      "at": "2026-11-12T01:38:44.920249+00:00",
-      "deepDive": "check",
-      "mix": "other",
-      "score": 90,
-      "slug": "flavos-refund-eligibility-check",
-      "url": "https://www.caa.go.jp/notice/entry/048110/",
-      "writer": "deep_dive"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-10T09:07:27.748190+00:00",
-      "attempt": 1,
-      "id": "c12d4d8a91c1ade2",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「マッチ【86】: 埼玉スタジアム2002、キックオフ13:00」→ 元記事に13:00のキックオフは無く、マッチ86の時間は「13:05～13:10」だけ。キックオフ時刻の取り違えの疑いがある",
-        "見出しと要点「キックオフ時間と会場が決定」→ 元記事の時間は放送時間欄の「15:00～15:05」「13:05～13:10」で、キックオフ時刻として明示されていない",
-        "「対象となるのは…現時点の契約やチケットの扱いには影響しません」→ 元記事・確認済みの文脈に無い記述で、契約やチケットへの影響について根拠がない",
-        "「（[ラウンド16チケット販売概要](/articles/u17-japan-training-partner-addition)）」→ リンク先がU-17トレーニングパートナーの記事で、出典として不適切",
-        "「当日の模様はNHKのテレビおよび配信サービスで中継されます」→ 元記事は同時・見逃し配信と放送時間を示すのみで、中継の詳細の言い過ぎ気味",
-        "「キックオフ15:00」（マッチ85）→ 元記事の15:00は放送時間欄の開始時刻で、キックオフ時刻と同一とは確認できない"
-      ],
-      "readability": {
-        "avg_paragraph": 56.6,
-        "avg_sentence": 40.4,
-        "long_share": 0.143,
-        "max_paragraph": 118,
-        "paragraphs": 5,
-        "sentences": 7
-      },
-      "score": 55,
-      "source": "jfa",
-      "title": "準決勝（12月27日(日)）キックオフ時間・会場、テレビ放送・配信 決定 天皇杯 JFA 第106回全日本サッカー選手権大会 #jfa #天皇杯",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T09:07:51.766005+00:00",
@@ -27796,6 +27764,29 @@
         "見出しの書き方: 記号: かっこの直後に「、」",
         "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（WAF・SHIP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T01:49:37.850098+00:00",
+      "attempt": 1,
+      "id": "964f3c468280001e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 90.1,
+        "avg_sentence": 38.2,
+        "long_share": 0.061,
+        "max_paragraph": 180,
+        "paragraphs": 14,
+        "sentences": 33
+      },
+      "score": 92,
+      "source": "apple-newsroom-jp-all",
+      "title": "Apple、2026 Designers of Tomorrowの開催を発表",
+      "warnings": [
+        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
