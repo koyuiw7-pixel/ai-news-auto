@@ -8,58 +8,78 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "GPT-6 Astraは、米OpenAIが2026年9月に発表したフラグシップAIモデルです。PC操作や3D制作などを自律的に実行するAIエージェント機能を備えています。",
+    "text": "GPT-6 Astraは、PC操作や3D制作などを自律的に行うAIモデルです。米OpenAIが2026年9月に発表しました。",
     "sources": [
-      "openai-announces-gpt-6-astra",
-      "openai-gpt-6-astra-comprehensive-guide-matome"
+      "openai-announces-gpt-6-astra"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年9月3日から順次提供",
+      "value": "2026年9月3日",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本からも利用できます",
+      "value": "利用できる",
+      "sources": [
+        "openai-announces-gpt-6-astra"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "ChatGPTデスクトップアプリ等",
+      "sources": [
+        "openai-announces-gpt-6-astra"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "開発者、IT管理者、デザイナー",
       "sources": [
         "openai-announces-gpt-6-astra",
-        "openai-gpt6-astra-ultrafast-release"
+        "openai-gpt6-astra-figma-integration",
+        "openai-astra-shield-forge-it-support"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "PCアプリの自動操作（Computer Use）や複数タスクの並行処理ができます。",
+      "text": "PC上のアプリケーションを自動で操作する「Computer Use」機能に対応しています。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
-      "text": "音声指示からBlenderでの3Dモデリングや3Dゲームのコーディングができます。",
-      "sources": [
-        "openai-announces-gpt-6-astra"
-      ]
-    },
-    {
-      "text": "Figmaと直接連携し、約2時間でUIプロトタイプを自動構築できます。",
+      "text": "Figma MCP Serverを介してデザインシステムと直接連携し、プロトタイプを構築します。",
       "sources": [
         "openai-gpt6-astra-figma-integration"
       ]
     },
     {
-      "text": "最大14倍の超高速推論モード「Ultrafast」を利用できます。",
+      "text": "NVIDIA Isaacと統合され、CADからシミュレーションを自動生成できます。",
       "sources": [
-        "openai-gpt-6-astra-comprehensive-guide-matome"
+        "nvidia-isaac-gpt6-astra-robotics-agile-one"
+      ]
+    },
+    {
+      "text": "IT運用基盤Forgeに採用され、レガシーシステムを直接操作して障害を解決します。",
+      "sources": [
+        "openai-astra-shield-forge-it-support"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "Plus、Pro、Business、Enterprise、API等へ順次拡大して提供されます。",
+      "text": "Enterprise向けなどに即日提供され、Plus、Pro、Businessなどに順次展開されます。",
+      "sources": [
+        "openai-announces-gpt-6-astra"
+      ]
+    },
+    {
+      "text": "APIやAWS顧客への広範な提供も予定されています。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
@@ -67,65 +87,59 @@
   ],
   "japan": [
     {
-      "text": "PlusやProなどのプランを通じて日本から利用できます。",
+      "text": "日本からも利用できます。",
       "sources": [
-        "openai-announces-gpt-6-astra",
-        "openai-gpt6-astra-ultrafast-release"
+        "openai-announces-gpt-6-astra"
       ]
     }
   ],
   "howto": [
     {
-      "text": "ChatGPTデスクトップアプリやAPI、Codexから利用できます。",
+      "text": "ChatGPTデスクトップアプリなどを通じて利用できます。",
       "sources": [
-        "openai-announces-gpt-6-astra",
-        "openai-gpt6-astra-ultrafast-release"
+        "openai-announces-gpt-6-astra"
       ]
     }
   ],
   "differences": [
     {
-      "text": "従来のチャット型AIを超えて、PCや外部アプリを自律操作する機能が統合されました。",
+      "text": "従来テキストや画像生成にとどまっていた役割を広げ、PC操作や長時間タスクの並行処理を実現しています。",
       "sources": [
-        "openai-announces-gpt-6-astra",
-        "openai-gpt-6-astra-comprehensive-guide-matome"
-      ]
-    },
-    {
-      "text": "超高速推論モード「Ultrafast」により、知性を保ったまま処理速度が大幅に向上しました。",
-      "sources": [
-        "openai-gpt6-astra-ultrafast-release"
+        "openai-announces-gpt-6-astra"
       ]
     }
   ],
   "faq": [
     {
       "q": "いつから使えますか？",
-      "a": "2026年9月3日の発表当日から順次提供が開始されています。",
+      "a": "2026年9月3日に一部向けに提供が始まり、PlusやPro、APIなどへ順次拡大されます。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
-      "q": "Ultrafastモードとは何ですか？",
-      "a": "知性を保ったまま処理速度を最大14倍に高める超高速推論オプションです。",
+      "q": "どのような機能がありますか？",
+      "a": "PCの自動操作、3Dモデリングの作成、Figma連携によるUIプロトタイプ構築などを実行できます。",
       "sources": [
-        "openai-gpt-6-astra-comprehensive-guide-matome",
-        "openai-gpt6-astra-ultrafast-release"
-      ]
-    },
-    {
-      "q": "Figmaと連携できますか？",
-      "a": "Figma MCP Serverを介して直接連携し、UIプロトタイプを自動構築できます。",
-      "sources": [
+        "openai-announces-gpt-6-astra",
         "openai-gpt6-astra-figma-integration"
       ]
     },
     {
-      "q": "数日間のタスクを実行できますか？",
-      "a": "数日間にわたり自律的に稼働し、複数データソースから情報を収集・分析できます。",
+      "q": "安全性はどのような状態ですか？",
+      "a": "欺瞞的ふるまいの削減などアライメントが大幅に向上していますが、研究では誤りも残されています。",
       "sources": [
-        "openai-gpt6-astra-jump-trading-agents"
+        "openai-announces-gpt-6-astra",
+        "biobasicsbench-wet-lab-ai-agents"
+      ]
+    },
+    {
+      "q": "対応している外部ツールは何ですか？",
+      "a": "FigmaやNVIDIA Isaac、IT運用基盤のForgeなどと連携します。",
+      "sources": [
+        "openai-gpt6-astra-figma-integration",
+        "nvidia-isaac-gpt6-astra-robotics-agile-one",
+        "openai-astra-shield-forge-it-support"
       ]
     }
   ],
@@ -136,9 +150,34 @@
       "event": "GPT-6 Astraを発表"
     },
     {
+      "date": "2026-09-18",
+      "slug": "openai-gpt6-astra-jump-trading-agents",
+      "event": "数日間稼働するエージェント運用を開始"
+    },
+    {
+      "date": "2026-09-22",
+      "slug": "openai-gpt6-astra-figma-integration",
+      "event": "Figma連携によるUIプロトタイプ構築デモ公開"
+    },
+    {
       "date": "2026-09-30",
       "slug": "openai-gpt6-astra-ultrafast-release",
-      "event": "超高速推論Ultrafastを追加"
+      "event": "超高速推論「Ultrafast」を追加"
+    },
+    {
+      "date": "2026-10-24",
+      "slug": "openai-astra-shield-forge-it-support",
+      "event": "IT運用基盤Forgeへの採用を発表"
+    },
+    {
+      "date": "2026-10-24",
+      "slug": "nvidia-isaac-gpt6-astra-robotics-agile-one",
+      "event": "NVIDIA Isaacとの統合を発表"
+    },
+    {
+      "date": "2026-11-06",
+      "slug": "biobasicsbench-wet-lab-ai-agents",
+      "event": "新評価BioBasicsBenchで首位を獲得"
     }
   ],
   "related": [
@@ -175,9 +214,9 @@
     "openai-gpt6-astra-jump-trading-agents",
     "openai-announces-gpt-6-astra"
   ],
-  "signature": "fe2ff68def2d3e53",
-  "primarySignature": "a2a6b4bf06a6c2be",
+  "signature": "64d287809efbf6f2",
+  "primarySignature": "970d3a8733748c82",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:41:21+00:00",
-  "updatedAt": "2026-11-09T19:42:59+00:00"
+  "updatedAt": "2026-11-12T10:58:16+00:00"
 }

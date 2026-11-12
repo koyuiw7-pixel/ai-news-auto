@@ -8,9 +8,8 @@
   "companyName": "OpenAI",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "ChatGPT Workは、自然言語の指示から高度なデータ分析やダッシュボードの自動生成を行うビジネス向けAIワークスペースです。OpenAIがEnterpriseプラン向けに提供を開始しました。",
+    "text": "ChatGPT Workは、企業の業務プロセスを自動化するビジネス向けAIアシスタントです。米OpenAIがEnterpriseプランの契約ユーザー向けに順次提供を開始しました。",
     "sources": [
-      "chatgpt-work-dashboard-generation",
       "openai-chatgpt-work-enterprise-rollout"
     ]
   },
@@ -24,49 +23,58 @@
     },
     {
       "label": "日本での提供",
-      "value": "Enterpriseプランの契約ユーザー向けに提供",
+      "value": "Enterprise契約で利用できる",
+      "sources": [
+        "openai-chatgpt-work-enterprise-rollout"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "Web、デスクトップ、モバイル",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
       "label": "向いている人",
-      "value": "法人の導入担当やデータ分析を行うビジネス職",
+      "value": "ビジネス職、データ担当者",
       "sources": [
-        "gilbert-tobin-chatgpt-work-case",
+        "chatgpt-work-dashboard-generation",
+        "openai-chatgpt-work-voice-agent",
         "openai-chatgpt-work-enterprise-rollout"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "自然言語の指示から数秒でインタラクティブなダッシュボードを自動生成できます。",
+      "text": "自然言語や音声の指示から、インタラクティブなダッシュボードを数秒で自動生成する。",
       "sources": [
-        "chatgpt-work-dashboard-generation"
+        "chatgpt-work-dashboard-generation",
+        "chatgpt-work-data-agent-launch"
       ]
     },
     {
-      "text": "DatabricksやSlack、Google Driveなどのデータを横断して分析を実行します。",
+      "text": "Google DriveやSlackなどの社内データと連携し、週次レポートやメトリクスを自動作成する。",
       "sources": [
-        "https://www.youtube.com/watch?v=wK0zWeVyLM4"
+        "chatgpt-work-scheduled-metrics-report"
       ]
     },
     {
-      "text": "ファンネル分析によりサービス利用のボトルネックを特定し、数値化します。",
+      "text": "指定した日時にバックグラウンドでタスクを定期実行し、Slackへ下書きを共有する。",
       "sources": [
-        "https://www.youtube.com/watch?v=wK0zWeVyLM4"
+        "chatgpt-work-scheduled-metrics-report"
       ]
     },
     {
-      "text": "分析結果のレポートやタスクの割り当てをSlackへ直接投稿できます。",
+      "text": "音声指示によってPC上のメールや添付ファイル、ローカルファイルを探索・比較・分析する。",
       "sources": [
-        "https://www.youtube.com/watch?v=wK0zWeVyLM4"
+        "openai-chatgpt-work-voice-agent"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "Enterpriseプラン向けに順次提供されています。",
+      "text": "既存のChatGPT Enterpriseプランの機能拡張として提供されています。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
@@ -74,7 +82,13 @@
   ],
   "japan": [
     {
-      "text": "Enterpriseプランの契約ユーザー向けに提供されています。",
+      "text": "Enterpriseプランを契約している組織のユーザーが利用できます。",
+      "sources": [
+        "openai-chatgpt-work-enterprise-rollout"
+      ]
+    },
+    {
+      "text": "日本語でのプロンプト入力や回答生成に完全対応しています。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
@@ -82,7 +96,13 @@
   ],
   "howto": [
     {
-      "text": "Webブラウザ、デスクトップアプリ、モバイルアプリから利用できます。",
+      "text": "ChatGPT Enterpriseプランを契約した組織のアカウントを用意します。",
+      "sources": [
+        "openai-chatgpt-work-enterprise-rollout"
+      ]
+    },
+    {
+      "text": "デスクトップアプリやモバイルアプリを最新バージョンにアップデートして利用します。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
@@ -92,28 +112,35 @@
   "faq": [
     {
       "q": "いつから使える？",
-      "a": "2026年7月24日からEnterpriseプラン向けに順次提供されています。",
+      "a": "Enterpriseプランの契約ユーザー向けに順次提供されています。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
-      "q": "どこからアクセスできる？",
-      "a": "Webブラウザ版、デスクトップアプリ、iOSやAndroidのモバイルアプリから利用可能です。",
+      "q": "どんな端末で使える？",
+      "a": "Webブラウザ、WindowsやmacOSのデスクトップアプリ、iOSやAndroidのモバイルアプリで利用できます。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
-      "q": "どのような分析ができる？",
-      "a": "DatabricksやSlackなどのデータを統合し、自然言語の指示でファンネル分析やダッシュボード作成が行えます。",
+      "q": "自動でダッシュボードを作れる？",
+      "a": "自然言語の質問から、インタラクティブなダッシュボードを数秒で自動生成できます。",
       "sources": [
-        "https://www.youtube.com/watch?v=wK0zWeVyLM4"
+        "chatgpt-work-dashboard-generation"
       ]
     },
     {
-      "q": "誰に向けた機能？",
-      "a": "Enterpriseプランを導入している企業のビジネス職やデータ担当者に向いています。",
+      "q": "定期実行のスケジュールは設定できる？",
+      "a": "指定した日時にバックグラウンドで自動実行するスケジュール設定が可能です。",
+      "sources": [
+        "chatgpt-work-scheduled-metrics-report"
+      ]
+    },
+    {
+      "q": "安全性は？",
+      "a": "企業向けプランのため、入力されたデータがモデルの学習に利用されることはありません。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
@@ -123,22 +150,32 @@
     {
       "date": "2026-07-24",
       "slug": "openai-chatgpt-work-enterprise-rollout",
-      "event": "ChatGPT WorkをEnterpriseプランで順次提供"
+      "event": "ChatGPT WorkをEnterpriseで順次提供開始"
+    },
+    {
+      "date": "2026-08-07",
+      "slug": "chatgpt-work-scheduled-metrics-report",
+      "event": "定期実行機能を発表"
+    },
+    {
+      "date": "2026-08-24",
+      "slug": "openai-chatgpt-work-voice-agent",
+      "event": "音声でPCを操作するデモを公開"
     },
     {
       "date": "2026-09-18",
       "slug": "chatgpt-work-dashboard-generation",
-      "event": "ダッシュボード自動生成機能を実演"
+      "event": "ダッシュボード自動生成を実演"
     },
     {
       "date": "2026-09-18",
       "slug": "chatgpt-work-tailor-dashboards-demo",
-      "event": "生成したダッシュボードの編集デモを公開"
+      "event": "ダッシュボードの編集デモを公開"
     },
     {
       "date": "2026-11-12",
       "slug": "gilbert-tobin-chatgpt-work-case",
-      "event": "法律事務所での年次評価作業の活用事例が公開"
+      "event": "年次評価の作業などで活用"
     }
   ],
   "related": [
@@ -175,17 +212,9 @@
     "openai-chatgpt-work-admin-api",
     "openai-chatgpt-work-enterprise-rollout"
   ],
-  "signature": "18c3f337ebd4bdb4",
-  "primarySignature": "bec1746c05d81037",
+  "signature": "63eb8e69b9ff18ff",
+  "primarySignature": "2b43e8df90b37571",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:34:50+00:00",
-  "updatedAt": "2026-11-11T00:58:55+00:00",
-  "officialSources": {
-    "https://www.youtube.com/watch?v=wK0zWeVyLM4": {
-      "title": "Use ChatGPT Work to turn product insights into a team action plan",
-      "publisher": "OpenAI の YouTube 公式チャンネル",
-      "kind": "video",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T10:57:59+00:00"
 }
