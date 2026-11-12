@@ -6,85 +6,87 @@
   "companyName": "Google",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Gemini Enterpriseは、企業が社内の文書やデータを使ってAIエージェントを動かすための法人向けサービスです。Googleによって提供されています。",
+    "text": "Gemini Enterpriseは、企業が社内のデータでAIを動かす法人向けサービスです。Googleが提供しており、2026年11月上旬に導入事例や連携機能が発表されました。",
     "sources": [
+      "google-adobe-acrobat-gmail-drive",
       "sompo-japan-gemini-enterprise-adoption"
     ]
   },
   "facts": [
     {
       "label": "料金",
-      "value": "Businessは月21ドルから、Standard/Plusは月30ドルから",
+      "value": "1人月21ドルから",
       "sources": [
-        "gemini-enterprise-snowflake-mcp-adk",
-        "sompo-japan-gemini-enterprise-adoption"
+        "google-adobe-acrobat-gmail-drive",
+        "gemini-enterprise-snowflake-mcp-adk"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "損保ジャパンが全社員約2万人に導入",
+      "value": "日本からも利用できます",
       "sources": [
         "sompo-japan-gemini-enterprise-adoption"
       ]
     },
     {
       "label": "向いている人",
-      "value": "法人でAIエージェントや社内データを活用したい担当者",
+      "value": "AI導入担当や企業の開発者",
       "sources": [
+        "gemini-enterprise-snowflake-mcp-adk",
         "sompo-japan-gemini-enterprise-adoption"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "社内文書をアップロードして専門知識の検索や要約ができます。",
+      "text": "損保ジャパンの全社員約2万人が導入し、半年で週次利用率約80%を記録しています。",
       "sources": [
         "sompo-japan-gemini-enterprise-adoption"
       ]
     },
     {
-      "text": "自然言語を使ってSnowflakeのデータに質問や検索ができます。",
+      "text": "Adobeのコネクターが加わり、Acrobatなどの制作ツールと連携できます。",
+      "sources": [
+        "google-adobe-acrobat-gmail-drive"
+      ]
+    },
+    {
+      "text": "Snowflakeのデータに自然言語で質問する独自エージェントを構築できます。",
       "sources": [
         "gemini-enterprise-snowflake-mcp-adk"
       ]
     },
     {
-      "text": "カスタムエージェントの作成や共有が現場で行えます。",
+      "text": "Oracleのデータベースと接続し、会話型の分析や業務ごとのエージェントを利用できます。",
       "sources": [
-        "sompo-japan-gemini-enterprise-adoption"
+        "oracle-ai-database-agentic-update"
       ]
     },
     {
-      "text": "会話型の分析やクロスクラウドのデータベース接続が利用できます。",
+      "text": "Knowledge Catalogに接続して、テクニカルなスキーマやLookMLの定義をまとめて探せます。",
       "sources": [
-        "oracle-ai-database-agentic-update"
+        "lookml-knowledge-catalog-ga"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "Businessエディションは1人あたり月21ドルからです（最大300人）。",
+      "text": "Businessエディションは1人あたり月21ドルからです。",
       "sources": [
         "sompo-japan-gemini-enterprise-adoption"
       ]
     },
     {
-      "text": "StandardおよびPlusエディションは1人あたり月30ドルからです。",
+      "text": "StandardとPlusエディションは1人あたり月30ドルからです。",
       "sources": [
-        "gemini-enterprise-snowflake-mcp-adk",
-        "sompo-japan-gemini-enterprise-adoption"
-      ]
-    },
-    {
-      "text": "アプリ版はシート単位で月ごとに課金されるサブスクリプション型です。",
-      "sources": [
-        "sompo-japan-gemini-enterprise-adoption"
+        "google-adobe-acrobat-gmail-drive",
+        "gemini-enterprise-snowflake-mcp-adk"
       ]
     }
   ],
   "japan": [
     {
-      "text": "損害保険ジャパンが全社員約2万人に導入した事例が公開されています。",
+      "text": "損保ジャパンの全社員約2万人が導入し、利用できる状態です。",
       "sources": [
         "sompo-japan-gemini-enterprise-adoption"
       ]
@@ -92,44 +94,41 @@
   ],
   "howto": [
     {
-      "text": "Google CloudコンソールのGemini Enterpriseのページで設定を行います。",
+      "text": "Google Cloudコンソールの専用ページでカスタムエージェントを登録します。",
       "sources": [
         "gemini-enterprise-snowflake-mcp-adk"
-      ]
-    },
-    {
-      "text": "Knowledge Catalogに接続すると、スキーマや定義をまとめて探せます。",
-      "sources": [
-        "lookml-knowledge-catalog-ga"
       ]
     }
   ],
   "differences": [],
   "faq": [
     {
-      "q": "どのようなプランがありますか？",
-      "a": "Business、Standard、Plusのエディションが用意されています。",
+      "q": "BusinessとStandardの違いは何ですか？",
+      "a": "Businessは1人月21ドルからで、Standardは月30ドルからです。StandardなどではADKで構築した独自エージェントを導入できます。",
       "sources": [
         "gemini-enterprise-snowflake-mcp-adk",
         "sompo-japan-gemini-enterprise-adoption"
       ]
     },
     {
-      "q": "誰に向いているサービスですか？",
-      "a": "企業が社内の文書やデータを使ってAIエージェントを動かしたい場合に向いています。",
+      "q": "どのようなサービスと連携できますか？",
+      "a": "AdobeのAcrobat、Snowflake、Oracleの業務データなどと連携できます。",
       "sources": [
+        "google-adobe-acrobat-gmail-drive",
+        "gemini-enterprise-snowflake-mcp-adk",
+        "oracle-ai-database-agentic-update"
+      ]
+    },
+    {
+      "q": "社内データを使ったエージェントは作れますか？",
+      "a": "社内文書やSnowflakeなどのデータを使ってAIエージェントを動かせます。",
+      "sources": [
+        "gemini-enterprise-snowflake-mcp-adk",
         "sompo-japan-gemini-enterprise-adoption"
       ]
     },
     {
-      "q": "アプリ版の課金方式はどうなっていますか？",
-      "a": "シート単位で月ごとに課金されるサブスクリプション型です。",
-      "sources": [
-        "sompo-japan-gemini-enterprise-adoption"
-      ]
-    },
-    {
-      "q": "導入企業ではどのような効果が出ていますか？",
+      "q": "どのような導入実績がありますか？",
       "a": "損保ジャパンが全社員約2万人に導入し、半年で週次利用率約80%を記録しています。",
       "sources": [
         "sompo-japan-gemini-enterprise-adoption"
@@ -140,12 +139,12 @@
     {
       "date": "2026-11-09",
       "slug": "gemini-enterprise-snowflake-mcp-adk",
-      "event": "Gemini EnterpriseからSnowflakeのデータを聞ける仕組みを公開"
+      "event": "Snowflakeデータへの質問手順を公開"
     },
     {
       "date": "2026-11-09",
       "slug": "sompo-japan-gemini-enterprise-adoption",
-      "event": "損保ジャパンが全社員約2万人に導入した事例を公開"
+      "event": "損保ジャパンが全社員約2万人に導入"
     }
   ],
   "related": [
@@ -167,9 +166,9 @@
     "gemini-enterprise-snowflake-mcp-adk",
     "sompo-japan-gemini-enterprise-adoption"
   ],
-  "signature": "873c85d78c2fc8ea",
+  "signature": "02e085f91495742e",
   "primarySignature": "00048796984e4d8d",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-09T01:35:14+00:00",
-  "updatedAt": "2026-11-09T01:35:14+00:00"
+  "updatedAt": "2026-11-12T01:41:30+00:00"
 }

@@ -1,0 +1,267 @@
+{
+  "slug": "aws-security-agent-penetration-test-ga",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/",
+  "sourceName": "AWS ブログ（日本）",
+  "title": "AWS Security Agentの侵入テスト、一般提供　タスク時間$50の従量課金",
+  "seoTitle": "AWS Security Agentとは？料金と東京対応",
+  "threadsPost": "セキュリティ担当や、自社サービスを開発している人に、押さえておきたい話です。\n\nAWSのペンテストAI「Security Agent」の一般提供が始まっています。\n料金はタスク時間あたり$50の従量課金で、東京リージョンも対象です。\n\n脆弱性が公開されてから悪用されるまでが短くなる中、自社の診断はどう進めていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "自社システムの脆弱性診断、どのくらいの頻度で実施していますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "診断をAIに任せて速さを取るか、人の目を残すか、どちらにしますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "AWSのAIセキュリティサービス「AWS Security Agent」のペネトレーションテスト（侵入を想定した模擬攻撃）機能が、一般提供になりました。料金はタスク時間あたり$50の従量課金で、初期費用や最低料金はなく、東京リージョンを含む複数のリージョンで使えます。コードレビュー機能はまだプレビュー提供で、一般提供の時期は発表されていません。",
+  "description": "AWS Security Agentのペネトレーションテスト機能が一般提供に。料金はタスク時間あたり$50の従量課金で東京リージョン対応。4つの機能、脅威の変化、パートナー向けセミナーの内容をまとめます。",
+  "keywords": [
+    "AWS Security Agent",
+    "ペネトレーションテスト",
+    "自律型ペンテスト",
+    "AWS セキュリティ",
+    "Claude Mythos",
+    "Project Glasswing",
+    "脆弱性対策",
+    "Amazon Inspector",
+    "AWS WAF",
+    "東京リージョン"
+  ],
+  "tags": [
+    "AWS",
+    "セキュリティ",
+    "生成AI",
+    "AIエージェント",
+    "Claude Mythos"
+  ],
+  "highlights": [
+    "AWS Security Agentのペネトレーションテスト機能が一般提供になり、東京リージョンを含む複数リージョンで使えます",
+    "料金はタスク時間あたり$50の従量課金で、秒単位の計測です。初期費用や最低料金はありません",
+    "脆弱性の公開から悪用までの平均は、2021年の約1年から2026年には1日以内に短縮したとAWSは説明しました"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "タスク時間$50の従量課金",
+    "free": false,
+    "audience": "セキュリティ担当",
+    "take": "自社システムの診断を外部委託している企業は、東京リージョンで$50/時の従量課金を試算するとよいでしょう。",
+    "judgedAt": "2026-11-12T01:40:03.911253+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "セキュリティ担当は、模擬攻撃の診断をタスク時間あたり$50（約7,910円・税別の目安）で試算できます。",
+      "診断サービスを売るパートナー企業は、顧客向け診断の高度化に組み込む使い方がセミナーで示されました。",
+      "自社の弱点を先に知りたい企業は、無償のSecurity Health Improvement Programで約2時間の診断から始められます。"
+    ]
+  },
+  "body": "AWS Security Agentは、設計書やソースコードを読み込み、システムの弱点を探して修正案まで出すAIサービスです。AWSの公式ブログによると、2026年7月30日のパートナー向けセミナーで、AWSの担当者が解説しました。\n\n## 4つの機能のうち、一般提供は1つ\n\nSecurity Agentの機能は4つで、それぞれ単独で使えます。\n\n- 脅威モデル：設計書やソースコードから、想定される脅威を自動で整理します。\n- デザインレビュー：設計に対するセキュリティ審査です。\n- コードレビュー：コードの置き場とプルリクエスト（変更の提案）を調べ、弱点や社内ルールへの違反を見つけて直し方を示します。プレビュー提供中です。\n- ペネトレーションテスト：必要なときに実行でき、弱点を見つけて検証し、修正を提案します。今回、一般提供になりました。\n\nSAST（ソースコードの静的検査）、DAST（動作中のアプリの検査）、SCA（使っている部品の検査）と自律型ペンテストを、1つにまとめたと説明されています。弱点を連鎖させ、「証明でき、再現できる攻撃」にします。これにより、誤検出やアラートの多さによる疲れを減らせるとしています。\n\n## 東京リージョンで使える　料金はタスク時間あたり$50\n\nペンテスト機能の料金は、タスク時間あたり$50の従量課金です。秒単位で計測し、初期費用や最低料金はありません。アジアパシフィック（東京）を含む複数のリージョンで使えます。\n\n$50は約7,910円（税別の目安）です（サイソク編集部の計算。1ドル=158.18円、11/10のECB参照レートで計算）。\n\n対象はAWS上のどのリージョンやエンドポイントでも、パブリックでもプライベートでも構いません。AWSとオンプレミスの併用、Google CloudやMicrosoft Azure、Oracle Cloudなどのマルチクラウド、SaaSにも対応するとしています。\n\n結果は、明確な再現手順と検証コード、推奨される修正コード、PDFレポートとして出力できます。\n\n## 悪用までの時間は約1年から1日以内に\n\nAWSが示した背景は、脆弱性の公開から悪用までの時間の短縮です。\n\nZero Day Clockのデータでは、公開から悪用までの時間が次のように変わりました。\n\n- 2021年：平均約1年かかっていた\n- 2026年：1日以内になった\n\n今後は1時間以内になると予測されています。\n\nAIの普及で、高度な技術を持たない攻撃者でも大規模な攻撃が実行しやすくなっているとAWSは見ています。狙われるのは高度な欠陥だけでなく、公開されたままの管理ポートや弱いパスワード、単一要素認証といった基本的な不備でもあります。\n\nAnthropicの「Project Glasswing」にも触れました。Claude Mythos Previewと共に発表された取り組みです。\n\n6月2日時点で約5,000件の脆弱性が早期に見つかり、うち約30%がクリティカルから高リスクでした。AWSはローンチパートナーとして参加しています。Anthropicの未公開AIによる脆弱性発見は、サイソクでも報じました（[Anthropic、未公開AIでChromeやSafariなどの深刻な脆弱性を発見](/articles/claude-finds-critical-vulnerabilities)）。\n\n今後の脅威として、AWSは2種類を挙げました。\n\n- 管理された脅威：大量のCVE（脆弱性の識別番号）が公開され、パッチ適用の負荷が増える。\n- 未知の脅威：AIが未知の脆弱性を自律的に見つけて悪用する可能性。\n\n対策の短期案は、Amazon Inspectorによる迅速な検出、AWS WAFによる多層防御、パッチ適用の日常業務化です。中長期では、マネージドサービスへの移行でOSやミドルウェアのパッチ責任をAWSに移すことが挙げられました。\n\n## 無償の診断と、関連サービス\n\nAWSは、無償のSecurity Health Improvement Program（SHIP）も紹介しました。10のユースケースで状況を診断し、約2時間で改善の道筋を示します。内訳は次のとおりです。\n- 打ち合わせ：45分\n- 実施：60分\n無料で使えるのは、サポートの種類を問わず全AWS顧客です（AWS公式ページ、11/12確認）。\n関連ページには新しい「AWS Continuum」の料金も載っています。ペンテスト機能には、新規のAWS顧客向けに2か月の無料トライアルがあります。\n対象は各月400タスク時間までです（AWS公式ページ、11/12確認）。Security Agentとの関係はまだ発表されていません。\n\n## まだ分からないこと\n\n- コードレビュー機能の一般提供の時期はまだ発表されていません。\n- タスク時間1回あたりの目安（アプリの規模ごとの総額）はまだ発表されていません。\n- Security AgentとAWS Continuumの関係はまだ発表されていません。\n\n## パートナー企業・開発者がすること\n\nセミナーでは、システム構築での活用に加え、次の例が挙がりました。\n\n- 自社サービスのセキュリティテスト\n- 顧客向け診断サービスの高度化\n- マネージドセキュリティへの組み込み\n\nまず検査対象の環境を決め、東京リージョンで少量の診断を試して費用を見積もるとよいでしょう。",
+  "easy": "## ひとことで言うと\n\nAWSが、AIで模擬攻撃を行う「AWS Security Agent」のペネトレーションテスト機能を一般提供にしました。料金は作業時間あたり$50で、東京リージョンでも使えます。\n\n## 何ができるのか\n\nペネトレーションテストとは、攻撃者のつもりでシステムに侵入できるかを試す検査です。\n\nこの機能は、弱点を見つけて確かめ、直し方まで提案します。再現手順や検証コード、PDFレポートも出せます。\n\n## 料金と注意点\n\n料金は作業時間あたり$50で、秒単位で計測されます。日本円では約7,910円（税別の目安）です（サイソク編集部の計算）。\n\n初期費用や最低料金はありません。コードを確認する機能は、まだプレビュー版です。",
+  "channel": "AWS ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "aws-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "【開催報告 & 資料公開】Claude Mythos 時代の AWS セキュリティ対策 ～ AWS Security Agent ご紹介 ～",
+  "publishedAt": "2026-11-12T01:20:54+00:00",
+  "generatedAt": "2026-11-12T01:40:03.911242+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/aws-security-agent-penetration-test-ga-figure-97368f20.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "AWS Security Agentを使わない場合、無料で現状を診断する方法はありますか？",
+      "a": "Security Health Improvement Programが使えます。約2時間で、全AWS顧客が無料で受けられ、サポートの種類は問いません（AWS公式ページ、11/12確認）。"
+    },
+    {
+      "q": "AWS Continuumのペンテストには無料トライアルがありますか？",
+      "a": "新規の顧客には、最初の実行から2か月の無料トライアルがあります。各月400タスク時間までで、超えた分は従量課金です（AWS公式ページ、11/12確認）。"
+    }
+  ],
+  "todayActions": [
+    "自社システムの診断対象を決め、タスク時間あたり$50で何時間分になるか試算する",
+    "無償のSHIP（約2時間）の内容を確認し、受付の相談の準備をする",
+    "Amazon Inspectorで脆弱性の検出結果を確認し、社内の点検に使う"
+  ],
+  "relatedSlugs": [
+    "claude-finds-critical-vulnerabilities"
+  ],
+  "qualityScore": 90,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "Anthropic公式の料金ページ",
+      "url": "https://claude.com/pricing",
+      "checkedAt": "2026-11-11"
+    },
+    {
+      "label": "計算",
+      "name": "サイソク編集部の計算（元記事と上の資料の数字から）",
+      "url": "",
+      "checkedAt": ""
+    }
+  ],
+  "sourcePublishedAt": "2026-11-12T01:20:54+00:00",
+  "detectedAt": "2026-11-12T01:32:51+00:00",
+  "speedMinutes": 24,
+  "originalTitle": "AWSのペンテストAI「Security Agent」、タスク時間$50の従量課金　東京リージョンで一般提供",
+  "titleStyle": "2026-11-03",
+  "layout": "noir",
+  "summaryLine": "AWS Security Agentのペネトレーションテスト機能が一般提供になり、東京リージョンを含む複数リージョンで使えます",
+  "sectionsPolishedAt": "2026-11-12T01:41:39+00:00",
+  "insight": [
+    {
+      "text": "AWSのセキュリティ成熟度モデルは「クイックウィン」「基礎」「効率化」「最適化」の4フェーズで構成され、世界中で50,000以上のお客様が実施している。",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/"
+    },
+    {
+      "text": "Amazon Inspectorは、新しいCVEが公開されると最新の構成情報と照合して継続的に評価し、CVSS・ネットワーク到達性・悪用可能性から優先順位をつける。",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "AWS Security Agent 製品ページ",
+      "url": "https://aws.amazon.com/jp/security-agent/",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/",
+      "note": "ペネトレーションテスト機能の料金は、ブログ本文の「ペネトレーションテスト機能の詳細」にあります。"
+    },
+    {
+      "name": "Security Health Improvement Program（SHIP）",
+      "url": "https://aws.amazon.com/jp/security/security-health-improvement-program/",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/",
+      "note": "10のセキュリティユースケースを対象に、2時間のエンゲージメント（45分のディスカバリー＋60分の実施）で行われます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自社システムの診断対象を決め、タスク時間あたり$50で何時間分になるか試算する",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/",
+      "steps": [
+        "ブログの「ペネトレーションテスト機能の詳細」を開く",
+        "料金はタスク時間あたり$50の従量課金（秒単位）と確認",
+        "初期費用や最低料金がないことを確認",
+        "診断対象のリージョンやエンドポイントを書き出す"
+      ],
+      "url": "https://aws.amazon.com/jp/security-agent/"
+    },
+    {
+      "action": "無償のSHIP（約2時間）の内容を確認し、受付の相談の準備をする",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/",
+      "steps": [
+        "ブログの「Security Health Improvement Program（SHIP）」を開く",
+        "45分のディスカバリーと60分の実施の内訳を確認",
+        "10のセキュリティユースケースで診断されることを確認"
+      ],
+      "url": "https://aws.amazon.com/jp/security/security-health-improvement-program/"
+    },
+    {
+      "action": "Amazon Inspectorで脆弱性の検出結果を確認し、社内の点検に使う",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/",
+      "steps": [
+        "Amazon Inspectorを開く",
+        "エージェント不要でニアリアルタイムに脆弱性を管理できると確認",
+        "新しいCVEが公開されると継続的に評価されると確認"
+      ],
+      "url": "https://aws.amazon.com/jp/inspector/"
+    }
+  ],
+  "cause": {
+    "text": "脆弱性が公開されてから悪用されるまでの時間が、2021年の平均約1年から2026年には1日以内へ短縮されたためです。AIの普及で、高度な技術がない攻撃者でも大規模な攻撃をしやすくなったとAWSは見ています。",
+    "status": "background",
+    "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/"
+  },
+  "worries": [
+    {
+      "q": "AWSのセキュリティ対策は、どこから始めればいい？",
+      "a": "AWSはセキュリティ成熟度モデルを公開し、組織の成熟度に合わせて対策の優先順位を決める枠組みとして、「クイックウィン」「基礎」「効率化」「最適化」の4フェーズを示しています。50,000以上のお客様が実施しているとされます。",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/",
+      "action": "成熟度モデルで今の段階が4フェーズのどこに当たるかを確かめ、次にやることを決める。"
+    },
+    {
+      "q": "公開された管理ポートや弱いパスワードは狙われる？",
+      "a": "AWSは、攻撃が高度な欠陥だけでなく、公開されたままの管理ポート、弱いパスワード、単一要素認証といった基本的な不備にも向いていると見ています。",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/",
+      "action": "管理ポートが外部に開いていないか、単一要素認証のままの箇所がないかを社内で点検する。"
+    },
+    {
+      "q": "見つかった脆弱性は、どれから直せばいい？",
+      "a": "Amazon Inspectorは、新しいCVEが公開されると最新の構成情報と照合して継続的に評価します。CVSS、ネットワーク到達性、悪用可能性を組み合わせ、本当に危険なものから優先して対処できるよう支援します。",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/",
+      "action": "Amazon Inspectorの検出結果を確認し、危険度の高いものから直す順番を決める。"
+    },
+    {
+      "q": "診断の結果は、どんな形で受け取れる？",
+      "a": "結果は、明確な再現手順と検証コード、推奨される修正コード、PDFレポートとして出力できます。修正コードはAWSセキュリティベストプラクティスを活用して生成されます。",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/",
+      "action": "PDFレポートの再現手順と検証コードを確かめ、推奨修正を社内の担当者と進める。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ペンテスト機能を今すぐ試す？",
+      "situation": "自社システムの診断対象が決まっている",
+      "recommend": "少量の診断で費用を見てから判断してよい",
+      "reason": "1タスク時間あたり$50の従量課金で、初期費用や最低料金はありません。ただしアプリ規模ごとの総額の目安はまだ発表されていません。",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/"
+    },
+    {
+      "question": "ペンテスト機能を今すぐ試す？",
+      "situation": "診断対象がまだ決まっていない",
+      "recommend": "対象の洗い出しを先に行い、急がなくてよい",
+      "reason": "対象が決まっていないと試算できません。AWS上の任意のリージョンやエンドポイントに加え、オンプレミス、マルチクラウド、SaaSも対象にできます。",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/"
+    },
+    {
+      "question": "コードレビュー機能も今すぐ使う？",
+      "situation": "コードレビュー機能にも興味がある",
+      "recommend": "一般提供の時期が発表されるまで、現状を確認しておく",
+      "reason": "コードレビュー機能はまだプレビュー提供中で、一般提供の時期は発表されていません。今回一般提供になったのはペネトレーションテスト機能です。",
+      "source": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "AWSの成熟度モデルで、今の段階を確かめる",
+    "cause": "なぜ悪用が早くなったのか",
+    "steps": "今日、社内で確かめられること",
+    "desk": "問い合わせ先と、読むべきページ",
+    "worries": "基本の不備は残っていない？",
+    "guide": "試すかどうか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-12T01:42:24+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "AWS Security Agentの侵入テスト、一般提供",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T01:43:51+00:00"
+  },
+  "imageFocus": {
+    "x": 0.523,
+    "y": 0.408,
+    "box": [
+      0.081,
+      0.06,
+      0.966,
+      0.756
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/aws-security-agent-penetration-test-ga-figure-97368f20.jpg"
+  }
+}

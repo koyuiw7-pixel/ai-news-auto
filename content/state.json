@@ -85,6 +85,14 @@
   },
   "failed_web": {},
   "gate_retry": {
+    "16b7534a7c99522f": {
+      "first": "2026-11-12T01:38:00.348153+00:00",
+      "next": "2026-11-12T04:38:00.348153+00:00",
+      "reason": "タイトル・リード「長崎市で挨拶」→ 元記事は「長崎県金融経済懇談会」とのみ記しており、開催地が長崎市とは書かれていない（県の会合を市と特定した追加情報）; リード「わが国の経済・物価情勢と金融政策について解説しました」→ 元記事は挨拶の題目と要旨で、本文の具体的な景気・物価判断の内容は本記事に反映されていない; 本文全体が日銀の一般的な役割・金融政策決定の仕組みの説明に終始し、浅田審議委員が挨拶で",
+      "title": "【挨拶】浅田審議委員「わが国の経済・物価情勢と金融政策」（長崎）",
+      "tries": 1,
+      "url": "http://www.boj.or.jp/about/press/koen_2026/ko261112a.htm"
+    },
     "261ae4aceb078e02": {
       "first": "2026-11-11T01:35:22.123410+00:00",
       "next": "2026-11-11T04:35:22.123410+00:00",
@@ -166,6 +174,7 @@
     "4d7b4ca569655ba4": "2026-11-10T08:00:55.486094+00:00",
     "53150e6d2c8e077a": "2026-11-11T09:14:54.412216+00:00",
     "584f97677ff8d007": "2026-11-11T01:46:50.194316+00:00",
+    "58e398f6c82e88a1": "2026-11-12T01:32:51.352949+00:00",
     "60944a24710b0d78": "2026-11-09T07:42:55.305009+00:00",
     "632ab217c6f08ade": "2026-11-09T09:38:56.467516+00:00",
     "63b25ab6cf34c929": "2026-11-10T09:04:48.294575+00:00",
@@ -5155,6 +5164,17 @@
       "skipped": true,
       "url": "https://www.riken.jp/press/2026/20261030_1/index.html"
     },
+    "190ff25ec1dd2f84": {
+      "at": "2026-11-12T01:39:28.191337+00:00",
+      "costUsd": 0.018,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "business",
+      "slug": "inbound-consumption-q3-2026",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87301?site=nli"
+    },
     "191056a627871c9b": {
       "at": "2026-11-02T05:31:51.219862+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -8898,17 +8918,10 @@
       "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/bunkakai/02tsushin10_04000741.html"
     },
     "58e398f6c82e88a1": {
-      "at": "2026-11-12T01:19:45.544754+00:00",
+      "at": "2026-11-12T01:38:00.351466+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "https://www.nintendo.com/jp/topics/article/b852fe50-71bf-4c1a-a338-5b75951d040d"
-    },
-    "58efe63b0e288aad": {
-      "at": "2026-10-29T01:21:20.297921+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: Nintendo Switch 2 → 元記事には「Nintendo Switch 2 Indie World」という表記はあるものの、対象機種が「Nintendo Switch 2」であるとは明記されていない。",
-      "skipped": true,
-      "url": "https://www.nintendo.com/jp/topics/article/3f2dcaf9-b6bf-40a2-8335-ddbb6108397e"
     },
     "590ab436e522a0ed": {
       "at": "2026-10-30T06:34:37.862168+00:00",
@@ -9836,6 +9849,17 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/111118_00103.html"
     },
+    "657cfa792b136170": {
+      "at": "2026-11-12T01:41:13.590109+00:00",
+      "costUsd": 0.0152,
+      "intent": "query",
+      "mix": "ai_consumer",
+      "model": "claude:sonnet",
+      "score": 90,
+      "section": "ai",
+      "slug": "aws-security-agent-penetration-test-ga",
+      "url": "https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-july/"
+    },
     "659f928ed29ab472": {
       "at": "2026-11-02T23:36:49.636472+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -10025,14 +10049,6 @@
       "reason": "public-interest: 資料が短い 1071字",
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/house03_hh_000285.html"
-    },
-    "68c01e18210096fb": {
-      "at": "2026-10-29T01:21:42.486077+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "public",
-      "slug": "tokyo-winter-air-pollution-control-2026",
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102814"
     },
     "68e4d4abd3d5b079": {
       "at": "2026-10-29T18:13:12.615763+00:00",
@@ -11292,6 +11308,17 @@
       "slug": "nissin-y-pirkul-65ml-2026",
       "url": "https://www.nissin.com/jp/news/13991/"
     },
+    "7c8601a1e81fd58a": {
+      "at": "2026-11-12T01:37:32.008585+00:00",
+      "costUsd": 0.0091,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 80,
+      "section": "real-estate",
+      "slug": "tokyo-office-rent-nli-2026-q3",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87300?site=nli"
+    },
     "7cc85f64fdd707de": {
       "at": "2026-10-29T03:51:43.858389+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -11346,6 +11373,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（議事）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77172.html"
+    },
+    "7d9a69e5be2edd15": {
+      "at": "2026-11-12T01:41:14.302917+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（説明会）",
+      "skipped": true,
+      "url": "https://www.caa.go.jp/notice/entry/047968/"
     },
     "7da1b2b4758f6148": {
       "at": "2026-11-10T15:14:04.235612+00:00",
@@ -17555,16 +17588,6 @@
       "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
       "writer": "deep_dive"
     },
-    "deep-dc788458b3": {
-      "angleOf": "nicorio-flavos-refund-process",
-      "at": "2026-11-12T01:38:44.920249+00:00",
-      "deepDive": "check",
-      "mix": "other",
-      "score": 90,
-      "slug": "flavos-refund-eligibility-check",
-      "url": "https://www.caa.go.jp/notice/entry/048110/",
-      "writer": "deep_dive"
-    },
     "deep-ef9fdcd8bc": {
       "angleOf": "pension-support-benefit-old-age-eligibility",
       "at": "2026-11-10T19:57:10.166266+00:00",
@@ -20322,235 +20345,19 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
+    },
+    "deep-dc788458b3": {
+      "angleOf": "nicorio-flavos-refund-process",
+      "at": "2026-11-12T01:38:44.920249+00:00",
+      "deepDive": "check",
+      "mix": "other",
+      "score": 90,
+      "slug": "flavos-refund-eligibility-check",
+      "url": "https://www.caa.go.jp/notice/entry/048110/",
+      "writer": "deep_dive"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T08:48:33.878774+00:00",
-      "attempt": 1,
-      "id": "5853709e13ca8649",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.0,
-        "avg_sentence": 57.4,
-        "long_share": 0.3,
-        "max_paragraph": 124,
-        "paragraphs": 7,
-        "sentences": 10
-      },
-      "score": 92,
-      "source": "jleague",
-      "title": "ユースよりDF丸岡ら3選手の昇格が内定【Ｇ大阪】 明治安田Ｊ１リーグ 2026/11/10 (火) 17:30",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（DF・MF）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 57.4字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T08:48:47.901167+00:00",
-      "attempt": 0,
-      "id": "5853709e13ca8649",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 79.3,
-        "avg_sentence": 37.0,
-        "long_share": 0.0,
-        "max_paragraph": 128,
-        "paragraphs": 7,
-        "sentences": 15
-      },
-      "score": 93,
-      "source": "jleague",
-      "title": "ユースよりDF丸岡ら3選手の昇格が内定【Ｇ大阪】 明治安田Ｊ１リーグ 2026/11/10 (火) 17:30",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（DF・MF）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T08:49:42.259126+00:00",
-      "attempt": 1,
-      "id": "c21d01723e0ec0fb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 126.7,
-        "avg_sentence": 54.3,
-        "long_share": 0.286,
-        "max_paragraph": 146,
-        "paragraphs": 3,
-        "sentences": 7
-      },
-      "score": 90,
-      "source": "tokyo-metro",
-      "title": "都立代々木公園 噴水のリニューアルについて",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 54.3字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 126.7字・最長 146字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T08:50:01.388637+00:00",
-      "attempt": 0,
-      "id": "c21d01723e0ec0fb",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: タイトル・リード「11月13日から」→ 元記事は「令和8年11月13日（金曜日）（予定）」。予定である旨が抜け、確定事項のように読める。; 本文「供用は11月13日から開始されます」→ 元記事の「（予定）」を落として確定的に書いている。"
-      ],
-      "readability": {
-        "avg_paragraph": 126.7,
-        "avg_sentence": 54.3,
-        "long_share": 0.286,
-        "max_paragraph": 146,
-        "paragraphs": 3,
-        "sentences": 7
-      },
-      "score": 90,
-      "source": "tokyo-metro",
-      "title": "都立代々木公園 噴水のリニューアルについて",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 54.3字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 126.7字・最長 146字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T08:50:48.073958+00:00",
-      "attempt": 1,
-      "id": "24f3e6b3b235f463",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 45.3,
-        "avg_sentence": 45.3,
-        "long_share": 0.333,
-        "max_paragraph": 83,
-        "paragraphs": 3,
-        "sentences": 3
-      },
-      "score": 90,
-      "source": "jleague",
-      "title": "ボイン高校DFイ ヒョンギの2026/27シーズン加入が内定【水戸】 明治安田Ｊ１リーグ 2026/11/10 (火) 17:30",
-      "warnings": [
-        "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 45.3字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T08:50:58.218882+00:00",
-      "attempt": 0,
-      "id": "24f3e6b3b235f463",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 54.0,
-        "avg_sentence": 36.0,
-        "long_share": 0.0,
-        "max_paragraph": 87,
-        "paragraphs": 2,
-        "sentences": 3
-      },
-      "score": 91,
-      "source": "jleague",
-      "title": "ボイン高校DFイ ヒョンギの2026/27シーズン加入が内定【水戸】 明治安田Ｊ１リーグ 2026/11/10 (火) 17:30",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T09:06:18.561107+00:00",
-      "attempt": 1,
-      "id": "35867efb094da2f9",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「決勝のナイジェリア戦では、相手のスピードとパワーに苦しみ前半から2点を追う展開となりました」→ 元記事では1点目が39分、2点目が47分（後半）なので、前半から2点を追っていたわけではない",
-        "「追加点は奪えず」「80分に伊藤風葵選手のゴールで1点差」→ 元記事では80分のゴールは伊藤杏莉選手のヘッドを伊藤風葵選手が押し込んだもので、得点者の記載は概ね正しい"
-      ],
-      "readability": {
-        "avg_paragraph": 119.3,
-        "avg_sentence": 55.1,
-        "long_share": 0.385,
-        "max_paragraph": 157,
-        "paragraphs": 6,
-        "sentences": 13
-      },
-      "score": 80,
-      "source": "jfa",
-      "title": "【ホットピ！～HotTopic～】U-17日本女子代表、10年ぶりの決勝進出。世界2位で大会を終える #jfa #nadeshiko #みんななでしこ #dai",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FIFA・PK）",
-        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
-        "読みやすさ: 文が長い（1文の平均 55.1字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T09:06:38.800634+00:00",
-      "attempt": 1,
-      "id": "35867efb094da2f9",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 128.3,
-        "avg_sentence": 51.3,
-        "long_share": 0.333,
-        "max_paragraph": 157,
-        "paragraphs": 6,
-        "sentences": 15
-      },
-      "score": 95,
-      "source": "jfa",
-      "title": "【ホットピ！～HotTopic～】U-17日本女子代表、10年ぶりの決勝進出。世界2位で大会を終える #jfa #nadeshiko #みんななでしこ #dai",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FIFA・PK・CK）",
-        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
-        "読みやすさ: 文が長い（1文の平均 51.3字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T09:07:04.044746+00:00",
-      "attempt": 0,
-      "id": "35867efb094da2f9",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.0,
-        "avg_sentence": 40.9,
-        "long_share": 0.111,
-        "max_paragraph": 163,
-        "paragraphs": 8,
-        "sentences": 18
-      },
-      "score": 92,
-      "source": "jfa",
-      "title": "【ホットピ！～HotTopic～】U-17日本女子代表、10年ぶりの決勝進出。世界2位で大会を終える #jfa #nadeshiko #みんななでしこ #dai",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FIFA・PK・CK）",
-        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-10T09:07:27.748190+00:00",
@@ -27754,6 +27561,241 @@
       "title": "「金麦〈豊潤〉」2026年販売計画を120万ケース(※1)に上方修正",
       "warnings": [
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T01:36:52.725730+00:00",
+      "attempt": 1,
+      "id": "7c8601a1e81fd58a",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 119.0,
+        "avg_sentence": 56.4,
+        "long_share": 0.474,
+        "max_paragraph": 178,
+        "paragraphs": 9,
+        "sentences": 19
+      },
+      "score": 80,
+      "source": "nli-research",
+      "title": "東京オフィス賃料は一段と上昇。REIT市場は調整色が強まる。－不動産クォータリー・レビュー2026年第３四半期",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 56.4字・60字超の文が 47% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T01:37:19.082192+00:00",
+      "attempt": 0,
+      "id": "7c8601a1e81fd58a",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 本文「年初来の騰落率は、9月末時点で15%に達しています」→ 元記事は「▲15％」（下落）。符号が抜けており、上昇したように読める数値の取り違えです。; タイトル・見出し「東京のオフィス賃料が過去最高水準に」→ 元記事で最高水準とされるのは東京駅周辺の大型ビルの"
+      ],
+      "readability": {
+        "avg_paragraph": 119.0,
+        "avg_sentence": 56.4,
+        "long_share": 0.474,
+        "max_paragraph": 178,
+        "paragraphs": 9,
+        "sentences": 19
+      },
+      "score": 80,
+      "source": "nli-research",
+      "title": "東京オフィス賃料は一段と上昇。REIT市場は調整色が強まる。－不動産クォータリー・レビュー2026年第３四半期",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 56.4字・60字超の文が 47% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T01:38:00.348055+00:00",
+      "attempt": 1,
+      "id": "16b7534a7c99522f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "タイトル・リード「長崎市で挨拶」→ 元記事は「長崎県金融経済懇談会」とのみ記しており、開催地が長崎市とは書かれていない（県の会合を市と特定した追加情報）",
+        "リード「わが国の経済・物価情勢と金融政策について解説しました」→ 元記事は挨拶の題目と要旨で、本文の具体的な景気・物価判断の内容は本記事に反映されていない",
+        "本文全体が日銀の一般的な役割・金融政策決定の仕組みの説明に終始し、浅田審議委員が挨拶で何を述べたか（景気判断・物価見通し・政策への考え）が読者に伝わらない",
+        "「（）」が各段落末に空のまま残っており、出典の書き忘れまたは編集ミスが見られる",
+        "「まだ分からないこと」で詳細は今後の発表で確認と書いているが、元記事の挨拶要旨（PDF全文）の内容について、確認できる範囲の言及がない"
+      ],
+      "readability": {
+        "avg_paragraph": 102.2,
+        "avg_sentence": 58.4,
+        "long_share": 0.286,
+        "max_paragraph": 123,
+        "paragraphs": 4,
+        "sentences": 7
+      },
+      "score": 80,
+      "source": "boj",
+      "title": "【挨拶】浅田審議委員「わが国の経済・物価情勢と金融政策」（長崎）",
+      "warnings": [
+        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
+        "読みやすさ: 文が長い（1文の平均 58.4字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T01:38:31.774349+00:00",
+      "attempt": 1,
+      "id": "190ff25ec1dd2f84",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「台湾が3,818億円で全体の17.3%を占め、初の首位に立ちました」→ 元記事は台湾が今期首位に立ったと書くのみで、「初の」首位とは書かれていない（前期首位の有無は元記事に無い）。",
+        "「物価の影響に加え、多くの主要市場で旅行支出そのものが増加していることが全体の押し上げにつながりました」→ 元記事は国内の宿泊料の動きは小幅で、単価上昇は物価だけでは説明しきれないとしており、物価の影響を前面に出す書き方は元記事と趣旨が異なる。",
+        "「欧米からの旅行者が下支えする構造」（仕事・お金欄）→ 元記事で下支えを挙げたのは主に韓国・台湾・香港などの近隣市場で、欧米は横ばい程度であり、欧米が下支えしたとする記述は言い過ぎ。"
+      ],
+      "readability": {
+        "avg_paragraph": 122.5,
+        "avg_sentence": 58.3,
+        "long_share": 0.429,
+        "max_paragraph": 160,
+        "paragraphs": 10,
+        "sentences": 21
+      },
+      "score": 85,
+      "source": "nli-research",
+      "title": "インバウンド消費の動向（2026年7-9月期）－客数減でも消費額は7-9月期最高、台湾が首位に立つ「主役交代」",
+      "warnings": [
+        "同じ数字が多い（「1人」が5回）",
+        "読みやすさ: 文が長い（1文の平均 58.3字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 122.5字・最長 160字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T01:38:51.586396+00:00",
+      "attempt": 1,
+      "id": "190ff25ec1dd2f84",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 126.1,
+        "avg_sentence": 57.3,
+        "long_share": 0.409,
+        "max_paragraph": 185,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": 90,
+      "source": "nli-research",
+      "title": "インバウンド消費の動向（2026年7-9月期）－客数減でも消費額は7-9月期最高、台湾が首位に立つ「主役交代」",
+      "warnings": [
+        "同じ数字が多い（「1人」が6回）",
+        "読みやすさ: 文が長い（1文の平均 57.3字・60字超の文が 41% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 126.1字・最長 185字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T01:39:23.342335+00:00",
+      "attempt": 0,
+      "id": "190ff25ec1dd2f84",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 61.4,
+        "avg_sentence": 34.8,
+        "long_share": 0.033,
+        "max_paragraph": 146,
+        "paragraphs": 17,
+        "sentences": 30
+      },
+      "score": 92,
+      "source": "nli-research",
+      "title": "インバウンド消費の動向（2026年7-9月期）－客数減でも消費額は7-9月期最高、台湾が首位に立つ「主役交代」",
+      "warnings": [
+        "同じ数字が多い（「1人」が6回）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T01:40:12.859887+00:00",
+      "attempt": 1,
+      "id": "657cfa792b136170",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "本文「個人が普段使うサービスに変更はありません」→ 元記事・確認済みの文脈に無い主張で、変更の有無は確認できない。",
+        "本文「対象は、AWSやほかのクラウド、オンプレミスで自社のシステムを運用している企業のセキュリティ担当者や開発者です」→ 元記事は対象者を明示しておらず、読者層の断定は根拠が薄い。",
+        "編集部の見方「年に数回の外部診断に頼っていた企業が、リリースごとに試す選択肢を持てます」→ 元記事に無い利用実態の前提を置いており、解釈として区別しきれていない。",
+        "判定欄「東京リージョンで$50/時の従量課金」→ 元記事は「タスク時間あたり$50」で、「/時」という表記は時間単位の誤解を招きやすい。"
+      ],
+      "readability": {
+        "avg_paragraph": 103.3,
+        "avg_sentence": 48.8,
+        "long_share": 0.25,
+        "max_paragraph": 223,
+        "paragraphs": 17,
+        "sentences": 36
+      },
+      "score": 85,
+      "source": "aws-japan-blog",
+      "title": "【開催報告 & 資料公開】Claude Mythos 時代の AWS セキュリティ対策 ～ AWS Security Agent ご紹介 ～",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（WAF・SHIP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T01:40:34.765225+00:00",
+      "attempt": 1,
+      "id": "657cfa792b136170",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 107.6,
+        "avg_sentence": 48.9,
+        "long_share": 0.242,
+        "max_paragraph": 223,
+        "paragraphs": 15,
+        "sentences": 33
+      },
+      "score": 90,
+      "source": "aws-japan-blog",
+      "title": "【開催報告 & 資料公開】Claude Mythos 時代の AWS セキュリティ対策 ～ AWS Security Agent ご紹介 ～",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（WAF・SHIP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T01:41:06.576447+00:00",
+      "attempt": 0,
+      "id": "657cfa792b136170",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 74.0,
+        "avg_sentence": 42.0,
+        "long_share": 0.135,
+        "max_paragraph": 154,
+        "paragraphs": 21,
+        "sentences": 37
+      },
+      "score": 90,
+      "source": "aws-japan-blog",
+      "title": "【開催報告 & 資料公開】Claude Mythos 時代の AWS セキュリティ対策 ～ AWS Security Agent ご紹介 ～",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（WAF・SHIP）"
       ]
     }
   ],
