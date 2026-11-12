@@ -35,8 +35,9 @@ test("かんたん版の中に広告の枠・あわせて読みたいを入れ�
   const easy = page.slice(start, page.indexOf('<div className="read-expert">', start));
   for (const part of ["<RailRanking", "<ReadNextBox", "<AdSlot", "<NewsletterSignup", "<ShopLinks", "<CtaBanner"]) assert.ok(!easy.includes(part), `かんたん版に ${part} がある`);
   // 本文中の商品枠は「後半あり」「後半なし」のどちらか1か所だけ
-  const inline = page.match(/\{(!?bodyTail) && inlineOffer && \(\s*<div[^>]*>\s*<RailRanking offer=\{inlineOffer\}/g) ?? [];
-  assert.deepEqual(inline.map((m) => m.match(/!?bodyTail/)[0]).sort(), ["!bodyTail", "bodyTail"]);
+  // AdSense の審査の期間（lib/ad-review.ts）は本文の後ろの1か所だけに寄せる
+  const inline = page.match(/\{(bodyTail && !adReview|\(!bodyTail \|\| adReview\)) && inlineOffer && \(\s*<div[^>]*>\s*<RailRanking offer=\{inlineOffer\}/g) ?? [];
+  assert.deepEqual(inline.map((m) => m.slice(1, m.indexOf(" && inlineOffer"))).sort(), ["(!bodyTail || adReview)", "bodyTail && !adReview"]);
   assert.equal((page.match(/<RailRanking offer=\{inlineOffer\}/g) ?? []).length, 2);
   assert.equal((page.match(/<AdSlot position="article-middle"/g) ?? []).length, 1);
   assert.equal((page.match(/<AdSlot position="article-top"/g) ?? []).length, 1);

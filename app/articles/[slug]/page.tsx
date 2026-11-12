@@ -106,6 +106,7 @@ import { compareOffersFor, funnelForArticle, insertCompareSlot } from "@/lib/com
 import CompareOffers from "@/components/CompareOffers";
 import { foldSourceLists } from "@/lib/source-fold";
 import { actionAdWithBenefits, offerWithBenefits } from "@/lib/ad-benefits";
+import { inAdReview } from "@/lib/ad-review";
 import FunnelCard from "@/components/FunnelCard";
 import { canonicalChannel, channelName } from "@/lib/channel-labels";
 
@@ -235,11 +236,13 @@ export default async function ArticlePage({ params }: Props) {
   // 同じ商品の PR を「すぐにできること」の下に重ねない（一覧がその役目）。ほかの枠も一覧の商品を避ける
   // 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認）は検索に出さず、広告・提携の囲みも出さない（記事は公開したまま）
   const noPr = isZeroVisit(article.slug);
-  const compareOffers = noPr ? undefined : compareOffersFor(article);
+  // AdSense の審査の期間は PR を1記事1つ・本文の後ろだけ（lib/ad-review.ts。2026-11-12 オーナー承認）
+  const adReview = inAdReview();
+  const compareOffers = noPr || adReview ? undefined : compareOffersFor(article);
   // 広告の「得のカード」（大きな数字・記事ごとの見出し。lib/ad-benefits.ts・台帳 W38）を付ける。枠の中身・順番・置き場所は変えない
   // 見出しは slug と題名で決める（content/ad_benefits.json の articles。具体的な記事の行が先、題名の語の広い行が後）
   const benefitContext = `${article.slug} ${article.title} ${article.seoTitle ?? ""}`;
-  const actionAd = compareOffers || noPr ? undefined : actionAdWithBenefits(actionAdForArticle(article), benefitContext);
+  const actionAd = compareOffers || noPr || adReview ? undefined : actionAdWithBenefits(actionAdForArticle(article), benefitContext);
   const offerPlan = noPr
     ? { offer: undefined, rail: undefined, inline: undefined }
     : offerPlanForArticle(
@@ -248,14 +251,14 @@ export default async function ArticlePage({ params }: Props) {
         actionAd?.intent ? actionAd.items.slice(0, 1).map((x) => x.item.key) : [],
       );
   const offerAll = offerWithBenefits(offerPlan.offer, benefitContext);
-  const offer = offerWithBenefits(offerPlan.rail, benefitContext);
+  const offer = adReview ? undefined : offerWithBenefits(offerPlan.rail, benefitContext);
   const inlineOffer = offerWithBenefits(offerPlan.inline, benefitContext);
   // ニュース記事 → 同じ話題の比較記事への「次に読む」のカード（自分たちの記事への案内。広告の枠には数えない）
   const funnel = funnelForArticle(article, getAllArticles());
   // 商品枠の話題に比較ガイドがあれば、商品枠のすぐ下に1行だけ案内する
   const buyingGuide = buyingGuideForTopic(offerAll?.topic);
   // 製品を扱う記事だけ、本文中の商品枠のそばに「Amazon / 楽天で見る」を1行（右側には出さない）
-  const shopLink = noPr ? undefined : shopLinkForArticle(article);
+  const shopLink = noPr || adReview ? undefined : shopLinkForArticle(article);
   // 回線・転職など、記事の話題に合う選び方ガイド（見出しとタグが合うときだけ）
   const chooseGuide = chooseGuideForArticle(article);
   // 記事に合う自前のガイド・比較ページ（基準点以上のときだけ）。同じページに既に出ているガイドは選ばない
@@ -355,8 +358,8 @@ export default async function ArticlePage({ params }: Props) {
   // 本文中の PR は1か所だけ（PC は右側の1〜3位＋本文中1つ、スマホは本文中1つ＋ページ下の1〜3位の最大2つ）。
   // 同じページに PR の囲みが3つ以上並ぶと広告だらけに見えるため（2026-11-03 監査）。優先順:
   // 本文中の4〜6位（Amazon/楽天の1行は同じ囲みの中）→ Amazon/楽天の1行だけ → 収益導線（monetization.json）の中盤 → 記事末
-  const inlineCta = !noPr && bodyTail && !actionAd && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
-  const primaryCta = !noPr && !actionAd && !inlineOffer && !shopLink && !inlineCta && getCta(article.genreSlug, "primary") ? "primary" : undefined;
+  const inlineCta = !noPr && !adReview && bodyTail && !actionAd && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
+  const primaryCta = !noPr && !adReview && !actionAd && !inlineOffer && !shopLink && !inlineCta && getCta(article.genreSlug, "primary") ? "primary" : undefined;
   const hasInlinePr = Boolean(actionAd || inlineOffer || shopLink || inlineCta || primaryCta);
   const headings = tocOf(body, article.sectionTitles);
   // 読み終えた人に「次の1本」を大きく見せる。本文の途中にも1本だけ差し込む
@@ -864,7 +867,7 @@ export default async function ArticlePage({ params }: Props) {
           </div>
 
           {/* (b) 本文の途中の PR（4〜6位の商品枠。Amazon / 楽天の1行は同じ囲みの中）と「あわせて読みたい」 */}
-          {bodyTail && inlineOffer && (
+          {bodyTail && !adReview && inlineOffer && (
             <div className="my-10 max-w-[46em]">
               <RailRanking offer={inlineOffer} wide id="offer-inline" title={inlineOffer.headline} />
               {/* Amazon / 楽天の1行は、本文中の PR の囲みと同じ場所にまとめる（PR を別々に並べない） */}
@@ -970,7 +973,7 @@ export default async function ArticlePage({ params }: Props) {
           <PushOptIn />
 
           {/* 本文が短く途中に置けなかった記事だけ、記事末に出す */}
-          {!bodyTail && inlineOffer && (
+          {(!bodyTail || adReview) && inlineOffer && (
             <div className="mt-12 max-w-[46em]">
               <RailRanking offer={inlineOffer} wide id="offer-inline" title={inlineOffer.headline} />
               {shopLink && <ShopLinks link={shopLink} className="mt-3" />}

@@ -2,6 +2,7 @@ import type { ComponentType, ReactNode } from "react";
 import Link from "next/link";
 import AdSlot from "@/components/AdSlot";
 import MobilePrBar from "@/components/rail/MobilePrBarLazy";
+import { inAdReview } from "@/lib/ad-review";
 import RailRanking from "@/components/rail/RailRanking";
 import CtaBanner from "@/components/CtaBanner";
 import NewsletterSignup from "@/components/NewsletterSignup";
@@ -182,8 +183,9 @@ export function noirArticlePage(ctx: NoirPageContext) {
   const answer = compareInline ? null : extractAnswerTable(noirHtml);
   const [noirTop, noirAfterAd] = splitBeforeHeading(answer ? answer.rest : noirHtml, 3);
   const [noirMid, noirTail] = splitBeforeHeading(noirAfterAd, 4);
-  const noirInlineCta = !actionAd && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
-  const noirPrimaryCta = !actionAd && !inlineOffer && !shopLink && !noirInlineCta && getCta(article.genreSlug, "primary") ? "primary" : undefined;
+  const adReview = inAdReview();
+  const noirInlineCta = !adReview && !actionAd && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
+  const noirPrimaryCta = !adReview && !actionAd && !inlineOffer && !shopLink && !noirInlineCta && getCta(article.genreSlug, "primary") ? "primary" : undefined;
   const badge = sourceBadge(article);
   // 発表元の名前（写真の注記の団体名 → 企業名 → 発信元の名前）
   const org =
@@ -231,7 +233,8 @@ export function noirArticlePage(ctx: NoirPageContext) {
   // 比較記事の提携先の一覧（比較表の直後・記事の終わり）も本文の列の PR に数え、合わせて3つまでにする
   const compareCount = (compareInline ? 1 : 0) + (compareEnd ? 1 : 0);
   if (compareCount > 0) adBlocks.splice(Math.max(0, 3 - compareCount));
-  const [adEarly, adMidPr, adEnd] = adBlocks.slice(0, 3);
+  // AdSense の審査の期間は1つだけ・本文の後ろ（lib/ad-review.ts）
+  const [adEarly, adMidPr, adEnd] = adReview ? [null, null, adBlocks[0] ?? null] : adBlocks.slice(0, 3);
   // 比較記事への案内: 判断ガイドがあればその直後、無ければ「すぐにできること」の直後（速報の当日・地震津波の速報は記事の終わりだけ）
   const funnelMid = funnel?.placement === "both" ? <FunnelCard card={funnel} pos="mid" /> : null;
 
