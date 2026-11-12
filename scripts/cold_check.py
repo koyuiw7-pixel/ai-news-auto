@@ -56,6 +56,8 @@ def fetch(base: str, path: str, nonce: str | None = None) -> dict:
             res.read(1)
             ttfb = time.monotonic() - started
             headers = {k.lower(): v for k, v in res.headers.items()}
+            # Server-Timing は Cloudflare（cfEdge・cfWorker）とこちら（base・app）の2本が来る。両方つなぐ
+            headers["server-timing"] = ", ".join(res.headers.get_all("server-timing") or [])
             res.read()
             status = res.status
     except urllib.error.HTTPError as error:
@@ -81,7 +83,7 @@ def timing_of(header: str) -> str:
     parts = []
     for item in header.split(","):
         match = re.match(r"\s*([A-Za-z-]+)\s*;\s*dur=([\d.]+)", item)
-        if match and match.group(1) != "total":
+        if match and match.group(1) not in ("total", "cfOrigin"):
             parts.append(f"{match.group(1)} {float(match.group(2)) / 1000:.2f}")
     return "・".join(parts)
 

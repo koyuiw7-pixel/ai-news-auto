@@ -12,7 +12,7 @@ import { flushHeld, handlePush, type PushEnv } from "./push";
 import { handleAff, type AffEnv } from "./aff";
 import { serveVideo } from "./video";
 import { handleReview, type ReviewEnv } from "./review";
-import { edgeCacheKeyUrl, edgeHitDecision } from "./edge-cache";
+import { edgeCacheKeyUrl, edgeHitDecision, isInternalRequest } from "./edge-cache";
 // @ts-ignore ビルド時に生成される（scripts/cf_content.mjs。JS・CSS のファイル名の組のハッシュ）
 import codeInfo from "../.open-next/saisoku-code.json";
 
@@ -73,17 +73,43 @@ function loadFonts(env: Env): Promise<void> {
   return fontsLoading;
 }
 
-/** 記事ページ・カバーを描く前に、その記事の本文入り JSON を読み込む（無い記事は 404 のまま） */
-async function loadArticle(env: Env, slug: string): Promise<void> {
-  if (!/^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(slug) || fullSlugs.includes(slug)) return;
+/** 記事ページ・カバーを描く前に、その記事の本文入り JSON を読み込む（無い記事は 404 のまま）。記事があれば true */
+async function loadArticle(env: Env, slug: string): Promise<boolean> {
+  if (!/^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(slug)) return false;
+  if (fullSlugs.includes(slug)) return true;
   const res = await asset(env, `/_content/articles/${slug}.json`);
-  if (res.status === 404) return;
+  if (res.status === 404) {
+    await res.body?.cancel();
+    return false;
+  }
   if (!res.ok) throw new Error(`article asset failed: ${slug} ${res.status}`);
   const vfs = g.__SAISOKU_VFS__!;
   vfs.files.set(`content/articles/${slug}.json`, await res.text());
-  fullSlugs.push(slug);
+  if (!fullSlugs.includes(slug)) fullSlugs.push(slug);
   while (fullSlugs.length > FULL_LIMIT) vfs.files.delete(`content/articles/${fullSlugs.shift()}.json`);
+  return true;
 }
+
+/**
+ * 読み込み中の記事 JSON（記事ページ）。ISR のキャッシュ（ビルドで作ったページ）を返すだけなら記事 JSON は要らないので、
+ * 記事ページでは読み込みを待たずに Next へ渡し、キャッシュに無くて描くときだけ open-next.config.ts の kvOverAssets.get が
+ * ここにある読み込みの終わりを待ってから描かせる（台帳 W43。2026-11-13 の本番の内訳で、1回目は記事 JSON の読み込みに 0.13〜0.5 秒、
+ * その後にキャッシュの読み出しを順番に待っていた）
+ */
+const pendingContent = new Set<Promise<unknown>>();
+(globalThis as { __SAISOKU_CONTENT_PENDING__?: Set<Promise<unknown>> }).__SAISOKU_CONTENT_PENDING__ = pendingContent;
+
+function trackContent<T>(promise: Promise<T>): Promise<T> {
+  pendingContent.add(promise);
+  promise.then(
+    () => pendingContent.delete(promise),
+    () => pendingContent.delete(promise),
+  );
+  return promise;
+}
+
+/** 記事ページ（/articles/<slug> と画面遷移用の .rsc）。カバー・カード画像は今までどおり読み込んでから描く */
+const ARTICLE_PAGE = /^\/articles\/([^/]+?)(?:\.rsc)?\/?$/;
 
 /**
  * 取り下げた記事（content/retired.json。scripts/retire_articles.py が書き、scripts/cf_content.mjs が /_content/retired.json に置く）。
@@ -353,10 +379,6 @@ async function serveImage(request: Request, url: URL, env: Env, ctx: Ctx): Promi
  * （base＝索引などの先読み・article＝記事 JSON の先読み・app＝Next の描画かキャッシュ読み出し。台帳 W43）。
  * エッジのキャッシュには載せない（forEdge で外す）。scripts/cold_check.py が遅いページの内訳として出す
  */
-function isInternal(request: Request, url: URL): boolean {
-  return request.headers.get("x-saisoku-internal") === "1" || url.searchParams.get("_internal") === "1";
-}
-
 function withTiming(response: Response, timing: string): Response {
   const out = new Response(response.body, response);
   out.headers.set("server-timing", timing);
@@ -368,6 +390,8 @@ async function render(request: Request, url: URL, env: Env, ctx: Ctx): Promise<R
   const started = Date.now();
   const marks: string[] = [];
   const mark = (name: string, since: number) => marks.push(`${name};dur=${Date.now() - since}`);
+  let articleLoad: Promise<boolean> | null = null;
+  let articleSlug = "";
   // 静的ファイルは OpenNext/アセットに任せる（先読み不要）
   if (!url.pathname.startsWith("/_next/static/")) {
     try {
@@ -375,9 +399,18 @@ async function render(request: Request, url: URL, env: Env, ctx: Ctx): Promise<R
       const cold = baseLoading === null;
       await loadBase(env);
       mark(cold ? "base-cold" : "base", baseAt);
-      const match = ARTICLE.exec(url.pathname);
+      const page = ARTICLE_PAGE.exec(url.pathname);
+      const match = page ?? ARTICLE.exec(url.pathname);
       const articleAt = Date.now();
-      if (match) {
+      if (page) {
+        // 記事ページ: 待たずに Next へ（キャッシュに無くて描くときだけ kvOverAssets.get が待つ）
+        articleSlug = decodeURIComponent(page[1]);
+        articleLoad = trackContent(loadArticle(env, articleSlug));
+        articleLoad.then(
+          () => mark("article", articleAt),
+          () => undefined,
+        );
+      } else if (match) {
         await loadArticle(env, decodeURIComponent(match[1]));
         mark("article", articleAt);
       }
@@ -392,9 +425,29 @@ async function render(request: Request, url: URL, env: Env, ctx: Ctx): Promise<R
       return new Response("Service Unavailable", { status: 503, headers: { "Retry-After": "5" } });
     }
   }
-  if (!isInternal(request, url)) return handler.fetch(request, env, ctx);
   const appAt = Date.now();
-  const response = await handler.fetch(request, env, ctx);
+  let response = await handler.fetch(request, env, ctx);
+  if (articleLoad) {
+    let exists: boolean;
+    try {
+      exists = await articleLoad;
+    } catch (error) {
+      // 記事 JSON が読めなかった: キャッシュから返せたページはそのまま、描いたページは今までどおり 503（404 を返さない）
+      if (!/^(HIT|STALE)$/.test(response.headers.get("x-nextjs-cache") ?? "")) {
+        console.error("[worker] content preload failed", error);
+        await response.body?.cancel();
+        return new Response("Service Unavailable", { status: 503, headers: { "Retry-After": "5" } });
+      }
+      exists = true;
+    }
+    // 万一、記事 JSON の読み込みより先に描いて「無い記事」になったら、読み込み後に描き直す（404 は ISR に残さない。open-next.config.ts）
+    if (exists && response.status === 404) {
+      console.error("[worker] article rendered before its JSON was loaded; rendering again", articleSlug);
+      await response.body?.cancel();
+      response = await handler.fetch(new Request(request.url, request), env, ctx);
+    }
+  }
+  if (!isInternalRequest(request.headers, url)) return response;
   mark("app", appAt);
   mark("total", started);
   return withTiming(response, marks.join(", "));

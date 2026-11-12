@@ -37,6 +37,12 @@ class JudgeTest(unittest.TestCase):
 
 
 class SampleTest(unittest.TestCase):
+    def test_worker_timing_is_summarized_in_seconds(self):
+        # Worker の内訳（Server-Timing。Cloudflare の cfEdge・cfWorker とこちらの base・article・app。台帳 W43）
+        header = "base-cold;dur=812, article;dur=140, app;dur=95, total;dur=907, cfEdge;dur=20, cfOrigin;dur=0, cfWorker;dur=950"
+        self.assertEqual(cold_check.timing_of(header), "base-cold 0.81・article 0.14・app 0.10・cfEdge 0.02・cfWorker 0.95")
+        self.assertEqual(cold_check.timing_of(""), "")
+
     def test_sitemap_paths_and_always_checked_pages(self):
         xml = f"<urlset><url><loc>{BASE}</loc></url><url><loc>{BASE}/articles/a</loc></url><url><loc>https://other.example/x</loc></url></urlset>"
         self.assertEqual(cold_check.sitemap_paths(xml, BASE), ["/", "/articles/a"])

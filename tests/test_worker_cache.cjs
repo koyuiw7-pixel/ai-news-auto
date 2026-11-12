@@ -15,7 +15,7 @@ const loaded = new Module(sourcePath, module);
 loaded.filename = sourcePath;
 loaded.paths = Module._nodeModulePaths(root);
 loaded._compile(compiled, sourcePath);
-const { edgeHitDecision, edgeCacheKeyUrl, mustBeCurrent } = loaded.exports;
+const { edgeHitDecision, edgeCacheKeyUrl, mustBeCurrent, isInternalRequest } = loaded.exports;
 
 const BASE = "https://ai-tech-express.jp";
 const key = (p) => edgeCacheKeyUrl(new URL(BASE + p), "abc123");
@@ -69,4 +69,47 @@ test("ページを変えるパラメータは残す（別のキーになる）",
 test("メールの登録・解除のページでは ?s= ?t= を残す", () => {
   assert.notEqual(key("/newsletter?s=confirmed"), key("/newsletter"));
   assert.notEqual(key("/newsletter/unsubscribe?id=1&t=tok"), key("/newsletter/unsubscribe?id=1"));
+});
+
+// Worker の内訳（Server-Timing）は自社の確かめのときだけ返し、エッジのキャッシュには残さない（台帳 W43。2026-11-13）
+test("内訳: 自社の確かめ（ヘッダーか ?_internal=1）だけ", () => {
+  const h = (v) => ({ get: (n) => (n === "x-saisoku-internal" ? v : null) });
+  assert.equal(isInternalRequest(h("1"), new URL(BASE + "/articles/x")), true);
+  assert.equal(isInternalRequest(h(null), new URL(BASE + "/articles/x?_internal=1")), true);
+  assert.equal(isInternalRequest(h(null), new URL(BASE + "/articles/x")), false);
+  assert.equal(isInternalRequest(h("0"), new URL(BASE + "/articles/x?_internal=0")), false);
+});
+
+test("内訳: render が付けた Server-Timing は forEdge で外し、エッジに置かない", () => {
+  const worker = fs.readFileSync(path.join(root, "cloudflare/worker.ts"), "utf8");
+  const forEdge = worker.slice(worker.indexOf("function forEdge("), worker.indexOf("type KvNamespace"));
+  assert.match(forEdge, /headers\.delete\("server-timing"\)/);
+  const render = worker.slice(worker.indexOf("async function render("), worker.indexOf("export default {"));
+  assert.match(render, /if \(!isInternalRequest\(request\.headers, url\)\) return response;/);
+  assert.match(render, /return withTiming\(response/);
+});
+
+// 記事ページは、ビルドで作ったページ（ISR のキャッシュ）を返すだけなら記事 JSON の読み込みを待たない。
+// キャッシュに無くて描くときだけ、open-next.config.ts の kvOverAssets.get が読み込みの終わりを待つ（台帳 W43。2026-11-13）
+test("記事ページ: 記事 JSON を待たずに Next へ渡し、キャッシュに無いときだけ待つ", () => {
+  const worker = fs.readFileSync(path.join(root, "cloudflare/worker.ts"), "utf8");
+  const render = worker.slice(worker.indexOf("async function render("), worker.indexOf("export default {"));
+  const handOff = render.indexOf("handler.fetch(request, env, ctx)");
+  assert.ok(handOff > 0);
+  // 記事ページの読み込みは trackContent に入れるだけで、Next へ渡す前に await しない
+  assert.match(render, /articleLoad = trackContent\(loadArticle\(env, articleSlug\)\)/);
+  assert.doesNotMatch(render.slice(0, handOff), /await articleLoad/);
+  // 読めなかったときは描いたページを 503 に、先に描いて 404 になったら描き直す
+  assert.match(render.slice(handOff), /await articleLoad/);
+  assert.match(render.slice(handOff), /status: 503/);
+  assert.match(render.slice(handOff), /exists && response\.status === 404/);
+  assert.match(worker, /__SAISOKU_CONTENT_PENDING__ = pendingContent/);
+
+  const config = fs.readFileSync(path.join(root, "open-next.config.ts"), "utf8");
+  assert.match(config, /__SAISOKU_CONTENT_PENDING__/);
+  const get = config.slice(config.indexOf("async get(key, cacheType)"), config.indexOf("set: async"));
+  assert.match(get, /if \(!fromKv\?\.value\) await contentReady\(\)/);
+  // 一時的な 404 を ISR に残さない
+  const set = config.slice(config.indexOf("set: async"), config.indexOf("delete:"));
+  assert.match(set, /if \(isNotFoundEntry\(value\)\) return;/);
 });

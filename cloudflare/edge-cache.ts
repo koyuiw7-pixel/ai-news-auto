@@ -75,3 +75,11 @@ export function edgeHitDecision(pathname: string, cachedVersion: string | null, 
   if (immutable || cachedVersion === currentVersion) return "fresh";
   return mustBeCurrent(pathname) ? "render" : "stale";
 }
+
+/**
+ * 自社の確かめ（ヘッダー X-Saisoku-Internal: 1 か ?_internal=1）か。このときだけ Worker の内訳（Server-Timing）を返す（台帳 W43）。
+ * 読者・検索のロボットには内訳を見せず、エッジのキャッシュにも残さない（cloudflare/worker.ts の forEdge）
+ */
+export function isInternalRequest(headers: { get(name: string): string | null }, url: URL): boolean {
+  return headers.get("x-saisoku-internal") === "1" || url.searchParams.get("_internal") === "1";
+}
