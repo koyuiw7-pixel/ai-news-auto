@@ -60,13 +60,13 @@
   "videoTitle": "ふるさと納税のポイントは2025年10月から付かない　残るのは決済の通常分だけ",
   "publishedAt": "2026-11-12T14:23:52.895272+00:00",
   "generatedAt": "2026-11-12T14:25:02.262987+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/furusato-points-stop-2025-10-figure-0ba9d833.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "寄附する前に、総務省のふるさと納税ポータルサイトで控除の上限の目安を確かめる",
-    "寄附を申し込む前に、サイトに表示されるポイントが通常の買い物と同じ条件かを確かめる"
+    "総務省ポータルサイトで、ふるさと納税の控除の仕組みと上限の目安を確かめる",
+    "寄附を申し込む前に、サイトのポイントが通常の買い物と同じ条件かを確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -101,5 +101,122 @@
   "qualityScore": 85,
   "detectedAt": "2026-11-12T14:25:27+00:00",
   "layout": "noir",
-  "summaryLine": "2025年10月1日以後に始まる指定対象期間から、寄附に伴うポータルサイトのポイントが付かなくなる"
+  "summaryLine": "2025年10月1日以後に始まる指定対象期間から、寄附に伴うポータルサイトのポイントが付かなくなる",
+  "insight": [
+    {
+      "text": "カードなどのポイントは、ふるさと納税の決済だけに追加で付くものは対象外です。「通常の商取引に係る決済に伴って提供されるものに相当するもの」に当たらないとされています。",
+      "source": "https://www.soumu.go.jp/main_content/000959391.pdf"
+    },
+    {
+      "text": "ポイントサイトを経由してポータルサイトで寄附した場合に付くポイントも対象です。ポータルサイト運営者が直接付けたものでなくても、寄附に相当程度関連すると考えられるとされています。",
+      "source": "https://www.soumu.go.jp/main_content/000959391.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "総務省 ふるさと納税ポータルサイト「ふるさと納税の流れ」",
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "howTo": [
+        "総務省トップ",
+        "ふるさと納税ポータルサイト",
+        "ふるさと納税のしくみ",
+        "ふるさと納税の流れ"
+      ],
+      "note": "申込方法や納付方法は自治体ごとに異なるため、寄附先の自治体のホームページや窓口で直接確認するとよいと書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "総務省ポータルサイトで、ふるさと納税の控除の仕組みと上限の目安を確かめる",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "steps": [
+        "ふるさと納税のしくみを開く",
+        "税金の控除についてを開く",
+        "寄附額のうち2,000円を超える部分が控除の対象か確かめる"
+      ],
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html"
+    },
+    {
+      "action": "寄附を申し込む前に、サイトのポイントが通常の買い物と同じ条件かを確かめる",
+      "source": "https://www.soumu.go.jp/main_content/000959391.pdf",
+      "steps": [
+        "寄附先サイトの付与ポイントの表示を見る",
+        "ポイントサイト経由で付くものがないか見る",
+        "カードの決済ポイントが通常の買い物と同じ条件か確かめる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "総務省は、ポイント付与で寄附者を誘引するポータルサイトが使われ、その付与率の競争が過熱していることが、ふるさと納税の本来の趣旨に合わないためだと説明しています。感謝や応援の気持ちを伝える制度に戻す狙いです。",
+    "status": "stated",
+    "source": "https://www.soumu.go.jp/menu_news/kaiken/01koho01_02001460.html"
+  },
+  "worries": [
+    {
+      "q": "カードのポイントも対象になりますか？",
+      "a": "カードなどで通常の買い物と同じ条件で付く決済ポイントは残ります。ふるさと納税の決済だけに追加で付くポイントは対象外とされています。",
+      "source": "https://www.soumu.go.jp/main_content/000959391.pdf",
+      "action": "寄附に使うカードのポイントが、通常の買い物と同じ条件か確かめる。"
+    },
+    {
+      "q": "ポイントサイト経由の寄附もポイント対象ですか？",
+      "a": "ポイントサイトを経由してポータルサイトで寄附した場合に付くポイントも対象とされています。寄附に相当程度関連すると考えられるためです。",
+      "source": "https://www.soumu.go.jp/main_content/000959391.pdf",
+      "action": "ポイントサイトを経由する前に、そのサイトでポイントが付くか確かめる。"
+    },
+    {
+      "q": "ポイントが消えると、控除額は減りますか？",
+      "a": "控除の仕組みは変わりません。寄附額のうち2,000円を超える部分が、所得税と住民税から原則として全額控除されます。ただし一定の上限があります。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "action": "控除の上限の目安を、総務省ポータルサイトで確かめる。"
+    },
+    {
+      "q": "寄附先が増えると、手続きはどう変わりますか？",
+      "a": "確定申告が不要な給与所得者等で寄附先が5団体以内ならワンストップ特例を申請できます。それ以外の人は、寄附した翌年の3月15日までに確定申告を行うとされています。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "action": "寄附先が5団体以内かを数えて、申請の方法を決める。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "カードの決済ポイントは見直すべき？",
+      "situation": "通常の買い物と同じ条件で付くポイントを使っている",
+      "recommend": "急がなくてよい。付与条件だけ確かめればよい",
+      "reason": "通常の買い物と同じ条件で付く決済ポイントは残ります。ふるさと納税の決済だけに追加で付くポイントは対象外とされています。",
+      "source": "https://www.soumu.go.jp/main_content/000959391.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ポイントの残り方は、支払いの条件で決まる",
+    "cause": "なぜポイントが付かなくなったのか",
+    "steps": "寄附の前に、まず確かめる2つのこと",
+    "desk": "流れと手続きを確かめるなら",
+    "worries": "ポイントが消えると、控除はどうなる？",
+    "guide": "ポイント目当てをやめるか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-12T14:42:55+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "ふるさと納税のポイント、2025年10月から付かなくなる",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T14:45:23+00:00"
+  },
+  "imageFocus": {
+    "x": 0.495,
+    "y": 0.405,
+    "box": [
+      0.059,
+      0.048,
+      0.931,
+      0.762
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/furusato-points-stop-2025-10-figure-0ba9d833.jpg"
+  }
 }

@@ -65,14 +65,13 @@
   "videoTitle": "森永製菓、2026年は2回の値上げ　inバー8品は9月1日から約12%上がりました",
   "publishedAt": "2026-11-12T14:25:45.946271+00:00",
   "generatedAt": "2026-11-12T14:27:00.703788+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/morinaga-in-bar-price-increase-2026-09-figure-cfd086d4.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "いつも買う店で、inバー8品とおっとっとの今の値段を確かめる",
-    "おっとっとを買うときは、袋の内容量（グラム数）を見てから選ぶ",
-    "毎週決まって買う商品は、1本あたりの値段を店ごとに比べる"
+    "買う前に、買う商品名が「in BAR」で始まるかを店の棚や袋で確かめる。",
+    "おっとっとを買うときは、袋の内容量（グラム数）を見てから選ぶ。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -100,5 +99,99 @@
   "detectedAt": "2026-11-12T14:28:16+00:00",
   "searchTitle": "森永製菓inバー8品の値上げは9月1日から　約12%",
   "layout": "noir",
-  "summaryLine": "森永製菓のinバー8品は、2026年9月1日から価格が**約12%**上がりました（7月16日発表）。"
+  "summaryLine": "森永製菓のinバー8品は、2026年9月1日から価格が**約12%**上がりました（7月16日発表）。",
+  "insight": [
+    {
+      "text": "対象8品の商品名は英語で「in BAR Protein <Vanilla>」「in BAR Multi Mineral <Cocoa>」のように書かれ、買う前に商品名で照らし合わせられます。",
+      "source": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file6a586a996c207.pdf"
+    },
+    {
+      "text": "改定日は「4月1日（出荷分より）」と「4月7日（発売分より）」の2種類があり、ベイクとおっとっと各種は「発売分より」の4月7日からです。",
+      "source": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file69941da134a50.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "森永製菓商品 価格改定のお知らせ（2026年7月16日）",
+      "url": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file6a586a996c207.pdf",
+      "source": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file6a586a996c207.pdf",
+      "note": "対象8品の商品名が英語で載っています。買う商品名と照らし合わせるときに使えます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "買う前に、買う商品名が「in BAR」で始まるかを店の棚や袋で確かめる。",
+      "source": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file6a586a996c207.pdf",
+      "steps": [
+        "棚や袋の商品名を見る",
+        "「in BAR」で始まるかを確かめる",
+        "対象8品の一覧と照らし合わせる"
+      ]
+    },
+    {
+      "action": "おっとっとを買うときは、袋の内容量（グラム数）を見てから選ぶ。",
+      "source": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file69941da134a50.pdf",
+      "steps": [
+        "店頭で袋の表示を見る",
+        "内容量（グラム数）を確かめる",
+        "前に買ったときと比べる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "原材料や包装資材の価格が上がり、物流費も上昇しています。こうしたコストは中長期にわたり続く見込みで、自社の生産効率化や経費削減だけでは価格を維持するのが難しいとしています。",
+    "status": "stated",
+    "source": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file6a586a996c207.pdf"
+  },
+  "worries": [
+    {
+      "q": "inバーは今どれくらい値上がりする？",
+      "a": "対象の8品は、2026年9月1日から価格が約12%上がると書かれています。対象はプロテイン6品、マルチミネラル1品、ジュニアプロテイン1品の計8品です。",
+      "source": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file6a586a996c207.pdf",
+      "action": "買う予定の商品名が「in BAR」で始まるか、店の棚で確かめる。"
+    },
+    {
+      "q": "おっとっとも値上がりする？",
+      "a": "30gおっとっと＜うすしお味＞は、4月1日（出荷分より）から価格が約6〜40%上がりました。おっとっと各種3品目は、4月7日（発売分より）から内容量が約6〜12%減っています。",
+      "source": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file69941da134a50.pdf",
+      "action": "おっとっとを買うときは、袋の内容量（グラム数）を見てから選ぶ。"
+    },
+    {
+      "q": "ミルクココアや純ココアも値上がりした？",
+      "a": "200gミルクココアと純ココアは、4月1日（出荷分より）から価格が約5〜8%上がりました。このふたつは菓子とは別の「食品」の区分で示されています。",
+      "source": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file69941da134a50.pdf",
+      "action": "ココアを買うときは、いつもの店で今の値段を確かめてから買う。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "買う前に見ておく商品名と改定日",
+    "cause": "なぜ値上げするのか",
+    "steps": "今日、店で確かめること",
+    "desk": "公式の発表はこちら",
+    "worries": "買う商品は値上がりする？"
+  },
+  "depthAt": "2026-11-12T14:42:21+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "約12%",
+    "label": "inバー8品が9月1日から",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T14:43:31+00:00"
+  },
+  "imageFocus": {
+    "x": 0.461,
+    "y": 0.423,
+    "box": [
+      0.031,
+      0.036,
+      0.891,
+      0.81
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/morinaga-in-bar-price-increase-2026-09-figure-cfd086d4.jpg"
+  }
 }
