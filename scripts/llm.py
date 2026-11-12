@@ -476,7 +476,8 @@ def is_trial() -> bool:
 # 回数は手入れのジョブどうしで別に数える（お金＝月の予算と今日の目安額は全部を合わせたまま）。
 # 2026-11-04: 記事の型の書き直し（types）が日本時間の朝までに「中心」を127回使い、新しい記事の「中心」の上限60回を
 # 使い切っていた。投資・マネー／不動産の候補が無料モデルに落ちて全部不合格になり、その日はAI以外の記事が出なかった
-MAINTENANCE_LEDGERS = {"types", "titles", "sections", "labels", "easy"}
+# 2026-11-12: 短い記事を公式の資料で厚くする（thicken。scripts/thicken_short.py）も手入れのジョブ
+MAINTENANCE_LEDGERS = {"types", "titles", "sections", "labels", "easy", "thicken"}
 
 
 def _ledger_scope(name: str) -> str:

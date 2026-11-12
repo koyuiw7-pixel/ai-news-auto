@@ -222,6 +222,7 @@ NON_PROSE = {
     "updated_at.py": "更新日時（updatedAt）と更新履歴（updates）の欄だけ。本文は変えない。事実・訂正・続報・資料の読み直しのときだけ進める（SEO A16）",
     "canonical_names.py": "本文の名前の最初の1か所を「とは」の記事へのリンクにする（文字は変えない）・同じ名前の後の「とは」に重複の印だけ（台帳 A68）",
     "search_refresh.py": "書き直しは rewrite_types.rewrite（品質ゲートつき）に任せ、更新日時（updatedAt）と記録の欄だけ足す（台帳 A68）",
+    "thicken_short.py": "書き直しは rewrite_types.rewrite（品質ゲートつき）に任せ、更新日時（updatedAt）と記録の欄だけ足す（2026-11-12 短い記事を厚くする）",
     "depth_fields.py": "一歩深くする欄（insight・officialDesk・todaySteps・cause・worries）だけ。本文は変えない。欄の数字・「」の名前・URL は読んだ公式ページとプログラムで照合し、無いものは外す（台帳 A66）",
     "threads_reader.py": "記事を読むだけ（Threads の投稿の文面を state/threads_reader.json に書く。記事は書かない。台帳 S46）",
     "noir_hero_backfill.py": "ノワールの表紙に写真を出すかの欄（heroOk）だけ（台帳 W36）",

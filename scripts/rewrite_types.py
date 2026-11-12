@@ -254,8 +254,11 @@ def _write_with(model: str):
     return _Ctx()
 
 
-def rewrite(slug: str, attempts: int = 2, focus: str = "") -> tuple[dict | None, dict]:
-    """(新しい記事 or None, 報告)。focus は書き直しで特に守らせる指示（scripts/search_refresh.py の「検索の答えを先に」。台帳 A68）"""
+def rewrite(slug: str, attempts: int = 2, focus: str = "", *, free_first: bool = False, paid_ok: bool = True,
+            write_purpose: str = "core", accept=None) -> tuple[dict | None, dict]:
+    """(新しい記事 or None, 報告)。focus は書き直しで特に守らせる指示（scripts/search_refresh.py の「検索の答えを先に」。台帳 A68）。
+    free_first: 1回目は無料モデルで書く（scripts/thicken_short.py。2026-11-12）。2回目は paid_ok なら Sonnet（write_purpose の段）、
+    そうでなければもう一度無料モデル。accept(record) は品質ゲートの前に見る追加の条件（問題の文 or None。短い記事の書き足しの「前より厚いか」）"""
     path = ARTICLES_DIR / f"{slug}.json"
     old = json.loads(path.read_text("utf-8"))
     if slug in corrected_slugs() or CORRECTION_RE.search(old.get("body") or "") or old.get("refreshMode") == "editorial":
@@ -278,22 +281,41 @@ def rewrite(slug: str, attempts: int = 2, focus: str = "") -> tuple[dict | None,
     if focus:
         prompt = prompt + "\n\n" + focus
     report["newsType"] = item.get("newsType")
-    record, verdict = None, {}
+    record, verdict, drafted = None, {}, False
     for attempt in range(1, attempts + 1):
-        with _write_with(WRITE_MODEL):
-            data, model = llm.generate_json(system, prompt, schema, temperature=0.6, max_output_tokens=32768, tier="write", purpose="core")
-        if not str(model or "").startswith("anthropic-api:claude-sonnet"):
-            # 書き直しは Sonnet だけで行う（無料モデルに落ちたら、今の版のまま次の回に回す）
-            return None, {**report, "why": f"Sonnet が使えなかった（{model}）。次の回に回す"}
-        if not data.get("is_relevant", True):
-            return None, {**report, "why": f"記事にする価値なしと判定（{str(data.get('skip_reason'))[:80]}）"}
+        if free_first and (attempt == 1 or not paid_ok):
+            # 無料モデル（数の決まったモデルは llm.py の1日の上限・ジョブの取り分のまま）。書けなければ次の試行へ
+            try:
+                data, model = llm.generate_json(system, prompt, schema, temperature=0.6, max_output_tokens=32768, tier="write")
+            except Exception as error:  # noqa: BLE001
+                report["history"].append({"attempt": attempt, "model": "free", "ok": False, "problems": [f"無料モデルで書けなかった: {str(error)[:120]}"]})
+                log(f"   試行{attempt}（無料モデル）書けなかった: {str(error)[:160]}")
+                continue
+            if not data.get("is_relevant", True):
+                report["history"].append({"attempt": attempt, "model": model, "ok": False, "problems": ["無料モデルが「記事にする価値なし」と答えた"]})
+                continue
+        else:
+            with _write_with(WRITE_MODEL):
+                data, model = llm.generate_json(system, prompt, schema, temperature=0.6, max_output_tokens=32768, tier="write",
+                                                purpose=write_purpose)
+            if not str(model or "").startswith("anthropic-api:claude-sonnet"):
+                # 書き直しは Sonnet だけで行う（無料モデルに落ちたら、今の版のまま次の回に回す）
+                if drafted:
+                    break  # 無料モデルの原稿は品質ゲートに落ちた。Sonnet は次の回
+                return None, {**report, "why": f"Sonnet が使えなかった（{model}）。次の回に回す"}
+            if not data.get("is_relevant", True):
+                return None, {**report, "why": f"記事にする価値なしと判定（{str(data.get('skip_reason'))[:80]}）"}
+        drafted = True
         record = w.attach_related(w.build_web_record(item, data, page, model, voice_key, bundle), data, related)
         w.pre_gate(record, source_text, context)
         # 2026-11-08 の台帳の見直し（旧 A20 を外した・A60）: 足りない事実で作り直さない（記録だけ）
         if missing := news_types.missing_facts(record.get("newsType") or "", record.get("body") or "", source_text):
             log(f"   [type] 資料にあるのに本文に無い事実（記録だけ）: {'・'.join(x.label for x in missing)}")
         blocked = w.publish_blocked(record)
-        if blocked:
+        extra = accept(record) if accept else None
+        if extra:
+            verdict = {"ok": False, "problems": [extra]}  # 品質ゲートの前に落とす（ゲートの費用を使わない）
+        elif blocked:
             verdict = {"ok": False, "problems": [f"公開前の門: {indexnow.PUBLISH_FEEDBACK[blocked]}"]}
         else:
             verdict = quality.evaluate(record, source_text, kind, context)
@@ -312,8 +334,11 @@ def rewrite(slug: str, attempts: int = 2, focus: str = "") -> tuple[dict | None,
         if verdict.get("ok") or verdict.get("soft"):
             break
         prompt = prompt + quality.feedback_block(verdict.get("problems") or [])
+    if not drafted:
+        return None, {**report, "why": "無料モデルで書けなかった。次の回に回す", "transient": True}
     if not (verdict.get("ok") or verdict.get("soft")) or record is None:
-        return None, {**report, "why": "品質ゲートに合格しなかった（今の版のまま）"}
+        return None, {**report, "why": "品質ゲートに合格しなかった（今の版のまま）",
+                      "problems": [str(p)[:160] for p in (verdict.get("problems") or [])[:3]]}
     record = w.finalize_facts(w.attach_charts(record), source_text)
     # 今の記事に、書き直した欄だけを入れる
     new = json.loads(json.dumps(old, ensure_ascii=False))
