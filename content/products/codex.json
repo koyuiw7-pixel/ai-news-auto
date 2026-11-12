@@ -6,83 +6,107 @@
   "companyName": "OpenAI",
   "category": "開発ツール",
   "overview": {
-    "text": "Codexは、プログラムの作成や修正をAIに任せられるOpenAIのコード生成AIです。開発ツールとして、多くの企業や現場で活用されています。",
+    "text": "Codexは、プログラムの作成や修正をAIに任せるOpenAIの開発ツールです。2026年10月に発表され、企業の業務効率化やツールの内製化に活用されています。",
     "sources": [
       "chatgpt-codex-shared-usage-limits",
-      "openai-codex-astra-merge-ceo-interview",
-      "australian-universities-chatgpt-edu-2027"
+      "openai-codex-astra-merge-ceo-interview"
     ]
   },
   "facts": [
     {
-      "label": "日本での提供",
-      "value": "日本から利用できます",
+      "label": "料金",
+      "value": "ChatGPTの各プランやAPIに準拠",
       "sources": [
+        "cultfit-codex-internal-apps",
         "openai-codex-astra-merge-ceo-interview"
       ]
     },
     {
-      "label": "向いている人",
-      "value": "開発者や業務を自動化したい人",
+      "label": "日本での提供",
+      "value": "一部機能は利用可能",
       "sources": [
-        "openai-codex-astra-merge-ceo-interview",
-        "openai-codex-benefit-street-partners-financial-tool"
+        "cultfit-codex-internal-apps",
+        "openai-codex-astra-merge-ceo-interview"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "ChatGPT、API、開発者向けツール",
+      "sources": [
+        "cultfit-codex-internal-apps",
+        "chatgpt-codex-shared-usage-limits"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "開発者および企業の業務担当者",
+      "sources": [
+        "cultfit-codex-internal-apps",
+        "openai-codex-astra-merge-ceo-interview"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "自然言語の指示で業務ツールやアプリを自分で作成できます。",
+      "text": "プログラムのコード生成や修正、エラーの原因特定を自動で行うことができます。",
       "sources": [
-        "openai-codex-astra-merge-ceo-interview",
-        "openai-codex-benefit-street-partners-financial-tool"
-      ]
-    },
-    {
-      "text": "システムのエラー原因を特定し、修正パッチを自動生成します。",
-      "sources": [
-        "goland-profiler-ai-agents-claude-code",
+        "chatgpt-codex-shared-usage-limits",
         "openai-codex-production-monitoring-demo"
       ]
     },
     {
-      "text": "スケジュールタスクの統合により、データを自動で定時更新できます。",
+      "text": "非エンジニアが自然言語の指示で独自の業務ツールやアプリを内製できます。",
       "sources": [
-        "https://www.youtube.com/watch?v=KJ_7KPKlO_Q"
+        "cultfit-codex-internal-apps",
+        "openai-codex-astra-merge-ceo-interview"
       ]
     },
     {
-      "text": "閲覧者自身のコネクタ情報を使い、個人向けに表示を最適化できます。",
+      "text": "過去のデータやルールと契約書案を照合し、変更履歴付きの修正案を作成できます。",
       "sources": [
-        "https://www.youtube.com/watch?v=KJ_7KPKlO_Q"
+        "sullivan-cromwell-openai-codex-legal-tool"
+      ]
+    },
+    {
+      "text": "システム障害のログや差分を分析し、修正パッチやロールバックを数分で実行できます。",
+      "sources": [
+        "openai-codex-production-monitoring-demo"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "12月からは、Plus、Pro、Businessプランで利用枠が共通化されます。",
+      "text": "Plus、Pro、Businessなどの有料プランに含まれており、12月からはChatGPTと利用枠が共通化されます。",
       "sources": [
         "chatgpt-codex-shared-usage-limits"
+      ]
+    },
+    {
+      "text": "API経由で利用する場合は、モデルごとのトークン従量課金制となります。",
+      "sources": [
+        "cultfit-codex-internal-apps",
+        "sullivan-cromwell-openai-codex-legal-tool"
       ]
     }
   ],
   "japan": [
     {
-      "text": "日本からも問題なく利用可能です。",
+      "text": "OpenAIのAPIやChatGPTを通じて日本からも利用できます。",
       "sources": [
+        "cultfit-codex-internal-apps",
         "openai-codex-astra-merge-ceo-interview"
       ]
     }
   ],
   "howto": [
     {
-      "text": "公式サイトでアカウントを作成し、有料プランやAPIを準備します。",
+      "text": "OpenAIの公式サイトでアカウントを作成し、ログインします。",
       "sources": [
         "openai-codex-astra-merge-ceo-interview"
       ]
     },
     {
-      "text": "自動化やプログラミングの指示を入力し、結果を確認します。",
+      "text": "ChatGPTの有料プランに加入するか、API利用の手続きを行います。",
       "sources": [
         "openai-codex-astra-merge-ceo-interview"
       ]
@@ -90,46 +114,46 @@
   ],
   "differences": [
     {
-      "text": "細かい指示がなくても、AIが常識で足りない部分を補完します。",
+      "text": "12月からはChatGPTとCodexの利用量が別々ではなく、1つの枠を分け合う形に変更されます。",
       "sources": [
-        "openai-codex-astra-merge-ceo-interview"
+        "chatgpt-codex-shared-usage-limits"
       ]
     },
     {
-      "text": "12月からはChatGPTと利用量が1つの枠にまとめられます。",
+      "text": "従来のツールとは異なり、人間が細かい仕様を指定しなくてもAIが常識で不足部分を自動補完します。",
       "sources": [
-        "chatgpt-codex-shared-usage-limits"
+        "openai-codex-astra-merge-ceo-interview"
       ]
     }
   ],
   "faq": [
     {
-      "q": "誰に向いている？",
-      "a": "開発者だけでなく、非エンジニアのビジネス職や実務担当者に向いています。",
+      "q": "無料プランでも使えますか？",
+      "a": "Codex自体は無料版を含むChatGPTの各プランに含まれますが、無料版には使用量の上限があります。",
+      "sources": [
+        "jiostar-openai-ai-discovery-eval"
+      ]
+    },
+    {
+      "q": "利用枠の上限に達した場合はどうなりますか？",
+      "a": "枠が回復するのを待つか、上位プランへの変更、またはクレジットの購入で対応できます。",
+      "sources": [
+        "chatgpt-codex-shared-usage-limits"
+      ]
+    },
+    {
+      "q": "プログラミングの知識がなくても使えますか？",
+      "a": "非エンジニアの社員が自ら業務ツールやアプリを開発した事例が多数あります。",
       "sources": [
         "cultfit-codex-internal-apps",
         "openai-codex-astra-merge-ceo-interview"
       ]
     },
     {
-      "q": "安全に使える？",
-      "a": "不正なリクエストを検知してブロックするパッチの自動生成機能があります。",
+      "q": "どのようなセキュリティ機能がありますか？",
+      "a": "リソース制限のない不正リクエストを検知してブロックするパッチを自動生成する機能があります。",
       "sources": [
         "openai-codex-production-monitoring-demo"
-      ]
-    },
-    {
-      "q": "利用枠はどう変わる？",
-      "a": "12月からPlusやProなどのプランで、ChatGPTと利用枠が共通化されます。",
-      "sources": [
-        "chatgpt-codex-shared-usage-limits"
-      ]
-    },
-    {
-      "q": "自動更新ができる？",
-      "a": "Sites内でスケジュールタスクを直接設定し、データを自動更新できます。",
-      "sources": [
-        "https://www.youtube.com/watch?v=KJ_7KPKlO_Q"
       ]
     }
   ],
@@ -137,49 +161,48 @@
     {
       "date": "2026-07-24",
       "slug": "gamma-ceo-openai-innovation-velocity",
-      "event": "Gammaが開発にCodexを導入"
+      "event": "Gammaが開発にCodexを活用"
+    },
+    {
+      "date": "2026-10-08",
+      "slug": "stack-overflow-devday-2026-codex",
+      "event": "Stack OverflowがCodex活用製品を発表"
     },
     {
       "date": "2026-10-09",
       "slug": "openai-codex-production-monitoring-demo",
-      "event": "障害自動復旧デモを公開"
-    },
-    {
-      "date": "2026-10-16",
-      "slug": "",
-      "event": "Sitesに定時自動更新などを追加",
-      "url": "https://www.youtube.com/watch?v=KJ_7KPKlO_Q"
+      "event": "障害自動復旧のデモを公開"
     },
     {
       "date": "2026-10-24",
       "slug": "openai-codex-benefit-street-partners-financial-tool",
-      "event": "金融分析ツールを1日で開発"
+      "event": "金融分析ツールの開発事例を公開"
     },
     {
       "date": "2026-10-27",
       "slug": "sullivan-cromwell-openai-codex-legal-tool",
-      "event": "契約書分析ツールの活用事例を公開"
+      "event": "米法律事務所の契約書分析ツールに採用"
     },
     {
       "date": "2026-10-28",
       "slug": "openai-codex-astra-merge-ceo-interview",
-      "event": "MergeのCEOが活用法を語る"
+      "event": "Merge社CEOが活用法を語る"
     },
     {
       "date": "2026-11-02",
       "slug": "chatgpt-codex-shared-usage-limits",
-      "event": "利用枠をCodexと共通化へ"
+      "event": "12月からChatGPTと利用枠共通化"
     },
     {
       "date": "2026-11-06",
       "slug": "cultfit-codex-internal-apps",
-      "event": "cult.fitが開発をCodexに統一"
+      "event": "cult.fitが社内開発をCodexに統一"
     }
   ],
   "related": [
     "chatgpt",
-    "chatgpt-work",
     "gpt-6-astra",
+    "chatgpt-work",
     "gpt-6"
   ],
   "articles": [
@@ -223,17 +246,9 @@
     "stack-overflow-devday-2026-codex",
     "gamma-ceo-openai-innovation-velocity"
   ],
-  "signature": "6ba4d38661d0e2d3",
-  "primarySignature": "7533efc2cbaebc3e",
+  "signature": "043dae9ef94ce582",
+  "primarySignature": "e7e19af5d9dc4bb3",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:42:14+00:00",
-  "updatedAt": "2026-11-09T01:35:03+00:00",
-  "officialSources": {
-    "https://www.youtube.com/watch?v=KJ_7KPKlO_Q": {
-      "title": "Build more personal sites with Codex",
-      "publisher": "OpenAI の YouTube 公式チャンネル",
-      "kind": "video",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T10:43:10+00:00"
 }
