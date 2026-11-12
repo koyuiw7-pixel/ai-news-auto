@@ -6,10 +6,10 @@
   "companyName": "Figma",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Figmaは、デザインやプロダクト開発の試作を行えるツールです。共同創業者でCEOのディラン・フィールド氏らが提供しています。",
+    "text": "Figmaは、デザインの作成や試作を行えるツールです。共同創業者でCEOのディラン・フィールド氏らが提供しています。",
     "sources": [
       "figma-code-layers-open-beta-design",
-      "openai-gpt6-astra-figma-integration"
+      "figma-config-india-insights-ai"
     ]
   },
   "facts": [
@@ -23,27 +23,27 @@
   ],
   "capabilities": [
     {
-      "text": "キャンバス上でコードに基づく試作を作れるコードレイヤー機能がある。",
+      "text": "デザイン画面の中で、コードに基づく試作を作るコードレイヤーを利用できます。",
       "sources": [
         "figma-code-layers-open-beta-design"
       ]
     },
     {
-      "text": "Figma Weaveで画像や動画の制作手順を再利用できる。",
+      "text": "Figma Weaveで画像や動画のAI制作基盤を使い、手順を再利用できます。",
       "sources": [
         "figma-weave-creative-workflow"
       ]
     },
     {
-      "text": "Figma MCP Serverを介してデザインシステムと直接連携できる。",
+      "text": "インドのConfig Indiaで、アイコン制作の半ピクセル単位の調整などが語られました。",
       "sources": [
-        "openai-gpt6-astra-figma-integration"
+        "figma-config-india-insights-ai"
       ]
     },
     {
-      "text": "ベクターアニメーションの自動生成と構造の可視化ができる。",
+      "text": "Figma MCP Serverを介してAIと直接連携し、プロトタイプを構築できます。",
       "sources": [
-        "https://www.youtube.com/watch?v=n-dqdVMwoas"
+        "openai-gpt6-astra-figma-integration"
       ]
     }
   ],
@@ -53,38 +53,44 @@
   "differences": [],
   "faq": [
     {
-      "q": "コードレイヤーを使うとどうなる？",
-      "a": "デザイン画面の中でコードに基づく試作を作ることができます。",
+      "q": "コードレイヤーの利用状況は？",
+      "a": "公開ベータに移り、デザイン画面の中でコードに基づく試作を作れるようになりました。",
       "sources": [
         "figma-code-layers-open-beta-design"
       ]
     },
     {
-      "q": "Figma Weaveとは？",
-      "a": "画像や動画を作る作業を部品でつなぎ、チームで繰り返し使えるようにするサービスです。",
+      "q": "Figma Weaveの使い方は？",
+      "a": "ノードと呼ぶ部品をキャンバス上でつなぎ、成果物がどう作られたかを見ながら編集できます。",
       "sources": [
         "figma-weave-creative-workflow"
       ]
     },
     {
-      "q": "コードレイヤーの料金は？",
-      "a": "発表では示されていません。",
+      "q": "Config Indiaでは何が話題になりましたか？",
+      "a": "アイコン制作での半ピクセル単位の調整や、AIを使った試作づくりについて語られました。",
       "sources": [
-        "figma-code-layers-open-beta-design"
+        "figma-config-india-insights-ai"
+      ]
+    },
+    {
+      "q": "AIとの連携デモでは何が行われましたか？",
+      "a": "Figma MCP Serverを介してデザインシステムと直接連携し、プロトタイプを自動構築しました。",
+      "sources": [
+        "openai-gpt6-astra-figma-integration"
       ]
     }
   ],
   "timeline": [
     {
-      "date": "2026-09-10",
-      "slug": "",
-      "event": "OpenAIがGPT-6 Astraの企業導入事例を公開",
-      "url": "https://www.youtube.com/watch?v=n-dqdVMwoas"
-    },
-    {
       "date": "2026-09-22",
       "slug": "openai-gpt6-astra-figma-integration",
       "event": "GPT-6 AstraとFigmaの連携デモを公開"
+    },
+    {
+      "date": "2026-10-30",
+      "slug": "figma-config-india-insights-ai",
+      "event": "インド初のConfig Indiaを開催"
     },
     {
       "date": "2026-10-31",
@@ -116,17 +122,9 @@
     "figma-weave-creative-workflow",
     "figma-config-india-insights-ai"
   ],
-  "signature": "4e4bfdcddc657aca",
-  "primarySignature": "5d4a64d52452a787",
+  "signature": "57340f8ed24f29c3",
+  "primarySignature": "5de7a02ab2e59363",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-04T03:15:23+00:00",
-  "updatedAt": "2026-11-07T10:53:38+00:00",
-  "officialSources": {
-    "https://www.youtube.com/watch?v=n-dqdVMwoas": {
-      "title": "GPT-6 Astra First Impressions From Businesses",
-      "publisher": "OpenAI の YouTube 公式チャンネル",
-      "kind": "video",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T11:15:26+00:00"
 }

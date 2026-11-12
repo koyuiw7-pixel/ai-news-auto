@@ -6,57 +6,68 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "GPT-5.6は、OpenAIが発表した最新のAIモデルファミリーです。Sol、Terra、Lunaの3つのモデルで構成されています。",
+    "text": "GPT-5.6は、OpenAIが提供するAIモデルです。2026年7月に発表され、高度な推論や業務自動化、研究支援などに活用されています。",
     "sources": [
-      "https://www.youtube.com/watch?v=jyuyY86GJnA"
+      "openai-chatgpt-voice-gpt56-integration-matome",
+      "openai-chatgpt-for-academic-researchers-gpt5-6"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年7月以降順次",
+      "value": "2026年7月",
       "sources": [
-        "https://www.youtube.com/watch?v=jyuyY86GJnA"
+        "openai-chatgpt-voice-gpt56-integration-matome",
+        "openai-chatgpt-for-academic-researchers-gpt5-6"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "日本からも申請可能",
+      "sources": [
+        "openai-chatgpt-for-academic-researchers-gpt5-6"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者、研究者、法人",
+      "value": "研究者や政府の防御担当",
       "sources": [
+        "gpt-56-cyber-aws-govcloud",
         "openai-chatgpt-for-academic-researchers-gpt5-6"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "Solでは複雑なプロフェッショナル業務や難度の高いコーディングタスクに対応できます。",
+      "text": "複雑なソフトウェアの弱点調査や修正案の検討を支援します。",
       "sources": [
-        "https://www.youtube.com/watch?v=jyuyY86GJnA"
+        "gpt-56-cyber-aws-govcloud"
       ]
     },
     {
-      "text": "V7 GoでGPT-5.6 Solを使うと、ツール呼び出しの失敗率が0.2%に下がります。",
+      "text": "業務自動化ツールでのツール呼び出しの失敗率を0.2%に下げます。",
       "sources": [
         "v7-go-gpt-5-6-integration-context-graph"
       ]
     },
     {
-      "text": "会話のターンをまたいで推論プロセスをキャッシュに保持し、処理効率を向上させます。",
+      "text": "研究データの解析に必要なプログラムコードを迅速に生成します。",
       "sources": [
-        "https://www.youtube.com/watch?v=jyuyY86GJnA"
-      ]
-    },
-    {
-      "text": "長大な会話履歴やツールの実行ログを圧縮して入力トークン数を削減できます。",
-      "sources": [
-        "https://www.youtube.com/watch?v=jyuyY86GJnA"
+        "openai-chatgpt-for-academic-researchers-gpt5-6"
       ]
     }
   ],
-  "pricing": [],
+  "pricing": [
+    {
+      "text": "学術研究者向けプログラムでは完全に無料で提供されます。",
+      "sources": [
+        "openai-chatgpt-for-academic-researchers-gpt5-6"
+      ]
+    }
+  ],
   "japan": [
     {
-      "text": "学術研究者向けの無料プログラムなどは日本からも利用できます。",
+      "text": "日本の大学や公的研究機関に所属する研究者も、プログラムへの申請が可能です。",
       "sources": [
         "openai-chatgpt-for-academic-researchers-gpt5-6"
       ]
@@ -64,15 +75,21 @@
   ],
   "howto": [
     {
-      "text": "開発者向けプラットフォームのAPIや、学術研究者向けの支援プログラムなどを通じて利用できます。",
+      "text": "研究者向けプログラムは、公式ウェブサイトの専用申請ページから申請できます。",
       "sources": [
         "openai-chatgpt-for-academic-researchers-gpt5-6"
+      ]
+    },
+    {
+      "text": "AWS環境では、Daybreak Redの承認とAWSでの提供設定が必要です。",
+      "sources": [
+        "gpt-56-cyber-aws-govcloud"
       ]
     }
   ],
   "differences": [
     {
-      "text": "旧世代のモデルと比べて細部の深さと正確さが向上しています。",
+      "text": "旧世代のモデルと比べ、ツール呼び出しの失敗率が下がっています。",
       "sources": [
         "v7-go-gpt-5-6-integration-context-graph"
       ]
@@ -80,29 +97,30 @@
   ],
   "faq": [
     {
-      "q": "どのようなモデルがありますか？",
-      "a": "複雑なタスク向けのSol、バランス型のTerra、速さと安さを重視するLunaの3つのモデルが用意されています。",
-      "sources": [
-        "https://www.youtube.com/watch?v=jyuyY86GJnA"
-      ]
-    },
-    {
-      "q": "無料で使えますか？",
-      "a": "世界10万人の学術研究者を対象とした無料提供プログラムが用意されています。",
+      "q": "無料で使える？",
+      "a": "学術研究者向けのプログラムでは完全に無料で提供されます。",
       "sources": [
         "openai-chatgpt-for-academic-researchers-gpt5-6"
       ]
     },
     {
-      "q": "開発向けの機能は何がありますか？",
-      "a": "プログラムによるツール呼び出しや、プロンプトキャッシングによるコスト削減機能などが利用できます。",
+      "q": "誰に向いている？",
+      "a": "学術研究者や政府系のセキュリティチームに向いています。",
       "sources": [
-        "https://www.youtube.com/watch?v=jyuyY86GJnA"
+        "gpt-56-cyber-aws-govcloud",
+        "openai-chatgpt-for-academic-researchers-gpt5-6"
       ]
     },
     {
-      "q": "いつから使えますか？",
-      "a": "2026年7月以降、開発者向けプラットフォームや研究者向けプログラムで順次提供されています。",
+      "q": "申請には何が必要？",
+      "a": "所属する大学や研究機関の公式メールアドレスや、研究内容の提示が必要です。",
+      "sources": [
+        "openai-chatgpt-for-academic-researchers-gpt5-6"
+      ]
+    },
+    {
+      "q": "いつから使える？",
+      "a": "2026年7月29日より研究者向けプログラムの申請受付が開始されています。",
       "sources": [
         "openai-chatgpt-for-academic-researchers-gpt5-6"
       ]
@@ -110,25 +128,14 @@
   ],
   "timeline": [
     {
-      "date": "2026-07-25",
-      "slug": "",
-      "event": "GPT-5.6ファミリーと活用手法を発表",
-      "url": "https://www.youtube.com/watch?v=jyuyY86GJnA"
-    },
-    {
       "date": "2026-07-30",
       "slug": "openai-chatgpt-for-academic-researchers-gpt5-6",
-      "event": "研究者向けにGPT-5.6の無償提供プログラムを開始"
-    },
-    {
-      "date": "2026-10-22",
-      "slug": "v7-go-gpt-5-6-integration-context-graph",
-      "event": "V7 GoにGPT-5.6を統合"
+      "event": "学術研究者向けにGPT-5.6を無償提供するプログラムを発表"
     },
     {
       "date": "2026-11-04",
       "slug": "gpt-56-cyber-aws-govcloud",
-      "event": "GPT-5.6 Cyberを発表"
+      "event": "AWS GovCloudでGPT-5.6 Cyberを提供開始"
     }
   ],
   "related": [
@@ -148,17 +155,9 @@
     "v7-go-gpt-5-6-integration-context-graph",
     "openai-chatgpt-for-academic-researchers-gpt5-6"
   ],
-  "signature": "8e60086135de0ca0",
-  "primarySignature": "7f17ea0b7a086087",
+  "signature": "52b8a7f0bd871e87",
+  "primarySignature": "52b8a7f0bd871e87",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:45:03+00:00",
-  "updatedAt": "2026-11-04T15:52:20+00:00",
-  "officialSources": {
-    "https://www.youtube.com/watch?v=jyuyY86GJnA": {
-      "title": "Build Hour: Valuemaxxing with GPT-5.6",
-      "publisher": "OpenAI の YouTube 公式チャンネル",
-      "kind": "video",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T11:16:12+00:00"
 }

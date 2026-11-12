@@ -6,7 +6,7 @@
   "companyName": "NVIDIA",
   "category": "ガジェット",
   "overview": {
-    "text": "RTX Sparkは、NVIDIAがMicrosoftやMediaTekと共同開発したパーソナルAI端末向けプラットフォームです。最大128GBの統合メモリと1ペタフロップスのAI演算能力を備え、2026年10月に発表されました。",
+    "text": "RTX Sparkは、NVIDIAがMicrosoftと共同で4年かけて開発した個人向けの小型AI端末です。最大128GBの統合メモリなどを備え、2026年10月に発表されました。",
     "sources": [
       "nvidia-gtc-berlin-2026-keynote-highlights",
       "nvidia-rtx-spark-announcement"
@@ -14,42 +14,36 @@
   },
   "facts": [
     {
-      "label": "提供開始",
-      "value": "提供はこれから",
-      "sources": [
-        "nvidia-rtx-spark-announcement"
-      ]
-    },
-    {
       "label": "向いている人",
-      "value": "開発者・クリエイター",
+      "value": "開発者や映像制作者、PCゲーマー",
       "sources": [
-        "nvidia-rtx-spark-announcement",
+        "geforce-8800-gtx-20-years-steam-demo",
+        "nvidia-gtc-berlin-2026-keynote-highlights",
         "adobe-premiere-nvidia-rtx-spark"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "128GBのユニファイドメモリにより、クラウドを使わずに手元で大規模なAIモデルを実行できます。",
-      "sources": [
-        "intelligent-terminal-local-120b-llm"
-      ]
-    },
-    {
-      "text": "FP4精度において1ペタフロップスのAI演算性能を発揮し、AIの学習や推論を加速します。",
+      "text": "FP4精度における1 petaFLOPのAI処理性能を備えています。",
       "sources": [
         "nvidia-rtx-spark-announcement"
       ]
     },
     {
-      "text": "Premiere Proでのシーン編集検出やオブジェクトマスクなどのAI処理を高速化します。",
+      "text": "128GBのLPDDR5Xユニファイドメモリを搭載しています。",
+      "sources": [
+        "nvidia-rtx-spark-announcement"
+      ]
+    },
+    {
+      "text": "4K 10-bit 4:2:2 60fpsのマルチカム映像をプロキシなしで再生できます。",
       "sources": [
         "adobe-premiere-nvidia-rtx-spark"
       ]
     },
     {
-      "text": "3DレンダリングとAI推論、100fpsを超えるゲームプレイを同時に並行処理できます。",
+      "text": "3D描画やAI推論と100fps超のゲーム動作を同時にこなせます。",
       "sources": [
         "nvidia-rtx-spark-announcement"
       ]
@@ -57,40 +51,49 @@
   ],
   "pricing": [],
   "japan": [],
-  "howto": [],
+  "howto": [
+    {
+      "text": "GeForce RTXかRTX Sparkを搭載したパソコンで利用できます。",
+      "sources": [
+        "geforce-8800-gtx-20-years-steam-demo",
+        "nvidia-game-ready-driver-621-14-wow-forever"
+      ]
+    },
+    {
+      "text": "必要なドライバーは、NVIDIAアプリか公式サイトからダウンロードできます。",
+      "sources": [
+        "geforce-8800-gtx-20-years-steam-demo",
+        "nvidia-game-ready-driver-621-14-wow-forever"
+      ]
+    }
+  ],
   "differences": [],
   "faq": [
     {
-      "q": "いつ発表されましたか？",
-      "a": "2026年10月のGTC Berlinなどで発表されました。",
+      "q": "誰に向いている？",
+      "a": "AIアプリの開発者や映像制作者、PCゲーマーに向いています。",
       "sources": [
+        "geforce-8800-gtx-20-years-steam-demo",
         "nvidia-gtc-berlin-2026-keynote-highlights",
+        "adobe-premiere-nvidia-rtx-spark"
+      ]
+    },
+    {
+      "q": "どのような仕組みで動く？",
+      "a": "MediaTekと共同開発したGrace CPUとBlackwell GPUを統合しています。",
+      "sources": [
         "nvidia-rtx-spark-announcement"
       ]
     },
     {
-      "q": "誰に向いていますか？",
-      "a": "開発者や映像制作者などのプロフェッショナルに向いています。",
+      "q": "どのメーカーから展開される？",
+      "a": "Gigabyte、HP、Lenovo、MSIなどの主要OEMパートナーから展開される予定です。",
       "sources": [
-        "adobe-premiere-nvidia-rtx-spark",
-        "nvidia-rtx-spark-announcement"
-      ]
-    },
-    {
-      "q": "どんなチップが搭載されていますか？",
-      "a": "MediaTekと共同開発した20コアのGrace CPUとBlackwell GPUを統合しています。",
-      "sources": [
-        "nvidia-rtx-spark-announcement"
+        "nvidia-gtc-berlin-2026-keynote-highlights"
       ]
     }
   ],
   "timeline": [
-    {
-      "date": "2026-08-06",
-      "slug": "",
-      "event": "モバイル向けRTX Sparkを発表",
-      "url": "https://www.youtube.com/watch?v=eeoIADqwxpY"
-    },
     {
       "date": "2026-10-15",
       "slug": "nvidia-rtx-spark-announcement",
@@ -99,7 +102,7 @@
     {
       "date": "2026-10-26",
       "slug": "nvidia-gtc-berlin-2026-keynote-highlights",
-      "event": "GTC BerlinでRTX Sparkを披露"
+      "event": "GTC Berlin 2026でRTX Sparkを披露"
     }
   ],
   "related": [
@@ -123,17 +126,9 @@
     "nvidia-gtc-berlin-2026-keynote-highlights",
     "adobe-premiere-nvidia-rtx-spark"
   ],
-  "signature": "4e8c25ccb4216349",
-  "primarySignature": "8ecb230e2f734676",
+  "signature": "c50c93d6411e6ab2",
+  "primarySignature": "21614c5aa3d7a06e",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:40+00:00",
-  "updatedAt": "2026-11-06T19:36:26+00:00",
-  "officialSources": {
-    "https://www.youtube.com/watch?v=eeoIADqwxpY": {
-      "title": "What is RTX Spark?",
-      "publisher": "NVIDIA の YouTube 公式チャンネル",
-      "kind": "video",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T11:15:35+00:00"
 }
