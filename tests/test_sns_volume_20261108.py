@@ -127,7 +127,9 @@ class IndexRelaxTest(unittest.TestCase):
         self.assertIsNone(indexnow.noindex_reason(art))
 
     def test_retired_left_are_only_unrelated_or_kept_by_rule(self):
-        keep = {"inaccurate", "press-source", "investment-advice", "duplicate", "creator-video", "creator-roundup"}
+        keep = {"inaccurate", "press-source", "investment-advice", "duplicate", "creator-video", "creator-roundup",
+                # 2026-11-12 オーナー承認（案B）: 検索の表示も読者も0の記事は、暮らしとお金の題名でも取り下げる
+                "zero-search-zero-reader"}
         for slug, rec in json.loads((ROOT / "content" / "retired.json").read_text("utf-8"))["articles"].items():
             if rec.get("reason") in keep or rec.get("reason", "").startswith("notice") or rec.get("redirect") or rec.get("redirectPath") or rec.get("replacedBy"):
                 continue
