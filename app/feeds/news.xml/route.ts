@@ -34,6 +34,7 @@ export async function GET() {
     <lastBuildDate>${latest}</lastBuildDate>
     <ttl>15</ttl>
     <atom:link href="${siteConfig.url}/feeds/news.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub" />
     <image>
       <url>${siteConfig.url}/icon</url>
       <title>${escapeXml(siteConfig.siteName)}</title>

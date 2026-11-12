@@ -72,6 +72,7 @@ ${isNewsOutletChannel(article.channelSlug) ? "" : `      <category>${escapeXml(a
     <language>ja</language>
     <lastBuildDate>${new Date(Math.max(...articleItems.map((i) => i.at).filter(Number.isFinite), 0)).toUTCString()}</lastBuildDate>
     <atom:link href="${siteConfig.url}/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub" />
 ${items}
   </channel>
 </rss>`;

@@ -152,6 +152,12 @@ jobs:
           echo "::warning::IndexNow の記録を push できませんでした（次の回に同じURLを送り直すだけ）"
           exit $code
 
+      # Google に RSS の更新を知らせる（WebSub。サイトマップは1〜2日に1回しか読まれないため。11/12）。
+      # 公開を確かめたあとに送る。失敗してもデプロイは成功のまま
+      - name: Notify WebSub hub
+        continue-on-error: true
+        run: python3 scripts/websub_ping.py
+
       # デプロイ直後の1回目の表示の速さ（台帳 W29。オーナー「デプロイ直後でもすぐ開けること」）。
       # サイトマップから選んだページをエッジのキャッシュに無い URL で開き、アクセスが来てから作ったページ（MISS）・
       # 2秒を超えたページ・開けないページがあれば赤にする（デプロイ自体は終わっている。知らせのため）
