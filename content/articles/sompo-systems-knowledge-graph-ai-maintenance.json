@@ -4,7 +4,7 @@
   "sourceUrl": "https://cloud.google.com/blog/ja/products/ai-machine-learning/sompo-systems-streamlines-maintenance-through-knowledge-graphs-and-ai-development/",
   "sourceName": "Google Cloud 公式ブログ（日本）",
   "title": "基幹システムの影響調査、約1週間から1日以内へ　SOMPOシステムズがAIとグラフで検証",
-  "seoTitle": "SOMPOシステムズ：ナレッジグラフで保守を効率化",
+  "seoTitle": "SOMPOシステムズ、AIで影響調査を1日以内へ",
   "threadsPost": "基幹システムの保守に関わる開発者の人に、押さえておきたい話です。\n\nSOMPOシステムズが、Java化した基幹システムのコードをグラフにしました。\n影響調査は約1週間から1日以内に縮む見通しです。\n\n開発や保守で、AIに任せる範囲はどこまでなら許せますか？",
   "threadsHook": "callout",
   "threadsQuestions": [
@@ -23,8 +23,8 @@
   ],
   "threadsStyle": 3,
   "writingVoice": "explainer",
-  "lede": "SOMPOシステムズが、基幹システムの影響調査を約1週間（40時間）から1日以内（4〜8時間）に縮められる見通しを得ました。コードをSpanner Graphでグラフにし、AIエージェントがたどる方法で、Google Cloudとの検証プログラムで確かめた結果です。AI開発環境は2026年10月から全社への展開が始まり、グラフの本番運用はこれから整える段階です。",
-  "description": "SOMPOシステムズは、損保ジャパンの基幹システムSOMPO-MIRAIのコードをSpanner Graphでグラフ化し、AIエージェントによる影響調査を約1週間から1日以内に縮められる見通しを得ました。",
+  "lede": "SOMPOシステムズは、アプリ担当外の基盤エンジニアによる基幹システムの影響調査を、約1週間（40時間）から1日以内（4〜8時間）に縮められる見通しを得ました。Google Cloudとの検証で、コードの依存関係をグラフ化し、AIエージェントがたどる方法を試しました。AI開発環境は2026年10月から全社への展開が始まっています。",
+  "description": "SOMPOシステムズは、損保ジャパンの基幹システムで、AIを使った影響調査を検証。アプリ担当外の基盤エンジニアの調査時間を約1週間から1日以内に縮められる見通しを得ました。",
   "keywords": [
     "SOMPOシステムズ",
     "ナレッジグラフ",
@@ -191,5 +191,25 @@
     ],
     "ar": 2.0305,
     "src": "https://ai-tech-express.jp/img/sompo-systems-knowledge-graph-ai-maintenance-ccedd688.jpg"
+  },
+  "gptReview": {
+    "reviewedBy": "gpt-6.1-terra",
+    "reviewedAt": "2026-11-12T04:30:19+00:00",
+    "changed": [
+      "description",
+      "lede",
+      "seoTitle"
+    ],
+    "before": {
+      "lede": "SOMPOシステムズが、基幹システムの影響調査を約1週間（40時間）から1日以内（4〜8時間）に縮められる見通しを得ました。コードをSpanner Graphでグラフにし、AIエージェントがたどる方法で、Google Cloudとの検証プログラムで確かめた結果です。AI開発環境は2026年10月から全社への展開が始まり、グラフの本番運用はこれから整える段階です。"
+    },
+    "fixes": [
+      {
+        "before": "基幹システムの影響調査を約1週間（40時間）から1日以内（4〜8時間）に縮められる見通し",
+        "after": "アプリ担当外の基盤エンジニアによる基幹システムの影響調査を、約1週間（40時間）から1日以内（4〜8時間）に縮められる見通し",
+        "evidence": "「アプリ担当外の基盤エンジニアの場合」「約1週間（40時間）」「1日以内（4〜8時間）に縮められる見通し」"
+      }
+    ],
+    "notes": "調査時間の見通しが誰を対象としたものかをリードと要約で明確にしました。SEO題名には検索されやすい社名と調査時間を入れました。"
   }
 }
