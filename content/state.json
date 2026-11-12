@@ -37,6 +37,7 @@
     "Oi9DHk57KeQ": 2,
     "UGLV3ufFZEw": 1,
     "UU_9ymJKm1w": 1,
+    "VZPAjGP3EH0": 1,
     "VyowNv9wodk": 1,
     "X-uQwleiUwA": 1,
     "Xc6ERvZM1NY": 1,
@@ -174,6 +175,7 @@
     "b6fc33c3201bba86": "2026-11-10T18:21:06.372918+00:00",
     "b7c50d46a5e9f41d": "2026-11-09T07:10:55.440298+00:00",
     "b91f0bbd1ae74653": "2026-11-11T01:46:50.194316+00:00",
+    "bc874e3622317cf2": "2026-11-12T00:05:06.129488+00:00",
     "bda4433a4e4cd6e4": "2026-11-09T19:01:05.896647+00:00",
     "bf1c6f819b5a4c90": "2026-11-10T18:21:06.372918+00:00",
     "c3b9ae34f152218c": "2026-11-11T07:16:52.117730+00:00",
@@ -5204,12 +5206,6 @@
       "updated": "amazon-bedrock-managed-kb-agentic-retrieval-cdk",
       "url": "https://aws.amazon.com/blogs/machine-learning/prepare-web-content-for-amazon-bedrock-knowledge-bases-with-crawl4ai/"
     },
-    "1984c7e2b8451fba": {
-      "at": "2026-10-29T00:01:30.843705+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（出演）",
-      "skipped": true,
-      "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3227"
-    },
     "19dcbcfa9fdf9708": {
       "at": "2026-11-06T19:18:02.541484+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -5432,6 +5428,17 @@
       "section": "business",
       "slug": "imo-dominguez-reappointment-2026",
       "url": "http://www.mlit.go.jp/report/press/kaiji01_hh_000600.html"
+    },
+    "1ee6bdb6aa86fdcc": {
+      "at": "2026-11-12T00:06:38.230418+00:00",
+      "costUsd": 0.0037,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 80,
+      "section": "business",
+      "slug": "boj-deposits-by-depositor-2026-09",
+      "url": "http://www.boj.or.jp/statistics/outline/notice_2026/not261112a.htm"
     },
     "1f056e11706ca300": {
       "at": "2026-11-09T09:26:00.598430+00:00",
@@ -7092,6 +7099,17 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/press_05808.html"
     },
+    "3ca0a6da40dceb60": {
+      "at": "2026-11-12T00:08:48.289378+00:00",
+      "costUsd": 0.0069,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 85,
+      "section": "ai",
+      "slug": "ihi-aws-ai-ready-data-svd-architecture",
+      "url": "https://aws.amazon.com/jp/blogs/news/%E6%A5%AD%E5%8B%99%E9%83%A8%E9%96%80%E3%81%8C%E8%87%AA%E5%88%86%E3%81%A7%E6%94%B9%E5%96%84%E3%81%A7%E3%81%8D%E3%82%8B-ai-ready-data-%E3%82%92%E4%BD%9C%E3%82%8B-%E2%80%95-ai-%E3%81%8C%E3%81%A9%E3%82%8C/"
+    },
     "3cb550be35eb2430": {
       "at": "2026-10-30T05:22:04.333351+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7202,6 +7220,12 @@
       "section": "business",
       "slug": "rakuten-ast-satellite-direct-communication",
       "url": "https://corp.rakuten.co.jp/news/press/2026/1109_01.html"
+    },
+    "3ed853d3cd9c37c0": {
+      "at": "2026-11-12T00:06:01.234460+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf"
     },
     "3ee8131c874184a3": {
       "at": "2026-11-05T13:19:39.668195+00:00",
@@ -8552,13 +8576,6 @@
       "section": "business",
       "slug": "ntt-share-buyback-october-2026",
       "url": "https://group.ntt/jp/newsrelease/2026/11/02/261102b.html"
-    },
-    "54b214d174b0abcd": {
-      "at": "2026-10-29T00:01:45.038131+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1790字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（384字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.jst.go.jp/pr/info/info1882/index.html"
     },
     "54c4ca6643eafba1": {
       "at": "2026-11-04T02:03:01.710111+00:00",
@@ -11882,13 +11899,6 @@
       "slug": "aeon-topvalu-greentea-price-cut",
       "url": "https://www.aeon.info/news/release_115592/"
     },
-    "878fb1b560808c41": {
-      "at": "2026-10-29T00:01:59.299870+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が短い（371字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102817"
-    },
     "87b56eda9f146c86": {
       "at": "2026-11-09T16:40:03.798662+00:00",
       "costUsd": 0.0101,
@@ -14819,14 +14829,6 @@
       "skipped": true,
       "url": "https://www.softbank.jp/sbnews/entry/20261109_01"
     },
-    "b5f9ab760f168a02": {
-      "at": "2026-10-29T00:02:16.684845+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "soumu-kkj-2025-3rd-result",
-      "url": "https://www.stat.go.jp/data/kkj/kekka/index.html"
-    },
     "b5fe858949813206": {
       "at": "2026-11-11T02:10:17.761787+00:00",
       "costUsd": 0.0143,
@@ -15287,7 +15289,7 @@
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110507"
     },
     "bc874e3622317cf2": {
-      "at": "2026-11-11T23:35:44.624042+00:00",
+      "at": "2026-11-12T00:06:38.241483+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/discourse/20261112message.html"
@@ -17505,6 +17507,17 @@
       "slug": "pension-support-benefit-family-share",
       "url": "https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/rourei.html",
       "writer": "deep_dive"
+    },
+    "defa2bf0a3f60010": {
+      "at": "2026-11-12T00:07:56.854923+00:00",
+      "costUsd": 0.0123,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "ai",
+      "slug": "aws-reinvent-2026-digital-sovereignty-sessions",
+      "url": "https://aws.amazon.com/jp/blogs/news/digital-sovereignty-at-reinvent-2026-sessions-you-wont-want-to-miss/"
     },
     "df141a94aef9dbc1": {
       "at": "2026-11-07T20:28:56.520499+00:00",
@@ -20234,149 +20247,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:45:14.584201+00:00",
-      "attempt": 0,
-      "id": "f1bb2329c184d55c",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 78.1,
-        "avg_sentence": 43.0,
-        "long_share": 0.1,
-        "max_paragraph": 125,
-        "paragraphs": 11,
-        "sentences": 20
-      },
-      "score": 80,
-      "source": "nli-research",
-      "title": "内閣府調査「13分野すべて上昇」をどう読むか～過去8年間と生活満足度の変化と分析から考える政策課題",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（WLB）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:45:42.091164+00:00",
-      "attempt": 1,
-      "id": "4b75190b988bcfa6",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 102.6,
-        "avg_sentence": 39.5,
-        "long_share": 0.154,
-        "max_paragraph": 174,
-        "paragraphs": 5,
-        "sentences": 13
-      },
-      "score": 92,
-      "source": "nli-research",
-      "title": "中国の貿易統計（26年10月）～輸出は小幅減速、輸入は加速、半導体関連は高い伸びを維持",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ASEAN）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T07:46:00.883749+00:00",
-      "attempt": 1,
-      "id": "1f6e3eab7d4c3041",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "リード「同シリーズの固形物入り商品としては過去最多」→元記事は「当社がこれまでに発売した固形物入りのRTD商品の中で最多」で、範囲が「同シリーズ」ではなく会社全体。範囲を取り違えている",
-        "要点「同シリーズの固形物入り商品で最多」→同じく元記事の範囲（当社のRTD全体）と異なる",
-        "かんたん版「これまでの「贅沢搾り」シリーズの果肉入り商品の中で、最も多くの果肉を使っています」→範囲の取り違えが繰り返されている",
-        "リード「全国の酒類取扱店で順次販売される予定」→元記事に「順次」や販売店の範囲の記述はなく、創作",
-        "本文「全国のスーパーやコンビニエンスストアなどの酒類取扱店で購入できます」→元記事に販売店の種類（スーパー・コンビニ）の記載はなく、創作"
-      ],
-      "readability": {
-        "avg_paragraph": 79.2,
-        "avg_sentence": 39.6,
-        "long_share": 0.2,
-        "max_paragraph": 161,
-        "paragraphs": 5,
-        "sentences": 10
-      },
-      "score": 76,
-      "source": "asahi",
-      "title": "商品 『アサヒ贅沢搾りデラックス数量限定りんご＆黄桃果肉入り』12月15日全国発売 1缶あたり15gの本物の果肉が入った桃フレーバーの“贅沢フルーツサワー”"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:46:16.513007+00:00",
-      "attempt": 1,
-      "id": "1f6e3eab7d4c3041",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 72.4,
-        "avg_sentence": 40.2,
-        "long_share": 0.222,
-        "max_paragraph": 161,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 88,
-      "source": "asahi",
-      "title": "商品 『アサヒ贅沢搾りデラックス数量限定りんご＆黄桃果肉入り』12月15日全国発売 1缶あたり15gの本物の果肉が入った桃フレーバーの“贅沢フルーツサワー”",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 40.2字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:46:30.837564+00:00",
-      "attempt": 0,
-      "id": "1f6e3eab7d4c3041",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「（アサヒビール公式ニュースリリース、11/6確認）」→ 元記事に確認日の記載はなく、「11/6確認」は根拠のない確認日の付記である; 判定欄「12月15日から全国の酒類取扱店で順次販売されます」→ 元記事に「順次」や「酒類取扱店」の記載はなく、販売の時期・方法"
-      ],
-      "readability": {
-        "avg_paragraph": 72.4,
-        "avg_sentence": 40.2,
-        "long_share": 0.222,
-        "max_paragraph": 161,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 88,
-      "source": "asahi",
-      "title": "商品 『アサヒ贅沢搾りデラックス数量限定りんご＆黄桃果肉入り』12月15日全国発売 1缶あたり15gの本物の果肉が入った桃フレーバーの“贅沢フルーツサワー”",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 40.2字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:46:56.790179+00:00",
-      "attempt": 1,
-      "id": "a9a8b5c6220955a6",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 109.2,
-        "avg_sentence": 68.2,
-        "long_share": 0.375,
-        "max_paragraph": 167,
-        "paragraphs": 5,
-        "sentences": 8
-      },
-      "score": 85,
-      "source": "bleague",
-      "title": "2026-27シーズンのサラリーキャップ進捗および各選手の契約期間等の公開 RELEASE",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 68.2字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T07:47:14.955604+00:00",
@@ -27593,6 +27463,165 @@
       "score": 92,
       "source": "fast",
       "title": "企業物価指数 2026年10月速報（国内企業物価の前年比）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T00:06:31.215419+00:00",
+      "attempt": 1,
+      "id": "1ee6bdb6aa86fdcc",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 59.8,
+        "avg_sentence": 42.7,
+        "long_share": 0.0,
+        "max_paragraph": 93,
+        "paragraphs": 5,
+        "sentences": 7
+      },
+      "score": 80,
+      "source": "boj",
+      "title": "「預金者別預金」（2026年9月）等の公表について",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T00:07:03.922466+00:00",
+      "attempt": 1,
+      "id": "defa2bf0a3f60010",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "タイトル「AWS、re:Invent 2026のデジタル主権セッションを発表」→ 元記事は公式ブログの「見逃せないセッション」ガイドで、AWSが『発表』したという表現は大きく見せすぎ（軽微）",
+        "リード「AWSは11月12日…公開しました」→ 元記事は2026-11-10に英語版公開、日本語版は11-12とあり、11月12日公開は日本時間で妥当（問題なし）",
+        "本文「AWSは…発表しました」「（）」→ 出典の括弧が空欄のまま残っている（記事の体裁の問題）",
+        "「AWSは2026年に『AWS European Sovereign Cloud』の提供を開始しました」→ 元記事に2026年に提供開始とあり一致するが、『EU域外のインフラに依存せず…欧州在住のスタッフのみが運用』は元記事の説明と一致（問題なし）",
+        "「AnthropicのメンバーやAWSのエキスパートが登壇し」→ AI Factoriesセッションにはthe Anthropic Member of Technical Staffが登壇と元記事にあり一致（問題なし）",
+        "「Amazon Bedrock AgentCoreを活用したエージェンティックAI」→ 元記事HMC402/HMC403の説明と一致（問題なし）"
+      ],
+      "readability": {
+        "avg_paragraph": 115.3,
+        "avg_sentence": 76.9,
+        "long_share": 0.556,
+        "max_paragraph": 225,
+        "paragraphs": 12,
+        "sentences": 18
+      },
+      "score": 45,
+      "source": "aws-japan-blog",
+      "title": "AWS re:Invent 2026 で見逃せないデジタル主権関連セッション",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
+        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T00:07:27.908394+00:00",
+      "attempt": 1,
+      "id": "defa2bf0a3f60010",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 115.6,
+        "avg_sentence": 73.0,
+        "long_share": 0.474,
+        "max_paragraph": 225,
+        "paragraphs": 12,
+        "sentences": 19
+      },
+      "score": 92,
+      "source": "aws-japan-blog",
+      "title": "AWS re:Invent 2026 で見逃せないデジタル主権関連セッション",
+      "warnings": [
+        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
+        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（AT・VPN）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T00:07:50.115784+00:00",
+      "attempt": 0,
+      "id": "defa2bf0a3f60010",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 指示文の見出しが本文に混ざった（# 今の原稿の数値）"
+      ],
+      "readability": {
+        "avg_paragraph": 115.6,
+        "avg_sentence": 73.0,
+        "long_share": 0.474,
+        "max_paragraph": 225,
+        "paragraphs": 12,
+        "sentences": 19
+      },
+      "score": 92,
+      "source": "aws-japan-blog",
+      "title": "AWS re:Invent 2026 で見逃せないデジタル主権関連セッション",
+      "warnings": [
+        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
+        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（AT・VPN）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T00:08:15.636939+00:00",
+      "attempt": 1,
+      "id": "3ca0a6da40dceb60",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 116.8,
+        "avg_sentence": 58.4,
+        "long_share": 0.333,
+        "max_paragraph": 189,
+        "paragraphs": 6,
+        "sentences": 12
+      },
+      "score": 85,
+      "source": "aws-japan-blog",
+      "title": "業務部門が自分で改善できる AI Ready Data を作る ― AI がどれだけ賢くなっても解決できないこと",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（HX・SVD・IHI）",
+        "読みやすさ: 文が長い（1文の平均 58.4字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T00:08:41.519954+00:00",
+      "attempt": 0,
+      "id": "3ca0a6da40dceb60",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: リード「今後は部門ごとにプロダクトマネージャーを立て」→ 元記事はIHIの取り組みで業務部門からPMを立てたことを述べるのみで、部門ごとに立てる今後の計画は書かれていない。; 要点・本文「部門ごとにグラフのクラスタを分けています」→ 元記事はSVDでは部門ごとに"
+      ],
+      "readability": {
+        "avg_paragraph": 116.8,
+        "avg_sentence": 58.4,
+        "long_share": 0.333,
+        "max_paragraph": 189,
+        "paragraphs": 6,
+        "sentences": 12
+      },
+      "score": 85,
+      "source": "aws-japan-blog",
+      "title": "業務部門が自分で改善できる AI Ready Data を作る ― AI がどれだけ賢くなっても解決できないこと",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（HX・SVD・IHI）",
+        "読みやすさ: 文が長い（1文の平均 58.4字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
     }
   ],
   "short_text_retry": {},

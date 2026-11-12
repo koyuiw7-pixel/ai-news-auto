@@ -83,9 +83,8 @@
     }
   ],
   "todayActions": [
-    "日銀の公表データ一覧で、2026年9月分と10月分のPDFを見比べる",
-    "自社の仕入れで石油・化学・鉄鋼・電力関連の請求を、前月分と照らして確認する",
-    "次回公表の12月10日（木）を、仕入れ見直しの予定表に入れる"
+    "10月速報のPDFで、仕入れに関係する品目の前年比を確かめる",
+    "前年比の高い石油・化学・鉄鋼・電力の項目が、自社の請求書にあるかを前月分と照らす"
   ],
   "scheduledRelease": {
     "id": "cgpi-2026-10",
@@ -135,5 +134,81 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/cgpi-october-2026-preliminary-figure-81c16af6.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "国内の前年同月比は、石油・石炭製品15.9%、電力・都市ガス・水道15.8%、化学製品15.5%、鉄鋼6.3%。仕入れ項目ごとの上がり方を比べる目安になる。",
+      "source": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf"
+    },
+    {
+      "text": "輸入の「石油・石炭・天然ガス」は、円ベースで前年比46.1%の上昇。契約通貨ベースの前年比より円ベースの上がり方がかなり大きい。",
+      "source": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf"
+    },
+    {
+      "text": "10月速報の前年比7.1%は、9月の訂正値6.8%より高い。表で9月の数字に付く「r」は訂正値の印で、注に説明がある。",
+      "source": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "日本銀行 調査統計局（国内企業物価指数）",
+      "url": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf",
+      "source": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf",
+      "note": "時系列データは「時系列統計データ検索サイト」からダウンロードできます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "10月速報のPDFで、仕入れに関係する品目の前年比を確かめる",
+      "source": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf",
+      "steps": [
+        "2ページ目の国内企業物価指数の表を開く",
+        "石油・石炭製品、電力・都市ガス・水道の前年同月比を見る",
+        "9月の欄に「r」があれば訂正値と書かれている"
+      ],
+      "url": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf"
+    },
+    {
+      "action": "前年比の高い石油・化学・鉄鋼・電力の項目が、自社の請求書にあるかを前月分と照らす",
+      "source": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf",
+      "steps": [
+        "請求書の品目を確認する",
+        "石油・化学・鉄鋼・電力の項目を選ぶ",
+        "前月分と比べて金額の差を記録する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "前月比+0.7%の内訳では、石油・石炭製品（寄与度0.20%）、化学製品（0.15%）、電力・都市ガス・水道（0.15%）の上昇が大きく、農林水産物は-0.28%でした。",
+    "status": "background",
+    "source": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf"
+  },
+  "worries": [
+    {
+      "q": "仕入れ値の上がり方は、どの品目が大きいの？",
+      "a": "10月の前年同月比は、石油・石炭製品15.9%、電力・都市ガス・水道15.8%、化学製品15.5%、鉄鋼6.3%。農林水産物は-25.0%で、下がった品目もあります。",
+      "source": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf",
+      "action": "自社の請求で石油・化学・電力・鉄鋼の項目を、前年同月の金額と比べてみる"
+    },
+    {
+      "q": "今回の数字は、あとで変わることがある？",
+      "a": "今回は10月速報で、前の月の数字には訂正値を示す「r」が付いています。9月の前年同月比は6.8%（r）で、10月の7.1%はそれより高い数字です。",
+      "source": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf",
+      "action": "次の公表で、前月分の数字が書き換わっていないか見る"
+    },
+    {
+      "q": "輸入の値段は、円安で上がっただけ？",
+      "a": "輸入物価は円ベースで前月比3.3%、契約通貨ベースで2.3%。ドル/円の前月比は1.0で、円ベースの上昇が大きくなっています。",
+      "source": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2610.pdf",
+      "action": "輸入の石油・石炭・天然ガス欄で、円ベースと契約通貨ベースの差を見る"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "仕入れ見直しに効く、品目ごとの前年比",
+    "cause": "何が上がったのか、統計の中身",
+    "steps": "10月速報の表で確かめること",
+    "desk": "統計の元データを見る窓口",
+    "worries": "仕入れ値の上がり方、どこまで分かる？"
+  },
+  "depthAt": "2026-11-12T00:12:22+00:00"
 }
