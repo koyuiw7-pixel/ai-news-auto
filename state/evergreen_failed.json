@@ -39,8 +39,32 @@
     "factScore": 35,
     "unverifiedNumbers": []
   },
-  "copilot-how-to-use": "2026-11-09T20:16:00+09:00",
-  "perplexity-how-to-use": "2026-11-09T20:16:09+09:00",
+  "copilot-how-to-use": {
+    "at": "2026-11-12T21:07:28+09:00",
+    "reason": "合格しなかった",
+    "problems": [
+      "事実確認: 料金の「Microsoft 365 Personal（年払い）: ¥19,170/最初の1年（元は¥21,300から）」→ 元記事には年払いの価格が無く、この数字は創作",
+      "事実確認: 料金の「Microsoft 365 Family（年払い）: ¥27,400/年」→ 元記事に年払いの価格が無く、創作",
+      "事実確認: 料金の「Microsoft 365 Premium（年払い）: ¥28,800/最初の1年（元は¥32,000から）」→ 元記事に年払いの価格が無く、創作",
+      "事実確認: 料金の「Microsoft 365 Pro（月払い）: ¥16,000/月（5TBの共有可能なストレージ）」→ 元記事に Pro の価格・容量は無く、創作",
+      "事実確認: 「月払いは最初の1か月¥1,910、年払いは最初の1年¥19,170（元は¥21,300から）と表示」→ 年払いの価格は元記事に無く、創作",
+      "事実確認: 「Microsoft 365 の個人向けプランは、Personal、Family、Premium、Proの4種類」→ 元記事の個人向けプラン表示は Personal・Family・Premium の3種類で、Pro は個人向けとして示されていない"
+    ],
+    "factScore": 20,
+    "unverifiedNumbers": []
+  },
+  "perplexity-how-to-use": {
+    "at": "2026-11-12T21:07:38+09:00",
+    "reason": "公式ページが足りない",
+    "sourceChars": 1059,
+    "skippedSources": [
+      {
+        "url": "https://www.perplexity.ai/ja/hub/faq/what-is-perplexity",
+        "chars": 394,
+        "error": "文字が少ない"
+      }
+    ]
+  },
   "notion-ai-how-to-use": "2026-11-09T23:09:27+09:00",
   "veo-how-to-use": "2026-11-10T01:04:00+09:00",
   "notebooklm-slides": "2026-11-10T01:05:57+09:00",
