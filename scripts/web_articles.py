@@ -2730,6 +2730,8 @@ def main() -> int:
             # 上限で見送るだけの回は「止まっている」に数えず、空いた枠は使い方・手続きのガイド（evergreen.yml）で埋める
             if news_mix.over_cap(cand, mix_counts):
                 return "next", f"今日の種類別の上限（{cand.get('_mix') or news_mix.classify(cand)}）"  # 企業向け・開発者向けの海外の発表は今日の上限まで（見送りの印は付けない。台帳 A41）
+            if news_mix.review_blocks(cand):
+                return "next", "AdSense の審査の期間は暮らしとお金の記事だけ（scripts/ramp.py ADSENSE_REVIEW）"
             if is_ai and is_foreign_ai(cand) and foreign_left[0] <= 0:
                 return "next", f"海外の AI の発表の今日の上限（{FOREIGN_AI_DAILY_CAP}本）"  # 海外の AI の発表は今日の上限まで（見送りの印は付けない。台帳 A47）
             if not is_ai and cand.get("section") == "sports" and sports_today(state) >= persona.SPORTS_DAILY_CAP:

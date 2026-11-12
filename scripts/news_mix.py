@@ -200,6 +200,34 @@ def over_cap(item: dict, counts: dict[str, int]) -> bool:
     return cap is not None and counts.get(name, 0) >= cap
 
 
+# AdSense の審査の期間（scripts/ramp.py の ADSENSE_REVIEW。2026-11-12 オーナー決定「自動のニュースは暮らしとお金だけ」）に作ってよい種類。
+# 注意喚起・お金・暮らしの手続き・有名ブランドの新製品。それ以外の種類でも、題名がお金か暮らしにつながる（indexnow.life_link）
+# 国内の記事は作る（リコール・電気代の割引など、種類の判定の語に当たらない暮らしとお金の記事を落とさない）。
+# スポーツ・科学・エンタメ・AI の欄は、上の4つの種類のときだけ。速報・大きなニュース（major）はこの外（台帳 S41）
+REVIEW_MIXES = frozenset({"alert", "money", "life", "brand"})
+REVIEW_OFF_SECTIONS = frozenset({"ai", "sports", "science", "entertainment"})
+# 種類の判定（alert）の語に当たらない注意喚起（「悪用を確認」の脆弱性・会員情報の漏えいなど）も、読者を守る話なので作る
+REVIEW_ALERT_RE = re.compile(r"脆弱性[^。]{0,20}(?:悪用|修正|更新|注意)|漏えい|漏洩|流出|不正アクセス|リコール|詐欺|なりすまし")
+
+
+def review_blocks(item: dict, today: str | None = None) -> bool:
+    """審査の期間に、この候補を自動のニュースとして作らないか（作らないなら True）"""
+    import ramp  # noqa: PLC0415
+
+    today = today or datetime.now(JST).strftime("%Y-%m-%d")
+    if not ramp.in_adsense_review(today):
+        return False
+    if (item.get("_mix") or classify(item)) in REVIEW_MIXES:
+        return False
+    if REVIEW_ALERT_RE.search(unicodedata.normalize("NFKC", str(item.get("title") or ""))):
+        return False
+    if str(item.get("section") or item.get("genreSlug") or "") in REVIEW_OFF_SECTIONS:
+        return True
+    import indexnow  # noqa: PLC0415
+
+    return not indexnow.life_link(str(item.get("title") or ""))
+
+
 def summary(counts: dict[str, int]) -> str:
     share = life_share(counts)
     parts = [f"暮らし・お金 {0 if share is None else round(share * 100)}%（めやす {round(float(CONFIG.get('life_min_share') or 0.6) * 100)}%以上）"]
