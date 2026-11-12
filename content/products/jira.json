@@ -6,105 +6,86 @@
   "companyName": "Atlassian",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Jiraは、チームの作業を管理するためのクラウドツールです。Atlassianが提供しています。2026年10月末から11月にかけて、AI機能の拡充や秋の大型アップデートが発表されました。",
+    "text": "Jiraは、Atlassianが提供する業務や課題管理のためのツールです。2026年11月の発表では、AIが本番前の変更リスクを評価する機能などが公開ベータで追加されました。",
     "sources": [
       "atlassian-prevention-center-ai-ops",
-      "https://www.atlassian.com/blog/development/jira-autumn-release"
+      "atlassian-q1-fy27-shareholder-letter",
+      "duolingo-ai-str-fix-bug-agent"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年11月までに順次",
+      "value": "公開ベータで提供中",
       "sources": [
-        "https://www.atlassian.com/blog/development/jira-autumn-release"
+        "atlassian-prevention-center-ai-ops"
       ]
     },
     {
-      "label": "使える場所",
-      "value": "クラウド",
+      "label": "日本での提供",
+      "value": "未確認",
       "sources": [
-        "https://www.atlassian.com/blog/development/jira-autumn-release"
+        "atlassian-prevention-center-ai-ops"
       ]
     },
     {
       "label": "向いている人",
-      "value": "チームの作業を管理する人",
+      "value": "SRE・運用担当",
       "sources": [
-        "https://www.atlassian.com/blog/development/jira-autumn-release"
+        "atlassian-prevention-center-ai-ops"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "会社管理ボードの読み込みが22%速くなりました。",
-      "sources": [
-        "https://www.atlassian.com/blog/development/jira-autumn-release"
-      ]
-    },
-    {
-      "text": "作業項目から直接エージェントを起動できます。",
-      "sources": [
-        "https://www.atlassian.com/blog/development/jira-autumn-release"
-      ]
-    },
-    {
-      "text": "AIが変更のリスクを4分類で評価するPrevention Centerが使えます。",
+      "text": "AIが本番前の変更リスクを技術面など4つの分類で評価します。",
       "sources": [
         "atlassian-prevention-center-ai-ops"
       ]
     },
     {
-      "text": "障害対応情報を1画面にまとめるIncident Command Centerが使えます。",
+      "text": "障害対応の情報を1つの画面にまとめて原因の推測を助けます。",
       "sources": [
         "atlassian-prevention-center-ai-ops"
+      ]
+    },
+    {
+      "text": "DatadogやSentryなどの監視ツールと連携できます。",
+      "sources": [
+        "atlassian-prevention-center-ai-ops"
+      ]
+    },
+    {
+      "text": "スマホを振るバグ報告が自動でJiraのチケットになります。",
+      "sources": [
+        "duolingo-ai-str-fix-bug-agent"
       ]
     }
   ],
   "pricing": [],
   "japan": [],
-  "howto": [
-    {
-      "text": "Jira Cloud全体で一般提供される予定です。",
-      "sources": [
-        "https://www.atlassian.com/blog/development/jira-autumn-release"
-      ]
-    },
-    {
-      "text": "Prevention CenterなどはPremiumとEnterpriseの契約者向けに提供されます。",
-      "sources": [
-        "atlassian-prevention-center-ai-ops"
-      ]
-    }
-  ],
+  "howto": [],
   "differences": [],
   "faq": [
     {
-      "q": "いつから使える？",
-      "a": "2026年11月までにJira Cloud全体で一般提供される予定です。",
+      "q": "どのような人が対象ですか？",
+      "a": "IT運用やSREなどの運用担当者に向いています。",
       "sources": [
-        "https://www.atlassian.com/blog/development/jira-autumn-release"
+        "atlassian-prevention-center-ai-ops"
       ]
     },
     {
-      "q": "ボードの表示は速くなる？",
-      "a": "会社管理ボードの読み込みが22%速くなります。",
+      "q": "どのような監視ツールと連携できますか？",
+      "a": "Datadog、Sentry、Splunkなどの情報を取り込みます。",
       "sources": [
-        "https://www.atlassian.com/blog/development/jira-autumn-release"
+        "atlassian-prevention-center-ai-ops"
       ]
     },
     {
-      "q": "カスタムテンプレートはどのプランで使える？",
-      "a": "これまでのEnterpriseに加え、StandardとPremiumでも使えます。",
+      "q": "バグ報告はどう扱われますか？",
+      "a": "報告が自動でJiraのチケットになります。",
       "sources": [
-        "https://www.atlassian.com/blog/development/jira-autumn-release"
-      ]
-    },
-    {
-      "q": "AIエージェントの活動は確認できる？",
-      "a": "専用のダッシュボードやボード上の表示で確認できます。",
-      "sources": [
-        "https://www.atlassian.com/blog/development/jira-autumn-release"
+        "duolingo-ai-str-fix-bug-agent"
       ]
     }
   ],
@@ -112,7 +93,7 @@
     {
       "date": "2026-11-06",
       "slug": "atlassian-prevention-center-ai-ops",
-      "event": "Jira Service Managementの新機能を発表"
+      "event": "Prevention Centerなどを公開ベータで提供"
     }
   ],
   "related": [
@@ -126,17 +107,9 @@
   "linkFrom": [
     "atlassian-prevention-center-ai-ops"
   ],
-  "signature": "370ca9e8bf2aca94",
-  "primarySignature": "89c7f455e3da5bc0",
+  "signature": "b60f360243256d36",
+  "primarySignature": "783402d2b83cec1f",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-07T15:15:26+00:00",
-  "updatedAt": "2026-11-10T15:36:53+00:00",
-  "officialSources": {
-    "https://www.atlassian.com/blog/development/jira-autumn-release": {
-      "title": "Jira's autumn 2026 release: faster views, visible agents, and consistency by default",
-      "publisher": "Atlassian 公式ブログ",
-      "kind": "web",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T12:33:57+00:00"
 }

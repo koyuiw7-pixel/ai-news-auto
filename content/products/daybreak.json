@@ -6,52 +6,73 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "Daybreakは、OpenAIが開発したサイバーセキュリティ向けのAIモデルおよび支援プラットフォームです。脆弱性の調査や脅威への対応を自動化し、企業の防御担当者を支援します。ソフォスやCheck Pointなどの事例を通じて発表されました。",
+    "text": "Daybreakは、OpenAIが提供するサイバーセキュリティ向けの共同開発プログラムです。セキュリティ運用の自動化や脆弱性の検証を行うため、各種の防御担当者に向けて展開されています。",
     "sources": [
-      "sophos-openai-daybreak-security-agent"
+      "sophos-openai-daybreak-security-agent",
+      "gpt-56-cyber-aws-govcloud"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年10月までに発表・展開",
+      "value": "一部で提供中",
       "sources": [
         "sophos-openai-daybreak-security-agent"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "ソフォスのMDR等で利用可能",
+      "value": "条件付き（MDR経由など）",
       "sources": [
         "sophos-openai-daybreak-security-agent"
       ]
     },
     {
-      "label": "向いている人",
-      "value": "政府系の防御担当やセキュリティ管理者",
+      "label": "使える場所",
+      "value": "Amazon Bedrock等",
       "sources": [
+        "gpt-56-cyber-aws-govcloud"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "防御側の組織や研究者",
+      "sources": [
+        "gpt-6-cyber-aligned-security-agents",
         "gpt-56-cyber-aws-govcloud"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "脅威への平均対応時間を38分から89秒へ約96%削減します。",
+      "text": "ソフォスのMDRサービスにおいて、脅威への平均対応時間を38分から89秒へ96%削減しました。",
       "sources": [
         "sophos-openai-daybreak-security-agent"
       ]
     },
     {
-      "text": "セキュリティ業務向けにガードレールが調整され、マルウェア解析を行います。",
+      "text": "セキュリティ業務に特化してセーフティガードレールを緩和し、高度なマルウェア解析を実現します。",
       "sources": [
         "sophos-openai-daybreak-security-agent"
+      ]
+    },
+    {
+      "text": "Daybreak Red経由で最先端モデルへのアクセスが拡大されています。",
+      "sources": [
+        "openai-hacktron-vulnerability-partnership"
+      ]
+    },
+    {
+      "text": "重要なサービスやデジタル基盤を守る最前線の防御担当者に、6か月で10億ドル分の補助付き利用枠が用意されています。",
+      "sources": [
+        "openai-security-sprint-bug-bounty"
       ]
     }
   ],
   "pricing": [],
   "japan": [
     {
-      "text": "ソフォスの日本法人や国内の正規代理店を通じて、MDRサービスを契約することで恩恵を受けられます。",
+      "text": "ソフォスのMDRサービスを国内の正規代理店等を通じて契約し、恩恵を受けることができます。",
       "sources": [
         "sophos-openai-daybreak-security-agent"
       ]
@@ -59,16 +80,15 @@
   ],
   "howto": [
     {
-      "text": "ソフォスのMDRサービスを導入することでバックエンドで利用できます。",
+      "text": "Amazon Bedrockなどの対応環境で利用します。",
       "sources": [
-        "sophos-openai-daybreak-security-agent"
+        "gpt-56-cyber-aws-govcloud"
       ]
     },
     {
-      "text": "OpenAIのエンタープライズ窓口やAWSの担当チームに問い合わせます。",
+      "text": "利用にはDaybreak Redの承認と、AWS側での利用設定の両方が必要です。",
       "sources": [
-        "gpt-56-cyber-aws-govcloud",
-        "sophos-openai-daybreak-security-agent"
+        "gpt-56-cyber-aws-govcloud"
       ]
     }
   ],
@@ -76,28 +96,29 @@
   "faq": [
     {
       "q": "誰に向いている？",
-      "a": "企業のセキュリティ管理者や政府系の防御担当者に向いています。",
+      "a": "承認を受けた政府系のセキュリティチームや企業のIT部門など、防御担当者に向いています。",
+      "sources": [
+        "sophos-openai-daybreak-security-agent",
+        "gpt-56-cyber-aws-govcloud"
+      ]
+    },
+    {
+      "q": "データはモデルの学習に使われる？",
+      "a": "Amazon Bedrock上のDaybreak Redでは、推論のデータはモデルの学習に使われません。",
       "sources": [
         "gpt-56-cyber-aws-govcloud"
       ]
     },
     {
-      "q": "どのような効果がある？",
-      "a": "脆弱性調査や脅威対応の時間を大幅に短縮できます。",
+      "q": "どのような仕組みで動く？",
+      "a": "自律型エージェントが計画・実行・観察のループを回し、調査プロセスを自動化します。",
       "sources": [
         "sophos-openai-daybreak-security-agent"
       ]
     },
     {
-      "q": "安全性の対策は？",
-      "a": "本人確認やアクセス管理の強化、人間の承認を組み合わせた設計になっています。",
-      "sources": [
-        "gpt-56-cyber-aws-govcloud"
-      ]
-    },
-    {
-      "q": "データの扱いはどうなる？",
-      "a": "Amazon Bedrock上のDaybreak Redでは推論データの学習利用はありません。",
+      "q": "利用に必要な手続きは？",
+      "a": "OpenAIのDaybreak Redの承認と、AWSでの利用設定の両方が必要です。",
       "sources": [
         "gpt-56-cyber-aws-govcloud"
       ]
@@ -107,7 +128,7 @@
     {
       "date": "2026-10-09",
       "slug": "sophos-openai-daybreak-security-agent",
-      "event": "ソフォスがDaybreakで脅威対応時間を削減"
+      "event": "ソフォスがOpenAI Daybreakを採用"
     }
   ],
   "related": [
@@ -126,9 +147,9 @@
   "linkFrom": [
     "sophos-openai-daybreak-security-agent"
   ],
-  "signature": "d4a06e6f40eba99d",
-  "primarySignature": "ad95c291e319b817",
+  "signature": "86e9f15d025432a9",
+  "primarySignature": "adfc734e6defe8c7",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-03T05:32:40+00:00",
-  "updatedAt": "2026-11-09T06:33:17+00:00"
+  "updatedAt": "2026-11-12T12:33:52+00:00"
 }
