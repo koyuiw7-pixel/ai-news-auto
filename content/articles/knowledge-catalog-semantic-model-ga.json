@@ -3,8 +3,8 @@
   "sourceType": "web",
   "sourceUrl": "https://cloud.google.com/blog/ja/products/data-analytics/expanded-semantic-model-support-in-knowledge-catalog/",
   "sourceName": "Google Cloud 公式ブログ（日本）",
-  "title": "AIの回答が財務数値とずれる問題に　Knowledge CatalogがLookerなど6種の定義を統合",
-  "seoTitle": "Knowledge Catalog：6種の指標定義を統合",
+  "title": "AIの回答を社内の指標定義に合わせる　Lookerなど6種に対応",
+  "seoTitle": "Knowledge Catalog、6種の指標定義に対応",
   "threadsPost": "データ分析やBI担当の人に、知っておいてほしい話です。\n\nGoogle CloudのKnowledge Catalogが、Looker、dbt、Snowflakeなど6種の指標定義を1つのグラフに統合しました。\n社内ベンチマークでは、エージェントの精度が約4倍になったとしています。\n\nAIが出す数字と、経理の数字がずれた経験はありますか？",
   "threadsHook": "callout",
   "threadsQuestions": [
@@ -23,8 +23,8 @@
   ],
   "threadsStyle": 3,
   "writingVoice": "honest",
-  "lede": "AIエージェントが出す数字を、社内で信頼されている指標の定義に合わせる仕組みが一般提供になりました。Google CloudのKnowledge Catalogは、Looker LookML、dbt MetricFlow、Snowflake、Databricks、SAP、BigQuery Graphの定義を1つのグラフに統合します。社内ベンチマークでは精度が約4倍になりましたが、条件の詳細は公開されておらず、日本での提供はまだ発表されていません。",
-  "description": "Google CloudのKnowledge Catalogが、Looker、dbt、Snowflake、Databricks、SAPなど6種のセマンティックモデルの取り込みを一般提供。社内ベンチマークで精度約4倍、トークン最大75%減。",
+  "lede": "Google CloudのKnowledge Catalogで、Lookerやdbtなど6種類の指標定義を統合し、AIエージェントの回答に使う機能が一般提供になりました。社内ベンチマークでは精度が約4倍になったとしていますが、測定条件や比較対象の詳細は示されていません。",
+  "description": "Google CloudのKnowledge Catalogが、Looker、dbt、Snowflakeなど6種類のセマンティックモデルの取り込みに対応。社内ベンチマークでの精度約4倍という結果や、導入前に確認したい連携条件を紹介します。",
   "keywords": [
     "Knowledge Catalog",
     "セマンティックモデル",
@@ -59,7 +59,7 @@
       "同じ指標が複数のツールで違う定義になっていないか、社内で確認する材料になります。"
     ]
   },
-  "body": "対象は、Google CloudのKnowledge Catalogを使う企業のデータ担当者です。Looker、dbt、Snowflake、Databricks、SAPなどに指標の定義を持っていることが前提です。それらを使っていない人には、何も変わりません。\n\n日本での提供状況はまだ発表されていません。\n\nKnowledge Catalogは、社内のデータの意味や関係を一覧にして管理する仕組みです。2026年4月10日に、Dataplex Universal Catalogから名前が変わりました（Google Cloud公式ドキュメント、11/12確認）。\n\n## 営業責任者のAIが、財務の数字と合わなかった理由\n\nGoogle Cloudの公式ブログは、こんな例を挙げています。営業担当バイスプレジデントがAIに「前四半期の主要企業アカウントの純収益は？」と聞きます。AIはグラフを数秒で返しますが、数字が財務報告書と合いません。\n\n原因は、キャンセル済みの注文を収益に数えたことと、検証されていないステージングテーブルから取得したことでした。ブログは、モデルの性能の問題ではなく、AIが自社のビジネスを理解していなかったことが原因だと説明しています。\n\nビジネスの定義は、多くの場合すでにセマンティックモデル（指標の計算式や条件を決めた定義）として存在します。ただ、定義が各ツールに閉じ込められているため、AIは推測せざるを得ません。\n\n## 6種類のソースを1つのグラフにつなぐ\n\n今回一般提供になったのは、次のソースからの取り込みです。データを移したり、ビジネスロジックを書き直したりする必要はないとしています。\n\n- Looker LookML：Looker Coreからライブ同期し、指標SQL、結合条件、必須フィルタ、ダッシュボードまでのリネージ（データの流れ）を取得\n- BigQuery Graph：グラフ定義、ノードテーブル、エッジテーブル、グラフメジャー、類義語を登録\n- dbt MetricFlow：dbtモデルと指標をリンクし、品質テストの結果や更新頻度のSLAも連携\n- Snowflakeセマンティックビュー：Horizon Catalog経由で、ディメンション、指標式、品質スコアカード、PIIマスキングタグを取り込み\n- Databricks指標ビュー：Unity Catalog経由で、メジャーの数式、スコープフィルタ、認定バッジを取り込み\n- SAP CSN：SAP Business Data Cloud経由で、ビジネスラベル、通貨と単位の設定、データ機密性フラグを取得\n\nすべてが同じグラフ上のノードやエッジ（点と線）になるため、LookMLの結合とSnowflakeの関係などを横断してたどれます。\n\n同じ指標が別の定義で並ぶ場合は、出所つきで並べて表示します。勝手に上書きはしません。データスチュワード（データ管理の担当者）が見比べて、1つに統合します。\n\nLooker単体の一般提供は、すでにサイソクで報じています（[LookMLの指標定義をAIが使える](/articles/lookml-knowledge-catalog-ga)）。今回はそれが6種類に広がった形です。\n\n## 精度は約4倍、ただし社内ベンチマーク\n\nGoogle Cloudの公式ブログによると、Knowledge CatalogでAIエージェントを土台づけ（グラウンディング）すると、精度が約4倍になりました。社内ベンチマーク（性能テスト）での結果です。レイテンシ（応答の遅れ）は最大33%短くなり、トークン使用量は最大75%減りました。\n\n測定条件や比較対象の詳細は、公式ブログでは示されていません。「最大」とある数字は、最も良い場合の値と読むのが安全です。この数字は、自己学習機能の記事にも出ていました（[Knowledge Catalogに自己学習機能](/articles/google-knowledge-catalog-self-learning-enrichment)）。\n\n## データの品質も見て、エージェントが選ぶ\n\n正しい計算式でも、古いデータや未認証のデータに適用すれば、答えは間違います。ブログによると、Knowledge Catalogは定義をデータ品質スコア、鮮度のシグナル、リネージと結び付けます。エージェントはSQLを1行書く前に、どのデータを信頼するか判断できます。\n\nさらにGeminiを使った自己学習で、運用ハンドブックや会議メモ、チャット、コードなどの文書から、不足や古いコンテキストを見つけて更新します。\n\n## Knowledge Studioで探索、コンテキストセットにまとめる\n\nコンテキストの探索と管理には、Knowledge Studio（プレビュー版）を使います。自然言語でグラフを探索し、接続の道筋をたどれます。確認したアセットと定義は「コンテキストセット」にまとめます。GeminiやカスタムエージェントがKnowledge Catalogから本番で使えます。\n\n## Lookerのメタデータ保存は無料、反映まで最大1日\n\nLooker（Google Cloudコア）の技術メタデータをKnowledge Catalogに保存するのは無料です。API呼び出しや追加のビジネスメタデータの拡張には、Knowledge Catalogの標準料金がかかります。\n\n同期は既定で自動で行われ、設定の変更は不要です。有効にしてから、Knowledge Catalogで見られるようになるまで最大1日かかります（Google Cloud公式ドキュメント、11/12確認）。\n\n## サイソクの見方：まず定義の食い違いを洗い出す\n\n今回の核心は、AIの賢さを上げることではありません。dbtやLookerなどに散らばる指標の定義を、エージェントが同じものとして読めるようにした点だとみられます。\n\n社内ベンチマークの「約4倍」は条件が公開されておらず、自社データで同じ結果が出るかは分かりません。\n\n- すでにLooker CoreやBigQueryを使っているなら：Lookerのメタデータ保存は無料なので、取り込まれた定義を確認して試す。\n- 複数のツールに同じ指標の定義があるなら：出所つきで食い違いが見えるので、データスチュワードが統合する準備に使う。\n- Snowflake、Databricks、SAPが中心なら：連携はGoogle Cloud Lakehouse経由などが前提のため、導入の前に構成を確認する。\n\n## まだ分からないこと\n\n- 日本での提供状況や、日本語環境での動作は発表されていません。\n- 社内ベンチマークの測定条件と、比較対象は公表されていません。\n- Looker以外の5つのソースの料金は、まだ発表されていません。\n\n## データ基盤の管理者が確かめること\n\n詳しい接続方法は、Knowledge Catalogのドキュメントで案内されています。まずKnowledge Studioでコンテキストグラフを確認し、取り込めるソースを洗い出すとよいでしょう。",
+  "body": "対象は、Google CloudのKnowledge Catalogを使い、Lookerやdbtなどに指標の定義を持つ企業のデータ担当者です。既存の定義を、AIエージェントの回答に活用できるようになります。\n\nKnowledge Catalogは、社内のデータの意味や関係を一覧にして管理する仕組みです。2026年4月10日に、Dataplex Universal Catalogから名前が変わりました（Google Cloud公式ドキュメント、11/12確認）。\n\n## AIの純収益の回答が財務報告とずれた例\n\nGoogle Cloudの公式ブログは、次の例を挙げています。営業担当バイスプレジデントがAIに「前四半期の主要企業アカウントの純収益は？」と聞きます。AIはグラフを数秒で返しますが、数字が財務報告書と合いません。\n\n原因は、キャンセル済みの注文を収益に数え、検証されていないステージングテーブルからデータを取得したことでした。ブログは、モデルの性能ではなく、AIが自社のビジネスを理解していなかったことが原因だと説明しています。\n\nビジネス上の定義は、多くの場合すでにセマンティックモデル（指標の計算式や条件を決めた定義）として存在します。ただ、定義が各ツールに閉じ込められているため、AIは推測せざるを得ません。\n\n## Lookerやdbtなど6種類の定義を統合\n\n今回一般提供になったのは、次のソースからの取り込みです。データを移したり、ビジネスロジックを新しい言語で書き直したりする必要はないとしています。\n\n- Looker LookML：Looker Coreからライブ同期し、指標SQL、結合条件、必須フィルタ、ダッシュボードまでのリネージ（データの流れ）を取得\n- BigQuery Graph：グラフ定義、ノードテーブル、エッジテーブル、グラフメジャー、類義語を登録\n- dbt MetricFlow：dbtモデルと指標をリンクし、品質テストの結果や更新頻度のSLAも連携\n- Snowflakeセマンティックビュー：Horizon Catalog経由で、ディメンション、指標式、品質スコアカード、PIIマスキングタグを取り込み\n- Databricks指標ビュー：Unity Catalog経由で、メジャーの数式、スコープフィルタ、認定バッジを取り込み\n- SAP CSN：SAP Business Data Cloud経由で、ビジネスラベル、通貨と単位の設定、データ機密性フラグを取得\n\nすべてが同じグラフ上のノードやエッジ（点と線）になるため、LookMLの結合とSnowflakeの関係などを横断してたどれます。\n\n同じ指標が別の定義で並ぶ場合は、出所つきで表示します。勝手に上書きはしません。データスチュワード（データ管理の担当者）は見比べたうえで、1つの定義に統合できます。\n\nLooker単体の一般提供は、すでにサイソクで報じています（[LookMLの指標定義をAIが使える](/articles/lookml-knowledge-catalog-ga)）。今回はそれが6種類に広がった形です。\n\n## 社内ベンチマークでは精度約4倍\n\nGoogle Cloudの公式ブログによると、Knowledge CatalogでAIエージェントを土台づけ（グラウンディング）すると、精度が約4倍になりました。社内ベンチマーク（性能テスト）での結果です。レイテンシ（応答の遅れ）は最大33%短くなり、トークン使用量は最大75%減りました。\n\n測定条件や比較対象の詳細は、公式ブログでは示されていません。「最大」とある数字は、常に得られる効果を示すものではありません。この数字は、自己学習機能の記事にも出ていました（[Knowledge Catalogに自己学習機能](/articles/google-knowledge-catalog-self-learning-enrichment)）。\n\n## データの品質や鮮度も判断材料に\n\n正しい計算式でも、古いデータや未認証のデータに適用すれば、答えは間違います。ブログによると、Knowledge Catalogは定義をデータ品質スコア、鮮度のシグナル、リネージと結び付けられます。エージェントはSQLを1行書く前に、どのデータを信頼するか判断できます。\n\nさらにGeminiを使った自己学習で、運用ハンドブックや会議メモ、チャット、コードなどから、不足や古くなったコンテキストを見つけ、再利用できるセットに変換します。\n\n## Knowledge Studioで定義を探索し、セットにまとめる\n\nコンテキストの探索と管理には、Knowledge Studio（プレビュー版）を使います。自然言語でグラフを探索し、接続の道筋をたどれます。確認したアセットと定義は「コンテキストセット」にまとめ、Geminiやカスタムエージェントが本番環境で使えます。\n\n## Lookerのメタデータ保存は無料、反映まで最大1日\n\nLooker（Google Cloudコア）の技術メタデータをKnowledge Catalogに保存するのは無料です。API呼び出しや追加のビジネスメタデータの拡張には、Knowledge Catalogの標準料金がかかります。\n\n同期は既定で自動で行われ、設定の変更は不要です。有効にしてから、Knowledge Catalogで見られるようになるまで最大1日かかります（Google Cloud公式ドキュメント、11/12確認）。\n\n## 導入前に指標の食い違いと連携構成を確認\n\n今回の特徴は、dbtやLookerなどに散らばる指標の定義を、エージェントが共通のグラフから参照できるようにした点です。\n\n社内ベンチマークの「約4倍」は条件が公開されておらず、自社データで同じ結果が出るかは分かりません。導入前には、次の点を確認できます。\n\n- Looker CoreやBigQueryを使っている場合：Knowledge Studioで取り込まれた定義や接続の道筋を確認する。\n- 複数のツールに同じ指標の定義がある場合：出所つきで表示される定義を見比べ、データスチュワードが不一致を解消する。\n- SnowflakeやSAPを使っている場合：Snowflakeは連携されたBigQueryまたはGoogle Cloud Lakehouseのテーブル、SAPはGoogle Cloud Lakehouseを介した連携が示されているため、構成を確認する。\n\n## 測定条件と日本での動作は確認できず\n\n- 資料の公式ブログには、日本での提供状況や日本語環境での動作は記載されていません。\n- 社内ベンチマークの測定条件と比較対象の詳細は示されていません。\n- 資料の公式ブログには、各ソースの料金は記載されていません。\n\n## 接続方法はKnowledge Catalogのドキュメントで確認\n\n詳しい接続方法は、Knowledge Catalogのドキュメントで案内されています。まずKnowledge Studioでコンテキストグラフを確認し、取り込めるソースを洗い出すとよいでしょう。",
   "easy": "## ひとことで言うと\n\nAIが社内の数字を答えるとき、会社が決めた「正しい指標の定義」を使えるようにする仕組みが、Google Cloudで一般提供になりました。Looker、dbt、Snowflake、Databricks、SAPなどの定義を1か所につなぎます。\n\n## なぜ数字がずれるのか\n\nAIが財務報告書と違う売上を出すことがあります。たとえば、キャンセルされた注文を売上に数えたり、確認前のデータを使ったりするためです。\n\n会社の数字の定義は、各ツールの中に別々にしまわれています。AIはそれを知らないので、推測で答えてしまいます。\n\n## 何が変わるのか\n\nKnowledge Catalogは、各ツールの定義を1つの地図（コンテキストグラフ）にまとめます。AIはその地図を見て、信頼できる定義とデータを選べます。\n\n同じ指標の定義が食い違っていれば、両方を出所つきで表示します。担当者が確認して、1つにそろえられます。\n\nGoogleの社内テストでは、AIの精度が約4倍になり、処理が最大33%速くなりました。トークン（AIが文字を数える単位）の使用量は最大75%減りました。日本での提供状況はまだ発表されていません。",
   "channel": "Google Cloud 公式ブログ（日本）",
   "channelId": "",
@@ -216,5 +216,38 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/knowledge-catalog-semantic-model-ga-c3e6b5f4.jpg"
+  },
+  "gptReview": {
+    "reviewedBy": "gpt-6.1-terra",
+    "reviewedAt": "2026-11-12T08:36:26+00:00",
+    "changed": [
+      "body",
+      "description",
+      "lede",
+      "seoTitle",
+      "title"
+    ],
+    "before": {
+      "title": "AIの回答が財務数値とずれる問題に　Knowledge CatalogがLookerなど6種の定義を統合",
+      "lede": "AIエージェントが出す数字を、社内で信頼されている指標の定義に合わせる仕組みが一般提供になりました。Google CloudのKnowledge Catalogは、Looker LookML、dbt MetricFlow、Snowflake、Databricks、SAP、BigQuery Graphの定義を1つのグラフに統合します。社内ベンチマークでは精度が約4倍になりましたが、条件の詳細は公開されておらず、日本での提供はまだ発表されていません。"
+    },
+    "fixes": [
+      {
+        "before": "日本での提供はまだ発表されていません。",
+        "after": "資料の公式ブログには、日本での提供状況や日本語環境での動作は記載されていません。",
+        "evidence": "資料1には日本での提供状況や日本語環境での動作についての記載がない"
+      },
+      {
+        "before": "Looker以外の5つのソースの料金は、まだ発表されていません。",
+        "after": "資料の公式ブログには、各ソースの料金は記載されていません。",
+        "evidence": "資料1には各ソースの料金についての記載がない"
+      },
+      {
+        "before": "Snowflake、Databricks、SAPが中心なら：連携はGoogle Cloud Lakehouse経由などが前提",
+        "after": "Snowflakeは連携されたBigQueryまたはGoogle Cloud Lakehouseのテーブル、SAPはGoogle Cloud Lakehouseを介した連携が示されている",
+        "evidence": "「連携された BigQuery または Google Cloud Lakehouse テーブル」「SAP BDC データ プロダクトが Google Cloud Lakehouse を介して連携」"
+      }
+    ],
+    "notes": "タイトルとリードで、誰が何に使える機能かを先に示し、見出しと文章を整理しました。資料に記載がないことを未発表と断定していた箇所と、連携条件を一括りにしていた箇所を修正しました。"
   }
 }
