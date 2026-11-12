@@ -144,6 +144,7 @@
     "0e4e3a1587c5b8f1": "2026-11-11T02:02:57.399748+00:00",
     "117b2c162c1e1e8d": "2026-11-10T04:18:58.067230+00:00",
     "1498249b89ddfd8a": "2026-11-10T02:30:58.044638+00:00",
+    "176bbd5bd3503561": "2026-11-12T01:16:54.395863+00:00",
     "1b2cb430dd85d0a6": "2026-11-09T09:18:59.972459+00:00",
     "1deba5c915b6d003": "2026-11-10T18:21:06.372918+00:00",
     "23f45401d1673e55": "2026-11-11T09:14:54.412216+00:00",
@@ -154,6 +155,7 @@
     "32fd34fb53eda2f1": "2026-11-09T09:38:56.467516+00:00",
     "381ffd878144b6ba": "2026-11-09T11:22:55.089710+00:00",
     "38f52a35af291982": "2026-11-10T02:03:09.291270+00:00",
+    "3aad7e5fc8e70fed": "2026-11-12T01:16:54.395863+00:00",
     "3c8aedb547f4a5b7": "2026-11-09T19:01:05.896647+00:00",
     "43bc22446881077a": "2026-11-09T09:38:56.467516+00:00",
     "47599020119ef3b0": "2026-11-08T09:32:04.569385+00:00",
@@ -178,7 +180,6 @@
     "7991cb720e67630d": "2026-11-11T09:14:54.412216+00:00",
     "7df2f2a447cf75b6": "2026-11-11T09:14:54.412216+00:00",
     "828277d104d357dc": "2026-11-11T08:14:58.602626+00:00",
-    "87717d1c826ec2f6": "2026-11-08T01:10:50.926550+00:00",
     "8b761f56da6ddf72": "2026-11-11T02:54:51.172733+00:00",
     "9403a23a06ef907c": "2026-11-11T18:50:54.383665+00:00",
     "95efafa687a45f09": "2026-11-11T04:30:56.150308+00:00",
@@ -4264,13 +4265,6 @@
       "skipped": true,
       "url": "https://www.tokyu-fudosan-hd.co.jp/news/companies/pdf/d5e7fa5a8d681a9b61127ef623a5574f6877227c.pdf"
     },
-    "0d0546b337a4e8f4": {
-      "at": "2026-10-29T01:13:54.522885+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-      "skipped": true,
-      "url": "https://www.nintendo.com/jp/topics/article/d3010ec2-7658-4ad8-b25d-5bf54abf6849"
-    },
     "0d2095d107034e0c": {
       "at": "2026-11-04T08:08:18.654910+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -4806,12 +4800,6 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/about/release_2026/rel261106a.htm"
     },
-    "13d119e0245d8645": {
-      "at": "2026-10-29T01:12:20.740022+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（周年）",
-      "skipped": true,
-      "url": "https://www.nintendo.com/jp/topics/article/f4df5c50-0d01-4cc9-bcfc-489eb36274bf"
-    },
     "141794b8fcef0d3b": {
       "at": "2026-11-05T14:55:39.806562+00:00",
       "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
@@ -5057,7 +5045,7 @@
       "url": "https://www.zoom.com/en/blog/ai-for-social-media-content/"
     },
     "176bbd5bd3503561": {
-      "at": "2026-11-12T01:01:51.165554+00:00",
+      "at": "2026-11-12T01:19:45.544991+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "https://www.nintendo.com/jp/topics/article/ca36364e-5117-4881-9688-ea2d023a7b45"
@@ -5125,13 +5113,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110401"
-    },
-    "1846e81e08bcba88": {
-      "at": "2026-10-29T01:12:35.064356+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が短い（397字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.nintendo.com/jp/topics/article/535d4142-2649-4eeb-b0c2-00c801c95fd4"
     },
     "184a6aa8506f2781": {
       "at": "2026-11-02T20:55:29.192744+00:00",
@@ -6065,6 +6046,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（贈呈）",
       "skipped": true,
       "url": "https://www.cfa.go.jp/press/1eb99558-05d6-4be2-89ab-e7632c518668"
+    },
+    "2853afcf73ff129e": {
+      "at": "2026-11-12T01:19:44.982949+00:00",
+      "costUsd": 0.0092,
+      "intent": "neutral",
+      "mix": "brand",
+      "model": "gemini-3.6-flash",
+      "score": 88,
+      "section": "investment",
+      "slug": "suntory-kinmugi-hojun-sales-plan-raised",
+      "url": "https://www.suntory.co.jp/news/article/2026/15173.html?rss=0000000029"
     },
     "287490af4d6d8d6e": {
       "at": "2026-10-29T17:23:23.709097+00:00",
@@ -7019,7 +7011,7 @@
       "url": "https://openai.com/index/openai-to-acquire-pierre"
     },
     "3aad7e5fc8e70fed": {
-      "at": "2026-11-12T01:01:51.165305+00:00",
+      "at": "2026-11-12T01:19:45.544841+00:00",
       "reason": "prefilter: サイトの主題外（エンタメの告知・ゴシップ・キャンペーン。ビジネス・テックの目線ではない）",
       "skipped": true,
       "url": "https://www.nintendo.com/jp/topics/article/13827716-39ef-4435-911e-ab6583921da4"
@@ -7454,13 +7446,6 @@
       "skipped": true,
       "url": "https://www.stat.go.jp/data/kouri/doukou/3.html"
     },
-    "4305bbb55025e5a6": {
-      "at": "2026-10-29T01:12:20.739965+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（2145字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://sakana.ai/api-platform-earlyaccess/"
-    },
     "431523e8b33d731a": {
       "at": "2026-11-04T05:22:45.145834+00:00",
       "model": "anthropic-api:claude-sonnet-5-5",
@@ -7647,13 +7632,6 @@
       "reason": "quality: 本文が短い（1651字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（376字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102912"
-    },
-    "47175dd79f7a4918": {
-      "at": "2026-10-29T01:14:29.352614+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "大学設置・学校法人審議会による短期大学の設置者変更に関する答申であり、特定の大学の認可案件に関する個別・局所的な行政手続きのお知らせであるため、国民一般の暮らしやお金に関わる制度・規制等の話題に該当しないため。",
-      "skipped": true,
-      "url": "https://www.mext.go.jp/b_menu/shingi/daigaku/toushin/attach/1421012_00010.htm"
     },
     "473c3f7c341001bd": {
       "at": "2026-10-30T08:13:16.893082+00:00",
@@ -7915,12 +7893,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110614"
-    },
-    "4aeea661ef8cc7e6": {
-      "at": "2026-10-29T01:13:19.632858+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（ポイント還元）",
-      "skipped": true,
-      "url": "https://www.au.com/information/topic/pontapass/2026-002/"
     },
     "4afbd48f6ecf752b": {
       "at": "2026-11-06T02:04:06.992751+00:00",
@@ -8601,6 +8573,18 @@
       "slug": "nissan-kirin-yokohama-co-creation",
       "url": "http://global.nissannews.com/ja-JP/releases/261112-00-j"
     },
+    "53fc3b14416d46a3": {
+      "at": "2026-11-12T01:18:31.481376+00:00",
+      "costUsd": 0.1149,
+      "intent": "neutral",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "business",
+      "slug": "amazon-black-friday-2026-pitari-gai",
+      "url": "https://www.aboutamazon.jp/news/retail/3-steps-for-amazon-black-friday-2026?utm_source=rss"
+    },
     "53fd9de1b8351176": {
       "at": "2026-11-09T06:27:43.368252+00:00",
       "costUsd": 0.0099,
@@ -8913,6 +8897,12 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/bunkakai/02tsushin10_04000741.html"
     },
+    "58e398f6c82e88a1": {
+      "at": "2026-11-12T01:19:45.544754+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://www.nintendo.com/jp/topics/article/b852fe50-71bf-4c1a-a338-5b75951d040d"
+    },
     "58efe63b0e288aad": {
       "at": "2026-10-29T01:21:20.297921+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -9045,12 +9035,6 @@
       "section": "ai",
       "slug": "sompo-japan-gemini-enterprise-adoption",
       "url": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/"
-    },
-    "5ad1f61ced42c81b": {
-      "at": "2026-10-29T01:12:56.316916+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/denpa_yukoriyo/musenjujisha/02kiban09_04000744.html"
     },
     "5af2f33cb41b4881": {
       "at": "2026-10-30T10:12:22.321864+00:00",
@@ -9917,13 +9901,6 @@
       "score": 80,
       "updated": "openai-images-2-6-gif-faster",
       "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes#entry-2026-11-04"
-    },
-    "6687f834982bd2f1": {
-      "at": "2026-10-29T01:14:14.760103+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: まだ分からないことは？この先は？の箇所 → 元記事に無い「元記事では、これら以外の臨床的な応用や実用化のスケジュールについては言及されていません。」という不自然な言及が含まれている。; かんたん版のひとことで言うとの箇所 → 元記事に無い「世界で初めて」という記述がある。",
-      "skipped": true,
-      "url": "https://www.jst.go.jp/pr/announce/20261028-2/index.html"
     },
     "66899d2f897c21b0": {
       "at": "2026-11-09T00:17:49.680483+00:00",
@@ -12048,13 +12025,6 @@
       "slug": "chatgpt-pro-monthly-api-credits",
       "url": "https://openai.com/chatgpt/pricing/#entry-2026-11-03-892dd5"
     },
-    "8857751ffdb64df0": {
-      "at": "2026-10-29T01:12:55.998222+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-      "skipped": true,
-      "url": "https://www.jst.go.jp/pr/announce/20261029-3/index.html"
-    },
     "885a7805b10acd56": {
       "at": "2026-11-09T01:14:56.987290+00:00",
       "costUsd": 0.0143,
@@ -12934,13 +12904,6 @@
       "skipped": true,
       "url": "https://www.boj.or.jp/mopo/measures/select/s_release/srel261102a.htm"
     },
-    "96c6180860078329": {
-      "at": "2026-10-29T01:13:19.632805+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1511字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（368字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102816"
-    },
     "971847f0c7223a93": {
       "at": "2026-11-10T07:21:35.773111+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -13340,6 +13303,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/singi/chizai/02zaisei02_04001397_00977.html"
+    },
+    "9cf2df41fd31b5a9": {
+      "at": "2026-11-12T01:19:45.544867+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（プレゼント）",
+      "skipped": true,
+      "url": "https://www.nintendo.com/jp/topics/article/680e0eda-8dd6-4533-9f42-ef26376f111f"
     },
     "9d39d63def351c9c": {
       "at": "2026-11-09T23:18:42.957821+00:00",
@@ -14736,14 +14705,6 @@
       "reason": "stale: 発表から69時間（48時間を超えた発表は通常の記事にしない）",
       "skipped": true,
       "url": "https://www.figma.com/blog/workflow-lab-build-with-code-on-the-canvas-using-the-figma-agent-and-code-layers/"
-    },
-    "b38635d70a4d698f": {
-      "at": "2026-10-29T01:14:54.089875+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "public",
-      "slug": "soumu-vice-capital-cabinet-order",
-      "url": "https://www.soumu.go.jp/menu_news/kaiken/01koho01_02001586.html"
     },
     "b39e7e58c12254d9": {
       "at": "2026-11-10T07:27:07.164024+00:00",
@@ -19093,13 +19054,6 @@
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/048053/"
     },
-    "f8a9db31520a780c": {
-      "at": "2026-10-29T01:13:38.712750+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1672字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://www.ipa.go.jp/digital/kaihatsu/oss/learn/economic-value-of-oss/index.html"
-    },
     "f8ae2744baae7de9": {
       "at": "2026-10-30T05:01:58.633800+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -20143,6 +20097,14 @@
       "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036096&screenkbn=06",
       "writer": "muse"
     },
+    "muse-b36367139e": {
+      "at": "2026-11-12T01:00:52.368113+00:00",
+      "mix": "alert",
+      "score": 88,
+      "slug": "disability-basic-pension-amounts-2026",
+      "url": "https://www.nenkin.go.jp/service/jukyu/seido/shougainenkin/jukyu-yoken/20150514.html",
+      "writer": "muse"
+    },
     "muse-b6f8ccab09": {
       "at": "2026-11-10T09:44:58.599790+00:00",
       "mix": "other",
@@ -20350,144 +20312,9 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
-    },
-    "muse-b36367139e": {
-      "at": "2026-11-12T01:00:52.368113+00:00",
-      "mix": "alert",
-      "score": 88,
-      "slug": "disability-basic-pension-amounts-2026",
-      "url": "https://www.nenkin.go.jp/service/jukyu/seido/shougainenkin/jukyu-yoken/20150514.html",
-      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T08:46:37.713441+00:00",
-      "attempt": 1,
-      "id": "012bd510f3a35481",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 59.1,
-        "avg_sentence": 59.1,
-        "long_share": 0.556,
-        "max_paragraph": 84,
-        "paragraphs": 9,
-        "sentences": 9
-      },
-      "score": 85,
-      "source": "tokyo-metro",
-      "title": "東京都自転車安全利用サポーター 日本フードデリバリーサービス協会（JaFDA）と協定を締結します！",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 59.1字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T08:46:51.902720+00:00",
-      "attempt": 0,
-      "id": "012bd510f3a35481",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 60.7,
-        "avg_sentence": 42.0,
-        "long_share": 0.077,
-        "max_paragraph": 87,
-        "paragraphs": 9,
-        "sentences": 13
-      },
-      "score": 88,
-      "source": "tokyo-metro",
-      "title": "東京都自転車安全利用サポーター 日本フードデリバリーサービス協会（JaFDA）と協定を締結します！",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T08:47:40.288295+00:00",
-      "attempt": 1,
-      "id": "01a8528fa117926a",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "タイトルと本文の「欧州の調査機関ThinkYoung」「この調査は欧州の学生と教師が対象」→ 元記事はThinkYoungの調査地域や対象を示しておらず、欧州を対象とする根拠がない",
-        "本文の「この調査は…日本の学校や子どもの数字ではありません」→ 調査対象国が元記事に書かれていないため、日本との関係を断定できない",
-        "「この差は、欧州の調査機関ThinkYoungの研究が示した」→ 元記事は調査の地域を示していないため、欧州の調査とする部分は創作",
-        "編集部の見方の「79%と47%の差は、AIの利用が学校の指導より先に進んでいることを示す数字」→ 元記事の数字から導ける範囲を超えた解釈で、断定的すぎる"
-      ],
-      "readability": {
-        "avg_paragraph": 80.0,
-        "avg_sentence": 42.1,
-        "long_share": 0.105,
-        "max_paragraph": 131,
-        "paragraphs": 10,
-        "sentences": 19
-      },
-      "score": 62,
-      "source": "openai-news",
-      "title": "Closing the AI guidance gap in education",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（EMEA・OECD）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T08:48:05.948209+00:00",
-      "attempt": 1,
-      "id": "01a8528fa117926a",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 79.3,
-        "avg_sentence": 41.7,
-        "long_share": 0.105,
-        "max_paragraph": 131,
-        "paragraphs": 10,
-        "sentences": 19
-      },
-      "score": 92,
-      "source": "openai-news",
-      "title": "Closing the AI guidance gap in education",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（EMEA・OECD）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T08:48:16.511547+00:00",
-      "attempt": 1,
-      "id": "5853709e13ca8649",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "元記事の文をそのまま書き写している（3文。例「「幼い頃からとても憧れていたクラブでプロキャリアをスタートできることを大変嬉しく思います。」）。自分の言葉で要約する"
-      ],
-      "readability": {
-        "avg_paragraph": 97.9,
-        "avg_sentence": 52.7,
-        "long_share": 0.231,
-        "max_paragraph": 155,
-        "paragraphs": 7,
-        "sentences": 13
-      },
-      "score": null,
-      "source": "jleague",
-      "title": "ユースよりDF丸岡ら3選手の昇格が内定【Ｇ大阪】 明治安田Ｊ１リーグ 2026/11/10 (火) 17:30",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（DF・MF）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 52.7字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T08:48:33.878774+00:00",
@@ -27790,6 +27617,133 @@
       "warnings": [
         "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（SOMPO・MIRAI・TAP）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T01:18:15.733057+00:00",
+      "attempt": 1,
+      "id": "53fc3b14416d46a3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「今回の「ピタリ買い」は、Amazonでの買い物に関わる人全般に向けた呼びかけです」→ 元記事にこの対象範囲の記述はなく、解釈が事実のように書かれている。",
+        "「今の時点で変わる料金や手続きはありません」→ 元記事にこの記述はなく、根拠のない断定である。",
+        "簡単版で「プライム会員は、対象商品のお急ぎ便やお届け日時指定便を追加料金なしで使えます。」が準備2つ目の段落の後に置かれ、ステップ1の内容が混ざって読みにくい。"
+      ],
+      "readability": {
+        "avg_paragraph": 66.4,
+        "avg_sentence": 38.8,
+        "long_share": 0.083,
+        "max_paragraph": 143,
+        "paragraphs": 14,
+        "sentences": 24
+      },
+      "score": 85,
+      "source": "about-amazon-jp",
+      "title": "今年のお買い物キーワードは「ピタリ買い」。Amazonブラックフライデーをもっと楽しむための3ステップ",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T01:18:31.462562+00:00",
+      "attempt": 1,
+      "id": "53fc3b14416d46a3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.5,
+        "avg_sentence": 38.2,
+        "long_share": 0.083,
+        "max_paragraph": 143,
+        "paragraphs": 14,
+        "sentences": 24
+      },
+      "score": 93,
+      "source": "about-amazon-jp",
+      "title": "今年のお買い物キーワードは「ピタリ買い」。Amazonブラックフライデーをもっと楽しむための3ステップ",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T01:19:05.717467+00:00",
+      "attempt": 1,
+      "id": "2853afcf73ff129e",
+      "kind": "broad",
+      "model": "gemini-3.6-flash",
+      "problems": [
+        "本文「味わいの強化に加えて手ごろな価格帯が評価され、売上を伸ばしています」→ 元記事は販売数量と顧客の声を述べるのみで、売上が伸びたとは書かれていない",
+        "本文「編集部の見方では…想定を上回るペースで市場に定着しつつあります」→ 元記事に「想定を上回る」「市場に定着」の根拠はなく、編集部の見方として示しても事実の裏付けがない",
+        "本文「発売から10月末までの半月」→ 10月13日発売から10月末までは約2週間半で、「半月」はやや不正確",
+        "かんたん版「120万ケース（大びん換算）」→ 元記事の換算は633ml×20本で、「大びん換算」は言い換えとして不正確",
+        "本文「手ごろな価格で買えるビールとしての認知が広がり」→ 認知の広がりは元記事に書かれていない推測"
+      ],
+      "readability": {
+        "avg_paragraph": 102.4,
+        "avg_sentence": 56.9,
+        "long_share": 0.444,
+        "max_paragraph": 130,
+        "paragraphs": 5,
+        "sentences": 9
+      },
+      "score": 72,
+      "source": "suntory",
+      "title": "「金麦〈豊潤〉」2026年販売計画を120万ケース(※1)に上方修正",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 56.9字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T01:19:28.749521+00:00",
+      "attempt": 1,
+      "id": "2853afcf73ff129e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 100.0,
+        "avg_sentence": 57.1,
+        "long_share": 0.429,
+        "max_paragraph": 130,
+        "paragraphs": 4,
+        "sentences": 7
+      },
+      "score": 90,
+      "source": "suntory",
+      "title": "「金麦〈豊潤〉」2026年販売計画を120万ケース(※1)に上方修正",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 57.1字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T01:19:44.976418+00:00",
+      "attempt": 0,
+      "id": "2853afcf73ff129e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 102.2,
+        "avg_sentence": 40.9,
+        "long_share": 0.0,
+        "max_paragraph": 134,
+        "paragraphs": 4,
+        "sentences": 10
+      },
+      "score": 88,
+      "source": "suntory",
+      "title": "「金麦〈豊潤〉」2026年販売計画を120万ケース(※1)に上方修正",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
